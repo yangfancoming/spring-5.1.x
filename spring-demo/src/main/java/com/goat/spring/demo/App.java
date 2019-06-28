@@ -2,8 +2,11 @@ package com.goat.spring.demo;
 
 
 import com.goat.spring.demo.config.AppConfig;
+import com.goat.spring.demo.service.MessageService;
 import com.goat.spring.demo.service.TestService;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Created by 64274 on 2019/6/27.
@@ -17,5 +20,12 @@ public class App {
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
 		System.out.println(ctx.getBean(TestService.class));
+
+
+		// 用我们的配置文件来启动一个 ApplicationContext
+		ApplicationContext context = new ClassPathXmlApplicationContext("classpath:application.xml");
+		// 从 context 中取出我们的 Bean，而不是用 new MessageServiceImpl() 这种方式
+		MessageService messageService = context.getBean(MessageService.class);
+		System.out.println(messageService.getMessage()); // 这句将输出: hello world
 	}
 }
