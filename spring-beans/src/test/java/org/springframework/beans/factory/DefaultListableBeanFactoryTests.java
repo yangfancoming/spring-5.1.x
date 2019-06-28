@@ -455,6 +455,9 @@ public class DefaultListableBeanFactoryTests {
 	@Test
 	public void testEmpty() {
 		ListableBeanFactory lbf = new DefaultListableBeanFactory();
+		System.out.println(lbf.getBeanDefinitionNames());
+		System.out.println(lbf.getBeanDefinitionNames().length);
+		System.out.println(lbf.getBeanDefinitionCount());
 		assertTrue("No beans defined --> array != null", lbf.getBeanDefinitionNames() != null);
 		assertTrue("No beans defined after no arg constructor", lbf.getBeanDefinitionNames().length == 0);
 		assertTrue("No beans defined after no arg constructor", lbf.getBeanDefinitionCount() == 0);

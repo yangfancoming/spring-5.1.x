@@ -22,14 +22,12 @@ import org.springframework.util.StringUtils;
  * @see #setConfigLocations
  * @see #getDefaultConfigLocations
  */
-public abstract class AbstractRefreshableConfigApplicationContext extends AbstractRefreshableApplicationContext
-		implements BeanNameAware, InitializingBean {
+public abstract class AbstractRefreshableConfigApplicationContext extends AbstractRefreshableApplicationContext implements BeanNameAware, InitializingBean {
 
 	@Nullable
 	private String[] configLocations;
 
 	private boolean setIdCalled = false;
-
 
 	/**
 	 * Create a new AbstractRefreshableConfigApplicationContext with no parent.
@@ -44,7 +42,6 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 	public AbstractRefreshableConfigApplicationContext(@Nullable ApplicationContext parent) {
 		super(parent);
 	}
-
 
 	/**
 	 * Set the config locations for this application context in init-param style,

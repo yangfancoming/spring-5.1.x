@@ -58,17 +58,11 @@ import org.springframework.util.xml.DomUtils;
  * Intended for use by both the main parser and any extension
  * {@link BeanDefinitionParser BeanDefinitionParsers} or
  * {@link BeanDefinitionDecorator BeanDefinitionDecorators}.
- *
- * @author Rob Harrop
- * @author Juergen Hoeller
- * @author Rod Johnson
- * @author Mark Fisher
- * @author Gary Russell
  * @since 2.0
  * @see ParserContext
  * @see DefaultBeanDefinitionDocumentReader
  */
-public class BeanDefinitionParserDelegate {
+public class BeanDefinitionParserDelegate { // 定义解析 Element 的各种方法
 
 	public static final String BEANS_NAMESPACE_URI = "http://www.springframework.org/schema/beans";
 
