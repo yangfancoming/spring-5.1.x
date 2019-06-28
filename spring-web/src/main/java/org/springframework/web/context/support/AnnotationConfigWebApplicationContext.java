@@ -67,8 +67,7 @@ import org.springframework.web.context.ContextLoader;
  * @since 3.0
  * @see org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
-public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWebApplicationContext
-		implements AnnotationConfigRegistry {
+public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWebApplicationContext implements AnnotationConfigRegistry {
 
 	@Nullable
 	private BeanNameGenerator beanNameGenerator;

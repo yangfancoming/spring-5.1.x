@@ -9,8 +9,6 @@ import org.springframework.tests.sample.beans.LifecycleBean;
 
 /**
  * Simple bean to test ApplicationContext lifecycle methods for beans
- *
- * @author Colin Sampaleanu
  * @since 03.07.2004
  */
 public class LifecycleContextBean extends LifecycleBean implements ApplicationContextAware {

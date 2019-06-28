@@ -13,10 +13,7 @@ import org.springframework.web.context.support.ServletContextAwareProcessor;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Juergen Hoeller
- * @author Mark Fisher
- */
+
 public class ServletContextAwareProcessorTests {
 
 	@Test

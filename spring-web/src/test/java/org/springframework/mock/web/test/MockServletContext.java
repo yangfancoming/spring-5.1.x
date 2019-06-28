@@ -345,8 +345,7 @@ public class MockServletContext implements ServletContext {
 
 	@Override
 	public RequestDispatcher getRequestDispatcher(String path) {
-		Assert.isTrue(path.startsWith("/"),
-				() -> "RequestDispatcher path [" + path + "] at ServletContext level must start with '/'");
+		Assert.isTrue(path.startsWith("/"),() -> "RequestDispatcher path [" + path + "] at ServletContext level must start with '/'");
 		return new MockRequestDispatcher(path);
 	}
 

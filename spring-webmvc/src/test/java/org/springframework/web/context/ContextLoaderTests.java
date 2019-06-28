@@ -36,10 +36,6 @@ import static org.junit.Assert.*;
 
 /**
  * Tests for {@link ContextLoader} and {@link ContextLoaderListener}.
- *
- * @author Juergen Hoeller
- * @author Sam Brannen
- * @author Chris Beams
  * @since 12.08.2003
  * @see org.springframework.web.context.support.Spr8510Tests
  */
@@ -82,8 +78,7 @@ public class ContextLoaderTests {
 		final StringBuffer buffer = new StringBuffer();
 		final String expectedContents = "customizeContext() was called";
 		final MockServletContext sc = new MockServletContext("");
-		sc.addInitParameter(ContextLoader.CONFIG_LOCATION_PARAM,
-				"/org/springframework/web/context/WEB-INF/applicationContext.xml");
+		sc.addInitParameter(ContextLoader.CONFIG_LOCATION_PARAM,"/org/springframework/web/context/WEB-INF/applicationContext.xml");
 		ServletContextListener listener = new ContextLoaderListener() {
 			@Override
 			protected void customizeContext(ServletContext sc, ConfigurableWebApplicationContext wac) {
@@ -100,10 +95,8 @@ public class ContextLoaderTests {
 	@Test
 	public void testContextLoaderListenerWithLocalContextInitializers() {
 		MockServletContext sc = new MockServletContext("");
-		sc.addInitParameter(ContextLoader.CONFIG_LOCATION_PARAM,
-				"org/springframework/web/context/WEB-INF/ContextLoaderTests-acc-context.xml");
-		sc.addInitParameter(ContextLoader.CONTEXT_INITIALIZER_CLASSES_PARAM, StringUtils.arrayToCommaDelimitedString(
-				new Object[] {TestContextInitializer.class.getName(), TestWebContextInitializer.class.getName()}));
+		sc.addInitParameter(ContextLoader.CONFIG_LOCATION_PARAM,"org/springframework/web/context/WEB-INF/ContextLoaderTests-acc-context.xml");
+		sc.addInitParameter(ContextLoader.CONTEXT_INITIALIZER_CLASSES_PARAM, StringUtils.arrayToCommaDelimitedString(new Object[] {TestContextInitializer.class.getName(), TestWebContextInitializer.class.getName()}));
 		ContextLoaderListener listener = new ContextLoaderListener();
 		listener.contextInitialized(new ServletContextEvent(sc));
 		WebApplicationContext wac = WebApplicationContextUtils.getRequiredWebApplicationContext(sc);
@@ -115,10 +108,8 @@ public class ContextLoaderTests {
 	@Test
 	public void testContextLoaderListenerWithGlobalContextInitializers() {
 		MockServletContext sc = new MockServletContext("");
-		sc.addInitParameter(ContextLoader.CONFIG_LOCATION_PARAM,
-				"org/springframework/web/context/WEB-INF/ContextLoaderTests-acc-context.xml");
-		sc.addInitParameter(ContextLoader.GLOBAL_INITIALIZER_CLASSES_PARAM, StringUtils.arrayToCommaDelimitedString(
-				new Object[] {TestContextInitializer.class.getName(), TestWebContextInitializer.class.getName()}));
+		sc.addInitParameter(ContextLoader.CONFIG_LOCATION_PARAM,"org/springframework/web/context/WEB-INF/ContextLoaderTests-acc-context.xml");
+		sc.addInitParameter(ContextLoader.GLOBAL_INITIALIZER_CLASSES_PARAM, StringUtils.arrayToCommaDelimitedString(new Object[] {TestContextInitializer.class.getName(), TestWebContextInitializer.class.getName()}));
 		ContextLoaderListener listener = new ContextLoaderListener();
 		listener.contextInitialized(new ServletContextEvent(sc));
 		WebApplicationContext wac = WebApplicationContextUtils.getRequiredWebApplicationContext(sc);
@@ -130,8 +121,7 @@ public class ContextLoaderTests {
 	@Test
 	public void testContextLoaderListenerWithMixedContextInitializers() {
 		MockServletContext sc = new MockServletContext("");
-		sc.addInitParameter(ContextLoader.CONFIG_LOCATION_PARAM,
-				"org/springframework/web/context/WEB-INF/ContextLoaderTests-acc-context.xml");
+		sc.addInitParameter(ContextLoader.CONFIG_LOCATION_PARAM,"org/springframework/web/context/WEB-INF/ContextLoaderTests-acc-context.xml");
 		sc.addInitParameter(ContextLoader.CONTEXT_INITIALIZER_CLASSES_PARAM, TestContextInitializer.class.getName());
 		sc.addInitParameter(ContextLoader.GLOBAL_INITIALIZER_CLASSES_PARAM, TestWebContextInitializer.class.getName());
 		ContextLoaderListener listener = new ContextLoaderListener();
@@ -145,8 +135,7 @@ public class ContextLoaderTests {
 	@Test
 	public void testContextLoaderListenerWithProgrammaticInitializers() {
 		MockServletContext sc = new MockServletContext("");
-		sc.addInitParameter(ContextLoader.CONFIG_LOCATION_PARAM,
-				"org/springframework/web/context/WEB-INF/ContextLoaderTests-acc-context.xml");
+		sc.addInitParameter(ContextLoader.CONFIG_LOCATION_PARAM,"org/springframework/web/context/WEB-INF/ContextLoaderTests-acc-context.xml");
 		ContextLoaderListener listener = new ContextLoaderListener();
 		listener.setContextInitializers(new TestContextInitializer(), new TestWebContextInitializer());
 		listener.contextInitialized(new ServletContextEvent(sc));
@@ -159,8 +148,7 @@ public class ContextLoaderTests {
 	@Test
 	public void testContextLoaderListenerWithProgrammaticAndLocalInitializers() {
 		MockServletContext sc = new MockServletContext("");
-		sc.addInitParameter(ContextLoader.CONFIG_LOCATION_PARAM,
-				"org/springframework/web/context/WEB-INF/ContextLoaderTests-acc-context.xml");
+		sc.addInitParameter(ContextLoader.CONFIG_LOCATION_PARAM,"org/springframework/web/context/WEB-INF/ContextLoaderTests-acc-context.xml");
 		sc.addInitParameter(ContextLoader.CONTEXT_INITIALIZER_CLASSES_PARAM, TestContextInitializer.class.getName());
 		ContextLoaderListener listener = new ContextLoaderListener();
 		listener.setContextInitializers(new TestWebContextInitializer());
@@ -201,9 +189,7 @@ public class ContextLoaderTests {
 		MockServletContext sc = new MockServletContext("");
 		// config file doesn't matter.  just a placeholder
 		sc.addInitParameter(ContextLoader.CONFIG_LOCATION_PARAM,"/org/springframework/web/context/WEB-INF/empty-context.xml");
-
-		sc.addInitParameter(ContextLoader.CONTEXT_INITIALIZER_CLASSES_PARAM,
-				StringUtils.arrayToCommaDelimitedString(new Object[] {UnknownContextInitializer.class.getName()}));
+		sc.addInitParameter(ContextLoader.CONTEXT_INITIALIZER_CLASSES_PARAM,StringUtils.arrayToCommaDelimitedString(new Object[] {UnknownContextInitializer.class.getName()}));
 		ContextLoaderListener listener = new ContextLoaderListener();
 		try {
 			listener.contextInitialized(new ServletContextEvent(sc));
@@ -215,7 +201,7 @@ public class ContextLoaderTests {
 	}
 
 	@Test
-	public void testContextLoaderWithCustomContext() throws Exception {
+	public void testContextLoaderWithCustomContext() {
 		MockServletContext sc = new MockServletContext("");
 		sc.addInitParameter(ContextLoader.CONTEXT_CLASS_PARAM,"org.springframework.web.servlet.SimpleWebApplicationContext");
 		ServletContextListener listener = new ContextLoaderListener();
@@ -223,12 +209,11 @@ public class ContextLoaderTests {
 		listener.contextInitialized(event);
 		String contextAttr = WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE;
 		WebApplicationContext wc = (WebApplicationContext) sc.getAttribute(contextAttr);
-		assertTrue("Correct WebApplicationContext exposed in ServletContext",
-				wc instanceof SimpleWebApplicationContext);
+		assertTrue("Correct WebApplicationContext exposed in ServletContext",wc instanceof SimpleWebApplicationContext);
 	}
 
 	@Test
-	public void testContextLoaderWithInvalidLocation() throws Exception {
+	public void testContextLoaderWithInvalidLocation() {
 		MockServletContext sc = new MockServletContext("");
 		sc.addInitParameter(ContextLoader.CONFIG_LOCATION_PARAM, "/WEB-INF/myContext.xml");
 		ServletContextListener listener = new ContextLoaderListener();
