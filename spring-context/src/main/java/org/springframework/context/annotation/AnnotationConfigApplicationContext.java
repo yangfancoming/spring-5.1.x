@@ -1,18 +1,4 @@
-/*
- * Copyright 2002-2018 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 
 package org.springframework.context.annotation;
 
@@ -41,8 +27,7 @@ import org.springframework.util.Assert;
  *
  * <p>See @{@link Configuration}'s javadoc for usage examples.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+	 AnnotationConfigApplicationContext 是基于注解来使用的，它不需要配置文件，采用 java 配置类和各种注解来配置，是比较简单的方式，也是大势所趋
  * @since 3.0
  * @see #register
  * @see #scan
@@ -53,9 +38,7 @@ import org.springframework.util.Assert;
 public class AnnotationConfigApplicationContext extends GenericApplicationContext implements AnnotationConfigRegistry {
 
 	private final AnnotatedBeanDefinitionReader reader;
-
 	private final ClassPathBeanDefinitionScanner scanner;
-
 
 	/**
 	 * Create a new AnnotationConfigApplicationContext that needs to be populated
@@ -123,8 +106,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	public void setBeanNameGenerator(BeanNameGenerator beanNameGenerator) {
 		this.reader.setBeanNameGenerator(beanNameGenerator);
 		this.scanner.setBeanNameGenerator(beanNameGenerator);
-		getBeanFactory().registerSingleton(
-				AnnotationConfigUtils.CONFIGURATION_BEAN_NAME_GENERATOR, beanNameGenerator);
+		getBeanFactory().registerSingleton(AnnotationConfigUtils.CONFIGURATION_BEAN_NAME_GENERATOR, beanNameGenerator);
 	}
 
 	/**
@@ -213,9 +195,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	}
 
 	@Override
-	public <T> void registerBean(@Nullable String beanName, Class<T> beanClass, @Nullable Supplier<T> supplier,
-			BeanDefinitionCustomizer... customizers) {
-
+	public <T> void registerBean(@Nullable String beanName, Class<T> beanClass, @Nullable Supplier<T> supplier,BeanDefinitionCustomizer... customizers) {
 		this.reader.doRegisterBean(beanClass, supplier, beanName, null, customizers);
 	}
 
