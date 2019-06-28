@@ -174,8 +174,7 @@ public class ContextLoaderTests {
 	@Test
 	public void testContextLoaderListenerWithProgrammaticAndGlobalInitializers() {
 		MockServletContext sc = new MockServletContext("");
-		sc.addInitParameter(ContextLoader.CONFIG_LOCATION_PARAM,
-				"org/springframework/web/context/WEB-INF/ContextLoaderTests-acc-context.xml");
+		sc.addInitParameter(ContextLoader.CONFIG_LOCATION_PARAM,"org/springframework/web/context/WEB-INF/ContextLoaderTests-acc-context.xml");
 		sc.addInitParameter(ContextLoader.GLOBAL_INITIALIZER_CLASSES_PARAM, TestWebContextInitializer.class.getName());
 		ContextLoaderListener listener = new ContextLoaderListener();
 		listener.setContextInitializers(new TestContextInitializer());
@@ -190,12 +189,9 @@ public class ContextLoaderTests {
 	public void testRegisteredContextInitializerCanAccessServletContextParamsViaEnvironment() {
 		MockServletContext sc = new MockServletContext("");
 		// config file doesn't matter - just a placeholder
-		sc.addInitParameter(ContextLoader.CONFIG_LOCATION_PARAM,
-				"/org/springframework/web/context/WEB-INF/empty-context.xml");
-
+		sc.addInitParameter(ContextLoader.CONFIG_LOCATION_PARAM,"/org/springframework/web/context/WEB-INF/empty-context.xml");
 		sc.addInitParameter("someProperty", "someValue");
-		sc.addInitParameter(ContextLoader.CONTEXT_INITIALIZER_CLASSES_PARAM,
-				EnvApplicationContextInitializer.class.getName());
+		sc.addInitParameter(ContextLoader.CONTEXT_INITIALIZER_CLASSES_PARAM,EnvApplicationContextInitializer.class.getName());
 		ContextLoaderListener listener = new ContextLoaderListener();
 		listener.contextInitialized(new ServletContextEvent(sc));
 	}
@@ -204,8 +200,8 @@ public class ContextLoaderTests {
 	public void testContextLoaderListenerWithUnknownContextInitializer() {
 		MockServletContext sc = new MockServletContext("");
 		// config file doesn't matter.  just a placeholder
-		sc.addInitParameter(ContextLoader.CONFIG_LOCATION_PARAM,
-				"/org/springframework/web/context/WEB-INF/empty-context.xml");
+		sc.addInitParameter(ContextLoader.CONFIG_LOCATION_PARAM,"/org/springframework/web/context/WEB-INF/empty-context.xml");
+
 		sc.addInitParameter(ContextLoader.CONTEXT_INITIALIZER_CLASSES_PARAM,
 				StringUtils.arrayToCommaDelimitedString(new Object[] {UnknownContextInitializer.class.getName()}));
 		ContextLoaderListener listener = new ContextLoaderListener();
@@ -221,8 +217,7 @@ public class ContextLoaderTests {
 	@Test
 	public void testContextLoaderWithCustomContext() throws Exception {
 		MockServletContext sc = new MockServletContext("");
-		sc.addInitParameter(ContextLoader.CONTEXT_CLASS_PARAM,
-				"org.springframework.web.servlet.SimpleWebApplicationContext");
+		sc.addInitParameter(ContextLoader.CONTEXT_CLASS_PARAM,"org.springframework.web.servlet.SimpleWebApplicationContext");
 		ServletContextListener listener = new ContextLoaderListener();
 		ServletContextEvent event = new ServletContextEvent(sc);
 		listener.contextInitialized(event);

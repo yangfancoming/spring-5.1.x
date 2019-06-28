@@ -48,12 +48,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-/**
- * @author Rod Johnson
- * @author Juergen Hoeller
- * @author Rob Harrop
- * @author Sam Brannen
- */
+
 public class DispatcherServletTests {
 
 	private static final String URL_KNOWN_ONLY_PARENT = "/knownOnlyToParent.do";
@@ -89,19 +84,12 @@ public class DispatcherServletTests {
 
 	@Test
 	public void configuredDispatcherServlets() {
-		assertTrue("Correct namespace",
-				("simple" + FrameworkServlet.DEFAULT_NAMESPACE_SUFFIX).equals(simpleDispatcherServlet.getNamespace()));
-		assertTrue("Correct attribute", (FrameworkServlet.SERVLET_CONTEXT_PREFIX + "simple").equals(
-				simpleDispatcherServlet.getServletContextAttributeName()));
-		assertTrue("Context published", simpleDispatcherServlet.getWebApplicationContext() ==
-				getServletContext().getAttribute(FrameworkServlet.SERVLET_CONTEXT_PREFIX + "simple"));
-
+		assertTrue("Correct namespace",("simple" + FrameworkServlet.DEFAULT_NAMESPACE_SUFFIX).equals(simpleDispatcherServlet.getNamespace()));
+		assertTrue("Correct attribute", (FrameworkServlet.SERVLET_CONTEXT_PREFIX + "simple").equals(simpleDispatcherServlet.getServletContextAttributeName()));
+		assertTrue("Context published", simpleDispatcherServlet.getWebApplicationContext() == getServletContext().getAttribute(FrameworkServlet.SERVLET_CONTEXT_PREFIX + "simple"));
 		assertTrue("Correct namespace", "test".equals(complexDispatcherServlet.getNamespace()));
-		assertTrue("Correct attribute", (FrameworkServlet.SERVLET_CONTEXT_PREFIX + "complex").equals(
-				complexDispatcherServlet.getServletContextAttributeName()));
-		assertTrue("Context not published",
-				getServletContext().getAttribute(FrameworkServlet.SERVLET_CONTEXT_PREFIX + "complex") == null);
-
+		assertTrue("Correct attribute", (FrameworkServlet.SERVLET_CONTEXT_PREFIX + "complex").equals(complexDispatcherServlet.getServletContextAttributeName()));
+		assertTrue("Context not published",getServletContext().getAttribute(FrameworkServlet.SERVLET_CONTEXT_PREFIX + "complex") == null);
 		simpleDispatcherServlet.destroy();
 		complexDispatcherServlet.destroy();
 	}
@@ -120,9 +108,7 @@ public class DispatcherServletTests {
 		MockHttpServletRequest request = new MockHttpServletRequest(getServletContext(), "GET", "/locale.do");
 		MockHttpServletResponse response = new MockHttpServletResponse();
 		complexDispatcherServlet.service(request, response);
-		ComplexWebApplicationContext.TestApplicationListener listener =
-				(ComplexWebApplicationContext.TestApplicationListener) complexDispatcherServlet
-						.getWebApplicationContext().getBean("testListener");
+		ComplexWebApplicationContext.TestApplicationListener listener = (ComplexWebApplicationContext.TestApplicationListener) complexDispatcherServlet.getWebApplicationContext().getBean("testListener");
 		assertEquals(1, listener.counter);
 	}
 
@@ -132,9 +118,7 @@ public class DispatcherServletTests {
 		MockHttpServletRequest request = new MockHttpServletRequest(getServletContext(), "GET", "/locale.do");
 		MockHttpServletResponse response = new MockHttpServletResponse();
 		complexDispatcherServlet.service(request, response);
-		ComplexWebApplicationContext.TestApplicationListener listener =
-				(ComplexWebApplicationContext.TestApplicationListener) complexDispatcherServlet
-						.getWebApplicationContext().getBean("testListener");
+		ComplexWebApplicationContext.TestApplicationListener listener = (ComplexWebApplicationContext.TestApplicationListener) complexDispatcherServlet.getWebApplicationContext().getBean("testListener");
 		assertEquals(0, listener.counter);
 	}
 
@@ -239,8 +223,7 @@ public class DispatcherServletTests {
 		complexDispatcherServlet.service(request, response);
 		assertTrue("forwarded to failed", "failed0.jsp".equals(response.getForwardedUrl()));
 		assertEquals(200, response.getStatus());
-		assertTrue("correct exception", request.getAttribute(
-				SimpleMappingExceptionResolver.DEFAULT_EXCEPTION_ATTRIBUTE) instanceof MaxUploadSizeExceededException);
+		assertTrue("correct exception", request.getAttribute(SimpleMappingExceptionResolver.DEFAULT_EXCEPTION_ATTRIBUTE) instanceof MaxUploadSizeExceededException);
 	}
 
 	@Test
@@ -491,8 +474,7 @@ public class DispatcherServletTests {
 		MockHttpServletResponse response = new MockHttpServletResponse();
 		complexDispatcherServlet.service(request, response);
 
-		assertFalse("Matched through parent controller/handler pair: not response=" + response.getStatus(),
-				response.getStatus() == HttpServletResponse.SC_NOT_FOUND);
+		assertFalse("Matched through parent controller/handler pair: not response=" + response.getStatus(),response.getStatus() == HttpServletResponse.SC_NOT_FOUND);
 	}
 
 	@Test
@@ -697,14 +679,11 @@ public class DispatcherServletTests {
 
 	@Test
 	public void withNoViewAndSamePath() throws Exception {
-		InternalResourceViewResolver vr = (InternalResourceViewResolver) complexDispatcherServlet
-				.getWebApplicationContext().getBean("viewResolver2");
+		InternalResourceViewResolver vr = (InternalResourceViewResolver) complexDispatcherServlet.getWebApplicationContext().getBean("viewResolver2");
 		vr.setSuffix("");
-
 		MockServletContext servletContext = new MockServletContext();
 		MockHttpServletRequest request = new MockHttpServletRequest(servletContext, "GET", "/noview");
 		MockHttpServletResponse response = new MockHttpServletResponse();
-
 		try {
 			complexDispatcherServlet.service(request, response);
 			fail("Should have thrown ServletException");

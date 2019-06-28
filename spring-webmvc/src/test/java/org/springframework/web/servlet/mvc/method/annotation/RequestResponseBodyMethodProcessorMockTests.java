@@ -207,8 +207,7 @@ public class RequestResponseBodyMethodProcessorMockTests {
 		servletRequest.setContent(new byte[0]);
 		given(stringMessageConverter.canRead(String.class, MediaType.TEXT_PLAIN)).willReturn(true);
 		given(stringMessageConverter.read(eq(String.class), isA(HttpInputMessage.class))).willReturn(null);
-		assertNull(processor.resolveArgument(paramRequestBodyString, mavContainer,
-				webRequest, new ValidatingBinderFactory()));
+		assertNull(processor.resolveArgument(paramRequestBodyString, mavContainer,webRequest, new ValidatingBinderFactory()));
 	}
 
 	@Test
@@ -244,8 +243,7 @@ public class RequestResponseBodyMethodProcessorMockTests {
 		servletRequest.setContent(new byte[0]);
 		given(stringMessageConverter.canRead(String.class, MediaType.TEXT_PLAIN)).willReturn(true);
 		given(stringMessageConverter.canRead(String.class, MediaType.APPLICATION_OCTET_STREAM)).willReturn(false);
-		assertNull(processor.resolveArgument(paramStringNotRequired, mavContainer,
-				webRequest, new ValidatingBinderFactory()));
+		assertNull(processor.resolveArgument(paramStringNotRequired, mavContainer,webRequest, new ValidatingBinderFactory()));
 	}
 
 	@Test
@@ -254,8 +252,8 @@ public class RequestResponseBodyMethodProcessorMockTests {
 		servletRequest.setContent("body".getBytes());
 		given(stringMessageConverter.canRead(String.class, MediaType.TEXT_PLAIN)).willReturn(true);
 		given(stringMessageConverter.read(eq(String.class), isA(HttpInputMessage.class))).willReturn("body");
-		assertEquals(Optional.of("body"), processor.resolveArgument(paramOptionalString, mavContainer,
-				webRequest, new ValidatingBinderFactory()));
+		assertEquals(Optional.of("body"), processor.resolveArgument(paramOptionalString, mavContainer,webRequest, new ValidatingBinderFactory()));
+
 	}
 
 	@Test

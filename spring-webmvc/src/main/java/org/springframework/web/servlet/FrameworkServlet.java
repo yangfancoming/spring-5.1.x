@@ -173,8 +173,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	private String contextConfigLocation;
 
 	/** Actual ApplicationContextInitializer instances to apply to the context. */
-	private final List<ApplicationContextInitializer<ConfigurableApplicationContext>> contextInitializers =
-			new ArrayList<>();
+	private final List<ApplicationContextInitializer<ConfigurableApplicationContext>> contextInitializers = new ArrayList<>();
 
 	/** Comma-delimited ApplicationContextInitializer class names set through init param. */
 	@Nullable
@@ -524,8 +523,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 			String value = this.enableLoggingRequestDetails ?
 					"shown which may lead to unsafe logging of potentially sensitive data" :
 					"masked to prevent unsafe logging of potentially sensitive data";
-			logger.debug("enableLoggingRequestDetails='" + this.enableLoggingRequestDetails +
-					"': request parameters and headers will be " + value);
+			logger.debug("enableLoggingRequestDetails='" + this.enableLoggingRequestDetails + "': request parameters and headers will be " + value);
 		}
 
 		if (logger.isInfoEnabled()) {
@@ -610,8 +608,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 		if (attrName == null) {
 			return null;
 		}
-		WebApplicationContext wac =
-				WebApplicationContextUtils.getWebApplicationContext(getServletContext(), attrName);
+		WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(getServletContext(), attrName);
 		if (wac == null) {
 			throw new IllegalStateException("No WebApplicationContext found: initializer not registered?");
 		}
@@ -767,8 +764,8 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 			return BeanUtils.instantiateClass(initializerClass, ApplicationContextInitializer.class);
 		}
 		catch (ClassNotFoundException ex) {
-			throw new ApplicationContextException(String.format("Could not load class [%s] specified " +
-					"via 'contextInitializerClasses' init-param", className), ex);
+			throw new ApplicationContextException(String.format("Could not load class [%s] specified via 'contextInitializerClasses' init-param", className), ex);
+
 		}
 	}
 
@@ -857,9 +854,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * Override the parent class implementation in order to intercept PATCH requests.
 	 */
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpMethod httpMethod = HttpMethod.resolve(request.getMethod());
 		if (httpMethod == HttpMethod.PATCH || httpMethod == null) {
 			processRequest(request, response);
@@ -877,9 +872,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * @see #doHead
 	 */
 	@Override
-	protected final void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	protected final void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
 	}
 
@@ -888,9 +881,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * @see #doService
 	 */
 	@Override
-	protected final void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	protected final void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
 	}
 
@@ -899,9 +890,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * @see #doService
 	 */
 	@Override
-	protected final void doPut(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	protected final void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
 	}
 
@@ -910,9 +899,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * @see #doService
 	 */
 	@Override
-	protected final void doDelete(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	protected final void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
 	}
 
@@ -952,9 +939,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * @see #doService
 	 */
 	@Override
-	protected void doTrace(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	protected void doTrace(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (this.dispatchTraceRequest) {
 			processRequest(request, response);
 			if ("message/http".equals(response.getContentType())) {
@@ -970,8 +955,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * <p>The actual event handling is performed by the abstract
 	 * {@link #doService} template method.
 	 */
-	protected final void processRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected final void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		long startTime = System.currentTimeMillis();
 		Throwable failureCause = null;
@@ -1117,8 +1101,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 		}
 	}
 
-	private void publishRequestHandledEvent(HttpServletRequest request, HttpServletResponse response,
-			long startTime, @Nullable Throwable failureCause) {
+	private void publishRequestHandledEvent(HttpServletRequest request, HttpServletResponse response,long startTime, @Nullable Throwable failureCause) {
 
 		if (this.publishEvents && this.webApplicationContext != null) {
 			// Whether or not we succeeded, publish an event.
@@ -1160,8 +1143,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * @see javax.servlet.http.HttpServlet#doGet
 	 * @see javax.servlet.http.HttpServlet#doPost
 	 */
-	protected abstract void doService(HttpServletRequest request, HttpServletResponse response)
-			throws Exception;
+	protected abstract void doService(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 
 	/**

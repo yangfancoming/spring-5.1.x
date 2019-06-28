@@ -134,12 +134,7 @@ import org.springframework.web.util.WebUtils;
  * application context, rather than creating its own internally. This is useful in Servlet
  * 3.0+ environments, which support programmatic registration of servlet instances.
  * See the {@link #DispatcherServlet(WebApplicationContext)} javadoc for details.
- *
- * @author Rod Johnson
- * @author Juergen Hoeller
- * @author Rob Harrop
- * @author Chris Beams
- * @author Rossen Stoyanchev
+
  * @see org.springframework.web.HttpRequestHandler
  * @see org.springframework.web.servlet.mvc.Controller
  * @see org.springframework.web.context.ContextLoaderListener

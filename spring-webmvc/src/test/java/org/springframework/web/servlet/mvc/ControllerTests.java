@@ -62,8 +62,7 @@ public class ControllerTests {
 		doTestServletForwardingController(sfc, false);
 	}
 
-	private void doTestServletForwardingController(ServletForwardingController sfc, boolean include)
-			throws Exception {
+	private void doTestServletForwardingController(ServletForwardingController sfc, boolean include)throws Exception {
 
 		HttpServletRequest request = mock(HttpServletRequest.class);
 		HttpServletResponse response = mock(HttpServletResponse.class);
