@@ -104,8 +104,6 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 * bean factory, shutting down the previous bean factory (if any) and
 	 * initializing a fresh bean factory for the next phase of the context's lifecycle.
 	 */
-
-
 	@Override
 	protected final void refreshBeanFactory() throws BeansException {
 		/**
@@ -230,7 +228,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 * @see org.springframework.beans.factory.support.PropertiesBeanDefinitionReader
 	 * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader
 	 */
-	protected abstract void loadBeanDefinitions(DefaultListableBeanFactory beanFactory)
-			throws BeansException, IOException;
+	protected abstract void loadBeanDefinitions(DefaultListableBeanFactory beanFactory) throws BeansException, IOException;
+
 
 }

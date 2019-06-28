@@ -15,4 +15,8 @@ public class TestService {
 	public TestService() {
 		System.out.println(".......TestService........");
 	}
+
+	public void test(){
+		System.out.println("wahaha");
+	}
 }
