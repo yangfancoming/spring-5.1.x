@@ -96,11 +96,7 @@ import org.springframework.util.ReflectionUtils;
  * (supporting full class path resource names that include the package path,
  * e.g. "mypackage/myresource.dat"), unless the {@link #getResourceByPath}
  * method is overridden in a subclass.
- *
- * @author Rod Johnson
- * @author Juergen Hoeller
- * @author Mark Fisher
- * @author Stephane Nicoll
+
  * @since January 21, 2001
  * @see #refreshBeanFactory
  * @see #getBeanFactory

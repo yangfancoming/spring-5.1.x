@@ -16,7 +16,6 @@ import org.springframework.util.StringUtils;
  * {@link FileSystemXmlApplicationContext}, as well as
  * {@link org.springframework.web.context.support.XmlWebApplicationContext}.
  *
- * @author Juergen Hoeller
  * @since 2.5.2
  * @see #setConfigLocation
  * @see #setConfigLocations
@@ -103,6 +102,7 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 	 * @param path the original file path
 	 * @return the resolved file path
 	 * @see org.springframework.core.env.Environment#resolveRequiredPlaceholders(String)
+	 * 此方法的目的在于将占位符(placeholder)解析成实际的地址。比如可以这么写: new ClassPathXmlApplicationContext("classpath:config.xml");那么classpath:就是需要被解析的。
 	 */
 	protected String resolvePath(String path) {
 		return getEnvironment().resolveRequiredPlaceholders(path);

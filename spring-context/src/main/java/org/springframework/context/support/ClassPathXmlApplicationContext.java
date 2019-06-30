@@ -28,9 +28,6 @@ import org.springframework.util.Assert;
  * Consider using the {@link GenericApplicationContext} class in combination
  * with an {@link org.springframework.beans.factory.xml.XmlBeanDefinitionReader}
  * for more flexible context setup.</b>
- *
- * @author Rod Johnson
- * @author Juergen Hoeller
  * @see #getResource
  * @see #getResourceByPath
  * @see GenericApplicationContext
@@ -87,9 +84,7 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 	 * @param parent the parent context
 	 * @throws BeansException if context creation failed
 	 */
-	public ClassPathXmlApplicationContext(String[] configLocations, @Nullable ApplicationContext parent)
-			throws BeansException {
-
+	public ClassPathXmlApplicationContext(String[] configLocations, @Nullable ApplicationContext parent) throws BeansException {
 		this(configLocations, true, parent);
 	}
 
@@ -120,7 +115,7 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 	 */
 	public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh, @Nullable ApplicationContext parent) throws BeansException {
 		super(parent);
-		setConfigLocations(configLocations);
+		setConfigLocations(configLocations); // 设置配置文件路径 eg: "classpath:application.xml"
 		if (refresh) {
 			refresh();
 		}
