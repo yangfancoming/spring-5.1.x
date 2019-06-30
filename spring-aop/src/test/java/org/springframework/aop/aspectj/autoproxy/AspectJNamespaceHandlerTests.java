@@ -19,10 +19,7 @@ import org.springframework.tests.beans.CollectingReaderEventListener;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
- * @author Chris Beams
- */
+
 public class AspectJNamespaceHandlerTests {
 
 	private ParserContext parserContext;
@@ -36,8 +33,7 @@ public class AspectJNamespaceHandlerTests {
 	public void setUp() throws Exception {
 		SourceExtractor sourceExtractor = new PassThroughSourceExtractor();
 		XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(this.registry);
-		XmlReaderContext readerContext =
-				new XmlReaderContext(null, null, this.readerEventListener, sourceExtractor, reader, null);
+		XmlReaderContext readerContext = new XmlReaderContext(null, null, this.readerEventListener, sourceExtractor, reader, null);
 		this.parserContext = new ParserContext(readerContext, null);
 	}
 

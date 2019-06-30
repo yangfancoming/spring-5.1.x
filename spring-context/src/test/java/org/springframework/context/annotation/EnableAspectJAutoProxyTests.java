@@ -21,16 +21,12 @@ import org.springframework.context.ConfigurableApplicationContext;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-/**
- * @author Juergen Hoeller
- * @author Chris Beams
- */
+
 public class EnableAspectJAutoProxyTests {
 
 	@Test
 	public void withJdkProxy() {
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(ConfigWithJdkProxy.class);
-
 		aspectIsApplied(ctx);
 		assertThat(AopUtils.isJdkDynamicProxy(ctx.getBean(FooService.class)), is(true));
 	}

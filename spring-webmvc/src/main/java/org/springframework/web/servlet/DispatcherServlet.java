@@ -989,17 +989,17 @@ public class DispatcherServlet extends FrameworkServlet {
 			Exception dispatchException = null;
 
 			try {
-				processedRequest = checkMultipart(request);
+				processedRequest = checkMultipart(request); // 检查此次请求 是否是文件上传请求
 				multipartRequestParsed = (processedRequest != request);
 
-				// Determine handler for the current request.
+				// Determine handler for the current request. 确定当前请求的处理程序 返回对应 controller 和 拦截器
 				mappedHandler = getHandler(processedRequest);
 				if (mappedHandler == null) {
 					noHandlerFound(processedRequest, response);
 					return;
 				}
 
-				// Determine handler adapter for the current request.
+				// Determine handler adapter for the current request. 确定当前请求的处理程序适配器(负责执行controller )
 				HandlerAdapter ha = getHandlerAdapter(mappedHandler.getHandler());
 
 				// Process last-modified header, if supported by the handler.
@@ -1012,11 +1012,11 @@ public class DispatcherServlet extends FrameworkServlet {
 					}
 				}
 
-				if (!mappedHandler.applyPreHandle(processedRequest, response)) {
+				if (!mappedHandler.applyPreHandle(processedRequest, response)) { // 执行 其那面返回的拦截器
 					return;
 				}
 
-				// Actually invoke the handler.
+				// Actually invoke the handler.实际调用处理程序  调用我的 controller
 				mv = ha.handle(processedRequest, response, mappedHandler.getHandler());
 
 				if (asyncManager.isConcurrentHandlingStarted()) {
@@ -1136,6 +1136,7 @@ public class DispatcherServlet extends FrameworkServlet {
 
 	/**
 	 * Convert the request into a multipart request, and make multipart resolver available.
+	 *  将请求转换为多部分请求，并使多部分解析程序可用。
 	 * <p>If no multipart resolver is set, simply use the existing request.
 	 * @param request current HTTP request
 	 * @return the processed request (multipart wrapper if necessary)
@@ -1149,8 +1150,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				}
 			}
 			else if (hasMultipartException(request)) {
-				logger.debug("Multipart resolution previously failed for current request - " +
-						"skipping re-resolution for undisturbed error rendering");
+				logger.debug("Multipart resolution previously failed for current request - skipping re-resolution for undisturbed error rendering");
 			}
 			else {
 				try {
@@ -1205,13 +1205,16 @@ public class DispatcherServlet extends FrameworkServlet {
 	 * <p>Tries all handler mappings in order.
 	 * @param request current HTTP request
 	 * @return the HandlerExecutionChain, or {@code null} if no handler could be found
+	 *  handlerMappings 集合 有两个   requestMappingHandlerMapping  和 beanNameHandlerMapping
+	 *  因为不同方式注册的 controller 需要使用不同的 HandlerMapping 获取 所以这里需要遍历  handlerMappings 进行获取 controller 执行链
+	 *  eg @component + implement Controller  或  直接 @Controller 方式
 	 */
 	@Nullable
 	protected HandlerExecutionChain getHandler(HttpServletRequest request) throws Exception {
 		if (this.handlerMappings != null) {
 			for (HandlerMapping mapping : this.handlerMappings) {
 				HandlerExecutionChain handler = mapping.getHandler(request);
-				if (handler != null) {
+				if (handler != null) { // com.goat.spring.web.demo.controller.SampleController.loadHomePage(org.springframework.ui.Model)
 					return handler;
 				}
 			}
@@ -1230,8 +1233,7 @@ public class DispatcherServlet extends FrameworkServlet {
 			pageNotFoundLogger.warn("No mapping for " + request.getMethod() + " " + getRequestUri(request));
 		}
 		if (this.throwExceptionIfNoHandlerFound) {
-			throw new NoHandlerFoundException(request.getMethod(), getRequestUri(request),
-					new ServletServerHttpRequest(request).getHeaders());
+			throw new NoHandlerFoundException(request.getMethod(), getRequestUri(request),new ServletServerHttpRequest(request).getHeaders());
 		}
 		else {
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
@@ -1246,13 +1248,12 @@ public class DispatcherServlet extends FrameworkServlet {
 	protected HandlerAdapter getHandlerAdapter(Object handler) throws ServletException {
 		if (this.handlerAdapters != null) {
 			for (HandlerAdapter adapter : this.handlerAdapters) {
-				if (adapter.supports(handler)) {
+				if (adapter.supports(handler)) { // 遍历出 当前请求controller 对应的适配器
 					return adapter;
 				}
 			}
 		}
-		throw new ServletException("No adapter for handler [" + handler +
-				"]: The DispatcherServlet configuration needs to include a HandlerAdapter that supports this handler");
+		throw new ServletException("No adapter for handler [" + handler + "]: The DispatcherServlet configuration needs to include a HandlerAdapter that supports this handler");
 	}
 
 	/**

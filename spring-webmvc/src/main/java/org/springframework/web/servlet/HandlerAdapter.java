@@ -36,9 +36,9 @@ import org.springframework.lang.Nullable;
 public interface HandlerAdapter {
 
 	/**
-	 * Given a handler instance, return whether or not this {@code HandlerAdapter}
-	 * can support it. Typical HandlerAdapters will base the decision on the handler
-	 * type. HandlerAdapters will usually only support one handler type each.
+	 * Given a handler instance, return whether or not this {@code HandlerAdapter} can support it.
+	 * Typical HandlerAdapters will base the decision on the handler type.
+	 * HandlerAdapters will usually only support one handler type each.
 	 * <p>A typical implementation:
 	 * <p>{@code
 	 * return (handler instanceof MyHandler);
