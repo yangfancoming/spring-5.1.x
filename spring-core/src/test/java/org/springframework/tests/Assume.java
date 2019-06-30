@@ -23,10 +23,7 @@ import static org.junit.Assume.*;
  *
  * <p>Groups can be specified as a comma separated list of values, or using the pseudo group
  * 'all'. See {@link TestGroup} for a list of valid groups.
- *
- * @author Rob Winch
- * @author Phillip Webb
- * @author Sam Brannen
+
  * @since 3.2
  * @see #group(TestGroup)
  * @see #group(TestGroup, Executable)
@@ -84,8 +81,7 @@ public abstract class Assume {
 			return TestGroup.parse(System.getProperty(TEST_GROUPS_SYSTEM_PROPERTY));
 		}
 		catch (Exception ex) {
-			throw new IllegalStateException("Failed to parse '" + TEST_GROUPS_SYSTEM_PROPERTY
-					+ "' system property: " + ex.getMessage(), ex);
+			throw new IllegalStateException("Failed to parse '" + TEST_GROUPS_SYSTEM_PROPERTY + "' system property: " + ex.getMessage(), ex);
 		}
 	}
 
@@ -95,7 +91,6 @@ public abstract class Assume {
 	 */
 	@FunctionalInterface
 	public interface Executable {
-
 		void execute() throws Exception;
 	}
 

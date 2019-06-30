@@ -35,11 +35,6 @@ import org.springframework.util.ClassUtils;
  * subclass available which synthesizes annotations with attribute aliases. That subclass is used
  * for web and message endpoint processing, in particular.
  *
- * @author Juergen Hoeller
- * @author Rob Harrop
- * @author Andy Clement
- * @author Sam Brannen
- * @author Sebastien Deleuze
  * @since 2.0
  * @see org.springframework.core.annotation.SynthesizingMethodParameter
  */

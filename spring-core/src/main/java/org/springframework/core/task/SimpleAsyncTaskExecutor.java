@@ -16,16 +16,14 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureTask;
 
 /**
- * {@link TaskExecutor} implementation that fires up a new Thread for each task,
- * executing it asynchronously.
+ * {@link TaskExecutor} implementation that fires up a new Thread for each task,executing it asynchronously.
  *
  * <p>Supports limiting concurrent threads through the "concurrencyLimit"
  * bean property. By default, the number of concurrent threads is unlimited.
  *
- * <p><b>NOTE: This implementation does not reuse threads!</b> Consider a
- * thread-pooling TaskExecutor implementation instead, in particular for
- * executing a large number of short-lived tasks.
- *
+ * <p><b>NOTE: This implementation does not reuse threads!</b> Consider a thread-pooling TaskExecutor implementation instead,
+ *  in particular for executing a large number of short-lived tasks.
+ *   本类不是真的线程池,这个类不重用线程,每次调用都会创建一个新的线程
  * @author Juergen Hoeller
  * @since 2.0
  * @see #setConcurrencyLimit
@@ -34,8 +32,7 @@ import org.springframework.util.concurrent.ListenableFutureTask;
  * @see org.springframework.scheduling.commonj.WorkManagerTaskExecutor
  */
 @SuppressWarnings("serial")
-public class SimpleAsyncTaskExecutor extends CustomizableThreadCreator
-		implements AsyncListenableTaskExecutor, Serializable {
+public class SimpleAsyncTaskExecutor extends CustomizableThreadCreator implements AsyncListenableTaskExecutor, Serializable {
 
 	/**
 	 * Permit any number of concurrent invocations: that is, don't throttle concurrency.
@@ -51,7 +48,7 @@ public class SimpleAsyncTaskExecutor extends CustomizableThreadCreator
 
 
 	/** Internal concurrency throttle used by this executor. */
-	private final ConcurrencyThrottleAdapter concurrencyThrottle = new ConcurrencyThrottleAdapter();
+	private final ConcurrencyThrottleAdapter concurrencyThrottle = new ConcurrencyThrottleAdapter(); //限流主要实现
 
 	@Nullable
 	private ThreadFactory threadFactory;
@@ -128,6 +125,7 @@ public class SimpleAsyncTaskExecutor extends CustomizableThreadCreator
 	 * of -1 effectively turns off concurrency counting completely.
 	 * @see #UNBOUNDED_CONCURRENCY
 	 */
+	//设置最大的线程数量
 	public void setConcurrencyLimit(int concurrencyLimit) {
 		this.concurrencyThrottle.setConcurrencyLimit(concurrencyLimit);
 	}
@@ -145,7 +143,7 @@ public class SimpleAsyncTaskExecutor extends CustomizableThreadCreator
 	 * @see #getConcurrencyLimit()
 	 * @see #setConcurrencyLimit
 	 */
-	public final boolean isThrottleActive() {
+	public final boolean isThrottleActive() { //是否开启了限流
 		return this.concurrencyThrottle.isThrottleActive();
 	}
 

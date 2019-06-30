@@ -15,21 +15,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Arjen Poutsma
- * @author Juergen Hoeller
- * @author Sam Brannen
- */
+
 public class MethodParameterTests {
 
 	private Method method;
-
 	private MethodParameter stringParameter;
-
 	private MethodParameter longParameter;
-
 	private MethodParameter intReturnType;
-
 
 	@Before
 	public void setup() throws NoSuchMethodException {

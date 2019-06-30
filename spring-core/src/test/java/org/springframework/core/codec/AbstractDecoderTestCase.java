@@ -86,9 +86,7 @@ public abstract class AbstractDecoderTestCase<D extends Decoder<?>>
 	 * @param stepConsumer a consumer to {@linkplain StepVerifier verify} the output
 	 * @param <T> the output type
 	 */
-	protected <T> void testDecodeAll(Publisher<DataBuffer> input, Class<? extends T> outputClass,
-			Consumer<StepVerifier.FirstStep<T>> stepConsumer) {
-
+	protected <T> void testDecodeAll(Publisher<DataBuffer> input, Class<? extends T> outputClass,Consumer<StepVerifier.FirstStep<T>> stepConsumer) {
 		testDecodeAll(input, ResolvableType.forClass(outputClass), stepConsumer, null, null);
 	}
 
@@ -109,10 +107,7 @@ public abstract class AbstractDecoderTestCase<D extends Decoder<?>>
 	 * @param hints the hints used for decoding. May be {@code null}.
 	 * @param <T> the output type
 	 */
-	protected <T> void testDecodeAll(Publisher<DataBuffer> input, ResolvableType outputType,
-			Consumer<StepVerifier.FirstStep<T>> stepConsumer,
-			@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
-
+	protected <T> void testDecodeAll(Publisher<DataBuffer> input, ResolvableType outputType,Consumer<StepVerifier.FirstStep<T>> stepConsumer,@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
 		testDecode(input, outputType, stepConsumer, mimeType, hints);
 		testDecodeError(input, outputType, mimeType, hints);
 		testDecodeCancel(input, outputType, mimeType, hints);
@@ -191,9 +186,7 @@ public abstract class AbstractDecoderTestCase<D extends Decoder<?>>
 	 * @param hints the hints used for decoding. May be {@code null}.
 	 * @see InputException
 	 */
-	protected void testDecodeError(Publisher<DataBuffer> input, ResolvableType outputType,
-			@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
-
+	protected void testDecodeError(Publisher<DataBuffer> input, ResolvableType outputType,@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
 		input = Mono.from(input).concatWith(Flux.error(new InputException()));
 		try {
 			this.decoder.decode(input, outputType, mimeType, hints).blockLast(Duration.ofSeconds(5));
@@ -215,9 +208,7 @@ public abstract class AbstractDecoderTestCase<D extends Decoder<?>>
 	 * @param mimeType the mime type to use for decoding. May be {@code null}.
 	 * @param hints the hints used for decoding. May be {@code null}.
 	 */
-	protected void testDecodeCancel(Publisher<DataBuffer> input, ResolvableType outputType,
-			@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
-
+	protected void testDecodeCancel(Publisher<DataBuffer> input, ResolvableType outputType,@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
 		Flux<?> result = this.decoder.decode(input, outputType, mimeType, hints);
 		StepVerifier.create(result).expectNextCount(1).thenCancel().verify();
 	}
@@ -230,9 +221,7 @@ public abstract class AbstractDecoderTestCase<D extends Decoder<?>>
 	 * @param mimeType the mime type to use for decoding. May be {@code null}.
 	 * @param hints the hints used for decoding. May be {@code null}.
 	 */
-	protected void testDecodeEmpty(ResolvableType outputType, @Nullable MimeType mimeType,
-			@Nullable Map<String, Object> hints) {
-
+	protected void testDecodeEmpty(ResolvableType outputType, @Nullable MimeType mimeType,@Nullable Map<String, Object> hints) {
 		Flux<DataBuffer> input = Flux.empty();
 		Flux<?> result = this.decoder.decode(input, outputType, mimeType, hints);
 		StepVerifier.create(result).verifyComplete();

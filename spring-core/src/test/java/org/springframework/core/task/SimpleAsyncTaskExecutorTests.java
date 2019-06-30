@@ -13,11 +13,7 @@ import org.springframework.util.ConcurrencyThrottleSupport;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-/**
- * @author Rick Evans
- * @author Juergen Hoeller
- * @author Sam Brannen
- */
+
 public class SimpleAsyncTaskExecutorTests {
 
 	@Rule
@@ -25,7 +21,7 @@ public class SimpleAsyncTaskExecutorTests {
 
 
 	@Test
-	public void cannotExecuteWhenConcurrencyIsSwitchedOff() throws Exception {
+	public void cannotExecuteWhenConcurrencyIsSwitchedOff()  {
 		SimpleAsyncTaskExecutor executor = new SimpleAsyncTaskExecutor();
 		executor.setConcurrencyLimit(ConcurrencyThrottleSupport.NO_CONCURRENCY);
 		assertTrue(executor.isThrottleActive());
@@ -34,13 +30,13 @@ public class SimpleAsyncTaskExecutorTests {
 	}
 
 	@Test
-	public void throttleIsNotActiveByDefault() throws Exception {
+	public void throttleIsNotActiveByDefault()  {
 		SimpleAsyncTaskExecutor executor = new SimpleAsyncTaskExecutor();
 		assertFalse("Concurrency throttle must not default to being active (on)", executor.isThrottleActive());
 	}
 
 	@Test
-	public void threadNameGetsSetCorrectly() throws Exception {
+	public void threadNameGetsSetCorrectly()  {
 		final String customPrefix = "chankPop#";
 		final Object monitor = new Object();
 		SimpleAsyncTaskExecutor executor = new SimpleAsyncTaskExecutor(customPrefix);
@@ -50,21 +46,16 @@ public class SimpleAsyncTaskExecutorTests {
 	}
 
 	@Test
-	public void threadFactoryOverridesDefaults() throws Exception {
+	public void threadFactoryOverridesDefaults()  {
 		final Object monitor = new Object();
-		SimpleAsyncTaskExecutor executor = new SimpleAsyncTaskExecutor(new ThreadFactory() {
-			@Override
-			public Thread newThread(Runnable r) {
-				return new Thread(r, "test");
-			}
-		});
+		SimpleAsyncTaskExecutor executor = new SimpleAsyncTaskExecutor(r->new Thread(r, "test"));
 		ThreadNameHarvester task = new ThreadNameHarvester(monitor);
 		executeAndWait(executor, task, monitor);
 		assertEquals("test", task.getThreadName());
 	}
 
 	@Test
-	public void throwsExceptionWhenSuppliedWithNullRunnable() throws Exception {
+	public void throwsExceptionWhenSuppliedWithNullRunnable()  {
 		exception.expect(IllegalArgumentException.class);
 		new SimpleAsyncTaskExecutor().execute(null);
 	}
