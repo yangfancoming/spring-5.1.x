@@ -8,8 +8,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.util.Properties;
 
+import org.junit.Before;
 import org.junit.Test;
-
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,48 +19,60 @@ import org.springframework.beans.factory.support.AutowireCandidateQualifier;
 import org.springframework.beans.factory.support.BeanDefinitionReader;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.support.StaticApplicationContext;
-
 import static java.lang.String.format;
 import static org.junit.Assert.*;
 import static org.springframework.util.ClassUtils.*;
 
-/**
- * @author Mark Fisher
- * @author Juergen Hoeller
- * @author Chris Beams
- */
 public class QualifierAnnotationTests {
 
+	// org.springframework.beans.factory.xml.QualifierAnnotationTests 
 	private static final String CLASSNAME = QualifierAnnotationTests.class.getName();
-	private static final String CONFIG_LOCATION =
-		format("classpath:%s-context.xml", convertClassNameToResourcePath(CLASSNAME));
+	
+	// classpath:org/springframework/beans/factory/xml/QualifierAnnotationTests-context.xml
+	private static final String CONFIG_LOCATION = format("classpath:%s-context.xml", convertClassNameToResourcePath(CLASSNAME));
 
+	StaticApplicationContext context = new StaticApplicationContext();
 
+	@Before
+	public void test(){
+		BeanDefinitionReader reader = new XmlBeanDefinitionReader(context);
+		reader.loadBeanDefinitions(CONFIG_LOCATION); // 加载 QualifierAnnotationTests-context.xml 文件
+	}
+
+	// testNonQualifiedFieldFails 不合格字段失败的测试
 	@Test
 	public void testNonQualifiedFieldFails() {
-		StaticApplicationContext context = new StaticApplicationContext();
-		BeanDefinitionReader reader = new XmlBeanDefinitionReader(context);
-		reader.loadBeanDefinitions(CONFIG_LOCATION);
-		context.registerSingleton("testBean", NonQualifiedTestBean.class);
+		context.registerSingleton("testBean", NonQualifiedTestBean.class);// 注册为单例模式  并将属性键值对传入，value可以为引用类型
 		try {
 			context.refresh();
 			fail("Should have thrown a BeanCreationException");
 		}
 		catch (BeanCreationException e) {
 			assertTrue(e.getMessage().contains("found 6"));
+			System.out.println(e.getMessage());
 		}
 	}
 
 	@Test
 	public void testQualifiedByValue() {
-		StaticApplicationContext context = new StaticApplicationContext();
-		BeanDefinitionReader reader = new XmlBeanDefinitionReader(context);
-		reader.loadBeanDefinitions(CONFIG_LOCATION);
 		context.registerSingleton("testBean", QualifiedByValueTestBean.class);
 		context.refresh();
 		QualifiedByValueTestBean testBean = (QualifiedByValueTestBean) context.getBean("testBean");
 		Person person = testBean.getLarry();
 		assertEquals("Larry", person.getName());
+		System.out.println(person.getName());
+	}
+
+	@Test
+	public void testQualifiedByBeanName() {
+		context.registerSingleton("testBean", QualifiedByBeanNameTestBean.class);
+		context.refresh();
+		QualifiedByBeanNameTestBean testBean = (QualifiedByBeanNameTestBean) context.getBean("testBean");
+		Person person = testBean.getLarry();
+		assertEquals("LarryBean", person.getName());
+		assertTrue(testBean.myProps != null && testBean.myProps.isEmpty());
+		System.out.println(person.getName());
+		System.out.println(testBean.myProps);
 	}
 
 	@Test
@@ -77,10 +89,7 @@ public class QualifierAnnotationTests {
 		otherLarry.addQualifier(new AutowireCandidateQualifier(Qualifier.class, "otherLarry"));
 		parent.registerBeanDefinition("someOtherLarry", otherLarry);
 		parent.refresh();
-
 		StaticApplicationContext context = new StaticApplicationContext(parent);
-		BeanDefinitionReader reader = new XmlBeanDefinitionReader(context);
-		reader.loadBeanDefinitions(CONFIG_LOCATION);
 		context.registerSingleton("testBean", QualifiedByParentValueTestBean.class);
 		context.refresh();
 		QualifiedByParentValueTestBean testBean = (QualifiedByParentValueTestBean) context.getBean("testBean");
@@ -88,24 +97,10 @@ public class QualifierAnnotationTests {
 		assertEquals("ParentLarry", person.getName());
 	}
 
-	@Test
-	public void testQualifiedByBeanName() {
-		StaticApplicationContext context = new StaticApplicationContext();
-		BeanDefinitionReader reader = new XmlBeanDefinitionReader(context);
-		reader.loadBeanDefinitions(CONFIG_LOCATION);
-		context.registerSingleton("testBean", QualifiedByBeanNameTestBean.class);
-		context.refresh();
-		QualifiedByBeanNameTestBean testBean = (QualifiedByBeanNameTestBean) context.getBean("testBean");
-		Person person = testBean.getLarry();
-		assertEquals("LarryBean", person.getName());
-		assertTrue(testBean.myProps != null && testBean.myProps.isEmpty());
-	}
+
 
 	@Test
 	public void testQualifiedByFieldName() {
-		StaticApplicationContext context = new StaticApplicationContext();
-		BeanDefinitionReader reader = new XmlBeanDefinitionReader(context);
-		reader.loadBeanDefinitions(CONFIG_LOCATION);
 		context.registerSingleton("testBean", QualifiedByFieldNameTestBean.class);
 		context.refresh();
 		QualifiedByFieldNameTestBean testBean = (QualifiedByFieldNameTestBean) context.getBean("testBean");
@@ -115,9 +110,8 @@ public class QualifierAnnotationTests {
 
 	@Test
 	public void testQualifiedByParameterName() {
-		StaticApplicationContext context = new StaticApplicationContext();
-		BeanDefinitionReader reader = new XmlBeanDefinitionReader(context);
-		reader.loadBeanDefinitions(CONFIG_LOCATION);
+		
+
 		context.registerSingleton("testBean", QualifiedByParameterNameTestBean.class);
 		context.refresh();
 		QualifiedByParameterNameTestBean testBean = (QualifiedByParameterNameTestBean) context.getBean("testBean");
@@ -127,9 +121,8 @@ public class QualifierAnnotationTests {
 
 	@Test
 	public void testQualifiedByAlias() {
-		StaticApplicationContext context = new StaticApplicationContext();
-		BeanDefinitionReader reader = new XmlBeanDefinitionReader(context);
-		reader.loadBeanDefinitions(CONFIG_LOCATION);
+		
+
 		context.registerSingleton("testBean", QualifiedByAliasTestBean.class);
 		context.refresh();
 		QualifiedByAliasTestBean testBean = (QualifiedByAliasTestBean) context.getBean("testBean");
@@ -139,9 +132,8 @@ public class QualifierAnnotationTests {
 
 	@Test
 	public void testQualifiedByAnnotation() {
-		StaticApplicationContext context = new StaticApplicationContext();
-		BeanDefinitionReader reader = new XmlBeanDefinitionReader(context);
-		reader.loadBeanDefinitions(CONFIG_LOCATION);
+		
+
 		context.registerSingleton("testBean", QualifiedByAnnotationTestBean.class);
 		context.refresh();
 		QualifiedByAnnotationTestBean testBean = (QualifiedByAnnotationTestBean) context.getBean("testBean");
@@ -151,9 +143,8 @@ public class QualifierAnnotationTests {
 
 	@Test
 	public void testQualifiedByCustomValue() {
-		StaticApplicationContext context = new StaticApplicationContext();
-		BeanDefinitionReader reader = new XmlBeanDefinitionReader(context);
-		reader.loadBeanDefinitions(CONFIG_LOCATION);
+		
+
 		context.registerSingleton("testBean", QualifiedByCustomValueTestBean.class);
 		context.refresh();
 		QualifiedByCustomValueTestBean testBean = (QualifiedByCustomValueTestBean) context.getBean("testBean");
@@ -163,9 +154,8 @@ public class QualifierAnnotationTests {
 
 	@Test
 	public void testQualifiedByAnnotationValue() {
-		StaticApplicationContext context = new StaticApplicationContext();
-		BeanDefinitionReader reader = new XmlBeanDefinitionReader(context);
-		reader.loadBeanDefinitions(CONFIG_LOCATION);
+		
+
 		context.registerSingleton("testBean", QualifiedByAnnotationValueTestBean.class);
 		context.refresh();
 		QualifiedByAnnotationValueTestBean testBean = (QualifiedByAnnotationValueTestBean) context.getBean("testBean");
@@ -175,9 +165,8 @@ public class QualifierAnnotationTests {
 
 	@Test
 	public void testQualifiedByAttributesFailsWithoutCustomQualifierRegistered() {
-		StaticApplicationContext context = new StaticApplicationContext();
-		BeanDefinitionReader reader = new XmlBeanDefinitionReader(context);
-		reader.loadBeanDefinitions(CONFIG_LOCATION);
+		
+
 		context.registerSingleton("testBean", QualifiedByAttributesTestBean.class);
 		try {
 			context.refresh();
@@ -190,9 +179,8 @@ public class QualifierAnnotationTests {
 
 	@Test
 	public void testQualifiedByAttributesWithCustomQualifierRegistered() {
-		StaticApplicationContext context = new StaticApplicationContext();
-		BeanDefinitionReader reader = new XmlBeanDefinitionReader(context);
-		reader.loadBeanDefinitions(CONFIG_LOCATION);
+		
+
 		QualifierAnnotationAutowireCandidateResolver resolver = (QualifierAnnotationAutowireCandidateResolver)
 				context.getDefaultListableBeanFactory().getAutowireCandidateResolver();
 		resolver.addQualifierType(MultipleAttributeQualifier.class);
@@ -205,20 +193,11 @@ public class QualifierAnnotationTests {
 		assertNotNull( testBean.implTheta);
 	}
 
-	@Test
-	public void testInterfaceWithOneQualifiedFactoryAndOneQualifiedBean() {
-		StaticApplicationContext context = new StaticApplicationContext();
-		BeanDefinitionReader reader = new XmlBeanDefinitionReader(context);
-		reader.loadBeanDefinitions(CONFIG_LOCATION);
-	}
-
 
 	@SuppressWarnings("unused")
 	private static class NonQualifiedTestBean {
-
 		@Autowired
 		private Person anonymous;
-
 		public Person getAnonymous() {
 			return anonymous;
 		}
@@ -226,33 +205,21 @@ public class QualifierAnnotationTests {
 
 
 	private static class QualifiedByValueTestBean {
-
-		@Autowired @Qualifier("larry")
+		@Autowired
+		@Qualifier("larry") // sos  @Qualifier 注解区分大小写
 		private Person larry;
-
 		public Person getLarry() {
 			return larry;
 		}
 	}
-
-
-	private static class QualifiedByParentValueTestBean {
-
-		@Autowired @Qualifier("parentLarry")
-		private Person larry;
-
-		public Person getLarry() {
-			return larry;
-		}
-	}
-
 
 	private static class QualifiedByBeanNameTestBean {
-
-		@Autowired @Qualifier("larryBean")
+		@Autowired
+		@Qualifier("larryBean")
 		private Person larry;
 
-		@Autowired @Qualifier("testProperties")
+		@Autowired
+		@Qualifier("testProperties")
 		public Properties myProps;
 
 		public Person getLarry() {
@@ -260,6 +227,16 @@ public class QualifierAnnotationTests {
 		}
 	}
 
+	private static class QualifiedByParentValueTestBean {
+
+		@Autowired
+		@Qualifier("parentLarry")
+		private Person larry;
+
+		public Person getLarry() {
+			return larry;
+		}
+	}
 
 	private static class QualifiedByFieldNameTestBean {
 
@@ -352,13 +329,10 @@ public class QualifierAnnotationTests {
 
 	@SuppressWarnings("unused")
 	private static class Person {
-
 		private String name;
-
 		public String getName() {
 			return name;
 		}
-
 		public void setName(String name) {
 			this.name = name;
 		}

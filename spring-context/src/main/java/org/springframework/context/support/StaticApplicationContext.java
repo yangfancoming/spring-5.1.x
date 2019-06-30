@@ -15,14 +15,13 @@ import org.springframework.lang.Nullable;
  * which supports programmatic registration of beans and messages,
  * rather than reading bean definitions from external configuration sources.
  * Mainly useful for testing.
- *
- * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see #registerSingleton
  * @see #registerPrototype
  * @see #registerBeanDefinition
  * @see #refresh
  */
+// 通过编程的方式去启动一个bean容器---该类通常用于测试，用于加载任意的外部资源，而不用加载特定格式的文件
 public class StaticApplicationContext extends GenericApplicationContext {
 
 	private final StaticMessageSource staticMessageSource;

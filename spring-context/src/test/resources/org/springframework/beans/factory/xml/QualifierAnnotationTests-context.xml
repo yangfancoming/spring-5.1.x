@@ -15,6 +15,12 @@
 		</property>
 	</bean>
 
+	<bean class="org.springframework.beans.factory.xml.QualifierAnnotationTests$Person">
+		<property name="name" value="Larry"/>
+		<!--其中type属性可选，指定类型，默认就是org.springframework.beans.factory.annotation.Qualifier注解类，name就是给Bean候选者指定限定标识符-->
+		<qualifier value="larry"/>
+	</bean>
+
 	<bean id="larryBean" class="org.springframework.beans.factory.xml.QualifierAnnotationTests$Person">
 		<property name="name" value="LarryBean"/>
 	</bean>
@@ -23,10 +29,7 @@
 
 	<alias name="someAlias" alias="stooge"/>
 
-	<bean class="org.springframework.beans.factory.xml.QualifierAnnotationTests$Person">
-		<property name="name" value="Larry"/>
-		<qualifier value="larry"/>
-	</bean>
+
 
 	<bean class="org.springframework.beans.factory.xml.QualifierAnnotationTests$SpecialPerson">
 		<property name="name" value="LarrySpecial"/>
@@ -34,7 +37,7 @@
 
 	<bean class="org.springframework.beans.factory.xml.QualifierAnnotationTests$Person">
 		<property name="name" value="Curly"/>
-		<qualifier type="QualifierAnnotationTests.SimpleValueQualifier" value="curly"/>
+		<qualifier type="QualifierAnnotationTests.SimpleValueQualifier" value="curly"/> <!--根据基于XML配置中的<qualifier>标签指定的名字进行注入-->
 	</bean>
 
 	<bean class="org.springframework.beans.factory.xml.QualifierAnnotationTests$Person">

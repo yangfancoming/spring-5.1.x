@@ -24,11 +24,6 @@ import static org.junit.Assert.*;
 
 /**
  * Integration tests for handling {@link Qualifier} annotations.
- *
- * @author Mark Fisher
- * @author Juergen Hoeller
- * @author Chris Beams
- * @author Sam Brannen
  */
 public class QualifierAnnotationAutowireContextTests {
 

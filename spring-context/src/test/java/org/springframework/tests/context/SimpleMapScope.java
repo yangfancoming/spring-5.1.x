@@ -12,9 +12,7 @@ import java.util.Map;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.config.Scope;
 
-/**
- * @author Juergen Hoeller
- */
+
 @SuppressWarnings("serial")
 public class SimpleMapScope implements Scope, Serializable {
 
