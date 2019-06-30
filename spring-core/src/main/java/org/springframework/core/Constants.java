@@ -45,7 +45,7 @@ public class Constants {
 	 * @param clazz the class to analyze
 	 * @throws IllegalArgumentException if the supplied {@code clazz} is {@code null}
 	 */
-	public Constants(Class<?> clazz) {
+	public Constants(Class<?> clazz) { // 构造函数：通过反射的方式获取目标source类中所有的public static final的常量放入一个Map中
 		Assert.notNull(clazz, "Class must not be null");
 		this.className = clazz.getName();
 		Field[] fields = clazz.getFields();
@@ -190,11 +190,10 @@ public class Constants {
 
 	/**
 	 * Return all values of the given group of constants.
-	 * <p>Note that this method assumes that constants are named
-	 * in accordance with the standard Java convention for constant
-	 * values (i.e. all uppercase). The supplied {@code namePrefix}
-	 * will be uppercased (in a locale-insensitive fashion) prior to
-	 * the main logic of this method kicking in.
+	 * <p>Note that this method assumes that constants are named in accordance with the standard Java convention for constant values (i.e. all uppercase).
+	 *  请注意，该方法假定常数是按照标准Java约定对常量值（即所有大写）命名的。
+	 * The supplied {@code namePrefix} will be uppercased (in a locale-insensitive fashion) prior to the main logic of this method kicking in.
+	 * 提供的 nameprefix 参数 将在该方法的主要逻辑开始之前被转换成大写（以不区分区域设置的方式）。
 	 * @param namePrefix prefix of the constant names to search (may be {@code null})
 	 * @return the set of values
 	 */
@@ -294,8 +293,8 @@ public class Constants {
 
 	/**
 	 * Convert the given bean property name to a constant name prefix.
-	 * <p>Uses a common naming idiom: turning all lower case characters to
-	 * upper case, and prepending upper case characters with an underscore.
+	 * <p>Uses a common naming idiom: turning all lower case characters to upper case, and prepending upper case characters with an underscore.
+	 *    使用一个常见的命名习惯用法：将所有小写字符都转换为大写，并在大写字符前面加下划线。
 	 * <p>Example: "imageSize" -> "IMAGE_SIZE"<br>
 	 * Example: "imagesize" -> "IMAGESIZE".<br>
 	 * Example: "ImageSize" -> "_IMAGE_SIZE".<br>

@@ -1,25 +1,21 @@
 
 
-package org.springframework.core;
+package org.springframework.core.constants;
 
 import java.util.Locale;
 import java.util.Set;
-
 import org.junit.Test;
+import org.springframework.core.Constants;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rod Johnson
- * @author Juergen Hoeller
- * @author Rick Evans
- * @since 28.04.2003
- */
+
 public class ConstantsTests {
+
+	Constants c = new Constants(A.class);
 
 	@Test
 	public void constants() {
-		Constants c = new Constants(A.class);
 		assertEquals(A.class.getName(), c.getClassName());
 		assertEquals(9, c.getSize());
 
@@ -28,60 +24,77 @@ public class ConstantsTests {
 		assertEquals(A.CAT, c.asNumber("cat").intValue());
 
 		try {
+			assertEquals(A.P, c.asNumber("P").intValue());
+		} catch (Constants.ConstantException e) {
+			e.printStackTrace();
+		}
+
+		try {
 			c.asNumber("bogus");
-			fail("Can't get bogus field");
 		}
 		catch (Constants.ConstantException expected) {
+			System.out.println(expected.getMessage());
 		}
 
 		assertTrue(c.asString("S1").equals(A.S1));
 		try {
 			c.asNumber("S1");
-			fail("Wrong type");
 		}
 		catch (Constants.ConstantException expected) {
+			System.out.println(expected.getMessage() + "Wrong type");
 		}
 	}
 
 	@Test
 	public void getNames() {
-		Constants c = new Constants(A.class);
-
 		Set<?> names = c.getNames("");
+		names.stream().forEach(a->System.out.println(a));
 		assertEquals(c.getSize(), names.size());
 		assertTrue(names.contains("DOG"));
 		assertTrue(names.contains("CAT"));
 		assertTrue(names.contains("S1"));
 
+		// 不区分大小写 
 		names = c.getNames("D");
 		assertEquals(1, names.size());
 		assertTrue(names.contains("DOG"));
+		forEachSet(names);
 
 		names = c.getNames("d");
 		assertEquals(1, names.size());
 		assertTrue(names.contains("DOG"));
+		forEachSet(names);
+	}
+	
+	public void forEachSet(Set<?> names){
+		System.out.println("--------------------------------------------------->>>>>>>>>>>>");
+		names.stream().forEach(a->System.out.println(a));
 	}
 
 	@Test
 	public void getValues() {
-		Constants c = new Constants(A.class);
-
 		Set<?> values = c.getValues("");
+		forEachSet(values);
 		assertEquals(7, values.size());
 		assertTrue(values.contains(Integer.valueOf(0)));
 		assertTrue(values.contains(Integer.valueOf(66)));
 		assertTrue(values.contains(""));
 
+
 		values = c.getValues("D");
+		forEachSet(values);
 		assertEquals(1, values.size());
 		assertTrue(values.contains(Integer.valueOf(0)));
 
 		values = c.getValues("prefix");
+		forEachSet(values);
 		assertEquals(2, values.size());
 		assertTrue(values.contains(Integer.valueOf(1)));
 		assertTrue(values.contains(Integer.valueOf(2)));
 
+		// 详情参考  getValuesForProperty() ---> propertyToConstantNamePrefix()
 		values = c.getValuesForProperty("myProperty");
+		forEachSet(values);
 		assertEquals(2, values.size());
 		assertTrue(values.contains(Integer.valueOf(1)));
 		assertTrue(values.contains(Integer.valueOf(2)));
@@ -92,8 +105,6 @@ public class ConstantsTests {
 		Locale oldLocale = Locale.getDefault();
 		Locale.setDefault(new Locale("tr", ""));
 		try {
-			Constants c = new Constants(A.class);
-
 			Set<?> values = c.getValues("");
 			assertEquals(7, values.size());
 			assertTrue(values.contains(Integer.valueOf(0)));
@@ -120,9 +131,8 @@ public class ConstantsTests {
 	}
 
 	@Test
-	public void suffixAccess() {
-		Constants c = new Constants(A.class);
-
+	public void suffixAccess() { // 通过后缀获取
+	
 		Set<?> names = c.getNamesForSuffix("_PROPERTY");
 		assertEquals(2, names.size());
 		assertTrue(names.contains("NO_PROPERTY"));
@@ -136,8 +146,6 @@ public class ConstantsTests {
 
 	@Test
 	public void toCode() {
-		Constants c = new Constants(A.class);
-
 		assertEquals("DOG", c.toCode(Integer.valueOf(0), ""));
 		assertEquals("DOG", c.toCode(Integer.valueOf(0), "D"));
 		assertEquals("DOG", c.toCode(Integer.valueOf(0), "DO"));
@@ -203,28 +211,25 @@ public class ConstantsTests {
 	}
 
 	@Test
-	public void getValuesWithNullPrefix() throws Exception {
-		Constants c = new Constants(A.class);
+	public void getValuesWithNullPrefix()  {
 		Set<?> values = c.getValues(null);
 		assertEquals("Must have returned *all* public static final values", 7, values.size());
 	}
 
 	@Test
-	public void getValuesWithEmptyStringPrefix() throws Exception {
-		Constants c = new Constants(A.class);
+	public void getValuesWithEmptyStringPrefix()  {
 		Set<Object> values = c.getValues("");
 		assertEquals("Must have returned *all* public static final values", 7, values.size());
 	}
 
 	@Test
-	public void getValuesWithWhitespacedStringPrefix() throws Exception {
-		Constants c = new Constants(A.class);
+	public void getValuesWithWhitespacedStringPrefix()  {
 		Set<?> values = c.getValues(" ");
 		assertEquals("Must have returned *all* public static final values", 7, values.size());
 	}
 
 	@Test
-	public void withClassThatExposesNoConstants() throws Exception {
+	public void withClassThatExposesNoConstants()  {
 		Constants c = new Constants(NoConstants.class);
 		assertEquals(0, c.getSize());
 		final Set<?> values = c.getValues("");
@@ -233,7 +238,7 @@ public class ConstantsTests {
 	}
 
 	@Test
-	public void ctorWithNullClass() throws Exception {
+	public void ctorWithNullClass()  {
 		try {
 			new Constants(null);
 			fail("Must have thrown IllegalArgumentException");
@@ -242,30 +247,6 @@ public class ConstantsTests {
 	}
 
 
-	private static final class NoConstants {
-	}
 
-
-	@SuppressWarnings("unused")
-	private static final class A {
-
-		public static final int DOG = 0;
-		public static final int CAT = 66;
-		public static final String S1 = "";
-
-		public static final int PREFIX_NO = 1;
-		public static final int PREFIX_YES = 2;
-
-		public static final int MY_PROPERTY_NO = 1;
-		public static final int MY_PROPERTY_YES = 2;
-
-		public static final int NO_PROPERTY = 3;
-		public static final int YES_PROPERTY = 4;
-
-		/** ignore these */
-		protected static final int P = -1;
-		protected boolean f;
-		static final Object o = new Object();
-	}
 
 }
