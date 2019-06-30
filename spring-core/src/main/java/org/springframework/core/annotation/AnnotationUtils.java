@@ -81,14 +81,7 @@ import org.springframework.util.StringUtils;
  * an annotation once the first annotation of the specified type has been
  * found. As a consequence, additional annotations of the specified type will
  * be silently ignored.
- *
- * @author Rob Harrop
- * @author Juergen Hoeller
- * @author Sam Brannen
- * @author Mark Fisher
- * @author Chris Beams
- * @author Phillip Webb
- * @author Oleg Zhurakousky
+
  * @since 2.0
  * @see AliasFor
  * @see AnnotationAttributes
