@@ -53,6 +53,7 @@ public class QualifierAnnotationTests {
 		}
 	}
 
+	// 通过 <qualifier value="larry"/>  注册 bean
 	@Test
 	public void testQualifiedByValue() {
 		context.registerSingleton("testBean", QualifiedByValueTestBean.class);
@@ -63,6 +64,7 @@ public class QualifierAnnotationTests {
 		System.out.println(person.getName());
 	}
 
+	// 通过 <bean id="larryBean"    注册 bean
 	@Test
 	public void testQualifiedByBeanName() {
 		context.registerSingleton("testBean", QualifiedByBeanNameTestBean.class);
@@ -73,6 +75,16 @@ public class QualifierAnnotationTests {
 		assertTrue(testBean.myProps != null && testBean.myProps.isEmpty());
 		System.out.println(person.getName());
 		System.out.println(testBean.myProps);
+	}
+
+	// 通过 private Person goatbean;    注册 bean  (如果改成 larryBean 等其他名称则 不能注册 因为是按照 默认属性名 进行注册的)
+	@Test
+	public void testQualifiedByFieldName() {
+		context.registerSingleton("testBean", QualifiedByFieldNameTestBean.class);
+		context.refresh();
+		QualifiedByFieldNameTestBean testBean = (QualifiedByFieldNameTestBean) context.getBean("testBean");
+		Person person = testBean.getLarry();
+		assertEquals("GoatBean", person.getName());
 	}
 
 	@Test
@@ -97,21 +109,9 @@ public class QualifierAnnotationTests {
 		assertEquals("ParentLarry", person.getName());
 	}
 
-
-
-	@Test
-	public void testQualifiedByFieldName() {
-		context.registerSingleton("testBean", QualifiedByFieldNameTestBean.class);
-		context.refresh();
-		QualifiedByFieldNameTestBean testBean = (QualifiedByFieldNameTestBean) context.getBean("testBean");
-		Person person = testBean.getLarry();
-		assertEquals("LarryBean", person.getName());
-	}
-
+	// 通过 public void setLarryBean(Person larryBean)   注册 bean  (如果改成 larryBean 等其他名称则 不能注册 因为是按照默认 参数名 进行注册的)
 	@Test
 	public void testQualifiedByParameterName() {
-		
-
 		context.registerSingleton("testBean", QualifiedByParameterNameTestBean.class);
 		context.refresh();
 		QualifiedByParameterNameTestBean testBean = (QualifiedByParameterNameTestBean) context.getBean("testBean");
@@ -119,10 +119,9 @@ public class QualifierAnnotationTests {
 		assertEquals("LarryBean", person.getName());
 	}
 
+	// 通过 <alias name="larryBean" alias="stooge"/>   注册 bean
 	@Test
 	public void testQualifiedByAlias() {
-		
-
 		context.registerSingleton("testBean", QualifiedByAliasTestBean.class);
 		context.refresh();
 		QualifiedByAliasTestBean testBean = (QualifiedByAliasTestBean) context.getBean("testBean");
@@ -132,8 +131,6 @@ public class QualifierAnnotationTests {
 
 	@Test
 	public void testQualifiedByAnnotation() {
-		
-
 		context.registerSingleton("testBean", QualifiedByAnnotationTestBean.class);
 		context.refresh();
 		QualifiedByAnnotationTestBean testBean = (QualifiedByAnnotationTestBean) context.getBean("testBean");
@@ -143,8 +140,6 @@ public class QualifierAnnotationTests {
 
 	@Test
 	public void testQualifiedByCustomValue() {
-		
-
 		context.registerSingleton("testBean", QualifiedByCustomValueTestBean.class);
 		context.refresh();
 		QualifiedByCustomValueTestBean testBean = (QualifiedByCustomValueTestBean) context.getBean("testBean");
@@ -154,8 +149,6 @@ public class QualifierAnnotationTests {
 
 	@Test
 	public void testQualifiedByAnnotationValue() {
-		
-
 		context.registerSingleton("testBean", QualifiedByAnnotationValueTestBean.class);
 		context.refresh();
 		QualifiedByAnnotationValueTestBean testBean = (QualifiedByAnnotationValueTestBean) context.getBean("testBean");
@@ -165,8 +158,6 @@ public class QualifierAnnotationTests {
 
 	@Test
 	public void testQualifiedByAttributesFailsWithoutCustomQualifierRegistered() {
-		
-
 		context.registerSingleton("testBean", QualifiedByAttributesTestBean.class);
 		try {
 			context.refresh();
@@ -179,8 +170,6 @@ public class QualifierAnnotationTests {
 
 	@Test
 	public void testQualifiedByAttributesWithCustomQualifierRegistered() {
-		
-
 		QualifierAnnotationAutowireCandidateResolver resolver = (QualifierAnnotationAutowireCandidateResolver)
 				context.getDefaultListableBeanFactory().getAutowireCandidateResolver();
 		resolver.addQualifierType(MultipleAttributeQualifier.class);
@@ -227,6 +216,14 @@ public class QualifierAnnotationTests {
 		}
 	}
 
+	private static class QualifiedByFieldNameTestBean {
+		@Autowired
+		private Person goatBean;
+		public Person getLarry() {
+			return goatBean;
+		}
+	}
+
 	private static class QualifiedByParentValueTestBean {
 
 		@Autowired
@@ -238,37 +235,21 @@ public class QualifierAnnotationTests {
 		}
 	}
 
-	private static class QualifiedByFieldNameTestBean {
-
-		@Autowired
-		private Person larryBean;
-
-		public Person getLarry() {
-			return larryBean;
-		}
-	}
-
 
 	private static class QualifiedByParameterNameTestBean {
-
 		private Person larryBean;
-
 		@Autowired
 		public void setLarryBean(Person larryBean) {
 			this.larryBean = larryBean;
 		}
-
 		public Person getLarry() {
 			return larryBean;
 		}
 	}
 
-
 	private static class QualifiedByAliasTestBean {
-
 		@Autowired @Qualifier("stooge")
 		private Person stooge;
-
 		public Person getStooge() {
 			return stooge;
 		}
@@ -276,10 +257,8 @@ public class QualifierAnnotationTests {
 
 
 	private static class QualifiedByAnnotationTestBean {
-
 		@Autowired @Qualifier("special")
 		private Person larry;
-
 		public Person getLarry() {
 			return larry;
 		}
@@ -287,10 +266,8 @@ public class QualifierAnnotationTests {
 
 
 	private static class QualifiedByCustomValueTestBean {
-
 		@Autowired @SimpleValueQualifier("curly")
 		private Person curly;
-
 		public Person getCurly() {
 			return curly;
 		}
@@ -301,7 +278,6 @@ public class QualifierAnnotationTests {
 
 		@Autowired @SimpleValueQualifier("special")
 		private Person larry;
-
 		public Person getLarry() {
 			return larry;
 		}
@@ -349,7 +325,6 @@ public class QualifierAnnotationTests {
 	@Retention(RetentionPolicy.RUNTIME)
 	@Qualifier
 	public @interface SimpleValueQualifier {
-
 		String value() default "";
 	}
 
@@ -357,9 +332,7 @@ public class QualifierAnnotationTests {
 	@Target(ElementType.FIELD)
 	@Retention(RetentionPolicy.RUNTIME)
 	public @interface MultipleAttributeQualifier {
-
 		String name();
-
 		int age();
 	}
 
