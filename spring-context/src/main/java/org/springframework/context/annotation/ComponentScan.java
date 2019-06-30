@@ -18,10 +18,9 @@ import org.springframework.core.type.filter.TypeFilter;
  * Provides support parallel with Spring XML's {@code <context:component-scan>} element.
  *
  * <p>Either {@link #basePackageClasses} or {@link #basePackages} (or its alias
- * {@link #value}) may be specified to define specific packages to scan. If specific
- * packages are not defined, scanning will occur from the package of the
- * class that declares this annotation.
- *
+ * {@link #value}) may be specified to define specific packages to scan.
+ * If specific packages are not defined, scanning will occur from the package of the class that declares this annotation.
+ * 如果未定义指定包扫描，则将从声明此批注的类的包中进行扫描。
  * <p>Note that the {@code <context:component-scan>} element has an
  * {@code annotation-config} attribute; however, this annotation does not. This is because
  * in almost all cases when using {@code @ComponentScan}, default annotation config

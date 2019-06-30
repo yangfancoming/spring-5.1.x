@@ -21,6 +21,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import org.springframework.core.Ordered;
+import org.springframework.core.annotation.beans.*;
 import org.springframework.core.annotation.subpackage.NonPublicAnnotatedClass;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
@@ -34,25 +35,16 @@ import static org.springframework.core.annotation.AnnotationUtils.*;
 
 /**
  * Unit tests for {@link AnnotationUtils}.
- *
- * @author Rod Johnson
- * @author Juergen Hoeller
- * @author Sam Brannen
- * @author Chris Beams
- * @author Phillip Webb
- * @author Oleg Zhurakousky
  */
 public class AnnotationUtilsTests {
 
 	@Rule
 	public final ExpectedException exception = ExpectedException.none();
 
-
 	@Before
 	public void clearCacheBeforeTests() {
 		AnnotationUtils.clearCache();
 	}
-
 
 	@Test
 	public void findMethodAnnotationOnLeaf() throws Exception {
@@ -66,12 +58,9 @@ public class AnnotationUtilsTests {
 	@Test
 	public void findMethodAnnotationWithAnnotationOnMethodInInterface() throws Exception {
 		Method m = Leaf.class.getMethod("fromInterfaceImplementedByRoot");
-		// @Order is not @Inherited
-		assertNull(m.getAnnotation(Order.class));
-		// getAnnotation() does not search on interfaces
-		assertNull(getAnnotation(m, Order.class));
-		// findAnnotation() does search on interfaces
-		assertNotNull(findAnnotation(m, Order.class));
+		assertNull(m.getAnnotation(Order.class)); // @Order is not @Inherited
+		assertNull(getAnnotation(m, Order.class)); // getAnnotation() does not search on interfaces
+		assertNotNull(findAnnotation(m, Order.class)); // findAnnotation() does search on interfaces
 	}
 
 	// @since 4.2
@@ -81,6 +70,10 @@ public class AnnotationUtilsTests {
 		assertNull(m.getAnnotation(Order.class));
 		assertNotNull(getAnnotation(m, Order.class));
 		assertNotNull(findAnnotation(m, Order.class));
+
+		System.out.println(m.getAnnotation(Order.class));
+		System.out.println(getAnnotation(m, Order.class));
+		System.out.println(findAnnotation(m, Order.class));
 	}
 
 	// @since 4.2
@@ -132,8 +125,7 @@ public class AnnotationUtilsTests {
 		assertNull(getAnnotation(bridgeMethod, Order.class));
 		assertNotNull(findAnnotation(bridgeMethod, Order.class));
 
-		boolean runningInEclipse = Arrays.stream(new Exception().getStackTrace())
-				.anyMatch(element -> element.getClassName().startsWith("org.eclipse.jdt"));
+		boolean runningInEclipse = Arrays.stream(new Exception().getStackTrace()).anyMatch(element -> element.getClassName().startsWith("org.eclipse.jdt"));
 
 		// As of JDK 8, invoking getAnnotation() on a bridge method actually finds an
 		// annotation on its 'bridged' method [1]; however, the Eclipse compiler will not
@@ -383,7 +375,7 @@ public class AnnotationUtilsTests {
 	}
 
 	@Test
-	public void isAnnotationDeclaredLocallyForAllScenarios() throws Exception {
+	public void isAnnotationDeclaredLocallyForAllScenarios() {
 		// no class-level annotation
 		assertFalse(isAnnotationDeclaredLocally(Transactional.class, NonAnnotatedInterface.class));
 		assertFalse(isAnnotationDeclaredLocally(Transactional.class, NonAnnotatedClass.class));
@@ -1544,23 +1536,9 @@ public class AnnotationUtilsTests {
 	}
 
 
-	@Component("meta1")
-	@Order
-	@Retention(RetentionPolicy.RUNTIME)
-	@Inherited
-	@interface Meta1 {
-	}
 
-	@Component("meta2")
-	@Transactional(readOnly = true)
-	@Retention(RetentionPolicy.RUNTIME)
-	@interface Meta2 {
-	}
 
-	@Meta2
-	@Retention(RetentionPolicy.RUNTIME)
-	@interface MetaMeta {
-	}
+
 
 	@MetaMeta
 	@Retention(RetentionPolicy.RUNTIME)
@@ -1582,21 +1560,9 @@ public class AnnotationUtilsTests {
 	@interface MetaCycle3 {
 	}
 
-	@Meta1
-	interface InterfaceWithMetaAnnotation {
-	}
 
-	@Meta2
-	static class ClassWithLocalMetaAnnotationAndMetaAnnotatedInterface implements InterfaceWithMetaAnnotation {
-	}
 
-	@Meta1
-	static class ClassWithInheritedMetaAnnotation {
-	}
 
-	@Meta2
-	static class SubClassWithInheritedMetaAnnotation extends ClassWithInheritedMetaAnnotation {
-	}
 
 	static class SubSubClassWithInheritedMetaAnnotation extends SubClassWithInheritedMetaAnnotation {
 	}
@@ -1624,72 +1590,9 @@ public class AnnotationUtilsTests {
 	static class MetaCycleAnnotatedClass {
 	}
 
-	public interface AnnotatedInterface {
-
-		@Order(0)
-		void fromInterfaceImplementedByRoot();
-	}
-
 	public interface NullableAnnotatedInterface {
-
 		@Nullable
 		void fromInterfaceImplementedByRoot();
-	}
-
-	public static class Root implements AnnotatedInterface {
-
-		@Order(27)
-		public void annotatedOnRoot() {
-		}
-
-		@Meta1
-		public void metaAnnotatedOnRoot() {
-		}
-
-		public void overrideToAnnotate() {
-		}
-
-		@Order(27)
-		public void overrideWithoutNewAnnotation() {
-		}
-
-		public void notAnnotated() {
-		}
-
-		@Override
-		public void fromInterfaceImplementedByRoot() {
-		}
-	}
-
-	public static class Leaf extends Root {
-
-		@Order(25)
-		public void annotatedOnLeaf() {
-		}
-
-		@Meta1
-		public void metaAnnotatedOnLeaf() {
-		}
-
-		@MetaMeta
-		public void metaMetaAnnotatedOnLeaf() {
-		}
-
-		@Override
-		@Order(1)
-		public void overrideToAnnotate() {
-		}
-
-		@Override
-		public void overrideWithoutNewAnnotation() {
-		}
-	}
-
-	@Retention(RetentionPolicy.RUNTIME)
-	@Inherited
-	@interface Transactional {
-
-		boolean readOnly() default false;
 	}
 
 	public static abstract class Foo<T> {
