@@ -32,6 +32,12 @@ import org.springframework.util.StringUtils;
  * @since 3.1
  * @see FlashMapManager
  */
+
+/*
+* 我们都知道，重定向时一般都是不传数据的，如果一定要传数据，只能在URL中拼接字符串来传递，但是通过拼接字符串有缺点，比如长度问题，安全问题
+*  那有没有什么方法能做到隐藏传送呢？
+*  答案就是SpringMVC中的FlashMap！
+* */
 @SuppressWarnings("serial")
 public final class FlashMap extends HashMap<String, Object> implements Comparable<FlashMap> {
 

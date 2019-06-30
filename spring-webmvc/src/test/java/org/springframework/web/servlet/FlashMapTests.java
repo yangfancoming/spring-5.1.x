@@ -11,15 +11,12 @@ import static org.junit.Assert.*;
 
 /**
  * Test fixture for {@link FlashMap} tests.
- *
- * @author Rossen Stoyanchev
  */
 public class FlashMapTests {
 
 	@Test
 	public void isExpired() throws InterruptedException {
 		assertFalse(new FlashMap().isExpired());
-
 		FlashMap flashMap = new FlashMap();
 		flashMap.startExpirationPeriod(0);
 		Thread.sleep(100);

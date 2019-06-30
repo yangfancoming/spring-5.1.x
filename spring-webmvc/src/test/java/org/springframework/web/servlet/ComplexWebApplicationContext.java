@@ -164,7 +164,7 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 	public static class HeadController implements Controller {
 
 		@Override
-		public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)  {
 			if ("HEAD".equals(request.getMethod())) {
 				response.setContentLength(5);
 			}
@@ -176,7 +176,7 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 	public static class BodyController implements Controller {
 
 		@Override
-		public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
 			response.getOutputStream().write("body".getBytes());
 			return null;
 		}
@@ -186,7 +186,7 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 	public static class NoViewController implements Controller {
 
 		@Override
-		public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)  {
 			return new ModelAndView();
 		}
 	}
@@ -360,8 +360,7 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 
 		@Override
 		public void afterCompletion(
-				HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
-				throws Exception {
+				HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws ServletException {
 
 			if (request.getAttribute("test1y") == null) {
 				throw new ServletException("Wrong interceptor order");
@@ -377,17 +376,17 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 	public static class MyWebRequestInterceptor implements WebRequestInterceptor {
 
 		@Override
-		public void preHandle(WebRequest request) throws Exception {
+		public void preHandle(WebRequest request)  {
 			request.setAttribute("test3", "test3", WebRequest.SCOPE_REQUEST);
 		}
 
 		@Override
-		public void postHandle(WebRequest request, @Nullable ModelMap model) throws Exception {
+		public void postHandle(WebRequest request, @Nullable ModelMap model)  {
 			request.setAttribute("test3x", "test3x", WebRequest.SCOPE_REQUEST);
 		}
 
 		@Override
-		public void afterCompletion(WebRequest request, @Nullable Exception ex) throws Exception {
+		public void afterCompletion(WebRequest request, @Nullable Exception ex)  {
 			request.setAttribute("test3y", "test3y", WebRequest.SCOPE_REQUEST);
 		}
 	}
@@ -506,9 +505,7 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 
 
 	public static class TestApplicationListener implements ApplicationListener<ApplicationEvent> {
-
 		public int counter = 0;
-
 		@Override
 		public void onApplicationEvent(ApplicationEvent event) {
 			if (event instanceof RequestHandledEvent) {
