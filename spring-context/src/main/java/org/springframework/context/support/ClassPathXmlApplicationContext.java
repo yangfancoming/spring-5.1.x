@@ -114,9 +114,12 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 	 * @see #refresh()
 	 */
 	public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh, @Nullable ApplicationContext parent) throws BeansException {
+		// 通过层层调用父构造函数，主要初始化了this.resourcePatternResolver=new PathMatchingResourcePatternResolver(this);后续可以通过适配符寻找符合条件的java类
 		super(parent);
+		// 遍历解析传入的配置文件路径，将路径中的占位符替换成相关的环境变量。
 		setConfigLocations(configLocations); // 设置配置文件路径 eg: "classpath:application.xml"
 		if (refresh) {
+			// 调用父类AbstractApplicationContext中定义的refresh方法，完成Spring容器和应用上下文的创建工作。
 			refresh();
 		}
 	}
@@ -166,6 +169,7 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 	 * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader
 	 */
 	public ClassPathXmlApplicationContext(String[] paths, Class<?> clazz, @Nullable ApplicationContext parent) throws BeansException {
+
 		super(parent);
 		Assert.notNull(paths, "Path array must not be null");
 		Assert.notNull(clazz, "Class argument must not be null");

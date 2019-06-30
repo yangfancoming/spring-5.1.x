@@ -401,8 +401,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 */
 	ApplicationEventMulticaster getApplicationEventMulticaster() throws IllegalStateException {
 		if (this.applicationEventMulticaster == null) {
-			throw new IllegalStateException("ApplicationEventMulticaster not initialized - " +
-					"call 'refresh' before multicasting events via the context: " + this);
+			throw new IllegalStateException("ApplicationEventMulticaster not initialized - call 'refresh' before multicasting events via the context: " + this);
+
 		}
 		return this.applicationEventMulticaster;
 	}
@@ -414,8 +414,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 */
 	LifecycleProcessor getLifecycleProcessor() throws IllegalStateException {
 		if (this.lifecycleProcessor == null) {
-			throw new IllegalStateException("LifecycleProcessor not initialized - " +
-					"call 'refresh' before invoking lifecycle methods via the context: " + this);
+			throw new IllegalStateException("LifecycleProcessor not initialized - call 'refresh' before invoking lifecycle methods via the context: " + this);
+
 		}
 		return this.lifecycleProcessor;
 	}
@@ -499,7 +499,10 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	public void refresh() throws BeansException, IllegalStateException {
 		// 来个锁，不然 refresh() 还没结束，你又来个启动或销毁容器的操作，那不就乱套了嘛
 		synchronized (this.startupShutdownMonitor) {
-			// Prepare this context for refreshing. 准备工作，记录下容器的启动时间、标记“已启动”状态、处理配置文件中的占位符
+			/**
+			 *  Prepare this context for refreshing. 准备工作，记录下容器的启动时间、标记“已启动”状态、处理配置文件中的占位符
+			 *  供子类拓展，添加创建前必需属性，校验如果必需属性不存在则抛出MissingRequiredPropertiesException
+			 */
 			prepareRefresh();
 
 			/**
@@ -507,41 +510,53 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			 *    这步比较关键，这步完成后，配置文件就会解析成一个个 Bean 定义，注册到 BeanFactory 中，
 			 *    当然，这里说的 Bean 还没有初始化，只是配置信息都提取出来了，
 			 *    注册也只是将这些信息都保存到了注册中心(说到底核心是一个 beanName-> beanDefinition 的 map)
+			 *    调用子类实现方法获取（创建或刷新）BeanFacotry容器，对于ClassPathXmlApplicationContext，主要调用了AbstractRefreshableApplicationContext中实现的方法
+			 * 	  在这里，将xml配置文件中 的Bean解析成了一个个BeanDefinition,建立一个beanName-> beanDefinition 的 map
 			 */
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
+			// 设定类加载器，spel解析器，属性编辑解析器等，忽略特定接口的依赖注册（在特定时刻相关Bean再完成注入)，注册一些系统Bean供依赖注入使用。
 			// Prepare the bean factory for use in this context.
 			prepareBeanFactory(beanFactory);
 
 			try {
 				// Allows post-processing of the bean factory in context subclasses.
+				// BeanFactory创建完的后置处理。当前为空实现，供子类拓展
 				postProcessBeanFactory(beanFactory);
 
 				// Invoke factory processors registered as beans in the context.
+				// 调用BeanFacotry的相关后置处理器，如果实现了Order相关接口，会先进行排序。
 				invokeBeanFactoryPostProcessors(beanFactory);
 
 				// Register bean processors that intercept bean creation.
+				// 注册相关BeanPostProcessor，供Bean生成前后调用。
 				registerBeanPostProcessors(beanFactory);
 
 				// Initialize message source for this context.
+				// 初始化国际化信息源
 				initMessageSource();
 
 				// Initialize event multicaster for this context.
+				// 初始化Spring相关上下文时间广播器
 				initApplicationEventMulticaster();
 
 				// Initialize other special beans in specific context subclasses.
+				// 模版方法供子类实现，用于初始化一些特殊Bean配置等
 				onRefresh();
 
 				// Check for listener beans and register them.
+				// 注册实现了ApplicationListener接口的事件监听器，用于后续广播器广播事件
 				registerListeners();
 
 				/**
 				 * Instantiate all remaining (non-lazy-init) singletons.
 				 *   初始化所有的 singleton beans （lazy-init 的除外）
+				 *   BeanFactory初始化完成时调用，初始ConversionService Bean，冻结beanFactory配置，并开始创建BeanFactory中所有非懒加载的单例Bean
 				 */
 				finishBeanFactoryInitialization(beanFactory);
 
 				// Last step: publish corresponding event. 最后，广播事件，ApplicationContext 初始化完成
+				// 初始化Lifecycle处理器，调用onRefresh方法，广播ContextRefreshedEvent。
 				finishRefresh();
 			}
 
@@ -589,10 +604,12 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		}
 
 		// Initialize any placeholder property sources in the context environment.
+		// 内部是一个空实现，主要供子类拓展自己ApplicationContext，设置必需的属性
 		initPropertySources();
 
 		// Validate that all properties marked as required are resolvable:
 		// see ConfigurablePropertyResolver#setRequiredProperties
+		// 校验必需的属性是否存在，具体参考下面的代码
 		getEnvironment().validateRequiredProperties();
 
 		// Store pre-refresh ApplicationListeners...
@@ -866,6 +883,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		beanFactory.freezeConfiguration();
 
 		// Instantiate all remaining (non-lazy-init) singletons.
+		// 预实例化所有非懒加载单例Bean
 		beanFactory.preInstantiateSingletons();
 	}
 

@@ -36,18 +36,13 @@ import static org.junit.Assert.*;
 /**
  * System tests covering use of {@link Autowired} and {@link Value} within
  * {@link Configuration} classes.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
- * @author Sam Brannen
  */
 public class AutowiredConfigurationTests {
 
 	@Test
 	public void testAutowiredConfigurationDependencies() {
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
-				AutowiredConfigurationTests.class.getSimpleName() + ".xml", AutowiredConfigurationTests.class);
-
+		String simpleName = AutowiredConfigurationTests.class.getSimpleName();
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(simpleName + ".xml", AutowiredConfigurationTests.class);
 		assertThat(context.getBean("colour", Colour.class), equalTo(Colour.RED));
 		assertThat(context.getBean("testBean", TestBean.class).getName(), equalTo(Colour.RED.toString()));
 	}
@@ -117,22 +112,19 @@ public class AutowiredConfigurationTests {
 
 	@Test
 	public void testValueInjection() {
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
-				"ValueInjectionTests.xml", AutowiredConfigurationTests.class);
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("ValueInjectionTests.xml", AutowiredConfigurationTests.class);
 		doTestValueInjection(context);
 	}
 
 	@Test
 	public void testValueInjectionWithMetaAnnotation() {
-		AnnotationConfigApplicationContext context =
-				new AnnotationConfigApplicationContext(ValueConfigWithMetaAnnotation.class);
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ValueConfigWithMetaAnnotation.class);
 		doTestValueInjection(context);
 	}
 
 	@Test
 	public void testValueInjectionWithAliasedMetaAnnotation() {
-		AnnotationConfigApplicationContext context =
-				new AnnotationConfigApplicationContext(ValueConfigWithAliasedMetaAnnotation.class);
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ValueConfigWithAliasedMetaAnnotation.class);
 		doTestValueInjection(context);
 	}
 
@@ -332,7 +324,6 @@ public class AutowiredConfigurationTests {
 	@Configuration
 	@Scope("prototype")
 	static class ValueConfigWithMetaAnnotation {
-
 		@MyProp
 		private String name;
 

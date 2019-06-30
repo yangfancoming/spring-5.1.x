@@ -19,9 +19,6 @@ import org.springframework.util.Assert;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Dave Syer
- */
 public class Spr11202Tests {
 
 	@Test
