@@ -33,22 +33,34 @@ import org.springframework.util.StringUtils;
  * @see <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching">
  * HTTP caching - Google developers reference</a>
  * @see <a href="https://www.mnot.net/cache_docs/">Mark Nottingham's cache documentation</a>
+ *
+ * Spring对HTTP缓存机制提供了支持,使用类CacheControl概念建模HTTP缓存机制中的Cache-Control响应头部
+ * 类CacheControl其实是一个链式构建器(builder)，它接收使用者的各种参数，用于最终生成一个Cache-Control响应头部的值字符串。
+ *
+ * 从以上源代码可见，CacheControl主要功能是 :
+ * 维护了一组和Cache-Control头部指令对应的属性，用于接收使用者的设置;
+ * 提供了一组总是返回自身(this)的静态方法用于链式构建最终的Cache-Control头部指令值;
+ * 在链式构建之后，最终在CacheControl实例上调用#getHeaderValue生成最终的Cache-Control头部指令值;
  */
 public class CacheControl {
 
-	private long maxAge = -1;
+	// 以下属性对应于 HTTP 规范中对 Cache-Control 头部的各种指令(directive)
+	// 具体对应关系可以参考方法 toHeaderValue()
 
-	private boolean noCache = false;
 
-	private boolean noStore = false;
+	private long maxAge = -1; // 该资源在缓存中的最大生存时间，单位秒
 
-	private boolean mustRevalidate = false;
+	private boolean noCache = false; // true : 使用缓存副本前，一定要到源服务器进行缓存副本有效性校验
+
+	private boolean noStore = false; // true : 不要缓存，总是每次向源服务器请求最新数据
+
+	private boolean mustRevalidate = false;  // true : 缓存副本过期前，可以使用缓存副本；缓存副本一旦过期，必须去源服务器进行缓存副本有效性校验
 
 	private boolean noTransform = false;
 
-	private boolean cachePublic = false;
+	private boolean cachePublic = false;  // 公开缓存机制是否被允许缓存该响应中的资源
 
-	private boolean cachePrivate = false;
+	private boolean cachePrivate = false;  // 私有缓存机制是否被允许缓存该响应中的资源
 
 	private boolean proxyRevalidate = false;
 

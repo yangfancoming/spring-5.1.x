@@ -22,15 +22,12 @@ public class InterceptingClientHttpRequestFactory extends AbstractClientHttpRequ
 
 	private final List<ClientHttpRequestInterceptor> interceptors;
 
-
 	/**
 	 * Create a new instance of the {@code InterceptingClientHttpRequestFactory} with the given parameters.
 	 * @param requestFactory the request factory to wrap
 	 * @param interceptors the interceptors that are to be applied (can be {@code null})
 	 */
-	public InterceptingClientHttpRequestFactory(ClientHttpRequestFactory requestFactory,
-			@Nullable List<ClientHttpRequestInterceptor> interceptors) {
-
+	public InterceptingClientHttpRequestFactory(ClientHttpRequestFactory requestFactory,@Nullable List<ClientHttpRequestInterceptor> interceptors) {
 		super(requestFactory);
 		this.interceptors = (interceptors != null ? interceptors : Collections.emptyList());
 	}
