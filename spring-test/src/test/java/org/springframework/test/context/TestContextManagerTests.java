@@ -13,10 +13,7 @@ import static org.junit.Assert.*;
 
 /**
  * JUnit 4 based unit test for {@link TestContextManager}, which verifies proper
- * <em>execution order</em> of registered {@link TestExecutionListener
- * TestExecutionListeners}.
- *
- * @author Sam Brannen
+ * <em>execution order</em> of registered {@link TestExecutionListener TestExecutionListeners}.
  * @since 2.5
  */
 public class TestContextManagerTests {
@@ -97,7 +94,6 @@ public class TestContextManagerTests {
 
 	@TestExecutionListeners({ FirstTel.class, SecondTel.class, ThirdTel.class })
 	private static class ExampleTestCase {
-
 		@SuppressWarnings("unused")
 		public void exampleTestMethod() {
 		}
@@ -106,7 +102,6 @@ public class TestContextManagerTests {
 	private static class NamedTestExecutionListener implements TestExecutionListener {
 
 		private final String name;
-
 
 		public NamedTestExecutionListener(String name) {
 			this.name = name;
@@ -134,7 +129,6 @@ public class TestContextManagerTests {
 	}
 
 	private static class FirstTel extends NamedTestExecutionListener {
-
 		public FirstTel() {
 			super("1");
 		}

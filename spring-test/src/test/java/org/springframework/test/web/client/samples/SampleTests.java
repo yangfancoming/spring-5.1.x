@@ -39,8 +39,8 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 public class SampleTests {
 
 	private MockRestServiceServer mockServer;
-
 	private RestTemplate restTemplate;
+	private String responseBody = "{\"name\" : \"Ludwig van Beethoven\", \"someDouble\" : \"1.6035\"}";
 
 	@Before
 	public void setup() {
@@ -50,28 +50,26 @@ public class SampleTests {
 
 	@Test
 	public void performGet() {
-
-		String responseBody = "{\"name\" : \"Ludwig van Beethoven\", \"someDouble\" : \"1.6035\"}";
-
-		this.mockServer.expect(requestTo("/composers/42")).andExpect(method(HttpMethod.GET))
-			.andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
+		this.mockServer.expect(
+				requestTo("/composers/42"))
+				.andExpect(method(HttpMethod.GET))
+				.andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
 
 		@SuppressWarnings("unused")
 		Person ludwig = this.restTemplate.getForObject("/composers/{id}", Person.class, 42);
-
 		// We are only validating the request. The response is mocked out.
 		// hotel.getId() == 42
 		// hotel.getName().equals("Holiday Inn")
-
 		this.mockServer.verify();
 	}
 
 	@Test
 	public void performGetManyTimes() {
 
-		String responseBody = "{\"name\" : \"Ludwig van Beethoven\", \"someDouble\" : \"1.6035\"}";
-
-		this.mockServer.expect(manyTimes(), requestTo("/composers/42")).andExpect(method(HttpMethod.GET))
+		this.mockServer.expect(
+				manyTimes(),
+				requestTo("/composers/42"))
+				.andExpect(method(HttpMethod.GET))
 				.andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
 
 		@SuppressWarnings("unused")
@@ -90,29 +88,20 @@ public class SampleTests {
 
 	@Test
 	public void expectNever() {
-
-		String responseBody = "{\"name\" : \"Ludwig van Beethoven\", \"someDouble\" : \"1.6035\"}";
-
 		this.mockServer.expect(once(), requestTo("/composers/42")).andExpect(method(HttpMethod.GET))
 				.andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
 		this.mockServer.expect(never(), requestTo("/composers/43")).andExpect(method(HttpMethod.GET))
 				.andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
-
 		this.restTemplate.getForObject("/composers/{id}", Person.class, 42);
-
 		this.mockServer.verify();
 	}
 
 	@Test(expected = AssertionError.class)
 	public void expectNeverViolated() {
-
-		String responseBody = "{\"name\" : \"Ludwig van Beethoven\", \"someDouble\" : \"1.6035\"}";
-
 		this.mockServer.expect(once(), requestTo("/composers/42")).andExpect(method(HttpMethod.GET))
 				.andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
 		this.mockServer.expect(never(), requestTo("/composers/43")).andExpect(method(HttpMethod.GET))
 				.andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
-
 		this.restTemplate.getForObject("/composers/{id}", Person.class, 42);
 		this.restTemplate.getForObject("/composers/{id}", Person.class, 43);
 	}
@@ -121,16 +110,13 @@ public class SampleTests {
 	public void performGetWithResponseBodyFromFile() {
 
 		Resource responseBody = new ClassPathResource("ludwig.json", this.getClass());
-
 		this.mockServer.expect(requestTo("/composers/42")).andExpect(method(HttpMethod.GET))
 			.andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
 
 		@SuppressWarnings("unused")
 		Person ludwig = this.restTemplate.getForObject("/composers/{id}", Person.class, 42);
-
 		// hotel.getId() == 42
 		// hotel.getName().equals("Holiday Inn")
-
 		this.mockServer.verify();
 	}
 
@@ -182,30 +168,8 @@ public class SampleTests {
 				.andRespond(withSuccess(resource, MediaType.APPLICATION_JSON));
 
 		restTemplate.getForObject("/composers/{id}", Person.class, 42);
-
 		mockServer.verify();
 	}
 
-
-	private static class ContentInterceptor implements ClientHttpRequestInterceptor {
-
-		private final Resource resource;
-
-
-		private ContentInterceptor(Resource resource) {
-			this.resource = resource;
-		}
-
-		@Override
-		public ClientHttpResponse intercept(HttpRequest request, byte[] body,
-				ClientHttpRequestExecution execution) throws IOException {
-
-			ClientHttpResponse response = execution.execute(request, body);
-			byte[] expected = FileCopyUtils.copyToByteArray(this.resource.getInputStream());
-			byte[] actual = FileCopyUtils.copyToByteArray(response.getBody());
-			assertEquals(new String(expected), new String(actual));
-			return response;
-		}
-	}
 
 }

@@ -32,12 +32,12 @@ public class ProfileValueUtilsTests {
 		System.setProperty(NAME, VALUE);
 	}
 
-	private void assertClassIsEnabled(Class<?> testClass) throws Exception {
+	private void assertClassIsEnabled(Class<?> testClass)  {
 		assertTrue("Test class [" + testClass + "] should be enabled.",
 			ProfileValueUtils.isTestEnabledInThisEnvironment(testClass));
 	}
 
-	private void assertClassIsDisabled(Class<?> testClass) throws Exception {
+	private void assertClassIsDisabled(Class<?> testClass)  {
 		assertFalse("Test class [" + testClass + "] should be disabled.",
 			ProfileValueUtils.isTestEnabledInThisEnvironment(testClass));
 	}

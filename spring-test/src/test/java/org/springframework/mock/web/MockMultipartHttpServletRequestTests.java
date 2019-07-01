@@ -42,8 +42,7 @@ public class MockMultipartHttpServletRequestTests {
 	public void mockMultipartHttpServletRequestWithInputStream() throws IOException {
 		MockMultipartHttpServletRequest request = new MockMultipartHttpServletRequest();
 		request.addFile(new MockMultipartFile("file1", new ByteArrayInputStream("myContent1".getBytes())));
-		request.addFile(new MockMultipartFile("file2", "myOrigFilename", "text/plain", new ByteArrayInputStream(
-			"myContent2".getBytes())));
+		request.addFile(new MockMultipartFile("file2", "myOrigFilename", "text/plain", new ByteArrayInputStream("myContent2".getBytes())));
 		doTestMultipartHttpServletRequest(request);
 	}
 

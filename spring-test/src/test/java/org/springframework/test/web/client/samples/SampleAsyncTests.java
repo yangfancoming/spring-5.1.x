@@ -19,12 +19,9 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.client.response.MockRestResponseCreators.*;
 
 /**
- * Examples to demonstrate writing client-side REST tests with Spring MVC Test.
+ * Examples to demonstrate writing client-side REST tests with Spring MVC Test. 演示如何使用SpringMVC测试编写客户端REST测试的示例
  * While the tests in this class invoke the RestTemplate directly, in actual
- * tests the RestTemplate may likely be invoked indirectly, i.e. through client
- * code.
- *
- * @author Rossen Stoyanchev
+ * tests the RestTemplate may likely be invoked indirectly, i.e. through client code.
  * @since 4.1
  */
 @SuppressWarnings("deprecation")
@@ -36,7 +33,7 @@ public class SampleAsyncTests {
 
 
 	@Test
-	public void performGet() throws Exception {
+	public void performGet()  {
 
 		String responseBody = "{\"name\" : \"Ludwig van Beethoven\", \"someDouble\" : \"1.6035\"}";
 
@@ -55,7 +52,7 @@ public class SampleAsyncTests {
 	}
 
 	@Test
-	public void performGetManyTimes() throws Exception {
+	public void performGetManyTimes()  {
 
 		String responseBody = "{\"name\" : \"Ludwig van Beethoven\", \"someDouble\" : \"1.6035\"}";
 
@@ -79,7 +76,7 @@ public class SampleAsyncTests {
 	}
 
 	@Test
-	public void performGetWithResponseBodyFromFile() throws Exception {
+	public void performGetWithResponseBodyFromFile()  {
 
 		Resource responseBody = new ClassPathResource("ludwig.json", this.getClass());
 

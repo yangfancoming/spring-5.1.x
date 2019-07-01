@@ -22,11 +22,8 @@ import static org.junit.Assert.*;
 import static org.springframework.test.context.cache.ContextCacheTestUtils.*;
 
 /**
- * Integration tests for verifying proper behavior of the {@link ContextCache} in
- * conjunction with cache keys used in {@link TestContext}.
- *
- * @author Sam Brannen
- * @author Michail Nikolaev
+ * Integration tests for verifying proper behavior of the {@link ContextCache} in conjunction with cache keys used in {@link TestContext}.
+ * Integration tests for verifying proper behavior of the ContextCache in conjunction with cache keys used in TestContext
  * @since 3.1
  * @see LruContextCacheTests
  * @see SpringRunnerContextCacheTests

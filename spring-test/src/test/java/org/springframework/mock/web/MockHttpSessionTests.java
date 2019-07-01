@@ -24,6 +24,7 @@ public class MockHttpSessionTests {
 
 	@Test
 	public void invalidateOnce() {
+		System.out.println(session.isInvalid());
 		assertFalse(session.isInvalid());
 		session.invalidate();
 		assertTrue(session.isInvalid());

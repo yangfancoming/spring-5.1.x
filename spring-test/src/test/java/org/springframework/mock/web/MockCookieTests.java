@@ -10,9 +10,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link MockCookie}.
- *
- * @author Vedran Pavic
- * @author Sam Brannen
  * @since 5.1
  */
 public class MockCookieTests {
@@ -24,7 +21,6 @@ public class MockCookieTests {
 	@Test
 	public void constructCookie() {
 		MockCookie cookie = new MockCookie("SESSION", "123");
-
 		assertCookie(cookie, "SESSION", "123");
 		assertNull(cookie.getDomain());
 		assertEquals(-1, cookie.getMaxAge());
@@ -38,7 +34,6 @@ public class MockCookieTests {
 	public void setSameSite() {
 		MockCookie cookie = new MockCookie("SESSION", "123");
 		cookie.setSameSite("Strict");
-
 		assertEquals("Strict", cookie.getSameSite());
 	}
 

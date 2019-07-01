@@ -25,17 +25,11 @@ import org.springframework.util.Assert;
 
 /**
  * Default implementation of the {@link ContextCache} API.
- *
- * <p>Uses a synchronized {@link Map} configured with a maximum size
- * and a <em>least recently used</em> (LRU) eviction policy to cache
- * {@link ApplicationContext} instances.
- *
- * <p>The maximum size may be supplied as a {@linkplain #DefaultContextCache(int)
+ * Uses a synchronized Map configured with a maximum size and a least recently used (LRU) eviction policy to cache ApplicationContext instances.
+ * The maximum size may be supplied as a {@linkplain #DefaultContextCache(int)
  * constructor argument} or set via a system property or Spring property named
  * {@code spring.test.context.cache.maxSize}.
- *
- * @author Sam Brannen
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see ContextCacheUtils#retrieveMaxCacheSize()
  */
@@ -46,8 +40,7 @@ public class DefaultContextCache implements ContextCache {
 	/**
 	 * Map of context keys to Spring {@code ApplicationContext} instances.
 	 */
-	private final Map<MergedContextConfiguration, ApplicationContext> contextMap =
-			Collections.synchronizedMap(new LruCache(32, 0.75f));
+	private final Map<MergedContextConfiguration, ApplicationContext> contextMap = Collections.synchronizedMap(new LruCache(32, 0.75f));
 
 	/**
 	 * Map of parent keys to sets of children keys, representing a top-down <em>tree</em>
@@ -55,8 +48,7 @@ public class DefaultContextCache implements ContextCache {
 	 * need to be recursively removed and closed when removing a context that is a parent
 	 * of other contexts.
 	 */
-	private final Map<MergedContextConfiguration, Set<MergedContextConfiguration>> hierarchyMap =
-			new ConcurrentHashMap<>(32);
+	private final Map<MergedContextConfiguration, Set<MergedContextConfiguration>> hierarchyMap = new ConcurrentHashMap<>(32);
 
 	private final int maxSize;
 

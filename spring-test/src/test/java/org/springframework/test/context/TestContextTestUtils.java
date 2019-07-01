@@ -18,9 +18,7 @@ public abstract class TestContextTestUtils {
 		return buildTestContext(testClass, new DefaultCacheAwareContextLoaderDelegate(contextCache));
 	}
 
-	public static TestContext buildTestContext(Class<?> testClass,
-			CacheAwareContextLoaderDelegate cacheAwareContextLoaderDelegate) {
-
+	public static TestContext buildTestContext(Class<?> testClass,CacheAwareContextLoaderDelegate cacheAwareContextLoaderDelegate) {
 		BootstrapContext bootstrapContext = new DefaultBootstrapContext(testClass, cacheAwareContextLoaderDelegate);
 		TestContextBootstrapper testContextBootstrapper = BootstrapUtils.resolveTestContextBootstrapper(bootstrapContext);
 		return testContextBootstrapper.buildTestContext();
