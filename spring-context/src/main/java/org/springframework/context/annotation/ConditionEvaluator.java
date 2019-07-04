@@ -35,13 +35,10 @@ class ConditionEvaluator {
 
 	private final ConditionContextImpl context;
 
-
 	/**
 	 * Create a new {@link ConditionEvaluator} instance.
 	 */
-	public ConditionEvaluator(@Nullable BeanDefinitionRegistry registry,
-			@Nullable Environment environment, @Nullable ResourceLoader resourceLoader) {
-
+	public ConditionEvaluator(@Nullable BeanDefinitionRegistry registry,@Nullable Environment environment, @Nullable ResourceLoader resourceLoader) {
 		this.context = new ConditionContextImpl(registry, environment, resourceLoader);
 	}
 
@@ -69,8 +66,7 @@ class ConditionEvaluator {
 		}
 
 		if (phase == null) {
-			if (metadata instanceof AnnotationMetadata &&
-					ConfigurationClassUtils.isConfigurationCandidate((AnnotationMetadata) metadata)) {
+			if (metadata instanceof AnnotationMetadata && ConfigurationClassUtils.isConfigurationCandidate((AnnotationMetadata) metadata)) {
 				return shouldSkip(metadata, ConfigurationPhase.PARSE_CONFIGURATION);
 			}
 			return shouldSkip(metadata, ConfigurationPhase.REGISTER_BEAN);
@@ -95,7 +91,6 @@ class ConditionEvaluator {
 				return true;
 			}
 		}
-
 		return false;
 	}
 
@@ -110,7 +105,6 @@ class ConditionEvaluator {
 		Class<?> conditionClass = ClassUtils.resolveClassName(conditionClassName, classloader);
 		return (Condition) BeanUtils.instantiateClass(conditionClass);
 	}
-
 
 	/**
 	 * Implementation of a {@link ConditionContext}.
@@ -130,9 +124,7 @@ class ConditionEvaluator {
 		@Nullable
 		private final ClassLoader classLoader;
 
-		public ConditionContextImpl(@Nullable BeanDefinitionRegistry registry,
-				@Nullable Environment environment, @Nullable ResourceLoader resourceLoader) {
-
+		public ConditionContextImpl(@Nullable BeanDefinitionRegistry registry,@Nullable Environment environment, @Nullable ResourceLoader resourceLoader) {
 			this.registry = registry;
 			this.beanFactory = deduceBeanFactory(registry);
 			this.environment = (environment != null ? environment : deduceEnvironment(registry));
@@ -166,8 +158,7 @@ class ConditionEvaluator {
 		}
 
 		@Nullable
-		private ClassLoader deduceClassLoader(@Nullable ResourceLoader resourceLoader,
-				@Nullable ConfigurableListableBeanFactory beanFactory) {
+		private ClassLoader deduceClassLoader(@Nullable ResourceLoader resourceLoader,@Nullable ConfigurableListableBeanFactory beanFactory) {
 
 			if (resourceLoader != null) {
 				ClassLoader classLoader = resourceLoader.getClassLoader();

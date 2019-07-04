@@ -294,8 +294,7 @@ public abstract class ClassUtils {
 	 * for a superclass or interface implemented by the class to be loaded here)
 	 * @see #forName(String, ClassLoader)
 	 */
-	public static Class<?> resolveClassName(String className, @Nullable ClassLoader classLoader)
-			throws IllegalArgumentException {
+	public static Class<?> resolveClassName(String className, @Nullable ClassLoader classLoader) throws IllegalArgumentException {
 
 		try {
 			return forName(className, classLoader);
