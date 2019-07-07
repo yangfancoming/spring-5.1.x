@@ -22,10 +22,7 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link BeanUtils}.
- *
- * @author Juergen Hoeller
- * @author Rob Harrop
- * @author Chris Beams
+
  * @since 19.05.2003
  */
 public class BeanUtilsTests {

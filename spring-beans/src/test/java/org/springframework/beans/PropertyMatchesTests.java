@@ -9,8 +9,6 @@ import static org.junit.Assert.*;
 
 /**
  * Tests for {@link PropertyMatches}.
- *
- * @author Stephane Nicoll
  */
 public class PropertyMatchesTests {
 
@@ -18,6 +16,8 @@ public class PropertyMatchesTests {
 	public void simpleBeanPropertyTypo() {
 		PropertyMatches matches = PropertyMatches.forProperty("naem", SampleBeanProperties.class);
 		assertThat(matches.getPossibleMatches(), hasItemInArray("name"));
+		System.out.println(matches.getPossibleMatches());
+		System.out.println(hasItemInArray("name"));
 	}
 
 	@Test

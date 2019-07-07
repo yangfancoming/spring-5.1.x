@@ -17,16 +17,13 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * @author Guillaume Poirier
- * @author Juergen Hoeller
- * @author Chris Beams
  * @since 08.03.2004
  */
 public class ConcurrentBeanWrapperTests {
 
 	private final Log logger = LogFactory.getLog(getClass());
 
-	private Set<TestRun> set = Collections.synchronizedSet(new HashSet<TestRun>());
+	private Set<TestRun> set = Collections.synchronizedSet(new HashSet<>());
 
 	private Throwable ex = null;
 
