@@ -13,11 +13,7 @@ import org.springframework.jmx.JmxTestBean;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
- * @author Rick Evans
 
- */
 public class MethodExclusionMBeanInfoAssemblerTests extends AbstractJmxAssemblerTests {
 
 	private static final String OBJECT_NAME = "bean:name=testBean5";

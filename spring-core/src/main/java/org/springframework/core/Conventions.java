@@ -14,10 +14,6 @@ import org.springframework.util.ClassUtils;
 /**
  * Provides methods to support various naming and other conventions used
  * throughout the framework. Mainly for internal use within the framework.
- *
- * @author Rob Harrop
-
- * @author Rossen Stoyanchev
  * @since 2.0
  */
 public final class Conventions {
@@ -27,10 +23,8 @@ public final class Conventions {
 	 */
 	private static final String PLURAL_SUFFIX = "List";
 
-
 	private Conventions() {
 	}
-
 
 	/**
 	 * Determine the conventional variable name for the supplied {@code Object}
@@ -59,8 +53,7 @@ public final class Conventions {
 		else if (value instanceof Collection) {
 			Collection<?> collection = (Collection<?>) value;
 			if (collection.isEmpty()) {
-				throw new IllegalArgumentException(
-						"Cannot generate variable name for an empty Collection");
+				throw new IllegalArgumentException("Cannot generate variable name for an empty Collection");
 			}
 			Object valueToCheck = peekAhead(collection);
 			valueClass = getClassForValue(valueToCheck);
@@ -97,8 +90,7 @@ public final class Conventions {
 		else if (Collection.class.isAssignableFrom(parameter.getParameterType())) {
 			valueClass = ResolvableType.forMethodParameter(parameter).asCollection().resolveGeneric();
 			if (valueClass == null) {
-				throw new IllegalArgumentException(
-						"Cannot generate variable name for non-typed Collection parameter type");
+				throw new IllegalArgumentException("Cannot generate variable name for non-typed Collection parameter type");
 			}
 			pluralize = true;
 		}
@@ -157,8 +149,7 @@ public final class Conventions {
 
 		if (Object.class == resolvedType) {
 			if (value == null) {
-				throw new IllegalArgumentException(
-						"Cannot generate variable name for an Object return type with null value");
+				throw new IllegalArgumentException("Cannot generate variable name for an Object return type with null value");
 			}
 			return getVariableName(value);
 		}
@@ -175,13 +166,11 @@ public final class Conventions {
 			valueClass = ResolvableType.forMethodReturnType(method).asCollection().resolveGeneric();
 			if (valueClass == null) {
 				if (!(value instanceof Collection)) {
-					throw new IllegalArgumentException("Cannot generate variable name " +
-							"for non-typed Collection return type and a non-Collection value");
+					throw new IllegalArgumentException("Cannot generate variable name for non-typed Collection return type and a non-Collection value");
 				}
 				Collection<?> collection = (Collection<?>) value;
 				if (collection.isEmpty()) {
-					throw new IllegalArgumentException("Cannot generate variable name " +
-							"for non-typed Collection return type and an empty Collection value");
+					throw new IllegalArgumentException("Cannot generate variable name for non-typed Collection return type and an empty Collection value");
 				}
 				Object valueToCheck = peekAhead(collection);
 				valueClass = getClassForValue(valueToCheck);
@@ -283,13 +272,11 @@ public final class Conventions {
 	private static <E> E peekAhead(Collection<E> collection) {
 		Iterator<E> it = collection.iterator();
 		if (!it.hasNext()) {
-			throw new IllegalStateException(
-					"Unable to peek ahead in non-empty collection - no element found");
+			throw new IllegalStateException("Unable to peek ahead in non-empty collection - no element found");
 		}
 		E value = it.next();
 		if (value == null) {
-			throw new IllegalStateException(
-					"Unable to peek ahead in non-empty collection - only null element found");
+			throw new IllegalStateException("Unable to peek ahead in non-empty collection - only null element found");
 		}
 		return value;
 	}

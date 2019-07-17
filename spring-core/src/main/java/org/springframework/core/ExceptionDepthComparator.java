@@ -66,9 +66,7 @@ public class ExceptionDepthComparator implements Comparator<Class<? extends Thro
 	 * @param targetException the target exception to find a match for
 	 * @return the closest matching exception type from the given collection
 	 */
-	public static Class<? extends Throwable> findClosestMatch(
-			Collection<Class<? extends Throwable>> exceptionTypes, Throwable targetException) {
-
+	public static Class<? extends Throwable> findClosestMatch(Collection<Class<? extends Throwable>> exceptionTypes, Throwable targetException) {
 		Assert.notEmpty(exceptionTypes, "Exception types must not be empty");
 		if (exceptionTypes.size() == 1) {
 			return exceptionTypes.iterator().next();

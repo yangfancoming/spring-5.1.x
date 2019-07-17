@@ -11,10 +11,7 @@ import org.springframework.core.type.filter.AssignableTypeFilter;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Ramnivas Laddad
 
- */
 public class AssignableTypeFilterTests {
 
 	@Test

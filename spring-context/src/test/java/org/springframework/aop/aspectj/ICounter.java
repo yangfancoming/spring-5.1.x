@@ -2,9 +2,7 @@
 
 package org.springframework.aop.aspectj;
 
-/**
- * @author Ramnivas Laddad
- */
+
 interface ICounter {
 
 	void increment();

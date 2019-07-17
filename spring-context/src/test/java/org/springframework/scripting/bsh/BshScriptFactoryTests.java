@@ -26,11 +26,7 @@ import org.springframework.tests.sample.beans.TestBean;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Rob Harrop
- * @author Rick Evans
 
- */
 public class BshScriptFactoryTests {
 
 	@Test

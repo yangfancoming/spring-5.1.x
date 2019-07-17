@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-
 import io.reactivex.Observable;
 import io.reactivex.Single;
 import org.junit.Rule;
@@ -16,7 +15,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
 import org.springframework.tests.sample.objects.TestObject;
 import org.springframework.util.ClassUtils;
 
@@ -24,9 +22,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link Conventions}.
- *
- * @author Rob Harrop
- * @author Sam Brannen
  */
 public class ConventionsTests {
 
@@ -36,18 +31,15 @@ public class ConventionsTests {
 
 	@Test
 	public void simpleObject() {
-		assertEquals("Incorrect singular variable name",
-				"testObject", Conventions.getVariableName(new TestObject()));
-		assertEquals("Incorrect singular variable name", "testObject",
-				Conventions.getVariableNameForParameter(getMethodParameter(TestObject.class)));
-		assertEquals("Incorrect singular variable name", "testObject",
-				Conventions.getVariableNameForReturnType(getMethodForReturnType(TestObject.class)));
+		assertEquals("Incorrect singular variable name","testObject", Conventions.getVariableName(new TestObject()));
+		assertEquals("Incorrect singular variable name", "testObject",Conventions.getVariableNameForParameter(getMethodParameter(TestObject.class)));
+		assertEquals("Incorrect singular variable name", "testObject",Conventions.getVariableNameForReturnType(getMethodForReturnType(TestObject.class)));
 	}
 
 	@Test
 	public void array() {
-		assertEquals("Incorrect plural array form",
-				"testObjectList", Conventions.getVariableName(new TestObject[0]));
+		assertEquals("Incorrect plural array form","testObjectList", Conventions.getVariableName(new TestObject[0]));
+
 	}
 
 	@Test

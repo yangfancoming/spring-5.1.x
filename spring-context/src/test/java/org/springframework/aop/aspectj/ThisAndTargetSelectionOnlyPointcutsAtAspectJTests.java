@@ -13,10 +13,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Ramnivas Laddad
 
- */
 public class ThisAndTargetSelectionOnlyPointcutsAtAspectJTests {
 
 	private TestInterface testBean;
