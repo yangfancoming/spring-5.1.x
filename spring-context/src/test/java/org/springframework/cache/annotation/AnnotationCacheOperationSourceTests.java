@@ -24,11 +24,7 @@ import org.springframework.core.annotation.AliasFor;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-/**
- * @author Costin Leau
- * @author Stephane Nicoll
- * @author Sam Brannen
- */
+
 public class AnnotationCacheOperationSourceTests {
 
 	@Rule

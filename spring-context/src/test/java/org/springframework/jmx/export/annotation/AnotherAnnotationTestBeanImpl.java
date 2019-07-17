@@ -2,9 +2,7 @@
 
 package org.springframework.jmx.export.annotation;
 
-/**
- * @author Stephane Nicoll
- */
+
 public class AnotherAnnotationTestBeanImpl implements AnotherAnnotationTestBean {
 
 	private String bar;

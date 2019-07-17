@@ -16,11 +16,7 @@ import org.springframework.core.serializer.support.SerializationDelegate;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Costin Leau
- * @author Juergen Hoeller
- * @author Stephane Nicoll
- */
+
 public class ConcurrentMapCacheTests
 		extends AbstractValueAdaptingCacheTests<ConcurrentMapCache> {
 

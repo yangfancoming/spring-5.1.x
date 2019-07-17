@@ -15,9 +15,7 @@ import org.springframework.util.ReflectionUtils;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-/**
- * @author Stephane Nicoll
- */
+
 public class CachedExpressionEvaluatorTests {
 
 	private final TestExpressionEvaluator expressionEvaluator = new TestExpressionEvaluator();

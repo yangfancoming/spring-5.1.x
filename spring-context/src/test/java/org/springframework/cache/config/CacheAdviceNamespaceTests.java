@@ -9,10 +9,7 @@ import org.springframework.cache.interceptor.CacheInterceptor;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
-/**
- * @author Costin Leau
- * @author Chris Beams
- */
+
 public class CacheAdviceNamespaceTests extends AbstractCacheAnnotationTests {
 
 	@Override

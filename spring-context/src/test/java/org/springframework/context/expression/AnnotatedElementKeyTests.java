@@ -12,9 +12,7 @@ import org.springframework.util.ReflectionUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Stephane Nicoll
- */
+
 public class AnnotatedElementKeyTests {
 
 	@Rule

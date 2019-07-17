@@ -27,9 +27,6 @@ import static org.junit.Assert.*;
 /**
  * Integration tests for {@code @EnableCaching} and its related
  * {@code @Configuration} classes.
- *
- * @author Chris Beams
- * @author Stephane Nicoll
  */
 public class EnableCachingTests extends AbstractCacheAnnotationTests {
 

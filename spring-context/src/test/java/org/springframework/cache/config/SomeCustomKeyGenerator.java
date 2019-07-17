@@ -9,8 +9,6 @@ import org.springframework.cache.interceptor.KeyGenerator;
 /**
  * A custom {@link KeyGenerator} that exposes the algorithm used to compute the key
  * for convenience in tests scenario.
- *
- * @author Stephane Nicoll
  */
 public class SomeCustomKeyGenerator implements KeyGenerator {
 

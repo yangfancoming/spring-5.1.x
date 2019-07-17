@@ -11,11 +11,7 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Costin Leau
- * @author Chris Beams
- * @author Stephane Nicoll
- */
+
 public class AnnotationNamespaceDrivenTests extends AbstractCacheAnnotationTests {
 
 	@Override

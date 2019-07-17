@@ -9,9 +9,7 @@ import org.springframework.util.backoff.FixedBackOff;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Stephane Nicoll
- */
+
 public class FixedBackOffTests {
 
 	@Test

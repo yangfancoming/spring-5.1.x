@@ -12,8 +12,6 @@ import static org.junit.Assert.*;
 
 /**
  * General cache-related test utilities.
- *
- * @author Stephane Nicoll
  */
 public class CacheTestUtils {
 

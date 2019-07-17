@@ -12,9 +12,7 @@ import org.springframework.core.annotation.Order;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Stephane Nicoll
- */
+
 public class Spr11310Tests {
 
 	@Test

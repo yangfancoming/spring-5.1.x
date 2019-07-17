@@ -39,8 +39,8 @@ public class InjectAnnotationAutowireContextTests {
 		cavs.addGenericArgumentValue(JUERGEN);
 		RootBeanDefinition person = new RootBeanDefinition(Person.class, cavs, null);
 		context.registerBeanDefinition(JUERGEN, person);
-		context.registerBeanDefinition("autowired",
-				new RootBeanDefinition(QualifiedFieldTestBean.class));
+		context.registerBeanDefinition("autowired",new RootBeanDefinition(QualifiedFieldTestBean.class));
+
 		AnnotationConfigUtils.registerAnnotationConfigProcessors(context);
 		try {
 			context.refresh();
@@ -59,8 +59,7 @@ public class InjectAnnotationAutowireContextTests {
 		cavs.addGenericArgumentValue(JUERGEN);
 		RootBeanDefinition person = new RootBeanDefinition(Person.class, cavs, null);
 		context.registerBeanDefinition(JUERGEN, person);
-		context.registerBeanDefinition("autowired",
-				new RootBeanDefinition(QualifiedMethodParameterTestBean.class));
+		context.registerBeanDefinition("autowired",new RootBeanDefinition(QualifiedMethodParameterTestBean.class));
 		AnnotationConfigUtils.registerAnnotationConfigProcessors(context);
 		try {
 			context.refresh();
@@ -79,8 +78,7 @@ public class InjectAnnotationAutowireContextTests {
 		cavs.addGenericArgumentValue(JUERGEN);
 		RootBeanDefinition person = new RootBeanDefinition(Person.class, cavs, null);
 		context.registerBeanDefinition(JUERGEN, person);
-		context.registerBeanDefinition("autowired",
-				new RootBeanDefinition(QualifiedConstructorArgumentTestBean.class));
+		context.registerBeanDefinition("autowired",new RootBeanDefinition(QualifiedConstructorArgumentTestBean.class));
 		AnnotationConfigUtils.registerAnnotationConfigProcessors(context);
 		try {
 			context.refresh();
@@ -115,12 +113,10 @@ public class InjectAnnotationAutowireContextTests {
 		RootBeanDefinition person = new RootBeanDefinition(Person.class, cavs, null);
 		person.addQualifier(new AutowireCandidateQualifier(TestQualifier.class));
 		context.registerBeanDefinition(JUERGEN, person);
-		context.registerBeanDefinition("autowired",
-				new RootBeanDefinition(QualifiedMethodParameterTestBean.class));
+		context.registerBeanDefinition("autowired",new RootBeanDefinition(QualifiedMethodParameterTestBean.class));
 		AnnotationConfigUtils.registerAnnotationConfigProcessors(context);
 		context.refresh();
-		QualifiedMethodParameterTestBean bean =
-				(QualifiedMethodParameterTestBean) context.getBean("autowired");
+		QualifiedMethodParameterTestBean bean = (QualifiedMethodParameterTestBean) context.getBean("autowired");
 		assertEquals(JUERGEN, bean.getPerson().getName());
 	}
 
@@ -136,8 +132,7 @@ public class InjectAnnotationAutowireContextTests {
 				new RootBeanDefinition(QualifiedMethodParameterTestBean.class));
 		AnnotationConfigUtils.registerAnnotationConfigProcessors(context);
 		context.refresh();
-		QualifiedMethodParameterTestBean bean =
-				(QualifiedMethodParameterTestBean) context.getBean("autowired");
+		QualifiedMethodParameterTestBean bean = (QualifiedMethodParameterTestBean) context.getBean("autowired");
 		assertEquals(JUERGEN, bean.getPerson().getName());
 	}
 
@@ -152,12 +147,10 @@ public class InjectAnnotationAutowireContextTests {
 		RootBeanDefinition person2 = new RootBeanDefinition(Person.class, cavs2, null);
 		context.registerBeanDefinition(JUERGEN, person);
 		context.registerBeanDefinition(MARK, person2);
-		context.registerBeanDefinition("autowired",
-				new RootBeanDefinition(QualifiedMethodParameterTestBean.class));
+		context.registerBeanDefinition("autowired",new RootBeanDefinition(QualifiedMethodParameterTestBean.class));
 		AnnotationConfigUtils.registerAnnotationConfigProcessors(context);
 		context.refresh();
-		QualifiedMethodParameterTestBean bean =
-				(QualifiedMethodParameterTestBean) context.getBean("autowired");
+		QualifiedMethodParameterTestBean bean = (QualifiedMethodParameterTestBean) context.getBean("autowired");
 		assertEquals(JUERGEN, bean.getPerson().getName());
 	}
 
@@ -169,12 +162,10 @@ public class InjectAnnotationAutowireContextTests {
 		RootBeanDefinition person = new RootBeanDefinition(Person.class, cavs, null);
 		person.addQualifier(new AutowireCandidateQualifier(TestQualifier.class));
 		context.registerBeanDefinition(JUERGEN, person);
-		context.registerBeanDefinition("autowired",
-				new RootBeanDefinition(QualifiedConstructorArgumentTestBean.class));
+		context.registerBeanDefinition("autowired", new RootBeanDefinition(QualifiedConstructorArgumentTestBean.class));
 		AnnotationConfigUtils.registerAnnotationConfigProcessors(context);
 		context.refresh();
-		QualifiedConstructorArgumentTestBean bean =
-				(QualifiedConstructorArgumentTestBean) context.getBean("autowired");
+		QualifiedConstructorArgumentTestBean bean = (QualifiedConstructorArgumentTestBean) context.getBean("autowired");
 		assertEquals(JUERGEN, bean.getPerson().getName());
 	}
 
@@ -189,8 +180,7 @@ public class InjectAnnotationAutowireContextTests {
 		RootBeanDefinition person2 = new RootBeanDefinition(Person.class, cavs2, null);
 		context.registerBeanDefinition(JUERGEN, person1);
 		context.registerBeanDefinition(MARK, person2);
-		context.registerBeanDefinition("autowired",
-				new RootBeanDefinition(QualifiedFieldTestBean.class));
+		context.registerBeanDefinition("autowired",new RootBeanDefinition(QualifiedFieldTestBean.class));
 		AnnotationConfigUtils.registerAnnotationConfigProcessors(context);
 		try {
 			context.refresh();
@@ -213,8 +203,7 @@ public class InjectAnnotationAutowireContextTests {
 		RootBeanDefinition person2 = new RootBeanDefinition(Person.class, cavs2, null);
 		context.registerBeanDefinition(JUERGEN, person1);
 		context.registerBeanDefinition(MARK, person2);
-		context.registerBeanDefinition("autowired",
-				new RootBeanDefinition(QualifiedMethodParameterTestBean.class));
+		context.registerBeanDefinition("autowired", new RootBeanDefinition(QualifiedMethodParameterTestBean.class));
 		AnnotationConfigUtils.registerAnnotationConfigProcessors(context);
 		try {
 			context.refresh();
@@ -237,8 +226,7 @@ public class InjectAnnotationAutowireContextTests {
 		RootBeanDefinition person2 = new RootBeanDefinition(Person.class, cavs2, null);
 		context.registerBeanDefinition(JUERGEN, person1);
 		context.registerBeanDefinition(MARK, person2);
-		context.registerBeanDefinition("autowired",
-				new RootBeanDefinition(QualifiedConstructorArgumentTestBean.class));
+		context.registerBeanDefinition("autowired", new RootBeanDefinition(QualifiedConstructorArgumentTestBean.class));
 		AnnotationConfigUtils.registerAnnotationConfigProcessors(context);
 		try {
 			context.refresh();

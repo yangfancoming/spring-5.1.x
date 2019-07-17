@@ -26,23 +26,20 @@ import static org.junit.Assert.*;
 
 /**
  * Tests for {@link NoOpCacheManager}.
- *
- * @author Costin Leau
- * @author Stephane Nicoll
  */
 public class NoOpCacheManagerTests {
 
 	private final CacheManager manager = new NoOpCacheManager();
 
 	@Test
-	public void testGetCache() throws Exception {
+	public void testGetCache()  {
 		Cache cache = this.manager.getCache("bucket");
 		assertNotNull(cache);
 		assertSame(cache, this.manager.getCache("bucket"));
 	}
 
 	@Test
-	public void testNoOpCache() throws Exception {
+	public void testNoOpCache()  {
 		String name = createRandomKey();
 		Cache cache = this.manager.getCache(name);
 		assertEquals(name, cache.getName());
@@ -54,7 +51,7 @@ public class NoOpCacheManagerTests {
 	}
 
 	@Test
-	public void testCacheName() throws Exception {
+	public void testCacheName()  {
 		String name = "bucket";
 		assertFalse(this.manager.getCacheNames().contains(name));
 		this.manager.getCache(name);
@@ -62,7 +59,7 @@ public class NoOpCacheManagerTests {
 	}
 
 	@Test
-	public void testCacheCallable() throws Exception {
+	public void testCacheCallable()  {
 		String name = createRandomKey();
 		Cache cache = this.manager.getCache(name);
 		Object returnValue = new Object();

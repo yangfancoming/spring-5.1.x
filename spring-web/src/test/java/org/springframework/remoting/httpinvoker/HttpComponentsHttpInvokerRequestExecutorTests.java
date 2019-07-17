@@ -15,9 +15,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-/**
- * @author Stephane Nicoll
- */
+
 public class HttpComponentsHttpInvokerRequestExecutorTests {
 
 	@Test

@@ -15,9 +15,7 @@ import org.junit.rules.ExpectedException;
 import static org.hamcrest.core.Is.*;
 import static org.junit.Assert.*;
 
-/**
- * @author Stephane Nicoll
- */
+
 public abstract class AbstractCacheTests<T extends Cache> {
 
 	@Rule

@@ -9,9 +9,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.core.ResolvableType;
 import org.springframework.core.ResolvableTypeProvider;
 
-/**
- * @author Stephane Nicoll
- */
+
 @SuppressWarnings("serial")
 public abstract class AbstractApplicationEventListenerTests {
 

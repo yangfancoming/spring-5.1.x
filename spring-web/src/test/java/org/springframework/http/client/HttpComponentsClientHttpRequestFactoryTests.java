@@ -18,9 +18,7 @@ import org.springframework.http.HttpMethod;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-/**
- * @author Stephane Nicoll
- */
+
 public class HttpComponentsClientHttpRequestFactoryTests extends AbstractHttpRequestFactoryTestCase {
 
 	@Override

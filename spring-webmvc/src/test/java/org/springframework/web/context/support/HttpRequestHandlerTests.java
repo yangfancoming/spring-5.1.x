@@ -33,20 +33,17 @@ public class HttpRequestHandlerTests {
 		final MockHttpServletResponse response = new MockHttpServletResponse();
 
 		StaticWebApplicationContext wac = new StaticWebApplicationContext();
-		wac.getBeanFactory().registerSingleton("myHandler", new HttpRequestHandler() {
-			@Override
-			public void handleRequest(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-				assertSame(request, req);
-				assertSame(response, res);
-				String exception = request.getParameter("exception");
-				if ("ServletException".equals(exception)) {
-					throw new ServletException("test");
-				}
-				if ("IOException".equals(exception)) {
-					throw new IOException("test");
-				}
-				res.getWriter().write("myResponse");
+		wac.getBeanFactory().registerSingleton("myHandler", (HttpRequestHandler) (req, res)->{
+			assertSame(request, req);
+			assertSame(response, res);
+			String exception = request.getParameter("exception");
+			if ("ServletException".equals(exception)) {
+				throw new ServletException("test");
 			}
+			if ("IOException".equals(exception)) {
+				throw new IOException("test");
+			}
+			res.getWriter().write("myResponse");
 		});
 		wac.setServletContext(servletContext);
 		wac.refresh();

@@ -24,9 +24,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-/**
- * @author Stephane Nicoll
- */
+
 public class ApplicationListenerMethodAdapterTests extends AbstractApplicationEventListenerTests {
 
 	@Rule

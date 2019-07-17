@@ -10,10 +10,6 @@ import org.springframework.util.Assert;
 
 /**
  * Base class for cache operations.
- *
- * @author Costin Leau
- * @author Stephane Nicoll
- * @author Marcin Kamionowski
  * @since 3.1
  */
 public abstract class CacheOperation implements BasicOperation {

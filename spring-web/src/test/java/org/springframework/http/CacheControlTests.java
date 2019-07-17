@@ -21,7 +21,6 @@ public class CacheControlTests {
 	@Test
 	public void maxAge()  {
 		CacheControl cc = CacheControl.maxAge(1, TimeUnit.HOURS);
-
 		assertThat(cc.getHeaderValue(), Matchers.equalTo("max-age=3600"));
 	}
 

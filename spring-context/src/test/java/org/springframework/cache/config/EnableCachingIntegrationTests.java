@@ -28,8 +28,7 @@ import static org.springframework.cache.CacheTestUtils.*;
 
 /**
  * Tests that represent real use cases with advanced configuration.
- *
- * @author Stephane Nicoll
+
  */
 public class EnableCachingIntegrationTests {
 

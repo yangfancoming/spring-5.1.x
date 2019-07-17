@@ -8,9 +8,7 @@ import org.junit.rules.ExpectedException;
 
 import org.springframework.cache.support.AbstractValueAdaptingCache;
 
-/**
- * @author Stephane Nicoll
- */
+
 public abstract class AbstractValueAdaptingCacheTests<T extends AbstractValueAdaptingCache>
 		extends AbstractCacheTests<T>  {
 

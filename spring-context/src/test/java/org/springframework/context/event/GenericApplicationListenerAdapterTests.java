@@ -11,9 +11,7 @@ import org.springframework.core.ResolvableType;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-/**
- * @author Stephane Nicoll
- */
+
 public class GenericApplicationListenerAdapterTests extends AbstractApplicationEventListenerTests {
 
 	@Test

@@ -13,11 +13,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Arjen Poutsma
- * @author Marcel Overdijk
- * @author Kazuki Shimizu
- */
+
 public class ResponseEntityTests {
 
 	@Test
@@ -26,10 +22,7 @@ public class ResponseEntityTests {
 		String headerValue1 = "HeaderValue1";
 		String headerValue2 = "HeaderValue2";
 		Integer entity = 42;
-
-		ResponseEntity<Integer> responseEntity =
-				ResponseEntity.status(HttpStatus.OK).header(headerName, headerValue1, headerValue2).body(entity);
-
+		ResponseEntity<Integer> responseEntity = ResponseEntity.status(HttpStatus.OK).header(headerName, headerValue1, headerValue2).body(entity);
 		assertNotNull(responseEntity);
 		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
 		assertTrue(responseEntity.getHeaders().containsKey(headerName));
@@ -43,7 +36,6 @@ public class ResponseEntityTests {
 	@Test
 	public void okNoBody() {
 		ResponseEntity<Void> responseEntity = ResponseEntity.ok().build();
-
 		assertNotNull(responseEntity);
 		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
 		assertNull(responseEntity.getBody());
@@ -53,7 +45,6 @@ public class ResponseEntityTests {
 	public void okEntity() {
 		Integer entity = 42;
 		ResponseEntity<Integer> responseEntity = ResponseEntity.ok(entity);
-
 		assertNotNull(responseEntity);
 		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
 		assertEquals(entity, responseEntity.getBody());
@@ -63,7 +54,6 @@ public class ResponseEntityTests {
 	public void ofOptional() {
 		Integer entity = 42;
 		ResponseEntity<Integer> responseEntity = ResponseEntity.of(Optional.of(entity));
-
 		assertNotNull(responseEntity);
 		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
 		assertEquals(entity, responseEntity.getBody());
@@ -72,7 +62,6 @@ public class ResponseEntityTests {
 	@Test
 	public void ofEmptyOptional() {
 		ResponseEntity<Integer> responseEntity = ResponseEntity.of(Optional.empty());
-
 		assertNotNull(responseEntity);
 		assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
 		assertNull(responseEntity.getBody());
@@ -82,19 +71,16 @@ public class ResponseEntityTests {
 	public void createdLocation() throws URISyntaxException {
 		URI location = new URI("location");
 		ResponseEntity<Void> responseEntity = ResponseEntity.created(location).build();
-
 		assertNotNull(responseEntity);
 		assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
 		assertTrue(responseEntity.getHeaders().containsKey("Location"));
-		assertEquals(location.toString(),
-				responseEntity.getHeaders().getFirst("Location"));
+		assertEquals(location.toString(),responseEntity.getHeaders().getFirst("Location"));
 		assertNull(responseEntity.getBody());
-
 		ResponseEntity.created(location).header("MyResponseHeader", "MyValue").body("Hello World");
 	}
 
 	@Test
-	public void acceptedNoBody() throws URISyntaxException {
+	public void acceptedNoBody()  {
 		ResponseEntity<Void> responseEntity = ResponseEntity.accepted().build();
 
 		assertNotNull(responseEntity);
@@ -103,7 +89,7 @@ public class ResponseEntityTests {
 	}
 
 	@Test // SPR-14939
-	public void acceptedNoBodyWithAlternativeBodyType() throws URISyntaxException {
+	public void acceptedNoBodyWithAlternativeBodyType()  {
 		ResponseEntity<String> responseEntity = ResponseEntity.accepted().build();
 
 		assertNotNull(responseEntity);
@@ -112,7 +98,7 @@ public class ResponseEntityTests {
 	}
 
 	@Test
-	public void noContent() throws URISyntaxException {
+	public void noContent()  {
 		ResponseEntity<Void> responseEntity = ResponseEntity.noContent().build();
 
 		assertNotNull(responseEntity);
@@ -121,7 +107,7 @@ public class ResponseEntityTests {
 	}
 
 	@Test
-	public void badRequest() throws URISyntaxException {
+	public void badRequest()  {
 		ResponseEntity<Void> responseEntity = ResponseEntity.badRequest().build();
 
 		assertNotNull(responseEntity);
@@ -130,7 +116,7 @@ public class ResponseEntityTests {
 	}
 
 	@Test
-	public void notFound() throws URISyntaxException {
+	public void notFound()  {
 		ResponseEntity<Void> responseEntity = ResponseEntity.notFound().build();
 
 		assertNotNull(responseEntity);
@@ -139,7 +125,7 @@ public class ResponseEntityTests {
 	}
 
 	@Test
-	public void unprocessableEntity() throws URISyntaxException {
+	public void unprocessableEntity()  {
 		ResponseEntity<String> responseEntity = ResponseEntity.unprocessableEntity().body("error");
 
 		assertNotNull(responseEntity);
@@ -177,7 +163,7 @@ public class ResponseEntityTests {
 	}
 
 	@Test
-	public void Etagheader() throws URISyntaxException {
+	public void Etagheader()  {
 
 		ResponseEntity<Void> responseEntity = ResponseEntity.ok().eTag("\"foo\"").build();
 		assertEquals("\"foo\"", responseEntity.getHeaders().getETag());

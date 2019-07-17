@@ -10,11 +10,7 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 
-/**
- * @author Costin Leau
- * @author Phillip Webb
- * @author Stephane Nicoll
- */
+
 @Cacheable("testCache")
 public class AnnotatedClassCacheableService implements CacheableService<Object> {
 

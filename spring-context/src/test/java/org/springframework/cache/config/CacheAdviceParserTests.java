@@ -11,8 +11,6 @@ import static org.junit.Assert.*;
 
 /**
  * AOP advice specific parsing tests.
- *
- * @author Stephane Nicoll
  */
 public class CacheAdviceParserTests {
 

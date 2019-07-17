@@ -4,9 +4,7 @@ package org.springframework.jmx.export.annotation;
 
 import org.springframework.jmx.support.MetricType;
 
-/**
- * @author Stephane Nicoll
- */
+
 @ManagedResource(objectName = "bean:name=interfaceTestBean", description = "My Managed Bean")
 public interface AnotherAnnotationTestBean {
 

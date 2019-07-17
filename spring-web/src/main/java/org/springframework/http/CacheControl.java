@@ -46,8 +46,6 @@ public class CacheControl {
 
 	// 以下属性对应于 HTTP 规范中对 Cache-Control 头部的各种指令(directive)
 	// 具体对应关系可以参考方法 toHeaderValue()
-
-
 	private long maxAge = -1; // 该资源在缓存中的最大生存时间，单位秒
 
 	private boolean noCache = false; // true : 使用缓存副本前，一定要到源服务器进行缓存副本有效性校验
