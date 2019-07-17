@@ -17,10 +17,7 @@ import org.springframework.web.util.WebUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Dave Syer
- * @author Rossen Stoyanchev
- */
+
 public class RequestContextTests {
 
 	private MockHttpServletRequest request = new MockHttpServletRequest();
