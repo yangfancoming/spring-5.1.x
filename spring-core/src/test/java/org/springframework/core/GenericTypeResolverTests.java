@@ -85,7 +85,7 @@ public class GenericTypeResolverTests {
 	}
 
 	@Test
-	public void testGetTypeVariableMap() throws Exception {
+	public void testGetTypeVariableMap() {
 		Map<TypeVariable, Type> map;
 
 		map = GenericTypeResolver.getTypeVariableMap(MySimpleInterfaceType.class);
@@ -118,18 +118,18 @@ public class GenericTypeResolverTests {
 				x = entry.getValue();
 			}
 		}
-		assertThat(t, equalTo((Type) Integer.class));
-		assertThat(x, equalTo((Type) Long.class));
+		assertThat(t, equalTo(Integer.class));
+		assertThat(x, equalTo(Long.class));
 	}
 
 	@Test  // SPR-11030
-	public void getGenericsCannotBeResolved() throws Exception {
+	public void getGenericsCannotBeResolved() {
 		Class<?>[] resolved = GenericTypeResolver.resolveTypeArguments(List.class, Iterable.class);
 		assertNull(resolved);
 	}
 
 	@Test  // SPR-11052
-	public void getRawMapTypeCannotBeResolved() throws Exception {
+	public void getRawMapTypeCannotBeResolved() {
 		Class<?>[] resolved = GenericTypeResolver.resolveTypeArguments(Map.class, Map.class);
 		assertNull(resolved);
 	}
@@ -139,14 +139,14 @@ public class GenericTypeResolverTests {
 		MethodParameter methodParameter = MethodParameter.forExecutable(
 				WithArrayBase.class.getDeclaredMethod("array", Object[].class), 0);
 		Class<?> resolved = GenericTypeResolver.resolveParameterType(methodParameter, WithArray.class);
-		assertThat(resolved, equalTo((Class<?>) Object[].class));
+		assertThat(resolved, equalTo(Object[].class));
 	}
 
 	@Test  // SPR-11044
 	public void getGenericsOnArrayFromReturnCannotBeResolved() throws Exception {
 		Class<?> resolved = GenericTypeResolver.resolveReturnType(
 				WithArrayBase.class.getDeclaredMethod("array", Object[].class), WithArray.class);
-		assertThat(resolved, equalTo((Class<?>) Object[].class));
+		assertThat(resolved, equalTo(Object[].class));
 	}
 
 	@Test  // SPR-11763

@@ -23,10 +23,7 @@ import org.springframework.tests.sample.beans.ResourceTestBean;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
-/**
- * @author Keith Donald
 
- */
 public class ConversionServiceFactoryBeanTests {
 
 	@Test

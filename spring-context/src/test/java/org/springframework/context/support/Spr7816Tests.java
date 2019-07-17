@@ -10,10 +10,7 @@ import org.springframework.context.ApplicationContext;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Keith Donald
 
- */
 public class Spr7816Tests {
 
 	@Test

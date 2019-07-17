@@ -11,10 +11,7 @@ import org.junit.Test;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
-/**
- * @author Keith Donald
 
- */
 public class BeanWrapperAutoGrowingTests {
 
 	private final Bean bean = new Bean();

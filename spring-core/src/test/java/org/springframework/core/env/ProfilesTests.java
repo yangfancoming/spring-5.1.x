@@ -17,10 +17,6 @@ import static org.junit.Assert.*;
 
 /**
  * Tests for {@link Profiles}.
- *
- * @author Phillip Webb
- * @author Stephane Nicoll
- * @author Sam Brannen
  * @since 5.1
  */
 public class ProfilesTests {

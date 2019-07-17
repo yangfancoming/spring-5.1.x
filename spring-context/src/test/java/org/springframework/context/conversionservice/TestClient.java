@@ -22,10 +22,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 
-/**
- * @author Keith Donald
 
- */
 public class TestClient {
 
 	private List<Bar> bars;

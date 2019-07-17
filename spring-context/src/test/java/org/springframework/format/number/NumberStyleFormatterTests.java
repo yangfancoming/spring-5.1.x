@@ -10,9 +10,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Keith Donald
- */
+
 public class NumberStyleFormatterTests {
 
 	private final NumberStyleFormatter formatter = new NumberStyleFormatter();

@@ -23,10 +23,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for various {@link Resource} implementations.
- *
-
-
- * @author Sam Brannen
  * @since 09.09.2004
  */
 public class ResourceTests {

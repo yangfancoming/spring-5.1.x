@@ -28,15 +28,13 @@ import org.springframework.core.serializer.support.SerializingConverter;
 import static org.junit.Assert.*;
 
 /**
- * @author Gary Russell
- * @author Mark Fisher
  * @since 3.0.5
  */
 public class SerializationConverterTests {
 
+	SerializingConverter toBytes = new SerializingConverter();
 	@Test
 	public void serializeAndDeserializeString() {
-		SerializingConverter toBytes = new SerializingConverter();
 		byte[] bytes = toBytes.convert("Testing");
 		DeserializingConverter fromBytes = new DeserializingConverter();
 		assertEquals("Testing", fromBytes.convert(bytes));
@@ -44,7 +42,6 @@ public class SerializationConverterTests {
 
 	@Test
 	public void nonSerializableObject() {
-		SerializingConverter toBytes = new SerializingConverter();
 		try {
 			toBytes.convert(new Object());
 			fail("Expected IllegalArgumentException");
@@ -57,7 +54,6 @@ public class SerializationConverterTests {
 
 	@Test
 	public void nonSerializableField() {
-		SerializingConverter toBytes = new SerializingConverter();
 		try {
 			toBytes.convert(new UnSerializable());
 			fail("Expected SerializationFailureException");

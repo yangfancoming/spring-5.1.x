@@ -8,9 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Keith Donald
- */
+
 public class ConversionServiceContextConfigTests {
 
 	@Test

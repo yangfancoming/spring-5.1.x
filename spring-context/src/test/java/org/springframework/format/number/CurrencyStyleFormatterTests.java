@@ -11,9 +11,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Keith Donald
- */
+
 public class CurrencyStyleFormatterTests {
 
 	private final CurrencyStyleFormatter formatter = new CurrencyStyleFormatter();

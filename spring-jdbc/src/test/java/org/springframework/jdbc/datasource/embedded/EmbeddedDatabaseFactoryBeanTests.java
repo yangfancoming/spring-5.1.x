@@ -13,9 +13,7 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Keith Donald
- */
+
 public class EmbeddedDatabaseFactoryBeanTests {
 
 	private final ClassRelativeResourceLoader resourceLoader = new ClassRelativeResourceLoader(getClass());

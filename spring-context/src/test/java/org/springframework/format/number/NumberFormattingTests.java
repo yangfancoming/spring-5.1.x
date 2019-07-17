@@ -21,10 +21,7 @@ import org.springframework.validation.DataBinder;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Keith Donald
 
- */
 public class NumberFormattingTests {
 
 	private final FormattingConversionService conversionService = new FormattingConversionService();

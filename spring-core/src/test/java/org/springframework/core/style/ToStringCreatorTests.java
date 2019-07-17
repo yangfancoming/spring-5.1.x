@@ -16,9 +16,7 @@ import org.springframework.util.ObjectUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Keith Donald
- */
+
 public class ToStringCreatorTests {
 
 	private SomeObject s1, s2, s3;
