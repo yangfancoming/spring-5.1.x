@@ -27,7 +27,7 @@ import org.springframework.util.ObjectUtils;
  * and the Servlet, and saves the request and response. Subsequent invocations
  * raise an {@link IllegalStateException} unless {@link #reset()} is called.
  *
- * @author Juergen Hoeller
+
  * @author Rob Winch
  * @author Rossen Stoyanchev
  * @since 2.0.3

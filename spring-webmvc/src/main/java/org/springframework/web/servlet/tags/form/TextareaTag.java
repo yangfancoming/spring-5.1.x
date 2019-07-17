@@ -201,7 +201,7 @@ import org.springframework.lang.Nullable;
  * </table>
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 @SuppressWarnings("serial")

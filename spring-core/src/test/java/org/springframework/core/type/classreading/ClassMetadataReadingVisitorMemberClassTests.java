@@ -8,7 +8,7 @@ import org.springframework.core.type.AbstractClassMetadataMemberClassTests;
 import org.springframework.core.type.ClassMetadata;
 
 /**
- * @author Chris Beams
+
  * @since 3.1
  * @see AbstractClassMetadataMemberClassTests
  */

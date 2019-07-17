@@ -33,7 +33,7 @@ import org.springframework.util.Assert;
  * {@code PageContext.initialize} method. Does not support writing to a
  * JspWriter, request dispatching, or {@code handlePageException} calls.
  *
- * @author Juergen Hoeller
+
  * @since 1.0.2
  */
 public class MockPageContext extends PageContext {

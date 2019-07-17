@@ -24,7 +24,7 @@ import org.springframework.lang.Nullable;
  * beans and invoke the {@code setServletContext} method accordingly.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since January 19, 2001
  * @see ServletContextAware#setServletContext
  */

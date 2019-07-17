@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
  * Tests for {@link BooleanComparator}.
  *
  * @author Keith Donald
- * @author Chris Beams
+
  * @author Phillip Webb
  */
 public class BooleanComparatorTests {

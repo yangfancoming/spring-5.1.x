@@ -18,7 +18,7 @@ import org.springframework.lang.Nullable;
  * <p>Requires Protobuf 3.x and {@code "com.google.protobuf:protobuf-java-util"} 3.x,
  * with 3.3 or higher recommended.
  *
- * @author Juergen Hoeller
+
  * @author Sebastien Deleuze
  * @since 5.0
  * @see JsonFormat#parser()

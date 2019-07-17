@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
  *
  * @author Nicolas Le Bas
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @author Sebastien Deleuze
  * @since 3.2
  */

@@ -35,7 +35,7 @@ import org.springframework.lang.Nullable;
  * FactoryBean itself (or the like).
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 08.03.2003
  * @param <T> the bean type
  * @see org.springframework.beans.factory.BeanFactory

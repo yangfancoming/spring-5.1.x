@@ -15,7 +15,7 @@ import org.springframework.util.ClassUtils;
  * Simple implementation of the {@link MetadataReaderFactory} interface,
  * creating a new ASM {@link org.springframework.asm.ClassReader} for every request.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 public class SimpleMetadataReaderFactory implements MetadataReaderFactory {

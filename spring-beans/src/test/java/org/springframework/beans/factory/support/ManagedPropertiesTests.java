@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Rick Evans
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  */
 @SuppressWarnings("rawtypes")

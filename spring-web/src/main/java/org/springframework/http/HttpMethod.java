@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * and {@link org.springframework.web.client.RestTemplate}.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public enum HttpMethod {

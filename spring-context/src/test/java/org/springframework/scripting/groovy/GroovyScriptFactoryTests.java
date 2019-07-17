@@ -38,9 +38,9 @@ import static org.mockito.BDDMockito.*;
  * @author Rob Harrop
  * @author Rick Evans
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Mark Fisher
- * @author Chris Beams
+
  */
 @SuppressWarnings("resource")
 public class GroovyScriptFactoryTests {

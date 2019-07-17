@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Scott Andrews
- * @author Juergen Hoeller
+
  */
 public class Spr7283Tests {
 

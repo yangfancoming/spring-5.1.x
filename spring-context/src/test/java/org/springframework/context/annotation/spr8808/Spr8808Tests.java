@@ -11,8 +11,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Tests cornering the bug in which @Configuration classes that @ComponentScan themselves
  * would result in a ConflictingBeanDefinitionException.
- *
- * @author Chris Beams
+
  * @since 3.1
  */
 public class Spr8808Tests {

@@ -41,7 +41,7 @@ import org.springframework.web.context.request.WebRequest;
  * many web frameworks, either part of Spring or available as an external library.
  * This helper class is just the most generic way to access the root context.
  *
- * @author Juergen Hoeller
+
  * @see org.springframework.web.context.ContextLoader
  * @see org.springframework.web.servlet.FrameworkServlet
  * @see org.springframework.web.servlet.DispatcherServlet

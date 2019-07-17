@@ -19,7 +19,7 @@ import org.springframework.lang.Nullable;
  * user-supplied values. <p> Values for substitution can be supplied using a {@link Properties} instance or
  * using a {@link PlaceholderResolver}.
  *
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @since 3.0
  */

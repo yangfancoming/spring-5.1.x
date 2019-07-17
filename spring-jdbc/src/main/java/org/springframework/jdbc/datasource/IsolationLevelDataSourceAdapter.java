@@ -32,7 +32,7 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
  * DataSource to perform such resetting as part of its connection pool handling.
  * <b>Make sure that the target DataSource properly cleans up such transaction state.</b>
  *
- * @author Juergen Hoeller
+
  * @since 2.0.3
  * @see #setIsolationLevel
  * @see #setIsolationLevelName

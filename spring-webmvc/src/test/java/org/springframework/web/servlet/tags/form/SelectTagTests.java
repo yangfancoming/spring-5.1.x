@@ -39,7 +39,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Jeremy Grelle
  * @author Dave Syer
  */

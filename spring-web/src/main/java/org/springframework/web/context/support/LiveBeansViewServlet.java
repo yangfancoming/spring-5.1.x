@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
  * <p>Generates a JSON snapshot for current beans and their dependencies in
  * all ApplicationContexts that live within the current web application.
  *
- * @author Juergen Hoeller
+
  * @since 3.2
  * @see org.springframework.context.support.LiveBeansView#getSnapshotAsJson()
  */

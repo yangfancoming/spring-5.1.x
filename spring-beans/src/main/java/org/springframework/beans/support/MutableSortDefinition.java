@@ -10,7 +10,7 @@ import org.springframework.util.StringUtils;
  * Mutable implementation of the {@link SortDefinition} interface.
  * Supports toggling the ascending value on setting the same property again.
  *
- * @author Juergen Hoeller
+
  * @author Jean-Pierre Pawlak
  * @since 26.05.2003
  * @see #setToggleAscendingOnProperty

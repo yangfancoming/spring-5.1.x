@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
  *
  * @author Rossen Stoyanchev
  * @author Brian Clozel
- * @author Juergen Hoeller
+
  * @since 3.2
  */
 public class ControllerAdviceBean implements Ordered {

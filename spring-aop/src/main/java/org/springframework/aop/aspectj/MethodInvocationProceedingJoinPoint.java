@@ -30,7 +30,7 @@ import org.springframework.util.Assert;
  * an introduction. There is no such distinction between target and proxy in AspectJ itself.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Adrian Colyer
  * @author Ramnivas Laddad
  * @since 2.0

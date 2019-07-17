@@ -19,7 +19,7 @@ import org.springframework.web.context.ServletContextAware;
  * <p>Web application contexts will automatically register this with their
  * underlying bean factory. Applications do not use this directly.
  *
- * @author Juergen Hoeller
+
  * @author Phillip Webb
  * @since 12.03.2004
  * @see org.springframework.web.context.ServletContextAware

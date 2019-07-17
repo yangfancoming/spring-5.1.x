@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @author Rossen Stoyanchev
  */
 public class UriTemplateTests {

@@ -18,8 +18,8 @@ import static org.junit.Assert.*;
  * itself is advised by the same aspect, works correctly.
  *
  * @author Ramnivas Laddad
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  */
 @SuppressWarnings("resource")
 public class PropertyDependentAspectTests {

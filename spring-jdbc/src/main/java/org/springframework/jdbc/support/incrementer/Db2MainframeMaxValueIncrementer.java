@@ -10,7 +10,7 @@ import javax.sql.DataSource;
  *
  * <p>Thanks to Jens Eickmeyer for the suggestion!
  *
- * @author Juergen Hoeller
+
  * @since 4.3.15
  * @see Db2LuwMaxValueIncrementer
  */

@@ -25,7 +25,7 @@ import org.springframework.lang.Nullable;
  * {@link NamespaceHandlerResolver} configured in the {@link XmlBeanDefinitionReader}.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public class XmlReaderContext extends ReaderContext {

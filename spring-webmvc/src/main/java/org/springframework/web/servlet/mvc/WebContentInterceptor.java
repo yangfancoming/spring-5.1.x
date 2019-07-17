@@ -30,7 +30,7 @@ import org.springframework.web.util.UrlPathHelper;
  * {@link AbstractController}. This interceptor is mainly intended for applying
  * checks and preparations to a set of controllers mapped by a HandlerMapping.
  *
- * @author Juergen Hoeller
+
  * @author Brian Clozel
  * @since 27.11.2003
  * @see AbstractController

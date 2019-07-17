@@ -61,9 +61,9 @@ import org.springframework.util.ClassUtils;
  * facility, backed by an ASM {@link org.springframework.asm.ClassReader ClassReader}.
  *
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @author Ramnivas Laddad
- * @author Chris Beams
+
  * @author Stephane Nicoll
  * @since 2.5
  * @see org.springframework.core.type.classreading.MetadataReaderFactory

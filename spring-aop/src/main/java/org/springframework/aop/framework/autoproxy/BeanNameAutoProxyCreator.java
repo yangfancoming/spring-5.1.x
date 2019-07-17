@@ -22,7 +22,7 @@ import org.springframework.util.StringUtils;
  * interceptor names to apply to all identified beans, via the
  * "interceptorNames" property.
  *
- * @author Juergen Hoeller
+
  * @since 10.10.2003
  * @see #setBeanNames
  * @see #isMatch

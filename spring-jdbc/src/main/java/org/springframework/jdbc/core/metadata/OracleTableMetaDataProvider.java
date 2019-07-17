@@ -22,7 +22,7 @@ import org.springframework.util.ReflectionUtils;
  * current schema lookup implementation.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class OracleTableMetaDataProvider extends GenericTableMetaDataProvider {

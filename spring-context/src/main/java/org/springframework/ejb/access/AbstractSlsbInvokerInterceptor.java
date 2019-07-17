@@ -22,7 +22,7 @@ import org.springframework.lang.Nullable;
  * special way, getting executed on an EJB instance retrieved via an EJB home.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 public abstract class AbstractSlsbInvokerInterceptor extends JndiObjectLocator
 		implements MethodInterceptor {

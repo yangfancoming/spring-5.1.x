@@ -81,8 +81,8 @@ import org.springframework.lang.Nullable;
  * </ol>
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 13 April 2001
  * @see BeanNameAware#setBeanName
  * @see BeanClassLoaderAware#setBeanClassLoader

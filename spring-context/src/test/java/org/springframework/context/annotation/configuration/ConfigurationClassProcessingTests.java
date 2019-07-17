@@ -51,9 +51,8 @@ import static org.junit.Assert.*;
 /**
  * Miscellaneous system tests covering {@link Bean} naming, aliases, scoping and
  * error handling within {@link Configuration} class definitions.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @author Sam Brannen
  */
 public class ConfigurationClassProcessingTests {

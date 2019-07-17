@@ -34,7 +34,7 @@ import org.springframework.web.servlet.View;
  * @author Jeremy Grelle
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @author Sebastien Deleuze
  * @since 3.1.2
  */

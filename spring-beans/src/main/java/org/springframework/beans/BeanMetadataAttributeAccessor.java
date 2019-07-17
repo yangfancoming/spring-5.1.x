@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
  * holding attributes as {@link BeanMetadataAttribute} objects in order
  * to keep track of the definition source.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 @SuppressWarnings("serial")

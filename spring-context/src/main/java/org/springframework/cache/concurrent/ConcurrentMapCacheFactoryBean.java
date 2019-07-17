@@ -20,7 +20,7 @@ import org.springframework.util.StringUtils;
  * dynamically through {@link ConcurrentMapCacheManager}.
  *
  * @author Costin Leau
- * @author Juergen Hoeller
+
  * @since 3.1
  */
 public class ConcurrentMapCacheFactoryBean

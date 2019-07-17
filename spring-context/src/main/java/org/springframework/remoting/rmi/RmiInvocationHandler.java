@@ -16,7 +16,7 @@ import org.springframework.remoting.support.RemoteInvocation;
  *
  * <p>This is an SPI interface, not to be used directly by applications.
  *
- * @author Juergen Hoeller
+
  * @since 14.05.2003
  */
 public interface RmiInvocationHandler extends Remote {

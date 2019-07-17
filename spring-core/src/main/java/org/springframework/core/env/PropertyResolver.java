@@ -6,9 +6,8 @@ import org.springframework.lang.Nullable;
 
 /**
  * Interface for resolving properties against any underlying source.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.1
  * @see Environment
  * @see PropertySourcesPropertyResolver

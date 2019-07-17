@@ -18,7 +18,7 @@ import org.springframework.util.StringUtils;
  * Only matches if String.class can be converted to the target array element type.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 final class StringToArrayConverter implements ConditionalGenericConverter {

@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
  * Unit tests for the {@link ReflectiveLoadTimeWeaver} class.
  *
  * @author Rick Evans
- * @author Chris Beams
+
  */
 public class ReflectiveLoadTimeWeaverTests {
 

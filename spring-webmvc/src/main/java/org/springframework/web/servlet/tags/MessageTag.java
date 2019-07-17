@@ -119,7 +119,7 @@ import org.springframework.web.util.TagUtils;
  * </table>
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Nicholas Williams
  * @see #setCode
  * @see #setText

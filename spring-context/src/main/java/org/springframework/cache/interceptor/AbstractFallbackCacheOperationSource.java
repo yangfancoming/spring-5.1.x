@@ -33,7 +33,7 @@ import org.springframework.util.ClassUtils;
  * attributes (which is very unlikely), caching could be made configurable.
  *
  * @author Costin Leau
- * @author Juergen Hoeller
+
  * @since 3.1
  */
 public abstract class AbstractFallbackCacheOperationSource implements CacheOperationSource {

@@ -6,7 +6,7 @@ package org.springframework.util;
  * Exception thrown from {@link MimeTypeUtils#parseMimeType(String)} in case of
  * encountering an invalid content type specification String.
  *
- * @author Juergen Hoeller
+
  * @author Rossen Stoyanchev
  * @since 4.0
  */

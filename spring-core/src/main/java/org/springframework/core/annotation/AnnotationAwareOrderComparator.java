@@ -22,7 +22,7 @@ import org.springframework.lang.Nullable;
  * <p>Consult the Javadoc for {@link OrderComparator} for details on the
  * sort semantics for non-ordered objects.
  *
- * @author Juergen Hoeller
+
  * @author Oliver Gierke
  * @author Stephane Nicoll
  * @since 2.0.1

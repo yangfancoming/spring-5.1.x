@@ -45,7 +45,7 @@ import org.springframework.util.StringUtils;
  * {@link #getField(Class, String)}, etc.
  *
  * @author Sam Brannen
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see ReflectionUtils
  * @see AopTestUtils

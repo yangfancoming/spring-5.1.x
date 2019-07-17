@@ -17,7 +17,7 @@ import org.springframework.beans.BeansException;
  * {@link BeanFactory BeanFactory javadocs}.
  *
  * @author Rod Johnson
- * @author Chris Beams
+
  * @since 11.03.2003
  * @see BeanNameAware
  * @see BeanClassLoaderAware

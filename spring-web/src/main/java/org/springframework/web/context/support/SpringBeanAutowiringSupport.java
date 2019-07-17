@@ -35,7 +35,7 @@ import org.springframework.web.context.WebApplicationContext;
  * class allows for easy access to the Spring root web application context
  * based on the ServletContext.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.1
  * @see WebApplicationObjectSupport
  */

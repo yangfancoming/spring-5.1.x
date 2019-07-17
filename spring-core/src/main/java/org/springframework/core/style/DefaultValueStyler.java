@@ -21,7 +21,7 @@ import org.springframework.util.ObjectUtils;
  * encapsulate styling algorithms for each type of styled object.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @since 1.2.2
  */
 public class DefaultValueStyler implements ValueStyler {

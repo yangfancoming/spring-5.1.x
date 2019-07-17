@@ -19,7 +19,7 @@ import org.springframework.core.annotation.AliasFor;
  * {@link org.springframework.web.bind.annotation.RequestMapping} annotation.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see Component
  * @see org.springframework.web.bind.annotation.RequestMapping

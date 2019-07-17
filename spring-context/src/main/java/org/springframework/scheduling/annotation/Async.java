@@ -28,8 +28,8 @@ import java.lang.annotation.Target;
  * through: e.g. Spring's {@link AsyncResult}, EJB 3.1's {@link javax.ejb.AsyncResult},
  * or {@link java.util.concurrent.CompletableFuture#completedFuture(Object)}.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 3.0
  * @see AnnotationAsyncExecutionInterceptor
  * @see AsyncAnnotationAdvisor

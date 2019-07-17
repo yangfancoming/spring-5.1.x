@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
  * (such as bean properties of an object or fields in an object)
  * Serves as base interface for {@link BeanWrapper}.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see BeanWrapper
  * @see PropertyAccessorFactory#forBeanPropertyAccess

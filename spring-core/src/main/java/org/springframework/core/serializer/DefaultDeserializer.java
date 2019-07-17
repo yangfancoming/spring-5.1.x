@@ -16,7 +16,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Gary Russell
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @since 3.0.5
  * @see ObjectInputStream
  */

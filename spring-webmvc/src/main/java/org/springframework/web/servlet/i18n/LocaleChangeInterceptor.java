@@ -21,7 +21,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
  * Interceptor that allows for changing the current locale on every request,
  * via a configurable request parameter (default parameter name: "locale").
  *
- * @author Juergen Hoeller
+
  * @author Rossen Stoyanchev
  * @since 20.06.2003
  * @see org.springframework.web.servlet.LocaleResolver

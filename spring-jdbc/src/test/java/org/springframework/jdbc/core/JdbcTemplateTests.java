@@ -50,7 +50,7 @@ import static org.springframework.tests.Matchers.*;
  *
  * @author Rod Johnson
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @author Phillip Webb
  */
 public class JdbcTemplateTests {

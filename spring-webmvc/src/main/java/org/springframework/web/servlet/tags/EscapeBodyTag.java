@@ -51,7 +51,7 @@ import org.springframework.web.util.JavaScriptUtils;
  * </tbody>
  * </table>
  *
- * @author Juergen Hoeller
+
  * @since 1.1.1
  * @see org.springframework.web.util.HtmlUtils
  * @see org.springframework.web.util.JavaScriptUtils

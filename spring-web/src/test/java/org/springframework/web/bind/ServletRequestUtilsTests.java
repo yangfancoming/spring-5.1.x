@@ -12,8 +12,8 @@ import org.springframework.util.StopWatch;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 06.08.2003
  */
 public class ServletRequestUtilsTests {

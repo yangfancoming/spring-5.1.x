@@ -24,7 +24,7 @@ import javax.annotation.meta.TypeQualifierNickname;
  * your whole codebase with {@code @NonNull}.
  *
  * @author Sebastien Deleuze
- * @author Juergen Hoeller
+
  * @since 5.0
  * @see NonNullApi
  * @see NonNullFields

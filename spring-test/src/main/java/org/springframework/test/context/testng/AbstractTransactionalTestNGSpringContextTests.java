@@ -48,7 +48,7 @@ import org.springframework.util.Assert;
  * </ul>
  *
  * @author Sam Brannen
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see AbstractTestNGSpringContextTests
  * @see org.springframework.test.context.ContextConfiguration

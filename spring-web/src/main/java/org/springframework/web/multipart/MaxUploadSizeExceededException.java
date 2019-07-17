@@ -8,7 +8,7 @@ import org.springframework.lang.Nullable;
  * MultipartException subclass thrown when an upload exceeds the
  * maximum upload size allowed.
  *
- * @author Juergen Hoeller
+
  * @since 1.0.1
  */
 @SuppressWarnings("serial")

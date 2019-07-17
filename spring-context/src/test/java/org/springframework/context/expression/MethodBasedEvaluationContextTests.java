@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
  * Unit tests for {@link MethodBasedEvaluationContext}.
  *
  * @author Stephane Nicoll
- * @author Juergen Hoeller
+
  * @author Sergey Podgurskiy
  */
 public class MethodBasedEvaluationContextTests {

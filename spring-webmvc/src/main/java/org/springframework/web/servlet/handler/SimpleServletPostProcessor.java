@@ -44,7 +44,7 @@ import org.springframework.web.context.ServletContextAware;
  * This is particularly appropriate for existing Servlet classes,
  * allowing to specify Servlet initialization parameters etc.
  *
- * @author Juergen Hoeller
+
  * @since 1.1.5
  * @see javax.servlet.Servlet#init(javax.servlet.ServletConfig)
  * @see javax.servlet.Servlet#destroy()

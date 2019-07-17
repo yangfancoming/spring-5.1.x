@@ -27,7 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
  * bean property accordingly. Default values, for parameters that are otherwise
  * not present, can specify a value for the field other then empty.
  *
- * @author Juergen Hoeller
+
  * @author Scott Andrews
  * @author Brian Clozel
  * @since 1.2

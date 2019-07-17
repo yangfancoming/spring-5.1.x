@@ -21,9 +21,9 @@ import static org.springframework.tests.TestResourceUtils.*;
 
 /**
  * @author Colin Sampaleanu
- * @author Juergen Hoeller
+
  * @author Rick Evans
- * @author Chris Beams
+
  */
 public class ObjectFactoryCreatingFactoryBeanTests {
 

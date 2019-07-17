@@ -12,7 +12,7 @@ import org.xml.sax.SAXParseException;
  * logs warnings using the given Commons Logging logger instance,
  * and rethrows errors to discontinue the XML transformation.
  *
- * @author Juergen Hoeller
+
  * @since 1.2
  */
 public class SimpleSaxErrorHandler implements ErrorHandler {

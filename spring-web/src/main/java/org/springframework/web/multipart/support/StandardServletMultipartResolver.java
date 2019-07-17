@@ -38,7 +38,7 @@ import org.springframework.web.multipart.MultipartResolver;
  * }
  * </pre>
  *
- * @author Juergen Hoeller
+
  * @since 3.1
  * @see #setResolveLazily
  * @see HttpServletRequest#getParts()

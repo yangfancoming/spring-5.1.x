@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Brian Clozel
- * @author Juergen Hoeller
+
  */
 public class ResizableByteArrayOutputStreamTests {
 

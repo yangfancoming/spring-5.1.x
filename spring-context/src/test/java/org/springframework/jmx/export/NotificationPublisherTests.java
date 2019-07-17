@@ -32,7 +32,7 @@ import static org.junit.Assert.*;
  * Integration tests for the Spring JMX {@link NotificationPublisher} functionality.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  */
 public class NotificationPublisherTests extends AbstractMBeanServerTests {
 

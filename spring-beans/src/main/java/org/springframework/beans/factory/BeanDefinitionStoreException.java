@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
  * e.g. in case of incomplete or contradictory bean metadata.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  */
 @SuppressWarnings("serial")

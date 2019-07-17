@@ -53,7 +53,7 @@ import org.springframework.web.util.WebUtils;
  * <p>Will also work outside of DispatcherServlet requests, accessing the root WebApplicationContext
  * and using an appropriate fallback for the locale (the HttpServletRequest's primary locale).
  *
- * @author Juergen Hoeller
+
  * @author Rossen Stoyanchev
  * @since 03.03.2003
  * @see org.springframework.web.servlet.DispatcherServlet

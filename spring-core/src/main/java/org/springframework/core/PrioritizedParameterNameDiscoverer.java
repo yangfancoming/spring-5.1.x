@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
  * <p>The default behavior is to return {@code null} if no discoverer matches.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public class PrioritizedParameterNameDiscoverer implements ParameterNameDiscoverer {

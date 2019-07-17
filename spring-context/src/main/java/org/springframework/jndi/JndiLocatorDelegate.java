@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
  * {@link JndiLocatorSupport} subclass with public lookup methods,
  * for convenient use as a delegate.
  *
- * @author Juergen Hoeller
+
  * @since 3.0.1
  */
 public class JndiLocatorDelegate extends JndiLocatorSupport {

@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * 'primary' service for the configured service class, obtained through
  * the JDK 1.6 {@link java.util.ServiceLoader} facility.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see java.util.ServiceLoader
  */

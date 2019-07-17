@@ -8,7 +8,7 @@ import org.springframework.lang.Nullable;
 /**
  * Configuration object for the SpEL expression parser.
  *
- * @author Juergen Hoeller
+
  * @author Phillip Webb
  * @author Andy Clement
  * @since 3.0

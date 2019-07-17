@@ -10,7 +10,7 @@ import javax.sql.DataSource;
  *
  * <p>Thanks to Jens Eickmeyer for the suggestion!
  *
- * @author Juergen Hoeller
+
  * @since 2.5.3
  * @deprecated in favor of the differently named {@link Db2MainframeMaxValueIncrementer}
  */

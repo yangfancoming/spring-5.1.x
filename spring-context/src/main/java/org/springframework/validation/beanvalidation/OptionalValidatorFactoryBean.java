@@ -15,7 +15,7 @@ import org.apache.commons.logging.LogFactory;
  * in case of the {@code javax.validation} API being present but no explicit
  * Validator having been configured.
  *
- * @author Juergen Hoeller
+
  * @since 4.0.1
  */
 public class OptionalValidatorFactoryBean extends LocalValidatorFactoryBean {

@@ -107,7 +107,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Jeff Brown
  * @author Graeme Rocher
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @since 4.0
  * @see BeanDefinitionRegistry

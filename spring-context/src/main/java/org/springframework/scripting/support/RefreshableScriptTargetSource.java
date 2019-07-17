@@ -13,7 +13,7 @@ import org.springframework.util.Assert;
  * a refresh is required through the given {@link ScriptFactory}.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Mark Fisher
  * @since 2.0
  */

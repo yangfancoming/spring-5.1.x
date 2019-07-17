@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  * <p>Mainly intended for framework-internal usage,
  * in particular for generic argument resolution code.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.2
  */
 public interface NativeWebRequest extends WebRequest {

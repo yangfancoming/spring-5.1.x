@@ -14,7 +14,7 @@ import org.springframework.beans.factory.xml.ParserContext;
  * {@link BeanDefinitionParser} responsible for parsing the
  * {@code <context:spring-configured/>} tag.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 class SpringConfiguredBeanDefinitionParser implements BeanDefinitionParser {

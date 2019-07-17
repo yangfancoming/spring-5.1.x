@@ -22,7 +22,7 @@ import org.springframework.util.ObjectUtils;
  * </ol>
  *
  * @author Stephane Nicoll
- * @author Juergen Hoeller
+
  * @since 4.2
  */
 public class MethodBasedEvaluationContext extends StandardEvaluationContext {

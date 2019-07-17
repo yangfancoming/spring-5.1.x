@@ -36,7 +36,7 @@ import org.springframework.tests.sample.beans.TestBean;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
+
  * @since 09.08.2004
  */
 public class HttpInvokerTests {

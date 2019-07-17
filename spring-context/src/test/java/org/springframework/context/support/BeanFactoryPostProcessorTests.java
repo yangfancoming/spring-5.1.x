@@ -31,8 +31,8 @@ import static org.junit.Assert.*;
  * here is any {@link AbstractApplicationContext} implementation.
  *
  * @author Colin Sampaleanu
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 02.10.2003
  */
 public class BeanFactoryPostProcessorTests {

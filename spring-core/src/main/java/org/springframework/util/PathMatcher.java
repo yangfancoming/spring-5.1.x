@@ -15,7 +15,7 @@ import java.util.Map;
  * <p>The default implementation is {@link AntPathMatcher}, supporting the
  * Ant-style pattern syntax.
  *
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see AntPathMatcher
  */

@@ -20,7 +20,7 @@ import org.springframework.web.servlet.LocaleResolver;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
+
  * @since 20.03.2003
  */
 public class LocaleResolverTests {

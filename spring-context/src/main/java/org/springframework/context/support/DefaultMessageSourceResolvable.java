@@ -14,7 +14,7 @@ import org.springframework.util.StringUtils;
  * Offers an easy way to store all the necessary values needed to resolve
  * a message via a {@link org.springframework.context.MessageSource}.
  *
- * @author Juergen Hoeller
+
  * @since 13.02.2004
  * @see org.springframework.context.MessageSource#getMessage(MessageSourceResolvable, java.util.Locale)
  */

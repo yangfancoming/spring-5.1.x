@@ -21,7 +21,7 @@ import javax.annotation.meta.TypeQualifierDefault;
  * annotations at parameter and return value level.
  *
  * @author Sebastien Deleuze
- * @author Juergen Hoeller
+
  * @since 5.0
  * @see NonNullFields
  * @see Nullable

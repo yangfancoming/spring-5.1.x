@@ -20,7 +20,7 @@ import org.springframework.util.Assert;
  * Pre-implements field access through delegation to the corresponding
  * PropertyAccessor methods.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see #getPropertyAccessor()
  * @see org.springframework.beans.PropertyAccessor

@@ -9,7 +9,7 @@ import org.springframework.util.ClassUtils;
  * Thrown when a bean doesn't match the expected type.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 @SuppressWarnings("serial")
 public class BeanNotOfRequiredTypeException extends BeansException {

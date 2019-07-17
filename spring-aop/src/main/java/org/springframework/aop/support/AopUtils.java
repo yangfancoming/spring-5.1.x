@@ -37,7 +37,7 @@ import org.springframework.util.ReflectionUtils;
  * on internals of Spring's AOP framework implementation.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @see org.springframework.aop.framework.AopProxyUtils
  */

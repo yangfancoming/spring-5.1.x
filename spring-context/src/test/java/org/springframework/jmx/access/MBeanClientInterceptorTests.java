@@ -34,9 +34,9 @@ import static org.junit.Assume.*;
  * {@code -DtestGroups=jmxmp}.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Sam Brannen
- * @author Chris Beams
+
  */
 public class MBeanClientInterceptorTests extends AbstractMBeanServerTests {
 

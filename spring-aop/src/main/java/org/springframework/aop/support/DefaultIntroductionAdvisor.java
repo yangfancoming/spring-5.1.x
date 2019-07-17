@@ -22,7 +22,7 @@ import org.springframework.util.ClassUtils;
  * that by default applies to any class.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 11.11.2003
  */
 @SuppressWarnings({"serial" })

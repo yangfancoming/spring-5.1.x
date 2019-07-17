@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
  * <p>Not intended to be used directly.
  * See {@link org.springframework.jdbc.core.JdbcTemplate}.
  *
- * @author Juergen Hoeller
+
  * @since 28.11.2003
  * @see org.springframework.jdbc.core.JdbcTemplate
  */

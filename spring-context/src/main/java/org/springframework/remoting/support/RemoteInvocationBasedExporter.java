@@ -11,7 +11,7 @@ import java.lang.reflect.InvocationTargetException;
  * <p>Provides a "remoteInvocationExecutor" property, with a
  * {@link DefaultRemoteInvocationExecutor} as default strategy.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see RemoteInvocationExecutor
  * @see DefaultRemoteInvocationExecutor

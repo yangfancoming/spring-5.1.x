@@ -17,7 +17,7 @@ import org.springframework.util.Assert;
  * Base class for {@link SQLExceptionTranslator} implementations that allow for
  * fallback to some other {@link SQLExceptionTranslator}.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.6
  */
 public abstract class AbstractFallbackSQLExceptionTranslator implements SQLExceptionTranslator {

@@ -17,7 +17,7 @@ import org.springframework.util.StringUtils;
  * Provides registry capabilities only, with no factory capabilities built in.
  * Can for example be used for testing bean definition readers.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.2
  */
 public class SimpleBeanDefinitionRegistry extends SimpleAliasRegistry implements BeanDefinitionRegistry {

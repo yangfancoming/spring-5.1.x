@@ -17,8 +17,7 @@ import org.springframework.lang.Nullable;
  *
  * <p>Ordered at {@link Ordered#LOWEST_PRECEDENCE} to allow other user-defined
  * {@link BeanInfoFactory} types to take precedence.
- *
- * @author Chris Beams
+
  * @since 3.2
  * @see BeanInfoFactory
  * @see CachedIntrospectionResults

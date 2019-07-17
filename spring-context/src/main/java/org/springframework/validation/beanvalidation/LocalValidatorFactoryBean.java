@@ -62,7 +62,7 @@ import org.springframework.util.ReflectionUtils;
  * <p>This class is also being used by Spring's MVC configuration namespace, in case of the
  * {@code javax.validation} API being present but no explicit Validator having been configured.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see javax.validation.ValidatorFactory
  * @see javax.validation.Validator

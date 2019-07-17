@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
  *
  * <p>Spring's own validation error classes implement this interface.
  *
- * @author Juergen Hoeller
+
  * @see MessageSource#getMessage(MessageSourceResolvable, java.util.Locale)
  * @see org.springframework.validation.ObjectError
  * @see org.springframework.validation.FieldError

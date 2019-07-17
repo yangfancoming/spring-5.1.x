@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
  * Java 5 specific {@link AspectJExpressionPointcutTests}.
  *
  * @author Rod Johnson
- * @author Chris Beams
+
  */
 public class TigerAspectJExpressionPointcutTests {
 

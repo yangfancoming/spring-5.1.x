@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Keith Donald
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public interface Expression {

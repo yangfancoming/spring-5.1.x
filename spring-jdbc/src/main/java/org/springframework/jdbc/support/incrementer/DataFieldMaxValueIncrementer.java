@@ -13,7 +13,7 @@ import org.springframework.dao.DataAccessException;
  *
  * @author Dmitriy Kopylenko
  * @author Jean-Pierre Pawlak
- * @author Juergen Hoeller
+
  */
 public interface DataFieldMaxValueIncrementer {
 

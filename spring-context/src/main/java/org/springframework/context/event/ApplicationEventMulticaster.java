@@ -16,7 +16,7 @@ import org.springframework.lang.Nullable;
  * ApplicationEventMulticaster as a delegate for actually publishing events.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Stephane Nicoll
  */
 public interface ApplicationEventMulticaster {

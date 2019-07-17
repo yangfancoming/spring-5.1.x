@@ -24,7 +24,7 @@ import org.springframework.util.StringUtils;
  * overriding {@code getPropertyType()} such that a generically declared
  * type variable will be resolved against the containing bean class.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.2
  */
 final class GenericTypeAwarePropertyDescriptor extends PropertyDescriptor {

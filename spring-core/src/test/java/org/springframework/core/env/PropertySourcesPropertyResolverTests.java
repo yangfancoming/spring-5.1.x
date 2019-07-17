@@ -16,7 +16,7 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
 /**
- * @author Chris Beams
+
  * @since 3.1
  */
 public class PropertySourcesPropertyResolverTests {

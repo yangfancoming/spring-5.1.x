@@ -18,7 +18,7 @@ import org.springframework.util.ObjectUtils;
  * Handler execution chain, consisting of handler object and any handler interceptors.
  * Returned by HandlerMapping's {@link HandlerMapping#getHandler} method.
  *
- * @author Juergen Hoeller
+
  * @since 20.06.2003
  * @see HandlerInterceptor
  */

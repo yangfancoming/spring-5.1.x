@@ -14,7 +14,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
  * that need to be "recognized" by Spring's AOP framework.
  *
  * @author Dmitriy Kopylenko
- * @author Juergen Hoeller
+
  * @since 27.02.2004
  * @see #setAdvisorAdapterRegistry
  * @see AdvisorAdapter

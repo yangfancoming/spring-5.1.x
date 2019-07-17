@@ -16,7 +16,7 @@ import org.springframework.beans.FatalBeanException;
  * to be initialized - that is, if a collaborating bean actually invokes
  * them on initialization instead of just storing the reference.
  *
- * @author Juergen Hoeller
+
  * @since 30.10.2003
  * @see FactoryBean#getObject()
  */

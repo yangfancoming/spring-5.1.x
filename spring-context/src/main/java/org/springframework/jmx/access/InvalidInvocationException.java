@@ -9,7 +9,7 @@ import javax.management.JMRuntimeException;
  * by the proxied MBean resource's management interface.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see MBeanClientInterceptor
  */

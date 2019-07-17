@@ -16,7 +16,7 @@ import org.springframework.util.ClassUtils;
  * remotability, like the granularity of method calls that it offers.
  * Furthermore, it has to have serializable arguments etc.
  *
- * @author Juergen Hoeller
+
  * @since 26.12.2003
  */
 public abstract class RemoteExporter extends RemotingSupport {

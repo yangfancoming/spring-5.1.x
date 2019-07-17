@@ -20,7 +20,7 @@ import org.springframework.util.Assert;
  * Helper for retrieving @AspectJ beans from a BeanFactory and building
  * Spring Advisors based on them, for use with auto-proxying.
  *
- * @author Juergen Hoeller
+
  * @since 2.0.2
  * @see AnnotationAwareAspectJAutoProxyCreator
  */

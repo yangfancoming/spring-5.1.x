@@ -12,7 +12,7 @@ import org.springframework.format.Formatter;
  * {@link Formatter} implementation for a JSR-310 {@link Duration},
  * following JSR-310's parsing rules for a Duration.
  *
- * @author Juergen Hoeller
+
  * @since 4.2.4
  * @see Duration#parse
  */

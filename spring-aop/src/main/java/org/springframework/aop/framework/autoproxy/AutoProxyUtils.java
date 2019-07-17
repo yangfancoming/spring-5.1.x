@@ -13,7 +13,7 @@ import org.springframework.util.StringUtils;
  * Utilities for auto-proxy aware components.
  * Mainly for internal use within the framework.
  *
- * @author Juergen Hoeller
+
  * @since 2.0.3
  * @see AbstractAutoProxyCreator
  */

@@ -21,7 +21,7 @@ import org.springframework.util.ReflectionUtils;
  * As of Spring Framework 5.1.5, it also supports WildFly 13+.
  *
  * @author Costin Leau
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class JBossLoadTimeWeaver implements LoadTimeWeaver {

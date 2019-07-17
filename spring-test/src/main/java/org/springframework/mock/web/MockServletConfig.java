@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
  * Mock implementation of the {@link javax.servlet.ServletConfig} interface.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 1.0.2
  */
 public class MockServletConfig implements ServletConfig {

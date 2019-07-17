@@ -40,7 +40,7 @@ import org.springframework.lang.Nullable;
  * RmiServiceExporter implements its own registry lookup as a convenience:
  * It is very common to simply rely on the registry defaults.
  *
- * @author Juergen Hoeller
+
  * @since 1.2.3
  * @see RmiServiceExporter#setRegistry
  * @see org.springframework.jmx.support.ConnectorServerFactoryBean

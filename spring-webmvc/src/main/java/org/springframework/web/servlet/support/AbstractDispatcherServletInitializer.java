@@ -29,9 +29,9 @@ import org.springframework.web.servlet.FrameworkServlet;
  * {@link AbstractAnnotationConfigDispatcherServletInitializer}.
  *
  * @author Arjen Poutsma
- * @author Chris Beams
+
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @author Stephane Nicoll
  * @since 3.2
  */

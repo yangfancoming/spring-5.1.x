@@ -20,7 +20,7 @@ import static org.springframework.beans.factory.xml.BeanDefinitionParserDelegate
  * bean property, populated from an "environment" XML sub-element.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Oliver Gierke
  * @since 2.0
  */

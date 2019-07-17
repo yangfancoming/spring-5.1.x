@@ -59,8 +59,8 @@ import org.springframework.util.function.SupplierUtils;
  * after deserialization.
  *
  * @author Costin Leau
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @author Phillip Webb
  * @author Sam Brannen
  * @author Stephane Nicoll

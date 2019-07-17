@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
  * Custom {@link java.beans.PropertyEditor} for converting
  * {@link MultipartFile MultipartFiles} to byte arrays.
  *
- * @author Juergen Hoeller
+
  * @since 13.10.2003
  */
 public class ByteArrayMultipartFileEditor extends ByteArrayPropertyEditor {

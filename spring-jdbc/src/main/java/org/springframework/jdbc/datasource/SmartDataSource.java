@@ -15,7 +15,7 @@ import javax.sql.DataSource;
  * JdbcTemplate classes automatically perform such a check.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see SingleConnectionDataSource#shouldClose
  * @see DataSourceUtils#releaseConnection
  * @see org.springframework.jdbc.core.JdbcTemplate

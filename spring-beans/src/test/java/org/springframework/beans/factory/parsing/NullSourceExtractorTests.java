@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Rick Evans
- * @author Chris Beams
+
  */
 public class NullSourceExtractorTests {
 

@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 /**
  * @author Rob Harrop
  * @author Rick Evans
- * @author Juergen Hoeller
+
  * @author Jeremy Grelle
  */
 public class LabelTagTests extends AbstractFormTagTests {

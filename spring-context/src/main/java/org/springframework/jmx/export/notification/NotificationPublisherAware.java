@@ -21,7 +21,7 @@ import org.springframework.beans.factory.Aware;
  * interface (or implementing a full {@link javax.management.modelmbean.ModelMBean}).
  *
  * @author Rob Harrop
- * @author Chris Beams
+
  * @since 2.0
  * @see NotificationPublisher
  */

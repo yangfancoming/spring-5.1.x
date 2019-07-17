@@ -12,10 +12,10 @@ import org.springframework.util.MultiValueMap;
  * or {@link MethodMetadata method}), in a form that does not necessarily require the
  * class-loading.
  *
- * @author Juergen Hoeller
+
  * @author Mark Fisher
  * @author Mark Pollack
- * @author Chris Beams
+
  * @author Phillip Webb
  * @author Sam Brannen
  * @since 4.0

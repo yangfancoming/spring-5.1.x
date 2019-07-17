@@ -30,7 +30,7 @@ import static org.springframework.web.method.MvcAnnotationPredicates.*;
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  */
 public class RequestParamMapMethodArgumentResolverTests {
 

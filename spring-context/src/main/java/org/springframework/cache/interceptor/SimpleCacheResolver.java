@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * cache(s) as provided by {@link BasicOperation#getCacheNames() getCacheNames()}.
  *
  * @author Stephane Nicoll
- * @author Juergen Hoeller
+
  * @since 4.1
  * @see BasicOperation#getCacheNames()
  */

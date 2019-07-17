@@ -100,7 +100,7 @@ import org.springframework.util.StringUtils;
  * returning {@code null} in the case that the parameter names cannot be discovered.
  *
  * @author Adrian Colyer
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscoverer {

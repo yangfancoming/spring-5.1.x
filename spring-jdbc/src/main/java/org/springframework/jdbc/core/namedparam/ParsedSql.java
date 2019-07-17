@@ -9,7 +9,7 @@ import java.util.List;
  * Holds information about a parsed SQL statement.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public class ParsedSql {

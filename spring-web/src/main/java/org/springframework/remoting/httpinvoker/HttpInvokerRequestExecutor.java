@@ -23,7 +23,7 @@ import org.springframework.remoting.support.RemoteInvocationResult;
  * (potentially with authentication, HTTP connection pooling, etc).
  * </ul>
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see HttpInvokerClientInterceptor#setHttpInvokerRequestExecutor
  */

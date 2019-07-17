@@ -20,7 +20,7 @@ import static org.mockito.BDDMockito.*;
 
 /**
  * @author Brian Clozel
- * @author Juergen Hoeller
+
  */
 public class SimpleClientHttpResponseTests {
 

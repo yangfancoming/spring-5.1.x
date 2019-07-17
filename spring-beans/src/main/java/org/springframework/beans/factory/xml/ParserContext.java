@@ -19,7 +19,7 @@ import org.springframework.lang.Nullable;
  * Nested inside an {@link XmlReaderContext}.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see XmlReaderContext
  * @see BeanDefinitionParserDelegate

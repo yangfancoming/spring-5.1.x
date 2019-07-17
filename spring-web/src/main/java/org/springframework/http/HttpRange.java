@@ -22,7 +22,7 @@ import org.springframework.util.StringUtils;
  * Represents an HTTP (byte) range for use with the HTTP {@code "Range"} header.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 4.2
  * @see <a href="https://tools.ietf.org/html/rfc7233">HTTP/1.1: Range Requests</a>
  * @see HttpHeaders#setRange(List)

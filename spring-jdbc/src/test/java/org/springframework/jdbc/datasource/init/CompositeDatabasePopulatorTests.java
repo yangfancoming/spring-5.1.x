@@ -15,7 +15,7 @@ import static org.mockito.Mockito.*;
  * Unit tests for {@link CompositeDatabasePopulator}.
  *
  * @author Kazuki Shimizu
- * @author Juergen Hoeller
+
  * @since 4.3
  */
 public class CompositeDatabasePopulatorTests {

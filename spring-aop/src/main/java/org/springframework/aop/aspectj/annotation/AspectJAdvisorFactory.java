@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
  * annotated with AspectJ annotation syntax.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see AspectMetadata
  * @see org.aspectj.lang.reflect.AjTypeSystem

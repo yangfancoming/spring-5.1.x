@@ -40,8 +40,8 @@ import org.springframework.core.io.support.ResourcePatternResolver;
  * with resource editors. Used by
  * {@link org.springframework.context.support.AbstractApplicationContext}.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 2.0
  */
 public class ResourceEditorRegistrar implements PropertyEditorRegistrar {

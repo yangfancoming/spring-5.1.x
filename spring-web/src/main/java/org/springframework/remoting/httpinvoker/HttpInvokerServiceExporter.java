@@ -37,7 +37,7 @@ import org.springframework.web.util.NestedServletException;
  * endpoints to untrusted clients but rather just between your own services.</b>
  * In general, we strongly recommend any other message format (e.g. JSON) instead.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see HttpInvokerClientInterceptor
  * @see HttpInvokerProxyFactoryBean

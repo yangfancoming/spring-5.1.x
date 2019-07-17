@@ -65,7 +65,7 @@ import org.springframework.web.util.TagUtils;
  * </table>
  *
  * @author Alef Arendsen
- * @author Juergen Hoeller
+
  * @since 20.09.2003
  * @see BindTag
  */

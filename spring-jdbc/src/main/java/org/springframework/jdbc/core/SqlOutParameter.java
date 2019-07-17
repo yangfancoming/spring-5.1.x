@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Rod Johnson
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @see SqlReturnResultSet
  * @see SqlInOutParameter
  */

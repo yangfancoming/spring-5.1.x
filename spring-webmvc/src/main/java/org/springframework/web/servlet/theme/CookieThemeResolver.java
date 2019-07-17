@@ -22,7 +22,7 @@ import org.springframework.web.util.WebUtils;
  * {@code setThemeName}, e.g. responding to a certain theme change request.
  *
  * @author Jean-Pierre Pawlak
- * @author Juergen Hoeller
+
  * @since 17.06.2003
  * @see #setThemeName
  */

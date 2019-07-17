@@ -22,7 +22,7 @@ import static org.springframework.beans.factory.support.BeanDefinitionBuilder.*;
  *
  * @author Colin Sampaleanu
  * @author Rick Evans
- * @author Chris Beams
+
  */
 public class ServiceLocatorFactoryBeanTests {
 

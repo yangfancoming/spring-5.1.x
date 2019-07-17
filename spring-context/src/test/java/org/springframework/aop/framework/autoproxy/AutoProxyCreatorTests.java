@@ -38,8 +38,8 @@ import org.springframework.util.ReflectionUtils;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 09.12.2003
  */
 @SuppressWarnings("resource")

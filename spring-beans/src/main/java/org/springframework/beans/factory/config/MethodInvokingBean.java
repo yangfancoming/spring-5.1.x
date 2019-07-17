@@ -45,7 +45,7 @@ import org.springframework.util.ClassUtils;
  *   &lt;property name="targetMethod" value="start"/>
  * &lt;/bean></pre>
  *
- * @author Juergen Hoeller
+
  * @since 4.0.3
  * @see MethodInvokingFactoryBean
  * @see org.springframework.util.MethodInvoker

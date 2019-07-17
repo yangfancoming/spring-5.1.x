@@ -13,8 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  * Strategy for contributing to the building of a {@link UriComponents} by
  * looking at a method parameter and an argument value and deciding what
  * part of the target URL should be updated.
- *
- * @author Oliver Gierke
+
  * @author Rossen Stoyanchev
  * @since 4.0
  */

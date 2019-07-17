@@ -19,7 +19,7 @@ import org.springframework.util.StringUtils;
  * "methodInvocation") for resolving message codes.
  *
  * @author Alef Arendsen
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see #MISSING_FIELD_ERROR_CODE
  * @see DataBinder#setBindingErrorProcessor

@@ -18,7 +18,7 @@ import org.springframework.beans.propertyeditors.PropertiesEditor;
  * underneath.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 public class PropertyValuesEditor extends PropertyEditorSupport {
 

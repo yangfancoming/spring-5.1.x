@@ -23,7 +23,7 @@ import static org.mockito.BDDMockito.*;
  * Unit tests for {@link InternalResourceView}.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  */
 public class InternalResourceViewTests {

@@ -31,7 +31,7 @@ import org.springframework.util.StringUtils;
  * <p>Works on a given {@link PropertyEditorRegistrySupport} instance.
  * Used as a delegate by {@link BeanWrapperImpl} and {@link SimpleTypeConverter}.
  *
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @author Dave Syer
  * @since 2.0

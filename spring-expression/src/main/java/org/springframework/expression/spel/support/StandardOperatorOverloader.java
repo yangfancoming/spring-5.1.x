@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
 /**
  * Standard implementation of {@link OperatorOverloader}.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class StandardOperatorOverloader implements OperatorOverloader {

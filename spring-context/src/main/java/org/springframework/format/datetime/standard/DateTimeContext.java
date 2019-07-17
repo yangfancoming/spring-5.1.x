@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
  * such as the user's Chronology (calendar system) and time zone.
  * A {@code null} property value indicate the user has not specified a setting.
  *
- * @author Juergen Hoeller
+
  * @since 4.0
  * @see DateTimeContextHolder
  */

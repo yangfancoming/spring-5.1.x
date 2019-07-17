@@ -35,7 +35,7 @@ import org.springframework.util.StringUtils;
  * {@code AnnotationJmxAttributeSource}.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Jennifer Hickey
  * @since 1.2
  * @see #setAttributeSource

@@ -26,7 +26,7 @@ import org.springframework.util.StringUtils;
  * via {@link ServletContext#getResourcePaths}. Falls back to the superclass'
  * file system checking for other resources.
  *
- * @author Juergen Hoeller
+
  * @since 1.1.2
  */
 public class ServletContextResourcePatternResolver extends PathMatchingResourcePatternResolver {

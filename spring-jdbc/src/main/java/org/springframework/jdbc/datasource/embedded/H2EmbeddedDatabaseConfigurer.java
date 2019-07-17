@@ -11,9 +11,8 @@ import org.springframework.util.ClassUtils;
  * {@link EmbeddedDatabaseConfigurer} for an H2 embedded database instance.
  *
  * <p>Call {@link #getInstance()} to get the singleton instance of this class.
- *
- * @author Oliver Gierke
- * @author Juergen Hoeller
+
+
  * @author Sam Brannen
  * @since 3.0
  */

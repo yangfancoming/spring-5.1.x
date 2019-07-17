@@ -25,7 +25,7 @@ import org.springframework.util.ObjectUtils;
  * generic AOP utility methods which do not depend on AOP framework internals.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see org.springframework.aop.support.AopUtils
  */
 public abstract class AopProxyUtils {

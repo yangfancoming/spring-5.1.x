@@ -55,7 +55,7 @@ import java.lang.annotation.Target;
  * types. Please consult the javadoc for the {@link AutowiredAnnotationBeanPostProcessor}
  * class (which, by default, checks for the presence of this annotation).
  *
- * @author Juergen Hoeller
+
  * @author Mark Fisher
  * @since 2.5
  * @see AutowiredAnnotationBeanPostProcessor

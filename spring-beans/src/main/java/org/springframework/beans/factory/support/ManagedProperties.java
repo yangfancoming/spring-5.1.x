@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * that supports merging of parent/child definitions.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 @SuppressWarnings("serial")

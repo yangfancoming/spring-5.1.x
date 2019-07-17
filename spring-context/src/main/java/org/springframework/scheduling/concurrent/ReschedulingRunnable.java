@@ -25,7 +25,7 @@ import org.springframework.util.ErrorHandler;
  * delay-driven execution only. The flexibility of the {@link Trigger} interface
  * will be translated onto a delay for the next execution time (repeatedly).
  *
- * @author Juergen Hoeller
+
  * @author Mark Fisher
  * @since 3.0
  */

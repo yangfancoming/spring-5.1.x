@@ -69,7 +69,7 @@ import org.springframework.util.ObjectUtils;
  * and target, and changing any reference will change all objects.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see #setInterceptorNames
  * @see #setProxyInterfaces
  * @see org.aopalliance.intercept.MethodInterceptor

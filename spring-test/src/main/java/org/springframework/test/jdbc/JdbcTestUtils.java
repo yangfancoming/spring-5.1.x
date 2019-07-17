@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Thomas Risberg
  * @author Sam Brannen
- * @author Juergen Hoeller
+
  * @author Phillip Webb
  * @author Chris Baldwin
  * @since 2.5.4

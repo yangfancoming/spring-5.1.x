@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
  * JBoss AS 7 and WildFly 8+.
  *
  * @author Ales Justin
- * @author Juergen Hoeller
+
  * @author Costin Leau
  * @author Sam Brannen
  * @since 3.0

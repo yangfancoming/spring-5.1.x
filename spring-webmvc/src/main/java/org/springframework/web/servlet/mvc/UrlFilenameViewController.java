@@ -28,7 +28,7 @@ import org.springframework.web.servlet.HandlerMapping;
  * <p>Thanks to David Barri for suggesting prefix/suffix support!
  *
  * @author Alef Arendsen
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @see #setPrefix
  * @see #setSuffix

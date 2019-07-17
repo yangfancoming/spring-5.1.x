@@ -43,7 +43,7 @@ import org.springframework.util.Assert;
  * a reference to the {@link EmbeddedDatabase} instance.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @since 3.0
  */

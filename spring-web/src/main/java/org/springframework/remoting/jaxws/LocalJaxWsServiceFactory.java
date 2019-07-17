@@ -21,7 +21,7 @@ import org.springframework.util.Assert;
  * <p>Serves as base class for {@link LocalJaxWsServiceFactoryBean} as well as
  * {@link JaxWsPortClientInterceptor} and {@link JaxWsPortProxyFactoryBean}.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see javax.xml.ws.Service
  * @see LocalJaxWsServiceFactoryBean

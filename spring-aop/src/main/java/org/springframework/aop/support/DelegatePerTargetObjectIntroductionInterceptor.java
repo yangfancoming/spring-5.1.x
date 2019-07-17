@@ -33,7 +33,7 @@ import org.springframework.util.ReflectionUtils;
  * to extract a common ancestor class in the future.</i>
  *
  * @author Adrian Colyer
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see #suppressInterface
  * @see DelegatingIntroductionInterceptor

@@ -12,7 +12,7 @@ import org.springframework.aop.RawTargetAccess;
  * and programmatic removal of the target object.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see ScopedProxyFactoryBean
  */

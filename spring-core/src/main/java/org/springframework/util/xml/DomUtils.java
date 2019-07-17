@@ -22,7 +22,7 @@ import org.springframework.util.Assert;
  * Convenience methods for working with the DOM API,
  * in particular for working with DOM Nodes and DOM Elements.
  *
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @author Costin Leau
  * @author Arjen Poutsma

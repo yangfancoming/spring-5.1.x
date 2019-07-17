@@ -37,7 +37,7 @@ import org.springframework.util.StringUtils;
  * in the XML file, regardless of the actual root element.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @author Erik Wiersma
  * @since 18.12.2003

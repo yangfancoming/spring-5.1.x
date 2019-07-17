@@ -24,7 +24,7 @@ import org.springframework.util.ClassUtils;
  * all introduced interfaces.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 @SuppressWarnings("serial")
 public class IntroductionInfoSupport implements IntroductionInfo, Serializable {

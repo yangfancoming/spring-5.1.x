@@ -32,7 +32,7 @@ import static org.junit.Assert.*;
  * @author Arjen Poutsma
  * @author Sebastien Deleuze
  * @author Brian Clozel
- * @author Juergen Hoeller
+
  */
 public class HttpHeadersTests {
 

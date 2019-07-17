@@ -42,7 +42,7 @@ import org.springframework.web.context.support.WebApplicationObjectSupport;
  * {@link #setUseCacheControlNoStore} or {@link #setAlwaysMustRevalidate}.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Brian Clozel
  * @author Rossen Stoyanchev
  * @see #setCacheSeconds

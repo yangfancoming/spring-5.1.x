@@ -13,9 +13,8 @@ import static org.junit.Assert.*;
 
 /**
  * Tests the use of the @Role and @Description annotation on @Bean methods and @Component classes.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.1
  */
 public class RoleAndDescriptionAnnotationTests {

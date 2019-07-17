@@ -27,7 +27,7 @@ import org.springframework.web.util.WebUtils;
  *
  * <p>Requires JSF 2.0 or higher, as of Spring 4.0.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.2
  * @see javax.faces.context.FacesContext#getExternalContext()
  * @see javax.faces.context.ExternalContext#getRequestMap()

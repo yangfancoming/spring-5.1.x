@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * request interceptors, giving them access to general request metadata,
  * not for actual handling of the request.
  *
- * @author Juergen Hoeller
+
  * @author Brian Clozel
  * @since 2.0
  * @see WebRequestInterceptor

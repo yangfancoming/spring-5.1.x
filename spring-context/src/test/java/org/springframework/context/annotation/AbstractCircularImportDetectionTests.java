@@ -12,8 +12,6 @@ import static org.junit.Assert.*;
 /**
  * TCK-style unit tests for handling circular use of the {@link Import} annotation.
  * Explore the subclass hierarchy for specific concrete implementations.
- *
- * @author Chris Beams
  */
 public abstract class AbstractCircularImportDetectionTests {
 
@@ -30,9 +28,7 @@ public abstract class AbstractCircularImportDetectionTests {
 		}
 		catch (BeanDefinitionParsingException ex) {
 			assertTrue("Wrong message. Got: " + ex.getMessage(),
-					ex.getMessage().contains(
-						"Illegal attempt by @Configuration class 'AbstractCircularImportDetectionTests.B' " +
-						"to import class 'AbstractCircularImportDetectionTests.A'"));
+					ex.getMessage().contains("Illegal attempt by @Configuration class 'AbstractCircularImportDetectionTests.B' to import class 'AbstractCircularImportDetectionTests.A'"));
 			threw = true;
 		}
 		assertTrue(threw);
@@ -46,9 +42,7 @@ public abstract class AbstractCircularImportDetectionTests {
 		}
 		catch (BeanDefinitionParsingException ex) {
 			assertTrue("Wrong message. Got: " + ex.getMessage(),
-					ex.getMessage().contains(
-						"Illegal attempt by @Configuration class 'AbstractCircularImportDetectionTests.Z2' " +
-						"to import class 'AbstractCircularImportDetectionTests.Z'"));
+					ex.getMessage().contains("Illegal attempt by @Configuration class 'AbstractCircularImportDetectionTests.Z2' to import class 'AbstractCircularImportDetectionTests.Z'"));
 			threw = true;
 		}
 		assertTrue(threw);
@@ -58,7 +52,6 @@ public abstract class AbstractCircularImportDetectionTests {
 	@Configuration
 	@Import(B.class)
 	static class A {
-
 		@Bean
 		TestBean b1() {
 			return new TestBean();
@@ -69,7 +62,6 @@ public abstract class AbstractCircularImportDetectionTests {
 	@Configuration
 	@Import(A.class)
 	static class B {
-
 		@Bean
 		TestBean b2() {
 			return new TestBean();
@@ -80,7 +72,6 @@ public abstract class AbstractCircularImportDetectionTests {
 	@Configuration
 	@Import({Y.class, Z.class})
 	class X {
-
 		@Bean
 		TestBean x() {
 			return new TestBean();
@@ -90,7 +81,6 @@ public abstract class AbstractCircularImportDetectionTests {
 
 	@Configuration
 	class Y {
-
 		@Bean
 		TestBean y() {
 			return new TestBean();
@@ -101,7 +91,6 @@ public abstract class AbstractCircularImportDetectionTests {
 	@Configuration
 	@Import({Z1.class, Z2.class})
 	class Z {
-
 		@Bean
 		TestBean z() {
 			return new TestBean();
@@ -111,7 +100,6 @@ public abstract class AbstractCircularImportDetectionTests {
 
 	@Configuration
 	class Z1 {
-
 		@Bean
 		TestBean z1() {
 			return new TestBean();
@@ -122,7 +110,6 @@ public abstract class AbstractCircularImportDetectionTests {
 	@Configuration
 	@Import(Z.class)
 	class Z2 {
-
 		@Bean
 		TestBean z2() {
 			return new TestBean();

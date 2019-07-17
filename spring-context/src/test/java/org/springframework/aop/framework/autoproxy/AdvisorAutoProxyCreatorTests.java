@@ -32,7 +32,7 @@ import static org.junit.Assert.*;
  *
  * @author Rod Johnson
  * @author Dave Syer
- * @author Chris Beams
+
  */
 @SuppressWarnings("resource")
 public class AdvisorAutoProxyCreatorTests {

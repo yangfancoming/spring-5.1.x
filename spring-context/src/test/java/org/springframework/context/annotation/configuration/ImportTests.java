@@ -20,9 +20,8 @@ import static org.junit.Assert.*;
 
 /**
  * System tests for {@link Import} annotation support.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  */
 public class ImportTests {
 

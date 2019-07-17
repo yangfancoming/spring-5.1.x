@@ -5,7 +5,7 @@ package org.springframework.core;
 /**
  * A common delegate for detecting a GraalVM native image environment.
  *
- * @author Juergen Hoeller
+
  * @author Sebastien Deleuze
  * @since 5.1
  */

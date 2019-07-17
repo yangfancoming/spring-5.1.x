@@ -27,7 +27,7 @@ import org.springframework.util.ReflectionUtils;
  * The Java Language Specification</a> for more details on the use of bridge methods.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Phillip Webb
  * @since 2.0
  */

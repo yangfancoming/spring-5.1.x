@@ -30,7 +30,7 @@ import javax.servlet.ServletContextListener;
  * the case when a WAR file gets deployed to WebLogic, for example. Do not use
  * this listener in such an environment!
  *
- * @author Juergen Hoeller
+
  * @since 18.04.2003
  * @see WebUtils#setWebAppRootSystemProperty
  * @see System#getProperty

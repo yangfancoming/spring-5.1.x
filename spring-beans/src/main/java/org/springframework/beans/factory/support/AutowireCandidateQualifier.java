@@ -11,7 +11,7 @@ import org.springframework.util.Assert;
  * against annotations on a field or parameter to be autowired.
  *
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see org.springframework.beans.factory.annotation.Qualifier
  */

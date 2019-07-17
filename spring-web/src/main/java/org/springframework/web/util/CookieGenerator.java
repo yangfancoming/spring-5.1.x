@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
  * <p>Can serve as base class for components that generate specific cookies,
  * such as CookieLocaleResolver and CookieThemeResolver.
  *
- * @author Juergen Hoeller
+
  * @since 1.1.4
  * @see #addCookie
  * @see #removeCookie

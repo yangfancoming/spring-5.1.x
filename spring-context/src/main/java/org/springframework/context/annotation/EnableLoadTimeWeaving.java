@@ -111,8 +111,7 @@ import org.springframework.instrument.classloading.LoadTimeWeaver;
  * {@code aspectj-weaving} is "on".  This does not occur when using
  * {@code @EnableLoadTimeWeaving(aspectjWeaving=ENABLED)}. Instead you must explicitly add
  * {@code @EnableSpringConfigured} (included in the {@code spring-aspects} module)
- *
- * @author Chris Beams
+
  * @since 3.1
  * @see LoadTimeWeaver
  * @see DefaultContextLoadTimeWeaver

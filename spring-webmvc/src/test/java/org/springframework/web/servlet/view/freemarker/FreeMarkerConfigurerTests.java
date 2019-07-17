@@ -25,7 +25,7 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
+
  * @since 14.03.2004
  */
 public class FreeMarkerConfigurerTests {

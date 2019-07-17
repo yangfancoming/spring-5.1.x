@@ -24,7 +24,7 @@ import org.springframework.util.StreamUtils;
  * to determine the {@code Content-Type} of written resources.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @author Kazuki Shimizu
  * @since 3.0.2
  */

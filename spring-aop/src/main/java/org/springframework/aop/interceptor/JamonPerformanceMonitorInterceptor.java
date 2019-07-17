@@ -19,7 +19,7 @@ import org.apache.commons.logging.Log;
  * <p>This code is inspired by Thierry Templier's blog.
  *
  * @author Dmitriy Kopylenko
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @author Steve Souza
  * @since 1.1.3

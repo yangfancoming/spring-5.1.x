@@ -17,7 +17,7 @@ import org.springframework.core.io.ResourceLoader;
  * Common delegate code for the handling of parser strategies, e.g.
  * {@code TypeFilter}, {@code ImportSelector}, {@code ImportBeanDefinitionRegistrar}
  *
- * @author Juergen Hoeller
+
  * @since 4.3.3
  */
 abstract class ParserStrategyUtils {

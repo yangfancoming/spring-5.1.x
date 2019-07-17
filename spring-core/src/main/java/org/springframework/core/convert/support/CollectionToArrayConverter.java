@@ -22,7 +22,7 @@ import org.springframework.util.Assert;
  * array's component type if necessary.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 final class CollectionToArrayConverter implements ConditionalGenericConverter {

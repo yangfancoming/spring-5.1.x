@@ -13,8 +13,7 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests covering the extensibility of {@link AbstractEnvironment}.
- *
- * @author Chris Beams
+
  * @since 3.1
  */
 public class CustomEnvironmentTests {

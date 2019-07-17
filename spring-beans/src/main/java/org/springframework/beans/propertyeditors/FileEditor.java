@@ -30,7 +30,7 @@ import org.springframework.util.StringUtils;
  * If the file was not found, then a File instance is created assuming the file
  * name refers to a relative file location.
  *
- * @author Juergen Hoeller
+
  * @author Thomas Risberg
  * @since 09.12.2003
  * @see java.io.File

@@ -25,7 +25,7 @@ import org.springframework.util.ClassUtils;
  * {@link org.springframework.beans.factory.annotation.QualifierAnnotationAutowireCandidateResolver},
  * providing an implementation all non-annotation-based resolution steps at this level.
  *
- * @author Juergen Hoeller
+
  * @since 4.0
  */
 public class GenericTypeAwareAutowireCandidateResolver extends SimpleAutowireCandidateResolver

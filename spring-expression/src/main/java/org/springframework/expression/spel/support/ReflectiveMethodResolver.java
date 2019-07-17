@@ -32,8 +32,8 @@ import org.springframework.lang.Nullable;
  * unless explicit method resolvers have been specified.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 3.0
  * @see StandardEvaluationContext#addMethodResolver(MethodResolver)
  */

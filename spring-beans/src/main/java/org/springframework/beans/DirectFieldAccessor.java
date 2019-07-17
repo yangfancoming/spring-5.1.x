@@ -23,7 +23,7 @@ import org.springframework.util.ReflectionUtils;
  * <p>A DirectFieldAccessor's default for the "extractOldValueForEditor" setting
  * is "true", since a field can always be read without side effects.
  *
- * @author Juergen Hoeller
+
  * @author Stephane Nicoll
  * @since 2.0
  * @see #setExtractOldValueForEditor

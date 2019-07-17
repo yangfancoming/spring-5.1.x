@@ -26,7 +26,7 @@ import org.springframework.web.context.ServletContextAware;
  * class to access Spring-defined beans via the WebApplicationContext
  * interface. This makes client code aware of Spring API, of course.
  *
- * @author Juergen Hoeller
+
  * @since 1.1.4
  * @see javax.servlet.ServletContext#getAttribute
  * @see WebApplicationContextUtils#getWebApplicationContext

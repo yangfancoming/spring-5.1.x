@@ -22,7 +22,7 @@ import org.springframework.util.ObjectUtils;
  * (i.e. Servlet) do not require Netty on the classpath.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @author Brian Clozel
  * @since 5.0
  * @see DefaultDataBufferFactory

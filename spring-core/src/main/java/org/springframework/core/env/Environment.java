@@ -41,8 +41,7 @@ package org.springframework.core.env;
  * {@code AbstractApplicationContext} subclass {@code getEnvironment()} methods. See
  * {@link ConfigurableEnvironment} Javadoc for usage examples demonstrating manipulation
  * of property sources prior to application context {@code refresh()}.
- *
- * @author Chris Beams
+
  * @since 3.1
  * @see PropertyResolver
  * @see EnvironmentCapable

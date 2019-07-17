@@ -28,7 +28,7 @@ import org.springframework.util.CollectionUtils;
  * {@link #DefaultNamespaceHandlerResolver(ClassLoader, String)} constructor.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see NamespaceHandler
  * @see DefaultBeanDefinitionDocumentReader

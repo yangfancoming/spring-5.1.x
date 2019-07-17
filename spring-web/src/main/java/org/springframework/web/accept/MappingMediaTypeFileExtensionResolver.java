@@ -22,7 +22,7 @@ import org.springframework.lang.Nullable;
  * Subsequently subclasses can use {@link #addMapping} to add more mappings.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 3.2
  */
 public class MappingMediaTypeFileExtensionResolver implements MediaTypeFileExtensionResolver {

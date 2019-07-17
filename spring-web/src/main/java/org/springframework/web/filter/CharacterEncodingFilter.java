@@ -22,7 +22,7 @@ import org.springframework.util.Assert;
  * applied as default response encoding (although this will usually be overridden
  * by a full content type set in the view).
  *
- * @author Juergen Hoeller
+
  * @since 15.03.2004
  * @see #setEncoding
  * @see #setForceEncoding

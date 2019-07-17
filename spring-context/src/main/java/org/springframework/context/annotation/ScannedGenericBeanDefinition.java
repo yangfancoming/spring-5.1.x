@@ -23,8 +23,8 @@ import org.springframework.util.Assert;
  * but distinguishes by type beans that have been <em>scanned</em> vs those that have
  * been otherwise registered or detected by other means.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 2.5
  * @see #getMetadata()
  * @see #getBeanClassName()

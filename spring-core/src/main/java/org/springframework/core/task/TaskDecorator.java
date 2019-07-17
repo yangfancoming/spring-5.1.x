@@ -13,7 +13,7 @@ package org.springframework.core.task;
  * <p>The primary use case is to set some execution context around the task's
  * invocation, or to provide some monitoring/statistics for task execution.
  *
- * @author Juergen Hoeller
+
  * @since 4.3
  * @see TaskExecutor#execute(Runnable)
  * @see SimpleAsyncTaskExecutor#setTaskDecorator

@@ -27,8 +27,8 @@ import static org.springframework.tests.TestResourceUtils.*;
 
 /**
  * @author Rod Johnson
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 04.07.2003
  */
 public class BeanFactoryUtilsTests {

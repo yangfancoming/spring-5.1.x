@@ -12,7 +12,7 @@ import org.springframework.util.ClassUtils;
  * Abstract base class for {@code XMLEventReader}s.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 5.0
  */
 abstract class AbstractXMLEventReader implements XMLEventReader {

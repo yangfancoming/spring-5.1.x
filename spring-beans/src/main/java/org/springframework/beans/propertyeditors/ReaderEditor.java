@@ -21,7 +21,7 @@ import org.springframework.util.Assert;
  *
  * <p>Note that such readers usually do not get closed by Spring itself!
  *
- * @author Juergen Hoeller
+
  * @since 4.2
  * @see java.io.Reader
  * @see org.springframework.core.io.ResourceEditor

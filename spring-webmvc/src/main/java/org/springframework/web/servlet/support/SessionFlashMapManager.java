@@ -15,7 +15,7 @@ import org.springframework.web.util.WebUtils;
  * Store and retrieve {@link FlashMap} instances to and from the HTTP session.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 3.1.1
  */
 public class SessionFlashMapManager extends AbstractFlashMapManager {

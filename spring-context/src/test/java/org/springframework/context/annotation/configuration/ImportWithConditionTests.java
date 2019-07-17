@@ -30,9 +30,7 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Andy Wilkinson
- */
+
 public class ImportWithConditionTests {
 
 	private AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();

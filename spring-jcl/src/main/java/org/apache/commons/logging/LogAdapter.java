@@ -17,7 +17,7 @@ import org.slf4j.spi.LocationAwareLogger;
  * Spring's common JCL adapter behind {@link LogFactory} and {@link LogFactoryService}.
  * Detects the presence of Log4j 2.x / SLF4J, falling back to {@code java.util.logging}.
  *
- * @author Juergen Hoeller
+
  * @since 5.1
  */
 final class LogAdapter {

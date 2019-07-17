@@ -16,7 +16,7 @@ import org.springframework.lang.Nullable;
  * an EL implementation like SpEL, and some being just textual elements.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class LiteralExpression implements Expression {

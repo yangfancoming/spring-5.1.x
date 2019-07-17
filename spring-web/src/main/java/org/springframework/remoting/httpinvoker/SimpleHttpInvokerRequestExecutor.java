@@ -24,7 +24,7 @@ import org.springframework.remoting.support.RemoteInvocationResult;
  * consider {@code HttpComponentsHttpInvokerRequestExecutor} for more sophisticated needs:
  * The standard {@link HttpURLConnection} class is rather limited in its capabilities.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see java.net.HttpURLConnection
  */

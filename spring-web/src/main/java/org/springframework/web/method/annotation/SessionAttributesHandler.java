@@ -29,7 +29,7 @@ import org.springframework.web.context.request.WebRequest;
  * {@link SessionStatus#setComplete()}.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 3.1
  */
 public class SessionAttributesHandler {

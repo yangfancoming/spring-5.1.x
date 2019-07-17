@@ -21,7 +21,7 @@ import org.springframework.web.servlet.tags.HtmlEscapingAwareTag;
  * associated with the current {@link javax.servlet.jsp.PageContext}.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 @SuppressWarnings("serial")

@@ -25,7 +25,7 @@ import org.springframework.util.StringUtils;
  * and {@link org.springframework.web.servlet.support.RequestContext} for path matching
  * and/or URI determination.
  *
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @author Rossen Stoyanchev
  * @since 14.01.2004

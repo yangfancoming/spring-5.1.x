@@ -35,7 +35,7 @@ import org.springframework.web.jsf.FacesContextUtils;
  *   &lt;el-resolver>org.springframework.web.jsf.el.WebApplicationContextFacesELResolver&lt;/el-resolver>
  * &lt;/application></pre>
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see SpringBeanFacesELResolver
  * @see org.springframework.web.jsf.FacesContextUtils#getWebApplicationContext

@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
  * Primarily designed for adding attributes to the model.
  * Allows for accessing the overall model as a {@code java.util.Map}.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.1
  */
 public interface Model {

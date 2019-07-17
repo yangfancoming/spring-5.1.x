@@ -16,7 +16,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
  * into the URL of the XSLT stylesheet.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public class XsltViewResolver extends UrlBasedViewResolver {

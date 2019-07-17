@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * are usually fatal; there is no reason for them to be checked.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 @SuppressWarnings("serial")
 public abstract class BeansException extends NestedRuntimeException {

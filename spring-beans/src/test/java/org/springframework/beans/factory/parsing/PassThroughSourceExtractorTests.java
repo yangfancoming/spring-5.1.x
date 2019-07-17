@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
  * Unit tests for {@link PassThroughSourceExtractor}.
  *
  * @author Rick Evans
- * @author Chris Beams
+
  */
 public class PassThroughSourceExtractorTests {
 

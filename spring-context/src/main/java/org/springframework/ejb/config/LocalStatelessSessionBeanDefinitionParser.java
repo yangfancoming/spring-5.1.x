@@ -12,7 +12,7 @@ import org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean;
  * creating {@link LocalStatelessSessionProxyFactoryBean} definitions.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 class LocalStatelessSessionBeanDefinitionParser extends AbstractJndiLocatingBeanDefinitionParser {

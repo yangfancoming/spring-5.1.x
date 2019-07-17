@@ -21,7 +21,7 @@ import org.springframework.scripting.support.ResourceScriptSource;
 /**
  * Groovy-based implementation of Spring's {@link ScriptEvaluator} strategy interface.
  *
- * @author Juergen Hoeller
+
  * @since 4.0
  * @see GroovyShell#evaluate(String, String)
  */

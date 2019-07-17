@@ -14,7 +14,7 @@ import org.springframework.util.ObjectUtils;
  * how a message code list is built for a {@code FieldError}.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 10.03.2003
  * @see DefaultMessageCodesResolver
  */

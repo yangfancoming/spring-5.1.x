@@ -48,8 +48,8 @@ import static org.junit.Assert.*;
 
 /**
  * @author Mark Fisher
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @author Sam Brannen
  * @author Stevo Slavić
  */

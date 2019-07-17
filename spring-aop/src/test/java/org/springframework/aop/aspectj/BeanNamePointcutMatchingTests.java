@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
  * Tests for matching of bean() pointcut designator.
  *
  * @author Ramnivas Laddad
- * @author Chris Beams
+
  */
 public class BeanNamePointcutMatchingTests {
 

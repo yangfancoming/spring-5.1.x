@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
  *
  * @author Rod Johnson
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 11.11.2003
  * @see ClassFilters
  * @see Pointcuts

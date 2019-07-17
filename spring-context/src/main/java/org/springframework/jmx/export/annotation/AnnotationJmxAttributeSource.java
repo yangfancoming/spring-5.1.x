@@ -26,7 +26,7 @@ import org.springframework.util.StringValueResolver;
  * reads annotations and exposes the corresponding attributes.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Jennifer Hickey
  * @author Stephane Nicoll
  * @since 1.2

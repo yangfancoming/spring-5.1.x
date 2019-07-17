@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
  * method, allowing for last-modified checking within the main handler method.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see javax.servlet.http.HttpServlet#getLastModified
  * @see Controller
  * @see SimpleControllerHandlerAdapter

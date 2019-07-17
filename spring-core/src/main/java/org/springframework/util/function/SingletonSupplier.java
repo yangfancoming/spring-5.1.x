@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
  * particularly useful for method reference suppliers, falling back to a default
  * supplier for a method that returned {@code null} and caching the result.
  *
- * @author Juergen Hoeller
+
  * @since 5.1
  * @param <T> the type of results supplied by this supplier
  */

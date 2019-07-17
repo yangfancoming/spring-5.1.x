@@ -7,7 +7,7 @@ package org.springframework.aop.framework;
  * AOP infrastructure. In particular, this implies that any such bean
  * is not subject to auto-proxying, even if a pointcut would match.
  *
- * @author Juergen Hoeller
+
  * @since 2.0.3
  * @see org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator
  * @see org.springframework.aop.scope.ScopedProxyFactoryBean

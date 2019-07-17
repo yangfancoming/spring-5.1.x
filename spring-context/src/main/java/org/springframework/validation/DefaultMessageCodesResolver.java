@@ -69,9 +69,9 @@ import org.springframework.util.StringUtils;
  * e.g. "validation.typeMismatch.name" instead of the default "typeMismatch.name",
  * consider specifying a {@link #setPrefix prefix} to be applied.
  *
- * @author Juergen Hoeller
+
  * @author Phillip Webb
- * @author Chris Beams
+
  * @since 1.0.1
  */
 @SuppressWarnings("serial")

@@ -26,7 +26,7 @@ import static org.springframework.test.transaction.TransactionTestUtils.*;
  * Hibernate.
  *
  * @author Sam Brannen
- * @author Juergen Hoeller
+
  * @author Vlad Mihalcea
  * @since 3.0
  */

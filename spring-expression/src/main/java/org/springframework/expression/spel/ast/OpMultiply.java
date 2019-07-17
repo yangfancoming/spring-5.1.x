@@ -31,7 +31,7 @@ import org.springframework.util.NumberUtils;
  * Otherwise, both operands are converted to type int.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @author Giovanni Dall'Oglio Risso
  * @since 3.0

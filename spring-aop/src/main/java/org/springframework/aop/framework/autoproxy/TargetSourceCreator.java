@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * which will be applied in order.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 @FunctionalInterface
 public interface TargetSourceCreator {

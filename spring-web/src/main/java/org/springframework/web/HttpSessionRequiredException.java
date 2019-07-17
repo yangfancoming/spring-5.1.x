@@ -9,7 +9,7 @@ import org.springframework.lang.Nullable;
 /**
  * Exception thrown when an HTTP request handler requires a pre-existing session.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 @SuppressWarnings("serial")

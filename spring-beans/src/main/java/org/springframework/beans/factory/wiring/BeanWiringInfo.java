@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
  * annotation and the AspectJ {@code AnnotationBeanConfigurerAspect}.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see BeanWiringInfoResolver
  * @see org.springframework.beans.factory.config.AutowireCapableBeanFactory

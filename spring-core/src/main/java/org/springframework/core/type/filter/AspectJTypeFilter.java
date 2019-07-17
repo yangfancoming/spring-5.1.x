@@ -26,7 +26,7 @@ import org.springframework.lang.Nullable;
  * load the class being examined to match with a type pattern.
  *
  * @author Ramnivas Laddad
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 public class AspectJTypeFilter implements TypeFilter {

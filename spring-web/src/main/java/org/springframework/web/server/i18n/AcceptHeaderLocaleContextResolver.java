@@ -23,7 +23,7 @@ import org.springframework.web.server.ServerWebExchange;
  * can only be changed through changing the client's locale settings.
  *
  * @author Sebastien Deleuze
- * @author Juergen Hoeller
+
  * @since 5.0
  */
 public class AcceptHeaderLocaleContextResolver implements LocaleContextResolver {

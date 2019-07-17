@@ -22,7 +22,7 @@ import org.springframework.lang.Nullable;
  * and in development, rather than as part of production applications.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @since May 2, 2001
  */

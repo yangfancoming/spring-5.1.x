@@ -21,9 +21,8 @@ import org.springframework.util.StringUtils;
  * order for XML processing to take effect, the underlying {@code Resource}'s
  * {@link org.springframework.core.io.Resource#getFilename() getFilename()} method must
  * return a non-{@code null} value that ends in {@code ".xml"}.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.1
  * @see org.springframework.core.io.Resource
  * @see org.springframework.core.io.support.EncodedResource

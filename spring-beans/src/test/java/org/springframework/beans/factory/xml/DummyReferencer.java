@@ -7,7 +7,7 @@ import org.springframework.tests.sample.beans.TestBean;
 import org.springframework.tests.sample.beans.factory.DummyFactory;
 
 /**
- * @author Juergen Hoeller
+
  * @since 21.07.2003
  */
 public class DummyReferencer {

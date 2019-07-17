@@ -16,7 +16,7 @@ import org.springframework.lang.Nullable;
  * <p>Alternatively, JAX-WS Service references can be looked up
  * in the JNDI environment of the Java EE container.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see javax.xml.ws.Service
  * @see org.springframework.jndi.JndiObjectFactoryBean

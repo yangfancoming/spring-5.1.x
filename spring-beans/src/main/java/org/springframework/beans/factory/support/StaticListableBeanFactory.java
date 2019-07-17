@@ -44,7 +44,7 @@ import org.springframework.util.StringUtils;
  * at {@link DefaultListableBeanFactory}.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 06.01.2003
  * @see DefaultListableBeanFactory
  */

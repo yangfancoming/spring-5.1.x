@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
  * Abstract base class for {@link SqlParameterSource} implementations.
  * Provides registration of SQL types per parameter.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public abstract class AbstractSqlParameterSource implements SqlParameterSource {

@@ -386,7 +386,7 @@ import org.springframework.stereotype.Component;
  * </ul>
  *
  * @author Rod Johnson
- * @author Chris Beams
+
  * @since 3.0
  * @see Bean
  * @see Profile

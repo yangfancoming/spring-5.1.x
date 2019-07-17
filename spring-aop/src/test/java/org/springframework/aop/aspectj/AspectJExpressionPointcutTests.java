@@ -27,7 +27,7 @@ import static org.junit.Assert.*;
 /**
  * @author Rob Harrop
  * @author Rod Johnson
- * @author Chris Beams
+
  */
 public class AspectJExpressionPointcutTests {
 

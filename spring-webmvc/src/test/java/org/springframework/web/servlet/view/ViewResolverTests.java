@@ -42,8 +42,8 @@ import org.springframework.web.servlet.theme.FixedThemeResolver;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 18.06.2003
  */
 public class ViewResolverTests {

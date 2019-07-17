@@ -9,10 +9,9 @@ import org.springframework.util.MultiValueMap;
 /**
  * {@link Condition} that matches based on the value of a {@link Profile @Profile}
  * annotation.
- *
- * @author Chris Beams
+
  * @author Phillip Webb
- * @author Juergen Hoeller
+
  * @since 4.0
  */
 class ProfileCondition implements Condition {

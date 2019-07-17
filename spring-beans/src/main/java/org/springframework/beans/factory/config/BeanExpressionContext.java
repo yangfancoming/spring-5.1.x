@@ -8,7 +8,7 @@ import org.springframework.util.Assert;
 /**
  * Context object for evaluating an expression within a bean definition.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class BeanExpressionContext {

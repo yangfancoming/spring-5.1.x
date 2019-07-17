@@ -34,7 +34,7 @@ import org.springframework.util.Assert;
  *     }
  * );</pre>
  *
- * @author Juergen Hoeller
+
  * @since 1.0.2
  * @see org.springframework.jdbc.support.lob.LobCreator
  */

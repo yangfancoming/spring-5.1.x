@@ -18,7 +18,7 @@ import org.springframework.lang.Nullable;
  * Parser for the &lt;context:annotation-config/&gt; element.
  *
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @author Christian Dupuis
  * @since 2.5
  * @see AnnotationConfigUtils

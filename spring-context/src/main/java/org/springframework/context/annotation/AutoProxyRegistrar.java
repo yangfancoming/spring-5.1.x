@@ -16,8 +16,7 @@ import org.springframework.core.type.AnnotationMetadata;
  * Registers an auto proxy creator against the current {@link BeanDefinitionRegistry}
  * as appropriate based on an {@code @Enable*} annotation having {@code mode} and
  * {@code proxyTargetClass} attributes set to the correct values.
- *
- * @author Chris Beams
+
  * @since 3.1
  * @see EnableAspectJAutoProxy
  */

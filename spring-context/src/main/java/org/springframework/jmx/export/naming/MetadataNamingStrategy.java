@@ -28,7 +28,7 @@ import org.springframework.util.StringUtils;
  * introspects a well-defined set of Java 5 annotations that come with Spring.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see ObjectNamingStrategy
  * @see org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource

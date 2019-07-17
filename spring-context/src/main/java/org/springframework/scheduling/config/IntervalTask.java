@@ -6,8 +6,7 @@ package org.springframework.scheduling.config;
  * {@link Task} implementation defining a {@code Runnable} to be executed at a given
  * millisecond interval which may be treated as fixed-rate or fixed-delay depending on
  * context.
- *
- * @author Chris Beams
+
  * @since 3.2
  * @see ScheduledTaskRegistrar#addFixedRateTask(IntervalTask)
  * @see ScheduledTaskRegistrar#addFixedDelayTask(IntervalTask)

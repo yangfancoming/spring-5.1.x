@@ -15,8 +15,7 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link ResourcePropertySource}.
- *
- * @author Chris Beams
+
  * @author Sam Brannen
  * @since 3.1
  */

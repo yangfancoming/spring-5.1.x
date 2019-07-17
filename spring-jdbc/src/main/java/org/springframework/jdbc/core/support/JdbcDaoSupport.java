@@ -24,7 +24,7 @@ import org.springframework.util.Assert;
  * also be used when working with a Connection directly or when using
  * {@code org.springframework.jdbc.object} operation objects.
  *
- * @author Juergen Hoeller
+
  * @since 28.07.2003
  * @see #setDataSource
  * @see #getJdbcTemplate

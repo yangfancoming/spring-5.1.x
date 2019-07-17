@@ -18,7 +18,7 @@ import org.springframework.util.StringUtils;
  * Formats fields annotated with the {@link NumberFormat} annotation.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see NumberFormat
  */

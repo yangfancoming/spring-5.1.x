@@ -42,7 +42,7 @@ import org.springframework.lang.Nullable;
  * </tbody>
  * </table>
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  */
 @SuppressWarnings("serial")

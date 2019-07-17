@@ -25,9 +25,8 @@ import static org.junit.Assert.*;
 
 /**
  * Integration tests for {@link ImportResource} support.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @author Sam Brannen
  */
 public class ImportResourceTests {

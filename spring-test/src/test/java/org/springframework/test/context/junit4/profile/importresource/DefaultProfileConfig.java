@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.tests.sample.beans.Pet;
 
 /**
- * @author Juergen Hoeller
+
  * @since 3.1
  */
 @Configuration

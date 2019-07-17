@@ -16,8 +16,8 @@ import static org.springframework.tests.TestResourceUtils.*;
 /**
  * Unit tests for {@link FieldRetrievingFactoryBean}.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 31.07.2004
  */
 public class FieldRetrievingFactoryBeanTests {

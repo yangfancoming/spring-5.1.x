@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
  * visible to advice further down the invocation chain.
  *
  * @author Adrian Colyer
- * @author Chris Beams
+
  */
 public class ProceedTests {
 

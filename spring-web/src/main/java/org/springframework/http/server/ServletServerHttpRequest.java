@@ -36,7 +36,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class ServletServerHttpRequest implements ServerHttpRequest {

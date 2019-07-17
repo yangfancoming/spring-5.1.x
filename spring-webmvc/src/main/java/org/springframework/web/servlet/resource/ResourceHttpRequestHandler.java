@@ -75,7 +75,7 @@ import org.springframework.web.util.UrlPathHelper;
  *
  * @author Keith Donald
  * @author Jeremy Grelle
- * @author Juergen Hoeller
+
  * @author Arjen Poutsma
  * @author Brian Clozel
  * @author Rossen Stoyanchev

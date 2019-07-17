@@ -40,7 +40,7 @@ import org.springframework.web.util.WebUtils;
  * this view class by default.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @see javax.servlet.RequestDispatcher#forward
  * @see javax.servlet.RequestDispatcher#include

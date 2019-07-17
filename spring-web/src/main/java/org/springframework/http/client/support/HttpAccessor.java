@@ -23,7 +23,7 @@ import org.springframework.util.Assert;
  * See {@link org.springframework.web.client.RestTemplate} for an entry point.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see ClientHttpRequestFactory
  * @see org.springframework.web.client.RestTemplate

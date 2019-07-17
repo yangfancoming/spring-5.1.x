@@ -14,8 +14,7 @@ import static org.mockito.BDDMockito.*;
 
 /**
  * Unit tests for @EnableLoadTimeWeaving
- *
- * @author Chris Beams
+
  * @since 3.1
  */
 public class EnableLoadTimeWeavingTests {

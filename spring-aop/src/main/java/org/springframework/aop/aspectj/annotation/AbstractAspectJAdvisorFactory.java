@@ -38,7 +38,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Rod Johnson
  * @author Adrian Colyer
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public abstract class AbstractAspectJAdvisorFactory implements AspectJAdvisorFactory {

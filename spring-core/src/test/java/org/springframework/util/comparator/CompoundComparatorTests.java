@@ -12,7 +12,7 @@ import org.junit.rules.ExpectedException;
  * Test for {@link CompoundComparator}.
  *
  * @author Keith Donald
- * @author Chris Beams
+
  * @author Phillip Webb
  */
 @Deprecated

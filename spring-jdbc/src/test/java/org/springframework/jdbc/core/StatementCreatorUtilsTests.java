@@ -16,7 +16,7 @@ import org.junit.Test;
 import static org.mockito.BDDMockito.*;
 
 /**
- * @author Juergen Hoeller
+
  * @since 31.08.2004
  */
 public class StatementCreatorUtilsTests {

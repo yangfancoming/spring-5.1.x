@@ -70,7 +70,7 @@ import org.springframework.util.StringUtils;
  * See the javadoc of that class for more information.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see MBeanProxyFactoryBean
  * @see #setConnectOnStartup

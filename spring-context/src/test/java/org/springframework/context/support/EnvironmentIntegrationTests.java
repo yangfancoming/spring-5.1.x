@@ -16,8 +16,7 @@ import static org.junit.Assert.*;
 /**
  * Tests covering the integration of the {@link Environment} into
  * {@link ApplicationContext} hierarchies.
- *
- * @author Chris Beams
+
  * @see org.springframework.core.env.EnvironmentSystemIntegrationTests
  */
 public class EnvironmentIntegrationTests {

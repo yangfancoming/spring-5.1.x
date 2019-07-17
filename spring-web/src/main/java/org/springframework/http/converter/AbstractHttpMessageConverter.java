@@ -29,7 +29,7 @@ import org.springframework.util.Assert;
  * support for {@code Content-Type} and {@code Content-Length} when writing to output messages.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @author Sebastien Deleuze
  * @since 3.0
  * @param <T> the converted object type

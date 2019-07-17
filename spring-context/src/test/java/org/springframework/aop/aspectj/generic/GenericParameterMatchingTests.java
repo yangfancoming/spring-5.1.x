@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
  * See SPR-3904 for more details.
  *
  * @author Ramnivas Laddad
- * @author Chris Beams
+
  */
 public class GenericParameterMatchingTests {
 

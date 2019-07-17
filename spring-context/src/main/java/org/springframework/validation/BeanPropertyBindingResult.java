@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
  * A {@link DataBinder} returns its {@code BindingResult} via
  * {@link DataBinder#getBindingResult()}.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see DataBinder#getBindingResult()
  * @see DataBinder#initBeanPropertyAccess()

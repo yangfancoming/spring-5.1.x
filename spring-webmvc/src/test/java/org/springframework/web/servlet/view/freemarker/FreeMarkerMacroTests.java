@@ -37,7 +37,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Darren Davison
- * @author Juergen Hoeller
+
  * @since 25.01.2005
  */
 public class FreeMarkerMacroTests {

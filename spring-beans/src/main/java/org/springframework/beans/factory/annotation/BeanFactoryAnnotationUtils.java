@@ -26,8 +26,8 @@ import org.springframework.util.Assert;
  * Convenience methods performing bean lookups related to Spring-specific annotations,
  * for example Spring's {@link Qualifier @Qualifier} annotation.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 3.1.2
  * @see BeanFactoryUtils
  */

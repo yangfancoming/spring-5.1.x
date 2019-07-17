@@ -38,7 +38,7 @@ import org.springframework.core.annotation.AliasFor;
  * CustomScopeConfigurer}.
  *
  * @author Mark Fisher
- * @author Chris Beams
+
  * @author Sam Brannen
  * @since 2.5
  * @see org.springframework.stereotype.Component

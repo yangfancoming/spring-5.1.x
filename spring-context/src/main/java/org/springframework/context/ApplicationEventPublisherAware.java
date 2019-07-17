@@ -9,8 +9,8 @@ import org.springframework.beans.factory.Aware;
  * of the ApplicationEventPublisher (typically the ApplicationContext)
  * that it runs in.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 1.1.1
  * @see ApplicationContextAware
  */

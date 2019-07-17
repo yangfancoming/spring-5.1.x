@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  * of a specific script as well as a factory method for
  * creating the actual scripted Java {@code Object}.
  *
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @since 2.0
  * @see #getScriptSourceLocator

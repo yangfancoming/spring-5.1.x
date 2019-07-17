@@ -8,7 +8,7 @@ import org.springframework.expression.ParserContext;
  * Configurable {@link ParserContext} implementation for template parsing. Expects the
  * expression prefix and suffix as constructor arguments.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class TemplateParserContext implements ParserContext {

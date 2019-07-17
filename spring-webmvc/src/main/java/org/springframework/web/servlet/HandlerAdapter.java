@@ -29,7 +29,7 @@ import org.springframework.lang.Nullable;
  * Non-Ordered instances get treated as lowest priority.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter
  * @see org.springframework.web.servlet.handler.SimpleServletHandlerAdapter
  */

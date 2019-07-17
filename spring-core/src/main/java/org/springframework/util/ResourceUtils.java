@@ -23,7 +23,7 @@ import org.springframework.lang.Nullable;
  * object, which in turn allows one to obtain a {@code java.io.File} in the
  * file system through its {@code getFile()} method.
  *
- * @author Juergen Hoeller
+
  * @since 1.1.5
  * @see org.springframework.core.io.Resource
  * @see org.springframework.core.io.ClassPathResource

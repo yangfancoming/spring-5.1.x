@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
  * being present on a method (checking both the method on the invoked
  * interface, if any, and the corresponding method on the target class).
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see AnnotationMatchingPointcut
  */

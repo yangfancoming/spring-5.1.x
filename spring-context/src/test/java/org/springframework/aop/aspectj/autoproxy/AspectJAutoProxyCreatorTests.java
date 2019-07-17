@@ -52,8 +52,8 @@ import static org.junit.Assert.*;
  * to demonstrate that existing autoproxying contract is honoured.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @author Sam Brannen
  */
 public class AspectJAutoProxyCreatorTests {

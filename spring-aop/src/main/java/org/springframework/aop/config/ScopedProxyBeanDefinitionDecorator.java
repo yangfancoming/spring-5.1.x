@@ -16,7 +16,7 @@ import org.springframework.beans.factory.xml.ParserContext;
  * {@code <aop:scoped-proxy/>} tag.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Mark Fisher
  * @since 2.0
  */

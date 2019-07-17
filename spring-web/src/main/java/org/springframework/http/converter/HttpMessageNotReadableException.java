@@ -11,7 +11,7 @@ import org.springframework.util.Assert;
  * {@link HttpMessageConverter#read} method fails.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 @SuppressWarnings("serial")

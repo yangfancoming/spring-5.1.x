@@ -26,9 +26,8 @@ import static org.junit.Assert.*;
  * placeholder configurer {@code @Bean} methods and {@code @Value} fields in the same
  * configuration class are mutually exclusive unless the placeholder configurer
  * {@code @Bean} method is {@code static}.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @author Sam Brannen
  */
 public class ConfigurationClassWithPlaceholderConfigurerBeanTests {

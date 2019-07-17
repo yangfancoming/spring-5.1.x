@@ -26,7 +26,7 @@ import org.springframework.lang.Nullable;
  * contents) or keep result state within the object.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since April 24, 2003
  * @param <T> the result type
  * @see JdbcTemplate

@@ -41,7 +41,7 @@ import org.springframework.jdbc.InvalidResultSetAccessException;
  * are actually serializable, so this should usually work out.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see java.sql.ResultSet
  * @see javax.sql.rowset.CachedRowSet

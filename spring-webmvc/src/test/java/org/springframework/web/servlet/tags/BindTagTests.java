@@ -30,7 +30,7 @@ import org.springframework.web.servlet.tags.form.TagWriter;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
+
  * @author Alef Arendsen
  * @author Mark Fisher
  */

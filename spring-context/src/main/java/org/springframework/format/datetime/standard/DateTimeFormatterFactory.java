@@ -18,7 +18,7 @@ import org.springframework.util.StringUtils;
  * <p>Formatters will be created using the defined {@link #setPattern pattern},
  * {@link #setIso ISO}, and <code>xxxStyle</code> methods (considered in that order).
  *
- * @author Juergen Hoeller
+
  * @author Phillip Webb
  * @since 4.0
  * @see #createDateTimeFormatter()

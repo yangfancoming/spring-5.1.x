@@ -27,7 +27,7 @@ import org.springframework.util.StringUtils;
  * Formats {@link javax.money.MonetaryAmount} fields annotated
  * with Spring's common {@link NumberFormat} annotation.
  *
- * @author Juergen Hoeller
+
  * @since 4.2
  * @see NumberFormat
  */

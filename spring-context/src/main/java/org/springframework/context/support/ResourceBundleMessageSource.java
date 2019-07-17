@@ -56,7 +56,7 @@ import org.springframework.util.ClassUtils;
  * Consider implementing a JDK 9 {@code java.util.spi.ResourceBundleProvider} instead.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see #setBasenames
  * @see ReloadableResourceBundleMessageSource
  * @see java.util.ResourceBundle

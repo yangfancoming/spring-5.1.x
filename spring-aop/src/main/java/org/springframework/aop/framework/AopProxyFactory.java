@@ -25,7 +25,7 @@ package org.springframework.aop.framework;
  * {@link AopConfigException} on an attempted advice change.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 public interface AopProxyFactory {
 

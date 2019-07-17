@@ -9,8 +9,8 @@ import org.springframework.instrument.classloading.LoadTimeWeaver;
  * Interface to be implemented by any object that wishes to be notified
  * of the application context's default {@link LoadTimeWeaver}.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 2.5
  * @see org.springframework.context.ConfigurableApplicationContext#LOAD_TIME_WEAVER_BEAN_NAME
  */

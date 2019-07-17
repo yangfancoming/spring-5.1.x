@@ -21,7 +21,7 @@ import org.springframework.core.annotation.AliasFor;
  * collisions in case of multiple subclasses getting registered.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @since 1.2
  * @see org.springframework.jmx.export.metadata.ManagedResource

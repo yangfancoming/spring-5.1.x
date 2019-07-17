@@ -15,8 +15,7 @@ import org.springframework.context.support.GenericApplicationContext;
  * {@link ConfigurationClassPostProcessor} beans in combination with a @Configuration
  * class having at least one @Bean method causes a "Singleton 'foo' isn't currently in
  * creation" exception.
- *
- * @author Chris Beams
+
  * @since 3.1
  */
 public class DuplicateConfigurationClassPostProcessorTests {

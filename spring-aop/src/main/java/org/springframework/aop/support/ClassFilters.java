@@ -13,7 +13,7 @@ import org.springframework.util.ObjectUtils;
  *
  * @author Rod Johnson
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 11.11.2003
  * @see MethodMatchers
  * @see Pointcuts

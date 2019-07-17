@@ -24,7 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
  * {@link MultipartFile} implementation for Apache Commons FileUpload.
  *
  * @author Trevor D. Cook
- * @author Juergen Hoeller
+
  * @since 29.09.2003
  * @see CommonsMultipartResolver
  */

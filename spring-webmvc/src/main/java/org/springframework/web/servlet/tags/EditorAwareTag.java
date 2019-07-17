@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  * Interface to be implemented by JSP tags that expose a
  * PropertyEditor for a property that they are currently bound to.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see BindTag
  * @see org.springframework.web.servlet.tags.form.AbstractDataBoundFormElementTag

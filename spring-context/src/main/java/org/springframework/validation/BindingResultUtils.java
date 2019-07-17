@@ -10,7 +10,7 @@ import org.springframework.util.Assert;
 /**
  * Convenience methods for looking up BindingResults in a model Map.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see BindingResult#MODEL_KEY_PREFIX
  */

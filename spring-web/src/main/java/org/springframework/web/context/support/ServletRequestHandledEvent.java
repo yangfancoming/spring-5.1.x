@@ -8,7 +8,7 @@ import org.springframework.lang.Nullable;
  * Servlet-specific subclass of RequestHandledEvent,
  * adding servlet-specific context information.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see org.springframework.web.servlet.FrameworkServlet
  * @see org.springframework.context.ApplicationContext#publishEvent

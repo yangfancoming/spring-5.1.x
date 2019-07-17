@@ -16,7 +16,7 @@ import org.springframework.util.NumberUtils;
  * {@link Number} types as well as types implementing {@link Comparable}.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @author Giovanni Dall'Oglio Risso
  * @since 3.0
  */

@@ -27,7 +27,7 @@ import org.springframework.web.util.HtmlUtils;
  * tags and macros, the same status class is used for both scenarios.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Darren Davison
  * @see RequestContext#getBindStatus
  * @see org.springframework.web.servlet.tags.BindTag

@@ -37,7 +37,7 @@ import org.springframework.util.StringUtils;
  * as well.
  *
  * @author Sam Brannen
- * @author Juergen Hoeller
+
  * @author Phillip Webb
  * @since 2.5
  * @see #loadContext(MergedContextConfiguration)

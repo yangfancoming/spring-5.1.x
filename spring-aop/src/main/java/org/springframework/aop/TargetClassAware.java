@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  * (via {@link org.springframework.aop.framework.Advised})
  * as well as by {@link TargetSource TargetSources}.
  *
- * @author Juergen Hoeller
+
  * @since 2.0.3
  * @see org.springframework.aop.support.AopUtils#getTargetClass(Object)
  */

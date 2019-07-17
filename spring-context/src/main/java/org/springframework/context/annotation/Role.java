@@ -24,8 +24,7 @@ import org.springframework.beans.factory.config.BeanDefinition;
  * this indicates the role of the configuration class bean definition and
  * does not cascade to all @{@code Bean} methods defined within. This behavior
  * is different than that of the @{@link Lazy} annotation, for example.
- *
- * @author Chris Beams
+
  * @since 3.1
  * @see BeanDefinition#ROLE_APPLICATION
  * @see BeanDefinition#ROLE_INFRASTRUCTURE

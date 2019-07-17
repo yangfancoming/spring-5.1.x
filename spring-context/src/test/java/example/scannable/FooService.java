@@ -9,7 +9,7 @@ import org.springframework.stereotype.Indexed;
 
 /**
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  */
 @Indexed
 public interface FooService {

@@ -9,7 +9,7 @@ package org.aopalliance.aop;
  *
  * @author Rod Johnson
  * @author Bob Lee
- * @author Juergen Hoeller
+
  */
 @SuppressWarnings("serial")
 public class AspectException extends RuntimeException {

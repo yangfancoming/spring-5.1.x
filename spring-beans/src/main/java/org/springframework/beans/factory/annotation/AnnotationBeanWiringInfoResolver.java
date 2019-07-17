@@ -16,7 +16,7 @@ import org.springframework.util.ClassUtils;
  * class being configured.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see Configurable
  * @see org.springframework.beans.factory.wiring.ClassNameBeanWiringInfoResolver

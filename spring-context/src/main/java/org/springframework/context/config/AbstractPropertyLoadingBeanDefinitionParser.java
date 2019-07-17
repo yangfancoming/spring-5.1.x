@@ -13,7 +13,7 @@ import org.springframework.util.StringUtils;
 /**
  * Abstract parser for &lt;context:property-.../&gt; elements.
  *
- * @author Juergen Hoeller
+
  * @author Arjen Poutsma
  * @author Dave Syer
  * @since 2.5.2

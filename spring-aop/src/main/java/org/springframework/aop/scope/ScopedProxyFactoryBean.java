@@ -33,7 +33,7 @@ import org.springframework.util.ClassUtils;
  * through switching the "proxyTargetClass" property to "false".
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see #setProxyTargetClass
  */

@@ -28,7 +28,7 @@ import org.springframework.util.Assert;
  * automatically delegates to this, as it autodetects transaction objects which
  * implement the {@link SavepointManager} interface.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see DataSourceTransactionManager
  */

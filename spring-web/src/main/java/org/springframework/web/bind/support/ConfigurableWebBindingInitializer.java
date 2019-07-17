@@ -15,7 +15,7 @@ import org.springframework.web.bind.WebDataBinder;
  * in a Spring application context. Allows for reusing pre-configured
  * initializers with multiple controller/handlers.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see #setDirectFieldAccess
  * @see #setMessageCodesResolver

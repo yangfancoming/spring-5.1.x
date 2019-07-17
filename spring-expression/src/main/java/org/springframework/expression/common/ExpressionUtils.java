@@ -14,7 +14,7 @@ import org.springframework.util.ClassUtils;
  * Common utility functions that may be used by any Expression Language provider.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public abstract class ExpressionUtils {

@@ -17,7 +17,7 @@ import org.springframework.util.Assert;
  * {@link ClientHttpRequestInterceptor} to apply a given HTTP Basic Authentication
  * username/password pair, unless a custom Authorization header has been set before.
  *
- * @author Juergen Hoeller
+
  * @since 5.1.1
  * @see HttpHeaders#setBasicAuth
  * @see HttpHeaders#AUTHORIZATION

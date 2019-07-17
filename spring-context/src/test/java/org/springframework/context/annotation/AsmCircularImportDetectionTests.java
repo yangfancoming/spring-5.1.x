@@ -11,8 +11,7 @@ import org.springframework.core.type.classreading.CachingMetadataReaderFactory;
 /**
  * Unit test proving that ASM-based {@link ConfigurationClassParser} correctly detects
  * circular use of the {@link Import @Import} annotation.
- *
- * @author Chris Beams
+
  */
 public class AsmCircularImportDetectionTests extends AbstractCircularImportDetectionTests {
 

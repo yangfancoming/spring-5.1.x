@@ -31,8 +31,7 @@ import static org.junit.Assert.*;
 
 /**
  * Tests the processing of @PropertySource annotations on @Configuration classes.
- *
- * @author Chris Beams
+
  * @author Phillip Webb
  * @since 3.1
  */

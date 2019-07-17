@@ -19,7 +19,7 @@ import org.springframework.lang.Nullable;
  * <p>Note: Does not support {@code setLocale(Context)}, as the fixed
  * locale and time zone cannot be changed.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see #setDefaultLocale
  * @see #setDefaultTimeZone

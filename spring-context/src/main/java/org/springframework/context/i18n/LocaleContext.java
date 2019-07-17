@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
  * <p>A LocaleContext instance can be associated with a thread
  * via the LocaleContextHolder class.
  *
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see LocaleContextHolder#getLocale()
  * @see TimeZoneAwareLocaleContext

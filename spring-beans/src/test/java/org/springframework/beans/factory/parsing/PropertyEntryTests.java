@@ -8,7 +8,7 @@ import org.junit.Test;
  * Unit tests for {@link PropertyEntry}.
  *
  * @author Rick Evans
- * @author Chris Beams
+
  */
 public class PropertyEntryTests {
 

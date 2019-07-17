@@ -26,8 +26,8 @@ import org.springframework.util.StringUtils;
  * in contrast to the methods defined on the BeanFactory interface).
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 04.07.2003
  */
 public abstract class BeanFactoryUtils {

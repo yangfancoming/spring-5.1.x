@@ -49,7 +49,7 @@ import org.springframework.web.multipart.support.RequestPartServletServerHttpReq
  *
  * @author Rossen Stoyanchev
  * @author Brian Clozel
- * @author Juergen Hoeller
+
  * @since 3.1
  */
 public class RequestPartMethodArgumentResolver extends AbstractMessageConverterMethodArgumentResolver {

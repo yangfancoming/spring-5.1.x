@@ -25,7 +25,7 @@ import org.springframework.lang.Nullable;
  * For more precise translation, consider {@link SQLErrorCodeSQLExceptionTranslator}.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Thomas Risberg
  * @see java.sql.SQLException#getSQLState()
  * @see SQLErrorCodeSQLExceptionTranslator

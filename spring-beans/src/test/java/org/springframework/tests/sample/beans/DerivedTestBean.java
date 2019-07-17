@@ -8,7 +8,7 @@ import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.DisposableBean;
 
 /**
- * @author Juergen Hoeller
+
  * @since 21.08.2003
  */
 @SuppressWarnings("serial")

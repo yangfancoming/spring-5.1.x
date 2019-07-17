@@ -26,7 +26,7 @@ import org.springframework.lang.Nullable;
  * as it can easily be mocked or stubbed.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see NamedParameterJdbcTemplate
  * @see org.springframework.jdbc.core.JdbcOperations

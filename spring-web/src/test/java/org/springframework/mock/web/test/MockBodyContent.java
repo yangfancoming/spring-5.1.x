@@ -16,7 +16,7 @@ import org.springframework.lang.Nullable;
  * Mock implementation of the {@link javax.servlet.jsp.tagext.BodyContent} class.
  * Only necessary for testing applications when testing custom JSP tags.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 public class MockBodyContent extends BodyContent {

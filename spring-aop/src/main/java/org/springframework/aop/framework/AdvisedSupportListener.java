@@ -7,7 +7,7 @@ package org.springframework.aop.framework;
  * Allows for receiving callbacks on activation and change of advice.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see ProxyCreatorSupport#addListener
  */
 public interface AdvisedSupportListener {

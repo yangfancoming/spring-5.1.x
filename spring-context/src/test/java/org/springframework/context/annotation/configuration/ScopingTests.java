@@ -33,7 +33,7 @@ import static org.junit.Assert.*;
  * and scoped proxy {@link Bean} declarations.
  *
  * @author Costin Leau
- * @author Chris Beams
+
  */
 public class ScopingTests {
 
@@ -310,7 +310,7 @@ public class ScopingTests {
 	/**
 	 * Simple scope implementation which creates object based on a flag.
 	 * @author Costin Leau
-	 * @author Chris Beams
+
 	 */
 	static class CustomScope implements org.springframework.beans.factory.config.Scope {
 

@@ -12,7 +12,7 @@ import org.springframework.util.ClassUtils;
  * Exception thrown on a type mismatch when trying to set a bean property.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 @SuppressWarnings("serial")
 public class TypeMismatchException extends PropertyAccessException {

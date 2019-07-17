@@ -23,7 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
  * <p>Used by {@link org.springframework.web.multipart.commons.CommonsMultipartResolver}.
  *
  * @author Trevor D. Cook
- * @author Juergen Hoeller
+
  * @author Arjen Poutsma
  * @since 29.09.2003
  * @see org.springframework.web.multipart.MultipartResolver

@@ -24,8 +24,8 @@ import org.springframework.util.Assert;
  * This is an alternative to {@link ClassPathBeanDefinitionScanner}, applying
  * the same resolution of annotations but for explicitly registered classes only.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @author Sam Brannen
  * @author Phillip Webb
  * @since 3.0

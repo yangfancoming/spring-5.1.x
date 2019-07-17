@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
  * {@link ClientHttpRequestFactory} implementation that uses standard JDK facilities.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see java.net.HttpURLConnection
  * @see HttpComponentsClientHttpRequestFactory

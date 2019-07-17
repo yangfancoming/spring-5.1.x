@@ -17,7 +17,7 @@ import org.springframework.util.Assert;
  * serialization needs. Implements {@link Serializer} and {@link Deserializer}
  * itself, so can also be passed into such more specific callback methods.
  *
- * @author Juergen Hoeller
+
  * @since 4.3
  */
 public class SerializationDelegate implements Serializer<Object>, Deserializer<Object> {

@@ -24,7 +24,7 @@ import org.springframework.lang.Nullable;
  * {@link InstantiationAwareBeanPostProcessorAdapter} in order to be shielded
  * from extensions to this interface.
  *
- * @author Juergen Hoeller
+
  * @author Rod Johnson
  * @since 1.2
  * @see org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator#setCustomTargetSourceCreators

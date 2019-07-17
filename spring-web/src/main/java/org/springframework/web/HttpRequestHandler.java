@@ -48,7 +48,7 @@ import javax.servlet.http.HttpServletResponse;
  * Alternatively, a handler may implement the "If-Modified-Since" HTTP
  * header processing manually within its {@code handle} method.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see org.springframework.web.context.support.HttpRequestHandlerServlet
  * @see org.springframework.web.servlet.DispatcherServlet

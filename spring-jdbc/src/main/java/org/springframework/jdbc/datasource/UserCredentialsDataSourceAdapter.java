@@ -42,7 +42,7 @@ import org.springframework.util.StringUtils;
  * just for the <i>option</i> of implicitly passing in user credentials if
  * the particular target DataSource requires it.
  *
- * @author Juergen Hoeller
+
  * @since 1.0.2
  * @see #getConnection
  */

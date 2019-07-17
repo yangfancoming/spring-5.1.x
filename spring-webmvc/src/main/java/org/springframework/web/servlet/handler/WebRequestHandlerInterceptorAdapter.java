@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
  * Adapter that implements the Servlet HandlerInterceptor interface
  * and wraps an underlying WebRequestInterceptor.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see org.springframework.web.context.request.WebRequestInterceptor
  * @see org.springframework.web.servlet.HandlerInterceptor

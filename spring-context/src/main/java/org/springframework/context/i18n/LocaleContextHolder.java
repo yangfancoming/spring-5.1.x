@@ -21,7 +21,7 @@ import org.springframework.lang.Nullable;
  * Other applications can expose theirs too, to make classes like
  * MessageSourceAccessor automatically use that Locale.
  *
- * @author Juergen Hoeller
+
  * @author Nicholas Williams
  * @since 1.2
  * @see LocaleContext

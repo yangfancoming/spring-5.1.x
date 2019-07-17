@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * to express an order value for the underlying aspect in a chain.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see org.springframework.beans.factory.BeanFactory#getBean
  */

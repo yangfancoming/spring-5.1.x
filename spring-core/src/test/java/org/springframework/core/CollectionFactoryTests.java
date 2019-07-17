@@ -31,8 +31,7 @@ import static org.springframework.core.CollectionFactory.*;
 
 /**
  * Unit tests for {@link CollectionFactory}.
- *
- * @author Oliver Gierke
+
  * @author Sam Brannen
  * @since 4.1.4
  */

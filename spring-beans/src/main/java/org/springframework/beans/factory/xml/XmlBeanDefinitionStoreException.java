@@ -12,7 +12,7 @@ import org.springframework.beans.factory.BeanDefinitionStoreException;
  * {@link org.xml.sax.SAXException}, typically a {@link org.xml.sax.SAXParseException}
  * which contains information about the error location.
  *
- * @author Juergen Hoeller
+
  * @since 2.0.2
  * @see #getLineNumber()
  * @see org.xml.sax.SAXParseException

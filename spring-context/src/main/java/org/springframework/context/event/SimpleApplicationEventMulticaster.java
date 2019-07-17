@@ -28,7 +28,7 @@ import org.springframework.util.ErrorHandler;
  * listeners executed in different threads, for example from a thread pool.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Stephane Nicoll
  * @see #setTaskExecutor
  */

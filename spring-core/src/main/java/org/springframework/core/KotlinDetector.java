@@ -13,7 +13,7 @@ import org.springframework.util.ClassUtils;
 /**
  * A common delegate for detecting Kotlin's presence and for identifying Kotlin types.
  *
- * @author Juergen Hoeller
+
  * @author Sebastien Deleuze
  * @since 5.0
  */

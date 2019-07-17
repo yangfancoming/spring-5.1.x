@@ -50,7 +50,7 @@ import org.springframework.util.xml.StaxUtils;
  * delegates further handling to overridable template methods.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public abstract class AbstractMarshaller implements Marshaller, Unmarshaller {

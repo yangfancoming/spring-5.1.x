@@ -31,7 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
  * existing Servlet classes, allowing to specify Servlet initialization
  * parameters etc.
  *
- * @author Juergen Hoeller
+
  * @since 1.1.5
  * @see javax.servlet.Servlet
  * @see javax.servlet.http.HttpServlet

@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
  * (used as context) and its parameters.
  *
  * @author Costin Leau
- * @author Chris Beams
+
  * @author Phillip Webb
  * @since 3.1
  */

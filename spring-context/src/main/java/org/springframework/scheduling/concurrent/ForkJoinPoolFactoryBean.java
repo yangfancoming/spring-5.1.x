@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
 /**
  * A Spring {@link FactoryBean} that builds and exposes a preconfigured {@link ForkJoinPool}.
  *
- * @author Juergen Hoeller
+
  * @since 3.1
  */
 public class ForkJoinPoolFactoryBean implements FactoryBean<ForkJoinPool>, InitializingBean, DisposableBean {

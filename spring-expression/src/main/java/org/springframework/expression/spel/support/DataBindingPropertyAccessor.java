@@ -15,7 +15,7 @@ import java.lang.reflect.Method;
  * resolve technical properties on {@code java.lang.Object} or {@code java.lang.Class}.
  * For unrestricted resolution, choose {@link ReflectivePropertyAccessor} instead.
  *
- * @author Juergen Hoeller
+
  * @since 4.3.15
  * @see #forReadOnlyAccess()
  * @see #forReadWriteAccess()

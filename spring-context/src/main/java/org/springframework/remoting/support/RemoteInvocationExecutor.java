@@ -10,7 +10,7 @@ import java.lang.reflect.InvocationTargetException;
  * <p>Used by {@link org.springframework.remoting.rmi.RmiServiceExporter} (for RMI invokers)
  * and by {@link org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter}.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see DefaultRemoteInvocationFactory
  * @see org.springframework.remoting.rmi.RmiServiceExporter#setRemoteInvocationExecutor

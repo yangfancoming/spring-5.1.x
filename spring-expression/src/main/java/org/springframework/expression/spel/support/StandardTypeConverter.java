@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
  * Default implementation of the {@link TypeConverter} interface,
  * delegating to a core Spring {@link ConversionService}.
  *
- * @author Juergen Hoeller
+
  * @author Andy Clement
  * @since 3.0
  * @see org.springframework.core.convert.ConversionService

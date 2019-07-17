@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * Simple factory for shared Set instances. Allows for central setup
  * of Sets via the "set" element in XML bean definitions.
  *
- * @author Juergen Hoeller
+
  * @since 09.12.2003
  * @see ListFactoryBean
  * @see MapFactoryBean

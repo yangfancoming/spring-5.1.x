@@ -27,7 +27,7 @@ import org.springframework.util.FileCopyUtils;
  * <p>Used by DefaultLobHandler's {@link DefaultLobHandler#setCreateTemporaryLob} mode.
  * Can also be used directly to reuse the tracking and freeing of temporary LOBs.
  *
- * @author Juergen Hoeller
+
  * @since 3.2.2
  * @see DefaultLobHandler#setCreateTemporaryLob
  * @see java.sql.Connection#createBlob()

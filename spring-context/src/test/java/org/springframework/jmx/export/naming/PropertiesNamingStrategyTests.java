@@ -6,7 +6,7 @@ import java.util.Properties;
 
 /**
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  */
 public class PropertiesNamingStrategyTests extends AbstractNamingStrategyTests {
 

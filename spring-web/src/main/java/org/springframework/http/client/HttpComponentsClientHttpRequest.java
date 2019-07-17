@@ -26,7 +26,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Oleg Kalnichevski
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 3.1
  * @see HttpComponentsClientHttpRequestFactory#createRequest(URI, HttpMethod)
  */

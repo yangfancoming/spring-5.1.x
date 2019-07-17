@@ -36,7 +36,7 @@ import org.springframework.lang.Nullable;
  * {@link ApplicationEventPublisherAware} and {@link MessageSourceAware} beans.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see ConfigurableApplicationContext
  * @see org.springframework.beans.factory.BeanFactory
  * @see org.springframework.core.io.ResourceLoader

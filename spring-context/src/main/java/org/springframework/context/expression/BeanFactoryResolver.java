@@ -13,7 +13,7 @@ import org.springframework.util.Assert;
  * EL bean resolver that operates against a Spring
  * {@link org.springframework.beans.factory.BeanFactory}.
  *
- * @author Juergen Hoeller
+
  * @since 3.0.4
  */
 public class BeanFactoryResolver implements BeanResolver {

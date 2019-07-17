@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  * such as type mismatch or invocation target exception.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 @SuppressWarnings("serial")
 public abstract class PropertyAccessException extends BeansException {

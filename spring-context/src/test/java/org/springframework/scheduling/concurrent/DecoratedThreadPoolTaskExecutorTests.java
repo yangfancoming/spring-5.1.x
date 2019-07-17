@@ -7,7 +7,7 @@ import org.springframework.scheduling.support.DelegatingErrorHandlingRunnable;
 import org.springframework.scheduling.support.TaskUtils;
 
 /**
- * @author Juergen Hoeller
+
  * @since 5.0.5
  */
 public class DecoratedThreadPoolTaskExecutorTests extends AbstractSchedulingTaskExecutorTests {

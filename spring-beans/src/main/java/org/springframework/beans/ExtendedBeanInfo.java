@@ -55,9 +55,8 @@ import org.springframework.util.ObjectUtils;
  * non-void returning setters. Both standard ("non-indexed") and
  * <a href="https://docs.oracle.com/javase/tutorial/javabeans/writing/properties.html">
  * indexed properties</a> are fully supported.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.1
  * @see #ExtendedBeanInfo(BeanInfo)
  * @see ExtendedBeanInfoFactory

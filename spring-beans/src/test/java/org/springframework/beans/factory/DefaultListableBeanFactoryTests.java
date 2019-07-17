@@ -96,10 +96,10 @@ import static org.mockito.BDDMockito.*;
  * Tests properties population and autowire behavior.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Rick Evans
  * @author Sam Brannen
- * @author Chris Beams
+
  * @author Phillip Webb
  * @author Stephane Nicoll
  */

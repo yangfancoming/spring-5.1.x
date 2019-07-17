@@ -22,7 +22,7 @@ import java.sql.SQLException;
  * exactly one result object per row, assembling them into a List.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see JdbcTemplate
  * @see RowMapper
  * @see ResultSetExtractor

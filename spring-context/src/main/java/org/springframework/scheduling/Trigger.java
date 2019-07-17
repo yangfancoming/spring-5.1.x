@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
  * Common interface for trigger objects that determine the next execution time
  * of a task that they get associated with.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see TaskScheduler#schedule(Runnable, Trigger)
  * @see org.springframework.scheduling.support.CronTrigger

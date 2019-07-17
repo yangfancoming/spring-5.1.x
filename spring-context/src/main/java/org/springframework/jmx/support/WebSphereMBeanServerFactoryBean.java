@@ -24,7 +24,7 @@ import org.springframework.lang.Nullable;
  * <a href="https://bit.ly/UzccDt">{@code AdminServiceFactory}</a>
  * and <a href="https://bit.ly/TRlX2r">{@code MBeanFactory}</a>.
  *
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @since 2.0.3
  * @see javax.management.MBeanServer

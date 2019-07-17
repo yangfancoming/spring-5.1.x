@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
  * <p>Can be implemented for any kind of request/session mechanism,
  * in particular for servlet requests.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see ServletRequestAttributes
  */

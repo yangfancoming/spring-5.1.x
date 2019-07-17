@@ -33,7 +33,7 @@ import org.springframework.web.util.WebUtils;
  * request. As a more convenient alternative, consider using
  * {@link org.springframework.web.servlet.support.RequestContext#changeLocale}.
  *
- * @author Juergen Hoeller
+
  * @author Jean-Pierre Pawlak
  * @since 27.02.2003
  * @see #setDefaultLocale

@@ -31,7 +31,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Thomas Risberg
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see java.sql.DatabaseMetaData#getDatabaseProductName()
  */
 public class SQLErrorCodesFactory {

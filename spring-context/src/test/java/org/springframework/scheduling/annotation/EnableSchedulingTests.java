@@ -26,8 +26,7 @@ import static org.junit.Assert.*;
 
 /**
  * Tests use of @EnableScheduling on @Configuration classes.
- *
- * @author Chris Beams
+
  * @author Sam Brannen
  * @since 3.1
  */

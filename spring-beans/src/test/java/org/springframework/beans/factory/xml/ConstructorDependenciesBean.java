@@ -10,7 +10,7 @@ import org.springframework.tests.sample.beans.TestBean;
 /**
  * Simple bean used to check constructor dependency checking.
  *
- * @author Juergen Hoeller
+
  * @since 09.11.2003
  */
 @SuppressWarnings("serial")

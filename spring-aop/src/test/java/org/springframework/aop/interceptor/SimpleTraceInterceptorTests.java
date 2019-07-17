@@ -13,7 +13,7 @@ import static org.mockito.BDDMockito.*;
  * Unit tests for the {@link SimpleTraceInterceptor} class.
  *
  * @author Rick Evans
- * @author Chris Beams
+
  */
 public class SimpleTraceInterceptorTests {
 

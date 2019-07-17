@@ -36,7 +36,7 @@ import org.springframework.web.servlet.support.BindStatus;
  * representations if the first comparison results in {@code false}.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 abstract class SelectedValueComparator {

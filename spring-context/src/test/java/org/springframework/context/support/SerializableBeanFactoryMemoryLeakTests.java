@@ -21,8 +21,7 @@ import static org.springframework.beans.factory.support.BeanDefinitionBuilder.*;
 
 /**
  * Unit tests cornering SPR-7502.
- *
- * @author Chris Beams
+
  */
 public class SerializableBeanFactoryMemoryLeakTests {
 

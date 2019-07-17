@@ -22,7 +22,7 @@ import org.springframework.util.StringUtils;
  * <p>In web MVC code, this editor will typically be registered with
  * {@code binder.registerCustomEditor}.
  *
- * @author Juergen Hoeller
+
  * @since 28.04.2003
  * @see java.util.Date
  * @see java.text.DateFormat

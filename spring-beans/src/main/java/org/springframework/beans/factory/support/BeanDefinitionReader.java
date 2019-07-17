@@ -19,7 +19,7 @@ import org.springframework.lang.Nullable;
  * this interface. It only serves as suggestion for bean definition
  * readers that want to follow standard naming conventions.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see org.springframework.core.io.Resource
  */

@@ -23,7 +23,7 @@ import org.springframework.lang.Nullable;
  * no matter whether specified as some local URL that includes "spring-beans"
  * in the DTD name or as "https://www.springframework.org/dtd/spring-beans-2.0.dtd".
  *
- * @author Juergen Hoeller
+
  * @author Colin Sampaleanu
  * @since 04.06.2003
  * @see ResourceEntityResolver

@@ -27,7 +27,7 @@ import org.springframework.util.StreamUtils;
  * or Collections of {@link ResourceRegion ResourceRegions}.
  *
  * @author Brian Clozel
- * @author Juergen Hoeller
+
  * @since 4.3
  */
 public class ResourceRegionHttpMessageConverter extends AbstractGenericHttpMessageConverter<Object> {

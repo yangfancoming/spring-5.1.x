@@ -83,7 +83,7 @@ import org.springframework.util.Assert;
  * setup analogous to {@code JtaTransactionManager}, in particular with respect to
  * lazily registered ORM resources (e.g. a Hibernate {@code Session}).
  *
- * @author Juergen Hoeller
+
  * @since 02.05.2003
  * @see #setNestedTransactionAllowed
  * @see java.sql.Savepoint

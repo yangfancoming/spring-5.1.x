@@ -57,7 +57,7 @@ import org.springframework.util.StringUtils;
  * support, override {@link #getCacheAwareContextLoaderDelegate()}.
  *
  * @author Sam Brannen
- * @author Juergen Hoeller
+
  * @author Phillip Webb
  * @since 4.1
  */

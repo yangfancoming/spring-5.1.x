@@ -29,7 +29,7 @@ import org.springframework.util.StringUtils;
  * a valid protocol to be specified. Any scheme within a valid URI syntax
  * is allowed, even without a matching protocol handler being registered.
  *
- * @author Juergen Hoeller
+
  * @since 2.0.2
  * @see java.net.URI
  * @see URLEditor

@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Karl Pietrzak
- * @author Juergen Hoeller
+
  */
 public class LookupAnnotationTests {
 

@@ -28,9 +28,8 @@ import org.springframework.lang.Nullable;
  * {@link org.springframework.context.ApplicationContextInitializer
  * ApplicationContextInitializer} or {@link org.springframework.web.WebApplicationInitializer
  * WebApplicationInitializer}.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.1
  * @see JndiLocatorDelegate
  * @see org.springframework.context.ApplicationContextInitializer

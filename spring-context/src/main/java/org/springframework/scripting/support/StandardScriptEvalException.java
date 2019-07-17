@@ -15,7 +15,7 @@ import javax.script.ScriptException;
  * From that perspective, this exception is primarily a decorator for a
  * {@link ScriptException} root cause passed into an outer exception.
  *
- * @author Juergen Hoeller
+
  * @author Sebastien Deleuze
  * @since 4.2.2
  */

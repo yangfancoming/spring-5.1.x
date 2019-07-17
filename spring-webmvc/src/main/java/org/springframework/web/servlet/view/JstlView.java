@@ -54,7 +54,7 @@ import org.springframework.web.servlet.support.RequestContext;
  * This will also make all such beans accessible in plain {@code ${...}}
  * expressions in a JSP 2.0 page.
  *
- * @author Juergen Hoeller
+
  * @since 27.02.2003
  * @see org.springframework.web.servlet.support.JstlUtils#exposeLocalizationContext
  * @see InternalResourceViewResolver

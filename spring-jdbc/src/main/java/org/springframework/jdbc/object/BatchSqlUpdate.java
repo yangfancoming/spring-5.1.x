@@ -25,7 +25,7 @@ import org.springframework.jdbc.core.BatchPreparedStatementSetter;
  * reuse within the same thread.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see #flush
  * @see #reset

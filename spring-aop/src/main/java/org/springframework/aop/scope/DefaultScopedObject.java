@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
  * ({@link ConfigurableBeanFactory#getBean(String)}/
  * {@link ConfigurableBeanFactory#destroyScopedBean(String)}).
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see org.springframework.beans.factory.BeanFactory#getBean
  * @see org.springframework.beans.factory.config.ConfigurableBeanFactory#destroyScopedBean

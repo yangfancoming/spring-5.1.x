@@ -47,7 +47,7 @@ import org.springframework.util.ObjectUtils;
  * {@link #setContinueScheduledExecutionAfterException "continueScheduledExecutionAfterException"}
  * property to "true".
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see #setPoolSize
  * @see #setRemoveOnCancelPolicy

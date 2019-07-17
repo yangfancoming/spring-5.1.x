@@ -23,7 +23,7 @@ import org.springframework.lang.Nullable;
  * expression that will call {@code getName()} when invoked.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class CompositeStringExpression implements Expression {

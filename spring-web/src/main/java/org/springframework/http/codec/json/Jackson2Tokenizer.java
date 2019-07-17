@@ -29,7 +29,7 @@ import org.springframework.core.io.buffer.DataBufferUtils;
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 5.0
  */
 final class Jackson2Tokenizer {

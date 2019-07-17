@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
  * <p>Thanks to Tomasz Blachowicz for the bug report!
  *
  * @author Ramnivas Laddad
- * @author Chris Beams
+
  */
 public class TargetPointcutSelectionTests {
 

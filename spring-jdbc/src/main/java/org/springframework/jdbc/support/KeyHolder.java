@@ -22,7 +22,7 @@ import org.springframework.lang.Nullable;
  * usual type for auto-generated keys.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see org.springframework.jdbc.core.JdbcTemplate
  * @see org.springframework.jdbc.object.SqlUpdate

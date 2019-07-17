@@ -26,7 +26,7 @@ import org.springframework.util.Assert;
  * {@code CacheOperationSource}.
  *
  * @author Costin Leau
- * @author Juergen Hoeller
+
  * @author Stephane Nicoll
  * @since 3.1
  */

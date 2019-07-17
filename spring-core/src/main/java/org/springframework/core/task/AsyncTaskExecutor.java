@@ -18,7 +18,7 @@ import java.util.concurrent.Future;
  * method will not execute its Runnable in the caller's thread but rather
  * asynchronously in some other thread.
  *
- * @author Juergen Hoeller
+
  * @since 2.0.3
  * @see SimpleAsyncTaskExecutor
  * @see org.springframework.scheduling.SchedulingTaskExecutor

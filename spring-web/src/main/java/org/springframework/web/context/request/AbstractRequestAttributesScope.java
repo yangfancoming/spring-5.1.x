@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
  * methods to add synchronization around the call back into this super class.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @since 2.0
  */

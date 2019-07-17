@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * Extension of {@link LocaleResolver}, adding support for a rich locale context
  * (potentially including locale and time zone information).
  *
- * @author Juergen Hoeller
+
  * @since 4.0
  * @see org.springframework.context.i18n.LocaleContext
  * @see org.springframework.context.i18n.TimeZoneAwareLocaleContext

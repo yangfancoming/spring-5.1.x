@@ -36,7 +36,7 @@ import org.springframework.util.StringUtils;
  * <li>a custom destroy method specified on the bean definition.
  * </ul>
  *
- * @author Juergen Hoeller
+
  * @author Costin Leau
  * @author Stephane Nicoll
  * @since 2.0

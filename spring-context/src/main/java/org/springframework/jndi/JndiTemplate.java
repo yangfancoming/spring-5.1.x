@@ -21,7 +21,7 @@ import org.springframework.util.CollectionUtils;
  * to perform any operation they like with a JNDI naming context provided.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see JndiCallback
  * @see #execute
  */

@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
  * Integration tests for {@link CacheProxyFactoryBean}.
  *
  * @author John Blum
- * @author Juergen Hoeller
+
  */
 public class CacheProxyFactoryBeanTests {
 

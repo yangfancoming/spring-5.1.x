@@ -38,7 +38,7 @@ import org.springframework.util.Assert;
  * method can then be invoked.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see SqlQuery
  * @see SqlUpdate
  * @see StoredProcedure

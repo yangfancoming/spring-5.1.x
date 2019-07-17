@@ -3,7 +3,7 @@
 package org.springframework.tests.context;
 
 /**
- * @author Juergen Hoeller
+
  * @since 09.10.2004
  */
 public class TestMethodInvokingTask {

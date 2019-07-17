@@ -35,7 +35,7 @@ import org.springframework.lang.Nullable;
  *         }
  * );</pre>
  *
- * @author Juergen Hoeller
+
  * @since 1.0.2
  * @param <T> the result type
  * @see org.springframework.jdbc.support.lob.LobHandler

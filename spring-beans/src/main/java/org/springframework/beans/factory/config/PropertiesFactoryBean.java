@@ -23,7 +23,7 @@ import org.springframework.lang.Nullable;
  * <p>Can create a singleton or a new object on each request.
  * Default is a singleton.
  *
- * @author Juergen Hoeller
+
  * @see #setLocation
  * @see #setProperties
  * @see #setLocalOverride

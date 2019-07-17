@@ -13,7 +13,7 @@ import javax.management.modelmbean.ModelMBeanInfo;
  * interface for any bean that is not an MBean.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see org.springframework.jmx.export.MBeanExporter
  */

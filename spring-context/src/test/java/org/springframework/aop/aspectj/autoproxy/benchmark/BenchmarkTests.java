@@ -29,7 +29,7 @@ import static org.junit.Assert.*;
  * Advisors to demonstrate that existing autoproxying contract is honoured.
  *
  * @author Rod Johnson
- * @author Chris Beams
+
  */
 public class BenchmarkTests {
 

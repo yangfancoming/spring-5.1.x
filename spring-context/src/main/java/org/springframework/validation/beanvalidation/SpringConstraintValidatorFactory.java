@@ -17,7 +17,7 @@ import org.springframework.util.Assert;
  * {@link org.springframework.web.bind.support.SpringWebConstraintValidatorFactory}
  * for declarative use in a web application, e.g. with JAX-RS or JAX-WS.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see org.springframework.beans.factory.config.AutowireCapableBeanFactory#createBean(Class)
  * @see org.springframework.context.ApplicationContext#getAutowireCapableBeanFactory()

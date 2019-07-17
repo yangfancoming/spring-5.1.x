@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * Strategy interface that specifies a converter that can convert from and to HTTP requests and responses.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 3.0
  * @param <T> the converted object type
  */

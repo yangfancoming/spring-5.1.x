@@ -23,7 +23,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * {@link BindingResult}.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 3.1
  */
 public class ErrorsMethodArgumentResolver implements HandlerMethodArgumentResolver {

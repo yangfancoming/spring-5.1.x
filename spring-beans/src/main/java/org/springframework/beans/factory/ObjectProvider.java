@@ -18,7 +18,7 @@ import org.springframework.lang.Nullable;
  * support. It can be therefore be used in {@code for} loops, provides {@link #forEach}
  * iteration and allows for collection-style {@link #stream} access.
  *
- * @author Juergen Hoeller
+
  * @since 4.3
  * @param <T> the object type
  * @see BeanFactory#getBeanProvider

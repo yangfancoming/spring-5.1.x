@@ -18,7 +18,7 @@ import org.springframework.util.StringUtils;
  * primarily used behind the XML task namespace.
  *
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class TaskExecutorFactoryBean implements

@@ -32,7 +32,7 @@ import org.springframework.util.Assert;
  * performing all operations via the {@link java.nio.file.Files} API.
  *
  * @author Philippe Marschall
- * @author Juergen Hoeller
+
  * @since 4.0
  * @see java.nio.file.Path
  * @see java.nio.file.Files

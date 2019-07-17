@@ -26,7 +26,7 @@ import javax.lang.model.element.TypeElement;
  * file for spring components.
  *
  * @author Stephane Nicoll
- * @author Juergen Hoeller
+
  * @since 5.0
  */
 public class CandidateComponentsIndexer implements Processor {

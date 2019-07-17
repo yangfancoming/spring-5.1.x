@@ -27,7 +27,7 @@ import org.springframework.util.MultiValueMap;
  * well as for the annotations defined on the class, exposing them through
  * the {@link org.springframework.core.type.AnnotationMetadata} interface.
  *
- * @author Juergen Hoeller
+
  * @author Mark Fisher
  * @author Costin Leau
  * @author Phillip Webb

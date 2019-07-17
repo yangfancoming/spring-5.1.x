@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.InterruptibleBatchPreparedStatementSetter;
  * interface, combining the check for available values and setting of those
  * into a single callback method {@link #setValuesIfAvailable}.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see #setValuesIfAvailable
  */

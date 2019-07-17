@@ -17,7 +17,7 @@ import org.springframework.util.Assert;
  * expecting them to be of type {@code javax.sql.DataSource}.
  *
  * @author Costin Leau
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see org.springframework.beans.factory.BeanFactory
  */

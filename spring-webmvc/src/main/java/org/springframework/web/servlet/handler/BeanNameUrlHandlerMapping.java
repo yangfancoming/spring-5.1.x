@@ -31,7 +31,7 @@ import org.springframework.util.StringUtils;
  * {@link org.springframework.util.AntPathMatcher} javadoc.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see SimpleUrlHandlerMapping
  */
 public class BeanNameUrlHandlerMapping extends AbstractDetectingUrlHandlerMapping {

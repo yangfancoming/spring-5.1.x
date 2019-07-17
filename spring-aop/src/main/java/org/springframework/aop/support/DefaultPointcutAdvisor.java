@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
  * normally no need to subclass this class, or to implement custom Advisors.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see #setPointcut
  * @see #setAdvice
  */

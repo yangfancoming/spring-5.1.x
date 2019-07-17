@@ -12,8 +12,8 @@ import org.springframework.util.StringValueResolver;
  * <p>This is an alternative to a full ConfigurableBeanFactory dependency via the
  * {@code ApplicationContextAware}/{@code BeanFactoryAware} interfaces.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 3.0.3
  * @see org.springframework.beans.factory.config.ConfigurableBeanFactory#resolveEmbeddedValue(String)
  * @see org.springframework.beans.factory.config.ConfigurableBeanFactory#getBeanExpressionResolver()

@@ -34,7 +34,7 @@ import org.springframework.lang.Nullable;
  * for more flexible context setup.</b>
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see #getResource
  * @see #getResourceByPath
  * @see GenericApplicationContext

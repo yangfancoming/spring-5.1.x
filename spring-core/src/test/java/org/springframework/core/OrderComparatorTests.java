@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
  *
  * @author Rick Evans
  * @author Stephane Nicoll
- * @author Juergen Hoeller
+
  */
 public class OrderComparatorTests {
 

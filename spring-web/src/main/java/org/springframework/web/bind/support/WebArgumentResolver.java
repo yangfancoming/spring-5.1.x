@@ -24,7 +24,7 @@ import org.springframework.web.context.request.NativeWebRequest;
  *   }
  * }</pre>
  *
- * @author Juergen Hoeller
+
  * @since 2.5.2
  * @see org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter#setCustomArgumentResolvers
  */

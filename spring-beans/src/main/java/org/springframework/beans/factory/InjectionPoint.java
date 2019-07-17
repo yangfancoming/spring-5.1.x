@@ -18,7 +18,7 @@ import org.springframework.util.ObjectUtils;
  * Also available as an argument for factory methods, reacting to the
  * requesting injection point for building a customized bean instance.
  *
- * @author Juergen Hoeller
+
  * @since 4.3
  * @see UnsatisfiedDependencyException#getInjectionPoint()
  * @see org.springframework.beans.factory.config.DependencyDescriptor

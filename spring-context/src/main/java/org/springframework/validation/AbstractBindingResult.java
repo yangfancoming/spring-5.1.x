@@ -24,7 +24,7 @@ import org.springframework.util.StringUtils;
  * its super-interface {@link Errors}. Encapsulates common management of
  * {@link ObjectError ObjectErrors} and {@link FieldError FieldErrors}.
  *
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @since 2.0
  * @see Errors

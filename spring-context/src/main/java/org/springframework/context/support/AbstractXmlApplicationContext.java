@@ -24,7 +24,7 @@ import org.springframework.lang.Nullable;
  * for extended pattern resolution.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see #getConfigResources
  * @see #getConfigLocations
  * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader

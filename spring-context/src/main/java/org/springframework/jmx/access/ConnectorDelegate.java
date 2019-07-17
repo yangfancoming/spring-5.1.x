@@ -19,7 +19,7 @@ import org.springframework.lang.Nullable;
 /**
  * Internal helper class for managing a JMX connector.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.2
  */
 class ConnectorDelegate {

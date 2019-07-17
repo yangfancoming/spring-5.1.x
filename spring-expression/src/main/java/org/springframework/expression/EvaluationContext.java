@@ -15,7 +15,7 @@ import org.springframework.lang.Nullable;
  * which can be extended, rather than having to implement everything manually.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public interface EvaluationContext {

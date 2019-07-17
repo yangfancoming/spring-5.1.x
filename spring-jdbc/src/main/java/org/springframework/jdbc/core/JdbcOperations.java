@@ -25,7 +25,7 @@ import org.springframework.lang.Nullable;
  * {@code spring-test.jar}.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see JdbcTemplate
  */
 public interface JdbcOperations {

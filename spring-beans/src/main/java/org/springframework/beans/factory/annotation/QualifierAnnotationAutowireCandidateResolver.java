@@ -36,7 +36,7 @@ import org.springframework.util.StringUtils;
  * <p>Also supports JSR-330's {@link javax.inject.Qualifier} annotation, if available.
  *
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @author Stephane Nicoll
  * @since 2.5
  * @see AutowireCandidateQualifier

@@ -20,7 +20,7 @@ import org.springframework.util.Assert;
  * keep the resource descriptor somewhere, or if you need to read from a stream
  * multiple times.
  *
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @since 28.12.2003
  * @see ByteArrayResource

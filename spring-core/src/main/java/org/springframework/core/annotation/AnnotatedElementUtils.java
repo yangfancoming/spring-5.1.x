@@ -73,7 +73,7 @@ import org.springframework.util.MultiValueMap;
  * implicitly supports annotation inheritance without a need for {@code @Inherited}.
  *
  * @author Phillip Webb
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @since 4.0
  * @see AliasFor

@@ -33,7 +33,7 @@ import org.springframework.util.StreamUtils;
  * readers/handlers and vice-versa.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public abstract class StaxUtils {

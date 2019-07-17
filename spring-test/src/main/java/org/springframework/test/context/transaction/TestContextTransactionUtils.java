@@ -29,7 +29,7 @@ import org.springframework.util.StringUtils;
  * <p>Mainly for internal use within the framework.
  *
  * @author Sam Brannen
- * @author Juergen Hoeller
+
  * @since 4.1
  */
 public abstract class TestContextTransactionUtils {

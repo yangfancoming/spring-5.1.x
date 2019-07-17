@@ -42,7 +42,7 @@ import org.springframework.beans.factory.BeanInitializationException;
  * the {@code convertPropertyValue} method. For example, encrypted values
  * can be detected and decrypted accordingly before processing them.
  *
- * @author Juergen Hoeller
+
  * @author Rod Johnson
  * @since 12.03.2003
  * @see #convertPropertyValue

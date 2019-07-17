@@ -22,7 +22,7 @@ import org.springframework.web.util.WebUtils;
  * callbacks needed. This broad base class is primarily intended for use within the framework,
  * in case of {@link ServletContext} access etc typically being needed.
  *
- * @author Juergen Hoeller
+
  * @since 28.08.2003
  * @see SpringBeanAutowiringSupport
  */

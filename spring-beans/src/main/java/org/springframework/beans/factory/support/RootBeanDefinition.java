@@ -33,7 +33,7 @@ import org.springframework.util.Assert;
  * parent dependencies, not 'hard-coding' the role as a root bean definition.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see GenericBeanDefinition
  * @see ChildBeanDefinition
  */

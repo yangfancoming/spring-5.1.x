@@ -25,7 +25,7 @@ import org.springframework.util.ResourceUtils;
  * <p>For more configurable properties loading, including the option of a
  * customized encoding, consider using the PropertiesLoaderSupport class.
  *
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @since 2.0
  * @see PropertiesLoaderSupport

@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Adrian Colyer
- * @author Chris Beams
+
  */
 public class AspectJPrecedenceComparatorTests {
 

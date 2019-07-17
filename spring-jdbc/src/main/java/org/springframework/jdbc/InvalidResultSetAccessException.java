@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * <p>This typically happens when an invalid ResultSet column index or name
  * has been specified. Also thrown by disconnected SqlRowSets.
  *
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see BadSqlGrammarException
  * @see org.springframework.jdbc.support.rowset.SqlRowSet

@@ -32,7 +32,7 @@ import org.springframework.lang.Nullable;
  * file in the current system root, i.e. the JVM working directory,
  * will be interpreted relative to the application context too.
  *
- * @author Juergen Hoeller
+
  * @since 31.07.2003
  * @see org.springframework.core.io.ResourceLoader
  * @see org.springframework.context.ApplicationContext

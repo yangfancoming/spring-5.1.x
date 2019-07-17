@@ -38,7 +38,7 @@ import org.springframework.lang.Nullable;
  * creating a JndiObjectTargetSource underneath (instead of defining separate
  * ProxyFactoryBean and JndiObjectTargetSource beans).
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see #setLookupOnStartup
  * @see #setCache

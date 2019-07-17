@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
  * Editor for char arrays. Strings will simply be converted to
  * their corresponding char representations.
  *
- * @author Juergen Hoeller
+
  * @since 1.2.8
  * @see String#toCharArray()
  */

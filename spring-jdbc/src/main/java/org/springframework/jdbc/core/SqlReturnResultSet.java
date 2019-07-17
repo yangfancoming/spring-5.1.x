@@ -12,7 +12,7 @@ package org.springframework.jdbc.core;
  * parameters - must have names.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  */
 public class SqlReturnResultSet extends ResultSetSupportingSqlParameter {
 

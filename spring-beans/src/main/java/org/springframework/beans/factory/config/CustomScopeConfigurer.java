@@ -25,7 +25,7 @@ import org.springframework.util.ClassUtils;
  * Alternatively, consider implementing a custom {@link BeanFactoryPostProcessor}
  * that calls {@link ConfigurableBeanFactory#registerScope} programmatically.
  *
- * @author Juergen Hoeller
+
  * @author Rick Evans
  * @since 2.0
  * @see ConfigurableBeanFactory#registerScope

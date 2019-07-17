@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Rod Johnson
- * @author Chris Beams
+
  * @since 14.03.2003
  */
 public class MethodInvocationTests {

@@ -21,8 +21,8 @@ import static org.junit.Assert.*;
  * {@link #assertProtocolAndFilenames} method.
  *
  * @author Oliver Hutchison
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @author Sam Brannen
  * @since 17.11.2004
  */

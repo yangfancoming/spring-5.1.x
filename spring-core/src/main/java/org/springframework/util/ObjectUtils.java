@@ -17,11 +17,11 @@ import org.springframework.lang.Nullable;
  *
  * <p>Thanks to Alex Ruiz for contributing several enhancements to this class!
  *
- * @author Juergen Hoeller
+
  * @author Keith Donald
  * @author Rod Johnson
  * @author Rob Harrop
- * @author Chris Beams
+
  * @author Sam Brannen
  * @since 19.03.2004
  * @see ClassUtils

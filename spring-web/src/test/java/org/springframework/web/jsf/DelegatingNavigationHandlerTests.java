@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Colin Sampaleanu
- * @author Juergen Hoeller
+
  */
 public class DelegatingNavigationHandlerTests {
 

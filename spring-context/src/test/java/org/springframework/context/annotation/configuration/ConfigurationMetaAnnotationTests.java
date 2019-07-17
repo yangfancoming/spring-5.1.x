@@ -17,8 +17,7 @@ import static org.junit.Assert.*;
 
 /**
  * Ensures that @Configuration is supported properly as a meta-annotation.
- *
- * @author Chris Beams
+
  */
 public class ConfigurationMetaAnnotationTests {
 

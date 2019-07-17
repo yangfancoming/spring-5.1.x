@@ -16,7 +16,7 @@ import org.springframework.lang.Nullable;
  * Abstract base class for most {@link GenericHttpMessageConverter} implementations.
  *
  * @author Sebastien Deleuze
- * @author Juergen Hoeller
+
  * @since 4.2
  * @param <T> the converted object type
  */

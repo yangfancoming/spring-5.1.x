@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
  * {@link org.springframework.aop.framework.AopProxyUtils AopProxyUtils}.
  *
  * @author Sam Brannen
- * @author Juergen Hoeller
+
  * @since 4.2
  * @see org.springframework.aop.support.AopUtils
  * @see org.springframework.aop.framework.AopProxyUtils

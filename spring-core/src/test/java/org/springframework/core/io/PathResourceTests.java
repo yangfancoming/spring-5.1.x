@@ -33,7 +33,7 @@ import static org.mockito.BDDMockito.*;
  * @author Phillip Webb
  * @author Nicholas Williams
  * @author Stephane Nicoll
- * @author Juergen Hoeller
+
  * @author Arjen Poutsma
  */
 @Deprecated

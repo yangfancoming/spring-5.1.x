@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
  * Mock implementation of the {@link javax.servlet.RequestDispatcher} interface.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @since 1.0.2
  * @see MockHttpServletRequest#getRequestDispatcher(String)

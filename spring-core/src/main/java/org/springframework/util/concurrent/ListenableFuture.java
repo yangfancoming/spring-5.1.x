@@ -14,7 +14,7 @@ import java.util.concurrent.Future;
  *
  * @author Arjen Poutsma
  * @author Sebastien Deleuze
- * @author Juergen Hoeller
+
  * @since 4.0
  * @param <T> the result type returned by this Future's {@code get} method
  */

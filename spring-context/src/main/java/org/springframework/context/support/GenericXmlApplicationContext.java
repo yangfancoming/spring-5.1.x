@@ -18,8 +18,8 @@ import org.springframework.core.io.Resource;
  * intentionally override certain bean definitions via an extra configuration
  * file appended to the list.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 3.0
  * @see #load
  * @see XmlBeanDefinitionReader

@@ -14,8 +14,8 @@ import org.springframework.beans.factory.Aware;
  * <p>Note: Only satisfied if actually running within a Servlet-specific
  * WebApplicationContext. Otherwise, no ServletConfig will be set.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 2.0
  * @see ServletContextAware
  */

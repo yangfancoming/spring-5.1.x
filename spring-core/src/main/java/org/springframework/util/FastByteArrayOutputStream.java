@@ -25,7 +25,7 @@ import org.springframework.lang.Nullable;
  * with the {@link #writeTo(OutputStream)} method.
  *
  * @author Craig Andrews
- * @author Juergen Hoeller
+
  * @since 4.2
  * @see #resize
  * @see ResizableByteArrayOutputStream

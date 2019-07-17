@@ -23,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
  * should be applied to and implements the {@link Ordered} interface.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @since 3.0
  */

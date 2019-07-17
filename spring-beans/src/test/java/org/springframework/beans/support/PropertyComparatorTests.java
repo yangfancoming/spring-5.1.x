@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
  * Unit tests for {@link PropertyComparator}.
  *
  * @author Keith Donald
- * @author Chris Beams
+
  */
 public class PropertyComparatorTests {
 

@@ -24,8 +24,8 @@ import static org.junit.Assert.*;
 /**
  * Unit tests for various {@link Resource} implementations.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @author Sam Brannen
  * @since 09.09.2004
  */

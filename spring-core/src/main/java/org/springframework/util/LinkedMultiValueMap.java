@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
  * for data structures exposed from request objects, for use in a single thread only.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 3.0
  * @param <K> the key type
  * @param <V> the value element type

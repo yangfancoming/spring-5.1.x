@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  */
 public class DigestUtilsTests {
 

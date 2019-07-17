@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
  * translates {@code jndi-lookup} tag into {@link JndiObjectFactoryBean} definitions.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see JndiObjectFactoryBean
  */

@@ -16,8 +16,8 @@ import static org.junit.Assert.*;
 
 /**
  * @author Torsten Juergeleit
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  */
 public class JeeNamespaceHandlerEventTests {
 

@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
  * }
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @since 11.11.2003
  * @see Pointcuts

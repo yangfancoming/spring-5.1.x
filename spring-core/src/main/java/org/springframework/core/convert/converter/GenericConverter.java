@@ -24,7 +24,7 @@ import org.springframework.util.Assert;
  * <p>Implementations may additionally implement {@link ConditionalConverter}.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see TypeDescriptor
  * @see Converter

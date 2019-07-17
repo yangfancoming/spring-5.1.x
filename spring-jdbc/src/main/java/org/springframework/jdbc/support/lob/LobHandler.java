@@ -48,7 +48,7 @@ import org.springframework.lang.Nullable;
  * turn into LOBs on some databases): Simply use a plain {@link DefaultLobHandler}.
  * </ul>
  *
- * @author Juergen Hoeller
+
  * @since 23.12.2003
  * @see DefaultLobHandler
  * @see java.sql.ResultSet#getBlob

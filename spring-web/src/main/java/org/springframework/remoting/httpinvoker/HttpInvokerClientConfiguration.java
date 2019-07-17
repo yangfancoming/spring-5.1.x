@@ -7,7 +7,7 @@ import org.springframework.lang.Nullable;
 /**
  * Configuration interface for executing HTTP invoker requests.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see HttpInvokerRequestExecutor
  * @see HttpInvokerClientInterceptor

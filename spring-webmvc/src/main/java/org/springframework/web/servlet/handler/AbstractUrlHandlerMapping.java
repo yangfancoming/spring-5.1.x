@@ -33,7 +33,7 @@ import org.springframework.web.servlet.HandlerExecutionChain;
  * current request path. The most exact match is defined as the longest
  * path pattern that matches the current request path.
  *
- * @author Juergen Hoeller
+
  * @author Arjen Poutsma
  * @since 16.04.2003
  */

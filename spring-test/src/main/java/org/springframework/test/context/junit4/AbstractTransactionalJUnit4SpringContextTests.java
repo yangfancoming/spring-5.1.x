@@ -64,7 +64,7 @@ import org.springframework.util.Assert;
  * <p><strong>NOTE:</strong> As of Spring Framework 4.3, this class requires JUnit 4.12 or higher.
  *
  * @author Sam Brannen
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see AbstractJUnit4SpringContextTests
  * @see org.springframework.test.context.ContextConfiguration

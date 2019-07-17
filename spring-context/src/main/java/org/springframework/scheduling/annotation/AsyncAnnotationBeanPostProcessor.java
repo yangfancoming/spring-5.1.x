@@ -39,7 +39,7 @@ import org.springframework.util.function.SingletonSupplier;
  * in order to switch to async execution as early as possible in the invocation chain.
  *
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @author Stephane Nicoll
  * @since 3.0
  * @see Async

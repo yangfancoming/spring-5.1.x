@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * <p>Extended by {@link BeanWrapper}; implemented by {@link BeanWrapperImpl}
  * and {@link org.springframework.validation.DataBinder}.
  *
- * @author Juergen Hoeller
+
  * @since 1.2.6
  * @see java.beans.PropertyEditor
  * @see PropertyEditorRegistrar

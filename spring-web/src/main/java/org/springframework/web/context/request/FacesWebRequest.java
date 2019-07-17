@@ -17,7 +17,7 @@ import org.springframework.util.StringUtils;
  *
  * <p>Requires JSF 2.0 or higher, as of Spring 4.0.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.2
  */
 public class FacesWebRequest extends FacesRequestAttributes implements NativeWebRequest {

@@ -13,7 +13,7 @@ import java.util.concurrent.TimeoutException;
  * Spring {@link ListenableFuture}.
  *
  * @author Sebastien Deleuze
- * @author Juergen Hoeller
+
  * @since 4.2
  * @param <T> the result type returned by this Future's {@code get} method
  */

@@ -11,7 +11,7 @@ import java.util.Base64;
  *
  * <p>Adapts to Java 8's {@link java.util.Base64} in a convenience fashion.
  *
- * @author Juergen Hoeller
+
  * @author Gary Russell
  * @since 4.1
  * @see java.util.Base64

@@ -18,7 +18,7 @@ import org.springframework.beans.PropertyAccessException;
  * the BindingResult interface as well) but no longer operates on it directly.
  *
  * @author Alef Arendsen
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see DataBinder#setBindingErrorProcessor
  * @see DefaultBindingErrorProcessor

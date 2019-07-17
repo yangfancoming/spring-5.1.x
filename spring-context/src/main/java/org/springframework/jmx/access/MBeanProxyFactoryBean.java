@@ -27,7 +27,7 @@ import org.springframework.util.ClassUtils;
  * to an {@code InvalidInvocationException}.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see MBeanClientInterceptor
  * @see InvalidInvocationException

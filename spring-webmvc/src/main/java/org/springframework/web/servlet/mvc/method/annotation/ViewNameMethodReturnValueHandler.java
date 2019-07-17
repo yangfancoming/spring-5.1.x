@@ -25,7 +25,7 @@ import org.springframework.web.servlet.RequestToViewNameTranslator;
  * annotations.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 3.1
  */
 public class ViewNameMethodReturnValueHandler implements HandlerMethodReturnValueHandler {

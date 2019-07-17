@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
  * to avoid a runtime dependency on Commons Text just for HTML escaping. Furthermore,
  * Spring's HTML escaping is more flexible and 100% HTML 4.0 compliant.
  *
- * @author Juergen Hoeller
+
  * @author Martin Kersten
  * @author Craig Andrews
  * @since 01.03.2003

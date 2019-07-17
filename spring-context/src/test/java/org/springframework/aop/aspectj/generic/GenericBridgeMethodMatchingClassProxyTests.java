@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
  * <p>See GenericBridgeMethodMatchingTests for more details.
  *
  * @author Ramnivas Laddad
- * @author Chris Beams
+
  */
 public class GenericBridgeMethodMatchingClassProxyTests extends GenericBridgeMethodMatchingTests {
 

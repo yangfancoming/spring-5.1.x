@@ -7,7 +7,7 @@ package org.springframework.beans.factory.parsing;
  * and warnings reported during bean definition parsing.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see Problem
  */

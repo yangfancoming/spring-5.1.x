@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
  * offering a request completion mechanism for request-specific destruction
  * callbacks and for updating accessed session attributes.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see #requestCompleted()
  */

@@ -14,7 +14,7 @@ import org.springframework.tests.sample.beans.TestBean;
  * See SPR-3723 for more details.
  *
  * @author Ramnivas Laddad
- * @author Chris Beams
+
  */
 public class ImplicitJPArgumentMatchingAtAspectJTests {
 

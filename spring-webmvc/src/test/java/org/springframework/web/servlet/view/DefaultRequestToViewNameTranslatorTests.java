@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Rick Evans
- * @author Juergen Hoeller
+
  */
 public class DefaultRequestToViewNameTranslatorTests {
 

@@ -24,8 +24,8 @@ import org.springframework.util.StringUtils;
  * {@link CacheEvict}, and {@link CachePut} annotations.
  *
  * @author Costin Leau
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @author Phillip Webb
  * @author Stephane Nicoll
  * @author Sam Brannen

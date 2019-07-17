@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 /**
  * Unit tests for {@link MockHttpServletResponse}.
  *
- * @author Juergen Hoeller
+
  * @author Rick Evans
  * @author Rossen Stoyanchev
  * @author Rob Winch

@@ -22,7 +22,7 @@ import org.springframework.lang.Nullable;
  * are no other explicit to-String converters registered.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @since 3.0
  * @see ObjectToObjectConverter

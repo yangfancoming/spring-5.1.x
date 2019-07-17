@@ -22,7 +22,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
+
  * @since 5.0.5
  */
 public abstract class AbstractSchedulingTaskExecutorTests {

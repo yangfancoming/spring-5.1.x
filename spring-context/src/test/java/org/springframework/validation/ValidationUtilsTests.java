@@ -12,9 +12,9 @@ import static org.junit.Assert.*;
 /**
  * Unit tests for {@link ValidationUtils}.
  *
- * @author Juergen Hoeller
+
  * @author Rick Evans
- * @author Chris Beams
+
  * @since 08.10.2004
  */
 public class ValidationUtilsTests {

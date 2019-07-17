@@ -29,7 +29,7 @@ import org.springframework.util.StringUtils;
  * {@link AbstractSimpleBeanDefinitionParser}.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Rick Evans
  * @author Dave Syer
  * @since 2.0

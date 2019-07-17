@@ -10,7 +10,7 @@ import org.springframework.context.ConfigurableApplicationContext;
  * {@link #getApplicationContextPath()} method to control the configuration file location.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  */
 public abstract class AbstractJmxTests extends AbstractMBeanServerTests {
 

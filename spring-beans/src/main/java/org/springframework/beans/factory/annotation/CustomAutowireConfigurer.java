@@ -29,7 +29,7 @@ import org.springframework.util.ClassUtils;
  * &lt;/bean&gt;</pre>
  *
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see org.springframework.beans.factory.annotation.Qualifier
  */

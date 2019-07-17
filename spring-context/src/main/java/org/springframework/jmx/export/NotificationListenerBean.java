@@ -24,7 +24,7 @@ import org.springframework.util.Assert;
  * same {@link MBeanExporter} are supported for such bean names.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see MBeanExporter#setNotificationListeners
  */

@@ -20,9 +20,8 @@ import org.springframework.util.StringUtils;
  *
  * <p>Picks up nested {@code script} elements and configures a
  * {@link ResourceDatabasePopulator} for each of them.
- *
- * @author Oliver Gierke
- * @author Juergen Hoeller
+
+
  * @author Sam Brannen
  * @since 3.0
  * @see DatabasePopulatorConfigUtils

@@ -13,8 +13,7 @@ import org.springframework.instrument.classloading.LoadTimeWeaver;
  * <p>See {@link org.springframework.scheduling.annotation.EnableAsync @EnableAsync}
  * for usage examples and information on how a default {@code LoadTimeWeaver}
  * is selected when this interface is not used.
- *
- * @author Chris Beams
+
  * @since 3.1
  * @see LoadTimeWeavingConfiguration
  * @see EnableLoadTimeWeaving

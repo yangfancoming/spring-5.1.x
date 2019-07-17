@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  * Unit tests for {@link ResponseStatusExceptionHandler}.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  */
 public class ResponseStatusExceptionHandlerTests {
 

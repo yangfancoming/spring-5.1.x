@@ -19,7 +19,7 @@ import org.springframework.util.ClassUtils;
  *
  * @author Mark Fisher
  * @author Ramnivas Laddad
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 public class AnnotationTypeFilter extends AbstractTypeHierarchyTraversingFilter {

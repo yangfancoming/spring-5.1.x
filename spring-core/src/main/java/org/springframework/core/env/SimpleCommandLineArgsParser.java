@@ -31,8 +31,7 @@ package org.springframework.core.env;
  * Any and all arguments specified at the command line without the "{@code --}" option
  * prefix will be considered as "non-option arguments" and made available through the
  * {@link CommandLineArgs#getNonOptionArgs()} method.
- *
- * @author Chris Beams
+
  * @since 3.1
  */
 class SimpleCommandLineArgsParser {

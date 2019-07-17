@@ -26,9 +26,8 @@ import java.lang.annotation.Target;
  *
  * <p>If XML or other non-{@code @Configuration} bean definition resources need to be
  * imported, use the {@link ImportResource @ImportResource} annotation instead.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.0
  * @see Configuration
  * @see ImportSelector

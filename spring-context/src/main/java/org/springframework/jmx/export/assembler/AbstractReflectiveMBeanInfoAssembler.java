@@ -37,7 +37,7 @@ import org.springframework.lang.Nullable;
  * is assembled through the {@code populateXXXDescriptor} methods.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author David Boden
  * @since 1.2
  * @see #includeOperation

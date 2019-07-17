@@ -20,7 +20,7 @@ import static org.springframework.tests.TestResourceUtils.*;
 
 /**
  * @author Rod Johnson
- * @author Chris Beams
+
  */
 public class RegexpMethodPointcutAdvisorIntegrationTests {
 

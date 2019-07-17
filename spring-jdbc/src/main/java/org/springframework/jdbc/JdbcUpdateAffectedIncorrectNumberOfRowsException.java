@@ -10,7 +10,7 @@ import org.springframework.dao.IncorrectUpdateSemanticsDataAccessException;
  * error if it affects multiple rows.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 @SuppressWarnings("serial")
 public class JdbcUpdateAffectedIncorrectNumberOfRowsException extends IncorrectUpdateSemanticsDataAccessException {

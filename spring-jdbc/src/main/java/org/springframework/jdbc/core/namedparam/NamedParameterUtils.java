@@ -22,7 +22,7 @@ import org.springframework.util.Assert;
  * <p>Only intended for internal use within Spring's JDBC framework.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public abstract class NamedParameterUtils {

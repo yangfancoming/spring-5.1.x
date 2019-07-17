@@ -13,9 +13,8 @@ import static org.junit.Assert.*;
 /**
  * Tests ensuring that nested static @Configuration classes are automatically detected
  * and registered without the need for explicit registration or @Import. See SPR-8186.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.1
  */
 public class NestedConfigurationClassTests {

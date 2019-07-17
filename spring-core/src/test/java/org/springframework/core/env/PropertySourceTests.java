@@ -15,8 +15,7 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link PropertySource} implementations.
- *
- * @author Chris Beams
+
  * @since 3.1
  */
 public class PropertySourceTests {

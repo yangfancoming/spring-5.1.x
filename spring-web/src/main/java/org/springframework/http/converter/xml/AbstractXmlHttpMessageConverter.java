@@ -28,7 +28,7 @@ import org.springframework.http.converter.HttpMessageNotWritableException;
  * supportedMediaTypes} property.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 3.0
  * @param <T> the converted object type
  */

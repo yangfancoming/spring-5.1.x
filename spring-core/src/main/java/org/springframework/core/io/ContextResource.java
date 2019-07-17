@@ -9,7 +9,7 @@ package org.springframework.core.io;
  * without an explicit prefix, hence applying relative to the local
  * {@link ResourceLoader}'s context).
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see org.springframework.web.context.support.ServletContextResource
  */

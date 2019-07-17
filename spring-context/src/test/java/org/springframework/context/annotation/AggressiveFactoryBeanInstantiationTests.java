@@ -8,9 +8,7 @@ import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.context.ApplicationContext;
 
-/**
- * @author Andy Wilkinson
- */
+
 public class AggressiveFactoryBeanInstantiationTests {
 
 	@Test

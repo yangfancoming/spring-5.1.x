@@ -30,7 +30,7 @@ import org.springframework.util.StringUtils;
  * within the framework, but also useful for custom JDBC access code.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  */
 public abstract class JdbcUtils {
 

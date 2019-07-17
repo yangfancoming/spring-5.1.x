@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
  * (and optionally the query string) to the Commons Log.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 1.2.5
  * @see #setIncludeQueryString
  * @see #setBeforeMessagePrefix

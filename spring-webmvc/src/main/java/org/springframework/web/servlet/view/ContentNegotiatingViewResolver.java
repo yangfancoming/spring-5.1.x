@@ -64,7 +64,7 @@ import org.springframework.web.servlet.ViewResolver;
  * for {@code /view} with a {@code text/html} request {@code Accept} header has the same result.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @author Rossen Stoyanchev
  * @since 3.0
  * @see ViewResolver

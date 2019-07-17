@@ -22,7 +22,7 @@ import org.springframework.lang.Nullable;
  * the Spring AOP framework in particular.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 13.03.2003
  */
 public final class AopContext {

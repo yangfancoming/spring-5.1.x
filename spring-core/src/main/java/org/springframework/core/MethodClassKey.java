@@ -12,7 +12,7 @@ import org.springframework.util.ObjectUtils;
  * including {@link #toString()} representation and {@link Comparable}
  * support (as suggested for custom {@code HashMap} keys as of Java 8).
  *
- * @author Juergen Hoeller
+
  * @since 4.3
  */
 public final class MethodClassKey implements Comparable<MethodClassKey> {

@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
 /**
  * Utility methods for executing a {@link DatabasePopulator}.
  *
- * @author Juergen Hoeller
+
  * @author Oliver Gierke
  * @author Sam Brannen
  * @since 3.1

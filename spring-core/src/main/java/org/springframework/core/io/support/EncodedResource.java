@@ -21,7 +21,7 @@ import org.springframework.util.ObjectUtils;
  * <p>Used as an argument for operations that support reading content with
  * a specific encoding, typically via a {@code java.io.Reader}.
  *
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @since 1.2.6
  * @see Resource#getInputStream()

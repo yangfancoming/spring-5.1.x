@@ -17,7 +17,7 @@ import org.springframework.util.Assert;
  * {@link String} names to target {@link DataSource} objects.
  *
  * @author Costin Leau
- * @author Juergen Hoeller
+
  * @author Rick Evans
  * @since 2.0
  */

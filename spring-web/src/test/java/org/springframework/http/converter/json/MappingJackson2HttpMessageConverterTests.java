@@ -36,7 +36,7 @@ import static org.junit.Assert.*;
  *
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
- * @author Juergen Hoeller
+
  */
 public class MappingJackson2HttpMessageConverterTests {
 

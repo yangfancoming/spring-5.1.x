@@ -26,8 +26,7 @@ import org.springframework.core.type.AnnotationMetadata;
  * </ul>
  *
  * <p>See implementations and associated unit tests for usage examples.
- *
- * @author Chris Beams
+
  * @since 3.1
  * @see Import
  * @see ImportSelector

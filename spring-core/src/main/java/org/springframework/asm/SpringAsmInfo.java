@@ -8,9 +8,8 @@ package org.springframework.asm;
  *
  * <p>See <a href="package-summary.html">package-level javadocs</a> for more
  * information on {@code org.springframework.asm}.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.2
  */
 public final class SpringAsmInfo {

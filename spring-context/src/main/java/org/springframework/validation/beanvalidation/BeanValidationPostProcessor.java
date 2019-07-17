@@ -22,7 +22,7 @@ import org.springframework.util.Assert;
  * in Spring-managed beans, throwing an initialization exception in case of
  * constraint violations right before calling the bean's init method (if any).
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class BeanValidationPostProcessor implements BeanPostProcessor, InitializingBean {

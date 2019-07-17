@@ -20,7 +20,7 @@ import org.springframework.util.Assert;
  *
  * <p>Note that such streams usually do not get closed by Spring itself!
  *
- * @author Juergen Hoeller
+
  * @since 1.0.1
  * @see java.io.InputStream
  * @see org.springframework.core.io.ResourceEditor

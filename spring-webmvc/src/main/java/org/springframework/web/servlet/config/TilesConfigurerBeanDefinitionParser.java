@@ -19,7 +19,7 @@ import org.springframework.util.xml.DomUtils;
  * a corresponding {@code TilesConfigurer} bean.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 4.1
  */
 public class TilesConfigurerBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {

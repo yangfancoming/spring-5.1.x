@@ -12,7 +12,7 @@ import org.springframework.core.NestedRuntimeException;
  * {@link javax.naming.NamingException}: for example, from Spring's
  * {@link JndiObjectTargetSource}.
  *
- * @author Juergen Hoeller
+
  * @since 2.0.3
  */
 @SuppressWarnings("serial")

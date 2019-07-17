@@ -17,7 +17,7 @@ import org.springframework.util.StringUtils;
  * <p>{@link Serializable} if subclasses and all attribute values are {@link Serializable}.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 @SuppressWarnings("serial")

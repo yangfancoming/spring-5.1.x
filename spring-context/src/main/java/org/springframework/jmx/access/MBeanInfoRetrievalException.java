@@ -9,7 +9,7 @@ import org.springframework.jmx.JmxException;
  * MBean metadata.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see MBeanClientInterceptor
  * @see MBeanProxyFactoryBean

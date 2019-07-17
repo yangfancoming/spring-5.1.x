@@ -168,7 +168,7 @@ import org.springframework.util.StringUtils;
  * <p>See {@link ObjectFactoryCreatingFactoryBean} for an alternate approach.
  *
  * @author Colin Sampaleanu
- * @author Juergen Hoeller
+
  * @since 1.1.4
  * @see #setServiceLocatorInterface
  * @see #setServiceMappings

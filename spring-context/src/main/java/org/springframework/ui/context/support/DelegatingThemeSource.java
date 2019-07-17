@@ -14,7 +14,7 @@ import org.springframework.ui.context.ThemeSource;
  * <p>Used as placeholder by UiApplicationContextUtils, if a context doesn't
  * define its own ThemeSource. Not intended for direct use in applications.
  *
- * @author Juergen Hoeller
+
  * @since 1.2.4
  * @see UiApplicationContextUtils
  */

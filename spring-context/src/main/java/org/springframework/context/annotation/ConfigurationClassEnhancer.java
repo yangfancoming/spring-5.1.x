@@ -49,9 +49,8 @@ import org.springframework.util.ReflectionUtils;
  * implementation if the container actually requests the construction of a new
  * instance. Otherwise, a call to such an {@code @Bean} method serves as a
  * reference back to the container, obtaining the corresponding bean by name.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.0
  * @see #enhance
  * @see ConfigurationClassPostProcessor

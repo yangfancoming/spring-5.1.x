@@ -8,7 +8,7 @@ import org.springframework.jmx.JmxException;
  * Thrown when an invocation failed because of an I/O problem on the
  * MBeanServerConnection.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.6
  * @see MBeanClientInterceptor
  */

@@ -41,9 +41,9 @@ import static org.junit.Assert.*;
  * </ul>
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Sam Brannen
- * @author Chris Beams
+
  * @author Stephane Nicoll
  */
 public abstract class AbstractMBeanServerTests {

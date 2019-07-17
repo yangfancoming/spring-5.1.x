@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
 /**
  * Tests for AbstractXlsView and its subclasses.
  *
- * @author Juergen Hoeller
+
  * @since 4.2
  */
 public class XlsViewTests {

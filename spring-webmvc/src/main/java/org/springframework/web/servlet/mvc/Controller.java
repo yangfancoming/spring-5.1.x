@@ -82,7 +82,7 @@ import org.springframework.web.servlet.ModelAndView;
  * <p>Controllers can optionally implement the {@link LastModified} interface.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see LastModified
  * @see SimpleControllerHandlerAdapter
  * @see AbstractController

@@ -18,7 +18,7 @@ import org.springframework.util.Base64Utils;
  * A simple utility class for obtaining a Google Gson 2.x {@link GsonBuilder}
  * which Base64-encodes {@code byte[]} properties when reading and writing JSON.
  *
- * @author Juergen Hoeller
+
  * @author Roy Clarkson
  * @since 4.1
  * @see GsonFactoryBean#setBase64EncodeByteArrays

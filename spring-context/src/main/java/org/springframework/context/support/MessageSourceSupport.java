@@ -22,7 +22,7 @@ import org.springframework.util.ObjectUtils;
  * {@code getMessage} implementations that delegate to a central template
  * method for message code resolution.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.5
  */
 public abstract class MessageSourceSupport {

@@ -10,7 +10,7 @@ import org.springframework.context.MessageSource;
  * The exposed {@link org.springframework.context.MessageSource} supports
  * theme-specific parameterization and internationalization.
  *
- * @author Juergen Hoeller
+
  * @since 17.06.2003
  * @see ThemeSource
  * @see org.springframework.web.servlet.ThemeResolver

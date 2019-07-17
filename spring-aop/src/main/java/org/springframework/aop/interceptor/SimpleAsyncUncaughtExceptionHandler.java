@@ -11,7 +11,7 @@ import org.apache.commons.logging.LogFactory;
  * A default {@link AsyncUncaughtExceptionHandler} that simply logs the exception.
  *
  * @author Stephane Nicoll
- * @author Juergen Hoeller
+
  * @since 4.1
  */
 public class SimpleAsyncUncaughtExceptionHandler implements AsyncUncaughtExceptionHandler {

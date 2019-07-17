@@ -22,8 +22,8 @@ import org.springframework.lang.Nullable;
  * making them obvious to ApplicationContext client code. The present
  * methods should only be used by startup and shutdown code.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 03.11.2003
  */
 public interface ConfigurableApplicationContext extends ApplicationContext, Lifecycle, Closeable {

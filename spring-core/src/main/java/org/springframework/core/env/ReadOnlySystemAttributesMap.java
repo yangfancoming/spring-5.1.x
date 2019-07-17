@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
  * return non-null if the current security manager allows access to individual keys.
  *
  * @author Arjen Poutsma
- * @author Chris Beams
+
  * @since 3.0
  */
 abstract class ReadOnlySystemAttributesMap implements Map<String, String> {

@@ -22,7 +22,7 @@ import org.springframework.util.StringUtils;
  * {@code javax.script} (JSR-223) based implementation of Spring's {@link ScriptEvaluator}
  * strategy interface.
  *
- * @author Juergen Hoeller
+
  * @author Costin Leau
  * @since 4.0
  * @see ScriptEngine#eval(String)

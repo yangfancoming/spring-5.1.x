@@ -11,7 +11,7 @@ package org.springframework.core;
  * then all of the classes obtained from it should be considered
  * as not reloadable (i.e. cacheable).
  *
- * @author Juergen Hoeller
+
  * @since 2.5.1
  */
 public interface SmartClassLoader {

@@ -10,8 +10,7 @@ import static org.junit.Assert.*;
 /**
  * Abstract base class for testing implementations of
  * {@link ClassMetadata#getMemberClassNames()}.
- *
- * @author Chris Beams
+
  * @since 3.1
  */
 public abstract class AbstractClassMetadataMemberClassTests {

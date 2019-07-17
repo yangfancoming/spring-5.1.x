@@ -22,7 +22,7 @@ import static org.mockito.Mockito.*;
 /**
  * Test suite for {@link ProtobufJsonFormatHttpMessageConverter}.
  *
- * @author Juergen Hoeller
+
  * @author Sebastien Deleuze
  */
 @SuppressWarnings("deprecation")

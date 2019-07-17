@@ -7,7 +7,7 @@ package org.springframework.aop.framework.adapter;
  * Advisor or Advice type.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see org.aopalliance.aop.Advice
  * @see org.springframework.aop.Advisor
  */

@@ -16,7 +16,7 @@ import static java.lang.String.*;
  *
  * @see Assume#group(TestGroup)
  * @author Phillip Webb
- * @author Chris Beams
+
  * @author Sam Brannen
  */
 public enum TestGroup {

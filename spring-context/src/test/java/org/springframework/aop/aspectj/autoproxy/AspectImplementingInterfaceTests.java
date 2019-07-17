@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
  * Test for ensuring the aspects aren't advised. See SPR-3893 for more details.
  *
  * @author Ramnivas Laddad
- * @author Chris Beams
+
  */
 public class AspectImplementingInterfaceTests {
 

@@ -16,7 +16,7 @@ import java.text.MessageFormat;
  * <pre class="code">EL1004E: Type cannot be found 'String'</pre>
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public enum SpelMessage {

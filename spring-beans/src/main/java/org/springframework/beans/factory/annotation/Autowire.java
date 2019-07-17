@@ -27,7 +27,7 @@ import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
  * AspectJ AnnotationBeanConfigurer aspect.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see org.springframework.beans.factory.annotation.Configurable
  * @see org.springframework.beans.factory.config.AutowireCapableBeanFactory

@@ -37,7 +37,7 @@ import org.springframework.web.context.request.async.DeferredResult.DeferredResu
  * detected via {@link #hasConcurrentResult()}.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 3.2
  * @see org.springframework.web.context.request.AsyncWebRequestInterceptor
  * @see org.springframework.web.servlet.AsyncHandlerInterceptor

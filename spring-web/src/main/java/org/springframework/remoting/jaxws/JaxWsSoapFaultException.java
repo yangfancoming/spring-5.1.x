@@ -12,7 +12,7 @@ import org.springframework.remoting.soap.SoapFaultException;
  * Spring SoapFaultException adapter for the JAX-WS
  * {@link javax.xml.ws.soap.SOAPFaultException} class.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 @SuppressWarnings("serial")

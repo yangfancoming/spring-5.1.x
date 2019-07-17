@@ -25,7 +25,7 @@ import org.springframework.util.StringUtils;
  * on demand. The latter strategy is more flexible in that it allows for
  * initialization of the locator before the JNDI object is available.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see #setJndiName
  * @see #setJndiTemplate

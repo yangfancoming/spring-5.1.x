@@ -58,7 +58,7 @@ import org.springframework.web.context.support.StandardServletEnvironment;
  * as direct base class of Spring's full-fledged {@link DispatcherServlet}.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see #addRequiredProperty
  * @see #initServletBean
  * @see #doGet

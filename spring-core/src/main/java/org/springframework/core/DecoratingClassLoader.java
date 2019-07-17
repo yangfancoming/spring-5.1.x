@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
  * and {@link org.springframework.instrument.classloading.ShadowingClassLoader},
  * providing common handling of excluded packages and classes.
  *
- * @author Juergen Hoeller
+
  * @author Rod Johnson
  * @since 2.5.2
  */

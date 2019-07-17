@@ -9,7 +9,7 @@ import java.util.EventObject;
  * doesn't make sense for generic events to be published directly.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 public abstract class ApplicationEvent extends EventObject {
 

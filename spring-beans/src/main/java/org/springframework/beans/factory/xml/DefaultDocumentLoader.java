@@ -28,7 +28,7 @@ import org.springframework.util.xml.XmlValidationModeDetector;
  * <pre code="class">java -Djavax.xml.parsers.DocumentBuilderFactory=oracle.xml.jaxp.JXDocumentBuilderFactory MyMainClass</pre>
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public class DefaultDocumentLoader implements DocumentLoader {

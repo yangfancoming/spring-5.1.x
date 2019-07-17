@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
  *
  * <p>Serves as base interface for {@link BeanWrapper}.
  *
- * @author Juergen Hoeller
+
  * @author Stephane Nicoll
  * @since 2.0
  * @see BeanWrapper

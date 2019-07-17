@@ -30,9 +30,8 @@ import org.springframework.core.type.filter.TypeFilter;
  * {@code @ComponentScan} level would be ignored.
  *
  * <p>See {@link Configuration @Configuration}'s Javadoc for usage examples.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @author Sam Brannen
  * @since 3.1
  * @see Configuration

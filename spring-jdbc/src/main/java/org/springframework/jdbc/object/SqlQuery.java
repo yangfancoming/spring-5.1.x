@@ -34,7 +34,7 @@ import org.springframework.lang.Nullable;
  * via their setter methods, they can be used safely from multiple threads.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Thomas Risberg
  * @param <T> the result type
  * @see SqlUpdate

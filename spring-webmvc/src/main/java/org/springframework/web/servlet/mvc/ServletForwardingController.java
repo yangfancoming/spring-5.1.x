@@ -66,7 +66,7 @@ import org.springframework.web.util.WebUtils;
  *   &lt;property name="servletName"&gt;&lt;value&gt;myServlet&lt;/value&gt;&lt;/property&gt;
  * &lt;/bean&gt;</pre>
  *
- * @author Juergen Hoeller
+
  * @since 1.1.1
  * @see ServletWrappingController
  * @see org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor

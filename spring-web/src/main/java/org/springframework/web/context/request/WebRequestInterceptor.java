@@ -25,7 +25,7 @@ import org.springframework.ui.ModelMap;
  * <p>This interface is deliberately minimalistic to keep the dependencies of
  * generic request interceptors as minimal as feasible.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see ServletWebRequest
  * @see org.springframework.web.servlet.DispatcherServlet

@@ -12,8 +12,8 @@ package org.springframework.beans.factory;
  * <p>For a list of all bean lifecycle methods, see the
  * {@link BeanFactory BeanFactory javadocs}.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 01.11.2003
  * @see BeanClassLoaderAware
  * @see BeanFactoryAware

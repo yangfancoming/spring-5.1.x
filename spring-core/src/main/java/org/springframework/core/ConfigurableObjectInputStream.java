@@ -16,7 +16,7 @@ import org.springframework.util.ClassUtils;
  * against a specific ClassLoader. Serves as base class for
  * {@link org.springframework.remoting.rmi.CodebaseAwareObjectInputStream}.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.5
  */
 public class ConfigurableObjectInputStream extends ObjectInputStream {

@@ -10,9 +10,8 @@ import org.springframework.lang.Nullable;
  * Selects which implementation of {@link AbstractAsyncConfiguration} should
  * be used based on the value of {@link EnableAsync#mode} on the importing
  * {@code @Configuration} class.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.1
  * @see EnableAsync
  * @see ProxyAsyncConfiguration

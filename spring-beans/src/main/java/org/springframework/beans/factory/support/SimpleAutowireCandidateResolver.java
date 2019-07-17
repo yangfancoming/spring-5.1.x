@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  * support is available. This implementation checks the bean definition only.
  *
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 public class SimpleAutowireCandidateResolver implements AutowireCandidateResolver {

@@ -11,7 +11,7 @@ package org.springframework.jdbc.core;
  * objects (e.g. {@code SqlLobValue}) as parameters.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see PreparedStatementCreator
  * @see PreparedStatementSetter

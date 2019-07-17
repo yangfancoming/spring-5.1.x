@@ -20,7 +20,7 @@ import org.springframework.util.ObjectUtils;
  *
  * @author Rod Johnson
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 13 May 2001
  * @see PropertyValues
  * @see BeanWrapper

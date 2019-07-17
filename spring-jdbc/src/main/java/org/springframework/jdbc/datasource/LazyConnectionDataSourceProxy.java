@@ -59,7 +59,7 @@ import org.springframework.lang.Nullable;
  * lazy fetching of an actual JDBC Connection. Use {@link Connection#unwrap}
  * to retrieve the native JDBC Connection.
  *
- * @author Juergen Hoeller
+
  * @since 1.1.4
  * @see DataSourceTransactionManager
  */

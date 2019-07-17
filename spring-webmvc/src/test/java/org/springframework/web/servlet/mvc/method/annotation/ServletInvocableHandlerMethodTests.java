@@ -48,7 +48,7 @@ import static org.junit.Assert.fail;
  *
  * @author Rossen Stoyanchev
  * @author Sam Brannen
- * @author Juergen Hoeller
+
  */
 public class ServletInvocableHandlerMethodTests {
 

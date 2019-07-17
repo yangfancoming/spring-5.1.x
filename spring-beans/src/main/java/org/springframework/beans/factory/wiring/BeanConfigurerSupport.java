@@ -27,7 +27,7 @@ import org.springframework.util.ClassUtils;
 
  * @author Rob Harrop
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Adrian Colyer
  * @since 2.0
  * @see #setBeanWiringInfoResolver

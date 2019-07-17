@@ -15,7 +15,7 @@ import java.util.EventListener;
  * objects only.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @param <E> the specific ApplicationEvent subclass to listen to
  * @see org.springframework.context.event.ApplicationEventMulticaster
  */

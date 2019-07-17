@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
  * for a given 'theme'.
  *
  * @author Jean-Pierre Pawlak
- * @author Juergen Hoeller
+
  * @see Theme
  */
 public interface ThemeSource {

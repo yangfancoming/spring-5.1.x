@@ -23,7 +23,7 @@ import org.springframework.lang.Nullable;
  * supports custom paths specified in placeholders ("myPath/myPlaceholderKey").
  * Uses the respective root node if not specified.
  *
- * @author Juergen Hoeller
+
  * @since 16.02.2004
  * @see #setSystemTreePath
  * @see #setUserTreePath

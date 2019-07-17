@@ -18,7 +18,7 @@ import org.springframework.remoting.support.RemoteInvocationBasedExporter;
  * required to extend {@code java.rmi.Remote} or declare {@code java.rmi.RemoteException}
  * on all service methods. However, in and out parameters still have to be serializable.
  *
- * @author Juergen Hoeller
+
  * @since 1.2.5
  * @see RmiServiceExporter
  * @see JndiRmiServiceExporter

@@ -13,7 +13,7 @@ import org.springframework.beans.factory.BeanClassLoaderAware;
  * services for the configured service class, represented as a List of service objects,
  * obtained through the JDK 1.6 {@link java.util.ServiceLoader} facility.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see java.util.ServiceLoader
  */

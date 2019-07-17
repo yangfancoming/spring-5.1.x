@@ -17,7 +17,7 @@ import org.springframework.aop.ProxyMethodInvocation;
  * an AspectJ advice method. Exposes ProceedingJoinPoint.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 @SuppressWarnings("serial")

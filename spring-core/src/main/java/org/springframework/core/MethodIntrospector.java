@@ -20,7 +20,7 @@ import org.springframework.util.ReflectionUtils;
  *
  * <p>Typically, but not necessarily, used for finding annotated handler methods.
  *
- * @author Juergen Hoeller
+
  * @author Rossen Stoyanchev
  * @since 4.2.3
  */

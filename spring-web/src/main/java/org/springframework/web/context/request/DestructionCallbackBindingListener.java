@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSessionBindingListener;
  * Adapter that implements the Servlet HttpSessionBindingListener interface,
  * wrapping a session destruction callback.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see RequestAttributes#registerDestructionCallback
  * @see ServletRequestAttributes#registerSessionDestructionCallback

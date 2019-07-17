@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * with the standard {@code LogFactory} class performing its META-INF service discovery.
  * This implementation simply delegates to Spring's common {@link Log} factory methods.
  *
- * @author Juergen Hoeller
+
  * @since 5.1
  * @deprecated since it is only meant to be used in the above-mentioned fallback scenario
  */

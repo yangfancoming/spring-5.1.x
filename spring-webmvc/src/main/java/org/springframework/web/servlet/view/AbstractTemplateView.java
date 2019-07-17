@@ -22,7 +22,7 @@ import org.springframework.web.servlet.support.RequestContext;
  * for the current user. Furthermore, they are able to create and cache
  * helper objects as request attributes themselves.
  *
- * @author Juergen Hoeller
+
  * @author Darren Davison
  * @since 1.0.2
  * @see AbstractTemplateViewResolver

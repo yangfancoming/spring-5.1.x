@@ -30,7 +30,7 @@ import org.springframework.util.StringUtils;
  * {@link EnableMBeanExport} annotation. See its javadoc for complete usage details.
  *
  * @author Phillip Webb
- * @author Chris Beams
+
  * @since 3.2
  * @see EnableMBeanExport
  */

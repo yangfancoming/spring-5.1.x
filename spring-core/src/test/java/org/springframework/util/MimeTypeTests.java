@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  * Unit tests for {@link MimeType}.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @author Dimitrios Liapis
  */

@@ -94,7 +94,7 @@ import org.springframework.util.xml.StaxUtils;
  * properties, schemas, adapters, and listeners, and to refer to it.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @author Rossen Stoyanchev
  * @since 3.0
  * @see #setContextPath

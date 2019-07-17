@@ -9,7 +9,7 @@ import javax.sql.DataSource;
  * of a given SAP HANA sequence.
  *
  * @author Jonathan Bregler
- * @author Juergen Hoeller
+
  * @since 4.3.15
  */
 public class HanaSequenceMaxValueIncrementer extends AbstractSequenceMaxValueIncrementer {

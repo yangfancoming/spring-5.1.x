@@ -13,7 +13,7 @@ import org.springframework.util.StringUtils;
  * optionally country + optionally variant, separated by "_" (e.g. "en", "en_US").
  * Also accepts spaces as separators, as alternative to underscores.
  *
- * @author Juergen Hoeller
+
  * @since 26.05.2003
  * @see java.util.Locale
  * @see org.springframework.util.StringUtils#parseLocaleString

@@ -12,7 +12,7 @@ import org.springframework.format.Printer;
  * {@link Printer} implementation for a JSR-310 {@link java.time.temporal.TemporalAccessor},
  * using a {@link java.time.format.DateTimeFormatter}) (the contextual one, if available).
  *
- * @author Juergen Hoeller
+
  * @since 4.0
  * @see DateTimeContextHolder#getFormatter
  * @see java.time.format.DateTimeFormatter#format(java.time.temporal.TemporalAccessor)

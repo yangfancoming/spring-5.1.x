@@ -9,7 +9,7 @@ import org.springframework.core.MethodParameter;
  * variable expected in the method parameters of an {@code @RequestMapping}
  * method is not present among the matrix variables extracted from the URL.
  *
- * @author Juergen Hoeller
+
  * @since 5.1
  * @see MissingPathVariableException
  */

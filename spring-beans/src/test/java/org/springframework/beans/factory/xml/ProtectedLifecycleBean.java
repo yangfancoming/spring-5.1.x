@@ -14,7 +14,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
  * Simple test of BeanFactory initialization and lifecycle callbacks.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 class ProtectedLifecycleBean implements BeanNameAware, BeanFactoryAware, InitializingBean, DisposableBean {
 

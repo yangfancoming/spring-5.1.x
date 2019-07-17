@@ -25,7 +25,7 @@ import org.springframework.web.servlet.tags.NestedPathTag;
  * with the {@link TagWriter}.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 @SuppressWarnings("serial")

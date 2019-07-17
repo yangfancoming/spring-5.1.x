@@ -27,7 +27,7 @@ import org.springframework.lang.Nullable;
  * @author Arjen Poutsma
  * @author Keith Donald
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @author Sebastien Deleuze
  * @since 3.1.2
  */

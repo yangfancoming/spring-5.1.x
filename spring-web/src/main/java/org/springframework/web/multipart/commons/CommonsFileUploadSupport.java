@@ -35,7 +35,7 @@ import org.springframework.web.util.WebUtils;
  * as representation of uploaded files and a String-based parameter Map as
  * representation of uploaded form fields.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see CommonsMultipartFile
  * @see CommonsMultipartResolver

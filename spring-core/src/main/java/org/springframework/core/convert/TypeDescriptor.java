@@ -26,7 +26,7 @@ import org.springframework.util.ObjectUtils;
  *
  * @author Keith Donald
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @author Phillip Webb
  * @author Sam Brannen
  * @author Stephane Nicoll

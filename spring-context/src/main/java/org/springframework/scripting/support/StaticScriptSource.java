@@ -13,7 +13,7 @@ import org.springframework.util.Assert;
  * Supports programmatic updates of the script String.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public class StaticScriptSource implements ScriptSource {

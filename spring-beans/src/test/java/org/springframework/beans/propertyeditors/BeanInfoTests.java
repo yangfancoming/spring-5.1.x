@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
+
  * @since 06.03.2006
  */
 public class BeanInfoTests {

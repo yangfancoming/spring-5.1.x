@@ -81,7 +81,7 @@ import static org.junit.Assert.*;
  * {@link EnableWebMvc @EnableWebMvc}).
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @author Sebastien Deleuze
  * @author Sam Brannen
  */

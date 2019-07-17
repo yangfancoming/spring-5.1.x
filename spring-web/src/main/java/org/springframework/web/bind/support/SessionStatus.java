@@ -11,7 +11,7 @@ package org.springframework.web.bind.support;
  * {@link org.springframework.web.bind.annotation.SessionAttributes @SessionAttributes}
  * annotation).
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see org.springframework.web.bind.annotation.RequestMapping
  * @see org.springframework.web.bind.annotation.SessionAttributes

@@ -10,7 +10,7 @@ import javax.sql.DataSource;
  *
  * <p>Thanks to Tomislav Urban for the suggestion!
  *
- * @author Juergen Hoeller
+
  * @deprecated in favor of the differently named {@link PostgresSequenceMaxValueIncrementer}
  */
 @Deprecated

@@ -10,7 +10,7 @@ package org.springframework.beans;
  * spouse property of the target object has a null value.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 @SuppressWarnings("serial")
 public class NullValueInNestedPathException extends InvalidPropertyException {

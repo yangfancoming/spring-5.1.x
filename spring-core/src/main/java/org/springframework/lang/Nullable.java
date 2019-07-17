@@ -25,7 +25,7 @@ import javax.annotation.meta.When;
  * override the default non-nullable semantic to nullable.
  *
  * @author Sebastien Deleuze
- * @author Juergen Hoeller
+
  * @since 5.0
  * @see NonNullApi
  * @see NonNullFields

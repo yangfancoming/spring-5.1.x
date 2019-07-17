@@ -21,7 +21,7 @@ import org.springframework.util.ConcurrencyThrottleSupport;
  * <p>The default concurrency limit of this interceptor is 1.
  * Specify the "concurrencyLimit" bean property to change this value.
  *
- * @author Juergen Hoeller
+
  * @since 11.02.2004
  * @see #setConcurrencyLimit
  */

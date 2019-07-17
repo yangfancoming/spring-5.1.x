@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
  * Subsequent request executions may be inserted anywhere thereafter.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 4.3
  */
 public class SimpleRequestExpectationManager extends AbstractRequestExpectationManager {

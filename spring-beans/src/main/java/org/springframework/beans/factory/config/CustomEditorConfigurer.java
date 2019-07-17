@@ -71,7 +71,7 @@ import org.springframework.util.ClassUtils;
  * Use a common base class or delegate to common PropertyEditorRegistrar
  * implementations to reuse editor registration there.
  *
- * @author Juergen Hoeller
+
  * @since 27.02.2004
  * @see java.beans.PropertyEditor
  * @see org.springframework.beans.PropertyEditorRegistrar

@@ -30,7 +30,7 @@ import org.springframework.web.bind.support.SimpleSessionStatus;
  * returns the redirect model instead of the default model.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 3.1
  */
 public class ModelAndViewContainer {

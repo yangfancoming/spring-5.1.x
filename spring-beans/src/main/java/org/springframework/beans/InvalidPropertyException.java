@@ -8,7 +8,7 @@ import org.springframework.lang.Nullable;
  * Exception thrown when referring to an invalid bean property.
  * Carries the offending bean class and property name.
  *
- * @author Juergen Hoeller
+
  * @since 1.0.2
  */
 @SuppressWarnings("serial")

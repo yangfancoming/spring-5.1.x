@@ -58,7 +58,7 @@ import javax.servlet.http.HttpServletRequest;
  * making {@link MultipartHttpServletRequest MultipartHttpServletRequests}
  * available to controllers.
  *
- * @author Juergen Hoeller
+
  * @author Trevor D. Cook
  * @since 29.09.2003
  * @see MultipartHttpServletRequest

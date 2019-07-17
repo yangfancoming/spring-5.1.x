@@ -19,7 +19,7 @@ import org.springframework.util.ReflectionUtils;
  * within other packages. It is <i>not</i> intended for general use.
  *
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public abstract class TaskUtils {

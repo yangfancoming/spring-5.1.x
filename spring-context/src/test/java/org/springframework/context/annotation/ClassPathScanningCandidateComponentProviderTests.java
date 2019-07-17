@@ -44,12 +44,7 @@ import org.springframework.stereotype.Service;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-/**
- * @author Mark Fisher
- * @author Juergen Hoeller
- * @author Chris Beams
- * @author Stephane Nicoll
- */
+
 public class ClassPathScanningCandidateComponentProviderTests {
 
 	private static final String TEST_BASE_PACKAGE = "example.scannable";

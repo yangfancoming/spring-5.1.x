@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * PerformanceMonitorListener.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since January 17, 2001
  * @see ServletRequestHandledEvent
  * @see org.springframework.web.servlet.FrameworkServlet

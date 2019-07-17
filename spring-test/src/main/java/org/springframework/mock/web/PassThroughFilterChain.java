@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
  * (indicating the next Filter in the chain along with the FilterChain that it is
  * supposed to work on) or to a given Servlet (indicating the end of the chain).
  *
- * @author Juergen Hoeller
+
  * @since 2.0.3
  * @see javax.servlet.Filter
  * @see javax.servlet.Servlet

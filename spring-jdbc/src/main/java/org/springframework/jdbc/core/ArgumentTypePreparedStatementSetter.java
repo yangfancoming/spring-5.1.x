@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * Simple adapter for {@link PreparedStatementSetter} that applies
  * given arrays of arguments and JDBC argument types.
  *
- * @author Juergen Hoeller
+
  * @since 3.2.3
  */
 public class ArgumentTypePreparedStatementSetter implements PreparedStatementSetter, ParameterDisposer {

@@ -39,7 +39,7 @@ import org.springframework.util.StringUtils;
  * they wish to add.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see org.aopalliance.intercept.MethodInterceptor
  */

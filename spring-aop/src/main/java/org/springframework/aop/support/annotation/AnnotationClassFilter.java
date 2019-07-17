@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
  * Simple ClassFilter that looks for a specific Java 5 annotation
  * being present on a class.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see AnnotationMatchingPointcut
  */

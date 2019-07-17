@@ -23,7 +23,7 @@ import org.springframework.util.ReflectionUtils;
  * to automatically convert any given Collection to one of those
  * target types if the type does not match the target property.
  *
- * @author Juergen Hoeller
+
  * @since 1.1.3
  * @see java.util.Collection
  * @see java.util.Set

@@ -41,7 +41,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Rod Johnson
  * @author Adrian Colyer
- * @author Juergen Hoeller
+
  * @author Ramnivas Laddad
  * @since 2.0
  */

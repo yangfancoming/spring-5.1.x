@@ -17,8 +17,8 @@ import static org.springframework.tests.TestResourceUtils.*;
  * Unit tests for {@link CustomAutowireConfigurer}.
  *
  * @author Mark Fisher
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  */
 public class CustomAutowireConfigurerTests {
 

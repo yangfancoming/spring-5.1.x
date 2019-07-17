@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
  * <p>May indicate a potentially fatal problem (an error) or just a warning.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see ProblemReporter
  */

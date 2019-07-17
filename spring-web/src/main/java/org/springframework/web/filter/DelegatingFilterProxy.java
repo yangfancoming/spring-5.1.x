@@ -50,9 +50,9 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
  * <p>This class was originally inspired by Spring Security's {@code FilterToBeanProxy}
  * class, written by Ben Alex.
  *
- * @author Juergen Hoeller
+
  * @author Sam Brannen
- * @author Chris Beams
+
  * @since 1.2
  * @see #setTargetBeanName
  * @see #setTargetFilterLifecycle

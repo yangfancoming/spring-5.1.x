@@ -20,9 +20,8 @@ import static org.springframework.core.env.AbstractEnvironment.*;
 
 /**
  * Unit tests for {@link StandardEnvironment}.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  */
 @SuppressWarnings("deprecation")
 public class StandardEnvironmentTests {

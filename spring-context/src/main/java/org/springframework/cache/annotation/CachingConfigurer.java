@@ -18,8 +18,7 @@ import org.springframework.lang.Nullable;
  * <p>See @{@link EnableCaching} for general examples and context; see
  * {@link #cacheManager()}, {@link #cacheResolver()} and {@link #keyGenerator()}
  * for detailed instructions.
- *
- * @author Chris Beams
+
  * @author Stephane Nicoll
  * @since 3.1
  * @see EnableCaching

@@ -54,7 +54,7 @@ import org.springframework.util.ReflectionUtils;
  * Furthermore, it also supports the {@link javax.annotation.Resource} annotation
  * for annotation-driven injection of named beans.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see #setInitAnnotationType
  * @see #setDestroyAnnotationType

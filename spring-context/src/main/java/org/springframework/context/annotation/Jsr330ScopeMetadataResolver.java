@@ -19,7 +19,7 @@ import org.springframework.lang.Nullable;
  * in practice, you will typically use Spring's rich default scoping instead - or extend
  * this resolver with custom scoping annotations that point to extended Spring scopes.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see #registerScope
  * @see #resolveScopeName

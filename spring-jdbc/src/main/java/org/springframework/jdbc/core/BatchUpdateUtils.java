@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * Mainly for internal use within the framework.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 3.0
  * @deprecated as of 5.1.3, not used by {@link JdbcTemplate} anymore
  */

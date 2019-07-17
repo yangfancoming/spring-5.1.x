@@ -29,7 +29,7 @@ import org.springframework.util.StringUtils;
  * </ul>
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @author Rossen Stoyanchev
  * @since 3.0
  * @see <a href="https://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>

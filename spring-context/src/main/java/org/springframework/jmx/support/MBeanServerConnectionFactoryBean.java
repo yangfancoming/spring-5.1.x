@@ -30,7 +30,7 @@ import org.springframework.util.CollectionUtils;
  * Exposes the {@code MBeanServer} for bean references.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see MBeanServerFactoryBean
  * @see ConnectorServerFactoryBean

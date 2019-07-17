@@ -63,7 +63,7 @@ import org.springframework.util.StringUtils;
  *
  * Thanks to Matthias Ernst for the suggestion and initial prototype!
  *
- * @author Juergen Hoeller
+
  * @since 1.1.2
  * @see #setTargetObject
  * @see #setTargetBeanName

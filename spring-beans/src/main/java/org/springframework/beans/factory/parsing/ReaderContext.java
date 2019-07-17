@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
  * encapsulating all relevant configuration as well as state.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public class ReaderContext {

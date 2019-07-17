@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * fashion can be found in the ConfigurableBeanFactory interface.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 07.07.2003
  * @see org.springframework.beans.factory.config.ConfigurableBeanFactory#setParentBeanFactory
  */

@@ -11,7 +11,7 @@ import org.springframework.util.Assert;
  * to Spring's {@code toString()} styling conventions.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @since 1.2.2
  */
 public class ToStringCreator {

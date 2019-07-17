@@ -24,7 +24,7 @@ import org.springframework.util.concurrent.ListenableFutureTask;
  * <p><b>NOTE: This implementation does not reuse threads!</b> Consider a thread-pooling TaskExecutor implementation instead,
  *  in particular for executing a large number of short-lived tasks.
  *   本类不是真的线程池,这个类不重用线程,每次调用都会创建一个新的线程
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see #setConcurrencyLimit
  * @see SyncTaskExecutor

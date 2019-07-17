@@ -53,7 +53,7 @@ import static org.junit.Assert.*;
  * Only in such a scenario, {@code setAccessible(true)} is actually necessary.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @author Stephane Nicoll
  * @author Sam Brannen
  */

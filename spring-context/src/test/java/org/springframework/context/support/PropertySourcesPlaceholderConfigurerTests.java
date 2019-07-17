@@ -26,8 +26,8 @@ import static org.junit.Assert.*;
 import static org.springframework.beans.factory.support.BeanDefinitionBuilder.*;
 
 /**
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.1
  */
 public class PropertySourcesPlaceholderConfigurerTests {

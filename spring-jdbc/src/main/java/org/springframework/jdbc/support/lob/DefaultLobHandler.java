@@ -54,7 +54,7 @@ import org.springframework.lang.Nullable;
  *
  * <p>See the {@link LobHandler} interface javadoc for a summary of recommendations.
  *
- * @author Juergen Hoeller
+
  * @since 04.12.2003
  * @see java.sql.ResultSet#getBytes
  * @see java.sql.ResultSet#getBinaryStream

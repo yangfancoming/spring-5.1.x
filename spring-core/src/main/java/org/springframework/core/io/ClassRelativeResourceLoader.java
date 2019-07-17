@@ -9,7 +9,7 @@ import org.springframework.util.StringUtils;
  * {@link ResourceLoader} implementation that interprets plain resource paths
  * as relative to a given {@code java.lang.Class}.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see Class#getResource(String)
  * @see ClassPathResource#ClassPathResource(String, Class)

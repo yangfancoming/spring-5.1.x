@@ -64,11 +64,11 @@ import org.springframework.util.StringUtils;
  *
  * <p>As of Spring Framework 5.0, this set of mocks is designed on a Servlet 4.0 baseline.
  *
- * @author Juergen Hoeller
+
  * @author Rod Johnson
  * @author Rick Evans
  * @author Mark Fisher
- * @author Chris Beams
+
  * @author Sam Brannen
  * @author Brian Clozel
  * @since 1.0.2

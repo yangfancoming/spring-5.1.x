@@ -36,7 +36,7 @@ import org.springframework.remoting.support.RemoteInvocationResult;
  * endpoints to untrusted clients but rather just between your own services.</b>
  * In general, we strongly recommend any other message format (e.g. JSON) instead.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.1
  * @see org.springframework.remoting.httpinvoker.HttpInvokerClientInterceptor
  * @see org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean

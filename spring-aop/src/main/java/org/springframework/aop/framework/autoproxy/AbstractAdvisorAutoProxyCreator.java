@@ -29,7 +29,7 @@ import org.springframework.util.Assert;
  * at the end of the advisor chain in undefined order.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see #findCandidateAdvisors
  */
 @SuppressWarnings("serial")

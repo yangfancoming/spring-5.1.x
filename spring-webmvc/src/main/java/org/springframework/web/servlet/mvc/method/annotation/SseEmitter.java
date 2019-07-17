@@ -20,7 +20,7 @@ import org.springframework.util.StringUtils;
  * <a href="https://www.w3.org/TR/eventsource/">Server-Sent Events</a>.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 4.2
  */
 public class SseEmitter extends ResponseBodyEmitter {

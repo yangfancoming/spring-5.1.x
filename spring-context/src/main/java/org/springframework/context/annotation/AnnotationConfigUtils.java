@@ -32,8 +32,8 @@ import org.springframework.util.ClassUtils;
  * {@link org.springframework.beans.factory.support.AutowireCandidateResolver}.
  *
  * @author Mark Fisher
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @author Phillip Webb
  * @author Stephane Nicoll
  * @since 2.5

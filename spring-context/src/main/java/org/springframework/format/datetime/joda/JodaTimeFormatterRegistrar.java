@@ -31,7 +31,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
  * <p><b>NOTE:</b> Spring's Joda-Time support requires Joda-Time 2.x, as of Spring 4.0.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @author Phillip Webb
  * @since 3.1
  * @see #setDateStyle

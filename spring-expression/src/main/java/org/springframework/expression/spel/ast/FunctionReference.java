@@ -30,7 +30,7 @@ import org.springframework.util.ReflectionUtils;
  * (right now), so the names must be unique.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class FunctionReference extends SpelNodeImpl {

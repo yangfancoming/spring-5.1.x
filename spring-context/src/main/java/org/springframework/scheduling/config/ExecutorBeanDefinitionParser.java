@@ -14,7 +14,7 @@ import org.springframework.util.StringUtils;
  * Parser for the 'executor' element of the 'task' namespace.
  *
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class ExecutorBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {

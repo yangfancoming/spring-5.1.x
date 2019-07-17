@@ -10,7 +10,7 @@ import org.springframework.util.Assert;
  * a reference to another bean in the factory, to be resolved at runtime.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see BeanDefinition#getPropertyValues()
  * @see org.springframework.beans.factory.BeanFactory#getBean(String)
  */

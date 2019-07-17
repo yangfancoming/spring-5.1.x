@@ -24,9 +24,9 @@ import org.springframework.util.StringUtils;
  * <p>Delegates to a {@link ResourceLoader} to do the heavy lifting,
  * by default using a {@link DefaultResourceLoader}.
  *
- * @author Juergen Hoeller
+
  * @author Dave Syer
- * @author Chris Beams
+
  * @since 28.12.2003
  * @see Resource
  * @see ResourceLoader

@@ -16,8 +16,8 @@ import static org.springframework.tests.TestResourceUtils.*;
 /**
  * Unit tests for {@link PropertyPathFactoryBean}.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 04.10.2004
  */
 public class PropertyPathFactoryBeanTests {

@@ -14,8 +14,7 @@ import static org.junit.Assert.*;
 /**
  * Tests to verify that FactoryBean semantics are the same in Configuration
  * classes as in XML.
- *
- * @author Chris Beams
+
  */
 public class Spr6602Tests {
 

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.InitializingBean;
  * Abstract base class for classes that access remote services via URLs.
  * Provides a "serviceUrl" bean property, which is considered as required.
  *
- * @author Juergen Hoeller
+
  * @since 15.12.2003
  */
 public abstract class UrlBasedRemoteAccessor extends RemoteAccessor implements InitializingBean {

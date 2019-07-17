@@ -12,8 +12,8 @@ import org.springframework.beans.factory.Aware;
  * reference (to arbitrary bean properties or constructor arguments), because
  * it is defined as bean with name "messageSource" in the application context.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 1.1.1
  * @see ApplicationContextAware
  */

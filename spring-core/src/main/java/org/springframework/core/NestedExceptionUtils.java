@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  *
  * <p>Mainly for use within the framework.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see NestedRuntimeException
  * @see NestedCheckedException

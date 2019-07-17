@@ -36,7 +36,7 @@ import org.springframework.lang.Nullable;
  * driver does not actually expose JDBC 4 compliant {@code SQLException} subclasses.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see java.sql.SQLTransientException
  * @see java.sql.SQLTransientException

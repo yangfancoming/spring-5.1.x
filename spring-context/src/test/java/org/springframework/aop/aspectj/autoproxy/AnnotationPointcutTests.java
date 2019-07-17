@@ -11,10 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Juergen Hoeller
- * @author Chris Beams
- */
+
 public class AnnotationPointcutTests {
 
 	private AnnotatedTestBean testBean;

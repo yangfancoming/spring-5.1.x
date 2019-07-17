@@ -8,7 +8,7 @@ import org.springframework.lang.Nullable;
  * Utility methods for simple pattern matching, in particular for
  * Spring's typical "xxx*", "*xxx" and "*xxx*" pattern styles.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public abstract class PatternMatchUtils {

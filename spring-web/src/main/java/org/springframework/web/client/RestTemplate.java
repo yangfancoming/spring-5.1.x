@@ -69,7 +69,7 @@ import org.springframework.web.util.UriTemplateHandler;
  * @author Arjen Poutsma
  * @author Brian Clozel
  * @author Roy Clarkson
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see HttpMessageConverter
  * @see RequestCallback

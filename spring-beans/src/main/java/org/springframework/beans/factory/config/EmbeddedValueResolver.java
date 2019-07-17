@@ -14,7 +14,7 @@ import org.springframework.util.StringValueResolver;
  * The {@link BeanExpressionContext} used is for the plain bean factory,
  * with no scope specified for any contextual objects to access.
  *
- * @author Juergen Hoeller
+
  * @since 4.3
  * @see ConfigurableBeanFactory#resolveEmbeddedValue(String)
  * @see ConfigurableBeanFactory#getBeanExpressionResolver()

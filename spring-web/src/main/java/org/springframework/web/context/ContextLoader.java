@@ -61,7 +61,7 @@ import org.springframework.util.StringUtils;
  * constructor, allowing for programmatic configuration in Servlet 3.0+ environments.
  * See {@link org.springframework.web.WebApplicationInitializer} for usage examples.
  *
- * @author Juergen Hoeller
+
  * @author Colin Sampaleanu
  * @author Sam Brannen
  * @since 17.02.2003

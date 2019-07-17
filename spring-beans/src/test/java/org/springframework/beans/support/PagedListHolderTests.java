@@ -14,9 +14,9 @@ import org.springframework.tests.sample.beans.TestBean;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
+
  * @author Jean-Pierre PAWLAK
- * @author Chris Beams
+
  * @since 20.05.2003
  */
 public class PagedListHolderTests {

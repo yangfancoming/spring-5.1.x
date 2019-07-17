@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
  *
  * <p>This is an SPI class, not to be used directly by applications.
  *
- * @author Juergen Hoeller
+
  * @since 14.05.2003
  * @see RmiServiceExporter
  */

@@ -19,10 +19,6 @@ import org.springframework.util.ClassUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Mark Pollack
- * @author Juergen Hoeller
- */
 public class ClassPathFactoryBeanDefinitionScannerTests {
 
 	private static final String BASE_PACKAGE = FactoryMethodComponent.class.getPackage().getName();

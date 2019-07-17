@@ -8,8 +8,7 @@ import org.springframework.util.Assert;
 /**
  * {@link Task} implementation defining a {@code Runnable} to be executed
  * according to a given {@link Trigger}.
- *
- * @author Chris Beams
+
  * @since 3.2
  * @see ScheduledTaskRegistrar#addTriggerTask(TriggerTask)
  * @see org.springframework.scheduling.TaskScheduler#schedule(Runnable, Trigger)

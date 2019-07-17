@@ -11,7 +11,7 @@ import org.springframework.util.Assert;
  * a column in a custom sequence table. Subclasses need to provide the specific handling
  * of that table in their {@link #getNextKey()} implementation.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.3
  */
 public abstract class AbstractColumnMaxValueIncrementer extends AbstractDataFieldMaxValueIncrementer {

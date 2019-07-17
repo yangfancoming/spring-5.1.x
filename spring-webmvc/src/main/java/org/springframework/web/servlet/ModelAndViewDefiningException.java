@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
  * For example, a form controller might abort to a specific error page
  * if certain parameters do not allow to proceed with the normal workflow.
  *
- * @author Juergen Hoeller
+
  * @since 22.11.2003
  */
 @SuppressWarnings("serial")

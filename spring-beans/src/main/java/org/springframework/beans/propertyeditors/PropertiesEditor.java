@@ -22,7 +22,7 @@ import org.springframework.lang.Nullable;
  * documentation. Each property must be on a new line.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see java.util.Properties#load
  */
 public class PropertiesEditor extends PropertyEditorSupport {

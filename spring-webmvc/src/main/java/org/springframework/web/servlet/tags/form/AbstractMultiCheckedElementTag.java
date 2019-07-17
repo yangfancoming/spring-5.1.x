@@ -20,7 +20,7 @@ import org.springframework.util.StringUtils;
  * HTML '{@code input}' elements with a '{@code type}'
  * of '{@code checkbox}' or '{@code radio}'.
  *
- * @author Juergen Hoeller
+
  * @author Scott Andrews
  * @since 2.5.2
  */

@@ -22,8 +22,8 @@ import org.springframework.util.ObjectUtils;
  * <p>This visitor is fully recursive, taking into account any nested
  * annotations or nested annotation arrays.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @author Phillip Webb
  * @author Sam Brannen
  * @since 3.0

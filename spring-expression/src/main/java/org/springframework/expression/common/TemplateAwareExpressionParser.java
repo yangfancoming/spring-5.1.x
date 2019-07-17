@@ -18,7 +18,7 @@ import org.springframework.lang.Nullable;
  * parsers that do not offer first class support for templating.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @author Andy Clement
  * @since 3.0
  */

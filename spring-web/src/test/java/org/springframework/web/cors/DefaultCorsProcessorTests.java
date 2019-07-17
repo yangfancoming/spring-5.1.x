@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  *
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  */
 public class DefaultCorsProcessorTests {
 

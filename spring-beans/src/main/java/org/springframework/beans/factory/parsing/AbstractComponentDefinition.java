@@ -13,7 +13,7 @@ import org.springframework.beans.factory.config.BeanReference;
  * and {@link #getBeanReferences} that return an empty array.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public abstract class AbstractComponentDefinition implements ComponentDefinition {

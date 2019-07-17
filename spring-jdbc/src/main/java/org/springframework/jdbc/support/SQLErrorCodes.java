@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
  * {@code SQLErrorCodes} instances for various databases.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @see SQLErrorCodesFactory
  * @see SQLErrorCodeSQLExceptionTranslator
  */

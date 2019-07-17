@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
 /**
  * Strategy interface for creating resource-based {@link PropertySource} wrappers.
  *
- * @author Juergen Hoeller
+
  * @since 4.3
  * @see DefaultPropertySourceFactory
  */

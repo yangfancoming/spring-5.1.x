@@ -7,7 +7,7 @@ package org.springframework.beans.factory.support;
  * passed through to the initiating {@link DefaultSingletonBeanRegistry}
  * (without wrapping in a {@code BeanCreationException}).
  *
- * @author Juergen Hoeller
+
  * @since 5.0
  */
 @SuppressWarnings("serial")

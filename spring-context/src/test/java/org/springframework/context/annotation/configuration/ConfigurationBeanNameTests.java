@@ -20,8 +20,7 @@ import static org.junit.Assert.*;
  * Unit tests ensuring that configuration class bean names as expressed via @Configuration
  * or @Component 'value' attributes are indeed respected, and that customization of bean
  * naming through a BeanNameGenerator strategy works as expected.
- *
- * @author Chris Beams
+
  * @since 3.1.1
  */
 public class ConfigurationBeanNameTests {

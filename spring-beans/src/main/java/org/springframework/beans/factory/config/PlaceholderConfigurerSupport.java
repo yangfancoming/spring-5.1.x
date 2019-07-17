@@ -65,9 +65,8 @@ import org.springframework.util.StringValueResolver;
  * <pre class="code">
  *   <property name="url" value="jdbc:${dbname:defaultdb}"/>
  * </pre>
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.1
  * @see PropertyPlaceholderConfigurer
  * @see org.springframework.context.support.PropertySourcesPlaceholderConfigurer

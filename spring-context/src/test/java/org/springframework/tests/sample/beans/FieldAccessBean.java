@@ -3,7 +3,7 @@
 package org.springframework.tests.sample.beans;
 
 /**
- * @author Juergen Hoeller
+
  * @since 07.03.2006
  */
 public class FieldAccessBean {

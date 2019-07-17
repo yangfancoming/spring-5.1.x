@@ -28,7 +28,7 @@ import org.springframework.util.StringUtils;
  * Extension of {@link UriComponents} for hierarchical URIs.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @author Rossen Stoyanchev
  * @author Phillip Webb
  * @since 3.1.3

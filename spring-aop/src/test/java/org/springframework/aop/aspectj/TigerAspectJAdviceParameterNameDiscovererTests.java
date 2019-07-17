@@ -11,7 +11,7 @@ import org.springframework.aop.aspectj.AspectJAdviceParameterNameDiscoverer.Ambi
  * see supertype for remaining tests.
  *
  * @author Adrian Colyer
- * @author Chris Beams
+
  */
 public class TigerAspectJAdviceParameterNameDiscovererTests extends AspectJAdviceParameterNameDiscovererTests {
 

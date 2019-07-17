@@ -33,7 +33,7 @@ import org.springframework.util.StringUtils;
  * interface.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @author Mark Fisher
  * @see GenericBeanDefinition

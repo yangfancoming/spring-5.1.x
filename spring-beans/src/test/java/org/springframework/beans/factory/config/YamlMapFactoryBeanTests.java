@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  * Tests for {@link YamlMapFactoryBean}.
  *
  * @author Dave Syer
- * @author Juergen Hoeller
+
  */
 public class YamlMapFactoryBeanTests {
 

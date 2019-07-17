@@ -42,7 +42,7 @@ import org.springframework.util.StringUtils;
  * as String arrays are converted in such a format if the array itself is not
  * assignable.
  *
- * @author Juergen Hoeller
+
  * @author Stephane Nicoll
  * @author Rod Johnson
  * @author Rob Harrop

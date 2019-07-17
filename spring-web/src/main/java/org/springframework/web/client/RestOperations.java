@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
  * option to enhance testability, as it can easily be mocked or stubbed.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see RestTemplate
  */

@@ -44,7 +44,7 @@ import org.springframework.util.ObjectUtils;
  * </pre>
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 4.2
  */
 public class ResponseBodyEmitter {

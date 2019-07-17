@@ -86,9 +86,9 @@ import org.springframework.util.StringValueResolver;
  * {@link DefaultListableBeanFactory} and {@link AbstractAutowireCapableBeanFactory}.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Costin Leau
- * @author Chris Beams
+
  * @since 15 April 2001
  * @see #getBeanDefinition
  * @see #createBean

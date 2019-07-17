@@ -19,7 +19,7 @@ import org.springframework.lang.Nullable;
  * </ul>
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see org.springframework.context.support.ResourceBundleMessageSource
  * @see org.springframework.context.support.ReloadableResourceBundleMessageSource
  */

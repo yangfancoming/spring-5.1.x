@@ -21,7 +21,7 @@ import org.springframework.aop.support.DefaultPointcutAdvisor;
  *
  * @author Rod Johnson
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  */
 @SuppressWarnings("serial")
 public class DefaultAdvisorAdapterRegistry implements AdvisorAdapterRegistry, Serializable {

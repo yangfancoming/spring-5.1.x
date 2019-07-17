@@ -31,7 +31,7 @@ import org.springframework.util.StringUtils;
  * <p>This class provides the base SPI for {@link SimpleJdbcCall}.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 public abstract class AbstractJdbcCall {

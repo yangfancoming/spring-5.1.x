@@ -8,7 +8,7 @@ import org.springframework.core.NestedRuntimeException;
  * Exception that gets thrown when an AOP invocation failed
  * because of misconfiguration or unexpected runtime issues.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 @SuppressWarnings("serial")

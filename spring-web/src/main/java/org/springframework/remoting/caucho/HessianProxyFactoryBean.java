@@ -18,7 +18,7 @@ import org.springframework.lang.Nullable;
  * <p>The service URL must be an HTTP URL exposing a Hessian service.
  * For details, see the {@link HessianClientInterceptor} javadoc.
  *
- * @author Juergen Hoeller
+
  * @since 13.05.2003
  * @see #setServiceInterface
  * @see #setServiceUrl

@@ -57,7 +57,7 @@ import org.springframework.web.servlet.View;
  * a UrlBasedViewResolver will always return View for any given view name;
  * as a consequence, it should be configured as the last ViewResolver in the chain.
  *
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @since 13.12.2003
  * @see #setViewClass

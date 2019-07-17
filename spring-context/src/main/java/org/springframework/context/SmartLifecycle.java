@@ -40,7 +40,7 @@ package org.springframework.context;
  * lazy-init flag has very limited actual effect on {@code SmartLifecycle} beans.
  *
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see LifecycleProcessor
  * @see ConfigurableApplicationContext

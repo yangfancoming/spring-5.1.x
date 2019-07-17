@@ -15,7 +15,7 @@ import java.security.NoSuchAlgorithmException;
  * for a more comprehensive suite of digest utilities.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @author Craig Andrews
  * @since 3.0
  */

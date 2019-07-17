@@ -18,7 +18,7 @@ import org.springframework.beans.factory.parsing.ReaderEventListener;
 
 /**
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  */
 public class CollectingReaderEventListener implements ReaderEventListener {
 

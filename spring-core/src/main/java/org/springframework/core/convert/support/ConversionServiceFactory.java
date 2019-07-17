@@ -15,8 +15,8 @@ import org.springframework.lang.Nullable;
  * configurations.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 3.0
  */
 public final class ConversionServiceFactory {

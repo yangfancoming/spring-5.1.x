@@ -28,7 +28,7 @@ import static org.springframework.test.context.cache.ContextCacheTestUtils.*;
  * &#064;DirtiesContext} annotation at the method level.
  *
  * @author Sam Brannen
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see ContextCacheTests
  * @see LruContextCacheTests

@@ -18,7 +18,7 @@ import org.springframework.lang.Nullable;
  * to any type that the {@link ConversionService} support via {@code byte[]}.
  *
  * @author Phillip Webb
- * @author Juergen Hoeller
+
  * @since 4.0
  */
 final class ByteBufferConverter implements ConditionalGenericConverter {

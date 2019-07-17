@@ -30,8 +30,8 @@ import static org.junit.Assert.*;
  * Unit tests demonstrating that the reflection-based {@link StandardAnnotationMetadata}
  * and ASM-based {@code AnnotationMetadataReadingVisitor} produce identical output.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @author Phillip Webb
  * @author Sam Brannen
  */

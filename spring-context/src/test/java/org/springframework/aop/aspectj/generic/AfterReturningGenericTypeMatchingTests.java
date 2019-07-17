@@ -24,7 +24,7 @@ import static org.junit.Assert.*;
  * <p>See SPR-3628 for more details.
  *
  * @author Ramnivas Laddad
- * @author Chris Beams
+
  */
 public class AfterReturningGenericTypeMatchingTests {
 

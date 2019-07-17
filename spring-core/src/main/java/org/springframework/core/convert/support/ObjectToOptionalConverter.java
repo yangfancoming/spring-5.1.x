@@ -19,7 +19,7 @@ import org.springframework.lang.Nullable;
  * of Optional when known.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 4.1
  */
 final class ObjectToOptionalConverter implements ConditionalGenericConverter {

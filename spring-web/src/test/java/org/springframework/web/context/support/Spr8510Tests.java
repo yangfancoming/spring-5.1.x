@@ -17,8 +17,7 @@ import static org.junit.Assert.*;
  * Tests the interaction between a WebApplicationContext and ContextLoaderListener with
  * regard to config location precedence, overriding and defaulting in programmatic
  * configuration use cases, e.g. with Spring 3.1's WebApplicationInitializer.
- *
- * @author Chris Beams
+
  * @since 3.1
  * @see org.springframework.web.context.ContextLoaderTests
  */

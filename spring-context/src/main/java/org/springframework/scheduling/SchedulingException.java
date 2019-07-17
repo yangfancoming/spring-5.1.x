@@ -9,7 +9,7 @@ import org.springframework.core.NestedRuntimeException;
  * such as the scheduler already having shut down.
  * Unchecked since scheduling failures are usually fatal.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 @SuppressWarnings("serial")

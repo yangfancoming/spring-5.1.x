@@ -8,7 +8,7 @@ import org.springframework.util.InvalidMimeTypeException;
  * Exception thrown from {@link MediaType#parseMediaType(String)} in case of
  * encountering an invalid media type specification String.
  *
- * @author Juergen Hoeller
+
  * @since 3.2.2
  */
 @SuppressWarnings("serial")

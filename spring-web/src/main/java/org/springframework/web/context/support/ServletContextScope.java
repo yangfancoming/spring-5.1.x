@@ -28,7 +28,7 @@ import org.springframework.util.Assert;
  * <p>This scope is registered as default scope with key
  * {@link org.springframework.web.context.WebApplicationContext#SCOPE_APPLICATION "application"}.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see org.springframework.web.context.ContextCleanupListener
  */

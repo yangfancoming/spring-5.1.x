@@ -32,7 +32,7 @@ import org.springframework.util.Assert;
  * much easier to setup than RMI. Alternatively, consider Spring's HTTP invoker
  * to combine Java serialization with HTTP-based transport.
  *
- * @author Juergen Hoeller
+
  * @since 13.05.2003
  * @see #setServiceInterface
  * @see #setServiceUrl

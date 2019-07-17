@@ -33,7 +33,7 @@ import org.springframework.util.StringUtils;
  * set up a JVM-level JNDI environment.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see SimpleNamingContextBuilder
  * @see org.springframework.jndi.JndiTemplate#createInitialContext
  */

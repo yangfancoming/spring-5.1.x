@@ -37,7 +37,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @author Phillip Webb
  */
 public class JodaTimeFormattingTests {

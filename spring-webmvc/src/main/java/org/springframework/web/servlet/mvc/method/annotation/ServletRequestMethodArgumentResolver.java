@@ -46,7 +46,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 3.1
  */
 public class ServletRequestMethodArgumentResolver implements HandlerMethodArgumentResolver {

@@ -14,8 +14,8 @@ import static org.junit.Assert.*;
 import static org.springframework.tests.TestResourceUtils.*;
 
 /**
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 03.09.2004
  */
 public class PrototypeTargetTests {

@@ -11,7 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * See SPR-1682.
  *
  * @author Adrian Colyer
- * @author Chris Beams
+
  */
 public class SharedPointcutWithArgsMismatchTests {
 

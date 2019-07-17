@@ -20,7 +20,7 @@ import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
  * factories get this lifecycle callback if they want.
  *
  * @author Rod Johnson
- * @author Chris Beams
+
  * @since 10.03.2003
  */
 public class DummyFactory

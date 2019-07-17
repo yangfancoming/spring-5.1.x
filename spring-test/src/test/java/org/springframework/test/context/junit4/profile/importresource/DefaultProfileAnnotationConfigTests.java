@@ -14,7 +14,7 @@ import org.springframework.tests.sample.beans.Pet;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
+
  * @since 3.1
  */
 @RunWith(SpringJUnit4ClassRunner.class)

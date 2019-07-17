@@ -17,7 +17,7 @@ import org.springframework.util.Assert;
  * {@link #setScopeAnnotationType(Class)}.
  *
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @since 2.5
  * @see org.springframework.context.annotation.Scope

@@ -26,7 +26,7 @@ import org.springframework.http.MediaType;
  * <p>Thanks to Jettro Coenradie and Sergio Bossa for the original feed view prototype!
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see #buildFeedMetadata
  * @see #buildFeedItems

@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationContext;
  * Event raised when an {@code ApplicationContext} gets started.
  *
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see ContextStoppedEvent
  */

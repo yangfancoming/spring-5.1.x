@@ -22,7 +22,7 @@ import org.springframework.lang.Nullable;
  *
  * <p>Mainly for use within the framework, but also useful for application code.
  *
- * @author Juergen Hoeller
+
  * @since 06.10.2003
  * @see StreamUtils
  * @see FileSystemUtils

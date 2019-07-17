@@ -17,7 +17,7 @@ import static org.mockito.Mockito.*;
 
 /**
  * @author Mattias Severson
- * @author Juergen Hoeller
+
  */
 public class SettableListenableFutureTests {
 

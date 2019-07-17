@@ -43,7 +43,7 @@ import static org.mockito.BDDMockito.*;
  * @author Alef Arendsen
  * @author Rick Evans
  * @author Stephane Nicoll
- * @author Juergen Hoeller
+
  */
 public class ApplicationContextEventTests extends AbstractApplicationEventListenerTests {
 

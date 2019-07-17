@@ -36,7 +36,7 @@ import org.springframework.util.ReflectionUtils;
  * {@link GenericArrayType#getGenericComponentType()}) will be automatically wrapped.
  *
  * @author Phillip Webb
- * @author Juergen Hoeller
+
  * @since 4.0
  */
 final class SerializableTypeWrapper {

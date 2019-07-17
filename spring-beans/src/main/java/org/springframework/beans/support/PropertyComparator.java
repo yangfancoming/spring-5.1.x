@@ -18,7 +18,7 @@ import org.springframework.util.StringUtils;
  * PropertyComparator performs a comparison of two beans,
  * evaluating the specified bean property via a BeanWrapper.
  *
- * @author Juergen Hoeller
+
  * @author Jean-Pierre Pawlak
  * @since 19.05.2003
  * @param <T> the type of objects that may be compared by this comparator

@@ -126,7 +126,7 @@ import org.springframework.lang.Nullable;
  * @author <a href="mailto:dmitry.katsubo@gmail.com">Dmitry Katsubo</a>
  * @author Rossen Stoyanchev
  * @author Brian Clozel
- * @author Juergen Hoeller
+
  * @author Tadaya Tsuyukubo
  * @author Sebastien Deleuze
  * @since 3.2

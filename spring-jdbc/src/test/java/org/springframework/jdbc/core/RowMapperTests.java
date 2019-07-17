@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
 /**
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @since 02.08.2004
  */

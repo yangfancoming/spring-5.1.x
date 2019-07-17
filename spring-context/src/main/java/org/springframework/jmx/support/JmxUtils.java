@@ -30,7 +30,7 @@ import org.springframework.util.StringUtils;
  * Includes a convenient method to locate an MBeanServer.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see #locateMBeanServer
  */

@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
  * Check out the {@link Model} interface for an interface variant.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see Conventions#getVariableName
  * @see org.springframework.web.servlet.ModelAndView

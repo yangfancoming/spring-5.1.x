@@ -22,9 +22,8 @@ import org.springframework.util.ObjectUtils;
  * any given time; rather it is only possible to try to access a property
  * (via {@link #getProperty(String)}) in order to evaluate whether it is present
  * or not.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.1
  * @param <T> the source type
  */

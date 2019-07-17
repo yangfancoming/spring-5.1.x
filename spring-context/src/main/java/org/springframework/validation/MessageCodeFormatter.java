@@ -6,8 +6,7 @@ import org.springframework.lang.Nullable;
 
 /**
  * A strategy interface for formatting message codes.
- *
- * @author Chris Beams
+
  * @since 3.2
  * @see DefaultMessageCodesResolver
  * @see DefaultMessageCodesResolver.Format

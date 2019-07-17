@@ -15,9 +15,8 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link SystemEnvironmentPropertySource}.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.1
  */
 public class SystemEnvironmentPropertySourceTests {

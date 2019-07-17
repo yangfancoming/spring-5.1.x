@@ -9,7 +9,7 @@ import java.lang.instrument.Instrumentation;
  * for later use.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver
  */

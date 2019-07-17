@@ -39,7 +39,7 @@ import org.springframework.util.ReflectionUtils;
  * for implementing the abstract {@link #createInstance()} template
  * method to actually create the object(s) to expose.
  *
- * @author Juergen Hoeller
+
  * @author Keith Donald
  * @since 1.0.2
  * @param <T> the bean type

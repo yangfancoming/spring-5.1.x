@@ -35,7 +35,7 @@ import org.springframework.util.CommonsLogWriter;
  * <a href="http://hessian.caucho.com">Hessian website</a>.
  * <b>Note: As of Spring 4.0, this exporter requires Hessian 4.0 or above.</b>
  *
- * @author Juergen Hoeller
+
  * @since 2.5.1
  * @see #invoke(java.io.InputStream, java.io.OutputStream)
  * @see HessianServiceExporter

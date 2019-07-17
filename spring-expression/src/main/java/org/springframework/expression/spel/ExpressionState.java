@@ -35,7 +35,7 @@ import org.springframework.util.CollectionUtils;
  * nodes might need.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class ExpressionState {

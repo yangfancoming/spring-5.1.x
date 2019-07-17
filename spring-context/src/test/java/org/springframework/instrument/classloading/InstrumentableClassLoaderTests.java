@@ -24,8 +24,8 @@ import static org.junit.Assert.*;
 
 /**
  * @author Costin Leau
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  */
 public class InstrumentableClassLoaderTests {
 

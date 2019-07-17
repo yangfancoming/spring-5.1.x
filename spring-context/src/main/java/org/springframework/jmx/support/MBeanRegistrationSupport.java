@@ -45,7 +45,7 @@ import org.springframework.util.Assert;
  * the state of your {@link MBeanServer}.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Phillip Webb
  * @since 2.0
  * @see #setServer

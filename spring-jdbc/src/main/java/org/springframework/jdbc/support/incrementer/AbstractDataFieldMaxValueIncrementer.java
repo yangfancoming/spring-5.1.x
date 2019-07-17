@@ -14,9 +14,9 @@ import org.springframework.util.Assert;
  * Uses longs for String values, padding with zeroes if required.
  *
  * @author Dmitriy Kopylenko
- * @author Juergen Hoeller
+
  * @author Jean-Pierre Pawlak
- * @author Juergen Hoeller
+
  */
 public abstract class AbstractDataFieldMaxValueIncrementer implements DataFieldMaxValueIncrementer, InitializingBean {
 

@@ -70,8 +70,7 @@ import org.springframework.core.env.Profiles;
  * <p>When defining Spring beans via XML, the {@code "profile"} attribute of the
  * {@code <beans>} element may be used. See the documentation in the
  * {@code spring-beans} XSD (version 3.1 or greater) for details.
- *
- * @author Chris Beams
+
  * @author Phillip Webb
  * @author Sam Brannen
  * @since 3.1

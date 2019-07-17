@@ -28,7 +28,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Mark Fisher
  */
 public class UtilNamespaceHandlerTests {

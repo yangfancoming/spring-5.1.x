@@ -31,7 +31,7 @@ import org.springframework.util.StringValueResolver;
  * designed to be configured as a {@link FormatterRegistry}.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class FormattingConversionService extends GenericConversionService

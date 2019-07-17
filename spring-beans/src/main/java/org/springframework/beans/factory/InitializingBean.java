@@ -12,7 +12,7 @@ package org.springframework.beans.factory;
  * lifecycle methods, see the {@link BeanFactory BeanFactory javadocs}.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see DisposableBean
  * @see org.springframework.beans.factory.config.BeanDefinition#getPropertyValues()
  * @see org.springframework.beans.factory.support.AbstractBeanDefinition#getInitMethodName()

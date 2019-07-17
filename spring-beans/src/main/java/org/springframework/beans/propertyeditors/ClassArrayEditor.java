@@ -18,7 +18,7 @@ import org.springframework.util.StringUtils;
  * to the standard {@link Class#forName(String)} method.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public class ClassArrayEditor extends PropertyEditorSupport {

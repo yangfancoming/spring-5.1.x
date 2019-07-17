@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
  * Tests for the expression state object - some features are not yet exploited in the language (eg nested scopes)
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  */
 public class ExpressionStateTests extends AbstractExpressionTests {
 

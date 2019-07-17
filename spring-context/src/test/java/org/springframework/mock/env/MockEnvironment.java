@@ -8,8 +8,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
 /**
  * Simple {@link ConfigurableEnvironment} implementation exposing
  * {@link #setProperty} and {@link #withProperty} methods for testing purposes.
- *
- * @author Chris Beams
+
  * @author Sam Brannen
  * @since 3.2
  * @see org.springframework.mock.env.MockPropertySource

@@ -22,7 +22,7 @@ import org.springframework.core.annotation.AliasFor;
  * <p>This annotation serves as a specialization of {@link Component @Component},
  * allowing for implementation classes to be autodetected through classpath scanning.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see Component
  * @see Repository

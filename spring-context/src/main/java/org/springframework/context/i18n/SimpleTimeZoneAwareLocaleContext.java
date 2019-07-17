@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * <p>Note: Prefer the use of {@link SimpleLocaleContext} when only setting
  * a Locale but no TimeZone.
  *
- * @author Juergen Hoeller
+
  * @author Nicholas Williams
  * @since 4.0
  * @see LocaleContextHolder#setLocaleContext

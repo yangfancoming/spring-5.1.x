@@ -9,7 +9,7 @@ import java.util.EventListener;
  * registrations during a bean definition reading process.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see ReaderContext
  */

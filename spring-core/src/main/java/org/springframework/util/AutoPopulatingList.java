@@ -23,7 +23,7 @@ import java.util.ListIterator;
  * <p>Inspired by {@code LazyList} from Commons Collections.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  * @param <E> the element type
  */

@@ -29,7 +29,7 @@ import org.springframework.lang.Nullable;
  * provided resolver implementations implement the extended
  * {@link LocaleContextResolver} interface wherever appropriate.
  *
- * @author Juergen Hoeller
+
  * @since 27.02.2003
  * @see LocaleContextResolver
  * @see org.springframework.context.i18n.LocaleContextHolder

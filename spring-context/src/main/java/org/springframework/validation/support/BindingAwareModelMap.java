@@ -17,7 +17,7 @@ import org.springframework.validation.BindingResult;
  * build it within user code; a plain {@link org.springframework.ui.ModelMap} or even a just
  * a regular {@link Map} with String keys will be good enough to return a user model.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.6
  * @see org.springframework.validation.BindingResult
  */

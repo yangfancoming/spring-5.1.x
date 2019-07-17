@@ -19,7 +19,7 @@ import org.springframework.util.ClassUtils;
  * type cannot be found, it will try the registered imports to locate it.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class StandardTypeLocator implements TypeLocator {

@@ -47,8 +47,7 @@ import static org.junit.Assert.*;
 
 /**
  * Tests use of @EnableAsync on @Configuration classes.
- *
- * @author Chris Beams
+
  * @author Stephane Nicoll
  * @since 3.1
  */

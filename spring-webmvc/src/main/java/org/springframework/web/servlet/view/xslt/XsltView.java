@@ -56,7 +56,7 @@ import org.springframework.web.util.WebUtils;
  * to be passed to the Transformer.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public class XsltView extends AbstractUrlBasedView {

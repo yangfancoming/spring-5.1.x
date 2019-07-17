@@ -79,7 +79,7 @@ import org.springframework.util.xml.StaxUtils;
  * <p>Compatible with Jackson 2.6 and higher, as of Spring 4.3.
  *
  * @author Sebastien Deleuze
- * @author Juergen Hoeller
+
  * @author Tadaya Tsuyukubo
  * @author Eddú Meléndez
  * @since 4.1.1

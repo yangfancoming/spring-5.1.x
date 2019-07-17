@@ -18,7 +18,7 @@ import org.springframework.lang.Nullable;
  * including information about the method invocation along with a prefix/suffix.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 1.2.7
  * @see #setPrefix
  * @see #setSuffix

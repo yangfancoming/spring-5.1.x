@@ -22,7 +22,7 @@ import org.springframework.web.util.WebUtils;
  * <p>Accesses objects from servlet request and HTTP session scope,
  * with no distinction between "session" and "global session".
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see javax.servlet.ServletRequest#getAttribute
  * @see javax.servlet.http.HttpSession#getAttribute

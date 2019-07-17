@@ -28,8 +28,8 @@ import org.springframework.util.StringUtils;
  *
  * @author Keith Donald
  * @author Dave Syer
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @author Oliver Gierke
  * @author Sam Brannen
  * @author Chris Baldwin

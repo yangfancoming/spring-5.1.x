@@ -12,7 +12,7 @@ import org.springframework.core.type.classreading.MetadataReaderFactory;
  * {@link org.springframework.core.type.classreading.MetadataReader}.
  *
  * @author Costin Leau
- * @author Juergen Hoeller
+
  * @author Mark Fisher
  * @since 2.5
  */

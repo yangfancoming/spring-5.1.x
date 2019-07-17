@@ -27,7 +27,7 @@ import org.springframework.util.ClassUtils;
  * <p>Pre-implements serialization of RemoteInvocation objects and
  * deserialization of RemoteInvocationResults objects.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see #doExecuteRequest
  */

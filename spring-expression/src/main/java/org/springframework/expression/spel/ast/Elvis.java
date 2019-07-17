@@ -17,7 +17,7 @@ import org.springframework.util.StringUtils;
  * of the expression is "a", if a is null then the value of the expression is "b".
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class Elvis extends SpelNodeImpl {

@@ -14,7 +14,7 @@ import org.springframework.core.annotation.OrderUtils;
  * {@link #getAspectInstance()} call.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see SimpleMetadataAwareAspectInstanceFactory
  */

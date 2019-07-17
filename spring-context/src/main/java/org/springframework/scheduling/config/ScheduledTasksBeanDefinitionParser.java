@@ -18,7 +18,7 @@ import org.springframework.util.StringUtils;
  * Parser for the 'scheduled-tasks' element of the scheduling namespace.
  *
  * @author Mark Fisher
- * @author Chris Beams
+
  * @since 3.0
  */
 public class ScheduledTasksBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {

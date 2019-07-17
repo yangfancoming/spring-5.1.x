@@ -28,7 +28,7 @@ import org.springframework.util.ClassUtils;
  * Helper class for {@link Jaxb2Marshaller} that scans given packages for classes marked with JAXB2 annotations.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @author David Harrigan
  * @author Biju Kunjummen
  * @since 3.1.1

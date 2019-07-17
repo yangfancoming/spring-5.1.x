@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
  * <p>Supports Spring-style URL notation: any fully qualified standard URL
  * ("file:", "http:", etc) and Spring's special "classpath:" pseudo-URL.
  *
- * @author Juergen Hoeller
+
  * @since 3.0.3
  * @see org.xml.sax.InputSource
  * @see org.springframework.core.io.ResourceEditor

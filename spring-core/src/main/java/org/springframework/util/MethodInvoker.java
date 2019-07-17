@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
  * invoke the method any number of times, obtaining the invocation result.
  *
  * @author Colin Sampaleanu
- * @author Juergen Hoeller
+
  * @since 19.02.2004
  * @see #prepare
  * @see #invoke

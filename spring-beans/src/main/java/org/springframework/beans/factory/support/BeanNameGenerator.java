@@ -7,7 +7,7 @@ import org.springframework.beans.factory.config.BeanDefinition;
 /**
  * Strategy interface for generating bean names for bean definitions.
  *
- * @author Juergen Hoeller
+
  * @since 2.0.3
  */
 public interface BeanNameGenerator {

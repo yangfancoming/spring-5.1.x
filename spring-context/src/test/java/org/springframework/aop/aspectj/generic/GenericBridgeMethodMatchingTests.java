@@ -23,7 +23,7 @@ import static org.junit.Assert.*;
  * See SPR-3556 for more details.
  *
  * @author Ramnivas Laddad
- * @author Chris Beams
+
  */
 public class GenericBridgeMethodMatchingTests {
 

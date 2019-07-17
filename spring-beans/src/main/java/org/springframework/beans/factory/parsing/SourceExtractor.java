@@ -15,7 +15,7 @@ import org.springframework.lang.Nullable;
  * before being attached to the bean definition metadata.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see org.springframework.beans.BeanMetadataElement#getSource()
  * @see org.springframework.beans.factory.config.BeanDefinition

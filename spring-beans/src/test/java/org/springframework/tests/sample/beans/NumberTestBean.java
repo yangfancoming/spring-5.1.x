@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 /**
- * @author Juergen Hoeller
+
  * @since 10.06.2003
  */
 public class NumberTestBean {

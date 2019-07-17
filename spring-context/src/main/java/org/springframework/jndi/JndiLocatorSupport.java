@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
  * be prepended if the "resourceRef" property is true (the default is
  * <strong>false</strong>) and no other scheme (e.g. "java:") is given.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see #setJndiTemplate
  * @see #setJndiEnvironment

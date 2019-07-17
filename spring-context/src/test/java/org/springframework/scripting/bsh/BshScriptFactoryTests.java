@@ -29,7 +29,7 @@ import static org.mockito.BDDMockito.*;
 /**
  * @author Rob Harrop
  * @author Rick Evans
- * @author Juergen Hoeller
+
  */
 public class BshScriptFactoryTests {
 

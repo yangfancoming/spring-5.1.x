@@ -25,7 +25,7 @@ import org.springframework.lang.Nullable;
  * given an {@link Advised} object. Always rebuilds each advice chain;
  * caching can be provided by subclasses.
  *
- * @author Juergen Hoeller
+
  * @author Rod Johnson
  * @author Adrian Colyer
  * @since 2.0.3

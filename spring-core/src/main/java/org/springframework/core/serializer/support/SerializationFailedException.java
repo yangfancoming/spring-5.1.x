@@ -11,7 +11,7 @@ import org.springframework.core.NestedRuntimeException;
  * Thrown by {@link SerializingConverter} and {@link DeserializingConverter}.
  *
  * @author Gary Russell
- * @author Juergen Hoeller
+
  * @since 3.0.5
  */
 @SuppressWarnings("serial")

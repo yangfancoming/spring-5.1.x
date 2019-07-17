@@ -36,7 +36,7 @@ import org.springframework.web.util.WebUtils;
  * <i>before</i> this HiddenHttpMethodFilter in your {@code web.xml} filter chain.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class HiddenHttpMethodFilter extends OncePerRequestFilter {

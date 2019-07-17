@@ -48,7 +48,7 @@ import org.springframework.beans.CachedIntrospectionResults;
  * before any application listeners such as Spring's ContextLoaderListener.</b>
  * This allows the listener to take full effect at the right time of the lifecycle.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see java.beans.Introspector#flushCaches()
  * @see org.springframework.beans.CachedIntrospectionResults#acceptClassLoader

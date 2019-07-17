@@ -15,7 +15,7 @@ import org.springframework.web.util.HtmlUtils;
  * HtmlEscapeTag) or an application-wide default (the "defaultHtmlEscape"
  * context-param in {@code web.xml}) is used.
  *
- * @author Juergen Hoeller
+
  * @author Brian Clozel
  * @since 1.1
  * @see #setHtmlEscape

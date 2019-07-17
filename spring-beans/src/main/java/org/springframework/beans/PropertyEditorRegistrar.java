@@ -11,7 +11,7 @@ package org.springframework.beans;
  * property editors in several different situations: write a corresponding
  * registrar and reuse that in each case.
  *
- * @author Juergen Hoeller
+
  * @since 1.2.6
  * @see PropertyEditorRegistry
  * @see java.beans.PropertyEditor

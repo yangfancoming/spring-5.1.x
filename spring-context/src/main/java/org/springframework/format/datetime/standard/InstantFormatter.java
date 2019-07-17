@@ -16,7 +16,7 @@ import org.springframework.format.Formatter;
  * default {@code ISO_INSTANT} format as well as {@code RFC_1123_DATE_TIME}
  * (which is commonly used for HTTP date header values), as of Spring 4.3.
  *
- * @author Juergen Hoeller
+
  * @since 4.0
  * @see java.time.Instant#parse
  * @see java.time.format.DateTimeFormatter#ISO_INSTANT

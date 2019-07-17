@@ -16,8 +16,8 @@ import org.springframework.util.SerializationTestUtils;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 06.04.2004
  */
 public class ConcurrencyThrottleInterceptorTests {

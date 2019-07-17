@@ -24,7 +24,7 @@ import static org.mockito.Mockito.*;
  * Test suite for {@link ProtobufHttpMessageConverter}.
  *
  * @author Alex Antonov
- * @author Juergen Hoeller
+
  * @author Andreas Ahlenstorf
  * @author Sebastien Deleuze
  */

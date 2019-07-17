@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
  * being present on a {@link #forClassAnnotation class} or
  * {@link #forMethodAnnotation method}.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see AnnotationClassFilter
  * @see AnnotationMethodMatcher

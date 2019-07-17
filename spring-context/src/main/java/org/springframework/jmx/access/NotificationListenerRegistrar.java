@@ -26,7 +26,7 @@ import org.springframework.util.CollectionUtils;
  * with one or more MBeans in an {@link javax.management.MBeanServer}
  * (typically via a {@link javax.management.MBeanServerConnection}).
  *
- * @author Juergen Hoeller
+
  * @since 2.5.2
  * @see #setServer
  * @see #setMappedObjectNames

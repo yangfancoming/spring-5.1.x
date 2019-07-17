@@ -22,7 +22,7 @@ import org.springframework.util.StringUtils;
  * project: requiring version 0.9+, with 1.1+ strongly recommended.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @author Craig Andrews
  * @author Sam Brannen
  * @since 3.2

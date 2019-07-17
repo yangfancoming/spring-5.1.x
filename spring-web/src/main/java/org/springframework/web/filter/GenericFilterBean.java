@@ -58,7 +58,7 @@ import org.springframework.web.util.NestedServletException;
  * filter's {@link #getServletContext() ServletContext} (see
  * {@link org.springframework.web.context.support.WebApplicationContextUtils}).
  *
- * @author Juergen Hoeller
+
  * @since 06.12.2003
  * @see #addRequiredProperty
  * @see #initFilterBean

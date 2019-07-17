@@ -57,7 +57,7 @@ import org.springframework.util.concurrent.ListenableFutureTask;
  * Spring {@link org.springframework.core.task.TaskExecutor}, simply wrap it with a
  * {@link org.springframework.scheduling.concurrent.ConcurrentTaskExecutor} adapter.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see org.springframework.core.task.TaskExecutor
  * @see java.util.concurrent.ThreadPoolExecutor

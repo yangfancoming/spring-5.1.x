@@ -9,7 +9,7 @@ import org.springframework.util.Assert;
  * constructor argument.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public class ConstructorArgumentEntry implements ParseState.Entry {

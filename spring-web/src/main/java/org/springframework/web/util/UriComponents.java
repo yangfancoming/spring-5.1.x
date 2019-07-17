@@ -25,7 +25,7 @@ import org.springframework.util.MultiValueMap;
  * URI template variables.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @author Rossen Stoyanchev
  * @since 3.1
  * @see UriComponentsBuilder

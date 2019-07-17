@@ -17,7 +17,7 @@ import org.springframework.util.Assert;
  * Netty {@link ByteBufAllocator}.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 5.0
  * @see io.netty.buffer.PooledByteBufAllocator
  * @see io.netty.buffer.UnpooledByteBufAllocator

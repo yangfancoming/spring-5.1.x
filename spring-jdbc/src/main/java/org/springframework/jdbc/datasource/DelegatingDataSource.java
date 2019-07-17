@@ -20,7 +20,7 @@ import org.springframework.util.Assert;
  * those methods (such as {@link #getConnection()}) that should not simply
  * delegate to the target DataSource.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see #getConnection
  */

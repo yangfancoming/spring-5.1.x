@@ -14,7 +14,7 @@ import org.springframework.web.context.WebApplicationContext;
  * the control of the Spring application context in this case, allowing
  * for the use of scoped beans etc.
  *
- * @author Juergen Hoeller
+
  * @since 3.2
  * @see SimpleSpringPreparerFactory
  */

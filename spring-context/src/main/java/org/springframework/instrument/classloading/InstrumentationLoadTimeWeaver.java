@@ -29,7 +29,7 @@ import org.springframework.util.ClassUtils;
  * <p><code class="code">-javaagent:${project_loc}/lib/org.springframework.instrument.jar</code>
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see InstrumentationSavingAgent
  */

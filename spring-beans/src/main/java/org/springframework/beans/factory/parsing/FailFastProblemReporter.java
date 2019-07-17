@@ -18,7 +18,7 @@ import org.springframework.lang.Nullable;
  * {@link #setLogger(org.apache.commons.logging.Log) the log} for this class.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Rick Evans
  * @since 2.0
  */

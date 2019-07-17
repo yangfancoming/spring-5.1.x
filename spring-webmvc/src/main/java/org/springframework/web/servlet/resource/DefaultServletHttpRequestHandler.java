@@ -33,7 +33,7 @@ import org.springframework.web.context.ServletContextAware;
  * via server configuration, the  {@code defaultServletName} will need to be set explicitly.
  *
  * @author Jeremy Grelle
- * @author Juergen Hoeller
+
  * @since 3.0.4
  */
 public class DefaultServletHttpRequestHandler implements HttpRequestHandler, ServletContextAware {

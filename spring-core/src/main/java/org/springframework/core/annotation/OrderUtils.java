@@ -14,7 +14,7 @@ import org.springframework.util.ConcurrentReferenceHashMap;
  * Handles Spring's {@link Order} annotation as well as {@link javax.annotation.Priority}.
  *
  * @author Stephane Nicoll
- * @author Juergen Hoeller
+
  * @since 4.1
  * @see Order
  * @see javax.annotation.Priority

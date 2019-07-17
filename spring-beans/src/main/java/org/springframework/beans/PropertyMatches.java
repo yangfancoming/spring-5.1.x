@@ -20,7 +20,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Alef Arendsen
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @author Stephane Nicoll
  * @since 2.0
  * @see #forProperty(String, Class)

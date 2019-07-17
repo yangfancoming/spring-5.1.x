@@ -10,8 +10,7 @@ import org.springframework.context.annotation.componentscan.simple.SimpleCompone
 
 /**
  * Tests covering overlapping use of @ComponentScan and @Import annotations.
- *
- * @author Chris Beams
+
  * @since 3.1
  */
 public class ComponentScanAndImportAnnotationInteractionTests {

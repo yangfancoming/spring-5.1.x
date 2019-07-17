@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
  * Abstract base class for JDBC {@link javax.sql.DataSource} implementations
  * that operate on a JDBC {@link java.sql.Driver}.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.5
  * @see SimpleDriverDataSource
  * @see DriverManagerDataSource

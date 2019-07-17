@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Phillip Webb
- * @author Juergen Hoeller
+
  */
 public class BeanMethodMetadataTests {
 

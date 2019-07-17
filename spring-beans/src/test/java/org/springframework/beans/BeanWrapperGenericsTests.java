@@ -28,8 +28,8 @@ import org.springframework.tests.sample.beans.TestBean;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 18.01.2006
  */
 public class BeanWrapperGenericsTests {

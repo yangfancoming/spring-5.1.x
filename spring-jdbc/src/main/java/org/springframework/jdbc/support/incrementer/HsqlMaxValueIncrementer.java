@@ -28,7 +28,7 @@ import javax.sql.DataSource;
  *
  * @author Jean-Pierre Pawlak
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @see HsqlSequenceMaxValueIncrementer
  */
 public class HsqlMaxValueIncrementer extends AbstractIdentityColumnMaxValueIncrementer {

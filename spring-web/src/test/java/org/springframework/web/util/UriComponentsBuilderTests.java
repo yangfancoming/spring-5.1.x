@@ -28,7 +28,7 @@ import static org.junit.Assert.*;
  * @author Rossen Stoyanchev
  * @author Phillip Webb
  * @author Oliver Gierke
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @author David Eckel
  */

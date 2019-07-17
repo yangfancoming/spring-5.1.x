@@ -8,7 +8,7 @@ import javax.naming.NamingException;
  * Exception thrown if a type mismatch is encountered for an object
  * located in a JNDI environment. Thrown by JndiTemplate.
  *
- * @author Juergen Hoeller
+
  * @since 1.2.8
  * @see JndiTemplate#lookup(String, Class)
  */

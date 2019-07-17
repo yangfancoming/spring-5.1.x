@@ -40,7 +40,7 @@ import org.springframework.jdbc.support.JdbcUtils;
  *
  * @author Jean-Pierre Pawlak
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  */
 public class MySQLMaxValueIncrementer extends AbstractColumnMaxValueIncrementer {
 

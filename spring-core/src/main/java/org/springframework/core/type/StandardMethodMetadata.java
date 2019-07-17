@@ -15,9 +15,9 @@ import org.springframework.util.MultiValueMap;
  * {@link MethodMetadata} implementation that uses standard reflection
  * to introspect a given {@code Method}.
  *
- * @author Juergen Hoeller
+
  * @author Mark Pollack
- * @author Chris Beams
+
  * @author Phillip Webb
  * @since 3.0
  */

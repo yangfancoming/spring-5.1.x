@@ -40,7 +40,7 @@ import org.springframework.util.ErrorHandler;
  * This is a convenient alternative to a raw ScheduledThreadPoolExecutor definition with
  * a separate definition of the present adapter class.
  *
- * @author Juergen Hoeller
+
  * @author Mark Fisher
  * @since 3.0
  * @see java.util.concurrent.ScheduledExecutorService

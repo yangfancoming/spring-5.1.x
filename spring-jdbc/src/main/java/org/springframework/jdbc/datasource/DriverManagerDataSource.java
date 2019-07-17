@@ -45,7 +45,7 @@ import org.springframework.util.ClassUtils;
  * connection pool beans, supporting the same basic properties as this class
  * plus specific settings (such as minimal/maximal pool size etc).
  *
- * @author Juergen Hoeller
+
  * @since 14.03.2003
  * @see SimpleDriverDataSource
  */

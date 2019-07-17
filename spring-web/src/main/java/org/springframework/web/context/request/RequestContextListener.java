@@ -21,7 +21,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
  * <p>This listener is mainly for use with third-party servlets, e.g. the JSF FacesServlet.
  * Within Spring's own web support, DispatcherServlet's processing is perfectly sufficient.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see javax.servlet.ServletRequestListener
  * @see org.springframework.context.i18n.LocaleContextHolder

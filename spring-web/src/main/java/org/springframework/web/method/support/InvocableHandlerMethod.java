@@ -24,7 +24,7 @@ import org.springframework.web.method.HandlerMethod;
  * {@link HandlerMethodArgumentResolver}.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 3.1
  */
 public class InvocableHandlerMethod extends HandlerMethod {

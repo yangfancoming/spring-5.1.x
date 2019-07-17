@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Colin Sampaleanu
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @since 21.11.2003
  */

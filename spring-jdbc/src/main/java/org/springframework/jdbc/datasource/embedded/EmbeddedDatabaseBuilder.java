@@ -30,7 +30,7 @@ import org.springframework.util.Assert;
  * </pre>
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @author Dave Syer
  * @author Sam Brannen
  * @since 3.0

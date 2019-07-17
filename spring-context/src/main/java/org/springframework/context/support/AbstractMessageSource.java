@@ -41,7 +41,7 @@ import org.springframework.util.ObjectUtils;
  * encouraged to cache their messages in a modification-aware fashion,
  * allowing for hot deployment of updated messages.
  *
- * @author Juergen Hoeller
+
  * @author Rod Johnson
  * @see #resolveCode(String, java.util.Locale)
  * @see #resolveCodeWithoutArguments(String, java.util.Locale)

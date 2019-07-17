@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * <p>For full introspection of generic event types, consider implementing
  * the {@link GenericApplicationListener} interface instead.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see GenericApplicationListener
  * @see GenericApplicationListenerAdapter

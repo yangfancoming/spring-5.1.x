@@ -17,7 +17,7 @@ import org.springframework.util.StringUtils;
  * Exception thrown when a request handler does not support a
  * specific request method.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 @SuppressWarnings("serial")

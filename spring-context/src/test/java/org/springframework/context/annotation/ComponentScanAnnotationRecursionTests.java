@@ -15,8 +15,7 @@ import static org.junit.Assert.*;
 /**
  * Tests ensuring that configuration classes marked with @ComponentScan
  * may be processed recursively
- *
- * @author Chris Beams
+
  * @since 3.1
  */
 public class ComponentScanAnnotationRecursionTests {

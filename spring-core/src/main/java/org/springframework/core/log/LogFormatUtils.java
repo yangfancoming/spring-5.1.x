@@ -16,7 +16,7 @@ import org.springframework.lang.Nullable;
  * with other Commons Logging bridges.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 5.1
  */
 public abstract class LogFormatUtils {

@@ -13,8 +13,7 @@ import org.springframework.util.Assert;
 /**
  * Read-only EL property accessor that knows how to retrieve keys
  * of a Spring {@link Environment} instance.
- *
- * @author Chris Beams
+
  * @since 3.1
  */
 public class EnvironmentAccessor implements PropertyAccessor {

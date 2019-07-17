@@ -34,7 +34,7 @@ import org.springframework.util.ReflectionUtils;
  * {@link PropertyAccessorFactory#forBeanPropertyAccess} factory method instead.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @author Stephane Nicoll
  * @since 15 April 2001

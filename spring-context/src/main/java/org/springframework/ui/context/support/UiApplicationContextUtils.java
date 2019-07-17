@@ -15,7 +15,7 @@ import org.springframework.ui.context.ThemeSource;
  * of type {@link org.springframework.ui.context.ThemeSource}.
  *
  * @author Jean-Pierre Pawlak
- * @author Juergen Hoeller
+
  * @since 17.06.2003
  */
 public abstract class UiApplicationContextUtils {

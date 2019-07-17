@@ -38,7 +38,7 @@ import org.springframework.util.concurrent.ListenableFuture;
  * This is a convenient alternative to a raw ThreadPoolExecutor definition with
  * a separate definition of the present adapter class.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see java.util.concurrent.Executor
  * @see java.util.concurrent.ExecutorService

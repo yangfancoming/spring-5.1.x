@@ -4,7 +4,7 @@ package org.springframework.jmx;
 
 /**
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  */
 public interface IJmxTestBean {
 

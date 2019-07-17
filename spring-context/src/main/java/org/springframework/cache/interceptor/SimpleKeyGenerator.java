@@ -15,7 +15,7 @@ import java.lang.reflect.Method;
  * implementations.
  *
  * @author Phillip Webb
- * @author Juergen Hoeller
+
  * @since 4.0
  * @see SimpleKey
  * @see org.springframework.cache.annotation.CachingConfigurer

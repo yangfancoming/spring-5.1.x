@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
  * Utility methods that are useful for bean definition reader implementations.
  * Mainly intended for internal use.
  *
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @since 1.1
  * @see PropertiesBeanDefinitionReader

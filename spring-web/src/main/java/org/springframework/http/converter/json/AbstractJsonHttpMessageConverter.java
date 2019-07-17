@@ -27,7 +27,7 @@ import org.springframework.lang.Nullable;
  * <p>Note that the Jackson converters have a dedicated class hierarchy
  * due to their multi-format support.
  *
- * @author Juergen Hoeller
+
  * @since 5.0
  * @see GsonHttpMessageConverter
  * @see JsonbHttpMessageConverter

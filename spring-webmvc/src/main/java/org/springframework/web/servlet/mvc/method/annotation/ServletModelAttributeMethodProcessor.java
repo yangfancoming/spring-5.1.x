@@ -31,7 +31,7 @@ import org.springframework.web.servlet.HandlerMapping;
  * model attribute name and there is an appropriate type conversion strategy.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 3.1
  */
 public class ServletModelAttributeMethodProcessor extends ModelAttributeMethodProcessor {

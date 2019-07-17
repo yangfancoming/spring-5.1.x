@@ -9,7 +9,7 @@ import org.springframework.lang.Nullable;
  * can resolve theme messages hierarchically.
  *
  * @author Jean-Pierre Pawlak
- * @author Juergen Hoeller
+
  */
 public interface HierarchicalThemeSource extends ThemeSource {
 

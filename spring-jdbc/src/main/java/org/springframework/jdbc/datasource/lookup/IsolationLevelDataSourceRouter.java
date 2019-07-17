@@ -66,7 +66,7 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
  *   &lt;property name="allowCustomIsolationLevels" value="true"/&gt;
  * &lt;/bean&gt;</pre>
  *
- * @author Juergen Hoeller
+
  * @since 2.0.1
  * @see #setTargetDataSources
  * @see #setDefaultTargetDataSource

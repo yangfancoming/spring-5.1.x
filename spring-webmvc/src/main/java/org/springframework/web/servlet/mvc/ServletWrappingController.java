@@ -64,7 +64,7 @@ import org.springframework.web.servlet.ModelAndView;
  *   &lt;/property&gt;
  * &lt;/bean&gt;</pre>
  *
- * @author Juergen Hoeller
+
  * @since 1.1.1
  * @see ServletForwardingController
  */

@@ -30,7 +30,7 @@ import org.springframework.jdbc.support.KeyHolder;
  *
  * @author Rod Johnson
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @see SqlQuery
  */
 public class SqlUpdate extends SqlOperation {

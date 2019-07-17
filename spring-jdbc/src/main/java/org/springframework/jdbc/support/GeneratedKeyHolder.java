@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
  * {@link org.springframework.jdbc.object.SqlUpdate} methods.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 1.1
  */
 public class GeneratedKeyHolder implements KeyHolder {

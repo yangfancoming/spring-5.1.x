@@ -30,7 +30,7 @@ import org.springframework.util.CollectionUtils;
  * build an {@code ObjectName}.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see #setMappings
  * @see #setMappingLocation

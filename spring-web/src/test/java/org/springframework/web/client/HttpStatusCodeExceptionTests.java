@@ -18,8 +18,7 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link HttpStatusCodeException} and subclasses.
- *
- * @author Chris Beams
+
  */
 public class HttpStatusCodeExceptionTests {
 

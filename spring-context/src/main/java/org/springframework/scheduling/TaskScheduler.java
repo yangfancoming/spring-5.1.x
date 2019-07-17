@@ -27,7 +27,7 @@ import org.springframework.lang.Nullable;
  * {@code ManagedScheduledExecutorService} as supported in Java EE 7
  * environments but aligned with Spring's {@code TaskExecutor} model.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see org.springframework.core.task.TaskExecutor
  * @see java.util.concurrent.ScheduledExecutorService

@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  */
 public class QualifierAnnotationAutowireBeanFactoryTests {
 

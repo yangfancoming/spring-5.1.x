@@ -34,7 +34,7 @@ import org.springframework.lang.Nullable;
  * delimited strings, such as CSV strings, and collections and arrays.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Keith Donald
  * @author Rob Harrop
  * @author Rick Evans

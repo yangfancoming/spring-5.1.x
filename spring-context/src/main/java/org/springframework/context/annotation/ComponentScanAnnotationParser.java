@@ -30,9 +30,8 @@ import org.springframework.util.StringUtils;
 
 /**
  * Parser for the @{@link ComponentScan} annotation.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @author Sam Brannen
  * @since 3.1
  * @see ClassPathBeanDefinitionScanner#scan(String...)

@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
  * physical form, but a URL or File handle can just be returned for
  * certain resources. The actual behavior is implementation-specific.
  *
- * @author Juergen Hoeller
+
  * @since 28.12.2003
  * @see #getInputStream()
  * @see #getURL()

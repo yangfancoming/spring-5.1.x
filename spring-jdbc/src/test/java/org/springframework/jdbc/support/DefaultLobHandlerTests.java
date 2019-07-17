@@ -20,7 +20,7 @@ import org.springframework.jdbc.support.lob.LobHandler;
 import static org.mockito.BDDMockito.*;
 
 /**
- * @author Juergen Hoeller
+
  * @since 17.12.2003
  */
 public class DefaultLobHandlerTests {

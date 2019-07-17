@@ -26,7 +26,7 @@ import org.springframework.web.context.request.NativeWebRequest;
  * {@code MediaTypeFileExtensionResolver} instances.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 3.2
  */
 public class ContentNegotiationManager implements ContentNegotiationStrategy, MediaTypeFileExtensionResolver {

@@ -29,7 +29,7 @@ import org.springframework.web.servlet.support.RequestContext;
  * will use fallbacks when used outside {@code DispatcherServlet}.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see org.springframework.web.servlet.support.RequestContext
  * @see org.springframework.web.servlet.DispatcherServlet
  */

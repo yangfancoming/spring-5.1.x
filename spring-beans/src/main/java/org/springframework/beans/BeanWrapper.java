@@ -23,7 +23,7 @@ import java.beans.PropertyDescriptor;
  * Turn this to "true" to expose present property values to custom editors.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 13 April 2001
  * @see PropertyAccessor
  * @see PropertyEditorRegistry

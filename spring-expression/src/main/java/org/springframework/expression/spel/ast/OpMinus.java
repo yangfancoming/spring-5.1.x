@@ -27,7 +27,7 @@ import org.springframework.util.NumberUtils;
  * For other options it defers to the registered overloader.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @author Giovanni Dall'Oglio Risso
  * @since 3.0
  */

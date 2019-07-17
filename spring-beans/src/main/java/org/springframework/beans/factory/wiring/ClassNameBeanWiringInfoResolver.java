@@ -12,7 +12,7 @@ import org.springframework.util.ClassUtils;
  * bean tag's "id" attribute is not used.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public class ClassNameBeanWiringInfoResolver implements BeanWiringInfoResolver {

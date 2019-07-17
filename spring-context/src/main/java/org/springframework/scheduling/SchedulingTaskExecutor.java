@@ -19,7 +19,7 @@ import org.springframework.core.task.AsyncTaskExecutor;
  * which would make it impossible for third-party executor implementations
  * to remain compatible with both Spring 4.0 and Spring 3.x.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see SchedulingAwareRunnable
  * @see org.springframework.core.task.TaskExecutor

@@ -87,7 +87,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Rob Harrop
  * @author Rick Evans
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see Conventions#attributeNameToPropertyName(String)
  */

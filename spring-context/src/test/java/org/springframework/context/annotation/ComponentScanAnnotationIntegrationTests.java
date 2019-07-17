@@ -54,9 +54,8 @@ import static org.springframework.beans.factory.support.BeanDefinitionBuilder.*;
 
 /**
  * Integration tests for processing ComponentScan-annotated Configuration classes.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @author Sam Brannen
  * @since 3.1
  */

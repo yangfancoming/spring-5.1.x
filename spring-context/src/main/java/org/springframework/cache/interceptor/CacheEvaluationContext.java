@@ -25,7 +25,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Costin Leau
  * @author Stephane Nicoll
- * @author Juergen Hoeller
+
  * @since 3.1
  */
 class CacheEvaluationContext extends MethodBasedEvaluationContext {

@@ -20,7 +20,7 @@ import org.springframework.web.util.WebUtils;
  * values that should be ignored for binding.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see org.springframework.web.util.WebUtils#getParametersStartingWith
  */
 @SuppressWarnings("serial")

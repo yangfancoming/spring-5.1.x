@@ -26,7 +26,7 @@ import static org.junit.Assume.*;
 
 /**
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  */
 public class ResourceBundleViewResolverTests {

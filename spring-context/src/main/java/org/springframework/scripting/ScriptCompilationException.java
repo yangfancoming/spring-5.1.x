@@ -8,7 +8,7 @@ import org.springframework.lang.Nullable;
 /**
  * Exception to be thrown on script compilation failure.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 @SuppressWarnings("serial")

@@ -7,7 +7,7 @@ package org.springframework.beans;
  * in particular for {@link BeanWrapper} instances. Conceals the actual
  * target implementation classes and their extended public signature.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.2
  */
 public final class PropertyAccessorFactory {

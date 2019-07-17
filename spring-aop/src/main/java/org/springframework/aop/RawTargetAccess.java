@@ -14,7 +14,7 @@ package org.springframework.aop;
  * as the primary interface of an AOP proxy), and hence does not affect
  * other interfaces that a concrete AOP proxy may implement.
  *
- * @author Juergen Hoeller
+
  * @since 2.0.5
  * @see org.springframework.aop.scope.ScopedObject
  */

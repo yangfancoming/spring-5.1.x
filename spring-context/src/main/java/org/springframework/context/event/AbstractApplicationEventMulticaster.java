@@ -39,7 +39,7 @@ import org.springframework.util.ObjectUtils;
  * all events to all registered listeners, invoking them in the calling thread.
  * Alternative implementations could be more sophisticated in those respects.
  *
- * @author Juergen Hoeller
+
  * @author Stephane Nicoll
  * @since 1.2.3
  * @see #getApplicationListeners(ApplicationEvent, ResolvableType)

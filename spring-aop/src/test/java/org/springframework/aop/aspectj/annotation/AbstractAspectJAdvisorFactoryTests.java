@@ -52,7 +52,7 @@ import static org.junit.Assert.*;
  * See subclasses for tests of concrete factories.
  *
  * @author Rod Johnson
- * @author Chris Beams
+
  * @author Phillip Webb
  */
 public abstract class AbstractAspectJAdvisorFactoryTests {

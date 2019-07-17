@@ -13,8 +13,8 @@ import static org.junit.Assert.*;
 
 /**
  * @author Thomas Risberg
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  */
 public class FileEditorTests {
 

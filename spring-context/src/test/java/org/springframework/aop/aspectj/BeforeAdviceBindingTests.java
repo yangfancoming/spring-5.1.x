@@ -20,7 +20,7 @@ import static org.mockito.BDDMockito.*;
  *
  * @author Adrian Colyer
  * @author Rod Johnson
- * @author Chris Beams
+
  */
 public class BeforeAdviceBindingTests {
 

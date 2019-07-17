@@ -21,7 +21,7 @@ import org.springframework.beans.factory.xml.ParserContext;
  * context package).
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 class SpringConfiguredBeanDefinitionParser implements BeanDefinitionParser {

@@ -28,7 +28,7 @@ import org.springframework.lang.Nullable;
  * the default JNDI name "java:comp/DefaultManagedThreadFactory" can be customized
  * through the {@link #setJndiName "jndiName"} bean property.
  *
- * @author Juergen Hoeller
+
  * @since 4.0
  */
 @SuppressWarnings("serial")

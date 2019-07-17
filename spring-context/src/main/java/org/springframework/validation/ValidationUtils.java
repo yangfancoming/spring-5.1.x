@@ -17,7 +17,7 @@ import org.springframework.util.StringUtils;
  * <p>Checks for an empty field in {@code Validator} implementations can become
  * one-liners when using {@link #rejectIfEmpty} or {@link #rejectIfEmptyOrWhitespace}.
  *
- * @author Juergen Hoeller
+
  * @author Dmitriy Kopylenko
  * @since 06.05.2003
  * @see Validator

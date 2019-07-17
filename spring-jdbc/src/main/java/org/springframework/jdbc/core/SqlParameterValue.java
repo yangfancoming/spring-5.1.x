@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * template guess a default type. Note that this only applies to the operations with
  * a 'plain' argument array, not to the overloaded variants with an explicit type array.
  *
- * @author Juergen Hoeller
+
  * @since 2.0.5
  * @see java.sql.Types
  * @see JdbcTemplate#query(String, Object[], ResultSetExtractor)

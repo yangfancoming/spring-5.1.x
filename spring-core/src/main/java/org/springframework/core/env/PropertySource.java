@@ -33,8 +33,7 @@ import org.springframework.util.ObjectUtils;
  * the @{@link org.springframework.context.annotation.PropertySource PropertySource}
  * annotation provides a convenient and declarative way of adding property sources to the
  * enclosing {@code Environment}.
- *
- * @author Chris Beams
+
  * @since 3.1
  * @param <T> the source type
  * @see PropertySources

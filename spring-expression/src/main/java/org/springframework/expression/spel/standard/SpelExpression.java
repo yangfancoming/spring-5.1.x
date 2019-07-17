@@ -27,7 +27,7 @@ import org.springframework.util.Assert;
  * references to types, beans, properties, and methods.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class SpelExpression implements Expression {

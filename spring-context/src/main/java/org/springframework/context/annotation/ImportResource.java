@@ -27,9 +27,8 @@ import org.springframework.core.annotation.AliasFor;
  * will be used to parse Spring {@code <beans/>} XML files. Optionally, the {@link #reader}
  * attribute may be declared, allowing the user to choose a custom {@link BeanDefinitionReader}
  * implementation.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @author Sam Brannen
  * @since 3.0
  * @see Configuration

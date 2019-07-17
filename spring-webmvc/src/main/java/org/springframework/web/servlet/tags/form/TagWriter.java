@@ -19,7 +19,7 @@ import org.springframework.util.StringUtils;
  * <p>Intended to support output from JSP tag libraries.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public class TagWriter {

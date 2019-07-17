@@ -14,7 +14,7 @@ import static org.springframework.tests.TestResourceUtils.*;
 
 /**
  * @author Mark Fisher
- * @author Chris Beams
+
  */
 public class AopNamespaceHandlerPointcutErrorTests {
 

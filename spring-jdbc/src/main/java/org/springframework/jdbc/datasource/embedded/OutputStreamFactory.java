@@ -9,7 +9,7 @@ import java.io.OutputStream;
  * Internal helper for exposing dummy OutputStreams to embedded databases
  * such as Derby, preventing the creation of a log file.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public final class OutputStreamFactory {

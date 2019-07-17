@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * source level, or elsewhere.
  *
  * @author Costin Leau
- * @author Juergen Hoeller
+
  * @since 3.1
  */
 public interface CacheOperationSource {

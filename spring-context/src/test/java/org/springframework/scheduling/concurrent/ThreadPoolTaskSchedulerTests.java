@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class ThreadPoolTaskSchedulerTests extends AbstractSchedulingTaskExecutorTests {

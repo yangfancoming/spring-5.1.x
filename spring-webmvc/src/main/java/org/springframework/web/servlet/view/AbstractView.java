@@ -41,7 +41,7 @@ import org.springframework.web.servlet.support.RequestContext;
  * some views. Subclasses just need to implement the actual rendering.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see #setAttributes
  * @see #setAttributesMap
  * @see #renderMergedOutputModel

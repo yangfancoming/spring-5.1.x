@@ -9,7 +9,7 @@ import org.springframework.util.StringUtils;
  * {@link ParseState} entry representing an aspect.
  *
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public class AspectEntry implements ParseState.Entry {

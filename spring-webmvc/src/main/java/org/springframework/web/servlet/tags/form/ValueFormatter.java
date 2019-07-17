@@ -20,7 +20,7 @@ import org.springframework.web.util.HtmlUtils;
  * default rules of plain formatting.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 abstract class ValueFormatter {

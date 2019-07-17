@@ -21,7 +21,7 @@ import org.springframework.util.FileCopyUtils;
  * session-level or persistent store as and if desired. The temporary storage
  * will be cleared at the end of request processing.
  *
- * @author Juergen Hoeller
+
  * @author Trevor D. Cook
  * @since 29.09.2003
  * @see org.springframework.web.multipart.MultipartHttpServletRequest

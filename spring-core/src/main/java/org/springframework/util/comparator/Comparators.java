@@ -8,7 +8,7 @@ import java.util.Comparator;
  * Convenient entry point with generically typed factory methods
  * for common Spring {@link Comparator} variants.
  *
- * @author Juergen Hoeller
+
  * @since 5.0
  */
 public abstract class Comparators {

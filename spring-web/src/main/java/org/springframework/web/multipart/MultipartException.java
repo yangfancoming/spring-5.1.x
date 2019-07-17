@@ -9,7 +9,7 @@ import org.springframework.lang.Nullable;
  * Exception thrown when multipart resolution fails.
  *
  * @author Trevor D. Cook
- * @author Juergen Hoeller
+
  * @since 29.09.2003
  * @see MultipartResolver#resolveMultipart
  * @see org.springframework.web.multipart.support.MultipartFilter

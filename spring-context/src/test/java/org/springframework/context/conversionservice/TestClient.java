@@ -24,7 +24,7 @@ import org.springframework.core.io.Resource;
 
 /**
  * @author Keith Donald
- * @author Juergen Hoeller
+
  */
 public class TestClient {
 

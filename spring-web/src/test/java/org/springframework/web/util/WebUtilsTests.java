@@ -23,7 +23,7 @@ import org.springframework.web.filter.ForwardedHeaderFilter;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
+
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze

@@ -70,7 +70,7 @@ import org.springframework.util.StringUtils;
  * <p><b>NOTE: An instance of this class is thread-safe once configured.</b>
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Thomas Risberg
  * @since May 3, 2001
  * @see PreparedStatementCreator

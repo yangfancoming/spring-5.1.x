@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
  * Tests for {@link NullSafeComparator}.
  *
  * @author Keith Donald
- * @author Chris Beams
+
  * @author Phillip Webb
  */
 public class NullSafeComparatorTests {

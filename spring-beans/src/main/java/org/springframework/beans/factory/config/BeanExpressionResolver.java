@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * {@link org.springframework.context.ApplicationContext} implementations
  * will provide expression support out of the box.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public interface BeanExpressionResolver {

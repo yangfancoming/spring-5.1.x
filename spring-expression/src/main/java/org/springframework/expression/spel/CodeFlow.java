@@ -22,7 +22,7 @@ import org.springframework.util.CollectionUtils;
  * Also includes various bytecode generation helper functions.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @since 4.1
  */
 public class CodeFlow implements Opcodes {

@@ -32,7 +32,7 @@ import org.springframework.lang.Nullable;
  * Map out = execute(in);
  * </pre>
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see java.sql.PreparedStatement#setObject(int, Object, int)
  * @see org.springframework.jdbc.object.StoredProcedure

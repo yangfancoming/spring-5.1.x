@@ -37,7 +37,7 @@ import org.springframework.util.StringUtils;
  *
  * <pre class="code">&lt;util:constant static-field="java.sql.Connection.TRANSACTION_SERIALIZABLE"/&gt;</pre>
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see #setStaticField
  */

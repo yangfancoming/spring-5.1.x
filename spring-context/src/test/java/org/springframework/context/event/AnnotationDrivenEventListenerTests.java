@@ -57,7 +57,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Stephane Nicoll
- * @author Juergen Hoeller
+
  */
 public class AnnotationDrivenEventListenerTests {
 

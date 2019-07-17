@@ -34,7 +34,7 @@ import org.springframework.lang.Nullable;
  * the containing BeanFactory), with any number of threads accessing
  * the {@code Scope} concurrently from any number of factories.
  *
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @since 2.0
  * @see ConfigurableBeanFactory#registerScope

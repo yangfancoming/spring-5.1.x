@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
  *
  * <p>Allows one to specify the charset to use.
  *
- * @author Juergen Hoeller
+
  * @since 13.10.2003
  */
 public class StringMultipartFileEditor extends PropertyEditorSupport {

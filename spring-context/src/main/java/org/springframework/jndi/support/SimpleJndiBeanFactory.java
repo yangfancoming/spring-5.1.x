@@ -41,7 +41,7 @@ import org.springframework.lang.Nullable;
  * It may be used for similar lookup scenarios as well, of course,
  * in particular if BeanFactory-style type checking is required.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see org.springframework.beans.factory.support.DefaultListableBeanFactory
  * @see org.springframework.context.annotation.CommonAnnotationBeanPostProcessor

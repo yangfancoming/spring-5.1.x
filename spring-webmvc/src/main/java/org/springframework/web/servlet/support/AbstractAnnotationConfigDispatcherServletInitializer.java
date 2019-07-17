@@ -24,7 +24,7 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
  * {@code null} from {@link #getServletConfigClasses()}.
  *
  * @author Arjen Poutsma
- * @author Chris Beams
+
  * @since 3.2
  */
 public abstract class AbstractAnnotationConfigDispatcherServletInitializer

@@ -26,7 +26,7 @@ import org.springframework.util.Assert;
  * to expectations following the order of declaration or not.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 4.3
  */
 public abstract class AbstractRequestExpectationManager implements RequestExpectationManager {

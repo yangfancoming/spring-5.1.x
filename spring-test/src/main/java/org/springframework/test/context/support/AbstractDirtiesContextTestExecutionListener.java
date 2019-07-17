@@ -27,7 +27,7 @@ import org.springframework.util.Assert;
  * {@link DirtiesContextTestExecutionListener} in Spring Framework 4.2.
  *
  * @author Sam Brannen
- * @author Juergen Hoeller
+
  * @since 4.2
  * @see DirtiesContext
  */

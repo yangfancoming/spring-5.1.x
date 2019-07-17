@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
  * Detects whether an XML stream is using DTD- or XSD-based validation.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public class XmlValidationModeDetector {

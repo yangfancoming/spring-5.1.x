@@ -40,7 +40,7 @@ import static org.mockito.BDDMockito.verify;
  * Doesn't test URL encoding, although it does check that it's called.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev

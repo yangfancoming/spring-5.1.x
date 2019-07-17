@@ -15,7 +15,7 @@ package org.springframework.core;
  *
  * <p>Further discoverers may be added through {@link #addDiscoverer(ParameterNameDiscoverer)}.
  *
- * @author Juergen Hoeller
+
  * @author Sebastien Deleuze
  * @since 4.0
  * @see StandardReflectionParameterNameDiscoverer

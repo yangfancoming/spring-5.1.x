@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
  * A representation of a scheduled task at runtime,
  * used as a return value for scheduling methods.
  *
- * @author Juergen Hoeller
+
  * @since 4.3
  * @see ScheduledTaskRegistrar#scheduleCronTask(CronTask)
  * @see ScheduledTaskRegistrar#scheduleFixedRateTask(FixedRateTask)

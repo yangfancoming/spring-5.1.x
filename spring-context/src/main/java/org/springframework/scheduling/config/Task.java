@@ -7,9 +7,8 @@ import org.springframework.util.Assert;
 /**
  * Holder class defining a {@code Runnable} to be executed as a task, typically at a
  * scheduled time or interval. See subclass hierarchy for various scheduling approaches.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.2
  */
 public class Task {

@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
  * level in a standard Spring XML bean definition document:
  * {@code default-lazy-init}, {@code default-autowire}, etc.
  *
- * @author Juergen Hoeller
+
  * @since 2.0.2
  */
 public class DocumentDefaultsDefinition implements DefaultsDefinition {

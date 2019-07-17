@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Rod Johnson
- * @author Chris Beams
+
  * @since 2.0
  */
 public class ResourceOverridingShadowingClassLoaderTests {

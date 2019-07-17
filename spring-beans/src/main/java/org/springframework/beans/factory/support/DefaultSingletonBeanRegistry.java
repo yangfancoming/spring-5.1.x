@@ -47,7 +47,7 @@ import org.springframework.util.StringUtils;
  * (which inherit from it). Can alternatively also be used as a nested
  * helper to delegate to.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see #registerSingleton
  * @see #registerDisposableBean

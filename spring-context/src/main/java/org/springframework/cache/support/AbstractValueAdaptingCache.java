@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * {@link NullValue#INSTANCE}, if configured to support {@code null} values
  * (as indicated by {@link #isAllowNullValues()}.
  *
- * @author Juergen Hoeller
+
  * @since 4.2.2
  */
 public abstract class AbstractValueAdaptingCache implements Cache {

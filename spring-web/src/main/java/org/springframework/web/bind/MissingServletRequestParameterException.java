@@ -5,7 +5,7 @@ package org.springframework.web.bind;
 /**
  * {@link ServletRequestBindingException} subclass that indicates a missing parameter.
  *
- * @author Juergen Hoeller
+
  * @since 2.0.2
  */
 @SuppressWarnings("serial")

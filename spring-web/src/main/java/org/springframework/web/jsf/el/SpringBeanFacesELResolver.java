@@ -49,7 +49,7 @@ import org.springframework.web.jsf.FacesContextUtils;
  *   ...
  * &lt;/bean></pre>
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see WebApplicationContextFacesELResolver
  * @see org.springframework.web.jsf.FacesContextUtils#getRequiredWebApplicationContext

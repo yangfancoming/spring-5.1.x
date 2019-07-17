@@ -10,7 +10,7 @@ import org.springframework.util.Assert;
  * Simple implementation of the {@link ConnectionHandle} interface,
  * containing a given JDBC Connection.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  */
 public class SimpleConnectionHandle implements ConnectionHandle {

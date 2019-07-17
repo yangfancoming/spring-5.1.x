@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  * message. See {@link SpelMessage} for the list of all possible messages that can occur.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 @SuppressWarnings("serial")

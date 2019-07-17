@@ -23,7 +23,7 @@ import static org.junit.Assert.*;
  * {@code -DtestGroups=jmxmp}.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  */
 public class MBeanServerConnectionFactoryBeanTests extends AbstractMBeanServerTests {

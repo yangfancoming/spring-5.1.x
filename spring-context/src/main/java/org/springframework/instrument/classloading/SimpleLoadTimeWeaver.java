@@ -16,7 +16,7 @@ import org.springframework.util.ClassUtils;
  * {@code ClassLoader} instance.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see #getInstrumentableClassLoader()
  * @see SimpleInstrumentableClassLoader

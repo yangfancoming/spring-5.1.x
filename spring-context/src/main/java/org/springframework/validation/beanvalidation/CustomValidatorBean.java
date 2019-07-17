@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
  * through its original interface as well as through the Spring
  * {@link org.springframework.validation.Validator} interface.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class CustomValidatorBean extends SpringValidatorAdapter implements Validator, InitializingBean {

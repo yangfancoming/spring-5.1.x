@@ -75,7 +75,7 @@ import org.springframework.web.util.WebUtils;
  * </table>
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Rossen Stoyanchev
  * @see WebContentInterceptor
  */

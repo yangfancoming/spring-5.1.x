@@ -33,7 +33,7 @@ import org.springframework.util.ObjectUtils;
  * all the time, avoiding excessive creation of physical Connections.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see #getConnection()
  * @see java.sql.Connection#close()
  * @see DataSourceUtils#releaseConnection

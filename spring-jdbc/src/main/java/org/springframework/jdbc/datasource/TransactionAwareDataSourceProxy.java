@@ -51,7 +51,7 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
  * implement the {@link ConnectionProxy} interface) in order to handle close calls
  * properly. Use {@link Connection#unwrap} to retrieve the native JDBC Connection.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see javax.sql.DataSource#getConnection()
  * @see java.sql.Connection#close()

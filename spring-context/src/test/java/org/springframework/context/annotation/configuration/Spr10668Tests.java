@@ -13,8 +13,7 @@ import static org.junit.Assert.*;
 
 /**
  * Tests for SPR-10668.
- *
- * @author Oliver Gierke
+
  * @author Phillip Webb
  */
 public class Spr10668Tests {

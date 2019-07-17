@@ -8,7 +8,7 @@ package org.springframework.web.servlet.view;
  * <p>Provides a convenient way to specify {@link AbstractTemplateView}'s exposure
  * flags for request attributes, session attributes, and Spring's macro helpers.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see AbstractTemplateView
  * @see org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver

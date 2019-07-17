@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
  * Auto-proxy creator that considers infrastructure Advisor beans only,
  * ignoring any application-defined Advisors.
  *
- * @author Juergen Hoeller
+
  * @since 2.0.7
  */
 @SuppressWarnings("serial")

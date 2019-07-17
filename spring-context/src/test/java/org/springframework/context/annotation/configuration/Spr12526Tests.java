@@ -16,7 +16,7 @@ import static org.springframework.beans.factory.config.BeanDefinition.*;
 
 /**
  * @author Marcin Piela
- * @author Juergen Hoeller
+
  */
 public class Spr12526Tests {
 

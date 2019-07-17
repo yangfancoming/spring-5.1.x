@@ -13,7 +13,7 @@ import org.springframework.util.Assert;
  * scoped-proxies.
  *
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see ScopeMetadataResolver
  * @see ScopedProxyMode

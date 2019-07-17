@@ -28,7 +28,7 @@ import org.springframework.web.servlet.view.AbstractUrlBasedView;
  *
  * <p>Thanks to Bryant Larsen for the suggestion and the original prototype!
  *
- * @author Juergen Hoeller
+
  * @since 2.5.4
  * @see AbstractPdfView
  */

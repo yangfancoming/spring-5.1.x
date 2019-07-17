@@ -44,7 +44,7 @@ import static org.springframework.core.annotation.AnnotationUtilsTests.*;
  *
  * @author Sam Brannen
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 4.0.3
  * @see AnnotationUtilsTests
  * @see MultipleComposedAnnotationsOnSingleAnnotatedElementTests

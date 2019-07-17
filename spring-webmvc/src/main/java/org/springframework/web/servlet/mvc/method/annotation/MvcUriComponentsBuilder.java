@@ -74,8 +74,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  * Consider using the {@code ForwardedHeaderFilter} in order to choose from a
  * central place whether to extract and use, or to discard such headers.
  * See the Spring Framework reference for more on this filter.
- *
- * @author Oliver Gierke
+
  * @author Rossen Stoyanchev
  * @author Sam Brannen
  * @since 4.0

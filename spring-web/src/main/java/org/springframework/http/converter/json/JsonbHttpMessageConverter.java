@@ -22,7 +22,7 @@ import org.springframework.util.Assert;
  * By default, it supports {@code application/json} and {@code application/*+json} with
  * {@code UTF-8} character set.
  *
- * @author Juergen Hoeller
+
  * @since 5.0
  * @see javax.json.bind.Jsonb
  * @see javax.json.bind.JsonbBuilder

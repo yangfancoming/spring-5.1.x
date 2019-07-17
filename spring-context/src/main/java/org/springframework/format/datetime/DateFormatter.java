@@ -22,7 +22,7 @@ import org.springframework.util.StringUtils;
  * Allows the configuration of an explicit date pattern and locale.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @author Phillip Webb
  * @since 3.0
  * @see SimpleDateFormat

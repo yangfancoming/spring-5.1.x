@@ -19,7 +19,7 @@ import org.springframework.lang.Nullable;
  * the {@link org.springframework.beans.factory.BeanFactory}.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 class AspectJAutoProxyBeanDefinitionParser implements BeanDefinitionParser {

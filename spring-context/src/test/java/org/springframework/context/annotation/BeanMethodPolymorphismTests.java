@@ -17,10 +17,6 @@ import static org.junit.Assert.*;
 /**
  * Tests regarding overloading and overriding of bean methods.
  * Related to SPR-6618.
- *
- * @author Chris Beams
- * @author Phillip Webb
- * @author Juergen Hoeller
  */
 @SuppressWarnings("resource")
 public class BeanMethodPolymorphismTests {

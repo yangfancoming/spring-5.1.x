@@ -23,10 +23,10 @@ import org.springframework.util.MultiValueMap;
  * exposing them through the {@link org.springframework.core.type.MethodMetadata}
  * interface.
  *
- * @author Juergen Hoeller
+
  * @author Mark Pollack
  * @author Costin Leau
- * @author Chris Beams
+
  * @author Phillip Webb
  * @since 3.0
  */

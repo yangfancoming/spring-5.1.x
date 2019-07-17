@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
  * with a {@link RowMapper}.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 3.0
  * @param <T> the result type
  * @see #setRowMapper

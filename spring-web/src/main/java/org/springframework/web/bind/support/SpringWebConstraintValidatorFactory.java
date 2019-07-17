@@ -18,7 +18,7 @@ import org.springframework.web.context.WebApplicationContext;
  * this variant is meant for declarative use in a standard {@code validation.xml} file,
  * e.g. in combination with JAX-RS or JAX-WS.
  *
- * @author Juergen Hoeller
+
  * @since 4.2.1
  * @see ContextLoader#getCurrentWebApplicationContext()
  * @see org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory

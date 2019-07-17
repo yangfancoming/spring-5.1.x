@@ -27,7 +27,7 @@ import static org.junit.Assert.*;
  * Gson 2.x converter tests.
  *
  * @author Roy Clarkson
- * @author Juergen Hoeller
+
  */
 public class GsonHttpMessageConverterTests {
 

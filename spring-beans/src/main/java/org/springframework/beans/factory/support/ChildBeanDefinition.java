@@ -25,7 +25,7 @@ import org.springframework.util.ObjectUtils;
  * supersedes the ChildBeanDefinition class for most use cases.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see GenericBeanDefinition
  * @see RootBeanDefinition
  */

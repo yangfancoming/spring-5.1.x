@@ -33,7 +33,7 @@ import org.springframework.util.Assert;
  * opting into several SpEL features as needed by specific evaluation cases.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @since 3.0
  * @see SimpleEvaluationContext

@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
  * using the union and intersection methods.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 public abstract class Pointcuts {
 

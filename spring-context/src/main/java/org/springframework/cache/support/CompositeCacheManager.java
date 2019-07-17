@@ -32,7 +32,7 @@ import org.springframework.lang.Nullable;
  * for a 'static' mode with fixed cache names, if available.
  *
  * @author Costin Leau
- * @author Juergen Hoeller
+
  * @since 3.1
  * @see #setFallbackToNoOpCache
  * @see org.springframework.cache.concurrent.ConcurrentMapCacheManager#setCacheNames

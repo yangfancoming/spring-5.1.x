@@ -57,7 +57,7 @@ import org.springframework.test.context.web.ServletTestExecutionListener;
  * </ul>
  *
  * @author Sam Brannen
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see ContextConfiguration
  * @see TestContext

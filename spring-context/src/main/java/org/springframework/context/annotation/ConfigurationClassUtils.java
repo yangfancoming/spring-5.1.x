@@ -26,9 +26,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * Utilities for identifying {@link Configuration} classes.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.1
  */
 abstract class ConfigurationClassUtils {

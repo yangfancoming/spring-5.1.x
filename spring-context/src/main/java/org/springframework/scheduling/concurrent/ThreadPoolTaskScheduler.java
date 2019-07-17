@@ -33,7 +33,7 @@ import org.springframework.util.concurrent.ListenableFutureTask;
  * Implementation of Spring's {@link TaskScheduler} interface, wrapping
  * a native {@link java.util.concurrent.ScheduledThreadPoolExecutor}.
  *
- * @author Juergen Hoeller
+
  * @author Mark Fisher
  * @since 3.0
  * @see #setPoolSize

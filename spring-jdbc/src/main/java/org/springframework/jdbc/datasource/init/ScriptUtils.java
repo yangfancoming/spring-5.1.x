@@ -27,10 +27,10 @@ import org.springframework.util.StringUtils;
  *
  * @author Thomas Risberg
  * @author Sam Brannen
- * @author Juergen Hoeller
+
  * @author Keith Donald
  * @author Dave Syer
- * @author Chris Beams
+
  * @author Oliver Gierke
  * @author Chris Baldwin
  * @author Nicolas Debeissat

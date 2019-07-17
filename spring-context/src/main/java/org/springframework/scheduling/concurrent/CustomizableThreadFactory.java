@@ -13,7 +13,7 @@ import org.springframework.util.CustomizableThreadCreator;
  * <p>See the base class {@link org.springframework.util.CustomizableThreadCreator}
  * for details on the available configuration options.
  *
- * @author Juergen Hoeller
+
  * @since 2.0.3
  * @see #setThreadNamePrefix
  * @see #setThreadPriority

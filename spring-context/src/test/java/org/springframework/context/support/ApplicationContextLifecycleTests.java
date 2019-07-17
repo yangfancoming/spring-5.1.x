@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Mark Fisher
- * @author Chris Beams
+
  */
 public class ApplicationContextLifecycleTests {
 

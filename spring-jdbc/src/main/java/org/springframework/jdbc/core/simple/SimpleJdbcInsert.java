@@ -28,7 +28,7 @@ import org.springframework.jdbc.support.KeyHolder;
  * in a "fluent" interface style.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see java.sql.DatabaseMetaData
  * @see org.springframework.jdbc.core.JdbcTemplate

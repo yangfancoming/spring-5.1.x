@@ -26,7 +26,7 @@ import org.springframework.jdbc.InvalidResultSetAccessException;
  * serializable (as far as possible).
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see javax.sql.RowSet
  * @see java.sql.ResultSet

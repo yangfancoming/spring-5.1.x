@@ -14,7 +14,7 @@ import org.springframework.util.ObjectUtils;
  * <p>Methods eligible for lookup override must not have arguments.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 1.1
  */
 public class LookupOverride extends MethodOverride {

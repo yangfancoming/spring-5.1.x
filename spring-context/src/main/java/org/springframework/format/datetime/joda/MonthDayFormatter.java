@@ -13,7 +13,7 @@ import org.springframework.format.Formatter;
  * {@link Formatter} implementation for a Joda-Time {@link MonthDay},
  * following Joda-Time's parsing rules for a MonthDay.
  *
- * @author Juergen Hoeller
+
  * @since 4.2.4
  * @see MonthDay#parse
  */

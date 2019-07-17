@@ -7,8 +7,8 @@ package org.springframework.context.annotation;
  * {@link ComponentScan @ComponentScan}.
  *
  * @author Mark Fisher
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 2.5
  * @see ComponentScan
  * @see ComponentScan#includeFilters()

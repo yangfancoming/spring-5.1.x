@@ -12,7 +12,7 @@ import static org.mockito.BDDMockito.*;
 /**
  * @author Rob Harrop
  * @author Rick Evans
- * @author Chris Beams
+
  */
 public class PerformanceMonitorInterceptorTests {
 

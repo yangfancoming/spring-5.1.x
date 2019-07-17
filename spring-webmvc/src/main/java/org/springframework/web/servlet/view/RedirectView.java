@@ -59,7 +59,7 @@ import org.springframework.web.util.WebUtils;
  * that your controller respects the Portlet {@code sendRedirect} constraints.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Colin Sampaleanu
  * @author Sam Brannen
  * @author Arjen Poutsma

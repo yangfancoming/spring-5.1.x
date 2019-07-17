@@ -13,7 +13,7 @@ import org.springframework.util.StringUtils;
  * <p>Optionally allows transforming an empty string into a {@code null} value.
  * Needs to be explicitly registered, e.g. for command binding.
  *
- * @author Juergen Hoeller
+
  * @see org.springframework.validation.DataBinder#registerCustomEditor
  */
 public class StringTrimmerEditor extends PropertyEditorSupport {

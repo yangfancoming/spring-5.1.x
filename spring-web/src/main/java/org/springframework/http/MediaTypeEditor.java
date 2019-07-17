@@ -11,7 +11,7 @@ import org.springframework.util.StringUtils;
  * descriptors, to automatically convert {@code String} specifications
  * (e.g. {@code "text/html"}) to {@code MediaType} properties.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see MediaType
  */

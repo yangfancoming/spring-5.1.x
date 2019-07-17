@@ -9,7 +9,7 @@ import org.springframework.web.context.request.WebRequest;
  * Callback interface for initializing a {@link WebDataBinder} for performing
  * data binding in the context of a specific web request.
  *
- * @author Juergen Hoeller
+
  * @author Rossen Stoyanchev
  * @since 2.5
  */

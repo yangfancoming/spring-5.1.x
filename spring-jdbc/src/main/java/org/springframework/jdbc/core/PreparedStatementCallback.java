@@ -22,7 +22,7 @@ import org.springframework.lang.Nullable;
  * always set parameter values themselves, so that PreparedStatementCreator
  * capability is not needed either.
  *
- * @author Juergen Hoeller
+
  * @since 16.03.2004
  * @param <T> the result type
  * @see JdbcTemplate#execute(String, PreparedStatementCallback)

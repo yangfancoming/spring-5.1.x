@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
  * Helper class for preparing JSTL views,
  * in particular for exposing a JSTL localization context.
  *
- * @author Juergen Hoeller
+
  * @since 20.08.2003
  */
 public abstract class JstlUtils {

@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 /**
  * SpelEvaluationException tests (SPR-16544).
  *
- * @author Juergen Hoeller
+
  * @author DJ Kulkarni
  */
 public class SpelExceptionTests {

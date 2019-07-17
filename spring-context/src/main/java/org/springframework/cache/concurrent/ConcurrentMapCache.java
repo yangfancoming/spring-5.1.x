@@ -28,7 +28,7 @@ import org.springframework.util.Assert;
  * {@link #ConcurrentMapCache(String, ConcurrentMap, boolean)} constructor.
  *
  * @author Costin Leau
- * @author Juergen Hoeller
+
  * @author Stephane Nicoll
  * @since 3.1
  */

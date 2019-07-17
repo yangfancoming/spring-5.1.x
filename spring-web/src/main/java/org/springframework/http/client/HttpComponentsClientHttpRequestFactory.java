@@ -40,7 +40,7 @@ import org.springframework.util.Assert;
  * @author Oleg Kalnichevski
  * @author Arjen Poutsma
  * @author Stephane Nicoll
- * @author Juergen Hoeller
+
  * @since 3.1
  */
 public class HttpComponentsClientHttpRequestFactory implements ClientHttpRequestFactory, DisposableBean {

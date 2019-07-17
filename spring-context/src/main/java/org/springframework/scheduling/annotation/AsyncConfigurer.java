@@ -20,8 +20,7 @@ import org.springframework.lang.Nullable;
  * in the future.
  *
  * <p>See @{@link EnableAsync} for usage examples.
- *
- * @author Chris Beams
+
  * @author Stephane Nicoll
  * @since 3.1
  * @see AbstractAsyncConfiguration

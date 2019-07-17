@@ -16,7 +16,7 @@ import org.springframework.util.ClassUtils;
  * {@link org.springframework.beans.factory.BeanFactory} using a configured bean name.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public class SimpleBeanFactoryAwareAspectInstanceFactory implements AspectInstanceFactory, BeanFactoryAware {

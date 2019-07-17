@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
  * and for CGLIB proxies, as applied by {@link DefaultAopProxyFactory}.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see DefaultAopProxyFactory
  */
 public interface AopProxy {

@@ -26,7 +26,7 @@ import org.springframework.jmx.support.JmxUtils;
  * to the JMX runtime.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 1.2
  */
 public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {

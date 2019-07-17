@@ -26,7 +26,7 @@ import org.springframework.util.StringUtils;
  * as defined in the HTTP specification.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
  * @author Kazuki Shimizu

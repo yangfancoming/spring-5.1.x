@@ -27,7 +27,7 @@ import org.springframework.test.context.MergedContextConfiguration;
  * JVM process.
  *
  * @author Sam Brannen
- * @author Juergen Hoeller
+
  * @since 4.2
  * @see ContextCacheUtils#retrieveMaxCacheSize()
  */

@@ -24,8 +24,7 @@ import static org.junit.Assert.*;
  * interaction with an {@link ApplicationContext}.  For example, a {@link PropertyPlaceholderConfigurer}
  * that contains ${..} tokens in its 'location' property requires being tested through an ApplicationContext
  * as opposed to using only a BeanFactory during testing.
- *
- * @author Chris Beams
+
  * @see org.springframework.beans.factory.config.PropertyResourceConfigurerTests
  */
 public class PropertyResourceConfigurerIntegrationTests {

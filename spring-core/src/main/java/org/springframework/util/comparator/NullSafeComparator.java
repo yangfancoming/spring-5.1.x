@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
  * other objects. Can decorate a given Comparator or work on Comparables.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @since 1.2.2
  * @param <T> the type of objects that may be compared by this comparator
  * @see Comparable

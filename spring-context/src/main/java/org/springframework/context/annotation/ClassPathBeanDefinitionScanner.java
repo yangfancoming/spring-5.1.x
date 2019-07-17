@@ -37,8 +37,8 @@ import org.springframework.util.PatternMatchUtils;
  * JSR-330's {@link javax.inject.Named} annotations, if available.
  *
  * @author Mark Fisher
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 2.5
  * @see AnnotationConfigApplicationContext#scan
  * @see org.springframework.stereotype.Component

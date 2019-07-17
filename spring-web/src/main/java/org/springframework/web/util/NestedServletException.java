@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
  * <p>The similarity between this class and the NestedChecked/RuntimeException
  * class is unavoidable, as this class needs to derive from ServletException.
  *
- * @author Juergen Hoeller
+
  * @since 1.2.5
  * @see #getMessage
  * @see #printStackTrace

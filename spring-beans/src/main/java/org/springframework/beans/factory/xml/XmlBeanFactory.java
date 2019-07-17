@@ -28,8 +28,8 @@ import org.springframework.core.io.Resource;
  * resources and is highly configurable in its actual XML parsing behavior.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 15 April 2001
  * @see org.springframework.beans.factory.support.DefaultListableBeanFactory
  * @see XmlBeanDefinitionReader

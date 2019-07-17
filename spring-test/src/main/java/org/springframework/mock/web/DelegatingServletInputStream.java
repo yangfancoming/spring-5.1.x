@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
  * <p>Used by {@link MockHttpServletRequest}; typically not directly
  * used for testing application controllers.
  *
- * @author Juergen Hoeller
+
  * @since 1.0.2
  * @see MockHttpServletRequest
  */

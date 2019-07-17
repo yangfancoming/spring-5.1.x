@@ -34,7 +34,7 @@ import org.springframework.util.ObjectUtils;
  * </pre>
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 3.0.2
  * @param <T> the body type
  * @see org.springframework.web.client.RestTemplate

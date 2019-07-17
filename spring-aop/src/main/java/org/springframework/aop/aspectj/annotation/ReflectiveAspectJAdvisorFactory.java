@@ -47,7 +47,7 @@ import org.springframework.util.comparator.InstanceComparator;
  *
  * @author Rod Johnson
  * @author Adrian Colyer
- * @author Juergen Hoeller
+
  * @author Ramnivas Laddad
  * @author Phillip Webb
  * @since 2.0

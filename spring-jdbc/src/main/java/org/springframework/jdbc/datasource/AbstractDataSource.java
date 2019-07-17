@@ -18,7 +18,7 @@ import org.apache.commons.logging.LogFactory;
  * for certain methods from the {@code DataSource} interface, such as
  * {@link #getLoginTimeout()}, {@link #setLoginTimeout(int)}, and so forth.
  *
- * @author Juergen Hoeller
+
  * @since 07.05.2003
  * @see DriverManagerDataSource
  */

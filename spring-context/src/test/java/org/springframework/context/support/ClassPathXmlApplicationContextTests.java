@@ -31,10 +31,7 @@ import org.springframework.util.ObjectUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Juergen Hoeller
- * @author Chris Beams
- */
+
 public class ClassPathXmlApplicationContextTests {
 
 	private static final String PATH = "/org/springframework/context/support/";

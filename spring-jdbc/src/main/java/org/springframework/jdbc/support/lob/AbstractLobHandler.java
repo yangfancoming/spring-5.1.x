@@ -15,7 +15,7 @@ import org.springframework.lang.Nullable;
  * <p>Implements all accessor methods for column names through a column lookup
  * and delegating to the corresponding accessor that takes a column index.
  *
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see java.sql.ResultSet#findColumn
  */

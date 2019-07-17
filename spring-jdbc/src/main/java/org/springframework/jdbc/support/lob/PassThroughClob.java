@@ -22,7 +22,7 @@ import org.springframework.util.StreamUtils;
  * Simple JDBC {@link Clob} adapter that exposes a given String or character stream.
  * Optionally used by {@link DefaultLobHandler}.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.3
  */
 class PassThroughClob implements Clob {

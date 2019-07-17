@@ -12,9 +12,8 @@ import org.springframework.util.ObjectUtils;
 
 /**
  * Common delegate methods for Spring's internal {@link PropertyDescriptor} implementations.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  */
 abstract class PropertyDescriptorUtils {
 

@@ -43,8 +43,8 @@ import org.springframework.web.context.ServletContextAware;
  * {@link org.springframework.context.support.AbstractApplicationContext},
  * this class detects a ThemeSource bean in the context, with the name "themeSource".
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 1.2
  */
 public class GenericWebApplicationContext extends GenericApplicationContext

@@ -24,7 +24,7 @@ import org.springframework.util.StringUtils;
  * applying registered transformers to all affected classes.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Costin Leau
  * @since 2.0
  * @see #addTransformer

@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
  * and other property editors.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Rick Evans
  */
 public class PropertiesEditorTests {

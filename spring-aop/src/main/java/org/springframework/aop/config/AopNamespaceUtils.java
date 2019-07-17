@@ -21,7 +21,7 @@ import org.springframework.lang.Nullable;
  * <i>or a more capable variant thereof</i>, will be registered as a post-processor.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Mark Fisher
  * @since 2.0
  * @see AopConfigUtils

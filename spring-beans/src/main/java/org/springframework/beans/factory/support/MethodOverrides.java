@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
  * {@link LookupOverride} and {@link ReplaceOverride}.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see MethodOverride
  */

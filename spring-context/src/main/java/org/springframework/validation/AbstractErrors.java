@@ -18,7 +18,7 @@ import org.springframework.util.StringUtils;
  * access to evaluated errors; however, does not define concrete management
  * of {@link ObjectError ObjectErrors} and {@link FieldError FieldErrors}.
  *
- * @author Juergen Hoeller
+
  * @author Rossen Stoyanchev
  * @since 2.5.3
  */

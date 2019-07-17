@@ -13,8 +13,7 @@ import org.springframework.lang.Nullable;
  * servlet-related {@link org.springframework.core.env.PropertySource} objects at the
  * earliest moment that the {@link ServletContext} and (optionally) {@link ServletConfig}
  * become available.
- *
- * @author Chris Beams
+
  * @since 3.1.2
  * @see ConfigurableWebApplicationContext#getEnvironment()
  */

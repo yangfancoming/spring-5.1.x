@@ -16,7 +16,7 @@ import org.springframework.util.StringUtils;
  * parameter condition, as typically expressed using an {@code @RequestMapping}
  * annotation at the {@code @Controller} type level.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see org.springframework.web.bind.annotation.RequestMapping#params()
  */

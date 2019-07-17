@@ -14,7 +14,7 @@ import org.springframework.util.ObjectUtils;
  * output in a consistent manner according to Spring conventions.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @since 1.2.2
  */
 public class DefaultToStringStyler implements ToStringStyler {

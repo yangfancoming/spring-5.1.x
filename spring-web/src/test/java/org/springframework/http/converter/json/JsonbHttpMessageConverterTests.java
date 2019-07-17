@@ -26,7 +26,7 @@ import static org.junit.Assert.*;
 /**
  * Integration tests for the JSON Binding API, running against Apache Johnzon.
  *
- * @author Juergen Hoeller
+
  * @since 5.0
  */
 public class JsonbHttpMessageConverterTests {

@@ -49,7 +49,7 @@ import org.springframework.web.method.HandlerMethod;
  * forms and GZIP compression. This typically shows when one needs to map the
  * filter to certain content types (e.g. images), or to all requests.
  *
- * @author Juergen Hoeller
+
  * @since 20.06.2003
  * @see HandlerExecutionChain#getInterceptors
  * @see org.springframework.web.servlet.handler.HandlerInterceptorAdapter

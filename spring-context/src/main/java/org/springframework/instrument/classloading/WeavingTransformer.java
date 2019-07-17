@@ -21,7 +21,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Rod Johnson
  * @author Costin Leau
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public class WeavingTransformer {

@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Arjen Poutsma
  */
 public class SimplePropertyNamespaceHandlerTests {

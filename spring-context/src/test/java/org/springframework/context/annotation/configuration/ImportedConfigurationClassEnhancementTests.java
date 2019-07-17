@@ -18,9 +18,8 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests cornering the bug exposed in SPR-6779.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  */
 public class ImportedConfigurationClassEnhancementTests {
 

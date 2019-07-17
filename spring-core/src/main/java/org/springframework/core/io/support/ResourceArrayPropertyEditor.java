@@ -33,8 +33,8 @@ import org.springframework.util.Assert;
  * <p>Delegates to a {@link ResourcePatternResolver},
  * by default using a {@link PathMatchingResourcePatternResolver}.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 1.1.2
  * @see org.springframework.core.io.Resource
  * @see ResourcePatternResolver

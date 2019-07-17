@@ -19,7 +19,7 @@ import org.springframework.lang.Nullable;
  * <p>This context will detect a JSTL locale attribute in page/request/session/application
  * scope, in addition to the fallback locale strategy provided by the base class.
  *
- * @author Juergen Hoeller
+
  * @since 1.1.4
  * @see #getFallbackLocale
  */

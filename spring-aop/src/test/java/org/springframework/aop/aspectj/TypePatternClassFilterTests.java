@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
  *
  * @author Rod Johnson
  * @author Rick Evans
- * @author Chris Beams
+
  */
 public class TypePatternClassFilterTests {
 

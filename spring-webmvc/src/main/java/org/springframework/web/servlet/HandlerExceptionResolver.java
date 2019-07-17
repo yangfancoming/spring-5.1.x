@@ -16,7 +16,7 @@ import org.springframework.lang.Nullable;
  * exception including any checked exception, with potentially fine-grained mappings for
  * specific handlers.
  *
- * @author Juergen Hoeller
+
  * @since 22.11.2003
  */
 public interface HandlerExceptionResolver {

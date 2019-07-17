@@ -28,7 +28,7 @@ import org.springframework.web.util.WebUtils;
  * {@code java.io.File} access when the web application archive
  * is expanded.
  *
- * @author Juergen Hoeller
+
  * @since 28.12.2003
  * @see javax.servlet.ServletContext#getResourceAsStream
  * @see javax.servlet.ServletContext#getResource

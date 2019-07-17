@@ -33,9 +33,8 @@ import java.lang.annotation.Target;
  * or {@link javax.inject.Inject}: In that context, it leads to the creation of a
  * lazy-resolution proxy for all affected dependencies, as an alternative to using
  * {@link org.springframework.beans.factory.ObjectFactory} or {@link javax.inject.Provider}.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.0
  * @see Primary
  * @see Bean

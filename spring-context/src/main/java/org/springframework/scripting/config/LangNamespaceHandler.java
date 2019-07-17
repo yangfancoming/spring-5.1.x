@@ -19,7 +19,7 @@ import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
  * </pre>
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Mark Fisher
  * @since 2.0
  */

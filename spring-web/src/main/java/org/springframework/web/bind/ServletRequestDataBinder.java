@@ -36,7 +36,7 @@ import org.springframework.web.util.WebUtils;
  * ...</pre>
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see #bind(javax.servlet.ServletRequest)
  * @see #registerCustomEditor
  * @see #setAllowedFields

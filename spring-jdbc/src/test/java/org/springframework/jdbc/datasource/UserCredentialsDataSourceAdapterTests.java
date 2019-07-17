@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
 /**
- * @author Juergen Hoeller
+
  * @since 28.05.2004
  */
 public class UserCredentialsDataSourceAdapterTests {

@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
  * The actual adapting to {@link javax.enterprise.concurrent.ManagedExecutorService}
  * happens in the base class {@link ConcurrentTaskExecutor} itself.
  *
- * @author Juergen Hoeller
+
  * @since 4.0
  */
 public class DefaultManagedTaskExecutor extends ConcurrentTaskExecutor implements InitializingBean {

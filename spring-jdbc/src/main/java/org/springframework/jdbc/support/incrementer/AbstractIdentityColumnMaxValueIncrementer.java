@@ -17,7 +17,7 @@ import org.springframework.jdbc.support.JdbcUtils;
  * Abstract base class for {@link DataFieldMaxValueIncrementer} implementations
  * which are based on identity columns in a sequence-like table.
  *
- * @author Juergen Hoeller
+
  * @author Thomas Risberg
  * @since 4.1.2
  */

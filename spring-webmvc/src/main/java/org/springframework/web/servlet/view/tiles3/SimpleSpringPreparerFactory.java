@@ -19,7 +19,7 @@ import org.springframework.web.context.WebApplicationContext;
  * creating them through the Spring ApplicationContext in order to apply
  * Spring container callbacks and configured Spring BeanPostProcessors.
  *
- * @author Juergen Hoeller
+
  * @since 3.2
  * @see SpringBeanPreparerFactory
  */

@@ -31,7 +31,7 @@ import org.springframework.lang.Nullable;
  * (This flag is only true by default for backwards compatibility reasons).
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see AbstractSlsbInvokerInterceptor#setLookupHomeOnStartup
  * @see AbstractSlsbInvokerInterceptor#setCacheHome
  */

@@ -19,7 +19,7 @@ import org.springframework.util.StringValueResolver;
  * General utility methods for working with annotations in JavaBeans style.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public abstract class AnnotationBeanUtils {

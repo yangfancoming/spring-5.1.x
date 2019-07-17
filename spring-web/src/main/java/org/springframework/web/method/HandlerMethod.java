@@ -41,7 +41,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @since 3.1
  */

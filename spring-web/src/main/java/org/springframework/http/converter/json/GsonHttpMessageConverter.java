@@ -24,7 +24,7 @@ import org.springframework.util.Assert;
  * <p>Tested against Gson 2.8; compatible with Gson 2.0 and higher.
  *
  * @author Roy Clarkson
- * @author Juergen Hoeller
+
  * @since 4.1
  * @see com.google.gson.Gson
  * @see com.google.gson.GsonBuilder

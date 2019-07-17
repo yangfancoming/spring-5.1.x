@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
  * based on the declared parameters.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 public abstract class SqlOperation extends RdbmsOperation {
 

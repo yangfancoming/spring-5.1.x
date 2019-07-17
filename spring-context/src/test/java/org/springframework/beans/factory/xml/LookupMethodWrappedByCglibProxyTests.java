@@ -16,8 +16,8 @@ import static org.junit.Assert.*;
  * Tests lookup methods wrapped by a CGLIB proxy (see SPR-391).
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  */
 public class LookupMethodWrappedByCglibProxyTests {
 

@@ -23,7 +23,7 @@ import org.springframework.util.StringUtils;
  * {@link NamespaceHandler} for the {@code util} namespace.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public class UtilNamespaceHandler extends NamespaceHandlerSupport {

@@ -17,7 +17,7 @@ import org.springframework.util.ClassUtils;
  * adding support for XML and JSON-based parts.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 3.2
  */
 public class AllEncompassingFormHttpMessageConverter extends FormHttpMessageConverter {

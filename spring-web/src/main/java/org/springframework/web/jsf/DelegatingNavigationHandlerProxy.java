@@ -52,7 +52,7 @@ import org.springframework.web.context.WebApplicationContext;
  * or change the strategy used to access the ApplicationContext (normally obtained
  * via {@link FacesContextUtils#getWebApplicationContext(FacesContext)}).
  *
- * @author Juergen Hoeller
+
  * @author Colin Sampaleanu
  * @since 1.2.7
  * @see DecoratingNavigationHandler

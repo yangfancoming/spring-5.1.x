@@ -9,7 +9,7 @@ import org.springframework.lang.Nullable;
  * in a given conversion service.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 @SuppressWarnings("serial")

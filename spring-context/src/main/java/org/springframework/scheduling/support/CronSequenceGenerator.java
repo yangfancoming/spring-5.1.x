@@ -35,7 +35,7 @@ import org.springframework.util.StringUtils;
  * </ul>
  *
  * @author Dave Syer
- * @author Juergen Hoeller
+
  * @author Ruslan Sibgatullin
  * @since 3.0
  * @see CronTrigger

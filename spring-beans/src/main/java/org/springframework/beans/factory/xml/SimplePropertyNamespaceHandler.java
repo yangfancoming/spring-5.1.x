@@ -31,7 +31,7 @@ import org.springframework.lang.Nullable;
  * be injected into that property.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public class SimplePropertyNamespaceHandler implements NamespaceHandler {

@@ -222,7 +222,7 @@ import org.springframework.web.util.UriUtils;
  * </table>
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Scott Andrews
  * @author Rossen Stoyanchev
  * @since 2.0

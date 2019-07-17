@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
  * JAX-WS service. Exposes a proxy for the port, to be used for bean references.
  * Inherits configuration properties from {@link JaxWsPortClientInterceptor}.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see #setServiceInterface
  * @see LocalJaxWsServiceFactoryBean

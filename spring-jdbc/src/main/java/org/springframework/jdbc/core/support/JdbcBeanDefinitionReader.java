@@ -24,7 +24,7 @@ import org.springframework.util.Assert;
  * comprehensive functionality.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see #loadBeanDefinitions
  * @see org.springframework.beans.factory.support.PropertiesBeanDefinitionReader
  */

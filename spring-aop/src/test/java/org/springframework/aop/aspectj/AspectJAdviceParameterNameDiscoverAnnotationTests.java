@@ -11,7 +11,7 @@ import org.junit.Test;
  * doesn't matter in the grand scheme of things...
  *
  * @author Adrian Colyer
- * @author Chris Beams
+
  */
 public class AspectJAdviceParameterNameDiscoverAnnotationTests extends AspectJAdviceParameterNameDiscovererTests {
 

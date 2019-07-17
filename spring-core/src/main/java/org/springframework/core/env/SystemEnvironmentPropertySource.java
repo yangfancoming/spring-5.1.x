@@ -41,9 +41,8 @@ import org.springframework.util.Assert;
  *
  * <p>This property source is included by default in {@link StandardEnvironment}
  * and all its subclasses.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.1
  * @see StandardEnvironment
  * @see AbstractEnvironment#getSystemEnvironment()

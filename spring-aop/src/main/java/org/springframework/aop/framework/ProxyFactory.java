@@ -14,7 +14,7 @@ import org.springframework.util.ClassUtils;
  * and configuring AOP proxy instances in custom user code.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @since 14.03.2003
  */

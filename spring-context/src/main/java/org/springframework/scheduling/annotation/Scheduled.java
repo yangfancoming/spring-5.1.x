@@ -27,9 +27,9 @@ import java.lang.annotation.Target;
  * <em>composed annotations</em> with attribute overrides.
  *
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @author Dave Syer
- * @author Chris Beams
+
  * @since 3.0
  * @see EnableScheduling
  * @see ScheduledAnnotationBeanPostProcessor

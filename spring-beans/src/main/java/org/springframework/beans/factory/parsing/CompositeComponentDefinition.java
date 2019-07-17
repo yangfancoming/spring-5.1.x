@@ -13,7 +13,7 @@ import org.springframework.util.Assert;
  * {@link ComponentDefinition} instances, aggregating them into a named group
  * of components.
  *
- * @author Juergen Hoeller
+
  * @since 2.0.1
  * @see #getNestedComponents()
  */

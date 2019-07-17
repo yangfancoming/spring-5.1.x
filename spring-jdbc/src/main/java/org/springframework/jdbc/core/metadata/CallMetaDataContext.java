@@ -34,7 +34,7 @@ import org.springframework.util.StringUtils;
  * and execution of a stored procedure call.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @author Kiril Nugmanov
  * @since 2.5
  */

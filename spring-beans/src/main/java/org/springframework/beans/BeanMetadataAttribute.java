@@ -10,7 +10,7 @@ import org.springframework.util.ObjectUtils;
  * Holder for a key-value style attribute that is part of a bean definition.
  * Keeps track of the definition source in addition to the key-value pair.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 public class BeanMetadataAttribute implements BeanMetadataElement {

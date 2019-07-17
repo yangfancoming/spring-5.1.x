@@ -16,7 +16,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Brian Clozel
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 4.1
  */
 public abstract class ResourceTransformerSupport implements ResourceTransformer {

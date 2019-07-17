@@ -12,7 +12,7 @@ import org.springframework.tests.sample.beans.TestBean;
  * factory methods, rather than constructors.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 public class FactoryMethods {
 

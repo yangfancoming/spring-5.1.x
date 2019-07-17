@@ -29,7 +29,7 @@ import org.springframework.util.Assert;
  * <p>Subclasses need to implement the {@link #publishEndpoint} template methods
  * for actual endpoint exposure.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.5
  * @see javax.jws.WebService
  * @see javax.xml.ws.Endpoint

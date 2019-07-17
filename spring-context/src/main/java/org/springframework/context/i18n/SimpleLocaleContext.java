@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
  * Simple implementation of the {@link LocaleContext} interface,
  * always returning a specified {@code Locale}.
  *
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see LocaleContextHolder#setLocaleContext
  * @see LocaleContextHolder#getLocale()

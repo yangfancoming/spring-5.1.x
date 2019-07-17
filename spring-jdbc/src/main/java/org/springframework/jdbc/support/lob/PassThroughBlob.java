@@ -15,7 +15,7 @@ import org.springframework.util.StreamUtils;
  * Simple JDBC {@link Blob} adapter that exposes a given byte array or binary stream.
  * Optionally used by {@link DefaultLobHandler}.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.3
  */
 class PassThroughBlob implements Blob {

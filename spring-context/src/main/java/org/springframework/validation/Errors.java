@@ -21,7 +21,7 @@ import org.springframework.lang.Nullable;
  * <p>Note: {@code Errors} objects are single-threaded.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see #setNestedPath
  * @see BindException
  * @see DataBinder

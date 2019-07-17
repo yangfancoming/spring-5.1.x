@@ -22,7 +22,7 @@ import org.springframework.util.CollectionUtils;
  * is a Map, allowing the use of multiple objects keyed by name.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @author Rossen Stoyanchev
  * @see DispatcherServlet

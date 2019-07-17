@@ -10,7 +10,7 @@ import org.springframework.beans.BeansException;
  * <p>The typical usage will be to invoke custom destruction callbacks on
  * specific bean types, matching corresponding initialization callbacks.
  *
- * @author Juergen Hoeller
+
  * @since 1.0.1
  */
 public interface DestructionAwareBeanPostProcessor extends BeanPostProcessor {

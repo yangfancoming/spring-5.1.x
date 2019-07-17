@@ -34,7 +34,7 @@ import org.springframework.util.CollectionUtils;
  * class is destroyed on shutdown of the containing {@code ApplicationContext}.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see JMXConnectorServer
  * @see MBeanServer

@@ -43,7 +43,7 @@ import org.springframework.web.multipart.MultipartRequest;
  * Errors errors = binder.getErrors();
  * ...</pre>
  *
- * @author Juergen Hoeller
+
  * @author Brian Clozel
  * @since 2.5.2
  * @see #bind(org.springframework.web.context.request.WebRequest)

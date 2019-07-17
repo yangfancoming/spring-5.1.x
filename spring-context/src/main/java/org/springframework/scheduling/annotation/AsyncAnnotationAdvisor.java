@@ -33,7 +33,7 @@ import org.springframework.util.function.SingletonSupplier;
  * Furthermore, a custom async annotation type may get specified through the
  * {@link #setAsyncAnnotationType "asyncAnnotationType"} property.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see Async
  * @see AnnotationAsyncExecutionInterceptor

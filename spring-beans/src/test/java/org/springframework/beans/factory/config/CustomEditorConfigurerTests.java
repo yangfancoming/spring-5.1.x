@@ -24,8 +24,8 @@ import org.springframework.tests.sample.beans.TestBean;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 31.07.2004
  */
 public class CustomEditorConfigurerTests {

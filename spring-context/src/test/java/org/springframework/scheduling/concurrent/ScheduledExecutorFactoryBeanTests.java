@@ -18,7 +18,7 @@ import static org.mockito.BDDMockito.*;
 
 /**
  * @author Rick Evans
- * @author Juergen Hoeller
+
  */
 public class ScheduledExecutorFactoryBeanTests {
 

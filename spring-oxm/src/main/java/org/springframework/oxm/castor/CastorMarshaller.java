@@ -65,7 +65,7 @@ import org.springframework.util.xml.StaxUtils;
  *
  * @author Arjen Poutsma
  * @author Jakub Narloch
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see #setEncoding(String)
  * @see #setTargetClass(Class)

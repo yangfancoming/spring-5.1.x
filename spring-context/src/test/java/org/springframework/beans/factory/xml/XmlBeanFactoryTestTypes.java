@@ -26,8 +26,7 @@ import org.springframework.tests.sample.beans.factory.DummyFactory;
 
 /**
  * Types used by {@link XmlBeanFactoryTests} and its attendant XML config files.
- *
- * @author Chris Beams
+
  */
 final class XmlBeanFactoryTestTypes {
 }
@@ -36,7 +35,7 @@ final class XmlBeanFactoryTestTypes {
 /**
  * Simple bean used to check constructor dependency checking.
  *
- * @author Juergen Hoeller
+
  * @since 09.11.2003
  */
 @SuppressWarnings("serial")
@@ -176,7 +175,7 @@ abstract class ConstructorInjectedOverrides {
 /**
  * Simple bean used to check constructor dependency checking.
  *
- * @author Juergen Hoeller
+
  * @since 09.11.2003
  */
 @SuppressWarnings({ "serial", "unused" })
@@ -241,7 +240,7 @@ class DummyDao {
 
 
 /**
- * @author Juergen Hoeller
+
  * @since 21.07.2003
  */
 class DummyReferencer {
@@ -290,7 +289,7 @@ class DummyReferencer {
  * factory methods, rather than constructors.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 @SuppressWarnings("unused")
 class FactoryMethods {
@@ -397,7 +396,7 @@ class FixedMethodReplacer implements MethodReplacer {
 
 
 /**
- * @author Chris Beams
+
  */
 class MapAndSet {
 
@@ -512,7 +511,7 @@ abstract class OverrideOneMethodSubclass extends OverrideOneMethod {
  * Simple test of BeanFactory initialization and lifecycle callbacks.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 class ProtectedLifecycleBean implements BeanNameAware, BeanFactoryAware, InitializingBean, DisposableBean {
 
@@ -671,7 +670,7 @@ abstract class SerializableMethodReplacerCandidate extends MethodReplaceCandidat
 
 
 /**
- * @author Juergen Hoeller
+
  * @since 23.10.2004
  */
 class SingleSimpleTypeConstructorBean {

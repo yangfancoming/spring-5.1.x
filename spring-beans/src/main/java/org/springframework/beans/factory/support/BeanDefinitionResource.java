@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
  * Descriptive {@link org.springframework.core.io.Resource} wrapper for
  * a {@link org.springframework.beans.factory.config.BeanDefinition}.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.2
  * @see org.springframework.core.io.DescriptiveResource
  */

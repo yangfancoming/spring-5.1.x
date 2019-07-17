@@ -30,8 +30,7 @@ package org.springframework.core.env;
  * <p>See {@link SystemEnvironmentPropertySource} javadoc for details on special handling
  * of property names in shell environments (e.g. Bash) that disallow period characters in
  * variable names.
- *
- * @author Chris Beams
+
  * @since 3.1
  * @see ConfigurableEnvironment
  * @see SystemEnvironmentPropertySource

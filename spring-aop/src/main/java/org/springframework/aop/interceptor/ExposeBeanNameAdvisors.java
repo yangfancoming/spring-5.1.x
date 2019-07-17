@@ -21,7 +21,7 @@ import org.springframework.beans.factory.NamedBean;
  * at proxy creation time.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see org.springframework.beans.factory.NamedBean
  */

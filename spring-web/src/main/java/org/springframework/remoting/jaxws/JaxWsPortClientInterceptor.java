@@ -40,7 +40,7 @@ import org.springframework.util.StringUtils;
  * or takes an explicit reference to an existing JAX-WS Service instance
  * (e.g. obtained via {@link org.springframework.jndi.JndiObjectFactoryBean}).
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see #setPortName
  * @see #setServiceInterface

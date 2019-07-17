@@ -15,7 +15,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Rod Johnson
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 27.05.2003
  * @param <E> the element type
  */

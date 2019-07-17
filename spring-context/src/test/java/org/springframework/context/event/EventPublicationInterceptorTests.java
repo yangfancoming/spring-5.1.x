@@ -22,7 +22,7 @@ import static org.mockito.BDDMockito.*;
 
 /**
  * @author Dmitriy Kopylenko
- * @author Juergen Hoeller
+
  * @author Rick Evans
  */
 public class EventPublicationInterceptorTests {

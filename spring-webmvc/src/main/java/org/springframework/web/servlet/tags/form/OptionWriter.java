@@ -68,7 +68,7 @@ import org.springframework.web.servlet.support.BindStatus;
  * </ul>
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @author Scott Andrews
  * @since 2.0

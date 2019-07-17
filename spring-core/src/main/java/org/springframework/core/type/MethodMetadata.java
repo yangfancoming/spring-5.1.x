@@ -6,9 +6,9 @@ package org.springframework.core.type;
  * Interface that defines abstract access to the annotations of a specific
  * class, in a form that does not require that class to be loaded yet.
  *
- * @author Juergen Hoeller
+
  * @author Mark Pollack
- * @author Chris Beams
+
  * @author Phillip Webb
  * @since 3.0
  * @see StandardMethodMetadata

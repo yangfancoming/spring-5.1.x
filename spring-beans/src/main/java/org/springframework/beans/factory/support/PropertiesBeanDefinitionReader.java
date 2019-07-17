@@ -55,7 +55,7 @@ import org.springframework.util.StringUtils;
  * </pre>
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @since 26.11.2003
  * @see DefaultListableBeanFactory

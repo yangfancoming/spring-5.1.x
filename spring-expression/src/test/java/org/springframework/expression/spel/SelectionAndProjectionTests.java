@@ -24,7 +24,7 @@ import static org.junit.Assert.*;
 /**
  * @author Mark Fisher
  * @author Sam Brannen
- * @author Juergen Hoeller
+
  */
 public class SelectionAndProjectionTests {
 

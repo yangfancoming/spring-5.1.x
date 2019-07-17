@@ -21,7 +21,7 @@ import org.springframework.expression.spel.support.BooleanTypedValue;
  * if the first operand matches the regex.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class OperatorMatches extends Operator {

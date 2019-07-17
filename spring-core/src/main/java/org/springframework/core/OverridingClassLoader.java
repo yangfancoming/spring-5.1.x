@@ -17,7 +17,7 @@ import org.springframework.util.FileCopyUtils;
  * instrumented version of the class in the given parent {@code ClassLoader}.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 2.0.1
  */
 public class OverridingClassLoader extends DecoratingClassLoader {

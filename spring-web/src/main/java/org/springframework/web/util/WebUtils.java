@@ -36,7 +36,7 @@ import org.springframework.util.StringUtils;
  * Used by various framework classes.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Sebastien Deleuze
  */
 public abstract class WebUtils {

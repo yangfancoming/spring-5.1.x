@@ -15,7 +15,7 @@ import org.springframework.util.ObjectUtils;
  * and {@link ReloadableResourceBundleMessageSource}. Provides common
  * configuration methods and corresponding semantic definitions.
  *
- * @author Juergen Hoeller
+
  * @since 4.3
  * @see ResourceBundleMessageSource
  * @see ReloadableResourceBundleMessageSource

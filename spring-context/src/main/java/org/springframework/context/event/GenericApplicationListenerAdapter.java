@@ -17,7 +17,7 @@ import org.springframework.util.ConcurrentReferenceHashMap;
  * {@link GenericApplicationListener} adapter that determines supported event types
  * through introspecting the generically declared type of the target listener.
  *
- * @author Juergen Hoeller
+
  * @author Stephane Nicoll
  * @since 3.0
  * @see org.springframework.context.ApplicationListener#onApplicationEvent

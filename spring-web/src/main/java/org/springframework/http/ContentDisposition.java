@@ -22,7 +22,7 @@ import static java.time.format.DateTimeFormatter.RFC_1123_DATE_TIME;
  * Represent the Content-Disposition type and parameters as defined in RFC 2183.
  *
  * @author Sebastien Deleuze
- * @author Juergen Hoeller
+
  * @since 5.0
  * @see <a href="https://tools.ietf.org/html/rfc2183">RFC 2183</a>
  */

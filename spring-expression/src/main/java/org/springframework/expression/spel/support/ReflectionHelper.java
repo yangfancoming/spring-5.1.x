@@ -23,7 +23,7 @@ import org.springframework.util.MethodInvoker;
  * methods/constructors and fields that should be used in expressions.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public abstract class ReflectionHelper {

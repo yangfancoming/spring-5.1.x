@@ -18,7 +18,7 @@ import org.springframework.core.annotation.AliasFor;
  * then the map is populated with all path variable names and values.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see RequestMapping
  * @see org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter

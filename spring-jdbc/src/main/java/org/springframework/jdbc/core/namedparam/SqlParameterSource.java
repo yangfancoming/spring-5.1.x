@@ -18,7 +18,7 @@ import org.springframework.lang.Nullable;
  * with a consistent interface.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see NamedParameterJdbcOperations
  * @see NamedParameterJdbcTemplate

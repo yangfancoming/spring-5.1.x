@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
  * By default values in the result are trimmed of whitespace.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Dave Syer
  * @see org.springframework.util.StringUtils#delimitedListToStringArray
  * @see org.springframework.util.StringUtils#arrayToDelimitedString

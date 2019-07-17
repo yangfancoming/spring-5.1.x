@@ -25,7 +25,7 @@ import org.springframework.util.ObjectUtils;
  * format expression.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public abstract class SpelNodeImpl implements SpelNode, Opcodes {

@@ -172,7 +172,7 @@ import org.springframework.web.util.TagUtils;
  * </table>
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Scott Andrews
  * @since 2.0
  */

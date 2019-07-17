@@ -8,7 +8,7 @@ import org.springframework.lang.Nullable;
  * Interface that defines abstract metadata of a specific class,
  * in a form that does not require that class to be loaded yet.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see StandardClassMetadata
  * @see org.springframework.core.type.classreading.MetadataReader#getClassMetadata()

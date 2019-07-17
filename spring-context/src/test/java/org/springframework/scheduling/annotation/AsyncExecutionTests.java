@@ -31,10 +31,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Juergen Hoeller
- * @author Chris Beams
- */
+
 public class AsyncExecutionTests {
 
 	private static String originalThreadName;

@@ -53,7 +53,7 @@ import org.springframework.util.StringUtils;
  * </pre>
  *
  * @author Phillip Webb
- * @author Juergen Hoeller
+
  * @author Stephane Nicoll
  * @since 4.0
  * @see #forField(Field)

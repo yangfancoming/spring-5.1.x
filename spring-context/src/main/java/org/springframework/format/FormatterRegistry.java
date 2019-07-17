@@ -10,7 +10,7 @@ import org.springframework.core.convert.converter.ConverterRegistry;
  * A registry of field formatting logic.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public interface FormatterRegistry extends ConverterRegistry {

@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
  * definition as well as inner bean definitions and bean references for the given bean.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public class BeanComponentDefinition extends BeanDefinitionHolder implements ComponentDefinition {

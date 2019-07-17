@@ -49,10 +49,10 @@ import static org.junit.Assert.*;
  * Integration tests for the {@link MBeanExporter} class.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Rick Evans
  * @author Mark Fisher
- * @author Chris Beams
+
  * @author Sam Brannen
  * @author Stephane Nicoll
  */

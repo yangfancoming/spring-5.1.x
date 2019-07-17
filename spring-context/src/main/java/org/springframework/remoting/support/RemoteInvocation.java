@@ -23,7 +23,7 @@ import org.springframework.util.ClassUtils;
  * <p>Both {@link RemoteInvocation} and {@link RemoteInvocationResult} are designed
  * for use with standard Java serialization as well as JavaBean-style serialization.
  *
- * @author Juergen Hoeller
+
  * @since 25.02.2004
  * @see RemoteInvocationResult
  * @see RemoteInvocationFactory

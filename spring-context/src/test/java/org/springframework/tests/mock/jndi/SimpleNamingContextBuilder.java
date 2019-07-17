@@ -58,7 +58,7 @@ import org.springframework.util.ReflectionUtils;
  * <p>An instance of this class is only necessary at setup time.
  * An application does not need to keep a reference to it after activation.
  *
- * @author Juergen Hoeller
+
  * @author Rod Johnson
  * @see #emptyActivatedContextBuilder()
  * @see #bind(String, Object)

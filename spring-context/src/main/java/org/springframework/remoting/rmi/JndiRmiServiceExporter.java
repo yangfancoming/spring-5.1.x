@@ -43,7 +43,7 @@ import org.springframework.util.ReflectionUtils;
  *	 &lt;/props&gt;
  * &lt;/property&gt;</pre>
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see #setService
  * @see #setJndiTemplate

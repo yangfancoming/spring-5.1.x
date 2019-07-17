@@ -7,7 +7,7 @@ package org.springframework.jmx.support;
  * exists.
  *
  * @author Phillip Webb
- * @author Chris Beams
+
  * @since 3.2
  */
 public enum RegistrationPolicy {

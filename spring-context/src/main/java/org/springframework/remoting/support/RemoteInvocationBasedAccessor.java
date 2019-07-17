@@ -11,7 +11,7 @@ import org.aopalliance.intercept.MethodInvocation;
  * Provides a "remoteInvocationFactory" property, with a
  * {@link DefaultRemoteInvocationFactory} as default strategy.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see #setRemoteInvocationFactory
  * @see RemoteInvocation

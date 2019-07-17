@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 /**
  * @author Arjen Poutsma
  * @author Brian Clozel
- * @author Juergen Hoeller
+
  */
 public class ShallowEtagHeaderFilterTests {
 

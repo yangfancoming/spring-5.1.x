@@ -26,7 +26,7 @@ import org.springframework.remoting.support.RemoteInvocation;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
+
  * @since 16.05.2003
  */
 public class RmiSupportTests {

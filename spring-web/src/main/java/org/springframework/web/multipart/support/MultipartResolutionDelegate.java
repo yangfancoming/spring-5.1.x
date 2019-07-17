@@ -21,7 +21,7 @@ import org.springframework.web.util.WebUtils;
  * A common delegate for {@code HandlerMethodArgumentResolver} implementations
  * which need to resolve {@link MultipartFile} and {@link Part} arguments.
  *
- * @author Juergen Hoeller
+
  * @since 4.3
  */
 public abstract class MultipartResolutionDelegate {

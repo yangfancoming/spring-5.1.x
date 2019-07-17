@@ -20,7 +20,7 @@ import org.springframework.util.xml.DomUtils;
 /**
  * Internal utility methods used with JDBC configuration.
  *
- * @author Juergen Hoeller
+
  * @author Stephane Nicoll
  * @since 3.1
  */

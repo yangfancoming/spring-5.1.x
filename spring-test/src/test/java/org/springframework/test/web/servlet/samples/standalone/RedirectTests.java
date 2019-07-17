@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
  * Redirect scenarios including saving and retrieving flash attributes.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  */
 public class RedirectTests {
 

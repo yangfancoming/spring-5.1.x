@@ -18,7 +18,7 @@ import org.springframework.lang.Nullable;
  * {@link org.springframework.context.ConfigurableApplicationContext}.
  * They do not cause an initialization of the context on their own.
  *
- * @author Juergen Hoeller
+
  * @since 05.12.2003
  * @see #refresh
  * @see ContextLoader#createWebApplicationContext

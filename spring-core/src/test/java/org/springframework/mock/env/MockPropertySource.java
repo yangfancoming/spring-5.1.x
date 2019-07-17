@@ -19,8 +19,7 @@ import org.springframework.core.env.PropertySource;
  *   PropertySource<?> source = new MockPropertySource().withProperty("foo", "bar");
  * }
  * </pre>
- *
- * @author Chris Beams
+
  * @since 3.1
  * @see org.springframework.mock.env.MockEnvironment
  */

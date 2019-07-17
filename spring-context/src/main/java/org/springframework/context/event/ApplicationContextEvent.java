@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationEvent;
 /**
  * Base class for events raised for an {@code ApplicationContext}.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 @SuppressWarnings("serial")

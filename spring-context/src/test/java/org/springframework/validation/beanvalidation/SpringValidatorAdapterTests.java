@@ -45,7 +45,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Kazuki Shimizu
- * @author Juergen Hoeller
+
  */
 public class SpringValidatorAdapterTests {
 

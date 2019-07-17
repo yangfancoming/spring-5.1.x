@@ -29,7 +29,7 @@ import org.springframework.core.io.Resource;
  * <p>Within a WebApplicationContext, resource paths are automatically
  * resolved as ServletContext resources by the context implementation.
  *
- * @author Juergen Hoeller
+
  * @since 1.0.2
  * @see #getResourceByPath
  * @see ServletContextResource

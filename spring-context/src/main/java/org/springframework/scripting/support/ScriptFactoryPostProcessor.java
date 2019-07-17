@@ -116,7 +116,7 @@ import org.springframework.util.StringUtils;
  *
  * &lt;/beans&gt;</pre>
  *
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @author Rick Evans
  * @author Mark Fisher

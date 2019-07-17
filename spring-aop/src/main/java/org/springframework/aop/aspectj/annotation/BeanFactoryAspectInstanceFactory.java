@@ -22,7 +22,7 @@ import org.springframework.util.ClassUtils;
  * to wrap this to ensure only one new aspect comes back.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see org.springframework.beans.factory.BeanFactory
  * @see LazySingletonAspectInstanceFactoryDecorator

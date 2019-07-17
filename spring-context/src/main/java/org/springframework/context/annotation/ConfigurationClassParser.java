@@ -82,9 +82,8 @@ import org.springframework.util.StringUtils;
  *
  * <p>This ASM-based implementation avoids reflection and eager class loading in order to
  * interoperate effectively with lazy class loading in a Spring ApplicationContext.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @author Phillip Webb
  * @author Sam Brannen
  * @author Stephane Nicoll

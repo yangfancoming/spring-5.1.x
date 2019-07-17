@@ -17,7 +17,7 @@ import org.aopalliance.aop.Advice;
  * implemented using interception.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 public interface Advisor {
 

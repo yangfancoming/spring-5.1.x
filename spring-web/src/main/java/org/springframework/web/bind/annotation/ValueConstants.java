@@ -5,7 +5,7 @@ package org.springframework.web.bind.annotation;
 /**
  * Common value constants shared between bind annotations.
  *
- * @author Juergen Hoeller
+
  * @since 3.0.1
  */
 public interface ValueConstants {

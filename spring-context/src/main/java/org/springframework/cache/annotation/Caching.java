@@ -16,7 +16,7 @@ import java.lang.annotation.Target;
  * <em>composed annotations</em> with attribute overrides.
  *
  * @author Costin Leau
- * @author Chris Beams
+
  * @since 3.1
  */
 @Target({ElementType.TYPE, ElementType.METHOD})

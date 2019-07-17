@@ -97,7 +97,7 @@ import org.springframework.lang.Nullable;
  * ".xml" files will be parsed as XML content; all other kinds of resources will
  * be parsed as Groovy scripts.
  *
- * @author Juergen Hoeller
+
  * @author Jeff Brown
  * @since 4.0
  * @see org.springframework.beans.factory.groovy.GroovyBeanDefinitionReader

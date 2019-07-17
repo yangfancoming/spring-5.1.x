@@ -19,7 +19,7 @@ import java.lang.annotation.Target;
  * <p>This annotation may be used as a <em>meta-annotation</em> to create custom
  * <em>composed annotations</em>.
  *
- * @author Juergen Hoeller
+
  * @since 4.0
  * @see Scheduled
  */

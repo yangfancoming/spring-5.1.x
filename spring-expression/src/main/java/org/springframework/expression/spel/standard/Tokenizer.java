@@ -14,7 +14,7 @@ import org.springframework.expression.spel.SpelParseException;
  * Lex some input data into a stream of tokens that can then be parsed.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @author Phillip Webb
  * @since 3.0
  */

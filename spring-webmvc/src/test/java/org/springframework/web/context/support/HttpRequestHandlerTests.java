@@ -20,8 +20,8 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 2.0
  */
 public class HttpRequestHandlerTests {

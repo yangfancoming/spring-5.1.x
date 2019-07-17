@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Rod Johnson
- * @author Chris Beams
+
  */
 public abstract class AbstractPropertyValuesTests {
 

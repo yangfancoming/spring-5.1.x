@@ -39,9 +39,8 @@ import org.springframework.util.function.SingletonSupplier;
  * {@code AsyncExecutionAspectSupport} objects must be constructed with a default {@code
  * Executor}, but each individual method may further qualify a specific {@code Executor}
  * bean to be used when executing it, e.g. through an annotation attribute.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @author Stephane Nicoll
  * @since 3.1.2
  */

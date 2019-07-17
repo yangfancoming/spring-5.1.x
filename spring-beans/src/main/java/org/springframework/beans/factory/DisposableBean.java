@@ -13,7 +13,7 @@ package org.springframework.beans.factory;
  * custom destroy method, for example in an XML bean definition. For a list of all
  * bean lifecycle methods, see the {@link BeanFactory BeanFactory javadocs}.
  *
- * @author Juergen Hoeller
+
  * @since 12.08.2003
  * @see InitializingBean
  * @see org.springframework.beans.factory.support.RootBeanDefinition#getDestroyMethodName()

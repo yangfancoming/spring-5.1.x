@@ -13,7 +13,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 /**
- * @author Juergen Hoeller
+
  * @since 11.11.2003
  */
 public class IndexedTestBean {

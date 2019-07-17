@@ -17,7 +17,7 @@ import org.springframework.util.Assert;
  * EL property accessor that knows how to traverse the keys
  * of a standard {@link java.util.Map}.
  *
- * @author Juergen Hoeller
+
  * @author Andy Clement
  * @since 3.0
  */

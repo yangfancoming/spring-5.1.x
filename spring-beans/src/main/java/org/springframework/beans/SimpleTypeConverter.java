@@ -12,7 +12,7 @@ package org.springframework.beans;
  * <p><b>Note:</b> Due to its reliance on {@link java.beans.PropertyEditor PropertyEditors},
  * SimpleTypeConverter is <em>not</em> thread-safe. Use a separate instance for each thread.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see BeanWrapperImpl
  */

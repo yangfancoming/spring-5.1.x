@@ -55,7 +55,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * attribute with or without the presence of an {@code @ModelAttribute}.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @author Sebastien Deleuze
  * @since 3.1
  */

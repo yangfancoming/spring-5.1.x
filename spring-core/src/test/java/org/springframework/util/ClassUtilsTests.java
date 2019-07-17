@@ -27,7 +27,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Colin Sampaleanu
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @author Rick Evans
  */

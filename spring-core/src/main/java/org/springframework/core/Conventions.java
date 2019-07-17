@@ -16,7 +16,7 @@ import org.springframework.util.ClassUtils;
  * throughout the framework. Mainly for internal use within the framework.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Rossen Stoyanchev
  * @since 2.0
  */

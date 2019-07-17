@@ -11,7 +11,7 @@ import org.springframework.core.annotation.OrderUtils;
  * creates a new instance of the specified aspect class for every
  * {@link #getAspectInstance()} call.
  *
- * @author Juergen Hoeller
+
  * @since 2.0.4
  */
 public class SimpleMetadataAwareAspectInstanceFactory extends SimpleAspectInstanceFactory

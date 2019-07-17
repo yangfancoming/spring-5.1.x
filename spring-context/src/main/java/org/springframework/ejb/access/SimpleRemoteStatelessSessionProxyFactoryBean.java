@@ -38,7 +38,7 @@ import org.springframework.util.ClassUtils;
  *
  * @author Rod Johnson
  * @author Colin Sampaleanu
- * @author Juergen Hoeller
+
  * @since 09.05.2003
  * @see org.springframework.remoting.RemoteAccessException
  * @see AbstractSlsbInvokerInterceptor#setLookupHomeOnStartup

@@ -118,7 +118,7 @@ import org.springframework.util.StringValueResolver;
  * the latter configuration will override the former for properties wired through
  * both approaches.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see #setAlwaysUseJndiLookup
  * @see #setResourceFactory

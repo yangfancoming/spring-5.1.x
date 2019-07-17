@@ -56,10 +56,10 @@ import static org.junit.Assert.*;
  * Shared tests for property accessors.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Alef Arendsen
  * @author Arjen Poutsma
- * @author Chris Beams
+
  * @author Dave Syer
  * @author Stephane Nicoll
  */

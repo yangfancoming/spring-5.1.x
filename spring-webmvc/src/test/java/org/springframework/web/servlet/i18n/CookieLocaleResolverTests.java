@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Alef Arendsen
- * @author Juergen Hoeller
+
  * @author Rick Evans
  */
 public class CookieLocaleResolverTests {

@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Rob Harrop
  * @author Rick Evans
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 @SuppressWarnings("serial")

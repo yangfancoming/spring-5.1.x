@@ -220,7 +220,7 @@ import org.springframework.web.servlet.support.BindStatus;
  * </table>
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see OptionTag
  */

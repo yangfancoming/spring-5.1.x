@@ -26,7 +26,7 @@ import org.springframework.util.StringUtils;
  * @author Costin Leau
  * @author Mark Fisher
  * @author Ramnivas Laddad
- * @author Chris Beams
+
  * @since 2.5
  */
 class ClassMetadataReadingVisitor extends ClassVisitor implements ClassMetadata {

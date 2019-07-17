@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
  * Abstract adapter class for the {@link AsyncHandlerInterceptor} interface,
  * for simplified implementation of pre-only/post-only interceptors.
  *
- * @author Juergen Hoeller
+
  * @since 05.12.2003
  */
 public abstract class HandlerInterceptorAdapter implements AsyncHandlerInterceptor {

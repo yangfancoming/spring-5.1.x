@@ -43,7 +43,7 @@ import org.springframework.lang.Nullable;
  * JVM that will export the registry and/or the service using the "-D" JVM argument.
  * For example: {@code -Djava.rmi.server.hostname=myserver.com}
  *
- * @author Juergen Hoeller
+
  * @since 13.05.2003
  * @see RmiClientInterceptor
  * @see RmiProxyFactoryBean

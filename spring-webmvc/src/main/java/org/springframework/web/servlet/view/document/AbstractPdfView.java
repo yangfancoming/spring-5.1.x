@@ -31,7 +31,7 @@ import org.springframework.web.servlet.view.AbstractView;
  * always respect the declared content type.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Jean-Pierre Pawlak
  * @see AbstractPdfStamperView
  */

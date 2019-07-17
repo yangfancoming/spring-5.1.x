@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
  * or a manually registered singleton instance without an associated bean definition.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Stephane Nicoll
  * @see BeanFactory#getBean(String)
  * @see BeanFactory#getBean(Class)

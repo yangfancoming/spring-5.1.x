@@ -73,7 +73,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter
  * @see org.springframework.util.MultiValueMap

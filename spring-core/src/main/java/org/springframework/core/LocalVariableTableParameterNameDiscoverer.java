@@ -35,8 +35,8 @@ import org.springframework.util.ClassUtils;
  *
  * @author Adrian Colyer
  * @author Costin Leau
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 2.0
  */
 public class LocalVariableTableParameterNameDiscoverer implements ParameterNameDiscoverer {

@@ -49,7 +49,7 @@ import org.springframework.lang.Nullable;
  * them with "/" as it makes sense in the context in which they're used.
  *
  * @author Alef Arendsen
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev

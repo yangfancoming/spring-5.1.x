@@ -24,7 +24,7 @@ import org.springframework.lang.Nullable;
  * {@link java.util.concurrent.ScheduledThreadPoolExecutor}).
  * Defines common configuration settings and common lifecycle handling.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see java.util.concurrent.ExecutorService
  * @see java.util.concurrent.Executors

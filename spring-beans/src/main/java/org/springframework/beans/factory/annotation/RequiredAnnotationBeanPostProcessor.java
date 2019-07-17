@@ -53,7 +53,7 @@ import org.springframework.util.Assert;
  * to specify a custom RequiredAnnotationBeanPostProcessor bean definition.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see #setRequiredAnnotationType
  * @see Required

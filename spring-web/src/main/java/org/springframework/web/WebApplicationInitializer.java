@@ -152,8 +152,7 @@ import javax.servlet.ServletException;
  * &lt;= 7.0.14, this servlet mapping <em>cannot be overridden programmatically</em>.
  * 7.0.15 fixes this issue. Overriding the "/" servlet mapping has also been tested
  * successfully under GlassFish 3.1.<p>
- *
- * @author Chris Beams
+
  * @since 3.1
  * @see SpringServletContainerInitializer
  * @see org.springframework.web.context.AbstractContextLoaderInitializer

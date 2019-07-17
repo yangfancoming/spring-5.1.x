@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
  * Unit tests for aop namespace.
  *
  * @author Rob Harrop
- * @author Chris Beams
+
  */
 public class AopNamespaceHandlerTests {
 

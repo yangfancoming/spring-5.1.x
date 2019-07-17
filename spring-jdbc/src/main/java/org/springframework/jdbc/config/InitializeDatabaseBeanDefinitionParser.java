@@ -18,7 +18,7 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
  * {@code script} elements and configures a {@link ResourceDatabasePopulator} for them.
  *
  * @author Dave Syer
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 class InitializeDatabaseBeanDefinitionParser extends AbstractBeanDefinitionParser {

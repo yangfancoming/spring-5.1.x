@@ -8,7 +8,7 @@ import java.util.Map;
  * A stub {@link ApplicationListener}.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  */
 public class BeanThatListens implements ApplicationListener<ApplicationEvent> {
 

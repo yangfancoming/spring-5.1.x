@@ -18,7 +18,7 @@ import javax.xml.ws.WebServiceProvider;
  * supports publishing with an address argument, i.e. if the JAX-WS runtime
  * ships an internal HTTP server.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see javax.jws.WebService
  * @see javax.xml.ws.Endpoint#publish(String)

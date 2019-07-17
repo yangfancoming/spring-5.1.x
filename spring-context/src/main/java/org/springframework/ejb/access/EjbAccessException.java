@@ -7,7 +7,7 @@ import org.springframework.core.NestedRuntimeException;
 /**
  * Exception that gets thrown when an EJB stub cannot be accessed properly.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 @SuppressWarnings("serial")

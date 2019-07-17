@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
  * as well as BCP 47 language tags ({@link Locale#forLanguageTag} on Java 7+).
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see StringUtils#parseLocale
  */

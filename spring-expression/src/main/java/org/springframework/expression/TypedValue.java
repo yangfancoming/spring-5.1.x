@@ -12,7 +12,7 @@ import org.springframework.util.ObjectUtils;
  * be accessible through a simple {@code getClass()} call on the object.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class TypedValue {

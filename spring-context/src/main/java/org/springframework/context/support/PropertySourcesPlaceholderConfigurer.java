@@ -40,9 +40,8 @@ import org.springframework.util.StringValueResolver;
  *
  * <p>See {@link org.springframework.core.env.ConfigurableEnvironment} and related javadocs
  * for details on manipulating environment property sources.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.1
  * @see org.springframework.core.env.ConfigurableEnvironment
  * @see org.springframework.beans.factory.config.PlaceholderConfigurerSupport

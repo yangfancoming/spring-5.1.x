@@ -8,7 +8,7 @@ import org.springframework.jmx.JmxException;
  * Thrown when an invocation on an MBean resource failed with an exception (either
  * a reflection exception or an exception thrown by the target method itself).
  *
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see MBeanClientInterceptor
  */

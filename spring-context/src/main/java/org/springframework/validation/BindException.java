@@ -21,7 +21,7 @@ import org.springframework.util.Assert;
  * {@link org.springframework.validation.DataBinder#getBindingResult()}.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @see BindingResult
  * @see DataBinder#getBindingResult()

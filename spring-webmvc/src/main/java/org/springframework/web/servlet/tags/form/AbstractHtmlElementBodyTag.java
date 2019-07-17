@@ -17,7 +17,7 @@ import org.springframework.util.StringUtils;
  * sub-tags need to do is override {@link #renderDefaultContent(TagWriter)}.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 @SuppressWarnings("serial")

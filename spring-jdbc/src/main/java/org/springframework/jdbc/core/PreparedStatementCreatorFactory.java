@@ -26,7 +26,7 @@ import org.springframework.util.Assert;
  *
  * @author Rod Johnson
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  */
 public class PreparedStatementCreatorFactory {
 

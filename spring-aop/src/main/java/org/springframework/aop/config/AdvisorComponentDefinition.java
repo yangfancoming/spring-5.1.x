@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
  * infrastructure.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public class AdvisorComponentDefinition extends AbstractComponentDefinition {

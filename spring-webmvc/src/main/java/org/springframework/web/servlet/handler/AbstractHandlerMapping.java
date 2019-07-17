@@ -42,7 +42,7 @@ import org.springframework.web.util.UrlPathHelper;
  * {@link #PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE}. Support for this attribute
  * is up to concrete subclasses, typically based on request URL mappings.
  *
- * @author Juergen Hoeller
+
  * @author Rossen Stoyanchev
  * @since 07.04.2003
  * @see #getHandlerInternal

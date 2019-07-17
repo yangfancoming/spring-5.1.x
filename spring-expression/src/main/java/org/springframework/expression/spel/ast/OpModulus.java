@@ -18,7 +18,7 @@ import org.springframework.util.NumberUtils;
  * Implements the modulus operator.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @author Giovanni Dall'Oglio Risso
  * @since 3.0
  */

@@ -21,7 +21,7 @@ import org.springframework.util.Assert;
  * constructor argument of type {@code javax.inject.Provider}, as an
  * alternative to JSR-330's {@code @Inject} annotation-driven approach.
  *
- * @author Juergen Hoeller
+
  * @since 3.0.2
  * @see javax.inject.Provider
  * @see ObjectFactoryCreatingFactoryBean

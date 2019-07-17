@@ -5,7 +5,7 @@ package org.springframework.cache.config;
 /**
  * Configuration constants for internal sharing across subpackages.
  *
- * @author Juergen Hoeller
+
  * @since 4.1
  */
 public abstract class CacheManagementConfigUtils {

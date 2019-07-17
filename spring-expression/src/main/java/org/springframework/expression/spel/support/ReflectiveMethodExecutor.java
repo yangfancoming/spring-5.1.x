@@ -19,7 +19,7 @@ import org.springframework.util.ReflectionUtils;
  * {@link MethodExecutor} that works via reflection.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class ReflectiveMethodExecutor implements MethodExecutor {

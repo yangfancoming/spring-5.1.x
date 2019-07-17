@@ -13,7 +13,7 @@ import org.springframework.format.Formatter;
  * {@link Formatter} implementation for a Joda-Time {@link YearMonth},
  * following Joda-Time's parsing rules for a YearMonth.
  *
- * @author Juergen Hoeller
+
  * @since 4.2.4
  * @see YearMonth#parse
  */

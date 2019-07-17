@@ -59,7 +59,7 @@ import org.springframework.web.util.UrlPathHelper;
  * {@link #with(RequestPostProcessor)} extension point.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @author Arjen Poutsma
  * @author Sam Brannen
  * @author Kamill Sokol

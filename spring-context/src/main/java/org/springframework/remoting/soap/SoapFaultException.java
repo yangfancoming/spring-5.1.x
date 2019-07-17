@@ -10,7 +10,7 @@ import org.springframework.remoting.RemoteInvocationFailureException;
  * RemoteInvocationFailureException subclass that provides the details
  * of a SOAP fault.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see javax.xml.rpc.soap.SOAPFaultException
  * @see javax.xml.ws.soap.SOAPFaultException

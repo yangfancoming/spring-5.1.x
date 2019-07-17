@@ -12,7 +12,7 @@ import org.springframework.util.StringUtils;
  * {@code TimeZone} objects. Exposes the {@code TimeZone} ID as a text
  * representation.
  *
- * @author Juergen Hoeller
+
  * @author Nicholas Williams
  * @since 3.0
  * @see java.util.TimeZone

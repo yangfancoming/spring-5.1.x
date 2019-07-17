@@ -17,7 +17,7 @@ import org.springframework.util.ObjectUtils;
  * parameters and return types.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 1.1
  */
 public class ReplaceOverride extends MethodOverride {

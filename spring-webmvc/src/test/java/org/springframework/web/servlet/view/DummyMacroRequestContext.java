@@ -14,7 +14,7 @@ import org.springframework.web.util.UriTemplate;
  * Dummy request context used for VTL and FTL macro tests.
  *
  * @author Darren Davison
- * @author Juergen Hoeller
+
  * @since 25.01.2005
  * @see org.springframework.web.servlet.support.RequestContext
  */

@@ -33,8 +33,8 @@ import static org.junit.Assert.*;
 /**
  * Tests for collections in XML bean definitions.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 19.12.2004
  */
 public class XmlBeanCollectionTests {

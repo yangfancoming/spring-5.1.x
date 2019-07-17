@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
  * Context information for use by {@link Condition Conditions}.
  *
  * @author Phillip Webb
- * @author Juergen Hoeller
+
  * @since 4.0
  */
 public interface ConditionContext {

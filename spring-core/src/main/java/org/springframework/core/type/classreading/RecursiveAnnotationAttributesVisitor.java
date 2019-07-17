@@ -9,9 +9,8 @@ import org.springframework.lang.Nullable;
 
 /**
  * {@link AnnotationVisitor} to recursively visit annotation attributes.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.1.1
  */
 class RecursiveAnnotationAttributesVisitor extends AbstractRecursiveAnnotationVisitor {

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.BeanDefinitionStoreException;
  * Exception thrown when a bean definition reader encounters an error
  * during the parsing process.
  *
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @since 2.0
  */

@@ -24,7 +24,7 @@ import org.springframework.aop.PointcutAdvisor;
  * a perThis instantiation model would mean lazy initialization of the advice.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public interface InstantiationModelAwarePointcutAdvisor extends PointcutAdvisor {

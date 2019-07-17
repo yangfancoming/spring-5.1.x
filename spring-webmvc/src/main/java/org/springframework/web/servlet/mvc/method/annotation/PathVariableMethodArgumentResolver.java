@@ -45,7 +45,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  *
  * @author Rossen Stoyanchev
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 3.1
  */
 public class PathVariableMethodArgumentResolver extends AbstractNamedValueMethodArgumentResolver

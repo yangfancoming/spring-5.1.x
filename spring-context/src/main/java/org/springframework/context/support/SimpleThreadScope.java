@@ -33,7 +33,7 @@ import org.springframework.lang.Nullable;
  * <p>Thanks to Eugene Kuleshov for submitting the original prototype for a thread scope!
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see org.springframework.web.context.request.RequestScope
  */

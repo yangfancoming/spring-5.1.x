@@ -23,7 +23,7 @@ import org.springframework.util.concurrent.ListenableFutureTask;
  * Also detects an extended {@code java.util.concurrent.ExecutorService}, adapting
  * the {@link org.springframework.core.task.AsyncTaskExecutor} interface accordingly.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see java.util.concurrent.Executor
  * @see java.util.concurrent.ExecutorService

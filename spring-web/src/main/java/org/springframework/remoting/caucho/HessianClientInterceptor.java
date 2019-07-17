@@ -39,7 +39,7 @@ import org.springframework.util.Assert;
  * no special handling involved. As a consequence, you can also access services that
  * have been exported using Caucho's {@link com.caucho.hessian.server.HessianServlet}.
  *
- * @author Juergen Hoeller
+
  * @since 29.09.2003
  * @see #setServiceInterface
  * @see #setServiceUrl

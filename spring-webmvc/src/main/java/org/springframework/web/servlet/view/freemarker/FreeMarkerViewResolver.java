@@ -29,7 +29,7 @@ import org.springframework.web.servlet.view.AbstractTemplateViewResolver;
  * check for the existence of the specified template resources and only return
  * a non-null View object if the template was actually found.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see #setViewClass
  * @see #setPrefix

@@ -21,7 +21,7 @@ import org.springframework.util.CollectionUtils;
  * See {@link org.springframework.web.client.RestTemplate} for an entry point.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see ClientHttpRequestInterceptor
  * @see InterceptingClientHttpRequestFactory

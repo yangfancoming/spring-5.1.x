@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
  * user API to Spring's conversion facilities.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public interface TypeConverter {

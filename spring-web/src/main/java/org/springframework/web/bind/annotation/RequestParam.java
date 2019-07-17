@@ -37,7 +37,7 @@ import org.springframework.core.annotation.AliasFor;
  * with all request parameter names and values.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @since 2.5
  * @see RequestMapping

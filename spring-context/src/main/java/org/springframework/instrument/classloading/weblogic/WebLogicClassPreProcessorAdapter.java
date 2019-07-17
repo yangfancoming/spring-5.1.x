@@ -18,7 +18,7 @@ import org.springframework.lang.Nullable;
  * being used.
  *
  * @author Costin Leau
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 class WebLogicClassPreProcessorAdapter implements InvocationHandler {

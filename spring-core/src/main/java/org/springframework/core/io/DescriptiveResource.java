@@ -15,7 +15,7 @@ import org.springframework.lang.Nullable;
  * <p>To be used as placeholder if a {@code Resource} argument is
  * expected by an API but not necessarily used for actual reading.
  *
- * @author Juergen Hoeller
+
  * @since 1.2.6
  */
 public class DescriptiveResource extends AbstractResource {

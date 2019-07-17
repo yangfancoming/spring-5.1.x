@@ -9,7 +9,7 @@ import org.springframework.util.Assert;
  * Immutable placeholder class used for a property value object when it's a
  * reference to another bean name in the factory, to be resolved at runtime.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see RuntimeBeanReference
  * @see BeanDefinition#getPropertyValues()

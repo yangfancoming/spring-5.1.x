@@ -7,7 +7,7 @@ package org.springframework.beans.factory;
  * bean creation currently not being allowed (for example, during
  * the shutdown phase of a bean factory).
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 @SuppressWarnings("serial")

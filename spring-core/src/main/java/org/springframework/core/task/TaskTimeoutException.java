@@ -6,7 +6,7 @@ package org.springframework.core.task;
  * Exception thrown when a {@link AsyncTaskExecutor} rejects to accept
  * a given task for execution because of the specified timeout.
  *
- * @author Juergen Hoeller
+
  * @since 2.0.3
  * @see AsyncTaskExecutor#execute(Runnable, long)
  * @see TaskRejectedException

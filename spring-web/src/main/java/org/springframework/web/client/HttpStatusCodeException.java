@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
  * Abstract base class for exceptions based on an {@link HttpStatus}.
  *
  * @author Arjen Poutsma
- * @author Chris Beams
+
  * @author Rossen Stoyanchev
  * @since 3.0
  */

@@ -40,7 +40,7 @@ import org.springframework.util.CollectionUtils;
  * avoiding AOP checks for this processor bean and its {@link EventListenerFactory} delegates.
  *
  * @author Stephane Nicoll
- * @author Juergen Hoeller
+
  * @since 4.2
  * @see EventListenerFactory
  * @see DefaultEventListenerFactory

@@ -22,7 +22,7 @@ import org.springframework.util.Assert;
  *
  * <p>Applications should not use this class directly.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see LoadTimeWeaverAware
  * @see org.springframework.context.ConfigurableApplicationContext#LOAD_TIME_WEAVER_BEAN_NAME

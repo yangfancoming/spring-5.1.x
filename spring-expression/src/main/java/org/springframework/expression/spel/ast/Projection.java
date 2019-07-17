@@ -24,7 +24,7 @@ import org.springframework.util.ObjectUtils;
  *
  * @author Andy Clement
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class Projection extends SpelNodeImpl {

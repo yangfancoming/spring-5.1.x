@@ -26,10 +26,7 @@ import org.springframework.tests.mock.jndi.SimpleNamingContextBuilder;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Juergen Hoeller
- * @author Chris Beams
- */
+
 public class SimpleNamingContextTests {
 
 	@Test

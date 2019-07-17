@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Ramnivas Laddad
- * @author Juergen Hoeller
+
  * @author Oliver Gierke
  */
 public class AnnotationTypeFilterTests {

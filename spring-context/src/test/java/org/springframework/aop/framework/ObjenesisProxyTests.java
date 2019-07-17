@@ -13,8 +13,7 @@ import static org.junit.Assert.*;
 
 /**
  * Integration test for Objenesis proxy creation.
- *
- * @author Oliver Gierke
+
  */
 public class ObjenesisProxyTests {
 

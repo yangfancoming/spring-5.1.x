@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
  * Test fixture for HeaderContentNegotiationStrategy tests.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  */
 public class HeaderContentNegotiationStrategyTests {
 

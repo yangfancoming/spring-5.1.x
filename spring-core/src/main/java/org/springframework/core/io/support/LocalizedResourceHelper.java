@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
  * Helper class for loading a localized resource,
  * specified through name, extension and current locale.
  *
- * @author Juergen Hoeller
+
  * @since 1.2.5
  */
 public class LocalizedResourceHelper {

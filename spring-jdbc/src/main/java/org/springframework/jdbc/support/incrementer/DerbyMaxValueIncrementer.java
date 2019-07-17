@@ -36,7 +36,7 @@ import javax.sql.DataSource;
  * <p>Thanks to Endre Stolsvik for the suggestion!
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 public class DerbyMaxValueIncrementer extends AbstractIdentityColumnMaxValueIncrementer {

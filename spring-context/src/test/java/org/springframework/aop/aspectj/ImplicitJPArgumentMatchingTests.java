@@ -11,7 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * See SPR-3723 for more details.
  *
  * @author Ramnivas Laddad
- * @author Chris Beams
+
  */
 public class ImplicitJPArgumentMatchingTests {
 

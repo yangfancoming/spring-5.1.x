@@ -40,7 +40,7 @@ import org.springframework.util.ClassUtils;
  * and Pointcuts) and the TargetSource are serializable.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @author Dave Syer
  * @see java.lang.reflect.Proxy

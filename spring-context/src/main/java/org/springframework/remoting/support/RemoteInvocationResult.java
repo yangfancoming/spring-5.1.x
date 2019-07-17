@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
  * <p>Both {@link RemoteInvocation} and {@link RemoteInvocationResult} are designed
  * for use with standard Java serialization as well as JavaBean-style serialization.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see RemoteInvocation
  */

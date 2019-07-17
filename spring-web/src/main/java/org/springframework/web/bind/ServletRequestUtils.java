@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * <p>This approach is very useful for simple submissions, where binding
  * request parameters to a command object would be overkill.
  *
- * @author Juergen Hoeller
+
  * @author Keith Donald
  * @since 2.0
  */

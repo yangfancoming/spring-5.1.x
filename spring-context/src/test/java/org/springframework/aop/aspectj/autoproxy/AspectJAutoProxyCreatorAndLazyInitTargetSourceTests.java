@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 /**
  * @author Rod Johnson
  * @author Rob Harrop
- * @author Chris Beams
+
  */
 public class AspectJAutoProxyCreatorAndLazyInitTargetSourceTests {
 

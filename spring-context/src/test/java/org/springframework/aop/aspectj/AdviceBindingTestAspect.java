@@ -9,7 +9,7 @@ import org.aspectj.lang.JoinPoint;
  * serves as base class for a number of more specialized test aspects.
  *
  * @author Adrian Colyer
- * @author Chris Beams
+
  */
 class AdviceBindingTestAspect {
 

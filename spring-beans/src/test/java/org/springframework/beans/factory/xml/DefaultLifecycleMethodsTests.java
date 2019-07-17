@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  */
 public class DefaultLifecycleMethodsTests {
 

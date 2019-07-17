@@ -9,7 +9,7 @@ import org.springframework.core.MethodParameter;
  * that a request header expected in the method parameters of an
  * {@code @RequestMapping} method is not present.
  *
- * @author Juergen Hoeller
+
  * @since 5.1
  * @see MissingRequestCookieException
  */

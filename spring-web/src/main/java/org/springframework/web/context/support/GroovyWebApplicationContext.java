@@ -45,7 +45,7 @@ import org.springframework.lang.Nullable;
  * Such a context implementation can be specified as "contextClass" context-param
  * for ContextLoader or "contextClass" init-param for FrameworkServlet.
  *
- * @author Juergen Hoeller
+
  * @since 4.1
  * @see #setNamespace
  * @see #setConfigLocations

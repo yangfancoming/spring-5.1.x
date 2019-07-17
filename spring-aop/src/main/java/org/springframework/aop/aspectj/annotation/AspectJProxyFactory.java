@@ -23,7 +23,7 @@ import org.springframework.util.ClassUtils;
  * Java 5 annotation style).
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Ramnivas Laddad
  * @since 2.0
  * @see #addAspect(Object)

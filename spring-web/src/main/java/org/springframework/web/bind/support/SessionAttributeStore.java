@@ -8,7 +8,7 @@ import org.springframework.web.context.request.WebRequest;
 /**
  * Strategy interface for storing model attributes in a backend session.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see org.springframework.web.bind.annotation.SessionAttributes
  */

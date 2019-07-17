@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
  * element with a '{@code type}' of '{@code checkbox}' or '{@code radio}'.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @author Rossen Stoyanchev
  * @since 2.5
  */

@@ -24,7 +24,7 @@ import org.springframework.util.ClassUtils;
  * information on the server-side rather than just propagating the exception
  * to the client (who might or might not log it properly).
  *
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see RemoteExporter#setRegisterTraceInterceptor
  * @see RemoteExporter#getProxyForService

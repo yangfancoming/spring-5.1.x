@@ -22,7 +22,7 @@ import org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler
  * of them do, this handler can forward it to the "default" Servlet.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 3.1
  * @see DefaultServletHttpRequestHandler
  */

@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
  * appropriate exceptions if the operand in question does not support decrement.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @author Giovanni Dall'Oglio Risso
  * @since 3.2
  */

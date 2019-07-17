@@ -19,7 +19,7 @@ import static org.mockito.BDDMockito.*;
 
 /**
  * @author Rod Johnson
- * @author Chris Beams
+
  */
 public class ThrowsAdviceInterceptorTests {
 

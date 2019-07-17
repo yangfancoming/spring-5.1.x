@@ -19,7 +19,7 @@ import org.springframework.tests.sample.beans.TestBean;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
+
  * @author Stephane Nicoll
  * @since 07.03.2006
  */

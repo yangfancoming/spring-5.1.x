@@ -38,7 +38,7 @@ import org.springframework.web.util.WebUtils;
  * will simply evaluate and modify corresponding {@code HttpSession} attributes
  * against the current {@code HttpServletRequest}.
  *
- * @author Juergen Hoeller
+
  * @since 27.02.2003
  * @see #setDefaultLocale
  * @see #setDefaultTimeZone

@@ -62,7 +62,7 @@ import org.springframework.lang.Nullable;
  * &lt;/bean></pre>
  *
  * @author Colin Sampaleanu
- * @author Juergen Hoeller
+
  * @since 21.11.2003
  * @see MethodInvokingBean
  * @see org.springframework.util.MethodInvoker

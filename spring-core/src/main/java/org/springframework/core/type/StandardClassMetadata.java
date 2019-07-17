@@ -13,7 +13,7 @@ import org.springframework.util.StringUtils;
  * {@link ClassMetadata} implementation that uses standard reflection
  * to introspect a given {@code Class}.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 public class StandardClassMetadata implements ClassMetadata {

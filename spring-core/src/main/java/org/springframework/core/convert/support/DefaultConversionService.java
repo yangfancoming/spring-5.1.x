@@ -18,9 +18,8 @@ import org.springframework.lang.Nullable;
  * <p>Designed for direct instantiation but also exposes the static
  * {@link #addDefaultConverters(ConverterRegistry)} utility method for ad-hoc
  * use against any {@code ConverterRegistry} instance.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @author Stephane Nicoll
  * @since 3.1
  */

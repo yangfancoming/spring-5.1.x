@@ -41,7 +41,7 @@ import org.springframework.util.Assert;
  * <p>This class provides the base SPI for {@link SimpleJdbcInsert}.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 public abstract class AbstractJdbcInsert {

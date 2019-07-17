@@ -17,9 +17,9 @@ import org.springframework.util.MultiValueMap;
  * {@link AnnotationMetadata} implementation that uses standard reflection
  * to introspect a given {@link Class}.
  *
- * @author Juergen Hoeller
+
  * @author Mark Fisher
- * @author Chris Beams
+
  * @author Phillip Webb
  * @author Sam Brannen
  * @since 2.5

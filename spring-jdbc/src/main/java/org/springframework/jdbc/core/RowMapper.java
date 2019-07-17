@@ -27,7 +27,7 @@ import org.springframework.lang.Nullable;
  * objects (containing row-mapping logic) in that style.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @param <T> the result type
  * @see JdbcTemplate
  * @see RowCallbackHandler

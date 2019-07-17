@@ -33,7 +33,7 @@ import org.springframework.lang.Nullable;
  * applied by DispatcherServlet. Non-Ordered instances get treated as lowest priority.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see org.springframework.core.Ordered
  * @see org.springframework.web.servlet.handler.AbstractHandlerMapping
  * @see org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping

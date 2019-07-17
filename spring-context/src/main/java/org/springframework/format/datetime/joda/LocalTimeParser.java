@@ -14,7 +14,7 @@ import org.springframework.format.Parser;
  * Parses Joda {@link org.joda.time.LocalTime} instances using a
  * {@link org.joda.time.format.DateTimeFormatter}.
  *
- * @author Juergen Hoeller
+
  * @since 4.0
  */
 public final class LocalTimeParser implements Parser<LocalTime> {

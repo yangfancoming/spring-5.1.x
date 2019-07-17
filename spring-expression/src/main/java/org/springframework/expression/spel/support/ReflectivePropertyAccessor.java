@@ -39,7 +39,7 @@ import org.springframework.util.StringUtils;
  * or a public setter method (when being written), and also as a public field.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @author Phillip Webb
  * @since 3.0
  * @see StandardEvaluationContext

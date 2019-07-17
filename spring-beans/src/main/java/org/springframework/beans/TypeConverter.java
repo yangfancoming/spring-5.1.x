@@ -16,7 +16,7 @@ import org.springframework.lang.Nullable;
  * {@link java.beans.PropertyEditor PropertyEditors} which aren't thread-safe,
  * TypeConverters themselves are <em>not</em> to be considered as thread-safe either.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see SimpleTypeConverter
  * @see BeanWrapperImpl

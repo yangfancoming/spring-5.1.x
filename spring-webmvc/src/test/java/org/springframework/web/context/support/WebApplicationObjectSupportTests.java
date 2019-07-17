@@ -14,8 +14,8 @@ import org.springframework.web.util.WebUtils;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 28.08.2003
  */
 public class WebApplicationObjectSupportTests {

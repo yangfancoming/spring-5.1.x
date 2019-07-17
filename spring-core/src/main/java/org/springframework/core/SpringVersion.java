@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * For example, checking for the presence of a specific Spring 5.0
  * method that you intend to call.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  */
 public final class SpringVersion {

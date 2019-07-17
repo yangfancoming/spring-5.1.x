@@ -7,7 +7,7 @@ import org.springframework.oxm.XmlMappingException;
 /**
  * Exception thrown by {@link CastorMarshaller} whenever it encounters a mapping problem.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  * @deprecated as of Spring Framework 4.3.13, due to the lack of activity on the Castor project
  */

@@ -10,7 +10,7 @@ import org.springframework.tests.sample.beans.TestBean;
 
 /**
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  */
 public abstract class AbstractFormTagTests extends AbstractHtmlElementTagTests {
 

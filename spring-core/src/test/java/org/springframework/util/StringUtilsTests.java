@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Rick Evans
  */
 public class StringUtilsTests {

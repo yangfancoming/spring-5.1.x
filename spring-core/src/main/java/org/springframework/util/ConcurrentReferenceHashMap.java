@@ -40,7 +40,7 @@ import org.springframework.lang.Nullable;
  * {@linkplain SoftReference soft entry references}.
  *
  * @author Phillip Webb
- * @author Juergen Hoeller
+
  * @since 3.2
  * @param <K> the key type
  * @param <V> the value type

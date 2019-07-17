@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
  * asynchronous execution will be preferable: choose an asynchronous
  * {@code TaskExecutor} instead for such scenarios.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see SimpleAsyncTaskExecutor
  */

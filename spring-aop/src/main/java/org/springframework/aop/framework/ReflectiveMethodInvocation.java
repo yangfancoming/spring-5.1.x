@@ -37,7 +37,7 @@ import org.springframework.lang.Nullable;
  * purposes, use the {@link ProxyMethodInvocation} interface instead.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Adrian Colyer
  * @see #invokeJoinpoint
  * @see #proceed

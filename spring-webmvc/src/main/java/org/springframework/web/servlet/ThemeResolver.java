@@ -27,7 +27,7 @@ import org.springframework.lang.Nullable;
  * of the actual resolution strategy.
  *
  * @author Jean-Pierre Pawlak
- * @author Juergen Hoeller
+
  * @since 17.06.2003
  * @see org.springframework.ui.context.Theme
  * @see org.springframework.ui.context.ThemeSource

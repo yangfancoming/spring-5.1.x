@@ -15,7 +15,7 @@ import org.springframework.lang.Nullable;
  * Used by ScopedProxyBeanDefinitionDecorator and ClassPathBeanDefinitionScanner.
  *
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @since 2.5
  */

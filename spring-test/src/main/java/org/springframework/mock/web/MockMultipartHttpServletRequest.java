@@ -27,7 +27,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
  * <p>Useful for testing application controllers that access multipart uploads.
  * {@link MockMultipartFile} can be used to populate these mock requests with files.
  *
- * @author Juergen Hoeller
+
  * @author Eric Crampton
  * @author Arjen Poutsma
  * @since 2.0

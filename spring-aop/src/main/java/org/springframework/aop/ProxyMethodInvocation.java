@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * <p>Useful to be able to substitute return values with the proxy,
  * if necessary, for example if the invocation target returned itself.
  *
- * @author Juergen Hoeller
+
  * @author Adrian Colyer
  * @since 1.1.3
  * @see org.springframework.aop.framework.ReflectiveMethodInvocation

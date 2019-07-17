@@ -16,7 +16,7 @@ import org.springframework.jmx.export.naming.MetadataNamingStrategy;
  * with an {@link AnnotationJmxAttributeSource}, and activates the
  * {@link #AUTODETECT_ALL} mode by default.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 public class AnnotationMBeanExporter extends MBeanExporter {

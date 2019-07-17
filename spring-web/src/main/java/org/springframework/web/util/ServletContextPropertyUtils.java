@@ -14,7 +14,7 @@ import org.springframework.util.SystemPropertyUtils;
  * init parameters or system properties: e.g. {@code ${user.dir}}. Default values can
  * be supplied using the ":" separator between key and value.
  *
- * @author Juergen Hoeller
+
  * @author Marten Deinum
  * @since 3.2.2
  * @see SystemPropertyUtils

@@ -26,7 +26,7 @@ import org.springframework.util.Assert;
  * of expand or match calls.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @author Rossen Stoyanchev
  * @since 3.0
  */

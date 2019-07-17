@@ -37,7 +37,7 @@ import static org.junit.Assert.*;
  * Unit tests for {@link org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor}
  * processing the JSR-330 {@link javax.inject.Inject} annotation.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class InjectAnnotationBeanPostProcessorTests {

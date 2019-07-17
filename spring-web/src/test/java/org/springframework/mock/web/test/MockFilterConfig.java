@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
  * <p>Used for testing the web framework; also useful for testing
  * custom {@link javax.servlet.Filter} implementations.
  *
- * @author Juergen Hoeller
+
  * @since 1.0.2
  * @see MockFilterChain
  * @see PassThroughFilterChain

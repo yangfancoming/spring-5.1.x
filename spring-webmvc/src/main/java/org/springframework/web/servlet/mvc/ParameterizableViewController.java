@@ -18,7 +18,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
  * the provided configuration properties.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Keith Donald
  * @author Rossen Stoyanchev
  */

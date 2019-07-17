@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Jeff Brown
- * @author Juergen Hoeller
+
  */
 public class GroovyApplicationContextTests {
 

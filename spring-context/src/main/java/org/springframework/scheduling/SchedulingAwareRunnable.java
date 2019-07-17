@@ -13,7 +13,7 @@ package org.springframework.scheduling;
  * Runnable, detecting whether this interface is implemented and reacting
  * as appropriately as they are able to.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see commonj.work.Work
  * @see org.springframework.core.task.TaskExecutor

@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
  *
  * @author Alef Arendsen
  * @author Seth Ladd
- * @author Juergen Hoeller
+
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  * @author Sam Brannen

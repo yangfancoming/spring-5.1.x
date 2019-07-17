@@ -27,7 +27,7 @@ import org.springframework.util.Assert;
  * path will be resolved in the file system via {@code Paths#get(String)}
  * if no existing context-relative resource could be found.
  *
- * @author Juergen Hoeller
+
  * @since 4.3.2
  * @see java.nio.file.Path
  * @see Paths#get(URI)

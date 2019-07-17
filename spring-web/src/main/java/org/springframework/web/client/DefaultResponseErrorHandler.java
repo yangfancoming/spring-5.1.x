@@ -23,7 +23,7 @@ import org.springframework.util.FileCopyUtils;
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see RestTemplate#setErrorHandler
  */

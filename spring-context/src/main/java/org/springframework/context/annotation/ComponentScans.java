@@ -16,7 +16,7 @@ import java.lang.annotation.Target;
  * where {@link ComponentScan} can simply be declared several times on the same method,
  * implicitly generating this container annotation.
  *
- * @author Juergen Hoeller
+
  * @since 4.3
  * @see ComponentScan
  */

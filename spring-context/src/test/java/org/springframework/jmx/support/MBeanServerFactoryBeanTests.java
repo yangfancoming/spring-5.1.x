@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Phillip Webb
  */
 public class MBeanServerFactoryBeanTests {

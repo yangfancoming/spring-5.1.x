@@ -28,7 +28,7 @@ import org.springframework.util.StringUtils;
  * the {@link #initPatternRepresentation} method will be invoked again on deserialization.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @since 1.1
  * @see JdkRegexpMethodPointcut

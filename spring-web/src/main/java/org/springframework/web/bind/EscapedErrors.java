@@ -21,7 +21,7 @@ import org.springframework.web.util.HtmlUtils;
  * creation of ObjectError instances. It just escapes the messages and values
  * that get copied into the respective BindStatus instance.
  *
- * @author Juergen Hoeller
+
  * @since 01.03.2003
  * @see org.springframework.web.servlet.support.RequestContext#getErrors
  * @see org.springframework.web.servlet.tags.BindTag

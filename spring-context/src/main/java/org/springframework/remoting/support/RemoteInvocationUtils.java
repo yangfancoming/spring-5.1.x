@@ -10,7 +10,7 @@ import java.util.Set;
  *
  * <p>Mainly intended for use within the remoting framework.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public abstract class RemoteInvocationUtils {

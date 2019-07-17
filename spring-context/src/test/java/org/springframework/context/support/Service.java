@@ -13,7 +13,7 @@ import org.springframework.util.Assert;
 
 /**
  * @author Alef Arendsen
- * @author Juergen Hoeller
+
  */
 public class Service implements ApplicationContextAware, MessageSourceAware, DisposableBean {
 

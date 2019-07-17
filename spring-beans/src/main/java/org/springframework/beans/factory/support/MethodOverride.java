@@ -17,7 +17,7 @@ import org.springframework.util.ObjectUtils;
  * means of inserting crosscutting code: use AOP for that.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @since 1.1
  */

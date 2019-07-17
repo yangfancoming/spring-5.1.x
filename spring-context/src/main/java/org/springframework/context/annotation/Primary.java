@@ -59,9 +59,8 @@ import java.lang.annotation.Target;
  * component-scanning is being used. If a {@code @Primary}-annotated class is
  * declared via XML, {@code @Primary} annotation metadata is ignored, and
  * {@code <bean primary="true|false"/>} is respected instead.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.0
  * @see Lazy
  * @see Bean

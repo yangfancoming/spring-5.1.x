@@ -14,7 +14,7 @@ import org.apache.commons.logging.Log;
  * advanced needs.
  *
  * @author Dmitriy Kopylenko
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see CustomizableTraceInterceptor
  */

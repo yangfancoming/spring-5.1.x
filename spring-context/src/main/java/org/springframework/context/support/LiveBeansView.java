@@ -30,7 +30,7 @@ import org.springframework.util.StringUtils;
  * <p>Note: This feature is still in beta and primarily designed for use with
  * Spring Tool Suite 3.1 and higher.
  *
- * @author Juergen Hoeller
+
  * @author Stephane Nicoll
  * @since 3.2
  * @see #getSnapshotAsJson()

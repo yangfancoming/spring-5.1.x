@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
  * caching a {@link MetadataReader} instance per Spring {@link Resource} handle
  * (i.e. per ".class" file).
  *
- * @author Juergen Hoeller
+
  * @author Costin Leau
  * @since 2.5
  */

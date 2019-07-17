@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
  * calls to one of various target DataSources based on a lookup key. The latter is usually
  * (but not necessarily) determined through some thread-bound transaction context.
  *
- * @author Juergen Hoeller
+
  * @since 2.0.1
  * @see #setTargetDataSources
  * @see #setDefaultTargetDataSource

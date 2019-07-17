@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 /**
  * @author Rod Johnson
  * @author Dmitriy Kopylenko
- * @author Chris Beams
+
  */
 public abstract class AbstractRegexpMethodPointcutTests {
 

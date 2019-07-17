@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
  * file transfers.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 5.0
  * @see <a href="https://en.wikipedia.org/wiki/Zero-copy">Zero-copy</a>
  */

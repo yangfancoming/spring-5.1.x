@@ -24,7 +24,7 @@ import static org.junit.Assert.*;
  * Test for {@link AbstractRequestLoggingFilter} and subclasses.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  */
 public class RequestLoggingFilterTests {
 

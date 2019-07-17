@@ -186,8 +186,8 @@ import org.springframework.core.annotation.AliasFor;
  *
  * @author Rod Johnson
  * @author Costin Leau
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @author Sam Brannen
  * @since 3.0
  * @see Configuration

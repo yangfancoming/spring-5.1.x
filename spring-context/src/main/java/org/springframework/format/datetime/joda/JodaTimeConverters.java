@@ -27,7 +27,7 @@ import org.springframework.format.datetime.DateFormatterRegistrar;
  *
  * @author Keith Donald
  * @author Phillip Webb
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 final class JodaTimeConverters {

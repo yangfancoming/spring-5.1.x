@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
  * Base class for exceptions associated with specific HTTP response status codes.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 5.0
  */
 @SuppressWarnings("serial")

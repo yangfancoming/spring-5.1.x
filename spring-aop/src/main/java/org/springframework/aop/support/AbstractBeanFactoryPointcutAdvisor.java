@@ -21,7 +21,7 @@ import org.springframework.util.Assert;
  * (if running within a BeanFactory) increases loose coupling at initialization time,
  * in order to not initialize the advice object until the pointcut actually matches.
  *
- * @author Juergen Hoeller
+
  * @since 2.0.2
  * @see #setAdviceBeanName
  * @see DefaultBeanFactoryPointcutAdvisor

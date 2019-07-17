@@ -24,7 +24,7 @@ import org.springframework.lang.Nullable;
  * into a single {@code BeanDefinition}.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Rick Evans
  * @since 2.0
  * @see #getBeanClass

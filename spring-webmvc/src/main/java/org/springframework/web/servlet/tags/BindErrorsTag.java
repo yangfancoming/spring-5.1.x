@@ -45,7 +45,7 @@ import org.springframework.validation.Errors;
  * </table>
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see BindTag
  * @see org.springframework.validation.Errors
  */

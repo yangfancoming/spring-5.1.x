@@ -19,7 +19,7 @@ import org.springframework.util.ClassUtils;
  * <p>As of Spring Framework 5.0, this weaver supports GlassFish 4+.
  *
  * @author Costin Leau
- * @author Juergen Hoeller
+
  * @since 2.0.1
  */
 public class GlassFishLoadTimeWeaver implements LoadTimeWeaver {

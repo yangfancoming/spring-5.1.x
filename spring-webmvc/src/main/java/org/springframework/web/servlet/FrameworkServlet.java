@@ -113,9 +113,9 @@ import org.springframework.web.util.WebUtils;
  * {@link #FrameworkServlet(WebApplicationContext)} Javadoc for details.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Sam Brannen
- * @author Chris Beams
+
  * @author Rossen Stoyanchev
  * @author Phillip Webb
  * @see #doService

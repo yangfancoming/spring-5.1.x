@@ -27,7 +27,7 @@ import org.springframework.util.LinkedCaseInsensitiveMap;
  * HashMap, which will still preserve column order but requires the application
  * to specify the column names in the same casing as exposed by the driver.
  *
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see JdbcTemplate#queryForList(String)
  * @see JdbcTemplate#queryForMap(String)

@@ -28,7 +28,7 @@ import org.springframework.util.ReflectionUtils;
  *
  * <p>Note: This is an SPI class, not intended to be used by applications.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  */
 public abstract class RmiClientInterceptorUtils {

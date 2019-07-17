@@ -21,7 +21,7 @@ import static org.hamcrest.CoreMatchers.*;
  * @author Rick Evans
  * @author Arjen Poutsma
  * @author Sam Brannen
- * @author Juergen Hoeller
+
  */
 public class AssertTests {
 

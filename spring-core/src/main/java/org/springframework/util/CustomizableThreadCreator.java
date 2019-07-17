@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * <p>Serves as base class for thread factories such as
  * {@link org.springframework.scheduling.concurrent.CustomizableThreadFactory}.
  *
- * @author Juergen Hoeller
+
  * @since 2.0.3
  * @see org.springframework.scheduling.concurrent.CustomizableThreadFactory
  */

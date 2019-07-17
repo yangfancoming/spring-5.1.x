@@ -31,7 +31,7 @@ import org.springframework.lang.Nullable;
  * <p>Thanks to Lionel Mestre for suggesting the option and providing
  * a prototype!
  *
- * @author Juergen Hoeller
+
  * @since 1.1.3
  * @see java.rmi.server.RMIClassLoader
  * @see RemoteInvocationSerializingExporter#createObjectInputStream

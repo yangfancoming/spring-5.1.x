@@ -10,7 +10,7 @@ import org.springframework.util.Assert;
  * An implementation of the DataSourceLookup that simply wraps a
  * single given DataSource, returned for any data source name.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public class SingleDataSourceLookup implements DataSourceLookup {

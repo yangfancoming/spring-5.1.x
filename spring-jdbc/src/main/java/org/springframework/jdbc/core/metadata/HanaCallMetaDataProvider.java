@@ -10,7 +10,7 @@ import java.sql.SQLException;
  * This class is intended for internal use by the Simple JDBC classes.
  *
  * @author Subhobrata Dey
- * @author Juergen Hoeller
+
  * @since 4.2.1
  */
 public class HanaCallMetaDataProvider extends GenericCallMetaDataProvider {

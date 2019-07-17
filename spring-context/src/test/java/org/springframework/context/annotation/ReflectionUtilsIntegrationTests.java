@@ -14,8 +14,7 @@ import static org.junit.Assert.*;
 /**
  * Tests ReflectionUtils methods as used against CGLIB-generated classes created
  * by ConfigurationClassEnhancer.
- *
- * @author Chris Beams
+
  * @since 3.1
  * @see org.springframework.util.ReflectionUtilsTests
  */

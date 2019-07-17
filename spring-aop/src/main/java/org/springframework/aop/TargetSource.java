@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
  * {@code TargetSources} directly: this is an AOP framework interface.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 public interface TargetSource extends TargetClassAware {
 

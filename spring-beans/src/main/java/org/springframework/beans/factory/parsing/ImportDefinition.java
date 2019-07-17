@@ -10,7 +10,7 @@ import org.springframework.util.Assert;
 /**
  * Representation of an import that has been processed during the parsing process.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see ReaderEventListener#importProcessed(ImportDefinition)
  */

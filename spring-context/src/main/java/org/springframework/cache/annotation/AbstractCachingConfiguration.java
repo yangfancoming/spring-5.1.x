@@ -20,10 +20,9 @@ import org.springframework.util.CollectionUtils;
 /**
  * Abstract base {@code @Configuration} class providing common structure
  * for enabling Spring's annotation-driven cache management capability.
- *
- * @author Chris Beams
+
  * @author Stephane Nicoll
- * @author Juergen Hoeller
+
  * @since 3.1
  * @see EnableCaching
  */

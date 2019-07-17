@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  */
 public class ComponentScanParserScopedProxyTests {

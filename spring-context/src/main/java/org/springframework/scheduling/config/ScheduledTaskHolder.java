@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * Common interface for exposing locally scheduled tasks.
  *
- * @author Juergen Hoeller
+
  * @since 5.0.2
  * @see ScheduledTaskRegistrar
  * @see org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor

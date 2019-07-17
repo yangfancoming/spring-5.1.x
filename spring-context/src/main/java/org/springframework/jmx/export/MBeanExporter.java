@@ -73,7 +73,7 @@ import org.springframework.util.ObjectUtils;
  * <p>This exporter is compatible with MBeans as well as MXBeans.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Rick Evans
  * @author Mark Fisher
  * @author Stephane Nicoll

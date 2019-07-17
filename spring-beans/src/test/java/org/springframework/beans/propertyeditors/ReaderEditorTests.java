@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 /**
  * Unit tests for the {@link ReaderEditor} class.
  *
- * @author Juergen Hoeller
+
  * @since 4.2
  */
 public class ReaderEditorTests {

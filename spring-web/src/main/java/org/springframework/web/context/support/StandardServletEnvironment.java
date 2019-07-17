@@ -23,8 +23,7 @@ import org.springframework.web.context.ConfigurableWebEnvironment;
  * <p>Contributes {@code ServletConfig}, {@code ServletContext}, and JNDI-based
  * {@link PropertySource} instances. See {@link #customizePropertySources} method
  * documentation for details.
- *
- * @author Chris Beams
+
  * @since 3.1
  * @see StandardEnvironment
  */

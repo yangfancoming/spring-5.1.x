@@ -29,7 +29,7 @@ import java.lang.annotation.Target;
  * {@link DependsOn} annotation metadata is ignored, and
  * {@code <bean depends-on="..."/>} is respected instead.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 @Target({ElementType.TYPE, ElementType.METHOD})

@@ -16,7 +16,7 @@ import org.springframework.lang.Nullable;
  * cannot be changed.
  *
  * @author Jean-Pierre Pawlak
- * @author Juergen Hoeller
+
  * @since 17.06.2003
  * @see #setDefaultThemeName
  */

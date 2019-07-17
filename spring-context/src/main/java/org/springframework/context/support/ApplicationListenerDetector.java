@@ -25,7 +25,7 @@ import org.springframework.util.ObjectUtils;
  * mechanisms, {@code DisposableBeanAdapter.writeReplace} might not get used at all, so we
  * defensively mark this post-processor's field state as {@code transient}.
  *
- * @author Juergen Hoeller
+
  * @since 4.3.4
  */
 class ApplicationListenerDetector implements DestructionAwareBeanPostProcessor, MergedBeanDefinitionPostProcessor {

@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
  * Serializable if Advice and subclass are.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 @SuppressWarnings("serial")
 public abstract class StaticMethodMatcherPointcutAdvisor extends StaticMethodMatcherPointcut

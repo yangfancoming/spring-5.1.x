@@ -17,7 +17,7 @@ import org.springframework.util.Assert;
  * called through reflection) from the load-time weaver.
  *
  * @author Costin Leau
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 class WebLogicClassLoaderAdapter {

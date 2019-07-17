@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
  * on {@code java.lang.Object} or {@code java.lang.Class}.
  * For unrestricted resolution, choose {@link ReflectiveMethodResolver} instead.
  *
- * @author Juergen Hoeller
+
  * @since 4.3.15
  * @see #forInstanceMethodInvocation()
  * @see DataBindingPropertyAccessor

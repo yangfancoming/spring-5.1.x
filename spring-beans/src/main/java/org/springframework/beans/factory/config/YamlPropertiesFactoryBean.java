@@ -64,7 +64,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Dave Syer
  * @author Stephane Nicoll
- * @author Juergen Hoeller
+
  * @since 4.1
  */
 public class YamlPropertiesFactoryBean extends YamlProcessor implements FactoryBean<Properties>, InitializingBean {

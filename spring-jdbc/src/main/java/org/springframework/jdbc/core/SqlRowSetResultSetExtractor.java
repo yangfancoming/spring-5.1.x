@@ -17,7 +17,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
  *
  * <p>The default implementation uses a standard JDBC CachedRowSet underneath.
  *
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see #newCachedRowSet
  * @see org.springframework.jdbc.support.rowset.SqlRowSet

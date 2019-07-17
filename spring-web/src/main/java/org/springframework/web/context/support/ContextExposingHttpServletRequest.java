@@ -16,7 +16,7 @@ import org.springframework.web.context.WebApplicationContext;
  * given WebApplicationContext accessible as request attributes,
  * through lazy checking once an attribute gets accessed.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 public class ContextExposingHttpServletRequest extends HttpServletRequestWrapper {

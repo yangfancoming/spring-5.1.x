@@ -15,7 +15,7 @@ import org.springframework.lang.Nullable;
  * in particular with {@link NamedParameterJdbcTemplate}.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 public abstract class SqlParameterSourceUtils {

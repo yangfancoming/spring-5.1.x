@@ -27,11 +27,7 @@ import org.springframework.tests.sample.beans.TestBean;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Mark Fisher
- * @author Juergen Hoeller
- * @author Chris Beams
- */
+
 public class ClassPathBeanDefinitionScannerTests {
 
 	private static final String BASE_PACKAGE = "example.scannable";

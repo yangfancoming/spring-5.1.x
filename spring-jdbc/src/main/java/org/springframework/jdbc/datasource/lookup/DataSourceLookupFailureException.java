@@ -8,7 +8,7 @@ import org.springframework.dao.NonTransientDataAccessException;
  * Exception to be thrown by a DataSourceLookup implementation,
  * indicating that the specified DataSource could not be obtained.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 @SuppressWarnings("serial")

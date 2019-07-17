@@ -17,7 +17,7 @@ import org.springframework.util.ObjectUtils;
  *
  * @author Rod Johnson
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public final class BeanDefinitionBuilder {

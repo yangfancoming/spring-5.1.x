@@ -61,10 +61,10 @@ import org.springframework.util.SerializationTestUtils;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
+
  * @author Mark Fisher
  * @author Sam Brannen
- * @author Chris Beams
+
  * @author Stephane Nicoll
  */
 public class AutowiredAnnotationBeanPostProcessorTests {

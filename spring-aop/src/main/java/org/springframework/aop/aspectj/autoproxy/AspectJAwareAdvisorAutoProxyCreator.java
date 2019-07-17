@@ -25,7 +25,7 @@ import org.springframework.util.ClassUtils;
  * for advice precedence when multiple pieces of advice come from the same aspect.
  *
  * @author Adrian Colyer
- * @author Juergen Hoeller
+
  * @author Ramnivas Laddad
  * @since 2.0
  */

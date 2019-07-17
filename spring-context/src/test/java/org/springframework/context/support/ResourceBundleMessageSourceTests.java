@@ -18,7 +18,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
+
  * @since 03.02.2004
  */
 public class ResourceBundleMessageSourceTests {

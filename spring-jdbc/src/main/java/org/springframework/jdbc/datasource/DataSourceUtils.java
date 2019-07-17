@@ -28,7 +28,7 @@ import org.springframework.util.Assert;
  * Can also be used directly in application code.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see #getConnection
  * @see #releaseConnection
  * @see DataSourceTransactionManager

@@ -27,7 +27,7 @@ import org.springframework.util.StringUtils;
  * {@link org.springframework.beans.factory.config.BeanExpressionResolver}
  * interface, parsing and evaluating Spring EL using Spring's expression module.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see org.springframework.expression.ExpressionParser
  * @see org.springframework.expression.spel.standard.SpelExpressionParser

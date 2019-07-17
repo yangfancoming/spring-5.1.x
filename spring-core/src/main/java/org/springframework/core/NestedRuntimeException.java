@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
  * superclasses (ah, the inflexibility of concrete inheritance!).
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see #getMessage
  * @see #printStackTrace
  * @see NestedCheckedException

@@ -92,7 +92,7 @@ import org.springframework.util.StringUtils;
  * version of {@code getBean(Class, args)} and {@code getBean(String, args)},
  * See {@link Lookup @Lookup's javadoc} for details.
  *
- * @author Juergen Hoeller
+
  * @author Mark Fisher
  * @author Stephane Nicoll
  * @author Sebastien Deleuze

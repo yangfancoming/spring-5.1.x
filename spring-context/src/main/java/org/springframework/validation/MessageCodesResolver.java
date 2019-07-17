@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  * <p>The resulting message codes correspond to the codes of a
  * MessageSourceResolvable (as implemented by ObjectError and FieldError).
  *
- * @author Juergen Hoeller
+
  * @since 1.0.1
  * @see DataBinder#setMessageCodesResolver
  * @see ObjectError

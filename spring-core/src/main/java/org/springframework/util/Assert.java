@@ -36,7 +36,7 @@ import org.springframework.lang.Nullable;
  * for a more comprehensive suite of {@code String} utilities.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @author Colin Sampaleanu
  * @author Rob Harrop

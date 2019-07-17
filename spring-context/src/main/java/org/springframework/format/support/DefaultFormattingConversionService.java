@@ -26,9 +26,8 @@ import org.springframework.util.StringValueResolver;
  *
  * <p>Automatically registers formatters for JSR-354 Money & Currency, JSR-310 Date-Time
  * and/or Joda-Time, depending on the presence of the corresponding API on the classpath.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.1
  */
 public class DefaultFormattingConversionService extends FormattingConversionService {

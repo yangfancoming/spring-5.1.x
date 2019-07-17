@@ -203,7 +203,7 @@ import org.springframework.web.bind.WebDataBinder;
  * </table>
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 @SuppressWarnings("serial")

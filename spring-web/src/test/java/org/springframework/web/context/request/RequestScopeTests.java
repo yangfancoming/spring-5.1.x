@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Mark Fisher
  * @author Sam Brannen
  * @see SessionScopeTests

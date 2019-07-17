@@ -37,7 +37,7 @@ import org.springframework.util.StringUtils;
  * {@link org.springframework.beans.factory.config.BeanDefinition} object.
  * Used by {@link AbstractAutowireCapableBeanFactory}.
  *
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see AbstractAutowireCapableBeanFactory
  */

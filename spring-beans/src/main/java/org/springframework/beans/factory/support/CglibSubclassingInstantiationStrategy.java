@@ -33,7 +33,7 @@ import org.springframework.util.StringUtils;
  * overridden by the container to implement <em>Method Injection</em>.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @since 1.1
  */

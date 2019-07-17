@@ -40,8 +40,8 @@ import org.springframework.util.StringUtils;
  * {@link ConfigurableConversionService} interface.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @author Phillip Webb
  * @author David Haraburda
  * @since 3.0

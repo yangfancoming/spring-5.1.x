@@ -25,7 +25,7 @@ import org.springframework.util.ClassUtils;
  * <p>Provides template methods for {@code ObjectInputStream} and
  * {@code ObjectOutputStream} handling.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.1
  * @see java.io.ObjectInputStream
  * @see java.io.ObjectOutputStream

@@ -24,7 +24,7 @@ import org.springframework.util.StringUtils;
  * This class can be extended to provide database specific behavior.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 public class GenericCallMetaDataProvider implements CallMetaDataProvider {

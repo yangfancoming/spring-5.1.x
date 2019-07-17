@@ -13,9 +13,8 @@ package org.springframework.beans.factory;
  * {@link org.springframework.beans.factory.config.BeanPostProcessor}.
  * Refer to {@link org.springframework.context.support.ApplicationContextAwareProcessor}
  * for an example of processing specific {@code *Aware} interface callbacks.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.1
  */
 public interface Aware {

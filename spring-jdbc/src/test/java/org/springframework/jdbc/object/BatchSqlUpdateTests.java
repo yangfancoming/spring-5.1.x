@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
 /**
- * @author Juergen Hoeller
+
  * @since 22.02.2005
  */
 public class BatchSqlUpdateTests {

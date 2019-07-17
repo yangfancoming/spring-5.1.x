@@ -10,7 +10,7 @@ import org.springframework.scheduling.TriggerContext;
 /**
  * Simple data holder implementation of the {@link TriggerContext} interface.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class SimpleTriggerContext implements TriggerContext {

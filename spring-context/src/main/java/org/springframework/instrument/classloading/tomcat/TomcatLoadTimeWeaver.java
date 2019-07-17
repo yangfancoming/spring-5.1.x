@@ -17,7 +17,7 @@ import org.springframework.util.ClassUtils;
  * for Tomcat's new {@code org.apache.tomcat.InstrumentableClassLoader}.
  * Also capable of handling Spring's TomcatInstrumentableClassLoader when encountered.
  *
- * @author Juergen Hoeller
+
  * @since 4.0
  */
 public class TomcatLoadTimeWeaver implements LoadTimeWeaver {

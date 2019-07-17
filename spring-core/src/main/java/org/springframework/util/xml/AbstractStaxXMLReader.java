@@ -22,7 +22,7 @@ import org.springframework.util.StringUtils;
  * Abstract base class for SAX {@code XMLReader} implementations that use StAX as a basis.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see #setContentHandler(org.xml.sax.ContentHandler)
  * @see #setDTDHandler(org.xml.sax.DTDHandler)

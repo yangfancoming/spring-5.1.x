@@ -20,7 +20,7 @@ import org.springframework.util.ClassUtils;
  * <p>Inherits common configuration properties from
  * {@link org.springframework.util.MethodInvoker}.
  *
- * @author Juergen Hoeller
+
  * @since 1.2.4
  * @see java.util.concurrent.Executor#execute(Runnable)
  */

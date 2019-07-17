@@ -22,7 +22,7 @@ import static org.springframework.util.ObjectUtils.*;
  * Unit tests for {@link ObjectUtils}.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Rick Evans
  * @author Sam Brannen
  */

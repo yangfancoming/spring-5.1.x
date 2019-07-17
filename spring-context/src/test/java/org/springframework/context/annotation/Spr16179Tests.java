@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
+
  * @author Oliver Gierke
  */
 public class Spr16179Tests {

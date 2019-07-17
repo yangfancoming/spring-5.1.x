@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
  * The {@link #parse(String, Locale)} routine always returns a BigDecimal.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @since 4.2
  * @see #setPattern
  * @see #setLenient

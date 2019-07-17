@@ -40,11 +40,11 @@ import static org.junit.Assert.*;
 /**
  * Unit tests for the various PropertyEditors in Spring.
  *
- * @author Juergen Hoeller
+
  * @author Rick Evans
  * @author Rob Harrop
  * @author Arjen Poutsma
- * @author Chris Beams
+
  * @since 10.06.2003
  */
 public class CustomEditorTests {

@@ -16,8 +16,7 @@ import static org.junit.Assert.*;
 
 /**
  * Written with the intention of reproducing SPR-7318.
- *
- * @author Chris Beams
+
  */
 public class FactoryBeanLookupTests {
 	private BeanFactory beanFactory;

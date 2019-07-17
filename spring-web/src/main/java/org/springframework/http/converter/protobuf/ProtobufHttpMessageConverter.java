@@ -62,7 +62,7 @@ import static org.springframework.http.MediaType.TEXT_PLAIN;
  *
  * @author Alex Antonov
  * @author Brian Clozel
- * @author Juergen Hoeller
+
  * @author Sebastien Deleuze
  * @since 4.1
  * @see FormatFactory

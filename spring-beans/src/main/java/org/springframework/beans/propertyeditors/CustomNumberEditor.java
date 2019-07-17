@@ -23,7 +23,7 @@ import org.springframework.util.StringUtils;
  * <p>In web MVC code, this editor will typically be registered with
  * {@code binder.registerCustomEditor} calls.
  *
- * @author Juergen Hoeller
+
  * @since 06.06.2003
  * @see Number
  * @see java.text.NumberFormat

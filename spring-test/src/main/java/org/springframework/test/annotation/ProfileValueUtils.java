@@ -19,7 +19,7 @@ import org.springframework.util.StringUtils;
  * General utility methods for working with <em>profile values</em>.
  *
  * @author Sam Brannen
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see ProfileValueSource
  * @see ProfileValueSourceConfiguration

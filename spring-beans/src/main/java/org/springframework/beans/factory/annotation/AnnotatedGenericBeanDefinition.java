@@ -20,8 +20,8 @@ import org.springframework.util.Assert;
  * {@link org.springframework.context.annotation.ScannedGenericBeanDefinition},
  * which also implements the AnnotatedBeanDefinition interface).
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 2.5
  * @see AnnotatedBeanDefinition#getMetadata()
  * @see org.springframework.core.type.StandardAnnotationMetadata

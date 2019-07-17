@@ -38,7 +38,7 @@ import org.springframework.web.util.WebUtils;
  * {@code afterMessageSuffix} properties.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Rossen Stoyanchev
  * @since 1.2.5
  * @see #beforeRequest

@@ -23,7 +23,7 @@ import org.springframework.web.context.ServletContextAware;
  * bean which is of type Map, and dereference it using an "#{contextAttributes.myKey}"
  * expression to access a specific attribute by name.
  *
- * @author Juergen Hoeller
+
  * @since 1.1.4
  * @see org.springframework.web.context.WebApplicationContext#CONTEXT_ATTRIBUTES_BEAN_NAME
  * @see ServletContextParameterFactoryBean

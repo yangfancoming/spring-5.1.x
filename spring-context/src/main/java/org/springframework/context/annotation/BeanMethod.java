@@ -9,9 +9,8 @@ import org.springframework.core.type.MethodMetadata;
 /**
  * Represents a {@link Configuration @Configuration} class method marked with the
  * {@link Bean @Bean} annotation.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.0
  * @see ConfigurationClass
  * @see ConfigurationClassParser

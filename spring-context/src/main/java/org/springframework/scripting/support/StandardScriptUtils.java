@@ -16,7 +16,7 @@ import javax.script.SimpleBindings;
 /**
  * Common operations for dealing with a JSR-223 {@link ScriptEngine}.
  *
- * @author Juergen Hoeller
+
  * @since 4.2.2
  */
 public abstract class StandardScriptUtils {

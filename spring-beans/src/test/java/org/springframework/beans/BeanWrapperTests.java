@@ -16,10 +16,10 @@ import static org.junit.Assert.*;
  * Specific {@link BeanWrapperImpl} tests.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Alef Arendsen
  * @author Arjen Poutsma
- * @author Chris Beams
+
  * @author Dave Syer
  */
 public class BeanWrapperTests extends AbstractPropertyAccessorTests {

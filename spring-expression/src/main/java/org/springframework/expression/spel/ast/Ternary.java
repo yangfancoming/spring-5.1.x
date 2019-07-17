@@ -17,7 +17,7 @@ import org.springframework.util.ObjectUtils;
  * Represents a ternary expression, for example: "someCheck()?true:false".
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class Ternary extends SpelNodeImpl {

@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  * e.g. {@code ${user.dir}}. Default values can be supplied using the ":" separator
  * between key and value.
  *
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @author Dave Syer
  * @since 1.2.5

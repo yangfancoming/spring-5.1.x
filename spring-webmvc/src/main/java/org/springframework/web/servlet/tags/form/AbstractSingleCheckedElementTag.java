@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
  * JSP tags for rendering a <i>single</i> HTML '{@code input}' element with a
  * '{@code type}' of '{@code checkbox}' or '{@code radio}'.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.2
  */
 @SuppressWarnings("serial")

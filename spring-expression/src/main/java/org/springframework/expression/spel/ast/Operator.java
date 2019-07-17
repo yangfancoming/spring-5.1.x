@@ -20,7 +20,7 @@ import org.springframework.util.ObjectUtils;
  * unary plus or minus, there is only one.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @author Giovanni Dall'Oglio Risso
  * @since 3.0
  */

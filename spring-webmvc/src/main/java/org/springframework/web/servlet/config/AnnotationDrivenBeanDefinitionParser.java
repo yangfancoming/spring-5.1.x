@@ -130,7 +130,7 @@ import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolv
  * </ul>
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  * @author Brian Clozel

@@ -16,7 +16,7 @@ import org.springframework.lang.Nullable;
  * <p>Used by {@link ResultSetWrappingSqlRowSet}.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see ResultSetWrappingSqlRowSet#getMetaData()
  */

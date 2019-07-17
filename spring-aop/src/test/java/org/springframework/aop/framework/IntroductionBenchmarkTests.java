@@ -15,7 +15,7 @@ import org.springframework.util.StopWatch;
  * NOTE: No assertions!
  *
  * @author Rod Johnson
- * @author Chris Beams
+
  * @since 2.0
  */
 public class IntroductionBenchmarkTests {

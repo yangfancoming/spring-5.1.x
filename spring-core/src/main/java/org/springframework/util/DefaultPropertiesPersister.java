@@ -31,7 +31,7 @@ import java.util.Properties;
  * an encoding for a Reader/Writer (like ReloadableResourceBundleMessageSource's
  * "defaultEncoding" and "fileEncodings" properties).
  *
- * @author Juergen Hoeller
+
  * @since 10.03.2004
  * @see java.util.Properties
  * @see java.util.Properties#load

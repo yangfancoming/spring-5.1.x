@@ -20,7 +20,7 @@ import org.springframework.util.ObjectUtils;
  * object, as well as the names of MBeans from which the listener wishes
  * to receive {@link javax.management.Notification Notifications}.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.2
  * @see org.springframework.jmx.export.NotificationListenerBean
  * @see org.springframework.jmx.access.NotificationListenerRegistrar

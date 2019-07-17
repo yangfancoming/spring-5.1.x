@@ -29,7 +29,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
  * request context, such as the Locale determined by the configured
  * {@link org.springframework.web.servlet.LocaleResolver}.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see #getLocale()
  * @see org.springframework.web.servlet.LocaleResolver

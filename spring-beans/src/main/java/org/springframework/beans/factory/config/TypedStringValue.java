@@ -16,7 +16,7 @@ import org.springframework.util.ObjectUtils;
  * <p>This holder will just store the String value and the target type.
  * The actual conversion will be performed by the bean factory.
  *
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see BeanDefinition#getPropertyValues
  * @see org.springframework.beans.MutablePropertyValues#addPropertyValue

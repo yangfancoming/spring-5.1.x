@@ -22,7 +22,7 @@ import org.springframework.util.ReflectionUtils;
  * Utility methods for handling BeanShell-scripted objects.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public abstract class BshScriptUtils {

@@ -31,7 +31,7 @@ import org.springframework.lang.Nullable;
  * Miscellaneous {@code java.lang.Class} utility methods.
  * Mainly for internal use within the framework.
  *
- * @author Juergen Hoeller
+
  * @author Keith Donald
  * @author Rob Harrop
  * @author Sam Brannen

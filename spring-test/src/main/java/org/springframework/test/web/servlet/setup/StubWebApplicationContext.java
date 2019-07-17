@@ -48,7 +48,7 @@ import org.springframework.web.context.support.ServletContextResourcePatternReso
  * {@link StaticListableBeanFactory}.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 3.2
  */
 class StubWebApplicationContext implements WebApplicationContext {

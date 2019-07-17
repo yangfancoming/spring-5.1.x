@@ -14,8 +14,7 @@ import org.springframework.lang.Nullable;
 /**
  * A simple representation of command line arguments, broken into "option arguments" and
  * "non-option arguments".
- *
- * @author Chris Beams
+
  * @since 3.1
  * @see SimpleCommandLineArgsParser
  */

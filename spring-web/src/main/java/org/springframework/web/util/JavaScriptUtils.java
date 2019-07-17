@@ -10,7 +10,7 @@ package org.springframework.web.util;
  * <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Values,_variables,_and_literals#String_literals">
  * JavaScript Guide</a> on Mozilla Developer Network.
  *
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @author Rossen Stoyanchev
  * @since 1.1.1

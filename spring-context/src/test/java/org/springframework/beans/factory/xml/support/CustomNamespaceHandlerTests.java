@@ -53,8 +53,8 @@ import static org.junit.Assert.*;
  *
  * @author Rob Harrop
  * @author Rick Evans
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  */
 public class CustomNamespaceHandlerTests {
 

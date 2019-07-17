@@ -11,7 +11,7 @@ import org.springframework.util.function.SingletonSupplier;
  * configurable {@link CacheErrorHandler} when an exception occurs.
  *
  * @author Stephane Nicoll
- * @author Juergen Hoeller
+
  * @since 4.1
  * @see org.springframework.cache.interceptor.CacheErrorHandler
  */

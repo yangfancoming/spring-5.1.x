@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
  * should be needed to create any database-specific objects.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see java.sql.Types
  * @see java.sql.PreparedStatement#setObject

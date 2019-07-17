@@ -27,9 +27,8 @@ import static org.junit.Assert.*;
 /**
  * Tests that an ImportAware @Configuration classes gets injected with the
  * annotation metadata of the @Configuration class that imported it.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.1
  */
 public class ImportAwareTests {

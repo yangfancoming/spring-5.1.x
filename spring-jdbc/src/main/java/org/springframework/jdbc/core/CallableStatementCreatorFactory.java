@@ -21,7 +21,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Rod Johnson
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  */
 public class CallableStatementCreatorFactory {
 

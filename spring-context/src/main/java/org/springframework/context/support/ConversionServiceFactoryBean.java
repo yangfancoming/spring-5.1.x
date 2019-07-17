@@ -30,8 +30,8 @@ import org.springframework.lang.Nullable;
  * org.springframework.context.annotation.Bean @Bean} method.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 3.0
  */
 public class ConversionServiceFactoryBean implements FactoryBean<ConversionService>, InitializingBean {

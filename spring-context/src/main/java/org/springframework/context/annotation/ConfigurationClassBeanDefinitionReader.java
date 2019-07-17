@@ -46,9 +46,8 @@ import org.springframework.util.StringUtils;
  * <p>This class was modeled after the {@link BeanDefinitionReader} hierarchy, but does
  * not implement/extend any of its artifacts as a set of configuration classes is not a
  * {@link Resource}.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @author Phillip Webb
  * @author Sam Brannen
  * @since 3.0

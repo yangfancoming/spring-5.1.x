@@ -10,9 +10,7 @@ import org.springframework.core.convert.TypeDescriptor;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Andy Wilkinson
- */
+
 public class FormatHelperTests {
 
 	@Test

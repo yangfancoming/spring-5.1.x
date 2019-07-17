@@ -16,7 +16,7 @@ import org.springframework.lang.Nullable;
  * <p>Can also be used as base class, overriding the {@link #onApplicationEventInternal}
  * method instead of specifying a delegate listener.
  *
- * @author Juergen Hoeller
+
  * @author Stephane Nicoll
  * @since 2.0.5
  */

@@ -132,9 +132,8 @@ import org.springframework.core.Ordered;
  * this case the {@code spring-aspects} module JAR must be present on the classpath, with
  * compile-time weaving or load-time weaving applying the aspect to the affected classes.
  * There is no proxy involved in such a scenario; local calls will be intercepted as well.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @author Stephane Nicoll
  * @author Sam Brannen
  * @since 3.1

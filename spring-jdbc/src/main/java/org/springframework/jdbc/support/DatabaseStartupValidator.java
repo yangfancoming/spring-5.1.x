@@ -23,7 +23,7 @@ import org.springframework.lang.Nullable;
  * <p>Useful to defer application initialization until a database has started up.
  * Particularly appropriate for waiting on a slowly starting Oracle database.
  *
- * @author Juergen Hoeller
+
  * @since 18.12.2003
  */
 public class DatabaseStartupValidator implements InitializingBean {

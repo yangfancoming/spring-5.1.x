@@ -40,7 +40,7 @@ import org.springframework.util.StringUtils;
  * evaluated prior to invoking the underlying method.
  *
  * @author Stephane Nicoll
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @since 4.2
  */

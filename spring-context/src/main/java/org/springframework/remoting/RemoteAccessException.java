@@ -29,7 +29,7 @@ import org.springframework.core.NestedRuntimeException;
  * it is <i>actually working</i> against a remote service or a local implementation,
  * or with which remoting protocol it is working under the hood.
  *
- * @author Juergen Hoeller
+
  * @since 14.05.2003
  */
 public class RemoteAccessException extends NestedRuntimeException {

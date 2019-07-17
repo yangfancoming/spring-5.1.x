@@ -12,9 +12,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
+
  * @author Rob Harrop
- * @author Chris Beams
+
  */
 public class MethodExclusionMBeanInfoAssemblerNotMappedTests extends AbstractJmxAssemblerTests {
 

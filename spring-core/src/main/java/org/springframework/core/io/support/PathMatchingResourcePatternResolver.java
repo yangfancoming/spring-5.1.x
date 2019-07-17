@@ -155,7 +155,7 @@ import org.springframework.util.StringUtils;
  * Ant-style pattern in such a case, which will search <i>all</i> class path
  * locations that contain the root package.
  *
- * @author Juergen Hoeller
+
  * @author Colin Sampaleanu
  * @author Marius Bogoevici
  * @author Costin Leau

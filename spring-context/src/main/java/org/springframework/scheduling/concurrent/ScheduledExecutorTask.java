@@ -20,7 +20,7 @@ import org.springframework.util.Assert;
  * uses a {@link Runnable} instance that is shared between repeated executions,
  * in contrast to Quartz which creates a new Job instance for each execution.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see java.util.concurrent.ScheduledExecutorService#scheduleWithFixedDelay(java.lang.Runnable, long, long, java.util.concurrent.TimeUnit)
  * @see java.util.concurrent.ScheduledExecutorService#scheduleAtFixedRate(java.lang.Runnable, long, long, java.util.concurrent.TimeUnit)

@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
  * Integration tests for overloaded advice.
  *
  * @author Adrian Colyer
- * @author Chris Beams
+
  */
 public class OverloadedAdviceTests {
 

@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
  *
  * @author Mattias Severson
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 4.1
  * @param <T> the result type returned by this Future's {@code get} method
  */

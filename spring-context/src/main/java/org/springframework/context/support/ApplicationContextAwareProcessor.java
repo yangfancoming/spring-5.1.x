@@ -32,9 +32,9 @@ import org.springframework.util.StringValueResolver;
  * <p>Application contexts will automatically register this with their
  * underlying bean factory. Applications do not use this directly.
  *
- * @author Juergen Hoeller
+
  * @author Costin Leau
- * @author Chris Beams
+
  * @since 10.10.2003
  * @see org.springframework.context.EnvironmentAware
  * @see org.springframework.context.EmbeddedValueResolverAware

@@ -28,7 +28,7 @@ import static org.junit.Assert.*;
 /**
  * @author Phillip Webb
  * @author Keith Donald
- * @author Juergen Hoeller
+
  */
 public class DateFormattingTests {
 

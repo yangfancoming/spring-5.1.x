@@ -9,7 +9,7 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
 
 /**
  * @author Andy Wilkinson
- * @author Juergen Hoeller
+
  */
 public class Spr16217Tests {
 

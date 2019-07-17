@@ -17,8 +17,7 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests cornering bug SPR-9031.
- *
- * @author Chris Beams
+
  * @since 3.1.1
  */
 public class Spr9031Tests {

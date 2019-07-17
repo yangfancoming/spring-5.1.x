@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
  * Will convert the Object to the target Collection's parameterized type if necessary.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 final class ObjectToCollectionConverter implements ConditionalGenericConverter {

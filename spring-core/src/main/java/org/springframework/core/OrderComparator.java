@@ -23,7 +23,7 @@ import org.springframework.util.ObjectUtils;
  * at the end of a sorted collection in arbitrary order with respect to
  * other objects with the same order value.
  *
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @since 07.04.2003
  * @see Ordered

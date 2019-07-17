@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
  * logical view name when no view name is explicitly supplied.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public interface RequestToViewNameTranslator {

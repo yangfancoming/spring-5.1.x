@@ -24,7 +24,7 @@ import org.springframework.lang.Nullable;
  * managing Spring container is being closed.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class EmbeddedDatabaseFactoryBean extends EmbeddedDatabaseFactory

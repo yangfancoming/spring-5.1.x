@@ -16,7 +16,7 @@ import org.springframework.lang.Nullable;
  * including using CGLIB to create subclasses on the fly to support Method Injection.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 1.1
  */
 public interface InstantiationStrategy {

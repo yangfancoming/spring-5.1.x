@@ -30,7 +30,7 @@ package org.springframework.aop;
  * the target method's signature!</b>
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see AfterReturningAdvice
  * @see MethodBeforeAdvice
  */

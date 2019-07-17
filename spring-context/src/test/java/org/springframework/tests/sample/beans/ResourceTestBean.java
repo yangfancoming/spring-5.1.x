@@ -9,7 +9,7 @@ import org.springframework.core.io.ContextResource;
 import org.springframework.core.io.Resource;
 
 /**
- * @author Juergen Hoeller
+
  * @since 01.04.2004
  */
 public class ResourceTestBean {

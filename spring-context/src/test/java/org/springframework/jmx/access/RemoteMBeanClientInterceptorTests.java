@@ -22,7 +22,7 @@ import org.springframework.util.SocketUtils;
  * {@code -DtestGroups=jmxmp}.
  *
  * @author Rob Harrop
- * @author Chris Beams
+
  * @author Sam Brannen
  */
 public class RemoteMBeanClientInterceptorTests extends MBeanClientInterceptorTests {

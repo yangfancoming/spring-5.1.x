@@ -21,7 +21,7 @@ import org.springframework.util.PropertiesPersister;
  * from one or more resources. Supports local properties as well, with
  * configurable overriding.
  *
- * @author Juergen Hoeller
+
  * @since 1.2.2
  */
 public abstract class PropertiesLoaderSupport {

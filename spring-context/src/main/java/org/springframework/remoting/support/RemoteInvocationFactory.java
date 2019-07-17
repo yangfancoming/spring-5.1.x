@@ -11,7 +11,7 @@ import org.aopalliance.intercept.MethodInvocation;
  * <p>Used by {@link org.springframework.remoting.rmi.RmiClientInterceptor} (for RMI invokers)
  * and by {@link org.springframework.remoting.httpinvoker.HttpInvokerClientInterceptor}.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see DefaultRemoteInvocationFactory
  * @see org.springframework.remoting.rmi.RmiClientInterceptor#setRemoteInvocationFactory

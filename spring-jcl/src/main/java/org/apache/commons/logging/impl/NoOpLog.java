@@ -9,7 +9,7 @@ import org.apache.commons.logging.Log;
 /**
  * Trivial implementation of {@link Log} that throws away all messages.
  *
- * @author Juergen Hoeller (for the {@code spring-jcl} variant)
+ (for the {@code spring-jcl} variant)
  * @since 5.0
  */
 @SuppressWarnings("serial")

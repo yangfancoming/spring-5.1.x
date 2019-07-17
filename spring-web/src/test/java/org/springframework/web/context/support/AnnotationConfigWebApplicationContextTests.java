@@ -14,8 +14,8 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 /**
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  */
 public class AnnotationConfigWebApplicationContextTests {
 

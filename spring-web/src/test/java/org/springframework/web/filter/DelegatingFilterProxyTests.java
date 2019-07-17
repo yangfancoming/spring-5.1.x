@@ -23,8 +23,8 @@ import org.springframework.web.context.support.StaticWebApplicationContext;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @author Rob Winch
  * @since 08.05.2005
  */

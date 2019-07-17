@@ -25,7 +25,7 @@ import org.springframework.util.Assert;
  *
  * @author Alef Arendsen
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @author Rick Evans
  */
 public abstract class TagUtils {

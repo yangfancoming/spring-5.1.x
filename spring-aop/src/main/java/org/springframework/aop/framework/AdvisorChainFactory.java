@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  * Factory interface for advisor chains.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 public interface AdvisorChainFactory {
 

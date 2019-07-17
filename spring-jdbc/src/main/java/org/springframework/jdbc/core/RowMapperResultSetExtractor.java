@@ -37,7 +37,7 @@ import org.springframework.util.Assert;
  * package: Instead of working with separate JdbcTemplate and RowMapper objects,
  * you can have executable query objects (containing row-mapping logic) there.
  *
- * @author Juergen Hoeller
+
  * @since 1.0.2
  * @param <T> the result element type
  * @see RowMapper

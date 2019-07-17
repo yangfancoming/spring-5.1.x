@@ -16,8 +16,8 @@ import static org.mockito.BDDMockito.*;
  * Unit tests for {@link CustomScopeConfigurer}.
  *
  * @author Rick Evans
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  */
 public class CustomScopeConfigurerTests {
 

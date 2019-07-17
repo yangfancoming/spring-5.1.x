@@ -21,7 +21,7 @@ import org.springframework.util.ClassUtils;
  * interceptor names, as in {@link ProxyFactoryBean}) and provides
  * consistent interface management.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 @SuppressWarnings("serial")

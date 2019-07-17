@@ -18,9 +18,8 @@ import org.springframework.util.CollectionUtils;
 /**
  * Abstract base {@code Configuration} class providing common structure for enabling
  * Spring's asynchronous method execution capability.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @author Stephane Nicoll
  * @since 3.1
  * @see EnableAsync

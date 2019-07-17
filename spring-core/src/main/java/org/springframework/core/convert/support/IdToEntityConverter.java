@@ -23,7 +23,7 @@ import org.springframework.util.ReflectionUtils;
  * {@code find[EntityName]([IdType])}, and return an instance of the desired entity type.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 final class IdToEntityConverter implements ConditionalGenericConverter {

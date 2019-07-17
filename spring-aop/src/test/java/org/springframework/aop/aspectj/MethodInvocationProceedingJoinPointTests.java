@@ -27,7 +27,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Rod Johnson
- * @author Chris Beams
+
  * @author Ramnivas Laddad
  * @since 2.0
  */

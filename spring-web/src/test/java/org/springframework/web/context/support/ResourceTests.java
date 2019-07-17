@@ -10,7 +10,7 @@ import org.springframework.mock.web.test.MockServletContext;
 import static org.junit.Assert.*;
 
 /**
- * @author Chris Beams
+
  * @see org.springframework.core.io.ResourceTests
  */
 public class ResourceTests {

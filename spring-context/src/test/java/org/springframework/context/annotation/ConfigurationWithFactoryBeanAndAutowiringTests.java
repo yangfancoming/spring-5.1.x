@@ -13,9 +13,8 @@ import static org.junit.Assert.*;
 
 /**
  * Tests cornering bug SPR-8514.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.1
  */
 public class ConfigurationWithFactoryBeanAndAutowiringTests {

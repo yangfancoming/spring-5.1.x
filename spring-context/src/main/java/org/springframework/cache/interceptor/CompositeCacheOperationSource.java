@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
  * over a given array of {@code CacheOperationSource} instances.
  *
  * @author Costin Leau
- * @author Juergen Hoeller
+
  * @since 3.1
  */
 @SuppressWarnings("serial")

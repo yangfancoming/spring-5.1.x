@@ -15,7 +15,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * <p>For working with the workbook in subclasses, see
  * <a href="https://poi.apache.org">Apache's POI site</a>.
  *
- * @author Juergen Hoeller
+
  * @since 4.2
  */
 public abstract class AbstractXlsxView extends AbstractXlsView {

@@ -14,7 +14,7 @@ import org.springframework.jndi.JndiTemplate;
  * <p>Very useful for testing. Effectively a mock object.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 public class ExpectedLookupTemplate extends JndiTemplate {
 

@@ -25,7 +25,7 @@ import org.springframework.util.StringUtils;
  * and tracks the last-modified timestamp of the file (if possible).
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see org.springframework.core.io.Resource#getInputStream()
  * @see org.springframework.core.io.Resource#getFile()

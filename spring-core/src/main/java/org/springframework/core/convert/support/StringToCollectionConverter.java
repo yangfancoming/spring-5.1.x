@@ -19,7 +19,7 @@ import org.springframework.util.StringUtils;
  * {@code String.class} can be converted to it.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 final class StringToCollectionConverter implements ConditionalGenericConverter {

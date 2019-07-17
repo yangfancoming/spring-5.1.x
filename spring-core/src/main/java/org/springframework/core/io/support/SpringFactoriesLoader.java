@@ -41,7 +41,7 @@ import org.springframework.util.StringUtils;
  * and {@code MyServiceImpl2} are two implementations.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @since 3.2
  */

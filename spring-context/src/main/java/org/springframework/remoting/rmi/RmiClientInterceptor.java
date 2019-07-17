@@ -45,7 +45,7 @@ import org.springframework.remoting.support.RemoteInvocationUtils;
  * RemoteExceptions thrown by the RMI stub will automatically get converted to
  * Spring's unchecked RemoteAccessException.
  *
- * @author Juergen Hoeller
+
  * @since 29.09.2003
  * @see RmiServiceExporter
  * @see RmiProxyFactoryBean

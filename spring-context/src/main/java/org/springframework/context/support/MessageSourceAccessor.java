@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
  * <p>Available from ApplicationObjectSupport, but also reusable
  * as a standalone helper to delegate to in application objects.
  *
- * @author Juergen Hoeller
+
  * @since 23.10.2003
  * @see ApplicationObjectSupport#getMessageSourceAccessor
  */

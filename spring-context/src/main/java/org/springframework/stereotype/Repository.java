@@ -34,7 +34,7 @@ import org.springframework.core.annotation.AliasFor;
  * through classpath scanning.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see Component
  * @see Service

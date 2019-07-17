@@ -20,11 +20,6 @@ import static org.springframework.context.annotation.ScopedProxyMode.*;
 
 /**
  * Unit tests for {@link AnnotationScopeMetadataResolver}.
- *
- * @author Rick Evans
- * @author Chris Beams
- * @author Juergen Hoeller
- * @author Sam Brannen
  */
 public class AnnotationScopeMetadataResolverTests {
 

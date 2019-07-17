@@ -34,7 +34,7 @@ import org.springframework.lang.Nullable;
  * but also available for direct use in custom setter/creator implementations.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see PreparedStatementSetter
  * @see PreparedStatementCreator

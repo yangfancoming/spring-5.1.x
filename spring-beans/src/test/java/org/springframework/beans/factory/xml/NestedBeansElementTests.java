@@ -13,8 +13,7 @@ import static org.junit.Assert.*;
 
 /**
  * Tests for new nested beans element support in Spring XML
- *
- * @author Chris Beams
+
  */
 public class NestedBeansElementTests {
 	private final Resource XML =

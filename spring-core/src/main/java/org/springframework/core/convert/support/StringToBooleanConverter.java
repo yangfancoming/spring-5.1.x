@@ -11,7 +11,7 @@ import org.springframework.core.convert.converter.Converter;
  * Converts String to a Boolean.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 final class StringToBooleanConverter implements Converter<String, Boolean> {

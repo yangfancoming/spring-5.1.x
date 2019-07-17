@@ -29,7 +29,7 @@ import org.springframework.util.Assert;
  * as on JDKs that ship Sun's entire class library as included in the Sun JDK.
  * For a portable JAX-WS exporter, have a look at {@link SimpleJaxWsServiceExporter}.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.5
  * @see javax.jws.WebService
  * @see javax.xml.ws.Endpoint#publish(Object)

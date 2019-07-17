@@ -19,7 +19,7 @@ import org.springframework.lang.Nullable;
  * implementations can also be used directly, for example to invoke
  * a {@link Validator} on it (e.g. as part of a unit test).
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see DataBinder
  * @see Errors

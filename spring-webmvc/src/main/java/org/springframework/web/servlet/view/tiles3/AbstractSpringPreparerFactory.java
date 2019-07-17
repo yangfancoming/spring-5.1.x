@@ -15,7 +15,7 @@ import org.springframework.web.servlet.DispatcherServlet;
  * interface, obtaining the current Spring WebApplicationContext and delegating to
  * {@link #getPreparer(String, org.springframework.web.context.WebApplicationContext)}.
  *
- * @author Juergen Hoeller
+
  * @since 3.2
  * @see #getPreparer(String, org.springframework.web.context.WebApplicationContext)
  * @see SimpleSpringPreparerFactory

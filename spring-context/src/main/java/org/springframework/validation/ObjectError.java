@@ -13,7 +13,7 @@ import org.springframework.util.Assert;
  * <p>See the {@link DefaultMessageCodesResolver} javadoc for details on
  * how a message code list is built for an {@code ObjectError}.
  *
- * @author Juergen Hoeller
+
  * @since 10.03.2003
  * @see FieldError
  * @see DefaultMessageCodesResolver

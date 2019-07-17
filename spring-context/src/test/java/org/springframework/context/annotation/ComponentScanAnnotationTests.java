@@ -10,8 +10,7 @@ import org.springframework.core.type.filter.TypeFilter;
 
 /**
  * Unit tests for the @ComponentScan annotation.
- *
- * @author Chris Beams
+
  * @since 3.1
  * @see ComponentScanAnnotationIntegrationTests
  */

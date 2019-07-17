@@ -41,7 +41,7 @@ import org.springframework.web.servlet.View;
  * a {@link UrlBasedViewResolver}.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see java.util.ResourceBundle#getBundle
  * @see java.util.PropertyResourceBundle
  * @see UrlBasedViewResolver

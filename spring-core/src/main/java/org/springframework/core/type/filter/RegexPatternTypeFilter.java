@@ -11,7 +11,7 @@ import org.springframework.util.Assert;
  * A simple filter for matching a fully-qualified class name with a regex {@link Pattern}.
  *
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 public class RegexPatternTypeFilter extends AbstractClassTestingTypeFilter {

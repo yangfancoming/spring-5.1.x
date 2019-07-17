@@ -55,7 +55,7 @@ import static org.junit.Assert.*;
  * Reproduction tests cornering various reported SpEL issues.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @author Clark Duplichien
  * @author Phillip Webb
  * @author Sam Brannen

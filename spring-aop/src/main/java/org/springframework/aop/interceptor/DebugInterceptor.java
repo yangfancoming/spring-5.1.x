@@ -14,7 +14,7 @@ import org.aopalliance.intercept.MethodInvocation;
  * or {@code CustomizableTraceInterceptor} for pure tracing purposes.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see SimpleTraceInterceptor
  * @see CustomizableTraceInterceptor
  */

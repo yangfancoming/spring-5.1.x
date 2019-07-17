@@ -97,7 +97,7 @@ import org.springframework.util.xml.StaxUtils;
  *
  * @author Peter Meijer
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLoaderAware, InitializingBean {

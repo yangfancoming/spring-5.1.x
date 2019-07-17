@@ -11,7 +11,7 @@ import java.io.IOException;
  * extends person it breaks quite a few tests..
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 public interface ITestBean extends AgeHolder {
 

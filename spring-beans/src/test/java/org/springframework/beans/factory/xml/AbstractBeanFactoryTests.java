@@ -26,7 +26,7 @@ import static org.junit.Assert.*;
  * Subclasses must initialize the bean factory and any other variables they need.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  */
 public abstract class AbstractBeanFactoryTests {

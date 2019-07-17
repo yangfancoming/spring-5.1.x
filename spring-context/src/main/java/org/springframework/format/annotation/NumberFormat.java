@@ -26,7 +26,7 @@ import java.lang.annotation.Target;
  * depending on the annotated field or method parameter type.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see java.text.NumberFormat
  */

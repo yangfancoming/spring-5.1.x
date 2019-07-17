@@ -18,7 +18,7 @@ import org.springframework.jdbc.support.MetaDataAccessException;
  * based on the type of database being used.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 public final class CallMetaDataProviderFactory {

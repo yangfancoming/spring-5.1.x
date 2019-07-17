@@ -37,8 +37,8 @@ import org.springframework.core.io.ResourceLoader;
  * exposing bean properties of type {@code Resource} array, populated via pattern
  * Strings with automatic type conversion by the bean factory at binding time.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 10.03.2004
  * @see ApplicationContextAware
  * @see org.springframework.core.io.Resource

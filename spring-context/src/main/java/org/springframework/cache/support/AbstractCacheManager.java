@@ -19,7 +19,7 @@ import org.springframework.lang.Nullable;
  * Useful for 'static' environments where the backing caches do not change.
  *
  * @author Costin Leau
- * @author Juergen Hoeller
+
  * @author Stephane Nicoll
  * @since 3.1
  */

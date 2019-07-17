@@ -21,7 +21,7 @@ import org.springframework.core.io.support.ResourcePatternUtils;
  * and creates a sorted array of {@link Resource} instances.
  *
  * @author Dave Syer
- * @author Juergen Hoeller
+
  * @author Christian Dupuis
  * @since 3.0
  */

@@ -28,7 +28,7 @@ import org.springframework.util.StringUtils;
  * {@link org.springframework.scripting.support.ScriptFactoryPostProcessor};
  * see the latter's javadoc for a configuration example.
  *
- * @author Juergen Hoeller
+
  * @since 4.2
  * @see ScriptFactoryPostProcessor
  */

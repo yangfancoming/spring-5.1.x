@@ -24,7 +24,7 @@ import org.springframework.util.Assert;
  * in a Java EE 7 environment. The lifecycle is always up to the backend pool,
  * with this adapter acting as an access-only proxy for that target pool.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see java.util.concurrent.ExecutorService
  */

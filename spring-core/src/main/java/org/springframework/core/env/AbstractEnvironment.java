@@ -31,9 +31,8 @@ import org.springframework.util.StringUtils;
  * hook, while clients should customize using {@link ConfigurableEnvironment#getPropertySources()}
  * and working against the {@link MutablePropertySources} API.
  * See {@link ConfigurableEnvironment} javadoc for usage examples.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @since 3.1
  * @see ConfigurableEnvironment
  * @see StandardEnvironment

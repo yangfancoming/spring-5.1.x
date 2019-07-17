@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * a version based on the standard {@code javax.script} package (JSR-223):
  * {@link org.springframework.scripting.support.StandardScriptEvaluator}.
  *
- * @author Juergen Hoeller
+
  * @author Costin Leau
  * @since 4.0
  */

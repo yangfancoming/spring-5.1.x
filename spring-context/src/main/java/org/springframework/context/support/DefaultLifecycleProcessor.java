@@ -33,7 +33,7 @@ import org.springframework.util.Assert;
  * Default implementation of the {@link LifecycleProcessor} strategy.
  *
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class DefaultLifecycleProcessor implements LifecycleProcessor, BeanFactoryAware {

@@ -18,7 +18,7 @@ import org.springframework.lang.Nullable;
  * Standard JSF invocations will automatically delegate to the overloaded method,
  * with the constructor-injected NavigationHandler as argument.
  *
- * @author Juergen Hoeller
+
  * @since 1.2.7
  * @see #handleNavigation(javax.faces.context.FacesContext, String, String, NavigationHandler)
  * @see DelegatingNavigationHandlerProxy

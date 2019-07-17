@@ -32,7 +32,7 @@ import org.springframework.web.context.request.NativeWebRequest;
  * is added to a {@link PriorityQueue} it is handled in the correct order.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @author Rob Winch
  * @since 3.2
  * @param <T> the result type

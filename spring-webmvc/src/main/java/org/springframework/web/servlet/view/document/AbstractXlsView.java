@@ -20,7 +20,7 @@ import org.springframework.web.servlet.view.AbstractView;
  * <p>For working with the workbook in the subclass, see
  * <a href="https://poi.apache.org">Apache's POI site</a>
  *
- * @author Juergen Hoeller
+
  * @since 4.2
  */
 public abstract class AbstractXlsView extends AbstractView {

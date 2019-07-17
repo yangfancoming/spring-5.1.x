@@ -42,7 +42,7 @@ import org.springframework.util.Assert;
  *
  * <p>As of Spring 4.1, this request executor requires Apache HttpComponents 4.3 or higher.
  *
- * @author Juergen Hoeller
+
  * @author Stephane Nicoll
  * @since 3.1
  * @see org.springframework.remoting.httpinvoker.SimpleHttpInvokerRequestExecutor

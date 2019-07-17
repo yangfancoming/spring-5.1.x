@@ -18,9 +18,8 @@ import org.springframework.util.ReflectionUtils;
 
 /**
  * {@link AnnotationVisitor} to recursively visit annotations.
- *
- * @author Chris Beams
- * @author Juergen Hoeller
+
+
  * @author Phillip Webb
  * @author Sam Brannen
  * @since 3.1.1

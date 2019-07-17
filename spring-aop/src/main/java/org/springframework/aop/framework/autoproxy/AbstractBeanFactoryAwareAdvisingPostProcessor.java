@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
  * ({@link AutoProxyUtils#PRESERVE_TARGET_CLASS_ATTRIBUTE}).
  * This post-processor is therefore aligned with {@link AbstractAutoProxyCreator}.
  *
- * @author Juergen Hoeller
+
  * @since 4.2.3
  * @see AutoProxyUtils#shouldProxyTargetClass
  * @see AutoProxyUtils#determineTargetClass

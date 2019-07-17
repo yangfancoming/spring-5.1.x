@@ -30,7 +30,7 @@ import org.springframework.util.ObjectUtils;
  * the {@link #convertPropertyValue} method. For example, encrypted values
  * can be detected and decrypted accordingly before processing them.
  *
- * @author Juergen Hoeller
+
  * @since 02.10.2003
  * @see PropertyOverrideConfigurer
  * @see PropertyPlaceholderConfigurer

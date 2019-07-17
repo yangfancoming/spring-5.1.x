@@ -23,7 +23,7 @@ import org.springframework.util.FastByteArrayOutputStream;
  * <p>Used e.g. by {@link org.springframework.web.filter.ShallowEtagHeaderFilter}.
  * Note: As of Spring Framework 5.0, this wrapper is built on the Servlet 3.1 API.
  *
- * @author Juergen Hoeller
+
  * @since 4.1.3
  * @see ContentCachingRequestWrapper
  */

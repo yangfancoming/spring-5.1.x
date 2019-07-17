@@ -7,7 +7,7 @@ import org.springframework.beans.FatalBeanException;
 /**
  * Exception that indicates an expression evaluation attempt having failed.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 @SuppressWarnings("serial")

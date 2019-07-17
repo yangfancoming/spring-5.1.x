@@ -42,7 +42,7 @@ import org.springframework.util.ResourceUtils;
  * to {@link #processLocations(Class, String...)}.
  *
  * @author Sam Brannen
- * @author Juergen Hoeller
+
  * @author Phillip Webb
  * @since 2.5
  * @see #generateDefaultLocations

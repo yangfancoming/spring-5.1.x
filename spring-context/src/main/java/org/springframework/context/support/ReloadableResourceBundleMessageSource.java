@@ -59,7 +59,7 @@ import org.springframework.util.StringUtils;
  * <p>Thanks to Thomas Achleitner for providing the initial implementation of
  * this message source!
  *
- * @author Juergen Hoeller
+
  * @see #setCacheSeconds
  * @see #setBasenames
  * @see #setDefaultEncoding

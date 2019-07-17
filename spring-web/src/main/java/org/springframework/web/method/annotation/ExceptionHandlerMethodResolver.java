@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  * to the exception types supported by a given {@link Method}.
  *
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 3.1
  */
 public class ExceptionHandlerMethodResolver {

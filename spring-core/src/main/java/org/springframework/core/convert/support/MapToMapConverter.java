@@ -23,7 +23,7 @@ import org.springframework.lang.Nullable;
  * map's parameterized types K,V if necessary.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 final class MapToMapConverter implements ConditionalGenericConverter {

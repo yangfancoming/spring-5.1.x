@@ -22,12 +22,12 @@ import org.springframework.lang.Nullable;
  *
  * <p>Only intended for internal use.
  *
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @author Rod Johnson
  * @author Costin Leau
  * @author Sam Brannen
- * @author Chris Beams
+
  * @since 1.2.2
  */
 public abstract class ReflectionUtils {

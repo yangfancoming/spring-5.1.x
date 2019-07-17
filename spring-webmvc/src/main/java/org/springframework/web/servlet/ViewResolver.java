@@ -16,7 +16,7 @@ import org.springframework.lang.Nullable;
  * i.e. localized view resolution.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see org.springframework.web.servlet.view.InternalResourceViewResolver
  * @see org.springframework.web.servlet.view.ResourceBundleViewResolver
  * @see org.springframework.web.servlet.view.XmlViewResolver

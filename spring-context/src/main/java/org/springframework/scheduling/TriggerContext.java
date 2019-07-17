@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
  * Context object encapsulating last execution times and last completion time
  * of a given task.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public interface TriggerContext {

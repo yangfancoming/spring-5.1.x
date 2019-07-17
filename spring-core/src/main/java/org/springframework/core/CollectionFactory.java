@@ -33,7 +33,7 @@ import org.springframework.util.ReflectionUtils;
  *
  * <p>Mainly for internal use within the framework.
  *
- * @author Juergen Hoeller
+
  * @author Arjen Poutsma
  * @author Oliver Gierke
  * @author Sam Brannen

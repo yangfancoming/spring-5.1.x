@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 /**
  * {@link StandardScriptFactory} (lang:std) tests for JavaScript.
  *
- * @author Juergen Hoeller
+
  * @since 4.2
  */
 public class StandardScriptFactoryTests {

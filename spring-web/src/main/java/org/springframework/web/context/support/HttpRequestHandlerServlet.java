@@ -28,7 +28,7 @@ import org.springframework.web.context.WebApplicationContext;
  * to defining remote exporters as beans in a DispatcherServlet context
  * (with advanced mapping and interception facilities being available there).
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see org.springframework.web.HttpRequestHandler
  * @see org.springframework.web.servlet.DispatcherServlet

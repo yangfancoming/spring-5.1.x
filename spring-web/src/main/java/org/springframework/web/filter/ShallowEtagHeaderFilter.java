@@ -34,7 +34,7 @@ import org.springframework.web.util.WebUtils;
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  * @author Brian Clozel
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class ShallowEtagHeaderFilter extends OncePerRequestFilter {

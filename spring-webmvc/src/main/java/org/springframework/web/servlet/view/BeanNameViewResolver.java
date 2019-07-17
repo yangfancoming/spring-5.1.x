@@ -32,7 +32,7 @@ import org.springframework.web.servlet.ViewResolver;
  * (giving it 0 as "order" value), while all remaining views could be resolved by
  * a {@link UrlBasedViewResolver}.
  *
- * @author Juergen Hoeller
+
  * @since 18.06.2003
  * @see XmlViewResolver
  * @see ResourceBundleViewResolver

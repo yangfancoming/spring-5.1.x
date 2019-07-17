@@ -17,7 +17,7 @@ import org.springframework.aop.TargetSource;
  * allow manipulation of its AOP advice.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 13.03.2003
  * @see org.springframework.aop.framework.AdvisedSupport
  */

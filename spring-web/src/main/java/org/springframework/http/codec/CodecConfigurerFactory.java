@@ -17,7 +17,7 @@ import org.springframework.util.ClassUtils;
  * Models a loose relationship with the default implementations in the support
  * package, literally only needing to know the default class name to use.
  *
- * @author Juergen Hoeller
+
  * @since 5.0.1
  * @see ClientCodecConfigurer#create()
  * @see ServerCodecConfigurer#create()

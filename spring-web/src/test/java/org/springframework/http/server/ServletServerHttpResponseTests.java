@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 /**
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  */
 public class ServletServerHttpResponseTests {
 

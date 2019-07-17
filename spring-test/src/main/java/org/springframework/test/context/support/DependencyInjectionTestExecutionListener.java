@@ -14,7 +14,7 @@ import org.springframework.test.context.TestContext;
  * injection and initialization of test instances.
  *
  * @author Sam Brannen
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 public class DependencyInjectionTestExecutionListener extends AbstractTestExecutionListener {

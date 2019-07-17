@@ -14,7 +14,7 @@ import java.util.List;
  * {@code DatabasePopulator} implementations, executing all scripts.
  *
  * @author Dave Syer
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @author Kazuki Shimizu
  * @since 3.1

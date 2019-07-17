@@ -9,7 +9,7 @@ import org.apache.commons.logging.Log;
 /**
  * {@code java.io.Writer} adapter for a Commons Logging {@code Log}.
  *
- * @author Juergen Hoeller
+
  * @since 2.5.1
  */
 public class CommonsLogWriter extends Writer {

@@ -9,7 +9,7 @@ import org.springframework.lang.Nullable;
 /**
  * Convenience utilities for {@link java.util.function.Supplier} handling.
  *
- * @author Juergen Hoeller
+
  * @since 5.1
  * @see SingletonSupplier
  */

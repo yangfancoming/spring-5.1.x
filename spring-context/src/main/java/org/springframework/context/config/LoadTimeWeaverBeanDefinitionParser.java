@@ -19,7 +19,7 @@ import org.springframework.util.ClassUtils;
 /**
  * Parser for the &lt;context:load-time-weaver/&gt; element.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  */
 class LoadTimeWeaverBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {

@@ -7,7 +7,7 @@ import org.springframework.lang.Nullable;
 /**
  * A simple empty implementation of the {@link SqlParameterSource} interface.
  *
- * @author Juergen Hoeller
+
  * @since 3.2.2
  */
 public class EmptySqlParameterSource implements SqlParameterSource {

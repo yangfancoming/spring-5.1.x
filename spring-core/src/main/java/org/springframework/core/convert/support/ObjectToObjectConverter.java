@@ -44,7 +44,7 @@ import org.springframework.util.ReflectionUtils;
  * {@link FallbackObjectToStringConverter} instead.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @since 3.0
  * @see FallbackObjectToStringConverter

@@ -27,7 +27,7 @@ import org.springframework.util.ReflectionUtils;
  * from maintaining their own mapping.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 16.03.2003
  */
 public class Constants {

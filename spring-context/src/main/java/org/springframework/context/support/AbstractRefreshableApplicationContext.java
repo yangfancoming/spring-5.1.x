@@ -36,8 +36,8 @@ import org.springframework.lang.Nullable;
  * {@link org.springframework.context.annotation.AnnotationConfigApplicationContext}
  * supports {@code @Configuration}-annotated classes as a source of bean definitions.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 1.1.3
  * @see #loadBeanDefinitions
  * @see org.springframework.beans.factory.support.DefaultListableBeanFactory

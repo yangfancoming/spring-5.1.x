@@ -62,7 +62,7 @@ import java.util.List;
  * {@link BootstrapWith @BootstrapWith}.
  *
  * @author Sam Brannen
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see BootstrapWith
  * @see BootstrapContext

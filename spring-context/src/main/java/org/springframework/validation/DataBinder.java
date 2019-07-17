@@ -78,7 +78,7 @@ import org.springframework.util.StringUtils;
  * <p>This generic data binder can be used in any kind of environment.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @author Stephane Nicoll
  * @author Kazuki Shimizu

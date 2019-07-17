@@ -26,7 +26,7 @@ import org.springframework.util.ResourceUtils;
  * <p>Alternatively, for direct construction from a {@link java.io.File} handle
  * or NIO {@link java.nio.file.Path}, consider using {@link FileSystemResource}.
  *
- * @author Juergen Hoeller
+
  * @since 5.0.2
  */
 public class FileUrlResource extends UrlResource implements WritableResource {

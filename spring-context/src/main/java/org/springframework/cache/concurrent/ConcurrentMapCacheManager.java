@@ -28,7 +28,7 @@ import org.springframework.lang.Nullable;
  * {@link org.springframework.cache.ehcache.EhCacheCacheManager},
  * {@link org.springframework.cache.caffeine.CaffeineCacheManager}.
  *
- * @author Juergen Hoeller
+
  * @since 3.1
  * @see ConcurrentMapCache
  */

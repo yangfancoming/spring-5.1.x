@@ -11,7 +11,7 @@ import javax.sql.DataSource;
  * {@code persistence.xml} files.
  *
  * @author Costin Leau
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager#setDataSourceLookup
  */

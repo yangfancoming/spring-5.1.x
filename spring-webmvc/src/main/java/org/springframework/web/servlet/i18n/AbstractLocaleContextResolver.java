@@ -18,7 +18,7 @@ import org.springframework.web.servlet.LocaleContextResolver;
  * <p>Also provides pre-implemented versions of {@link #resolveLocale} and {@link #setLocale},
  * delegating to {@link #resolveLocaleContext} and {@link #setLocaleContext}.
  *
- * @author Juergen Hoeller
+
  * @since 4.0
  * @see #setDefaultLocale
  * @see #setDefaultTimeZone

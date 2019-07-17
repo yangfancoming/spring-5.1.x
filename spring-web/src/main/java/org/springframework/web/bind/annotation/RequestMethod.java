@@ -12,7 +12,7 @@ package org.springframework.web.bind.annotation;
  * told to dispatch those request types as well: Check out the "dispatchOptionsRequest"
  * and "dispatchTraceRequest" properties, switching them to "true" if necessary.
  *
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see RequestMapping
  * @see org.springframework.web.servlet.DispatcherServlet#setDispatchOptionsRequest

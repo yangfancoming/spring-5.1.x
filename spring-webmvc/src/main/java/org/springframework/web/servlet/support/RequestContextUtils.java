@@ -36,7 +36,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  * <p>Supports lookup of current WebApplicationContext, LocaleResolver,
  * Locale, ThemeResolver, Theme, and MultipartResolver.
  *
- * @author Juergen Hoeller
+
  * @author Rossen Stoyanchev
  * @since 03.03.2003
  * @see RequestContext

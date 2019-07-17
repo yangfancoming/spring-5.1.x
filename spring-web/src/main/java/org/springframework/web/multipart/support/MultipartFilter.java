@@ -42,7 +42,7 @@ import org.springframework.web.multipart.MultipartResolver;
  * DispatcherServlet (e.g. {@link org.springframework.web.filter.HiddenHttpMethodFilter}).
  * In any case, this filter should not be combined with servlet-specific multipart resolution.
  *
- * @author Juergen Hoeller
+
  * @since 08.10.2003
  * @see #setMultipartResolverBeanName
  * @see #lookupMultipartResolver

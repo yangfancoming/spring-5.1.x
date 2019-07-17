@@ -13,7 +13,7 @@ import org.springframework.util.ResourceUtils;
  * <p>Callers will usually assume that a location is a relative path
  * if the {@link #isUrl(String)} method returns {@code false}.
  *
- * @author Juergen Hoeller
+
  * @since 1.2.3
  */
 public abstract class ResourcePatternUtils {

@@ -17,8 +17,8 @@ import static org.mockito.BDDMockito.*;
 
 /**
  * @author Rod Johnson
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @since 21.05.2003
  */
 public class LocalStatelessSessionProxyFactoryBeanTests {

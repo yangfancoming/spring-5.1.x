@@ -20,8 +20,8 @@ import static org.junit.Assert.*;
 
 /**
  * @author Adrian Colyer
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  */
 public class ArgumentBindingTests {
 

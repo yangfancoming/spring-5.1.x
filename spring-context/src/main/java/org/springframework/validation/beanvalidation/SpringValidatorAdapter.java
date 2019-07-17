@@ -42,7 +42,7 @@ import org.springframework.validation.SmartValidator;
  * <p>As of Spring Framework 5.0, this adapter is fully compatible with
  * Bean Validation 1.1 as well as 2.0.
  *
- * @author Juergen Hoeller
+
  * @since 3.0
  * @see SmartValidator
  * @see CustomValidatorBean

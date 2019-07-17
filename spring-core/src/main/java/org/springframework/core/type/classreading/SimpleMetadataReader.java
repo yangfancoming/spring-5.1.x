@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
  * <p>Package-visible in order to allow for repackaging the ASM library
  * without effect on users of the {@code core.type} package.
  *
- * @author Juergen Hoeller
+
  * @author Costin Leau
  * @since 2.5
  */

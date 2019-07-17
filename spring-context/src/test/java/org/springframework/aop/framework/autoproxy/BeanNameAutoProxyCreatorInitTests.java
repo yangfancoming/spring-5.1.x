@@ -14,9 +14,9 @@ import org.springframework.tests.sample.beans.TestBean;
 import static org.junit.Assert.*;
 
 /**
- * @author Juergen Hoeller
+
  * @author Dave Syer
- * @author Chris Beams
+
  */
 public class BeanNameAutoProxyCreatorInitTests {
 

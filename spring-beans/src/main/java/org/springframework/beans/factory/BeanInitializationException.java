@@ -12,7 +12,7 @@ import org.springframework.beans.FatalBeanException;
  * <p>Note that {@code afterPropertiesSet()} or a custom "init-method"
  * can throw any exception.
  *
- * @author Juergen Hoeller
+
  * @since 13.11.2003
  * @see BeanFactoryAware#setBeanFactory
  * @see InitializingBean#afterPropertiesSet

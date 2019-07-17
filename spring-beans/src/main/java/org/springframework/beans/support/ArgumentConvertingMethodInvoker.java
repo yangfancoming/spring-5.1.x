@@ -21,7 +21,7 @@ import org.springframework.util.ReflectionUtils;
  * <p>Supports flexible argument conversions, in particular for
  * invoking a specific overloaded method.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see org.springframework.beans.BeanWrapperImpl#convertIfNecessary
  */

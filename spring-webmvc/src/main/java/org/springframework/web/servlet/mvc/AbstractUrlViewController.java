@@ -18,7 +18,7 @@ import org.springframework.web.util.UrlPathHelper;
  * URL lookup. For information on the latter, see {@code alwaysUseFullPath}
  * and {@code urlDecode} properties.
  *
- * @author Juergen Hoeller
+
  * @since 1.2.6
  * @see #setAlwaysUseFullPath
  * @see #setUrlDecode

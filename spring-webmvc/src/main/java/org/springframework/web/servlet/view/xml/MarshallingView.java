@@ -26,7 +26,7 @@ import org.springframework.web.servlet.view.AbstractView;
  * property or have Spring locate the Source object.
  *
  * @author Arjen Poutsma
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class MarshallingView extends AbstractView {

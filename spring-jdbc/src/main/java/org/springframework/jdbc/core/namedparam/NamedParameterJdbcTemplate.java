@@ -46,7 +46,7 @@ import org.springframework.util.Assert;
  * <p><b>NOTE: An instance of this class is thread-safe once configured.</b>
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see NamedParameterJdbcOperations
  * @see org.springframework.jdbc.core.JdbcTemplate

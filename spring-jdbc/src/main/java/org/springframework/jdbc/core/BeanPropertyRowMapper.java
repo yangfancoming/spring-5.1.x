@@ -57,7 +57,7 @@ import org.springframework.util.StringUtils;
  * For best performance, consider using a custom {@link RowMapper} implementation.
  *
  * @author Thomas Risberg
- * @author Juergen Hoeller
+
  * @since 2.5
  * @param <T> the result type
  */

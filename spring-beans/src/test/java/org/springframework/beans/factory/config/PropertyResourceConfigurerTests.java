@@ -39,8 +39,8 @@ import static org.springframework.tests.TestResourceUtils.*;
  * {@link PropertyPlaceholderConfigurer}, {@link PropertyOverrideConfigurer} and
  * {@link PreferencesPlaceholderConfigurer}.
  *
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  * @author Phillip Webb
  * @since 02.10.2003
  * @see PropertyPlaceholderConfigurerTests

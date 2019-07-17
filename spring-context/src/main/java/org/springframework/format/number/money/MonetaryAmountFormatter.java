@@ -15,7 +15,7 @@ import org.springframework.lang.Nullable;
  * delegating to {@link javax.money.format.MonetaryAmountFormat#format}
  * and {@link javax.money.format.MonetaryAmountFormat#parse}.
  *
- * @author Juergen Hoeller
+
  * @since 4.2
  * @see #getMonetaryAmountFormat
  */

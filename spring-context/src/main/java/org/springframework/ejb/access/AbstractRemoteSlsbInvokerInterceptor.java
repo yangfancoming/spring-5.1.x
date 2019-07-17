@@ -24,7 +24,7 @@ import org.springframework.remoting.rmi.RmiClientInterceptorUtils;
  * In this case, there is no target object.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 public abstract class AbstractRemoteSlsbInvokerInterceptor extends AbstractSlsbInvokerInterceptor {
 

@@ -54,7 +54,7 @@ import org.springframework.util.StringUtils;
  * Delegate for resolving constructors and factory methods.
  * Performs constructor resolution through argument matching.
  *
- * @author Juergen Hoeller
+
  * @author Rob Harrop
  * @author Mark Fisher
  * @author Costin Leau

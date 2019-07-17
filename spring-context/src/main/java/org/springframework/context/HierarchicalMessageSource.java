@@ -9,7 +9,7 @@ import org.springframework.lang.Nullable;
  * can resolve messages hierarchically.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 public interface HierarchicalMessageSource extends MessageSource {
 

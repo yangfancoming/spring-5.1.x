@@ -23,7 +23,7 @@ import org.springframework.web.util.NestedServletException;
  * <p>Hessian services exported with this class can be accessed by
  * any Hessian client, as there isn't any special handling involved.
  *
- * @author Juergen Hoeller
+
  * @since 13.05.2003
  * @see HessianClientInterceptor
  * @see HessianProxyFactoryBean

@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
  * <p>Intended for testing rather than for use in production systems.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  */
 public class StaticMessageSource extends AbstractMessageSource {
 

@@ -45,7 +45,7 @@ package org.springframework.test.context;
  * </ul>
  *
  * @author Sam Brannen
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see TestContextManager
  * @see org.springframework.test.context.support.AbstractTestExecutionListener

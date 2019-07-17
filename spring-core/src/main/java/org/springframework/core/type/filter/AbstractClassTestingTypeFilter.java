@@ -15,7 +15,7 @@ import org.springframework.core.type.classreading.MetadataReaderFactory;
  *
  * @author Rod Johnson
  * @author Costin Leau
- * @author Juergen Hoeller
+
  * @since 2.5
  * @see #match(org.springframework.core.type.ClassMetadata)
  */

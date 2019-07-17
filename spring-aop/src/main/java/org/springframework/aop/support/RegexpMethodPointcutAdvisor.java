@@ -23,7 +23,7 @@ import org.springframework.util.ObjectUtils;
  * a specific one, override the {@link #createPointcut} method.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see #setPattern
  * @see #setPatterns
  * @see JdkRegexpMethodPointcut

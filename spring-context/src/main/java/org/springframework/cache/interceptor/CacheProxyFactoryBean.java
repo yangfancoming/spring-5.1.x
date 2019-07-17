@@ -25,7 +25,7 @@ import org.springframework.cache.CacheManager;
  * of the Spring reference documentation for more information.
  *
  * @author Costin Leau
- * @author Juergen Hoeller
+
  * @since 3.1
  * @see org.springframework.aop.framework.ProxyFactoryBean
  * @see CacheInterceptor

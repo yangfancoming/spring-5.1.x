@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
  *
  * @author Gary Russell
  * @author Mark Fisher
- * @author Juergen Hoeller
+
  * @since 3.0.5
  */
 public class DeserializingConverter implements Converter<byte[], Object> {

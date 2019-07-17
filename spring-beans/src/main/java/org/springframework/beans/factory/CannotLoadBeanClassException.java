@@ -9,7 +9,7 @@ import org.springframework.lang.Nullable;
  * Exception thrown when the BeanFactory cannot load the specified class
  * of a given bean.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 @SuppressWarnings("serial")

@@ -16,7 +16,7 @@ import org.springframework.tests.sample.beans.TestBean;
  * declared inside a Spring component class.
  *
  * @author Mark Pollack
- * @author Juergen Hoeller
+
  */
 @Component
 public class FactoryMethodComponent {

@@ -23,8 +23,7 @@ import static org.junit.Assert.*;
 
 /**
  * Tests integration between Environment and SecurityManagers. See SPR-9970.
- *
- * @author Chris Beams
+
  */
 public class EnvironmentSecurityManagerIntegrationTests {
 

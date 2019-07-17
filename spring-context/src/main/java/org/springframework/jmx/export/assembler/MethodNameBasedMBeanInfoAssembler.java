@@ -30,7 +30,7 @@ import org.springframework.util.StringUtils;
  * mappings first. If no method names for the bean are found, it will use the
  * method names defined by {@code managedMethods}.
  *
- * @author Juergen Hoeller
+
  * @since 1.2
  * @see #setManagedMethods
  * @see #setMethodMappings

@@ -12,7 +12,7 @@ import java.sql.Connection;
  * native JDBC Connection such as Oracle's OracleConnection. Alternatively,
  * all such connections also support JDBC 4.0's {@link Connection#unwrap}.
  *
- * @author Juergen Hoeller
+
  * @since 1.1
  * @see TransactionAwareDataSourceProxy
  * @see LazyConnectionDataSourceProxy

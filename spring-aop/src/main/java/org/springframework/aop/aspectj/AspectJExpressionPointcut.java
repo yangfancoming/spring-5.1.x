@@ -62,7 +62,7 @@ import org.springframework.util.StringUtils;
  * @author Rob Harrop
  * @author Adrian Colyer
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @author Ramnivas Laddad
  * @author Dave Syer
  * @since 2.0

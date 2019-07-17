@@ -23,8 +23,7 @@ import static org.junit.Assert.*;
  * in AbstractBeanFactory using ClassUtils#isAssignable methods instead of the built-in
  * Class#isAssignableFrom. The former takes into account primitives and their object
  * wrapper types, whereas the latter does not.
- *
- * @author Chris Beams
+
  * @since 3.1
  */
 public class PrimitiveBeanLookupAndAutowiringTests {

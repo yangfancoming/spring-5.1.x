@@ -28,7 +28,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @author Sam Brannen
  * @since 4.2
  * @see <a href="https://www.w3.org/TR/cors/">CORS spec</a>

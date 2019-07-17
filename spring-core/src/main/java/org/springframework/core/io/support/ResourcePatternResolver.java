@@ -30,7 +30,7 @@ import org.springframework.core.io.ResourceLoader;
  * expected to be a path without placeholders in this case (e.g. "/beans.xml");
  * JAR files or classes directories can contain multiple files of the same name.
  *
- * @author Juergen Hoeller
+
  * @since 1.0.2
  * @see org.springframework.core.io.Resource
  * @see org.springframework.core.io.ResourceLoader

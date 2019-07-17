@@ -31,7 +31,7 @@ import org.springframework.lang.Nullable;
  *{@link org.springframework.jdbc.core.support.AbstractLobCreatingPreparedStatementCallback}
  * implementation. See the latter's javadoc for details.
  *
- * @author Juergen Hoeller
+
  * @since 04.12.2003
  * @see #close()
  * @see LobHandler#getLobCreator()

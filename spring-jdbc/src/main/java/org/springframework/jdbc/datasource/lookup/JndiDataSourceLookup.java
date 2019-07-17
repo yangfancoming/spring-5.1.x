@@ -14,7 +14,7 @@ import org.springframework.jndi.JndiLocatorSupport;
  * the "jndiEnvironment"/"jndiTemplate" properties.
  *
  * @author Costin Leau
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see #setJndiEnvironment
  * @see #setJndiTemplate

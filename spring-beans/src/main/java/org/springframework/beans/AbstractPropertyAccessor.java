@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * Provides base implementations of all convenience methods, with the
  * implementation of actual property access left to subclasses.
  *
- * @author Juergen Hoeller
+
  * @author Stephane Nicoll
  * @since 2.0
  * @see #getPropertyValue

@@ -42,9 +42,9 @@ import org.springframework.util.StringValueResolver;
  * {@link org.springframework.context.annotation.Bean @Bean} method.
  *
  * @author Keith Donald
- * @author Juergen Hoeller
+
  * @author Rossen Stoyanchev
- * @author Chris Beams
+
  * @since 3.0
  */
 public class FormattingConversionServiceFactoryBean

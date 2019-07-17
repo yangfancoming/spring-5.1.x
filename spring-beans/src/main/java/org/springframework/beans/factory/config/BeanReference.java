@@ -13,7 +13,7 @@ import org.springframework.beans.BeanMetadataElement;
  * holder, such as {@link RuntimeBeanReference RuntimeBeanReference} and
  * {@link RuntimeBeanNameReference RuntimeBeanNameReference}.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  */
 public interface BeanReference extends BeanMetadataElement {

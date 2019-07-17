@@ -20,8 +20,8 @@ import static org.mockito.BDDMockito.*;
  *
  * @author Adrian Colyer
  * @author Rod Johnson
- * @author Juergen Hoeller
- * @author Chris Beams
+
+
  */
 public class AfterReturningAdviceBindingTests {
 

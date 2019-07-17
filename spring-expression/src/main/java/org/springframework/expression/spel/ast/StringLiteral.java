@@ -11,7 +11,7 @@ import org.springframework.util.StringUtils;
  * Expression language AST node that represents a string literal.
  *
  * @author Andy Clement
- * @author Juergen Hoeller
+
  * @since 3.0
  */
 public class StringLiteral extends Literal {

@@ -33,7 +33,7 @@ import org.springframework.util.StringUtils;
  * {@link java.nio.file.Path} handle in which case it will perform all file system
  * interactions via NIO.2, only resorting to {@link File} on {@link #getFile()}.
  *
- * @author Juergen Hoeller
+
  * @since 28.12.2003
  * @see #FileSystemResource(File)
  * @see #FileSystemResource(Path)

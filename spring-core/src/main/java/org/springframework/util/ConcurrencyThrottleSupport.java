@@ -21,7 +21,7 @@ import org.apache.commons.logging.LogFactory;
  * ("unbounded concurrency"). Subclasses may override this default;
  * check the javadoc of the concrete class that you're using.
  *
- * @author Juergen Hoeller
+
  * @since 1.2.5
  * @see #setConcurrencyLimit
  * @see #beforeAccess()

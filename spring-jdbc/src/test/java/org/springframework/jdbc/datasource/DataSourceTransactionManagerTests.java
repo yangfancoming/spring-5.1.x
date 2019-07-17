@@ -38,7 +38,7 @@ import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
 /**
- * @author Juergen Hoeller
+
  * @since 04.07.2003
  */
 public class DataSourceTransactionManagerTests  {

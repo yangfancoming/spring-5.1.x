@@ -42,7 +42,7 @@ import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolv
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
- * @author Juergen Hoeller
+
  * @since 3.1
  */
 public class RequestResponseBodyMethodProcessor extends AbstractMessageConverterMethodProcessor {

@@ -19,8 +19,7 @@ import static org.junit.Assert.*;
 /**
  * Tests various combinations of profile declarations against various profile
  * activation and profile default scenarios.
- *
- * @author Chris Beams
+
  * @author Sam Brannen
  * @since 3.1
  */

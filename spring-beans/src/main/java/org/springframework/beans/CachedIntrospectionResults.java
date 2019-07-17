@@ -51,7 +51,7 @@ import org.springframework.util.StringUtils;
  * such a scenario, consider the {@link #IGNORE_BEANINFO_PROPERTY_NAME} system property.
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @since 05 May 2001
  * @see #acceptClassLoader(ClassLoader)
  * @see #clearClassLoader(ClassLoader)

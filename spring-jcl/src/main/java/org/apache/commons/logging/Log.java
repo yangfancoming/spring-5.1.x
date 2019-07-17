@@ -55,7 +55,7 @@ package org.apache.commons.logging;
  * external to the Logging APIs, through whatever mechanism is supported by
  * that system.
  *
- * @author Juergen Hoeller (for the {@code spring-jcl} variant)
+ (for the {@code spring-jcl} variant)
  * @since 5.0
  */
 public interface Log {

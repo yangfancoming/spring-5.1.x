@@ -38,7 +38,7 @@ import org.springframework.web.context.ServletContextAware;
  * in the context, under the special bean name "themeSource".
  *
  * @author Rod Johnson
- * @author Juergen Hoeller
+
  * @see org.springframework.ui.context.ThemeSource
  */
 public class StaticWebApplicationContext extends StaticApplicationContext implements ConfigurableWebApplicationContext, ThemeSource {

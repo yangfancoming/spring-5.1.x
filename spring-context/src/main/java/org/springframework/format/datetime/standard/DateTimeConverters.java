@@ -24,7 +24,7 @@ import org.springframework.format.datetime.DateFormatterRegistrar;
  * for custom conversion scenarios between different JSR-310 value types
  * and also between {@link java.util.Calendar} and JSR-310 value types.
  *
- * @author Juergen Hoeller
+
  * @since 4.0.1
  */
 final class DateTimeConverters {

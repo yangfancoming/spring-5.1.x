@@ -53,7 +53,7 @@ import org.springframework.lang.Nullable;
  * <p>Requires SnakeYAML 1.18 or higher, as of Spring Framework 5.0.6.
  *
  * @author Dave Syer
- * @author Juergen Hoeller
+
  * @since 4.1
  */
 public class YamlMapFactoryBean extends YamlProcessor implements FactoryBean<Map<String, Object>>, InitializingBean {

@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
  * The actual adapting to {@link javax.enterprise.concurrent.ManagedScheduledExecutorService}
  * happens in the base class {@link ConcurrentTaskScheduler} itself.
  *
- * @author Juergen Hoeller
+
  * @since 4.0
  */
 public class DefaultManagedTaskScheduler extends ConcurrentTaskScheduler implements InitializingBean {

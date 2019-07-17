@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  *
  * <p>Since Spring 4.1 this implementation is able to traverse nested fields.
  *
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see DataBinder#getBindingResult()
  * @see DataBinder#initDirectFieldAccess()

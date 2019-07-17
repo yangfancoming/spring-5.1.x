@@ -53,7 +53,7 @@ import org.springframework.beans.factory.config.BeanReference;
  * internal implementation reasons.
  *
  * @author Rob Harrop
- * @author Juergen Hoeller
+
  * @since 2.0
  * @see AbstractComponentDefinition
  * @see CompositeComponentDefinition
