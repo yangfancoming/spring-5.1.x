@@ -5,10 +5,9 @@ package org.springframework.core;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface defining a generic contract for attaching and accessing metadata
- * to/from arbitrary objects.
- *
- * @author Rob Harrop
+ * Interface defining a generic contract for attaching and accessing metadata to/from arbitrary objects.
+ * 接口定义用于附加和访问任意对象元数据的通用约定。
+ * 属性访问器
  * @since 2.0
  */
 public interface AttributeAccessor {

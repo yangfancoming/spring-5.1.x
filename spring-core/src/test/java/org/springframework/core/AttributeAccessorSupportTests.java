@@ -11,40 +11,41 @@ import static org.junit.Assert.*;
 
 public class AttributeAccessorSupportTests {
 
-	private static final String NAME = "foo";
-
+	private static final String KEY = "foo";
 	private static final String VALUE = "bar";
 
 	private AttributeAccessor attributeAccessor = new SimpleAttributeAccessorSupport();
 
+
 	@Test
-	public void setAndGet() throws Exception {
-		this.attributeAccessor.setAttribute(NAME, VALUE);
-		assertEquals(VALUE, this.attributeAccessor.getAttribute(NAME));
+	public void setAndGet()  {
+		assertNull(attributeAccessor.getAttribute(KEY));
+		attributeAccessor.setAttribute(KEY, VALUE);
+		assertEquals(VALUE, attributeAccessor.getAttribute(KEY));
 	}
 
 	@Test
-	public void setAndHas() throws Exception {
-		assertFalse(this.attributeAccessor.hasAttribute(NAME));
-		this.attributeAccessor.setAttribute(NAME, VALUE);
-		assertTrue(this.attributeAccessor.hasAttribute(NAME));
+	public void setAndHas()  {
+		assertFalse(attributeAccessor.hasAttribute(KEY));
+		attributeAccessor.setAttribute(KEY, VALUE);
+		assertTrue(attributeAccessor.hasAttribute(KEY));
 	}
 
 	@Test
-	public void remove() throws Exception {
-		assertFalse(this.attributeAccessor.hasAttribute(NAME));
-		this.attributeAccessor.setAttribute(NAME, VALUE);
-		assertEquals(VALUE, this.attributeAccessor.removeAttribute(NAME));
-		assertFalse(this.attributeAccessor.hasAttribute(NAME));
+	public void remove()  {
+		assertFalse(attributeAccessor.hasAttribute(KEY));
+		attributeAccessor.setAttribute(KEY, VALUE);
+		assertEquals(VALUE, attributeAccessor.removeAttribute(KEY));
+		assertFalse(attributeAccessor.hasAttribute(KEY));
 	}
 
 	@Test
-	public void attributeNames() throws Exception {
-		this.attributeAccessor.setAttribute(NAME, VALUE);
-		this.attributeAccessor.setAttribute("abc", "123");
-		String[] attributeNames = this.attributeAccessor.attributeNames();
+	public void attributeNames()  {
+		attributeAccessor.setAttribute(KEY, VALUE);
+		attributeAccessor.setAttribute("abc", "123");
+		String[] attributeNames = attributeAccessor.attributeNames();
 		Arrays.sort(attributeNames);
-		assertTrue(Arrays.binarySearch(attributeNames, NAME) > -1);
+		assertTrue(Arrays.binarySearch(attributeNames, KEY) > -1);
 		assertTrue(Arrays.binarySearch(attributeNames, "abc") > -1);
 	}
 
