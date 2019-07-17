@@ -6,9 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Juergen Hoeller
- */
+
 public class LinkedCaseInsensitiveMapTests {
 
 	private final LinkedCaseInsensitiveMap<String> map = new LinkedCaseInsensitiveMap<>();

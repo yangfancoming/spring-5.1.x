@@ -4,9 +4,7 @@ package example.scannable_implicitbasepackage;
 
 import org.springframework.stereotype.Component;
 
-/**
- * @author Juergen Hoeller
- */
+
 @Component
 public class ConfigurableComponent {
 

@@ -15,10 +15,7 @@ import org.springframework.web.context.support.StaticWebApplicationContext;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rod Johnson
- * @author Juergen Hoeller
- */
+
 public class RequestAndSessionScopedBeanTests {
 
 	@Test

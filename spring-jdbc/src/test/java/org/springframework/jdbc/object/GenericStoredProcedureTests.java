@@ -19,9 +19,7 @@ import org.springframework.jdbc.datasource.TestDataSourceWrapper;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Thomas Risberg
- */
+
 public class GenericStoredProcedureTests {
 
 	@Test

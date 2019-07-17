@@ -19,10 +19,7 @@ import org.springframework.jdbc.support.incrementer.PostgresSequenceMaxValueIncr
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Juergen Hoeller
- * @since 27.02.2004
- */
+
 public class DataFieldMaxValueIncrementerTests {
 
 	private final DataSource dataSource = mock(DataSource.class);

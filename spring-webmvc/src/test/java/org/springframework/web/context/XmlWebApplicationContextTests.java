@@ -25,10 +25,7 @@ import org.springframework.web.context.support.XmlWebApplicationContext;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-/**
- * @author Rod Johnson
- * @author Juergen Hoeller
- */
+
 public class XmlWebApplicationContextTests extends AbstractApplicationContextTests {
 
 	private ConfigurableWebApplicationContext root;

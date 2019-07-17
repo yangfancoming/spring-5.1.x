@@ -19,9 +19,7 @@ import org.springframework.jdbc.InvalidResultSetAccessException;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Thomas Risberg
- */
+
 public class ResultSetWrappingRowSetTests {
 
 	private ResultSet resultSet;

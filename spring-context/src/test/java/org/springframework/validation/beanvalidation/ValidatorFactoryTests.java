@@ -40,9 +40,7 @@ import org.springframework.validation.ObjectError;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
-/**
- * @author Juergen Hoeller
- */
+
 public class ValidatorFactoryTests {
 
 	@Test

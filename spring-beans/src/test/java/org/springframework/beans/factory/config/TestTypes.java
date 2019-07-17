@@ -11,9 +11,7 @@ import org.springframework.beans.factory.ObjectFactory;
  */
 final class TestTypes {}
 
-/**
- * @author Juergen Hoeller
- */
+
 class NoOpScope implements Scope {
 
 	@Override

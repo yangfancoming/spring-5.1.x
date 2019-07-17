@@ -11,10 +11,7 @@ import org.springframework.tests.sample.beans.TestBean;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rod Johnson
- * @author Juergen Hoeller
- */
+
 public abstract class AbstractListableBeanFactoryTests extends AbstractBeanFactoryTests {
 
 	/** Subclasses must initialize this */

@@ -16,11 +16,7 @@ import org.springframework.util.SerializationTestUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
- * @author Juergen Hoeller
- * @author Chris Beams
- */
+
 public class AspectProxyFactoryTests {
 
 	@Test(expected = IllegalArgumentException.class)

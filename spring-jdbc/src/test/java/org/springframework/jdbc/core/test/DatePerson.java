@@ -5,9 +5,7 @@ package org.springframework.jdbc.core.test;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-/**
- * @author Juergen Hoeller
- */
+
 public class DatePerson {
 
 	private String lastName;

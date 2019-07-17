@@ -22,9 +22,7 @@ import org.springframework.lang.Nullable;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Dave Syer
- */
+
 public class TrickyAspectJPointcutExpressionTests {
 
 	@Test

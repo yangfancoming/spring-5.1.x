@@ -20,11 +20,7 @@ import org.springframework.util.ReflectionUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
- * @author Juergen Hoeller
- * @author Chris Beams
- */
+
 @SuppressWarnings("rawtypes")
 public class BridgeMethodResolverTests {
 

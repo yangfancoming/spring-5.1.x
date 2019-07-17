@@ -15,9 +15,7 @@ import org.springframework.tests.sample.beans.TestBean;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Rod Johnson
- */
+
 public class JdbcBeanDefinitionReaderTests {
 
 	@Test

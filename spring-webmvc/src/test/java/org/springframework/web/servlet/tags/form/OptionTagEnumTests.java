@@ -12,9 +12,7 @@ import org.springframework.web.servlet.support.BindStatus;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Juergen Hoeller
- */
+
 public class OptionTagEnumTests extends AbstractHtmlElementTagTests {
 
 	private OptionTag tag;

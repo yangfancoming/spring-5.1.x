@@ -20,10 +20,7 @@ import org.springframework.web.util.WebUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rod Johnson
- * @author Juergen Hoeller
- */
+
 public class SimpleUrlHandlerMappingTests {
 
 	@Test

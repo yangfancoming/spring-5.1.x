@@ -29,13 +29,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import static org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory.*;
 
-/**
- * @author Dave Syer
- * @author Juergen Hoeller
- * @author Chris Beams
- * @author Sam Brannen
- * @author Stephane Nicoll
- */
+
 public class JdbcNamespaceIntegrationTests {
 
 	@Rule

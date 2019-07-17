@@ -20,11 +20,7 @@ import org.springframework.util.SerializationTestUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
- * @author Juergen Hoeller
- * @author Chris Beams
- */
+
 public class ScopedProxyTests {
 
 	private static final Class<?> CLASS = ScopedProxyTests.class;

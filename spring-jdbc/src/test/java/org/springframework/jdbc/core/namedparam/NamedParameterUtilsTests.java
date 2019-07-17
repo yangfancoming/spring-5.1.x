@@ -12,12 +12,7 @@ import org.springframework.dao.InvalidDataAccessApiUsageException;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Thomas Risberg
- * @author Juergen Hoeller
- * @author Rick Evans
- * @author Artur Geraschenko
- */
+
 public class NamedParameterUtilsTests {
 
 	@Test

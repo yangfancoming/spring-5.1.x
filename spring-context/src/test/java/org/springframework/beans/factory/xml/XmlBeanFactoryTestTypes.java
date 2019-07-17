@@ -213,18 +213,14 @@ class DerivedConstructorDependenciesBean extends ConstructorDependenciesBean {
 }
 
 
-/**
- * @author Rod Johnson
- */
+
 interface DummyBo {
 
 	void something();
 }
 
 
-/**
- * @author Rod Johnson
- */
+
 class DummyBoImpl implements DummyBo {
 
 	DummyDao dao;
@@ -239,9 +235,7 @@ class DummyBoImpl implements DummyBo {
 }
 
 
-/**
- * @author Rod Johnson
- */
+
 class DummyDao {
 }
 
@@ -423,9 +417,7 @@ class MapAndSet {
 }
 
 
-/**
- * @author Rod Johnson
- */
+
 class MethodReplaceCandidate {
 
 	public String replaceMe(String echo) {
@@ -452,9 +444,7 @@ class MixedCollectionBean {
 }
 
 
-/**
- * @author Juergen Hoeller
- */
+
 interface OverrideInterface {
 
 	TestBean getPrototypeDependency();
@@ -463,10 +453,7 @@ interface OverrideInterface {
 }
 
 
-/**
- * @author Rod Johnson
- * @author Juergen Hoeller
- */
+
 abstract class OverrideOneMethod extends MethodReplaceCandidate implements OverrideInterface {
 
 	protected abstract TestBean protectedOverrideSingleton();
@@ -663,9 +650,7 @@ class ProtectedLifecycleBean implements BeanNameAware, BeanFactoryAware, Initial
 }
 
 
-/**
- * @author Rod Johnson
- */
+
 @SuppressWarnings("serial")
 class ReverseMethodReplacer implements MethodReplacer, Serializable {
 
@@ -677,9 +662,7 @@ class ReverseMethodReplacer implements MethodReplacer, Serializable {
 }
 
 
-/**
- * @author Rod Johnson
- */
+
 @SuppressWarnings("serial")
 abstract class SerializableMethodReplacerCandidate extends MethodReplaceCandidate implements Serializable {
 

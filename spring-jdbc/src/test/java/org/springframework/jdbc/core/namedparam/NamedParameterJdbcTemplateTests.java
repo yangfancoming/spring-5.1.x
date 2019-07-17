@@ -32,32 +32,16 @@ import org.springframework.jdbc.core.SqlParameterValue;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Rick Evans
- * @author Juergen Hoeller
- * @author Chris Beams
- * @author Nikita Khateev
- * @author Fedor Bobin
- */
+
 public class NamedParameterJdbcTemplateTests {
 
-	private static final String SELECT_NAMED_PARAMETERS =
-			"select id, forename from custmr where id = :id and country = :country";
-	private static final String SELECT_NAMED_PARAMETERS_PARSED =
-			"select id, forename from custmr where id = ? and country = ?";
-	private static final String SELECT_NO_PARAMETERS =
-			"select id, forename from custmr";
-
-	private static final String UPDATE_NAMED_PARAMETERS =
-			"update seat_status set booking_id = null where performance_id = :perfId and price_band_id = :priceId";
-	private static final String UPDATE_NAMED_PARAMETERS_PARSED =
-			"update seat_status set booking_id = null where performance_id = ? and price_band_id = ?";
-
-	private static final String UPDATE_ARRAY_PARAMETERS =
-			"update customer set type = array[:typeIds] where id = :id";
-	private static final String UPDATE_ARRAY_PARAMETERS_PARSED =
-			"update customer set type = array[?, ?, ?] where id = ?";
-
+	private static final String SELECT_NAMED_PARAMETERS = "select id, forename from custmr where id = :id and country = :country";
+	private static final String SELECT_NAMED_PARAMETERS_PARSED = "select id, forename from custmr where id = ? and country = ?";
+	private static final String SELECT_NO_PARAMETERS = "select id, forename from custmr";
+	private static final String UPDATE_NAMED_PARAMETERS = "update seat_status set booking_id = null where performance_id = :perfId and price_band_id = :priceId";
+	private static final String UPDATE_NAMED_PARAMETERS_PARSED = "update seat_status set booking_id = null where performance_id = ? and price_band_id = ?";
+	private static final String UPDATE_ARRAY_PARAMETERS = "update customer set type = array[:typeIds] where id = :id";
+	private static final String UPDATE_ARRAY_PARAMETERS_PARSED = "update customer set type = array[?, ?, ?] where id = ?";
 	private static final String[] COLUMN_NAMES = new String[] {"id", "forename"};
 
 

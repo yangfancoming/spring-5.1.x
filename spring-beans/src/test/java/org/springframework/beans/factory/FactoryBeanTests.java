@@ -19,11 +19,7 @@ import org.springframework.util.Assert;
 import static org.junit.Assert.*;
 import static org.springframework.tests.TestResourceUtils.*;
 
-/**
- * @author Rob Harrop
- * @author Juergen Hoeller
- * @author Chris Beams
- */
+
 public class FactoryBeanTests {
 
 	private static final Class<?> CLASS = FactoryBeanTests.class;

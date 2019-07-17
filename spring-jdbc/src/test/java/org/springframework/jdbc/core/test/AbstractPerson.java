@@ -4,9 +4,7 @@ package org.springframework.jdbc.core.test;
 
 import java.util.Date;
 
-/**
- * @author Thomas Risberg
- */
+
 public abstract class AbstractPerson {
 
 	private String name;

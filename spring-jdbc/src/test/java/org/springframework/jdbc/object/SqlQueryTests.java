@@ -31,38 +31,22 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Trevor Cook
- * @author Thomas Risberg
- * @author Juergen Hoeller
- */
+
 public class SqlQueryTests  {
 
 	//FIXME inline?
-	private static final String SELECT_ID =
-			"select id from custmr";
-	private static final String SELECT_ID_WHERE =
-			"select id from custmr where forename = ? and id = ?";
-	private static final String SELECT_FORENAME =
-			"select forename from custmr";
-	private static final String SELECT_FORENAME_EMPTY =
-			"select forename from custmr WHERE 1 = 2";
-	private static final String SELECT_ID_FORENAME_WHERE =
-			"select id, forename from prefix:custmr where forename = ?";
-	private static final String SELECT_ID_FORENAME_NAMED_PARAMETERS =
-			"select id, forename from custmr where id = :id and country = :country";
-	private static final String SELECT_ID_FORENAME_NAMED_PARAMETERS_PARSED =
-			"select id, forename from custmr where id = ? and country = ?";
-	private static final String SELECT_ID_FORENAME_WHERE_ID_IN_LIST_1 =
-			"select id, forename from custmr where id in (?, ?)";
-	private static final String SELECT_ID_FORENAME_WHERE_ID_IN_LIST_2 =
-			"select id, forename from custmr where id in (:ids)";
-	private static final String SELECT_ID_FORENAME_WHERE_ID_REUSED_1 =
-			"select id, forename from custmr where id = ? or id = ?)";
-	private static final String SELECT_ID_FORENAME_WHERE_ID_REUSED_2 =
-			"select id, forename from custmr where id = :id1 or id = :id1)";
-	private static final String SELECT_ID_FORENAME_WHERE_ID =
-			"select id, forename from custmr where id <= ?";
+	private static final String SELECT_ID = "select id from custmr";
+	private static final String SELECT_ID_WHERE = "select id from custmr where forename = ? and id = ?";
+	private static final String SELECT_FORENAME = "select forename from custmr";
+	private static final String SELECT_FORENAME_EMPTY = "select forename from custmr WHERE 1 = 2";
+	private static final String SELECT_ID_FORENAME_WHERE = "select id, forename from prefix:custmr where forename = ?";
+	private static final String SELECT_ID_FORENAME_NAMED_PARAMETERS = "select id, forename from custmr where id = :id and country = :country";
+	private static final String SELECT_ID_FORENAME_NAMED_PARAMETERS_PARSED = "select id, forename from custmr where id = ? and country = ?";
+	private static final String SELECT_ID_FORENAME_WHERE_ID_IN_LIST_1 = "select id, forename from custmr where id in (?, ?)";
+	private static final String SELECT_ID_FORENAME_WHERE_ID_IN_LIST_2 = "select id, forename from custmr where id in (:ids)";
+	private static final String SELECT_ID_FORENAME_WHERE_ID_REUSED_1 = "select id, forename from custmr where id = ? or id = ?)";
+	private static final String SELECT_ID_FORENAME_WHERE_ID_REUSED_2 = "select id, forename from custmr where id = :id1 or id = :id1)";
+	private static final String SELECT_ID_FORENAME_WHERE_ID = "select id, forename from custmr where id <= ?";
 
 	private static final String[] COLUMN_NAMES = new String[] {"id", "forename"};
 	private static final int[] COLUMN_TYPES = new int[] {Types.INTEGER, Types.VARCHAR};

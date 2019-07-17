@@ -16,9 +16,7 @@ import org.springframework.web.context.support.GenericWebApplicationContext;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Juergen Hoeller
- */
+
 public class WebApplicationContextScopeTests {
 
 	private static final String NAME = "scoped";

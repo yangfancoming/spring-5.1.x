@@ -2,9 +2,7 @@
 
 package org.springframework.context.annotation;
 
-/**
- * @author Juergen Hoeller
- */
+
 @Configuration
 class MyTestBean {
 

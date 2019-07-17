@@ -2,9 +2,7 @@
 
 package org.springframework.jdbc;
 
-/**
- * @author Juergen Hoeller
- */
+
 public class Customer {
 
 	private int id;

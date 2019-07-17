@@ -21,11 +21,7 @@ import org.springframework.tests.beans.CollectingReaderEventListener;
 import static org.junit.Assert.*;
 import static org.springframework.tests.TestResourceUtils.*;
 
-/**
- * @author Rob Harrop
- * @author Juergen Hoeller
- * @author Chris Beams
- */
+
 public class AopNamespaceHandlerEventTests {
 
 	private static final Class<?> CLASS = AopNamespaceHandlerEventTests.class;

@@ -9,9 +9,7 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Dave Syer
- */
+
 public class GroovyAspectIntegrationTests {
 
 	private GenericXmlApplicationContext context;

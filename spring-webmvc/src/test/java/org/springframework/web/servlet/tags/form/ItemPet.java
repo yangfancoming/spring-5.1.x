@@ -4,9 +4,7 @@ package org.springframework.web.servlet.tags.form;
 
 import java.beans.PropertyEditorSupport;
 
-/**
- * @author Juergen Hoeller
- */
+
 public class ItemPet {
 
 	private String name;

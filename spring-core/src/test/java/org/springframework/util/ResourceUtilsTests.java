@@ -11,9 +11,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Juergen Hoeller
- */
+
 public class ResourceUtilsTests {
 
 	@Test

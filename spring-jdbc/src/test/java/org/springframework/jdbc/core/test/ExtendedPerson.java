@@ -2,9 +2,7 @@
 
 package org.springframework.jdbc.core.test;
 
-/**
- * @author Juergen Hoeller
- */
+
 public class ExtendedPerson extends ConcretePerson {
 
 	private Object someField;

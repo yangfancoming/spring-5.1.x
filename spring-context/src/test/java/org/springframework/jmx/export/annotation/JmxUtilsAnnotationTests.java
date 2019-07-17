@@ -10,9 +10,7 @@ import org.springframework.jmx.support.JmxUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Juergen Hoeller
- */
+
 public class JmxUtilsAnnotationTests {
 
 	@Test

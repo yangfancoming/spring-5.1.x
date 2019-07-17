@@ -12,11 +12,7 @@ import org.springframework.tests.sample.beans.ITestBean;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
- * @author Juergen Hoeller
- * @author Chris Beams
- */
+
 public class AspectJExpressionPointcutAdvisorTests {
 
 	private ITestBean testBean;

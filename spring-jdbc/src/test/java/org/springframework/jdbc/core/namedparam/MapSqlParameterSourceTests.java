@@ -8,10 +8,7 @@ import org.springframework.jdbc.core.SqlParameterValue;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rick Evans
- * @author Arjen Poutsma
- */
+
 public class MapSqlParameterSourceTests {
 
 	@Test

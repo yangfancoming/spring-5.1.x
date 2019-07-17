@@ -13,10 +13,7 @@ import org.springframework.mock.web.test.MockHttpServletResponse;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
-/**
- * @author Rick Evans
- * @author Brian Clozel
- */
+
 public class WebContentInterceptorTests {
 
 	private MockHttpServletRequest request = new MockHttpServletRequest("GET", "/");

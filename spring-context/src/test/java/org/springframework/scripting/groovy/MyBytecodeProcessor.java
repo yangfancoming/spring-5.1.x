@@ -7,9 +7,7 @@ import java.util.Set;
 
 import org.codehaus.groovy.control.BytecodeProcessor;
 
-/**
- * @author Juergen Hoeller
- */
+
 public class MyBytecodeProcessor implements BytecodeProcessor {
 
 	public final Set<String> processed = new HashSet<String>();

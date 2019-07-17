@@ -18,9 +18,7 @@ import org.springframework.jdbc.BadSqlGrammarException;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Thomas Risberg
- */
+
 public class SQLExceptionSubclassTranslatorTests {
 
 	private static SQLErrorCodes ERROR_CODES = new SQLErrorCodes();

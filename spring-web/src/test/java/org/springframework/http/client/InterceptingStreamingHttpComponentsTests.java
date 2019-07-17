@@ -6,9 +6,7 @@ import org.junit.Test;
 
 import org.springframework.http.HttpMethod;
 
-/**
- * @author Juergen Hoeller
- */
+
 public class InterceptingStreamingHttpComponentsTests extends AbstractHttpRequestFactoryTestCase {
 
 	@Override

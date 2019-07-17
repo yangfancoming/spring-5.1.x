@@ -26,9 +26,7 @@ import org.springframework.validation.annotation.Validated;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Juergen Hoeller
- */
+
 public class MethodValidationTests {
 
 	@Test

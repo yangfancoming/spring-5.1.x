@@ -11,11 +11,7 @@ import org.springframework.tests.sample.beans.TestBean;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rick Evans
- * @author Juergen Hoeller
- * @author Arjen Poutsma
- */
+
 public class BeanPropertySqlParameterSourceTests {
 
 	@Test(expected = IllegalArgumentException.class)

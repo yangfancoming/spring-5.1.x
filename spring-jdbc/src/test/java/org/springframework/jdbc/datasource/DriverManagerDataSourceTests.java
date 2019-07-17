@@ -10,9 +10,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Rod Johnson
- */
+
 public class DriverManagerDataSourceTests {
 
 	private Connection connection = mock(Connection.class);

@@ -17,9 +17,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Dave Syer
- */
+
 public class InitializeDatabaseIntegrationTests {
 
 	private String enabled;

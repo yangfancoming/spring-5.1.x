@@ -17,7 +17,6 @@ import static org.springframework.tests.TestGroup.*;
 
 /**
  * Tests for {@link Assume}.
-
  * @since 5.0
  */
 public class AssumeTests {

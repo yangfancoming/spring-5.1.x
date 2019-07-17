@@ -9,9 +9,7 @@ import org.springframework.beans.PropertyEditorRegistrar;
 import org.springframework.beans.PropertyEditorRegistry;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 
-/**
- * @author Juergen Hoeller
- */
+
 public class CustomDateEditorRegistrar implements PropertyEditorRegistrar {
 
 	@Override

@@ -20,10 +20,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rod Johnson
- * @author Juergen Hoeller
- */
+
 public class RequestContextFilterTests {
 
 	@Test

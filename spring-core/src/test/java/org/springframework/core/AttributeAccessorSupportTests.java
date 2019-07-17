@@ -8,11 +8,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
- * @author Sam Brannen
- * @since 2.0
- */
+
 public class AttributeAccessorSupportTests {
 
 	private static final String NAME = "foo";

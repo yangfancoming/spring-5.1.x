@@ -71,8 +71,7 @@ public abstract class AbstractDataSource implements DataSource {
 		if (iface.isInstance(this)) {
 			return (T) this;
 		}
-		throw new SQLException("DataSource of type [" + getClass().getName() +
-				"] cannot be unwrapped as [" + iface.getName() + "]");
+		throw new SQLException("DataSource of type [" + getClass().getName() + "] cannot be unwrapped as [" + iface.getName() + "]");
 	}
 
 	@Override

@@ -25,10 +25,7 @@ import org.springframework.jdbc.core.RowMapper;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Thomas Risberg
- * @author Phillip Webb
- */
+
 public class NamedParameterQueryTests {
 
 	private DataSource dataSource;

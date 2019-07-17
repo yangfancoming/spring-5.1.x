@@ -20,9 +20,7 @@ import org.springframework.web.multipart.MultipartRequest;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Juergen Hoeller
- */
+
 public class ServletWebRequestTests {
 
 	private MockHttpServletRequest servletRequest;
