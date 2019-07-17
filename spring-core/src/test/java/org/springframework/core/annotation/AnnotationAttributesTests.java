@@ -18,9 +18,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link AnnotationAttributes}.
-
- * @author Sam Brannen
-
  * @since 3.1.1
  */
 public class AnnotationAttributesTests {
@@ -52,7 +49,7 @@ public class AnnotationAttributesTests {
 		assertThat(attributes.getStringArray("names"), equalTo(new String[] {"dave", "frank", "hal"}));
 		assertThat(attributes.getBoolean("bool1"), equalTo(true));
 		assertThat(attributes.getBoolean("bool2"), equalTo(false));
-		assertThat(attributes.<Color>getEnum("color"), equalTo(Color.RED));
+		assertThat(attributes.getEnum("color"), equalTo(Color.RED));
 		assertTrue(attributes.getClass("class").equals(Integer.class));
 		assertThat(attributes.getClassArray("classes"), equalTo(new Class<?>[] {Number.class, Short.class, Integer.class}));
 		assertThat(attributes.<Integer>getNumber("number"), equalTo(42));
@@ -62,7 +59,7 @@ public class AnnotationAttributesTests {
 	}
 
 	@Test
-	public void unresolvableClass() throws Exception {
+	public void unresolvableClass()  {
 		attributes.put("unresolvableClass", new ClassNotFoundException("myclass"));
 		exception.expect(IllegalArgumentException.class);
 		exception.expectMessage(containsString("myclass"));
@@ -70,7 +67,7 @@ public class AnnotationAttributesTests {
 	}
 
 	@Test
-	public void singleElementToSingleElementArrayConversionSupport() throws Exception {
+	public void singleElementToSingleElementArrayConversionSupport()  {
 		Filter filter = FilteredClass.class.getAnnotation(Filter.class);
 
 		AnnotationAttributes nestedAttributes = new AnnotationAttributes();
@@ -98,7 +95,7 @@ public class AnnotationAttributesTests {
 	}
 
 	@Test
-	public void nestedAnnotations() throws Exception {
+	public void nestedAnnotations()  {
 		Filter filter = FilteredClass.class.getAnnotation(Filter.class);
 
 		attributes.put("filter", filter);

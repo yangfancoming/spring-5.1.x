@@ -59,7 +59,7 @@ public abstract class UiApplicationContextUtils {
 		else {
 			// Use default ThemeSource to be able to accept getTheme calls, either
 			// delegating to parent context's default or to local ResourceBundleThemeSource.
-			HierarchicalThemeSource themeSource = null;
+			HierarchicalThemeSource themeSource;
 			if (context.getParent() instanceof ThemeSource) {
 				themeSource = new DelegatingThemeSource();
 				themeSource.setParentThemeSource((ThemeSource) context.getParent());

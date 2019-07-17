@@ -64,8 +64,7 @@ public class ClassPathXmlApplicationContextTests {
 
 	@Test
 	public void testMultipleConfigLocations() {
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(
-				FQ_CONTEXT_B, FQ_CONTEXT_C, FQ_CONTEXT_A);
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(FQ_CONTEXT_B, FQ_CONTEXT_C, FQ_CONTEXT_A);
 		assertTrue(ctx.containsBean("service"));
 		assertTrue(ctx.containsBean("logicOne"));
 		assertTrue(ctx.containsBean("logicTwo"));

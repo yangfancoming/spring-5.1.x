@@ -14,11 +14,7 @@ import org.springframework.util.Assert;
  * Simple implementation of {@link org.springframework.context.MessageSource}
  * which allows messages to be registered programmatically.
  * This MessageSource supports basic internationalization.
- *
  * <p>Intended for testing rather than for use in production systems.
- *
- * @author Rod Johnson
-
  */
 public class StaticMessageSource extends AbstractMessageSource {
 

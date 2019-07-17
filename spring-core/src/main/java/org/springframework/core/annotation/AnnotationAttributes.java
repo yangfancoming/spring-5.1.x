@@ -17,13 +17,9 @@ import org.springframework.util.StringUtils;
  * <em>key-value</em> pairs as read by {@link AnnotationUtils},
  * {@link AnnotatedElementUtils}, and Spring's reflection- and ASM-based
  * {@link org.springframework.core.type.AnnotationMetadata} implementations.
- *
  * <p>Provides 'pseudo-reification' to avoid noisy Map generics in the calling
  * code as well as convenience methods for looking up annotation attributes
  * in a type-safe fashion.
-
- * @author Sam Brannen
-
  * @since 3.1.1
  * @see AnnotationUtils#getAnnotationAttributes
  * @see AnnotatedElementUtils

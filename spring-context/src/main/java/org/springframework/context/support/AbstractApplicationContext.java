@@ -562,8 +562,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 			catch (BeansException ex) {
 				if (logger.isWarnEnabled()) {
-					logger.warn("Exception encountered during context initialization - " +
-							"cancelling refresh attempt: " + ex);
+					logger.warn("Exception encountered during context initialization - cancelling refresh attempt: " + ex);
 				}
 
 				// Destroy already created singletons to avoid dangling resources.
@@ -948,14 +947,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	public void registerShutdownHook() {
 		if (this.shutdownHook == null) {
 			// No shutdown hook registered yet.
-			this.shutdownHook = new Thread() {
-				@Override
-				public void run() {
-					synchronized (startupShutdownMonitor) {
-						doClose();
-					}
+			this.shutdownHook = new Thread(()->{
+				synchronized (startupShutdownMonitor) {
+					doClose();
 				}
-			};
+			});
 			Runtime.getRuntime().addShutdownHook(this.shutdownHook);
 		}
 	}

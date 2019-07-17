@@ -21,8 +21,6 @@ import static org.junit.Assert.*;
 /**
  * Abstract base class for tests involving concrete implementations of
  * {@link AbstractAliasAwareAnnotationAttributeExtractor}.
- *
- * @author Sam Brannen
  * @since 4.2.1
  */
 public abstract class AbstractAliasAwareAnnotationAttributeExtractorTestCase {

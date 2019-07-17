@@ -36,9 +36,6 @@ import org.springframework.web.context.ServletContextAware;
  * {@link org.springframework.context.support.AbstractApplicationContext},
  * this class detects a bean of type {@link org.springframework.ui.context.ThemeSource}
  * in the context, under the special bean name "themeSource".
- *
- * @author Rod Johnson
-
  * @see org.springframework.ui.context.ThemeSource
  */
 public class StaticWebApplicationContext extends StaticApplicationContext implements ConfigurableWebApplicationContext, ThemeSource {
@@ -177,12 +174,12 @@ public class StaticWebApplicationContext extends StaticApplicationContext implem
 
 	@Override
 	protected void initPropertySources() {
-		WebApplicationContextUtils.initServletPropertySources(getEnvironment().getPropertySources(),
-				this.servletContext, this.servletConfig);
+		WebApplicationContextUtils.initServletPropertySources(getEnvironment().getPropertySources(),this.servletContext, this.servletConfig);
 	}
 
 	@Override
 	@Nullable
+
 	public Theme getTheme(String themeName) {
 		Assert.state(this.themeSource != null, "No ThemeSource available");
 		return this.themeSource.getTheme(themeName);
