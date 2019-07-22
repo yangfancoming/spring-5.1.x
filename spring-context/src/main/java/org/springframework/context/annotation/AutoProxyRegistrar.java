@@ -16,7 +16,6 @@ import org.springframework.core.type.AnnotationMetadata;
  * Registers an auto proxy creator against the current {@link BeanDefinitionRegistry}
  * as appropriate based on an {@code @Enable*} annotation having {@code mode} and
  * {@code proxyTargetClass} attributes set to the correct values.
-
  * @since 3.1
  * @see EnableAspectJAutoProxy
  */
@@ -50,10 +49,10 @@ public class AutoProxyRegistrar implements ImportBeanDefinitionRegistrar {
 			}
 			Object mode = candidate.get("mode");
 			Object proxyTargetClass = candidate.get("proxyTargetClass");
-			if (mode != null && proxyTargetClass != null && AdviceMode.class == mode.getClass() &&
-					Boolean.class == proxyTargetClass.getClass()) {
+			if (mode != null && proxyTargetClass != null && AdviceMode.class == mode.getClass() && Boolean.class == proxyTargetClass.getClass()) {
 				candidateFound = true;
 				if (mode == AdviceMode.PROXY) {
+					// 注册bean
 					AopConfigUtils.registerAutoProxyCreatorIfNecessary(registry);
 					if ((Boolean) proxyTargetClass) {
 						AopConfigUtils.forceAutoProxyCreatorToUseClassProxying(registry);

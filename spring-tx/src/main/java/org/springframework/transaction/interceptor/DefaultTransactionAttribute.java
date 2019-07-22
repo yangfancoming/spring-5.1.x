@@ -9,9 +9,6 @@ import org.springframework.util.StringUtils;
 /**
  * Spring's common transaction attribute implementation.
  * Rolls back on runtime, but not checked, exceptions by default.
- *
- * @author Rod Johnson
-
  * @since 16.03.2003
  */
 @SuppressWarnings("serial")
@@ -115,6 +112,7 @@ public class DefaultTransactionAttribute extends DefaultTransactionDefinition im
 	 * (a corner case). For declarative transactions, we expect checked exceptions to be
 	 * intentionally declared as business exceptions, leading to a commit by default.
 	 * @see org.springframework.transaction.support.TransactionTemplate#execute
+	 *    指明了对RuntimeException 和Error进行回滚`
 	 */
 	@Override
 	public boolean rollbackOn(Throwable ex) {

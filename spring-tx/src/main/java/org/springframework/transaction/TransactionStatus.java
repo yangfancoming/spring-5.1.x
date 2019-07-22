@@ -14,7 +14,6 @@ import java.io.Flushable;
  * <p>Includes the {@link SavepointManager} interface to provide access
  * to savepoint management facilities. Note that savepoint management
  * is only available if supported by the underlying transaction manager.
- *
 
  * @since 27.03.2003
  * @see #setRollbackOnly()

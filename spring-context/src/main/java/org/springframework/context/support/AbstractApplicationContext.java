@@ -1233,9 +1233,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	}
 
 	@Override
-	public <T> Map<String, T> getBeansOfType(@Nullable Class<T> type, boolean includeNonSingletons, boolean allowEagerInit)
-			throws BeansException {
-
+	public <T> Map<String, T> getBeansOfType(@Nullable Class<T> type, boolean includeNonSingletons, boolean allowEagerInit) throws BeansException {
 		assertBeanFactoryActive();
 		return getBeanFactory().getBeansOfType(type, includeNonSingletons, allowEagerInit);
 	}
@@ -1247,18 +1245,14 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	}
 
 	@Override
-	public Map<String, Object> getBeansWithAnnotation(Class<? extends Annotation> annotationType)
-			throws BeansException {
-
+	public Map<String, Object> getBeansWithAnnotation(Class<? extends Annotation> annotationType) throws BeansException {
 		assertBeanFactoryActive();
 		return getBeanFactory().getBeansWithAnnotation(annotationType);
 	}
 
 	@Override
 	@Nullable
-	public <A extends Annotation> A findAnnotationOnBean(String beanName, Class<A> annotationType)
-			throws NoSuchBeanDefinitionException {
-
+	public <A extends Annotation> A findAnnotationOnBean(String beanName, Class<A> annotationType) throws NoSuchBeanDefinitionException {
 		assertBeanFactoryActive();
 		return getBeanFactory().findAnnotationOnBean(beanName, annotationType);
 	}
@@ -1317,8 +1311,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 */
 	private MessageSource getMessageSource() throws IllegalStateException {
 		if (this.messageSource == null) {
-			throw new IllegalStateException("MessageSource not initialized - " +
-					"call 'refresh' before accessing messages via the context: " + this);
+			throw new IllegalStateException("MessageSource not initialized - call 'refresh' before accessing messages via the context: " + this);
 		}
 		return this.messageSource;
 	}

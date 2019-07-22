@@ -29,6 +29,7 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.transaction.support.DefaultTransactionDefinition
  * @see org.springframework.transaction.interceptor.TransactionAttribute
  */
+// 定义了  7大传播行为  4大隔离级别
 public interface TransactionDefinition {
 
 	/**

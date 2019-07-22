@@ -21,9 +21,6 @@ import org.springframework.lang.Nullable;
  * {@link org.springframework.transaction.jta.JtaTransactionManager} and
  * {@link org.springframework.jdbc.datasource.DataSourceTransactionManager},
  * which can serve as an implementation guide for other transaction strategies.
- *
- * @author Rod Johnson
-
  * @since 16.05.2003
  * @see org.springframework.transaction.support.TransactionTemplate
  * @see org.springframework.transaction.interceptor.TransactionInterceptor
@@ -53,8 +50,9 @@ public interface PlatformTransactionManager {
 	 * @see TransactionDefinition#getTimeout
 	 * @see TransactionDefinition#isReadOnly
 	 */
-	TransactionStatus getTransaction(@Nullable TransactionDefinition definition)
-			throws TransactionException;
+	// 获取事务状态
+	TransactionStatus getTransaction(@Nullable TransactionDefinition definition) 	throws TransactionException;
+
 
 	/**
 	 * Commit the given transaction, with regard to its status. If the transaction
@@ -83,6 +81,7 @@ public interface PlatformTransactionManager {
 	 * is already completed (that is, committed or rolled back)
 	 * @see TransactionStatus#setRollbackOnly
 	 */
+	// 事务提交
 	void commit(TransactionStatus status) throws TransactionException;
 
 	/**
@@ -101,6 +100,7 @@ public interface PlatformTransactionManager {
 	 * @throws IllegalTransactionStateException if the given transaction
 	 * is already completed (that is, committed or rolled back)
 	 */
+	// 事务回滚
 	void rollback(TransactionStatus status) throws TransactionException;
 
 }

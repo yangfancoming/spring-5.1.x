@@ -24,7 +24,7 @@ public class ProxyTransactionManagementConfiguration extends AbstractTransaction
 	@Bean(name = TransactionManagementConfigUtils.TRANSACTION_ADVISOR_BEAN_NAME)
 	@Role(BeanDefinition.ROLE_INFRASTRUCTURE)
 	public BeanFactoryTransactionAttributeSourceAdvisor transactionAdvisor() {
-		//    创建BeanFactoryTransactionAttributeSourceAdvisor
+		//    创建BeanFactoryTransactionAttributeSourceAdvisor 为事务aop提供建言advisor 里面包含了切点的判定 AnnotationTransactionAttributeSource，和切面的逻辑：TransactionInterceptor。
 		BeanFactoryTransactionAttributeSourceAdvisor advisor = new BeanFactoryTransactionAttributeSourceAdvisor();
 		//    设置transactionAttributeSource
 		advisor.setTransactionAttributeSource(transactionAttributeSource());

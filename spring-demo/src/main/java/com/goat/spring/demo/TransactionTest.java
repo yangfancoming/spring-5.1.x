@@ -1,23 +1,23 @@
 package com.goat.spring.demo;
 
-
 import com.goat.spring.demo.config.AppConfig;
-import com.goat.spring.demo.service.TestService;
+import com.goat.spring.demo.service.TransactionService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
- * Created by 64274 on 2019/6/27.
+ * Created by 64274 on 2019/7/22.
  *
  * @ Description: TODO
  * @ author  山羊来了
- * @ date 2019/6/27---20:33
+ * @ date 2019/7/22---14:16
  */
-public class App {
+public class TransactionTest {
+
 
 	public static void main(String[] args) {
-
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-		TestService bean = ctx.getBean(TestService.class);
-		bean.test();
+		TransactionService bean = ctx.getBean(TransactionService.class);
+		System.out.println(bean.test1("hoho"));
+
 	}
 }

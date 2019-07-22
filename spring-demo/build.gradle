@@ -17,4 +17,5 @@ dependencies {
     optional(project(":spring-webmvc"))
     optional(project(":spring-context"))
     optional(project(":spring-test"))
+    optional(project(":spring-tx"))
 }

@@ -14,13 +14,12 @@ import org.springframework.util.ObjectUtils;
 /**
  * Inner class that implements a Pointcut that matches if the underlying
  * {@link TransactionAttributeSource} has an attribute for a given method.
- *
-
  * @since 2.5.5
  */
 @SuppressWarnings("serial")
 abstract class TransactionAttributeSourcePointcut extends StaticMethodMatcherPointcut implements Serializable {
 
+	//  我们先来看一下切点的判定，spring通过切点的matches方法来判断是否需要对目标对象进行代理:
 	@Override
 	public boolean matches(Method method, Class<?> targetClass) {
 		if (TransactionalProxy.class.isAssignableFrom(targetClass) ||

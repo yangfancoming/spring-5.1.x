@@ -2,21 +2,11 @@
 
 package org.springframework.transaction.annotation;
 
-import java.util.Collection;
-import java.util.Map;
-
 import org.junit.Test;
-
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AdviceMode;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ConditionContext;
-import org.springframework.context.annotation.Conditional;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ConfigurationCondition;
+import org.springframework.context.annotation.*;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 import org.springframework.stereotype.Service;
 import org.springframework.tests.transaction.CallCountingTransactionManager;
@@ -24,7 +14,11 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.config.TransactionManagementConfigUtils;
 import org.springframework.transaction.event.TransactionalEventListenerFactory;
 
-import static org.hamcrest.CoreMatchers.*;
+import java.util.Collection;
+import java.util.Map;
+
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.*;
 
 /**
@@ -37,9 +31,9 @@ public class EnableTransactionManagementTests {
 	public void transactionProxyIsCreated() {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(EnableTxConfig.class, TxManagerConfig.class);
 		TransactionalTestBean bean = ctx.getBean(TransactionalTestBean.class);
-		assertTrue("testBean is not a proxy", AopUtils.isAopProxy(bean));
+		assertTrue(AopUtils.isAopProxy(bean));
 		Map<?,?> services = ctx.getBeansWithAnnotation(Service.class);
-		assertTrue("Stereotype annotation not visible", services.containsKey("testBean"));
+		assertTrue(services.containsKey("testBean"));
 		ctx.close();
 	}
 
@@ -47,9 +41,9 @@ public class EnableTransactionManagementTests {
 	public void transactionProxyIsCreatedWithEnableOnSuperclass() {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(InheritedEnableTxConfig.class, TxManagerConfig.class);
 		TransactionalTestBean bean = ctx.getBean(TransactionalTestBean.class);
-		assertTrue("testBean is not a proxy", AopUtils.isAopProxy(bean));
+		assertTrue(AopUtils.isAopProxy(bean));
 		Map<?,?> services = ctx.getBeansWithAnnotation(Service.class);
-		assertTrue("Stereotype annotation not visible", services.containsKey("testBean"));
+		assertTrue(services.containsKey("testBean"));
 		ctx.close();
 	}
 

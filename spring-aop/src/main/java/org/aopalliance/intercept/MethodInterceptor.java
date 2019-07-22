@@ -11,7 +11,6 @@ package org.aopalliance.intercept;
  * implements a tracing interceptor (traces all the calls on the
  * intercepted method(s)):
  *
- * <pre class=code>
  * class TracingInterceptor implements MethodInterceptor {
  *   Object invoke(MethodInvocation i) throws Throwable {
  *     System.out.println("method "+i.getMethod()+" is called on "+
@@ -21,9 +20,7 @@ package org.aopalliance.intercept;
  *     return ret;
  *   }
  * }
- * </pre>
- *
- * @author Rod Johnson
+
  */
 @FunctionalInterface
 public interface MethodInterceptor extends Interceptor {

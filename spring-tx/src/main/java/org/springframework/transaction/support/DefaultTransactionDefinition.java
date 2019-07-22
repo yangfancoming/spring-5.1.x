@@ -12,11 +12,8 @@ import org.springframework.transaction.TransactionDefinition;
  * Default implementation of the {@link TransactionDefinition} interface,
  * offering bean-style configuration and sensible default values
  * (PROPAGATION_REQUIRED, ISOLATION_DEFAULT, TIMEOUT_DEFAULT, readOnly=false).
- *
  * <p>Base class for both {@link TransactionTemplate} and
  * {@link org.springframework.transaction.interceptor.DefaultTransactionAttribute}.
- *
-
  * @since 08.05.2003
  */
 @SuppressWarnings("serial")
@@ -38,11 +35,11 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 	/** Constants instance for TransactionDefinition. */
 	static final Constants constants = new Constants(TransactionDefinition.class);
 
-	private int propagationBehavior = PROPAGATION_REQUIRED;
+	private int propagationBehavior = PROPAGATION_REQUIRED; // 默认 传播行为
 
-	private int isolationLevel = ISOLATION_DEFAULT;
+	private int isolationLevel = ISOLATION_DEFAULT; // 默认 隔离级别
 
-	private int timeout = TIMEOUT_DEFAULT;
+	private int timeout = TIMEOUT_DEFAULT; // 默认 超时时间
 
 	private boolean readOnly = false;
 

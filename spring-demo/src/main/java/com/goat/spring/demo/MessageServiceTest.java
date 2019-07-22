@@ -12,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @ author  山羊来了
  * @ date 2019/6/27---20:33
  */
-public class App2 {
+public class MessageServiceTest {
 
 	public static void main(String[] args) {
 
