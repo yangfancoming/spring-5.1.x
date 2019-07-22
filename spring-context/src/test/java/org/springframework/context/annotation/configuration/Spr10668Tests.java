@@ -13,13 +13,11 @@ import static org.junit.Assert.*;
 
 /**
  * Tests for SPR-10668.
-
- * @author Phillip Webb
  */
 public class Spr10668Tests {
 
 	@Test
-	public void testSelfInjectHierarchy() throws Exception {
+	public void testSelfInjectHierarchy()  {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ChildConfig.class);
 		assertNotNull(context.getBean(MyComponent.class));
 		context.close();

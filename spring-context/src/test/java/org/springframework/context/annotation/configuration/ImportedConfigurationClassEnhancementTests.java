@@ -18,8 +18,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests cornering the bug exposed in SPR-6779.
-
-
  */
 public class ImportedConfigurationClassEnhancementTests {
 
@@ -36,8 +34,7 @@ public class ImportedConfigurationClassEnhancementTests {
 	private void autowiredConfigClassIsEnhanced(Class<?>... configClasses) {
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(configClasses);
 		Config config = ctx.getBean(Config.class);
-		assertTrue("autowired config class has not been enhanced",
-				ClassUtils.isCglibProxy(config.autowiredConfig));
+		assertTrue("autowired config class has not been enhanced",ClassUtils.isCglibProxy(config.autowiredConfig));
 	}
 
 
@@ -79,7 +76,6 @@ public class ImportedConfigurationClassEnhancementTests {
 	}
 
 	static class Config {
-
 		@Autowired ConfigToBeAutowired autowiredConfig;
 	}
 

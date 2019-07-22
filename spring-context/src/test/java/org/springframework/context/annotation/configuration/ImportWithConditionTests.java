@@ -1,18 +1,4 @@
-/*
- * Copyright 2012-2014 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 
 package org.springframework.context.annotation.configuration;
 
@@ -36,7 +22,7 @@ public class ImportWithConditionTests {
 	private AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 
 	@Test
-	public void conditionalThenUnconditional() throws Exception {
+	public void conditionalThenUnconditional()  {
 		this.context.register(ConditionalThenUnconditional.class);
 		this.context.refresh();
 		assertFalse(this.context.containsBean("beanTwo"));
@@ -44,7 +30,7 @@ public class ImportWithConditionTests {
 	}
 
 	@Test
-	public void unconditionalThenConditional() throws Exception {
+	public void unconditionalThenConditional()  {
 		this.context.register(UnconditionalThenConditional.class);
 		this.context.refresh();
 		assertFalse(this.context.containsBean("beanTwo"));
@@ -64,7 +50,6 @@ public class ImportWithConditionTests {
 	@Configuration
 	@Import({UnconditionalConfiguration.class, ConditionalConfiguration.class})
 	protected static class UnconditionalThenConditional {
-
 		@Autowired
 		private BeanOne beanOne;
 	}
@@ -85,7 +70,6 @@ public class ImportWithConditionTests {
 
 	@Configuration
 	protected static class BeanProvidingConfiguration {
-
 		@Bean
 		BeanOne beanOne() {
 			return new BeanOne();

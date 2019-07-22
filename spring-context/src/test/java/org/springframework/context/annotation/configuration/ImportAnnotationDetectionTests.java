@@ -33,8 +33,8 @@ public class ImportAnnotationDetectionTests {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
 		ctx.register(MultiMetaImportConfig.class);
 		ctx.refresh();
-		assertThat(ctx.containsBean("testBean1"), is(true));
-		assertThat(ctx.containsBean("testBean2"), is(true));
+		assertEquals(true,ctx.containsBean("testBean1"));
+		assertEquals(true,ctx.containsBean("testBean2"));
 	}
 
 	@Test
@@ -58,7 +58,7 @@ public class ImportAnnotationDetectionTests {
 	}
 
 	@Test
-	public void importFromBean() throws Exception {
+	public void importFromBean()  {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
 		ctx.register(ImportFromBean.class);
 		ctx.refresh();

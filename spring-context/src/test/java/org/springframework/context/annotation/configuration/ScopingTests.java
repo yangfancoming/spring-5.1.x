@@ -31,9 +31,6 @@ import static org.junit.Assert.*;
 /**
  * Tests that scopes are properly supported by using a custom Scope implementations
  * and scoped proxy {@link Bean} declarations.
- *
- * @author Costin Leau
-
  */
 public class ScopingTests {
 
@@ -53,7 +50,7 @@ public class ScopingTests {
 	}
 
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown()  {
 		if (ctx != null) {
 			ctx.close();
 		}
