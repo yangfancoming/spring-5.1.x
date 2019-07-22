@@ -23,10 +23,7 @@ import org.springframework.tests.aop.interceptor.NopInterceptor;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
 
- */
 public abstract class AbstractMetadataAssemblerTests extends AbstractJmxAssemblerTests {
 
 	protected static final String QUEUE_SIZE_METRIC = "QueueSize";

@@ -14,11 +14,7 @@ import org.springframework.tests.beans.CollectingReaderEventListener;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Torsten Juergeleit
 
-
- */
 public class JeeNamespaceHandlerEventTests {
 
 	private CollectingReaderEventListener eventListener = new CollectingReaderEventListener();

@@ -25,11 +25,7 @@ import org.springframework.transaction.PlatformTransactionManager;
  * contains the integration with Spring's underlying transaction API.
  * TransactionInterceptor simply calls the relevant superclass methods
  * such as {@link #invokeWithinTransaction} in the correct order.
- *
  * <p>TransactionInterceptors are thread-safe.
- *
- * @author Rod Johnson
-
  * @see TransactionProxyFactoryBean
  * @see org.springframework.aop.framework.ProxyFactoryBean
  * @see org.springframework.aop.framework.ProxyFactory

@@ -6,10 +6,7 @@ import java.io.Serializable;
 
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * @author Rob Harrop
 
- */
 @SuppressWarnings("serial")
 public class TransactionalService implements Serializable {
 

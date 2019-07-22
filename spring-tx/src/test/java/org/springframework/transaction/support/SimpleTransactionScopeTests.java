@@ -21,7 +21,7 @@ public class SimpleTransactionScopeTests {
 
 	@Test
 	@SuppressWarnings("resource")
-	public void getFromScope() throws Exception {
+	public void getFromScope() {
 		GenericApplicationContext context = new GenericApplicationContext();
 		context.getBeanFactory().registerScope("tx", new SimpleTransactionScope());
 

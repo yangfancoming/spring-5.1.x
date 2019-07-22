@@ -16,10 +16,7 @@ import org.springframework.beans.factory.parsing.DefaultsDefinition;
 import org.springframework.beans.factory.parsing.ImportDefinition;
 import org.springframework.beans.factory.parsing.ReaderEventListener;
 
-/**
- * @author Rob Harrop
 
- */
 public class CollectingReaderEventListener implements ReaderEventListener {
 
 	private final List<DefaultsDefinition> defaults = new LinkedList<>();

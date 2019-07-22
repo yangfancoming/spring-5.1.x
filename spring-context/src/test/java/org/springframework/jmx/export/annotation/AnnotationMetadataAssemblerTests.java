@@ -14,10 +14,7 @@ import org.springframework.jmx.export.metadata.JmxAttributeSource;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
 
- */
 public class AnnotationMetadataAssemblerTests extends AbstractMetadataAssemblerTests {
 
 	private static final String OBJECT_NAME = "bean:name=testBean4";

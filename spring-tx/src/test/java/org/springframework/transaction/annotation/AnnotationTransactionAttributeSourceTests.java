@@ -26,11 +26,7 @@ import org.springframework.util.SerializationTestUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Colin Sampaleanu
 
- * @author Sam Brannen
- */
 public class AnnotationTransactionAttributeSourceTests {
 
 	@Test

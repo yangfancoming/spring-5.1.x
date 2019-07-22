@@ -6,10 +6,7 @@ import org.springframework.jmx.IJmxTestBean;
 import org.springframework.jmx.support.MetricType;
 import org.springframework.stereotype.Service;
 
-/**
- * @author Rob Harrop
 
- */
 @Service("testBean")
 @ManagedResource(objectName = "bean:name=testBean4", description = "My Managed Bean", log = true,
 		logFile = "jmx.log", currencyTimeLimit = 15, persistPolicy = "OnUpdate", persistPeriod = 200,

@@ -18,10 +18,7 @@ import org.springframework.jmx.support.ObjectNameManager;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
 
- */
 public class MBeanExporterOperationsTests extends AbstractMBeanServerTests {
 
 	@Test

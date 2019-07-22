@@ -20,7 +20,6 @@ import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
 /**
-
  * @since 05.08.2005
  */
 public class JndiJtaTransactionManagerTests {

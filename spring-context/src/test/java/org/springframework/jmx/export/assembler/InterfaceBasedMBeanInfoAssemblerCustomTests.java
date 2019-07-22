@@ -9,10 +9,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
 
- */
 public class InterfaceBasedMBeanInfoAssemblerCustomTests extends AbstractJmxAssemblerTests {
 
 	protected static final String OBJECT_NAME = "bean:name=testBean5";

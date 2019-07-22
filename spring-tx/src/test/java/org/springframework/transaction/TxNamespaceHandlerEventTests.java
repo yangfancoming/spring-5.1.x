@@ -15,10 +15,7 @@ import org.springframework.tests.beans.CollectingReaderEventListener;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-/**
- * @author Torsten Juergeleit
 
- */
 public class TxNamespaceHandlerEventTests {
 
 	private DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();

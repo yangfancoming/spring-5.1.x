@@ -22,10 +22,7 @@ import org.springframework.jmx.support.ObjectNameManager;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
 
- */
 public abstract class AbstractJmxAssemblerTests extends AbstractJmxTests {
 
 	protected static final String AGE_ATTRIBUTE = "Age";

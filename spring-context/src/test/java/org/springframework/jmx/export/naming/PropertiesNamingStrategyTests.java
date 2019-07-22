@@ -4,10 +4,7 @@ package org.springframework.jmx.export.naming;
 
 import java.util.Properties;
 
-/**
- * @author Rob Harrop
 
- */
 public class PropertiesNamingStrategyTests extends AbstractNamingStrategyTests {
 
 	private static final String OBJECT_NAME = "bean:name=namingTest";

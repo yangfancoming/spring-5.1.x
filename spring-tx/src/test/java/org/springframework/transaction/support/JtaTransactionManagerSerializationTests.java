@@ -29,12 +29,9 @@ public class JtaTransactionManagerSerializationTests {
 		jtam.setRollbackOnCommitFailure(true);
 		jtam.afterPropertiesSet();
 
-		SimpleNamingContextBuilder jndiEnv = SimpleNamingContextBuilder
-				.emptyActivatedContextBuilder();
+		SimpleNamingContextBuilder jndiEnv = SimpleNamingContextBuilder.emptyActivatedContextBuilder();
 		jndiEnv.bind(JtaTransactionManager.DEFAULT_USER_TRANSACTION_NAME, ut2);
-		JtaTransactionManager serializedJtatm = (JtaTransactionManager) SerializationTestUtils
-				.serializeAndDeserialize(jtam);
-
+		JtaTransactionManager serializedJtatm = (JtaTransactionManager) SerializationTestUtils.serializeAndDeserialize(jtam);
 		// should do client-side lookup
 		assertNotNull("Logger must survive serialization",
 				serializedJtatm.logger);

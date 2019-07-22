@@ -28,10 +28,7 @@ import org.springframework.web.servlet.tags.RequestContextAwareTag;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-/**
- * @author Rob Harrop
 
- */
 public abstract class AbstractHtmlElementTagTests extends AbstractTagTests {
 
 	public static final String COMMAND_NAME = "testBean";

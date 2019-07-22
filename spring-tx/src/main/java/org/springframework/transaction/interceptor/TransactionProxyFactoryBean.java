@@ -85,11 +85,6 @@ import org.springframework.transaction.PlatformTransactionManager;
  * &lt;bean id="yourProxy" parent="baseTransactionProxy"&gt;
  *   &lt;property name="target" ref="yourTarget"/&gt;
  * &lt;/bean&gt;</pre>
- *
-
- * @author Dmitriy Kopylenko
- * @author Rod Johnson
-
  * @since 21.08.2003
  * @see #setTransactionManager
  * @see #setTarget
@@ -98,14 +93,13 @@ import org.springframework.transaction.PlatformTransactionManager;
  * @see org.springframework.aop.framework.ProxyFactoryBean
  */
 @SuppressWarnings("serial")
-public class TransactionProxyFactoryBean extends AbstractSingletonProxyFactoryBean
-		implements BeanFactoryAware {
+public class TransactionProxyFactoryBean extends AbstractSingletonProxyFactoryBean implements BeanFactoryAware {
 
+	//这个拦截器就是发挥来AOP作用，其中封装了对事务的操作
 	private final TransactionInterceptor transactionInterceptor = new TransactionInterceptor();
 
 	@Nullable
 	private Pointcut pointcut;
-
 
 	/**
 	 * Set the default transaction manager. This will perform actual
@@ -129,7 +123,7 @@ public class TransactionProxyFactoryBean extends AbstractSingletonProxyFactoryBe
 	 * @see TransactionAttributeEditor
 	 * @see NameMatchTransactionAttributeSource
 	 */
-	public void setTransactionAttributes(Properties transactionAttributes) {
+	public void setTransactionAttributes(Properties transactionAttributes) { //通过依赖注入将配置事务属性
 		this.transactionInterceptor.setTransactionAttributes(transactionAttributes);
 	}
 
@@ -172,7 +166,7 @@ public class TransactionProxyFactoryBean extends AbstractSingletonProxyFactoryBe
 	}
 
 
-	/**
+	/** 创建AOP的通知器
 	 * Creates an advisor for this FactoryBean's TransactionInterceptor.
 	 */
 	@Override

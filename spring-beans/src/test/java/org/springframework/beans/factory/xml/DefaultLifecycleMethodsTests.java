@@ -10,10 +10,7 @@ import org.springframework.core.io.ClassPathResource;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
 
- */
 public class DefaultLifecycleMethodsTests {
 
 	private final DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();

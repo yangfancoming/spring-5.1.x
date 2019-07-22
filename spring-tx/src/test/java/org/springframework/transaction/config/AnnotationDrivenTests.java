@@ -19,27 +19,24 @@ import org.springframework.util.SerializationTestUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
 
- */
 public class AnnotationDrivenTests {
 
 	@Test
-	public void withProxyTargetClass() throws Exception {
+	public void withProxyTargetClass()  {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("annotationDrivenProxyTargetClassTests.xml", getClass());
 		doTestWithMultipleTransactionManagers(context);
 	}
 
 	@Test
-	public void withConfigurationClass() throws Exception {
+	public void withConfigurationClass()  {
 		ApplicationContext parent = new AnnotationConfigApplicationContext(TransactionManagerConfiguration.class);
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"annotationDrivenConfigurationClassTests.xml"}, getClass(), parent);
 		doTestWithMultipleTransactionManagers(context);
 	}
 
 	@Test
-	public void withAnnotatedTransactionManagers() throws Exception {
+	public void withAnnotatedTransactionManagers()  {
 		AnnotationConfigApplicationContext parent = new AnnotationConfigApplicationContext();
 		parent.registerBeanDefinition("transactionManager1", new RootBeanDefinition(SynchTransactionManager.class));
 		parent.registerBeanDefinition("transactionManager2", new RootBeanDefinition(NoSynchTransactionManager.class));

@@ -2,10 +2,7 @@
 
 package org.springframework.tests.sample.beans;
 
-/**
- * @author Rob Harrop
 
- */
 @SuppressWarnings("serial")
 public class Colour {
 

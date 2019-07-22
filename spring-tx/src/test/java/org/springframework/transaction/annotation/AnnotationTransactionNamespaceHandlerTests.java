@@ -23,11 +23,7 @@ import org.springframework.transaction.event.TransactionalEventListenerFactory;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
 
- * @author Sam Brannen
- */
 public class AnnotationTransactionNamespaceHandlerTests {
 
 	private final ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(

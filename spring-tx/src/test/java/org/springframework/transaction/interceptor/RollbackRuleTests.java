@@ -13,11 +13,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for the {@link RollbackRuleAttribute} class.
- *
- * @author Rod Johnson
- * @author Rick Evans
-
- * @author Sam Brannen
  * @since 09.04.2003
  */
 public class RollbackRuleTests {

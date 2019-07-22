@@ -31,11 +31,7 @@ import org.xml.sax.SAXException;
 import static java.util.Collections.*;
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
 
- * @author Sam Brannen
- */
 public class XsltViewTests {
 
 	private static final String HTML_OUTPUT = "/org/springframework/web/servlet/view/xslt/products.xsl";

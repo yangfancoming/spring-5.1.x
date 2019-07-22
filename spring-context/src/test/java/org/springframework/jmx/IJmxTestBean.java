@@ -2,10 +2,7 @@
 
 package org.springframework.jmx;
 
-/**
- * @author Rob Harrop
 
- */
 public interface IJmxTestBean {
 
 	int add(int x, int y);

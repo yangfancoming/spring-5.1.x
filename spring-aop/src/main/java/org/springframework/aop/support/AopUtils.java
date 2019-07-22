@@ -29,16 +29,10 @@ import org.springframework.util.ReflectionUtils;
 
 /**
  * Utility methods for AOP support code.
- *
  * <p>Mainly for internal use within Spring's AOP support.
- *
  * <p>See {@link org.springframework.aop.framework.AopProxyUtils} for a
  * collection of framework-specific AOP utility methods which depend
  * on internals of Spring's AOP framework implementation.
- *
- * @author Rod Johnson
-
- * @author Rob Harrop
  * @see org.springframework.aop.framework.AopProxyUtils
  */
 public abstract class AopUtils {
@@ -52,8 +46,7 @@ public abstract class AopUtils {
 	 * @see #isCglibProxy
 	 */
 	public static boolean isAopProxy(@Nullable Object object) {
-		return (object instanceof SpringProxy &&
-				(Proxy.isProxyClass(object.getClass()) || ClassUtils.isCglibProxyClass(object.getClass())));
+		return (object instanceof SpringProxy && (Proxy.isProxyClass(object.getClass()) || ClassUtils.isCglibProxyClass(object.getClass())));
 	}
 
 	/**

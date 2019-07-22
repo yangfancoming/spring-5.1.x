@@ -11,10 +11,7 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
 
- */
 public class AnnotationTransactionInterceptorTests {
 
 	private final CallCountingTransactionManager ptm = new CallCountingTransactionManager();

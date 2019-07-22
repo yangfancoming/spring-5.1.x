@@ -127,6 +127,29 @@ import org.springframework.core.Ordered;
  * compile-time weaving or load-time weaving applying the aspect to the affected classes.
  * There is no proxy involved in such a scenario; local calls will be intercepted as well.
 
+ * 1）、@EnableTransactionManagement
+ *        利用TransactionManagementConfigurationSelector给容器中会导入组件
+ *        导入两个组件
+ *        AutoProxyRegistrar
+ *        ProxyTransactionManagementConfiguration
+ * 2）、AutoProxyRegistrar：
+ *        给容器中注册一个 InfrastructureAdvisorAutoProxyCreator 组件；
+ *        利用后置处理器机制在对象创建以后，包装对象，返回一个代理对象（增强器），代理对象执行方法利用拦截器链进行调用；
+ * 3）、ProxyTransactionManagementConfiguration是个@Configuration
+ *        1、给容器中注册事务增强器transactionAdvisor；
+ *           1）、事务增强器要用事务注解的信息，AnnotationTransactionAttributeSource解析事务注解
+ *           2）、事务拦截器transactionInterceptor：
+ *              TransactionInterceptor；保存了事务属性信息，事务管理器；
+ *              TransactionInterceptor是一个 MethodInterceptor；
+ *              在目标方法执行的时候；
+ *                 执行拦截器链；
+ *                 只有事务拦截器：
+ *                    1）、先获取事务相关的属性
+ *                    2）、再获取PlatformTransactionManager，如果事先没有添加指定任何transactionmanger
+ *                       最终会从容器中按照类型获取一个PlatformTransactionManager；
+ *                    3）、执行目标方法
+ *                       如果异常，获取到事务管理器，利用事务管理回滚操作；
+ *                       如果正常，利用事务管理器，提交事务
 
  * @since 3.1
  * @see TransactionManagementConfigurer
@@ -164,13 +187,13 @@ public @interface EnableTransactionManagement {
 	 * scenario. For a more advanced mode of interception, consider switching this to
 	 * {@link AdviceMode#ASPECTJ}.
 	 */
-	AdviceMode mode() default AdviceMode.PROXY;
+	AdviceMode mode() default AdviceMode.PROXY; // 默认是jdk动态代理  基于proxy模式解析类是 ProxyTransactionManagementConfiguration
 
 	/**
 	 * Indicate the ordering of the execution of the transaction advisor
 	 * when multiple advices are applied at a specific joinpoint.
 	 * <p>The default is {@link Ordered#LOWEST_PRECEDENCE}.
 	 */
-	int order() default Ordered.LOWEST_PRECEDENCE;
+	int order() default Ordered.LOWEST_PRECEDENCE;  // 基于aspectj模式的解析类是  AspectJTransactionManagementConfiguration
 
 }

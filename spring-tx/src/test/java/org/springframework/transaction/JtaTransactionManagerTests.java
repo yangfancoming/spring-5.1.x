@@ -29,7 +29,6 @@ import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
 /**
-
  * @since 12.05.2003
  */
 public class JtaTransactionManagerTests {

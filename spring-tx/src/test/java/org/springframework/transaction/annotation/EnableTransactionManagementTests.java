@@ -29,10 +29,6 @@ import static org.junit.Assert.*;
 
 /**
  * Tests demonstrating use of @EnableTransactionManagement @Configuration classes.
-
-
- * @author Stephane Nicoll
- * @author Sam Brannen
  * @since 3.1
  */
 public class EnableTransactionManagementTests {
@@ -49,8 +45,7 @@ public class EnableTransactionManagementTests {
 
 	@Test
 	public void transactionProxyIsCreatedWithEnableOnSuperclass() {
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(
-				InheritedEnableTxConfig.class, TxManagerConfig.class);
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(InheritedEnableTxConfig.class, TxManagerConfig.class);
 		TransactionalTestBean bean = ctx.getBean(TransactionalTestBean.class);
 		assertTrue("testBean is not a proxy", AopUtils.isAopProxy(bean));
 		Map<?,?> services = ctx.getBeansWithAnnotation(Service.class);
@@ -79,10 +74,8 @@ public class EnableTransactionManagementTests {
 
 	@Test
 	public void txManagerIsResolvedCorrectlyWhenMultipleManagersArePresent() {
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(
-				EnableTxConfig.class, MultiTxManagerConfig.class);
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(EnableTxConfig.class, MultiTxManagerConfig.class);
 		TransactionalTestBean bean = ctx.getBean(TransactionalTestBean.class);
-
 		// invoke a transactional method, causing the PlatformTransactionManager bean to be resolved.
 		bean.findAllFoos();
 		ctx.close();
@@ -97,8 +90,8 @@ public class EnableTransactionManagementTests {
 	public void proxyTypeAspectJCausesRegistrationOfAnnotationTransactionAspect() {
 		try {
 			new AnnotationConfigApplicationContext(EnableAspectjTxConfig.class, TxManagerConfig.class);
-			fail("should have thrown CNFE when trying to load AnnotationTransactionAspect. " +
-					"Do you actually have org.springframework.aspects on the classpath?");
+			fail("should have thrown CNFE when trying to load AnnotationTransactionAspect. Do you actually have org.springframework.aspects on the classpath?");
+
 		}
 		catch (Exception ex) {
 			assertThat(ex.getMessage(), containsString("AspectJJtaTransactionManagementConfiguration"));
@@ -236,12 +229,10 @@ public class EnableTransactionManagementTests {
 
 	@Configuration
 	static class TxManagerConfig {
-
 		@Bean
 		public TransactionalTestBean testBean() {
 			return new TransactionalTestBean();
 		}
-
 		@Bean
 		public PlatformTransactionManager txManager() {
 			return new CallCountingTransactionManager();
@@ -270,8 +261,7 @@ public class EnableTransactionManagementTests {
 
 		@Autowired
 		public void initializeApp(ConfigurableApplicationContext applicationContext) {
-			applicationContext.getBeanFactory().registerSingleton(
-					"qualifiedTransactionManager", new CallCountingTransactionManager());
+			applicationContext.getBeanFactory().registerSingleton("qualifiedTransactionManager", new CallCountingTransactionManager());
 		}
 
 		@Bean

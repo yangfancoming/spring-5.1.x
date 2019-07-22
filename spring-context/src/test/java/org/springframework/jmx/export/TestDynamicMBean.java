@@ -11,10 +11,7 @@ import javax.management.MBeanInfo;
 import javax.management.MBeanNotificationInfo;
 import javax.management.MBeanOperationInfo;
 
-/**
- * @author Rob Harrop
 
- */
 public class TestDynamicMBean implements DynamicMBean {
 
 	public void setFailOnInit(boolean failOnInit) {

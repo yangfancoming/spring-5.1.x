@@ -8,10 +8,7 @@ import org.springframework.mock.web.test.MockHttpServletRequest;
 import org.springframework.mock.web.test.MockPageContext;
 import org.springframework.tests.sample.beans.TestBean;
 
-/**
- * @author Rob Harrop
 
- */
 public abstract class AbstractFormTagTests extends AbstractHtmlElementTagTests {
 
 	private FormTag formTag = new FormTag();
