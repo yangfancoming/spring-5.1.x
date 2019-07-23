@@ -14,13 +14,6 @@ import static org.junit.Assert.*;
 
 /**
  * Specific {@link BeanWrapperImpl} tests.
- *
- * @author Rod Johnson
-
- * @author Alef Arendsen
- * @author Arjen Poutsma
-
- * @author Dave Syer
  */
 public class BeanWrapperTests extends AbstractPropertyAccessorTests {
 

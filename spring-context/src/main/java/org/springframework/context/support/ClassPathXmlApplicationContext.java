@@ -119,8 +119,7 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 		// 遍历解析传入的配置文件路径，将路径中的占位符替换成相关的环境变量。
 		setConfigLocations(configLocations); // 设置配置文件路径 eg: "classpath:application.xml"
 		if (refresh) {
-			// 调用父类AbstractApplicationContext中定义的refresh方法，完成Spring容器和应用上下文的创建工作。
-			refresh();
+			refresh();// 调用父类AbstractApplicationContext中定义的refresh方法，完成Spring容器和应用上下文的创建工作。
 		}
 	}
 

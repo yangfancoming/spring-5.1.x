@@ -22,7 +22,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link BeanUtils}.
-
  * @since 19.05.2003
  */
 public class BeanUtilsTests {
