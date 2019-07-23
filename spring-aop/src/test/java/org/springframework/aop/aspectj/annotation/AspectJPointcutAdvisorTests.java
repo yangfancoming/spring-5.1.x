@@ -13,10 +13,7 @@ import org.springframework.tests.sample.beans.TestBean;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rod Johnson
 
- */
 public class AspectJPointcutAdvisorTests {
 
 	private final AspectJAdvisorFactory af = new ReflectiveAspectJAdvisorFactory();

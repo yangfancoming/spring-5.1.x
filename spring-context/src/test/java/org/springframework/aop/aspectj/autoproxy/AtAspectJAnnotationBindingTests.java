@@ -14,11 +14,7 @@ import org.springframework.core.io.Resource;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Adrian Colyer
 
-
- */
 public class AtAspectJAnnotationBindingTests {
 
 	private AnnotatedTestBean testBean;

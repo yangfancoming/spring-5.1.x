@@ -16,8 +16,6 @@ import org.springframework.util.SerializationTestUtils;
 import static org.junit.Assert.*;
 
 /**
-
-
  * @since 06.04.2004
  */
 public class ConcurrencyThrottleInterceptorTests {
@@ -42,8 +40,7 @@ public class ConcurrencyThrottleInterceptorTests {
 
 		ITestBean serializedProxy = (ITestBean) SerializationTestUtils.serializeAndDeserialize(proxy);
 		Advised advised = (Advised) serializedProxy;
-		ConcurrencyThrottleInterceptor serializedCti =
-				(ConcurrencyThrottleInterceptor) advised.getAdvisors()[0].getAdvice();
+		ConcurrencyThrottleInterceptor serializedCti = (ConcurrencyThrottleInterceptor) advised.getAdvisors()[0].getAdvice();
 		assertEquals(cti.getConcurrencyLimit(), serializedCti.getConcurrencyLimit());
 		serializedProxy.getAge();
 	}

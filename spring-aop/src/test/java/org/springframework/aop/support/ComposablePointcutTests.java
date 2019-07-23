@@ -15,10 +15,7 @@ import org.springframework.tests.sample.beans.TestBean;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rod Johnson
 
- */
 public class ComposablePointcutTests {
 
 	public static MethodMatcher GETTER_METHOD_MATCHER = new StaticMethodMatcher() {

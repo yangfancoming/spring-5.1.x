@@ -19,11 +19,7 @@ import org.springframework.remoting.RemoteAccessException;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Rod Johnson
 
-
- */
 public class SimpleRemoteSlsbInvokerInterceptorTests {
 
 	private Context mockContext(

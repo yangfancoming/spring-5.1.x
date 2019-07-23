@@ -12,10 +12,7 @@ import org.springframework.tests.sample.beans.ITestBean;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rod Johnson
 
- */
 public class DeclareParentsTests {
 
 	private ITestBean testBeanProxy;

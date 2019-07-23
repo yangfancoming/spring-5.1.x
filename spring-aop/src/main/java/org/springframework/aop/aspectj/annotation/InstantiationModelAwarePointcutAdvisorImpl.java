@@ -22,17 +22,12 @@ import org.springframework.lang.Nullable;
 /**
  * Internal implementation of AspectJPointcutAdvisor.
  * Note that there will be one instance of this advisor for each target method.
- *
- * @author Rod Johnson
-
  * @since 2.0
  */
 @SuppressWarnings("serial")
-final class InstantiationModelAwarePointcutAdvisorImpl
-		implements InstantiationModelAwarePointcutAdvisor, AspectJPrecedenceInformation, Serializable {
+final class InstantiationModelAwarePointcutAdvisorImpl implements InstantiationModelAwarePointcutAdvisor, AspectJPrecedenceInformation, Serializable {
 
 	private static final Advice EMPTY_ADVICE = new Advice() {};
-
 
 	private final AspectJExpressionPointcut declaredPointcut;
 
@@ -82,14 +77,12 @@ final class InstantiationModelAwarePointcutAdvisorImpl
 
 		if (aspectInstanceFactory.getAspectMetadata().isLazilyInstantiated()) {
 			// Static part of the pointcut is a lazy type.
-			Pointcut preInstantiationPointcut = Pointcuts.union(
-					aspectInstanceFactory.getAspectMetadata().getPerClausePointcut(), this.declaredPointcut);
+			Pointcut preInstantiationPointcut = Pointcuts.union(aspectInstanceFactory.getAspectMetadata().getPerClausePointcut(), this.declaredPointcut);
 
 			// Make it dynamic: must mutate from pre-instantiation to post-instantiation state.
 			// If it's not a dynamic pointcut, it may be optimized out
 			// by the Spring AOP infrastructure after the first evaluation.
-			this.pointcut = new PerTargetInstantiationModelPointcut(
-					this.declaredPointcut, preInstantiationPointcut, aspectInstanceFactory);
+			this.pointcut = new PerTargetInstantiationModelPointcut(this.declaredPointcut, preInstantiationPointcut, aspectInstanceFactory);
 			this.lazy = true;
 		}
 		else {
@@ -272,8 +265,7 @@ final class InstantiationModelAwarePointcutAdvisorImpl
 		public boolean matches(Method method, Class<?> targetClass) {
 			// We're either instantiated and matching on declared pointcut,
 			// or uninstantiated matching on either pointcut...
-			return (isAspectMaterialized() && this.declaredPointcut.matches(method, targetClass)) ||
-					this.preInstantiationPointcut.getMethodMatcher().matches(method, targetClass);
+			return (isAspectMaterialized() && this.declaredPointcut.matches(method, targetClass)) || this.preInstantiationPointcut.getMethodMatcher().matches(method, targetClass);
 		}
 
 		@Override

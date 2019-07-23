@@ -11,10 +11,7 @@ import org.springframework.tests.sample.beans.TestBean;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rod Johnson
 
- */
 public class ClassFiltersTests {
 
 	private ClassFilter exceptionFilter = new RootClassFilter(Exception.class);

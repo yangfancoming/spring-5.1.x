@@ -16,11 +16,7 @@ import org.springframework.jndi.JndiTemplate;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Rod Johnson
 
-
-*/
 public class LocalSlsbInvokerInterceptorTests {
 
 	/**

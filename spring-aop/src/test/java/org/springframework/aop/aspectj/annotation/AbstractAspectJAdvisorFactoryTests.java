@@ -50,10 +50,6 @@ import static org.junit.Assert.*;
 /**
  * Abstract tests for AspectJAdvisorFactory.
  * See subclasses for tests of concrete factories.
- *
- * @author Rod Johnson
-
- * @author Phillip Webb
  */
 public abstract class AbstractAspectJAdvisorFactoryTests {
 
@@ -67,8 +63,7 @@ public abstract class AbstractAspectJAdvisorFactoryTests {
 	@Test
 	public void testRejectsPerCflowAspect() {
 		try {
-			getFixture().getAdvisors(
-					new SingletonMetadataAwareAspectInstanceFactory(new PerCflowAspect(), "someBean"));
+			getFixture().getAdvisors(new SingletonMetadataAwareAspectInstanceFactory(new PerCflowAspect(), "someBean"));
 			fail("Cannot accept cflow");
 		}
 		catch (AopConfigException ex) {
@@ -1025,8 +1020,6 @@ class CannotBeUnlocked implements Lockable, Comparable<Object> {
 
 /**
  * Used as a mixin.
- *
- * @author Rod Johnson
  */
 interface Modifiable {
 
@@ -1039,7 +1032,6 @@ interface Modifiable {
 
 /**
  * Used as a target.
- * @author Andy Clement
  */
 interface AnnotatedTarget {
 }

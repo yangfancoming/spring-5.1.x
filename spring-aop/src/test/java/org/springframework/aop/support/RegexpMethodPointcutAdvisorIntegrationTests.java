@@ -18,10 +18,7 @@ import org.springframework.util.SerializationTestUtils;
 import static org.junit.Assert.*;
 import static org.springframework.tests.TestResourceUtils.*;
 
-/**
- * @author Rod Johnson
 
- */
 public class RegexpMethodPointcutAdvisorIntegrationTests {
 
 	private static final Resource CONTEXT =

@@ -15,10 +15,7 @@ import org.springframework.util.SerializationTestUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rod Johnson
 
- */
 public class NameMatchMethodPointcutTests {
 
 	protected NameMatchMethodPointcut pc;

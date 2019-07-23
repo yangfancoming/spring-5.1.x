@@ -17,10 +17,7 @@ import org.springframework.tests.aop.advice.MethodCounter;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Rod Johnson
 
- */
 public class ThrowsAdviceInterceptorTests {
 
 	@Test(expected = IllegalArgumentException.class)

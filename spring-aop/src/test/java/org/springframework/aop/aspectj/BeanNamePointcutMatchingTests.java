@@ -10,9 +10,6 @@ import static org.junit.Assert.*;
 
 /**
  * Tests for matching of bean() pointcut designator.
- *
- * @author Ramnivas Laddad
-
  */
 public class BeanNamePointcutMatchingTests {
 
@@ -65,13 +62,11 @@ public class BeanNamePointcutMatchingTests {
 
 
 	private void assertMatch(String beanName, String pcExpression) {
-		assertTrue("Unexpected mismatch for bean \"" + beanName + "\" for pcExpression \"" + pcExpression + "\"",
-				matches(beanName, pcExpression));
+		assertTrue("Unexpected mismatch for bean \"" + beanName + "\" for pcExpression \"" + pcExpression + "\"",	matches(beanName, pcExpression));
 	}
 
 	private void assertMisMatch(String beanName, String pcExpression) {
-		assertFalse("Unexpected match for bean \"" + beanName + "\" for pcExpression \"" + pcExpression + "\"",
-				matches(beanName, pcExpression));
+		assertFalse("Unexpected match for bean \"" + beanName + "\" for pcExpression \"" + pcExpression + "\"",matches(beanName, pcExpression));
 	}
 
 	private static boolean matches(final String beanName, String pcExpression) {

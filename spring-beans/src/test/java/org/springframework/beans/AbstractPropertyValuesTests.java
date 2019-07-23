@@ -7,10 +7,7 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rod Johnson
 
- */
 public abstract class AbstractPropertyValuesTests {
 
 	/**

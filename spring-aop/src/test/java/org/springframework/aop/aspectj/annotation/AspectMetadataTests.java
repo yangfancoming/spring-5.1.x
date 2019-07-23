@@ -13,8 +13,6 @@ import static org.junit.Assert.*;
 
 /**
  * @since 2.0
- * @author Rod Johnson
-
  */
 public class AspectMetadataTests {
 
