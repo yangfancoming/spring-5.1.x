@@ -78,8 +78,7 @@ public class SqlQueryTests  {
 
 		SqlQuery<Integer> query = new MappingSqlQueryWithParameters<Integer>() {
 			@Override
-			protected Integer mapRow(ResultSet rs, int rownum, @Nullable Object[] params, @Nullable Map<? ,?> context)
-					throws SQLException {
+			protected Integer mapRow(ResultSet rs, int rownum, @Nullable Object[] params, @Nullable Map<? ,?> context) throws SQLException {
 				assertTrue("params were null", params == null);
 				assertTrue("context was null", context == null);
 				return rs.getInt(1);

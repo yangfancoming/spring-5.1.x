@@ -15,7 +15,6 @@ public class EmbeddedDatabaseFactoryTests {
 
 	private EmbeddedDatabaseFactory factory = new EmbeddedDatabaseFactory();
 
-
 	@Test
 	public void testGetDataSource() {
 		StubDatabasePopulator populator = new StubDatabasePopulator();
@@ -24,7 +23,6 @@ public class EmbeddedDatabaseFactoryTests {
 		assertTrue(populator.populateCalled);
 		db.shutdown();
 	}
-
 
 	private static class StubDatabasePopulator implements DatabasePopulator {
 

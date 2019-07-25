@@ -24,7 +24,7 @@ public class EmbeddedDatabaseFactoryBeanTests {
 	}
 
 	@Test
-	public void testFactoryBeanLifecycle() throws Exception {
+	public void testFactoryBeanLifecycle()  {
 		EmbeddedDatabaseFactoryBean bean = new EmbeddedDatabaseFactoryBean();
 		ResourceDatabasePopulator populator = new ResourceDatabasePopulator(resource("db-schema.sql"),
 			resource("db-test-data.sql"));
