@@ -91,7 +91,7 @@ public abstract class DataSourceUtils {
 				logger.debug("Fetching resumed JDBC Connection from DataSource");
 				conHolder.setConnection(fetchConnection(dataSource));
 			}
-			// 如果conHolder中有连接，直接获取就行
+			// 如果conHolder中有连接  直接获取就行
 			return conHolder.getConnection();
 		}
 		// Else we either got no holder or an empty thread-bound holder here.
