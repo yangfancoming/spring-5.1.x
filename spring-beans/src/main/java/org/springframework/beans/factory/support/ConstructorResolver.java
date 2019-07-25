@@ -272,15 +272,13 @@ class ConstructorResolver {
 		return bw;
 	}
 
-	private Object instantiate(
-			String beanName, RootBeanDefinition mbd, Constructor<?> constructorToUse, Object[] argsToUse) {
+	private Object instantiate(String beanName, RootBeanDefinition mbd, Constructor<?> constructorToUse, Object[] argsToUse) {
 
 		try {
 			InstantiationStrategy strategy = this.beanFactory.getInstantiationStrategy();
 			if (System.getSecurityManager() != null) {
 				return AccessController.doPrivileged((PrivilegedAction<Object>) () ->
-						strategy.instantiate(mbd, beanName, this.beanFactory, constructorToUse, argsToUse),
-						this.beanFactory.getAccessControlContext());
+						strategy.instantiate(mbd, beanName, this.beanFactory, constructorToUse, argsToUse),this.beanFactory.getAccessControlContext());
 			}
 			else {
 				return strategy.instantiate(mbd, beanName, this.beanFactory, constructorToUse, argsToUse);

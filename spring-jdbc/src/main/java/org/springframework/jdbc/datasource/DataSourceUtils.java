@@ -26,9 +26,6 @@ import org.springframework.util.Assert;
  * <p>Used internally by Spring's {@link org.springframework.jdbc.core.JdbcTemplate},
  * Spring's JDBC operation objects and the JDBC {@link DataSourceTransactionManager}.
  * Can also be used directly in application code.
- *
- * @author Rod Johnson
-
  * @see #getConnection
  * @see #releaseConnection
  * @see DataSourceTransactionManager
@@ -85,14 +82,16 @@ public abstract class DataSourceUtils {
 	 */
 	public static Connection doGetConnection(DataSource dataSource) throws SQLException {
 		Assert.notNull(dataSource, "No DataSource specified");
-
+		// 从ThreadLocal中获取线程独有的连接，保证了同一线程拥有的是同一个连接
 		ConnectionHolder conHolder = (ConnectionHolder) TransactionSynchronizationManager.getResource(dataSource);
 		if (conHolder != null && (conHolder.hasConnection() || conHolder.isSynchronizedWithTransaction())) {
-			conHolder.requested();
+			conHolder.requested(); // conHolder请求加1
 			if (!conHolder.hasConnection()) {
+				// 如果conHolder中没有连接，就保存在conHolder中
 				logger.debug("Fetching resumed JDBC Connection from DataSource");
 				conHolder.setConnection(fetchConnection(dataSource));
 			}
+			// 如果conHolder中有连接，直接获取就行
 			return conHolder.getConnection();
 		}
 		// Else we either got no holder or an empty thread-bound holder here.

@@ -39,29 +39,21 @@ import org.springframework.util.StringUtils;
  *
  * where {@code example.MyService} is the name of the interface, and {@code MyServiceImpl1}
  * and {@code MyServiceImpl2} are two implementations.
- *
- * @author Arjen Poutsma
-
- * @author Sam Brannen
  * @since 3.2
  */
 public final class SpringFactoriesLoader {
 
 	/**
-	 * The location to look for factories.
-	 * <p>Can be present in multiple JAR files.
+	 * The location to look for factories. Can be present in multiple JAR files.
 	 */
 	public static final String FACTORIES_RESOURCE_LOCATION = "META-INF/spring.factories";
-
 
 	private static final Log logger = LogFactory.getLog(SpringFactoriesLoader.class);
 
 	private static final Map<ClassLoader, MultiValueMap<String, String>> cache = new ConcurrentReferenceHashMap<>();
 
-
 	private SpringFactoriesLoader() {
 	}
-
 
 	/**
 	 * Load and instantiate the factory implementations of the given type from
@@ -113,11 +105,9 @@ public final class SpringFactoriesLoader {
 		if (result != null) {
 			return result;
 		}
-
 		try {
-			Enumeration<URL> urls = (classLoader != null ?
-					classLoader.getResources(FACTORIES_RESOURCE_LOCATION) :
-					ClassLoader.getSystemResources(FACTORIES_RESOURCE_LOCATION));
+			// 扫描所有jar 类路径下  "META-INF/spring.factories"
+			Enumeration<URL> urls = (classLoader != null ? classLoader.getResources(FACTORIES_RESOURCE_LOCATION) : ClassLoader.getSystemResources(FACTORIES_RESOURCE_LOCATION));
 			result = new LinkedMultiValueMap<>();
 			while (urls.hasMoreElements()) {
 				URL url = urls.nextElement();
@@ -144,8 +134,7 @@ public final class SpringFactoriesLoader {
 		try {
 			Class<?> instanceClass = ClassUtils.forName(instanceClassName, classLoader);
 			if (!factoryClass.isAssignableFrom(instanceClass)) {
-				throw new IllegalArgumentException(
-						"Class [" + instanceClassName + "] is not assignable to [" + factoryClass.getName() + "]");
+				throw new IllegalArgumentException("Class [" + instanceClassName + "] is not assignable to [" + factoryClass.getName() + "]");
 			}
 			return (T) ReflectionUtils.accessibleConstructor(instanceClass).newInstance();
 		}
