@@ -46,7 +46,6 @@ import org.springframework.util.StringUtils;
  * {@link AbstractBeanFactory} and {@link DefaultListableBeanFactory}
  * (which inherit from it). Can alternatively also be used as a nested
  * helper to delegate to.
- *
 
  * @since 2.0
  * @see #registerSingleton

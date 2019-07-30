@@ -15,9 +15,10 @@ import org.springframework.util.StringValueResolver;
 /**
  * Simple implementation of the {@link AliasRegistry} interface.
  * Serves as base class for implementations
+ *  AliasRegistry实现类  主要使用 map 作为 alias 的缓存
  * @since 2.5.2
  */
-public class SimpleAliasRegistry implements AliasRegistry { // AliasRegistry实现类  主要使用 map 作为 alias 的缓存
+public class SimpleAliasRegistry implements AliasRegistry {
 
 	/** Logger available to subclasses. */
 	protected final Log logger = LogFactory.getLog(getClass());

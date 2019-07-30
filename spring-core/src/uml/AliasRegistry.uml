@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.core.AliasRegistry</OriginalElement>
+  <nodes>
+    <node x="312.5" y="0.0">org.springframework.core.AliasRegistry</node>
+    <node x="74.24999999999997" y="160.0">org.springframework.beans.factory.support.DefaultSingletonBeanRegistry</node>
+    <node x="197.99999999999997" y="80.0">org.springframework.core.SimpleAliasRegistry</node>
+    <node x="0.0" y="80.0">org.springframework.beans.factory.config.SingletonBeanRegistry</node>
+    <node x="379.0" y="80.0">org.springframework.beans.factory.support.BeanDefinitionRegistry</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.core.SimpleAliasRegistry" target="org.springframework.core.AliasRegistry">
+      <point x="0.0" y="-15.0" />
+      <point x="278.5" y="55.0" />
+      <point x="343.0" y="55.0" />
+      <point x="-30.5" y="15.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.support.BeanDefinitionRegistry" target="org.springframework.core.AliasRegistry">
+      <point x="0.0" y="-15.0" />
+      <point x="468.5" y="55.0" />
+      <point x="404.0" y="55.0" />
+      <point x="30.5" y="15.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.support.DefaultSingletonBeanRegistry" target="org.springframework.beans.factory.config.SingletonBeanRegistry">
+      <point x="-54.75" y="-15.0" />
+      <point x="128.99999999999997" y="135.0" />
+      <point x="89.0" y="135.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.support.DefaultSingletonBeanRegistry" target="org.springframework.core.SimpleAliasRegistry">
+      <point x="54.75" y="-15.0" />
+      <point x="238.49999999999997" y="135.0" />
+      <point x="278.5" y="135.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="279.0" y="95.0" />
+  <SelectedNodes>
+    <node>org.springframework.core.AliasRegistry</node>
+    <node>org.springframework.beans.factory.support.DefaultSingletonBeanRegistry</node>
+    <node>org.springframework.core.SimpleAliasRegistry</node>
+    <node>org.springframework.beans.factory.config.SingletonBeanRegistry</node>
+    <node>org.springframework.beans.factory.support.BeanDefinitionRegistry</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
