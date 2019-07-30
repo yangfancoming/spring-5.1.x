@@ -9,19 +9,20 @@ import org.springframework.lang.Nullable;
 
 /**
  * A BeanDefinition describes a bean instance, which has property values,
- * constructor argument values, and further information supplied by
- * concrete implementations.
+ * constructor argument values, and further information supplied by concrete implementations.
  *
  * <p>This is just a minimal interface: The main intention is to allow a
- * {@link BeanFactoryPostProcessor} such as {@link PropertyPlaceholderConfigurer}
- * to introspect and modify property values and other bean metadata.
- *
+ * {@link BeanFactoryPostProcessor} such as {@link PropertyPlaceholderConfigurer} to introspect and modify property values and other bean metadata.
 
- * @author Rob Harrop
  * @since 19.03.2004
  * @see ConfigurableListableBeanFactory#getBeanDefinition
  * @see org.springframework.beans.factory.support.RootBeanDefinition
  * @see org.springframework.beans.factory.support.ChildBeanDefinition
+ *
+ * BeanDefinition 是一个接口，它是配置文件 <bean> 标签在 Spring 容器中的内部表现形式，<bean> 标签拥有的属性也会对应于 BeanDefinition 中的属性，
+ * 它们是一一对应的，即一个 <bean> 标签对应于一个 BeanDefinition 实例
+ *
+ * 共有三个实现类，在配置文件中可以有父bean和子bean，父bean用 RootBeanDefinition 来表示，子bean用 ChildBeanDefinition 来表示，而 GenericBeanDefinition 是一个通用的BeanDefinition。
  */
 public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 

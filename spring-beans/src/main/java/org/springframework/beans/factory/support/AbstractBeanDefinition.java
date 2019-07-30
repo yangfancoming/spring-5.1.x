@@ -29,20 +29,18 @@ import org.springframework.util.StringUtils;
  * {@link RootBeanDefinition}, and {@link ChildBeanDefinition}.
  *
  * <p>The autowire constants match the ones defined in the
- * {@link org.springframework.beans.factory.config.AutowireCapableBeanFactory}
- * interface.
- *
- * @author Rod Johnson
+ * {@link org.springframework.beans.factory.config.AutowireCapableBeanFactory} interface.
 
- * @author Rob Harrop
- * @author Mark Fisher
  * @see GenericBeanDefinition
  * @see RootBeanDefinition
  * @see ChildBeanDefinition
+ *
+ *
+ * AbstractBeanDefinition 实现了 BeanDefinition 接口，在 BeanDefinition 接口中只是定义了<bean>标签对应属性的 setter/getter 方法，
+ * 而没有定义对应的属性，而在 AbstractBeanDefinition 类中就定义了对应的各种属性，并重写了接口的 setter/getter 方法
  */
 @SuppressWarnings("serial")
-public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccessor
-		implements BeanDefinition, Cloneable {
+public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccessor implements BeanDefinition, Cloneable {
 
 	/**
 	 * Constant for the default scope name: {@code ""}, equivalent to singleton
@@ -1051,7 +1049,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 		if (hasMethodOverrides() && getFactoryMethodName() != null) {
 			throw new BeanDefinitionValidationException(
 					"Cannot combine static factory method with method overrides: " +
-					"the static factory method must create the instance");
+							"the static factory method must create the instance");
 		}
 
 		if (hasBeanClass()) {
@@ -1088,7 +1086,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 		if (count == 0) {
 			throw new BeanDefinitionValidationException(
 					"Invalid method override: no method with name '" + mo.getMethodName() +
-					"' on class [" + getBeanClassName() + "]");
+							"' on class [" + getBeanClassName() + "]");
 		}
 		else if (count == 1) {
 			// Mark override as not overloaded, to avoid the overhead of arg type checking.
