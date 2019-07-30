@@ -17,8 +17,6 @@ import org.springframework.util.Assert;
  * Abstract {@link javax.sql.DataSource} implementation that routes {@link #getConnection()}
  * calls to one of various target DataSources based on a lookup key. The latter is usually
  * (but not necessarily) determined through some thread-bound transaction context.
- *
-
  * @since 2.0.1
  * @see #setTargetDataSources
  * @see #setDefaultTargetDataSource
@@ -144,8 +142,7 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 			return this.dataSourceLookup.getDataSource((String) dataSource);
 		}
 		else {
-			throw new IllegalArgumentException(
-					"Illegal data source value - only [javax.sql.DataSource] and String supported: " + dataSource);
+			throw new IllegalArgumentException("Illegal data source value - only [javax.sql.DataSource] and String supported: " + dataSource);
 		}
 	}
 

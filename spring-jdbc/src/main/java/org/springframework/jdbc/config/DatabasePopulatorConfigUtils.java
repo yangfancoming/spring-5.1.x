@@ -19,9 +19,6 @@ import org.springframework.util.xml.DomUtils;
 
 /**
  * Internal utility methods used with JDBC configuration.
- *
-
- * @author Stephane Nicoll
  * @since 3.1
  */
 abstract class DatabasePopulatorConfigUtils {

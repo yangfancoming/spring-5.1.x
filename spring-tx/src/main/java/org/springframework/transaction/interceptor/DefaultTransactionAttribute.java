@@ -113,6 +113,7 @@ public class DefaultTransactionAttribute extends DefaultTransactionDefinition im
 	 * intentionally declared as business exceptions, leading to a commit by default.
 	 * @see org.springframework.transaction.support.TransactionTemplate#execute
 	 *    指明了对RuntimeException 和Error进行回滚`
+	 *    判断是否回滚的异常，当前可以通过rolbackFor属性来修改
 	 */
 	@Override
 	public boolean rollbackOn(Throwable ex) {

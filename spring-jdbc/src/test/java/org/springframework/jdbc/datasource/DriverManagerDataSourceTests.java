@@ -57,7 +57,6 @@ public class DriverManagerDataSourceTests {
 		}
 		DriverManagerDataSource ds = new TestDriverManagerDataSource();
 		try {
-			//		ds.setDriverClassName("foobar");
 			ds.setDriverClassName("com.mysql.jdbc.Driver");// 根据 字符串  反射创建数据库类型驱动
 			ds.setUrl(jdbcUrl);
 			ds.setUsername(uname);

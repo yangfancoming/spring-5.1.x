@@ -355,9 +355,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 * @return the number of bean definitions found
 	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
 	 */
-	public int loadBeanDefinitions(InputSource inputSource, @Nullable String resourceDescription)
-			throws BeanDefinitionStoreException {
-
+	public int loadBeanDefinitions(InputSource inputSource, @Nullable String resourceDescription) throws BeanDefinitionStoreException {
 		return doLoadBeanDefinitions(inputSource, new DescriptiveResource(resourceDescription));
 	}
 
@@ -371,9 +369,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 * @see #doLoadDocument
 	 * @see #registerBeanDefinitions
 	 */
-	protected int doLoadBeanDefinitions(InputSource inputSource, Resource resource)
-			throws BeanDefinitionStoreException {
-
+	protected int doLoadBeanDefinitions(InputSource inputSource, Resource resource) throws BeanDefinitionStoreException {
 		try {
 			Document doc = doLoadDocument(inputSource, resource);
 			int count = registerBeanDefinitions(doc, resource);
@@ -386,24 +382,19 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 			throw ex;
 		}
 		catch (SAXParseException ex) {
-			throw new XmlBeanDefinitionStoreException(resource.getDescription(),
-					"Line " + ex.getLineNumber() + " in XML document from " + resource + " is invalid", ex);
+			throw new XmlBeanDefinitionStoreException(resource.getDescription(),"Line " + ex.getLineNumber() + " in XML document from " + resource + " is invalid", ex);
 		}
 		catch (SAXException ex) {
-			throw new XmlBeanDefinitionStoreException(resource.getDescription(),
-					"XML document from " + resource + " is invalid", ex);
+			throw new XmlBeanDefinitionStoreException(resource.getDescription(),"XML document from " + resource + " is invalid", ex);
 		}
 		catch (ParserConfigurationException ex) {
-			throw new BeanDefinitionStoreException(resource.getDescription(),
-					"Parser configuration exception parsing XML from " + resource, ex);
+			throw new BeanDefinitionStoreException(resource.getDescription(),"Parser configuration exception parsing XML from " + resource, ex);
 		}
 		catch (IOException ex) {
-			throw new BeanDefinitionStoreException(resource.getDescription(),
-					"IOException parsing XML document from " + resource, ex);
+			throw new BeanDefinitionStoreException(resource.getDescription(),"IOException parsing XML document from " + resource, ex);
 		}
 		catch (Throwable ex) {
-			throw new BeanDefinitionStoreException(resource.getDescription(),
-					"Unexpected exception parsing XML document from " + resource, ex);
+			throw new BeanDefinitionStoreException(resource.getDescription(),"Unexpected exception parsing XML document from " + resource, ex);
 		}
 	}
 
@@ -417,8 +408,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 * @see DocumentLoader#loadDocument
 	 */
 	protected Document doLoadDocument(InputSource inputSource, Resource resource) throws Exception {
-		return this.documentLoader.loadDocument(inputSource, getEntityResolver(), this.errorHandler,
-				getValidationModeForResource(resource), isNamespaceAware());
+		return this.documentLoader.loadDocument(inputSource, getEntityResolver(), this.errorHandler,getValidationModeForResource(resource), isNamespaceAware());
 	}
 
 	/**

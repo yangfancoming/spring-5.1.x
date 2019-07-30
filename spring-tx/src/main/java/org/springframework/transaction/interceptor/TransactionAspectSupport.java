@@ -536,11 +536,12 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	protected void completeTransactionAfterThrowing(@Nullable TransactionInfo txInfo, Throwable ex) {
 		if (txInfo != null && txInfo.getTransactionStatus() != null) {
 			if (logger.isTraceEnabled()) {
-				logger.trace("Completing transaction for [" + txInfo.getJoinpointIdentification() +
-						"] after exception: " + ex);
+				logger.trace("Completing transaction for [" + txInfo.getJoinpointIdentification() + "] after exception: " + ex);
 			}
+			// 判断异常是不是 RunntimeException 和 Error
 			if (txInfo.transactionAttribute != null && txInfo.transactionAttribute.rollbackOn(ex)) {
 				try {
+					// 回滚事务
 					txInfo.getTransactionManager().rollback(txInfo.getTransactionStatus());
 				}
 				catch (TransactionSystemException ex2) {
@@ -554,8 +555,11 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 				}
 			}
 			else {
-				// We don't roll back on this exception.
-				// Will still roll back if TransactionStatus.isRollbackOnly() is true.
+				/**
+				 * 如果是其他类型的异常，则正常提交
+				 * We don't roll back on this exception.
+				 * Will still roll back if TransactionStatus.isRollbackOnly() is true.
+				*/
 				try {
 					txInfo.getTransactionManager().commit(txInfo.getTransactionStatus());
 				}

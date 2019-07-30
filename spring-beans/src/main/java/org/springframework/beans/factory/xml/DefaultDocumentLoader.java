@@ -52,8 +52,7 @@ public class DefaultDocumentLoader implements DocumentLoader {
 	 * XML parser.
 	 */
 	@Override
-	public Document loadDocument(InputSource inputSource, EntityResolver entityResolver,
-			ErrorHandler errorHandler, int validationMode, boolean namespaceAware) throws Exception {
+	public Document loadDocument(InputSource inputSource, EntityResolver entityResolver,ErrorHandler errorHandler, int validationMode, boolean namespaceAware) throws Exception {
 
 		DocumentBuilderFactory factory = createDocumentBuilderFactory(validationMode, namespaceAware);
 		if (logger.isTraceEnabled()) {
@@ -71,8 +70,7 @@ public class DefaultDocumentLoader implements DocumentLoader {
 	 * @return the JAXP DocumentBuilderFactory
 	 * @throws ParserConfigurationException if we failed to build a proper DocumentBuilderFactory
 	 */
-	protected DocumentBuilderFactory createDocumentBuilderFactory(int validationMode, boolean namespaceAware)
-			throws ParserConfigurationException {
+	protected DocumentBuilderFactory createDocumentBuilderFactory(int validationMode, boolean namespaceAware) throws ParserConfigurationException {
 
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		factory.setNamespaceAware(namespaceAware);
@@ -95,7 +93,6 @@ public class DefaultDocumentLoader implements DocumentLoader {
 				}
 			}
 		}
-
 		return factory;
 	}
 

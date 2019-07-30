@@ -17,9 +17,6 @@ import org.springframework.lang.Nullable;
  * {@link BeanDefinitionParser} for the {@code aspectj-autoproxy} tag,
  * enabling the automatic application of @AspectJ-style aspects found in
  * the {@link org.springframework.beans.factory.BeanFactory}.
- *
- * @author Rob Harrop
-
  * @since 2.0
  */
 class AspectJAutoProxyBeanDefinitionParser implements BeanDefinitionParser {
@@ -27,14 +24,15 @@ class AspectJAutoProxyBeanDefinitionParser implements BeanDefinitionParser {
 	@Override
 	@Nullable
 	public BeanDefinition parse(Element element, ParserContext parserContext) {
+		// 注册AnnotationAwareAspectJAutoProxyCreator bean 和处理标签的两个属性
 		AopNamespaceUtils.registerAspectJAnnotationAutoProxyCreatorIfNecessary(parserContext, element);
+		// 处理子标签
 		extendBeanDefinition(element, parserContext);
 		return null;
 	}
 
 	private void extendBeanDefinition(Element element, ParserContext parserContext) {
-		BeanDefinition beanDef =
-				parserContext.getRegistry().getBeanDefinition(AopConfigUtils.AUTO_PROXY_CREATOR_BEAN_NAME);
+		BeanDefinition beanDef = parserContext.getRegistry().getBeanDefinition(AopConfigUtils.AUTO_PROXY_CREATOR_BEAN_NAME);
 		if (element.hasChildNodes()) {
 			addIncludePatterns(element, parserContext, beanDef);
 		}

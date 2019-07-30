@@ -18,7 +18,7 @@ dependencies {
     optional(project(":spring-jdbc"))
     optional(project(":spring-aop"))
 //    compile 'com.alibaba:fastjson:1.2.58'
-    compile 'com.alibaba:druid:1.1.9'
+//    compile 'com.alibaba:druid:1.1.9'
     compile("org.aspectj:aspectjweaver:1.8.5")
     compile("mysql:mysql-connector-java:5.1.46")
 }

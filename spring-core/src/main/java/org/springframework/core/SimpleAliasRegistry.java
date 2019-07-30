@@ -1,5 +1,4 @@
 
-
 package org.springframework.core;
 
 import java.util.ArrayList;
@@ -7,31 +6,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import org.springframework.util.StringValueResolver;
 
 /**
  * Simple implementation of the {@link AliasRegistry} interface.
- * Serves as base class for
- * {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}
- * implementations.
- *
-
+ * Serves as base class for implementations
  * @since 2.5.2
  */
-public class SimpleAliasRegistry implements AliasRegistry { // 主要使用 map 作为 alias 的缓存，并对接口 AliasRegistry 进行实现
+public class SimpleAliasRegistry implements AliasRegistry { // AliasRegistry实现类  主要使用 map 作为 alias 的缓存
 
 	/** Logger available to subclasses. */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	/** Map from alias to canonical name. */
 	private final Map<String, String> aliasMap = new ConcurrentHashMap<>(16);
-
 
 	@Override
 	public void registerAlias(String name, String alias) {
@@ -159,10 +151,7 @@ public class SimpleAliasRegistry implements AliasRegistry { // 主要使用 map 
 							this.aliasMap.remove(alias);
 							return;
 						}
-						throw new IllegalStateException(
-								"Cannot register resolved alias '" + resolvedAlias + "' (original: '" + alias +
-								"') for name '" + resolvedName + "': It is already registered for name '" +
-								registeredName + "'.");
+						throw new IllegalStateException("Cannot register resolved alias '" + resolvedAlias + "' (original: '" + alias + "') for name '" + resolvedName + "': It is already registered for name '" + registeredName + "'.");
 					}
 					checkForAliasCircle(resolvedName, resolvedAlias);
 					this.aliasMap.remove(alias);
@@ -186,9 +175,7 @@ public class SimpleAliasRegistry implements AliasRegistry { // 主要使用 map 
 	 */
 	protected void checkForAliasCircle(String name, String alias) {
 		if (hasAlias(alias, name)) {
-			throw new IllegalStateException("Cannot register alias '" + alias +
-					"' for name '" + name + "': Circular reference - '" +
-					name + "' is a direct or indirect alias for '" + alias + "' already");
+			throw new IllegalStateException("Cannot register alias '" + alias + "' for name '" + name + "': Circular reference - '" + name + "' is a direct or indirect alias for '" + alias + "' already");
 		}
 	}
 

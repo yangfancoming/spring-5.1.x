@@ -6,12 +6,8 @@ import javax.sql.DataSource;
 
 /**
  * Strategy interface for looking up DataSources by name.
- *
  * <p>Used, for example, to resolve data source names in JPA
  * {@code persistence.xml} files.
- *
- * @author Costin Leau
-
  * @since 2.0
  * @see org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager#setDataSourceLookup
  */

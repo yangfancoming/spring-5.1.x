@@ -32,10 +32,6 @@ import org.springframework.lang.Nullable;
  * Framework, {@code SqlQuery} instances are thread-safe after their
  * initialization is complete. That is, after they are constructed and configured
  * via their setter methods, they can be used safely from multiple threads.
- *
- * @author Rod Johnson
-
- * @author Thomas Risberg
  * @param <T> the result type
  * @see SqlUpdate
  */

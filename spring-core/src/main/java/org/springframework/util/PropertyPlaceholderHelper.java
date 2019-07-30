@@ -115,7 +115,6 @@ public class PropertyPlaceholderHelper {
 		if (startIndex == -1) {
 			return value;
 		}
-
 		StringBuilder result = new StringBuilder(value);
 		while (startIndex != -1) {
 			int endIndex = findPlaceholderEndIndex(result, startIndex);
@@ -126,8 +125,7 @@ public class PropertyPlaceholderHelper {
 					visitedPlaceholders = new HashSet<>(4);
 				}
 				if (!visitedPlaceholders.add(originalPlaceholder)) {
-					throw new IllegalArgumentException(
-							"Circular placeholder reference '" + originalPlaceholder + "' in property definitions");
+					throw new IllegalArgumentException("Circular placeholder reference '" + originalPlaceholder + "' in property definitions");
 				}
 				// Recursive invocation, parsing placeholders contained in the placeholder key.
 				placeholder = parseStringValue(placeholder, placeholderResolver, visitedPlaceholders);
@@ -159,8 +157,7 @@ public class PropertyPlaceholderHelper {
 					startIndex = result.indexOf(this.placeholderPrefix, endIndex + this.placeholderSuffix.length());
 				}
 				else {
-					throw new IllegalArgumentException("Could not resolve placeholder '" +
-							placeholder + "'" + " in value \"" + value + "\"");
+					throw new IllegalArgumentException("Could not resolve placeholder '" + placeholder + "'" + " in value \"" + value + "\"");
 				}
 				visitedPlaceholders.remove(originalPlaceholder);
 			}

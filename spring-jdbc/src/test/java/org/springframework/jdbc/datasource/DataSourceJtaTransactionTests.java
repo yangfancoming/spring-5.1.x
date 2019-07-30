@@ -36,7 +36,6 @@ import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
 /**
-
  * @since 17.10.2005
  */
 public class DataSourceJtaTransactionTests {
@@ -79,12 +78,10 @@ public class DataSourceJtaTransactionTests {
 
 	private void doTestJtaTransaction(final boolean rollback) throws Exception {
 		if (rollback) {
-			given(userTransaction.getStatus()).willReturn(
-					Status.STATUS_NO_TRANSACTION,Status.STATUS_ACTIVE);
+			given(userTransaction.getStatus()).willReturn(Status.STATUS_NO_TRANSACTION,Status.STATUS_ACTIVE);
 		}
 		else {
-			given(userTransaction.getStatus()).willReturn(
-					Status.STATUS_NO_TRANSACTION, Status.STATUS_ACTIVE, Status.STATUS_ACTIVE);
+			given(userTransaction.getStatus()).willReturn(Status.STATUS_NO_TRANSACTION, Status.STATUS_ACTIVE, Status.STATUS_ACTIVE);
 		}
 
 		JtaTransactionManager ptm = new JtaTransactionManager(userTransaction);
