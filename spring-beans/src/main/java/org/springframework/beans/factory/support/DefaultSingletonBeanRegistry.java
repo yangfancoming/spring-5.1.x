@@ -68,12 +68,10 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	private final Set<String> registeredSingletons = new LinkedHashSet<>(256);
 
 	/** Names of beans that are currently in creation. */
-	private final Set<String> singletonsCurrentlyInCreation =
-			Collections.newSetFromMap(new ConcurrentHashMap<>(16));
+	private final Set<String> singletonsCurrentlyInCreation = Collections.newSetFromMap(new ConcurrentHashMap<>(16));
 
 	/** Names of beans currently excluded from in creation checks. */
-	private final Set<String> inCreationCheckExclusions =
-			Collections.newSetFromMap(new ConcurrentHashMap<>(16));
+	private final Set<String> inCreationCheckExclusions = Collections.newSetFromMap(new ConcurrentHashMap<>(16));
 
 	/** List of suppressed Exceptions, available for associating related causes. */
 	@Nullable

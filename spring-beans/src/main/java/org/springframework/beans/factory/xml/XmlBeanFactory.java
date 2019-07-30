@@ -26,22 +26,20 @@ import org.springframework.core.io.Resource;
  * <p><b>For advanced needs, consider using a {@link DefaultListableBeanFactory} with
  * an {@link XmlBeanDefinitionReader}.</b> The latter allows for reading from multiple XML
  * resources and is highly configurable in its actual XML parsing behavior.
- *
- * @author Rod Johnson
-
 
  * @since 15 April 2001
  * @see org.springframework.beans.factory.support.DefaultListableBeanFactory
  * @see XmlBeanDefinitionReader
  * @deprecated as of Spring 3.1 in favor of {@link DefaultListableBeanFactory} and
  * {@link XmlBeanDefinitionReader}
+ *
+ * 对 DefaultListableBeanFactory 进行扩展，主要使用自定义读取器 XmlBeanDefinitionReader 从配置文件中读取 BeanDefinition
  */
 @Deprecated
 @SuppressWarnings({"serial", "all"})
 public class XmlBeanFactory extends DefaultListableBeanFactory {
 
 	private final XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(this);
-
 
 	/**
 	 * Create a new XmlBeanFactory with the given resource,

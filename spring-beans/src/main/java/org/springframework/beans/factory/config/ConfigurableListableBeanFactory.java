@@ -20,10 +20,10 @@ import org.springframework.lang.Nullable;
  * {@link org.springframework.beans.factory.ListableBeanFactory} for typical
  * use cases. This interface is just meant to allow for framework-internal
  * plug'n'play even when needing access to bean factory configuration methods.
- *
-
  * @since 03.11.2003
  * @see org.springframework.context.support.AbstractApplicationContext#getBeanFactory()
+ *
+ * BeanFactory 的配置清单，指定忽略类型及接口。
  */
 public interface ConfigurableListableBeanFactory extends ListableBeanFactory, AutowireCapableBeanFactory, ConfigurableBeanFactory {
 

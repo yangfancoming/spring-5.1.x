@@ -38,12 +38,13 @@ import org.springframework.lang.Nullable;
  * interface, which exposes the internal BeanFactory even when running in an
  * ApplicationContext, to get access to an AutowireCapableBeanFactory:
  * simply cast the passed-in BeanFactory to AutowireCapableBeanFactory.
- *
 
  * @since 04.12.2003
  * @see org.springframework.beans.factory.BeanFactoryAware
  * @see org.springframework.beans.factory.config.ConfigurableListableBeanFactory
  * @see org.springframework.context.ApplicationContext#getAutowireCapableBeanFactory()
+ *
+ * 提供创建bean，自动注入，初始化以及应用bean的后置处理器。
  */
 public interface AutowireCapableBeanFactory extends BeanFactory {
 
@@ -225,8 +226,7 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	 * @see #AUTOWIRE_BY_TYPE
 	 * @see #AUTOWIRE_NO
 	 */
-	void autowireBeanProperties(Object existingBean, int autowireMode, boolean dependencyCheck)
-			throws BeansException;
+	void autowireBeanProperties(Object existingBean, int autowireMode, boolean dependencyCheck) throws BeansException;
 
 	/**
 	 * Apply the property values of the bean definition with the given name to
@@ -285,8 +285,7 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	 * @see BeanPostProcessor#postProcessBeforeInitialization
 	 * @see #ORIGINAL_INSTANCE_SUFFIX
 	 */
-	Object applyBeanPostProcessorsBeforeInitialization(Object existingBean, String beanName)
-			throws BeansException;
+	Object applyBeanPostProcessorsBeforeInitialization(Object existingBean, String beanName) throws BeansException;
 
 	/**
 	 * Apply {@link BeanPostProcessor BeanPostProcessors} to the given existing bean
@@ -302,8 +301,7 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	 * @see BeanPostProcessor#postProcessAfterInitialization
 	 * @see #ORIGINAL_INSTANCE_SUFFIX
 	 */
-	Object applyBeanPostProcessorsAfterInitialization(Object existingBean, String beanName)
-			throws BeansException;
+	Object applyBeanPostProcessorsAfterInitialization(Object existingBean, String beanName) throws BeansException;
 
 	/**
 	 * Destroy the given bean instance (typically coming from {@link #createBean}),
@@ -380,7 +378,6 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	 * @see DependencyDescriptor
 	 */
 	@Nullable
-	Object resolveDependency(DependencyDescriptor descriptor, @Nullable String requestingBeanName,
-			@Nullable Set<String> autowiredBeanNames, @Nullable TypeConverter typeConverter) throws BeansException;
+	Object resolveDependency(DependencyDescriptor descriptor, @Nullable String requestingBeanName,@Nullable Set<String> autowiredBeanNames, @Nullable TypeConverter typeConverter) throws BeansException;
 
 }

@@ -89,12 +89,13 @@ import org.springframework.util.StringUtils;
  * <p>Note that this class does <i>not</i> assume or implement bean definition
  * registry capabilities. See {@link DefaultListableBeanFactory} for an implementation
  * of the {@link org.springframework.beans.factory.ListableBeanFactory} and
- * {@link BeanDefinitionRegistry} interfaces, which represent the API and SPI
- * view of such a factory, respectively.
+ * {@link BeanDefinitionRegistry} interfaces, which represent the API and SPI view of such a factory, respectively.
  * @since 13.02.2004
  * @see RootBeanDefinition
  * @see DefaultListableBeanFactory
  * @see BeanDefinitionRegistry
+ *
+ * 综合了 AbstractBeanFactory 并对接口 AutowireCapableBeanFactory 进行实现。
  */
 public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory implements AutowireCapableBeanFactory {
 
@@ -139,8 +140,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	private final ConcurrentMap<Class<?>, Method[]> factoryMethodCandidateCache = new ConcurrentHashMap<>();
 
 	/** Cache of filtered PropertyDescriptors: bean Class to PropertyDescriptor array. */
-	private final ConcurrentMap<Class<?>, PropertyDescriptor[]> filteredPropertyDescriptorsCache =
-			new ConcurrentHashMap<>();
+	private final ConcurrentMap<Class<?>, PropertyDescriptor[]> filteredPropertyDescriptorsCache = new ConcurrentHashMap<>();
 
 
 	/**
@@ -341,7 +341,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			final BeanFactory parent = this;
 			if (System.getSecurityManager() != null) {
 				bean = AccessController.doPrivileged((PrivilegedAction<Object>) () ->
-						getInstantiationStrategy().instantiate(bd, null, parent),
+								getInstantiationStrategy().instantiate(bd, null, parent),
 						getAccessControlContext());
 			}
 			else {
@@ -481,11 +481,11 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		try {
 			// Give BeanPostProcessors a chance to return a proxy instead of the target bean instance.
 			/**
-			  供特定后置处理器拓展，如果直接生成了一个Bean，就直接返回不走正常创建流程。
-			  具体逻辑是判断当前Spring容器是否注册了实现了InstantiationAwareBeanPostProcessor接口的后置处理器
-			  如果有，则依次调用其中的applyBeanPostProcessorsBeforeInstantiation方法，如果中间任意一个方法返回不为null,直接结束调用。
-			  然后依次所有注册的BeanPostProcessor的postProcessAfterInitialization方法（同样如果任意一次返回不为null,即终止调用。
-			*/
+			 供特定后置处理器拓展，如果直接生成了一个Bean，就直接返回不走正常创建流程。
+			 具体逻辑是判断当前Spring容器是否注册了实现了InstantiationAwareBeanPostProcessor接口的后置处理器
+			 如果有，则依次调用其中的applyBeanPostProcessorsBeforeInstantiation方法，如果中间任意一个方法返回不为null,直接结束调用。
+			 然后依次所有注册的BeanPostProcessor的postProcessAfterInitialization方法（同样如果任意一次返回不为null,即终止调用。
+			 */
 			Object bean = resolveBeforeInstantiation(beanName, mbdToUse);
 			if (bean != null) {
 				return bean;
@@ -616,11 +616,11 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 					if (!actualDependentBeans.isEmpty()) {
 						throw new BeanCurrentlyInCreationException(beanName,
 								"Bean with name '" + beanName + "' has been injected into other beans [" +
-								StringUtils.collectionToCommaDelimitedString(actualDependentBeans) +
-								"] in its raw version as part of a circular reference, but has eventually been " +
-								"wrapped. This means that said other beans do not use the final version of the " +
-								"bean. This is often the result of over-eager type matching - consider using " +
-								"'getBeanNamesOfType' with the 'allowEagerInit' flag turned off, for example.");
+										StringUtils.collectionToCommaDelimitedString(actualDependentBeans) +
+										"] in its raw version as part of a circular reference, but has eventually been " +
+										"wrapped. This means that said other beans do not use the final version of the " +
+										"bean. This is often the result of over-eager type matching - consider using " +
+										"'getBeanNamesOfType' with the 'allowEagerInit' flag turned off, for example.");
 					}
 				}
 			}
@@ -1286,7 +1286,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			final BeanFactory parent = this;
 			if (System.getSecurityManager() != null) {
 				beanInstance = AccessController.doPrivileged((PrivilegedAction<Object>) () ->
-						getInstantiationStrategy().instantiate(mbd, beanName, parent),
+								getInstantiationStrategy().instantiate(mbd, beanName, parent),
 						getAccessControlContext());
 			}
 			else {

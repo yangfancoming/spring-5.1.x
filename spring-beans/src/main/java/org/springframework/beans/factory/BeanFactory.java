@@ -98,6 +98,8 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.beans.factory.config.BeanPostProcessor#postProcessAfterInitialization
  * @see DisposableBean#destroy
  * @see org.springframework.beans.factory.support.RootBeanDefinition#getDestroyMethodName
+ *
+ * 定义了获取bean和获取bean的各种属性
  */
 public interface BeanFactory {
 

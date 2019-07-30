@@ -21,17 +21,15 @@ import org.springframework.lang.Nullable;
  * Support base class for singleton registries which need to handle
  * {@link org.springframework.beans.factory.FactoryBean} instances,
  * integrated with {@link DefaultSingletonBeanRegistry}'s singleton management.
- *
  * <p>Serves as base class for {@link AbstractBeanFactory}.
- *
-
  * @since 2.5.1
+ *
+ * 在 DefaultSingletonBeanRegistry 的基础上增加了对 FactoryBean 的特殊处理功能。
  */
 public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanRegistry {
 
 	/** Cache of singleton objects created by FactoryBeans: FactoryBean name to object. */
 	private final Map<String, Object> factoryBeanObjectCache = new ConcurrentHashMap<>(16);
-
 
 	/**
 	 * Determine the type for the given FactoryBean.

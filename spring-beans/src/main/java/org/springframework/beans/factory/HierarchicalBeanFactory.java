@@ -5,17 +5,14 @@ package org.springframework.beans.factory;
 import org.springframework.lang.Nullable;
 
 /**
- * Sub-interface implemented by bean factories that can be part
- * of a hierarchy.
- *
+ * Sub-interface implemented by bean factories that can be part of a hierarchy.
  * <p>The corresponding {@code setParentBeanFactory} method for bean
  * factories that allow setting the parent in a configurable
  * fashion can be found in the ConfigurableBeanFactory interface.
- *
- * @author Rod Johnson
-
  * @since 07.07.2003
  * @see org.springframework.beans.factory.config.ConfigurableBeanFactory#setParentBeanFactory
+ *
+ * 继承 BeanFactory ，扩展了获取父beanFactory功能
  */
 public interface HierarchicalBeanFactory extends BeanFactory {
 
