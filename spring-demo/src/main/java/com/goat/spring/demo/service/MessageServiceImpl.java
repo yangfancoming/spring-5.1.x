@@ -16,5 +16,4 @@ public class MessageServiceImpl implements MessageService {
 		return "hello world";
 	}
 
-
 }
