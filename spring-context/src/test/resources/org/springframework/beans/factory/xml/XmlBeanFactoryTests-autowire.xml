@@ -3,6 +3,8 @@
 
 <beans>
 
+
+
 	<bean id="rod1" class="org.springframework.tests.sample.beans.DependenciesBean" autowire="byType">
 		<!-- Should pick up spouse automatically -->
 	</bean>

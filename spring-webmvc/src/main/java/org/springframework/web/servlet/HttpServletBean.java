@@ -56,9 +56,6 @@ import org.springframework.web.context.support.StandardServletEnvironment;
  * <p>The {@link FrameworkServlet} class is a more specific servlet base
  * class which loads its own application context. FrameworkServlet serves
  * as direct base class of Spring's full-fledged {@link DispatcherServlet}.
- *
- * @author Rod Johnson
-
  * @see #addRequiredProperty
  * @see #initServletBean
  * @see #doGet
@@ -132,7 +129,6 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 	 */
 	@Override
 	public final void init() throws ServletException {
-
 		// Set bean properties from init parameters.
 		PropertyValues pvs = new ServletConfigPropertyValues(getServletConfig(), this.requiredProperties);
 		if (!pvs.isEmpty()) {

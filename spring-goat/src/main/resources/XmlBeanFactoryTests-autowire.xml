@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "https://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+
+	<bean id="testBean" class="main.tsmyk.pojo.MyTestBean"
+		  abstract="true" autowire="byName" autowire-candidate="true"
+		  depends-on="conversionService" destroy-method="getName"
+		  factory-bean="environment" factory-method=""
+		  init-method="getName" lazy-init="true" name="myTestBean"
+		  parent="environment" primary="true" scope="singleton" >
+		<property name="name" value=""/>
+		<constructor-arg name="a" value="a" type="TestBean" index="" ref="">
+			<bean name="" />
+			<map key-type="" value-type=""/>
+		</constructor-arg>
+		<qualifier value="a" type=""/>
+		<lookup-method />
+		<meta key="" value=""/>
+		<replaced-method/>
+	</bean>
+
+	<alias name="testBean" alias="aaa"/>
+	<import resource=""/>
+
+</beans>
