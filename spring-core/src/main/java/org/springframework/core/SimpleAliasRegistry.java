@@ -15,22 +15,25 @@ import org.springframework.util.StringValueResolver;
 /**
  * Simple implementation of the {@link AliasRegistry} interface.
  * Serves as base class for implementations
- *  AliasRegistry实现类  主要使用 map 作为 alias 的缓存
  * @since 2.5.2
+ *
+ * AliasRegistry实现类  主要使用 map 作为 alias 的缓存
  */
 public class SimpleAliasRegistry implements AliasRegistry {
 
 	/** Logger available to subclasses. */
 	protected final Log logger = LogFactory.getLog(getClass());
 
-	/** Map from alias to canonical name. */
+	/** Map from alias to canonical name.   映射的 map */
 	private final Map<String, String> aliasMap = new ConcurrentHashMap<>(16);
+
 
 	@Override
 	public void registerAlias(String name, String alias) {
 		Assert.hasText(name, "'name' must not be empty");
 		Assert.hasText(alias, "'alias' must not be empty");
 		synchronized (this.aliasMap) {
+			// 如果真实的名字和别名相同，则把别名移除点，因为真实的名字和别名相同没有意义
 			if (alias.equals(name)) {
 				this.aliasMap.remove(alias);
 				if (logger.isDebugEnabled()) {
@@ -39,21 +42,22 @@ public class SimpleAliasRegistry implements AliasRegistry {
 			}
 			else {
 				String registeredName = this.aliasMap.get(alias);
+				// 如果已经注册过了
 				if (registeredName != null) {
 					if (registeredName.equals(name)) {
-						// An existing alias - no need to re-register
+						// An existing alias - no need to re-register  已经注册过了且别名没有发生变化，则不处理，没有必要再注册一次
 						return;
 					}
+					// 如果别名不允许覆盖，则抛出异常
 					if (!allowAliasOverriding()) {
-						throw new IllegalStateException("Cannot define alias '" + alias + "' for name '" +
-								name + "': It is already registered for name '" + registeredName + "'.");
+						throw new IllegalStateException("Cannot define alias '" + alias + "' for name '" + name + "': It is already registered for name '" + registeredName + "'.");
 					}
 					if (logger.isDebugEnabled()) {
-						logger.debug("Overriding alias '" + alias + "' definition for registered name '" +
-								registeredName + "' with new target name '" + name + "'");
+						logger.debug("Overriding alias '" + alias + "' definition for registered name '" + registeredName + "' with new target name '" + name + "'");
 					}
 				}
 				checkForAliasCircle(name, alias);
+				// 注册别名
 				this.aliasMap.put(alias, name);
 				if (logger.isTraceEnabled()) {
 					logger.trace("Alias definition '" + alias + "' registered for name '" + name + "'");

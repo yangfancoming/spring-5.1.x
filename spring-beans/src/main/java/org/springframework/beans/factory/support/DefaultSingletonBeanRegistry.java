@@ -52,25 +52,28 @@ import org.springframework.util.StringUtils;
  * @see #registerDisposableBean
  * @see org.springframework.beans.factory.DisposableBean
  * @see org.springframework.beans.factory.config.ConfigurableBeanFactory
+ *
+ * 主要是注册bean。该类中定义了许多的 集合，用于注册
  */
 public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements SingletonBeanRegistry {
 
-	/** Cache of singleton objects: bean name to bean instance. */
+	/** Cache of singleton objects: bean name to bean instance.  单例对象缓存，bean name --> bean instance */
 	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
 
-	/** Cache of singleton factories: bean name to ObjectFactory. */
+	/** Cache of singleton factories: bean name to ObjectFactory. 单例对应的工厂缓存，可以使用工厂来创建单例对象 bean name --> ObjectFactory */
 	private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
 
-	/** Cache of early singleton objects: bean name to bean instance. */
+	/** Cache of early singleton objects: bean name to bean instance. 之前的单例对象 */
 	private final Map<String, Object> earlySingletonObjects = new HashMap<>(16);
 
-	/** Set of registered singletons, containing the bean names in registration order. */
+	/** Set of registered singletons, containing the bean names in registration order. 已经注册过了的单例对象*/
 	private final Set<String> registeredSingletons = new LinkedHashSet<>(256);
 
-	/** Names of beans that are currently in creation. */
+	/** Names of beans that are currently in creation. 当前正在创建的单例对象集合 */
 	private final Set<String> singletonsCurrentlyInCreation = Collections.newSetFromMap(new ConcurrentHashMap<>(16));
 
 	/** Names of beans currently excluded from in creation checks. */
+	// 需要排除的单例，什么意思呢？在创建单例的时候，如果该单例正在创建，就不会再创建了，就应该排除掉，如果某个单例在该集合中，则表示该单例正在创建
 	private final Set<String> inCreationCheckExclusions = Collections.newSetFromMap(new ConcurrentHashMap<>(16));
 
 	/** List of suppressed Exceptions, available for associating related causes. */
@@ -92,22 +95,24 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	/** Map between depending bean names: bean name to Set of bean names for the bean's dependencies. */
 	private final Map<String, Set<String>> dependenciesForBeanMap = new ConcurrentHashMap<>(64);
 
-
+	// 注册单实例的bean
 	@Override
 	public void registerSingleton(String beanName, Object singletonObject) throws IllegalStateException {
 		Assert.notNull(beanName, "Bean name must not be null");
 		Assert.notNull(singletonObject, "Singleton object must not be null");
+		// 加锁：为什么用 ConcurrentHashMap 了还需要加锁？
 		synchronized (this.singletonObjects) {
+			// 判断是否已经注册过了,如果注册过了，则抛出异常
 			Object oldObject = this.singletonObjects.get(beanName);
 			if (oldObject != null) {
-				throw new IllegalStateException("Could not register object [" + singletonObject +
-						"] under bean name '" + beanName + "': there is already object [" + oldObject + "] bound");
+				throw new IllegalStateException("Could not register object [" + singletonObject + "] under bean name '" + beanName + "': there is already object [" + oldObject + "] bound");
 			}
+			// 真正的注册逻辑
 			addSingleton(beanName, singletonObject);
 		}
 	}
 
-	/**
+	/**   真正的注册逻辑，就是把bean的名称和对象放到map中
 	 * Add the given singleton object to the singleton cache of this factory.
 	 * <p>To be called for eager registration of singletons.
 	 * @param beanName the name of the bean
@@ -115,9 +120,13 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 */
 	protected void addSingleton(String beanName, Object singletonObject) {
 		synchronized (this.singletonObjects) {
+
 			this.singletonObjects.put(beanName, singletonObject);
+			// 该单例对象已经注册成功，则需要从工厂集合中移除，后面不需要再次注册
 			this.singletonFactories.remove(beanName);
+			// 之前注册过的对象也移除
 			this.earlySingletonObjects.remove(beanName);
+			// 向已经注册的单例集合中添加该实例
 			this.registeredSingletons.add(beanName);
 		}
 	}
@@ -152,26 +161,30 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 * <p>Checks already instantiated singletons and also allows for an early
 	 * reference to a currently created singleton (resolving a circular reference).
 	 * @param beanName the name of the bean to look for
-	 * @param allowEarlyReference whether early references should be created or not
+	 * @param allowEarlyReference whether early references should be created or not  该参数是为了解决循环引用
 	 * @return the registered singleton object, or {@code null} if none found
 	 */
 	@Nullable
 	protected Object getSingleton(String beanName, boolean allowEarlyReference) {
 		Object singletonObject = this.singletonObjects.get(beanName);
+		// 如果该单例没有注册过，且正在注册
 		if (singletonObject == null && isSingletonCurrentlyInCreation(beanName)) {
 			synchronized (this.singletonObjects) {
+				// 如果之前也没有注册过，且 allowEarlyReference = true
 				singletonObject = this.earlySingletonObjects.get(beanName);
 				if (singletonObject == null && allowEarlyReference) {
+					// 获取该bean对应的工厂，通过工厂了创建还bean
 					ObjectFactory<?> singletonFactory = this.singletonFactories.get(beanName);
 					if (singletonFactory != null) {
 						singletonObject = singletonFactory.getObject();
 						this.earlySingletonObjects.put(beanName, singletonObject);
+						// 创建成功后，需要去除
 						this.singletonFactories.remove(beanName);
 					}
 				}
 			}
 		}
-		return singletonObject;
+		return singletonObject;// 返回单例对象
 	}
 
 	/**
@@ -268,6 +281,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		return this.singletonObjects.containsKey(beanName);
 	}
 
+	// 获取所有单例的name
 	@Override
 	public String[] getSingletonNames() {
 		synchronized (this.singletonObjects) {
@@ -275,6 +289,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		}
 	}
 
+	// 获取所有已经注册了的单例的个数
 	@Override
 	public int getSingletonCount() {
 		synchronized (this.singletonObjects) {

@@ -100,6 +100,7 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.beans.factory.support.RootBeanDefinition#getDestroyMethodName
  *
  * 定义了获取bean和获取bean的各种属性
+ * BeanFactory 它是访问 Spring 容器的根接口，定义了获取bean的各种重载方法：
  */
 public interface BeanFactory {
 
