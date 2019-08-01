@@ -16,15 +16,10 @@ import org.springframework.lang.Nullable;
  * Convenient base class for {@link org.springframework.context.ApplicationContext}
  * implementations, drawing configuration from XML documents containing bean definitions
  * understood by an {@link org.springframework.beans.factory.xml.XmlBeanDefinitionReader}.
- *
  * <p>Subclasses just have to implement the {@link #getConfigResources} and/or
  * the {@link #getConfigLocations} method. Furthermore, they might override
  * the {@link #getResourceByPath} hook to interpret relative paths in an
- * environment-specific fashion, and/or {@link #getResourcePatternResolver}
- * for extended pattern resolution.
- *
- * @author Rod Johnson
-
+ * environment-specific fashion, and/or {@link #getResourcePatternResolver} for extended pattern resolution.
  * @see #getConfigResources
  * @see #getConfigLocations
  * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader
@@ -32,7 +27,6 @@ import org.springframework.lang.Nullable;
 public abstract class AbstractXmlApplicationContext extends AbstractRefreshableConfigApplicationContext {
 
 	private boolean validating = true;
-
 
 	/**
 	 * Create a new AbstractXmlApplicationContext with no parent.
@@ -48,14 +42,12 @@ public abstract class AbstractXmlApplicationContext extends AbstractRefreshableC
 		super(parent);
 	}
 
-
 	/**
 	 * Set whether to use XML validation. Default is {@code true}.
 	 */
 	public void setValidating(boolean validating) {
 		this.validating = validating;
 	}
-
 
 	/**
 	 * Loads the bean definitions via an XmlBeanDefinitionReader.

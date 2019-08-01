@@ -544,14 +544,13 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 				// 模版方法供子类实现，用于初始化一些特殊Bean配置等
 				onRefresh();
 
-				// Check for listener beans and register them.
+				// Check for listener beans and register them.  注册事件监听器，监听器需要实现 ApplicationListener 接口。这也不是我们的重点，过
 				// 注册实现了ApplicationListener接口的事件监听器，用于后续广播器广播事件
 				registerListeners();
 
 				/**
-				 * Instantiate all remaining (non-lazy-init) singletons.
-				 *   初始化所有的 singleton beans （lazy-init 的除外）
-				 *   BeanFactory初始化完成时调用，初始ConversionService Bean，冻结beanFactory配置，并开始创建BeanFactory中所有非懒加载的单例Bean
+				 * Instantiate all remaining (non-lazy-init) singletons.  初始化所有的 singleton beans （lazy-init 的除外）
+				 * BeanFactory 初始化完成时调用，初始ConversionService Bean，冻结beanFactory配置，并开始创建BeanFactory中所有非懒加载的单例Bean
 				 */
 				finishBeanFactoryInitialization(beanFactory);
 
@@ -564,17 +563,13 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 				if (logger.isWarnEnabled()) {
 					logger.warn("Exception encountered during context initialization - cancelling refresh attempt: " + ex);
 				}
-
 				// Destroy already created singletons to avoid dangling resources.
 				destroyBeans();
-
 				// Reset 'active' flag.
 				cancelRefresh(ex);
-
 				// Propagate exception to caller.
 				throw ex;
 			}
-
 			finally {
 				// Reset common introspection caches in Spring's core, since we
 				// might not ever need metadata for singleton beans anymore...
@@ -588,7 +583,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 * active flag as well as performing any initialization of property sources.
 	 */
 	protected void prepareRefresh() {
-		// Switch to active.
+		// Switch to active. 记录启动时间 将 active 属性设置为 true，closed 属性设置为 false，它们都是 AtomicBoolean 类型
 		this.startupDate = System.currentTimeMillis();
 		this.closed.set(false);
 		this.active.set(true);
@@ -608,7 +603,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 		// Validate that all properties marked as required are resolvable:
 		// see ConfigurablePropertyResolver#setRequiredProperties
-		// 校验必需的属性是否存在，具体参考下面的代码
+		//  校验 xml 配置文件  校验必需的属性是否存在，具体参考下面的代码
 		getEnvironment().validateRequiredProperties();
 
 		// Store pre-refresh ApplicationListeners...

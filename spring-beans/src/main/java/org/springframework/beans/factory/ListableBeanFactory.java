@@ -45,8 +45,6 @@ import org.springframework.lang.Nullable;
  * and {@code containsBeanDefinition}, the methods in this interface
  * are not designed for frequent invocation. Implementations may be slow.
  * 注意:getBeanDefinitionCount和containsBeanDefinition的实现方法因为效率比较低,并不是供频繁调用的.
- * @author Rod Johnson
-
  * @since 16 April 2001
  * @see HierarchicalBeanFactory
  * @see BeanFactoryUtils

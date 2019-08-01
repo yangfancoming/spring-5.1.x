@@ -10,7 +10,6 @@ import org.springframework.lang.Nullable;
  * types. Provides facilities for accessing and customizing the
  * {@link org.springframework.core.convert.ConversionService ConversionService}
  * used when converting property values from one type to another.
-
  * @since 3.1
  */
 public interface ConfigurablePropertyResolver extends PropertyResolver {

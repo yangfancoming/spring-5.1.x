@@ -80,9 +80,6 @@ import org.springframework.lang.Nullable;
  * <li>a custom destroy-method definition
  * </ol>
  *
- * @author Rod Johnson
-
-
  * @since 13 April 2001
  * @see BeanNameAware#setBeanName
  * @see BeanClassLoaderAware#setBeanClassLoader
@@ -99,26 +96,22 @@ import org.springframework.lang.Nullable;
  * @see DisposableBean#destroy
  * @see org.springframework.beans.factory.support.RootBeanDefinition#getDestroyMethodName
  *
- * 定义了获取bean和获取bean的各种属性
+ * 定义了获取bean、及获取bean的各种属性
  * BeanFactory 它是访问 Spring 容器的根接口，定义了获取bean的各种重载方法：
  */
 public interface BeanFactory {
 
 	/**
-	 * Used to dereference a {@link FactoryBean} instance and distinguish it from
-	 * beans <i>created</i> by the FactoryBean. For example, if the bean named
-	 * {@code myJndiObject} is a FactoryBean, getting {@code &myJndiObject}
-	 * will return the factory, not the instance returned by the factory.
+	 * Used to dereference a {@link FactoryBean} instance and distinguish it from beans <i>created</i> by the FactoryBean.
+	 * For example, if the bean named {@code myJndiObject} is a FactoryBean, getting {@code &myJndiObject} will return the factory, not the instance returned by the factory.
+	 * 这是用来区分是获取FactoryBean还是FactoryBean的createBean创建的实例.如果&开始则获取FactoryBean;否则获取createBean创建的实例.
 	 */
-	// 这是用来区分是获取FactoryBean还是FactoryBean的createBean创建的实例.如果&开始则获取FactoryBean;否则获取createBean创建的实例.
 	String FACTORY_BEAN_PREFIX = "&";
-
 
 	/**
 	 * Return an instance, which may be shared or independent, of the specified bean.
-	 * <p>This method allows a Spring BeanFactory to be used as a replacement for the
-	 * Singleton or Prototype design pattern. Callers may retain references to
-	 * returned objects in the case of Singleton beans.
+	 * <p>This method allows a Spring BeanFactory to be used as a replacement for the Singleton or Prototype design pattern.
+	 * Callers may retain references to returned objects in the case of Singleton beans.
 	 * <p>Translates aliases back to the corresponding canonical bean name.
 	 * Will ask the parent factory if the bean cannot be found in this factory instance.
 	 * @param name the name of the bean to retrieve
