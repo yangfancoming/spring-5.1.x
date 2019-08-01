@@ -22,13 +22,8 @@ import org.springframework.util.xml.XmlValidationModeDetector;
  * <p>Simply loads {@link Document documents} using the standard JAXP-configured
  * XML parser. If you want to change the {@link DocumentBuilder} that is used to
  * load documents, then one strategy is to define a corresponding Java system property
- * when starting your JVM. For example, to use the Oracle {@link DocumentBuilder},
- * you might start your application like as follows:
- *
+ * when starting your JVM. For example, to use the Oracle {@link DocumentBuilder}, you might start your application like as follows:
  * <pre code="class">java -Djavax.xml.parsers.DocumentBuilderFactory=oracle.xml.jaxp.JXDocumentBuilderFactory MyMainClass</pre>
- *
- * @author Rob Harrop
-
  * @since 2.0
  */
 public class DefaultDocumentLoader implements DocumentLoader {
@@ -48,8 +43,7 @@ public class DefaultDocumentLoader implements DocumentLoader {
 
 
 	/**
-	 * Load the {@link Document} at the supplied {@link InputSource} using the standard JAXP-configured
-	 * XML parser.
+	 * Load the {@link Document} at the supplied {@link InputSource} using the standard JAXP-configured  XML parser.
 	 */
 	@Override
 	public Document loadDocument(InputSource inputSource, EntityResolver entityResolver,ErrorHandler errorHandler, int validationMode, boolean namespaceAware) throws Exception {
@@ -108,8 +102,7 @@ public class DefaultDocumentLoader implements DocumentLoader {
 	 * @throws ParserConfigurationException if thrown by JAXP methods
 	 */
 	protected DocumentBuilder createDocumentBuilder(DocumentBuilderFactory factory,
-			@Nullable EntityResolver entityResolver, @Nullable ErrorHandler errorHandler)
-			throws ParserConfigurationException {
+			@Nullable EntityResolver entityResolver, @Nullable ErrorHandler errorHandler) throws ParserConfigurationException {
 
 		DocumentBuilder docBuilder = factory.newDocumentBuilder();
 		if (entityResolver != null) {

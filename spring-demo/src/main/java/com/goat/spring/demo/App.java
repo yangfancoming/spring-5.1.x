@@ -21,7 +21,6 @@ import org.springframework.core.io.ClassPathResource;
  */
 public class App {
 
-
 	/** 事务测试 */
 	@Test
 	public void test(){
@@ -29,7 +28,6 @@ public class App {
 		TransactionService bean = ctx.getBean(TransactionService.class);
 		System.out.println(bean.test1("hoho"));
 	}
-
 
 	/** service 测试 */
 	@Test
@@ -50,7 +48,6 @@ public class App {
 		System.out.println(messageService.getMessage()); // 这句将输出: hello world
 	}
 
-
 	/**  测试 */
 	@Test
 	public void test3(){
@@ -64,6 +61,5 @@ public class App {
 		reader.loadBeanDefinitions(resource);
 		MessageService bean = factory.getBean(MessageService.class);
 		System.out.println(bean.getMessage()); // 这句将输出: hello world
-
 	}
 }

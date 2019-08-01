@@ -35,31 +35,18 @@ import org.springframework.util.StringUtils;
  * to produce this format). {@code <beans>} does not need to be the root
  * element of the XML document: this class will parse all bean definition elements
  * in the XML file, regardless of the actual root element.
- *
- * @author Rod Johnson
-
- * @author Rob Harrop
- * @author Erik Wiersma
  * @since 18.12.2003
  */
 public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocumentReader {
 
 	public static final String BEAN_ELEMENT = BeanDefinitionParserDelegate.BEAN_ELEMENT;
-
 	public static final String NESTED_BEANS_ELEMENT = "beans";
-
 	public static final String ALIAS_ELEMENT = "alias";
-
 	public static final String NAME_ATTRIBUTE = "name";
-
 	public static final String ALIAS_ATTRIBUTE = "alias";
-
 	public static final String IMPORT_ELEMENT = "import";
-
 	public static final String RESOURCE_ATTRIBUTE = "resource";
-
 	public static final String PROFILE_ATTRIBUTE = "profile";
-
 
 	protected final Log logger = LogFactory.getLog(getClass());
 
@@ -111,15 +98,18 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		// the new (child) delegate with a reference to the parent for fallback purposes,
 		// then ultimately reset this.delegate back to its original (parent) reference.
 		// this behavior emulates a stack of delegates without actually necessitating one.
+		//标签beans可能会存在递归的情况, 每次都创建自己的解析器
 		BeanDefinitionParserDelegate parent = this.delegate;
 		this.delegate = createDelegate(getReaderContext(), root, parent);
 
 		if (this.delegate.isDefaultNamespace(root)) {
+			//获取beans标签的profile属性
 			String profileSpec = root.getAttribute(PROFILE_ATTRIBUTE);
 			if (StringUtils.hasText(profileSpec)) {
 				String[] specifiedProfiles = StringUtils.tokenizeToStringArray(profileSpec, BeanDefinitionParserDelegate.MULTI_VALUE_ATTRIBUTE_DELIMITERS);
 				// We cannot use Profiles.of(...) since profile expressions are not supported
 				// in XML config. See SPR-12458 for details.
+				//看spring.profiles.active环境变量中是否有该属性，如果没有则不加载下面的标签
 				if (!getReaderContext().getEnvironment().acceptsProfiles(specifiedProfiles)) {
 					if (logger.isDebugEnabled()) {
 						logger.debug("Skipped XML bean definition file due to specified profiles [" + profileSpec + "] not matching: " + getReaderContext().getResource());
@@ -128,8 +118,11 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 				}
 			}
 		}
+		//解析前处理、留给子类实现
 		preProcessXml(root);
+		//解析bean definition
 		parseBeanDefinitions(root, this.delegate);
+		//解析后处理、留给子类实现
 		postProcessXml(root);
 		this.delegate = parent;
 	}
