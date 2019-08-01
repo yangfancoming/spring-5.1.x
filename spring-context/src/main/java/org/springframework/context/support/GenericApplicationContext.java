@@ -68,8 +68,6 @@ import org.springframework.util.Assert;
  * <p>For custom application context implementations that are supposed to read
  * special bean definition formats in a refreshable manner, consider deriving
  * from the {@link AbstractRefreshableApplicationContext} base class.
- *
-
 
  * @since 1.1.2
  * @see #registerBeanDefinition
@@ -249,8 +247,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	@Override
 	protected final void refreshBeanFactory() throws IllegalStateException {
 		if (!this.refreshed.compareAndSet(false, true)) {
-			throw new IllegalStateException(
-					"GenericApplicationContext does not support multiple refresh attempts: just call 'refresh' once");
+			throw new IllegalStateException("GenericApplicationContext does not support multiple refresh attempts: just call 'refresh' once");
 		}
 		this.beanFactory.setSerializationId(getId());
 	}
@@ -303,9 +300,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	//---------------------------------------------------------------------
 
 	@Override
-	public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition)
-			throws BeanDefinitionStoreException {
-
+	public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition) throws BeanDefinitionStoreException {
 		this.beanFactory.registerBeanDefinition(beanName, beanDefinition);
 	}
 
@@ -369,9 +364,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	 * @since 5.0
 	 * @see #registerBean(String, Class, Supplier, BeanDefinitionCustomizer...)
 	 */
-	public final <T> void registerBean(
-			@Nullable String beanName, Class<T> beanClass, BeanDefinitionCustomizer... customizers) {
-
+	public final <T> void registerBean(@Nullable String beanName, Class<T> beanClass, BeanDefinitionCustomizer... customizers) {
 		registerBean(beanName, beanClass, null, customizers);
 	}
 
@@ -387,9 +380,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	 * @since 5.0
 	 * @see #registerBean(String, Class, Supplier, BeanDefinitionCustomizer...)
 	 */
-	public final <T> void registerBean(
-			Class<T> beanClass, Supplier<T> supplier, BeanDefinitionCustomizer... customizers) {
-
+	public final <T> void registerBean(Class<T> beanClass, Supplier<T> supplier, BeanDefinitionCustomizer... customizers) {
 		registerBean(null, beanClass, supplier, customizers);
 	}
 
@@ -408,9 +399,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	 * {@link BeanDefinition}, e.g. setting a lazy-init or primary flag
 	 * @since 5.0
 	 */
-	public <T> void registerBean(@Nullable String beanName, Class<T> beanClass,
-			@Nullable Supplier<T> supplier, BeanDefinitionCustomizer... customizers) {
-
+	public <T> void registerBean(@Nullable String beanName, Class<T> beanClass,@Nullable Supplier<T> supplier, BeanDefinitionCustomizer... customizers) {
 		ClassDerivedBeanDefinition beanDefinition = new ClassDerivedBeanDefinition(beanClass);
 		if (supplier != null) {
 			beanDefinition.setInstanceSupplier(supplier);

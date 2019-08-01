@@ -106,7 +106,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 */
 	@Override
 	protected final void refreshBeanFactory() throws BeansException {
-		/**
+		/**  如果已经存在BeanFactory那么就销毁
 		 如果 ApplicationContext 中已经加载过 BeanFactory 了，销毁所有 Bean，关闭 BeanFactory
 		 注意，应用中 BeanFactory 本来就是可以多个的，这里可不是说应用全局是否有 BeanFactory，而是当前
 		 ApplicationContext 是否有 BeanFactory
@@ -116,9 +116,16 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			closeBeanFactory();
 		}
 		try {
+			//创建一个默认的BeanFactory，即全功能的那个郭靖！
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
 			beanFactory.setSerializationId(getId());
-			customizeBeanFactory(beanFactory);// 设置 BeanFactory 的两个配置属性：是否允许 Bean 覆盖、是否允许循环引用
+
+			/**
+			 配置beanFactory的一些定制化属性，如是否允许循环依赖，是否支持definition重写
+			  设置 BeanFactory 的两个配置属性：是否允许 Bean 覆盖、是否允许循环引用
+			*/
+			customizeBeanFactory(beanFactory);
+			//这步就关键了，载入BeanDefinations，给BeanFactory工厂提供创建bean的原材料！
 			loadBeanDefinitions(beanFactory);
 			synchronized (this.beanFactoryMonitor) {
 				this.beanFactory = beanFactory;

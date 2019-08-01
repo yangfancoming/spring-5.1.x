@@ -502,6 +502,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			/**
 			 *  Prepare this context for refreshing. 准备工作，记录下容器的启动时间、标记“已启动”状态、处理配置文件中的占位符
 			 *  供子类拓展，添加创建前必需属性，校验如果必需属性不存在则抛出MissingRequiredPropertiesException
+			 *  预初始化，设置容器的启动时间、激活标志，初始化和验证一些预定义的属性（有的话）
 			 */
 			prepareRefresh();
 
@@ -512,50 +513,63 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			 *    注册也只是将这些信息都保存到了注册中心(说到底核心是一个 beanName-> beanDefinition 的 map)
 			 *    调用子类实现方法获取（创建或刷新）BeanFacotry容器，对于ClassPathXmlApplicationContext，主要调用了AbstractRefreshableApplicationContext中实现的方法
 			 * 	  在这里，将xml配置文件中 的Bean解析成了一个个BeanDefinition,建立一个beanName-> beanDefinition 的 map
+			 *
+			 * 	  // 初始化BeanFactory，存在则销毁，不存在则创建一个
 			 */
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
 			// 设定类加载器，spel解析器，属性编辑解析器等，忽略特定接口的依赖注册（在特定时刻相关Bean再完成注入)，注册一些系统Bean供依赖注入使用。
+			//  对即将在IOC容器里使用的BeanFactory做一些配置，比如设置类加载器，设置回调方法等
 			// Prepare the bean factory for use in this context.
 			prepareBeanFactory(beanFactory);
 
 			try {
-				// Allows post-processing of the bean factory in context subclasses.
-				// BeanFactory创建完的后置处理。当前为空实现，供子类拓展
+				/**
+				  Allows post-processing of the bean factory in context subclasses.
+				  BeanFactory创建完的后置处理。当前为空实现，供子类拓展
+				  BeanFactory构建完成之后事件，这个方法没有实现，我们可以实现一个。
+				*/
 				postProcessBeanFactory(beanFactory);
 
 				// Invoke factory processors registered as beans in the context.
 				// 调用BeanFacotry的相关后置处理器，如果实现了Order相关接口，会先进行排序。
+				// 执行上面的事件
 				invokeBeanFactoryPostProcessors(beanFactory);
 
 				// Register bean processors that intercept bean creation.
 				// 注册相关BeanPostProcessor，供Bean生成前后调用。
+				// 在创建Bean过程中注册拦截器，这些个拦截器会在bean成为真正的成熟bean（applicationContext管理的bean）之前调用
 				registerBeanPostProcessors(beanFactory);
 
 				// Initialize message source for this context.
-				// 初始化国际化信息源
+				// 初始化国际化信息源   // 初始化信息源，信息源bean可以国际化的读取properties文件
 				initMessageSource();
 
 				// Initialize event multicaster for this context.
 				// 初始化Spring相关上下文时间广播器
+				// 初始化事件广播器，对于他内部的监听者applicationListeners，每次事件到来都会一一获取通知（这里使用了观察者模式）
 				initApplicationEventMulticaster();
 
 				// Initialize other special beans in specific context subclasses.
 				// 模版方法供子类实现，用于初始化一些特殊Bean配置等
+				// 模板方法模式，埋了一个钩子，那些想要实现特殊实例化bean的类可以重写这个方法以实现自己的定制化初始化方案
 				onRefresh();
 
 				// Check for listener beans and register them.  注册事件监听器，监听器需要实现 ApplicationListener 接口。这也不是我们的重点，过
 				// 注册实现了ApplicationListener接口的事件监听器，用于后续广播器广播事件
+				// 给事件广播器注册一些监听器（观察者模式）
 				registerListeners();
 
 				/**
 				 * Instantiate all remaining (non-lazy-init) singletons.  初始化所有的 singleton beans （lazy-init 的除外）
 				 * BeanFactory 初始化完成时调用，初始ConversionService Bean，冻结beanFactory配置，并开始创建BeanFactory中所有非懒加载的单例Bean
+				 * 完成BeanFacotry的初始化，初始化所有剩余的单例Bean
 				 */
 				finishBeanFactoryInitialization(beanFactory);
 
 				// Last step: publish corresponding event. 最后，广播事件，ApplicationContext 初始化完成
 				// 初始化Lifecycle处理器，调用onRefresh方法，广播ContextRefreshedEvent。
+				//初始化容器的生命周期事件处理器，并发布容器的生命周期事件
 				finishRefresh();
 			}
 
@@ -634,6 +648,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 * @return the fresh BeanFactory instance
 	 * @see #refreshBeanFactory()
 	 * @see #getBeanFactory()
+	 *
+	 * 该方法为BeanFactory准备创建Bean的原材料，即BeanDefinition，准备好之后放到一个ConcurrentHashMap里面，key为beanName，value为BeanDefinition
 	 */
 	protected ConfigurableListableBeanFactory obtainFreshBeanFactory() {
 		refreshBeanFactory();

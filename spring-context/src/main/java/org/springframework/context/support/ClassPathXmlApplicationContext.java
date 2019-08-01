@@ -116,7 +116,7 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 		// 通过层层调用父构造函数，主要初始化了this.resourcePatternResolver=new PathMatchingResourcePatternResolver(this);后续可以通过适配符寻找符合条件的java类
 		super(parent);
 		// 遍历解析传入的配置文件路径，将路径中的占位符替换成相关的环境变量。
-		setConfigLocations(configLocations); // 设置配置文件路径 eg: "classpath:application.xml"
+		setConfigLocations(configLocations); //存储了xml的位置，以便后续获取  设置配置文件路径 eg: "classpath:application.xml"
 		if (refresh) {
 			refresh();// 调用父类AbstractApplicationContext中定义的refresh方法，完成Spring容器和应用上下文的创建工作。
 		}
