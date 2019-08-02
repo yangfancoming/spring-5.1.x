@@ -16,7 +16,6 @@ import org.springframework.util.StringUtils;
  * <p>Can also be used for programmatic registration of inner bean
  * definitions. If you don't care about BeanNameAware and the like,
  * registering RootBeanDefinition or ChildBeanDefinition is good enough.
- *
 
  * @since 1.0.2
  * @see org.springframework.beans.factory.BeanNameAware

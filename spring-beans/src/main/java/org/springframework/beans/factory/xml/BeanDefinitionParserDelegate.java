@@ -386,7 +386,7 @@ public class BeanDefinitionParserDelegate { // 定义解析 Element 的各种方
 		return parseBeanDefinitionElement(ele, null);
 	}
 
-	/**
+	/**  最终解析xml成BeanDefinition
 	 * Parses the supplied {@code <bean>} element. May return {@code null}
 	 * if there were errors during parse. Errors are reported to the
 	 * {@link org.springframework.beans.factory.parsing.ProblemReporter}.
