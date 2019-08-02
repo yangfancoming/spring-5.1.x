@@ -6,7 +6,7 @@
 	<bean id="messageService" class="com.goat.spring.demo.service.MessageServiceImpl"/>
 
 
-	<beans profile="dev">
+	<beans profile="devTest">
 		<bean id="MyTestBean" class="com.goat.spring.demo.service.MyTestBeanImpl"/>
 	</beans>
 

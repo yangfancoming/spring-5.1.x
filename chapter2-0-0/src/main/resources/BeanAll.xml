@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "https://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<!--
+		id属性：id标签是bean的唯一标识，IoC容器中bean的id标签不能重复，否则报错。 用于指定Bean的名称，在Bean被依赖时使用，在获取Bean时使用等
+		name属性：用于指定Bean的别名
+		class属性：用于指定Bean的来源，即创建要创建的Bean的class类（需要全限定名）
+		init-method 属性：用于指定当前Bean的初始化方法，在Bean实例创建好后，首先会调用其指定名称的方法
+		destory-method属性：用于指定当前Bean的销毁方法，在Bean即将被销毁之前会自动调用该属性指定的方法，bean依赖于容器，容器销毁bean销毁
+		lazy-init属性：用于指定当前Bean的初始化时间，
+			若值为true表示在初次调用时才会自动创建实例并初始化，
+			false表示在IoC容器创建的时候就会完成创建和初始化，默认是false
+		scope属性：用于指定bean的模式，
+			singleton:是单例模式，容器只创建一个对象。
+			prototype:为非单例模式，容器创建多个对象，但容器不会去逐个销毁,默认是单例对象,
+			request： web项目中spring创建一个bean对象，将对象存到request域中,
+			session： web项目中将对象存到session域中，
+			globalSession：web项目中，应用在prolet环境，如果没有prolet环境那么globalSession相当于session
+-->
+
+<beans>
+
+	<bean id="testBean"  name="myTestBean" class="main.tsmyk.pojo.MyTestBean"
+		  init-method="getName" destroy-method="getName"
+
+		  abstract="true" autowire="byName" autowire-candidate="true"
+		  depends-on="conversionService"
+		  factory-bean="environment" factory-method=""
+		  lazy-init="true"
+		  parent="environment" primary="true" scope="singleton" >
+
+		<property name="name" value=""/>
+
+		<constructor-arg name="a" value="a" type="TestBean" index="" ref="">
+			<bean name="" />
+			<map key-type="" value-type=""/>
+		</constructor-arg>
+
+		<qualifier value="a" type=""/>
+
+		<lookup-method />
+
+		<meta key="" value=""/>
+
+		<replaced-method/>
+	</bean>
+
+	<alias name="testBean" alias="aaa"/>
+	<import resource=""/>
+
+</beans>

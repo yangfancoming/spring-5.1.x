@@ -26,7 +26,6 @@ import org.springframework.tests.sample.beans.factory.DummyFactory;
 
 /**
  * Types used by {@link XmlBeanFactoryTests} and its attendant XML config files.
-
  */
 final class XmlBeanFactoryTestTypes {
 }
@@ -34,8 +33,6 @@ final class XmlBeanFactoryTestTypes {
 
 /**
  * Simple bean used to check constructor dependency checking.
- *
-
  * @since 09.11.2003
  */
 @SuppressWarnings("serial")
@@ -214,7 +211,6 @@ class DerivedConstructorDependenciesBean extends ConstructorDependenciesBean {
 
 
 interface DummyBo {
-
 	void something();
 }
 
@@ -240,7 +236,6 @@ class DummyDao {
 
 
 /**
-
  * @since 21.07.2003
  */
 class DummyReferencer {

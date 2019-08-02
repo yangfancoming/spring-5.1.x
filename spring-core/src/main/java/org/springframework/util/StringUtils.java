@@ -32,16 +32,6 @@ import org.springframework.lang.Nullable;
  * provided by the core Java {@link String} and {@link StringBuilder}
  * classes. It also provides easy-to-use methods to convert between
  * delimited strings, such as CSV strings, and collections and arrays.
- *
- * @author Rod Johnson
-
- * @author Keith Donald
- * @author Rob Harrop
- * @author Rick Evans
- * @author Arjen Poutsma
- * @author Sam Brannen
- * @author Brian Clozel
- * @since 16 April 2001
  */
 public abstract class StringUtils {
 
@@ -116,8 +106,7 @@ public abstract class StringUtils {
 	/**
 	 * Check whether the given {@code CharSequence} contains actual <em>text</em>.
 	 * <p>More specifically, this method returns {@code true} if the
-	 * {@code CharSequence} is not {@code null}, its length is greater than
-	 * 0, and it contains at least one non-whitespace character.
+	 * {@code CharSequence} is not {@code null}, its length is greater than 0, and it contains at least one non-whitespace character.
 	 * <p><pre class="code">
 	 * StringUtils.hasText(null) = false
 	 * StringUtils.hasText("") = false
@@ -126,8 +115,7 @@ public abstract class StringUtils {
 	 * StringUtils.hasText(" 12345 ") = true
 	 * </pre>
 	 * @param str the {@code CharSequence} to check (may be {@code null})
-	 * @return {@code true} if the {@code CharSequence} is not {@code null},
-	 * its length is greater than 0, and it does not contain whitespace only
+	 * @return {@code true} if the {@code CharSequence} is not {@code null}, its length is greater than 0, and it does not contain whitespace only
 	 * @see #hasText(String)
 	 * @see #hasLength(CharSequence)
 	 * @see Character#isWhitespace
@@ -139,11 +127,9 @@ public abstract class StringUtils {
 	/**
 	 * Check whether the given {@code String} contains actual <em>text</em>.
 	 * <p>More specifically, this method returns {@code true} if the
-	 * {@code String} is not {@code null}, its length is greater than 0,
-	 * and it contains at least one non-whitespace character.
+	 * {@code String} is not {@code null}, its length is greater than 0, and it contains at least one non-whitespace character.
 	 * @param str the {@code String} to check (may be {@code null})
-	 * @return {@code true} if the {@code String} is not {@code null}, its
-	 * length is greater than 0, and it does not contain whitespace only
+	 * @return {@code true} if the {@code String} is not {@code null}, its length is greater than 0, and it does not contain whitespace only
 	 * @see #hasText(CharSequence)
 	 * @see #hasLength(String)
 	 * @see Character#isWhitespace
@@ -165,8 +151,7 @@ public abstract class StringUtils {
 	/**
 	 * Check whether the given {@code CharSequence} contains any whitespace characters.
 	 * @param str the {@code CharSequence} to check (may be {@code null})
-	 * @return {@code true} if the {@code CharSequence} is not empty and
-	 * contains at least 1 whitespace character
+	 * @return {@code true} if the {@code CharSequence} is not empty and contains at least 1 whitespace character
 	 * @see Character#isWhitespace
 	 */
 	public static boolean containsWhitespace(@Nullable CharSequence str) {
@@ -186,8 +171,7 @@ public abstract class StringUtils {
 	/**
 	 * Check whether the given {@code String} contains any whitespace characters.
 	 * @param str the {@code String} to check (may be {@code null})
-	 * @return {@code true} if the {@code String} is not empty and
-	 * contains at least 1 whitespace character
+	 * @return {@code true} if the {@code String} is not empty and contains at least 1 whitespace character
 	 * @see #containsWhitespace(CharSequence)
 	 */
 	public static boolean containsWhitespace(@Nullable String str) {
@@ -621,8 +605,7 @@ public abstract class StringUtils {
 	}
 
 	/**
-	 * Normalize the path by suppressing sequences like "path/.." and
-	 * inner simple dots.
+	 * Normalize the path by suppressing sequences like "path/.." and inner simple dots.
 	 * <p>The result is convenient for path comparison. For other uses,
 	 * notice that Windows separators ("\") are replaced by simple slashes.
 	 * @param path the original path

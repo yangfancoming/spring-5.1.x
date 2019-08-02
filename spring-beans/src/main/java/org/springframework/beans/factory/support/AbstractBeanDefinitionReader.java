@@ -70,7 +70,6 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 	protected AbstractBeanDefinitionReader(BeanDefinitionRegistry registry) {
 		Assert.notNull(registry, "BeanDefinitionRegistry must not be null");
 		this.registry = registry;
-
 		// Determine ResourceLoader to use.
 		if (this.registry instanceof ResourceLoader) {
 			this.resourceLoader = (ResourceLoader) this.registry;
@@ -78,7 +77,6 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 		else {
 			this.resourceLoader = new PathMatchingResourcePatternResolver();
 		}
-
 		// Inherit Environment if possible
 		if (this.registry instanceof EnvironmentCapable) {
 			this.environment = ((EnvironmentCapable) this.registry).getEnvironment();
@@ -199,8 +197,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 	public int loadBeanDefinitions(String location, @Nullable Set<Resource> actualResources) throws BeanDefinitionStoreException {
 		ResourceLoader resourceLoader = getResourceLoader();
 		if (resourceLoader == null) {
-			throw new BeanDefinitionStoreException(
-					"Cannot load bean definitions from location [" + location + "]: no ResourceLoader available");
+			throw new BeanDefinitionStoreException("Cannot load bean definitions from location [" + location + "]: no ResourceLoader available");
 		}
 
 		if (resourceLoader instanceof ResourcePatternResolver) {
@@ -217,8 +214,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 				return count;
 			}
 			catch (IOException ex) {
-				throw new BeanDefinitionStoreException(
-						"Could not resolve bean definition resource pattern [" + location + "]", ex);
+				throw new BeanDefinitionStoreException("Could not resolve bean definition resource pattern [" + location + "]", ex);
 			}
 		}
 		else {

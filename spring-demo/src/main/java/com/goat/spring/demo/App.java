@@ -7,10 +7,12 @@ import com.goat.spring.demo.service.TransactionService;
 import org.junit.Test;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.test.context.ActiveProfiles;
 
 /**
  * Created by 64274 on 2019/8/1.
@@ -19,6 +21,7 @@ import org.springframework.core.io.ClassPathResource;
  * @ author  山羊来了
  * @ date 2019/8/1---9:41
  */
+@ActiveProfiles("test")
 public class App {
 
 	/** 事务测试 */
@@ -48,11 +51,11 @@ public class App {
 		System.out.println(messageService.getMessage()); // 这句将输出: hello world
 	}
 
+	ClassPathResource resource  = new ClassPathResource("application.xml");
 	/**  测试 */
 	@Test
 	public void test3(){
 		// 创建IOC配置文件的抽象资源，即配置文件
-		ClassPathResource resource  = new ClassPathResource("application.xml");
 		// 创建一个BeanFactory,这里使用DefaultListableBeanFactory
 		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 		// 创建一个载入BeanDefinition的读取器，这里使用XmlBeanDefinitionReader 来载入XML文件形式的BeanDefinition
@@ -61,5 +64,15 @@ public class App {
 		reader.loadBeanDefinitions(resource);
 		MessageService bean = factory.getBean(MessageService.class);
 		System.out.println(bean.getMessage()); // 这句将输出: hello world
+	}
+
+	/**  测试 */
+	@Test
+	public void test4(){
+		XmlBeanFactory factory = new XmlBeanFactory(resource);
+		XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
+		reader.loadBeanDefinitions(resource);
+		MessageService bean = factory.getBean(MessageService.class);
+		System.out.println(bean.getMessage());
 	}
 }

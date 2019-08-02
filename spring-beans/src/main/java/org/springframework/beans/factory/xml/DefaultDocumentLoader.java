@@ -65,7 +65,6 @@ public class DefaultDocumentLoader implements DocumentLoader {
 	 * @throws ParserConfigurationException if we failed to build a proper DocumentBuilderFactory
 	 */
 	protected DocumentBuilderFactory createDocumentBuilderFactory(int validationMode, boolean namespaceAware) throws ParserConfigurationException {
-
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		factory.setNamespaceAware(namespaceAware);
 
@@ -92,18 +91,14 @@ public class DefaultDocumentLoader implements DocumentLoader {
 
 	/**
 	 * Create a JAXP DocumentBuilder that this bean definition reader
-	 * will use for parsing XML documents. Can be overridden in subclasses,
-	 * adding further initialization of the builder.
-	 * @param factory the JAXP DocumentBuilderFactory that the DocumentBuilder
-	 * should be created with
+	 * will use for parsing XML documents. Can be overridden in subclasses,adding further initialization of the builder.
+	 * @param factory the JAXP DocumentBuilderFactory that the DocumentBuilder should be created with
 	 * @param entityResolver the SAX EntityResolver to use
 	 * @param errorHandler the SAX ErrorHandler to use
 	 * @return the JAXP DocumentBuilder
 	 * @throws ParserConfigurationException if thrown by JAXP methods
 	 */
-	protected DocumentBuilder createDocumentBuilder(DocumentBuilderFactory factory,
-			@Nullable EntityResolver entityResolver, @Nullable ErrorHandler errorHandler) throws ParserConfigurationException {
-
+	protected DocumentBuilder createDocumentBuilder(DocumentBuilderFactory factory,@Nullable EntityResolver entityResolver, @Nullable ErrorHandler errorHandler) throws ParserConfigurationException {
 		DocumentBuilder docBuilder = factory.newDocumentBuilder();
 		if (entityResolver != null) {
 			docBuilder.setEntityResolver(entityResolver);

@@ -58,8 +58,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 
 
 	/**
-	 * This implementation parses bean definitions according to the "spring-beans" XSD
-	 * (or DTD, historically).
+	 * This implementation parses bean definitions according to the "spring-beans" XSD (or DTD, historically).
 	 * <p>Opens a DOM Document; then initializes the default settings
 	 * specified at the {@code <beans/>} level; then parses the contained bean definitions.
 	 */
@@ -101,7 +100,6 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		//标签beans可能会存在递归的情况, 每次都创建自己的解析器
 		BeanDefinitionParserDelegate parent = this.delegate;
 		this.delegate = createDelegate(getReaderContext(), root, parent);
-
 		if (this.delegate.isDefaultNamespace(root)) {
 			//获取beans标签的profile属性
 			String profileSpec = root.getAttribute(PROFILE_ATTRIBUTE);

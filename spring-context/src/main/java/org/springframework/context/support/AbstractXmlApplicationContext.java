@@ -105,7 +105,7 @@ public abstract class AbstractXmlApplicationContext extends AbstractRefreshableC
 			reader.loadBeanDefinitions(configResources);
 		}
 		//显然这个configRuations我们之前给传了一个路径"bean.xml"，所以执行这个重载方法
-		String[] configLocations = getConfigLocations();
+		String[] configLocations = getConfigLocations(); // classpath:CNamespaceReferenceTest-context.xml
 		if (configLocations != null) {
 			reader.loadBeanDefinitions(configLocations);
 		}

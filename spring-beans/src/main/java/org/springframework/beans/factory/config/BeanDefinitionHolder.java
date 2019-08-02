@@ -108,8 +108,7 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 	 * or the aliases stored in this bean definition.
 	 */
 	public boolean matchesName(@Nullable String candidateName) {
-		return (candidateName != null && (candidateName.equals(this.beanName) ||
-				candidateName.equals(BeanFactoryUtils.transformedBeanName(this.beanName)) ||
+		return (candidateName != null && (candidateName.equals(this.beanName) || candidateName.equals(BeanFactoryUtils.transformedBeanName(this.beanName)) ||
 				ObjectUtils.containsElement(this.aliases, candidateName)));
 	}
 
@@ -161,9 +160,7 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 			return false;
 		}
 		BeanDefinitionHolder otherHolder = (BeanDefinitionHolder) other;
-		return this.beanDefinition.equals(otherHolder.beanDefinition) &&
-				this.beanName.equals(otherHolder.beanName) &&
-				ObjectUtils.nullSafeEquals(this.aliases, otherHolder.aliases);
+		return this.beanDefinition.equals(otherHolder.beanDefinition) && this.beanName.equals(otherHolder.beanName) && ObjectUtils.nullSafeEquals(this.aliases, otherHolder.aliases);
 	}
 
 	@Override
