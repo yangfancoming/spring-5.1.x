@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!--使用Spring将 SlayDragonQuest 注入到 BraveKnight 中-->
+	<bean id="knight2" class="com.goat.chapter100.knight.impl.BraveKnight">
+		<constructor-arg ref="quest" />
+	</bean>
+
+
+	<!--bean的声明使用了Spring表达式语言（Spring Expression Language） ， 将System.out（这是一个PrintStream）-->
+	<bean id="ques1t" class="com.goat.chapter100.quest.impl.SlayDragonQuest"> </bean>
+
+
+	<bean id="quest" class="com.goat.chapter100.quest.impl.RescueDamselQuest"></bean>
+
+</beans>

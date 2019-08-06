@@ -33,5 +33,7 @@ include 'spring-demo'
 include 'spring-web-demo'
 include 'spring-goat'
 include 'spring-goat-tx'
+include 'chapter1-0-0'
 include 'chapter2-0-0'
+include 'chapter3-0-0'
 

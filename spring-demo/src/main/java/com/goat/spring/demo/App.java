@@ -4,6 +4,7 @@ import com.goat.spring.demo.config.AppConfig;
 import com.goat.spring.demo.service.MessageService;
 import com.goat.spring.demo.service.TestService;
 import com.goat.spring.demo.service.TransactionService;
+import com.goat.spring.demo.service.WhatService;
 import org.junit.Test;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
@@ -47,8 +48,8 @@ public class App {
 		ApplicationContext context = new ClassPathXmlApplicationContext("classpath:application.xml");
 		System.out.println("context 启动成功");
 		// 从 context 中取出我们的 Bean，而不是用 new MessageServiceImpl() 这种方式
-		MessageService messageService = context.getBean(MessageService.class);
-		System.out.println(messageService.getMessage()); // 这句将输出: hello world
+		WhatService whatService = context.getBean(WhatService.class);
+		System.out.println(whatService.getMessage()); // 这句将输出: hello world
 	}
 
 	ClassPathResource resource  = new ClassPathResource("application.xml");
