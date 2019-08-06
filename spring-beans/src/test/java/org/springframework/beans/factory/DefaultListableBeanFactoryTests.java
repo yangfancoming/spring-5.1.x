@@ -94,14 +94,6 @@ import static org.mockito.BDDMockito.*;
 
 /**
  * Tests properties population and autowire behavior.
- *
- * @author Rod Johnson
-
- * @author Rick Evans
- * @author Sam Brannen
-
- * @author Phillip Webb
- * @author Stephane Nicoll
  */
 public class DefaultListableBeanFactoryTests {
 
@@ -117,11 +109,13 @@ public class DefaultListableBeanFactoryTests {
 	public void testUnreferencedSingletonWasInstantiated() {
 		KnowsIfInstantiated.clearInstantiationRecord();
 		Properties p = new Properties();
-		p.setProperty("x1.(class)", KnowsIfInstantiated.class.getName());
-		assertTrue("singleton not instantiated", !KnowsIfInstantiated.wasInstantiated());
+		String name = KnowsIfInstantiated.class.getName();// org.springframework.beans.factory.DefaultListableBeanFactoryTests$KnowsIfInstantiated
+		p.setProperty("x1.(class)", name);
+		assertFalse(KnowsIfInstantiated.wasInstantiated());
+		System.out.println("---------------------");
 		(new PropertiesBeanDefinitionReader(lbf)).registerBeanDefinitions(p);
 		lbf.preInstantiateSingletons();
-		assertTrue("singleton was instantiated", KnowsIfInstantiated.wasInstantiated());
+		assertTrue(KnowsIfInstantiated.wasInstantiated());
 	}
 
 	@Test
@@ -136,7 +130,7 @@ public class DefaultListableBeanFactoryTests {
 		lbf.preInstantiateSingletons();
 
 		assertTrue("singleton not instantiated", !KnowsIfInstantiated.wasInstantiated());
-		lbf.getBean("x1");
+		lbf.getBean("x1"); // 调用 getBean()时  实例化 KnowsIfInstantiated类
 		assertTrue("singleton was instantiated", KnowsIfInstantiated.wasInstantiated());
 	}
 
@@ -3327,6 +3321,7 @@ public class DefaultListableBeanFactoryTests {
 		}
 
 		public KnowsIfInstantiated() {
+			System.out.println("调用 KnowsIfInstantiated 构造函数！");
 			instantiated = true;
 		}
 
@@ -3373,10 +3368,8 @@ public class DefaultListableBeanFactoryTests {
 
 
 	enum NonPublicEnum {
-
-		VALUE_1, VALUE_2;
+		VALUE_1, VALUE_2
 	}
-
 
 	static class NonPublicEnumHolder {
 

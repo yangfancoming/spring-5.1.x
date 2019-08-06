@@ -858,8 +858,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	}
 
 	/**
-	 * Finish the initialization of this context's bean factory,
-	 * initializing all remaining singleton beans.
+	 * Finish the initialization of this context's bean factory, initializing all remaining singleton beans.
 	 */
 	protected void finishBeanFactoryInitialization(ConfigurableListableBeanFactory beanFactory) {
 		// Initialize conversion service for this context.
@@ -886,8 +885,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		// Allow for caching all bean definition metadata, not expecting further changes.
 		beanFactory.freezeConfiguration();
 
-		// Instantiate all remaining (non-lazy-init) singletons.
-		// 预实例化所有非懒加载单例Bean
+		// Instantiate all remaining (non-lazy-init) singletons. 预实例化所有非懒加载单例Bean
 		beanFactory.preInstantiateSingletons();
 	}
 

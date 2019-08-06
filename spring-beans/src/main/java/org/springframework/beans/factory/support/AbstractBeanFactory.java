@@ -176,16 +176,19 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	// Implementation of BeanFactory interface
 	//---------------------------------------------------------------------
 
+	//获取IOC容器中指定名称的Bean
 	@Override
 	public Object getBean(String name) throws BeansException {
 		return doGetBean(name, null, null, false);
 	}
 
+	//获取IOC容器中指定名称和类型的Bean
 	@Override
 	public <T> T getBean(String name, Class<T> requiredType) throws BeansException {
 		return doGetBean(name, requiredType, null, false);
 	}
 
+	//获取IOC容器中指定名称和参数的Bean
 	@Override
 	public Object getBean(String name, Object... args) throws BeansException {
 		return doGetBean(name, null, args, false);
@@ -200,9 +203,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * @return an instance of the bean
 	 * @throws BeansException if the bean could not be created
 	 */
-	public <T> T getBean(String name, @Nullable Class<T> requiredType, @Nullable Object... args)
-			throws BeansException {
-
+	//获取IOC容器中指定名称、类型和参数的Bean
+	public <T> T getBean(String name, @Nullable Class<T> requiredType, @Nullable Object... args) throws BeansException {
 		return doGetBean(name, requiredType, args, false);
 	}
 
@@ -220,6 +222,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * 	requiredType=null： 一般情况用不到，如果获取到的字符串，但requiredType是Integer，会在最后进行类型转换。
 	 * 	args=null： 在获取prototype对象时传入，用来初始化原型对象
 	 * 	typeCheckOnly=false： 如果为false，会将Bean标志为已创建,记录在alreadyCreated变量中。
+	 * 	//真正实现向IOC容器获取Bean的功能，也是触发依赖注入功能的地方
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -241,8 +244,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		if (sharedInstance != null && args == null) {
 			if (logger.isTraceEnabled()) {
 				if (isSingletonCurrentlyInCreation(beanName)) {
-					logger.trace("Returning eagerly cached instance of singleton bean '" + beanName +
-							"' that is not fully initialized yet - a consequence of a circular reference");
+					logger.trace("Returning eagerly cached instance of singleton bean '" + beanName + "' that is not fully initialized yet - a consequence of a circular reference");
 				}
 				else {
 					logger.trace("Returning cached instance of singleton bean '" + beanName + "'");
@@ -267,8 +269,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				// Not found -> check parent.
 				String nameToLookup = originalBeanName(name);
 				if (parentBeanFactory instanceof AbstractBeanFactory) {
-					return ((AbstractBeanFactory) parentBeanFactory).doGetBean(
-							nameToLookup, requiredType, args, typeCheckOnly);
+					return ((AbstractBeanFactory) parentBeanFactory).doGetBean(nameToLookup, requiredType, args, typeCheckOnly);
 				}
 				else if (args != null) {
 					// Delegation to parent with explicit args.
@@ -299,16 +300,14 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				if (dependsOn != null) {
 					for (String dep : dependsOn) {
 						if (isDependent(beanName, dep)) {
-							throw new BeanCreationException(mbd.getResourceDescription(), beanName,
-									"Circular depends-on relationship between '" + beanName + "' and '" + dep + "'");
+							throw new BeanCreationException(mbd.getResourceDescription(), beanName,"Circular depends-on relationship between '" + beanName + "' and '" + dep + "'");
 						}
 						registerDependentBean(dep, beanName);
 						try {
 							getBean(dep);
 						}
 						catch (NoSuchBeanDefinitionException ex) {
-							throw new BeanCreationException(mbd.getResourceDescription(), beanName,
-									"'" + beanName + "' depends on missing bean '" + dep + "'", ex);
+							throw new BeanCreationException(mbd.getResourceDescription(), beanName,	"'" + beanName + "' depends on missing bean '" + dep + "'", ex);
 						}
 					}
 				}
@@ -334,7 +333,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 				else if (mbd.isPrototype()) {
 					// It's a prototype -> create a new instance.
-					Object prototypeInstance = null;
+					Object prototypeInstance;
 					try {
 						beforePrototypeCreation(beanName);  // 将正在创建的原型对象进行记录
 						prototypeInstance = createBean(beanName, mbd, args); // 创建原型对象
@@ -389,8 +388,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			}
 			catch (TypeMismatchException ex) {
 				if (logger.isTraceEnabled()) {
-					logger.trace("Failed to convert bean '" + name + "' to required type '" +
-							ClassUtils.getQualifiedName(requiredType) + "'", ex);
+					logger.trace("Failed to convert bean '" + name + "' to required type '" + ClassUtils.getQualifiedName(requiredType) + "'", ex);
 				}
 				throw new BeanNotOfRequiredTypeException(name, requiredType, bean.getClass());
 			}
@@ -1642,9 +1640,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * @param mbd the merged bean definition
 	 * @return the object to expose for the bean
 	 */
-	protected Object getObjectForBeanInstance(
-			Object beanInstance, String name, String beanName, @Nullable RootBeanDefinition mbd) {
-
+	protected Object getObjectForBeanInstance(Object beanInstance, String name, String beanName, @Nullable RootBeanDefinition mbd) {
 		// Don't let calling code try to dereference the factory if the bean isn't a factory.
 		if (BeanFactoryUtils.isFactoryDereference(name)) {
 			if (beanInstance instanceof NullBean) {
@@ -1724,8 +1720,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				// Register a DisposableBean implementation that performs all destruction
 				// work for the given bean: DestructionAwareBeanPostProcessors,
 				// DisposableBean interface, custom destroy method.
-				registerDisposableBean(beanName,
-						new DisposableBeanAdapter(bean, beanName, mbd, getBeanPostProcessors(), acc));
+				registerDisposableBean(beanName,new DisposableBeanAdapter(bean, beanName, mbd, getBeanPostProcessors(), acc));
 			}
 			else {
 				// A bean with a custom scope...
@@ -1733,8 +1728,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				if (scope == null) {
 					throw new IllegalStateException("No Scope registered for scope name '" + mbd.getScope() + "'");
 				}
-				scope.registerDestructionCallback(beanName,
-						new DisposableBeanAdapter(bean, beanName, mbd, getBeanPostProcessors(), acc));
+				scope.registerDestructionCallback(beanName,new DisposableBeanAdapter(bean, beanName, mbd, getBeanPostProcessors(), acc));
 			}
 		}
 	}
@@ -1793,7 +1787,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * @return a new instance of the bean
 	 * @throws BeanCreationException if the bean could not be created
 	 */
-	protected abstract Object createBean(String beanName, RootBeanDefinition mbd, @Nullable Object[] args)
-			throws BeanCreationException;
+	protected abstract Object createBean(String beanName, RootBeanDefinition mbd, @Nullable Object[] args) throws BeanCreationException;
+
 
 }

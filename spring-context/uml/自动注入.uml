@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor</OriginalElement>
+  <nodes>
+    <node x="224.1458333333333" y="0.0">org.springframework.beans.factory.config.BeanPostProcessor</node>
+    <node x="472.5" y="160.0">org.springframework.core.Ordered</node>
+    <node x="6.5" y="160.0">org.springframework.beans.factory.config.SmartInstantiationAwareBeanPostProcessor</node>
+    <node x="340.5" y="320.0">org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor</node>
+    <node x="611.0" y="240.0">org.springframework.beans.factory.BeanFactoryAware</node>
+    <node x="646.5" y="160.0">org.springframework.beans.factory.Aware</node>
+    <node x="0.0" y="240.0">org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter</node>
+    <node x="452.0" y="240.0">org.springframework.core.PriorityOrdered</node>
+    <node x="310.5" y="80.0">org.springframework.beans.factory.support.MergedBeanDefinitionPostProcessor</node>
+    <node x="0.0" y="395.0">org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory</node>
+    <node x="23.5" y="80.0">org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" target="org.springframework.core.PriorityOrdered">
+      <point x="35.25" y="-15.0" />
+      <point x="516.75" y="295.0" />
+      <point x="521.5" y="295.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.SmartInstantiationAwareBeanPostProcessor" target="org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.support.MergedBeanDefinitionPostProcessor" target="org.springframework.beans.factory.config.BeanPostProcessor">
+      <point x="0.0" y="-15.0" />
+      <point x="441.5" y="55.0" />
+      <point x="344.14583333333326" y="55.0" />
+      <point x="40.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" target="org.springframework.beans.factory.support.MergedBeanDefinitionPostProcessor">
+      <point x="-35.25" y="-15.0" />
+      <point x="446.25" y="295.0" />
+      <point x="441.5" y="295.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter" target="org.springframework.beans.factory.config.SmartInstantiationAwareBeanPostProcessor">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" target="org.springframework.beans.factory.BeanFactoryAware">
+      <point x="105.75" y="-15.0" />
+      <point x="587.25" y="295.0" />
+      <point x="688.5" y="295.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" target="org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter">
+      <point x="-105.75" y="-15.0" />
+      <point x="375.75" y="295.0" />
+      <point x="157.0" y="295.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor" target="org.springframework.beans.factory.config.BeanPostProcessor">
+      <point x="0.0" y="-15.0" />
+      <point x="157.0" y="55.0" />
+      <point x="264.14583333333326" y="55.0" />
+      <point x="-40.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.core.PriorityOrdered" target="org.springframework.core.Ordered">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.BeanFactoryAware" target="org.springframework.beans.factory.Aware">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="454.0" y="175.0" />
+  <SelectedNodes>
+    <node>org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
