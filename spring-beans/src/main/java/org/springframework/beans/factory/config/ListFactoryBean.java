@@ -11,10 +11,7 @@ import org.springframework.core.ResolvableType;
 import org.springframework.lang.Nullable;
 
 /**
- * Simple factory for shared List instances. Allows for central setup
- * of Lists via the "list" element in XML bean definitions.
- *
-
+ * Simple factory for shared List instances. Allows for central setup of Lists via the "list" element in XML bean definitions.
  * @since 09.12.2003
  * @see SetFactoryBean
  * @see MapFactoryBean

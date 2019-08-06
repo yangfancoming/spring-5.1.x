@@ -6,7 +6,6 @@ import org.springframework.core.io.ClassPathResource;
 
 /**
  * Convenience utilities for common operations with test resources.
-
  */
 public abstract class TestResourceUtils {
 

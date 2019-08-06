@@ -2,9 +2,7 @@
 
 package org.springframework.jmx.export.assembler;
 
-/**
- * @author Rob Harrop
- */
+
 public class InterfaceBasedMBeanInfoAssemblerTests extends AbstractJmxAssemblerTests {
 
 	@Override

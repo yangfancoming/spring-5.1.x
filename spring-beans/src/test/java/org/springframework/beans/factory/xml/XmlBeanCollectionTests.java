@@ -32,9 +32,6 @@ import static org.junit.Assert.*;
 
 /**
  * Tests for collections in XML bean definitions.
- *
-
-
  * @since 19.12.2004
  */
 public class XmlBeanCollectionTests {
@@ -44,8 +41,7 @@ public class XmlBeanCollectionTests {
 
 	@Before
 	public void loadBeans() {
-		new XmlBeanDefinitionReader(this.beanFactory).loadBeanDefinitions(
-				new ClassPathResource("collections.xml", getClass()));
+		new XmlBeanDefinitionReader(this.beanFactory).loadBeanDefinitions(new ClassPathResource("collections.xml", getClass()));
 	}
 
 
@@ -68,7 +64,7 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testRefSubelement() throws Exception {
+	public void testRefSubelement()  {
 		//assertTrue("5 beans in reftypes, not " + this.beanFactory.getBeanDefinitionCount(), this.beanFactory.getBeanDefinitionCount() == 5);
 		TestBean jen = (TestBean) this.beanFactory.getBean("jenny");
 		TestBean dave = (TestBean) this.beanFactory.getBean("david");
@@ -76,25 +72,25 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testPropertyWithLiteralValueSubelement() throws Exception {
+	public void testPropertyWithLiteralValueSubelement()  {
 		TestBean verbose = (TestBean) this.beanFactory.getBean("verbose");
 		assertTrue(verbose.getName().equals("verbose"));
 	}
 
 	@Test
-	public void testPropertyWithIdRefLocalAttrSubelement() throws Exception {
+	public void testPropertyWithIdRefLocalAttrSubelement()  {
 		TestBean verbose = (TestBean) this.beanFactory.getBean("verbose2");
 		assertTrue(verbose.getName().equals("verbose"));
 	}
 
 	@Test
-	public void testPropertyWithIdRefBeanAttrSubelement() throws Exception {
+	public void testPropertyWithIdRefBeanAttrSubelement()  {
 		TestBean verbose = (TestBean) this.beanFactory.getBean("verbose3");
 		assertTrue(verbose.getName().equals("verbose"));
 	}
 
 	@Test
-	public void testRefSubelementsBuildCollection() throws Exception {
+	public void testRefSubelementsBuildCollection()  {
 		TestBean jen = (TestBean) this.beanFactory.getBean("jenny");
 		TestBean dave = (TestBean) this.beanFactory.getBean("david");
 		TestBean rod = (TestBean) this.beanFactory.getBean("rod");
@@ -111,7 +107,7 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testRefSubelementsBuildCollectionWithPrototypes() throws Exception {
+	public void testRefSubelementsBuildCollectionWithPrototypes()  {
 		TestBean jen = (TestBean) this.beanFactory.getBean("pJenny");
 		TestBean dave = (TestBean) this.beanFactory.getBean("pDavid");
 		TestBean rod = (TestBean) this.beanFactory.getBean("pRod");
@@ -136,7 +132,7 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testRefSubelementsBuildCollectionFromSingleElement() throws Exception {
+	public void testRefSubelementsBuildCollectionFromSingleElement()  {
 		TestBean loner = (TestBean) this.beanFactory.getBean("loner");
 		TestBean dave = (TestBean) this.beanFactory.getBean("david");
 		assertTrue(loner.getFriends().size() == 1);
@@ -144,7 +140,7 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testBuildCollectionFromMixtureOfReferencesAndValues() throws Exception {
+	public void testBuildCollectionFromMixtureOfReferencesAndValues()  {
 		MixedCollectionBean jumble = (MixedCollectionBean) this.beanFactory.getBean("jumble");
 		assertTrue("Expected 5 elements, not " + jumble.getJumble().size(),
 				jumble.getJumble().size() == 5);
@@ -159,7 +155,7 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testInvalidBeanNameReference() throws Exception {
+	public void testInvalidBeanNameReference()  {
 		try {
 			this.beanFactory.getBean("jumble2");
 			fail("Should have thrown BeanCreationException");
@@ -171,13 +167,13 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testEmptyMap() throws Exception {
+	public void testEmptyMap()  {
 		HasMap hasMap = (HasMap) this.beanFactory.getBean("emptyMap");
 		assertTrue(hasMap.getMap().size() == 0);
 	}
 
 	@Test
-	public void testMapWithLiteralsOnly() throws Exception {
+	public void testMapWithLiteralsOnly()  {
 		HasMap hasMap = (HasMap) this.beanFactory.getBean("literalMap");
 		assertTrue(hasMap.getMap().size() == 3);
 		assertTrue(hasMap.getMap().get("foo").equals("bar"));
@@ -186,7 +182,7 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testMapWithLiteralsAndReferences() throws Exception {
+	public void testMapWithLiteralsAndReferences()  {
 		HasMap hasMap = (HasMap) this.beanFactory.getBean("mixedMap");
 		assertTrue(hasMap.getMap().size() == 5);
 		assertTrue(hasMap.getMap().get("foo").equals(new Integer(10)));
@@ -200,7 +196,7 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testMapWithLiteralsAndPrototypeReferences() throws Exception {
+	public void testMapWithLiteralsAndPrototypeReferences()  {
 		TestBean jenny = (TestBean) this.beanFactory.getBean("pJenny");
 		HasMap hasMap = (HasMap) this.beanFactory.getBean("pMixedMap");
 		assertTrue(hasMap.getMap().size() == 2);
@@ -216,7 +212,7 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testMapWithLiteralsReferencesAndList() throws Exception {
+	public void testMapWithLiteralsReferencesAndList()  {
 		HasMap hasMap = (HasMap) this.beanFactory.getBean("mixedMapWithList");
 		assertTrue(hasMap.getMap().size() == 4);
 		assertTrue(hasMap.getMap().get(null).equals("bar"));
@@ -255,13 +251,13 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testEmptySet() throws Exception {
+	public void testEmptySet()  {
 		HasMap hasMap = (HasMap) this.beanFactory.getBean("emptySet");
 		assertTrue(hasMap.getSet().size() == 0);
 	}
 
 	@Test
-	public void testPopulatedSet() throws Exception {
+	public void testPopulatedSet()  {
 		HasMap hasMap = (HasMap) this.beanFactory.getBean("set");
 		assertTrue(hasMap.getSet().size() == 3);
 		assertTrue(hasMap.getSet().contains("bar"));
@@ -275,7 +271,7 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testPopulatedConcurrentSet() throws Exception {
+	public void testPopulatedConcurrentSet()  {
 		HasMap hasMap = (HasMap) this.beanFactory.getBean("concurrentSet");
 		assertTrue(hasMap.getConcurrentSet().size() == 3);
 		assertTrue(hasMap.getConcurrentSet().contains("bar"));
@@ -285,7 +281,7 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testPopulatedIdentityMap() throws Exception {
+	public void testPopulatedIdentityMap()  {
 		HasMap hasMap = (HasMap) this.beanFactory.getBean("identityMap");
 		assertTrue(hasMap.getIdentityMap().size() == 2);
 		HashSet set = new HashSet(hasMap.getIdentityMap().keySet());
@@ -294,14 +290,14 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testEmptyProps() throws Exception {
+	public void testEmptyProps()  {
 		HasMap hasMap = (HasMap) this.beanFactory.getBean("emptyProps");
 		assertTrue(hasMap.getProps().size() == 0);
 		assertEquals(hasMap.getProps().getClass(), Properties.class);
 	}
 
 	@Test
-	public void testPopulatedProps() throws Exception {
+	public void testPopulatedProps()  {
 		HasMap hasMap = (HasMap) this.beanFactory.getBean("props");
 		assertTrue(hasMap.getProps().size() == 2);
 		assertTrue(hasMap.getProps().get("foo").equals("bar"));
@@ -309,7 +305,7 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testObjectArray() throws Exception {
+	public void testObjectArray()  {
 		HasMap hasMap = (HasMap) this.beanFactory.getBean("objectArray");
 		assertTrue(hasMap.getObjectArray().length == 2);
 		assertTrue(hasMap.getObjectArray()[0].equals("one"));
@@ -317,7 +313,7 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testIntegerArray() throws Exception {
+	public void testIntegerArray()  {
 		HasMap hasMap = (HasMap) this.beanFactory.getBean("integerArray");
 		assertTrue(hasMap.getIntegerArray().length == 3);
 		assertTrue(hasMap.getIntegerArray()[0].intValue() == 0);
@@ -326,7 +322,7 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testClassArray() throws Exception {
+	public void testClassArray()  {
 		HasMap hasMap = (HasMap) this.beanFactory.getBean("classArray");
 		assertTrue(hasMap.getClassArray().length == 2);
 		assertTrue(hasMap.getClassArray()[0].equals(String.class));
@@ -334,7 +330,7 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testClassList() throws Exception {
+	public void testClassList()  {
 		HasMap hasMap = (HasMap) this.beanFactory.getBean("classList");
 		assertTrue(hasMap.getClassList().size()== 2);
 		assertTrue(hasMap.getClassList().get(0).equals(String.class));
@@ -342,7 +338,7 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testProps() throws Exception {
+	public void testProps()  {
 		HasMap hasMap = (HasMap) this.beanFactory.getBean("props");
 		assertEquals(2, hasMap.getProps().size());
 		assertEquals("bar", hasMap.getProps().getProperty("foo"));
@@ -355,7 +351,7 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testListFactory() throws Exception {
+	public void testListFactory()  {
 		List list = (List) this.beanFactory.getBean("listFactory");
 		assertTrue(list instanceof LinkedList);
 		assertTrue(list.size() == 2);
@@ -364,7 +360,7 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testPrototypeListFactory() throws Exception {
+	public void testPrototypeListFactory()  {
 		List list = (List) this.beanFactory.getBean("pListFactory");
 		assertTrue(list instanceof LinkedList);
 		assertTrue(list.size() == 2);
@@ -373,7 +369,7 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testSetFactory() throws Exception {
+	public void testSetFactory()  {
 		Set set = (Set) this.beanFactory.getBean("setFactory");
 		assertTrue(set instanceof TreeSet);
 		assertTrue(set.size() == 2);
@@ -382,7 +378,7 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testPrototypeSetFactory() throws Exception {
+	public void testPrototypeSetFactory()  {
 		Set set = (Set) this.beanFactory.getBean("pSetFactory");
 		assertTrue(set instanceof TreeSet);
 		assertTrue(set.size() == 2);
@@ -391,7 +387,7 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testMapFactory() throws Exception {
+	public void testMapFactory()  {
 		Map map = (Map) this.beanFactory.getBean("mapFactory");
 		assertTrue(map instanceof TreeMap);
 		assertTrue(map.size() == 2);
@@ -400,7 +396,7 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testPrototypeMapFactory() throws Exception {
+	public void testPrototypeMapFactory()  {
 		Map map = (Map) this.beanFactory.getBean("pMapFactory");
 		assertTrue(map instanceof TreeMap);
 		assertTrue(map.size() == 2);
@@ -420,7 +416,7 @@ public class XmlBeanCollectionTests {
 	}
 
 	@Test
-	public void testEnumSetFactory() throws Exception {
+	public void testEnumSetFactory()  {
 		Set set = (Set) this.beanFactory.getBean("enumSetFactory");
 		assertTrue(set.size() == 2);
 		assertTrue(set.contains("ONE"));

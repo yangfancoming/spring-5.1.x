@@ -2,9 +2,7 @@
 
 package org.springframework.jmx.export.assembler;
 
-/**
- * @author Rob Harrop
- */
+
 public interface ICustomJmxBean extends ICustomBase {
 
 	String getName();

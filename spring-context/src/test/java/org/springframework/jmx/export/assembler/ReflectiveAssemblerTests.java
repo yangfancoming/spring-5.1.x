@@ -2,9 +2,7 @@
 
 package org.springframework.jmx.export.assembler;
 
-/**
- * @author Rob Harrop
- */
+
 public class ReflectiveAssemblerTests extends AbstractJmxAssemblerTests {
 
 	protected static final String OBJECT_NAME = "bean:name=testBean1";

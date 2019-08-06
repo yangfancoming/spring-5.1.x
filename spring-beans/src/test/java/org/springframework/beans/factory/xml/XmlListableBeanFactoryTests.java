@@ -25,7 +25,6 @@ import org.springframework.tests.sample.beans.factory.DummyFactory;
 import static org.junit.Assert.*;
 
 /**
-
  * @since 09.11.2003
  */
 @SuppressWarnings({"rawtypes", "unchecked"})

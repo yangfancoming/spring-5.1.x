@@ -2,9 +2,7 @@
 
 package org.springframework.jmx.export.annotation;
 
-/**
- * @author Rob Harrop
- */
+
 public class AnnotationTestSubBean extends AnnotationTestBean implements IAnnotationTestBean {
 
 	private String colour;

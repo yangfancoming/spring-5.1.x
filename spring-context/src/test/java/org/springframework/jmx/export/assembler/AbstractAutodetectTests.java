@@ -8,9 +8,7 @@ import org.springframework.jmx.JmxTestBean;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
- */
+
 public abstract class AbstractAutodetectTests {
 
 	@Test

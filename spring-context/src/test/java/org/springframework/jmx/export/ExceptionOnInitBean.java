@@ -2,9 +2,7 @@
 
 package org.springframework.jmx.export;
 
-/**
- * @author Rob Harrop
- */
+
 public class ExceptionOnInitBean {
 
 	private boolean exceptOnInit = false;

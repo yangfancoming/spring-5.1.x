@@ -13,9 +13,7 @@ import org.springframework.util.ObjectUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
- */
+
 public class IdentityNamingStrategyTests {
 
 	@Test

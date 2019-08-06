@@ -287,13 +287,11 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			if (!typeCheckOnly) {  // 进行已创建标记
 				markBeanAsCreated(beanName);
 			}
-
 			try {
 				// 根据名字获取合并过的对应的RootBeanDefinition
 				final RootBeanDefinition mbd = getMergedLocalBeanDefinition(beanName);
 				// 检查mbd是否为抽象的或mbd为单例，但存在args的情况（args只有初始化原型对象才允许存在)
 				checkMergedBeanDefinition(mbd, beanName, args);
-
 				// Guarantee initialization of beans that the current bean depends on.
 				// 确保当前Bean依赖的相关Bean先完成初始化工作
 				String[] dependsOn = mbd.getDependsOn();
@@ -366,8 +364,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					catch (IllegalStateException ex) {
 						throw new BeanCreationException(beanName,
 								"Scope '" + scopeName + "' is not active for the current thread; consider " +
-								"defining a scoped proxy for this bean if you intend to refer to it from a singleton",
-								ex);
+								"defining a scoped proxy for this bean if you intend to refer to it from a singleton",ex);
 					}
 				}
 			}

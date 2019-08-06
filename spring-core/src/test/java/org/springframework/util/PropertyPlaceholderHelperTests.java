@@ -8,9 +8,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
- */
+
 public class PropertyPlaceholderHelperTests {
 
 	private final PropertyPlaceholderHelper helper = new PropertyPlaceholderHelper("${", "}");

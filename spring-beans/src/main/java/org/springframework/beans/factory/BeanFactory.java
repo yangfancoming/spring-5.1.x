@@ -13,72 +13,59 @@ import org.springframework.lang.Nullable;
  * {@link org.springframework.beans.factory.config.ConfigurableBeanFactory}
  * are available for specific purposes.
  *
- * <p>This interface is implemented by objects that hold a number of bean definitions,
- * each uniquely identified by a String name. Depending on the bean definition,
- * the factory will return either an independent instance of a contained object
- * (the Prototype design pattern), or a single shared instance (a superior
- * alternative to the Singleton design pattern, in which the instance is a
- * singleton in the scope of the factory). Which type of instance will be returned
- * depends on the bean factory configuration: the API is the same. Since Spring
- * 2.0, further scopes are available depending on the concrete application
- * context (e.g. "request" and "session" scopes in a web environment).
+ * This interface is implemented by objects that hold a number of bean definitions,each uniquely identified by a String name.
+ * Depending on the bean definition,the factory will return either an independent instance of a contained object (the Prototype design pattern),
+ * or a single shared instance (a superior alternative to the Singleton design pattern, in which the instance is a singleton in the scope of the factory).
+ * Which type of instance will be returned depends on the bean factory configuration: the API is the same.
+ * Since Spring 2.0, further scopes are available depending on the concrete application context (e.g. "request" and "session" scopes in a web environment).
  *
- * <p>The point of this approach is that the BeanFactory is a central registry
- * of application components, and centralizes configuration of application
- * components (no more do individual objects need to read properties files,
- * for example). See chapters 4 and 11 of "Expert One-on-One J2EE Design and
- * Development" for a discussion of the benefits of this approach.
+ * The point of this approach is that the BeanFactory is a central registry of application components,
+ *  and centralizes configuration of application components
+ *  (no more do individual objects need to read properties files,for example).
+ *  See chapters 4 and 11 of "Expert One-on-One J2EE Design and Development" for a discussion of the benefits of this approach.
  *
- * <p>Note that it is generally better to rely on Dependency Injection
- * ("push" configuration) to configure application objects through setters
- * or constructors, rather than use any form of "pull" configuration like a
- * BeanFactory lookup. Spring's Dependency Injection functionality is
- * implemented using this BeanFactory interface and its subinterfaces.
+ * Note that it is generally better to rely on Dependency Injection ("push" configuration) to configure application objects through setters or constructors,
+ * rather than use any form of "pull" configuration like a BeanFactory lookup.
+ * Spring's Dependency Injection functionality is implemented using this BeanFactory interface and its subinterfaces.
  *
- * <p>Normally a BeanFactory will load bean definitions stored in a configuration
- * source (such as an XML document), and use the {@code org.springframework.beans}
- * package to configure the beans. However, an implementation could simply return
- * Java objects it creates as necessary directly in Java code. There are no
- * constraints on how the definitions could be stored: LDAP, RDBMS, XML,
- * properties file, etc. Implementations are encouraged to support references
- * amongst beans (Dependency Injection).
+ * Normally a BeanFactory will load bean definitions stored in a configuration source (such as an XML document),
+ *  and use the {@code org.springframework.beans} package to configure the beans.
+ * However, an implementation could simply return Java objects it creates as necessary directly in Java code.
+ * There are no  constraints on how the definitions could be stored: LDAP, RDBMS, XML,properties file, etc.
+ * Implementations are encouraged to support references amongst beans (Dependency Injection).
  *
- * <p>In contrast to the methods in {@link ListableBeanFactory}, all of the
+ * In contrast to the methods in {@link ListableBeanFactory}, all of the
  * operations in this interface will also check parent factories if this is a
  * {@link HierarchicalBeanFactory}. If a bean is not found in this factory instance,
  * the immediate parent factory will be asked. Beans in this factory instance
  * are supposed to override beans of the same name in any parent factory.
  *
- * <p>Bean factory implementations should support the standard bean lifecycle interfaces
- * as far as possible. The full set of initialization methods and their standard order is:
- * <ol>
- * <li>BeanNameAware's {@code setBeanName}
- * <li>BeanClassLoaderAware's {@code setBeanClassLoader}
- * <li>BeanFactoryAware's {@code setBeanFactory}
- * <li>EnvironmentAware's {@code setEnvironment}
- * <li>EmbeddedValueResolverAware's {@code setEmbeddedValueResolver}
- * <li>ResourceLoaderAware's {@code setResourceLoader}
+ * Bean factory implementations should support the standard bean lifecycle interfaces as far as possible. 
+ * The full set of initialization methods and their standard order is:
+ * 
+ * BeanNameAware's {@code setBeanName}
+ * BeanClassLoaderAware's {@code setBeanClassLoader}
+ * BeanFactoryAware's {@code setBeanFactory}
+ * EnvironmentAware's {@code setEnvironment}
+ * EmbeddedValueResolverAware's {@code setEmbeddedValueResolver}
+ * ResourceLoaderAware's {@code setResourceLoader}
  * (only applicable when running in an application context)
- * <li>ApplicationEventPublisherAware's {@code setApplicationEventPublisher}
+ * ApplicationEventPublisherAware's {@code setApplicationEventPublisher}
  * (only applicable when running in an application context)
- * <li>MessageSourceAware's {@code setMessageSource}
+ * MessageSourceAware's {@code setMessageSource}
  * (only applicable when running in an application context)
- * <li>ApplicationContextAware's {@code setApplicationContext}
+ * ApplicationContextAware's {@code setApplicationContext}
  * (only applicable when running in an application context)
- * <li>ServletContextAware's {@code setServletContext}
+ * ServletContextAware's {@code setServletContext}
  * (only applicable when running in a web application context)
- * <li>{@code postProcessBeforeInitialization} methods of BeanPostProcessors
- * <li>InitializingBean's {@code afterPropertiesSet}
- * <li>a custom init-method definition
- * <li>{@code postProcessAfterInitialization} methods of BeanPostProcessors
- * </ol>
+ * {@code postProcessBeforeInitialization} methods of BeanPostProcessors
+ * InitializingBean's {@code afterPropertiesSet} a custom init-method definition
+ * {@code postProcessAfterInitialization} methods of BeanPostProcessors
  *
- * <p>On shutdown of a bean factory, the following lifecycle methods apply:
- * <ol>
- * <li>{@code postProcessBeforeDestruction} methods of DestructionAwareBeanPostProcessors
- * <li>DisposableBean's {@code destroy}
- * <li>a custom destroy-method definition
- * </ol>
+ * On shutdown of a bean factory, the following lifecycle methods apply:
+ * 
+ * {@code postProcessBeforeDestruction} methods of DestructionAwareBeanPostProcessors
+ * DisposableBean's {@code destroy} a custom destroy-method definition
  *
  * @since 13 April 2001
  * @see BeanNameAware#setBeanName
@@ -102,7 +89,8 @@ import org.springframework.lang.Nullable;
 public interface BeanFactory {
 
 	/**
-	 * Used to dereference a {@link FactoryBean} instance and distinguish it from beans <i>created</i> by the FactoryBean.
+	 * Used to dereference a {@link FactoryBean} instance and distinguish it from beans created by the FactoryBean.
+	 * 用于取消对FactoryBean实例的引用，并将其与FactoryBean创建的bean区分开来
 	 * For example, if the bean named {@code myJndiObject} is a FactoryBean, getting {@code &myJndiObject} will return the factory, not the instance returned by the factory.
 	 * 这是用来区分是获取FactoryBean还是FactoryBean的createBean创建的实例.如果&开始则获取FactoryBean;否则获取createBean创建的实例.
 	 */
@@ -110,9 +98,9 @@ public interface BeanFactory {
 
 	/**
 	 * Return an instance, which may be shared or independent, of the specified bean.
-	 * <p>This method allows a Spring BeanFactory to be used as a replacement for the Singleton or Prototype design pattern.
+	 * This method allows a Spring BeanFactory to be used as a replacement for the Singleton or Prototype design pattern.
 	 * Callers may retain references to returned objects in the case of Singleton beans.
-	 * <p>Translates aliases back to the corresponding canonical bean name.
+	 * Translates aliases back to the corresponding canonical bean name.
 	 * Will ask the parent factory if the bean cannot be found in this factory instance.
 	 * @param name the name of the bean to retrieve
 	 * @return an instance of the bean
@@ -124,11 +112,10 @@ public interface BeanFactory {
 
 	/**
 	 * Return an instance, which may be shared or independent, of the specified bean.
-	 * <p>Behaves the same as {@link #getBean(String)}, but provides a measure of type
-	 * safety by throwing a BeanNotOfRequiredTypeException if the bean is not of the
-	 * required type. This means that ClassCastException can't be thrown on casting
-	 * the result correctly, as can happen with {@link #getBean(String)}.
-	 * <p>Translates aliases back to the corresponding canonical bean name.
+	 * Behaves the same as {@link #getBean(String)}, but provides a measure of type
+	 * safety by throwing a BeanNotOfRequiredTypeException if the bean is not of the required type.
+	 * This means that ClassCastException can't be thrown on casting the result correctly, as can happen with {@link #getBean(String)}.
+	 * Translates aliases back to the corresponding canonical bean name.
 	 * Will ask the parent factory if the bean cannot be found in this factory instance.
 	 * @param name the name of the bean to retrieve
 	 * @param requiredType type the bean must match; can be an interface or superclass
@@ -142,9 +129,9 @@ public interface BeanFactory {
 
 	/**
 	 * Return an instance, which may be shared or independent, of the specified bean.
-	 * <p>Allows for specifying explicit constructor arguments / factory method arguments,
-	 * overriding the specified default arguments (if any) in the bean definition.
-	 * @param name the name of the bean to retrieve
+	 * Allows for specifying explicit constructor arguments / factory method arguments,overriding the specified default arguments (if any) in the bean definition.
+	 *
+	 * @param name the name of the bean to retrieve  要获取bean的名称
 	 * @param args arguments to use when creating a bean instance using explicit arguments
 	 * (only applied when creating a new instance as opposed to retrieving an existing one)
 	 * @return an instance of the bean
@@ -158,10 +145,10 @@ public interface BeanFactory {
 
 	/**
 	 * Return the bean instance that uniquely matches the given object type, if any.
-	 * <p>This method goes into {@link ListableBeanFactory} by-type lookup territory
-	 * but may also be translated into a conventional by-name lookup based on the name
-	 * of the given type. For more extensive retrieval operations across sets of beans,
-	 * use {@link ListableBeanFactory} and/or {@link BeanFactoryUtils}.
+	 * 根据给定对象类型，返回唯一匹配的bean实例（如果有的话）。
+	 * This method goes into {@link ListableBeanFactory} by-type lookup territory
+	 * but may also be translated into a conventional by-name lookup based on the name of the given type.
+	 * For more extensive retrieval operations across sets of beans, use {@link ListableBeanFactory} and/or {@link BeanFactoryUtils}.
 	 * @param requiredType type the bean must match; can be an interface or superclass
 	 * @return an instance of the single bean matching the required type
 	 * @throws NoSuchBeanDefinitionException if no bean of the given type was found
@@ -174,9 +161,9 @@ public interface BeanFactory {
 
 	/**
 	 * Return an instance, which may be shared or independent, of the specified bean.
-	 * <p>Allows for specifying explicit constructor arguments / factory method arguments,
+	 * Allows for specifying explicit constructor arguments / factory method arguments,
 	 * overriding the specified default arguments (if any) in the bean definition.
-	 * <p>This method goes into {@link ListableBeanFactory} by-type lookup territory
+	 * This method goes into {@link ListableBeanFactory} by-type lookup territory
 	 * but may also be translated into a conventional by-name lookup based on the name
 	 * of the given type. For more extensive retrieval operations across sets of beans,
 	 * use {@link ListableBeanFactory} and/or {@link BeanFactoryUtils}.
@@ -221,11 +208,11 @@ public interface BeanFactory {
 	/**
 	 * Does this bean factory contain a bean definition or externally registered singleton
 	 * instance with the given name?
-	 * <p>If the given name is an alias, it will be translated back to the corresponding
+	 * If the given name is an alias, it will be translated back to the corresponding
 	 * canonical bean name.
-	 * <p>If this factory is hierarchical, will ask any parent factory if the bean cannot
+	 * If this factory is hierarchical, will ask any parent factory if the bean cannot
 	 * be found in this factory instance.
-	 * <p>If a bean definition or singleton instance matching the given name is found,
+	 * If a bean definition or singleton instance matching the given name is found,
 	 * this method will return {@code true} whether the named bean definition is concrete
 	 * or abstract, lazy or eager, in scope or not. Therefore, note that a {@code true}
 	 * return value from this method does not necessarily indicate that {@link #getBean}
@@ -237,13 +224,11 @@ public interface BeanFactory {
 	boolean containsBean(String name);
 
 	/**
-	 * Is this bean a shared singleton? That is, will {@link #getBean} always
-	 * return the same instance?
-	 * <p>Note: This method returning {@code false} does not clearly indicate
-	 * independent instances. It indicates non-singleton instances, which may correspond
-	 * to a scoped bean as well. Use the {@link #isPrototype} operation to explicitly
-	 * check for independent instances.
-	 * <p>Translates aliases back to the corresponding canonical bean name.
+	 * Is this bean a shared singleton? That is, will {@link #getBean} always return the same instance?
+	 * Note: This method returning {@code false} does not clearly indicate independent instances.
+	 * It indicates non-singleton instances, which may correspond to a scoped bean as well.
+	 * Use the {@link #isPrototype} operation to explicitly check for independent instances.
+	 * Translates aliases back to the corresponding canonical bean name.
 	 * Will ask the parent factory if the bean cannot be found in this factory instance.
 	 * @param name the name of the bean to query
 	 * @return whether this bean corresponds to a singleton instance
@@ -255,13 +240,11 @@ public interface BeanFactory {
 	boolean isSingleton(String name) throws NoSuchBeanDefinitionException;
 
 	/**
-	 * Is this bean a prototype? That is, will {@link #getBean} always return
-	 * independent instances?
-	 * <p>Note: This method returning {@code false} does not clearly indicate
-	 * a singleton object. It indicates non-independent instances, which may correspond
-	 * to a scoped bean as well. Use the {@link #isSingleton} operation to explicitly
-	 * check for a shared singleton instance.
-	 * <p>Translates aliases back to the corresponding canonical bean name.
+	 * Is this bean a prototype? That is, will {@link #getBean} always return independent instances?
+	 * Note: This method returning {@code false} does not clearly indicate a singleton object.
+	 * It indicates non-independent instances, which may correspond to a scoped bean as well.
+	 * Use the {@link #isSingleton} operation to explicitly check for a shared singleton instance.
+	 * Translates aliases back to the corresponding canonical bean name.
 	 * Will ask the parent factory if the bean cannot be found in this factory instance.
 	 * @param name the name of the bean to query
 	 * @return whether this bean will always deliver independent instances
@@ -274,14 +257,13 @@ public interface BeanFactory {
 
 	/**
 	 * Check whether the bean with the given name matches the specified type.
-	 * More specifically, check whether a {@link #getBean} call for the given name
-	 * would return an object that is assignable to the specified target type.
-	 * <p>Translates aliases back to the corresponding canonical bean name.
+	 * 检查具有给定名称的bean是否与指定类型匹配。
+	 * More specifically, check whether a {@link #getBean} call for the given name would return an object that is assignable to the specified target type.
+	 * Translates aliases back to the corresponding canonical bean name.
 	 * Will ask the parent factory if the bean cannot be found in this factory instance.
-	 * @param name the name of the bean to query
-	 * @param typeToMatch the type to match against (as a {@code ResolvableType})
-	 * @return {@code true} if the bean type matches,
-	 * {@code false} if it doesn't match or cannot be determined yet
+	 * @param name the name of the bean to query   要检测的bean名称
+	 * @param typeToMatch the type to match against (as a {@code ResolvableType})  要匹配的类型
+	 * @return {@code true} if the bean type matches, {@code false} if it doesn't match or cannot be determined yet
 	 * @throws NoSuchBeanDefinitionException if there is no bean with the given name
 	 * @since 4.2
 	 * @see #getBean
@@ -291,9 +273,9 @@ public interface BeanFactory {
 
 	/**
 	 * Check whether the bean with the given name matches the specified type.
-	 * More specifically, check whether a {@link #getBean} call for the given name
+	 * More specifically, check whether a {@li nk #getBean} call for the given name
 	 * would return an object that is assignable to the specified target type.
-	 * <p>Translates aliases back to the corresponding canonical bean name.
+	 * Translates aliases back to the corresponding canonical bean name.
 	 * Will ask the parent factory if the bean cannot be found in this factory instance.
 	 * @param name the name of the bean to query
 	 * @param typeToMatch the type to match against (as a {@code Class})
@@ -309,9 +291,9 @@ public interface BeanFactory {
 	/**
 	 * Determine the type of the bean with the given name. More specifically,
 	 * determine the type of object that {@link #getBean} would return for the given name.
-	 * <p>For a {@link FactoryBean}, return the type of object that the FactoryBean creates,
+	 * For a {@link FactoryBean}, return the type of object that the FactoryBean creates,
 	 * as exposed by {@link FactoryBean#getObjectType()}.
-	 * <p>Translates aliases back to the corresponding canonical bean name.
+	 * Translates aliases back to the corresponding canonical bean name.
 	 * Will ask the parent factory if the bean cannot be found in this factory instance.
 	 * @param name the name of the bean to query
 	 * @return the type of the bean, or {@code null} if not determinable
@@ -327,10 +309,9 @@ public interface BeanFactory {
 	/**
 	 * Return the aliases for the given bean name, if any.
 	 * All of those aliases point to the same bean when used in a {@link #getBean} call.
-	 * <p>If the given name is an alias, the corresponding original bean name
-	 * and other aliases (if any) will be returned, with the original bean name
-	 * being the first element in the array.
-	 * <p>Will ask the parent factory if the bean cannot be found in this factory instance.
+	 * If the given name is an alias, the corresponding original bean name and other aliases (if any) will be returned,
+	 * with the original bean name being the first element in the array.
+	 * Will ask the parent factory if the bean cannot be found in this factory instance.
 	 * @param name the bean name to check for aliases
 	 * @return the aliases, or an empty array if none
 	 * @see #getBean

@@ -24,10 +24,7 @@ import static org.junit.Assert.*;
 
 /**
  * Subclasses must initialize the bean factory and any other variables they need.
- *
- * @author Rod Johnson
-
- * @author Sam Brannen
+ * 子类必须初始化bean工厂和它们需要的任何其他变量。
  */
 public abstract class AbstractBeanFactoryTests {
 
@@ -188,13 +185,13 @@ public abstract class AbstractBeanFactoryTests {
 	}
 
 	@Test
-	public void grandparentDefinitionFoundInBeanFactory() throws Exception {
+	public void grandparentDefinitionFoundInBeanFactory() {
 		TestBean dad = (TestBean) getBeanFactory().getBean("father");
 		assertTrue("Dad has correct name", dad.getName().equals("Albert"));
 	}
 
 	@Test
-	public void factorySingleton() throws Exception {
+	public void factorySingleton() {
 		assertTrue(getBeanFactory().isSingleton("&singletonFactory"));
 		assertTrue(getBeanFactory().isSingleton("singletonFactory"));
 		TestBean tb = (TestBean) getBeanFactory().getBean("singletonFactory");
@@ -206,7 +203,7 @@ public abstract class AbstractBeanFactoryTests {
 	}
 
 	@Test
-	public void factoryPrototype() throws Exception {
+	public void factoryPrototype() {
 		assertTrue(getBeanFactory().isSingleton("&prototypeFactory"));
 		assertFalse(getBeanFactory().isSingleton("prototypeFactory"));
 		TestBean tb = (TestBean) getBeanFactory().getBean("prototypeFactory");
@@ -221,7 +218,7 @@ public abstract class AbstractBeanFactoryTests {
 	 * @throws Exception
 	 */
 	@Test
-	public void getFactoryItself() throws Exception {
+	public void getFactoryItself() {
 		assertNotNull(getBeanFactory().getBean("&singletonFactory"));
 	}
 
@@ -230,7 +227,7 @@ public abstract class AbstractBeanFactoryTests {
 	 * @throws Exception
 	 */
 	@Test
-	public void factoryIsInitialized() throws Exception {
+	public void factoryIsInitialized() {
 		TestBean tb = (TestBean) getBeanFactory().getBean("singletonFactory");
 		assertNotNull(tb);
 		DummyFactory factory = (DummyFactory) getBeanFactory().getBean("&singletonFactory");

@@ -2,9 +2,7 @@
 
 package org.springframework.jmx.export.naming;
 
-/**
- * @author Rob Harrop
- */
+
 public class KeyNamingStrategyTests extends AbstractNamingStrategyTests {
 
 	private static final String OBJECT_NAME = "spring:name=test";

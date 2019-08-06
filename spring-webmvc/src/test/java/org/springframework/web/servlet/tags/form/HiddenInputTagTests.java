@@ -12,9 +12,7 @@ import org.springframework.validation.BeanPropertyBindingResult;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
- */
+
 public class HiddenInputTagTests extends AbstractFormTagTests {
 
 	private HiddenInputTag tag;

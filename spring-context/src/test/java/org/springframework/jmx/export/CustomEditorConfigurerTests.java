@@ -13,9 +13,7 @@ import org.springframework.jmx.AbstractJmxTests;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
- */
+
 public class CustomEditorConfigurerTests extends AbstractJmxTests {
 
 	private final SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");

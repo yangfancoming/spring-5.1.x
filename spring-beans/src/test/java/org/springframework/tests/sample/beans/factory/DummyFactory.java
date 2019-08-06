@@ -14,18 +14,11 @@ import org.springframework.tests.sample.beans.TestBean;
 
 /**
  * Simple factory to allow testing of FactoryBean support in AbstractBeanFactory.
- * Depending on whether its singleton property is set, it will return a singleton
- * or a prototype instance.
- *
- * <p>Implements InitializingBean interface, so we can check that
- * factories get this lifecycle callback if they want.
- *
- * @author Rod Johnson
-
+ * Depending on whether its singleton property is set, it will return a singleton or a prototype instance.
+ * <p>Implements InitializingBean interface, so we can check that factories get this lifecycle callback if they want.
  * @since 10.03.2003
  */
-public class DummyFactory
-		implements FactoryBean<Object>, BeanNameAware, BeanFactoryAware, InitializingBean, DisposableBean {
+public class DummyFactory implements FactoryBean<Object>, BeanNameAware, BeanFactoryAware, InitializingBean, DisposableBean {
 
 	public static final String SINGLETON_NAME = "Factory singleton";
 
@@ -37,7 +30,6 @@ public class DummyFactory
 	public static void reset() {
 		prototypeCreated = false;
 	}
-
 
 	/**
 	 * Default is for factories to return a singleton instance.

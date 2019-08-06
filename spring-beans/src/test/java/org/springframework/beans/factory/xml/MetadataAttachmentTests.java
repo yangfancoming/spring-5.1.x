@@ -12,9 +12,7 @@ import org.springframework.core.io.ClassPathResource;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
- */
+
 public class MetadataAttachmentTests {
 
 	private DefaultListableBeanFactory beanFactory;

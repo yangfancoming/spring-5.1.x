@@ -105,7 +105,6 @@ public class FactoryBeanTests {
 
 
 	public static class NullReturningFactoryBean implements FactoryBean<Object> {
-
 		@Override
 		public Object getObject() {
 			return null;

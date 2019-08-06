@@ -4,9 +4,7 @@ package org.springframework.beans.factory.xml;
 
 import org.springframework.beans.factory.BeanNameAware;
 
-/**
- * @author Rob Harrop
- */
+
 public class GeneratedNameBean implements BeanNameAware {
 
 	private String beanName;

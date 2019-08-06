@@ -67,9 +67,6 @@ import org.springframework.util.ObjectUtils;
  * from the factory. This means that singleton instances obtained from the factory
  * do not have the same object identity. However, they do have the same interceptors
  * and target, and changing any reference will change all objects.
- *
- * @author Rod Johnson
-
  * @see #setInterceptorNames
  * @see #setProxyInterfaces
  * @see org.aopalliance.intercept.MethodInterceptor
@@ -77,14 +74,12 @@ import org.springframework.util.ObjectUtils;
  * @see Advised
  */
 @SuppressWarnings("serial")
-public class ProxyFactoryBean extends ProxyCreatorSupport
-		implements FactoryBean<Object>, BeanClassLoaderAware, BeanFactoryAware {
+public class ProxyFactoryBean extends ProxyCreatorSupport implements FactoryBean<Object>, BeanClassLoaderAware, BeanFactoryAware {
 
 	/**
 	 * This suffix in a value in an interceptor list indicates to expand globals.
 	 */
 	public static final String GLOBAL_SUFFIX = "*";
-
 
 	protected final Log logger = LogFactory.getLog(getClass());
 
