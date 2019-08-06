@@ -30,15 +30,14 @@ public class FactoryBeanTests {
 
 
 	@Test
-	public void testFactoryBeanReturnsNull() throws Exception {
+	public void testFactoryBeanReturnsNull()  {
 		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 		new XmlBeanDefinitionReader(factory).loadBeanDefinitions(RETURNS_NULL_CONTEXT);
-
 		assertEquals("null", factory.getBean("factoryBean").toString());
 	}
 
 	@Test
-	public void testFactoryBeansWithAutowiring() throws Exception {
+	public void testFactoryBeansWithAutowiring()  {
 		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 		new XmlBeanDefinitionReader(factory).loadBeanDefinitions(WITH_AUTOWIRING_CONTEXT);
 
@@ -59,7 +58,7 @@ public class FactoryBeanTests {
 	}
 
 	@Test
-	public void testFactoryBeansWithIntermediateFactoryBeanAutowiringFailure() throws Exception {
+	public void testFactoryBeansWithIntermediateFactoryBeanAutowiringFailure()  {
 		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 		new XmlBeanDefinitionReader(factory).loadBeanDefinitions(WITH_AUTOWIRING_CONTEXT);
 
@@ -74,14 +73,14 @@ public class FactoryBeanTests {
 	}
 
 	@Test
-	public void testAbstractFactoryBeanViaAnnotation() throws Exception {
+	public void testAbstractFactoryBeanViaAnnotation()  {
 		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 		new XmlBeanDefinitionReader(factory).loadBeanDefinitions(ABSTRACT_CONTEXT);
 		factory.getBeansWithAnnotation(Component.class);
 	}
 
 	@Test
-	public void testAbstractFactoryBeanViaType() throws Exception {
+	public void testAbstractFactoryBeanViaType()  {
 		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 		new XmlBeanDefinitionReader(factory).loadBeanDefinitions(ABSTRACT_CONTEXT);
 		factory.getBeansOfType(AbstractFactoryBean.class);
@@ -138,6 +137,7 @@ public class FactoryBeanTests {
 
 		@Override
 		public void afterPropertiesSet() {
+			System.out.println("afterPropertiesSet 执行了。。。。。。。。");
 			Assert.notNull(beta, "'beta' property is required");
 		}
 	}

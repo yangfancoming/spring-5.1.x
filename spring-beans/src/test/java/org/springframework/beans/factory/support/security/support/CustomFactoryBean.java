@@ -5,9 +5,7 @@ import java.util.Properties;
 
 import org.springframework.beans.factory.FactoryBean;
 
-/**
- * @author Costin Leau
- */
+
 public class CustomFactoryBean implements FactoryBean<Object> {
 
 	@Override

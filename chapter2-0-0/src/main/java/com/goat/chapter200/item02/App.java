@@ -9,7 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
 
-	ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring.xml");
+	ApplicationContext context = new ClassPathXmlApplicationContext("classpath:BeanAttribute.xml");
 
 	/**  测试 <bean> 标签中 id 和name属性重复问题 */
 	@Test

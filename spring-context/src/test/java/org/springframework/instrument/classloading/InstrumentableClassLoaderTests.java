@@ -22,11 +22,7 @@ import org.springframework.util.ClassUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Costin Leau
 
-
- */
 public class InstrumentableClassLoaderTests {
 
 	@Test

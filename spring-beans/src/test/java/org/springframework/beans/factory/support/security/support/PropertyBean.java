@@ -1,9 +1,7 @@
 
 package org.springframework.beans.factory.support.security.support;
 
-/**
- * @author Costin Leau
- */
+
 public class PropertyBean {
 
 	public void setSecurityProperty(Object property) {

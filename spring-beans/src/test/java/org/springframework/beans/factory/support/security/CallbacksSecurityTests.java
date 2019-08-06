@@ -335,14 +335,7 @@ public class CallbacksSecurityTests {
 
 		final Class<ConstructorBean> cl = ConstructorBean.class;
 		try {
-			AccessController.doPrivileged(
-					new PrivilegedExceptionAction<Object>() {
-
-						@Override
-						public Object run() throws Exception {
-							return cl.newInstance();
-						}
-					}, acc);
+			AccessController.doPrivileged((PrivilegedExceptionAction<Object>) ()->cl.newInstance(), acc);
 			fail("expected security exception");
 		}
 		catch (Exception ex) {
