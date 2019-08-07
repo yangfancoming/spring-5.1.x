@@ -39,6 +39,6 @@ public enum ScopedProxyMode {
 	/**
 	 * Create a class-based proxy (uses CGLIB).
 	 */
-	TARGET_CLASS;
+	TARGET_CLASS
 
 }

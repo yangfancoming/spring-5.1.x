@@ -36,10 +36,7 @@ import org.springframework.core.annotation.AliasFor;
  * <p>To register additional custom scopes, see
  * {@link org.springframework.beans.factory.config.CustomScopeConfigurer
  * CustomScopeConfigurer}.
- *
- * @author Mark Fisher
 
- * @author Sam Brannen
  * @since 2.5
  * @see org.springframework.stereotype.Component
  * @see org.springframework.context.annotation.Bean
