@@ -11,7 +11,7 @@ public class SingeltonTest {
 
 	ApplicationContext context = new ClassPathXmlApplicationContext("classpath:Singelton.xml");
 
-	/**  测试 <bean> 标签中 id 和name属性重复问题 */
+	/**  测试 <bean> 标签中 id 和name属性重复问题    */
 	@Test
 	public void test1(){
 		Assert.assertNotNull(context);
