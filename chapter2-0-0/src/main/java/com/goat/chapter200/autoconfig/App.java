@@ -1,23 +1,17 @@
 package com.goat.chapter200.autoconfig;
 
 
+import com.goat.chapter200.base.BaseTest;
+import com.goat.chapter200.base.CompactDisc;
+import com.goat.chapter200.base.MediaPlayer;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.util.Arrays;
-
-public class App {
-
-	AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+public class App extends BaseTest  {
 
 	@Before
-	public void pre(){
-		ctx.register(CDPlayerConfig.class);
-		ctx.refresh();
-
-		String[] str= ctx.getBeanDefinitionNames();
-		Arrays.stream(str).forEach(x->System.out.println("***---***" + x));
+	public void before(){
+		pre(CDPlayerConfig.class);
 	}
 
 	/**  测试 spring 默认命名组件name */
@@ -37,7 +31,7 @@ public class App {
 	/**  测试  构造函数注入*/
 	@Test
 	public void test3(){
-		MediaPlayer ent = (MediaPlayer)ctx.getBean("CDplayer");
+		MediaPlayer ent = (MediaPlayer)ctx.getBean("CDPlayer");
 		ent.insert();
 	}
 

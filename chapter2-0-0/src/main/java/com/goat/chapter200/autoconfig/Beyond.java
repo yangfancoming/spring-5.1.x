@@ -1,6 +1,7 @@
 package com.goat.chapter200.autoconfig;
 
 
+import com.goat.chapter200.base.CompactDisc;
 import org.springframework.stereotype.Component;
 
 /**

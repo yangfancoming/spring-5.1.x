@@ -1,7 +1,7 @@
 package com.goat.chapter200.item02;
 
 
-import com.goat.chapter200.item01.CompactDisc;
+import com.goat.chapter200.base.CompactDisc;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;

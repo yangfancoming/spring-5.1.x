@@ -11,6 +11,6 @@ import org.springframework.context.annotation.Configuration;
  * @Date:   2018/7/25
  */
 @Configuration
-@ComponentScan( basePackageClasses = CompactDisc.class ) //  单个基础包扫描 （将指定类所在的包作为基础包） 可以使用类  但是一般都使用接口
+@ComponentScan( basePackageClasses = App.class ) //  单个基础包扫描 （将指定类所在的包作为基础包） 可以使用类  但是一般都使用接口
 public class CDPlayerConfig {
 }
