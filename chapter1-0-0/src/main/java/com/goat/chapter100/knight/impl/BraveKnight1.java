@@ -5,11 +5,7 @@ import com.goat.chapter100.Minstrel;
 import com.goat.chapter100.knight.Knight;
 import com.goat.chapter100.quest.Quest;
 
-/**
-     * @Description: 功能描述：
-     * @author: 杨帆
-     * @Date:   2018/7/24
-*/
+
 public class BraveKnight1 implements Knight {
 
   private Quest quest;

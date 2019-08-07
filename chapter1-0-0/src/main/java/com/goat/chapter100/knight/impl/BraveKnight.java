@@ -5,8 +5,6 @@ import com.goat.chapter100.knight.Knight;
 import com.goat.chapter100.quest.Quest;
 
 /**
-     * @Description: 功能描述：
-     * @author: 杨帆
 不同于之前的DamselRescuingKnight，BraveKnight没有自行创建探险任务，
 而是在构造器中把探险任务作为参数注入，这也是依赖注入的一种方式，即构造器注入。
 

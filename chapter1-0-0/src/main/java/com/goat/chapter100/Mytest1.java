@@ -10,7 +10,6 @@ public class Mytest1 {
 
 	ApplicationContext context = new ClassPathXmlApplicationContext("classpath:knight.xml");
 
-
 	@Test
 	public void test() {
 		Knight knight2 = (Knight)context.getBean("knight2");

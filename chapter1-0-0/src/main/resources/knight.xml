@@ -5,16 +5,17 @@
       http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-	<!--使用Spring将 SlayDragonQuest 注入到 BraveKnight 中-->
+	<!-- 通过切换 quest1 和 quest2  将 SlayDragonQuest 或 RescueDamselQuest  注入到 BraveKnight 中-->
 	<bean id="knight2" class="com.goat.chapter100.knight.impl.BraveKnight">
-		<constructor-arg ref="quest" />
+		<constructor-arg ref="quest1" />
+		<!--<constructor-arg ref="quest2" />-->
 	</bean>
 
 
 	<!--bean的声明使用了Spring表达式语言（Spring Expression Language） ， 将System.out（这是一个PrintStream）-->
-	<bean id="ques1t" class="com.goat.chapter100.quest.impl.SlayDragonQuest"> </bean>
+	<bean id="quest1" class="com.goat.chapter100.quest.impl.SlayDragonQuest"> </bean>
 
 
-	<bean id="quest" class="com.goat.chapter100.quest.impl.RescueDamselQuest"></bean>
+	<bean id="quest2" class="com.goat.chapter100.quest.impl.RescueDamselQuest"></bean>
 
 </beans>
