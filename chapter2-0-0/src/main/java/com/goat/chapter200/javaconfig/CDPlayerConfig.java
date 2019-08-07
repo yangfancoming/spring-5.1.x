@@ -1,7 +1,9 @@
 package com.goat.chapter200.javaconfig;
 import com.goat.chapter200.autoconfig.Beyond;
+import com.goat.chapter200.autoconfig.BlackPanther;
 import com.goat.chapter200.autoconfig.CDPlayer;
 import com.goat.chapter200.base.CompactDisc;
+import com.goat.chapter200.base.MediaPlayer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,12 +18,13 @@ import org.springframework.context.annotation.Configuration;
 public class CDPlayerConfig {
   
   @Bean
-  public CompactDisc compactDisc() {
-    return new Beyond();
+  public CompactDisc compact111Disc() {
+//    return new Beyond();
+    return new BlackPanther();
   }
   
   @Bean
-  public CDPlayer cdPlayer(CompactDisc compactDisc) {
+  public MediaPlayer cdPlayer(CompactDisc compactDisc) {
     return new CDPlayer(compactDisc);
   }
 

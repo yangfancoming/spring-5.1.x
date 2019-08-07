@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="compactDisc"  class="com.goat.chapter200.xmlconfig.BlankDisc">
+		<constructor-arg value="山羊来了" />
+		<constructor-arg value="哇哈哈" />
+	</bean>
+
+
+	<!--  <constructor-arg>元素会告知Spring要将一个ID 为compactDisc的bean引用传递到CDPlayer的构造器中 -->
+
+	<bean id="cdPlayer"  class="com.goat.chapter200.xmlconfig.CDPlayer">
+		<constructor-arg ref="compactDisc" />
+	</bean>
+
+</beans>

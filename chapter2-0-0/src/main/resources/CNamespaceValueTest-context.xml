@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:c="http://www.springframework.org/schema/c"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <bean id="compactDisc" class="com.goat.chapter200.xmlconfig.BlankDisc"
+        c:_0="Sgt. Pepper's Lonely Hearts Club Band"
+        c:_1="The Beatles" />
+
+	<!-- c:cd-ref="compactDisc"  解析  c: c命名空间前缀  cd 构造函数参数名 -ref 注入bean的引用 "compactDisc" 要注入的bean的name-->
+  <bean id="cdPlayer" class="com.goat.chapter200.xmlconfig.CDPlayer" c:cd-ref="compactDisc" />
+
+</beans>

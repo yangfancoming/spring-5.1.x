@@ -7,9 +7,9 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class App {
+public class SingeltonTest {
 
-	ApplicationContext context = new ClassPathXmlApplicationContext("classpath:BeanAttribute.xml");
+	ApplicationContext context = new ClassPathXmlApplicationContext("classpath:Singelton.xml");
 
 	/**  测试 <bean> 标签中 id 和name属性重复问题 */
 	@Test
