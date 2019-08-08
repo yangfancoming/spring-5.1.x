@@ -66,14 +66,14 @@ public class AspectTest {
          * @Param:  测试地址：    http://localhost:8341/hello1
          * @Date:   2018/9/26
     */
-    @After("execution(* com.goat.chapter400.annotation.service.HelloService.sayHiService1(..))")
+    @After("execution(* com.goat.chapter400.annotation.service.HelloServiceImpl.sayHiService1(..))")
     public void myAfter(){
         System.out.println("哥是后置增强。。。。。。。。。。。");
     }
 
 
     /** 后置增强  可以接收 切入方法的返回值  */
-    @AfterReturning(returning="rvt", pointcut="execution(* com.goat.chapter400.annotation.service.HelloService.sayHiService1(..))")
+    @AfterReturning(returning="rvt", pointcut="execution(* com.goat.chapter400.annotation.service.HelloServiceImpl.sayHiService1(..))")
     public void afterExec(Object rvt){
         System.out.println("哥是后AfterReturning。。。。。。。。。。。");
         System.out.println(rvt);

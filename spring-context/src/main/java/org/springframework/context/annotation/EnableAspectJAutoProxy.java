@@ -107,8 +107,9 @@ import java.lang.annotation.Target;
 public @interface EnableAspectJAutoProxy {
 
 	/**
-	 * Indicate whether subclass-based (CGLIB) proxies are to be created as opposed
-	 * to standard Java interface-based proxies. The default is {@code false}.
+	 * Indicate whether subclass-based (CGLIB) proxies are to be created as opposed  to standard Java interface-based proxies. The default is {@code false}.
+	 * 指示是否创建基于子类的（CGLIB）代理，而不是基于标准Java接口的代理。 默认为false 即默认使用 jdk动态代理
+	 * 不过即使proxy-target-class设置为false，如果目标类没有实现接口，则spring将自动使用CGLib动态代理
 	 */
 	boolean proxyTargetClass() default false;
 
