@@ -218,8 +218,7 @@ public class AspectJAdviceParameterNameDiscovererTests {
 		assertParameterNames(method, pointcut, null, null, parameterNames);
 	}
 
-	protected void assertParameterNames(
-			Method method, String pointcut, String returning, String throwing, String[] parameterNames) {
+	protected void assertParameterNames(Method method, String pointcut, String returning, String throwing, String[] parameterNames) {
 
 		assertEquals("bad test specification, must have same number of parameter names as method arguments",
 				method.getParameterCount(), parameterNames.length);

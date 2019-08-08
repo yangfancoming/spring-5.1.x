@@ -13,10 +13,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Adrian Colyer
 
- */
 public class DeclarationOrderIndependenceTests {
 
 	private TopsyTurvyAspect aspect;

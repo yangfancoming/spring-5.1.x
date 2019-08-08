@@ -1,4 +1,4 @@
-package com.goat.chapter400;
+package com.goat.chapter400.xml;
 
 
 import org.junit.Test;

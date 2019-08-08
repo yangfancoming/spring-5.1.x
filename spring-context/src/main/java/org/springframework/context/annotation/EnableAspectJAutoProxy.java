@@ -97,7 +97,6 @@ import java.lang.annotation.Target;
  * While that dependency is optional for {@code spring-aop} in general, it is required
  * for {@code @EnableAspectJAutoProxy} and its underlying facilities.
 
-
  * @since 3.1
  * @see org.aspectj.lang.annotation.Aspect
  */

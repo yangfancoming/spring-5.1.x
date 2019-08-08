@@ -17,7 +17,6 @@ public class AspectJAdviceParameterNameDiscoverAnnotationTests extends AspectJAd
 		assertParameterNames(getMethod("pjpAndAnAnnotation"),"execution(* *(..)) && @annotation(ann)",new String[] {"thisJoinPoint","ann"});
 	}
 
-
 	public void pjpAndAnAnnotation(ProceedingJoinPoint pjp, MyAnnotation ann) {}
 
 	@interface MyAnnotation {}

@@ -17,10 +17,7 @@ import org.springframework.tests.sample.beans.ITestBean;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Adrian Colyer
 
- */
 public class AspectAndAdvicePrecedenceTests {
 
 	private PrecedenceTestAspect highPrecedenceAspect;

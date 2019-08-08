@@ -6,8 +6,7 @@ import org.springframework.context.ApplicationContext;
 
 /**
  * Event raised when an {@code ApplicationContext} gets closed.
- *
-
+ * ApplicationContext 关闭时引发的事件
  * @since 12.08.2003
  * @see ContextRefreshedEvent
  */

@@ -32,9 +32,6 @@ import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
  * &lt;aop:advisor id=&quot;getNameAdvisor&quot;
  *     pointcut-ref=&quot;getNameCalls&quot;
  *     advice-ref=&quot;getNameCounter&quot;/&gt;</pre>
- *
- * @author Rob Harrop
- * @author Adrian Colyer
 
  * @since 2.0
  */
@@ -49,6 +46,7 @@ public class AopNamespaceHandler extends NamespaceHandlerSupport {
 	public void init() {
 		// In 2.0 XSD as well as in 2.1 XSD.
 		registerBeanDefinitionParser("config", new ConfigBeanDefinitionParser());
+		// 对应 xml 配置文件中的 <aop:aspectj-autoproxy/> 标签
 		registerBeanDefinitionParser("aspectj-autoproxy", new AspectJAutoProxyBeanDefinitionParser());
 		registerBeanDefinitionDecorator("scoped-proxy", new ScopedProxyBeanDefinitionDecorator());
 

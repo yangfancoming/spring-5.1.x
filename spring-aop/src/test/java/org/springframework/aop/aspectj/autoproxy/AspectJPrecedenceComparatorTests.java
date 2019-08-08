@@ -23,10 +23,7 @@ import org.springframework.lang.Nullable;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Adrian Colyer
 
- */
 public class AspectJPrecedenceComparatorTests {
 
 	private static final int HIGH_PRECEDENCE_ADVISOR_ORDER = 100;
