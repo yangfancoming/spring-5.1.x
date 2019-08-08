@@ -1087,10 +1087,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	}
 
 	/**
-	 * Assert that this context's BeanFactory is currently active,
-	 * throwing an {@link IllegalStateException} if it isn't.
-	 * <p>Invoked by all {@link BeanFactory} delegation methods that depend
-	 * on an active context, i.e. in particular all bean accessor methods.
+	 * Assert that this context's BeanFactory is currently active,throwing an {@link IllegalStateException} if it isn't.
+	 * <p>Invoked by all {@link BeanFactory} delegation methods that depend on an active context,
+	 * i.e. in particular all bean accessor methods.
 	 * <p>The default implementation checks the {@link #isActive() 'active'} status
 	 * of this context overall. May be overridden for more specific checks, or for a
 	 * no-op if {@link #getBeanFactory()} itself throws an exception in such a case.

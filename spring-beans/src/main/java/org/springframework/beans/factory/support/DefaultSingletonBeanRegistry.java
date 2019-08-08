@@ -120,7 +120,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 */
 	protected void addSingleton(String beanName, Object singletonObject) {
 		synchronized (this.singletonObjects) {
-
+			// 将动态代理后的bean 存入map中
 			this.singletonObjects.put(beanName, singletonObject);
 			// 该单例对象已经注册成功，则需要从工厂集合中移除，后面不需要再次注册
 			this.singletonFactories.remove(beanName);
@@ -166,6 +166,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 */
 	@Nullable
 	protected Object getSingleton(String beanName, boolean allowEarlyReference) {
+		// aop 从 singletonObjects 里取得代理后的对象！
 		Object singletonObject = this.singletonObjects.get(beanName);
 		// 如果该单例没有注册过，且正在注册
 		if (singletonObject == null && isSingletonCurrentlyInCreation(beanName)) {
