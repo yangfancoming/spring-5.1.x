@@ -16,10 +16,6 @@ import static org.junit.Assert.*;
 
 /**
  * Test for correct application of the bean() PCD for &#64;AspectJ-based aspects.
- *
- * @author Ramnivas Laddad
-
-
  */
 public class BeanNamePointcutAtAspectTests {
 
@@ -32,9 +28,8 @@ public class BeanNamePointcutAtAspectTests {
 
 	@org.junit.Before
 	public void setup() {
-		ClassPathXmlApplicationContext ctx =
-				new ClassPathXmlApplicationContext(getClass().getSimpleName() + ".xml", getClass());
-
+		String simpleName = getClass().getSimpleName(); // "BeanNamePointcutAtAspectTests"
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(simpleName + ".xml", getClass());
 		counterAspect = (CounterAspect) ctx.getBean("counterAspect");
 		testBean1 = (ITestBean) ctx.getBean("testBean1");
 		testBean3 = (ITestBean) ctx.getBean("testBean3");
