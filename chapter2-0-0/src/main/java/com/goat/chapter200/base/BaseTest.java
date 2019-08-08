@@ -12,7 +12,6 @@ public class BaseTest {
 	public void pre(Class<?> T){
 		ctx.register(T);
 		ctx.refresh();
-
 		String[] str= ctx.getBeanDefinitionNames();
 		Arrays.stream(str).forEach(x->System.out.println("***---***" + x));
 	}

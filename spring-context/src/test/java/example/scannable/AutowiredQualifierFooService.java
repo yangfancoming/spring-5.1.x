@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.scheduling.annotation.AsyncResult;
 
-/**
- * @author Mark Fisher
 
- */
 @Lazy
 public class AutowiredQualifierFooService implements FooService {
 

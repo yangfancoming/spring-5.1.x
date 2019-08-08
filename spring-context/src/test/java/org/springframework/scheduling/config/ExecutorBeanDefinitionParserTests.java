@@ -19,10 +19,7 @@ import org.springframework.util.CustomizableThreadCreator;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Mark Fisher
 
- */
 public class ExecutorBeanDefinitionParserTests {
 
 	private ApplicationContext context;

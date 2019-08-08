@@ -2,9 +2,7 @@
 
 package org.springframework.scripting.config;
 
-/**
- * @author Mark Fisher
- */
+
 public class OtherTestBean implements ITestBean {
 
 	@Override

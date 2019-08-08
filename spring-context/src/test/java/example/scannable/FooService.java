@@ -7,10 +7,7 @@ import java.util.concurrent.Future;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Indexed;
 
-/**
- * @author Mark Fisher
 
- */
 @Indexed
 public interface FooService {
 

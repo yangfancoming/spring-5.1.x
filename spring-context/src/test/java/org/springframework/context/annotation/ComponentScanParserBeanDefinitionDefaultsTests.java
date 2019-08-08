@@ -11,10 +11,7 @@ import org.springframework.context.support.GenericApplicationContext;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Mark Fisher
 
- */
 public class ComponentScanParserBeanDefinitionDefaultsTests {
 
 	private static final String TEST_BEAN_NAME = "componentScanParserBeanDefinitionDefaultsTests.DefaultsTestBean";

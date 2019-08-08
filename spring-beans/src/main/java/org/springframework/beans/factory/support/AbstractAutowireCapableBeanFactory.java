@@ -382,7 +382,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	public Object applyBeanPostProcessorsBeforeInitialization(Object existingBean, String beanName) throws BeansException {
 		Object result = existingBean;
 		// 取出所有 像 MyBeanPostProcessor 那样实现了 BeanPostProcessor 接口的Bean  按个遍历
-		for (BeanPostProcessor processor : getBeanPostProcessors()) {
+		List<BeanPostProcessor> beanPostProcessors = getBeanPostProcessors();
+		for (BeanPostProcessor processor : beanPostProcessors) {
 			Object current = processor.postProcessBeforeInitialization(result, beanName);
 			// 该循环中 一旦返回null 则跳出循环 后面的 后置处理器不会再被执行
 			if (current == null) {

@@ -26,9 +26,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Mark Fisher
- */
+
 public class SchedulerBeanDefinitionParserTests {
 
 	private ApplicationContext context;

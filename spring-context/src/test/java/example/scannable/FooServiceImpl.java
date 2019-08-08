@@ -24,10 +24,7 @@ import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-/**
- * @author Mark Fisher
 
- */
 @Service @Lazy @DependsOn("myNamedComponent")
 public abstract class FooServiceImpl implements FooService {
 

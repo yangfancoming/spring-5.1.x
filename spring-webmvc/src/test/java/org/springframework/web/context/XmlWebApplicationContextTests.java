@@ -2,18 +2,11 @@
 
 package org.springframework.web.context;
 
-import java.util.Locale;
-
-import javax.servlet.ServletException;
-
 import org.junit.Test;
-
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.BeanPostProcessor;
-import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.AbstractApplicationContextTests;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.NoSuchMessageException;
@@ -22,7 +15,10 @@ import org.springframework.mock.web.test.MockServletContext;
 import org.springframework.tests.sample.beans.TestBean;
 import org.springframework.web.context.support.XmlWebApplicationContext;
 
-import static org.hamcrest.CoreMatchers.*;
+import javax.servlet.ServletException;
+import java.util.Locale;
+
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 
@@ -38,24 +34,19 @@ public class XmlWebApplicationContextTests extends AbstractApplicationContextTes
 		MockServletContext sc = new MockServletContext("");
 		root.setServletContext(sc);
 		root.setConfigLocations(new String[] {"/org/springframework/web/context/WEB-INF/applicationContext.xml"});
-		root.addBeanFactoryPostProcessor(new BeanFactoryPostProcessor() {
+		root.addBeanFactoryPostProcessor(beanFactory->beanFactory.addBeanPostProcessor(new BeanPostProcessor() {
 			@Override
-			public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) {
-				beanFactory.addBeanPostProcessor(new BeanPostProcessor() {
-					@Override
-					public Object postProcessBeforeInitialization(Object bean, String name) throws BeansException {
-						if (bean instanceof TestBean) {
-							((TestBean) bean).getFriends().add("myFriend");
-						}
-						return bean;
-					}
-					@Override
-					public Object postProcessAfterInitialization(Object bean, String name) throws BeansException {
-						return bean;
-					}
-				});
+			public Object postProcessBeforeInitialization(Object bean, String name) throws BeansException {
+				if (bean instanceof TestBean) {
+					((TestBean) bean).getFriends().add("myFriend");
+				}
+				return bean;
 			}
-		});
+			@Override
+			public Object postProcessAfterInitialization(Object bean, String name) throws BeansException {
+				return bean;
+			}
+		}));
 		root.refresh();
 		XmlWebApplicationContext wac = new XmlWebApplicationContext();
 		wac.getEnvironment().addActiveProfile("wacProfile1");

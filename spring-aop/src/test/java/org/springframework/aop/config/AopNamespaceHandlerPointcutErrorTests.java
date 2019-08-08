@@ -12,10 +12,7 @@ import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import static org.junit.Assert.*;
 import static org.springframework.tests.TestResourceUtils.*;
 
-/**
- * @author Mark Fisher
 
- */
 public class AopNamespaceHandlerPointcutErrorTests {
 
 	@Test

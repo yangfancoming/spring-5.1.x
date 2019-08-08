@@ -18,7 +18,7 @@ public class SimpleScanTests {
 	}
 
 	@Test
-	public void testFooService() throws Exception {
+	public void testFooService()  {
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(getConfigLocations(), getClass());
 
 		FooService fooService = (FooService) ctx.getBean("fooServiceImpl");

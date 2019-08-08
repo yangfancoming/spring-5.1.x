@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor</OriginalElement>
+  <nodes>
+    <node x="18.5" y="80.0">javax.servlet.http.HttpServlet</node>
+    <node x="0.0" y="240.0">org.springframework.web.servlet.DispatcherServlet</node>
+    <node x="4.0" y="160.0">org.springframework.web.servlet.HttpServletBean</node>
+    <node x="9.0" y="0.0">javax.servlet.GenericServlet</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.web.servlet.DispatcherServlet" target="org.springframework.web.servlet.HttpServletBean">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="javax.servlet.http.HttpServlet" target="javax.servlet.GenericServlet">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.web.servlet.HttpServletBean" target="javax.servlet.http.HttpServlet">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="383.0" y="212.5" />
+  <SelectedNodes>
+    <node>javax.servlet.GenericServlet</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

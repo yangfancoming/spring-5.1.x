@@ -11,9 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Mark Fisher
- */
+
 public class ComponentScanParserWithUserDefinedStrategiesTests {
 
 	@Test

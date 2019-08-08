@@ -6,9 +6,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 
-/**
- * @author Mark Fisher
- */
+
 @CustomAspectStereotype({"myPointcutInfo", "otherPointcutInfo"})
 @Aspect
 public class ServiceInvocationCounter {

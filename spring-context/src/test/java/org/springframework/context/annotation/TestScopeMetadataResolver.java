@@ -4,9 +4,7 @@ package org.springframework.context.annotation;
 
 import org.springframework.beans.factory.config.BeanDefinition;
 
-/**
- * @author Mark Fisher
- */
+
 public class TestScopeMetadataResolver implements ScopeMetadataResolver {
 
 	@Override

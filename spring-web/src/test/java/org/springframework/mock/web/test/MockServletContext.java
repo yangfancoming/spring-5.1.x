@@ -60,10 +60,7 @@ import org.springframework.web.util.WebUtils;
  * {@code MockServletContext} instance. Consider configuring your
  * {@code MockServletContext} with a {@code FileSystemResourceLoader} in order to
  * interpret resource paths as relative filesystem locations.
- *
- * @author Rod Johnson
 
- * @author Sam Brannen
  * @since 1.0.2
  * @see #MockServletContext(org.springframework.core.io.ResourceLoader)
  * @see org.springframework.web.context.support.AnnotationConfigWebApplicationContext

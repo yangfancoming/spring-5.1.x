@@ -21,9 +21,6 @@ import static org.junit.Assert.*;
 
 /**
  * Tests for various ServletContext-related support classes.
- *
-
-
  * @since 22.12.2004
  */
 public class ServletContextSupportTests {

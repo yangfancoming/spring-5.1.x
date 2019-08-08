@@ -7,10 +7,7 @@ import java.util.concurrent.Future;
 import org.springframework.context.annotation.Scope;
 import org.springframework.scheduling.annotation.AsyncResult;
 
-/**
- * @author Mark Fisher
 
- */
 @Scope("myScope")
 public class ScopedProxyTestBean implements FooService {
 

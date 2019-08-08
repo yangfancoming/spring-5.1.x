@@ -19,10 +19,7 @@ import org.springframework.scheduling.support.ScheduledMethodRunnable;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-/**
- * @author Mark Fisher
 
- */
 @SuppressWarnings("unchecked")
 public class ScheduledTasksBeanDefinitionParserTests {
 

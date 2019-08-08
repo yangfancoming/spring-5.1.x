@@ -19,10 +19,7 @@ import org.springframework.util.ClassUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Mark Fisher
 
- */
 public class QualifierAnnotationAutowireBeanFactoryTests {
 
 	private static final String JUERGEN = "juergen";
