@@ -235,7 +235,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		// Eagerly check singleton cache for manually registered singletons.
 		/**
 		  这里先尝试从缓存中获取，获取不到再走后面创建的流程
-		  获取到有两种情况，一种是Bean创建完成存储到最终的缓存中。
+		  获取到有两种情况，
+		  一种是Bean创建完成存储到最终的缓存中。
 		  另一种是未创建完成，但先预存到一个单独的缓存中，这种是针对可能存在循环引用的情况的处理。
 		  如A引用B,B又引用了A,因而在初始化A时，A会先调用构造函数创建出一个实例，在依赖注入B之前，现将A实例缓存起来
 		  然后在初始化A时，依赖注入阶段，会触发初始化B，B创建后需要依赖注入A时，先从缓存中获取A（这个时候的A是不完整的)，避免循环依赖的问题出现。
@@ -546,11 +547,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		if (classToMatch == null) {
 			classToMatch = FactoryBean.class;
 		}
-		Class<?>[] typesToMatch = (FactoryBean.class == classToMatch ?
-				new Class<?>[] {classToMatch} : new Class<?>[] {FactoryBean.class, classToMatch});
-
-		// Check decorated bean definition, if any: We assume it'll be easier
-		// to determine the decorated bean's type than the proxy's type.
+		Class<?>[] typesToMatch = (FactoryBean.class == classToMatch ? new Class<?>[] {classToMatch} : new Class<?>[] {FactoryBean.class, classToMatch});
+		// Check decorated bean definition, if any: We assume it'll be easier  to determine the decorated bean's type than the proxy's type.
+		// 检查装饰bean的定义，如果有的话：我们假设确定装饰bean的类型比代理的类型更容易。
 		BeanDefinitionHolder dbd = mbd.getDecoratedDefinition();
 		if (dbd != null && !BeanFactoryUtils.isFactoryDereference(name)) {
 			RootBeanDefinition tbd = getMergedBeanDefinition(dbd.getBeanName(), dbd.getBeanDefinition(), mbd);

@@ -523,16 +523,18 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			// 设定类加载器，spel解析器，属性编辑解析器等，忽略特定接口的依赖注册（在特定时刻相关Bean再完成注入)，注册一些系统Bean供依赖注入使用。
 			//  对即将在IOC容器里使用的BeanFactory做一些配置，比如设置类加载器，设置回调方法等
 			// Prepare the bean factory for use in this context.
+			// 就是 上一步 obtainFreshBeanFactory() 创建好beanFactory后 再对其进行初始化设置
 			prepareBeanFactory(beanFactory);
 
 			try {
 				/**
 				  Allows post-processing of the bean factory in context subclasses.
-				  BeanFactory创建完的后置处理。当前为空实现，供子类拓展
+				  上一步 prepareBeanFactory(beanFactory) 的 BeanFactory 创建完成后 进行的后置处理。当前为空实现，供子类拓展
 				  BeanFactory构建完成之后事件，这个方法没有实现，我们可以实现一个。
 				*/
 				postProcessBeanFactory(beanFactory);
 
+				// 以上都是对beanFactory的预准备、创建、后置处理工作 ，以下都是 利用创建好的beanFactory来创建各种组件！
 				// Invoke factory processors registered as beans in the context.
 				// 调用BeanFacotry的相关后置处理器，如果实现了Order相关接口，会先进行排序。
 				// 执行上面的事件
@@ -601,7 +603,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	protected void prepareRefresh() {
 		// Switch to active. 记录启动时间 将 active 属性设置为 true，closed 属性设置为 false，它们都是 AtomicBoolean 类型
 		this.startupDate = System.currentTimeMillis();
+		// 设置容器是否被关闭状态
 		this.closed.set(false);
+		// 设置容器是否激活状态
 		this.active.set(true);
 
 		if (logger.isDebugEnabled()) {
@@ -632,8 +636,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			this.applicationListeners.addAll(this.earlyApplicationListeners);
 		}
 
-		// Allow for the collection of early ApplicationEvents,
-		// to be published once the multicaster is available...
+		// Allow for the collection of early ApplicationEvents,to be published once the multicaster is available...
+		// 允许收集早期的ApplicationEvents，在多主机发布时候有效…
 		this.earlyApplicationEvents = new LinkedHashSet<>();
 	}
 
@@ -665,12 +669,16 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 */
 	protected void prepareBeanFactory(ConfigurableListableBeanFactory beanFactory) {
 		// Tell the internal bean factory to use the context's class loader etc.
+		// 给beanFactory设置类加载器
 		beanFactory.setBeanClassLoader(getClassLoader());
+		// 给beanFactory设置表达式解析器
 		beanFactory.setBeanExpressionResolver(new StandardBeanExpressionResolver(beanFactory.getBeanClassLoader()));
 		beanFactory.addPropertyEditorRegistrar(new ResourceEditorRegistrar(this, getEnvironment()));
 
 		// Configure the bean factory with context callbacks.
+		// 添加部分 后置处理器
 		beanFactory.addBeanPostProcessor(new ApplicationContextAwareProcessor(this));
+		// 设置忽略的自动装配接口 ( EnvironmentAware ResourceLoaderAware、、这些接口的实现类不能够通过接口类型实现自动注入) 即不能通过 @Autowire 注解注入
 		beanFactory.ignoreDependencyInterface(EnvironmentAware.class);
 		beanFactory.ignoreDependencyInterface(EmbeddedValueResolverAware.class);
 		beanFactory.ignoreDependencyInterface(ResourceLoaderAware.class);
@@ -678,8 +686,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		beanFactory.ignoreDependencyInterface(MessageSourceAware.class);
 		beanFactory.ignoreDependencyInterface(ApplicationContextAware.class);
 
-		// BeanFactory interface not registered as resolvable type in a plain factory.
-		// MessageSource registered (and found for autowiring) as a bean.
+		// BeanFactory interface not registered as resolvable type in a plain factory. BeanFactory接口未在普通工厂中注册为可解析类型
+		// MessageSource registered (and found for autowiring) as a bean. messagesource注册（并为自动连接找到）为bean
+		// 设置 可以自动装配的接口 即可以通过 @Autowire 注解注入
 		beanFactory.registerResolvableDependency(BeanFactory.class, beanFactory);
 		beanFactory.registerResolvableDependency(ResourceLoader.class, this);
 		beanFactory.registerResolvableDependency(ApplicationEventPublisher.class, this);
