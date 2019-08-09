@@ -455,8 +455,8 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
-	 * Return whether this a <b>Singleton</b>, with a single shared instance
-	 * returned from all calls.
+	 * Return whether this a <b>Singleton</b>, with a single shared instance returned from all calls.
+	 * 返回是否为单例 ，从所有调用返回一个共享实例。
 	 * @see #SCOPE_SINGLETON
 	 */
 	@Override
@@ -485,8 +485,8 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
-	 * Return whether this bean is "abstract", i.e. not meant to be instantiated
-	 * itself but rather just serving as parent for concrete child bean definitions.
+	 * Return whether this bean is "abstract", i.e. not meant to be instantiated itself but rather just serving as parent for concrete child bean definitions.
+	 * 返回此bean是否是“抽象的”
 	 */
 	@Override
 	public boolean isAbstract() {
@@ -504,8 +504,8 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
-	 * Return whether this bean should be lazily initialized, i.e. not
-	 * eagerly instantiated on startup. Only applicable to a singleton bean.
+	 * Return whether this bean should be lazily initialized, i.e. not eagerly instantiated on startup.
+	 *  Only applicable to a singleton bean.
 	 * @return whether to apply lazy-init semantics ({@code false} by default)
 	 */
 	@Override

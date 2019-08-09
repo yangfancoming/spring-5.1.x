@@ -242,6 +242,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		  然后在初始化A时，依赖注入阶段，会触发初始化B，B创建后需要依赖注入A时，先从缓存中获取A（这个时候的A是不完整的)，避免循环依赖的问题出现。
 		*/
 		Object sharedInstance = getSingleton(beanName);
+		// 如果缓存map中有
 		if (sharedInstance != null && args == null) {
 			if (logger.isTraceEnabled()) {
 				if (isSingletonCurrentlyInCreation(beanName)) {
@@ -254,7 +255,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			//这里主要处理实现了FactoryBean的情况，需要调用重写的getObject()方法来获取实际的Bean实例。
 			bean = getObjectForBeanInstance(sharedInstance, name, beanName, null);
 		}
-
+		// 如果缓存中没有
 		else {
 			// Fail if we're already creating this bean instance:
 			// We're assumably within a circular reference.
@@ -264,7 +265,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			}
 
 			// Check if bean definition exists in this factory.
-			// 如果存在父容器，且Bean在父容器中有定义，则通过父容器返回
+			// 如果存在父容器，且Bean在父容器中有定义，则通过父容器返回。 因为与springMVC整合后 会涉及到子父级容器间的关系
 			BeanFactory parentBeanFactory = getParentBeanFactory();
 			if (parentBeanFactory != null && !containsBeanDefinition(beanName)) {
 				// Not found -> check parent.
@@ -285,7 +286,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				}
 			}
 
-			if (!typeCheckOnly) {  // 进行已创建标记
+			if (!typeCheckOnly) {  // 先标记当前bean已经被创建   后面会进行创建
 				markBeanAsCreated(beanName);
 			}
 			try {
@@ -294,7 +295,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				// 检查mbd是否为抽象的或mbd为单例，但存在args的情况（args只有初始化原型对象才允许存在)
 				checkMergedBeanDefinition(mbd, beanName, args);
 				// Guarantee initialization of beans that the current bean depends on.
-				// 确保当前Bean依赖的相关Bean先完成初始化工作
+				// 确保当前Bean依赖的相关Bean先完成初始化工作  对应 xml配置文件中 <Bean> 标签中的 depends-on 属性
+				// 获取当前bean所依赖的其他bean 如果有则把依赖的bean先创建出来
 				String[] dependsOn = mbd.getDependsOn();
 				if (dependsOn != null) {
 					for (String dep : dependsOn) {
@@ -1563,8 +1565,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 	/**
 	 * Mark the specified bean as already created (or about to be created).
-	 * <p>This allows the bean factory to optimize its caching for repeated
-	 * creation of the specified bean.
+	 * <p>This allows the bean factory to optimize its caching for repeated creation of the specified bean.
 	 * @param beanName the name of the bean
 	 */
 	protected void markBeanAsCreated(String beanName) {
