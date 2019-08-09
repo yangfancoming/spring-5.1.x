@@ -1279,15 +1279,14 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	}
 
 	/**
-	 * Return the internal bean factory of the parent context if it implements
-	 * ConfigurableApplicationContext; else, return the parent context itself.
+	 * Return the internal bean factory of the parent context if it implements ConfigurableApplicationContext;
+	 * else, return the parent context itself.
 	 * @see org.springframework.context.ConfigurableApplicationContext#getBeanFactory
 	 */
 	@Nullable
 	protected BeanFactory getInternalParentBeanFactory() {
-		ConfigurableApplicationContext parent = (ConfigurableApplicationContext)getParent();
-		ConfigurableListableBeanFactory beanFactory = parent.getBeanFactory();
-		return ( getParent() instanceof ConfigurableApplicationContext ? beanFactory : getParent());
+		return (getParent() instanceof ConfigurableApplicationContext ? ((ConfigurableApplicationContext) getParent()).getBeanFactory() : getParent());
+
 	}
 
 

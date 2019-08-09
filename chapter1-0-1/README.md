@@ -1,3 +1,7 @@
+# 什么是依赖倒置原则？ 
+    定义：高层模块不应依赖底层模块，二者都应该依赖于抽象；抽象不应该依赖于细节；细节应该依赖于抽象。 
+    核心思想：面向接口编程
+
 #  Spring IoC 应运而生
     概念：要了解IoC控制反转( Inversion of Control ), 有必要先了解软件设计的一个重要思想：依赖倒置原则（Dependency Inversion Principle ）。
     

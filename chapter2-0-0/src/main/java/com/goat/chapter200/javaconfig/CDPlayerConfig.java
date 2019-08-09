@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
 public class CDPlayerConfig {
   
   @Bean
-  public CompactDisc compact111Disc() {
+  public CompactDisc compactDisc() {
 //    return new Beyond();
     return new BlackPanther();
   }
