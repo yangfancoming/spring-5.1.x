@@ -38,11 +38,7 @@ import org.springframework.util.ClassUtils;
  *
  * <p>Proxies are serializable so long as all Advisors (including Advices
  * and Pointcuts) and the TargetSource are serializable.
- *
- * @author Rod Johnson
 
- * @author Rob Harrop
- * @author Dave Syer
  * @see java.lang.reflect.Proxy
  * @see AdvisedSupport
  * @see ProxyFactory
@@ -51,7 +47,6 @@ final class JdkDynamicAopProxy implements AopProxy, InvocationHandler, Serializa
 
 	/** use serialVersionUID from Spring 1.2 for interoperability. */
 	private static final long serialVersionUID = 5531744639992436476L;
-
 
 	/*
 	 * NOTE: We could avoid the code duplication between this class and the CGLIB

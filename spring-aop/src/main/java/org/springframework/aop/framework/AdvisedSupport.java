@@ -39,8 +39,7 @@ import org.springframework.util.CollectionUtils;
  *
  * <p>This class is serializable; subclasses need not be.
  * This class is used to hold snapshots of proxies.
- *
- * @author Rod Johnson
+
 
  * @see org.springframework.aop.framework.AopProxy
  */
@@ -513,8 +512,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 	}
 
 	/**
-	 * Build a configuration-only copy of this AdvisedSupport,
-	 * replacing the TargetSource.
+	 * Build a configuration-only copy of this AdvisedSupport,replacing the TargetSource.
 	 */
 	AdvisedSupport getConfigurationOnlyCopy() {
 		AdvisedSupport copy = new AdvisedSupport();
@@ -563,8 +561,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 
 
 	/**
-	 * Simple wrapper class around a Method. Used as the key when
-	 * caching methods, for efficient equals and hashCode comparisons.
+	 * Simple wrapper class around a Method. Used as the key when caching methods, for efficient equals and hashCode comparisons.
 	 */
 	private static final class MethodCacheKey implements Comparable<MethodCacheKey> {
 
