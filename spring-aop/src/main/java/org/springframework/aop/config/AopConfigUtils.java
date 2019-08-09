@@ -5,6 +5,7 @@ package org.springframework.aop.config;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.aspectj.weaver.loadtime.definition.Definition;
 import org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator;
 import org.springframework.aop.aspectj.autoproxy.AspectJAwareAdvisorAutoProxyCreator;
 import org.springframework.aop.framework.autoproxy.InfrastructureAdvisorAutoProxyCreator;
@@ -92,12 +93,18 @@ public abstract class AopConfigUtils {
 	@Nullable
 	private static BeanDefinition registerOrEscalateApcAsRequired(Class<?> cls, BeanDefinitionRegistry registry, @Nullable Object source) {
 		Assert.notNull(registry, "BeanDefinitionRegistry must not be null");
-
+		//工厂中是否已经注册了 org.springframework.aop.config.internalAutoProxyCreator
 		if (registry.containsBeanDefinition(AUTO_PROXY_CREATOR_BEAN_NAME)) {
 			BeanDefinition apcDefinition = registry.getBeanDefinition(AUTO_PROXY_CREATOR_BEAN_NAME);
+			//如果已经有注册了 internalAutoProxyCreator，并且和入参传递的Class不是同一个Class，那么就根据优先级进行选择
 			if (!cls.getName().equals(apcDefinition.getBeanClassName())) {
+				/**
+				 *   AopConfigUtils 类中有个 ArrayList 属性 APC_PRIORITY_LIST，在类静态构造中依次加入了几个创建器，
+				 *  这个方法就是查找某个创建器在 APC_PRIORITY_LIST 中的索引，如果没有找到就报错
+				*/
 				int currentPriority = findPriorityForClass(apcDefinition.getBeanClassName());
 				int requiredPriority = findPriorityForClass(cls);
+				// internalAutoProxyCreator 的索引为0，入参的 AspectJAwareAdvisorAutoProxyCreator 索引为1，后者要大，所以重新设置下 apcDefinition 的 beanClass
 				if (currentPriority < requiredPriority) {
 					apcDefinition.setBeanClassName(cls.getName());
 				}
@@ -105,6 +112,7 @@ public abstract class AopConfigUtils {
 			return null;
 		}
 
+		// 如果没有注册 internalAutoProxyCreator ，组装一个 Bean Definition，以AspectJAwareAdvisorAutoProxyCreator 作为 bean Class，然后注册到工厂中
 		RootBeanDefinition beanDefinition = new RootBeanDefinition(cls);
 		beanDefinition.setSource(source);
 		beanDefinition.getPropertyValues().add("order", Ordered.HIGHEST_PRECEDENCE);

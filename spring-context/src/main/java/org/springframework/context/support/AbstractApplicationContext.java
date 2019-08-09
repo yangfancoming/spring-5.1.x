@@ -516,7 +516,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			 *    调用子类实现方法获取（创建或刷新）BeanFacotry容器，对于ClassPathXmlApplicationContext，主要调用了AbstractRefreshableApplicationContext中实现的方法
 			 * 	  在这里，将xml配置文件中 的Bean解析成了一个个BeanDefinition,建立一个beanName-> beanDefinition 的 map
 			 *
-			 * 	  // 初始化BeanFactory，存在则销毁，不存在则创建一个
+			 * 	  初始化BeanFactory，存在则销毁，不存在则创建一个
 			 */
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
@@ -1285,8 +1285,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 */
 	@Nullable
 	protected BeanFactory getInternalParentBeanFactory() {
-		return (getParent() instanceof ConfigurableApplicationContext ?
-				((ConfigurableApplicationContext) getParent()).getBeanFactory() : getParent());
+		ConfigurableApplicationContext parent = (ConfigurableApplicationContext)getParent();
+		ConfigurableListableBeanFactory beanFactory = parent.getBeanFactory();
+		return ( getParent() instanceof ConfigurableApplicationContext ? beanFactory : getParent());
 	}
 
 
