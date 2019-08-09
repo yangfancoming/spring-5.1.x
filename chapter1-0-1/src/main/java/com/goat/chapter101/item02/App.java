@@ -11,6 +11,7 @@ import org.junit.Test;
  */
 public class App {
 
+	/**  改成动态的 size 需要更改所有的依赖类的构造函数。。。 */
 	@Test
 	public void tst(){
 		int size = 44;

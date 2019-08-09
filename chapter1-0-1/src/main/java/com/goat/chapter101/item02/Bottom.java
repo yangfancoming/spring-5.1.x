@@ -19,7 +19,4 @@ public class Bottom {
 		return tire;
 	}
 
-	public void setTire(Tire tire) {
-		this.tire = tire;
-	}
 }

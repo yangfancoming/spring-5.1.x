@@ -1,4 +1,5 @@
-package com.goat.chapter101.item02;
+package com.goat.chapter101.item03;
+
 
 /**
  * Created by 64274 on 2019/8/9.
@@ -11,8 +12,8 @@ public class Car {
 
 	private Framework framework;
 
-	public Car(int size) {
-		this.framework = new Framework(size);
+	public Car(Framework framework) {
+		this.framework = framework;
 	}
 
 	public void run(){

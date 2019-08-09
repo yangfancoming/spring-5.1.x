@@ -19,7 +19,4 @@ public class Framework {
 		return bottom;
 	}
 
-	public void setBottom(Bottom bottom) {
-		this.bottom = bottom;
-	}
 }

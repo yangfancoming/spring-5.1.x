@@ -1,4 +1,5 @@
-package com.goat.chapter101.item01;
+package com.goat.chapter101.item03;
+
 
 /**
  * Created by 64274 on 2019/8/9.
@@ -11,12 +12,11 @@ public class Framework {
 
 	private Bottom bottom;
 
-	public Framework() {
-		this.bottom = new Bottom();
+	public Framework(Bottom bottom) {
+		this.bottom = bottom;
 	}
 
 	public Bottom getBottom() {
 		return bottom;
 	}
-
 }

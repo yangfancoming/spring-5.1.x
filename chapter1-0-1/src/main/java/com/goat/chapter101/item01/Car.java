@@ -15,14 +15,6 @@ public class Car {
 		this.framework = new Framework();
 	}
 
-	public Framework getFramework() {
-		return framework;
-	}
-
-	public void setFramework(Framework framework) {
-		this.framework = framework;
-	}
-
 	public void run(){
 		System.out.println("汽车生产出来了  size为：" + framework.getBottom().getTire().getSize() );
 	}

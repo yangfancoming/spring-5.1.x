@@ -11,6 +11,7 @@ import org.junit.Test;
  */
 public class App {
 
+	/**  写死的 size  使用方法   */
 	@Test
 	public void tst(){
 		Car car = new Car();
