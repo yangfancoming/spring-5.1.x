@@ -7,14 +7,14 @@ package com.goat.chapter115.service;
  * @ author  山羊来了
  * @ date 2019/6/28---10:39
  */
-public class WhatServiceImpl implements WhatService {
+public class LazyServiceImpl implements LazyService {
 
-	public WhatServiceImpl() {
-		System.out.println("WhatServiceImpl 构造函数执行");
+	public LazyServiceImpl() {
+		System.out.println("LazyServiceImpl 构造函数执行");
 	}
 
 	public String getMessage() {
-		return "正常实现类bean";
+		return "懒加载实现类bean";
 	}
 
 }

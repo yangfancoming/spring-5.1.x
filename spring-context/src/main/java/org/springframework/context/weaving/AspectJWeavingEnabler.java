@@ -22,9 +22,6 @@ import org.springframework.lang.Nullable;
  * {@link org.aspectj.weaver.loadtime.ClassPreProcessorAgentAdapter}
  * with the Spring application context's default
  * {@link org.springframework.instrument.classloading.LoadTimeWeaver}.
- *
-
- * @author Ramnivas Laddad
  * @since 2.5
  */
 public class AspectJWeavingEnabler
@@ -69,8 +66,7 @@ public class AspectJWeavingEnabler
 	 * @param weaverToUse the LoadTimeWeaver to apply to (or {@code null} for a default weaver)
 	 * @param beanClassLoader the class loader to create a default weaver for (if necessary)
 	 */
-	public static void enableAspectJWeaving(
-			@Nullable LoadTimeWeaver weaverToUse, @Nullable ClassLoader beanClassLoader) {
+	public static void enableAspectJWeaving(@Nullable LoadTimeWeaver weaverToUse, @Nullable ClassLoader beanClassLoader) {
 
 		if (weaverToUse == null) {
 			if (InstrumentationLoadTimeWeaver.isInstrumentationAvailable()) {
@@ -80,8 +76,7 @@ public class AspectJWeavingEnabler
 				throw new IllegalStateException("No LoadTimeWeaver available");
 			}
 		}
-		weaverToUse.addTransformer(
-				new AspectJClassBypassingClassFileTransformer(new ClassPreProcessorAgentAdapter()));
+		weaverToUse.addTransformer(new AspectJClassBypassingClassFileTransformer(new ClassPreProcessorAgentAdapter()));
 	}
 
 
@@ -91,17 +86,12 @@ public class AspectJWeavingEnabler
 	 * @see org.springframework.context.annotation.LoadTimeWeavingConfiguration
 	 */
 	private static class AspectJClassBypassingClassFileTransformer implements ClassFileTransformer {
-
 		private final ClassFileTransformer delegate;
-
 		public AspectJClassBypassingClassFileTransformer(ClassFileTransformer delegate) {
 			this.delegate = delegate;
 		}
-
 		@Override
-		public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
-				ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
-
+		public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
 			if (className.startsWith("org.aspectj") || className.startsWith("org/aspectj")) {
 				return classfileBuffer;
 			}

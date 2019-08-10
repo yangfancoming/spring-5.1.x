@@ -204,8 +204,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
-	 * Create a new AbstractBeanDefinition as a deep copy of the given
-	 * bean definition.
+	 * Create a new AbstractBeanDefinition as a deep copy of the given bean definition.
 	 * @param original the original bean definition to copy from
 	 */
 	protected AbstractBeanDefinition(BeanDefinition original) {
@@ -495,8 +494,8 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 	/**
 	 * Set whether this bean should be lazily initialized.
-	 * <p>If {@code false}, the bean will get instantiated on startup by bean
-	 * factories that perform eager initialization of singletons.
+	 * <p>If {@code false}, the bean will get instantiated on startup by bean factories that perform eager initialization of singletons.
+	 * 如果是false，bean将在启动时由执行单例初始化的bean工厂实例化。
 	 */
 	@Override
 	public void setLazyInit(boolean lazyInit) {
