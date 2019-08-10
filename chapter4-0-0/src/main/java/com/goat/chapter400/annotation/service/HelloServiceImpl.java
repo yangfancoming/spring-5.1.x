@@ -12,18 +12,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class HelloServiceImpl implements HelloService {
 
+	/** 测试 正常方法*/
 	@Override
-    public String sayHiService1(){
-        System.out.println("sayHiService1 方法执行！"); // doit http://localhost:8341/hello1 请求  为啥执行不到这里？
-        return "HelloService...........1";
+    public String sayHiService1(String str){
+        System.out.println("目标方法执行----------sayHiService1" + str);
+        return "return sayHiService1";
     }
 
+    /** 测试 异常方法*/
 	@Override
     public String sayHiService2(){
-        System.out.println("sayHiService2 方法执行！");
+		System.out.println("目标方法执行----------sayHiService2");
        if (true){
            throw  new RuntimeException("123");
        }
-        return "HelloService...........2";
+		return "return sayHiService2";
     }
 }

@@ -87,15 +87,16 @@ import java.lang.annotation.Target;
  *     // no explicit &#064Bean definitions required
  * }</pre>
  *
- * <b>Note: {@code @EnableAspectJAutoProxy} applies to its local application context only,
- * allowing for selective proxying of beans at different levels.</b> Please redeclare
- * {@code @EnableAspectJAutoProxy} in each individual context, e.g. the common root web
- * application context and any separate {@code DispatcherServlet} application contexts,
+ * Note: @EnableAspectJAutoProxy applies to its local application context only,allowing for selective proxying of beans at different levels.
+ *  @EnableAspectJAutoProxy  仅适用于其本地应用程序上下文，允许在不同级别选择性代理bean
+ * Please redeclare @EnableAspectJAutoProxy in each individual context,
+ *  请在每个单独的上下文中重新声明@EnableAspectJautoProxy
+ * e.g. the common root web application context and any separate {@code DispatcherServlet} application contexts,
  * if you need to apply its behavior at multiple levels.
- *
  * <p>This feature requires the presence of {@code aspectjweaver} on the classpath.
- * While that dependency is optional for {@code spring-aop} in general, it is required
- * for {@code @EnableAspectJAutoProxy} and its underlying facilities.
+ * 此功能要求类路径上存在AspectJWeaver
+ * While that dependency is optional for {@code spring-aop} in general, it is required for {@code @EnableAspectJAutoProxy} and its underlying facilities.
+ *
 
  * @since 3.1
  * @see org.aspectj.lang.annotation.Aspect
