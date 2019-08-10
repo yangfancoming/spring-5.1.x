@@ -1,6 +1,7 @@
 package com.goat.chapter110;
 
-import com.goat.chapter110.bean.Car;
+
+import com.goat.chapter110.bean.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -45,5 +46,10 @@ public class BeanLifeCycle {
 	@Bean
 	public Car car() {
 		return new Car();
+	}
+
+	@Bean()
+	public Human human() {
+		return new Man();
 	}
 }

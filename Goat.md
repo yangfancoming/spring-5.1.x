@@ -1,7 +1,7 @@
 # 目录 
     chapter1-0-1  为什么需要 spring  ioc di 这种思想  即 Spring IOC 应运而生
-    chapter1-1-0  spring Bean的生命周期
-    chapter1-1-5  spring Bean的生命周期 详细
+    chapter1-1-0  spring Bean的生命周期 注解
+    chapter1-1-5  spring Bean的生命周期 xml
     chapter2-0-0  spring Bean的装配 （依赖注入）
     chapter2-1-0  spring bean装配 源码示例  BeanFactoryAware
     chapter4-0-0  spring AOP
@@ -16,7 +16,7 @@
     最后：挑最富有内涵的接口分析其原理和思想，学习他们的设计思路
 
 #  bean的几种形态： 概念态、内存态、纯静态、成熟态
-
+ 
     形态一：xml或者注解标注的概念态，此时bean只是一个由类和一些描述文件定义的概念状态，比如：
     
     <bean id="schedulerFactoryBean"
