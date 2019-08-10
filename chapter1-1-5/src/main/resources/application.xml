@@ -3,9 +3,13 @@
 	   xmlns="http://www.springframework.org/schema/beans"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" default-autowire="byName">
 
+	<bean id="whatService" class="com.goat.chapter115.service.WhatServiceImpl"/>
+	<bean id="abstractBeanTest" class="com.goat.chapter115.service.AbstractBeanTest" abstract="true"/>
 
-	<beans profile="devTest">
-		<bean id="MyTestBean" class="com.goat.spring.demo.service.MyTestBeanImpl"/>
-	</beans>
+
+
+	<!--<beans profile="devTest">-->
+		<!--<bean id="MyTestBean" class="com.goat.chapter115.MyTestBeanImpl"/>-->
+	<!--</beans>-->
 
 </beans>

@@ -1320,16 +1320,14 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	}
 
 	/**
-	 * Check the given merged bean definition,
-	 * potentially throwing validation exceptions.
+	 * Check the given merged bean definition,potentially throwing validation exceptions.
+	 * 检查给定的合并bean定义，可能会引发验证异常
 	 * @param mbd the merged bean definition to check
 	 * @param beanName the name of the bean
 	 * @param args the arguments for bean creation, if any
 	 * @throws BeanDefinitionStoreException in case of validation failure
 	 */
-	protected void checkMergedBeanDefinition(RootBeanDefinition mbd, String beanName, @Nullable Object[] args)
-			throws BeanDefinitionStoreException {
-
+	protected void checkMergedBeanDefinition(RootBeanDefinition mbd, String beanName, @Nullable Object[] args) throws BeanDefinitionStoreException {
 		if (mbd.isAbstract()) {
 			throw new BeanIsAbstractException(beanName);
 		}

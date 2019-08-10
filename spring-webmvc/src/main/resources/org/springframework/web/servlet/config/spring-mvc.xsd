@@ -101,7 +101,7 @@
 								<xsd:element ref="beans:ref">
 									<xsd:annotation>
 										<xsd:documentation><![CDATA[
-	A reference to an HttpMessageConverter bean.
+	A reference to an HttpMessageConverter com.goat.chapter115.bean.
 										]]></xsd:documentation>
 									</xsd:annotation>
 								</xsd:element>
@@ -382,7 +382,7 @@
 			<xsd:element ref="beans:ref">
 				<xsd:annotation>
 					<xsd:documentation source="org.springframework.web.servlet.resource.VersionStrategy"><![CDATA[
-	A reference to a VersionStrategy bean.
+	A reference to a VersionStrategy com.goat.chapter115.bean.
 					]]></xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
@@ -426,7 +426,7 @@
 				<xsd:element ref="beans:ref">
 					<xsd:annotation>
 						<xsd:documentation source="org.springframework.web.servlet.resource.ResourceResolver"><![CDATA[
-	A reference to a ResourceResolver bean.
+	A reference to a ResourceResolver com.goat.chapter115.bean.
 					]]></xsd:documentation>
 					</xsd:annotation>
 				</xsd:element>
@@ -453,7 +453,7 @@
 				<xsd:element ref="beans:ref">
 					<xsd:annotation>
 						<xsd:documentation source="org.springframework.web.servlet.resource.ResourceTransformer"><![CDATA[
-	A reference to a ResourceTransformer bean.
+	A reference to a ResourceTransformer com.goat.chapter115.bean.
 					]]></xsd:documentation>
 					</xsd:annotation>
 				</xsd:element>
@@ -767,7 +767,7 @@
 								<xsd:element ref="beans:ref">
 									<xsd:annotation>
 										<xsd:documentation><![CDATA[
-		A reference to an interceptor bean.
+		A reference to an interceptor com.goat.chapter115.bean.
 										]]></xsd:documentation>
 									</xsd:annotation>
 								</xsd:element>
@@ -1032,7 +1032,7 @@
 							<xsd:documentation><![CDATA[
 	Register a TilesViewResolver based on Tiles 3.x.
 	To configure Tiles you must also add a top-level <mvc:tiles-configurer> element
-	or declare a TilesConfigurer bean.
+	or declare a TilesConfigurer com.goat.chapter115.bean.
 							]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
@@ -1042,7 +1042,7 @@
 	Register a FreeMarkerViewResolver.
 	By default, ".ftl" is configured as a view name suffix.
 	To configure FreeMarker you must also add a top-level <mvc:freemarker-configurer> element
-	or declare a FreeMarkerConfigurer bean.
+	or declare a FreeMarkerConfigurer com.goat.chapter115.bean.
 							]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
@@ -1052,7 +1052,7 @@
 	Register a GroovyMarkupViewResolver.
 	By default, ".tpl" is configured as a view name suffix.
 	To configure the Groovy markup template engine you must also add a top-level <mvc:groovy-configurer> element
-	or declare a GroovyMarkupConfigurer bean.
+	or declare a GroovyMarkupConfigurer com.goat.chapter115.bean.
 							]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
@@ -1061,14 +1061,14 @@
 							<xsd:documentation><![CDATA[
 	Register a ScriptTemplateViewResolver.
 	To configure the Script engine you must also add a top-level <mvc:script-template-configurer> element
-	or declare a ScriptTemplateConfigurer bean.
+	or declare a ScriptTemplateConfigurer com.goat.chapter115.bean.
 							]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
 					<xsd:element name="bean-name" maxOccurs="1">
 						<xsd:annotation>
 							<xsd:documentation><![CDATA[
-	Register a BeanNameViewResolver bean.
+	Register a BeanNameViewResolver com.goat.chapter115.bean.
 							]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
@@ -1107,7 +1107,7 @@
 	<xsd:element name="tiles-configurer">
 		<xsd:annotation>
 			<xsd:documentation><![CDATA[
-	Configure Tiles 3.x by registering a TilesConfigurer bean.
+	Configure Tiles 3.x by registering a TilesConfigurer com.goat.chapter115.bean.
 	This is a shortcut alternative to declaring a TilesConfigurer bean directly.
 			]]></xsd:documentation>
 		</xsd:annotation>
@@ -1163,7 +1163,7 @@
 	<xsd:element name="freemarker-configurer">
 		<xsd:annotation>
 			<xsd:documentation><![CDATA[
-	Configure FreeMarker for view resolution by registering a FreeMarkerConfigurer bean.
+	Configure FreeMarker for view resolution by registering a FreeMarkerConfigurer com.goat.chapter115.bean.
 	This is a shortcut alternative to declaring a FreeMarkerConfigurer bean directly.
 			]]></xsd:documentation>
 		</xsd:annotation>
@@ -1187,7 +1187,7 @@
 	<xsd:element name="groovy-configurer">
 		<xsd:annotation>
 			<xsd:documentation><![CDATA[
-	Configure the Groovy markup template engine for view resolution by registering a GroovyMarkupConfigurer bean.
+	Configure the Groovy markup template engine for view resolution by registering a GroovyMarkupConfigurer com.goat.chapter115.bean.
 	This is a shortcut alternative to declaring a GroovyMarkupConfigurer bean directly.
 			]]></xsd:documentation>
 		</xsd:annotation>
@@ -1222,7 +1222,7 @@
 		<xsd:annotation>
 			<xsd:documentation><![CDATA[
 	Configure the script engine for view resolution by registering a ScriptTemplateConfigurer
-	bean. This is a shortcut alternative to declaring a ScriptTemplateConfigurer bean directly.
+	com.goat.chapter115.bean. This is a shortcut alternative to declaring a ScriptTemplateConfigurer bean directly.
 			]]></xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>

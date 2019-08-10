@@ -32,7 +32,7 @@
 
 	As alternative to bean references, "inner bean definitions" can be used.
 	Such inner beans do not have an independent lifecycle; they are typically
-	anonymous nested objects that share the scope of their containing bean.
+	anonymous nested objects that share the scope of their containing com.goat.chapter115.bean.
 
 	There is also support for lists, sets, maps, and java.util.Properties
 	as bean property types or constructor argument types.
@@ -43,14 +43,14 @@
 	<xsd:complexType name="identifiedType" abstract="true">
 		<xsd:annotation>
 			<xsd:documentation><![CDATA[
-	The unique identifier for a bean. The scope of the identifier
+	The unique identifier for a com.goat.chapter115.bean. The scope of the identifier
 	is the enclosing bean factory.
 			]]></xsd:documentation>
 		</xsd:annotation>
 		<xsd:attribute name="id" type="xsd:string">
 			<xsd:annotation>
 				<xsd:documentation><![CDATA[
-	The unique identifier for a bean. A bean id may not be used more than once
+	The unique identifier for a com.goat.chapter115.bean. A bean id may not be used more than once
 	within the same <beans> element.
 				]]></xsd:documentation>
 			</xsd:annotation>
@@ -233,7 +233,7 @@
 					<xsd:attribute name="alias" type="xsd:string" use="required">
 						<xsd:annotation>
 							<xsd:documentation><![CDATA[
-	The alias name to define for the bean.
+	The alias name to define for the com.goat.chapter115.bean.
 							]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
@@ -374,7 +374,7 @@
 	3. "byType"
 	Autowiring if there is exactly one bean of the property type in the
 	container. If there is more than one, a fatal error is raised, and
-	you cannot use byType autowiring for that bean. If there is none,
+	you cannot use byType autowiring for that com.goat.chapter115.bean. If there is none,
 	nothing special happens.
 
 	4. "constructor"
@@ -407,7 +407,7 @@
 				<xsd:documentation><![CDATA[
 	The names of the beans that this bean depends on being initialized.
 	The bean factory will guarantee that these beans get initialized
-	before this bean.
+	before this com.goat.chapter115.bean.
 
 	Note that dependencies are normally expressed through bean properties
 	or constructor arguments. This property should just be necessary for
@@ -493,7 +493,7 @@
 
 	Setter Injection can be used in conjunction with a factory method.
 	Method Injection cannot, as the factory method returns an instance,
-	which will be used when the container creates the bean.
+	which will be used when the container creates the com.goat.chapter115.bean.
 				]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
@@ -540,7 +540,7 @@
 	<xsd:element name="bean">
 		<xsd:annotation>
 			<xsd:documentation source="java:org.springframework.beans.factory.config.BeanDefinition"><![CDATA[
-	Defines a single (usually named) bean.
+	Defines a single (usually named) com.goat.chapter115.bean.
 
 	A bean definition may contain nested tags for constructor arguments,
 	property values, lookup methods, and replaced methods. Mixing constructor
@@ -744,7 +744,7 @@
 					<xsd:documentation source="java:org.springframework.beans.factory.support.MethodReplacer"><![CDATA[
 	Bean name of an implementation of the MethodReplacer interface in the
 	current or ancestor factories. This may be a singleton or prototype
-	bean. If it is a prototype, a new instance will be used for each
+	com.goat.chapter115.bean. If it is a prototype, a new instance will be used for each
 	method replacement. Singleton usage is the norm.
 					]]></xsd:documentation>
 				</xsd:annotation>
@@ -792,7 +792,7 @@
 					<xsd:attribute name="bean" type="xsd:string">
 						<xsd:annotation>
 							<xsd:documentation><![CDATA[
-	The name of the referenced bean.
+	The name of the referenced com.goat.chapter115.bean.
 							]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
@@ -824,7 +824,7 @@
 					<xsd:attribute name="bean" type="xsd:string">
 						<xsd:annotation>
 							<xsd:documentation><![CDATA[
-	The name of the referenced bean.
+	The name of the referenced com.goat.chapter115.bean.
 							]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>

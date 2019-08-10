@@ -4,14 +4,11 @@ import com.goat.spring.demo.config.AppConfig;
 import com.goat.spring.demo.service.MessageService;
 import com.goat.spring.demo.service.TestService;
 import com.goat.spring.demo.service.TransactionService;
-import com.goat.spring.demo.service.WhatService;
 import org.junit.Test;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -39,17 +36,6 @@ public class App {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
 		TestService bean = ctx.getBean(TestService.class);
 		bean.test();
-	}
-
-	/** 接口 测试 */
-	@Test
-	public void test2(){
-		// 用我们的配置文件来启动一个 ApplicationContext
-		ApplicationContext context = new ClassPathXmlApplicationContext("classpath:application.xml");
-		System.out.println("context 启动成功");
-		// 从 context 中取出我们的 Bean，而不是用 new MessageServiceImpl() 这种方式
-		WhatService whatService = context.getBean(WhatService.class);
-		System.out.println(whatService.getMessage()); // 这句将输出: hello world
 	}
 
 	ClassPathResource resource  = new ClassPathResource("application.xml");

@@ -362,7 +362,7 @@
 		<xsd:attribute name="advice-ref" type="xsd:string" use="required">
 			<xsd:annotation>
 				<xsd:documentation><![CDATA[
-	A reference to an advice bean.
+	A reference to an advice com.goat.chapter115.bean.
 				]]></xsd:documentation>
 				<xsd:appinfo>
 					<tool:annotation kind="ref">

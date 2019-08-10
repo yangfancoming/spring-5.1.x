@@ -27,8 +27,8 @@
 	<xsd:element name="property-path">
 		<xsd:annotation>
 			<xsd:documentation>
-	Reference a property on a bean (or as a nested value) and expose its values as
-	a bean. For example &lt;util:property-path path=&quot;order.customer.name&quot;/&gt;.
+				Reference a property on a bean (or as a nested value) and expose its values as
+				a com.goat.chapter115.bean. For example &lt;util:property-path path=&quot;order.customer.name&quot;/&gt;.
 			</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>

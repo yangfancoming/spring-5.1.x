@@ -1,7 +1,7 @@
 # 目录 
     chapter1-0-1  为什么需要 spring  ioc di 这种思想  即 Spring IOC 应运而生
-    chapter1-1-0  spring Bean的生命周期 注解
-    chapter1-1-5  spring Bean的生命周期 xml
+    chapter1-1-0  spring Bean的生命周期 注解 方式
+    chapter1-1-5  spring Bean的生命周期 xml  方式
     chapter2-0-0  spring Bean的装配 （依赖注入）
     chapter2-1-0  spring bean装配 源码示例  BeanFactoryAware
     chapter4-0-0  spring AOP
