@@ -7,8 +7,6 @@ import org.springframework.beans.factory.BeanFactoryAware;
 
 /**
  * Simple bean used to test dependency checking.
- *
- * @author Rod Johnson
  * @since 04.09.2003
  */
 public class DependenciesBean implements BeanFactoryAware {

@@ -26,7 +26,6 @@ import org.springframework.core.type.AnnotationMetadata;
  * </ul>
  *
  * <p>See implementations and associated unit tests for usage examples.
-
  * @since 3.1
  * @see Import
  * @see ImportSelector
@@ -35,11 +34,10 @@ import org.springframework.core.type.AnnotationMetadata;
 public interface ImportBeanDefinitionRegistrar {
 
 	/**
-	 * Register bean definitions as necessary based on the given annotation metadata of
-	 * the importing {@code @Configuration} class.
+	 * Register bean definitions as necessary based on the given annotation metadata of the importing {@code @Configuration} class.
+	 * 根据导入@configuration类 给定的注解元数据，按需注册bean定义。 eg: @EnableAspectJAutoProxy 注解
 	 * <p>Note that {@link BeanDefinitionRegistryPostProcessor} types may <em>not</em> be
-	 * registered here, due to lifecycle constraints related to {@code @Configuration}
-	 * class processing.
+	 * registered here, due to lifecycle constraints related to {@code @Configuration} class processing.
 	 * @param importingClassMetadata annotation metadata of the importing class
 	 * @param registry current bean definition registry
 	 */

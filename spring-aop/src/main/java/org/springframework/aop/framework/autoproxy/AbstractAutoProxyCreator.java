@@ -65,10 +65,7 @@ import org.springframework.util.StringUtils;
  * {@link org.springframework.aop.TargetSource}. If there are no TargetSourceCreators set,
  * or if none matches, a {@link org.springframework.aop.target.SingletonTargetSource}
  * will be used by default to wrap the target bean instance.
- *
 
- * @author Rod Johnson
- * @author Rob Harrop
  * @since 13.10.2003
  * @see #setInterceptorNames
  * @see #getAdvicesAndAdvisorsForBean
@@ -76,8 +73,7 @@ import org.springframework.util.StringUtils;
  * @see DefaultAdvisorAutoProxyCreator
  */
 @SuppressWarnings("serial")
-public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
-		implements SmartInstantiationAwareBeanPostProcessor, BeanFactoryAware {
+public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport implements SmartInstantiationAwareBeanPostProcessor, BeanFactoryAware {
 
 	/**
 	 * Convenience constant for subclasses: Return value for "do not proxy".
@@ -338,7 +334,6 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 			this.proxyTypes.put(cacheKey, proxy.getClass());
 			return proxy;
 		}
-
 		this.advisedBeans.put(cacheKey, Boolean.FALSE);
 		return bean;
 	}
@@ -549,7 +544,6 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	protected void customizeProxyFactory(ProxyFactory proxyFactory) {
 	}
 
-
 	/**
 	 * Return whether the given bean is to be proxied, what additional
 	 * advices (e.g. AOP Alliance interceptors) and advisors to apply.
@@ -567,7 +561,6 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	 * @see #PROXY_WITHOUT_ADDITIONAL_INTERCEPTORS
 	 */
 	@Nullable
-	protected abstract Object[] getAdvicesAndAdvisorsForBean(Class<?> beanClass, String beanName,
-			@Nullable TargetSource customTargetSource) throws BeansException;
+	protected abstract Object[] getAdvicesAndAdvisorsForBean(Class<?> beanClass, String beanName,@Nullable TargetSource customTargetSource) throws BeansException;
 
 }
