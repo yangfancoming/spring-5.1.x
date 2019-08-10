@@ -856,7 +856,6 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
 	@Override
 	public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition) throws BeanDefinitionStoreException {
-
 		Assert.hasText(beanName, "Bean name must not be empty");
 		Assert.notNull(beanDefinition, "BeanDefinition must not be null");
 
@@ -866,8 +865,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				((AbstractBeanDefinition) beanDefinition).validate();
 			}
 			catch (BeanDefinitionValidationException ex) {
-				throw new BeanDefinitionStoreException(beanDefinition.getResourceDescription(), beanName,
-						"Validation of bean definition failed", ex);
+				throw new BeanDefinitionStoreException(beanDefinition.getResourceDescription(), beanName,"Validation of bean definition failed", ex);
 			}
 		}
 
@@ -901,6 +899,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			if (hasBeanCreationStarted()) {
 				// Cannot modify startup-time collection elements anymore (for stable iteration)  // 无法再修改启动时集合元素（用于稳定迭代）
 				synchronized (this.beanDefinitionMap) {
+					// 这一步是真正注册bean  状态： 由 概念态--->内存态
 					this.beanDefinitionMap.put(beanName, beanDefinition);
 					// 更新 beanDefinitionNames 这个集合
 					List<String> updatedDefinitions = new ArrayList<>(this.beanDefinitionNames.size() + 1);

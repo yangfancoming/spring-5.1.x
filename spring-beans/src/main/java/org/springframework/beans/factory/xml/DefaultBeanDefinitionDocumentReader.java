@@ -105,8 +105,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 			String profileSpec = root.getAttribute(PROFILE_ATTRIBUTE);
 			if (StringUtils.hasText(profileSpec)) {
 				String[] specifiedProfiles = StringUtils.tokenizeToStringArray(profileSpec, BeanDefinitionParserDelegate.MULTI_VALUE_ATTRIBUTE_DELIMITERS);
-				// We cannot use Profiles.of(...) since profile expressions are not supported
-				// in XML config. See SPR-12458 for details.
+				// We cannot use Profiles.of(...) since profile expressions are not supported in XML config. See SPR-12458 for details.
 				//看spring.profiles.active环境变量中是否有该属性，如果没有则不加载下面的标签
 				if (!getReaderContext().getEnvironment().acceptsProfiles(specifiedProfiles)) {
 					if (logger.isDebugEnabled()) {

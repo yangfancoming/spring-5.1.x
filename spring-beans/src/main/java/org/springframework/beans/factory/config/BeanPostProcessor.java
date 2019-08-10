@@ -21,6 +21,8 @@ import org.springframework.lang.Nullable;
  * @see DestructionAwareBeanPostProcessor
  * @see ConfigurableBeanFactory#addBeanPostProcessor
  * @see BeanFactoryPostProcessor
+ *
+ * 用来 动态修改bean示例的属性  修改实例  修改成熟态
  */
 public interface BeanPostProcessor {
 

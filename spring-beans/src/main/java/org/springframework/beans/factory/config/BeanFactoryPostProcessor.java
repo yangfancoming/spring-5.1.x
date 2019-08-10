@@ -25,6 +25,7 @@ import org.springframework.beans.BeansException;
  * @since 06.07.2003
  * @see BeanPostProcessor
  * @see PropertyResourceConfigurer
+ * 用来 动态修改bean工厂中的属性  修改图纸 修改内存态
  */
 @FunctionalInterface
 public interface BeanFactoryPostProcessor {

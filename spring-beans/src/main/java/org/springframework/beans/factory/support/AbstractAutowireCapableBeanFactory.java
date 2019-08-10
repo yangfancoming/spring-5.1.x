@@ -525,9 +525,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		if (mbd.isSingleton()) {  // 先尝试从缓存中取
 			instanceWrapper = this.factoryBeanInstanceCache.remove(beanName);
 		}
-		if (instanceWrapper == null) {  // 调用构造方法创建一个空实例对象，并用BeanWrapper进行包装
+		if (instanceWrapper == null) {  // 调用构造方法创建一个空实例对象，并用BeanWrapper进行包装  内存态--->纯净态
 			instanceWrapper = createBeanInstance(beanName, mbd, args);
 		}
+		// 从 BeanWrapper 中获取我们内存态对象
 		final Object bean = instanceWrapper.getWrappedInstance();
 		Class<?> beanType = instanceWrapper.getWrappedClass();
 		if (beanType != NullBean.class) {
@@ -566,7 +567,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// 开始对Bean实例进行初始化
 		Object exposedObject = bean;
 		try {
-			// 对bean进行填充，在这里面完成依赖注入的相关内容
+			// 对bean进行填充，在这里面完成依赖注入的相关内容  完成属性的注入  即由 纯净态---->成熟态
+			// @Autowire-  和 循环依赖 均在该方法处理
 			populateBean(beanName, mbd, instanceWrapper);
 			// 完成属性依赖注入后，进一步初始化Bean
 			// 具体进行了以下操作：
@@ -860,7 +862,6 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				return GenericTypeResolver.resolveTypeArgument(mbd.getBeanClass(), FactoryBean.class);
 			}
 		}
-
 		return null;
 	}
 
@@ -946,8 +947,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			if (beanInstance instanceof FactoryBean) {
 				return (FactoryBean<?>) beanInstance;
 			}
-			if (isSingletonCurrentlyInCreation(beanName) ||
-					(mbd.getFactoryBeanName() != null && isSingletonCurrentlyInCreation(mbd.getFactoryBeanName()))) {
+			if (isSingletonCurrentlyInCreation(beanName) || (mbd.getFactoryBeanName() != null && isSingletonCurrentlyInCreation(mbd.getFactoryBeanName()))) {
 				return null;
 			}
 
@@ -1000,7 +1000,6 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		if (isPrototypeCurrentlyInCreation(beanName)) {
 			return null;
 		}
-
 		Object instance;
 		try {
 			// Mark this bean as currently in creation, even if just partially.
@@ -1101,8 +1100,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	}
 
 	/**
-	 * Create a new instance for the specified bean, using an appropriate instantiation strategy:
-	 * factory method, constructor autowiring, or simple instantiation.
+	 * Create a new instance for the specified bean, using an appropriate instantiation strategy:factory method, constructor autowiring, or simple instantiation.
 	 * @param beanName the name of the bean
 	 * @param mbd the bean definition for the bean
 	 * @param args explicit arguments to use for constructor or factory method invocation
@@ -1249,8 +1247,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			final BeanFactory parent = this;
 			if (System.getSecurityManager() != null) {
 				beanInstance = AccessController.doPrivileged((PrivilegedAction<Object>) () ->
-								getInstantiationStrategy().instantiate(mbd, beanName, parent),
-						getAccessControlContext());
+								getInstantiationStrategy().instantiate(mbd, beanName, parent),getAccessControlContext());
 			}
 			else {
 				beanInstance = getInstantiationStrategy().instantiate(mbd, beanName, parent);
@@ -1428,9 +1425,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * @param bw the BeanWrapper from which we can obtain information about the bean
 	 * @param pvs the PropertyValues to register wired objects with
 	 */
-	protected void autowireByType(
-			String beanName, AbstractBeanDefinition mbd, BeanWrapper bw, MutablePropertyValues pvs) {
-
+	protected void autowireByType(String beanName, AbstractBeanDefinition mbd, BeanWrapper bw, MutablePropertyValues pvs) {
 		TypeConverter converter = getCustomTypeConverter();
 		if (converter == null) {
 			converter = bw;
@@ -1483,8 +1478,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		PropertyValues pvs = mbd.getPropertyValues();
 		PropertyDescriptor[] pds = bw.getPropertyDescriptors();
 		for (PropertyDescriptor pd : pds) {
-			if (pd.getWriteMethod() != null && !isExcludedFromDependencyCheck(pd) && !pvs.contains(pd.getName()) &&
-					!BeanUtils.isSimpleProperty(pd.getPropertyType())) {
+			if (pd.getWriteMethod() != null && !isExcludedFromDependencyCheck(pd) && !pvs.contains(pd.getName()) && !BeanUtils.isSimpleProperty(pd.getPropertyType())) {
 				result.add(pd.getName());
 			}
 		}
@@ -1505,8 +1499,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		if (filtered == null) {
 			filtered = filterPropertyDescriptorsForDependencyCheck(bw);
 			if (cache) {
-				PropertyDescriptor[] existing =
-						this.filteredPropertyDescriptorsCache.putIfAbsent(bw.getWrappedClass(), filtered);
+				PropertyDescriptor[] existing = this.filteredPropertyDescriptorsCache.putIfAbsent(bw.getWrappedClass(), filtered);
 				if (existing != null) {
 					filtered = existing;
 				}
@@ -1554,10 +1547,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * @param pvs the property values to be applied to the bean
 	 * @see #isExcludedFromDependencyCheck(java.beans.PropertyDescriptor)
 	 */
-	protected void checkDependencies(
-			String beanName, AbstractBeanDefinition mbd, PropertyDescriptor[] pds, @Nullable PropertyValues pvs)
-			throws UnsatisfiedDependencyException {
-
+	protected void checkDependencies(String beanName, AbstractBeanDefinition mbd, PropertyDescriptor[] pds, @Nullable PropertyValues pvs) throws UnsatisfiedDependencyException {
 		int dependencyCheck = mbd.getDependencyCheck();
 		for (PropertyDescriptor pd : pds) {
 			if (pd.getWriteMethod() != null && (pvs == null || !pvs.contains(pd.getName()))) {
@@ -1566,17 +1556,15 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 						(isSimple && dependencyCheck == AbstractBeanDefinition.DEPENDENCY_CHECK_SIMPLE) ||
 						(!isSimple && dependencyCheck == AbstractBeanDefinition.DEPENDENCY_CHECK_OBJECTS);
 				if (unsatisfied) {
-					throw new UnsatisfiedDependencyException(mbd.getResourceDescription(), beanName, pd.getName(),
-							"Set this property value or disable dependency checking for this bean.");
+					throw new UnsatisfiedDependencyException(mbd.getResourceDescription(), beanName, pd.getName(),"Set this property value or disable dependency checking for this bean.");
 				}
 			}
 		}
 	}
 
 	/**
-	 * Apply the given property values, resolving any runtime references
-	 * to other beans in this bean factory. Must use deep copy, so we
-	 * don't permanently modify this property.
+	 * Apply the given property values, resolving any runtime references to other beans in this bean factory.
+	 * Must use deep copy, so we don't permanently modify this property.
 	 * @param beanName the bean name passed for better exception information
 	 * @param mbd the merged bean definition
 	 * @param bw the BeanWrapper wrapping the target object
@@ -1603,8 +1591,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 					return;
 				}
 				catch (BeansException ex) {
-					throw new BeanCreationException(
-							mbd.getResourceDescription(), beanName, "Error setting property values", ex);
+					throw new BeanCreationException(mbd.getResourceDescription(), beanName, "Error setting property values", ex);
 				}
 			}
 			original = mpvs.getPropertyValueList();
@@ -1631,8 +1618,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				Object originalValue = pv.getValue();
 				Object resolvedValue = valueResolver.resolveValueIfNecessary(pv, originalValue);
 				Object convertedValue = resolvedValue;
-				boolean convertible = bw.isWritableProperty(propertyName) &&
-						!PropertyAccessorUtils.isNestedOrIndexedProperty(propertyName);
+				boolean convertible = bw.isWritableProperty(propertyName) && !PropertyAccessorUtils.isNestedOrIndexedProperty(propertyName);
 				if (convertible) {
 					convertedValue = convertForProperty(resolvedValue, propertyName, bw, converter);
 				}
@@ -1665,8 +1651,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			bw.setPropertyValues(new MutablePropertyValues(deepCopy));
 		}
 		catch (BeansException ex) {
-			throw new BeanCreationException(
-					mbd.getResourceDescription(), beanName, "Error setting property values", ex);
+			throw new BeanCreationException(mbd.getResourceDescription(), beanName, "Error setting property values", ex);
 		}
 	}
 
