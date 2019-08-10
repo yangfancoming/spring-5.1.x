@@ -231,7 +231,6 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		// 可能存在传入别名且别名存在多重映射的情况，这里会返回最终的名字，如存在多层别名映射A->B->C->D，传入D,最终会返回A
 		final String beanName = transformedBeanName(name);
 		Object bean;
-
 		// Eagerly check singleton cache for manually registered singletons.
 		/**
 		  这里先尝试从缓存中获取，获取不到再走后面创建的流程
@@ -265,7 +264,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			}
 
 			// Check if bean definition exists in this factory.
-			// 如果存在父容器，且Bean在父容器中有定义，则通过父容器返回。 因为与springMVC整合后 会涉及到子父级容器间的关系
+			//前面缓存没有命中，再尝试从父容器中查找。  如果存在父容器，且Bean在父容器中有定义，则通过父容器返回。 因为与springMVC整合后 会涉及到子父级容器间的关系，其他情况下是没有父容器的
 			BeanFactory parentBeanFactory = getParentBeanFactory();
 			if (parentBeanFactory != null && !containsBeanDefinition(beanName)) {
 				// Not found -> check parent.
@@ -1123,9 +1122,10 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	//---------------------------------------------------------------------
 
 	/**
-	 * Return the bean name, stripping out the factory dereference prefix if necessary,
-	 * and resolving aliases to canonical names.
-	 * @param name the user-specified name
+	 * Return the bean name, stripping out the factory dereference prefix if necessary,and resolving aliases to canonical names.
+	 * 返回bean名称，必要时除去工厂取消引用前缀，并将别名解析为规范名称。
+	 *
+	 * @param name the user-specified name  传入进来的name 可能是别名、也可能是工厂bean的名称，所以在这里需要转换
 	 * @return the transformed bean name
 	 */
 	protected String transformedBeanName(String name) {
@@ -1328,6 +1328,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * @throws BeanDefinitionStoreException in case of validation failure
 	 */
 	protected void checkMergedBeanDefinition(RootBeanDefinition mbd, String beanName, @Nullable Object[] args) throws BeanDefinitionStoreException {
+		// 由于前面缓存没有命中，父容器中也没有找到，就开始尝试创建，在创建之前需要检测要创建bean是否为抽象类 如果是则抛出异常
 		if (mbd.isAbstract()) {
 			throw new BeanIsAbstractException(beanName);
 		}

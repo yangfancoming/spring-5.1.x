@@ -57,13 +57,13 @@ import org.springframework.util.StringUtils;
  */
 public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements SingletonBeanRegistry {
 
-	/** Cache of singleton objects: bean name to bean instance.  单例对象缓存，bean name --> bean instance */
+	/** Cache of singleton objects: bean name to bean instance. 一级缓存  单例bean缓存池 用于保存我们所有的单例bean，bean name --> bean instance */
 	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
 
-	/** Cache of singleton factories: bean name to ObjectFactory. 单例对应的工厂缓存，可以使用工厂来创建单例对象 bean name --> ObjectFactory */
+	/** Cache of singleton factories: bean name to ObjectFactory. 三级缓存  单例对应的工厂缓存，可以使用工厂来创建单例对象 bean name --> ObjectFactory */
 	private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
 
-	/** Cache of early singleton objects: bean name to bean instance. 之前的单例对象 */
+	/** Cache of early singleton objects: bean name to bean instance. 二级缓存  早期的单例对象(对象属性还没有进行赋值)  纯净态*/
 	private final Map<String, Object> earlySingletonObjects = new HashMap<>(16);
 
 	/** Set of registered singletons, containing the bean names in registration order. 已经注册过了的单例对象*/
@@ -319,8 +319,8 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	}
 
 	/**
-	 * Return whether the specified singleton bean is currently in creation
-	 * (within the entire factory).
+	 * Return whether the specified singleton bean is currently in creation (within the entire factory).
+	 * 返回指定的singleton bean当前是否正在创建中（在整个工厂内）。
 	 * @param beanName the name of the bean
 	 */
 	public boolean isSingletonCurrentlyInCreation(String beanName) {

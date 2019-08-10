@@ -16,5 +16,6 @@
 
 	<bean id="beanFactoryPostProcessor" class="com.goat.chapter115.service.MyBeanFactoryPostProcessor"/>
 
+	<alias name="whatService" alias="goat"></alias>
 
 </beans>

@@ -805,8 +805,8 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			RootBeanDefinition bd = getMergedLocalBeanDefinition(beanName); // 拿到bean的定义信息
 			if (!bd.isAbstract() && bd.isSingleton() && !bd.isLazyInit()) {
 				/**
-				 判断当前Bean是否实现了FactoryBean接口，如果实现了，判断是否要立即初始化
-				 判断是否需要立即初始化，根据Bean是否实现了SmartFactoryBean并且重写的内部方法isEagerInit 返回true
+				 判断当前Bean是否是工厂bean (是否实现了FactoryBean接口)，如果实现了，判断是否要立即初始化
+				 判断是否需要立即初始化，则根据Bean是否实现了SmartFactoryBean并且重写的内部方法isEagerInit 返回true
 				 */
 				if (isFactoryBean(beanName)) {
 					Object bean = getBean(FACTORY_BEAN_PREFIX + beanName);
@@ -825,6 +825,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 					}
 				}
 				else {
+					// 非工厂bean 就是普通的bean  对其获取
 					getBean(beanName);
 				}
 			}

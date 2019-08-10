@@ -9,6 +9,7 @@ package com.goat.chapter115.service;
  */
 public class WhatServiceImpl implements WhatService {
 
+	
 	public WhatServiceImpl() {
 		System.out.println("WhatServiceImpl 构造函数执行");
 	}

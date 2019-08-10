@@ -4,10 +4,10 @@ package com.goat.chapter115;
 import com.goat.chapter115.bean.Person;
 import com.goat.chapter115.service.LazyService;
 import com.goat.chapter115.service.WhatService;
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.core.io.ClassPathResource;
 
 /**
  * Created by 64274 on 2019/8/1.
@@ -25,6 +25,18 @@ public class App {
 	public void test1(){
 		WhatService whatService = context.getBean(WhatService.class);
 		System.out.println(whatService.getMessage());
+	}
+	/**
+	 * 通过 name 获取bean测试 测试
+	 * 通过 别名 获取bean测试 测试
+	 * */
+	@Test
+	public void test31(){
+		WhatService whatService1 = (WhatService) context.getBean("whatService");
+		WhatService whatService2 = (WhatService) context.getBean("goat");
+		// 验证 获取的都是同一个bean
+		Assert.assertTrue(whatService1 == whatService2);
+		System.out.println(whatService1.getMessage());
 	}
 
 	/**
