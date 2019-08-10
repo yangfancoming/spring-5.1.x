@@ -20,14 +20,12 @@ import org.springframework.util.Assert;
  * one using {@link #register(Class...)} as well as for classpath scanning using
  * {@link #scan(String...)}.
  *
- * <p>In case of multiple {@code @Configuration} classes, @{@link Bean} methods defined in
+ * In case of multiple {@code @Configuration} classes, @{@link Bean} methods defined in
  * later classes will override those defined in earlier classes. This can be leveraged to
- * deliberately override certain bean definitions via an extra {@code @Configuration}
- * class.
+ * deliberately override certain bean definitions via an extra {@code @Configuration} class.
  *
- * <p>See @{@link Configuration}'s javadoc for usage examples.
- *
-	 AnnotationConfigApplicationContext 是基于注解来使用的，它不需要配置文件，采用 java 配置类和各种注解来配置，是比较简单的方式，也是大势所趋
+ * See @{@link Configuration}'s javadoc for usage examples.
+ *  AnnotationConfigApplicationContext 是基于注解来使用的，它不需要配置文件，采用 java 配置类和各种注解来配置，是比较简单的方式，也是大势所趋
  * @since 3.0
  * @see #register
  * @see #scan
@@ -45,7 +43,9 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * through {@link #register} calls and then manually {@linkplain #refresh refreshed}.
 	 */
 	public AnnotationConfigApplicationContext() {
+		// 初始化注解模式下的 bean定义 读取器
 		this.reader = new AnnotatedBeanDefinitionReader(this);
+		// 初始化类路径下 bean定义 扫描器
 		this.scanner = new ClassPathBeanDefinitionScanner(this);
 	}
 
@@ -97,8 +97,8 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	/**
 	 * Provide a custom {@link BeanNameGenerator} for use with {@link AnnotatedBeanDefinitionReader}
 	 * and/or {@link ClassPathBeanDefinitionScanner}, if any.
-	 * <p>Default is {@link org.springframework.context.annotation.AnnotationBeanNameGenerator}.
-	 * <p>Any call to this method must occur prior to calls to {@link #register(Class...)}
+	 * Default is {@link org.springframework.context.annotation.AnnotationBeanNameGenerator}.
+	 * Any call to this method must occur prior to calls to {@link #register(Class...)}
 	 * and/or {@link #scan(String...)}.
 	 * @see AnnotatedBeanDefinitionReader#setBeanNameGenerator
 	 * @see ClassPathBeanDefinitionScanner#setBeanNameGenerator
@@ -111,8 +111,8 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 
 	/**
 	 * Set the {@link ScopeMetadataResolver} to use for detected bean classes.
-	 * <p>The default is an {@link AnnotationScopeMetadataResolver}.
-	 * <p>Any call to this method must occur prior to calls to {@link #register(Class...)}
+	 * The default is an {@link AnnotationScopeMetadataResolver}.
+	 * Any call to this method must occur prior to calls to {@link #register(Class...)}
 	 * and/or {@link #scan(String...)}.
 	 */
 	public void setScopeMetadataResolver(ScopeMetadataResolver scopeMetadataResolver) {
@@ -127,8 +127,8 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 
 	/**
 	 * Register one or more annotated classes to be processed.
-	 * <p>Note that {@link #refresh()} must be called in order for the context
-	 * to fully process the new classes.
+	 * Note that {@link #refresh()} must be called in order for the context to fully process the new classes.
+	 *  注意，必须要调用refresh()方法，上下文才能完全处理新类。 (in order for 才能)
 	 * @param annotatedClasses one or more annotated classes,
 	 * e.g. {@link Configuration @Configuration} classes
 	 * @see #scan(String...)
@@ -141,7 +141,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 
 	/**
 	 * Perform a scan within the specified base packages.
-	 * <p>Note that {@link #refresh()} must be called in order for the context
+	 * Note that {@link #refresh()} must be called in order for the context
 	 * to fully process the new classes.
 	 * @param basePackages the packages to check for annotated classes
 	 * @see #register(Class...)
@@ -161,7 +161,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * Register a bean from the given bean class, deriving its metadata from
 	 * class-declared annotations, and optionally providing explicit constructor
 	 * arguments for consideration in the autowiring process.
-	 * <p>The bean name will be generated according to annotated component rules.
+	 * The bean name will be generated according to annotated component rules.
 	 * @param annotatedClass the class of the bean
 	 * @param constructorArguments argument values to be fed into Spring's
 	 * constructor resolution algorithm, resolving either all arguments or just

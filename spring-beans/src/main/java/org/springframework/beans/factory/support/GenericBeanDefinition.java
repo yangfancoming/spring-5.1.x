@@ -16,7 +16,6 @@ import org.springframework.lang.Nullable;
  * potentially even reconfiguring the parent name). Use {@code RootBeanDefinition} /
  * {@code ChildBeanDefinition} where parent/child relationships happen to be pre-determined.
  *
-
  * @since 2.5
  * @see #setParentName
  * @see RootBeanDefinition
@@ -27,7 +26,6 @@ public class GenericBeanDefinition extends AbstractBeanDefinition {
 
 	@Nullable
 	private String parentName;
-
 
 	/**
 	 * Create a new GenericBeanDefinition, to be configured through its bean

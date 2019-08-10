@@ -76,8 +76,7 @@ public interface ConfigurableListableBeanFactory extends ListableBeanFactory, Au
 	 * @return whether the bean should be considered as autowire candidate
 	 * @throws NoSuchBeanDefinitionException if there is no bean with the given name
 	 */
-	boolean isAutowireCandidate(String beanName, DependencyDescriptor descriptor)
-			throws NoSuchBeanDefinitionException;
+	boolean isAutowireCandidate(String beanName, DependencyDescriptor descriptor) throws NoSuchBeanDefinitionException;
 
 	/**
 	 * Return the registered BeanDefinition for the specified bean, allowing access

@@ -31,8 +31,6 @@ import org.springframework.util.Assert;
  * bean definitions programmatically is the {@link GenericBeanDefinition} class.
  * GenericBeanDefinition has the advantage that it allows to dynamically define
  * parent dependencies, not 'hard-coding' the role as a root bean definition.
- *
- * @author Rod Johnson
 
  * @see GenericBeanDefinition
  * @see ChildBeanDefinition

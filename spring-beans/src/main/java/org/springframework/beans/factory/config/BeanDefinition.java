@@ -23,6 +23,7 @@ import org.springframework.lang.Nullable;
  * 它们是一一对应的，即一个 <bean> 标签对应于一个 BeanDefinition 实例
  *
  * 共有三个实现类，在配置文件中可以有父bean和子bean，父bean用 RootBeanDefinition 来表示，子bean用 ChildBeanDefinition 来表示，而 GenericBeanDefinition 是一个通用的BeanDefinition。
+ * 存储  内存态的bean 好比是设计图纸  根据设计图纸 来创建  纯静态的bean
  */
 public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 

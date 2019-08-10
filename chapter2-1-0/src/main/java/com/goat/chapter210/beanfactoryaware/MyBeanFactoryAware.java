@@ -1,4 +1,4 @@
-package com.goat.chapter210;
+package com.goat.chapter210.beanfactoryaware;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @ date 2019/8/10---11:19
  */
 @Component
-public class SimpleHello implements BeanFactoryAware {
+public class MyBeanFactoryAware implements BeanFactoryAware {
 
 	private BeanFactory factory;
 

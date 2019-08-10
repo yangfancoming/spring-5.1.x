@@ -21,13 +21,8 @@ import org.springframework.util.Assert;
 
 /**
  * Convenient adapter for programmatic registration of annotated bean classes.
- * This is an alternative to {@link ClassPathBeanDefinitionScanner}, applying
- * the same resolution of annotations but for explicitly registered classes only.
- *
-
-
- * @author Sam Brannen
- * @author Phillip Webb
+ * 方便的适配器，用于注解bean类的编程注册。
+ * This is an alternative to {@link ClassPathBeanDefinitionScanner}, applying the same resolution of annotations but for explicitly registered classes only.
  * @since 3.0
  * @see AnnotationConfigApplicationContext#register
  */
@@ -124,6 +119,7 @@ public class AnnotatedBeanDefinitionReader {
 
 	/**
 	 * Register a bean from the given bean class, deriving its metadata from class-declared annotations.
+	 * 从给定的bean类注册bean，并从声明了注释的类派生其元数据。
 	 * @param annotatedClass the class of the bean
 	 */
 	public void registerBean(Class<?> annotatedClass) {
@@ -184,7 +180,6 @@ public class AnnotatedBeanDefinitionReader {
 
 	/**
 	 * Register a bean from the given bean class, deriving its metadata from class-declared annotations.
-	 *
 	 * @param annotatedClass the class of the bean
 	 * @param instanceSupplier a callback for creating an instance of the bean
 	 * (may be {@code null})

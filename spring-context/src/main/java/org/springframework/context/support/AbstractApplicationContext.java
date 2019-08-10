@@ -74,7 +74,7 @@ import org.springframework.util.ReflectionUtils;
  * implements common context functionality. Uses the Template Method design pattern,
  * requiring concrete subclasses to implement abstract methods.
  *
- * <p>In contrast to a plain BeanFactory, an ApplicationContext is supposed
+ * In contrast to a plain BeanFactory, an ApplicationContext is supposed
  * to detect special beans defined in its internal bean factory:
  * Therefore, this class automatically registers
  * {@link org.springframework.beans.factory.config.BeanFactoryPostProcessor BeanFactoryPostProcessors},
@@ -82,7 +82,7 @@ import org.springframework.util.ReflectionUtils;
  * and {@link org.springframework.context.ApplicationListener ApplicationListeners}
  * which are defined as beans in the context.
  *
- * <p>A {@link org.springframework.context.MessageSource} may also be supplied
+ * A {@link org.springframework.context.MessageSource} may also be supplied
  * as a bean in the context, with the name "messageSource"; otherwise, message
  * resolution is delegated to the parent context. Furthermore, a multicaster
  * for application events can be supplied as an "applicationEventMulticaster" bean
@@ -90,7 +90,7 @@ import org.springframework.util.ReflectionUtils;
  * in the context; otherwise, a default multicaster of type
  * {@link org.springframework.context.event.SimpleApplicationEventMulticaster} will be used.
  *
- * <p>Implements resource loading by extending
+ * Implements resource loading by extending
  * {@link org.springframework.core.io.DefaultResourceLoader}.
  * Consequently treats non-URL resource paths as class path resources
  * (supporting full class path resource names that include the package path,
@@ -228,7 +228,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 	/**
 	 * Set the unique id of this application context.
-	 * <p>Default is the object id of the context instance, or the name
+	 * Default is the object id of the context instance, or the name
 	 * of the context bean if the context is itself defined as a bean.
 	 * @param id the unique id of the context
 	 */
@@ -250,7 +250,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	/**
 	 * Set a friendly name for this context.
 	 * Typically done during initialization of concrete context implementations.
-	 * <p>Default is the object id of the context instance.
+	 * Default is the object id of the context instance.
 	 */
 	public void setDisplayName(String displayName) {
 		Assert.hasLength(displayName, "Display name must not be empty");
@@ -278,7 +278,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 	/**
 	 * Set the {@code Environment} for this application context.
-	 * <p>Default value is determined by {@link #createEnvironment()}. Replacing the
+	 * Default value is determined by {@link #createEnvironment()}. Replacing the
 	 * default with this method is one option but configuration through {@link
 	 * #getEnvironment()} should also be considered. In either case, such modifications
 	 * should be performed <em>before</em> {@link #refresh()}.
@@ -292,7 +292,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	/**
 	 * Return the {@code Environment} for this application context in configurable
 	 * form, allowing for further customization.
-	 * <p>If none specified, a default environment will be initialized via
+	 * If none specified, a default environment will be initialized via
 	 * {@link #createEnvironment()}.
 	 */
 	@Override
@@ -305,7 +305,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 	/**
 	 * Create and return a new {@link StandardEnvironment}.
-	 * <p>Subclasses may override this method in order to supply
+	 * Subclasses may override this method in order to supply
 	 * a custom {@link ConfigurableEnvironment} implementation.
 	 */
 	protected ConfigurableEnvironment createEnvironment() {
@@ -332,7 +332,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 	/**
 	 * Publish the given event to all listeners.
-	 * <p>Note: Listeners get initialized after the MessageSource, to be able
+	 * Note: Listeners get initialized after the MessageSource, to be able
 	 * to access it within listener implementations. Thus, MessageSource
 	 * implementations cannot publish events.
 	 * @param event the event to publish (may be application-specific or a
@@ -345,7 +345,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 	/**
 	 * Publish the given event to all listeners.
-	 * <p>Note: Listeners get initialized after the MessageSource, to be able
+	 * Note: Listeners get initialized after the MessageSource, to be able
 	 * to access it within listener implementations. Thus, MessageSource
 	 * implementations cannot publish events.
 	 * @param event the event to publish (may be an {@link ApplicationEvent}
@@ -428,9 +428,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 * into Resource instances. Default is a
 	 * {@link org.springframework.core.io.support.PathMatchingResourcePatternResolver},
 	 * supporting Ant-style location patterns.
-	 * <p>Can be overridden in subclasses, for extended resolution strategies,
+	 * Can be overridden in subclasses, for extended resolution strategies,
 	 * for example in a web environment.
-	 * <p><b>Do not call this when needing to resolve a location pattern.</b>
+	 * <b>Do not call this when needing to resolve a location pattern.</b>
 	 * Call the context's {@code getResources} method instead, which
 	 * will delegate to the ResourcePatternResolver.
 	 * @return the ResourcePatternResolver for this context
@@ -448,7 +448,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 	/**
 	 * Set the parent of this application context.
-	 * <p>The parent {@linkplain ApplicationContext#getEnvironment() environment} is
+	 * The parent {@linkplain ApplicationContext#getEnvironment() environment} is
 	 * {@linkplain ConfigurableEnvironment#merge(ConfigurableEnvironment) merged} with
 	 * this (child) application context environment if the parent is non-{@code null} and
 	 * its environment is an instance of {@link ConfigurableEnvironment}.
@@ -515,7 +515,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			 *    注册也只是将这些信息都保存到了注册中心(说到底核心是一个 beanName-> beanDefinition 的 map)
 			 *    调用子类实现方法获取（创建或刷新）BeanFacotry容器，对于ClassPathXmlApplicationContext，主要调用了AbstractRefreshableApplicationContext中实现的方法
 			 * 	  在这里，将xml配置文件中 的Bean解析成了一个个BeanDefinition,建立一个beanName-> beanDefinition 的 map
-			 *
 			 * 	  初始化BeanFactory，存在则销毁，不存在则创建一个
 			 */
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
@@ -535,15 +534,18 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 				postProcessBeanFactory(beanFactory);
 
 				// 以上都是对beanFactory的预准备、创建、后置处理工作 ，以下都是 利用创建好的beanFactory来创建各种组件！
-				// Invoke factory processors registered as beans in the context.
-				// 调用BeanFacotry的相关后置处理器，如果实现了Order相关接口，会先进行排序。
+				// Invoke factory processors registered as beans in the context. 调用在上下文中注册为bean的工厂处理器
+				// 调用BeanFacotry的相关后置处理器，如果实现了 Order 或 PriorityOrdered 相关接口，会先进行排序。
 				// 执行上面的事件
+				// 调用 bean工厂的后置处理器
 				invokeBeanFactoryPostProcessors(beanFactory);
 
 				// 以上都是对 bean工厂 的后置处理器 以下开始是 bean 的后置处理器的注册 （并不执行）
 				// Register bean processors that intercept bean creation. 注册bean的后置处理器，用来拦截bean的创建过程
 				// 注册相关 BeanPostProcessor，供Bean生成前后调用。
 				// 在创建Bean过程中注册拦截器，这些个拦截器会在bean成为真正的成熟bean（applicationContext管理的bean）之前调用
+				// 调用 bean的后置处理器
+				// classpath 下xml配置文件 和 @ComponentScan("com.goat.chapter110.bean") 注解 就是在这里解析 起作用的
 				registerBeanPostProcessors(beanFactory);
 
 				// Initialize message source for this context.
@@ -644,7 +646,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	}
 
 	/**
-	 * <p>Replace any stub property sources with actual instances.
+	 * Replace any stub property sources with actual instances.
 	 * @see org.springframework.core.env.PropertySource.StubPropertySource
 	 */
 	protected void initPropertySources() {
@@ -665,8 +667,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	}
 
 	/**
-	 * Configure the factory's standard context characteristics,
-	 * such as the context's ClassLoader and post-processors.
+	 * Configure the factory's standard context characteristics,such as the context's ClassLoader and post-processors.
+	 * 配置工厂的标准上下文特征，例如上下文的类加载器和后处理器等。
 	 * @param beanFactory the BeanFactory to configure
 	 */
 	protected void prepareBeanFactory(ConfigurableListableBeanFactory beanFactory) {
@@ -729,9 +731,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	}
 
 	/**
-	 * Instantiate and invoke all registered BeanFactoryPostProcessor beans,
-	 * respecting explicit order if given.
-	 * <p>Must be called before singleton instantiation.
+	 * Instantiate and invoke all registered BeanFactoryPostProcessor beans,respecting explicit order if given.
+	 * 实例化并调用所有注册的BeanFactoryPostProcessorBean，如果给定，则遵循显式顺序。
+	 * Must be called before singleton instantiation. 必须在单例实例化之前调用。
 	 */
 	protected void invokeBeanFactoryPostProcessors(ConfigurableListableBeanFactory beanFactory) {
 		PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(beanFactory, getBeanFactoryPostProcessors());
@@ -746,7 +748,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	/**
 	 * Instantiate and register all BeanPostProcessor beans,respecting explicit order if given.
 	 * 实例化并注册所有Bean的 BeanPostProcessor后置处理器，如果给定，则遵循显式顺序。
-	 * <p>Must be called before any instantiation of application beans.
+	 * Must be called before any instantiation of application beans.
 	 */
 	protected void registerBeanPostProcessors(ConfigurableListableBeanFactory beanFactory) {
 		PostProcessorRegistrationDelegate.registerBeanPostProcessors(beanFactory, this);
@@ -841,7 +843,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	/**
 	 * Template method which can be overridden to add context-specific refresh work.
 	 * Called on initialization of special beans, before instantiation of singletons.
-	 * <p>This implementation is empty.
+	 * This implementation is empty.
 	 * @throws BeansException in case of errors
 	 * @see #refresh()
 	 */
@@ -960,7 +962,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	/**
 	 * Register a shutdown hook with the JVM runtime, closing this context
 	 * on JVM shutdown unless it has already been closed at that time.
-	 * <p>Delegates to {@code doClose()} for the actual closing procedure.
+	 * Delegates to {@code doClose()} for the actual closing procedure.
 	 * @see Runtime#addShutdownHook
 	 * @see #close()
 	 * @see #doClose()
@@ -981,7 +983,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	/**
 	 * Callback for destruction of this instance, originally attached
 	 * to a {@code DisposableBean} implementation (not anymore in 5.0).
-	 * <p>The {@link #close()} method is the native way to shut down
+	 * The {@link #close()} method is the native way to shut down
 	 * an ApplicationContext, which this method simply delegates to.
 	 * @deprecated as of Spring Framework 5.0, in favor of {@link #close()}
 	 */
@@ -992,7 +994,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 	/**
 	 * Close this application context, destroying all beans in its bean factory.
-	 * <p>Delegates to {@code doClose()} for the actual closing procedure.
+	 * Delegates to {@code doClose()} for the actual closing procedure.
 	 * Also removes a JVM shutdown hook, if registered, as it's not needed anymore.
 	 * @see #doClose()
 	 * @see #registerShutdownHook()
@@ -1017,7 +1019,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	/**
 	 * Actually performs context closing: publishes a ContextClosedEvent and
 	 * destroys the singletons in the bean factory of this application context.
-	 * <p>Called by both {@code close()} and a JVM shutdown hook, if any.
+	 * Called by both {@code close()} and a JVM shutdown hook, if any.
 	 * @see org.springframework.context.event.ContextClosedEvent
 	 * @see #destroyBeans()
 	 * @see #close()
@@ -1075,7 +1077,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 * The default implementation destroy all cached singletons in this context,
 	 * invoking {@code DisposableBean.destroy()} and/or the specified
 	 * "destroy-method".
-	 * <p>Can be overridden to add context-specific bean destruction steps
+	 * Can be overridden to add context-specific bean destruction steps
 	 * right before or right after standard singleton destruction,
 	 * while the context's BeanFactory is still active.
 	 * @see #getBeanFactory()
@@ -1088,7 +1090,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	/**
 	 * Template method which can be overridden to add context-specific shutdown work.
 	 * The default implementation is empty.
-	 * <p>Called at the end of {@link #doClose}'s shutdown procedure, after
+	 * Called at the end of {@link #doClose}'s shutdown procedure, after
 	 * this context's BeanFactory has been closed. If custom shutdown logic
 	 * needs to execute while the BeanFactory is still active, override
 	 * the {@link #destroyBeans()} method instead.
@@ -1104,9 +1106,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 	/**
 	 * Assert that this context's BeanFactory is currently active,throwing an {@link IllegalStateException} if it isn't.
-	 * <p>Invoked by all {@link BeanFactory} delegation methods that depend on an active context,
+	 * Invoked by all {@link BeanFactory} delegation methods that depend on an active context,
 	 * i.e. in particular all bean accessor methods.
-	 * <p>The default implementation checks the {@link #isActive() 'active'} status
+	 * The default implementation checks the {@link #isActive() 'active'} status
 	 * of this context overall. May be overridden for more specific checks, or for a
 	 * no-op if {@link #getBeanFactory()} itself throws an exception in such a case.
 	 */
@@ -1387,7 +1389,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	/**
 	 * Subclasses must implement this method to perform the actual configuration load.
 	 * The method is invoked by {@link #refresh()} before any other initialization work.
-	 * <p>A subclass will either create a new bean factory and hold a reference to it,
+	 * A subclass will either create a new bean factory and hold a reference to it,
 	 * or return a single BeanFactory instance that it holds. In the latter case, it will
 	 * usually throw an IllegalStateException if refreshing the context more than once.
 	 * @throws BeansException if initialization of the bean factory failed
@@ -1399,14 +1401,14 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	/**
 	 * Subclasses must implement this method to release their internal bean factory.
 	 * This method gets invoked by {@link #close()} after all other shutdown work.
-	 * <p>Should never throw an exception but rather log shutdown failures.
+	 * Should never throw an exception but rather log shutdown failures.
 	 */
 	protected abstract void closeBeanFactory();
 
 	/**
 	 * Subclasses must return their internal bean factory here. They should implement the
 	 * lookup efficiently, so that it can be called repeatedly without a performance penalty.
-	 * <p>Note: Subclasses should check whether the context is still active before
+	 * Note: Subclasses should check whether the context is still active before
 	 * returning the internal bean factory. The internal factory should generally be
 	 * considered unavailable once the context has been closed.
 	 * @return this application context's internal bean factory (never {@code null})

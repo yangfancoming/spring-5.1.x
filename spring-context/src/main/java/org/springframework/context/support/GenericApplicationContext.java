@@ -86,7 +86,6 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 
 	private final AtomicBoolean refreshed = new AtomicBoolean();
 
-
 	/**
 	 * Create a new GenericApplicationContext.
 	 * @see #registerBeanDefinition

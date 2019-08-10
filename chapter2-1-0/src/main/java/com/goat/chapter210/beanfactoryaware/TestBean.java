@@ -1,4 +1,4 @@
-package com.goat.chapter210;
+package com.goat.chapter210.beanfactoryaware;
 
 import org.springframework.stereotype.Component;
 

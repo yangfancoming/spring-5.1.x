@@ -1,6 +1,7 @@
 # 目录 
     chapter1-0-1  为什么需要 spring  ioc di 这种思想  即 Spring IOC 应运而生
     chapter1-1-0  spring Bean的生命周期
+    chapter1-1-5  spring Bean的生命周期 详细
     chapter2-0-0  spring Bean的装配 （依赖注入）
     chapter2-1-0  spring bean装配 源码示例  BeanFactoryAware
     chapter4-0-0  spring AOP
@@ -14,7 +15,7 @@
     再次：找顶层接口的干不同事情的子类、分析这些子类是做什么的
     最后：挑最富有内涵的接口分析其原理和思想，学习他们的设计思路
 
-#  bean的几种形态
+#  bean的几种形态： 概念态、内存态、纯静态、成熟态
 
     形态一：xml或者注解标注的概念态，此时bean只是一个由类和一些描述文件定义的概念状态，比如：
     
@@ -24,7 +25,7 @@
     </bean>
     
     
-    形态二：内存中的定义态，此时Bean被加载到内存中，但还处在BeanDefinition这种定义状态，这种状态实际上是bean创建的模板。
+    形态二：内存态，此时Bean被加载到内存中，但还处在BeanDefinition这种定义状态，这种状态实际上是bean创建的模板。  内存态的bean 好比是设计图纸  根据设计图纸 来创建  纯静态的bean 
     
     形态三：纯净态，此时的Bean只是被Bean工厂创建成了对象，但是并没有给bean的每个属性赋值，此时各属性还处于0 null false等这种初始状态，想想无参构造函数创建的对象。
     

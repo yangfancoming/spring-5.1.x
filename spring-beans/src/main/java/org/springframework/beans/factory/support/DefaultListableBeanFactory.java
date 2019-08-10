@@ -93,6 +93,7 @@ import org.springframework.util.StringUtils;
  * @see #resolveDependency
  *
  * 综合uml中的上述所有的功能，主要是对 bean 注册后的处理。
+ * 该类存储bean定义  bean的定义信息  bean定义存储 beanDefinitionMap
  */
 @SuppressWarnings("serial")
 public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements ConfigurableListableBeanFactory, BeanDefinitionRegistry, Serializable {
