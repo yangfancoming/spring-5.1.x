@@ -339,9 +339,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			Object bean;
 			final BeanFactory parent = this;
 			if (System.getSecurityManager() != null) {
-				bean = AccessController.doPrivileged((PrivilegedAction<Object>) () ->
-								getInstantiationStrategy().instantiate(bd, null, parent),
-						getAccessControlContext());
+				bean = AccessController.doPrivileged((PrivilegedAction<Object>) () -> getInstantiationStrategy().instantiate(bd, null, parent),getAccessControlContext());
 			}
 			else {
 				bean = getInstantiationStrategy().instantiate(bd, null, parent);
@@ -525,7 +523,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		if (mbd.isSingleton()) {  // 先尝试从缓存中取
 			instanceWrapper = this.factoryBeanInstanceCache.remove(beanName);
 		}
-		if (instanceWrapper == null) {  // 调用构造方法创建一个空实例对象，并用BeanWrapper进行包装  内存态--->纯净态
+		if (instanceWrapper == null) {
+			// 调用构造方法创建一个空实例对象，并用BeanWrapper进行包装  内存态--->纯净态
 			instanceWrapper = createBeanInstance(beanName, mbd, args);
 		}
 		// 从 BeanWrapper 中获取我们内存态对象
@@ -570,13 +569,15 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			// 对bean进行填充，在这里面完成依赖注入的相关内容  完成属性的注入  即由 纯净态---->成熟态
 			// @Autowire-  和 循环依赖 均在该方法处理
 			populateBean(beanName, mbd, instanceWrapper);
-			// 完成属性依赖注入后，进一步初始化Bean
-			// 具体进行了以下操作：
-			// 1.若实现了BeanNameAware， BeanClassLoaderAware，BeanFactoryAwareAware等接口，则注入相关对象
-			// 2.遍历后置处理器，调用实现的postProcessBeforeInitialization方法，
-			// 3.如果实现了initialzingBean，调用实现的 afterPropertiesSet()
-			// 4.如果配置了init-mothod，调用相应的init方法
-			// 5.遍历后置处理器，调用实现的postProcessAfterInitialization
+			/**
+			 * populateBean 完成属性依赖注入后，下面 initializeBean 进一步初始化Bean 可以将populateBean填充的属性 通过 initializeBean 修改掉
+			 * 具体进行了以下操作：
+			 * 1.若实现了BeanNameAware， BeanClassLoaderAware，BeanFactoryAwareAware等接口，则注入相关对象
+			 * 2.遍历后置处理器，调用实现的postProcessBeforeInitialization方法，
+			 * 3.如果实现了initialzingBean，调用实现的 afterPropertiesSet()
+			 * 4.如果配置了init-mothod，调用相应的init方法
+			 * 5.遍历后置处理器，调用实现的postProcessAfterInitialization
+			*/
 			exposedObject = initializeBean(beanName, exposedObject, mbd);
 		}
 		catch (Throwable ex) {
@@ -1246,8 +1247,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			Object beanInstance;
 			final BeanFactory parent = this;
 			if (System.getSecurityManager() != null) {
-				beanInstance = AccessController.doPrivileged((PrivilegedAction<Object>) () ->
-								getInstantiationStrategy().instantiate(mbd, beanName, parent),getAccessControlContext());
+				beanInstance = AccessController.doPrivileged((PrivilegedAction<Object>) () -> getInstantiationStrategy().instantiate(mbd, beanName, parent),getAccessControlContext());
 			}
 			else {
 				beanInstance = getInstantiationStrategy().instantiate(mbd, beanName, parent);
@@ -1450,8 +1450,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 					for (String autowiredBeanName : autowiredBeanNames) {
 						registerDependentBean(autowiredBeanName, beanName);
 						if (logger.isTraceEnabled()) {
-							logger.trace("Autowiring by type from bean name '" + beanName + "' via property '" +
-									propertyName + "' to bean named '" + autowiredBeanName + "'");
+							logger.trace("Autowiring by type from bean name '" + beanName + "' via property '" +  propertyName + "' to bean named '" + autowiredBeanName + "'");
 						}
 					}
 					autowiredBeanNames.clear();
@@ -1462,7 +1461,6 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			}
 		}
 	}
-
 
 	/**
 	 * Return an array of non-simple bean properties that are unsatisfied.
@@ -1659,9 +1657,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * Convert the given value for the specified target property.
 	 */
 	@Nullable
-	private Object convertForProperty(
-			@Nullable Object value, String propertyName, BeanWrapper bw, TypeConverter converter) {
-
+	private Object convertForProperty(@Nullable Object value, String propertyName, BeanWrapper bw, TypeConverter converter) {
 		if (converter instanceof BeanWrapperImpl) {
 			return ((BeanWrapperImpl) converter).convertForProperty(value, propertyName);
 		}
@@ -1698,19 +1694,22 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		else {
 			invokeAwareMethods(beanName, bean);
 		}
-		// 执行初始化方法之前 执行 postProcessBeforeInitialization
+		/**
+		 *  ① ② ③ 步骤 常用于 aop的前置/后置/异常/环绕 增强 、 生命周期回调 @PostConstruct @PreDestroy
+		*/
+		// ② 执行初始化方法之前 执行 postProcessBeforeInitialization   处理 @PostConstruct
 		Object wrappedBean = bean;
 		if (mbd == null || !mbd.isSynthetic()) {
 			wrappedBean = applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName);
 		}
-
-		try { // 执行初始化方法  总结的四种方法  参考 MyBeanPostProcessor
+		try { // ① 执行初始化方法  总结的四种方法  参考 MyBeanPostProcessor
 			invokeInitMethods(beanName, wrappedBean, mbd);
 		}
 		catch (Throwable ex) {
 			throw new BeanCreationException((mbd != null ? mbd.getResourceDescription() : null),beanName, "Invocation of init method failed", ex);
 		}
-		if (mbd == null || !mbd.isSynthetic()) { // 执行初始化方法之前 执行 postProcessAfterInitialization
+		// ③ 执行初始化方法之前 执行 postProcessAfterInitialization
+		if (mbd == null || !mbd.isSynthetic()) {
 			wrappedBean = applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName);
 		}
 		return wrappedBean;
@@ -1734,10 +1733,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	}
 
 	/**
-	 * Give a bean a chance to react now all its properties are set,
-	 * and a chance to know about its owning bean factory (this object).
-	 * This means checking whether the bean implements InitializingBean or defines
-	 * a custom init method, and invoking the necessary callback(s) if it does.
+	 * Give a bean a chance to react now all its properties are set,and a chance to know about its owning bean factory (this object).
+	 * 现在给bean一个反应的机会，它的所有属性都设置好了，并且有机会知道它拥有的bean工厂（这个对象）。
+	 * This means checking whether the bean implements InitializingBean or defines a custom init method, and invoking the necessary callback(s) if it does.
+	 * 这意味着检查bean是否实现了initialingbean或定义了自定义init方法，如果实现了，则调用必要的回调。
 	 * @param beanName the bean name in the factory (for debugging purposes)
 	 * @param bean the new bean instance we may need to initialize
 	 * @param mbd the merged bean definition that the bean was created with
@@ -1753,10 +1752,11 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			}
 			if (System.getSecurityManager() != null) {
 				try {
-					AccessController.doPrivileged((PrivilegedExceptionAction<Object>) () -> {
+					PrivilegedExceptionAction<Object> objectPrivilegedExceptionAction = ()->{
 						((InitializingBean) bean).afterPropertiesSet();
 						return null;
-					}, getAccessControlContext());
+					};
+					AccessController.doPrivileged(objectPrivilegedExceptionAction, getAccessControlContext());
 				}
 				catch (PrivilegedActionException pae) {
 					throw pae.getException();
@@ -1770,6 +1770,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		if (mbd != null && bean.getClass() != NullBean.class) {
 			String initMethodName = mbd.getInitMethodName();
 			if (StringUtils.hasLength(initMethodName) && !(isInitializingBean && "afterPropertiesSet".equals(initMethodName)) && !mbd.isExternallyManagedInitMethod(initMethodName)) {
+				// 调用自定义的  InitMethod  参考 @Bean(name = "eventListener", initMethod = "initialize")
 				invokeCustomInitMethod(beanName, bean, mbd);
 			}
 		}
@@ -1782,24 +1783,17 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * methods with arguments.
 	 * @see #invokeInitMethods
 	 */
-	protected void invokeCustomInitMethod(String beanName, final Object bean, RootBeanDefinition mbd)
-			throws Throwable {
-
+	protected void invokeCustomInitMethod(String beanName, final Object bean, RootBeanDefinition mbd) throws Throwable {
 		String initMethodName = mbd.getInitMethodName();
 		Assert.state(initMethodName != null, "No init method set");
-		Method initMethod = (mbd.isNonPublicAccessAllowed() ?
-				BeanUtils.findMethod(bean.getClass(), initMethodName) :
-				ClassUtils.getMethodIfAvailable(bean.getClass(), initMethodName));
-
+		Method initMethod = (mbd.isNonPublicAccessAllowed() ? BeanUtils.findMethod(bean.getClass(), initMethodName) : ClassUtils.getMethodIfAvailable(bean.getClass(), initMethodName));
 		if (initMethod == null) {
 			if (mbd.isEnforceInitMethod()) {
-				throw new BeanDefinitionValidationException("Could not find an init method named '" +
-						initMethodName + "' on bean with name '" + beanName + "'");
+				throw new BeanDefinitionValidationException("Could not find an init method named '" + initMethodName + "' on bean with name '" + beanName + "'");
 			}
 			else {
 				if (logger.isTraceEnabled()) {
-					logger.trace("No default init method named '" + initMethodName +
-							"' found on bean with name '" + beanName + "'");
+					logger.trace("No default init method named '" + initMethodName + "' found on bean with name '" + beanName + "'");
 				}
 				// Ignore non-existent default lifecycle methods.
 				return;
@@ -1817,8 +1811,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				return null;
 			});
 			try {
-				AccessController.doPrivileged((PrivilegedExceptionAction<Object>) () ->
-						methodToInvoke.invoke(bean), getAccessControlContext());
+				AccessController.doPrivileged((PrivilegedExceptionAction<Object>) () -> methodToInvoke.invoke(bean), getAccessControlContext());
 			}
 			catch (PrivilegedActionException pae) {
 				InvocationTargetException ex = (InvocationTargetException) pae.getException();

@@ -837,10 +837,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			if (singletonInstance instanceof SmartInitializingSingleton) {
 				final SmartInitializingSingleton smartSingleton = (SmartInitializingSingleton) singletonInstance;
 				if (System.getSecurityManager() != null) {
-					AccessController.doPrivileged((PrivilegedAction<Object>) () -> {
-						smartSingleton.afterSingletonsInstantiated();
-						return null;
-					}, getAccessControlContext());
+					AccessController.doPrivileged((PrivilegedAction<Object>) () -> { smartSingleton.afterSingletonsInstantiated();return null;}, getAccessControlContext());
 				}
 				else {
 					smartSingleton.afterSingletonsInstantiated();
