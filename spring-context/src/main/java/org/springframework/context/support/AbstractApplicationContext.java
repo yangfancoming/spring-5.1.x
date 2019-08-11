@@ -1031,9 +1031,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			if (logger.isDebugEnabled()) {
 				logger.debug("Closing " + this);
 			}
-
 			LiveBeansView.unregisterApplicationContext(this);
-
 			try {
 				// Publish shutdown event.
 				publishEvent(new ContextClosedEvent(this));

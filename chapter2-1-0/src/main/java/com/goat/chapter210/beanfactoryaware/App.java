@@ -13,17 +13,10 @@ import org.springframework.context.annotation.ComponentScan;
  * @ author  山羊来了
  * @ date 2019/8/10---11:28
  */
-@ComponentScan("com.goat.chapter210")
+@ComponentScan("com.goat.chapter210.beanfactoryaware")
 public class App {
 
-	/**  测试 BeanPostProcessor   */
-	@Test
-	public void test1(){
-		ApplicationContext context = new AnnotationConfigApplicationContext(App.class);
-		System.out.println(context);
-	}
-
-	/**  测试 BeanFactoryAware   */
+	/**  测试 BeanFactoryAware  从自定义的容器中 获取 bean  */
 	@Test
 	public void test2(){
 		ApplicationContext context = new AnnotationConfigApplicationContext(App.class);
@@ -33,4 +26,14 @@ public class App {
 		TestBean testBean = (TestBean) factory.getBean("testBean");
 		testBean.test();
 	}
+
+	/**  测试 自定义实现FactoryBean接口的bean    */
+	@Test
+	public void test3(){
+		ApplicationContext context = new AnnotationConfigApplicationContext(App.class);
+		TestBean testBean = (TestBean) context.getBean("testBean");
+		testBean.test();
+	}
+
+
 }

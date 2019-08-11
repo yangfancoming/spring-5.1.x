@@ -15,7 +15,6 @@ import org.springframework.lang.Nullable;
  * However, each such instance will return {@code true} for {@code #equals(null)}
  * and returns "null" from {@code #toString()}, which is how they can be tested
  * externally (since this class itself is not public).
- *
 
  * @since 5.0
  */
@@ -23,7 +22,6 @@ final class NullBean {
 
 	NullBean() {
 	}
-
 
 	@Override
 	public boolean equals(@Nullable Object obj) {

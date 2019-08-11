@@ -278,8 +278,7 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 			}
 		}
 		catch (IllegalArgumentException ex) {
-			throw new BeanDefinitionValidationException("Could not find unique destroy method on bean with name '" +
-					this.beanName + ": " + ex.getMessage());
+			throw new BeanDefinitionValidationException("Could not find unique destroy method on bean with name '" + this.beanName + ": " + ex.getMessage());
 		}
 	}
 
@@ -303,8 +302,7 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 			args[0] = Boolean.TRUE;
 		}
 		if (logger.isTraceEnabled()) {
-			logger.trace("Invoking destroy method '" + this.destroyMethodName +
-					"' on bean with name '" + this.beanName + "'");
+			logger.trace("Invoking destroy method '" + this.destroyMethodName + "' on bean with name '" + this.beanName + "'");
 		}
 		try {
 			if (System.getSecurityManager() != null) {
@@ -313,8 +311,7 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 					return null;
 				});
 				try {
-					AccessController.doPrivileged((PrivilegedExceptionAction<Object>) () ->
-						destroyMethod.invoke(this.bean, args), this.acc);
+					AccessController.doPrivileged((PrivilegedExceptionAction<Object>) () -> destroyMethod.invoke(this.bean, args), this.acc);
 				}
 				catch (PrivilegedActionException pax) {
 					throw (InvocationTargetException) pax.getException();
@@ -326,8 +323,7 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 			}
 		}
 		catch (InvocationTargetException ex) {
-			String msg = "Destroy method '" + this.destroyMethodName + "' on bean with name '" +
-					this.beanName + "' threw an exception";
+			String msg = "Destroy method '" + this.destroyMethodName + "' on bean with name '" + this.beanName + "' threw an exception";
 			if (logger.isDebugEnabled()) {
 				logger.info(msg, ex.getTargetException());
 			}
@@ -336,8 +332,7 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 			}
 		}
 		catch (Throwable ex) {
-			logger.info("Failed to invoke destroy method '" + this.destroyMethodName +
-					"' on bean with name '" + this.beanName + "'", ex);
+			logger.info("Failed to invoke destroy method '" + this.destroyMethodName + "' on bean with name '" + this.beanName + "'", ex);
 		}
 	}
 

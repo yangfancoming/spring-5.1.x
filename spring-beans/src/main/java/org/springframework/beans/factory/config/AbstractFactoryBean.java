@@ -151,7 +151,7 @@ public abstract class AbstractFactoryBean<T>
 	 * circular reference. Not called in a non-circular scenario.
 	 */
 	@SuppressWarnings("unchecked")
-	private T getEarlySingletonInstance() throws Exception {
+	private T getEarlySingletonInstance() {
 		Class<?>[] ifcs = getEarlySingletonInterfaces();
 		if (ifcs == null) {
 			throw new FactoryBeanNotInitializedException(

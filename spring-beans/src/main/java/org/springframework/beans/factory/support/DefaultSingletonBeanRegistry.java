@@ -507,11 +507,10 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		for (int i = disposableBeanNames.length - 1; i >= 0; i--) {
 			destroySingleton(disposableBeanNames[i]);
 		}
-
+		// bean销毁后 清空所有相关map集合
 		this.containedBeanMap.clear();
 		this.dependentBeanMap.clear();
 		this.dependenciesForBeanMap.clear();
-
 		clearSingletonCache();
 	}
 
@@ -572,6 +571,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		// Actually destroy the bean now...
 		if (bean != null) {
 			try {
+				// 销毁bean  对应代码中的  @Bean(initMethod = "init", destroyMethod = "destroy")  destroy 方法
 				bean.destroy();
 			}
 			catch (Throwable ex) {

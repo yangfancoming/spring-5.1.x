@@ -13,7 +13,8 @@ public class App   {
 	@Test
 	public void test1(){
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(BeanLifeCycle.class);
-		System.out.println(ctx);
+		System.out.println("容器创建完成");
+		ctx.close();
 	}
 
 	/**  测试  构造函数（容器对象创建）
@@ -30,10 +31,12 @@ public class App   {
 
 	/**  测试一： 自定义Bean的初始化和销毁方法
 	 * 通过 @Bean 指定 init-method 和 destroy-method
+	 * doit 为啥  BeanLifeCycle3.class 类中 去掉@Configuration注解也是可以的呢？？？
 	 * */
 	@Test
 	public void test3(){
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(BeanLifeCycle3.class);
+		System.out.println("容器创建完成");
 		ctx.close(); // 单实例Bean 关闭容器后  会调用我们自定义的销毁方法
 	}
 

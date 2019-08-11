@@ -566,7 +566,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// 开始对Bean实例进行初始化
 		Object exposedObject = bean;
 		try {
-			// 对bean进行填充，在这里面完成依赖注入的相关内容  完成属性的注入  即由 纯净态---->成熟态
+			// 对bean进行填充，在这里面完成依赖注入的相关内容  完成属性的注入  反射调用 getter setter方法  即由 纯净态---->成熟态
 			// @Autowire-  和 循环依赖 均在该方法处理
 			populateBean(beanName, mbd, instanceWrapper);
 			/**
@@ -1702,7 +1702,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		if (mbd == null || !mbd.isSynthetic()) {
 			wrappedBean = applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName);
 		}
-		try { // ① 执行初始化方法  总结的四种方法  参考 MyBeanPostProcessor
+		try { // ① 执行初始化方法  总结的四种方法  参考 MyBeanPostProcessor 对应 @Bean(initMethod = "init", destroyMethod = "destroy") 中的 init 方法
 			invokeInitMethods(beanName, wrappedBean, mbd);
 		}
 		catch (Throwable ex) {

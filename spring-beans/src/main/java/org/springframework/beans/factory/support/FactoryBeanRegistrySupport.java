@@ -45,6 +45,7 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 						factoryBean::getObjectType, getAccessControlContext());
 			}
 			else {
+				// 调用 我们自定义的 实现 FactoryBean 接口的 getObjectType()方法 的 bean
 				return factoryBean.getObjectType();
 			}
 		}
@@ -130,16 +131,14 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 	}
 
 	/**
-	 * Obtain an object to expose from the given FactoryBean.
+	 * Obtain an object to expose from the given FactoryBean. 从给定的FactoryBean获取要暴露的对象
 	 * @param factory the FactoryBean instance
 	 * @param beanName the name of the bean
 	 * @return the object obtained from the FactoryBean
 	 * @throws BeanCreationException if FactoryBean object creation failed
 	 * @see org.springframework.beans.factory.FactoryBean#getObject()
 	 */
-	private Object doGetObjectFromFactoryBean(final FactoryBean<?> factory, final String beanName)
-			throws BeanCreationException {
-
+	private Object doGetObjectFromFactoryBean(final FactoryBean<?> factory, final String beanName) throws BeanCreationException {
 		Object object;
 		try {
 			if (System.getSecurityManager() != null) {
@@ -152,6 +151,7 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 				}
 			}
 			else {
+				// 调用 我们自定义的 实现 FactoryBean 接口的getObject() 方法的 bean
 				object = factory.getObject();
 			}
 		}

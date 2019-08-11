@@ -1,4 +1,4 @@
-package com.goat.chapter210.beanfactoryaware;
+package com.goat.chapter210.beanpostprocessor;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;

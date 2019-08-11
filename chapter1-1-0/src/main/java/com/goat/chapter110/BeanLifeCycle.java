@@ -48,8 +48,5 @@ public class BeanLifeCycle {
 		return new Car();
 	}
 
-	@Bean()
-	public Human human() {
-		return new Man();
-	}
+
 }

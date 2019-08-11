@@ -21,8 +21,6 @@ import java.beans.PropertyDescriptor;
  * <p>A BeanWrapper's default for the "extractOldValueForEditor" setting
  * is "false", to avoid side effects caused by getter method invocations.
  * Turn this to "true" to expose present property values to custom editors.
- *
- * @author Rod Johnson
 
  * @since 13 April 2001
  * @see PropertyAccessor
