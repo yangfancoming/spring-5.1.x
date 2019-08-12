@@ -3,7 +3,9 @@
     chapter1-0-5  spring 注解学习
     chapter1-1-0  spring Bean的生命周期 注解 方式
     chapter1-1-5  spring Bean的生命周期 xml  方式    ？生命周期回调 ？
-    chapter2-0-0  spring Bean的装配 （依赖注入）
+    chapter2-0-0  spring Bean的装配 （依赖注入）  四种方式
+    chapter2-0-1  spring Bean的装配 xml  方式
+    chapter2-0-2  spring Bean的装配 注解 方式
     chapter2-1-0  spring bean装配 源码示例  BeanFactoryAware BeanPostProcessor  FactoryBean
     chapter4-0-0  spring AOP
 

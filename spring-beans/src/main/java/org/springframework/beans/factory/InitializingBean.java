@@ -4,6 +4,7 @@ package org.springframework.beans.factory;
 
 /**
  * Interface to be implemented by beans that need to react once all their properties have been set by a {@link BeanFactory}:
+ * 由bean实现的接口，这些bean的所有属性都由beanfactory设置后需要作出反应。
  *  e.g. to perform custom initialization, or merely to check that all mandatory properties have been set.
  *
  * <p>An alternative to implementing {@code InitializingBean} is specifying a custom init method,
