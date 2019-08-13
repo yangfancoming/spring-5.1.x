@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class SampleController {
 
+
 	/** 测试url：  http://localhost:8515/home1 */
 	@RequestMapping("/home1")
 	public String home1(Model m) {
