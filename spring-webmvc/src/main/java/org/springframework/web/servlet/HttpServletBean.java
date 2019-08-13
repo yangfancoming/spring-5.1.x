@@ -123,14 +123,16 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 
 	/**
 	 * Map config parameters onto bean properties of this servlet, and invoke subclass initialization.
+	 * 将配置参数映射到此servlet的bean属性上，并调用子类初始化。
 	 * @throws ServletException if bean properties are invalid (or required properties are missing), or if subclass initialization fails.
 	 */
 	@Override
 	public final void init() throws ServletException {
-		// Set bean properties from init parameters.
+		// Set bean properties from init parameters. // ServletConfigPropertyValues 是静态内部类，使用 ServletConfig 获取 web.xml 中配置的参数
 		PropertyValues pvs = new ServletConfigPropertyValues(getServletConfig(), this.requiredProperties);
 		if (!pvs.isEmpty()) {
 			try {
+				// 使用 BeanWrapper 来构造 DispatcherServlet
 				BeanWrapper bw = PropertyAccessorFactory.forBeanPropertyAccess(this);
 				ResourceLoader resourceLoader = new ServletContextResourceLoader(getServletContext());
 				bw.registerCustomEditor(Resource.class, new ResourceEditor(resourceLoader, getEnvironment()));
@@ -145,7 +147,7 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 			}
 		}
 
-		// Let subclasses do whatever initialization they like.
+		// Let subclasses do whatever initialization they like. // 让子类实现的方法，这种在父类定义在子类实现的方式叫做模版方法模式
 		initServletBean();
 	}
 
@@ -186,7 +188,6 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 	 * PropertyValues implementation created from ServletConfig init parameters.
 	 */
 	private static class ServletConfigPropertyValues extends MutablePropertyValues {
-
 		/**
 		 * Create new ServletConfigPropertyValues.
 		 * @param config the ServletConfig we'll use to take PropertyValues from
@@ -194,12 +195,8 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 		 * we can't accept default values
 		 * @throws ServletException if any required properties are missing
 		 */
-		public ServletConfigPropertyValues(ServletConfig config, Set<String> requiredProperties)
-				throws ServletException {
-
-			Set<String> missingProps = (!CollectionUtils.isEmpty(requiredProperties) ?
-					new HashSet<>(requiredProperties) : null);
-
+		public ServletConfigPropertyValues(ServletConfig config, Set<String> requiredProperties) throws ServletException {
+			Set<String> missingProps = (!CollectionUtils.isEmpty(requiredProperties) ? new HashSet<>(requiredProperties) : null);
 			Enumeration<String> paramNames = config.getInitParameterNames();
 			while (paramNames.hasMoreElements()) {
 				String property = paramNames.nextElement();
@@ -209,12 +206,10 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 					missingProps.remove(property);
 				}
 			}
-
 			// Fail if we are still missing properties.
 			if (!CollectionUtils.isEmpty(missingProps)) {
 				throw new ServletException(
-						"Initialization from ServletConfig for servlet '" + config.getServletName() +
-						"' failed; the following required properties were missing: " +
+						"Initialization from ServletConfig for servlet '" + config.getServletName() + "' failed; the following required properties were missing: " +
 						StringUtils.collectionToDelimitedString(missingProps, ", "));
 			}
 		}
