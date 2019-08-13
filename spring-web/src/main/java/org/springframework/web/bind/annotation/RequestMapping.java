@@ -43,10 +43,7 @@ import org.springframework.core.annotation.AliasFor;
  * make sure to consistently put <i>all</i> your mapping annotations - such as
  * {@code @RequestMapping} and {@code @SessionAttributes} - on
  * the controller <i>interface</i> rather than on the implementation class.
- *
 
- * @author Arjen Poutsma
- * @author Sam Brannen
  * @since 2.5
  * @see GetMapping
  * @see PostMapping

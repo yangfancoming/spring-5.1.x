@@ -112,12 +112,6 @@ import org.springframework.web.util.WebUtils;
  * 3.0+ environments, which support programmatic registration of servlet instances. See
  * {@link #FrameworkServlet(WebApplicationContext)} Javadoc for details.
  *
- * @author Rod Johnson
-
- * @author Sam Brannen
-
- * @author Rossen Stoyanchev
- * @author Phillip Webb
  * @see #doService
  * @see #setContextClass
  * @see #setContextConfigLocation

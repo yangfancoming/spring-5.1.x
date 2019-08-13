@@ -920,6 +920,7 @@ public class DispatcherServlet extends FrameworkServlet {
 		}
 
 		try {
+			// 函数的关键方法
 			doDispatch(request, response);
 		}
 		finally {

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class SampleController {
 
-	// http://localhost:8510/home
+	/** 测试url：  http://localhost:8510/home */
 	@RequestMapping("/home")
 	public String loadHomePage(Model m) {
 		m.addAttribute("name", "CodeTutr");
