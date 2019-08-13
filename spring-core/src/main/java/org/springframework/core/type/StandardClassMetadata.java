@@ -10,16 +10,12 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link ClassMetadata} implementation that uses standard reflection
- * to introspect a given {@code Class}.
- *
-
+ * {@link ClassMetadata} implementation that uses standard reflection to introspect a given {@code Class}.
  * @since 2.5
  */
 public class StandardClassMetadata implements ClassMetadata {
 
 	private final Class<?> introspectedClass;
-
 
 	/**
 	 * Create a new StandardClassMetadata wrapper for the given Class.

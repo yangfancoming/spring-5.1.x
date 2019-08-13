@@ -547,11 +547,9 @@ public abstract class AnnotatedElementUtils {
 	 * attributes from all annotations found, or {@code null} if not found
 	 */
 	@Nullable
-	public static MultiValueMap<String, Object> getAllAnnotationAttributes(AnnotatedElement element,
-			String annotationName, final boolean classValuesAsString, final boolean nestedAnnotationsAsMap) {
+	public static MultiValueMap<String, Object> getAllAnnotationAttributes(AnnotatedElement element,String annotationName, final boolean classValuesAsString, final boolean nestedAnnotationsAsMap) {
 
 		final MultiValueMap<String, Object> attributesMap = new LinkedMultiValueMap<>();
-
 		searchWithGetSemantics(element, null, annotationName, new SimpleAnnotationProcessor<Object>() {
 			@Override
 			@Nullable
@@ -830,10 +828,7 @@ public abstract class AnnotatedElementUtils {
 	 * @return the result of the processor (potentially {@code null})
 	 */
 	@Nullable
-	private static <T> T searchWithGetSemantics(AnnotatedElement element,
-			@Nullable Class<? extends Annotation> annotationType,
-			@Nullable String annotationName, Processor<T> processor) {
-
+	private static <T> T searchWithGetSemantics(AnnotatedElement element,@Nullable Class<? extends Annotation> annotationType,@Nullable String annotationName, Processor<T> processor) {
 		return searchWithGetSemantics(element,
 				(annotationType != null ? Collections.singleton(annotationType) : Collections.emptySet()),
 				annotationName, null, processor);
@@ -859,8 +854,7 @@ public abstract class AnnotatedElementUtils {
 			@Nullable Class<? extends Annotation> containerType, Processor<T> processor) {
 
 		try {
-			return searchWithGetSemantics(element, annotationTypes, annotationName, containerType, processor,
-					new HashSet<>(), 0);
+			return searchWithGetSemantics(element, annotationTypes, annotationName, containerType, processor,new HashSet<>(), 0);
 		}
 		catch (Throwable ex) {
 			AnnotationUtils.rethrowAnnotationConfigurationException(ex);
@@ -895,8 +889,7 @@ public abstract class AnnotatedElementUtils {
 			try {
 				// Start searching within locally declared annotations
 				List<Annotation> declaredAnnotations = Arrays.asList(AnnotationUtils.getDeclaredAnnotations(element));
-				T result = searchWithGetSemanticsInAnnotations(element, declaredAnnotations,
-						annotationTypes, annotationName, containerType, processor, visited, metaDepth);
+				T result = searchWithGetSemanticsInAnnotations(element, declaredAnnotations,annotationTypes, annotationName, containerType, processor, visited, metaDepth);
 				if (result != null) {
 					return result;
 				}
@@ -923,7 +916,6 @@ public abstract class AnnotatedElementUtils {
 				AnnotationUtils.handleIntrospectionFailure(element, ex);
 			}
 		}
-
 		return null;
 	}
 

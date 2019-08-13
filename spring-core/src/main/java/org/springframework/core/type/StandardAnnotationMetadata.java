@@ -14,22 +14,15 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.MultiValueMap;
 
 /**
- * {@link AnnotationMetadata} implementation that uses standard reflection
- * to introspect a given {@link Class}.
- *
-
- * @author Mark Fisher
-
- * @author Phillip Webb
- * @author Sam Brannen
+ * {@link AnnotationMetadata} implementation that uses standard reflection to introspect a given {@link Class}.
  * @since 2.5
  */
 public class StandardAnnotationMetadata extends StandardClassMetadata implements AnnotationMetadata {
 
+	// 持有对本类所有注解的引用
 	private final Annotation[] annotations;
 
 	private final boolean nestedAnnotationsAsMap;
-
 
 	/**
 	 * Create a new {@code StandardAnnotationMetadata} wrapper for the given Class.
@@ -70,8 +63,7 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 	@Override
 	public Set<String> getMetaAnnotationTypes(String annotationName) {
 		return (this.annotations.length > 0 ?
-				AnnotatedElementUtils.getMetaAnnotationTypes(getIntrospectedClass(), annotationName) :
-				Collections.emptySet());
+				AnnotatedElementUtils.getMetaAnnotationTypes(getIntrospectedClass(), annotationName) : Collections.emptySet());
 	}
 
 	@Override
@@ -86,14 +78,12 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 
 	@Override
 	public boolean hasMetaAnnotation(String annotationName) {
-		return (this.annotations.length > 0 &&
-				AnnotatedElementUtils.hasMetaAnnotationTypes(getIntrospectedClass(), annotationName));
+		return (this.annotations.length > 0 && AnnotatedElementUtils.hasMetaAnnotationTypes(getIntrospectedClass(), annotationName));
 	}
 
 	@Override
 	public boolean isAnnotated(String annotationName) {
-		return (this.annotations.length > 0 &&
-				AnnotatedElementUtils.isAnnotated(getIntrospectedClass(), annotationName));
+		return (this.annotations.length > 0 && AnnotatedElementUtils.isAnnotated(getIntrospectedClass(), annotationName));
 	}
 
 	@Override
@@ -117,8 +107,8 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 	@Override
 	@Nullable
 	public MultiValueMap<String, Object> getAllAnnotationAttributes(String annotationName, boolean classValuesAsString) {
-		return (this.annotations.length > 0 ? AnnotatedElementUtils.getAllAnnotationAttributes(
-				getIntrospectedClass(), annotationName, classValuesAsString, this.nestedAnnotationsAsMap) : null);
+		return (this.annotations.length > 0 ? AnnotatedElementUtils.getAllAnnotationAttributes(getIntrospectedClass(), annotationName, classValuesAsString, this.nestedAnnotationsAsMap) : null);
+
 	}
 
 	@Override
@@ -126,8 +116,7 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 		try {
 			Method[] methods = getIntrospectedClass().getDeclaredMethods();
 			for (Method method : methods) {
-				if (!method.isBridge() && method.getAnnotations().length > 0 &&
-						AnnotatedElementUtils.isAnnotated(method, annotationName)) {
+				if (!method.isBridge() && method.getAnnotations().length > 0 && AnnotatedElementUtils.isAnnotated(method, annotationName)) {
 					return true;
 				}
 			}
@@ -144,8 +133,7 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 			Method[] methods = getIntrospectedClass().getDeclaredMethods();
 			Set<MethodMetadata> annotatedMethods = new LinkedHashSet<>(4);
 			for (Method method : methods) {
-				if (!method.isBridge() && method.getAnnotations().length > 0 &&
-						AnnotatedElementUtils.isAnnotated(method, annotationName)) {
+				if (!method.isBridge() && method.getAnnotations().length > 0 && AnnotatedElementUtils.isAnnotated(method, annotationName)) {
 					annotatedMethods.add(new StandardMethodMetadata(method, this.nestedAnnotationsAsMap));
 				}
 			}

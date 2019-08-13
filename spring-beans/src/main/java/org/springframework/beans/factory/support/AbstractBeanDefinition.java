@@ -35,7 +35,6 @@ import org.springframework.util.StringUtils;
  * @see RootBeanDefinition
  * @see ChildBeanDefinition
  *
- *
  * AbstractBeanDefinition 实现了 BeanDefinition 接口，在 BeanDefinition 接口中只是定义了<bean>标签对应属性的 setter/getter 方法，
  * 而没有定义对应的属性，而在 AbstractBeanDefinition 类中就定义了对应的各种属性，并重写了接口的 setter/getter 方法
  *
@@ -472,8 +471,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 			throw new IllegalStateException("No bean class specified on bean definition");
 		}
 		if (!(beanClassObject instanceof Class)) {
-			throw new IllegalStateException(
-					"Bean class name [" + beanClassObject + "] has not been resolved into an actual Class");
+			throw new IllegalStateException("Bean class name [" + beanClassObject + "] has not been resolved into an actual Class");
 		}
 		return (Class<?>) beanClassObject;
 	}
@@ -1122,11 +1120,8 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	 */
 	public void validate() throws BeanDefinitionValidationException {
 		if (hasMethodOverrides() && getFactoryMethodName() != null) {
-			throw new BeanDefinitionValidationException(
-					"Cannot combine static factory method with method overrides: " +
-							"the static factory method must create the instance");
+			throw new BeanDefinitionValidationException("Cannot combine static factory method with method overrides: the static factory method must create the instance");
 		}
-
 		if (hasBeanClass()) {
 			prepareMethodOverrides();
 		}
@@ -1159,9 +1154,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	protected void prepareMethodOverride(MethodOverride mo) throws BeanDefinitionValidationException {
 		int count = ClassUtils.getMethodCountForName(getBeanClass(), mo.getMethodName());
 		if (count == 0) {
-			throw new BeanDefinitionValidationException(
-					"Invalid method override: no method with name '" + mo.getMethodName() +
-							"' on class [" + getBeanClassName() + "]");
+			throw new BeanDefinitionValidationException("Invalid method override: no method with name '" + mo.getMethodName() + "' on class [" + getBeanClassName() + "]");
 		}
 		else if (count == 1) {
 			// Mark override as not overloaded, to avoid the overhead of arg type checking.

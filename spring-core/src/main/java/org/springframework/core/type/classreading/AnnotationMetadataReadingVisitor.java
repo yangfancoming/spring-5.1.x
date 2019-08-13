@@ -27,11 +27,6 @@ import org.springframework.util.MultiValueMap;
  * well as for the annotations defined on the class, exposing them through
  * the {@link org.springframework.core.type.AnnotationMetadata} interface.
  *
-
- * @author Mark Fisher
- * @author Costin Leau
- * @author Phillip Webb
- * @author Sam Brannen
  * @since 2.5
  */
 public class AnnotationMetadataReadingVisitor extends ClassMetadataReadingVisitor implements AnnotationMetadata {
