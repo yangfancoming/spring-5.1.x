@@ -186,8 +186,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 					handler = this.handlerMap.get(bestMatch.substring(0, bestMatch.length() - 1));
 				}
 				if (handler == null) {
-					throw new IllegalStateException(
-							"Could not find handler for best pattern match [" + bestMatch + "]");
+					throw new IllegalStateException("Could not find handler for best pattern match [" + bestMatch + "]");
 				}
 			}
 			// Bean name or resolved handler?
@@ -240,9 +239,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	 * @param uriTemplateVariables the URI template variables, can be {@code null} if no variables found
 	 * @return the final handler object
 	 */
-	protected Object buildPathExposingHandler(Object rawHandler, String bestMatchingPattern,
-			String pathWithinMapping, @Nullable Map<String, String> uriTemplateVariables) {
-
+	protected Object buildPathExposingHandler(Object rawHandler, String bestMatchingPattern,String pathWithinMapping, @Nullable Map<String, String> uriTemplateVariables) {
 		HandlerExecutionChain chain = new HandlerExecutionChain(rawHandler);
 		chain.addInterceptor(new PathExposingHandlerInterceptor(bestMatchingPattern, pathWithinMapping));
 		if (!CollectionUtils.isEmpty(uriTemplateVariables)) {
@@ -328,9 +325,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 		Object mappedHandler = this.handlerMap.get(urlPath);
 		if (mappedHandler != null) {
 			if (mappedHandler != resolvedHandler) {
-				throw new IllegalStateException(
-						"Cannot map " + getHandlerDescription(handler) + " to URL path [" + urlPath +
-						"]: There is already " + getHandlerDescription(mappedHandler) + " mapped.");
+				throw new IllegalStateException("Cannot map " + getHandlerDescription(handler) + " to URL path [" + urlPath + "]: There is already " + getHandlerDescription(mappedHandler) + " mapped.");
 			}
 		}
 		else {

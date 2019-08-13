@@ -1,5 +1,7 @@
 package com.goat.chapter515;
 
+import org.junit.Test;
+
 /**
  * Created by 64274 on 2019/8/13.
  *
@@ -7,4 +9,11 @@ package com.goat.chapter515;
  * @ author  山羊来了
  * @ date 2019/8/13---14:27
  */
-public class App {}
+public class App {
+
+	@Test
+	public void test(){
+
+	}
+
+}

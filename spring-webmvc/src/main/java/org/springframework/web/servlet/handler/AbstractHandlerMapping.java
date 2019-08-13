@@ -375,8 +375,7 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 
 
 	/**
-	 * Look up a handler for the given request, falling back to the default
-	 * handler if no specific one is found.
+	 * Look up a handler for the given request, falling back to the default handler if no specific one is found.
 	 * @param request current HTTP request
 	 * @return the corresponding handler instance, or the default handler
 	 * @see #getHandlerInternal
@@ -396,9 +395,7 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 			String handlerName = (String) handler;
 			handler = obtainApplicationContext().getBean(handlerName);
 		}
-
 		HandlerExecutionChain executionChain = getHandlerExecutionChain(handler, request);
-
 		if (logger.isTraceEnabled()) {
 			logger.trace("Mapped to " + handler);
 		}

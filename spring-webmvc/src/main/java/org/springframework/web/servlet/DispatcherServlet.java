@@ -982,7 +982,6 @@ public class DispatcherServlet extends FrameworkServlet {
 		try {
 			ModelAndView mv = null;
 			Exception dispatchException = null;
-
 			try {
 				//  处理文件上传请求 // 检查此次请求 是否是文件上传请求
 				processedRequest = checkMultipart(request);

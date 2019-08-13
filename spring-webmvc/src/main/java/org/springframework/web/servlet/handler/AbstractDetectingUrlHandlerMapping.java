@@ -49,24 +49,40 @@ public abstract class AbstractDetectingUrlHandlerMapping extends AbstractUrlHand
 	 *  对于无法确定此类URL的bean，不将其视为处理程序。
 	 * @throws org.springframework.beans.BeansException if the handler couldn't be registered
 	 * @see #determineUrlsForHandler(String)
-	 *
 	 *  建立当前ApplicationContext中的所有controller和url的对应关系
+	 *
+	 * 0 = "sampleController"
+	 * 1 = "org.springframework.context.annotation.internalConfigurationAnnotationProcessor"
+	 * 2 = "org.springframework.context.annotation.internalAutowiredAnnotationProcessor"
+	 * 3 = "org.springframework.context.annotation.internalCommonAnnotationProcessor"
+	 * 4 = "org.springframework.context.event.internalEventListenerProcessor"
+	 * 5 = "org.springframework.context.event.internalEventListenerFactory"
+	 * 6 = "org.springframework.web.servlet.view.InternalResourceViewResolver#0"
+	 * 7 = "environment"
+	 * 8 = "systemProperties"
+	 * 9 = "systemEnvironment"
+	 * 10 = "servletContext"
+	 * 11 = "servletConfig"
+	 * 12 = "contextParameters"
+	 * 13 = "contextAttributes"
+	 * 14 = "org.springframework.context.annotation.ConfigurationClassPostProcessor.importRegistry"
+	 * 15 = "messageSource"
+	 * 16 = "applicationEventMulticaster"
+	 * 17 = "lifecycleProcessor"
 	 */
 	protected void detectHandlers() throws BeansException {
 		ApplicationContext applicationContext = obtainApplicationContext();
-		String[] beanNames = (this.detectHandlersInAncestorContexts ?
-				BeanFactoryUtils.beanNamesForTypeIncludingAncestors(applicationContext, Object.class) : applicationContext.getBeanNamesForType(Object.class));
-
-
-		// Take any bean name that we can determine URLs for.
+		// 获取ApplicationContext容器中所有bean的Name
+		String[] beanNames = (this.detectHandlersInAncestorContexts ? BeanFactoryUtils.beanNamesForTypeIncludingAncestors(applicationContext, Object.class) : applicationContext.getBeanNamesForType(Object.class));
+		// Take any bean name that we can determine URLs for.  遍历beanNames,并找到这些bean对应的url
 		for (String beanName : beanNames) {
+			// 找bean上的所有url(controller上的url+方法上的url),该方法由对应的子类实现
 			String[] urls = determineUrlsForHandler(beanName);
 			if (!ObjectUtils.isEmpty(urls)) {
-				// URL paths found: Let's consider it a handler.
+				// URL paths found: Let's consider it a handler. // 保存urls和beanName的对应关系,put it to Map,该方法在父类AbstractUrlHandlerMapping中实现
 				registerHandler(urls, beanName);
 			}
 		}
-
 		if ((logger.isDebugEnabled() && !getHandlerMap().isEmpty()) || logger.isTraceEnabled()) {
 			logger.debug("Detected " + getHandlerMap().size() + " mappings in " + formatMappingName());
 		}
@@ -77,6 +93,7 @@ public abstract class AbstractDetectingUrlHandlerMapping extends AbstractUrlHand
 	 * Determine the URLs for the given handler bean.
 	 * @param beanName the name of the candidate bean
 	 * @return the URLs determined for the bean, or an empty array if none
+	 * 获取controller中所有方法的url,由子类实现,典型的模板模式
 	 */
 	protected abstract String[] determineUrlsForHandler(String beanName);
 

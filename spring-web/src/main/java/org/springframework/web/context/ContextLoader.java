@@ -60,10 +60,7 @@ import org.springframework.util.StringUtils;
  * application context via the {@link #ContextLoader(WebApplicationContext)}
  * constructor, allowing for programmatic configuration in Servlet 3.0+ environments.
  * See {@link org.springframework.web.WebApplicationInitializer} for usage examples.
- *
 
- * @author Colin Sampaleanu
- * @author Sam Brannen
  * @since 17.02.2003
  * @see ContextLoaderListener
  * @see ConfigurableWebApplicationContext

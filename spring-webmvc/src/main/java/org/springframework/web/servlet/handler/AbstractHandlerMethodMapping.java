@@ -339,7 +339,6 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 
 
 	// Handler method lookup
-
 	/**
 	 * Look up a handler method for the given request.
 	 */
