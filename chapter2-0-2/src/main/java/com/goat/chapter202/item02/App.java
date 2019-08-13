@@ -18,8 +18,6 @@ import java.util.Arrays;
  */
 public class App {
 
-
-
 	ApplicationContext context = new AnnotationConfigApplicationContext(JavaConfig.class);
 
 	/**
@@ -28,7 +26,7 @@ public class App {
 	@Before
 	public void test2(){
 		String[] str= context.getBeanDefinitionNames();
-		Arrays.stream(str).forEach(x-> System.out.println("***---***"+x));
+		Arrays.stream(str).forEach(x-> System.out.println("***--------"+x));
 	}
 
 	@Test

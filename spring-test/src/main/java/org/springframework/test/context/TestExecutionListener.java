@@ -81,7 +81,7 @@ public interface TestExecutionListener {
 
 	/**
 	 * Pre-processes a test <em>before</em> execution of <em>before</em>
-	 * lifecycle callbacks of the underlying test framework &mdash; for example,
+	 * lifecycle callbacks of the underlying test framework ; for example,
 	 * by setting up test fixtures.
 	 * <p>This method <strong>must</strong> be called immediately prior to
 	 * framework-specific <em>before</em> lifecycle callbacks. For historical
@@ -105,7 +105,7 @@ public interface TestExecutionListener {
 	/**
 	 * Pre-processes a test <em>immediately before</em> execution of the
 	 * {@link java.lang.reflect.Method test method} in the supplied
-	 * {@link TestContext test context} &mdash; for example, for timing
+	 * {@link TestContext test context} ; for example, for timing
 	 * or logging purposes.
 	 * <p>This method <strong>must</strong> be called after framework-specific
 	 * <em>before</em> lifecycle callbacks.
@@ -125,7 +125,7 @@ public interface TestExecutionListener {
 	/**
 	 * Post-processes a test <em>immediately after</em> execution of the
 	 * {@link java.lang.reflect.Method test method} in the supplied
-	 * {@link TestContext test context} &mdash; for example, for timing
+	 * {@link TestContext test context} ; for example, for timing
 	 * or logging purposes.
 	 * <p>This method <strong>must</strong> be called before framework-specific
 	 * <em>after</em> lifecycle callbacks.
@@ -144,7 +144,7 @@ public interface TestExecutionListener {
 
 	/**
 	 * Post-processes a test <em>after</em> execution of <em>after</em>
-	 * lifecycle callbacks of the underlying test framework &mdash; for example,
+	 * lifecycle callbacks of the underlying test framework ; for example,
 	 * by tearing down test fixtures.
 	 * <p>This method <strong>must</strong> be called immediately after
 	 * framework-specific <em>after</em> lifecycle callbacks. For historical

@@ -34,14 +34,14 @@ import org.springframework.util.StringUtils;
  *
  * <h3>Examples</h3>
  * <ul>
- * <li>{@code /pages/t?st.html} &mdash; matches {@code /pages/test.html} as well as
+ * <li>{@code /pages/t?st.html} ; matches {@code /pages/test.html} as well as
  * {@code /pages/tXst.html} but not {@code /pages/toast.html}</li>
- * <li>{@code /resources/*.png} &mdash; matches all {@code .png} files in the
+ * <li>{@code /resources/*.png} ; matches all {@code .png} files in the
  * {@code resources} directory</li>
- * <li><code>/resources/&#42;&#42;</code> &mdash; matches all files
+ * <li><code>/resources/&#42;&#42;</code> ; matches all files
  * underneath the {@code /resources/} path, including {@code /resources/image.png}
  * and {@code /resources/css/spring.css}</li>
- * <li><code>/resources/{&#42;path}</code> &mdash; matches all files
+ * <li><code>/resources/{&#42;path}</code> ; matches all files
  * underneath the {@code /resources/} path and captures their relative path in
  * a variable named "path"; {@code /resources/image.png} will match with
  * "spring" &rarr; "/image.png", and {@code /resources/css/spring.css} will match

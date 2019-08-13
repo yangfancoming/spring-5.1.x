@@ -60,7 +60,7 @@ public class JsonPathRequestMatchers {
 	 * An overloaded variant of {@link #value(Matcher)} that also accepts a
 	 * target type for the resulting value that the matcher can work reliably
 	 * against.
-	 * <p>This can be useful for matching numbers reliably &mdash; for example,
+	 * <p>This can be useful for matching numbers reliably ; for example,
 	 * to coerce an integer into a double.
 	 * @since 4.3.3
 	 */

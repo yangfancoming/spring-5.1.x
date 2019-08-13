@@ -175,7 +175,7 @@ public @interface AliasFor {
 	/**
 	 * Alias for {@link #attribute}.
 	 * <p>Intended to be used instead of {@link #attribute} when {@link #annotation}
-	 * is not declared &mdash; for example: {@code @AliasFor("value")} instead of
+	 * is not declared ; for example: {@code @AliasFor("value")} instead of
 	 * {@code @AliasFor(attribute = "value")}.
 	 */
 	@AliasFor("attribute")

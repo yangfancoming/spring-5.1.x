@@ -165,7 +165,7 @@ public @interface PropertySource {
 	/**
 	 * Indicate the resource location(s) of the properties file to be loaded.
 	 * <p>Both traditional and XML-based properties file formats are supported
-	 * &mdash; for example, {@code "classpath:/com/myco/app.properties"}
+	 * ; for example, {@code "classpath:/com/myco/app.properties"}
 	 * or {@code "file:/path/to/file.xml"}.
 	 * <p>Resource location wildcards (e.g. *&#42;/*.properties) are not permitted;
 	 * each location must evaluate to exactly one {@code .properties} resource.

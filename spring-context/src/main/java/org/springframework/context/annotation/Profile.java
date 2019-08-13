@@ -48,7 +48,7 @@ import org.springframework.core.env.Profiles;
  * at least profile 'p1' or 'p2' has been activated.
  *
  * <p>If a given profile is prefixed with the NOT operator ({@code !}), the annotated
- * component will be registered if the profile is <em>not</em> active &mdash; for example,
+ * component will be registered if the profile is <em>not</em> active ; for example,
  * given {@code @Profile({"p1", "!p2"})}, registration will occur if profile 'p1' is active
  * or if profile 'p2' is <em>not</em> active.
  *

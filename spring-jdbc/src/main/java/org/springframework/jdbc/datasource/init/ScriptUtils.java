@@ -253,8 +253,8 @@ public abstract class ScriptUtils {
 	 * Read a script from the provided resource, using the supplied comment prefix
 	 * and statement separator, and build a {@code String} containing the lines.
 	 * <p>Lines <em>beginning</em> with the comment prefix are excluded from the
-	 * results; however, line comments anywhere else &mdash; for example, within
-	 * a statement &mdash; will be included in the results.
+	 * results; however, line comments anywhere else ; for example, within
+	 * a statement ; will be included in the results.
 	 * @param resource the {@code EncodedResource} containing the script
 	 * to be processed
 	 * @param commentPrefix the prefix that identifies comments in the SQL script
@@ -281,8 +281,8 @@ public abstract class ScriptUtils {
 	 * comment prefix and statement separator, and build a {@code String} containing
 	 * the lines.
 	 * <p>Lines <em>beginning</em> with the comment prefix are excluded from the
-	 * results; however, line comments anywhere else &mdash; for example, within
-	 * a statement &mdash; will be included in the results.
+	 * results; however, line comments anywhere else ; for example, within
+	 * a statement ; will be included in the results.
 	 * @param lineNumberReader the {@code LineNumberReader} containing the script
 	 * to be processed
 	 * @param lineCommentPrefix the prefix that identifies comments in the SQL script

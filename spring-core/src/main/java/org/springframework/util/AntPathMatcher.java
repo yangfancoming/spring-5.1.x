@@ -28,15 +28,15 @@ import org.springframework.lang.Nullable;
  *
  * <h3>Examples</h3>
  * <ul>
- * <li>{@code com/t?st.jsp} &mdash; matches {@code com/test.jsp} but also
+ * <li>{@code com/t?st.jsp} ; matches {@code com/test.jsp} but also
  * {@code com/tast.jsp} or {@code com/txst.jsp}</li>
- * <li>{@code com/*.jsp} &mdash; matches all {@code .jsp} files in the
+ * <li>{@code com/*.jsp} ; matches all {@code .jsp} files in the
  * {@code com} directory</li>
- * <li><code>com/&#42;&#42;/test.jsp</code> &mdash; matches all {@code test.jsp}
+ * <li><code>com/&#42;&#42;/test.jsp</code> ; matches all {@code test.jsp}
  * files underneath the {@code com} path</li>
- * <li><code>org/springframework/&#42;&#42;/*.jsp</code> &mdash; matches all
+ * <li><code>org/springframework/&#42;&#42;/*.jsp</code> ; matches all
  * {@code .jsp} files underneath the {@code org/springframework} path</li>
- * <li><code>org/&#42;&#42;/servlet/bla.jsp</code> &mdash; matches
+ * <li><code>org/&#42;&#42;/servlet/bla.jsp</code> ; matches
  * {@code org/springframework/servlet/bla.jsp} but also
  * {@code org/springframework/testing/servlet/bla.jsp} and {@code org/servlet/bla.jsp}</li>
  * <li>{@code com/{filename:\\w+}.jsp} will match {@code com/test.jsp} and assign the value {@code test}

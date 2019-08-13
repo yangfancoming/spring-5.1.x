@@ -12,7 +12,7 @@ import org.springframework.beans.factory.BeanDefinitionStoreException;
  *
  * <p>Instantiated per document to parse: implementations can hold
  * state in instance variables during the execution of the
- * {@code registerBeanDefinitions} method &mdash; for example, global
+ * {@code registerBeanDefinitions} method ; for example, global
  * settings that are defined for all bean definitions in the document.
  *
 

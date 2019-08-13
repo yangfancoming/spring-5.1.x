@@ -38,36 +38,43 @@ import org.springframework.util.StringUtils;
  *
  * AbstractBeanDefinition 实现了 BeanDefinition 接口，在 BeanDefinition 接口中只是定义了<bean>标签对应属性的 setter/getter 方法，
  * 而没有定义对应的属性，而在 AbstractBeanDefinition 类中就定义了对应的各种属性，并重写了接口的 setter/getter 方法
+ *
+ * XML 配置文件中所有的配置都可以在该类中找到对应的位置。
  */
 @SuppressWarnings("serial")
 public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccessor implements BeanDefinition, Cloneable {
 
 	/**
-	 * Constant for the default scope name: {@code ""}, equivalent to singleton
-	 * status unless overridden from a parent bean definition (if applicable).
+	 * Constant for the default scope name: {@code ""}, equivalent to singleton status unless overridden from a parent bean definition (if applicable).
+	 * 默认作用域名称的常量：等于singleton状态，除非从父bean定义中重写（如果适用）。
+	 * 默认的SCOPE，默认是单例
 	 */
 	public static final String SCOPE_DEFAULT = "";
 
 	/**
 	 * Constant that indicates no external autowiring at all.
+	 * 不进行自动装配
 	 * @see #setAutowireMode
 	 */
 	public static final int AUTOWIRE_NO = AutowireCapableBeanFactory.AUTOWIRE_NO;
 
 	/**
 	 * Constant that indicates autowiring bean properties by name.
+	 * 根据Bean的名字进行自动装配，即autowired属性的值为byname
 	 * @see #setAutowireMode
 	 */
 	public static final int AUTOWIRE_BY_NAME = AutowireCapableBeanFactory.AUTOWIRE_BY_NAME;
 
 	/**
 	 * Constant that indicates autowiring bean properties by type.
+	 * 根据Bean的类型进行自动装配，调用setter函数装配属性，即autowired属性的值为byType
 	 * @see #setAutowireMode
 	 */
 	public static final int AUTOWIRE_BY_TYPE = AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE;
 
 	/**
 	 * Constant that indicates autowiring a constructor.
+	 * 自动装配构造函数的形参，完成对应属性的自动装配，即autowired属性的值为byConstructor
 	 * @see #setAutowireMode
 	 */
 	public static final int AUTOWIRE_CONSTRUCTOR = AutowireCapableBeanFactory.AUTOWIRE_CONSTRUCTOR;
@@ -78,6 +85,8 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	 * @see #setAutowireMode
 	 * @deprecated as of Spring 3.0: If you are using mixed autowiring strategies,
 	 * use annotation-based autowiring for clearer demarcation of autowiring needs.
+	 * 通过Bean的class推断适当的自动装配策略（autowired=autodetect），如果Bean定义有有参构造函数，则通过自动装配构造函数形参，完成对应属性的自动装配（AUTOWIRE_CONSTRUCTOR），否则，使用setter函数（AUTOWIRE_BY_TYPE）
+	 * 原文链接：https://blog.csdn.net/dhaiuda/article/details/83210577
 	 */
 	@Deprecated
 	public static final int AUTOWIRE_AUTODETECT = AutowireCapableBeanFactory.AUTOWIRE_AUTODETECT;
@@ -96,14 +105,15 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 	/**
 	 * Constant that indicates dependency checking for "simple" properties.
+	 * 对简单属性的依赖进行检查
 	 * @see #setDependencyCheck
 	 * @see org.springframework.beans.BeanUtils#isSimpleProperty
 	 */
 	public static final int DEPENDENCY_CHECK_SIMPLE = 2;
 
 	/**
-	 * Constant that indicates dependency checking for all properties
-	 * (object references as well as "simple" properties).
+	 * Constant that indicates dependency checking for all properties (object references as well as "simple" properties).
+	 * 对所有属性的依赖进行检查
 	 * @see #setDependencyCheck
 	 */
 	public static final int DEPENDENCY_CHECK_ALL = 3;
@@ -117,72 +127,140 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	 * name.
 	 * <p>Currently, the method names detected during destroy method inference
 	 * are "close" and "shutdown", if present on the specific bean class.
+	 * 若Bean未指定销毁方法，容器应该尝试推断Bean的销毁方法的名字，
+	 * 目前来说，推断的销毁方法的名字一般为close或是shutdown
+	 * ( 即未指定Bean的销毁方法，但是内部定义了名为close或是shutdown的方法，则容器推断其为销毁方法)
 	 */
 	public static final String INFER_METHOD = "(inferred)";
 
-
+	/** Bean的class对象或是类的全限定名 */
 	@Nullable
 	private volatile Object beanClass;
 
+	/** bean的作用范围，对应bean属性scope */
+	/** 默认的scope是单例 */
 	@Nullable
 	private String scope = SCOPE_DEFAULT;
 
+	/** 是否是抽象，对应bean属性abstract */
 	private boolean abstractFlag = false;
 
+	/** 是否延迟加载，对应bean属性lazy-init */
 	private boolean lazyInit = false;
 
+	/** 自动注入模式，对应bean属性autowire */
 	private int autowireMode = AUTOWIRE_NO;
 
+	/** 依赖检查，Spring 3.0后弃用这个属性 */
 	private int dependencyCheck = DEPENDENCY_CHECK_NONE;
 
+	/**
+	 * 用来表示一个bean的实例化依靠另一个bean先实例化，对应bean属性depend-on
+	 * 这里只会存放<bean/>标签的depends-on属性或是@DependsOn注解的值
+	 * */
 	@Nullable
 	private String[] dependsOn;
 
+	/**
+	 * autowire-candidate属性设置为false，这样容器在查找自动装配对象时，
+	 * 将不考虑该bean，即它不会被考虑作为其他bean自动装配的候选者，
+	 * 但是该bean本身还是可以使用自动装配来注入其他bean的
+	 * 是自动装配的候选者，意味着可以自动装配到其他Bean的某个属性中
+	 */
 	private boolean autowireCandidate = true;
 
+	/**  自动装配时出现多个bean候选者时，将作为首选者，对应bean属性primary
+	 * 当某个Bean的某个属性自动装配有多个候选者（包括自己）时，是否优先注入，即@Primary注解
+	 * */
 	private boolean primary = false;
 
+	/**  用于记录Qualifier，对应子元素qualifier */
+	/**  这个不是很清楚，查看了这个类的定义，AutowireCandidateQualifier用于解析自动装配的候选者 */
 	private final Map<String, AutowireCandidateQualifier> qualifiers = new LinkedHashMap<>();
 
+	/**
+	 * 用于初始化Bean的回调函数，一旦指定，这个方法会覆盖工厂方法以及构造函数中的元数据
+	 *         我理解为通过这个函数的逻辑初始化Bean，而不是构造函数或是工厂方法
+	*/
 	@Nullable
 	private Supplier<?> instanceSupplier;
 
+	/**  允许访问非公开的构造器和方法，程序设置 */
+	/**  是否允许访问非public方法和属性，应用于构造函数、工厂方法、init、destroy方法的解析，具体作用是什么我也不是很清楚 */
 	private boolean nonPublicAccessAllowed = true;
 
+	/**  指定解析构造函数的模式，是宽松还是严格（什么是宽松、什么是严格，我没有找到解释）
+	 * 是否以一种宽松的模式解析构造函数，默认为true，
+	 * 如果为false，则在以下情况
+	 * interface ITest{}
+	 * class ITestImpl implements ITest{};
+	 * class Main {
+	 *     Main(ITest i) {}
+	 *     Main(ITestImpl i) {}
+	 * }
+	 * 抛出异常，因为Spring无法准确定位哪个构造函数程序设置
+	 */
 	private boolean lenientConstructorResolution = true;
 
+	/**
+	 * 对应bean属性factory-bean，用法：
+	 * <bean id = "instanceFactoryBean" class = "example.chapter3.InstanceFactoryBean" />
+	 * <bean id = "currentTime" factory-bean = "instanceFactoryBean" factory-method = "createTime" />
+	 * 工厂类名（注意是String类型，不是Class类型）
+	 */
 	@Nullable
 	private String factoryBeanName;
 
+	/**  对应bean属性factory-method */
+	/**  工厂方法名（注意是String类型，不是Method类型） */
 	@Nullable
 	private String factoryMethodName;
 
+	/**  记录构造函数注入属性，对应bean属性constructor-arg */
+	/**  存储构造函数形参的值 */
 	@Nullable
 	private ConstructorArgumentValues constructorArgumentValues;
 
+	/**  普通属性集合 */
+	/**  Bean属性的名称以及对应的值，这里不会存放构造函数相关的参数值，只会存放通过setter注入的依赖 */
 	@Nullable
 	private MutablePropertyValues propertyValues;
 
+	/**  方法重写的持有者，记录lookup-method、replaced-method元素 */
+	/**  存储被IOC容器覆盖的方法的相关信息（例如replace-method属性指定的函数） */
 	@Nullable
 	private MethodOverrides methodOverrides;
 
+	/**  初始化方法，对应bean属性init-method */
 	@Nullable
 	private String initMethodName;
 
+	/**  销毁方法，对应bean属性destroy-method */
 	@Nullable
 	private String destroyMethodName;
 
+	/**  是否执行init-method，程序设置 */
 	private boolean enforceInitMethod = true;
 
+	/**  是否执行destroy-method，程序设置 */
 	private boolean enforceDestroyMethod = true;
 
+	/**  是否是用户定义的而不是应用程序本身定义的，创建AOP时候为true，程序设置 */
+	/**  是否是合成类（是不是应用自定义的，例如生成AOP代理时，会用到某些辅助类，这些辅助类不是应用自定义的，这个就是合成类） */
 	private boolean synthetic = false;
 
+	/**
+	 * 定义这个bean的应用，APPLICATION：用户，INFRASTRUCTURE：完全内部使用，与用户无关，
+	 * SUPPORT：某些复杂配置的一部分
+	 * 程序设置
+	 */
 	private int role = BeanDefinition.ROLE_APPLICATION;
 
+	/**  bean的描述信息 */
 	@Nullable
 	private String description;
 
+	/**  这个bean定义的资源 */
 	@Nullable
 	private Resource resource;
 
@@ -684,11 +762,9 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
-	 * Specify a callback for creating an instance of the bean,
-	 * as an alternative to a declaratively specified factory method.
-	 * <p>If such a callback is set, it will override any other constructor
-	 * or factory method metadata. However, bean property population and
-	 * potential annotation-driven injection will still apply as usual.
+	 * Specify a callback for creating an instance of the bean,as an alternative to a declaratively specified factory method.
+	 * <p>If such a callback is set, it will override any other constructor or factory method metadata.
+	 * However, bean property population and potential annotation-driven injection will still apply as usual.
 	 * @since 5.0
 	 * @see #setConstructorArgumentValues(ConstructorArgumentValues)
 	 * @see #setPropertyValues(MutablePropertyValues)

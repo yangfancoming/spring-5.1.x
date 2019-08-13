@@ -13,7 +13,7 @@ import java.util.Map;
  *
  * <p>There are also several properties to customize how URI template handling
  * is performed, including a {@link #setBaseUrl baseUrl} to be used as a prefix
- * for all URI templates and a couple of encoding related options &mdash;
+ * for all URI templates and a couple of encoding related options ;
  * {@link #setParsePath parsePath} and {@link #setStrictEncoding strictEncoding}
  * respectively.
  *

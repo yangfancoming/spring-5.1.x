@@ -21,18 +21,12 @@ import org.springframework.core.type.filter.TypeFilter;
  * {@link #value}) may be specified to define specific packages to scan.
  * If specific packages are not defined, scanning will occur from the package of the class that declares this annotation.
  * 如果未定义指定包扫描，则将从声明此批注的类的包中进行扫描。
- * Note that the {@code <context:component-scan>} element has an
- * {@code annotation-config} attribute; however, this annotation does not. This is because
- * in almost all cases when using {@code @ComponentScan}, default annotation config
- * processing (e.g. processing {@code @Autowired} and friends) is assumed. Furthermore,
- * when using {@link AnnotationConfigApplicationContext}, annotation config processors are
- * always registered, meaning that any attempt to disable them at the
- * {@code @ComponentScan} level would be ignored.
- *
+ * Note that the {@code <context:component-scan>} element has an {@code annotation-config} attribute; 
+ * however, this annotation does not. This is because in almost all cases when using {@code @ComponentScan},
+ *  default annotation config  processing (e.g. processing {@code @Autowired} and friends) is assumed.
+ * Furthermore,when using {@link AnnotationConfigApplicationContext}, annotation config processors are
+ * always registered, meaning that any attempt to disable them at the {@code @ComponentScan} level would be ignored.
  * See {@link Configuration @Configuration}'s Javadoc for usage examples.
-
-
- * @author Sam Brannen
  * @since 3.1
  * @see Configuration
  */
@@ -44,9 +38,9 @@ public @interface ComponentScan {
 
 	/**
 	 * Alias for {@link #basePackages}.
-	 * Allows for more concise annotation declarations if no other attributes
-	 * are needed &mdash; for example, {@code @ComponentScan("org.my.pkg")}
-	 * instead of {@code @ComponentScan(basePackages = "org.my.pkg")}.
+	 * Allows for more concise annotation declarations if no other attributes are needed ;
+	 * 如果不需要其他属性，则允许使用更简洁的注释声明
+	 * for example, {@code @ComponentScan("org.my.pkg")} instead of {@code @ComponentScan(basePackages = "org.my.pkg")}.
 	 */
 	@AliasFor("basePackages")
 	String[] value() default {};
@@ -55,6 +49,7 @@ public @interface ComponentScan {
 	 * Base packages to scan for annotated components.
 	 * {@link #value} is an alias for (and mutually exclusive with) this attribute.
 	 * Use {@link #basePackageClasses} for a type-safe alternative to String-based package names.
+	 * @ComponentScan(basePackages = {"com.goat.webservice.demo.service"})
 	 */
 	@AliasFor("value")
 	String[] basePackages() default {};
@@ -63,17 +58,16 @@ public @interface ComponentScan {
 	 * Type-safe alternative to {@link #basePackages} for specifying the packages to scan for annotated components.
 	 * The package of each class specified will be scanned.
 	 * Consider creating a special no-op marker class or interface in each package that serves no purpose other than being referenced by this attribute.
+	 *  @ComponentScan(basePackageClasses=Person.class)
 	 */
 	Class<?>[] basePackageClasses() default {};
 
 	/**
-	 * The {@link BeanNameGenerator} class to be used for naming detected components
-	 * within the Spring container.
+	 * The {@link BeanNameGenerator} class to be used for naming detected components within the Spring container.
 	 * The default value of the {@link BeanNameGenerator} interface itself indicates
 	 * that the scanner used to process this {@code @ComponentScan} annotation should
-	 * use its inherited bean name generator, e.g. the default
-	 * {@link AnnotationBeanNameGenerator} or any custom instance supplied to the
-	 * application context at bootstrap time.
+	 * use its inherited bean name generator,
+	 * e.g. the default {@link AnnotationBeanNameGenerator} or any custom instance supplied to the application context at bootstrap time.
 	 * @see AnnotationConfigApplicationContext#setBeanNameGenerator(BeanNameGenerator)
 	 */
 	Class<? extends BeanNameGenerator> nameGenerator() default BeanNameGenerator.class;
@@ -84,10 +78,8 @@ public @interface ComponentScan {
 	Class<? extends ScopeMetadataResolver> scopeResolver() default AnnotationScopeMetadataResolver.class;
 
 	/**
-	 * Indicates whether proxies should be generated for detected components, which may be
-	 * necessary when using scopes in a proxy-style fashion.
-	 * The default is defer to the default behavior of the component scanner used to
-	 * execute the actual scan.
+	 * Indicates whether proxies should be generated for detected components, which may be necessary when using scopes in a proxy-style fashion.
+	 * The default is defer to the default behavior of the component scanner used to execute the actual scan.
 	 * Note that setting this attribute overrides any value set for {@link #scopeResolver}.
 	 * @see ClassPathBeanDefinitionScanner#setScopedProxyMode(ScopedProxyMode)
 	 */
@@ -169,7 +161,7 @@ public @interface ComponentScan {
 		 * <td>an implementation of {@link TypeFilter}</td></tr>
 		 * </table>
 		 * When multiple classes are specified, <em>OR</em> logic is applied
-		 * &mdash; for example, "include types annotated with {@code @Foo} OR {@code @Bar}".
+		 * ; for example, "include types annotated with {@code @Foo} OR {@code @Bar}".
 		 * Custom {@link TypeFilter TypeFilters} may optionally implement any of the
 		 * following {@link org.springframework.beans.factory.Aware Aware} interfaces, and
 		 * their respective methods will be called prior to {@link TypeFilter#match match}:
@@ -199,7 +191,5 @@ public @interface ComponentScan {
 		 * @see #classes
 		 */
 		String[] pattern() default {};
-
 	}
-
 }

@@ -168,7 +168,7 @@ public @interface EnableAsync {
 	 * For example, other beans marked with Spring's {@code @Transactional} annotation
 	 * will be upgraded to subclass proxying at the same time. This approach has no
 	 * negative impact in practice unless one is explicitly expecting one type of proxy
-	 * vs. another &mdash; for example, in tests.
+	 * vs. another ; for example, in tests.
 	 */
 	boolean proxyTargetClass() default false;
 

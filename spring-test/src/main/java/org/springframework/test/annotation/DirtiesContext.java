@@ -15,7 +15,7 @@ import java.lang.annotation.Target;
  * associated with a test is <em>dirty</em> and should therefore be closed
  * and removed from the context cache.
  *
- * <p>Use this annotation if a test has modified the context &mdash; for
+ * <p>Use this annotation if a test has modified the context ; for
  * example, by modifying the state of a singleton bean, modifying the state
  * of an embedded database, etc. Subsequent tests that request the same
  * context will be supplied a new context.

@@ -33,8 +33,8 @@ import org.springframework.core.annotation.AliasFor;
  * generic {@link org.springframework.web.context.request.WebRequest} interface.
  *
  * <p><b>NOTE:</b> When using controller interfaces (e.g. for AOP proxying),
- * make sure to consistently put <i>all</i> your mapping annotations &mdash;
- * such as {@code @RequestMapping} and {@code @SessionAttributes} &mdash; on
+ * make sure to consistently put <i>all</i> your mapping annotations ;
+ * such as {@code @RequestMapping} and {@code @SessionAttributes} ; on
  * the controller <i>interface</i> rather than on the implementation class.
  *
 

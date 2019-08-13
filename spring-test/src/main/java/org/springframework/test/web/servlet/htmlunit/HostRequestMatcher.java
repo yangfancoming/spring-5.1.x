@@ -46,7 +46,7 @@ public final class HostRequestMatcher implements WebRequestMatcher {
 
 
 	/**
-	 * Create a new {@code HostRequestMatcher} for the given hosts &mdash;
+	 * Create a new {@code HostRequestMatcher} for the given hosts ;
 	 * for example: {@code "localhost"}, {@code "example.com:443"}, etc.
 	 * @param hosts the hosts to match on
 	 */

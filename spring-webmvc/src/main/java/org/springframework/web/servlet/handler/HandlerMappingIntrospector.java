@@ -36,9 +36,9 @@ import org.springframework.web.servlet.HandlerMapping;
  *
  * <p>Provides the following methods:
  * <ul>
- * <li>{@link #getMatchableHandlerMapping} &mdash; obtain a {@code HandlerMapping}
+ * <li>{@link #getMatchableHandlerMapping} ; obtain a {@code HandlerMapping}
  * to check request-matching criteria against.
- * <li>{@link #getCorsConfiguration} &mdash; obtain the CORS configuration for the
+ * <li>{@link #getCorsConfiguration} ; obtain the CORS configuration for the
  * request.
  * </ul>
  *

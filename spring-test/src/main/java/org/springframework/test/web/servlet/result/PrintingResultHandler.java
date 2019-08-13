@@ -30,7 +30,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 
 /**
  * Result handler that prints {@link MvcResult} details to a given output
- * stream &mdash; for example: {@code System.out}, {@code System.err}, a
+ * stream ; for example: {@code System.out}, {@code System.err}, a
  * custom {@code java.io.PrintWriter}, etc.
  *
  * <p>An instance of this class is typically accessed via one of the

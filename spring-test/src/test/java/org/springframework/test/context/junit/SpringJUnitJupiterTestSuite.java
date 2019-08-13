@@ -22,7 +22,7 @@ import org.junit.runner.RunWith;
  * <h3>Logging Configuration</h3>
  *
  * <p>In order for our log4j2 configuration to be used in an IDE, you must
- * set the following system property before running any tests &mdash; for
+ * set the following system property before running any tests ; for
  * example, in <em>Run Configurations</em> in Eclipse.
  *
  * <pre style="code">

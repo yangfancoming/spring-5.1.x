@@ -70,7 +70,7 @@ public abstract class AbstractContextLoader implements SmartContextLoader {
 	 * processed locations are then
 	 * {@link ContextConfigurationAttributes#setLocations(String[]) set} in
 	 * the supplied configuration attributes.
-	 * <p>Can be overridden in subclasses &mdash; for example, to process
+	 * <p>Can be overridden in subclasses ; for example, to process
 	 * annotated classes instead of resource locations.
 	 * @since 3.1
 	 * @see #processLocations(Class, String...)

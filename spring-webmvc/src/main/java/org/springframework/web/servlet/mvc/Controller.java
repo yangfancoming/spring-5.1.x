@@ -30,8 +30,8 @@ import org.springframework.web.servlet.ModelAndView;
  * When a Controller has been found to handle the request, the
  * {@link #handleRequest(HttpServletRequest, HttpServletResponse) handleRequest}
  * method of the located Controller will be invoked; the located Controller
- * is then responsible for handling the actual request and &mdash; if applicable
- * &mdash; returning an appropriate
+ * is then responsible for handling the actual request and ; if applicable
+ * ; returning an appropriate
  * {@link org.springframework.web.servlet.ModelAndView ModelAndView}.
  * So actually, this method is the main entry point for the
  * {@link org.springframework.web.servlet.DispatcherServlet DispatcherServlet}

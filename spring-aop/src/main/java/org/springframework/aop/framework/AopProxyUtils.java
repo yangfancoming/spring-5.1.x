@@ -52,7 +52,7 @@ public abstract class AopProxyUtils {
 
 	/**
 	 * Determine the ultimate target class of the given bean instance, traversing
-	 * not only a top-level proxy but any number of nested proxies as well &mdash;
+	 * not only a top-level proxy but any number of nested proxies as well ;
 	 * as long as possible without side effects, that is, just for singleton targets.
 	 * @param candidate the instance to check (might be an AOP proxy)
 	 * @return the ultimate target class (or the plain class of the given

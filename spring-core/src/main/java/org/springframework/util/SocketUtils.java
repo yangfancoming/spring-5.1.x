@@ -11,7 +11,7 @@ import java.util.TreeSet;
 import javax.net.ServerSocketFactory;
 
 /**
- * Simple utility methods for working with network sockets &mdash; for example,
+ * Simple utility methods for working with network sockets ; for example,
  * for finding available ports on {@code localhost}.
  *
  * <p>Within this class, a TCP port refers to a port for a {@link ServerSocket};

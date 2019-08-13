@@ -137,7 +137,7 @@ import org.springframework.core.annotation.AliasFor;
  * when one {@code @Bean}-method invokes another {@code @Bean}-method in <em>lite</em>
  * mode, the invocation is a standard Java method invocation; Spring does not intercept
  * the invocation via a CGLIB proxy. This is analogous to inter-{@code @Transactional}
- * method calls where in proxy mode, Spring does not intercept the invocation &mdash;
+ * method calls where in proxy mode, Spring does not intercept the invocation ;
  * Spring does so only in AspectJ mode.
  *
  * <p>For example:

@@ -67,12 +67,12 @@ public @interface EnabledIf {
 	 * <p>Expressions can be any of the following.
 	 *
 	 * <ul>
-	 * <li>Spring Expression Language (SpEL) expression &mdash; for example:
+	 * <li>Spring Expression Language (SpEL) expression ; for example:
 	 * <pre style="code">@EnabledIf("#{systemProperties['os.name'].toLowerCase().contains('mac')}")</pre>
 	 * <li>Placeholder for a property available in the Spring
-	 * {@link org.springframework.core.env.Environment Environment} &mdash; for example:
+	 * {@link org.springframework.core.env.Environment Environment} ; for example:
 	 * <pre style="code">@EnabledIf("${smoke.tests.enabled}")</pre>
-	 * <li>Text literal &mdash; for example:
+	 * <li>Text literal ; for example:
 	 * <pre style="code">@EnabledIf("true")</pre>
 	 * </ul>
 	 *

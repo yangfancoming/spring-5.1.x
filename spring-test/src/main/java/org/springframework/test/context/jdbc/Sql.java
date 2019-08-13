@@ -74,7 +74,7 @@ public @interface Sql {
 	 * <h3>Path Resource Semantics</h3>
 	 * <p>Each path will be interpreted as a Spring
 	 * {@link org.springframework.core.io.Resource Resource}. A plain path
-	 * &mdash; for example, {@code "schema.sql"} &mdash; will be treated as a
+	 * ; for example, {@code "schema.sql"} ; will be treated as a
 	 * classpath resource that is <em>relative</em> to the package in which the
 	 * test class is defined. A path starting with a slash will be treated as an
 	 * <em>absolute</em> classpath resource, for example:

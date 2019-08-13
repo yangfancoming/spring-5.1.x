@@ -6,13 +6,9 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.util.Assert;
 
 /**
- * Describes scope characteristics for a Spring-managed bean including the scope
- * name and the scoped-proxy behavior.
+ * Describes scope characteristics for a Spring-managed bean including the scope name and the scoped-proxy behavior.
  *
- * <p>The default scope is "singleton", and the default is to <i>not</i> create
- * scoped-proxies.
- *
- * @author Mark Fisher
+ * <p>The default scope is "singleton", and the default is to <i>not</i> create scoped-proxies.
 
  * @since 2.5
  * @see ScopeMetadataResolver

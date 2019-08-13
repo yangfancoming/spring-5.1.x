@@ -236,7 +236,7 @@ public class TestContextManager {
 
 	/**
 	 * Hook for pre-processing a test <em>before</em> execution of <em>before</em>
-	 * lifecycle callbacks of the underlying test framework &mdash; for example,
+	 * lifecycle callbacks of the underlying test framework ; for example,
 	 * setting up test fixtures, starting a transaction, etc.
 	 * <p>This method <strong>must</strong> be called immediately prior to
 	 * framework-specific <em>before</em> lifecycle callbacks (e.g., methods
@@ -278,7 +278,7 @@ public class TestContextManager {
 	/**
 	 * Hook for pre-processing a test <em>immediately before</em> execution of
 	 * the {@linkplain java.lang.reflect.Method test method} in the supplied
-	 * {@linkplain TestContext test context} &mdash; for example, for timing
+	 * {@linkplain TestContext test context} ; for example, for timing
 	 * or logging purposes.
 	 * <p>This method <strong>must</strong> be called after framework-specific
 	 * <em>before</em> lifecycle callbacks (e.g., methods annotated with JUnit 4's
@@ -317,7 +317,7 @@ public class TestContextManager {
 	/**
 	 * Hook for post-processing a test <em>immediately after</em> execution of
 	 * the {@linkplain java.lang.reflect.Method test method} in the supplied
-	 * {@linkplain TestContext test context} &mdash; for example, for timing
+	 * {@linkplain TestContext test context} ; for example, for timing
 	 * or logging purposes.
 	 * <p>This method <strong>must</strong> be called before framework-specific
 	 * <em>after</em> lifecycle callbacks (e.g., methods annotated with JUnit 4's
@@ -377,7 +377,7 @@ public class TestContextManager {
 
 	/**
 	 * Hook for post-processing a test <em>after</em> execution of <em>after</em>
-	 * lifecycle callbacks of the underlying test framework &mdash; for example,
+	 * lifecycle callbacks of the underlying test framework ; for example,
 	 * tearing down test fixtures, ending a transaction, etc.
 	 * <p>This method <strong>must</strong> be called immediately after
 	 * framework-specific <em>after</em> lifecycle callbacks (e.g., methods

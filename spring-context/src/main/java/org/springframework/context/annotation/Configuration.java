@@ -109,7 +109,7 @@ import org.springframework.stereotype.Component;
  *
  * <p>Externalized values may be looked up by injecting the Spring
  * {@link org.springframework.core.env.Environment} into a {@code @Configuration}
- * class &mdash; for example, using the {@code @Autowired} annotation:
+ * class ; for example, using the {@code @Autowired} annotation:
  *
  * <pre class="code">
  * &#064;Configuration
@@ -190,7 +190,7 @@ import org.springframework.stereotype.Component;
  * <p>{@code @Configuration} classes may be composed using the {@link Import @Import} annotation,
  * similar to the way that {@code <import>} works in Spring XML. Because
  * {@code @Configuration} objects are managed as Spring beans within the container,
- * imported configurations may be injected &mdash; for example, via constructor injection:
+ * imported configurations may be injected ; for example, via constructor injection:
  *
  * <pre class="code">
  * &#064;Configuration
@@ -252,7 +252,7 @@ import org.springframework.stereotype.Component;
  * }</pre>
  *
  * <p>Alternatively, you may also declare profile conditions at the {@code @Bean} method level
- * &mdash; for example, for alternative bean variants within the same configuration class:
+ * ; for example, for alternative bean variants within the same configuration class:
  *
  * <pre class="code">
  * &#064;Configuration
@@ -276,7 +276,7 @@ import org.springframework.stereotype.Component;
  * {@code <bean>} definitions within Spring XML files. It is also possible to
  * import Spring XML configuration files into {@code @Configuration} classes using
  * the {@link ImportResource @ImportResource} annotation. Bean definitions imported from
- * XML can be injected &mdash; for example, using the {@code @Inject} annotation:
+ * XML can be injected ; for example, using the {@code @Inject} annotation:
  *
  * <pre class="code">
  * &#064;Configuration

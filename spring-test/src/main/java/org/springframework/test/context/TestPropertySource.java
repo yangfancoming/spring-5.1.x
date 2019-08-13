@@ -90,12 +90,12 @@ public @interface TestPropertySource {
 	 * source, in the order declared.
 	 * <h3>Supported File Formats</h3>
 	 * <p>Both traditional and XML-based properties file formats are supported
-	 * &mdash; for example, {@code "classpath:/com/example/test.properties"}
+	 * ; for example, {@code "classpath:/com/example/test.properties"}
 	 * or {@code "file:/path/to/file.xml"}.
 	 * <h3>Path Resource Semantics</h3>
 	 * <p>Each path will be interpreted as a Spring
 	 * {@link org.springframework.core.io.Resource Resource}. A plain path
-	 * &mdash; for example, {@code "test.properties"} &mdash; will be treated as a
+	 * ; for example, {@code "test.properties"} ; will be treated as a
 	 * classpath resource that is <em>relative</em> to the package in which the
 	 * test class is defined. A path starting with a slash will be treated as an
 	 * <em>absolute</em> classpath resource, for example:

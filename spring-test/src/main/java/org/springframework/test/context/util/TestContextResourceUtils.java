@@ -38,7 +38,7 @@ public abstract class TestContextResourceUtils {
 	 *
 	 * <p>For each of the supplied paths:
 	 * <ul>
-	 * <li>A plain path &mdash; for example, {@code "context.xml"} &mdash; will
+	 * <li>A plain path ; for example, {@code "context.xml"} ; will
 	 * be treated as a classpath resource that is relative to the package in
 	 * which the specified class is defined.
 	 * <li>A path starting with a slash will be treated as an absolute path
