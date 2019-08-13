@@ -1,7 +1,5 @@
-package com.goat.chapter202;
+package com.goat.chapter202.item01;
 
-import com.goat.chapter202.bean.Person;
-import com.goat.chapter202.config.JavaConfig;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

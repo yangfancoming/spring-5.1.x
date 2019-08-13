@@ -1,4 +1,4 @@
-package com.goat.chapter202.bean;
+package com.goat.chapter202.item01;
 
 /**
  * Created by 64274 on 2019/8/12.

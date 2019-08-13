@@ -1,6 +1,5 @@
-package com.goat.chapter202.config;
+package com.goat.chapter202.item01;
 
-import com.goat.chapter202.bean.Person;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
