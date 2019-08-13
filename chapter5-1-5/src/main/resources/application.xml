@@ -9,4 +9,20 @@
 	<!--开启注解扫描-->
 	<context:component-scan base-package="com.goat.chapter515"></context:component-scan>
 
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+
+	<!--  对应 java 配置
+        @Bean
+        public InternalResourceViewResolver setupViewResolver(){
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setPrefix("/WEB-INF/");
+        resolver.setSuffix(".jsp");
+        return resolver;
+        }
+
+	-->
+
 </beans>

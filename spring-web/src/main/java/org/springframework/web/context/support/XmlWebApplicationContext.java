@@ -36,8 +36,7 @@ import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
  * create an analogous subclass of {@link AbstractRefreshableWebApplicationContext}.</b>
  * Such a context implementation can be specified as "contextClass" context-param
  * for ContextLoader or "contextClass" init-param for FrameworkServlet.
- *
- * @author Rod Johnson
+
 
  * @see #setNamespace
  * @see #setConfigLocations

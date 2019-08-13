@@ -25,11 +25,7 @@ import org.springframework.util.Assert;
  * objects do not need to be aware of the application context at all,
  * as they can receive collaborating beans via bean references.
  *
- * <p>Many framework classes are derived from this class, particularly
- * within the web support.
- *
- * @author Rod Johnson
-
+ * <p>Many framework classes are derived from this class, particularly within the web support.
  * @see org.springframework.web.context.support.WebApplicationObjectSupport
  */
 public abstract class ApplicationObjectSupport implements ApplicationContextAware {
@@ -56,8 +52,7 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 		else if (this.applicationContext == null) {
 			// Initialize with passed-in context.
 			if (!requiredContextClass().isInstance(context)) {
-				throw new ApplicationContextException(
-						"Invalid application context: needs to be of type [" + requiredContextClass().getName() + "]");
+				throw new ApplicationContextException("Invalid application context: needs to be of type [" + requiredContextClass().getName() + "]");
 			}
 			this.applicationContext = context;
 			this.messageSourceAccessor = new MessageSourceAccessor(context);
@@ -66,9 +61,7 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 		else {
 			// Ignore reinitialization if same context passed in.
 			if (this.applicationContext != context) {
-				throw new ApplicationContextException(
-						"Cannot reinitialize with different application context: current one is [" +
-						this.applicationContext + "], passed-in one is [" + context + "]");
+				throw new ApplicationContextException("Cannot reinitialize with different application context: current one is [" + this.applicationContext + "], passed-in one is [" + context + "]");
 			}
 		}
 	}
@@ -129,8 +122,7 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 	@Nullable
 	public final ApplicationContext getApplicationContext() throws IllegalStateException {
 		if (this.applicationContext == null && isContextRequired()) {
-			throw new IllegalStateException(
-					"ApplicationObjectSupport instance [" + this + "] does not run in an ApplicationContext");
+			throw new IllegalStateException("ApplicationObjectSupport instance [" + this + "] does not run in an ApplicationContext");
 		}
 		return this.applicationContext;
 	}
@@ -155,8 +147,7 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 	@Nullable
 	protected final MessageSourceAccessor getMessageSourceAccessor() throws IllegalStateException {
 		if (this.messageSourceAccessor == null && isContextRequired()) {
-			throw new IllegalStateException(
-					"ApplicationObjectSupport instance [" + this + "] does not run in an ApplicationContext");
+			throw new IllegalStateException("ApplicationObjectSupport instance [" + this + "] does not run in an ApplicationContext");
 		}
 		return this.messageSourceAccessor;
 	}

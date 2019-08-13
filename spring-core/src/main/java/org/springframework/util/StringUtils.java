@@ -992,7 +992,6 @@ public abstract class StringUtils {
 		if (ObjectUtils.isEmpty(array)) {
 			return array;
 		}
-
 		Set<String> set = new LinkedHashSet<>(Arrays.asList(array));
 		return toStringArray(set);
 	}
@@ -1015,7 +1014,6 @@ public abstract class StringUtils {
 		if (offset < 0) {
 			return null;
 		}
-
 		String beforeDelimiter = toSplit.substring(0, offset);
 		String afterDelimiter = toSplit.substring(offset + delimiter.length());
 		return new String[] {beforeDelimiter, afterDelimiter};
@@ -1051,8 +1049,7 @@ public abstract class StringUtils {
 	 * or {@code null} if the array to process was {@code null} or empty
 	 */
 	@Nullable
-	public static Properties splitArrayElementsIntoProperties(
-			String[] array, String delimiter, @Nullable String charsToDelete) {
+	public static Properties splitArrayElementsIntoProperties(String[] array, String delimiter, @Nullable String charsToDelete) {
 
 		if (ObjectUtils.isEmpty(array)) {
 			return null;
@@ -1111,8 +1108,7 @@ public abstract class StringUtils {
 	 * @see String#trim()
 	 * @see #delimitedListToStringArray
 	 */
-	public static String[] tokenizeToStringArray(
-			@Nullable String str, String delimiters, boolean trimTokens, boolean ignoreEmptyTokens) {
+	public static String[] tokenizeToStringArray(@Nullable String str, String delimiters, boolean trimTokens, boolean ignoreEmptyTokens) {
 
 		if (str == null) {
 			return new String[0];
@@ -1164,8 +1160,7 @@ public abstract class StringUtils {
 	 * @return an array of the tokens in the list
 	 * @see #tokenizeToStringArray
 	 */
-	public static String[] delimitedListToStringArray(
-			@Nullable String str, @Nullable String delimiter, @Nullable String charsToDelete) {
+	public static String[] delimitedListToStringArray(@Nullable String str, @Nullable String delimiter, @Nullable String charsToDelete) {
 
 		if (str == null) {
 			return new String[0];
@@ -1227,13 +1222,10 @@ public abstract class StringUtils {
 	 * @param suffix the {@code String} to end each element with
 	 * @return the delimited {@code String}
 	 */
-	public static String collectionToDelimitedString(
-			@Nullable Collection<?> coll, String delim, String prefix, String suffix) {
-
+	public static String collectionToDelimitedString(@Nullable Collection<?> coll, String delim, String prefix, String suffix) {
 		if (CollectionUtils.isEmpty(coll)) {
 			return "";
 		}
-
 		StringBuilder sb = new StringBuilder();
 		Iterator<?> it = coll.iterator();
 		while (it.hasNext()) {

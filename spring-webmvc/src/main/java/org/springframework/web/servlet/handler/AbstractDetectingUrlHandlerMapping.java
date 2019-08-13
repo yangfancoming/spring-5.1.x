@@ -12,15 +12,12 @@ import org.springframework.util.ObjectUtils;
  * Abstract implementation of the {@link org.springframework.web.servlet.HandlerMapping}
  * interface, detecting URL mappings for handler beans through introspection of all
  * defined beans in the application context.
- *
-
  * @since 2.5
  * @see #determineUrlsForHandler
  */
 public abstract class AbstractDetectingUrlHandlerMapping extends AbstractUrlHandlerMapping {
 
 	private boolean detectHandlersInAncestorContexts = false;
-
 
 	/**
 	 * Set whether to detect handler beans in ancestor ApplicationContexts.
@@ -36,8 +33,8 @@ public abstract class AbstractDetectingUrlHandlerMapping extends AbstractUrlHand
 
 
 	/**
-	 * Calls the {@link #detectHandlers()} method in addition to the
-	 * superclass's initialization.
+	 * Calls the {@link #detectHandlers()} method in addition to the superclass's initialization.
+	 * 启动Tomcat后的程序入口 断点打在这里
 	 */
 	@Override
 	public void initApplicationContext() throws ApplicationContextException {
@@ -47,17 +44,19 @@ public abstract class AbstractDetectingUrlHandlerMapping extends AbstractUrlHand
 
 	/**
 	 * Register all handlers found in the current ApplicationContext.
-	 * <p>The actual URL determination for a handler is up to the concrete
-	 * {@link #determineUrlsForHandler(String)} implementation. A bean for
-	 * which no such URLs could be determined is simply not considered a handler.
+	 * <p>The actual URL determination for a handler is up to the concrete {@link #determineUrlsForHandler(String)} implementation.
+	 *  A bean for which no such URLs could be determined is simply not considered a handler.
+	 *  对于无法确定此类URL的bean，不将其视为处理程序。
 	 * @throws org.springframework.beans.BeansException if the handler couldn't be registered
 	 * @see #determineUrlsForHandler(String)
+	 *
+	 *  建立当前ApplicationContext中的所有controller和url的对应关系
 	 */
 	protected void detectHandlers() throws BeansException {
 		ApplicationContext applicationContext = obtainApplicationContext();
 		String[] beanNames = (this.detectHandlersInAncestorContexts ?
-				BeanFactoryUtils.beanNamesForTypeIncludingAncestors(applicationContext, Object.class) :
-				applicationContext.getBeanNamesForType(Object.class));
+				BeanFactoryUtils.beanNamesForTypeIncludingAncestors(applicationContext, Object.class) : applicationContext.getBeanNamesForType(Object.class));
+
 
 		// Take any bean name that we can determine URLs for.
 		for (String beanName : beanNames) {

@@ -937,8 +937,7 @@ public class DispatcherServlet extends FrameworkServlet {
 		LogFormatUtils.traceDebug(logger, traceOn -> {
 			String params;
 			if (isEnableLoggingRequestDetails()) {
-				params = request.getParameterMap().entrySet().stream()
-						.map(entry -> entry.getKey() + ":" + Arrays.toString(entry.getValue()))
+				params = request.getParameterMap().entrySet().stream().map(entry -> entry.getKey() + ":" + Arrays.toString(entry.getValue()))
 						.collect(Collectors.joining(", "));
 			}
 			else {
@@ -947,17 +946,14 @@ public class DispatcherServlet extends FrameworkServlet {
 
 			String queryString = request.getQueryString();
 			String queryClause = (StringUtils.hasLength(queryString) ? "?" + queryString : "");
-			String dispatchType = (!request.getDispatcherType().equals(DispatcherType.REQUEST) ?
-					"\"" + request.getDispatcherType().name() + "\" dispatch for " : "");
-			String message = (dispatchType + request.getMethod() + " \"" + getRequestUri(request) +
-					queryClause + "\", parameters={" + params + "}");
+			String dispatchType = (!request.getDispatcherType().equals(DispatcherType.REQUEST) ? "\"" + request.getDispatcherType().name() + "\" dispatch for " : "");
+			String message = (dispatchType + request.getMethod() + " \"" + getRequestUri(request) + queryClause + "\", parameters={" + params + "}");
 
 			if (traceOn) {
 				List<String> values = Collections.list(request.getHeaderNames());
 				String headers = values.size() > 0 ? "masked" : "";
 				if (isEnableLoggingRequestDetails()) {
-					headers = values.stream().map(name -> name + ":" + Collections.list(request.getHeaders(name)))
-							.collect(Collectors.joining(", "));
+					headers = values.stream().map(name -> name + ":" + Collections.list(request.getHeaders(name))).collect(Collectors.joining(", "));
 				}
 				return message + ", headers={" + headers + "} in DispatcherServlet '" + getServletName() + "'";
 			}
@@ -982,18 +978,17 @@ public class DispatcherServlet extends FrameworkServlet {
 		HttpServletRequest processedRequest = request;
 		HandlerExecutionChain mappedHandler = null;
 		boolean multipartRequestParsed = false;
-
 		WebAsyncManager asyncManager = WebAsyncUtils.getAsyncManager(request);
-
 		try {
 			ModelAndView mv = null;
 			Exception dispatchException = null;
 
 			try {
-				processedRequest = checkMultipart(request); // 检查此次请求 是否是文件上传请求
+				//  处理文件上传请求 // 检查此次请求 是否是文件上传请求
+				processedRequest = checkMultipart(request);
 				multipartRequestParsed = (processedRequest != request);
 
-				// Determine handler for the current request. 确定当前请求的处理程序 返回对应 controller 和 拦截器
+				// Determine handler for the current request. 确定当前请求的处理程序 返回对应 controller 和 拦截器 // 解析请求，获取HandlerExecutionChain对象
 				mappedHandler = getHandler(processedRequest);
 				if (mappedHandler == null) {
 					noHandlerFound(processedRequest, response);
@@ -1001,6 +996,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				}
 
 				// Determine handler adapter for the current request. 确定当前请求的处理程序适配器(负责执行controller )
+				// 从HandlerExecutionChain对象获取HandlerAdapter对象，实际上是从HandlerMapping对象中获取
 				HandlerAdapter ha = getHandlerAdapter(mappedHandler.getHandler());
 
 				// Process last-modified header, if supported by the handler.
@@ -1012,12 +1008,12 @@ public class DispatcherServlet extends FrameworkServlet {
 						return;
 					}
 				}
-
-				if (!mappedHandler.applyPreHandle(processedRequest, response)) { // 执行 其那面返回的拦截器
+				//在controller方法执行前，执行拦截器的相关方法（pre）  // 执行 其那面返回的拦截器
+				if (!mappedHandler.applyPreHandle(processedRequest, response)) {
 					return;
 				}
 
-				// Actually invoke the handler.实际调用处理程序  调用我的 controller
+				// Actually invoke the handler.实际调用处理程序  调用我的 controller  // 执行HandlerAdapter对象的handler方法，返回ModelAndView
 				mv = ha.handle(processedRequest, response, mappedHandler.getHandler());
 
 				if (asyncManager.isConcurrentHandlingStarted()) {
@@ -1025,6 +1021,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				}
 
 				applyDefaultViewName(processedRequest, mv);
+				//在controller方法执行后，执行拦截器的相关方法（post）
 				mappedHandler.applyPostHandle(processedRequest, response, mv);
 			}
 			catch (Exception ex) {
@@ -1035,6 +1032,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				// making them available for @ExceptionHandler methods and other scenarios.
 				dispatchException = new NestedServletException("Handler dispatch failed", err);
 			}
+			//进行视图解析
 			processDispatchResult(processedRequest, response, mappedHandler, mv, dispatchException);
 		}
 		catch (Exception ex) {
@@ -1061,7 +1059,7 @@ public class DispatcherServlet extends FrameworkServlet {
 	}
 
 	/**
-	 * Do we need view name translation?
+	 * Do we need view name translation? 我们需要视图名称转换吗？
 	 */
 	private void applyDefaultViewName(HttpServletRequest request, @Nullable ModelAndView mv) throws Exception {
 		if (mv != null && !mv.hasView()) {

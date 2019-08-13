@@ -22,9 +22,6 @@ import org.springframework.lang.Nullable;
  * <p>In addition to standard application context lifecycle capabilities,
  * WebApplicationContext implementations need to detect {@link ServletContextAware}
  * beans and invoke the {@code setServletContext} method accordingly.
- *
- * @author Rod Johnson
-
  * @since January 19, 2001
  * @see ServletContextAware#setServletContext
  */
