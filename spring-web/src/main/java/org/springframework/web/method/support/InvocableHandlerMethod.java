@@ -22,15 +22,11 @@ import org.springframework.web.method.HandlerMethod;
  * Extension of {@link HandlerMethod} that invokes the underlying method with
  * argument values resolved from the current HTTP request through a list of
  * {@link HandlerMethodArgumentResolver}.
- *
- * @author Rossen Stoyanchev
-
  * @since 3.1
  */
 public class InvocableHandlerMethod extends HandlerMethod {
 
 	private static final Object[] EMPTY_ARGS = new Object[0];
-
 
 	@Nullable
 	private WebDataBinderFactory dataBinderFactory;
@@ -38,7 +34,6 @@ public class InvocableHandlerMethod extends HandlerMethod {
 	private HandlerMethodArgumentResolverComposite resolvers = new HandlerMethodArgumentResolverComposite();
 
 	private ParameterNameDiscoverer parameterNameDiscoverer = new DefaultParameterNameDiscoverer();
-
 
 	/**
 	 * Create an instance from a {@code HandlerMethod}.
@@ -61,9 +56,7 @@ public class InvocableHandlerMethod extends HandlerMethod {
 	 * @param parameterTypes the method parameter types
 	 * @throws NoSuchMethodException when the method cannot be found
 	 */
-	public InvocableHandlerMethod(Object bean, String methodName, Class<?>... parameterTypes)
-			throws NoSuchMethodException {
-
+	public InvocableHandlerMethod(Object bean, String methodName, Class<?>... parameterTypes) throws NoSuchMethodException {
 		super(bean, methodName, parameterTypes);
 	}
 
@@ -114,9 +107,7 @@ public class InvocableHandlerMethod extends HandlerMethod {
 	 * @see #doInvoke
 	 */
 	@Nullable
-	public Object invokeForRequest(NativeWebRequest request, @Nullable ModelAndViewContainer mavContainer,
-			Object... providedArgs) throws Exception {
-
+	public Object invokeForRequest(NativeWebRequest request, @Nullable ModelAndViewContainer mavContainer,Object... providedArgs) throws Exception {
 		Object[] args = getMethodArgumentValues(request, mavContainer, providedArgs);
 		if (logger.isTraceEnabled()) {
 			logger.trace("Arguments: " + Arrays.toString(args));
@@ -130,14 +121,11 @@ public class InvocableHandlerMethod extends HandlerMethod {
 	 * <p>The resulting array will be passed into {@link #doInvoke}.
 	 * @since 5.1.2
 	 */
-	protected Object[] getMethodArgumentValues(NativeWebRequest request, @Nullable ModelAndViewContainer mavContainer,
-			Object... providedArgs) throws Exception {
-
+	protected Object[] getMethodArgumentValues(NativeWebRequest request, @Nullable ModelAndViewContainer mavContainer,Object... providedArgs) throws Exception {
 		MethodParameter[] parameters = getMethodParameters();
 		if (ObjectUtils.isEmpty(parameters)) {
 			return EMPTY_ARGS;
 		}
-
 		Object[] args = new Object[parameters.length];
 		for (int i = 0; i < parameters.length; i++) {
 			MethodParameter parameter = parameters[i];

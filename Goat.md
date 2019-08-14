@@ -17,11 +17,9 @@
     chapter5-2-1  处理器映射器 HandlerMapping  SimpleUrlHandlerMapping
     chapter5-2-2  处理器映射器 HandlerMapping  BeanNameUrlHandlerMapping
     chapter5-2-5  定位Controller  解读SpringMVC如何找到我们定义的Controller和Controller中的方法，比如路径是如何映射的，弄清楚Controller是如何匹配我们传入的参数，并定义简单的参数解析器
+    chapter5-2-8  Controller中参数解析   解读Controller方法中的参数解析和参数解析类
  
-            
-           SpringMVC源码阅读：Controller中参数解析
-           解读Controller方法中的参数解析和参数解析类
-           
+
             
            SpringMVC源码阅读：Json，Xml自动转换
            解读SpringMVC的Json和Xml的转换原理

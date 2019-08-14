@@ -20,9 +20,6 @@ import org.springframework.web.context.request.NativeWebRequest;
  * Resolves method parameters by delegating to a list of registered
  * {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}.
  * Previously resolved method parameters are cached for faster lookups.
- *
- * @author Rossen Stoyanchev
-
  * @since 3.1
  */
 public class HandlerMethodArgumentResolverComposite implements HandlerMethodArgumentResolver {
@@ -31,9 +28,7 @@ public class HandlerMethodArgumentResolverComposite implements HandlerMethodArgu
 
 	private final List<HandlerMethodArgumentResolver> argumentResolvers = new LinkedList<>();
 
-	private final Map<MethodParameter, HandlerMethodArgumentResolver> argumentResolverCache =
-			new ConcurrentHashMap<>(256);
-
+	private final Map<MethodParameter, HandlerMethodArgumentResolver> argumentResolverCache = new ConcurrentHashMap<>(256);
 
 	/**
 	 * Add the given {@link HandlerMethodArgumentResolver}.
@@ -100,14 +95,10 @@ public class HandlerMethodArgumentResolverComposite implements HandlerMethodArgu
 	 */
 	@Override
 	@Nullable
-	public Object resolveArgument(MethodParameter parameter, @Nullable ModelAndViewContainer mavContainer,
-			NativeWebRequest webRequest, @Nullable WebDataBinderFactory binderFactory) throws Exception {
-
+	public Object resolveArgument(MethodParameter parameter, @Nullable ModelAndViewContainer mavContainer,NativeWebRequest webRequest, @Nullable WebDataBinderFactory binderFactory) throws Exception {
 		HandlerMethodArgumentResolver resolver = getArgumentResolver(parameter);
 		if (resolver == null) {
-			throw new IllegalArgumentException(
-					"Unsupported parameter type [" + parameter.getParameterType().getName() + "]." +
-							" supportsParameter should be called first.");
+			throw new IllegalArgumentException("Unsupported parameter type [" + parameter.getParameterType().getName() + "]." + " supportsParameter should be called first.");
 		}
 		return resolver.resolveArgument(parameter, mavContainer, webRequest, binderFactory);
 	}

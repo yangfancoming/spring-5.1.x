@@ -7,12 +7,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.context.request.NativeWebRequest;
 
 /**
- * Strategy interface to handle the value returned from the invocation of a
- * handler method .
- *
- * @author Arjen Poutsma
+ * Strategy interface to handle the value returned from the invocation of a handler method .
  * @since 3.1
  * @see HandlerMethodArgumentResolver
+ * 响应返回值的处理
  */
 public interface HandlerMethodReturnValueHandler {
 

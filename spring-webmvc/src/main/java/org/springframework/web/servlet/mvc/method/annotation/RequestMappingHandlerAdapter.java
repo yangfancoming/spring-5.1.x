@@ -91,29 +91,23 @@ import org.springframework.web.util.WebUtils;
  * {@link #setCustomArgumentResolvers} and {@link #setCustomReturnValueHandlers},
  * or alternatively, to re-configure all argument and return value types,
  * use {@link #setArgumentResolvers} and {@link #setReturnValueHandlers}.
- *
- * @author Rossen Stoyanchev
 
  * @since 3.1
  * @see HandlerMethodArgumentResolver
  * @see HandlerMethodReturnValueHandler
  */
-public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
-		implements BeanFactoryAware, InitializingBean {
+public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter implements BeanFactoryAware, InitializingBean {
 
 	/**
 	 * MethodFilter that matches {@link InitBinder @InitBinder} methods.
 	 */
-	public static final MethodFilter INIT_BINDER_METHODS = method ->
-			AnnotatedElementUtils.hasAnnotation(method, InitBinder.class);
+	public static final MethodFilter INIT_BINDER_METHODS = method -> AnnotatedElementUtils.hasAnnotation(method, InitBinder.class);
 
 	/**
 	 * MethodFilter that matches {@link ModelAttribute @ModelAttribute} methods.
 	 */
 	public static final MethodFilter MODEL_ATTRIBUTE_METHODS = method ->
-			(!AnnotatedElementUtils.hasAnnotation(method, RequestMapping.class) &&
-					AnnotatedElementUtils.hasAnnotation(method, ModelAttribute.class));
-
+			(!AnnotatedElementUtils.hasAnnotation(method, RequestMapping.class) && AnnotatedElementUtils.hasAnnotation(method, ModelAttribute.class));
 
 	@Nullable
 	private List<HandlerMethodArgumentResolver> customArgumentResolvers;
@@ -602,8 +596,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 				logger.debug("ControllerAdvice beans: none");
 			}
 			else {
-				logger.debug("ControllerAdvice beans: " + modelSize + " @ModelAttribute, " + binderSize +
-						" @InitBinder, " + reqCount + " RequestBodyAdvice, " + resCount + " ResponseBodyAdvice");
+				logger.debug("ControllerAdvice beans: " + modelSize + " @ModelAttribute, " + binderSize + " @InitBinder, " + reqCount + " RequestBodyAdvice, " + resCount + " ResponseBodyAdvice");
 			}
 		}
 	}
@@ -708,20 +701,16 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 		handlers.add(new ModelAndViewMethodReturnValueHandler());
 		handlers.add(new ModelMethodProcessor());
 		handlers.add(new ViewMethodReturnValueHandler());
-		handlers.add(new ResponseBodyEmitterReturnValueHandler(getMessageConverters(),
-				this.reactiveAdapterRegistry, this.taskExecutor, this.contentNegotiationManager));
+		handlers.add(new ResponseBodyEmitterReturnValueHandler(getMessageConverters(),this.reactiveAdapterRegistry, this.taskExecutor, this.contentNegotiationManager));
 		handlers.add(new StreamingResponseBodyReturnValueHandler());
-		handlers.add(new HttpEntityMethodProcessor(getMessageConverters(),
-				this.contentNegotiationManager, this.requestResponseBodyAdvice));
+		handlers.add(new HttpEntityMethodProcessor(getMessageConverters(),this.contentNegotiationManager, this.requestResponseBodyAdvice));
 		handlers.add(new HttpHeadersReturnValueHandler());
 		handlers.add(new CallableMethodReturnValueHandler());
 		handlers.add(new DeferredResultMethodReturnValueHandler());
 		handlers.add(new AsyncTaskMethodReturnValueHandler(this.beanFactory));
-
 		// Annotation-based return value types
 		handlers.add(new ModelAttributeMethodProcessor(false));
-		handlers.add(new RequestResponseBodyMethodProcessor(getMessageConverters(),
-				this.contentNegotiationManager, this.requestResponseBodyAdvice));
+		handlers.add(new RequestResponseBodyMethodProcessor(getMessageConverters(),this.contentNegotiationManager, this.requestResponseBodyAdvice));
 
 		// Multi-purpose return value types
 		handlers.add(new ViewNameMethodReturnValueHandler());
@@ -758,8 +747,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 	}
 
 	@Override
-	protected ModelAndView handleInternal(HttpServletRequest request,
-			HttpServletResponse response, HandlerMethod handlerMethod) throws Exception {
+	protected ModelAndView handleInternal(HttpServletRequest request,HttpServletResponse response, HandlerMethod handlerMethod) throws Exception {
 
 		ModelAndView mav;
 		checkRequest(request);
@@ -791,7 +779,6 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 				prepareResponse(response);
 			}
 		}
-
 		return mav;
 	}
 
@@ -832,8 +819,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 	 * @see #createInvocableHandlerMethod(HandlerMethod)
 	 */
 	@Nullable
-	protected ModelAndView invokeHandlerMethod(HttpServletRequest request,
-			HttpServletResponse response, HandlerMethod handlerMethod) throws Exception {
+	protected ModelAndView invokeHandlerMethod(HttpServletRequest request,HttpServletResponse response, HandlerMethod handlerMethod) throws Exception {
 
 		ServletWebRequest webRequest = new ServletWebRequest(request, response);
 		try {
@@ -879,7 +865,6 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 			if (asyncManager.isConcurrentHandlingStarted()) {
 				return null;
 			}
-
 			return getModelAndView(mavContainer, modelFactory, webRequest);
 		}
 		finally {
@@ -974,16 +959,12 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 	 * @return the InitBinderDataBinderFactory instance to use
 	 * @throws Exception in case of invalid state or arguments
 	 */
-	protected InitBinderDataBinderFactory createDataBinderFactory(List<InvocableHandlerMethod> binderMethods)
-			throws Exception {
-
+	protected InitBinderDataBinderFactory createDataBinderFactory(List<InvocableHandlerMethod> binderMethods) throws Exception {
 		return new ServletRequestDataBinderFactory(binderMethods, getWebBindingInitializer());
 	}
 
 	@Nullable
-	private ModelAndView getModelAndView(ModelAndViewContainer mavContainer,
-			ModelFactory modelFactory, NativeWebRequest webRequest) throws Exception {
-
+	private ModelAndView getModelAndView(ModelAndViewContainer mavContainer,ModelFactory modelFactory, NativeWebRequest webRequest) throws Exception {
 		modelFactory.updateModel(webRequest, mavContainer);
 		if (mavContainer.isRequestHandled()) {
 			return null;

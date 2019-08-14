@@ -38,11 +38,7 @@ import org.springframework.web.util.NestedServletException;
  * <p>A {@code null} return value (including void) may be interpreted as the
  * end of request processing in combination with a {@code @ResponseStatus}
  * annotation, a not-modified check condition
- * (see {@link ServletWebRequest#checkNotModified(long)}), or
- * a method argument that provides access to the response stream.
- *
- * @author Rossen Stoyanchev
-
+ * (see {@link ServletWebRequest#checkNotModified(long)}), or a method argument that provides access to the response stream.
  * @since 3.1
  */
 public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
@@ -51,7 +47,6 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 
 	@Nullable
 	private HandlerMethodReturnValueHandlerComposite returnValueHandlers;
-
 
 	/**
 	 * Creates an instance from the given handler and method.
@@ -84,9 +79,9 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 	 * @param mavContainer the ModelAndViewContainer for this request
 	 * @param providedArgs "given" arguments matched by type (not resolved)
 	 */
-	public void invokeAndHandle(ServletWebRequest webRequest, ModelAndViewContainer mavContainer,
-			Object... providedArgs) throws Exception {
+	public void invokeAndHandle(ServletWebRequest webRequest, ModelAndViewContainer mavContainer,Object... providedArgs) throws Exception {
 
+		// 处理请求
 		Object returnValue = invokeForRequest(webRequest, mavContainer, providedArgs);
 		setResponseStatus(webRequest);
 
@@ -105,8 +100,8 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 		mavContainer.setRequestHandled(false);
 		Assert.state(this.returnValueHandlers != null, "No return value handlers");
 		try {
-			this.returnValueHandlers.handleReturnValue(
-					returnValue, getReturnValueType(returnValue), mavContainer, webRequest);
+			// 处理返回值
+			this.returnValueHandlers.handleReturnValue(returnValue, getReturnValueType(returnValue), mavContainer, webRequest);
 		}
 		catch (Exception ex) {
 			if (logger.isTraceEnabled()) {
@@ -124,7 +119,6 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 		if (status == null) {
 			return;
 		}
-
 		HttpServletResponse response = webRequest.getResponse();
 		if (response != null) {
 			String reason = getResponseStatusReason();
@@ -135,7 +129,6 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 				response.setStatus(status.value());
 			}
 		}
-
 		// To be picked up by RedirectView
 		webRequest.getRequest().setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, status);
 	}
@@ -162,9 +155,7 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 	}
 
 	private String formatErrorForReturnValue(@Nullable Object returnValue) {
-		return "Error handling return value=[" + returnValue + "]" +
-				(returnValue != null ? ", type=" + returnValue.getClass().getName() : "") +
-				" in " + toString();
+		return "Error handling return value=[" + returnValue + "]" + (returnValue != null ? ", type=" + returnValue.getClass().getName() : "") + " in " + toString();
 	}
 
 	/**
@@ -286,9 +277,7 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 		public <T extends Annotation> boolean hasMethodAnnotation(Class<T> annotationType) {
 			// Ensure @ResponseBody-style handling for values collected from a reactive type
 			// even if actual return type is ResponseEntity<Flux<T>>
-			return (super.hasMethodAnnotation(annotationType) ||
-					(annotationType == ResponseBody.class &&
-							this.returnValue instanceof ReactiveTypeHandler.CollectedValuesList));
+			return (super.hasMethodAnnotation(annotationType) || 	(annotationType == ResponseBody.class && this.returnValue instanceof ReactiveTypeHandler.CollectedValuesList));
 		}
 
 		@Override
