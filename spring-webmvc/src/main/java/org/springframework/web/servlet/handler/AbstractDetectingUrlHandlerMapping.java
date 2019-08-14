@@ -34,11 +34,12 @@ public abstract class AbstractDetectingUrlHandlerMapping extends AbstractUrlHand
 
 	/**
 	 * Calls the {@link #detectHandlers()} method in addition to the superclass's initialization.
-	 * 启动Tomcat后的程序入口 断点打在这里
 	 */
 	@Override
 	public void initApplicationContext() throws ApplicationContextException {
+		// 调用父类AbstractHandlerMapping初始化拦截器，与SimpleUrlHandlerMapping一样
 		super.initApplicationContext();
+		// 处理url和bean name，具体注册调用父类AbstractUrlHandlerMapping类完成
 		detectHandlers();
 	}
 
@@ -71,15 +72,17 @@ public abstract class AbstractDetectingUrlHandlerMapping extends AbstractUrlHand
 	 * 17 = "lifecycleProcessor"
 	 */
 	protected void detectHandlers() throws BeansException {
+		// 获取应用上下文
 		ApplicationContext applicationContext = obtainApplicationContext();
 		// 获取ApplicationContext容器中所有bean的Name
 		String[] beanNames = (this.detectHandlersInAncestorContexts ? BeanFactoryUtils.beanNamesForTypeIncludingAncestors(applicationContext, Object.class) : applicationContext.getBeanNamesForType(Object.class));
 		// Take any bean name that we can determine URLs for.  遍历beanNames,并找到这些bean对应的url
 		for (String beanName : beanNames) {
-			// 找bean上的所有url(controller上的url+方法上的url),该方法由对应的子类实现
+			// 找bean上的所有url(controller上的url+方法上的url),该方法由对应的子类实现  // 通过模板方法模式调用BeanNameUrlHandlerMapping子类处理
 			String[] urls = determineUrlsForHandler(beanName);
 			if (!ObjectUtils.isEmpty(urls)) {
 				// URL paths found: Let's consider it a handler. // 保存urls和beanName的对应关系,put it to Map,该方法在父类AbstractUrlHandlerMapping中实现
+				// 调用父类AbstractUrlHandlerMapping将url与handler存入map
 				registerHandler(urls, beanName);
 			}
 		}

@@ -37,14 +37,10 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMappi
  * Creates {@link RequestMappingInfo} instances from type and method-level
  * {@link RequestMapping @RequestMapping} annotations in
  * {@link Controller @Controller} classes.
- *
- * @author Arjen Poutsma
- * @author Rossen Stoyanchev
- * @author Sam Brannen
+
  * @since 3.1
  */
-public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMapping
-		implements MatchableHandlerMapping, EmbeddedValueResolverAware {
+public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMapping implements MatchableHandlerMapping, EmbeddedValueResolverAware {
 
 	private boolean useSuffixPatternMatch = true;
 
@@ -188,8 +184,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	 */
 	@Override
 	protected boolean isHandler(Class<?> beanType) {
-		return (AnnotatedElementUtils.hasAnnotation(beanType, Controller.class) ||
-				AnnotatedElementUtils.hasAnnotation(beanType, RequestMapping.class));
+		return (AnnotatedElementUtils.hasAnnotation(beanType, Controller.class) || AnnotatedElementUtils.hasAnnotation(beanType, RequestMapping.class));
 	}
 
 	/**
@@ -284,9 +279,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	 * a directly declared annotation, a meta-annotation, or the synthesized
 	 * result of merging annotation attributes within an annotation hierarchy.
 	 */
-	protected RequestMappingInfo createRequestMappingInfo(
-			RequestMapping requestMapping, @Nullable RequestCondition<?> customCondition) {
-
+	protected RequestMappingInfo createRequestMappingInfo(RequestMapping requestMapping, @Nullable RequestCondition<?> customCondition) {
 		RequestMappingInfo.Builder builder = RequestMappingInfo
 				.paths(resolveEmbeddedValuesInPatterns(requestMapping.path()))
 				.methods(requestMapping.method())

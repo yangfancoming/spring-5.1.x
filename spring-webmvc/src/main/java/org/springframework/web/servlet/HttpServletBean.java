@@ -137,6 +137,7 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 	 * 将配置参数映射到此servlet的bean属性上，并调用子类初始化。
 	 * @throws ServletException if bean properties are invalid (or required properties are missing), or if subclass initialization fails.
 	 * DispatcherServlet第一次加载时调用init方法
+	 * 启动Tomcat后的程序入口 断点打在这里
 	 */
 	@Override
 	public final void init() throws ServletException {

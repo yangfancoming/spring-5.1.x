@@ -26,6 +26,8 @@ import org.springframework.util.StringUtils;
  * For details on the pattern options, see the {@link org.springframework.util.AntPathMatcher} javadoc.
 
  * @see SimpleUrlHandlerMapping
+ *
+ * 实现HandlerMapping接口，将url与handler bean进行映射，bean的name属性需以"/"开头
  */
 public class BeanNameUrlHandlerMapping extends AbstractDetectingUrlHandlerMapping {
 

@@ -518,19 +518,18 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 		try {
 			// 初始化WebApplicationContext，并调用子类（DispatcherServlet）的onRefresh(wac)方法
 			this.webApplicationContext = initWebApplicationContext();
+			// 这个里面没有任何实现方法
 			initFrameworkServlet();
 		}
 		catch (ServletException | RuntimeException ex) {
 			logger.error("Context initialization failed", ex);
 			throw ex;
 		}
-
 		if (logger.isDebugEnabled()) {
 			String value = this.enableLoggingRequestDetails ?
 					"shown which may lead to unsafe logging of potentially sensitive data" : "masked to prevent unsafe logging of potentially sensitive data";
 			logger.debug("enableLoggingRequestDetails='" + this.enableLoggingRequestDetails + "': request parameters and headers will be " + value);
 		}
-
 		if (logger.isInfoEnabled()) {
 			logger.info("Completed initialization in " + (System.currentTimeMillis() - startTime) + " ms");
 		}
