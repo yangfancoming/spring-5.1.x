@@ -261,9 +261,16 @@ public class DispatcherServlet extends FrameworkServlet {
 	private static final Properties defaultStrategies;
 
 	static {
-		// Load default strategy implementations from properties file.
-		// This is currently strictly internal and not meant to be customized
-		// by application developers.
+
+
+		/**
+		 * Load default strategy implementations from properties file.
+		 * This is currently strictly internal and not meant to be customized  by application developers.
+		 *
+		 * 使用静态代码块 加载 两个默认的 HandlerMapping 实现类 在 DispatcherServlet.properties 文件中可以看到  这样的配置：
+		 * org.springframework.web.servlet.HandlerMapping=org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping,\
+		 * org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
+		*/
 		try {
 			ClassPathResource resource = new ClassPathResource(DEFAULT_STRATEGIES_PATH, DispatcherServlet.class);
 			defaultStrategies = PropertiesLoaderUtils.loadProperties(resource);
@@ -273,7 +280,11 @@ public class DispatcherServlet extends FrameworkServlet {
 		}
 	}
 
-	/** Detect all HandlerMappings or just expect "handlerMapping" bean?. */
+	/**
+	 * Detect all HandlerMappings or just expect "handlerMapping" bean?.
+	 * 检测所有的handlerMapping，还是只期望“handlerMapping”bean？
+	 * 作用是检查所有的HandlerMappings映射解析器或使用id或name为"handlerMappping"的bean，默认为true，即从context上下文中检查所有的HandlerMapping。
+	 * */
 	private boolean detectAllHandlerMappings = true;
 
 	/** Detect all HandlerAdapters or just expect "handlerAdapter" bean?. */
@@ -581,19 +592,24 @@ public class DispatcherServlet extends FrameworkServlet {
 	 */
 	private void initHandlerMappings(ApplicationContext context) {
 		this.handlerMappings = null;
+		// detectAllHandlerMappings 默认为true，可通过DispatcherServlet的init-param参数进行设置
 		if (this.detectAllHandlerMappings) {
 			// Find all HandlerMappings in the ApplicationContext, including ancestor contexts.
 			// 从 SpringMVC 的 IOC 容器及 Spring 的 IOC 容器中查找 HandlerMapping 实例
+			// 在ApplicationContext中找到所有的handlerMapping，包括父上下文。
 			Map<String, HandlerMapping> matchingBeans = BeanFactoryUtils.beansOfTypeIncludingAncestors(context, HandlerMapping.class, true, false);
 			if (!matchingBeans.isEmpty()) {
 				this.handlerMappings = new ArrayList<>(matchingBeans.values());
 				// We keep HandlerMappings in sorted order. // 按一定顺序放置 HandlerMapping 对象
+				// 对handlerMapping排序，可通过指定order属性进行设置，order的值为int型，数越小优先级越高
 				AnnotationAwareOrderComparator.sort(this.handlerMappings);
 			}
 		}
 		else {
 			try {
+				// 从ApplicationContext上下文中取id（或name）="handlerMapping"的bean
 				HandlerMapping hm = context.getBean(HANDLER_MAPPING_BEAN_NAME, HandlerMapping.class);
+				// 将hm转换成list，并赋值给属性handlerMappings
 				this.handlerMappings = Collections.singletonList(hm);
 			}
 			catch (NoSuchBeanDefinitionException ex) {
@@ -601,14 +617,22 @@ public class DispatcherServlet extends FrameworkServlet {
 			}
 		}
 
-		// Ensure we have at least one HandlerMapping, by registering
-		// a default HandlerMapping if no other mappings are found.
-		// 如果没有 HandlerMapping，则加载默认的
+		/**
+		 * 	 Ensure we have at least one HandlerMapping, by registering a default HandlerMapping if no other mappings are found.
+		 * 	 如果没有 HandlerMapping，则加载默认的
+		 *   从context上下文中定义HandlerMapping时，Spring MVC将使用默认HandlerMapping，默认的HandlerMapping在 DispatcherServlet.properties 属性文件中定义，
+		 *   该文件是在DispatcherServlet的static静态代码块中加载的
+		 *   默认的是：BeanNameUrlHandlerMapping和RequestMappingHandlerMapping
+		*/
 		if (this.handlerMappings == null) {
+			/**
+			 *  org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping
+			 *  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
+			 *  从结果可知，在application.xml未进行任何配置HandlerMapping时，系统使用（支持）默认的BeanNameUrlHandlerMapping和RequestMappingHandlerMapping映射解析器。
+			*/
 			this.handlerMappings = getDefaultStrategies(context, HandlerMapping.class);
 			if (logger.isTraceEnabled()) {
 				logger.trace("No HandlerMappings declared for servlet '" + getServletName() + "': using default strategies from DispatcherServlet.properties");
-
 			}
 		}
 	}
@@ -643,8 +667,7 @@ public class DispatcherServlet extends FrameworkServlet {
 		if (this.handlerAdapters == null) {
 			this.handlerAdapters = getDefaultStrategies(context, HandlerAdapter.class);
 			if (logger.isTraceEnabled()) {
-				logger.trace("No HandlerAdapters declared for servlet '" + getServletName() +
-						"': using default strategies from DispatcherServlet.properties");
+				logger.trace("No HandlerAdapters declared for servlet '" + getServletName() + "': using default strategies from DispatcherServlet.properties");
 			}
 		}
 	}
@@ -656,11 +679,9 @@ public class DispatcherServlet extends FrameworkServlet {
 	 */
 	private void initHandlerExceptionResolvers(ApplicationContext context) {
 		this.handlerExceptionResolvers = null;
-
 		if (this.detectAllHandlerExceptionResolvers) {
 			// Find all HandlerExceptionResolvers in the ApplicationContext, including ancestor contexts.
-			Map<String, HandlerExceptionResolver> matchingBeans = BeanFactoryUtils
-					.beansOfTypeIncludingAncestors(context, HandlerExceptionResolver.class, true, false);
+			Map<String, HandlerExceptionResolver> matchingBeans = BeanFactoryUtils.beansOfTypeIncludingAncestors(context, HandlerExceptionResolver.class, true, false);
 			if (!matchingBeans.isEmpty()) {
 				this.handlerExceptionResolvers = new ArrayList<>(matchingBeans.values());
 				// We keep HandlerExceptionResolvers in sorted order.
@@ -669,8 +690,7 @@ public class DispatcherServlet extends FrameworkServlet {
 		}
 		else {
 			try {
-				HandlerExceptionResolver her =
-						context.getBean(HANDLER_EXCEPTION_RESOLVER_BEAN_NAME, HandlerExceptionResolver.class);
+				HandlerExceptionResolver her = context.getBean(HANDLER_EXCEPTION_RESOLVER_BEAN_NAME, HandlerExceptionResolver.class);
 				this.handlerExceptionResolvers = Collections.singletonList(her);
 			}
 			catch (NoSuchBeanDefinitionException ex) {
@@ -683,8 +703,7 @@ public class DispatcherServlet extends FrameworkServlet {
 		if (this.handlerExceptionResolvers == null) {
 			this.handlerExceptionResolvers = getDefaultStrategies(context, HandlerExceptionResolver.class);
 			if (logger.isTraceEnabled()) {
-				logger.trace("No HandlerExceptionResolvers declared in servlet '" + getServletName() +
-						"': using default strategies from DispatcherServlet.properties");
+				logger.trace("No HandlerExceptionResolvers declared in servlet '" + getServletName() + "': using default strategies from DispatcherServlet.properties");
 			}
 		}
 	}
@@ -747,8 +766,7 @@ public class DispatcherServlet extends FrameworkServlet {
 		if (this.viewResolvers == null) {
 			this.viewResolvers = getDefaultStrategies(context, ViewResolver.class);
 			if (logger.isTraceEnabled()) {
-				logger.trace("No ViewResolvers declared for servlet '" + getServletName() +
-						"': using default strategies from DispatcherServlet.properties");
+				logger.trace("No ViewResolvers declared for servlet '" + getServletName() + "': using default strategies from DispatcherServlet.properties");
 			}
 		}
 	}
@@ -827,8 +845,7 @@ public class DispatcherServlet extends FrameworkServlet {
 	protected <T> T getDefaultStrategy(ApplicationContext context, Class<T> strategyInterface) {
 		List<T> strategies = getDefaultStrategies(context, strategyInterface);
 		if (strategies.size() != 1) {
-			throw new BeanInitializationException(
-					"DispatcherServlet needs exactly 1 strategy for interface [" + strategyInterface.getName() + "]");
+			throw new BeanInitializationException("DispatcherServlet needs exactly 1 strategy for interface [" + strategyInterface.getName() + "]");
 		}
 		return strategies.get(0);
 	}
@@ -856,14 +873,10 @@ public class DispatcherServlet extends FrameworkServlet {
 					strategies.add((T) strategy);
 				}
 				catch (ClassNotFoundException ex) {
-					throw new BeanInitializationException(
-							"Could not find DispatcherServlet's default strategy class [" + className +
-							"] for interface [" + key + "]", ex);
+					throw new BeanInitializationException("Could not find DispatcherServlet's default strategy class [" + className + "] for interface [" + key + "]", ex);
 				}
 				catch (LinkageError err) {
-					throw new BeanInitializationException(
-							"Unresolvable class definition for DispatcherServlet's default strategy class [" +
-							className + "] for interface [" + key + "]", err);
+					throw new BeanInitializationException("Unresolvable class definition for DispatcherServlet's default strategy class [" + className + "] for interface [" + key + "]", err);
 				}
 			}
 			return strategies;

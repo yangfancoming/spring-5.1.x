@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd" default-autowire="byName">
+
+
+	<!--开启注解扫描-->
+	<context:component-scan base-package="com.goat.chapter521"></context:component-scan>
+
+
+	<!-- 定义映射处理器 -->
+	<bean id="handlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="urlMap">
+			<props>
+				<prop key="/demo">demoController</prop>
+			</props>
+		</property>
+		<!-- 设置顺序，在多个映射处理器时用于排序，可不设置 -->
+		<property name="order" value="1"/>
+	</bean>
+
+	<bean id="demoController" class="com.goat.chapter521.controller.SampleController"/>
+
+</beans>

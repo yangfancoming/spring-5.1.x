@@ -14,9 +14,12 @@
     chapter5-1-0  spring web  注解版 
     chapter5-1-5  spring web  web.xml + xml 配置
     
+    chapter5-2-1  处理器映射器 HandlerMapping
+
     chapter5-8-7  语言环境 SessionLocaleResolver  
     chapter5-8-8  语言环境 LocaleResolver (国际化)
     chapter5-8-9  语言环境 CookieLocaleResolver  
+    
     
     chapter6-0-0  spring web MVC 视图
     
