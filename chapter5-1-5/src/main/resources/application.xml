@@ -5,6 +5,7 @@
 
 	<!--<bean id="whatService" class="com.goat.chapter115.service.WhatServiceImpl"/>-->
 
+	<!--doit 不加 <mvc:annotation-driven/> 为啥也好使？-->
 
 	<!--开启注解扫描-->
 	<context:component-scan base-package="com.goat.chapter515"></context:component-scan>

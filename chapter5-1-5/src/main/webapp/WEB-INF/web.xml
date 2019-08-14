@@ -7,11 +7,12 @@
 	<servlet>
 		<servlet-name>sample</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<!--初始化参数 配置  指定配置文件-->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
+			<!-- 指定SpringMVC配置文件，默认为：WEB-INF/[servlet-name]-servlet.xml（WEB-INF/app-servlet.xml），本例配置从classpath中加载 -->
 			<param-value>classpath:application.xml</param-value>
 		</init-param>
+		<!-- 容器启动时加载，若不配置此项，在第一次访问该Servlet时才加载 -->
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 

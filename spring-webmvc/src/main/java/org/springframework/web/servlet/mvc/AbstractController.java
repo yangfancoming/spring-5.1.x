@@ -73,16 +73,13 @@ import org.springframework.web.util.WebUtils;
  * </td>
  * </tr>
  * </table>
- *
- * @author Rod Johnson
-
- * @author Rossen Stoyanchev
  * @see WebContentInterceptor
+ *  控制浏览器缓存、支持的请求方法等等
  */
 public abstract class AbstractController extends WebContentGenerator implements Controller {
 
+	/** 表示该控制器是否在执行时同步session，从而保证该会话的用户串行访问该控制器 */
 	private boolean synchronizeOnSession = false;
-
 
 	/**
 	 * Create a new AbstractController which supports
@@ -137,19 +134,20 @@ public abstract class AbstractController extends WebContentGenerator implements 
 
 	@Override
 	@Nullable
-	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		if (HttpMethod.OPTIONS.matches(request.getMethod())) {
 			response.setHeader("Allow", getAllowHeader());
 			return null;
 		}
 
 		// Delegate to WebContentGenerator for checking and preparing.
+		// 检查是否支持请求方法以及必须的session
 		checkRequest(request);
+		// 根据设置准备response
 		prepareResponse(response);
 
 		// Execute handleRequestInternal in synchronized block if required.
+		// 如果必要顺序执行handleRequestInternal方法
 		if (this.synchronizeOnSession) {
 			HttpSession session = request.getSession(false);
 			if (session != null) {
@@ -159,7 +157,6 @@ public abstract class AbstractController extends WebContentGenerator implements 
 				}
 			}
 		}
-
 		return handleRequestInternal(request, response);
 	}
 
@@ -167,9 +164,9 @@ public abstract class AbstractController extends WebContentGenerator implements 
 	 * Template method. Subclasses must implement this.
 	 * The contract is the same as for {@code handleRequest}.
 	 * @see #handleRequest
+	 * 需要子类实现的模板方法
 	 */
 	@Nullable
-	protected abstract ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
-			throws Exception;
+	protected abstract ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }
