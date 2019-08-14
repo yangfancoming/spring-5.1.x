@@ -7,8 +7,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-@EnableWebMvc
-@ComponentScan(basePackages="com.goat.chapter510")
+@EnableWebMvc // 通过@EnableWebMvc注解开启Spring MVC特性
+@ComponentScan(basePackages="com.goat.chapter510") // 通过@ComponentScan指定扫描路径
 public class WebConfig {
 
 	@Bean

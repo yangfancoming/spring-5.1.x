@@ -35,6 +35,8 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.context.i18n.LocaleContextHolder
  * @see org.springframework.web.servlet.support.RequestContext#getLocale
  * @see org.springframework.web.servlet.support.RequestContextUtils#getLocale
+ *
+ * LocaleResolver接口的作用是解析客户端使用的地区（Locale），目的是为了根据这些信息实现视图多语言即国际化。
  */
 public interface LocaleResolver {
 

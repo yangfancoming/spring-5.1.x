@@ -7,11 +7,18 @@
     chapter2-0-1  spring Bean的装配 xml  方式
     chapter2-0-2  spring Bean的装配 注解 方式
     chapter2-1-0  spring bean装配 源码示例  BeanFactoryAware BeanPostProcessor  FactoryBean
+# aop 模块   
     chapter4-0-0  spring AOP
+# web 模块
     chapter5-0-0  spring web
-    chapter5-1-0  spring web  web.xml + 注解扫描
+    chapter5-1-0  spring web  注解版 
     chapter5-1-5  spring web  web.xml + xml 配置
+    chapter5-8-8  语言环境 LocaleResolver (国际化)
+    
+    
     chapter6-0-0  spring web MVC 视图
+    
+    
     chapter7-0-0  spring web MVC 高级
     chapter8-0-0  spring web flow
 

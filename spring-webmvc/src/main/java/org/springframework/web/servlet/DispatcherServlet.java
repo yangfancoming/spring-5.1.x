@@ -480,20 +480,22 @@ public class DispatcherServlet extends FrameworkServlet {
 	 * <p>May be overridden in subclasses in order to initialize further strategy objects.
 	 */
 	protected void initStrategies(ApplicationContext context) {
-		//初始化文件上传处理类
+		//初始化文件上传处理类 // 文件上传解析
 		initMultipartResolver(context);
-		//初始化本地化Resolver
+		//初始化本地化Resolver // 本地解析
 		initLocaleResolver(context);
-		//初始化主题Resolver
+		//初始化主题Resolver //主题解析
 		initThemeResolver(context);
-		//初始化一些个与处理的HandlerMappings
+		//初始化一些个与处理的HandlerMappings // URL请求映射
 		initHandlerMappings(context);
+		// 初始化Controller类
 		initHandlerAdapters(context);
-		//初始化异常处理的handler
+		//初始化异常处理的handler  // 异常解析
 		initHandlerExceptionResolvers(context);
 		//初始化请求路径转换为ViewName 的Translator
 		initRequestToViewNameTranslator(context);
 		//初始化ViewResolvers 这个就是针对视图处理的Resolvers 比如jsp处理Resolvers 或者freemarker处理Resolvers
+		// 视图解析
 		initViewResolvers(context);
 		//初始化 主要管理flashmap，比如RedirectAttributes 的属性会放到这个里面，默认使用的是SessionFlashMapManager
 		initFlashMapManager(context);
@@ -894,6 +896,7 @@ public class DispatcherServlet extends FrameworkServlet {
 	protected void doService(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logRequest(request);
 		// Keep a snapshot of the request attributes in case of an include,to be able to restore the original attributes after the include.
+		// 如果是include请求，保存request attribute快照数据，并在finally中进行还原
 		Map<String, Object> attributesSnapshot = null;
 		if (WebUtils.isIncludeRequest(request)) {
 			attributesSnapshot = new HashMap<>();
@@ -907,6 +910,7 @@ public class DispatcherServlet extends FrameworkServlet {
 		}
 
 		// Make framework objects available to handlers and view objects.
+		// 把环境上下文设置到请求域中
 		request.setAttribute(WEB_APPLICATION_CONTEXT_ATTRIBUTE, getWebApplicationContext());
 		request.setAttribute(LOCALE_RESOLVER_ATTRIBUTE, this.localeResolver);
 		request.setAttribute(THEME_RESOLVER_ATTRIBUTE, this.themeResolver);
@@ -923,6 +927,7 @@ public class DispatcherServlet extends FrameworkServlet {
 
 		try {
 			// 函数的关键方法 真正进行用户请求的处理
+			// 调用请求处理方法
 			doDispatch(request, response);
 		}
 		finally {
@@ -975,6 +980,13 @@ public class DispatcherServlet extends FrameworkServlet {
 	 * @param request current HTTP request
 	 * @param response current HTTP response
 	 * @throws Exception in case of any kind of processing failure
+	 * // 请求处理关键方法
+	 * 获取当前请求的Handler
+	 * 获取当前请求的Handler Adapter
+	 * 执行preHandle方法
+	 * 执行Handle方法，即Controller中的方法
+	 * 执行postHandle方法
+	 * 处理返回结果
 	 */
 	protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//用户的request请求

@@ -20,9 +20,7 @@ import org.springframework.web.servlet.LocaleResolver;
  *
  * <p>Note: Does not support {@code setLocale}, since the accept header
  * can only be changed through changing the client's locale settings.
- *
 
- * @author Rossen Stoyanchev
  * @since 27.02.2003
  * @see javax.servlet.http.HttpServletRequest#getLocale()
  */
@@ -32,7 +30,6 @@ public class AcceptHeaderLocaleResolver implements LocaleResolver {
 
 	@Nullable
 	private Locale defaultLocale;
-
 
 	/**
 	 * Configure supported locales to check against the requested locales
@@ -79,15 +76,21 @@ public class AcceptHeaderLocaleResolver implements LocaleResolver {
 
 	@Override
 	public Locale resolveLocale(HttpServletRequest request) {
+		// 获取默认设置，可在配置AcceptHeaderLocaleResolver Bean中设置defaultLocale属性
 		Locale defaultLocale = getDefaultLocale();
+		// 设置了默认值并且请求中没有Accept-Language头信息时，使用默认设置
 		if (defaultLocale != null && request.getHeader("Accept-Language") == null) {
 			return defaultLocale;
 		}
+		// 从当前请求中获取Locale
 		Locale requestLocale = request.getLocale();
+		// 从配置中获取支持的Locale集合，可在AcceptHeaderLocaleResolver Bean中设置supportedLocales属性
 		List<Locale> supportedLocales = getSupportedLocales();
+		// 未设置supportedLocales或者supportedLocales中包括请求Locale，则使用请求Locale
 		if (supportedLocales.isEmpty() || supportedLocales.contains(requestLocale)) {
 			return requestLocale;
 		}
+		// 找到设置的Locale集合中是否有请求的Locale
 		Locale supportedLocale = findSupportedLocale(request, supportedLocales);
 		if (supportedLocale != null) {
 			return supportedLocale;
@@ -110,8 +113,7 @@ public class AcceptHeaderLocaleResolver implements LocaleResolver {
 			else if (languageMatch == null) {
 				// Let's try to find a language-only match as a fallback
 				for (Locale candidate : supportedLocales) {
-					if (!StringUtils.hasLength(candidate.getCountry()) &&
-							candidate.getLanguage().equals(locale.getLanguage())) {
+					if (!StringUtils.hasLength(candidate.getCountry()) && candidate.getLanguage().equals(locale.getLanguage())) {
 						languageMatch = candidate;
 						break;
 					}
@@ -121,10 +123,12 @@ public class AcceptHeaderLocaleResolver implements LocaleResolver {
 		return languageMatch;
 	}
 
+	/**
+	 * 不支持程序设置Locale
+	 */
 	@Override
 	public void setLocale(HttpServletRequest request, @Nullable HttpServletResponse response, @Nullable Locale locale) {
-		throw new UnsupportedOperationException(
-				"Cannot change HTTP accept header - use a different locale resolution strategy");
+		throw new UnsupportedOperationException("Cannot change HTTP accept header - use a different locale resolution strategy");
 	}
 
 }

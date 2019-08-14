@@ -60,6 +60,17 @@ import org.springframework.web.context.support.StandardServletEnvironment;
  * @see #initServletBean
  * @see #doGet
  * @see #doPost
+ *
+ * HttpServletBean主要配置servlet中初始化参数。继承HttpServlet，并实现无参的init()方法，
+ * 用于设置在web.xml中配置的contextConfigLocation属性，此属性指定Spring MVC的配置文件地址，
+ * 默认为WEB-INF/[servlet-name]-servlet.xml
+ *
+ * 总结HttpServletBean的作用：
+ *
+ * 1.获取web.xml的中配置DispatcherServlet的初始化参数，存放到一个参数容器ServletConfigPropertyValues中
+ * 2.根据传进来的this创建BeanWrapper，本质上它就是DispatcherServlet
+ * 3.通过bw.setPropertyValues(pvs, true)，把参数设置到bw(即DispatcherServlet)里面去
+ * 4.最后调用子类的initServletBean()
  */
 @SuppressWarnings("serial")
 public abstract class HttpServletBean extends HttpServlet implements EnvironmentCapable, EnvironmentAware {
@@ -125,10 +136,12 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 	 * Map config parameters onto bean properties of this servlet, and invoke subclass initialization.
 	 * 将配置参数映射到此servlet的bean属性上，并调用子类初始化。
 	 * @throws ServletException if bean properties are invalid (or required properties are missing), or if subclass initialization fails.
+	 * DispatcherServlet第一次加载时调用init方法
 	 */
 	@Override
 	public final void init() throws ServletException {
 		// Set bean properties from init parameters. // ServletConfigPropertyValues 是静态内部类，使用 ServletConfig 获取 web.xml 中配置的参数
+		// 获取在web.xml配置的初始化参数<init-param>，并将其设置到DispatcherServlet中
 		PropertyValues pvs = new ServletConfigPropertyValues(getServletConfig(), this.requiredProperties);
 		if (!pvs.isEmpty()) {
 			try {
