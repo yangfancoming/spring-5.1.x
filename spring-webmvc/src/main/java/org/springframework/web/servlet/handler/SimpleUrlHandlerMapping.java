@@ -34,8 +34,6 @@ import org.springframework.util.CollectionUtils;
  * {@link #setAlwaysUseFullPath "alwaysUseFullPath"} property. For details on the
  * pattern options, see the {@link org.springframework.util.AntPathMatcher} javadoc.
 
- * @author Rod Johnson
-
  * @see #setMappings
  * @see #setUrlMap
  * @see BeanNameUrlHandlerMapping
@@ -43,7 +41,6 @@ import org.springframework.util.CollectionUtils;
 public class SimpleUrlHandlerMapping extends AbstractUrlHandlerMapping {
 
 	private final Map<String, Object> urlMap = new LinkedHashMap<>();
-
 
 	/**
 	 * Map URL paths to handler bean names.

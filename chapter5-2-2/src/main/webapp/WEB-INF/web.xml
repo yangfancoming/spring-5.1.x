@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+
+	<servlet>
+		<!-- Servlet名称，可任意定义，但必须与servlet-mapping中对应 -->
+		<servlet-name>sample</servlet-name>
+		<!-- 指定Spring MVC核心控制类，即J2EE规范中的前端控制器（Front Controller） -->
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- 指定SpringMVC配置文件，默认为：WEB-INF/[servlet-name]-servlet.xml（WEB-INF/app-servlet.xml），本例配置从classpath中加载 -->
+		<!-- 指定Spring MVC配置文件，默认在WEB-INF目录下，切名字为[servlet-name]-servlet.xml，此文件中配置web相关内容，比如：指定扫描Controller路径、配置逻辑视图前缀后缀、上传文件等等 -->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:application.xml</param-value>
+		</init-param>
+
+		<!-- 该参数控制是否使用自定义的HandlerMapping
+                      true 从Spring上下文环境中加载HandlerMapping类型的bean
+                      false 加载bean名称为handlerMapping的bean -->
+		<init-param>
+			<param-name>detectAllHandlerMappings</param-name>
+			<param-value>false</param-value>
+		</init-param>
+
+		<!-- 容器启动时加载，若不配置此项，在第一次访问该Servlet时才加载 -->
+		<!-- 此配置的值为正整数时，表示容器启动时初始化，即调用Servlet的init方法 -->
+		<load-on-startup>1</load-on-startup>
+
+	</servlet>
+	<!-- 定义servlet映射 -->
+	<servlet-mapping>
+		<!-- 与servlet中servlet-name对应 -->
+		<servlet-name>sample</servlet-name>
+		<!-- 映射所有的url -->
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+
+</web-app>

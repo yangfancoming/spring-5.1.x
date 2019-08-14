@@ -9,15 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-
 @RestController
-public class SampleController implements Controller {
+public class DemoController implements Controller {
 
-	// 测试url：    http://localhost:8521/sample
+	// 测试url：    http://localhost:8521/demo
 	@Nullable
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)  {
-		System.out.println("进入 SampleController（Handler）处理器。。。");
+		System.out.println("进入 DemoController（Handler）处理器。。。");
 		return null;
 	}
 }

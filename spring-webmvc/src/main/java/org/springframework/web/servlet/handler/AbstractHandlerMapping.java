@@ -275,8 +275,11 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	 */
 	@Override
 	protected void initApplicationContext() throws BeansException {
+		// 子类可重写此方法以注册额外的拦截器
 		extendInterceptors(this.interceptors);
+		// 从上下文中查询拦截器并添加到拦截器列表中
 		detectMappedInterceptors(this.adaptedInterceptors);
+		// 初始化拦截器
 		initInterceptors();
 	}
 
@@ -298,11 +301,11 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	 * via {@link #setInterceptors}, by default adding all beans of type {@link MappedInterceptor}
 	 * from the current context and its ancestors. Subclasses can override and refine this policy.
 	 * @param mappedInterceptors an empty list to add {@link MappedInterceptor} instances to
+	 *  查找实现了MappedInterceptor接口的bean，并添加到映射拦截器列表
 	 */
 	protected void detectMappedInterceptors(List<HandlerInterceptor> mappedInterceptors) {
 		mappedInterceptors.addAll(
-				BeanFactoryUtils.beansOfTypeIncludingAncestors(
-						obtainApplicationContext(), MappedInterceptor.class, true, false).values());
+				BeanFactoryUtils.beansOfTypeIncludingAncestors(obtainApplicationContext(), MappedInterceptor.class, true, false).values());
 	}
 
 	/**
@@ -311,6 +314,7 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	 * {@link WebRequestInterceptor}s if necessary.
 	 * @see #setInterceptors
 	 * @see #adaptInterceptor
+	 * // 将自定义bean设置到适配拦截器中，bean需实现HandlerInterceptor或WebRequestInterceptor
 	 */
 	protected void initInterceptors() {
 		if (!this.interceptors.isEmpty()) {

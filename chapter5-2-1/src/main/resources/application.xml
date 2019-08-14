@@ -13,6 +13,7 @@
 	<bean id="handlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="urlMap">
 			<props>
+				<prop key="/sample">sampleController</prop>
 				<prop key="/demo">demoController</prop>
 			</props>
 		</property>
@@ -20,6 +21,7 @@
 		<property name="order" value="1"/>
 	</bean>
 
-	<bean id="demoController" class="com.goat.chapter521.controller.SampleController"/>
+	<bean id="sampleController" class="com.goat.chapter521.controller.SampleController"/>
 
+	<bean id="demoController" class="com.goat.chapter521.controller.DemoController"/>
 </beans>
