@@ -58,7 +58,6 @@ import org.springframework.util.StringUtils;
  *
  * <p>Thanks to Thomas Achleitner for providing the initial implementation of
  * this message source!
- *
 
  * @see #setCacheSeconds
  * @see #setBasenames

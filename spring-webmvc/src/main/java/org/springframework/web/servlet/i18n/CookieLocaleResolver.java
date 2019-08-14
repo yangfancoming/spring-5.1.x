@@ -32,9 +32,7 @@ import org.springframework.web.util.WebUtils;
  * {@code #setLocale(Context)} on the resolver, e.g. responding to a locale change
  * request. As a more convenient alternative, consider using
  * {@link org.springframework.web.servlet.support.RequestContext#changeLocale}.
- *
 
- * @author Jean-Pierre Pawlak
  * @since 27.02.2003
  * @see #setDefaultLocale
  * @see #setDefaultTimeZone
@@ -67,7 +65,6 @@ public class CookieLocaleResolver extends CookieGenerator implements LocaleConte
 	 * The default cookie name used if none is explicitly set.
 	 */
 	public static final String DEFAULT_COOKIE_NAME = CookieLocaleResolver.class.getName() + ".LOCALE";
-
 
 	private boolean languageTagCompliant = true;
 
@@ -180,7 +177,9 @@ public class CookieLocaleResolver extends CookieGenerator implements LocaleConte
 
 	@Override
 	public LocaleContext resolveLocaleContext(final HttpServletRequest request) {
+		// 解析Cookie信息
 		parseLocaleCookieIfNecessary(request);
+		// 返回Locale和TimeZone
 		return new TimeZoneAwareLocaleContext() {
 			@Override
 			@Nullable
@@ -196,15 +195,18 @@ public class CookieLocaleResolver extends CookieGenerator implements LocaleConte
 	}
 
 	private void parseLocaleCookieIfNecessary(HttpServletRequest request) {
+		// 第一次请求为null
 		if (request.getAttribute(LOCALE_REQUEST_ATTRIBUTE_NAME) == null) {
-			Locale locale = null;
-			TimeZone timeZone = null;
+			Locale locale = null; // 地区
+			TimeZone timeZone = null; // 时区
 
-			// Retrieve and parse cookie value.
+			// Retrieve and parse cookie value.  // 获取cookie的名称，取自Spring MVC配置，默认为：CookieLocaleResolver.DEFAULT_COOKIE_NAME
 			String cookieName = getCookieName();
 			if (cookieName != null) {
+				// 根据名称获取当前请求中的Cookie（第一次访问为null）
 				Cookie cookie = WebUtils.getCookie(request, cookieName);
 				if (cookie != null) {
+					// 以下主要是从客户端Cookie中解析出Locale
 					String value = cookie.getValue();
 					String localePart = value;
 					String timeZonePart = null;
@@ -224,41 +226,34 @@ public class CookieLocaleResolver extends CookieGenerator implements LocaleConte
 						}
 					}
 					catch (IllegalArgumentException ex) {
-						if (isRejectInvalidCookies() &&
-								request.getAttribute(WebUtils.ERROR_EXCEPTION_ATTRIBUTE) == null) {
-							throw new IllegalStateException("Encountered invalid locale cookie '" +
-									cookieName + "': [" + value + "] due to: " + ex.getMessage());
+						if (isRejectInvalidCookies() && request.getAttribute(WebUtils.ERROR_EXCEPTION_ATTRIBUTE) == null) {
+							throw new IllegalStateException("Encountered invalid locale cookie '" + cookieName + "': [" + value + "] due to: " + ex.getMessage());
 						}
 						else {
 							// Lenient handling (e.g. error dispatch): ignore locale/timezone parse exceptions
 							if (logger.isDebugEnabled()) {
-								logger.debug("Ignoring invalid locale cookie '" + cookieName +
-										"': [" + value + "] due to: " + ex.getMessage());
+								logger.debug("Ignoring invalid locale cookie '" + cookieName + "': [" + value + "] due to: " + ex.getMessage());
 							}
 						}
 					}
 					if (logger.isTraceEnabled()) {
-						logger.trace("Parsed cookie value [" + cookie.getValue() + "] into locale '" + locale +
-								"'" + (timeZone != null ? " and time zone '" + timeZone.getID() + "'" : ""));
+						logger.trace("Parsed cookie value [" + cookie.getValue() + "] into locale '" + locale + "'" + (timeZone != null ? " and time zone '" + timeZone.getID() + "'" : ""));
 					}
 				}
 			}
-
-			request.setAttribute(LOCALE_REQUEST_ATTRIBUTE_NAME,
-					(locale != null ? locale : determineDefaultLocale(request)));
-			request.setAttribute(TIME_ZONE_REQUEST_ATTRIBUTE_NAME,
-					(timeZone != null ? timeZone : determineDefaultTimeZone(request)));
+			// 把Locale设置到请求的Attribute区，客户端请求没有携带Cookie，取Spring MVC中配置的defaultLocale
+			request.setAttribute(LOCALE_REQUEST_ATTRIBUTE_NAME,(locale != null ? locale : determineDefaultLocale(request)));
+			request.setAttribute(TIME_ZONE_REQUEST_ATTRIBUTE_NAME,(timeZone != null ? timeZone : determineDefaultTimeZone(request)));
 		}
 	}
-
+	// 设置Locale
 	@Override
 	public void setLocale(HttpServletRequest request, @Nullable HttpServletResponse response, @Nullable Locale locale) {
 		setLocaleContext(request, response, (locale != null ? new SimpleLocaleContext(locale) : null));
 	}
-
+	// 主要是把Locale信息写回客户端
 	@Override
-	public void setLocaleContext(HttpServletRequest request, @Nullable HttpServletResponse response,
-			@Nullable LocaleContext localeContext) {
+	public void setLocaleContext(HttpServletRequest request, @Nullable HttpServletResponse response,@Nullable LocaleContext localeContext) {
 
 		Assert.notNull(response, "HttpServletResponse is required for CookieLocaleResolver");
 
@@ -269,16 +264,13 @@ public class CookieLocaleResolver extends CookieGenerator implements LocaleConte
 			if (localeContext instanceof TimeZoneAwareLocaleContext) {
 				timeZone = ((TimeZoneAwareLocaleContext) localeContext).getTimeZone();
 			}
-			addCookie(response,
-					(locale != null ? toLocaleValue(locale) : "-") + (timeZone != null ? '/' + timeZone.getID() : ""));
+			addCookie(response,(locale != null ? toLocaleValue(locale) : "-") + (timeZone != null ? '/' + timeZone.getID() : ""));
 		}
 		else {
 			removeCookie(response);
 		}
-		request.setAttribute(LOCALE_REQUEST_ATTRIBUTE_NAME,
-				(locale != null ? locale : determineDefaultLocale(request)));
-		request.setAttribute(TIME_ZONE_REQUEST_ATTRIBUTE_NAME,
-				(timeZone != null ? timeZone : determineDefaultTimeZone(request)));
+		request.setAttribute(LOCALE_REQUEST_ATTRIBUTE_NAME,(locale != null ? locale : determineDefaultLocale(request)));
+		request.setAttribute(TIME_ZONE_REQUEST_ATTRIBUTE_NAME,(timeZone != null ? timeZone : determineDefaultTimeZone(request)));
 	}
 
 

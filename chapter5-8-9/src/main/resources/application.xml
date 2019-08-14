@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd" default-autowire="byName">
+
+
+	<!--开启注解扫描-->
+	<context:component-scan base-package="com.goat.chapter589"></context:component-scan>
+
+	<!-- 国际化资源文件 -->
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<!-- 如果资源文件放在classpath下，basename的value必须有classpath:前缀，否则报错：No message found under code... -->
+		<!--<property name="basename" value="classpath:i18n/messages" />-->
+		<property name="basename" value="i18n.messages" />
+		<!-- 如果在国际化资源文件中找不到对应代码的信息，就用这个代码作为名称返回  -->
+		<property name="useCodeAsDefaultMessage" value="true" />
+		<!--<property name="defaultEncoding" value="ISO-8859-1"/>-->
+	</bean>
+	<!-- CookieLocaleResolver解析器 -->
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<!-- 设置cookie的名称，默认cookieName为：CookieLocaleResolver.DEFAULT_COOKIE_NAME，即(org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE) -->
+		<property name="cookieName" value="clientlanguage"/>
+		<property name="defaultLocale" value="en"/>
+		<!-- in seconds. If set to -1, the cookie is not persisted (deleted when browser shuts down) -->
+		<property name="cookieMaxAge" value="100000"/>
+	</bean>
+
+	<!-- 实际项目可通过Spring提供的LocaleChangeInterceptor拦截器实现，也可自定义拦截器 -->
+	<!--<mvc:interceptors>
+        &lt;!&ndash; 该拦截器通过名为”locale”的请求参数来拦截HTTP请求，使其重新设置页面的区域化信息 &ndash;&gt;
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+    </mvc:interceptors>-->
+</beans>
