@@ -11,6 +11,7 @@
     chapter2-1-0  spring bean装配 源码示例  BeanFactoryAware BeanPostProcessor  FactoryBean
 # aop 模块   
     chapter4-0-0  spring AOP
+    chapter4-0-4  spring AOP 实现自定义的TargetSource
 # web 模块
     chapter5-0-0  spring web
     chapter5-1-0  spring web  注解版 
