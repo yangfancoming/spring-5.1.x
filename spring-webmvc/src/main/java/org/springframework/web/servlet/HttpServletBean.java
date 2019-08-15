@@ -143,13 +143,15 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 	public final void init() throws ServletException {
 		// Set bean properties from init parameters. // ServletConfigPropertyValues 是静态内部类，使用 ServletConfig 获取 web.xml 中配置的参数
 		// 获取在web.xml配置的初始化参数<init-param>，并将其设置到DispatcherServlet中
+		// 读取在web.xml中通过init-param标签设置的属性，如果没有配置，这里pvs就会是empty的
 		PropertyValues pvs = new ServletConfigPropertyValues(getServletConfig(), this.requiredProperties);
 		if (!pvs.isEmpty()) {
 			try {
-				// 使用 BeanWrapper 来构造 DispatcherServlet
+				// 使用 BeanWrapper 来构造 DispatcherServlet   // 注册Resource对象对应的PropertyEditor
 				BeanWrapper bw = PropertyAccessorFactory.forBeanPropertyAccess(this);
 				ResourceLoader resourceLoader = new ServletContextResourceLoader(getServletContext());
 				bw.registerCustomEditor(Resource.class, new ResourceEditor(resourceLoader, getEnvironment()));
+				// 初始化BeanWrapper对象，这里是一个空方法，供给使用者对BeanWrapper进行自定义处理
 				initBeanWrapper(bw);
 				bw.setPropertyValues(pvs, true);
 			}
@@ -160,7 +162,7 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 				throw ex;
 			}
 		}
-
+		// 初始化当前DispatcherServlet的各项配置
 		// Let subclasses do whatever initialization they like. // 让子类实现的方法，这种在父类定义在子类实现的方式叫做模版方法模式
 		initServletBean();
 	}

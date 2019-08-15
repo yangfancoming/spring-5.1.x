@@ -489,6 +489,7 @@ public class DispatcherServlet extends FrameworkServlet {
 	/**
 	 * Initialize the strategy objects that this servlet uses.
 	 * <p>May be overridden in subclasses in order to initialize further strategy objects.
+	 * Spring web九大组件初始化
 	 */
 	protected void initStrategies(ApplicationContext context) {
 		//初始化文件上传处理类 // 文件上传解析
@@ -543,6 +544,8 @@ public class DispatcherServlet extends FrameworkServlet {
 	 */
 	private void initLocaleResolver(ApplicationContext context) {
 		try {
+			// 这里LOCALE_RESOLVER_BEAN_NAME的值为localeResolver，也就是说用户如果
+			// 需要自定义的LocaleResolver，那么在声明该bean是，其名称必须为localeResolver
 			this.localeResolver = context.getBean(LOCALE_RESOLVER_BEAN_NAME, LocaleResolver.class);
 			if (logger.isTraceEnabled()) {
 				logger.trace("Detected " + this.localeResolver);
@@ -552,7 +555,7 @@ public class DispatcherServlet extends FrameworkServlet {
 			}
 		}
 		catch (NoSuchBeanDefinitionException ex) {
-			// We need to use the default.
+			// We need to use the default. // 如果Spring容器中没有配置自定义的localeResolver，则通过默认策略实例化对应的bean
 			this.localeResolver = getDefaultStrategy(context, LocaleResolver.class);
 			if (logger.isTraceEnabled()) {
 				logger.trace("No LocaleResolver '" + LOCALE_RESOLVER_BEAN_NAME + "': using default [" + this.localeResolver.getClass().getSimpleName() + "]");
@@ -591,20 +594,25 @@ public class DispatcherServlet extends FrameworkServlet {
 	private void initHandlerMappings(ApplicationContext context) {
 		this.handlerMappings = null;
 		// detectAllHandlerMappings 默认为true，可通过DispatcherServlet的init-param参数进行设置
+		// 检查是否配置了获取Spring中配置的所有HandlerMapping类型对象，是则进行读取，并且按照
+		// 指定的排序规则对其进行排序，否则就从Spring中读取名称为handlerMapping的bean，并将其作为指定的bean
 		if (this.detectAllHandlerMappings) {
 			// Find all HandlerMappings in the ApplicationContext, including ancestor contexts.
 			// 从 SpringMVC 的 IOC 容器及 Spring 的 IOC 容器中查找 HandlerMapping 实例
 			// 在ApplicationContext中找到所有的handlerMapping，包括父上下文。
+			// 从Spring容器中读取所有的实现了HandlerMapping接口的bean
 			Map<String, HandlerMapping> matchingBeans = BeanFactoryUtils.beansOfTypeIncludingAncestors(context, HandlerMapping.class, true, false);
 			if (!matchingBeans.isEmpty()) {
 				this.handlerMappings = new ArrayList<>(matchingBeans.values());
 				// We keep HandlerMappings in sorted order. // 按一定顺序放置 HandlerMapping 对象
 				// 对handlerMapping排序，可通过指定order属性进行设置，order的值为int型，数越小优先级越高
+				// 对获取到的HandlerMapping进行排序
 				AnnotationAwareOrderComparator.sort(this.handlerMappings);
 			}
 		}
 		else {
 			try {
+				// 获取Spring容器中名称为handlerMapping的bean
 				// 从ApplicationContext上下文中取id（或name）="handlerMapping"的bean
 				HandlerMapping hm = context.getBean(HANDLER_MAPPING_BEAN_NAME, HandlerMapping.class);
 				// 将hm转换成list，并赋值给属性handlerMappings
@@ -612,6 +620,7 @@ public class DispatcherServlet extends FrameworkServlet {
 			}
 			catch (NoSuchBeanDefinitionException ex) {
 				// Ignore, we'll add a default HandlerMapping later.
+				// 忽略当前异常
 			}
 		}
 
@@ -627,6 +636,7 @@ public class DispatcherServlet extends FrameworkServlet {
 			 *  org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping
 			 *  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
 			 *  从结果可知，在application.xml未进行任何配置HandlerMapping时，系统使用（支持）默认的BeanNameUrlHandlerMapping和RequestMappingHandlerMapping映射解析器。
+			 *   // 如果上述方式没法获取到对应的HandlerMapping，则使用默认策略获取对应的HandlerMapping
 			*/
 			this.handlerMappings = getDefaultStrategies(context, HandlerMapping.class);
 			if (logger.isTraceEnabled()) {

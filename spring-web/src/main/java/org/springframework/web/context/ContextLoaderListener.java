@@ -13,8 +13,6 @@ import javax.servlet.ServletContextListener;
  * application context via the {@link #ContextLoaderListener(WebApplicationContext)}
  * constructor, allowing for programmatic configuration in Servlet 3.0+ environments.
  * See {@link org.springframework.web.WebApplicationInitializer} for usage examples.
- *
-
 
  * @since 17.02.2003
  * @see #setContextInitializers
@@ -83,6 +81,7 @@ public class ContextLoaderListener extends ContextLoader implements ServletConte
 
 	/**
 	 * Initialize the root web application context.
+	 * // 初始化Spring容器
 	 */
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
@@ -92,6 +91,7 @@ public class ContextLoaderListener extends ContextLoader implements ServletConte
 
 	/**
 	 * Close the root web application context.
+	 * // 销毁Spring容器
 	 */
 	@Override
 	public void contextDestroyed(ServletContextEvent event) {

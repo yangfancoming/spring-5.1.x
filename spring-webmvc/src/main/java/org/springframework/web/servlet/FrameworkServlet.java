@@ -516,9 +516,11 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 		long startTime = System.currentTimeMillis();
 
 		try {
+			// 初始化当前servlet配置的Spring配置
 			// 初始化WebApplicationContext，并调用子类（DispatcherServlet）的onRefresh(wac)方法
 			this.webApplicationContext = initWebApplicationContext();
 			// 这个里面没有任何实现方法
+			// 这里initFrameworkServlet()方法是一个空方法，供给用户对当前servlet对应的Spring容器进行自定义的处理
 			initFrameworkServlet();
 		}
 		catch (ServletException | RuntimeException ex) {
@@ -547,16 +549,19 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	protected WebApplicationContext initWebApplicationContext() {
 		// 获取 ContextLoaderListener 初始化并注册在 ServletContext 中的根容器，即 Spring 的容器
 		// 获取root WebApplicationContext，即web.xml中配置的listener（ContextLoaderListener）
+		// 获取在ContextLoaderListener中初始化的Spring容器，并且将其作为当前servlet对应 的容器的父容器，这样当前servlet容器就可以使用其父容器中的所有内容了
 		WebApplicationContext rootContext = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		WebApplicationContext wac = null;
 		// 判断容器是否由编程式传入（即是否已经存在了容器实例），存在的话直接赋值给wac，给springMVC容器设置父容器
 		// 最后调用刷新函数configureAndRefreshWebApplicationContext(wac)，作用是把Spring MVC配置文件的配置信息加载到容器中去
+		// 如果当前Servlet对应的WebApplicationContext不为空，并且其未被初始化，则对其进行初始化
 		if (this.webApplicationContext != null) {
 			// A context instance was injected at construction time -> use it  // 因为 WebApplicationContext 不为空，说明该类在构造时已经将其注入
 			// context上下文在构造是注入
 			wac = this.webApplicationContext;
 			if (wac instanceof ConfigurableWebApplicationContext) {
 				ConfigurableWebApplicationContext cwac = (ConfigurableWebApplicationContext) wac;
+				// 判断当前WebApplicationContext是否已初始化过，没有则进行初始化
 				if (!cwac.isActive()) {
 					// The context has not yet been refreshed -> provide services such as
 					// setting the parent context, setting the application context id, etc
@@ -567,6 +572,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 						// 将 Spring 的容器设为 SpringMVC 容器的父容器
 						cwac.setParent(rootContext);
 					}
+					// 初始化当前WebApplicationContext
 					configureAndRefreshWebApplicationContext(cwac);
 				}
 			}
@@ -578,9 +584,13 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 			// user has performed any initialization such as setting the context id
 			// 如果 WebApplicationContext 为空，则进行查找，能找到说明上下文已经在别处初始化。
 			// 在ServletContext中寻找是否有Spring MVC容器，初次运行是没有的，Spring MVC初始化完毕ServletContext就有了Spring MVC容器
+			// 如果wac为空，则说明当前servlet对应的WebApplicationContext是空的，
+			// 这里会通过当前servlet配置的contextAttribute属性查找一个自定义的
+			// WebApplicationContext，将其作为当前servlet的容器
 			wac = findWebApplicationContext();
 		}
 		if (wac == null) {
+			// 如果用户没有自定义WebApplicationContext，则创建一个，并且对其进行初始化
 			// 如果 WebApplicationContext 仍为空，则以 Spring 的容器为父上下文建立一个新的。
 			// No context instance is defined for this servlet -> create a local one
 			// 当wac既没有没被编程式注册到容器中的，也没在ServletContext找得到，此时就要新建一个Spring MVC容器
@@ -594,12 +604,15 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 			// 模版方法，由 DispatcherServlet 实现
 			// 到这里Spring MVC容器已经创建完毕，接着真正调用DispatcherServlet的初始化方法onRefresh(wac)
 			// 此处仍是模板模式的应用
+			// 这里的onRefresh()方法并不是初始化Spring配置文件中的bean的，
+			// 而是用于初始化Spring处理web请求相关的组件的，如RequestMappingHandlerMapping等
 			synchronized (this.onRefreshMonitor) {
 				onRefresh(wac);
 			}
 		}
 		// 将Spring MVC容器存放到ServletContext中去，方便下次取出来
 		if (this.publishContext) {
+			// 将当前WebApplicationContext对象设置到ServletContext中
 			// Publish the context as a servlet context attribute.// 发布这个 WebApplicationContext 容器到 ServletContext 中
 			String attrName = getServletContextAttributeName();
 			getServletContext().setAttribute(attrName, wac);
@@ -648,24 +661,27 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * @see org.springframework.web.context.support.XmlWebApplicationContext
 	 */
 	protected WebApplicationContext createWebApplicationContext(@Nullable ApplicationContext parent) {
+		// 读取web.xml中配置的contextClass属性，将其作为当前servlet的WebApplicationContext
 		Class<?> contextClass = getContextClass();
+		// 保证用户定义的WebApplicationContext对象是ConfigurableWebApplicationContext类型的
 		if (!ConfigurableWebApplicationContext.class.isAssignableFrom(contextClass)) {
-			throw new ApplicationContextException(
-					"Fatal initialization error in servlet with name '" + getServletName() +
+			throw new ApplicationContextException( "Fatal initialization error in servlet with name '" + getServletName() +
 					"': custom WebApplicationContext class [" + contextClass.getName() + "] is not of type ConfigurableWebApplicationContext");
 		}
-		// 实例化容器
+		// 实例化容器  // 实例化WebApplicationContext对象
 		ConfigurableWebApplicationContext wac = (ConfigurableWebApplicationContext) BeanUtils.instantiateClass(contextClass);
-		// 设置容器环境
+		// 设置容器环境   // 设置当前的运行环境
 		wac.setEnvironment(getEnvironment());
-		// 设置父容器
+		// 设置父容器 // 将ContextLoaderListener中初始化的WebApplicationContext作为当前 WebApplicationContext的父容器
 		wac.setParent(parent);
+		// 获取当前servlet配置的contextConfigLocation
 		// 加载Spring MVC的配置信息，如：bean注入、注解、扫描等等
 		String configLocation = getContextConfigLocation();
 		if (configLocation != null) {
 			wac.setConfigLocation(configLocation);
 		}
 		// 刷新容器，根据Spring MVC配置文件完成初始化操作
+		// 读取当前WebApplicationContext配置的Spring相关的bean，并进行初始化
 		configureAndRefreshWebApplicationContext(wac);
 		return wac;
 	}
