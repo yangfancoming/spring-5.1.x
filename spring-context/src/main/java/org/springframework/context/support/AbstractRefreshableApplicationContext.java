@@ -35,8 +35,6 @@ import org.springframework.lang.Nullable;
  * common {@link AbstractXmlApplicationContext} base class;
  * {@link org.springframework.context.annotation.AnnotationConfigApplicationContext}
  * supports {@code @Configuration}-annotated classes as a source of bean definitions.
- *
-
 
  * @since 1.1.3
  * @see #loadBeanDefinitions
@@ -60,7 +58,6 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 
 	/** Synchronization monitor for the internal BeanFactory. */
 	private final Object beanFactoryMonitor = new Object();
-
 
 	/**
 	 * Create a new AbstractRefreshableApplicationContext with no parent.
@@ -118,6 +115,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 		try {
 			//创建一个默认的BeanFactory，即全功能的那个郭靖！
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
+			// 为当前BeanFactory设置一个标识id
 			beanFactory.setSerializationId(getId());
 
 			/**
@@ -125,7 +123,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			  设置 BeanFactory 的两个配置属性：是否允许 Bean 覆盖、是否允许循环引用
 			*/
 			customizeBeanFactory(beanFactory);
-			//这步就关键了，载入BeanDefinations，给BeanFactory工厂提供创建bean的原材料！
+			//这步就关键了，加载xml文件信息 ，载入BeanDefinations，给BeanFactory工厂提供创建bean的原材料！
 			loadBeanDefinitions(beanFactory);
 			synchronized (this.beanFactoryMonitor) {
 				this.beanFactory = beanFactory;
@@ -170,8 +168,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	public final ConfigurableListableBeanFactory getBeanFactory() {
 		synchronized (this.beanFactoryMonitor) {
 			if (this.beanFactory == null) {
-				throw new IllegalStateException("BeanFactory not initialized or already closed - " +
-						"call 'refresh' before accessing beans via the ApplicationContext");
+				throw new IllegalStateException("BeanFactory not initialized or already closed - call 'refresh' before accessing beans via the ApplicationContext");
 			}
 			return this.beanFactory;
 		}

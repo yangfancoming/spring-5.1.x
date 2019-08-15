@@ -511,7 +511,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			/**
 			 * Tell the subclass to refresh the internal bean factory.
 			 *    这步比较关键，这步完成后，配置文件就会解析成一个个 Bean 定义，注册到 BeanFactory 中，
-			 *    当然，这里说的 Bean 还没有初始化，只是配置信息都提取出来了，
+			 *    当然，这里说的 Bean 还没有初始化，只是配置信息都从xml文件中提取出来了，
 			 *    注册也只是将这些信息都保存到了注册中心(说到底核心是一个 beanName-> beanDefinition 的 map)
 			 *    调用子类实现方法获取（创建或刷新）BeanFacotry容器，对于ClassPathXmlApplicationContext，主要调用了AbstractRefreshableApplicationContext中实现的方法
 			 * 	  在这里，将xml配置文件中 的Bean解析成了一个个BeanDefinition,建立一个beanName-> beanDefinition 的 map
@@ -578,6 +578,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 				// Last step: publish corresponding event. 最后，广播事件，ApplicationContext 初始化完成
 				// 初始化Lifecycle处理器，调用onRefresh方法，广播ContextRefreshedEvent。
 				//初始化容器的生命周期事件处理器，并发布容器的生命周期事件
+				// 清除缓存的资源信息，初始化一些声明周期相关的bean，并且发布Context已被初始化的事件
 				finishRefresh();
 			}
 
@@ -585,16 +586,17 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 				if (logger.isWarnEnabled()) {
 					logger.warn("Exception encountered during context initialization - cancelling refresh attempt: " + ex);
 				}
-				// Destroy already created singletons to avoid dangling resources.
+				// Destroy already created singletons to avoid dangling resources.// 发生异常则销毁已经生成的bean
 				destroyBeans();
 				// Reset 'active' flag.
-				cancelRefresh(ex);
+				cancelRefresh(ex);   // 重置refresh字段信息
 				// Propagate exception to caller.
 				throw ex;
 			}
 			finally {
 				// Reset common introspection caches in Spring's core, since we
 				// might not ever need metadata for singleton beans anymore...
+				// 初始化一些缓存信息
 				resetCommonCaches();
 			}
 		}
@@ -662,7 +664,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 * 该方法为BeanFactory准备创建Bean的原材料，即BeanDefinition，准备好之后放到一个ConcurrentHashMap里面，key为beanName，value为BeanDefinition
 	 */
 	protected ConfigurableListableBeanFactory obtainFreshBeanFactory() {
+		// 初始化BeanFactory并加载xml文件信息
 		refreshBeanFactory();
+		// 获取已生成的BeanFactory
 		return getBeanFactory();
 	}
 

@@ -11,9 +11,7 @@ import org.springframework.lang.Nullable;
 
 /**
  * Central interface to provide configuration for an application.
- * This is read-only while the application is running, but may be
- * reloaded if the implementation supports this.
- *
+ * This is read-only while the application is running, but may be reloaded if the implementation supports this.
  * <p>An ApplicationContext provides:
  * <ul>
  * <li>Bean factory methods for accessing application components.
@@ -24,18 +22,15 @@ import org.springframework.lang.Nullable;
  * Inherited from the {@link ApplicationEventPublisher} interface.
  * <li>The ability to resolve messages, supporting internationalization.
  * Inherited from the {@link MessageSource} interface.
- * <li>Inheritance from a parent context. Definitions in a descendant context
- * will always take priority. This means, for example, that a single parent
- * context can be used by an entire web application, while each servlet has
- * its own child context that is independent of that of any other servlet.
+ * <li>Inheritance from a parent context. Definitions in a descendant context will always take priority.
+ *  This means, for example, that a single parent context can be used by an entire web application,
+ * while each servlet has its own child context that is independent of that of any other servlet.
  * </ul>
  *
  * <p>In addition to standard {@link org.springframework.beans.factory.BeanFactory}
  * lifecycle capabilities, ApplicationContext implementations detect and invoke
  * {@link ApplicationContextAware} beans as well as {@link ResourceLoaderAware},
  * {@link ApplicationEventPublisherAware} and {@link MessageSourceAware} beans.
- *
- * @author Rod Johnson
 
  * @see ConfigurableApplicationContext
  * @see org.springframework.beans.factory.BeanFactory
@@ -69,8 +64,7 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
 	long getStartupDate();
 
 	/**
-	 * Return the parent context, or {@code null} if there is no parent
-	 * and this is the root of the context hierarchy.
+	 * Return the parent context, or {@code null} if there is no parent and this is the root of the context hierarchy.
 	 * @return the parent context, or {@code null} if there is no parent
 	 */
 	@Nullable
