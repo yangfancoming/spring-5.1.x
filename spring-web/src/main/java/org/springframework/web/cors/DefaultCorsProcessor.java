@@ -31,11 +31,7 @@ import org.springframework.web.util.WebUtils;
  * <p>Note that when input {@link CorsConfiguration} is {@code null}, this
  * implementation does not reject simple or actual requests outright but simply
  * avoid adding CORS headers to the response. CORS processing is also skipped
- * if the response already contains CORS headers, or if the request is detected
- * as a same-origin one.
- *
- * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ * if the response already contains CORS headers, or if the request is detected as a same-origin one.
  * @since 4.2
  */
 public class DefaultCorsProcessor implements CorsProcessor {
@@ -45,8 +41,7 @@ public class DefaultCorsProcessor implements CorsProcessor {
 
 	@Override
 	@SuppressWarnings("resource")
-	public boolean processRequest(@Nullable CorsConfiguration config, HttpServletRequest request,
-			HttpServletResponse response) throws IOException {
+	public boolean processRequest(@Nullable CorsConfiguration config, HttpServletRequest request,HttpServletResponse response) throws IOException {
 
 		if (!CorsUtils.isCorsRequest(request)) {
 			return true;
@@ -74,7 +69,6 @@ public class DefaultCorsProcessor implements CorsProcessor {
 				return true;
 			}
 		}
-
 		return handleInternal(serverRequest, serverResponse, config, preFlightRequest);
 	}
 
@@ -101,15 +95,13 @@ public class DefaultCorsProcessor implements CorsProcessor {
 	/**
 	 * Handle the given request.
 	 */
-	protected boolean handleInternal(ServerHttpRequest request, ServerHttpResponse response,
-			CorsConfiguration config, boolean preFlightRequest) throws IOException {
+	protected boolean handleInternal(ServerHttpRequest request, ServerHttpResponse response,CorsConfiguration config, boolean preFlightRequest) throws IOException {
 
 		String requestOrigin = request.getHeaders().getOrigin();
 		String allowOrigin = checkOrigin(config, requestOrigin);
 		HttpHeaders responseHeaders = response.getHeaders();
 
-		responseHeaders.addAll(HttpHeaders.VARY, Arrays.asList(HttpHeaders.ORIGIN,
-				HttpHeaders.ACCESS_CONTROL_REQUEST_METHOD, HttpHeaders.ACCESS_CONTROL_REQUEST_HEADERS));
+		responseHeaders.addAll(HttpHeaders.VARY, Arrays.asList(HttpHeaders.ORIGIN,HttpHeaders.ACCESS_CONTROL_REQUEST_METHOD, HttpHeaders.ACCESS_CONTROL_REQUEST_HEADERS));
 
 		if (allowOrigin == null) {
 			logger.debug("Reject: '" + requestOrigin + "' origin is not allowed");

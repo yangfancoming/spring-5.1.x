@@ -991,19 +991,26 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 		long startTime = System.currentTimeMillis();
 		Throwable failureCause = null;
 		// 构建请求(request)的LocalContext上下文，提供基本的作为当前地区的主要语言环境
+		// 获取先前请求的LocaleContext
 		LocaleContext previousLocaleContext = LocaleContextHolder.getLocaleContext();
+		// 获取当前请求的LocaleContext，其中保存了当前请求的Locale信息
 		LocaleContext localeContext = buildLocaleContext(request);
-
+		// 获取先前请求的Attributes信息
 		RequestAttributes previousAttributes = RequestContextHolder.getRequestAttributes();
 		// 构建请求(request)的ServletRequestAttributes对象，保存本次请求的request和response
+		// 获取当前请求的Attributes信息，其中保存了当前请求的各个属性数据
 		ServletRequestAttributes requestAttributes = buildRequestAttributes(request, response, previousAttributes);
 		// 异步请求处理的管理核心类
+		// 获取当前请求的WebAsyncManager，这只有在当前请求是请求的异步任务时才会真正用到
 		WebAsyncManager asyncManager = WebAsyncUtils.getAsyncManager(request);
+		// 注册异步任务的拦截器，如果请求的是异步任务，这个拦截器可以拦截异步任务的前置，后置和异常等情况
 		asyncManager.registerCallableInterceptor(FrameworkServlet.class.getName(), new RequestBindingInterceptor());
 		// 绑定request context上线到当前线程
+		// 将当前请求的Locale，Attributes信息初始化到对应的ThreadLocal对象中，用于后续使用
 		initContextHolders(request, localeContext, requestAttributes);
 
 		try {
+			// 对当前请求进行分发
 			// 模板方法，调用子类（DispatcherServlet）的doService方法进行处理
 			doService(request, response);
 		}
@@ -1017,14 +1024,20 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 		}
 
 		finally {
+			// 在请求完成之后，判断当前请求的Locale和Attributes信息是否需要继承，如果需要继承，
+			// 则会将Locale信息设置到inheritableLocaleContextHolder中，而将Attributes
+			// 信息设置到inheritableRequestAttributesHolder中；否则就会移除对应的信息，
+			// 而只为当前请求的ContextHolder设置相应的属性
 			// 接触请求线程与LocalContext和RequestAttributes的绑定
 			resetContextHolders(request, previousLocaleContext, previousAttributes);
 			if (requestAttributes != null) {
+				// 调用已注册的在当前请求被销毁时的回调函数，并且更新Session中当前请求所更新的属性
 				requestAttributes.requestCompleted();
 			}
 			logResult(request, response, failureCause, asyncManager);
 			// 发布ApplicationEvent事件，可由ApplicationListener进行监听
 			// 继承ApplicationListener接口，实现onApplicationEvent()接口，并注册到spring容器，即可捕获该事件
+			// 发布请求已经完成的事件，以便对该事件进行监听的程序进行相应的处理
 			publishRequestHandledEvent(request, response, startTime, failureCause);
 		}
 	}
