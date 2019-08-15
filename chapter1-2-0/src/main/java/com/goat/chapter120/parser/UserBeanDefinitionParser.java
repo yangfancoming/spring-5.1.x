@@ -8,11 +8,11 @@ import org.w3c.dom.Element;
 
 
 public class UserBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
+
     @Override
     protected Class<?> getBeanClass(Element element) {
         return User.class;
     }
-
 
     @Override
     protected void doParse(Element element, BeanDefinitionBuilder builder) {

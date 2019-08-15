@@ -140,6 +140,8 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	 */
 	protected void parseBeanDefinitions(Element root, BeanDefinitionParserDelegate delegate) {
 		// 表示的是默认的节点
+		// 判断根节点使用的标签所对应的命名空间是否为Spring提供的默认命名空间，
+		// 这里根节点为beans节点，该节点的命名空间通过其xmlns属性进行了定义
 		if (delegate.isDefaultNamespace(root)) {
 			NodeList nl = root.getChildNodes();
 			for (int i = 0; i < nl.getLength(); i++) {
@@ -147,15 +149,18 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 				if (node instanceof Element) {
 					Element ele = (Element) node;
 					if (delegate.isDefaultNamespace(ele)) {
+						// 当前标签使用的是默认的命名空间，如bean标签，则按照默认命名空间的逻辑对其进行处理
 						parseDefaultElement(ele, delegate); // 解析默认的节点
 					}
 					else {
+						// 判断当前标签使用的命名空间是自定义的命名空间，如这里 springtag:user 所使用的就是自定义的命名空间，那么就按照定义命名空间逻辑进行处理
 						delegate.parseCustomElement(ele);// 解析自定义节点
 					}
 				}
 			}
 		}
 		else {
+			// 如果根节点使用的命名空间不是默认的命名空间，则按照自定义的命名空间进行处理
 			delegate.parseCustomElement(root); // 解析自定义节点
 		}
 	}
@@ -166,7 +171,6 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	 * ②读取alias节点的信息；
 	 * ③读取bean节点指定的信息；
 	 * ④读取嵌套bean的信息
-
 	*/
 	private void parseDefaultElement(Element ele, BeanDefinitionParserDelegate delegate) {
 		if (delegate.nodeNameEquals(ele, IMPORT_ELEMENT)) { // 解析 <import>
@@ -294,8 +298,10 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	 */
 	protected void processBeanDefinition(Element ele, BeanDefinitionParserDelegate delegate) {
 		// 解析 bean的各种属性 // 对基本的bean标签属性进行解析
+		// 对bean标签的默认属性和子标签进行处理，将其封装为一个BeanDefinition对象，并放入BeanDefinitionHolder中
 		BeanDefinitionHolder bdHolder = delegate.parseBeanDefinitionElement(ele);
 		if (bdHolder != null) {
+			// 进行自定义属性或自定义子标签的装饰
 			// 如果该bean包含自定义的子标签，则对自定义子标签解析 // 对自定义的属性或者自定义的子节点进行解析，以丰富当前的BeanDefinition
 			bdHolder = delegate.decorateBeanDefinitionIfRequired(ele, bdHolder);
 			try {

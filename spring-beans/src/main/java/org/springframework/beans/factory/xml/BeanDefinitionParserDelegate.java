@@ -1311,15 +1311,18 @@ public class BeanDefinitionParserDelegate { // 定义解析 Element 的各种方
 
 	@Nullable
 	public BeanDefinition parseCustomElement(Element ele, @Nullable BeanDefinition containingBd) {
+		// 获取当前标签对应的命名空间指定的url
 		String namespaceUri = getNamespaceURI(ele);
 		if (namespaceUri == null) {
 			return null;
 		}
+		// 获取当前url所对应的NameSpaceHandler处理逻辑，也即我们定义的MyNameSpaceHandler
 		NamespaceHandler handler = this.readerContext.getNamespaceHandlerResolver().resolve(namespaceUri);
 		if (handler == null) {
 			error("Unable to locate Spring NamespaceHandler for XML schema namespace [" + namespaceUri + "]", ele);
 			return null;
 		}
+		// 调用当前命名空间处理逻辑的parse()方法，以对当前标签进行转换
 		return handler.parse(ele, new ParserContext(this.readerContext, this, containingBd));
 	}
 
@@ -1328,17 +1331,15 @@ public class BeanDefinitionParserDelegate { // 定义解析 Element 的各种方
 	}
 
 	public BeanDefinitionHolder decorateBeanDefinitionIfRequired(Element ele, BeanDefinitionHolder definitionHolder, @Nullable BeanDefinition containingBd) {
-
 		BeanDefinitionHolder finalDefinition = definitionHolder;
-
-		// Decorate based on custom attributes first.
+		// Decorate based on custom attributes first.  // 处理自定义属性
 		NamedNodeMap attributes = ele.getAttributes();
 		for (int i = 0; i < attributes.getLength(); i++) {
 			Node node = attributes.item(i);
 			finalDefinition = decorateIfRequired(node, finalDefinition, containingBd);
 		}
 
-		// Decorate based on custom nested elements.
+		// Decorate based on custom nested elements. // 处理自定义子标签
 		NodeList children = ele.getChildNodes();
 		for (int i = 0; i < children.getLength(); i++) {
 			Node node = children.item(i);
@@ -1349,15 +1350,16 @@ public class BeanDefinitionParserDelegate { // 定义解析 Element 的各种方
 		return finalDefinition;
 	}
 
-	public BeanDefinitionHolder decorateIfRequired(
-			Node node, BeanDefinitionHolder originalDef, @Nullable BeanDefinition containingBd) {
-
+	public BeanDefinitionHolder decorateIfRequired(Node node, BeanDefinitionHolder originalDef, @Nullable BeanDefinition containingBd) {
+		// 获取当前自定义属性或子标签的命名空间url
 		String namespaceUri = getNamespaceURI(node);
+		// 判断其如果为spring默认的命名空间则不对其进行处理
 		if (namespaceUri != null && !isDefaultNamespace(namespaceUri)) {
+			// 获取当前命名空间对应的NamespaceHandler对象
 			NamespaceHandler handler = this.readerContext.getNamespaceHandlerResolver().resolve(namespaceUri);
 			if (handler != null) {
-				BeanDefinitionHolder decorated =
-						handler.decorate(node, originalDef, new ParserContext(this.readerContext, this, containingBd));
+				// 对当前的BeanDefinitionHolder进行装饰
+				BeanDefinitionHolder decorated = handler.decorate(node, originalDef, new ParserContext(this.readerContext, this, containingBd));
 				if (decorated != null) {
 					return decorated;
 				}

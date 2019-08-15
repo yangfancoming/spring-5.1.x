@@ -1,7 +1,9 @@
 # 引入
-    dubbo服务启动第一步就是需要将服务注册到注册中心，
+    1.dubbo服务启动第一步就是需要将服务注册到注册中心，
     这里读取了大量的spring自定义标签，比如<dubbo:service>等等，
     正好先看一下Spring自定义标签的扩展功能。
+    
+    2.Spring源码中也大量使用了自定义标签，比如spring的AOP的定义，其标签为<aspectj-autoproxy />
     
 # Spring自定义标签总共可以分为以下几个步骤 
     ① 定义Bean 标签解析生成接收配置的POJO。 User
