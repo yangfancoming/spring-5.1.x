@@ -47,31 +47,39 @@ public abstract class AopNamespaceUtils {
 	}
 
 	public static void registerAspectJAnnotationAutoProxyCreatorIfNecessary(ParserContext parserContext, Element sourceElement) {
-		// 注册 AnnotationAwareAspectJAutoProxyCreator
+		// 注册AnnotationAwareAspectJAutoProxyCreator的BeanDefinition
 		BeanDefinition beanDefinition = AopConfigUtils.registerAspectJAnnotationAutoProxyCreatorIfNecessary(parserContext.getRegistry(), parserContext.extractSource(sourceElement));
 		// 解析标签的两个属性expose-proxy 和 proxy-target-class
+		// 解析标签中的proxy-target-class和expose-proxy属性值，
+		// proxy-target-class主要控制是使用Jdk代理还是Cglib代理实现，expose-proxy用于控制
+		// 是否将生成的代理类的实例防御AopContext中，并且暴露给相关子类使用
 		useClassProxyingIfNecessary(parserContext.getRegistry(), sourceElement);
-		// 注册组件并通知，便于监听器进一步处理，这里可以不用看
+		// 注册组件并通知，便于监听器进一步处理，这里可以不用看  // 将注册的BeanDefinition封装到BeanComponentDefinition中
 		registerComponentIfNecessary(beanDefinition, parserContext);
 	}
 
 	private static void useClassProxyingIfNecessary(BeanDefinitionRegistry registry, @Nullable Element sourceElement) {
 		if (sourceElement != null) {
+			// 解析标签中的proxy-target-class属性值
 			boolean proxyTargetClass = Boolean.parseBoolean(sourceElement.getAttribute(PROXY_TARGET_CLASS_ATTRIBUTE));
 			if (proxyTargetClass) {
+				// 将解析得到的proxy-target-class属性值设置到上面生成的AnnotationAwareAspectJAutoProxyCreator的BeanDefinition的proxyTargetClass属性中
 				AopConfigUtils.forceAutoProxyCreatorToUseClassProxying(registry);
 			}
+			// 解析标签中的expose-proxy属性值
 			boolean exposeProxy = Boolean.parseBoolean(sourceElement.getAttribute(EXPOSE_PROXY_ATTRIBUTE));
 			if (exposeProxy) {
+				// 将解析得到的expose-proxy属性值设置到 AnnotationAwareAspectJAutoProxyCreator的exposeProxy属性中
 				AopConfigUtils.forceAutoProxyCreatorToExposeProxy(registry);
 			}
 		}
 	}
 
 	private static void registerComponentIfNecessary(@Nullable BeanDefinition beanDefinition, ParserContext parserContext) {
+		// 如果生成的AnnotationAwareAspectJAutoProxyCreator的BeanDefinition成功，则将其封装到BeanComponentDefinition中，并且将其添加到ParserContext中
 		if (beanDefinition != null) {
-			parserContext.registerComponent(
-					new BeanComponentDefinition(beanDefinition, AopConfigUtils.AUTO_PROXY_CREATOR_BEAN_NAME));
+			parserContext.registerComponent(new BeanComponentDefinition(beanDefinition, AopConfigUtils.AUTO_PROXY_CREATOR_BEAN_NAME));
+
 		}
 	}
 

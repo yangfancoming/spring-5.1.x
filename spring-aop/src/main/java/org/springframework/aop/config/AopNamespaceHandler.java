@@ -49,7 +49,6 @@ public class AopNamespaceHandler extends NamespaceHandlerSupport {
 		// 对应 xml 配置文件中的 <aop:aspectj-autoproxy/> 标签
 		registerBeanDefinitionParser("aspectj-autoproxy", new AspectJAutoProxyBeanDefinitionParser());
 		registerBeanDefinitionDecorator("scoped-proxy", new ScopedProxyBeanDefinitionDecorator());
-
 		// Only in 2.0 XSD: moved to context namespace as of 2.1
 		registerBeanDefinitionParser("spring-configured", new SpringConfiguredBeanDefinitionParser());
 	}

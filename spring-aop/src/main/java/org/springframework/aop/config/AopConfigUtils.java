@@ -94,6 +94,9 @@ public abstract class AopConfigUtils {
 	private static BeanDefinition registerOrEscalateApcAsRequired(Class<?> cls, BeanDefinitionRegistry registry, @Nullable Object source) {
 		Assert.notNull(registry, "BeanDefinitionRegistry must not be null");
 		//工厂中是否已经注册了 org.springframework.aop.config.internalAutoProxyCreator
+		// 如果已经注册过AnnotationAwareAspectJAutoProxyCreator的Definition，如果其
+		// 和当前将要注册的BeanDefinition是同一个类型，则不再注册，如果不同，则判断其优先级比
+		// 当前将要注册的BeanDefinition要高，则将其类名设置为当前要注册的BeanDefinition的名称
 		if (registry.containsBeanDefinition(AUTO_PROXY_CREATOR_BEAN_NAME)) {
 			BeanDefinition apcDefinition = registry.getBeanDefinition(AUTO_PROXY_CREATOR_BEAN_NAME);
 			//如果已经有注册了 internalAutoProxyCreator，并且和入参传递的Class不是同一个Class，那么就根据优先级进行选择
@@ -111,7 +114,7 @@ public abstract class AopConfigUtils {
 			}
 			return null;
 		}
-
+		// 如果不存在已经注册的Aop的bean，则生成一个，并且设置其执行优先级为最高优先级，并且标识该bean为Spring的系统Bean，设置完之后则对该bean进行注册
 		// 如果没有注册 internalAutoProxyCreator ，组装一个 Bean Definition，以AspectJAwareAdvisorAutoProxyCreator 作为 bean Class，然后注册到工厂中
 		RootBeanDefinition beanDefinition = new RootBeanDefinition(cls);
 		beanDefinition.setSource(source);

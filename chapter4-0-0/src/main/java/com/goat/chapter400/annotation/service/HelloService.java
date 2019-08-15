@@ -9,7 +9,7 @@ package com.goat.chapter400.annotation.service;
  */
 public interface HelloService {
 
-   public String sayHiService1(String str);
+    String sayHiService1(String str);
 
 	String sayHiService2();
 }

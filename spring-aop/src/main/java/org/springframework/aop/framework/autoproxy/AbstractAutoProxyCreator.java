@@ -226,6 +226,11 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport imp
 	public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) {
 		Object cacheKey = getCacheKey(beanClass, beanName);
 
+		// 判断TargetSource缓存中是否包含当前bean，如果不包含，则判断当前bean是否是已经被代理的bean，
+		// 如果代理过，则不对当前传入的bean进行处理，如果没代理过，则判断当前bean是否为系统bean，或者是
+		// 切面逻辑不会包含的bean，如果是，则将当前bean缓存到advisedBeans中，否则继续往下执行。
+		// 经过这一步的处理之后，只有在TargetSource中没有进行缓存，并且应该被切面逻辑环绕，但是目前还未
+		// 生成代理对象的bean才会通过此方法。
 		if (!StringUtils.hasLength(beanName) || !this.targetSourcedBeans.contains(beanName)) {
 			if (this.advisedBeans.containsKey(cacheKey)) {
 				return null;
@@ -239,14 +244,19 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport imp
 		// Create proxy here if we have a custom TargetSource.
 		// Suppresses unnecessary default instantiation of the target bean:
 		// The TargetSource will handle target instances in a custom fashion.
+		// 获取封装当前bean的TargetSource对象，如果不存在，则直接退出当前方法，否则从TargetSource中获取当前bean对象，并且判断是否需要将切面逻辑应用在当前bean上。
 		TargetSource targetSource = getCustomTargetSource(beanClass, beanName);
 		if (targetSource != null) {
 			if (StringUtils.hasLength(beanName)) {
 				this.targetSourcedBeans.add(beanName);
 			}
+			// 获取能够应用当前bean的切面逻辑
 			Object[] specificInterceptors = getAdvicesAndAdvisorsForBean(beanClass, beanName, targetSource);
+			// 根据切面逻辑为当前bean生成代理对象
 			Object proxy = createProxy(beanClass, beanName, specificInterceptors, targetSource);
+			// 对生成的代理对象进行缓存
 			this.proxyTypes.put(cacheKey, proxy.getClass());
+			// 直接返回生成的代理对象，从而使后续bean的创建工作短路
 			return proxy;
 		}
 
