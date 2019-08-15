@@ -76,12 +76,13 @@ public class TransactionInterceptor extends TransactionAspectSupport implements 
 		  Work out the target class: may be {@code null}.
 		  The TransactionAttributeSource should be passed the target class
 		  as well as the method, which may be from an interface.
-		  因为这里的invocation.getThis可能是一个代理类，需要获取目标原生class。
+		  因为这里的invocation.getThis可能是一个代理类，需要获取目标原生class
+		 // 获取需要织入事务逻辑的目标类
 		*/
 		Class<?> targetClass = (invocation.getThis() != null ? AopUtils.getTargetClass(invocation.getThis()) : null);
-
 		// Adapt to TransactionAspectSupport's invokeWithinTransaction...
 		// 调用父类TransactionAspectSupport的invokeWithinTransaction方法,第三个参数是一个简易回调实现,用于继续方法调用链。
+		// 进行事务逻辑的织入
 		Object o = invokeWithinTransaction(invocation.getMethod(), targetClass, invocation::proceed);
 		return o;
 	}
