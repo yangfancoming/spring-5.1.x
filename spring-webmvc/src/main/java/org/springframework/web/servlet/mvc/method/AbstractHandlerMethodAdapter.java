@@ -52,6 +52,9 @@ public abstract class AbstractHandlerMethodAdapter extends WebContentGenerator i
 	 */
 	@Override
 	public final boolean supports(Object handler) {
+		// 判断当前handler是否为HandlerMethod类型，并且判断supportsInternal()方法返回值是否为true，
+		// 这里supportsInternal()方法是提供给子类实现的一个方法，对于RequestMappingHandlerAdapter
+		// 而言，其返回值始终是true，因为其只需要处理的handler是HandlerMethod类型的即可
 		return (handler instanceof HandlerMethod && supportsInternal((HandlerMethod) handler));
 	}
 
@@ -67,9 +70,7 @@ public abstract class AbstractHandlerMethodAdapter extends WebContentGenerator i
 	 */
 	@Override
 	@Nullable
-	public final ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
-
+	public final ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		return handleInternal(request, response, (HandlerMethod) handler);
 	}
 
@@ -84,8 +85,7 @@ public abstract class AbstractHandlerMethodAdapter extends WebContentGenerator i
 	 * @throws Exception in case of errors
 	 */
 	@Nullable
-	protected abstract ModelAndView handleInternal(HttpServletRequest request,
-			HttpServletResponse response, HandlerMethod handlerMethod) throws Exception;
+	protected abstract ModelAndView handleInternal(HttpServletRequest request,HttpServletResponse response, HandlerMethod handlerMethod) throws Exception;
 
 	/**
 	 * This implementation expects the handler to be an {@link HandlerMethod}.

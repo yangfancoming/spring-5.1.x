@@ -555,8 +555,7 @@ public class DispatcherServlet extends FrameworkServlet {
 			// We need to use the default.
 			this.localeResolver = getDefaultStrategy(context, LocaleResolver.class);
 			if (logger.isTraceEnabled()) {
-				logger.trace("No LocaleResolver '" + LOCALE_RESOLVER_BEAN_NAME +
-						"': using default [" + this.localeResolver.getClass().getSimpleName() + "]");
+				logger.trace("No LocaleResolver '" + LOCALE_RESOLVER_BEAN_NAME + "': using default [" + this.localeResolver.getClass().getSimpleName() + "]");
 			}
 		}
 	}
@@ -580,8 +579,7 @@ public class DispatcherServlet extends FrameworkServlet {
 			// We need to use the default.
 			this.themeResolver = getDefaultStrategy(context, ThemeResolver.class);
 			if (logger.isTraceEnabled()) {
-				logger.trace("No ThemeResolver '" + THEME_RESOLVER_BEAN_NAME +
-						"': using default [" + this.themeResolver.getClass().getSimpleName() + "]");
+				logger.trace("No ThemeResolver '" + THEME_RESOLVER_BEAN_NAME + "': using default [" + this.themeResolver.getClass().getSimpleName() + "]");
 			}
 		}
 	}
@@ -714,8 +712,7 @@ public class DispatcherServlet extends FrameworkServlet {
 	 */
 	private void initRequestToViewNameTranslator(ApplicationContext context) {
 		try {
-			this.viewNameTranslator =
-					context.getBean(REQUEST_TO_VIEW_NAME_TRANSLATOR_BEAN_NAME, RequestToViewNameTranslator.class);
+			this.viewNameTranslator = context.getBean(REQUEST_TO_VIEW_NAME_TRANSLATOR_BEAN_NAME, RequestToViewNameTranslator.class);
 			if (logger.isTraceEnabled()) {
 				logger.trace("Detected " + this.viewNameTranslator.getClass().getSimpleName());
 			}
@@ -727,8 +724,7 @@ public class DispatcherServlet extends FrameworkServlet {
 			// We need to use the default.
 			this.viewNameTranslator = getDefaultStrategy(context, RequestToViewNameTranslator.class);
 			if (logger.isTraceEnabled()) {
-				logger.trace("No RequestToViewNameTranslator '" + REQUEST_TO_VIEW_NAME_TRANSLATOR_BEAN_NAME +
-						"': using default [" + this.viewNameTranslator.getClass().getSimpleName() + "]");
+				logger.trace("No RequestToViewNameTranslator '" + REQUEST_TO_VIEW_NAME_TRANSLATOR_BEAN_NAME + "': using default [" + this.viewNameTranslator.getClass().getSimpleName() + "]");
 			}
 		}
 	}
@@ -790,8 +786,7 @@ public class DispatcherServlet extends FrameworkServlet {
 			// We need to use the default.
 			this.flashMapManager = getDefaultStrategy(context, FlashMapManager.class);
 			if (logger.isTraceEnabled()) {
-				logger.trace("No FlashMapManager '" + FLASH_MAP_MANAGER_BEAN_NAME +
-						"': using default [" + this.flashMapManager.getClass().getSimpleName() + "]");
+				logger.trace("No FlashMapManager '" + FLASH_MAP_MANAGER_BEAN_NAME + "': using default [" + this.flashMapManager.getClass().getSimpleName() + "]");
 			}
 		}
 	}
@@ -1018,6 +1013,7 @@ public class DispatcherServlet extends FrameworkServlet {
 
 				// Determine handler for the current request. 确定当前请求的处理程序 返回对应 controller 和 拦截器 // 解析请求，获取HandlerExecutionChain对象
 				//向HandlerMapping请求查找HandlerExecutionChain
+				// ① 获取处理器
 				mappedHandler = getHandler(processedRequest);
 				//如果HandlerExecutionChain为null，则没有能够进行处理的Handler，抛出异常
 				if (mappedHandler == null) {
@@ -1028,6 +1024,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				// Determine handler adapter for the current request. 确定当前请求的处理程序适配器(负责执行controller )
 				// 从HandlerExecutionChain对象获取HandlerAdapter对象，实际上是从HandlerMapping对象中获取
 				//根据查找到的Handler请求查找能够进行处理的HandlerAdapter
+				// ② 获取适配器
 				HandlerAdapter ha = getHandlerAdapter(mappedHandler.getHandler());
 
 				// Process last-modified header, if supported by the handler.

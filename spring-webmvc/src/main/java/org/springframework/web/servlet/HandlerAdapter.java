@@ -27,9 +27,6 @@ import org.springframework.lang.Nullable;
  * org.springframework.core.Ordered} interface to be able to specify a sorting
  * order (and thus a priority) for getting applied by the {@code DispatcherServlet}.
  * Non-Ordered instances get treated as lowest priority.
- *
- * @author Rod Johnson
-
  * @see org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter
  * @see org.springframework.web.servlet.handler.SimpleServletHandlerAdapter
  */
@@ -45,6 +42,7 @@ public interface HandlerAdapter {
 	 * }
 	 * @param handler handler object to check
 	 * @return whether or not this object can use the given handler
+	 * 用于判断当前HandlerAdapter是否能够处理当前请求
 	 */
 	boolean supports(Object handler);
 
@@ -59,6 +57,8 @@ public interface HandlerAdapter {
 	 * @throws Exception in case of errors
 	 * @return a ModelAndView object with the name of the view and the required
 	 * model data, or {@code null} if the request has been handled directly
+	 * 如果当前HandlerAdapter能够用于适配当前请求，那么就会处理当前请求中的
+	 * 诸如参数和返回值等信息，以便能够直接委托给具体的Handler处理
 	 */
 	@Nullable
 	ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception;
@@ -71,6 +71,8 @@ public interface HandlerAdapter {
 	 * @return the lastModified value for the given handler
 	 * @see javax.servlet.http.HttpServlet#getLastModified
 	 * @see org.springframework.web.servlet.mvc.LastModified#getLastModified
+	 *    获取当前请求的最后更改时间，主要用于供给浏览器判断当前请求是否修改过，
+	 *    从而判断是否可以直接使用之前缓存的结果
 	 */
 	long getLastModified(HttpServletRequest request, Object handler);
 
