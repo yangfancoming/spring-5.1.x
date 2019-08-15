@@ -10,7 +10,6 @@ import org.springframework.lang.Nullable;
 /**
  * Advisor driven by a {@link TransactionAttributeSource}, used to include
  * a transaction advice bean for methods that are transactional.
- *
 
  * @since 2.5.5
  * @see #setAdviceBeanName
@@ -24,6 +23,7 @@ public class BeanFactoryTransactionAttributeSourceAdvisor extends AbstractBeanFa
 	private TransactionAttributeSource transactionAttributeSource;
 
 	private final TransactionAttributeSourcePointcut pointcut = new TransactionAttributeSourcePointcut() {
+		// 将标签解析时注册的AnnotationTransactionAttributeSource返回
 		@Override
 		@Nullable
 		protected TransactionAttributeSource getTransactionAttributeSource() {

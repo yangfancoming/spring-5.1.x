@@ -22,12 +22,14 @@ abstract class TransactionAttributeSourcePointcut extends StaticMethodMatcherPoi
 	//  我们先来看一下切点的判定，spring通过切点的matches方法来判断是否需要对目标对象进行代理:
 	@Override
 	public boolean matches(Method method, Class<?> targetClass) {
-		if (TransactionalProxy.class.isAssignableFrom(targetClass) ||
-				PlatformTransactionManager.class.isAssignableFrom(targetClass) ||
-				PersistenceExceptionTranslator.class.isAssignableFrom(targetClass)) {
+		// 如果目标类不为空，并且是已经使用Transaction环绕后生成的类，则会将其过滤掉
+		if (TransactionalProxy.class.isAssignableFrom(targetClass) || PlatformTransactionManager.class.isAssignableFrom(targetClass) || PersistenceExceptionTranslator.class.isAssignableFrom(targetClass)) {
 			return false;
 		}
+		// 获取TransactionAttributeSource对象，这个方法也就是上面一个代码片段中实现的方法，
+		// 也就是说这个方法将返回AnnotationTransactionAttributeSource
 		TransactionAttributeSource tas = getTransactionAttributeSource();
+		// 通过TransactionAttributeSource获取事务属性配置，如果当前方法没有配置事务，则不对其进行环绕
 		return (tas == null || tas.getTransactionAttribute(method, targetClass) != null);
 	}
 
