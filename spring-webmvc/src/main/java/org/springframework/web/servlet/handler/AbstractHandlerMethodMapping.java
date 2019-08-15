@@ -40,9 +40,6 @@ import org.springframework.web.servlet.HandlerMapping;
  *
  * <p>For each registered handler method, a unique mapping is maintained with
  * subclasses defining the details of the mapping type {@code <T>}.
- *
- * @author Arjen Poutsma
- * @author Rossen Stoyanchev
 
  * @since 3.1
  * @param <T> the mapping for a {@link HandlerMethod} containing the conditions
@@ -62,8 +59,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 	 */
 	private static final String SCOPED_TARGET_NAME_PREFIX = "scopedTarget.";
 
-	private static final HandlerMethod PREFLIGHT_AMBIGUOUS_MATCH =
-			new HandlerMethod(new EmptyHandler(), ClassUtils.getMethod(EmptyHandler.class, "handle"));
+	private static final HandlerMethod PREFLIGHT_AMBIGUOUS_MATCH = new HandlerMethod(new EmptyHandler(), ClassUtils.getMethod(EmptyHandler.class, "handle"));
 
 	private static final CorsConfiguration ALLOW_CORS_CONFIG = new CorsConfiguration();
 
@@ -344,13 +340,18 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 	 */
 	@Override
 	protected HandlerMethod getHandlerInternal(HttpServletRequest request) throws Exception {
+		// 获取当前request的URI
 		String lookupPath = getUrlPathHelper().getLookupPathForRequest(request);
+		// 获取注册的Mapping的读锁
 		this.mappingRegistry.acquireReadLock();
 		try {
+			// 通过path和request查找具体的HandlerMethod
 			HandlerMethod handlerMethod = lookupHandlerMethod(lookupPath, request);
+			// 如果获取到的bean是一个String类型的，则在BeanFactory中查找该bean，并将其封装为一个HandlerMethod对象
 			return (handlerMethod != null ? handlerMethod.createWithResolvedBean() : null);
 		}
 		finally {
+			// 释放当前注册的Mapping的读锁
 			this.mappingRegistry.releaseReadLock();
 		}
 	}
@@ -367,20 +368,33 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 	@Nullable
 	protected HandlerMethod lookupHandlerMethod(String lookupPath, HttpServletRequest request) throws Exception {
 		List<Match> matches = new ArrayList<>();
+		// 通过uri直接在注册的RequestMapping中获取对应的RequestMappingInfo列表，需要注意的是，
+		// 这里进行查找的方式只是通过url进行查找，但是具体哪些RequestMappingInfo是匹配的，还需要进一步过滤
 		List<T> directPathMatches = this.mappingRegistry.getMappingsByUrl(lookupPath);
 		if (directPathMatches != null) {
+			// 对获取到的RequestMappingInfo进行进一步过滤，并且将过滤结果封装为一个Match列表
 			addMatchingMappings(directPathMatches, matches, request);
 		}
 		if (matches.isEmpty()) {
+			// 如果无法通过uri进行直接匹配，则对所有的注册的RequestMapping进行匹配，这里无法通过uri
+			// 匹配的情况主要有三种：
+			// ①在RequestMapping中定义的是PathVariable，如/user/detail/{id}；
+			// ②在RequestMapping中定义了问号表达式，如/user/?etail；
+			// ③在RequestMapping中定义了*或**匹配，如/user/detail/**
 			// No choice but to go through all mappings...
 			addMatchingMappings(this.mappingRegistry.getMappings().keySet(), matches, request);
 		}
 
 		if (!matches.isEmpty()) {
+			// 对匹配的结果进行排序，获取相似度最高的一个作为结果返回，这里对相似度的判断时，
+			// 会判断前两个是否相似度是一样的，如果是一样的，则直接抛出异常，如果不相同，则直接返回最高的一个
 			Comparator<Match> comparator = new MatchComparator(getMappingComparator(request));
 			matches.sort(comparator);
+			// 获取匹配程度最高的一个匹配结果
 			Match bestMatch = matches.get(0);
 			if (matches.size() > 1) {
+				// 如果匹配结果不止一个，首先会判断是否是跨域请求，如果是，
+				// 则返回PREFLIGHT_AMBIGUOUS_MATCH，如果不是，则会判断前两个匹配程度是否相同，如果相同则抛出异常
 				if (logger.isTraceEnabled()) {
 					logger.trace(matches.size() + " matching mappings: " + matches);
 				}
@@ -392,15 +406,17 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 					Method m1 = bestMatch.handlerMethod.getMethod();
 					Method m2 = secondBestMatch.handlerMethod.getMethod();
 					String uri = request.getRequestURI();
-					throw new IllegalStateException(
-							"Ambiguous handler methods mapped for '" + uri + "': {" + m1 + ", " + m2 + "}");
+					throw new IllegalStateException("Ambiguous handler methods mapped for '" + uri + "': {" + m1 + ", " + m2 + "}");
 				}
 			}
 			request.setAttribute(BEST_MATCHING_HANDLER_ATTRIBUTE, bestMatch.handlerMethod);
+			// 这里主要是对匹配结果的一个处理，主要包含对传入参数和返回的MediaType的处理
 			handleMatch(bestMatch.mapping, lookupPath, request);
 			return bestMatch.handlerMethod;
 		}
 		else {
+			// 如果匹配结果是空的，则对所有注册的Mapping进行遍历，判断当前request具体是哪种情况导致
+			// 的无法匹配：①RequestMethod无法匹配；②Consumes无法匹配；③Produces无法匹配； ④Params无法匹配
 			return handleNoMatch(this.mappingRegistry.getMappings().keySet(), lookupPath, request);
 		}
 	}
@@ -432,9 +448,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 	 * @throws ServletException in case of errors
 	 */
 	@Nullable
-	protected HandlerMethod handleNoMatch(Set<T> mappings, String lookupPath, HttpServletRequest request)
-			throws Exception {
-
+	protected HandlerMethod handleNoMatch(Set<T> mappings, String lookupPath, HttpServletRequest request) throws Exception {
 		return null;
 	}
 
@@ -586,7 +600,6 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 				if (corsConfig != null) {
 					this.corsLookup.put(handlerMethod, corsConfig);
 				}
-
 				this.registry.put(mapping, new MappingRegistration<>(mapping, handlerMethod, directUrls, name));
 			}
 			finally {
@@ -599,8 +612,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 			if (handlerMethod != null && !handlerMethod.equals(newHandlerMethod)) {
 				throw new IllegalStateException(
 						"Ambiguous mapping. Cannot map '" +	newHandlerMethod.getBean() + "' method \n" +
-						newHandlerMethod + "\nto " + mapping + ": There is already '" +
-						handlerMethod.getBean() + "' bean method\n" + handlerMethod + " mapped.");
+						newHandlerMethod + "\nto " + mapping + ": There is already '" + handlerMethod.getBean() + "' bean method\n" + handlerMethod + " mapped.");
 			}
 		}
 
@@ -641,7 +653,6 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 				}
 
 				this.mappingLookup.remove(definition.getMapping());
-
 				for (String url : definition.getDirectUrls()) {
 					List<T> list = this.urlLookup.get(url);
 					if (list != null) {
@@ -651,9 +662,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 						}
 					}
 				}
-
 				removeMappingName(definition);
-
 				this.corsLookup.remove(definition.getHandlerMethod());
 			}
 			finally {
@@ -697,9 +706,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 		@Nullable
 		private final String mappingName;
 
-		public MappingRegistration(T mapping, HandlerMethod handlerMethod,
-				@Nullable List<String> directUrls, @Nullable String mappingName) {
-
+		public MappingRegistration(T mapping, HandlerMethod handlerMethod,@Nullable List<String> directUrls, @Nullable String mappingName) {
 			Assert.notNull(mapping, "Mapping must not be null");
 			Assert.notNull(handlerMethod, "HandlerMethod must not be null");
 			this.mapping = mapping;

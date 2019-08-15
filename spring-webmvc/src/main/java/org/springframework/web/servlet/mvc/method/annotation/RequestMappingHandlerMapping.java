@@ -35,9 +35,11 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMappi
 
 /**
  * Creates {@link RequestMappingInfo} instances from type and method-level
- * {@link RequestMapping @RequestMapping} annotations in
- * {@link Controller @Controller} classes.
-
+ * {@link RequestMapping @RequestMapping} annotations in {@link Controller @Controller} classes.
+ *
+ * 该类的作用有两个：
+ * 1.通过request查找对应的HandlerMethod，即当前request具体是由Controller中的哪个方法进行处理；
+ * 2.查找当前系统中的Interceptor，将其与HandlerMethod封装为一个HandlerExecutionChain
  * @since 3.1
  */
 public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMapping implements MatchableHandlerMapping, EmbeddedValueResolverAware {

@@ -41,9 +41,7 @@ import org.springframework.web.util.UrlPathHelper;
  * <p>Note: This base class does <i>not</i> support exposure of the
  * {@link #PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE}. Support for this attribute
  * is up to concrete subclasses, typically based on request URL mappings.
- *
 
- * @author Rossen Stoyanchev
  * @since 07.04.2003
  * @see #getHandlerInternal
  * @see #setDefaultHandler
@@ -53,8 +51,7 @@ import org.springframework.web.util.UrlPathHelper;
  * @see #setInterceptors
  * @see org.springframework.web.servlet.HandlerInterceptor
  */
-public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
-		implements HandlerMapping, Ordered, BeanNameAware {
+public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport implements HandlerMapping, Ordered, BeanNameAware {
 
 	@Nullable
 	private Object defaultHandler;
@@ -387,8 +384,12 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	@Override
 	@Nullable
 	public final HandlerExecutionChain getHandler(HttpServletRequest request) throws Exception {
+		// 通过request获取具体的处理bean，这里handler可能有两种类型：HandlerMethod和String。
+		// 如果是String类型，那么就在BeanFactory中查找该String类型的bean，需要注意的是，返回的
+		// bean如果是需要使用RequestMappingHandlerAdapter处理，那么也必须是HandlerMethod类型的
 		Object handler = getHandlerInternal(request);
 		if (handler == null) {
+			// 如果找不到处理方法，则获取自定义的默认handler
 			handler = getDefaultHandler();
 		}
 		if (handler == null) {
@@ -396,9 +397,11 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 		}
 		// Bean name or resolved handler?
 		if (handler instanceof String) {
+			// 如果获取的handler是String类型的，则在当前BeanFactory中获取该名称的bean，并将其作为handler返回
 			String handlerName = (String) handler;
 			handler = obtainApplicationContext().getBean(handlerName);
 		}
+		// 获取当前系统中配置的Interceptor，将其与handler一起封装为一个HandlerExecutionChain
 		HandlerExecutionChain executionChain = getHandlerExecutionChain(handler, request);
 		if (logger.isTraceEnabled()) {
 			logger.trace("Mapped to " + handler);
@@ -406,14 +409,13 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 		else if (logger.isDebugEnabled() && !request.getDispatcherType().equals(DispatcherType.ASYNC)) {
 			logger.debug("Mapped to " + executionChain.getHandler());
 		}
-
+		// 这里CorsUtils.isCorsRequest()方法判断的是当前请求是否为一个跨域的请求，如果是一个跨域的请求，则将跨域相关的配置也一并封装到HandlerExecutionChain中
 		if (CorsUtils.isCorsRequest(request)) {
 			CorsConfiguration globalConfig = this.corsConfigurationSource.getCorsConfiguration(request);
 			CorsConfiguration handlerConfig = getCorsConfiguration(handler, request);
 			CorsConfiguration config = (globalConfig != null ? globalConfig.combine(handlerConfig) : handlerConfig);
 			executionChain = getCorsHandlerExecutionChain(request, executionChain, config);
 		}
-
 		return executionChain;
 	}
 
@@ -437,8 +439,7 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	protected abstract Object getHandlerInternal(HttpServletRequest request) throws Exception;
 
 	/**
-	 * Build a {@link HandlerExecutionChain} for the given handler, including
-	 * applicable interceptors.
+	 * Build a {@link HandlerExecutionChain} for the given handler, including applicable interceptors.
 	 * <p>The default implementation builds a standard {@link HandlerExecutionChain}
 	 * with the given handler, the handler mapping's common interceptors, and any
 	 * {@link MappedInterceptor MappedInterceptors} matching to the current request URL. Interceptors
@@ -446,8 +447,7 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	 * in order to extend/rearrange the list of interceptors.
 	 * <p><b>NOTE:</b> The passed-in handler object may be a raw handler or a
 	 * pre-built {@link HandlerExecutionChain}. This method should handle those
-	 * two cases explicitly, either building a new {@link HandlerExecutionChain}
-	 * or extending the existing chain.
+	 * two cases explicitly, either building a new {@link HandlerExecutionChain} or extending the existing chain.
 	 * <p>For simply adding an interceptor in a custom subclass, consider calling
 	 * {@code super.getHandlerExecutionChain(handler, request)} and invoking
 	 * {@link HandlerExecutionChain#addInterceptor} on the returned chain object.
@@ -457,10 +457,12 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	 * @see #getAdaptedInterceptors()
 	 */
 	protected HandlerExecutionChain getHandlerExecutionChain(Object handler, HttpServletRequest request) {
-		HandlerExecutionChain chain = (handler instanceof HandlerExecutionChain ?
-				(HandlerExecutionChain) handler : new HandlerExecutionChain(handler));
 
+		HandlerExecutionChain chain = (handler instanceof HandlerExecutionChain ? (HandlerExecutionChain) handler : new HandlerExecutionChain(handler));
+		// 获取当前request的URI，用于MappedInterceptor的匹配
 		String lookupPath = this.urlPathHelper.getLookupPathForRequest(request);
+		// 对当前所有注册的Interceptor进行遍历，如果其是MappedInterceptor类型，则调用其matches()
+		// 方法，判断当前Interceptor是否能够应用于该request，如果可以，则添加到HandlerExecutionChain中
 		for (HandlerInterceptor interceptor : this.adaptedInterceptors) {
 			if (interceptor instanceof MappedInterceptor) {
 				MappedInterceptor mappedInterceptor = (MappedInterceptor) interceptor;
@@ -469,6 +471,7 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 				}
 			}
 			else {
+				// 如果当前Interceptor不是MappedInterceptor类型，则直接将其添加到HandlerExecutionChain中
 				chain.addInterceptor(interceptor);
 			}
 		}

@@ -202,37 +202,50 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 	@Override
 	@Nullable
 	public RequestMappingInfo getMatchingCondition(HttpServletRequest request) {
+
+		// 对于以下几个判断，如果匹配上了，那么其返回值都不会为空，因而这里会对每个返回值都进行判断，
+		// 如果有任意一个为空，则说明没匹配上，那么就返回null
+
+
+		// 判断request请求的类型是否与当前RequestMethod匹配
 		RequestMethodsRequestCondition methods = this.methodsCondition.getMatchingCondition(request);
 		if (methods == null) {
 			return null;
 		}
+		// 判断request请求的参数是否与RequestMapping中params参数配置的一致
 		ParamsRequestCondition params = this.paramsCondition.getMatchingCondition(request);
 		if (params == null) {
 			return null;
 		}
+		// 判断request请求的headers是否与RequestMapping中headers参数配置的一致
 		HeadersRequestCondition headers = this.headersCondition.getMatchingCondition(request);
 		if (headers == null) {
 			return null;
 		}
+		// 判断request的请求体类型是否与RequestMapping中配置的consumes参数配置的一致
 		ConsumesRequestCondition consumes = this.consumesCondition.getMatchingCondition(request);
 		if (consumes == null) {
 			return null;
 		}
+		// 判断当前RequestMapping将要返回的请求体类型是否与request中Accept的header指定的一致
 		ProducesRequestCondition produces = this.producesCondition.getMatchingCondition(request);
 		if (produces == null) {
 			return null;
 		}
+
+		// 对于前面的匹配，都是一些静态属性的匹配，其中最重要的uri的匹配，主要是正则匹配，就是在下面这个方法中进行的
 		PatternsRequestCondition patterns = this.patternsCondition.getMatchingCondition(request);
 		if (patterns == null) {
+			// 如果URI没匹配上，则返回null
 			return null;
 		}
+		// 这里主要是对用户自定义的匹配条件进行匹配
 		RequestConditionHolder custom = this.customConditionHolder.getMatchingCondition(request);
 		if (custom == null) {
 			return null;
 		}
-
-		return new RequestMappingInfo(this.name, patterns,
-				methods, params, headers, consumes, produces, custom.getCondition());
+		// 如果上述所有条件都匹配上了，那么就将匹配结果封装为一个RequestMappingInfo返回
+		return new RequestMappingInfo(this.name, patterns,methods, params, headers, consumes, produces, custom.getCondition());
 	}
 
 	/**
