@@ -22,7 +22,6 @@ import org.springframework.util.ClassUtils;
  * <p><b>Note:</b> When chaining ViewResolvers, an InternalResourceViewResolver
  * always needs to be last, as it will attempt to resolve any view name,
  * no matter whether the underlying resource actually exists.
- *
 
  * @since 17.02.2003
  * @see #setViewClass
@@ -34,8 +33,7 @@ import org.springframework.util.ClassUtils;
  */
 public class InternalResourceViewResolver extends UrlBasedViewResolver {
 
-	private static final boolean jstlPresent = ClassUtils.isPresent(
-			"javax.servlet.jsp.jstl.core.Config", InternalResourceViewResolver.class.getClassLoader());
+	private static final boolean jstlPresent = ClassUtils.isPresent("javax.servlet.jsp.jstl.core.Config", InternalResourceViewResolver.class.getClassLoader());
 
 	@Nullable
 	private Boolean alwaysInclude;

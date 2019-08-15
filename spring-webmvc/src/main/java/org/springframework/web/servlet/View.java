@@ -23,9 +23,6 @@ import org.springframework.lang.Nullable;
  * <p>Views should be beans. They are likely to be instantiated as beans by a ViewResolver.
  * As this interface is stateless, view implementations should be thread-safe.
  *
- * @author Rod Johnson
- * @author Arjen Poutsma
- * @author Rossen Stoyanchev
  * @see org.springframework.web.servlet.view.AbstractView
  * @see org.springframework.web.servlet.view.InternalResourceView
  */
@@ -58,10 +55,9 @@ public interface View {
 
 	/**
 	 * Return the content type of the view, if predetermined.
-	 * <p>Can be used to check the view's content type upfront,
-	 * i.e. before an actual rendering attempt.
-	 * @return the content type String (optionally including a character set),
-	 * or {@code null} if not predetermined
+	 * <p>Can be used to check the view's content type upfront,i.e. before an actual rendering attempt.
+	 * @return the content type String (optionally including a character set), or {@code null} if not predetermined
+	 * // 获取返回值的contentType
 	 */
 	@Nullable
 	default String getContentType() {
@@ -78,8 +74,8 @@ public interface View {
 	 * @param request current HTTP request
 	 * @param response he HTTP response we are building
 	 * @throws Exception if rendering failed
+	 *  // 通过用户提供的模型数据与视图信息渲染视图
 	 */
-	void render(@Nullable Map<String, ?> model, HttpServletRequest request, HttpServletResponse response)
-			throws Exception;
+	void render(@Nullable Map<String, ?> model, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

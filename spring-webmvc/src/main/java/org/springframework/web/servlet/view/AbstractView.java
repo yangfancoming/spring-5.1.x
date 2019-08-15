@@ -288,17 +288,19 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	 * @see #renderMergedOutputModel
 	 */
 	@Override
-	public void render(@Nullable Map<String, ?> model, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public void render(@Nullable Map<String, ?> model, HttpServletRequest request,HttpServletResponse response) throws Exception {
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("View " + formatViewName() +
-					", model " + (model != null ? model : Collections.emptyMap()) +
+			logger.debug("View " + formatViewName() + ", model " + (model != null ? model : Collections.emptyMap()) +
 					(this.staticAttributes.isEmpty() ? "" : ", static attributes " + this.staticAttributes));
 		}
-
+		// 这里主要是将request中pathVariable，staticAttribute与用户返回的model属性
+		// 合并为一个Map对象，以供给后面对视图的渲染使用
 		Map<String, Object> mergedModel = createMergedOutputModel(model, request, response);
+		// 判断当前View对象的类型是否为文件下载类型，如果是文件下载类型，则设置response的
+		// Pragma和Cache-Control等属性值
 		prepareResponse(request, response);
+		// 通过合并的model数据以及视图地址进行视图的渲染
 		renderMergedOutputModel(mergedModel, getRequestToExpose(request), response);
 	}
 
@@ -411,9 +413,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	 * @param response current HTTP response
 	 * @throws Exception if rendering failed
 	 */
-	protected abstract void renderMergedOutputModel(
-			Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception;
-
+	protected abstract void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 	/**
 	 * Expose the model objects in the given map as request attributes.
@@ -422,9 +422,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	 * @param model a Map of model objects to expose
 	 * @param request current HTTP request
 	 */
-	protected void exposeModelAsRequestAttributes(Map<String, Object> model,
-			HttpServletRequest request) throws Exception {
-
+	protected void exposeModelAsRequestAttributes(Map<String, Object> model,HttpServletRequest request) throws Exception {
 		model.forEach((name, value) -> {
 			if (value != null) {
 				request.setAttribute(name, value);

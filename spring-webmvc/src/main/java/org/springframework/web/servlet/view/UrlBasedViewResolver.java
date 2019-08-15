@@ -511,8 +511,11 @@ public class UrlBasedViewResolver extends AbstractCachingViewResolver implements
 	 */
 	@Override
 	protected View loadView(String viewName, Locale locale) throws Exception {
+		// 使用逻辑视图名按照指定规则生成View对象
 		AbstractUrlBasedView view = buildView(viewName);
+		// 应用声明周期函数，也就是调用View对象的初始化函数和Spring用于切入bean创建的 Processor和Aware函数
 		View result = applyLifecycleMethods(viewName, view);
+		// 检查view的准确性，这里默认始终返回true
 		return (view.checkResource(locale) ? result : null);
 	}
 
@@ -529,30 +532,36 @@ public class UrlBasedViewResolver extends AbstractCachingViewResolver implements
 	 * @return the View instance
 	 * @throws Exception if the view couldn't be resolved
 	 * @see #loadView(String, java.util.Locale)
+	 * // 这里buildView()方法主要是根据逻辑视图名生成一个View对象
 	 */
 	protected AbstractUrlBasedView buildView(String viewName) throws Exception {
+		// 对于InternalResourceViewResolver而言，其返回的View对象的具体类型是InternalResourceView
 		Class<?> viewClass = getViewClass();
 		Assert.state(viewClass != null, "No view class");
-
+		// 使用反射生成InternalResourceView对象实例
 		AbstractUrlBasedView view = (AbstractUrlBasedView) BeanUtils.instantiateClass(viewClass);
+		// 这里可以看出，InternalResourceViewResolver获取目标视图的方式就是将用户返回的
+		// viewName与prefix和suffix进行拼接，以供View对象直接读取
 		view.setUrl(getPrefix() + viewName + getSuffix());
-
+		// 设置View的contentType属性
 		String contentType = getContentType();
 		if (contentType != null) {
 			view.setContentType(contentType);
 		}
-
+		// 设置contextAttribute和attributeMap等属性
 		view.setRequestContextAttribute(getRequestContextAttribute());
 		view.setAttributesMap(getAttributesMap());
-
+		// 这了pathVariables表示request请求url中的属性，这里主要是设置是否将这些属性暴露到视图中
 		Boolean exposePathVariables = getExposePathVariables();
 		if (exposePathVariables != null) {
 			view.setExposePathVariables(exposePathVariables);
 		}
+		// 这里设置的是是否将Spring的bean暴露在视图中，以供给前端调用
 		Boolean exposeContextBeansAsAttributes = getExposeContextBeansAsAttributes();
 		if (exposeContextBeansAsAttributes != null) {
 			view.setExposeContextBeansAsAttributes(exposeContextBeansAsAttributes);
 		}
+		// 设置需要暴露给前端页面的bean名称
 		String[] exposedContextBeanNames = getExposedContextBeanNames();
 		if (exposedContextBeanNames != null) {
 			view.setExposedContextBeanNames(exposedContextBeanNames);
@@ -577,6 +586,7 @@ public class UrlBasedViewResolver extends AbstractCachingViewResolver implements
 	protected View applyLifecycleMethods(String viewName, AbstractUrlBasedView view) {
 		ApplicationContext context = getApplicationContext();
 		if (context != null) {
+			// 对生成的View对象应用初始化方法，主要包括InitializingBean.afterProperties()和一些Processor，Aware方法
 			Object initialized = context.getAutowireCapableBeanFactory().initializeBean(view, viewName);
 			if (initialized instanceof View) {
 				return (View) initialized;

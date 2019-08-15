@@ -131,10 +131,15 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 	@Override
 	@Nullable
 	public View resolveViewName(String viewName, Locale locale) throws Exception {
+		// 判断当前ViewResolver是否设置了需要对需要解析的视图进行缓存，如果不需要缓存，则每次请求时都会重新解析生成视图对象
 		if (!isCache()) {
+			// 根据视图名称和用户地区信息创建View对象
 			return createView(viewName, locale);
 		}
 		else {
+			// 如果可以对视图进行缓存，则首先获取缓存使用的key，然后从缓存中获取该key，如果没有取到，
+			// 则对其进行加锁，再次获取，如果还是没有取到，则创建一个新的View，并且对其进行缓存。
+			// 这里使用的是双检查法来判断缓存中是否存在对应的逻辑视图。
 			Object cacheKey = getCacheKey(viewName, locale);
 			View view = this.viewAccessCache.get(cacheKey);
 			if (view == null) {
@@ -143,6 +148,7 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 					if (view == null) {
 						// Ask the subclass to create the View object.
 						view = createView(viewName, locale);
+						// 这里cacheUnresolved指的是是否缓存默认的空视图，UNRESOLVED_VIEW是一个没有任何内容的View
 						if (view == null && this.cacheUnresolved) {
 							view = UNRESOLVED_VIEW;
 						}

@@ -38,10 +38,7 @@ import org.springframework.web.util.WebUtils;
  * Every view name returned from a handler will be translated to a JSP
  * resource (for example: "myView" -> "/WEB-INF/jsp/myView.jsp"), using
  * this view class by default.
- *
- * @author Rod Johnson
 
- * @author Rob Harrop
  * @see javax.servlet.RequestDispatcher#forward
  * @see javax.servlet.RequestDispatcher#include
  * @see javax.servlet.ServletResponse#flushBuffer
@@ -53,7 +50,6 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	private boolean alwaysInclude = false;
 
 	private boolean preventDispatchLoop = false;
-
 
 	/**
 	 * Constructor for use as a bean.
@@ -120,25 +116,31 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	 * This includes setting the model as request attributes.
 	 */
 	@Override
-	protected void renderMergedOutputModel(
-			Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		// Expose the model object as request attributes.
+		// 这里主要是对model进行遍历，将其key和value设置到request中，当做request的一个属性供给页面调用
 		exposeModelAsRequestAttributes(model, request);
 
-		// Expose helpers as request attributes, if any.
+		// Expose helpers as request attributes, if any.// 提供的一个hook方法，默认是空实现，用于用户进行request属性的自定义使用
 		exposeHelpers(request);
 
-		// Determine the path for the request dispatcher.
+		// Determine the path for the request dispatcher. // 检查当前是否存在循环类型的视图名称解析，主要是根据相对路径进行判断视图名是无法解析的
 		String dispatcherPath = prepareForRendering(request, response);
 
+		// 获取当前request的RequestDispatcher对象，该对象有两个方法：include()和forward()，
+		// 用于对当前的request进行转发，其实也就是将当前的request转发到另一个url，这里的另一个
+		// url就是要解析的视图地址，也就是说进行视图解析的时候请求的对于文件的解析实际上相当于
+		// 构造了另一个（文件）请求，在该请求中对文件内容进行渲染，从而得到最终的文件。这里的
+		// include()方法表示将目标文件引入到当前文件中，与jsp中的include标签作用相同；
+		// forward()请求则表示将当前请求转发到另一个请求中，也就是目标文件路径，这种转发并不会
+		// 改变用户浏览器地址栏的请求地址。
 		// Obtain a RequestDispatcher for the target resource (typically a JSP).
 		RequestDispatcher rd = getRequestDispatcher(request, dispatcherPath);
 		if (rd == null) {
-			throw new ServletException("Could not get RequestDispatcher for [" + getUrl() +
-					"]: Check that the corresponding file exists within your web application archive!");
+			throw new ServletException("Could not get RequestDispatcher for [" + getUrl() + "]: Check that the corresponding file exists within your web application archive!");
 		}
-
+		// 判断当前是否为include请求，如果是，则调用RequestDispatcher.include()方法进行文件引入
 		// If already included or response already committed, perform include, else forward.
 		if (useInclude(request, response)) {
 			response.setContentType(getContentType());
@@ -153,6 +155,7 @@ public class InternalResourceView extends AbstractUrlBasedView {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Forwarding to [" + getUrl() + "]");
 			}
+			// 如果当前不是include()请求，则直接使用forward请求将当前请求转发到目标文件路径中，从而渲染该视图
 			rd.forward(request, response);
 		}
 	}
@@ -183,9 +186,7 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	 * @throws Exception if preparations failed
 	 * @see #getUrl()
 	 */
-	protected String prepareForRendering(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-
+	protected String prepareForRendering(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String path = getUrl();
 		Assert.state(path != null, "'url' not set");
 
