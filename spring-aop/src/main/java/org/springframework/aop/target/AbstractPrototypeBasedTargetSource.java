@@ -21,9 +21,6 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
  * <p>Such TargetSources must run in a {@link BeanFactory}, as it needs to
  * call the {@code getBean} method to create a new prototype instance.
  * Therefore, this base class extends {@link AbstractBeanFactoryBasedTargetSource}.
- *
- * @author Rod Johnson
-
  * @see org.springframework.beans.factory.BeanFactory#getBean
  * @see PrototypeTargetSource
  * @see ThreadLocalTargetSource
@@ -32,6 +29,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 @SuppressWarnings("serial")
 public abstract class AbstractPrototypeBasedTargetSource extends AbstractBeanFactoryBasedTargetSource {
 
+	// 继承自BeanFactoryAware接口，将当前Spring使用的BeanFactory传进来
 	@Override
 	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
 		super.setBeanFactory(beanFactory);
@@ -39,14 +37,16 @@ public abstract class AbstractPrototypeBasedTargetSource extends AbstractBeanFac
 		// Check whether the target bean is defined as prototype.
 		if (!beanFactory.isPrototype(getTargetBeanName())) {
 			throw new BeanDefinitionStoreException(
-					"Cannot use prototype-based TargetSource against non-prototype bean with name '" +
-					getTargetBeanName() + "': instances would not be independent");
+					"Cannot use prototype-based TargetSource against non-prototype bean with name '" + getTargetBeanName() + "': instances would not be independent");
 		}
 	}
 
 	/**
 	 * Subclasses should call this method to create a new prototype instance.
 	 * @throws BeansException if bean creation failed
+	 *  使用BeanFactory获取目标bean的对象，getTargetBeanName()方法将返回目标bean的名称，
+	 *  由于目标bean是prototype类型的，因而这里也就可以通过BeanFactory获取prototype类型的bean
+	 *  这也是PrototypeTargetSource能够生成prototype类型的bean的根本原因
 	 */
 	protected Object newPrototypeInstance() throws BeansException {
 		if (logger.isDebugEnabled()) {
@@ -58,6 +58,8 @@ public abstract class AbstractPrototypeBasedTargetSource extends AbstractBeanFac
 	/**
 	 * Subclasses should call this method to destroy an obsolete prototype instance.
 	 * @param target the bean instance to destroy
+	 *  如果生成的bean使用完成，则会调用当前方法销毁目标bean，由于目标bean可能实现了DisposableBean
+	 *  接口，因而这里销毁bean的方式就是调用其实现的该接口的方法，从而销毁目标bean
 	 */
 	protected void destroyPrototypeInstance(Object target) {
 		if (logger.isDebugEnabled()) {
@@ -82,8 +84,8 @@ public abstract class AbstractPrototypeBasedTargetSource extends AbstractBeanFac
 	//---------------------------------------------------------------------
 
 	private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
-		throw new NotSerializableException("A prototype-based TargetSource itself is not deserializable - " +
-				"just a disconnected SingletonTargetSource or EmptyTargetSource is");
+		throw new NotSerializableException("A prototype-based TargetSource itself is not deserializable - just a disconnected SingletonTargetSource or EmptyTargetSource is");
+
 	}
 
 	/**
@@ -101,8 +103,7 @@ public abstract class AbstractPrototypeBasedTargetSource extends AbstractBeanFac
 		try {
 			// Create disconnected SingletonTargetSource/EmptyTargetSource.
 			Object target = getTarget();
-			return (target != null ? new SingletonTargetSource(target) :
-					EmptyTargetSource.forClass(getTargetClass()));
+			return (target != null ? new SingletonTargetSource(target) : EmptyTargetSource.forClass(getTargetClass()));
 		}
 		catch (Exception ex) {
 			String msg = "Cannot get target for disconnecting TargetSource [" + this + "]";

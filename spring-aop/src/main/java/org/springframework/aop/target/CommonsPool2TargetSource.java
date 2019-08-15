@@ -33,12 +33,7 @@ import org.springframework.util.Assert;
  * corresponding Commons Pool defaults.
  *
  * <p>Compatible with Apache Commons Pool 2.4, as of Spring 4.2.
- *
- * @author Rod Johnson
- * @author Rob Harrop
 
- * @author Stephane Nicoll
- * @author Kazuki Shimizu
  * @since 4.2
  * @see GenericObjectPool
  * @see #createObjectPool()
@@ -66,6 +61,7 @@ public class CommonsPool2TargetSource extends AbstractPoolingTargetSource implem
 
 	/**
 	 * The Apache Commons {@code ObjectPool} used to pool target objects.
+	 *  // 保存池化对象的池
 	 */
 	@Nullable
 	private ObjectPool pool;
@@ -184,6 +180,7 @@ public class CommonsPool2TargetSource extends AbstractPoolingTargetSource implem
 	/**
 	 * Creates and holds an ObjectPool instance.
 	 * @see #createObjectPool()
+	 * // 创建池化对象
 	 */
 	@Override
 	protected final void createPool() {
@@ -214,6 +211,7 @@ public class CommonsPool2TargetSource extends AbstractPoolingTargetSource implem
 
 	/**
 	 * Borrows an object from the {@code ObjectPool}.
+	 * // 从池中请求目标对象
 	 */
 	@Override
 	public Object getTarget() throws Exception {
@@ -223,6 +221,7 @@ public class CommonsPool2TargetSource extends AbstractPoolingTargetSource implem
 
 	/**
 	 * Returns the specified object to the underlying {@code ObjectPool}.
+	 *  将目标对象归还到池中
 	 */
 	@Override
 	public void releaseTarget(Object target) throws Exception {
