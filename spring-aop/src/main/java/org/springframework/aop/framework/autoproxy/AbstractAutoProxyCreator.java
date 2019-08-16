@@ -282,6 +282,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport imp
 	 * Create a proxy with the configured interceptors if the bean is identified as one to proxy by the subclass.
 	 * 如果bean被子类标识为代理，则使用配置的拦截器创建一个代理。
 	 * @see #getAdvicesAndAdvisorsForBean
+	 *  bean 初始化后置处理方法
 	 */
 	@Override
 	public Object postProcessAfterInitialization(@Nullable Object bean, String beanName) {
@@ -292,7 +293,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport imp
 			Object cacheKey = getCacheKey(bean.getClass(), beanName);
 			// 判断当前bean是否正在被代理，如果正在被代理则不进行封装
 			if (this.earlyProxyReferences.remove(cacheKey) != bean) {
-				// 对当前bean进行封装
+				// 对当前bean进行封装  // 如果需要，为 bean 生成代理对象
 				return wrapIfNecessary(bean, beanName, cacheKey);
 			}
 		}
@@ -340,25 +341,36 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport imp
 		if (Boolean.FALSE.equals(this.advisedBeans.get(cacheKey))) {
 			return bean;
 		}
-		// 这里isInfrastructureClass()用于判断当前bean是否为Spring系统自带的bean，自带的bean是不用进行代理的；shouldSkip()则用于判断当前bean是否应该被略过
+		//  如果是基础设施类（Pointcut、Advice、Advisor 等接口的实现类），或是应该跳过的类，则不应该生成代理，此时直接返回 bean
+		//  这里isInfrastructureClass()用于判断当前bean是否为Spring系统自带的bean，自带的bean是不用进行代理的；shouldSkip()则用于判断当前bean是否应该被略过
 		if (isInfrastructureClass(bean.getClass()) || shouldSkip(bean.getClass(), beanName)) {
-			// 对当前bean进行缓存
+			// 对当前bean进行缓存 // 将 <cacheKey, FALSE> 键值对放入缓存中，供上面的 if 分支使用
 			this.advisedBeans.put(cacheKey, Boolean.FALSE);
 			return bean;
 		}
-
+		// 为目标 bean 查找合适的通知器
 		// Create proxy if we have advice. 如果我们有 aop 增强 ，就创建代理。 // 获取当前bean的Advices和Advisors
 		Object[] specificInterceptors = getAdvicesAndAdvisorsForBean(bean.getClass(), beanName, null);
+		/*
+		 * 若 specificInterceptors != null，即 specificInterceptors != DO_NOT_PROXY，
+		 * 则为 bean 生成代理对象，否则直接返回 bean
+		 */
 		if (specificInterceptors != DO_NOT_PROXY) {
 			// 对当前bean的代理状态进行缓存
 			this.advisedBeans.put(cacheKey, Boolean.TRUE);
 			// 这里创建 aop 动态代理！！！ aop代理  CGLIB代理 // 根据获取到的Advices和Advisors为当前bean生成代理对象
+			// 创建代理
 			Object proxy = createProxy(bean.getClass(), beanName, specificInterceptors, new SingletonTargetSource(bean));
 			// 缓存生成的代理bean的类型，并且返回生成的代理bean
 			this.proxyTypes.put(cacheKey, proxy.getClass());
+			/*
+			 * 返回代理对象，此时 IOC 容器输入 bean，得到 proxy。此时，
+			 * beanName 对应的 bean 是代理对象，而非原始的 bean
+			 */
 			return proxy;
 		}
 		this.advisedBeans.put(cacheKey, Boolean.FALSE);
+		// specificInterceptors = null，直接返回 bean
 		return bean;
 	}
 

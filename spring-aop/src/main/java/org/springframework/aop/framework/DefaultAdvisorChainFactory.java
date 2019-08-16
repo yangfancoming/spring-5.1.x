@@ -34,12 +34,13 @@ public class DefaultAdvisorChainFactory implements AdvisorChainFactory, Serializ
 
 		// This is somewhat tricky... We have to process introductions first,
 		// but we need to preserve order in the ultimate list.
+		// registry 为 DefaultAdvisorAdapterRegistry 类型
 		AdvisorAdapterRegistry registry = GlobalAdvisorAdapterRegistry.getInstance();
 		Advisor[] advisors = config.getAdvisors();
 		List<Object> interceptorList = new ArrayList<>(advisors.length);
 		Class<?> actualClass = (targetClass != null ? targetClass : method.getDeclaringClass());
 		Boolean hasIntroductions = null;
-
+		// 遍历通知器列表
 		for (Advisor advisor : advisors) {
 			if (advisor instanceof PointcutAdvisor) {
 				// Add it conditionally.
@@ -67,8 +68,10 @@ public class DefaultAdvisorChainFactory implements AdvisorChainFactory, Serializ
 					}
 					if (match) {
 						// 将Advisor对象转换为MethodInterceptor数组
+						// 将 advisor 中的 advice 转成相应的拦截器
 						MethodInterceptor[] interceptors = registry.getInterceptors(advisor);
 						// 判断如果是动态匹配，则使用InterceptorAndDynamicMethodMatcher对其进行封装
+						// 若 isRuntime 返回 true，则表明 MethodMatcher 要在运行时做一些检测
 						if (mm.isRuntime()) {
 							// Creating a new object instance in the getInterceptors() method
 							// isn't a problem as we normally cache created chains.
@@ -86,6 +89,7 @@ public class DefaultAdvisorChainFactory implements AdvisorChainFactory, Serializ
 			else if (advisor instanceof IntroductionAdvisor) {
 				IntroductionAdvisor ia = (IntroductionAdvisor) advisor;
 				// 判断如果为IntroductionAdvisor类型的Advisor，则将调用链封装为Interceptor数组
+				// IntroductionAdvisor 类型的通知器，仅需进行类级别的匹配即可
 				if (config.isPreFiltered() || ia.getClassFilter().matches(actualClass)) {
 					Interceptor[] interceptors = registry.getInterceptors(advisor);
 					interceptorList.addAll(Arrays.asList(interceptors));

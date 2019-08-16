@@ -12,17 +12,12 @@ import org.springframework.aop.AfterAdvice;
 
 /**
  * Spring AOP advice wrapping an AspectJ after advice method.
- *
- * @author Rod Johnson
  * @since 2.0
  */
 @SuppressWarnings("serial")
-public class AspectJAfterAdvice extends AbstractAspectJAdvice
-		implements MethodInterceptor, AfterAdvice, Serializable {
+public class AspectJAfterAdvice extends AbstractAspectJAdvice implements MethodInterceptor, AfterAdvice, Serializable {
 
-	public AspectJAfterAdvice(
-			Method aspectJBeforeAdviceMethod, AspectJExpressionPointcut pointcut, AspectInstanceFactory aif) {
-
+	public AspectJAfterAdvice(Method aspectJBeforeAdviceMethod, AspectJExpressionPointcut pointcut, AspectInstanceFactory aif) {
 		super(aspectJBeforeAdviceMethod, pointcut, aif);
 	}
 
@@ -30,9 +25,11 @@ public class AspectJAfterAdvice extends AbstractAspectJAdvice
 	@Override
 	public Object invoke(MethodInvocation mi) throws Throwable {
 		try {
+			// 调用 proceed
 			return mi.proceed();
 		}
 		finally {
+			// 调用后置通知逻辑
 			invokeAdviceMethod(getJoinPointMatch(), null, null);
 		}
 	}
