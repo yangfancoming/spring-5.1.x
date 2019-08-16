@@ -14,8 +14,6 @@ import org.springframework.lang.Nullable;
  *
  * <p>This is pulled out into a strategy as various approaches are possible,
  * including using CGLIB to create subclasses on the fly to support Method Injection.
- *
- * @author Rod Johnson
 
  * @since 1.1
  */
@@ -31,8 +29,7 @@ public interface InstantiationStrategy {
 	 * @return a bean instance for this bean definition
 	 * @throws BeansException if the instantiation attempt failed
 	 */
-	Object instantiate(RootBeanDefinition bd, @Nullable String beanName, BeanFactory owner)
-			throws BeansException;
+	Object instantiate(RootBeanDefinition bd, @Nullable String beanName, BeanFactory owner) throws BeansException;
 
 	/**
 	 * Return an instance of the bean with the given name in this factory,
@@ -47,8 +44,7 @@ public interface InstantiationStrategy {
 	 * @return a bean instance for this bean definition
 	 * @throws BeansException if the instantiation attempt failed
 	 */
-	Object instantiate(RootBeanDefinition bd, @Nullable String beanName, BeanFactory owner,
-			Constructor<?> ctor, Object... args) throws BeansException;
+	Object instantiate(RootBeanDefinition bd, @Nullable String beanName, BeanFactory owner,Constructor<?> ctor, Object... args) throws BeansException;
 
 	/**
 	 * Return an instance of the bean with the given name in this factory,
@@ -65,8 +61,6 @@ public interface InstantiationStrategy {
 	 * @return a bean instance for this bean definition
 	 * @throws BeansException if the instantiation attempt failed
 	 */
-	Object instantiate(RootBeanDefinition bd, @Nullable String beanName, BeanFactory owner,
-			@Nullable Object factoryBean, Method factoryMethod, Object... args)
-			throws BeansException;
+	Object instantiate(RootBeanDefinition bd, @Nullable String beanName, BeanFactory owner,@Nullable Object factoryBean, Method factoryMethod, Object... args) throws BeansException;
 
 }

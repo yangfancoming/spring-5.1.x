@@ -29,11 +29,14 @@ public class App {
 
 	ApplicationContext context = new ClassPathXmlApplicationContext("classpath:cyclicd-dependency.xml");
 
-	/**
-
-	 */
 	@Test
-	public void test31(){
+	public void test1(){
 		System.out.println("hello -> " + context.getBean("hello"));
+	}
+
+	@Test
+	public void test2(){
+		Room room = (Room) context.getBean("room");
+		System.out.println("room -> " + room);
 	}
 }

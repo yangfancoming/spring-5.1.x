@@ -14,4 +14,11 @@
 		<property name="hello" ref="hello"/>
 	</bean>
 
+	<bean id="room" class="com.goat.chapter201.cyclicdependence.Room">
+		<property name="television" value="Xiaomi"/>
+		<property name="airConditioner" value="Gree"/>
+		<property name="refrigerator" value="Haier"/>
+		<property name="washer" value="Siemens"/>
+	</bean>
+
 </beans>

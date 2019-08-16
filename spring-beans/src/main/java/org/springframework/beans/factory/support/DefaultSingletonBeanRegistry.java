@@ -219,7 +219,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	public Object getSingleton(String beanName, ObjectFactory<?> singletonFactory) {
 		Assert.notNull(beanName, "Bean name must not be null");
 		synchronized (this.singletonObjects) {
-			//双重判定从缓存中获取
+			//双重判定从缓存中获取  // 从缓存中获取单例 bean，若不为空，则直接返回，不用再初始化
 			Object singletonObject = this.singletonObjects.get(beanName);
 			if (singletonObject == null) {
 				if (this.singletonsCurrentlyInDestruction) {
@@ -228,6 +228,9 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 				if (logger.isDebugEnabled()) {
 					logger.debug("Creating shared instance of singleton bean '" + beanName + "'");
 				}
+				/*
+				 * 将 beanName 添加到 singletonsCurrentlyInCreation 集合中，用于表明 beanName 对应的 bean 正在创建中
+				 */
 				beforeSingletonCreation(beanName);// 创建前置检查，默认实现是记录当前beanName正在注册中
 				boolean newSingleton = false;
 				boolean recordSuppressedExceptions = (this.suppressedExceptions == null);
@@ -238,6 +241,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 					/**
 					 * 	初始化bean  调用签名定义的内部类进行创建，内部调用了createBean(String beanName, RootBeanDefinition mbd, Object[] args)
 					 * 	singletonFactory.getObject() 其实是调用上一层函数的 sharedInstance = getSingleton(beanName, () -> 中的  createBean(beanName, mbd, args) 方法
+					 * 	  // 通过 getObject 方法调用 createBean 方法创建 bean 实例
 					*/
 					singletonObject = singletonFactory.getObject();
 					newSingleton = true;
@@ -263,10 +267,12 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 						this.suppressedExceptions = null;
 					}
 					// 4.创建前置检查，主要任务是移除当前beanName正在注册状态的记录，即 singletonsCurrentlyInCreation中标记正在创建的bean从集合中删除
+					// 将 beanName 从 singletonsCurrentlyInCreation 移除
 					afterSingletonCreation(beanName);
 				}
 				if (newSingleton) {
 					// 5.注册并加入缓存。 真正的注册逻辑，就是把bean的名称和对象放到map中
+					// 将 <beanName, singletonObject> 键值对添加到 singletonObjects 集合中，并从其他集合（比如 earlySingletonObjects）中移除 singletonObject 记录
 					addSingleton(beanName, singletonObject);
 				}
 			}
