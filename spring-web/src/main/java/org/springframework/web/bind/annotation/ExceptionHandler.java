@@ -79,9 +79,6 @@ import java.lang.annotation.Target;
  *
  * <p>You may combine the {@code ExceptionHandler} annotation with
  * {@link ResponseStatus @ResponseStatus} for a specific HTTP error status.
- *
- * @author Arjen Poutsma
-
  * @since 3.0
  * @see org.springframework.web.context.request.WebRequest
  */
@@ -91,8 +88,8 @@ import java.lang.annotation.Target;
 public @interface ExceptionHandler {
 
 	/**
-	 * Exceptions handled by the annotated method. If empty, will default to any
-	 * exceptions listed in the method argument list.
+	 * Exceptions handled by the annotated method. If empty, will default to any exceptions listed in the method argument list.
+	 * 指定需要捕获的异常的Class类型
 	 */
 	Class<? extends Throwable>[] value() default {};
 

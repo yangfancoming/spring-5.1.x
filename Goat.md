@@ -21,31 +21,16 @@
     chapter5-2-2  处理器映射器 HandlerMapping  BeanNameUrlHandlerMapping
     chapter5-2-5  定位Controller  解读SpringMVC如何找到我们定义的Controller和Controller中的方法，比如路径是如何映射的，弄清楚Controller是如何匹配我们传入的参数，并定义简单的参数解析器
     chapter5-2-8  Controller中参数解析   解读Controller方法中的参数解析和参数解析类
+    
+    chapter5-3-0  Json，Xml自动转换   解读SpringMVC的Json和Xml的转换原理
+    chapter5-3-3  属性编辑器、数据绑定    解读SpringMVC数据绑定机制和属性编辑器，介绍BeanWrapper，并自定义属性编辑器
+    chapter5-3-6  拦截器     解读SpringMVC拦截器的工作原理并自定义拦截器
+    chapter5-3-9  过滤器    解读SpringMVC过滤器的工作原理，并自定义过滤器，让你弄清楚过滤器和拦截器的区别
+    chapter5-4-0  视图解析器      即使前后端分离大行其道，视图解析器作为Spring源码的一部分，我们还是要研读。该文解读SpringMVC如何完成视图解析，提供Freemarker和Jsp的共存方案
+    chapter5-4-5  异常解析器      解读SpringMVC如何完成异常解析、捕捉异常，并自定义异常和异常解析器
  
 
-            
-           SpringMVC源码阅读：Json，Xml自动转换
-           解读SpringMVC的Json和Xml的转换原理
            
-            
-           SpringMVC源码阅读：属性编辑器、数据绑定
-           解读SpringMVC数据绑定机制和属性编辑器，介绍BeanWrapper，并自定义属性编辑器
-           
-            
-           SpringMVC源码阅读：拦截器
-           解读SpringMVC拦截器的工作原理并自定义拦截器
-           
-           
-           SpringMVC源码阅读：过滤器
-           解读SpringMVC过滤器的工作原理，并自定义过滤器，让你弄清楚过滤器和拦截器的区别
-            
-           
-           SpringMVC源码阅读：视图解析器
-           即使前后端分离大行其道，视图解析器作为Spring源码的一部分，我们还是要研读。该文解读SpringMVC如何完成视图解析，提供Freemarker和Jsp的共存方案
-           
-           
-           SpringMVC源码阅读：异常解析器
-           解读SpringMVC如何完成异常解析、捕捉异常，并自定义异常和异常解析器
 
     chapter5-8-7  语言环境 SessionLocaleResolver  
     chapter5-8-8  语言环境 LocaleResolver (国际化)

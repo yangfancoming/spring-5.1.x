@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns="http://www.springframework.org/schema/beans"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" default-autowire="byName">
+
+	<bean id="person" class="com.goat.chapter115.bean.Person">
+		<property name="name" value="jordan"></property>
+		<property name="age" value="123"></property>
+	</bean>
+
+	<!--
+		在 Spring 中，我们可以使用 alias 标签给 bean 起个别名
+		这里我们给person这个 beanName 起了一个别名goat，然后又给别名goat起了一个别名goatLike。
+		我们可以通过这两个别名获取到hello这个bean 实例
+	-->
+	<alias name="person" alias="goat"></alias>
+	<alias name="goat" alias="goatLike"/>
+</beans>

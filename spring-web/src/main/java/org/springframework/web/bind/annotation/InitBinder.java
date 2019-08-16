@@ -22,7 +22,6 @@ import java.lang.annotation.Target;
  * <p>Typical arguments are {@link org.springframework.web.bind.WebDataBinder}
  * in combination with {@link org.springframework.web.context.request.WebRequest}
  * or {@link java.util.Locale}, allowing to register context-specific editors.
- *
 
  * @since 2.5
  * @see org.springframework.web.bind.WebDataBinder
@@ -41,6 +40,7 @@ public @interface InitBinder {
 	 * request parameter names here restricts the init-binder method to those specific
 	 * attributes/parameters, with different init-binder methods typically applying to
 	 * different groups of attributes or parameters.
+	 *   这里value参数用于指定需要绑定的参数名称，如果不指定，则会对所有的参数进行适配， 只有是其指定的类型的参数才会被转换
 	 */
 	String[] value() default {};
 

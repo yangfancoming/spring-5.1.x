@@ -10,18 +10,16 @@ package org.springframework.aop;
  *
  * <p>Introduction is the implementation of additional interfaces
  * (not implemented by a target) via AOP advice.
- *
- * @author Rod Johnson
+
  * @since 04.04.2003
  * @see IntroductionInterceptor
  */
 public interface IntroductionAdvisor extends Advisor, IntroductionInfo {
 
 	/**
-	 * Return the filter determining which target classes this introduction
-	 * should apply to.
-	 * <p>This represents the class part of a pointcut. Note that method
-	 * matching doesn't make sense to introductions.
+	 * Return the filter determining which target classes this introduction should apply to.
+	 * <p>This represents the class part of a pointcut.
+	 * Note that method matching doesn't make sense to introductions.
 	 * @return the class filter
 	 */
 	ClassFilter getClassFilter();
