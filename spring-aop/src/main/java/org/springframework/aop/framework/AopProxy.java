@@ -10,8 +10,6 @@ import org.springframework.lang.Nullable;
  *
  * <p>Out-of-the-box implementations are available for JDK dynamic proxies
  * and for CGLIB proxies, as applied by {@link DefaultAopProxyFactory}.
- *
- * @author Rod Johnson
 
  * @see DefaultAopProxyFactory
  */

@@ -76,7 +76,6 @@ public class SpringTransactionAnnotationParser implements TransactionAnnotationP
 			rollbackRules.add(new NoRollbackRuleAttribute(rbRule));
 		}
 		rbta.setRollbackRules(rollbackRules);
-
 		return rbta;
 	}
 

@@ -21,9 +21,7 @@ import org.springframework.core.annotation.AliasFor;
  * <p>Adding {@link org.springframework.core.annotation.Order @Order} to your annotated
  * method allows you to prioritize that listener amongst other listeners running before
  * or after transaction completion.
- *
- * @author Stephane Nicoll
- * @author Sam Brannen
+
  * @since 4.2
  */
 @Target({ElementType.METHOD, ElementType.ANNOTATION_TYPE})
@@ -37,16 +35,20 @@ public @interface TransactionalEventListener {
 	 * <p>The default phase is {@link TransactionPhase#AFTER_COMMIT}.
 	 * <p>If no transaction is in progress, the event is not processed at
 	 * all unless {@link #fallbackExecution} has been enabled explicitly.
+	 *  // 指定当前标注方法处理事务的类型
 	 */
 	TransactionPhase phase() default TransactionPhase.AFTER_COMMIT;
 
 	/**
 	 * Whether the event should be processed if no transaction is running.
+	 * // 用于指定当前方法如果没有事务，是否执行相应的事务事件监听器
 	 */
 	boolean fallbackExecution() default false;
 
 	/**
 	 * Alias for {@link #classes}.
+	 * // 与classes属性一样，指定了当前事件传入的参数类型，指定了这个参数之后就可以在监听方法上
+	 *     // 直接什么一个这个参数了
 	 */
 	@AliasFor(annotation = EventListener.class, attribute = "classes")
 	Class<?>[] value() default {};
@@ -57,6 +59,7 @@ public @interface TransactionalEventListener {
 	 * method may optionally accept a single parameter. However, if this
 	 * attribute is specified with multiple values, the annotated method
 	 * must <em>not</em> declare any parameters.
+	 * // 作用与value属性一样，用于指定当前监听方法的参数类型
 	 */
 	@AliasFor(annotation = EventListener.class, attribute = "classes")
 	Class<?>[] classes() default {};
@@ -66,6 +69,7 @@ public @interface TransactionalEventListener {
 	 * handling conditional.
 	 * <p>The default is {@code ""}, meaning the event is always handled.
 	 * @see EventListener#condition
+	 * // 这个属性使用Spring Expression Language对目标类和方法进行匹配，对于不匹配的方法将会过滤掉
 	 */
 	String condition() default "";
 

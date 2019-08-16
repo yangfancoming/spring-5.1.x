@@ -160,10 +160,17 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 	 * match and handling non-null result, if any.
 	 */
 	public void processEvent(ApplicationEvent event) {
+		// 处理事务事件的相关参数，这里主要是判断TransactionalEventListener注解中是否配置了value
+		// 或classes属性，如果配置了，则将方法参数转换为该指定类型传给监听的方法；如果没有配置，则判断
+		// 目标方法是ApplicationEvent类型还是PayloadApplicationEvent类型，是则转换为该类型传入
 		Object[] args = resolveArguments(event);
+		// 这里主要是获取TransactionalEventListener注解中的condition属性，然后通过
+		// Spring expression language将其与目标类和方法进行匹配
 		if (shouldHandle(event, args)) {
+			// 通过处理得到的参数借助于反射调用事务监听方法
 			Object result = doInvoke(args);
 			if (result != null) {
+				// 对方法的返回值进行处理
 				handleResult(result);
 			}
 			else {
@@ -177,28 +184,37 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 	 * <p>These arguments will be used to invoke the method handled by this instance.
 	 * Can return {@code null} to indicate that no suitable arguments could be resolved
 	 * and therefore the method should not be invoked at all for the specified event.
+	 * // 处理事务监听方法的参数
 	 */
 	@Nullable
 	protected Object[] resolveArguments(ApplicationEvent event) {
+		// 获取发布事务事件时传入的参数类型
 		ResolvableType declaredEventType = getResolvableType(event);
 		if (declaredEventType == null) {
 			return null;
 		}
+		// 如果事务监听方法的参数个数为0，则直接返回
 		if (this.method.getParameterCount() == 0) {
 			return new Object[0];
 		}
+		// 如果事务监听方法的参数不为ApplicationEvent或PayloadApplicationEvent，则直接将发布事务
+		// 事件时传入的参数当做事务监听方法的参数传入。从这里可以看出，如果事务监听方法的参数不是
+		// ApplicationEvent或PayloadApplicationEvent类型，那么其参数必须只能有一个，并且这个
+		// 参数必须与发布事务事件时传入的参数一致
 		Class<?> declaredEventClass = declaredEventType.toClass();
-		if (!ApplicationEvent.class.isAssignableFrom(declaredEventClass) &&
-				event instanceof PayloadApplicationEvent) {
+		if (!ApplicationEvent.class.isAssignableFrom(declaredEventClass) && event instanceof PayloadApplicationEvent) {
 			Object payload = ((PayloadApplicationEvent) event).getPayload();
 			if (declaredEventClass.isInstance(payload)) {
+				// 如果参数类型为ApplicationEvent或PayloadApplicationEvent，则直接将其传入事务事件方法
 				return new Object[] {payload};
 			}
 		}
 		return new Object[] {event};
 	}
-
+	// 对事务事件方法的返回值进行处理，这里的处理方式主要是将其作为一个事件继续发布出去，这样就可以在
+	// 一个统一的位置对事务事件的返回值进行处理
 	protected void handleResult(Object result) {
+		// 如果返回值是数组类型，则对数组元素一个一个进行发布
 		if (result.getClass().isArray()) {
 			Object[] events = ObjectUtils.toObjectArray(result);
 			for (Object event : events) {
@@ -206,12 +222,14 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 			}
 		}
 		else if (result instanceof Collection<?>) {
+			// 如果返回值是集合类型，则对集合进行遍历，并且发布集合中的每个元素
 			Collection<?> events = (Collection<?>) result;
 			for (Object event : events) {
 				publishEvent(event);
 			}
 		}
 		else {
+			// 如果返回值是一个对象，则直接将其进行发布
 			publishEvent(result);
 		}
 	}
@@ -223,6 +241,7 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 		}
 	}
 
+	// 判断事务事件方法方法是否需要进行事务事件处理
 	private boolean shouldHandle(ApplicationEvent event, @Nullable Object[] args) {
 		if (args == null) {
 			return false;

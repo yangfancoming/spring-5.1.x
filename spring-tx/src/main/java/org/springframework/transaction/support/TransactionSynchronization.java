@@ -14,7 +14,6 @@ import java.io.Flushable;
  *
  * <p>System synchronizations performed by Spring itself use specific order values,
  * allowing for fine-grained interaction with their execution order (if necessary).
- *
 
  * @since 02.06.2003
  * @see TransactionSynchronizationManager
@@ -37,6 +36,7 @@ public interface TransactionSynchronization extends Flushable {
 	 * Suspend this synchronization.
 	 * Supposed to unbind resources from TransactionSynchronizationManager if managing any.
 	 * @see TransactionSynchronizationManager#unbindResource
+	 *  // 在当前事务挂起时执行
 	 */
 	default void suspend() {
 	}
@@ -45,6 +45,7 @@ public interface TransactionSynchronization extends Flushable {
 	 * Resume this synchronization.
 	 * Supposed to rebind resources to TransactionSynchronizationManager if managing any.
 	 * @see TransactionSynchronizationManager#bindResource
+	 * 在当前事务重新加载时执行
 	 */
 	default void resume() {
 	}
@@ -53,6 +54,7 @@ public interface TransactionSynchronization extends Flushable {
 	 * Flush the underlying session to the datastore, if applicable:
 	 * for example, a Hibernate/JPA session.
 	 * @see org.springframework.transaction.TransactionStatus#flush()
+	 * 在当前数据刷新到数据库时执行
 	 */
 	@Override
 	default void flush() {
@@ -71,6 +73,7 @@ public interface TransactionSynchronization extends Flushable {
 	 * @throws RuntimeException in case of errors; will be <b>propagated to the caller</b>
 	 * (note: do not throw TransactionException subclasses here!)
 	 * @see #beforeCompletion
+	 * 在当前事务commit之前执行
 	 */
 	default void beforeCommit(boolean readOnly) {
 	}
@@ -85,6 +88,7 @@ public interface TransactionSynchronization extends Flushable {
 	 * (note: do not throw TransactionException subclasses here!)
 	 * @see #beforeCommit
 	 * @see #afterCompletion
+	 * 在当前事务completion之前执行
 	 */
 	default void beforeCompletion() {
 	}
@@ -103,6 +107,7 @@ public interface TransactionSynchronization extends Flushable {
 	 * transactional operation that is called from here.</b>
 	 * @throws RuntimeException in case of errors; will be <b>propagated to the caller</b>
 	 * (note: do not throw TransactionException subclasses here!)
+	 * 在当前事务commit之后实执行
 	 */
 	default void afterCommit() {
 	}
@@ -124,6 +129,7 @@ public interface TransactionSynchronization extends Flushable {
 	 * @see #STATUS_ROLLED_BACK
 	 * @see #STATUS_UNKNOWN
 	 * @see #beforeCompletion
+	 * 在当前事务completion之后执行
 	 */
 	default void afterCompletion(int status) {
 	}

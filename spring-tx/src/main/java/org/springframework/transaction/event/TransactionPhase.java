@@ -6,8 +6,6 @@ import org.springframework.transaction.support.TransactionSynchronization;
 
 /**
  * The phase at which a transactional event listener applies.
- *
- * @author Stephane Nicoll
 
  * @since 4.2
  * @see TransactionalEventListener
@@ -17,6 +15,7 @@ public enum TransactionPhase {
 	/**
 	 * Fire the event before transaction commit.
 	 * @see TransactionSynchronization#beforeCommit(boolean)
+	 * // 指定目标方法在事务commit之前执行
 	 */
 	BEFORE_COMMIT,
 
@@ -27,6 +26,7 @@ public enum TransactionPhase {
 	 * (and not in {@link TransactionSynchronization#afterCommit()}).
 	 * @see TransactionSynchronization#afterCompletion(int)
 	 * @see TransactionSynchronization#STATUS_COMMITTED
+	 *  指定目标方法在事务commit之后执行
 	 */
 	AFTER_COMMIT,
 
@@ -36,6 +36,7 @@ public enum TransactionPhase {
 	 * therefore executes in the same after-completion sequence of events.
 	 * @see TransactionSynchronization#afterCompletion(int)
 	 * @see TransactionSynchronization#STATUS_ROLLED_BACK
+	 * 指定目标方法在事务rollback之后执行
 	 */
 	AFTER_ROLLBACK,
 
@@ -45,6 +46,7 @@ public enum TransactionPhase {
 	 * {@link #AFTER_ROLLBACK} to intercept transaction commit
 	 * or rollback, respectively.
 	 * @see TransactionSynchronization#afterCompletion(int)
+	 * 指定目标方法在事务完成时执行，这里的完成是指无论事务是成功提交还是事务回滚了
 	 */
 	AFTER_COMPLETION
 

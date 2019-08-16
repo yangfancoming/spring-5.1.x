@@ -46,11 +46,18 @@ class ApplicationListenerMethodTransactionalAdapter extends ApplicationListenerM
 
 	@Override
 	public void onApplicationEvent(ApplicationEvent event) {
+
+		// 如果当前TransactionManager已经配置开启事务事件监听，
+		// 此时才会注册TransactionSynchronization对象
 		if (TransactionSynchronizationManager.isSynchronizationActive()) {
+			// 通过当前事务事件发布的参数，创建一个TransactionSynchronization对象
 			TransactionSynchronization transactionSynchronization = createTransactionSynchronization(event);
+			// 注册TransactionSynchronization对象到TransactionManager中
 			TransactionSynchronizationManager.registerSynchronization(transactionSynchronization);
 		}
 		else if (this.annotation.fallbackExecution()) {
+			// 如果当前TransactionManager没有开启事务事件处理，但是当前事务监听方法中配置了
+			// fallbackExecution属性为true，说明其需要对当前事务事件进行监听，无论其是否有事务
 			if (this.annotation.phase() == TransactionPhase.AFTER_ROLLBACK && logger.isWarnEnabled()) {
 				logger.warn("Processing " + event + " as a fallback execution on AFTER_ROLLBACK phase");
 			}
@@ -58,6 +65,7 @@ class ApplicationListenerMethodTransactionalAdapter extends ApplicationListenerM
 		}
 		else {
 			// No transactional event execution at all
+			// 走到这里说明当前是不需要事务事件处理的，因而直接略过
 			if (logger.isDebugEnabled()) {
 				logger.debug("No transaction is active - skipping " + event);
 			}
@@ -77,9 +85,7 @@ class ApplicationListenerMethodTransactionalAdapter extends ApplicationListenerM
 
 		private final TransactionPhase phase;
 
-		public TransactionSynchronizationEventAdapter(ApplicationListenerMethodAdapter listener,
-				ApplicationEvent event, TransactionPhase phase) {
-
+		public TransactionSynchronizationEventAdapter(ApplicationListenerMethodAdapter listener,ApplicationEvent event, TransactionPhase phase) {
 			this.listener = listener;
 			this.event = event;
 			this.phase = phase;
@@ -90,6 +96,7 @@ class ApplicationListenerMethodTransactionalAdapter extends ApplicationListenerM
 			return this.listener.getOrder();
 		}
 
+		// 在目标方法配置的phase属性为BEFORE_COMMIT时，处理before commit事件
 		@Override
 		public void beforeCommit(boolean readOnly) {
 			if (this.phase == TransactionPhase.BEFORE_COMMIT) {
@@ -97,6 +104,9 @@ class ApplicationListenerMethodTransactionalAdapter extends ApplicationListenerM
 			}
 		}
 
+		// 这里对于after completion事件的处理，虽然分为了三个if分支，但是实际上都是执行的processEvent()
+		// 方法，因为after completion事件是事务事件中一定会执行的，因而这里对于commit，
+		// rollback和completion事件都在当前方法中处理也是没问题的
 		@Override
 		public void afterCompletion(int status) {
 			if (this.phase == TransactionPhase.AFTER_COMMIT && status == STATUS_COMMITTED) {
@@ -110,6 +120,7 @@ class ApplicationListenerMethodTransactionalAdapter extends ApplicationListenerM
 			}
 		}
 
+		// 执行事务事件
 		protected void processEvent() {
 			this.listener.processEvent(this.event);
 		}
