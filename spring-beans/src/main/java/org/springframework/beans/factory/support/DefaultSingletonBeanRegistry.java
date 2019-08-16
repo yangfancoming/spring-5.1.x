@@ -61,9 +61,13 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
 
 	/** Cache of singleton factories: bean name to ObjectFactory. 三级缓存  单例对应的工厂缓存，可以使用工厂来创建单例对象 bean name --> ObjectFactory */
+	/**
+	 * 用于存放 bean 工厂  bean 工厂所产生的 bean 是还未完成初始化的 bean   如代码所示，bean 工厂所生成的对象最终会被缓存到 earlySingletonObjects 中
+	*/
 	private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
 
 	/** Cache of early singleton objects: bean name to bean instance. 二级缓存  早期的单例对象(对象属性还没有进行赋值)  纯净态*/
+	/** 用于存放还在初始化中的 bean，用于解决循环依赖 */
 	private final Map<String, Object> earlySingletonObjects = new HashMap<>(16);
 
 	/** Set of registered singletons, containing the bean names in registration order. 已经注册过了的单例对象*/
@@ -177,16 +181,23 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		// aop 从 singletonObjects 里取得代理后的对象！
 		// 从 singletonObjects 获取实例，singletonObjects 中缓存的实例都是完全实例化好的 bean，可以直接使用
 		Object singletonObject = this.singletonObjects.get(beanName);
-		// 如果该单例没有注册过，且正在注册
+		/*
+		 * 如果 singletonObject = null，表明还没创建，或者还没完全创建好。
+		 * 这里判断 beanName 对应的 bean 是否正在创建中
+		 */
 		if (singletonObject == null && isSingletonCurrentlyInCreation(beanName)) {
 			synchronized (this.singletonObjects) {
 				// 如果之前也没有注册过，且 allowEarlyReference = true
+				// 从 earlySingletonObjects 中获取提前曝光的 bean，用于处理循环引用
 				singletonObject = this.earlySingletonObjects.get(beanName);
+				// 如果如果 singletonObject = null，且允许提前曝光 bean 实例，则从相应的 ObjectFactory 获取一个原始的（raw）bean（尚未填充属性）
 				if (singletonObject == null && allowEarlyReference) {
 					// 获取该bean对应的工厂，通过工厂了创建还bean
 					ObjectFactory<?> singletonFactory = this.singletonFactories.get(beanName);
 					if (singletonFactory != null) {
+						// 提前曝光 bean 实例，用于解决循环依赖
 						singletonObject = singletonFactory.getObject();
+						// 放入缓存中，如果还有其他 bean 依赖当前 bean，其他 bean 可以直接从 earlySingletonObjects 取结果
 						this.earlySingletonObjects.put(beanName, singletonObject);
 						// 创建成功后，需要去除
 						this.singletonFactories.remove(beanName);
