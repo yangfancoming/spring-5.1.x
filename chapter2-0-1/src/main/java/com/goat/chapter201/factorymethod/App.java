@@ -5,7 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
-public class AliasTest {
+public class App {
 
 	ApplicationContext context = new ClassPathXmlApplicationContext("classpath:factory-method.xml");
 
