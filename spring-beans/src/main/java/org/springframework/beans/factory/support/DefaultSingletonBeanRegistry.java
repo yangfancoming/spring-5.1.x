@@ -150,6 +150,14 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		}
 	}
 
+	/**
+	 这里先尝试从缓存中获取，获取不到再走后面创建的流程
+	 获取到有两种情况：
+	 1.是Bean创建完成存储到最终的缓存中。
+	 2.是未创建完成，但先预存到一个单独的缓存中，这种是针对可能存在循环引用的情况的处理。
+	 如A引用B,B又引用了A,因而在初始化A时，A会先调用构造函数创建出一个实例，在依赖注入B之前，现将A实例缓存起来
+	 然后在初始化A时，依赖注入阶段，会触发初始化B，B创建后需要依赖注入A时，先从缓存中获取A（这个时候的A是不完整的)，避免循环依赖的问题出现。
+	 */
 	@Override
 	@Nullable
 	public Object getSingleton(String beanName) {
@@ -167,6 +175,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	@Nullable
 	protected Object getSingleton(String beanName, boolean allowEarlyReference) {
 		// aop 从 singletonObjects 里取得代理后的对象！
+		// 从 singletonObjects 获取实例，singletonObjects 中缓存的实例都是完全实例化好的 bean，可以直接使用
 		Object singletonObject = this.singletonObjects.get(beanName);
 		// 如果该单例没有注册过，且正在注册
 		if (singletonObject == null && isSingletonCurrentlyInCreation(beanName)) {
@@ -189,8 +198,8 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	}
 
 	/**
-	 * Return the (raw) singleton object registered under the given name,
-	 * creating and registering a new one if none registered yet.
+	 * Return the (raw) singleton object registered under the given name,creating and registering a new one if none registered yet.
+	 * 返回以给定名称注册的（原始）singleton对象，如果尚未注册，则创建并注册一个新对象。
 	 * @param beanName the name of the bean
 	 * @param singletonFactory the ObjectFactory to lazily create the singleton
 	 * with, if necessary
@@ -393,8 +402,8 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	}
 
 	/**
-	 * Register a dependent bean for the given bean,
-	 * to be destroyed before the given bean is destroyed.
+	 * Register a dependent bean for the given bean, to be destroyed before the given bean is destroyed.
+	 * 为给定bean注册一个依赖bean，在销毁给定bean之前将其销毁
 	 * @param beanName the name of the bean
 	 * @param dependentBeanName the name of the dependent bean
 	 */
@@ -402,26 +411,31 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		String canonicalName = canonicalName(beanName);
 
 		synchronized (this.dependentBeanMap) {
-			Set<String> dependentBeans =
-					this.dependentBeanMap.computeIfAbsent(canonicalName, k -> new LinkedHashSet<>(8));
+			Set<String> dependentBeans = this.dependentBeanMap.computeIfAbsent(canonicalName, k -> new LinkedHashSet<>(8));
 			if (!dependentBeans.add(dependentBeanName)) {
 				return;
 			}
 		}
 
 		synchronized (this.dependenciesForBeanMap) {
-			Set<String> dependenciesForBean =
-					this.dependenciesForBeanMap.computeIfAbsent(dependentBeanName, k -> new LinkedHashSet<>(8));
+			Set<String> dependenciesForBean = this.dependenciesForBeanMap.computeIfAbsent(dependentBeanName, k -> new LinkedHashSet<>(8));
 			dependenciesForBean.add(canonicalName);
 		}
 	}
 
 	/**
-	 * Determine whether the specified dependent bean has been registered as
-	 * dependent on the given bean or on any of its transitive dependencies.
+	 * Determine whether the specified dependent bean has been registered as dependent on the given bean or on any of its transitive dependencies.
+	 * 确定指定的依赖bean是否已注册为依赖于给定bean或其任何可传递依赖项
 	 * @param beanName the name of the bean to check
 	 * @param dependentBeanName the name of the dependent bean
 	 * @since 4.0
+	 */
+	/*
+	 * 检测是否存在 depends-on 循环依赖，若存在则抛异常。比如 A 依赖 B，B 又依赖 A，他们的配置如下：
+	 *   <bean id="beanA" class="BeanA" depends-on="beanB">
+	 *   <bean id="beanB" class="BeanB" depends-on="beanA">
+	 * beanA 要求 beanB 在其之前被创建，但 beanB 又要求 beanA 先于它创建。
+	 * 这个时候形成了循环，对于 depends-on 循环，Spring 会直接抛出异常
 	 */
 	protected boolean isDependent(String beanName, String dependentBeanName) {
 		synchronized (this.dependentBeanMap) {
