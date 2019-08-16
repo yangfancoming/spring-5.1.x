@@ -29,6 +29,10 @@ import org.springframework.lang.Nullable;
  * Non-Ordered instances get treated as lowest priority.
  * @see org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter
  * @see org.springframework.web.servlet.handler.SimpleServletHandlerAdapter
+ * 处理器的适配器。
+ * Spring 中的处理器的实现多变，比如用户处理器可以实现 Controller 接口，
+ * 也可以用 @RequestMapping 注解将方法作为一个处理器等，这就导致 Spring 不知道怎么调用用户的处理器逻辑。
+ * 所以这里需要一个处理器适配器，由处理器适配器去调用处理器的逻辑
  */
 public interface HandlerAdapter {
 

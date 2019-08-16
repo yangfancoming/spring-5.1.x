@@ -1072,10 +1072,12 @@ public class DispatcherServlet extends FrameworkServlet {
 				// 从HandlerExecutionChain对象获取HandlerAdapter对象，实际上是从HandlerMapping对象中获取
 				//根据查找到的Handler请求查找能够进行处理的HandlerAdapter
 				// ② 获取适配器
+				// 获取可执行处理器逻辑的适配器 HandlerAdapter
 				HandlerAdapter ha = getHandlerAdapter(mappedHandler.getHandler());
 
 				// Process last-modified header, if supported by the handler.
 				//判断自上次请求后是否有修改，没有修改直接返回响应
+				// 处理 last-modified 消息头
 				String method = request.getMethod();
 				boolean isGet = "GET".equals(method);
 				// 这里判断请求方式是否为GET或HEAD请求，如果是这两种请求的一种，那么就会判断
@@ -1095,6 +1097,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				// 然后依次调用其preHandle()方法，如果某个preHandle()方法返回了false，那么就说明
 				// 当前请求无法通过拦截器的过滤，因而就会直接出发其afterCompletion()方法，只有在
 				// 所有的preHandle()方法都返回true时才会认为当前请求是能够使用目标handler进行处理的
+				// 执行拦截器 preHandle 方法
 				if (!mappedHandler.applyPreHandle(processedRequest, response)) {
 					return;
 				}
@@ -1108,6 +1111,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				// 方法来处理当前请求，并且将处理结果封装为一个ModelAndView对象。该对象中主要有两个
 				// 属性：view和model，这里的view存储了后续需要展示的逻辑视图名或视图对象，而model
 				// 中则保存了用于渲染视图所需要的属性
+				// 调用处理器逻辑
 				mv = ha.handle(processedRequest, response, mappedHandler.getHandler());
 
 				// 如果当前是一个异步任务，那么就会释放当前线程，等待异步任务处理完成之后才将
@@ -1116,9 +1120,11 @@ public class DispatcherServlet extends FrameworkServlet {
 					return;
 				}
 				// 如果返回的ModelAndView对象中没有指定视图名或视图对象，那么就会根据当前请求的url来生成一个视图名
+				// 如果 controller 未返回 view 名称，这里生成默认的 view 名称
 				applyDefaultViewName(processedRequest, mv);
 				//在controller方法执行后，执行拦截器的相关方法（post） //逆序执行HandlerInterceptor的postHandle方法
 				// 在请求处理完成之后，依次调用拦截器的postHandle()方法，对请求进行后置处理
+				// 执行拦截器 preHandle 方法
 				mappedHandler.applyPostHandle(processedRequest, response, mv);
 			}
 			catch (Exception ex) {
@@ -1133,6 +1139,7 @@ public class DispatcherServlet extends FrameworkServlet {
 			//进行视图解析  //渲染视图填充Model，如果有异常渲染异常页面
 			// 这里主要是请求处理之后生成的视图进行渲染，也包括出现异常之后对异常的处理。
 			// 渲染完之后会依次调用拦截器的afterCompletion()方法来对请求进行最终处理
+			// 解析并渲染视图
 			processDispatchResult(processedRequest, response, mappedHandler, mv, dispatchException);
 		}
 		catch (Exception ex) {
@@ -1444,6 +1451,7 @@ public class DispatcherServlet extends FrameworkServlet {
 		View view;
 		String viewName = mv.getViewName();
 		if (viewName != null) {
+			// 解析视图
 			// 如果视图名不为空，那么就会使用当前容器中配置的ViewResolver根据视图名获取一个View对象
 			// We need to resolve the view name.
 			view = resolveViewName(viewName, mv.getModelInternal(), locale, request);
@@ -1470,6 +1478,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				response.setStatus(mv.getStatus().value());
 			}
 			// 调用View对象的render()方法来渲染具体的视图
+			// 渲染视图，并将结果返回给用户。对应步骤⑥和⑦
 			view.render(mv.getModelInternal(), request, response);
 		}
 		catch (Exception ex) {

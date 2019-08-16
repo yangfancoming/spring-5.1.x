@@ -13,9 +13,10 @@ package org.springframework.beans.factory;
  * {@link org.springframework.beans.factory.config.BeanPostProcessor}.
  * Refer to {@link org.springframework.context.support.ApplicationContextAwareProcessor}
  * for an example of processing specific {@code *Aware} interface callbacks.
-
-
  * @since 3.1
+ *
+ * 在 Spring 中，Aware 类型的接口用于向 Spring “索要”一些框架中的信息
+ * 比如当某个 bean 实现了 ApplicationContextAware 接口时，Spring 在运行时会将当前的 ApplicationContext 实例通过接口方法 setApplicationContext 传给该 bean
  */
 public interface Aware {
 

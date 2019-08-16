@@ -14,6 +14,8 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.web.servlet.view.InternalResourceViewResolver
  * @see org.springframework.web.servlet.view.ResourceBundleViewResolver
  * @see org.springframework.web.servlet.view.XmlViewResolver
+ *
+ * 视图解析器的用途不难理解，用于将视图名称解析为视图对象 View。
  */
 public interface ViewResolver {
 

@@ -25,6 +25,8 @@ import org.springframework.lang.Nullable;
  *
  * @see org.springframework.web.servlet.view.AbstractView
  * @see org.springframework.web.servlet.view.InternalResourceView
+ *
+ * 视图对象用于将模板渲染成 html 或其他类型的文件。比如 InternalResourceView 可将 jsp 渲染成 html。
  */
 public interface View {
 

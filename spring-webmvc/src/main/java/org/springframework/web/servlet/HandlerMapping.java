@@ -36,6 +36,8 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.web.servlet.handler.AbstractHandlerMapping
  * @see org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping
  * @see org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
+ *
+ * 内部维护了一些 <访问路径, 处理器> 映射，负责为请求找到合适的处理器
  */
 public interface HandlerMapping {
 
