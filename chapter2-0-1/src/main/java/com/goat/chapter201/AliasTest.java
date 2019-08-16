@@ -1,6 +1,6 @@
-package com.goat.chapter115;
+package com.goat.chapter201;
 
-import com.goat.chapter115.bean.Person;
+import com.goat.chapter201.bean.Person;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -13,7 +13,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @ author  山羊来了
  * @ date 2019/8/16---11:26
  */
-public class AliasTest extends BaseApp {
+public class AliasTest  {
 
 	ApplicationContext context = new ClassPathXmlApplicationContext("classpath:alias.xml");
 

@@ -10,8 +10,13 @@ package com.goat.chapter201.bean;
 
 public class Person {
 
+	public Person() {
+		System.out.println("Person 构造函数执行");
+	}
+
 	private String name;
 	private int age;
+	private int phone;
 
 	public String getName() {
 		return name;
@@ -29,8 +34,16 @@ public class Person {
 		this.age = age;
 	}
 
+	public int getPhone() {
+		return phone;
+	}
+
+	public void setPhone(int phone) {
+		this.phone = phone;
+	}
+
 	@Override
 	public String toString() {
-		return "Person{" + "name='" + name + '\'' + ", age=" + age + '}';
+		return "Person{" + "name='" + name + '\'' + ", age=" + age + ", phone=" + phone + '}';
 	}
 }
