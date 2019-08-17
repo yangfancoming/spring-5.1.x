@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd" profile="dev">
+
+	<!-- ====================实例化bean的方式Begin==================== -->
+	<!-- 默认构造实例化 -->
+	<bean id="dog1" class="com.goat.chapter180.Dog"/>
+
+	<!-- 指定构造器实例化 -->
+	<bean id="dog2" class="com.goat.chapter180.Dog">
+		<!-- 指定构造器参数 index对应构造器中参数的位置 -->
+		<!-- 也可以通过指定参数类型，指定参数名称来注入属性-->
+		<constructor-arg index="0" value="小明"/>
+		<constructor-arg index="1" value="3"/>
+	</bean>
+	<!-- ====================实例化bean的方式End==================== -->
+
+
+
+
+
+
+
+
+
+	<!-- 实例工厂方法实例化 -->
+	<bean id="dogFactory" class="com.goat.chapter180.DogFactory"/>
+	<!-- 不能指定class属性,此时必须使用factory-bean属性来指定工厂Bean,factory-method属性指定实例化Bean的方法 -->
+	<bean id="dog4" factory-bean="dogFactory" factory-method="newInstance">
+		<constructor-arg index="0" value="小明"/>
+		<constructor-arg index="1" value="3"/>
+	</bean>
+
+
+
+	<!-- 静态工厂方法实例化 -->
+	<bean id="dog3" class="com.goat.chapter180.DogStaticFactory" factory-method="newInstance">
+		<!-- 指定构造器参数 index对应构造器中参数的位置 -->
+		<constructor-arg index="0" value="小明"/>
+		<constructor-arg index="1" value="3"/>
+	</bean>
+</beans>
+

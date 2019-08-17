@@ -6,6 +6,7 @@
   
     
     chapter1-2-0  spring 自定义标签
+    chapter1-8-0  Spring 实例化Bean的三种方式
     chapter2-0-0  spring Bean的装配 （依赖注入）  四种方式
     chapter2-0-1  spring Bean的装配 xml  方式
                     <bean> 标签属性示例
