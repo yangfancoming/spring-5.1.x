@@ -1,6 +1,7 @@
 package com.goat.chapter115;
 
 
+import com.goat.chapter115.bean.LifeCycleBean;
 import com.goat.chapter115.bean.Person;
 import com.goat.chapter115.service.LazyService;
 import com.goat.chapter115.service.WhatService;
@@ -59,5 +60,30 @@ public class App  {
 	public void test32(){
 		Person person = (Person) context.getBean("person");
 		System.out.println(person);
+	}
+
+
+/**
+ * ========测试方法开始=======
+ *
+ * 01-->BeanNameAware接口被调用了, 获取到的beanName:myLifeCycleBean
+ * 02-->BeanFactoryAware接口被调用了
+ * 03-->ApplicationContextAware接口被调用了
+ * 04-->调用postProcessBeforeInitialization方法, 获取到的beanName: myLifeCycleBean
+ * 05-->InitializingBean接口被调用了
+ * 06-->myInit方法被调用了
+ * 07-->调用postProcessAfterInitialization, 获取到的beanName: myLifeCycleBean
+ * 08-->bean可以被使用了, beanInfo: MyLifeCycleBean{name='李四', age=30}
+ * 09-->DisposableBean接口被调用了
+ * 10-->自定义destroy-method方法被调动了
+ *
+ * ========测试方法结束=======
+*/
+	@Test
+	public void test13() {
+		// 生命周期测试
+		LifeCycleBean myLifeCycleBean = context.getBean("myLifeCycleBean", LifeCycleBean.class);
+		System.out.println("08-->bean可以被使用了, beanInfo: " + myLifeCycleBean.toString());
+		((ClassPathXmlApplicationContext) context).destroy();
 	}
 }

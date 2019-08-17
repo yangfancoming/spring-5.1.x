@@ -16,4 +16,17 @@
 
 	<bean id="beanFactoryPostProcessor" class="com.goat.chapter115.service.MyBeanFactoryPostProcessor"/>
 
+
+
+
+	<!-- ====================生命周期==================== -->
+	<!--注意：这里配置的name是张三，age是25,我们会通过beanPostProcessor来修改nage和age -->
+	<bean id="myLifeCycleBean" class="com.goat.chapter115.bean.LifeCycleBean"
+		  destroy-method="myDestroy"
+		  init-method="myInit">
+		<property name="name" value="张三"/>
+		<property name="age" value="25"/>
+	</bean>
+	<bean id="myBeanPostProcessor" class="com.goat.chapter115.bean.LifeCycleBeanPostProcessor"/>
+
 </beans>
