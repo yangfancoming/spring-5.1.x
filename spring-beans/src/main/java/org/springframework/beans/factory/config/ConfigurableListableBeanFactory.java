@@ -64,6 +64,7 @@ public interface ConfigurableListableBeanFactory extends ListableBeanFactory, Au
 	 * @param autowiredValue the corresponding autowired value. This may also be an
 	 * implementation of the {@link org.springframework.beans.factory.ObjectFactory}
 	 * interface, which allows for lazy resolution of the actual target value.
+	 *  使用相应的自动装配值注册特殊依赖关系类型
 	 */
 	void registerResolvableDependency(Class<?> dependencyType, @Nullable Object autowiredValue);
 
@@ -75,6 +76,7 @@ public interface ConfigurableListableBeanFactory extends ListableBeanFactory, Au
 	 * @param descriptor the descriptor of the dependency to resolve
 	 * @return whether the bean should be considered as autowire candidate
 	 * @throws NoSuchBeanDefinitionException if there is no bean with the given name
+	 * 确定指定的bean是否有资格作为autowire候选者，注入到声明匹配类型依赖关系的其他bean中。
 	 */
 	boolean isAutowireCandidate(String beanName, DependencyDescriptor descriptor) throws NoSuchBeanDefinitionException;
 
@@ -90,7 +92,7 @@ public interface ConfigurableListableBeanFactory extends ListableBeanFactory, Au
 	 * @param beanName the name of the bean
 	 * @return the registered BeanDefinition
 	 * @throws NoSuchBeanDefinitionException if there is no bean with the given name defined in this factory
-	 *  返回注册的Bean定义
+	 *  返回注册的Bean定义  返回指定bean的已注册BeanDefinition，允许访问其属性值和构造函数参数值（可以在bean工厂后处理期间修改）。
 	 */
 	BeanDefinition getBeanDefinition(String beanName) throws NoSuchBeanDefinitionException;
 
@@ -105,6 +107,7 @@ public interface ConfigurableListableBeanFactory extends ListableBeanFactory, Au
 	 * @see #registerSingleton
 	 * @see #getBeanNamesForType
 	 * @see #getBeanNamesForAnnotation
+	 * 返回所有bean名称的迭代对象
 	 */
 	Iterator<String> getBeanNamesIterator();
 
@@ -117,6 +120,7 @@ public interface ConfigurableListableBeanFactory extends ListableBeanFactory, Au
 	 * @since 4.2
 	 * @see #getBeanDefinition
 	 * @see #getMergedBeanDefinition
+	 * 清除合并的bean定义缓存，删除尚未被认为有资格进行完整元数据缓存的bean条目
 	 */
 	void clearMetadataCache();
 
@@ -124,6 +128,7 @@ public interface ConfigurableListableBeanFactory extends ListableBeanFactory, Au
 	 * Freeze all bean definitions, signalling that the registered bean definitions
 	 * will not be modified or post-processed any further.
 	 * <p>This allows the factory to aggressively cache bean definition metadata.
+	 * 冻结所有bean定义，表明注册的bean定义不会被修改或进一步后处理
 	 */
 	void freezeConfiguration();
 
@@ -131,6 +136,7 @@ public interface ConfigurableListableBeanFactory extends ListableBeanFactory, Au
 	 * Return whether this factory's bean definitions are frozen,
 	 * i.e. are not supposed to be modified or post-processed any further.
 	 * @return {@code true} if the factory's configuration is considered frozen
+	 * 返回是否冻结此工厂的bean定义
 	 */
 	boolean isConfigurationFrozen();
 
@@ -143,6 +149,7 @@ public interface ConfigurableListableBeanFactory extends ListableBeanFactory, Au
 	 * Note: This may have left the factory with some beans already initialized!
 	 * Call {@link #destroySingletons()} for full cleanup in this case.
 	 * @see #destroySingletons()
+	 * 确保所有非lazy-init单例都被实例化
 	 */
 	void preInstantiateSingletons() throws BeansException;
 

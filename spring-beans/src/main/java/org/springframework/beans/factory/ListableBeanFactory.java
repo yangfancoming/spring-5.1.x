@@ -50,6 +50,10 @@ import org.springframework.lang.Nullable;
  * @see BeanFactoryUtils
  *
  * 根据各种条件获取bean的配置清单。
+ *
+ * 扩展了BeanFactory接口,提供了对bean的枚举能力,
+ * 即可以返回bean的实例集合,而不用像BeanFactory只能返回单个bean的实例
+ * 注意:如果存在父容器的话该接口不会考虑父容器中的bean,只会返回当前容器中的bea
  */
 public interface ListableBeanFactory extends BeanFactory {
 

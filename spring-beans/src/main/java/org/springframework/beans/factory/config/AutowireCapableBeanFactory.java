@@ -45,6 +45,7 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.context.ApplicationContext#getAutowireCapableBeanFactory()
  *
  * 提供创建bean，自动注入，初始化以及应用bean的后置处理器。
+ * 扩展了BeanFactory，主要提供了自动装配能力
  */
 public interface AutowireCapableBeanFactory extends BeanFactory {
 
@@ -54,6 +55,7 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	 * @see #createBean
 	 * @see #autowire
 	 * @see #autowireBeanProperties
+	 * 无自动装配
 	 */
 	int AUTOWIRE_NO = 0;
 
@@ -63,6 +65,7 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	 * @see #createBean
 	 * @see #autowire
 	 * @see #autowireBeanProperties
+	 * by-name装配
 	 */
 	int AUTOWIRE_BY_NAME = 1;
 
@@ -72,6 +75,7 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	 * @see #createBean
 	 * @see #autowire
 	 * @see #autowireBeanProperties
+	 * by-type装配
 	 */
 	int AUTOWIRE_BY_TYPE = 2;
 
@@ -80,6 +84,7 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	 * can be satisfied (involves resolving the appropriate constructor).
 	 * @see #createBean
 	 * @see #autowire
+	 * constructor构造函数装配
 	 */
 	int AUTOWIRE_CONSTRUCTOR = 3;
 
@@ -90,6 +95,7 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	 * @see #autowire
 	 * @deprecated as of Spring 3.0: If you are using mixed autowiring strategies,
 	 * prefer annotation-based autowiring for clearer demarcation of autowiring needs.
+	 * 自动装配,已被标记为过时
 	 */
 	@Deprecated
 	int AUTOWIRE_AUTODETECT = 4;
@@ -109,6 +115,7 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 
 	//-------------------------------------------------------------------------
 	// Typical methods for creating and populating external bean instances
+	//	创建和填充外部bean实例的典型方法
 	//-------------------------------------------------------------------------
 
 	/**
@@ -159,6 +166,7 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 
 	//-------------------------------------------------------------------------
 	// Specialized methods for fine-grained control over the bean lifecycle
+	// 用于细粒度控制bean生命周期的方法
 	//-------------------------------------------------------------------------
 
 	/**
@@ -316,6 +324,7 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 
 	//-------------------------------------------------------------------------
 	// Delegate methods for resolving injection points
+	// 委托方法解决注入点
 	//-------------------------------------------------------------------------
 
 	/**
