@@ -98,8 +98,12 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		// then ultimately reset this.delegate back to its original (parent) reference.
 		// this behavior emulates a stack of delegates without actually necessitating one.
 		//标签beans可能会存在递归的情况, 每次都创建自己的解析器
+		// 1、创建BeanDefinitionParserDelegate对象，用来解析Element元素
 		BeanDefinitionParserDelegate parent = this.delegate;
 		this.delegate = createDelegate(getReaderContext(), root, parent);
+		// 2、解析并验证profile节点，如果配置了profile属性，则验证当前环境是否激活了对应的profile节点，
+		// 用于多开发环境配置，该方式在开发中已不多见。
+		// 例如：System.setProperty("spring.profiles.active", "dev");
 		if (this.delegate.isDefaultNamespace(root)) {
 			//获取beans标签的profile属性
 			String profileSpec = root.getAttribute(PROFILE_ATTRIBUTE);
@@ -115,11 +119,11 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 				}
 			}
 		}
-		//解析前处理、留给子类实现
+		//解析前处理、留给子类实现   // 3、解析前置处理，空的模板方法
 		preProcessXml(root);
-		//解析bean definition
+		//解析bean definition // 4、解析并注册BeanDefinition
 		parseBeanDefinitions(root, this.delegate);
-		//解析后处理、留给子类实现
+		//解析后处理、留给子类实现  // 5、解析后置处理，空的模板方法
 		postProcessXml(root);
 		this.delegate = parent;
 	}
@@ -139,6 +143,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	 *                一类是自定义的声明如 <tx:annotation-driver>，所以该方法分为两套解析逻辑
 	 */
 	protected void parseBeanDefinitions(Element root, BeanDefinitionParserDelegate delegate) {
+		// 1、解析默认命名空间
 		// 表示的是默认的节点
 		// 判断根节点使用的标签所对应的命名空间是否为Spring提供的默认命名空间，
 		// 这里根节点为beans节点，该节点的命名空间通过其xmlns属性进行了定义
@@ -148,11 +153,13 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 				Node node = nl.item(i);
 				if (node instanceof Element) {
 					Element ele = (Element) node;
+					// 默认命名空间
 					if (delegate.isDefaultNamespace(ele)) {
 						// 当前标签使用的是默认的命名空间，如bean标签，则按照默认命名空间的逻辑对其进行处理
 						parseDefaultElement(ele, delegate); // 解析默认的节点
 					}
 					else {
+						// 自定义命名空间
 						// 判断当前标签使用的命名空间是自定义的命名空间，如这里 springtag:user 所使用的就是自定义的命名空间，那么就按照定义命名空间逻辑进行处理
 						delegate.parseCustomElement(ele);// 解析自定义节点
 					}
@@ -160,6 +167,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 			}
 		}
 		else {
+			// 2、解析自定义命名空间
 			// 如果根节点使用的命名空间不是默认的命名空间，则按照自定义的命名空间进行处理
 			delegate.parseCustomElement(root); // 解析自定义节点
 		}
@@ -294,24 +302,28 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 
 	/**
 	 * Process the given bean element, parsing the bean definition and registering it with the registry.
+	 *  解析bean标签将其转换为definition并注册到BeanDefinitionRegistry
 	 *
 	 */
 	protected void processBeanDefinition(Element ele, BeanDefinitionParserDelegate delegate) {
 		// 解析 bean的各种属性 // 对基本的bean标签属性进行解析
 		// 对bean标签的默认属性和子标签进行处理，将其封装为一个BeanDefinition对象，并放入BeanDefinitionHolder中
+		// 1、将解析的节点信息封装至BeanDefinitionHolder对象  BeanDefinitionHolder-->封装了BeanDefinition,beanName以及aliases
 		BeanDefinitionHolder bdHolder = delegate.parseBeanDefinitionElement(ele);
 		if (bdHolder != null) {
+			// 2、装饰BeanDefinition
 			// 进行自定义属性或自定义子标签的装饰
 			// 如果该bean包含自定义的子标签，则对自定义子标签解析 // 对自定义的属性或者自定义的子节点进行解析，以丰富当前的BeanDefinition
 			bdHolder = delegate.decorateBeanDefinitionIfRequired(ele, bdHolder);
 			try {
-				// Register the final decorated instance.  // 将当前bean注册到BeanDefinitionRegistry中
+				// Register the final decorated instance. // 3、执行注册  // 将当前bean注册到BeanDefinitionRegistry中
 				BeanDefinitionReaderUtils.registerBeanDefinition(bdHolder, getReaderContext().getRegistry());
 			}
 			catch (BeanDefinitionStoreException ex) {
 				getReaderContext().error("Failed to register bean definition with name '" + bdHolder.getBeanName() + "'", ele, ex);
 			}
 			// Send registration event.    // 发消息，可以忽略
+			// 4、发送注册事件
 			getReaderContext().fireComponentRegistered(new BeanComponentDefinition(bdHolder));
 		}
 	}

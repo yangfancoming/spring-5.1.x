@@ -6,7 +6,7 @@
     chapter1-1-5  spring Bean的生命周期 xml  方式    ？生命周期回调 ？
   
     
-    chapter1-2-0  spring 自定义标签
+    chapter1-2-0  spring 自定义标签/ 自定义命名空间  Spring解析xml默认命名空间
     chapter1-8-0  Spring 实例化Bean的三种方式
     chapter1-8-2  Spring BeanFactory和FactoryBean的区别
     chapter1-8-5  Spring BeanPostProcessor和BeanFactoryPostProcessor的区别
