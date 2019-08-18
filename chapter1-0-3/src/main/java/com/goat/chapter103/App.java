@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Created by 64274 on 2019/8/18.
  *
- * @ Description: TODO
+ * @ Description: Spring资源文件读取
  * @ author  山羊来了
  * @ date 2019/8/18---12:33
  */
@@ -58,5 +58,6 @@ public class App {
 			e.printStackTrace();
 		}
 	}
+
 
 }

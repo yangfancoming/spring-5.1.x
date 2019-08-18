@@ -296,7 +296,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		if (logger.isTraceEnabled()) {
 			logger.trace("Loading XML bean definitions from " + encodedResource);
 		}
-		// 通过属性来记录已经加载的资源
+		//  1、使用ThreadLocal防止资源文件循环加载  //通过属性来记录已经加载的资源
 		Set<EncodedResource> currentResources = this.resourcesCurrentlyBeingLoaded.get();
 		if (currentResources == null) {
 			currentResources = new HashSet<>(4);
@@ -306,6 +306,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 			throw new BeanDefinitionStoreException("Detected cyclic loading of " + encodedResource + " - check your import definitions!");
 		}
 		try {
+			// 2、加载BeanDefinition
 			InputStream inputStream = encodedResource.getResource().getInputStream();
 			try {
 				InputSource inputSource = new InputSource(inputStream);
@@ -364,9 +365,9 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 */
 	protected int doLoadBeanDefinitions(InputSource inputSource, Resource resource) throws BeanDefinitionStoreException {
 		try {
-			// 加载 xml 文件 并得到对应的 Document 对象
+			// 加载 xml 文件 并得到对应的 Document 对象 // 资源文件解析为Document对象
 			Document doc = doLoadDocument(inputSource, resource);
-			// 根据返回的  Document 对象  注册 bean信息
+			// 根据返回的  Document 对象  注册 bean信息  // 注册BeanDefinitions
 			int count = registerBeanDefinitions(doc, resource);
 			if (logger.isDebugEnabled()) {
 				logger.debug("Loaded " + count + " bean definitions from " + resource);

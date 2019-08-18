@@ -26,9 +26,6 @@ import org.springframework.util.Assert;
  *
  * <p>Provides common properties like the bean factory to work on
  * and the class loader to use for loading bean classes.
- *
-
-
  * @since 11.12.2003
  * @see BeanDefinitionReaderUtils
  */
@@ -71,6 +68,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 		Assert.notNull(registry, "BeanDefinitionRegistry must not be null");
 		this.registry = registry;
 		// Determine ResourceLoader to use.
+		// 1、确定ResourceLoader使用。
 		if (this.registry instanceof ResourceLoader) {
 			this.resourceLoader = (ResourceLoader) this.registry;
 		}
@@ -78,6 +76,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 			this.resourceLoader = new PathMatchingResourcePatternResolver();
 		}
 		// Inherit Environment if possible
+		// 2、如果环境可继承则继承registry的环境,否则重新创建环境
 		if (this.registry instanceof EnvironmentCapable) {
 			this.environment = ((EnvironmentCapable) this.registry).getEnvironment();
 		}

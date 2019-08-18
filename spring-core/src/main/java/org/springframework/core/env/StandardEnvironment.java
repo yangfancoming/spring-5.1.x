@@ -28,8 +28,7 @@ package org.springframework.core.env;
  * {@link ConfigurableEnvironment} Javadoc for usage examples.
  *
  * <p>See {@link SystemEnvironmentPropertySource} javadoc for details on special handling
- * of property names in shell environments (e.g. Bash) that disallow period characters in
- * variable names.
+ * of property names in shell environments (e.g. Bash) that disallow period characters in variable names.
 
  * @since 3.1
  * @see ConfigurableEnvironment
@@ -39,9 +38,11 @@ package org.springframework.core.env;
 public class StandardEnvironment extends AbstractEnvironment {
 
 	/** System environment property source name: {@value}. */
+	/** 系统环境属性 System environment property source name: {@value}. */
 	public static final String SYSTEM_ENVIRONMENT_PROPERTY_SOURCE_NAME = "systemEnvironment";
 
 	/** JVM system properties property source name: {@value}. */
+	/** JVM系统环境属性 JVM system properties property source name: {@value}. */
 	public static final String SYSTEM_PROPERTIES_PROPERTY_SOURCE_NAME = "systemProperties";
 
 
@@ -60,10 +61,11 @@ public class StandardEnvironment extends AbstractEnvironment {
 	 */
 	@Override
 	protected void customizePropertySources(MutablePropertySources propertySources) {
-		propertySources.addLast(
-				new PropertiesPropertySource(SYSTEM_PROPERTIES_PROPERTY_SOURCE_NAME, getSystemProperties()));
-		propertySources.addLast(
-				new SystemEnvironmentPropertySource(SYSTEM_ENVIRONMENT_PROPERTY_SOURCE_NAME, getSystemEnvironment()));
+		// 主要通过System类来获取信息
+		// 获取系统环境属性并加入到propertySources中
+		propertySources.addLast(new PropertiesPropertySource(SYSTEM_PROPERTIES_PROPERTY_SOURCE_NAME, getSystemProperties()));
+		// 获取JVM系统环境属性并加入到propertySources中
+		propertySources.addLast(new SystemEnvironmentPropertySource(SYSTEM_ENVIRONMENT_PROPERTY_SOURCE_NAME, getSystemEnvironment()));
 	}
 
 }
