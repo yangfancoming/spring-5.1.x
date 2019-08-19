@@ -855,24 +855,27 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition) throws BeanDefinitionStoreException {
 		Assert.hasText(beanName, "Bean name must not be empty");
 		Assert.notNull(beanDefinition, "BeanDefinition must not be null");
-
+		// 1、如果beanDefinition是AbstractBeanDefinition实例,则验证
 		if (beanDefinition instanceof AbstractBeanDefinition) {
 			// 注册前的最后一次检验，主要是对 AbstractBeanDefinition 的属性methodOverrides进行校验
 			try {
+				//验证不能将静态工厂方法与方法重写相结合(静态工厂方法必须创建实例)
 				((AbstractBeanDefinition) beanDefinition).validate();
 			}
 			catch (BeanDefinitionValidationException ex) {
 				throw new BeanDefinitionStoreException(beanDefinition.getResourceDescription(), beanName,"Validation of bean definition failed", ex);
 			}
 		}
-
+		// 2、优先尝试从缓存中加载BeanDefinition
 		BeanDefinition existingDefinition = this.beanDefinitionMap.get(beanName);
 		// 如果已经注册该bean
 		if (existingDefinition != null) {
+			// beanName已经存在且不允许被覆盖，抛出异常
 			// 如果已经注册过该bean，且设置为不允许覆盖，则抛出异常
 			if (!isAllowBeanDefinitionOverriding()) {
 				throw new BeanDefinitionOverrideException(beanName, beanDefinition, existingDefinition);
 			}
+			// 使用新的BeanDefinition覆盖已经加载的BeanDefinition，if else中只有日志打印，无实质代码，删除为了阅读方便
 			else if (existingDefinition.getRole() < beanDefinition.getRole()) {
 				// e.g. was ROLE_APPLICATION, now overriding with ROLE_SUPPORT or ROLE_INFRASTRUCTURE
 				if (logger.isInfoEnabled()) {
@@ -891,30 +894,42 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			}
 			this.beanDefinitionMap.put(beanName, beanDefinition);
 		}
+		// 3、缓存中无对应的BeanDefinition，则直接注册
 		else {
+			// 如果beanDefinition已经被标记为创建(为了解决单例bean的循环依赖问题)
 			// 该bean还没注册，检查该工厂的bean创建阶段是否已经开始，即在此期间是否已将该bean标记为已创建。如果已经标记为创建
 			if (hasBeanCreationStarted()) {
 				// Cannot modify startup-time collection elements anymore (for stable iteration)  // 无法再修改启动时集合元素（用于稳定迭代）
 				synchronized (this.beanDefinitionMap) {
 					// 这一步是真正注册bean  状态： 由 概念态--->内存态
+					// 加入beanDefinitionMap
 					this.beanDefinitionMap.put(beanName, beanDefinition);
 					// 更新 beanDefinitionNames 这个集合
+					// 创建List<String>并将缓存的beanDefinitionNames和新解析的beanName加入集合
 					List<String> updatedDefinitions = new ArrayList<>(this.beanDefinitionNames.size() + 1);
 					updatedDefinitions.addAll(this.beanDefinitionNames);
 					updatedDefinitions.add(beanName);
+					// 将updatedDefinitions赋值给beanDefinitionNames
 					this.beanDefinitionNames = updatedDefinitions;
 					removeManualSingletonName(beanName);
 				}
 			}
 			else {
+				// 将beanDefinition信息维护至缓存
+				// beanDefinitionMap-->(key->beanName,value->beanDefinition)
 				// Still in startup registration phase
 				this.beanDefinitionMap.put(beanName, beanDefinition);
+				// beanDefinitionNames-->维护了beanName集合
 				this.beanDefinitionNames.add(beanName);
+				// manualSingletonNames缓存了手动注册的单例bean，所以需要调用一下remove方法，防止beanName重复
+				// 例如：xmlBeanFactory.registerSingleton("myDog", new Dog());
+				// 就可以向manualSingletonNames中注册单例bean
 				removeManualSingletonName(beanName);
 			}
 			this.frozenBeanDefinitionNames = null;
 		}
-
+		// 4、重置BeanDefinition，
+		// 当前注册的bean的定义已经在beanDefinitionMap缓存中存在， 或者其实例已经存在于单例bean的缓存中
 		if (existingDefinition != null || containsSingleton(beanName)) {
 			resetBeanDefinition(beanName);
 		}

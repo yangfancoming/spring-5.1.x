@@ -33,22 +33,26 @@ public class SimpleAliasRegistry implements AliasRegistry {
 		Assert.hasText(name, "'name' must not be empty");
 		Assert.hasText(alias, "'alias' must not be empty");
 		synchronized (this.aliasMap) {
+			// 如果beanName与别名相同
 			// 如果真实的名字和别名相同，则把别名移除点，因为真实的名字和别名相同没有意义
 			if (alias.equals(name)) {
+				//移除别名
 				this.aliasMap.remove(alias);
 				if (logger.isDebugEnabled()) {
 					logger.debug("Alias definition '" + alias + "' ignored since it points to same name");
 				}
 			}
 			else {
+				//尝试从缓存中获取别名
 				String registeredName = this.aliasMap.get(alias);
-				// 如果已经注册过了 则直接返回
+				// 如果已经注册过了 则直接返回  //如果别名已经在缓存中存在
 				if (registeredName != null) {
+					//缓存中的别名和beanName(注意:不是别名)相同,不做任何操作,不需要再次注册
 					if (registeredName.equals(name)) {
 						// An existing alias - no need to re-register  已经注册过了且别名没有发生变化，则不处理，没有必要再注册一次
 						return;
 					}
-					// 如果别名不允许覆盖，则抛出异常
+					// 如果别名不允许覆盖，则抛出异常  //缓存中存在别名,且不允许覆盖,抛出异常
 					if (!allowAliasOverriding()) {
 						throw new IllegalStateException("Cannot define alias '" + alias + "' for name '" + name + "': It is already registered for name '" + registeredName + "'.");
 					}
@@ -56,9 +60,10 @@ public class SimpleAliasRegistry implements AliasRegistry {
 						logger.debug("Overriding alias '" + alias + "' definition for registered name '" + registeredName + "' with new target name '" + name + "'");
 					}
 				}
-				// 检查是否有循环别名注册
+				// 检查是否有循环别名注册 //检查给定名称是否已指向另一个方向的别名作为别名,预先捕获循环引用并抛出相应的IllegalStateException
 				checkForAliasCircle(name, alias);
 				// 注册别名 // 将别名作为key，目标bean名称作为值注册到存储别名的Map中
+				//缓存别名
 				this.aliasMap.put(alias, name);
 				if (logger.isTraceEnabled()) {
 					logger.trace("Alias definition '" + alias + "' registered for name '" + name + "'");
