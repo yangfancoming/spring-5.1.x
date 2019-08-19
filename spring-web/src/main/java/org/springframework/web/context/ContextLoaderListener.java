@@ -23,11 +23,9 @@ public class ContextLoaderListener extends ContextLoader implements ServletConte
 	/**
 	 * Create a new {@code ContextLoaderListener} that will create a web application
 	 * context based on the "contextClass" and "contextConfigLocation" servlet
-	 * context-params. See {@link ContextLoader} superclass documentation for details on
-	 * default values for each.
+	 * context-params. See {@link ContextLoader} superclass documentation for details on default values for each.
 	 * <p>This constructor is typically used when declaring {@code ContextLoaderListener}
-	 * as a {@code <listener>} within {@code web.xml}, where a no-arg constructor is
-	 * required.
+	 * as a {@code <listener>} within {@code web.xml}, where a no-arg constructor is required.
 	 * <p>The created application context will be registered into the ServletContext under
 	 * the attribute name {@link WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE}
 	 * and the Spring application context will be closed when the {@link #contextDestroyed}

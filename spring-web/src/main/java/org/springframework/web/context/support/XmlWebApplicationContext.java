@@ -14,8 +14,7 @@ import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
  * which takes its configuration from XML documents, understood by an
  * {@link org.springframework.beans.factory.xml.XmlBeanDefinitionReader}.
  * This is essentially the equivalent of
- * {@link org.springframework.context.support.GenericXmlApplicationContext}
- * for a web environment.
+ * {@link org.springframework.context.support.GenericXmlApplicationContext}  for a web environment.
  *
  * <p>By default, the configuration will be taken from "/WEB-INF/applicationContext.xml"
  * for the root context, and "/WEB-INF/test-servlet.xml" for a context with the namespace
@@ -25,8 +24,7 @@ import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
  * context-param of {@link org.springframework.web.context.ContextLoader} and servlet
  * init-param of {@link org.springframework.web.servlet.FrameworkServlet}. Config locations
  * can either denote concrete files like "/WEB-INF/context.xml" or Ant-style patterns
- * like "/WEB-INF/*-context.xml" (see {@link org.springframework.util.PathMatcher}
- * javadoc for pattern details).
+ * like "/WEB-INF/*-context.xml" (see {@link org.springframework.util.PathMatcher} javadoc for pattern details).
  *
  * <p>Note: In case of multiple config locations, later bean definitions will
  * override ones defined in earlier loaded files. This can be leveraged to
@@ -36,7 +34,6 @@ import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
  * create an analogous subclass of {@link AbstractRefreshableWebApplicationContext}.</b>
  * Such a context implementation can be specified as "contextClass" context-param
  * for ContextLoader or "contextClass" init-param for FrameworkServlet.
-
 
  * @see #setNamespace
  * @see #setConfigLocations

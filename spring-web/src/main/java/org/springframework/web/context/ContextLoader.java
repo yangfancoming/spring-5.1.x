@@ -118,6 +118,7 @@ public class ContextLoader {
 	private static final Properties defaultStrategies;
 
 	static {
+		// 静态代码加载默认策略,即默认的web应用上下文
 		// Load default strategy implementations from properties file.
 		// This is currently strictly internal and not meant to be customized
 		// by application developers.
@@ -261,9 +262,10 @@ public class ContextLoader {
 		try {
 			// Store context in local instance variable, to guarantee that
 			// it is available on ServletContext shutdown.
+			// 将上下文存储在本地实例变量中，以确保它在ServletContext关闭时可用。
 			if (this.context == null) {
 				// 通过servlet配置创建一个WebApplicationContext对象
-				// 创建 WebApplicationContext
+				// 1.创建 WebApplicationContext
 				this.context = createWebApplicationContext(servletContext);
 			}
 			// 这里在createWebApplicationContext()方法中会保证创建的WebApplicationContext本质上是
@@ -271,6 +273,7 @@ public class ContextLoader {
 			if (this.context instanceof ConfigurableWebApplicationContext) {
 				ConfigurableWebApplicationContext cwac = (ConfigurableWebApplicationContext) this.context;
 				// 如果当前WebApplicationContext没有初始化过就对其进行初始化
+				// 如果当前上下文环境未激活，那么其只能提供例如设置父上下文、设置上下文id等功能
 				if (!cwac.isActive()) {
 					// The context has not yet been refreshed -> provide services such as
 					// setting the parent context, setting the application context id, etc
@@ -288,12 +291,13 @@ public class ContextLoader {
 						cwac.setParent(parent);
 					}
 					// 对WebApplicationContext进行配置，并且调用其refresh()方法初始化配置文件中配置的Spring的各个组件
-					// 配置并刷新 WebApplicationContext
+					// 2.配置并刷新 WebApplicationContext
 					configureAndRefreshWebApplicationContext(cwac, servletContext);
 				}
 			}
 			// 初始化完成之后将当前WebApplicationContext设置到ServletContext中
 			// 设置 ApplicationContext 到 servletContext 中
+			// 将当前上下文环境存储到ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE变量中
 			servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, this.context);
 			// 设置当前WebApplicationContext的类加载器
 			ClassLoader ccl = Thread.currentThread().getContextClassLoader();
@@ -329,10 +333,12 @@ public class ContextLoader {
 	 * @param sc current servlet context
 	 * @return the root WebApplicationContext
 	 * @see ConfigurableWebApplicationContext
+	 * 为当前类加载器实例化根WebApplicationContext,可以是默认上下文加载类或者自定义上下文加载类
 	 */
 	protected WebApplicationContext createWebApplicationContext(ServletContext sc) {
 		// 判断创建什么类型的容器，默认类型为 XmlWebApplicationContext
 		// 读取配置文件中配置的实现了WebApplicationContext接口的类
+		// 1.确定实例化WebApplicationContext所需的类
 		Class<?> contextClass = determineContextClass(sc);
 		// 判断读取到的类是否实现了ConfigurableWebApplicationContext接口，如果没实现则抛出异常
 		if (!ConfigurableWebApplicationContext.class.isAssignableFrom(contextClass)) {
@@ -340,6 +346,7 @@ public class ContextLoader {
 		}
 		// 通过反射创建容器
 		// 通过反射实例化WebApplicationContext对象
+		// 2.实例化得到的WebApplicationContext类
 		return (ConfigurableWebApplicationContext) BeanUtils.instantiateClass(contextClass);
 	}
 
@@ -354,6 +361,18 @@ public class ContextLoader {
 	 * // 从而作为WebApplicationContext容器。这里读取配置文件的方式有两种：①读取web.xml中配置的
 	 * // contextClass属性，如果存在则将其作为WebApplicationContext容器；②读取Spring提供的
 	 * // ContextLoader.properties属性文件中配置的WebApplicationContext容器。
+	 *
+	 * 返回WebApplicationContext（web应用上线文环境）实现类
+	 * 如果没有自定义默认返回XmlWebApplicationContext类
+	 *
+	 * 两种方式：
+	 * 1。非自定义：通过ContextLoader类的静态代码块加载ContextLoader.properties配置文件并解析，该配置文件中的默认类即XmlWebApplicationContext
+	 * 2。自定义： 通过在web.xml文件中，配置context-param节点，并配置param-name为contextClass的自己点，如
+	 *      <context-param>
+	 *          <param-name>contextClass</param-name>
+	 *          <param-value>org.springframework.web.context.support.MyWebApplicationContext</param-value>
+	 *      </context-param>
+
 	 */
 	protected Class<?> determineContextClass(ServletContext servletContext) {
 		/*
@@ -365,6 +384,7 @@ public class ContextLoader {
 		 */
 		// 读取用户在web.xml中使用contextClass属性自定义的WebApplicationContext容器， 如果不为空，则直接返回
 		String contextClassName = servletContext.getInitParameter(CONTEXT_CLASS_PARAM);
+		// 1.自定义
 		if (contextClassName != null) {
 			try {
 				return ClassUtils.forName(contextClassName, ClassUtils.getDefaultClassLoader());
@@ -373,6 +393,7 @@ public class ContextLoader {
 				throw new ApplicationContextException("Failed to load custom context class [" + contextClassName + "]", ex);
 			}
 		}
+		// 2.默认
 		else {
 			/*
 			 * 若无自定义配置，则获取默认的容器类型，默认类型为 XmlWebApplicationContext。
@@ -383,6 +404,7 @@ public class ContextLoader {
 			// 如果用户没有自定义WebApplicationContext，则通过defaultStrategies读取
 			// ContextLoader.properties属性文件中配置的WebApplicationContext，
 			// 这里读取到的具体实现类就是XmlWebApplicationContext
+			// 根据静态代码块的加载这里 contextClassName = XmlWebApplicationContext
 			contextClassName = defaultStrategies.getProperty(WebApplicationContext.class.getName());
 			try {
 				return ClassUtils.forName(contextClassName, ContextLoader.class.getClassLoader());
