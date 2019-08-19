@@ -510,7 +510,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 			/**
 			 * Tell the subclass to refresh the internal bean factory.
-			 *    这步比较关键，这步完成后，配置文件就会解析成一个个 Bean 定义，注册到 BeanFactory 中，
+			 *    这步比较关键，这步完成后，xml 配置文件就会解析成一个个 Bean 定义，注册到 BeanFactory 中，
 			 *    当然，这里说的 Bean 还没有初始化，只是配置信息都从xml文件中提取出来了，
 			 *    注册也只是将这些信息都保存到了注册中心(说到底核心是一个 beanName-> beanDefinition 的 map)
 			 *    调用子类实现方法获取（创建或刷新）BeanFacotry容器，对于ClassPathXmlApplicationContext，主要调用了AbstractRefreshableApplicationContext中实现的方法

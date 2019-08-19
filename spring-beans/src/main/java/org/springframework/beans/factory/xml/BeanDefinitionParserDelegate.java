@@ -54,15 +54,15 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.xml.DomUtils;
 
 /**
- * Stateful delegate class used to parse XML bean definitions.
- * Intended for use by both the main parser and any extension
- * {@link BeanDefinitionParser BeanDefinitionParsers} or
- * {@link BeanDefinitionDecorator BeanDefinitionDecorators}.
+ * Stateful delegate class used to parse XML bean definitions. Intended for use by both the main parser and any extension
+ * 用于解析XML bean定义的有状态委托类。用于主析器和任何扩展
+ * {@link BeanDefinitionParser BeanDefinitionParsers} or {@link BeanDefinitionDecorator BeanDefinitionDecorators}.
  * @since 2.0
  * @see ParserContext
  * @see DefaultBeanDefinitionDocumentReader
+ * 定义解析 Element 的各种方法
  */
-public class BeanDefinitionParserDelegate { // 定义解析 Element 的各种方法
+public class BeanDefinitionParserDelegate {
 
 	public static final String BEANS_NAMESPACE_URI = "http://www.springframework.org/schema/beans";
 	public static final String MULTI_VALUE_ATTRIBUTE_DELIMITERS = ",; ";
@@ -1066,9 +1066,7 @@ public class BeanDefinitionParserDelegate { // 定义解析 Element 的各种方
 	 * Build a typed String value Object for the given raw value.
 	 * @see org.springframework.beans.factory.config.TypedStringValue
 	 */
-	protected TypedStringValue buildTypedStringValue(String value, @Nullable String targetTypeName)
-			throws ClassNotFoundException {
-
+	protected TypedStringValue buildTypedStringValue(String value, @Nullable String targetTypeName) throws ClassNotFoundException {
 		ClassLoader classLoader = this.readerContext.getBeanClassLoader();
 		TypedStringValue typedValue;
 		if (!StringUtils.hasText(targetTypeName)) {
@@ -1126,9 +1124,7 @@ public class BeanDefinitionParserDelegate { // 定义解析 Element 的各种方
 		return target;
 	}
 
-	protected void parseCollectionElements(
-			NodeList elementNodes, Collection<Object> target, @Nullable BeanDefinition bd, String defaultElementType) {
-
+	protected void parseCollectionElements(NodeList elementNodes, Collection<Object> target, @Nullable BeanDefinition bd, String defaultElementType) {
 		for (int i = 0; i < elementNodes.getLength(); i++) {
 			Node node = elementNodes.item(i);
 			if (node instanceof Element && !nodeNameEquals(node, DESCRIPTION_ELEMENT)) {
@@ -1188,10 +1184,8 @@ public class BeanDefinitionParserDelegate { // 定义解析 Element 的各种方
 			Object key = null;
 			boolean hasKeyAttribute = entryEle.hasAttribute(KEY_ATTRIBUTE);
 			boolean hasKeyRefAttribute = entryEle.hasAttribute(KEY_REF_ATTRIBUTE);
-			if ((hasKeyAttribute && hasKeyRefAttribute) ||
-					(hasKeyAttribute || hasKeyRefAttribute) && keyEle != null) {
-				error("<entry> element is only allowed to contain either " +
-						"a 'key' attribute OR a 'key-ref' attribute OR a <key> sub-element", entryEle);
+			if ((hasKeyAttribute && hasKeyRefAttribute) || (hasKeyAttribute || hasKeyRefAttribute) && keyEle != null) {
+				error("<entry> element is only allowed to contain either a 'key' attribute OR a 'key-ref' attribute OR a <key> sub-element", entryEle);
 			}
 			if (hasKeyAttribute) {
 				key = buildTypedStringValueForMap(entryEle.getAttribute(KEY_ATTRIBUTE), defaultKeyType, entryEle);
@@ -1217,16 +1211,12 @@ public class BeanDefinitionParserDelegate { // 定义解析 Element 的各种方
 			boolean hasValueAttribute = entryEle.hasAttribute(VALUE_ATTRIBUTE);
 			boolean hasValueRefAttribute = entryEle.hasAttribute(VALUE_REF_ATTRIBUTE);
 			boolean hasValueTypeAttribute = entryEle.hasAttribute(VALUE_TYPE_ATTRIBUTE);
-			if ((hasValueAttribute && hasValueRefAttribute) ||
-					(hasValueAttribute || hasValueRefAttribute) && valueEle != null) {
-				error("<entry> element is only allowed to contain either " +
-						"'value' attribute OR 'value-ref' attribute OR <value> sub-element", entryEle);
+			if ((hasValueAttribute && hasValueRefAttribute) || (hasValueAttribute || hasValueRefAttribute) && valueEle != null) {
+				error("<entry> element is only allowed to contain either 'value' attribute OR 'value-ref' attribute OR <value> sub-element", entryEle);
+
 			}
-			if ((hasValueTypeAttribute && hasValueRefAttribute) ||
-				(hasValueTypeAttribute && !hasValueAttribute) ||
-					(hasValueTypeAttribute && valueEle != null)) {
-				error("<entry> element is only allowed to contain a 'value-type' " +
-						"attribute when it has a 'value' attribute", entryEle);
+			if ((hasValueTypeAttribute && hasValueRefAttribute) || (hasValueTypeAttribute && !hasValueAttribute) || (hasValueTypeAttribute && valueEle != null)) {
+				error("<entry> element is only allowed to contain a 'value-type' attribute when it has a 'value' attribute", entryEle);
 			}
 			if (hasValueAttribute) {
 				String valueType = entryEle.getAttribute(VALUE_TYPE_ATTRIBUTE);
@@ -1319,7 +1309,6 @@ public class BeanDefinitionParserDelegate { // 定义解析 Element 的各种方
 			valueHolder.setSource(extractSource(propEle));
 			props.put(keyHolder, valueHolder);
 		}
-
 		return props;
 	}
 
@@ -1411,15 +1400,12 @@ public class BeanDefinitionParserDelegate { // 定义解析 Element 的各种方
 	private BeanDefinitionHolder parseNestedCustomElement(Element ele, @Nullable BeanDefinition containingBd) {
 		BeanDefinition innerDefinition = parseCustomElement(ele, containingBd);
 		if (innerDefinition == null) {
-			error("Incorrect usage of element '" + ele.getNodeName() + "' in a nested manner. " +
-					"This tag cannot be used nested inside <property>.", ele);
+			error("Incorrect usage of element '" + ele.getNodeName() + "' in a nested manner. This tag cannot be used nested inside <property>.", ele);
 			return null;
 		}
-		String id = ele.getNodeName() + BeanDefinitionReaderUtils.GENERATED_BEAN_NAME_SEPARATOR +
-				ObjectUtils.getIdentityHexString(innerDefinition);
+		String id = ele.getNodeName() + BeanDefinitionReaderUtils.GENERATED_BEAN_NAME_SEPARATOR + ObjectUtils.getIdentityHexString(innerDefinition);
 		if (logger.isTraceEnabled()) {
-			logger.trace("Using generated bean name [" + id +
-					"] for nested custom element '" + ele.getNodeName() + "'");
+			logger.trace("Using generated bean name [" + id + "] for nested custom element '" + ele.getNodeName() + "'");
 		}
 		return new BeanDefinitionHolder(innerDefinition, id);
 	}

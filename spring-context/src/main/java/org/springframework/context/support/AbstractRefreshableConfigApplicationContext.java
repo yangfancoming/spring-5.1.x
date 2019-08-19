@@ -23,8 +23,9 @@ import org.springframework.util.StringUtils;
  */
 public abstract class AbstractRefreshableConfigApplicationContext extends AbstractRefreshableApplicationContext implements BeanNameAware, InitializingBean {
 
+	// ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:beans.xml"); 中的配置字符串数组："classpath:beans.xml"
 	@Nullable
-	private String[] configLocations;
+	private String[] configLocations; //
 
 	private boolean setIdCalled = false;
 

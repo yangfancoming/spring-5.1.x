@@ -1,6 +1,5 @@
-package com.goat.chapter201;
+package com.goat.chapter201.bean;
 
-import com.goat.chapter201.bean.Person;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -14,12 +13,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class App {
 
-	ApplicationContext ac1 = new ClassPathXmlApplicationContext("classpath:beans.xml");
+	ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:beans.xml");
 
 	/**  测试 xml 配置方式  */
 	@Test
 	public void test1(){
-		Person person = (Person)ac1.getBean("person");
+		Person person = (Person)ac.getBean("person");
 		System.out.println(person);
 	}
 }

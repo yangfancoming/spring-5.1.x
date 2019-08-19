@@ -4,7 +4,6 @@
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-
 	<bean id="person" class="com.goat.chapter201.bean.Person" >
 		<property name="name" value="jordan"></property>
 		<property name="age" value="23"></property>
