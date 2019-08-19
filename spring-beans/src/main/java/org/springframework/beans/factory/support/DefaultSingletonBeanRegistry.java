@@ -44,8 +44,7 @@ import org.springframework.util.StringUtils;
  * Note that this class assumes neither a bean definition concept
  * nor a specific creation process for bean instances, in contrast to
  * {@link AbstractBeanFactory} and {@link DefaultListableBeanFactory}
- * (which inherit from it). Can alternatively also be used as a nested
- * helper to delegate to.
+ * (which inherit from it). Can alternatively also be used as a nested helper to delegate to.
 
  * @since 2.0
  * @see #registerSingleton
@@ -58,19 +57,23 @@ import org.springframework.util.StringUtils;
 public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements SingletonBeanRegistry {
 
 	/** Cache of singleton objects: bean name to bean instance. 一级缓存  单例bean缓存池 用于保存我们所有的单例bean，bean name --> bean instance */
+	/** 缓存beanName和bean实例 key-->beanName,value-->beanInstance */
 	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
 
 	/** Cache of singleton factories: bean name to ObjectFactory. 三级缓存  单例对应的工厂缓存，可以使用工厂来创建单例对象 bean name --> ObjectFactory */
 	/**
 	 * 用于存放 bean 工厂  bean 工厂所产生的 bean 是还未完成初始化的 bean   如代码所示，bean 工厂所生成的对象最终会被缓存到 earlySingletonObjects 中
 	*/
+	/** 缓存beanName和beanFactory key-->beanName,value-->beanFactory */
 	private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
 
 	/** Cache of early singleton objects: bean name to bean instance. 二级缓存  早期的单例对象(对象属性还没有进行赋值)  纯净态*/
 	/** 用于存放还在初始化中的 bean，用于解决循环依赖 */
+	/** 缓存beanName和bean实例 key-->beanName,value-->beanInstance 该缓存主要为了解决bean的循环依赖引用 */
 	private final Map<String, Object> earlySingletonObjects = new HashMap<>(16);
 
 	/** Set of registered singletons, containing the bean names in registration order. 已经注册过了的单例对象*/
+	/** 缓存所有注册的单例beanName */
 	private final Set<String> registeredSingletons = new LinkedHashSet<>(256);
 
 	/** Names of beans that are currently in creation. 当前正在创建的单例对象集合 */
@@ -169,6 +172,8 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	}
 
 	/**
+	 *  * 返回在给定名称下注册的(原始)单例对象。
+	 *  * 检查已经实例化的单例，并允许对当前创建的单例的早期引用(解决循环引用)。
 	 * Return the (raw) singleton object registered under the given name.
 	 * Checks already instantiated singletons and also allows for an early
 	 * reference to a currently created singleton (resolving a circular reference).
@@ -180,26 +185,35 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	protected Object getSingleton(String beanName, boolean allowEarlyReference) {
 		// aop 从 singletonObjects 里取得代理后的对象！
 		// 从 singletonObjects 获取实例，singletonObjects 中缓存的实例都是完全实例化好的 bean，可以直接使用
+		// 1、从缓存中获取bean
 		Object singletonObject = this.singletonObjects.get(beanName);
 		/*
 		 * 如果 singletonObject = null，表明还没创建，或者还没完全创建好。
 		 * 这里判断 beanName 对应的 bean 是否正在创建中
 		 */
+		// 2、未能获取到bean,但是允许对当前创建的单例的早期引用(解决循环引用)
+		// isSingletonCurrentlyInCreation-->判断指定的单例bean是否当前正在创建(Spring只解决单例bean的循环依赖问题)
 		if (singletonObject == null && isSingletonCurrentlyInCreation(beanName)) {
 			synchronized (this.singletonObjects) {
+				// 从earlySingletonObjects获取提前曝光的bean
 				// 如果之前也没有注册过，且 allowEarlyReference = true
 				// 从 earlySingletonObjects 中获取提前曝光的 bean，用于处理循环引用
 				singletonObject = this.earlySingletonObjects.get(beanName);
-				// 如果如果 singletonObject = null，且允许提前曝光 bean 实例，则从相应的 ObjectFactory 获取一个原始的（raw）bean（尚未填充属性）
+				// 如果 singletonObject = null，且允许提前曝光 bean 实例，则从相应的 ObjectFactory 获取一个原始的（raw）bean（尚未填充属性）
+				// 未能获取到提前曝光的bean且当前的bean允许被创建早期依赖
 				if (singletonObject == null && allowEarlyReference) {
 					// 获取该bean对应的工厂，通过工厂了创建还bean
+					// 从缓存中获取BeanFactory
 					ObjectFactory<?> singletonFactory = this.singletonFactories.get(beanName);
 					if (singletonFactory != null) {
+						// 通过getObject()方法获取bean,注意:通过此方法获取的bean不是被缓存的
 						// 提前曝光 bean 实例，用于解决循环依赖
 						singletonObject = singletonFactory.getObject();
 						// 放入缓存中，如果还有其他 bean 依赖当前 bean，其他 bean 可以直接从 earlySingletonObjects 取结果
+						// 将获取到的singletonObject缓存至earlySingletonObjects
 						this.earlySingletonObjects.put(beanName, singletonObject);
 						// 创建成功后，需要去除
+						// 从singletonFactories移除bean
 						this.singletonFactories.remove(beanName);
 					}
 				}

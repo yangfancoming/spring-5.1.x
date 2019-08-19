@@ -212,6 +212,7 @@ public class SimpleAliasRegistry implements AliasRegistry {
 		 * 通过下面的循环解析别名  aliasB 最终指向的 beanName
 		 */
 		do {
+			//从别名缓存Map中获取对应beanName
 			resolvedName = this.aliasMap.get(canonicalName);
 			if (resolvedName != null) {
 				canonicalName = resolvedName;
