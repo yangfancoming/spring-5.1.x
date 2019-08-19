@@ -22,7 +22,6 @@ import org.springframework.lang.Nullable;
  * whether backed by an actual resource transaction or operating non-transactionally
  * at the resource level. In the latter case, the flag will only apply to managed
  * resources within the application, such as a Hibernate {@code Session}.
- *
 
  * @since 08.05.2003
  * @see PlatformTransactionManager#getTransaction(TransactionDefinition)
@@ -37,6 +36,7 @@ public interface TransactionDefinition {
 	 * Analogous to the EJB transaction attribute of the same name.
 	 * <p>This is typically the default setting of a transaction definition,
 	 * and typically defines a transaction synchronization scope.
+	 * 如果当前没有事物，则新建一个事物；如果已经存在一个事物，则加入到这个事物中
 	 */
 	int PROPAGATION_REQUIRED = 0;
 
@@ -58,6 +58,7 @@ public interface TransactionDefinition {
 	 * "synchronization on actual transaction").
 	 * @see org.springframework.transaction.support.AbstractPlatformTransactionManager#setTransactionSynchronization
 	 * @see org.springframework.transaction.support.AbstractPlatformTransactionManager#SYNCHRONIZATION_ON_ACTUAL_TRANSACTION
+	 * 支持当前事物，如果当前没有事物，则以非事物方式执行
 	 */
 	int PROPAGATION_SUPPORTS = 1;
 
@@ -66,6 +67,7 @@ public interface TransactionDefinition {
 	 * exists. Analogous to the EJB transaction attribute of the same name.
 	 * <p>Note that transaction synchronization within a {@code PROPAGATION_MANDATORY}
 	 * scope will always be driven by the surrounding transaction.
+	 * 使用当前事物，如果当前没有事物，则抛出异常。
 	 */
 	int PROPAGATION_MANDATORY = 2;
 
@@ -81,6 +83,7 @@ public interface TransactionDefinition {
 	 * transaction synchronizations. Existing synchronizations will be suspended
 	 * and resumed appropriately.
 	 * @see org.springframework.transaction.jta.JtaTransactionManager#setTransactionManager
+	 * 新建事物，如果当前已经存在事物，则挂起当前事物
 	 */
 	int PROPAGATION_REQUIRES_NEW = 3;
 
@@ -96,6 +99,7 @@ public interface TransactionDefinition {
 	 * {@code PROPAGATION_NOT_SUPPORTED} scope. Existing synchronizations
 	 * will be suspended and resumed appropriately.
 	 * @see org.springframework.transaction.jta.JtaTransactionManager#setTransactionManager
+	 * 以非事物方式执行，如果当前存在事物，则挂起当前事物
 	 */
 	int PROPAGATION_NOT_SUPPORTED = 4;
 
@@ -104,6 +108,7 @@ public interface TransactionDefinition {
 	 * exists. Analogous to the EJB transaction attribute of the same name.
 	 * <p>Note that transaction synchronization is <i>not</i> available within a
 	 * {@code PROPAGATION_NEVER} scope.
+	 * 以非事物方式执行，如果当前存在事物，则抛出异常
 	 */
 	int PROPAGATION_NEVER = 5;
 
@@ -117,6 +122,7 @@ public interface TransactionDefinition {
 	 * when working on a JDBC 3.0 driver. Some JTA providers might support
 	 * nested transactions as well.
 	 * @see org.springframework.jdbc.datasource.DataSourceTransactionManager
+	 * 如果当前存在事物，则在嵌套事物内执行；如果当前没有事物，则与PROPAGATION_REQUIRED传播特性相同
 	 */
 	int PROPAGATION_NESTED = 6;
 
@@ -125,6 +131,7 @@ public interface TransactionDefinition {
 	 * Use the default isolation level of the underlying datastore.
 	 * All other levels correspond to the JDBC isolation levels.
 	 * @see java.sql.Connection
+	 *  使用后端数据库默认的隔离级别
 	 */
 	int ISOLATION_DEFAULT = -1;
 
@@ -136,6 +143,7 @@ public interface TransactionDefinition {
 	 * If any of the changes are rolled back, the second transaction will have
 	 * retrieved an invalid row.
 	 * @see java.sql.Connection#TRANSACTION_READ_UNCOMMITTED
+	 * READ_UNCOMMITTED 隔离级别
 	 */
 	int ISOLATION_READ_UNCOMMITTED = Connection.TRANSACTION_READ_UNCOMMITTED;
 
@@ -187,6 +195,7 @@ public interface TransactionDefinition {
 	 * @return the propagation behavior
 	 * @see #PROPAGATION_REQUIRED
 	 * @see org.springframework.transaction.support.TransactionSynchronizationManager#isActualTransactionActive()
+	 * 获取事物传播特性
 	 */
 	int getPropagationBehavior();
 
@@ -206,6 +215,7 @@ public interface TransactionDefinition {
 	 * @return the isolation level
 	 * @see #ISOLATION_DEFAULT
 	 * @see org.springframework.transaction.support.AbstractPlatformTransactionManager#setValidateExistingTransaction
+	 * 获取事物隔离级别
 	 */
 	int getIsolationLevel();
 
@@ -218,6 +228,7 @@ public interface TransactionDefinition {
 	 * <p>Note that a transaction manager that does not support timeouts will throw
 	 * an exception when given any other timeout than {@link #TIMEOUT_DEFAULT}.
 	 * @return the transaction timeout
+	 * 获取事物超时时间
 	 */
 	int getTimeout();
 
@@ -236,6 +247,7 @@ public interface TransactionDefinition {
 	 * @return {@code true} if the transaction is to be optimized as read-only
 	 * @see org.springframework.transaction.support.TransactionSynchronization#beforeCommit(boolean)
 	 * @see org.springframework.transaction.support.TransactionSynchronizationManager#isCurrentTransactionReadOnly()
+	 * 判断事物是否可读
 	 */
 	boolean isReadOnly();
 
@@ -248,6 +260,7 @@ public interface TransactionDefinition {
 	 * @return the name of this transaction
 	 * @see org.springframework.transaction.interceptor.TransactionAspectSupport
 	 * @see org.springframework.transaction.support.TransactionSynchronizationManager#getCurrentTransactionName()
+	 *  获取事物名称
 	 */
 	@Nullable
 	String getName();

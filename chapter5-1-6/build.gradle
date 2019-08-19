@@ -14,9 +14,11 @@ repositories {
 
 dependencies {
     compile group: 'junit', name: 'junit', version: '4.12'
-
     optional(project(":servlet-api"))
     optional(project(":spring-webmvc"))
     optional(project(":spring-context"))
 
+
+    optional(project(":spring-aop"))
+    optional("org.aspectj:aspectjweaver:${aspectjVersion}")
 }
