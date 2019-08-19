@@ -47,9 +47,11 @@
     chapter5-8-8  语言环境 LocaleResolver (国际化)
     chapter5-8-9  语言环境 CookieLocaleResolver  
     
-    
+# JDBC 模块 
     chapter6-0-0  spring jdbc
     chapter6-0-2  spring jdbc  编程式事务
+    chapter6-0-4  spring jdbc  基于tx标签 
+    chapter6-0-6  spring jdbc  基于 @Transactional注解的声明式
     
     
     chapter7-0-0  spring web MVC 高级

@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'org.springframework'
+version '5.1.9.BUILD-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'junit', name: 'junit', version: '4.12'
+
+    optional(project(":spring-context"))
+    // 引入spring-jdbc模块
+    optional(project(":spring-jdbc"))
+    compile 'com.alibaba:druid:1.1.9'
+
+    // sos 这里有个大坑啊   version: '5.1.38' 不支持mysql8   要  version: '5.1.46' 才行。。。。  但是妈的 不报错版本问题的错啊！
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.46'
+    optional("org.aspectj:aspectjweaver:${aspectjVersion}")
+}
