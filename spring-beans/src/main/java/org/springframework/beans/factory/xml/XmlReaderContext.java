@@ -41,9 +41,7 @@ public class XmlReaderContext extends ReaderContext {
 	 * @param reader the XML bean definition reader in use
 	 * @param namespaceHandlerResolver the XML namespace resolver
 	 */
-	public XmlReaderContext(
-			Resource resource, ProblemReporter problemReporter,
-			ReaderEventListener eventListener, SourceExtractor sourceExtractor,
+	public XmlReaderContext(Resource resource, ProblemReporter problemReporter,ReaderEventListener eventListener, SourceExtractor sourceExtractor,
 			XmlBeanDefinitionReader reader, NamespaceHandlerResolver namespaceHandlerResolver) {
 
 		super(resource, problemReporter, eventListener, sourceExtractor);

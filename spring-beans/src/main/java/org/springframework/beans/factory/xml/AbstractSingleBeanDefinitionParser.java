@@ -22,10 +22,7 @@ import org.springframework.lang.Nullable;
  * with the {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}.
  * Your job simply is to {@link #doParse parse} the custom XML {@link Element}
  * into a single {@code BeanDefinition}.
- *
- * @author Rob Harrop
 
- * @author Rick Evans
  * @since 2.0
  * @see #getBeanClass
  * @see #getBeanClassName

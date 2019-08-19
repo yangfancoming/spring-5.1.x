@@ -27,17 +27,12 @@ import org.springframework.lang.Nullable;
  * Here the '{@code p:name}' corresponds directly to the '{@code name}'
  * property on class '{@code TestBean}'. The '{@code p:spouse-ref}'
  * attributes corresponds to the '{@code spouse}' property and, rather
- * than being the concrete value, it contains the name of the bean that will
- * be injected into that property.
- *
- * @author Rob Harrop
-
+ * than being the concrete value, it contains the name of the bean that will be injected into that property.
  * @since 2.0
  */
 public class SimplePropertyNamespaceHandler implements NamespaceHandler {
 
 	private static final String REF_SUFFIX = "-ref";
-
 
 	@Override
 	public void init() {
@@ -46,8 +41,7 @@ public class SimplePropertyNamespaceHandler implements NamespaceHandler {
 	@Override
 	@Nullable
 	public BeanDefinition parse(Element element, ParserContext parserContext) {
-		parserContext.getReaderContext().error(
-				"Class [" + getClass().getName() + "] does not support custom elements.", element);
+		parserContext.getReaderContext().error("Class [" + getClass().getName() + "] does not support custom elements.", element);
 		return null;
 	}
 
@@ -59,8 +53,8 @@ public class SimplePropertyNamespaceHandler implements NamespaceHandler {
 			String propertyValue = attr.getValue();
 			MutablePropertyValues pvs = definition.getBeanDefinition().getPropertyValues();
 			if (pvs.contains(propertyName)) {
-				parserContext.getReaderContext().error("Property '" + propertyName + "' is already defined using " +
-						"both <property> and inline syntax. Only one approach may be used per property.", attr);
+				parserContext.getReaderContext().error("Property '" + propertyName + "' is already defined using both <property> and inline syntax. Only one approach may be used per property.", attr);
+
 			}
 			if (propertyName.endsWith(REF_SUFFIX)) {
 				propertyName = propertyName.substring(0, propertyName.length() - REF_SUFFIX.length());

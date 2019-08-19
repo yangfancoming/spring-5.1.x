@@ -57,8 +57,7 @@ public class SimpleConstructorNamespaceHandler implements NamespaceHandler {
 	@Override
 	@Nullable
 	public BeanDefinition parse(Element element, ParserContext parserContext) {
-		parserContext.getReaderContext().error(
-				"Class [" + getClass().getName() + "] does not support custom elements.", element);
+		parserContext.getReaderContext().error("Class [" + getClass().getName() + "] does not support custom elements.", element);
 		return null;
 	}
 

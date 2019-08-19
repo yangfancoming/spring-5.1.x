@@ -28,10 +28,6 @@ import org.springframework.util.StringUtils;
  * {@link AbstractSingleBeanDefinitionParser} and
  * {@link AbstractSimpleBeanDefinitionParser}.
  *
- * @author Rob Harrop
-
- * @author Rick Evans
- * @author Dave Syer
  * @since 2.0
  */
 public abstract class AbstractBeanDefinitionParser implements BeanDefinitionParser {
