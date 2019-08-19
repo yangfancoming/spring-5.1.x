@@ -73,4 +73,6 @@ include 'chapter1-8-0'
 include 'chapter1-8-2'
 include 'chapter1-8-5'
 include 'chapter1-0-3'
+include 'chapter5-0-5'
+include 'servlet-api'
 
