@@ -19,8 +19,7 @@ import org.springframework.util.SystemPropertyUtils;
 
 /**
  * Abstract base class for resolving properties against any underlying source.
-
-
+ * 用于针对任何基础源解析属性的抽象基类
  * @since 3.1
  */
 public abstract class AbstractPropertyResolver implements ConfigurablePropertyResolver {
@@ -135,7 +134,8 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 				ex.addMissingRequiredProperty(key);
 			}
 		}
-		if (!ex.getMissingRequiredProperties().isEmpty()) {// 存在缺失属性则抛出异常
+		// 存在缺失属性则抛出异常
+		if (!ex.getMissingRequiredProperties().isEmpty()) {
 			throw ex;
 		}
 	}

@@ -131,7 +131,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 */
 	public static final String APPLICATION_EVENT_MULTICASTER_BEAN_NAME = "applicationEventMulticaster";
 
-
 	static {
 
 		/**
@@ -290,8 +289,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	}
 
 	/**
-	 * Return the {@code Environment} for this application context in configurable
-	 * form, allowing for further customization.
+	 * Return the {@code Environment} for this application context in configurable form, allowing for further customization.
 	 * If none specified, a default environment will be initialized via
 	 * {@link #createEnvironment()}.
 	 */
@@ -510,11 +508,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 			/**
 			 * Tell the subclass to refresh the internal bean factory.
-			 *    这步比较关键，这步完成后，xml 配置文件就会解析成一个个 Bean 定义，注册到 BeanFactory 中，
+			 *    这步比较关键，这步完成后，xml 配置文件就会解析成一个个 Bean 定义(BeanDefinitio)，注册到 BeanFactory 中， (说到底核心是一个 beanName-> beanDefinition 的 map)
 			 *    当然，这里说的 Bean 还没有初始化，只是配置信息都从xml文件中提取出来了，
-			 *    注册也只是将这些信息都保存到了注册中心(说到底核心是一个 beanName-> beanDefinition 的 map)
 			 *    调用子类实现方法获取（创建或刷新）BeanFacotry容器，对于ClassPathXmlApplicationContext，主要调用了AbstractRefreshableApplicationContext中实现的方法
-			 * 	  在这里，将xml配置文件中 的Bean解析成了一个个BeanDefinition,建立一个beanName-> beanDefinition 的 map
 			 * 	  初始化BeanFactory，存在则销毁，不存在则创建一个
 			 */
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
@@ -609,9 +605,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	protected void prepareRefresh() {
 		// Switch to active. 记录启动时间 将 active 属性设置为 true，closed 属性设置为 false，它们都是 AtomicBoolean 类型
 		this.startupDate = System.currentTimeMillis();
-		// 设置容器是否被关闭状态
+		// 设置容器非关闭状态
 		this.closed.set(false);
-		// 设置容器是否激活状态
+		// 设置容器为激活状态
 		this.active.set(true);
 
 		if (logger.isDebugEnabled()) {
@@ -627,9 +623,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		// 内部是一个空实现，主要供子类拓展自己ApplicationContext，设置必需的属性
 		initPropertySources();
 
-		// Validate that all properties marked as required are resolvable:
+		// Validate that all properties marked as required are resolvable: 验证所有标记为“必需”的属性是否可解析
 		// see ConfigurablePropertyResolver#setRequiredProperties
-		//  校验 xml 配置文件  校验必需的属性是否存在，具体参考下面的代码
+		//  校验 xml 配置文件  校验必需的属性是否存在
 		getEnvironment().validateRequiredProperties();
 
 		// Store pre-refresh ApplicationListeners...
@@ -649,6 +645,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 	/**
 	 * Replace any stub property sources with actual instances.
+	 * 用实际实例替换任何存根属性源
 	 * @see org.springframework.core.env.PropertySource.StubPropertySource
 	 */
 	protected void initPropertySources() {
@@ -660,7 +657,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 * @return the fresh BeanFactory instance
 	 * @see #refreshBeanFactory()
 	 * @see #getBeanFactory()
-	 *
 	 * 该方法为BeanFactory准备创建Bean的原材料，即BeanDefinition，准备好之后放到一个ConcurrentHashMap里面，key为beanName，value为BeanDefinition
 	 */
 	protected ConfigurableListableBeanFactory obtainFreshBeanFactory() {
@@ -759,8 +755,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	}
 
 	/**
-	 * Initialize the MessageSource.
-	 * Use parent's if none defined in this context.
+	 * Initialize the MessageSource.Use parent's if none defined in this context.
 	 */
 	protected void initMessageSource() {
 		ConfigurableListableBeanFactory beanFactory = getBeanFactory();
@@ -1391,12 +1386,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	/**
 	 * Subclasses must implement this method to perform the actual configuration load.
 	 * The method is invoked by {@link #refresh()} before any other initialization work.
-	 * A subclass will either create a new bean factory and hold a reference to it,
-	 * or return a single BeanFactory instance that it holds. In the latter case, it will
-	 * usually throw an IllegalStateException if refreshing the context more than once.
+	 * A subclass will either create a new bean factory and hold a reference to it,or return a single BeanFactory instance that it holds.
+	 * In the latter case, it will usually throw an IllegalStateException if refreshing the context more than once.
+	 * 在后一种情况下，如果多次刷新上下文，它通常会抛出非法状态异常
 	 * @throws BeansException if initialization of the bean factory failed
-	 * @throws IllegalStateException if already initialized and multiple refresh
-	 * attempts are not supported
+	 * @throws IllegalStateException if already initialized and multiple refresh attempts are not supported
 	 */
 	protected abstract void refreshBeanFactory() throws BeansException, IllegalStateException;
 

@@ -51,6 +51,7 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 	 * @see #setConfigLocation
 	 * @see #setConfigLocations
 	 * @see #afterPropertiesSet()
+	 * 如果已经有 ApplicationContext 并需要配置成父子关系，那么调用这个构造方法
 	 */
 	public ClassPathXmlApplicationContext(ApplicationContext parent) {
 		super(parent);
@@ -66,8 +67,7 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 	}
 
 	/**
-	 * Create a new ClassPathXmlApplicationContext, loading the definitions
-	 * from the given XML files and automatically refreshing the context.
+	 * Create a new ClassPathXmlApplicationContext, loading the definitions from the given XML files and automatically refreshing the context.
 	 * @param configLocations array of resource locations
 	 * @throws BeansException if context creation failed
 	 */
@@ -76,8 +76,7 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 	}
 
 	/**
-	 * Create a new ClassPathXmlApplicationContext with the given parent,
-	 * loading the definitions from the given XML files and automatically
+	 * Create a new ClassPathXmlApplicationContext with the given parent, loading the definitions from the given XML files and automatically
 	 * refreshing the context.
 	 * @param configLocations array of resource locations
 	 * @param parent the parent context
@@ -88,8 +87,7 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 	}
 
 	/**
-	 * Create a new ClassPathXmlApplicationContext, loading the definitions
-	 * from the given XML files.
+	 * Create a new ClassPathXmlApplicationContext, loading the definitions from the given XML files.
 	 * @param configLocations array of resource locations
 	 * @param refresh whether to automatically refresh the context,
 	 * loading all bean definitions and creating all singletons.

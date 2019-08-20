@@ -32,7 +32,6 @@ import org.springframework.util.StringUtils;
  * and working against the {@link MutablePropertySources} API.
  * See {@link ConfigurableEnvironment} javadoc for usage examples.
 
-
  * @since 3.1
  * @see ConfigurableEnvironment
  * @see StandardEnvironment
@@ -94,9 +93,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 
 	private final MutablePropertySources propertySources = new MutablePropertySources();
 
-	private final ConfigurablePropertyResolver propertyResolver =
-			new PropertySourcesPropertyResolver(this.propertySources);
-
+	private final ConfigurablePropertyResolver propertyResolver = new PropertySourcesPropertyResolver(this.propertySources);
 
 	/**
 	 * Create a new {@code Environment} instance, calling back to
@@ -222,8 +219,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 			if (this.activeProfiles.isEmpty()) {
 				String profiles = getProperty(ACTIVE_PROFILES_PROPERTY_NAME);
 				if (StringUtils.hasText(profiles)) {
-					setActiveProfiles(StringUtils.commaDelimitedListToStringArray(
-							StringUtils.trimAllWhitespace(profiles)));
+					setActiveProfiles(StringUtils.commaDelimitedListToStringArray(StringUtils.trimAllWhitespace(profiles)));
 				}
 			}
 			return this.activeProfiles;
@@ -280,8 +276,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 			if (this.defaultProfiles.equals(getReservedDefaultProfiles())) {
 				String profiles = getProperty(DEFAULT_PROFILES_PROPERTY_NAME);
 				if (StringUtils.hasText(profiles)) {
-					setDefaultProfiles(StringUtils.commaDelimitedListToStringArray(
-							StringUtils.trimAllWhitespace(profiles)));
+					setDefaultProfiles(StringUtils.commaDelimitedListToStringArray(StringUtils.trimAllWhitespace(profiles)));
 				}
 			}
 			return this.defaultProfiles;
@@ -339,8 +334,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	protected boolean isProfileActive(String profile) {
 		validateProfile(profile);
 		Set<String> currentActiveProfiles = doGetActiveProfiles();
-		return (currentActiveProfiles.contains(profile) ||
-				(currentActiveProfiles.isEmpty() && doGetDefaultProfiles().contains(profile)));
+		return (currentActiveProfiles.contains(profile) || (currentActiveProfiles.isEmpty() && doGetDefaultProfiles().contains(profile)));
 	}
 
 	/**
@@ -383,8 +377,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 					}
 					catch (AccessControlException ex) {
 						if (logger.isInfoEnabled()) {
-							logger.info("Caught AccessControlException when accessing system property '" +
-									attributeName + "'; its value will be returned [null]. Reason: " + ex.getMessage());
+							logger.info("Caught AccessControlException when accessing system property '" + attributeName + "'; its value will be returned [null]. Reason: " + ex.getMessage());
 						}
 						return null;
 					}
@@ -412,8 +405,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 					}
 					catch (AccessControlException ex) {
 						if (logger.isInfoEnabled()) {
-							logger.info("Caught AccessControlException when accessing system environment variable '" +
-									attributeName + "'; its value will be returned [null]. Reason: " + ex.getMessage());
+							logger.info("Caught AccessControlException when accessing system environment variable '" + attributeName + "'; its value will be returned [null]. Reason: " + ex.getMessage());
 						}
 						return null;
 					}
@@ -563,8 +555,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 
 	@Override
 	public String toString() {
-		return getClass().getSimpleName() + " {activeProfiles=" + this.activeProfiles +
-				", defaultProfiles=" + this.defaultProfiles + ", propertySources=" + this.propertySources + "}";
+		return getClass().getSimpleName() + " {activeProfiles=" + this.activeProfiles + ", defaultProfiles=" + this.defaultProfiles + ", propertySources=" + this.propertySources + "}";
 	}
 
 }
