@@ -85,10 +85,9 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 	}
 
 	/**
-	 * Return the default config locations to use, for the case where no
-	 * explicit config locations have been specified.
-	 * <p>The default implementation returns {@code null},
-	 * requiring explicit config locations.
+	 * Return the default config locations to use, for the case where no explicit config locations have been specified.
+	 * 对于没有指定显式配置位置的情况，返回要使用的默认配置位置
+	 * <p>The default implementation returns {@code null},  requiring explicit config locations.
 	 * @return an array of default config locations, if any
 	 * @see #setConfigLocations
 	 */

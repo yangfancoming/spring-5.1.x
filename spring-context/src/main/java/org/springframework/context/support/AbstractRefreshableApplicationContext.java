@@ -113,14 +113,18 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			closeBeanFactory();
 		}
 		try {
-			//创建一个默认的BeanFactory，即全功能的那个郭靖！
+			// 创建一个默认的BeanFactory，即全功能的那个郭靖！
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
 			// 为当前BeanFactory设置一个标识id
 			beanFactory.setSerializationId(getId());
 
 			/**
-			 配置beanFactory的一些定制化属性，如是否允许循环依赖，是否支持definition重写
-			  设置 BeanFactory 的两个配置属性：是否允许 Bean 覆盖、是否允许循环引用
+			 配置beanFactory的一些定制化属性， 如
+				 是否允许循环依赖，
+				 是否支持definition重写
+				 设置 BeanFactory 的两个配置属性：
+				 是否允许 Bean 覆盖、
+				 是否允许循环引用
 			*/
 			customizeBeanFactory(beanFactory);
 			//这步就关键了，加载xml文件信息 ，载入BeanDefinations，给BeanFactory工厂提供创建bean的原材料！

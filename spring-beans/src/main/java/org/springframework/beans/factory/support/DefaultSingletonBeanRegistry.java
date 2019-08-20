@@ -308,8 +308,8 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	}
 
 	/**
-	 * Remove the bean with the given name from the singleton cache of this factory,
-	 * to be able to clean up eager registration of a singleton if creation failed.
+	 * Remove the bean with the given name from the singleton cache of this factory,to be able to clean up eager registration of a singleton if creation failed.
+	 * 从工厂的singleton缓存中删除具有给定名称的bean，以便在创建失败时清理singleton的早期注册
 	 * @param beanName the name of the bean
 	 * @see #getSingletonMutex()
 	 */
@@ -574,8 +574,8 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	}
 
 	/**
-	 * Destroy the given bean. Delegates to {@code destroyBean}
-	 * if a corresponding disposable bean instance is found.
+	 * Destroy the given bean. Delegates to {@code destroyBean} if a corresponding disposable bean instance is found.
+	 * 销毁给定的bean。如果找到相应的可释放bean实例，则委托给 destroybean。
 	 * @param beanName the name of the bean
 	 * @see #destroyBean
 	 */
@@ -649,7 +649,6 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 				}
 			}
 		}
-
 		// Remove destroyed bean's prepared dependency information.
 		this.dependenciesForBeanMap.remove(beanName);
 	}
