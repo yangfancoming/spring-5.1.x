@@ -24,9 +24,7 @@ import org.springframework.util.ClassUtils;
  */
 public class GlassFishLoadTimeWeaver implements LoadTimeWeaver {
 
-	private static final String INSTRUMENTABLE_LOADER_CLASS_NAME =
-			"org.glassfish.api.deployment.InstrumentableClassLoader";
-
+	private static final String INSTRUMENTABLE_LOADER_CLASS_NAME = "org.glassfish.api.deployment.InstrumentableClassLoader";
 
 	private final ClassLoader classLoader;
 
@@ -59,8 +57,7 @@ public class GlassFishLoadTimeWeaver implements LoadTimeWeaver {
 			this.copyMethod = instrumentableLoaderClass.getMethod("copy");
 		}
 		catch (Throwable ex) {
-			throw new IllegalStateException(
-					"Could not initialize GlassFishLoadTimeWeaver because GlassFish API classes are not available", ex);
+			throw new IllegalStateException("Could not initialize GlassFishLoadTimeWeaver because GlassFish API classes are not available", ex);
 		}
 
 		ClassLoader clazzLoader = null;
@@ -73,10 +70,8 @@ public class GlassFishLoadTimeWeaver implements LoadTimeWeaver {
 		}
 
 		if (clazzLoader == null) {
-			throw new IllegalArgumentException(classLoader + " and its parents are not suitable ClassLoaders: A [" +
-					instrumentableLoaderClass.getName() + "] implementation is required.");
+			throw new IllegalArgumentException(classLoader + " and its parents are not suitable ClassLoaders: A [" + instrumentableLoaderClass.getName() + "] implementation is required.");
 		}
-
 		this.classLoader = clazzLoader;
 	}
 

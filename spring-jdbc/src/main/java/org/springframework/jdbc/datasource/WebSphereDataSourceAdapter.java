@@ -92,8 +92,7 @@ public class WebSphereDataSourceAdapter extends IsolationLevelDataSourceAdapter 
 			this.setPasswordMethod = jdbcConnSpecClass.getMethod("setPassword", String.class);
 		}
 		catch (Exception ex) {
-			throw new IllegalStateException(
-					"Could not initialize WebSphereDataSourceAdapter because WebSphere API classes are not available: " + ex);
+			throw new IllegalStateException("Could not initialize WebSphereDataSourceAdapter because WebSphere API classes are not available: " + ex);
 		}
 	}
 
@@ -121,15 +120,12 @@ public class WebSphereDataSourceAdapter extends IsolationLevelDataSourceAdapter 
 	@Override
 	protected Connection doGetConnection(@Nullable String username, @Nullable String password) throws SQLException {
 		// Create JDBCConnectionSpec using current isolation level value and read-only flag.
-		Object connSpec = createConnectionSpec(
-				getCurrentIsolationLevel(), getCurrentReadOnlyFlag(), username, password);
+		Object connSpec = createConnectionSpec(getCurrentIsolationLevel(), getCurrentReadOnlyFlag(), username, password);
 		if (logger.isDebugEnabled()) {
-			logger.debug("Obtaining JDBC Connection from WebSphere DataSource [" +
-					getTargetDataSource() + "], using ConnectionSpec [" + connSpec + "]");
+			logger.debug("Obtaining JDBC Connection from WebSphere DataSource [" + getTargetDataSource() + "], using ConnectionSpec [" + connSpec + "]");
 		}
 		// Create Connection through invoking WSDataSource.getConnection(JDBCConnectionSpec)
-		Connection con = (Connection) invokeJdbcMethod(
-				this.wsDataSourceGetConnectionMethod, obtainTargetDataSource(), connSpec);
+		Connection con = (Connection) invokeJdbcMethod(this.wsDataSourceGetConnectionMethod, obtainTargetDataSource(), connSpec);
 		Assert.state(con != null, "No Connection");
 		return con;
 	}
@@ -147,9 +143,7 @@ public class WebSphereDataSourceAdapter extends IsolationLevelDataSourceAdapter 
 	 * @throws SQLException if thrown by JDBCConnectionSpec API methods
 	 * @see com.ibm.websphere.rsadapter.JDBCConnectionSpec
 	 */
-	protected Object createConnectionSpec(@Nullable Integer isolationLevel, @Nullable Boolean readOnlyFlag,
-			@Nullable String username, @Nullable String password) throws SQLException {
-
+	protected Object createConnectionSpec(@Nullable Integer isolationLevel, @Nullable Boolean readOnlyFlag,@Nullable String username, @Nullable String password) throws SQLException {
 		Object connSpec = invokeJdbcMethod(this.newJdbcConnSpecMethod, null);
 		Assert.state(connSpec != null, "No JDBCConnectionSpec");
 		if (isolationLevel != null) {
@@ -169,8 +163,7 @@ public class WebSphereDataSourceAdapter extends IsolationLevelDataSourceAdapter 
 
 
 	@Nullable
-	private static Object invokeJdbcMethod(Method method, @Nullable Object target, @Nullable Object... args)
-			throws SQLException {
+	private static Object invokeJdbcMethod(Method method, @Nullable Object target, @Nullable Object... args) throws SQLException {
 		try {
 			return method.invoke(target, args);
 		}

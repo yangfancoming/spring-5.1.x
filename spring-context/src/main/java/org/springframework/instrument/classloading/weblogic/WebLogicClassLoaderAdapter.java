@@ -15,9 +15,6 @@ import org.springframework.util.Assert;
  * Reflective wrapper around a WebLogic 10 class loader. Used to
  * encapsulate the classloader-specific methods (discovered and
  * called through reflection) from the load-time weaver.
- *
- * @author Costin Leau
-
  * @since 2.5
  */
 class WebLogicClassLoaderAdapter {
@@ -45,21 +42,17 @@ class WebLogicClassLoaderAdapter {
 		try {
 			wlGenericClassLoaderClass = classLoader.loadClass(GENERIC_CLASS_LOADER_NAME);
 			this.wlPreProcessorClass = classLoader.loadClass(CLASS_PRE_PROCESSOR_NAME);
-			this.addPreProcessorMethod = classLoader.getClass().getMethod(
-					"addInstanceClassPreProcessor", this.wlPreProcessorClass);
+			this.addPreProcessorMethod = classLoader.getClass().getMethod("addInstanceClassPreProcessor", this.wlPreProcessorClass);
 			this.getClassFinderMethod = classLoader.getClass().getMethod("getClassFinder");
 			this.getParentMethod = classLoader.getClass().getMethod("getParent");
-			this.wlGenericClassLoaderConstructor = wlGenericClassLoaderClass.getConstructor(
-					this.getClassFinderMethod.getReturnType(), ClassLoader.class);
+			this.wlGenericClassLoaderConstructor = wlGenericClassLoaderClass.getConstructor(this.getClassFinderMethod.getReturnType(), ClassLoader.class);
 		}
 		catch (Throwable ex) {
-			throw new IllegalStateException(
-					"Could not initialize WebLogic LoadTimeWeaver because WebLogic 10 API classes are not available", ex);
+			throw new IllegalStateException("Could not initialize WebLogic LoadTimeWeaver because WebLogic 10 API classes are not available", ex);
 		}
 
 		if (!wlGenericClassLoaderClass.isInstance(classLoader)) {
-			throw new IllegalArgumentException(
-					"ClassLoader must be an instance of [" + wlGenericClassLoaderClass.getName() + "]: " + classLoader);
+			throw new IllegalArgumentException("ClassLoader must be an instance of [" + wlGenericClassLoaderClass.getName() + "]: " + classLoader);
 		}
 		this.classLoader = classLoader;
 	}
@@ -69,8 +62,7 @@ class WebLogicClassLoaderAdapter {
 		Assert.notNull(transformer, "ClassFileTransformer must not be null");
 		try {
 			InvocationHandler adapter = new WebLogicClassPreProcessorAdapter(transformer, this.classLoader);
-			Object adapterInstance = Proxy.newProxyInstance(this.wlPreProcessorClass.getClassLoader(),
-					new Class<?>[] {this.wlPreProcessorClass}, adapter);
+			Object adapterInstance = Proxy.newProxyInstance(this.wlPreProcessorClass.getClassLoader(),new Class<?>[] {this.wlPreProcessorClass}, adapter);
 			this.addPreProcessorMethod.invoke(this.classLoader, adapterInstance);
 		}
 		catch (InvocationTargetException ex) {

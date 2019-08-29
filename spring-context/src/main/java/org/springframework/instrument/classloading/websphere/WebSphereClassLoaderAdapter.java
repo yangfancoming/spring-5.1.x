@@ -55,13 +55,11 @@ class WebSphereClassLoaderAdapter {
 			this.transformerList.setAccessible(true);
 		}
 		catch (Throwable ex) {
-			throw new IllegalStateException(
-					"Could not initialize WebSphere LoadTimeWeaver because WebSphere API classes are not available", ex);
+			throw new IllegalStateException("Could not initialize WebSphere LoadTimeWeaver because WebSphere API classes are not available", ex);
 		}
 
 		if (!wsCompoundClassLoaderClass.isInstance(classLoader)) {
-			throw new IllegalArgumentException(
-					"ClassLoader must be an instance of [" + COMPOUND_CLASS_LOADER_NAME + "]: " + classLoader);
+			throw new IllegalArgumentException("ClassLoader must be an instance of [" + COMPOUND_CLASS_LOADER_NAME + "]: " + classLoader);
 		}
 		this.classLoader = classLoader;
 	}
@@ -75,8 +73,7 @@ class WebSphereClassLoaderAdapter {
 		Assert.notNull(transformer, "ClassFileTransformer must not be null");
 		try {
 			InvocationHandler adapter = new WebSphereClassPreDefinePlugin(transformer);
-			Object adapterInstance = Proxy.newProxyInstance(this.wsPreProcessorClass.getClassLoader(),
-					new Class<?>[] {this.wsPreProcessorClass}, adapter);
+			Object adapterInstance = Proxy.newProxyInstance(this.wsPreProcessorClass.getClassLoader(),new Class<?>[] {this.wsPreProcessorClass}, adapter);
 			this.addPreDefinePlugin.invoke(this.classLoader, adapterInstance);
 		}
 		catch (InvocationTargetException ex) {

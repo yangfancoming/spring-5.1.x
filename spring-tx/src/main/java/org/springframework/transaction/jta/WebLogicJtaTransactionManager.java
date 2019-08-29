@@ -108,12 +108,10 @@ public class WebLogicJtaTransactionManager extends JtaTransactionManager {
 			return (UserTransaction) getUserTransactionMethod.invoke(this.transactionHelper);
 		}
 		catch (InvocationTargetException ex) {
-			throw new TransactionSystemException(
-					"WebLogic's TransactionHelper.getUserTransaction() method failed", ex.getTargetException());
+			throw new TransactionSystemException("WebLogic's TransactionHelper.getUserTransaction() method failed", ex.getTargetException());
 		}
 		catch (Exception ex) {
-			throw new TransactionSystemException(
-					"Could not invoke WebLogic's TransactionHelper.getUserTransaction() method", ex);
+			throw new TransactionSystemException("Could not invoke WebLogic's TransactionHelper.getUserTransaction() method", ex);
 		}
 	}
 
@@ -127,12 +125,10 @@ public class WebLogicJtaTransactionManager extends JtaTransactionManager {
 			return (TransactionManager) getTransactionManagerMethod.invoke(this.transactionHelper);
 		}
 		catch (InvocationTargetException ex) {
-			throw new TransactionSystemException(
-					"WebLogic's TransactionHelper.getTransactionManager() method failed", ex.getTargetException());
+			throw new TransactionSystemException("WebLogic's TransactionHelper.getTransactionManager() method failed", ex.getTargetException());
 		}
 		catch (Exception ex) {
-			throw new TransactionSystemException(
-					"Could not invoke WebLogic's TransactionHelper.getTransactionManager() method", ex);
+			throw new TransactionSystemException("Could not invoke WebLogic's TransactionHelper.getTransactionManager() method", ex);
 		}
 	}
 
@@ -147,13 +143,10 @@ public class WebLogicJtaTransactionManager extends JtaTransactionManager {
 				logger.trace("WebLogic TransactionHelper found");
 			}
 			catch (InvocationTargetException ex) {
-				throw new TransactionSystemException(
-						"WebLogic's TransactionHelper.getTransactionHelper() method failed", ex.getTargetException());
+				throw new TransactionSystemException("WebLogic's TransactionHelper.getTransactionHelper() method failed", ex.getTargetException());
 			}
 			catch (Exception ex) {
-				throw new TransactionSystemException(
-						"Could not initialize WebLogicJtaTransactionManager because WebLogic API classes are not available",
-						ex);
+				throw new TransactionSystemException("Could not initialize WebLogicJtaTransactionManager because WebLogic API classes are not available",ex);
 			}
 		}
 		return helper;
@@ -173,8 +166,7 @@ public class WebLogicJtaTransactionManager extends JtaTransactionManager {
 			}
 
 			// Obtain WebLogic ClientTransactionManager interface.
-			Class<?> transactionManagerClass =
-					getClass().getClassLoader().loadClass(CLIENT_TRANSACTION_MANAGER_CLASS_NAME);
+			Class<?> transactionManagerClass = getClass().getClassLoader().loadClass(CLIENT_TRANSACTION_MANAGER_CLASS_NAME);
 			logger.trace("WebLogic ClientTransactionManager found");
 
 			this.weblogicTransactionManagerAvailable = transactionManagerClass.isInstance(getTransactionManager());
@@ -189,9 +181,7 @@ public class WebLogicJtaTransactionManager extends JtaTransactionManager {
 			}
 		}
 		catch (Exception ex) {
-			throw new TransactionSystemException(
-					"Could not initialize WebLogicJtaTransactionManager because WebLogic API classes are not available",
-					ex);
+			throw new TransactionSystemException("Could not initialize WebLogicJtaTransactionManager because WebLogic API classes are not available",ex);
 		}
 	}
 
@@ -203,9 +193,7 @@ public class WebLogicJtaTransactionManager extends JtaTransactionManager {
 
 
 	@Override
-	protected void doJtaBegin(JtaTransactionObject txObject, TransactionDefinition definition)
-			throws NotSupportedException, SystemException {
-
+	protected void doJtaBegin(JtaTransactionObject txObject, TransactionDefinition definition) throws NotSupportedException, SystemException {
 		int timeout = determineTimeout(definition);
 
 		// Apply transaction name (if any) to WebLogic transaction.
@@ -229,12 +217,10 @@ public class WebLogicJtaTransactionManager extends JtaTransactionManager {
 				}
 			}
 			catch (InvocationTargetException ex) {
-				throw new TransactionSystemException(
-						"WebLogic's UserTransaction.begin() method failed", ex.getTargetException());
+				throw new TransactionSystemException("WebLogic's UserTransaction.begin() method failed", ex.getTargetException());
 			}
 			catch (Exception ex) {
-				throw new TransactionSystemException(
-						"Could not invoke WebLogic's UserTransaction.begin() method", ex);
+				throw new TransactionSystemException("Could not invoke WebLogic's UserTransaction.begin() method", ex);
 			}
 		}
 		else {
@@ -258,12 +244,10 @@ public class WebLogicJtaTransactionManager extends JtaTransactionManager {
 					this.setPropertyMethod.invoke(tx, ISOLATION_LEVEL_KEY, isolationLevel);
 				}
 				catch (InvocationTargetException ex) {
-					throw new TransactionSystemException(
-							"WebLogic's Transaction.setProperty(String, Serializable) method failed", ex.getTargetException());
+					throw new TransactionSystemException("WebLogic's Transaction.setProperty(String, Serializable) method failed", ex.getTargetException());
 				}
 				catch (Exception ex) {
-					throw new TransactionSystemException(
-							"Could not invoke WebLogic's Transaction.setProperty(String, Serializable) method", ex);
+					throw new TransactionSystemException("Could not invoke WebLogic's Transaction.setProperty(String, Serializable) method", ex);
 				}
 			}
 		}
@@ -273,9 +257,7 @@ public class WebLogicJtaTransactionManager extends JtaTransactionManager {
 	}
 
 	@Override
-	protected void doJtaResume(@Nullable JtaTransactionObject txObject, Object suspendedTransaction)
-			throws InvalidTransactionException, SystemException {
-
+	protected void doJtaResume(@Nullable JtaTransactionObject txObject, Object suspendedTransaction) throws InvalidTransactionException, SystemException {
 		try {
 			obtainTransactionManager().resume((Transaction) suspendedTransaction);
 		}
@@ -285,8 +267,7 @@ public class WebLogicJtaTransactionManager extends JtaTransactionManager {
 			}
 
 			if (logger.isDebugEnabled()) {
-				logger.debug("Standard JTA resume threw InvalidTransactionException: " + ex.getMessage() +
-					" - trying WebLogic JTA forceResume");
+				logger.debug("Standard JTA resume threw InvalidTransactionException: " + ex.getMessage() +" - trying WebLogic JTA forceResume");
 			}
 			/*
 			weblogic.transaction.TransactionManager wtm =
@@ -298,12 +279,10 @@ public class WebLogicJtaTransactionManager extends JtaTransactionManager {
 				this.forceResumeMethod.invoke(getTransactionManager(), suspendedTransaction);
 			}
 			catch (InvocationTargetException ex2) {
-				throw new TransactionSystemException(
-						"WebLogic's TransactionManager.forceResume(Transaction) method failed", ex2.getTargetException());
+				throw new TransactionSystemException("WebLogic's TransactionManager.forceResume(Transaction) method failed", ex2.getTargetException());
 			}
 			catch (Exception ex2) {
-				throw new TransactionSystemException(
-						"Could not access WebLogic's TransactionManager.forceResume(Transaction) method", ex2);
+				throw new TransactionSystemException("Could not access WebLogic's TransactionManager.forceResume(Transaction) method", ex2);
 			}
 		}
 	}

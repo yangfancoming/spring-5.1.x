@@ -74,8 +74,7 @@ public class TomcatLoadTimeWeaver implements LoadTimeWeaver {
 			this.copyMethod = copyMethod;
 		}
 		catch (Throwable ex) {
-			throw new IllegalStateException(
-					"Could not initialize TomcatLoadTimeWeaver because Tomcat API classes are not available", ex);
+			throw new IllegalStateException("Could not initialize TomcatLoadTimeWeaver because Tomcat API classes are not available", ex);
 		}
 	}
 
