@@ -179,7 +179,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 	/**
 	 * 用于初始化Bean的回调函数，一旦指定，这个方法会覆盖工厂方法以及构造函数中的元数据
-	 *         我理解为通过这个函数的逻辑初始化Bean，而不是构造函数或是工厂方法
+	 *  我理解为通过这个函数的逻辑初始化Bean，而不是构造函数或是工厂方法
 	*/
 	@Nullable
 	private Supplier<?> instanceSupplier;
@@ -1011,9 +1011,8 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
-	 * Set whether this bean definition is 'synthetic', that is, not defined
-	 * by the application itself (for example, an infrastructure bean such
-	 * as a helper for auto-proxying, created through {@code <aop:config>}).
+	 * Set whether this bean definition is 'synthetic', that is,
+	 * not defined by the application itself (for example, an infrastructure bean such as a helper for auto-proxying, created through {@code <aop:config>}).
 	 */
 	public void setSynthetic(boolean synthetic) {
 		this.synthetic = synthetic;
@@ -1061,8 +1060,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
-	 * Set the resource that this bean definition came from
-	 * (for the purpose of showing context in case of errors).
+	 * Set the resource that this bean definition came from (for the purpose of showing context in case of errors).
 	 */
 	public void setResource(@Nullable Resource resource) {
 		this.resource = resource;
@@ -1077,16 +1075,14 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
-	 * Set a description of the resource that this bean definition
-	 * came from (for the purpose of showing context in case of errors).
+	 * Set a description of the resource that this bean definition came from (for the purpose of showing context in case of errors).
 	 */
 	public void setResourceDescription(@Nullable String resourceDescription) {
 		this.resource = (resourceDescription != null ? new DescriptiveResource(resourceDescription) : null);
 	}
 
 	/**
-	 * Return a description of the resource that this bean definition
-	 * came from (for the purpose of showing context in case of errors).
+	 * Return a description of the resource that this bean definition came from (for the purpose of showing context in case of errors).
 	 */
 	@Override
 	@Nullable
@@ -1094,9 +1090,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 		return (this.resource != null ? this.resource.getDescription() : null);
 	}
 
-	/**
-	 * Set the originating (e.g. decorated) BeanDefinition, if any.
-	 */
+	/** Set the originating (e.g. decorated) BeanDefinition, if any.  */
 	public void setOriginatingBeanDefinition(BeanDefinition originatingBd) {
 		this.resource = new BeanDefinitionResource(originatingBd);
 	}
@@ -1104,14 +1098,12 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	/**
 	 * Return the originating BeanDefinition, or {@code null} if none.
 	 * Allows for retrieving the decorated bean definition, if any.
-	 * <p>Note that this method returns the immediate originator. Iterate through the
-	 * originator chain to find the original BeanDefinition as defined by the user.
+	 * <p>Note that this method returns the immediate originator. Iterate through the originator chain to find the original BeanDefinition as defined by the user.
 	 */
 	@Override
 	@Nullable
 	public BeanDefinition getOriginatingBeanDefinition() {
-		return (this.resource instanceof BeanDefinitionResource ?
-				((BeanDefinitionResource) this.resource).getBeanDefinition() : null);
+		return (this.resource instanceof BeanDefinitionResource ? ((BeanDefinitionResource) this.resource).getBeanDefinition() : null);
 	}
 
 	/**
@@ -1147,8 +1139,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 	/**
 	 * Validate and prepare the given method override.
-	 * Checks for existence of a method with the specified name,
-	 * marking it as not overloaded if none found.
+	 * Checks for existence of a method with the specified name,marking it as not overloaded if none found.
 	 * @param mo the MethodOverride object to validate
 	 * @throws BeanDefinitionValidationException in case of validation failure
 	 */
@@ -1179,8 +1170,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
-	 * Clone this bean definition.
-	 * To be implemented by concrete subclasses.
+	 * Clone this bean definition.To be implemented by concrete subclasses.
 	 * @return the cloned bean definition object
 	 */
 	public abstract AbstractBeanDefinition cloneBeanDefinition();

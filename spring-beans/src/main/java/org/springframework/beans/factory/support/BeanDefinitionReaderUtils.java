@@ -133,12 +133,10 @@ public abstract class BeanDefinitionReaderUtils {
 	 * @throws BeanDefinitionStoreException if registration failed
 	 */
 	public static void registerBeanDefinition(BeanDefinitionHolder definitionHolder, BeanDefinitionRegistry registry) throws BeanDefinitionStoreException {
-		// Register bean definition under primary name.
-		// 1、注册BeanDefinition
+		// 1、注册BeanDefinition Register bean definition under primary name.
 		String beanName = definitionHolder.getBeanName();
 		registry.registerBeanDefinition(beanName, definitionHolder.getBeanDefinition());
-		// Register aliases for bean name, if any.
-		// 2、注册aliases（别名）
+		//  2、注册aliases（别名） Register aliases for bean name, if any.
 		String[] aliases = definitionHolder.getAliases();
 		if (aliases != null) {
 			for (String alias : aliases) {
