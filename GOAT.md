@@ -53,6 +53,9 @@
     chapter6-0-4  spring jdbc  基于tx标签 
     chapter6-0-6  spring jdbc  基于 @Transactional注解的声明式
     
+# spring Mybatis  模块    
+    chapter6-5-0  spring mybatis
+    chapter6-5-1  spring mybatis
     
     chapter7-0-0  spring web MVC 高级
     chapter8-0-0  spring web flow

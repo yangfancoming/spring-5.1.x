@@ -45,7 +45,7 @@ public class PathVariableMapMethodArgumentResolverTests {
 		resolver = new PathVariableMapMethodArgumentResolver();
 		mavContainer = new ModelAndViewContainer();
 		request = new MockHttpServletRequest();
-		webRequest = new ServletWebRequest(request, new MockHttpServletResponse());
+//		webRequest = new ServletWebRequest(request, new MockHttpServletResponse());
 
 		Method method = getClass().getMethod("handle", Map.class, Map.class, Map.class);
 		paramMap = new MethodParameter(method, 0);
