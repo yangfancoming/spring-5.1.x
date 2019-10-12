@@ -21,12 +21,9 @@ import java.lang.annotation.Target;
  * injection. Either the bean itself can be autowired, or the configuration class instance
  * declaring the bean can be autowired. The latter approach allows for explicit, IDE-friendly
  * navigation between {@code @Configuration} class methods.
- *
  * <p>May be declared at the class level or as a meta-annotation.
- *
  * <p>If XML or other non-{@code @Configuration} bean definition resources need to be
  * imported, use the {@link ImportResource @ImportResource} annotation instead.
-
 
  * @since 3.0
  * @see Configuration

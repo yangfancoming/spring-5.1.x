@@ -16,6 +16,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @ date 2019/8/15---16:45
  */
 public class AppleTargetSource implements TargetSource {
+
 	private Apple apple1;
 	private Apple apple2;
 

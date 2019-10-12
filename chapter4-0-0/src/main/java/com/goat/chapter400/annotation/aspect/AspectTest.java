@@ -44,7 +44,7 @@ private static final String aspect =  "execution(* com.goat.con123fig..*(..))";
     }
 */
 // fuck  各种增强方法的 JoinPoint 参数 必须方法第一个位置 否则spring报错
-@Aspect  // 定义切面  告诉spring该类 是一个切面类
+@Aspect  // 定义切面  告诉spring该类是一个切面类
 @Component  // 定义组件
 public class AspectTest {
     /**
@@ -54,31 +54,33 @@ public class AspectTest {
 	/** 前置增强  无参数*/
     @Before("execution(* com.goat.chapter400.annotation.service..*(..))")
     public void myBefore3(){
-        System.out.println("哥是前置增强3  获取参数列表。。。。。。。。。。。");
+        System.out.println("前置增强3  无参数。。。。。。。。。。。");
     }
 
 	/** 前置增强  有参数*/
     @Before("execution(* com.goat.chapter400.annotation.service..*(..))")
     public void myBefore2(JoinPoint joinPoint){
-        System.out.println("哥是前置增强2  获取参数列表 。。。。。。。。。。。");
+        System.out.println("前置增强2  获取参数列表 开始 。。。。。。。。。。。");
         System.out.println(joinPoint.getSignature().getName());
 		Object[] args = joinPoint.getArgs();
 		System.out.println(Arrays.asList(args));
+		System.out.println("前置增强2  获取参数列表 结束 。。。。。。。。。。。");
     }
 
 	/** 后置增强*/
     @After("execution(* com.goat.chapter400.annotation.service.HelloServiceImpl.sayHiService1(..))")
     public void myAfter(JoinPoint joinPoint){
-        System.out.println("哥是后置增强。。。。。。。。。。。");
+        System.out.println("后置增强。。。。。开始。。。。。。");
 		System.out.println(joinPoint.getSignature().getName());
+		System.out.println("后置增强。。。。。结束。。。。。。");
     }
-
 
     /** 正常返回增强  可以接收 切入方法的返回值  */
     @AfterReturning(returning="rtn", pointcut="execution(* com.goat.chapter400.annotation.service.HelloServiceImpl.sayHiService1(..))")
     public void afterExec(Object rtn){
-        System.out.println("哥是 正常返回增强 AfterReturning。。。。。。。。。。。");
-        System.out.println("返回值："+rtn);
+        System.out.println(" 正常返回增强 开始。。。。。。。。。。。");
+        System.out.println("返回值：" + rtn);
+		System.out.println(" 正常返回增强 结束。。。。。。。。。。。");
     }
 
     /**  异常返回增强
@@ -87,16 +89,17 @@ public class AspectTest {
     */
     @AfterThrowing(throwing="ex",pointcut="execution(* com.goat.chapter400.annotation.service..*(..))")
     public void afterThrowing(JoinPoint joinPoint,Throwable ex){
-        System.out.println("哥是 异常返回增强 。。。。。。。。。。。" + ex);
+        System.out.println(" 异常返回增强  开始 。。。。。。。。。。。" + ex);
 		System.out.println(joinPoint.getSignature().getName());
+		System.out.println(" 异常返回增强  结束 。。。。。。。。。。。" + ex);
     }
 
 	/** 环绕增强*/
     @Around("execution(* com.goat.chapter400.annotation.service..*(..))")
     public void around(ProceedingJoinPoint pjp) throws Throwable {
-        System.out.println("哥是 环绕增强 调用目标方法前执行。。。。。。。。。。。");
-        pjp.proceed(); // 如果目标方法 出现异常 则 不会执行  System.out.println("哥是 环绕增强 调用目标方法后执行。。。。。。。。。。。");
-        System.out.println("哥是 环绕增强 调用目标方法后执行。。。。。。。。。。。");
+        System.out.println(" 环绕增强 调用目标方法前执行。。。。。。。。。。。");
+        pjp.proceed(); // 如果目标方法 出现异常 则 不会执行  System.out.println(" 环绕增强 调用目标方法后执行。。。。。。。。。。。");
+        System.out.println(" 环绕增强 调用目标方法后执行。。。。。。。。。。。");
     }
 
 }
