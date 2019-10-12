@@ -24,19 +24,15 @@ import org.springframework.transaction.TransactionDefinition;
  * {@link org.springframework.transaction.interceptor.RuleBasedTransactionAttribute}
  * class, and in fact {@link AnnotationTransactionAttributeSource} will directly
  * convert the data to the latter class, so that Spring's transaction support code
- * does not have to know about annotations. If no rules are relevant to the exception,
- * it will be treated like
+ * does not have to know about annotations. If no rules are relevant to the exception, it will be treated like
+ *
  * {@link org.springframework.transaction.interceptor.DefaultTransactionAttribute}
- * (rolling back on {@link RuntimeException} and {@link Error} but not on checked
- * exceptions).
+ * (rolling back on {@link RuntimeException} and {@link Error} but not on checked exceptions).
  *
  * <p>For specific information about the semantics of this annotation's attributes,
  * consult the {@link org.springframework.transaction.TransactionDefinition} and
  * {@link org.springframework.transaction.interceptor.TransactionAttribute} javadocs.
- *
- * @author Colin Sampaleanu
 
- * @author Sam Brannen
  * @since 1.2
  * @see org.springframework.transaction.interceptor.TransactionAttribute
  * @see org.springframework.transaction.interceptor.DefaultTransactionAttribute
@@ -57,10 +53,8 @@ public @interface Transactional {
 
 	/**
 	 * A <em>qualifier</em> value for the specified transaction.
-	 * <p>May be used to determine the target transaction manager,
-	 * matching the qualifier value (or the bean name) of a specific
-	 * {@link org.springframework.transaction.PlatformTransactionManager}
-	 * bean definition.
+	 * <p>May be used to determine the target transaction manager,  matching the qualifier value (or the bean name) of a specific
+	 * {@link org.springframework.transaction.PlatformTransactionManager} bean definition.
 	 * @since 4.2
 	 * @see #value
 	 */
@@ -81,8 +75,7 @@ public @interface Transactional {
 	 * {@link Propagation#REQUIRES_NEW} since it only applies to newly started
 	 * transactions. Consider switching the "validateExistingTransactions" flag to
 	 * "true" on your transaction manager if you'd like isolation level declarations
-	 * to get rejected when participating in an existing transaction with a different
-	 * isolation level.
+	 * to get rejected when participating in an existing transaction with a different isolation level.
 	 * @see org.springframework.transaction.interceptor.TransactionAttribute#getIsolationLevel()
 	 * @see org.springframework.transaction.support.AbstractPlatformTransactionManager#setValidateExistingTransaction
 	 */
@@ -114,12 +107,10 @@ public @interface Transactional {
 
 	/**
 	 * Defines zero (0) or more exception {@link Class classes}, which must be
-	 * subclasses of {@link Throwable}, indicating which exception types must cause
-	 * a transaction rollback.
+	 * subclasses of {@link Throwable}, indicating which exception types must cause a transaction rollback.
 	 * <p>By default, a transaction will be rolling back on {@link RuntimeException}
 	 * and {@link Error} but not on checked exceptions (business exceptions). See
-	 * {@link org.springframework.transaction.interceptor.DefaultTransactionAttribute#rollbackOn(Throwable)}
-	 * for a detailed explanation.
+	 * {@link org.springframework.transaction.interceptor.DefaultTransactionAttribute#rollbackOn(Throwable)}  for a detailed explanation.
 	 * <p>This is the preferred way to construct a rollback rule (in contrast to
 	 * {@link #rollbackForClassName}), matching the exception class and its subclasses.
 	 * <p>Similar to {@link org.springframework.transaction.interceptor.RollbackRuleAttribute#RollbackRuleAttribute(Class clazz)}.
@@ -130,8 +121,7 @@ public @interface Transactional {
 
 	/**
 	 * Defines zero (0) or more exception names (for exceptions which must be a
-	 * subclass of {@link Throwable}), indicating which exception types must cause
-	 * a transaction rollback.
+	 * subclass of {@link Throwable}), indicating which exception types must cause  a transaction rollback.
 	 * <p>This can be a substring of a fully qualified class name, with no wildcard
 	 * support at present. For example, a value of {@code "ServletException"} would
 	 * match {@code javax.servlet.ServletException} and its subclasses.
@@ -163,8 +153,7 @@ public @interface Transactional {
 
 	/**
 	 * Defines zero (0) or more exception names (for exceptions which must be a
-	 * subclass of {@link Throwable}) indicating which exception types must <b>not</b>
-	 * cause a transaction rollback.
+	 * subclass of {@link Throwable}) indicating which exception types must <b>not</b> cause a transaction rollback.
 	 * <p>See the description of {@link #rollbackForClassName} for further
 	 * information on how the specified names are treated.
 	 * <p>Similar to {@link org.springframework.transaction.interceptor.NoRollbackRuleAttribute#NoRollbackRuleAttribute(String exceptionName)}.
