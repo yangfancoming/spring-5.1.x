@@ -26,9 +26,6 @@ import org.springframework.util.MultiValueMap;
 
 /**
  * Internal class used to evaluate {@link Conditional} annotations.
- *
- * @author Phillip Webb
-
  * @since 4.0
  */
 class ConditionEvaluator {

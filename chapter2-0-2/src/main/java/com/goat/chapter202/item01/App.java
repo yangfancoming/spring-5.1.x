@@ -20,7 +20,7 @@ public class App {
 	@Test
 	public void test(){
 		ApplicationContext context = new AnnotationConfigApplicationContext(JavaConfig.class);
-		Person foo = (Person) context.getBean("foo");//
+		Person foo = (Person) context.getBean("foo");
 		System.out.println(foo);
 	}
 }

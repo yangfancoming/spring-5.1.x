@@ -8,8 +8,8 @@ import org.springframework.core.AttributeAccessor;
 import org.springframework.lang.Nullable;
 
 /**
- * A BeanDefinition describes a bean instance, which has property values,
- * constructor argument values, and further information supplied by concrete implementations.
+ * A BeanDefinition describes a bean instance, which has property values,constructor argument values, and further information supplied by concrete implementations.
+ * beandefinition 描述一个bean实例，该实例具有属性值、构造函数参数值和具体实现提供的进一步信息
  *
  * <p>This is just a minimal interface: The main intention is to allow a
  * {@link BeanFactoryPostProcessor} such as {@link PropertyPlaceholderConfigurer} to introspect and modify property values and other bean metadata.
@@ -43,26 +43,22 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 
 
 	/**
-	 * Role hint indicating that a {@code BeanDefinition} is a major part
-	 * of the application. Typically corresponds to a user-defined bean.
+	 * Role hint indicating that a {@code BeanDefinition} is a major part  of the application.
+	 * Typically corresponds to a user-defined bean.
 	 */
 	int ROLE_APPLICATION = 0;
 
 	/**
-	 * Role hint indicating that a {@code BeanDefinition} is a supporting
-	 * part of some larger configuration, typically an outer
+	 * Role hint indicating that a {@code BeanDefinition} is a supporting part of some larger configuration, typically an outer
 	 * {@link org.springframework.beans.factory.parsing.ComponentDefinition}.
-	 * {@code SUPPORT} beans are considered important enough to be aware
-	 * of when looking more closely at a particular
-	 * {@link org.springframework.beans.factory.parsing.ComponentDefinition},
-	 * but not when looking at the overall configuration of an application.
+	 * {@code SUPPORT} beans are considered important enough to be aware of when looking more closely at a particular
+	 * {@link org.springframework.beans.factory.parsing.ComponentDefinition},but not when looking at the overall configuration of an application.
 	 */
 	int ROLE_SUPPORT = 1;
 
 	/**
-	 * Role hint indicating that a {@code BeanDefinition} is providing an
-	 * entirely background role and has no relevance to the end-user. This hint is
-	 * used when registering beans that are completely part of the internal workings
+	 * Role hint indicating that a {@code BeanDefinition} is providing an entirely background role and has no relevance to the end-user.
+	 * This hint is used when registering beans that are completely part of the internal workings
 	 * of a {@link org.springframework.beans.factory.parsing.ComponentDefinition}.
 	 */
 	int ROLE_INFRASTRUCTURE = 2;
@@ -114,22 +110,19 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	void setScope(@Nullable String scope);
 
 	/**
-	 * Return the name of the current target scope for this bean,
-	 * or {@code null} if not known yet.
+	 * Return the name of the current target scope for this bean, or {@code null} if not known yet.
 	 */
 	@Nullable
 	String getScope();
 
 	/**
 	 * Set whether this bean should be lazily initialized.
-	 * <p>If {@code false}, the bean will get instantiated on startup by bean
-	 * factories that perform eager initialization of singletons.
+	 * <p>If {@code false}, the bean will get instantiated on startup by bean factories that perform eager initialization of singletons.
 	 */
 	void setLazyInit(boolean lazyInit);
 
 	/**
-	 * Return whether this bean should be lazily initialized, i.e. not
-	 * eagerly instantiated on startup. Only applicable to a singleton bean.
+	 * Return whether this bean should be lazily initialized, i.e. not eagerly instantiated on startup. Only applicable to a singleton bean.
 	 */
 	boolean isLazyInit();
 
@@ -187,8 +180,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	/**
 	 * Specify a factory method, if any. This method will be invoked with
 	 * constructor arguments, or with no arguments if none are specified.
-	 * The method will be invoked on the specified factory bean, if any,
-	 * or otherwise as a static method on the local bean class.
+	 * The method will be invoked on the specified factory bean, if any,or otherwise as a static method on the local bean class.
 	 * @see #setFactoryBeanName
 	 * @see #setBeanClassName
 	 */
@@ -293,15 +285,13 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	// Read-only attributes
 
 	/**
-	 * Return whether this a <b>Singleton</b>, with a single, shared instance
-	 * returned on all calls.
+	 * Return whether this a <b>Singleton</b>, with a single, shared instance returned on all calls.
 	 * @see #SCOPE_SINGLETON
 	 */
 	boolean isSingleton();
 
 	/**
-	 * Return whether this a <b>Prototype</b>, with an independent instance
-	 * returned for each call.
+	 * Return whether this a <b>Prototype</b>, with an independent instance returned for each call.
 	 * @since 3.0
 	 * @see #SCOPE_PROTOTYPE
 	 */
@@ -313,8 +303,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	boolean isAbstract();
 
 	/**
-	 * Return a description of the resource that this bean definition
-	 * came from (for the purpose of showing context in case of errors).
+	 * Return a description of the resource that this bean definition came from (for the purpose of showing context in case of errors).
 	 */
 	@Nullable
 	String getResourceDescription();

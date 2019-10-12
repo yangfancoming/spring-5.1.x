@@ -73,11 +73,9 @@
  
     形态一：xml或者注解标注的概念态，此时bean只是一个由类和一些描述文件定义的概念状态，比如：
     
-    <bean id="schedulerFactoryBean"
-            class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+    <bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
             <property name="jobFactory" ref="jobFactory"></property>
     </bean>
-    
     
     形态二：内存态，此时Bean被加载到内存中，但还处在BeanDefinition这种定义状态，这种状态实际上是bean创建的模板。  内存态的bean 好比是设计图纸  根据设计图纸 来创建  纯静态的bean 
     

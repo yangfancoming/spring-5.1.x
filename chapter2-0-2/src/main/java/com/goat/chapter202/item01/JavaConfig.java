@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration // 这个注解 为什么不加 可以？
 public class JavaConfig {
 
-
 	@Bean
 	public Person foo(){
 		Person person = new Person();
