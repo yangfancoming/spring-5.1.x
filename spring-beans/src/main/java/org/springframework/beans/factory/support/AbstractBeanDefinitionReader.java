@@ -21,11 +21,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Abstract base class for bean definition readers which implement
- * the {@link BeanDefinitionReader} interface.
- *
- * <p>Provides common properties like the bean factory to work on
- * and the class loader to use for loading bean classes.
+ * Abstract base class for bean definition readers which implement the {@link BeanDefinitionReader} interface.
+ * <p>Provides common properties like the bean factory to work on and the class loader to use for loading bean classes.
  * @since 11.12.2003
  * @see BeanDefinitionReaderUtils
  */

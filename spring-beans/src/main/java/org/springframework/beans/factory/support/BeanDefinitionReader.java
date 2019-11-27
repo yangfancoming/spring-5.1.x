@@ -12,14 +12,11 @@ import org.springframework.lang.Nullable;
  * Specifies load methods with Resource and String location parameters.
  *
  * <p>Concrete bean definition readers can of course add additional
- * load and register methods for bean definitions, specific to
- * their bean definition format.
+ * load and register methods for bean definitions, specific to their bean definition format.
  *
  * <p>Note that a bean definition reader does not have to implement
  * this interface. It only serves as suggestion for bean definition
  * readers that want to follow standard naming conventions.
- *
-
  * @since 1.1
  * @see org.springframework.core.io.Resource
  */

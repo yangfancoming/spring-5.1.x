@@ -28,15 +28,10 @@ import org.springframework.core.io.Resource;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Keith Donald
 
- * @author Stephane Nicoll
- */
 public class CollectionToCollectionConverterTests {
 
 	private GenericConversionService conversionService = new GenericConversionService();
-
 
 	@Before
 	public void setUp() {
@@ -93,7 +88,7 @@ public class CollectionToCollectionConverterTests {
 	}
 
 	@Test
-	public void collectionToObjectInteraction() throws Exception {
+	public void collectionToObjectInteraction()  {
 		List<List<String>> list = new ArrayList<>();
 		list.add(Arrays.asList("9", "12"));
 		list.add(Arrays.asList("37", "23"));
@@ -104,7 +99,7 @@ public class CollectionToCollectionConverterTests {
 
 	@Test
 	@SuppressWarnings("unchecked")
-	public void arrayCollectionToObjectInteraction() throws Exception {
+	public void arrayCollectionToObjectInteraction()  {
 		List<String>[] array = new List[2];
 		array[0] = Arrays.asList("9", "12");
 		array[1] = Arrays.asList("37", "23");
@@ -270,7 +265,7 @@ public class CollectionToCollectionConverterTests {
 	public static abstract class BaseResource implements Resource {
 
 		@Override
-		public InputStream getInputStream() throws IOException {
+		public InputStream getInputStream() {
 			return null;
 		}
 
@@ -295,32 +290,32 @@ public class CollectionToCollectionConverterTests {
 		}
 
 		@Override
-		public URL getURL() throws IOException {
+		public URL getURL() {
 			return null;
 		}
 
 		@Override
-		public URI getURI() throws IOException {
+		public URI getURI() {
 			return null;
 		}
 
 		@Override
-		public File getFile() throws IOException {
+		public File getFile() {
 			return null;
 		}
 
 		@Override
-		public long contentLength() throws IOException {
+		public long contentLength() {
 			return 0;
 		}
 
 		@Override
-		public long lastModified() throws IOException {
+		public long lastModified() {
 			return 0;
 		}
 
 		@Override
-		public Resource createRelative(String relativePath) throws IOException {
+		public Resource createRelative(String relativePath) {
 			return null;
 		}
 

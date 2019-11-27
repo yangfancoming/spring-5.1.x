@@ -42,14 +42,8 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link GenericConversionService}.
- *
  * <p>In this package for access to package-local converter implementations.
- *
- * @author Keith Donald
 
- * @author Phillip Webb
- * @author David Haraburda
- * @author Sam Brannen
  */
 public class GenericConversionServiceTests {
 

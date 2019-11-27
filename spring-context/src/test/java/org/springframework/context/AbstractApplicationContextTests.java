@@ -17,11 +17,7 @@ import org.springframework.tests.sample.beans.TestBean;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rod Johnson
 
- * @author Sam Brannen
- */
 public abstract class AbstractApplicationContextTests extends AbstractListableBeanFactoryTests {
 
 	/** Must be supplied as XML */

@@ -22,11 +22,7 @@ import org.springframework.util.MultiValueMap;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
-/**
- * @author Keith Donald
- * @author Phil Webb
 
- */
 public class MapToMapConverterTests {
 
 	private final GenericConversionService conversionService = new GenericConversionService();
@@ -152,7 +148,7 @@ public class MapToMapConverterTests {
 	}
 
 	@Test
-	public void collectionMapNotGenericTarget() throws Exception {
+	public void collectionMapNotGenericTarget()  {
 		Map<String, List<String>> map = new HashMap<>();
 		map.put("1", Arrays.asList("9", "12"));
 		map.put("2", Arrays.asList("37", "23"));
@@ -162,7 +158,7 @@ public class MapToMapConverterTests {
 	}
 
 	@Test
-	public void collectionMapNotGenericTargetCollectionToObjectInteraction() throws Exception {
+	public void collectionMapNotGenericTargetCollectionToObjectInteraction()  {
 		Map<String, List<String>> map = new HashMap<>();
 		map.put("1", Arrays.asList("9", "12"));
 		map.put("2", Arrays.asList("37", "23"));
@@ -184,7 +180,7 @@ public class MapToMapConverterTests {
 	}
 
 	@Test
-	public void emptyMapNoTargetGenericInfo() throws Exception {
+	public void emptyMapNoTargetGenericInfo()  {
 		Map<String, String> map = new HashMap<>();
 
 		assertTrue(conversionService.canConvert(Map.class, Map.class));
@@ -205,7 +201,7 @@ public class MapToMapConverterTests {
 	}
 
 	@Test
-	public void noDefaultConstructorCopyNotRequired() throws Exception {
+	public void noDefaultConstructorCopyNotRequired()  {
 		// SPR-9284
 		NoDefaultConstructorMap<String, Integer> map = new NoDefaultConstructorMap<>(
 				Collections.<String, Integer>singletonMap("1", 1));
