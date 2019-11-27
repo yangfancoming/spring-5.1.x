@@ -15,9 +15,7 @@ import org.springframework.util.MimeTypeUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Sebastien Deleuze
- */
+
 public class DataBufferDecoderTests extends AbstractDecoderTestCase<DataBufferDecoder> {
 
 	private final byte[] fooBytes = "foo".getBytes(StandardCharsets.UTF_8);
@@ -32,12 +30,9 @@ public class DataBufferDecoderTests extends AbstractDecoderTestCase<DataBufferDe
 	@Override
 	@Test
 	public void canDecode() {
-		assertTrue(this.decoder.canDecode(ResolvableType.forClass(DataBuffer.class),
-				MimeTypeUtils.TEXT_PLAIN));
-		assertFalse(this.decoder.canDecode(ResolvableType.forClass(Integer.class),
-				MimeTypeUtils.TEXT_PLAIN));
-		assertTrue(this.decoder.canDecode(ResolvableType.forClass(DataBuffer.class),
-				MimeTypeUtils.APPLICATION_JSON));
+		assertTrue(this.decoder.canDecode(ResolvableType.forClass(DataBuffer.class),MimeTypeUtils.TEXT_PLAIN));
+		assertFalse(this.decoder.canDecode(ResolvableType.forClass(Integer.class),MimeTypeUtils.TEXT_PLAIN));
+		assertTrue(this.decoder.canDecode(ResolvableType.forClass(DataBuffer.class),MimeTypeUtils.APPLICATION_JSON));
 	}
 
 	@Override
@@ -53,7 +48,7 @@ public class DataBufferDecoderTests extends AbstractDecoderTestCase<DataBufferDe
 	}
 
 	@Override
-	public void decodeToMono() throws Exception {
+	public void decodeToMono()  {
 		Flux<DataBuffer> input = Flux.concat(
 				dataBuffer(this.fooBytes),
 				dataBuffer(this.barBytes));
@@ -72,7 +67,6 @@ public class DataBufferDecoderTests extends AbstractDecoderTestCase<DataBufferDe
 			byte[] actualBytes = new byte[actual.readableByteCount()];
 			actual.read(actualBytes);
 			assertArrayEquals(expected, actualBytes);
-
 			DataBufferUtils.release(actual);
 		};
 	}

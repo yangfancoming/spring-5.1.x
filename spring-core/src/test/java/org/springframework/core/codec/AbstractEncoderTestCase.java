@@ -26,13 +26,10 @@ import static org.springframework.core.io.buffer.DataBufferUtils.release;
  * Abstract base class for {@link Encoder} unit tests. Subclasses need to implement
  * {@link #canEncode()} and {@link #encode()}, possibly using the wide
  *  * variety of helper methods like {@link #testEncodeAll}.
- *
- * @author Arjen Poutsma
  * @since 5.1.3
  */
 @SuppressWarnings("ProtectedField")
-public abstract class AbstractEncoderTestCase<E extends Encoder<?>>
-		extends	AbstractLeakCheckingTestCase {
+public abstract class AbstractEncoderTestCase<E extends Encoder<?>> extends	AbstractLeakCheckingTestCase {
 
 	/**
 	 * The encoder to test.
@@ -45,9 +42,7 @@ public abstract class AbstractEncoderTestCase<E extends Encoder<?>>
 	 * @param encoder the encoder
 	 */
 	protected AbstractEncoderTestCase(E encoder) {
-
 		Assert.notNull(encoder, "Encoder must not be null");
-
 		this.encoder = encoder;
 	}
 
@@ -120,8 +115,7 @@ public abstract class AbstractEncoderTestCase<E extends Encoder<?>>
 	 * @param stepConsumer a consumer to {@linkplain StepVerifier verify} the output
 	 * @param <T> the output type
 	 */
-	protected <T> void testEncode(Publisher<? extends T> input, Class<? extends T> inputClass,
-			Consumer<StepVerifier.FirstStep<DataBuffer>> stepConsumer) {
+	protected <T> void testEncode(Publisher<? extends T> input, Class<? extends T> inputClass,Consumer<StepVerifier.FirstStep<DataBuffer>> stepConsumer) {
 		testEncode(input, ResolvableType.forClass(inputClass), stepConsumer, null, null);
 	}
 
@@ -205,15 +199,10 @@ public abstract class AbstractEncoderTestCase<E extends Encoder<?>>
 	 * @param mimeType the mime type to use for decoding. May be {@code null}.
 	 * @param hints the hints used for decoding. May be {@code null}.
 	 */
-	protected void testEncodeEmpty(ResolvableType inputType, @Nullable MimeType mimeType,
-			@Nullable Map<String, Object> hints) {
-
+	protected void testEncodeEmpty(ResolvableType inputType, @Nullable MimeType mimeType,@Nullable Map<String, Object> hints) {
 		Flux<?> input = Flux.empty();
-		Flux<DataBuffer> result = encoder().encode(input, this.bufferFactory, inputType,
-				mimeType, hints);
-
-		StepVerifier.create(result)
-				.verifyComplete();
+		Flux<DataBuffer> result = encoder().encode(input, this.bufferFactory, inputType,mimeType, hints);
+		StepVerifier.create(result).verifyComplete();
 	}
 
 	/**

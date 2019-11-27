@@ -19,9 +19,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Arjen Poutsma
- */
+
 public class ExtractingResponseErrorHandlerTests {
 
 	private ExtractingResponseErrorHandler errorHandler;

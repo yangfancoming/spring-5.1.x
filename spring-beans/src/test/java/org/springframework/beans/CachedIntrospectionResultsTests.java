@@ -14,11 +14,7 @@ import org.springframework.tests.sample.beans.TestBean;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-/**
 
-
- * @author Arjen Poutsma
- */
 public class CachedIntrospectionResultsTests {
 
 	@Test

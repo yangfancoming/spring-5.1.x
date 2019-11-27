@@ -34,9 +34,6 @@ import org.springframework.util.Assert;
 
 /**
  * Utility class for working with {@link DataBuffer DataBuffers}.
- *
- * @author Arjen Poutsma
- * @author Brian Clozel
  * @since 5.0
  */
 public abstract class DataBufferUtils {
@@ -47,7 +44,6 @@ public abstract class DataBufferUtils {
 	//---------------------------------------------------------------------
 	// Reading
 	//---------------------------------------------------------------------
-
 	/**
 	 * Obtain a {@link InputStream} from the given supplier, and read it into a
 	 * {@code Flux} of {@code DataBuffer}s. Closes the input stream when the
@@ -57,9 +53,7 @@ public abstract class DataBufferUtils {
 	 * @param bufferSize the maximum size of the data buffers
 	 * @return a Flux of data buffers read from the given channel
 	 */
-	public static Flux<DataBuffer> readInputStream(
-			Callable<InputStream> inputStreamSupplier, DataBufferFactory bufferFactory, int bufferSize) {
-
+	public static Flux<DataBuffer> readInputStream(Callable<InputStream> inputStreamSupplier, DataBufferFactory bufferFactory, int bufferSize) {
 		Assert.notNull(inputStreamSupplier, "'inputStreamSupplier' must not be null");
 		return readByteChannel(() -> Channels.newChannel(inputStreamSupplier.call()), bufferFactory, bufferSize);
 	}
@@ -73,9 +67,7 @@ public abstract class DataBufferUtils {
 	 * @param bufferSize the maximum size of the data buffers
 	 * @return a Flux of data buffers read from the given channel
 	 */
-	public static Flux<DataBuffer> readByteChannel(
-			Callable<ReadableByteChannel> channelSupplier, DataBufferFactory bufferFactory, int bufferSize) {
-
+	public static Flux<DataBuffer> readByteChannel(Callable<ReadableByteChannel> channelSupplier, DataBufferFactory bufferFactory, int bufferSize) {
 		Assert.notNull(channelSupplier, "'channelSupplier' must not be null");
 		Assert.notNull(bufferFactory, "'dataBufferFactory' must not be null");
 		Assert.isTrue(bufferSize > 0, "'bufferSize' must be > 0");
@@ -83,7 +75,6 @@ public abstract class DataBufferUtils {
 		return Flux.using(channelSupplier,
 				channel -> Flux.generate(new ReadableByteChannelGenerator(channel, bufferFactory, bufferSize)),
 				DataBufferUtils::closeChannel);
-
 		// No doOnDiscard as operators used do not cache
 	}
 
@@ -96,9 +87,7 @@ public abstract class DataBufferUtils {
 	 * @param bufferSize the maximum size of the data buffers
 	 * @return a Flux of data buffers read from the given channel
 	 */
-	public static Flux<DataBuffer> readAsynchronousFileChannel(
-			Callable<AsynchronousFileChannel> channelSupplier, DataBufferFactory bufferFactory, int bufferSize) {
-
+	public static Flux<DataBuffer> readAsynchronousFileChannel(Callable<AsynchronousFileChannel> channelSupplier, DataBufferFactory bufferFactory, int bufferSize) {
 		return readAsynchronousFileChannel(channelSupplier, 0, bufferFactory, bufferSize);
 	}
 
@@ -113,8 +102,7 @@ public abstract class DataBufferUtils {
 	 * @return a Flux of data buffers read from the given channel
 	 */
 	public static Flux<DataBuffer> readAsynchronousFileChannel(
-			Callable<AsynchronousFileChannel> channelSupplier, long position,
-			DataBufferFactory bufferFactory, int bufferSize) {
+			Callable<AsynchronousFileChannel> channelSupplier, long position,DataBufferFactory bufferFactory, int bufferSize) {
 
 		Assert.notNull(channelSupplier, "'channelSupplier' must not be null");
 		Assert.notNull(bufferFactory, "'dataBufferFactory' must not be null");
@@ -123,8 +111,7 @@ public abstract class DataBufferUtils {
 
 		Flux<DataBuffer> flux = Flux.using(channelSupplier,
 				channel -> Flux.create(sink -> {
-					ReadCompletionHandler handler =
-							new ReadCompletionHandler(channel, sink, position, bufferFactory, bufferSize);
+					ReadCompletionHandler handler = new ReadCompletionHandler(channel, sink, position, bufferFactory, bufferSize);
 					sink.onDispose(handler::dispose);
 					DataBuffer dataBuffer = bufferFactory.allocateBuffer(bufferSize);
 					ByteBuffer byteBuffer = dataBuffer.asByteBuffer(0, bufferSize);
@@ -168,8 +155,7 @@ public abstract class DataBufferUtils {
 	 * @param bufferSize the maximum size of the data buffers
 	 * @return a Flux of data buffers read from the given channel
 	 */
-	public static Flux<DataBuffer> read(
-			Resource resource, long position, DataBufferFactory bufferFactory, int bufferSize) {
+	public static Flux<DataBuffer> read(Resource resource, long position, DataBufferFactory bufferFactory, int bufferSize) {
 
 		try {
 			if (resource.isFile()) {
@@ -209,7 +195,6 @@ public abstract class DataBufferUtils {
 	public static Flux<DataBuffer> write(Publisher<DataBuffer> source, OutputStream outputStream) {
 		Assert.notNull(source, "'source' must not be null");
 		Assert.notNull(outputStream, "'outputStream' must not be null");
-
 		WritableByteChannel channel = Channels.newChannel(outputStream);
 		return write(source, channel);
 	}
@@ -232,7 +217,6 @@ public abstract class DataBufferUtils {
 	public static Flux<DataBuffer> write(Publisher<DataBuffer> source, WritableByteChannel channel) {
 		Assert.notNull(source, "'source' must not be null");
 		Assert.notNull(channel, "'channel' must not be null");
-
 		Flux<DataBuffer> flux = Flux.from(source);
 		return Flux.create(sink -> {
 			WritableByteChannelSubscriber subscriber = new WritableByteChannelSubscriber(sink, channel);
@@ -277,13 +261,10 @@ public abstract class DataBufferUtils {
 	 * starts the writing process when subscribed to, and that publishes any
 	 * writing errors and the completion signal
 	 */
-	public static Flux<DataBuffer> write(
-			Publisher<DataBuffer> source, AsynchronousFileChannel channel, long position) {
-
+	public static Flux<DataBuffer> write(Publisher<DataBuffer> source, AsynchronousFileChannel channel, long position) {
 		Assert.notNull(source, "'source' must not be null");
 		Assert.notNull(channel, "'channel' must not be null");
 		Assert.isTrue(position >= 0, "'position' must be >= 0");
-
 		Flux<DataBuffer> flux = Flux.from(source);
 		return Flux.create(sink -> {
 			WriteCompletionHandler handler = new WriteCompletionHandler(sink, channel, position);
@@ -302,11 +283,9 @@ public abstract class DataBufferUtils {
 		}
 	}
 
-
 	//---------------------------------------------------------------------
 	// Various
 	//---------------------------------------------------------------------
-
 	/**
 	 * Relay buffers from the given {@link Publisher} until the total
 	 * {@linkplain DataBuffer#readableByteCount() byte count} reaches

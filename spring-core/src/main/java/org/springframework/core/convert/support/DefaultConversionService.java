@@ -12,22 +12,16 @@ import org.springframework.core.convert.converter.ConverterRegistry;
 import org.springframework.lang.Nullable;
 
 /**
- * A specialization of {@link GenericConversionService} configured by default
- * with converters appropriate for most environments.
- *
+ * A specialization of {@link GenericConversionService} configured by default with converters appropriate for most environments.
  * <p>Designed for direct instantiation but also exposes the static
  * {@link #addDefaultConverters(ConverterRegistry)} utility method for ad-hoc
  * use against any {@code ConverterRegistry} instance.
-
-
- * @author Stephane Nicoll
  * @since 3.1
  */
 public class DefaultConversionService extends GenericConversionService {
 
 	@Nullable
 	private static volatile DefaultConversionService sharedInstance;
-
 
 	/**
 	 * Create a new {@code DefaultConversionService} with the set of

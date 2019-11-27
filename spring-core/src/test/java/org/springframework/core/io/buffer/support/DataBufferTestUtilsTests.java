@@ -12,9 +12,7 @@ import org.springframework.core.io.buffer.DataBuffer;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
-/**
- * @author Arjen Poutsma
- */
+
 public class DataBufferTestUtilsTests extends AbstractDataBufferAllocatingTestCase {
 
 	@Test

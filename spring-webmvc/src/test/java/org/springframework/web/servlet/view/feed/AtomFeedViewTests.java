@@ -20,9 +20,7 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
-/**
- * @author Arjen Poutsma
- */
+
 public class AtomFeedViewTests {
 
 	private final AbstractAtomFeedView view = new MyAtomFeedView();

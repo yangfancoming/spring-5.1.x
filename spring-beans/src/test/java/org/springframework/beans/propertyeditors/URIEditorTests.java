@@ -11,10 +11,7 @@ import org.springframework.util.ClassUtils;
 
 import static org.junit.Assert.*;
 
-/**
 
- * @author Arjen Poutsma
- */
 public class URIEditorTests {
 
 	@Test

@@ -16,9 +16,7 @@ import org.springframework.core.io.buffer.DataBuffer;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Arjen Poutsma
- */
+
 public class XmlEventDecoderTests extends AbstractLeakCheckingTestCase {
 
 	private static final String XML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +

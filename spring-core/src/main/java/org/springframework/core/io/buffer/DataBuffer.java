@@ -36,9 +36,6 @@ import org.springframework.util.Assert;
  * <p>The main purpose of the {@code DataBuffer} abstraction is to provide a convenient wrapper
  * around {@link ByteBuffer} which is similar to Netty's {@link io.netty.buffer.ByteBuf} but
  * can also be used on non-Netty platforms (i.e. Servlet containers).
- *
- * @author Arjen Poutsma
- * @author Brian Clozel
  * @since 5.0
  * @see DataBufferFactory
  */

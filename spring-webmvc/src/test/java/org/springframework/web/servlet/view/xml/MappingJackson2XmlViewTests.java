@@ -34,9 +34,7 @@ import org.springframework.web.servlet.View;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-/**
- * @author Sebastien Deleuze
- */
+
 public class MappingJackson2XmlViewTests {
 
 	private MappingJackson2XmlView view;

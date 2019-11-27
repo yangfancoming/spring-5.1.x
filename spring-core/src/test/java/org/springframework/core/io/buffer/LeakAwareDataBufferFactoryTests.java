@@ -7,9 +7,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.springframework.core.io.buffer.DataBufferUtils.release;
 
-/**
- * @author Arjen Poutsma
- */
+
 public class LeakAwareDataBufferFactoryTests {
 
 	private final LeakAwareDataBufferFactory bufferFactory = new LeakAwareDataBufferFactory();

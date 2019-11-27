@@ -20,8 +20,6 @@ import static org.junit.Assert.*;
 
 /**
  * Tests for {@link ConvertingComparator}.
- *
- * @author Phillip Webb
  */
 public class ConvertingComparatorTests {
 

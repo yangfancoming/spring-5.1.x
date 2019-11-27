@@ -19,9 +19,7 @@ import org.springframework.web.client.RestTemplate;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Arjen Poutsma
- */
+
 public class RandomHandlerIntegrationTests extends AbstractHttpHandlerIntegrationTests {
 
 	public static final int REQUEST_SIZE = 4096 * 3;

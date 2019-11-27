@@ -24,9 +24,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.xmlunit.matchers.CompareMatcher.isSimilarTo;
 
-/**
- * @author Arjen Poutsma
- */
+
 public class StaxSourceTests {
 
 	private static final String XML = "<root xmlns='namespace'><child/></root>";

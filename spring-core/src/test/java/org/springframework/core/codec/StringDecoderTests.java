@@ -23,15 +23,10 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link StringDecoder}.
- *
- * @author Sebastien Deleuze
- * @author Brian Clozel
- * @author Mark Paluch
  */
 public class StringDecoderTests extends AbstractDecoderTestCase<StringDecoder> {
 
 	private static final ResolvableType TYPE = ResolvableType.forClass(String.class);
-
 
 	public StringDecoderTests() {
 		super(StringDecoder.allMimeTypes());

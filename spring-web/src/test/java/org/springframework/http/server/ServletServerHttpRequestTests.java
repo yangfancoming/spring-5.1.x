@@ -19,10 +19,7 @@ import org.springframework.util.FileCopyUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Arjen Poutsma
 
- */
 public class ServletServerHttpRequestTests {
 
 	private ServletServerHttpRequest request;

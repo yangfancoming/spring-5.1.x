@@ -8,9 +8,7 @@ import org.springframework.core.io.Resource;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Arjen Poutsma
- */
+
 public class MediaTypeFactoryTests {
 
 	@Test

@@ -18,13 +18,10 @@ import org.springframework.util.StreamUtils;
 import static org.junit.Assert.*;
 import static org.springframework.core.ResolvableType.*;
 
-/**
- * @author Arjen Poutsma
- */
+
 public class ResourceDecoderTests extends AbstractDecoderTestCase<ResourceDecoder> {
 
 	private final byte[] fooBytes = "foo".getBytes(StandardCharsets.UTF_8);
-
 	private final byte[] barBytes = "bar".getBytes(StandardCharsets.UTF_8);
 
 

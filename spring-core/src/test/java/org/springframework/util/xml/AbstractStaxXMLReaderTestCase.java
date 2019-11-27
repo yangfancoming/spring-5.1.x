@@ -32,9 +32,7 @@ import org.springframework.tests.MockitoUtils.InvocationArgumentsAdapter;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Arjen Poutsma
- */
+
 public abstract class AbstractStaxXMLReaderTestCase {
 
 	protected static XMLInputFactory inputFactory;

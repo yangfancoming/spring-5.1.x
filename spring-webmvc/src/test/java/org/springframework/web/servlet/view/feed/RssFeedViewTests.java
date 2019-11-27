@@ -22,9 +22,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.xmlunit.matchers.CompareMatcher.isSimilarTo;
 
-/**
- * @author Arjen Poutsma
- */
+
 public class RssFeedViewTests {
 
 	private final AbstractRssFeedView view = new MyRssFeedView();

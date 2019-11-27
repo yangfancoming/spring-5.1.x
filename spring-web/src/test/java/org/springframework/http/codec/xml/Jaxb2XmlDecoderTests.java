@@ -27,9 +27,7 @@ import org.springframework.http.codec.xml.jaxb.XmlTypeWithNameAndNamespace;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Sebastien Deleuze
- */
+
 public class Jaxb2XmlDecoderTests extends AbstractLeakCheckingTestCase {
 
 	private static final String POJO_ROOT = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +

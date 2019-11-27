@@ -4,9 +4,7 @@ package org.springframework.http.codec.json;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-/**
- * @author Sebastien Deleuze
- */
+
 @JsonView(JacksonViewBean.MyJacksonView3.class)
 class JacksonViewBean {
 

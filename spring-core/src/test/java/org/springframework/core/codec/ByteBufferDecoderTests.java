@@ -15,9 +15,7 @@ import org.springframework.util.MimeTypeUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Sebastien Deleuze
- */
+
 public class ByteBufferDecoderTests extends AbstractDecoderTestCase<ByteBufferDecoder> {
 
 	private final byte[] fooBytes = "foo".getBytes(StandardCharsets.UTF_8);
@@ -32,12 +30,9 @@ public class ByteBufferDecoderTests extends AbstractDecoderTestCase<ByteBufferDe
 	@Override
 	@Test
 	public void canDecode() {
-		assertTrue(this.decoder.canDecode(ResolvableType.forClass(ByteBuffer.class),
-				MimeTypeUtils.TEXT_PLAIN));
-		assertFalse(this.decoder.canDecode(ResolvableType.forClass(Integer.class),
-				MimeTypeUtils.TEXT_PLAIN));
-		assertTrue(this.decoder.canDecode(ResolvableType.forClass(ByteBuffer.class),
-				MimeTypeUtils.APPLICATION_JSON));
+		assertTrue(this.decoder.canDecode(ResolvableType.forClass(ByteBuffer.class),MimeTypeUtils.TEXT_PLAIN));
+		assertFalse(this.decoder.canDecode(ResolvableType.forClass(Integer.class),MimeTypeUtils.TEXT_PLAIN));
+		assertTrue(this.decoder.canDecode(ResolvableType.forClass(ByteBuffer.class),MimeTypeUtils.APPLICATION_JSON));
 	}
 
 	@Override

@@ -28,9 +28,7 @@ import org.springframework.web.server.adapter.HttpWebHandlerAdapter;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Sebastien Deleuze
- */
+
 public class MultipartIntegrationTests extends AbstractHttpHandlerIntegrationTests {
 
 	@Override

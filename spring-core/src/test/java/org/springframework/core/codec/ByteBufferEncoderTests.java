@@ -13,13 +13,10 @@ import org.springframework.util.MimeTypeUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Sebastien Deleuze
- */
+
 public class ByteBufferEncoderTests extends AbstractEncoderTestCase<ByteBufferEncoder> {
 
 	private final byte[] fooBytes = "foo".getBytes(StandardCharsets.UTF_8);
-
 	private final byte[] barBytes = "bar".getBytes(StandardCharsets.UTF_8);
 
 	public ByteBufferEncoderTests() {
@@ -29,12 +26,9 @@ public class ByteBufferEncoderTests extends AbstractEncoderTestCase<ByteBufferEn
 	@Override
 	@Test
 	public void canEncode() {
-		assertTrue(this.encoder.canEncode(ResolvableType.forClass(ByteBuffer.class),
-				MimeTypeUtils.TEXT_PLAIN));
-		assertFalse(this.encoder.canEncode(ResolvableType.forClass(Integer.class),
-				MimeTypeUtils.TEXT_PLAIN));
-		assertTrue(this.encoder.canEncode(ResolvableType.forClass(ByteBuffer.class),
-				MimeTypeUtils.APPLICATION_JSON));
+		assertTrue(this.encoder.canEncode(ResolvableType.forClass(ByteBuffer.class),MimeTypeUtils.TEXT_PLAIN));
+		assertFalse(this.encoder.canEncode(ResolvableType.forClass(Integer.class),MimeTypeUtils.TEXT_PLAIN));
+		assertTrue(this.encoder.canEncode(ResolvableType.forClass(ByteBuffer.class),MimeTypeUtils.APPLICATION_JSON));
 
 		// SPR-15464
 		assertFalse(this.encoder.canEncode(ResolvableType.NONE, null));
@@ -43,8 +37,7 @@ public class ByteBufferEncoderTests extends AbstractEncoderTestCase<ByteBufferEn
 	@Override
 	@Test
 	public void encode() {
-		Flux<ByteBuffer> input = Flux.just(this.fooBytes, this.barBytes)
-				.map(ByteBuffer::wrap);
+		Flux<ByteBuffer> input = Flux.just(this.fooBytes, this.barBytes).map(ByteBuffer::wrap);
 
 		testEncodeAll(input, ByteBuffer.class, step -> step
 				.consumeNextWith(expectBytes(this.fooBytes))

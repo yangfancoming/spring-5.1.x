@@ -13,10 +13,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Arjen Poutsma
 
- */
 public class LinkedMultiValueMapTests {
 
 	private final LinkedMultiValueMap<String, String> map = new LinkedMultiValueMap<>();

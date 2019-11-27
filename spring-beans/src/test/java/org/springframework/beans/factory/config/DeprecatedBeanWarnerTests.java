@@ -9,9 +9,7 @@ import org.springframework.beans.factory.support.RootBeanDefinition;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Arjen Poutsma
- */
+
 public class DeprecatedBeanWarnerTests {
 
 	private String beanName;

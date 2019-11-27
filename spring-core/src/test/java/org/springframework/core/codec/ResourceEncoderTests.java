@@ -21,13 +21,10 @@ import org.springframework.util.MimeTypeUtils;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.Assert.*;
 
-/**
- * @author Arjen Poutsma
- */
+
 public class ResourceEncoderTests extends AbstractEncoderTestCase<ResourceEncoder> {
 
 	private final byte[] bytes = "foo".getBytes(UTF_8);
-
 
 	public ResourceEncoderTests() {
 		super(new ResourceEncoder());
@@ -36,14 +33,10 @@ public class ResourceEncoderTests extends AbstractEncoderTestCase<ResourceEncode
 	@Override
 	@Test
 	public void canEncode() {
-		assertTrue(this.encoder.canEncode(ResolvableType.forClass(InputStreamResource.class),
-				MimeTypeUtils.TEXT_PLAIN));
-		assertTrue(this.encoder.canEncode(ResolvableType.forClass(ByteArrayResource.class),
-				MimeTypeUtils.TEXT_PLAIN));
-		assertTrue(this.encoder.canEncode(ResolvableType.forClass(Resource.class),
-				MimeTypeUtils.TEXT_PLAIN));
-		assertTrue(this.encoder.canEncode(ResolvableType.forClass(InputStreamResource.class),
-				MimeTypeUtils.APPLICATION_JSON));
+		assertTrue(this.encoder.canEncode(ResolvableType.forClass(InputStreamResource.class),MimeTypeUtils.TEXT_PLAIN));
+		assertTrue(this.encoder.canEncode(ResolvableType.forClass(ByteArrayResource.class),MimeTypeUtils.TEXT_PLAIN));
+		assertTrue(this.encoder.canEncode(ResolvableType.forClass(Resource.class),MimeTypeUtils.TEXT_PLAIN));
+		assertTrue(this.encoder.canEncode(ResolvableType.forClass(InputStreamResource.class),MimeTypeUtils.APPLICATION_JSON));
 
 		// SPR-15464
 		assertFalse(this.encoder.canEncode(ResolvableType.NONE, null));
@@ -59,14 +52,10 @@ public class ResourceEncoderTests extends AbstractEncoderTestCase<ResourceEncode
 	}
 
 	@Override
-	protected void testEncodeError(Publisher<?> input, ResolvableType outputType,
-			@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
+	protected void testEncodeError(Publisher<?> input, ResolvableType outputType,@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
 
 		Flux<Resource> i = Flux.error(new InputException());
-
-		Flux<DataBuffer> result = ((Encoder<Resource>) this.encoder).encode(i,
-				this.bufferFactory, outputType,
-				mimeType, hints);
+		Flux<DataBuffer> result = ((Encoder<Resource>) this.encoder).encode(i,this.bufferFactory, outputType,mimeType, hints);
 
 		StepVerifier.create(result)
 				.expectError(InputException.class)

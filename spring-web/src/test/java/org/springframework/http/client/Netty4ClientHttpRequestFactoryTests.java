@@ -10,9 +10,7 @@ import org.junit.Test;
 
 import org.springframework.http.HttpMethod;
 
-/**
- * @author Arjen Poutsma
- */
+
 public class Netty4ClientHttpRequestFactoryTests extends AbstractHttpRequestFactoryTestCase {
 
 	private static EventLoopGroup eventLoopGroup;

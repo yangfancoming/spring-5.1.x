@@ -11,9 +11,7 @@ import org.springframework.web.servlet.mvc.condition.HeadersRequestCondition.Hea
 
 import static org.junit.Assert.*;
 
-/**
- * @author Arjen Poutsma
- */
+
 public class HeadersRequestConditionTests {
 
 	@Test

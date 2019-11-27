@@ -22,9 +22,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.MockHttpInputMessage;
 import org.springframework.http.MockHttpOutputMessage;
 
-/**
- * @author Arjen Poutsma
- */
+
 public class RssChannelHttpMessageConverterTests {
 
 	private RssChannelHttpMessageConverter converter;

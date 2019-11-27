@@ -51,11 +51,6 @@ import static org.junit.Assert.*;
  * <p>In this package for enforcing accessibility checks to non-public classes outside
  * of the {@code org.springframework.core.convert.support} implementation package.
  * Only in such a scenario, {@code setAccessible(true)} is actually necessary.
- *
- * @author Keith Donald
-
- * @author Stephane Nicoll
- * @author Sam Brannen
  */
 public class DefaultConversionServiceTests {
 

@@ -14,9 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Arjen Poutsma
- */
+
 public class EchoHandlerIntegrationTests extends AbstractHttpHandlerIntegrationTests {
 
 	private static final int REQUEST_SIZE = 4096 * 3;
@@ -48,9 +46,7 @@ public class EchoHandlerIntegrationTests extends AbstractHttpHandlerIntegrationT
 		return buffer;
 	}
 
-	/**
-	 * @author Arjen Poutsma
-	 */
+
 	public static class EchoHandler implements HttpHandler {
 
 		@Override

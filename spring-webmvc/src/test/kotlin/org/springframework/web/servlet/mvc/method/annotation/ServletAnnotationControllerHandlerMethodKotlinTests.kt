@@ -9,9 +9,7 @@ import org.springframework.mock.web.test.MockHttpServletResponse
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
-/**
- * @author Sebastien Deleuze
- */
+
 class ServletAnnotationControllerHandlerMethodKotlinTests : AbstractServletHandlerMethodTests() {
 
 	@Test

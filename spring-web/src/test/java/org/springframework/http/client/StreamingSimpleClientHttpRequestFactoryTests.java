@@ -16,9 +16,7 @@ import org.springframework.http.HttpStatus;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Arjen Poutsma
- */
+
 public class StreamingSimpleClientHttpRequestFactoryTests extends AbstractHttpRequestFactoryTestCase {
 
 	@Override

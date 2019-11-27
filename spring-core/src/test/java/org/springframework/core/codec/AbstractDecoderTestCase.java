@@ -25,13 +25,10 @@ import static org.junit.Assert.*;
  * Abstract base class for {@link Decoder} unit tests. Subclasses need to implement
  * {@link #canDecode()}, {@link #decode()} and {@link #decodeToMono()}, possibly using the wide
  * variety of helper methods like {@link #testDecodeAll} or {@link #testDecodeToMonoAll}.
- *
- * @author Arjen Poutsma
  * @since 5.1.3
  */
 @SuppressWarnings("ProtectedField")
-public abstract class AbstractDecoderTestCase<D extends Decoder<?>>
-		extends AbstractLeakCheckingTestCase {
+public abstract class AbstractDecoderTestCase<D extends Decoder<?>> extends AbstractLeakCheckingTestCase {
 
 	/**
 	 * The decoder to test.
@@ -44,7 +41,6 @@ public abstract class AbstractDecoderTestCase<D extends Decoder<?>>
 	 */
 	protected AbstractDecoderTestCase(D decoder) {
 		Assert.notNull(decoder, "Encoder must not be null");
-
 		this.decoder = decoder;
 	}
 

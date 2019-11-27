@@ -6,10 +6,7 @@ import java.nio.ByteBuffer;
 import java.util.List;
 
 /**
- * A factory for {@link DataBuffer DataBuffers}, allowing for allocation and
- * wrapping of data buffers.
- *
- * @author Arjen Poutsma
+ * A factory for {@link DataBuffer DataBuffers}, allowing for allocation and wrapping of data buffers.
  * @since 5.0
  * @see DataBuffer
  */
@@ -17,16 +14,14 @@ public interface DataBufferFactory {
 
 	/**
 	 * Allocate a data buffer of a default initial capacity. Depending on the
-	 * underlying implementation and its configuration, this will be heap-based
-	 * or direct buffer.
+	 * underlying implementation and its configuration, this will be heap-based or direct buffer.
 	 * @return the allocated buffer
 	 */
 	DataBuffer allocateBuffer();
 
 	/**
 	 * Allocate a data buffer of the given initial capacity. Depending on the
-	 * underlying implementation and its configuration, this will be heap-based
-	 * or direct buffer.
+	 * underlying implementation and its configuration, this will be heap-based or direct buffer.
 	 * @param initialCapacity the initial capacity of the buffer to allocate
 	 * @return the allocated buffer
 	 */

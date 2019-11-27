@@ -12,9 +12,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Arjen Poutsma
- */
+
 public class FutureAdapterTests {
 
 	private FutureAdapter<String, Integer> adapter;

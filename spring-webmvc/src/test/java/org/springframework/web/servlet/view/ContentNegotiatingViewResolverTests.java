@@ -34,9 +34,7 @@ import org.springframework.web.servlet.ViewResolver;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Arjen Poutsma
- */
+
 public class ContentNegotiatingViewResolverTests {
 
 	private ContentNegotiatingViewResolver viewResolver;

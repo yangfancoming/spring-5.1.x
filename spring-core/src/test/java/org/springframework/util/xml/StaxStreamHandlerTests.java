@@ -7,9 +7,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import javax.xml.transform.Result;
 
-/**
- * @author Arjen Poutsma
- */
+
 public class StaxStreamHandlerTests extends AbstractStaxHandlerTestCase {
 
 	@Override
