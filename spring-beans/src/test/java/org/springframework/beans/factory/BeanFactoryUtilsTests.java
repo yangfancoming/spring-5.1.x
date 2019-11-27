@@ -26,9 +26,6 @@ import static org.junit.Assert.*;
 import static org.springframework.tests.TestResourceUtils.*;
 
 /**
- * @author Rod Johnson
-
-
  * @since 04.07.2003
  */
 public class BeanFactoryUtilsTests {
@@ -48,7 +45,6 @@ public class BeanFactoryUtilsTests {
 	public void setUp() {
 		// Interesting hierarchical factory to test counts.
 		// Slow to read so we cache it.
-
 		DefaultListableBeanFactory grandParent = new DefaultListableBeanFactory();
 		new XmlBeanDefinitionReader(grandParent).loadBeanDefinitions(ROOT_CONTEXT);
 		DefaultListableBeanFactory parent = new DefaultListableBeanFactory(grandParent);
@@ -75,7 +71,7 @@ public class BeanFactoryUtilsTests {
 	 * Check that override doesn't count as two separate beans.
 	 */
 	@Test
-	public void testHierarchicalCountBeansWithOverride() throws Exception {
+	public void testHierarchicalCountBeansWithOverride() {
 		// Leaf count
 		assertTrue(this.listableBeanFactory.getBeanDefinitionCount() == 1);
 		// Count minus duplicate
@@ -84,16 +80,15 @@ public class BeanFactoryUtilsTests {
 	}
 
 	@Test
-	public void testHierarchicalNamesWithNoMatch() throws Exception {
-		List<String> names = Arrays.asList(
-				BeanFactoryUtils.beanNamesForTypeIncludingAncestors(this.listableBeanFactory, NoOp.class));
+	public void testHierarchicalNamesWithNoMatch() {
+		List<String> names = Arrays.asList(BeanFactoryUtils.beanNamesForTypeIncludingAncestors(this.listableBeanFactory, NoOp.class));
 		assertEquals(0, names.size());
 	}
 
 	@Test
-	public void testHierarchicalNamesWithMatchOnlyInRoot() throws Exception {
-		List<String> names = Arrays.asList(
-				BeanFactoryUtils.beanNamesForTypeIncludingAncestors(this.listableBeanFactory, IndexedTestBean.class));
+	public void testHierarchicalNamesWithMatchOnlyInRoot() {
+		List<String> names = Arrays.asList(BeanFactoryUtils.beanNamesForTypeIncludingAncestors(this.listableBeanFactory, IndexedTestBean.class));
+
 		assertEquals(1, names.size());
 		assertTrue(names.contains("indexedBean"));
 		// Distinguish from default ListableBeanFactory behavior
@@ -101,7 +96,7 @@ public class BeanFactoryUtilsTests {
 	}
 
 	@Test
-	public void testGetBeanNamesForTypeWithOverride() throws Exception {
+	public void testGetBeanNamesForTypeWithOverride() {
 		List<String> names = Arrays.asList(
 				BeanFactoryUtils.beanNamesForTypeIncludingAncestors(this.listableBeanFactory, ITestBean.class));
 		// includes 2 TestBeans from FactoryBeans (DummyFactory definitions)
@@ -215,7 +210,7 @@ public class BeanFactoryUtilsTests {
 	}
 
 	@Test
-	public void testHierarchicalResolutionWithOverride() throws Exception {
+	public void testHierarchicalResolutionWithOverride() {
 		Object test3 = this.listableBeanFactory.getBean("test3");
 		Object test = this.listableBeanFactory.getBean("test");
 
@@ -254,16 +249,14 @@ public class BeanFactoryUtilsTests {
 	}
 
 	@Test
-	public void testHierarchicalNamesForAnnotationWithNoMatch() throws Exception {
-		List<String> names = Arrays.asList(
-				BeanFactoryUtils.beanNamesForAnnotationIncludingAncestors(this.listableBeanFactory, Override.class));
+	public void testHierarchicalNamesForAnnotationWithNoMatch() {
+		List<String> names = Arrays.asList(	BeanFactoryUtils.beanNamesForAnnotationIncludingAncestors(this.listableBeanFactory, Override.class));
 		assertEquals(0, names.size());
 	}
 
 	@Test
-	public void testHierarchicalNamesForAnnotationWithMatchOnlyInRoot() throws Exception {
-		List<String> names = Arrays.asList(
-				BeanFactoryUtils.beanNamesForAnnotationIncludingAncestors(this.listableBeanFactory, TestAnnotation.class));
+	public void testHierarchicalNamesForAnnotationWithMatchOnlyInRoot() {
+		List<String> names = Arrays.asList(BeanFactoryUtils.beanNamesForAnnotationIncludingAncestors(this.listableBeanFactory, TestAnnotation.class));
 		assertEquals(1, names.size());
 		assertTrue(names.contains("annotatedBean"));
 		// Distinguish from default ListableBeanFactory behavior
@@ -271,11 +264,10 @@ public class BeanFactoryUtilsTests {
 	}
 
 	@Test
-	public void testGetBeanNamesForAnnotationWithOverride() throws Exception {
+	public void testGetBeanNamesForAnnotationWithOverride() {
 		AnnotatedBean annotatedBean = new AnnotatedBean();
 		this.listableBeanFactory.registerSingleton("anotherAnnotatedBean", annotatedBean);
-		List<String> names = Arrays.asList(
-				BeanFactoryUtils.beanNamesForAnnotationIncludingAncestors(this.listableBeanFactory, TestAnnotation.class));
+		List<String> names = Arrays.asList(BeanFactoryUtils.beanNamesForAnnotationIncludingAncestors(this.listableBeanFactory, TestAnnotation.class));
 		assertEquals(2, names.size());
 		assertTrue(names.contains("annotatedBean"));
 		assertTrue(names.contains("anotherAnnotatedBean"));

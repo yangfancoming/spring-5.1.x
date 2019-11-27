@@ -11,7 +11,6 @@ import org.springframework.lang.Nullable;
  * Common interface for classes that can access named properties
  * (such as bean properties of an object or fields in an object)
  * Serves as base interface for {@link BeanWrapper}.
- *
 
  * @since 1.1
  * @see BeanWrapper
@@ -193,8 +192,7 @@ public interface PropertyAccessor {
 	 * successfully updated.
 	 * @see #setPropertyValues(PropertyValues, boolean, boolean)
 	 */
-	void setPropertyValues(PropertyValues pvs, boolean ignoreUnknown)
-			throws BeansException;
+	void setPropertyValues(PropertyValues pvs, boolean ignoreUnknown) throws BeansException;
 
 	/**
 	 * Perform a batch update with full control over behavior.
@@ -215,7 +213,6 @@ public interface PropertyAccessor {
 	 * all individual PropertyAccessExceptions. All other properties will have been
 	 * successfully updated.
 	 */
-	void setPropertyValues(PropertyValues pvs, boolean ignoreUnknown, boolean ignoreInvalid)
-			throws BeansException;
+	void setPropertyValues(PropertyValues pvs, boolean ignoreUnknown, boolean ignoreInvalid) throws BeansException;
 
 }

@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 import static org.junit.Assert.*;
 
@@ -17,9 +18,9 @@ public class DefaultLifecycleMethodsTests {
 
 
 	@Before
-	public void setup() throws Exception {
-		new XmlBeanDefinitionReader(this.beanFactory).loadBeanDefinitions(
-				new ClassPathResource("defaultLifecycleMethods.xml", getClass()));
+	public void setup() {
+		Resource resource = new ClassPathResource("defaultLifecycleMethods.xml", getClass());
+		new XmlBeanDefinitionReader(this.beanFactory).loadBeanDefinitions(resource);
 	}
 
 
@@ -35,7 +36,7 @@ public class DefaultLifecycleMethodsTests {
 	}
 
 	@Test
-	public void lifecycleMethodsDisabled() throws Exception {
+	public void lifecycleMethodsDisabled() {
 		LifecycleAwareBean bean = (LifecycleAwareBean) this.beanFactory.getBean("lifecycleMethodsDisabled");
 		assertFalse("Bean init method called incorrectly", bean.isInitCalled());
 		assertFalse("Custom init method called incorrectly", bean.isCustomInitCalled());
@@ -45,16 +46,15 @@ public class DefaultLifecycleMethodsTests {
 	}
 
 	@Test
-	public void ignoreDefaultLifecycleMethods() throws Exception {
+	public void ignoreDefaultLifecycleMethods() {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
-		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(new ClassPathResource(
-				"ignoreDefaultLifecycleMethods.xml", getClass()));
+		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(new ClassPathResource("ignoreDefaultLifecycleMethods.xml", getClass()));
 		bf.preInstantiateSingletons();
 		bf.destroySingletons();
 	}
 
 	@Test
-	public void overrideDefaultLifecycleMethods() throws Exception {
+	public void overrideDefaultLifecycleMethods() {
 		LifecycleAwareBean bean = (LifecycleAwareBean) this.beanFactory.getBean("overrideLifecycleMethods");
 		assertFalse("Default init method called incorrectly", bean.isInitCalled());
 		assertTrue("Custom init method not called", bean.isCustomInitCalled());
@@ -64,7 +64,7 @@ public class DefaultLifecycleMethodsTests {
 	}
 
 	@Test
-	public void childWithDefaultLifecycleMethods() throws Exception {
+	public void childWithDefaultLifecycleMethods() {
 		LifecycleAwareBean bean = (LifecycleAwareBean) this.beanFactory.getBean("childWithDefaultLifecycleMethods");
 		assertTrue("Bean not initialized", bean.isInitCalled());
 		assertFalse("Custom init method called incorrectly", bean.isCustomInitCalled());
@@ -75,7 +75,7 @@ public class DefaultLifecycleMethodsTests {
 	}
 
 	@Test
-	public void childWithLifecycleMethodsDisabled() throws Exception {
+	public void childWithLifecycleMethodsDisabled() {
 		LifecycleAwareBean bean = (LifecycleAwareBean) this.beanFactory.getBean("childWithLifecycleMethodsDisabled");
 		assertFalse("Bean init method called incorrectly", bean.isInitCalled());
 		assertFalse("Custom init method called incorrectly", bean.isCustomInitCalled());

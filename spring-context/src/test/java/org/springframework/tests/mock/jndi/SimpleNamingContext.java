@@ -31,8 +31,6 @@ import org.springframework.util.StringUtils;
  * can be used for example to override JndiTemplate's {@code createInitialContext}
  * method in unit tests. Typically, SimpleNamingContextBuilder will be used to
  * set up a JVM-level JNDI environment.
- *
- * @author Rod Johnson
 
  * @see SimpleNamingContextBuilder
  * @see org.springframework.jndi.JndiTemplate#createInitialContext
@@ -67,9 +65,7 @@ public class SimpleNamingContext implements Context {
 	 * Create a new naming context with the given naming root,
 	 * the given name/object map, and the JNDI environment entries.
 	 */
-	public SimpleNamingContext(
-			String root, Hashtable<String, Object> boundObjects, @Nullable Hashtable<String, Object> env) {
-
+	public SimpleNamingContext(String root, Hashtable<String, Object> boundObjects, @Nullable Hashtable<String, Object> env) {
 		this.root = root;
 		this.boundObjects = boundObjects;
 		if (env != null) {

@@ -17,14 +17,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ResourceUtils;
 
 /**
- * Convenience base class for {@link Resource} implementations,
- * pre-implementing typical behavior.
- *
+ * Convenience base class for {@link Resource} implementations, pre-implementing typical behavior.
  * <p>The "exists" method will check whether a File or InputStream can
- * be opened; "isOpen" will always return false; "getURL" and "getFile"
- * throw an exception; and "toString" will return the description.
- *
-
+ * be opened; "isOpen" will always return false; "getURL" and "getFile" throw an exception; and "toString" will return the description.
  * @since 28.12.2003
  */
 public abstract class AbstractResource implements Resource {
@@ -149,8 +144,7 @@ public abstract class AbstractResource implements Resource {
 	}
 
 	/**
-	 * This implementation checks the timestamp of the underlying File,
-	 * if available.
+	 * This implementation checks the timestamp of the underlying File, if available.
 	 * @see #getFileForLastModifiedCheck()
 	 */
 	@Override
@@ -158,8 +152,7 @@ public abstract class AbstractResource implements Resource {
 		File fileToCheck = getFileForLastModifiedCheck();
 		long lastModified = fileToCheck.lastModified();
 		if (lastModified == 0L && !fileToCheck.exists()) {
-			throw new FileNotFoundException(getDescription() +
-					" cannot be resolved in the file system for checking its last-modified timestamp");
+			throw new FileNotFoundException(getDescription() +" cannot be resolved in the file system for checking its last-modified timestamp");
 		}
 		return lastModified;
 	}
@@ -202,8 +195,7 @@ public abstract class AbstractResource implements Resource {
 	 */
 	@Override
 	public boolean equals(Object other) {
-		return (this == other || (other instanceof Resource &&
-				((Resource) other).getDescription().equals(getDescription())));
+		return (this == other || (other instanceof Resource && ((Resource) other).getDescription().equals(getDescription())));
 	}
 
 	/**

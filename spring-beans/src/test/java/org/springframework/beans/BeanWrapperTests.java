@@ -22,7 +22,6 @@ public class BeanWrapperTests extends AbstractPropertyAccessorTests {
 		return new BeanWrapperImpl(target);
 	}
 
-
 	@Test
 	public void setterDoesNotCallGetter() {
 		GetterBean target = new GetterBean();

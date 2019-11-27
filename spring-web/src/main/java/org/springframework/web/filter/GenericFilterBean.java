@@ -321,12 +321,8 @@ public abstract class GenericFilterBean implements Filter, BeanNameAware, Enviro
 		 * we can't accept default values
 		 * @throws ServletException if any required properties are missing
 		 */
-		public FilterConfigPropertyValues(FilterConfig config, Set<String> requiredProperties)
-				throws ServletException {
-
-			Set<String> missingProps = (!CollectionUtils.isEmpty(requiredProperties) ?
-					new HashSet<>(requiredProperties) : null);
-
+		public FilterConfigPropertyValues(FilterConfig config, Set<String> requiredProperties) throws ServletException {
+			Set<String> missingProps = (!CollectionUtils.isEmpty(requiredProperties) ? new HashSet<>(requiredProperties) : null);
 			Enumeration<String> paramNames = config.getInitParameterNames();
 			while (paramNames.hasMoreElements()) {
 				String property = paramNames.nextElement();

@@ -102,9 +102,7 @@ public class StringArrayPropertyEditor extends PropertyEditorSupport {
 	 * @param trimValues {@code true} if the values in the parsed arrays
 	 * are to be trimmed of whitespace (default is true).
 	 */
-	public StringArrayPropertyEditor(
-			String separator, @Nullable String charsToDelete, boolean emptyArrayAsNull, boolean trimValues) {
-
+	public StringArrayPropertyEditor(String separator, @Nullable String charsToDelete, boolean emptyArrayAsNull, boolean trimValues) {
 		this.separator = separator;
 		this.charsToDelete = charsToDelete;
 		this.emptyArrayAsNull = emptyArrayAsNull;

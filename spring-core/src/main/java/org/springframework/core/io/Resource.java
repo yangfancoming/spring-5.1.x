@@ -45,8 +45,7 @@ public interface Resource extends InputStreamSource {
 	boolean exists();
 
 	/**
-	 * Indicate whether non-empty contents of this resource can be read via
-	 * {@link #getInputStream()}.
+	 * Indicate whether non-empty contents of this resource can be read via {@link #getInputStream()}.
 	 * <p>Will be {@code true} for typical resource descriptors that exist
 	 * since it strictly implies {@link #exists()} semantics as of 5.1.
 	 * Note that actual content reading may still fail when attempted.
@@ -108,8 +107,7 @@ public interface Resource extends InputStreamSource {
 	/**
 	 * Return a {@link ReadableByteChannel}.
 	 * <p>It is expected that each call creates a <i>fresh</i> channel.
-	 * <p>The default implementation returns {@link Channels#newChannel(InputStream)}
-	 * with the result of {@link #getInputStream()}.
+	 * <p>The default implementation returns {@link Channels#newChannel(InputStream)} with the result of {@link #getInputStream()}.
 	 * @return the byte channel for the underlying resource (must not be {@code null})
 	 * @throws java.io.FileNotFoundException if the underlying resource doesn't exist
 	 * @throws IOException if the content channel could not be opened
@@ -145,17 +143,14 @@ public interface Resource extends InputStreamSource {
 	/**
 	 * Determine a filename for this resource, i.e. typically the last
 	 * part of the path: for example, "myfile.txt".
-	 * <p>Returns {@code null} if this type of resource does not
-	 * have a filename.
+	 * <p>Returns {@code null} if this type of resource does not  have a filename.
 	 */
 	@Nullable
 	String getFilename();
 
 	/**
-	 * Return a description for this resource,
-	 * to be used for error output when working with the resource.
-	 * <p>Implementations are also encouraged to return this value
-	 * from their {@code toString} method.
+	 * Return a description for this resource, to be used for error output when working with the resource.
+	 * <p>Implementations are also encouraged to return this value from their {@code toString} method.
 	 * @see Object#toString()
 	 */
 	String getDescription();

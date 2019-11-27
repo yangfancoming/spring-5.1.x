@@ -413,13 +413,13 @@ public abstract class StringUtils {
 	 * @param inString the original {@code String}
 	 * @param charsToDelete a set of characters to delete.
 	 * E.g. "az\n" will delete 'a's, 'z's and new lines.
+	 * eg:	StringUtils.deleteAny("Able was I ere I saw Elba", "I") ===> "Able was  ere  saw Elba"
 	 * @return the resulting {@code String}
 	 */
 	public static String deleteAny(String inString, @Nullable String charsToDelete) {
 		if (!hasLength(inString) || !hasLength(charsToDelete)) {
 			return inString;
 		}
-
 		StringBuilder sb = new StringBuilder(inString.length());
 		for (int i = 0; i < inString.length(); i++) {
 			char c = inString.charAt(i);
@@ -856,8 +856,7 @@ public abstract class StringUtils {
 	/**
 	 * Copy the given {@link Collection} into a {@code String} array.
 	 * <p>The {@code Collection} must contain {@code String} elements only.
-	 * @param collection the {@code Collection} to copy
-	 * (potentially {@code null} or empty)
+	 * @param collection the {@code Collection} to copy (potentially {@code null} or empty)
 	 * @return the resulting {@code String} array
 	 */
 	public static String[] toStringArray(@Nullable Collection<String> collection) {
@@ -1129,8 +1128,7 @@ public abstract class StringUtils {
 	}
 
 	/**
-	 * Take a {@code String} that is a delimited list and convert it into a
-	 * {@code String} array.
+	 * Take a {@code String} that is a delimited list and convert it into a {@code String} array.
 	 * <p>A single {@code delimiter} may consist of more than one character,
 	 * but it will still be considered as a single delimiter string, rather
 	 * than as bunch of potential delimiter characters, in contrast to
@@ -1146,8 +1144,7 @@ public abstract class StringUtils {
 	}
 
 	/**
-	 * Take a {@code String} that is a delimited list and convert it into
-	 * a {@code String} array.
+	 * Take a {@code String} that is a delimited list and convert it into a {@code String} array.
 	 * <p>A single {@code delimiter} may consist of more than one character,
 	 * but it will still be considered as a single delimiter string, rather
 	 * than as bunch of potential delimiter characters, in contrast to
@@ -1161,7 +1158,6 @@ public abstract class StringUtils {
 	 * @see #tokenizeToStringArray
 	 */
 	public static String[] delimitedListToStringArray(@Nullable String str, @Nullable String delimiter, @Nullable String charsToDelete) {
-
 		if (str == null) {
 			return new String[0];
 		}
@@ -1239,6 +1235,8 @@ public abstract class StringUtils {
 
 	/**
 	 * Convert a {@code Collection} into a delimited {@code String} (e.g. CSV).
+	 * 		List<String> list = Arrays.asList("1","2","3");
+	 * 		StringUtils.collectionToDelimitedString(list, "*") ===> 1*2*3
 	 * <p>Useful for {@code toString()} implementations.
 	 * @param coll the {@code Collection} to convert (potentially {@code null} or empty)
 	 * @param delim the delimiter to use (typically a ",")
