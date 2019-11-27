@@ -9,11 +9,7 @@ import org.springframework.core.io.DescriptiveResource;
 
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Rick Evans
 
-
- */
 public class FailFastProblemReporterTests {
 
 	@Test(expected = BeanDefinitionParsingException.class)

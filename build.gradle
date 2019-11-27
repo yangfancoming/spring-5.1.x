@@ -81,11 +81,11 @@ configure(allprojects) { project ->
 		resolutionStrategy.cacheChangingModulesFor 0, "seconds"
 
 		// Consistent slf4j version (e.g. clashes between slf4j versions)
-		resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-			if (details.requested.group == "org.slf4j") {
-				details.useVersion slf4jVersion
-			}
-		}
+//		resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+//			if (details.requested.group == "org.slf4j") {
+//				details.useVersion slf4jVersion
+//			}
+//		}
 	}
 
 	def commonCompilerArgs =
@@ -195,7 +195,7 @@ configure(allprojects) { project ->
 		"https://hc.apache.org/httpcomponents-client-ga/httpclient/apidocs/",
 		"https://junit.org/junit4/javadoc/4.12/",
 		"https://junit.org/junit5/docs/${junit5Version}/api/"
-	] as String[]
+	] 
 }
 
 configure(subprojects - project(":spring-build-src")) { subproject ->
@@ -212,7 +212,7 @@ configure(subprojects - project(":spring-build-src")) { subproject ->
 			include "license.txt"
 			include "notice.txt"
 			into "META-INF"
-			expand(copyright: new Date().format("yyyy"), version: project.version)
+//			expand(copyright: new Date().format("yyyy"), version: project.version)
 		}
 	}
 
@@ -295,10 +295,10 @@ configure(rootProject) {
 		doLast() {
 			def gradleOpts = "-XX:MaxMetaspaceSize=1024m -Xmx1024m"
 			def gradleBatOpts = "$gradleOpts -XX:MaxHeapSize=256m"
-			File wrapperFile = file("gradlew")
+//			File wrapperFile = file("gradlew")
 			wrapperFile.text = wrapperFile.text.replace("DEFAULT_JVM_OPTS=",
 					"GRADLE_OPTS=\"$gradleOpts \$GRADLE_OPTS\"\nDEFAULT_JVM_OPTS=")
-			File wrapperBatFile = file("gradlew.bat")
+//			File wrapperBatFile = file("gradlew.bat")
 			wrapperBatFile.text = wrapperBatFile.text.replace("set DEFAULT_JVM_OPTS=",
 					"set GRADLE_OPTS=$gradleBatOpts %GRADLE_OPTS%\nset DEFAULT_JVM_OPTS=")
 		}

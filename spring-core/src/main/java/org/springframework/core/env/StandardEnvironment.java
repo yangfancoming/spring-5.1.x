@@ -49,10 +49,8 @@ public class StandardEnvironment extends AbstractEnvironment {
 	/**
 	 * Customize the set of property sources with those appropriate for any standard
 	 * Java environment:
-	 * <ul>
 	 * <li>{@value #SYSTEM_PROPERTIES_PROPERTY_SOURCE_NAME}
 	 * <li>{@value #SYSTEM_ENVIRONMENT_PROPERTY_SOURCE_NAME}
-	 * </ul>
 	 * <p>Properties present in {@value #SYSTEM_PROPERTIES_PROPERTY_SOURCE_NAME} will
 	 * take precedence over those in {@value #SYSTEM_ENVIRONMENT_PROPERTY_SOURCE_NAME}.
 	 * @see AbstractEnvironment#customizePropertySources(MutablePropertySources)

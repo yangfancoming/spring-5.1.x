@@ -22,11 +22,7 @@ import org.springframework.util.StringUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rick Evans
 
-
- */
 public class ModelMapTests {
 
 	@Test

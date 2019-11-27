@@ -117,7 +117,6 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
 			// 为当前BeanFactory设置一个标识id
 			beanFactory.setSerializationId(getId());
-
 			/**
 			 配置beanFactory的一些定制化属性， 如
 				 是否允许循环依赖，

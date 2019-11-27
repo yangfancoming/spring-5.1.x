@@ -12,11 +12,7 @@ import org.springframework.beans.factory.BeanNotOfRequiredTypeException;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Rick Evans
 
-
- */
 public class BeanFactoryDataSourceLookupTests {
 
 	private static final String DATASOURCE_BEAN_NAME = "dataSource";

@@ -72,9 +72,6 @@ import org.springframework.util.MultiValueMap;
  * search algorithm manually traverses type and method hierarchies and thereby
  * implicitly supports annotation inheritance without a need for {@code @Inherited}.
  *
- * @author Phillip Webb
-
- * @author Sam Brannen
  * @since 4.0
  * @see AliasFor
  * @see AnnotationAttributes
@@ -126,14 +123,12 @@ public abstract class AnnotatedElementUtils {
 
 	/**
 	 * Get the fully qualified class names of all meta-annotation types
-	 * <em>present</em> on the annotation (of the specified {@code annotationType})
-	 * on the supplied {@link AnnotatedElement}.
+	 * <em>present</em> on the annotation (of the specified {@code annotationType}) on the supplied {@link AnnotatedElement}.
 	 * <p>This method follows <em>get semantics</em> as described in the
 	 * {@linkplain AnnotatedElementUtils class-level javadoc}.
 	 * @param element the annotated element
 	 * @param annotationType the annotation type on which to find meta-annotations
-	 * @return the names of all meta-annotations present on the annotation,
-	 * or {@code null} if not found
+	 * @return the names of all meta-annotations present on the annotation,or {@code null} if not found
 	 * @since 4.2
 	 * @see #getMetaAnnotationTypes(AnnotatedElement, String)
 	 * @see #hasMetaAnnotationTypes
@@ -215,8 +210,7 @@ public abstract class AnnotatedElementUtils {
 		return hasMetaAnnotationTypes(element, null, annotationName);
 	}
 
-	private static boolean hasMetaAnnotationTypes(
-			AnnotatedElement element, @Nullable Class<? extends Annotation> annotationType, @Nullable String annotationName) {
+	private static boolean hasMetaAnnotationTypes(AnnotatedElement element, @Nullable Class<? extends Annotation> annotationType, @Nullable String annotationName) {
 
 		return Boolean.TRUE.equals(
 			searchWithGetSemantics(element, annotationType, annotationName, new SimpleAnnotationProcessor<Boolean>() {
@@ -284,11 +278,8 @@ public abstract class AnnotatedElementUtils {
 	 * @see #findMergedAnnotation(AnnotatedElement, Class)
 	 */
 	@Nullable
-	public static AnnotationAttributes getMergedAnnotationAttributes(
-			AnnotatedElement element, Class<? extends Annotation> annotationType) {
-
-		AnnotationAttributes attributes = searchWithGetSemantics(element, annotationType, null,
-				new MergedAnnotationAttributesProcessor());
+	public static AnnotationAttributes getMergedAnnotationAttributes(AnnotatedElement element, Class<? extends Annotation> annotationType) {
+		AnnotationAttributes attributes = searchWithGetSemantics(element, annotationType, null,new MergedAnnotationAttributesProcessor());
 		AnnotationUtils.postProcessAnnotationAttributes(element, attributes, false, false);
 		return attributes;
 	}
@@ -343,11 +334,8 @@ public abstract class AnnotatedElementUtils {
 	 * @see #getAllAnnotationAttributes(AnnotatedElement, String, boolean, boolean)
 	 */
 	@Nullable
-	public static AnnotationAttributes getMergedAnnotationAttributes(AnnotatedElement element,
-			String annotationName, boolean classValuesAsString, boolean nestedAnnotationsAsMap) {
-
-		AnnotationAttributes attributes = searchWithGetSemantics(element, null, annotationName,
-				new MergedAnnotationAttributesProcessor(classValuesAsString, nestedAnnotationsAsMap));
+	public static AnnotationAttributes getMergedAnnotationAttributes(AnnotatedElement element,String annotationName, boolean classValuesAsString, boolean nestedAnnotationsAsMap) {
+		AnnotationAttributes attributes = searchWithGetSemantics(element, null, annotationName,new MergedAnnotationAttributesProcessor(classValuesAsString, nestedAnnotationsAsMap));
 		AnnotationUtils.postProcessAnnotationAttributes(element, attributes, classValuesAsString, nestedAnnotationsAsMap);
 		return attributes;
 	}
@@ -358,8 +346,7 @@ public abstract class AnnotatedElementUtils {
 	 * merge that annotation's attributes with <em>matching</em> attributes from
 	 * annotations in lower levels of the annotation hierarchy, and synthesize
 	 * the result back into an annotation of the specified {@code annotationType}.
-	 * <p>{@link AliasFor @AliasFor} semantics are fully supported, both
-	 * within a single annotation and within the annotation hierarchy.
+	 * <p>{@link AliasFor @AliasFor} semantics are fully supported, both within a single annotation and within the annotation hierarchy.
 	 * <p>This method delegates to {@link #getMergedAnnotationAttributes(AnnotatedElement, Class)}
 	 * and {@link AnnotationUtils#synthesizeAnnotation(Map, Class, AnnotatedElement)}.
 	 * @param element the annotated element
@@ -462,9 +449,7 @@ public abstract class AnnotatedElementUtils {
 	 * @see #getAllMergedAnnotations(AnnotatedElement, Class)
 	 * @see #getMergedRepeatableAnnotations(AnnotatedElement, Class, Class)
 	 */
-	public static <A extends Annotation> Set<A> getMergedRepeatableAnnotations(AnnotatedElement element,
-			Class<A> annotationType) {
-
+	public static <A extends Annotation> Set<A> getMergedRepeatableAnnotations(AnnotatedElement element,Class<A> annotationType) {
 		return getMergedRepeatableAnnotations(element, annotationType, null);
 	}
 
@@ -494,8 +479,7 @@ public abstract class AnnotatedElementUtils {
 	 * @see #getMergedAnnotation(AnnotatedElement, Class)
 	 * @see #getAllMergedAnnotations(AnnotatedElement, Class)
 	 */
-	public static <A extends Annotation> Set<A> getMergedRepeatableAnnotations(AnnotatedElement element,
-			Class<A> annotationType, @Nullable Class<? extends Annotation> containerType) {
+	public static <A extends Annotation> Set<A> getMergedRepeatableAnnotations(AnnotatedElement element,Class<A> annotationType, @Nullable Class<? extends Annotation> containerType) {
 
 		if (containerType == null) {
 			containerType = resolveContainerType(annotationType);
@@ -554,8 +538,7 @@ public abstract class AnnotatedElementUtils {
 			@Override
 			@Nullable
 			public Object process(@Nullable AnnotatedElement annotatedElement, Annotation annotation, int metaDepth) {
-				AnnotationAttributes annotationAttributes = AnnotationUtils.getAnnotationAttributes(
-						annotation, classValuesAsString, nestedAnnotationsAsMap);
+				AnnotationAttributes annotationAttributes = AnnotationUtils.getAnnotationAttributes(annotation, classValuesAsString, nestedAnnotationsAsMap);
 				annotationAttributes.forEach(attributesMap::add);
 				return CONTINUE;
 			}
@@ -614,11 +597,8 @@ public abstract class AnnotatedElementUtils {
 	 * @see #getMergedAnnotationAttributes(AnnotatedElement, String, boolean, boolean)
 	 */
 	@Nullable
-	public static AnnotationAttributes findMergedAnnotationAttributes(AnnotatedElement element,
-			Class<? extends Annotation> annotationType, boolean classValuesAsString, boolean nestedAnnotationsAsMap) {
-
-		AnnotationAttributes attributes = searchWithFindSemantics(element, annotationType, null,
-				new MergedAnnotationAttributesProcessor(classValuesAsString, nestedAnnotationsAsMap));
+	public static AnnotationAttributes findMergedAnnotationAttributes(AnnotatedElement element,Class<? extends Annotation> annotationType, boolean classValuesAsString, boolean nestedAnnotationsAsMap) {
+		AnnotationAttributes attributes = searchWithFindSemantics(element, annotationType, null,new MergedAnnotationAttributesProcessor(classValuesAsString, nestedAnnotationsAsMap));
 		AnnotationUtils.postProcessAnnotationAttributes(element, attributes, classValuesAsString, nestedAnnotationsAsMap);
 		return attributes;
 	}
@@ -651,11 +631,8 @@ public abstract class AnnotatedElementUtils {
 	 * @see #getMergedAnnotationAttributes(AnnotatedElement, String, boolean, boolean)
 	 */
 	@Nullable
-	public static AnnotationAttributes findMergedAnnotationAttributes(AnnotatedElement element,
-			String annotationName, boolean classValuesAsString, boolean nestedAnnotationsAsMap) {
-
-		AnnotationAttributes attributes = searchWithFindSemantics(element, null, annotationName,
-				new MergedAnnotationAttributesProcessor(classValuesAsString, nestedAnnotationsAsMap));
+	public static AnnotationAttributes findMergedAnnotationAttributes(AnnotatedElement element,String annotationName, boolean classValuesAsString, boolean nestedAnnotationsAsMap) {
+		AnnotationAttributes attributes = searchWithFindSemantics(element, null, annotationName,new MergedAnnotationAttributesProcessor(classValuesAsString, nestedAnnotationsAsMap));
 		AnnotationUtils.postProcessAnnotationAttributes(element, attributes, classValuesAsString, nestedAnnotationsAsMap);
 		return attributes;
 	}
@@ -769,9 +746,7 @@ public abstract class AnnotatedElementUtils {
 	 * @see #findAllMergedAnnotations(AnnotatedElement, Class)
 	 * @see #findMergedRepeatableAnnotations(AnnotatedElement, Class, Class)
 	 */
-	public static <A extends Annotation> Set<A> findMergedRepeatableAnnotations(AnnotatedElement element,
-			Class<A> annotationType) {
-
+	public static <A extends Annotation> Set<A> findMergedRepeatableAnnotations(AnnotatedElement element,Class<A> annotationType) {
 		return findMergedRepeatableAnnotations(element, annotationType, null);
 	}
 
@@ -801,8 +776,7 @@ public abstract class AnnotatedElementUtils {
 	 * @see #findMergedAnnotation(AnnotatedElement, Class)
 	 * @see #findAllMergedAnnotations(AnnotatedElement, Class)
 	 */
-	public static <A extends Annotation> Set<A> findMergedRepeatableAnnotations(AnnotatedElement element,
-			Class<A> annotationType, @Nullable Class<? extends Annotation> containerType) {
+	public static <A extends Annotation> Set<A> findMergedRepeatableAnnotations(AnnotatedElement element,Class<A> annotationType, @Nullable Class<? extends Annotation> containerType) {
 
 		if (containerType == null) {
 			containerType = resolveContainerType(annotationType);
@@ -830,8 +804,7 @@ public abstract class AnnotatedElementUtils {
 	@Nullable
 	private static <T> T searchWithGetSemantics(AnnotatedElement element,@Nullable Class<? extends Annotation> annotationType,@Nullable String annotationName, Processor<T> processor) {
 		return searchWithGetSemantics(element,
-				(annotationType != null ? Collections.singleton(annotationType) : Collections.emptySet()),
-				annotationName, null, processor);
+				(annotationType != null ? Collections.singleton(annotationType) : Collections.emptySet()),annotationName, null, processor);
 	}
 
 	/**
@@ -849,8 +822,7 @@ public abstract class AnnotatedElementUtils {
 	 * @since 4.3
 	 */
 	@Nullable
-	private static <T> T searchWithGetSemantics(AnnotatedElement element,
-			Set<Class<? extends Annotation>> annotationTypes, @Nullable String annotationName,
+	private static <T> T searchWithGetSemantics(AnnotatedElement element,Set<Class<? extends Annotation>> annotationTypes, @Nullable String annotationName,
 			@Nullable Class<? extends Annotation> containerType, Processor<T> processor) {
 
 		try {
@@ -880,10 +852,8 @@ public abstract class AnnotatedElementUtils {
 	 * @return the result of the processor (potentially {@code null})
 	 */
 	@Nullable
-	private static <T> T searchWithGetSemantics(AnnotatedElement element,
-			Set<Class<? extends Annotation>> annotationTypes, @Nullable String annotationName,
-			@Nullable Class<? extends Annotation> containerType, Processor<T> processor,
-			Set<AnnotatedElement> visited, int metaDepth) {
+	private static <T> T searchWithGetSemantics(AnnotatedElement element,Set<Class<? extends Annotation>> annotationTypes, @Nullable String annotationName,
+			@Nullable Class<? extends Annotation> containerType, Processor<T> processor,Set<AnnotatedElement> visited, int metaDepth) {
 
 		if (visited.add(element)) {
 			try {
@@ -904,8 +874,7 @@ public abstract class AnnotatedElementUtils {
 							}
 						}
 						// Continue searching within inherited annotations
-						result = searchWithGetSemanticsInAnnotations(element, inheritedAnnotations,
-								annotationTypes, annotationName, containerType, processor, visited, metaDepth);
+						result = searchWithGetSemanticsInAnnotations(element, inheritedAnnotations,annotationTypes, annotationName, containerType, processor, visited, metaDepth);
 						if (result != null) {
 							return result;
 						}
@@ -951,9 +920,7 @@ public abstract class AnnotatedElementUtils {
 		for (Annotation annotation : annotations) {
 			Class<? extends Annotation> currentAnnotationType = annotation.annotationType();
 			if (!AnnotationUtils.isInJavaLangAnnotationPackage(currentAnnotationType)) {
-				if (annotationTypes.contains(currentAnnotationType) ||
-						currentAnnotationType.getName().equals(annotationName) ||
-						processor.alwaysProcesses()) {
+				if (annotationTypes.contains(currentAnnotationType) || currentAnnotationType.getName().equals(annotationName) || processor.alwaysProcesses()) {
 					T result = processor.process(element, annotation, metaDepth);
 					if (result != null) {
 						if (processor.aggregates() && metaDepth == 0) {
@@ -982,8 +949,7 @@ public abstract class AnnotatedElementUtils {
 		for (Annotation annotation : annotations) {
 			Class<? extends Annotation> currentAnnotationType = annotation.annotationType();
 			if (!AnnotationUtils.hasPlainJavaAnnotationsOnly(currentAnnotationType)) {
-				T result = searchWithGetSemantics(currentAnnotationType, annotationTypes,
-						annotationName, containerType, processor, visited, metaDepth + 1);
+				T result = searchWithGetSemantics(currentAnnotationType, annotationTypes,annotationName, containerType, processor, visited, metaDepth + 1);
 				if (result != null) {
 					processor.postProcess(element, annotation, result);
 					if (processor.aggregates() && metaDepth == 0) {
@@ -995,7 +961,6 @@ public abstract class AnnotatedElementUtils {
 				}
 			}
 		}
-
 		return null;
 	}
 
@@ -1012,13 +977,9 @@ public abstract class AnnotatedElementUtils {
 	 * @since 4.2
 	 */
 	@Nullable
-	private static <T> T searchWithFindSemantics(AnnotatedElement element,
-			@Nullable Class<? extends Annotation> annotationType,
-			@Nullable String annotationName, Processor<T> processor) {
-
+	private static <T> T searchWithFindSemantics(AnnotatedElement element,@Nullable Class<? extends Annotation> annotationType,@Nullable String annotationName, Processor<T> processor) {
 		return searchWithFindSemantics(element,
-				(annotationType != null ? Collections.singleton(annotationType) : Collections.emptySet()),
-				annotationName, null, processor);
+				(annotationType != null ? Collections.singleton(annotationType) : Collections.emptySet()),annotationName, null, processor);
 	}
 
 	/**
@@ -1041,13 +1002,11 @@ public abstract class AnnotatedElementUtils {
 			@Nullable Class<? extends Annotation> containerType, Processor<T> processor) {
 
 		if (containerType != null && !processor.aggregates()) {
-			throw new IllegalArgumentException(
-					"Searches for repeatable annotations must supply an aggregating Processor");
+			throw new IllegalArgumentException("Searches for repeatable annotations must supply an aggregating Processor");
 		}
 
 		try {
-			return searchWithFindSemantics(
-					element, annotationTypes, annotationName, containerType, processor, new HashSet<>(), 0);
+			return searchWithFindSemantics(element, annotationTypes, annotationName, containerType, processor, new HashSet<>(), 0);
 		}
 		catch (Throwable ex) {
 			AnnotationUtils.rethrowAnnotationConfigurationException(ex);
@@ -1076,8 +1035,8 @@ public abstract class AnnotatedElementUtils {
 	@Nullable
 	private static <T> T searchWithFindSemantics(AnnotatedElement element,
 			Set<Class<? extends Annotation>> annotationTypes, @Nullable String annotationName,
-			@Nullable Class<? extends Annotation> containerType, Processor<T> processor,
-			Set<AnnotatedElement> visited, int metaDepth) {
+			@Nullable Class<? extends Annotation> containerType, Processor<T> processor,Set<AnnotatedElement> visited, int metaDepth) {
+
 
 		if (visited.add(element)) {
 			try {
@@ -1090,9 +1049,7 @@ public abstract class AnnotatedElementUtils {
 					for (Annotation annotation : annotations) {
 						Class<? extends Annotation> currentAnnotationType = annotation.annotationType();
 						if (!AnnotationUtils.isInJavaLangAnnotationPackage(currentAnnotationType)) {
-							if (annotationTypes.contains(currentAnnotationType) ||
-									currentAnnotationType.getName().equals(annotationName) ||
-									processor.alwaysProcesses()) {
+							if (annotationTypes.contains(currentAnnotationType) || currentAnnotationType.getName().equals(annotationName) || processor.alwaysProcesses()) {
 								T result = processor.process(element, annotation, metaDepth);
 								if (result != null) {
 									if (aggregatedResults != null && metaDepth == 0) {
@@ -1121,8 +1078,7 @@ public abstract class AnnotatedElementUtils {
 					for (Annotation annotation : annotations) {
 						Class<? extends Annotation> currentAnnotationType = annotation.annotationType();
 						if (!AnnotationUtils.hasPlainJavaAnnotationsOnly(currentAnnotationType)) {
-							T result = searchWithFindSemantics(currentAnnotationType, annotationTypes, annotationName,
-									containerType, processor, visited, metaDepth + 1);
+							T result = searchWithFindSemantics(currentAnnotationType, annotationTypes, annotationName,containerType, processor, visited, metaDepth + 1);
 							if (result != null) {
 								processor.postProcess(currentAnnotationType, annotation, result);
 								if (aggregatedResults != null && metaDepth == 0) {
@@ -1148,8 +1104,7 @@ public abstract class AnnotatedElementUtils {
 					// Search on possibly bridged method
 					Method resolvedMethod = BridgeMethodResolver.findBridgedMethod(method);
 					if (resolvedMethod != method) {
-						result = searchWithFindSemantics(resolvedMethod, annotationTypes, annotationName,
-								containerType, processor, visited, metaDepth);
+						result = searchWithFindSemantics(resolvedMethod, annotationTypes, annotationName,containerType, processor, visited, metaDepth);
 						if (result != null) {
 							return result;
 						}
@@ -1158,8 +1113,7 @@ public abstract class AnnotatedElementUtils {
 					// Search on methods in interfaces declared locally
 					Class<?>[] ifcs = method.getDeclaringClass().getInterfaces();
 					if (ifcs.length > 0) {
-						result = searchOnInterfaces(method, annotationTypes, annotationName,
-								containerType, processor, visited, metaDepth, ifcs);
+						result = searchOnInterfaces(method, annotationTypes, annotationName,containerType, processor, visited, metaDepth, ifcs);
 						if (result != null) {
 							return result;
 						}
@@ -1177,8 +1131,7 @@ public abstract class AnnotatedElementUtils {
 							for (Method annotatedMethod : annotatedMethods) {
 								if (AnnotationUtils.isOverride(method, annotatedMethod)) {
 									Method resolvedSuperMethod = BridgeMethodResolver.findBridgedMethod(annotatedMethod);
-									result = searchWithFindSemantics(resolvedSuperMethod, annotationTypes,
-											annotationName, containerType, processor, visited, metaDepth);
+									result = searchWithFindSemantics(resolvedSuperMethod, annotationTypes,annotationName, containerType, processor, visited, metaDepth);
 									if (result != null) {
 										return result;
 									}
@@ -1186,8 +1139,7 @@ public abstract class AnnotatedElementUtils {
 							}
 						}
 						// Search on interfaces declared on superclass
-						result = searchOnInterfaces(method, annotationTypes, annotationName,
-								containerType, processor, visited, metaDepth, clazz.getInterfaces());
+						result = searchOnInterfaces(method, annotationTypes, annotationName,containerType, processor, visited, metaDepth, clazz.getInterfaces());
 						if (result != null) {
 							return result;
 						}
@@ -1198,8 +1150,7 @@ public abstract class AnnotatedElementUtils {
 					if (!Annotation.class.isAssignableFrom(clazz)) {
 						// Search on interfaces
 						for (Class<?> ifc : clazz.getInterfaces()) {
-							T result = searchWithFindSemantics(ifc, annotationTypes, annotationName,
-									containerType, processor, visited, metaDepth);
+							T result = searchWithFindSemantics(ifc, annotationTypes, annotationName,containerType, processor, visited, metaDepth);
 							if (result != null) {
 								return result;
 							}
@@ -1207,8 +1158,7 @@ public abstract class AnnotatedElementUtils {
 						// Search on superclass
 						Class<?> superclass = clazz.getSuperclass();
 						if (superclass != null && superclass != Object.class) {
-							T result = searchWithFindSemantics(superclass, annotationTypes, annotationName,
-									containerType, processor, visited, metaDepth);
+							T result = searchWithFindSemantics(superclass, annotationTypes, annotationName,containerType, processor, visited, metaDepth);
 							if (result != null) {
 								return result;
 							}
@@ -1233,8 +1183,7 @@ public abstract class AnnotatedElementUtils {
 			if (!annotatedMethods.isEmpty()) {
 				for (Method annotatedMethod : annotatedMethods) {
 					if (AnnotationUtils.isOverride(method, annotatedMethod)) {
-						T result = searchWithFindSemantics(annotatedMethod, annotationTypes, annotationName,
-								containerType, processor, visited, metaDepth);
+						T result = searchWithFindSemantics(annotatedMethod, annotationTypes, annotationName,containerType, processor, visited, metaDepth);
 						if (result != null) {
 							return result;
 						}
@@ -1252,8 +1201,7 @@ public abstract class AnnotatedElementUtils {
 	 * @since 4.3
 	 */
 	@SuppressWarnings("unchecked")
-	private static <A extends Annotation> A[] getRawAnnotationsFromContainer(
-			@Nullable AnnotatedElement element, Annotation container) {
+	private static <A extends Annotation> A[] getRawAnnotationsFromContainer(@Nullable AnnotatedElement element, Annotation container) {
 
 		try {
 			A[] value = (A[]) AnnotationUtils.getValue(container);
@@ -1279,9 +1227,7 @@ public abstract class AnnotatedElementUtils {
 	private static Class<? extends Annotation> resolveContainerType(Class<? extends Annotation> annotationType) {
 		Class<? extends Annotation> containerType = AnnotationUtils.resolveContainerAnnotationType(annotationType);
 		if (containerType == null) {
-			throw new IllegalArgumentException(
-					"Annotation type must be a repeatable annotation: failed to resolve container type for " +
-					annotationType.getName());
+			throw new IllegalArgumentException("Annotation type must be a repeatable annotation: failed to resolve container type for " + annotationType.getName());
 		}
 		return containerType;
 	}
@@ -1295,23 +1241,18 @@ public abstract class AnnotatedElementUtils {
 	 * is not a valid container annotation for the supplied {@code annotationType}
 	 * @since 4.3
 	 */
-	private static void validateContainerType(Class<? extends Annotation> annotationType,
-			Class<? extends Annotation> containerType) {
-
+	private static void validateContainerType(Class<? extends Annotation> annotationType,Class<? extends Annotation> containerType) {
 		try {
 			Method method = containerType.getDeclaredMethod(AnnotationUtils.VALUE);
 			Class<?> returnType = method.getReturnType();
 			if (!returnType.isArray() || returnType.getComponentType() != annotationType) {
-				String msg = String.format(
-						"Container type [%s] must declare a 'value' attribute for an array of type [%s]",
-						containerType.getName(), annotationType.getName());
+				String msg = String.format("Container type [%s] must declare a 'value' attribute for an array of type [%s]",containerType.getName(), annotationType.getName());
 				throw new AnnotationConfigurationException(msg);
 			}
 		}
 		catch (Throwable ex) {
 			AnnotationUtils.rethrowAnnotationConfigurationException(ex);
-			String msg = String.format("Invalid declaration of container type [%s] for repeatable annotation [%s]",
-					containerType.getName(), annotationType.getName());
+			String msg = String.format("Invalid declaration of container type [%s] for repeatable annotation [%s]",containerType.getName(), annotationType.getName());
 			throw new AnnotationConfigurationException(msg, ex);
 		}
 	}
@@ -1323,9 +1264,7 @@ public abstract class AnnotatedElementUtils {
 	 * @return the set of annotations
 	 */
 	@SuppressWarnings("unchecked")
-	private static <A extends Annotation> Set<A> postProcessAndSynthesizeAggregatedResults(
-			AnnotatedElement element, List<AnnotationAttributes> aggregatedResults) {
-
+	private static <A extends Annotation> Set<A> postProcessAndSynthesizeAggregatedResults(AnnotatedElement element, List<AnnotationAttributes> aggregatedResults) {
 		Set<A> annotations = new LinkedHashSet<>();
 		for (AnnotationAttributes attributes : aggregatedResults) {
 			AnnotationUtils.postProcessAnnotationAttributes(element, attributes, false, false);
@@ -1505,11 +1444,8 @@ public abstract class AnnotatedElementUtils {
 	private static class MergedAnnotationAttributesProcessor implements Processor<AnnotationAttributes> {
 
 		private final boolean classValuesAsString;
-
 		private final boolean nestedAnnotationsAsMap;
-
 		private final boolean aggregates;
-
 		private final List<AnnotationAttributes> aggregatedResults;
 
 		MergedAnnotationAttributesProcessor() {
@@ -1520,9 +1456,7 @@ public abstract class AnnotatedElementUtils {
 			this(classValuesAsString, nestedAnnotationsAsMap, false);
 		}
 
-		MergedAnnotationAttributesProcessor(boolean classValuesAsString, boolean nestedAnnotationsAsMap,
-				boolean aggregates) {
-
+		MergedAnnotationAttributesProcessor(boolean classValuesAsString, boolean nestedAnnotationsAsMap,boolean aggregates) {
 			this.classValuesAsString = classValuesAsString;
 			this.nestedAnnotationsAsMap = nestedAnnotationsAsMap;
 			this.aggregates = aggregates;
@@ -1547,8 +1481,7 @@ public abstract class AnnotatedElementUtils {
 		@Override
 		@Nullable
 		public AnnotationAttributes process(@Nullable AnnotatedElement annotatedElement, Annotation annotation, int metaDepth) {
-			return AnnotationUtils.retrieveAnnotationAttributes(annotatedElement, annotation,
-					this.classValuesAsString, this.nestedAnnotationsAsMap);
+			return AnnotationUtils.retrieveAnnotationAttributes(annotatedElement, annotation,this.classValuesAsString, this.nestedAnnotationsAsMap);
 		}
 
 		@Override
@@ -1584,7 +1517,6 @@ public abstract class AnnotatedElementUtils {
 							}
 						}
 					}
-
 					overrideAttributes(element, annotation, attributes, attributeName, targetAttributeNames);
 				}
 				// Implicit annotation attribute override based on convention
@@ -1594,26 +1526,19 @@ public abstract class AnnotatedElementUtils {
 			}
 		}
 
-		private void overrideAttributes(@Nullable AnnotatedElement element, Annotation annotation,
-				AnnotationAttributes attributes, String sourceAttributeName, List<String> targetAttributeNames) {
-
+		private void overrideAttributes(@Nullable AnnotatedElement element, Annotation annotation,AnnotationAttributes attributes, String sourceAttributeName, List<String> targetAttributeNames) {
 			Object adaptedValue = getAdaptedValue(element, annotation, sourceAttributeName);
-
 			for (String targetAttributeName : targetAttributeNames) {
 				attributes.put(targetAttributeName, adaptedValue);
 			}
 		}
 
-		private void overrideAttribute(@Nullable AnnotatedElement element, Annotation annotation,
-				AnnotationAttributes attributes, String sourceAttributeName, String targetAttributeName) {
-
+		private void overrideAttribute(@Nullable AnnotatedElement element, Annotation annotation,AnnotationAttributes attributes, String sourceAttributeName, String targetAttributeName) {
 			attributes.put(targetAttributeName, getAdaptedValue(element, annotation, sourceAttributeName));
 		}
 
 		@Nullable
-		private Object getAdaptedValue(
-				@Nullable AnnotatedElement element, Annotation annotation, String sourceAttributeName) {
-
+		private Object getAdaptedValue(@Nullable AnnotatedElement element, Annotation annotation, String sourceAttributeName) {
 			Object value = AnnotationUtils.getValue(annotation, sourceAttributeName);
 			return AnnotationUtils.adaptValue(element, value, this.classValuesAsString, this.nestedAnnotationsAsMap);
 		}
