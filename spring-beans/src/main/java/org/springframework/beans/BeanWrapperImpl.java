@@ -32,11 +32,6 @@ import org.springframework.util.ReflectionUtils;
  * internal class.</b> It is just public in order to allow for access from
  * other framework packages. For standard application access purposes, use the
  * {@link PropertyAccessorFactory#forBeanPropertyAccess} factory method instead.
- *
- * @author Rod Johnson
-
- * @author Rob Harrop
- * @author Stephane Nicoll
  * @since 15 April 2001
  * @see #registerCustomEditor
  * @see #setPropertyValues
@@ -60,7 +55,6 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 	 */
 	@Nullable
 	private AccessControlContext acc;
-
 
 	/**
 	 * Create a new empty BeanWrapperImpl. Wrapped instance needs to be set afterwards.
@@ -225,8 +219,7 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 	@Override
 	protected NotWritablePropertyException createNotWritablePropertyException(String propertyName) {
 		PropertyMatches matches = PropertyMatches.forProperty(propertyName, getRootClass());
-		throw new NotWritablePropertyException(getRootClass(), getNestedPath() + propertyName,
-				matches.buildErrorMessage(), matches.getPossibleMatches());
+		throw new NotWritablePropertyException(getRootClass(), getNestedPath() + propertyName,matches.buildErrorMessage(), matches.getPossibleMatches());
 	}
 
 	@Override
@@ -240,8 +233,7 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 		String finalPath = getFinalPath(nestedBw, propertyName);
 		PropertyDescriptor pd = nestedBw.getCachedIntrospectionResults().getPropertyDescriptor(finalPath);
 		if (pd == null) {
-			throw new InvalidPropertyException(getRootClass(), getNestedPath() + propertyName,
-					"No property '" + propertyName + "' found");
+			throw new InvalidPropertyException(getRootClass(), getNestedPath() + propertyName,"No property '" + propertyName + "' found");
 		}
 		return pd;
 	}

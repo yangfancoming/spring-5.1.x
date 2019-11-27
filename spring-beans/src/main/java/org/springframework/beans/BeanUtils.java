@@ -39,23 +39,13 @@ import org.springframework.util.StringUtils;
 /**
  * Static convenience methods for JavaBeans: for instantiating beans,
  * checking bean property types, copying bean properties, etc.
- *
- * <p>Mainly for use within the framework, but to some degree also
- * useful for application classes.
- *
- * @author Rod Johnson
-
- * @author Rob Harrop
- * @author Sam Brannen
- * @author Sebastien Deleuze
+ * <p>Mainly for use within the framework, but to some degree also useful for application classes.
  */
 public abstract class BeanUtils {
 
 	private static final Log logger = LogFactory.getLog(BeanUtils.class);
 
-	private static final Set<Class<?>> unknownEditorTypes =
-			Collections.newSetFromMap(new ConcurrentReferenceHashMap<>(64));
-
+	private static final Set<Class<?>> unknownEditorTypes = Collections.newSetFromMap(new ConcurrentReferenceHashMap<>(64));
 
 	/**
 	 * Convenience method to instantiate a class using its no-arg constructor.
@@ -259,9 +249,7 @@ public abstract class BeanUtils {
 	 * @see #findDeclaredMethodWithMinimalParameters
 	 */
 	@Nullable
-	public static Method findMethodWithMinimalParameters(Class<?> clazz, String methodName)
-			throws IllegalArgumentException {
-
+	public static Method findMethodWithMinimalParameters(Class<?> clazz, String methodName) throws IllegalArgumentException {
 		Method targetMethod = findMethodWithMinimalParameters(clazz.getMethods(), methodName);
 		if (targetMethod == null) {
 			targetMethod = findDeclaredMethodWithMinimalParameters(clazz, methodName);
@@ -282,9 +270,7 @@ public abstract class BeanUtils {
 	 * @see Class#getDeclaredMethods
 	 */
 	@Nullable
-	public static Method findDeclaredMethodWithMinimalParameters(Class<?> clazz, String methodName)
-			throws IllegalArgumentException {
-
+	public static Method findDeclaredMethodWithMinimalParameters(Class<?> clazz, String methodName) throws IllegalArgumentException {
 		Method targetMethod = findMethodWithMinimalParameters(clazz.getDeclaredMethods(), methodName);
 		if (targetMethod == null && clazz.getSuperclass() != null) {
 			targetMethod = findDeclaredMethodWithMinimalParameters(clazz.getSuperclass(), methodName);
@@ -302,9 +288,7 @@ public abstract class BeanUtils {
 	 * could not be resolved to a unique method with minimal parameters
 	 */
 	@Nullable
-	public static Method findMethodWithMinimalParameters(Method[] methods, String methodName)
-			throws IllegalArgumentException {
-
+	public static Method findMethodWithMinimalParameters(Method[] methods, String methodName) throws IllegalArgumentException {
 		Method targetMethod = null;
 		int numMethodsFoundWithCurrentMinimumArgs = 0;
 		for (Method method : methods) {
@@ -328,8 +312,7 @@ public abstract class BeanUtils {
 		}
 		if (numMethodsFoundWithCurrentMinimumArgs > 1) {
 			throw new IllegalArgumentException("Cannot resolve method '" + methodName +
-					"' to a unique method. Attempted to resolve to overloaded method with " +
-					"the least number of parameters but there were " +
+					"' to a unique method. Attempted to resolve to overloaded method with the least number of parameters but there were " +
 					numMethodsFoundWithCurrentMinimumArgs + " candidates.");
 		}
 		return targetMethod;
@@ -360,20 +343,17 @@ public abstract class BeanUtils {
 		int startParen = signature.indexOf('(');
 		int endParen = signature.indexOf(')');
 		if (startParen > -1 && endParen == -1) {
-			throw new IllegalArgumentException("Invalid method signature '" + signature +
-					"': expected closing ')' for args list");
+			throw new IllegalArgumentException("Invalid method signature '" + signature +"': expected closing ')' for args list");
 		}
 		else if (startParen == -1 && endParen > -1) {
-			throw new IllegalArgumentException("Invalid method signature '" + signature +
-					"': expected opening '(' for args list");
+			throw new IllegalArgumentException("Invalid method signature '" + signature + "': expected opening '(' for args list");
 		}
 		else if (startParen == -1) {
 			return findMethodWithMinimalParameters(clazz, signature);
 		}
 		else {
 			String methodName = signature.substring(0, startParen);
-			String[] parameterTypeNames =
-					StringUtils.commaDelimitedListToStringArray(signature.substring(startParen + 1, endParen));
+			String[] parameterTypeNames = StringUtils.commaDelimitedListToStringArray(signature.substring(startParen + 1, endParen));
 			Class<?>[] parameterTypes = new Class<?>[parameterTypeNames.length];
 			for (int i = 0; i < parameterTypeNames.length; i++) {
 				String parameterTypeName = parameterTypeNames[i].trim();
@@ -381,8 +361,7 @@ public abstract class BeanUtils {
 					parameterTypes[i] = ClassUtils.forName(parameterTypeName, clazz.getClassLoader());
 				}
 				catch (Throwable ex) {
-					throw new IllegalArgumentException("Invalid method signature: unable to resolve type [" +
-							parameterTypeName + "] for argument " + i + ". Root cause: " + ex);
+					throw new IllegalArgumentException("Invalid method signature: unable to resolve type [" +parameterTypeName + "] for argument " + i + ". Root cause: " + ex);
 				}
 			}
 			return findMethod(clazz, methodName, parameterTypes);
@@ -409,9 +388,7 @@ public abstract class BeanUtils {
 	 * @throws BeansException if PropertyDescriptor lookup fails
 	 */
 	@Nullable
-	public static PropertyDescriptor getPropertyDescriptor(Class<?> clazz, String propertyName)
-			throws BeansException {
-
+	public static PropertyDescriptor getPropertyDescriptor(Class<?> clazz, String propertyName) throws BeansException {
 		CachedIntrospectionResults cr = CachedIntrospectionResults.forClass(clazz);
 		return cr.getPropertyDescriptor(propertyName);
 	}
@@ -638,17 +615,14 @@ public abstract class BeanUtils {
 	 * @throws BeansException if the copying failed
 	 * @see BeanWrapper
 	 */
-	private static void copyProperties(Object source, Object target, @Nullable Class<?> editable,
-			@Nullable String... ignoreProperties) throws BeansException {
-
+	private static void copyProperties(Object source, Object target, @Nullable Class<?> editable,@Nullable String... ignoreProperties) throws BeansException {
 		Assert.notNull(source, "Source must not be null");
 		Assert.notNull(target, "Target must not be null");
 
 		Class<?> actualEditable = target.getClass();
 		if (editable != null) {
 			if (!editable.isInstance(target)) {
-				throw new IllegalArgumentException("Target class [" + target.getClass().getName() +
-						"] not assignable to Editable class [" + editable.getName() + "]");
+				throw new IllegalArgumentException("Target class [" + target.getClass().getName() +"] not assignable to Editable class [" + editable.getName() + "]");
 			}
 			actualEditable = editable;
 		}
@@ -704,8 +678,7 @@ public abstract class BeanUtils {
 				}
 				Constructor<T> constructor = ReflectJvmMapping.getJavaConstructor(primaryCtor);
 				if (constructor == null) {
-					throw new IllegalStateException(
-							"Failed to find Java constructor for Kotlin primary constructor: " + clazz.getName());
+					throw new IllegalStateException("Failed to find Java constructor for Kotlin primary constructor: " + clazz.getName());
 				}
 				return constructor;
 			}
@@ -720,17 +693,14 @@ public abstract class BeanUtils {
 		 * @param args the constructor arguments to apply
 		 * (use {@code null} for unspecified parameter if needed)
 		 */
-		public static <T> T instantiateClass(Constructor<T> ctor, Object... args)
-				throws IllegalAccessException, InvocationTargetException, InstantiationException {
-
+		public static <T> T instantiateClass(Constructor<T> ctor, Object... args)throws IllegalAccessException, InvocationTargetException, InstantiationException {
 			KFunction<T> kotlinConstructor = ReflectJvmMapping.getKotlinFunction(ctor);
 			if (kotlinConstructor == null) {
 				return ctor.newInstance(args);
 			}
 			List<KParameter> parameters = kotlinConstructor.getParameters();
 			Map<KParameter, Object> argParameters = new HashMap<>(parameters.size());
-			Assert.isTrue(args.length <= parameters.size(),
-					"Number of provided arguments should be less of equals than number of constructor parameters");
+			Assert.isTrue(args.length <= parameters.size(),"Number of provided arguments should be less of equals than number of constructor parameters");
 			for (int i = 0 ; i < args.length ; i++) {
 				if (!(parameters.get(i).isOptional() && args[i] == null)) {
 					argParameters.put(parameters.get(i), args[i]);

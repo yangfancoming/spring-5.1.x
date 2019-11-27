@@ -17,11 +17,6 @@ import org.springframework.util.StringUtils;
  * an error message. Works for both java bean properties and fields.
  *
  * <p>Mainly for use within the framework and in particular the binding facility.
- *
- * @author Alef Arendsen
- * @author Arjen Poutsma
-
- * @author Stephane Nicoll
  * @since 2.0
  * @see #forProperty(String, Class)
  * @see #forField(String, Class)
@@ -164,7 +159,6 @@ public abstract class PropertyMatches {
 				d[i][j] = Math.min(Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1), d[i - 1][j - 1] + cost);
 			}
 		}
-
 		return d[s1.length()][s2.length()];
 	}
 
@@ -174,8 +168,7 @@ public abstract class PropertyMatches {
 	private static class BeanPropertyMatches extends PropertyMatches {
 
 		public BeanPropertyMatches(String propertyName, Class<?> beanClass, int maxDistance) {
-			super(propertyName,
-					calculateMatches(propertyName, BeanUtils.getPropertyDescriptors(beanClass), maxDistance));
+			super(propertyName,calculateMatches(propertyName, BeanUtils.getPropertyDescriptors(beanClass), maxDistance));
 		}
 
 		/**
@@ -202,8 +195,7 @@ public abstract class PropertyMatches {
 		@Override
 		public String buildErrorMessage() {
 			StringBuilder msg = new StringBuilder(160);
-			msg.append("Bean property '").append(getPropertyName()).append(
-					"' is not writable or has an invalid setter method. ");
+			msg.append("Bean property '").append(getPropertyName()).append("' is not writable or has an invalid setter method. ");
 			if (!ObjectUtils.isEmpty(getPossibleMatches())) {
 				appendHintMessage(msg);
 			}

@@ -15,7 +15,6 @@ import org.springframework.lang.Nullable;
  * <p><b>Note:</b> Since TypeConverter implementations are typically based on
  * {@link java.beans.PropertyEditor PropertyEditors} which aren't thread-safe,
  * TypeConverters themselves are <em>not</em> to be considered as thread-safe either.
- *
 
  * @since 2.0
  * @see SimpleTypeConverter
@@ -57,8 +56,7 @@ public interface TypeConverter {
 	 * @see org.springframework.core.convert.converter.Converter
 	 */
 	@Nullable
-	<T> T convertIfNecessary(@Nullable Object value, @Nullable Class<T> requiredType,
-			@Nullable MethodParameter methodParam) throws TypeMismatchException;
+	<T> T convertIfNecessary(@Nullable Object value, @Nullable Class<T> requiredType,@Nullable MethodParameter methodParam) throws TypeMismatchException;
 
 	/**
 	 * Convert the value to the required type (if necessary from a String).
@@ -77,8 +75,7 @@ public interface TypeConverter {
 	 * @see org.springframework.core.convert.converter.Converter
 	 */
 	@Nullable
-	<T> T convertIfNecessary(@Nullable Object value, @Nullable Class<T> requiredType, @Nullable Field field)
-			throws TypeMismatchException;
+	<T> T convertIfNecessary(@Nullable Object value, @Nullable Class<T> requiredType, @Nullable Field field) throws TypeMismatchException;
 
 	/**
 	 * Convert the value to the required type (if necessary from a String).
@@ -97,9 +94,7 @@ public interface TypeConverter {
 	 * @see org.springframework.core.convert.converter.Converter
 	 */
 	@Nullable
-	default <T> T convertIfNecessary(@Nullable Object value, @Nullable Class<T> requiredType,
-			@Nullable TypeDescriptor typeDescriptor) throws TypeMismatchException {
-
+	default <T> T convertIfNecessary(@Nullable Object value, @Nullable Class<T> requiredType,@Nullable TypeDescriptor typeDescriptor) throws TypeMismatchException {
 		throw new UnsupportedOperationException("TypeDescriptor resolution not supported");
 	}
 

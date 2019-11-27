@@ -60,7 +60,6 @@ public abstract class AbstractPropertyAccessorTests {
 	@Rule
 	public final ExpectedException thrown = ExpectedException.none();
 
-
 	protected abstract AbstractPropertyAccessor createAccessor(Object target);
 
 
