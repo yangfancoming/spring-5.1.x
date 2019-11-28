@@ -182,8 +182,7 @@ public interface TransactionDefinition {
 
 
 	/**
-	 * Use the default timeout of the underlying transaction system,
-	 * or none if timeouts are not supported.
+	 * Use the default timeout of the underlying transaction system,or none if timeouts are not supported.
 	 */
 	int TIMEOUT_DEFAULT = -1;
 

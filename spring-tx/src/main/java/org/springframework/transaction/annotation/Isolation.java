@@ -8,9 +8,6 @@ import org.springframework.transaction.TransactionDefinition;
  * Enumeration that represents transaction isolation levels for use
  * with the {@link Transactional} annotation, corresponding to the
  * {@link TransactionDefinition} interface.
- *
- * @author Colin Sampaleanu
-
  * @since 1.2
  */
 public enum Isolation {

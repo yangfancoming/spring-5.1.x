@@ -17,14 +17,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.transaction.PlatformTransactionManager;
 
 /**
- * AOP Alliance MethodInterceptor for declarative transaction
- * management using the common Spring transaction infrastructure
+ * AOP Alliance MethodInterceptor for declarative transaction management using the common Spring transaction infrastructure
  * ({@link org.springframework.transaction.PlatformTransactionManager}).
  *
- * <p>Derives from the {@link TransactionAspectSupport} class which
- * contains the integration with Spring's underlying transaction API.
- * TransactionInterceptor simply calls the relevant superclass methods
- * such as {@link #invokeWithinTransaction} in the correct order.
+ * <p>Derives from the {@link TransactionAspectSupport} class which contains the integration with Spring's underlying transaction API.
+ * TransactionInterceptor simply calls the relevant superclass methods such as {@link #invokeWithinTransaction} in the correct order.
  * <p>TransactionInterceptors are thread-safe.
  * @see TransactionProxyFactoryBean
  * @see org.springframework.aop.framework.ProxyFactoryBean
@@ -40,8 +37,7 @@ public class TransactionInterceptor extends TransactionAspectSupport implements 
 	 * @see #setTransactionAttributes(java.util.Properties)
 	 * @see #setTransactionAttributeSource(TransactionAttributeSource)
 	 */
-	public TransactionInterceptor() {
-	}
+	public TransactionInterceptor() {}
 
 	/**
 	 * Create a new TransactionInterceptor.
@@ -67,15 +63,12 @@ public class TransactionInterceptor extends TransactionAspectSupport implements 
 		setTransactionAttributeSource(tas);
 	}
 
-
 	@Override
 	@Nullable
 	public Object invoke(MethodInvocation invocation) throws Throwable {
-
 		/**
 		  Work out the target class: may be {@code null}.
-		  The TransactionAttributeSource should be passed the target class
-		  as well as the method, which may be from an interface.
+		  The TransactionAttributeSource should be passed the target class   as well as the method, which may be from an interface.
 		  因为这里的invocation.getThis可能是一个代理类，需要获取目标原生class
 		 // 获取需要织入事务逻辑的目标类
 		*/
@@ -95,7 +88,6 @@ public class TransactionInterceptor extends TransactionAspectSupport implements 
 	private void writeObject(ObjectOutputStream oos) throws IOException {
 		// Rely on default serialization, although this class itself doesn't carry state anyway...
 		oos.defaultWriteObject();
-
 		// Deserialize superclass fields.
 		oos.writeObject(getTransactionManagerBeanName());
 		oos.writeObject(getTransactionManager());
@@ -106,7 +98,6 @@ public class TransactionInterceptor extends TransactionAspectSupport implements 
 	private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
 		// Rely on default serialization, although this class itself doesn't carry state anyway...
 		ois.defaultReadObject();
-
 		// Serialize all relevant superclass fields.
 		// Superclass can't implement Serializable because it also serves as base class
 		// for AspectJ aspects (which are not allowed to implement Serializable)!

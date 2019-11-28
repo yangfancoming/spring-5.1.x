@@ -38,6 +38,8 @@ import org.springframework.transaction.TransactionDefinition;
  * @see org.springframework.transaction.interceptor.DefaultTransactionAttribute
  * @see org.springframework.transaction.interceptor.RuleBasedTransactionAttribute
  */
+// @Transactional注解可以加在类或方法上，加在类上时是对该类的所有public方法开启事务。加在方法上时也是只对public方法起作用。
+// 另外@Transactional注解也可以加在接口上，但只有在设置了基于接口的代理时才会生效，因为注解不能继承。所以该注解最好是加在类的实现上。
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
@@ -69,8 +71,8 @@ public @interface Transactional {
 	Propagation propagation() default Propagation.REQUIRED;
 
 	/**
-	 * The transaction isolation level.
-	 * <p>Defaults to {@link Isolation#DEFAULT}.
+	 * isolation属性是用来设置事务的隔离级别，数据库有四种隔离级别：读未提交、读已提交、可重复读、可串行化。MySQL的默认隔离级别是可重复读。
+	 * The transaction isolation level. Defaults to {@link Isolation#DEFAULT}.
 	 * <p>Exclusively designed for use with {@link Propagation#REQUIRED} or
 	 * {@link Propagation#REQUIRES_NEW} since it only applies to newly started
 	 * transactions. Consider switching the "validateExistingTransactions" flag to
@@ -82,11 +84,10 @@ public @interface Transactional {
 	Isolation isolation() default Isolation.DEFAULT;
 
 	/**
-	 * The timeout for this transaction (in seconds).
+	 * The timeout for this transaction (in seconds). timtout是用来设置事务的超时时间，可以看到默认为-1，不会超时
 	 * <p>Defaults to the default timeout of the underlying transaction system.
 	 * <p>Exclusively designed for use with {@link Propagation#REQUIRED} or
-	 * {@link Propagation#REQUIRES_NEW} since it only applies to newly started
-	 * transactions.
+	 * {@link Propagation#REQUIRES_NEW} since it only applies to newly started transactions.
 	 * @see org.springframework.transaction.interceptor.TransactionAttribute#getTimeout()
 	 */
 	int timeout() default TransactionDefinition.TIMEOUT_DEFAULT;
@@ -106,8 +107,9 @@ public @interface Transactional {
 	boolean readOnly() default false;
 
 	/**
-	 * Defines zero (0) or more exception {@link Class classes}, which must be
-	 * subclasses of {@link Throwable}, indicating which exception types must cause a transaction rollback.
+	 * 用来判断在什么异常下会进行回滚的，当方法内抛出指定的异常时，进行事务回滚
+	 * Defines zero (0) or more exception {@link Class classes}, which must be subclasses of {@link Throwable},
+	 * indicating which exception types must cause a transaction rollback.
 	 * <p>By default, a transaction will be rolling back on {@link RuntimeException}
 	 * and {@link Error} but not on checked exceptions (business exceptions). See
 	 * {@link org.springframework.transaction.interceptor.DefaultTransactionAttribute#rollbackOn(Throwable)}  for a detailed explanation.
@@ -139,12 +141,12 @@ public @interface Transactional {
 	String[] rollbackForClassName() default {};
 
 	/**
+	 * 这个和上面正好相反，用来设置出现指定的异常时，不进行回滚。
 	 * Defines zero (0) or more exception {@link Class Classes}, which must be
 	 * subclasses of {@link Throwable}, indicating which exception types must
 	 * <b>not</b> cause a transaction rollback.
 	 * <p>This is the preferred way to construct a rollback rule (in contrast
-	 * to {@link #noRollbackForClassName}), matching the exception class and
-	 * its subclasses.
+	 * to {@link #noRollbackForClassName}), matching the exception class and its subclasses.
 	 * <p>Similar to {@link org.springframework.transaction.interceptor.NoRollbackRuleAttribute#NoRollbackRuleAttribute(Class clazz)}.
 	 * @see #noRollbackForClassName
 	 * @see org.springframework.transaction.interceptor.DefaultTransactionAttribute#rollbackOn(Throwable)
