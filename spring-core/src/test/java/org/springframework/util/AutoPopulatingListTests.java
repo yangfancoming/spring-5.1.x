@@ -14,23 +14,23 @@ import static org.junit.Assert.*;
 public class AutoPopulatingListTests {
 
 	@Test
-	public void withClass() throws Exception {
+	public void withClass()  {
 		doTestWithClass(new AutoPopulatingList<>(TestObject.class));
 	}
 
 	@Test
-	public void withClassAndUserSuppliedBackingList() throws Exception {
-		doTestWithClass(new AutoPopulatingList<Object>(new LinkedList<>(), TestObject.class));
+	public void withClassAndUserSuppliedBackingList()  {
+		doTestWithClass(new AutoPopulatingList<>(new LinkedList<>(), TestObject.class));
 	}
 
 	@Test
-	public void withElementFactory() throws Exception {
+	public void withElementFactory()  {
 		doTestWithElementFactory(new AutoPopulatingList<>(new MockElementFactory()));
 	}
 
 	@Test
-	public void withElementFactoryAndUserSuppliedBackingList() throws Exception {
-		doTestWithElementFactory(new AutoPopulatingList<Object>(new LinkedList<>(), new MockElementFactory()));
+	public void withElementFactoryAndUserSuppliedBackingList()  {
+		doTestWithElementFactory(new AutoPopulatingList<>(new LinkedList<>(), new MockElementFactory()));
 	}
 
 	private void doTestWithClass(AutoPopulatingList<Object> list) {

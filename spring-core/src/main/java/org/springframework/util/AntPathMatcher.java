@@ -15,19 +15,13 @@ import org.springframework.lang.Nullable;
 
 /**
  * {@link PathMatcher} implementation for Ant-style path patterns.
- *
  * <p>Part of this mapping code has been kindly borrowed from <a href="https://ant.apache.org">Apache Ant</a>.
- *
  * <p>The mapping matches URLs using the following rules:<br>
- * <ul>
  * <li>{@code ?} matches one character</li>
  * <li>{@code *} matches zero or more characters</li>
  * <li>{@code **} matches zero or more <em>directories</em> in a path</li>
  * <li>{@code {spring:[a-z]+}} matches the regexp {@code [a-z]+} as a path variable named "spring"</li>
- * </ul>
- *
  * <h3>Examples</h3>
- * <ul>
  * <li>{@code com/t?st.jsp} ; matches {@code com/test.jsp} but also
  * {@code com/tast.jsp} or {@code com/txst.jsp}</li>
  * <li>{@code com/*.jsp} ; matches all {@code .jsp} files in the
@@ -41,19 +35,11 @@ import org.springframework.lang.Nullable;
  * {@code org/springframework/testing/servlet/bla.jsp} and {@code org/servlet/bla.jsp}</li>
  * <li>{@code com/{filename:\\w+}.jsp} will match {@code com/test.jsp} and assign the value {@code test}
  * to the {@code filename} variable</li>
- * </ul>
  *
  * <p><strong>Note:</strong> a pattern and a path must both be absolute or must
  * both be relative in order for the two to match. Therefore it is recommended
  * that users of this implementation to sanitize patterns in order to prefix
  * them with "/" as it makes sense in the context in which they're used.
- *
- * @author Alef Arendsen
-
- * @author Rob Harrop
- * @author Arjen Poutsma
- * @author Rossen Stoyanchev
- * @author Sam Brannen
  * @since 16.07.2003
  */
 public class AntPathMatcher implements PathMatcher {
@@ -66,7 +52,6 @@ public class AntPathMatcher implements PathMatcher {
 	private static final Pattern VARIABLE_PATTERN = Pattern.compile("\\{[^/]+?\\}");
 
 	private static final char[] WILDCARD_CHARS = { '*', '?', '{' };
-
 
 	private String pathSeparator;
 
@@ -190,8 +175,7 @@ public class AntPathMatcher implements PathMatcher {
 	 * as far as the given base path goes is sufficient)
 	 * @return {@code true} if the supplied {@code path} matched, {@code false} if it didn't
 	 */
-	protected boolean doMatch(String pattern, String path, boolean fullMatch,
-			@Nullable Map<String, String> uriTemplateVariables) {
+	protected boolean doMatch(String pattern, String path, boolean fullMatch,@Nullable Map<String, String> uriTemplateVariables) {
 
 		if (path.startsWith(this.pathSeparator) != pattern.startsWith(this.pathSeparator)) {
 			return false;
@@ -316,7 +300,6 @@ public class AntPathMatcher implements PathMatcher {
 				return false;
 			}
 		}
-
 		return true;
 	}
 
@@ -415,9 +398,7 @@ public class AntPathMatcher implements PathMatcher {
 	 * @param str the String which must be matched against the pattern (never {@code null})
 	 * @return {@code true} if the string matches against the pattern, or {@code false} otherwise
 	 */
-	private boolean matchStrings(String pattern, String str,
-			@Nullable Map<String, String> uriTemplateVariables) {
-
+	private boolean matchStrings(String pattern, String str,@Nullable Map<String, String> uriTemplateVariables) {
 		return getStringMatcher(pattern).matchStrings(str, uriTemplateVariables);
 	}
 
@@ -488,7 +469,6 @@ public class AntPathMatcher implements PathMatcher {
 				}
 			}
 		}
-
 		return builder.toString();
 	}
 
@@ -625,11 +605,8 @@ public class AntPathMatcher implements PathMatcher {
 	protected static class AntPathStringMatcher {
 
 		private static final Pattern GLOB_PATTERN = Pattern.compile("\\?|\\*|\\{((?:\\{[^/]+?\\}|[^/{}]|\\\\[{}])+?)\\}");
-
 		private static final String DEFAULT_VARIABLE_PATTERN = "(.*)";
-
 		private final Pattern pattern;
-
 		private final List<String> variableNames = new LinkedList<>();
 
 		public AntPathStringMatcher(String pattern) {
@@ -688,10 +665,8 @@ public class AntPathMatcher implements PathMatcher {
 				if (uriTemplateVariables != null) {
 					// SPR-8455
 					if (this.variableNames.size() != matcher.groupCount()) {
-						throw new IllegalArgumentException("The number of capturing groups in the pattern segment " +
-								this.pattern + " does not match the number of URI template variables it defines, " +
-								"which can occur if capturing groups are used in a URI template regex. " +
-								"Use non-capturing groups instead.");
+						throw new IllegalArgumentException("The number of capturing groups in the pattern segment " + this.pattern + " does not match the number of URI template variables it defines, " +
+								"which can occur if capturing groups are used in a URI template regex. Use non-capturing groups instead.");
 					}
 					for (int i = 1; i <= matcher.groupCount(); i++) {
 						String name = this.variableNames.get(i - 1);
@@ -739,7 +714,6 @@ public class AntPathMatcher implements PathMatcher {
 		public int compare(String pattern1, String pattern2) {
 			PatternInfo info1 = new PatternInfo(pattern1);
 			PatternInfo info2 = new PatternInfo(pattern2);
-
 			if (info1.isLeastSpecific() && info2.isLeastSpecific()) {
 				return 0;
 			}
@@ -749,7 +723,6 @@ public class AntPathMatcher implements PathMatcher {
 			else if (info2.isLeastSpecific()) {
 				return -1;
 			}
-
 			boolean pattern1EqualsPath = pattern1.equals(this.path);
 			boolean pattern2EqualsPath = pattern2.equals(this.path);
 			if (pattern1EqualsPath && pattern2EqualsPath) {
@@ -761,36 +734,30 @@ public class AntPathMatcher implements PathMatcher {
 			else if (pattern2EqualsPath) {
 				return 1;
 			}
-
 			if (info1.isPrefixPattern() && info2.getDoubleWildcards() == 0) {
 				return 1;
 			}
 			else if (info2.isPrefixPattern() && info1.getDoubleWildcards() == 0) {
 				return -1;
 			}
-
 			if (info1.getTotalCount() != info2.getTotalCount()) {
 				return info1.getTotalCount() - info2.getTotalCount();
 			}
-
 			if (info1.getLength() != info2.getLength()) {
 				return info2.getLength() - info1.getLength();
 			}
-
 			if (info1.getSingleWildcards() < info2.getSingleWildcards()) {
 				return -1;
 			}
 			else if (info2.getSingleWildcards() < info1.getSingleWildcards()) {
 				return 1;
 			}
-
 			if (info1.getUriVars() < info2.getUriVars()) {
 				return -1;
 			}
 			else if (info2.getUriVars() < info1.getUriVars()) {
 				return 1;
 			}
-
 			return 0;
 		}
 
@@ -800,18 +767,12 @@ public class AntPathMatcher implements PathMatcher {
 		 * occurrences of "*", "**", and "{" pattern elements.
 		 */
 		private static class PatternInfo {
-
 			@Nullable
 			private final String pattern;
-
 			private int uriVars;
-
 			private int singleWildcards;
-
 			private int doubleWildcards;
-
 			private boolean catchAllPattern;
-
 			private boolean prefixPattern;
 
 			@Nullable
@@ -886,8 +847,7 @@ public class AntPathMatcher implements PathMatcher {
 			 */
 			public int getLength() {
 				if (this.length == null) {
-					this.length = (this.pattern != null ?
-							VARIABLE_PATTERN.matcher(this.pattern).replaceAll("#").length() : 0);
+					this.length = (this.pattern != null ? VARIABLE_PATTERN.matcher(this.pattern).replaceAll("#").length() : 0);
 				}
 				return this.length;
 			}

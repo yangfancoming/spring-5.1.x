@@ -15,8 +15,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for the FileCopyUtils class.
- *
-
  * @since 12.03.2005
  */
 public class FileCopyUtilsTests {

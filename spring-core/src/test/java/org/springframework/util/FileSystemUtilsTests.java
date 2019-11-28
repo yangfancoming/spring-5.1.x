@@ -1,12 +1,9 @@
 
 
 package org.springframework.util;
-
 import java.io.File;
-
 import org.junit.After;
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 
@@ -17,12 +14,9 @@ public class FileSystemUtilsTests {
 		File root = new File("./tmp/root");
 		File child = new File(root, "child");
 		File grandchild = new File(child, "grandchild");
-
 		grandchild.mkdirs();
-
 		File bar = new File(child, "bar.txt");
 		bar.createNewFile();
-
 		assertTrue(root.exists());
 		assertTrue(child.exists());
 		assertTrue(grandchild.exists());
@@ -64,7 +58,7 @@ public class FileSystemUtilsTests {
 
 
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown() {
 		File tmp = new File("./tmp");
 		if (tmp.exists()) {
 			FileSystemUtils.deleteRecursively(tmp);

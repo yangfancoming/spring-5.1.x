@@ -16,13 +16,9 @@ import java.nio.file.Files;
 import org.springframework.lang.Nullable;
 
 /**
- * Simple utility methods for file and stream copying. All copy methods use a block size
- * of 4096 bytes, and close all affected streams when done. A variation of the copy
- * methods from this class that leave streams open can be found in {@link StreamUtils}.
- *
- * <p>Mainly for use within the framework, but also useful for application code.
- *
-
+ * Simple utility methods for file and stream copying. All copy methods use a block size of 4096 bytes, and close all affected streams when done.
+ *  A variation of the copy methods from this class that leave streams open can be found in {@link StreamUtils}.
+ * Mainly for use within the framework, but also useful for application code.
  * @since 06.10.2003
  * @see StreamUtils
  * @see FileSystemUtils
@@ -33,7 +29,6 @@ public abstract class FileCopyUtils {
 	 * The default buffer size used when copying bytes.
 	 */
 	public static final int BUFFER_SIZE = StreamUtils.BUFFER_SIZE;
-
 
 	//---------------------------------------------------------------------
 	// Copy methods for java.io.File
@@ -81,8 +76,7 @@ public abstract class FileCopyUtils {
 	//---------------------------------------------------------------------
 
 	/**
-	 * Copy the contents of the given InputStream to the given OutputStream.
-	 * Closes both streams when done.
+	 * Copy the contents of the given InputStream to the given OutputStream. Closes both streams when done.
 	 * @param in the stream to copy from
 	 * @param out the stream to copy to
 	 * @return the number of bytes copied
@@ -119,7 +113,6 @@ public abstract class FileCopyUtils {
 	public static void copy(byte[] in, OutputStream out) throws IOException {
 		Assert.notNull(in, "No input byte array specified");
 		Assert.notNull(out, "No OutputStream specified");
-
 		try {
 			out.write(in);
 		}
@@ -133,8 +126,7 @@ public abstract class FileCopyUtils {
 	}
 
 	/**
-	 * Copy the contents of the given InputStream into a new byte array.
-	 * Closes the stream when done.
+	 * Copy the contents of the given InputStream into a new byte array.  Closes the stream when done.
 	 * @param in the stream to copy from (may be {@code null} or empty)
 	 * @return the new byte array that has been copied to (possibly empty)
 	 * @throws IOException in case of I/O errors
@@ -143,7 +135,6 @@ public abstract class FileCopyUtils {
 		if (in == null) {
 			return new byte[0];
 		}
-
 		ByteArrayOutputStream out = new ByteArrayOutputStream(BUFFER_SIZE);
 		copy(in, out);
 		return out.toByteArray();
@@ -201,7 +192,6 @@ public abstract class FileCopyUtils {
 	public static void copy(String in, Writer out) throws IOException {
 		Assert.notNull(in, "No input String specified");
 		Assert.notNull(out, "No Writer specified");
-
 		try {
 			out.write(in);
 		}
@@ -225,7 +215,6 @@ public abstract class FileCopyUtils {
 		if (in == null) {
 			return "";
 		}
-
 		StringWriter out = new StringWriter();
 		copy(in, out);
 		return out.toString();

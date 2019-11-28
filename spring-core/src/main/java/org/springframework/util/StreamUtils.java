@@ -20,12 +20,7 @@ import org.springframework.lang.Nullable;
  * Simple utility methods for dealing with streams. The copy methods of this class are
  * similar to those defined in {@link FileCopyUtils} except that all affected streams are
  * left open when done. All copy methods use a block size of 4096 bytes.
- *
  * <p>Mainly for use within the framework, but also useful for application code.
- *
-
- * @author Phillip Webb
- * @author Brian Clozel
  * @since 3.2.2
  * @see FileCopyUtils
  */
@@ -37,7 +32,6 @@ public abstract class StreamUtils {
 	public static final int BUFFER_SIZE = 4096;
 
 	private static final byte[] EMPTY_CONTENT = new byte[0];
-
 
 	/**
 	 * Copy the contents of the given InputStream into a new byte array.
@@ -67,7 +61,6 @@ public abstract class StreamUtils {
 		if (in == null) {
 			return "";
 		}
-
 		StringBuilder out = new StringBuilder();
 		InputStreamReader reader = new InputStreamReader(in, charset);
 		char[] buffer = new char[BUFFER_SIZE];
@@ -88,7 +81,6 @@ public abstract class StreamUtils {
 	public static void copy(byte[] in, OutputStream out) throws IOException {
 		Assert.notNull(in, "No input byte array specified");
 		Assert.notNull(out, "No OutputStream specified");
-
 		out.write(in);
 	}
 
@@ -104,15 +96,13 @@ public abstract class StreamUtils {
 		Assert.notNull(in, "No input String specified");
 		Assert.notNull(charset, "No charset specified");
 		Assert.notNull(out, "No OutputStream specified");
-
 		Writer writer = new OutputStreamWriter(out, charset);
 		writer.write(in);
 		writer.flush();
 	}
 
 	/**
-	 * Copy the contents of the given InputStream to the given OutputStream.
-	 * Leaves both streams open when done.
+	 * Copy the contents of the given InputStream to the given OutputStream. Leaves both streams open when done.
 	 * @param in the InputStream to copy from
 	 * @param out the OutputStream to copy to
 	 * @return the number of bytes copied

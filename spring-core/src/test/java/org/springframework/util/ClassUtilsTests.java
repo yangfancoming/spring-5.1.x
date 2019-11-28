@@ -25,16 +25,10 @@ import org.springframework.tests.sample.objects.TestObject;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Colin Sampaleanu
 
- * @author Rob Harrop
- * @author Rick Evans
- */
 public class ClassUtilsTests {
 
 	private ClassLoader classLoader = getClass().getClassLoader();
-
 
 	@Before
 	public void clearStatics() {
@@ -112,8 +106,7 @@ public class ClassUtilsTests {
 				return childLoader1.loadClass(name);
 			}
 		};
-		Class<?> composite = ClassUtils.createCompositeInterface(
-				new Class<?>[] {Serializable.class, Externalizable.class}, childLoader1);
+		Class<?> composite = ClassUtils.createCompositeInterface(new Class<?>[] {Serializable.class, Externalizable.class}, childLoader1);
 
 		assertTrue(ClassUtils.isCacheSafe(String.class, null));
 		assertTrue(ClassUtils.isCacheSafe(String.class, classLoader));
@@ -259,8 +252,7 @@ public class ClassUtilsTests {
 	public void testNoArgsStaticMethod() throws IllegalAccessException, InvocationTargetException {
 		Method method = ClassUtils.getStaticMethod(InnerClass.class, "staticMethod");
 		method.invoke(null, (Object[]) null);
-		assertTrue("no argument method was not invoked.",
-				InnerClass.noArgCalled);
+		assertTrue("no argument method was not invoked.",InnerClass.noArgCalled);
 	}
 
 	@Test
@@ -305,8 +297,7 @@ public class ClassUtilsTests {
 		assertEquals(result, ClassUtils.addResourcePathToPackagePath(Proxy.class, "xyzabc.xml"));
 		assertEquals(result, ClassUtils.addResourcePathToPackagePath(Proxy.class, "/xyzabc.xml"));
 
-		assertEquals("java/lang/reflect/a/b/c/d.xml",
-				ClassUtils.addResourcePathToPackagePath(Proxy.class, "a/b/c/d.xml"));
+		assertEquals("java/lang/reflect/a/b/c/d.xml",ClassUtils.addResourcePathToPackagePath(Proxy.class, "a/b/c/d.xml"));
 	}
 
 	@Test

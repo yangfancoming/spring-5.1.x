@@ -9,12 +9,7 @@ import org.springframework.util.ClassUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Colin Sampaleanu
 
- * @author Rob Harrop
- * @author Rick Evans
- */
 public class ClassUtilsTests {
 
 	@Test

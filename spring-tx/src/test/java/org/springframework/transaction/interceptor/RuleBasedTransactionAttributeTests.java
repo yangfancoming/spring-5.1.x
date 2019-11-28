@@ -15,10 +15,6 @@ import org.springframework.transaction.TransactionDefinition;
 import static org.junit.Assert.*;
 
 /**
- * @author Rod Johnson
-
- * @author Rick Evans
-
  * @since 09.04.2003
  */
 public class RuleBasedTransactionAttributeTests {

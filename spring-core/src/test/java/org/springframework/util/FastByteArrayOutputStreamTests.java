@@ -14,16 +14,14 @@ import static org.junit.Assert.*;
 
 /**
  * Test suite for {@link FastByteArrayOutputStream}.
- *
- * @author Craig Andrews
  */
 public class FastByteArrayOutputStreamTests {
 
 	private static final int INITIAL_CAPACITY = 256;
 
-	private final FastByteArrayOutputStream os = new FastByteArrayOutputStream(INITIAL_CAPACITY);;
+	private final FastByteArrayOutputStream os = new FastByteArrayOutputStream(INITIAL_CAPACITY);
 
-	private final byte[] helloBytes = "Hello World".getBytes(StandardCharsets.UTF_8);;
+	private final byte[] helloBytes = "Hello World".getBytes(StandardCharsets.UTF_8);
 
 
 	@Test
@@ -194,7 +192,6 @@ public class FastByteArrayOutputStreamTests {
 		String actual = builder.toString();
 		assertEquals("\"06225ca1e4533354c516e74512065331d\"", actual);
 	}
-
 
 	private void assertByteArrayEqualsString(FastByteArrayOutputStream actual) {
 		assertArrayEquals(this.helloBytes, actual.toByteArray());

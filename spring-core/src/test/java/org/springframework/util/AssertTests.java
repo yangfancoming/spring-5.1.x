@@ -15,19 +15,12 @@ import static org.hamcrest.CoreMatchers.*;
 
 /**
  * Unit tests for the {@link Assert} class.
- *
- * @author Keith Donald
- * @author Erwin Vervaet
- * @author Rick Evans
- * @author Arjen Poutsma
- * @author Sam Brannen
 
  */
 public class AssertTests {
 
 	@Rule
 	public final ExpectedException thrown = ExpectedException.none();
-
 
 	@Test
 	public void stateWithMessage() {

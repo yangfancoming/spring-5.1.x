@@ -13,9 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
-
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 
@@ -96,7 +94,7 @@ public class CollectionUtilsTests {
 	}
 
 	@Test
-	public void testContainsAny() throws Exception {
+	public void testContainsAny()  {
 		List<String> source = new ArrayList<>();
 		source.add("abc");
 		source.add("def");
@@ -115,31 +113,28 @@ public class CollectionUtilsTests {
 	}
 
 	@Test
-	public void testContainsInstanceWithNullCollection() throws Exception {
-		assertFalse("Must return false if supplied Collection argument is null",
-				CollectionUtils.containsInstance(null, this));
+	public void testContainsInstanceWithNullCollection()  {
+		assertFalse("Must return false if supplied Collection argument is null",CollectionUtils.containsInstance(null, this));
 	}
 
 	@Test
-	public void testContainsInstanceWithInstancesThatAreEqualButDistinct() throws Exception {
+	public void testContainsInstanceWithInstancesThatAreEqualButDistinct()  {
 		List<Instance> list = new ArrayList<>();
 		list.add(new Instance("fiona"));
-		assertFalse("Must return false if instance is not in the supplied Collection argument",
-				CollectionUtils.containsInstance(list, new Instance("fiona")));
+		assertFalse("Must return false if instance is not in the supplied Collection argument",CollectionUtils.containsInstance(list, new Instance("fiona")));
 	}
 
 	@Test
-	public void testContainsInstanceWithSameInstance() throws Exception {
+	public void testContainsInstanceWithSameInstance()  {
 		List<Instance> list = new ArrayList<>();
 		list.add(new Instance("apple"));
 		Instance instance = new Instance("fiona");
 		list.add(instance);
-		assertTrue("Must return true if instance is in the supplied Collection argument",
-				CollectionUtils.containsInstance(list, instance));
+		assertTrue("Must return true if instance is in the supplied Collection argument",CollectionUtils.containsInstance(list, instance));
 	}
 
 	@Test
-	public void testContainsInstanceWithNullInstance() throws Exception {
+	public void testContainsInstanceWithNullInstance()  {
 		List<Instance> list = new ArrayList<>();
 		list.add(new Instance("apple"));
 		list.add(new Instance("fiona"));
@@ -148,7 +143,7 @@ public class CollectionUtilsTests {
 	}
 
 	@Test
-	public void testFindFirstMatch() throws Exception {
+	public void testFindFirstMatch()  {
 		List<String> source = new ArrayList<>();
 		source.add("abc");
 		source.add("def");
