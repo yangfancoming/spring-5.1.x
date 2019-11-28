@@ -104,9 +104,7 @@ class InternalSpelExpressionParser extends TemplateAwareExpressionParser {
 
 
 	@Override
-	protected SpelExpression doParseExpression(String expressionString, @Nullable ParserContext context)
-			throws ParseException {
-
+	protected SpelExpression doParseExpression(String expressionString, @Nullable ParserContext context) throws ParseException {
 		try {
 			this.expressionString = expressionString;
 			Tokenizer tokenizer = new Tokenizer(expressionString);

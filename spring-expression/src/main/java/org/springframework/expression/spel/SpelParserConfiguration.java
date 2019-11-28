@@ -7,10 +7,6 @@ import org.springframework.lang.Nullable;
 
 /**
  * Configuration object for the SpEL expression parser.
- *
-
- * @author Phillip Webb
- * @author Andy Clement
  * @since 3.0
  * @see org.springframework.expression.spel.standard.SpelExpressionParser#SpelExpressionParser(SpelParserConfiguration)
  */
@@ -20,8 +16,7 @@ public class SpelParserConfiguration {
 
 	static {
 		String compilerMode = SpringProperties.getProperty("spring.expression.compiler.mode");
-		defaultCompilerMode = (compilerMode != null ?
-				SpelCompilerMode.valueOf(compilerMode.toUpperCase()) : SpelCompilerMode.OFF);
+		defaultCompilerMode = (compilerMode != null ? SpelCompilerMode.valueOf(compilerMode.toUpperCase()) : SpelCompilerMode.OFF);
 	}
 
 
@@ -81,9 +76,7 @@ public class SpelParserConfiguration {
 	 * @param autoGrowCollections if collections should automatically grow
 	 * @param maximumAutoGrowSize the maximum size that the collection can auto grow
 	 */
-	public SpelParserConfiguration(@Nullable SpelCompilerMode compilerMode, @Nullable ClassLoader compilerClassLoader,
-			boolean autoGrowNullReferences, boolean autoGrowCollections, int maximumAutoGrowSize) {
-
+	public SpelParserConfiguration(@Nullable SpelCompilerMode compilerMode, @Nullable ClassLoader compilerClassLoader,	boolean autoGrowNullReferences, boolean autoGrowCollections, int maximumAutoGrowSize) {
 		this.compilerMode = (compilerMode != null ? compilerMode : defaultCompilerMode);
 		this.compilerClassLoader = compilerClassLoader;
 		this.autoGrowNullReferences = autoGrowNullReferences;

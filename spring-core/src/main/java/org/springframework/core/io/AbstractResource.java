@@ -73,8 +73,7 @@ public abstract class AbstractResource implements Resource {
 	}
 
 	/**
-	 * This implementation throws a FileNotFoundException, assuming
-	 * that the resource cannot be resolved to a URL.
+	 * This implementation throws a FileNotFoundException, assuming that the resource cannot be resolved to a URL.
 	 */
 	@Override
 	public URL getURL() throws IOException {

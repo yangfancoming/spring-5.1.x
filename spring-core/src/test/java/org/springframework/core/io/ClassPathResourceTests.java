@@ -13,9 +13,7 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
 /**
- * Unit tests that serve as regression tests for the bugs described in SPR-6888
- * and SPR-9413.
-
+ * Unit tests that serve as regression tests for the bugs described in SPR-6888 and SPR-9413.
  * @author Sam Brannen
  */
 public class ClassPathResourceTests {
@@ -54,8 +52,8 @@ public class ClassPathResourceTests {
 
 	@Test
 	public void getDescriptionWithStringConstructorAndLeadingSlash() {
-		assertDescriptionContainsExpectedPath(new ClassPathResource(FQ_RESOURCE_PATH_WITH_LEADING_SLASH),
-				FQ_RESOURCE_PATH);
+		assertDescriptionContainsExpectedPath(new ClassPathResource(FQ_RESOURCE_PATH_WITH_LEADING_SLASH),FQ_RESOURCE_PATH);
+
 	}
 
 	@Test

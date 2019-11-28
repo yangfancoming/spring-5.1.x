@@ -19,8 +19,7 @@ import static org.junit.Assert.*;
  */
 public class ListTests extends AbstractExpressionTests {
 
-	// if the list is full of literals then it will be of the type unmodifiableClass
-	// rather than ArrayList
+	// if the list is full of literals then it will be of the type unmodifiableClass rather than ArrayList
 	Class<?> unmodifiableClass = Collections.unmodifiableList(new ArrayList<>()).getClass();
 
 

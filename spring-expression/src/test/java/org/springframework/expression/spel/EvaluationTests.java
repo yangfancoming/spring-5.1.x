@@ -33,12 +33,6 @@ import static org.junit.Assert.*;
 
 /**
  * Tests the evaluation of real expressions in a real context.
- *
- * @author Andy Clement
- * @author Mark Fisher
- * @author Sam Brannen
- * @author Phillip Webb
- * @author Giovanni Dall'Oglio Risso
  * @since 3.0
  */
 public class EvaluationTests extends AbstractExpressionTests {

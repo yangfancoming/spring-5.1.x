@@ -16,10 +16,6 @@ import org.springframework.lang.Nullable;
 /**
  * An expression parser that understands templates. It can be subclassed by expression
  * parsers that do not offer first class support for templating.
- *
- * @author Keith Donald
-
- * @author Andy Clement
  * @since 3.0
  */
 public abstract class TemplateAwareExpressionParser implements ExpressionParser {
@@ -89,20 +85,15 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 				int suffixIndex = skipToCorrectEndSuffix(suffix, expressionString, afterPrefixIndex);
 				if (suffixIndex == -1) {
 					throw new ParseException(expressionString, prefixIndex,
-							"No ending suffix '" + suffix + "' for expression starting at character " +
-							prefixIndex + ": " + expressionString.substring(prefixIndex));
+							"No ending suffix '" + suffix + "' for expression starting at character " + prefixIndex + ": " + expressionString.substring(prefixIndex));
 				}
 				if (suffixIndex == afterPrefixIndex) {
-					throw new ParseException(expressionString, prefixIndex,
-							"No expression defined within delimiter '" + prefix + suffix +
-							"' at character " + prefixIndex);
+					throw new ParseException(expressionString, prefixIndex,"No expression defined within delimiter '" + prefix + suffix + "' at character " + prefixIndex);
 				}
 				String expr = expressionString.substring(prefixIndex + prefix.length(), suffixIndex);
 				expr = expr.trim();
 				if (expr.isEmpty()) {
-					throw new ParseException(expressionString, prefixIndex,
-							"No expression defined within delimiter '" + prefix + suffix +
-							"' at character " + prefixIndex);
+					throw new ParseException(expressionString, prefixIndex,"No expression defined within delimiter '" + prefix + suffix + "' at character " + prefixIndex);
 				}
 				expressions.add(doParseExpression(expr, context));
 				startIdx = suffixIndex + suffix.length();
@@ -139,17 +130,13 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 	}
 
 	/**
-	 * Copes with nesting, for example '${...${...}}' where the correct end for the first
-	 * ${ is the final }.
+	 * Copes with nesting, for example '${...${...}}' where the correct end for the first ${ is the final }.
 	 * @param suffix the suffix
 	 * @param expressionString the expression string
-	 * @param afterPrefixIndex the most recently found prefix location for which the
-	 * matching end suffix is being sought
+	 * @param afterPrefixIndex the most recently found prefix location for which the matching end suffix is being sought
 	 * @return the position of the correct matching nextSuffix or -1 if none can be found
 	 */
-	private int skipToCorrectEndSuffix(String suffix, String expressionString, int afterPrefixIndex)
-			throws ParseException {
-
+	private int skipToCorrectEndSuffix(String suffix, String expressionString, int afterPrefixIndex) throws ParseException {
 		// Chew on the expression text - relying on the rules:
 		// brackets must be in pairs: () [] {}
 		// string literals are "..." or '...' and these may contain unmatched brackets
@@ -175,15 +162,11 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 				case ']':
 				case ')':
 					if (stack.isEmpty()) {
-						throw new ParseException(expressionString, pos, "Found closing '" + ch +
-								"' at position " + pos + " without an opening '" +
-								Bracket.theOpenBracketFor(ch) + "'");
+						throw new ParseException(expressionString, pos, "Found closing '" + ch + "' at position " + pos + " without an opening '" + Bracket.theOpenBracketFor(ch) + "'");
 					}
 					Bracket p = stack.pop();
 					if (!p.compatibleWithCloseBracket(ch)) {
-						throw new ParseException(expressionString, pos, "Found closing '" + ch +
-								"' at position " + pos + " but most recent opening is '" + p.bracket +
-								"' at position " + p.pos);
+						throw new ParseException(expressionString, pos, "Found closing '" + ch + "' at position " + pos + " but most recent opening is '" + p.bracket + "' at position " + p.pos);
 					}
 					break;
 				case '\'':
@@ -191,8 +174,7 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 					// jump to the end of the literal
 					int endLiteral = expressionString.indexOf(ch, pos + 1);
 					if (endLiteral == -1) {
-						throw new ParseException(expressionString, pos,
-								"Found non terminating string literal starting at position " + pos);
+						throw new ParseException(expressionString, pos,"Found non terminating string literal starting at position " + pos);
 					}
 					pos = endLiteral;
 					break;
@@ -201,8 +183,7 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 		}
 		if (!stack.isEmpty()) {
 			Bracket p = stack.pop();
-			throw new ParseException(expressionString, p.pos, "Missing closing '" +
-					Bracket.theCloseBracketFor(p.bracket) + "' for '" + p.bracket + "' at position " + p.pos);
+			throw new ParseException(expressionString, p.pos, "Missing closing '" + Bracket.theCloseBracketFor(p.bracket) + "' for '" + p.bracket + "' at position " + p.pos);
 		}
 		if (!isSuffixHere(expressionString, pos, suffix)) {
 			return -1;
@@ -218,22 +199,19 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 	 * @return an evaluator for the parsed expression
 	 * @throws ParseException an exception occurred during parsing
 	 */
-	protected abstract Expression doParseExpression(String expressionString, @Nullable ParserContext context)
-			throws ParseException;
-
+	protected abstract Expression doParseExpression(String expressionString, @Nullable ParserContext context) throws ParseException;
 
 	/**
-	 * This captures a type of bracket and the position in which it occurs in the
-	 * expression. The positional information is used if an error has to be reported
-	 * because the related end bracket cannot be found. Bracket is used to describe:
-	 * square brackets [] round brackets () and curly brackets {}
+	 * This captures a type of bracket and the position in which it occurs in the expression.
+	 * 这将捕获括号的类型及其在表达式中出现的位置。
+	 * The positional information is used if an error has to be reported because the related end bracket cannot be found.
+	 * 如果由于找不到相关的结束括号而必须报告错误，则使用位置信息。
+	 * Bracket is used to describe: square brackets [] round brackets () and curly brackets { }
+	 * 括号用于描述：方括号[]  圆括号（）和 花括号{}
 	 */
 	private static class Bracket {
-
 		char bracket;
-
 		int pos;
-
 		Bracket(char bracket, int pos) {
 			this.bracket = bracket;
 			this.pos = pos;

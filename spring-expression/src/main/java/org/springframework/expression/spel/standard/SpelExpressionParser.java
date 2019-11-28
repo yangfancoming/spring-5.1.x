@@ -11,15 +11,11 @@ import org.springframework.util.Assert;
 
 /**
  * SpEL parser. Instances are reusable and thread-safe.
- *
- * @author Andy Clement
-
  * @since 3.0
  */
 public class SpelExpressionParser extends TemplateAwareExpressionParser {
 
 	private final SpelParserConfiguration configuration;
-
 
 	/**
 	 * Create a parser with default settings.

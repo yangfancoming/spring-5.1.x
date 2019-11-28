@@ -422,9 +422,8 @@ public class ParsingTests {
 	}
 
 	/**
-	 * Parse the supplied expression and then create a string representation of the resultant AST, it should be the same
-	 * as the original expression.
-	 *
+	 * Parse the supplied expression and then create a string representation of the resultant AST,
+	 * it should be the same as the original expression.
 	 * @param expression the expression to parse *and* the expected value of the string form of the resultant AST
 	 */
 	public void parseCheck(String expression) {

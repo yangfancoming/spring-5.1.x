@@ -19,9 +19,6 @@ package org.springframework.expression;
 /**
  * Parses expression strings into compiled expressions that can be evaluated.
  * Supports parsing templates as well as standard expression strings.
- *
- * @author Keith Donald
- * @author Andy Clement
  * @since 3.0
  */
 public interface ExpressionParser {

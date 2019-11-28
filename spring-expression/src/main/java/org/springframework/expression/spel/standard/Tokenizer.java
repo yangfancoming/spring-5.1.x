@@ -12,17 +12,12 @@ import org.springframework.expression.spel.SpelParseException;
 
 /**
  * Lex some input data into a stream of tokens that can then be parsed.
- *
- * @author Andy Clement
-
- * @author Phillip Webb
  * @since 3.0
  */
 class Tokenizer {
 
 	// If this gets changed, it must remain sorted...
-	private static final String[] ALTERNATIVE_OPERATOR_NAMES =
-			{"DIV", "EQ", "GE", "GT", "LE", "LT", "MOD", "NE", "NOT"};
+	private static final String[] ALTERNATIVE_OPERATOR_NAMES = {"DIV", "EQ", "GE", "GT", "LE", "LT", "MOD", "NE", "NOT"};
 
 	private static final byte[] FLAGS = new byte[256];
 
@@ -52,15 +47,10 @@ class Tokenizer {
 
 
 	private String expressionString;
-
 	private char[] charsToProcess;
-
 	private int pos;
-
 	private int max;
-
 	private List<Token> tokens = new ArrayList<>();
-
 
 	public Tokenizer(String inputData) {
 		this.expressionString = inputData;
