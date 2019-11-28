@@ -23,15 +23,10 @@ import org.springframework.lang.Nullable;
 
 /**
  * Miscellaneous {@link String} utility methods.
- *
  * <p>Mainly for internal use within the framework; consider
- * <a href="https://commons.apache.org/proper/commons-lang/">Apache's Commons Lang</a>
- * for a more comprehensive suite of {@code String} utilities.
- *
- * <p>This class delivers some simple functionality that should really be
- * provided by the core Java {@link String} and {@link StringBuilder}
- * classes. It also provides easy-to-use methods to convert between
- * delimited strings, such as CSV strings, and collections and arrays.
+ * <a href="https://commons.apache.org/proper/commons-lang/">Apache's Commons Lang</a> for a more comprehensive suite of {@code String} utilities.
+ * <p>This class delivers some simple functionality that should really be provided by the core Java {@link String} and {@link StringBuilder} classes.
+ *  It also provides easy-to-use methods to convert between delimited strings, such as CSV strings, and collections and arrays.
  */
 public abstract class StringUtils {
 
@@ -71,16 +66,13 @@ public abstract class StringUtils {
 	}
 
 	/**
-	 * Check that the given {@code CharSequence} is neither {@code null} nor
-	 * of length 0.
-	 * <p>Note: this method returns {@code true} for a {@code CharSequence}
-	 * that purely consists of whitespace.
+	 * Check that the given {@code CharSequence} is neither {@code null} nor of length 0.
+	 * <p>Note: this method returns {@code true} for a {@code CharSequence} that purely consists of whitespace.
 	 * <p><pre class="code">
 	 * StringUtils.hasLength(null) = false
 	 * StringUtils.hasLength("") = false
 	 * StringUtils.hasLength(" ") = true
 	 * StringUtils.hasLength("Hello") = true
-	 * </pre>
 	 * @param str the {@code CharSequence} to check (may be {@code null})
 	 * @return {@code true} if the {@code CharSequence} is not {@code null} and has length
 	 * @see #hasLength(String)
@@ -92,8 +84,7 @@ public abstract class StringUtils {
 
 	/**
 	 * Check that the given {@code String} is neither {@code null} nor of length 0.
-	 * <p>Note: this method returns {@code true} for a {@code String} that
-	 * purely consists of whitespace.
+	 * <p>Note: this method returns {@code true} for a {@code String} that purely consists of whitespace.
 	 * @param str the {@code String} to check (may be {@code null})
 	 * @return {@code true} if the {@code String} is not {@code null} and has length
 	 * @see #hasLength(CharSequence)
@@ -438,8 +429,7 @@ public abstract class StringUtils {
 	/**
 	 * Quote the given {@code String} with single quotes.
 	 * @param str the input {@code String} (e.g. "myString")
-	 * @return the quoted {@code String} (e.g. "'myString'"),
-	 * or {@code null} if the input was {@code null}
+	 * @return the quoted {@code String} (e.g. "'myString'"), or {@code null} if the input was {@code null}
 	 */
 	@Nullable
 	public static String quote(@Nullable String str) {
@@ -489,8 +479,7 @@ public abstract class StringUtils {
 	}
 
 	/**
-	 * Uncapitalize a {@code String}, changing the first letter to
-	 * lower case as per {@link Character#toLowerCase(char)}.
+	 * Uncapitalize a {@code String}, changing the first letter to lower case as per {@link Character#toLowerCase(char)}.
 	 * No other letters are changed.
 	 * @param str the {@code String} to uncapitalize
 	 * @return the uncapitalized {@code String}
@@ -503,7 +492,6 @@ public abstract class StringUtils {
 		if (!hasLength(str)) {
 			return str;
 		}
-
 		char baseChar = str.charAt(0);
 		char updatedChar;
 		if (capitalize) {
@@ -515,7 +503,6 @@ public abstract class StringUtils {
 		if (baseChar == updatedChar) {
 			return str;
 		}
-
 		char[] chars = str.toCharArray();
 		chars[0] = updatedChar;
 		return new String(chars, 0, chars.length);
@@ -532,7 +519,6 @@ public abstract class StringUtils {
 		if (path == null) {
 			return null;
 		}
-
 		int separatorIndex = path.lastIndexOf(FOLDER_SEPARATOR);
 		return (separatorIndex != -1 ? path.substring(separatorIndex + 1) : path);
 	}
@@ -548,17 +534,14 @@ public abstract class StringUtils {
 		if (path == null) {
 			return null;
 		}
-
 		int extIndex = path.lastIndexOf(EXTENSION_SEPARATOR);
 		if (extIndex == -1) {
 			return null;
 		}
-
 		int folderIndex = path.lastIndexOf(FOLDER_SEPARATOR);
 		if (folderIndex > extIndex) {
 			return null;
 		}
-
 		return path.substring(extIndex + 1);
 	}
 
@@ -583,8 +566,7 @@ public abstract class StringUtils {
 	}
 
 	/**
-	 * Apply the given relative path to the given Java resource path,
-	 * assuming standard Java folder separation (i.e. "/" separators).
+	 * Apply the given relative path to the given Java resource path, assuming standard Java folder separation (i.e. "/" separators).
 	 * @param path the path to start from (usually a full file path)
 	 * @param relativePath the relative path to apply
 	 * (relative to the full file path above)
@@ -670,7 +652,6 @@ public abstract class StringUtils {
 		if (pathElements.size() == 1 && "".equals(pathElements.getLast()) && !prefix.endsWith(FOLDER_SEPARATOR)) {
 			pathElements.add(0, CURRENT_PATH);
 		}
-
 		return prefix + collectionToDelimitedString(pathElements, FOLDER_SEPARATOR);
 	}
 
@@ -1049,11 +1030,9 @@ public abstract class StringUtils {
 	 */
 	@Nullable
 	public static Properties splitArrayElementsIntoProperties(String[] array, String delimiter, @Nullable String charsToDelete) {
-
 		if (ObjectUtils.isEmpty(array)) {
 			return null;
 		}
-
 		Properties result = new Properties();
 		for (String element : array) {
 			if (charsToDelete != null) {
@@ -1077,8 +1056,7 @@ public abstract class StringUtils {
 	 * tokens. A delimiter is always a single character; for multi-character
 	 * delimiters, consider using {@link #delimitedListToStringArray}.
 	 * @param str the {@code String} to tokenize (potentially {@code null} or empty)
-	 * @param delimiters the delimiter characters, assembled as a {@code String}
-	 * (each of the characters is individually considered as a delimiter)
+	 * @param delimiters the delimiter characters, assembled as a {@code String} (each of the characters is individually considered as a delimiter)
 	 * @return an array of the tokens
 	 * @see java.util.StringTokenizer
 	 * @see String#trim()
@@ -1100,19 +1078,16 @@ public abstract class StringUtils {
 	 * (each of the characters is individually considered as a delimiter)
 	 * @param trimTokens trim the tokens via {@link String#trim()}
 	 * @param ignoreEmptyTokens omit empty tokens from the result array
-	 * (only applies to tokens that are empty after trimming; StringTokenizer
-	 * will not consider subsequent delimiters as token in the first place).
+	 * (only applies to tokens that are empty after trimming; StringTokenizer will not consider subsequent delimiters as token in the first place).
 	 * @return an array of the tokens
 	 * @see java.util.StringTokenizer
 	 * @see String#trim()
 	 * @see #delimitedListToStringArray
 	 */
 	public static String[] tokenizeToStringArray(@Nullable String str, String delimiters, boolean trimTokens, boolean ignoreEmptyTokens) {
-
 		if (str == null) {
 			return new String[0];
 		}
-
 		StringTokenizer st = new StringTokenizer(str, delimiters);
 		List<String> tokens = new ArrayList<>();
 		while (st.hasMoreTokens()) {
@@ -1270,7 +1245,6 @@ public abstract class StringUtils {
 		if (arr.length == 1) {
 			return ObjectUtils.nullSafeToString(arr[0]);
 		}
-
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < arr.length; i++) {
 			if (i > 0) {
@@ -1282,8 +1256,7 @@ public abstract class StringUtils {
 	}
 
 	/**
-	 * Convert a {@code String} array into a comma delimited {@code String}
-	 * (i.e., CSV).
+	 * Convert a {@code String} array into a comma delimited {@code String} (i.e., CSV).
 	 * <p>Useful for {@code toString()} implementations.
 	 * @param arr the array to display (potentially {@code null} or empty)
 	 * @return the delimited {@code String}
