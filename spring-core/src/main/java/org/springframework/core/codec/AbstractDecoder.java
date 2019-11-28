@@ -18,9 +18,6 @@ import org.springframework.util.MimeType;
 
 /**
  * Abstract base class for {@link Decoder} implementations.
- *
- * @author Sebastien Deleuze
- * @author Arjen Poutsma
  * @since 5.0
  * @param <T> the element type
  */
@@ -73,9 +70,7 @@ public abstract class AbstractDecoder<T> implements Decoder<T> {
 	}
 
 	@Override
-	public Mono<T> decodeToMono(Publisher<DataBuffer> inputStream, ResolvableType elementType,
-			@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
-
+	public Mono<T> decodeToMono(Publisher<DataBuffer> inputStream, ResolvableType elementType,@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
 		throw new UnsupportedOperationException();
 	}
 

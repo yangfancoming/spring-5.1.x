@@ -33,11 +33,6 @@ import org.springframework.util.MimeTypeUtils;
  * boundaries. The default delimiters ({@code \n}, {@code \r\n})can be customized.
  *
  * <p>Partially inspired by Netty's {@code DelimiterBasedFrameDecoder}.
- *
- * @author Sebastien Deleuze
- * @author Brian Clozel
- * @author Arjen Poutsma
- * @author Mark Paluch
  * @since 5.0
  * @see CharSequenceEncoder
  */
@@ -73,9 +68,7 @@ public final class StringDecoder extends AbstractDataBufferDecoder<String> {
 	}
 
 	@Override
-	public Flux<String> decode(Publisher<DataBuffer> input, ResolvableType elementType,
-			@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
-
+	public Flux<String> decode(Publisher<DataBuffer> input, ResolvableType elementType,@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
 		List<byte[]> delimiterBytes = getDelimiterBytes(mimeType);
 
 		Flux<DataBuffer> inputFlux = Flux.from(input)
@@ -188,9 +181,7 @@ public final class StringDecoder extends AbstractDataBufferDecoder<String> {
 	}
 
 	@Override
-	protected String decodeDataBuffer(DataBuffer dataBuffer, ResolvableType elementType,
-			@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
-
+	protected String decodeDataBuffer(DataBuffer dataBuffer, ResolvableType elementType,@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
 		Charset charset = getCharset(mimeType);
 		CharBuffer charBuffer = charset.decode(dataBuffer.asByteBuffer());
 		DataBufferUtils.release(dataBuffer);
@@ -265,8 +256,7 @@ public final class StringDecoder extends AbstractDataBufferDecoder<String> {
 	 * input strings
 	 */
 	public static StringDecoder allMimeTypes(List<String> delimiters, boolean stripDelimiter) {
-		return new StringDecoder(delimiters, stripDelimiter,
-				new MimeType("text", "plain", DEFAULT_CHARSET), MimeTypeUtils.ALL);
+		return new StringDecoder(delimiters, stripDelimiter,new MimeType("text", "plain", DEFAULT_CHARSET), MimeTypeUtils.ALL);
 	}
 
 }

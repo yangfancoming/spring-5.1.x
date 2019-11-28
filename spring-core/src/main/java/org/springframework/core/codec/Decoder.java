@@ -15,19 +15,14 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.MimeType;
 
 /**
- * Strategy for decoding a {@link DataBuffer} input stream into an output stream
- * of elements of type {@code <T>}.
- *
- * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ * Strategy for decoding a {@link DataBuffer} input stream into an output stream of elements of type {@code <T>}.
  * @since 5.0
  * @param <T> the type of elements in the output stream
  */
 public interface Decoder<T> {
 
 	/**
-	 * Whether the decoder supports the given target element type and the MIME
-	 * type of the source stream.
+	 * Whether the decoder supports the given target element type and the MIME type of the source stream.
 	 * @param elementType the target element type for the output stream
 	 * @param mimeType the mime type associated with the stream to decode
 	 * (can be {@code null} if not specified)
@@ -45,8 +40,8 @@ public interface Decoder<T> {
 	 * @param hints additional information about how to do encode
 	 * @return the output stream with decoded elements
 	 */
-	Flux<T> decode(Publisher<DataBuffer> inputStream, ResolvableType elementType,
-			@Nullable MimeType mimeType, @Nullable Map<String, Object> hints);
+	Flux<T> decode(Publisher<DataBuffer> inputStream, ResolvableType elementType,@Nullable MimeType mimeType, @Nullable Map<String, Object> hints);
+
 
 	/**
 	 * Decode a {@link DataBuffer} input stream into a Mono of {@code T}.
@@ -58,8 +53,7 @@ public interface Decoder<T> {
 	 * @param hints additional information about how to do encode
 	 * @return the output stream with the decoded element
 	 */
-	Mono<T> decodeToMono(Publisher<DataBuffer> inputStream, ResolvableType elementType,
-			@Nullable MimeType mimeType, @Nullable Map<String, Object> hints);
+	Mono<T> decodeToMono(Publisher<DataBuffer> inputStream, ResolvableType elementType,@Nullable MimeType mimeType, @Nullable Map<String, Object> hints);
 
 	/**
 	 * Return the list of MIME types this decoder supports.

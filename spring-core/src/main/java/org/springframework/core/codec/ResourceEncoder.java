@@ -19,8 +19,6 @@ import org.springframework.util.StreamUtils;
 
 /**
  * Encoder for {@link Resource Resources}.
- *
- * @author Arjen Poutsma
  * @since 5.0
  */
 public class ResourceEncoder extends AbstractSingleValueEncoder<Resource> {
@@ -51,9 +49,7 @@ public class ResourceEncoder extends AbstractSingleValueEncoder<Resource> {
 	}
 
 	@Override
-	protected Flux<DataBuffer> encode(Resource resource, DataBufferFactory bufferFactory,
-			ResolvableType type, @Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
-
+	protected Flux<DataBuffer> encode(Resource resource, DataBufferFactory bufferFactory,ResolvableType type, @Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
 		if (logger.isDebugEnabled() && !Hints.isLoggingSuppressed(hints)) {
 			String logPrefix = Hints.getLogPrefix(hints);
 			logger.debug(logPrefix + "Writing [" + resource + "]");

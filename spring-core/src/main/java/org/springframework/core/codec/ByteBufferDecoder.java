@@ -14,10 +14,6 @@ import org.springframework.util.MimeTypeUtils;
 
 /**
  * Decoder for {@link ByteBuffer ByteBuffers}.
- *
- * @author Sebastien Deleuze
- * @author Arjen Poutsma
- * @author Rossen Stoyanchev
  * @since 5.0
  */
 public class ByteBufferDecoder extends AbstractDataBufferDecoder<ByteBuffer> {
@@ -29,14 +25,11 @@ public class ByteBufferDecoder extends AbstractDataBufferDecoder<ByteBuffer> {
 
 	@Override
 	public boolean canDecode(ResolvableType elementType, @Nullable MimeType mimeType) {
-		return (ByteBuffer.class.isAssignableFrom(elementType.toClass()) &&
-				super.canDecode(elementType, mimeType));
+		return (ByteBuffer.class.isAssignableFrom(elementType.toClass()) && super.canDecode(elementType, mimeType));
 	}
 
 	@Override
-	protected ByteBuffer decodeDataBuffer(DataBuffer dataBuffer, ResolvableType elementType,
-			@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
-
+	protected ByteBuffer decodeDataBuffer(DataBuffer dataBuffer, ResolvableType elementType,@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
 		int byteCount = dataBuffer.readableByteCount();
 		ByteBuffer copy = ByteBuffer.allocate(byteCount);
 		copy.put(dataBuffer.asByteBuffer());

@@ -12,8 +12,6 @@ import org.springframework.lang.Nullable;
 
 /**
  * Constants and convenience methods for working with hints.
- *
- * @author Rossen Stoyanchev
  * @since 5.1
  * @see ResourceRegionEncoder#BOUNDARY_STRING_HINT
  */

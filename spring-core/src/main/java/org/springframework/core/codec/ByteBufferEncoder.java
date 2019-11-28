@@ -17,8 +17,7 @@ import org.springframework.util.MimeTypeUtils;
 
 /**
  * Encoder for {@link ByteBuffer ByteBuffers}.
- *
- * @author Sebastien Deleuze
+
  * @since 5.0
  */
 public class ByteBufferEncoder extends AbstractEncoder<ByteBuffer> {
@@ -26,7 +25,6 @@ public class ByteBufferEncoder extends AbstractEncoder<ByteBuffer> {
 	public ByteBufferEncoder() {
 		super(MimeTypeUtils.ALL);
 	}
-
 
 	@Override
 	public boolean canEncode(ResolvableType elementType, @Nullable MimeType mimeType) {
@@ -36,8 +34,7 @@ public class ByteBufferEncoder extends AbstractEncoder<ByteBuffer> {
 
 	@Override
 	public Flux<DataBuffer> encode(Publisher<? extends ByteBuffer> inputStream,
-			DataBufferFactory bufferFactory, ResolvableType elementType, @Nullable MimeType mimeType,
-			@Nullable Map<String, Object> hints) {
+			DataBufferFactory bufferFactory, ResolvableType elementType, @Nullable MimeType mimeType,@Nullable Map<String, Object> hints) {
 
 		return Flux.from(inputStream).map(byteBuffer -> {
 			DataBuffer dataBuffer = bufferFactory.wrap(byteBuffer);

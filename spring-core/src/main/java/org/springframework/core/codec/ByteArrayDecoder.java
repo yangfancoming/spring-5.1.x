@@ -13,9 +13,6 @@ import org.springframework.util.MimeTypeUtils;
 
 /**
  * Decoder for {@code byte} arrays.
- *
- * @author Arjen Poutsma
- * @author Rossen Stoyanchev
  * @since 5.0
  */
 public class ByteArrayDecoder extends AbstractDataBufferDecoder<byte[]> {
@@ -31,8 +28,7 @@ public class ByteArrayDecoder extends AbstractDataBufferDecoder<byte[]> {
 	}
 
 	@Override
-	protected byte[] decodeDataBuffer(DataBuffer dataBuffer, ResolvableType elementType,
-			@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
+	protected byte[] decodeDataBuffer(DataBuffer dataBuffer, ResolvableType elementType,@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
 
 		byte[] result = new byte[dataBuffer.readableByteCount()];
 		dataBuffer.read(result);

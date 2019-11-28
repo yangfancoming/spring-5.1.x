@@ -20,9 +20,6 @@ import org.springframework.util.MimeTypeUtils;
 
 /**
  * Decoder for {@link Resource Resources}.
- *
- * @author Arjen Poutsma
- * @author Rossen Stoyanchev
  * @since 5.0
  */
 public class ResourceDecoder extends AbstractDataBufferDecoder<Resource> {
@@ -34,21 +31,16 @@ public class ResourceDecoder extends AbstractDataBufferDecoder<Resource> {
 
 	@Override
 	public boolean canDecode(ResolvableType elementType, @Nullable MimeType mimeType) {
-		return (Resource.class.isAssignableFrom(elementType.toClass()) &&
-				super.canDecode(elementType, mimeType));
+		return (Resource.class.isAssignableFrom(elementType.toClass()) && super.canDecode(elementType, mimeType));
 	}
 
 	@Override
-	public Flux<Resource> decode(Publisher<DataBuffer> inputStream, ResolvableType elementType,
-			@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
-
+	public Flux<Resource> decode(Publisher<DataBuffer> inputStream, ResolvableType elementType,@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
 		return Flux.from(decodeToMono(inputStream, elementType, mimeType, hints));
 	}
 
 	@Override
-	protected Resource decodeDataBuffer(DataBuffer dataBuffer, ResolvableType elementType,
-			@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
-
+	protected Resource decodeDataBuffer(DataBuffer dataBuffer, ResolvableType elementType,@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
 		byte[] bytes = new byte[dataBuffer.readableByteCount()];
 		dataBuffer.read(bytes);
 		DataBufferUtils.release(dataBuffer);

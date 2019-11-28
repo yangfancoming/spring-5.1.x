@@ -8,8 +8,6 @@ import org.springframework.lang.Nullable;
  * not being able to encode Objects. As opposed to a more general I/O errors
  * or a {@link CodecException} such as a configuration issue that an
  * {@link Encoder} may also choose to raise.
- *
- * @author Rossen Stoyanchev
  * @since 5.0
  * @see Encoder
  */

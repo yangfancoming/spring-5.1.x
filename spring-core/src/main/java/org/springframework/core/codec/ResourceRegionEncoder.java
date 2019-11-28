@@ -26,8 +26,6 @@ import org.springframework.util.StreamUtils;
 
 /**
  * Encoder for {@link ResourceRegion ResourceRegions}.
- *
- * @author Brian Clozel
  * @since 5.0
  */
 public class ResourceRegionEncoder extends AbstractEncoder<ResourceRegion> {
@@ -57,15 +55,12 @@ public class ResourceRegionEncoder extends AbstractEncoder<ResourceRegion> {
 
 	@Override
 	public boolean canEncode(ResolvableType elementType, @Nullable MimeType mimeType) {
-		return super.canEncode(elementType, mimeType)
-				&& ResourceRegion.class.isAssignableFrom(elementType.toClass());
+		return super.canEncode(elementType, mimeType) && ResourceRegion.class.isAssignableFrom(elementType.toClass());
 	}
 
 	@Override
 	public Flux<DataBuffer> encode(Publisher<? extends ResourceRegion> input,
-			DataBufferFactory bufferFactory, ResolvableType elementType, @Nullable MimeType mimeType,
-			@Nullable Map<String, Object> hints) {
-
+			DataBufferFactory bufferFactory, ResolvableType elementType, @Nullable MimeType mimeType,@Nullable Map<String, Object> hints) {
 		Assert.notNull(input, "'inputStream' must not be null");
 		Assert.notNull(bufferFactory, "'bufferFactory' must not be null");
 		Assert.notNull(elementType, "'elementType' must not be null");
@@ -74,8 +69,7 @@ public class ResourceRegionEncoder extends AbstractEncoder<ResourceRegion> {
 			return Mono.from(input)
 					.flatMapMany(region -> {
 						if (!region.getResource().isReadable()) {
-							return Flux.error(new EncodingException(
-									"Resource " + region.getResource() + " is not readable"));
+							return Flux.error(new EncodingException("Resource " + region.getResource() + " is not readable"));
 						}
 						return writeResourceRegion(region, bufferFactory, hints);
 					});
@@ -88,8 +82,7 @@ public class ResourceRegionEncoder extends AbstractEncoder<ResourceRegion> {
 			return Flux.from(input)
 					.concatMap(region -> {
 						if (!region.getResource().isReadable()) {
-							return Flux.error(new EncodingException(
-									"Resource " + region.getResource() + " is not readable"));
+							return Flux.error(new EncodingException("Resource " + region.getResource() + " is not readable"));
 						}
 						Flux<DataBuffer> prefix = Flux.just(
 								bufferFactory.wrap(startBoundary),
@@ -103,16 +96,14 @@ public class ResourceRegionEncoder extends AbstractEncoder<ResourceRegion> {
 		// No doOnDiscard (no caching after DataBufferUtils#read)
 	}
 
-	private Flux<DataBuffer> writeResourceRegion(
-			ResourceRegion region, DataBufferFactory bufferFactory, @Nullable Map<String, Object> hints) {
+	private Flux<DataBuffer> writeResourceRegion(ResourceRegion region, DataBufferFactory bufferFactory, @Nullable Map<String, Object> hints) {
 
 		Resource resource = region.getResource();
 		long position = region.getPosition();
 		long count = region.getCount();
 
 		if (logger.isDebugEnabled() && !Hints.isLoggingSuppressed(hints)) {
-			logger.debug(Hints.getLogPrefix(hints) +
-					"Writing region " + position + "-" + (position + count) + " of [" + resource + "]");
+			logger.debug(Hints.getLogPrefix(hints) +"Writing region " + position + "-" + (position + count) + " of [" + resource + "]");
 		}
 
 		Flux<DataBuffer> in = DataBufferUtils.read(resource, position, bufferFactory, this.bufferSize);

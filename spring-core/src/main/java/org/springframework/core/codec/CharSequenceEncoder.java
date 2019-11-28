@@ -23,10 +23,6 @@ import org.springframework.util.MimeTypeUtils;
 
 /**
  * Encode from a {@code CharSequence} stream to a bytes stream.
- *
- * @author Sebastien Deleuze
- * @author Arjen Poutsma
- * @author Rossen Stoyanchev
  * @since 5.0
  * @see StringDecoder
  */
@@ -37,9 +33,7 @@ public final class CharSequenceEncoder extends AbstractEncoder<CharSequence> {
 	 */
 	public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
-	private final ConcurrentMap<Charset, Float> charsetToMaxBytesPerChar =
-			new ConcurrentHashMap<>(3);
-
+	private final ConcurrentMap<Charset, Float> charsetToMaxBytesPerChar = new ConcurrentHashMap<>(3);
 
 	private CharSequenceEncoder(MimeType... mimeTypes) {
 		super(mimeTypes);
@@ -53,8 +47,7 @@ public final class CharSequenceEncoder extends AbstractEncoder<CharSequence> {
 	}
 
 	@Override
-	public Flux<DataBuffer> encode(Publisher<? extends CharSequence> inputStream,
-			DataBufferFactory bufferFactory, ResolvableType elementType,
+	public Flux<DataBuffer> encode(Publisher<? extends CharSequence> inputStream,DataBufferFactory bufferFactory, ResolvableType elementType,
 			@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
 
 		Charset charset = getCharset(mimeType);
@@ -86,8 +79,7 @@ public final class CharSequenceEncoder extends AbstractEncoder<CharSequence> {
 	}
 
 	int calculateCapacity(CharSequence sequence, Charset charset) {
-		float maxBytesPerChar = this.charsetToMaxBytesPerChar
-				.computeIfAbsent(charset, cs -> cs.newEncoder().maxBytesPerChar());
+		float maxBytesPerChar = this.charsetToMaxBytesPerChar.computeIfAbsent(charset, cs -> cs.newEncoder().maxBytesPerChar());
 		float maxBytesForSequence = sequence.length() * maxBytesPerChar;
 		return (int) Math.ceil(maxBytesForSequence);
 	}

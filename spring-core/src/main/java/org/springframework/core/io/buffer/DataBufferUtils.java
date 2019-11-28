@@ -101,9 +101,7 @@ public abstract class DataBufferUtils {
 	 * @param bufferSize the maximum size of the data buffers
 	 * @return a Flux of data buffers read from the given channel
 	 */
-	public static Flux<DataBuffer> readAsynchronousFileChannel(
-			Callable<AsynchronousFileChannel> channelSupplier, long position,DataBufferFactory bufferFactory, int bufferSize) {
-
+	public static Flux<DataBuffer> readAsynchronousFileChannel(Callable<AsynchronousFileChannel> channelSupplier, long position,DataBufferFactory bufferFactory, int bufferSize) {
 		Assert.notNull(channelSupplier, "'channelSupplier' must not be null");
 		Assert.notNull(bufferFactory, "'dataBufferFactory' must not be null");
 		Assert.isTrue(position >= 0, "'position' must be >= 0");
@@ -161,8 +159,7 @@ public abstract class DataBufferUtils {
 			if (resource.isFile()) {
 				File file = resource.getFile();
 				return readAsynchronousFileChannel(
-						() -> AsynchronousFileChannel.open(file.toPath(), StandardOpenOption.READ),
-						position, bufferFactory, bufferSize);
+						() -> AsynchronousFileChannel.open(file.toPath(), StandardOpenOption.READ),position, bufferFactory, bufferSize);
 			}
 		}
 		catch (IOException ignore) {
@@ -423,9 +420,7 @@ public abstract class DataBufferUtils {
 
 		private final int bufferSize;
 
-		public ReadableByteChannelGenerator(
-				ReadableByteChannel channel, DataBufferFactory dataBufferFactory, int bufferSize) {
-
+		public ReadableByteChannelGenerator(ReadableByteChannel channel, DataBufferFactory dataBufferFactory, int bufferSize) {
 			this.channel = channel;
 			this.dataBufferFactory = dataBufferFactory;
 			this.bufferSize = bufferSize;
@@ -473,9 +468,7 @@ public abstract class DataBufferUtils {
 
 		private final AtomicBoolean disposed = new AtomicBoolean();
 
-		public ReadCompletionHandler(AsynchronousFileChannel channel,
-				FluxSink<DataBuffer> sink, long position, DataBufferFactory dataBufferFactory, int bufferSize) {
-
+		public ReadCompletionHandler(AsynchronousFileChannel channel,FluxSink<DataBuffer> sink, long position, DataBufferFactory dataBufferFactory, int bufferSize) {
 			this.channel = channel;
 			this.sink = sink;
 			this.position = new AtomicLong(position);
@@ -567,8 +560,7 @@ public abstract class DataBufferUtils {
 	}
 
 
-	private static class WriteCompletionHandler extends BaseSubscriber<DataBuffer>
-			implements CompletionHandler<Integer, ByteBuffer> {
+	private static class WriteCompletionHandler extends BaseSubscriber<DataBuffer> implements CompletionHandler<Integer, ByteBuffer> {
 
 		private final FluxSink<DataBuffer> sink;
 
@@ -582,9 +574,7 @@ public abstract class DataBufferUtils {
 
 		private final AtomicReference<DataBuffer> dataBuffer = new AtomicReference<>();
 
-		public WriteCompletionHandler(
-				FluxSink<DataBuffer> sink, AsynchronousFileChannel channel, long position) {
-
+		public WriteCompletionHandler(FluxSink<DataBuffer> sink, AsynchronousFileChannel channel, long position) {
 			this.sink = sink;
 			this.channel = channel;
 			this.position = new AtomicLong(position);

@@ -12,8 +12,7 @@ import org.springframework.lang.Nullable;
  * <p>For example in server web application, a {@code DecodingException} would
  * translate to a response with a 400 (bad input) status while
  * {@code CodecException} would translate to 500 (server error) status.
- *
- * @author Rossen Stoyanchev
+
  * @since 5.0
  * @see Decoder
  */

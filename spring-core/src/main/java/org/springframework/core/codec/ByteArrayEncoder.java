@@ -16,8 +16,6 @@ import org.springframework.util.MimeTypeUtils;
 
 /**
  * Encoder for {@code byte} arrays.
- *
- * @author Arjen Poutsma
  * @since 5.0
  */
 public class ByteArrayEncoder extends AbstractEncoder<byte[]> {
@@ -35,8 +33,7 @@ public class ByteArrayEncoder extends AbstractEncoder<byte[]> {
 
 	@Override
 	public Flux<DataBuffer> encode(Publisher<? extends byte[]> inputStream,
-			DataBufferFactory bufferFactory, ResolvableType elementType, @Nullable MimeType mimeType,
-			@Nullable Map<String, Object> hints) {
+			DataBufferFactory bufferFactory, ResolvableType elementType, @Nullable MimeType mimeType,@Nullable Map<String, Object> hints) {
 
 		return Flux.from(inputStream).map(bytes -> {
 			DataBuffer dataBuffer = bufferFactory.wrap(bytes);

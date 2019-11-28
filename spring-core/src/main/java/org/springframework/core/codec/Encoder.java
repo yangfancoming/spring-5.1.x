@@ -16,11 +16,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.MimeType;
 
 /**
- * Strategy to encode a stream of Objects of type {@code <T>} into an output
- * stream of bytes.
- *
- * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ * Strategy to encode a stream of Objects of type {@code <T>} into an output stream of bytes.
  * @since 5.0
  * @param <T> the type of elements in the input stream
  */
@@ -50,8 +46,7 @@ public interface Encoder<T> {
 	 * @param hints additional information about how to do encode
 	 * @return the output stream
 	 */
-	Flux<DataBuffer> encode(Publisher<? extends T> inputStream, DataBufferFactory bufferFactory,
-			ResolvableType elementType, @Nullable MimeType mimeType, @Nullable Map<String, Object> hints);
+	Flux<DataBuffer> encode(Publisher<? extends T> inputStream, DataBufferFactory bufferFactory,ResolvableType elementType, @Nullable MimeType mimeType, @Nullable Map<String, Object> hints);
 
 	/**
 	 * Return the list of mime types this encoder supports.
