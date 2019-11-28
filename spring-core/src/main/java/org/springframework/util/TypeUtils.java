@@ -12,10 +12,6 @@ import org.springframework.lang.Nullable;
 /**
  * Utility to work with Java 5 generic type parameters.
  * Mainly for internal use within the framework.
- *
- * @author Ramnivas Laddad
-
-
  * @since 2.0.7
  */
 public abstract class TypeUtils {
@@ -75,17 +71,14 @@ public abstract class TypeUtils {
 
 		if (lhsType instanceof GenericArrayType) {
 			Type lhsComponent = ((GenericArrayType) lhsType).getGenericComponentType();
-
 			if (rhsType instanceof Class) {
 				Class<?> rhsClass = (Class<?>) rhsType;
-
 				if (rhsClass.isArray()) {
 					return isAssignable(lhsComponent, rhsClass.getComponentType());
 				}
 			}
 			else if (rhsType instanceof GenericArrayType) {
 				Type rhsComponent = ((GenericArrayType) rhsType).getGenericComponentType();
-
 				return isAssignable(lhsComponent, rhsComponent);
 			}
 		}

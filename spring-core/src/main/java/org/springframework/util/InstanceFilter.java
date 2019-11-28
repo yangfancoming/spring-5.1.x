@@ -11,10 +11,7 @@ import org.springframework.lang.Nullable;
  * A simple instance filter that checks if a given instance match based on
  * a collection of includes and excludes element.
  *
- * <p>Subclasses may want to override {@link #match(Object, Object)} to provide
- * a custom matching algorithm.
- *
- * @author Stephane Nicoll
+ * <p>Subclasses may want to override {@link #match(Object, Object)} to provide a custom matching algorithm.
  * @since 4.1
  * @param <T> the instance type
  */
@@ -40,9 +37,7 @@ public class InstanceFilter<T> {
 	 * @param matchIfEmpty the matching result if both the includes and the excludes
 	 * collections are empty
 	 */
-	public InstanceFilter(@Nullable Collection<? extends T> includes,
-			@Nullable Collection<? extends T> excludes, boolean matchIfEmpty) {
-
+	public InstanceFilter(@Nullable Collection<? extends T> includes,@Nullable Collection<? extends T> excludes, boolean matchIfEmpty) {
 		this.includes = (includes != null ? includes : Collections.emptyList());
 		this.excludes = (excludes != null ? excludes : Collections.emptyList());
 		this.matchIfEmpty = matchIfEmpty;

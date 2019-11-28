@@ -18,8 +18,6 @@ import org.springframework.lang.Nullable;
  *
  * <p>This Map implementation is generally not thread-safe. It is primarily designed
  * for data structures exposed from request objects, for use in a single thread only.
- *
- * @author Arjen Poutsma
 
  * @since 3.0
  * @param <K> the key type

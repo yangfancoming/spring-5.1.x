@@ -22,7 +22,6 @@ import org.springframework.lang.Nullable;
  * method can resolve any location to a {@link org.springframework.core.io.Resource}
  * object, which in turn allows one to obtain a {@code java.io.File} in the
  * file system through its {@code getFile()} method.
- *
 
  * @since 1.1.5
  * @see org.springframework.core.io.Resource
@@ -120,8 +119,7 @@ public abstract class ResourceUtils {
 			URL url = (cl != null ? cl.getResource(path) : ClassLoader.getSystemResource(path));
 			if (url == null) {
 				String description = "class path resource [" + path + "]";
-				throw new FileNotFoundException(description +
-						" cannot be resolved to URL because it does not exist");
+				throw new FileNotFoundException(description + " cannot be resolved to URL because it does not exist");
 			}
 			return url;
 		}
@@ -135,8 +133,7 @@ public abstract class ResourceUtils {
 				return new File(resourceLocation).toURI().toURL();
 			}
 			catch (MalformedURLException ex2) {
-				throw new FileNotFoundException("Resource location [" + resourceLocation +
-						"] is neither a URL not a well-formed file path");
+				throw new FileNotFoundException("Resource location [" + resourceLocation + "] is neither a URL not a well-formed file path");
 			}
 		}
 	}
@@ -160,8 +157,7 @@ public abstract class ResourceUtils {
 			ClassLoader cl = ClassUtils.getDefaultClassLoader();
 			URL url = (cl != null ? cl.getResource(path) : ClassLoader.getSystemResource(path));
 			if (url == null) {
-				throw new FileNotFoundException(description +
-						" cannot be resolved to absolute file path because it does not exist");
+				throw new FileNotFoundException(description + " cannot be resolved to absolute file path because it does not exist");
 			}
 			return getFile(url, description);
 		}
@@ -200,9 +196,7 @@ public abstract class ResourceUtils {
 	public static File getFile(URL resourceUrl, String description) throws FileNotFoundException {
 		Assert.notNull(resourceUrl, "Resource URL must not be null");
 		if (!URL_PROTOCOL_FILE.equals(resourceUrl.getProtocol())) {
-			throw new FileNotFoundException(
-					description + " cannot be resolved to absolute file path " +
-					"because it does not reside in the file system: " + resourceUrl);
+			throw new FileNotFoundException(description + " cannot be resolved to absolute file path because it does not reside in the file system: " + resourceUrl);
 		}
 		try {
 			return new File(toURI(resourceUrl).getSchemeSpecificPart());
@@ -240,9 +234,7 @@ public abstract class ResourceUtils {
 	public static File getFile(URI resourceUri, String description) throws FileNotFoundException {
 		Assert.notNull(resourceUri, "Resource URI must not be null");
 		if (!URL_PROTOCOL_FILE.equals(resourceUri.getScheme())) {
-			throw new FileNotFoundException(
-					description + " cannot be resolved to absolute file path " +
-					"because it does not reside in the file system: " + resourceUri);
+			throw new FileNotFoundException(description + " cannot be resolved to absolute file path because it does not reside in the file system: " + resourceUri);
 		}
 		return new File(resourceUri.getSchemeSpecificPart());
 	}
@@ -255,8 +247,7 @@ public abstract class ResourceUtils {
 	 */
 	public static boolean isFileURL(URL url) {
 		String protocol = url.getProtocol();
-		return (URL_PROTOCOL_FILE.equals(protocol) || URL_PROTOCOL_VFSFILE.equals(protocol) ||
-				URL_PROTOCOL_VFS.equals(protocol));
+		return (URL_PROTOCOL_FILE.equals(protocol) || URL_PROTOCOL_VFSFILE.equals(protocol) || URL_PROTOCOL_VFS.equals(protocol));
 	}
 
 	/**
@@ -268,8 +259,7 @@ public abstract class ResourceUtils {
 	public static boolean isJarURL(URL url) {
 		String protocol = url.getProtocol();
 		return (URL_PROTOCOL_JAR.equals(protocol) || URL_PROTOCOL_WAR.equals(protocol) ||
-				URL_PROTOCOL_ZIP.equals(protocol) || URL_PROTOCOL_VFSZIP.equals(protocol) ||
-				URL_PROTOCOL_WSJAR.equals(protocol));
+				URL_PROTOCOL_ZIP.equals(protocol) || URL_PROTOCOL_VFSZIP.equals(protocol) || URL_PROTOCOL_WSJAR.equals(protocol));
 	}
 
 	/**
@@ -280,8 +270,7 @@ public abstract class ResourceUtils {
 	 * @since 4.1
 	 */
 	public static boolean isJarFileURL(URL url) {
-		return (URL_PROTOCOL_FILE.equals(url.getProtocol()) &&
-				url.getPath().toLowerCase().endsWith(JAR_FILE_EXTENSION));
+		return (URL_PROTOCOL_FILE.equals(url.getProtocol()) && url.getPath().toLowerCase().endsWith(JAR_FILE_EXTENSION));
 	}
 
 	/**

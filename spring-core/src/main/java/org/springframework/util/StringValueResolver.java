@@ -7,8 +7,6 @@ import org.springframework.lang.Nullable;
 /**
  * Simple strategy interface for resolving a String value.
  * Used by {@link org.springframework.beans.factory.config.ConfigurableBeanFactory}.
- *
-
  * @since 2.5
  * @see org.springframework.beans.factory.config.ConfigurableBeanFactory#resolveAliases
  * @see org.springframework.beans.factory.config.BeanDefinitionVisitor#BeanDefinitionVisitor(StringValueResolver)

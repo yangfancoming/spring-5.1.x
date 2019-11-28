@@ -20,10 +20,6 @@ import org.springframework.lang.Nullable;
  *
  * <p>This class is normally used to verify performance during proof-of-concepts
  * and in development, rather than as part of production applications.
- *
- * @author Rod Johnson
-
- * @author Sam Brannen
  * @since May 2, 2001
  */
 public class StopWatch {

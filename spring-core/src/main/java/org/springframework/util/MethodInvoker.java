@@ -15,9 +15,6 @@ import org.springframework.lang.Nullable;
  * <p>Usage: Specify "targetClass"/"targetMethod" or "targetObject"/"targetMethod",
  * optionally specify arguments, prepare the invoker. Afterwards, you may
  * invoke the method any number of times, obtaining the invocation result.
- *
- * @author Colin Sampaleanu
-
  * @since 19.02.2004
  * @see #prepare
  * @see #invoke

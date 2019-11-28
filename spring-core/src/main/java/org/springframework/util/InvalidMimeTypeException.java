@@ -5,16 +5,12 @@ package org.springframework.util;
 /**
  * Exception thrown from {@link MimeTypeUtils#parseMimeType(String)} in case of
  * encountering an invalid content type specification String.
- *
-
- * @author Rossen Stoyanchev
  * @since 4.0
  */
 @SuppressWarnings("serial")
 public class InvalidMimeTypeException extends IllegalArgumentException {
 
 	private final String mimeType;
-
 
 	/**
 	 * Create a new InvalidContentTypeException for the given content type.
@@ -25,7 +21,6 @@ public class InvalidMimeTypeException extends IllegalArgumentException {
 		super("Invalid mime type \"" + mimeType + "\": " + message);
 		this.mimeType = mimeType;
 	}
-
 
 	/**
 	 * Return the offending content type.

@@ -8,12 +8,7 @@ import org.springframework.lang.Nullable;
  * Helper class for resolving placeholders in texts. Usually applied to file paths.
  *
  * <p>A text may contain {@code ${...}} placeholders, to be resolved as system properties:
- * e.g. {@code ${user.dir}}. Default values can be supplied using the ":" separator
- * between key and value.
- *
-
- * @author Rob Harrop
- * @author Dave Syer
+ * e.g. {@code ${user.dir}}. Default values can be supplied using the ":" separator between key and value.
  * @since 1.2.5
  * @see #PLACEHOLDER_PREFIX
  * @see #PLACEHOLDER_SUFFIX
@@ -30,12 +25,8 @@ public abstract class SystemPropertyUtils {
 	/** Value separator for system property placeholders: ":". */
 	public static final String VALUE_SEPARATOR = ":";
 
-
-	private static final PropertyPlaceholderHelper strictHelper =
-			new PropertyPlaceholderHelper(PLACEHOLDER_PREFIX, PLACEHOLDER_SUFFIX, VALUE_SEPARATOR, false);
-
-	private static final PropertyPlaceholderHelper nonStrictHelper =
-			new PropertyPlaceholderHelper(PLACEHOLDER_PREFIX, PLACEHOLDER_SUFFIX, VALUE_SEPARATOR, true);
+	private static final PropertyPlaceholderHelper strictHelper = new PropertyPlaceholderHelper(PLACEHOLDER_PREFIX, PLACEHOLDER_SUFFIX, VALUE_SEPARATOR, false);
+	private static final PropertyPlaceholderHelper nonStrictHelper = new PropertyPlaceholderHelper(PLACEHOLDER_PREFIX, PLACEHOLDER_SUFFIX, VALUE_SEPARATOR, true);
 
 
 	/**
@@ -93,8 +84,7 @@ public abstract class SystemPropertyUtils {
 				return propVal;
 			}
 			catch (Throwable ex) {
-				System.err.println("Could not resolve placeholder '" + placeholderName + "' in [" +
-						this.text + "] as system property: " + ex);
+				System.err.println("Could not resolve placeholder '" + placeholderName + "' in [" + this.text + "] as system property: " + ex);
 				return null;
 			}
 		}

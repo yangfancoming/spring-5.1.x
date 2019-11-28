@@ -21,8 +21,6 @@ import org.springframework.lang.Nullable;
  * while allowing for contains, get and remove calls with any case of key.
  *
  * <p>Does <i>not</i> support {@code null} keys.
- *
-
  * @since 3.0
  * @param <V> the value type
  */

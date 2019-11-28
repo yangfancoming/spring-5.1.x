@@ -16,12 +16,6 @@ import javax.net.ServerSocketFactory;
  *
  * <p>Within this class, a TCP port refers to a port for a {@link ServerSocket};
  * whereas, a UDP port refers to a port for a {@link DatagramSocket}.
- *
- * @author Sam Brannen
- * @author Ben Hale
- * @author Arjen Poutsma
- * @author Gunnar Hillert
- * @author Gary Russell
  * @since 4.0
  */
 public class SocketUtils {
@@ -38,9 +32,7 @@ public class SocketUtils {
 	 */
 	public static final int PORT_RANGE_MAX = 65535;
 
-
 	private static final Random random = new Random(System.currentTimeMillis());
-
 
 	/**
 	 * Although {@code SocketUtils} consists solely of static utility methods,
@@ -244,9 +236,7 @@ public class SocketUtils {
 			int searchCounter = 0;
 			do {
 				if (searchCounter > portRange) {
-					throw new IllegalStateException(String.format(
-							"Could not find an available %s port in the range [%d, %d] after %d attempts",
-							name(), minPort, maxPort, searchCounter));
+					throw new IllegalStateException(String.format("Could not find an available %s port in the range [%d, %d] after %d attempts",name(), minPort, maxPort, searchCounter));
 				}
 				candidatePort = findRandomPort(minPort, maxPort);
 				searchCounter++;
@@ -270,8 +260,7 @@ public class SocketUtils {
 			Assert.isTrue(maxPort > minPort, "'maxPort' must be greater than 'minPort'");
 			Assert.isTrue(maxPort <= PORT_RANGE_MAX, "'maxPort' must be less than or equal to " + PORT_RANGE_MAX);
 			Assert.isTrue(numRequested > 0, "'numRequested' must be greater than 0");
-			Assert.isTrue((maxPort - minPort) >= numRequested,
-					"'numRequested' must not be greater than 'maxPort' - 'minPort'");
+			Assert.isTrue((maxPort - minPort) >= numRequested,"'numRequested' must not be greater than 'maxPort' - 'minPort'");
 
 			SortedSet<Integer> availablePorts = new TreeSet<>();
 			int attemptCount = 0;
@@ -280,11 +269,8 @@ public class SocketUtils {
 			}
 
 			if (availablePorts.size() != numRequested) {
-				throw new IllegalStateException(String.format(
-						"Could not find %d available %s ports in the range [%d, %d]",
-						numRequested, name(), minPort, maxPort));
+				throw new IllegalStateException(String.format("Could not find %d available %s ports in the range [%d, %d]",numRequested, name(), minPort, maxPort));
 			}
-
 			return availablePorts;
 		}
 	}

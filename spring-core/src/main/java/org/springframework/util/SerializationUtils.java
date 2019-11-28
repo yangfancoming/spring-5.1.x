@@ -12,8 +12,6 @@ import org.springframework.lang.Nullable;
 
 /**
  * Static utilities for serialization and deserialization.
- *
- * @author Dave Syer
  * @since 3.0.5
  */
 public abstract class SerializationUtils {

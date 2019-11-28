@@ -15,9 +15,6 @@ import org.springframework.lang.Nullable;
 
 /**
  * Utility methods for working with the file system.
- *
- * @author Rob Harrop
-
  * @since 2.5.3
  * @see java.io.File
  * @see java.nio.file.Path

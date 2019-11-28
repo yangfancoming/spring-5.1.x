@@ -787,7 +787,6 @@ public abstract class StringUtils {
 			variant = country;
 			country = "";
 		}
-
 		return (language.length() > 0 ? new Locale(language, country, variant) : null);
 	}
 
