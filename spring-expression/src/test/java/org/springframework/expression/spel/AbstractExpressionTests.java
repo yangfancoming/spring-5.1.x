@@ -16,8 +16,6 @@ import static org.junit.Assert.*;
 
 /**
  * Common superclass for expression tests.
- *
- * @author Andy Clement
  */
 public abstract class AbstractExpressionTests {
 

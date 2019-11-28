@@ -35,10 +35,6 @@ import org.springframework.util.PatternMatchUtils;
  *
  * <p>Also supports Java EE 6's {@link javax.annotation.ManagedBean} and
  * JSR-330's {@link javax.inject.Named} annotations, if available.
- *
- * @author Mark Fisher
-
-
  * @since 2.5
  * @see AnnotationConfigApplicationContext#scan
  * @see org.springframework.stereotype.Component
@@ -235,8 +231,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	}
 
 	/**
-	 * Perform a scan within the specified base packages,
-	 * returning the registered bean definitions.
+	 * Perform a scan within the specified base packages,returning the registered bean definitions.
 	 * <p>This method does <i>not</i> register an annotation config processor
 	 * but rather leaves this up to the caller.
 	 * @param basePackages the packages to check for annotated classes

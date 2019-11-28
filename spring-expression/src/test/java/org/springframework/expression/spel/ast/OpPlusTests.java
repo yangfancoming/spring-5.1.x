@@ -21,9 +21,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for SpEL's plus operator.
- *
- * @author Ivo Smid
-
  * @since 3.2
  * @see OpPlus
  */
@@ -37,9 +34,7 @@ public class OpPlusTests {
 	@Test(expected = SpelEvaluationException.class)
 	public void test_unaryPlusWithStringLiteral() {
 		ExpressionState expressionState = new ExpressionState(new StandardEvaluationContext());
-
 		StringLiteral str = new StringLiteral("word", -1, "word");
-
 		OpPlus o = new OpPlus(-1, str);
 		o.getValueInternal(expressionState);
 	}

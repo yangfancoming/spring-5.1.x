@@ -19,11 +19,6 @@ import static org.junit.Assert.*;
 /**
  * If this test case fails, uncomment diagnostics in the
  * {@link #assertProtocolAndFilenames} method.
- *
- * @author Oliver Hutchison
-
-
- * @author Sam Brannen
  * @since 17.11.2004
  */
 public class PathMatchingResourcePatternResolverTests {
@@ -34,14 +29,10 @@ public class PathMatchingResourcePatternResolverTests {
 					"PropertiesLoaderUtils.class", "ResourceArrayPropertyEditor.class",
 					"ResourcePatternResolver.class", "ResourcePatternUtils.class"};
 
-	private static final String[] TEST_CLASSES_IN_CORE_IO_SUPPORT =
-			new String[] {"PathMatchingResourcePatternResolverTests.class"};
-
-	private static final String[] CLASSES_IN_REACTIVESTREAMS =
-			new String[] {"Processor.class", "Publisher.class", "Subscriber.class", "Subscription.class"};
+	private static final String[] TEST_CLASSES_IN_CORE_IO_SUPPORT = new String[] {"PathMatchingResourcePatternResolverTests.class"};
+	private static final String[] CLASSES_IN_REACTIVESTREAMS = new String[] {"Processor.class", "Publisher.class", "Subscriber.class", "Subscription.class"};
 
 	private PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-
 
 	@Test(expected = FileNotFoundException.class)
 	public void invalidPrefixWithPatternElementInIt() throws IOException {
@@ -50,8 +41,7 @@ public class PathMatchingResourcePatternResolverTests {
 
 	@Test
 	public void singleResourceOnFileSystem() throws IOException {
-		Resource[] resources =
-				resolver.getResources("org/springframework/core/io/support/PathMatchingResourcePatternResolverTests.class");
+		Resource[] resources = resolver.getResources("org/springframework/core/io/support/PathMatchingResourcePatternResolverTests.class");
 		assertEquals(1, resources.length);
 		assertProtocolAndFilenames(resources, "file", "PathMatchingResourcePatternResolverTests.class");
 	}
@@ -76,8 +66,7 @@ public class PathMatchingResourcePatternResolverTests {
 			}
 		}
 		resources = noCloverResources.toArray(new Resource[noCloverResources.size()]);
-		assertProtocolAndFilenames(resources, "file",
-				StringUtils.concatenateStringArrays(CLASSES_IN_CORE_IO_SUPPORT, TEST_CLASSES_IN_CORE_IO_SUPPORT));
+		assertProtocolAndFilenames(resources, "file",StringUtils.concatenateStringArrays(CLASSES_IN_CORE_IO_SUPPORT, TEST_CLASSES_IN_CORE_IO_SUPPORT));
 	}
 
 	@Test
@@ -104,9 +93,7 @@ public class PathMatchingResourcePatternResolverTests {
 		assertTrue("Could not find aspectj_1_5_0.dtd in the root of the aspectjweaver jar", found);
 	}
 
-
-	private void assertProtocolAndFilenames(Resource[] resources, String protocol, String... filenames)
-			throws IOException {
+	private void assertProtocolAndFilenames(Resource[] resources, String protocol, String... filenames)throws IOException {
 
 		// Uncomment the following if you encounter problems with matching against the file system
 		// It shows file locations.

@@ -19,7 +19,6 @@ import org.springframework.util.ResourceUtils;
 /**
  * Abstract base class for resources which resolve URLs into File references,
  * such as {@link UrlResource} or {@link ClassPathResource}.
- *
  * <p>Detects the "file" protocol as well as the JBoss "vfs" protocol in URLs,resolving file system references accordingly.
  * @since 3.0
  */
@@ -212,8 +211,7 @@ public abstract class AbstractFileResolvingResource extends AbstractResource {
 			File file = getFile();
 			long length = file.length();
 			if (length == 0L && !file.exists()) {
-				throw new FileNotFoundException(getDescription() +
-						" cannot be resolved in the file system for checking its content length");
+				throw new FileNotFoundException(getDescription() + " cannot be resolved in the file system for checking its content length");
 			}
 			return length;
 		}
@@ -248,8 +246,7 @@ public abstract class AbstractFileResolvingResource extends AbstractResource {
 		customizeConnection(con);
 		long lastModified = con.getLastModified();
 		if (fileCheck && lastModified == 0 && con.getContentLengthLong() <= 0) {
-			throw new FileNotFoundException(getDescription() +
-					" cannot be resolved in the file system for checking its last-modified timestamp");
+			throw new FileNotFoundException(getDescription() + " cannot be resolved in the file system for checking its last-modified timestamp");
 		}
 		return lastModified;
 	}

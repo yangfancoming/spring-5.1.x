@@ -24,8 +24,6 @@ import static org.junit.Assert.*;
 
 /**
  * Testing variations on map access.
- *
- * @author Andy Clement
  */
 public class MapAccessTests extends AbstractExpressionTests {
 
@@ -40,7 +38,7 @@ public class MapAccessTests extends AbstractExpressionTests {
 	}
 
 	@Test
-	public void testCustomMapAccessor() throws Exception {
+	public void testCustomMapAccessor()  {
 		ExpressionParser parser = new SpelExpressionParser();
 		StandardEvaluationContext ctx = TestScenarioCreator.getTestEvaluationContext();
 		ctx.addPropertyAccessor(new MapAccessor());
@@ -51,7 +49,7 @@ public class MapAccessTests extends AbstractExpressionTests {
 	}
 
 	@Test
-	public void testVariableMapAccess() throws Exception {
+	public void testVariableMapAccess()  {
 		ExpressionParser parser = new SpelExpressionParser();
 		StandardEvaluationContext ctx = TestScenarioCreator.getTestEvaluationContext();
 		ctx.setVariable("day", "saturday");
@@ -86,7 +84,7 @@ public class MapAccessTests extends AbstractExpressionTests {
 	}
 
 	@Test
-	public void testGetValuePerformance() throws Exception {
+	public void testGetValuePerformance()  {
 		Assume.group(TestGroup.PERFORMANCE);
 		Map<String, String> map = new HashMap<>();
 		map.put("key", "value");
@@ -166,7 +164,7 @@ public class MapAccessTests extends AbstractExpressionTests {
 	public static class MapAccessor implements PropertyAccessor {
 
 		@Override
-		public boolean canRead(EvaluationContext context, Object target, String name) throws AccessException {
+		public boolean canRead(EvaluationContext context, Object target, String name)  {
 			return (((Map<?, ?>) target).containsKey(name));
 		}
 
@@ -176,7 +174,7 @@ public class MapAccessTests extends AbstractExpressionTests {
 		}
 
 		@Override
-		public boolean canWrite(EvaluationContext context, Object target, String name) throws AccessException {
+		public boolean canWrite(EvaluationContext context, Object target, String name)  {
 			return true;
 		}
 

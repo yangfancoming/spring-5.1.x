@@ -24,8 +24,6 @@ import static org.junit.Assert.*;
 
 /**
  * Tests for reflection helper code.
- *
- * @author Andy Clement
  */
 public class ReflectionHelperTests extends AbstractExpressionTests {
 
@@ -235,9 +233,7 @@ public class ReflectionHelperTests extends AbstractExpressionTests {
 
 	@Test
 	public void testSetupArguments() {
-		Object[] newArray = ReflectionHelper.setupArgumentsForVarargsInvocation(
-				new Class<?>[] {String[].class}, "a", "b", "c");
-
+		Object[] newArray = ReflectionHelper.setupArgumentsForVarargsInvocation(new Class<?>[] {String[].class}, "a", "b", "c");
 		assertEquals(1, newArray.length);
 		Object firstParam = newArray[0];
 		assertEquals(String.class,firstParam.getClass().getComponentType());

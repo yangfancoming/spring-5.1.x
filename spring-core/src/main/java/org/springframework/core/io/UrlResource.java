@@ -19,10 +19,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * {@link Resource} implementation for {@code java.net.URL} locators.
- * Supports resolution as a {@code URL} and also as a {@code File} in
- * case of the {@code "file:"} protocol.
- *
-
+ * Supports resolution as a {@code URL} and also as a {@code File} in case of the {@code "file:"} protocol.
  * @since 28.12.2003
  * @see java.net.URL
  */
@@ -250,8 +247,7 @@ public class UrlResource extends AbstractFileResolvingResource {
 	 */
 	@Override
 	public boolean equals(Object other) {
-		return (this == other || (other instanceof UrlResource &&
-				this.cleanedUrl.equals(((UrlResource) other).cleanedUrl)));
+		return (this == other || (other instanceof UrlResource && this.cleanedUrl.equals(((UrlResource) other).cleanedUrl)));
 	}
 
 	/**
