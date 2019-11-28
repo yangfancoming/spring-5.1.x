@@ -64,23 +64,17 @@ public abstract class TransactionSynchronizationManager {
 
 	private static final Log logger = LogFactory.getLog(TransactionSynchronizationManager.class);
 
-	private static final ThreadLocal<Map<Object, Object>> resources =
-			new NamedThreadLocal<>("Transactional resources");
+	private static final ThreadLocal<Map<Object, Object>> resources = new NamedThreadLocal<>("Transactional resources");
 
-	private static final ThreadLocal<Set<TransactionSynchronization>> synchronizations =
-			new NamedThreadLocal<>("Transaction synchronizations");
+	private static final ThreadLocal<Set<TransactionSynchronization>> synchronizations = new NamedThreadLocal<>("Transaction synchronizations");
 
-	private static final ThreadLocal<String> currentTransactionName =
-			new NamedThreadLocal<>("Current transaction name");
+	private static final ThreadLocal<String> currentTransactionName = new NamedThreadLocal<>("Current transaction name");
 
-	private static final ThreadLocal<Boolean> currentTransactionReadOnly =
-			new NamedThreadLocal<>("Current transaction read-only status");
+	private static final ThreadLocal<Boolean> currentTransactionReadOnly = new NamedThreadLocal<>("Current transaction read-only status");
 
-	private static final ThreadLocal<Integer> currentTransactionIsolationLevel =
-			new NamedThreadLocal<>("Current transaction isolation level");
+	private static final ThreadLocal<Integer> currentTransactionIsolationLevel = new NamedThreadLocal<>("Current transaction isolation level");
 
-	private static final ThreadLocal<Boolean> actualTransactionActive =
-			new NamedThreadLocal<>("Actual transaction active");
+	private static final ThreadLocal<Boolean> actualTransactionActive = new NamedThreadLocal<>("Actual transaction active");
 
 
 	//-------------------------------------------------------------------------
@@ -125,8 +119,7 @@ public abstract class TransactionSynchronizationManager {
 		Object actualKey = TransactionSynchronizationUtils.unwrapResourceIfNecessary(key);
 		Object value = doGetResource(actualKey);
 		if (value != null && logger.isTraceEnabled()) {
-			logger.trace("Retrieved value [" + value + "] for key [" + actualKey + "] bound to thread [" +
-					Thread.currentThread().getName() + "]");
+			logger.trace("Retrieved value [" + value + "] for key [" + actualKey + "] bound to thread [" + Thread.currentThread().getName() + "]");
 		}
 		return value;
 	}
@@ -175,12 +168,10 @@ public abstract class TransactionSynchronizationManager {
 			oldValue = null;
 		}
 		if (oldValue != null) {
-			throw new IllegalStateException("Already value [" + oldValue + "] for key [" +
-					actualKey + "] bound to thread [" + Thread.currentThread().getName() + "]");
+			throw new IllegalStateException("Already value [" + oldValue + "] for key [" + actualKey + "] bound to thread [" + Thread.currentThread().getName() + "]");
 		}
 		if (logger.isTraceEnabled()) {
-			logger.trace("Bound value [" + value + "] for key [" + actualKey + "] to thread [" +
-					Thread.currentThread().getName() + "]");
+			logger.trace("Bound value [" + value + "] for key [" + actualKey + "] to thread [" + Thread.currentThread().getName() + "]");
 		}
 	}
 
@@ -195,8 +186,7 @@ public abstract class TransactionSynchronizationManager {
 		Object actualKey = TransactionSynchronizationUtils.unwrapResourceIfNecessary(key);
 		Object value = doUnbindResource(actualKey);
 		if (value == null) {
-			throw new IllegalStateException(
-					"No value for key [" + actualKey + "] bound to thread [" + Thread.currentThread().getName() + "]");
+			throw new IllegalStateException("No value for key [" + actualKey + "] bound to thread [" + Thread.currentThread().getName() + "]");
 		}
 		return value;
 	}
@@ -231,8 +221,7 @@ public abstract class TransactionSynchronizationManager {
 			value = null;
 		}
 		if (value != null && logger.isTraceEnabled()) {
-			logger.trace("Removed value [" + value + "] for key [" + actualKey + "] from thread [" +
-					Thread.currentThread().getName() + "]");
+			logger.trace("Removed value [" + value + "] for key [" + actualKey + "] from thread [" + Thread.currentThread().getName() + "]");
 		}
 		return value;
 	}
@@ -274,9 +263,7 @@ public abstract class TransactionSynchronizationManager {
 	 * @throws IllegalStateException if transaction synchronization is not active
 	 * @see org.springframework.core.Ordered
 	 */
-	public static void registerSynchronization(TransactionSynchronization synchronization)
-			throws IllegalStateException {
-
+	public static void registerSynchronization(TransactionSynchronization synchronization) throws IllegalStateException {
 		Assert.notNull(synchronization, "TransactionSynchronization must not be null");
 		Set<TransactionSynchronization> synchs = synchronizations.get();
 		if (synchs == null) {

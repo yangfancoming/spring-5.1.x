@@ -48,8 +48,7 @@ public class AnnotationTransactionAttributeSourceTests {
 		serializedProxy.getAge();
 		Advised advised = (Advised) serializedProxy;
 		TransactionInterceptor serializedTi = (TransactionInterceptor) advised.getAdvisors()[0].getAdvice();
-		CallCountingTransactionManager serializedPtm =
-				(CallCountingTransactionManager) serializedTi.getTransactionManager();
+		CallCountingTransactionManager serializedPtm = (CallCountingTransactionManager) serializedTi.getTransactionManager();
 		assertEquals(2, serializedPtm.commits);
 	}
 

@@ -19,7 +19,6 @@ import org.springframework.lang.Nullable;
  * you need to explicitly assign it to a scope key in your setup, either through
  * {@link org.springframework.beans.factory.config.ConfigurableBeanFactory#registerScope}
  * or through a {@link org.springframework.beans.factory.config.CustomScopeConfigurer} bean.
- *
 
  * @since 4.2
  * @see org.springframework.context.support.SimpleThreadScope
@@ -82,9 +81,7 @@ public class SimpleTransactionScope implements Scope {
 	 * Holder for scoped objects.
 	 */
 	static class ScopedObjectsHolder {
-
 		final Map<String, Object> scopedInstances = new HashMap<>();
-
 		final Map<String, Runnable> destructionCallbacks = new LinkedHashMap<>();
 	}
 

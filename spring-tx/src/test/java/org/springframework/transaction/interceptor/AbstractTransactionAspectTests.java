@@ -26,13 +26,8 @@ import static org.mockito.BDDMockito.*;
 /**
  * Mock object based tests for transaction aspects.
  * True unit test in that it tests how the transaction aspect uses
- * the PlatformTransactionManager helper, rather than indirectly
- * testing the helper implementation.
- *
- * This is a superclass to allow testing both the AOP Alliance MethodInterceptor
- * and the AspectJ aspect.
- *
- * @author Rod Johnson
+ * the PlatformTransactionManager helper, rather than indirectly testing the helper implementation.
+ * This is a superclass to allow testing both the AOP Alliance MethodInterceptor and the AspectJ aspect.
  * @since 16.03.2003
  */
 public abstract class AbstractTransactionAspectTests {
@@ -531,9 +526,7 @@ public abstract class AbstractTransactionAspectTests {
 	}
 
 
-	protected Object advised(
-			Object target, PlatformTransactionManager ptm, TransactionAttributeSource[] tas) throws Exception {
-
+	protected Object advised(Object target, PlatformTransactionManager ptm, TransactionAttributeSource[] tas) throws Exception {
 		return advised(target, ptm, new CompositeTransactionAttributeSource(tas));
 	}
 
@@ -547,7 +540,6 @@ public abstract class AbstractTransactionAspectTests {
 	 * return target.
 	 * @return transactional advised object
 	 */
-	protected abstract Object advised(
-			Object target, PlatformTransactionManager ptm, TransactionAttributeSource tas) throws Exception;
+	protected abstract Object advised(Object target, PlatformTransactionManager ptm, TransactionAttributeSource tas) throws Exception;
 
 }
