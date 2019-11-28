@@ -8,8 +8,6 @@ import org.springframework.lang.Nullable;
 
 /**
  * Convenience utilities for {@link java.util.function.Supplier} handling.
- *
-
  * @since 5.1
  * @see SingletonSupplier
  */

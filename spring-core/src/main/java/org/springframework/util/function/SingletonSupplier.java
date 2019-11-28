@@ -15,7 +15,6 @@ import org.springframework.util.Assert;
  * or via constructors that provide a default supplier as a fallback. This is
  * particularly useful for method reference suppliers, falling back to a default
  * supplier for a method that returned {@code null} and caching the result.
- *
 
  * @since 5.1
  * @param <T> the type of results supplied by this supplier
