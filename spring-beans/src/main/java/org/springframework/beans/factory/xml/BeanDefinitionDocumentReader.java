@@ -14,9 +14,7 @@ import org.springframework.beans.factory.BeanDefinitionStoreException;
  * state in instance variables during the execution of the
  * {@code registerBeanDefinitions} method ; for example, global
  * settings that are defined for all bean definitions in the document.
- *
 
- * @author Rob Harrop
  * @since 18.12.2003
  * @see XmlBeanDefinitionReader#setDocumentReaderClass
  */

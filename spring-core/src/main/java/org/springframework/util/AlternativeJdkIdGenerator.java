@@ -12,9 +12,6 @@ import java.util.UUID;
  * {@link Random} thereafter, instead of calling {@link UUID#randomUUID()} every
  * time as {@link org.springframework.util.JdkIdGenerator JdkIdGenerator} does.
  * This provides a better balance between securely random ids and performance.
- *
- * @author Rossen Stoyanchev
- * @author Rob Winch
  * @since 4.0
  */
 public class AlternativeJdkIdGenerator implements IdGenerator {

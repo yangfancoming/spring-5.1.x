@@ -44,7 +44,6 @@ public abstract class StreamUtils {
 		if (in == null) {
 			return new byte[0];
 		}
-
 		ByteArrayOutputStream out = new ByteArrayOutputStream(BUFFER_SIZE);
 		copy(in, out);
 		return out.toByteArray();
@@ -103,6 +102,7 @@ public abstract class StreamUtils {
 
 	/**
 	 * Copy the contents of the given InputStream to the given OutputStream. Leaves both streams open when done.
+	 * 输入流拷贝到输出流  输入流转输出流 输入流复制到输出流
 	 * @param in the InputStream to copy from
 	 * @param out the OutputStream to copy to
 	 * @return the number of bytes copied

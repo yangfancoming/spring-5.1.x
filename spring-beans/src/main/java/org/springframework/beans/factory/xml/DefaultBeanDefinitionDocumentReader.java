@@ -137,7 +137,6 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	/**
 	 * Parse the elements at the root level in the document: "import", "alias", "bean".
 	 * @param root the DOM root element of the document
-	 *
 	 *   在 Spring 的配置文件中，有两大类bean的声明，
 	 *                一个是默认的声明如 <bean>，
 	 *                一类是自定义的声明如 <tx:annotation-driver>，所以该方法分为两套解析逻辑
