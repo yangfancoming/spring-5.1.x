@@ -240,9 +240,7 @@ public abstract class AbstractDecoderTestCase<D extends Decoder<?>> extends Abst
 	 * @param stepConsumer a consumer to {@linkplain StepVerifier verify} the output
 	 * @param <T> the output type
 	 */
-	protected <T> void testDecodeToMonoAll(Publisher<DataBuffer> input,
-			Class<? extends T> outputClass, Consumer<StepVerifier.FirstStep<T>> stepConsumer) {
-
+	protected <T> void testDecodeToMonoAll(Publisher<DataBuffer> input,Class<? extends T> outputClass, Consumer<StepVerifier.FirstStep<T>> stepConsumer) {
 		testDecodeToMonoAll(input, ResolvableType.forClass(outputClass), stepConsumer, null, null);
 	}
 

@@ -16,14 +16,13 @@ import static org.junit.Assert.*;
 
  */
 public class NestedBeansElementTests {
-	private final Resource XML =
-		new ClassPathResource("NestedBeansElementTests-context.xml", this.getClass());
+
+	private final Resource XML = new ClassPathResource("NestedBeansElementTests-context.xml", this.getClass());
 
 	@Test
 	public void getBean_withoutActiveProfile() {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(XML);
-
 		Object foo = bf.getBean("foo");
 		assertThat(foo, instanceOf(String.class));
 	}

@@ -10,10 +10,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for the {@link OrderComparator} class.
- *
- * @author Rick Evans
- * @author Stephane Nicoll
-
  */
 public class OrderComparatorTests {
 

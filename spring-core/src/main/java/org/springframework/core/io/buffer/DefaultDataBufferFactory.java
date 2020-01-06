@@ -11,8 +11,6 @@ import org.springframework.util.Assert;
  * Default implementation of the {@code DataBufferFactory} interface. Allows for
  * specification of the default initial capacity at construction time, as well
  * as whether heap-based or direct buffers are to be preferred.
- *
- * @author Arjen Poutsma
  * @since 5.0
  */
 public class DefaultDataBufferFactory implements DataBufferFactory {
@@ -70,9 +68,7 @@ public class DefaultDataBufferFactory implements DataBufferFactory {
 
 	@Override
 	public DefaultDataBuffer allocateBuffer(int initialCapacity) {
-		ByteBuffer byteBuffer = (this.preferDirect ?
-				ByteBuffer.allocateDirect(initialCapacity) :
-				ByteBuffer.allocate(initialCapacity));
+		ByteBuffer byteBuffer = (this.preferDirect ? ByteBuffer.allocateDirect(initialCapacity) : ByteBuffer.allocate(initialCapacity));
 		return DefaultDataBuffer.fromEmptyByteBuffer(this, byteBuffer);
 	}
 

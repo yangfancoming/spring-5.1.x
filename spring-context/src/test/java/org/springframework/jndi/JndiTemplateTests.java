@@ -10,12 +10,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Rod Johnson
 
-
- * @since 08.07.2003
- */
 public class JndiTemplateTests {
 
 	@Test

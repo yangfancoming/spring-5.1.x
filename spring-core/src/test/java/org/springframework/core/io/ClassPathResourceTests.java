@@ -14,7 +14,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests that serve as regression tests for the bugs described in SPR-6888 and SPR-9413.
- * @author Sam Brannen
  */
 public class ClassPathResourceTests {
 

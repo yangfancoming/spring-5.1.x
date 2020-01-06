@@ -20,9 +20,6 @@ import org.springframework.util.ObjectUtils;
 /**
  * Implementation of the {@code DataBuffer} interface that wraps a Netty
  * {@link ByteBuf}. Typically constructed with {@link NettyDataBufferFactory}.
- *
- * @author Arjen Poutsma
- * @author Brian Clozel
  * @since 5.0
  */
 public class NettyDataBuffer implements PooledDataBuffer {
@@ -30,7 +27,6 @@ public class NettyDataBuffer implements PooledDataBuffer {
 	private final ByteBuf byteBuf;
 
 	private final NettyDataBufferFactory dataBufferFactory;
-
 
 	/**
 	 * Create a new {@code NettyDataBuffer} based on the given {@code ByteBuff}.
@@ -183,7 +179,6 @@ public class NettyDataBuffer implements PooledDataBuffer {
 				ByteBuffer[] byteBuffers = new ByteBuffer[buffers.length];
 				for (int i = 0; i < buffers.length; i++) {
 					byteBuffers[i] = buffers[i].asByteBuffer();
-
 				}
 				write(byteBuffers);
 			}
@@ -290,8 +285,7 @@ public class NettyDataBuffer implements PooledDataBuffer {
 
 	@Override
 	public boolean equals(Object other) {
-		return (this == other || (other instanceof NettyDataBuffer &&
-				this.byteBuf.equals(((NettyDataBuffer) other).byteBuf)));
+		return (this == other || (other instanceof NettyDataBuffer && this.byteBuf.equals(((NettyDataBuffer) other).byteBuf)));
 	}
 
 	@Override

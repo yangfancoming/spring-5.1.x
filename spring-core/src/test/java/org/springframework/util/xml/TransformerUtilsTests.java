@@ -17,9 +17,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link TransformerUtils}.
- *
- * @author Rick Evans
- * @author Arjen Poutsma
  */
 public class TransformerUtilsTests {
 
