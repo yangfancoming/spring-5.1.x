@@ -581,8 +581,7 @@ public abstract class StringUtils {
 
 	/**
 	 * Normalize the path by suppressing sequences like "path/.." and inner simple dots.
-	 * The result is convenient for path comparison. For other uses,
-	 * notice that Windows separators ("\") are replaced by simple slashes.
+	 * The result is convenient for path comparison. For other uses,notice that Windows separators ("\") are replaced by simple slashes.
 	 * @param path the original path
 	 * @return the normalized path
 	 */
@@ -1007,8 +1006,7 @@ public abstract class StringUtils {
 	 * Take an array of strings and split each element based on the given delimiter.
 	 * A {@code Properties} instance is then generated, with the left of the
 	 * delimiter providing the key, and the right of the delimiter providing the value.
-	 * Will trim both the key and value before adding them to the
-	 * {@code Properties} instance.
+	 * Will trim both the key and value before adding them to the {@code Properties} instance.
 	 * @param array the array to process
 	 * @param delimiter to split each element using (typically the equals symbol)
 	 * @param charsToDelete one or more characters to remove from each element
@@ -1056,11 +1054,10 @@ public abstract class StringUtils {
 	}
 
 	/**
-	 * Tokenize the given {@code String} into a {@code String} array via a
-	 * {@link StringTokenizer}.
-	 * The given {@code delimiters} string can consist of any number of
-	 * delimiter characters. Each of those characters can be used to separate
-	 * tokens. A delimiter is always a single character; for multi-character
+	 * Tokenize the given {@code String} into a {@code String} array via a {@link StringTokenizer}.
+	 * The given {@code delimiters} string can consist of any number of delimiter characters.
+	 * Each of those characters can be used to separate tokens.
+	 * A delimiter is always a single character; for multi-character
 	 * delimiters, consider using {@link #delimitedListToStringArray}.
 	 * @param str the {@code String} to tokenize (potentially {@code null} or empty)
 	 * @param delimiters the delimiter characters, assembled as a {@code String}

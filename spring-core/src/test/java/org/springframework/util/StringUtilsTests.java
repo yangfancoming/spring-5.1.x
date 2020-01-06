@@ -211,47 +211,6 @@ public class StringUtilsTests {
 		assertTrue("Result is unchanged", nochange.equals(inString));
 	}
 
-
-	@Test
-	public void testGetFilename() {
-		assertEquals(null, StringUtils.getFilename(null));
-		assertEquals("", StringUtils.getFilename(""));
-		assertEquals("myfile", StringUtils.getFilename("myfile"));
-		assertEquals("myfile", StringUtils.getFilename("mypath/myfile"));
-		assertEquals("myfile.", StringUtils.getFilename("myfile."));
-		assertEquals("myfile.", StringUtils.getFilename("mypath/myfile."));
-		assertEquals("myfile.txt", StringUtils.getFilename("myfile.txt"));
-		assertEquals("myfile.txt", StringUtils.getFilename("mypath/myfile.txt"));
-	}
-
-	@Test
-	public void testGetFilenameExtension() {
-		assertEquals(null, StringUtils.getFilenameExtension(null));
-		assertEquals(null, StringUtils.getFilenameExtension(""));
-		assertEquals(null, StringUtils.getFilenameExtension("myfile"));
-		assertEquals(null, StringUtils.getFilenameExtension("myPath/myfile"));
-		assertEquals(null, StringUtils.getFilenameExtension("/home/user/.m2/settings/myfile"));
-		assertEquals("", StringUtils.getFilenameExtension("myfile."));
-		assertEquals("", StringUtils.getFilenameExtension("myPath/myfile."));
-		assertEquals("txt", StringUtils.getFilenameExtension("myfile.txt"));
-		assertEquals("txt", StringUtils.getFilenameExtension("mypath/myfile.txt"));
-		assertEquals("txt", StringUtils.getFilenameExtension("/home/user/.m2/settings/myfile.txt"));
-	}
-
-	@Test
-	public void testStripFilenameExtension() {
-		assertEquals("", StringUtils.stripFilenameExtension(""));
-		assertEquals("myfile", StringUtils.stripFilenameExtension("myfile"));
-		assertEquals("myfile", StringUtils.stripFilenameExtension("myfile."));
-		assertEquals("myfile", StringUtils.stripFilenameExtension("myfile.txt"));
-		assertEquals("mypath/myfile", StringUtils.stripFilenameExtension("mypath/myfile"));
-		assertEquals("mypath/myfile", StringUtils.stripFilenameExtension("mypath/myfile."));
-		assertEquals("mypath/myfile", StringUtils.stripFilenameExtension("mypath/myfile.txt"));
-		assertEquals("/home/user/.m2/settings/myfile", StringUtils.stripFilenameExtension("/home/user/.m2/settings/myfile"));
-		assertEquals("/home/user/.m2/settings/myfile", StringUtils.stripFilenameExtension("/home/user/.m2/settings/myfile."));
-		assertEquals("/home/user/.m2/settings/myfile", StringUtils.stripFilenameExtension("/home/user/.m2/settings/myfile.txt"));
-	}
-
 	@Test
 	public void testCleanPath() {
 		assertEquals("mypath/myfile", StringUtils.cleanPath("mypath/myfile"));
@@ -288,12 +247,12 @@ public class StringUtilsTests {
 
 	@Test
 	public void testPathEquals() {
-		assertTrue("Must be true for the same strings",
-				StringUtils.pathEquals("/dummy1/dummy2/dummy3", "/dummy1/dummy2/dummy3"));
-		assertTrue("Must be true for the same win strings",
-				StringUtils.pathEquals("C:\\dummy1\\dummy2\\dummy3", "C:\\dummy1\\dummy2\\dummy3"));
-		assertTrue("Must be true for one top path on 1",
-				StringUtils.pathEquals("/dummy1/bin/../dummy2/dummy3", "/dummy1/dummy2/dummy3"));
+		assertTrue("Must be true for the same strings",StringUtils.pathEquals("/dummy1/dummy2/dummy3", "/dummy1/dummy2/dummy3"));
+
+		assertTrue("Must be true for the same win strings",StringUtils.pathEquals("C:\\dummy1\\dummy2\\dummy3", "C:\\dummy1\\dummy2\\dummy3"));
+
+		assertTrue("Must be true for one top path on 1",StringUtils.pathEquals("/dummy1/bin/../dummy2/dummy3", "/dummy1/dummy2/dummy3"));
+
 		assertTrue("Must be true for one win top path on 2",
 				StringUtils.pathEquals("C:\\dummy1\\dummy2\\dummy3", "C:\\dummy1\\bin\\..\\dummy2\\dummy3"));
 		assertTrue("Must be true for two top paths on 1",
@@ -329,48 +288,6 @@ public class StringUtilsTests {
 		StringUtils.sortStringArray(input);
 		assertEquals("myString1", input[0]);
 		assertEquals("myString2", input[1]);
-	}
-
-
-
-	@Test
-	public void testSplitArrayElementsIntoProperties() {
-		String[] input = new String[] {"key1=value1 ", "key2 =\"value2\""};
-		Properties result = StringUtils.splitArrayElementsIntoProperties(input, "=");
-		assertEquals("value1", result.getProperty("key1"));
-		assertEquals("\"value2\"", result.getProperty("key2"));
-	}
-
-	@Test
-	public void testSplitArrayElementsIntoPropertiesAndDeletedChars() {
-		String[] input = new String[] {"key1=value1 ", "key2 =\"value2\""};
-		Properties result = StringUtils.splitArrayElementsIntoProperties(input, "=", "\"");
-		assertEquals("value1", result.getProperty("key1"));
-		assertEquals("value2", result.getProperty("key2"));
-	}
-
-	@Test
-	public void testTokenizeToStringArray() {
-		String[] sa = StringUtils.tokenizeToStringArray("a,b , ,c", ",");
-		assertEquals(3, sa.length);
-		assertTrue("components are correct",
-				sa[0].equals("a") && sa[1].equals("b") && sa[2].equals("c"));
-	}
-
-	@Test
-	public void testTokenizeToStringArrayWithNotIgnoreEmptyTokens() {
-		String[] sa = StringUtils.tokenizeToStringArray("a,b , ,c", ",", true, false);
-		assertEquals(4, sa.length);
-		assertTrue("components are correct",
-				sa[0].equals("a") && sa[1].equals("b") && sa[2].equals("") && sa[3].equals("c"));
-	}
-
-	@Test
-	public void testTokenizeToStringArrayWithNotTrimTokens() {
-		String[] sa = StringUtils.tokenizeToStringArray("a,b ,c", ",", false, true);
-		assertEquals(3, sa.length);
-		assertTrue("components are correct",
-				sa[0].equals("a") && sa[1].equals("b ") && sa[2].equals("c"));
 	}
 
 	@Test
@@ -437,11 +354,10 @@ public class StringUtilsTests {
 	}
 
 	private void doTestStringArrayReverseTransformationMatches(String[] sa) {
-		String[] reverse =
-				StringUtils.commaDelimitedListToStringArray(StringUtils.arrayToCommaDelimitedString(sa));
-		assertEquals("Reverse transformation is equal",
-				Arrays.asList(sa),
-				Arrays.asList(reverse));
+		String[] reverse = StringUtils.commaDelimitedListToStringArray(StringUtils.arrayToCommaDelimitedString(sa));
+		assertEquals("Reverse transformation is equal",Arrays.asList(sa),Arrays.asList(reverse));
+
+
 	}
 
 	@Test
