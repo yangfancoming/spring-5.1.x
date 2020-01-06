@@ -22,8 +22,6 @@ import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
 /**
-
- * @author Sam Brannen
  * @since 02.08.2004
  */
 public class RowMapperTests {

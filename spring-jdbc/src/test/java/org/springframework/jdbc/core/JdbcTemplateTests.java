@@ -47,11 +47,6 @@ import static org.springframework.tests.Matchers.*;
 
 /**
  * Mock object based tests for JdbcTemplate.
- *
- * @author Rod Johnson
- * @author Thomas Risberg
-
- * @author Phillip Webb
  */
 public class JdbcTemplateTests {
 

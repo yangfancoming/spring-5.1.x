@@ -13,16 +13,12 @@ import org.junit.rules.ExpectedException;
 import static org.junit.Assert.*;
 
 /**
- * @author Colin Sampaleanu
-
- * @author Sam Brannen
  * @since 21.11.2003
  */
 public class MethodInvokerTests {
 
 	@Rule
 	public final ExpectedException exception = ExpectedException.none();
-
 
 	@Test
 	public void plainMethodInvoker() throws Exception {

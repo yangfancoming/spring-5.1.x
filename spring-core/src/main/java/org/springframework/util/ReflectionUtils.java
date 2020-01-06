@@ -17,8 +17,7 @@ import java.util.Map;
 import org.springframework.lang.Nullable;
 
 /**
- * Simple utility class for working with the reflection API and handling
- * reflection exceptions.
+ * Simple utility class for working with the reflection API and handling reflection exceptions.
  * <p>Only intended for internal use.
  * @since 1.2.2
  */

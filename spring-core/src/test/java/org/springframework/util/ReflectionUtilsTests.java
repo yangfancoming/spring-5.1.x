@@ -21,12 +21,6 @@ import org.springframework.tests.sample.objects.TestObject;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
-
- * @author Sam Brannen
- * @author Arjen Poutsma
- */
 public class ReflectionUtilsTests {
 
 	@Test
