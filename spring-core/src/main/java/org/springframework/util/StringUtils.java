@@ -23,9 +23,9 @@ import org.springframework.lang.Nullable;
 
 /**
  * Miscellaneous {@link String} utility methods.
- * <p>Mainly for internal use within the framework; consider
+ * Mainly for internal use within the framework; consider
  * <a href="https://commons.apache.org/proper/commons-lang/">Apache's Commons Lang</a> for a more comprehensive suite of {@code String} utilities.
- * <p>This class delivers some simple functionality that should really be provided by the core Java {@link String} and {@link StringBuilder} classes.
+ * This class delivers some simple functionality that should really be provided by the core Java {@link String} and {@link StringBuilder} classes.
  *  It also provides easy-to-use methods to convert between delimited strings, such as CSV strings, and collections and arrays.
  */
 public abstract class StringUtils {
@@ -48,13 +48,13 @@ public abstract class StringUtils {
 	/**
 	 * Check whether the given object (possibly a {@code String}) is empty.
 	 * This is effectly a shortcut for {@code !hasLength(String)}.
-	 * <p>This method accepts any Object as an argument, comparing it to
+	 * This method accepts any Object as an argument, comparing it to
 	 * {@code null} and the empty String. As a consequence, this method
 	 * will never return {@code true} for a non-null non-String object.
-	 * <p>The Object signature is useful for general attribute handling code
+	 * The Object signature is useful for general attribute handling code
 	 * that commonly deals with Strings but generally has to iterate over
 	 * Objects since attributes may e.g. be primitive value objects as well.
-	 * <p><b>Note: If the object is typed to {@code String} upfront, prefer
+	 * <b>Note: If the object is typed to {@code String} upfront, prefer
 	 * {@link #hasLength(String)} or {@link #hasText(String)} instead.</b>
 	 * @param str the candidate object (possibly a {@code String})
 	 * @since 3.2.1
@@ -67,8 +67,8 @@ public abstract class StringUtils {
 
 	/**
 	 * Check that the given {@code CharSequence} is neither {@code null} nor of length 0.
-	 * <p>Note: this method returns {@code true} for a {@code CharSequence} that purely consists of whitespace.
-	 * <p><pre class="code">
+	 * Note: this method returns {@code true} for a {@code CharSequence} that purely consists of whitespace.
+	 * <pre class="code">
 	 * StringUtils.hasLength(null) = false
 	 * StringUtils.hasLength("") = false
 	 * StringUtils.hasLength(" ") = true
@@ -84,7 +84,7 @@ public abstract class StringUtils {
 
 	/**
 	 * Check that the given {@code String} is neither {@code null} nor of length 0.
-	 * <p>Note: this method returns {@code true} for a {@code String} that purely consists of whitespace.
+	 * Note: this method returns {@code true} for a {@code String} that purely consists of whitespace.
 	 * @param str the {@code String} to check (may be {@code null})
 	 * @return {@code true} if the {@code String} is not {@code null} and has length
 	 * @see #hasLength(CharSequence)
@@ -96,9 +96,9 @@ public abstract class StringUtils {
 
 	/**
 	 * Check whether the given {@code CharSequence} contains actual <em>text</em>.
-	 * <p>More specifically, this method returns {@code true} if the
+	 * More specifically, this method returns {@code true} if the
 	 * {@code CharSequence} is not {@code null}, its length is greater than 0, and it contains at least one non-whitespace character.
-	 * <p><pre class="code">
+	 * <pre class="code">
 	 * StringUtils.hasText(null) = false
 	 * StringUtils.hasText("") = false
 	 * StringUtils.hasText(" ") = false
@@ -117,7 +117,7 @@ public abstract class StringUtils {
 
 	/**
 	 * Check whether the given {@code String} contains actual <em>text</em>.
-	 * <p>More specifically, this method returns {@code true} if the
+	 * More specifically, this method returns {@code true} if the
 	 * {@code String} is not {@code null}, its length is greater than 0, and it contains at least one non-whitespace character.
 	 * @param str the {@code String} to check (may be {@code null})
 	 * @return {@code true} if the {@code String} is not {@code null}, its length is greater than 0, and it does not contain whitespace only
@@ -449,8 +449,8 @@ public abstract class StringUtils {
 	}
 
 	/**
-	 * Unqualify a string qualified by a '.' dot character. For example,
-	 * "this.name.is.qualified", returns "qualified".
+	 * Unqualify a string qualified by a '.' dot character.
+	 * For example,"this.name.is.qualified", returns "qualified".
 	 * @param qualifiedName the qualified name
 	 */
 	public static String unqualify(String qualifiedName) {
@@ -458,8 +458,8 @@ public abstract class StringUtils {
 	}
 
 	/**
-	 * Unqualify a string qualified by a separator character. For example,
-	 * "this:name:is:qualified" returns "qualified" if using a ':' separator.
+	 * Unqualify a string qualified by a separator character.
+	 * For example,"this:name:is:qualified" returns "qualified" if using a ':' separator.
 	 * @param qualifiedName the qualified name
 	 * @param separator the separator
 	 */
@@ -468,8 +468,7 @@ public abstract class StringUtils {
 	}
 
 	/**
-	 * Capitalize a {@code String}, changing the first letter to
-	 * upper case as per {@link Character#toUpperCase(char)}.
+	 * Capitalize a {@code String}, changing the first letter to upper case as per {@link Character#toUpperCase(char)}.
 	 * No other letters are changed.
 	 * @param str the {@code String} to capitalize
 	 * @return the capitalized {@code String}
@@ -493,13 +492,7 @@ public abstract class StringUtils {
 			return str;
 		}
 		char baseChar = str.charAt(0);
-		char updatedChar;
-		if (capitalize) {
-			updatedChar = Character.toUpperCase(baseChar);
-		}
-		else {
-			updatedChar = Character.toLowerCase(baseChar);
-		}
+		char updatedChar = capitalize ? Character.toUpperCase(baseChar):Character.toLowerCase(baseChar);//- modify
 		if (baseChar == updatedChar) {
 			return str;
 		}
@@ -588,7 +581,7 @@ public abstract class StringUtils {
 
 	/**
 	 * Normalize the path by suppressing sequences like "path/.." and inner simple dots.
-	 * <p>The result is convenient for path comparison. For other uses,
+	 * The result is convenient for path comparison. For other uses,
 	 * notice that Windows separators ("\") are replaced by simple slashes.
 	 * @param path the original path
 	 * @return the normalized path
@@ -743,11 +736,11 @@ public abstract class StringUtils {
 
 	/**
 	 * Parse the given {@code String} representation into a {@link Locale}.
-	 * <p>For many parsing scenarios, this is an inverse operation of
+	 * For many parsing scenarios, this is an inverse operation of
 	 * {@link Locale#toString Locale's toString}, in a lenient sense.
 	 * This method does not aim for strict {@code Locale} design compliance;
 	 * it is rather specifically tailored for typical Spring parsing needs.
-	 * <p><b>Note: This delegate does not accept the BCP 47 language tag format.
+	 * <b>Note: This delegate does not accept the BCP 47 language tag format.
 	 * Please use {@link #parseLocale} for lenient parsing of both formats.</b>
 	 * @param localeString the locale {@code String}: following {@code Locale's}
 	 * {@code toString()} format ("en", "en_UK", etc), also accepting spaces as
@@ -835,7 +828,7 @@ public abstract class StringUtils {
 
 	/**
 	 * Copy the given {@link Collection} into a {@code String} array.
-	 * <p>The {@code Collection} must contain {@code String} elements only.
+	 * The {@code Collection} must contain {@code String} elements only.
 	 * @param collection the {@code Collection} to copy (potentially {@code null} or empty)
 	 * @return the resulting {@code String} array
 	 */
@@ -845,7 +838,7 @@ public abstract class StringUtils {
 
 	/**
 	 * Copy the given {@link Enumeration} into a {@code String} array.
-	 * <p>The {@code Enumeration} must contain {@code String} elements only.
+	 * The {@code Enumeration} must contain {@code String} elements only.
 	 * @param enumeration the {@code Enumeration} to copy
 	 * (potentially {@code null} or empty)
 	 * @return the resulting {@code String} array
@@ -874,9 +867,8 @@ public abstract class StringUtils {
 	}
 
 	/**
-	 * Concatenate the given {@code String} arrays into one,
-	 * with overlapping array elements included twice.
-	 * <p>The order of elements in the original arrays is preserved.
+	 * Concatenate the given {@code String} arrays into one,  with overlapping array elements included twice.
+	 * The order of elements in the original arrays is preserved.
 	 * @param array1 the first array (can be {@code null})
 	 * @param array2 the second array (can be {@code null})
 	 * @return the new array ({@code null} if both given arrays were {@code null})
@@ -897,9 +889,8 @@ public abstract class StringUtils {
 	}
 
 	/**
-	 * Merge the given {@code String} arrays into one, with overlapping
-	 * array elements only included once.
-	 * <p>The order of elements in the original arrays is preserved
+	 * Merge the given {@code String} arrays into one, with overlapping array elements only included once.
+	 * The order of elements in the original arrays is preserved
 	 * (with the exception of overlapping elements, which are only
 	 * included on their first occurrence).
 	 * @param array1 the first array (can be {@code null})
@@ -937,7 +928,6 @@ public abstract class StringUtils {
 		if (ObjectUtils.isEmpty(array)) {
 			return array;
 		}
-
 		Arrays.sort(array);
 		return array;
 	}
@@ -963,7 +953,7 @@ public abstract class StringUtils {
 
 	/**
 	 * Remove duplicate strings from the given array.
-	 * <p>As of 4.2, it preserves the original order, as it uses a {@link LinkedHashSet}.
+	 * As of 4.2, it preserves the original order, as it uses a {@link LinkedHashSet}.
 	 * @param array the {@code String} array (potentially empty)
 	 * @return an array without duplicates, in natural sort order
 	 */
@@ -1000,9 +990,9 @@ public abstract class StringUtils {
 
 	/**
 	 * Take an array of strings and split each element based on the given delimiter.
-	 * A {@code Properties} instance is then generated, with the left of the delimiter
-	 * providing the key, and the right of the delimiter providing the value.
-	 * <p>Will trim both the key and value before adding them to the {@code Properties}.
+	 * A {@code Properties} instance is then generated, with the left of the delimiter providing the key,
+	 * and the right of the delimiter providing the value.
+	 * Will trim both the key and value before adding them to the {@code Properties}.
 	 * @param array the array to process
 	 * @param delimiter to split each element using (typically the equals symbol)
 	 * @return a {@code Properties} instance representing the array contents,
@@ -1017,7 +1007,7 @@ public abstract class StringUtils {
 	 * Take an array of strings and split each element based on the given delimiter.
 	 * A {@code Properties} instance is then generated, with the left of the
 	 * delimiter providing the key, and the right of the delimiter providing the value.
-	 * <p>Will trim both the key and value before adding them to the
+	 * Will trim both the key and value before adding them to the
 	 * {@code Properties} instance.
 	 * @param array the array to process
 	 * @param delimiter to split each element using (typically the equals symbol)
@@ -1049,8 +1039,8 @@ public abstract class StringUtils {
 	/**
 	 * Tokenize the given {@code String} into a {@code String} array via a
 	 * {@link StringTokenizer}.
-	 * <p>Trims tokens and omits empty tokens.
-	 * <p>The given {@code delimiters} string can consist of any number of
+	 * Trims tokens and omits empty tokens.
+	 * The given {@code delimiters} string can consist of any number of
 	 * delimiter characters. Each of those characters can be used to separate
 	 * tokens. A delimiter is always a single character; for multi-character
 	 * delimiters, consider using {@link #delimitedListToStringArray}.
@@ -1068,7 +1058,7 @@ public abstract class StringUtils {
 	/**
 	 * Tokenize the given {@code String} into a {@code String} array via a
 	 * {@link StringTokenizer}.
-	 * <p>The given {@code delimiters} string can consist of any number of
+	 * The given {@code delimiters} string can consist of any number of
 	 * delimiter characters. Each of those characters can be used to separate
 	 * tokens. A delimiter is always a single character; for multi-character
 	 * delimiters, consider using {@link #delimitedListToStringArray}.
@@ -1103,7 +1093,7 @@ public abstract class StringUtils {
 
 	/**
 	 * Take a {@code String} that is a delimited list and convert it into a {@code String} array.
-	 * <p>A single {@code delimiter} may consist of more than one character,
+	 * A single {@code delimiter} may consist of more than one character,
 	 * but it will still be considered as a single delimiter string, rather
 	 * than as bunch of potential delimiter characters, in contrast to
 	 * {@link #tokenizeToStringArray}.
@@ -1119,7 +1109,7 @@ public abstract class StringUtils {
 
 	/**
 	 * Take a {@code String} that is a delimited list and convert it into a {@code String} array.
-	 * <p>A single {@code delimiter} may consist of more than one character,
+	 * A single {@code delimiter} may consist of more than one character,
 	 * but it will still be considered as a single delimiter string, rather
 	 * than as bunch of potential delimiter characters, in contrast to
 	 * {@link #tokenizeToStringArray}.
@@ -1172,7 +1162,7 @@ public abstract class StringUtils {
 
 	/**
 	 * Convert a comma delimited list (e.g., a row from a CSV file) into a set.
-	 * <p>Note that this will suppress duplicates, and as of 4.2, the elements in
+	 * Note that this will suppress duplicates, and as of 4.2, the elements in
 	 * the returned set will preserve the original order in a {@link LinkedHashSet}.
 	 * @param str the input {@code String} (potentially {@code null} or empty)
 	 * @return a set of {@code String} entries in the list
@@ -1185,7 +1175,7 @@ public abstract class StringUtils {
 
 	/**
 	 * Convert a {@link Collection} to a delimited {@code String} (e.g. CSV).
-	 * <p>Useful for {@code toString()} implementations.
+	 * Useful for {@code toString()} implementations.
 	 * @param coll the {@code Collection} to convert (potentially {@code null} or empty)
 	 * @param delim the delimiter to use (typically a ",")
 	 * @param prefix the {@code String} to start each element with
@@ -1211,7 +1201,7 @@ public abstract class StringUtils {
 	 * Convert a {@code Collection} into a delimited {@code String} (e.g. CSV).
 	 * 		List<String> list = Arrays.asList("1","2","3");
 	 * 		StringUtils.collectionToDelimitedString(list, "*") ===> 1*2*3
-	 * <p>Useful for {@code toString()} implementations.
+	 * Useful for {@code toString()} implementations.
 	 * @param coll the {@code Collection} to convert (potentially {@code null} or empty)
 	 * @param delim the delimiter to use (typically a ",")
 	 * @return the delimited {@code String}
@@ -1222,7 +1212,7 @@ public abstract class StringUtils {
 
 	/**
 	 * Convert a {@code Collection} into a delimited {@code String} (e.g., CSV).
-	 * <p>Useful for {@code toString()} implementations.
+	 * Useful for {@code toString()} implementations.
 	 * @param coll the {@code Collection} to convert (potentially {@code null} or empty)
 	 * @return the delimited {@code String}
 	 */
@@ -1232,7 +1222,7 @@ public abstract class StringUtils {
 
 	/**
 	 * Convert a {@code String} array into a delimited {@code String} (e.g. CSV).
-	 * <p>Useful for {@code toString()} implementations.
+	 * Useful for {@code toString()} implementations.
 	 * @param arr the array to display (potentially {@code null} or empty)
 	 * @param delim the delimiter to use (typically a ",")
 	 * @return the delimited {@code String}
@@ -1256,7 +1246,7 @@ public abstract class StringUtils {
 
 	/**
 	 * Convert a {@code String} array into a comma delimited {@code String} (i.e., CSV).
-	 * <p>Useful for {@code toString()} implementations.
+	 * Useful for {@code toString()} implementations.
 	 * @param arr the array to display (potentially {@code null} or empty)
 	 * @return the delimited {@code String}
 	 */

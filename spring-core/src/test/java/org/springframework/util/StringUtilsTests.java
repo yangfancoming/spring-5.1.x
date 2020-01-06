@@ -10,55 +10,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rod Johnson
 
- * @author Rick Evans
- */
 public class StringUtilsTests {
 
-	@Test
-	public void testHasTextBlank() {
-		String blank = "          ";
-		assertEquals(false, StringUtils.hasText(blank));
-	}
 
-	@Test
-	public void testHasTextNullEmpty() {
-		assertEquals(false, StringUtils.hasText(null));
-		assertEquals(false, StringUtils.hasText(""));
-	}
-
-	@Test
-	public void testHasTextValid() {
-		assertEquals(true, StringUtils.hasText("t"));
-	}
-
-	@Test
-	public void testContainsWhitespace() {
-		assertFalse(StringUtils.containsWhitespace(null));
-		assertFalse(StringUtils.containsWhitespace(""));
-		assertFalse(StringUtils.containsWhitespace("a"));
-		assertFalse(StringUtils.containsWhitespace("abc"));
-		assertTrue(StringUtils.containsWhitespace(" "));
-		assertTrue(StringUtils.containsWhitespace(" a"));
-		assertTrue(StringUtils.containsWhitespace("abc "));
-		assertTrue(StringUtils.containsWhitespace("a b"));
-		assertTrue(StringUtils.containsWhitespace("a  b"));
-	}
-
-	@Test
-	public void testTrimWhitespace() {
-		assertEquals(null, StringUtils.trimWhitespace(null));
-		assertEquals("", StringUtils.trimWhitespace(""));
-		assertEquals("", StringUtils.trimWhitespace(" "));
-		assertEquals("", StringUtils.trimWhitespace("\t"));
-		assertEquals("a", StringUtils.trimWhitespace(" a"));
-		assertEquals("a", StringUtils.trimWhitespace("a "));
-		assertEquals("a", StringUtils.trimWhitespace(" a "));
-		assertEquals("a b", StringUtils.trimWhitespace(" a b "));
-		assertEquals("a b  c", StringUtils.trimWhitespace(" a b  c "));
-	}
 
 	@Test
 	public void testTrimAllWhitespace() {
@@ -70,6 +25,7 @@ public class StringUtilsTests {
 		assertEquals("a", StringUtils.trimAllWhitespace(" a "));
 		assertEquals("ab", StringUtils.trimAllWhitespace(" a b "));
 		assertEquals("abc", StringUtils.trimAllWhitespace(" a b  c "));
+		System.out.println(" a b  c ".trim());
 	}
 
 	@Test
@@ -255,63 +211,6 @@ public class StringUtilsTests {
 		assertTrue("Result is unchanged", nochange.equals(inString));
 	}
 
-	@Test
-	public void testDeleteAny() {
-		String inString = "Able was I ere I saw Elba";
-
-		String res = StringUtils.deleteAny(inString, "I");
-		assertTrue("Result has no Is [" + res + "]", res.equals("Able was  ere  saw Elba"));
-
-		res = StringUtils.deleteAny(inString, "AeEba!");
-		assertTrue("Result has no Is [" + res + "]", res.equals("l ws I r I sw l"));
-
-		String mismatch = StringUtils.deleteAny(inString, "#@$#$^");
-		assertTrue("Result is unchanged", mismatch.equals(inString));
-
-		String whitespace = "This is\n\n\n    \t   a messagy string with whitespace\n";
-		assertTrue("Has CR", whitespace.contains("\n"));
-		assertTrue("Has tab", whitespace.contains("\t"));
-		assertTrue("Has  sp", whitespace.contains(" "));
-		String cleaned = StringUtils.deleteAny(whitespace, "\n\t ");
-		assertTrue("Has no CR", !cleaned.contains("\n"));
-		assertTrue("Has no tab", !cleaned.contains("\t"));
-		assertTrue("Has no sp", !cleaned.contains(" "));
-		assertTrue("Still has chars", cleaned.length() > 10);
-	}
-
-
-	@Test
-	public void testQuote() {
-		assertEquals("'myString'", StringUtils.quote("myString"));
-		assertEquals("''", StringUtils.quote(""));
-		assertNull(StringUtils.quote(null));
-	}
-
-	@Test
-	public void testQuoteIfString() {
-		assertEquals("'myString'", StringUtils.quoteIfString("myString"));
-		assertEquals("''", StringUtils.quoteIfString(""));
-		assertEquals(Integer.valueOf(5), StringUtils.quoteIfString(5));
-		assertNull(StringUtils.quoteIfString(null));
-	}
-
-	@Test
-	public void testUnqualify() {
-		String qualified = "i.am.not.unqualified";
-		assertEquals("unqualified", StringUtils.unqualify(qualified));
-	}
-
-	@Test
-	public void testCapitalize() {
-		String capitalized = "i am not capitalized";
-		assertEquals("I am not capitalized", StringUtils.capitalize(capitalized));
-	}
-
-	@Test
-	public void testUncapitalize() {
-		String capitalized = "I am capitalized";
-		assertEquals("i am capitalized", StringUtils.uncapitalize(capitalized));
-	}
 
 	@Test
 	public void testGetFilename() {
@@ -419,35 +318,6 @@ public class StringUtilsTests {
 				StringUtils.pathEquals("/dummy1/bin/../dummy2/dummy3", "/dummy1/dummy2/dummy4"));
 	}
 
-	@Test
-	public void testConcatenateStringArrays() {
-		String[] input1 = new String[] {"myString2"};
-		String[] input2 = new String[] {"myString1", "myString2"};
-		String[] result = StringUtils.concatenateStringArrays(input1, input2);
-		assertEquals(3, result.length);
-		assertEquals("myString2", result[0]);
-		assertEquals("myString1", result[1]);
-		assertEquals("myString2", result[2]);
-
-		assertArrayEquals(input1, StringUtils.concatenateStringArrays(input1, null));
-		assertArrayEquals(input2, StringUtils.concatenateStringArrays(null, input2));
-		assertNull(StringUtils.concatenateStringArrays(null, null));
-	}
-
-	@Test
-	@Deprecated
-	public void testMergeStringArrays() {
-		String[] input1 = new String[] {"myString2"};
-		String[] input2 = new String[] {"myString1", "myString2"};
-		String[] result = StringUtils.mergeStringArrays(input1, input2);
-		assertEquals(2, result.length);
-		assertEquals("myString2", result[0]);
-		assertEquals("myString1", result[1]);
-
-		assertArrayEquals(input1, StringUtils.mergeStringArrays(input1, null));
-		assertArrayEquals(input2, StringUtils.mergeStringArrays(null, input2));
-		assertNull(StringUtils.mergeStringArrays(null, null));
-	}
 
 	@Test
 	public void testSortStringArray() {
@@ -461,13 +331,7 @@ public class StringUtilsTests {
 		assertEquals("myString2", input[1]);
 	}
 
-	@Test
-	public void testRemoveDuplicateStrings() {
-		String[] input = new String[] {"myString2", "myString1", "myString2"};
-		input = StringUtils.removeDuplicateStrings(input);
-		assertEquals("myString2", input[0]);
-		assertEquals("myString1", input[1]);
-	}
+
 
 	@Test
 	public void testSplitArrayElementsIntoProperties() {
