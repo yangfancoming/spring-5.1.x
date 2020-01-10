@@ -10,6 +10,7 @@ public class StringToBarConverter implements Converter<String, Bar> {
 	@Override
 	public Bar convert(String source) {
 		return new Bar(source);
+//		return null;
 	}
 
 }
