@@ -19,9 +19,6 @@ import static org.springframework.util.SocketUtils.PORT_RANGE_MAX;
 
 /**
  * Unit tests for {@link SocketUtils}.
- *
- * @author Sam Brannen
- * @author Gary Russell
  */
 public class SocketUtilsTests {
 
@@ -37,7 +34,6 @@ public class SocketUtilsTests {
 	}
 
 	// TCP
-
 	@Test
 	public void findAvailableTcpPortWithZeroMinPort() {
 		exception.expect(IllegalArgumentException.class);

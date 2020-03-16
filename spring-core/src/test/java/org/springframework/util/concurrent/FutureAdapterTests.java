@@ -2,7 +2,6 @@
 
 package org.springframework.util.concurrent;
 
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
@@ -26,14 +25,14 @@ public class FutureAdapterTests {
 		adaptee = mock(Future.class);
 		adapter = new FutureAdapter<String, Integer>(adaptee) {
 			@Override
-			protected String adapt(Integer adapteeResult) throws ExecutionException {
+			protected String adapt(Integer adapteeResult) {
 				return adapteeResult.toString();
 			}
 		};
 	}
 
 	@Test
-	public void cancel() throws Exception {
+	public void cancel() {
 		given(adaptee.cancel(true)).willReturn(true);
 		boolean result = adapter.cancel(true);
 		assertTrue(result);

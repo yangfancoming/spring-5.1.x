@@ -6,11 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Unit tests for {@link JdbcUtils}.
- *
- * @author Thomas Risberg
- */
+
 public class JdbcUtilsTests {
 
 	@Test

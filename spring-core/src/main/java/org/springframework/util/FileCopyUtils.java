@@ -85,21 +85,14 @@ public abstract class FileCopyUtils {
 	public static int copy(InputStream in, OutputStream out) throws IOException {
 		Assert.notNull(in, "No InputStream specified");
 		Assert.notNull(out, "No OutputStream specified");
-
 		try {
 			return StreamUtils.copy(in, out);
 		}
 		finally {
-			try {
-				in.close();
-			}
-			catch (IOException ex) {
-			}
-			try {
-				out.close();
-			}
-			catch (IOException ex) {
-			}
+			try { in.close();}
+			catch (IOException ex) {}
+			try { out.close();}
+			catch (IOException ex) {}
 		}
 	}
 
@@ -117,11 +110,8 @@ public abstract class FileCopyUtils {
 			out.write(in);
 		}
 		finally {
-			try {
-				out.close();
-			}
-			catch (IOException ex) {
-			}
+			try { out.close();}
+			catch (IOException ex) {}
 		}
 	}
 
@@ -156,7 +146,6 @@ public abstract class FileCopyUtils {
 	public static int copy(Reader in, Writer out) throws IOException {
 		Assert.notNull(in, "No Reader specified");
 		Assert.notNull(out, "No Writer specified");
-
 		try {
 			int byteCount = 0;
 			char[] buffer = new char[BUFFER_SIZE];
@@ -169,16 +158,10 @@ public abstract class FileCopyUtils {
 			return byteCount;
 		}
 		finally {
-			try {
-				in.close();
-			}
-			catch (IOException ex) {
-			}
-			try {
-				out.close();
-			}
-			catch (IOException ex) {
-			}
+			try { in.close();}
+			catch (IOException ex) {}
+			try { out.close();}
+			catch (IOException ex) {}
 		}
 	}
 
@@ -196,11 +179,8 @@ public abstract class FileCopyUtils {
 			out.write(in);
 		}
 		finally {
-			try {
-				out.close();
-			}
-			catch (IOException ex) {
-			}
+			try { out.close();}
+			catch (IOException ex) {}
 		}
 	}
 

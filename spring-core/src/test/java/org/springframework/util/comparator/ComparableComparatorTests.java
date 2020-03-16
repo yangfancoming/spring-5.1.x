@@ -12,10 +12,6 @@ import static org.junit.Assert.*;
 
 /**
  * Tests for {@link ComparableComparator}.
- *
- * @author Keith Donald
-
- * @author Phillip Webb
  */
 public class ComparableComparatorTests {
 

@@ -117,7 +117,6 @@ public abstract class FutureAdapter<T, S> implements Future<T> {
 	@Nullable
 	protected abstract T adapt(S adapteeResult) throws ExecutionException;
 
-
 	private enum State {NEW, SUCCESS, FAILURE}
 
 }

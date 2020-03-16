@@ -14,7 +14,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
-
  * @since 11.01.2005
  */
 public class PropertiesPersisterTests {
@@ -99,7 +98,7 @@ public class PropertiesPersisterTests {
 
 	private String storeProperties(Properties props, String header, boolean useWriter) throws IOException {
 		DefaultPropertiesPersister persister = new DefaultPropertiesPersister();
-		String propCopy = null;
+		String propCopy;
 		if (useWriter) {
 			StringWriter propWriter = new StringWriter();
 			persister.store(props, propWriter, header);

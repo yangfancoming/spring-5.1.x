@@ -215,8 +215,7 @@ public abstract class ObjectUtils {
 				return candidate;
 			}
 		}
-		throw new IllegalArgumentException("Constant [" + constant + "] does not exist in enum type " +
-				enumValues.getClass().getComponentType().getName());
+		throw new IllegalArgumentException("Constant [" + constant + "] does not exist in enum type " + enumValues.getClass().getComponentType().getName());
 	}
 
 	/**
@@ -608,9 +607,7 @@ public abstract class ObjectUtils {
 	 * @see #nullSafeToString(Object)
 	 */
 	public static String getDisplayString(@Nullable Object obj) {
-		if (obj == null) {
-			return EMPTY_STRING;
-		}
+		if (obj == null) return EMPTY_STRING;
 		return nullSafeToString(obj);
 	}
 

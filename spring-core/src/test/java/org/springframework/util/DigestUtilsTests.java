@@ -16,7 +16,6 @@ public class DigestUtilsTests {
 
 	private byte[] bytes;
 
-
 	@Before
 	public void createBytes() throws UnsupportedEncodingException {
 		bytes = "Hello World".getBytes("UTF-8");

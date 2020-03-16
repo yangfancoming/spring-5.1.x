@@ -407,10 +407,7 @@ public abstract class JdbcUtils {
 		else if ("MariaDB".equals(source)) {
 			name = "MySQL";
 		}
-		else if ("Sybase SQL Server".equals(source) ||
-				"Adaptive Server Enterprise".equals(source) ||
-				"ASE".equals(source) ||
-				"sql server".equalsIgnoreCase(source) ) {
+		else if ("Sybase SQL Server".equals(source) || "Adaptive Server Enterprise".equals(source) || "ASE".equals(source) || "sql server".equalsIgnoreCase(source) ) {
 			name = "Sybase";
 		}
 		return name;
