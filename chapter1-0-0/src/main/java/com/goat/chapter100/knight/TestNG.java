@@ -16,8 +16,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
      需要注意的是，这个类中完全不知道是由哪个Knight来执行何种Quest任务，
      只有knights.xml文件知道,在xml文件可以 用 任意实现了 Quest接口的类 进行替换 注入 后使用
  */
-
-
 public class TestNG {
     @Test
     public void test0() {

@@ -8,11 +8,7 @@ import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rod Johnson
 
- * @author Sam Brannen
- */
 public class StopWatchTests {
 
 	private final StopWatch sw = new StopWatch();
