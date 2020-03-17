@@ -10,10 +10,6 @@ import org.springframework.core.type.classreading.MetadataReaderFactory;
 /**
  * Base interface for type filters using a
  * {@link org.springframework.core.type.classreading.MetadataReader}.
- *
- * @author Costin Leau
-
- * @author Mark Fisher
  * @since 2.5
  */
 @FunctionalInterface
@@ -28,7 +24,6 @@ public interface TypeFilter {
 	 * @return whether this filter matches
 	 * @throws IOException in case of I/O failure when reading metadata
 	 */
-	boolean match(MetadataReader metadataReader, MetadataReaderFactory metadataReaderFactory)
-			throws IOException;
+	boolean match(MetadataReader metadataReader, MetadataReaderFactory metadataReaderFactory) throws IOException;
 
 }
