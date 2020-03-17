@@ -5,12 +5,12 @@ import org.springframework.context.annotation.*;
 
 /**
  * Created by Administrator on 2020/3/17.
- * @ Description: 注解方式 获取bean
+ * @ Description: @Conditional 注解作用于方法
  * @ author  山羊来了
  * @ date 2020/3/17---13:48
  */
 @Configuration // 该注解就相当于传统的xml文件
-public class PersonConfig {
+public class ConditionalMethodConfig {
 
 
 	/**

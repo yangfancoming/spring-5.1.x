@@ -13,16 +13,24 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 public class App extends BaseTest {
 
-	ApplicationContext ac = new AnnotationConfigApplicationContext(PersonConfig.class);
-
 	/**
 	 * ***---***	 personConfig
 	 * ***---***	 bill
-	 * ***---***	 linus
 	*/
 	@Test
-	public void gaga(){
+	public void method(){
+		ApplicationContext ac = new AnnotationConfigApplicationContext(ConditionalMethodConfig.class);
 		look(ac);
 	}
 
+	/**
+	 * ***---***	 conditionalClassConfig
+	 * ***---***	 zoo
+	 * ***---***	 foo
+	*/
+	@Test
+	public void tclass(){
+		ApplicationContext ac = new AnnotationConfigApplicationContext(ConditionalClassConfig.class);
+		look(ac);
+	}
 }
