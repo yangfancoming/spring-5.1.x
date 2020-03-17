@@ -1,8 +1,7 @@
 package com.goat.chapter105.item02;
 
 import com.goat.chapter105.model.Person;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
 
 /**
  * Created by Administrator on 2020/3/17.

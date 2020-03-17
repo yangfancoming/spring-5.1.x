@@ -1,6 +1,5 @@
 package com.goat.chapter105.model;
 
-import org.springframework.beans.factory.annotation.Value;
 
 /**
  * Created by Administrator on 2020/3/17.

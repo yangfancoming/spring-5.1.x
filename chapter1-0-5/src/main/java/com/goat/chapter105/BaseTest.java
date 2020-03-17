@@ -15,6 +15,6 @@ public class BaseTest {
 
 	public void look(ApplicationContext ac){
 		String[] str= ac.getBeanDefinitionNames();
-		Arrays.stream(str).forEach(x->System.out.println("***---***" + x));
+		Arrays.stream(str).forEach(x->System.out.println("***---***	 " + x));
 	}
 }

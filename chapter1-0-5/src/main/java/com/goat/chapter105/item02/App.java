@@ -16,15 +16,33 @@ public class App extends BaseTest {
 
 	ApplicationContext ac = new AnnotationConfigApplicationContext(PersonConfig.class);
 
+	/**
+	 * ***---***personConfig
+	 * ***---***pers1on
+	*/
 	@Test
-	public void look(){
+	public void gaga(){
 		look(ac);
 	}
 
+
+	// 注解方式 @bean
 	@Test
-	public void test(){
+	public void bean(){
 		Person person = (Person) ac.getBean("pers1on");
 		System.out.println(person);
 	}
 
+	/**
+	 * 注解方式 @ComponentScans
+	 * ***---***	 componentScansConfig
+	 * ***---***	 testController
+	 * ***---***	 testDao
+	 * ***---***	 testService
+	 */
+	@Test
+	public void ComponentScans(){
+		ApplicationContext ac = new AnnotationConfigApplicationContext(ComponentScansConfig.class);
+		look(ac);
+	}
 }
