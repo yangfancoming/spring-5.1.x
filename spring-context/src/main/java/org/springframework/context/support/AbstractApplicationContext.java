@@ -505,7 +505,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			 *  预初始化，设置容器的启动时间、激活标志，初始化和验证一些预定义的属性（有的话）
 			 */
 			prepareRefresh();
-
 			/**
 			 * Tell the subclass to refresh the internal bean factory.
 			 *    这步比较关键，这步完成后，xml 配置文件就会解析成一个个 Bean 定义(BeanDefinitio)，注册到 BeanFactory 中， (说到底核心是一个 beanName-> beanDefinition 的 map)
