@@ -15,8 +15,7 @@ public class EventManager {
 
 	private final List<Consumer<String>> listeners = new ArrayList<>();
 
-	private EventManager() {
-	}
+	private EventManager() {}
 
 	private static class SingletonHolder {
 		private static final EventManager INSTANCE = new EventManager();

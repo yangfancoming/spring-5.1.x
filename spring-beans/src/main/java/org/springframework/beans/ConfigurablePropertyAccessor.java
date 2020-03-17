@@ -7,13 +7,8 @@ import org.springframework.lang.Nullable;
 
 /**
  * Interface that encapsulates configuration methods for a PropertyAccessor.
- * Also extends the PropertyEditorRegistry interface, which defines methods
- * for PropertyEditor management.
- *
+ * Also extends the PropertyEditorRegistry interface, which defines methods for PropertyEditor management.
  * <p>Serves as base interface for {@link BeanWrapper}.
- *
-
- * @author Stephane Nicoll
  * @since 2.0
  * @see BeanWrapper
  */

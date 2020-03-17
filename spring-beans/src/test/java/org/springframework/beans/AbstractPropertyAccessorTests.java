@@ -77,14 +77,12 @@ public abstract class AbstractPropertyAccessorTests {
 	@Test
 	public void isReadableProperty() {
 		AbstractPropertyAccessor accessor = createAccessor(new Simple("John", 2));
-
 		assertThat(accessor.isReadableProperty("name"), is(true));
 	}
 
 	@Test
 	public void isReadablePropertyNotReadable() {
 		AbstractPropertyAccessor accessor = createAccessor(new NoRead());
-
 		assertFalse(accessor.isReadableProperty("age"));
 	}
 
@@ -94,14 +92,12 @@ public abstract class AbstractPropertyAccessorTests {
 	@Test
 	public void isReadablePropertyNoSuchProperty() {
 		AbstractPropertyAccessor accessor = createAccessor(new NoRead());
-
 		assertFalse(accessor.isReadableProperty("xxxxx"));
 	}
 
 	@Test
 	public void isReadablePropertyNull() {
 		AbstractPropertyAccessor accessor = createAccessor(new NoRead());
-
 		thrown.expect(IllegalArgumentException.class);
 		accessor.isReadableProperty(null);
 	}
@@ -109,14 +105,12 @@ public abstract class AbstractPropertyAccessorTests {
 	@Test
 	public void isWritableProperty() {
 		AbstractPropertyAccessor accessor = createAccessor(new Simple("John", 2));
-
 		assertThat(accessor.isWritableProperty("name"), is(true));
 	}
 
 	@Test
 	public void isWritablePropertyNull() {
 		AbstractPropertyAccessor accessor = createAccessor(new NoRead());
-
 		thrown.expect(IllegalArgumentException.class);
 		accessor.isWritableProperty(null);
 	}
@@ -250,7 +244,6 @@ public abstract class AbstractPropertyAccessorTests {
 	public void getUnknownProperty() {
 		Simple target = new Simple("John", 2);
 		AbstractPropertyAccessor accessor = createAccessor(target);
-
 		try {
 			accessor.getPropertyValue("foo");
 			fail("Should have failed to get an unknown property.");
@@ -265,7 +258,6 @@ public abstract class AbstractPropertyAccessorTests {
 	public void getUnknownNestedProperty() {
 		Person target = createPerson("John", "London", "UK");
 		AbstractPropertyAccessor accessor = createAccessor(target);
-
 		thrown.expect(NotReadablePropertyException.class);
 		accessor.getPropertyValue("address.bar");
 	}
@@ -274,9 +266,7 @@ public abstract class AbstractPropertyAccessorTests {
 	public void setSimpleProperty() {
 		Simple target = new Simple("John", 2);
 		AbstractPropertyAccessor accessor = createAccessor(target);
-
 		accessor.setPropertyValue("name", "SomeValue");
-
 		assertThat(target.name, is("SomeValue"));
 		assertThat(target.getName(), is("SomeValue"));
 	}
@@ -285,7 +275,6 @@ public abstract class AbstractPropertyAccessorTests {
 	public void setNestedProperty() {
 		Person target = createPerson("John", "Paris", "FR");
 		AbstractPropertyAccessor accessor = createAccessor(target);
-
 		accessor.setPropertyValue("address.city", "London");
 		assertThat(target.address.city, is("London"));
 	}

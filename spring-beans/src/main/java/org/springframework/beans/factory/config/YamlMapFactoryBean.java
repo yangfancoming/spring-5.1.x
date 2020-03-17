@@ -49,11 +49,7 @@ import org.springframework.lang.Nullable;
  *
  * Note that the value of "foo" in the first document is not simply replaced
  * with the value in the second, but its nested values are merged.
- *
  * <p>Requires SnakeYAML 1.18 or higher, as of Spring Framework 5.0.6.
- *
- * @author Dave Syer
-
  * @since 4.1
  */
 public class YamlMapFactoryBean extends YamlProcessor implements FactoryBean<Map<String, Object>>, InitializingBean {
@@ -62,7 +58,6 @@ public class YamlMapFactoryBean extends YamlProcessor implements FactoryBean<Map
 
 	@Nullable
 	private Map<String, Object> map;
-
 
 	/**
 	 * Set if a singleton should be created, or a new object on each request
@@ -95,10 +90,8 @@ public class YamlMapFactoryBean extends YamlProcessor implements FactoryBean<Map
 		return Map.class;
 	}
 
-
 	/**
-	 * Template method that subclasses may override to construct the object
-	 * returned by this factory.
+	 * Template method that subclasses may override to construct the object  returned by this factory.
 	 * <p>Invoked lazily the first time {@link #getObject()} is invoked in
 	 * case of a shared singleton; else, on each {@link #getObject()} call.
 	 * <p>The default implementation returns the merged {@code Map} instance.
@@ -120,8 +113,7 @@ public class YamlMapFactoryBean extends YamlProcessor implements FactoryBean<Map
 				Map<String, Object> result = new LinkedHashMap<>((Map<String, Object>) existing);
 				merge(result, (Map) value);
 				output.put(key, result);
-			}
-			else {
+			}else {
 				output.put(key, value);
 			}
 		});

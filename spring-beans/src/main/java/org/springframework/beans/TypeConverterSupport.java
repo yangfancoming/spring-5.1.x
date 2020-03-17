@@ -14,7 +14,6 @@ import org.springframework.util.Assert;
 /**
  * Base implementation of the {@link TypeConverter} interface, using a package-private delegate.
  * Mainly serves as base class for {@link BeanWrapperImpl}.
-
  * @since 3.2
  * @see SimpleTypeConverter
  */
@@ -22,7 +21,6 @@ public abstract class TypeConverterSupport extends PropertyEditorRegistrySupport
 
 	@Nullable
 	TypeConverterDelegate typeConverterDelegate;
-
 
 	@Override
 	@Nullable
@@ -32,27 +30,19 @@ public abstract class TypeConverterSupport extends PropertyEditorRegistrySupport
 
 	@Override
 	@Nullable
-	public <T> T convertIfNecessary(@Nullable Object value, @Nullable Class<T> requiredType,
-			@Nullable MethodParameter methodParam) throws TypeMismatchException {
-
-		return convertIfNecessary(value, requiredType,
-				(methodParam != null ? new TypeDescriptor(methodParam) : TypeDescriptor.valueOf(requiredType)));
+	public <T> T convertIfNecessary(@Nullable Object value, @Nullable Class<T> requiredType,@Nullable MethodParameter methodParam) throws TypeMismatchException {
+		return convertIfNecessary(value, requiredType,(methodParam != null ? new TypeDescriptor(methodParam) : TypeDescriptor.valueOf(requiredType)));
 	}
 
 	@Override
 	@Nullable
-	public <T> T convertIfNecessary(@Nullable Object value, @Nullable Class<T> requiredType, @Nullable Field field)
-			throws TypeMismatchException {
-
-		return convertIfNecessary(value, requiredType,
-				(field != null ? new TypeDescriptor(field) : TypeDescriptor.valueOf(requiredType)));
+	public <T> T convertIfNecessary(@Nullable Object value, @Nullable Class<T> requiredType, @Nullable Field field) throws TypeMismatchException {
+		return convertIfNecessary(value, requiredType,(field != null ? new TypeDescriptor(field) : TypeDescriptor.valueOf(requiredType)));
 	}
 
 	@Nullable
 	@Override
-	public <T> T convertIfNecessary(@Nullable Object value, @Nullable Class<T> requiredType,
-			@Nullable TypeDescriptor typeDescriptor) throws TypeMismatchException {
-
+	public <T> T convertIfNecessary(@Nullable Object value, @Nullable Class<T> requiredType,@Nullable TypeDescriptor typeDescriptor) throws TypeMismatchException {
 		Assert.state(this.typeConverterDelegate != null, "No TypeConverterDelegate");
 		try {
 			return this.typeConverterDelegate.convertIfNecessary(null, null, value, requiredType, typeDescriptor);

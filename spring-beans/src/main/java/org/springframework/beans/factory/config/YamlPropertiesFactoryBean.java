@@ -61,10 +61,6 @@ import org.springframework.lang.Nullable;
  * </pre>
  *
  * <p>Requires SnakeYAML 1.18 or higher, as of Spring Framework 5.0.6.
- *
- * @author Dave Syer
- * @author Stephane Nicoll
-
  * @since 4.1
  */
 public class YamlPropertiesFactoryBean extends YamlProcessor implements FactoryBean<Properties>, InitializingBean {
@@ -73,7 +69,6 @@ public class YamlPropertiesFactoryBean extends YamlProcessor implements FactoryB
 
 	@Nullable
 	private Properties properties;
-
 
 	/**
 	 * Set if a singleton should be created, or a new object on each request

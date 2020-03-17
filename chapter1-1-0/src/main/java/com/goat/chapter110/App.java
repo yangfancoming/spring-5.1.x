@@ -50,7 +50,6 @@ public class App   {
 		ctx.close(); // 单实例Bean 关闭容器后  会调用我们自定义的销毁方法
 	}
 
-
 	/**  测试三： 自定义Bean的初始化和销毁方法
 	 *  通过使用JSR250 规范中的
 	 * 		@PostConstruct： 在bean创建完成并且属性赋值完成；来执行初始化方法

@@ -30,7 +30,6 @@ public class BeanUtilsTests {
 	public void testInstantiateClass() {
 		// give proper class
 		BeanUtils.instantiateClass(ArrayList.class);
-
 		try {
 			// give interface
 			BeanUtils.instantiateClass(List.class);

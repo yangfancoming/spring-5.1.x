@@ -8,7 +8,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class App2  {
 
-
 	/**  测试 spring  */
 	@Test
 	public void test1(){
@@ -16,6 +15,5 @@ public class App2  {
 		CompactDisc disc = (CompactDisc)ctx.getBean("compactDisc");
 		disc.play();
 	}
-
 
 }

@@ -8,10 +8,8 @@ import org.springframework.context.annotation.Configuration;
 /**
  * bean的生命周期：
  * 		bean创建---初始化----销毁的过程
-
  * BeanPostProcessor.postProcessBeforeInitialization
  * BeanPostProcessor.postProcessAfterInitialization
-
  *
  * 遍历得到容器中所有的BeanPostProcessor；挨个执行beforeInitialization，
  * 一但返回null，跳出for循环，不会执行后面的postProcessorsBeforeInitialization
@@ -22,8 +20,6 @@ import org.springframework.context.annotation.Configuration;
  *     1）applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName);
  *     2）invokeInitMethods(beanName, wrappedBean, mbd);执行自定义初始化方法
  *     3）applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName);
- *
- *
 
  * 4）、BeanPostProcessor，两个主要方法如下：
  * 		postProcessBeforeInitialization:
@@ -47,6 +43,5 @@ public class BeanLifeCycle {
 	public Car car() {
 		return new Car();
 	}
-
 
 }

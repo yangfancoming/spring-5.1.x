@@ -198,22 +198,18 @@ public class BeanWrapperTests extends AbstractPropertyAccessorTests {
 
 
 	private interface BaseProperty {
-
 		default String getAliasedName() {
 			return getName();
 		}
-
 		String getName();
 	}
 
 
 	@SuppressWarnings("unused")
 	private interface AliasedProperty extends BaseProperty {
-
 		default void setAliasedName(String name) {
 			setName(name);
 		}
-
 		void setName(String name);
 	}
 

@@ -28,17 +28,14 @@ public abstract class FileSystemUtils {
 	 * <p>Note: Like {@link File#delete()}, this method does not throw any
 	 * exception but rather silently returns {@code false} in case of I/O
 	 * errors. Consider using {@link #deleteRecursively(Path)} for NIO-style
-	 * handling of I/O errors, clearly differentiating between non-existence
-	 * and failure to delete an existing file.
+	 * handling of I/O errors, clearly differentiating between non-existence and failure to delete an existing file.
 	 * @param root the root {@code File} to delete
-	 * @return {@code true} if the {@code File} was successfully deleted,
-	 * otherwise {@code false}
+	 * @return {@code true} if the {@code File} was successfully deleted,otherwise {@code false}
 	 */
 	public static boolean deleteRecursively(@Nullable File root) {
 		if (root == null) {
 			return false;
 		}
-
 		try {
 			return deleteRecursively(root.toPath());
 		}
@@ -48,11 +45,9 @@ public abstract class FileSystemUtils {
 	}
 
 	/**
-	 * Delete the supplied {@link File} - for directories,
-	 * recursively delete any nested directories or files as well.
+	 * Delete the supplied {@link File} - for directories,recursively delete any nested directories or files as well.
 	 * @param root the root {@code File} to delete
-	 * @return {@code true} if the {@code File} existed and was deleted,
-	 * or {@code false} it it did not exist
+	 * @return {@code true} if the {@code File} existed and was deleted,or {@code false} it it did not exist
 	 * @throws IOException in the case of I/O errors
 	 * @since 5.0
 	 */
@@ -80,8 +75,7 @@ public abstract class FileSystemUtils {
 	}
 
 	/**
-	 * Recursively copy the contents of the {@code src} file/directory
-	 * to the {@code dest} file/directory.
+	 * Recursively copy the contents of the {@code src} file/directory to the {@code dest} file/directory.
 	 * @param src the source directory
 	 * @param dest the destination directory
 	 * @throws IOException in the case of I/O errors
@@ -93,8 +87,7 @@ public abstract class FileSystemUtils {
 	}
 
 	/**
-	 * Recursively copy the contents of the {@code src} file/directory
-	 * to the {@code dest} file/directory.
+	 * Recursively copy the contents of the {@code src} file/directory to the {@code dest} file/directory.
 	 * @param src the source directory
 	 * @param dest the destination directory
 	 * @throws IOException in the case of I/O errors
@@ -104,7 +97,6 @@ public abstract class FileSystemUtils {
 		Assert.notNull(src, "Source Path must not be null");
 		Assert.notNull(dest, "Destination Path must not be null");
 		BasicFileAttributes srcAttr = Files.readAttributes(src, BasicFileAttributes.class);
-
 		if (srcAttr.isDirectory()) {
 			Files.walkFileTree(src, new SimpleFileVisitor<Path>() {
 				@Override

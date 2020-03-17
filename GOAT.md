@@ -5,7 +5,6 @@
     chapter1-1-0  spring Bean的生命周期 注解 方式
     chapter1-1-5  spring Bean的生命周期 xml  方式    ？生命周期回调 ？
   
-    
     chapter1-2-0  spring 自定义标签/ 自定义命名空间  Spring解析xml默认命名空间
     chapter1-8-0  Spring 实例化Bean的三种方式
     chapter1-8-2  Spring BeanFactory和FactoryBean的区别
@@ -88,29 +87,19 @@
     
 # bean相关重要接口
     接口一：Resource接口，能把xml等文件读取到内存中，并能够获取到xml文件的详细信息。
-    
     接口二：Document接口，用于xml文件解析到内存，类似于js里的dom解析。
-    
     接口三：BeanDefinitionReader接口，用于解析xml和加载Bean成为BeanDefinition
-    
     接口四：BeanDefinition接口，bean的抽象定义，如是否单例，是否是懒加载，有哪些重要属性等等。
-    
     接口五：BeanFactory，Spring里面的重要模式-工厂模式，用于创建真正意义上的bean类。
-    
     接口六：ApplicationContext，应用程序上下文，我一般都把上下文理解成容器，这个容器就是bean真正运行的容器，spring机器也由此启动。
     
 # 创建步骤
 
     步骤一：资源以统一资源接口Resource加载入内存，即利用Resource接口及其子类把xml加载到内存中。（形态一）
-    
     步骤二：把Resource处理成Document，然后根据Dom接口处理Element节点即可，然后校验，校验过程根据DTD和XSD也就是ApplicationContext头部的配置进行xml格式校验
-    
     步骤三：解析，解析过程包括bean的id，property以及其他方面的配置，把资源中的bean和其他标签（是否懒加载，是否单例等）解析成BeanDefinition格式（形态二）
-    
     步骤四：注册、就是放到全局的Map中，不过注册之前做了重名校验，注册的方式有别名和bean名两种
-    
     步骤五：解析注册完成之后通知监听器，这里只为后期扩展用，程序员可以实现相关监听器方法对这个事件进行处理
-    
     步骤六：加载，加载步骤：注意：此时加载的Bean还没有被装载数据，还处于（形态三）纯净态
     （1）：转换对应的beanname,也就是获取最终的beanname，别名转换，去掉无效标识符等
     （2）：尝试从缓存中加载单例
@@ -121,9 +110,45 @@
     （7）：寻找依赖，先加载依赖的Bean
     （8）：针对不同的scope进行bean的创建singleton，request等
     （9）：类型转换
-    
     步骤七：步骤六弄完bean就是成熟态了（形态四）
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,5 +1,5 @@
 package com.goat.chapter200.javaconfig;
-import com.goat.chapter200.autoconfig.Beyond;
+
 import com.goat.chapter200.autoconfig.BlackPanther;
 import com.goat.chapter200.autoconfig.CDPlayer;
 import com.goat.chapter200.base.CompactDisc;
