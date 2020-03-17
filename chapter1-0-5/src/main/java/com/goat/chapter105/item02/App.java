@@ -2,6 +2,7 @@ package com.goat.chapter105.item02;
 
 import com.goat.chapter105.BaseTest;
 import com.goat.chapter105.model.Person;
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -26,11 +27,31 @@ public class App extends BaseTest {
 	}
 
 
-	// 注解方式 @bean
+	// 注解方式 @bean  默认单例
 	@Test
 	public void bean(){
-		Person person = (Person) ac.getBean("pers1on");
-		System.out.println(person);
+		System.out.println("开始 getBean");
+		Person person1 = (Person) ac.getBean("person333");
+		Person person2 = (Person) ac.getBean("person333");
+		Assert.assertTrue(person1 == person2);
+	}
+
+	// 注解方式 @bean  原型模式
+	@Test
+	public void bean111(){
+		System.out.println("开始 getBean");
+		Person person1 = (Person) ac.getBean("person111");
+		Person person2 = (Person) ac.getBean("person111");
+		Assert.assertFalse(person1 == person2);
+	}
+
+	// 注解方式 @bean  默认单例 懒加载
+	@Test
+	public void person222(){
+		System.out.println("开始 getBean");
+		Person person1 = (Person) ac.getBean("person222");
+		Person person2 = (Person) ac.getBean("person222");
+		Assert.assertTrue(person1 == person2);
 	}
 
 	/**

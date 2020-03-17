@@ -18,9 +18,26 @@ public class PersonConfig {
 	 *  默认将方法名作为 id  或  @Bean("xxxx")  后者优先级高
 	*/
 	@Bean
-	public Person pers1on(){
+	public Person person333(){
+		System.out.println("person333 默认单例模式  容器启动时直接创建");
 		Person person = new Person("goat", 19);
 		return person;
 	}
 
+	// 默认单例，除非显示指定为 prototype 原型模式 (懒加载)
+	@Scope("prototype")
+	@Bean
+	public Person person111(){
+		System.out.println("person111 原型模式  容器启动不会创建，getBean时才会创建");
+		Person person = new Person("goat111", 1111);
+		return person;
+	}
+
+	@Bean
+	@Lazy
+	public Person person222(){
+		System.out.println("person222 默认单例模式  容器启动不会创建，getBean时才会创建");
+		Person person = new Person("goat222", 2222);
+		return person;
+	}
 }
