@@ -36,8 +36,7 @@ import java.lang.annotation.Target;
 public @interface Import {
 
 	/**
-	 * {@link Configuration}, {@link ImportSelector}, {@link ImportBeanDefinitionRegistrar}
-	 * or regular component classes to import.
+	 * {@link Configuration}, {@link ImportSelector}, {@link ImportBeanDefinitionRegistrar} or regular component classes to import.
 	 */
 	Class<?>[] value();
 
