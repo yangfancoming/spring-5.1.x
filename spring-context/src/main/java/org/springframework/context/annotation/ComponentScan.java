@@ -87,8 +87,7 @@ public @interface ComponentScan {
 
 	/**
 	 * Controls the class files eligible for component detection.
-	 * Consider use of {@link #includeFilters} and {@link #excludeFilters}
-	 * for a more flexible approach.
+	 * Consider use of {@link #includeFilters} and {@link #excludeFilters} for a more flexible approach.
 	 */
 	String resourcePattern() default ClassPathScanningCandidateComponentProvider.DEFAULT_RESOURCE_PATTERN;
 

@@ -42,7 +42,13 @@ public class App extends BaseTest {
 	 */
 	@Test
 	public void ComponentScans(){
-		ApplicationContext ac = new AnnotationConfigApplicationContext(ComponentScansConfig.class);
+		ApplicationContext ac = new AnnotationConfigApplicationContext(ComponentScansExcludeFiltersConfig.class);
+		look(ac);
+	}
+
+	@Test
+	public void ComponentScans1(){
+		ApplicationContext ac = new AnnotationConfigApplicationContext(ComponentScansIncludeFiltersConfig.class);
 		look(ac);
 	}
 }
