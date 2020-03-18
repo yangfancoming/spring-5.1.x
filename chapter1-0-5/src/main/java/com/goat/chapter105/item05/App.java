@@ -10,13 +10,23 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 */
 public class App extends BaseTest {
 
+	ApplicationContext ac = new AnnotationConfigApplicationContext(FactoryBeanConfig.class);
+
 	@Test
-	public void ImportConfig(){
-		ApplicationContext ac = new AnnotationConfigApplicationContext(FactoryBeanConfig.class);
+	public void getBean(){
 		look(ac);
 		// 这里获取的是 ColorFactoryBean调用 getObject 方法返回的bean  （com.goat.chapter105.model.Red）
 		Object test = ac.getBean("test");
 		// com.goat.chapter105.model.Red
+		System.out.println(test.getClass());
+	}
+
+	@Test
+	public void ImportConfig(){
+		look(ac);
+		// 这里加上 & 前缀后 可以获取到 FactoryBean 本尊
+		Object test = ac.getBean("&test");
+		//  com.goat.chapter105.item05.ColorFactoryBean
 		System.out.println(test.getClass());
 	}
 
