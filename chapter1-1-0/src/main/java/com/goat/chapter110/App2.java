@@ -36,7 +36,6 @@ public class App2 {
 	@Test
 	public void test6(){
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MyConfig.class);
-		System.out.println(ctx);
 		ctx.close();
 	}
 }

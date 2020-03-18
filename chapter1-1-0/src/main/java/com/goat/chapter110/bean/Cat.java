@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class Cat implements InitializingBean, DisposableBean {
 
     public Cat() {
-        System.out.println(" constructor...");
+        System.out.println("Cat...constructor...");
     }
 
     /**
@@ -16,7 +16,7 @@ public class Cat implements InitializingBean, DisposableBean {
      */
     @Override
     public void afterPropertiesSet() {
-        System.out.println("...afterPropertiesSet...");
+        System.out.println("Cat...afterPropertiesSet...");
     }
 
     /**
@@ -24,7 +24,7 @@ public class Cat implements InitializingBean, DisposableBean {
      */
     @Override
     public void destroy() {
-        System.out.println("...destroy...");
+        System.out.println("Cat...destroy...");
     }
 
 }

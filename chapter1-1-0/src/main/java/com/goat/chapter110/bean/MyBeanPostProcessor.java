@@ -5,6 +5,9 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
 
 
+/**
+ * 后置处理器
+*/
 @Component
 public class MyBeanPostProcessor implements BeanPostProcessor {
 

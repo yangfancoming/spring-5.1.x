@@ -10,12 +10,10 @@ import javax.annotation.PreDestroy;
 
 /**
  * Created by 64274 on 2019/8/7.
- *
  * @ Description: TODO
  * @ author  山羊来了
  * @ date 2019/8/7---20:16
  */
-
 @Component
 public class Dog implements ApplicationContextAware {
 
@@ -25,7 +23,6 @@ public class Dog implements ApplicationContextAware {
 
 	/**
 	 * 对象创建并赋值之后调用
-	 *
 	 * 实际上是 InitDestroyAnnotationBeanPostProcessor 这个 BeanPostProcessor 在工作
 	 * 本质是在 postProcessBeforeInitialization() 方法中被调用的
 	 */
@@ -36,7 +33,6 @@ public class Dog implements ApplicationContextAware {
 
 	/**
 	 * 容器移除对象之前
-	 *
 	 * 实际上是 InitDestroyAnnotationBeanPostProcessor 这个 BeanPostProcessor 在工作
 	 * 本质是在 postProcessBeforeDestruction() 方法中被调用的
 	 */
@@ -47,7 +43,6 @@ public class Dog implements ApplicationContextAware {
 
 	/**
 	 * 此方法的目的在于Debug，加深理解 BeanPostProcessor
-	 *
 	 * 通过Debug可以发现，此 setApplicationContext() 方法其实是在 ApplicationContextAwareProcessor 这个 BeanPostProcessor 的
 	 * postProcessBeforeInitialization() 方法中被调用的
 	 */
