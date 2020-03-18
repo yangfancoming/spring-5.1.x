@@ -9,7 +9,6 @@ public class TestService {
 
 	@Autowired TestDao testDao;
 
-
 	public void printDao(){
 		System.out.println(testDao);
 	}
