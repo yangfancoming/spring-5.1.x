@@ -5,12 +5,11 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class TestService {
+public class TestService2 {
 
-	@Autowired TestDao testDao;
-
+	@Autowired TestDao testDao2;
 
 	public void printDao(){
-		System.out.println(testDao);
+		System.out.println(testDao2);
 	}
 }
