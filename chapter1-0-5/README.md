@@ -13,7 +13,33 @@
 # item02    注解方式获取bean 及 扫描bean  @bean   @Scope("prototype")   @ComponentScan
 
 # itme03    @Configuration 注解学习
+
 # itme04    @Import ImportSelector ImportBeanDefinitionRegistrar   等注解学习
+
 # itme05    FactoryBean
+
 # itme06    @Value 属性注入
+
 # itme07    @Autowire 自动装配
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
