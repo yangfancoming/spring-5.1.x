@@ -6,8 +6,8 @@
 
 
 	<bean id="person" class="com.goat.chapter105.model.Person"  scope="prototype">
-		<property name="name" value="goat"></property>
-		<property name="age" value="18"></property>
+		<property name="name" value="goat"/>
+		<property name="age" value="18"/>
 	</bean>
 
 </beans>

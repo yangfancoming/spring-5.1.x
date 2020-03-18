@@ -15,3 +15,4 @@
 # itme03    @Configuration 注解学习
 # itme04    @Import ImportSelector ImportBeanDefinitionRegistrar   等注解学习
 # itme05    FactoryBean
+# itme06    @Value
