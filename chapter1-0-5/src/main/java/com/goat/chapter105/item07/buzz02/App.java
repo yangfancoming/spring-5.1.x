@@ -45,4 +45,5 @@ public class App extends BaseTest {
 		TestService3 testService3 = ac.getBean(TestService3.class);
 		testService3.printDao();
 	}
+
 }

@@ -1,12 +1,11 @@
 package com.goat.chapter105.item07.buzz03;
 
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import com.goat.chapter105.item07.common.TestService4;
+import org.springframework.context.annotation.Import;
 
 
-@Configuration
-@ComponentScan("com.goat.chapter105.item07.common")
+@Import(TestService4.class)
 public class MyConfig {
 
 }
