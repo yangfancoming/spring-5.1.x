@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Primary;
 public class MyConfig {
 
 	@Bean
-//	@Primary
+	@Primary
 	public TestDao testDao2(){
 		TestDao testDao = new TestDao();
 		testDao.setMark("2");

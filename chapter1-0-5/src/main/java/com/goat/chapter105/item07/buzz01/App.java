@@ -8,20 +8,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
- * 自动装配;
- * 		Spring利用依赖注入（DI），完成对IOC容器中中各个组件的依赖关系赋值；
- * 		BookService{
- * 			@Autowired
- * 			BookDao  bookDao;
- * 		}
- *
- * 2）、Spring还支持使用@Resource(JSR250)和@Inject(JSR330)[java规范的注解]
+ * [java规范的注解]
+ * 2）、Spring还支持使用@Resource(JSR250)和@Inject(JSR330)
  * 		@Resource:
  * 			可以和@Autowired一样实现自动装配功能；默认是按照组件名称进行装配的；
  * 			没有能支持@Primary功能没有支持@Autowired（reqiured=false）;
  * 		@Inject:
  * 			需要导入javax.inject的包，和Autowired的功能一样。没有required=false的功能；
- *  @Autowired:Spring定义的； @Resource、@Inject都是java规范
  *
  * AutowiredAnnotationBeanPostProcessor:解析完成自动装配功能；
  *
@@ -44,6 +37,7 @@ public class App extends BaseTest {
 	public void forAll(){look(ac);}
 
 	/**
+	 * [Spring规范的注解]
 	 * 测试 @Autowired 注解 自动注入： 证明两个TestDao相同
 	 * 		1）、默认优先按照类型去容器中找对应的组件:applicationContext.getBean(BookDao.class);找到就赋值
 	 * 		2）、如果找到多个相同类型的组件，再将属性的名称作为组件的id去容器中查找 applicationContext.getBean("bookDao")
