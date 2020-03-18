@@ -1,6 +1,8 @@
-package com.goat.chapter105.item07;
+package com.goat.chapter105.item07.buzz01;
 
 import com.goat.chapter105.BaseTest;
+import com.goat.chapter105.item07.common.TestDao;
+import com.goat.chapter105.item07.common.TestService;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -12,12 +14,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * 			@Autowired
  * 			BookDao  bookDao;
  * 		}
- * 1）、@Autowired：自动注入：
- * 		1）、默认优先按照类型去容器中找对应的组件:applicationContext.getBean(BookDao.class);找到就赋值
- * 		2）、如果找到多个相同类型的组件，再将属性的名称作为组件的id去容器中查找 applicationContext.getBean("bookDao")
- * 		3）、@Qualifier("bookDao")：使用@Qualifier指定需要装配的组件的id，而不是使用属性名
- * 		4）、自动装配默认一定要将属性赋值好，没有就会报错； 可以使用@Autowired(required=false);
- * 		5）、@Primary：让Spring进行自动装配的时候，默认使用首选的bean； 也可以继续使用@Qualifier指定需要装配的bean的名字
  *
  * 2）、Spring还支持使用@Resource(JSR250)和@Inject(JSR330)[java规范的注解]
  * 		@Resource:
@@ -45,10 +41,22 @@ public class App extends BaseTest {
 	ApplicationContext ac = new AnnotationConfigApplicationContext(MyConfig.class);
 
 	@Test
-	public void getBean(){
+	public void forAll(){look(ac);}
 
+	/**
+	 * 测试 @Autowired 注解 自动注入： 证明两个TestDao相同
+	 * 		1）、默认优先按照类型去容器中找对应的组件:applicationContext.getBean(BookDao.class);找到就赋值
+	 * 		2）、如果找到多个相同类型的组件，再将属性的名称作为组件的id去容器中查找 applicationContext.getBean("bookDao")
+	 * 		3）、@Qualifier("bookDao")：使用@Qualifier指定需要装配的组件的id，而不是使用属性名
+	 * 		4）、自动装配默认一定要将属性赋值好，没有就会报错； 可以使用@Autowired(required=false);
+	 * 		5）、@Primary：让Spring进行自动装配的时候，默认使用首选的bean； 也可以继续使用@Qualifier指定需要装配的bean的名字
+	*/
+	@Test
+	public void getBean1(){
+		TestService testService = ac.getBean(TestService.class);
+		testService.printDao();
+		TestDao testDao = ac.getBean(TestDao.class);
+		System.out.println(testDao);
 	}
-
-
 
 }
