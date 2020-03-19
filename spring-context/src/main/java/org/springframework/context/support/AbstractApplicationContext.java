@@ -519,7 +519,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			// Prepare the bean factory for use in this context.
 			// 就是 上一步 obtainFreshBeanFactory() 创建好beanFactory后 再对其进行初始化设置
 			prepareBeanFactory(beanFactory);
-
 			try {
 				/**
 				  Allows post-processing of the bean factory in context subclasses.
@@ -527,14 +526,12 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 				  BeanFactory构建完成之后事件，这个方法没有实现，我们可以实现一个。
 				*/
 				postProcessBeanFactory(beanFactory);
-
 				// 以上都是对beanFactory的预准备、创建、后置处理工作 ，以下都是 利用创建好的beanFactory来创建各种组件！
 				// Invoke factory processors registered as beans in the context. 调用在上下文中注册为bean的工厂处理器
 				// 调用BeanFacotry的相关后置处理器，如果实现了 Order 或 PriorityOrdered 相关接口，会先进行排序。
 				// 执行上面的事件
 				// 调用 bean工厂的后置处理器
 				invokeBeanFactoryPostProcessors(beanFactory);
-
 				// 以上都是对 bean工厂 的后置处理器 以下开始是 bean 的后置处理器的注册 （并不执行）
 				// Register bean processors that intercept bean creation. 注册bean的后置处理器，用来拦截bean的创建过程
 				// 注册相关 BeanPostProcessor，供Bean生成前后调用。
@@ -542,34 +539,28 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 				// 调用 bean的后置处理器
 				// classpath 下xml配置文件 和 @ComponentScan("com.goat.chapter110.bean") 注解 就是在这里解析 起作用的
 				registerBeanPostProcessors(beanFactory);
-
 				// Initialize message source for this context.
 				// 初始化国际化信息源   // 初始化信息源，信息源bean可以国际化的读取properties文件
 				initMessageSource();
-
 				// Initialize event multicaster for this context.
 				// 初始化Spring相关上下文时间广播器
 				// 初始化事件广播器，对于他内部的监听者applicationListeners，每次事件到来都会一一获取通知（这里使用了观察者模式）
 				initApplicationEventMulticaster();
-
 				// Initialize other special beans in specific context subclasses.
 				// 模版方法供子类实现，用于初始化一些特殊Bean配置等
 				// 模板方法模式，埋了一个钩子，那些想要实现特殊实例化bean的类可以重写这个方法以实现自己的定制化初始化方案
 				// 子类重写这个方法后 在容器刷新的时候会被调用
 				onRefresh();
-
 				// Check for listener beans and register them.  注册事件监听器，监听器需要实现 ApplicationListener 接口。这也不是我们的重点，过
 				// 注册实现了ApplicationListener接口的事件监听器，用于后续广播器广播事件
 				// 给事件广播器注册一些监听器（观察者模式）
 				registerListeners();
-
 				/** 完成 容器的所有 初始化工作！
 				 * Instantiate all remaining (non-lazy-init) singletons.  初始化所有的 singleton beans （lazy-init 的除外）
 				 * BeanFactory 初始化完成时调用，初始ConversionService Bean，冻结beanFactory配置，并开始创建BeanFactory中所有非懒加载的单例Bean
 				 * 完成BeanFacotry的初始化，初始化所有剩余的单例Bean
 				 */
 				finishBeanFactoryInitialization(beanFactory);
-
 				// Last step: publish corresponding event. 最后，广播事件，ApplicationContext 初始化完成
 				// 初始化Lifecycle处理器，调用onRefresh方法，广播ContextRefreshedEvent。
 				//初始化容器的生命周期事件处理器，并发布容器的生命周期事件
@@ -617,7 +608,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 				logger.debug("Refreshing " + getDisplayName());
 			}
 		}
-
 		// Initialize any placeholder property sources in the context environment.
 		// 内部是一个空实现，主要供子类拓展自己ApplicationContext，设置必需的属性
 		initPropertySources();
@@ -626,7 +616,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		// see ConfigurablePropertyResolver#setRequiredProperties
 		//  校验 xml 配置文件  校验必需的属性是否存在
 		getEnvironment().validateRequiredProperties();
-
 		// Store pre-refresh ApplicationListeners...
 		if (this.earlyApplicationListeners == null) {
 			this.earlyApplicationListeners = new LinkedHashSet<>(this.applicationListeners);
@@ -636,7 +625,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			this.applicationListeners.clear();
 			this.applicationListeners.addAll(this.earlyApplicationListeners);
 		}
-
 		// Allow for the collection of early ApplicationEvents,to be published once the multicaster is available...
 		// 允许收集早期的ApplicationEvents，在多主机发布时候有效…
 		this.earlyApplicationEvents = new LinkedHashSet<>();
@@ -820,8 +808,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	protected void initLifecycleProcessor() {
 		ConfigurableListableBeanFactory beanFactory = getBeanFactory();
 		if (beanFactory.containsLocalBean(LIFECYCLE_PROCESSOR_BEAN_NAME)) {
-			this.lifecycleProcessor =
-					beanFactory.getBean(LIFECYCLE_PROCESSOR_BEAN_NAME, LifecycleProcessor.class);
+			this.lifecycleProcessor = beanFactory.getBean(LIFECYCLE_PROCESSOR_BEAN_NAME, LifecycleProcessor.class);
 			if (logger.isTraceEnabled()) {
 				logger.trace("Using LifecycleProcessor [" + this.lifecycleProcessor + "]");
 			}
@@ -832,8 +819,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			this.lifecycleProcessor = defaultProcessor;
 			beanFactory.registerSingleton(LIFECYCLE_PROCESSOR_BEAN_NAME, this.lifecycleProcessor);
 			if (logger.isTraceEnabled()) {
-				logger.trace("No '" + LIFECYCLE_PROCESSOR_BEAN_NAME + "' bean, using " +
-						"[" + this.lifecycleProcessor.getClass().getSimpleName() + "]");
+				logger.trace("No '" + LIFECYCLE_PROCESSOR_BEAN_NAME + "' bean, using " + "[" + this.lifecycleProcessor.getClass().getSimpleName() + "]");
 			}
 		}
 	}

@@ -63,8 +63,7 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 			for (int i = 0; i < locations.length; i++) {
 				this.configLocations[i] = resolvePath(locations[i]).trim();
 			}
-		}
-		else {
+		}else {
 			this.configLocations = null;
 		}
 	}
