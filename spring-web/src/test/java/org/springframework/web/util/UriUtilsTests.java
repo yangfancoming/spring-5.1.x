@@ -9,15 +9,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Arjen Poutsma
 
- * @author Med Belamachi
- */
 public class UriUtilsTests {
 
 	private static final Charset CHARSET = StandardCharsets.UTF_8;
-
 
 	@Test
 	public void encodeScheme() {

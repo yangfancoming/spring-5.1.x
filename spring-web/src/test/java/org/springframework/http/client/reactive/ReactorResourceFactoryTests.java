@@ -13,7 +13,6 @@ import static org.mockito.Mockito.*;
 
 /**
  * Unit tests for {@link ReactorResourceFactory}.
- * @author Rossen Stoyanchev
  */
 public class ReactorResourceFactoryTests {
 
@@ -25,7 +24,7 @@ public class ReactorResourceFactoryTests {
 
 
 	@Test
-	public void globalResources() throws Exception {
+	public void globalResources() {
 
 		this.resourceFactory.setUseGlobalResources(true);
 		this.resourceFactory.afterPropertiesSet();
@@ -41,7 +40,7 @@ public class ReactorResourceFactoryTests {
 	}
 
 	@Test
-	public void globalResourcesWithConsumer() throws Exception {
+	public void globalResourcesWithConsumer() {
 
 		AtomicBoolean invoked = new AtomicBoolean(false);
 
@@ -53,7 +52,7 @@ public class ReactorResourceFactoryTests {
 	}
 
 	@Test
-	public void localResources() throws Exception {
+	public void localResources() {
 
 		this.resourceFactory.setUseGlobalResources(false);
 		this.resourceFactory.afterPropertiesSet();
@@ -75,7 +74,7 @@ public class ReactorResourceFactoryTests {
 	}
 
 	@Test
-	public void localResourcesViaSupplier() throws Exception {
+	public void localResourcesViaSupplier() {
 
 		this.resourceFactory.setUseGlobalResources(false);
 		this.resourceFactory.setConnectionProviderSupplier(() -> this.connectionProvider);
@@ -99,7 +98,7 @@ public class ReactorResourceFactoryTests {
 	}
 
 	@Test
-	public void externalResources() throws Exception {
+	public void externalResources() {
 
 		this.resourceFactory.setUseGlobalResources(false);
 		this.resourceFactory.setConnectionProvider(this.connectionProvider);

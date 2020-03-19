@@ -22,12 +22,7 @@ import org.springframework.web.filter.ForwardedHeaderFilter;
 
 import static org.junit.Assert.*;
 
-/**
 
- * @author Arjen Poutsma
- * @author Rossen Stoyanchev
- * @author Sebastien Deleuze
- */
 public class WebUtilsTests {
 
 	@Test

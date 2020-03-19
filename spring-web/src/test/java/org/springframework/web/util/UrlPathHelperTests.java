@@ -13,10 +13,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link UrlPathHelper}.
- *
- * @author Rob Harrop
-
- * @author Costin Leau
  */
 public class UrlPathHelperTests {
 

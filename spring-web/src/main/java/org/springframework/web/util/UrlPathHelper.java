@@ -24,10 +24,6 @@ import org.springframework.util.StringUtils;
  * <p>Used by {@link org.springframework.web.servlet.handler.AbstractUrlHandlerMapping}
  * and {@link org.springframework.web.servlet.support.RequestContext} for path matching
  * and/or URI determination.
- *
-
- * @author Rob Harrop
- * @author Rossen Stoyanchev
  * @since 14.01.2004
  * @see #getLookupPathForRequest
  * @see javax.servlet.RequestDispatcher

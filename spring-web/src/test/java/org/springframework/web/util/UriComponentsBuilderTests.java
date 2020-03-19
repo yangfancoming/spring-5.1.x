@@ -23,14 +23,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link UriComponentsBuilder}.
- *
- * @author Arjen Poutsma
- * @author Rossen Stoyanchev
- * @author Phillip Webb
- * @author Oliver Gierke
-
- * @author Sam Brannen
- * @author David Eckel
  */
 public class UriComponentsBuilderTests {
 

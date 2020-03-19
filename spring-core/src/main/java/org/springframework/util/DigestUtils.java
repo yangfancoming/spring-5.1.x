@@ -9,9 +9,8 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * Miscellaneous methods for calculating digests.
- * <p>Mainly for internal use within the framework; consider
- * <a href="https://commons.apache.org/codec/">Apache Commons Codec</a>
- * for a more comprehensive suite of digest utilities.
+ * Mainly for internal use within the framework; consider
+ * <a href="https://commons.apache.org/codec/">Apache Commons Codec</a> for a more comprehensive suite of digest utilities.
  * @since 3.0
  */
 public abstract class DigestUtils {
@@ -81,7 +80,6 @@ public abstract class DigestUtils {
 		return appendDigestAsHex(MD5_ALGORITHM_NAME, inputStream, builder);
 	}
 
-
 	/**
 	 * Create a new {@link MessageDigest} with the given algorithm.
 	 * Necessary because {@code MessageDigest} is not thread-safe.
@@ -107,7 +105,7 @@ public abstract class DigestUtils {
 		}
 		else {
 			final byte[] buffer = new byte[StreamUtils.BUFFER_SIZE];
-			int bytesRead = -1;
+			int bytesRead;
 			while ((bytesRead = inputStream.read(buffer)) != -1) {
 				messageDigest.update(buffer, 0, bytesRead);
 			}
@@ -130,9 +128,7 @@ public abstract class DigestUtils {
 		return builder.append(hexDigest);
 	}
 
-	private static StringBuilder appendDigestAsHex(String algorithm, InputStream inputStream, StringBuilder builder)
-			throws IOException {
-
+	private static StringBuilder appendDigestAsHex(String algorithm, InputStream inputStream, StringBuilder builder) throws IOException {
 		char[] hexDigest = digestAsHexChars(algorithm, inputStream);
 		return builder.append(hexDigest);
 	}
@@ -147,6 +143,7 @@ public abstract class DigestUtils {
 		return encodeHex(digest);
 	}
 
+	// 遍历字节数组，通过位运算（位运算效率高），转换成字符放到字符数组中去
 	private static char[] encodeHex(byte[] bytes) {
 		char[] chars = new char[32];
 		for (int i = 0; i < chars.length; i = i + 2) {

@@ -12,8 +12,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link DefaultUriTemplateHandler}.
- *
- * @author Rossen Stoyanchev
  */
 @SuppressWarnings("deprecation")
 public class DefaultUriTemplateHandlerTests {
@@ -25,7 +23,6 @@ public class DefaultUriTemplateHandlerTests {
 	public void baseUrlWithoutPath() throws Exception {
 		this.handler.setBaseUrl("http://localhost:8080");
 		URI actual = this.handler.expand("/myapiresource");
-
 		assertEquals("http://localhost:8080/myapiresource", actual.toString());
 	}
 
@@ -33,7 +30,6 @@ public class DefaultUriTemplateHandlerTests {
 	public void baseUrlWithPath() throws Exception {
 		this.handler.setBaseUrl("http://localhost:8080/context");
 		URI actual = this.handler.expand("/myapiresource");
-
 		assertEquals("http://localhost:8080/context/myapiresource", actual.toString());
 	}
 
@@ -130,7 +126,6 @@ public class DefaultUriTemplateHandlerTests {
 
 		String template = "https://{host}/user/{userId}/dashboard";
 		URI actual = this.handler.expand(template, vars);
-
 		assertEquals("https://www.example.com/user/john%3Bdoe/dashboard", actual.toString());
 	}
 

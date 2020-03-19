@@ -175,7 +175,6 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 		refresh();
 	}
 
-
 	@Override
 	@Nullable
 	protected Resource[] getConfigResources() {

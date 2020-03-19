@@ -19,10 +19,6 @@ import static org.springframework.web.util.UriComponentsBuilder.*;
 
 /**
  * Unit tests for {@link UriComponents}.
- *
- * @author Arjen Poutsma
- * @author Phillip Webb
- * @author Rossen Stoyanchev
  */
 public class UriComponentsTests {
 
@@ -155,8 +151,7 @@ public class UriComponentsTests {
 
 	@Test
 	public void serializable() throws Exception {
-		UriComponents uriComponents = UriComponentsBuilder.fromUriString(
-				"https://example.com").path("/{foo}").query("bar={baz}").build();
+		UriComponents uriComponents = UriComponentsBuilder.fromUriString("https://example.com").path("/{foo}").query("bar={baz}").build();
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		ObjectOutputStream oos = new ObjectOutputStream(bos);
 		oos.writeObject(uriComponents);

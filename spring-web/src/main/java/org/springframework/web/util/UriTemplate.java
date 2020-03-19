@@ -19,15 +19,8 @@ import org.springframework.util.Assert;
  * Represents a URI template. A URI template is a URI-like String that contains variables
  * enclosed by braces ({@code {}}) which can be expanded to produce an actual URI.
  *
- * <p>See {@link #expand(Map)}, {@link #expand(Object[])}, and {@link #match(String)}
- * for example usages.
- *
- * <p>This class is designed to be thread-safe and reusable, allowing for any number
- * of expand or match calls.
- *
- * @author Arjen Poutsma
-
- * @author Rossen Stoyanchev
+ * <p>See {@link #expand(Map)}, {@link #expand(Object[])}, and {@link #match(String)} for example usages.
+ * <p>This class is designed to be thread-safe and reusable, allowing for any number of expand or match calls.
  * @since 3.0
  */
 @SuppressWarnings("serial")
@@ -62,7 +55,7 @@ public class UriTemplate implements Serializable {
 	 * @return the template variable names
 	 */
 	public List<String> getVariableNames() {
-		return this.variableNames;
+		return variableNames;
 	}
 
 	/**
@@ -168,11 +161,11 @@ public class UriTemplate implements Serializable {
 		}
 
 		public List<String> getVariableNames() {
-			return this.variableNames;
+			return variableNames;
 		}
 
 		public Pattern getMatchPattern() {
-			return this.pattern;
+			return pattern;
 		}
 
 		public static TemplateInfo parse(String uriTemplate) {
@@ -206,7 +199,7 @@ public class UriTemplate implements Serializable {
 								throw new IllegalArgumentException(
 										"No custom regular expression specified after ':' in \"" + variable + "\"");
 							}
-							String regex = variable.substring(idx + 1, variable.length());
+							String regex = variable.substring(idx + 1);
 							pattern.append('(');
 							pattern.append(regex);
 							pattern.append(')');

@@ -14,10 +14,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Martin Kersten
 
- */
 public class HtmlCharacterEntityReferencesTests {
 
 	private static final String DTD_FILE = "HtmlCharacterEntityReferences.dtd";

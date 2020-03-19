@@ -12,9 +12,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for the {@link TagUtils} class.
- *
- * @author Alef Arendsen
- * @author Rick Evans
  */
 public class TagUtilsTests {
 

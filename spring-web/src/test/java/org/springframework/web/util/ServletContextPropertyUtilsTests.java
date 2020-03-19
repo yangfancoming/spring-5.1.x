@@ -7,7 +7,6 @@ import org.springframework.mock.web.test.MockServletContext;
 import static org.junit.Assert.*;
 
 /**
- * @author Marten Deinum
  * @since 3.2.2
  */
 public class ServletContextPropertyUtilsTests {
