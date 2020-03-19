@@ -37,7 +37,7 @@ public class App extends BaseTest {
 	public void forAll(){look(ac);}
 
 	/**
-	 * [Spring规范的注解]
+	 * [Spring规范的注解]  推荐使用 [Spring规范的注解]    不推荐使用 [java规范的注解]
 	 * 测试 @Autowired 注解 自动注入： 证明两个TestDao相同
 	 * 		1）、默认优先按照类型去容器中找对应的组件:applicationContext.getBean(BookDao.class);找到就赋值
 	 * 		2）、如果找到多个相同类型的组件，再将属性的名称作为组件的id去容器中查找 applicationContext.getBean("bookDao")
