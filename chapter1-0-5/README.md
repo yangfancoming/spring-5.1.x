@@ -21,6 +21,7 @@
 # itme06    @Value 属性注入
 
 # itme07    @Autowire 自动装配
+# itme08    @Profile  环境切换
 
 
 
