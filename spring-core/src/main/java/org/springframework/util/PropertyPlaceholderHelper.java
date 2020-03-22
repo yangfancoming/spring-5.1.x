@@ -14,10 +14,9 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.lang.Nullable;
 
 /**
- * Utility class for working with Strings that have placeholder values in them. A placeholder takes the form
- * {@code ${name}}. Using {@code PropertyPlaceholderHelper} these placeholders can be substituted for
- * user-supplied values. <p> Values for substitution can be supplied using a {@link Properties} instance or
- * using a {@link PlaceholderResolver}.
+ * Utility class for working with Strings that have placeholder values in them. A placeholder takes the form ${name}
+ * sing {@code PropertyPlaceholderHelper} these placeholders can be substituted for user-supplied values. 
+ * Values for substitution can be supplied using a {@link Properties} instance or using a {@link PlaceholderResolver}.
  * @since 3.0
  */
 public class PropertyPlaceholderHelper {
@@ -32,7 +31,6 @@ public class PropertyPlaceholderHelper {
 		wellKnownSimplePrefixes.put(")", "(");
 	}
 
-
 	private final String placeholderPrefix;
 
 	private final String placeholderSuffix;
@@ -42,6 +40,7 @@ public class PropertyPlaceholderHelper {
 	@Nullable
 	private final String valueSeparator;
 
+	// 标识 未能解析的占位符是否忽略 默认为true
 	private final boolean ignoreUnresolvablePlaceholders;
 
 
@@ -101,14 +100,17 @@ public class PropertyPlaceholderHelper {
 	}
 
 	protected String parseStringValue(String value, PlaceholderResolver placeholderResolver, @Nullable Set<String> visitedPlaceholders) {
+		//获取路径中占位符前缀的索引
 		int startIndex = value.indexOf(this.placeholderPrefix);
 		if (startIndex == -1) {
 			return value;
 		}
 		StringBuilder result = new StringBuilder(value);
+		//匹配到占位符前缀,进入循环体
 		while (startIndex != -1) {
 			int endIndex = findPlaceholderEndIndex(result, startIndex);
 			if (endIndex != -1) {
+				//截取前缀占位符和后缀占位符之间的字符串placeholder
 				String placeholder = result.substring(startIndex + this.placeholderPrefix.length(), endIndex);
 				String originalPlaceholder = placeholder;
 				if (visitedPlaceholders == null) {
@@ -118,8 +120,10 @@ public class PropertyPlaceholderHelper {
 					throw new IllegalArgumentException("Circular placeholder reference '" + originalPlaceholder + "' in property definitions");
 				}
 				// Recursive invocation, parsing placeholders contained in the placeholder key.
+				// 递归调用,继续解析placeholder
 				placeholder = parseStringValue(placeholder, placeholderResolver, visitedPlaceholders);
 				// Now obtain the value for the fully resolved key...
+				// 获取placeholder的值
 				String propVal = placeholderResolver.resolvePlaceholder(placeholder);
 				if (propVal == null && this.valueSeparator != null) {
 					int separatorIndex = placeholder.indexOf(this.valueSeparator);
@@ -135,11 +139,13 @@ public class PropertyPlaceholderHelper {
 				if (propVal != null) {
 					// Recursive invocation, parsing placeholders contained in the
 					// previously resolved placeholder value.
+					// 对替换完成的value进行解析,防止properties的value值里也有占位符
 					propVal = parseStringValue(propVal, placeholderResolver, visitedPlaceholders);
 					result.replace(startIndex, endIndex + this.placeholderSuffix.length(), propVal);
 					if (logger.isTraceEnabled()) {
 						logger.trace("Resolved placeholder '" + placeholder + "'");
 					}
+					// 重新定位开始索引
 					startIndex = result.indexOf(this.placeholderPrefix, startIndex + propVal.length());
 				}
 				else if (this.ignoreUnresolvablePlaceholders) {
@@ -158,11 +164,16 @@ public class PropertyPlaceholderHelper {
 		return result.toString();
 	}
 
+	// 用来寻找占位符后缀索引 withinNestedPlaceholder 这个参数控制当我们获取到占位符后缀的时候是选择直接返回还是继续去获取占位符后缀
 	private int findPlaceholderEndIndex(CharSequence buf, int startIndex) {
+		// 获取前缀后面一个字符的索引
 		int index = startIndex + this.placeholderPrefix.length();
 		int withinNestedPlaceholder = 0;
+		// 如果前缀后面还有字符的话
 		while (index < buf.length()) {
+			// 判断源字符串在index处是否与后缀匹配
 			if (StringUtils.substringMatch(buf, index, this.placeholderSuffix)) {
+				// 如果匹配到后缀,但此时前缀数量>后缀,则继续匹配后缀
 				if (withinNestedPlaceholder > 0) {
 					withinNestedPlaceholder--;
 					index = index + this.placeholderSuffix.length();
@@ -172,10 +183,13 @@ public class PropertyPlaceholderHelper {
 				}
 			}
 			else if (StringUtils.substringMatch(buf, index, this.simplePrefix)) {
+				// 判断源字符串在index处是否与前缀匹配,若匹配,说明前缀后面还是前缀,则把前缀长度累加到index上,继续循环寻找后缀
+				// withinNestedPlaceholder确保前缀和后缀成对出现后
 				withinNestedPlaceholder++;
 				index = index + this.simplePrefix.length();
 			}
 			else {
+				//如果index出既不能和suffix又不能和simplePrefix匹配,则自增,继续循环
 				index++;
 			}
 		}

@@ -31,7 +31,6 @@ public class XmlReaderContext extends ReaderContext {
 
 	private final NamespaceHandlerResolver namespaceHandlerResolver;
 
-
 	/**
 	 * Construct a new {@code XmlReaderContext}.
 	 * @param resource the XML bean definition resource
@@ -41,9 +40,7 @@ public class XmlReaderContext extends ReaderContext {
 	 * @param reader the XML bean definition reader in use
 	 * @param namespaceHandlerResolver the XML namespace resolver
 	 */
-	public XmlReaderContext(Resource resource, ProblemReporter problemReporter,ReaderEventListener eventListener, SourceExtractor sourceExtractor,
-			XmlBeanDefinitionReader reader, NamespaceHandlerResolver namespaceHandlerResolver) {
-
+	public XmlReaderContext(Resource resource, ProblemReporter problemReporter,ReaderEventListener eventListener, SourceExtractor sourceExtractor,XmlBeanDefinitionReader reader, NamespaceHandlerResolver namespaceHandlerResolver) {
 		super(resource, problemReporter, eventListener, sourceExtractor);
 		this.reader = reader;
 		this.namespaceHandlerResolver = namespaceHandlerResolver;
@@ -106,7 +103,6 @@ public class XmlReaderContext extends ReaderContext {
 
 
 	// Convenience methods to delegate to
-
 	/**
 	 * Call the bean name generator for the given bean definition.
 	 * @see XmlBeanDefinitionReader#getBeanNameGenerator()

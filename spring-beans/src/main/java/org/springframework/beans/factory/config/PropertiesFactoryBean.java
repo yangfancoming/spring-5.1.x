@@ -22,21 +22,17 @@ import org.springframework.lang.Nullable;
  *
  * <p>Can create a singleton or a new object on each request.
  * Default is a singleton.
- *
-
  * @see #setLocation
  * @see #setProperties
  * @see #setLocalOverride
  * @see java.util.Properties
  */
-public class PropertiesFactoryBean extends PropertiesLoaderSupport
-		implements FactoryBean<Properties>, InitializingBean {
+public class PropertiesFactoryBean extends PropertiesLoaderSupport implements FactoryBean<Properties>, InitializingBean {
 
 	private boolean singleton = true;
 
 	@Nullable
 	private Properties singletonInstance;
-
 
 	/**
 	 * Set whether a shared 'singleton' Properties instance should be
@@ -65,8 +61,7 @@ public class PropertiesFactoryBean extends PropertiesLoaderSupport
 	public final Properties getObject() throws IOException {
 		if (this.singleton) {
 			return this.singletonInstance;
-		}
-		else {
+		}else {
 			return createProperties();
 		}
 	}
@@ -75,7 +70,6 @@ public class PropertiesFactoryBean extends PropertiesLoaderSupport
 	public Class<Properties> getObjectType() {
 		return Properties.class;
 	}
-
 
 	/**
 	 * Template method that subclasses may override to construct the object

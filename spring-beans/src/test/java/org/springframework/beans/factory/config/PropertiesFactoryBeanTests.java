@@ -13,9 +13,6 @@ import static org.springframework.tests.TestResourceUtils.*;
 
 /**
  * Unit tests for {@link PropertiesFactoryBean}.
- *
-
-
  * @since 01.11.2003
  */
 public class PropertiesFactoryBeanTests {

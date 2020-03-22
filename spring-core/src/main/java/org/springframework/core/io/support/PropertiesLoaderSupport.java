@@ -18,10 +18,7 @@ import org.springframework.util.PropertiesPersister;
 
 /**
  * Base class for JavaBean-style components that need to load properties
- * from one or more resources. Supports local properties as well, with
- * configurable overriding.
- *
-
+ * from one or more resources. Supports local properties as well, with configurable overriding.
  * @since 1.2.2
  */
 public abstract class PropertiesLoaderSupport {
@@ -43,7 +40,6 @@ public abstract class PropertiesLoaderSupport {
 	private String fileEncoding;
 
 	private PropertiesPersister propertiesPersister = new DefaultPropertiesPersister();
-
 
 	/**
 	 * Set local properties, e.g. via the "props" tag in XML bean definitions.
@@ -77,8 +73,7 @@ public abstract class PropertiesLoaderSupport {
 	 * that follow JDK 1.5's properties XML format.
 	 * <p>Note: Properties defined in later files will override
 	 * properties defined earlier files, in case of overlapping keys.
-	 * Hence, make sure that the most specific files are the last
-	 * ones in the given list of locations.
+	 * Hence, make sure that the most specific files are the last ones in the given list of locations.
 	 */
 	public void setLocations(Resource... locations) {
 		this.locations = locations;
@@ -87,8 +82,7 @@ public abstract class PropertiesLoaderSupport {
 	/**
 	 * Set whether local properties override properties from files.
 	 * <p>Default is "false": Properties from files override local defaults.
-	 * Can be switched to "true" to let local properties override defaults
-	 * from files.
+	 * Can be switched to "true" to let local properties override defaults from files.
 	 */
 	public void setLocalOverride(boolean localOverride) {
 		this.localOverride = localOverride;
@@ -105,8 +99,7 @@ public abstract class PropertiesLoaderSupport {
 
 	/**
 	 * Set the encoding to use for parsing properties files.
-	 * <p>Default is none, using the {@code java.util.Properties}
-	 * default encoding.
+	 * <p>Default is none, using the {@code java.util.Properties} default encoding.
 	 * <p>Only applies to classic properties files, not to XML files.
 	 * @see org.springframework.util.PropertiesPersister#load
 	 */
@@ -120,10 +113,8 @@ public abstract class PropertiesLoaderSupport {
 	 * @see org.springframework.util.DefaultPropertiesPersister
 	 */
 	public void setPropertiesPersister(@Nullable PropertiesPersister propertiesPersister) {
-		this.propertiesPersister =
-				(propertiesPersister != null ? propertiesPersister : new DefaultPropertiesPersister());
+		this.propertiesPersister = (propertiesPersister != null ? propertiesPersister : new DefaultPropertiesPersister());
 	}
-
 
 	/**
 	 * Return a merged Properties instance containing both the
@@ -131,18 +122,15 @@ public abstract class PropertiesLoaderSupport {
 	 */
 	protected Properties mergeProperties() throws IOException {
 		Properties result = new Properties();
-
 		if (this.localOverride) {
 			// Load properties from file upfront, to let local properties override.
 			loadProperties(result);
 		}
-
 		if (this.localProperties != null) {
 			for (Properties localProp : this.localProperties) {
 				CollectionUtils.mergePropertiesIntoMap(localProp, result);
 			}
 		}
-
 		if (!this.localOverride) {
 			// Load properties from file afterwards, to let those properties override.
 			loadProperties(result);
@@ -164,16 +152,14 @@ public abstract class PropertiesLoaderSupport {
 					logger.trace("Loading properties file from " + location);
 				}
 				try {
-					PropertiesLoaderUtils.fillProperties(
-							props, new EncodedResource(location, this.fileEncoding), this.propertiesPersister);
+					PropertiesLoaderUtils.fillProperties(props, new EncodedResource(location, this.fileEncoding), this.propertiesPersister);
 				}
 				catch (FileNotFoundException | UnknownHostException ex) {
 					if (this.ignoreResourceNotFound) {
 						if (logger.isDebugEnabled()) {
 							logger.debug("Properties resource not found: " + ex.getMessage());
 						}
-					}
-					else {
+					}else {
 						throw ex;
 					}
 				}

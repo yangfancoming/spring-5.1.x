@@ -1,6 +1,11 @@
 
 
 package org.springframework.util;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.HashSet;
 import java.util.Properties;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -17,6 +22,7 @@ public class PropertyPlaceholderHelperTests {
 		props.setProperty("foo", "bar");
 		assertEquals("foo=bar", helper.replacePlaceholders(text, props));
 	}
+
 
 	// 测试多属性 Properties
 	@Test
@@ -94,4 +100,45 @@ public class PropertyPlaceholderHelperTests {
 		assertEquals("foo=bar,bar=${bar}", helper.replacePlaceholders(text, props));
 	}
 
+	// 其他类型占位符测试
+	@Test
+	public void test1() {
+		PropertyPlaceholderHelper test = new PropertyPlaceholderHelper("*", "*", null, false);
+		String text = "foo=*foo*";
+		Properties props = new Properties();
+		props.setProperty("foo", "bar");
+		assertEquals("foo=bar", test.replacePlaceholders(text, props));
+	}
+
+	@Test
+	public void test2() {
+		PropertyPlaceholderHelper test = new PropertyPlaceholderHelper("[", "]", null, false);
+		String text = "foo=[foo]";
+		Properties props = new Properties();
+		props.setProperty("foo", "bar");
+		assertEquals("foo=bar", test.replacePlaceholders(text, props));
+	}
+
+	@Test
+	public void test3()throws Exception {
+		String a = "{name}{age}{sex}";
+		String b = "{name{age}{sex}}";
+		// doit 获取配置文件方式？
+		InputStream in = new BufferedInputStream(new FileInputStream(new File("org/springframework/util/PropertyPlaceholderHelper.properties")));
+		Properties properties = new Properties();
+		properties.load(in);
+
+		System.out.println("替换前:" + a);
+		System.out.println("替换后:" + helper.parseStringValue(a, placeholderName->{
+			String value = properties.getProperty(placeholderName);
+			return value;
+		}, new HashSet<>()));
+
+		System.out.println("====================================================");
+		System.out.println("替换前:" + b);
+		System.out.println("替换后:" + helper.parseStringValue(b, placeholderName->{
+			String value = properties.getProperty(placeholderName);
+			return value;
+		}, new HashSet<>()));
+	}
 }

@@ -10,9 +10,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for the {@link ResourceBundleEditor} class.
- *
- * @author Rick Evans
-
  */
 public class ResourceBundleEditorTests {
 

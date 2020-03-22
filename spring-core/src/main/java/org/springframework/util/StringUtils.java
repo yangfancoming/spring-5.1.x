@@ -314,8 +314,8 @@ public abstract class StringUtils {
 	}
 
 	/**
-	 * Test whether the given string matches the given substring
-	 * at the given index.
+	 * 用来判断str在index索引位置是否和substring匹配
+	 * Test whether the given string matches the given substring at the given index.
 	 * @param str the original string (or StringBuilder)
 	 * @param index the index in the original string to start matching against
 	 * @param substring the substring to match at the given index
@@ -341,7 +341,6 @@ public abstract class StringUtils {
 		if (!hasLength(str) || !hasLength(sub)) {
 			return 0;
 		}
-
 		int count = 0;
 		int pos = 0;
 		int idx;
@@ -378,7 +377,7 @@ public abstract class StringUtils {
 		int pos = 0;  // our position in the old string
 		int patLen = oldPattern.length();
 		while (index >= 0) {
-			sb.append(inString.substring(pos, index));
+			sb.append(inString, pos, index);
 			sb.append(newPattern);
 			pos = index + patLen;
 			index = inString.indexOf(oldPattern, pos);
