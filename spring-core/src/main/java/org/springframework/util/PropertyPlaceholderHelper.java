@@ -56,13 +56,11 @@ public class PropertyPlaceholderHelper {
 	}
 
 	/**
-	 * Creates a new {@code PropertyPlaceholderHelper} that uses the supplied prefix and suffix.
+	 * Creates a new PropertyPlaceholderHelper that uses the supplied prefix and suffix.
 	 * @param placeholderPrefix the prefix that denotes the start of a placeholder
 	 * @param placeholderSuffix the suffix that denotes the end of a placeholder
-	 * @param valueSeparator the separating character between the placeholder variable
-	 * and the associated default value, if any
-	 * @param ignoreUnresolvablePlaceholders indicates whether unresolvable placeholders should
-	 * be ignored ({@code true}) or cause an exception ({@code false})
+	 * @param valueSeparator the separating character between the placeholder variable and the associated default value, if any
+	 * @param ignoreUnresolvablePlaceholders indicates whether unresolvable placeholders should  be ignored (true) or cause an exception (false)
 	 */
 	public PropertyPlaceholderHelper(String placeholderPrefix, String placeholderSuffix,@Nullable String valueSeparator, boolean ignoreUnresolvablePlaceholders) {
 		Assert.notNull(placeholderPrefix, "'placeholderPrefix' must not be null");
@@ -81,11 +79,10 @@ public class PropertyPlaceholderHelper {
 	}
 
 	/**
-	 * Replaces all placeholders of format {@code ${name}} with the corresponding
-	 * property from the supplied {@link Properties}.
-	 * @param value the value containing the placeholders to be replaced
-	 * @param properties the {@code Properties} to use for replacement
-	 * @return the supplied value with placeholders replaced inline
+	 * Replaces all placeholders of format ${name} with the corresponding property from the supplied {@link Properties}.
+	 * @param value the value containing the placeholders to be replaced  eg:  "foo=${foo}"
+	 * @param properties the Properties to use for replacement  eg: props.setProperty("foo", "bar");
+	 * @return the supplied value with placeholders replaced inline   eg: "foo=bar"
 	 */
 	public String replacePlaceholders(String value, final Properties properties) {
 		Assert.notNull(properties, "'properties' must not be null");
@@ -191,10 +188,9 @@ public class PropertyPlaceholderHelper {
 	 */
 	@FunctionalInterface
 	public interface PlaceholderResolver {
-
 		/**
 		 * Resolve the supplied placeholder name to the replacement value.
-		 * @param placeholderName the name of the placeholder to resolve
+		 * @param placeholderName the name of the placeholder to resolve  eg: String text = "foo=${goat}"; 传入的参数是 "goat"
 		 * @return the replacement value, or {@code null} if no replacement is to be made
 		 */
 		@Nullable
