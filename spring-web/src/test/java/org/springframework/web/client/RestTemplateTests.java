@@ -55,11 +55,7 @@ import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.http.HttpMethod.PUT;
 import static org.springframework.http.MediaType.parseMediaType;
 
-/**
- * @author Arjen Poutsma
- * @author Rossen Stoyanchev
- * @author Brian Clozel
- */
+
 @SuppressWarnings("unchecked")
 public class RestTemplateTests {
 
@@ -94,10 +90,7 @@ public class RestTemplateTests {
 	public void varArgsTemplateVariables() throws Exception {
 		mockSentRequest(GET, "https://example.com/hotels/42/bookings/21");
 		mockResponseStatus(HttpStatus.OK);
-
-		template.execute("https://example.com/hotels/{hotel}/bookings/{booking}", GET,
-				null, null, "42", "21");
-
+		template.execute("https://example.com/hotels/{hotel}/bookings/{booking}", GET,null, null, "42", "21");
 		verify(response).close();
 	}
 
@@ -105,9 +98,7 @@ public class RestTemplateTests {
 	public void varArgsNullTemplateVariable() throws Exception {
 		mockSentRequest(GET, "https://example.com/-foo");
 		mockResponseStatus(HttpStatus.OK);
-
 		template.execute("https://example.com/{first}-{last}", GET, null, null, null, "foo");
-
 		verify(response).close();
 	}
 
@@ -115,10 +106,8 @@ public class RestTemplateTests {
 	public void mapTemplateVariables() throws Exception {
 		mockSentRequest(GET, "https://example.com/hotels/42/bookings/42");
 		mockResponseStatus(HttpStatus.OK);
-
 		Map<String, String> vars = Collections.singletonMap("hotel", "42");
 		template.execute("https://example.com/hotels/{hotel}/bookings/{hotel}", GET, null, null, vars);
-
 		verify(response).close();
 	}
 
@@ -126,12 +115,10 @@ public class RestTemplateTests {
 	public void mapNullTemplateVariable() throws Exception {
 		mockSentRequest(GET, "https://example.com/-foo");
 		mockResponseStatus(HttpStatus.OK);
-
 		Map<String, String> vars = new HashMap<>(2);
 		vars.put("first", null);
 		vars.put("last", "foo");
 		template.execute("https://example.com/{first}-{last}", GET, null, null, vars);
-
 		verify(response).close();
 	}
 
@@ -693,8 +680,7 @@ public class RestTemplateTests {
 	private void mockHttpMessageConverter(MediaType mediaType, Class type) {
 		given(converter.canRead(type, null)).willReturn(true);
 		given(converter.canRead(type, mediaType)).willReturn(true);
-		given(converter.getSupportedMediaTypes())
-				.willReturn(Collections.singletonList(mediaType));
+		given(converter.getSupportedMediaTypes()).willReturn(Collections.singletonList(mediaType));
 		given(converter.canRead(type, mediaType)).willReturn(true);
 		given(converter.canWrite(type, null)).willReturn(true);
 		given(converter.canWrite(type, mediaType)).willReturn(true);
