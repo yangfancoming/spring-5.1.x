@@ -466,9 +466,9 @@ public abstract class ClassUtils {
 	}
 
 	/**
-	 * Check if the right-hand side type may be assigned to the left-hand side
-	 * type, assuming setting by reflection. Considers primitive wrapper
-	 * classes as assignable to the corresponding primitive types.
+	 * Check if the right-hand side type may be assigned to the left-hand side type, assuming setting by reflection.
+	 * 右侧类是否为左侧类的子类
+	 * Considers primitive wrapper classes as assignable to the corresponding primitive types.
 	 * @param lhsType the target type
 	 * @param rhsType the value type that should be assigned to the target type
 	 * @return if the target type is assignable from the value type
@@ -485,8 +485,7 @@ public abstract class ClassUtils {
 			if (lhsType == resolvedPrimitive) {
 				return true;
 			}
-		}
-		else {
+		}else {
 			Class<?> resolvedWrapper = primitiveTypeToWrapperMap.get(rhsType);
 			if (resolvedWrapper != null && lhsType.isAssignableFrom(resolvedWrapper)) {
 				return true;
@@ -530,14 +529,11 @@ public abstract class ClassUtils {
 
 	/**
 	 * Return a path suitable for use with {@code ClassLoader.getResource}
-	 * (also suitable for use with {@code Class.getResource} by prepending a
-	 * slash ('/') to the return value). Built by taking the package of the specified
-	 * class file, converting all dots ('.') to slashes ('/'), adding a trailing slash
-	 * if necessary, and concatenating the specified resource name to this.
-	 * <br/>As such, this function may be used to build a path suitable for
-	 * loading a resource file that is in the same package as a class file,
-	 * although {@link org.springframework.core.io.ClassPathResource} is usually
-	 * even more convenient.
+	 * (also suitable for use with {@code Class.getResource} by prepending a slash ('/') to the return value).
+	 *  Built by taking the package of the specified class file, converting all dots ('.') to slashes ('/'),
+	 *  adding a trailing slash if necessary, and concatenating the specified resource name to this.
+	 * <br/>As such, this function may be used to build a path suitable for loading a resource file that is in the same package as a class file,
+	 * although {@link org.springframework.core.io.ClassPathResource} is usually even more convenient.
 	 * @param clazz the Class whose package will be used as the base
 	 * @param resourceName the resource name to append. A leading slash is optional.
 	 * @return the built-up resource path
@@ -553,13 +549,11 @@ public abstract class ClassUtils {
 	}
 
 	/**
-	 * Given an input class object, return a string which consists of the
-	 * class's package name as a pathname, i.e., all dots ('.') are replaced by
-	 * slashes ('/'). Neither a leading nor trailing slash is added. The result
-	 * could be concatenated with a slash and the name of a resource and fed
-	 * directly to {@code ClassLoader.getResource()}. For it to be fed to
-	 * {@code Class.getResource} instead, a leading slash would also have
-	 * to be prepended to the returned value.
+	 * Given an input class object, return a string which consists of the class's package name as a pathname,
+	 *  i.e., all dots ('.') are replaced by slashes ('/').
+	 *  Neither a leading nor trailing slash is added. ( 首尾没有 / 符号)
+	 *  The result  could be concatenated with a slash and the name of a resource and fed directly to {@code ClassLoader.getResource()}.
+	 *  For it to be fed to {@code Class.getResource} instead, a leading slash would also have to be prepended to the returned value.
 	 * @param clazz the input class. A {@code null} value or the default
 	 * (empty) package will result in an empty string ("") being returned.
 	 * @return a path which represents the package name
@@ -630,8 +624,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
-	 * Return all interfaces that the given instance implements as an array,
-	 * including ones implemented by superclasses.
+	 * Return all interfaces that the given instance implements as an array,including ones implemented by superclasses.
 	 * @param instance the instance to analyze for interfaces
 	 * @return all interfaces that the given instance implements as an array
 	 */
@@ -1078,15 +1071,12 @@ public abstract class ClassUtils {
 	}
 
 	/**
-	 * Determine whether the given class has a public method with the given signature,
-	 * and return it if available (else return {@code null}).
-	 * <p>In case of any signature specified, only returns the method if there is a
-	 * unique candidate, i.e. a single public method with the specified name.
+	 * Determine whether the given class has a public method with the given signature,and return it if available (else return {@code null}).
+	 * <p>In case of any signature specified, only returns the method if there is a unique candidate, i.e. a single public method with the specified name.
 	 * <p>Essentially translates {@code NoSuchMethodException} to {@code null}.
 	 * @param clazz the clazz to analyze
 	 * @param methodName the name of the method
-	 * @param paramTypes the parameter types of the method
-	 * (may be {@code null} to indicate any signature)
+	 * @param paramTypes the parameter types of the method (may be {@code null} to indicate any signature)
 	 * @return the method, or {@code null} if not found
 	 * @see Class#getMethod
 	 */
@@ -1100,8 +1090,7 @@ public abstract class ClassUtils {
 			}catch (NoSuchMethodException ex) {
 				return null;
 			}
-		}
-		else {
+		}else {
 			Set<Method> candidates = new HashSet<>(1);
 			Method[] methods = clazz.getMethods();
 			for (Method method : methods) {
@@ -1117,8 +1106,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
-	 * Return the number of methods with a given name (with any argument types),
-	 * for the given class and/or its superclasses. Includes non-public methods.
+	 * Return the number of methods with a given name (with any argument types),for the given class and/or its superclasses. Includes non-public methods.
 	 * @param clazz	the clazz to check
 	 * @param methodName the name of the method
 	 * @return the number of methods with the given name
@@ -1144,8 +1132,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
-	 * Does the given class or one of its superclasses at least have one or more
-	 * methods with the supplied name (with any argument types)?
+	 * Does the given class or one of its superclasses at least have one or more methods with the supplied name (with any argument types)?
 	 * Includes non-public methods.
 	 * @param clazz	the clazz to check
 	 * @param methodName the name of the method
@@ -1289,8 +1276,7 @@ public abstract class ClassUtils {
 		try {
 			Method method = clazz.getMethod(methodName, args);
 			return Modifier.isStatic(method.getModifiers()) ? method : null;
-		}
-		catch (NoSuchMethodException ex) {
+		}catch (NoSuchMethodException ex) {
 			return null;
 		}
 	}

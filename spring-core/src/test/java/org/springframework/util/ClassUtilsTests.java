@@ -247,6 +247,7 @@ public class ClassUtilsTests {
 		assertFalse(ClassUtils.hasMethod(InnerClass.class, "testPrivate"));
 	}
 
+	// 测试 给定类的给定方法 是否有效(无效则返回null)
 	@Test
 	public void testGetMethodIfAvailable() {
 		Method method = ClassUtils.getMethodIfAvailable(Collection.class, "size");
@@ -261,14 +262,14 @@ public class ClassUtilsTests {
 		assertNull(ClassUtils.getMethodIfAvailable(Collection.class, "someOtherMethod"));
 	}
 
+	// 测试  通过方法名获取方法个数
 	@Test
 	public void testGetMethodCountForName() {
-		assertEquals("Verifying number of overloaded 'print' methods for OverloadedMethodsClass.", 2,
-				ClassUtils.getMethodCountForName(OverloadedMethodsClass.class, "print"));
-		assertEquals("Verifying number of overloaded 'print' methods for SubOverloadedMethodsClass.", 4,
-				ClassUtils.getMethodCountForName(SubOverloadedMethodsClass.class, "print"));
+		assertEquals( 2,ClassUtils.getMethodCountForName(OverloadedMethodsClass.class, "print"));
+		assertEquals( 5,ClassUtils.getMethodCountForName(SubOverloadedMethodsClass.class, "print"));
 	}
 
+	// 测试 给定的方法名 是否至少有一个方法存在
 	@Test
 	public void testCountOverloadedMethods() {
 		assertFalse(ClassUtils.hasAtLeastOneMethodWithName(TestObject.class, "foobar"));
@@ -278,6 +279,7 @@ public class ClassUtilsTests {
 		assertTrue(ClassUtils.hasAtLeastOneMethodWithName(TestObject.class, "setAge"));
 	}
 
+	// 测试 反射调用 无参静态方法
 	@Test
 	public void testNoArgsStaticMethod() throws IllegalAccessException, InvocationTargetException {
 		Method method = ClassUtils.getStaticMethod(InnerClass.class, "staticMethod");
@@ -285,6 +287,7 @@ public class ClassUtilsTests {
 		assertTrue("no argument method was not invoked.",InnerClass.noArgCalled);
 	}
 
+	// 测试 反射调用 有参静态方法
 	@Test
 	public void testArgsStaticMethod() throws IllegalAccessException, InvocationTargetException {
 		Method method = ClassUtils.getStaticMethod(InnerClass.class, "argStaticMethod", String.class);
@@ -292,6 +295,7 @@ public class ClassUtilsTests {
 		assertTrue("argument method was not invoked.", InnerClass.argCalled);
 	}
 
+	// 测试 反射调用 有参静态方法 重载
 	@Test
 	public void testOverloadedStaticMethod() throws IllegalAccessException, InvocationTargetException {
 		Method method = ClassUtils.getStaticMethod(InnerClass.class, "staticMethod", String.class);
@@ -299,6 +303,8 @@ public class ClassUtilsTests {
 		assertTrue("argument method was not invoked.", InnerClass.overloadedCalled);
 	}
 
+
+	// 测试 右侧类是否为左侧类的子类
 	@Test
 	public void testIsAssignable() {
 		assertTrue(ClassUtils.isAssignable(Object.class, Object.class));
@@ -308,6 +314,7 @@ public class ClassUtilsTests {
 		assertTrue(ClassUtils.isAssignable(Number.class, Integer.class));
 		assertTrue(ClassUtils.isAssignable(Number.class, int.class));
 		assertTrue(ClassUtils.isAssignable(Integer.class, int.class));
+
 		assertTrue(ClassUtils.isAssignable(int.class, Integer.class));
 		assertFalse(ClassUtils.isAssignable(String.class, Object.class));
 		assertFalse(ClassUtils.isAssignable(Integer.class, Number.class));
@@ -315,21 +322,23 @@ public class ClassUtilsTests {
 		assertFalse(ClassUtils.isAssignable(double.class, Integer.class));
 	}
 
+	// 测试 给定类 返回其所在包路径  / 格式
 	@Test
 	public void testClassPackageAsResourcePath() {
 		String result = ClassUtils.classPackageAsResourcePath(Proxy.class);
 		assertEquals("java/lang/reflect", result);
 	}
 
+	// 测试 路径拼接
 	@Test
 	public void testAddResourcePathToPackagePath() {
 		String result = "java/lang/reflect/xyzabc.xml";
 		assertEquals(result, ClassUtils.addResourcePathToPackagePath(Proxy.class, "xyzabc.xml"));
 		assertEquals(result, ClassUtils.addResourcePathToPackagePath(Proxy.class, "/xyzabc.xml"));
-
 		assertEquals("java/lang/reflect/a/b/c/d.xml",ClassUtils.addResourcePathToPackagePath(Proxy.class, "a/b/c/d.xml"));
 	}
 
+	// 测试  返回给定对象 所实现的所有接口 (包括其父类实现的接口)
 	@Test
 	public void testGetAllInterfaces() {
 		DerivedTestObject testBean = new DerivedTestObject();
@@ -361,6 +370,7 @@ public class ClassUtilsTests {
 		assertEquals("[]", ClassUtils.classNamesToString(Collections.emptyList()));
 	}
 
+	// 测试  返回 输入两个类的中 层级高的那个类
 	@Test
 	public void testDetermineCommonAncestor() {
 		assertEquals(Number.class, ClassUtils.determineCommonAncestor(Integer.class, Number.class));
@@ -393,49 +403,36 @@ public class ClassUtilsTests {
 
 
 	public static class InnerClass {
-
 		static boolean noArgCalled;
 		static boolean argCalled;
 		static boolean overloadedCalled;
-
 		public static void staticMethod() {
+			System.out.println("staticMethod  is  invoked!");
 			noArgCalled = true;
 		}
-
 		public static void staticMethod(String anArg) {
+			System.out.println("staticMethod  is  invoked!");
 			overloadedCalled = true;
 		}
-
 		public static void argStaticMethod(String anArg) {
+			System.out.println("argStaticMethod  is  invoked!");
 			argCalled = true;
 		}
 		private void testPrivate(){}
 		public void testPublic(){}
-
 	}
 
 	@SuppressWarnings("unused")
 	private static class OverloadedMethodsClass {
-
-		public void print(String messages) {
-			/* no-op */
-		}
-
-		public void print(String[] messages) {
-			/* no-op */
-		}
+		public void print(String messages) {}
+		public void print(String[] messages) {}
 	}
 
 	@SuppressWarnings("unused")
 	private static class SubOverloadedMethodsClass extends OverloadedMethodsClass {
-
-		public void print(String header, String[] messages) {
-			/* no-op */
-		}
-
-		void print(String header, String[] messages, String footer) {
-			/* no-op */
-		}
+		public void print(String messages) {}
+		public void print(String header, String[] messages) {}
+		void print(String header, String[] messages, String footer) {}
 	}
 
 }
