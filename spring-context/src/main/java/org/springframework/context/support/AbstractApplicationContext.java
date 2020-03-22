@@ -303,8 +303,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 	/**
 	 * Create and return a new {@link StandardEnvironment}.
-	 * Subclasses may override this method in order to supply
-	 * a custom {@link ConfigurableEnvironment} implementation.
+	 * Subclasses may override this method in order to supply a custom {@link ConfigurableEnvironment} implementation.
 	 */
 	protected ConfigurableEnvironment createEnvironment() {
 		return new StandardEnvironment();
@@ -498,6 +497,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	@Override
 	public void refresh() throws BeansException, IllegalStateException {
 		// 来个锁，不然 refresh() 还没结束，你又来个启动或销毁容器的操作，那不就乱套了嘛
+		// 为了避免`refresh()` 还没结束，再次发起启动或者销毁容器引起的冲突
 		synchronized (this.startupShutdownMonitor) {
 			/**
 			 *  Prepare this context for refreshing. 准备工作，记录下容器的启动时间、标记“已启动”状态、处理配置文件中的占位符

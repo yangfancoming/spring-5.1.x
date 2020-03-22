@@ -9,8 +9,6 @@ import org.springframework.util.StringUtils;
 
 /**
  * {@link PropertySource} that reads keys and values from a {@code Map} object.
-
-
  * @since 3.1
  * @see PropertiesPropertySource
  */

@@ -20,10 +20,7 @@ import org.springframework.util.ObjectUtils;
  * a counter-example would be {@code JndiPropertySource} where, due to the
  * nature of JNDI it is not possible to determine all possible property names at
  * any given time; rather it is only possible to try to access a property
- * (via {@link #getProperty(String)}) in order to evaluate whether it is present
- * or not.
-
-
+ * (via {@link #getProperty(String)}) in order to evaluate whether it is present  or not.
  * @since 3.1
  * @param <T> the source type
  */
@@ -36,7 +33,6 @@ public abstract class EnumerablePropertySource<T> extends PropertySource<T> {
 	protected EnumerablePropertySource(String name) {
 		super(name);
 	}
-
 
 	/**
 	 * Return whether this {@code PropertySource} contains a property with the given name.

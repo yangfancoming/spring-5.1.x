@@ -24,8 +24,6 @@ import org.springframework.lang.Nullable;
  * "spring.getenv.ignore" and "spring.beaninfo.ignore", in particular for scenarios
  * where JVM system properties are locked on the target platform (e.g. WebSphere).
  * See {@link #setFlag} for a convenient way to locally set such flags to "true".
- *
-
  * @since 3.2.7
  * @see org.springframework.core.env.AbstractEnvironment#IGNORE_GETENV_PROPERTY_NAME
  * @see org.springframework.beans.CachedIntrospectionResults#IGNORE_BEANINFO_PROPERTY_NAME

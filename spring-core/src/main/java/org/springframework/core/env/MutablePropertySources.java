@@ -19,8 +19,6 @@ import org.springframework.lang.Nullable;
  * <p>Where <em>precedence</em> is mentioned in methods such as {@link #addFirst}
  * and {@link #addLast}, this is with regard to the order in which property sources
  * will be searched when resolving a given property with a {@link PropertyResolver}.
-
-
  * @since 3.1
  * @see PropertySourcesPropertyResolver
  */
@@ -28,12 +26,10 @@ public class MutablePropertySources implements PropertySources {
 
 	private final List<PropertySource<?>> propertySourceList = new CopyOnWriteArrayList<>();
 
-
 	/**
 	 * Create a new {@link MutablePropertySources} object.
 	 */
-	public MutablePropertySources() {
-	}
+	public MutablePropertySources() {}
 
 	/**
 	 * Create a new {@code MutablePropertySources} from the given propertySources

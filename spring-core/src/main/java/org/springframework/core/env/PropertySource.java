@@ -50,7 +50,6 @@ public abstract class PropertySource<T> {
 
 	protected final T source;
 
-
 	/**
 	 * Create a new {@code PropertySource} with the given name and source object.
 	 */
@@ -90,8 +89,7 @@ public abstract class PropertySource<T> {
 	/**
 	 * Return whether this {@code PropertySource} contains the given name.
 	 * <p>This implementation simply checks for a {@code null} return value
-	 * from {@link #getProperty(String)}. Subclasses may wish to implement
-	 * a more efficient algorithm if possible.
+	 * from {@link #getProperty(String)}. Subclasses may wish to implement  a more efficient algorithm if possible.
 	 * @param name the property name to find
 	 */
 	public boolean containsProperty(String name) {
@@ -99,8 +97,7 @@ public abstract class PropertySource<T> {
 	}
 
 	/**
-	 * Return the value associated with the given name,
-	 * or {@code null} if not found.
+	 * Return the value associated with the given name, or {@code null} if not found.
 	 * @param name the property to find
 	 * @see PropertyResolver#getRequiredProperty(String)
 	 */
@@ -110,16 +107,13 @@ public abstract class PropertySource<T> {
 
 	/**
 	 * This {@code PropertySource} object is equal to the given object if:
-	 * <ul>
 	 * <li>they are the same instance
 	 * <li>the {@code name} properties for both objects are equal
-	 * </ul>
 	 * <p>No properties other than {@code name} are evaluated.
 	 */
 	@Override
 	public boolean equals(Object other) {
-		return (this == other || (other instanceof PropertySource &&
-				ObjectUtils.nullSafeEquals(this.name, ((PropertySource<?>) other).name)));
+		return (this == other || (other instanceof PropertySource && ObjectUtils.nullSafeEquals(this.name, ((PropertySource<?>) other).name)));
 	}
 
 	/**
@@ -143,14 +137,11 @@ public abstract class PropertySource<T> {
 	@Override
 	public String toString() {
 		if (logger.isDebugEnabled()) {
-			return getClass().getSimpleName() + "@" + System.identityHashCode(this) +
-					" {name='" + this.name + "', properties=" + this.source + "}";
-		}
-		else {
+			return getClass().getSimpleName() + "@" + System.identityHashCode(this) + " {name='" + this.name + "', properties=" + this.source + "}";
+		} else {
 			return getClass().getSimpleName() + " {name='" + this.name + "'}";
 		}
 	}
-
 
 	/**
 	 * Return a {@code PropertySource} implementation intended for collection comparison purposes only.
@@ -165,8 +156,7 @@ public abstract class PropertySource<T> {
 	 * assert !sources.contains(PropertySource.named("sourceC"));
 	 * }</pre>
 	 * The returned {@code PropertySource} will throw {@code UnsupportedOperationException}
-	 * if any methods other than {@code equals(Object)}, {@code hashCode()}, and {@code toString()}
-	 * are called.
+	 * if any methods other than {@code equals(Object)}, {@code hashCode()}, and {@code toString()} are called.
 	 * @param name the name of the comparison {@code PropertySource} to be created and returned.
 	 */
 	public static PropertySource<?> named(String name) {
@@ -180,8 +170,7 @@ public abstract class PropertySource<T> {
 	 * creation time.  For example, a {@code ServletContext}-based property source
 	 * must wait until the {@code ServletContext} object is available to its enclosing
 	 * {@code ApplicationContext}.  In such cases, a stub should be used to hold the
-	 * intended default position/order of the property source, then be replaced
-	 * during context refresh.
+	 * intended default position/order of the property source, then be replaced during context refresh.
 	 * @see org.springframework.context.support.AbstractApplicationContext#initPropertySources()
 	 * @see org.springframework.web.context.support.StandardServletEnvironment
 	 * @see org.springframework.web.context.support.ServletContextPropertySource
@@ -204,15 +193,12 @@ public abstract class PropertySource<T> {
 
 
 	/**
-	 * A {@code PropertySource} implementation intended for collection comparison
-	 * purposes.
-	 *
+	 * A {@code PropertySource} implementation intended for collection comparison purposes.
 	 * @see PropertySource#named(String)
 	 */
 	static class ComparisonPropertySource extends StubPropertySource {
 
-		private static final String USAGE_ERROR =
-				"ComparisonPropertySource instances are for use with collection comparison only";
+		private static final String USAGE_ERROR = "ComparisonPropertySource instances are for use with collection comparison only";
 
 		public ComparisonPropertySource(String name) {
 			super(name);

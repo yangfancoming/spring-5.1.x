@@ -14,8 +14,6 @@ import java.util.Properties;
  * non-{@code String} keys or values. This implementation, however is restricted to
  * accessing only {@code String}-based keys and values, in the same fashion as
  * {@link Properties#getProperty} and {@link Properties#setProperty}.
-
-
  * @since 3.1
  */
 public class PropertiesPropertySource extends MapPropertySource {

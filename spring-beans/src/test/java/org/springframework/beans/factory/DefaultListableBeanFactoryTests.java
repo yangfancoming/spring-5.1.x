@@ -114,6 +114,7 @@ public class DefaultListableBeanFactoryTests {
 		assertFalse(KnowsIfInstantiated.wasInstantiated());
 		System.out.println("---------------------");
 		(new PropertiesBeanDefinitionReader(lbf)).registerBeanDefinitions(p);
+		assertFalse(KnowsIfInstantiated.wasInstantiated());
 		lbf.preInstantiateSingletons();
 		assertTrue(KnowsIfInstantiated.wasInstantiated());
 	}
@@ -3312,6 +3313,11 @@ public class DefaultListableBeanFactoryTests {
 
 		private static boolean instantiated;
 
+		public KnowsIfInstantiated() {
+			System.out.println("调用 KnowsIfInstantiated 构造函数！");
+			instantiated = true;
+		}
+
 		public static void clearInstantiationRecord() {
 			instantiated = false;
 		}
@@ -3319,12 +3325,6 @@ public class DefaultListableBeanFactoryTests {
 		public static boolean wasInstantiated() {
 			return instantiated;
 		}
-
-		public KnowsIfInstantiated() {
-			System.out.println("调用 KnowsIfInstantiated 构造函数！");
-			instantiated = true;
-		}
-
 	}
 
 

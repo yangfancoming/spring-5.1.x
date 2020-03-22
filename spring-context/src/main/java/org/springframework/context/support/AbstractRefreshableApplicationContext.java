@@ -158,8 +158,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	}
 
 	/**
-	 * Determine whether this context currently holds a bean factory,
-	 * i.e. has been refreshed at least once and not been closed yet.
+	 * Determine whether this context currently holds a bean factory, i.e. has been refreshed at least once and not been closed yet.
 	 */
 	protected final boolean hasBeanFactory() {
 		synchronized (this.beanFactoryMonitor) {
