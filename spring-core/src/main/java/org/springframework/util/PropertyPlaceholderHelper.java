@@ -18,9 +18,6 @@ import org.springframework.lang.Nullable;
  * {@code ${name}}. Using {@code PropertyPlaceholderHelper} these placeholders can be substituted for
  * user-supplied values. <p> Values for substitution can be supplied using a {@link Properties} instance or
  * using a {@link PlaceholderResolver}.
- *
-
- * @author Rob Harrop
  * @since 3.0
  */
 public class PropertyPlaceholderHelper {
@@ -67,9 +64,7 @@ public class PropertyPlaceholderHelper {
 	 * @param ignoreUnresolvablePlaceholders indicates whether unresolvable placeholders should
 	 * be ignored ({@code true}) or cause an exception ({@code false})
 	 */
-	public PropertyPlaceholderHelper(String placeholderPrefix, String placeholderSuffix,
-			@Nullable String valueSeparator, boolean ignoreUnresolvablePlaceholders) {
-
+	public PropertyPlaceholderHelper(String placeholderPrefix, String placeholderSuffix,@Nullable String valueSeparator, boolean ignoreUnresolvablePlaceholders) {
 		Assert.notNull(placeholderPrefix, "'placeholderPrefix' must not be null");
 		Assert.notNull(placeholderSuffix, "'placeholderSuffix' must not be null");
 		this.placeholderPrefix = placeholderPrefix;
@@ -85,7 +80,6 @@ public class PropertyPlaceholderHelper {
 		this.ignoreUnresolvablePlaceholders = ignoreUnresolvablePlaceholders;
 	}
 
-
 	/**
 	 * Replaces all placeholders of format {@code ${name}} with the corresponding
 	 * property from the supplied {@link Properties}.
@@ -99,8 +93,7 @@ public class PropertyPlaceholderHelper {
 	}
 
 	/**
-	 * Replaces all placeholders of format {@code ${name}} with the value returned
-	 * from the supplied {@link PlaceholderResolver}.
+	 * Replaces all placeholders of format {@code ${name}} with the value returned  from the supplied {@link PlaceholderResolver}.
 	 * @param value the value containing the placeholders to be replaced
 	 * @param placeholderResolver the {@code PlaceholderResolver} to use for replacement
 	 * @return the supplied value with placeholders replaced inline

@@ -5,10 +5,7 @@ package org.springframework.core.env;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link PropertyResolver} implementation that resolves property values against
- * an underlying set of {@link PropertySources}.
-
-
+ * {@link PropertyResolver} implementation that resolves property values against an underlying set of {@link PropertySources}.
  * @since 3.1
  * @see PropertySource
  * @see PropertySources
@@ -19,7 +16,6 @@ public class PropertySourcesPropertyResolver extends AbstractPropertyResolver {
 	@Nullable
 	private final PropertySources propertySources;
 
-
 	/**
 	 * Create a new resolver against the given property sources.
 	 * @param propertySources the set of {@link PropertySource} objects to use
@@ -27,7 +23,6 @@ public class PropertySourcesPropertyResolver extends AbstractPropertyResolver {
 	public PropertySourcesPropertyResolver(@Nullable PropertySources propertySources) {
 		this.propertySources = propertySources;
 	}
-
 
 	@Override
 	public boolean containsProperty(String key) {
@@ -64,8 +59,7 @@ public class PropertySourcesPropertyResolver extends AbstractPropertyResolver {
 		if (this.propertySources != null) {
 			for (PropertySource<?> propertySource : this.propertySources) {
 				if (logger.isTraceEnabled()) {
-					logger.trace("Searching for key '" + key + "' in PropertySource '" +
-							propertySource.getName() + "'");
+					logger.trace("Searching for key '" + key + "' in PropertySource '" + propertySource.getName() + "'");
 				}
 				Object value = propertySource.getProperty(key);
 				if (value != null) {
@@ -97,8 +91,7 @@ public class PropertySourcesPropertyResolver extends AbstractPropertyResolver {
 	 */
 	protected void logKeyFound(String key, PropertySource<?> propertySource, Object value) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("Found key '" + key + "' in PropertySource '" + propertySource.getName() +
-					"' with value of type " + value.getClass().getSimpleName());
+			logger.debug("Found key '" + key + "' in PropertySource '" + propertySource.getName() + "' with value of type " + value.getClass().getSimpleName());
 		}
 	}
 

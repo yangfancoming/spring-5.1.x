@@ -1,13 +1,9 @@
 
 
 package org.springframework.util;
-
 import java.util.Properties;
-
 import org.junit.Test;
-
 import static org.junit.Assert.*;
-
 
 public class PropertyPlaceholderHelperTests {
 
@@ -19,7 +15,7 @@ public class PropertyPlaceholderHelperTests {
 		Properties props = new Properties();
 		props.setProperty("foo", "bar");
 
-		assertEquals("foo=bar", this.helper.replacePlaceholders(text, props));
+		assertEquals("foo=bar", helper.replacePlaceholders(text, props));
 	}
 
 	@Test
@@ -66,15 +62,12 @@ public class PropertyPlaceholderHelperTests {
 		String text = "foo=${foo}";
 
 		assertEquals("foo=bar",
-				this.helper.replacePlaceholders(text, new PropertyPlaceholderHelper.PlaceholderResolver() {
-					@Override
-					public String resolvePlaceholder(String placeholderName) {
-						if ("foo".equals(placeholderName)) {
-							return "bar";
-						}
-						else {
-							return null;
-						}
+				this.helper.replacePlaceholders(text, placeholderName->{
+					if ("foo".equals(placeholderName)) {
+						return "bar";
+					}
+					else {
+						return null;
 					}
 				}));
 	}

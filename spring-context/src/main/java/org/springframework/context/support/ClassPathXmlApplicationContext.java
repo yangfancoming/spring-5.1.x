@@ -34,6 +34,7 @@ import org.springframework.util.Assert;
  */
 public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContext {
 
+	// 配置文件数组
 	@Nullable
 	private Resource[] configResources;
 
@@ -59,7 +60,7 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 
 	/**
 	 * Create a new ClassPathXmlApplicationContext, loading the definitions from the given XML file and automatically refreshing the context.
-	 * @param configLocation resource location
+	 * @param configLocation resource location eg: "person.xml"  "classpath:knight.xml"
 	 * @throws BeansException if context creation failed
 	 */
 	public ClassPathXmlApplicationContext(String configLocation) throws BeansException {
@@ -100,11 +101,9 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 	}
 
 	/**
-	 * Create a new ClassPathXmlApplicationContext with the given parent,
-	 * loading the definitions from the given XML files.
+	 * Create a new ClassPathXmlApplicationContext with the given parent, loading the definitions from the given XML files.
 	 * @param configLocations array of resource locations
-	 * @param refresh whether to automatically refresh the context,
-	 * loading all bean definitions and creating all singletons.
+	 * @param refresh whether to automatically refresh the context,loading all bean definitions and creating all singletons.
 	 * Alternatively, call refresh manually after further configuring the context.
 	 * @param parent the parent context
 	 * @throws BeansException if context creation failed

@@ -3,8 +3,7 @@
 package org.springframework.core.env;
 
 /**
- * {@link Environment} implementation suitable for use in 'standard' (i.e. non-web)
- * applications.
+ * {@link Environment} implementation suitable for use in 'standard' (i.e. non-web) applications.
  *
  * <p>In addition to the usual functions of a {@link ConfigurableEnvironment} such as
  * property resolution and profile-related operations, this implementation configures two
@@ -12,15 +11,13 @@ package org.springframework.core.env;
  * <ul>
  * <li>{@linkplain AbstractEnvironment#getSystemProperties() system properties}
  * <li>{@linkplain AbstractEnvironment#getSystemEnvironment() system environment variables}
- * </ul>
  *
  * That is, if the key "xyz" is present both in the JVM system properties as well as in
  * the set of environment variables for the current process, the value of key "xyz" from
  * system properties will return from a call to {@code environment.getProperty("xyz")}.
  * This ordering is chosen by default because system properties are per-JVM, while
  * environment variables may be the same across many JVMs on a given system.  Giving
- * system properties precedence allows for overriding of environment variables on a
- * per-JVM basis.
+ * system properties precedence allows for overriding of environment variables on a  per-JVM basis.
  *
  * <p>These default property sources may be removed, reordered, or replaced; and
  * additional property sources may be added using the {@link MutablePropertySources}

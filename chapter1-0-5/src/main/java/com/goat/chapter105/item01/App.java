@@ -17,7 +17,8 @@ public class App extends BaseTest {
 	// 传统标签 <bean>
 	@Test
 	public void test(){
-		ApplicationContext ac = new ClassPathXmlApplicationContext("person.xml");
+//		ApplicationContext ac = new ClassPathXmlApplicationContext("person.xml");
+		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:person.xml");
 		Person person = (Person)ac.getBean("person");
 		System.out.println(person);
 	}

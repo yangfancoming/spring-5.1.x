@@ -11,19 +11,19 @@ import org.springframework.lang.Nullable;
 /**
  * Assertion utility class that assists in validating arguments.
  *
- * <p>Useful for identifying programmer errors early and clearly at runtime.
+ * Useful for identifying programmer errors early and clearly at runtime.
  *
- * <p>For example, if the contract of a public method states it does not
+ * For example, if the contract of a public method states it does not
  * allow {@code null} arguments, {@code Assert} can be used to validate that
  * contract. Doing this clearly indicates a contract violation when it
  * occurs and protects the class's invariants.
  *
- * <p>Typically used to validate method arguments rather than configuration
+ * Typically used to validate method arguments rather than configuration
  * properties, to check for cases that are usually programmer errors rather
  * than configuration errors. In contrast to configuration initialization
  * code, there is usually no point in falling back to defaults in such methods.
  *
- * <p>This class is similar to JUnit's assertion library. If an argument value is
+ * This class is similar to JUnit's assertion library. If an argument value is
  * deemed invalid, an {@link IllegalArgumentException} is thrown (typically).
  * For example:
  *
@@ -31,7 +31,7 @@ import org.springframework.lang.Nullable;
  * Assert.notNull(clazz, "The class must not be null");
  * Assert.isTrue(i > 0, "The value must be greater than zero");</pre>
  *
- * <p>Mainly for internal use within the framework; consider
+ * Mainly for internal use within the framework; consider
  * <a href="https://commons.apache.org/proper/commons-lang/">Apache's Commons Lang</a>
  * for a more comprehensive suite of {@code String} utilities.
  *
@@ -47,7 +47,7 @@ public abstract class Assert {
 	/**
 	 * Assert a boolean expression, throwing an {@code IllegalStateException}
 	 * if the expression evaluates to {@code false}.
-	 * <p>Call {@link #isTrue} if you wish to throw an {@code IllegalArgumentException}
+	 * Call {@link #isTrue} if you wish to throw an {@code IllegalArgumentException}
 	 * on an assertion failure.
 	 * <pre class="code">Assert.state(id == null, "The id property must not already be initialized");</pre>
 	 * @param expression a boolean expression
@@ -63,7 +63,7 @@ public abstract class Assert {
 	/**
 	 * Assert a boolean expression, throwing an {@code IllegalStateException}
 	 * if the expression evaluates to {@code false}.
-	 * <p>Call {@link #isTrue} if you wish to throw an {@code IllegalArgumentException}
+	 * Call {@link #isTrue} if you wish to throw an {@code IllegalArgumentException}
 	 * on an assertion failure.
 	 * <pre class="code">
 	 * Assert.state(id == null,
@@ -389,7 +389,7 @@ public abstract class Assert {
 
 	/**
 	 * Assert that an array contains no {@code null} elements.
-	 * <p>Note: Does not complain if the array is empty!
+	 * Note: Does not complain if the array is empty!
 	 * <pre class="code">Assert.noNullElements(array, "The array must contain non-null elements");</pre>
 	 * @param array the array to check
 	 * @param message the exception message to use if the assertion fails
@@ -407,7 +407,7 @@ public abstract class Assert {
 
 	/**
 	 * Assert that an array contains no {@code null} elements.
-	 * <p>Note: Does not complain if the array is empty!
+	 * Note: Does not complain if the array is empty!
 	 * <pre class="code">
 	 * Assert.noNullElements(array, () -&gt; "The " + arrayType + " array must contain non-null elements");
 	 * </pre>
