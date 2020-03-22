@@ -610,13 +610,14 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		}
 		// Initialize any placeholder property sources in the context environment.
 		// 内部是一个空实现，主要供子类拓展自己ApplicationContext，设置必需的属性
+		// 子类自定义个性化的属性设置方法
 		initPropertySources();
 
 		// Validate that all properties marked as required are resolvable: 验证所有标记为“必需”的属性是否可解析
 		// see ConfigurablePropertyResolver#setRequiredProperties
 		//  校验 xml 配置文件  校验必需的属性是否存在
 		getEnvironment().validateRequiredProperties();
-		// Store pre-refresh ApplicationListeners...
+		// Store pre-refresh ApplicationListeners...  保存容器中一些早期的事件
 		if (this.earlyApplicationListeners == null) {
 			this.earlyApplicationListeners = new LinkedHashSet<>(this.applicationListeners);
 		}
