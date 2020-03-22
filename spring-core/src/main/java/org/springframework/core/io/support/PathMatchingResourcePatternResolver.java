@@ -42,17 +42,12 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * A {@link ResourcePatternResolver} implementation that is able to resolve a
- * specified resource location path into one or more matching Resources.
- * The source path may be a simple path which has a one-to-one mapping to a
- * target {@link org.springframework.core.io.Resource}, or alternatively
- * may contain the special "{@code classpath*:}" prefix and/or
- * internal Ant-style regular expressions (matched using Spring's
- * {@link org.springframework.util.AntPathMatcher} utility).
+ * A {@link ResourcePatternResolver} implementation that is able to resolve a  specified resource location path into one or more matching Resources.
+ * The source path may be a simple path which has a one-to-one mapping to a target {@link org.springframework.core.io.Resource},
+ * or alternatively may contain the special "{@code classpath*:}" prefix and/or
+ * internal Ant-style regular expressions (matched using Spring's {@link org.springframework.util.AntPathMatcher} utility).
  * Both of the latter are effectively wildcards.
- *
  * <p><b>No Wildcards:</b>
- *
  * <p>In the simple case, if the specified location path does not start with the
  * {@code "classpath*:}" prefix, and does not contain a PathMatcher pattern,
  * this resolver will simply return a single resource via a
@@ -79,8 +74,7 @@ import org.springframework.util.StringUtils;
  * then a {@code java.io.File} is obtained from it, and used to resolve the
  * wildcard by walking the filesystem. In the case of a jar URL, the resolver
  * either gets a {@code java.net.JarURLConnection} from it, or manually parses
- * the jar URL, and then traverses the contents of the jar file, to resolve the
- * wildcards.
+ * the jar URL, and then traverses the contents of the jar file, to resolve the wildcards.
  *
  * <p><b>Implications on portability:</b>
  *
@@ -103,8 +97,7 @@ import org.springframework.util.StringUtils;
  * manually parse the jar URL, to be able to walk the contents of the jar,
  * and resolve the wildcard. This will work in most environments, but will
  * fail in others, and it is strongly recommended that the wildcard
- * resolution of resources coming from jars be thoroughly tested in your
- * specific environment before you rely on it.
+ * resolution of resources coming from jars be thoroughly tested in your specific environment before you rely on it.
  *
  * <p><b>{@code classpath*:} Prefix:</b>
  *
@@ -152,14 +145,8 @@ import org.springframework.util.StringUtils;
  * returned by {@code getResource("com/mycompany");}. If this base package node
  * exists in multiple classloader locations, the actual end resource may not be
  * underneath. Therefore, preferably, use "{@code classpath*:}" with the same
- * Ant-style pattern in such a case, which will search <i>all</i> class path
- * locations that contain the root package.
- *
+ * Ant-style pattern in such a case, which will search <i>all</i> class path locations that contain the root package.
 
- * @author Colin Sampaleanu
- * @author Marius Bogoevici
- * @author Costin Leau
- * @author Phillip Webb
  * @since 1.0.2
  * @see #CLASSPATH_ALL_URL_PREFIX
  * @see org.springframework.util.AntPathMatcher

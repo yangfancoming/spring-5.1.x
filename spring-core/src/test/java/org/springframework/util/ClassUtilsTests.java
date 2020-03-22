@@ -37,28 +37,42 @@ public class ClassUtilsTests {
 		InnerClass.overloadedCalled = false;
 	}
 
-
 	@Test
 	public void testIsPresent() {
+		// 判断指定类 是否已加载到jvm
 		assertTrue(ClassUtils.isPresent("java.lang.String", classLoader));
 		assertFalse(ClassUtils.isPresent("java.lang.MySpecialString", classLoader));
+		assertTrue(ClassUtils.isPresent("org.springframework.util.ClassUtilsTests", classLoader));
+		// 判断内部类 是否已加载到jvm
+		assertTrue(ClassUtils.isPresent("org.springframework.util.ClassUtilsTests$InnerClass", classLoader));
 	}
 
+	// 测试反射创建对象
 	@Test
 	public void testForName() throws ClassNotFoundException {
 		assertEquals(String.class, ClassUtils.forName("java.lang.String", classLoader));
+
 		assertEquals(String[].class, ClassUtils.forName("java.lang.String[]", classLoader));
 		assertEquals(String[].class, ClassUtils.forName(String[].class.getName(), classLoader));
+
 		assertEquals(String[][].class, ClassUtils.forName(String[][].class.getName(), classLoader));
 		assertEquals(String[][][].class, ClassUtils.forName(String[][][].class.getName(), classLoader));
 		assertEquals(TestObject.class, ClassUtils.forName("org.springframework.tests.sample.objects.TestObject", classLoader));
+
 		assertEquals(TestObject[].class, ClassUtils.forName("org.springframework.tests.sample.objects.TestObject[]", classLoader));
 		assertEquals(TestObject[].class, ClassUtils.forName(TestObject[].class.getName(), classLoader));
+
 		assertEquals(TestObject[][].class, ClassUtils.forName("org.springframework.tests.sample.objects.TestObject[][]", classLoader));
 		assertEquals(TestObject[][].class, ClassUtils.forName(TestObject[][].class.getName(), classLoader));
+
+		// 测试 ClassUtils.forName 创建内部的情况
+		assertEquals(InnerClass.class, ClassUtils.forName(InnerClass.class.getName(), classLoader));
+		assertEquals(InnerClass.class, ClassUtils.forName("org.springframework.util.ClassUtilsTests$InnerClass", classLoader));
+
 		assertEquals(short[][][].class, ClassUtils.forName("[[[S", classLoader));
 	}
 
+	// 测试 创建java 8中原生类型
 	@Test
 	public void testForNameWithPrimitiveClasses() throws ClassNotFoundException {
 		assertEquals(boolean.class, ClassUtils.forName("boolean", classLoader));
@@ -72,6 +86,7 @@ public class ClassUtilsTests {
 		assertEquals(void.class, ClassUtils.forName("void", classLoader));
 	}
 
+	// 测试 创建java 8中原生类型数组
 	@Test
 	public void testForNameWithPrimitiveArrays() throws ClassNotFoundException {
 		assertEquals(boolean[].class, ClassUtils.forName("boolean[]", classLoader));
@@ -125,96 +140,111 @@ public class ClassUtilsTests {
 		assertTrue(ClassUtils.isCacheSafe(composite, childLoader3));
 	}
 
+	private String errorClassName = "Class name did not match";
+
+	// 测试 获取简单类名( 非全限定类名)
 	@Test
 	public void testGetShortName() {
-		String className = ClassUtils.getShortName(getClass());
-		assertEquals("Class name did not match", "ClassUtilsTests", className);
+		Class<? extends ClassUtilsTests> aClass = getClass();
+		String className = ClassUtils.getShortName(aClass);
+		assertEquals(errorClassName, "ClassUtilsTests", className);
 	}
 
+	// 测试 获取对象数组的 简单类名
 	@Test
 	public void testGetShortNameForObjectArrayClass() {
 		String className = ClassUtils.getShortName(Object[].class);
-		assertEquals("Class name did not match", "Object[]", className);
+		assertEquals(errorClassName, "Object[]", className);
 	}
 
+	// 测试 获取多维对象数组的 简单类名
 	@Test
 	public void testGetShortNameForMultiDimensionalObjectArrayClass() {
 		String className = ClassUtils.getShortName(Object[][].class);
-		assertEquals("Class name did not match", "Object[][]", className);
+		assertEquals(errorClassName, "Object[][]", className);
 	}
 
+	// 测试 获取原始类型对象数组的 简单类名
 	@Test
 	public void testGetShortNameForPrimitiveArrayClass() {
 		String className = ClassUtils.getShortName(byte[].class);
-		assertEquals("Class name did not match", "byte[]", className);
+		assertEquals(errorClassName, "byte[]", className);
 	}
 
+	// 测试 获取多维原始类型对象数组的 简单类名
 	@Test
 	public void testGetShortNameForMultiDimensionalPrimitiveArrayClass() {
 		String className = ClassUtils.getShortName(byte[][][].class);
-		assertEquals("Class name did not match", "byte[][][]", className);
+		assertEquals(errorClassName, "byte[][][]", className);
 	}
 
+	// 测试 获取内部类的简单类名
 	@Test
 	public void testGetShortNameForInnerClass() {
 		String className = ClassUtils.getShortName(InnerClass.class);
-		assertEquals("Class name did not match", "ClassUtilsTests.InnerClass", className);
+		assertEquals(errorClassName, "ClassUtilsTests.InnerClass", className);
 	}
 
 	@Test
 	public void testGetShortNameAsProperty() {
 		String shortName = ClassUtils.getShortNameAsProperty(this.getClass());
-		assertEquals("Class name did not match", "classUtilsTests", shortName);
+		assertEquals(errorClassName, "classUtilsTests", shortName);
 	}
 
+	// 测试获取类文件的名称
 	@Test
 	public void testGetClassFileName() {
 		assertEquals("String.class", ClassUtils.getClassFileName(String.class));
 		assertEquals("ClassUtilsTests.class", ClassUtils.getClassFileName(getClass()));
+		assertEquals("ClassUtilsTests$InnerClass.class", ClassUtils.getClassFileName(InnerClass.class));
 	}
 
+	// 测试 获取类所在的包名
 	@Test
 	public void testGetPackageName() {
 		assertEquals("java.lang", ClassUtils.getPackageName(String.class));
 		assertEquals(getClass().getPackage().getName(), ClassUtils.getPackageName(getClass()));
+		assertEquals("org.springframework.util", ClassUtils.getPackageName(ClassUtilsTests.class));
+		assertEquals("org.springframework.util", ClassUtils.getPackageName(InnerClass.class));
 	}
 
+	// 测试 获取类的全限定名
 	@Test
 	public void testGetQualifiedName() {
-		String className = ClassUtils.getQualifiedName(getClass());
-		assertEquals("Class name did not match", "org.springframework.util.ClassUtilsTests", className);
+		assertEquals(errorClassName, "org.springframework.util.ClassUtilsTests", ClassUtils.getQualifiedName(getClass()));
+		assertEquals(errorClassName, "java.lang.String", ClassUtils.getQualifiedName(String.class));
 	}
 
 	@Test
 	public void testGetQualifiedNameForObjectArrayClass() {
-		String className = ClassUtils.getQualifiedName(Object[].class);
-		assertEquals("Class name did not match", "java.lang.Object[]", className);
+		assertEquals(errorClassName, "java.lang.Object[]", ClassUtils.getQualifiedName(Object[].class));
 	}
 
 	@Test
 	public void testGetQualifiedNameForMultiDimensionalObjectArrayClass() {
-		String className = ClassUtils.getQualifiedName(Object[][].class);
-		assertEquals("Class name did not match", "java.lang.Object[][]", className);
+		assertEquals(errorClassName, "java.lang.Object[][]", ClassUtils.getQualifiedName(Object[][].class));
 	}
 
 	@Test
 	public void testGetQualifiedNameForPrimitiveArrayClass() {
-		String className = ClassUtils.getQualifiedName(byte[].class);
-		assertEquals("Class name did not match", "byte[]", className);
+		assertEquals(errorClassName, "byte[]", ClassUtils.getQualifiedName(byte[].class));
 	}
 
 	@Test
 	public void testGetQualifiedNameForMultiDimensionalPrimitiveArrayClass() {
-		String className = ClassUtils.getQualifiedName(byte[][].class);
-		assertEquals("Class name did not match", "byte[][]", className);
+		assertEquals(errorClassName, "byte[][]",  ClassUtils.getQualifiedName(byte[][].class));
 	}
 
+	// 判断给定类 是否有给定的公有方法
 	@Test
 	public void testHasMethod() {
 		assertTrue(ClassUtils.hasMethod(Collection.class, "size"));
 		assertTrue(ClassUtils.hasMethod(Collection.class, "remove", Object.class));
 		assertFalse(ClassUtils.hasMethod(Collection.class, "remove"));
 		assertFalse(ClassUtils.hasMethod(Collection.class, "someOtherMethod"));
+
+		assertTrue(ClassUtils.hasMethod(InnerClass.class, "testPublic"));
+		assertFalse(ClassUtils.hasMethod(InnerClass.class, "testPrivate"));
 	}
 
 	@Test
@@ -379,6 +409,9 @@ public class ClassUtilsTests {
 		public static void argStaticMethod(String anArg) {
 			argCalled = true;
 		}
+		private void testPrivate(){}
+		public void testPublic(){}
+
 	}
 
 	@SuppressWarnings("unused")
