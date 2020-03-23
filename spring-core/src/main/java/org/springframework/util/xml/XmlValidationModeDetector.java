@@ -13,9 +13,6 @@ import org.springframework.util.StringUtils;
 
 /**
  * Detects whether an XML stream is using DTD- or XSD-based validation.
- *
- * @author Rob Harrop
-
  * @since 2.0
  */
 public class XmlValidationModeDetector {
@@ -94,13 +91,11 @@ public class XmlValidationModeDetector {
 				}
 			}
 			return (isDtdValidated ? VALIDATION_DTD : VALIDATION_XSD);
-		}
-		catch (CharConversionException ex) {
+		}catch (CharConversionException ex) {
 			// Choked on some character encoding...
 			// Leave the decision up to the caller.
 			return VALIDATION_AUTO;
-		}
-		finally {
+		}finally {
 			reader.close();
 		}
 	}
@@ -123,8 +118,7 @@ public class XmlValidationModeDetector {
 			return false;
 		}
 		int openTagIndex = content.indexOf('<');
-		return (openTagIndex > -1 && (content.length() > openTagIndex + 1) &&
-				Character.isLetter(content.charAt(openTagIndex + 1)));
+		return (openTagIndex > -1 && (content.length() > openTagIndex + 1) && Character.isLetter(content.charAt(openTagIndex + 1)));
 	}
 
 	/**

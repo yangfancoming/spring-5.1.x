@@ -41,12 +41,10 @@ import org.springframework.util.xml.XmlValidationModeDetector;
  * Delegates the actual XML document reading to an implementation of the {@link BeanDefinitionDocumentReader} interface.
  *
  * <p>Typically applied to a
- * {@link org.springframework.beans.factory.support.DefaultListableBeanFactory}
- * or a {@link org.springframework.context.support.GenericApplicationContext}.
+ * {@link org.springframework.beans.factory.support.DefaultListableBeanFactory} or a {@link org.springframework.context.support.GenericApplicationContext}.
  *
  * <p>This class loads a DOM document and applies the BeanDefinitionDocumentReader to it.
- * The document reader will register each bean definition with the given bean factory,
- * talking to the latter's implementation of the
+ * The document reader will register each bean definition with the given bean factory,talking to the latter's implementation of the
  * {@link org.springframework.beans.factory.support.BeanDefinitionRegistry} interface.
  * @since 26.11.2003
  * @see #setDocumentReaderClass
@@ -106,7 +104,6 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	private final XmlValidationModeDetector validationModeDetector = new XmlValidationModeDetector();
 
 	private final ThreadLocal<Set<EncodedResource>> resourcesCurrentlyBeingLoaded = new NamedThreadLocal<>("XML bean definition resources currently being loaded");
-
 
 	/**
 	 * Create new XmlBeanDefinitionReader for the given bean factory.

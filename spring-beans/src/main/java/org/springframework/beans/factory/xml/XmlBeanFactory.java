@@ -42,17 +42,6 @@ public class XmlBeanFactory extends DefaultListableBeanFactory {
 	private final XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(this);
 
 	/**
-	 * Create a new XmlBeanFactory with the given resource,
-	 * which must be parsable using DOM.
-	 * @param resource the XML resource to load bean definitions from
-	 * @throws BeansException in case of loading or parsing errors
-	 * 通过指定Resource对象创建XmlBeanFactory实例
-	 */
-	public XmlBeanFactory(Resource resource) throws BeansException {
-		this(resource, null);
-	}
-
-	/**
 	 * Create a new XmlBeanFactory with the given input stream,
 	 * which must be parsable using DOM.
 	 * @param resource the XML resource to load bean definitions from
@@ -66,5 +55,17 @@ public class XmlBeanFactory extends DefaultListableBeanFactory {
 		// 解析xml配置文件,将其转换为IoC容器的内部表示
 		this.reader.loadBeanDefinitions(resource);
 	}
+
+	/**
+	 * Create a new XmlBeanFactory with the given resource,
+	 * which must be parsable using DOM.
+	 * @param resource the XML resource to load bean definitions from
+	 * @throws BeansException in case of loading or parsing errors
+	 * 通过指定Resource对象创建XmlBeanFactory实例
+	 */
+	public XmlBeanFactory(Resource resource) throws BeansException {
+		this(resource, null);
+	}
+
 
 }

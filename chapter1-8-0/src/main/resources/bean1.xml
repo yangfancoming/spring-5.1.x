@@ -18,13 +18,6 @@
 	<!-- ====================实例化bean的方式End==================== -->
 
 
-
-
-
-
-
-
-
 	<!-- 实例工厂方法实例化 -->
 	<bean id="dogFactory" class="com.goat.chapter180.DogFactory"/>
 	<!-- 不能指定class属性,此时必须使用factory-bean属性来指定工厂Bean,factory-method属性指定实例化Bean的方法 -->

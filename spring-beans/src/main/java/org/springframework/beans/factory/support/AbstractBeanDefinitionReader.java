@@ -68,16 +68,14 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 		// 1、确定ResourceLoader使用。
 		if (this.registry instanceof ResourceLoader) {
 			this.resourceLoader = (ResourceLoader) this.registry;
-		}
-		else {
+		}else {
 			this.resourceLoader = new PathMatchingResourcePatternResolver();
 		}
 		// Inherit Environment if possible
 		// 2、如果环境可继承则继承registry的环境,否则重新创建环境
 		if (this.registry instanceof EnvironmentCapable) {
 			this.environment = ((EnvironmentCapable) this.registry).getEnvironment();
-		}
-		else {
+		}else {
 			this.environment = new StandardEnvironment();
 		}
 	}

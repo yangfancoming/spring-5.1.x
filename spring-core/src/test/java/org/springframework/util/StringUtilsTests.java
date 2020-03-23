@@ -1,14 +1,10 @@
 
-
 package org.springframework.util;
 
 import java.util.Arrays;
 import java.util.Locale;
-
 import org.junit.Test;
-
 import static org.junit.Assert.*;
-
 
 public class StringUtilsTests {
 
@@ -17,9 +13,11 @@ public class StringUtilsTests {
 		assertEquals("", StringUtils.trimAllWhitespace(""));
 		assertEquals("", StringUtils.trimAllWhitespace(" "));
 		assertEquals("", StringUtils.trimAllWhitespace("\t"));
+
 		assertEquals("a", StringUtils.trimAllWhitespace(" a"));
 		assertEquals("a", StringUtils.trimAllWhitespace("a "));
 		assertEquals("a", StringUtils.trimAllWhitespace(" a "));
+
 		assertEquals("ab", StringUtils.trimAllWhitespace(" a b "));
 		assertEquals("abc", StringUtils.trimAllWhitespace(" a b  c "));
 		System.out.println(" a b  c ".trim());

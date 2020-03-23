@@ -42,11 +42,13 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 	}
 
 	/**
+	 * 处理单个资源文件路径为一个字符串的情况
 	 * Set the config locations for this application context in init-param style,
 	 * i.e. with distinct locations separated by commas, semicolons or whitespace.
 	 * If not set, the implementation may use a default as appropriate.
 	 */
 	public void setConfigLocation(String location) {
+		//即多个资源文件路径之间用” ,; /t/n”分隔，解析成数组形式
 		setConfigLocations(StringUtils.tokenizeToStringArray(location, CONFIG_LOCATION_DELIMITERS));
 	}
 
@@ -114,8 +116,7 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 	}
 
 	/**
-	 * Sets the id of this context to the bean name by default,
-	 * for cases where the context instance is itself defined as a bean.
+	 * Sets the id of this context to the bean name by default,for cases where the context instance is itself defined as a bean.
 	 */
 	@Override
 	public void setBeanName(String name) {
@@ -126,8 +127,7 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 	}
 
 	/**
-	 * Triggers {@link #refresh()} if not refreshed in the concrete context's
-	 * constructor already.
+	 * Triggers {@link #refresh()} if not refreshed in the concrete context's constructor already.
 	 */
 	@Override
 	public void afterPropertiesSet() {

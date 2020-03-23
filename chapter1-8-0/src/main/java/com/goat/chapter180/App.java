@@ -8,7 +8,6 @@ import org.springframework.core.io.ClassPathResource;
 
 /**
  * Created by 64274 on 2019/8/17.
- *
  * @ Description: TODO
  * @ author  山羊来了
  * @ date 2019/8/17---19:18
@@ -22,11 +21,6 @@ public class App {
 		System.setProperty("spring.profiles.active", "dev");
 		System.out.println("\n========测试方法开始=======\n");
 		xmlBeanFactory = new XmlBeanFactory(new ClassPathResource("bean1.xml"));
-	}
-
-	@After
-	public void after() {
-		System.out.println("\n========测试方法结束=======\n");
 	}
 
 	@Test
@@ -60,5 +54,11 @@ public class App {
 		Dog dog4 = xmlBeanFactory.getBean("dog4", Dog.class);
 		dog4.sayHello();
 	}
+
+	@After
+	public void after() {
+		System.out.println("\n========测试方法结束=======\n");
+	}
+
 }
 
