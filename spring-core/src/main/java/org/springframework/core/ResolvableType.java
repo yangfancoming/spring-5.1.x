@@ -51,10 +51,6 @@ import org.springframework.util.StringUtils;
  *     t.resolveGeneric(1, 0); // String
  * }
  * </pre>
- *
- * @author Phillip Webb
-
- * @author Stephane Nicoll
  * @since 4.0
  * @see #forField(Field)
  * @see #forMethodParameter(Method, int)
@@ -171,7 +167,6 @@ public class ResolvableType implements Serializable {
 		this.hash = null;
 	}
 
-
 	/**
 	 * Return the underling Java {@link Type} being managed.
 	 */
@@ -230,8 +225,7 @@ public class ResolvableType implements Serializable {
 	}
 
 	/**
-	 * Determine whether this {@code ResolvableType} is assignable from the
-	 * specified other type.
+	 * Determine whether this {@code ResolvableType} is assignable from the specified other type.
 	 * @param other the type to be checked against (as a {@code Class})
 	 * @since 4.2
 	 * @see #isAssignableFrom(ResolvableType)
@@ -241,12 +235,10 @@ public class ResolvableType implements Serializable {
 	}
 
 	/**
-	 * Determine whether this {@code ResolvableType} is assignable from the
-	 * specified other type.
+	 * Determine whether this {@code ResolvableType} is assignable from the specified other type.
 	 * <p>Attempts to follow the same rules as the Java compiler, considering
 	 * whether both the {@link #resolve() resolved} {@code Class} is
-	 * {@link Class#isAssignableFrom(Class) assignable from} the given type
-	 * as well as whether all {@link #getGenerics() generics} are assignable.
+	 * {@link Class#isAssignableFrom(Class) assignable from} the given type as well as whether all {@link #getGenerics() generics} are assignable.
 	 * @param other the type to be checked against (as a {@code ResolvableType})
 	 * @return {@code true} if the specified other type can be assigned to this
 	 * {@code ResolvableType}; {@code false} otherwise
@@ -278,8 +270,7 @@ public class ResolvableType implements Serializable {
 
 		// In the form X is assignable to <? extends Number>
 		if (typeBounds != null) {
-			return (ourBounds != null && ourBounds.isSameKind(typeBounds) &&
-					ourBounds.isAssignableFrom(typeBounds.getBounds()));
+			return (ourBounds != null && ourBounds.isSameKind(typeBounds) && ourBounds.isAssignableFrom(typeBounds.getBounds()));
 		}
 
 		// In the form <? extends Number> is assignable to X...
@@ -343,7 +334,6 @@ public class ResolvableType implements Serializable {
 				}
 			}
 		}
-
 		return true;
 	}
 
@@ -355,8 +345,7 @@ public class ResolvableType implements Serializable {
 		if (this == NONE) {
 			return false;
 		}
-		return ((this.type instanceof Class && ((Class<?>) this.type).isArray()) ||
-				this.type instanceof GenericArrayType || resolveType().isArray());
+		return ((this.type instanceof Class && ((Class<?>) this.type).isArray()) || this.type instanceof GenericArrayType || resolveType().isArray());
 	}
 
 	/**
@@ -675,15 +664,13 @@ public class ResolvableType implements Serializable {
 				for (int i = 0; i < generics.length; i++) {
 					generics[i] = ResolvableType.forType(typeParams[i], this);
 				}
-			}
-			else if (this.type instanceof ParameterizedType) {
+			}else if (this.type instanceof ParameterizedType) {
 				Type[] actualTypeArguments = ((ParameterizedType) this.type).getActualTypeArguments();
 				generics = new ResolvableType[actualTypeArguments.length];
 				for (int i = 0; i < actualTypeArguments.length; i++) {
 					generics[i] = forType(actualTypeArguments[i], this.variableResolver);
 				}
-			}
-			else {
+			}else {
 				generics = resolveType().getGenerics();
 			}
 			this.generics = generics;
@@ -729,8 +716,7 @@ public class ResolvableType implements Serializable {
 	/**
 	 * Convenience method that will {@link #getGeneric(int...) get} and
 	 * {@link #resolve() resolve} a specific generic parameters.
-	 * @param indexes the indexes that refer to the generic parameter
-	 * (may be omitted to return the first generic)
+	 * @param indexes the indexes that refer to the generic parameter (may be omitted to return the first generic)
 	 * @return a resolved {@link Class} or {@code null}
 	 * @see #getGeneric(int...)
 	 * @see #resolve()
@@ -1626,7 +1612,6 @@ public class ResolvableType implements Serializable {
 			}
 			return new WildcardBounds(boundsType, resolvableBounds);
 		}
-
 		/**
 		 * The various kinds of bounds.
 		 */

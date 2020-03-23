@@ -15,16 +15,12 @@ import org.springframework.util.StringValueResolver;
 
 /**
  * {@link PlaceholderConfigurerSupport} subclass that resolves ${...} placeholders against
- * {@link #setLocation local} {@link #setProperties properties} and/or system properties
- * and environment variables.
- *
+ * {@link #setLocation local} {@link #setProperties properties} and/or system properties and environment variables.
  * <p>As of Spring 3.1, {@link org.springframework.context.support.PropertySourcesPlaceholderConfigurer
  * PropertySourcesPlaceholderConfigurer} should be used preferentially over this implementation; it is
  * more flexible through taking advantage of the {@link org.springframework.core.env.Environment} and
  * {@link org.springframework.core.env.PropertySource} mechanisms also made available in Spring 3.1.
- *
  * <p>{@link PropertyPlaceholderConfigurer} is still appropriate for use when:
- * <ul>
  * <li>the {@code spring-context} module is not available (i.e., one is using Spring's
  * {@code BeanFactory} API as opposed to {@code ApplicationContext}).
  * <li>existing configuration makes use of the {@link #setSystemPropertiesMode(int) "systemPropertiesMode"}
@@ -32,10 +28,6 @@ import org.springframework.util.StringValueResolver;
  * Users are encouraged to move away from using these settings, and rather configure property
  * source search order through the container's {@code Environment}; however, exact preservation
  * of functionality may be maintained by continuing to use {@code PropertyPlaceholderConfigurer}.
- * </ul>
- *
-
-
  * @since 02.10.2003
  * @see #setSystemPropertiesModeName
  * @see PlaceholderConfigurerSupport
@@ -59,14 +51,11 @@ public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport 
 	 */
 	public static final int SYSTEM_PROPERTIES_MODE_OVERRIDE = 2;
 
-
 	private static final Constants constants = new Constants(PropertyPlaceholderConfigurer.class);
 
 	private int systemPropertiesMode = SYSTEM_PROPERTIES_MODE_FALLBACK;
 
-	private boolean searchSystemEnvironment =
-			!SpringProperties.getFlag(AbstractEnvironment.IGNORE_GETENV_PROPERTY_NAME);
-
+	private boolean searchSystemEnvironment = !SpringProperties.getFlag(AbstractEnvironment.IGNORE_GETENV_PROPERTY_NAME);
 
 	/**
 	 * Set the system property mode by the name of the corresponding constant,
@@ -97,8 +86,7 @@ public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport 
 	/**
 	 * Set whether to search for a matching system environment variable
 	 * if no matching system property has been found. Only applied when
-	 * "systemPropertyMode" is active (i.e. "fallback" or "override"), right
-	 * after checking JVM system properties.
+	 * "systemPropertyMode" is active (i.e. "fallback" or "override"), right after checking JVM system properties.
 	 * <p>Default is "true". Switch this setting off to never resolve placeholders
 	 * against system environment variables. Note that it is generally recommended
 	 * to pass external values in as JVM system properties: This can easily be
@@ -112,16 +100,13 @@ public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport 
 	}
 
 	/**
-	 * Resolve the given placeholder using the given properties, performing
-	 * a system properties check according to the given mode.
+	 * Resolve the given placeholder using the given properties, performing a system properties check according to the given mode.
 	 * <p>The default implementation delegates to {@code resolvePlaceholder
 	 * (placeholder, props)} before/after the system properties check.
-	 * <p>Subclasses can override this for custom resolution strategies,
-	 * including customized points for the system properties check.
+	 * <p>Subclasses can override this for custom resolution strategies,including customized points for the system properties check.
 	 * @param placeholder the placeholder to resolve
 	 * @param props the merged properties of this configurer
-	 * @param systemPropertiesMode the system properties mode,
-	 * according to the constants in this class
+	 * @param systemPropertiesMode the system properties mode,according to the constants in this class
 	 * @return the resolved value, of null if none
 	 * @see #setSystemPropertiesMode
 	 * @see System#getProperty
@@ -146,8 +131,7 @@ public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport 
 	 * Resolve the given placeholder using the given properties.
 	 * The default implementation simply checks for a corresponding property key.
 	 * <p>Subclasses can override this for customized placeholder-to-key mappings
-	 * or custom resolution strategies, possibly just using the given properties
-	 * as fallback.
+	 * or custom resolution strategies, possibly just using the given properties as fallback.
 	 * <p>Note that system properties will still be checked before respectively
 	 * after this method is invoked, according to the system properties mode.
 	 * @param placeholder the placeholder to resolve
@@ -177,8 +161,7 @@ public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport 
 				value = System.getenv(key);
 			}
 			return value;
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Could not access system property '" + key + "': " + ex);
 			}
@@ -186,19 +169,15 @@ public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport 
 		}
 	}
 
-
 	/**
 	 * Visit each bean definition in the given bean factory and attempt to replace ${...} property
 	 * placeholders with values from the given properties.
 	 */
 	@Override
-	protected void processProperties(ConfigurableListableBeanFactory beanFactoryToProcess, Properties props)
-			throws BeansException {
-
+	protected void processProperties(ConfigurableListableBeanFactory beanFactoryToProcess, Properties props) throws BeansException {
 		StringValueResolver valueResolver = new PlaceholderResolvingStringValueResolver(props);
 		doProcessProperties(beanFactoryToProcess, valueResolver);
 	}
-
 
 	private class PlaceholderResolvingStringValueResolver implements StringValueResolver {
 
@@ -207,8 +186,7 @@ public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport 
 		private final PlaceholderResolver resolver;
 
 		public PlaceholderResolvingStringValueResolver(Properties props) {
-			this.helper = new PropertyPlaceholderHelper(
-					placeholderPrefix, placeholderSuffix, valueSeparator, ignoreUnresolvablePlaceholders);
+			this.helper = new PropertyPlaceholderHelper(placeholderPrefix, placeholderSuffix, valueSeparator, ignoreUnresolvablePlaceholders);
 			this.resolver = new PropertyPlaceholderConfigurerResolver(props);
 		}
 
@@ -235,8 +213,7 @@ public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport 
 		@Override
 		@Nullable
 		public String resolvePlaceholder(String placeholderName) {
-			return PropertyPlaceholderConfigurer.this.resolvePlaceholder(placeholderName,
-					this.props, systemPropertiesMode);
+			return PropertyPlaceholderConfigurer.this.resolvePlaceholder(placeholderName,this.props, systemPropertiesMode);
 		}
 	}
 

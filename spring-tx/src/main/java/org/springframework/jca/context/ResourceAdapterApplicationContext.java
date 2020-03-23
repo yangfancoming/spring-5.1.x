@@ -16,7 +16,6 @@ import org.springframework.util.Assert;
  * for a JCA ResourceAdapter. Needs to be initialized with the JCA
  * {@link javax.resource.spi.BootstrapContext}, passing it on to
  * Spring-managed beans that implement {@link BootstrapContextAware}.
- *
 
  * @since 2.5
  * @see SpringContextResourceAdapter
@@ -43,10 +42,8 @@ public class ResourceAdapterApplicationContext extends GenericApplicationContext
 		beanFactory.addBeanPostProcessor(new BootstrapContextAwareProcessor(this.bootstrapContext));
 		beanFactory.ignoreDependencyInterface(BootstrapContextAware.class);
 		beanFactory.registerResolvableDependency(BootstrapContext.class, this.bootstrapContext);
-
 		// JCA WorkManager resolved lazily - may not be available.
-		beanFactory.registerResolvableDependency(WorkManager.class,
-				(ObjectFactory<WorkManager>) this.bootstrapContext::getWorkManager);
+		beanFactory.registerResolvableDependency(WorkManager.class,(ObjectFactory<WorkManager>) this.bootstrapContext::getWorkManager);
 	}
 
 }

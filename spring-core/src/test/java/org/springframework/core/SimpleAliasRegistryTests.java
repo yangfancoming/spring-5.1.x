@@ -9,9 +9,10 @@ import static org.junit.Assert.*;
 
 public class SimpleAliasRegistryTests {
 
+	SimpleAliasRegistry registry = new SimpleAliasRegistry();
+
 	@Test
 	public void testAliasChaining() {
-		SimpleAliasRegistry registry = new SimpleAliasRegistry();
 		registry.registerAlias("test", "testAlias");
 		registry.registerAlias("testAlias", "testAlias2");
 		registry.registerAlias("testAlias2", "testAlias3");
@@ -19,6 +20,7 @@ public class SimpleAliasRegistryTests {
 		assertTrue(registry.hasAlias("test", "testAlias"));
 		assertTrue(registry.hasAlias("test", "testAlias2"));
 		assertTrue(registry.hasAlias("test", "testAlias3"));
+
 		assertSame("test", registry.canonicalName("testAlias"));
 		assertSame("test", registry.canonicalName("testAlias2"));
 		assertSame("test", registry.canonicalName("testAlias3"));
@@ -26,7 +28,6 @@ public class SimpleAliasRegistryTests {
 
 	@Test  // SPR-17191
 	public void testAliasChainingWithMultipleAliases() {
-		SimpleAliasRegistry registry = new SimpleAliasRegistry();
 		registry.registerAlias("name", "alias_a");
 		registry.registerAlias("name", "alias_b");
 		assertTrue(registry.hasAlias("name", "alias_a"));
