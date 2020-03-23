@@ -39,7 +39,6 @@ public class App  {
 	@Test
 	public void test(){}
 
-
 	/**  懒加载bean 只有在第一次使用时 才实例化  测试 */
 	@Test
 	public void test23(){

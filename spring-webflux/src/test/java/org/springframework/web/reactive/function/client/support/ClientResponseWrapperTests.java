@@ -119,7 +119,6 @@ public class ClientResponseWrapperTests {
 	public void toEntityClass() {
 		Mono<ResponseEntity<String>> result = Mono.just(new ResponseEntity<>("foo", HttpStatus.OK));
 		when(mockResponse.toEntity(String.class)).thenReturn(result);
-
 		assertSame(result, wrapper.toEntity(String.class));
 	}
 
@@ -128,7 +127,6 @@ public class ClientResponseWrapperTests {
 		Mono<ResponseEntity<String>> result = Mono.just(new ResponseEntity<>("foo", HttpStatus.OK));
 		ParameterizedTypeReference<String> reference = new ParameterizedTypeReference<String>() {};
 		when(mockResponse.toEntity(reference)).thenReturn(result);
-
 		assertSame(result, wrapper.toEntity(reference));
 	}
 
@@ -136,7 +134,6 @@ public class ClientResponseWrapperTests {
 	public void toEntityListClass() {
 		Mono<ResponseEntity<List<String>>> result = Mono.just(new ResponseEntity<>(singletonList("foo"), HttpStatus.OK));
 		when(mockResponse.toEntityList(String.class)).thenReturn(result);
-
 		assertSame(result, wrapper.toEntityList(String.class));
 	}
 
@@ -145,7 +142,6 @@ public class ClientResponseWrapperTests {
 		Mono<ResponseEntity<List<String>>> result = Mono.just(new ResponseEntity<>(singletonList("foo"), HttpStatus.OK));
 		ParameterizedTypeReference<String> reference = new ParameterizedTypeReference<String>() {};
 		when(mockResponse.toEntityList(reference)).thenReturn(result);
-
 		assertSame(result, wrapper.toEntityList(reference));
 	}
 

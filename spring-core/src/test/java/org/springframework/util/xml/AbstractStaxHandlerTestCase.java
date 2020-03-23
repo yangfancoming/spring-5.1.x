@@ -24,10 +24,7 @@ import org.xmlunit.util.Predicate;
 import static org.junit.Assert.*;
 import static org.xmlunit.matchers.CompareMatcher.*;
 
-/**
- * @author Arjen Poutsma
- * @author Sam Brannen
- */
+
 public abstract class AbstractStaxHandlerTestCase {
 
 	private static final String COMPLEX_XML =
