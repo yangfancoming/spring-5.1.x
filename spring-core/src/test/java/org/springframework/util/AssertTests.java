@@ -15,7 +15,6 @@ import static org.hamcrest.CoreMatchers.*;
 
 /**
  * Unit tests for the {@link Assert} class.
-
  */
 public class AssertTests {
 

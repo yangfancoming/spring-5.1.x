@@ -6,9 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.junit.Test;
-
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 

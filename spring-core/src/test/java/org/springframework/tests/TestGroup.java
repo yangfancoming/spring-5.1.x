@@ -13,11 +13,7 @@ import static java.lang.String.*;
 
 /**
  * A test group used to limit when certain tests are run.
- *
  * @see Assume#group(TestGroup)
- * @author Phillip Webb
-
- * @author Sam Brannen
  */
 public enum TestGroup {
 
@@ -46,7 +42,6 @@ public enum TestGroup {
 	 * Tests that should only be run on the continuous integration server.
 	 */
 	CI;
-
 
 	/**
 	 * Parse the specified comma separated string of groups.
@@ -80,8 +75,7 @@ public enum TestGroup {
 			}
 			catch (IllegalArgumentException ex) {
 				throw new IllegalArgumentException(format(
-						"Unable to find test group '%s' when parsing testGroups value: '%s'. " +
-						"Available groups include: [%s]", group.trim(), originalValue,
+						"Unable to find test group '%s' when parsing testGroups value: '%s'. Available groups include: [%s]", group.trim(), originalValue,
 						StringUtils.arrayToCommaDelimitedString(TestGroup.values())));
 			}
 		}

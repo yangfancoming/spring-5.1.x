@@ -9,14 +9,12 @@ import java.util.List;
 import org.springframework.lang.Nullable;
 
 /**
- * Simple stop watch, allowing for timing of a number of tasks,
- * exposing total running time and running time for each named task.
+ * Simple stop watch, allowing for timing of a number of tasks,exposing total running time and running time for each named task.
  *
  * <p>Conceals use of {@code System.currentTimeMillis()}, improving the
  * readability of application code and reducing the likelihood of calculation errors.
  *
- * <p>Note that this object is not designed to be thread-safe and does not
- * use synchronization.
+ * <p>Note that this object is not designed to be thread-safe and does not use synchronization.
  *
  * <p>This class is normally used to verify performance during proof-of-concepts
  * and in development, rather than as part of production applications.
@@ -50,7 +48,6 @@ public class StopWatch {
 	/** Total running time. */
 	private long totalTimeMillis;
 
-
 	/**
 	 * Construct a new stop watch. Does not start any task.
 	 */
@@ -68,7 +65,6 @@ public class StopWatch {
 	public StopWatch(String id) {
 		this.id = id;
 	}
-
 
 	/**
 	 * Return the id of this stop watch, as specified on construction.
@@ -231,8 +227,7 @@ public class StopWatch {
 		sb.append('\n');
 		if (!this.keepTaskList) {
 			sb.append("No task info kept");
-		}
-		else {
+		}else {
 			sb.append("-----------------------------------------\n");
 			sb.append("ms     %     Task name\n");
 			sb.append("-----------------------------------------\n");
@@ -264,8 +259,7 @@ public class StopWatch {
 				long percent = Math.round((100.0 * task.getTimeSeconds()) / getTotalTimeSeconds());
 				sb.append(" = ").append(percent).append("%");
 			}
-		}
-		else {
+		}else {
 			sb.append("; no task info kept");
 		}
 		return sb.toString();

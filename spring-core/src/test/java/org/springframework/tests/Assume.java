@@ -11,19 +11,13 @@ import static org.junit.Assume.*;
 
 /**
  * Provides utility methods that allow JUnit tests to {@link org.junit.Assume} certain
- * conditions hold {@code true}. If the assumption fails, it means the test should be
- * skipped.
+ * conditions hold {@code true}. If the assumption fails, it means the test should be skipped.
  *
  * <p>Tests can be categorized into {@link TestGroup}s. Active groups are enabled using
  * the 'testGroups' system property, usually activated from the gradle command line:
- *
- * <pre class="code">
  * gradle test -PtestGroups="performance"
- * </pre>
- *
  * <p>Groups can be specified as a comma separated list of values, or using the pseudo group
  * 'all'. See {@link TestGroup} for a list of valid groups.
-
  * @since 3.2
  * @see #group(TestGroup)
  * @see #group(TestGroup, Executable)
@@ -31,7 +25,6 @@ import static org.junit.Assume.*;
 public abstract class Assume {
 
 	static final String TEST_GROUPS_SYSTEM_PROPERTY = "testGroups";
-
 
 	/**
 	 * Assume that a particular {@link TestGroup} has been specified.
@@ -84,7 +77,6 @@ public abstract class Assume {
 			throw new IllegalStateException("Failed to parse '" + TEST_GROUPS_SYSTEM_PROPERTY + "' system property: " + ex.getMessage(), ex);
 		}
 	}
-
 
 	/**
 	 * @since 4.2

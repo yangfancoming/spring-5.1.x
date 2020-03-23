@@ -4,7 +4,6 @@ package org.springframework.util;
 
 import java.util.Arrays;
 import java.util.Locale;
-import java.util.Properties;
 
 import org.junit.Test;
 
@@ -12,8 +11,6 @@ import static org.junit.Assert.*;
 
 
 public class StringUtilsTests {
-
-
 
 	@Test
 	public void testTrimAllWhitespace() {
@@ -217,6 +214,7 @@ public class StringUtilsTests {
 		assertEquals("mypath/myfile", StringUtils.cleanPath("mypath\\myfile"));
 		assertEquals("mypath/myfile", StringUtils.cleanPath("mypath/../mypath/myfile"));
 		assertEquals("mypath/myfile", StringUtils.cleanPath("mypath/myfile/../../mypath/myfile"));
+
 		assertEquals("../mypath/myfile", StringUtils.cleanPath("../mypath/myfile"));
 		assertEquals("../mypath/myfile", StringUtils.cleanPath("../mypath/../mypath/myfile"));
 		assertEquals("../mypath/myfile", StringUtils.cleanPath("mypath/../../mypath/myfile"));
@@ -356,8 +354,6 @@ public class StringUtilsTests {
 	private void doTestStringArrayReverseTransformationMatches(String[] sa) {
 		String[] reverse = StringUtils.commaDelimitedListToStringArray(StringUtils.arrayToCommaDelimitedString(sa));
 		assertEquals("Reverse transformation is equal",Arrays.asList(sa),Arrays.asList(reverse));
-
-
 	}
 
 	@Test
@@ -366,8 +362,7 @@ public class StringUtilsTests {
 		String s = "woeirqupoiewuropqiewuorpqiwueopriquwopeiurqopwieur";
 		String[] sa = StringUtils.commaDelimitedListToStringArray(s);
 		assertTrue("Found one String with no delimiters", sa.length == 1);
-		assertTrue("Single array entry matches input String with no delimiters",
-				sa[0].equals(s));
+		assertTrue("Single array entry matches input String with no delimiters",sa[0].equals(s));
 	}
 
 	@Test
@@ -385,9 +380,7 @@ public class StringUtilsTests {
 		// Could read these from files
 		String[] sa = StringUtils.commaDelimitedListToStringArray("a,,b");
 		assertEquals("a,,b produces array length 3", 3, sa.length);
-		assertTrue("components are correct",
-				sa[0].equals("a") && sa[1].equals("") && sa[2].equals("b"));
-
+		assertTrue("components are correct",sa[0].equals("a") && sa[1].equals("") && sa[2].equals("b"));
 		sa = new String[] {"", "", "a", ""};
 		doTestCommaDelimitedListToStringArrayLegalMatch(sa);
 	}

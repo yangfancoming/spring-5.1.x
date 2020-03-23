@@ -23,7 +23,6 @@ public class AssumeTests {
 
 	private String originalTestGroups;
 
-
 	@Before
 	public void trackOriginalTestGroups() {
 		this.originalTestGroups = System.getProperty(TEST_GROUPS_SYSTEM_PROPERTY);
@@ -58,8 +57,7 @@ public class AssumeTests {
 		setTestGroups(JMXMP);
 		try {
 			Assume.group(JMXMP);
-		}
-		catch (AssumptionViolatedException ex) {
+		}catch (AssumptionViolatedException ex) {
 			fail("assumption should NOT have failed");
 		}
 	}
