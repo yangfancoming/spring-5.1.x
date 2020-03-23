@@ -17,10 +17,6 @@ import org.springframework.util.ObjectUtils;
  * <p>Note that the value doesn't need to be the final required type:
  * A {@link BeanWrapper} implementation should handle any necessary conversion,
  * as this object doesn't know anything about the objects it will be applied to.
- *
- * @author Rod Johnson
- * @author Rob Harrop
-
  * @since 13 May 2001
  * @see PropertyValues
  * @see BeanWrapper

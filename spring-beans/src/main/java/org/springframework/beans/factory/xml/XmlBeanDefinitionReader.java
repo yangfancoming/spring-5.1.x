@@ -78,7 +78,6 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 */
 	public static final int VALIDATION_XSD = XmlValidationModeDetector.VALIDATION_XSD;
 
-
 	/** Constants instance for this class. */
 	private static final Constants constants = new Constants(XmlBeanDefinitionReader.class);
 
@@ -231,8 +230,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	}
 
 	/**
-	 * Return the EntityResolver to use, building a default resolver
-	 * if none specified.
+	 * Return the EntityResolver to use, building a default resolver  if none specified.
 	 */
 	protected EntityResolver getEntityResolver() {
 		if (this.entityResolver == null) {
@@ -313,15 +311,12 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 				}
 				//这里 真正进入了逻辑核心部分
 				return doLoadBeanDefinitions(inputSource, encodedResource.getResource());
-			}
-			finally {
+			}finally {
 				inputStream.close();
 			}
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new BeanDefinitionStoreException("IOException parsing XML document from " + encodedResource.getResource(), ex);
-		}
-		finally {
+		} finally {
 			currentResources.remove(encodedResource);
 			if (currentResources.isEmpty()) {
 				this.resourcesCurrentlyBeingLoaded.remove();
@@ -374,20 +369,15 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		}
 		catch (BeanDefinitionStoreException ex) {
 			throw ex;
-		}
-		catch (SAXParseException ex) {
+		} catch (SAXParseException ex) {
 			throw new XmlBeanDefinitionStoreException(resource.getDescription(),"Line " + ex.getLineNumber() + " in XML document from " + resource + " is invalid", ex);
-		}
-		catch (SAXException ex) {
+		} catch (SAXException ex) {
 			throw new XmlBeanDefinitionStoreException(resource.getDescription(),"XML document from " + resource + " is invalid", ex);
-		}
-		catch (ParserConfigurationException ex) {
+		} catch (ParserConfigurationException ex) {
 			throw new BeanDefinitionStoreException(resource.getDescription(),"Parser configuration exception parsing XML from " + resource, ex);
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new BeanDefinitionStoreException(resource.getDescription(),"IOException parsing XML document from " + resource, ex);
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			throw new BeanDefinitionStoreException(resource.getDescription(),"Unexpected exception parsing XML document from " + resource, ex);
 		}
 	}
@@ -438,10 +428,8 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	protected int detectValidationMode(Resource resource) {
 		if (resource.isOpen()) {
 			throw new BeanDefinitionStoreException(
-					"Passed-in Resource [" + resource + "] contains an open stream: " +
-					"cannot determine validation mode automatically. Either pass in a Resource " +
-					"that is able to create fresh streams, or explicitly specify the validationMode " +
-					"on your XmlBeanDefinitionReader instance.");
+					"Passed-in Resource [" + resource + "] contains an open stream: cannot determine validation mode automatically. Either pass in a Resource " +
+					"that is able to create fresh streams, or explicitly specify the validationMode on your XmlBeanDefinitionReader instance.");
 		}
 
 		InputStream inputStream;
@@ -451,14 +439,11 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		catch (IOException ex) {
 			throw new BeanDefinitionStoreException(
 					"Unable to determine validation mode for [" + resource + "]: cannot open InputStream. " +
-					"Did you attempt to load directly from a SAX InputSource without specifying the " +
-					"validationMode on your XmlBeanDefinitionReader instance?", ex);
+					"Did you attempt to load directly from a SAX InputSource without specifying the validationMode on your XmlBeanDefinitionReader instance?", ex);
 		}
-
 		try {
 			return this.validationModeDetector.detectValidationMode(inputStream);
-		}
-		catch (IOException ex) {
+		}catch (IOException ex) {
 			throw new BeanDefinitionStoreException("Unable to determine validation mode for [" + resource + "]: an error occurred whilst reading from the InputStream.", ex);
 		}
 	}
