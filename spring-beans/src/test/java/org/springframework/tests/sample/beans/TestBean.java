@@ -436,7 +436,6 @@ public class TestBean implements BeanNameAware, BeanFactoryAware, ITestBean, IOt
 		return age++;
 	}
 
-
 	public void destroy() {
 		this.destroyed = true;
 	}
@@ -444,7 +443,6 @@ public class TestBean implements BeanNameAware, BeanFactoryAware, ITestBean, IOt
 	public boolean wasDestroyed() {
 		return destroyed;
 	}
-
 
 	@Override
 	public boolean equals(Object other) {

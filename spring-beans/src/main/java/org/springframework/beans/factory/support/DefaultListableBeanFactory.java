@@ -480,17 +480,13 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				try {
 					RootBeanDefinition mbd = getMergedLocalBeanDefinition(beanName);
 					// Only check bean definition if it is complete.
-					if (!mbd.isAbstract() && (allowEagerInit ||
-							(mbd.hasBeanClass() || !mbd.isLazyInit() || isAllowEagerClassLoading()) && !requiresEagerInitForType(mbd.getFactoryBeanName()))) {
+					if (!mbd.isAbstract() && (allowEagerInit || (mbd.hasBeanClass() || !mbd.isLazyInit() || isAllowEagerClassLoading()) && !requiresEagerInitForType(mbd.getFactoryBeanName()))) {
 						// In case of FactoryBean, match object created by FactoryBean.
 						boolean isFactoryBean = isFactoryBean(beanName, mbd);
 						BeanDefinitionHolder dbd = mbd.getDecoratedDefinition();
-						boolean matchFound =
-								(allowEagerInit || !isFactoryBean ||
+						boolean matchFound = (allowEagerInit || !isFactoryBean ||
 										(dbd != null && !mbd.isLazyInit()) || containsSingleton(beanName)) &&
-										(includeNonSingletons ||
-												(dbd != null ? mbd.isSingleton() : isSingleton(beanName))) && isTypeMatch(beanName, type);
-
+										(includeNonSingletons || (dbd != null ? mbd.isSingleton() : isSingleton(beanName))) && isTypeMatch(beanName, type);
 						if (!matchFound && isFactoryBean) {
 							// In case of FactoryBean, try to match FactoryBean instance itself next.
 							beanName = FACTORY_BEAN_PREFIX + beanName;
@@ -500,8 +496,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 							result.add(beanName);
 						}
 					}
-				}
-				catch (CannotLoadBeanClassException ex) {
+				}catch (CannotLoadBeanClassException ex) {
 					if (allowEagerInit) {
 						throw ex;
 					}
@@ -510,8 +505,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 						logger.trace("Ignoring bean class loading failure for bean '" + beanName + "'", ex);
 					}
 					onSuppressedException(ex);
-				}
-				catch (BeanDefinitionStoreException ex) {
+				}catch (BeanDefinitionStoreException ex) {
 					if (allowEagerInit) {
 						throw ex;
 					}
@@ -541,8 +535,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				if (isTypeMatch(beanName, type)) {
 					result.add(beanName);
 				}
-			}
-			catch (NoSuchBeanDefinitionException ex) {
+			}catch (NoSuchBeanDefinitionException ex) {
 				// Shouldn't happen - probably a result of circular reference resolution...
 				if (logger.isTraceEnabled()) {
 					logger.trace("Failed to check manually registered singleton with name '" + beanName + "'", ex);

@@ -6,12 +6,7 @@ import java.io.IOException;
 
 /**
  * Interface used for {@link org.springframework.tests.sample.beans.TestBean}.
- *
- * <p>Two methods are the same as on Person, but if this
- * extends person it breaks quite a few tests..
- *
- * @author Rod Johnson
-
+ * <p>Two methods are the same as on Person, but if this extends person it breaks quite a few tests..
  */
 public interface ITestBean extends AgeHolder {
 
