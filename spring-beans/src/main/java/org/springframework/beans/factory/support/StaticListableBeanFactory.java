@@ -33,7 +33,6 @@ import org.springframework.util.StringUtils;
  * Static {@link org.springframework.beans.factory.BeanFactory} implementation
  * which allows to register existing singleton instances programmatically.
  * Does not have support for prototype beans or aliases.
- *
  * <p>Serves as example for a simple implementation of the
  * {@link org.springframework.beans.factory.ListableBeanFactory} interface,
  * managing existing bean instances rather than creating new ones based on bean
@@ -42,8 +41,6 @@ import org.springframework.util.StringUtils;
  *
  * <p>For a full-fledged factory based on bean definitions, have a look
  * at {@link DefaultListableBeanFactory}.
- *
- * @author Rod Johnson
 
  * @since 06.01.2003
  * @see DefaultListableBeanFactory

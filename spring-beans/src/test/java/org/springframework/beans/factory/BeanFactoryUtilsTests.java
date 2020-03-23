@@ -47,9 +47,11 @@ public class BeanFactoryUtilsTests {
 		// Slow to read so we cache it.
 		DefaultListableBeanFactory grandParent = new DefaultListableBeanFactory();
 		new XmlBeanDefinitionReader(grandParent).loadBeanDefinitions(ROOT_CONTEXT);
-		DefaultListableBeanFactory parent = new DefaultListableBeanFactory(grandParent);
+
+		DefaultListableBeanFactory parent 	   = new DefaultListableBeanFactory(grandParent);
 		new XmlBeanDefinitionReader(parent).loadBeanDefinitions(MIDDLE_CONTEXT);
-		DefaultListableBeanFactory child = new DefaultListableBeanFactory(parent);
+
+		DefaultListableBeanFactory child 	   = new DefaultListableBeanFactory(parent);
 		new XmlBeanDefinitionReader(child).loadBeanDefinitions(LEAF_CONTEXT);
 
 		this.dependentBeansFactory = new DefaultListableBeanFactory();
