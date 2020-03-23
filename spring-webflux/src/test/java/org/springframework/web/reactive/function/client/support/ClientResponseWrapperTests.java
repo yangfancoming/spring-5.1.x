@@ -104,7 +104,6 @@ public class ClientResponseWrapperTests {
 	public void bodyToFluxClass() {
 		Flux<String> result = Flux.just("foo");
 		when(mockResponse.bodyToFlux(String.class)).thenReturn(result);
-
 		assertSame(result, wrapper.bodyToFlux(String.class));
 	}
 
@@ -113,7 +112,6 @@ public class ClientResponseWrapperTests {
 		Flux<String> result = Flux.just("foo");
 		ParameterizedTypeReference<String> reference = new ParameterizedTypeReference<String>() {};
 		when(mockResponse.bodyToFlux(reference)).thenReturn(result);
-
 		assertSame(result, wrapper.bodyToFlux(reference));
 	}
 

@@ -44,18 +44,13 @@ import org.springframework.web.util.UriBuilderFactory;
 
 /**
  * Default implementation of {@link WebClient}.
- *
- * @author Rossen Stoyanchev
- * @author Brian Clozel
  * @since 5.0
  */
 class DefaultWebClient implements WebClient {
 
 	private static final String URI_TEMPLATE_ATTRIBUTE = WebClient.class.getName() + ".uriTemplate";
 
-	private static final Mono<ClientResponse> NO_HTTP_CLIENT_RESPONSE_ERROR = Mono.error(
-			new IllegalStateException("The underlying HTTP client completed without emitting a response."));
-
+	private static final Mono<ClientResponse> NO_HTTP_CLIENT_RESPONSE_ERROR = Mono.error(new IllegalStateException("The underlying HTTP client completed without emitting a response."));
 
 	private final ExchangeFunction exchangeFunction;
 
@@ -299,9 +294,7 @@ class DefaultWebClient implements WebClient {
 
 		@Override
 		public Mono<ClientResponse> exchange() {
-			ClientRequest request = (this.inserter != null ?
-					initRequestBuilder().body(this.inserter).build() :
-					initRequestBuilder().build());
+			ClientRequest request = (this.inserter != null ? initRequestBuilder().body(this.inserter).build() : initRequestBuilder().build());
 			return exchangeFunction.exchange(request).switchIfEmpty(NO_HTTP_CLIENT_RESPONSE_ERROR);
 		}
 
@@ -398,44 +391,35 @@ class DefaultWebClient implements WebClient {
 		}
 
 		@Override
-		public ResponseSpec onStatus(Predicate<HttpStatus> statusPredicate,
-				Function<ClientResponse, Mono<? extends Throwable>> exceptionFunction) {
-
+		public ResponseSpec onStatus(Predicate<HttpStatus> statusPredicate,Function<ClientResponse, Mono<? extends Throwable>> exceptionFunction) {
 			if (this.statusHandlers.size() == 1 && this.statusHandlers.get(0) == DEFAULT_STATUS_HANDLER) {
 				this.statusHandlers.clear();
 			}
-			this.statusHandlers.add(new StatusHandler(statusPredicate,
-					(clientResponse, request) -> exceptionFunction.apply(clientResponse)));
-
+			this.statusHandlers.add(new StatusHandler(statusPredicate,(clientResponse, request) -> exceptionFunction.apply(clientResponse)));
 			return this;
 		}
 
 		@Override
 		public <T> Mono<T> bodyToMono(Class<T> bodyType) {
-			return this.responseMono.flatMap(response -> handleBody(response,
-					response.bodyToMono(bodyType), mono -> mono.flatMap(Mono::error)));
+			return this.responseMono.flatMap(response -> handleBody(response,response.bodyToMono(bodyType), mono -> mono.flatMap(Mono::error)));
 		}
 
 		@Override
 		public <T> Mono<T> bodyToMono(ParameterizedTypeReference<T> bodyType) {
-			return this.responseMono.flatMap(response ->
-					handleBody(response, response.bodyToMono(bodyType), mono -> mono.flatMap(Mono::error)));
+			return this.responseMono.flatMap(response -> handleBody(response, response.bodyToMono(bodyType), mono -> mono.flatMap(Mono::error)));
 		}
 
 		@Override
 		public <T> Flux<T> bodyToFlux(Class<T> elementType) {
-			return this.responseMono.flatMapMany(response ->
-					handleBody(response, response.bodyToFlux(elementType), mono -> mono.flatMapMany(Flux::error)));
+			return this.responseMono.flatMapMany(response -> handleBody(response, response.bodyToFlux(elementType), mono -> mono.flatMapMany(Flux::error)));
 		}
 
 		@Override
 		public <T> Flux<T> bodyToFlux(ParameterizedTypeReference<T> elementType) {
-			return this.responseMono.flatMapMany(response -> handleBody(response,
-					response.bodyToFlux(elementType), mono -> mono.flatMapMany(Flux::error)));
+			return this.responseMono.flatMapMany(response -> handleBody(response,response.bodyToFlux(elementType), mono -> mono.flatMapMany(Flux::error)));
 		}
 
-		private <T extends Publisher<?>> T handleBody(ClientResponse response,
-				T bodyPublisher, Function<Mono<? extends Throwable>, T> errorFunction) {
+		private <T extends Publisher<?>> T handleBody(ClientResponse response,T bodyPublisher, Function<Mono<? extends Throwable>, T> errorFunction) {
 
 			if (HttpStatus.resolve(response.rawStatusCode()) != null) {
 				for (StatusHandler handler : this.statusHandlers) {
@@ -448,8 +432,7 @@ class DefaultWebClient implements WebClient {
 					}
 				}
 				return bodyPublisher;
-			}
-			else {
+			}else {
 				return errorFunction.apply(createResponseException(response, this.requestSupplier.get()));
 			}
 		}
@@ -458,13 +441,10 @@ class DefaultWebClient implements WebClient {
 		private <T> Mono<T> drainBody(ClientResponse response, Throwable ex) {
 			// Ensure the body is drained, even if the StatusHandler didn't consume it,
 			// but ignore exception, in case the handler did consume.
-			return (Mono<T>) response.bodyToMono(Void.class)
-					.onErrorResume(ex2 -> Mono.empty()).thenReturn(ex);
+			return (Mono<T>) response.bodyToMono(Void.class).onErrorResume(ex2 -> Mono.empty()).thenReturn(ex);
 		}
 
-		private static Mono<WebClientResponseException> createResponseException(
-				ClientResponse response, HttpRequest request) {
-
+		private static Mono<WebClientResponseException> createResponseException(ClientResponse response, HttpRequest request) {
 			return DataBufferUtils.join(response.body(BodyExtractors.toDataBuffers()))
 					.map(dataBuffer -> {
 						byte[] bytes = new byte[dataBuffer.readableByteCount()];
@@ -474,25 +454,11 @@ class DefaultWebClient implements WebClient {
 					})
 					.defaultIfEmpty(new byte[0])
 					.map(bodyBytes -> {
-						Charset charset = response.headers().contentType()
-								.map(MimeType::getCharset)
-								.orElse(StandardCharsets.ISO_8859_1);
+						Charset charset = response.headers().contentType().map(MimeType::getCharset).orElse(StandardCharsets.ISO_8859_1);
 						if (HttpStatus.resolve(response.rawStatusCode()) != null) {
-							return WebClientResponseException.create(
-									response.statusCode().value(),
-									response.statusCode().getReasonPhrase(),
-									response.headers().asHttpHeaders(),
-									bodyBytes,
-									charset,
-									request);
-						}
-						else {
-							return new UnknownHttpStatusCodeException(
-									response.rawStatusCode(),
-									response.headers().asHttpHeaders(),
-									bodyBytes,
-									charset,
-									request);
+							return WebClientResponseException.create(response.statusCode().value(),response.statusCode().getReasonPhrase(),response.headers().asHttpHeaders(),bodyBytes,charset,request);
+						}else {
+							return new UnknownHttpStatusCodeException(response.rawStatusCode(),response.headers().asHttpHeaders(),bodyBytes,charset,request);
 						}
 					});
 		}
@@ -504,9 +470,7 @@ class DefaultWebClient implements WebClient {
 
 			private final BiFunction<ClientResponse, HttpRequest, Mono<? extends Throwable>> exceptionFunction;
 
-			public StatusHandler(Predicate<HttpStatus> predicate,
-					BiFunction<ClientResponse, HttpRequest, Mono<? extends Throwable>> exceptionFunction) {
-
+			public StatusHandler(Predicate<HttpStatus> predicate,BiFunction<ClientResponse, HttpRequest, Mono<? extends Throwable>> exceptionFunction) {
 				Assert.notNull(predicate, "Predicate must not be null");
 				Assert.notNull(exceptionFunction, "Function must not be null");
 				this.predicate = predicate;

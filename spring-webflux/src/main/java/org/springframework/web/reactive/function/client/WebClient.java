@@ -579,8 +579,7 @@ public interface WebClient {
 		 * @param exceptionFunction the function that returns the exception
 		 * @return this builder
 		 */
-		ResponseSpec onStatus(Predicate<HttpStatus> statusPredicate,
-				Function<ClientResponse, Mono<? extends Throwable>> exceptionFunction);
+		ResponseSpec onStatus(Predicate<HttpStatus> statusPredicate,Function<ClientResponse, Mono<? extends Throwable>> exceptionFunction);
 
 		/**
 		 * Extract the body to a {@code Mono}. By default, if the response has status code 4xx or
@@ -628,13 +627,11 @@ public interface WebClient {
 
 	}
 
-
 	/**
 	 * Contract for specifying request headers and URI for a request.
 	 * @param <S> a self reference to the spec type
 	 */
-	interface RequestHeadersUriSpec<S extends RequestHeadersSpec<S>>
-			extends UriSpec<S>, RequestHeadersSpec<S> {
+	interface RequestHeadersUriSpec<S extends RequestHeadersSpec<S>> extends UriSpec<S>, RequestHeadersSpec<S> {
 	}
 
 	/**
@@ -642,6 +639,5 @@ public interface WebClient {
 	 */
 	interface RequestBodyUriSpec extends RequestBodySpec, RequestHeadersUriSpec<RequestBodySpec> {
 	}
-
 
 }
