@@ -22,4 +22,12 @@ public class PropertiesLoaderUtilsTest {
 		assertEquals("value", ret.getProperty("key"));
 		assertEquals("中文", ret.getProperty("key2"));
 	}
+
+	@Test
+	public void testFillProperties() throws Exception {
+		Properties ret = new Properties();
+		PropertiesLoaderUtils.fillProperties(ret,new ClassPathResource("org/springframework/core/io/support/test.properties"));
+		System.out.println(ret);
+		assertEquals("{key=value, key2=中文}", ret.toString());
+	}
 }
