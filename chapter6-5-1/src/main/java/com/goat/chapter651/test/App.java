@@ -10,9 +10,7 @@ import java.util.Map;
 
 public class App {
 
-
 	public static void main(String[] args) {
-
 		AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
 		BookService bookService = ac.getBean(BookService.class);
 		List<Map> test = bookService.test();
