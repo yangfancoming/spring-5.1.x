@@ -28,7 +28,6 @@ public class ConventionsTests {
 	@Rule
 	public final ExpectedException exception = ExpectedException.none();
 
-
 	@Test
 	public void simpleObject() {
 		assertEquals("Incorrect singular variable name","testObject", Conventions.getVariableName(new TestObject()));
@@ -39,17 +38,13 @@ public class ConventionsTests {
 	@Test
 	public void array() {
 		assertEquals("Incorrect plural array form","testObjectList", Conventions.getVariableName(new TestObject[0]));
-
 	}
 
 	@Test
 	public void list() {
-		assertEquals("Incorrect plural List form", "testObjectList",
-				Conventions.getVariableName(Collections.singletonList(new TestObject())));
-		assertEquals("Incorrect plural List form", "testObjectList",
-				Conventions.getVariableNameForParameter(getMethodParameter(List.class)));
-		assertEquals("Incorrect plural List form", "testObjectList",
-				Conventions.getVariableNameForReturnType(getMethodForReturnType(List.class)));
+		assertEquals("Incorrect plural List form", "testObjectList",Conventions.getVariableName(Collections.singletonList(new TestObject())));
+		assertEquals("Incorrect plural List form", "testObjectList",Conventions.getVariableNameForParameter(getMethodParameter(List.class)));
+		assertEquals("Incorrect plural List form", "testObjectList",Conventions.getVariableNameForReturnType(getMethodForReturnType(List.class)));
 	}
 
 	@Test
@@ -60,36 +55,25 @@ public class ConventionsTests {
 
 	@Test
 	public void set() {
-		assertEquals("Incorrect plural Set form", "testObjectList",
-				Conventions.getVariableName(Collections.singleton(new TestObject())));
-		assertEquals("Incorrect plural Set form", "testObjectList",
-				Conventions.getVariableNameForParameter(getMethodParameter(Set.class)));
-		assertEquals("Incorrect plural Set form", "testObjectList",
-				Conventions.getVariableNameForReturnType(getMethodForReturnType(Set.class)));
+		assertEquals("Incorrect plural Set form", "testObjectList",Conventions.getVariableName(Collections.singleton(new TestObject())));
+		assertEquals("Incorrect plural Set form", "testObjectList",Conventions.getVariableNameForParameter(getMethodParameter(Set.class)));
+		assertEquals("Incorrect plural Set form", "testObjectList",Conventions.getVariableNameForReturnType(getMethodForReturnType(Set.class)));
 	}
 
 	@Test
 	public void reactiveParameters() {
-		assertEquals("testObjectMono",
-				Conventions.getVariableNameForParameter(getMethodParameter(Mono.class)));
-		assertEquals("testObjectFlux",
-				Conventions.getVariableNameForParameter(getMethodParameter(Flux.class)));
-		assertEquals("testObjectSingle",
-				Conventions.getVariableNameForParameter(getMethodParameter(Single.class)));
-		assertEquals("testObjectObservable",
-				Conventions.getVariableNameForParameter(getMethodParameter(Observable.class)));
+		assertEquals("testObjectMono",Conventions.getVariableNameForParameter(getMethodParameter(Mono.class)));
+		assertEquals("testObjectFlux",Conventions.getVariableNameForParameter(getMethodParameter(Flux.class)));
+		assertEquals("testObjectSingle",Conventions.getVariableNameForParameter(getMethodParameter(Single.class)));
+		assertEquals("testObjectObservable",Conventions.getVariableNameForParameter(getMethodParameter(Observable.class)));
 	}
 
 	@Test
 	public void reactiveReturnTypes() {
-		assertEquals("testObjectMono",
-				Conventions.getVariableNameForReturnType(getMethodForReturnType(Mono.class)));
-		assertEquals("testObjectFlux",
-				Conventions.getVariableNameForReturnType(getMethodForReturnType(Flux.class)));
-		assertEquals("testObjectSingle",
-				Conventions.getVariableNameForReturnType(getMethodForReturnType(Single.class)));
-		assertEquals("testObjectObservable",
-				Conventions.getVariableNameForReturnType(getMethodForReturnType(Observable.class)));
+		assertEquals("testObjectMono",Conventions.getVariableNameForReturnType(getMethodForReturnType(Mono.class)));
+		assertEquals("testObjectFlux",Conventions.getVariableNameForReturnType(getMethodForReturnType(Flux.class)));
+		assertEquals("testObjectSingle",Conventions.getVariableNameForReturnType(getMethodForReturnType(Single.class)));
+		assertEquals("testObjectObservable",Conventions.getVariableNameForReturnType(getMethodForReturnType(Observable.class)));
 	}
 
 	@Test

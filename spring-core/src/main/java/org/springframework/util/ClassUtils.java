@@ -904,7 +904,7 @@ public abstract class ClassUtils {
 
 	/**
 	 * Return the short string name of a Java class in uncapitalized JavaBeans property format.
-	 *  Strips the outer class name in case of an inner class.
+	 * Strips the outer class name in case of an inner class.
 	 * @param clazz the class
 	 * @return the short name rendered in a standard JavaBeans property format
 	 * @see java.beans.Introspector#decapitalize(String)

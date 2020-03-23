@@ -29,8 +29,7 @@ public final class Conventions {
 	/**
 	 * Determine the conventional variable name for the supplied {@code Object}
 	 * based on its concrete type. The convention used is to return the
-	 * un-capitalized short name of the {@code Class}, according to JavaBeans
-	 * property naming rules.
+	 * un-capitalized short name of the {@code Class}, according to JavaBeans property naming rules.
 	 * <p>For example:<br>
 	 * {@code com.myapp.Product} becomes {@code "product"}<br>
 	 * {@code com.myapp.MyProduct} becomes {@code "myProduct"}<br>
@@ -58,18 +57,15 @@ public final class Conventions {
 			Object valueToCheck = peekAhead(collection);
 			valueClass = getClassForValue(valueToCheck);
 			pluralize = true;
-		}
-		else {
+		}else {
 			valueClass = getClassForValue(value);
 		}
-
 		String name = ClassUtils.getShortNameAsProperty(valueClass);
 		return (pluralize ? pluralize(name) : name);
 	}
 
 	/**
-	 * Determine the conventional variable name for the given parameter taking
-	 * the generic collection type, if any, into account.
+	 * Determine the conventional variable name for the given parameter taking the generic collection type, if any, into account.
 	 * <p>As of 5.0 this method supports reactive types:<br>
 	 * {@code Mono<com.myapp.Product>} becomes {@code "productMono"}<br>
 	 * {@code Flux<com.myapp.MyProduct>} becomes {@code "myProductFlux"}<br>
@@ -146,7 +142,6 @@ public final class Conventions {
 	 */
 	public static String getVariableNameForReturnType(Method method, Class<?> resolvedType, @Nullable Object value) {
 		Assert.notNull(method, "Method must not be null");
-
 		if (Object.class == resolvedType) {
 			if (value == null) {
 				throw new IllegalArgumentException("Cannot generate variable name for an Object return type with null value");
@@ -161,8 +156,7 @@ public final class Conventions {
 		if (resolvedType.isArray()) {
 			valueClass = resolvedType.getComponentType();
 			pluralize = true;
-		}
-		else if (Collection.class.isAssignableFrom(resolvedType)) {
+		}else if (Collection.class.isAssignableFrom(resolvedType)) {
 			valueClass = ResolvableType.forMethodReturnType(method).asCollection().resolveGeneric();
 			if (valueClass == null) {
 				if (!(value instanceof Collection)) {
@@ -176,8 +170,7 @@ public final class Conventions {
 				valueClass = getClassForValue(valueToCheck);
 			}
 			pluralize = true;
-		}
-		else {
+		}else {
 			valueClass = resolvedType;
 			ReactiveAdapter adapter = ReactiveAdapterRegistry.getSharedInstance().getAdapter(valueClass);
 			if (adapter != null && !adapter.getDescriptor().isNoValue()) {
@@ -185,7 +178,6 @@ public final class Conventions {
 				valueClass = ResolvableType.forMethodReturnType(method).getGeneric().toClass();
 			}
 		}
-
 		String name = ClassUtils.getShortNameAsProperty(valueClass);
 		return (pluralize ? pluralize(name) : name + reactiveSuffix);
 	}
@@ -207,12 +199,10 @@ public final class Conventions {
 		for (char c : chars) {
 			if (c == '-') {
 				upperCaseNext = true;
-			}
-			else if (upperCaseNext) {
+			}else if (upperCaseNext) {
 				result[currPos++] = Character.toUpperCase(c);
 				upperCaseNext = false;
-			}
-			else {
+			}else {
 				result[currPos++] = c;
 			}
 		}
@@ -234,8 +224,7 @@ public final class Conventions {
 	/**
 	 * Determine the class to use for naming a variable containing the given value.
 	 * <p>Will return the class of the given value, except when encountering a
-	 * JDK proxy, in which case it will determine the 'primary' interface
-	 * implemented by that proxy.
+	 * JDK proxy, in which case it will determine the 'primary' interface  implemented by that proxy.
 	 * @param value the value to check
 	 * @return the class to use for naming a variable
 	 */
