@@ -12,8 +12,7 @@ import org.springframework.lang.Nullable;
 /**
  * Central interface to provide configuration for an application.
  * This is read-only while the application is running, but may be reloaded if the implementation supports this.
- * <p>An ApplicationContext provides:
- * <ul>
+ * An ApplicationContext provides:
  * <li>Bean factory methods for accessing application components.
  * Inherited from {@link org.springframework.beans.factory.ListableBeanFactory}.
  * <li>The ability to load file resources in a generic fashion.
@@ -25,9 +24,8 @@ import org.springframework.lang.Nullable;
  * <li>Inheritance from a parent context. Definitions in a descendant context will always take priority.
  *  This means, for example, that a single parent context can be used by an entire web application,
  * while each servlet has its own child context that is independent of that of any other servlet.
- * </ul>
  *
- * <p>In addition to standard {@link org.springframework.beans.factory.BeanFactory}
+ * In addition to standard {@link org.springframework.beans.factory.BeanFactory}
  * lifecycle capabilities, ApplicationContext implementations detect and invoke
  * {@link ApplicationContextAware} beans as well as {@link ResourceLoaderAware},
  * {@link ApplicationEventPublisherAware} and {@link MessageSourceAware} beans.
@@ -72,14 +70,14 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
 
 	/**
 	 * Expose AutowireCapableBeanFactory functionality for this context.
-	 * <p>This is not typically used by application code, except for the purpose of
+	 * This is not typically used by application code, except for the purpose of
 	 * initializing bean instances that live outside of the application context,
 	 * applying the Spring bean lifecycle (fully or partly) to them.
-	 * <p>Alternatively, the internal BeanFactory exposed by the
+	 * Alternatively, the internal BeanFactory exposed by the
 	 * {@link ConfigurableApplicationContext} interface offers access to the
 	 * {@link AutowireCapableBeanFactory} interface too. The present method mainly
 	 * serves as a convenient, specific facility on the ApplicationContext interface.
-	 * <p><b>NOTE: As of 4.2, this method will consistently throw IllegalStateException
+	 * <b>NOTE: As of 4.2, this method will consistently throw IllegalStateException
 	 * after the application context has been closed.</b> In current Spring Framework
 	 * versions, only refreshable application contexts behave that way; as of 4.2,
 	 * all application context implementations will be required to comply.

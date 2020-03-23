@@ -94,9 +94,7 @@ import org.springframework.util.ReflectionUtils;
  * {@link org.springframework.core.io.DefaultResourceLoader}.
  * Consequently treats non-URL resource paths as class path resources
  * (supporting full class path resource names that include the package path,
- * e.g. "mypackage/myresource.dat"), unless the {@link #getResourceByPath}
- * method is overridden in a subclass.
-
+ * e.g. "mypackage/myresource.dat"), unless the {@link #getResourceByPath} method is overridden in a subclass.
  * @since January 21, 2001
  * @see #refreshBeanFactory
  * @see #getBeanFactory
@@ -203,7 +201,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	@Nullable
 	private Set<ApplicationEvent> earlyApplicationEvents;
 
-
 	/**
 	 * Create a new AbstractApplicationContext with no parent.
 	 */
@@ -220,15 +217,13 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		setParent(parent);
 	}
 
-
 	//---------------------------------------------------------------------
 	// Implementation of ApplicationContext interface
 	//---------------------------------------------------------------------
 
 	/**
 	 * Set the unique id of this application context.
-	 * Default is the object id of the context instance, or the name
-	 * of the context bean if the context is itself defined as a bean.
+	 * Default is the object id of the context instance, or the name of the context bean if the context is itself defined as a bean.
 	 * @param id the unique id of the context
 	 */
 	@Override
@@ -277,10 +272,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 	/**
 	 * Set the {@code Environment} for this application context.
-	 * Default value is determined by {@link #createEnvironment()}. Replacing the
-	 * default with this method is one option but configuration through {@link
-	 * #getEnvironment()} should also be considered. In either case, such modifications
-	 * should be performed <em>before</em> {@link #refresh()}.
+	 * Default value is determined by {@link #createEnvironment()}.
+	 * Replacing the default with this method is one option but configuration through {@link #getEnvironment()} should also be considered.
+	 * In either case, such modifications should be performed <em>before</em> {@link #refresh()}.
 	 * @see org.springframework.context.support.AbstractApplicationContext#createEnvironment
 	 */
 	@Override
@@ -310,8 +304,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	}
 
 	/**
-	 * Return this context's internal bean factory as AutowireCapableBeanFactory,
-	 * if already available.
+	 * Return this context's internal bean factory as AutowireCapableBeanFactory, if already available.
 	 * @see #getBeanFactory()
 	 */
 	@Override
@@ -1019,8 +1012,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			try {
 				// Publish shutdown event.
 				publishEvent(new ContextClosedEvent(this));
-			}
-			catch (Throwable ex) {
+			}catch (Throwable ex) {
 				logger.warn("Exception thrown from ApplicationListener handling ContextClosedEvent", ex);
 			}
 
@@ -1028,8 +1020,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			if (this.lifecycleProcessor != null) {
 				try {
 					this.lifecycleProcessor.onClose();
-				}
-				catch (Throwable ex) {
+				}catch (Throwable ex) {
 					logger.warn("Exception thrown from LifecycleProcessor on context close", ex);
 				}
 			}
@@ -1048,7 +1039,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 				this.applicationListeners.clear();
 				this.applicationListeners.addAll(this.earlyApplicationListeners);
 			}
-
 			// Switch to inactive.
 			this.active.set(false);
 		}
@@ -1088,19 +1078,16 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 	/**
 	 * Assert that this context's BeanFactory is currently active,throwing an {@link IllegalStateException} if it isn't.
-	 * Invoked by all {@link BeanFactory} delegation methods that depend on an active context,
-	 * i.e. in particular all bean accessor methods.
-	 * The default implementation checks the {@link #isActive() 'active'} status
-	 * of this context overall. May be overridden for more specific checks, or for a
-	 * no-op if {@link #getBeanFactory()} itself throws an exception in such a case.
+	 * Invoked by all {@link BeanFactory} delegation methods that depend on an active context, i.e. in particular all bean accessor methods.
+	 * The default implementation checks the {@link #isActive() 'active'} status of this context overall.
+	 * May be overridden for more specific checks, or for a no-op if {@link #getBeanFactory()} itself throws an exception in such a case.
 	 */
 	protected void assertBeanFactoryActive() {
 		if (!this.active.get()) {
-			if (this.closed.get()) {
+			if (this.closed.get())
 				throw new IllegalStateException(getDisplayName() + " has been closed already");
-			}else {
+			else
 				throw new IllegalStateException(getDisplayName() + " has not been refreshed yet");
-			}
 		}
 	}
 
@@ -1325,8 +1312,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 */
 	@Nullable
 	protected MessageSource getInternalParentMessageSource() {
-		return (getParent() instanceof AbstractApplicationContext ?
-				((AbstractApplicationContext) getParent()).messageSource : getParent());
+		return (getParent() instanceof AbstractApplicationContext ? ((AbstractApplicationContext) getParent()).messageSource : getParent());
 	}
 
 
