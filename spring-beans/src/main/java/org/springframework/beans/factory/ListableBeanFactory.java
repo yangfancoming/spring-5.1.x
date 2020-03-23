@@ -10,11 +10,9 @@ import org.springframework.core.ResolvableType;
 import org.springframework.lang.Nullable;
 
 /**
- * Extension of the {@link BeanFactory} interface to be implemented by bean factories
- * that can enumerate all their bean instances, rather than attempting bean lookup
- * by name one by one as requested by clients. BeanFactory implementations that
- * preload all their bean definitions (such as XML-based factories) may implement
- * this interface.
+ * Extension of the {@link BeanFactory} interface to be implemented by bean factories  that can enumerate all their bean instances,
+ * rather than attempting bean lookup by name one by one as requested by clients.
+ * BeanFactory implementations that preload all their bean definitions (such as XML-based factories) may implement this interface.
  *
  * 	 * 扩展BeanFactory接口,提供所有bean 实例的枚举,不再需要客户端通过一个个bean name查找.
  * 	 * BeanFactory实现类预加载bean定义(如通过实现xml的工厂)需要实现这个接口.
@@ -73,13 +71,13 @@ public interface ListableBeanFactory extends BeanFactory {
 	boolean containsBeanDefinition(String beanName);// 检查bean factory是否含有给定name的bean定义  忽略父factory和其他factory注册的单例bean
 
 	/**
+	 * 查看此BeanFactory中包含的Bean数量  一样不考虑父factory和其他factory注册的单例bean
 	 * Return the number of beans defined in the factory.
 	 * Does not consider any hierarchy this factory may participate in,
-	 * and ignores any singleton beans that have been registered by
-	 * other means than bean definitions.
+	 * and ignores any singleton beans that have been registered by other means than bean definitions.
 	 * @return the number of beans defined in the factory
 	 */
-	int getBeanDefinitionCount();  //查看此BeanFactory中包含的Bean数量  一样不考虑父factory和其他factory注册的单例bean
+	int getBeanDefinitionCount();
 
 	/**
 	 * Return the names of all beans defined in this factory.

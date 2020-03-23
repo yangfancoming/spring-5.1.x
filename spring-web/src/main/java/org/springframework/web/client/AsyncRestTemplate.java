@@ -33,35 +33,30 @@ import org.springframework.web.util.UriTemplateHandler;
 
 /**
  * <strong>Spring's central class for asynchronous client-side HTTP access.</strong>
- * Exposes similar methods as {@link RestTemplate}, but returns {@link ListenableFuture}
- * wrappers as opposed to concrete results.
+ * Exposes similar methods as {@link RestTemplate}, but returns {@link ListenableFuture} wrappers as opposed to concrete results.
  *
- * <p>The {@code AsyncRestTemplate} exposes a synchronous {@link RestTemplate} via the
+ * The {@code AsyncRestTemplate} exposes a synchronous {@link RestTemplate} via the
  * {@link #getRestOperations()} method and shares its {@linkplain #setErrorHandler error handler}
  * and {@linkplain #setMessageConverters message converters} with that {@code RestTemplate}.
  *
- * <p><strong>Note:</strong> by default {@code AsyncRestTemplate} relies on
+ * <strong>Note:</strong> by default {@code AsyncRestTemplate} relies on
  * standard JDK facilities to establish HTTP connections. You can switch to use
  * a different HTTP library such as Apache HttpComponents, Netty, and OkHttp by
  * using a constructor accepting an {@link org.springframework.http.client.AsyncClientHttpRequestFactory}.
  *
- * <p>For more information, please refer to the {@link RestTemplate} API documentation.
- *
- * @author Arjen Poutsma
+ * For more information, please refer to the {@link RestTemplate} API documentation.
  * @since 4.0
  * @see RestTemplate
  * @deprecated as of Spring 5.0, in favor of {@link org.springframework.web.reactive.function.client.WebClient}
  */
 @Deprecated
-public class AsyncRestTemplate extends org.springframework.http.client.support.InterceptingAsyncHttpAccessor
-		implements AsyncRestOperations {
+public class AsyncRestTemplate extends org.springframework.http.client.support.InterceptingAsyncHttpAccessor implements AsyncRestOperations {
 
 	private final RestTemplate syncTemplate;
 
-
 	/**
 	 * Create a new instance of the {@code AsyncRestTemplate} using default settings.
-	 * <p>This constructor uses a {@link SimpleClientHttpRequestFactory} in combination
+	 * This constructor uses a {@link SimpleClientHttpRequestFactory} in combination
 	 * with a {@link SimpleAsyncTaskExecutor} for asynchronous execution.
 	 */
 	public AsyncRestTemplate() {
@@ -71,7 +66,7 @@ public class AsyncRestTemplate extends org.springframework.http.client.support.I
 	/**
 	 * Create a new instance of the {@code AsyncRestTemplate} using the given
 	 * {@link AsyncTaskExecutor}.
-	 * <p>This constructor uses a {@link SimpleClientHttpRequestFactory} in combination
+	 * This constructor uses a {@link SimpleClientHttpRequestFactory} in combination
 	 * with the given {@code AsyncTaskExecutor} for asynchronous execution.
 	 */
 	public AsyncRestTemplate(AsyncListenableTaskExecutor taskExecutor) {
@@ -85,7 +80,7 @@ public class AsyncRestTemplate extends org.springframework.http.client.support.I
 	/**
 	 * Create a new instance of the {@code AsyncRestTemplate} using the given
 	 * {@link org.springframework.http.client.AsyncClientHttpRequestFactory}.
-	 * <p>This constructor will cast the given asynchronous
+	 * This constructor will cast the given asynchronous
 	 * {@code AsyncClientHttpRequestFactory} to a {@link ClientHttpRequestFactory}. Since
 	 * all implementations of {@code ClientHttpRequestFactory} provided in Spring also
 	 * implement {@code AsyncClientHttpRequestFactory}, this should not result in a
@@ -124,7 +119,7 @@ public class AsyncRestTemplate extends org.springframework.http.client.support.I
 
 	/**
 	 * Set the error handler.
-	 * <p>By default, AsyncRestTemplate uses a
+	 * By default, AsyncRestTemplate uses a
 	 * {@link org.springframework.web.client.DefaultResponseErrorHandler}.
 	 */
 	public void setErrorHandler(ResponseErrorHandler errorHandler) {
@@ -190,7 +185,7 @@ public class AsyncRestTemplate extends org.springframework.http.client.support.I
 
 	/**
 	 * Set the message body converters to use.
-	 * <p>These converters are used to convert from and to HTTP requests and responses.
+	 * These converters are used to convert from and to HTTP requests and responses.
 	 */
 	public void setMessageConverters(List<HttpMessageConverter<?>> messageConverters) {
 		this.syncTemplate.setMessageConverters(messageConverters);
