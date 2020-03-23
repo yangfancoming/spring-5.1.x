@@ -9,8 +9,7 @@ import org.springframework.lang.Nullable;
 /**
  * The root interface for accessing a Spring bean container.
  * This is the basic client view of a bean container;
- * further interfaces such as {@link ListableBeanFactory} and
- * {@link org.springframework.beans.factory.config.ConfigurableBeanFactory}
+ * further interfaces such as {@link ListableBeanFactory} and {@link org.springframework.beans.factory.config.ConfigurableBeanFactory}
  * are available for specific purposes.
  *
  * This interface is implemented by objects that hold a number of bean definitions,each uniquely identified by a String name.
@@ -20,8 +19,7 @@ import org.springframework.lang.Nullable;
  * Since Spring 2.0, further scopes are available depending on the concrete application context (e.g. "request" and "session" scopes in a web environment).
  *
  * The point of this approach is that the BeanFactory is a central registry of application components,
- *  and centralizes configuration of application components
- *  (no more do individual objects need to read properties files,for example).
+ *  and centralizes configuration of application components  (no more do individual objects need to read properties files,for example).
  *  See chapters 4 and 11 of "Expert One-on-One J2EE Design and Development" for a discussion of the benefits of this approach.
  *
  * Note that it is generally better to rely on Dependency Injection ("push" configuration) to configure application objects through setters or constructors,
@@ -31,7 +29,7 @@ import org.springframework.lang.Nullable;
  * Normally a BeanFactory will load bean definitions stored in a configuration source (such as an XML document),
  *  and use the {@code org.springframework.beans} package to configure the beans.
  * However, an implementation could simply return Java objects it creates as necessary directly in Java code.
- * There are no  constraints on how the definitions could be stored: LDAP, RDBMS, XML,properties file, etc.
+ * There are no constraints on how the definitions could be stored: LDAP, RDBMS, XML,properties file, etc.
  * Implementations are encouraged to support references amongst beans (Dependency Injection).
  *
  * In contrast to the methods in {@link ListableBeanFactory}, all of the
