@@ -18,9 +18,7 @@ import org.springframework.util.ObjectUtils;
  * Holder that combines a {@link Resource} descriptor with a specific encoding
  * or {@code Charset} to be used for reading from the resource.
  *
- * <p>Used as an argument for operations that support reading content with
- * a specific encoding, typically via a {@code java.io.Reader}.
-
+ * <p>Used as an argument for operations that support reading content with a specific encoding, typically via a {@code java.io.Reader}.
  * @since 1.2.6
  * @see Resource#getInputStream()
  * @see java.io.Reader
@@ -35,7 +33,6 @@ public class EncodedResource implements InputStreamSource {
 
 	@Nullable
 	private final Charset charset;
-
 
 	/**
 	 * Create a new {@code EncodedResource} for the given {@code Resource},not specifying an explicit encoding or {@code Charset}.
@@ -72,7 +69,6 @@ public class EncodedResource implements InputStreamSource {
 		this.encoding = encoding;
 		this.charset = charset;
 	}
-
 
 	/**
 	 * Return the {@code Resource} held by this {@code EncodedResource}.
@@ -121,11 +117,9 @@ public class EncodedResource implements InputStreamSource {
 	public Reader getReader() throws IOException {
 		if (this.charset != null) {
 			return new InputStreamReader(this.resource.getInputStream(), this.charset);
-		}
-		else if (this.encoding != null) {
+		}else if (this.encoding != null) {
 			return new InputStreamReader(this.resource.getInputStream(), this.encoding);
-		}
-		else {
+		}else {
 			return new InputStreamReader(this.resource.getInputStream());
 		}
 	}
@@ -141,7 +135,6 @@ public class EncodedResource implements InputStreamSource {
 	public InputStream getInputStream() throws IOException {
 		return this.resource.getInputStream();
 	}
-
 
 	@Override
 	public boolean equals(Object other) {

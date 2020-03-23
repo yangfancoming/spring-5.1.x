@@ -31,9 +31,7 @@ import org.springframework.util.ObjectUtils;
  * <p>Note that when working with @{@link
  * org.springframework.context.annotation.Configuration Configuration} classes that
  * the @{@link org.springframework.context.annotation.PropertySource PropertySource}
- * annotation provides a convenient and declarative way of adding property sources to the
- * enclosing {@code Environment}.
-
+ * annotation provides a convenient and declarative way of adding property sources to the enclosing {@code Environment}.
  * @since 3.1
  * @param <T> the source type
  * @see PropertySources

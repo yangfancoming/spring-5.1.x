@@ -64,11 +64,9 @@ public abstract class BeanUtils {
 		}
 		try {
 			return clazz.newInstance();
-		}
-		catch (InstantiationException ex) {
+		}catch (InstantiationException ex) {
 			throw new BeanInstantiationException(clazz, "Is it an abstract class?", ex);
-		}
-		catch (IllegalAccessException ex) {
+		}catch (IllegalAccessException ex) {
 			throw new BeanInstantiationException(clazz, "Is the constructor accessible?", ex);
 		}
 	}
@@ -96,15 +94,13 @@ public abstract class BeanUtils {
 		}
 		try {
 			return instantiateClass(clazz.getDeclaredConstructor());
-		}
-		catch (NoSuchMethodException ex) {
+		}catch (NoSuchMethodException ex) {
 			Constructor<T> ctor = findPrimaryConstructor(clazz);
 			if (ctor != null) {
 				return instantiateClass(ctor);
 			}
 			throw new BeanInstantiationException(clazz, "No default constructor found", ex);
-		}
-		catch (LinkageError err) {
+		} catch (LinkageError err) {
 			throw new BeanInstantiationException(clazz, "Unresolvable class definition", err);
 		}
 	}
@@ -148,17 +144,13 @@ public abstract class BeanUtils {
 			// 通过反射创建 bean 实例，这里的 args 是一个没有元素的空数组
 			return (KotlinDetector.isKotlinReflectPresent() && KotlinDetector.isKotlinType(ctor.getDeclaringClass()) ?
 					KotlinDelegate.instantiateClass(ctor, args) : ctor.newInstance(args));
-		}
-		catch (InstantiationException ex) {
+		} catch (InstantiationException ex) {
 			throw new BeanInstantiationException(ctor, "Is it an abstract class?", ex);
-		}
-		catch (IllegalAccessException ex) {
+		} catch (IllegalAccessException ex) {
 			throw new BeanInstantiationException(ctor, "Is the constructor accessible?", ex);
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			throw new BeanInstantiationException(ctor, "Illegal arguments for constructor", ex);
-		}
-		catch (InvocationTargetException ex) {
+		} catch (InvocationTargetException ex) {
 			throw new BeanInstantiationException(ctor, "Constructor threw exception", ex.getTargetException());
 		}
 	}
@@ -203,8 +195,7 @@ public abstract class BeanUtils {
 	public static Method findMethod(Class<?> clazz, String methodName, Class<?>... paramTypes) {
 		try {
 			return clazz.getMethod(methodName, paramTypes);
-		}
-		catch (NoSuchMethodException ex) {
+		} catch (NoSuchMethodException ex) {
 			return findDeclaredMethod(clazz, methodName, paramTypes);
 		}
 	}
@@ -224,8 +215,7 @@ public abstract class BeanUtils {
 	public static Method findDeclaredMethod(Class<?> clazz, String methodName, Class<?>... paramTypes) {
 		try {
 			return clazz.getDeclaredMethod(methodName, paramTypes);
-		}
-		catch (NoSuchMethodException ex) {
+		} catch (NoSuchMethodException ex) {
 			if (clazz.getSuperclass() != null) {
 				return findDeclaredMethod(clazz.getSuperclass(), methodName, paramTypes);
 			}
@@ -297,13 +287,11 @@ public abstract class BeanUtils {
 				if (targetMethod == null || numParams < targetMethod.getParameterCount()) {
 					targetMethod = method;
 					numMethodsFoundWithCurrentMinimumArgs = 1;
-				}
-				else if (!method.isBridge() && targetMethod.getParameterCount() == numParams) {
+				}else if (!method.isBridge() && targetMethod.getParameterCount() == numParams) {
 					if (targetMethod.isBridge()) {
 						// Prefer regular method over bridge...
 						targetMethod = method;
-					}
-					else {
+					}else {
 						// Additional candidate with same length
 						numMethodsFoundWithCurrentMinimumArgs++;
 					}
@@ -344,14 +332,11 @@ public abstract class BeanUtils {
 		int endParen = signature.indexOf(')');
 		if (startParen > -1 && endParen == -1) {
 			throw new IllegalArgumentException("Invalid method signature '" + signature +"': expected closing ')' for args list");
-		}
-		else if (startParen == -1 && endParen > -1) {
+		} else if (startParen == -1 && endParen > -1) {
 			throw new IllegalArgumentException("Invalid method signature '" + signature + "': expected opening '(' for args list");
-		}
-		else if (startParen == -1) {
+		} else if (startParen == -1) {
 			return findMethodWithMinimalParameters(clazz, signature);
-		}
-		else {
+		} else {
 			String methodName = signature.substring(0, startParen);
 			String[] parameterTypeNames = StringUtils.commaDelimitedListToStringArray(signature.substring(startParen + 1, endParen));
 			Class<?>[] parameterTypes = new Class<?>[parameterTypeNames.length];
@@ -359,8 +344,7 @@ public abstract class BeanUtils {
 				String parameterTypeName = parameterTypeNames[i].trim();
 				try {
 					parameterTypes[i] = ClassUtils.forName(parameterTypeName, clazz.getClassLoader());
-				}
-				catch (Throwable ex) {
+				}catch (Throwable ex) {
 					throw new IllegalArgumentException("Invalid method signature: unable to resolve type [" +parameterTypeName + "] for argument " + i + ". Root cause: " + ex);
 				}
 			}
@@ -450,8 +434,7 @@ public abstract class BeanUtils {
 				if (cl == null) {
 					return null;
 				}
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				// e.g. AccessControlException on Google App Engine
 				if (logger.isDebugEnabled()) {
 					logger.debug("Could not access system ClassLoader: " + ex);
@@ -464,18 +447,15 @@ public abstract class BeanUtils {
 			Class<?> editorClass = cl.loadClass(editorName);
 			if (!PropertyEditor.class.isAssignableFrom(editorClass)) {
 				if (logger.isInfoEnabled()) {
-					logger.info("Editor class [" + editorName +
-							"] does not implement [java.beans.PropertyEditor] interface");
+					logger.info("Editor class [" + editorName + "] does not implement [java.beans.PropertyEditor] interface");
 				}
 				unknownEditorTypes.add(targetType);
 				return null;
 			}
 			return (PropertyEditor) instantiateClass(editorClass);
-		}
-		catch (ClassNotFoundException ex) {
+		}catch (ClassNotFoundException ex) {
 			if (logger.isTraceEnabled()) {
-				logger.trace("No property editor [" + editorName + "] found for type " +
-						targetType.getName() + " according to 'Editor' suffix convention");
+				logger.trace("No property editor [" + editorName + "] found for type " + targetType.getName() + " according to 'Editor' suffix convention");
 			}
 			unknownEditorTypes.add(targetType);
 			return null;
@@ -483,8 +463,7 @@ public abstract class BeanUtils {
 	}
 
 	/**
-	 * Determine the bean property type for the given property from the
-	 * given classes/interfaces, if possible.
+	 * Determine the bean property type for the given property from the given classes/interfaces, if possible.
 	 * @param propertyName the name of the bean property
 	 * @param beanClasses the classes to check against
 	 * @return the property type, or {@code Object.class} as fallback
@@ -502,16 +481,14 @@ public abstract class BeanUtils {
 	}
 
 	/**
-	 * Obtain a new MethodParameter object for the write method of the
-	 * specified property.
+	 * Obtain a new MethodParameter object for the write method of the specified property.
 	 * @param pd the PropertyDescriptor for the property
 	 * @return a corresponding MethodParameter object
 	 */
 	public static MethodParameter getWriteMethodParameter(PropertyDescriptor pd) {
 		if (pd instanceof GenericTypeAwarePropertyDescriptor) {
 			return new MethodParameter(((GenericTypeAwarePropertyDescriptor) pd).getWriteMethodParameter());
-		}
-		else {
+		}else {
 			Method writeMethod = pd.getWriteMethod();
 			Assert.state(writeMethod != null, "No write method available");
 			return new MethodParameter(writeMethod, 0);
@@ -635,8 +612,7 @@ public abstract class BeanUtils {
 				PropertyDescriptor sourcePd = getPropertyDescriptor(source.getClass(), targetPd.getName());
 				if (sourcePd != null) {
 					Method readMethod = sourcePd.getReadMethod();
-					if (readMethod != null &&
-							ClassUtils.isAssignable(writeMethod.getParameterTypes()[0], readMethod.getReturnType())) {
+					if (readMethod != null && ClassUtils.isAssignable(writeMethod.getParameterTypes()[0], readMethod.getReturnType())) {
 						try {
 							if (!Modifier.isPublic(readMethod.getDeclaringClass().getModifiers())) {
 								readMethod.setAccessible(true);
@@ -646,10 +622,8 @@ public abstract class BeanUtils {
 								writeMethod.setAccessible(true);
 							}
 							writeMethod.invoke(target, value);
-						}
-						catch (Throwable ex) {
-							throw new FatalBeanException(
-									"Could not copy property '" + targetPd.getName() + "' from source to target", ex);
+						} catch (Throwable ex) {
+							throw new FatalBeanException("Could not copy property '" + targetPd.getName() + "' from source to target", ex);
 						}
 					}
 				}

@@ -9,8 +9,6 @@ import org.springframework.lang.Nullable;
 
 /**
  * Holder containing one or more {@link PropertySource} objects.
-
-
  * @since 3.1
  * @see PropertySource
  */

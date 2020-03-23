@@ -5,10 +5,7 @@ package org.springframework.core;
 import org.springframework.util.Assert;
 
 /**
- * {@link ThreadLocal} subclass that exposes a specified name
- * as {@link #toString()} result (allowing for introspection).
- *
-
+ * {@link ThreadLocal} subclass that exposes a specified name  as {@link #toString()} result (allowing for introspection).
  * @since 2.5.2
  * @param <T> the value type
  * @see NamedInheritableThreadLocal
@@ -16,7 +13,6 @@ import org.springframework.util.Assert;
 public class NamedThreadLocal<T> extends ThreadLocal<T> {
 
 	private final String name;
-
 
 	/**
 	 * Create a new NamedThreadLocal with the given name.
