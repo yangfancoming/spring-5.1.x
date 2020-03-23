@@ -9,9 +9,6 @@ import org.springframework.lang.Nullable;
 
 /**
  * Fatal exception thrown when we can't connect to an RDBMS using JDBC.
- *
- * @author Rod Johnson
-
  */
 @SuppressWarnings("serial")
 public class CannotGetJdbcConnectionException extends DataAccessResourceFailureException {

@@ -41,6 +41,7 @@ public abstract class PropertiesLoaderUtils {
 	}
 
 	/**
+	 * 从一个编码资源类中加载资源，并填充到指定的Properties对象中
 	 * Fill the given properties from the given EncodedResource,potentially defining a specific encoding for the properties file.
 	 * @param props the Properties instance to load into
 	 * @param resource the resource to load from
@@ -79,7 +80,7 @@ public abstract class PropertiesLoaderUtils {
 	}
 
 	/**
-	 * 从一个资源文件加载Properties
+	 * 从一个资源文件加载Properties (支持 .properties文件 和 .xml文件 )
 	 * Load properties from the given resource (in ISO-8859-1 encoding).
 	 * @param resource the resource to load from
 	 * @return the populated Properties instance
@@ -114,6 +115,7 @@ public abstract class PropertiesLoaderUtils {
 	}
 
 	/**
+	 * 根据资源文件名称，加载并合并classpath中的所有资源文件；
 	 * Load all properties from the specified class path resource (in ISO-8859-1 encoding), using the default class loader.
 	 * <p>Merges properties if more than one resource of the same name found in the class path.
 	 * @param resourceName the name of the class path resource
@@ -125,6 +127,7 @@ public abstract class PropertiesLoaderUtils {
 	}
 
 	/**
+	 * 从指定的ClassLoader中，根据资源文件名称，加载并合并classpath中的所有资源文件；
 	 * Load all properties from the specified class path resource (in ISO-8859-1 encoding), using the given class loader.
 	 * <p>Merges properties if more than one resource of the same name found in the class path.
 	 * @param resourceName the name of the class path resource

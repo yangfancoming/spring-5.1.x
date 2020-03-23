@@ -23,7 +23,6 @@ public abstract class AbstractEncoder<T> implements Encoder<T> {
 
 	protected Log logger = LogFactory.getLog(getClass());
 
-
 	protected AbstractEncoder(MimeType... supportedMimeTypes) {
 		this.encodableMimeTypes = Arrays.asList(supportedMimeTypes);
 	}

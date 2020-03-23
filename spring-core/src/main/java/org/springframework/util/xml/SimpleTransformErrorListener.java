@@ -11,8 +11,6 @@ import org.apache.commons.logging.Log;
  * Simple {@code javax.xml.transform.ErrorListener} implementation:
  * logs warnings using the given Commons Logging logger instance,
  * and rethrows errors to discontinue the XML transformation.
- *
-
  * @since 1.2
  */
 public class SimpleTransformErrorListener implements ErrorListener {

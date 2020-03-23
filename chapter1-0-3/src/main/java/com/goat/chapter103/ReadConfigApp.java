@@ -3,7 +3,10 @@ package com.goat.chapter103;
 import com.goat.chapter103.util.ConfigUtil;
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
 
+import java.io.IOException;
 import java.util.Properties;
 
 /**
@@ -15,9 +18,19 @@ import java.util.Properties;
  */
 public class ReadConfigApp {
 
+	// java原生 方式读取配置文件
 	@Test
 	public void test(){
 		Properties properties = ConfigUtil.getProperties("config.properties");
 		Assert.assertEquals("{salt=123, q=goat, to=zh, from=en}",properties.toString());
+	}
+
+	// Spring 方式读取配置文件
+	@Test
+	public void testFillProperties() throws IOException {
+		Properties ret = new Properties();
+		PropertiesLoaderUtils.fillProperties(ret,new ClassPathResource("config.properties"));
+		Assert.assertEquals("{salt=123, q=goat, to=zh, from=en}",ret.toString());
+
 	}
 }
