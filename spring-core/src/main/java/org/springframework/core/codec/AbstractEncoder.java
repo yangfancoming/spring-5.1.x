@@ -27,7 +27,6 @@ public abstract class AbstractEncoder<T> implements Encoder<T> {
 		this.encodableMimeTypes = Arrays.asList(supportedMimeTypes);
 	}
 
-
 	/**
 	 * Set an alternative logger to use than the one based on the class name.
 	 * @param logger the logger to use
