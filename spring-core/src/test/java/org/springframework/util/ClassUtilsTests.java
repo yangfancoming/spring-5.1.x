@@ -30,6 +30,20 @@ public class ClassUtilsTests {
 
 	private ClassLoader classLoader = getClass().getClassLoader();
 
+	@Test
+	public void resolvePrimitiveClassNameTest(){
+		System.out.println(ClassUtils.resolvePrimitiveClassName("boolean"));
+	}
+
+	@Test
+	public void testClassLoader(){
+//		assertEquals("sun.misc.Launcher$AppClassLoader@14dad5dc",Thread.currentThread().getContextClassLoader());
+		System.out.println(Thread.currentThread().getContextClassLoader());
+		System.out.println(getClass().getClassLoader());
+		System.out.println(ClassLoader.getSystemClassLoader());
+		System.out.println(ClassLoader.getSystemClassLoader().getParent());
+	}
+
 	@Before
 	public void clearStatics() {
 		InnerClass.noArgCalled = false;
@@ -121,6 +135,7 @@ public class ClassUtilsTests {
 				return childLoader1.loadClass(name);
 			}
 		};
+
 		Class<?> composite = ClassUtils.createCompositeInterface(new Class<?>[] {Serializable.class, Externalizable.class}, childLoader1);
 
 		assertTrue(ClassUtils.isCacheSafe(String.class, null));
@@ -128,6 +143,7 @@ public class ClassUtilsTests {
 		assertTrue(ClassUtils.isCacheSafe(String.class, childLoader1));
 		assertTrue(ClassUtils.isCacheSafe(String.class, childLoader2));
 		assertTrue(ClassUtils.isCacheSafe(String.class, childLoader3));
+
 		assertFalse(ClassUtils.isCacheSafe(InnerClass.class, null));
 		assertTrue(ClassUtils.isCacheSafe(InnerClass.class, classLoader));
 		assertTrue(ClassUtils.isCacheSafe(InnerClass.class, childLoader1));
@@ -187,8 +203,8 @@ public class ClassUtilsTests {
 
 	@Test
 	public void testGetShortNameAsProperty() {
-		String shortName = ClassUtils.getShortNameAsProperty(this.getClass());
-		assertEquals(errorClassName, "classUtilsTests", shortName);
+		assertEquals(errorClassName, "classUtilsTests", ClassUtils.getShortNameAsProperty(this.getClass()));
+		assertEquals(errorClassName, "ClassUtilsTests", ClassUtils.getShortName(getClass()));
 	}
 
 	// 测试获取类文件的名称
@@ -208,11 +224,12 @@ public class ClassUtilsTests {
 		assertEquals("org.springframework.util", ClassUtils.getPackageName(InnerClass.class));
 	}
 
-	// 测试 获取类的全限定名
+	// 测试 根据类得到类的权限定名；这个方法主要特点在于可以正确处理数组的类名
 	@Test
 	public void testGetQualifiedName() {
 		assertEquals(errorClassName, "org.springframework.util.ClassUtilsTests", ClassUtils.getQualifiedName(getClass()));
 		assertEquals(errorClassName, "java.lang.String", ClassUtils.getQualifiedName(String.class));
+		assertEquals(errorClassName, "java.lang.String[]", ClassUtils.getQualifiedName(String[].class));
 	}
 
 	@Test
