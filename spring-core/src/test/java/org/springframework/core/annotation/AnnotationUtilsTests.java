@@ -347,31 +347,22 @@ public class AnnotationUtilsTests {
 		assertNull(findAnnotationDeclaringClassForTypes(candidates, NonAnnotatedClass.class));
 
 		// inherited class-level annotation; note: @Transactional is inherited
-		assertEquals(InheritedAnnotationInterface.class,
-				findAnnotationDeclaringClassForTypes(candidates, InheritedAnnotationInterface.class));
+		assertEquals(InheritedAnnotationInterface.class,findAnnotationDeclaringClassForTypes(candidates, InheritedAnnotationInterface.class));
 		assertNull(findAnnotationDeclaringClassForTypes(candidates, SubInheritedAnnotationInterface.class));
-		assertEquals(InheritedAnnotationClass.class,
-				findAnnotationDeclaringClassForTypes(candidates, InheritedAnnotationClass.class));
-		assertEquals(InheritedAnnotationClass.class,
-				findAnnotationDeclaringClassForTypes(candidates, SubInheritedAnnotationClass.class));
+		assertEquals(InheritedAnnotationClass.class,findAnnotationDeclaringClassForTypes(candidates, InheritedAnnotationClass.class));
+		assertEquals(InheritedAnnotationClass.class,findAnnotationDeclaringClassForTypes(candidates, SubInheritedAnnotationClass.class));
 
 		// non-inherited class-level annotation; note: @Order is not inherited,
 		// but findAnnotationDeclaringClassForTypes() should still find it on classes.
-		assertEquals(NonInheritedAnnotationInterface.class,
-				findAnnotationDeclaringClassForTypes(candidates, NonInheritedAnnotationInterface.class));
+		assertEquals(NonInheritedAnnotationInterface.class,findAnnotationDeclaringClassForTypes(candidates, NonInheritedAnnotationInterface.class));
 		assertNull(findAnnotationDeclaringClassForTypes(candidates, SubNonInheritedAnnotationInterface.class));
-		assertEquals(NonInheritedAnnotationClass.class,
-				findAnnotationDeclaringClassForTypes(candidates, NonInheritedAnnotationClass.class));
-		assertEquals(NonInheritedAnnotationClass.class,
-				findAnnotationDeclaringClassForTypes(candidates, SubNonInheritedAnnotationClass.class));
+		assertEquals(NonInheritedAnnotationClass.class,findAnnotationDeclaringClassForTypes(candidates, NonInheritedAnnotationClass.class));
+		assertEquals(NonInheritedAnnotationClass.class,findAnnotationDeclaringClassForTypes(candidates, SubNonInheritedAnnotationClass.class));
 
 		// class hierarchy mixed with @Transactional and @Order declarations
-		assertEquals(TransactionalClass.class,
-				findAnnotationDeclaringClassForTypes(candidates, TransactionalClass.class));
-		assertEquals(TransactionalAndOrderedClass.class,
-				findAnnotationDeclaringClassForTypes(candidates, TransactionalAndOrderedClass.class));
-		assertEquals(TransactionalAndOrderedClass.class,
-				findAnnotationDeclaringClassForTypes(candidates, SubTransactionalAndOrderedClass.class));
+		assertEquals(TransactionalClass.class,findAnnotationDeclaringClassForTypes(candidates, TransactionalClass.class));
+		assertEquals(TransactionalAndOrderedClass.class,findAnnotationDeclaringClassForTypes(candidates, TransactionalAndOrderedClass.class));
+		assertEquals(TransactionalAndOrderedClass.class,findAnnotationDeclaringClassForTypes(candidates, SubTransactionalAndOrderedClass.class));
 	}
 
 	@Test
@@ -927,8 +918,8 @@ public class AnnotationUtilsTests {
 
 	@Test
 	public void synthesizeAnnotationWithAttributeAliasForWithMissingDefaultValues() throws Exception {
-		AliasForWithMissingDefaultValues annotation =
-				AliasForWithMissingDefaultValuesClass.class.getAnnotation(AliasForWithMissingDefaultValues.class);
+		AliasForWithMissingDefaultValues annotation = AliasForWithMissingDefaultValuesClass.class.getAnnotation(AliasForWithMissingDefaultValues.class);
+
 		exception.expect(AnnotationConfigurationException.class);
 		exception.expectMessage(startsWith("Misconfigured aliases"));
 		exception.expectMessage(containsString(AliasForWithMissingDefaultValues.class.getName()));
@@ -940,8 +931,7 @@ public class AnnotationUtilsTests {
 
 	@Test
 	public void synthesizeAnnotationWithAttributeAliasForAttributeWithDifferentDefaultValue() throws Exception {
-		AliasForAttributeWithDifferentDefaultValue annotation =
-				AliasForAttributeWithDifferentDefaultValueClass.class.getAnnotation(AliasForAttributeWithDifferentDefaultValue.class);
+		AliasForAttributeWithDifferentDefaultValue annotation = AliasForAttributeWithDifferentDefaultValueClass.class.getAnnotation(AliasForAttributeWithDifferentDefaultValue.class);
 		exception.expect(AnnotationConfigurationException.class);
 		exception.expectMessage(startsWith("Misconfigured aliases"));
 		exception.expectMessage(containsString(AliasForAttributeWithDifferentDefaultValue.class.getName()));
@@ -953,8 +943,7 @@ public class AnnotationUtilsTests {
 
 	@Test
 	public void synthesizeAnnotationWithAttributeAliasForMetaAnnotationThatIsNotMetaPresent() throws Exception {
-		AliasedComposedContextConfigNotMetaPresent annotation =
-				AliasedComposedContextConfigNotMetaPresentClass.class.getAnnotation(AliasedComposedContextConfigNotMetaPresent.class);
+		AliasedComposedContextConfigNotMetaPresent annotation = AliasedComposedContextConfigNotMetaPresentClass.class.getAnnotation(AliasedComposedContextConfigNotMetaPresent.class);
 		exception.expect(AnnotationConfigurationException.class);
 		exception.expectMessage(startsWith("@AliasFor declaration on attribute 'xmlConfigFile' in annotation"));
 		exception.expectMessage(containsString(AliasedComposedContextConfigNotMetaPresent.class.getName()));
@@ -1010,19 +999,13 @@ public class AnnotationUtilsTests {
 
 	@Test
 	public void synthesizeAnnotationWithImplicitAliasesWithImpliedAliasNamesOmitted() throws Exception {
-		assertAnnotationSynthesisWithImplicitAliasesWithImpliedAliasNamesOmitted(
-				ValueImplicitAliasesWithImpliedAliasNamesOmittedContextConfigClass.class, "value");
-		assertAnnotationSynthesisWithImplicitAliasesWithImpliedAliasNamesOmitted(
-				LocationsImplicitAliasesWithImpliedAliasNamesOmittedContextConfigClass.class, "location");
-		assertAnnotationSynthesisWithImplicitAliasesWithImpliedAliasNamesOmitted(
-				XmlFilesImplicitAliasesWithImpliedAliasNamesOmittedContextConfigClass.class, "xmlFile");
+		assertAnnotationSynthesisWithImplicitAliasesWithImpliedAliasNamesOmitted(ValueImplicitAliasesWithImpliedAliasNamesOmittedContextConfigClass.class, "value");
+		assertAnnotationSynthesisWithImplicitAliasesWithImpliedAliasNamesOmitted(LocationsImplicitAliasesWithImpliedAliasNamesOmittedContextConfigClass.class, "location");
+		assertAnnotationSynthesisWithImplicitAliasesWithImpliedAliasNamesOmitted(XmlFilesImplicitAliasesWithImpliedAliasNamesOmittedContextConfigClass.class, "xmlFile");
 	}
 
-	private void assertAnnotationSynthesisWithImplicitAliasesWithImpliedAliasNamesOmitted(
-			Class<?> clazz, String expected) {
-
-		ImplicitAliasesWithImpliedAliasNamesOmittedContextConfig config = clazz.getAnnotation(
-				ImplicitAliasesWithImpliedAliasNamesOmittedContextConfig.class);
+	private void assertAnnotationSynthesisWithImplicitAliasesWithImpliedAliasNamesOmitted(Class<?> clazz, String expected) {
+		ImplicitAliasesWithImpliedAliasNamesOmittedContextConfig config = clazz.getAnnotation(ImplicitAliasesWithImpliedAliasNamesOmittedContextConfig.class);
 		assertNotNull(config);
 
 		ImplicitAliasesWithImpliedAliasNamesOmittedContextConfig synthesizedConfig = synthesizeAnnotation(config);
@@ -1120,10 +1103,8 @@ public class AnnotationUtilsTests {
 		exception.expectMessage(containsString("declared on class"));
 		exception.expectMessage(containsString(clazz.getName()));
 		exception.expectMessage(containsString("and synthesized from"));
-		exception.expectMessage(either(containsString("attribute 'location1' and its alias 'location2'")).or(
-				containsString("attribute 'location2' and its alias 'location1'")));
-		exception.expectMessage(either(containsString("are present with values of [1] and [2]")).or(
-				containsString("are present with values of [2] and [1]")));
+		exception.expectMessage(either(containsString("attribute 'location1' and its alias 'location2'")).or(containsString("attribute 'location2' and its alias 'location1'")));
+		exception.expectMessage(either(containsString("are present with values of [1] and [2]")).or(containsString("are present with values of [2] and [1]")));
 
 		synthesizedConfig.location1();
 	}
@@ -1149,8 +1130,8 @@ public class AnnotationUtilsTests {
 		assertNotNull(componentScan);
 		assertEquals("value from ComponentScan: ", "*Foo", componentScan.value().pattern());
 
-		AnnotationAttributes attributes = getAnnotationAttributes(
-				ComponentScanSingleFilterClass.class, componentScan, false, true);
+		AnnotationAttributes attributes = getAnnotationAttributes(ComponentScanSingleFilterClass.class, componentScan, false, true);
+
 		assertNotNull(attributes);
 		assertEquals(ComponentScanSingleFilter.class, attributes.annotationType());
 
@@ -1162,8 +1143,7 @@ public class AnnotationUtilsTests {
 		filterMap.put("pattern", "newFoo");
 		filterMap.put("enigma", 42);
 
-		ComponentScanSingleFilter synthesizedComponentScan = synthesizeAnnotation(
-				attributes, ComponentScanSingleFilter.class, ComponentScanSingleFilterClass.class);
+		ComponentScanSingleFilter synthesizedComponentScan = synthesizeAnnotation(attributes, ComponentScanSingleFilter.class, ComponentScanSingleFilterClass.class);
 		assertNotNull(synthesizedComponentScan);
 
 		assertNotSame(componentScan, synthesizedComponentScan);
@@ -1469,8 +1449,7 @@ public class AnnotationUtilsTests {
 
 		ContextConfig[] configs = synthesizedHierarchy.value();
 		assertNotNull(configs);
-		assertTrue("nested annotations must be synthesized",
-				stream(configs).allMatch(c -> c instanceof SynthesizedAnnotation));
+		assertTrue("nested annotations must be synthesized",stream(configs).allMatch(c -> c instanceof SynthesizedAnnotation));
 
 		List<String> locations = stream(configs).map(ContextConfig::location).collect(toList());
 		assertThat(locations, is(expectedLocations));

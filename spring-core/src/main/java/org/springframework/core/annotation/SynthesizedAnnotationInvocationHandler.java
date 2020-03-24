@@ -56,6 +56,7 @@ class SynthesizedAnnotationInvocationHandler implements InvocationHandler {
 		if (ReflectionUtils.isToStringMethod(method)) {
 			return annotationToString();
 		}
+		// 注解的 annotationType 返回注解的 Class 类型
 		if (AnnotationUtils.isAnnotationTypeMethod(method)) {
 			return annotationType();
 		}
@@ -63,6 +64,7 @@ class SynthesizedAnnotationInvocationHandler implements InvocationHandler {
 			throw new AnnotationConfigurationException(String.format(
 					"Method [%s] is unsupported for synthesized annotation type [%s]", method, annotationType()));
 		}
+		// 真正获取注解的属性值
 		return getAttributeValue(method);
 	}
 
