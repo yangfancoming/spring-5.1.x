@@ -32,6 +32,7 @@ public class PatternMatchUtilsTests {
 	@Test
 	public void testBetween() {
 		doTest("*stuff*", "getMeTest", false);
+
 		doTest("*stuff*", "getstuffTest", true);
 		doTest("*stuff*", "stuffTest", true);
 		doTest("*stuff*", "getstuff", true);
@@ -42,6 +43,7 @@ public class PatternMatchUtilsTests {
 	public void testStartsEnds() {
 		doTest("on*Event", "onMyEvent", true);
 		doTest("on*Event", "onEvent", true);
+
 		doTest("3*3", "3", false);
 		doTest("3*3", "33", true);
 	}
@@ -49,6 +51,7 @@ public class PatternMatchUtilsTests {
 	@Test
 	public void testStartsEndsBetween() {
 		doTest("12*45*78", "12345678", true);
+
 		doTest("12*45*78", "123456789", false);
 		doTest("12*45*78", "012345678", false);
 		doTest("12*45*78", "124578", true);

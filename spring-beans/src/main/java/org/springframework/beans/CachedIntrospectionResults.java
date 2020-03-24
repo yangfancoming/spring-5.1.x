@@ -137,43 +137,31 @@ public final class CachedIntrospectionResults {
 	@SuppressWarnings("unchecked")
 	static CachedIntrospectionResults forClass(Class<?> beanClass) throws BeansException {
 		CachedIntrospectionResults results = strongClassCache.get(beanClass);
-		if (results != null) {
-			return results;
-		}
+		if (results != null) return results;
 		results = softClassCache.get(beanClass);
-		if (results != null) {
-			return results;
-		}
-
+		if (results != null) return results;
 		results = new CachedIntrospectionResults(beanClass);
 		ConcurrentMap<Class<?>, CachedIntrospectionResults> classCacheToUse;
 
 		if (ClassUtils.isCacheSafe(beanClass, CachedIntrospectionResults.class.getClassLoader()) || isClassLoaderAccepted(beanClass.getClassLoader())) {
 			classCacheToUse = strongClassCache;
-		}
-		else {
-			if (logger.isDebugEnabled()) {
-				logger.debug("Not strongly caching class [" + beanClass.getName() + "] because it is not cache-safe");
-			}
+		}else {
+			if (logger.isDebugEnabled()) logger.debug("Not strongly caching class [" + beanClass.getName() + "] because it is not cache-safe");
 			classCacheToUse = softClassCache;
 		}
-
 		CachedIntrospectionResults existing = classCacheToUse.putIfAbsent(beanClass, results);
 		return (existing != null ? existing : results);
 	}
 
 	/**
-	 * Check whether this CachedIntrospectionResults class is configured
-	 * to accept the given ClassLoader.
+	 * Check whether this CachedIntrospectionResults class is configured to accept the given ClassLoader.
 	 * @param classLoader the ClassLoader to check
 	 * @return whether the given ClassLoader is accepted
 	 * @see #acceptClassLoader
 	 */
 	private static boolean isClassLoaderAccepted(ClassLoader classLoader) {
 		for (ClassLoader acceptedLoader : acceptedClassLoaders) {
-			if (isUnderneathClassLoader(classLoader, acceptedLoader)) {
-				return true;
-			}
+			if (isUnderneathClassLoader(classLoader, acceptedLoader)) return true;
 		}
 		return false;
 	}
@@ -185,18 +173,12 @@ public final class CachedIntrospectionResults {
 	 * @param parent the parent ClassLoader to check for
 	 */
 	private static boolean isUnderneathClassLoader(@Nullable ClassLoader candidate, @Nullable ClassLoader parent) {
-		if (candidate == parent) {
-			return true;
-		}
-		if (candidate == null) {
-			return false;
-		}
+		if (candidate == parent) return true;
+		if (candidate == null) return false;
 		ClassLoader classLoaderToCheck = candidate;
 		while (classLoaderToCheck != null) {
 			classLoaderToCheck = classLoaderToCheck.getParent();
-			if (classLoaderToCheck == parent) {
-				return true;
-			}
+			if (classLoaderToCheck == parent) return true;
 		}
 		return false;
 	}
@@ -210,9 +192,7 @@ public final class CachedIntrospectionResults {
 	private static BeanInfo getBeanInfo(Class<?> beanClass) throws IntrospectionException {
 		for (BeanInfoFactory beanInfoFactory : beanInfoFactories) {
 			BeanInfo beanInfo = beanInfoFactory.getBeanInfo(beanClass);
-			if (beanInfo != null) {
-				return beanInfo;
-			}
+			if (beanInfo != null) return beanInfo;
 		}
 		return (shouldIntrospectorIgnoreBeaninfoClasses ?
 				Introspector.getBeanInfo(beanClass, Introspector.IGNORE_ALL_BEANINFO) :
@@ -237,14 +217,10 @@ public final class CachedIntrospectionResults {
 	 */
 	private CachedIntrospectionResults(Class<?> beanClass) throws BeansException {
 		try {
-			if (logger.isTraceEnabled()) {
-				logger.trace("Getting BeanInfo for class [" + beanClass.getName() + "]");
-			}
+			if (logger.isTraceEnabled()) logger.trace("Getting BeanInfo for class [" + beanClass.getName() + "]");
 			this.beanInfo = getBeanInfo(beanClass);
 
-			if (logger.isTraceEnabled()) {
-				logger.trace("Caching PropertyDescriptors for class [" + beanClass.getName() + "]");
-			}
+			if (logger.isTraceEnabled()) logger.trace("Caching PropertyDescriptors for class [" + beanClass.getName() + "]");
 			this.propertyDescriptorCache = new LinkedHashMap<>();
 
 			// This call is slow so we do it once.
@@ -329,8 +305,7 @@ public final class CachedIntrospectionResults {
 	private PropertyDescriptor buildGenericTypeAwarePropertyDescriptor(Class<?> beanClass, PropertyDescriptor pd) {
 		try {
 			return new GenericTypeAwarePropertyDescriptor(beanClass, pd.getName(), pd.getReadMethod(),pd.getWriteMethod(), pd.getPropertyEditorClass());
-		}
-		catch (IntrospectionException ex) {
+		}catch (IntrospectionException ex) {
 			throw new FatalBeanException("Failed to re-introspect class [" + beanClass.getName() + "]", ex);
 		}
 	}

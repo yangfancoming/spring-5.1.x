@@ -26,11 +26,9 @@ public abstract class ContextCacheUtils {
 			if (StringUtils.hasText(maxSize)) {
 				return Integer.parseInt(maxSize.trim());
 			}
-		}
-		catch (Exception ex) {
+		}catch (Exception ex) {
 			// ignore
 		}
-
 		// Fallback
 		return ContextCache.DEFAULT_MAX_CONTEXT_CACHE_SIZE;
 	}

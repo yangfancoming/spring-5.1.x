@@ -23,11 +23,7 @@ import org.springframework.test.context.MergedContextConfiguration;
  * itself is typically very quick, some beans in a context ; for example,
  * an embedded database or a {@code LocalContainerEntityManagerFactoryBean} for
  * working with JPA ; may take several seconds to initialize. Hence it
- * often makes sense to perform that initialization only once per test suite or
- * JVM process.
- *
- * @author Sam Brannen
-
+ * often makes sense to perform that initialization only once per test suite or JVM process.
  * @since 4.2
  * @see ContextCacheUtils#retrieveMaxCacheSize()
  */
