@@ -14,9 +14,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * Utility methods for URI encoding and decoding based on RFC 3986.
- *
- * <p>There are two types of encode methods:
- * <ul>
+ * There are two types of encode methods:
  * <li>{@code "encodeXyz"} -- these encode a specific URI component (e.g. path,
  * query) by percent encoding illegal characters, which includes non-US-ASCII
  * characters, and also characters that are otherwise illegal within the given
@@ -26,11 +24,6 @@ import org.springframework.util.StringUtils;
  * <li>{@code "encode"} and {@code "encodeUriVariables"} -- these can be used
  * to encode URI variable values by percent encoding all characters that are
  * either illegal, or have any reserved meaning, anywhere within a URI.
- * </ul>
- *
- * @author Arjen Poutsma
-
- * @author Rossen Stoyanchev
  * @since 3.0
  * @see <a href="https://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>
  */
@@ -211,7 +204,6 @@ public abstract class UriUtils {
 	 * @return the encoded query parameter
 	 */
 	public static String encodeQueryParam(String queryParam, String encoding) {
-
 		return encode(queryParam, encoding, HierarchicalUriComponents.Type.QUERY_PARAM);
 	}
 
@@ -316,7 +308,7 @@ public abstract class UriUtils {
 
 	/**
 	 * Decode the given encoded URI component.
-	 * <p>See {@link StringUtils#uriDecode(String, Charset)} for the decoding rules.
+	 * See {@link StringUtils#uriDecode(String, Charset)} for the decoding rules.
 	 * @param source the encoded String
 	 * @param encoding the character encoding to use
 	 * @return the decoded value
@@ -330,7 +322,7 @@ public abstract class UriUtils {
 
 	/**
 	 * Decode the given encoded URI component.
-	 * <p>See {@link StringUtils#uriDecode(String, Charset)} for the decoding rules.
+	 * See {@link StringUtils#uriDecode(String, Charset)} for the decoding rules.
 	 * @param source the encoded String
 	 * @param charset the character encoding to use
 	 * @return the decoded value
@@ -356,9 +348,7 @@ public abstract class UriUtils {
 		if (fragmentIndex != -1 && (end == -1 || fragmentIndex < end)) {
 			end = fragmentIndex;
 		}
-		if (end == -1) {
-			end = path.length();
-		}
+		if (end == -1) end = path.length();
 		int begin = path.lastIndexOf('/', end) + 1;
 		int paramIndex = path.indexOf(';', begin);
 		end = (paramIndex != -1 && paramIndex < end ? paramIndex : end);

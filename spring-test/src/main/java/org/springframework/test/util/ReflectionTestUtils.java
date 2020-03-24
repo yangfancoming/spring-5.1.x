@@ -25,7 +25,6 @@ import org.springframework.util.StringUtils;
  * invoke a non-{@code public} <em>configuration</em> or <em>lifecycle</em>
  * callback method when testing code involving, for example:
  *
- * <ul>
  * <li>ORM frameworks such as JPA and Hibernate which condone the usage of
  * {@code private} or {@code protected} field access as opposed to
  * {@code public} setter methods for properties in a domain entity.</li>
@@ -38,14 +37,9 @@ import org.springframework.util.StringUtils;
  * <li>Use of annotations such as {@link javax.annotation.PostConstruct @PostConstruct}
  * and {@link javax.annotation.PreDestroy @PreDestroy} for lifecycle callback
  * methods.</li>
- * </ul>
- *
  * <p>In addition, several methods in this class provide support for {@code static}
  * fields ; for example, {@link #setField(Class, String, Object)},
  * {@link #getField(Class, String)}, etc.
- *
- * @author Sam Brannen
-
  * @since 2.5
  * @see ReflectionUtils
  * @see AopTestUtils
@@ -58,9 +52,7 @@ public abstract class ReflectionTestUtils {
 
 	private static final Log logger = LogFactory.getLog(ReflectionTestUtils.class);
 
-	private static final boolean springAopPresent = ClassUtils.isPresent(
-			"org.springframework.aop.framework.Advised", ReflectionTestUtils.class.getClassLoader());
-
+	private static final boolean springAopPresent = ClassUtils.isPresent("org.springframework.aop.framework.Advised", ReflectionTestUtils.class.getClassLoader());
 
 	/**
 	 * Set the {@linkplain Field field} with the given {@code name} on the
@@ -121,9 +113,7 @@ public abstract class ReflectionTestUtils {
 	 * {@code name} is specified
 	 * @since 4.2
 	 */
-	public static void setField(
-			Class<?> targetClass, @Nullable String name, @Nullable Object value, @Nullable Class<?> type) {
-
+	public static void setField(Class<?> targetClass, @Nullable String name, @Nullable Object value, @Nullable Class<?> type) {
 		setField(null, targetClass, name, value, type);
 	}
 
@@ -153,11 +143,8 @@ public abstract class ReflectionTestUtils {
 	 * @see ReflectionUtils#setField(Field, Object, Object)
 	 * @see AopTestUtils#getUltimateTargetObject(Object)
 	 */
-	public static void setField(@Nullable Object targetObject, @Nullable Class<?> targetClass,
-			@Nullable String name, @Nullable Object value, @Nullable Class<?> type) {
-
-		Assert.isTrue(targetObject != null || targetClass != null,
-				"Either targetObject or targetClass for the field must be specified");
+	public static void setField(@Nullable Object targetObject, @Nullable Class<?> targetClass,@Nullable String name, @Nullable Object value, @Nullable Class<?> type) {
+		Assert.isTrue(targetObject != null || targetClass != null,"Either targetObject or targetClass for the field must be specified");
 
 		if (targetObject != null && springAopPresent) {
 			targetObject = AopTestUtils.getUltimateTargetObject(targetObject);
@@ -168,15 +155,11 @@ public abstract class ReflectionTestUtils {
 
 		Field field = ReflectionUtils.findField(targetClass, name, type);
 		if (field == null) {
-			throw new IllegalArgumentException(String.format(
-					"Could not find field '%s' of type [%s] on %s or target class [%s]", name, type,
-					safeToString(targetObject), targetClass));
+			throw new IllegalArgumentException(String.format("Could not find field '%s' of type [%s] on %s or target class [%s]", name, type,safeToString(targetObject), targetClass));
 		}
 
 		if (logger.isDebugEnabled()) {
-			logger.debug(String.format(
-					"Setting field '%s' of type [%s] on %s or target class [%s] to value [%s]", name, type,
-					safeToString(targetObject), targetClass, value));
+			logger.debug(String.format("Setting field '%s' of type [%s] on %s or target class [%s] to value [%s]", name, type,safeToString(targetObject), targetClass, value));
 		}
 		ReflectionUtils.makeAccessible(field);
 		ReflectionUtils.setField(field, targetObject, value);
@@ -241,9 +224,7 @@ public abstract class ReflectionTestUtils {
 	 */
 	@Nullable
 	public static Object getField(@Nullable Object targetObject, @Nullable Class<?> targetClass, String name) {
-		Assert.isTrue(targetObject != null || targetClass != null,
-			"Either targetObject or targetClass for the field must be specified");
-
+		Assert.isTrue(targetObject != null || targetClass != null,"Either targetObject or targetClass for the field must be specified");
 		if (targetObject != null && springAopPresent) {
 			targetObject = AopTestUtils.getUltimateTargetObject(targetObject);
 		}
@@ -253,13 +234,11 @@ public abstract class ReflectionTestUtils {
 
 		Field field = ReflectionUtils.findField(targetClass, name);
 		if (field == null) {
-			throw new IllegalArgumentException(String.format("Could not find field '%s' on %s or target class [%s]",
-					name, safeToString(targetObject), targetClass));
+			throw new IllegalArgumentException(String.format("Could not find field '%s' on %s or target class [%s]",name, safeToString(targetObject), targetClass));
 		}
 
 		if (logger.isDebugEnabled()) {
-			logger.debug(String.format("Getting field '%s' from %s or target class [%s]", name,
-					safeToString(targetObject), targetClass));
+			logger.debug(String.format("Getting field '%s' from %s or target class [%s]", name,safeToString(targetObject), targetClass));
 		}
 		ReflectionUtils.makeAccessible(field);
 		return ReflectionUtils.getField(field, targetObject);
@@ -314,28 +293,21 @@ public abstract class ReflectionTestUtils {
 		Assert.notNull(target, "Target object must not be null");
 		Assert.hasText(name, "Method name must not be empty");
 		Class<?>[] paramTypes = (type != null ? new Class<?>[] {type} : null);
-
 		String setterMethodName = name;
 		if (!name.startsWith(SETTER_PREFIX)) {
 			setterMethodName = SETTER_PREFIX + StringUtils.capitalize(name);
 		}
-
 		Method method = ReflectionUtils.findMethod(target.getClass(), setterMethodName, paramTypes);
 		if (method == null && !setterMethodName.equals(name)) {
 			setterMethodName = name;
 			method = ReflectionUtils.findMethod(target.getClass(), setterMethodName, paramTypes);
 		}
 		if (method == null) {
-			throw new IllegalArgumentException(String.format(
-					"Could not find setter method '%s' on %s with parameter type [%s]", setterMethodName,
-					safeToString(target), type));
+			throw new IllegalArgumentException(String.format("Could not find setter method '%s' on %s with parameter type [%s]", setterMethodName,safeToString(target), type));
 		}
-
 		if (logger.isDebugEnabled()) {
-			logger.debug(String.format("Invoking setter method '%s' on %s with value [%s]", setterMethodName,
-					safeToString(target), value));
+			logger.debug(String.format("Invoking setter method '%s' on %s with value [%s]", setterMethodName,safeToString(target), value));
 		}
-
 		ReflectionUtils.makeAccessible(method);
 		ReflectionUtils.invokeMethod(method, target, value);
 	}
@@ -349,12 +321,9 @@ public abstract class ReflectionTestUtils {
 	 * {@code private}, and <em>package-private</em> getter methods.
 	 * <p>In addition, this method supports JavaBean-style <em>property</em>
 	 * names. For example, if you wish to get the {@code name} property on the
-	 * target object, you may pass either &quot;name&quot; or
-	 * &quot;getName&quot; as the method name.
-	 * @param target the target object on which to invoke the specified getter
-	 * method
-	 * @param name the name of the getter method to invoke or the corresponding
-	 * property name
+	 * target object, you may pass either &quot;name&quot; or &quot;getName&quot; as the method name.
+	 * @param target the target object on which to invoke the specified getter method
+	 * @param name the name of the getter method to invoke or the corresponding property name
 	 * @return the value returned from the invocation
 	 * @see ReflectionUtils#findMethod(Class, String, Class[])
 	 * @see ReflectionUtils#makeAccessible(Method)
@@ -375,8 +344,7 @@ public abstract class ReflectionTestUtils {
 			method = ReflectionUtils.findMethod(target.getClass(), getterMethodName);
 		}
 		if (method == null) {
-			throw new IllegalArgumentException(String.format(
-					"Could not find getter method '%s' on %s", getterMethodName, safeToString(target)));
+			throw new IllegalArgumentException(String.format("Could not find getter method '%s' on %s", getterMethodName, safeToString(target)));
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -407,19 +375,15 @@ public abstract class ReflectionTestUtils {
 	public static <T> T invokeMethod(Object target, String name, Object... args) {
 		Assert.notNull(target, "Target object must not be null");
 		Assert.hasText(name, "Method name must not be empty");
-
 		try {
 			MethodInvoker methodInvoker = new MethodInvoker();
 			methodInvoker.setTargetObject(target);
 			methodInvoker.setTargetMethod(name);
 			methodInvoker.setArguments(args);
 			methodInvoker.prepare();
-
 			if (logger.isDebugEnabled()) {
-				logger.debug(String.format("Invoking method '%s' on %s with arguments %s", name, safeToString(target),
-						ObjectUtils.nullSafeToString(args)));
+				logger.debug(String.format("Invoking method '%s' on %s with arguments %s", name, safeToString(target),ObjectUtils.nullSafeToString(args)));
 			}
-
 			return (T) methodInvoker.invoke();
 		}
 		catch (Exception ex) {
@@ -431,10 +395,8 @@ public abstract class ReflectionTestUtils {
 	private static String safeToString(@Nullable Object target) {
 		try {
 			return String.format("target object [%s]", target);
-		}
-		catch (Exception ex) {
-			return String.format("target of type [%s] whose toString() method threw [%s]",
-					(target != null ? target.getClass().getName() : "unknown"), ex);
+		}catch (Exception ex) {
+			return String.format("target of type [%s] whose toString() method threw [%s]",(target != null ? target.getClass().getName() : "unknown"), ex);
 		}
 	}
 
