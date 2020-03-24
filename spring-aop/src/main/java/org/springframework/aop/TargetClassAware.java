@@ -8,10 +8,7 @@ import org.springframework.lang.Nullable;
  * Minimal interface for exposing the target class behind a proxy.
  *
  * <p>Implemented by AOP proxy objects and proxy factories
- * (via {@link org.springframework.aop.framework.Advised})
- * as well as by {@link TargetSource TargetSources}.
- *
-
+ * (via {@link org.springframework.aop.framework.Advised}) as well as by {@link TargetSource TargetSources}.
  * @since 2.0.3
  * @see org.springframework.aop.support.AopUtils#getTargetClass(Object)
  */

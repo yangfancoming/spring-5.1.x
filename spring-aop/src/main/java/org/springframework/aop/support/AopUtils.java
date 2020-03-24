@@ -29,8 +29,8 @@ import org.springframework.util.ReflectionUtils;
 
 /**
  * Utility methods for AOP support code.
- * <p>Mainly for internal use within Spring's AOP support.
- * <p>See {@link org.springframework.aop.framework.AopProxyUtils} for a
+ * Mainly for internal use within Spring's AOP support.
+ * See {@link org.springframework.aop.framework.AopProxyUtils} for a
  * collection of framework-specific AOP utility methods which depend
  * on internals of Spring's AOP framework implementation.
  * @see org.springframework.aop.framework.AopProxyUtils
@@ -39,20 +39,24 @@ public abstract class AopUtils {
 
 	/**
 	 * Check whether the given object is a JDK dynamic proxy or a CGLIB proxy.
-	 * <p>This method additionally checks if the given object is an instance of {@link SpringProxy}.
+	 * This method additionally checks if the given object is an instance of {@link SpringProxy}.
 	 * @param object the object to check
 	 * @see #isJdkDynamicProxy
 	 * @see #isCglibProxy
 	 */
 	public static boolean isAopProxy(@Nullable Object object) {
+		/**
+		 * 	 1.判断是否是SpringProxy类型，Spring中的所有的代理对象，都会实现这个接口，这个接口是一个标记接口
+		 * 	 2.使用JDK的Proxy的isProxyClass方法，判定该对象是否是JDK的代理实现，即是否是基于接口代理；
+		 * 	 3.使用ClassUtils的isCglibProxyClass方法判断该对象是否是cglib代理实现；ClassUtils也是Spring中针对反射提供的非常有用的工具类
+		 * 	 4.为什么要这样判断?因为Spring需要判定这个对象是否是由spring完成的AOP代理；
+		*/
 		return (object instanceof SpringProxy && (Proxy.isProxyClass(object.getClass()) || ClassUtils.isCglibProxyClass(object.getClass())));
 	}
 
 	/**
 	 * Check whether the given object is a JDK dynamic proxy.
-	 * <p>This method goes beyond the implementation of
-	 * {@link Proxy#isProxyClass(Class)} by additionally checking if the
-	 * given object is an instance of {@link SpringProxy}.
+	 * This method goes beyond the implementation of {@link Proxy#isProxyClass(Class)} by additionally checking if the given object is an instance of {@link SpringProxy}.
 	 * @param object the object to check
 	 * @see java.lang.reflect.Proxy#isProxyClass
 	 */
@@ -62,7 +66,7 @@ public abstract class AopUtils {
 
 	/**
 	 * Check whether the given object is a CGLIB proxy.
-	 * <p>This method goes beyond the implementation of
+	 * This method goes beyond the implementation of
 	 * {@link ClassUtils#isCglibProxy(Object)} by additionally checking if
 	 * the given object is an instance of {@link SpringProxy}.
 	 * @param object the object to check
@@ -73,11 +77,11 @@ public abstract class AopUtils {
 	}
 
 	/**
+	 * 用于获取对象的真实类型
 	 * Determine the target class of the given bean instance which might be an AOP proxy.
-	 * <p>Returns the target class for an AOP proxy or the plain class otherwise.
+	 * Returns the target class for an AOP proxy or the plain class otherwise.
 	 * @param candidate the instance to check (might be an AOP proxy)
-	 * @return the target class (or the plain class of the given object as fallback;
-	 * never {@code null})
+	 * @return the target class (or the plain class of the given object as fallback;never {@code null})
 	 * @see org.springframework.aop.TargetClassAware#getTargetClass()
 	 * @see org.springframework.aop.framework.AopProxyUtils#ultimateTargetClass(Object)
 	 */
@@ -118,7 +122,10 @@ public abstract class AopUtils {
 		return methodToUse;
 	}
 
+	// Object本身的equals,hashCode,toString,finalize方法，都是需要剔除在代理方法之外的，这四个方法就是来辅助做判断的
+
 	/**
+	 * 用于判定给定的方法是否是equals方法
 	 * Determine whether the given method is an "equals" method.
 	 * @see java.lang.Object#equals
 	 */
@@ -127,6 +134,7 @@ public abstract class AopUtils {
 	}
 
 	/**
+	 * 用于判定给定的方法是否是 hashCode方法
 	 * Determine whether the given method is a "hashCode" method.
 	 * @see java.lang.Object#hashCode
 	 */
@@ -135,6 +143,7 @@ public abstract class AopUtils {
 	}
 
 	/**
+	 * 用于判定给定的方法是否是 toString方法
 	 * Determine whether the given method is a "toString" method.
 	 * @see java.lang.Object#toString()
 	 */
@@ -143,6 +152,7 @@ public abstract class AopUtils {
 	}
 
 	/**
+	 * 用于判定给定的方法是否是 finalize方法
 	 * Determine whether the given method is a "finalize" method.
 	 * @see java.lang.Object#finalize()
 	 */
@@ -151,11 +161,15 @@ public abstract class AopUtils {
 	}
 
 	/**
-	 * Given a method, which may come from an interface, and a target class used
-	 * in the current AOP invocation, find the corresponding target method if there
-	 * is one. E.g. the method may be {@code IFoo.bar()} and the target class may be {@code DefaultFoo}. In this case, the method may be {@code DefaultFoo.bar()}.
+	 * 从代理对象上的一个方法，找到真实对象上对应的方法
+	 * 举个例子，MyComponent代理之后的对象上的someLogic方法，肯定是属于cglib代理之后的类上的method，
+	 * 使用这个method是没法去执行目标MyComponent的someLogic方法，
+	 * 这种情况下，就可以使用getMostSpecificMethod，找到真实对象上的someLogic方法，并执行真实方法
+	 * Given a method, which may come from an interface, and a target class used in the current AOP invocation,
+	 *  find the corresponding target method if there is one.
+	 *  E.g. the method may be {@code IFoo.bar()} and the target class may be {@code DefaultFoo}. In this case, the method may be {@code DefaultFoo.bar()}.
 	 *  This enables attributes on that method to be found.
-	 * <p><b>NOTE:</b> In contrast to {@link org.springframework.util.ClassUtils#getMostSpecificMethod},
+	 * <b>NOTE:</b> In contrast to {@link org.springframework.util.ClassUtils#getMostSpecificMethod},
 	 * this method resolves Java 5 bridge methods in order to retrieve attributes from the <i>original</i> method definition.
 	 * @param method the method to be invoked, which may come from an interface
 	 * @param targetClass the target class for the current invocation. May be {@code null} or may not even implement the method.
@@ -171,8 +185,9 @@ public abstract class AopUtils {
 	}
 
 	/**
+	 * 判断一个切入点能否匹配一个指定的类型；
 	 * Can the given pointcut apply at all on the given class?
-	 * <p>This is an important test as it can be used to optimize out a pointcut for a class.
+	 * This is an important test as it can be used to optimize out a pointcut for a class.
 	 * @param pc the static or dynamic pointcut to check
 	 * @param targetClass the class to test
 	 * @return whether the pointcut can apply on any method
@@ -182,11 +197,13 @@ public abstract class AopUtils {
 	}
 
 	/**
+	 * 判断一个切入点能否匹配一个指定的类型，是否支持引入匹配
 	 * Can the given pointcut apply at all on the given class?
-	 * <p>This is an important test as it can be used to optimize out a pointcut for a class.
+	 * This is an important test as it can be used to optimize out a pointcut for a class.
 	 * @param pc the static or dynamic pointcut to check
 	 * @param targetClass the class to test
 	 * @param hasIntroductions whether or not the advisor chain for this bean includes any introductions
+	 * 这个参数是用于指定，判定是否包含introduction，如果不包含introduction，匹配会更加的有效；
 	 * @return whether the pointcut can apply on any method
 	 */
 	public static boolean canApply(Pointcut pc, Class<?> targetClass, boolean hasIntroductions) {
@@ -195,13 +212,11 @@ public abstract class AopUtils {
 		if (!pc.getClassFilter().matches(targetClass)) {
 			return false;
 		}
-
 		MethodMatcher methodMatcher = pc.getMethodMatcher();
 		if (methodMatcher == MethodMatcher.TRUE) {
 			// No need to iterate the methods if we're matching any method anyway...
 			return true;
 		}
-
 		IntroductionAwareMethodMatcher introductionAwareMethodMatcher = null;
 		if (methodMatcher instanceof IntroductionAwareMethodMatcher) {
 			introductionAwareMethodMatcher = (IntroductionAwareMethodMatcher) methodMatcher;
@@ -215,7 +230,6 @@ public abstract class AopUtils {
 			classes.add(ClassUtils.getUserClass(targetClass));
 		}
 		classes.addAll(ClassUtils.getAllInterfacesForClassAsSet(targetClass));
-
 		for (Class<?> clazz : classes) {
 			// 获取当前类的方法列表，包括从父类中继承的方法
 			Method[] methods = ReflectionUtils.getAllDeclaredMethods(clazz);
@@ -230,6 +244,7 @@ public abstract class AopUtils {
 	}
 
 	/**
+	 * 判断一个建议(advisor)能否匹配一个指定的类型；
 	 * Can the given advisor apply at all on the given class?
 	 * This is an important test as it can be used to optimize  out a advisor for a class.
 	 * @param advisor the advisor to check
@@ -241,8 +256,9 @@ public abstract class AopUtils {
 	}
 
 	/**
+	 * 判断一个建议(advisor)能否匹配一个指定的类型，是否支持引入匹配；
 	 * Can the given advisor apply at all on the given class?
-	 * <p>This is an important test as it can be used to optimize out a advisor for a class.
+	 * This is an important test as it can be used to optimize out a advisor for a class.
 	 * This version also takes into account introductions (for IntroductionAwareMethodMatchers).
 	 * @param advisor the advisor to check
 	 * @param targetClass class we're testing
@@ -271,6 +287,7 @@ public abstract class AopUtils {
 	}
 
 	/**
+	 * 在一组建议(advisor)中，返回能够匹配指定类型的建议者列表；
 	 * Determine the sublist of the {@code candidateAdvisors} list that is applicable to the given class.
 	 * @param candidateAdvisors the Advisors to evaluate
 	 * @param clazz the target class

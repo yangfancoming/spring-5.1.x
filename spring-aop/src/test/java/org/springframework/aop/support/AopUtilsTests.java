@@ -50,7 +50,6 @@ public class AopUtilsTests {
 		}
 
 		Pointcut pc = new TestPointcut();
-
 		// will return true if we're not proxying interfaces
 		assertTrue(AopUtils.canApply(pc, Object.class));
 	}
@@ -68,8 +67,7 @@ public class AopUtilsTests {
 		assertSame(EmptyTargetSource.INSTANCE, SerializationTestUtils.serializeAndDeserialize(EmptyTargetSource.INSTANCE));
 		assertSame(Pointcuts.SETTERS, SerializationTestUtils.serializeAndDeserialize(Pointcuts.SETTERS));
 		assertSame(Pointcuts.GETTERS, SerializationTestUtils.serializeAndDeserialize(Pointcuts.GETTERS));
-		assertSame(ExposeInvocationInterceptor.INSTANCE,
-				SerializationTestUtils.serializeAndDeserialize(ExposeInvocationInterceptor.INSTANCE));
+		assertSame(ExposeInvocationInterceptor.INSTANCE,SerializationTestUtils.serializeAndDeserialize(ExposeInvocationInterceptor.INSTANCE));
 	}
 
 }
