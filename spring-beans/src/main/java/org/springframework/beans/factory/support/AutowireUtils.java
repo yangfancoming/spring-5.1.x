@@ -26,12 +26,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * Utility class that contains various methods useful for the implementation of
- * autowire-capable bean factories.
- *
-
- * @author Mark Fisher
- * @author Sam Brannen
+ * Utility class that contains various methods useful for the implementation of autowire-capable bean factories.
  * @since 1.1.2
  * @see AbstractAutowireCapableBeanFactory
  */

@@ -18,10 +18,7 @@ import org.springframework.util.Assert;
  * and its {@code StringEscapeUtils} class. We do not use that class here in order
  * to avoid a runtime dependency on Commons Text just for HTML escaping. Furthermore,
  * Spring's HTML escaping is more flexible and 100% HTML 4.0 compliant.
- *
 
- * @author Martin Kersten
- * @author Craig Andrews
  * @since 01.03.2003
  */
 public abstract class HtmlUtils {

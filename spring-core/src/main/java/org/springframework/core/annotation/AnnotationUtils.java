@@ -79,9 +79,7 @@ import org.springframework.util.StringUtils;
  * <h3>Search Scope</h3>
  * <p>The search algorithms used by methods in this class stop searching for
  * an annotation once the first annotation of the specified type has been
- * found. As a consequence, additional annotations of the specified type will
- * be silently ignored.
-
+ * found. As a consequence, additional annotations of the specified type will be silently ignored.
  * @since 2.0
  * @see AliasFor
  * @see AnnotationAttributes
@@ -362,7 +360,6 @@ public abstract class AnnotationUtils {
 	 */
 	public static <A extends Annotation> Set<A> getDeclaredRepeatableAnnotations(AnnotatedElement annotatedElement,
 			Class<A> annotationType) {
-
 		return getDeclaredRepeatableAnnotations(annotatedElement, annotationType, null);
 	}
 
