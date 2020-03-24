@@ -129,12 +129,12 @@ public abstract class ClassUtils {
 	}
 
 	/**
-	 * Return the default ClassLoader to use: typically the thread context ClassLoader,
-	 * if available; the ClassLoader that loaded the ClassUtils  class will be used as fallback.
-	 * <p>Call this method if you intend to use the thread context ClassLoader
-	 * in a scenario where you clearly prefer a non-null ClassLoader reference:
-	 * for example, for class path resource loading (but not necessarily for
-	 * {@code Class.forName}, which accepts a {@code null} ClassLoader reference as well).
+	 * 该方法用于获取默认的类加载器 （按照获取当前线程上下文类加载器-->获取当前类类加载器-->获取系统启动类加载器的顺序来获取）
+	 * Return the default ClassLoader to use: typically the thread context ClassLoader,if available; 
+	 * the ClassLoader that loaded the ClassUtils class will be used as fallback.
+	 * Call this method if you intend to use the thread context ClassLoader n a scenario where you clearly prefer a non-null ClassLoader reference:
+	 * for example, for class path resource loading (but not necessarily for {@code Class.forName},
+	 * which accepts a {@code null} ClassLoader reference as well).
 	 * @return the default ClassLoader (only {@code null} if even the system ClassLoader isn't accessible)
 	 * @see Thread#getContextClassLoader()
 	 * @see ClassLoader#getSystemClassLoader()
@@ -143,23 +143,22 @@ public abstract class ClassUtils {
 	public static ClassLoader getDefaultClassLoader() {
 		ClassLoader cl = null;
 		try {
-			//优先获取线程上下文类加载器
+			//优先获取当前线程上下文类加载器
 			cl = Thread.currentThread().getContextClassLoader();
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			// Cannot access thread context ClassLoader - falling back...
 		}
 		if (cl == null) {
 			// No thread context class loader -> use class loader of this class.
-			// 获取当前类的类加载器
+			// 如果没有context loader，使用当前类的类加载器；
 			cl = ClassUtils.class.getClassLoader();
 			if (cl == null) {
 				// getClassLoader() returning null indicates the bootstrap ClassLoader
+				// 如果当前类加载器无法获取，获得bootstrap ClassLoader
 				try {
 					//获取SystemClassLoader
 					cl = ClassLoader.getSystemClassLoader();
-				}
-				catch (Throwable ex) {
+				}catch (Throwable ex) {
 					// Cannot access system ClassLoader - oh well, maybe the caller can live with null...
 				}
 			}
@@ -169,8 +168,7 @@ public abstract class ClassUtils {
 
 	/**
 	 * Override the thread context ClassLoader with the environment's bean ClassLoader
-	 * if necessary, i.e. if the bean ClassLoader is not equivalent to the thread
-	 * context ClassLoader already.
+	 * if necessary, i.e. if the bean ClassLoader is not equivalent to the thread context ClassLoader already.
 	 * @param classLoaderToUse the actual ClassLoader to use for the thread context
 	 * @return the original thread context ClassLoader, or {@code null} if not overridden
 	 */
@@ -181,8 +179,7 @@ public abstract class ClassUtils {
 		if (classLoaderToUse != null && !classLoaderToUse.equals(threadContextClassLoader)) {
 			currentThread.setContextClassLoader(classLoaderToUse);
 			return threadContextClassLoader;
-		}
-		else {
+		}else {
 			return null;
 		}
 	}
@@ -200,12 +197,8 @@ public abstract class ClassUtils {
 	public static Class<?> forName(String name, @Nullable ClassLoader classLoader) throws ClassNotFoundException, LinkageError {
 		Assert.notNull(name, "Name must not be null");
 		Class<?> clazz = resolvePrimitiveClassName(name);
-		if (clazz == null) {
-			clazz = commonClassCache.get(name);
-		}
-		if (clazz != null) {
-			return clazz;
-		}
+		if (clazz == null) clazz = commonClassCache.get(name);
+		if (clazz != null) return clazz;
 		// "java.lang.String[]" style arrays
 		if (name.endsWith(ARRAY_SUFFIX)) {
 			String elementClassName = name.substring(0, name.length() - ARRAY_SUFFIX.length());
@@ -251,7 +244,7 @@ public abstract class ClassUtils {
 	/**
 	 * Resolve the given class name into a Class instance. Supports
 	 * primitives (like "int") and array class names (like "String[]").
-	 * <p>This is effectively equivalent to the {@code forName}
+	 * This is effectively equivalent to the {@code forName}
 	 * method with the same arguments, with the only difference being
 	 * the exceptions thrown in case of class loading failure.
 	 * @param className the name of the Class
@@ -342,23 +335,17 @@ public abstract class ClassUtils {
 			if (target == classLoader || target == null) {
 				return true;
 			}
-			if (classLoader == null) {
-				return false;
-			}
+			if (classLoader == null) return false;
 			// Check for match in ancestors -> positive
 			ClassLoader current = classLoader;
 			while (current != null) {
 				current = current.getParent();
-				if (current == target) {
-					return true;
-				}
+				if (current == target) return true;
 			}
 			// Check for match in children -> negative
 			while (target != null) {
 				target = target.getParent();
-				if (target == classLoader) {
-					return false;
-				}
+				if (target == classLoader) return false;
 			}
 		}
 		catch (SecurityException ex) {
@@ -390,7 +377,7 @@ public abstract class ClassUtils {
 	/**
 	 * Resolve the given class name as primitive class, if appropriate,
 	 * according to the JVM's naming rules for primitive classes.
-	 * <p>Also supports the JVM's internal class names for primitive arrays.
+	 * Also supports the JVM's internal class names for primitive arrays.
 	 * Does <i>not</i> support the "[]" suffix notation for primitive arrays;
 	 * this is only supported by {@link #forName(String, ClassLoader)}.
 	 * @param name the name of the potentially primitive class
@@ -477,14 +464,10 @@ public abstract class ClassUtils {
 	public static boolean isAssignable(Class<?> lhsType, Class<?> rhsType) {
 		Assert.notNull(lhsType, "Left-hand side type must not be null");
 		Assert.notNull(rhsType, "Right-hand side type must not be null");
-		if (lhsType.isAssignableFrom(rhsType)) {
-			return true;
-		}
+		if (lhsType.isAssignableFrom(rhsType)) return true;
 		if (lhsType.isPrimitive()) {
 			Class<?> resolvedPrimitive = primitiveWrapperTypeMap.get(rhsType);
-			if (lhsType == resolvedPrimitive) {
-				return true;
-			}
+			if (lhsType == resolvedPrimitive) return true;
 		}else {
 			Class<?> resolvedWrapper = primitiveTypeToWrapperMap.get(rhsType);
 			if (resolvedWrapper != null && lhsType.isAssignableFrom(resolvedWrapper)) {
@@ -561,14 +544,10 @@ public abstract class ClassUtils {
 	 * @see Class#getResource
 	 */
 	public static String classPackageAsResourcePath(@Nullable Class<?> clazz) {
-		if (clazz == null) {
-			return "";
-		}
+		if (clazz == null) return "";
 		String className = clazz.getName();
 		int packageEndIndex = className.lastIndexOf(PACKAGE_SEPARATOR);
-		if (packageEndIndex == -1) {
-			return "";
-		}
+		if (packageEndIndex == -1) return "";
 		String packageName = className.substring(0, packageEndIndex);
 		return packageName.replace(PACKAGE_SEPARATOR, PATH_SEPARATOR);
 	}
@@ -576,7 +555,7 @@ public abstract class ClassUtils {
 	/**
 	 * Build a String that consists of the names of the classes/interfaces
 	 * in the given array.
-	 * <p>Basically like {@code AbstractCollection.toString()}, but stripping
+	 * Basically like {@code AbstractCollection.toString()}, but stripping
 	 * the "class "/"interface " prefix before every class name.
 	 * @param classes an array of Class objects
 	 * @return a String of form "[com.foo.Bar, com.foo.Baz]"
@@ -589,7 +568,7 @@ public abstract class ClassUtils {
 	/**
 	 * Build a String that consists of the names of the classes/interfaces
 	 * in the given collection.
-	 * <p>Basically like {@code AbstractCollection.toString()}, but stripping
+	 * Basically like {@code AbstractCollection.toString()}, but stripping
 	 * the "class "/"interface " prefix before every class name.
 	 * @param classes a Collection of Class objects (may be {@code null})
 	 * @return a String of form "[com.foo.Bar, com.foo.Baz]"
@@ -613,7 +592,7 @@ public abstract class ClassUtils {
 
 	/**
 	 * Copy the given {@code Collection} into a {@code Class} array.
-	 * <p>The {@code Collection} must contain {@code Class} elements only.
+	 * The {@code Collection} must contain {@code Class} elements only.
 	 * @param collection the {@code Collection} to copy
 	 * @return the {@code Class} array
 	 * @since 3.1
@@ -636,7 +615,7 @@ public abstract class ClassUtils {
 	/**
 	 * Return all interfaces that the given class implements as an array,
 	 * including ones implemented by superclasses.
-	 * <p>If the class itself is an interface, it gets returned as sole interface.
+	 * If the class itself is an interface, it gets returned as sole interface.
 	 * @param clazz the class to analyze for interfaces
 	 * @return all interfaces that the given object implements as an array
 	 */
@@ -647,7 +626,7 @@ public abstract class ClassUtils {
 	/**
 	 * Return all interfaces that the given class implements as an array,
 	 * including ones implemented by superclasses.
-	 * <p>If the class itself is an interface, it gets returned as sole interface.
+	 * If the class itself is an interface, it gets returned as sole interface.
 	 * @param clazz the class to analyze for interfaces
 	 * @param classLoader the ClassLoader that the interfaces need to be visible in
 	 * (may be {@code null} when accepting all declared interfaces)
@@ -671,7 +650,7 @@ public abstract class ClassUtils {
 	/**
 	 * Return all interfaces that the given class implements as a Set,
 	 * including ones implemented by superclasses.
-	 * <p>If the class itself is an interface, it gets returned as sole interface.
+	 * If the class itself is an interface, it gets returned as sole interface.
 	 * @param clazz the class to analyze for interfaces
 	 * @return all interfaces that the given object implements as a Set
 	 */
@@ -682,7 +661,7 @@ public abstract class ClassUtils {
 	/**
 	 * Return all interfaces that the given class implements as a Set,
 	 * including ones implemented by superclasses.
-	 * <p>If the class itself is an interface, it gets returned as sole interface.
+	 * If the class itself is an interface, it gets returned as sole interface.
 	 * @param clazz the class to analyze for interfaces
 	 * @param classLoader the ClassLoader that the interfaces need to be visible in
 	 * (may be {@code null} when accepting all declared interfaces)
@@ -710,7 +689,7 @@ public abstract class ClassUtils {
 	/**
 	 * Create a composite interface Class for the given interfaces,
 	 * implementing the given interfaces in one single Class.
-	 * <p>This implementation builds a JDK proxy class for the given interfaces.
+	 * This implementation builds a JDK proxy class for the given interfaces.
 	 * @param interfaces the interfaces to merge
 	 * @param classLoader the ClassLoader to create the composite Class in
 	 * @return the merged interface as Class
@@ -735,12 +714,8 @@ public abstract class ClassUtils {
 	 */
 	@Nullable
 	public static Class<?> determineCommonAncestor(@Nullable Class<?> clazz1, @Nullable Class<?> clazz2) {
-		if (clazz1 == null) {
-			return clazz2;
-		}
-		if (clazz2 == null) {
-			return clazz1;
-		}
+		if (clazz1 == null) return clazz2;
+		if (clazz2 == null) return clazz1;
 		if (clazz1.isAssignableFrom(clazz2)) {
 			return clazz1;
 		}
@@ -846,9 +821,7 @@ public abstract class ClassUtils {
 	 */
 	@Nullable
 	public static String getDescriptiveType(@Nullable Object value) {
-		if (value == null) {
-			return null;
-		}
+		if (value == null) return null;
 		Class<?> clazz = value.getClass();
 		if (Proxy.isProxyClass(clazz)) {
 			StringBuilder result = new StringBuilder(clazz.getName());
@@ -986,7 +959,7 @@ public abstract class ClassUtils {
 
 	/**
 	 * Determine whether the given class has a public constructor with the given signature.
-	 * <p>Essentially translates {@code NoSuchMethodException} to "false".
+	 * Essentially translates {@code NoSuchMethodException} to "false".
 	 * @param clazz the clazz to analyze
 	 * @param paramTypes the parameter types of the method
 	 * @return whether the class has a corresponding constructor
@@ -999,7 +972,7 @@ public abstract class ClassUtils {
 	/**
 	 * Determine whether the given class has a public constructor with the given signature,
 	 * and return it if available (else return {@code null}).
-	 * <p>Essentially translates {@code NoSuchMethodException} to {@code null}.
+	 * Essentially translates {@code NoSuchMethodException} to {@code null}.
 	 * @param clazz the clazz to analyze
 	 * @param paramTypes the parameter types of the method
 	 * @return the constructor, or {@code null} if not found
@@ -1017,7 +990,7 @@ public abstract class ClassUtils {
 
 	/**
 	 * Determine whether the given class has a public method with the given signature.
-	 * <p>Essentially translates {@code NoSuchMethodException} to "false".
+	 * Essentially translates {@code NoSuchMethodException} to "false".
 	 * @param clazz the clazz to analyze
 	 * @param methodName the name of the method
 	 * @param paramTypes the parameter types of the method
@@ -1031,9 +1004,9 @@ public abstract class ClassUtils {
 	/**
 	 * Determine whether the given class has a public method with the given signature,
 	 * and return it if available (else throws an {@code IllegalStateException}).
-	 * <p>In case of any signature specified, only returns the method if there is a
+	 * In case of any signature specified, only returns the method if there is a
 	 * unique candidate, i.e. a single public method with the specified name.
-	 * <p>Essentially translates {@code NoSuchMethodException} to {@code IllegalStateException}.
+	 * Essentially translates {@code NoSuchMethodException} to {@code IllegalStateException}.
 	 * @param clazz the clazz to analyze
 	 * @param methodName the name of the method
 	 * @param paramTypes the parameter types of the method
@@ -1051,8 +1024,7 @@ public abstract class ClassUtils {
 			}catch (NoSuchMethodException ex) {
 				throw new IllegalStateException("Expected method not found: " + ex);
 			}
-		}
-		else {
+		}else {
 			Set<Method> candidates = new HashSet<>(1);
 			Method[] methods = clazz.getMethods();
 			for (Method method : methods) {
@@ -1072,8 +1044,8 @@ public abstract class ClassUtils {
 
 	/**
 	 * Determine whether the given class has a public method with the given signature,and return it if available (else return {@code null}).
-	 * <p>In case of any signature specified, only returns the method if there is a unique candidate, i.e. a single public method with the specified name.
-	 * <p>Essentially translates {@code NoSuchMethodException} to {@code null}.
+	 * In case of any signature specified, only returns the method if there is a unique candidate, i.e. a single public method with the specified name.
+	 * Essentially translates {@code NoSuchMethodException} to {@code null}.
 	 * @param clazz the clazz to analyze
 	 * @param methodName the name of the method
 	 * @param paramTypes the parameter types of the method (may be {@code null} to indicate any signature)
@@ -1162,12 +1134,12 @@ public abstract class ClassUtils {
 	 * if there is one. E.g. the method may be {@code IFoo.bar()} and the
 	 * target class may be {@code DefaultFoo}. In this case, the method may be
 	 * {@code DefaultFoo.bar()}. This enables attributes on that method to be found.
-	 * <p><b>NOTE:</b> In contrast to {@link org.springframework.aop.support.AopUtils#getMostSpecificMethod},
+	 * <b>NOTE:</b> In contrast to {@link org.springframework.aop.support.AopUtils#getMostSpecificMethod},
 	 * this method does <i>not</i> resolve Java 5 bridge methods automatically.
 	 * Call {@link org.springframework.core.BridgeMethodResolver#findBridgedMethod}
 	 * if bridge method resolution is desirable (e.g. for obtaining metadata from
 	 * the original method definition).
-	 * <p><b>NOTE:</b> Since Spring 3.1.1, if Java security settings disallow reflective
+	 * <b>NOTE:</b> Since Spring 3.1.1, if Java security settings disallow reflective
 	 * access (e.g. calls to {@code Class#getDeclaredMethods} etc, this implementation
 	 * will fall back to returning the originally provided method.
 	 * @param method the method to be invoked, which may come from an interface
@@ -1183,13 +1155,11 @@ public abstract class ClassUtils {
 				if (Modifier.isPublic(method.getModifiers())) {
 					try {
 						return targetClass.getMethod(method.getName(), method.getParameterTypes());
-					}
-					catch (NoSuchMethodException ex) {
+					}catch (NoSuchMethodException ex) {
 						return method;
 					}
 				}else {
-					Method specificMethod =
-							ReflectionUtils.findMethod(targetClass, method.getName(), method.getParameterTypes());
+					Method specificMethod = ReflectionUtils.findMethod(targetClass, method.getName(), method.getParameterTypes());
 					return (specificMethod != null ? specificMethod : method);
 				}
 			}catch (SecurityException ex) {
@@ -1201,7 +1171,7 @@ public abstract class ClassUtils {
 
 	/**
 	 * Determine a corresponding interface method for the given method handle, if possible.
-	 * <p>This is particularly useful for arriving at a public exported type on Jigsaw
+	 * This is particularly useful for arriving at a public exported type on Jigsaw
 	 * which can be reflectively invoked without an illegal access warning.
 	 * @param method the method to be invoked, potentially from an implementation class
 	 * @return the corresponding interface method, or the original method if none found
@@ -1229,7 +1199,7 @@ public abstract class ClassUtils {
 	/**
 	 * Determine whether the given method is declared by the user or at least pointing to
 	 * a user-declared method.
-	 * <p>Checks {@link Method#isSynthetic()} (for implementation methods) as well as the
+	 * Checks {@link Method#isSynthetic()} (for implementation methods) as well as the
 	 * {@code GroovyObject} interface (for interface methods; on an implementation class,
 	 * implementations of the {@code GroovyObject} methods will be marked as synthetic anyway).
 	 * Note that, despite being synthetic, bridge methods ({@link Method#isBridge()}) are considered
