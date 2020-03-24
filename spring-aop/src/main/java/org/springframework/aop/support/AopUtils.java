@@ -319,6 +319,7 @@ public abstract class AopUtils {
 	}
 
 	/**
+	 * 执行一个目标方法；这个方法其实就是method.invoke方法的更完善的方法，指在target对象上，使用args参数列表执行method
 	 * Invoke the given target via reflection, as part of an AOP method invocation.
 	 * @param target the target object
 	 * @param method the method to invoke
@@ -332,12 +333,12 @@ public abstract class AopUtils {
 		// Use reflection to invoke the method.
 		try {
 			ReflectionUtils.makeAccessible(method);
-			// 通过反射执行目标方法
+			// 直接使用反射执行目标方法
 			return method.invoke(target, args);
 		}
 		catch (InvocationTargetException ex) {
-			// Invoked method threw a checked exception.
-			// We must rethrow it. The client won't see the interceptor.
+			// 所有执行过程中的异常都需要包装之后抛回给调用者.
+			// Invoked method threw a checked exception.We must rethrow it. The client won't see the interceptor.
 			throw ex.getTargetException();
 		}
 		catch (IllegalArgumentException ex) {

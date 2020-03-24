@@ -3,6 +3,7 @@ package com.goat.chapter400.annotation;
 import com.goat.chapter400.annotation.service.BarService;
 import com.goat.chapter400.annotation.service.HelloService;
 import com.goat.chapter400.annotation.service.HelloServiceImpl;
+import com.goat.chapter400.annotation.service.IAddition;
 import org.junit.Test;
 import org.springframework.aop.aspectj.AspectJExpressionPointcut;
 import org.springframework.aop.support.AopUtils;
@@ -113,5 +114,27 @@ public class App {
 		assertTrue(AopUtils.canApply(pc, BarService.class));
 		assertTrue(AopUtils.canApply(pc, HelloServiceImpl.class));
 		assertTrue(AopUtils.canApply(pc, HelloService.class));
+	}
+
+	/**
+	 * 我们的目标是，在不修改 HelloService 的前提下，
+	 * 为 HelloServiceImpl 额外添加 IAddition 接口，
+	 * 并使用AdditionImpl作为其实现。
+	 * 意思就是，当我得到 HelloServiceImpl 对象的时候，我可以强转为IAddition接口，
+	 * 并执行additional方法，打印出"out additional..."；
+	 * 要实现这个需求非常方便，只需要在@Aspect注解类中添加
+	 *  @DeclareParents(value = "com.goat.chapter400.annotation.service.HelloService+",defaultImpl = AdditionImpl.class)
+	 * 	public IAddition addition;
+	 *
+	 * 1，public IAddition addition字段，代表我要引入的接口；
+	 * 2，@DeclareParents标签说明这个接口要引入的目标，其中value="cn.wolfcode.springboot.utilstest.IEmployeeService+"代表要引入到的目标类是IEmployeeService及其所有子类；
+	 * 3，defaultImpl代表接口默认的实现，即我们的AdditionImpl类；
+	 * 到这里，一个基本的introduction就已经配置完成；
+	*/
+	@Test
+	public void test5(){
+		ApplicationContext context = new AnnotationConfigApplicationContext(App.class);
+		HelloService helloService = context.getBean(HelloService.class);
+		((IAddition)helloService).addtional();
 	}
 }

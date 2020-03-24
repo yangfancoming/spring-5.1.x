@@ -2,6 +2,8 @@ package com.goat.chapter400.annotation.aspect;
 
 
 
+import com.goat.chapter400.annotation.service.AdditionImpl;
+import com.goat.chapter400.annotation.service.IAddition;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -50,6 +52,9 @@ public class AspectTest {
     /**
      * sos 多个 @Before 的执行顺序 可以通过 方法名控制  myBefore2() 先于 myBefore3() 执行
     */
+
+	@DeclareParents(value = "com.goat.chapter400.annotation.service.HelloService+",defaultImpl = AdditionImpl.class)
+	public IAddition addition;
 
 	/** 前置增强  无参数*/
     @Before("execution(* com.goat.chapter400.annotation.service..*(..))")
