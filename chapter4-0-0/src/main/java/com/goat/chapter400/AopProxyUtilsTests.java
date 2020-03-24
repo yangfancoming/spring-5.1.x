@@ -73,4 +73,30 @@ public class AopProxyUtilsTests {
 		}
 	}
 
+	@Test
+	public void testProxiedUserInterfaces() {
+		ApplicationContext context = new AnnotationConfigApplicationContext(AopProxyUtilsTests.class);
+		HelloService helloService = context.getBean(HelloService.class);
+		/**
+		 * 获取一个对象的所有接口，返回Set；
+		 * interface com.goat.chapter400.annotation.service.HelloService
+		 * interface com.goat.chapter400.annotation.service.IAddition
+		 * interface org.springframework.aop.SpringProxy
+		 * interface org.springframework.aop.framework.Advised
+		 * interface org.springframework.core.DecoratingProxy
+		 * interface java.io.Serializable
+		 */
+		System.out.println(StringUtils.collectionToDelimitedString(ClassUtils.getAllInterfacesAsSet(helloService), "\r\n"));
+		System.out.println("-----------------");
+
+		/**
+		 * 该方法用于获取一个代理对象中的用户定义的接口，即Advised接口体系之外的其他接口；
+		 * interface com.goat.chapter400.annotation.service.HelloService
+		 * interface com.goat.chapter400.annotation.service.IAddition
+		 */
+		System.out.println(StringUtils.arrayToDelimitedString(AopProxyUtils.proxiedUserInterfaces(helloService), "\r\n"));
+
+
+	}
+
 }

@@ -155,19 +155,24 @@ public abstract class AopProxyUtils {
 	 * @see Advised
 	 */
 	public static Class<?>[] proxiedUserInterfaces(Object proxy) {
+		//得到所有接口
 		Class<?>[] proxyInterfaces = proxy.getClass().getInterfaces();
 		int nonUserIfcCount = 0;
+		//如果是代理，一定实现了SpringProxy；
 		if (proxy instanceof SpringProxy) nonUserIfcCount++;
+		//如果是代理，可能实现了Advised；
 		if (proxy instanceof Advised) nonUserIfcCount++;
 		if (proxy instanceof DecoratingProxy) nonUserIfcCount++;
 
 		Class<?>[] userInterfaces = new Class<?>[proxyInterfaces.length - nonUserIfcCount];
+		//拷贝proxyInterfaces中从第0位~第proxyInterfaces.length - nonUserIfcCount个 去掉尾巴上的nonUserIfcCount个；
 		System.arraycopy(proxyInterfaces, 0, userInterfaces, 0, userInterfaces.length);
 		Assert.notEmpty(userInterfaces, "JDK proxy must implement one or more interfaces");
 		return userInterfaces;
 	}
 
 	/**
+	 * 判断两个（即将）代理出来的对象是否相同；
 	 * Check equality of the proxies behind the given AdvisedSupport objects.
 	 * Not the same as equality of the AdvisedSupport objects:
 	 * rather, equality of interfaces, advisors and target sources.
@@ -177,6 +182,7 @@ public abstract class AopProxyUtils {
 	}
 
 	/**
+	 * 判断两个（即将）代理出来的对象是否拥有相同接口；
 	 * Check equality of the proxied interfaces behind the given AdvisedSupport objects.
 	 */
 	public static boolean equalsProxiedInterfaces(AdvisedSupport a, AdvisedSupport b) {
@@ -184,6 +190,7 @@ public abstract class AopProxyUtils {
 	}
 
 	/**
+	 * 判断两个（即将）代理出来的对象是否拥有相同的建议者（Advisor）；
 	 * Check equality of the advisors behind the given AdvisedSupport objects.
 	 */
 	public static boolean equalsAdvisors(AdvisedSupport a, AdvisedSupport b) {
