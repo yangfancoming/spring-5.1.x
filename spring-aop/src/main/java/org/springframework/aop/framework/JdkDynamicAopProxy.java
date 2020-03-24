@@ -22,23 +22,13 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * JDK-based {@link AopProxy} implementation for the Spring AOP framework,
- * based on JDK {@link java.lang.reflect.Proxy dynamic proxies}.
- *
- * <p>Creates a dynamic proxy, implementing the interfaces exposed by
- * the AopProxy. Dynamic proxies <i>cannot</i> be used to proxy methods
- * defined in classes, rather than interfaces.
- *
- * <p>Objects of this type should be obtained through proxy factories,
- * configured by an {@link AdvisedSupport} class. This class is internal
- * to Spring's AOP framework and need not be used directly by client code.
- *
- * <p>Proxies created using this class will be thread-safe if the
- * underlying (target) class is thread-safe.
- *
- * <p>Proxies are serializable so long as all Advisors (including Advices
- * and Pointcuts) and the TargetSource are serializable.
-
+ * JDK-based {@link AopProxy} implementation for the Spring AOP framework,based on JDK {@link java.lang.reflect.Proxy dynamic proxies}.
+ * Creates a dynamic proxy, implementing the interfaces exposed by the AopProxy.
+ * Dynamic proxies <i>cannot</i> be used to proxy methods defined in classes, rather than interfaces.
+ * Objects of this type should be obtained through proxy factories,configured by an {@link AdvisedSupport} class.
+ * This class is internal to Spring's AOP framework and need not be used directly by client code.
+ * Proxies created using this class will be thread-safe if the  underlying (target) class is thread-safe.
+ * Proxies are serializable so long as all Advisors (including Advices and Pointcuts) and the TargetSource are serializable.
  * @see java.lang.reflect.Proxy
  * @see AdvisedSupport
  * @see ProxyFactory
@@ -73,7 +63,6 @@ final class JdkDynamicAopProxy implements AopProxy, InvocationHandler, Serializa
 	 */
 	private boolean hashCodeDefined;
 
-
 	/**
 	 * Construct a new JdkDynamicAopProxy for the given AOP configuration.
 	 * @param config the AOP configuration as AdvisedSupport object
@@ -94,6 +83,10 @@ final class JdkDynamicAopProxy implements AopProxy, InvocationHandler, Serializa
 		return getProxy(ClassUtils.getDefaultClassLoader());
 	}
 
+	/**
+	 * 这个就是我们常常说的Spring中针对实现了接口的对象，使用JDK的动态代理完成的真正代码，
+	 * 可以看到，传给 newProxyInstance 方法第二个参数的接口列表，就是通过completeProxiedInterfaces方法获取的。足见该方法的重要性；
+	*/
 	@Override
 	public Object getProxy(@Nullable ClassLoader classLoader) {
 		if (logger.isTraceEnabled()) {
@@ -136,7 +129,7 @@ final class JdkDynamicAopProxy implements AopProxy, InvocationHandler, Serializa
 
 	/**
 	 * Implementation of {@code InvocationHandler.invoke}.
-	 * <p>Callers will see exactly the exception thrown by the target,unless a hook method throws an exception.
+	 * Callers will see exactly the exception thrown by the target,unless a hook method throws an exception.
 	 */
 	@Override
 	@Nullable
@@ -250,7 +243,7 @@ final class JdkDynamicAopProxy implements AopProxy, InvocationHandler, Serializa
 
 	/**
 	 * Equality means interfaces, advisors and TargetSource are equal.
-	 * <p>The compared object may be a JdkDynamicAopProxy instance itself
+	 * The compared object may be a JdkDynamicAopProxy instance itself
 	 * or a dynamic proxy wrapping a JdkDynamicAopProxy instance.
 	 */
 	@Override

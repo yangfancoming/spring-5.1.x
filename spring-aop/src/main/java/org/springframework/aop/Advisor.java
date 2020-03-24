@@ -15,9 +15,6 @@ import org.aopalliance.aop.Advice;
  * The Advisor interface allows support for different types of advice,
  * such as <b>before</b> and <b>after</b> advice, which need not be
  * implemented using interception.
- *
- * @author Rod Johnson
-
  */
 public interface Advisor {
 

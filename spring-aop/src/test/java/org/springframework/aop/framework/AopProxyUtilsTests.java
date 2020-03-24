@@ -108,8 +108,7 @@ public class AopProxyUtilsTests {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testProxiedUserInterfacesWithNoInterface() {
-		Object proxy = Proxy.newProxyInstance(getClass().getClassLoader(), new Class[0],
-				(proxy1, method, args) -> null);
+		Object proxy = Proxy.newProxyInstance(getClass().getClassLoader(), new Class[0],(proxy1, method, args) -> null);
 		AopProxyUtils.proxiedUserInterfaces(proxy);
 	}
 

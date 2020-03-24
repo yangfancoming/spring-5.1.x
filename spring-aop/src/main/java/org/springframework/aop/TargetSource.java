@@ -5,21 +5,19 @@ package org.springframework.aop;
 import org.springframework.lang.Nullable;
 
 /**
- * A {@code TargetSource} is used to obtain the current "target" of
- * an AOP invocation, which will be invoked via reflection if no around
- * advice chooses to end the interceptor chain itself.
+ * A {@code TargetSource} is used to obtain the current "target" of an AOP invocation, 
+ * which will be invoked via reflection if no around advice chooses to end the interceptor chain itself.
  *
- * <p>If a {@code TargetSource} is "static", it will always return
- * the same target, allowing optimizations in the AOP framework. Dynamic
- * target sources can support pooling, hot swapping, etc.
- *
- * <p>Application developers don't usually need to work with {@code TargetSources} directly: this is an AOP framework interface.
+ * If a {@code TargetSource} is "static", it will always return the same target,
+ * allowing optimizations in the AOP framework. Dynamic target sources can support pooling, hot swapping, etc.
+ * Application developers don't usually need to work with {@code TargetSources} directly: this is an AOP framework interface.
+ * 该接口代表一个目标对象，在aop调用目标对象的时候，使用该接口返回真实的对象。比如该接口的一个实现：PrototypeTargetSource，那就是每次调用都返回一个全新的对象实例；
  */
 public interface TargetSource extends TargetClassAware {
 
 	/**
 	 * Return the type of targets returned by this {@link TargetSource}.
-	 * <p>Can return {@code null}, although certain usages of a {@code TargetSource}  might just work with a predetermined target class.
+	 * Can return {@code null}, although certain usages of a {@code TargetSource}  might just work with a predetermined target class.
 	 * @return the type of targets returned by this {@link TargetSource}
 	 * 本方法主要用于返回目标bean的Class类型
 	 */
@@ -29,7 +27,7 @@ public interface TargetSource extends TargetClassAware {
 
 	/**
 	 * Will all calls to {@link #getTarget()} return the same object?
-	 * <p>In that case, there will be no need to invoke {@link #releaseTarget(Object)},and the AOP framework can cache the return value of {@link #getTarget()}.
+	 * In that case, there will be no need to invoke {@link #releaseTarget(Object)},and the AOP framework can cache the return value of {@link #getTarget()}.
 	 * @return {@code true} if the target is immutable
 	 * @see #getTarget
 	 * 这个方法用户返回当前bean是否为静态的，比如常见的单例bean就是静态的，而prototype就是动态的，
