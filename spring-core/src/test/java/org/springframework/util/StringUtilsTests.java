@@ -1,12 +1,12 @@
 
 package org.springframework.util;
 
-import java.io.File;
+import org.junit.Test;
+
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Properties;
 
-import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class StringUtilsTests {
@@ -576,8 +576,7 @@ public class StringUtilsTests {
 		try {
 			StringUtils.parseLocaleString("%0D%0AContent-length:30%0D%0A%0D%0A%3Cscript%3Ealert%28123%29%3C/script%3E");
 			fail("Should have thrown IllegalArgumentException");
-		}
-		catch (IllegalArgumentException ex) {
+		}catch (IllegalArgumentException ex) {
 			// expected
 		}
 	}
@@ -607,8 +606,7 @@ public class StringUtilsTests {
 			Locale parsedLocale = StringUtils.parseLocaleString(locale.toString());
 			if (parsedLocale == null) {
 				assertEquals("", locale.getLanguage());
-			}
-			else {
+			}else {
 				assertEquals(parsedLocale.toString(), locale.toString());
 			}
 		}
@@ -635,8 +633,7 @@ public class StringUtilsTests {
 			Locale parsedLocale = StringUtils.parseLocale(locale.toLanguageTag());
 			if (parsedLocale == null) {
 				assertEquals("", locale.getLanguage());
-			}
-			else {
+			}else {
 				assertEquals(parsedLocale.toLanguageTag(), locale.toLanguageTag());
 			}
 		}
