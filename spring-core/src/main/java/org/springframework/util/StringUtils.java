@@ -1078,7 +1078,7 @@ public abstract class StringUtils {
 	}
 
 	/**
-	 * 使用逗号分割字符串，并放到set中去重
+	 * 使用【逗号】分割字符串，并放到set中去重
 	 * Convert a comma delimited list (e.g., a row from a CSV file) into a set.
 	 * Note that this will suppress duplicates, and as of 4.2, the elements in
 	 * the returned set will preserve the original order in a {@link LinkedHashSet}.
@@ -1088,6 +1088,12 @@ public abstract class StringUtils {
 	 */
 	public static Set<String> commaDelimitedListToSet(@Nullable String str) {
 		String[] tokens = commaDelimitedListToStringArray(str);
+		return new LinkedHashSet<>(Arrays.asList(tokens));
+	}
+
+	// 使用 【指定分隔符】 分割字符串，并放到set中去重
+	public static Set<String> commaDelimitedListToSet(@Nullable String str,@Nullable String delimiter) {
+		String[] tokens = delimitedListToStringArray(str, delimiter);
 		return new LinkedHashSet<>(Arrays.asList(tokens));
 	}
 
@@ -1107,9 +1113,7 @@ public abstract class StringUtils {
 		Iterator<?> it = coll.iterator();
 		while (it.hasNext()) {
 			sb.append(prefix).append(it.next()).append(suffix);
-			if (it.hasNext()) {
-				sb.append(delim);
-			}
+			if (it.hasNext()) sb.append(delim);
 		}
 		return sb.toString();
 	}
