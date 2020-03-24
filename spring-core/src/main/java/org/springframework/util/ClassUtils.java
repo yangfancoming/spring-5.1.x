@@ -712,8 +712,7 @@ public abstract class ClassUtils {
 	 * @param interfaces the interfaces to merge
 	 * @param classLoader the ClassLoader to create the composite Class in
 	 * @return the merged interface as Class
-	 * @throws IllegalArgumentException if the specified interfaces expose
-	 * conflicting method signatures (or a similar constraint is violated)
+	 * @throws IllegalArgumentException if the specified interfaces expose conflicting method signatures (or a similar constraint is violated)
 	 * @see java.lang.reflect.Proxy#getProxyClass
 	 */
 	@SuppressWarnings("deprecation")  // on JDK 9
@@ -726,9 +725,8 @@ public abstract class ClassUtils {
 	 * Determine the common ancestor of the given classes, if any.
 	 * @param clazz1 the class to introspect
 	 * @param clazz2 the other class to introspect
-	 * @return the common ancestor (i.e. common superclass, one interface
-	 * extending the other), or {@code null} if none found. If any of the
-	 * given classes is {@code null}, the other class will be returned.
+	 * @return the common ancestor (i.e. common superclass, one interface extending the other),
+	 * or {@code null} if none found. If any of the given classes is {@code null}, the other class will be returned.
 	 * @since 3.2.6
 	 */
 	@Nullable
