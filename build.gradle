@@ -95,7 +95,8 @@ configure(allprojects) { project ->
 
     compileJava.options*.compilerArgs = commonCompilerArgs +
             ["-Xlint:varargs", "-Xlint:fallthrough", "-Xlint:rawtypes",
-             "-Xlint:deprecation", "-Xlint:unchecked", "-Werror"]
+//             "-Xlint:deprecation", "-Xlint:unchecked", "-Werror"]
+             "-Xlint:deprecation", "-Xlint:unchecked"]
 
     compileTestJava.options*.compilerArgs = commonCompilerArgs +
             ["-Xlint:-varargs", "-Xlint:-fallthrough", "-Xlint:-rawtypes",
@@ -323,3 +324,12 @@ def qualifyVersionIfNecessary(version) {
     }
     return version
 }
+
+//禁用Gradle中的所有JavaDoc(Disable all JavaDoc in Gradle)
+
+//subprojects {
+//    tasks.withType(Javadoc).all { enabled = false }
+//}
+
+
+//tasks.getByPath(":spring-mybatis:javadoc").enabled = false
