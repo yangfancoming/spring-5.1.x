@@ -8,6 +8,11 @@ import org.springframework.lang.Nullable;
  * Interface defining a generic contract for attaching and accessing metadata to/from arbitrary objects.
  * 接口定义用于附加和访问任意对象元数据的通用约定。
  * 属性访问器
+ * attributeNames
+ * getAttribute
+ * setAttribute
+ * removeAttribute
+ * hasAttribute
  * @since 2.0
  */
 public interface AttributeAccessor {
@@ -15,8 +20,7 @@ public interface AttributeAccessor {
 	/**
 	 * Set the attribute defined by {@code name} to the supplied {@code value}.
 	 * If {@code value} is {@code null}, the attribute is {@link #removeAttribute removed}.
-	 * <p>In general, users should take care to prevent overlaps with other
-	 * metadata attributes by using fully-qualified names, perhaps using class or package names as prefix.
+	 * In general, users should take care to prevent overlaps with other metadata attributes by using fully-qualified names, perhaps using class or package names as prefix.
 	 * @param name the unique attribute key
 	 * @param value the attribute value to be attached
 	 */
@@ -44,9 +48,7 @@ public interface AttributeAccessor {
 	 */
 	boolean hasAttribute(String name);
 
-	/**
-	 * Return the names of all attributes.
-	 */
+	/**  Return the names of all attributes. */
 	String[] attributeNames();
 
 }

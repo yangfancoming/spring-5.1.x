@@ -26,6 +26,41 @@ import org.springframework.lang.Nullable;
  * 存储  内存态的bean 好比是设计图纸  根据设计图纸 来创建  纯静态的bean
  *
  * Bean的生命周期，默认只提供sington和prototype两种，在WebApplicationContext中还会有request, session, globalSession, application, websocket 等
+ * getBeanClassName
+ * getConstructorArgumentValues
+ * getDependsOn
+ * getDescription
+ * getDestroyMethodName
+ * getFactoryBeanName
+ * getFactoryMethodName
+ * getInitMethodName
+ * getOriginatingBeanDefinition
+ * getParentName
+ * getPropertyValues
+ * getResourceDescription
+ * getRole
+ * getScope
+ * hasConstructorArgumentValues
+ * hasPropertyValues
+ * isAbstract
+ * isAutowireCandidate
+ * isLazyInit
+ * isPrimary
+ * isPrototype
+ * isSingleton
+ * setAutowireCandidate
+ * setBeanClassName
+ * setDependsOn
+ * setDescription
+ * setDestroyMethodName
+ * setFactoryBeanName
+ * setFactoryMethodName
+ * setInitMethodName
+ * setLazyInit
+ * setParentName
+ * setPrimary
+ * setRole
+ * setScope
  */
 public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 
@@ -42,7 +77,6 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * @see #setScope
 	 */
 	String SCOPE_PROTOTYPE = ConfigurableBeanFactory.SCOPE_PROTOTYPE;
-
 
 	/**
 	 * Role hint indicating that a {@code BeanDefinition} is a major part of the application.

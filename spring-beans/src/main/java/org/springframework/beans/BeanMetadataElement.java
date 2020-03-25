@@ -1,7 +1,6 @@
 
 
 package org.springframework.beans;
-
 import org.springframework.lang.Nullable;
 
 /**
@@ -10,9 +9,7 @@ import org.springframework.lang.Nullable;
  */
 public interface BeanMetadataElement {
 
-	/**
-	 * Return the configuration source {@code Object} for this metadata element (may be {@code null}).
-	 */
+	/** Return the configuration source {@code Object} for this metadata element (may be {@code null}). */
 	@Nullable
 	Object getSource();
 

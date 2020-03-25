@@ -31,11 +31,10 @@ import org.springframework.lang.Nullable;
  * There are no constraints on how the definitions could be stored: LDAP, RDBMS, XML,properties file, etc.
  * Implementations are encouraged to support references amongst beans (Dependency Injection).
  *
- * In contrast to the methods in {@link ListableBeanFactory}, all of the
- * operations in this interface will also check parent factories if this is a {@link HierarchicalBeanFactory}.
- * If a bean is not found in this factory instance,
- * the immediate parent factory will be asked. Beans in this factory instance
- * are supposed to override beans of the same name in any parent factory.
+ * In contrast to the methods in {@link ListableBeanFactory}, all of the operations in this interface
+ * will also check parent factories if this is a {@link HierarchicalBeanFactory}.
+ * If a bean is not found in this factory instance,the immediate parent factory will be asked.
+ * Beans in this factory instance are supposed to override beans of the same name in any parent factory.
  *
  * Bean factory implementations should support the standard bean lifecycle interfaces as far as possible. 
  * The full set of initialization methods and their standard order is:
@@ -60,7 +59,6 @@ import org.springframework.lang.Nullable;
  * {@code postProcessAfterInitialization} methods of BeanPostProcessors
  *
  * On shutdown of a bean factory, the following lifecycle methods apply:
- * 
  * {@code postProcessBeforeDestruction} methods of DestructionAwareBeanPostProcessors
  * DisposableBean's {@code destroy} a custom destroy-method definition
  *
@@ -82,6 +80,15 @@ import org.springframework.lang.Nullable;
  *
  * 定义了获取bean、及获取bean的各种属性
  * BeanFactory 它是访问 Spring 容器的根接口，定义了获取bean的各种重载方法：
+ *
+ * getAliases
+ * getBean
+ * getBeanProvider
+ * getType
+ * containsBean
+ * isPrototype
+ * isSingleton
+ * isTypeMatch
  */
 public interface BeanFactory {
 
