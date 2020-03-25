@@ -57,7 +57,7 @@
     
 # spring Mybatis  模块    
     chapter6-5-0  spring 整合 mybatis 入门demo  xml版
-    chapter6-5-1  spring 整合 mybatis 入门demo  注解版
+    chapter6-5-1  spring 整合 mybatis 入门demo  注解版 无局部xml
     
     chapter7-0-0  spring web MVC 高级
     chapter8-0-0  spring web flow

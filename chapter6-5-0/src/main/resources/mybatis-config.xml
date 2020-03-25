@@ -3,9 +3,13 @@
 
 
 <configuration>
-    <!--类型别名 -->
-    <typeAliases>
-        <package name="cn.smbms.pojo" />
-    </typeAliases>
+
+<!--    <typeAliases>-->
+<!--        <package name="cn.smbms.pojo" />-->
+<!--    </typeAliases>-->
+
+<!--	<mappers>-->
+<!--		<mapper resource="mapper/Foo.xml"/>-->
+<!--	</mappers>-->
 
 </configuration>
