@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Properties;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -312,7 +313,8 @@ public class StringUtilsTests {
 		// 使用【逗号】分割字符串，并放到set中去重
 		System.out.println(StringUtils.commaDelimitedListToSet(temp));
 		// 使用 【指定分隔符】 分割字符串，并放到set中去重
-		System.out.println(StringUtils.commaDelimitedListToSet(temp,"\n"));
+		Set<String> strings = StringUtils.commaDelimitedListToSet(temp, "\n");
+		System.out.println(strings);
 	}
 
 	@Test
@@ -445,6 +447,7 @@ public class StringUtilsTests {
 		//String[] tokenizeToStringArray(String str, String delimiters, boolean trimTokens, boolean ignoreEmptyTokens)
 		//后面两个参数在限定是否对每一个元素执行trim操作，是否去掉空字符串
 		assertEquals("[b, c, d]",Arrays.toString(StringUtils.tokenizeToStringArray("aa,ba,ca,da", "a,")));
+		assertEquals("[111, 222, 333, 111]",Arrays.toString(StringUtils.tokenizeToStringArray("111\n222\n333\n111\n", "\n")));
 	}
 
 	@Test

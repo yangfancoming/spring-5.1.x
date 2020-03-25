@@ -9,8 +9,7 @@ import org.springframework.lang.Nullable;
 /**
  * The root interface for accessing a Spring bean container.
  * This is the basic client view of a bean container;
- * further interfaces such as {@link ListableBeanFactory} and {@link org.springframework.beans.factory.config.ConfigurableBeanFactory}
- * are available for specific purposes.
+ * further interfaces such as ListableBeanFactory and ConfigurableBeanFactory are available for specific purposes.
  *
  * This interface is implemented by objects that hold a number of bean definitions,each uniquely identified by a String name.
  * Depending on the bean definition,the factory will return either an independent instance of a contained object (the Prototype design pattern),
@@ -33,8 +32,8 @@ import org.springframework.lang.Nullable;
  * Implementations are encouraged to support references amongst beans (Dependency Injection).
  *
  * In contrast to the methods in {@link ListableBeanFactory}, all of the
- * operations in this interface will also check parent factories if this is a
- * {@link HierarchicalBeanFactory}. If a bean is not found in this factory instance,
+ * operations in this interface will also check parent factories if this is a {@link HierarchicalBeanFactory}.
+ * If a bean is not found in this factory instance,
  * the immediate parent factory will be asked. Beans in this factory instance
  * are supposed to override beans of the same name in any parent factory.
  *

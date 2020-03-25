@@ -11,10 +11,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-/**
- * @author Arjen Poutsma
- * @author Sebastien Deleuze
- */
+
 @SuppressWarnings("unchecked")
 public class ListenableFutureTaskTests {
 

@@ -58,10 +58,7 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 import static org.springframework.http.codec.json.Jackson2CodecSupport.*;
 
-/**
- * @author Arjen Poutsma
- * @author Sebastien Deleuze
- */
+
 public class BodyInsertersTests {
 
 	private BodyInserter.Context context;

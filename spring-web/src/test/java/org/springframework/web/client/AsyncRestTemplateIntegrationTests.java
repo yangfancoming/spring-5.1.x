@@ -36,16 +36,11 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Arjen Poutsma
- * @author Sebastien Deleuze
- */
+
 @SuppressWarnings("deprecation")
 public class AsyncRestTemplateIntegrationTests extends AbstractMockWebServerTestCase {
 
-	private final AsyncRestTemplate template = new AsyncRestTemplate(
-			new HttpComponentsAsyncClientHttpRequestFactory());
-
+	private final AsyncRestTemplate template = new AsyncRestTemplate(new HttpComponentsAsyncClientHttpRequestFactory());
 
 	@Test
 	public void getEntity() throws Exception {
@@ -76,8 +71,7 @@ public class AsyncRestTemplateIntegrationTests extends AbstractMockWebServerTest
 
 	@Test
 	public void getEntityCallback() throws Exception {
-		ListenableFuture<ResponseEntity<String>> futureEntity =
-				template.getForEntity(baseUrl + "/{method}", String.class, "get");
+		ListenableFuture<ResponseEntity<String>> futureEntity = template.getForEntity(baseUrl + "/{method}", String.class, "get");
 		futureEntity.addCallback(new ListenableFutureCallback<ResponseEntity<String>>() {
 			@Override
 			public void onSuccess(ResponseEntity<String> entity) {
@@ -96,8 +90,7 @@ public class AsyncRestTemplateIntegrationTests extends AbstractMockWebServerTest
 
 	@Test
 	public void getEntityCallbackWithLambdas() throws Exception {
-		ListenableFuture<ResponseEntity<String>> futureEntity =
-				template.getForEntity(baseUrl + "/{method}", String.class, "get");
+		ListenableFuture<ResponseEntity<String>> futureEntity = template.getForEntity(baseUrl + "/{method}", String.class, "get");
 		futureEntity.addCallback((entity) -> {
 			assertEquals("Invalid content", helloWorld, entity.getBody());
 			assertFalse("No headers", entity.getHeaders().isEmpty());
@@ -213,8 +206,7 @@ public class AsyncRestTemplateIntegrationTests extends AbstractMockWebServerTest
 	@Test
 	public void postForEntity() throws Exception  {
 		HttpEntity<String> requestEntity = new HttpEntity<>(helloWorld);
-		Future<ResponseEntity<String>> responseEntityFuture =
-				template.postForEntity(baseUrl + "/{method}", requestEntity, String.class, "post");
+		Future<ResponseEntity<String>> responseEntityFuture = template.postForEntity(baseUrl + "/{method}", requestEntity, String.class, "post");
 		ResponseEntity<String> responseEntity = responseEntityFuture.get();
 		assertEquals("Invalid content", helloWorld, responseEntity.getBody());
 	}
