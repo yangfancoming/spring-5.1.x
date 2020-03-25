@@ -12,13 +12,13 @@ import java.util.Map;
 /**
  * Created by Administrator on 2020/3/25.
  *
- * @ Description: TODO
+ * @ Description: 使用 MapperScannerConfigurer 包扫描 方式二
  * @ author  山羊来了
  * @ date 2020/3/25---10:00
  */
-public class App {
+public class Spring2App {
 
-	ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:application.xml");
+	ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring2.xml");
 
 	@Test
 	public void test() {

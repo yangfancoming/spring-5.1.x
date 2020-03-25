@@ -3,8 +3,8 @@
 
 <mapper namespace="com.goat.chapter650.dao.BookMapper">
 
-  <select id="selectById" parameterType="int" resultType="map" >
-    select * from foo where id = #{id}
+  <select id="selectById"  resultType="map" >
+    select * from foo
   </select>
 
 </mapper>
