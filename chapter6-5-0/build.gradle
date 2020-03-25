@@ -16,7 +16,7 @@ dependencies {
 
     optional(project(":spring-context"))
     optional(project(":spring-jdbc"))  // 引入spring-jdbc模块
-    compile(project(":spring-mybatis"))  // 
+    compile(project(":spring-mybatis"))  //  由原来的 optional 改成 compile 就是可以断点进去了
 
 //    compile 'org.mybatis:mybatis-spring:1.3.2'
 //    compile 'org.mybatis:mybatis:3.4.5'

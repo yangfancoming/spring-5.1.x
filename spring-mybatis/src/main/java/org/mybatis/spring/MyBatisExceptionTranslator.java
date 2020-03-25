@@ -30,7 +30,6 @@ public class MyBatisExceptionTranslator implements PersistenceExceptionTranslato
    */
   public MyBatisExceptionTranslator(DataSource dataSource, boolean exceptionTranslatorLazyInit) {
     this.dataSource = dataSource;
-
     if (!exceptionTranslatorLazyInit) {
       this.initExceptionTranslator();
     }

@@ -292,16 +292,13 @@ public class SqlSessionTemplate implements SqlSession, DisposableBean {
 
   /**
    * Allow gently dispose bean:
-   * 
    * <pre>
    * {@code
-   *
    * <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
    *  <constructor-arg index="0" ref="sqlSessionFactory" />
    * </bean>
    * }
    * </pre>
-   *
    * The implementation of {@link DisposableBean} forces spring context to use {@link DisposableBean#destroy()} method
    * instead of {@link SqlSessionTemplate#close()} to shutdown gently.
    *

@@ -62,17 +62,13 @@ public final class SqlSessionUtils {
    * @see SpringManagedTransactionFactory
    */
   public static SqlSession getSqlSession(SqlSessionFactory sessionFactory, ExecutorType executorType, PersistenceExceptionTranslator exceptionTranslator) {
-
     notNull(sessionFactory, NO_SQL_SESSION_FACTORY_SPECIFIED);
     notNull(executorType, NO_EXECUTOR_TYPE_SPECIFIED);
-
     SqlSessionHolder holder = (SqlSessionHolder) TransactionSynchronizationManager.getResource(sessionFactory);
-
     SqlSession session = sessionHolder(executorType, holder);
     if (session != null) {
       return session;
     }
-
     LOGGER.debug(() -> "Creating a new SqlSession");
     session = sessionFactory.openSession(executorType);
     registerSessionHolder(sessionFactory, executorType, exceptionTranslator, session);
@@ -93,10 +89,8 @@ public final class SqlSessionUtils {
     SqlSessionHolder holder;
     if (TransactionSynchronizationManager.isSynchronizationActive()) {
       Environment environment = sessionFactory.getConfiguration().getEnvironment();
-
       if (environment.getTransactionFactory() instanceof SpringManagedTransactionFactory) {
         LOGGER.debug(() -> "Registering transaction synchronization for SqlSession [" + session + "]");
-
         holder = new SqlSessionHolder(session, executorType, exceptionTranslator);
         TransactionSynchronizationManager.bindResource(sessionFactory, holder);
         TransactionSynchronizationManager.registerSynchronization(new SqlSessionSynchronization(holder, sessionFactory));

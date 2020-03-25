@@ -71,8 +71,7 @@ import static org.springframework.util.Assert.notNull;
  * @see MapperFactoryBean
  * @see ClassPathMapperScanner
  */
-public class MapperScannerConfigurer
-  implements BeanDefinitionRegistryPostProcessor, InitializingBean, ApplicationContextAware, BeanNameAware {
+public class MapperScannerConfigurer implements BeanDefinitionRegistryPostProcessor, InitializingBean, ApplicationContextAware, BeanNameAware {
 
   private String basePackage;
 

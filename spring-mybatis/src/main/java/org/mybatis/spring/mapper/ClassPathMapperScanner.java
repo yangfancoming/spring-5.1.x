@@ -116,7 +116,6 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
    */
   public void registerFilters() {
     boolean acceptAllInterfaces = true;
-
     // if specified, use the given annotation and / or marker interface
     if (this.annotationClass != null) {
       addIncludeFilter(new AnnotationTypeFilter(this.annotationClass));
@@ -153,10 +152,8 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
   @Override
   public Set<BeanDefinitionHolder> doScan(String... basePackages) {
     Set<BeanDefinitionHolder> beanDefinitions = super.doScan(basePackages);
-
     if (beanDefinitions.isEmpty()) {
-      LOGGER.warn(() -> "No MyBatis mapper was found in '" + Arrays.toString(basePackages)
-        + "' package. Please check your configuration.");
+      LOGGER.warn(() -> "No MyBatis mapper was found in '" + Arrays.toString(basePackages)  + "' package. Please check your configuration.");
     } else {
       processBeanDefinitions(beanDefinitions);
     }
@@ -189,21 +186,17 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 
       if (StringUtils.hasText(this.sqlSessionTemplateBeanName)) {
         if (explicitFactoryUsed) {
-          LOGGER.warn(
-            () -> "Cannot use both: sqlSessionTemplate and sqlSessionFactory together. sqlSessionFactory is ignored.");
+          LOGGER.warn(() -> "Cannot use both: sqlSessionTemplate and sqlSessionFactory together. sqlSessionFactory is ignored.");
         }
-        definition.getPropertyValues().add("sqlSessionTemplate",
-          new RuntimeBeanReference(this.sqlSessionTemplateBeanName));
+        definition.getPropertyValues().add("sqlSessionTemplate",new RuntimeBeanReference(this.sqlSessionTemplateBeanName));
         explicitFactoryUsed = true;
       } else if (this.sqlSessionTemplate != null) {
         if (explicitFactoryUsed) {
-          LOGGER.warn(
-            () -> "Cannot use both: sqlSessionTemplate and sqlSessionFactory together. sqlSessionFactory is ignored.");
+          LOGGER.warn(() -> "Cannot use both: sqlSessionTemplate and sqlSessionFactory together. sqlSessionFactory is ignored.");
         }
         definition.getPropertyValues().add("sqlSessionTemplate", this.sqlSessionTemplate);
         explicitFactoryUsed = true;
       }
-
       if (!explicitFactoryUsed) {
         LOGGER.debug(() -> "Enabling autowire by type for MapperFactoryBean with name '" + holder.getBeanName() + "'.");
         definition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
