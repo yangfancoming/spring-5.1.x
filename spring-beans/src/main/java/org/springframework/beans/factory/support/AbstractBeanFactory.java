@@ -314,8 +314,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 						try {
 							// 加载 depends-on 依赖  // 实例化依赖的bean
 							getBean(dep);
-						}
-						catch (NoSuchBeanDefinitionException ex) {
+						}catch (NoSuchBeanDefinitionException ex) {
 							throw new BeanCreationException(mbd.getResourceDescription(), beanName,	"'" + beanName + "' depends on missing bean '" + dep + "'", ex);
 						}
 					}
@@ -327,8 +326,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					sharedInstance = getSingleton(beanName, () -> {
 						try {
 							return createBean(beanName, mbd, args);   // 创建单例对象
-						}
-						catch (BeansException ex) {
+						}catch (BeansException ex) {
 							// Explicitly remove instance from singleton cache: It might have been put there
 							// eagerly by the creation process, to allow for circular reference resolution.
 							// Also remove any beans that received a temporary reference to the bean.
@@ -347,8 +345,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					try {
 						beforePrototypeCreation(beanName);  // 将正在创建的原型对象进行记录
 						prototypeInstance = createBean(beanName, mbd, args); // 创建原型对象
-					}
-					finally {
+					}finally {
 						afterPrototypeCreation(beanName); // 移除正在创建的原型对象记录
 					}
 					//这里主要处理实现了FactoryBean的情况，需要调用重写的getObject()方法来获取实际的Bean实例。
@@ -366,20 +363,17 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 							beforePrototypeCreation(beanName);
 							try {
 								return createBean(beanName, mbd, args);
-							}
-							finally {
+							}finally {
 								afterPrototypeCreation(beanName);
 							}
 						});
 						bean = getObjectForBeanInstance(scopedInstance, name, beanName, mbd);
-					}
-					catch (IllegalStateException ex) {
+					} catch (IllegalStateException ex) {
 						throw new BeanCreationException(beanName,"Scope '" + scopeName + "' is not active for the current thread; consider " +
 								"defining a scoped proxy for this bean if you intend to refer to it from a singleton",ex);
 					}
 				}
-			}
-			catch (BeansException ex) {
+			}catch (BeansException ex) {
 				cleanupAfterBeanCreationFailure(beanName);
 				throw ex;
 			}
@@ -394,8 +388,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					throw new BeanNotOfRequiredTypeException(name, requiredType, bean.getClass());
 				}
 				return convertedBean;
-			}
-			catch (TypeMismatchException ex) {
+			}catch (TypeMismatchException ex) {
 				if (logger.isTraceEnabled()) {
 					logger.trace("Failed to convert bean '" + name + "' to required type '" + ClassUtils.getQualifiedName(requiredType) + "'", ex);
 				}
@@ -419,13 +412,11 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	@Override
 	public boolean isSingleton(String name) throws NoSuchBeanDefinitionException {
 		String beanName = transformedBeanName(name);
-
 		Object beanInstance = getSingleton(beanName, false);
 		if (beanInstance != null) {
 			if (beanInstance instanceof FactoryBean) {
 				return (BeanFactoryUtils.isFactoryDereference(name) || ((FactoryBean<?>) beanInstance).isSingleton());
-			}
-			else {
+			}else {
 				return !BeanFactoryUtils.isFactoryDereference(name);
 			}
 		}
@@ -436,9 +427,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			// No bean definition found in this factory -> delegate to parent.
 			return parentBeanFactory.isSingleton(originalBeanName(name));
 		}
-
 		RootBeanDefinition mbd = getMergedLocalBeanDefinition(beanName);
-
 		// In case of FactoryBean, return singleton status of created object if not a dereference.
 		if (mbd.isSingleton()) {
 			if (isFactoryBean(beanName, mbd)) {
@@ -447,12 +436,10 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				}
 				FactoryBean<?> factoryBean = (FactoryBean<?>) getBean(FACTORY_BEAN_PREFIX + beanName);
 				return factoryBean.isSingleton();
-			}
-			else {
+			}else {
 				return !BeanFactoryUtils.isFactoryDereference(name);
 			}
-		}
-		else {
+		}else {
 			return false;
 		}
 	}
@@ -460,19 +447,16 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	@Override
 	public boolean isPrototype(String name) throws NoSuchBeanDefinitionException {
 		String beanName = transformedBeanName(name);
-
 		BeanFactory parentBeanFactory = getParentBeanFactory();
 		if (parentBeanFactory != null && !containsBeanDefinition(beanName)) {
 			// No bean definition found in this factory -> delegate to parent.
 			return parentBeanFactory.isPrototype(originalBeanName(name));
 		}
-
 		RootBeanDefinition mbd = getMergedLocalBeanDefinition(beanName);
 		if (mbd.isPrototype()) {
 			// In case of FactoryBean, return singleton status of created object if not a dereference.
 			return (!BeanFactoryUtils.isFactoryDereference(name) || isFactoryBean(beanName, mbd));
 		}
-
 		// Singleton or scoped - not a prototype.
 		// However, FactoryBean may still produce a prototype object...
 		if (BeanFactoryUtils.isFactoryDereference(name)) {
@@ -484,13 +468,11 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				return AccessController.doPrivileged((PrivilegedAction<Boolean>) () ->
 						((fb instanceof SmartFactoryBean && ((SmartFactoryBean<?>) fb).isPrototype()) || !fb.isSingleton()),
 						getAccessControlContext());
-			}
-			else {
+			}else {
 				return ((fb instanceof SmartFactoryBean && ((SmartFactoryBean<?>) fb).isPrototype()) ||
 						!fb.isSingleton());
 			}
-		}
-		else {
+		}else {
 			return false;
 		}
 	}
@@ -498,7 +480,6 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	@Override
 	public boolean isTypeMatch(String name, ResolvableType typeToMatch) throws NoSuchBeanDefinitionException {
 		String beanName = transformedBeanName(name);
-
 		// Check manually registered singletons.
 		Object beanInstance = getSingleton(beanName, false);
 		if (beanInstance != null && beanInstance.getClass() != NullBean.class) {
@@ -506,17 +487,14 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				if (!BeanFactoryUtils.isFactoryDereference(name)) {
 					Class<?> type = getTypeForFactoryBean((FactoryBean<?>) beanInstance);
 					return (type != null && typeToMatch.isAssignableFrom(type));
-				}
-				else {
+				}else {
 					return typeToMatch.isInstance(beanInstance);
 				}
-			}
-			else if (!BeanFactoryUtils.isFactoryDereference(name)) {
+			}else if (!BeanFactoryUtils.isFactoryDereference(name)) {
 				if (typeToMatch.isInstance(beanInstance)) {
 					// Direct match for exposed instance?
 					return true;
-				}
-				else if (typeToMatch.hasGenerics() && containsBeanDefinition(beanName)) {
+				}else if (typeToMatch.hasGenerics() && containsBeanDefinition(beanName)) {
 					// Generics potentially only match on the target class, not on the proxy...
 					RootBeanDefinition mbd = getMergedLocalBeanDefinition(beanName);
 					Class<?> targetType = mbd.getTargetType();
@@ -538,8 +516,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				}
 			}
 			return false;
-		}
-		else if (containsSingleton(beanName) && !containsBeanDefinition(beanName)) {
+		} else if (containsSingleton(beanName) && !containsBeanDefinition(beanName)) {
 			// null instance registered
 			return false;
 		}
@@ -553,7 +530,6 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 		// Retrieve corresponding bean definition.
 		RootBeanDefinition mbd = getMergedLocalBeanDefinition(beanName);
-
 		Class<?> classToMatch = typeToMatch.resolve();
 		if (classToMatch == null) {
 			classToMatch = FactoryBean.class;
@@ -580,12 +556,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			if (!BeanFactoryUtils.isFactoryDereference(name) && beanInstance == null) {
 				// If it's a FactoryBean, we want to look at what it creates, not the factory class.
 				beanType = getTypeForFactoryBean(beanName, mbd);
-				if (beanType == null) {
-					return false;
-				}
+				if (beanType == null) return false;
 			}
-		}
-		else if (BeanFactoryUtils.isFactoryDereference(name)) {
+		}else if (BeanFactoryUtils.isFactoryDereference(name)) {
 			// Special case: A SmartInstantiationAwareBeanPostProcessor returned a non-FactoryBean
 			// type but we nevertheless are being asked to dereference a FactoryBean...
 			// Let's check the original bean class and proceed with it if it is a FactoryBean.
@@ -596,9 +569,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		}
 
 		ResolvableType resolvableType = mbd.targetType;
-		if (resolvableType == null) {
-			resolvableType = mbd.factoryMethodReturnType;
-		}
+		if (resolvableType == null) resolvableType = mbd.factoryMethodReturnType;
 		if (resolvableType != null && resolvableType.resolve() == beanType) {
 			return typeToMatch.isAssignableFrom(resolvableType);
 		}
@@ -614,14 +585,12 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	@Nullable
 	public Class<?> getType(String name) throws NoSuchBeanDefinitionException {
 		String beanName = transformedBeanName(name);
-
 		// Check manually registered singletons.
 		Object beanInstance = getSingleton(beanName, false);
 		if (beanInstance != null && beanInstance.getClass() != NullBean.class) {
 			if (beanInstance instanceof FactoryBean && !BeanFactoryUtils.isFactoryDereference(name)) {
 				return getTypeForFactoryBean((FactoryBean<?>) beanInstance);
-			}
-			else {
+			}else {
 				return beanInstance.getClass();
 			}
 		}
@@ -632,9 +601,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			// No bean definition found in this factory -> delegate to parent.
 			return parentBeanFactory.getType(originalBeanName(name));
 		}
-
 		RootBeanDefinition mbd = getMergedLocalBeanDefinition(beanName);
-
 		// Check decorated bean definition, if any: We assume it'll be easier
 		// to determine the decorated bean's type than the proxy's type.
 		BeanDefinitionHolder dbd = mbd.getDecoratedDefinition();
@@ -647,18 +614,15 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		}
 
 		Class<?> beanClass = predictBeanType(beanName, mbd);
-
 		// Check bean class whether we're dealing with a FactoryBean.
 		if (beanClass != null && FactoryBean.class.isAssignableFrom(beanClass)) {
 			if (!BeanFactoryUtils.isFactoryDereference(name)) {
 				// If it's a FactoryBean, we want to look at what it creates, not at the factory class.
 				return getTypeForFactoryBean(beanName, mbd);
-			}
-			else {
+			}else {
 				return beanClass;
 			}
-		}
-		else {
+		}else {
 			return (!BeanFactoryUtils.isFactoryDereference(name) ? beanClass : null);
 		}
 	}
@@ -827,8 +791,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		TypeConverter customConverter = getCustomTypeConverter();
 		if (customConverter != null) {
 			return customConverter;
-		}
-		else {
+		}else {
 			// Build default TypeConverter, registering custom editors.
 			SimpleTypeConverter typeConverter = new SimpleTypeConverter();
 			typeConverter.setConversionService(getConversionService());
@@ -851,15 +814,11 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	@Override
 	@Nullable
 	public String resolveEmbeddedValue(@Nullable String value) {
-		if (value == null) {
-			return null;
-		}
+		if (value == null) return null;
 		String result = value;
 		for (StringValueResolver resolver : this.embeddedValueResolvers) {
 			result = resolver.resolveStringValue(result);
-			if (result == null) {
-				return null;
-			}
+			if (result == null) return null;
 		}
 		return result;
 	}
@@ -922,14 +881,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		}
 		Scope previous = this.scopes.put(scopeName, scope);
 		if (previous != null && previous != scope) {
-			if (logger.isDebugEnabled()) {
-				logger.debug("Replacing scope '" + scopeName + "' from [" + previous + "] to [" + scope + "]");
-			}
-		}
-		else {
-			if (logger.isTraceEnabled()) {
-				logger.trace("Registering scope '" + scopeName + "' with implementation [" + scope + "]");
-			}
+			if (logger.isDebugEnabled()) logger.debug("Replacing scope '" + scopeName + "' from [" + previous + "] to [" + scope + "]");
+		}else {
+			if (logger.isTraceEnabled()) logger.trace("Registering scope '" + scopeName + "' with implementation [" + scope + "]");
 		}
 	}
 
@@ -978,14 +932,11 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			this.customEditors.putAll(otherAbstractFactory.customEditors);
 			this.typeConverter = otherAbstractFactory.typeConverter;
 			this.beanPostProcessors.addAll(otherAbstractFactory.beanPostProcessors);
-			this.hasInstantiationAwareBeanPostProcessors = this.hasInstantiationAwareBeanPostProcessors ||
-					otherAbstractFactory.hasInstantiationAwareBeanPostProcessors;
-			this.hasDestructionAwareBeanPostProcessors = this.hasDestructionAwareBeanPostProcessors ||
-					otherAbstractFactory.hasDestructionAwareBeanPostProcessors;
+			this.hasInstantiationAwareBeanPostProcessors = this.hasInstantiationAwareBeanPostProcessors || otherAbstractFactory.hasInstantiationAwareBeanPostProcessors;
+			this.hasDestructionAwareBeanPostProcessors = this.hasDestructionAwareBeanPostProcessors || otherAbstractFactory.hasDestructionAwareBeanPostProcessors;
 			this.scopes.putAll(otherAbstractFactory.scopes);
 			this.securityContextProvider = otherAbstractFactory.securityContextProvider;
-		}
-		else {
+		}else {
 			setTypeConverter(otherFactory.getTypeConverter());
 			String[] otherScopeNames = otherFactory.getRegisteredScopeNames();
 			for (String scopeName : otherScopeNames) {
@@ -1057,14 +1008,12 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		Object curVal = this.prototypesCurrentlyInCreation.get();
 		if (curVal == null) {
 			this.prototypesCurrentlyInCreation.set(beanName);
-		}
-		else if (curVal instanceof String) {
+		}else if (curVal instanceof String) {
 			Set<String> beanNameSet = new HashSet<>(2);
 			beanNameSet.add((String) curVal);
 			beanNameSet.add(beanName);
 			this.prototypesCurrentlyInCreation.set(beanNameSet);
-		}
-		else {
+		}else {
 			Set<String> beanNameSet = (Set<String>) curVal;
 			beanNameSet.add(beanName);
 		}
@@ -1081,8 +1030,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		Object curVal = this.prototypesCurrentlyInCreation.get();
 		if (curVal instanceof String) {
 			this.prototypesCurrentlyInCreation.remove();
-		}
-		else if (curVal instanceof Set) {
+		}else if (curVal instanceof Set) {
 			Set<String> beanNameSet = (Set<String>) curVal;
 			beanNameSet.remove(beanName);
 			if (beanNameSet.isEmpty()) {
@@ -1111,14 +1059,11 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	public void destroyScopedBean(String beanName) {
 		RootBeanDefinition mbd = getMergedLocalBeanDefinition(beanName);
 		if (mbd.isSingleton() || mbd.isPrototype()) {
-			throw new IllegalArgumentException(
-					"Bean name '" + beanName + "' does not correspond to an object in a mutable scope");
+			throw new IllegalArgumentException("Bean name '" + beanName + "' does not correspond to an object in a mutable scope");
 		}
 		String scopeName = mbd.getScope();
 		Scope scope = this.scopes.get(scopeName);
-		if (scope == null) {
-			throw new IllegalStateException("No Scope SPI registered for scope name '" + scopeName + "'");
-		}
+		if (scope == null) throw new IllegalStateException("No Scope SPI registered for scope name '" + scopeName + "'");
 		Object bean = scope.remove(beanName);
 		if (bean != null) {
 			destroyBean(beanName, bean, mbd);
@@ -1179,8 +1124,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * @param registry the PropertyEditorRegistry to initialize
 	 */
 	protected void registerCustomEditors(PropertyEditorRegistry registry) {
-		PropertyEditorRegistrySupport registrySupport =
-				(registry instanceof PropertyEditorRegistrySupport ? (PropertyEditorRegistrySupport) registry : null);
+		PropertyEditorRegistrySupport registrySupport = (registry instanceof PropertyEditorRegistrySupport ? (PropertyEditorRegistrySupport) registry : null);
 		if (registrySupport != null) {
 			registrySupport.useConfigValueEditors();
 		}
@@ -1196,9 +1140,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 						String bceBeanName = bce.getBeanName();
 						if (bceBeanName != null && isCurrentlyInCreation(bceBeanName)) {
 							if (logger.isDebugEnabled()) {
-								logger.debug("PropertyEditorRegistrar [" + registrar.getClass().getName() +
-										"] failed because it tried to obtain currently created bean '" +
-										ex.getBeanName() + "': " + ex.getMessage());
+								logger.debug("PropertyEditorRegistrar [" + registrar.getClass().getName() + "] failed because it tried to obtain currently created bean '" + ex.getBeanName() + "': " + ex.getMessage());
 							}
 							onSuppressedException(ex);
 							continue;
@@ -1209,8 +1151,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			}
 		}
 		if (!this.customEditors.isEmpty()) {
-			this.customEditors.forEach((requiredType, editorClass) ->
-					registry.registerCustomEditor(requiredType, BeanUtils.instantiateClass(editorClass)));
+			this.customEditors.forEach((requiredType, editorClass) -> registry.registerCustomEditor(requiredType, BeanUtils.instantiateClass(editorClass)));
 		}
 	}
 
@@ -1258,7 +1199,6 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * @throws BeanDefinitionStoreException in case of an invalid bean definition
 	 */
 	protected RootBeanDefinition getMergedBeanDefinition(String beanName, BeanDefinition bd, @Nullable BeanDefinition containingBd) throws BeanDefinitionStoreException {
-
 		synchronized (this.mergedBeanDefinitions) {
 			RootBeanDefinition mbd = null;
 			// Check with full lock now in order to enforce the same merged instance.
@@ -1273,12 +1213,10 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					// Use copy of given root bean definition.
 					if (bd instanceof RootBeanDefinition) {
 						mbd = ((RootBeanDefinition) bd).cloneBeanDefinition();
-					}
-					else {
+					}else {
 						mbd = new RootBeanDefinition(bd);
 					}
-				}
-				else {
+				}else {
 					// Child bean definition: needs to be merged with parent.
 					BeanDefinition pbd;
 					try {
@@ -1297,19 +1235,16 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 							 * 如果爷爷辈的 BeanDefinition 仍有父BeanDefinition，则继续合并
 							 */
 							pbd = getMergedBeanDefinition(parentBeanName);
-						}
-						else {
+						}else {
 							BeanFactory parent = getParentBeanFactory();
 							if (parent instanceof ConfigurableBeanFactory) {
 								pbd = ((ConfigurableBeanFactory) parent).getMergedBeanDefinition(parentBeanName);
-							}
-							else {
+							}else {
 								// 获取父容器，并判断，父容器的类型，若不是 ConfigurableBeanFactory 则判抛出异常
 								throw new NoSuchBeanDefinitionException(parentBeanName,"Parent name '" + parentBeanName + "' is equal to bean name '" + beanName + "': cannot be resolved without an AbstractBeanFactory parent");
 							}
 						}
-					}
-					catch (NoSuchBeanDefinitionException ex) {
+					}catch (NoSuchBeanDefinitionException ex) {
 						throw new BeanDefinitionStoreException(bd.getResourceDescription(), beanName,"Could not resolve parent bean definition '" + bd.getParentName() + "'", ex);
 					}
 					// Deep copy with overridden values.
@@ -1398,19 +1333,15 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			}
 			if (System.getSecurityManager() != null) {
 				return AccessController.doPrivileged((PrivilegedExceptionAction<Class<?>>) () -> doResolveBeanClass(mbd, typesToMatch), getAccessControlContext());
-			}
-			else {
+			}else {
 				return doResolveBeanClass(mbd, typesToMatch);
 			}
-		}
-		catch (PrivilegedActionException pae) {
+		}catch (PrivilegedActionException pae) {
 			ClassNotFoundException ex = (ClassNotFoundException) pae.getException();
 			throw new CannotLoadBeanClassException(mbd.getResourceDescription(), beanName, mbd.getBeanClassName(), ex);
-		}
-		catch (ClassNotFoundException ex) {
+		}catch (ClassNotFoundException ex) {
 			throw new CannotLoadBeanClassException(mbd.getResourceDescription(), beanName, mbd.getBeanClassName(), ex);
-		}
-		catch (LinkageError err) {
+		}catch (LinkageError err) {
 			throw new CannotLoadBeanClassException(mbd.getResourceDescription(), beanName, mbd.getBeanClassName(), err);
 		}
 	}
@@ -1445,12 +1376,10 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				// A dynamically resolved expression, supported as of 4.2...
 				if (evaluated instanceof Class) {
 					return (Class<?>) evaluated;
-				}
-				else if (evaluated instanceof String) {
+				}else if (evaluated instanceof String) {
 					className = (String) evaluated;
 					freshResolve = true;
-				}
-				else {
+				}else {
 					throw new IllegalStateException("Invalid class name expression result: " + evaluated);
 				}
 			}
@@ -1460,11 +1389,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				if (dynamicLoader != null) {
 					try {
 						return dynamicLoader.loadClass(className);
-					}
-					catch (ClassNotFoundException ex) {
-						if (logger.isTraceEnabled()) {
-							logger.trace("Could not load class [" + className + "] from " + dynamicLoader + ": " + ex);
-						}
+					}catch (ClassNotFoundException ex) {
+						if (logger.isTraceEnabled()) logger.trace("Could not load class [" + className + "] from " + dynamicLoader + ": " + ex);
 					}
 				}
 				return ClassUtils.forName(className, dynamicLoader);
@@ -1515,9 +1441,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	@Nullable
 	protected Class<?> predictBeanType(String beanName, RootBeanDefinition mbd, Class<?>... typesToMatch) {
 		Class<?> targetType = mbd.getTargetType();
-		if (targetType != null) {
-			return targetType;
-		}
+		if (targetType != null) return targetType;
 		if (mbd.getFactoryMethodName() != null) {
 			return null;
 		}
@@ -1551,28 +1475,18 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 */
 	@Nullable
 	protected Class<?> getTypeForFactoryBean(String beanName, RootBeanDefinition mbd) {
-		if (!mbd.isSingleton()) {
-			return null;
-		}
+		if (!mbd.isSingleton()) return null;
 		try {
 			FactoryBean<?> factoryBean = doGetBean(FACTORY_BEAN_PREFIX + beanName, FactoryBean.class, null, true);
 			return getTypeForFactoryBean(factoryBean);
 		}
 		catch (BeanCreationException ex) {
 			if (ex.contains(BeanCurrentlyInCreationException.class)) {
-				if (logger.isTraceEnabled()) {
-					logger.trace("Bean currently in creation on FactoryBean type check: " + ex);
-				}
-			}
-			else if (mbd.isLazyInit()) {
-				if (logger.isTraceEnabled()) {
-					logger.trace("Bean creation exception on lazy FactoryBean type check: " + ex);
-				}
-			}
-			else {
-				if (logger.isDebugEnabled()) {
-					logger.debug("Bean creation exception on non-lazy FactoryBean type check: " + ex);
-				}
+				if (logger.isTraceEnabled()) logger.trace("Bean currently in creation on FactoryBean type check: " + ex);
+			}else if (mbd.isLazyInit()) {
+				if (logger.isTraceEnabled()) logger.trace("Bean creation exception on lazy FactoryBean type check: " + ex);
+			}else {
+				if (logger.isDebugEnabled()) logger.debug("Bean creation exception on non-lazy FactoryBean type check: " + ex);
 			}
 			onSuppressedException(ex);
 			return null;
@@ -1628,8 +1542,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		if (!this.alreadyCreated.contains(beanName)) {
 			removeSingleton(beanName);
 			return true;
-		}
-		else {
+		}else {
 			return false;
 		}
 	}
@@ -1773,13 +1686,10 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				// work for the given bean: DestructionAwareBeanPostProcessors,
 				// DisposableBean interface, custom destroy method.
 				registerDisposableBean(beanName,new DisposableBeanAdapter(bean, beanName, mbd, getBeanPostProcessors(), acc));
-			}
-			else {
+			}else {
 				// A bean with a custom scope...
 				Scope scope = this.scopes.get(mbd.getScope());
-				if (scope == null) {
-					throw new IllegalStateException("No Scope registered for scope name '" + mbd.getScope() + "'");
-				}
+				if (scope == null) throw new IllegalStateException("No Scope registered for scope name '" + mbd.getScope() + "'");
 				scope.registerDestructionCallback(beanName,new DisposableBeanAdapter(bean, beanName, mbd, getBeanPostProcessors(), acc));
 			}
 		}

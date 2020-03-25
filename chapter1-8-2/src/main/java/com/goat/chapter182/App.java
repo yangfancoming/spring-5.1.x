@@ -27,18 +27,12 @@ public class App {
 		xmlBeanFactory = new XmlBeanFactory(new ClassPathResource("bean1.xml"));
 	}
 
-	@After
-	public void after() {
-		System.out.println("\n========测试方法结束=======\n");
-	}
-
-
 	/**  FactoryBean简化配置测试，隐藏细节
 	 * xmlBeanFactory.getBean("student") 获取到的是StudentFactoryBean产生的实例，也就是Student类的实例；
 	 * xmlBeanFactory.getBean("&student")获取到的是StudentFactoryBean自己的实例。
 	*/
 	@Test
-	public void test1() throws Exception {
+	public void test1() {
 		Student student = (Student) xmlBeanFactory.getBean("student");
 		System.out.println(student);
 		StudentFactoryBean bean = (StudentFactoryBean) xmlBeanFactory.getBean("&student");
@@ -56,5 +50,11 @@ public class App {
 		Furniture furniture = xmlBeanFactory.getBean("furniture", Furniture.class);
 		furniture.sayHello();
 	}
+
+	@After
+	public void after() {
+		System.out.println("\n========测试方法结束=======\n");
+	}
+
 }
 

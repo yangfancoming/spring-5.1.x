@@ -26,14 +26,14 @@ import org.springframework.util.PatternMatchUtils;
  * registering corresponding bean definitions with a given registry ({@code BeanFactory}
  * or {@code ApplicationContext}).
  *
- * <p>Candidate classes are detected through configurable type filters. The
+ * Candidate classes are detected through configurable type filters. The
  * default filters include classes that are annotated with Spring's
  * {@link org.springframework.stereotype.Component @Component},
  * {@link org.springframework.stereotype.Repository @Repository},
  * {@link org.springframework.stereotype.Service @Service}, or
  * {@link org.springframework.stereotype.Controller @Controller} stereotype.
  *
- * <p>Also supports Java EE 6's {@link javax.annotation.ManagedBean} and
+ * Also supports Java EE 6's {@link javax.annotation.ManagedBean} and
  * JSR-330's {@link javax.inject.Named} annotations, if available.
  * @since 2.5
  * @see AnnotationConfigApplicationContext#scan
@@ -68,14 +68,14 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 
 	/**
 	 * Create a new {@code ClassPathBeanDefinitionScanner} for the given bean factory.
-	 * <p>If the passed-in bean factory does not only implement the
+	 * If the passed-in bean factory does not only implement the
 	 * {@code BeanDefinitionRegistry} interface but also the {@code ResourceLoader}
 	 * interface, it will be used as default {@code ResourceLoader} as well. This will
 	 * usually be the case for {@link org.springframework.context.ApplicationContext} implementations.
 	 *
-	 * <p>If given a plain {@code BeanDefinitionRegistry}, the default {@code ResourceLoader}
+	 * If given a plain {@code BeanDefinitionRegistry}, the default {@code ResourceLoader}
 	 * will be a {@link org.springframework.core.io.support.PathMatchingResourcePatternResolver}.
-	 * <p>If the passed-in bean factory also implements {@link EnvironmentCapable} its
+	 * If the passed-in bean factory also implements {@link EnvironmentCapable} its
 	 * environment will be used by this reader.  Otherwise, the reader will initialize and
 	 * use a {@link org.springframework.core.env.StandardEnvironment}. All
 	 * {@code ApplicationContext} implementations are {@code EnvironmentCapable}, while
@@ -97,11 +97,11 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	/**
 	 * Create a new {@code ClassPathBeanDefinitionScanner} for the given bean factory and
 	 * using the given {@link Environment} when evaluating bean definition profile metadata.
-	 * <p>If the passed-in bean factory does not only implement the {@code
+	 * If the passed-in bean factory does not only implement the {@code
 	 * BeanDefinitionRegistry} interface but also the {@link ResourceLoader} interface, it
 	 * will be used as default {@code ResourceLoader} as well. This will usually be the
 	 * case for {@link org.springframework.context.ApplicationContext} implementations.
-	 * <p>If given a plain {@code BeanDefinitionRegistry}, the default {@code ResourceLoader}
+	 * If given a plain {@code BeanDefinitionRegistry}, the default {@code ResourceLoader}
 	 * will be a {@link org.springframework.core.io.support.PathMatchingResourcePatternResolver}.
 	 * @param registry the {@code BeanFactory} to load bean definitions into, in the form
 	 * of a {@code BeanDefinitionRegistry}
@@ -179,7 +179,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 
 	/**
 	 * Set the BeanNameGenerator to use for detected bean classes.
-	 * <p>Default is a {@link AnnotationBeanNameGenerator}.
+	 * Default is a {@link AnnotationBeanNameGenerator}.
 	 */
 	public void setBeanNameGenerator(@Nullable BeanNameGenerator beanNameGenerator) {
 		this.beanNameGenerator = (beanNameGenerator != null ? beanNameGenerator : new AnnotationBeanNameGenerator());
@@ -188,7 +188,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	/**
 	 * Set the ScopeMetadataResolver to use for detected bean classes.
 	 * Note that this will override any custom "scopedProxyMode" setting.
-	 * <p>The default is an {@link AnnotationScopeMetadataResolver}.
+	 * The default is an {@link AnnotationScopeMetadataResolver}.
 	 * @see #setScopedProxyMode
 	 */
 	public void setScopeMetadataResolver(@Nullable ScopeMetadataResolver scopeMetadataResolver) {
@@ -198,7 +198,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	/**
 	 * Specify the proxy behavior for non-singleton scoped beans.
 	 * Note that this will override any custom "scopeMetadataResolver" setting.
-	 * <p>The default is {@link ScopedProxyMode#NO}.
+	 * The default is {@link ScopedProxyMode#NO}.
 	 * @see #setScopeMetadataResolver
 	 */
 	public void setScopedProxyMode(ScopedProxyMode scopedProxyMode) {
@@ -207,13 +207,12 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 
 	/**
 	 * Specify whether to register annotation config post-processors.
-	 * <p>The default is to register the post-processors. Turn this off
+	 * The default is to register the post-processors. Turn this off
 	 * to be able to ignore the annotations or to process them differently.
 	 */
 	public void setIncludeAnnotationConfig(boolean includeAnnotationConfig) {
 		this.includeAnnotationConfig = includeAnnotationConfig;
 	}
-
 
 	/**
 	 * Perform a scan within the specified base packages.
@@ -222,6 +221,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	 */
 	public int scan(String... basePackages) {
 		int beanCountAtScanStart = this.registry.getBeanDefinitionCount();
+		// 核心逻辑在 doScan() 方法中实现
 		doScan(basePackages);
 		// Register annotation config processors, if necessary.
 		if (this.includeAnnotationConfig) {
@@ -232,13 +232,14 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 
 	/**
 	 * Perform a scan within the specified base packages,returning the registered bean definitions.
-	 * <p>This method does <i>not</i> register an annotation config processor
-	 * but rather leaves this up to the caller.
+	 * This method does <i>not</i> register an annotation config processor but rather leaves this up to the caller.
 	 * @param basePackages the packages to check for annotated classes
 	 * @return set of beans registered if any for tooling registration purposes (never {@code null})
 	 */
 	protected Set<BeanDefinitionHolder> doScan(String... basePackages) {
 		Assert.notEmpty(basePackages, "At least one base package must be specified");
+		// 调用父类的doScan()方法，遍历basePackages中指定的所有包，扫描每个包下的Java文件并进行解析。
+		// 使用之前注册的过滤器进行过滤，得到符合条件的BeanDefinitionHolder对象
 		Set<BeanDefinitionHolder> beanDefinitions = new LinkedHashSet<>();
 		for (String basePackage : basePackages) {
 			Set<BeanDefinition> candidates = findCandidateComponents(basePackage);
@@ -278,7 +279,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 
 	/**
 	 * Register the specified bean with the given registry.
-	 * <p>Can be overridden in subclasses, e.g. to adapt the registration
+	 * Can be overridden in subclasses, e.g. to adapt the registration
 	 * process or to register further bean definitions for each scanned bean.
 	 * @param definitionHolder the bean definition plus bean name for the bean
 	 * @param registry the BeanDefinitionRegistry to register the bean with
@@ -319,7 +320,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	/**
 	 * Determine whether the given new bean definition is compatible with
 	 * the given existing bean definition.
-	 * <p>The default implementation considers them as compatible when the existing
+	 * The default implementation considers them as compatible when the existing
 	 * bean definition comes from the same source or from a non-scanning source.
 	 * @param newDefinition the new bean definition, originated from scanning
 	 * @param existingDefinition the existing bean definition, potentially an

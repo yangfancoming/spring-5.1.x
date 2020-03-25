@@ -28,29 +28,25 @@ public class FactoryBeanTests {
 	private static final Resource ABSTRACT_CONTEXT = qualifiedResource(CLASS, "abstract.xml");
 	private static final Resource CIRCULAR_CONTEXT = qualifiedResource(CLASS, "circular.xml");
 
+	DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 
 	@Test
 	public void testFactoryBeanReturnsNull()  {
-		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 		new XmlBeanDefinitionReader(factory).loadBeanDefinitions(RETURNS_NULL_CONTEXT);
+		// 因为 NullReturningFactoryBean 实现了 FactoryBean 接口 所以实际调用的是 NullReturningFactoryBean 类中重写的 getObject() 方法 返回值是null
 		assertEquals("null", factory.getBean("factoryBean").toString());
 	}
 
 	@Test
 	public void testFactoryBeansWithAutowiring()  {
-		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 		new XmlBeanDefinitionReader(factory).loadBeanDefinitions(WITH_AUTOWIRING_CONTEXT);
-
 		BeanFactoryPostProcessor ppc = (BeanFactoryPostProcessor) factory.getBean("propertyPlaceholderConfigurer");
 		ppc.postProcessBeanFactory(factory);
-
 		assertNull(factory.getType("betaFactory"));
-
 		Alpha alpha = (Alpha) factory.getBean("alpha");
 		Beta beta = (Beta) factory.getBean("beta");
 		Gamma gamma = (Gamma) factory.getBean("gamma");
 		Gamma gamma2 = (Gamma) factory.getBean("gammaFactory");
-
 		assertSame(beta, alpha.getBeta());
 		assertSame(gamma, beta.getGamma());
 		assertSame(gamma2, beta.getGamma());
@@ -59,12 +55,9 @@ public class FactoryBeanTests {
 
 	@Test
 	public void testFactoryBeansWithIntermediateFactoryBeanAutowiringFailure()  {
-		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 		new XmlBeanDefinitionReader(factory).loadBeanDefinitions(WITH_AUTOWIRING_CONTEXT);
-
 		BeanFactoryPostProcessor ppc = (BeanFactoryPostProcessor) factory.getBean("propertyPlaceholderConfigurer");
 		ppc.postProcessBeanFactory(factory);
-
 		Beta beta = (Beta) factory.getBean("beta");
 		Alpha alpha = (Alpha) factory.getBean("alpha");
 		Gamma gamma = (Gamma) factory.getBean("gamma");
@@ -74,26 +67,21 @@ public class FactoryBeanTests {
 
 	@Test
 	public void testAbstractFactoryBeanViaAnnotation()  {
-		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 		new XmlBeanDefinitionReader(factory).loadBeanDefinitions(ABSTRACT_CONTEXT);
 		factory.getBeansWithAnnotation(Component.class);
 	}
 
 	@Test
 	public void testAbstractFactoryBeanViaType()  {
-		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 		new XmlBeanDefinitionReader(factory).loadBeanDefinitions(ABSTRACT_CONTEXT);
 		factory.getBeansOfType(AbstractFactoryBean.class);
 	}
 
 	@Test
 	public void testCircularReferenceWithPostProcessor() {
-		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 		new XmlBeanDefinitionReader(factory).loadBeanDefinitions(CIRCULAR_CONTEXT);
-
 		CountingPostProcessor counter = new CountingPostProcessor();
 		factory.addBeanPostProcessor(counter);
-
 		BeanImpl1 impl1 = factory.getBean(BeanImpl1.class);
 		assertNotNull(impl1);
 		assertNotNull(impl1.getImpl2());
@@ -102,25 +90,6 @@ public class FactoryBeanTests {
 		assertEquals(1, counter.getCount("bean1"));
 		assertEquals(1, counter.getCount("bean2"));
 	}
-
-
-	public static class NullReturningFactoryBean implements FactoryBean<Object> {
-		@Override
-		public Object getObject() {
-			return null;
-		}
-
-		@Override
-		public Class<?> getObjectType() {
-			return null;
-		}
-
-		@Override
-		public boolean isSingleton() {
-			return true;
-		}
-	}
-
 
 	public static class Alpha implements InitializingBean {
 
@@ -140,7 +109,6 @@ public class FactoryBeanTests {
 			Assert.notNull(beta, "'beta' property is required");
 		}
 	}
-
 
 	public static class Beta implements InitializingBean {
 

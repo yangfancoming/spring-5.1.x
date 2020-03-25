@@ -15,8 +15,8 @@ import org.springframework.lang.Nullable;
  *  The {@link SmartFactoryBean} interface allows for exposing more fine-grained behavioral metadata.
  *
  * This interface is heavily used within the framework itself, for example for
- * the AOP {@link org.springframework.aop.framework.ProxyFactoryBean} or the
- * {@link org.springframework.jndi.JndiObjectFactoryBean}.
+ * the AOP {@link org.springframework.aop.framework.ProxyFactoryBean} or the {@link org.springframework.jndi.JndiObjectFactoryBean}.
+ *
  * It can be used for custom components as well; however, this is only common for infrastructure code.
  *
  * {@code FactoryBean} is a programmatic contract. Implementations are not supposed to rely on annotation-driven injection or other reflective facilities.
@@ -36,18 +36,17 @@ import org.springframework.lang.Nullable;
 public interface FactoryBean<T> {
 
 	/**
-	 * Return an instance (possibly shared or independent) of the object
-	 * managed by this factory.
+	 * 返回的对象实例
+	 * Return an instance (possibly shared or independent) of the object managed by this factory.
 	 * As with a {@link BeanFactory}, this allows support for both the
 	 * Singleton and Prototype design pattern.
 	 * If this FactoryBean is not fully initialized yet at the time of
 	 * the call (for example because it is involved in a circular reference),
 	 * throw a corresponding {@link FactoryBeanNotInitializedException}.
-	 * As of Spring 2.0, FactoryBeans are allowed to return {@code null}
-	 * objects. The factory will consider this as normal value to be used; it
-	 * will not throw a FactoryBeanNotInitializedException in this case anymore.
-	 * FactoryBean implementations are encouraged to throw
-	 * FactoryBeanNotInitializedException themselves now, as appropriate.
+	 * As of Spring 2.0, FactoryBeans are allowed to return {@code null} objects.
+	 * The factory will consider this as normal value to be used;
+	 * it will not throw a FactoryBeanNotInitializedException in this case anymore.
+	 * FactoryBean implementations are encouraged to throw FactoryBeanNotInitializedException themselves now, as appropriate.
 	 * @return an instance of the bean (can be {@code null})
 	 * @throws Exception in case of creation errors
 	 * @see FactoryBeanNotInitializedException
@@ -56,6 +55,7 @@ public interface FactoryBean<T> {
 	T getObject() throws Exception;
 
 	/**
+	 * 返回Bean的类型
 	 * Return the type of object that this FactoryBean creates,
 	 * or {@code null} if not known in advance.
 	 * This allows one to check for specific types of beans without
@@ -78,6 +78,7 @@ public interface FactoryBean<T> {
 	Class<?> getObjectType();
 
 	/**
+	 * true是单例，false是非单例  在Spring5.0中此方法利用了JDK1.8的新特性变成了default方法，返回true
 	 * Is the object managed by this factory a singleton? That is,will {@link #getObject()} always return the same object (a reference that can be cached)?
 	 * NOTE: If a FactoryBean indicates to hold a singleton object,the object returned from {@code getObject()} might get cached by the owning BeanFactory.
 	 * Hence, do not return {@code true} unless the FactoryBean always exposes the same reference.

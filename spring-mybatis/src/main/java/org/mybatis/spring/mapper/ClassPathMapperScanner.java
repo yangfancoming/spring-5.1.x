@@ -170,14 +170,15 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 
       // the mapper interface is the original class of the bean  but, the actual class of the bean is MapperFactoryBean
       definition.getConstructorArgumentValues().addGenericArgumentValue(beanClassName); // issue #59
-      // 偷天换日
+      // 偷天换日// 将BeanDefinition中记录的Bean类型修改为MapperFactoryBean
+		// 构造MapperFactoryBean的属性，将sqlSessionFactory、sqlSessionTemplate
+		// 等信息填充到BeanDefinition中
+		// 修改自动注入方式
       definition.setBeanClass(this.mapperFactoryBeanClass);
       definition.getPropertyValues().add("addToConfig", this.addToConfig);
-
       boolean explicitFactoryUsed = false;
       if (StringUtils.hasText(this.sqlSessionFactoryBeanName)) {
-        definition.getPropertyValues().add("sqlSessionFactory",
-          new RuntimeBeanReference(this.sqlSessionFactoryBeanName));
+        definition.getPropertyValues().add("sqlSessionFactory",new RuntimeBeanReference(this.sqlSessionFactoryBeanName));
         explicitFactoryUsed = true;
       } else if (this.sqlSessionFactory != null) {
         definition.getPropertyValues().add("sqlSessionFactory", this.sqlSessionFactory);

@@ -3,23 +3,24 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="49.5" y="155.0">org.springframework.beans.factory.support.AbstractBeanFactory</node>
-    <node x="45.5" y="0.0">org.springframework.beans.factory.config.BeanPostProcessor</node>
-    <node x="0.0" y="80.0">org.springframework.context.support.ApplicationContextAwareProcessor</node>
-    <node x="0.0" y="235.0">org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory</node>
+    <node x="283.0" y="153.0">App</node>
+    <node x="45.0" y="0.0">org.springframework.beans.factory.support.AbstractBeanFactory</node>
+    <node x="45.0" y="153.0">org.springframework.beans.factory.config.BeanPostProcessor</node>
+    <node x="0.0" y="232.0">org.springframework.context.support.ApplicationContextAwareProcessor</node>
+    <node x="0.0" y="79.0">org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory</node>
   </nodes>
   <notes />
   <edges>
     <edge source="org.springframework.context.support.ApplicationContextAwareProcessor" target="org.springframework.beans.factory.config.BeanPostProcessor">
-      <point x="0.0" y="-15.0" />
-      <point x="0.0" y="15.0" />
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
     </edge>
     <edge source="org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory" target="org.springframework.beans.factory.support.AbstractBeanFactory">
-      <point x="0.0" y="-15.0" />
-      <point x="0.0" y="15.0" />
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="-442.0" y="-101.0" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="681.0" y="426.5" />
   <SelectedNodes>
     <node>org.springframework.beans.factory.support.AbstractBeanFactory</node>
   </SelectedNodes>

@@ -7,7 +7,6 @@ package com.goat.chapter182.item02;
  * @ author  山羊来了
  * @ date 2019/8/17---19:49
  */
-
 public class Desk implements Furniture{
 
 	@Override

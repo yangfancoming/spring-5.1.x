@@ -26,6 +26,7 @@ import org.springframework.beans.BeansException;
  * @see BeanPostProcessor
  * @see PropertyResourceConfigurer
  * 用来 动态修改bean工厂中的属性  修改图纸 修改内存态
+ * 说通俗一些就是可以管理我们的bean工厂内所有的beandefinition（未实例化）数据，可以随心所欲的修改属性
  */
 @FunctionalInterface
 public interface BeanFactoryPostProcessor {

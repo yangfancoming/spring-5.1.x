@@ -1,12 +1,10 @@
 package com.goat.chapter182.item02;
 
 
-
 import org.springframework.beans.factory.FactoryBean;
 
 /**
  * Created by 64274 on 2019/8/17.
- *
  * @ Description: 家具工厂bean
  * @ author  山羊来了
  * @ date 2019/8/17---19:49
@@ -15,9 +13,9 @@ public class FurnitureFactoryBean implements FactoryBean<Furniture> {
 
 	private String furniture;
 
+	// 这个Bean是我们自己new的，这里我们就可以控制Bean的创建过程了
 	@Override
 	public Furniture getObject()  {
-
 		if (null == furniture) {
 			throw new IllegalArgumentException("'furniture' is required");
 		}

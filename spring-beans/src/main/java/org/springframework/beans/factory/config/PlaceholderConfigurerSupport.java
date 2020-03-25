@@ -15,7 +15,7 @@ import org.springframework.util.StringValueResolver;
  * properties file or other {@linkplain org.springframework.core.env.PropertySource
  * property source} into bean definitions.
  *
- * <p>The default placeholder syntax follows the Ant / Log4J / JSP EL style:
+ * The default placeholder syntax follows the Ant / Log4J / JSP EL style:
  *
  * <pre class="code">${...}</pre>
  *
@@ -48,31 +48,28 @@ import org.springframework.util.StringValueResolver;
  * In contrast to {@link PropertyOverrideConfigurer}, subclasses of this type allow
  * filling in of explicit placeholders in bean definitions.
  *
- * <p>If a configurer cannot resolve a placeholder, a {@link BeanDefinitionStoreException}
+ * If a configurer cannot resolve a placeholder, a {@link BeanDefinitionStoreException}
  * will be thrown. If you want to check against multiple properties files, specify multiple
  * resources via the {@link #setLocations locations} property. You can also define multiple
  * configurers, each with its <em>own</em> placeholder syntax. Use {@link
  * #ignoreUnresolvablePlaceholders} to intentionally suppress throwing an exception if a
  * placeholder cannot be resolved.
  *
- * <p>Default property values can be defined globally for each configurer instance
+ * Default property values can be defined globally for each configurer instance
  * via the {@link #setProperties properties} property, or on a property-by-property basis
  * using the default value separator which is {@code ":"} by default and
  * customizable via {@link #setValueSeparator(String)}.
  *
- * <p>Example XML property with default value:
+ * Example XML property with default value:
  *
  * <pre class="code">
  *   <property name="url" value="jdbc:${dbname:defaultdb}"/>
  * </pre>
-
-
  * @since 3.1
  * @see PropertyPlaceholderConfigurer
  * @see org.springframework.context.support.PropertySourcesPlaceholderConfigurer
  */
-public abstract class PlaceholderConfigurerSupport extends PropertyResourceConfigurer
-		implements BeanNameAware, BeanFactoryAware {
+public abstract class PlaceholderConfigurerSupport extends PropertyResourceConfigurer implements BeanNameAware, BeanFactoryAware {
 
 	/** Default placeholder prefix: {@value}. */
 	public static final String DEFAULT_PLACEHOLDER_PREFIX = "${";
@@ -82,7 +79,6 @@ public abstract class PlaceholderConfigurerSupport extends PropertyResourceConfi
 
 	/** Default value separator: {@value}. */
 	public static final String DEFAULT_VALUE_SEPARATOR = ":";
-
 
 	/** Defaults to {@value #DEFAULT_PLACEHOLDER_PREFIX}. */
 	protected String placeholderPrefix = DEFAULT_PLACEHOLDER_PREFIX;
@@ -106,7 +102,6 @@ public abstract class PlaceholderConfigurerSupport extends PropertyResourceConfi
 
 	@Nullable
 	private BeanFactory beanFactory;
-
 
 	/**
 	 * Set the prefix that a placeholder string starts with.
@@ -137,7 +132,7 @@ public abstract class PlaceholderConfigurerSupport extends PropertyResourceConfi
 	/**
 	 * Specify whether to trim resolved values before applying them,
 	 * removing superfluous whitespace from the beginning and end.
-	 * <p>Default is {@code false}.
+	 * Default is {@code false}.
 	 * @since 4.3
 	 */
 	public void setTrimValues(boolean trimValues) {
@@ -147,9 +142,8 @@ public abstract class PlaceholderConfigurerSupport extends PropertyResourceConfi
 	/**
 	 * Set a value that should be treated as {@code null} when resolved
 	 * as a placeholder value: e.g. "" (empty String) or "null".
-	 * <p>Note that this will only apply to full property values,
-	 * not to parts of concatenated values.
-	 * <p>By default, no such null value is defined. This means that
+	 * Note that this will only apply to full property values,not to parts of concatenated values.
+	 * By default, no such null value is defined. This means that
 	 * there is no way to express {@code null} as a property value
 	 * unless you explicitly map a corresponding value here.
 	 */
@@ -159,10 +153,9 @@ public abstract class PlaceholderConfigurerSupport extends PropertyResourceConfi
 
 	/**
 	 * Set whether to ignore unresolvable placeholders.
-	 * <p>Default is "false": An exception will be thrown if a placeholder fails
+	 * Default is "false": An exception will be thrown if a placeholder fails
 	 * to resolve. Switch this flag to "true" in order to preserve the placeholder
-	 * String as-is in such a case, leaving it up to other placeholder configurers
-	 * to resolve it.
+	 * String as-is in such a case, leaving it up to other placeholder configurers to resolve it.
 	 */
 	public void setIgnoreUnresolvablePlaceholders(boolean ignoreUnresolvablePlaceholders) {
 		this.ignoreUnresolvablePlaceholders = ignoreUnresolvablePlaceholders;
@@ -171,8 +164,7 @@ public abstract class PlaceholderConfigurerSupport extends PropertyResourceConfi
 	/**
 	 * Only necessary to check that we're not parsing our own bean definition,
 	 * to avoid failing on unresolvable placeholders in properties file locations.
-	 * The latter case can happen with placeholders for system properties in
-	 * resource locations.
+	 * The latter case can happen with placeholders for system properties in resource locations.
 	 * @see #setLocations
 	 * @see org.springframework.core.io.ResourceEditor
 	 */
@@ -194,12 +186,8 @@ public abstract class PlaceholderConfigurerSupport extends PropertyResourceConfi
 		this.beanFactory = beanFactory;
 	}
 
-
-	protected void doProcessProperties(ConfigurableListableBeanFactory beanFactoryToProcess,
-			StringValueResolver valueResolver) {
-
+	protected void doProcessProperties(ConfigurableListableBeanFactory beanFactoryToProcess,StringValueResolver valueResolver) {
 		BeanDefinitionVisitor visitor = new BeanDefinitionVisitor(valueResolver);
-
 		String[] beanNames = beanFactoryToProcess.getBeanDefinitionNames();
 		for (String curName : beanNames) {
 			// Check that we're not parsing our own bean definition,
@@ -208,8 +196,7 @@ public abstract class PlaceholderConfigurerSupport extends PropertyResourceConfi
 				BeanDefinition bd = beanFactoryToProcess.getBeanDefinition(curName);
 				try {
 					visitor.visitBeanDefinition(bd);
-				}
-				catch (Exception ex) {
+				}catch (Exception ex) {
 					throw new BeanDefinitionStoreException(bd.getResourceDescription(), curName, ex.getMessage(), ex);
 				}
 			}
@@ -217,7 +204,6 @@ public abstract class PlaceholderConfigurerSupport extends PropertyResourceConfi
 
 		// New in Spring 2.5: resolve placeholders in alias target names and aliases as well.
 		beanFactoryToProcess.resolveAliases(valueResolver);
-
 		// New in Spring 3.0: resolve placeholders in embedded values such as annotation attributes.
 		beanFactoryToProcess.addEmbeddedValueResolver(valueResolver);
 	}

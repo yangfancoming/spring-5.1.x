@@ -13,18 +13,17 @@ public class StudentFactoryBean implements FactoryBean<Student> {
 
 	private String studentInfo;
 
+	// 这个Bean是我们自己new的，这里我们就可以控制Bean的创建过程了
 	@Override
-	public Student getObject() throws Exception {
-		if (this.studentInfo == null) {
+	public Student getObject() {
+		if (studentInfo == null) {
 			throw new IllegalArgumentException("'studentInfo' is required");
 		}
-
 		// 分割属性
 		String[] splitStudentInfo = studentInfo.split(",");
 		if (null == splitStudentInfo || splitStudentInfo.length != 3) {
 			throw new IllegalArgumentException("'studentInfo' config error");
 		}
-
 		// 创建Student并填充属性
 		Student student = new Student();
 		student.setName(splitStudentInfo[0]);
