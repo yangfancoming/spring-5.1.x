@@ -11,16 +11,16 @@
 		<constructor-arg index="1" value="3"/>
 	</bean>
 
-	<!-- =====beanPostProcessor配置begin =====-->
+	<!-- ===== beanPostProcessor 配置begin =====-->
 	<bean id="myBeanPostProcessorOne" class="com.goat.chapter185.MyBeanPostProcessorOne"/>
 	<bean id="myBeanPostProcessorTwo" class="com.goat.chapter185.MyBeanPostProcessorTwo"/>
-	<!-- =====beanPostProcessor配置end =====-->
+	<!-- ===== beanPostProcessor 配置end =====-->
 
-	<!-- =====beanFactoryPostProcessor配置begin =====-->
+	<!-- ===== beanFactoryPostProcessor 配置begin =====-->
 	<!--注册第一个后置工厂处理器-->
 	<bean id="myBeanFactoryPostProcessorOne" class="com.goat.chapter185.MyBeanFactoryPostProcessorOne"/>
 	<!--注册第二个后置工厂处理器-->
 	<bean id="myBeanFactoryPostProcessorTwo" class="com.goat.chapter185.MyBeanFactoryPostProcessorTwo"/>
-	<!-- =====beanFactoryPostProcessor配置end =====-->
+	<!-- ===== beanFactoryPostProcessor 配置end =====-->
 
 </beans>
