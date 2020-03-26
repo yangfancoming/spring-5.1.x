@@ -11,30 +11,26 @@ import org.springframework.lang.Nullable;
 /**
  * Standalone XML application context, taking the context definition files
  * from the file system or from URLs, interpreting plain paths as relative
- * file system locations (e.g. "mydir/myfile.txt"). Useful for test harnesses
- * as well as for standalone environments.
+ * file system locations (e.g. "mydir/myfile.txt"). Useful for test harnesses as well as for standalone environments.
  *
- * <p><b>NOTE:</b> Plain paths will always be interpreted as relative
+ * <b>NOTE:</b> Plain paths will always be interpreted as relative
  * to the current VM working directory, even if they start with a slash.
  * (This is consistent with the semantics in a Servlet container.)
  * <b>Use an explicit "file:" prefix to enforce an absolute file path.</b>
  *
- * <p>The config location defaults can be overridden via {@link #getConfigLocations},
+ * The config location defaults can be overridden via {@link #getConfigLocations},
  * Config locations can either denote concrete files like "/myfiles/context.xml"
  * or Ant-style patterns like "/myfiles/*-context.xml" (see the
  * {@link org.springframework.util.AntPathMatcher} javadoc for pattern details).
  *
- * <p>Note: In case of multiple config locations, later bean definitions will
+ * Note: In case of multiple config locations, later bean definitions will
  * override ones defined in earlier loaded files. This can be leveraged to
  * deliberately override certain bean definitions via an extra XML file.
  *
- * <p><b>This is a simple, one-stop shop convenience ApplicationContext.
+ * <b>This is a simple, one-stop shop convenience ApplicationContext.
  * Consider using the {@link GenericApplicationContext} class in combination
- * with an {@link org.springframework.beans.factory.xml.XmlBeanDefinitionReader}
- * for more flexible context setup.</b>
- *
- * @author Rod Johnson
-
+ * with an {@link org.springframework.beans.factory.xml.XmlBeanDefinitionReader} for more flexible context setup.</b>
+ * 
  * @see #getResource
  * @see #getResourceByPath
  * @see GenericApplicationContext
@@ -118,10 +114,7 @@ public class FileSystemXmlApplicationContext extends AbstractXmlApplicationConte
 	 * @throws BeansException if context creation failed
 	 * @see #refresh()
 	 */
-	public FileSystemXmlApplicationContext(
-			String[] configLocations, boolean refresh, @Nullable ApplicationContext parent)
-			throws BeansException {
-
+	public FileSystemXmlApplicationContext(String[] configLocations, boolean refresh, @Nullable ApplicationContext parent) throws BeansException {
 		super(parent);
 		setConfigLocations(configLocations);
 		if (refresh) {
@@ -132,7 +125,7 @@ public class FileSystemXmlApplicationContext extends AbstractXmlApplicationConte
 
 	/**
 	 * Resolve resource paths as file system paths.
-	 * <p>Note: Even if a given path starts with a slash, it will get
+	 * Note: Even if a given path starts with a slash, it will get
 	 * interpreted as relative to the current VM working directory.
 	 * This is consistent with the semantics in a Servlet container.
 	 * @param path path to the resource

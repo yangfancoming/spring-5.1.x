@@ -49,28 +49,28 @@ import org.springframework.util.StringUtils;
  * @see org.springframework.beans.factory.DisposableBean
  * @see org.springframework.beans.factory.config.ConfigurableBeanFactory
  *
- * 主要是注册bean。该类中定义了许多的 集合，用于注册
+ * 同SimpleAliasRegistry，这里也是用Map来做缓存。但是单例bean的注册要来的复杂，因为bean还涉及到初始化的问题，因此这里有多个缓存用的对象
  */
 public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements SingletonBeanRegistry {
 
-	/** Cache of singleton objects: bean name to bean instance. 一级缓存  单例bean缓存池 用于保存我们所有的单例bean，bean name --> bean instance */
+	/** Cache of singleton objects: bean name to bean instance. 一级缓存  单例bean缓存池 用于存放已注册的SingleBean实例 */
 	/** 缓存beanName和bean实例 key-->beanName,value-->beanInstance */
 	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
 
 	/** Cache of singleton factories: bean name to ObjectFactory. 三级缓存  单例对应的工厂缓存，可以使用工厂来创建单例对象 bean name --> ObjectFactory */
 	/**
-	 * 用于存放 bean 工厂  bean 工厂所产生的 bean 是还未完成初始化的 bean   如代码所示，bean 工厂所生成的对象最终会被缓存到 earlySingletonObjects 中
+	 * 用于存放bean工厂  bean 工厂所产生的 bean 是还未完成初始化的 bean   如代码所示，bean 工厂所生成的对象最终会被缓存到 earlySingletonObjects 中
 	*/
 	/** 缓存beanName和beanFactory key-->beanName,value-->beanFactory */
 	private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
 
 	/** Cache of early singleton objects: bean name to bean instance. 二级缓存  早期的单例对象(对象属性还没有进行赋值)  纯净态*/
-	/** 用于存放还在初始化中的 bean，用于解决循环依赖 */
+	/** 用来存放已存在但是未注册的SingleBean实例，解决循环依赖 */
 	/** 缓存beanName和bean实例 key-->beanName,value-->beanInstance 该缓存主要为了解决bean的循环依赖引用 */
 	private final Map<String, Object> earlySingletonObjects = new HashMap<>(16);
 
 	/** Set of registered singletons, containing the bean names in registration order. 已经注册过了的单例对象*/
-	/** 缓存所有注册的单例beanName */
+	/** 缓存所有已注册的SingleBean对象的名称 */
 	private final Set<String> registeredSingletons = new LinkedHashSet<>(256);
 
 	/** Names of beans that are currently in creation. 当前正在创建的单例对象集合 */
@@ -93,10 +93,10 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	/** Map between containing bean names: bean name to Set of bean names that the bean contains. */
 	private final Map<String, Set<String>> containedBeanMap = new ConcurrentHashMap<>(16);
 
-	/** Map between dependent bean names: bean name to Set of dependent bean names. */
+	/** Map between dependent bean names: bean name to Set of dependent bean names. 存储bean所依赖的其他bean组件*/
 	private final Map<String, Set<String>> dependentBeanMap = new ConcurrentHashMap<>(64);
 
-	/** Map between depending bean names: bean name to Set of bean names for the bean's dependencies. */
+	/** Map between depending bean names: bean name to Set of bean names for the bean's dependencies. 存储当前bean被哪些其他bean组件依赖 */
 	private final Map<String, Set<String>> dependenciesForBeanMap = new ConcurrentHashMap<>(64);
 
 	// 注册单实例的bean
@@ -454,6 +454,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		}
 	}
 
+	// 返回denpendentBean是否为bean的依赖bean
 	private boolean isDependent(String beanName, String dependentBeanName, @Nullable Set<String> alreadySeen) {
 		if (alreadySeen != null && alreadySeen.contains(beanName)) {
 			return false;
@@ -479,6 +480,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	}
 
 	/**
+	 * 返回bean的所有dependentBean
 	 * Return the names of all beans which depend on the specified bean, if any.
 	 * @param beanName the name of the bean
 	 * @return the array of dependent bean names, or an empty array if none
@@ -558,8 +560,9 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	}
 
 	/**
-	 * Destroy the given bean. Must destroy beans that depend on the given
-	 * bean before the bean itself. Should not throw any exceptions.
+	 * 删除一个bean，删除其依赖信息
+	 * Destroy the given bean. Must destroy beans that depend on the given bean before the bean itself.
+	 * Should not throw any exceptions.
 	 * @param beanName the name of the bean
 	 * @param bean the bean instance to destroy
 	 */

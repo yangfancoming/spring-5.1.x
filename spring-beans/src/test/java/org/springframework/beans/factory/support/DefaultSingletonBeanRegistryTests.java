@@ -3,35 +3,26 @@
 package org.springframework.beans.factory.support;
 
 import org.junit.Test;
-
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.tests.sample.beans.DerivedTestBean;
 import org.springframework.tests.sample.beans.TestBean;
 
 import static org.junit.Assert.*;
 
 /**
-
-
  * @since 04.07.2006
  */
 public class DefaultSingletonBeanRegistryTests {
 
+	DefaultSingletonBeanRegistry beanRegistry = new DefaultSingletonBeanRegistry();
+
 	@Test
 	public void testSingletons() {
-		DefaultSingletonBeanRegistry beanRegistry = new DefaultSingletonBeanRegistry();
 
 		TestBean tb = new TestBean();
 		beanRegistry.registerSingleton("tb", tb);
 		assertSame(tb, beanRegistry.getSingleton("tb"));
 
-		TestBean tb2 = (TestBean) beanRegistry.getSingleton("tb2", new ObjectFactory<Object>() {
-			@Override
-			public Object getObject() throws BeansException {
-				return new TestBean();
-			}
-		});
+		TestBean tb2 = (TestBean) beanRegistry.getSingleton("tb2", ()->new TestBean());
 		assertSame(tb2, beanRegistry.getSingleton("tb2"));
 
 		assertSame(tb, beanRegistry.getSingleton("tb"));
@@ -49,8 +40,6 @@ public class DefaultSingletonBeanRegistryTests {
 
 	@Test
 	public void testDisposableBean() {
-		DefaultSingletonBeanRegistry beanRegistry = new DefaultSingletonBeanRegistry();
-
 		DerivedTestBean tb = new DerivedTestBean();
 		beanRegistry.registerSingleton("tb", tb);
 		beanRegistry.registerDisposableBean("tb", tb);
@@ -71,8 +60,6 @@ public class DefaultSingletonBeanRegistryTests {
 
 	@Test
 	public void testDependentRegistration() {
-		DefaultSingletonBeanRegistry beanRegistry = new DefaultSingletonBeanRegistry();
-
 		beanRegistry.registerDependentBean("a", "b");
 		beanRegistry.registerDependentBean("b", "c");
 		beanRegistry.registerDependentBean("c", "b");

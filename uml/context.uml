@@ -4,24 +4,26 @@
   <OriginalElement>com.goat.spring.demo.service.MessagePrinter</OriginalElement>
   <nodes>
     <node x="602.035984848485" y="89.0">org.springframework.beans.factory.HierarchicalBeanFactory</node>
-    <node x="130.5" y="894.0">org.springframework.beans.factory.support.RootBeanDefinition</node>
+    <node x="266.5" y="1052.0">org.springframework.beans.factory.support.RootBeanDefinition</node>
     <node x="0.0" y="662.0">org.springframework.context.support.FileSystemXmlApplicationContext</node>
     <node x="104.11931818181836" y="583.0">org.springframework.context.support.AbstractXmlApplicationContext</node>
     <node x="1069.035984848485" y="346.0">org.springframework.beans.factory.config.AutowireCapableBeanFactory</node>
-    <node x="118.5" y="815.0">org.springframework.beans.factory.support.AbstractBeanDefinition</node>
+    <node x="254.5" y="973.0">org.springframework.beans.factory.support.AbstractBeanDefinition</node>
     <node x="707.535984848485" y="425.0">org.springframework.beans.factory.support.BeanDefinitionRegistry</node>
+    <node x="280.0" y="894.0">org.springframework.beans.BeanMetadataAttribute</node>
     <node x="905.535984848485" y="425.0">org.springframework.beans.factory.config.ConfigurableListableBeanFactory</node>
-    <node x="0.0" y="736.0">org.springframework.beans.BeanMetadataAttributeAccessor</node>
+    <node x="40.0" y="894.0">org.springframework.beans.BeanMetadataAttributeAccessor</node>
     <node x="1291.035984848485" y="346.0">org.springframework.beans.factory.support.AbstractBeanFactory</node>
     <node x="80.66666666666663" y="188.0">org.springframework.core.io.DefaultResourceLoader</node>
     <node x="283.69886363636374" y="267.0">org.springframework.context.ConfigurableApplicationContext</node>
     <node x="252.0" y="662.0">org.springframework.context.support.ClassPathXmlApplicationContext</node>
-    <node x="240.0" y="736.0">org.springframework.beans.factory.config.BeanDefinition</node>
+    <node x="472.0" y="894.0">org.springframework.beans.factory.config.BeanDefinition</node>
+    <node x="286.0" y="815.0">org.springframework.beans.BeanMetadataElement</node>
     <node x="1418.285984848485" y="89.0">org.springframework.core.SimpleAliasRegistry</node>
     <node x="1319.785984848485" y="188.0">org.springframework.beans.factory.support.DefaultSingletonBeanRegistry</node>
     <node x="134.16666666666663" y="89.0">org.springframework.core.io.ResourceLoader</node>
     <node x="1226.285984848485" y="89.0">org.springframework.beans.factory.config.SingletonBeanRegistry</node>
-    <node x="415.0" y="736.0">org.springframework.beans.factory.config.BeanFactoryPostProcessor</node>
+    <node x="647.0" y="736.0">org.springframework.beans.factory.config.BeanFactoryPostProcessor</node>
     <node x="319.69886363636374" y="188.0">org.springframework.context.ApplicationContext</node>
     <node x="493.69886363636374" y="188.0">org.springframework.beans.factory.support.StaticListableBeanFactory</node>
     <node x="505.8371212121214" y="504.0">org.springframework.context.support.GenericApplicationContext</node>
@@ -31,7 +33,9 @@
     <node x="62.11931818181836" y="504.0">org.springframework.context.support.AbstractRefreshableConfigApplicationContext</node>
     <node x="1064.6666666666665" y="0.0">org.springframework.core.AliasRegistry</node>
     <node x="956.535984848485" y="583.0">org.springframework.beans.factory.xml.XmlBeanFactory</node>
+    <node x="258.25" y="736.0">org.springframework.core.AttributeAccessor</node>
     <node x="185.36931818181836" y="346.0">org.springframework.context.support.AbstractApplicationContext</node>
+    <node x="0.0" y="815.0">org.springframework.core.AttributeAccessorSupport</node>
     <node x="590.4166666666666" y="0.0">org.springframework.beans.factory.BeanFactory</node>
     <node x="920.535984848485" y="504.0">org.springframework.beans.factory.support.DefaultListableBeanFactory</node>
     <node x="975.535984848485" y="188.0">org.springframework.beans.factory.config.ConfigurableBeanFactory</node>
@@ -45,6 +49,10 @@
       <point x="1498.285984848485" y="49.0" />
       <point x="1157.6666666666665" y="49.0" />
       <point x="31.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.beans.BeanMetadataAttributeAccessor" target="org.springframework.core.AttributeAccessorSupport">
+      <point x="-55.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
     </edge>
     <edge source="org.springframework.beans.factory.support.StaticListableBeanFactory" target="org.springframework.beans.factory.ListableBeanFactory">
       <point x="0.0" y="-14.5" />
@@ -64,15 +72,21 @@
     </edge>
     <edge source="org.springframework.beans.factory.support.AbstractBeanDefinition" target="org.springframework.beans.BeanMetadataAttributeAccessor">
       <point x="-44.5" y="-14.5" />
-      <point x="163.0" y="790.0" />
-      <point x="110.0" y="790.0" />
+      <point x="299.0" y="948.0" />
+      <point x="150.0" y="948.0" />
       <point x="0.0" y="14.5" />
     </edge>
     <edge source="org.springframework.beans.factory.support.AbstractBeanDefinition" target="org.springframework.beans.factory.config.BeanDefinition">
       <point x="44.5" y="-14.5" />
-      <point x="252.0" y="790.0" />
-      <point x="305.0" y="790.0" />
+      <point x="388.0" y="948.0" />
+      <point x="537.0" y="948.0" />
       <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.BeanDefinition" target="org.springframework.core.AttributeAccessor">
+      <point x="32.5" y="-14.5" />
+      <point x="569.5" y="790.0" />
+      <point x="369.25" y="790.0" />
+      <point x="37.0" y="14.5" />
     </edge>
     <edge source="org.springframework.beans.factory.support.FactoryBeanRegistrySupport" target="org.springframework.beans.factory.support.DefaultSingletonBeanRegistry">
       <point x="0.0" y="-14.5" />
@@ -220,6 +234,16 @@
       <point x="1095.6666666666665" y="69.0" />
       <point x="-31.0" y="14.5" />
     </edge>
+    <edge source="org.springframework.beans.BeanMetadataAttribute" target="org.springframework.beans.BeanMetadataElement">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.beans.BeanMetadataAttributeAccessor" target="org.springframework.beans.BeanMetadataElement">
+      <point x="55.0" y="-14.5" />
+      <point x="205.0" y="869.0" />
+      <point x="312.66666666666663" y="869.0" />
+      <point x="-53.33333333333334" y="14.5" />
+    </edge>
     <edge source="org.springframework.beans.factory.support.AbstractBeanFactory" target="org.springframework.beans.factory.support.FactoryBeanRegistrySupport">
       <point x="40.0" y="-14.5" />
       <point x="1411.035984848485" y="321.0" />
@@ -262,12 +286,24 @@
       <point x="740.035984848485" y="138.0" />
       <point x="46.0" y="14.5" />
     </edge>
+    <edge source="org.springframework.core.AttributeAccessorSupport" target="org.springframework.core.AttributeAccessor">
+      <point x="0.0" y="-14.5" />
+      <point x="95.0" y="790.0" />
+      <point x="295.25" y="790.0" />
+      <point x="-37.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.BeanDefinition" target="org.springframework.beans.BeanMetadataElement">
+      <point x="-32.5" y="-14.5" />
+      <point x="504.5" y="869.0" />
+      <point x="419.33333333333337" y="869.0" />
+      <point x="53.33333333333337" y="14.5" />
+    </edge>
     <edge source="org.springframework.beans.factory.support.RootBeanDefinition" target="org.springframework.beans.factory.support.AbstractBeanDefinition">
       <point x="0.0" y="-14.5" />
       <point x="0.0" y="14.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="862.0" y="406.5" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="736.0" y="674.5" />
   <SelectedNodes />
   <Categories />
   <SCOPE>All</SCOPE>

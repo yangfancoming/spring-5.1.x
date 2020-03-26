@@ -82,7 +82,6 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 		refresh();
 	}
 
-
 	/**
 	 * Propagates the given custom {@code Environment} to the underlying
 	 * {@link AnnotatedBeanDefinitionReader} and {@link ClassPathBeanDefinitionScanner}.

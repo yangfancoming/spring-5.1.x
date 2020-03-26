@@ -110,7 +110,7 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 	 * @see #refresh()
 	 */
 	public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh, @Nullable ApplicationContext parent) throws BeansException {
-		// 通过层层调用父构造函数，主要初始化了this.resourcePatternResolver=new PathMatchingResourcePatternResolver(this);后续可以通过适配符寻找符合条件的java类
+		// 通过层层调用父构造函数，主要初始化了resourcePatternResolver=new PathMatchingResourcePatternResolver(this);后续可以通过适配符寻找符合条件的java类
 		super(parent);
 		// 遍历解析传入的配置文件路径，将路径中的占位符替换成相关的环境变量。
 		// 创建环境对象ConfigurableEnvironment和处理ClassPathXmlApplicationContext传入的字符串中的占位符
@@ -168,9 +168,9 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 		super(parent);
 		Assert.notNull(paths, "Path array must not be null");
 		Assert.notNull(clazz, "Class argument must not be null");
-		this.configResources = new Resource[paths.length];
+		configResources = new Resource[paths.length];
 		for (int i = 0; i < paths.length; i++) {
-			this.configResources[i] = new ClassPathResource(paths[i], clazz);
+			configResources[i] = new ClassPathResource(paths[i], clazz);
 		}
 		refresh();
 	}
@@ -178,7 +178,7 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 	@Override
 	@Nullable
 	protected Resource[] getConfigResources() {
-		return this.configResources;
+		return configResources;
 	}
 
 }
