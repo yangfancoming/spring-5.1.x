@@ -118,8 +118,10 @@ public class SimpleAliasRegistry implements AliasRegistry {
 	 */
 	private void retrieveAliases(String name, List<String> result) {
 		aliasMap.forEach((alias, registeredName) -> {
+			// 当找到name值和给定值相等是，会把这个alias作为name，再次对散列表进行遍历
 			if (registeredName.equals(name)) {
 				result.add(alias);
+				// 这也是在注册时限制注册的数据name和alias不能正好相反且name和alias不能相等的原因，否则回调函数将陷入无限循环中去。
 				retrieveAliases(alias, result);
 			}
 		});
