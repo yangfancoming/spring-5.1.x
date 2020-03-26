@@ -43,6 +43,7 @@ import org.springframework.context.MessageSourceResolvable;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.PayloadApplicationEvent;
 import org.springframework.context.ResourceLoaderAware;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.ApplicationEventMulticaster;
 import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -67,6 +68,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.ReflectionUtils;
+
+import javax.swing.*;
 
 /**
  * Abstract implementation of the {@link org.springframework.context.ApplicationContext}
@@ -131,14 +134,12 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	public static final String APPLICATION_EVENT_MULTICASTER_BEAN_NAME = "applicationEventMulticaster";
 
 	static {
-
 		/**
 		 *  Eagerly load the ContextClosedEvent class to avoid weird classloader issues  on application shutdown in WebLogic 8.1. (Reported by Dustin Woods.)
 		 * 急切地加载ContextClosedEvent类，以避免WebLogic8.1中应用程序关闭时出现奇怪的类加载器问题。（达斯汀·伍兹报道）
 		*/
 		ContextClosedEvent.class.getName();
 	}
-
 
 	/** Logger used by this class. Available to subclasses. */
 	protected final Log logger = LogFactory.getLog(getClass());
@@ -290,9 +291,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 */
 	@Override
 	public ConfigurableEnvironment getEnvironment() {
-		if (this.environment == null) {
-			this.environment = createEnvironment();
-		}
+		if (this.environment == null) this.environment = createEnvironment();
 		return this.environment;
 	}
 
@@ -356,13 +355,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 */
 	protected void publishEvent(Object event, @Nullable ResolvableType eventType) {
 		Assert.notNull(event, "Event must not be null");
-
 		// Decorate event as an ApplicationEvent if necessary
 		ApplicationEvent applicationEvent;
 		if (event instanceof ApplicationEvent) {
 			applicationEvent = (ApplicationEvent) event;
-		}
-		else {
+		}else {
 			applicationEvent = new PayloadApplicationEvent<>(this, event);
 			if (eventType == null) {
 				eventType = ((PayloadApplicationEvent<?>) applicationEvent).getResolvableType();
@@ -372,8 +369,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		// Multicast right now if possible - or lazily once the multicaster is initialized
 		if (this.earlyApplicationEvents != null) {
 			this.earlyApplicationEvents.add(applicationEvent);
-		}
-		else {
+		}else {
 			getApplicationEventMulticaster().multicastEvent(applicationEvent, eventType);
 		}
 
@@ -381,8 +377,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		if (this.parent != null) {
 			if (this.parent instanceof AbstractApplicationContext) {
 				((AbstractApplicationContext) this.parent).publishEvent(event, eventType);
-			}
-			else {
+			}else {
 				this.parent.publishEvent(event);
 			}
 		}
@@ -396,7 +391,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	ApplicationEventMulticaster getApplicationEventMulticaster() throws IllegalStateException {
 		if (this.applicationEventMulticaster == null) {
 			throw new IllegalStateException("ApplicationEventMulticaster not initialized - call 'refresh' before multicasting events via the context: " + this);
-
 		}
 		return this.applicationEventMulticaster;
 	}
@@ -409,7 +403,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	LifecycleProcessor getLifecycleProcessor() throws IllegalStateException {
 		if (this.lifecycleProcessor == null) {
 			throw new IllegalStateException("LifecycleProcessor not initialized - call 'refresh' before invoking lifecycle methods via the context: " + this);
-
 		}
 		return this.lifecycleProcessor;
 	}
@@ -514,9 +507,14 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			prepareBeanFactory(beanFactory);
 			try {
 				/**
-				  Allows post-processing of the bean factory in context subclasses.
-				  上一步 prepareBeanFactory(beanFactory) 的 BeanFactory 创建完成后 进行的后置处理。当前为空实现，供子类拓展
-				  BeanFactory构建完成之后事件，这个方法没有实现，我们可以实现一个。
+				 *  【这里需要知道 BeanFactoryPostProcessor 这个知识点，Bean 如果实现了此接口，
+				 *  那么在容器初始化以后，Spring 会负责调用里面的 postProcessBeanFactory 方法。】
+				 *  这里是提供给子类的扩展点，到这里的时候，所有的 Bean 都加载、注册完成了，但是都还没有初始化
+				 *  具体的子类可以在这步的时候添加一些特殊的 BeanFactoryPostProcessor 的实现类或做点什么事
+				 *
+				 *  Allows post-processing of the bean factory in context subclasses.
+				 *  上一步 prepareBeanFactory(beanFactory) 的 BeanFactory 创建完成后 进行的后置处理。当前为空实现，供子类拓展
+				 *  BeanFactory构建完成之后事件，这个方法没有实现，我们可以实现一个。
 				*/
 				postProcessBeanFactory(beanFactory);
 				// 以上都是对beanFactory的预准备、创建、后置处理工作 ，以下都是 利用创建好的beanFactory来创建各种组件！
@@ -524,6 +522,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 				// 调用BeanFacotry的相关后置处理器，如果实现了 Order 或 PriorityOrdered 相关接口，会先进行排序。
 				// 执行上面的事件
 				// 调用 bean工厂的后置处理器
+				// 调用 BeanFactoryPostProcessor 各个实现类的 postProcessBeanFactory(factory) 方法
 				invokeBeanFactoryPostProcessors(beanFactory);
 				// 以上都是对 bean工厂 的后置处理器 以下开始是 bean 的后置处理器的注册 （并不执行）
 				// Register bean processors that intercept bean creation. 注册bean的后置处理器，用来拦截bean的创建过程
@@ -531,6 +530,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 				// 在创建Bean过程中注册拦截器，这些个拦截器会在bean成为真正的成熟bean（applicationContext管理的bean）之前调用
 				// 调用 bean的后置处理器
 				// classpath 下xml配置文件 和 @ComponentScan("com.goat.chapter110.bean") 注解 就是在这里解析 起作用的
+				// 注册 BeanPostProcessor 的实现类，注意看和 BeanFactoryPostProcessor 的区别
+				// 此接口两个方法: postProcessBeforeInitialization 和 postProcessAfterInitialization
+				// 两个方法分别在 Bean 初始化之前和初始化之后得到执行。注意，到这里 Bean 还没初始化
 				registerBeanPostProcessors(beanFactory);
 				// Initialize message source for this context.
 				// 初始化国际化信息源   // 初始化信息源，信息源bean可以国际化的读取properties文件
@@ -556,23 +558,20 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 				finishBeanFactoryInitialization(beanFactory);
 				// Last step: publish corresponding event. 最后，广播事件，ApplicationContext 初始化完成
 				// 初始化Lifecycle处理器，调用onRefresh方法，广播ContextRefreshedEvent。
-				//初始化容器的生命周期事件处理器，并发布容器的生命周期事件
+				// 初始化容器的生命周期事件处理器，并发布容器的生命周期事件
 				// 清除缓存的资源信息，初始化一些声明周期相关的bean，并且发布Context已被初始化的事件
+				//  重点，重点，重点  初始化所有的 singleton beans （lazy-init 的除外）
 				finishRefresh();
-			}
-
-			catch (BeansException ex) {
-				if (logger.isWarnEnabled()) {
-					logger.warn("Exception encountered during context initialization - cancelling refresh attempt: " + ex);
-				}
+			}catch (BeansException ex) {
+				if (logger.isWarnEnabled()) logger.warn("Exception encountered during context initialization - cancelling refresh attempt: " + ex);
 				// Destroy already created singletons to avoid dangling resources.// 发生异常则销毁已经生成的bean
+				// 销毁已经初始化的 singleton 的 Beans，以免有些 bean 会一直占用资源
 				destroyBeans();
 				// Reset 'active' flag.
 				cancelRefresh(ex);   // 重置refresh字段信息
-				// Propagate exception to caller.
+				// Propagate exception to caller. // 把异常往外抛
 				throw ex;
-			}
-			finally {
+			}finally {
 				// Reset common introspection caches in Spring's core, since we
 				// might not ever need metadata for singleton beans anymore...
 				// 初始化一些缓存信息
@@ -587,17 +586,15 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 */
 	protected void prepareRefresh() {
 		// Switch to active. 记录启动时间 将 active 属性设置为 true，closed 属性设置为 false，它们都是 AtomicBoolean 类型
-		this.startupDate = System.currentTimeMillis();
+		startupDate = System.currentTimeMillis();
 		// 设置容器非关闭状态
-		this.closed.set(false);
+		closed.set(false);
 		// 设置容器为激活状态
-		this.active.set(true);
-
+		active.set(true);
 		if (logger.isDebugEnabled()) {
 			if (logger.isTraceEnabled()) {
 				logger.trace("Refreshing " + this);
-			}
-			else {
+			}else {
 				logger.debug("Refreshing " + getDisplayName());
 			}
 		}
@@ -611,17 +608,17 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		//  校验 xml 配置文件  校验必需的属性是否存在
 		getEnvironment().validateRequiredProperties();
 		// Store pre-refresh ApplicationListeners...  保存容器中一些早期的事件
-		if (this.earlyApplicationListeners == null) {
-			this.earlyApplicationListeners = new LinkedHashSet<>(this.applicationListeners);
+		if (earlyApplicationListeners == null) {
+			earlyApplicationListeners = new LinkedHashSet<>(applicationListeners);
 		}
 		else {
 			// Reset local application listeners to pre-refresh state.
-			this.applicationListeners.clear();
-			this.applicationListeners.addAll(this.earlyApplicationListeners);
+			applicationListeners.clear();
+			applicationListeners.addAll(earlyApplicationListeners);
 		}
 		// Allow for the collection of early ApplicationEvents,to be published once the multicaster is available...
 		// 允许收集早期的ApplicationEvents，在多主机发布时候有效…
-		this.earlyApplicationEvents = new LinkedHashSet<>();
+		earlyApplicationEvents = new LinkedHashSet<>();
 	}
 
 	/**
@@ -742,30 +739,25 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		ConfigurableListableBeanFactory beanFactory = getBeanFactory();
 		if (beanFactory.containsLocalBean(MESSAGE_SOURCE_BEAN_NAME)) {
 			// 如果有 则 直接取出来 赋值
-			this.messageSource = beanFactory.getBean(MESSAGE_SOURCE_BEAN_NAME, MessageSource.class);
+			messageSource = beanFactory.getBean(MESSAGE_SOURCE_BEAN_NAME, MessageSource.class);
 			// Make MessageSource aware of parent MessageSource.
-			if (this.parent != null && this.messageSource instanceof HierarchicalMessageSource) {
-				HierarchicalMessageSource hms = (HierarchicalMessageSource) this.messageSource;
+			if (parent != null && messageSource instanceof HierarchicalMessageSource) {
+				HierarchicalMessageSource hms = (HierarchicalMessageSource) messageSource;
 				if (hms.getParentMessageSource() == null) {
 					// Only set parent context as parent MessageSource if no parent MessageSource
 					// registered already.
 					hms.setParentMessageSource(getInternalParentMessageSource());
 				}
 			}
-			if (logger.isTraceEnabled()) {
-				logger.trace("Using MessageSource [" + this.messageSource + "]");
-			}
-		}
-		else {
+			if (logger.isTraceEnabled()) logger.trace("Using MessageSource [" + messageSource + "]");
+		}else {
 			// 如果没有就直接创建一个默认的 DelegatingMessageSource
 			// Use empty MessageSource to be able to accept getMessage calls.
 			DelegatingMessageSource dms = new DelegatingMessageSource();
 			dms.setParentMessageSource(getInternalParentMessageSource());
-			this.messageSource = dms;
-			beanFactory.registerSingleton(MESSAGE_SOURCE_BEAN_NAME, this.messageSource);
-			if (logger.isTraceEnabled()) {
-				logger.trace("No '" + MESSAGE_SOURCE_BEAN_NAME + "' bean, using [" + this.messageSource + "]");
-			}
+			messageSource = dms;
+			beanFactory.registerSingleton(MESSAGE_SOURCE_BEAN_NAME, messageSource);
+			if (logger.isTraceEnabled()) logger.trace("No '" + MESSAGE_SOURCE_BEAN_NAME + "' bean, using [" + messageSource + "]");
 		}
 	}
 
@@ -778,18 +770,18 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		ConfigurableListableBeanFactory beanFactory = getBeanFactory();
 		// 如果我们自己有配置事件派发器 则获取后进行赋值
 		if (beanFactory.containsLocalBean(APPLICATION_EVENT_MULTICASTER_BEAN_NAME)) {
-			this.applicationEventMulticaster = beanFactory.getBean(APPLICATION_EVENT_MULTICASTER_BEAN_NAME, ApplicationEventMulticaster.class);
+			applicationEventMulticaster = beanFactory.getBean(APPLICATION_EVENT_MULTICASTER_BEAN_NAME, ApplicationEventMulticaster.class);
 			if (logger.isTraceEnabled()) {
-				logger.trace("Using ApplicationEventMulticaster [" + this.applicationEventMulticaster + "]");
+				logger.trace("Using ApplicationEventMulticaster [" + applicationEventMulticaster + "]");
 			}
 		}
 		// 如果我们没有配置 则 创建一个默认的 事件派发器 并添加的 beanFactory 中 (spring容器中) 以后就可以通过@Autowire自动注入来使用了
 		else {
-			this.applicationEventMulticaster = new SimpleApplicationEventMulticaster(beanFactory);
+			applicationEventMulticaster = new SimpleApplicationEventMulticaster(beanFactory);
 			//
-			beanFactory.registerSingleton(APPLICATION_EVENT_MULTICASTER_BEAN_NAME, this.applicationEventMulticaster);
+			beanFactory.registerSingleton(APPLICATION_EVENT_MULTICASTER_BEAN_NAME, applicationEventMulticaster);
 			if (logger.isTraceEnabled()) {
-				logger.trace("No '" + APPLICATION_EVENT_MULTICASTER_BEAN_NAME + "' bean, using " +	"[" + this.applicationEventMulticaster.getClass().getSimpleName() + "]");
+				logger.trace("No '" + APPLICATION_EVENT_MULTICASTER_BEAN_NAME + "' bean, using " +	"[" + applicationEventMulticaster.getClass().getSimpleName() + "]");
 			}
 		}
 	}
@@ -802,18 +794,15 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	protected void initLifecycleProcessor() {
 		ConfigurableListableBeanFactory beanFactory = getBeanFactory();
 		if (beanFactory.containsLocalBean(LIFECYCLE_PROCESSOR_BEAN_NAME)) {
-			this.lifecycleProcessor = beanFactory.getBean(LIFECYCLE_PROCESSOR_BEAN_NAME, LifecycleProcessor.class);
-			if (logger.isTraceEnabled()) {
-				logger.trace("Using LifecycleProcessor [" + this.lifecycleProcessor + "]");
-			}
-		}
-		else {
+			lifecycleProcessor = beanFactory.getBean(LIFECYCLE_PROCESSOR_BEAN_NAME, LifecycleProcessor.class);
+			if (logger.isTraceEnabled()) logger.trace("Using LifecycleProcessor [" + lifecycleProcessor + "]");
+		}else {
 			DefaultLifecycleProcessor defaultProcessor = new DefaultLifecycleProcessor();
 			defaultProcessor.setBeanFactory(beanFactory);
-			this.lifecycleProcessor = defaultProcessor;
-			beanFactory.registerSingleton(LIFECYCLE_PROCESSOR_BEAN_NAME, this.lifecycleProcessor);
+			lifecycleProcessor = defaultProcessor;
+			beanFactory.registerSingleton(LIFECYCLE_PROCESSOR_BEAN_NAME, lifecycleProcessor);
 			if (logger.isTraceEnabled()) {
-				logger.trace("No '" + LIFECYCLE_PROCESSOR_BEAN_NAME + "' bean, using " + "[" + this.lifecycleProcessor.getClass().getSimpleName() + "]");
+				logger.trace("No '" + LIFECYCLE_PROCESSOR_BEAN_NAME + "' bean, using " + "[" + lifecycleProcessor.getClass().getSimpleName() + "]");
 			}
 		}
 	}
@@ -847,8 +836,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		}
 
 		// Publish early application events now that we finally have a multicaster...
-		Set<ApplicationEvent> earlyEventsToProcess = this.earlyApplicationEvents;
-		this.earlyApplicationEvents = null;
+		Set<ApplicationEvent> earlyEventsToProcess = earlyApplicationEvents;
+		earlyApplicationEvents = null;
 		if (earlyEventsToProcess != null) {
 			for (ApplicationEvent earlyEvent : earlyEventsToProcess) {
 				getApplicationEventMulticaster().multicastEvent(earlyEvent);
@@ -880,10 +869,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 		// Stop using the temporary ClassLoader for type matching.
 		beanFactory.setTempClassLoader(null);
-
 		// Allow for caching all bean definition metadata, not expecting further changes.
 		beanFactory.freezeConfiguration();
-
 		// Instantiate all remaining (non-lazy-init) singletons. 预实例化所有非懒加载单例Bean
 		beanFactory.preInstantiateSingletons();
 	}
@@ -896,16 +883,12 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	protected void finishRefresh() {
 		// Clear context-level resource caches (such as ASM metadata from scanning).
 		clearResourceCaches();
-
 		// Initialize lifecycle processor for this context.
 		initLifecycleProcessor();
-
 		// Propagate refresh to lifecycle processor first.
 		getLifecycleProcessor().onRefresh();
-
 		// Publish the final event.
 		publishEvent(new ContextRefreshedEvent(this));
-
 		// Participate in LiveBeansView MBean, if active.
 		LiveBeansView.registerApplicationContext(this);
 	}
@@ -915,7 +898,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 * @param ex the exception that led to the cancellation
 	 */
 	protected void cancelRefresh(BeansException ex) {
-		this.active.set(false);
+		active.set(false);
 	}
 
 	/**
@@ -945,14 +928,14 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 */
 	@Override
 	public void registerShutdownHook() {
-		if (this.shutdownHook == null) {
+		if (shutdownHook == null) {
 			// No shutdown hook registered yet.
-			this.shutdownHook = new Thread(()->{
+			shutdownHook = new Thread(()->{
 				synchronized (startupShutdownMonitor) {
 					doClose();
 				}
 			});
-			Runtime.getRuntime().addShutdownHook(this.shutdownHook);
+			Runtime.getRuntime().addShutdownHook(shutdownHook);
 		}
 	}
 
@@ -977,15 +960,14 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 */
 	@Override
 	public void close() {
-		synchronized (this.startupShutdownMonitor) {
+		synchronized (startupShutdownMonitor) {
 			doClose();
 			// If we registered a JVM shutdown hook, we don't need it anymore now:
 			// We've already explicitly closed the context.
-			if (this.shutdownHook != null) {
+			if (shutdownHook != null) {
 				try {
-					Runtime.getRuntime().removeShutdownHook(this.shutdownHook);
-				}
-				catch (IllegalStateException ex) {
+					Runtime.getRuntime().removeShutdownHook(shutdownHook);
+				}catch (IllegalStateException ex) {
 					// ignore - VM is already shutting down
 				}
 			}
@@ -1003,10 +985,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 */
 	protected void doClose() {
 		// Check whether an actual close attempt is necessary...
-		if (this.active.get() && this.closed.compareAndSet(false, true)) {
-			if (logger.isDebugEnabled()) {
-				logger.debug("Closing " + this);
-			}
+		if (active.get() && closed.compareAndSet(false, true)) {
+			if (logger.isDebugEnabled()) logger.debug("Closing " + this);
 			LiveBeansView.unregisterApplicationContext(this);
 			try {
 				// Publish shutdown event.
@@ -1016,38 +996,33 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			}
 
 			// Stop all Lifecycle beans, to avoid delays during individual destruction.
-			if (this.lifecycleProcessor != null) {
+			if (lifecycleProcessor != null) {
 				try {
-					this.lifecycleProcessor.onClose();
+					lifecycleProcessor.onClose();
 				}catch (Throwable ex) {
 					logger.warn("Exception thrown from LifecycleProcessor on context close", ex);
 				}
 			}
-
 			// Destroy all cached singletons in the context's BeanFactory.
 			destroyBeans();
-
 			// Close the state of this context itself.
 			closeBeanFactory();
-
 			// Let subclasses do some final clean-up if they wish...
 			onClose();
-
 			// Reset local application listeners to pre-refresh state.
-			if (this.earlyApplicationListeners != null) {
-				this.applicationListeners.clear();
-				this.applicationListeners.addAll(this.earlyApplicationListeners);
+			if (earlyApplicationListeners != null) {
+				applicationListeners.clear();
+				applicationListeners.addAll(earlyApplicationListeners);
 			}
 			// Switch to inactive.
-			this.active.set(false);
+			active.set(false);
 		}
 	}
 
 	/**
 	 * Template method for destroying all beans that this context manages.
 	 * The default implementation destroy all cached singletons in this context,
-	 * invoking {@code DisposableBean.destroy()} and/or the specified
-	 * "destroy-method".
+	 * invoking {@code DisposableBean.destroy()} and/or the specified "destroy-method".
 	 * Can be overridden to add context-specific bean destruction steps
 	 * right before or right after standard singleton destruction,
 	 * while the context's BeanFactory is still active.
@@ -1072,7 +1047,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 	@Override
 	public boolean isActive() {
-		return this.active.get();
+		return active.get();
 	}
 
 	/**
@@ -1082,8 +1057,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 * May be overridden for more specific checks, or for a no-op if {@link #getBeanFactory()} itself throws an exception in such a case.
 	 */
 	protected void assertBeanFactoryActive() {
-		if (!this.active.get()) {
-			if (this.closed.get())
+		if (!active.get()) {
+			if (closed.get())
 				throw new IllegalStateException(getDisplayName() + " has been closed already");
 			else
 				throw new IllegalStateException(getDisplayName() + " has not been refreshed yet");
@@ -1246,7 +1221,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		return getBeanFactory().findAnnotationOnBean(beanName, annotationType);
 	}
 
-
 	//---------------------------------------------------------------------
 	// Implementation of HierarchicalBeanFactory interface
 	//---------------------------------------------------------------------
@@ -1273,7 +1247,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 	}
 
-
 	//---------------------------------------------------------------------
 	// Implementation of MessageSource interface
 	//---------------------------------------------------------------------
@@ -1299,10 +1272,10 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 * @throws IllegalStateException if the context has not been initialized yet
 	 */
 	private MessageSource getMessageSource() throws IllegalStateException {
-		if (this.messageSource == null) {
+		if (messageSource == null) {
 			throw new IllegalStateException("MessageSource not initialized - call 'refresh' before accessing messages via the context: " + this);
 		}
-		return this.messageSource;
+		return messageSource;
 	}
 
 	/**
@@ -1314,16 +1287,14 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		return (getParent() instanceof AbstractApplicationContext ? ((AbstractApplicationContext) getParent()).messageSource : getParent());
 	}
 
-
 	//---------------------------------------------------------------------
 	// Implementation of ResourcePatternResolver interface
 	//---------------------------------------------------------------------
 
 	@Override
 	public Resource[] getResources(String locationPattern) throws IOException {
-		return this.resourcePatternResolver.getResources(locationPattern);
+		return resourcePatternResolver.getResources(locationPattern);
 	}
-
 
 	//---------------------------------------------------------------------
 	// Implementation of Lifecycle interface
@@ -1343,7 +1314,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 	@Override
 	public boolean isRunning() {
-		return (this.lifecycleProcessor != null && this.lifecycleProcessor.isRunning());
+		return (lifecycleProcessor != null && lifecycleProcessor.isRunning());
 	}
 
 

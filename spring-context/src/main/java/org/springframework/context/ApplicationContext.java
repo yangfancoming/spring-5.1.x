@@ -23,7 +23,7 @@ import org.springframework.lang.Nullable;
  * Inherited from the {@link MessageSource} interface.
  * <li>Inheritance from a parent context. Definitions in a descendant context will always take priority.
  *  This means, for example, that a single parent context can be used by an entire web application,
- * while each servlet has its own child context that is independent of that of any other servlet.
+ *  while each servlet has its own child context that is independent of that of any other servlet.
  *
  * In addition to standard {@link org.springframework.beans.factory.BeanFactory}
  * lifecycle capabilities, ApplicationContext implementations detect and invoke
@@ -70,17 +70,14 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
 
 	/**
 	 * Expose AutowireCapableBeanFactory functionality for this context.
-	 * This is not typically used by application code, except for the purpose of
-	 * initializing bean instances that live outside of the application context,
+	 * This is not typically used by application code,
+	 * except for the purpose of initializing bean instances that live outside of the application context,
 	 * applying the Spring bean lifecycle (fully or partly) to them.
-	 * Alternatively, the internal BeanFactory exposed by the
-	 * {@link ConfigurableApplicationContext} interface offers access to the
-	 * {@link AutowireCapableBeanFactory} interface too. The present method mainly
-	 * serves as a convenient, specific facility on the ApplicationContext interface.
-	 * <b>NOTE: As of 4.2, this method will consistently throw IllegalStateException
-	 * after the application context has been closed.</b> In current Spring Framework
-	 * versions, only refreshable application contexts behave that way; as of 4.2,
-	 * all application context implementations will be required to comply.
+	 * Alternatively, the internal BeanFactory exposed by the {@link ConfigurableApplicationContext} interface offers access to the {@link AutowireCapableBeanFactory} interface too.
+	 * The present method mainly serves as a convenient, specific facility on the ApplicationContext interface.
+	 * <b>NOTE: As of 4.2, this method will consistently throw IllegalStateException after the application context has been closed.</b>
+	 * In current Spring Framework versions, only refreshable application contexts behave that way;
+	 * as of 4.2, all application context implementations will be required to comply.
 	 * @return the AutowireCapableBeanFactory for this context
 	 * @throws IllegalStateException if the context does not support the
 	 * {@link AutowireCapableBeanFactory} interface, or does not hold an
@@ -88,6 +85,7 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
 	 * never been called), or if the context has been closed already
 	 * @see ConfigurableApplicationContext#refresh()
 	 * @see ConfigurableApplicationContext#getBeanFactory()
+	 * ApplicationContext 与 AutowireCapableBeanFactory 组合模式
 	 */
 	AutowireCapableBeanFactory getAutowireCapableBeanFactory() throws IllegalStateException;
 
