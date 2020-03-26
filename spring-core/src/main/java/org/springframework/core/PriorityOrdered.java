@@ -23,9 +23,7 @@ package org.springframework.core;
  * a special phase, ahead of other post-processor beans. This subtly
  * affects their autowiring behavior: they will only be autowired against
  * beans which do not require eager initialization for type matching.
- *
 
- * @author Sam Brannen
  * @since 2.5
  * @see org.springframework.beans.factory.config.PropertyOverrideConfigurer
  * @see org.springframework.beans.factory.config.PropertyPlaceholderConfigurer

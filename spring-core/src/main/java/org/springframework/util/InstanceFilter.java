@@ -87,9 +87,7 @@ public class InstanceFilter<T> {
 	 */
 	protected boolean match(T instance, Collection<? extends T> candidates) {
 		for (T candidate : candidates) {
-			if (match(instance, candidate)) {
-				return true;
-			}
+			if (match(instance, candidate)) return true;
 		}
 		return false;
 	}

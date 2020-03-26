@@ -229,8 +229,7 @@ public abstract class ClassUtils {
 		}
 		try {
 			return Class.forName(name, false, clToUse);
-		}
-		catch (ClassNotFoundException ex) {
+		}catch (ClassNotFoundException ex) {
 			int lastDotIndex = name.lastIndexOf(PACKAGE_SEPARATOR);
 			if (lastDotIndex != -1) {
 				String innerClassName = name.substring(0, lastDotIndex) + INNER_CLASS_SEPARATOR + name.substring(lastDotIndex + 1);
@@ -261,14 +260,12 @@ public abstract class ClassUtils {
 	public static Class<?> resolveClassName(String className, @Nullable ClassLoader classLoader) throws IllegalArgumentException {
 		try {
 			return forName(className, classLoader);
-		}
-		catch (IllegalAccessError err) {
+		}catch (IllegalAccessError err) {
+
 			throw new IllegalStateException("Readability mismatch in inheritance hierarchy of class [" + className + "]: " + err.getMessage(), err);
-		}
-		catch (LinkageError err) {
+		}catch (LinkageError err) {
 			throw new IllegalArgumentException("Unresolvable class definition for class [" + className + "]", err);
-		}
-		catch (ClassNotFoundException ex) {
+		}catch (ClassNotFoundException ex) {
 			throw new IllegalArgumentException("Could not find class [" + className + "]", ex);
 		}
 	}
@@ -289,8 +286,7 @@ public abstract class ClassUtils {
 		try {
 			forName(className, classLoader);
 			return true;
-		}
-		catch (IllegalAccessError err) {
+		}catch (IllegalAccessError err) {
 			throw new IllegalStateException("Readability mismatch in inheritance hierarchy of class [" + className + "]: " + err.getMessage(), err);
 		}catch (Throwable ex) {
 			// Typically ClassNotFoundException or NoClassDefFoundError...
@@ -348,8 +344,7 @@ public abstract class ClassUtils {
 				target = target.getParent();
 				if (target == classLoader) return false;
 			}
-		}
-		catch (SecurityException ex) {
+		}catch (SecurityException ex) {
 			// Fall through to loadable check below
 		}
 		// Fallback for ClassLoaders without parent/child relationship:
@@ -367,8 +362,7 @@ public abstract class ClassUtils {
 		try {
 			return (clazz == classLoader.loadClass(clazz.getName()));
 			// Else: different class with same name found
-		}
-		catch (ClassNotFoundException ex) {
+		}catch (ClassNotFoundException ex) {
 			// No corresponding class found at all
 			return false;
 		}

@@ -42,30 +42,24 @@ public final class SpringProperties {
 	static {
 		try {
 			ClassLoader cl = SpringProperties.class.getClassLoader();
-			URL url = (cl != null ? cl.getResource(PROPERTIES_RESOURCE_LOCATION) :
-					ClassLoader.getSystemResource(PROPERTIES_RESOURCE_LOCATION));
+			URL url = (cl != null ? cl.getResource(PROPERTIES_RESOURCE_LOCATION) : ClassLoader.getSystemResource(PROPERTIES_RESOURCE_LOCATION));
 			if (url != null) {
 				logger.debug("Found 'spring.properties' file in local classpath");
 				InputStream is = url.openStream();
 				try {
 					localProperties.load(is);
-				}
-				finally {
+				}finally {
 					is.close();
 				}
 			}
 		}
 		catch (IOException ex) {
-			if (logger.isInfoEnabled()) {
-				logger.info("Could not load 'spring.properties' file from local classpath: " + ex);
-			}
+			if (logger.isInfoEnabled()) logger.info("Could not load 'spring.properties' file from local classpath: " + ex);
 		}
 	}
 
-
 	private SpringProperties() {
 	}
-
 
 	/**
 	 * Programmatically set a local property, overriding an entry in the
@@ -76,8 +70,7 @@ public final class SpringProperties {
 	public static void setProperty(String key, @Nullable String value) {
 		if (value != null) {
 			localProperties.setProperty(key, value);
-		}
-		else {
+		}else {
 			localProperties.remove(key);
 		}
 	}
@@ -94,11 +87,8 @@ public final class SpringProperties {
 		if (value == null) {
 			try {
 				value = System.getProperty(key);
-			}
-			catch (Throwable ex) {
-				if (logger.isDebugEnabled()) {
-					logger.debug("Could not retrieve system property '" + key + "': " + ex);
-				}
+			}catch (Throwable ex) {
+				if (logger.isDebugEnabled()) logger.debug("Could not retrieve system property '" + key + "': " + ex);
 			}
 		}
 		return value;

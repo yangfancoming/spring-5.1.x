@@ -22,15 +22,10 @@ import org.springframework.util.ReflectionUtils;
 
 /**
  * A registry of adapters to adapt Reactive Streams {@link Publisher} to/from
- * various async/reactive types such as {@code CompletableFuture}, RxJava
- * {@code Observable}, and others.
+ * various async/reactive types such as {@code CompletableFuture}, RxJava {@code Observable}, and others.
  *
  * <p>By default, depending on classpath availability, adapters are registered
- * for Reactor, RxJava 1, RxJava 2 types, {@link CompletableFuture}, and Java 9+
- * {@code Flow.Publisher}.
- *
- * @author Rossen Stoyanchev
- * @author Sebastien Deleuze
+ * for Reactor, RxJava 1, RxJava 2 types, {@link CompletableFuture}, and Java 9+ {@code Flow.Publisher}.
  * @since 5.0
  */
 public class ReactiveAdapterRegistry {
@@ -41,7 +36,6 @@ public class ReactiveAdapterRegistry {
 	private final boolean reactorPresent;
 
 	private final List<ReactiveAdapter> adapters = new ArrayList<>();
-
 
 	/**
 	 * Create a registry and auto-register default adapters.
@@ -59,8 +53,7 @@ public class ReactiveAdapterRegistry {
 		this.reactorPresent = reactorRegistered;
 
 		// RxJava1
-		if (ClassUtils.isPresent("rx.Observable", classLoader) &&
-				ClassUtils.isPresent("rx.RxReactiveStreams", classLoader)) {
+		if (ClassUtils.isPresent("rx.Observable", classLoader) && ClassUtils.isPresent("rx.RxReactiveStreams", classLoader)) {
 			new RxJava1Registrar().registerAdapters(this);
 		}
 
@@ -92,13 +85,10 @@ public class ReactiveAdapterRegistry {
 	 * Reactive Streams {@link Publisher}. The function arguments assume that
 	 * their input is neither {@code null} nor {@link Optional}.
 	 */
-	public void registerReactiveType(ReactiveTypeDescriptor descriptor,
-			Function<Object, Publisher<?>> toAdapter, Function<Publisher<?>, Object> fromAdapter) {
-
+	public void registerReactiveType(ReactiveTypeDescriptor descriptor,Function<Object, Publisher<?>> toAdapter, Function<Publisher<?>, Object> fromAdapter) {
 		if (this.reactorPresent) {
 			this.adapters.add(new ReactorAdapter(descriptor, toAdapter, fromAdapter));
-		}
-		else {
+		}else {
 			this.adapters.add(new ReactiveAdapter(descriptor, toAdapter, fromAdapter));
 		}
 	}
@@ -113,25 +103,18 @@ public class ReactiveAdapterRegistry {
 	}
 
 	/**
-	 * Get the adapter for the given reactive type. Or if a "source" object is
-	 * provided, its actual type is used instead.
-	 * @param reactiveType the reactive type
-	 * (may be {@code null} if a concrete source object is given)
-	 * @param source an instance of the reactive type
-	 * (i.e. to adapt from; may be {@code null} if the reactive type is specified)
+	 * Get the adapter for the given reactive type. Or if a "source" object is provided, its actual type is used instead.
+	 * @param reactiveType the reactive type (may be {@code null} if a concrete source object is given)
+	 * @param source an instance of the reactive type (i.e. to adapt from; may be {@code null} if the reactive type is specified)
 	 * @return the corresponding adapter, or {@code null} if none available
 	 */
 	@Nullable
 	public ReactiveAdapter getAdapter(@Nullable Class<?> reactiveType, @Nullable Object source) {
-		if (this.adapters.isEmpty()) {
-			return null;
-		}
+		if (this.adapters.isEmpty()) return null;
 
 		Object sourceToUse = (source instanceof Optional ? ((Optional<?>) source).orElse(null) : source);
 		Class<?> clazz = (sourceToUse != null ? sourceToUse.getClass() : reactiveType);
-		if (clazz == null) {
-			return null;
-		}
+		if (clazz == null) return null;
 		for (ReactiveAdapter adapter : this.adapters) {
 			if (adapter.getReactiveType() == clazz) {
 				return adapter;
@@ -263,7 +246,6 @@ public class ReactiveAdapterRegistry {
 
 		void registerAdapter(ReactiveAdapterRegistry registry) {
 			// TODO: remove reflection when build requires JDK 9+
-
 			try {
 				String publisherName = "java.util.concurrent.Flow.Publisher";
 				Class<?> publisherClass = ClassUtils.forName(publisherName, getClass().getClassLoader());
@@ -280,13 +262,11 @@ public class ReactiveAdapterRegistry {
 						source -> (Publisher<?>) ReflectionUtils.invokeMethod(toFluxMethod, null, source),
 						publisher -> ReflectionUtils.invokeMethod(toFlowMethod, null, publisher)
 				);
-			}
-			catch (Throwable ex) {
+			}catch (Throwable ex) {
 				// Ignore
 			}
 		}
 	}
-
 
 	/**
 	 * ReactiveAdapter variant that wraps adapted Publishers as {@link Flux} or
@@ -296,10 +276,7 @@ public class ReactiveAdapterRegistry {
 	 */
 	private static class ReactorAdapter extends ReactiveAdapter {
 
-		ReactorAdapter(ReactiveTypeDescriptor descriptor,
-				Function<Object, Publisher<?>> toPublisherFunction,
-				Function<Publisher<?>, Object> fromPublisherFunction) {
-
+		ReactorAdapter(ReactiveTypeDescriptor descriptor,Function<Object, Publisher<?>> toPublisherFunction,Function<Publisher<?>, Object> fromPublisherFunction) {
 			super(descriptor, toPublisherFunction, fromPublisherFunction);
 		}
 

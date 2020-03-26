@@ -18,14 +18,12 @@ public class AlternativeJdkIdGenerator implements IdGenerator {
 
 	private final Random random;
 
-
 	public AlternativeJdkIdGenerator() {
 		SecureRandom secureRandom = new SecureRandom();
 		byte[] seed = new byte[8];
 		secureRandom.nextBytes(seed);
 		this.random = new Random(new BigInteger(seed).longValue());
 	}
-
 
 	@Override
 	public UUID generateId() {

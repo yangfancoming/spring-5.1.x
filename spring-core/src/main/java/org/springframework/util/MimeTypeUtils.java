@@ -20,10 +20,6 @@ import org.springframework.lang.Nullable;
 
 /**
  * Miscellaneous {@link MimeType} utility methods.
- *
- * @author Arjen Poutsma
- * @author Rossen Stoyanchev
- * @author Dimitrios Liapis
  * @since 4.0
  */
 public abstract class MimeTypeUtils {
@@ -225,11 +221,9 @@ public abstract class MimeTypeUtils {
 
 		try {
 			return new MimeType(type, subtype, parameters);
-		}
-		catch (UnsupportedCharsetException ex) {
+		}catch (UnsupportedCharsetException ex) {
 			throw new InvalidMimeTypeException(mimeType, "unsupported charset '" + ex.getCharsetName() + "'");
-		}
-		catch (IllegalArgumentException ex) {
+		}catch (IllegalArgumentException ex) {
 			throw new InvalidMimeTypeException(mimeType, ex.getMessage());
 		}
 	}

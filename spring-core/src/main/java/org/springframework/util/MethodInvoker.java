@@ -138,9 +138,7 @@ public class MethodInvoker {
 		if (this.staticMethod != null) {
 			int lastDotIndex = this.staticMethod.lastIndexOf('.');
 			if (lastDotIndex == -1 || lastDotIndex == this.staticMethod.length()) {
-				throw new IllegalArgumentException(
-						"staticMethod must be a fully qualified class plus method name: " +
-						"e.g. 'example.MyExampleClass.myExampleMethod'");
+				throw new IllegalArgumentException("staticMethod must be a fully qualified class plus method name: e.g. 'example.MyExampleClass.myExampleMethod'");
 			}
 			String className = this.staticMethod.substring(0, lastDotIndex);
 			String methodName = this.staticMethod.substring(lastDotIndex + 1);
@@ -162,8 +160,7 @@ public class MethodInvoker {
 		// Try to get the exact method first.
 		try {
 			this.methodObject = targetClass.getMethod(targetMethod, argTypes);
-		}
-		catch (NoSuchMethodException ex) {
+		} catch (NoSuchMethodException ex) {
 			// Just rethrow exception if we can't get any match.
 			this.methodObject = findMatchingMethod();
 			if (this.methodObject == null) {
@@ -215,7 +212,6 @@ public class MethodInvoker {
 				}
 			}
 		}
-
 		return matchingMethod;
 	}
 
@@ -301,8 +297,7 @@ public class MethodInvoker {
 					else if (ClassUtils.isAssignable(paramType, superClass)) {
 						result = result + 2;
 						superClass = superClass.getSuperclass();
-					}
-					else {
+					}else {
 						superClass = null;
 					}
 				}

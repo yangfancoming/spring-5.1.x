@@ -22,10 +22,6 @@ import org.springframework.lang.Nullable;
 /**
  * Miscellaneous collection utility methods.
  * Mainly for internal use within the framework.
- *
-
- * @author Rob Harrop
- * @author Arjen Poutsma
  * @since 1.1.3
  */
 public abstract class CollectionUtils {
@@ -113,9 +109,7 @@ public abstract class CollectionUtils {
 		if (iterator != null) {
 			while (iterator.hasNext()) {
 				Object candidate = iterator.next();
-				if (ObjectUtils.nullSafeEquals(candidate, element)) {
-					return true;
-				}
+				if (ObjectUtils.nullSafeEquals(candidate, element)) return true;
 			}
 		}
 		return false;
@@ -131,9 +125,7 @@ public abstract class CollectionUtils {
 		if (enumeration != null) {
 			while (enumeration.hasMoreElements()) {
 				Object candidate = enumeration.nextElement();
-				if (ObjectUtils.nullSafeEquals(candidate, element)) {
-					return true;
-				}
+				if (ObjectUtils.nullSafeEquals(candidate, element)) return true;
 			}
 		}
 		return false;
@@ -150,9 +142,7 @@ public abstract class CollectionUtils {
 	public static boolean containsInstance(@Nullable Collection<?> collection, Object element) {
 		if (collection != null) {
 			for (Object candidate : collection) {
-				if (candidate == element) {
-					return true;
-				}
+				if (candidate == element) return true;
 			}
 		}
 		return false;
@@ -166,13 +156,9 @@ public abstract class CollectionUtils {
 	 * @return whether any of the candidates has been found
 	 */
 	public static boolean containsAny(Collection<?> source, Collection<?> candidates) {
-		if (isEmpty(source) || isEmpty(candidates)) {
-			return false;
-		}
+		if (isEmpty(source) || isEmpty(candidates)) return false;
 		for (Object candidate : candidates) {
-			if (source.contains(candidate)) {
-				return true;
-			}
+			if (source.contains(candidate)) return true;
 		}
 		return false;
 	}
@@ -189,9 +175,7 @@ public abstract class CollectionUtils {
 	@SuppressWarnings("unchecked")
 	@Nullable
 	public static <E> E findFirstMatch(Collection<?> source, Collection<E> candidates) {
-		if (isEmpty(source) || isEmpty(candidates)) {
-			return null;
-		}
+		if (isEmpty(source) || isEmpty(candidates)) return null;
 		for (Object candidate : candidates) {
 			if (source.contains(candidate)) {
 				return (E) candidate;
@@ -210,9 +194,7 @@ public abstract class CollectionUtils {
 	@SuppressWarnings("unchecked")
 	@Nullable
 	public static <T> T findValueOfType(Collection<?> collection, @Nullable Class<T> type) {
-		if (isEmpty(collection)) {
-			return null;
-		}
+		if (isEmpty(collection)) return null;
 		T value = null;
 		for (Object element : collection) {
 			if (type == null || type.isInstance(element)) {
@@ -237,9 +219,7 @@ public abstract class CollectionUtils {
 	 */
 	@Nullable
 	public static Object findValueOfType(Collection<?> collection, Class<?>[] types) {
-		if (isEmpty(collection) || ObjectUtils.isEmpty(types)) {
-			return null;
-		}
+		if (isEmpty(collection) || ObjectUtils.isEmpty(types)) return null;
 		for (Class<?> type : types) {
 			Object value = findValueOfType(collection, type);
 			if (value != null) {
@@ -256,17 +236,14 @@ public abstract class CollectionUtils {
 	 * multiple references to the same instance, {@code false} otherwise
 	 */
 	public static boolean hasUniqueObject(Collection<?> collection) {
-		if (isEmpty(collection)) {
-			return false;
-		}
+		if (isEmpty(collection)) return false;
 		boolean hasCandidate = false;
 		Object candidate = null;
 		for (Object elem : collection) {
 			if (!hasCandidate) {
 				hasCandidate = true;
 				candidate = elem;
-			}
-			else if (candidate != elem) {
+			}else if (candidate != elem) {
 				return false;
 			}
 		}
@@ -281,16 +258,13 @@ public abstract class CollectionUtils {
 	 */
 	@Nullable
 	public static Class<?> findCommonElementType(Collection<?> collection) {
-		if (isEmpty(collection)) {
-			return null;
-		}
+		if (isEmpty(collection)) return null;
 		Class<?> candidate = null;
 		for (Object val : collection) {
 			if (val != null) {
 				if (candidate == null) {
 					candidate = val.getClass();
-				}
-				else if (candidate != val.getClass()) {
+				}else if (candidate != val.getClass()) {
 					return null;
 				}
 			}
@@ -310,13 +284,10 @@ public abstract class CollectionUtils {
 	 */
 	@Nullable
 	public static <T> T lastElement(@Nullable Set<T> set) {
-		if (isEmpty(set)) {
-			return null;
-		}
+		if (isEmpty(set)) return null;
 		if (set instanceof SortedSet) {
 			return ((SortedSet<T>) set).last();
 		}
-
 		// Full iteration necessary...
 		Iterator<T> it = set.iterator();
 		T last = null;
@@ -334,9 +305,7 @@ public abstract class CollectionUtils {
 	 */
 	@Nullable
 	public static <T> T lastElement(@Nullable List<T> list) {
-		if (isEmpty(list)) {
-			return null;
-		}
+		if (isEmpty(list)) 	return null;
 		return list.get(list.size() - 1);
 	}
 

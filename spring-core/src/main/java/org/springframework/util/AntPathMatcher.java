@@ -88,7 +88,6 @@ public class AntPathMatcher implements PathMatcher {
 		this.pathSeparatorPatternCache = new PathSeparatorPatternCache(pathSeparator);
 	}
 
-
 	/**
 	 * Set the path separator to use for pattern parsing.
 	 * <p>Default is "/", as in Ant.
@@ -143,16 +142,12 @@ public class AntPathMatcher implements PathMatcher {
 		boolean uriVar = false;
 		for (int i = 0; i < path.length(); i++) {
 			char c = path.charAt(i);
-			if (c == '*' || c == '?') {
-				return true;
-			}
+			if (c == '*' || c == '?') return true;
 			if (c == '{') {
 				uriVar = true;
 				continue;
 			}
-			if (c == '}' && uriVar) {
-				return true;
-			}
+			if (c == '}' && uriVar) return true;
 		}
 		return false;
 	}
@@ -223,12 +218,10 @@ public class AntPathMatcher implements PathMatcher {
 				}
 			}
 			return true;
-		}
-		else if (pattIdxStart > pattIdxEnd) {
+		}else if (pattIdxStart > pattIdxEnd) {
 			// String not exhausted, but pattern is. Failure.
 			return false;
-		}
-		else if (!fullMatch && "**".equals(pattDirs[pattIdxStart])) {
+		}else if (!fullMatch && "**".equals(pattDirs[pattIdxStart])) {
 			// Path start definitely matches due to "**" part in pattern.
 			return true;
 		}
@@ -274,6 +267,7 @@ public class AntPathMatcher implements PathMatcher {
 			int strLength = (pathIdxEnd - pathIdxStart + 1);
 			int foundIdx = -1;
 
+			// doit 好玩  loop
 			strLoop:
 			for (int i = 0; i <= strLength - patLength; i++) {
 				for (int j = 0; j < patLength; j++) {
@@ -287,10 +281,7 @@ public class AntPathMatcher implements PathMatcher {
 				break;
 			}
 
-			if (foundIdx == -1) {
-				return false;
-			}
-
+			if (foundIdx == -1) return false;
 			pattIdxStart = patIdxTmp;
 			pathIdxStart = foundIdx + patLength;
 		}
@@ -347,9 +338,7 @@ public class AntPathMatcher implements PathMatcher {
 
 	private boolean isWildcardChar(char c) {
 		for (char candidate : WILDCARD_CHARS) {
-			if (c == candidate) {
-				return true;
-			}
+			if (c == candidate) return true;
 		}
 		return false;
 	}
@@ -512,15 +501,9 @@ public class AntPathMatcher implements PathMatcher {
 	 */
 	@Override
 	public String combine(String pattern1, String pattern2) {
-		if (!StringUtils.hasText(pattern1) && !StringUtils.hasText(pattern2)) {
-			return "";
-		}
-		if (!StringUtils.hasText(pattern1)) {
-			return pattern2;
-		}
-		if (!StringUtils.hasText(pattern2)) {
-			return pattern1;
-		}
+		if (!StringUtils.hasText(pattern1) && !StringUtils.hasText(pattern2)) return "";
+		if (!StringUtils.hasText(pattern1)) return pattern2;
+		if (!StringUtils.hasText(pattern2)) return pattern1;
 
 		boolean pattern1ContainsUriVar = (pattern1.indexOf('{') != -1);
 		if (!pattern1.equals(pattern2) && !pattern1ContainsUriVar && match(pattern1, pattern2)) {
@@ -566,11 +549,9 @@ public class AntPathMatcher implements PathMatcher {
 
 		if (path1EndsWithSeparator && path2StartsWithSeparator) {
 			return path1 + path2.substring(1);
-		}
-		else if (path1EndsWithSeparator || path2StartsWithSeparator) {
+		}else if (path1EndsWithSeparator || path2StartsWithSeparator) {
 			return path1 + path2;
-		}
-		else {
+		}else {
 			return path1 + this.pathSeparator + path2;
 		}
 	}
@@ -631,8 +612,7 @@ public class AntPathMatcher implements PathMatcher {
 					if (colonIdx == -1) {
 						patternBuilder.append(DEFAULT_VARIABLE_PATTERN);
 						this.variableNames.add(matcher.group(1));
-					}
-					else {
+					}else {
 						String variablePattern = match.substring(colonIdx + 1, match.length() - 1);
 						patternBuilder.append('(');
 						patternBuilder.append(variablePattern);
@@ -644,14 +624,11 @@ public class AntPathMatcher implements PathMatcher {
 				end = matcher.end();
 			}
 			patternBuilder.append(quote(pattern, end, pattern.length()));
-			this.pattern = (caseSensitive ? Pattern.compile(patternBuilder.toString()) :
-					Pattern.compile(patternBuilder.toString(), Pattern.CASE_INSENSITIVE));
+			this.pattern = (caseSensitive ? Pattern.compile(patternBuilder.toString()) : Pattern.compile(patternBuilder.toString(), Pattern.CASE_INSENSITIVE));
 		}
 
 		private String quote(String s, int start, int end) {
-			if (start == end) {
-				return "";
-			}
+			if (start == end) return "";
 			return Pattern.quote(s.substring(start, end));
 		}
 
@@ -675,8 +652,7 @@ public class AntPathMatcher implements PathMatcher {
 					}
 				}
 				return true;
-			}
-			else {
+			}else {
 				return false;
 			}
 		}
@@ -802,16 +778,13 @@ public class AntPathMatcher implements PathMatcher {
 							if (pos + 1 < this.pattern.length() && this.pattern.charAt(pos + 1) == '*') {
 								this.doubleWildcards++;
 								pos += 2;
-							}
-							else if (pos > 0 && !this.pattern.substring(pos - 1).equals(".*")) {
+							}else if (pos > 0 && !this.pattern.substring(pos - 1).equals(".*")) {
 								this.singleWildcards++;
 								pos++;
-							}
-							else {
+							}else {
 								pos++;
 							}
-						}
-						else {
+						}else {
 							pos++;
 						}
 					}

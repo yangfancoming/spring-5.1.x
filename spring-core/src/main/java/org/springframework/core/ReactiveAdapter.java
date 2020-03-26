@@ -12,10 +12,7 @@ import org.springframework.util.Assert;
 /**
  * Adapter for a Reactive Streams {@link Publisher} to and from an async/reactive
  * type such as {@code CompletableFuture}, RxJava {@code Observable}, and others.
- *
  * <p>An adapter is typically obtained via {@link ReactiveAdapterRegistry}.
- *
- * @author Rossen Stoyanchev
  * @since 5.0
  */
 public class ReactiveAdapter {
@@ -26,18 +23,13 @@ public class ReactiveAdapter {
 
 	private final Function<Publisher<?>, Object> fromPublisherFunction;
 
-
 	/**
-	 * Constructor for an adapter with functions to convert the target reactive
-	 * or async type to and from a Reactive Streams Publisher.
+	 * Constructor for an adapter with functions to convert the target reactive or async type to and from a Reactive Streams Publisher.
 	 * @param descriptor the reactive type descriptor
 	 * @param toPublisherFunction adapter to a Publisher
 	 * @param fromPublisherFunction adapter from a Publisher
 	 */
-	public ReactiveAdapter(ReactiveTypeDescriptor descriptor,
-			Function<Object, Publisher<?>> toPublisherFunction,
-			Function<Publisher<?>, Object> fromPublisherFunction) {
-
+	public ReactiveAdapter(ReactiveTypeDescriptor descriptor,Function<Object, Publisher<?>> toPublisherFunction,Function<Publisher<?>, Object> fromPublisherFunction) {
 		Assert.notNull(descriptor, "'descriptor' is required");
 		Assert.notNull(toPublisherFunction, "'toPublisherFunction' is required");
 		Assert.notNull(fromPublisherFunction, "'fromPublisherFunction' is required");
@@ -46,7 +38,6 @@ public class ReactiveAdapter {
 		this.toPublisherFunction = toPublisherFunction;
 		this.fromPublisherFunction = fromPublisherFunction;
 	}
-
 
 	/**
 	 * Return the descriptor of the reactive type for the adapter.
@@ -82,7 +73,6 @@ public class ReactiveAdapter {
 	public boolean supportsEmpty() {
 		return getDescriptor().supportsEmpty();
 	}
-
 
 	/**
 	 * Adapt the given instance to a Reactive Streams {@code Publisher}.

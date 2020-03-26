@@ -21,8 +21,6 @@ import java.util.ListIterator;
  * use the {@link java.util.Collections#synchronizedList} utility methods.
  *
  * <p>Inspired by {@code LazyList} from Commons Collections.
- *
- * @author Rob Harrop
 
  * @since 2.0
  * @param <E> the element type
@@ -36,16 +34,14 @@ public class AutoPopulatingList<E> implements List<E>, Serializable {
 	private final List<E> backingList;
 
 	/**
-	 * The {@link ElementFactory} to use to create new {@link List} elements
-	 * on demand.
+	 * The {@link ElementFactory} to use to create new {@link List} elements on demand.
 	 */
 	private final ElementFactory<E> elementFactory;
 
 
 	/**
 	 * Creates a new {@code AutoPopulatingList} that is backed by a standard
-	 * {@link ArrayList} and adds new instances of the supplied {@link Class element Class}
-	 * to the backing {@link List} on demand.
+	 * {@link ArrayList} and adds new instances of the supplied {@link Class element Class} to the backing {@link List} on demand.
 	 */
 	public AutoPopulatingList(Class<? extends E> elementClass) {
 		this(new ArrayList<>(), elementClass);
@@ -53,8 +49,7 @@ public class AutoPopulatingList<E> implements List<E>, Serializable {
 
 	/**
 	 * Creates a new {@code AutoPopulatingList} that is backed by the supplied {@link List}
-	 * and adds new instances of the supplied {@link Class element Class} to the backing
-	 * {@link List} on demand.
+	 * and adds new instances of the supplied {@link Class element Class} to the backing  {@link List} on demand.
 	 */
 	public AutoPopulatingList(List<E> backingList, Class<? extends E> elementClass) {
 		this(backingList, new ReflectiveElementFactory<>(elementClass));
@@ -116,8 +111,7 @@ public class AutoPopulatingList<E> implements List<E>, Serializable {
 	}
 
 	/**
-	 * Get the element at the supplied index, creating it if there is
-	 * no element at that index.
+	 * Get the element at the supplied index, creating it if there is  no element at that index.
 	 */
 	@Override
 	public E get(int index) {
@@ -129,8 +123,7 @@ public class AutoPopulatingList<E> implements List<E>, Serializable {
 				element = this.elementFactory.createElement(index);
 				this.backingList.set(index, element);
 			}
-		}
-		else {
+		}else {
 			for (int x = backingListSize; x < index; x++) {
 				this.backingList.add(null);
 			}
@@ -280,22 +273,16 @@ public class AutoPopulatingList<E> implements List<E>, Serializable {
 		public E createElement(int index) {
 			try {
 				return ReflectionUtils.accessibleConstructor(this.elementClass).newInstance();
-			}
-			catch (NoSuchMethodException ex) {
-				throw new ElementInstantiationException(
-						"No default constructor on element class: " + this.elementClass.getName(), ex);
-			}
-			catch (InstantiationException ex) {
-				throw new ElementInstantiationException(
-						"Unable to instantiate element class: " + this.elementClass.getName(), ex);
-			}
-			catch (IllegalAccessException ex) {
-				throw new ElementInstantiationException(
-						"Could not access element constructor: " + this.elementClass.getName(), ex);
-			}
-			catch (InvocationTargetException ex) {
-				throw new ElementInstantiationException(
-						"Failed to invoke element constructor: " + this.elementClass.getName(), ex.getTargetException());
+			}catch (NoSuchMethodException ex) {
+				throw new ElementInstantiationException("No default constructor on element class: " + this.elementClass.getName(), ex);
+			}catch (InstantiationException ex) {
+				throw new ElementInstantiationException("Unable to instantiate element class: " + this.elementClass.getName(), ex);
+
+			}catch (IllegalAccessException ex) {
+				throw new ElementInstantiationException("Could not access element constructor: " + this.elementClass.getName(), ex);
+
+			}catch (InvocationTargetException ex) {
+				throw new ElementInstantiationException("Failed to invoke element constructor: " + this.elementClass.getName(), ex.getTargetException());
 			}
 		}
 	}

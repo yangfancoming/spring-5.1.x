@@ -8,10 +8,7 @@ package org.springframework.core;
  * Spring's CGLIB proxy factory for making a caching decision.
  *
  * <p>If a ClassLoader does <i>not</i> implement this interface,
- * then all of the classes obtained from it should be considered
- * as not reloadable (i.e. cacheable).
- *
-
+ * then all of the classes obtained from it should be considered as not reloadable (i.e. cacheable).
  * @since 2.5.1
  */
 public interface SmartClassLoader {

@@ -8,8 +8,6 @@ import org.apache.commons.logging.Log;
 
 /**
  * {@code java.io.Writer} adapter for a Commons Logging {@code Log}.
- *
-
  * @since 2.5.1
  */
 public class CommonsLogWriter extends Writer {
@@ -17,7 +15,6 @@ public class CommonsLogWriter extends Writer {
 	private final Log logger;
 
 	private final StringBuilder buffer = new StringBuilder();
-
 
 	/**
 	 * Create a new CommonsLogWriter for the given Commons Logging logger.
@@ -33,8 +30,7 @@ public class CommonsLogWriter extends Writer {
 		if (ch == '\n' && this.buffer.length() > 0) {
 			logger.debug(this.buffer.toString());
 			this.buffer.setLength(0);
-		}
-		else {
+		}else {
 			this.buffer.append(ch);
 		}
 	}
@@ -46,8 +42,7 @@ public class CommonsLogWriter extends Writer {
 			if (ch == '\n' && this.buffer.length() > 0) {
 				logger.debug(this.buffer.toString());
 				this.buffer.setLength(0);
-			}
-			else {
+			}else {
 				this.buffer.append(ch);
 			}
 		}

@@ -87,8 +87,7 @@ public abstract class FileCopyUtils {
 		Assert.notNull(out, "No OutputStream specified");
 		try {
 			return StreamUtils.copy(in, out);
-		}
-		finally {
+		}finally {
 			try { in.close();}
 			catch (IOException ex) {}
 			try { out.close();}
@@ -108,8 +107,7 @@ public abstract class FileCopyUtils {
 		Assert.notNull(out, "No OutputStream specified");
 		try {
 			out.write(in);
-		}
-		finally {
+		}finally {
 			try { out.close();}
 			catch (IOException ex) {}
 		}
@@ -122,14 +120,11 @@ public abstract class FileCopyUtils {
 	 * @throws IOException in case of I/O errors
 	 */
 	public static byte[] copyToByteArray(@Nullable InputStream in) throws IOException {
-		if (in == null) {
-			return new byte[0];
-		}
+		if (in == null) return new byte[0];
 		ByteArrayOutputStream out = new ByteArrayOutputStream(BUFFER_SIZE);
 		copy(in, out);
 		return out.toByteArray();
 	}
-
 
 	//---------------------------------------------------------------------
 	// Copy methods for java.io.Reader / java.io.Writer
@@ -156,8 +151,7 @@ public abstract class FileCopyUtils {
 			}
 			out.flush();
 			return byteCount;
-		}
-		finally {
+		}finally {
 			try { in.close();}
 			catch (IOException ex) {}
 			try { out.close();}
@@ -177,8 +171,7 @@ public abstract class FileCopyUtils {
 		Assert.notNull(out, "No Writer specified");
 		try {
 			out.write(in);
-		}
-		finally {
+		}finally {
 			try { out.close();}
 			catch (IOException ex) {}
 		}
@@ -192,9 +185,7 @@ public abstract class FileCopyUtils {
 	 * @throws IOException in case of I/O errors
 	 */
 	public static String copyToString(@Nullable Reader in) throws IOException {
-		if (in == null) {
-			return "";
-		}
+		if (in == null)	return "";
 		StringWriter out = new StringWriter();
 		copy(in, out);
 		return out.toString();

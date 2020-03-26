@@ -8,11 +8,7 @@ import java.util.Base64;
 
 /**
  * A simple utility class for Base64 encoding and decoding.
- *
  * <p>Adapts to Java 8's {@link java.util.Base64} in a convenience fashion.
- *
-
- * @author Gary Russell
  * @since 4.1
  * @see java.util.Base64
  */
@@ -20,16 +16,13 @@ public abstract class Base64Utils {
 
 	private static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
-
 	/**
 	 * Base64-encode the given byte array.
 	 * @param src the original byte array
 	 * @return the encoded byte array
 	 */
 	public static byte[] encode(byte[] src) {
-		if (src.length == 0) {
-			return src;
-		}
+		if (src.length == 0) return src;
 		return Base64.getEncoder().encode(src);
 	}
 
@@ -39,9 +32,7 @@ public abstract class Base64Utils {
 	 * @return the original byte array
 	 */
 	public static byte[] decode(byte[] src) {
-		if (src.length == 0) {
-			return src;
-		}
+		if (src.length == 0) return src;
 		return Base64.getDecoder().decode(src);
 	}
 
@@ -53,9 +44,7 @@ public abstract class Base64Utils {
 	 * @since 4.2.4
 	 */
 	public static byte[] encodeUrlSafe(byte[] src) {
-		if (src.length == 0) {
-			return src;
-		}
+		if (src.length == 0) return src;
 		return Base64.getUrlEncoder().encode(src);
 	}
 
@@ -67,9 +56,7 @@ public abstract class Base64Utils {
 	 * @since 4.2.4
 	 */
 	public static byte[] decodeUrlSafe(byte[] src) {
-		if (src.length == 0) {
-			return src;
-		}
+		if (src.length == 0) return src;
 		return Base64.getUrlDecoder().decode(src);
 	}
 
@@ -79,9 +66,7 @@ public abstract class Base64Utils {
 	 * @return the encoded byte array as a UTF-8 String
 	 */
 	public static String encodeToString(byte[] src) {
-		if (src.length == 0) {
-			return "";
-		}
+		if (src.length == 0) return "";
 		return new String(encode(src), DEFAULT_CHARSET);
 	}
 

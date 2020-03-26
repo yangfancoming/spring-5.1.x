@@ -34,12 +34,6 @@ import org.springframework.lang.Nullable;
  * Mainly for internal use within the framework; consider
  * <a href="https://commons.apache.org/proper/commons-lang/">Apache's Commons Lang</a>
  * for a more comprehensive suite of {@code String} utilities.
- *
- * @author Keith Donald
-
- * @author Sam Brannen
- * @author Colin Sampaleanu
- * @author Rob Harrop
  * @since 1.1.2
  */
 public abstract class Assert {
@@ -100,9 +94,7 @@ public abstract class Assert {
 	 * @throws IllegalArgumentException if {@code expression} is {@code false}
 	 */
 	public static void isTrue(boolean expression, String message) {
-		if (!expression) {
-			throw new IllegalArgumentException(message);
-		}
+		if (!expression) throw new IllegalArgumentException(message);
 	}
 
 	/**
@@ -118,9 +110,7 @@ public abstract class Assert {
 	 * @since 5.0
 	 */
 	public static void isTrue(boolean expression, Supplier<String> messageSupplier) {
-		if (!expression) {
-			throw new IllegalArgumentException(nullSafeGet(messageSupplier));
-		}
+		if (!expression) throw new IllegalArgumentException(nullSafeGet(messageSupplier));
 	}
 
 	/**
@@ -141,9 +131,7 @@ public abstract class Assert {
 	 * @throws IllegalArgumentException if the object is not {@code null}
 	 */
 	public static void isNull(@Nullable Object object, String message) {
-		if (object != null) {
-			throw new IllegalArgumentException(message);
-		}
+		if (object != null) throw new IllegalArgumentException(message);
 	}
 
 	/**
@@ -158,9 +146,7 @@ public abstract class Assert {
 	 * @since 5.0
 	 */
 	public static void isNull(@Nullable Object object, Supplier<String> messageSupplier) {
-		if (object != null) {
-			throw new IllegalArgumentException(nullSafeGet(messageSupplier));
-		}
+		if (object != null) throw new IllegalArgumentException(nullSafeGet(messageSupplier));
 	}
 
 	/**
@@ -180,9 +166,7 @@ public abstract class Assert {
 	 * @throws IllegalArgumentException if the object is {@code null}
 	 */
 	public static void notNull(@Nullable Object object, String message) {
-		if (object == null) {
-			throw new IllegalArgumentException(message);
-		}
+		if (object == null) throw new IllegalArgumentException(message);
 	}
 
 	/**
@@ -197,9 +181,7 @@ public abstract class Assert {
 	 * @since 5.0
 	 */
 	public static void notNull(@Nullable Object object, Supplier<String> messageSupplier) {
-		if (object == null) {
-			throw new IllegalArgumentException(nullSafeGet(messageSupplier));
-		}
+		if (object == null) throw new IllegalArgumentException(nullSafeGet(messageSupplier));
 	}
 
 	/**
@@ -246,14 +228,12 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that the given String is not empty; that is,
-	 * it must not be {@code null} and not the empty String.
+	 * Assert that the given String is not empty; that is,it must not be {@code null} and not the empty String.
 	 * @deprecated as of 4.3.7, in favor of {@link #hasLength(String, String)}
 	 */
 	@Deprecated
 	public static void hasLength(@Nullable String text) {
-		hasLength(text,
-				"[Assertion failed] - this String argument must have length; it must not be null or empty");
+		hasLength(text,"[Assertion failed] - this String argument must have length; it must not be null or empty");
 	}
 
 	/**
@@ -297,8 +277,7 @@ public abstract class Assert {
 	 */
 	@Deprecated
 	public static void hasText(@Nullable String text) {
-		hasText(text,
-				"[Assertion failed] - this String argument must have text; it must not be null, empty, or blank");
+		hasText(text,"[Assertion failed] - this String argument must have text; it must not be null, empty, or blank");
 	}
 
 	/**
@@ -310,8 +289,7 @@ public abstract class Assert {
 	 * @throws IllegalArgumentException if the text contains the substring
 	 */
 	public static void doesNotContain(@Nullable String textToSearch, String substring, String message) {
-		if (StringUtils.hasLength(textToSearch) && StringUtils.hasLength(substring) &&
-				textToSearch.contains(substring)) {
+		if (StringUtils.hasLength(textToSearch) && StringUtils.hasLength(substring) && textToSearch.contains(substring)) {
 			throw new IllegalArgumentException(message);
 		}
 	}
@@ -329,8 +307,7 @@ public abstract class Assert {
 	 * @since 5.0
 	 */
 	public static void doesNotContain(@Nullable String textToSearch, String substring, Supplier<String> messageSupplier) {
-		if (StringUtils.hasLength(textToSearch) && StringUtils.hasLength(substring) &&
-				textToSearch.contains(substring)) {
+		if (StringUtils.hasLength(textToSearch) && StringUtils.hasLength(substring) && textToSearch.contains(substring)) {
 			throw new IllegalArgumentException(nullSafeGet(messageSupplier));
 		}
 	}
@@ -341,8 +318,7 @@ public abstract class Assert {
 	 */
 	@Deprecated
 	public static void doesNotContain(@Nullable String textToSearch, String substring) {
-		doesNotContain(textToSearch, substring,
-				() -> "[Assertion failed] - this String argument must not contain the substring [" + substring + "]");
+		doesNotContain(textToSearch, substring,() -> "[Assertion failed] - this String argument must not contain the substring [" + substring + "]");
 	}
 
 	/**
@@ -354,9 +330,7 @@ public abstract class Assert {
 	 * @throws IllegalArgumentException if the object array is {@code null} or contains no elements
 	 */
 	public static void notEmpty(@Nullable Object[] array, String message) {
-		if (ObjectUtils.isEmpty(array)) {
-			throw new IllegalArgumentException(message);
-		}
+		if (ObjectUtils.isEmpty(array)) throw new IllegalArgumentException(message);
 	}
 
 	/**
@@ -372,9 +346,7 @@ public abstract class Assert {
 	 * @since 5.0
 	 */
 	public static void notEmpty(@Nullable Object[] array, Supplier<String> messageSupplier) {
-		if (ObjectUtils.isEmpty(array)) {
-			throw new IllegalArgumentException(nullSafeGet(messageSupplier));
-		}
+		if (ObjectUtils.isEmpty(array)) throw new IllegalArgumentException(nullSafeGet(messageSupplier));
 	}
 
 	/**
@@ -398,9 +370,7 @@ public abstract class Assert {
 	public static void noNullElements(@Nullable Object[] array, String message) {
 		if (array != null) {
 			for (Object element : array) {
-				if (element == null) {
-					throw new IllegalArgumentException(message);
-				}
+				if (element == null)throw new IllegalArgumentException(message);
 			}
 		}
 	}
@@ -420,9 +390,7 @@ public abstract class Assert {
 	public static void noNullElements(@Nullable Object[] array, Supplier<String> messageSupplier) {
 		if (array != null) {
 			for (Object element : array) {
-				if (element == null) {
-					throw new IllegalArgumentException(nullSafeGet(messageSupplier));
-				}
+				if (element == null) throw new IllegalArgumentException(nullSafeGet(messageSupplier));
 			}
 		}
 	}
@@ -477,8 +445,7 @@ public abstract class Assert {
 	 */
 	@Deprecated
 	public static void notEmpty(@Nullable Collection<?> collection) {
-		notEmpty(collection,
-				"[Assertion failed] - this collection must not be empty: it must contain at least 1 element");
+		notEmpty(collection,"[Assertion failed] - this collection must not be empty: it must contain at least 1 element");
 	}
 
 	/**
@@ -490,9 +457,7 @@ public abstract class Assert {
 	 * @throws IllegalArgumentException if the map is {@code null} or contains no entries
 	 */
 	public static void notEmpty(@Nullable Map<?, ?> map, String message) {
-		if (CollectionUtils.isEmpty(map)) {
-			throw new IllegalArgumentException(message);
-		}
+		if (CollectionUtils.isEmpty(map)) throw new IllegalArgumentException(message);
 	}
 
 	/**
@@ -508,9 +473,7 @@ public abstract class Assert {
 	 * @since 5.0
 	 */
 	public static void notEmpty(@Nullable Map<?, ?> map, Supplier<String> messageSupplier) {
-		if (CollectionUtils.isEmpty(map)) {
-			throw new IllegalArgumentException(nullSafeGet(messageSupplier));
-		}
+		if (CollectionUtils.isEmpty(map)) throw new IllegalArgumentException(nullSafeGet(messageSupplier));
 	}
 
 	/**
@@ -629,8 +592,7 @@ public abstract class Assert {
 		if (StringUtils.hasLength(msg)) {
 			if (endsWithSeparator(msg)) {
 				result = msg + " ";
-			}
-			else {
+			}else {
 				result = messageWithTypeName(msg, className);
 				defaultMessage = false;
 			}
@@ -647,15 +609,12 @@ public abstract class Assert {
 		if (StringUtils.hasLength(msg)) {
 			if (endsWithSeparator(msg)) {
 				result = msg + " ";
-			}
-			else {
+			}else {
 				result = messageWithTypeName(msg, subType);
 				defaultMessage = false;
 			}
 		}
-		if (defaultMessage) {
-			result = result + (subType + " is not assignable to " + superType);
-		}
+		if (defaultMessage) result = result + (subType + " is not assignable to " + superType);
 		throw new IllegalArgumentException(result);
 	}
 

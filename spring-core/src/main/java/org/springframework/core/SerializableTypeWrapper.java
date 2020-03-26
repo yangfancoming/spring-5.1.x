@@ -34,22 +34,16 @@ import org.springframework.util.ReflectionUtils;
  * {@link WildcardType}. With the exception of {@link Class} (which is final) calls
  * to methods that return further {@link Type Types} (for example
  * {@link GenericArrayType#getGenericComponentType()}) will be automatically wrapped.
- *
- * @author Phillip Webb
-
  * @since 4.0
  */
 final class SerializableTypeWrapper {
 
-	private static final Class<?>[] SUPPORTED_SERIALIZABLE_TYPES = {
-			GenericArrayType.class, ParameterizedType.class, TypeVariable.class, WildcardType.class};
+	private static final Class<?>[] SUPPORTED_SERIALIZABLE_TYPES = {GenericArrayType.class, ParameterizedType.class, TypeVariable.class, WildcardType.class};
 
 	static final ConcurrentReferenceHashMap<Type, Type> cache = new ConcurrentReferenceHashMap<>(256);
 
-
 	private SerializableTypeWrapper() {
 	}
-
 
 	/**
 	 * Return a {@link Serializable} variant of {@link Field#getGenericType()}.
@@ -123,20 +117,17 @@ final class SerializableTypeWrapper {
 	 * Additional interface implemented by the type proxy.
 	 */
 	interface SerializableTypeProxy {
-
 		/**
 		 * Return the underlying type provider.
 		 */
 		TypeProvider getTypeProvider();
 	}
 
-
 	/**
 	 * A {@link Serializable} interface providing access to a {@link Type}.
 	 */
 	@SuppressWarnings("serial")
 	interface TypeProvider extends Serializable {
-
 		/**
 		 * Return the (possibly non {@link Serializable}) {@link Type}.
 		 */
@@ -178,18 +169,15 @@ final class SerializableTypeWrapper {
 					other = unwrap((Type) other);
 				}
 				return ObjectUtils.nullSafeEquals(this.provider.getType(), other);
-			}
-			else if (method.getName().equals("hashCode")) {
+			}else if (method.getName().equals("hashCode")) {
 				return ObjectUtils.nullSafeHashCode(this.provider.getType());
-			}
-			else if (method.getName().equals("getTypeProvider")) {
+			}else if (method.getName().equals("getTypeProvider")) {
 				return this.provider;
 			}
 
 			if (Type.class == method.getReturnType() && args == null) {
 				return forTypeProvider(new MethodInvokeTypeProvider(this.provider, method, -1));
-			}
-			else if (Type[].class == method.getReturnType() && args == null) {
+			}else if (Type[].class == method.getReturnType() && args == null) {
 				Type[] result = new Type[((Type[]) method.invoke(this.provider.getType())).length];
 				for (int i = 0; i < result.length; i++) {
 					result[i] = forTypeProvider(new MethodInvokeTypeProvider(this.provider, method, i));
@@ -199,8 +187,7 @@ final class SerializableTypeWrapper {
 
 			try {
 				return method.invoke(this.provider.getType(), args);
-			}
-			catch (InvocationTargetException ex) {
+			}catch (InvocationTargetException ex) {
 				throw ex.getTargetException();
 			}
 		}
@@ -239,8 +226,7 @@ final class SerializableTypeWrapper {
 			inputStream.defaultReadObject();
 			try {
 				this.field = this.declaringClass.getDeclaredField(this.fieldName);
-			}
-			catch (Throwable ex) {
+			}catch (Throwable ex) {
 				throw new IllegalStateException("Could not find original class structure", ex);
 			}
 		}
@@ -286,15 +272,11 @@ final class SerializableTypeWrapper {
 			inputStream.defaultReadObject();
 			try {
 				if (this.methodName != null) {
-					this.methodParameter = new MethodParameter(
-							this.declaringClass.getDeclaredMethod(this.methodName, this.parameterTypes), this.parameterIndex);
+					this.methodParameter = new MethodParameter(this.declaringClass.getDeclaredMethod(this.methodName, this.parameterTypes), this.parameterIndex);
+				}else {
+					this.methodParameter = new MethodParameter(this.declaringClass.getDeclaredConstructor(this.parameterTypes), this.parameterIndex);
 				}
-				else {
-					this.methodParameter = new MethodParameter(
-							this.declaringClass.getDeclaredConstructor(this.parameterTypes), this.parameterIndex);
-				}
-			}
-			catch (Throwable ex) {
+			}catch (Throwable ex) {
 				throw new IllegalStateException("Could not find original class structure", ex);
 			}
 		}
@@ -354,8 +336,7 @@ final class SerializableTypeWrapper {
 				throw new IllegalStateException("Cannot find method on deserialization: " + this.methodName);
 			}
 			if (method.getReturnType() != Type.class && method.getReturnType() != Type[].class) {
-				throw new IllegalStateException(
-						"Invalid return type on deserialized method - needs to be Type or Type[]: " + method);
+				throw new IllegalStateException("Invalid return type on deserialized method - needs to be Type or Type[]: " + method);
 			}
 			this.method = method;
 		}

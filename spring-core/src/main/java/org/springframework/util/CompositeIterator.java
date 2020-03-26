@@ -13,8 +13,6 @@ import java.util.Set;
  *
  * <p>This implementation maintains a linked set of iterators
  * which are invoked in sequence until all iterators are exhausted.
- *
- * @author Erwin Vervaet
 
  * @since 3.0
  * @param <E> the element type
@@ -24,7 +22,6 @@ public class CompositeIterator<E> implements Iterator<E> {
 	private final Set<Iterator<E>> iterators = new LinkedHashSet<>();
 
 	private boolean inUse = false;
-
 
 	/**
 	 * Add given iterator to this composite.
@@ -41,9 +38,7 @@ public class CompositeIterator<E> implements Iterator<E> {
 	public boolean hasNext() {
 		this.inUse = true;
 		for (Iterator<E> iterator : this.iterators) {
-			if (iterator.hasNext()) {
-				return true;
-			}
+			if (iterator.hasNext()) return true;
 		}
 		return false;
 	}
@@ -52,9 +47,7 @@ public class CompositeIterator<E> implements Iterator<E> {
 	public E next() {
 		this.inUse = true;
 		for (Iterator<E> iterator : this.iterators) {
-			if (iterator.hasNext()) {
-				return iterator.next();
-			}
+			if (iterator.hasNext()) return iterator.next();
 		}
 		throw new NoSuchElementException("All iterators exhausted");
 	}

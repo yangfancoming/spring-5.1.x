@@ -6,24 +6,18 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.LinkedList;
 import java.util.List;
-
 import org.springframework.lang.Nullable;
 
 /**
  * {@link ParameterNameDiscoverer} implementation that tries several discoverer
  * delegates in succession. Those added first in the {@code addDiscoverer} method
  * have highest priority. If one returns {@code null}, the next will be tried.
- *
  * <p>The default behavior is to return {@code null} if no discoverer matches.
- *
- * @author Rod Johnson
-
  * @since 2.0
  */
 public class PrioritizedParameterNameDiscoverer implements ParameterNameDiscoverer {
 
 	private final List<ParameterNameDiscoverer> parameterNameDiscoverers = new LinkedList<>();
-
 
 	/**
 	 * Add a further {@link ParameterNameDiscoverer} delegate to the list of
@@ -32,7 +26,6 @@ public class PrioritizedParameterNameDiscoverer implements ParameterNameDiscover
 	public void addDiscoverer(ParameterNameDiscoverer pnd) {
 		this.parameterNameDiscoverers.add(pnd);
 	}
-
 
 	@Override
 	@Nullable

@@ -20,7 +20,6 @@ import org.apache.commons.logging.LogFactory;
  * <p>The default concurrency limit of this support class is -1
  * ("unbounded concurrency"). Subclasses may override this default;
  * check the javadoc of the concrete class that you're using.
- *
 
  * @since 1.2.5
  * @see #setConcurrencyLimit
@@ -99,25 +98,18 @@ public abstract class ConcurrencyThrottleSupport implements Serializable {
 				boolean interrupted = false;
 				while (this.concurrencyCount >= this.concurrencyLimit) {
 					if (interrupted) {
-						throw new IllegalStateException("Thread was interrupted while waiting for invocation access, " +
-								"but concurrency limit still does not allow for entering");
+						throw new IllegalStateException("Thread was interrupted while waiting for invocation access, but concurrency limit still does not allow for entering");
 					}
-					if (debug) {
-						logger.debug("Concurrency count " + this.concurrencyCount +
-								" has reached limit " + this.concurrencyLimit + " - blocking");
-					}
+					if (debug) logger.debug("Concurrency count " + this.concurrencyCount + " has reached limit " + this.concurrencyLimit + " - blocking");
 					try {
 						this.monitor.wait();
-					}
-					catch (InterruptedException ex) {
+					}catch (InterruptedException ex) {
 						// Re-interrupt current thread, to allow other threads to react.
 						Thread.currentThread().interrupt();
 						interrupted = true;
 					}
 				}
-				if (debug) {
-					logger.debug("Entering throttle at concurrency count " + this.concurrencyCount);
-				}
+				if (debug) logger.debug("Entering throttle at concurrency count " + this.concurrencyCount);
 				this.concurrencyCount++;
 			}
 		}
@@ -131,9 +123,7 @@ public abstract class ConcurrencyThrottleSupport implements Serializable {
 		if (this.concurrencyLimit >= 0) {
 			synchronized (this.monitor) {
 				this.concurrencyCount--;
-				if (logger.isDebugEnabled()) {
-					logger.debug("Returning from throttle at concurrency count " + this.concurrencyCount);
-				}
+				if (logger.isDebugEnabled()) logger.debug("Returning from throttle at concurrency count " + this.concurrencyCount);
 				this.monitor.notify();
 			}
 		}
@@ -147,7 +137,6 @@ public abstract class ConcurrencyThrottleSupport implements Serializable {
 	private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
 		// Rely on default serialization, just initialize state after deserialization.
 		ois.defaultReadObject();
-
 		// Initialize transient fields.
 		this.logger = LogFactory.getLog(getClass());
 		this.monitor = new Object();

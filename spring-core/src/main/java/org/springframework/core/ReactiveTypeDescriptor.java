@@ -10,8 +10,6 @@ import org.springframework.util.Assert;
 /**
  * Describes the semantics of a reactive type including boolean checks for
  * {@link #isMultiValue()}, {@link #isNoValue()}, and {@link #supportsEmpty()}.
- *
- * @author Rossen Stoyanchev
  * @since 5.0
  */
 public final class ReactiveTypeDescriptor {
@@ -25,20 +23,16 @@ public final class ReactiveTypeDescriptor {
 	@Nullable
 	private final Supplier<?> emptyValueSupplier;
 
-
 	/**
 	 * Private constructor. See static factory methods.
 	 */
-	private ReactiveTypeDescriptor(Class<?> reactiveType, boolean multiValue, boolean noValue,
-			@Nullable Supplier<?> emptySupplier) {
-
+	private ReactiveTypeDescriptor(Class<?> reactiveType, boolean multiValue, boolean noValue,@Nullable Supplier<?> emptySupplier) {
 		Assert.notNull(reactiveType, "'reactiveType' must not be null");
 		this.reactiveType = reactiveType;
 		this.multiValue = multiValue;
 		this.noValue = noValue;
 		this.emptyValueSupplier = emptySupplier;
 	}
-
 
 	/**
 	 * Return the reactive type for this descriptor.
@@ -84,9 +78,7 @@ public final class ReactiveTypeDescriptor {
 
 	@Override
 	public boolean equals(@Nullable Object other) {
-		if (this == other) {
-			return true;
-		}
+		if (this == other) return true;
 		if (other == null || getClass() != other.getClass()) {
 			return false;
 		}
@@ -97,7 +89,6 @@ public final class ReactiveTypeDescriptor {
 	public int hashCode() {
 		return this.reactiveType.hashCode();
 	}
-
 
 	/**
 	 * Descriptor for a reactive type that can produce 0..N values.

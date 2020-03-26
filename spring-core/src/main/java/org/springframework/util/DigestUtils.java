@@ -87,8 +87,7 @@ public abstract class DigestUtils {
 	private static MessageDigest getDigest(String algorithm) {
 		try {
 			return MessageDigest.getInstance(algorithm);
-		}
-		catch (NoSuchAlgorithmException ex) {
+		}catch (NoSuchAlgorithmException ex) {
 			throw new IllegalStateException("Could not find MessageDigest with algorithm \"" + algorithm + "\"", ex);
 		}
 	}
@@ -102,8 +101,7 @@ public abstract class DigestUtils {
 		if (inputStream instanceof UpdateMessageDigestInputStream){
 			((UpdateMessageDigestInputStream) inputStream).updateMessageDigest(messageDigest);
 			return messageDigest.digest();
-		}
-		else {
+		}else {
 			final byte[] buffer = new byte[StreamUtils.BUFFER_SIZE];
 			int bytesRead;
 			while ((bytesRead = inputStream.read(buffer)) != -1) {

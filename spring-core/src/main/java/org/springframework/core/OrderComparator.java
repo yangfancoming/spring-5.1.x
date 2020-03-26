@@ -14,17 +14,14 @@ import org.springframework.util.ObjectUtils;
  * by order value ascending, respectively by priority descending.
  *
  * <h3>Same Order Objects</h3>
- * <p>Objects that have the same order value will be sorted with arbitrary
+ * Objects that have the same order value will be sorted with arbitrary
  * ordering with respect to other objects with the same order value.
  *
  * <h3>Non-ordered Objects</h3>
- * <p>Any object that does not provide its own order value is implicitly
+ * Any object that does not provide its own order value is implicitly
  * assigned a value of {@link Ordered#LOWEST_PRECEDENCE}, thus ending up
- * at the end of a sorted collection in arbitrary order with respect to
- * other objects with the same order value.
- *
+ * at the end of a sorted collection in arbitrary order with respect to other objects with the same order value.
 
- * @author Sam Brannen
  * @since 07.04.2003
  * @see Ordered
  * @see org.springframework.core.annotation.AnnotationAwareOrderComparator
@@ -37,7 +34,6 @@ public class OrderComparator implements Comparator<Object> {
 	 * Shared default instance of {@code OrderComparator}.
 	 */
 	public static final OrderComparator INSTANCE = new OrderComparator();
-
 
 	/**
 	 * Build an adapted order comparator with the given source provider.
@@ -59,11 +55,9 @@ public class OrderComparator implements Comparator<Object> {
 		boolean p2 = (o2 instanceof PriorityOrdered);
 		if (p1 && !p2) {
 			return -1;
-		}
-		else if (p2 && !p1) {
+		}else if (p2 && !p1) {
 			return 1;
 		}
-
 		int i1 = getOrder(o1, sourceProvider);
 		int i2 = getOrder(o2, sourceProvider);
 		return Integer.compare(i1, i2);
@@ -71,7 +65,7 @@ public class OrderComparator implements Comparator<Object> {
 
 	/**
 	 * Determine the order value for the given object.
-	 * <p>The default implementation checks against the given {@link OrderSourceProvider}
+	 * The default implementation checks against the given {@link OrderSourceProvider}
 	 * using {@link #findOrder} and falls back to a regular {@link #getOrder(Object)} call.
 	 * @param obj the object to check
 	 * @return the order value, or {@code Ordered.LOWEST_PRECEDENCE} as fallback
@@ -89,8 +83,7 @@ public class OrderComparator implements Comparator<Object> {
 							break;
 						}
 					}
-				}
-				else {
+				}else {
 					order = findOrder(orderSource);
 				}
 			}
@@ -100,7 +93,7 @@ public class OrderComparator implements Comparator<Object> {
 
 	/**
 	 * Determine the order value for the given object.
-	 * <p>The default implementation checks against the {@link Ordered} interface
+	 * The default implementation checks against the {@link Ordered} interface
 	 * through delegating to {@link #findOrder}. Can be overridden in subclasses.
 	 * @param obj the object to check
 	 * @return the order value, or {@code Ordered.LOWEST_PRECEDENCE} as fallback
@@ -117,7 +110,7 @@ public class OrderComparator implements Comparator<Object> {
 
 	/**
 	 * Find an order value indicated by the given object.
-	 * <p>The default implementation checks against the {@link Ordered} interface.
+	 * The default implementation checks against the {@link Ordered} interface.
 	 * Can be overridden in subclasses.
 	 * @param obj the object to check
 	 * @return the order value, or {@code null} if none found
@@ -129,7 +122,7 @@ public class OrderComparator implements Comparator<Object> {
 
 	/**
 	 * Determine a priority value for the given object, if any.
-	 * <p>The default implementation always returns {@code null}.
+	 * The default implementation always returns {@code null}.
 	 * Subclasses may override this to give specific kinds of values a
 	 * 'priority' characteristic, in addition to their 'order' semantics.
 	 * A priority indicates that it may be used for selecting one object over
@@ -143,37 +136,32 @@ public class OrderComparator implements Comparator<Object> {
 		return null;
 	}
 
-
 	/**
 	 * Sort the given List with a default OrderComparator.
-	 * <p>Optimized to skip sorting for lists with size 0 or 1,
+	 * Optimized to skip sorting for lists with size 0 or 1,
 	 * in order to avoid unnecessary array extraction.
 	 * @param list the List to sort
 	 * @see java.util.List#sort(java.util.Comparator)
 	 */
 	public static void sort(List<?> list) {
-		if (list.size() > 1) {
-			list.sort(INSTANCE);
-		}
+		if (list.size() > 1) list.sort(INSTANCE);
 	}
 
 	/**
 	 * Sort the given array with a default OrderComparator.
-	 * <p>Optimized to skip sorting for lists with size 0 or 1,
+	 * Optimized to skip sorting for lists with size 0 or 1,
 	 * in order to avoid unnecessary array extraction.
 	 * @param array the array to sort
 	 * @see java.util.Arrays#sort(Object[], java.util.Comparator)
 	 */
 	public static void sort(Object[] array) {
-		if (array.length > 1) {
-			Arrays.sort(array, INSTANCE);
-		}
+		if (array.length > 1) Arrays.sort(array, INSTANCE);
 	}
 
 	/**
 	 * Sort the given array or List with a default OrderComparator,
 	 * if necessary. Simply skips sorting when given any other value.
-	 * <p>Optimized to skip sorting for lists with size 0 or 1,
+	 * Optimized to skip sorting for lists with size 0 or 1,
 	 * in order to avoid unnecessary array extraction.
 	 * @param value the array or List to sort
 	 * @see java.util.Arrays#sort(Object[], java.util.Comparator)
@@ -181,8 +169,7 @@ public class OrderComparator implements Comparator<Object> {
 	public static void sortIfNecessary(Object value) {
 		if (value instanceof Object[]) {
 			sort((Object[]) value);
-		}
-		else if (value instanceof List) {
+		}else if (value instanceof List) {
 			sort((List<?>) value);
 		}
 	}
@@ -198,8 +185,8 @@ public class OrderComparator implements Comparator<Object> {
 		/**
 		 * Return an order source for the specified object, i.e. an object that
 		 * should be checked for an order value as a replacement to the given object.
-		 * <p>Can also be an array of order source objects.
-		 * <p>If the returned object does not indicate any order, the comparator
+		 * Can also be an array of order source objects.
+		 * If the returned object does not indicate any order, the comparator
 		 * will fall back to checking the original object.
 		 * @param obj the object to find an order source for
 		 * @return the order source for that object, or {@code null} if none found

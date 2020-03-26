@@ -33,13 +33,10 @@ public abstract class FileSystemUtils {
 	 * @return {@code true} if the {@code File} was successfully deleted,otherwise {@code false}
 	 */
 	public static boolean deleteRecursively(@Nullable File root) {
-		if (root == null) {
-			return false;
-		}
+		if (root == null) return false;
 		try {
 			return deleteRecursively(root.toPath());
-		}
-		catch (IOException ex) {
+		}catch (IOException ex) {
 			return false;
 		}
 	}
@@ -52,12 +49,8 @@ public abstract class FileSystemUtils {
 	 * @since 5.0
 	 */
 	public static boolean deleteRecursively(@Nullable Path root) throws IOException {
-		if (root == null) {
-			return false;
-		}
-		if (!Files.exists(root)) {
-			return false;
-		}
+		if (root == null) return false;
+		if (!Files.exists(root)) return false;
 
 		Files.walkFileTree(root, new SimpleFileVisitor<Path>() {
 			@Override
@@ -110,11 +103,9 @@ public abstract class FileSystemUtils {
 					return FileVisitResult.CONTINUE;
 				}
 			});
-		}
-		else if (srcAttr.isRegularFile()) {
+		}else if (srcAttr.isRegularFile()) {
 			Files.copy(src, dest);
-		}
-		else {
+		}else {
 			throw new IllegalArgumentException("Source File must denote a directory or file");
 		}
 	}

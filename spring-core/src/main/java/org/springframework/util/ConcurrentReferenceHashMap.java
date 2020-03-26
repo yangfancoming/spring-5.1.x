@@ -33,14 +33,9 @@ import org.springframework.lang.Nullable;
  *
  * <p><b>NOTE:</b> The use of references means that there is no guarantee that items
  * placed into the map will be subsequently available. The garbage collector may discard
- * references at any time, so it may appear that an unknown thread is silently removing
- * entries.
- *
+ * references at any time, so it may appear that an unknown thread is silently removing entries.
  * <p>If not explicitly specified, this implementation will use
  * {@linkplain SoftReference soft entry references}.
- *
- * @author Phillip Webb
-
  * @since 3.2
  * @param <K> the key type
  * @param <V> the value type
@@ -153,9 +148,7 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
 	 * @param referenceType the reference type used for entries (soft or weak)
 	 */
 	@SuppressWarnings("unchecked")
-	public ConcurrentReferenceHashMap(
-			int initialCapacity, float loadFactor, int concurrencyLevel, ReferenceType referenceType) {
-
+	public ConcurrentReferenceHashMap(int initialCapacity, float loadFactor, int concurrencyLevel, ReferenceType referenceType) {
 		Assert.isTrue(initialCapacity >= 0, "Initial capacity must not be negative");
 		Assert.isTrue(loadFactor > 0f, "Load factor must be positive");
 		Assert.isTrue(concurrencyLevel > 0, "Concurrency level must be positive");
@@ -931,8 +924,7 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
 				if (this.referenceIndex >= this.references.length) {
 					moveToNextSegment();
 					this.referenceIndex = 0;
-				}
-				else {
+				}else {
 					this.reference = this.references[this.referenceIndex];
 					this.referenceIndex++;
 				}
@@ -1012,9 +1004,7 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
 		@Nullable
 		private final Reference<K, V> nextReference;
 
-		public SoftEntryReference(Entry<K, V> entry, int hash, @Nullable Reference<K, V> next,
-				ReferenceQueue<Entry<K, V>> queue) {
-
+		public SoftEntryReference(Entry<K, V> entry, int hash, @Nullable Reference<K, V> next,ReferenceQueue<Entry<K, V>> queue) {
 			super(entry, queue);
 			this.hash = hash;
 			this.nextReference = next;
@@ -1049,9 +1039,7 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
 		@Nullable
 		private final Reference<K, V> nextReference;
 
-		public WeakEntryReference(Entry<K, V> entry, int hash, @Nullable Reference<K, V> next,
-				ReferenceQueue<Entry<K, V>> queue) {
-
+		public WeakEntryReference(Entry<K, V> entry, int hash, @Nullable Reference<K, V> next,ReferenceQueue<Entry<K, V>> queue) {
 			super(entry, queue);
 			this.hash = hash;
 			this.nextReference = next;

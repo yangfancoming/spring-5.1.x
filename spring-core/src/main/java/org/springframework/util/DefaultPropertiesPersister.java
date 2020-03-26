@@ -30,7 +30,6 @@ import java.util.Properties;
  * to escape unicode characters in your properties files, do <i>not</i> specify
  * an encoding for a Reader/Writer (like ReloadableResourceBundleMessageSource's
  * "defaultEncoding" and "fileEncodings" properties).
- *
 
  * @since 10.03.2004
  * @see java.util.Properties

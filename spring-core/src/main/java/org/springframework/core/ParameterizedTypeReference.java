@@ -13,16 +13,11 @@ import org.springframework.util.Assert;
  * {@link Type}. In order to capture the generic type and retain it at runtime,
  * you need to create a subclass (ideally as anonymous inline class) as follows:
  *
- * <pre class="code">
  * ParameterizedTypeReference&lt;List&lt;String&gt;&gt; typeRef = new ParameterizedTypeReference&lt;List&lt;String&gt;&gt;() {};
- * </pre>
  *
  * <p>The resulting {@code typeRef} instance can then be used to obtain a {@link Type}
  * instance that carries the captured parameterized type information at runtime.
  * For more information on "super type tokens" see the link to Neal Gafter's blog post.
- *
- * @author Arjen Poutsma
- * @author Rossen Stoyanchev
  * @since 3.2
  * @param <T> the referenced type
  * @see <a href="https://gafter.blogspot.nl/2006/12/super-type-tokens.html">Neal Gafter on Super Type Tokens</a>
@@ -30,7 +25,6 @@ import org.springframework.util.Assert;
 public abstract class ParameterizedTypeReference<T> {
 
 	private final Type type;
-
 
 	protected ParameterizedTypeReference() {
 		Class<?> parameterizedTypeReferenceSubclass = findParameterizedTypeReferenceSubclass(getClass());
@@ -46,15 +40,13 @@ public abstract class ParameterizedTypeReference<T> {
 		this.type = type;
 	}
 
-
 	public Type getType() {
 		return this.type;
 	}
 
 	@Override
 	public boolean equals(Object other) {
-		return (this == other || (other instanceof ParameterizedTypeReference &&
-				this.type.equals(((ParameterizedTypeReference<?>) other).type)));
+		return (this == other || (other instanceof ParameterizedTypeReference && this.type.equals(((ParameterizedTypeReference<?>) other).type)));
 	}
 
 	@Override
@@ -67,7 +59,6 @@ public abstract class ParameterizedTypeReference<T> {
 		return "ParameterizedTypeReference<" + this.type + ">";
 	}
 
-
 	/**
 	 * Build a {@code ParameterizedTypeReference} wrapping the given type.
 	 * @param type a generic type (possibly obtained via reflection,
@@ -77,19 +68,16 @@ public abstract class ParameterizedTypeReference<T> {
 	 * @since 4.3.12
 	 */
 	public static <T> ParameterizedTypeReference<T> forType(Type type) {
-		return new ParameterizedTypeReference<T>(type) {
-		};
+		return new ParameterizedTypeReference<T>(type) {};
 	}
 
 	private static Class<?> findParameterizedTypeReferenceSubclass(Class<?> child) {
 		Class<?> parent = child.getSuperclass();
 		if (Object.class == parent) {
 			throw new IllegalStateException("Expected ParameterizedTypeReference superclass");
-		}
-		else if (ParameterizedTypeReference.class == parent) {
+		}else if (ParameterizedTypeReference.class == parent) {
 			return child;
-		}
-		else {
+		}else {
 			return findParameterizedTypeReferenceSubclass(parent);
 		}
 	}

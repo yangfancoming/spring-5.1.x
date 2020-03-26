@@ -13,8 +13,6 @@ import org.springframework.lang.Nullable;
  *
  * <p>Serves as base class for thread factories such as
  * {@link org.springframework.scheduling.concurrent.CustomizableThreadFactory}.
- *
-
  * @since 2.0.3
  * @see org.springframework.scheduling.concurrent.CustomizableThreadFactory
  */
@@ -47,7 +45,6 @@ public class CustomizableThreadCreator implements Serializable {
 	public CustomizableThreadCreator(@Nullable String threadNamePrefix) {
 		this.threadNamePrefix = (threadNamePrefix != null ? threadNamePrefix : getDefaultThreadNamePrefix());
 	}
-
 
 	/**
 	 * Specify the prefix to use for the names of newly created threads.
@@ -126,7 +123,6 @@ public class CustomizableThreadCreator implements Serializable {
 	public ThreadGroup getThreadGroup() {
 		return this.threadGroup;
 	}
-
 
 	/**
 	 * Template method for the creation of a new {@link Thread}.
