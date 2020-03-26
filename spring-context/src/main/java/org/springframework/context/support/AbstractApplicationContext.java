@@ -103,6 +103,7 @@ import org.springframework.util.ReflectionUtils;
  * @see org.springframework.context.event.ApplicationEventMulticaster
  * @see org.springframework.context.ApplicationListener
  * @see org.springframework.context.MessageSource
+ *
  */
 public abstract class AbstractApplicationContext extends DefaultResourceLoader implements ConfigurableApplicationContext {
 
@@ -910,8 +911,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	}
 
 	/**
-	 * Cancel this context's refresh attempt, resetting the {@code active} flag
-	 * after an exception got thrown.
+	 * Cancel this context's refresh attempt, resetting the {@code active} flag after an exception got thrown.
 	 * @param ex the exception that led to the cancellation
 	 */
 	protected void cancelRefresh(BeansException ex) {
@@ -920,8 +920,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 	/**
 	 * Reset Spring's common reflection metadata caches, in particular the
-	 * {@link ReflectionUtils}, {@link AnnotationUtils}, {@link ResolvableType}
-	 * and {@link CachedIntrospectionResults} caches.
+	 * {@link ReflectionUtils}, {@link AnnotationUtils}, {@link ResolvableType} and {@link CachedIntrospectionResults} caches.
 	 * @since 4.2
 	 * @see ReflectionUtils#clearCache()
 	 * @see AnnotationUtils#clearCache()

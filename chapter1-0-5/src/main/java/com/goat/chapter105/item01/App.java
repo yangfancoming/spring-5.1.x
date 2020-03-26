@@ -14,25 +14,25 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class App extends BaseTest {
 
-	// 传统标签 <bean>
-	@Test
-	public void test(){
-//		ApplicationContext ac = new ClassPathXmlApplicationContext("person.xml");
-		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:person.xml");
-		Person person = (Person)ac.getBean("person");
-		System.out.println(person);
-	}
-
 	/**
 	 * 传统标签 <component-scan> 可以扫描到 com.goat.chapter105.common 包下的
 	 * ***---***	 testController
 	 * ***---***	 testDao
 	 * ***---***	 testService
-	*/
+	 */
 	@Test
 	public void test1(){
 		ApplicationContext ac = new ClassPathXmlApplicationContext("component-scan.xml");
 		look(ac);
 	}
+
+	// 传统标签 <bean>
+	@Test
+	public void test(){
+		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:person.xml");
+		Person person = (Person)ac.getBean("person");
+		System.out.println(person);
+	}
+
 
 }

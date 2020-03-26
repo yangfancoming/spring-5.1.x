@@ -18,14 +18,11 @@ import org.springframework.util.StringUtils;
 
 /**
  * Default implementation of the {@link ResourceLoader} interface.
- * Used by {@link ResourceEditor}, and serves as base class for
- * {@link org.springframework.context.support.AbstractApplicationContext}.
+ * Used by {@link ResourceEditor}, and serves as base class for {@link org.springframework.context.support.AbstractApplicationContext}.
  * Can also be used standalone.
  *
- * <p>Will return a {@link UrlResource} if the location value is a URL,
- * and a {@link ClassPathResource} if it is a non-URL path or a
- * "classpath:" pseudo-URL.
- *
+ * Will return a {@link UrlResource} if the location value is a URL,
+ * and a {@link ClassPathResource} if it is a non-URL path or a "classpath:" pseudo-URL.
 
  * @since 10.03.2004
  * @see FileSystemResourceLoader
@@ -40,11 +37,9 @@ public class DefaultResourceLoader implements ResourceLoader {
 
 	private final Map<Class<?>, Map<Resource, ?>> resourceCaches = new ConcurrentHashMap<>(4);
 
-
 	/**
 	 * Create a new DefaultResourceLoader.
-	 * <p>ClassLoader access will happen using the thread context class loader
-	 * at the time of this ResourceLoader's initialization.
+	 * ClassLoader access will happen using the thread context class loader at the time of this ResourceLoader's initialization.
 	 * @see java.lang.Thread#getContextClassLoader()
 	 */
 	public DefaultResourceLoader() {
@@ -64,7 +59,7 @@ public class DefaultResourceLoader implements ResourceLoader {
 	/**
 	 * Specify the ClassLoader to load class path resources with, or {@code null}
 	 * for using the thread context class loader at the time of actual resource access.
-	 * <p>The default is that ClassLoader access will happen using the thread context
+	 * The default is that ClassLoader access will happen using the thread context
 	 * class loader at the time of this ResourceLoader's initialization.
 	 */
 	public void setClassLoader(@Nullable ClassLoader classLoader) {
@@ -73,8 +68,7 @@ public class DefaultResourceLoader implements ResourceLoader {
 
 	/**
 	 * Return the ClassLoader to load class path resources with.
-	 * <p>Will get passed to ClassPathResource's constructor for all
-	 * ClassPathResource objects created by this resource loader.
+	 * Will get passed to ClassPathResource's constructor for all ClassPathResource objects created by this resource loader.
 	 * @see ClassPathResource
 	 */
 	@Override
@@ -84,9 +78,8 @@ public class DefaultResourceLoader implements ResourceLoader {
 	}
 
 	/**
-	 * Register the given resolver with this resource loader, allowing for
-	 * additional protocols to be handled.
-	 * <p>Any such resolver will be invoked ahead of this loader's standard
+	 * Register the given resolver with this resource loader, allowing for  additional protocols to be handled.
+	 * Any such resolver will be invoked ahead of this loader's standard
 	 * resolution rules. It may therefore also override any default rules.
 	 * @since 4.3
 	 * @see #getProtocolResolvers()
@@ -129,7 +122,6 @@ public class DefaultResourceLoader implements ResourceLoader {
 	@Override
 	public Resource getResource(String location) {
 		Assert.notNull(location, "Location must not be null");
-
 		for (ProtocolResolver protocolResolver : this.protocolResolvers) {
 			Resource resource = protocolResolver.resolve(location, this);
 			if (resource != null) {
@@ -139,17 +131,14 @@ public class DefaultResourceLoader implements ResourceLoader {
 
 		if (location.startsWith("/")) {
 			return getResourceByPath(location);
-		}
-		else if (location.startsWith(CLASSPATH_URL_PREFIX)) {
+		}else if (location.startsWith(CLASSPATH_URL_PREFIX)) {
 			return new ClassPathResource(location.substring(CLASSPATH_URL_PREFIX.length()), getClassLoader());
-		}
-		else {
+		}else {
 			try {
 				// Try to parse the location as a URL...
 				URL url = new URL(location);
 				return (ResourceUtils.isFileURL(url) ? new FileUrlResource(url) : new UrlResource(url));
-			}
-			catch (MalformedURLException ex) {
+			}catch (MalformedURLException ex) {
 				// No URL -> resolve as resource path.
 				return getResourceByPath(location);
 			}
@@ -158,7 +147,7 @@ public class DefaultResourceLoader implements ResourceLoader {
 
 	/**
 	 * Return a Resource handle for the resource at the given path.
-	 * <p>The default implementation supports class path locations. This should
+	 * The default implementation supports class path locations. This should
 	 * be appropriate for standalone implementations but can be overridden,
 	 * e.g. for implementations targeted at a Servlet container.
 	 * @param path the path to the resource
