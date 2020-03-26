@@ -152,9 +152,9 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 
 	@Override
 	protected void cancelRefresh(BeansException ex) {
-		synchronized (this.beanFactoryMonitor) {
-			if (this.beanFactory != null) {
-				this.beanFactory.setSerializationId(null);
+		synchronized (beanFactoryMonitor) {
+			if (beanFactory != null) {
+				beanFactory.setSerializationId(null);
 			}
 		}
 		super.cancelRefresh(ex);
@@ -162,10 +162,10 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 
 	@Override
 	protected final void closeBeanFactory() {
-		synchronized (this.beanFactoryMonitor) {
-			if (this.beanFactory != null) {
-				this.beanFactory.setSerializationId(null);
-				this.beanFactory = null;
+		synchronized (beanFactoryMonitor) {
+			if (beanFactory != null) {
+				beanFactory.setSerializationId(null);
+				beanFactory = null;
 			}
 		}
 	}
@@ -174,18 +174,18 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 * Determine whether this context currently holds a bean factory, i.e. has been refreshed at least once and not been closed yet.
 	 */
 	protected final boolean hasBeanFactory() {
-		synchronized (this.beanFactoryMonitor) {
-			return (this.beanFactory != null);
+		synchronized (beanFactoryMonitor) {
+			return (beanFactory != null);
 		}
 	}
 
 	@Override
 	public final ConfigurableListableBeanFactory getBeanFactory() {
-		synchronized (this.beanFactoryMonitor) {
-			if (this.beanFactory == null) {
+		synchronized (beanFactoryMonitor) {
+			if (beanFactory == null) {
 				throw new IllegalStateException("BeanFactory not initialized or already closed - call 'refresh' before accessing beans via the ApplicationContext");
 			}
-			return this.beanFactory;
+			return beanFactory;
 		}
 	}
 
@@ -230,11 +230,11 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 * @see DefaultListableBeanFactory#setAllowEagerClassLoading
 	 */
 	protected void customizeBeanFactory(DefaultListableBeanFactory beanFactory) {
-		if (this.allowBeanDefinitionOverriding != null) {
-			beanFactory.setAllowBeanDefinitionOverriding(this.allowBeanDefinitionOverriding);
+		if (allowBeanDefinitionOverriding != null) {
+			beanFactory.setAllowBeanDefinitionOverriding(allowBeanDefinitionOverriding);
 		}
-		if (this.allowCircularReferences != null) {
-			beanFactory.setAllowCircularReferences(this.allowCircularReferences);
+		if (allowCircularReferences != null) {
+			beanFactory.setAllowCircularReferences(allowCircularReferences);
 		}
 	}
 

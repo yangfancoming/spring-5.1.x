@@ -581,8 +581,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	}
 
 	/**
-	 * Prepare this context for refreshing, setting its startup date and
-	 * active flag as well as performing any initialization of property sources.
+	 * Prepare this context for refreshing, setting its startup date and active flag as well as performing any initialization of property sources.
 	 */
 	protected void prepareRefresh() {
 		// Switch to active. 记录启动时间 将 active 属性设置为 true，closed 属性设置为 false，它们都是 AtomicBoolean 类型
@@ -638,9 +637,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 * 该方法为BeanFactory准备创建Bean的原材料，即BeanDefinition，准备好之后放到一个ConcurrentHashMap里面，key为beanName，value为BeanDefinition
 	 */
 	protected ConfigurableListableBeanFactory obtainFreshBeanFactory() {
-		// 初始化BeanFactory并加载xml文件信息
+		// 初始化BeanFactory并加载xml文件信息  // 关闭旧的 BeanFactory (如果有)，创建新的 BeanFactory，加载 Bean 定义、注册 Bean 等等
 		refreshBeanFactory();
-		// 获取已生成的BeanFactory
+		// 返回刚刚创建的 BeanFactory
 		return getBeanFactory();
 	}
 
@@ -1316,7 +1315,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	public boolean isRunning() {
 		return (lifecycleProcessor != null && lifecycleProcessor.isRunning());
 	}
-
 
 	//---------------------------------------------------------------------
 	// Abstract methods that must be implemented by subclasses
