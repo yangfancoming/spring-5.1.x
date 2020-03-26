@@ -235,8 +235,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 			ResourceLoader resourceLoader = getResourceLoader();
 			if (resourceLoader != null) {
 				this.entityResolver = new ResourceEntityResolver(resourceLoader);
-			}
-			else {
+			}else {
 				this.entityResolver = new DelegatingEntityResolver(getBeanClassLoader());
 			}
 		}
@@ -424,12 +423,10 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 					"Passed-in Resource [" + resource + "] contains an open stream: cannot determine validation mode automatically. Either pass in a Resource " +
 					"that is able to create fresh streams, or explicitly specify the validationMode on your XmlBeanDefinitionReader instance.");
 		}
-
 		InputStream inputStream;
 		try {
 			inputStream = resource.getInputStream();
-		}
-		catch (IOException ex) {
+		}catch (IOException ex) {
 			throw new BeanDefinitionStoreException(
 					"Unable to determine validation mode for [" + resource + "]: cannot open InputStream. " +
 					"Did you attempt to load directly from a SAX InputSource without specifying the validationMode on your XmlBeanDefinitionReader instance?", ex);

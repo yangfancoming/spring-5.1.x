@@ -27,14 +27,12 @@ import org.springframework.util.StringUtils;
 
 /**
  * Default implementation of the {@link BeanDefinitionDocumentReader} interface that
- * reads bean definitions according to the "spring-beans" DTD and XSD format
- * (Spring's default XML bean definition format).
+ * reads bean definitions according to the "spring-beans" DTD and XSD format (Spring's default XML bean definition format).
  *
- * <p>The structure, elements, and attribute names of the required XML document
- * are hard-coded in this class. (Of course a transform could be run if necessary
- * to produce this format). {@code <beans>} does not need to be the root
- * element of the XML document: this class will parse all bean definition elements
- * in the XML file, regardless of the actual root element.
+ * The structure, elements, and attribute names of the required XML document are hard-coded in this class.
+ * (Of course a transform could be run if necessary to produce this format).
+ * {@code <beans>} does not need to be the root element of the XML document:
+ * this class will parse all bean definition elements in the XML file, regardless of the actual root element.
  * @since 18.12.2003
  */
 public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocumentReader {
@@ -59,7 +57,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 
 	/**
 	 * This implementation parses bean definitions according to the "spring-beans" XSD (or DTD, historically).
-	 * <p>Opens a DOM Document; then initializes the default settings
+	 * Opens a DOM Document; then initializes the default settings
 	 * specified at the {@code <beans/>} level; then parses the contained bean definitions.
 	 */
 	@Override
@@ -214,36 +212,27 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 			getReaderContext().error("Resource location must not be empty", ele);
 			return;
 		}
-
 		// Resolve system properties: e.g. "${user.dir}"  // 处理import节点指定的路径中的属性占位符，将其替换为属性文件中指定属性值
 		location = getReaderContext().getEnvironment().resolveRequiredPlaceholders(location);
-
 		Set<Resource> actualResources = new LinkedHashSet<>(4);
-
 		// Discover whether the location is an absolute or relative URI  // 处理路径信息，判断其为相对路径还是绝对路径
 		boolean absoluteLocation = false;
 		try {
 			absoluteLocation = ResourcePatternUtils.isUrl(location) || ResourceUtils.toURI(location).isAbsolute();
-		}
-		catch (URISyntaxException ex) {
+		}catch (URISyntaxException ex) {
 			// cannot convert to an URI, considering the location relative
 			// unless it is the well-known Spring prefix "classpath*:"
 		}
-
 		// Absolute or relative? // 如果是绝对路径，则直接读取该文件
 		if (absoluteLocation) {
 			try {
 				// 递归调用loadBeanDefinitions()方法加载import所指定的文件中的bean信息
 				int importCount = getReaderContext().getReader().loadBeanDefinitions(location, actualResources);
-				if (logger.isTraceEnabled()) {
-					logger.trace("Imported " + importCount + " bean definitions from URL location [" + location + "]");
-				}
-			}
-			catch (BeanDefinitionStoreException ex) {
+				if (logger.isTraceEnabled()) logger.trace("Imported " + importCount + " bean definitions from URL location [" + location + "]");
+			}catch (BeanDefinitionStoreException ex) {
 				getReaderContext().error("Failed to import bean definitions from URL location [" + location + "]", ele, ex);
 			}
-		}
-		else {
+		}else {
 			// No URL -> considering resource location as relative to the current file.
 			try {
 				int importCount;
@@ -253,8 +242,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 				if (relativeResource.exists()) {
 					importCount = getReaderContext().getReader().loadBeanDefinitions(relativeResource);
 					actualResources.add(relativeResource);
-				}
-				else {
+				}else {
 					// 如果相对路径，也不是绝对路径，则将该路径当做一个外部url进行请求读取
 					String baseLocation = getReaderContext().getResource().getURL().toString();
 					// 继续调用loadBeanDefinitions()方法读取下载得到的xml文件信息
@@ -263,8 +251,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 				if (logger.isTraceEnabled()) {
 					logger.trace("Imported " + importCount + " bean definitions from relative location [" + location + "]");
 				}
-			}
-			catch (IOException ex) {
+			}catch (IOException ex) {
 				getReaderContext().error("Failed to resolve current resource location", ele, ex);
 			}
 			catch (BeanDefinitionStoreException ex) {
@@ -297,10 +284,8 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 			try {
 				// 注册别名信息
 				getReaderContext().getRegistry().registerAlias(name, alias);
-			}
-			catch (Exception ex) {
+			}catch (Exception ex) {
 				getReaderContext().error("Failed to register alias '" + alias +"' for bean with name '" + name + "'", ele, ex);
-
 			}
 			// 激活对alias注册完成进行监听的监听器
 			getReaderContext().fireAliasRegistered(name, alias, extractSource(ele));
@@ -325,8 +310,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 			try {
 				// Register the final decorated instance. // 3、执行注册  // 将当前bean注册到BeanDefinitionRegistry中
 				BeanDefinitionReaderUtils.registerBeanDefinition(bdHolder, getReaderContext().getRegistry());
-			}
-			catch (BeanDefinitionStoreException ex) {
+			}catch (BeanDefinitionStoreException ex) {
 				getReaderContext().error("Failed to register bean definition with name '" + bdHolder.getBeanName() + "'", ele, ex);
 			}
 			// Send registration event.    // 发消息，可以忽略
@@ -340,7 +324,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	 * Allow the XML to be extensible by processing any custom element types first,
 	 * before we start to process the bean definitions. This method is a natural
 	 * extension point for any other custom pre-processing of the XML.
-	 * <p>The default implementation is empty. Subclasses can override this method to
+	 * The default implementation is empty. Subclasses can override this method to
 	 * convert custom elements into standard Spring bean definitions, for example.
 	 * Implementors have access to the parser's bean definition reader and the
 	 * underlying XML resource, through the corresponding accessors.
@@ -353,7 +337,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	 * Allow the XML to be extensible by processing any custom element types last,
 	 * after we finished processing the bean definitions. This method is a natural
 	 * extension point for any other custom post-processing of the XML.
-	 * <p>The default implementation is empty. Subclasses can override this method to
+	 * The default implementation is empty. Subclasses can override this method to
 	 * convert custom elements into standard Spring bean definitions, for example.
 	 * Implementors have access to the parser's bean definition reader and the
 	 * underlying XML resource, through the corresponding accessors.
