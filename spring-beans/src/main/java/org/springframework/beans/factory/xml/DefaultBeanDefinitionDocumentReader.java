@@ -88,6 +88,9 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 
 	/**
 	 * Register each bean definition within the given root {@code <beans/>} element.
+	 * 	 我们看名字就知道，BeanDefinitionParserDelegate 必定是一个重要的类，它负责解析 Bean 定义，
+	 * 	 这里为什么要定义一个 parent? 看到后面就知道了，是递归问题，
+	 * 	 因为 <beans /> 内部是可以定义 <beans /> 的，所以这个方法的 root 其实不一定就是 xml 的根节点，也可以是嵌套在里面的 <beans /> 节点，从源码分析的角度，我们当做根节点就好了
 	 */
 	@SuppressWarnings("deprecation")  // for Environment.acceptsProfiles(String...)
 	protected void doRegisterBeanDefinitions(Element root) {
@@ -106,6 +109,9 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		// 例如：System.setProperty("spring.profiles.active", "dev");
 		if (this.delegate.isDefaultNamespace(root)) {
 			//获取beans标签的profile属性
+			// 这块说的是根节点 <beans ... profile="dev" /> 中的 profile 是否是当前环境需要的，
+			// 如果当前环境配置的 profile 不包含此 profile，那就直接 return 了，不对此 <beans /> 解析
+			// 不熟悉 profile 为何物，不熟悉怎么配置 profile 读者的请移步附录区
 			String profileSpec = root.getAttribute(PROFILE_ATTRIBUTE);
 			if (StringUtils.hasText(profileSpec)) {
 				String[] specifiedProfiles = StringUtils.tokenizeToStringArray(profileSpec, BeanDefinitionParserDelegate.MULTI_VALUE_ATTRIBUTE_DELIMITERS);
@@ -119,11 +125,11 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 				}
 			}
 		}
-		//解析前处理、留给子类实现   // 3、解析前置处理，空的模板方法
+		// 钩子 // 解析前处理、留给子类实现   // 3、解析前置处理，空的模板方法
 		preProcessXml(root);
 		//解析bean definition // 4、解析并注册BeanDefinition
 		parseBeanDefinitions(root, this.delegate);
-		//解析后处理、留给子类实现  // 5、解析后置处理，空的模板方法
+		// 钩子 // 解析后处理、留给子类实现  // 5、解析后置处理，空的模板方法
 		postProcessXml(root);
 		this.delegate = parent;
 	}
@@ -140,6 +146,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	 *   在 Spring 的配置文件中，有两大类bean的声明，
 	 *                一个是默认的声明如 <bean>，
 	 *                一类是自定义的声明如 <tx:annotation-driver>，所以该方法分为两套解析逻辑
+	 *  default namespace 涉及到的就四个标签 <import />、<alias />、<bean /> 和 <beans />， 其他的属于 custom 的
 	 */
 	protected void parseBeanDefinitions(Element root, BeanDefinitionParserDelegate delegate) {
 		// 1、解析默认命名空间
@@ -155,17 +162,17 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 					// 默认命名空间
 					if (delegate.isDefaultNamespace(ele)) {
 						// 当前标签使用的是默认的命名空间，如bean标签，则按照默认命名空间的逻辑对其进行处理
+						// 解析 default namespace 下面的几个元素
 						parseDefaultElement(ele, delegate); // 解析默认的节点
-					}
-					else {
+					}else {
+						// 解析其他 namespace 的元素
 						// 自定义命名空间
 						// 判断当前标签使用的命名空间是自定义的命名空间，如这里 springtag:user 所使用的就是自定义的命名空间，那么就按照定义命名空间逻辑进行处理
 						delegate.parseCustomElement(ele);// 解析自定义节点
 					}
 				}
 			}
-		}
-		else {
+		}else {
 			// 2、解析自定义命名空间
 			// 如果根节点使用的命名空间不是默认的命名空间，则按照自定义的命名空间进行处理
 			delegate.parseCustomElement(root); // 解析自定义节点

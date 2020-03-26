@@ -305,7 +305,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 				if (encodedResource.getEncoding() != null) {
 					inputSource.setEncoding(encodedResource.getEncoding());
 				}
-				//这里 真正进入了逻辑核心部分
+				// 核心部分是这里，往下面看 //这里 真正进入了逻辑核心部分
 				return doLoadBeanDefinitions(inputSource, encodedResource.getResource());
 			}finally {
 				inputStream.close();
@@ -358,12 +358,9 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 			Document doc = doLoadDocument(inputSource, resource);
 			// 根据返回的  Document 对象  注册 bean信息  // 注册BeanDefinitions
 			int count = registerBeanDefinitions(doc, resource);
-			if (logger.isDebugEnabled()) {
-				logger.debug("Loaded " + count + " bean definitions from " + resource);
-			}
+			if (logger.isDebugEnabled()) logger.debug("Loaded " + count + " bean definitions from " + resource);
 			return count;
-		}
-		catch (BeanDefinitionStoreException ex) {
+		}catch (BeanDefinitionStoreException ex) {
 			throw ex;
 		} catch (SAXParseException ex) {
 			throw new XmlBeanDefinitionStoreException(resource.getDescription(),"Line " + ex.getLineNumber() + " in XML document from " + resource + " is invalid", ex);

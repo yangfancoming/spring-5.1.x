@@ -25,44 +25,10 @@ import org.springframework.lang.Nullable;
  * 共有三个实现类，在配置文件中可以有父bean和子bean，父bean用 RootBeanDefinition 来表示，子bean用 ChildBeanDefinition 来表示，而 GenericBeanDefinition 是一个通用的BeanDefinition。
  * 存储  内存态的bean 好比是设计图纸  根据设计图纸 来创建  纯静态的bean
  *
- * Bean的生命周期，默认只提供sington和prototype两种，在WebApplicationContext中还会有request, session, globalSession, application, websocket 等
- * getBeanClassName
- * getConstructorArgumentValues
- * getDependsOn
- * getDescription
- * getDestroyMethodName
- * getFactoryBeanName
- * getFactoryMethodName
- * getInitMethodName
- * getOriginatingBeanDefinition
- * getParentName
- * getPropertyValues
- * getResourceDescription
- * getRole
- * getScope
- * hasConstructorArgumentValues
- * hasPropertyValues
- * isAbstract
- * isAutowireCandidate
- * isLazyInit
- * isPrimary
- * isPrototype
- * isSingleton
- * setAutowireCandidate
- * setBeanClassName
- * setDependsOn
- * setDescription
- * setDestroyMethodName
- * setFactoryBeanName
- * setFactoryMethodName
- * setInitMethodName
- * setLazyInit
- * setParentName
- * setPrimary
- * setRole
- * setScope
+ * Bean 的生命周期，默认只提供sington和prototype两种，在WebApplicationContext中还会有request, session, globalSession, application, websocket 等
  */
 public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
+
 
 	/**
 	 * Scope identifier for the standard singleton scope: "singleton".
@@ -104,6 +70,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 
 	/**
 	 * Set the name of the parent definition of this bean definition, if any.
+	 * 一句话就是：继承父 Bean 的配置信息而已
 	 */
 	void setParentName(@Nullable String parentName);
 
@@ -165,12 +132,13 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	/**
 	 * Set the names of the beans that this bean depends on being initialized.
 	 * The bean factory will guarantee that these beans get initialized first.
-	 * 设置该Bean依赖的所有Bean
+	 * 设置该Bean依赖的所有Bean 注意，这里的依赖不是指属性依赖(如 @Autowire 标记的)，是 depends-on="" 属性设置的值。
 	 */
 	void setDependsOn(@Nullable String... dependsOn);
 
 	/**
 	 * Return the bean names that this bean depends on.
+	 * 返回该 Bean 的所有依赖
 	 */
 	@Nullable
 	String[] getDependsOn();
@@ -181,7 +149,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * It does not affect explicit references by name, which will get resolved even
 	 * if the specified bean is not marked as an autowire candidate.
 	 * As a consequence,autowiring by name will nevertheless inject a bean if the name matches.
-	 * 设置该Bean是否可以注入到其他Bean中
+	 * 设置该Bean是否可以注入到其他Bean中 只对根据类型注入有效，如果根据名称注入，即使这边设置了 false，也是可以的
 	 */
 	void setAutowireCandidate(boolean autowireCandidate);
 
@@ -207,6 +175,8 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * Specify the factory bean to use, if any.
 	 * This the name of the bean to call the specified factory method on.
 	 * @see #setFactoryMethodName
+	 *   如果该 Bean 采用工厂方法生成，指定工厂名称。对工厂不熟悉的读者，请参加附录
+	 *   一句话就是：有些实例不是用反射生成的，而是用工厂模式生成的
 	 */
 	void setFactoryBeanName(@Nullable String factoryBeanName);
 
@@ -222,6 +192,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * The method will be invoked on the specified factory bean, if any,or otherwise as a static method on the local bean class.
 	 * @see #setFactoryBeanName
 	 * @see #setBeanClassName
+	 *  指定工厂类中的 工厂方法名称
 	 */
 	void setFactoryMethodName(@Nullable String factoryMethodName);
 
@@ -235,6 +206,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * Return the constructor argument values for this bean.
 	 * The returned instance can be modified during bean factory post-processing.
 	 * @return the ConstructorArgumentValues object (never {@code null})
+	 *   构造器参数
 	 */
 	ConstructorArgumentValues getConstructorArgumentValues();
 
@@ -250,6 +222,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * Return the property values to be applied to a new instance of the bean.
 	 * The returned instance can be modified during bean factory post-processing.
 	 * @return the MutablePropertyValues object (never {@code null})
+	 * Bean 中的属性值，后面给 bean 注入属性值的时候会说到
 	 */
 	MutablePropertyValues getPropertyValues();
 

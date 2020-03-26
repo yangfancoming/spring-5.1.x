@@ -18,18 +18,18 @@ import org.springframework.lang.Nullable;
  * Typically (but not necessarily), such a context will be driven by
  * a set of config locations to load bean definitions from.
  *
- * <p>The only method to be implemented by subclasses is {@link #loadBeanDefinitions},
+ * The only method to be implemented by subclasses is {@link #loadBeanDefinitions},
  * which gets invoked on each refresh. A concrete implementation is supposed to load
  * bean definitions into the given
  * {@link org.springframework.beans.factory.support.DefaultListableBeanFactory},
  * typically delegating to one or more specific bean definition readers.
  *
- * <p><b>Note that there is a similar base class for WebApplicationContexts.</b>
+ * <b>Note that there is a similar base class for WebApplicationContexts.</b>
  * provides the same subclassing strategy, but additionally pre-implements
  * all context functionality for web environments. There is also a
  * pre-defined way to receive config locations for a web context.
  *
- * <p>Concrete standalone subclasses of this base class, reading in a
+ * Concrete standalone subclasses of this base class, reading in a
  * specific bean definition format, are {@link ClassPathXmlApplicationContext}
  * and {@link FileSystemXmlApplicationContext}, which both derive from the
  * common {@link AbstractXmlApplicationContext} base class;
@@ -59,9 +59,11 @@ import org.springframework.lang.Nullable;
  */
 public abstract class AbstractRefreshableApplicationContext extends AbstractApplicationContext {
 
+	// 是否允许 BeanDefinition 覆盖
 	@Nullable
 	private Boolean allowBeanDefinitionOverriding;
 
+	// 否允许循环引用
 	@Nullable
 	private Boolean allowCircularReferences;
 
@@ -100,7 +102,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	/**
 	 * Set whether to allow circular references between beans - and automatically
 	 * try to resolve them.
-	 * <p>Default is "true". Turn this off to throw an exception when encountering
+	 * Default is "true". Turn this off to throw an exception when encountering
 	 * a circular reference, disallowing them completely.
 	 * @see org.springframework.beans.factory.support.DefaultListableBeanFactory#setAllowCircularReferences
 	 */
@@ -118,8 +120,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	protected final void refreshBeanFactory() throws BeansException {
 		/**  如果已经存在BeanFactory那么就销毁
 		 如果 ApplicationContext 中已经加载过 BeanFactory 了，销毁所有 Bean，关闭 BeanFactory
-		 注意，应用中 BeanFactory 本来就是可以多个的，这里可不是说应用全局是否有 BeanFactory，而是当前
-		 ApplicationContext 是否有 BeanFactory
+		 注意，应用中 BeanFactory 本来就是可以多个的，这里可不是说应用全局是否有 BeanFactory，而是当前  ApplicationContext 是否有 BeanFactory
 		 */
 		if (hasBeanFactory()) {
 			destroyBeans();
@@ -128,7 +129,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 		try {
 			// 创建一个默认的BeanFactory，即全功能的那个郭靖！
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
-			// 为当前BeanFactory设置一个标识id
+			// 为当前BeanFactory设置一个标识id 用于 BeanFactory 的序列化，部分人应该都用不到
 			beanFactory.setSerializationId(getId());
 			/**
 			 配置beanFactory的一些定制化属性， 如
@@ -138,8 +139,11 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 				 是否允许 Bean 覆盖、
 				 是否允许循环引用
 			*/
+			// 下面这两个方法很重要，别跟丢了，具体细节之后说
+			// 设置 BeanFactory 的两个配置属性：是否允许 Bean 覆盖、是否允许循环引用
 			customizeBeanFactory(beanFactory);
-			//这步就关键了，加载xml文件信息 ，载入BeanDefinations，给BeanFactory工厂提供创建bean的原材料！
+			// 这步就关键了，加载xml文件信息 ，载入BeanDefinations，给BeanFactory工厂提供创建bean的原材料！
+			// 加载 Bean 到 BeanFactory 中
 			loadBeanDefinitions(beanFactory);
 			synchronized (this.beanFactoryMonitor) {
 				this.beanFactory = beanFactory;
@@ -200,7 +204,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	/**
 	 * Create an internal bean factory for this context.
 	 * Called for each {@link #refresh()} attempt.
-	 * <p>The default implementation creates a
+	 * The default implementation creates a
 	 * {@link org.springframework.beans.factory.support.DefaultListableBeanFactory}
 	 * with the {@linkplain #getInternalParentBeanFactory() internal bean factory} of this
 	 * context's parent as parent bean factory. Can be overridden in subclasses,
@@ -218,16 +222,20 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	/**
 	 * Customize the internal bean factory used by this context.
 	 * Called for each {@link #refresh()} attempt.
-	 * <p>The default implementation applies this context's
-	 * {@linkplain #setAllowBeanDefinitionOverriding "allowBeanDefinitionOverriding"}
-	 * and {@linkplain #setAllowCircularReferences "allowCircularReferences"} settings,
-	 * if specified. Can be overridden in subclasses to customize any of
-	 * {@link DefaultListableBeanFactory}'s settings.
+	 * The default implementation applies this context's {@linkplain #setAllowBeanDefinitionOverriding "allowBeanDefinitionOverriding"}
+	 * and {@linkplain #setAllowCircularReferences "allowCircularReferences"} settings,if specified.
+	 * Can be overridden in subclasses to customize any of {@link DefaultListableBeanFactory}'s settings.
 	 * @param beanFactory the newly created bean factory for this context
 	 * @see DefaultListableBeanFactory#setAllowBeanDefinitionOverriding
 	 * @see DefaultListableBeanFactory#setAllowCircularReferences
 	 * @see DefaultListableBeanFactory#setAllowRawInjectionDespiteWrapping
 	 * @see DefaultListableBeanFactory#setAllowEagerClassLoading
+	 * customizeBeanFactory(beanFactory) 比较简单，就是配置是否允许 BeanDefinition 覆盖、是否允许循环引用。
+	 *
+	 * BeanDefinition 的覆盖问题可能会有开发者碰到这个坑，就是在配置文件中定义 bean 时使用了相同的 id 或 name，
+	 * 默认情况下，allowBeanDefinitionOverriding 属性为 null，如果在同一配置文件中重复了，会抛错，但是如果不是同一配置文件中，会发生覆盖。
+	 *
+	 * 循环引用也很好理解：A 依赖 B，而 B 依赖 A。或 A 依赖 B，B 依赖 C，而 C 依赖 A。
 	 */
 	protected void customizeBeanFactory(DefaultListableBeanFactory beanFactory) {
 		if (allowBeanDefinitionOverriding != null) {
