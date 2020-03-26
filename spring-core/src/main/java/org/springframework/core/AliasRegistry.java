@@ -9,7 +9,7 @@ package org.springframework.core;
  */
 public interface AliasRegistry { // 定义了对别名 alias 的简单增删改等操作
 
-	/**   注册别名
+	/**
 	 * Given a name, register an alias for it.
 	 * @param name the canonical name
 	 * @param alias the alias to be registered

@@ -210,16 +210,13 @@ public interface BeanFactory {
 	<T> ObjectProvider<T> getBeanProvider(ResolvableType requiredType);
 
 	/**
-	 * Does this bean factory contain a bean definition or externally registered singleton
-	 * instance with the given name?
-	 * If the given name is an alias, it will be translated back to the corresponding
-	 * canonical bean name.
-	 * If this factory is hierarchical, will ask any parent factory if the bean cannot
-	 * be found in this factory instance.
+	 * Does this bean factory contain a bean definition or externally registered singleton instance with the given name?
+	 * If the given name is an alias, it will be translated back to the corresponding canonical bean name.
+	 * If this factory is hierarchical, will ask any parent factory if the bean cannot be found in this factory instance.
 	 * If a bean definition or singleton instance matching the given name is found,
 	 * this method will return {@code true} whether the named bean definition is concrete
-	 * or abstract, lazy or eager, in scope or not. Therefore, note that a {@code true}
-	 * return value from this method does not necessarily indicate that {@link #getBean}
+	 * or abstract, lazy or eager, in scope or not.
+	 * Therefore, note that a {@code true} return value from this method does not necessarily indicate that {@link #getBean}
 	 * will be able to obtain an instance for the same name.
 	 * @param name the name of the bean to query
 	 * @return whether a bean with the given name is present
