@@ -53,15 +53,7 @@ import org.springframework.util.ObjectUtils;
  * proxies if necessary, for example in case of proxying a target class
  * (see the {@link DefaultAopProxyFactory attendant javadoc} for details).
  *
- * <p>Proxies created using this class are thread-safe if the underlying
- * (target) class is thread-safe.
- *
- * @author Rod Johnson
- * @author Rob Harrop
-
- * @author Ramnivas Laddad
-
- * @author Dave Syer
+ * <p>Proxies created using this class are thread-safe if the underlying (target) class is thread-safe.
  * @see org.springframework.cglib.proxy.Enhancer
  * @see AdvisedSupport#setProxyTargetClass
  * @see DefaultAopProxyFactory
@@ -128,8 +120,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 			throw new IllegalArgumentException("Both 'constructorArgs' and 'constructorArgTypes' need to be specified");
 		}
 		if (constructorArgs.length != constructorArgTypes.length) {
-			throw new IllegalArgumentException("Number of 'constructorArgs' (" + constructorArgs.length +
-					") must match number of 'constructorArgTypes' (" + constructorArgTypes.length + ")");
+			throw new IllegalArgumentException("Number of 'constructorArgs' (" + constructorArgs.length +	") must match number of 'constructorArgTypes' (" + constructorArgTypes.length + ")");
 		}
 		this.constructorArgs = constructorArgs;
 		this.constructorArgTypes = constructorArgTypes;
@@ -292,8 +283,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 			targetInterceptor = (isStatic ?
 					new StaticUnadvisedExposedInterceptor(this.advised.getTargetSource().getTarget()) :
 					new DynamicUnadvisedExposedInterceptor(this.advised.getTargetSource()));
-		}
-		else {
+		}else {
 			// 下面两个类与上面两个的唯一区别就在于是否使用AopContext暴露生成的代理对象
 			targetInterceptor = (isStatic ?
 					new StaticUnadvisedInterceptor(this.advised.getTargetSource().getTarget()) :

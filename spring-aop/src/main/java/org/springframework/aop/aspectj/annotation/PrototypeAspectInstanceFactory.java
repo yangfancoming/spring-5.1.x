@@ -13,9 +13,6 @@ import org.springframework.beans.factory.BeanFactory;
  * <p>Note that this may instantiate multiple times, which probably won't give the
  * semantics you expect. Use a {@link LazySingletonAspectInstanceFactoryDecorator}
  * to wrap this to ensure only one new aspect comes back.
- *
- * @author Rod Johnson
-
  * @since 2.0
  * @see org.springframework.beans.factory.BeanFactory
  * @see LazySingletonAspectInstanceFactoryDecorator
@@ -33,8 +30,7 @@ public class PrototypeAspectInstanceFactory extends BeanFactoryAspectInstanceFac
 	public PrototypeAspectInstanceFactory(BeanFactory beanFactory, String name) {
 		super(beanFactory, name);
 		if (!beanFactory.isPrototype(name)) {
-			throw new IllegalArgumentException(
-					"Cannot use PrototypeAspectInstanceFactory with bean named '" + name + "': not a prototype");
+			throw new IllegalArgumentException("Cannot use PrototypeAspectInstanceFactory with bean named '" + name + "': not a prototype");
 		}
 	}
 

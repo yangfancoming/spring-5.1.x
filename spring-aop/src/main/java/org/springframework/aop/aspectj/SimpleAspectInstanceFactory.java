@@ -13,14 +13,11 @@ import org.springframework.util.ReflectionUtils;
 /**
  * Implementation of {@link AspectInstanceFactory} that creates a new instance
  * of the specified aspect class for every {@link #getAspectInstance()} call.
- *
-
  * @since 2.0.4
  */
 public class SimpleAspectInstanceFactory implements AspectInstanceFactory {
 
 	private final Class<?> aspectClass;
-
 
 	/**
 	 * Create a new SimpleAspectInstanceFactory for the given aspect class.
@@ -43,22 +40,14 @@ public class SimpleAspectInstanceFactory implements AspectInstanceFactory {
 	public final Object getAspectInstance() {
 		try {
 			return ReflectionUtils.accessibleConstructor(this.aspectClass).newInstance();
-		}
-		catch (NoSuchMethodException ex) {
-			throw new AopConfigException(
-					"No default constructor on aspect class: " + this.aspectClass.getName(), ex);
-		}
-		catch (InstantiationException ex) {
-			throw new AopConfigException(
-					"Unable to instantiate aspect class: " + this.aspectClass.getName(), ex);
-		}
-		catch (IllegalAccessException ex) {
-			throw new AopConfigException(
-					"Could not access aspect constructor: " + this.aspectClass.getName(), ex);
-		}
-		catch (InvocationTargetException ex) {
-			throw new AopConfigException(
-					"Failed to invoke aspect constructor: " + this.aspectClass.getName(), ex.getTargetException());
+		}catch (NoSuchMethodException ex) {
+			throw new AopConfigException("No default constructor on aspect class: " + this.aspectClass.getName(), ex);
+		}catch (InstantiationException ex) {
+			throw new AopConfigException("Unable to instantiate aspect class: " + this.aspectClass.getName(), ex);
+		}catch (IllegalAccessException ex) {
+			throw new AopConfigException("Could not access aspect constructor: " + this.aspectClass.getName(), ex);
+		}catch (InvocationTargetException ex) {
+			throw new AopConfigException("Failed to invoke aspect constructor: " + this.aspectClass.getName(), ex.getTargetException());
 		}
 	}
 

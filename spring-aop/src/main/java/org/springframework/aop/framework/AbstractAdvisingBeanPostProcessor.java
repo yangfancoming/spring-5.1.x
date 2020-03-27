@@ -13,8 +13,6 @@ import org.springframework.lang.Nullable;
 /**
  * Base class for {@link BeanPostProcessor} implementations that apply a
  * Spring AOP {@link Advisor} to specific beans.
- *
-
  * @since 3.2
  */
 @SuppressWarnings("serial")
@@ -26,7 +24,6 @@ public abstract class AbstractAdvisingBeanPostProcessor extends ProxyProcessorSu
 	protected boolean beforeExistingAdvisors = false;
 
 	private final Map<Class<?>, Boolean> eligibleBeans = new ConcurrentHashMap<>(256);
-
 
 	/**
 	 * Set whether this post-processor's advisor is supposed to apply before
@@ -60,8 +57,7 @@ public abstract class AbstractAdvisingBeanPostProcessor extends ProxyProcessorSu
 				// Add our local Advisor to the existing proxy's Advisor chain...
 				if (this.beforeExistingAdvisors) {
 					advised.addAdvisor(0, this.advisor);
-				}
-				else {
+				}else {
 					advised.addAdvisor(this.advisor);
 				}
 				return bean;

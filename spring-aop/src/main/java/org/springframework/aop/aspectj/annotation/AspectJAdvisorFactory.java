@@ -15,9 +15,6 @@ import org.springframework.lang.Nullable;
 /**
  * Interface for factories that can create Spring AOP Advisors from classes
  * annotated with AspectJ annotation syntax.
- *
- * @author Rod Johnson
-
  * @since 2.0
  * @see AspectMetadata
  * @see org.aspectj.lang.reflect.AjTypeSystem
@@ -67,8 +64,7 @@ public interface AspectJAdvisorFactory {
 	 * create a Spring advice in its own right
 	 */
 	@Nullable
-	Advisor getAdvisor(Method candidateAdviceMethod, MetadataAwareAspectInstanceFactory aspectInstanceFactory,
-			int declarationOrder, String aspectName);
+	Advisor getAdvisor(Method candidateAdviceMethod, MetadataAwareAspectInstanceFactory aspectInstanceFactory,int declarationOrder, String aspectName);
 
 	/**
 	 * Build a Spring AOP Advice for the given AspectJ advice method.
@@ -87,7 +83,6 @@ public interface AspectJAdvisorFactory {
 	 * @see org.springframework.aop.aspectj.AspectJAfterThrowingAdvice
 	 */
 	@Nullable
-	Advice getAdvice(Method candidateAdviceMethod, AspectJExpressionPointcut expressionPointcut,
-			MetadataAwareAspectInstanceFactory aspectInstanceFactory, int declarationOrder, String aspectName);
+	Advice getAdvice(Method candidateAdviceMethod, AspectJExpressionPointcut expressionPointcut,MetadataAwareAspectInstanceFactory aspectInstanceFactory, int declarationOrder, String aspectName);
 
 }

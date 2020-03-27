@@ -10,9 +10,6 @@ import org.springframework.aop.RawTargetAccess;
  * <p>Objects created from the {@link ScopedProxyFactoryBean} can be cast
  * to this interface, enabling access to the raw target object
  * and programmatic removal of the target object.
- *
- * @author Rod Johnson
-
  * @since 2.0
  * @see ScopedProxyFactoryBean
  */

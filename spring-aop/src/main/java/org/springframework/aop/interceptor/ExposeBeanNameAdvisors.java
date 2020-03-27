@@ -16,12 +16,7 @@ import org.springframework.beans.factory.NamedBean;
  * Convenient methods for creating advisors that may be used when autoproxying beans
  * created with the Spring IoC container, binding the bean name to the current
  * invocation. May support a {@code bean()} pointcut designator with AspectJ.
- *
- * <p>Typically used in Spring auto-proxying, where the bean name is known
- * at proxy creation time.
- *
- * @author Rod Johnson
-
+ * <p>Typically used in Spring auto-proxying, where the bean name is known at proxy creation time.
  * @since 2.0
  * @see org.springframework.beans.factory.NamedBean
  */
@@ -32,7 +27,6 @@ public abstract class ExposeBeanNameAdvisors {
 	 * in the ReflectiveMethodInvocation userAttributes Map.
 	 */
 	private static final String BEAN_NAME_ATTRIBUTE = ExposeBeanNameAdvisors.class.getName() + ".BEAN_NAME";
-
 
 	/**
 	 * Find the bean name for the current invocation. Assumes that an ExposeBeanNameAdvisor

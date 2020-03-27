@@ -23,17 +23,12 @@ import org.springframework.util.ClassUtils;
  * {@link org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator}
  * subclass that exposes AspectJ's invocation context and understands AspectJ's rules
  * for advice precedence when multiple pieces of advice come from the same aspect.
- *
- * @author Adrian Colyer
-
- * @author Ramnivas Laddad
  * @since 2.0
  */
 @SuppressWarnings("serial")
 public class AspectJAwareAdvisorAutoProxyCreator extends AbstractAdvisorAutoProxyCreator {
 
 	private static final Comparator<Advisor> DEFAULT_PRECEDENCE_COMPARATOR = new AspectJPrecedenceComparator();
-
 
 	/**
 	 * Sort the rest by AspectJ precedence. If two pieces of advice have
@@ -55,8 +50,7 @@ public class AspectJAwareAdvisorAutoProxyCreator extends AbstractAdvisorAutoProx
 	protected List<Advisor> sortAdvisors(List<Advisor> advisors) {
 		List<PartiallyComparableAdvisorHolder> partiallyComparableAdvisors = new ArrayList<>(advisors.size());
 		for (Advisor element : advisors) {
-			partiallyComparableAdvisors.add(
-					new PartiallyComparableAdvisorHolder(element, DEFAULT_PRECEDENCE_COMPARATOR));
+			partiallyComparableAdvisors.add(new PartiallyComparableAdvisorHolder(element, DEFAULT_PRECEDENCE_COMPARATOR));
 		}
 		List<PartiallyComparableAdvisorHolder> sorted = PartialOrder.sort(partiallyComparableAdvisors);
 		if (sorted != null) {
@@ -65,8 +59,7 @@ public class AspectJAwareAdvisorAutoProxyCreator extends AbstractAdvisorAutoProx
 				result.add(pcAdvisor.getAdvisor());
 			}
 			return result;
-		}
-		else {
+		} else {
 			return super.sortAdvisors(advisors);
 		}
 	}
@@ -86,14 +79,12 @@ public class AspectJAwareAdvisorAutoProxyCreator extends AbstractAdvisorAutoProx
 		// TODO: Consider optimization by caching the list of the aspect names
 		List<Advisor> candidateAdvisors = findCandidateAdvisors();
 		for (Advisor advisor : candidateAdvisors) {
-			if (advisor instanceof AspectJPointcutAdvisor &&
-					((AspectJPointcutAdvisor) advisor).getAspectName().equals(beanName)) {
+			if (advisor instanceof AspectJPointcutAdvisor && ((AspectJPointcutAdvisor) advisor).getAspectName().equals(beanName)) {
 				return true;
 			}
 		}
 		return super.shouldSkip(beanClass, beanName);
 	}
-
 
 	/**
 	 * Implements AspectJ PartialComparable interface for defining partial orderings.

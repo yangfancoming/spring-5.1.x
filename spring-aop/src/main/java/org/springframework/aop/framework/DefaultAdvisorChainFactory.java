@@ -62,8 +62,7 @@ public class DefaultAdvisorChainFactory implements AdvisorChainFactory, Serializ
 							hasIntroductions = hasMatchingIntroductions(advisors, actualClass);
 						}
 						match = ((IntroductionAwareMethodMatcher) mm).matches(method, actualClass, hasIntroductions);
-					}
-					else {
+					}else {
 						match = mm.matches(method, actualClass);
 					}
 					if (match) {
@@ -85,8 +84,7 @@ public class DefaultAdvisorChainFactory implements AdvisorChainFactory, Serializ
 						}
 					}
 				}
-			}
-			else if (advisor instanceof IntroductionAdvisor) {
+			}else if (advisor instanceof IntroductionAdvisor) {
 				IntroductionAdvisor ia = (IntroductionAdvisor) advisor;
 				// 判断如果为IntroductionAdvisor类型的Advisor，则将调用链封装为Interceptor数组
 				// IntroductionAdvisor 类型的通知器，仅需进行类级别的匹配即可
@@ -94,8 +92,7 @@ public class DefaultAdvisorChainFactory implements AdvisorChainFactory, Serializ
 					Interceptor[] interceptors = registry.getInterceptors(advisor);
 					interceptorList.addAll(Arrays.asList(interceptors));
 				}
-			}
-			else {
+			}else {
 				// 这里是提供的使用自定义的转换器对Advisor进行转换的逻辑，因为getInterceptors()方法中
 				// 会使用相应的Adapter对目标Advisor进行匹配，如果能匹配上，通过其getInterceptor()方法
 				// 将自定义的Advice转换为MethodInterceptor对象

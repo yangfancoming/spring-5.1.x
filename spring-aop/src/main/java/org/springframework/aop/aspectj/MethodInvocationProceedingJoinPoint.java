@@ -28,11 +28,6 @@ import org.springframework.util.Assert;
  * <b>If you want to call the object and have the advice take effect, use {@code getThis()}.</b>
  * A common example is casting the object to an introduced interface in the implementation of
  * an introduction. There is no such distinction between target and proxy in AspectJ itself.
- *
- * @author Rod Johnson
-
- * @author Adrian Colyer
- * @author Ramnivas Laddad
  * @since 2.0
  */
 public class MethodInvocationProceedingJoinPoint implements ProceedingJoinPoint, JoinPoint.StaticPart {
@@ -78,9 +73,7 @@ public class MethodInvocationProceedingJoinPoint implements ProceedingJoinPoint,
 	public Object proceed(Object[] arguments) throws Throwable {
 		Assert.notNull(arguments, "Argument array passed to proceed cannot be null");
 		if (arguments.length != this.methodInvocation.getArguments().length) {
-			throw new IllegalArgumentException("Expecting " +
-					this.methodInvocation.getArguments().length + " arguments to proceed, " +
-					"but was passed " + arguments.length + " arguments");
+			throw new IllegalArgumentException("Expecting " + this.methodInvocation.getArguments().length + " arguments to proceed, but was passed " + arguments.length + " arguments");
 		}
 		this.methodInvocation.setArguments(arguments);
 		return this.methodInvocation.invocableClone(arguments).proceed();
@@ -231,9 +224,7 @@ public class MethodInvocationProceedingJoinPoint implements ProceedingJoinPoint,
 			return toString(false, true, false, true);
 		}
 
-		private String toString(boolean includeModifier, boolean includeReturnTypeAndArgs,
-				boolean useLongReturnAndArgumentTypeName, boolean useLongTypeName) {
-
+		private String toString(boolean includeModifier, boolean includeReturnTypeAndArgs,boolean useLongReturnAndArgumentTypeName, boolean useLongTypeName) {
 			StringBuilder sb = new StringBuilder();
 			if (includeModifier) {
 				sb.append(Modifier.toString(getModifiers()));
@@ -253,9 +244,7 @@ public class MethodInvocationProceedingJoinPoint implements ProceedingJoinPoint,
 			return sb.toString();
 		}
 
-		private void appendTypes(StringBuilder sb, Class<?>[] types, boolean includeArgs,
-				boolean useLongReturnAndArgumentTypeName) {
-
+		private void appendTypes(StringBuilder sb, Class<?>[] types, boolean includeArgs,boolean useLongReturnAndArgumentTypeName) {
 			if (includeArgs) {
 				for (int size = types.length, i = 0; i < size; i++) {
 					appendType(sb, types[i], useLongReturnAndArgumentTypeName);
@@ -263,8 +252,7 @@ public class MethodInvocationProceedingJoinPoint implements ProceedingJoinPoint,
 						sb.append(",");
 					}
 				}
-			}
-			else {
+			}else {
 				if (types.length != 0) {
 					sb.append("..");
 				}

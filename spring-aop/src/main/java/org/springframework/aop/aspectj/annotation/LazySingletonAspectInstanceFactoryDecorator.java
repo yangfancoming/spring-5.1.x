@@ -9,9 +9,6 @@ import org.springframework.util.Assert;
 
 /**
  * Decorator to cause a {@link MetadataAwareAspectInstanceFactory} to instantiate only once.
- *
- * @author Rod Johnson
-
  * @since 2.0
  */
 @SuppressWarnings("serial")
@@ -22,7 +19,6 @@ public class LazySingletonAspectInstanceFactoryDecorator implements MetadataAwar
 	@Nullable
 	private volatile Object materialized;
 
-
 	/**
 	 * Create a new lazily initializing decorator for the given AspectInstanceFactory.
 	 * @param maaif the MetadataAwareAspectInstanceFactory to decorate
@@ -32,7 +28,6 @@ public class LazySingletonAspectInstanceFactoryDecorator implements MetadataAwar
 		this.maaif = maaif;
 	}
 
-
 	@Override
 	public Object getAspectInstance() {
 		Object aspectInstance = this.materialized;
@@ -41,8 +36,7 @@ public class LazySingletonAspectInstanceFactoryDecorator implements MetadataAwar
 			if (mutex == null) {
 				aspectInstance = this.maaif.getAspectInstance();
 				this.materialized = aspectInstance;
-			}
-			else {
+			}else {
 				synchronized (mutex) {
 					aspectInstance = this.materialized;
 					if (aspectInstance == null) {

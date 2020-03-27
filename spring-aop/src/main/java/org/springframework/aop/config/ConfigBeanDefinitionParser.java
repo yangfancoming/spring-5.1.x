@@ -37,12 +37,6 @@ import org.springframework.util.xml.DomUtils;
 
 /**
  * {@link BeanDefinitionParser} for the {@code <aop:config>} tag.
- *
- * @author Rob Harrop
-
- * @author Adrian Colyer
- * @author Mark Fisher
- * @author Ramnivas Laddad
  * @since 2.0
  */
 class ConfigBeanDefinitionParser implements BeanDefinitionParser {
@@ -133,8 +127,7 @@ class ConfigBeanDefinitionParser implements BeanDefinitionParser {
 			String advisorBeanName = id;
 			if (StringUtils.hasText(advisorBeanName)) {
 				parserContext.getRegistry().registerBeanDefinition(advisorBeanName, advisorDef);
-			}
-			else {
+			}else {
 				advisorBeanName = parserContext.getReaderContext().registerWithGeneratedName(advisorDef);
 			}
 
@@ -143,14 +136,12 @@ class ConfigBeanDefinitionParser implements BeanDefinitionParser {
 				advisorDef.getPropertyValues().add(POINTCUT, pointcut);
 				parserContext.registerComponent(
 						new AdvisorComponentDefinition(advisorBeanName, advisorDef, (BeanDefinition) pointcut));
-			}
-			else if (pointcut instanceof String) {
+			}else if (pointcut instanceof String) {
 				advisorDef.getPropertyValues().add(POINTCUT, new RuntimeBeanReference((String) pointcut));
 				parserContext.registerComponent(
 						new AdvisorComponentDefinition(advisorBeanName, advisorDef));
 			}
-		}
-		finally {
+		}finally {
 			this.parseState.pop();
 		}
 	}
@@ -165,17 +156,13 @@ class ConfigBeanDefinitionParser implements BeanDefinitionParser {
 
 		String adviceRef = advisorElement.getAttribute(ADVICE_REF);
 		if (!StringUtils.hasText(adviceRef)) {
-			parserContext.getReaderContext().error(
-					"'advice-ref' attribute contains empty value.", advisorElement, this.parseState.snapshot());
-		}
-		else {
-			advisorDefinition.getPropertyValues().add(
-					ADVICE_BEAN_NAME, new RuntimeBeanNameReference(adviceRef));
+			parserContext.getReaderContext().error("'advice-ref' attribute contains empty value.", advisorElement, this.parseState.snapshot());
+		}else {
+			advisorDefinition.getPropertyValues().add(ADVICE_BEAN_NAME, new RuntimeBeanNameReference(adviceRef));
 		}
 
 		if (advisorElement.hasAttribute(ORDER_PROPERTY)) {
-			advisorDefinition.getPropertyValues().add(
-					ORDER_PROPERTY, advisorElement.getAttribute(ORDER_PROPERTY));
+			advisorDefinition.getPropertyValues().add(ORDER_PROPERTY, advisorElement.getAttribute(ORDER_PROPERTY));
 		}
 
 		return advisorDefinition;
@@ -206,31 +193,24 @@ class ConfigBeanDefinitionParser implements BeanDefinitionParser {
 					if (!adviceFoundAlready) {
 						adviceFoundAlready = true;
 						if (!StringUtils.hasText(aspectName)) {
-							parserContext.getReaderContext().error(
-									"<aspect> tag needs aspect bean reference via 'ref' attribute when declaring advices.",
-									aspectElement, this.parseState.snapshot());
+							parserContext.getReaderContext().error("<aspect> tag needs aspect bean reference via 'ref' attribute when declaring advices.",aspectElement, this.parseState.snapshot());
 							return;
 						}
 						beanReferences.add(new RuntimeBeanReference(aspectName));
 					}
-					AbstractBeanDefinition advisorDefinition = parseAdvice(
-							aspectName, i, aspectElement, (Element) node, parserContext, beanDefinitions, beanReferences);
+					AbstractBeanDefinition advisorDefinition = parseAdvice(aspectName, i, aspectElement, (Element) node, parserContext, beanDefinitions, beanReferences);
 					beanDefinitions.add(advisorDefinition);
 				}
 			}
 
-			AspectComponentDefinition aspectComponentDefinition = createAspectComponentDefinition(
-					aspectElement, aspectId, beanDefinitions, beanReferences, parserContext);
+			AspectComponentDefinition aspectComponentDefinition = createAspectComponentDefinition(aspectElement, aspectId, beanDefinitions, beanReferences, parserContext);
 			parserContext.pushContainingComponent(aspectComponentDefinition);
-
 			List<Element> pointcuts = DomUtils.getChildElementsByTagName(aspectElement, POINTCUT);
 			for (Element pointcutElement : pointcuts) {
 				parsePointcut(pointcutElement, parserContext);
 			}
-
 			parserContext.popAndRegisterContainingComponent();
-		}
-		finally {
+		}finally {
 			this.parseState.pop();
 		}
 	}
@@ -276,13 +256,10 @@ class ConfigBeanDefinitionParser implements BeanDefinitionParser {
 
 		if (StringUtils.hasText(defaultImpl) && !StringUtils.hasText(delegateRef)) {
 			builder.addConstructorArgValue(defaultImpl);
-		}
-		else if (StringUtils.hasText(delegateRef) && !StringUtils.hasText(defaultImpl)) {
+		}else if (StringUtils.hasText(delegateRef) && !StringUtils.hasText(defaultImpl)) {
 			builder.addConstructorArgReference(delegateRef);
-		}
-		else {
-			parserContext.getReaderContext().error(
-					"Exactly one of the " + DEFAULT_IMPL + " or " + DELEGATE_REF + " attributes must be specified",
+		}else {
+			parserContext.getReaderContext().error("Exactly one of the " + DEFAULT_IMPL + " or " + DELEGATE_REF + " attributes must be specified",
 					declareParentsElement, this.parseState.snapshot());
 		}
 
@@ -312,31 +289,23 @@ class ConfigBeanDefinitionParser implements BeanDefinitionParser {
 			methodDefinition.setSynthetic(true);
 
 			// create instance factory definition
-			RootBeanDefinition aspectFactoryDef =
-					new RootBeanDefinition(SimpleBeanFactoryAwareAspectInstanceFactory.class);
+			RootBeanDefinition aspectFactoryDef = new RootBeanDefinition(SimpleBeanFactoryAwareAspectInstanceFactory.class);
 			aspectFactoryDef.getPropertyValues().add("aspectBeanName", aspectName);
 			aspectFactoryDef.setSynthetic(true);
 
 			// register the pointcut
-			AbstractBeanDefinition adviceDef = createAdviceDefinition(
-					adviceElement, parserContext, aspectName, order, methodDefinition, aspectFactoryDef,
-					beanDefinitions, beanReferences);
-
+			AbstractBeanDefinition adviceDef = createAdviceDefinition(adviceElement, parserContext, aspectName, order, methodDefinition, aspectFactoryDef,beanDefinitions, beanReferences);
 			// configure the advisor
 			RootBeanDefinition advisorDefinition = new RootBeanDefinition(AspectJPointcutAdvisor.class);
 			advisorDefinition.setSource(parserContext.extractSource(adviceElement));
 			advisorDefinition.getConstructorArgumentValues().addGenericArgumentValue(adviceDef);
 			if (aspectElement.hasAttribute(ORDER_PROPERTY)) {
-				advisorDefinition.getPropertyValues().add(
-						ORDER_PROPERTY, aspectElement.getAttribute(ORDER_PROPERTY));
+				advisorDefinition.getPropertyValues().add(ORDER_PROPERTY, aspectElement.getAttribute(ORDER_PROPERTY));
 			}
-
 			// register the final advisor
 			parserContext.getReaderContext().registerWithGeneratedName(advisorDefinition);
-
 			return advisorDefinition;
-		}
-		finally {
+		}finally {
 			this.parseState.pop();
 		}
 	}
@@ -359,16 +328,14 @@ class ConfigBeanDefinitionParser implements BeanDefinitionParser {
 		adviceDefinition.getPropertyValues().add(DECLARATION_ORDER_PROPERTY, order);
 
 		if (adviceElement.hasAttribute(RETURNING)) {
-			adviceDefinition.getPropertyValues().add(
-					RETURNING_PROPERTY, adviceElement.getAttribute(RETURNING));
+			adviceDefinition.getPropertyValues().add(RETURNING_PROPERTY, adviceElement.getAttribute(RETURNING));
+
 		}
 		if (adviceElement.hasAttribute(THROWING)) {
-			adviceDefinition.getPropertyValues().add(
-					THROWING_PROPERTY, adviceElement.getAttribute(THROWING));
+			adviceDefinition.getPropertyValues().add(THROWING_PROPERTY, adviceElement.getAttribute(THROWING));
 		}
 		if (adviceElement.hasAttribute(ARG_NAMES)) {
-			adviceDefinition.getPropertyValues().add(
-					ARG_NAMES_PROPERTY, adviceElement.getAttribute(ARG_NAMES));
+			adviceDefinition.getPropertyValues().add(ARG_NAMES_PROPERTY, adviceElement.getAttribute(ARG_NAMES));
 		}
 
 		ConstructorArgumentValues cav = adviceDefinition.getConstructorArgumentValues();
@@ -378,15 +345,12 @@ class ConfigBeanDefinitionParser implements BeanDefinitionParser {
 		if (pointcut instanceof BeanDefinition) {
 			cav.addIndexedArgumentValue(POINTCUT_INDEX, pointcut);
 			beanDefinitions.add((BeanDefinition) pointcut);
-		}
-		else if (pointcut instanceof String) {
+		}else if (pointcut instanceof String) {
 			RuntimeBeanReference pointcutRef = new RuntimeBeanReference((String) pointcut);
 			cav.addIndexedArgumentValue(POINTCUT_INDEX, pointcutRef);
 			beanReferences.add(pointcutRef);
 		}
-
 		cav.addIndexedArgumentValue(ASPECT_INSTANCE_FACTORY_INDEX, aspectFactoryDef);
-
 		return adviceDefinition;
 	}
 
@@ -457,31 +421,23 @@ class ConfigBeanDefinitionParser implements BeanDefinitionParser {
 	@Nullable
 	private Object parsePointcutProperty(Element element, ParserContext parserContext) {
 		if (element.hasAttribute(POINTCUT) && element.hasAttribute(POINTCUT_REF)) {
-			parserContext.getReaderContext().error(
-					"Cannot define both 'pointcut' and 'pointcut-ref' on <advisor> tag.",
-					element, this.parseState.snapshot());
+			parserContext.getReaderContext().error("Cannot define both 'pointcut' and 'pointcut-ref' on <advisor> tag.",element, this.parseState.snapshot());
 			return null;
-		}
-		else if (element.hasAttribute(POINTCUT)) {
+		}else if (element.hasAttribute(POINTCUT)) {
 			// Create a pointcut for the anonymous pc and register it.
 			String expression = element.getAttribute(POINTCUT);
 			AbstractBeanDefinition pointcutDefinition = createPointcutDefinition(expression);
 			pointcutDefinition.setSource(parserContext.extractSource(element));
 			return pointcutDefinition;
-		}
-		else if (element.hasAttribute(POINTCUT_REF)) {
+		}else if (element.hasAttribute(POINTCUT_REF)) {
 			String pointcutRef = element.getAttribute(POINTCUT_REF);
 			if (!StringUtils.hasText(pointcutRef)) {
-				parserContext.getReaderContext().error(
-						"'pointcut-ref' attribute contains empty value.", element, this.parseState.snapshot());
+				parserContext.getReaderContext().error("'pointcut-ref' attribute contains empty value.", element, this.parseState.snapshot());
 				return null;
 			}
 			return pointcutRef;
-		}
-		else {
-			parserContext.getReaderContext().error(
-					"Must define one of 'pointcut' or 'pointcut-ref' on <advisor> tag.",
-					element, this.parseState.snapshot());
+		}else {
+			parserContext.getReaderContext().error("Must define one of 'pointcut' or 'pointcut-ref' on <advisor> tag.",element, this.parseState.snapshot());
 			return null;
 		}
 	}

@@ -7,7 +7,6 @@ package org.springframework.aop.framework;
  * AOP proxies based on {@link AdvisedSupport} configuration objects.
  *
  * <p>Proxies should observe the following contract:
- * <ul>
  * <li>They should implement all interfaces that the configuration
  * indicates should be proxied.
  * <li>They should implement the {@link Advised} interface.
@@ -15,9 +14,7 @@ package org.springframework.aop.framework;
  * interfaces, advice, and target.
  * <li>They should be serializable if all advisors and target
  * are serializable.
- * <li>They should be thread-safe if advisors and target
- * are thread-safe.
- * </ul>
+ * <li>They should be thread-safe if advisors and target are thread-safe.
  *
  * <p>Proxies may or may not allow advice changes to be made.
  * If they do not permit advice changes (for example, because

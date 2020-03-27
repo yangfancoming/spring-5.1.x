@@ -12,17 +12,13 @@ import org.springframework.aop.AfterAdvice;
 
 /**
  * Spring AOP advice wrapping an AspectJ after-throwing advice method.
- *
- * @author Rod Johnson
  * @since 2.0
  */
 @SuppressWarnings("serial")
 public class AspectJAfterThrowingAdvice extends AbstractAspectJAdvice
 		implements MethodInterceptor, AfterAdvice, Serializable {
 
-	public AspectJAfterThrowingAdvice(
-			Method aspectJBeforeAdviceMethod, AspectJExpressionPointcut pointcut, AspectInstanceFactory aif) {
-
+	public AspectJAfterThrowingAdvice(Method aspectJBeforeAdviceMethod, AspectJExpressionPointcut pointcut, AspectInstanceFactory aif) {
 		super(aspectJBeforeAdviceMethod, pointcut, aif);
 	}
 
@@ -46,8 +42,7 @@ public class AspectJAfterThrowingAdvice extends AbstractAspectJAdvice
 	public Object invoke(MethodInvocation mi) throws Throwable {
 		try {
 			return mi.proceed();
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			if (shouldInvokeOnThrowing(ex)) {
 				invokeAdviceMethod(getJoinPointMatch(), null, ex);
 			}

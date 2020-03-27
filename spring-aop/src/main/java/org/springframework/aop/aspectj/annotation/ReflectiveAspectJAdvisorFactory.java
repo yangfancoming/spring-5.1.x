@@ -42,14 +42,7 @@ import org.springframework.util.comparator.InstanceComparator;
 
 /**
  * Factory that can create Spring AOP Advisors given AspectJ classes from
- * classes honoring the AspectJ 5 annotation syntax, using reflection to
- * invoke the corresponding advice methods.
- *
- * @author Rod Johnson
- * @author Adrian Colyer
-
- * @author Ramnivas Laddad
- * @author Phillip Webb
+ * classes honoring the AspectJ 5 annotation syntax, using reflection to invoke the corresponding advice methods.
  * @since 2.0
  */
 @SuppressWarnings("serial")
@@ -62,18 +55,15 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 				new InstanceComparator<>(
 						Around.class, Before.class, After.class, AfterReturning.class, AfterThrowing.class),
 				(Converter<Method, Annotation>) method -> {
-					AspectJAnnotation<?> annotation =
-						AbstractAspectJAdvisorFactory.findAspectJAnnotationOnMethod(method);
+					AspectJAnnotation<?> annotation = AbstractAspectJAdvisorFactory.findAspectJAnnotationOnMethod(method);
 					return (annotation != null ? annotation.getAnnotation() : null);
 				});
 		Comparator<Method> methodNameComparator = new ConvertingComparator<>(Method::getName);
 		METHOD_COMPARATOR = adviceKindComparator.thenComparing(methodNameComparator);
 	}
 
-
 	@Nullable
 	private final BeanFactory beanFactory;
-
 
 	/**
 	 * Create a new {@code ReflectiveAspectJAdvisorFactory}.
@@ -170,13 +160,10 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 			// Not an introduction field
 			return null;
 		}
-
 		if (DeclareParents.class == declareParents.defaultImpl()) {
 			throw new IllegalStateException("'defaultImpl' attribute must be set on DeclareParents");
 		}
-
-		return new DeclareParentsAdvisor(
-				introductionField.getType(), declareParents.value(), declareParents.defaultImpl());
+		return new DeclareParentsAdvisor(introductionField.getType(), declareParents.value(), declareParents.defaultImpl());
 	}
 
 
@@ -189,9 +176,7 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 		// 封装为一个AspectJExpressionPointcut对象
 		// 获取切点实现类
 		AspectJExpressionPointcut expressionPointcut = getPointcut(candidateAdviceMethod, aspectInstanceFactory.getAspectMetadata().getAspectClass());
-		if (expressionPointcut == null) {
-			return null;
-		}
+		if (expressionPointcut == null) return null;
 
 		// 将获取到的切点，切点方法等信息封装为一个Advisor对象，也就是说当前Advisor包含有所有
 		// 当前切面进行环绕所需要的信息
@@ -203,9 +188,7 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 	private AspectJExpressionPointcut getPointcut(Method candidateAdviceMethod, Class<?> candidateAspectClass) {
 		// 获取方法上的 AspectJ 相关注解，包括 @Before，@After 等
 		AspectJAnnotation<?> aspectJAnnotation = AbstractAspectJAdvisorFactory.findAspectJAnnotationOnMethod(candidateAdviceMethod);
-		if (aspectJAnnotation == null) {
-			return null;
-		}
+		if (aspectJAnnotation == null) return null;
 		// 创建一个 AspectJExpressionPointcut 对象
 		AspectJExpressionPointcut ajexp = new AspectJExpressionPointcut(candidateAspectClass, new String[0], new Class<?>[0]);
 		// 设置切点表达式
@@ -233,9 +216,7 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 			throw new AopConfigException("Advice must be declared inside an aspect type: " + "Offending method '" + candidateAdviceMethod + "' in class [" + candidateAspectClass.getName() + "]");
 		}
 
-		if (logger.isDebugEnabled()) {
-			logger.debug("Found AspectJ method: " + candidateAdviceMethod);
-		}
+		if (logger.isDebugEnabled()) logger.debug("Found AspectJ method: " + candidateAdviceMethod);
 
 		AbstractAspectJAdvice springAdvice;
 		// 按照注解类型生成相应的 Advice 实现类

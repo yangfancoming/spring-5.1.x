@@ -12,11 +12,7 @@ import org.springframework.util.Assert;
 /**
  * {@link org.springframework.beans.factory.parsing.ComponentDefinition}
  * that bridges the gap between the advisor bean definition configured
- * by the {@code <aop:advisor>} tag and the component definition
- * infrastructure.
- *
- * @author Rob Harrop
-
+ * by the {@code <aop:advisor>} tag and the component definition infrastructure.
  * @since 2.0
  */
 public class AdvisorComponentDefinition extends AbstractComponentDefinition {
@@ -36,9 +32,7 @@ public class AdvisorComponentDefinition extends AbstractComponentDefinition {
 		this(advisorBeanName, advisorDefinition, null);
 	}
 
-	public AdvisorComponentDefinition(
-			String advisorBeanName, BeanDefinition advisorDefinition, @Nullable BeanDefinition pointcutDefinition) {
-
+	public AdvisorComponentDefinition(String advisorBeanName, BeanDefinition advisorDefinition, @Nullable BeanDefinition pointcutDefinition) {
 		Assert.notNull(advisorBeanName, "'advisorBeanName' must not be null");
 		Assert.notNull(advisorDefinition, "'advisorDefinition' must not be null");
 		this.advisorBeanName = advisorBeanName;
@@ -52,8 +46,7 @@ public class AdvisorComponentDefinition extends AbstractComponentDefinition {
 			this.beanReferences = new BeanReference[] {adviceReference};
 			this.beanDefinitions = new BeanDefinition[] {advisorDefinition, pointcutDefinition};
 			this.description = buildDescription(adviceReference, pointcutDefinition);
-		}
-		else {
+		}else {
 			BeanReference pointcutReference = (BeanReference) pvs.get("pointcut");
 			Assert.state(pointcutReference != null, "Missing 'pointcut' property");
 			this.beanReferences = new BeanReference[] {adviceReference, pointcutReference};
@@ -63,9 +56,7 @@ public class AdvisorComponentDefinition extends AbstractComponentDefinition {
 	}
 
 	private String buildDescription(BeanReference adviceReference, BeanDefinition pointcutDefinition) {
-		return "Advisor <advice(ref)='" +
-				adviceReference.getBeanName() + "', pointcut(expression)=[" +
-				pointcutDefinition.getPropertyValues().get("expression") + "]>";
+		return "Advisor <advice(ref)='" + adviceReference.getBeanName() + "', pointcut(expression)=[" + pointcutDefinition.getPropertyValues().get("expression") + "]>";
 	}
 
 	private String buildDescription(BeanReference adviceReference, BeanReference pointcutReference) {

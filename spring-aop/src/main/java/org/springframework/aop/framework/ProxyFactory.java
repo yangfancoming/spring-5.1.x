@@ -12,10 +12,6 @@ import org.springframework.util.ClassUtils;
  * Factory for AOP proxies for programmatic use, rather than via declarative
  * setup in a bean factory. This class provides a simple way of obtaining
  * and configuring AOP proxy instances in custom user code.
- *
- * @author Rod Johnson
-
- * @author Rob Harrop
  * @since 14.03.2003
  */
 @SuppressWarnings("serial")

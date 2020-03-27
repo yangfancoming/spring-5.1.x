@@ -11,8 +11,6 @@ import org.springframework.util.Assert;
 /**
  * Simple ClassFilter that looks for a specific Java 5 annotation
  * being present on a class.
- *
-
  * @since 2.0
  * @see AnnotationMatchingPointcut
  */
@@ -21,7 +19,6 @@ public class AnnotationClassFilter implements ClassFilter {
 	private final Class<? extends Annotation> annotationType;
 
 	private final boolean checkInherited;
-
 
 	/**
 	 * Create a new AnnotationClassFilter for the given annotation type.
@@ -48,8 +45,7 @@ public class AnnotationClassFilter implements ClassFilter {
 
 	@Override
 	public boolean matches(Class<?> clazz) {
-		return (this.checkInherited ? AnnotatedElementUtils.hasAnnotation(clazz, this.annotationType) :
-				clazz.isAnnotationPresent(this.annotationType));
+		return (this.checkInherited ? AnnotatedElementUtils.hasAnnotation(clazz, this.annotationType) : clazz.isAnnotationPresent(this.annotationType));
 	}
 
 	@Override

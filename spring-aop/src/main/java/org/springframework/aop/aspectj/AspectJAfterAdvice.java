@@ -21,14 +21,12 @@ public class AspectJAfterAdvice extends AbstractAspectJAdvice implements MethodI
 		super(aspectJBeforeAdviceMethod, pointcut, aif);
 	}
 
-
 	@Override
 	public Object invoke(MethodInvocation mi) throws Throwable {
 		try {
 			// 调用 proceed
 			return mi.proceed();
-		}
-		finally {
+		}finally {
 			// 调用后置通知逻辑
 			invokeAdviceMethod(getJoinPointMatch(), null, null);
 		}

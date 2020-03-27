@@ -14,14 +14,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * Convenient superclass for {@link FactoryBean} types that produce singleton-scoped
- * proxy objects.
- *
+ * Convenient superclass for {@link FactoryBean} types that produce singleton-scoped proxy objects.
  * <p>Manages pre- and post-interceptors (references, rather than
  * interceptor names, as in {@link ProxyFactoryBean}) and provides
  * consistent interface management.
- *
-
  * @since 2.0
  */
 @SuppressWarnings("serial")
@@ -159,8 +155,7 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
 
 		if (this.proxyInterfaces != null) {
 			proxyFactory.setInterfaces(this.proxyInterfaces);
-		}
-		else if (!isProxyTargetClass()) {
+		}else if (!isProxyTargetClass()) {
 			// Rely on AOP infrastructure to tell us what interfaces to proxy.
 			Class<?> targetClass = targetSource.getTargetClass();
 			if (targetClass != null) {

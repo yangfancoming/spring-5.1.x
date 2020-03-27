@@ -5,13 +5,8 @@ package org.aopalliance.intercept;
 import java.lang.reflect.Constructor;
 
 /**
- * Description of an invocation to a constructor, given to an
- * interceptor upon constructor-call.
- *
- * <p>A constructor invocation is a joinpoint and can be intercepted
- * by a constructor interceptor.
- *
- * @author Rod Johnson
+ * Description of an invocation to a constructor, given to an interceptor upon constructor-call.
+ * <p>A constructor invocation is a joinpoint and can be intercepted by a constructor interceptor.
  * @see ConstructorInterceptor
  */
 public interface ConstructorInvocation extends Invocation {

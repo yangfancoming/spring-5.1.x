@@ -22,9 +22,6 @@ import org.springframework.core.PriorityOrdered;
  * Target objects should be plain POJOs as far as possible.
  *
  * <p>If used, this interceptor will normally be the first in the interceptor chain.
- *
- * @author Rod Johnson
-
  */
 @SuppressWarnings("serial")
 public final class ExposeInvocationInterceptor implements MethodInterceptor, PriorityOrdered, Serializable {
@@ -43,9 +40,7 @@ public final class ExposeInvocationInterceptor implements MethodInterceptor, Pri
 		}
 	};
 
-	private static final ThreadLocal<MethodInvocation> invocation =
-			new NamedThreadLocal<>("Current AOP method invocation");
-
+	private static final ThreadLocal<MethodInvocation> invocation = new NamedThreadLocal<>("Current AOP method invocation");
 
 	/**
 	 * Return the AOP Alliance MethodInvocation object associated with the current invocation.
@@ -77,8 +72,7 @@ public final class ExposeInvocationInterceptor implements MethodInterceptor, Pri
 		invocation.set(mi);
 		try {
 			return mi.proceed();
-		}
-		finally {
+		}finally {
 			invocation.set(oldInvocation);
 		}
 	}

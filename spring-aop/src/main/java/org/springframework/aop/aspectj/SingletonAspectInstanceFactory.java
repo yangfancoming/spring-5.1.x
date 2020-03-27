@@ -12,9 +12,6 @@ import org.springframework.util.Assert;
  * Implementation of {@link AspectInstanceFactory} that is backed by a
  * specified singleton object, returning the same instance for every
  * {@link #getAspectInstance()} call.
- *
- * @author Rod Johnson
-
  * @since 2.0
  * @see SimpleAspectInstanceFactory
  */

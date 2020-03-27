@@ -43,10 +43,6 @@ import org.springframework.util.ClassUtils;
  * <p>As of Spring 3.1.2 the {@code AnnotationAsyncExecutionInterceptor} subclass is
  * preferred for use due to its support for executor qualification in conjunction with
  * Spring's {@code @Async} annotation.
- *
-
-
- * @author Stephane Nicoll
  * @since 3.0
  * @see org.springframework.scheduling.annotation.Async
  * @see org.springframework.scheduling.annotation.AsyncAnnotationAdvisor
@@ -102,11 +98,9 @@ public class AsyncExecutionInterceptor extends AsyncExecutionAspectSupport imple
 				if (result instanceof Future) {
 					return ((Future<?>) result).get();
 				}
-			}
-			catch (ExecutionException ex) {
+			}catch (ExecutionException ex) {
 				handleError(ex.getCause(), userDeclaredMethod, invocation.getArguments());
-			}
-			catch (Throwable ex) {
+			}catch (Throwable ex) {
 				handleError(ex, userDeclaredMethod, invocation.getArguments());
 			}
 			return null;

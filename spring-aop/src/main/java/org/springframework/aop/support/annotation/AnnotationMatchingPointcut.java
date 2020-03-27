@@ -12,10 +12,7 @@ import org.springframework.util.Assert;
 
 /**
  * Simple Pointcut that looks for a specific Java 5 annotation
- * being present on a {@link #forClassAnnotation class} or
- * {@link #forMethodAnnotation method}.
- *
-
+ * being present on a {@link #forClassAnnotation class} or {@link #forMethodAnnotation method}.
  * @since 2.0
  * @see AnnotationClassFilter
  * @see AnnotationMethodMatcher
@@ -72,23 +69,17 @@ public class AnnotationMatchingPointcut implements Pointcut {
 	 * @see AnnotationClassFilter#AnnotationClassFilter(Class, boolean)
 	 * @see AnnotationMethodMatcher#AnnotationMethodMatcher(Class, boolean)
 	 */
-	public AnnotationMatchingPointcut(@Nullable Class<? extends Annotation> classAnnotationType,
-			@Nullable Class<? extends Annotation> methodAnnotationType, boolean checkInherited) {
-
-		Assert.isTrue((classAnnotationType != null || methodAnnotationType != null),
-				"Either Class annotation type or Method annotation type needs to be specified (or both)");
-
+	public AnnotationMatchingPointcut(@Nullable Class<? extends Annotation> classAnnotationType,@Nullable Class<? extends Annotation> methodAnnotationType, boolean checkInherited) {
+		Assert.isTrue((classAnnotationType != null || methodAnnotationType != null),"Either Class annotation type or Method annotation type needs to be specified (or both)");
 		if (classAnnotationType != null) {
 			this.classFilter = new AnnotationClassFilter(classAnnotationType, checkInherited);
-		}
-		else {
+		}else {
 			this.classFilter = ClassFilter.TRUE;
 		}
 
 		if (methodAnnotationType != null) {
 			this.methodMatcher = new AnnotationMethodMatcher(methodAnnotationType, checkInherited);
-		}
-		else {
+		}else {
 			this.methodMatcher = MethodMatcher.TRUE;
 		}
 	}

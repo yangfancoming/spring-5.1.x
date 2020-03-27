@@ -14,19 +14,13 @@ import org.springframework.util.TypeUtils;
 
 /**
  * Spring AOP advice wrapping an AspectJ after-returning advice method.
- *
- * @author Rod Johnson
-
- * @author Ramnivas Laddad
  * @since 2.0
  */
 @SuppressWarnings("serial")
 public class AspectJAfterReturningAdvice extends AbstractAspectJAdvice
 		implements AfterReturningAdvice, AfterAdvice, Serializable {
 
-	public AspectJAfterReturningAdvice(
-			Method aspectJBeforeAdviceMethod, AspectJExpressionPointcut pointcut, AspectInstanceFactory aif) {
-
+	public AspectJAfterReturningAdvice(Method aspectJBeforeAdviceMethod, AspectJExpressionPointcut pointcut, AspectInstanceFactory aif) {
 		super(aspectJBeforeAdviceMethod, pointcut, aif);
 	}
 
@@ -53,7 +47,6 @@ public class AspectJAfterReturningAdvice extends AbstractAspectJAdvice
 		}
 	}
 
-
 	/**
 	 * Following AspectJ semantics, if a returning clause was specified, then the
 	 * advice is only invoked if the returned value is an instance of the given
@@ -67,8 +60,7 @@ public class AspectJAfterReturningAdvice extends AbstractAspectJAdvice
 		Type genericType = getDiscoveredReturningGenericType();
 		// If we aren't dealing with a raw type, check if generic parameters are assignable.
 		return (matchesReturnValue(type, method, returnValue) &&
-				(genericType == null || genericType == type ||
-						TypeUtils.isAssignable(genericType, method.getGenericReturnType())));
+				(genericType == null || genericType == type || TypeUtils.isAssignable(genericType, method.getGenericReturnType())));
 	}
 
 	/**
@@ -84,11 +76,9 @@ public class AspectJAfterReturningAdvice extends AbstractAspectJAdvice
 	private boolean matchesReturnValue(Class<?> type, Method method, @Nullable Object returnValue) {
 		if (returnValue != null) {
 			return ClassUtils.isAssignableValue(type, returnValue);
-		}
-		else if (Object.class == type && void.class == method.getReturnType()) {
+		}else if (Object.class == type && void.class == method.getReturnType()) {
 			return true;
-		}
-		else {
+		}else {
 			return ClassUtils.isAssignable(type, method.getReturnType());
 		}
 	}

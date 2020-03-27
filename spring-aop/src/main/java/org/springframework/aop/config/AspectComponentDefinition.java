@@ -10,9 +10,6 @@ import org.springframework.lang.Nullable;
 /**
  * {@link org.springframework.beans.factory.parsing.ComponentDefinition}
  * that holds an aspect definition, including its nested pointcuts.
- *
- * @author Rob Harrop
-
  * @since 2.0
  * @see #getNestedComponents()
  * @see PointcutComponentDefinition

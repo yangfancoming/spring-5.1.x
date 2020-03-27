@@ -6,17 +6,13 @@ import org.springframework.aop.framework.AopConfigException;
 
 /**
  * Extension of AopConfigException thrown when trying to perform
- * an advisor generation operation on a class that is not an
- * AspectJ annotation-style aspect.
- *
- * @author Rod Johnson
+ * an advisor generation operation on a class that is not an AspectJ annotation-style aspect.
  * @since 2.0
  */
 @SuppressWarnings("serial")
 public class NotAnAtAspectException extends AopConfigException {
 
 	private final Class<?> nonAspectClass;
-
 
 	/**
 	 * Create a new NotAnAtAspectException for the given class.

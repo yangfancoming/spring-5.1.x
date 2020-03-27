@@ -14,8 +14,6 @@ import org.springframework.util.Assert;
  * {@link ConfigurableBeanFactory bean factory}
  * ({@link ConfigurableBeanFactory#getBean(String)}/
  * {@link ConfigurableBeanFactory#destroyScopedBean(String)}).
- *
-
  * @since 2.0
  * @see org.springframework.beans.factory.BeanFactory#getBean
  * @see org.springframework.beans.factory.config.ConfigurableBeanFactory#destroyScopedBean
@@ -26,7 +24,6 @@ public class DefaultScopedObject implements ScopedObject, Serializable {
 	private final ConfigurableBeanFactory beanFactory;
 
 	private final String targetBeanName;
-
 
 	/**
 	 * Creates a new instance of the {@link DefaultScopedObject} class.

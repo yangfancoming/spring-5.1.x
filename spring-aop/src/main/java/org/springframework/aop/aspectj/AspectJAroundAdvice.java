@@ -15,17 +15,12 @@ import org.springframework.aop.ProxyMethodInvocation;
 /**
  * Spring AOP around advice (MethodInterceptor) that wraps
  * an AspectJ advice method. Exposes ProceedingJoinPoint.
- *
- * @author Rod Johnson
-
  * @since 2.0
  */
 @SuppressWarnings("serial")
 public class AspectJAroundAdvice extends AbstractAspectJAdvice implements MethodInterceptor, Serializable {
 
-	public AspectJAroundAdvice(
-			Method aspectJAroundAdviceMethod, AspectJExpressionPointcut pointcut, AspectInstanceFactory aif) {
-
+	public AspectJAroundAdvice(Method aspectJAroundAdviceMethod, AspectJExpressionPointcut pointcut, AspectInstanceFactory aif) {
 		super(aspectJAroundAdviceMethod, pointcut, aif);
 	}
 

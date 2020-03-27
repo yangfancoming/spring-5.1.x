@@ -13,9 +13,6 @@ import org.springframework.util.Assert;
 /**
  * AspectJPointcutAdvisor that adapts an {@link AbstractAspectJAdvice}
  * to the {@link org.springframework.aop.PointcutAdvisor} interface.
- *
- * @author Adrian Colyer
-
  * @since 2.0
  */
 public class AspectJPointcutAdvisor implements PointcutAdvisor, Ordered {

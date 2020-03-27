@@ -10,8 +10,6 @@ import org.springframework.lang.Nullable;
 
 /**
  * Spring AOP Advisor that can be used for any AspectJ pointcut expression.
- *
- * @author Rob Harrop
  * @since 2.0
  */
 @SuppressWarnings("serial")

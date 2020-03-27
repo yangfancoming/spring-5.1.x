@@ -58,13 +58,6 @@ import org.springframework.util.StringUtils;
  *
  * <p>Naturally, as this is to be processed by Spring AOP's proxy-based model,
  * only method execution pointcuts are supported.
- *
- * @author Rob Harrop
- * @author Adrian Colyer
- * @author Rod Johnson
-
- * @author Ramnivas Laddad
- * @author Dave Syer
  * @since 2.0
  */
 @SuppressWarnings("serial")
@@ -268,8 +261,7 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 					return fallbackExpression.couldMatchJoinPointsInType(targetClass);
 				}
 			}
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			logger.debug("PointcutExpression matching rejected target class", ex);
 		}
 		return false;
@@ -331,8 +323,7 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 			}
 			pmi = (ProxyMethodInvocation) mi;
 			thisObject = pmi.getProxy();
-		}
-		catch (IllegalStateException ex) {
+		}catch (IllegalStateException ex) {
 			// No current invocation...
 			if (logger.isDebugEnabled()) {
 				logger.debug("Could not access current invocation - matching with limited context: " + ex);
@@ -387,8 +378,7 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 			if (classLoader != null && classLoader != this.pointcutClassLoader) {
 				return buildPointcutExpression(classLoader);
 			}
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			logger.debug("Failed to create fallback PointcutExpression", ex);
 		}
 		return null;

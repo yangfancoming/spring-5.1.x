@@ -7,8 +7,6 @@ import org.springframework.core.Ordered;
 /**
  * Interface to be implemented by types that can supply the information
  * needed to sort advice/advisors by AspectJ's precedence rules.
- *
- * @author Adrian Colyer
  * @since 2.0
  * @see org.springframework.aop.aspectj.autoproxy.AspectJPrecedenceComparator
  */

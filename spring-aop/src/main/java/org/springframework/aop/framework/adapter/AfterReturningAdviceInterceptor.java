@@ -13,10 +13,7 @@ import org.springframework.util.Assert;
 
 /**
  * Interceptor to wrap an {@link org.springframework.aop.AfterReturningAdvice}.
- * Used internally by the AOP framework; application developers should not need
- * to use this class directly.
- *
- * @author Rod Johnson
+ * Used internally by the AOP framework; application developers should not need to use this class directly.
  * @see MethodBeforeAdviceInterceptor
  * @see ThrowsAdviceInterceptor
  */
@@ -24,7 +21,6 @@ import org.springframework.util.Assert;
 public class AfterReturningAdviceInterceptor implements MethodInterceptor, AfterAdvice, Serializable {
 
 	private final AfterReturningAdvice advice;
-
 
 	/**
 	 * Create a new AfterReturningAdviceInterceptor for the given advice.
@@ -34,7 +30,6 @@ public class AfterReturningAdviceInterceptor implements MethodInterceptor, After
 		Assert.notNull(advice, "Advice must not be null");
 		this.advice = advice;
 	}
-
 
 	@Override
 	public Object invoke(MethodInvocation mi) throws Throwable {

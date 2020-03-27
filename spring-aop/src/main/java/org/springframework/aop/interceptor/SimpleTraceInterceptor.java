@@ -9,12 +9,7 @@ import org.apache.commons.logging.Log;
  * Simple AOP Alliance {@code MethodInterceptor} that can be introduced
  * in a chain to display verbose trace information about intercepted method
  * invocations, with method entry and method exit info.
- *
- * <p>Consider using {@code CustomizableTraceInterceptor} for more
- * advanced needs.
- *
- * @author Dmitriy Kopylenko
-
+ * <p>Consider using {@code CustomizableTraceInterceptor} for more advanced needs.
  * @since 1.2
  * @see CustomizableTraceInterceptor
  */
@@ -46,8 +41,7 @@ public class SimpleTraceInterceptor extends AbstractTraceInterceptor {
 			Object rval = invocation.proceed();
 			writeToLog(logger, "Exiting " + invocationDescription);
 			return rval;
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			writeToLog(logger, "Exception thrown in " + invocationDescription, ex);
 			throw ex;
 		}
@@ -59,8 +53,7 @@ public class SimpleTraceInterceptor extends AbstractTraceInterceptor {
 	 * @return the description
 	 */
 	protected String getInvocationDescription(MethodInvocation invocation) {
-		return "method '" + invocation.getMethod().getName() + "' of class [" +
-				invocation.getThis().getClass().getName() + "]";
+		return "method '" + invocation.getMethod().getName() + "' of class [" + invocation.getThis().getClass().getName() + "]";
 	}
 
 }

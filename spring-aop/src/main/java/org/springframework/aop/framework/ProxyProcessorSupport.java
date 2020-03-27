@@ -16,8 +16,6 @@ import org.springframework.util.ObjectUtils;
 /**
  * Base class with common functionality for proxy processors, in particular
  * ClassLoader management and the {@link #evaluateProxyInterfaces} algorithm.
- *
-
  * @since 4.1
  * @see AbstractAdvisingBeanPostProcessor
  * @see org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator
@@ -102,8 +100,7 @@ public class ProxyProcessorSupport extends ProxyConfig implements Ordered, BeanC
 			for (Class<?> ifc : targetInterfaces) {
 				proxyFactory.addInterface(ifc);
 			}
-		}
-		else {
+		}else {
 			proxyFactory.setProxyTargetClass(true);
 		}
 	}

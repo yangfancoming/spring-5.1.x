@@ -35,7 +35,6 @@ import org.springframework.lang.Nullable;
  * directly accessed. The sole reason for it being public is compatibility
  * with existing framework integrations (e.g. Pitchfork). For any other
  * purposes, use the {@link ProxyMethodInvocation} interface instead.
-
  * @see #invokeJoinpoint
  * @see #proceed
  * @see #invocableClone
@@ -51,7 +50,7 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 
 	protected final Method method;
 
-	protected Object[] arguments = new Object[0];
+	protected Object[] arguments;
 
 	@Nullable
 	private final Class<?> targetClass;
@@ -146,9 +145,7 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 			// 执行目标方法
 			return invokeJoinpoint();
 		}
-
-		Object interceptorOrInterceptionAdvice =
-				this.interceptorsAndDynamicMethodMatchers.get(++this.currentInterceptorIndex);
+		Object interceptorOrInterceptionAdvice = this.interceptorsAndDynamicMethodMatchers.get(++this.currentInterceptorIndex);
 		if (interceptorOrInterceptionAdvice instanceof InterceptorAndDynamicMethodMatcher) {
 			// Evaluate dynamic method matcher here: static part will already have
 			// been evaluated and found to match.
@@ -161,15 +158,13 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 			if (dm.methodMatcher.matches(this.method, targetClass, this.arguments)) {
 				// 调用拦截器逻辑
 				return dm.interceptor.invoke(this);
-			}
-			else {
+			}else {
 				// 如果匹配失败，则忽略当前的拦截器
 				// Dynamic matching failed.
 				// Skip this interceptor and invoke the next in the chain.
 				return proceed();
 			}
-		}
-		else {
+		}else {
 			// 调用拦截器逻辑，并传递 ReflectiveMethodInvocation 对象
 			// It's an interceptor, so we just invoke it: The pointcut will have
 			// been evaluated statically before this object was constructed.
@@ -223,16 +218,13 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 		if (this.userAttributes == null) {
 			this.userAttributes = new HashMap<>();
 		}
-
 		// Create the MethodInvocation clone.
 		try {
 			ReflectiveMethodInvocation clone = (ReflectiveMethodInvocation) clone();
 			clone.arguments = arguments;
 			return clone;
-		}
-		catch (CloneNotSupportedException ex) {
-			throw new IllegalStateException(
-					"Should be able to clone object of type [" + getClass() + "]: " + ex);
+		}catch (CloneNotSupportedException ex) {
+			throw new IllegalStateException("Should be able to clone object of type [" + getClass() + "]: " + ex);
 		}
 	}
 
@@ -244,8 +236,7 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 				this.userAttributes = new HashMap<>();
 			}
 			this.userAttributes.put(key, value);
-		}
-		else {
+		}else {
 			if (this.userAttributes != null) {
 				this.userAttributes.remove(key);
 			}
@@ -280,8 +271,7 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 		sb.append(this.method).append("; ");
 		if (this.target == null) {
 			sb.append("target is null");
-		}
-		else {
+		}else {
 			sb.append("target is of class [").append(this.target.getClass().getName()).append(']');
 		}
 		return sb.toString();

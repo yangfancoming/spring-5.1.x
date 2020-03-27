@@ -18,7 +18,6 @@ public class UncategorizedSQLException extends UncategorizedDataAccessException 
 	@Nullable
 	private final String sql;
 
-
 	/**
 	 * Constructor for UncategorizedSQLException.
 	 * @param task name of current task
@@ -30,7 +29,6 @@ public class UncategorizedSQLException extends UncategorizedDataAccessException 
 				"; SQL state [" + ex.getSQLState() + "]; error code [" + ex.getErrorCode() + "]; " + ex.getMessage(), ex);
 		this.sql = sql;
 	}
-
 
 	/**
 	 * Return the underlying SQLException.

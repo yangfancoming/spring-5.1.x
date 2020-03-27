@@ -23,9 +23,6 @@ import org.springframework.aop.support.ComposablePointcut;
  *
  * <p>Uses AspectJ 5 AJType reflection API, enabling us to work with different
  * AspectJ instantiation models such as "singleton", "pertarget" and "perthis".
- *
- * @author Rod Johnson
-
  * @since 2.0
  * @see org.springframework.aop.aspectj.AspectJExpressionPointcut
  */
@@ -103,8 +100,7 @@ public class AspectMetadata implements Serializable {
 				this.perClausePointcut = new ComposablePointcut(new TypePatternClassFilter(findPerClause(aspectClass)));
 				return;
 			default:
-				throw new AopConfigException(
-						"PerClause " + ajType.getPerClause().getKind() + " not supported by Spring AOP for " + aspectClass);
+				throw new AopConfigException("PerClause " + ajType.getPerClause().getKind() + " not supported by Spring AOP for " + aspectClass);
 		}
 	}
 

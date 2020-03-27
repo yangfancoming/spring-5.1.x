@@ -13,16 +13,11 @@ import org.springframework.lang.Nullable;
 /**
  * Utility class for creating a scoped proxy.
  * Used by ScopedProxyBeanDefinitionDecorator and ClassPathBeanDefinitionScanner.
- *
- * @author Mark Fisher
-
- * @author Rob Harrop
  * @since 2.5
  */
 public abstract class ScopedProxyUtils {
 
 	private static final String TARGET_NAME_PREFIX = "scopedTarget.";
-
 
 	/**
 	 * Generate a scoped proxy for the supplied target bean, registering the target
@@ -32,9 +27,7 @@ public abstract class ScopedProxyUtils {
 	 * @param proxyTargetClass whether to create a target class proxy
 	 * @return the scoped proxy definition
 	 */
-	public static BeanDefinitionHolder createScopedProxy(BeanDefinitionHolder definition,
-			BeanDefinitionRegistry registry, boolean proxyTargetClass) {
-
+	public static BeanDefinitionHolder createScopedProxy(BeanDefinitionHolder definition,BeanDefinitionRegistry registry, boolean proxyTargetClass) {
 		String originalBeanName = definition.getBeanName();
 		BeanDefinition targetDefinition = definition.getBeanDefinition();
 		String targetBeanName = getTargetBeanName(originalBeanName);
@@ -51,8 +44,7 @@ public abstract class ScopedProxyUtils {
 		if (proxyTargetClass) {
 			targetDefinition.setAttribute(AutoProxyUtils.PRESERVE_TARGET_CLASS_ATTRIBUTE, Boolean.TRUE);
 			// ScopedProxyFactoryBean's "proxyTargetClass" default is TRUE, so we don't need to set it explicitly here.
-		}
-		else {
+		}else {
 			proxyDefinition.getPropertyValues().add("proxyTargetClass", Boolean.FALSE);
 		}
 

@@ -17,11 +17,6 @@ import org.apache.commons.logging.Log;
  * The stack traces can be viewed in the JAMon web application.
  *
  * <p>This code is inspired by Thierry Templier's blog.
- *
- * @author Dmitriy Kopylenko
-
- * @author Rob Harrop
- * @author Steve Souza
  * @since 1.1.3
  * @see com.jamonapi.MonitorFactory
  * @see PerformanceMonitorInterceptor
@@ -30,7 +25,6 @@ import org.apache.commons.logging.Log;
 public class JamonPerformanceMonitorInterceptor extends AbstractMonitoringInterceptor {
 
 	private boolean trackAllInvocations = false;
-
 
 	/**
 	 * Create a new JamonPerformanceMonitorInterceptor with a static logger.
@@ -99,12 +93,10 @@ public class JamonPerformanceMonitorInterceptor extends AbstractMonitoringInterc
 		Monitor monitor = MonitorFactory.start(key);
 		try {
 			return invocation.proceed();
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			trackException(key, ex);
 			throw ex;
-		}
-		finally {
+		}finally {
 			monitor.stop();
 			if (!this.trackAllInvocations || isLogEnabled(logger)) {
 				writeToLog(logger, "JAMon performance statistics for method [" + name + "]:\n" + monitor);

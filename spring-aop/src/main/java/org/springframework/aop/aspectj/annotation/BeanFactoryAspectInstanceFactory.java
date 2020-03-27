@@ -18,11 +18,7 @@ import org.springframework.util.ClassUtils;
  *
  * <p>Note that this may instantiate multiple times if using a prototype,
  * which probably won't give the semantics you expect.
- * Use a {@link LazySingletonAspectInstanceFactoryDecorator}
- * to wrap this to ensure only one new aspect comes back.
- *
- * @author Rod Johnson
-
+ * Use a {@link LazySingletonAspectInstanceFactoryDecorator} to wrap this to ensure only one new aspect comes back.
  * @since 2.0
  * @see org.springframework.beans.factory.BeanFactory
  * @see LazySingletonAspectInstanceFactoryDecorator
@@ -35,7 +31,6 @@ public class BeanFactoryAspectInstanceFactory implements MetadataAwareAspectInst
 	private final String name;
 
 	private final AspectMetadata aspectMetadata;
-
 
 	/**
 	 * Create a BeanFactoryAspectInstanceFactory. AspectJ will be called to
@@ -101,8 +96,7 @@ public class BeanFactoryAspectInstanceFactory implements MetadataAwareAspectInst
 			// reuse the factory's singleton lock, just in case a lazy dependency
 			// of our advice bean happens to trigger the singleton lock implicitly...
 			return ((ConfigurableBeanFactory) this.beanFactory).getSingletonMutex();
-		}
-		else {
+		}else {
 			return this;
 		}
 	}

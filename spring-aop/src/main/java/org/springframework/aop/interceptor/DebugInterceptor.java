@@ -12,9 +12,6 @@ import org.aopalliance.intercept.MethodInvocation;
  * including invocation arguments and invocation count. This is only
  * intended for debugging purposes; use {@code SimpleTraceInterceptor}
  * or {@code CustomizableTraceInterceptor} for pure tracing purposes.
- *
- * @author Rod Johnson
-
  * @see SimpleTraceInterceptor
  * @see CustomizableTraceInterceptor
  */
@@ -22,7 +19,6 @@ import org.aopalliance.intercept.MethodInvocation;
 public class DebugInterceptor extends SimpleTraceInterceptor {
 
 	private volatile long count;
-
 
 	/**
 	 * Create a new DebugInterceptor with a static logger.
@@ -53,7 +49,6 @@ public class DebugInterceptor extends SimpleTraceInterceptor {
 	protected String getInvocationDescription(MethodInvocation invocation) {
 		return invocation + "; count=" + this.count;
 	}
-
 
 	/**
 	 * Return the number of times this interceptor has been invoked.

@@ -23,9 +23,6 @@ import org.springframework.lang.Nullable;
  * <p>Subclasses must implement the {@code invokeUnderTrace} method, which
  * is invoked by this class ONLY when a particular invocation SHOULD be traced.
  * Subclasses should write to the {@code Log} instance provided.
- *
- * @author Rob Harrop
-
  * @since 1.2
  * @see #setUseDynamicLogger
  * @see #invokeUnderTrace(org.aopalliance.intercept.MethodInvocation, org.apache.commons.logging.Log)
@@ -115,8 +112,7 @@ public abstract class AbstractTraceInterceptor implements MethodInterceptor, Ser
 		Log logger = getLoggerForInvocation(invocation);
 		if (isInterceptorEnabled(invocation, logger)) {
 			return invokeUnderTrace(invocation, logger);
-		}
-		else {
+		}else {
 			return invocation.proceed();
 		}
 	}
@@ -134,8 +130,7 @@ public abstract class AbstractTraceInterceptor implements MethodInterceptor, Ser
 	protected Log getLoggerForInvocation(MethodInvocation invocation) {
 		if (this.defaultLogger != null) {
 			return this.defaultLogger;
-		}
-		else {
+		}else {
 			Object target = invocation.getThis();
 			return LogFactory.getLog(getClassForLogging(target));
 		}
@@ -204,8 +199,7 @@ public abstract class AbstractTraceInterceptor implements MethodInterceptor, Ser
 	protected void writeToLog(Log logger, String message, @Nullable Throwable ex) {
 		if (ex != null && this.logExceptionStackTrace) {
 			logger.trace(message, ex);
-		}
-		else {
+		}else {
 			logger.trace(message);
 		}
 	}

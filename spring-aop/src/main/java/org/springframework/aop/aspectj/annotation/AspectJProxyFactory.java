@@ -19,12 +19,7 @@ import org.springframework.util.ClassUtils;
 
 /**
  * AspectJ-based proxy factory, allowing for programmatic building
- * of proxies which include AspectJ aspects (code style as well
- * Java 5 annotation style).
- *
- * @author Rob Harrop
-
- * @author Ramnivas Laddad
+ * of proxies which include AspectJ aspects (code style as well Java 5 annotation style).
  * @since 2.0
  * @see #addAspect(Object)
  * @see #addAspect(Class)
@@ -39,7 +34,6 @@ public class AspectJProxyFactory extends ProxyCreatorSupport {
 	private static final Map<Class<?>, Object> aspectCache = new ConcurrentHashMap<>();
 
 	private final AspectJAdvisorFactory aspectFactory = new ReflectiveAspectJAdvisorFactory();
-
 
 	/**
 	 * Create a new AspectJProxyFactory.
@@ -79,11 +73,9 @@ public class AspectJProxyFactory extends ProxyCreatorSupport {
 		String aspectName = aspectClass.getName();
 		AspectMetadata am = createAspectMetadata(aspectClass, aspectName);
 		if (am.getAjType().getPerClause().getKind() != PerClauseKind.SINGLETON) {
-			throw new IllegalArgumentException(
-					"Aspect class [" + aspectClass.getName() + "] does not define a singleton aspect");
+			throw new IllegalArgumentException("Aspect class [" + aspectClass.getName() + "] does not define a singleton aspect");
 		}
-		addAdvisorsFromAspectInstanceFactory(
-				new SingletonMetadataAwareAspectInstanceFactory(aspectInstance, aspectName));
+		addAdvisorsFromAspectInstanceFactory(new SingletonMetadataAwareAspectInstanceFactory(aspectInstance, aspectName));
 	}
 
 	/**
@@ -129,16 +121,13 @@ public class AspectJProxyFactory extends ProxyCreatorSupport {
 	 * has no per clause, then a {@link SingletonMetadataAwareAspectInstanceFactory} is returned, otherwise
 	 * a {@link PrototypeAspectInstanceFactory} is returned.
 	 */
-	private MetadataAwareAspectInstanceFactory createAspectInstanceFactory(
-			AspectMetadata am, Class<?> aspectClass, String aspectName) {
-
+	private MetadataAwareAspectInstanceFactory createAspectInstanceFactory(AspectMetadata am, Class<?> aspectClass, String aspectName) {
 		MetadataAwareAspectInstanceFactory instanceFactory;
 		if (am.getAjType().getPerClause().getKind() == PerClauseKind.SINGLETON) {
 			// Create a shared aspect instance.
 			Object instance = getSingletonAspectInstance(aspectClass);
 			instanceFactory = new SingletonMetadataAwareAspectInstanceFactory(instance, aspectName);
-		}
-		else {
+		}else {
 			// Create a factory for independent aspect instances.
 			instanceFactory = new SimpleMetadataAwareAspectInstanceFactory(aspectClass, aspectName);
 		}

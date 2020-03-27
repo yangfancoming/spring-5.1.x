@@ -102,13 +102,11 @@ public class BeanFactoryAspectJAdvisorsBuilder {
 								// 如果切面类是singleton类型，则将解析得到的Advisor进行缓存， 否则将当前的factory进行缓存，以便再次获取时可以通过factory直接获取
 								if (this.beanFactory.isSingleton(beanName)) {
 									this.advisorsCache.put(beanName, classAdvisors);
-								}
-								else {
+								}else {
 									this.aspectFactoryCache.put(beanName, factory);
 								}
 								advisors.addAll(classAdvisors);
-							}
-							else {
+							}else {
 								// Per target or per this.
 								// 如果@Aspect注解标注的是perthis和pertarget类型，说明当前切面不可能是单例的，因而这里判断其如果是单例的则抛出异常
 								if (this.beanFactory.isSingleton(beanName)) {
@@ -139,8 +137,7 @@ public class BeanFactoryAspectJAdvisorsBuilder {
 			// 如果是单例的Advisor bean，则直接添加到返回值列表中
 			if (cachedAdvisors != null) {
 				advisors.addAll(cachedAdvisors);
-			}
-			else {
+			}else {
 				// 如果是多例的Advisor bean，则通过MetadataAwareAspectInstanceFactory生成
 				MetadataAwareAspectInstanceFactory factory = this.aspectFactoryCache.get(aspectName);
 				advisors.addAll(this.advisorFactory.getAdvisors(factory));

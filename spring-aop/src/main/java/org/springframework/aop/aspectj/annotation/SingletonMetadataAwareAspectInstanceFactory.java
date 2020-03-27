@@ -12,18 +12,13 @@ import org.springframework.core.annotation.OrderUtils;
  * Implementation of {@link MetadataAwareAspectInstanceFactory} that is backed
  * by a specified singleton object, returning the same instance for every
  * {@link #getAspectInstance()} call.
- *
- * @author Rod Johnson
-
  * @since 2.0
  * @see SimpleMetadataAwareAspectInstanceFactory
  */
 @SuppressWarnings("serial")
-public class SingletonMetadataAwareAspectInstanceFactory extends SingletonAspectInstanceFactory
-		implements MetadataAwareAspectInstanceFactory, Serializable {
+public class SingletonMetadataAwareAspectInstanceFactory extends SingletonAspectInstanceFactory implements MetadataAwareAspectInstanceFactory, Serializable {
 
 	private final AspectMetadata metadata;
-
 
 	/**
 	 * Create a new SingletonMetadataAwareAspectInstanceFactory for the given aspect.

@@ -27,9 +27,6 @@ import org.springframework.util.Assert;
  * <p>Important: Note that unlike a normal comparator a return of 0 means
  * we don't care about the ordering, not that the two elements must be sorted
  * identically. Used with AspectJ PartialOrder class.
- *
- * @author Adrian Colyer
-
  * @since 2.0
  */
 class AspectJPrecedenceComparator implements Comparator<Advisor> {
@@ -40,9 +37,7 @@ class AspectJPrecedenceComparator implements Comparator<Advisor> {
 
 	private static final int LOWER_PRECEDENCE = 1;
 
-
 	private final Comparator<? super Advisor> advisorComparator;
-
 
 	/**
 	 * Create a default AspectJPrecedenceComparator.
@@ -72,8 +67,7 @@ class AspectJPrecedenceComparator implements Comparator<Advisor> {
 	}
 
 	private int comparePrecedenceWithinAspect(Advisor advisor1, Advisor advisor2) {
-		boolean oneOrOtherIsAfterAdvice =
-				(AspectJAopUtils.isAfterAdvice(advisor1) || AspectJAopUtils.isAfterAdvice(advisor2));
+		boolean oneOrOtherIsAfterAdvice = (AspectJAopUtils.isAfterAdvice(advisor1) || AspectJAopUtils.isAfterAdvice(advisor2));
 		int adviceDeclarationOrderDelta = getAspectDeclarationOrder(advisor1) - getAspectDeclarationOrder(advisor2);
 
 		if (oneOrOtherIsAfterAdvice) {
@@ -82,38 +76,31 @@ class AspectJPrecedenceComparator implements Comparator<Advisor> {
 				// advice1 was declared before advice2
 				// so advice1 has lower precedence
 				return LOWER_PRECEDENCE;
-			}
-			else if (adviceDeclarationOrderDelta == 0) {
+			}else if (adviceDeclarationOrderDelta == 0) {
 				return SAME_PRECEDENCE;
-			}
-			else {
+			}else {
 				return HIGHER_PRECEDENCE;
 			}
-		}
-		else {
+		} else {
 			// the advice declared first has higher precedence
 			if (adviceDeclarationOrderDelta < 0) {
 				// advice1 was declared before advice2
 				// so advice1 has higher precedence
 				return HIGHER_PRECEDENCE;
-			}
-			else if (adviceDeclarationOrderDelta == 0) {
+			} else if (adviceDeclarationOrderDelta == 0) {
 				return SAME_PRECEDENCE;
-			}
-			else {
+			} else {
 				return LOWER_PRECEDENCE;
 			}
 		}
 	}
 
 	private boolean declaredInSameAspect(Advisor advisor1, Advisor advisor2) {
-		return (hasAspectName(advisor1) && hasAspectName(advisor2) &&
-				getAspectName(advisor1).equals(getAspectName(advisor2)));
+		return (hasAspectName(advisor1) && hasAspectName(advisor2) && getAspectName(advisor1).equals(getAspectName(advisor2)));
 	}
 
 	private boolean hasAspectName(Advisor anAdvisor) {
-		return (anAdvisor instanceof AspectJPrecedenceInformation ||
-				anAdvisor.getAdvice() instanceof AspectJPrecedenceInformation);
+		return (anAdvisor instanceof AspectJPrecedenceInformation || anAdvisor.getAdvice() instanceof AspectJPrecedenceInformation);
 	}
 
 	// pre-condition is that hasAspectName returned true
@@ -124,12 +111,10 @@ class AspectJPrecedenceComparator implements Comparator<Advisor> {
 	}
 
 	private int getAspectDeclarationOrder(Advisor anAdvisor) {
-		AspectJPrecedenceInformation precedenceInfo =
-			AspectJAopUtils.getAspectJPrecedenceInformationFor(anAdvisor);
+		AspectJPrecedenceInformation precedenceInfo = AspectJAopUtils.getAspectJPrecedenceInformationFor(anAdvisor);
 		if (precedenceInfo != null) {
 			return precedenceInfo.getDeclarationOrder();
-		}
-		else {
+		}else {
 			return 0;
 		}
 	}

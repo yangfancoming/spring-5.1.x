@@ -10,8 +10,6 @@ import org.springframework.util.Assert;
 /**
  * {@link org.springframework.beans.factory.parsing.ComponentDefinition}
  * implementation that holds a pointcut definition.
- *
- * @author Rob Harrop
  * @since 2.0
  */
 public class PointcutComponentDefinition extends AbstractComponentDefinition {
@@ -21,7 +19,6 @@ public class PointcutComponentDefinition extends AbstractComponentDefinition {
 	private final BeanDefinition pointcutDefinition;
 
 	private final String description;
-
 
 	public PointcutComponentDefinition(String pointcutBeanName, BeanDefinition pointcutDefinition, String expression) {
 		Assert.notNull(pointcutBeanName, "Bean name must not be null");

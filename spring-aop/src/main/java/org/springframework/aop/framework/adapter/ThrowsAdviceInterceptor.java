@@ -34,9 +34,6 @@ import org.springframework.util.Assert;
  * <pre class="code">public void afterThrowing(Method method, Object[] args, Object target, ServletException ex)</pre>
  *
  * <p>This is a framework class that need not be used directly by Spring users.
- *
- * @author Rod Johnson
-
  * @see MethodBeforeAdviceInterceptor
  * @see AfterReturningAdviceInterceptor
  */
@@ -45,7 +42,6 @@ public class ThrowsAdviceInterceptor implements MethodInterceptor, AfterAdvice {
 	private static final String AFTER_THROWING = "afterThrowing";
 
 	private static final Log logger = LogFactory.getLog(ThrowsAdviceInterceptor.class);
-
 
 	private final Object throwsAdvice;
 
@@ -64,8 +60,7 @@ public class ThrowsAdviceInterceptor implements MethodInterceptor, AfterAdvice {
 
 		Method[] methods = throwsAdvice.getClass().getMethods();
 		for (Method method : methods) {
-			if (method.getName().equals(AFTER_THROWING) &&
-					(method.getParameterCount() == 1 || method.getParameterCount() == 4)) {
+			if (method.getName().equals(AFTER_THROWING) && (method.getParameterCount() == 1 || method.getParameterCount() == 4)) {
 				Class<?> throwableParam = method.getParameterTypes()[method.getParameterCount() - 1];
 				if (Throwable.class.isAssignableFrom(throwableParam)) {
 					// An exception handler to register...
@@ -78,8 +73,7 @@ public class ThrowsAdviceInterceptor implements MethodInterceptor, AfterAdvice {
 		}
 
 		if (this.exceptionHandlerMap.isEmpty()) {
-			throw new IllegalArgumentException(
-					"At least one handler method must be found in class [" + throwsAdvice.getClass() + "]");
+			throw new IllegalArgumentException("At least one handler method must be found in class [" + throwsAdvice.getClass() + "]");
 		}
 	}
 
@@ -132,14 +126,12 @@ public class ThrowsAdviceInterceptor implements MethodInterceptor, AfterAdvice {
 		Object[] handlerArgs;
 		if (method.getParameterCount() == 1) {
 			handlerArgs = new Object[] {ex};
-		}
-		else {
+		}else {
 			handlerArgs = new Object[] {mi.getMethod(), mi.getArguments(), mi.getThis(), ex};
 		}
 		try {
 			method.invoke(this.throwsAdvice, handlerArgs);
-		}
-		catch (InvocationTargetException targetEx) {
+		}catch (InvocationTargetException targetEx) {
 			throw targetEx.getTargetException();
 		}
 	}

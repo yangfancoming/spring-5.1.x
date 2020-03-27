@@ -10,12 +10,7 @@ import org.springframework.util.StopWatch;
 /**
  * Simple AOP Alliance {@code MethodInterceptor} for performance monitoring.
  * This interceptor has no effect on the intercepted method call.
- *
  * <p>Uses a {@code StopWatch} for the actual performance measuring.
- *
- * @author Rod Johnson
- * @author Dmitriy Kopylenko
- * @author Rob Harrop
  * @see org.springframework.util.StopWatch
  * @see JamonPerformanceMonitorInterceptor
  */
@@ -46,8 +41,7 @@ public class PerformanceMonitorInterceptor extends AbstractMonitoringInterceptor
 		stopWatch.start(name);
 		try {
 			return invocation.proceed();
-		}
-		finally {
+		}finally {
 			stopWatch.stop();
 			writeToLog(logger, stopWatch.shortSummary());
 		}

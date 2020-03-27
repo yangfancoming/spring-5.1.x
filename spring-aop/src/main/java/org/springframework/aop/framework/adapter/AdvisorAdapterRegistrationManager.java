@@ -12,8 +12,6 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
  * <p>The only requirement for it to work is that it needs to be defined
  * in application context along with "non-native" Spring AdvisorAdapters
  * that need to be "recognized" by Spring's AOP framework.
- *
- * @author Dmitriy Kopylenko
 
  * @since 27.02.2004
  * @see #setAdvisorAdapterRegistry

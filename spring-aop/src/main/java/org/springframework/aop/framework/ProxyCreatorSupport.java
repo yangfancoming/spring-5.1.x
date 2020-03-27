@@ -10,8 +10,6 @@ import org.springframework.util.Assert;
 /**
  * Base class for proxy factories.
  * Provides convenient access to a configurable AopProxyFactory.
- *
-
  * @since 2.0.3
  * @see #createAopProxy()
  */
@@ -24,7 +22,6 @@ public class ProxyCreatorSupport extends AdvisedSupport {
 
 	/** Set to true when the first AOP proxy has been created. */
 	private boolean active = false;
-
 
 	/**
 	 * Create a new ProxyCreatorSupport instance.
@@ -78,7 +75,6 @@ public class ProxyCreatorSupport extends AdvisedSupport {
 		Assert.notNull(listener, "AdvisedSupportListener must not be null");
 		this.listeners.remove(listener);
 	}
-
 
 	/**
 	 * Subclasses should call this to get a new AOP proxy. They should <b>not</b>

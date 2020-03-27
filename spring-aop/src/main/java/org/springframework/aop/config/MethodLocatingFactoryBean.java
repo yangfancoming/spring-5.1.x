@@ -13,8 +13,6 @@ import org.springframework.util.StringUtils;
 
 /**
  * {@link FactoryBean} implementation that locates a {@link Method} on a specified bean.
- *
- * @author Rob Harrop
  * @since 2.0
  */
 public class MethodLocatingFactoryBean implements FactoryBean<Method>, BeanFactoryAware {
@@ -63,8 +61,7 @@ public class MethodLocatingFactoryBean implements FactoryBean<Method>, BeanFacto
 		this.method = BeanUtils.resolveSignature(this.methodName, beanClass);
 
 		if (this.method == null) {
-			throw new IllegalArgumentException("Unable to locate method [" + this.methodName +
-					"] on bean [" + this.targetBeanName + "]");
+			throw new IllegalArgumentException("Unable to locate method [" + this.methodName + "] on bean [" + this.targetBeanName + "]");
 		}
 	}
 

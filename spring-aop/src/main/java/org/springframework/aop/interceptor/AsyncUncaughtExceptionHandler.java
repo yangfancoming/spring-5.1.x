@@ -9,10 +9,7 @@ import java.lang.reflect.Method;
  *
  * <p>An asynchronous method usually returns a {@link java.util.concurrent.Future}
  * instance that gives access to the underlying exception. When the method does
- * not provide that return type, this handler can be used to managed such
- * uncaught exceptions.
- *
- * @author Stephane Nicoll
+ * not provide that return type, this handler can be used to managed such uncaught exceptions.
  * @since 4.1
  */
 @FunctionalInterface

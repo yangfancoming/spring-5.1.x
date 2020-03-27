@@ -39,8 +39,6 @@ import org.springframework.util.function.SingletonSupplier;
  * {@code AsyncExecutionAspectSupport} objects must be constructed with a default {@code
  * Executor}, but each individual method may further qualify a specific {@code Executor}
  * bean to be used when executing it, e.g. through an annotation attribute.
-
-
  * @author Stephane Nicoll
  * @since 3.1.2
  */
@@ -152,15 +150,11 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 			String qualifier = getExecutorQualifier(method);
 			if (StringUtils.hasLength(qualifier)) {
 				targetExecutor = findQualifiedExecutor(this.beanFactory, qualifier);
-			}
-			else {
+			}else {
 				targetExecutor = this.defaultExecutor.get();
 			}
-			if (targetExecutor == null) {
-				return null;
-			}
-			executor = (targetExecutor instanceof AsyncListenableTaskExecutor ?
-					(AsyncListenableTaskExecutor) targetExecutor : new TaskExecutorAdapter(targetExecutor));
+			if (targetExecutor == null) return null;
+			executor = (targetExecutor instanceof AsyncListenableTaskExecutor ? (AsyncListenableTaskExecutor) targetExecutor : new TaskExecutorAdapter(targetExecutor));
 			this.executors.put(method, executor);
 		}
 		return executor;
@@ -190,8 +184,7 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 	@Nullable
 	protected Executor findQualifiedExecutor(@Nullable BeanFactory beanFactory, String qualifier) {
 		if (beanFactory == null) {
-			throw new IllegalStateException("BeanFactory must be set on " + getClass().getSimpleName() +
-					" to access qualified executor '" + qualifier + "'");
+			throw new IllegalStateException("BeanFactory must be set on " + getClass().getSimpleName() + " to access qualified executor '" + qualifier + "'");
 		}
 		return BeanFactoryAnnotationUtils.qualifiedBeanOfType(beanFactory, Executor.class, qualifier);
 	}
@@ -216,28 +209,22 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 				// match with ScheduledExecutorService as well, which is unusable for
 				// our purposes here. TaskExecutor is more clearly designed for it.
 				return beanFactory.getBean(TaskExecutor.class);
-			}
-			catch (NoUniqueBeanDefinitionException ex) {
+			}catch (NoUniqueBeanDefinitionException ex) {
 				logger.debug("Could not find unique TaskExecutor bean", ex);
 				try {
 					return beanFactory.getBean(DEFAULT_TASK_EXECUTOR_BEAN_NAME, Executor.class);
-				}
-				catch (NoSuchBeanDefinitionException ex2) {
+				}catch (NoSuchBeanDefinitionException ex2) {
 					if (logger.isInfoEnabled()) {
 						logger.info("More than one TaskExecutor bean found within the context, and none is named " +
-								"'taskExecutor'. Mark one of them as primary or name it 'taskExecutor' (possibly " +
-								"as an alias) in order to use it for async processing: " + ex.getBeanNamesFound());
+								"'taskExecutor'. Mark one of them as primary or name it 'taskExecutor' (possibly s an alias) in order to use it for async processing: " + ex.getBeanNamesFound());
 					}
 				}
-			}
-			catch (NoSuchBeanDefinitionException ex) {
+			}catch (NoSuchBeanDefinitionException ex) {
 				logger.debug("Could not find default TaskExecutor bean", ex);
 				try {
 					return beanFactory.getBean(DEFAULT_TASK_EXECUTOR_BEAN_NAME, Executor.class);
-				}
-				catch (NoSuchBeanDefinitionException ex2) {
-					logger.info("No task executor bean found for async processing: " +
-							"no bean of type TaskExecutor and no bean named 'taskExecutor' either");
+				}catch (NoSuchBeanDefinitionException ex2) {
+					logger.info("No task executor bean found for async processing: no bean of type TaskExecutor and no bean named 'taskExecutor' either");
 				}
 				// Giving up -> either using local default executor or none at all...
 			}
@@ -259,19 +246,16 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 			return CompletableFuture.supplyAsync(() -> {
 				try {
 					return task.call();
-				}
-				catch (Throwable ex) {
+				}catch (Throwable ex) {
 					throw new CompletionException(ex);
 				}
 			}, executor);
 		}
 		else if (ListenableFuture.class.isAssignableFrom(returnType)) {
 			return ((AsyncListenableTaskExecutor) executor).submitListenable(task);
-		}
-		else if (Future.class.isAssignableFrom(returnType)) {
+		}else if (Future.class.isAssignableFrom(returnType)) {
 			return executor.submit(task);
-		}
-		else {
+		}else {
 			executor.submit(task);
 			return null;
 		}
@@ -292,15 +276,12 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 	protected void handleError(Throwable ex, Method method, Object... params) throws Exception {
 		if (Future.class.isAssignableFrom(method.getReturnType())) {
 			ReflectionUtils.rethrowException(ex);
-		}
-		else {
+		}else {
 			// Could not transmit the exception to the caller with default executor
 			try {
 				this.exceptionHandler.obtain().handleUncaughtException(ex, method, params);
-			}
-			catch (Throwable ex2) {
-				logger.warn("Exception handler for async method '" + method.toGenericString() +
-						"' threw unexpected exception itself", ex2);
+			}catch (Throwable ex2) {
+				logger.warn("Exception handler for async method '" + method.toGenericString() + "' threw unexpected exception itself", ex2);
 			}
 		}
 	}

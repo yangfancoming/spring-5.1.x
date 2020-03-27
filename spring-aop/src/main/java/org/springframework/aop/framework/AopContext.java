@@ -20,9 +20,6 @@ import org.springframework.lang.Nullable;
  * to resources on the invocation. However, this approach should not be used when there is
  * a reasonable alternative, as it makes application code dependent on usage under AOP and
  * the Spring AOP framework in particular.
- *
- * @author Rod Johnson
-
  * @since 13.03.2003
  */
 public final class AopContext {
@@ -35,10 +32,8 @@ public final class AopContext {
 	 */
 	private static final ThreadLocal<Object> currentProxy = new NamedThreadLocal<>("Current AOP proxy");
 
-
 	private AopContext() {
 	}
-
 
 	/**
 	 * Try to return the current AOP proxy. This method is usable only if the
@@ -52,8 +47,7 @@ public final class AopContext {
 	public static Object currentProxy() throws IllegalStateException {
 		Object proxy = currentProxy.get();
 		if (proxy == null) {
-			throw new IllegalStateException(
-					"Cannot find current proxy: Set 'exposeProxy' property on Advised to 'true' to make it available.");
+			throw new IllegalStateException("Cannot find current proxy: Set 'exposeProxy' property on Advised to 'true' to make it available.");
 		}
 		return proxy;
 	}
@@ -70,8 +64,7 @@ public final class AopContext {
 		Object old = currentProxy.get();
 		if (proxy != null) {
 			currentProxy.set(proxy);
-		}
-		else {
+		}else {
 			currentProxy.remove();
 		}
 		return old;

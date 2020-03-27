@@ -14,9 +14,6 @@ import org.springframework.util.ClassUtils;
 /**
  * Implementation of {@link AspectInstanceFactory} that locates the aspect from the
  * {@link org.springframework.beans.factory.BeanFactory} using a configured bean name.
- *
- * @author Rob Harrop
-
  * @since 2.0
  */
 public class SimpleBeanFactoryAwareAspectInstanceFactory implements AspectInstanceFactory, BeanFactoryAware {
@@ -26,7 +23,6 @@ public class SimpleBeanFactoryAwareAspectInstanceFactory implements AspectInstan
 
 	@Nullable
 	private BeanFactory beanFactory;
-
 
 	/**
 	 * Set the name of the aspect bean. This is the bean that is returned when calling
@@ -59,8 +55,7 @@ public class SimpleBeanFactoryAwareAspectInstanceFactory implements AspectInstan
 	public ClassLoader getAspectClassLoader() {
 		if (this.beanFactory instanceof ConfigurableBeanFactory) {
 			return ((ConfigurableBeanFactory) this.beanFactory).getBeanClassLoader();
-		}
-		else {
+		}else {
 			return ClassUtils.getDefaultClassLoader();
 		}
 	}

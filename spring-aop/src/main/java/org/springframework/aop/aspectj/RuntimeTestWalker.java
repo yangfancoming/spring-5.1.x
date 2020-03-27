@@ -38,9 +38,6 @@ import org.springframework.util.ReflectionUtils;
  * or some similar operation.
  *
  * <p>See <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=151593">Bug 151593</a>
- *
- * @author Adrian Colyer
- * @author Ramnivas Laddad
  * @since 2.0
  */
 class RuntimeTestWalker {
@@ -51,16 +48,13 @@ class RuntimeTestWalker {
 
 	private static final Field myClassField;
 
-
 	static {
 		try {
 			residualTestField = ShadowMatchImpl.class.getDeclaredField("residualTest");
 			varTypeField = ReflectionVar.class.getDeclaredField("varType");
 			myClassField = ReflectionBasedReferenceTypeDelegate.class.getDeclaredField("myClass");
-		}
-		catch (NoSuchFieldException ex) {
-			throw new IllegalStateException("The version of aspectjtools.jar / aspectjweaver.jar " +
-					"on the classpath is incompatible with this version of Spring: " + ex);
+		}catch (NoSuchFieldException ex) {
+			throw new IllegalStateException("The version of aspectjtools.jar / aspectjweaver.jar on the classpath is incompatible with this version of Spring: " + ex);
 		}
 	}
 
@@ -85,18 +79,15 @@ class RuntimeTestWalker {
 	 * then it tests subtype sensitive vars.
 	 */
 	public boolean testsSubtypeSensitiveVars() {
-		return (this.runtimeTest != null &&
-				new SubtypeSensitiveVarTypeTestVisitor().testsSubtypeSensitiveVars(this.runtimeTest));
+		return (this.runtimeTest != null && new SubtypeSensitiveVarTypeTestVisitor().testsSubtypeSensitiveVars(this.runtimeTest));
 	}
 
 	public boolean testThisInstanceOfResidue(Class<?> thisClass) {
-		return (this.runtimeTest != null &&
-				new ThisInstanceOfResidueTestVisitor(thisClass).thisInstanceOfMatches(this.runtimeTest));
+		return (this.runtimeTest != null && new ThisInstanceOfResidueTestVisitor(thisClass).thisInstanceOfMatches(this.runtimeTest));
 	}
 
 	public boolean testTargetInstanceOfResidue(Class<?> targetClass) {
-		return (this.runtimeTest != null &&
-				new TargetInstanceOfResidueTestVisitor(targetClass).targetInstanceOfMatches(this.runtimeTest));
+		return (this.runtimeTest != null && new TargetInstanceOfResidueTestVisitor(targetClass).targetInstanceOfMatches(this.runtimeTest));
 	}
 
 
@@ -194,8 +185,7 @@ class RuntimeTestWalker {
 					try {
 						ReflectionUtils.makeAccessible(myClassField);
 						typeClass = (Class<?>) myClassField.get(delegate);
-					}
-					catch (IllegalAccessException ex) {
+					}catch (IllegalAccessException ex) {
 						throw new IllegalStateException(ex);
 					}
 				}
@@ -206,8 +196,7 @@ class RuntimeTestWalker {
 					typeClass = ClassUtils.forName(type.getName(), this.matchClass.getClassLoader());
 				}
 				this.matches = typeClass.isAssignableFrom(this.matchClass);
-			}
-			catch (ClassNotFoundException ex) {
+			}catch (ClassNotFoundException ex) {
 				this.matches = false;
 			}
 		}

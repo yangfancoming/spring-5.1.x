@@ -24,9 +24,7 @@ import org.springframework.util.Assert;
  * <p>If the &lt;aop:include&gt; element is used, only @AspectJ beans with names matched by
  * an include pattern will be considered as defining aspects to use for Spring auto-proxying.
  *
- * <p>Processing of Spring Advisors follows the rules established in
- * {@link org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator}.
-
+ * <p>Processing of Spring Advisors follows the rules established in {@link org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator}.
  * @since 2.0
  * @see org.springframework.aop.aspectj.annotation.AspectJAdvisorFactory
  */
@@ -104,8 +102,7 @@ public class AnnotationAwareAspectJAutoProxyCreator extends AspectJAwareAdvisorA
 	protected boolean isEligibleAspectBean(String beanName) {
 		if (this.includePatterns == null) {
 			return true;
-		}
-		else {
+		}else {
 			for (Pattern pattern : this.includePatterns) {
 				if (pattern.matcher(beanName).matches()) {
 					return true;

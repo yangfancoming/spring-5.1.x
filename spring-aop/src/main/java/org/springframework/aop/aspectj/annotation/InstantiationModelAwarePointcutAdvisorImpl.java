@@ -84,8 +84,7 @@ final class InstantiationModelAwarePointcutAdvisorImpl implements InstantiationM
 			// by the Spring AOP infrastructure after the first evaluation.
 			this.pointcut = new PerTargetInstantiationModelPointcut(this.declaredPointcut, preInstantiationPointcut, aspectInstanceFactory);
 			this.lazy = true;
-		}
-		else {
+		}else {
 			// A singleton aspect.
 			this.pointcut = this.declaredPointcut;
 			this.lazy = false;
@@ -195,8 +194,7 @@ final class InstantiationModelAwarePointcutAdvisorImpl implements InstantiationM
 		if (aspectJAnnotation == null) {
 			this.isBeforeAdvice = false;
 			this.isAfterAdvice = false;
-		}
-		else {
+		}else {
 			switch (aspectJAnnotation.getAnnotationType()) {
 				case AtPointcut:
 				case AtAround:
@@ -235,7 +233,6 @@ final class InstantiationModelAwarePointcutAdvisorImpl implements InstantiationM
 				this.aspectInstanceFactory.getAspectMetadata().getAjType().getPerClause().getKind();
 	}
 
-
 	/**
 	 * Pointcut implementation that changes its behaviour when the advice is instantiated.
 	 * Note that this is a <i>dynamic</i> pointcut; otherwise it might be optimized out
@@ -250,9 +247,7 @@ final class InstantiationModelAwarePointcutAdvisorImpl implements InstantiationM
 		@Nullable
 		private LazySingletonAspectInstanceFactoryDecorator aspectInstanceFactory;
 
-		public PerTargetInstantiationModelPointcut(AspectJExpressionPointcut declaredPointcut,
-				Pointcut preInstantiationPointcut, MetadataAwareAspectInstanceFactory aspectInstanceFactory) {
-
+		public PerTargetInstantiationModelPointcut(AspectJExpressionPointcut declaredPointcut,Pointcut preInstantiationPointcut, MetadataAwareAspectInstanceFactory aspectInstanceFactory) {
 			this.declaredPointcut = declaredPointcut;
 			this.preInstantiationPointcut = preInstantiationPointcut;
 			if (aspectInstanceFactory instanceof LazySingletonAspectInstanceFactoryDecorator) {

@@ -22,9 +22,6 @@ import org.aspectj.bridge.IMessageHandler;
  * "{@code META-INF/aop.xml} file:
  *
  * <p><code class="code">&lt;weaver options="..."/&gt;</code>
- *
- * @author Adrian Colyer
-
  * @since 2.0
  */
 public class AspectJWeaverMessageHandler implements IMessageHandler {

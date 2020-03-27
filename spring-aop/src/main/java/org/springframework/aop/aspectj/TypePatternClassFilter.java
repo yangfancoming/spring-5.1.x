@@ -12,9 +12,6 @@ import org.springframework.util.StringUtils;
 
 /**
  * Spring AOP {@link ClassFilter} implementation using AspectJ type matching.
- *
- * @author Rod Johnson
-
  * @since 2.0
  */
 public class TypePatternClassFilter implements ClassFilter {
@@ -23,7 +20,6 @@ public class TypePatternClassFilter implements ClassFilter {
 
 	@Nullable
 	private TypePatternMatcher aspectJTypePatternMatcher;
-
 
 	/**
 	 * Creates a new instance of the {@link TypePatternClassFilter} class.

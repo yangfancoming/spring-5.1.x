@@ -8,17 +8,12 @@ import org.springframework.core.annotation.OrderUtils;
 
 /**
  * Implementation of {@link MetadataAwareAspectInstanceFactory} that
- * creates a new instance of the specified aspect class for every
- * {@link #getAspectInstance()} call.
- *
-
+ * creates a new instance of the specified aspect class for every {@link #getAspectInstance()} call.
  * @since 2.0.4
  */
-public class SimpleMetadataAwareAspectInstanceFactory extends SimpleAspectInstanceFactory
-		implements MetadataAwareAspectInstanceFactory {
+public class SimpleMetadataAwareAspectInstanceFactory extends SimpleAspectInstanceFactory implements MetadataAwareAspectInstanceFactory {
 
 	private final AspectMetadata metadata;
-
 
 	/**
 	 * Create a new SimpleMetadataAwareAspectInstanceFactory for the given aspect class.
@@ -29,7 +24,6 @@ public class SimpleMetadataAwareAspectInstanceFactory extends SimpleAspectInstan
 		super(aspectClass);
 		this.metadata = new AspectMetadata(aspectClass, aspectName);
 	}
-
 
 	@Override
 	public final AspectMetadata getAspectMetadata() {

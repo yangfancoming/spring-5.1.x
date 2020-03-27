@@ -6,14 +6,11 @@ import org.springframework.beans.factory.parsing.ParseState;
 
 /**
  * {@link ParseState} entry representing an advisor.
- *
- * @author Mark Fisher
  * @since 2.0
  */
 public class AdvisorEntry implements ParseState.Entry {
 
 	private final String name;
-
 
 	/**
 	 * Creates a new instance of the {@link AdvisorEntry} class.

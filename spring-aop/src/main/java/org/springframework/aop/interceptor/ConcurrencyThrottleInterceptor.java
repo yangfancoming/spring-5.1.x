@@ -12,7 +12,6 @@ import org.springframework.util.ConcurrencyThrottleSupport;
 /**
  * Interceptor that throttles concurrent access, blocking invocations
  * if a specified concurrency limit is reached.
- *
  * <p>Can be applied to methods of local services that involve heavy use
  * of system resources, in a scenario where it is more efficient to
  * throttle concurrency for a specific service rather than restricting
@@ -20,14 +19,11 @@ import org.springframework.util.ConcurrencyThrottleSupport;
  *
  * <p>The default concurrency limit of this interceptor is 1.
  * Specify the "concurrencyLimit" bean property to change this value.
- *
-
  * @since 11.02.2004
  * @see #setConcurrencyLimit
  */
 @SuppressWarnings("serial")
-public class ConcurrencyThrottleInterceptor extends ConcurrencyThrottleSupport
-		implements MethodInterceptor, Serializable {
+public class ConcurrencyThrottleInterceptor extends ConcurrencyThrottleSupport implements MethodInterceptor, Serializable {
 
 	public ConcurrencyThrottleInterceptor() {
 		setConcurrencyLimit(1);
@@ -38,8 +34,7 @@ public class ConcurrencyThrottleInterceptor extends ConcurrencyThrottleSupport
 		beforeAccess();
 		try {
 			return methodInvocation.proceed();
-		}
-		finally {
+		}finally {
 			afterAccess();
 		}
 	}

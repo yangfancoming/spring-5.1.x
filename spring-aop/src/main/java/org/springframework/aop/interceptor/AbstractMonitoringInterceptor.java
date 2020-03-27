@@ -16,9 +16,6 @@ import org.springframework.lang.Nullable;
  * <p>In their {@link #invokeUnderTrace} implementation, subclasses should call the
  * {@link #createInvocationTraceName} method to create a name for the given trace,
  * including information about the method invocation along with a prefix/suffix.
- *
- * @author Rob Harrop
-
  * @since 1.2.7
  * @see #setPrefix
  * @see #setSuffix
@@ -32,7 +29,6 @@ public abstract class AbstractMonitoringInterceptor extends AbstractTraceInterce
 	private String suffix = "";
 
 	private boolean logTargetClassInvocation = false;
-
 
 	/**
 	 * Set the text that will get appended to the trace data.

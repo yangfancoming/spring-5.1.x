@@ -233,11 +233,9 @@ public class ProxyFactoryBean extends ProxyCreatorSupport implements FactoryBean
 		initializeAdvisorChain();
 		if (isSingleton()) {
 			return getSingletonInstance();
-		}
-		else {
+		}else {
 			if (this.targetName == null) {
-				logger.info("Using non-singleton proxies with singleton targets is often undesirable. " +
-						"Enable prototype proxies by setting the 'targetName' property.");
+				logger.info("Using non-singleton proxies with singleton targets is often undesirable. Enable prototype proxies by setting the 'targetName' property.");
 			}
 			return newPrototypeInstance();
 		}
@@ -265,8 +263,7 @@ public class ProxyFactoryBean extends ProxyCreatorSupport implements FactoryBean
 		}
 		else if (this.targetName != null && this.beanFactory != null) {
 			return this.beanFactory.getType(this.targetName);
-		}
-		else {
+		}else {
 			return getTargetClass();
 		}
 	}
@@ -373,8 +370,7 @@ public class ProxyFactoryBean extends ProxyCreatorSupport implements FactoryBean
 					// The target isn't an interceptor.
 					this.targetName = finalName;
 					if (logger.isDebugEnabled()) {
-						logger.debug("Bean with name '" + finalName + "' concluding interceptor chain " +
-								"is not an advisor class: treating it as a target or TargetSource");
+						logger.debug("Bean with name '" + finalName + "' concluding interceptor chain is not an advisor class: treating it as a target or TargetSource");
 					}
 					String[] newNames = new String[this.interceptorNames.length - 1];
 					System.arraycopy(this.interceptorNames, 0, newNames, 0, newNames.length);
@@ -399,8 +395,7 @@ public class ProxyFactoryBean extends ProxyCreatorSupport implements FactoryBean
 		}
 		// Treat it as an target bean if we can't tell.
 		if (logger.isDebugEnabled()) {
-			logger.debug("Could not determine type of bean with name '" + beanName +
-					"' - assuming it is neither an Advisor nor an Advice");
+			logger.debug("Could not determine type of bean with name '" + beanName + "' - assuming it is neither an Advisor nor an Advice");
 		}
 		return false;
 	}
@@ -412,9 +407,7 @@ public class ProxyFactoryBean extends ProxyCreatorSupport implements FactoryBean
 	 * are unaffected by such changes.
 	 */
 	private synchronized void initializeAdvisorChain() throws AopConfigException, BeansException {
-		if (this.advisorChainInitialized) {
-			return;
-		}
+		if (this.advisorChainInitialized) return;
 
 		if (!ObjectUtils.isEmpty(this.interceptorNames)) {
 			if (this.beanFactory == null) {
@@ -436,22 +429,17 @@ public class ProxyFactoryBean extends ProxyCreatorSupport implements FactoryBean
 
 				if (name.endsWith(GLOBAL_SUFFIX)) {
 					if (!(this.beanFactory instanceof ListableBeanFactory)) {
-						throw new AopConfigException(
-								"Can only use global advisors or interceptors with a ListableBeanFactory");
+						throw new AopConfigException("Can only use global advisors or interceptors with a ListableBeanFactory");
 					}
-					addGlobalAdvisor((ListableBeanFactory) this.beanFactory,
-							name.substring(0, name.length() - GLOBAL_SUFFIX.length()));
-				}
-
-				else {
+					addGlobalAdvisor((ListableBeanFactory) this.beanFactory,name.substring(0, name.length() - GLOBAL_SUFFIX.length()));
+				}else {
 					// If we get here, we need to add a named interceptor.
 					// We must check if it's a singleton or prototype.
 					Object advice;
 					if (this.singleton || this.beanFactory.isSingleton(name)) {
 						// Add the real Advisor/Advice to the chain.
 						advice = this.beanFactory.getBean(name);
-					}
-					else {
+					}else {
 						// It's a prototype Advice or Advisor: replace with a prototype.
 						// Avoid unnecessary creation of prototype bean just for advisor chain initialization.
 						advice = new PrototypePlaceholderAdvisor(name);
@@ -460,7 +448,6 @@ public class ProxyFactoryBean extends ProxyCreatorSupport implements FactoryBean
 				}
 			}
 		}
-
 		this.advisorChainInitialized = true;
 	}
 
@@ -476,20 +463,16 @@ public class ProxyFactoryBean extends ProxyCreatorSupport implements FactoryBean
 		for (Advisor advisor : advisors) {
 			if (advisor instanceof PrototypePlaceholderAdvisor) {
 				PrototypePlaceholderAdvisor pa = (PrototypePlaceholderAdvisor) advisor;
-				if (logger.isDebugEnabled()) {
-					logger.debug("Refreshing bean named '" + pa.getBeanName() + "'");
-				}
+				if (logger.isDebugEnabled()) logger.debug("Refreshing bean named '" + pa.getBeanName() + "'");
 				// Replace the placeholder with a fresh prototype instance resulting
 				// from a getBean() lookup
 				if (this.beanFactory == null) {
-					throw new IllegalStateException("No BeanFactory available anymore (probably due to serialization) " +
-							"- cannot resolve prototype advisor '" + pa.getBeanName() + "'");
+					throw new IllegalStateException("No BeanFactory available anymore (probably due to serialization) - cannot resolve prototype advisor '" + pa.getBeanName() + "'");
 				}
 				Object bean = this.beanFactory.getBean(pa.getBeanName());
 				Advisor refreshedAdvisor = namedBeanToAdvisor(bean);
 				freshAdvisors.add(refreshedAdvisor);
-			}
-			else {
+			}else {
 				// Add the shared instance.
 				freshAdvisors.add(advisor);
 			}
@@ -501,10 +484,8 @@ public class ProxyFactoryBean extends ProxyCreatorSupport implements FactoryBean
 	 * Add all global interceptors and pointcuts.
 	 */
 	private void addGlobalAdvisor(ListableBeanFactory beanFactory, String prefix) {
-		String[] globalAdvisorNames =
-				BeanFactoryUtils.beanNamesForTypeIncludingAncestors(beanFactory, Advisor.class);
-		String[] globalInterceptorNames =
-				BeanFactoryUtils.beanNamesForTypeIncludingAncestors(beanFactory, Interceptor.class);
+		String[] globalAdvisorNames = BeanFactoryUtils.beanNamesForTypeIncludingAncestors(beanFactory, Advisor.class);
+		String[] globalInterceptorNames = BeanFactoryUtils.beanNamesForTypeIncludingAncestors(beanFactory, Interceptor.class);
 		List<Object> beans = new ArrayList<>(globalAdvisorNames.length + globalInterceptorNames.length);
 		Map<Object, String> names = new HashMap<>(beans.size());
 		for (String name : globalAdvisorNames) {
@@ -553,19 +534,13 @@ public class ProxyFactoryBean extends ProxyCreatorSupport implements FactoryBean
 	 */
 	private TargetSource freshTargetSource() {
 		if (this.targetName == null) {
-			if (logger.isTraceEnabled()) {
-				logger.trace("Not refreshing target: Bean name not specified in 'interceptorNames'.");
-			}
+			if (logger.isTraceEnabled()) logger.trace("Not refreshing target: Bean name not specified in 'interceptorNames'.");
 			return this.targetSource;
-		}
-		else {
+		}else {
 			if (this.beanFactory == null) {
-				throw new IllegalStateException("No BeanFactory available anymore (probably due to serialization) " +
-						"- cannot resolve target with name '" + this.targetName + "'");
+				throw new IllegalStateException("No BeanFactory available anymore (probably due to serialization) - cannot resolve target with name '" + this.targetName + "'");
 			}
-			if (logger.isDebugEnabled()) {
-				logger.debug("Refreshing target with name '" + this.targetName + "'");
-			}
+			if (logger.isDebugEnabled()) logger.debug("Refreshing target with name '" + this.targetName + "'");
 			Object target = this.beanFactory.getBean(this.targetName);
 			return (target instanceof TargetSource ? (TargetSource) target : new SingletonTargetSource(target));
 		}
@@ -578,13 +553,11 @@ public class ProxyFactoryBean extends ProxyCreatorSupport implements FactoryBean
 	private Advisor namedBeanToAdvisor(Object next) {
 		try {
 			return this.advisorAdapterRegistry.wrap(next);
-		}
-		catch (UnknownAdviceTypeException ex) {
+		}catch (UnknownAdviceTypeException ex) {
 			// We expected this to be an Advisor or Advice,
 			// but it wasn't. This is a configuration error.
 			throw new AopConfigException("Unknown advisor type " + next.getClass() +
-					"; Can only include Advisor or Advice type beans in interceptorNames chain except for last entry," +
-					"which may also be target or TargetSource", ex);
+					"; Can only include Advisor or Advice type beans in interceptorNames chain except for last entry,which may also be target or TargetSource", ex);
 		}
 	}
 

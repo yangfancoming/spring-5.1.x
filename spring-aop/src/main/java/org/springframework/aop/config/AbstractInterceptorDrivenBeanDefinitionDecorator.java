@@ -35,11 +35,7 @@ import org.springframework.util.StringUtils;
  * already created the {@link org.springframework.aop.framework.ProxyFactoryBean} then the
  * interceptor is simply added to the existing definition.
  *
- * <p>Subclasses have only to create the {@code BeanDefinition} to the interceptor that
- * they wish to add.
- *
- * @author Rob Harrop
-
+ * <p>Subclasses have only to create the {@code BeanDefinition} to the interceptor that they wish to add.
  * @since 2.0
  * @see org.aopalliance.intercept.MethodInterceptor
  */
@@ -59,9 +55,7 @@ public abstract class AbstractInterceptorDrivenBeanDefinitionDecorator implement
 
 		// generate name and register the interceptor
 		String interceptorName = existingBeanName + '.' + getInterceptorNameSuffix(interceptorDefinition);
-		BeanDefinitionReaderUtils.registerBeanDefinition(
-				new BeanDefinitionHolder(interceptorDefinition, interceptorName), registry);
-
+		BeanDefinitionReaderUtils.registerBeanDefinition(new BeanDefinitionHolder(interceptorDefinition, interceptorName), registry);
 		BeanDefinitionHolder result = definitionHolder;
 
 		if (!isProxyFactoryBeanDefinition(targetDefinition)) {
@@ -85,7 +79,6 @@ public abstract class AbstractInterceptorDrivenBeanDefinitionDecorator implement
 			// wrap it in a BeanDefinitionHolder with bean name
 			result = new BeanDefinitionHolder(proxyDefinition, existingBeanName);
 		}
-
 		addInterceptorNameToList(interceptorName, result.getBeanDefinition());
 		return result;
 	}

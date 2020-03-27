@@ -9,8 +9,6 @@ import org.springframework.aop.MethodMatcher;
 /**
  * Internal framework class, combining a MethodInterceptor instance
  * with a MethodMatcher for use as an element in the advisor chain.
- *
- * @author Rod Johnson
  */
 class InterceptorAndDynamicMethodMatcher {
 
