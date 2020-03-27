@@ -28,17 +28,12 @@ import org.springframework.lang.Nullable;
  * specialized {@code run} methods for specific parameter and return types.
  *
  * <p>Like all RdbmsOperation objects, SqlFunction objects are thread-safe.
- *
- * @author Rod Johnson
-
- * @author Jean-Pierre Pawlak
  * @param <T> the result type
  * @see StoredProcedure
  */
 public class SqlFunction<T> extends MappingSqlQuery<T> {
 
 	private final SingleColumnRowMapper<T> rowMapper = new SingleColumnRowMapper<>();
-
 
 	/**
 	 * Constructor to allow use as a JavaBean.
@@ -118,7 +113,6 @@ public class SqlFunction<T> extends MappingSqlQuery<T> {
 	protected T mapRow(ResultSet rs, int rowNum) throws SQLException {
 		return this.rowMapper.mapRow(rs, rowNum);
 	}
-
 
 	/**
 	 * Convenient method to run the function without arguments.

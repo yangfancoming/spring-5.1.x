@@ -40,7 +40,6 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	/** The number of rows to expect; if 0, unknown. */
 	private int rowsExpected = 0;
 
-
 	/**
 	 * Constructor to allow use as a JavaBean.
 	 * <p>The {@code DataSource} and SQL must be supplied before
@@ -59,7 +58,6 @@ public abstract class SqlQuery<T> extends SqlOperation {
 		setDataSource(ds);
 		setSql(sql);
 	}
-
 
 	/**
 	 * Set the number of rows expected.
@@ -222,7 +220,6 @@ public abstract class SqlQuery<T> extends SqlOperation {
 		return executeByNamedParam(paramMap, null);
 	}
 
-
 	/**
 	 * Generic object finder method, used by all other {@code findObject} methods.
 	 * Object finder methods are like EJB entity bean finders, in that it is
@@ -340,7 +337,6 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	public T findObjectByNamedParam(Map<String, ?> paramMap) throws DataAccessException {
 		return findObjectByNamedParam(paramMap, null);
 	}
-
 
 	/**
 	 * Subclasses must implement this method to extract an object per row, to be

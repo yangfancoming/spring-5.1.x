@@ -17,11 +17,7 @@ import org.springframework.jdbc.core.SqlParameter;
  * This class is abstract and it is intended that subclasses will provide a typed
  * method for invocation that delegates to the supplied {@link #execute} method.
  *
- * <p>The inherited {@link #setSql sql} property is the name of the stored procedure
- * in the RDBMS.
- *
- * @author Rod Johnson
- * @author Thomas Risberg
+ * <p>The inherited {@link #setSql sql} property is the name of the stored procedure in the RDBMS.
  */
 public abstract class StoredProcedure extends SqlCall {
 
@@ -51,7 +47,6 @@ public abstract class StoredProcedure extends SqlCall {
 		setJdbcTemplate(jdbcTemplate);
 		setSql(name);
 	}
-
 
 	/**
 	 * StoredProcedure parameter Maps are by default allowed to contain

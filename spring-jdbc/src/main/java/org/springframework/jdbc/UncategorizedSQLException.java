@@ -10,9 +10,6 @@ import org.springframework.lang.Nullable;
 /**
  * Exception thrown when we can't classify a SQLException into
  * one of our generic data access exceptions.
- *
- * @author Rod Johnson
-
  */
 @SuppressWarnings("serial")
 public class UncategorizedSQLException extends UncategorizedDataAccessException {
@@ -30,8 +27,7 @@ public class UncategorizedSQLException extends UncategorizedDataAccessException 
 	 */
 	public UncategorizedSQLException(String task, @Nullable String sql, SQLException ex) {
 		super(task + "; uncategorized SQLException" + (sql != null ? " for SQL [" + sql + "]" : "") +
-				"; SQL state [" + ex.getSQLState() + "]; error code [" + ex.getErrorCode() + "]; " +
-				ex.getMessage(), ex);
+				"; SQL state [" + ex.getSQLState() + "]; error code [" + ex.getErrorCode() + "]; " + ex.getMessage(), ex);
 		this.sql = sql;
 	}
 

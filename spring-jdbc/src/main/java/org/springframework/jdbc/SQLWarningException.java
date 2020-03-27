@@ -13,9 +13,6 @@ import org.springframework.dao.UncategorizedDataAccessException;
  * to explicitly roll it back if we're not happy when looking at the warning.
  * We might choose to ignore (and log) the warning, or to wrap and throw it
  * in the shape of this SQLWarningException instead.
- *
- * @author Rod Johnson
-
  * @see org.springframework.jdbc.core.JdbcTemplate#setIgnoreWarnings
  */
 @SuppressWarnings("serial")

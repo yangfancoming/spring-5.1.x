@@ -17,7 +17,6 @@ public class IncorrectResultSetColumnCountException extends DataRetrievalFailure
 
 	private final int actualCount;
 
-
 	/**
 	 * Constructor for IncorrectResultSetColumnCountException.
 	 * @param expectedCount the expected column count

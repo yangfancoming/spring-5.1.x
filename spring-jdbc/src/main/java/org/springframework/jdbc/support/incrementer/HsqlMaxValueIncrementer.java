@@ -25,10 +25,6 @@ import javax.sql.DataSource;
  *
  * <p><b>NOTE:</b> HSQL now supports sequences and you should consider using them instead:
  * {@link HsqlSequenceMaxValueIncrementer}
- *
- * @author Jean-Pierre Pawlak
- * @author Thomas Risberg
-
  * @see HsqlSequenceMaxValueIncrementer
  */
 public class HsqlMaxValueIncrementer extends AbstractIdentityColumnMaxValueIncrementer {

@@ -18,8 +18,6 @@ import org.springframework.util.Assert;
  *
  * <p>Not intended to be used directly.
  * See {@link org.springframework.jdbc.core.JdbcTemplate}.
- *
-
  * @since 28.11.2003
  * @see org.springframework.jdbc.core.JdbcTemplate
  */
@@ -106,8 +104,7 @@ public abstract class JdbcAccessor implements InitializingBean {
 				DataSource dataSource = getDataSource();
 				if (dataSource != null) {
 					exceptionTranslator = new SQLErrorCodeSQLExceptionTranslator(dataSource);
-				}
-				else {
+				}else {
 					exceptionTranslator = new SQLStateSQLExceptionTranslator();
 				}
 				this.exceptionTranslator = exceptionTranslator;

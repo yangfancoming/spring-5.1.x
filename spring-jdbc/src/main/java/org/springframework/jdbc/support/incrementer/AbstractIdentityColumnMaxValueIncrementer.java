@@ -16,9 +16,6 @@ import org.springframework.jdbc.support.JdbcUtils;
 /**
  * Abstract base class for {@link DataFieldMaxValueIncrementer} implementations
  * which are based on identity columns in a sequence-like table.
- *
-
- * @author Thomas Risberg
  * @since 4.1.2
  */
 public abstract class AbstractIdentityColumnMaxValueIncrementer extends AbstractColumnMaxValueIncrementer {
@@ -88,17 +85,14 @@ public abstract class AbstractIdentityColumnMaxValueIncrementer extends Abstract
 							throw new DataAccessResourceFailureException("Identity statement failed after inserting");
 						}
 						this.valueCache[i] = rs.getLong(1);
-					}
-					finally {
+					}finally {
 						JdbcUtils.closeResultSet(rs);
 					}
 				}
 				stmt.executeUpdate(getDeleteStatement(this.valueCache));
-			}
-			catch (SQLException ex) {
+			}catch (SQLException ex) {
 				throw new DataAccessResourceFailureException("Could not increment identity", ex);
-			}
-			finally {
+			}finally {
 				JdbcUtils.closeStatement(stmt);
 				DataSourceUtils.releaseConnection(con, getDataSource());
 			}
@@ -138,8 +132,7 @@ public abstract class AbstractIdentityColumnMaxValueIncrementer extends Abstract
 				sb.append(", ").append(values[i]);
 			}
 			sb.append(")");
-		}
-		else {
+		}else {
 			long maxValue = values[values.length - 1];
 			sb.append(" < ").append(maxValue);
 		}

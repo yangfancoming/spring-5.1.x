@@ -8,8 +8,6 @@ import org.springframework.dao.DataRetrievalFailureException;
 
 /**
  * Exception to be thrown when a LOB could not be retrieved.
- *
-
  * @since 1.0.2
  */
 @SuppressWarnings("serial")

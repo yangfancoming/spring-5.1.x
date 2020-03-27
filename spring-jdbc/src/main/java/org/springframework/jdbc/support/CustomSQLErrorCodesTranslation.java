@@ -10,8 +10,6 @@ import org.springframework.util.StringUtils;
  * JavaBean for holding custom JDBC error codes translation for a particular
  * database. The "exceptionClass" property defines which exception will be
  * thrown for the list of error codes specified in the errorCodes property.
- *
- * @author Thomas Risberg
  * @since 1.1
  * @see SQLErrorCodeSQLExceptionTranslator
  */
@@ -42,8 +40,7 @@ public class CustomSQLErrorCodesTranslation {
 	 */
 	public void setExceptionClass(@Nullable Class<?> exceptionClass) {
 		if (exceptionClass != null && !DataAccessException.class.isAssignableFrom(exceptionClass)) {
-			throw new IllegalArgumentException("Invalid exception class [" + exceptionClass +
-					"]: needs to be a subclass of [org.springframework.dao.DataAccessException]");
+			throw new IllegalArgumentException("Invalid exception class [" + exceptionClass + "]: needs to be a subclass of [org.springframework.dao.DataAccessException]");
 		}
 		this.exceptionClass = exceptionClass;
 	}

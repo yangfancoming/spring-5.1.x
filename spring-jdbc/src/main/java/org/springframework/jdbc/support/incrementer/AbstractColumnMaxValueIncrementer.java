@@ -10,8 +10,6 @@ import org.springframework.util.Assert;
  * Abstract base class for {@link DataFieldMaxValueIncrementer} implementations that use
  * a column in a custom sequence table. Subclasses need to provide the specific handling
  * of that table in their {@link #getNextKey()} implementation.
- *
-
  * @since 2.5.3
  */
 public abstract class AbstractColumnMaxValueIncrementer extends AbstractDataFieldMaxValueIncrementer {
@@ -43,7 +41,6 @@ public abstract class AbstractColumnMaxValueIncrementer extends AbstractDataFiel
 		Assert.notNull(columnName, "Column name must not be null");
 		this.columnName = columnName;
 	}
-
 
 	/**
 	 * Set the name of the column in the sequence table.

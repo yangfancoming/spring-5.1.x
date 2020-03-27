@@ -27,10 +27,6 @@ import org.springframework.jdbc.support.KeyHolder;
  * Framework, {@code SqlQuery} instances are thread-safe after their
  * initialization is complete. That is, after they are constructed and configured
  * via their setter methods, they can be used safely from multiple threads.
- *
- * @author Rod Johnson
- * @author Thomas Risberg
-
  * @see SqlQuery
  */
 public class SqlUpdate extends SqlOperation {
@@ -101,7 +97,6 @@ public class SqlUpdate extends SqlOperation {
 		this.maxRowsAffected = maxRowsAffected;
 	}
 
-
 	/**
 	 * Set the maximum number of rows that may be affected by this update.
 	 * The default value is 0, which does not limit the number of rows affected.
@@ -142,7 +137,6 @@ public class SqlUpdate extends SqlOperation {
 		}
 	}
 
-
 	/**
 	 * Generic method to execute the update given parameters.
 	 * All other update methods invoke this method.
@@ -167,8 +161,7 @@ public class SqlUpdate extends SqlOperation {
 		if (!isReturnGeneratedKeys() && getGeneratedKeysColumnNames() == null) {
 			throw new InvalidDataAccessApiUsageException(
 					"The update method taking a KeyHolder should only be used when generated keys have " +
-					"been configured by calling either 'setReturnGeneratedKeys' or " +
-					"'setGeneratedKeysColumnNames'.");
+					"been configured by calling either 'setReturnGeneratedKeys' or 'setGeneratedKeysColumnNames'.");
 		}
 		validateParameters(params);
 		int rowsAffected = getJdbcTemplate().update(newPreparedStatementCreator(params), generatedKeyHolder);

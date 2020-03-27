@@ -9,8 +9,6 @@ import org.springframework.beans.factory.InitializingBean;
 
 /**
  * Registry for custom {@link SQLExceptionTranslator} instances for specific databases.
- *
- * @author Thomas Risberg
  * @since 3.1.1
  */
 public class CustomSQLExceptionTranslatorRegistrar implements InitializingBean {
@@ -35,8 +33,7 @@ public class CustomSQLExceptionTranslatorRegistrar implements InitializingBean {
 
 	@Override
 	public void afterPropertiesSet() {
-		this.translators.forEach((dbName, translator) ->
-				CustomSQLExceptionTranslatorRegistry.getInstance().registerTranslator(dbName, translator));
+		this.translators.forEach((dbName, translator) -> CustomSQLExceptionTranslatorRegistry.getInstance().registerTranslator(dbName, translator));
 	}
 
 }

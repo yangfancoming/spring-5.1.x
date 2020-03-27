@@ -13,8 +13,6 @@ import java.sql.SQLException;
  * that will be caught and translated by the calling code. This callback method has
  * access to the underlying Connection via the given PreparedStatement object, if that
  * should be needed to create any database-specific objects.
- *
-
  * @since 2.5.6
  * @see org.springframework.jdbc.core.SqlTypeValue
  * @see org.springframework.jdbc.core.DisposableSqlTypeValue

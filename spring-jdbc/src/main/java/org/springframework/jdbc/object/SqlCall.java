@@ -14,14 +14,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * RdbmsOperation using a JdbcTemplate and representing a SQL-based
- * call such as a stored procedure or a stored function.
- *
- * <p>Configures a CallableStatementCreatorFactory based on the declared
- * parameters.
- *
- * @author Rod Johnson
- * @author Thomas Risberg
+ * RdbmsOperation using a JdbcTemplate and representing a SQL-based call such as a stored procedure or a stored function.
+ * <p>Configures a CallableStatementCreatorFactory based on the declared  parameters.
  * @see CallableStatementCreatorFactory
  */
 public abstract class SqlCall extends RdbmsOperation {
@@ -115,16 +109,14 @@ public abstract class SqlCall extends RdbmsOperation {
 	protected final void compileInternal() {
 		if (isSqlReadyForUse()) {
 			this.callString = resolveSql();
-		}
-		else {
+		}else {
 			StringBuilder callString = new StringBuilder(32);
 			List<SqlParameter> parameters = getDeclaredParameters();
 			int parameterCount = 0;
 			if (isFunction()) {
 				callString.append("{? = call ").append(resolveSql()).append('(');
 				parameterCount = -1;
-			}
-			else {
+			}else {
 				callString.append("{call ").append(resolveSql()).append('(');
 			}
 			for (SqlParameter parameter : parameters) {

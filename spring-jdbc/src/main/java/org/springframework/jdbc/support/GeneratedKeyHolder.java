@@ -18,15 +18,11 @@ import org.springframework.lang.Nullable;
  * <p>Create an instance of this class for each insert operation, and pass it
  * to the corresponding {@link org.springframework.jdbc.core.JdbcTemplate} or
  * {@link org.springframework.jdbc.object.SqlUpdate} methods.
- *
- * @author Thomas Risberg
-
  * @since 1.1
  */
 public class GeneratedKeyHolder implements KeyHolder {
 
 	private final List<Map<String, Object>> keyList;
-
 
 	/**
 	 * Create a new GeneratedKeyHolder with a default list.
@@ -52,23 +48,19 @@ public class GeneratedKeyHolder implements KeyHolder {
 		}
 		if (this.keyList.size() > 1 || this.keyList.get(0).size() > 1) {
 			throw new InvalidDataAccessApiUsageException(
-					"The getKey method should only be used when a single key is returned.  " +
-					"The current key entry contains multiple keys: " + this.keyList);
+					"The getKey method should only be used when a single key is returned. The current key entry contains multiple keys: " + this.keyList);
+
 		}
 		Iterator<Object> keyIter = this.keyList.get(0).values().iterator();
 		if (keyIter.hasNext()) {
 			Object key = keyIter.next();
 			if (!(key instanceof Number)) {
-				throw new DataRetrievalFailureException(
-						"The generated key is not of a supported numeric type. " +
-						"Unable to cast [" + (key != null ? key.getClass().getName() : null) +
-						"] to [" + Number.class.getName() + "]");
+				throw new DataRetrievalFailureException("The generated key is not of a supported numeric type. " +
+						"Unable to cast [" + (key != null ? key.getClass().getName() : null) + "] to [" + Number.class.getName() + "]");
 			}
 			return (Number) key;
-		}
-		else {
-			throw new DataRetrievalFailureException("Unable to retrieve the generated key. " +
-					"Check that the table has an identity column enabled.");
+		}else {
+			throw new DataRetrievalFailureException("Unable to retrieve the generated key.Check that the table has an identity column enabled.");
 		}
 	}
 
@@ -79,9 +71,7 @@ public class GeneratedKeyHolder implements KeyHolder {
 			return null;
 		}
 		if (this.keyList.size() > 1) {
-			throw new InvalidDataAccessApiUsageException(
-					"The getKeys method should only be used when keys for a single row are returned.  " +
-					"The current key list contains keys for multiple rows: " + this.keyList);
+			throw new InvalidDataAccessApiUsageException("The getKeys method should only be used when keys for a single row are returned.  The current key list contains keys for multiple rows: " + this.keyList);
 		}
 		return this.keyList.get(0);
 	}

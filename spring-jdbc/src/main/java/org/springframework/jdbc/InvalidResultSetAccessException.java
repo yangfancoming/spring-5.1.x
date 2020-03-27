@@ -43,7 +43,6 @@ public class InvalidResultSetAccessException extends InvalidDataAccessResourceUs
 		this.sql = null;
 	}
 
-
 	/**
 	 * Return the wrapped SQLException.
 	 */

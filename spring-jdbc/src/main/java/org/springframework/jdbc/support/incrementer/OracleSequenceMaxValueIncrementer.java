@@ -7,10 +7,6 @@ import javax.sql.DataSource;
 /**
  * {@link DataFieldMaxValueIncrementer} that retrieves the next value
  * of a given Oracle sequence.
- *
- * @author Dmitriy Kopylenko
- * @author Thomas Risberg
-
  */
 public class OracleSequenceMaxValueIncrementer extends AbstractSequenceMaxValueIncrementer {
 

@@ -33,9 +33,6 @@ import javax.sql.DataSource;
  * method of the {@link org.springframework.jdbc.core.JdbcTemplate}.
  *
  * <p>Thanks to Preben Nilsson for the suggestion!
- *
- * @author Thomas Risberg
-
  * @since 2.5.5
  */
 public class SqlServerMaxValueIncrementer extends AbstractIdentityColumnMaxValueIncrementer {

@@ -34,11 +34,7 @@ import org.springframework.util.Assert;
  *
  * <p>Subclasses should set SQL and add parameters before invoking the
  * {@link #compile()} method. The order in which parameters are added is
- * significant. The appropriate {@code execute} or {@code update}
- * method can then be invoked.
- *
- * @author Rod Johnson
-
+ * significant. The appropriate {@code execute} or {@code update} method can then be invoked.
  * @see SqlQuery
  * @see SqlUpdate
  * @see StoredProcedure
@@ -159,8 +155,7 @@ public abstract class RdbmsOperation implements InitializingBean {
 	 */
 	public void setUpdatableResults(boolean updatableResults) {
 		if (isCompiled()) {
-			throw new InvalidDataAccessApiUsageException(
-					"The updateableResults flag must be set before the operation is compiled");
+			throw new InvalidDataAccessApiUsageException("The updateableResults flag must be set before the operation is compiled");
 		}
 		this.updatableResults = updatableResults;
 	}
@@ -179,8 +174,7 @@ public abstract class RdbmsOperation implements InitializingBean {
 	 */
 	public void setReturnGeneratedKeys(boolean returnGeneratedKeys) {
 		if (isCompiled()) {
-			throw new InvalidDataAccessApiUsageException(
-					"The returnGeneratedKeys flag must be set before the operation is compiled");
+			throw new InvalidDataAccessApiUsageException("The returnGeneratedKeys flag must be set before the operation is compiled");
 		}
 		this.returnGeneratedKeys = returnGeneratedKeys;
 	}
@@ -199,8 +193,7 @@ public abstract class RdbmsOperation implements InitializingBean {
 	 */
 	public void setGeneratedKeysColumnNames(@Nullable String... names) {
 		if (isCompiled()) {
-			throw new InvalidDataAccessApiUsageException(
-					"The column names for the generated keys must be set before the operation is compiled");
+			throw new InvalidDataAccessApiUsageException("The column names for the generated keys must be set before the operation is compiled");
 		}
 		this.generatedKeysColumnNames = names;
 	}
@@ -293,10 +286,8 @@ public abstract class RdbmsOperation implements InitializingBean {
 		for (int i = 0; i < parameters.length; i++) {
 			if (parameters[i] != null) {
 				this.declaredParameters.add(parameters[i]);
-			}
-			else {
-				throw new InvalidDataAccessApiUsageException("Cannot add parameter at index " + i + " from " +
-						Arrays.asList(parameters) + " since it is 'null'");
+			}else {
+				throw new InvalidDataAccessApiUsageException("Cannot add parameter at index " + i + " from " + Arrays.asList(parameters) + " since it is 'null'");
 			}
 		}
 	}
@@ -328,20 +319,14 @@ public abstract class RdbmsOperation implements InitializingBean {
 			if (getSql() == null) {
 				throw new InvalidDataAccessApiUsageException("Property 'sql' is required");
 			}
-
 			try {
 				this.jdbcTemplate.afterPropertiesSet();
-			}
-			catch (IllegalArgumentException ex) {
+			}catch (IllegalArgumentException ex) {
 				throw new InvalidDataAccessApiUsageException(ex.getMessage());
 			}
-
 			compileInternal();
 			this.compiled = true;
-
-			if (logger.isDebugEnabled()) {
-				logger.debug("RdbmsOperation with SQL [" + getSql() + "] compiled");
-			}
+			if (logger.isDebugEnabled()) logger.debug("RdbmsOperation with SQL [" + getSql() + "] compiled");
 		}
 	}
 
@@ -404,14 +389,11 @@ public abstract class RdbmsOperation implements InitializingBean {
 		int declaredInParameters = 0;
 		for (SqlParameter param : this.declaredParameters) {
 			if (param.isInputValueProvided()) {
-				if (!supportsLobParameters() &&
-						(param.getSqlType() == Types.BLOB || param.getSqlType() == Types.CLOB)) {
-					throw new InvalidDataAccessApiUsageException(
-							"BLOB or CLOB parameters are not allowed for this kind of operation");
+				if (!supportsLobParameters() && (param.getSqlType() == Types.BLOB || param.getSqlType() == Types.CLOB)) {
+					throw new InvalidDataAccessApiUsageException("BLOB or CLOB parameters are not allowed for this kind of operation");
 				}
 				if (param.getName() != null && !paramsToUse.containsKey(param.getName())) {
-					throw new InvalidDataAccessApiUsageException("The parameter named '" + param.getName() +
-							"' was not among the parameters supplied: " + paramsToUse.keySet());
+					throw new InvalidDataAccessApiUsageException("The parameter named '" + param.getName() + "' was not among the parameters supplied: " + paramsToUse.keySet());
 				}
 				declaredInParameters++;
 			}
@@ -434,7 +416,6 @@ public abstract class RdbmsOperation implements InitializingBean {
 					declaredInParamCount + " parameters were declared in class [" + getClass().getName() + "]");
 		}
 	}
-
 
 	/**
 	 * Subclasses must implement this template method to perform their own compilation.

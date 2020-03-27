@@ -10,8 +10,6 @@ import org.springframework.core.NestedCheckedException;
  * <p>This is a checked exception since we want it to be caught, logged and
  * handled rather than cause the application to fail. Failure to read JDBC
  * meta-data is usually not a fatal problem.
- *
- * @author Thomas Risberg
  * @since 1.0.1
  */
 @SuppressWarnings("serial")

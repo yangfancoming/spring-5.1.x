@@ -14,8 +14,6 @@ import org.springframework.lang.Nullable;
  * Registry for custom {@link org.springframework.jdbc.support.SQLExceptionTranslator} instances associated with
  * specific databases allowing for overriding translation based on values contained in the configuration file
  * named "sql-error-codes.xml".
- *
- * @author Thomas Risberg
  * @since 3.1.1
  * @see SQLErrorCodesFactory
  */
@@ -62,12 +60,9 @@ public final class CustomSQLExceptionTranslatorRegistry {
 		SQLExceptionTranslator replaced = this.translatorMap.put(dbName, translator);
 		if (logger.isDebugEnabled()) {
 			if (replaced != null) {
-				logger.debug("Replacing custom translator [" + replaced + "] for database '" + dbName +
-						"' with [" + translator + "]");
-			}
-			else {
-				logger.debug("Adding custom translator of type [" + translator.getClass().getName() +
-						"] for database '" + dbName + "'");
+				logger.debug("Replacing custom translator [" + replaced + "] for database '" + dbName + "' with [" + translator + "]");
+			}else {
+				logger.debug("Adding custom translator of type [" + translator.getClass().getName() + "] for database '" + dbName + "'");
 			}
 		}
 	}

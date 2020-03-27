@@ -17,8 +17,6 @@ import org.springframework.lang.Nullable;
  *
  * <p>Subclasses can be constructed providing SQL, parameter types
  * and a DataSource. SQL will often vary between subclasses.
- *
- * @author Thomas Risberg
  * @param <T> the result type
  * @see org.springframework.jdbc.object.SqlQuery
  */
@@ -40,7 +38,6 @@ public abstract class UpdatableSqlQuery<T> extends SqlQuery<T> {
 		super(ds, sql);
 		setUpdatableResults(true);
 	}
-
 
 	/**
 	 * Implementation of the superclass template method. This invokes the subclass's
@@ -67,7 +64,6 @@ public abstract class UpdatableSqlQuery<T> extends SqlQuery<T> {
 	 * framework to clean up.
 	 */
 	protected abstract T updateRow(ResultSet rs, int rowNum, @Nullable Map<?, ?> context) throws SQLException;
-
 
 	/**
 	 * Implementation of RowMapper that calls the enclosing

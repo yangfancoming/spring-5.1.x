@@ -16,9 +16,6 @@ import org.springframework.util.Assert;
  *
  * <p>Configures a {@link org.springframework.jdbc.core.PreparedStatementCreatorFactory}
  * based on the declared parameters.
- *
- * @author Rod Johnson
-
  */
 public abstract class SqlOperation extends RdbmsOperation {
 
@@ -50,7 +47,6 @@ public abstract class SqlOperation extends RdbmsOperation {
 		if (getGeneratedKeysColumnNames() != null) {
 			this.preparedStatementFactory.setGeneratedKeysColumnNames(getGeneratedKeysColumnNames());
 		}
-
 		onCompileInternal();
 	}
 

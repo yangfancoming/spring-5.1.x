@@ -20,9 +20,6 @@ import org.springframework.lang.Nullable;
  * time in an insert statement. In these cases, just call {@code getKey}
  * to retrieve the key. The returned value is a Number here, which is the
  * usual type for auto-generated keys.
- *
- * @author Thomas Risberg
-
  * @since 1.1
  * @see org.springframework.jdbc.core.JdbcTemplate
  * @see org.springframework.jdbc.object.SqlUpdate

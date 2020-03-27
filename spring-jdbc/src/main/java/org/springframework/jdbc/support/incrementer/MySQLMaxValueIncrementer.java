@@ -37,10 +37,6 @@ import org.springframework.jdbc.support.JdbcUtils;
  * <p>It is possible to avoid acquiring a new connection for the incrementer by setting the
  * "useNewConnection" property to false. In this case you <i>MUST</i> use a non-transactional
  * storage engine like MYISAM when defining the incrementer table.
- *
- * @author Jean-Pierre Pawlak
- * @author Thomas Risberg
-
  */
 public class MySQLMaxValueIncrementer extends AbstractColumnMaxValueIncrementer {
 
@@ -125,12 +121,9 @@ public class MySQLMaxValueIncrementer extends AbstractColumnMaxValueIncrementer 
 				// Increment the sequence column...
 				String columnName = getColumnName();
 				try {
-					stmt.executeUpdate("update " + getIncrementerName() + " set " + columnName +
-							" = last_insert_id(" + columnName + " + " + getCacheSize() + ")");
-				}
-				catch (SQLException ex) {
-					throw new DataAccessResourceFailureException("Could not increment " + columnName + " for " +
-							getIncrementerName() + " sequence table", ex);
+					stmt.executeUpdate("update " + getIncrementerName() + " set " + columnName + " = last_insert_id(" + columnName + " + " + getCacheSize() + ")");
+				}catch (SQLException ex) {
+					throw new DataAccessResourceFailureException("Could not increment " + columnName + " for " + getIncrementerName() + " sequence table", ex);
 				}
 				// Retrieve the new max of the sequence column...
 				ResultSet rs = stmt.executeQuery(VALUE_SQL);
@@ -139,13 +132,11 @@ public class MySQLMaxValueIncrementer extends AbstractColumnMaxValueIncrementer 
 						throw new DataAccessResourceFailureException("last_insert_id() failed after executing an update");
 					}
 					this.maxId = rs.getLong(1);
-				}
-				finally {
+				}finally {
 					JdbcUtils.closeResultSet(rs);
 				}
 				this.nextId = this.maxId - getCacheSize() + 1;
-			}
-			catch (SQLException ex) {
+			}catch (SQLException ex) {
 				throw new DataAccessResourceFailureException("Could not obtain last_insert_id()", ex);
 			}
 			finally {
@@ -157,20 +148,16 @@ public class MySQLMaxValueIncrementer extends AbstractColumnMaxValueIncrementer 
 							if (mustRestoreAutoCommit) {
 								con.setAutoCommit(true);
 							}
-						}
-						catch (SQLException ignore) {
-							throw new DataAccessResourceFailureException(
-									"Unable to commit new sequence value changes for " + getIncrementerName());
+						}catch (SQLException ignore) {
+							throw new DataAccessResourceFailureException("Unable to commit new sequence value changes for " + getIncrementerName());
 						}
 						JdbcUtils.closeConnection(con);
-					}
-					else {
+					}else {
 						DataSourceUtils.releaseConnection(con, getDataSource());
 					}
 				}
 			}
-		}
-		else {
+		}else {
 			this.nextId++;
 		}
 		return this.nextId;

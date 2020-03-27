@@ -28,9 +28,6 @@ import org.springframework.util.StringUtils;
 /**
  * Generic utility methods for working with JDBC. Mainly for internal use
  * within the framework, but also useful for custom JDBC access code.
- *
- * @author Thomas Risberg
-
  */
 public abstract class JdbcUtils {
 
@@ -52,11 +49,9 @@ public abstract class JdbcUtils {
 		if (con != null) {
 			try {
 				con.close();
-			}
-			catch (SQLException ex) {
+			}catch (SQLException ex) {
 				logger.debug("Could not close JDBC Connection", ex);
-			}
-			catch (Throwable ex) {
+			}catch (Throwable ex) {
 				// We don't trust the JDBC driver: It might throw RuntimeException or Error.
 				logger.debug("Unexpected exception on closing JDBC Connection", ex);
 			}
@@ -72,11 +67,9 @@ public abstract class JdbcUtils {
 		if (stmt != null) {
 			try {
 				stmt.close();
-			}
-			catch (SQLException ex) {
+			}catch (SQLException ex) {
 				logger.trace("Could not close JDBC Statement", ex);
-			}
-			catch (Throwable ex) {
+			}catch (Throwable ex) {
 				// We don't trust the JDBC driver: It might throw RuntimeException or Error.
 				logger.trace("Unexpected exception on closing JDBC Statement", ex);
 			}
@@ -92,11 +85,9 @@ public abstract class JdbcUtils {
 		if (rs != null) {
 			try {
 				rs.close();
-			}
-			catch (SQLException ex) {
+			}catch (SQLException ex) {
 				logger.trace("Could not close JDBC ResultSet", ex);
-			}
-			catch (Throwable ex) {
+			}catch (Throwable ex) {
 				// We don't trust the JDBC driver: It might throw RuntimeException or Error.
 				logger.trace("Unexpected exception on closing JDBC ResultSet", ex);
 			}
@@ -196,14 +187,11 @@ public abstract class JdbcUtils {
 			// Some unknown type desired -> rely on getObject.
 			try {
 				return rs.getObject(index, requiredType);
-			}
-			catch (AbstractMethodError err) {
+			}catch (AbstractMethodError err) {
 				logger.debug("JDBC driver does not implement JDBC 4.1 'getObject(int, Class)' method", err);
-			}
-			catch (SQLFeatureNotSupportedException ex) {
+			}catch (SQLFeatureNotSupportedException ex) {
 				logger.debug("JDBC driver does not support JDBC 4.1 'getObject(int, Class)' method", ex);
-			}
-			catch (SQLException ex) {
+			}catch (SQLException ex) {
 				logger.debug("JDBC driver has limited support for JDBC 4.1 'getObject(int, Class)' method", ex);
 			}
 
@@ -343,21 +331,15 @@ public abstract class JdbcUtils {
 				dbmd -> {
 					try {
 						return DatabaseMetaData.class.getMethod(metaDataMethodName).invoke(dbmd);
-					}
-					catch (NoSuchMethodException ex) {
-						throw new MetaDataAccessException("No method named '" + metaDataMethodName +
-								"' found on DatabaseMetaData instance [" + dbmd + "]", ex);
-					}
-					catch (IllegalAccessException ex) {
-						throw new MetaDataAccessException(
-								"Could not access DatabaseMetaData method '" + metaDataMethodName + "'", ex);
-					}
-					catch (InvocationTargetException ex) {
+					}catch (NoSuchMethodException ex) {
+						throw new MetaDataAccessException("No method named '" + metaDataMethodName + "' found on DatabaseMetaData instance [" + dbmd + "]", ex);
+					}catch (IllegalAccessException ex) {
+						throw new MetaDataAccessException("Could not access DatabaseMetaData method '" + metaDataMethodName + "'", ex);
+					}catch (InvocationTargetException ex) {
 						if (ex.getTargetException() instanceof SQLException) {
 							throw (SQLException) ex.getTargetException();
 						}
-						throw new MetaDataAccessException(
-								"Invocation of DatabaseMetaData method '" + metaDataMethodName + "' failed", ex);
+						throw new MetaDataAccessException("Invocation of DatabaseMetaData method '" + metaDataMethodName + "' failed", ex);
 					}
 				});
 	}
@@ -380,13 +362,11 @@ public abstract class JdbcUtils {
 				if (dbmd.supportsBatchUpdates()) {
 					logger.debug("JDBC driver supports batch updates");
 					return true;
-				}
-				else {
+				}else {
 					logger.debug("JDBC driver does not support batch updates");
 				}
 			}
-		}
-		catch (SQLException ex) {
+		}catch (SQLException ex) {
 			logger.debug("JDBC driver 'supportsBatchUpdates' method threw exception", ex);
 		}
 		return false;
@@ -457,21 +437,18 @@ public abstract class JdbcUtils {
 		if (name != null && name.length() > 0) {
 			if (name.length() > 1 && name.charAt(1) == '_') {
 				result.append(Character.toUpperCase(name.charAt(0)));
-			}
-			else {
+			}else {
 				result.append(Character.toLowerCase(name.charAt(0)));
 			}
 			for (int i = 1; i < name.length(); i++) {
 				char c = name.charAt(i);
 				if (c == '_') {
 					nextIsUpper = true;
-				}
-				else {
+				}else {
 					if (nextIsUpper) {
 						result.append(Character.toUpperCase(c));
 						nextIsUpper = false;
-					}
-					else {
+					}else {
 						result.append(Character.toLowerCase(c));
 					}
 				}

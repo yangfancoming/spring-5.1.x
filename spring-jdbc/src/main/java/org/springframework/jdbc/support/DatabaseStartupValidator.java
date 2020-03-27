@@ -22,8 +22,6 @@ import org.springframework.lang.Nullable;
  *
  * <p>Useful to defer application initialization until a database has started up.
  * Particularly appropriate for waiting on a slowly starting Oracle database.
- *
-
  * @since 18.12.2003
  */
 public class DatabaseStartupValidator implements InitializingBean {
@@ -128,8 +126,7 @@ public class DatabaseStartupValidator implements InitializingBean {
 									" seconds (timeout in " + rest + " seconds)");
 						}
 					}
-				}
-				finally {
+				}finally {
 					JdbcUtils.closeStatement(stmt);
 					JdbcUtils.closeConnection(con);
 				}
@@ -140,16 +137,14 @@ public class DatabaseStartupValidator implements InitializingBean {
 			}
 
 			if (!validated) {
-				throw new CannotGetJdbcConnectionException(
-						"Database has not started up within " + this.timeout + " seconds", latestEx);
+				throw new CannotGetJdbcConnectionException("Database has not started up within " + this.timeout + " seconds", latestEx);
 			}
 
 			if (logger.isInfoEnabled()) {
 				float duration = ((float) (System.currentTimeMillis() - beginTime)) / 1000;
 				logger.info("Database startup detected after " + duration + " seconds");
 			}
-		}
-		catch (InterruptedException ex) {
+		}catch (InterruptedException ex) {
 			// Re-interrupt current thread, to allow other threads to react.
 			Thread.currentThread().interrupt();
 		}

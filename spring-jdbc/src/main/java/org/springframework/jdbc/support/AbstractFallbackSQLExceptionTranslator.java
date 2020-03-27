@@ -16,8 +16,6 @@ import org.springframework.util.Assert;
 /**
  * Base class for {@link SQLExceptionTranslator} implementations that allow for
  * fallback to some other {@link SQLExceptionTranslator}.
- *
-
  * @since 2.5.6
  */
 public abstract class AbstractFallbackSQLExceptionTranslator implements SQLExceptionTranslator {
@@ -70,7 +68,6 @@ public abstract class AbstractFallbackSQLExceptionTranslator implements SQLExcep
 				return dae;
 			}
 		}
-
 		// We couldn't identify it more precisely.
 		return new UncategorizedSQLException(task, sql, ex);
 	}

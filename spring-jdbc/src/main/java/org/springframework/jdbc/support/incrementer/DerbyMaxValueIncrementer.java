@@ -34,9 +34,6 @@ import javax.sql.DataSource;
  * method of the {@link org.springframework.jdbc.core.JdbcTemplate}.
  *
  * <p>Thanks to Endre Stolsvik for the suggestion!
- *
- * @author Thomas Risberg
-
  * @since 2.5
  */
 public class DerbyMaxValueIncrementer extends AbstractIdentityColumnMaxValueIncrementer {

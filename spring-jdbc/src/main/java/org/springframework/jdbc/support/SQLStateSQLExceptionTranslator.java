@@ -23,10 +23,6 @@ import org.springframework.lang.Nullable;
  * <p>Not able to diagnose all problems, but is portable between databases and
  * does not require special initialization (no database vendor detection, etc.).
  * For more precise translation, consider {@link SQLErrorCodeSQLExceptionTranslator}.
- *
- * @author Rod Johnson
-
- * @author Thomas Risberg
  * @see java.sql.SQLException#getSQLState()
  * @see SQLErrorCodeSQLExceptionTranslator
  */
