@@ -7,8 +7,6 @@ import org.aopalliance.aop.Advice;
 /**
  * Abstract generic {@link org.springframework.aop.PointcutAdvisor}
  * that allows for any {@link Advice} to be configured.
- *
-
  * @since 2.0
  * @see #setAdvice
  * @see DefaultPointcutAdvisor

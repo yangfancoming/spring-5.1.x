@@ -11,13 +11,9 @@ import org.springframework.lang.Nullable;
 
 /**
  * Convenient Pointcut-driven Advisor implementation.
- *
  * <p>This is the most commonly used Advisor implementation. It can be used
  * with any pointcut and advice type, except for introductions. There is
  * normally no need to subclass this class, or to implement custom Advisors.
- *
- * @author Rod Johnson
-
  * @see #setPointcut
  * @see #setAdvice
  */
@@ -25,7 +21,6 @@ import org.springframework.lang.Nullable;
 public class DefaultPointcutAdvisor extends AbstractGenericPointcutAdvisor implements Serializable {
 
 	private Pointcut pointcut = Pointcut.TRUE;
-
 
 	/**
 	 * Create an empty DefaultPointcutAdvisor.

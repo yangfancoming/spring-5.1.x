@@ -274,13 +274,11 @@ public abstract class AopUtils {
 			 * AspectJ 表达式的工作流程不是很熟
 			 */
 			return ((IntroductionAdvisor) advisor).getClassFilter().matches(targetClass);
-		}
-		else if (advisor instanceof PointcutAdvisor) {
+		}else if (advisor instanceof PointcutAdvisor) {
 			PointcutAdvisor pca = (PointcutAdvisor) advisor;
 			// 对于普通类型的通知器，这里继续调用重载方法进行筛选
 			return canApply(pca.getPointcut(), targetClass, hasIntroductions);
-		}
-		else {
+		}else {
 			// It doesn't have a pointcut so we assume it applies.
 			return true;
 		}
@@ -335,16 +333,13 @@ public abstract class AopUtils {
 			ReflectionUtils.makeAccessible(method);
 			// 直接使用反射执行目标方法
 			return method.invoke(target, args);
-		}
-		catch (InvocationTargetException ex) {
+		}catch (InvocationTargetException ex) {
 			// 所有执行过程中的异常都需要包装之后抛回给调用者.
 			// Invoked method threw a checked exception.We must rethrow it. The client won't see the interceptor.
 			throw ex.getTargetException();
-		}
-		catch (IllegalArgumentException ex) {
+		}catch (IllegalArgumentException ex) {
 			throw new AopInvocationException("AOP configuration seems to be invalid: tried calling method [" + method + "] on target [" + target + "]", ex);
-		}
-		catch (IllegalAccessException ex) {
+		}catch (IllegalAccessException ex) {
 			throw new AopInvocationException("Could not access method [" + method + "]", ex);
 		}
 	}

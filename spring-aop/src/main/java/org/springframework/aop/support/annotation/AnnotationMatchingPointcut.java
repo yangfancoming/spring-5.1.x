@@ -23,7 +23,6 @@ public class AnnotationMatchingPointcut implements Pointcut {
 
 	private final MethodMatcher methodMatcher;
 
-
 	/**
 	 * Create a new AnnotationMatchingPointcut for the given annotation type.
 	 * @param classAnnotationType the annotation type to look for at the class level

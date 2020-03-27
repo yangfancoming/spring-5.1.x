@@ -9,9 +9,6 @@ import org.springframework.lang.Nullable;
 /**
  * Abstract superclass for expression pointcuts,
  * offering location and expression properties.
- *
- * @author Rod Johnson
- * @author Rob Harrop
  * @since 2.0
  * @see #setLocation
  * @see #setExpression
@@ -24,7 +21,6 @@ public abstract class AbstractExpressionPointcut implements ExpressionPointcut, 
 
 	@Nullable
 	private String expression;
-
 
 	/**
 	 * Set the location for debugging.
@@ -48,13 +44,11 @@ public abstract class AbstractExpressionPointcut implements ExpressionPointcut, 
 		this.expression = expression;
 		try {
 			onSetExpression(expression);
-		}
-		catch (IllegalArgumentException ex) {
+		}catch (IllegalArgumentException ex) {
 			// Fill in location information if possible.
 			if (this.location != null) {
 				throw new IllegalArgumentException("Invalid expression at location [" + this.location + "]: " + ex);
-			}
-			else {
+			}else {
 				throw ex;
 			}
 		}

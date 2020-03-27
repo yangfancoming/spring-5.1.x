@@ -26,17 +26,11 @@ import org.springframework.util.StringUtils;
  *
  * <p>This base class is serializable. Subclasses should declare all fields transient;
  * the {@link #initPatternRepresentation} method will be invoked again on deserialization.
- *
- * @author Rod Johnson
-
- * @author Rob Harrop
  * @since 1.1
  * @see JdkRegexpMethodPointcut
  */
 @SuppressWarnings("serial")
-public abstract class AbstractRegexpMethodPointcut extends StaticMethodMatcherPointcut
-		implements Serializable {
-
+public abstract class AbstractRegexpMethodPointcut extends StaticMethodMatcherPointcut implements Serializable {
 	/**
 	 * Regular expressions to match.
 	 */
@@ -182,9 +176,7 @@ public abstract class AbstractRegexpMethodPointcut extends StaticMethodMatcherPo
 
 	@Override
 	public boolean equals(Object other) {
-		if (this == other) {
-			return true;
-		}
+		if (this == other) return true;
 		if (!(other instanceof AbstractRegexpMethodPointcut)) {
 			return false;
 		}

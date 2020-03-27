@@ -12,14 +12,9 @@ import org.springframework.util.Assert;
 /**
  * Convenient class for building up pointcuts. All methods return
  * ComposablePointcut, so we can use a concise idiom like:
- *
  * {@code
  * Pointcut pc = new ComposablePointcut().union(classFilter).intersection(methodMatcher).intersection(pointcut);
  * }
- *
- * @author Rod Johnson
-
- * @author Rob Harrop
  * @since 11.11.2003
  * @see Pointcuts
  */
@@ -31,7 +26,6 @@ public class ComposablePointcut implements Pointcut, Serializable {
 	private ClassFilter classFilter;
 
 	private MethodMatcher methodMatcher;
-
 
 	/**
 	 * Create a default ComposablePointcut, with {@code ClassFilter.TRUE}

@@ -13,8 +13,6 @@ import org.springframework.lang.Nullable;
  * <p>Specifying the name of an advice bean instead of the advice object itself
  * (if running within a BeanFactory) increases loose coupling at initialization time,
  * in order to not initialize the advice object until the pointcut actually matches.
- *
-
  * @since 2.0.2
  * @see #setPointcut
  * @see #setAdviceBeanName
@@ -23,7 +21,6 @@ import org.springframework.lang.Nullable;
 public class DefaultBeanFactoryPointcutAdvisor extends AbstractBeanFactoryPointcutAdvisor {
 
 	private Pointcut pointcut = Pointcut.TRUE;
-
 
 	/**
 	 * Specify the pointcut targeting the advice.

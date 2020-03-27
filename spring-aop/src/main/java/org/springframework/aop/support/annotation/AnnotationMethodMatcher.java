@@ -15,8 +15,6 @@ import org.springframework.util.Assert;
  * Simple MethodMatcher that looks for a specific Java 5 annotation
  * being present on a method (checking both the method on the invoked
  * interface, if any, and the corresponding method on the target class).
- *
-
  * @since 2.0
  * @see AnnotationMatchingPointcut
  */
@@ -25,7 +23,6 @@ public class AnnotationMethodMatcher extends StaticMethodMatcher {
 	private final Class<? extends Annotation> annotationType;
 
 	private final boolean checkInherited;
-
 
 	/**
 	 * Create a new AnnotationClassFilter for the given annotation type.
@@ -67,8 +64,7 @@ public class AnnotationMethodMatcher extends StaticMethodMatcher {
 	}
 
 	private boolean matchesMethod(Method method) {
-		return (this.checkInherited ? AnnotatedElementUtils.hasAnnotation(method, this.annotationType) :
-				method.isAnnotationPresent(this.annotationType));
+		return (this.checkInherited ? AnnotatedElementUtils.hasAnnotation(method, this.annotationType) : method.isAnnotationPresent(this.annotationType));
 	}
 
 	@Override

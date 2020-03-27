@@ -31,9 +31,6 @@ import org.springframework.util.ReflectionUtils;
  * <p><i>Note: There are some implementation similarities between this class and
  * {@link DelegatingIntroductionInterceptor} that suggest a possible refactoring
  * to extract a common ancestor class in the future.</i>
- *
- * @author Adrian Colyer
-
  * @since 2.0
  * @see #suppressInterface
  * @see DelegatingIntroductionInterceptor
@@ -76,7 +73,6 @@ public class DelegatePerTargetObjectIntroductionInterceptor extends Introduction
 	public Object invoke(MethodInvocation mi) throws Throwable {
 		if (isMethodOnIntroducedInterface(mi)) {
 			Object delegate = getIntroductionDelegateFor(mi.getThis());
-
 			// Using the following method rather than direct reflection,
 			// we get correct handling of InvocationTargetException
 			// if the introduced method throws an exception.
@@ -109,8 +105,7 @@ public class DelegatePerTargetObjectIntroductionInterceptor extends Introduction
 		synchronized (this.delegateMap) {
 			if (this.delegateMap.containsKey(targetObject)) {
 				return this.delegateMap.get(targetObject);
-			}
-			else {
+			}else {
 				Object delegate = createNewDelegate();
 				this.delegateMap.put(targetObject, delegate);
 				return delegate;
@@ -121,8 +116,7 @@ public class DelegatePerTargetObjectIntroductionInterceptor extends Introduction
 	private Object createNewDelegate() {
 		try {
 			return ReflectionUtils.accessibleConstructor(this.defaultImplType).newInstance();
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			throw new IllegalArgumentException("Cannot create default implementation for '" +
 					this.interfaceType.getName() + "' mixin (" + this.defaultImplType.getName() + "): " + ex);
 		}

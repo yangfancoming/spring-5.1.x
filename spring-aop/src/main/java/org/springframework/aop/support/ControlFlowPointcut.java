@@ -16,10 +16,6 @@ import org.springframework.util.ObjectUtils;
  * Pointcut and method matcher for use in simple <b>cflow</b>-style pointcut.
  * Note that evaluating such pointcuts is 10-15 times slower than evaluating
  * normal pointcuts, but they are useful in some cases.
- *
- * @author Rod Johnson
- * @author Rob Harrop
-
  */
 @SuppressWarnings("serial")
 public class ControlFlowPointcut implements Pointcut, ClassFilter, MethodMatcher, Serializable {
@@ -30,7 +26,6 @@ public class ControlFlowPointcut implements Pointcut, ClassFilter, MethodMatcher
 	private String methodName;
 
 	private volatile int evaluations;
-
 
 	/**
 	 * Construct a new pointcut that matches all control flows below that class.

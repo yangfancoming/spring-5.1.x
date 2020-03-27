@@ -20,8 +20,6 @@ import org.springframework.util.Assert;
  * <p>Specifying the name of an advice bean instead of the advice object itself
  * (if running within a BeanFactory) increases loose coupling at initialization time,
  * in order to not initialize the advice object until the pointcut actually matches.
- *
-
  * @since 2.0.2
  * @see #setAdviceBeanName
  * @see DefaultBeanFactoryPointcutAdvisor
@@ -39,7 +37,6 @@ public abstract class AbstractBeanFactoryPointcutAdvisor extends AbstractPointcu
 	private transient volatile Advice advice;
 
 	private transient volatile Object adviceMonitor = new Object();
-
 
 	/**
 	 * Specify the name of the advice bean that this advisor should refer to.
@@ -70,8 +67,7 @@ public abstract class AbstractBeanFactoryPointcutAdvisor extends AbstractPointcu
 	private void resetAdviceMonitor() {
 		if (this.beanFactory instanceof ConfigurableBeanFactory) {
 			this.adviceMonitor = ((ConfigurableBeanFactory) this.beanFactory).getSingletonMutex();
-		}
-		else {
+		}else {
 			this.adviceMonitor = new Object();
 		}
 	}
@@ -102,8 +98,7 @@ public abstract class AbstractBeanFactoryPointcutAdvisor extends AbstractPointcu
 			advice = this.beanFactory.getBean(this.adviceBeanName, Advice.class);
 			this.advice = advice;
 			return advice;
-		}
-		else {
+		}else {
 			// No singleton guarantees from the factory -> let's lock locally but
 			// reuse the factory's singleton lock, just in case a lazy dependency
 			// of our advice bean happens to trigger the singleton lock implicitly...
@@ -124,8 +119,7 @@ public abstract class AbstractBeanFactoryPointcutAdvisor extends AbstractPointcu
 		sb.append(": advice ");
 		if (this.adviceBeanName != null) {
 			sb.append("bean '").append(this.adviceBeanName).append("'");
-		}
-		else {
+		}else {
 			sb.append(this.advice);
 		}
 		return sb.toString();
@@ -139,7 +133,6 @@ public abstract class AbstractBeanFactoryPointcutAdvisor extends AbstractPointcu
 	private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
 		// Rely on default serialization, just initialize state after deserialization.
 		ois.defaultReadObject();
-
 		// Initialize transient fields.
 		resetAdviceMonitor();
 	}

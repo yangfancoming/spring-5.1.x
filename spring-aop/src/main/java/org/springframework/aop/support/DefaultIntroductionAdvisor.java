@@ -20,9 +20,6 @@ import org.springframework.util.ClassUtils;
 /**
  * Simple {@link org.springframework.aop.IntroductionAdvisor} implementation
  * that by default applies to any class.
- *
- * @author Rod Johnson
-
  * @since 11.11.2003
  */
 @SuppressWarnings({"serial" })
@@ -33,7 +30,6 @@ public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFil
 	private final Set<Class<?>> interfaces = new LinkedHashSet<>();
 
 	private int order = Ordered.LOWEST_PRECEDENCE;
-
 
 	/**
 	 * Create a DefaultIntroductionAdvisor for the given advice.
@@ -97,10 +93,8 @@ public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFil
 	@Override
 	public void validateInterfaces() throws IllegalArgumentException {
 		for (Class<?> ifc : this.interfaces) {
-			if (this.advice instanceof DynamicIntroductionAdvice &&
-					!((DynamicIntroductionAdvice) this.advice).implementsInterface(ifc)) {
-			throw new IllegalArgumentException("DynamicIntroductionAdvice [" + this.advice + "] " +
-					"does not implement interface [" + ifc.getName() + "] specified for introduction");
+			if (this.advice instanceof DynamicIntroductionAdvice && !((DynamicIntroductionAdvice) this.advice).implementsInterface(ifc)) {
+				throw new IllegalArgumentException("DynamicIntroductionAdvice [" + this.advice + "] does not implement interface [" + ifc.getName() + "] specified for introduction");
 			}
 		}
 	}
@@ -137,9 +131,7 @@ public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFil
 
 	@Override
 	public boolean equals(Object other) {
-		if (this == other) {
-			return true;
-		}
+		if (this == other) return true;
 		if (!(other instanceof DefaultIntroductionAdvisor)) {
 			return false;
 		}
