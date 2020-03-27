@@ -17,7 +17,6 @@ import org.apache.commons.logging.LogFactory;
  * <p>'Padding' in the context of this class means default implementations
  * for certain methods from the {@code DataSource} interface, such as
  * {@link #getLoginTimeout()}, {@link #setLoginTimeout(int)}, and so forth.
- *
 
  * @since 07.05.2003
  * @see DriverManagerDataSource

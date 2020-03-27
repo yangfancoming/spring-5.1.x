@@ -13,8 +13,6 @@ import org.springframework.lang.Nullable;
 /**
  * Simple adapter for {@link PreparedStatementSetter} that applies
  * given arrays of arguments and JDBC argument types.
- *
-
  * @since 3.2.3
  */
 public class ArgumentTypePreparedStatementSetter implements PreparedStatementSetter, ParameterDisposer {
@@ -56,14 +54,12 @@ public class ArgumentTypePreparedStatementSetter implements PreparedStatementSet
 								doSetValue(ps, parameterPosition, this.argTypes[i], argValue);
 								parameterPosition++;
 							}
-						}
-						else {
+						}else {
 							doSetValue(ps, parameterPosition, this.argTypes[i], entry);
 							parameterPosition++;
 						}
 					}
-				}
-				else {
+				}else {
 					doSetValue(ps, parameterPosition, this.argTypes[i], arg);
 					parameterPosition++;
 				}
@@ -80,9 +76,7 @@ public class ArgumentTypePreparedStatementSetter implements PreparedStatementSet
 	 * @param argValue the argument value
 	 * @throws SQLException if thrown by PreparedStatement methods
 	 */
-	protected void doSetValue(PreparedStatement ps, int parameterPosition, int argType, Object argValue)
-			throws SQLException {
-
+	protected void doSetValue(PreparedStatement ps, int parameterPosition, int argType, Object argValue) throws SQLException {
 		StatementCreatorUtils.setParameterValue(ps, parameterPosition, argType, argValue);
 	}
 

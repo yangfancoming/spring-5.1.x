@@ -19,7 +19,6 @@ import org.springframework.util.Assert;
  * and reference count functionality from the base class.
  *
  * <p>Note: This is an SPI class, not intended to be used by applications.
- *
 
  * @since 06.05.2003
  * @see DataSourceTransactionManager

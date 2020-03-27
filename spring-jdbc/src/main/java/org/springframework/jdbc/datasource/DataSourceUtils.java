@@ -59,11 +59,9 @@ public abstract class DataSourceUtils {
 	public static Connection getConnection(DataSource dataSource) throws CannotGetJdbcConnectionException {
 		try {
 			return doGetConnection(dataSource);
-		}
-		catch (SQLException ex) {
+		}catch (SQLException ex) {
 			throw new CannotGetJdbcConnectionException("Failed to obtain JDBC Connection", ex);
-		}
-		catch (IllegalStateException ex) {
+		}catch (IllegalStateException ex) {
 			throw new CannotGetJdbcConnectionException("Failed to obtain JDBC Connection: " + ex.getMessage());
 		}
 	}
@@ -106,19 +104,16 @@ public abstract class DataSourceUtils {
 				ConnectionHolder holderToUse = conHolder;
 				if (holderToUse == null) {
 					holderToUse = new ConnectionHolder(con);
-				}
-				else {
+				}else {
 					holderToUse.setConnection(con);
 				}
 				holderToUse.requested();
-				TransactionSynchronizationManager.registerSynchronization(
-						new ConnectionSynchronization(holderToUse, dataSource));
+				TransactionSynchronizationManager.registerSynchronization(new ConnectionSynchronization(holderToUse, dataSource));
 				holderToUse.setSynchronizedWithTransaction(true);
 				if (holderToUse != conHolder) {
 					TransactionSynchronizationManager.bindResource(dataSource, holderToUse);
 				}
-			}
-			catch (RuntimeException ex) {
+			}catch (RuntimeException ex) {
 				// Unexpected exception from external delegation call -> close Connection and rethrow.
 				releaseConnection(con, dataSource);
 				throw ex;
@@ -155,11 +150,8 @@ public abstract class DataSourceUtils {
 	 * @see #resetConnectionAfterTransaction
 	 */
 	@Nullable
-	public static Integer prepareConnectionForTransaction(Connection con, @Nullable TransactionDefinition definition)
-			throws SQLException {
-
+	public static Integer prepareConnectionForTransaction(Connection con, @Nullable TransactionDefinition definition) throws SQLException {
 		Assert.notNull(con, "No Connection specified");
-
 		// Set read-only flag.
 		if (definition != null && definition.isReadOnly()) {
 			try {
@@ -167,8 +159,7 @@ public abstract class DataSourceUtils {
 					logger.debug("Setting JDBC Connection [" + con + "] read-only");
 				}
 				con.setReadOnly(true);
-			}
-			catch (SQLException | RuntimeException ex) {
+			}catch (SQLException | RuntimeException ex) {
 				Throwable exToCheck = ex;
 				while (exToCheck != null) {
 					if (exToCheck.getClass().getSimpleName().contains("Timeout")) {
@@ -186,8 +177,7 @@ public abstract class DataSourceUtils {
 		Integer previousIsolationLevel = null;
 		if (definition != null && definition.getIsolationLevel() != TransactionDefinition.ISOLATION_DEFAULT) {
 			if (logger.isDebugEnabled()) {
-				logger.debug("Changing isolation level of JDBC Connection [" + con + "] to " +
-						definition.getIsolationLevel());
+				logger.debug("Changing isolation level of JDBC Connection [" + con + "] to " + definition.getIsolationLevel());
 			}
 			int currentIsolation = con.getTransactionIsolation();
 			if (currentIsolation != definition.getIsolationLevel()) {
@@ -212,21 +202,17 @@ public abstract class DataSourceUtils {
 			// Reset transaction isolation to previous value, if changed for the transaction.
 			if (previousIsolationLevel != null) {
 				if (logger.isDebugEnabled()) {
-					logger.debug("Resetting isolation level of JDBC Connection [" +
-							con + "] to " + previousIsolationLevel);
+					logger.debug("Resetting isolation level of JDBC Connection [" + con + "] to " + previousIsolationLevel);
 				}
 				con.setTransactionIsolation(previousIsolationLevel);
 			}
 
 			// Reset read-only flag.
 			if (con.isReadOnly()) {
-				if (logger.isDebugEnabled()) {
-					logger.debug("Resetting read-only flag of JDBC Connection [" + con + "]");
-				}
+				if (logger.isDebugEnabled()) logger.debug("Resetting read-only flag of JDBC Connection [" + con + "]");
 				con.setReadOnly(false);
 			}
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			logger.debug("Could not reset JDBC Connection after transaction", ex);
 		}
 	}
@@ -240,9 +226,7 @@ public abstract class DataSourceUtils {
 	 * @return whether the Connection is transactional
 	 */
 	public static boolean isConnectionTransactional(Connection con, @Nullable DataSource dataSource) {
-		if (dataSource == null) {
-			return false;
-		}
+		if (dataSource == null) return false;
 		ConnectionHolder conHolder = (ConnectionHolder) TransactionSynchronizationManager.getResource(dataSource);
 		return (conHolder != null && connectionEquals(conHolder, con));
 	}
@@ -277,8 +261,7 @@ public abstract class DataSourceUtils {
 		if (holder != null && holder.hasTimeout()) {
 			// Remaining transaction timeout overrides specified value.
 			stmt.setQueryTimeout(holder.getTimeToLiveInSeconds());
-		}
-		else if (timeout >= 0) {
+		}else if (timeout >= 0) {
 			// No current transaction timeout -> apply specified value.
 			stmt.setQueryTimeout(timeout);
 		}
@@ -296,11 +279,9 @@ public abstract class DataSourceUtils {
 	public static void releaseConnection(@Nullable Connection con, @Nullable DataSource dataSource) {
 		try {
 			doReleaseConnection(con, dataSource);
-		}
-		catch (SQLException ex) {
+		}catch (SQLException ex) {
 			logger.debug("Could not close JDBC Connection", ex);
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			logger.debug("Unexpected exception on closing JDBC Connection", ex);
 		}
 	}
@@ -317,9 +298,7 @@ public abstract class DataSourceUtils {
 	 * @see #doGetConnection
 	 */
 	public static void doReleaseConnection(@Nullable Connection con, @Nullable DataSource dataSource) throws SQLException {
-		if (con == null) {
-			return;
-		}
+		if (con == null) return;
 		if (dataSource != null) {
 			ConnectionHolder conHolder = (ConnectionHolder) TransactionSynchronizationManager.getResource(dataSource);
 			if (conHolder != null && connectionEquals(conHolder, con)) {
@@ -362,8 +341,7 @@ public abstract class DataSourceUtils {
 		Connection heldCon = conHolder.getConnection();
 		// Explicitly check for identity too: for Connection handles that do not implement
 		// "equals" properly, such as the ones Commons DBCP exposes).
-		return (heldCon == passedInCon || heldCon.equals(passedInCon) ||
-				getTargetConnection(heldCon).equals(passedInCon));
+		return (heldCon == passedInCon || heldCon.equals(passedInCon) || getTargetConnection(heldCon).equals(passedInCon));
 	}
 
 	/**

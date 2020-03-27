@@ -31,8 +31,6 @@ import org.springframework.util.ObjectUtils;
  * outside an application server, for code that expects to work on a DataSource.
  * In contrast to {@link DriverManagerDataSource}, it reuses the same Connection
  * all the time, avoiding excessive creation of physical Connections.
- *
- * @author Rod Johnson
 
  * @see #getConnection()
  * @see java.sql.Connection#close()
@@ -318,8 +316,7 @@ public class SingleConnectionDataSource extends DriverManagerDataSource implemen
 			// Invoke method on target Connection.
 			try {
 				return method.invoke(this.target, args);
-			}
-			catch (InvocationTargetException ex) {
+			}catch (InvocationTargetException ex) {
 				throw ex.getTargetException();
 			}
 		}

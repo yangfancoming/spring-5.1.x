@@ -11,16 +11,11 @@ import org.springframework.lang.Nullable;
 
 /**
  * Reusable query in which concrete subclasses must implement the abstract
- * mapRow(ResultSet, int) method to convert each row of the JDBC ResultSet
- * into an object.
+ * mapRow(ResultSet, int) method to convert each row of the JDBC ResultSet into an object.
  *
  * <p>Simplifies MappingSqlQueryWithParameters API by dropping parameters and
  * context. Most subclasses won't care about parameters. If you don't use
  * contextual information, subclass this instead of MappingSqlQueryWithParameters.
- *
- * @author Rod Johnson
- * @author Thomas Risberg
- * @author Jean-Pierre Pawlak
  * @param <T> the result type
  * @see MappingSqlQueryWithParameters
  */
@@ -49,9 +44,7 @@ public abstract class MappingSqlQuery<T> extends MappingSqlQueryWithParameters<T
 	 */
 	@Override
 	@Nullable
-	protected final T mapRow(ResultSet rs, int rowNum, @Nullable Object[] parameters, @Nullable Map<?, ?> context)
-			throws SQLException {
-
+	protected final T mapRow(ResultSet rs, int rowNum, @Nullable Object[] parameters, @Nullable Map<?, ?> context) throws SQLException {
 		return mapRow(rs, rowNum);
 	}
 

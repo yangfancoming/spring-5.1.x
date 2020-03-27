@@ -26,8 +26,6 @@ import org.springframework.util.LinkedCaseInsensitiveMap;
  * classpath (which will be autodetected). Else, the fallback is a standard linked
  * HashMap, which will still preserve column order but requires the application
  * to specify the column names in the same casing as exposed by the driver.
- *
-
  * @since 1.2
  * @see JdbcTemplate#queryForList(String)
  * @see JdbcTemplate#queryForMap(String)

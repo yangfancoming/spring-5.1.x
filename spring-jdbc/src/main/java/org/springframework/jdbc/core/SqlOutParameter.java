@@ -11,10 +11,6 @@ import org.springframework.lang.Nullable;
  * No additional properties: instanceof will be used to check for such types.
  *
  * <p>Output parameters - like all stored procedure parameters - must have names.
- *
- * @author Rod Johnson
- * @author Thomas Risberg
-
  * @see SqlReturnResultSet
  * @see SqlInOutParameter
  */

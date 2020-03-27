@@ -23,10 +23,6 @@ import org.springframework.util.Assert;
  * Helper class that efficiently creates multiple {@link PreparedStatementCreator}
  * objects with different parameters based on a SQL statement and a single
  * set of parameter declarations.
- *
- * @author Rod Johnson
- * @author Thomas Risberg
-
  */
 public class PreparedStatementCreatorFactory {
 
@@ -166,16 +162,14 @@ public class PreparedStatementCreatorFactory {
 	 * @param params the parameter array (may be {@code null})
 	 */
 	public PreparedStatementCreator newPreparedStatementCreator(String sqlToUse, @Nullable Object[] params) {
-		return new PreparedStatementCreatorImpl(
-				sqlToUse, params != null ? Arrays.asList(params) : Collections.emptyList());
+		return new PreparedStatementCreatorImpl(sqlToUse, params != null ? Arrays.asList(params) : Collections.emptyList());
 	}
 
 
 	/**
 	 * PreparedStatementCreator implementation returned by this class.
 	 */
-	private class PreparedStatementCreatorImpl
-			implements PreparedStatementCreator, PreparedStatementSetter, SqlProvider, ParameterDisposer {
+	private class PreparedStatementCreatorImpl implements PreparedStatementCreator, PreparedStatementSetter, SqlProvider, ParameterDisposer {
 
 		private final String actualSql;
 
@@ -196,15 +190,12 @@ public class PreparedStatementCreatorFactory {
 					Object param = parameters.get(i);
 					if (param instanceof SqlParameterValue) {
 						names.add(((SqlParameterValue) param).getName());
-					}
-					else {
+					}else {
 						names.add("Parameter #" + i);
 					}
 				}
 				if (names.size() != declaredParameters.size()) {
-					throw new InvalidDataAccessApiUsageException(
-							"SQL [" + sql + "]: given " + names.size() +
-							" parameters but expected " + declaredParameters.size());
+					throw new InvalidDataAccessApiUsageException("SQL [" + sql + "]: given " + names.size() + " parameters but expected " + declaredParameters.size());
 				}
 			}
 		}
@@ -215,17 +206,13 @@ public class PreparedStatementCreatorFactory {
 			if (generatedKeysColumnNames != null || returnGeneratedKeys) {
 				if (generatedKeysColumnNames != null) {
 					ps = con.prepareStatement(this.actualSql, generatedKeysColumnNames);
-				}
-				else {
+				}else {
 					ps = con.prepareStatement(this.actualSql, PreparedStatement.RETURN_GENERATED_KEYS);
 				}
-			}
-			else if (resultSetType == ResultSet.TYPE_FORWARD_ONLY && !updatableResults) {
+			}else if (resultSetType == ResultSet.TYPE_FORWARD_ONLY && !updatableResults) {
 				ps = con.prepareStatement(this.actualSql);
-			}
-			else {
-				ps = con.prepareStatement(this.actualSql, resultSetType,
-					updatableResults ? ResultSet.CONCUR_UPDATABLE : ResultSet.CONCUR_READ_ONLY);
+			}else {
+				ps = con.prepareStatement(this.actualSql, resultSetType,updatableResults ? ResultSet.CONCUR_UPDATABLE : ResultSet.CONCUR_READ_ONLY);
 			}
 			setValues(ps);
 			return ps;
@@ -244,12 +231,9 @@ public class PreparedStatementCreatorFactory {
 					SqlParameterValue paramValue = (SqlParameterValue) in;
 					in = paramValue.getValue();
 					declaredParameter = paramValue;
-				}
-				else {
+				}else {
 					if (declaredParameters.size() <= i) {
-						throw new InvalidDataAccessApiUsageException(
-								"SQL [" + sql + "]: unable to access parameter number " + (i + 1) +
-								" given only " + declaredParameters.size() + " parameters");
+						throw new InvalidDataAccessApiUsageException("SQL [" + sql + "]: unable to access parameter number " + (i + 1) + " given only " + declaredParameters.size() + " parameters");
 
 					}
 					declaredParameter = declaredParameters.get(i);
@@ -262,13 +246,11 @@ public class PreparedStatementCreatorFactory {
 							for (Object argValue : valueArray) {
 								StatementCreatorUtils.setParameterValue(ps, sqlColIndx++, declaredParameter, argValue);
 							}
-						}
-						else {
+						}else {
 							StatementCreatorUtils.setParameterValue(ps, sqlColIndx++, declaredParameter, entry);
 						}
 					}
-				}
-				else {
+				}else {
 					StatementCreatorUtils.setParameterValue(ps, sqlColIndx++, declaredParameter, in);
 				}
 			}

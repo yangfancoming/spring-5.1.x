@@ -33,8 +33,6 @@ import org.springframework.lang.Nullable;
  * <p>Used by PreparedStatementCreatorFactory and CallableStatementCreatorFactory,
  * but also available for direct use in custom setter/creator implementations.
  *
- * @author Thomas Risberg
-
  * @since 1.1
  * @see PreparedStatementSetter
  * @see PreparedStatementCreator
@@ -127,9 +125,7 @@ public abstract class StatementCreatorUtils {
 	 * @param inValue the value to set
 	 * @throws SQLException if thrown by PreparedStatement methods
 	 */
-	public static void setParameterValue(PreparedStatement ps, int paramIndex, SqlParameter param,
-			@Nullable Object inValue) throws SQLException {
-
+	public static void setParameterValue(PreparedStatement ps, int paramIndex, SqlParameter param,@Nullable Object inValue) throws SQLException {
 		setParameterValueInternal(ps, paramIndex, param.getSqlType(), param.getTypeName(), param.getScale(), inValue);
 	}
 
@@ -143,9 +139,7 @@ public abstract class StatementCreatorUtils {
 	 * @throws SQLException if thrown by PreparedStatement methods
 	 * @see SqlTypeValue
 	 */
-	public static void setParameterValue(PreparedStatement ps, int paramIndex, int sqlType,
-			@Nullable Object inValue) throws SQLException {
-
+	public static void setParameterValue(PreparedStatement ps, int paramIndex, int sqlType,@Nullable Object inValue) throws SQLException {
 		setParameterValueInternal(ps, paramIndex, sqlType, null, null, inValue);
 	}
 
@@ -161,9 +155,7 @@ public abstract class StatementCreatorUtils {
 	 * @throws SQLException if thrown by PreparedStatement methods
 	 * @see SqlTypeValue
 	 */
-	public static void setParameterValue(PreparedStatement ps, int paramIndex, int sqlType, String typeName,
-			@Nullable Object inValue) throws SQLException {
-
+	public static void setParameterValue(PreparedStatement ps, int paramIndex, int sqlType, String typeName,@Nullable Object inValue) throws SQLException {
 		setParameterValueInternal(ps, paramIndex, sqlType, typeName, null, inValue);
 	}
 
@@ -181,9 +173,7 @@ public abstract class StatementCreatorUtils {
 	 * @throws SQLException if thrown by PreparedStatement methods
 	 * @see SqlTypeValue
 	 */
-	private static void setParameterValueInternal(PreparedStatement ps, int paramIndex, int sqlType,
-			@Nullable String typeName, @Nullable Integer scale, @Nullable Object inValue) throws SQLException {
-
+	private static void setParameterValueInternal(PreparedStatement ps, int paramIndex, int sqlType,@Nullable String typeName, @Nullable Integer scale, @Nullable Object inValue) throws SQLException {
 		String typeNameToUse = typeName;
 		int sqlTypeToUse = sqlType;
 		Object inValueToUse = inValue;
@@ -192,8 +182,7 @@ public abstract class StatementCreatorUtils {
 		if (inValue instanceof SqlParameterValue) {
 			SqlParameterValue parameterValue = (SqlParameterValue) inValue;
 			if (logger.isDebugEnabled()) {
-				logger.debug("Overriding type info with runtime info from SqlParameterValue: column index " + paramIndex +
-						", SQL type " + parameterValue.getSqlType() + ", type name " + parameterValue.getTypeName());
+				logger.debug("Overriding type info with runtime info from SqlParameterValue: column index " + paramIndex + ", SQL type " + parameterValue.getSqlType() + ", type name " + parameterValue.getTypeName());
 			}
 			if (parameterValue.getSqlType() != SqlTypeValue.TYPE_UNKNOWN) {
 				sqlTypeToUse = parameterValue.getSqlType();
@@ -213,8 +202,7 @@ public abstract class StatementCreatorUtils {
 
 		if (inValueToUse == null) {
 			setNull(ps, paramIndex, sqlTypeToUse, typeNameToUse);
-		}
-		else {
+		}else {
 			setValue(ps, paramIndex, sqlTypeToUse, typeNameToUse, scale, inValueToUse);
 		}
 	}
@@ -223,8 +211,7 @@ public abstract class StatementCreatorUtils {
 	 * Set the specified PreparedStatement parameter to null,
 	 * respecting database-specific peculiarities.
 	 */
-	private static void setNull(PreparedStatement ps, int paramIndex, int sqlType, @Nullable String typeName)
-			throws SQLException {
+	private static void setNull(PreparedStatement ps, int paramIndex, int sqlType, @Nullable String typeName) throws SQLException {
 
 		if (sqlType == SqlTypeValue.TYPE_UNKNOWN || (sqlType == Types.OTHER && typeName == null)) {
 			boolean useSetObject = false;
@@ -232,8 +219,7 @@ public abstract class StatementCreatorUtils {
 			if (!shouldIgnoreGetParameterType) {
 				try {
 					sqlTypeToUse = ps.getParameterMetaData().getParameterType(paramIndex);
-				}
-				catch (SQLException ex) {
+				}catch (SQLException ex) {
 					if (logger.isDebugEnabled()) {
 						logger.debug("JDBC getParameterType call failed - using fallback method instead: " + ex);
 					}
@@ -259,32 +245,25 @@ public abstract class StatementCreatorUtils {
 			}
 			if (useSetObject) {
 				ps.setObject(paramIndex, null);
-			}
-			else {
+			}else {
 				ps.setNull(paramIndex, sqlTypeToUse);
 			}
-		}
-		else if (typeName != null) {
+		}else if (typeName != null) {
 			ps.setNull(paramIndex, sqlType, typeName);
-		}
-		else {
+		}else {
 			ps.setNull(paramIndex, sqlType);
 		}
 	}
 
-	private static void setValue(PreparedStatement ps, int paramIndex, int sqlType,
-			@Nullable String typeName, @Nullable Integer scale, Object inValue) throws SQLException {
+	private static void setValue(PreparedStatement ps, int paramIndex, int sqlType,@Nullable String typeName, @Nullable Integer scale, Object inValue) throws SQLException {
 
 		if (inValue instanceof SqlTypeValue) {
 			((SqlTypeValue) inValue).setTypeValue(ps, paramIndex, sqlType, typeName);
-		}
-		else if (inValue instanceof SqlValue) {
+		}else if (inValue instanceof SqlValue) {
 			((SqlValue) inValue).setValue(ps, paramIndex);
-		}
-		else if (sqlType == Types.VARCHAR || sqlType == Types.LONGVARCHAR ) {
+		}else if (sqlType == Types.VARCHAR || sqlType == Types.LONGVARCHAR ) {
 			ps.setString(paramIndex, inValue.toString());
-		}
-		else if (sqlType == Types.NVARCHAR || sqlType == Types.LONGNVARCHAR) {
+		}else if (sqlType == Types.NVARCHAR || sqlType == Types.LONGNVARCHAR) {
 			ps.setNString(paramIndex, inValue.toString());
 		}
 		else if ((sqlType == Types.CLOB || sqlType == Types.NCLOB) && isStringValue(inValue.getClass())) {
@@ -294,18 +273,15 @@ public abstract class StatementCreatorUtils {
 				// Should also work fine against other drivers/databases since it uses standard JDBC 4.0 API.
 				if (sqlType == Types.NCLOB) {
 					ps.setNClob(paramIndex, new StringReader(strVal), strVal.length());
-				}
-				else {
+				}else {
 					ps.setClob(paramIndex, new StringReader(strVal), strVal.length());
 				}
 				return;
-			}
-			else {
+			}else {
 				// Fallback: setString or setNString binding
 				if (sqlType == Types.NCLOB) {
 					ps.setNString(paramIndex, strVal);
-				}
-				else {
+				}else {
 					ps.setString(paramIndex, strVal);
 				}
 			}
@@ -313,11 +289,9 @@ public abstract class StatementCreatorUtils {
 		else if (sqlType == Types.DECIMAL || sqlType == Types.NUMERIC) {
 			if (inValue instanceof BigDecimal) {
 				ps.setBigDecimal(paramIndex, (BigDecimal) inValue);
-			}
-			else if (scale != null) {
+			}else if (scale != null) {
 				ps.setObject(paramIndex, inValue, sqlType, scale);
-			}
-			else {
+			}else {
 				ps.setObject(paramIndex, inValue, sqlType);
 			}
 		}
@@ -448,8 +422,7 @@ public abstract class StatementCreatorUtils {
 			for (Object inValue : paramValues) {
 				if (inValue instanceof DisposableSqlTypeValue) {
 					((DisposableSqlTypeValue) inValue).cleanup();
-				}
-				else if (inValue instanceof SqlValue) {
+				}else if (inValue instanceof SqlValue) {
 					((SqlValue) inValue).cleanup();
 				}
 			}

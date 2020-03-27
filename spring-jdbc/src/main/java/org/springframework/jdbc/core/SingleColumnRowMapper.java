@@ -24,8 +24,6 @@ import org.springframework.util.NumberUtils;
  * for the single column will be extracted from the {@code ResultSet}
  * and converted into the specified target type.
  *
-
- * @author Kazuki Shimizu
  * @since 1.2
  * @param <T> the result type
  * @see JdbcTemplate#queryForList(String, Class)
@@ -102,11 +100,8 @@ public class SingleColumnRowMapper<T> implements RowMapper<T> {
 			// Extracted value does not match already: try to convert it.
 			try {
 				return (T) convertValueToRequiredType(result, this.requiredType);
-			}
-			catch (IllegalArgumentException ex) {
-				throw new TypeMismatchDataAccessException(
-						"Type mismatch affecting row number " + rowNum + " and column type '" +
-						rsmd.getColumnTypeName(1) + "': " + ex.getMessage());
+			}catch (IllegalArgumentException ex) {
+				throw new TypeMismatchDataAccessException("Type mismatch affecting row number " + rowNum + " and column type '" +	rsmd.getColumnTypeName(1) + "': " + ex.getMessage());
 			}
 		}
 		return (T) result;
@@ -133,8 +128,7 @@ public class SingleColumnRowMapper<T> implements RowMapper<T> {
 	protected Object getColumnValue(ResultSet rs, int index, @Nullable Class<?> requiredType) throws SQLException {
 		if (requiredType != null) {
 			return JdbcUtils.getResultSetValue(rs, index, requiredType);
-		}
-		else {
+		}else {
 			// No required type specified -> perform default extraction.
 			return getColumnValue(rs, index);
 		}
@@ -179,21 +173,18 @@ public class SingleColumnRowMapper<T> implements RowMapper<T> {
 	protected Object convertValueToRequiredType(Object value, Class<?> requiredType) {
 		if (String.class == requiredType) {
 			return value.toString();
-		}
-		else if (Number.class.isAssignableFrom(requiredType)) {
+		}else if (Number.class.isAssignableFrom(requiredType)) {
 			if (value instanceof Number) {
 				// Convert original Number to target Number class.
 				return NumberUtils.convertNumberToTargetClass(((Number) value), (Class<Number>) requiredType);
-			}
-			else {
+			}else {
 				// Convert stringified value to target Number class.
 				return NumberUtils.parseNumber(value.toString(),(Class<Number>) requiredType);
 			}
 		}
 		else if (this.conversionService != null && this.conversionService.canConvert(value.getClass(), requiredType)) {
 			return this.conversionService.convert(value, requiredType);
-		}
-		else {
+		}else {
 			throw new IllegalArgumentException(
 					"Value [" + value + "] is of type [" + value.getClass().getName() +
 					"] and cannot be converted to required type [" + requiredType.getName() + "]");

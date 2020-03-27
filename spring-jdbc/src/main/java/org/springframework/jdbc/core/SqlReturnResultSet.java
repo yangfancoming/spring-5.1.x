@@ -10,9 +10,6 @@ package org.springframework.jdbc.core;
  *
  * <p>Returned {@link java.sql.ResultSet ResultSets} - like all stored procedure
  * parameters - must have names.
- *
- * @author Thomas Risberg
-
  */
 public class SqlReturnResultSet extends ResultSetSupportingSqlParameter {
 

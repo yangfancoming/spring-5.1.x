@@ -13,7 +13,6 @@ import org.springframework.lang.Nullable;
  * indicating the SQL type (and optionally the scale) instead of letting the
  * template guess a default type. Note that this only applies to the operations with
  * a 'plain' argument array, not to the overloaded variants with an explicit type array.
- *
 
  * @since 2.0.5
  * @see java.sql.Types

@@ -32,7 +32,6 @@ import org.springframework.util.Assert;
  * Commons DBCP's BasicDataSource and C3P0's ComboPooledDataSource are full
  * connection pool beans, supporting the same basic properties as this class
  * plus specific settings (such as minimal/maximal pool size etc).
- *
 
  * @since 2.5.5
  * @see DriverManagerDataSource

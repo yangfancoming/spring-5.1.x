@@ -27,7 +27,6 @@ import org.springframework.util.Assert;
  * Spring's {@link org.springframework.transaction.support.DefaultTransactionStatus}
  * automatically delegates to this, as it autodetects transaction objects which
  * implement the {@link SavepointManager} interface.
- *
 
  * @since 1.1
  * @see DataSourceTransactionManager
@@ -35,7 +34,6 @@ import org.springframework.util.Assert;
 public abstract class JdbcTransactionObjectSupport implements SavepointManager, SmartTransactionObject {
 
 	private static final Log logger = LogFactory.getLog(JdbcTransactionObjectSupport.class);
-
 
 	@Nullable
 	private ConnectionHolder connectionHolder;
@@ -99,12 +97,10 @@ public abstract class JdbcTransactionObjectSupport implements SavepointManager, 
 						"Cannot create a nested transaction because savepoints are not supported by your JDBC driver");
 			}
 			if (conHolder.isRollbackOnly()) {
-				throw new CannotCreateTransactionException(
-						"Cannot create savepoint for transaction which is already marked as rollback-only");
+				throw new CannotCreateTransactionException("Cannot create savepoint for transaction which is already marked as rollback-only");
 			}
 			return conHolder.createSavepoint();
-		}
-		catch (SQLException ex) {
+		}catch (SQLException ex) {
 			throw new CannotCreateTransactionException("Could not create JDBC savepoint", ex);
 		}
 	}
@@ -119,8 +115,7 @@ public abstract class JdbcTransactionObjectSupport implements SavepointManager, 
 		try {
 			conHolder.getConnection().rollback((Savepoint) savepoint);
 			conHolder.resetRollbackOnly();
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			throw new TransactionSystemException("Could not roll back to JDBC savepoint", ex);
 		}
 	}
@@ -134,20 +129,17 @@ public abstract class JdbcTransactionObjectSupport implements SavepointManager, 
 		ConnectionHolder conHolder = getConnectionHolderForSavepoint();
 		try {
 			conHolder.getConnection().releaseSavepoint((Savepoint) savepoint);
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			logger.debug("Could not explicitly release JDBC savepoint", ex);
 		}
 	}
 
 	protected ConnectionHolder getConnectionHolderForSavepoint() throws TransactionException {
 		if (!isSavepointAllowed()) {
-			throw new NestedTransactionNotSupportedException(
-					"Transaction manager does not allow nested transactions");
+			throw new NestedTransactionNotSupportedException("Transaction manager does not allow nested transactions");
 		}
 		if (!hasConnectionHolder()) {
-			throw new TransactionUsageException(
-					"Cannot create nested transaction when not exposing a JDBC transaction");
+			throw new TransactionUsageException("Cannot create nested transaction when not exposing a JDBC transaction");
 		}
 		return getConnectionHolder();
 	}

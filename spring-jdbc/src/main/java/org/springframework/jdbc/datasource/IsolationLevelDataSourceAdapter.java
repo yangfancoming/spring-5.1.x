@@ -31,7 +31,6 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
  * It does, however, <i>not</i> reset those settings; it rather expects the target
  * DataSource to perform such resetting as part of its connection pool handling.
  * <b>Make sure that the target DataSource properly cleans up such transaction state.</b>
- *
 
  * @since 2.0.3
  * @see #setIsolationLevel
@@ -46,7 +45,6 @@ public class IsolationLevelDataSourceAdapter extends UserCredentialsDataSourceAd
 
 	@Nullable
 	private Integer isolationLevel;
-
 
 	/**
 	 * Set the default isolation level by the name of the corresponding constant

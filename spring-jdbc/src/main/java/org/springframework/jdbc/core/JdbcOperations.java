@@ -23,9 +23,6 @@ import org.springframework.lang.Nullable;
  * consider the powerful integration testing support provided in the
  * {@code org.springframework.test} package, shipped in
  * {@code spring-test.jar}.
- *
- * @author Rod Johnson
-
  * @see JdbcTemplate
  */
 public interface JdbcOperations {

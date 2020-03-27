@@ -17,7 +17,6 @@ import org.springframework.lang.Nullable;
  * access to the underlying Connection via the given CallableStatement object, if that
  * should be needed to create any database-specific objects.
  *
- * @author Thomas Risberg
  * @since 1.1
  * @see java.sql.Types
  * @see java.sql.CallableStatement#getObject
@@ -34,7 +33,6 @@ public interface SqlReturnType {
 	 */
 	int TYPE_UNKNOWN = Integer.MIN_VALUE;
 
-
 	/**
 	 * Get the type value from the specific object.
 	 * @param cs the CallableStatement to operate on
@@ -47,7 +45,6 @@ public interface SqlReturnType {
 	 * @see java.sql.Types
 	 * @see java.sql.CallableStatement#getObject
 	 */
-	Object getTypeValue(CallableStatement cs, int paramIndex, int sqlType, @Nullable  String typeName)
-			throws SQLException;
+	Object getTypeValue(CallableStatement cs, int paramIndex, int sqlType, @Nullable  String typeName) 	throws SQLException;
 
 }

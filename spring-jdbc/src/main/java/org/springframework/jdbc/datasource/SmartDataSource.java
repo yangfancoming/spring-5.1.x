@@ -7,15 +7,12 @@ import javax.sql.DataSource;
 
 /**
  * Extension of the {@code javax.sql.DataSource} interface, to be
- * implemented by special DataSources that return JDBC Connections
- * in an unwrapped fashion.
+ * implemented by special DataSources that return JDBC Connections in an unwrapped fashion.
  *
  * <p>Classes using this interface can query whether or not the Connection
  * should be closed after an operation. Spring's DataSourceUtils and
  * JdbcTemplate classes automatically perform such a check.
  *
- * @author Rod Johnson
-
  * @see SingleConnectionDataSource#shouldClose
  * @see DataSourceUtils#releaseConnection
  * @see org.springframework.jdbc.core.JdbcTemplate

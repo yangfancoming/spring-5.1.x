@@ -20,9 +20,6 @@ import java.sql.SQLException;
  *
  * <p>Consider using a {@link RowMapper} instead if you need to map
  * exactly one result object per row, assembling them into a List.
- *
- * @author Rod Johnson
-
  * @see JdbcTemplate
  * @see RowMapper
  * @see ResultSetExtractor

@@ -9,15 +9,12 @@ import org.springframework.lang.Nullable;
 
 /**
  * Simple adapter for {@link PreparedStatementSetter} that applies a given array of arguments.
- *
-
  * @since 3.2.3
  */
 public class ArgumentPreparedStatementSetter implements PreparedStatementSetter, ParameterDisposer {
 
 	@Nullable
 	private final Object[] args;
-
 
 	/**
 	 * Create a new ArgPreparedStatementSetter for the given arguments.
@@ -50,8 +47,7 @@ public class ArgumentPreparedStatementSetter implements PreparedStatementSetter,
 		if (argValue instanceof SqlParameterValue) {
 			SqlParameterValue paramValue = (SqlParameterValue) argValue;
 			StatementCreatorUtils.setParameterValue(ps, parameterPosition, paramValue, paramValue.getValue());
-		}
-		else {
+		}else {
 			StatementCreatorUtils.setParameterValue(ps, parameterPosition, SqlTypeValue.TYPE_UNKNOWN, argValue);
 		}
 	}

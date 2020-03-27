@@ -109,8 +109,7 @@ public class DriverManagerDataSource extends AbstractDriverBasedDataSource {
 		String driverClassNameToUse = driverClassName.trim();
 		try {
 			Class.forName(driverClassNameToUse, true, ClassUtils.getDefaultClassLoader());
-		}
-		catch (ClassNotFoundException ex) {
+		}catch (ClassNotFoundException ex) {
 			throw new IllegalStateException("Could not load JDBC driver class [" + driverClassNameToUse + "]", ex);
 		}
 		if (logger.isDebugEnabled()) {

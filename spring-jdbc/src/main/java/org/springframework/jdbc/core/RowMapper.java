@@ -26,8 +26,6 @@ import org.springframework.lang.Nullable;
  * JdbcTemplate and RowMapper objects, you can build executable query
  * objects (containing row-mapping logic) in that style.
  *
- * @author Thomas Risberg
-
  * @param <T> the result type
  * @see JdbcTemplate
  * @see RowCallbackHandler

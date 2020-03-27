@@ -24,9 +24,6 @@ import org.springframework.lang.Nullable;
  * object is typically stateless and thus reusable, as long as it doesn't
  * access stateful resources (such as output streams when streaming LOB
  * contents) or keep result state within the object.
- *
- * @author Rod Johnson
-
  * @since April 24, 2003
  * @param <T> the result type
  * @see JdbcTemplate

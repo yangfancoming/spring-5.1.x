@@ -9,8 +9,6 @@ import org.springframework.lang.Nullable;
 /**
  * Common base class for ResultSet-supporting SqlParameters like
  * {@link SqlOutParameter} and {@link SqlReturnResultSet}.
- *
-
  * @since 1.0.2
  */
 public class ResultSetSupportingSqlParameter extends SqlParameter {

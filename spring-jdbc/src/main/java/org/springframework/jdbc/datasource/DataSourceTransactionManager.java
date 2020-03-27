@@ -82,7 +82,6 @@ import org.springframework.util.Assert;
  * resources operating on the underlying JDBC {@code Connection}. This allows for
  * setup analogous to {@code JtaTransactionManager}, in particular with respect to
  * lazily registered ORM resources (e.g. a Hibernate {@code Session}).
- *
 
  * @since 02.05.2003
  * @see #setNestedTransactionAllowed
@@ -147,8 +146,7 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 			// for its underlying target DataSource, else data access code won't see
 			// properly exposed transactions (i.e. transactions for the target DataSource).
 			this.dataSource = ((TransactionAwareDataSourceProxy) dataSource).getTargetDataSource();
-		}
-		else {
+		}else {
 			this.dataSource = dataSource;
 		}
 	}
@@ -321,8 +319,7 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 		}
 		try {
 			con.commit();
-		}
-		catch (SQLException ex) {
+		}catch (SQLException ex) {
 			throw new TransactionSystemException("Could not commit JDBC transaction", ex);
 		}
 	}
@@ -346,8 +343,7 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 	protected void doSetRollbackOnly(DefaultTransactionStatus status) {
 		DataSourceTransactionObject txObject = (DataSourceTransactionObject) status.getTransaction();
 		if (status.isDebug()) {
-			logger.debug("Setting JDBC transaction [" + txObject.getConnectionHolder().getConnection() +
-					"] rollback-only");
+			logger.debug("Setting JDBC transaction [" + txObject.getConnectionHolder().getConnection() + "] rollback-only");
 		}
 		txObject.setRollbackOnly();
 	}
@@ -368,8 +364,7 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 				con.setAutoCommit(true);
 			}
 			DataSourceUtils.resetConnectionAfterTransaction(con, txObject.getPreviousIsolationLevel());
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			logger.debug("Could not reset JDBC Connection after transaction", ex);
 		}
 
@@ -398,15 +393,12 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 	 * @since 4.3.7
 	 * @see #setEnforceReadOnly
 	 */
-	protected void prepareTransactionalConnection(Connection con, TransactionDefinition definition)
-			throws SQLException {
-
+	protected void prepareTransactionalConnection(Connection con, TransactionDefinition definition) throws SQLException {
 		if (isEnforceReadOnly() && definition.isReadOnly()) {
 			Statement stmt = con.createStatement();
 			try {
 				stmt.executeUpdate("SET TRANSACTION READ ONLY");
-			}
-			finally {
+			}finally {
 				stmt.close();
 			}
 		}

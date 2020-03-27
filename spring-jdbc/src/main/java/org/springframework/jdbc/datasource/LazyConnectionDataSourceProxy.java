@@ -58,7 +58,6 @@ import org.springframework.lang.Nullable;
  * (which implement the {@link ConnectionProxy} interface) in order to handle
  * lazy fetching of an actual JDBC Connection. Use {@link Connection#unwrap}
  * to retrieve the native JDBC Connection.
- *
 
  * @since 1.1.4
  * @see DataSourceTransactionManager
@@ -141,7 +140,6 @@ public class LazyConnectionDataSourceProxy extends DelegatingDataSource {
 	@Override
 	public void afterPropertiesSet() {
 		super.afterPropertiesSet();
-
 		// Determine default auto-commit and transaction isolation
 		// via a Connection from the target DataSource, if possible.
 		if (this.defaultAutoCommit == null || this.defaultTransactionIsolation == null) {
@@ -149,8 +147,7 @@ public class LazyConnectionDataSourceProxy extends DelegatingDataSource {
 				try (Connection con = obtainTargetDataSource().getConnection()) {
 					checkDefaultConnectionProperties(con);
 				}
-			}
-			catch (SQLException ex) {
+			}catch (SQLException ex) {
 				logger.debug("Could not retrieve default auto-commit and transaction isolation settings", ex);
 			}
 		}
@@ -422,15 +419,12 @@ public class LazyConnectionDataSourceProxy extends DelegatingDataSource {
 				if (this.autoCommit != null && this.autoCommit != this.target.getAutoCommit()) {
 					this.target.setAutoCommit(this.autoCommit);
 				}
-			}
-
-			else {
+			}else {
 				// Target Connection already held -> return it.
 				if (logger.isTraceEnabled()) {
 					logger.trace("Using existing database connection for operation '" + operation.getName() + "'");
 				}
 			}
-
 			return this.target;
 		}
 	}

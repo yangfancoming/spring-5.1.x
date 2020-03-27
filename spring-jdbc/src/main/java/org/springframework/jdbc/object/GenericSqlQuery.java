@@ -10,11 +10,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * A concrete variant of {@link SqlQuery} which can be configured
- * with a {@link RowMapper}.
- *
- * @author Thomas Risberg
-
+ * A concrete variant of {@link SqlQuery} which can be configured with a {@link RowMapper}.
  * @since 3.0
  * @param <T> the result type
  * @see #setRowMapper
@@ -50,8 +46,7 @@ public class GenericSqlQuery<T> extends SqlQuery<T> {
 	@Override
 	public void afterPropertiesSet() {
 		super.afterPropertiesSet();
-		Assert.isTrue(this.rowMapper != null || this.rowMapperClass != null,
-				"'rowMapper' or 'rowMapperClass' is required");
+		Assert.isTrue(this.rowMapper != null || this.rowMapperClass != null,"'rowMapper' or 'rowMapperClass' is required");
 	}
 
 
@@ -60,8 +55,7 @@ public class GenericSqlQuery<T> extends SqlQuery<T> {
 	protected RowMapper<T> newRowMapper(@Nullable Object[] parameters, @Nullable Map<?, ?> context) {
 		if (this.rowMapper != null) {
 			return this.rowMapper;
-		}
-		else {
+		}else {
 			Assert.state(this.rowMapperClass != null, "No RowMapper set");
 			return BeanUtils.instantiateClass(this.rowMapperClass);
 		}

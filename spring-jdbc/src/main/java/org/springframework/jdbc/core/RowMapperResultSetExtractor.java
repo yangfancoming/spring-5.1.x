@@ -36,7 +36,6 @@ import org.springframework.util.Assert;
  * <p>Alternatively, consider subclassing MappingSqlQuery from the {@code jdbc.object}
  * package: Instead of working with separate JdbcTemplate and RowMapper objects,
  * you can have executable query objects (containing row-mapping logic) there.
- *
 
  * @since 1.0.2
  * @param <T> the result element type

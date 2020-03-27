@@ -17,8 +17,6 @@ import org.springframework.lang.Nullable;
  * that expects a Connection to work on and throws SQLException. For newly
  * written code, it is strongly recommended to use JdbcTemplate's more specific
  * operations, for example a {@code query} or {@code update} variant.
- *
-
  * @since 1.1.3
  * @param <T> the result type
  * @see JdbcTemplate#execute(ConnectionCallback)

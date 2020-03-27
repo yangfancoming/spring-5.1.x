@@ -21,11 +21,7 @@ import org.springframework.jdbc.core.BatchPreparedStatementSetter;
  *
  * <p>Note that this class is a <b>non-thread-safe object</b>, in contrast
  * to all other JDBC operations objects in this package. You need to create
- * a new instance of it for each use, or call {@code reset} before
- * reuse within the same thread.
- *
- * @author Keith Donald
-
+ * a new instance of it for each use, or call {@code reset} before reuse within the same thread.
  * @since 1.1
  * @see #flush
  * @see #reset
@@ -36,7 +32,6 @@ public class BatchSqlUpdate extends SqlUpdate {
 	 * Default number of inserts to accumulate before committing a batch (5000).
 	 */
 	public static final int DEFAULT_BATCH_SIZE = 5000;
-
 
 	private int batchSize = DEFAULT_BATCH_SIZE;
 

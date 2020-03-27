@@ -9,8 +9,6 @@ package org.springframework.jdbc.core;
  * <p>Typically implemented by {@code PreparedStatementCreators} and
  * {@code PreparedStatementSetters} that support {@link DisposableSqlTypeValue}
  * objects (e.g. {@code SqlLobValue}) as parameters.
- *
- * @author Thomas Risberg
 
  * @since 1.1
  * @see PreparedStatementCreator

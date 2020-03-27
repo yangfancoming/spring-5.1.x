@@ -18,9 +18,6 @@ import org.springframework.lang.Nullable;
  * that will be caught and translated by the calling code. This callback method has
  * access to the underlying Connection via the given PreparedStatement object, if that
  * should be needed to create any database-specific objects.
- *
- * @author Thomas Risberg
-
  * @since 1.1
  * @see java.sql.Types
  * @see java.sql.PreparedStatement#setObject
@@ -49,7 +46,6 @@ public interface SqlTypeValue {
 	 * @see java.sql.Types
 	 * @see java.sql.PreparedStatement#setObject
 	 */
-	void setTypeValue(PreparedStatement ps, int paramIndex, int sqlType, @Nullable String typeName)
-			throws SQLException;
+	void setTypeValue(PreparedStatement ps, int paramIndex, int sqlType, @Nullable String typeName) throws SQLException;
 
 }

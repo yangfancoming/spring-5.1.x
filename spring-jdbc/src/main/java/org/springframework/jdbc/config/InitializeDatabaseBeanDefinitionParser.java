@@ -16,9 +16,6 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
  * {@link org.springframework.beans.factory.xml.BeanDefinitionParser} that parses an {@code initialize-database}
  * element and creates a {@link BeanDefinition} of type {@link DataSourceInitializer}. Picks up nested
  * {@code script} elements and configures a {@link ResourceDatabasePopulator} for them.
- *
- * @author Dave Syer
-
  * @since 3.0
  */
 class InitializeDatabaseBeanDefinitionParser extends AbstractBeanDefinitionParser {

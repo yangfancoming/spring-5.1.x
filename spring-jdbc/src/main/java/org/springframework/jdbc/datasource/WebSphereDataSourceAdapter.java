@@ -42,9 +42,7 @@ import org.springframework.util.StringUtils;
  *   &lt;/property&gt;
  * &lt;/bean&gt;</pre>
  *
- * Thanks to Ricardo Olivieri for submitting the original implementation
- * of this approach!
- *
+ * Thanks to Ricardo Olivieri for submitting the original implementation  of this approach!
 
  * @author <a href="mailto:lari.hotari@sagire.fi">Lari Hotari</a>
  * @author <a href="mailto:roliv@us.ibm.com">Ricardo N. Olivieri</a>
@@ -105,11 +103,9 @@ public class WebSphereDataSourceAdapter extends IsolationLevelDataSourceAdapter 
 		super.afterPropertiesSet();
 
 		if (!this.wsDataSourceClass.isInstance(getTargetDataSource())) {
-			throw new IllegalStateException(
-					"Specified 'targetDataSource' is not a WebSphere WSDataSource: " + getTargetDataSource());
+			throw new IllegalStateException("Specified 'targetDataSource' is not a WebSphere WSDataSource: " + getTargetDataSource());
 		}
 	}
-
 
 	/**
 	 * Builds a WebSphere JDBCConnectionSpec object for the current settings
@@ -166,11 +162,9 @@ public class WebSphereDataSourceAdapter extends IsolationLevelDataSourceAdapter 
 	private static Object invokeJdbcMethod(Method method, @Nullable Object target, @Nullable Object... args) throws SQLException {
 		try {
 			return method.invoke(target, args);
-		}
-		catch (IllegalAccessException ex) {
+		}catch (IllegalAccessException ex) {
 			ReflectionUtils.handleReflectionException(ex);
-		}
-		catch (InvocationTargetException ex) {
+		}catch (InvocationTargetException ex) {
 			if (ex.getTargetException() instanceof SQLException) {
 				throw (SQLException) ex.getTargetException();
 			}

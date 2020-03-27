@@ -18,10 +18,6 @@ import org.springframework.lang.Nullable;
  * Helper class that efficiently creates multiple {@link CallableStatementCreator}
  * objects with different parameters based on a SQL statement and a single
  * set of parameter declarations.
- *
- * @author Rod Johnson
- * @author Thomas Risberg
-
  */
 public class CallableStatementCreatorFactory {
 
@@ -143,21 +139,17 @@ public class CallableStatementCreatorFactory {
 			// If we were given a ParameterMapper, we must let the mapper do its thing to create the Map.
 			if (this.inParameterMapper != null) {
 				this.inParameters = this.inParameterMapper.createMap(con);
-			}
-			else {
+			}else {
 				if (this.inParameters == null) {
-					throw new InvalidDataAccessApiUsageException(
-							"A ParameterMapper or a Map of parameters must be provided");
+					throw new InvalidDataAccessApiUsageException("A ParameterMapper or a Map of parameters must be provided");
 				}
 			}
 
 			CallableStatement cs = null;
 			if (resultSetType == ResultSet.TYPE_FORWARD_ONLY && !updatableResults) {
 				cs = con.prepareCall(callString);
-			}
-			else {
-				cs = con.prepareCall(callString, resultSetType,
-						updatableResults ? ResultSet.CONCUR_UPDATABLE : ResultSet.CONCUR_READ_ONLY);
+			}else {
+				cs = con.prepareCall(callString, resultSetType,updatableResults ? ResultSet.CONCUR_UPDATABLE : ResultSet.CONCUR_READ_ONLY);
 			}
 
 			int sqlColIndx = 1;
@@ -172,12 +164,10 @@ public class CallableStatementCreatorFactory {
 						if (declaredParam instanceof SqlOutParameter) {
 							if (declaredParam.getTypeName() != null) {
 								cs.registerOutParameter(sqlColIndx, declaredParam.getSqlType(), declaredParam.getTypeName());
-							}
-							else {
+							}else {
 								if (declaredParam.getScale() != null) {
 									cs.registerOutParameter(sqlColIndx, declaredParam.getSqlType(), declaredParam.getScale());
-								}
-								else {
+								}else {
 									cs.registerOutParameter(sqlColIndx, declaredParam.getSqlType());
 								}
 							}
@@ -185,12 +175,10 @@ public class CallableStatementCreatorFactory {
 								StatementCreatorUtils.setParameterValue(cs, sqlColIndx, declaredParam, inValue);
 							}
 						}
-					}
-					else {
+					}else {
 						// It's an input parameter; must be supplied by the caller.
 						if (!this.inParameters.containsKey(declaredParam.getName())) {
-							throw new InvalidDataAccessApiUsageException(
-									"Required input parameter '" + declaredParam.getName() + "' is missing");
+							throw new InvalidDataAccessApiUsageException("Required input parameter '" + declaredParam.getName() + "' is missing");
 						}
 						StatementCreatorUtils.setParameterValue(cs, sqlColIndx, declaredParam, inValue);
 					}

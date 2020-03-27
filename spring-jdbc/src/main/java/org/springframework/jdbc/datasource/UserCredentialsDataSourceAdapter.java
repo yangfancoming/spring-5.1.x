@@ -41,8 +41,6 @@ import org.springframework.util.StringUtils;
  * This can be used to keep a UserCredentialsDataSourceAdapter bean definition
  * just for the <i>option</i> of implicitly passing in user credentials if
  * the particular target DataSource requires it.
- *
-
  * @since 1.0.2
  * @see #getConnection
  */
@@ -60,8 +58,7 @@ public class UserCredentialsDataSourceAdapter extends DelegatingDataSource {
 	@Nullable
 	private String schema;
 
-	private final ThreadLocal<JdbcUserCredentials> threadBoundCredentials =
-			new NamedThreadLocal<>("Current JDBC user credentials");
+	private final ThreadLocal<JdbcUserCredentials> threadBoundCredentials = new NamedThreadLocal<>("Current JDBC user credentials");
 
 
 	/**
@@ -142,10 +139,7 @@ public class UserCredentialsDataSourceAdapter extends DelegatingDataSource {
 	@Override
 	public Connection getConnection() throws SQLException {
 		JdbcUserCredentials threadCredentials = this.threadBoundCredentials.get();
-		Connection con = (threadCredentials != null ?
-				doGetConnection(threadCredentials.username, threadCredentials.password) :
-				doGetConnection(this.username, this.password));
-
+		Connection con = (threadCredentials != null ? doGetConnection(threadCredentials.username, threadCredentials.password) : doGetConnection(this.username, this.password));
 		if (this.catalog != null) {
 			con.setCatalog(this.catalog);
 		}
@@ -179,8 +173,7 @@ public class UserCredentialsDataSourceAdapter extends DelegatingDataSource {
 		Assert.state(getTargetDataSource() != null, "'targetDataSource' is required");
 		if (StringUtils.hasLength(username)) {
 			return getTargetDataSource().getConnection(username, password);
-		}
-		else {
+		}else {
 			return getTargetDataSource().getConnection();
 		}
 	}

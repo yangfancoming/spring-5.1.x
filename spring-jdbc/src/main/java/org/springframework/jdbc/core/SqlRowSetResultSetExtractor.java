@@ -14,10 +14,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 /**
  * {@link ResultSetExtractor} implementation that returns a Spring {@link SqlRowSet}
  * representation for each given {@link ResultSet}.
- *
  * <p>The default implementation uses a standard JDBC CachedRowSet underneath.
- *
-
  * @since 1.2
  * @see #newCachedRowSet
  * @see org.springframework.jdbc.support.rowset.SqlRowSet
@@ -31,8 +28,7 @@ public class SqlRowSetResultSetExtractor implements ResultSetExtractor<SqlRowSet
 	static {
 		try {
 			rowSetFactory = RowSetProvider.newFactory();
-		}
-		catch (SQLException ex) {
+		}catch (SQLException ex) {
 			throw new IllegalStateException("Cannot create RowSetFactory through RowSetProvider", ex);
 		}
 	}

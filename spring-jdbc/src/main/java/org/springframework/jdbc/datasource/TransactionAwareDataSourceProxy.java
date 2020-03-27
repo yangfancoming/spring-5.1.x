@@ -50,7 +50,6 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
  * <p><b>NOTE:</b> This DataSource proxy needs to return wrapped Connections (which
  * implement the {@link ConnectionProxy} interface) in order to handle close calls
  * properly. Use {@link Connection#unwrap} to retrieve the native JDBC Connection.
- *
 
  * @since 1.1
  * @see javax.sql.DataSource#getConnection()
@@ -62,7 +61,6 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 public class TransactionAwareDataSourceProxy extends DelegatingDataSource {
 
 	private boolean reobtainTransactionalConnections = false;
-
 
 	/**
 	 * Create a new TransactionAwareDataSourceProxy.
@@ -133,8 +131,7 @@ public class TransactionAwareDataSourceProxy extends DelegatingDataSource {
 	 * @param targetDataSource the target DataSource
 	 */
 	protected boolean shouldObtainFixedConnection(DataSource targetDataSource) {
-		return (!TransactionSynchronizationManager.isSynchronizationActive() ||
-				!this.reobtainTransactionalConnections);
+		return (!TransactionSynchronizationManager.isSynchronizationActive() || !this.reobtainTransactionalConnections);
 	}
 
 
@@ -228,11 +225,9 @@ public class TransactionAwareDataSourceProxy extends DelegatingDataSource {
 				}
 
 				return retVal;
-			}
-			catch (InvocationTargetException ex) {
+			}catch (InvocationTargetException ex) {
 				throw ex.getTargetException();
-			}
-			finally {
+			}finally {
 				if (actualTarget != this.target) {
 					DataSourceUtils.doReleaseConnection(actualTarget, this.targetDataSource);
 				}

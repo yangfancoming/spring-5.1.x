@@ -10,7 +10,6 @@ import org.springframework.lang.Nullable;
  * <p>Typically implemented by PreparedStatementCreators, CallableStatementCreators
  * and StatementCallbacks that want to expose the SQL they use to create their
  * statements, to allow for better contextual information in case of exceptions.
- *
 
  * @since 16.03.2004
  * @see PreparedStatementCreator

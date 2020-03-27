@@ -19,8 +19,6 @@ import org.springframework.util.Assert;
  * <p>This class is meant to be subclassed, with subclasses overriding only
  * those methods (such as {@link #getConnection()}) that should not simply
  * delegate to the target DataSource.
- *
-
  * @since 1.1
  * @see #getConnection
  */
@@ -28,7 +26,6 @@ public class DelegatingDataSource implements DataSource, InitializingBean {
 
 	@Nullable
 	private DataSource targetDataSource;
-
 
 	/**
 	 * Create a new DelegatingDataSource.

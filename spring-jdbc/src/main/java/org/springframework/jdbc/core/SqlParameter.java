@@ -14,10 +14,6 @@ import org.springframework.util.Assert;
  *
  * <p>Parameters may be anonymous, in which case "name" is {@code null}.
  * However, all parameters must define a SQL type according to {@link java.sql.Types}.
- *
- * @author Rod Johnson
- * @author Thomas Risberg
-
  * @see java.sql.Types
  */
 public class SqlParameter {

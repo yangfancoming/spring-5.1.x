@@ -55,9 +55,6 @@ import org.springframework.util.StringUtils;
  *
  * <p>Please note that this class is designed to provide convenience rather than high performance.
  * For best performance, consider using a custom {@link RowMapper} implementation.
- *
- * @author Thomas Risberg
-
  * @since 2.5
  * @param <T> the result type
  */
@@ -240,8 +237,7 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 			String slc = lowerCaseName(s);
 			if (!s.equals(slc)) {
 				result.append("_").append(slc);
-			}
-			else {
+			}else {
 				result.append(s);
 			}
 		}
@@ -284,36 +280,28 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 				try {
 					Object value = getColumnValue(rs, index, pd);
 					if (rowNumber == 0 && logger.isDebugEnabled()) {
-						logger.debug("Mapping column '" + column + "' to property '" + pd.getName() +
-								"' of type '" + ClassUtils.getQualifiedName(pd.getPropertyType()) + "'");
+						logger.debug("Mapping column '" + column + "' to property '" + pd.getName() + "' of type '" + ClassUtils.getQualifiedName(pd.getPropertyType()) + "'");
 					}
 					try {
 						bw.setPropertyValue(pd.getName(), value);
-					}
-					catch (TypeMismatchException ex) {
+					}catch (TypeMismatchException ex) {
 						if (value == null && this.primitivesDefaultedForNullValue) {
 							if (logger.isDebugEnabled()) {
 								logger.debug("Intercepted TypeMismatchException for row " + rowNumber +
 										" and column '" + column + "' with null value when setting property '" +
-										pd.getName() + "' of type '" +
-										ClassUtils.getQualifiedName(pd.getPropertyType()) +
-										"' on object: " + mappedObject, ex);
+										pd.getName() + "' of type '" + ClassUtils.getQualifiedName(pd.getPropertyType()) + "' on object: " + mappedObject, ex);
 							}
-						}
-						else {
+						}else {
 							throw ex;
 						}
 					}
 					if (populatedProperties != null) {
 						populatedProperties.add(pd.getName());
 					}
+				}catch (NotWritablePropertyException ex) {
+					throw new DataRetrievalFailureException("Unable to map column '" + column + "' to property '" + pd.getName() + "'", ex);
 				}
-				catch (NotWritablePropertyException ex) {
-					throw new DataRetrievalFailureException(
-							"Unable to map column '" + column + "' to property '" + pd.getName() + "'", ex);
-				}
-			}
-			else {
+			}else {
 				// No PropertyDescriptor found
 				if (rowNumber == 0 && logger.isDebugEnabled()) {
 					logger.debug("No property found for column '" + column + "' mapped to field '" + field + "'");
@@ -323,8 +311,7 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 
 		if (populatedProperties != null && !populatedProperties.equals(this.mappedProperties)) {
 			throw new InvalidDataAccessApiUsageException("Given ResultSet does not contain all fields " +
-					"necessary to populate object of class [" + this.mappedClass.getName() + "]: " +
-					this.mappedProperties);
+					"necessary to populate object of class [" + this.mappedClass.getName() + "]: " + this.mappedProperties);
 		}
 
 		return mappedObject;
