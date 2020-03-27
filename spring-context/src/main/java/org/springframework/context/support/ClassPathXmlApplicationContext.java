@@ -128,7 +128,6 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 		}
 	}
 
-
 	/**
 	 * Create a new ClassPathXmlApplicationContext, loading the definitions
 	 * from the given XML file and automatically refreshing the context.
