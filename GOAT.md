@@ -1,7 +1,7 @@
 # 目录 
     chapter1-0-0  spring log4j 日志
     chapter1-0-1  为什么需要 spring  ioc di 这种思想  即 Spring IOC 应运而生
-    chapter1-0-2  xsd  （Xml Schemas Definition ）
+    chapter1-0-2 
     chapter1-0-3  Spring 资源/配置 文件读取 
     chapter1-0-5  spring 注解学习
     chapter1-1-0  spring Bean的生命周期 注解 方式

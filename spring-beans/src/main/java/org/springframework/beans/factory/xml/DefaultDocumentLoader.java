@@ -44,14 +44,21 @@ public class DefaultDocumentLoader implements DocumentLoader {
 
 	/**
 	 * Load the {@link Document} at the supplied {@link InputSource} using the standard JAXP-configured  XML parser.
+	 * 对于如何读取一个 xml 文件为 Document 对象，大部分都很熟悉：创建 DocumentBuilderFactory，
+	 * 由 DocumentBuilderFacoty 创建 DocumentBuidler，调用 DocumentBuilder 的 parse 方法把文件或流解析为 Document。
+	 * 的确 spring 也是这样做的，但有一点不要忘记，spring 需要使用 xml schema 来验证 xml，spring 使用的 jaxp 1.2 中提供的 xml schema 验证方式，
+	 * 并没有使用 jaxp 1.3 中引入的 Schema 对象来验证（jboss cache 也是使用的这种方式）。
+	 * DefaultDocumentLoader在创建了DocumentBuilderFactory 对象后会判断当前是否使用 xml schema 验证，
+	 * 如果是则会在DocumentBuiderFactory 上设置一个属性，这个属性名为 http://java.sun.com/xml/jaxp/properties/schemaLanguage，
+	 * 如果把这个属性设置为http://www.w3.org/2001/XMLSchema，jaxp 则会使用 xml schema 来验证 xml 文档，
+	 * 使用这种验证方式需要提供一个 EntityResolver 的实现，EntityResolver 的使用 DocumentBuilder 的 setEntityResolver 方法设置。
+	 * spring 提供了 EntityResolver 的实现，这个实现也是扩展 spring 的关键所在。
 	 */
 	@Override
 	public Document loadDocument(InputSource inputSource, EntityResolver entityResolver,ErrorHandler errorHandler, int validationMode, boolean namespaceAware) throws Exception {
 		// 1、创建DocumentBuilderFactory对象
 		DocumentBuilderFactory factory = createDocumentBuilderFactory(validationMode, namespaceAware);
-		if (logger.isTraceEnabled()) {
-			logger.trace("Using JAXP provider [" + factory.getClass().getName() + "]");
-		}
+		if (logger.isTraceEnabled()) logger.trace("Using JAXP provider [" + factory.getClass().getName() + "]");
 		// 2、创建DocumentBuilder对象
 		DocumentBuilder builder = createDocumentBuilder(factory, entityResolver, errorHandler);
 		// 3、将inputSource解析为Document对象

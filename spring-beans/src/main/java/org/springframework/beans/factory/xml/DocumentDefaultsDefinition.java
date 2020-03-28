@@ -9,9 +9,8 @@ import org.springframework.lang.Nullable;
  * Simple JavaBean that holds the defaults specified at the {@code <beans>}
  * level in a standard Spring XML bean definition document:
  * {@code default-lazy-init}, {@code default-autowire}, etc.
- *
-
  * @since 2.0.2
+ * 里面存了一个bean必须有的属性，没有就采用默认值
  */
 public class DocumentDefaultsDefinition implements DefaultsDefinition {
 

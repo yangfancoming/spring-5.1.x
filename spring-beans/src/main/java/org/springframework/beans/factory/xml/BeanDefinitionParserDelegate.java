@@ -61,6 +61,16 @@ import org.springframework.util.xml.DomUtils;
  * @see ParserContext
  * @see DefaultBeanDefinitionDocumentReader
  * 定义解析 Element 的各种方法
+ *
+ * 那么 spring 如何来区别bean 元素以及其它扩展元素的，大家可能很自然地就能想到使用元素名啊，的确使用元素名可以处理，
+ * 但这就会出现这样的情况，程序员 A 扩展spring 定一个元素名为 c 的元素，
+ * 同样程序员 B 扩展spring 也定义了名为 c 的元素，此时就无法区分了 。
+ * 其实spring 是通过xml namespace 来区分的，同样查找扩展元素的解析器也是通过xml namespace 来处理的。
+ * spring从根元素开始，在解析每个元素的时候，都会先查询元素的namespace uri，
+ * 如果元素的namespace uri 为http://www.springframework.org/schema/beans，则由 spring IoC 来解析处理，这些元素包括beans、bean、import、alias，
+ * 如果namespace uri 不是http://www.springframework.org/schema/beans，则会使用 NamespaceHandlerResolver 来解析出一个NamespaceHandler，
+ * 使用NamespaceHandler 来解析处理这个元素。NamespaceHandlerResovler和NamespaceHandler 就是扩展 spring 的秘密所在。
+ * NamespaceHandlerResolver是一个接口，spring使用与EntityResolver 相同的策略来实现，这个后面会提到。当这一步完成了spring 也就完成了读取解析xml 配置。
  */
 public class BeanDefinitionParserDelegate {
 
@@ -1349,9 +1359,9 @@ public class BeanDefinitionParserDelegate {
 	/**
 	 * Get the namespace URI for the supplied node.
 	 * The default implementation uses {@link Node#getNamespaceURI}.
-	 * Subclasses may override the default implementation to provide a
-	 * different namespace identification mechanism.
+	 * Subclasses may override the default implementation to provide a different namespace identification mechanism.
 	 * @param node the node
+	 * @return eg：http://www.springframework.org/schema/beans
 	 */
 	@Nullable
 	public String getNamespaceURI(Node node) {

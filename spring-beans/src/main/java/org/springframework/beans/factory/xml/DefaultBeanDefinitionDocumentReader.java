@@ -34,6 +34,17 @@ import org.springframework.util.StringUtils;
  * {@code <beans>} does not need to be the root element of the XML document:
  * this class will parse all bean definition elements in the XML file, regardless of the actual root element.
  * @since 18.12.2003
+ *
+ * DefaultBeanDefinitionDocumentReader 主要完成两件事情，解析<bean> 元素，为扩展spring 的元素寻找合适的解析器，并把相应的元素交给解析器解析。
+ * 第一个任务，解析<bean> 元素，这个spring 的核心功能及IoC 或者是 DI，这由spring 自己来处理，
+ * 这个工作有一个专门的委托类来处理BeanDefinitionParserDelegate，由它来解析 <bean> 元素，并把解析的结果注册到BeanDefinitionRegistry（XmlBeanFactory 实现了此接口） 中。
+ *
+ * 在spring 的源代码目录中有两个很特殊的文件：spring.schemas 和 spring.handlers，
+ * 这两个文件以及 spring 中对 EntityResolver 和 NamespaceHandlerResolver 的实现 PluggableSchemaResolver 和DefaultNamespaceHandlerResolver 是扩展 spring 的关键所在。
+ * 其实 spring.schemas 和 spring.handlers 文件是标准的 java properties 文件。这两个文件都被打包到 spring jar 包中的 META-INF 目录中，
+ * PluggableSchemaResolver 通过读取 spring.schemas 文件，根据 xml 文件中实体的 system id 来解析这些实体，
+ * 大家可以看一下 spring.schemas 文件中的 key 就可以知道 system id 是什么了（其实我也不知道 system id 和 public id 是啥，知道的朋友不妨在文后的回复中给我留言，谢谢）；
+ * 而 DefaultNamespaceHandlerResolver则是根据元素的 namespace uri 在 spring.handlers 文件中查找具体的 NamespaceHandler 的实现。
  */
 public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocumentReader {
 
@@ -57,8 +68,12 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 
 	/**
 	 * This implementation parses bean definitions according to the "spring-beans" XSD (or DTD, historically).
-	 * Opens a DOM Document; then initializes the default settings
-	 * specified at the {@code <beans/>} level; then parses the contained bean definitions.
+	 * Opens a DOM Document; then initializes the default settings  specified at the {@code <beans/>} level; then parses the contained bean definitions.
+	 * 在完成了 Resource 到Document 的转换后，下面就是从Document 中解析出各个bean 的配置了，
+	 * 为此spring 又抽象了一个接口BeanDefinitionDocumentReader，
+	 * 从它的名称中可以一目了然这个接口负责从Document 中读取bean 定义，
+	 * 这个接口中只定义了一个方法registerBeanDefinitions
+	 * spring 也提供了一个默认实现DefaultBeanDefinitionDocumentReader
 	 */
 	@Override
 	public void registerBeanDefinitions(Document doc, XmlReaderContext readerContext) {
