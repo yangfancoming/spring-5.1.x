@@ -36,6 +36,7 @@ import org.springframework.util.Assert;
 public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContext {
 
 	private static final Logger logger = Logger.getLogger(ClassPathXmlApplicationContext.class);
+
 	// 配置文件数组
 	@Nullable
 	private Resource[] configResources;
@@ -114,8 +115,7 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 	public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh, @Nullable ApplicationContext parent) throws BeansException {
 		// 通过层层调用父构造函数，主要初始化了resourcePatternResolver=new PathMatchingResourcePatternResolver(this);后续可以通过适配符寻找符合条件的java类
 		super(parent);
-//		logger.debug("进入 ClassPathXmlApplicationContext 构造函数 {}",11111111);
-		logger.info("tryGetCustomerByJdPinAndDepartNo---入参 jdPin:{},departNo:{},init;{}");
+		logger.warn("进入 ClassPathXmlApplicationContext 构造函数 {}");
 		// 遍历解析传入的配置文件路径，将路径中的占位符替换成相关的环境变量。
 		// 创建环境对象ConfigurableEnvironment和处理ClassPathXmlApplicationContext传入的字符串中的占位符
 		// 根据提供的路径，处理成配置文件数组(以分号、逗号、空格、tab、换行符分割)

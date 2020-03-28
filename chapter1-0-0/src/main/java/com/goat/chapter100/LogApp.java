@@ -13,6 +13,7 @@ import org.junit.Test;
 public class LogApp {
 
 	private static final Logger logger = Logger.getLogger(LogApp.class);
+
 	@Test
 	public void testLog(){
 		logger.trace("goat - trace");

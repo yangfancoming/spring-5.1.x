@@ -160,10 +160,10 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 					// 默认命名空间
 					if (delegate.isDefaultNamespace(ele)) {
 						// 当前标签使用的是默认的命名空间，如bean标签，则按照默认命名空间的逻辑对其进行处理
-						// 解析 default namespace 下面的几个元素
+						// 代表解析的节点是 default namespace 下面的几个元素  <import />、<alias />、<bean />、<beans />
 						parseDefaultElement(ele, delegate); // 解析默认的节点
 					}else {
-						// 解析其他 namespace 的元素
+						// 解析其他 namespace 的元素  <mvc />、<task />、<context />、<aop />
 						// 自定义命名空间
 						// 判断当前标签使用的命名空间是自定义的命名空间，如这里 springtag:user 所使用的就是自定义的命名空间，那么就按照定义命名空间逻辑进行处理
 						delegate.parseCustomElement(ele);// 解析自定义节点
@@ -188,16 +188,13 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		if (delegate.nodeNameEquals(ele, IMPORT_ELEMENT)) { // 解析 <import>
 			//读取import节点所指定的xml文件信息
 			importBeanDefinitionResource(ele);
-		}
-		else if (delegate.nodeNameEquals(ele, ALIAS_ELEMENT)) {  // 解析 <alias>
+		}else if (delegate.nodeNameEquals(ele, ALIAS_ELEMENT)) {  // 解析 <alias>
 			// 读取alias节点指定的信息
 			processAliasRegistration(ele);
-		}
-		else if (delegate.nodeNameEquals(ele, BEAN_ELEMENT)) {  // 解析 <bean>
+		}else if (delegate.nodeNameEquals(ele, BEAN_ELEMENT)) {  // 解析 <bean> 重点
 			// 读取bean节点指定的信息
 			processBeanDefinition(ele, delegate);
-		}
-		else if (delegate.nodeNameEquals(ele, NESTED_BEANS_ELEMENT)) {  // 解析 <beans>
+		}else if (delegate.nodeNameEquals(ele, NESTED_BEANS_ELEMENT)) {  // 解析 <beans> 需要递归
 			// recurse 读取嵌套bean的信息
 			doRegisterBeanDefinitions(ele);
 		}
@@ -295,7 +292,6 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	/**
 	 * Process the given bean element, parsing the bean definition and registering it with the registry.
 	 *  解析bean标签将其转换为definition并注册到BeanDefinitionRegistry
-	 *
 	 */
 	protected void processBeanDefinition(Element ele, BeanDefinitionParserDelegate delegate) {
 		// 解析 bean的各种属性 // 对基本的bean标签属性进行解析
