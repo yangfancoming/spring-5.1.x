@@ -20,7 +20,6 @@
   </bean>
 
 
-
     <aop:config>
     <aop:aspect ref="minstrel">
       <aop:pointcut id="embark" expression="execution(* *.embarkOnQuest(..))"/>

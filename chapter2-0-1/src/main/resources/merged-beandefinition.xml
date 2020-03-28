@@ -3,9 +3,7 @@
 	   xmlns="http://www.springframework.org/schema/beans"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" default-autowire="byName">
 
-
 	<!--
-
 	Spring 支持配置继承，在标签中可以使用parent属性配置父类 bean。这样子类 bean 可以继承父类 bean 的配置信息，同时也可覆盖父类中的配置
 	hello-child 配置继承自 hello  hello-child 未配置 class 属性，这里我们让它继承父配置中的 class 属性
 	-->

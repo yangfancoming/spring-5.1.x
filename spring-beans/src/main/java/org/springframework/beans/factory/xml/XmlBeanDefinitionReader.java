@@ -284,9 +284,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 */
 	public int loadBeanDefinitions(EncodedResource encodedResource) throws BeanDefinitionStoreException {
 		Assert.notNull(encodedResource, "EncodedResource must not be null");
-		if (logger.isTraceEnabled()) {
-			logger.trace("Loading XML bean definitions from " + encodedResource);
-		}
+		if (logger.isTraceEnabled()) logger.trace("Loading XML bean definitions from " + encodedResource);
 		//  1、使用ThreadLocal防止资源文件循环加载  //通过属性来记录已经加载的资源
 		Set<EncodedResource> currentResources = this.resourcesCurrentlyBeingLoaded.get();
 		if (currentResources == null) {

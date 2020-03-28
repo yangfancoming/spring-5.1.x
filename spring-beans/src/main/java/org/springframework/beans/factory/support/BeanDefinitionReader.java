@@ -64,7 +64,6 @@ public interface BeanDefinitionReader {
 	 */
 	BeanNameGenerator getBeanNameGenerator();
 
-
 	/**
 	 * Load bean definitions from the specified resource.
 	 * @param resource the resource descriptor

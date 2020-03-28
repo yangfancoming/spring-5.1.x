@@ -9,5 +9,4 @@
 		<property name="age" value="23"></property>
 	</bean>
 
-
 </beans>
