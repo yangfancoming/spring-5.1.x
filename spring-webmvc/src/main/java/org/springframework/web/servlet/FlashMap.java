@@ -27,8 +27,6 @@ import org.springframework.util.StringUtils;
  * <p>Note: annotated controllers will usually not use FlashMap directly.
  * See {@code org.springframework.web.servlet.mvc.support.RedirectAttributes}
  * for an overview of using flash attributes in annotated controllers.
- *
- * @author Rossen Stoyanchev
  * @since 3.1
  * @see FlashMapManager
  */
@@ -47,7 +45,6 @@ public final class FlashMap extends HashMap<String, Object> implements Comparabl
 	private final MultiValueMap<String, String> targetRequestParams = new LinkedMultiValueMap<>(4);
 
 	private long expirationTime = -1;
-
 
 	/**
 	 * Provide a URL path to help identify the target request for this FlashMap.
@@ -146,8 +143,7 @@ public final class FlashMap extends HashMap<String, Object> implements Comparabl
 		int otherUrlPath = (other.targetRequestPath != null ? 1 : 0);
 		if (thisUrlPath != otherUrlPath) {
 			return otherUrlPath - thisUrlPath;
-		}
-		else {
+		}else {
 			return other.targetRequestParams.size() - this.targetRequestParams.size();
 		}
 	}
@@ -176,8 +172,7 @@ public final class FlashMap extends HashMap<String, Object> implements Comparabl
 
 	@Override
 	public String toString() {
-		return "FlashMap [attributes=" + super.toString() + ", targetRequestPath=" +
-				this.targetRequestPath + ", targetRequestParams=" + this.targetRequestParams + "]";
+		return "FlashMap [attributes=" + super.toString() + ", targetRequestPath=" + this.targetRequestPath + ", targetRequestParams=" + this.targetRequestParams + "]";
 	}
 
 }

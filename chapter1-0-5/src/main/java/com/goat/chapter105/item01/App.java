@@ -23,7 +23,6 @@ public class App extends BaseTest {
 		logger.info("goat - info");
 		logger.debug("goat - debug");
 		logger.error("goat - error");
-		logger.fatal("goat - fatal");
 	}
 
 	/**

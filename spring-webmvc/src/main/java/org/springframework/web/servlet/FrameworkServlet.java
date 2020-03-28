@@ -510,9 +510,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	@Override
 	protected final void initServletBean() throws ServletException {
 		getServletContext().log("Initializing Spring " + getClass().getSimpleName() + " '" + getServletName() + "'");
-		if (logger.isInfoEnabled()) {
-			logger.info("Initializing Servlet '" + getServletName() + "'");
-		}
+		if (logger.isInfoEnabled()) logger.info("Initializing Servlet '" + getServletName() + "'");
 		long startTime = System.currentTimeMillis();
 
 		try {
@@ -533,9 +531,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 					"shown which may lead to unsafe logging of potentially sensitive data" : "masked to prevent unsafe logging of potentially sensitive data";
 			logger.debug("enableLoggingRequestDetails='" + this.enableLoggingRequestDetails + "': request parameters and headers will be " + value);
 		}
-		if (logger.isInfoEnabled()) {
-			logger.info("Completed initialization in " + (System.currentTimeMillis() - startTime) + " ms");
-		}
+		if (logger.isInfoEnabled()) logger.info("Completed initialization in " + (System.currentTimeMillis() - startTime) + " ms");
 	}
 
 	/**
@@ -816,10 +812,8 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 						"framework servlet: [%s]", initializerClass.getName(), initializerContextClass.getName(),wac.getClass().getName()));
 			}
 			return BeanUtils.instantiateClass(initializerClass, ApplicationContextInitializer.class);
-		}
-		catch (ClassNotFoundException ex) {
+		}catch (ClassNotFoundException ex) {
 			throw new ApplicationContextException(String.format("Could not load class [%s] specified via 'contextInitializerClasses' init-param", className), ex);
-
 		}
 	}
 
@@ -1092,11 +1086,9 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 */
 	@Nullable
 	protected ServletRequestAttributes buildRequestAttributes(HttpServletRequest request,@Nullable HttpServletResponse response, @Nullable RequestAttributes previousAttributes) {
-
 		if (previousAttributes == null || previousAttributes instanceof ServletRequestAttributes) {
 			return new ServletRequestAttributes(request, response);
-		}
-		else {
+		}else {
 			return null;  // preserve the pre-bound RequestAttributes instance
 		}
 	}
@@ -1130,11 +1122,9 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 				if (logger.isDebugEnabled()) {
 					logger.debug("Unresolved failure from \"" + dispatchType + "\" dispatch: " + failureCause);
 				}
-			}
-			else if (logger.isTraceEnabled()) {
+			}else if (logger.isTraceEnabled()) {
 				logger.trace("Failed to complete request", failureCause);
-			}
-			else {
+			}else {
 				logger.debug("Failed to complete request: " + failureCause);
 			}
 			return;
@@ -1161,8 +1151,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 
 		if (!initialDispatch) {
 			logger.debug("Exiting from \"" + dispatchType + "\" dispatch, status " + status + headers);
-		}
-		else {
+		}else {
 			HttpStatus httpStatus = HttpStatus.resolve(status);
 			logger.debug("Completed " + (httpStatus != null ? httpStatus : status) + headers);
 		}

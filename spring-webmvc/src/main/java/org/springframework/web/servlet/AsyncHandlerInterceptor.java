@@ -37,7 +37,6 @@ import org.springframework.web.method.HandlerMethod;
  * WebAsyncManager}. This can be done proactively on every request from
  * {@code preHandle} regardless of whether async request processing will start.
  *
- * @author Rossen Stoyanchev
  * @since 3.2
  * @see org.springframework.web.context.request.async.WebAsyncManager
  * @see org.springframework.web.context.request.async.CallableProcessingInterceptor
@@ -58,8 +57,7 @@ public interface AsyncHandlerInterceptor extends HandlerInterceptor {
 	 * execution, for type and/or instance examination
 	 * @throws Exception in case of errors
 	 */
-	default void afterConcurrentHandlingStarted(HttpServletRequest request, HttpServletResponse response,
-			Object handler) throws Exception {
+	default void afterConcurrentHandlingStarted(HttpServletRequest request, HttpServletResponse response,Object handler) throws Exception {
 	}
 
 }
