@@ -7,8 +7,6 @@ import org.springframework.beans.factory.config.BeanDefinition;
 /**
  * Default implementation of the {@link BeanNameGenerator} interface, delegating to
  * {@link BeanDefinitionReaderUtils#generateBeanName(BeanDefinition, BeanDefinitionRegistry)}.
- *
-
  * @since 2.0.3
  */
 public class DefaultBeanNameGenerator implements BeanNameGenerator {

@@ -8,30 +8,25 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.core.io.Resource;
 
 /**
- * Convenience extension of {@link DefaultListableBeanFactory} that reads bean definitions
- * from an XML document. Delegates to {@link XmlBeanDefinitionReader} underneath; effectively
- * equivalent to using an XmlBeanDefinitionReader with a DefaultListableBeanFactory.
+ * Convenience extension of {@link DefaultListableBeanFactory} that reads bean definitions from an XML document.
+ * Delegates to {@link XmlBeanDefinitionReader} underneath; effectively equivalent to using an XmlBeanDefinitionReader with a DefaultListableBeanFactory.
  *
- * The structure, element and attribute names of the required XML document
- * are hard-coded in this class. (Of course a transform could be run if necessary
- * to produce this format). "beans" doesn't need to be the root element of the XML
- * document: This class will parse all bean definition elements in the XML file.
+ * The structure, element and attribute names of the required XML document are hard-coded in this class.
+ * (Of course a transform could be run if necessary to produce this format).
+ * "beans" doesn't need to be the root element of the XML document: This class will parse all bean definition elements in the XML file.
  *
  * This class registers each bean definition with the {@link DefaultListableBeanFactory}
  * superclass, and relies on the latter's implementation of the {@link BeanFactory} interface.
  * It supports singletons, prototypes, and references to either of these kinds of bean.
- * See {@code "spring-beans-3.x.xsd"} (or historically, {@code "spring-beans-2.0.dtd"}) for
- * details on options and configuration style.
+ * See {@code "spring-beans-3.x.xsd"} (or historically, {@code "spring-beans-2.0.dtd"}) for details on options and configuration style.
  *
- * <b>For advanced needs, consider using a {@link DefaultListableBeanFactory} with
- * an {@link XmlBeanDefinitionReader}.</b> The latter allows for reading from multiple XML
- * resources and is highly configurable in its actual XML parsing behavior.
-
+ * <b>For advanced needs, consider using a {@link DefaultListableBeanFactory} with an {@link XmlBeanDefinitionReader}.
+ * </b> The latter allows for reading from multiple XML resources and is highly configurable in its actual XML parsing behavior.
+ *
  * @since 15 April 2001
  * @see org.springframework.beans.factory.support.DefaultListableBeanFactory
  * @see XmlBeanDefinitionReader
- * @deprecated as of Spring 3.1 in favor of {@link DefaultListableBeanFactory} and
- * {@link XmlBeanDefinitionReader}
+ * @deprecated as of Spring 3.1 in favor of {@link DefaultListableBeanFactory} and  {@link XmlBeanDefinitionReader}
  *
  * 对 DefaultListableBeanFactory 进行扩展，主要使用自定义读取器 XmlBeanDefinitionReader 从配置文件中读取 BeanDefinition
  *
@@ -52,6 +47,17 @@ public class XmlBeanFactory extends DefaultListableBeanFactory {
 	private final XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(this);
 
 	/**
+	 * Create a new XmlBeanFactory with the given resource,
+	 * which must be parsable using DOM.
+	 * @param resource the XML resource to load bean definitions from
+	 * @throws BeansException in case of loading or parsing errors
+	 * 通过指定Resource对象创建XmlBeanFactory实例
+	 */
+	public XmlBeanFactory(Resource resource) throws BeansException {
+		this(resource, null);
+	}
+
+	/**
 	 * Create a new XmlBeanFactory with the given input stream,
 	 * which must be parsable using DOM.
 	 * @param resource the XML resource to load bean definitions from
@@ -65,17 +71,5 @@ public class XmlBeanFactory extends DefaultListableBeanFactory {
 		// 解析xml配置文件,将其转换为IoC容器的内部表示
 		this.reader.loadBeanDefinitions(resource);
 	}
-
-	/**
-	 * Create a new XmlBeanFactory with the given resource,
-	 * which must be parsable using DOM.
-	 * @param resource the XML resource to load bean definitions from
-	 * @throws BeansException in case of loading or parsing errors
-	 * 通过指定Resource对象创建XmlBeanFactory实例
-	 */
-	public XmlBeanFactory(Resource resource) throws BeansException {
-		this(resource, null);
-	}
-
 
 }

@@ -10,13 +10,9 @@ import org.springframework.lang.Nullable;
 /**
  * Simple interface for bean definition readers.
  * Specifies load methods with Resource and String location parameters.
- *
- * Concrete bean definition readers can of course add additional
- * load and register methods for bean definitions, specific to their bean definition format.
- *
- * Note that a bean definition reader does not have to implement
- * this interface. It only serves as suggestion for bean definition
- * readers that want to follow standard naming conventions.
+ * Concrete bean definition readers can of course add additional load and register methods for bean definitions, specific to their bean definition format.
+ * Note that a bean definition reader does not have to implement this interface.
+ * It only serves as suggestion for bean definition readers that want to follow standard naming conventions.
  * @since 1.1
  * @see org.springframework.core.io.Resource
  */
@@ -24,8 +20,7 @@ public interface BeanDefinitionReader {
 
 	/**
 	 * Return the bean factory to register the bean definitions with.
-	 * The factory is exposed through the BeanDefinitionRegistry interface,
-	 * encapsulating the methods that are relevant for bean definition handling.
+	 * The factory is exposed through the BeanDefinitionRegistry interface,encapsulating the methods that are relevant for bean definition handling.
 	 */
 	BeanDefinitionRegistry getRegistry();
 
@@ -33,8 +28,7 @@ public interface BeanDefinitionReader {
 	 * Return the resource loader to use for resource locations.
 	 * Can be checked for the <b>ResourcePatternResolver</b> interface and cast
 	 * accordingly, for loading multiple resources for a given resource pattern.
-	 * A {@code null} return value suggests that absolute resource loading
-	 * is not available for this bean definition reader.
+	 * A {@code null} return value suggests that absolute resource loading  is not available for this bean definition reader.
 	 * This is mainly meant to be used for importing further resources
 	 * from within a bean definition resource, for example via the "import"
 	 * tag in XML bean definitions. It is recommended, however, to apply
@@ -59,8 +53,7 @@ public interface BeanDefinitionReader {
 	ClassLoader getBeanClassLoader();
 
 	/**
-	 * Return the BeanNameGenerator to use for anonymous beans
-	 * (without explicit bean name specified).
+	 * Return the BeanNameGenerator to use for anonymous beans (without explicit bean name specified).
 	 */
 	BeanNameGenerator getBeanNameGenerator();
 
@@ -82,8 +75,7 @@ public interface BeanDefinitionReader {
 
 	/**
 	 * Load bean definitions from the specified resource location.
-	 * The location can also be a location pattern, provided that the
-	 * ResourceLoader of this bean definition reader is a ResourcePatternResolver.
+	 * The location can also be a location pattern, provided that the ResourceLoader of this bean definition reader is a ResourcePatternResolver.
 	 * @param location the resource location, to be loaded with the ResourceLoader
 	 * (or ResourcePatternResolver) of this bean definition reader
 	 * @return the number of bean definitions found
