@@ -41,7 +41,6 @@ public class UrlResource extends AbstractFileResolvingResource {
 	 */
 	private final URL cleanedUrl;
 
-
 	/**
 	 * Create a new {@code UrlResource} based on the given URI object.
 	 * @param uri a URI
@@ -68,7 +67,7 @@ public class UrlResource extends AbstractFileResolvingResource {
 
 	/**
 	 * Create a new {@code UrlResource} based on a URL path.
-	 * <p>Note: The given path needs to be pre-encoded if necessary.
+	 * Note: The given path needs to be pre-encoded if necessary.
 	 * @param path a URL path
 	 * @throws MalformedURLException if the given URL path is not valid
 	 * @see java.net.URL#URL(String)
@@ -82,11 +81,9 @@ public class UrlResource extends AbstractFileResolvingResource {
 
 	/**
 	 * Create a new {@code UrlResource} based on a URI specification.
-	 * <p>The given parts will automatically get encoded if necessary.
-	 * @param protocol the URL protocol to use (e.g. "jar" or "file" - without colon);
-	 * also known as "scheme"
-	 * @param location the location (e.g. the file path within that protocol);
-	 * also known as "scheme-specific part"
+	 * The given parts will automatically get encoded if necessary.
+	 * @param protocol the URL protocol to use (e.g. "jar" or "file" - without colon); also known as "scheme"
+	 * @param location the location (e.g. the file path within that protocol); also known as "scheme-specific part"
 	 * @throws MalformedURLException if the given URL specification is not valid
 	 * @see java.net.URI#URI(String, String, String)
 	 */
@@ -96,13 +93,10 @@ public class UrlResource extends AbstractFileResolvingResource {
 
 	/**
 	 * Create a new {@code UrlResource} based on a URI specification.
-	 * <p>The given parts will automatically get encoded if necessary.
-	 * @param protocol the URL protocol to use (e.g. "jar" or "file" - without colon);
-	 * also known as "scheme"
-	 * @param location the location (e.g. the file path within that protocol);
-	 * also known as "scheme-specific part"
-	 * @param fragment the fragment within that location (e.g. anchor on an HTML page,
-	 * as following after a "#" separator)
+	 * The given parts will automatically get encoded if necessary.
+	 * @param protocol the URL protocol to use (e.g. "jar" or "file" - without colon); also known as "scheme"
+	 * @param location the location (e.g. the file path within that protocol); also known as "scheme-specific part"
+	 * @param fragment the fragment within that location (e.g. anchor on an HTML page,as following after a "#" separator)
 	 * @throws MalformedURLException if the given URL specification is not valid
 	 * @see java.net.URI#URI(String, String, String)
 	 */
@@ -111,8 +105,7 @@ public class UrlResource extends AbstractFileResolvingResource {
 			this.uri = new URI(protocol, location, fragment);
 			this.url = this.uri.toURL();
 			this.cleanedUrl = getCleanedUrl(this.url, this.uri.toString());
-		}
-		catch (URISyntaxException ex) {
+		}catch (URISyntaxException ex) {
 			MalformedURLException exToThrow = new MalformedURLException(ex.getMessage());
 			exToThrow.initCause(ex);
 			throw exToThrow;
@@ -132,8 +125,7 @@ public class UrlResource extends AbstractFileResolvingResource {
 		if (!cleanedPath.equals(originalPath)) {
 			try {
 				return new URL(cleanedPath);
-			}
-			catch (MalformedURLException ex) {
+			}catch (MalformedURLException ex) {
 				// Cleaned URL path cannot be converted to URL -> take original URL.
 			}
 		}
@@ -142,7 +134,7 @@ public class UrlResource extends AbstractFileResolvingResource {
 
 	/**
 	 * This implementation opens an InputStream for the given URL.
-	 * <p>It sets the {@code useCaches} flag to {@code false},
+	 * It sets the {@code useCaches} flag to {@code false},
 	 * mainly to avoid jar file locking on Windows.
 	 * @see java.net.URL#openConnection()
 	 * @see java.net.URLConnection#setUseCaches(boolean)
@@ -154,8 +146,7 @@ public class UrlResource extends AbstractFileResolvingResource {
 		ResourceUtils.useCachesIfNecessary(con);
 		try {
 			return con.getInputStream();
-		}
-		catch (IOException ex) {
+		}catch (IOException ex) {
 			// Close the HTTP connection (if applicable).
 			if (con instanceof HttpURLConnection) {
 				((HttpURLConnection) con).disconnect();
@@ -180,8 +171,7 @@ public class UrlResource extends AbstractFileResolvingResource {
 	public URI getURI() throws IOException {
 		if (this.uri != null) {
 			return this.uri;
-		}
-		else {
+		}else {
 			return super.getURI();
 		}
 	}
@@ -190,8 +180,7 @@ public class UrlResource extends AbstractFileResolvingResource {
 	public boolean isFile() {
 		if (this.uri != null) {
 			return super.isFile(this.uri);
-		}
-		else {
+		}else {
 			return super.isFile();
 		}
 	}
@@ -205,8 +194,7 @@ public class UrlResource extends AbstractFileResolvingResource {
 	public File getFile() throws IOException {
 		if (this.uri != null) {
 			return super.getFile(this.uri);
-		}
-		else {
+		}else {
 			return super.getFile();
 		}
 	}

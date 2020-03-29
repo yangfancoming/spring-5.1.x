@@ -18,8 +18,8 @@ import org.springframework.util.ResourceUtils;
 
 /**
  * Convenience base class for {@link Resource} implementations, pre-implementing typical behavior.
- * <p>The "exists" method will check whether a File or InputStream can
- * be opened; "isOpen" will always return false; "getURL" and "getFile" throw an exception; and "toString" will return the description.
+ * The "exists" method will check whether a File or InputStream can be opened;
+ * "isOpen" will always return false; "getURL" and "getFile" throw an exception; and "toString" will return the description.
  * @since 28.12.2003
  */
 public abstract class AbstractResource implements Resource {
@@ -34,14 +34,12 @@ public abstract class AbstractResource implements Resource {
 		// Try file existence: can we find the file in the file system?
 		try {
 			return getFile().exists();
-		}
-		catch (IOException ex) {
+		}catch (IOException ex) {
 			// Fall back to stream existence: can we open the stream?
 			try {
 				getInputStream().close();
 				return true;
-			}
-			catch (Throwable isEx) {
+			}catch (Throwable isEx) {
 				return false;
 			}
 		}
@@ -81,23 +79,20 @@ public abstract class AbstractResource implements Resource {
 	}
 
 	/**
-	 * This implementation builds a URI based on the URL returned
-	 * by {@link #getURL()}.
+	 * This implementation builds a URI based on the URL returned by {@link #getURL()}.
 	 */
 	@Override
 	public URI getURI() throws IOException {
 		URL url = getURL();
 		try {
 			return ResourceUtils.toURI(url);
-		}
-		catch (URISyntaxException ex) {
+		}catch (URISyntaxException ex) {
 			throw new NestedIOException("Invalid URI [" + url + "]", ex);
 		}
 	}
 
 	/**
-	 * This implementation throws a FileNotFoundException, assuming
-	 * that the resource cannot be resolved to an absolute file path.
+	 * This implementation throws a FileNotFoundException, assuming that the resource cannot be resolved to an absolute file path.
 	 */
 	@Override
 	public File getFile() throws IOException {
@@ -105,9 +100,8 @@ public abstract class AbstractResource implements Resource {
 	}
 
 	/**
-	 * This implementation returns {@link Channels#newChannel(InputStream)}
-	 * with the result of {@link #getInputStream()}.
-	 * <p>This is the same as in {@link Resource}'s corresponding default method
+	 * This implementation returns {@link Channels#newChannel(InputStream)} with the result of {@link #getInputStream()}.
+	 * This is the same as in {@link Resource}'s corresponding default method
 	 * but mirrored here for efficient JVM-level dispatching in a class hierarchy.
 	 */
 	@Override
@@ -132,13 +126,10 @@ public abstract class AbstractResource implements Resource {
 				size += read;
 			}
 			return size;
-		}
-		finally {
+		}finally {
 			try {
 				is.close();
-			}
-			catch (IOException ex) {
-			}
+			}catch (IOException ex) {}
 		}
 	}
 
@@ -158,7 +149,7 @@ public abstract class AbstractResource implements Resource {
 
 	/**
 	 * Determine the File to use for timestamp checking.
-	 * <p>The default implementation delegates to {@link #getFile()}.
+	 * The default implementation delegates to {@link #getFile()}.
 	 * @return the File to use for timestamp checking (never {@code null})
 	 * @throws FileNotFoundException if the resource cannot be resolved as
 	 * an absolute file path, i.e. is not available in a file system
@@ -186,7 +177,6 @@ public abstract class AbstractResource implements Resource {
 	public String getFilename() {
 		return null;
 	}
-
 
 	/**
 	 * This implementation compares description strings.

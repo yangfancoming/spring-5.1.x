@@ -13,13 +13,9 @@ import java.nio.channels.ReadableByteChannel;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface for a resource descriptor that abstracts from the actual
- * type of underlying resource, such as a file or class path resource.
- *
- * <p>An InputStream can be opened for every resource if it exists in
- * physical form, but a URL or File handle can just be returned for
- * certain resources. The actual behavior is implementation-specific.
-
+ * Interface for a resource descriptor that abstracts from the actual type of underlying resource, such as a file or class path resource.
+ * An InputStream can be opened for every resource if it exists in physical form,but a URL or File handle can just be returned for certain resources.
+ * The actual behavior is implementation-specific.
  * @since 28.12.2003
  * @see #getInputStream()
  * @see #getURL()
@@ -38,7 +34,7 @@ public interface Resource extends InputStreamSource {
 
 	/**
 	 * Determine whether this resource actually exists in physical form.
-	 * <p>This method performs a definitive existence check, whereas the
+	 * This method performs a definitive existence check, whereas the
 	 * existence of a {@code Resource} handle only guarantees a valid
 	 * descriptor handle.
 	 */
@@ -46,7 +42,7 @@ public interface Resource extends InputStreamSource {
 
 	/**
 	 * Indicate whether non-empty contents of this resource can be read via {@link #getInputStream()}.
-	 * <p>Will be {@code true} for typical resource descriptors that exist
+	 * Will be {@code true} for typical resource descriptors that exist
 	 * since it strictly implies {@link #exists()} semantics as of 5.1.
 	 * Note that actual content reading may still fail when attempted.
 	 * However, a value of {@code false} is a definitive indication
@@ -62,7 +58,7 @@ public interface Resource extends InputStreamSource {
 	 * Indicate whether this resource represents a handle with an open stream.
 	 * If {@code true}, the InputStream cannot be read multiple times,
 	 * and must be read and closed to avoid resource leaks.
-	 * <p>Will be {@code false} for typical resource descriptors.
+	 * Will be {@code false} for typical resource descriptors.
 	 */
 	default boolean isOpen() {
 		return false;
@@ -72,7 +68,7 @@ public interface Resource extends InputStreamSource {
 	 * Determine whether this resource represents a file in a file system.
 	 * A value of {@code true} strongly suggests (but does not guarantee)
 	 * that a {@link #getFile()} call will succeed.
-	 * <p>This is conservatively {@code false} by default.
+	 * This is conservatively {@code false} by default.
 	 * @since 5.0
 	 * @see #getFile()
 	 */
@@ -106,8 +102,8 @@ public interface Resource extends InputStreamSource {
 
 	/**
 	 * Return a {@link ReadableByteChannel}.
-	 * <p>It is expected that each call creates a <i>fresh</i> channel.
-	 * <p>The default implementation returns {@link Channels#newChannel(InputStream)} with the result of {@link #getInputStream()}.
+	 * It is expected that each call creates a <i>fresh</i> channel.
+	 * The default implementation returns {@link Channels#newChannel(InputStream)} with the result of {@link #getInputStream()}.
 	 * @return the byte channel for the underlying resource (must not be {@code null})
 	 * @throws java.io.FileNotFoundException if the underlying resource doesn't exist
 	 * @throws IOException if the content channel could not be opened
@@ -143,16 +139,15 @@ public interface Resource extends InputStreamSource {
 	/**
 	 * Determine a filename for this resource, i.e. typically the last
 	 * part of the path: for example, "myfile.txt".
-	 * <p>Returns {@code null} if this type of resource does not  have a filename.
+	 * Returns {@code null} if this type of resource does not  have a filename.
 	 */
 	@Nullable
 	String getFilename();
 
 	/**
 	 * Return a description for this resource, to be used for error output when working with the resource.
-	 * <p>Implementations are also encouraged to return this value from their {@code toString} method.
+	 * Implementations are also encouraged to return this value from their {@code toString} method.
 	 * @see Object#toString()
 	 */
 	String getDescription();
-
 }

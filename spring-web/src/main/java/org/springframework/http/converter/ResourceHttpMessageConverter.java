@@ -17,21 +17,14 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StreamUtils;
 
 /**
- * Implementation of {@link HttpMessageConverter} that can read/write {@link Resource Resources}
- * and supports byte range requests.
- *
- * <p>By default, this converter can read all media types. The {@link MediaTypeFactory} is used
+ * Implementation of {@link HttpMessageConverter} that can read/write {@link Resource Resources} and supports byte range requests.
+ * By default, this converter can read all media types. The {@link MediaTypeFactory} is used
  * to determine the {@code Content-Type} of written resources.
- *
- * @author Arjen Poutsma
-
- * @author Kazuki Shimizu
  * @since 3.0.2
  */
 public class ResourceHttpMessageConverter extends AbstractHttpMessageConverter<Resource> {
 
 	private final boolean supportsReadStreaming;
-
 
 	/**
 	 * Create a new instance of the {@code ResourceHttpMessageConverter}
@@ -54,16 +47,13 @@ public class ResourceHttpMessageConverter extends AbstractHttpMessageConverter<R
 		this.supportsReadStreaming = supportsReadStreaming;
 	}
 
-
 	@Override
 	protected boolean supports(Class<?> clazz) {
 		return Resource.class.isAssignableFrom(clazz);
 	}
 
 	@Override
-	protected Resource readInternal(Class<? extends Resource> clazz, HttpInputMessage inputMessage)
-			throws IOException, HttpMessageNotReadableException {
-
+	protected Resource readInternal(Class<? extends Resource> clazz, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
 		if (this.supportsReadStreaming && InputStreamResource.class == clazz) {
 			return new InputStreamResource(inputMessage.getBody()) {
 				@Override
@@ -71,8 +61,7 @@ public class ResourceHttpMessageConverter extends AbstractHttpMessageConverter<R
 					return inputMessage.getHeaders().getContentDisposition().getFilename();
 				}
 			};
-		}
-		else if (Resource.class == clazz || ByteArrayResource.class.isAssignableFrom(clazz)) {
+		} else if (Resource.class == clazz || ByteArrayResource.class.isAssignableFrom(clazz)) {
 			byte[] body = StreamUtils.copyToByteArray(inputMessage.getBody());
 			return new ByteArrayResource(body) {
 				@Override
@@ -81,8 +70,7 @@ public class ResourceHttpMessageConverter extends AbstractHttpMessageConverter<R
 					return inputMessage.getHeaders().getContentDisposition().getFilename();
 				}
 			};
-		}
-		else {
+		}else {
 			throw new HttpMessageNotReadableException("Unsupported resource class: " + clazz, inputMessage);
 		}
 	}
@@ -104,32 +92,25 @@ public class ResourceHttpMessageConverter extends AbstractHttpMessageConverter<R
 	}
 
 	@Override
-	protected void writeInternal(Resource resource, HttpOutputMessage outputMessage)
-			throws IOException, HttpMessageNotWritableException {
-
+	protected void writeInternal(Resource resource, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
 		writeContent(resource, outputMessage);
 	}
 
-	protected void writeContent(Resource resource, HttpOutputMessage outputMessage)
-			throws IOException, HttpMessageNotWritableException {
+	protected void writeContent(Resource resource, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
 		try {
 			InputStream in = resource.getInputStream();
 			try {
 				StreamUtils.copy(in, outputMessage.getBody());
-			}
-			catch (NullPointerException ex) {
+			}catch (NullPointerException ex) {
 				// ignore, see SPR-13620
-			}
-			finally {
+			}finally {
 				try {
 					in.close();
-				}
-				catch (Throwable ex) {
+				}catch (Throwable ex) {
 					// ignore, see SPR-12999
 				}
 			}
-		}
-		catch (FileNotFoundException ex) {
+		}catch (FileNotFoundException ex) {
 			// ignore, see SPR-12999
 		}
 	}
