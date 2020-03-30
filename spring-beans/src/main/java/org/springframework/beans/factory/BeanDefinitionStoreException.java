@@ -8,10 +8,6 @@ import org.springframework.lang.Nullable;
 /**
  * Exception thrown when a BeanFactory encounters an invalid bean definition:
  * e.g. in case of incomplete or contradictory bean metadata.
- *
- * @author Rod Johnson
-
- * @author Rob Harrop
  */
 @SuppressWarnings("serial")
 public class BeanDefinitionStoreException extends FatalBeanException {
@@ -21,7 +17,6 @@ public class BeanDefinitionStoreException extends FatalBeanException {
 
 	@Nullable
 	private final String beanName;
-
 
 	/**
 	 * Create a new BeanDefinitionStoreException.
@@ -86,11 +81,8 @@ public class BeanDefinitionStoreException extends FatalBeanException {
 	 * the resource and the name of the bean)
 	 * @param cause the root cause (may be {@code null})
 	 */
-	public BeanDefinitionStoreException(
-			@Nullable String resourceDescription, String beanName, String msg, @Nullable Throwable cause) {
-
-		super("Invalid bean definition with name '" + beanName + "' defined in " + resourceDescription + ": " + msg,
-				cause);
+	public BeanDefinitionStoreException(@Nullable String resourceDescription, String beanName, String msg, @Nullable Throwable cause) {
+		super("Invalid bean definition with name '" + beanName + "' defined in " + resourceDescription + ": " + msg,cause);
 		this.resourceDescription = resourceDescription;
 		this.beanName = beanName;
 	}

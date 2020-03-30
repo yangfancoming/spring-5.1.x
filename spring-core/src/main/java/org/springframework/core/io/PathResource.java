@@ -30,9 +30,6 @@ import org.springframework.util.Assert;
  * in {@link FileSystemResource#FileSystemResource(Path) FileSystemResource},
  * applying Spring's standard String-based path transformations but
  * performing all operations via the {@link java.nio.file.Files} API.
- *
- * @author Philippe Marschall
-
  * @since 4.0
  * @see java.nio.file.Path
  * @see java.nio.file.Files
@@ -42,7 +39,6 @@ import org.springframework.util.Assert;
 public class PathResource extends AbstractResource implements WritableResource {
 
 	private final Path path;
-
 
 	/**
 	 * Create a new PathResource from a Path handle.
@@ -116,12 +112,8 @@ public class PathResource extends AbstractResource implements WritableResource {
 	 */
 	@Override
 	public InputStream getInputStream() throws IOException {
-		if (!exists()) {
-			throw new FileNotFoundException(getPath() + " (no such file or directory)");
-		}
-		if (Files.isDirectory(this.path)) {
-			throw new FileNotFoundException(getPath() + " (is a directory)");
-		}
+		if (!exists()) throw new FileNotFoundException(getPath() + " (no such file or directory)");
+		if (Files.isDirectory(this.path)) throw new FileNotFoundException(getPath() + " (is a directory)");
 		return Files.newInputStream(this.path);
 	}
 
@@ -142,9 +134,7 @@ public class PathResource extends AbstractResource implements WritableResource {
 	 */
 	@Override
 	public OutputStream getOutputStream() throws IOException {
-		if (Files.isDirectory(this.path)) {
-			throw new FileNotFoundException(getPath() + " (is a directory)");
-		}
+		if (Files.isDirectory(this.path)) throw new FileNotFoundException(getPath() + " (is a directory)");
 		return Files.newOutputStream(this.path);
 	}
 
@@ -182,8 +172,7 @@ public class PathResource extends AbstractResource implements WritableResource {
 	public File getFile() throws IOException {
 		try {
 			return this.path.toFile();
-		}
-		catch (UnsupportedOperationException ex) {
+		}catch (UnsupportedOperationException ex) {
 			// Only paths on the default file system can be converted to a File:
 			// Do exception translation for cases where conversion is not possible.
 			throw new FileNotFoundException(this.path + " cannot be resolved to absolute file path");
@@ -198,8 +187,7 @@ public class PathResource extends AbstractResource implements WritableResource {
 	public ReadableByteChannel readableChannel() throws IOException {
 		try {
 			return Files.newByteChannel(this.path, StandardOpenOption.READ);
-		}
-		catch (NoSuchFileException ex) {
+		}catch (NoSuchFileException ex) {
 			throw new FileNotFoundException(ex.getMessage());
 		}
 	}
@@ -256,14 +244,12 @@ public class PathResource extends AbstractResource implements WritableResource {
 		return "path [" + this.path.toAbsolutePath() + "]";
 	}
 
-
 	/**
 	 * This implementation compares the underlying Path references.
 	 */
 	@Override
 	public boolean equals(Object other) {
-		return (this == other || (other instanceof PathResource &&
-				this.path.equals(((PathResource) other).path)));
+		return (this == other || (other instanceof PathResource && this.path.equals(((PathResource) other).path)));
 	}
 
 	/**

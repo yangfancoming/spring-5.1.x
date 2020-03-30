@@ -1,13 +1,11 @@
 
 
 package org.springframework.util.xml;
-
 import java.io.BufferedReader;
 import java.io.CharConversionException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
 import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
@@ -23,8 +21,7 @@ public class XmlValidationModeDetector {
 	public static final int VALIDATION_NONE = 0;
 
 	/**
-	 * Indicates that the validation mode should be auto-guessed, since we cannot find
-	 * a clear indication (probably choked on some special characters, or the like).
+	 * Indicates that the validation mode should be auto-guessed, since we cannot find a clear indication (probably choked on some special characters, or the like).
 	 */
 	public static final int VALIDATION_AUTO = 1;
 
@@ -38,10 +35,8 @@ public class XmlValidationModeDetector {
 	 */
 	public static final int VALIDATION_XSD = 3;
 
-
 	/**
-	 * The token in a XML document that declares the DTD to use for validation
-	 * and thus that DTD validation is being used.
+	 * The token in a XML document that declares the DTD to use for validation and thus that DTD validation is being used.
 	 */
 	private static final String DOCTYPE = "DOCTYPE";
 
@@ -54,7 +49,6 @@ public class XmlValidationModeDetector {
 	 * The token that indicates the end of an XML comment.
 	 */
 	private static final String END_COMMENT = "-->";
-
 
 	/**
 	 * Indicates whether or not the current parse position is inside an XML comment.
@@ -92,8 +86,7 @@ public class XmlValidationModeDetector {
 			}
 			return (isDtdValidated ? VALIDATION_DTD : VALIDATION_XSD);
 		}catch (CharConversionException ex) {
-			// Choked on some character encoding...
-			// Leave the decision up to the caller.
+			// Choked on some character encoding... Leave the decision up to the caller.
 			return VALIDATION_AUTO;
 		}finally {
 			reader.close();
@@ -114,9 +107,7 @@ public class XmlValidationModeDetector {
 	 * tokens will have consumed for the supplied content before passing the remainder to this method.
 	 */
 	private boolean hasOpeningTag(String content) {
-		if (this.inComment) {
-			return false;
-		}
+		if (inComment) return false;
 		int openTagIndex = content.indexOf('<');
 		return (openTagIndex > -1 && (content.length() > openTagIndex + 1) && Character.isLetter(content.charAt(openTagIndex + 1)));
 	}
@@ -142,8 +133,7 @@ public class XmlValidationModeDetector {
 	}
 
 	/**
-	 * Consume the next comment token, update the "inComment" flag
-	 * and return the remaining content.
+	 * Consume the next comment token, update the "inComment" flag and return the remaining content.
 	 */
 	@Nullable
 	private String consume(String line) {

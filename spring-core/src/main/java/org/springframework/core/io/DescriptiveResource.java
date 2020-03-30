@@ -9,19 +9,13 @@ import java.io.InputStream;
 import org.springframework.lang.Nullable;
 
 /**
- * Simple {@link Resource} implementation that holds a resource description
- * but does not point to an actually readable resource.
- *
- * <p>To be used as placeholder if a {@code Resource} argument is
- * expected by an API but not necessarily used for actual reading.
- *
-
+ * Simple {@link Resource} implementation that holds a resource description but does not point to an actually readable resource.
+ * To be used as placeholder if a {@code Resource} argument is  expected by an API but not necessarily used for actual reading.
  * @since 1.2.6
  */
 public class DescriptiveResource extends AbstractResource {
 
 	private final String description;
-
 
 	/**
 	 * Create a new DescriptiveResource.
@@ -30,7 +24,6 @@ public class DescriptiveResource extends AbstractResource {
 	public DescriptiveResource(@Nullable String description) {
 		this.description = (description != null ? description : "");
 	}
-
 
 	@Override
 	public boolean exists() {
@@ -44,8 +37,7 @@ public class DescriptiveResource extends AbstractResource {
 
 	@Override
 	public InputStream getInputStream() throws IOException {
-		throw new FileNotFoundException(
-				getDescription() + " cannot be opened because it does not point to a readable resource");
+		throw new FileNotFoundException(getDescription() + " cannot be opened because it does not point to a readable resource");
 	}
 
 	@Override
@@ -53,14 +45,12 @@ public class DescriptiveResource extends AbstractResource {
 		return this.description;
 	}
 
-
 	/**
 	 * This implementation compares the underlying description String.
 	 */
 	@Override
 	public boolean equals(Object other) {
-		return (this == other || (other instanceof DescriptiveResource &&
-				((DescriptiveResource) other).description.equals(this.description)));
+		return (this == other || (other instanceof DescriptiveResource && ((DescriptiveResource) other).description.equals(this.description)));
 	}
 
 	/**

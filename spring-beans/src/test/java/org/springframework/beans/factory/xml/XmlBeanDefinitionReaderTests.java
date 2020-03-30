@@ -22,67 +22,59 @@ import static org.junit.Assert.*;
 
 public class XmlBeanDefinitionReaderTests {
 
+	SimpleBeanDefinitionRegistry registry = new SimpleBeanDefinitionRegistry();
+	XmlBeanDefinitionReader xmlBeanDefinitionReader = new XmlBeanDefinitionReader(registry);
+	Resource resource = new InputStreamResource(getClass().getResourceAsStream("test.xml"));
+
 	@Test
 	public void setParserClassSunnyDay() {
-		SimpleBeanDefinitionRegistry registry = new SimpleBeanDefinitionRegistry();
-		new XmlBeanDefinitionReader(registry).setDocumentReaderClass(DefaultBeanDefinitionDocumentReader.class);
+		xmlBeanDefinitionReader.setDocumentReaderClass(DefaultBeanDefinitionDocumentReader.class);
 	}
 
 	@Test(expected = BeanDefinitionStoreException.class)
 	public void withOpenInputStream() {
-		SimpleBeanDefinitionRegistry registry = new SimpleBeanDefinitionRegistry();
-		Resource resource = new InputStreamResource(getClass().getResourceAsStream("test.xml"));
-		new XmlBeanDefinitionReader(registry).loadBeanDefinitions(resource);
+		xmlBeanDefinitionReader.loadBeanDefinitions(resource);
 	}
 
 	@Test
 	public void withOpenInputStreamAndExplicitValidationMode() {
-		SimpleBeanDefinitionRegistry registry = new SimpleBeanDefinitionRegistry();
-		Resource resource = new InputStreamResource(getClass().getResourceAsStream("test.xml"));
-		XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(registry);
-		reader.setValidationMode(XmlBeanDefinitionReader.VALIDATION_DTD);
-		reader.loadBeanDefinitions(resource);
+		xmlBeanDefinitionReader.setValidationMode(XmlBeanDefinitionReader.VALIDATION_DTD);
+		xmlBeanDefinitionReader.loadBeanDefinitions(resource);
 		testBeanDefinitions(registry);
 	}
 
 	@Test
 	public void withImport() {
-		SimpleBeanDefinitionRegistry registry = new SimpleBeanDefinitionRegistry();
 		Resource resource = new ClassPathResource("import.xml", getClass());
-		new XmlBeanDefinitionReader(registry).loadBeanDefinitions(resource);
+		xmlBeanDefinitionReader.loadBeanDefinitions(resource);
 		testBeanDefinitions(registry);
 	}
 
 	@Test
 	public void withWildcardImport() {
-		SimpleBeanDefinitionRegistry registry = new SimpleBeanDefinitionRegistry();
 		Resource resource = new ClassPathResource("importPattern.xml", getClass());
-		new XmlBeanDefinitionReader(registry).loadBeanDefinitions(resource);
+		xmlBeanDefinitionReader.loadBeanDefinitions(resource);
 		testBeanDefinitions(registry);
 	}
 
 	@Test(expected = BeanDefinitionStoreException.class)
 	public void withInputSource() {
-		SimpleBeanDefinitionRegistry registry = new SimpleBeanDefinitionRegistry();
 		InputSource resource = new InputSource(getClass().getResourceAsStream("test.xml"));
-		new XmlBeanDefinitionReader(registry).loadBeanDefinitions(resource);
+		xmlBeanDefinitionReader.loadBeanDefinitions(resource);
 	}
 
 	@Test
 	public void withInputSourceAndExplicitValidationMode() {
-		SimpleBeanDefinitionRegistry registry = new SimpleBeanDefinitionRegistry();
 		InputSource resource = new InputSource(getClass().getResourceAsStream("test.xml"));
-		XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(registry);
-		reader.setValidationMode(XmlBeanDefinitionReader.VALIDATION_DTD);
-		reader.loadBeanDefinitions(resource);
+		xmlBeanDefinitionReader.setValidationMode(XmlBeanDefinitionReader.VALIDATION_DTD);
+		xmlBeanDefinitionReader.loadBeanDefinitions(resource);
 		testBeanDefinitions(registry);
 	}
 
 	@Test
 	public void withFreshInputStream() {
-		SimpleBeanDefinitionRegistry registry = new SimpleBeanDefinitionRegistry();
 		Resource resource = new ClassPathResource("test.xml", getClass());
-		new XmlBeanDefinitionReader(registry).loadBeanDefinitions(resource);
+		xmlBeanDefinitionReader.loadBeanDefinitions(resource);
 		testBeanDefinitions(registry);
 	}
 

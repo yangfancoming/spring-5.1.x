@@ -11,21 +11,17 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link org.springframework.context.ApplicationContext} implementation
- * which supports programmatic registration of beans and messages,
- * rather than reading bean definitions from external configuration sources.
- * Mainly useful for testing.
-
+ * {@link org.springframework.context.ApplicationContext} implementation which supports programmatic registration of beans and messages,
+ * rather than reading bean definitions from external configuration sources.Mainly useful for testing.
  * @see #registerSingleton
  * @see #registerPrototype
  * @see #registerBeanDefinition
  * @see #refresh
+ * 通过编程的方式去启动一个bean容器---该类通常用于测试，用于加载任意的外部资源，而不用加载特定格式的文件
  */
-// 通过编程的方式去启动一个bean容器---该类通常用于测试，用于加载任意的外部资源，而不用加载特定格式的文件
 public class StaticApplicationContext extends GenericApplicationContext {
 
 	private final StaticMessageSource staticMessageSource;
-
 
 	/**
 	 * Create a new StaticApplicationContext.
@@ -47,12 +43,10 @@ public class StaticApplicationContext extends GenericApplicationContext {
 	 */
 	public StaticApplicationContext(@Nullable ApplicationContext parent) throws BeansException {
 		super(parent);
-
 		// Initialize and register a StaticMessageSource.
 		this.staticMessageSource = new StaticMessageSource();
 		getBeanFactory().registerSingleton(MESSAGE_SOURCE_BEAN_NAME, this.staticMessageSource);
 	}
-
 
 	/**
 	 * Overridden to turn it into a no-op, to be more lenient towards test cases.
@@ -72,7 +66,7 @@ public class StaticApplicationContext extends GenericApplicationContext {
 
 	/**
 	 * Register a singleton bean with the underlying bean factory.
-	 * <p>For more advanced needs, register with the underlying BeanFactory directly.
+	 * For more advanced needs, register with the underlying BeanFactory directly.
 	 * @see #getDefaultListableBeanFactory
 	 */
 	public void registerSingleton(String name, Class<?> clazz) throws BeansException {
@@ -83,7 +77,7 @@ public class StaticApplicationContext extends GenericApplicationContext {
 
 	/**
 	 * Register a singleton bean with the underlying bean factory.
-	 * <p>For more advanced needs, register with the underlying BeanFactory directly.
+	 * For more advanced needs, register with the underlying BeanFactory directly.
 	 * @see #getDefaultListableBeanFactory
 	 */
 	public void registerSingleton(String name, Class<?> clazz, MutablePropertyValues pvs) throws BeansException {
@@ -95,7 +89,7 @@ public class StaticApplicationContext extends GenericApplicationContext {
 
 	/**
 	 * Register a prototype bean with the underlying bean factory.
-	 * <p>For more advanced needs, register with the underlying BeanFactory directly.
+	 * For more advanced needs, register with the underlying BeanFactory directly.
 	 * @see #getDefaultListableBeanFactory
 	 */
 	public void registerPrototype(String name, Class<?> clazz) throws BeansException {
@@ -107,7 +101,7 @@ public class StaticApplicationContext extends GenericApplicationContext {
 
 	/**
 	 * Register a prototype bean with the underlying bean factory.
-	 * <p>For more advanced needs, register with the underlying BeanFactory directly.
+	 * For more advanced needs, register with the underlying BeanFactory directly.
 	 * @see #getDefaultListableBeanFactory
 	 */
 	public void registerPrototype(String name, Class<?> clazz, MutablePropertyValues pvs) throws BeansException {

@@ -18,11 +18,11 @@ import org.springframework.util.ReflectionUtils;
  * in public static final members. The {@code asXXXX} methods of this class
  * allow these constant values to be accessed via their string names.
  *
- * <p>Consider class Foo containing {@code public final static int CONSTANT1 = 66;}
+ * Consider class Foo containing {@code public final static int CONSTANT1 = 66;}
  * An instance of this class wrapping {@code Foo.class} will return the constant value
  * of 66 from its {@code asNumber} method given the argument {@code "CONSTANT1"}.
  *
- * <p>This class is ideal for use in PropertyEditors, enabling them to
+ * This class is ideal for use in PropertyEditors, enabling them to
  * recognize the same names as the constants themselves, and freeing them
  * from maintaining their own mapping.
  *
@@ -38,14 +38,14 @@ public class Constants {
 	/** Map from String field name to object value. */
 	private final Map<String, Object> fieldCache = new HashMap<>();
 
-
 	/**
 	 * Create a new Constants converter class wrapping the given class.
-	 * <p>All <b>public</b> static final variables will be exposed, whatever their type.
+	 * All <b>public</b> static final variables will be exposed, whatever their type.
 	 * @param clazz the class to analyze
 	 * @throws IllegalArgumentException if the supplied {@code clazz} is {@code null}
+	 * 构造函数：通过反射的方式获取目标source类中所有的public static final的常量放入一个Map中
 	 */
-	public Constants(Class<?> clazz) { // 构造函数：通过反射的方式获取目标source类中所有的public static final的常量放入一个Map中
+	public Constants(Class<?> clazz) {
 		Assert.notNull(clazz, "Class must not be null");
 		this.className = clazz.getName();
 		Field[] fields = clazz.getFields();
@@ -55,27 +55,25 @@ public class Constants {
 				try {
 					Object value = field.get(null);
 					this.fieldCache.put(name, value);
-				}
-				catch (IllegalAccessException ex) {
+				}catch (IllegalAccessException ex) {
 					// just leave this field and continue
 				}
 			}
 		}
 	}
 
-
 	/**
 	 * Return the name of the analyzed class.
 	 */
 	public final String getClassName() {
-		return this.className;
+		return className;
 	}
 
 	/**
 	 * Return the number of constants exposed.
 	 */
 	public final int getSize() {
-		return this.fieldCache.size();
+		return fieldCache.size();
 	}
 
 	/**
@@ -83,22 +81,20 @@ public class Constants {
 	 * a Map from String field name to object value.
 	 */
 	protected final Map<String, Object> getFieldCache() {
-		return this.fieldCache;
+		return fieldCache;
 	}
-
 
 	/**
 	 * Return a constant value cast to a Number.
 	 * @param code the name of the field (never {@code null})
 	 * @return the Number value
-	 * @throws ConstantException if the field name wasn't found
-	 * or if the type wasn't compatible with Number
+	 * @throws ConstantException if the field name wasn't found or if the type wasn't compatible with Number
 	 * @see #asObject
 	 */
 	public Number asNumber(String code) throws ConstantException {
 		Object obj = asObject(code);
 		if (!(obj instanceof Number)) {
-			throw new ConstantException(this.className, code, "not a Number");
+			throw new ConstantException(className, code, "not a Number");
 		}
 		return (Number) obj;
 	}
@@ -106,8 +102,7 @@ public class Constants {
 	/**
 	 * Return a constant value as a String.
 	 * @param code the name of the field (never {@code null})
-	 * @return the String value
-	 * Works even if it's not a string (invokes {@code toString()}).
+	 * @return the String value Works even if it's not a string (invokes {@code toString()}).
 	 * @throws ConstantException if the field name wasn't found
 	 * @see #asObject
 	 */
@@ -117,8 +112,7 @@ public class Constants {
 
 	/**
 	 * Parse the given String (upper or lower case accepted) and return
-	 * the appropriate value if it's the name of a constant field in the
-	 * class that we're analysing.
+	 * the appropriate value if it's the name of a constant field in the class that we're analysing.
 	 * @param code the name of the field (never {@code null})
 	 * @return the Object value
 	 * @throws ConstantException if there's no such field
@@ -126,9 +120,9 @@ public class Constants {
 	public Object asObject(String code) throws ConstantException {
 		Assert.notNull(code, "Code must not be null");
 		String codeToUse = code.toUpperCase(Locale.ENGLISH);
-		Object val = this.fieldCache.get(codeToUse);
+		Object val = fieldCache.get(codeToUse);
 		if (val == null) {
-			throw new ConstantException(this.className, codeToUse, "not found");
+			throw new ConstantException(className, codeToUse, "not found");
 		}
 		return val;
 	}
@@ -136,10 +130,8 @@ public class Constants {
 
 	/**
 	 * Return all names of the given group of constants.
-	 * <p>Note that this method assumes that constants are named
-	 * in accordance with the standard Java convention for constant
-	 * values (i.e. all uppercase). The supplied {@code namePrefix}
-	 * will be uppercased (in a locale-insensitive fashion) prior to
+	 * Note that this method assumes that constants are named in accordance with the standard Java convention for constant
+	 * values (i.e. all uppercase). The supplied {@code namePrefix} will be uppercased (in a locale-insensitive fashion) prior to
 	 * the main logic of this method kicking in.
 	 * @param namePrefix prefix of the constant names to search (may be {@code null})
 	 * @return the set of constant names
@@ -147,7 +139,7 @@ public class Constants {
 	public Set<String> getNames(@Nullable String namePrefix) {
 		String prefixToUse = (namePrefix != null ? namePrefix.trim().toUpperCase(Locale.ENGLISH) : "");
 		Set<String> names = new HashSet<>();
-		for (String code : this.fieldCache.keySet()) {
+		for (String code : fieldCache.keySet()) {
 			if (code.startsWith(prefixToUse)) {
 				names.add(code);
 			}
@@ -156,8 +148,7 @@ public class Constants {
 	}
 
 	/**
-	 * Return all names of the group of constants for the
-	 * given bean property name.
+	 * Return all names of the group of constants for the given bean property name.
 	 * @param propertyName the name of the bean property
 	 * @return the set of values
 	 * @see #propertyToConstantNamePrefix
@@ -168,7 +159,7 @@ public class Constants {
 
 	/**
 	 * Return all names of the given group of constants.
-	 * <p>Note that this method assumes that constants are named
+	 * Note that this method assumes that constants are named
 	 * in accordance with the standard Java convention for constant
 	 * values (i.e. all uppercase). The supplied {@code nameSuffix}
 	 * will be uppercased (in a locale-insensitive fashion) prior to
@@ -179,7 +170,7 @@ public class Constants {
 	public Set<String> getNamesForSuffix(@Nullable String nameSuffix) {
 		String suffixToUse = (nameSuffix != null ? nameSuffix.trim().toUpperCase(Locale.ENGLISH) : "");
 		Set<String> names = new HashSet<>();
-		for (String code : this.fieldCache.keySet()) {
+		for (String code : fieldCache.keySet()) {
 			if (code.endsWith(suffixToUse)) {
 				names.add(code);
 			}
@@ -190,7 +181,7 @@ public class Constants {
 
 	/**
 	 * Return all values of the given group of constants.
-	 * <p>Note that this method assumes that constants are named in accordance with the standard Java convention for constant values (i.e. all uppercase).
+	 * Note that this method assumes that constants are named in accordance with the standard Java convention for constant values (i.e. all uppercase).
 	 *  请注意，该方法假定常数是按照标准Java约定对常量值（即所有大写）命名的。
 	 * The supplied {@code namePrefix} will be uppercased (in a locale-insensitive fashion) prior to the main logic of this method kicking in.
 	 * 提供的 nameprefix 参数 将在该方法的主要逻辑开始之前被转换成大写（以不区分区域设置的方式）。
@@ -200,7 +191,7 @@ public class Constants {
 	public Set<Object> getValues(@Nullable String namePrefix) {
 		String prefixToUse = (namePrefix != null ? namePrefix.trim().toUpperCase(Locale.ENGLISH) : "");
 		Set<Object> values = new HashSet<>();
-		this.fieldCache.forEach((code, value) -> {
+		fieldCache.forEach((code, value) -> {
 			if (code.startsWith(prefixToUse)) {
 				values.add(value);
 			}
@@ -209,8 +200,7 @@ public class Constants {
 	}
 
 	/**
-	 * Return all values of the group of constants for the
-	 * given bean property name.
+	 * Return all values of the group of constants for the given bean property name.
 	 * @param propertyName the name of the bean property
 	 * @return the set of values
 	 * @see #propertyToConstantNamePrefix
@@ -221,7 +211,7 @@ public class Constants {
 
 	/**
 	 * Return all values of the given group of constants.
-	 * <p>Note that this method assumes that constants are named
+	 * Note that this method assumes that constants are named
 	 * in accordance with the standard Java convention for constant
 	 * values (i.e. all uppercase). The supplied {@code nameSuffix}
 	 * will be uppercased (in a locale-insensitive fashion) prior to
@@ -232,7 +222,7 @@ public class Constants {
 	public Set<Object> getValuesForSuffix(@Nullable String nameSuffix) {
 		String suffixToUse = (nameSuffix != null ? nameSuffix.trim().toUpperCase(Locale.ENGLISH) : "");
 		Set<Object> values = new HashSet<>();
-		this.fieldCache.forEach((code, value) -> {
+		fieldCache.forEach((code, value) -> {
 			if (code.endsWith(suffixToUse)) {
 				values.add(value);
 			}
@@ -243,7 +233,7 @@ public class Constants {
 
 	/**
 	 * Look up the given value within the given group of constants.
-	 * <p>Will return the first match.
+	 * Will return the first match.
 	 * @param value constant value to look up
 	 * @param namePrefix prefix of the constant names to search (may be {@code null})
 	 * @return the name of the constant field
@@ -251,12 +241,12 @@ public class Constants {
 	 */
 	public String toCode(Object value, @Nullable String namePrefix) throws ConstantException {
 		String prefixToUse = (namePrefix != null ? namePrefix.trim().toUpperCase(Locale.ENGLISH) : "");
-		for (Map.Entry<String, Object> entry : this.fieldCache.entrySet()) {
+		for (Map.Entry<String, Object> entry : fieldCache.entrySet()) {
 			if (entry.getKey().startsWith(prefixToUse) && entry.getValue().equals(value)) {
 				return entry.getKey();
 			}
 		}
-		throw new ConstantException(this.className, prefixToUse, value);
+		throw new ConstantException(className, prefixToUse, value);
 	}
 
 	/**
@@ -274,7 +264,7 @@ public class Constants {
 
 	/**
 	 * Look up the given value within the given group of constants.
-	 * <p>Will return the first match.
+	 * Will return the first match.
 	 * @param value constant value to look up
 	 * @param nameSuffix suffix of the constant names to search (may be {@code null})
 	 * @return the name of the constant field
@@ -282,20 +272,20 @@ public class Constants {
 	 */
 	public String toCodeForSuffix(Object value, @Nullable String nameSuffix) throws ConstantException {
 		String suffixToUse = (nameSuffix != null ? nameSuffix.trim().toUpperCase(Locale.ENGLISH) : "");
-		for (Map.Entry<String, Object> entry : this.fieldCache.entrySet()) {
+		for (Map.Entry<String, Object> entry : fieldCache.entrySet()) {
 			if (entry.getKey().endsWith(suffixToUse) && entry.getValue().equals(value)) {
 				return entry.getKey();
 			}
 		}
-		throw new ConstantException(this.className, suffixToUse, value);
+		throw new ConstantException(className, suffixToUse, value);
 	}
 
 
 	/**
 	 * Convert the given bean property name to a constant name prefix.
-	 * <p>Uses a common naming idiom: turning all lower case characters to upper case, and prepending upper case characters with an underscore.
+	 * Uses a common naming idiom: turning all lower case characters to upper case, and prepending upper case characters with an underscore.
 	 *    使用一个常见的命名习惯用法：将所有小写字符都转换为大写，并在大写字符前面加下划线。
-	 * <p>Example: "imageSize" -> "IMAGE_SIZE"<br>
+	 * Example: "imageSize" -> "IMAGE_SIZE"<br>
 	 * Example: "imagesize" -> "IMAGESIZE".<br>
 	 * Example: "ImageSize" -> "_IMAGE_SIZE".<br>
 	 * Example: "IMAGESIZE" -> "_I_M_A_G_E_S_I_Z_E"

@@ -12,8 +12,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link EncodedResource}.
- *
- * @author Sam Brannen
  * @since 3.2.14
  */
 public class EncodedResourceTests {

@@ -65,7 +65,6 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	@Nullable
 	private BeanDefinitionParserDelegate delegate;
 
-
 	/**
 	 * This implementation parses bean definitions according to the "spring-beans" XSD (or DTD, historically).
 	 * Opens a DOM Document; then initializes the default settings  specified at the {@code <beans/>} level; then parses the contained bean definitions.

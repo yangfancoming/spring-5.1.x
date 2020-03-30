@@ -136,9 +136,7 @@ public class EncodedResource implements InputStreamSource {
 
 	@Override
 	public boolean equals(Object other) {
-		if (this == other) {
-			return true;
-		}
+		if (this == other) return true;
 		if (!(other instanceof EncodedResource)) {
 			return false;
 		}
