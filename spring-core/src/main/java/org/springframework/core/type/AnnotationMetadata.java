@@ -17,7 +17,7 @@ public interface AnnotationMetadata extends ClassMetadata, AnnotatedTypeMetadata
 	/**
 	 * Get the fully qualified class names of all annotation types that are <em>present</em> on the underlying class.
 	 * @return the annotation type names
-	 * 拿到Class上标注的所有注解，依赖于Class#getAnnotations
+	 * 拿到Class上标注的所有注解，依赖于Class#getAnnotations  eg：example.scannable.CustomStereotype
 	 */
 	Set<String> getAnnotationTypes();
 

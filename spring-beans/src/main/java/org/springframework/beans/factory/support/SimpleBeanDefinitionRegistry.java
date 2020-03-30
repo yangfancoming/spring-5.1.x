@@ -23,6 +23,9 @@ public class SimpleBeanDefinitionRegistry extends SimpleAliasRegistry implements
 	/** Map of bean definition objects, keyed by bean name. */
 	private final Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>(64);
 
+	//---------------------------------------------------------------------
+	// Implementation of 【BeanDefinitionRegistry】 interface
+	//---------------------------------------------------------------------
 	@Override
 	public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition) throws BeanDefinitionStoreException {
 		Assert.hasText(beanName, "'beanName' must not be empty");
