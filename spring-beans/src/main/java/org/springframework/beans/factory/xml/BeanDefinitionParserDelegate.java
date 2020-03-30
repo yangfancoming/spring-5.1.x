@@ -314,7 +314,6 @@ public class BeanDefinitionParserDelegate {
 		return (candidatePattern != null ? StringUtils.commaDelimitedListToStringArray(candidatePattern) : null);
 	}
 
-
 	/**
 	 * Parses the supplied {@code <bean>} element. May return {@code null}
 	 * if there were errors during parse. Errors are reported to the
@@ -329,8 +328,7 @@ public class BeanDefinitionParserDelegate {
 	/**
 	 *  最终解析xml成BeanDefinition
 	 * 填充各种默认的属性
-	 * Parses the supplied {@code <bean>} element. May return {@code null}
-	 * if there were errors during parse. Errors are reported to the
+	 * Parses the supplied {@code <bean>} element. May return {@code null} if there were errors during parse. Errors are reported to the
 	 * {@link org.springframework.beans.factory.parsing.ProblemReporter}.
 	 */
 	@Nullable
@@ -1378,10 +1376,8 @@ public class BeanDefinitionParserDelegate {
 
 	/**
 	 * Determine whether the name of the supplied node is equal to the supplied name.
-	 * The default implementation checks the supplied desired name against both
-	 * {@link Node#getNodeName()} and {@link Node#getLocalName()}.
-	 * Subclasses may override the default implementation to provide a different
-	 * mechanism for comparing node names.
+	 * The default implementation checks the supplied desired name against both {@link Node#getNodeName()} and {@link Node#getLocalName()}.
+	 * Subclasses may override the default implementation to provide a different mechanism for comparing node names.
 	 * @param node the node to compare
 	 * @param desiredName the name to check for
 	 */
@@ -1389,12 +1385,12 @@ public class BeanDefinitionParserDelegate {
 		return desiredName.equals(node.getNodeName()) || desiredName.equals(getLocalName(node));
 	}
 
-	public boolean isDefaultNamespace(@Nullable String namespaceUri) {
-		return (!StringUtils.hasLength(namespaceUri) || BEANS_NAMESPACE_URI.equals(namespaceUri));
-	}
-
 	public boolean isDefaultNamespace(Node node) {
 		return isDefaultNamespace(getNamespaceURI(node));
+	}
+
+	public boolean isDefaultNamespace(@Nullable String namespaceUri) {
+		return (!StringUtils.hasLength(namespaceUri) || BEANS_NAMESPACE_URI.equals(namespaceUri));
 	}
 
 	private boolean isDefaultValue(String value) {

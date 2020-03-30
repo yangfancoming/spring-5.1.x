@@ -193,23 +193,19 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 
 	/**
 	 * 在对xml节点的读取的时候，其分为了四种情形：
-	 * ①读取import节点所指定的xml文件信息；
-	 * ②读取alias节点的信息；
-	 * ③读取bean节点指定的信息；
-	 * ④读取嵌套bean的信息
+	 * ① 解析<import> 	   标签 所指定的xml文件信息；
+	 * ② 解析 <alias>	   标签 信息；
+	 * ③ 解析 <bean> 	   标签 信息；
+	 * ④ 解析 嵌套 <bean> 标签 信息
 	*/
 	private void parseDefaultElement(Element ele, BeanDefinitionParserDelegate delegate) {
-		if (delegate.nodeNameEquals(ele, IMPORT_ELEMENT)) { // 解析 <import>
-			//读取import节点所指定的xml文件信息
+		if (delegate.nodeNameEquals(ele, IMPORT_ELEMENT)) {
 			importBeanDefinitionResource(ele);
-		}else if (delegate.nodeNameEquals(ele, ALIAS_ELEMENT)) {  // 解析 <alias>
-			// 读取alias节点指定的信息
+		}else if (delegate.nodeNameEquals(ele, ALIAS_ELEMENT)) {
 			processAliasRegistration(ele);
-		}else if (delegate.nodeNameEquals(ele, BEAN_ELEMENT)) {  // 解析 <bean> 重点
-			// 读取bean节点指定的信息
+		}else if (delegate.nodeNameEquals(ele, BEAN_ELEMENT)) {
 			processBeanDefinition(ele, delegate);
-		}else if (delegate.nodeNameEquals(ele, NESTED_BEANS_ELEMENT)) {  // 解析 <beans> 需要递归
-			// recurse 读取嵌套bean的信息
+		}else if (delegate.nodeNameEquals(ele, NESTED_BEANS_ELEMENT)) {
 			doRegisterBeanDefinitions(ele);
 		}
 	}
