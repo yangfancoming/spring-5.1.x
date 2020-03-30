@@ -5,12 +5,12 @@ package org.springframework.core.env;
 /**
  * Interface indicating a component that contains and exposes an {@link Environment} reference.
  *
- * <p>All Spring application contexts are EnvironmentCapable, and the interface is used primarily
+ * All Spring application contexts are EnvironmentCapable, and the interface is used primarily
  * for performing {@code instanceof} checks in framework methods that accept BeanFactory
  * instances that may or may not actually be ApplicationContext instances in order to interact
  * with the environment if indeed it is available.
  *
- * <p>As mentioned, {@link org.springframework.context.ApplicationContext ApplicationContext}
+ * As mentioned, {@link org.springframework.context.ApplicationContext ApplicationContext}
  * extends EnvironmentCapable, and thus exposes a {@link #getEnvironment()} method; however,
  * {@link org.springframework.context.ConfigurableApplicationContext ConfigurableApplicationContext}
  * redefines {@link org.springframework.context.ConfigurableApplicationContext#getEnvironment

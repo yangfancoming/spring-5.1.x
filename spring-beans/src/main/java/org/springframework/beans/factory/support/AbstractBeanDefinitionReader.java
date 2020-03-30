@@ -56,8 +56,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 	 * environment will be used by this reader.  Otherwise, the reader will initialize and
 	 * use a {@link StandardEnvironment}. All ApplicationContext implementations are
 	 * EnvironmentCapable, while normal BeanFactory implementations are not.
-	 * @param registry the BeanFactory to load bean definitions into,
-	 * in the form of a BeanDefinitionRegistry
+	 * @param registry the BeanFactory to load bean definitions into,in the form of a BeanDefinitionRegistry
 	 * @see #setResourceLoader
 	 * @see #setEnvironment
 	 */
@@ -67,26 +66,17 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 		// Determine ResourceLoader to use.
 		// 1、确定ResourceLoader使用。
 		if (this.registry instanceof ResourceLoader) {
-			this.resourceLoader = (ResourceLoader) this.registry;
+			resourceLoader = (ResourceLoader) this.registry;
 		}else {
-			this.resourceLoader = new PathMatchingResourcePatternResolver();
+			resourceLoader = new PathMatchingResourcePatternResolver();
 		}
 		// Inherit Environment if possible
 		// 2、如果环境可继承则继承registry的环境,否则重新创建环境
 		if (this.registry instanceof EnvironmentCapable) {
-			this.environment = ((EnvironmentCapable) this.registry).getEnvironment();
+			environment = ((EnvironmentCapable) this.registry).getEnvironment();
 		}else {
-			this.environment = new StandardEnvironment();
+			environment = new StandardEnvironment();
 		}
-	}
-
-	public final BeanDefinitionRegistry getBeanFactory() {
-		return this.registry;
-	}
-
-	@Override
-	public final BeanDefinitionRegistry getRegistry() {
-		return this.registry;
 	}
 
 	/**
@@ -101,10 +91,8 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 		this.resourceLoader = resourceLoader;
 	}
 
-	@Override
-	@Nullable
-	public ResourceLoader getResourceLoader() {
-		return this.resourceLoader;
+	public final BeanDefinitionRegistry getBeanFactory() {
+		return registry;
 	}
 
 	/**
@@ -117,12 +105,6 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 		this.beanClassLoader = beanClassLoader;
 	}
 
-	@Override
-	@Nullable
-	public ClassLoader getBeanClassLoader() {
-		return this.beanClassLoader;
-	}
-
 	/**
 	 * Set the Environment to use when reading bean definitions.
 	 * Most often used for evaluating profile information to determine which bean definitions should be read and which should be omitted.
@@ -132,39 +114,12 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 		this.environment = environment;
 	}
 
-	@Override
-	public Environment getEnvironment() {
-		return this.environment;
-	}
-
 	/**
 	 * Set the BeanNameGenerator to use for anonymous beans (without explicit bean name specified).
 	 * Default is a {@link DefaultBeanNameGenerator}.
 	 */
 	public void setBeanNameGenerator(@Nullable BeanNameGenerator beanNameGenerator) {
 		this.beanNameGenerator = (beanNameGenerator != null ? beanNameGenerator : new DefaultBeanNameGenerator());
-	}
-
-	@Override
-	public BeanNameGenerator getBeanNameGenerator() {
-		return this.beanNameGenerator;
-	}
-
-	@Override
-	public int loadBeanDefinitions(Resource... resources) throws BeanDefinitionStoreException {
-		Assert.notNull(resources, "Resource array must not be null");
-		int count = 0;
-		// 注意这里是个 for 循环，也就是每个文件是一个 resource
-		for (Resource resource : resources) {
-			// 继续往下看
-			count += loadBeanDefinitions(resource);
-		}
-		return count;
-	}
-
-	@Override
-	public int loadBeanDefinitions(String location) throws BeanDefinitionStoreException {
-		return loadBeanDefinitions(location, null);
 	}
 
 	/**
@@ -213,6 +168,47 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 		}
 	}
 
+	//---------------------------------------------------------------------
+	// Implementation of 【BeanDefinitionReader】 interface
+	//---------------------------------------------------------------------
+	@Override
+	public final BeanDefinitionRegistry getRegistry() {
+		return registry;
+	}
+
+	@Override
+	@Nullable
+	public ResourceLoader getResourceLoader() {
+		return resourceLoader;
+	}
+
+	@Override
+	@Nullable
+	public ClassLoader getBeanClassLoader() {
+		return beanClassLoader;
+	}
+
+	@Override
+	public BeanNameGenerator getBeanNameGenerator() {
+		return beanNameGenerator;
+	}
+
+	@Override
+	public int loadBeanDefinitions(Resource... resources) throws BeanDefinitionStoreException {
+		Assert.notNull(resources, "Resource array must not be null");
+		int count = 0;
+		// 注意这里是个 for 循环，也就是每个文件是一个 resource
+		for (Resource resource : resources) {
+			count += loadBeanDefinitions(resource);
+		}
+		return count;
+	}
+
+	@Override
+	public int loadBeanDefinitions(String location) throws BeanDefinitionStoreException {
+		return loadBeanDefinitions(location, null);
+	}
+
 	@Override
 	public int loadBeanDefinitions(String... locations) throws BeanDefinitionStoreException {
 		Assert.notNull(locations, "Location array must not be null");
@@ -221,6 +217,14 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 			count += loadBeanDefinitions(location);
 		}
 		return count;
+	}
+
+	//---------------------------------------------------------------------
+	// Implementation of 【EnvironmentCapable】 interface
+	//---------------------------------------------------------------------
+	@Override
+	public Environment getEnvironment() {
+		return environment;
 	}
 
 }

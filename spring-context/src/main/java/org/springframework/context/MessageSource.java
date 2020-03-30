@@ -10,16 +10,11 @@ import org.springframework.lang.Nullable;
  * Strategy interface for resolving messages, with support for the parameterization
  * and internationalization of such messages.
  *
- * <p>Spring provides two out-of-the-box implementations for production:
- * <ul>
+ * Spring provides two out-of-the-box implementations for production:
  * <li>{@link org.springframework.context.support.ResourceBundleMessageSource},
  * built on top of the standard {@link java.util.ResourceBundle}
  * <li>{@link org.springframework.context.support.ReloadableResourceBundleMessageSource},
  * being able to reload message definitions without restarting the VM
- * </ul>
- *
- * @author Rod Johnson
-
  * @see org.springframework.context.support.ResourceBundleMessageSource
  * @see org.springframework.context.support.ReloadableResourceBundleMessageSource
  */
@@ -58,7 +53,7 @@ public interface MessageSource {
 	/**
 	 * Try to resolve the message using all the attributes contained within the
 	 * {@code MessageSourceResolvable} argument that was passed in.
-	 * <p>NOTE: We must throw a {@code NoSuchMessageException} on this method
+	 * NOTE: We must throw a {@code NoSuchMessageException} on this method
 	 * since at the time of calling this method we aren't able to determine if the
 	 * {@code defaultMessage} property of the resolvable is {@code null} or not.
 	 * @param resolvable the value object storing attributes required to resolve a message

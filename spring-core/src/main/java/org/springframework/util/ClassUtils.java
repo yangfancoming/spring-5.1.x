@@ -118,7 +118,6 @@ public abstract class ClassUtils {
 		javaLanguageInterfaces = new HashSet<>(Arrays.asList(javaLanguageInterfaceArray));
 	}
 
-
 	/**
 	 * Register the given common classes with the ClassUtils cache.
 	 */

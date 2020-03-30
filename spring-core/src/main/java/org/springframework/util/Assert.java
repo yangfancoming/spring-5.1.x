@@ -10,13 +10,10 @@ import org.springframework.lang.Nullable;
 
 /**
  * Assertion utility class that assists in validating arguments.
- *
  * Useful for identifying programmer errors early and clearly at runtime.
- *
  * For example, if the contract of a public method states it does not
  * allow {@code null} arguments, {@code Assert} can be used to validate that
- * contract. Doing this clearly indicates a contract violation when it
- * occurs and protects the class's invariants.
+ * contract. Doing this clearly indicates a contract violation when it  occurs and protects the class's invariants.
  *
  * Typically used to validate method arguments rather than configuration
  * properties, to check for cases that are usually programmer errors rather
@@ -27,13 +24,11 @@ import org.springframework.lang.Nullable;
  * deemed invalid, an {@link IllegalArgumentException} is thrown (typically).
  * For example:
  *
- * <pre class="code">
  * Assert.notNull(clazz, "The class must not be null");
- * Assert.isTrue(i > 0, "The value must be greater than zero");</pre>
+ * Assert.isTrue(i > 0, "The value must be greater than zero");
  *
  * Mainly for internal use within the framework; consider
- * <a href="https://commons.apache.org/proper/commons-lang/">Apache's Commons Lang</a>
- * for a more comprehensive suite of {@code String} utilities.
+ * <a href="https://commons.apache.org/proper/commons-lang/">Apache's Commons Lang</a>  for a more comprehensive suite of {@code String} utilities.
  * @since 1.1.2
  */
 public abstract class Assert {
@@ -57,8 +52,7 @@ public abstract class Assert {
 	/**
 	 * Assert a boolean expression, throwing an {@code IllegalStateException}
 	 * if the expression evaluates to {@code false}.
-	 * Call {@link #isTrue} if you wish to throw an {@code IllegalArgumentException}
-	 * on an assertion failure.
+	 * Call {@link #isTrue} if you wish to throw an {@code IllegalArgumentException}  on an assertion failure.
 	 * <pre class="code">
 	 * Assert.state(id == null,
 	 *     () -&gt; "ID for " + entity.getName() + " must not already be initialized");
@@ -507,9 +501,7 @@ public abstract class Assert {
 
 	/**
 	 * Assert that the provided object is an instance of the provided class.
-	 * <pre class="code">
 	 * Assert.instanceOf(Foo.class, foo, () -&gt; "Processing " + Foo.class.getSimpleName() + ":");
-	 * </pre>
 	 * @param type the type to check against
 	 * @param obj the object to check
 	 * @param messageSupplier a supplier for the exception message to use if the

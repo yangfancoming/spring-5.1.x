@@ -11,7 +11,7 @@ import java.io.InputStream;
  * For single-use streams, {@link InputStreamResource} can be used for any given {@code InputStream}.
  * Spring's {@link ByteArrayResource} or any file-based {@code Resource} implementation can be used as a concrete instance,
  * allowing one to read the underlying content stream multiple times.
- * This makes this interface useful as an abstract content source for mail  attachments, for example.
+ * This makes this interface useful as an abstract content source for mail attachments, for example.
  * @since 20.01.2004
  * @see java.io.InputStream
  * @see Resource
@@ -29,6 +29,7 @@ public interface InputStreamSource {
 	 * @return the input stream for the underlying resource (must not be {@code null})
 	 * @throws java.io.FileNotFoundException if the underlying resource doesn't exist
 	 * @throws IOException if the content stream could not be opened
+	 *  每次调用都会返回新的输入流，调用者在使用完毕后必须关闭该资源。
 	 */
 	InputStream getInputStream() throws IOException;
 
