@@ -12,11 +12,7 @@ import org.springframework.tests.sample.beans.TestBean;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Rick Evans
 
- * @author Sam Brannen
- */
 public class BeanConfigurerSupportTests {
 
 	@Test(expected = IllegalArgumentException.class)

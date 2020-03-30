@@ -2,6 +2,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.core.env.EnvironmentCapable;
 import org.springframework.core.io.ResourceLoader;
@@ -23,10 +24,11 @@ public class App {
 	@Test
 	public void tes1t(){
 		GenericApplicationContext temp = new GenericApplicationContext();
-		System.out.println(temp instanceof BeanFactory);
-		System.out.println(temp instanceof ResourceLoader);
-		System.out.println(temp instanceof ApplicationContext);
-		System.out.println(temp instanceof EnvironmentCapable);
+		Assert.assertTrue(temp instanceof BeanFactory);
+		Assert.assertTrue(temp instanceof ResourceLoader);
+		Assert.assertTrue(temp instanceof ApplicationContext);
+		Assert.assertTrue(temp instanceof EnvironmentCapable);
+		Assert.assertTrue(temp instanceof AbstractApplicationContext);
 	}
 
 

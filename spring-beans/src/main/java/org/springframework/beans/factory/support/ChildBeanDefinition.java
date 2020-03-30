@@ -11,21 +11,13 @@ import org.springframework.util.ObjectUtils;
  * Bean definition for beans which inherit settings from their parent.
  * Child bean definitions have a fixed dependency on a parent bean definition.
  *
- * <p>A child bean definition will inherit constructor argument values,
- * property values and method overrides from the parent, with the option
- * to add new values. If init method, destroy method and/or static factory
- * method are specified, they will override the corresponding parent settings.
- * The remaining settings will <i>always</i> be taken from the child definition:
- * depends on, autowire mode, dependency check, singleton, lazy init.
- *
- * <p><b>NOTE:</b> Since Spring 2.5, the preferred way to register bean
- * definitions programmatically is the {@link GenericBeanDefinition} class,
- * which allows to dynamically define parent dependencies through the
- * {@link GenericBeanDefinition#setParentName} method. This effectively
- * supersedes the ChildBeanDefinition class for most use cases.
- *
- * @author Rod Johnson
-
+ * A child bean definition will inherit constructor argument values, property values and method overrides from the parent,
+ * with the option to add new values.
+ * If init method, destroy method and/or static factory  method are specified, they will override the corresponding parent settings.
+ * The remaining settings will <i>always</i> be taken from the child definition: depends on, autowire mode, dependency check, singleton, lazy init.
+ * <b>NOTE:</b> Since Spring 2.5, the preferred way to register bean definitions programmatically is the {@link GenericBeanDefinition} class,
+ * which allows to dynamically define parent dependencies through the {@link GenericBeanDefinition#setParentName} method.
+ * This effectively supersedes the ChildBeanDefinition class for most use cases.
  * @see GenericBeanDefinition
  * @see RootBeanDefinition
  */
@@ -35,10 +27,8 @@ public class ChildBeanDefinition extends AbstractBeanDefinition {
 	@Nullable
 	private String parentName;
 
-
 	/**
-	 * Create a new ChildBeanDefinition for the given parent, to be
-	 * configured through its bean properties and configuration methods.
+	 * Create a new ChildBeanDefinition for the given parent, to be configured through its bean properties and configuration methods.
 	 * @param parentName the name of the parent bean
 	 * @see #setBeanClass
 	 * @see #setScope
@@ -66,24 +56,19 @@ public class ChildBeanDefinition extends AbstractBeanDefinition {
 	 * @param cargs the constructor argument values to apply
 	 * @param pvs the additional property values of the child
 	 */
-	public ChildBeanDefinition(
-			String parentName, ConstructorArgumentValues cargs, MutablePropertyValues pvs) {
-
+	public ChildBeanDefinition(String parentName, ConstructorArgumentValues cargs, MutablePropertyValues pvs) {
 		super(cargs, pvs);
 		this.parentName = parentName;
 	}
 
 	/**
-	 * Create a new ChildBeanDefinition for the given parent,
-	 * providing constructor arguments and property values.
+	 * Create a new ChildBeanDefinition for the given parent, providing constructor arguments and property values.
 	 * @param parentName the name of the parent bean
 	 * @param beanClass the class of the bean to instantiate
 	 * @param cargs the constructor argument values to apply
 	 * @param pvs the property values to apply
 	 */
-	public ChildBeanDefinition(
-			String parentName, Class<?> beanClass, ConstructorArgumentValues cargs, MutablePropertyValues pvs) {
-
+	public ChildBeanDefinition(String parentName, Class<?> beanClass, ConstructorArgumentValues cargs, MutablePropertyValues pvs) {
 		super(cargs, pvs);
 		this.parentName = parentName;
 		setBeanClass(beanClass);
@@ -98,9 +83,7 @@ public class ChildBeanDefinition extends AbstractBeanDefinition {
 	 * @param cargs the constructor argument values to apply
 	 * @param pvs the property values to apply
 	 */
-	public ChildBeanDefinition(
-			String parentName, String beanClassName, ConstructorArgumentValues cargs, MutablePropertyValues pvs) {
-
+	public ChildBeanDefinition(String parentName, String beanClassName, ConstructorArgumentValues cargs, MutablePropertyValues pvs) {
 		super(cargs, pvs);
 		this.parentName = parentName;
 		setBeanClassName(beanClassName);

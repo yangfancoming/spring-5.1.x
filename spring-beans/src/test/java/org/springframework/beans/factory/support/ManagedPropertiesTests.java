@@ -8,11 +8,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rick Evans
 
- * @author Sam Brannen
- */
 @SuppressWarnings("rawtypes")
 public class ManagedPropertiesTests {
 
