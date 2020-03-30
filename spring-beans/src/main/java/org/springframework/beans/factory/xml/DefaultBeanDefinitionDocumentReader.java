@@ -106,12 +106,12 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	 */
 	@SuppressWarnings("deprecation")  // for Environment.acceptsProfiles(String...)
 	protected void doRegisterBeanDefinitions(Element root) {
-		// Any nested <beans> elements will cause recursion in this method. In
-		// order to propagate and preserve <beans> default-* attributes correctly,
-		// keep track of the current (parent) delegate, which may be null. Create
-		// the new (child) delegate with a reference to the parent for fallback purposes,
-		// then ultimately reset this.delegate back to its original (parent) reference.
-		// this behavior emulates a stack of delegates without actually necessitating one.
+		/**
+		 * 	Any nested <beans> elements will cause recursion in this method.
+		 * 	In order to propagate and preserve <beans> default-* attributes correctly, keep track of the current (parent) delegate, which may be null.
+		 * 	Create the new (child) delegate with a reference to the parent for fallback purposes,then ultimately reset this.delegate back to its original (parent) reference.
+		 * 	this behavior emulates a stack of delegates without actually necessitating one.
+		*/
 		//标签beans可能会存在递归的情况, 每次都创建自己的解析器
 		// 1、创建BeanDefinitionParserDelegate对象，用来解析Element元素
 		BeanDefinitionParserDelegate parent = this.delegate;

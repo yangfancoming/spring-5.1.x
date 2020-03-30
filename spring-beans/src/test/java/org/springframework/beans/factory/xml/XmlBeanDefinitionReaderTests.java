@@ -25,18 +25,19 @@ public class XmlBeanDefinitionReaderTests {
 	SimpleBeanDefinitionRegistry registry = new SimpleBeanDefinitionRegistry();
 	XmlBeanDefinitionReader xmlBeanDefinitionReader = new XmlBeanDefinitionReader(registry);
 
-
 	@Test
 	public void setParserClassSunnyDay() {
 		xmlBeanDefinitionReader.setDocumentReaderClass(DefaultBeanDefinitionDocumentReader.class);
 	}
 
+	// 测试 使用 InputStreamResource  加载资源  没有指定 校检模式 导致异常
 	@Test(expected = BeanDefinitionStoreException.class)
 	public void withOpenInputStream() {
 		Resource resource = new InputStreamResource(getClass().getResourceAsStream("test.xml"));
 		xmlBeanDefinitionReader.loadBeanDefinitions(resource);
 	}
 
+	// 测试 使用 InputStreamResource  加载资源  指定 VALIDATION_DTD 校检模式
 	@Test
 	public void withOpenInputStreamAndExplicitValidationMode() {
 		Resource resource = new InputStreamResource(getClass().getResourceAsStream("XmlBeanDefinitionReader.xml"));
@@ -44,6 +45,7 @@ public class XmlBeanDefinitionReaderTests {
 		xmlBeanDefinitionReader.loadBeanDefinitions(resource);
 	}
 
+	// 测试 <import> 标签
 	@Test
 	public void withImport() {
 		Resource resource = new ClassPathResource("import.xml", getClass());
@@ -51,6 +53,7 @@ public class XmlBeanDefinitionReaderTests {
 		testBeanDefinitions(registry);
 	}
 
+	// 测试 <import> 标签 带有通配符的方式
 	@Test
 	public void withWildcardImport() {
 		Resource resource = new ClassPathResource("importPattern.xml", getClass());
@@ -58,12 +61,14 @@ public class XmlBeanDefinitionReaderTests {
 		testBeanDefinitions(registry);
 	}
 
+	// 测试 使用 InputSource  加载资源  没有指定 校检模式 导致异常
 	@Test(expected = BeanDefinitionStoreException.class)
 	public void withInputSource() {
 		InputSource resource = new InputSource(getClass().getResourceAsStream("test.xml"));
 		xmlBeanDefinitionReader.loadBeanDefinitions(resource);
 	}
 
+	// 测试 使用 InputSource  加载资源  指定 VALIDATION_DTD 校检模式
 	@Test
 	public void withInputSourceAndExplicitValidationMode() {
 		InputSource resource = new InputSource(getClass().getResourceAsStream("test.xml"));
@@ -72,6 +77,7 @@ public class XmlBeanDefinitionReaderTests {
 		testBeanDefinitions(registry);
 	}
 
+	// ???
 	@Test
 	public void withFreshInputStream() {
 		Resource resource = new ClassPathResource("test.xml", getClass());

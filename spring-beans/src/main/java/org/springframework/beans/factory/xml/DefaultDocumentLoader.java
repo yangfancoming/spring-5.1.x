@@ -18,10 +18,8 @@ import org.springframework.util.xml.XmlValidationModeDetector;
 
 /**
  * Spring's default {@link DocumentLoader} implementation.
- *
- * <p>Simply loads {@link Document documents} using the standard JAXP-configured
- * XML parser. If you want to change the {@link DocumentBuilder} that is used to
- * load documents, then one strategy is to define a corresponding Java system property
+ * <p>Simply loads {@link Document documents} using the standard JAXP-configured XML parser.
+ * If you want to change the {@link DocumentBuilder} that is used to load documents, then one strategy is to define a corresponding Java system property
  * when starting your JVM. For example, to use the Oracle {@link DocumentBuilder}, you might start your application like as follows:
  * <pre code="class">java -Djavax.xml.parsers.DocumentBuilderFactory=oracle.xml.jaxp.JXDocumentBuilderFactory MyMainClass</pre>
  * @since 2.0
@@ -38,9 +36,7 @@ public class DefaultDocumentLoader implements DocumentLoader {
 	 */
 	private static final String XSD_SCHEMA_LANGUAGE = "http://www.w3.org/2001/XMLSchema";
 
-
 	private static final Log logger = LogFactory.getLog(DefaultDocumentLoader.class);
-
 
 	/**
 	 * Load the {@link Document} at the supplied {@link InputSource} using the standard JAXP-configured  XML parser.
@@ -86,8 +82,7 @@ public class DefaultDocumentLoader implements DocumentLoader {
 				factory.setNamespaceAware(true);
 				try {
 					factory.setAttribute(SCHEMA_LANGUAGE_ATTRIBUTE, XSD_SCHEMA_LANGUAGE);
-				}
-				catch (IllegalArgumentException ex) {
+				}catch (IllegalArgumentException ex) {
 					ParserConfigurationException pcex = new ParserConfigurationException( "Unable to validate using XSD: Your JAXP provider [" + factory +
 							"] does not support XML Schema. Are you running on Java 1.4 with Apache Crimson? Upgrade to Apache Xerces (or Java 1.5) for full XSD support.");
 					pcex.initCause(ex);
@@ -99,8 +94,8 @@ public class DefaultDocumentLoader implements DocumentLoader {
 	}
 
 	/**
-	 * Create a JAXP DocumentBuilder that this bean definition reader
-	 * will use for parsing XML documents. Can be overridden in subclasses,adding further initialization of the builder.
+	 * Create a JAXP DocumentBuilder that this bean definition reader will use for parsing XML documents.
+	 * Can be overridden in subclasses,adding further initialization of the builder.
 	 * @param factory the JAXP DocumentBuilderFactory that the DocumentBuilder should be created with
 	 * @param entityResolver the SAX EntityResolver to use
 	 * @param errorHandler the SAX ErrorHandler to use
@@ -110,14 +105,10 @@ public class DefaultDocumentLoader implements DocumentLoader {
 	protected DocumentBuilder createDocumentBuilder(DocumentBuilderFactory factory,@Nullable EntityResolver entityResolver, @Nullable ErrorHandler errorHandler) throws ParserConfigurationException {
 		// 1、创建DocumentBuilder对象
 		DocumentBuilder docBuilder = factory.newDocumentBuilder();
-		// 2、尝试设置entityResolver
-		if (entityResolver != null) {
-			docBuilder.setEntityResolver(entityResolver);
-		}
-		// 3、尝试设置errorHandler
-		if (errorHandler != null) {
-			docBuilder.setErrorHandler(errorHandler);
-		}
+		// 2、尝试设置 entityResolver
+		if (entityResolver != null) docBuilder.setEntityResolver(entityResolver);
+		// 3、尝试设置 errorHandler
+		if (errorHandler != null) docBuilder.setErrorHandler(errorHandler);
 		return docBuilder;
 	}
 

@@ -5,9 +5,6 @@ package org.springframework.beans.factory.parsing;
 /**
  * SPI interface allowing tools and other external processes to handle errors
  * and warnings reported during bean definition parsing.
- *
- * @author Rob Harrop
-
  * @since 2.0
  * @see Problem
  */

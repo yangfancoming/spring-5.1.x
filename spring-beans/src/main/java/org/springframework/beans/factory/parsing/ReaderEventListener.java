@@ -7,9 +7,6 @@ import java.util.EventListener;
 /**
  * Interface that receives callbacks for component, alias and import
  * registrations during a bean definition reading process.
- *
- * @author Rob Harrop
-
  * @since 2.0
  * @see ReaderContext
  */

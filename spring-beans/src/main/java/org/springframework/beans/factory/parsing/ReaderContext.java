@@ -6,11 +6,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.lang.Nullable;
 
 /**
- * Context that gets passed along a bean definition reading process,
- * encapsulating all relevant configuration as well as state.
- *
- * @author Rob Harrop
-
+ * Context that gets passed along a bean definition reading process,encapsulating all relevant configuration as well as state.
  * @since 2.0
  */
 public class ReaderContext {
@@ -23,7 +19,6 @@ public class ReaderContext {
 
 	private final SourceExtractor sourceExtractor;
 
-
 	/**
 	 * Construct a new {@code ReaderContext}.
 	 * @param resource the XML bean definition resource
@@ -31,9 +26,7 @@ public class ReaderContext {
 	 * @param eventListener the event listener in use
 	 * @param sourceExtractor the source extractor in use
 	 */
-	public ReaderContext(Resource resource, ProblemReporter problemReporter,
-			ReaderEventListener eventListener, SourceExtractor sourceExtractor) {
-
+	public ReaderContext(Resource resource, ProblemReporter problemReporter,ReaderEventListener eventListener, SourceExtractor sourceExtractor) {
 		this.resource = resource;
 		this.problemReporter = problemReporter;
 		this.eventListener = eventListener;
@@ -44,9 +37,7 @@ public class ReaderContext {
 		return this.resource;
 	}
 
-
 	// Errors and warnings
-
 	/**
 	 * Raise a fatal error.
 	 */
@@ -172,9 +163,7 @@ public class ReaderContext {
 		this.eventListener.importProcessed(new ImportDefinition(importedResource, actualResources, source));
 	}
 
-
 	// Source extraction
-
 	/**
 	 * Return the source extractor in use.
 	 */

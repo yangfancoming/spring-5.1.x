@@ -71,6 +71,10 @@ import org.springframework.util.xml.DomUtils;
  * 如果namespace uri 不是http://www.springframework.org/schema/beans，则会使用 NamespaceHandlerResolver 来解析出一个NamespaceHandler，
  * 使用NamespaceHandler 来解析处理这个元素。NamespaceHandlerResovler和NamespaceHandler 就是扩展 spring 的秘密所在。
  * NamespaceHandlerResolver是一个接口，spring使用与EntityResolver 相同的策略来实现，这个后面会提到。当这一步完成了spring 也就完成了读取解析xml 配置。
+ *
+ * 一开始就声明了各种常量字符串，都是在Spring的配置文件中常见的属性值。
+ * BeanDefinitionParserDelegate类提供了解析spring配置文件功能,对于默认空间下的元素()在该类内部实现,
+ * 对于其它命名空间下的元素可以通过绑定NamespaceHandler的方式来实现,针对每个命名空间下的元素提供不同BeanDefinitionParser来实现.
  */
 public class BeanDefinitionParserDelegate {
 
@@ -233,8 +237,7 @@ public class BeanDefinitionParserDelegate {
 	/**
 	 * Populate the given DocumentDefaultsDefinition instance with the default lazy-init,
 	 * autowire, dependency check settings, init-method, destroy-method and merge settings.
-	 * Support nested 'beans' element use cases by falling back to {@code parentDefaults}
-	 * in case the defaults are not explicitly set locally.
+	 * Support nested 'beans' element use cases by falling back to {@code parentDefaults} in case the defaults are not explicitly set locally.
 	 * @param defaults the defaults to populate
 	 * @param parentDefaults the parent BeanDefinitionParserDelegate (if any) defaults to fall back to
 	 * @param root the root element of the current bean definition document (or nested beans element)
@@ -263,22 +266,19 @@ public class BeanDefinitionParserDelegate {
 
 		if (root.hasAttribute(DEFAULT_AUTOWIRE_CANDIDATES_ATTRIBUTE)) {
 			defaults.setAutowireCandidates(root.getAttribute(DEFAULT_AUTOWIRE_CANDIDATES_ATTRIBUTE));
-		}
-		else if (parentDefaults != null) {
+		}else if (parentDefaults != null) {
 			defaults.setAutowireCandidates(parentDefaults.getAutowireCandidates());
 		}
 
 		if (root.hasAttribute(DEFAULT_INIT_METHOD_ATTRIBUTE)) {
 			defaults.setInitMethod(root.getAttribute(DEFAULT_INIT_METHOD_ATTRIBUTE));
-		}
-		else if (parentDefaults != null) {
+		}else if (parentDefaults != null) {
 			defaults.setInitMethod(parentDefaults.getInitMethod());
 		}
 
 		if (root.hasAttribute(DEFAULT_DESTROY_METHOD_ATTRIBUTE)) {
 			defaults.setDestroyMethod(root.getAttribute(DEFAULT_DESTROY_METHOD_ATTRIBUTE));
-		}
-		else if (parentDefaults != null) {
+		}else if (parentDefaults != null) {
 			defaults.setDestroyMethod(parentDefaults.getDestroyMethod());
 		}
 		defaults.setSource(this.readerContext.extractSource(root));
@@ -326,7 +326,9 @@ public class BeanDefinitionParserDelegate {
 		return parseBeanDefinitionElement(ele, null);
 	}
 
-	/**  最终解析xml成BeanDefinition
+	/**
+	 *  最终解析xml成BeanDefinition
+	 * 填充各种默认的属性
 	 * Parses the supplied {@code <bean>} element. May return {@code null}
 	 * if there were errors during parse. Errors are reported to the
 	 * {@link org.springframework.beans.factory.parsing.ProblemReporter}.
@@ -391,9 +393,7 @@ public class BeanDefinitionParserDelegate {
 							aliases.add(beanClassName);
 						}
 					}
-					if (logger.isTraceEnabled()) {
-						logger.trace("Neither XML 'id' nor 'name' specified - " + "using generated bean name [" + beanName + "]");
-					}
+					if (logger.isTraceEnabled()) logger.trace("Neither XML 'id' nor 'name' specified - " + "using generated bean name [" + beanName + "]");
 				} catch (Exception ex) {
 					error(ex.getMessage(), ele);
 					return null;
@@ -496,20 +496,18 @@ public class BeanDefinitionParserDelegate {
 		// 1、设置bean作用域
 		if (ele.hasAttribute(SINGLETON_ATTRIBUTE)) {
 			error("Old 1.x 'singleton' attribute in use - upgrade to 'scope' declaration", ele);
-		}
-		else if (ele.hasAttribute(SCOPE_ATTRIBUTE)) {
+		}else if (ele.hasAttribute(SCOPE_ATTRIBUTE)) {
 			// 获取并设置scope属性值
 			bd.setScope(ele.getAttribute(SCOPE_ATTRIBUTE));
-		}
-		else if (containingBean != null) {
+		}else if (containingBean != null) {
 			// Take default from containing bean in case of an inner bean definition. // 没有scope属性值，则将父bean的scope属性设置给当前bean
 			// 未明确指定bean的作用域,且当前被解析bean是内部bean的话，则默认使用outer bean的的作用域作为当前bean的作用域
 			// 例如:下面的配置，解析到inner属性时，inner未指定作用域，则使用outer的作用域，也就是prototype
 			/**
 			 <bean id="outer" class="com.lyc.cn.v2.day01.inner.Outer" scope="prototype">
-			 <property name="inner">
-			 <bean id="inner" class="com.lyc.cn.v2.day01.inner.Inner"/>
-			 </property>
+				 <property name="inner">
+					 <bean id="inner" class="com.lyc.cn.v2.day01.inner.Inner"/>
+				 </property>
 			 </bean>
 			 **/
 			bd.setScope(containingBean.getScope());

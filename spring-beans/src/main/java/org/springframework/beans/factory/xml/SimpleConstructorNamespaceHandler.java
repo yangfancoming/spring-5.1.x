@@ -18,28 +18,16 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Simple {@code NamespaceHandler} implementation that maps custom
- * attributes directly through to bean properties. An important point to note is
- * that this {@code NamespaceHandler} does not have a corresponding schema
+ * Simple {@code NamespaceHandler} implementation that maps custom attributes directly through to bean properties.
+ * An important point to note is  that this {@code NamespaceHandler} does not have a corresponding schema
  * since there is no way to know in advance all possible attribute names.
- *
- * <p>An example of the usage of this {@code NamespaceHandler} is shown below:
- *
- * <pre class="code">
+ * An example of the usage of this {@code NamespaceHandler} is shown below:
  * &lt;bean id=&quot;author&quot; class=&quot;..TestBean&quot; c:name=&quot;Enescu&quot; c:work-ref=&quot;compositions&quot;/&gt;
- * </pre>
- *
- * Here the '{@code c:name}' corresponds directly to the '{@code name}
- * ' argument declared on the constructor of class '{@code TestBean}'. The
- * '{@code c:work-ref}' attributes corresponds to the '{@code work}'
- * argument and, rather than being the concrete value, it contains the name of
- * the bean that will be considered as a parameter.
- *
- * <b>Note</b>: This implementation supports only named parameters - there is no
- * support for indexes or types. Further more, the names are used as hints by
- * the container which, by default, does type introspection.
- *
- * @author Costin Leau
+ * Here the '{@code c:name}' corresponds directly to the '{@code name} ' argument declared on the constructor of class '{@code TestBean}'.
+ * The '{@code c:work-ref}' attributes corresponds to the '{@code work}' argument and,
+ * rather than being the concrete value, it contains the name of the bean that will be considered as a parameter.
+ * <b>Note</b>: This implementation supports only named parameters - there is no support for indexes or types.
+ * Further more, the names are used as hints by the container which, by default, does type introspection.
  * @since 3.1
  * @see SimplePropertyNamespaceHandler
  */
@@ -49,10 +37,8 @@ public class SimpleConstructorNamespaceHandler implements NamespaceHandler {
 
 	private static final String DELIMITER_PREFIX = "_";
 
-
 	@Override
-	public void init() {
-	}
+	public void init() {}
 
 	@Override
 	@Nullable
@@ -67,7 +53,6 @@ public class SimpleConstructorNamespaceHandler implements NamespaceHandler {
 			Attr attr = (Attr) node;
 			String argName = StringUtils.trimWhitespace(parserContext.getDelegate().getLocalName(attr));
 			String argValue = StringUtils.trimWhitespace(attr.getValue());
-
 			ConstructorArgumentValues cvs = definition.getBeanDefinition().getConstructorArgumentValues();
 			boolean ref = false;
 
@@ -83,42 +68,31 @@ public class SimpleConstructorNamespaceHandler implements NamespaceHandler {
 			// handle "escaped"/"_" arguments
 			if (argName.startsWith(DELIMITER_PREFIX)) {
 				String arg = argName.substring(1).trim();
-
 				// fast default check
 				if (!StringUtils.hasText(arg)) {
 					cvs.addGenericArgumentValue(valueHolder);
-				}
+				}else {
 				// assume an index otherwise
-				else {
 					int index = -1;
 					try {
 						index = Integer.parseInt(arg);
-					}
-					catch (NumberFormatException ex) {
-						parserContext.getReaderContext().error(
-								"Constructor argument '" + argName + "' specifies an invalid integer", attr);
+					}catch (NumberFormatException ex) {
+						parserContext.getReaderContext().error("Constructor argument '" + argName + "' specifies an invalid integer", attr);
 					}
 					if (index < 0) {
-						parserContext.getReaderContext().error(
-								"Constructor argument '" + argName + "' specifies a negative index", attr);
+						parserContext.getReaderContext().error("Constructor argument '" + argName + "' specifies a negative index", attr);
 					}
 
 					if (cvs.hasIndexedArgumentValue(index)) {
-						parserContext.getReaderContext().error(
-								"Constructor argument '" + argName + "' with index "+ index+" already defined using <constructor-arg>." +
-								" Only one approach may be used per argument.", attr);
+						parserContext.getReaderContext().error("Constructor argument '" + argName + "' with index "+ index+" already defined using <constructor-arg>. Only one approach may be used per argument.", attr);
 					}
-
 					cvs.addIndexedArgumentValue(index, valueHolder);
 				}
-			}
+			}else {
 			// no escaping -> ctr name
-			else {
 				String name = Conventions.attributeNameToPropertyName(argName);
 				if (containsArgWithName(name, cvs)) {
-					parserContext.getReaderContext().error(
-							"Constructor argument '" + argName + "' already defined using <constructor-arg>." +
-							" Only one approach may be used per argument.", attr);
+					parserContext.getReaderContext().error("Constructor argument '" + argName + "' already defined using <constructor-arg>. Only one approach may be used per argument.", attr);
 				}
 				valueHolder.setName(Conventions.attributeNameToPropertyName(argName));
 				cvs.addGenericArgumentValue(valueHolder);
@@ -128,8 +102,7 @@ public class SimpleConstructorNamespaceHandler implements NamespaceHandler {
 	}
 
 	private boolean containsArgWithName(String name, ConstructorArgumentValues cvs) {
-		return (checkName(name, cvs.getGenericArgumentValues()) ||
-				checkName(name, cvs.getIndexedArgumentValues().values()));
+		return (checkName(name, cvs.getGenericArgumentValues()) || checkName(name, cvs.getIndexedArgumentValues().values()));
 	}
 
 	private boolean checkName(String name, Collection<ValueHolder> values) {

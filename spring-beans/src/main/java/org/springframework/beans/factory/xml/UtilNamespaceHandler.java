@@ -21,15 +21,11 @@ import org.springframework.util.StringUtils;
 
 /**
  * {@link NamespaceHandler} for the {@code util} namespace.
- *
- * @author Rob Harrop
-
  * @since 2.0
  */
 public class UtilNamespaceHandler extends NamespaceHandlerSupport {
 
 	private static final String SCOPE_ATTRIBUTE = "scope";
-
 
 	@Override
 	public void init() {
@@ -40,7 +36,6 @@ public class UtilNamespaceHandler extends NamespaceHandlerSupport {
 		registerBeanDefinitionParser("map", new MapBeanDefinitionParser());
 		registerBeanDefinitionParser("properties", new PropertiesBeanDefinitionParser());
 	}
-
 
 	private static class ConstantBeanDefinitionParser extends AbstractSimpleBeanDefinitionParser {
 
@@ -76,8 +71,7 @@ public class UtilNamespaceHandler extends NamespaceHandlerSupport {
 			}
 			int dotIndex = path.indexOf('.');
 			if (dotIndex == -1) {
-				parserContext.getReaderContext().error(
-						"Attribute 'path' must follow pattern 'beanName.propertyName'", element);
+				parserContext.getReaderContext().error("Attribute 'path' must follow pattern 'beanName.propertyName'", element);
 				return;
 			}
 			String beanName = path.substring(0, dotIndex);
@@ -183,20 +177,14 @@ public class UtilNamespaceHandler extends NamespaceHandlerSupport {
 		protected void doParse(Element element, ParserContext parserContext, BeanDefinitionBuilder builder) {
 			Properties parsedProps = parserContext.getDelegate().parsePropsElement(element);
 			builder.addPropertyValue("properties", parsedProps);
-
 			String location = element.getAttribute("location");
 			if (StringUtils.hasLength(location)) {
 				location = parserContext.getReaderContext().getEnvironment().resolvePlaceholders(location);
 				String[] locations = StringUtils.commaDelimitedListToStringArray(location);
 				builder.addPropertyValue("locations", locations);
 			}
-
-			builder.addPropertyValue("ignoreResourceNotFound",
-					Boolean.valueOf(element.getAttribute("ignore-resource-not-found")));
-
-			builder.addPropertyValue("localOverride",
-					Boolean.valueOf(element.getAttribute("local-override")));
-
+			builder.addPropertyValue("ignoreResourceNotFound",Boolean.valueOf(element.getAttribute("ignore-resource-not-found")));
+			builder.addPropertyValue("localOverride",Boolean.valueOf(element.getAttribute("local-override")));
 			String scope = element.getAttribute(SCOPE_ATTRIBUTE);
 			if (StringUtils.hasLength(scope)) {
 				builder.setScope(scope);

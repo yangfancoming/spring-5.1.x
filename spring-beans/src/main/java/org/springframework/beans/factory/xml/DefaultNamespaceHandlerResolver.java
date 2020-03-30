@@ -21,9 +21,7 @@ import org.springframework.util.CollectionUtils;
 /**
  * Default implementation of the {@link NamespaceHandlerResolver} interface.
  * Resolves namespace URIs to implementation classes based on the mappings contained in mapping file.
- *
- * <p>By default, this implementation looks for the mapping file at
- * {@code META-INF/spring.handlers}, but this can be changed using the
+ * By default, this implementation looks for the mapping file at {@code META-INF/spring.handlers}, but this can be changed using the
  * {@link #DefaultNamespaceHandlerResolver(ClassLoader, String)} constructor.
  * @since 2.0
  * @see NamespaceHandler
@@ -52,10 +50,8 @@ public class DefaultNamespaceHandlerResolver implements NamespaceHandlerResolver
 
 
 	/**
-	 * Create a new {@code DefaultNamespaceHandlerResolver} using the
-	 * default mapping file location.
-	 * <p>This constructor will result in the thread context ClassLoader being used
-	 * to load resources.
+	 * Create a new {@code DefaultNamespaceHandlerResolver} using the default mapping file location.
+	 * This constructor will result in the thread context ClassLoader being used to load resources.
 	 * @see #DEFAULT_HANDLER_MAPPINGS_LOCATION
 	 */
 	public DefaultNamespaceHandlerResolver() {
@@ -63,10 +59,8 @@ public class DefaultNamespaceHandlerResolver implements NamespaceHandlerResolver
 	}
 
 	/**
-	 * Create a new {@code DefaultNamespaceHandlerResolver} using the
-	 * default mapping file location.
-	 * @param classLoader the {@link ClassLoader} instance used to load mapping resources
-	 * (may be {@code null}, in which case the thread context ClassLoader will be used)
+	 * Create a new {@code DefaultNamespaceHandlerResolver} using the default mapping file location.
+	 * @param classLoader the {@link ClassLoader} instance used to load mapping resources (may be {@code null}, in which case the thread context ClassLoader will be used)
 	 * @see #DEFAULT_HANDLER_MAPPINGS_LOCATION
 	 */
 	public DefaultNamespaceHandlerResolver(@Nullable ClassLoader classLoader) {
@@ -74,10 +68,8 @@ public class DefaultNamespaceHandlerResolver implements NamespaceHandlerResolver
 	}
 
 	/**
-	 * Create a new {@code DefaultNamespaceHandlerResolver} using the
-	 * supplied mapping file location.
-	 * @param classLoader the {@link ClassLoader} instance used to load mapping resources
-	 * may be {@code null}, in which case the thread context ClassLoader will be used)
+	 * Create a new {@code DefaultNamespaceHandlerResolver} using the supplied mapping file location.
+	 * @param classLoader the {@link ClassLoader} instance used to load mapping resources  may be {@code null}, in which case the thread context ClassLoader will be used)
 	 * @param handlerMappingsLocation the mapping file location
 	 */
 	public DefaultNamespaceHandlerResolver(@Nullable ClassLoader classLoader, String handlerMappingsLocation) {
@@ -100,12 +92,10 @@ public class DefaultNamespaceHandlerResolver implements NamespaceHandlerResolver
 		// 查看是否存在当前url的处理类逻辑，没有则返回null
 		if (handlerOrClassName == null) {
 			return null;
-		}
-		else if (handlerOrClassName instanceof NamespaceHandler) {
+		}else if (handlerOrClassName instanceof NamespaceHandler) {
 			// 如果存在当前url对应的处理类对象，则直接返回该处理对象
 			return (NamespaceHandler) handlerOrClassName;
-		}
-		else {
+		}else {
 			// 如果当前url对应的处理逻辑还是一个没初始化的全路径类名，则通过反射对其进行初始化
 			String className = (String) handlerOrClassName;
 			try {
@@ -118,11 +108,9 @@ public class DefaultNamespaceHandlerResolver implements NamespaceHandlerResolver
 				namespaceHandler.init(); // 调用处理逻辑的初始化方法
 				handlerMappings.put(namespaceUri, namespaceHandler);//缓存处理逻辑类对象
 				return namespaceHandler;
-			}
-			catch (ClassNotFoundException ex) {
+			}catch (ClassNotFoundException ex) {
 				throw new FatalBeanException("Could not find NamespaceHandler class [" + className + "] for namespace [" + namespaceUri + "]", ex);
-			}
-			catch (LinkageError err) {
+			}catch (LinkageError err) {
 				throw new FatalBeanException("Unresolvable class definition for NamespaceHandler class [" + className + "] for namespace [" + namespaceUri + "]", err);
 			}
 		}
@@ -137,9 +125,7 @@ public class DefaultNamespaceHandlerResolver implements NamespaceHandlerResolver
 			synchronized (this) {
 				handlerMappings = this.handlerMappings;
 				if (handlerMappings == null) {
-					if (logger.isTraceEnabled()) {
-						logger.trace("Loading NamespaceHandler mappings from [" + this.handlerMappingsLocation + "]");
-					}
+					if (logger.isTraceEnabled()) logger.trace("Loading NamespaceHandler mappings from [" + this.handlerMappingsLocation + "]");
 					try {
 						Properties mappings = PropertiesLoaderUtils.loadAllProperties(this.handlerMappingsLocation, this.classLoader);
 						if (logger.isTraceEnabled()) {
@@ -148,8 +134,7 @@ public class DefaultNamespaceHandlerResolver implements NamespaceHandlerResolver
 						handlerMappings = new ConcurrentHashMap<>(mappings.size());
 						CollectionUtils.mergePropertiesIntoMap(mappings, handlerMappings);
 						this.handlerMappings = handlerMappings;
-					}
-					catch (IOException ex) {
+					}catch (IOException ex) {
 						throw new IllegalStateException("Unable to load NamespaceHandler mappings from location [" + this.handlerMappingsLocation + "]", ex);
 					}
 				}
@@ -158,10 +143,8 @@ public class DefaultNamespaceHandlerResolver implements NamespaceHandlerResolver
 		return handlerMappings;
 	}
 
-
 	@Override
 	public String toString() {
 		return "NamespaceHandlerResolver using mappings " + getHandlerMappings();
 	}
-
 }
