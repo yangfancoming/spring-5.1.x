@@ -21,7 +21,6 @@ public class BeanMetadataAttribute implements BeanMetadataElement {
 	@Nullable
 	private Object source;
 
-
 	/**
 	 * Create a new AttributeValue instance.
 	 * @param name the name of the attribute (never {@code null})
@@ -33,17 +32,12 @@ public class BeanMetadataAttribute implements BeanMetadataElement {
 		this.value = value;
 	}
 
-
-	/**
-	 * Return the name of the attribute.
-	 */
+	/** Return the name of the attribute.*/
 	public String getName() {
 		return this.name;
 	}
-
-	/**
-	 * Return the value of the attribute.
-	 */
+	
+	/** Return the value of the attribute.*/
 	@Nullable
 	public Object getValue() {
 		return this.value;
@@ -51,24 +45,27 @@ public class BeanMetadataAttribute implements BeanMetadataElement {
 
 	/**
 	 * Set the configuration source {@code Object} for this metadata element.
-	 * <p>The exact type of the object will depend on the configuration mechanism used.
+	 * The exact type of the object will depend on the configuration mechanism used.
 	 */
 	public void setSource(@Nullable Object source) {
 		this.source = source;
 	}
 
+	//---------------------------------------------------------------------
+	// Implementation of 【BeanMetadataElement】 interface
+	//---------------------------------------------------------------------
 	@Override
 	@Nullable
 	public Object getSource() {
 		return this.source;
 	}
 
-
+	//---------------------------------------------------------------------
+	// Implementation of 【JDK】 interface
+	//---------------------------------------------------------------------
 	@Override
 	public boolean equals(Object other) {
-		if (this == other) {
-			return true;
-		}
+		if (this == other) return true;
 		if (!(other instanceof BeanMetadataAttribute)) {
 			return false;
 		}

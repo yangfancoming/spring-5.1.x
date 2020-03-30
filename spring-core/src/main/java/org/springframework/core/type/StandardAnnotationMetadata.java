@@ -62,8 +62,7 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 
 	@Override
 	public Set<String> getMetaAnnotationTypes(String annotationName) {
-		return (this.annotations.length > 0 ?
-				AnnotatedElementUtils.getMetaAnnotationTypes(getIntrospectedClass(), annotationName) : Collections.emptySet());
+		return (this.annotations.length > 0 ? AnnotatedElementUtils.getMetaAnnotationTypes(getIntrospectedClass(), annotationName) : Collections.emptySet());
 	}
 
 	@Override

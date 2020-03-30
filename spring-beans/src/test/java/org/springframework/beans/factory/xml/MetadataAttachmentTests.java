@@ -19,27 +19,27 @@ public class MetadataAttachmentTests {
 
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp()  {
 		this.beanFactory = new DefaultListableBeanFactory();
 		new XmlBeanDefinitionReader(this.beanFactory).loadBeanDefinitions(
 				new ClassPathResource("withMeta.xml", getClass()));
 	}
 
 	@Test
-	public void metadataAttachment() throws Exception {
+	public void metadataAttachment()  {
 		BeanDefinition beanDefinition1 = this.beanFactory.getMergedBeanDefinition("testBean1");
 		assertEquals("bar", beanDefinition1.getAttribute("foo"));
 	}
 
 	@Test
-	public void metadataIsInherited() throws Exception {
+	public void metadataIsInherited()  {
 		BeanDefinition beanDefinition = this.beanFactory.getMergedBeanDefinition("testBean2");
 		assertEquals("Metadata not inherited", "bar", beanDefinition.getAttribute("foo"));
 		assertEquals("Child metdata not attached", "123", beanDefinition.getAttribute("abc"));
 	}
 
 	@Test
-	public void propertyMetadata() throws Exception {
+	public void propertyMetadata()  {
 		BeanDefinition beanDefinition = this.beanFactory.getMergedBeanDefinition("testBean3");
 		PropertyValue pv = beanDefinition.getPropertyValues().getPropertyValue("name");
 		assertEquals("Harrop", pv.getAttribute("surname"));

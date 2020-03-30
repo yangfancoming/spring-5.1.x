@@ -10,13 +10,11 @@ import org.springframework.util.ObjectUtils;
 
 /**
  * Object to hold information and value for an individual bean property.
- * Using an object here, rather than just storing all properties in
- * a map keyed by property name, allows for more flexibility, and the
- * ability to handle indexed properties etc in an optimized way.
+ * Using an object here, rather than just storing all properties in a map keyed by property name,
+ * allows for more flexibility, and the ability to handle indexed properties etc in an optimized way.
  *
- * <p>Note that the value doesn't need to be the final required type:
- * A {@link BeanWrapper} implementation should handle any necessary conversion,
- * as this object doesn't know anything about the objects it will be applied to.
+ * Note that the value doesn't need to be the final required type:
+ * A {@link BeanWrapper} implementation should handle any necessary conversion,as this object doesn't know anything about the objects it will be applied to.
  * @since 13 May 2001
  * @see PropertyValues
  * @see BeanWrapper
@@ -43,7 +41,6 @@ public class PropertyValue extends BeanMetadataAttributeAccessor implements Seri
 	/** Package-visible field for caching the resolved property path tokens. */
 	@Nullable
 	transient volatile Object resolvedTokens;
-
 
 	/**
 	 * Create a new PropertyValue instance.
@@ -90,7 +87,6 @@ public class PropertyValue extends BeanMetadataAttributeAccessor implements Seri
 		copyAttributesFrom(original);
 	}
 
-
 	/**
 	 * Return the name of the property.
 	 */
@@ -100,9 +96,8 @@ public class PropertyValue extends BeanMetadataAttributeAccessor implements Seri
 
 	/**
 	 * Return the value of the property.
-	 * <p>Note that type conversion will <i>not</i> have occurred here.
-	 * It is the responsibility of the BeanWrapper implementation to
-	 * perform type conversion.
+	 * Note that type conversion will <i>not</i> have occurred here.
+	 * It is the responsibility of the BeanWrapper implementation to perform type conversion.
 	 */
 	@Nullable
 	public Object getValue() {
@@ -111,8 +106,7 @@ public class PropertyValue extends BeanMetadataAttributeAccessor implements Seri
 
 	/**
 	 * Return the original PropertyValue instance for this value holder.
-	 * @return the original PropertyValue (either a source of this
-	 * value holder or this value holder itself).
+	 * @return the original PropertyValue (either a source of this value holder or this value holder itself).
 	 */
 	public PropertyValue getOriginalPropertyValue() {
 		PropertyValue original = this;
@@ -125,8 +119,7 @@ public class PropertyValue extends BeanMetadataAttributeAccessor implements Seri
 	}
 
 	/**
-	 * Set whether this is an optional value, that is, to be ignored
-	 * when no corresponding property exists on the target class.
+	 * Set whether this is an optional value, that is, to be ignored  when no corresponding property exists on the target class.
 	 * @since 3.0
 	 */
 	public void setOptional(boolean optional) {
@@ -134,8 +127,7 @@ public class PropertyValue extends BeanMetadataAttributeAccessor implements Seri
 	}
 
 	/**
-	 * Return whether this is an optional value, that is, to be ignored
-	 * when no corresponding property exists on the target class.
+	 * Return whether this is an optional value, that is, to be ignored  when no corresponding property exists on the target class.
 	 * @since 3.0
 	 */
 	public boolean isOptional() {
@@ -143,22 +135,23 @@ public class PropertyValue extends BeanMetadataAttributeAccessor implements Seri
 	}
 
 	/**
-	 * Return whether this holder contains a converted value already ({@code true}),
-	 * or whether the value still needs to be converted ({@code false}).
+	 * Return whether this holder contains a converted value already ({@code true}),or whether the value still needs to be converted ({@code false}).
 	 */
 	public synchronized boolean isConverted() {
 		return this.converted;
 	}
 
 	/**
-	 * Set the converted value of this property value,
-	 * after processed type conversion.
+	 * Set the converted value of this property value,after processed type conversion.
 	 */
 	public synchronized void setConvertedValue(@Nullable Object value) {
 		this.converted = true;
 		this.convertedValue = value;
 	}
 
+	//---------------------------------------------------------------------
+	// Implementation of 【JDK】 interface
+	//---------------------------------------------------------------------
 	/**
 	 * Return the converted value of this property value,
 	 * after processed type conversion.
@@ -168,12 +161,9 @@ public class PropertyValue extends BeanMetadataAttributeAccessor implements Seri
 		return this.convertedValue;
 	}
 
-
 	@Override
 	public boolean equals(Object other) {
-		if (this == other) {
-			return true;
-		}
+		if (this == other) return true;
 		if (!(other instanceof PropertyValue)) {
 			return false;
 		}

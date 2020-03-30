@@ -18,7 +18,6 @@ public class ScopeMetadata {
 
 	private ScopedProxyMode scopedProxyMode = ScopedProxyMode.NO;
 
-
 	/**
 	 * Set the name of the scope.
 	 */

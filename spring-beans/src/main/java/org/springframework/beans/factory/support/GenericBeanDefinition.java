@@ -44,7 +44,9 @@ public class GenericBeanDefinition extends AbstractBeanDefinition {
 		super(original);
 	}
 
-
+	//---------------------------------------------------------------------
+	// Implementation of 【BeanDefinition】 interface
+	//---------------------------------------------------------------------
 	@Override
 	public void setParentName(@Nullable String parentName) {
 		this.parentName = parentName;
@@ -56,11 +58,17 @@ public class GenericBeanDefinition extends AbstractBeanDefinition {
 		return this.parentName;
 	}
 
-
+	//---------------------------------------------------------------------
+	// Implementation of 【AbstractBeanDefinition】 interface
+	//---------------------------------------------------------------------
 	@Override
 	public AbstractBeanDefinition cloneBeanDefinition() {
 		return new GenericBeanDefinition(this);
 	}
+
+	//---------------------------------------------------------------------
+	// Implementation of 【JDK】 interface
+	//---------------------------------------------------------------------
 
 	@Override
 	public boolean equals(Object other) {

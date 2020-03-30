@@ -14,9 +14,6 @@ import org.springframework.lang.Nullable;
 /**
  * Holder containing one or more {@link PropertyValue} objects,
  * typically comprising one update for a specific target bean.
- *
- * @author Rod Johnson
-
  * @since 13 May 2001
  * @see PropertyValue
  */

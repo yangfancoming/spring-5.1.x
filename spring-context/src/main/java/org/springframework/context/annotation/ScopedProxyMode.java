@@ -6,10 +6,7 @@ package org.springframework.context.annotation;
  * Enumerates the various scoped-proxy options.
  *
  * <p>For a more complete discussion of exactly what a scoped proxy is, see the
- * section of the Spring reference documentation entitled '<em>Scoped beans as
- * dependencies</em>'.
- *
- * @author Mark Fisher
+ * section of the Spring reference documentation entitled '<em>Scoped beans as dependencies</em>'.
  * @since 2.5
  * @see ScopeMetadata
  */

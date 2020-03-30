@@ -9,15 +9,7 @@ import org.springframework.util.MultiValueMap;
 
 /**
  * Defines access to the annotations of a specific type ({@link AnnotationMetadata class}
- * or {@link MethodMetadata method}), in a form that does not necessarily require the
- * class-loading.
- *
-
- * @author Mark Fisher
- * @author Mark Pollack
-
- * @author Phillip Webb
- * @author Sam Brannen
+ * or {@link MethodMetadata method}), in a form that does not necessarily require the class-loading.
  * @since 4.0
  * @see AnnotationMetadata
  * @see MethodMetadata

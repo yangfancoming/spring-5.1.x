@@ -60,7 +60,7 @@ public class AnnotatedBeanDefinitionReader {
 		Assert.notNull(registry, "BeanDefinitionRegistry must not be null");
 		Assert.notNull(environment, "Environment must not be null");
 		this.registry = registry;
-		this.conditionEvaluator = new ConditionEvaluator(registry, environment, null);
+		conditionEvaluator = new ConditionEvaluator(registry, environment, null);
 		AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry);
 	}
 
@@ -68,7 +68,7 @@ public class AnnotatedBeanDefinitionReader {
 	 * Return the BeanDefinitionRegistry that this scanner operates on.
 	 */
 	public final BeanDefinitionRegistry getRegistry() {
-		return this.registry;
+		return registry;
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class AnnotatedBeanDefinitionReader {
 	 * @see #registerBean(Class, String, Class...)
 	 */
 	public void setEnvironment(Environment environment) {
-		this.conditionEvaluator = new ConditionEvaluator(this.registry, environment, null);
+		conditionEvaluator = new ConditionEvaluator(registry, environment, null);
 	}
 
 	/**
@@ -177,12 +177,12 @@ public class AnnotatedBeanDefinitionReader {
 	 */
 	<T> void doRegisterBean(Class<T> annotatedClass, @Nullable Supplier<T> instanceSupplier, @Nullable String name,@Nullable Class<? extends Annotation>[] qualifiers, BeanDefinitionCustomizer... definitionCustomizers) {
 		AnnotatedGenericBeanDefinition abd = new AnnotatedGenericBeanDefinition(annotatedClass);
-		if (this.conditionEvaluator.shouldSkip(abd.getMetadata())) return;
+		if (conditionEvaluator.shouldSkip(abd.getMetadata())) return;
 
 		abd.setInstanceSupplier(instanceSupplier);
-		ScopeMetadata scopeMetadata = this.scopeMetadataResolver.resolveScopeMetadata(abd);
+		ScopeMetadata scopeMetadata = scopeMetadataResolver.resolveScopeMetadata(abd);
 		abd.setScope(scopeMetadata.getScopeName());
-		String beanName = (name != null ? name : this.beanNameGenerator.generateBeanName(abd, this.registry));
+		String beanName = (name != null ? name : beanNameGenerator.generateBeanName(abd, registry));
 
 		AnnotationConfigUtils.processCommonDefinitionAnnotations(abd);
 		if (qualifiers != null) {
@@ -200,8 +200,8 @@ public class AnnotatedBeanDefinitionReader {
 			customizer.customize(abd);
 		}
 		BeanDefinitionHolder definitionHolder = new BeanDefinitionHolder(abd, beanName);
-		definitionHolder = AnnotationConfigUtils.applyScopedProxyMode(scopeMetadata, definitionHolder, this.registry);
-		BeanDefinitionReaderUtils.registerBeanDefinition(definitionHolder, this.registry);
+		definitionHolder = AnnotationConfigUtils.applyScopedProxyMode(scopeMetadata, definitionHolder, registry);
+		BeanDefinitionReaderUtils.registerBeanDefinition(definitionHolder, registry);
 	}
 
 	/**
