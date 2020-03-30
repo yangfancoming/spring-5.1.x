@@ -183,10 +183,6 @@ import org.springframework.core.annotation.AliasFor;
  * referenced by other {@code @Bean} methods. As a reminder, a WARN-level log message will be
  * issued for any non-static {@code @Bean} methods having a return type assignable to
  * {@code BeanFactoryPostProcessor}.
- *
- * @author Rod Johnson
- * @author Costin Leau
-
 
  * @author Sam Brannen
  * @since 3.0

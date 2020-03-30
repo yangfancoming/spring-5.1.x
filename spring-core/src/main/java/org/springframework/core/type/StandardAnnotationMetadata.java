@@ -69,9 +69,7 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 	@Override
 	public boolean hasAnnotation(String annotationName) {
 		for (Annotation ann : this.annotations) {
-			if (ann.annotationType().getName().equals(annotationName)) {
-				return true;
-			}
+			if (ann.annotationType().getName().equals(annotationName)) return true;
 		}
 		return false;
 	}
@@ -121,8 +119,7 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 				}
 			}
 			return false;
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			throw new IllegalStateException("Failed to introspect annotated methods on " + getIntrospectedClass(), ex);
 		}
 	}
@@ -138,8 +135,7 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 				}
 			}
 			return annotatedMethods;
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			throw new IllegalStateException("Failed to introspect annotated methods on " + getIntrospectedClass(), ex);
 		}
 	}

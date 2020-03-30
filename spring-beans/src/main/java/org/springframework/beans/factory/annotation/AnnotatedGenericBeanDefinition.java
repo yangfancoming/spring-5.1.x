@@ -10,17 +10,15 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Extension of the {@link org.springframework.beans.factory.support.GenericBeanDefinition}
- * class, adding support for annotation metadata exposed through the {@link AnnotatedBeanDefinition} interface.
- *
- * <p>This GenericBeanDefinition variant is mainly useful for testing code that expects
+ * Extension of the {@link org.springframework.beans.factory.support.GenericBeanDefinition} class,
+ * adding support for annotation metadata exposed through the {@link AnnotatedBeanDefinition} interface.
+ * This GenericBeanDefinition variant is mainly useful for testing code that expects
  * to operate on an AnnotatedBeanDefinition, for example strategy implementations
  * in Spring's component scanning support (where the default definition class is
  * {@link org.springframework.context.annotation.ScannedGenericBeanDefinition},which also implements the AnnotatedBeanDefinition interface).
  * @since 2.5
  * @see AnnotatedBeanDefinition#getMetadata()
  * @see org.springframework.core.type.StandardAnnotationMetadata
- *
  * 带注解的通用bean定义
  */
 @SuppressWarnings("serial")
@@ -54,8 +52,7 @@ public class AnnotatedGenericBeanDefinition extends GenericBeanDefinition implem
 		Assert.notNull(metadata, "AnnotationMetadata must not be null");
 		if (metadata instanceof StandardAnnotationMetadata) {
 			setBeanClass(((StandardAnnotationMetadata) metadata).getIntrospectedClass());
-		}
-		else {
+		}else {
 			setBeanClassName(metadata.getClassName());
 		}
 		this.metadata = metadata;
@@ -75,7 +72,9 @@ public class AnnotatedGenericBeanDefinition extends GenericBeanDefinition implem
 		this.factoryMethodMetadata = factoryMethodMetadata;
 	}
 
-
+	//---------------------------------------------------------------------
+	// Implementation of 【AnnotatedBeanDefinition】 interface
+	//---------------------------------------------------------------------
 	@Override
 	public final AnnotationMetadata getMetadata() {
 		return this.metadata;

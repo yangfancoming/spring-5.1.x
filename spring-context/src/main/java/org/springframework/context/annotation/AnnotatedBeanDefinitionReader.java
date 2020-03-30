@@ -74,7 +74,7 @@ public class AnnotatedBeanDefinitionReader {
 	/**
 	 * Set the Environment to use when evaluating whether
 	 * {@link Conditional @Conditional}-annotated component classes should be registered.
-	 * <p>The default is a {@link StandardEnvironment}.
+	 * The default is a {@link StandardEnvironment}.
 	 * @see #registerBean(Class, String, Class...)
 	 */
 	public void setEnvironment(Environment environment) {
@@ -83,7 +83,7 @@ public class AnnotatedBeanDefinitionReader {
 
 	/**
 	 * Set the BeanNameGenerator to use for detected bean classes.
-	 * <p>The default is a {@link AnnotationBeanNameGenerator}.
+	 * The default is a {@link AnnotationBeanNameGenerator}.
 	 */
 	public void setBeanNameGenerator(@Nullable BeanNameGenerator beanNameGenerator) {
 		this.beanNameGenerator = (beanNameGenerator != null ? beanNameGenerator : new AnnotationBeanNameGenerator());
@@ -91,7 +91,7 @@ public class AnnotatedBeanDefinitionReader {
 
 	/**
 	 * Set the ScopeMetadataResolver to use for detected bean classes.
-	 * <p>The default is an {@link AnnotationScopeMetadataResolver}.
+	 * The default is an {@link AnnotationScopeMetadataResolver}.
 	 */
 	public void setScopeMetadataResolver(@Nullable ScopeMetadataResolver scopeMetadataResolver) {
 		this.scopeMetadataResolver = (scopeMetadataResolver != null ? scopeMetadataResolver : new AnnotationScopeMetadataResolver());
@@ -100,10 +100,8 @@ public class AnnotatedBeanDefinitionReader {
 
 	/**
 	 * Register one or more annotated classes to be processed.
-	 * <p>Calls to {@code register} are idempotent; adding the same
-	 * annotated class more than once has no additional effect.
-	 * @param annotatedClasses one or more annotated classes,
-	 * e.g. {@link Configuration @Configuration} classes
+	 * Calls to {@code register} are idempotent; adding the same annotated class more than once has no additional effect.
+	 * @param annotatedClasses one or more annotated classes,e.g. {@link Configuration @Configuration} classes
 	 */
 	public void register(Class<?>... annotatedClasses) {
 		for (Class<?> annotatedClass : annotatedClasses) {
@@ -148,11 +146,9 @@ public class AnnotatedBeanDefinitionReader {
 	}
 
 	/**
-	 * Register a bean from the given bean class, deriving its metadata from
-	 * class-declared annotations.
+	 * Register a bean from the given bean class, deriving its metadata from class-declared annotations.
 	 * @param annotatedClass the class of the bean
-	 * @param qualifiers specific qualifier annotations to consider,
-	 * in addition to qualifiers at the bean class level
+	 * @param qualifiers specific qualifier annotations to consider,in addition to qualifiers at the bean class level
 	 */
 	@SuppressWarnings("unchecked")
 	public void registerBean(Class<?> annotatedClass, Class<? extends Annotation>... qualifiers) {
@@ -160,12 +156,10 @@ public class AnnotatedBeanDefinitionReader {
 	}
 
 	/**
-	 * Register a bean from the given bean class, deriving its metadata from
-	 * class-declared annotations.
+	 * Register a bean from the given bean class, deriving its metadata from class-declared annotations.
 	 * @param annotatedClass the class of the bean
 	 * @param name an explicit name for the bean
-	 * @param qualifiers specific qualifier annotations to consider,
-	 * in addition to qualifiers at the bean class level
+	 * @param qualifiers specific qualifier annotations to consider,in addition to qualifiers at the bean class level
 	 */
 	@SuppressWarnings("unchecked")
 	public void registerBean(Class<?> annotatedClass, String name, Class<? extends Annotation>... qualifiers) {
@@ -175,20 +169,15 @@ public class AnnotatedBeanDefinitionReader {
 	/**
 	 * Register a bean from the given bean class, deriving its metadata from class-declared annotations.
 	 * @param annotatedClass the class of the bean
-	 * @param instanceSupplier a callback for creating an instance of the bean
-	 * (may be {@code null})
+	 * @param instanceSupplier a callback for creating an instance of the bean (may be {@code null})
 	 * @param name an explicit name for the bean
-	 * @param qualifiers specific qualifier annotations to consider, if any,
-	 * in addition to qualifiers at the bean class level
-	 * @param definitionCustomizers one or more callbacks for customizing the
-	 * factory's {@link BeanDefinition}, e.g. setting a lazy-init or primary flag
+	 * @param qualifiers specific qualifier annotations to consider, if any,in addition to qualifiers at the bean class level
+	 * @param definitionCustomizers one or more callbacks for customizing the factory's {@link BeanDefinition}, e.g. setting a lazy-init or primary flag
 	 * @since 5.0
 	 */
 	<T> void doRegisterBean(Class<T> annotatedClass, @Nullable Supplier<T> instanceSupplier, @Nullable String name,@Nullable Class<? extends Annotation>[] qualifiers, BeanDefinitionCustomizer... definitionCustomizers) {
 		AnnotatedGenericBeanDefinition abd = new AnnotatedGenericBeanDefinition(annotatedClass);
-		if (this.conditionEvaluator.shouldSkip(abd.getMetadata())) {
-			return;
-		}
+		if (this.conditionEvaluator.shouldSkip(abd.getMetadata())) return;
 
 		abd.setInstanceSupplier(instanceSupplier);
 		ScopeMetadata scopeMetadata = this.scopeMetadataResolver.resolveScopeMetadata(abd);
@@ -210,12 +199,10 @@ public class AnnotatedBeanDefinitionReader {
 		for (BeanDefinitionCustomizer customizer : definitionCustomizers) {
 			customizer.customize(abd);
 		}
-
 		BeanDefinitionHolder definitionHolder = new BeanDefinitionHolder(abd, beanName);
 		definitionHolder = AnnotationConfigUtils.applyScopedProxyMode(scopeMetadata, definitionHolder, this.registry);
 		BeanDefinitionReaderUtils.registerBeanDefinition(definitionHolder, this.registry);
 	}
-
 
 	/**
 	 * Get the Environment from the given registry if possible, otherwise return a new

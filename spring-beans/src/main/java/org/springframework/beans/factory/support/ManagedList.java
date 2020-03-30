@@ -10,12 +10,7 @@ import org.springframework.beans.Mergeable;
 import org.springframework.lang.Nullable;
 
 /**
- * Tag collection class used to hold managed List elements, which may
- * include runtime bean references (to be resolved into bean objects).
- *
- * @author Rod Johnson
- * @author Rob Harrop
-
+ * Tag collection class used to hold managed List elements, which may include runtime bean references (to be resolved into bean objects).
  * @since 27.05.2003
  * @param <E> the element type
  */
@@ -30,7 +25,6 @@ public class ManagedList<E> extends ArrayList<E> implements Mergeable, BeanMetad
 
 	private boolean mergeEnabled;
 
-
 	public ManagedList() {
 	}
 
@@ -38,10 +32,9 @@ public class ManagedList<E> extends ArrayList<E> implements Mergeable, BeanMetad
 		super(initialCapacity);
 	}
 
-
 	/**
 	 * Set the configuration source {@code Object} for this metadata element.
-	 * <p>The exact type of the object will depend on the configuration mechanism used.
+	 * The exact type of the object will depend on the configuration mechanism used.
 	 */
 	public void setSource(@Nullable Object source) {
 		this.source = source;
@@ -50,7 +43,7 @@ public class ManagedList<E> extends ArrayList<E> implements Mergeable, BeanMetad
 	@Override
 	@Nullable
 	public Object getSource() {
-		return this.source;
+		return source;
 	}
 
 	/**
@@ -65,12 +58,11 @@ public class ManagedList<E> extends ArrayList<E> implements Mergeable, BeanMetad
 	 */
 	@Nullable
 	public String getElementTypeName() {
-		return this.elementTypeName;
+		return elementTypeName;
 	}
 
 	/**
-	 * Set whether merging should be enabled for this collection,
-	 * in case of a 'parent' collection value being present.
+	 * Set whether merging should be enabled for this collection,in case of a 'parent' collection value being present.
 	 */
 	public void setMergeEnabled(boolean mergeEnabled) {
 		this.mergeEnabled = mergeEnabled;
@@ -78,18 +70,16 @@ public class ManagedList<E> extends ArrayList<E> implements Mergeable, BeanMetad
 
 	@Override
 	public boolean isMergeEnabled() {
-		return this.mergeEnabled;
+		return mergeEnabled;
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<E> merge(@Nullable Object parent) {
-		if (!this.mergeEnabled) {
+		if (!mergeEnabled) {
 			throw new IllegalStateException("Not allowed to merge when the 'mergeEnabled' property is set to 'false'");
 		}
-		if (parent == null) {
-			return this;
-		}
+		if (parent == null) return this;
 		if (!(parent instanceof List)) {
 			throw new IllegalArgumentException("Cannot merge with object of type [" + parent.getClass() + "]");
 		}

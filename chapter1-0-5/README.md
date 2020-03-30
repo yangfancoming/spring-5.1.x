@@ -11,6 +11,7 @@
 #  item01   传统xml方式获取bean 及 扫描bean  
   
 # item02    注解方式获取bean 及 扫描bean  @bean   @Scope("prototype")   @ComponentScan
+    sample01 @bean  
 
 # itme03    @Configuration 注解学习
 

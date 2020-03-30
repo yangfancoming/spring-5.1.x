@@ -12,9 +12,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Utility methods that are useful for bean definition reader implementations.
- * Mainly intended for internal use.
-
+ * Utility methods that are useful for bean definition reader implementations.Mainly intended for internal use.
  * @since 1.1
  * @see PropertiesBeanDefinitionReader
  * @see org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader
@@ -27,7 +25,6 @@ public abstract class BeanDefinitionReaderUtils {
 	 */
 	public static final String GENERATED_BEAN_NAME_SEPARATOR = BeanFactoryUtils.GENERATED_BEAN_NAME_SEPARATOR;
 
-
 	/**
 	 * Create a new GenericBeanDefinition for the given parent name and class name,eagerly loading the bean class if a ClassLoader has been specified.
 	 * @param parentName the name of the parent bean, if any
@@ -37,14 +34,12 @@ public abstract class BeanDefinitionReaderUtils {
 	 * @throws ClassNotFoundException if the bean class could not be loaded
 	 */
 	public static AbstractBeanDefinition createBeanDefinition(@Nullable String parentName, @Nullable String className, @Nullable ClassLoader classLoader) throws ClassNotFoundException {
-
 		GenericBeanDefinition bd = new GenericBeanDefinition();
 		bd.setParentName(parentName);
 		if (className != null) {
 			if (classLoader != null) {
 				bd.setBeanClass(ClassUtils.forName(className, classLoader));
-			}
-			else {
+			}else {
 				bd.setBeanClassName(className);
 			}
 		}
@@ -66,8 +61,7 @@ public abstract class BeanDefinitionReaderUtils {
 	/**
 	 * Generate a bean name for the given bean definition, unique within the given bean factory.
 	 * @param definition the bean definition to generate a bean name for
-	 * @param registry the bean factory that the definition is going to be
-	 * registered with (to check for existing bean names)
+	 * @param registry the bean factory that the definition is going to be registered with (to check for existing bean names)
 	 * @param isInnerBean whether the given bean definition will be registered
 	 * as inner bean or as top-level bean (allowing for special name generation for inner beans versus top-level beans)
 	 * @return the generated bean name
@@ -82,9 +76,8 @@ public abstract class BeanDefinitionReaderUtils {
 			// parent属性不为空
 			if (definition.getParentName() != null) {
 				generatedBeanName = definition.getParentName() + "$child";
-			}
+			}else if (definition.getFactoryBeanName() != null) {
 			// factory-bean属性不为空
-			else if (definition.getFactoryBeanName() != null) {
 				generatedBeanName = definition.getFactoryBeanName() + "$created";
 			}
 		}

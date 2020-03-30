@@ -26,7 +26,6 @@ public class App extends BaseTest {
 		look(ac);
 	}
 
-
 	// 注解方式 @bean  默认单例
 	@Test
 	public void bean(){

@@ -373,8 +373,6 @@ import org.springframework.stereotype.Component;
  * for details.
  *
  * <h2>Constraints when authoring {@code @Configuration} classes</h2>
- *
- * <ul>
  * <li>Configuration classes must be provided as classes (i.e. not as instances returned
  * from factory methods), allowing for runtime enhancements through a generated subclass.
  * <li>Configuration classes must be non-final.
@@ -383,10 +381,6 @@ import org.springframework.stereotype.Component;
  * <li>{@code @Bean} methods may not in turn create further configuration classes
  * (any such instances will be treated as regular beans, with their configuration
  * annotations remaining undetected).
- * </ul>
- *
- * @author Rod Johnson
-
  * @since 3.0
  * @see Bean
  * @see Profile

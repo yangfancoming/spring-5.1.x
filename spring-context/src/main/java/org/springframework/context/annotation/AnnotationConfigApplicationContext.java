@@ -44,9 +44,9 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 */
 	public AnnotationConfigApplicationContext() {
 		// 初始化注解模式下的 bean定义 读取器
-		this.reader = new AnnotatedBeanDefinitionReader(this);
+		reader = new AnnotatedBeanDefinitionReader(this);
 		// 初始化类路径下 bean定义 扫描器
-		this.scanner = new ClassPathBeanDefinitionScanner(this);
+		scanner = new ClassPathBeanDefinitionScanner(this);
 	}
 
 	/**
@@ -55,8 +55,8 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 */
 	public AnnotationConfigApplicationContext(DefaultListableBeanFactory beanFactory) {
 		super(beanFactory);
-		this.reader = new AnnotatedBeanDefinitionReader(this);
-		this.scanner = new ClassPathBeanDefinitionScanner(this);
+		reader = new AnnotatedBeanDefinitionReader(this);
+		scanner = new ClassPathBeanDefinitionScanner(this);
 	}
 
 	/**
@@ -89,8 +89,8 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	@Override
 	public void setEnvironment(ConfigurableEnvironment environment) {
 		super.setEnvironment(environment);
-		this.reader.setEnvironment(environment);
-		this.scanner.setEnvironment(environment);
+		reader.setEnvironment(environment);
+		scanner.setEnvironment(environment);
 	}
 
 	/**
@@ -103,8 +103,8 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * @see ClassPathBeanDefinitionScanner#setBeanNameGenerator
 	 */
 	public void setBeanNameGenerator(BeanNameGenerator beanNameGenerator) {
-		this.reader.setBeanNameGenerator(beanNameGenerator);
-		this.scanner.setBeanNameGenerator(beanNameGenerator);
+		reader.setBeanNameGenerator(beanNameGenerator);
+		scanner.setBeanNameGenerator(beanNameGenerator);
 		getBeanFactory().registerSingleton(AnnotationConfigUtils.CONFIGURATION_BEAN_NAME_GENERATOR, beanNameGenerator);
 	}
 
@@ -115,8 +115,8 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * and/or {@link #scan(String...)}.
 	 */
 	public void setScopeMetadataResolver(ScopeMetadataResolver scopeMetadataResolver) {
-		this.reader.setScopeMetadataResolver(scopeMetadataResolver);
-		this.scanner.setScopeMetadataResolver(scopeMetadataResolver);
+		reader.setScopeMetadataResolver(scopeMetadataResolver);
+		scanner.setScopeMetadataResolver(scopeMetadataResolver);
 	}
 
 
@@ -128,14 +128,13 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * Register one or more annotated classes to be processed.
 	 * Note that {@link #refresh()} must be called in order for the context to fully process the new classes.
 	 *  注意，必须要调用refresh()方法，上下文才能完全处理新类。 (in order for 才能)
-	 * @param annotatedClasses one or more annotated classes,
-	 * e.g. {@link Configuration @Configuration} classes
+	 * @param annotatedClasses one or more annotated classes,e.g. {@link Configuration @Configuration} classes
 	 * @see #scan(String...)
 	 * @see #refresh()
 	 */
 	public void register(Class<?>... annotatedClasses) {
 		Assert.notEmpty(annotatedClasses, "At least one annotated class must be specified");
-		this.reader.register(annotatedClasses);
+		reader.register(annotatedClasses);
 	}
 
 	/**
@@ -148,7 +147,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 */
 	public void scan(String... basePackages) {
 		Assert.notEmpty(basePackages, "At least one base package must be specified");
-		this.scanner.scan(basePackages);
+		scanner.scan(basePackages);
 	}
 
 
@@ -185,7 +184,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * @since 5.0
 	 */
 	public <T> void registerBean(@Nullable String beanName, Class<T> annotatedClass, Object... constructorArguments) {
-		this.reader.doRegisterBean(annotatedClass, null, beanName, null,
+		reader.doRegisterBean(annotatedClass, null, beanName, null,
 				bd -> {
 					for (Object arg : constructorArguments) {
 						bd.getConstructorArgumentValues().addGenericArgumentValue(arg);
@@ -195,7 +194,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 
 	@Override
 	public <T> void registerBean(@Nullable String beanName, Class<T> beanClass, @Nullable Supplier<T> supplier,BeanDefinitionCustomizer... customizers) {
-		this.reader.doRegisterBean(beanClass, supplier, beanName, null, customizers);
+		reader.doRegisterBean(beanClass, supplier, beanName, null, customizers);
 	}
 
 }

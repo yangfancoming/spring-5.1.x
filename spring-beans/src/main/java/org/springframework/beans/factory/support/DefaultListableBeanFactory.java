@@ -826,16 +826,14 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				if (logger.isTraceEnabled()) logger.trace("Overriding bean definition for bean '" + beanName + "' with an equivalent definition: replacing [" + existingDefinition + "] with [" + beanDefinition + "]");
 			}
 			this.beanDefinitionMap.put(beanName, beanDefinition);
-		}
+		}else {
 		// 3、缓存中无对应的BeanDefinition，则直接注册
-		else {
 			// 如果beanDefinition已经被标记为创建(为了解决单例bean的循环依赖问题)
 			// 该bean还没注册，检查该工厂的bean创建阶段是否已经开始，即在此期间是否已将该bean标记为已创建。如果已经标记为创建
 			if (hasBeanCreationStarted()) {
 				// Cannot modify startup-time collection elements anymore (for stable iteration)  // 无法再修改启动时集合元素（用于稳定迭代）
 				synchronized (this.beanDefinitionMap) {
 					// 这一步是真正注册bean  状态： 由 概念态--->内存态
-					// 加入beanDefinitionMap
 					this.beanDefinitionMap.put(beanName, beanDefinition);
 					// 更新 beanDefinitionNames 这个集合
 					// 创建List<String>并将缓存的beanDefinitionNames和新解析的beanName加入集合
@@ -846,8 +844,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 					this.beanDefinitionNames = updatedDefinitions;
 					removeManualSingletonName(beanName);
 				}
-			}
-			else {
+			}else {
 				// 将beanDefinition信息维护至缓存
 				// beanDefinitionMap-->(key->beanName,value->beanDefinition)
 				// Still in startup registration phase
