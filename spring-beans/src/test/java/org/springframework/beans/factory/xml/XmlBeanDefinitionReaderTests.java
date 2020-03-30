@@ -24,7 +24,7 @@ public class XmlBeanDefinitionReaderTests {
 
 	SimpleBeanDefinitionRegistry registry = new SimpleBeanDefinitionRegistry();
 	XmlBeanDefinitionReader xmlBeanDefinitionReader = new XmlBeanDefinitionReader(registry);
-	Resource resource = new InputStreamResource(getClass().getResourceAsStream("test.xml"));
+
 
 	@Test
 	public void setParserClassSunnyDay() {
@@ -33,14 +33,15 @@ public class XmlBeanDefinitionReaderTests {
 
 	@Test(expected = BeanDefinitionStoreException.class)
 	public void withOpenInputStream() {
+		Resource resource = new InputStreamResource(getClass().getResourceAsStream("test.xml"));
 		xmlBeanDefinitionReader.loadBeanDefinitions(resource);
 	}
 
 	@Test
 	public void withOpenInputStreamAndExplicitValidationMode() {
+		Resource resource = new InputStreamResource(getClass().getResourceAsStream("XmlBeanDefinitionReader.xml"));
 		xmlBeanDefinitionReader.setValidationMode(XmlBeanDefinitionReader.VALIDATION_DTD);
 		xmlBeanDefinitionReader.loadBeanDefinitions(resource);
-		testBeanDefinitions(registry);
 	}
 
 	@Test

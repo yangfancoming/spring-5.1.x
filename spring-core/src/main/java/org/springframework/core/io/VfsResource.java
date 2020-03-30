@@ -13,7 +13,7 @@ import org.springframework.util.Assert;
 
 /**
  * JBoss VFS based {@link Resource} implementation.
- * <p>As of Spring 4.0, this class supports VFS 3.x on JBoss AS 6+
+ * As of Spring 4.0, this class supports VFS 3.x on JBoss AS 6+
  * (package {@code org.jboss.vfs}) and is in particular compatible with JBoss AS 7 and WildFly 8+.
  * @since 3.0
  * @see org.jboss.vfs.VirtualFile
@@ -31,7 +31,6 @@ public class VfsResource extends AbstractResource {
 		Assert.notNull(resource, "VirtualFile must not be null");
 		this.resource = resource;
 	}
-
 
 	@Override
 	public InputStream getInputStream() throws IOException {
@@ -52,8 +51,7 @@ public class VfsResource extends AbstractResource {
 	public URL getURL() throws IOException {
 		try {
 			return VfsUtils.getURL(this.resource);
-		}
-		catch (Exception ex) {
+		}catch (Exception ex) {
 			throw new NestedIOException("Failed to obtain URL for file " + this.resource, ex);
 		}
 	}
@@ -62,8 +60,7 @@ public class VfsResource extends AbstractResource {
 	public URI getURI() throws IOException {
 		try {
 			return VfsUtils.getURI(this.resource);
-		}
-		catch (Exception ex) {
+		}catch (Exception ex) {
 			throw new NestedIOException("Failed to obtain URI for " + this.resource, ex);
 		}
 	}
@@ -88,12 +85,10 @@ public class VfsResource extends AbstractResource {
 		if (!relativePath.startsWith(".") && relativePath.contains("/")) {
 			try {
 				return new VfsResource(VfsUtils.getChild(this.resource, relativePath));
-			}
-			catch (IOException ex) {
+			}catch (IOException ex) {
 				// fall back to getRelative
 			}
 		}
-
 		return new VfsResource(VfsUtils.getRelative(new URL(getURL(), relativePath)));
 	}
 
@@ -109,8 +104,7 @@ public class VfsResource extends AbstractResource {
 
 	@Override
 	public boolean equals(Object other) {
-		return (this == other || (other instanceof VfsResource &&
-				this.resource.equals(((VfsResource) other).resource)));
+		return (this == other || (other instanceof VfsResource && this.resource.equals(((VfsResource) other).resource)));
 	}
 
 	@Override

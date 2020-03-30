@@ -268,12 +268,20 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	public int loadBeanDefinitions(EncodedResource encodedResource) throws BeanDefinitionStoreException {
 		Assert.notNull(encodedResource, "EncodedResource must not be null");
 		if (logger.isTraceEnabled()) logger.trace("Loading XML bean definitions from " + encodedResource);
-		//  1、使用ThreadLocal防止资源文件循环加载  //通过属性来记录已经加载的资源
+		/**
+		 *  获得正在加载的资源文件
+		 * 	1、使用ThreadLocal防止资源文件循环加载  //通过属性来记录已经加载的资源
+		 * 	线程安全 ，但这里 currentResources应该本来就是线程安全的，所以推测不是为了线程安全
+		 * 	应该是为了线程能使用同一个 currentResources  ，从这里可以看出作者对 ThreadLocal 的理解深刻
+		*/
 		Set<EncodedResource> currentResources = resourcesCurrentlyBeingLoaded.get();
+		// 第一次为空，初始化
 		if (currentResources == null) {
 			currentResources = new HashSet<>(4);
 			resourcesCurrentlyBeingLoaded.set(currentResources);
 		}
+		// 这里其实就是为了避免循环加载，如果重复加载了相同的文件就会抛出异常   看了半天才明白这个set的意图，蛋疼啊
+		// 如果添加当前资源文件不成功，因为是Set（不可重复集合），代表已经有了这个文件  抛出异常（循环加载）
 		if (!currentResources.add(encodedResource)) {
 			throw new BeanDefinitionStoreException("Detected cyclic loading of " + encodedResource + " - check your import definitions!");
 		}
@@ -286,6 +294,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 					inputSource.setEncoding(encodedResource.getEncoding());
 				}
 				// 核心部分是这里，往下面看 //这里 真正进入了逻辑核心部分
+				// 这个才是主要的逻辑，spring的源码风格，一般以do开头的才是主要做事的。
 				return doLoadBeanDefinitions(inputSource, encodedResource.getResource());
 			}finally {
 				inputStream.close();
@@ -369,21 +378,16 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 	/**
 	 * Determine the validation mode for the specified {@link Resource}.
-	 * If no explicit validation mode has been configured, then the validation
-	 * mode gets {@link #detectValidationMode detected} from the given resource.
-	 * Override this method if you would like full control over the validation
-	 * mode, even when something other than {@link #VALIDATION_AUTO} was set.
+	 * If no explicit validation mode has been configured, then the validation mode gets {@link #detectValidationMode detected} from the given resource.
+	 * Override this method if you would like full control over the validation mode, even when something other than {@link #VALIDATION_AUTO} was set.
+	 * 判断xml文件是DTD还是XSD样式,如果没定义将使用XSD
 	 * @see #detectValidationMode
 	 */
 	protected int getValidationModeForResource(Resource resource) {
 		int validationModeToUse = getValidationMode();
-		if (validationModeToUse != VALIDATION_AUTO) {
-			return validationModeToUse;
-		}
+		if (validationModeToUse != VALIDATION_AUTO) return validationModeToUse;
 		int detectedMode = detectValidationMode(resource);
-		if (detectedMode != VALIDATION_AUTO) {
-			return detectedMode;
-		}
+		if (detectedMode != VALIDATION_AUTO) return detectedMode;
 		// Hmm, we didn't get a clear indication... Let's assume XSD,
 		// since apparently no DTD declaration has been found up until
 		// detection stopped (before finding the document's root tag).
@@ -394,6 +398,10 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 * Detect which kind of validation to perform on the XML file identified by the supplied {@link Resource}.
 	 * If the file has a {@code DOCTYPE} definition then DTD validation is used otherwise XSD validation is assumed.
 	 * Override this method if you would like to customize resolution of the {@link #VALIDATION_AUTO} mode.
+	 *
+	 * isFile() 函数
+	 * 再 Resource 和 AbstractResource 顶层接口和抽象类中 返回 false
+	 * 再 InputStreamResource 和 MultipartFileResource 实现类中返回 true
 	 */
 	protected int detectValidationMode(Resource resource) {
 		if (resource.isOpen()) {

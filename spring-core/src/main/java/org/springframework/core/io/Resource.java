@@ -56,8 +56,7 @@ public interface Resource extends InputStreamSource {
 
 	/**
 	 * Indicate whether this resource represents a handle with an open stream.
-	 * If {@code true}, the InputStream cannot be read multiple times,
-	 * and must be read and closed to avoid resource leaks.
+	 * If {@code true}, the InputStream cannot be read multiple times,and must be read and closed to avoid resource leaks.
 	 * Will be {@code false} for typical resource descriptors.
 	 */
 	default boolean isOpen() {

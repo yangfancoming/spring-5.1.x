@@ -20,9 +20,8 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.lang.Nullable;
 
 /**
- * Extension of {@link org.springframework.beans.factory.parsing.ReaderContext},
- * specific to use with an {@link XmlBeanDefinitionReader}. Provides access to the
- * {@link NamespaceHandlerResolver} configured in the {@link XmlBeanDefinitionReader}.
+ * Extension of {@link org.springframework.beans.factory.parsing.ReaderContext},specific to use with an {@link XmlBeanDefinitionReader}.
+ * Provides access to the {@link NamespaceHandlerResolver} configured in the {@link XmlBeanDefinitionReader}.
  * @since 2.0
  */
 public class XmlReaderContext extends ReaderContext {
@@ -45,7 +44,6 @@ public class XmlReaderContext extends ReaderContext {
 		this.reader = reader;
 		this.namespaceHandlerResolver = namespaceHandlerResolver;
 	}
-
 
 	/**
 	 * Return the XML bean definition reader in use.
@@ -133,8 +131,7 @@ public class XmlReaderContext extends ReaderContext {
 		InputSource is = new InputSource(new StringReader(documentContent));
 		try {
 			return this.reader.doLoadDocument(is, getResource());
-		}
-		catch (Exception ex) {
+		}catch (Exception ex) {
 			throw new BeanDefinitionStoreException("Failed to read XML document", ex);
 		}
 	}

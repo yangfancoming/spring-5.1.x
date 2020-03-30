@@ -52,9 +52,9 @@ public class XmlValidationModeDetector {
 
 	/**
 	 * Indicates whether or not the current parse position is inside an XML comment.
+	 * 注：inCommen t这个标识位主要是为了多行注释处理。
 	 */
 	private boolean inComment;
-
 
 	/**
 	 * Detect the validation mode for the XML document in the supplied {@link InputStream}.
@@ -72,7 +72,7 @@ public class XmlValidationModeDetector {
 			String content;
 			while ((content = reader.readLine()) != null) {
 				content = consumeCommentTokens(content);
-				if (this.inComment || !StringUtils.hasText(content)) {
+				if (inComment || !StringUtils.hasText(content)) {
 					continue;
 				}
 				if (hasDoctype(content)) {
@@ -93,9 +93,9 @@ public class XmlValidationModeDetector {
 		}
 	}
 
-
 	/**
 	 * Does the content contain the DTD DOCTYPE declaration?
+	 * 如果找到了DOCTYPE定义，那么就是DTD的，否则就是Schema模式 (XSD)
 	 */
 	private boolean hasDoctype(String content) {
 		return content.contains(DOCTYPE);
@@ -120,12 +120,14 @@ public class XmlValidationModeDetector {
 	 */
 	@Nullable
 	private String consumeCommentTokens(String line) {
+		// 首先如果没有带<!-- 或 -->的直接返回内容代表没有再注释里面
 		if (!line.contains(START_COMMENT) && !line.contains(END_COMMENT)) {
 			return line;
 		}
 		String currLine = line;
 		while ((currLine = consume(currLine)) != null) {
-			if (!this.inComment && !currLine.trim().startsWith(START_COMMENT)) {
+			// 没有在注释中或者不是由注释开头的返回内容,inComment的这个标识位表示当前是否在注释中
+			if (!inComment && !currLine.trim().startsWith(START_COMMENT)) {
 				return currLine;
 			}
 		}
@@ -137,18 +139,21 @@ public class XmlValidationModeDetector {
 	 */
 	@Nullable
 	private String consume(String line) {
-		int index = (this.inComment ? endComment(line) : startComment(line));
+		// 如果当前在注释中，消费注释结尾标记-->，否则消耗<!--
+		int index = (inComment ? endComment(line) : startComment(line));
 		return (index == -1 ? null : line.substring(index));
 	}
 
 	/**
 	 * Try to consume the {@link #START_COMMENT} token.
 	 * @see #commentToken(String, String, boolean)
+	 * 如果找到注释开头标记，把inComment设为true
 	 */
 	private int startComment(String line) {
 		return commentToken(line, START_COMMENT, true);
 	}
 
+	// 如果找到注释结尾标记，把inComment设为false，代表这个注释块结束
 	private int endComment(String line) {
 		return commentToken(line, END_COMMENT, false);
 	}
@@ -159,10 +164,12 @@ public class XmlValidationModeDetector {
 	 * which is after the token or -1 if the token is not found.
 	 */
 	private int commentToken(String line, String token, boolean inCommentIfPresent) {
+		// 如果找到注释标记
 		int index = line.indexOf(token);
 		if (index > - 1) {
-			this.inComment = inCommentIfPresent;
+			inComment = inCommentIfPresent;
 		}
+		// 得到去掉注释后内容的开头index
 		return (index == -1 ? index : index + token.length());
 	}
 

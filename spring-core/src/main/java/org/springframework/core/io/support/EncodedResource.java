@@ -17,6 +17,7 @@ import org.springframework.util.ObjectUtils;
 /**
  * Holder that combines a {@link Resource} descriptor with a specific encoding or {@code Charset} to be used for reading from the resource.
  * Used as an argument for operations that support reading content with a specific encoding, typically via a {@code java.io.Reader}.
+ * 目的是把资源封装为有编码的，就是把编码和资源绑定在一块
  * @since 1.2.6
  * @see Resource#getInputStream()
  * @see java.io.Reader
@@ -24,11 +25,14 @@ import org.springframework.util.ObjectUtils;
  */
 public class EncodedResource implements InputStreamSource {
 
+	// 文件资源
 	private final Resource resource;
 
+	// 指定编码字符集
 	@Nullable
 	private final String encoding;
 
+	// 指定编码字符集   类似Class和ClassLoad一样  有优先权
 	@Nullable
 	private final Charset charset;
 
@@ -72,7 +76,7 @@ public class EncodedResource implements InputStreamSource {
 	 * Return the {@code Resource} held by this {@code EncodedResource}.
 	 */
 	public final Resource getResource() {
-		return this.resource;
+		return resource;
 	}
 
 	/**
@@ -81,7 +85,7 @@ public class EncodedResource implements InputStreamSource {
 	 */
 	@Nullable
 	public final String getEncoding() {
-		return this.encoding;
+		return encoding;
 	}
 
 	/**
@@ -90,7 +94,7 @@ public class EncodedResource implements InputStreamSource {
 	 */
 	@Nullable
 	public final Charset getCharset() {
-		return this.charset;
+		return charset;
 	}
 
 	/**
@@ -101,24 +105,23 @@ public class EncodedResource implements InputStreamSource {
 	 * @see #getInputStream()
 	 */
 	public boolean requiresReader() {
-		return (this.encoding != null || this.charset != null);
+		return (encoding != null || charset != null);
 	}
 
 	/**
-	 * Open a {@code java.io.Reader} for the specified resource, using the specified
-	 * {@link #getCharset() Charset} or {@linkplain #getEncoding() encoding}
-	 * (if any).
+	 * Open a {@code java.io.Reader} for the specified resource, using the specified {@link #getCharset() Charset} or {@linkplain #getEncoding() encoding} (if any).
 	 * @throws IOException if opening the Reader failed
 	 * @see #requiresReader()
 	 * @see #getInputStream()
+	 * 是否存在指定编码，优先选择charset   返回一个InputStreamReader
 	 */
 	public Reader getReader() throws IOException {
-		if (this.charset != null) {
-			return new InputStreamReader(this.resource.getInputStream(), this.charset);
-		}else if (this.encoding != null) {
-			return new InputStreamReader(this.resource.getInputStream(), this.encoding);
+		if (charset != null) {
+			return new InputStreamReader(resource.getInputStream(), charset);
+		}else if (encoding != null) {
+			return new InputStreamReader(resource.getInputStream(), encoding);
 		}else {
-			return new InputStreamReader(this.resource.getInputStream());
+			return new InputStreamReader(resource.getInputStream());
 		}
 	}
 
@@ -131,7 +134,7 @@ public class EncodedResource implements InputStreamSource {
 	 */
 	@Override
 	public InputStream getInputStream() throws IOException {
-		return this.resource.getInputStream();
+		return resource.getInputStream();
 	}
 
 	@Override
@@ -141,19 +144,19 @@ public class EncodedResource implements InputStreamSource {
 			return false;
 		}
 		EncodedResource otherResource = (EncodedResource) other;
-		return (this.resource.equals(otherResource.resource) &&
-				ObjectUtils.nullSafeEquals(this.charset, otherResource.charset) &&
-				ObjectUtils.nullSafeEquals(this.encoding, otherResource.encoding));
+		return (resource.equals(otherResource.resource) &&
+				ObjectUtils.nullSafeEquals(charset, otherResource.charset) &&
+				ObjectUtils.nullSafeEquals(encoding, otherResource.encoding));
 	}
 
 	@Override
 	public int hashCode() {
-		return this.resource.hashCode();
+		return resource.hashCode();
 	}
 
 	@Override
 	public String toString() {
-		return this.resource.toString();
+		return resource.toString();
 	}
 
 }
