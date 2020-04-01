@@ -7,12 +7,27 @@
     <node x="342.0" y="79.0">org.springframework.web.method.annotation.AbstractWebArgumentResolverAdapter</node>
     <node x="501.0" y="0.0">org.springframework.web.method.support.HandlerMethodArgumentResolver</node>
     <node x="21.0" y="158.0">org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor</node>
+    <node x="120.00000000000006" y="390.0">org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter</node>
     <node x="609.0" y="158.0">org.springframework.web.method.annotation.AbstractCookieValueMethodArgumentResolver</node>
+    <node x="366.0" y="232.0">org.springframework.beans.factory.Aware</node>
     <node x="918.0" y="79.0">org.springframework.web.method.support.HandlerMethodArgumentResolverComposite</node>
     <node x="0.0" y="79.0">org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver</node>
+    <node x="0.0" y="311.0">org.springframework.beans.factory.InitializingBean</node>
+    <node x="312.0" y="311.0">org.springframework.context.ApplicationContextAware</node>
+    <node x="162.00000000000003" y="311.0">org.springframework.web.reactive.HandlerAdapter</node>
   </nodes>
   <notes />
   <edges>
+    <edge source="org.springframework.context.ApplicationContextAware" target="org.springframework.beans.factory.Aware">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter" target="org.springframework.beans.factory.InitializingBean">
+      <point x="-71.33333333333334" y="-14.5" />
+      <point x="155.6666666666667" y="365.0" />
+      <point x="71.0" y="365.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
     <edge source="org.springframework.web.method.annotation.AbstractCookieValueMethodArgumentResolver" target="org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver">
       <point x="0.0" y="-14.5" />
       <point x="0.0" y="14.5" />
@@ -39,6 +54,16 @@
       <point x="583.5" y="59.0" />
       <point x="-27.5" y="14.5" />
     </edge>
+    <edge source="org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter" target="org.springframework.web.reactive.HandlerAdapter">
+      <point x="-2.8421709430404007E-14" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerAdapter" target="org.springframework.context.ApplicationContextAware">
+      <point x="71.33333333333329" y="-14.5" />
+      <point x="298.33333333333337" y="365.0" />
+      <point x="404.0" y="365.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
     <edge source="org.springframework.web.method.support.HandlerMethodArgumentResolverComposite" target="org.springframework.web.method.support.HandlerMethodArgumentResolver">
       <point x="0.0" y="-14.5" />
       <point x="1055.0" y="49.0" />
@@ -47,9 +72,7 @@
     </edge>
   </edges>
   <settings layout="Hierarchic Group" zoom="1.0" x="445.0" y="212.0" />
-  <SelectedNodes>
-    <node>org.springframework.web.method.support.HandlerMethodArgumentResolverComposite</node>
-  </SelectedNodes>
+  <SelectedNodes />
   <Categories />
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>

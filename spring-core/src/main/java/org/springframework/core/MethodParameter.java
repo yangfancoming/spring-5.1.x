@@ -27,14 +27,11 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * Helper class that encapsulates the specification of a method parameter, i.e. a {@link Method}
- * or {@link Constructor} plus a parameter index and a nested type index for a declared generic
- * type. Useful as a specification object to pass along.
- *
+ * Helper class that encapsulates the specification of a method parameter,
+ * i.e. a {@link Method} or {@link Constructor} plus a parameter index and a nested type index for a declared generic type.
+ * Useful as a specification object to pass along.
  * As of 4.2, there is a {@link org.springframework.core.annotation.SynthesizingMethodParameter}
- * subclass available which synthesizes annotations with attribute aliases. That subclass is used
- * for web and message endpoint processing, in particular.
- *
+ * subclass available which synthesizes annotations with attribute aliases. That subclass is used for web and message endpoint processing, in particular.
  * @since 2.0
  * @see org.springframework.core.annotation.SynthesizingMethodParameter
  */
@@ -333,9 +330,7 @@ public class MethodParameter {
 	 */
 	private boolean hasNullableAnnotation() {
 		for (Annotation ann : getParameterAnnotations()) {
-			if ("Nullable".equals(ann.annotationType().getSimpleName())) {
-				return true;
-			}
+			if ("Nullable".equals(ann.annotationType().getSimpleName())) return true;
 		}
 		return false;
 	}
@@ -403,16 +398,13 @@ public class MethodParameter {
 			}else {
 				Type[] genericParameterTypes = this.executable.getGenericParameterTypes();
 				int index = this.parameterIndex;
-				if (this.executable instanceof Constructor &&
-						ClassUtils.isInnerClass(this.executable.getDeclaringClass()) &&
-						genericParameterTypes.length == this.executable.getParameterCount() - 1) {
+				if (this.executable instanceof Constructor && ClassUtils.isInnerClass(this.executable.getDeclaringClass()) && genericParameterTypes.length == this.executable.getParameterCount() - 1) {
 					// Bug in javac: type array excludes enclosing instance parameter
 					// for inner classes with at least one generic constructor parameter,
 					// so access it with the actual parameter index lowered by 1
 					index = this.parameterIndex - 1;
 				}
-				paramType = (index >= 0 && index < genericParameterTypes.length ?
-						genericParameterTypes[index] : getParameterType());
+				paramType = (index >= 0 && index < genericParameterTypes.length ? genericParameterTypes[index] : getParameterType());
 			}
 			this.genericParameterType = paramType;
 		}
@@ -619,9 +611,7 @@ public class MethodParameter {
 	@Override
 	public boolean equals(Object other) {
 		if (this == other) return true;
-		if (!(other instanceof MethodParameter)) {
-			return false;
-		}
+		if (!(other instanceof MethodParameter)) return false;
 		MethodParameter otherParam = (MethodParameter) other;
 		return (this.parameterIndex == otherParam.parameterIndex && getExecutable().equals(otherParam.getExecutable()));
 	}

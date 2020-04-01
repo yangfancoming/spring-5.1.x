@@ -34,7 +34,6 @@ import org.springframework.web.server.ServerWebExchange;
  * Supports the invocation of
  * {@link org.springframework.web.bind.annotation.RequestMapping @RequestMapping} handler methods.
  * @since 5.0
- *
  * RequestMappingHandlerAdapter继承了接口InitializingBean，意味着在构造函数执行完毕后，Spring会默认执行 afterPropertiesSet() 方法
  */
 public class RequestMappingHandlerAdapter implements HandlerAdapter, ApplicationContextAware, InitializingBean {
@@ -147,12 +146,8 @@ public class RequestMappingHandlerAdapter implements HandlerAdapter, Application
 			ServerCodecConfigurer codecConfigurer = ServerCodecConfigurer.create();
 			this.messageReaders = codecConfigurer.getReaders();
 		}
-		if (this.argumentResolverConfigurer == null) {
-			this.argumentResolverConfigurer = new ArgumentResolverConfigurer();
-		}
-		if (this.reactiveAdapterRegistry == null) {
-			this.reactiveAdapterRegistry = ReactiveAdapterRegistry.getSharedInstance();
-		}
+		if (this.argumentResolverConfigurer == null) this.argumentResolverConfigurer = new ArgumentResolverConfigurer();
+		if (this.reactiveAdapterRegistry == null) this.reactiveAdapterRegistry = ReactiveAdapterRegistry.getSharedInstance();
 
 		this.methodResolver = new ControllerMethodResolver(this.argumentResolverConfigurer,this.reactiveAdapterRegistry, this.applicationContext, this.messageReaders);
 		this.modelInitializer = new ModelInitializer(this.methodResolver, this.reactiveAdapterRegistry);
@@ -183,9 +178,7 @@ public class RequestMappingHandlerAdapter implements HandlerAdapter, Application
 	}
 
 	private Mono<HandlerResult> handleException(Throwable exception, HandlerMethod handlerMethod,BindingContext bindingContext, ServerWebExchange exchange) {
-
 		Assert.state(this.methodResolver != null, "Not initialized");
-
 		// Success and error responses may use different content types
 		exchange.getAttributes().remove(HandlerMapping.PRODUCIBLE_MEDIA_TYPES_ATTRIBUTE);
 		if (!exchange.getResponse().isCommitted()) {
@@ -195,22 +188,16 @@ public class RequestMappingHandlerAdapter implements HandlerAdapter, Application
 		InvocableHandlerMethod invocable = this.methodResolver.getExceptionHandlerMethod(exception, handlerMethod);
 		if (invocable != null) {
 			try {
-				if (logger.isDebugEnabled()) {
-					logger.debug(exchange.getLogPrefix() + "Using @ExceptionHandler " + invocable);
-				}
+				if (logger.isDebugEnabled()) logger.debug(exchange.getLogPrefix() + "Using @ExceptionHandler " + invocable);
 				bindingContext.getModel().asMap().clear();
 				Throwable cause = exception.getCause();
 				if (cause != null) {
 					return invocable.invoke(exchange, bindingContext, exception, cause, handlerMethod);
-				}
-				else {
+				}else {
 					return invocable.invoke(exchange, bindingContext, exception, handlerMethod);
 				}
-			}
-			catch (Throwable invocationEx) {
-				if (logger.isWarnEnabled()) {
-					logger.warn(exchange.getLogPrefix() + "Failure in @ExceptionHandler " + invocable, invocationEx);
-				}
+			}catch (Throwable invocationEx) {
+				if (logger.isWarnEnabled()) logger.warn(exchange.getLogPrefix() + "Failure in @ExceptionHandler " + invocable, invocationEx);
 			}
 		}
 		return Mono.error(exception);

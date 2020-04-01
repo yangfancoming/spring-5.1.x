@@ -7,7 +7,7 @@ package org.springframework.beans.factory;
  * 由bean实现的接口，这些bean的所有属性都由beanfactory设置后需要作出反应。
  *  e.g. to perform custom initialization, or merely to check that all mandatory properties have been set.
  *
- * <p>An alternative to implementing {@code InitializingBean} is specifying a custom init method,
+ * An alternative to implementing {@code InitializingBean} is specifying a custom init method,
  * for example in an XML bean definition. For a list of all bean lifecycle methods, see the {@link BeanFactory BeanFactory javadocs}.
 
  * @see DisposableBean
@@ -20,7 +20,7 @@ public interface InitializingBean {
 
 	/**
 	 * Invoked by the containing {@code BeanFactory} after it has set all bean properties and satisfied {@link BeanFactoryAware}, {@code ApplicationContextAware} etc.
-	 * <p>This method allows the bean instance to perform validation of its overall configuration and final initialization when all bean properties have been set.
+	 * This method allows the bean instance to perform validation of its overall configuration and final initialization when all bean properties have been set.
 	 * @throws Exception in the event of misconfiguration (such as failure to set an essential property) or if initialization fails for any other reason
 	 */
 	void afterPropertiesSet() throws Exception;
