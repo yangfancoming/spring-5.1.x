@@ -13,22 +13,17 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.WebContentGenerator;
 
 /**
- * Abstract base class for {@link HandlerAdapter} implementations that support
- * handlers of type {@link HandlerMethod}.
- *
- * @author Arjen Poutsma
+ * Abstract base class for {@link HandlerAdapter} implementations that support handlers of type {@link HandlerMethod}.
  * @since 3.1
  */
 public abstract class AbstractHandlerMethodAdapter extends WebContentGenerator implements HandlerAdapter, Ordered {
 
 	private int order = Ordered.LOWEST_PRECEDENCE;
 
-
 	public AbstractHandlerMethodAdapter() {
 		// no restriction of HTTP methods by default
 		super(false);
 	}
-
 
 	/**
 	 * Specify the order value for this HandlerAdapter bean.

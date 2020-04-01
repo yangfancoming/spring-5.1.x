@@ -48,9 +48,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link RequestMappingHandlerAdapter}.
- *
- * @author Rossen Stoyanchev
- * @author Sam Brannen
  * @see ServletAnnotationControllerHandlerMethodTests
  * @see HandlerMethodAnnotationDetectionTests
  * @see RequestMappingHandlerAdapterIntegrationTests
@@ -98,7 +95,6 @@ public class RequestMappingHandlerAdapterTests {
 		HandlerMethod handlerMethod = handlerMethod(new SimpleController(), "handle");
 		this.handlerAdapter.setCacheSeconds(100);
 		this.handlerAdapter.afterPropertiesSet();
-
 		this.handlerAdapter.handle(this.request, this.response, handlerMethod);
 		assertTrue(response.getHeader("Cache-Control").contains("max-age"));
 	}
@@ -108,7 +104,6 @@ public class RequestMappingHandlerAdapterTests {
 		SessionAttributeController handler = new SessionAttributeController();
 		this.handlerAdapter.setCacheSeconds(100);
 		this.handlerAdapter.afterPropertiesSet();
-
 		this.handlerAdapter.handle(this.request, this.response, handlerMethod(handler, "handle"));
 		assertEquals("no-store", this.response.getHeader("Cache-Control"));
 	}
@@ -118,17 +113,13 @@ public class RequestMappingHandlerAdapterTests {
 		HandlerMethodArgumentResolver redirectAttributesResolver = new RedirectAttributesMethodArgumentResolver();
 		HandlerMethodArgumentResolver modelResolver = new ModelMethodProcessor();
 		HandlerMethodReturnValueHandler viewHandler = new ViewNameMethodReturnValueHandler();
-
 		this.handlerAdapter.setArgumentResolvers(Arrays.asList(redirectAttributesResolver, modelResolver));
 		this.handlerAdapter.setReturnValueHandlers(Collections.singletonList(viewHandler));
 		this.handlerAdapter.setIgnoreDefaultModelOnRedirect(true);
 		this.handlerAdapter.afterPropertiesSet();
-
 		this.request.setAttribute(DispatcherServlet.OUTPUT_FLASH_MAP_ATTRIBUTE, new FlashMap());
-
 		HandlerMethod handlerMethod = handlerMethod(new RedirectAttributeController(), "handle", Model.class);
 		ModelAndView mav = this.handlerAdapter.handle(request, response, handlerMethod);
-
 		assertTrue("Without RedirectAttributes arg, model should be empty", mav.getModel().isEmpty());
 	}
 
@@ -137,7 +128,6 @@ public class RequestMappingHandlerAdapterTests {
 		HandlerMethodArgumentResolver resolver = new ServletRequestMethodArgumentResolver();
 		this.handlerAdapter.setCustomArgumentResolvers(Collections.singletonList(resolver));
 		this.handlerAdapter.afterPropertiesSet();
-
 		assertTrue(this.handlerAdapter.getArgumentResolvers().contains(resolver));
 		assertMethodProcessorCount(RESOLVER_COUNT + 1, INIT_BINDER_RESOLVER_COUNT + 1, HANDLER_COUNT);
 	}
@@ -147,7 +137,6 @@ public class RequestMappingHandlerAdapterTests {
 		HandlerMethodArgumentResolver resolver = new ServletRequestMethodArgumentResolver();
 		this.handlerAdapter.setArgumentResolvers(Collections.singletonList(resolver));
 		this.handlerAdapter.afterPropertiesSet();
-
 		assertMethodProcessorCount(1, INIT_BINDER_RESOLVER_COUNT, HANDLER_COUNT);
 	}
 
@@ -156,7 +145,6 @@ public class RequestMappingHandlerAdapterTests {
 		HandlerMethodArgumentResolver resolver = new ServletRequestMethodArgumentResolver();
 		this.handlerAdapter.setInitBinderArgumentResolvers(Collections.singletonList(resolver));
 		this.handlerAdapter.afterPropertiesSet();
-
 		assertMethodProcessorCount(RESOLVER_COUNT, 1, HANDLER_COUNT);
 	}
 
@@ -165,7 +153,6 @@ public class RequestMappingHandlerAdapterTests {
 		HandlerMethodReturnValueHandler handler = new ViewNameMethodReturnValueHandler();
 		this.handlerAdapter.setCustomReturnValueHandlers(Collections.singletonList(handler));
 		this.handlerAdapter.afterPropertiesSet();
-
 		assertTrue(this.handlerAdapter.getReturnValueHandlers().contains(handler));
 		assertMethodProcessorCount(RESOLVER_COUNT, INIT_BINDER_RESOLVER_COUNT, HANDLER_COUNT + 1);
 	}
@@ -175,7 +162,6 @@ public class RequestMappingHandlerAdapterTests {
 		HandlerMethodReturnValueHandler handler = new ModelMethodProcessor();
 		this.handlerAdapter.setReturnValueHandlers(Collections.singletonList(handler));
 		this.handlerAdapter.afterPropertiesSet();
-
 		assertMethodProcessorCount(RESOLVER_COUNT, INIT_BINDER_RESOLVER_COUNT, 1);
 	}
 
@@ -224,7 +210,6 @@ public class RequestMappingHandlerAdapterTests {
 	}
 
 	// SPR-10859
-
 	@Test
 	public void responseBodyAdvice() throws Exception {
 		List<HttpMessageConverter<?>> converters = new ArrayList<>();
@@ -270,39 +255,30 @@ public class RequestMappingHandlerAdapterTests {
 		}
 
 		public ResponseEntity<Map<String, String>> handleWithResponseEntity() {
-			return new ResponseEntity<>(Collections.singletonMap(
-					"foo", "bar"), HttpStatus.OK);
+			return new ResponseEntity<>(Collections.singletonMap("foo", "bar"), HttpStatus.OK);
 		}
-
 		public ResponseEntity<String> handleBadRequest() {
 			return new ResponseEntity<>("body", HttpStatus.BAD_REQUEST);
 		}
-
 	}
-
 
 	@SessionAttributes("attr1")
 	private static class SessionAttributeController {
-
 		@SuppressWarnings("unused")
 		public void handle() {
 		}
 	}
 
-
 	@SuppressWarnings("unused")
 	private static class RedirectAttributeController {
-
 		public String handle(Model model) {
 			model.addAttribute("someAttr", "someAttrValue");
 			return "redirect:/path";
 		}
 	}
 
-
 	@ControllerAdvice
 	private static class ModelAttributeAdvice {
-
 		@SuppressWarnings("unused")
 		@ModelAttribute
 		public void addAttributes(Model model) {
@@ -311,10 +287,8 @@ public class RequestMappingHandlerAdapterTests {
 		}
 	}
 
-
 	@ControllerAdvice({"org.springframework.web.servlet.mvc.method.annotation", "java.lang"})
 	private static class ModelAttributePackageAdvice {
-
 		@SuppressWarnings("unused")
 		@ModelAttribute
 		public void addAttributes(Model model) {
@@ -325,7 +299,6 @@ public class RequestMappingHandlerAdapterTests {
 
 	@ControllerAdvice("java.lang")
 	private static class ModelAttributeNotUsedPackageAdvice {
-
 		@SuppressWarnings("unused")
 		@ModelAttribute
 		public void addAttributes(Model model) {
@@ -337,19 +310,14 @@ public class RequestMappingHandlerAdapterTests {
 	 * This class additionally implements {@link RequestBodyAdvice} solely for the purpose
 	 * of verifying that controller advice implementing both {@link ResponseBodyAdvice}
 	 * and {@link RequestBodyAdvice} does not get registered twice.
-	 *
 	 * @see <a href="https://github.com/spring-projects/spring-framework/pull/22638">gh-22638</a>
 	 */
 	@ControllerAdvice
 	private static class ResponseCodeSuppressingAdvice extends AbstractMappingJacksonResponseBodyAdvice implements RequestBodyAdvice {
-
 		@Override
-		protected void beforeBodyWriteInternal(MappingJacksonValue bodyContainer, MediaType contentType,
-				MethodParameter returnType, ServerHttpRequest request, ServerHttpResponse response) {
-
+		protected void beforeBodyWriteInternal(MappingJacksonValue bodyContainer, MediaType contentType,MethodParameter returnType, ServerHttpRequest request, ServerHttpResponse response) {
 			int status = ((ServletServerHttpResponse) response).getServletResponse().getStatus();
 			response.setStatusCode(HttpStatus.OK);
-
 			Map<String, Object> map = new LinkedHashMap<>();
 			map.put("status", status);
 			map.put("message", bodyContainer.getValue());
@@ -357,30 +325,22 @@ public class RequestMappingHandlerAdapterTests {
 		}
 
 		@Override
-		public boolean supports(MethodParameter methodParameter, Type targetType,
-				Class<? extends HttpMessageConverter<?>> converterType) {
-
+		public boolean supports(MethodParameter methodParameter, Type targetType,Class<? extends HttpMessageConverter<?>> converterType) {
 			return StringHttpMessageConverter.class.equals(converterType);
 		}
 
 		@Override
-		public HttpInputMessage beforeBodyRead(HttpInputMessage inputMessage, MethodParameter parameter,
-				Type targetType, Class<? extends HttpMessageConverter<?>> converterType) {
-
+		public HttpInputMessage beforeBodyRead(HttpInputMessage inputMessage, MethodParameter parameter,Type targetType, Class<? extends HttpMessageConverter<?>> converterType) {
 			return inputMessage;
 		}
 
 		@Override
-		public Object afterBodyRead(Object body, HttpInputMessage inputMessage, MethodParameter parameter,
-				Type targetType, Class<? extends HttpMessageConverter<?>> converterType) {
-
+		public Object afterBodyRead(Object body, HttpInputMessage inputMessage, MethodParameter parameter,Type targetType, Class<? extends HttpMessageConverter<?>> converterType) {
 			return body;
 		}
 
 		@Override
-		public Object handleEmptyBody(@Nullable Object body, HttpInputMessage inputMessage, MethodParameter parameter,
-				Type targetType, Class<? extends HttpMessageConverter<?>> converterType) {
-
+		public Object handleEmptyBody(@Nullable Object body, HttpInputMessage inputMessage, MethodParameter parameter,Type targetType, Class<? extends HttpMessageConverter<?>> converterType) {
 			return "default value for empty body";
 		}
 

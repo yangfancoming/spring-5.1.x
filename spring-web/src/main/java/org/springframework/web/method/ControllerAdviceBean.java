@@ -21,13 +21,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
  * Encapsulates information about an {@linkplain ControllerAdvice @ControllerAdvice}
  * Spring-managed bean without necessarily requiring it to be instantiated.
  *
- * <p>The {@link #findAnnotatedBeans(ApplicationContext)} method can be used to
+ * The {@link #findAnnotatedBeans(ApplicationContext)} method can be used to
  * discover such beans. However, a {@code ControllerAdviceBean} may be created
  * from any object, including ones without an {@code @ControllerAdvice}.
- *
- * @author Rossen Stoyanchev
- * @author Brian Clozel
-
  * @since 3.2
  */
 public class ControllerAdviceBean implements Ordered {
@@ -40,7 +36,6 @@ public class ControllerAdviceBean implements Ordered {
 	private final int order;
 
 	private final HandlerTypePredicate beanTypePredicate;
-
 
 	/**
 	 * Create a {@code ControllerAdviceBean} using the given bean instance.
@@ -69,20 +64,17 @@ public class ControllerAdviceBean implements Ordered {
 			Assert.hasText(beanName, "Bean name must not be null");
 			Assert.notNull(beanFactory, "BeanFactory must not be null");
 			if (!beanFactory.containsBean(beanName)) {
-				throw new IllegalArgumentException("BeanFactory [" + beanFactory +
-						"] does not contain specified controller advice bean '" + beanName + "'");
+				throw new IllegalArgumentException("BeanFactory [" + beanFactory + "] does not contain specified controller advice bean '" + beanName + "'");
 			}
 			beanType = this.beanFactory.getType(beanName);
 			this.order = initOrderFromBeanType(beanType);
-		}
-		else {
+		}else {
 			Assert.notNull(bean, "Bean must not be null");
 			beanType = bean.getClass();
 			this.order = initOrderFromBean(bean);
 		}
 
-		ControllerAdvice annotation = (beanType != null ?
-				AnnotatedElementUtils.findMergedAnnotation(beanType, ControllerAdvice.class) : null);
+		ControllerAdvice annotation = (beanType != null ? AnnotatedElementUtils.findMergedAnnotation(beanType, ControllerAdvice.class) : null);
 
 		if (annotation != null) {
 			this.beanTypePredicate = HandlerTypePredicate.builder()
@@ -91,16 +83,14 @@ public class ControllerAdviceBean implements Ordered {
 					.assignableType(annotation.assignableTypes())
 					.annotation(annotation.annotations())
 					.build();
-		}
-		else {
+		}else {
 			this.beanTypePredicate = HandlerTypePredicate.forAnyHandlerType();
 		}
 	}
 
 
 	/**
-	 * Returns the order value extracted from the {@link ControllerAdvice}
-	 * annotation, or {@link Ordered#LOWEST_PRECEDENCE} otherwise.
+	 * Returns the order value extracted from the {@link ControllerAdvice} annotation, or {@link Ordered#LOWEST_PRECEDENCE} otherwise.
 	 */
 	@Override
 	public int getOrder() {
@@ -109,8 +99,7 @@ public class ControllerAdviceBean implements Ordered {
 
 	/**
 	 * Return the type of the contained bean.
-	 * <p>If the bean type is a CGLIB-generated class, the original
-	 * user-defined class is returned.
+	 * If the bean type is a CGLIB-generated class, the original user-defined class is returned.
 	 */
 	@Nullable
 	public Class<?> getBeanType() {
@@ -142,15 +131,10 @@ public class ControllerAdviceBean implements Ordered {
 		return this.beanTypePredicate.test(beanType);
 	}
 
-
 	@Override
 	public boolean equals(Object other) {
-		if (this == other) {
-			return true;
-		}
-		if (!(other instanceof ControllerAdviceBean)) {
-			return false;
-		}
+		if (this == other) return true;
+		if (!(other instanceof ControllerAdviceBean)) return false;
 		ControllerAdviceBean otherAdvice = (ControllerAdviceBean) other;
 		return (this.bean.equals(otherAdvice.bean) && this.beanFactory == otherAdvice.beanFactory);
 	}

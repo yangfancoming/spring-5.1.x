@@ -34,38 +34,24 @@ import org.springframework.web.multipart.support.MultipartResolutionDelegate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
- * Resolves method arguments annotated with @{@link RequestParam}, arguments of
- * type {@link MultipartFile} in conjunction with Spring's {@link MultipartResolver}
- * abstraction, and arguments of type {@code javax.servlet.http.Part} in conjunction
- * with Servlet 3.0 multipart requests. This resolver can also be created in default
- * resolution mode in which simple types (int, long, etc.) not annotated with
- * {@link RequestParam @RequestParam} are also treated as request parameters with
- * the parameter name derived from the argument name.
+ * Resolves method arguments annotated with @{@link RequestParam}, arguments of type {@link MultipartFile} in conjunction with Spring's {@link MultipartResolver} abstraction,
+ * and arguments of type {@code javax.servlet.http.Part} in conjunction with Servlet 3.0 multipart requests.
+ * This resolver can also be created in default  resolution mode in which simple types (int, long, etc.) not annotated with
+ * {@link RequestParam @RequestParam} are also treated as request parameters with  the parameter name derived from the argument name.
  *
- * <p>If the method parameter type is {@link Map}, the name specified in the
- * annotation is used to resolve the request parameter String value. The value is
- * then converted to a {@link Map} via type conversion assuming a suitable
- * {@link Converter} or {@link PropertyEditor} has been registered.
- * Or if a request parameter name is not specified the
- * {@link RequestParamMapMethodArgumentResolver} is used instead to provide
- * access to all request parameters in the form of a map.
- *
- * <p>A {@link WebDataBinder} is invoked to apply type conversion to resolved request
- * header values that don't yet match the method parameter type.
- *
- * @author Arjen Poutsma
- * @author Rossen Stoyanchev
- * @author Brian Clozel
+ * If the method parameter type is {@link Map}, the name specified in the annotation is used to resolve the request parameter String value.
+ * The value is then converted to a {@link Map} via type conversion assuming a suitable
+ * {@link Converter} or {@link PropertyEditor} has been registered.Or if a request parameter name is not specified the
+ * {@link RequestParamMapMethodArgumentResolver} is used instead to provide access to all request parameters in the form of a map.
+ * A {@link WebDataBinder} is invoked to apply type conversion to resolved request header values that don't yet match the method parameter type.
  * @since 3.1
  * @see RequestParamMapMethodArgumentResolver
  */
-public class RequestParamMethodArgumentResolver extends AbstractNamedValueMethodArgumentResolver
-		implements UriComponentsContributor {
+public class RequestParamMethodArgumentResolver extends AbstractNamedValueMethodArgumentResolver implements UriComponentsContributor {
 
 	private static final TypeDescriptor STRING_TYPE_DESCRIPTOR = TypeDescriptor.valueOf(String.class);
 
 	private final boolean useDefaultResolution;
-
 
 	/**
 	 * Create a new {@link RequestParamMethodArgumentResolver} instance.
@@ -80,17 +66,13 @@ public class RequestParamMethodArgumentResolver extends AbstractNamedValueMethod
 
 	/**
 	 * Create a new {@link RequestParamMethodArgumentResolver} instance.
-	 * @param beanFactory a bean factory used for resolving  ${...} placeholder
-	 * and #{...} SpEL expressions in default values, or {@code null} if default
-	 * values are not expected to contain expressions
+	 * @param beanFactory a bean factory used for resolving  ${...} placeholder and #{...} SpEL expressions in default values,
+	 * or {@code null} if default values are not expected to contain expressions
 	 * @param useDefaultResolution in default resolution mode a method argument
-	 * that is a simple type, as defined in {@link BeanUtils#isSimpleProperty},
-	 * is treated as a request parameter even if it isn't annotated, the
-	 * request parameter name is derived from the method parameter name.
+	 * that is a simple type, as defined in {@link BeanUtils#isSimpleProperty},is treated as a request parameter even if it isn't annotated,
+	 *  the  request parameter name is derived from the method parameter name.
 	 */
-	public RequestParamMethodArgumentResolver(@Nullable ConfigurableBeanFactory beanFactory,
-			boolean useDefaultResolution) {
-
+	public RequestParamMethodArgumentResolver(@Nullable ConfigurableBeanFactory beanFactory,boolean useDefaultResolution) {
 		super(beanFactory);
 		this.useDefaultResolution = useDefaultResolution;
 	}
@@ -113,23 +95,19 @@ public class RequestParamMethodArgumentResolver extends AbstractNamedValueMethod
 			if (Map.class.isAssignableFrom(parameter.nestedIfOptional().getNestedParameterType())) {
 				RequestParam requestParam = parameter.getParameterAnnotation(RequestParam.class);
 				return (requestParam != null && StringUtils.hasText(requestParam.name()));
-			}
-			else {
+			}else {
 				return true;
 			}
-		}
-		else {
+		}else {
 			if (parameter.hasParameterAnnotation(RequestPart.class)) {
 				return false;
 			}
 			parameter = parameter.nestedIfOptional();
 			if (MultipartResolutionDelegate.isMultipartArgument(parameter)) {
 				return true;
-			}
-			else if (this.useDefaultResolution) {
+			}else if (this.useDefaultResolution) {
 				return BeanUtils.isSimpleProperty(parameter.getNestedParameterType());
-			}
-			else {
+			}else {
 				return false;
 			}
 		}
@@ -178,63 +156,49 @@ public class RequestParamMethodArgumentResolver extends AbstractNamedValueMethod
 		if (MultipartResolutionDelegate.isMultipartArgument(parameter)) {
 			if (servletRequest == null || !MultipartResolutionDelegate.isMultipartRequest(servletRequest)) {
 				throw new MultipartException("Current request is not a multipart request");
-			}
-			else {
+			}else {
 				throw new MissingServletRequestPartException(name);
 			}
-		}
-		else {
-			throw new MissingServletRequestParameterException(name,
-					parameter.getNestedParameterType().getSimpleName());
+		}else {
+			throw new MissingServletRequestParameterException(name,parameter.getNestedParameterType().getSimpleName());
 		}
 	}
 
 	@Override
-	public void contributeMethodArgument(MethodParameter parameter, @Nullable Object value,
-			UriComponentsBuilder builder, Map<String, Object> uriVariables, ConversionService conversionService) {
-
+	public void contributeMethodArgument(MethodParameter parameter, @Nullable Object value,UriComponentsBuilder builder, Map<String, Object> uriVariables, ConversionService conversionService) {
 		Class<?> paramType = parameter.getNestedParameterType();
 		if (Map.class.isAssignableFrom(paramType) || MultipartFile.class == paramType || Part.class == paramType) {
 			return;
 		}
 
 		RequestParam requestParam = parameter.getParameterAnnotation(RequestParam.class);
-		String name = (requestParam != null && StringUtils.hasLength(requestParam.name()) ?
-				requestParam.name() : parameter.getParameterName());
+		String name = (requestParam != null && StringUtils.hasLength(requestParam.name()) ? requestParam.name() : parameter.getParameterName());
 		Assert.state(name != null, "Unresolvable parameter name");
 
 		if (value == null) {
-			if (requestParam != null &&
-					(!requestParam.required() || !requestParam.defaultValue().equals(ValueConstants.DEFAULT_NONE))) {
+			if (requestParam != null && (!requestParam.required() || !requestParam.defaultValue().equals(ValueConstants.DEFAULT_NONE))) {
 				return;
 			}
 			builder.queryParam(name);
-		}
-		else if (value instanceof Collection) {
+		}else if (value instanceof Collection) {
 			for (Object element : (Collection<?>) value) {
 				element = formatUriValue(conversionService, TypeDescriptor.nested(parameter, 1), element);
 				builder.queryParam(name, element);
 			}
-		}
-		else {
+		}else {
 			builder.queryParam(name, formatUriValue(conversionService, new TypeDescriptor(parameter), value));
 		}
 	}
 
 	@Nullable
-	protected String formatUriValue(
-			@Nullable ConversionService cs, @Nullable TypeDescriptor sourceType, @Nullable Object value) {
-
+	protected String formatUriValue(@Nullable ConversionService cs, @Nullable TypeDescriptor sourceType, @Nullable Object value) {
 		if (value == null) {
 			return null;
-		}
-		else if (value instanceof String) {
+		}else if (value instanceof String) {
 			return (String) value;
-		}
-		else if (cs != null) {
+		}else if (cs != null) {
 			return (String) cs.convert(value, sourceType, STRING_TYPE_DESCRIPTOR);
-		}
-		else {
+		}else {
 			return value.toString();
 		}
 	}
