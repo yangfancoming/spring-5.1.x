@@ -22,9 +22,7 @@ import org.springframework.util.StringUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * Unit tests for {@link AnnotationBeanNameGenerator}.
- */
+
 public class AnnotationBeanNameGeneratorTests {
 
 	private AnnotationBeanNameGenerator beanNameGenerator = new AnnotationBeanNameGenerator();

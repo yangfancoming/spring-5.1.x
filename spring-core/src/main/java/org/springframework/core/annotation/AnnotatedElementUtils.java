@@ -805,10 +805,7 @@ public abstract class AnnotatedElementUtils {
 				// Start searching within locally declared annotations
 				List<Annotation> declaredAnnotations = Arrays.asList(AnnotationUtils.getDeclaredAnnotations(element));
 				T result = searchWithGetSemanticsInAnnotations(element, declaredAnnotations,annotationTypes, annotationName, containerType, processor, visited, metaDepth);
-				if (result != null) {
-					return result;
-				}
-
+				if (result != null) return result;
 				if (element instanceof Class) {  // otherwise getAnnotations doesn't return anything new
 					Class<?> superclass = ((Class<?>) element).getSuperclass();
 					if (superclass != null && superclass != Object.class) {
@@ -820,9 +817,7 @@ public abstract class AnnotatedElementUtils {
 						}
 						// Continue searching within inherited annotations
 						result = searchWithGetSemanticsInAnnotations(element, inheritedAnnotations,annotationTypes, annotationName, containerType, processor, visited, metaDepth);
-						if (result != null) {
-							return result;
-						}
+						if (result != null) return result;
 					}
 				}
 			}catch (Throwable ex) {

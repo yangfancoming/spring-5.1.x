@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor</OriginalElement>
+  <nodes>
+    <node x="612.0" y="79.0">org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver</node>
+    <node x="342.0" y="79.0">org.springframework.web.method.annotation.AbstractWebArgumentResolverAdapter</node>
+    <node x="501.0" y="0.0">org.springframework.web.method.support.HandlerMethodArgumentResolver</node>
+    <node x="21.0" y="158.0">org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor</node>
+    <node x="609.0" y="158.0">org.springframework.web.method.annotation.AbstractCookieValueMethodArgumentResolver</node>
+    <node x="918.0" y="79.0">org.springframework.web.method.support.HandlerMethodArgumentResolverComposite</node>
+    <node x="0.0" y="79.0">org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.web.method.annotation.AbstractCookieValueMethodArgumentResolver" target="org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor" target="org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver" target="org.springframework.web.method.support.HandlerMethodArgumentResolver">
+      <point x="0.0" y="-14.5" />
+      <point x="161.0" y="49.0" />
+      <point x="528.5" y="49.0" />
+      <point x="-82.5" y="14.5" />
+    </edge>
+    <edge source="org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver" target="org.springframework.web.method.support.HandlerMethodArgumentResolver">
+      <point x="0.0" y="-14.5" />
+      <point x="755.0" y="59.0" />
+      <point x="638.5" y="59.0" />
+      <point x="27.5" y="14.5" />
+    </edge>
+    <edge source="org.springframework.web.method.annotation.AbstractWebArgumentResolverAdapter" target="org.springframework.web.method.support.HandlerMethodArgumentResolver">
+      <point x="0.0" y="-14.5" />
+      <point x="467.0" y="59.0" />
+      <point x="583.5" y="59.0" />
+      <point x="-27.5" y="14.5" />
+    </edge>
+    <edge source="org.springframework.web.method.support.HandlerMethodArgumentResolverComposite" target="org.springframework.web.method.support.HandlerMethodArgumentResolver">
+      <point x="0.0" y="-14.5" />
+      <point x="1055.0" y="49.0" />
+      <point x="693.5" y="49.0" />
+      <point x="82.5" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="445.0" y="212.0" />
+  <SelectedNodes>
+    <node>org.springframework.web.method.support.HandlerMethodArgumentResolverComposite</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
