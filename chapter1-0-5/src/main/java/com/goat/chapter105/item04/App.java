@@ -50,4 +50,12 @@ public class App extends BaseTest {
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ImportBeanDefinitionRegistrarConfig.class);
 		look(ac);
 	}
+
+
+	// @Import 导入另一个配置类  相当于xml中的 <import> 标签
+	@Test
+	public void test(){
+		ApplicationContext ac = new AnnotationConfigApplicationContext(ImportConfig2.class);
+		look(ac);
+	}
 }
