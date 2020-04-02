@@ -9,12 +9,12 @@ import org.springframework.core.log.LogDelegateFactory;
 /**
  * Holds the shared logger named "org.springframework.web.HttpLogging" for HTTP
  * related logging when "org.springframework.http" is not enabled but "org.springframework.web" is.
- * <p>That means "org.springframework.web" enables all web logging including
+ * That means "org.springframework.web" enables all web logging including
  * from lower level packages such as "org.springframework.http" and modules
  * such as codecs from {@literal "spring-core"} when those are wrapped with
  * {@link org.springframework.http.codec.EncoderHttpMessageWriter EncoderHttpMessageWriter} or
  * {@link org.springframework.http.codec.DecoderHttpMessageReader DecoderHttpMessageReader}.
- * <p>To see logging from the primary class loggers simply enable logging for "org.springframework.http" and "org.springframework.codec".
+ * To see logging from the primary class loggers simply enable logging for "org.springframework.http" and "org.springframework.codec".
  * @since 5.1
  * @see LogDelegateFactory
  */

@@ -6,14 +6,14 @@ package javax.servlet;
  * Ensures that servlets handle
  * only one request at a time. This interface has no methods.
  *
- * <p>If a servlet implements this interface, you are <i>guaranteed</i>
+ * If a servlet implements this interface, you are <i>guaranteed</i>
  * that no two threads will execute concurrently in the
  * servlet's <code>service</code> method. The servlet container
  * can make this guarantee by synchronizing access to a single
  * instance of the servlet, or by maintaining a pool of servlet
  * instances and dispatching each new request to a free servlet.
  *
- * <p>Note that SingleThreadModel does not solve all thread safety
+ * Note that SingleThreadModel does not solve all thread safety
  * issues.  For example, session attributes and static variables can
  * still be accessed by multiple requests on multiple threads
  * at the same time, even when SingleThreadModel servlets are used.

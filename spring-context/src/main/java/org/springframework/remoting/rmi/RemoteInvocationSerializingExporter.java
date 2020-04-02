@@ -22,7 +22,7 @@ import org.springframework.util.ClassUtils;
  * {@link org.springframework.remoting.support.RemoteInvocationResult} objects,
  * for example Spring's HTTP invoker.
  *
- * <p>Provides template methods for {@code ObjectInputStream} and
+ * Provides template methods for {@code ObjectInputStream} and
  * {@code ObjectOutputStream} handling.
  *
 
@@ -50,7 +50,7 @@ public abstract class RemoteInvocationSerializingExporter extends RemoteInvocati
 
 	/**
 	 * Specify the content type to use for sending remote invocation responses.
-	 * <p>Default is "application/x-java-serialized-object".
+	 * Default is "application/x-java-serialized-object".
 	 */
 	public void setContentType(String contentType) {
 		Assert.notNull(contentType, "'contentType' must not be null");
@@ -66,7 +66,7 @@ public abstract class RemoteInvocationSerializingExporter extends RemoteInvocati
 
 	/**
 	 * Set whether to accept deserialization of proxy classes.
-	 * <p>Default is "true". May be deactivated as a security measure.
+	 * Default is "true". May be deactivated as a security measure.
 	 */
 	public void setAcceptProxyClasses(boolean acceptProxyClasses) {
 		this.acceptProxyClasses = acceptProxyClasses;
@@ -102,7 +102,7 @@ public abstract class RemoteInvocationSerializingExporter extends RemoteInvocati
 
 	/**
 	 * Create an ObjectInputStream for the given InputStream.
-	 * <p>The default implementation creates a Spring {@link CodebaseAwareObjectInputStream}.
+	 * The default implementation creates a Spring {@link CodebaseAwareObjectInputStream}.
 	 * @param is the InputStream to read from
 	 * @return the new ObjectInputStream instance to use
 	 * @throws java.io.IOException if creation of the ObjectInputStream failed
@@ -114,7 +114,7 @@ public abstract class RemoteInvocationSerializingExporter extends RemoteInvocati
 	/**
 	 * Perform the actual reading of an invocation result object from the
 	 * given ObjectInputStream.
-	 * <p>The default implementation simply calls
+	 * The default implementation simply calls
 	 * {@link java.io.ObjectInputStream#readObject()}.
 	 * Can be overridden for deserialization of a custom wrapper object rather
 	 * than the plain invocation, for example an encryption-aware holder.
@@ -137,7 +137,7 @@ public abstract class RemoteInvocationSerializingExporter extends RemoteInvocati
 
 	/**
 	 * Create an ObjectOutputStream for the given OutputStream.
-	 * <p>The default implementation creates a plain
+	 * The default implementation creates a plain
 	 * {@link java.io.ObjectOutputStream}.
 	 * @param os the OutputStream to write to
 	 * @return the new ObjectOutputStream instance to use
@@ -150,7 +150,7 @@ public abstract class RemoteInvocationSerializingExporter extends RemoteInvocati
 	/**
 	 * Perform the actual writing of the given invocation result object
 	 * to the given ObjectOutputStream.
-	 * <p>The default implementation simply calls
+	 * The default implementation simply calls
 	 * {@link java.io.ObjectOutputStream#writeObject}.
 	 * Can be overridden for serialization of a custom wrapper object rather
 	 * than the plain invocation, for example an encryption-aware holder.

@@ -10,7 +10,7 @@ import org.springframework.util.ClassUtils;
 /**
  * {@link EmbeddedDatabaseConfigurer} for an HSQL embedded database instance.
  *
- * <p>Call {@link #getInstance()} to get the singleton instance of this class.
+ * Call {@link #getInstance()} to get the singleton instance of this class.
  *
  * @author Keith Donald
  * @author Oliver Gierke

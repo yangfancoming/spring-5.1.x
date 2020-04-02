@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
 /**
  * Simplistic implementation of an instrumentable {@code ClassLoader}.
  *
- * <p>Usable in tests and standalone environments.
+ * Usable in tests and standalone environments.
  *
  * @author Rod Johnson
  * @author Costin Leau

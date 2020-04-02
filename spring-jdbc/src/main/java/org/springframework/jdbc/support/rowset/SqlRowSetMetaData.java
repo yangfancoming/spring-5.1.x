@@ -8,7 +8,7 @@ import org.springframework.jdbc.InvalidResultSetAccessException;
  * Metadata interface for Spring's {@link SqlRowSet}, analogous to JDBC's
  * {@link java.sql.ResultSetMetaData}.
  *
- * <p>The main difference to the standard JDBC ResultSetMetaData is that a
+ * The main difference to the standard JDBC ResultSetMetaData is that a
  * {@link java.sql.SQLException} is never thrown here. This allows
  * SqlRowSetMetaData to be used without having to deal with checked exceptions.
  * SqlRowSetMetaData will throw Spring's {@link InvalidResultSetAccessException}

@@ -16,7 +16,7 @@ import org.apache.commons.logging.Log;
  * In addition, it tracks/counts exceptions thrown by the intercepted method.
  * The stack traces can be viewed in the JAMon web application.
  *
- * <p>This code is inspired by Thierry Templier's blog.
+ * This code is inspired by Thierry Templier's blog.
  * @since 1.1.3
  * @see com.jamonapi.MonitorFactory
  * @see PerformanceMonitorInterceptor
@@ -59,7 +59,7 @@ public class JamonPerformanceMonitorInterceptor extends AbstractMonitoringInterc
 	/**
 	 * Set whether to track all invocations that go through this interceptor,
 	 * or just invocations with trace logging enabled.
-	 * <p>Default is "false": Only invocations with trace logging enabled will
+	 * Default is "false": Only invocations with trace logging enabled will
 	 * be monitored. Specify "true" to let JAMon track all invocations,
 	 * gathering statistics even when trace logging is disabled.
 	 */

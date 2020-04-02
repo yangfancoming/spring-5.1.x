@@ -10,11 +10,11 @@ import org.springframework.lang.Nullable;
  * offer parameter values for named SQL parameters, serving as argument
  * for {@link NamedParameterJdbcTemplate} operations.
  *
- * <p>This interface allows for the specification of SQL type in addition
+ * This interface allows for the specification of SQL type in addition
  * to parameter values. All parameter values and types are identified by
  * specifying the name of the parameter.
  *
- * <p>Intended to wrap various implementations like a Map or a JavaBean
+ * Intended to wrap various implementations like a Map or a JavaBean
  * with a consistent interface.
  *
  * @author Thomas Risberg
@@ -76,7 +76,7 @@ public interface SqlParameterSource {
 
 	/**
 	 * Extract all available parameter names if possible.
-	 * <p>This is an optional operation, primarily for use with
+	 * This is an optional operation, primarily for use with
 	 * {@link org.springframework.jdbc.core.simple.SimpleJdbcInsert}
 	 * and {@link org.springframework.jdbc.core.simple.SimpleJdbcCall}.
 	 * @return the array of parameter names, or {@code null} if not determinable

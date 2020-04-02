@@ -252,7 +252,7 @@ public class CastorMarshallerTests extends AbstractMarshallerTests<CastorMarshal
 
 	/**
 	 * Assert the values of xpath expression evaluation is exactly the same as expected value.
-	 * <p>The xpath may contain the xml namespace prefixes, since namespaces from flight example
+	 * The xpath may contain the xml namespace prefixes, since namespaces from flight example
 	 * are being registered.
 	 * @param msg the error message that will be used in case of test failure
 	 * @param expected the expected value

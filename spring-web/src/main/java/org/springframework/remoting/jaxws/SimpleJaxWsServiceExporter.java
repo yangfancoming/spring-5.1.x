@@ -14,7 +14,7 @@ import javax.xml.ws.WebServiceProvider;
  * for each service will consist of the base address with the service name
  * appended (e.g. "http://localhost:8080/OrderService").
  *
- * <p>Note that this exporter will only work if the JAX-WS runtime actually
+ * Note that this exporter will only work if the JAX-WS runtime actually
  * supports publishing with an address argument, i.e. if the JAX-WS runtime
  * ships an internal HTTP server.
  *
@@ -36,7 +36,7 @@ public class SimpleJaxWsServiceExporter extends AbstractJaxWsServiceExporter {
 	/**
 	 * Set the base address for exported services.
 	 * Default is "http://localhost:8080/".
-	 * <p>For each actual publication address, the service name will be
+	 * For each actual publication address, the service name will be
 	 * appended to this base address. E.g. service name "OrderService"
 	 * -> "http://localhost:8080/OrderService".
 	 * @see javax.xml.ws.Endpoint#publish(String)

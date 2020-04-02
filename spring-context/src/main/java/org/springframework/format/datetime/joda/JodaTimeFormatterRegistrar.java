@@ -28,7 +28,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 /**
  * Configures Joda-Time's formatting system for use with Spring.
  *
- * <p><b>NOTE:</b> Spring's Joda-Time support requires Joda-Time 2.x, as of Spring 4.0.
+ * <b>NOTE:</b> Spring's Joda-Time support requires Joda-Time 2.x, as of Spring 4.0.
  *
  * @author Keith Donald
 
@@ -69,7 +69,7 @@ public class JodaTimeFormatterRegistrar implements FormatterRegistrar {
 	/**
 	 * Set whether standard ISO formatting should be applied to all date/time types.
 	 * Default is "false" (no).
-	 * <p>If set to "true", the "dateStyle", "timeStyle" and "dateTimeStyle"
+	 * If set to "true", the "dateStyle", "timeStyle" and "dateTimeStyle"
 	 * properties are effectively ignored.
 	 */
 	public void setUseIsoFormat(boolean useIsoFormat) {
@@ -105,7 +105,7 @@ public class JodaTimeFormatterRegistrar implements FormatterRegistrar {
 
 	/**
 	 * Set the formatter that will be used for objects representing date values.
-	 * <p>This formatter will be used for the {@link LocalDate} type. When specified
+	 * This formatter will be used for the {@link LocalDate} type. When specified
 	 * the {@link #setDateStyle(String) dateStyle} and
 	 * {@link #setUseIsoFormat(boolean) useIsoFormat} properties will be ignored.
 	 * @param formatter the formatter to use
@@ -119,7 +119,7 @@ public class JodaTimeFormatterRegistrar implements FormatterRegistrar {
 
 	/**
 	 * Set the formatter that will be used for objects representing time values.
-	 * <p>This formatter will be used for the {@link LocalTime} type. When specified
+	 * This formatter will be used for the {@link LocalTime} type. When specified
 	 * the {@link #setTimeStyle(String) timeStyle} and
 	 * {@link #setUseIsoFormat(boolean) useIsoFormat} properties will be ignored.
 	 * @param formatter the formatter to use
@@ -133,7 +133,7 @@ public class JodaTimeFormatterRegistrar implements FormatterRegistrar {
 
 	/**
 	 * Set the formatter that will be used for objects representing date and time values.
-	 * <p>This formatter will be used for {@link LocalDateTime}, {@link ReadableInstant},
+	 * This formatter will be used for {@link LocalDateTime}, {@link ReadableInstant},
 	 * {@link Date} and {@link Calendar} types. When specified
 	 * the {@link #setDateTimeStyle(String) dateTimeStyle} and
 	 * {@link #setUseIsoFormat(boolean) useIsoFormat} properties will be ignored.

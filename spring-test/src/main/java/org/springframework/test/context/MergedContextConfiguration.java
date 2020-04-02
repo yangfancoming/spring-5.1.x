@@ -23,7 +23,7 @@ import org.springframework.util.StringUtils;
  * {@link ActiveProfiles @ActiveProfiles}, and
  * {@link TestPropertySource @TestPropertySource}.
  *
- * <p>Merged context resource locations, annotated classes, active profiles,
+ * Merged context resource locations, annotated classes, active profiles,
  * property resource locations, and in-lined properties represent all declared
  * values in the test class hierarchy taking into consideration the semantics
  * of the {@link ContextConfiguration#inheritLocations},
@@ -31,10 +31,10 @@ import org.springframework.util.StringUtils;
  * {@link TestPropertySource#inheritLocations}, and
  * {@link TestPropertySource#inheritProperties} flags.
  *
- * <p>A {@link SmartContextLoader} uses {@code MergedContextConfiguration}
+ * A {@link SmartContextLoader} uses {@code MergedContextConfiguration}
  * to load an {@link org.springframework.context.ApplicationContext ApplicationContext}.
  *
- * <p>{@code MergedContextConfiguration} is also used by the
+ * {@code MergedContextConfiguration} is also used by the
  * {@link org.springframework.test.context.cache.ContextCache ContextCache}
  * as the key for caching an
  * {@link org.springframework.context.ApplicationContext ApplicationContext}
@@ -160,7 +160,7 @@ public class MergedContextConfiguration implements Serializable {
 	/**
 	 * Create a new {@code MergedContextConfiguration} instance for the
 	 * supplied parameters.
-	 * <p>If a {@code null} value is supplied for {@code locations},
+	 * If a {@code null} value is supplied for {@code locations},
 	 * {@code classes}, {@code activeProfiles}, {@code propertySourceLocations},
 	 * or {@code propertySourceProperties} an empty array will be stored instead.
 	 * If a {@code null} value is supplied for the
@@ -196,7 +196,7 @@ public class MergedContextConfiguration implements Serializable {
 	/**
 	 * Create a new {@code MergedContextConfiguration} instance for the
 	 * supplied parameters.
-	 * <p>If a {@code null} value is supplied for {@code locations},
+	 * If a {@code null} value is supplied for {@code locations},
 	 * {@code classes}, {@code activeProfiles}, {@code propertySourceLocations},
 	 * or {@code propertySourceProperties} an empty array will be stored instead.
 	 * If a {@code null} value is supplied for {@code contextInitializerClasses}
@@ -249,7 +249,7 @@ public class MergedContextConfiguration implements Serializable {
 	/**
 	 * Get the merged resource locations for {@code ApplicationContext}
 	 * configuration files for the {@linkplain #getTestClass() test class}.
-	 * <p>Context resource locations typically represent XML configuration
+	 * Context resource locations typically represent XML configuration
 	 * files or Groovy scripts.
 	 */
 	public String[] getLocations() {
@@ -330,7 +330,7 @@ public class MergedContextConfiguration implements Serializable {
 	/**
 	 * Get the merged test {@code PropertySource} properties for the
 	 * {@linkplain #getTestClass() test class}.
-	 * <p>Properties will be loaded into the {@code Environment}'s set of
+	 * Properties will be loaded into the {@code Environment}'s set of
 	 * {@code PropertySources}.
 	 * @see TestPropertySource#properties
 	 * @see java.util.Properties
@@ -369,7 +369,7 @@ public class MergedContextConfiguration implements Serializable {
 	/**
 	 * Get the parent {@link ApplicationContext} for the context defined by this
 	 * {@code MergedContextConfiguration} from the context cache.
-	 * <p>If the parent context has not yet been loaded, it will be loaded, stored
+	 * If the parent context has not yet been loaded, it will be loaded, stored
 	 * in the cache, and then returned.
 	 * @return the parent {@code ApplicationContext} or {@code null} if there is no parent
 	 * @see #getParent()

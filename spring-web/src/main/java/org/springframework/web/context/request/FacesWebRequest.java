@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
 /**
  * {@link WebRequest} adapter for a JSF {@link javax.faces.context.FacesContext}.
  *
- * <p>Requires JSF 2.0 or higher, as of Spring 4.0.
+ * Requires JSF 2.0 or higher, as of Spring 4.0.
  *
 
  * @since 2.5.2

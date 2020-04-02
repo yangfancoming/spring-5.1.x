@@ -15,7 +15,7 @@ import org.springframework.lang.Nullable;
  * decorates the held request condition and allows it to be combined and compared
  * with other request conditions in a type and null safe way.
  *
- * <p>When two {@code RequestConditionHolder} instances are combined or compared
+ * When two {@code RequestConditionHolder} instances are combined or compared
  * with each other, it is expected the conditions they hold are of the same type.
  * If they are not, a {@link ClassCastException} is raised.
  *

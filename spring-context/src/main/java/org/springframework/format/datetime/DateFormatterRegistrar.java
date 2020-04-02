@@ -17,7 +17,7 @@ import org.springframework.util.Assert;
  * {@link org.springframework.format.annotation.DateTimeFormat} declarations.
  * Applies to fields of type {@link Date}, {@link Calendar} and {@code long}.
  *
- * <p>Designed for direct instantiation but also exposes the static
+ * Designed for direct instantiation but also exposes the static
  * {@link #addDateConverters(ConverterRegistry)} utility method for
  * ad-hoc use against any {@code ConverterRegistry} instance.
  *
@@ -35,7 +35,7 @@ public class DateFormatterRegistrar implements FormatterRegistrar {
 
 	/**
 	 * Set a global date formatter to register.
-	 * <p>If not specified, no general formatter for non-annotated
+	 * If not specified, no general formatter for non-annotated
 	 * {@link Date} and {@link Calendar} fields will be registered.
 	 */
 	public void setFormatter(DateFormatter dateFormatter) {

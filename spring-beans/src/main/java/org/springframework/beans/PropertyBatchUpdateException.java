@@ -14,7 +14,7 @@ import org.springframework.util.ObjectUtils;
  * An object of this class is created at the beginning of the binding
  * process, and errors added to it as necessary.
  *
- * <p>The binding process continues when it encounters application-level
+ * The binding process continues when it encounters application-level
  * PropertyAccessExceptions, applying those changes that can be applied
  * and storing rejected changes in an object of this class.
  *
@@ -49,7 +49,7 @@ public class PropertyBatchUpdateException extends BeansException {
 
 	/**
 	 * Return an array of the propertyAccessExceptions stored in this object.
-	 * <p>Will return the empty array (not {@code null}) if there were no errors.
+	 * Will return the empty array (not {@code null}) if there were no errors.
 	 */
 	public final PropertyAccessException[] getPropertyAccessExceptions() {
 		return this.propertyAccessExceptions;

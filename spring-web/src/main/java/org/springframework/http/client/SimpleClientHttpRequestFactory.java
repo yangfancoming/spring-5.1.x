@@ -56,7 +56,7 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	/**
 	 * Indicate whether this request factory should buffer the
 	 * {@linkplain ClientHttpRequest#getBody() request body} internally.
-	 * <p>Default is {@code true}. When sending large amounts of data via POST or PUT,
+	 * Default is {@code true}. When sending large amounts of data via POST or PUT,
 	 * it is recommended to change this property to {@code false}, so as not to run
 	 * out of memory. This will result in a {@link ClientHttpRequest} that either
 	 * streams directly to the underlying {@link HttpURLConnection} (if the
@@ -73,7 +73,7 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	/**
 	 * Set the number of bytes to write in each chunk when not buffering request
 	 * bodies locally.
-	 * <p>Note that this parameter is only used when
+	 * Note that this parameter is only used when
 	 * {@link #setBufferRequestBody(boolean) bufferRequestBody} is set to {@code false},
 	 * and the {@link org.springframework.http.HttpHeaders#getContentLength() Content-Length}
 	 * is not known in advance.
@@ -86,7 +86,7 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	/**
 	 * Set the underlying URLConnection's connect timeout (in milliseconds).
 	 * A timeout value of 0 specifies an infinite timeout.
-	 * <p>Default is the system's default timeout.
+	 * Default is the system's default timeout.
 	 * @see URLConnection#setConnectTimeout(int)
 	 */
 	public void setConnectTimeout(int connectTimeout) {
@@ -96,7 +96,7 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	/**
 	 * Set the underlying URLConnection's read timeout (in milliseconds).
 	 * A timeout value of 0 specifies an infinite timeout.
-	 * <p>Default is the system's default timeout.
+	 * Default is the system's default timeout.
 	 * @see URLConnection#setReadTimeout(int)
 	 */
 	public void setReadTimeout(int readTimeout) {
@@ -106,7 +106,7 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	/**
 	 * Set if the underlying URLConnection can be set to 'output streaming' mode.
 	 * Default is {@code true}.
-	 * <p>When output streaming is enabled, authentication and redirection cannot be handled automatically.
+	 * When output streaming is enabled, authentication and redirection cannot be handled automatically.
 	 * If output streaming is disabled, the {@link HttpURLConnection#setFixedLengthStreamingMode} and
 	 * {@link HttpURLConnection#setChunkedStreamingMode} methods of the underlying connection will never
 	 * be called.
@@ -141,7 +141,7 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 
 	/**
 	 * {@inheritDoc}
-	 * <p>Setting the {@link #setTaskExecutor taskExecutor} property is required before calling this method.
+	 * Setting the {@link #setTaskExecutor taskExecutor} property is required before calling this method.
 	 */
 	@Override
 	public AsyncClientHttpRequest createAsyncRequest(URI uri, HttpMethod httpMethod) throws IOException {
@@ -162,7 +162,7 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 
 	/**
 	 * Opens and returns a connection to the given URL.
-	 * <p>The default implementation uses the given {@linkplain #setProxy(java.net.Proxy) proxy} -
+	 * The default implementation uses the given {@linkplain #setProxy(java.net.Proxy) proxy} -
 	 * if any - to open a connection.
 	 * @param url the URL to open a connection to
 	 * @param proxy the proxy to use, may be {@code null}
@@ -179,7 +179,7 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 
 	/**
 	 * Template method for preparing the given {@link HttpURLConnection}.
-	 * <p>The default implementation prepares the connection for input and output, and sets the HTTP method.
+	 * The default implementation prepares the connection for input and output, and sets the HTTP method.
 	 * @param connection the connection to prepare
 	 * @param httpMethod the HTTP request method ({@code GET}, {@code POST}, etc.)
 	 * @throws IOException in case of I/O errors

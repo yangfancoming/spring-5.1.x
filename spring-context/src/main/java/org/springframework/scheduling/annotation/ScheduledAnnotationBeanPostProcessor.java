@@ -65,11 +65,11 @@ import org.springframework.util.StringValueResolver;
  * to be invoked by a {@link org.springframework.scheduling.TaskScheduler} according
  * to the "fixedRate", "fixedDelay", or "cron" expression provided via the annotation.
  *
- * <p>This post-processor is automatically registered by Spring's
+ * This post-processor is automatically registered by Spring's
  * {@code <task:annotation-driven>} XML element, and also by the
  * {@link EnableScheduling @EnableScheduling} annotation.
  *
- * <p>Autodetects any {@link SchedulingConfigurer} instances in the container,
+ * Autodetects any {@link SchedulingConfigurer} instances in the container,
  * allowing for customization of the scheduler to be used or for fine-grained
  * control over task registration (e.g. registration of {@link Trigger} tasks.
  * See the @{@link EnableScheduling} javadocs for complete usage details.
@@ -93,7 +93,7 @@ public class ScheduledAnnotationBeanPostProcessor
 
 	/**
 	 * The default name of the {@link TaskScheduler} bean to pick up: {@value}.
-	 * <p>Note that the initial lookup happens by type; this is just the fallback
+	 * Note that the initial lookup happens by type; this is just the fallback
 	 * in case of multiple scheduler beans found in the context.
 	 * @since 4.2
 	 */
@@ -152,7 +152,7 @@ public class ScheduledAnnotationBeanPostProcessor
 	 * Set the {@link org.springframework.scheduling.TaskScheduler} that will invoke
 	 * the scheduled methods, or a {@link java.util.concurrent.ScheduledExecutorService}
 	 * to be wrapped as a TaskScheduler.
-	 * <p>If not specified, default scheduler resolution will apply: searching for a
+	 * If not specified, default scheduler resolution will apply: searching for a
 	 * unique {@link TaskScheduler} bean in the context, or for a {@link TaskScheduler}
 	 * bean named "taskScheduler" otherwise; the same lookup will also be performed for
 	 * a {@link ScheduledExecutorService} bean. If neither of the two is resolvable,
@@ -486,7 +486,7 @@ public class ScheduledAnnotationBeanPostProcessor
 	/**
 	 * Create a {@link Runnable} for the given bean instance,
 	 * calling the specified scheduled method.
-	 * <p>The default implementation creates a {@link ScheduledMethodRunnable}.
+	 * The default implementation creates a {@link ScheduledMethodRunnable}.
 	 * @param target the target bean instance
 	 * @param method the scheduled method to call
 	 * @since 5.1

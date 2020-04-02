@@ -19,13 +19,13 @@ import org.springframework.web.util.WebUtils;
  * {@link RequestAttributes} adapter for a JSF {@link javax.faces.context.FacesContext}.
  * Used as default in a JSF environment, wrapping the current FacesContext.
  *
- * <p><b>NOTE:</b> In contrast to {@link ServletRequestAttributes}, this variant does
+ * <b>NOTE:</b> In contrast to {@link ServletRequestAttributes}, this variant does
  * <i>not</i> support destruction callbacks for scoped attributes, neither for the
  * request scope nor for the session scope. If you rely on such implicit destruction
  * callbacks, consider defining a Spring {@link RequestContextListener} in your
  * {@code web.xml}.
  *
- * <p>Requires JSF 2.0 or higher, as of Spring 4.0.
+ * Requires JSF 2.0 or higher, as of Spring 4.0.
  *
 
  * @since 2.5.2

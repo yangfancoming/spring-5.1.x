@@ -57,7 +57,7 @@ public abstract class AbstractExpressionPointcut implements ExpressionPointcut, 
 	/**
 	 * Called when a new pointcut expression is set.
 	 * The expression should be parsed at this point if possible.
-	 * <p>This implementation is empty.
+	 * This implementation is empty.
 	 * @param expression expression to set
 	 * @throws IllegalArgumentException if the expression is invalid
 	 * @see #setExpression

@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
 /**
  * Abstract base class for {@link LobHandler} implementations.
  *
- * <p>Implements all accessor methods for column names through a column lookup
+ * Implements all accessor methods for column names through a column lookup
  * and delegating to the corresponding accessor that takes a column index.
  *
 

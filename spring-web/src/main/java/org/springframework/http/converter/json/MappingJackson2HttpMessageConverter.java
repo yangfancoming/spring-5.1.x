@@ -14,15 +14,15 @@ import org.springframework.lang.Nullable;
  * Implementation of {@link org.springframework.http.converter.HttpMessageConverter} that can read and
  * write JSON using <a href="https://github.com/FasterXML/jackson">Jackson 2.x's</a> {@link ObjectMapper}.
  *
- * <p>This converter can be used to bind to typed beans, or untyped {@code HashMap} instances.
+ * This converter can be used to bind to typed beans, or untyped {@code HashMap} instances.
  *
- * <p>By default, this converter supports {@code application/json} and {@code application/*+json}
+ * By default, this converter supports {@code application/json} and {@code application/*+json}
  * with {@code UTF-8} character set. This can be overridden by setting the
  * {@link #setSupportedMediaTypes supportedMediaTypes} property.
  *
- * <p>The default constructor uses the default configuration provided by {@link Jackson2ObjectMapperBuilder}.
+ * The default constructor uses the default configuration provided by {@link Jackson2ObjectMapperBuilder}.
  *
- * <p>Compatible with Jackson 2.9 and higher, as of Spring 5.0.
+ * Compatible with Jackson 2.9 and higher, as of Spring 5.0.
  *
  * @author Arjen Poutsma
  * @author Keith Donald
@@ -66,7 +66,7 @@ public class MappingJackson2HttpMessageConverter extends AbstractJackson2HttpMes
 
 	/**
 	 * Indicate whether the JSON output by this view should be prefixed with ")]}', ". Default is false.
-	 * <p>Prefixing the JSON string in this manner is used to help prevent JSON Hijacking.
+	 * Prefixing the JSON string in this manner is used to help prevent JSON Hijacking.
 	 * The prefix renders the string syntactically invalid as a script so that it cannot be hijacked.
 	 * This prefix should be stripped before parsing the string as JSON.
 	 * @see #setJsonPrefix

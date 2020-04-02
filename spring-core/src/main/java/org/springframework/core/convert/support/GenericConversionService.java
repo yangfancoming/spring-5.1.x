@@ -122,7 +122,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 
 	/**
 	 * Return whether conversion between the source type and the target type can be bypassed.
-	 * <p>More precisely, this method will return true if objects of sourceType can be
+	 * More precisely, this method will return true if objects of sourceType can be
 	 * converted to the target type by returning the source object unchanged.
 	 * @param sourceType context about the source type to convert from
 	 * (may be {@code null} if source is {@code null})
@@ -196,7 +196,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 
 	/**
 	 * Template method to convert a {@code null} source.
-	 * <p>The default implementation returns {@code null} or the Java 8
+	 * The default implementation returns {@code null} or the Java 8
 	 * {@link java.util.Optional#empty()} instance if the target type is
 	 * {@code java.util.Optional}. Subclasses may override this to return
 	 * custom {@code null} objects for specific target types.
@@ -247,7 +247,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 
 	/**
 	 * Return the default converter if no converter is found for the given sourceType/targetType pair.
-	 * <p>Returns a NO_OP Converter if the source type is assignable to the target type.
+	 * Returns a NO_OP Converter if the source type is assignable to the target type.
 	 * Returns {@code null} otherwise, indicating no suitable converter could be found.
 	 * @param sourceType the source type to convert from
 	 * @param targetType the target type to convert to
@@ -494,7 +494,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 
 		/**
 		 * Find a {@link GenericConverter} given a source and target type.
-		 * <p>This method will attempt to match all possible converters by working
+		 * This method will attempt to match all possible converters by working
 		 * through the class and interface hierarchy of the types.
 		 * @param sourceType the source type
 		 * @param targetType the target type

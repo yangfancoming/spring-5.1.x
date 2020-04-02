@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * Abstract base class for {@link HandlerExceptionResolver} implementations.
  *
- * <p>Supports mapped {@linkplain #setMappedHandlers handlers} and
+ * Supports mapped {@linkplain #setMappedHandlers handlers} and
  * {@linkplain #setMappedHandlerClasses handler classes} that the resolver
  * should be applied to and implements the {@link Ordered} interface.
  *
@@ -60,8 +60,8 @@ public abstract class AbstractHandlerExceptionResolver implements HandlerExcepti
 
 	/**
 	 * Specify the set of handlers that this exception resolver should apply to.
-	 * <p>The exception mappings and the default error view will only apply to the specified handlers.
-	 * <p>If no handlers or handler classes are set, the exception mappings and the default error
+	 * The exception mappings and the default error view will only apply to the specified handlers.
+	 * If no handlers or handler classes are set, the exception mappings and the default error
 	 * view will apply to all handlers. This means that a specified default error view will be used
 	 * as a fallback for all exceptions; any further HandlerExceptionResolvers in the chain will be
 	 * ignored in this case.
@@ -72,9 +72,9 @@ public abstract class AbstractHandlerExceptionResolver implements HandlerExcepti
 
 	/**
 	 * Specify the set of classes that this exception resolver should apply to.
-	 * <p>The exception mappings and the default error view will only apply to handlers of the
+	 * The exception mappings and the default error view will only apply to handlers of the
 	 * specified types; the specified types may be interfaces or superclasses of handlers as well.
-	 * <p>If no handlers or handler classes are set, the exception mappings and the default error
+	 * If no handlers or handler classes are set, the exception mappings and the default error
 	 * view will apply to all handlers. This means that a specified default error view will be used
 	 * as a fallback for all exceptions; any further HandlerExceptionResolvers in the chain will be
 	 * ignored in this case.
@@ -88,7 +88,7 @@ public abstract class AbstractHandlerExceptionResolver implements HandlerExcepti
 	 * implementation through Commons Logging, getting interpreted as a log category according
 	 * to the logger's configuration. If {@code null} or empty String is passed, warn logging
 	 * is turned off.
-	 * <p>By default there is no warn logging although subclasses like
+	 * By default there is no warn logging although subclasses like
 	 * {@link org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver}
 	 * can change that default. Specify this setting to activate warn logging into a specific
 	 * category. Alternatively, override the {@link #logException} method for custom logging.
@@ -102,7 +102,7 @@ public abstract class AbstractHandlerExceptionResolver implements HandlerExcepti
 	/**
 	 * Specify whether to prevent HTTP response caching for any view resolved
 	 * by this exception resolver.
-	 * <p>Default is {@code false}. Switch this to {@code true} in order to
+	 * Default is {@code false}. Switch this to {@code true} in order to
 	 * automatically generate HTTP response headers that suppress response caching.
 	 */
 	public void setPreventResponseCaching(boolean preventResponseCaching) {
@@ -141,7 +141,7 @@ public abstract class AbstractHandlerExceptionResolver implements HandlerExcepti
 
 	/**
 	 * Check whether this resolver is supposed to apply to the given handler.
-	 * <p>The default implementation checks against the configured
+	 * The default implementation checks against the configured
 	 * {@linkplain #setMappedHandlers handlers} and
 	 * {@linkplain #setMappedHandlerClasses handler classes}, if any.
 	 * @param request current HTTP request
@@ -172,7 +172,7 @@ public abstract class AbstractHandlerExceptionResolver implements HandlerExcepti
 	/**
 	 * Log the given exception at warn level, provided that warn logging has been
 	 * activated through the {@link #setWarnLogCategory "warnLogCategory"} property.
-	 * <p>Calls {@link #buildLogMessage} in order to determine the concrete message to log.
+	 * Calls {@link #buildLogMessage} in order to determine the concrete message to log.
 	 * @param ex the exception that got thrown during handler execution
 	 * @param request current HTTP request (useful for obtaining metadata)
 	 * @see #setWarnLogCategory
@@ -197,7 +197,7 @@ public abstract class AbstractHandlerExceptionResolver implements HandlerExcepti
 
 	/**
 	 * Prepare the response for the exceptional case.
-	 * <p>The default implementation prevents the response from being cached,
+	 * The default implementation prevents the response from being cached,
 	 * if the {@link #setPreventResponseCaching "preventResponseCaching"} property
 	 * has been set to "true".
 	 * @param ex the exception that got thrown during handler execution
@@ -223,7 +223,7 @@ public abstract class AbstractHandlerExceptionResolver implements HandlerExcepti
 	/**
 	 * Actually resolve the given exception that got thrown during handler execution,
 	 * returning a {@link ModelAndView} that represents a specific error page if appropriate.
-	 * <p>May be overridden in subclasses, in order to apply specific exception checks.
+	 * May be overridden in subclasses, in order to apply specific exception checks.
 	 * Note that this template method will be invoked <i>after</i> checking whether this
 	 * resolved applies ("mappedHandlers" etc), so an implementation may simply proceed
 	 * with its actual exception handling.

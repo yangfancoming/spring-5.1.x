@@ -14,13 +14,13 @@ import org.springframework.util.Assert;
  * to a RowMapper which is supposed to create an object for each row.
  * Each object is added to the results List of this ResultSetExtractor.
  *
- * <p>Useful for the typical case of one object per row in the database table.
+ * Useful for the typical case of one object per row in the database table.
  * The number of entries in the results list will match the number of rows.
  *
- * <p>Note that a RowMapper object is typically stateless and thus reusable;
+ * Note that a RowMapper object is typically stateless and thus reusable;
  * just the RowMapperResultSetExtractor adapter is stateful.
  *
- * <p>A usage example with JdbcTemplate:
+ * A usage example with JdbcTemplate:
  *
  * <pre class="code">JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  // reusable object
  * RowMapper rowMapper = new UserRowMapper();  // reusable object
@@ -33,7 +33,7 @@ import org.springframework.util.Assert;
  *     "select * from user where id=?", new Object[] {id},
  *     new RowMapperResultSetExtractor(rowMapper, 1));</pre>
  *
- * <p>Alternatively, consider subclassing MappingSqlQuery from the {@code jdbc.object}
+ * Alternatively, consider subclassing MappingSqlQuery from the {@code jdbc.object}
  * package: Instead of working with separate JdbcTemplate and RowMapper objects,
  * you can have executable query objects (containing row-mapping logic) there.
 

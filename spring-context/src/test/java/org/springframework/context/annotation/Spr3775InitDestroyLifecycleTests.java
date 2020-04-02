@@ -21,13 +21,13 @@ import org.springframework.util.ObjectUtils;
 import static org.junit.Assert.*;
 
 /**
- * <p>
+ *
  * JUnit-3.8-based unit test which verifies expected <em>init</em> and
  * <em>destroy</em> bean lifecycle behavior as requested in <a
  * href="https://opensource.atlassian.com/projects/spring/browse/SPR-3775"
  * target="_blank">SPR-3775</a>.
  * </p>
- * <p>
+ *
  * Specifically, combinations of the following are tested:
  * </p>
  * <ul>

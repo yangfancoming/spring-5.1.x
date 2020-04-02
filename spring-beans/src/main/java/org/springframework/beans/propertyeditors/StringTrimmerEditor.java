@@ -10,7 +10,7 @@ import org.springframework.util.StringUtils;
 /**
  * Property editor that trims Strings.
  *
- * <p>Optionally allows transforming an empty string into a {@code null} value.
+ * Optionally allows transforming an empty string into a {@code null} value.
  * Needs to be explicitly registered, e.g. for command binding.
  *
 

@@ -292,7 +292,7 @@ public interface ServerResponse {
 		/**
 		 * Set the caching directives for the resource, as specified by the HTTP 1.1
 		 * {@code Cache-Control} header.
-		 * <p>A {@code CacheControl} instance can be built like
+		 * A {@code CacheControl} instance can be built like
 		 * {@code CacheControl.maxAge(3600).cachePublic().noTransform()}.
 		 * @param cacheControl a builder for cache-related HTTP response headers
 		 * @return this builder
@@ -377,7 +377,7 @@ public interface ServerResponse {
 		 * @param publisher the {@code Publisher} to write to the response
 		 * @param elementClass the class of elements contained in the publisher
 		 * @param <T> the type of the elements contained in the publisher
-		 * @param <P> the type of the {@code Publisher}
+		 * @param  the type of the {@code Publisher}
 		 * @return the built response
 		 */
 		<T, P extends Publisher<T>> Mono<ServerResponse> body(P publisher, Class<T> elementClass);
@@ -389,7 +389,7 @@ public interface ServerResponse {
 		 * @param publisher the {@code Publisher} to write to the response
 		 * @param typeReference a type reference describing the elements contained in the publisher
 		 * @param <T> the type of the elements contained in the publisher
-		 * @param <P> the type of the {@code Publisher}
+		 * @param  the type of the {@code Publisher}
 		 * @return the built response
 		 */
 		<T, P extends Publisher<T>> Mono<ServerResponse> body(P publisher,
@@ -417,7 +417,7 @@ public interface ServerResponse {
 		 * Render the template with the given {@code name} using the given {@code modelAttributes}.
 		 * The model attributes are mapped under a
 		 * {@linkplain org.springframework.core.Conventions#getVariableName generated name}.
-		 * <p><em>Note: Empty {@link Collection Collections} are not added to
+		 * <em>Note: Empty {@link Collection Collections} are not added to
 		 * the model when using this method because we cannot correctly determine
 		 * the true convention name.</em>
 		 * @param name the name of the template to be rendered

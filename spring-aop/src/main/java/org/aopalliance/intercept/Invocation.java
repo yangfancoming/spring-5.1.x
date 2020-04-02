@@ -5,7 +5,7 @@ package org.aopalliance.intercept;
 /**
  * This interface represents an invocation in the program.
  * 此接口表示程序中的调用。
- * <p>An invocation is a joinpoint and can be intercepted by an interceptor.
+ * An invocation is a joinpoint and can be intercepted by an interceptor.
  * 调用是一个连接点，可以被拦截器拦截
  */
 public interface Invocation extends Joinpoint {

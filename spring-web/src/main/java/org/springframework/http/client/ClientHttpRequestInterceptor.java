@@ -13,7 +13,7 @@ import org.springframework.http.HttpRequest;
  * as to modify the outgoing {@link ClientHttpRequest} and/or the incoming
  * {@link ClientHttpResponse}.
  *
- * <p>The main entry point for interceptors is
+ * The main entry point for interceptors is
  * {@link #intercept(HttpRequest, byte[], ClientHttpRequestExecution)}.
  *
  * @author Arjen Poutsma
@@ -26,7 +26,7 @@ public interface ClientHttpRequestInterceptor {
 	 * Intercept the given request, and return a response. The given
 	 * {@link ClientHttpRequestExecution} allows the interceptor to pass on the
 	 * request and response to the next entity in the chain.
-	 * <p>A typical implementation of this method would follow the following pattern:
+	 * A typical implementation of this method would follow the following pattern:
 	 * <ol>
 	 * <li>Examine the {@linkplain HttpRequest request} and body</li>
 	 * <li>Optionally {@linkplain org.springframework.http.client.support.HttpRequestWrapper

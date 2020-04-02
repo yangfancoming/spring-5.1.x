@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
  * handler mapping or execution, in the typical case to error views. Implementors are
  * typically registered as beans in the application context.
  *
- * <p>Error views are analogous to JSP error pages but can be used with any kind of
+ * Error views are analogous to JSP error pages but can be used with any kind of
  * exception including any checked exception, with potentially fine-grained mappings for
  * specific handlers.
  *
@@ -24,7 +24,7 @@ public interface HandlerExceptionResolver {
 	/**
 	 * Try to resolve the given exception that got thrown during handler execution,
 	 * returning a {@link ModelAndView} that represents a specific error page if appropriate.
-	 * <p>The returned {@code ModelAndView} may be {@linkplain ModelAndView#isEmpty() empty}
+	 * The returned {@code ModelAndView} may be {@linkplain ModelAndView#isEmpty() empty}
 	 * to indicate that the exception has been resolved successfully but that no view
 	 * should be rendered, for instance by setting a status code.
 	 * @param request current HTTP request

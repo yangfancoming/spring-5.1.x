@@ -23,7 +23,7 @@ import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
  * have its dependencies automatically injected by the Spring container using
  * setter injection. This is a core concept in Spring DI.
  *
- * <p>Available for use in annotation-based configurations, such as for the
+ * Available for use in annotation-based configurations, such as for the
  * AspectJ AnnotationBeanConfigurer aspect.
  *
  * @author Rod Johnson

@@ -27,7 +27,7 @@ import org.springframework.util.StringUtils;
  * local {@code LiveBeansView} bean definition) or all registered ApplicationContexts
  * (driven by the {@value #MBEAN_DOMAIN_PROPERTY_NAME} environment property).
  *
- * <p>Note: This feature is still in beta and primarily designed for use with
+ * Note: This feature is still in beta and primarily designed for use with
  * Spring Tool Suite 3.1 and higher.
  *
 
@@ -126,7 +126,7 @@ public class LiveBeansView implements LiveBeansViewMBean, ApplicationContextAwar
 
 	/**
 	 * Find all applicable ApplicationContexts for the current application.
-	 * <p>Called if no specific ApplicationContext has been set for this LiveBeansView.
+	 * Called if no specific ApplicationContext has been set for this LiveBeansView.
 	 * @return the set of ApplicationContexts
 	 */
 	protected Set<ConfigurableApplicationContext> findApplicationContexts() {
@@ -137,7 +137,7 @@ public class LiveBeansView implements LiveBeansViewMBean, ApplicationContextAwar
 
 	/**
 	 * Actually generate a JSON snapshot of the beans in the given ApplicationContexts.
-	 * <p>This implementation doesn't use any JSON parsing libraries in order to avoid
+	 * This implementation doesn't use any JSON parsing libraries in order to avoid
 	 * third-party library dependencies. It produces an array of context description
 	 * objects, each containing a context and parent attribute as well as a beans
 	 * attribute with nested bean description objects. Each bean object contains a

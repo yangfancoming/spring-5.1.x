@@ -22,7 +22,7 @@ import org.springframework.util.StringUtils;
  * isolation level and/or current user credentials to every Connection obtained
  * from it.
  *
- * <p>Uses IBM-specific API to get a JDBC Connection with a specific isolation
+ * Uses IBM-specific API to get a JDBC Connection with a specific isolation
  * level (and read-only flag) from a WebSphere DataSource
  * (<a href="https://publib.boulder.ibm.com/infocenter/wasinfo/v5r1//topic/com.ibm.websphere.base.doc/info/aes/ae/rdat_extiapi.html">IBM code example</a>).
  * Supports the transaction-specific isolation level exposed by
@@ -30,7 +30,7 @@ import org.springframework.util.StringUtils;
  * It's also possible to specify a default isolation level, to be applied when the
  * current Spring-managed transaction does not define a specific isolation level.
  *
- * <p>Usage example, defining the target DataSource as an inner-bean JNDI lookup
+ * Usage example, defining the target DataSource as an inner-bean JNDI lookup
  * (of course, you can link to any WebSphere DataSource through a bean reference):
  *
  * <pre class="code">
@@ -128,7 +128,7 @@ public class WebSphereDataSourceAdapter extends IsolationLevelDataSourceAdapter 
 
 	/**
 	 * Create a WebSphere {@code JDBCConnectionSpec} object for the given characteristics.
-	 * <p>The default implementation uses reflection to apply the given settings.
+	 * The default implementation uses reflection to apply the given settings.
 	 * Can be overridden in subclasses to customize the JDBCConnectionSpec object
 	 * (<a href="https://publib.boulder.ibm.com/infocenter/wasinfo/v6r0/topic/com.ibm.websphere.javadoc.doc/public_html/api/com/ibm/websphere/rsadapter/JDBCConnectionSpec.html">JDBCConnectionSpec javadoc</a>;
 	 * <a href="https://www.ibm.com/developerworks/websphere/library/techarticles/0404_tang/0404_tang.html">IBM developerWorks article</a>).

@@ -10,7 +10,7 @@ import org.springframework.util.Assert;
  * max interval}, it is no longer increased. Stops retrying once the
  * {@link #setMaxElapsedTime(long) max elapsed time} has been reached.
  *
- * <p>Example: The default interval is {@value #DEFAULT_INITIAL_INTERVAL} ms,
+ * Example: The default interval is {@value #DEFAULT_INITIAL_INTERVAL} ms,
  * the default multiplier is {@value #DEFAULT_MULTIPLIER}, and the default max
  * interval is {@value #DEFAULT_MAX_INTERVAL}. For 10 attempts the sequence will be
  * as follows:
@@ -30,7 +30,7 @@ import org.springframework.util.Assert;
  * 10             30000
  * </pre>
  *
- * <p>Note that the default max elapsed time is {@link Long#MAX_VALUE}. Use
+ * Note that the default max elapsed time is {@link Long#MAX_VALUE}. Use
  * {@link #setMaxElapsedTime(long)} to limit the maximum length of time
  * that an instance should accumulate before returning
  * {@link BackOffExecution#STOP}.

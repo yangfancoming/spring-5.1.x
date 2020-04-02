@@ -21,7 +21,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
  * supplied parameters will be matched up with in and out parameters declared
  * when the stored procedure was created.
  *
- * <p>The meta-data processing is based on the DatabaseMetaData provided by
+ * The meta-data processing is based on the DatabaseMetaData provided by
  * the JDBC driver. Since we rely on the JDBC driver, this "auto-detection"
  * can only be used for databases that are known to provide accurate meta-data.
  * These currently include Derby, MySQL, Microsoft SQL Server, Oracle, DB2,
@@ -32,9 +32,9 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
  * any meta-data processing if you want to use parameter names that do not
  * match what is declared during the stored procedure compilation.
  *
- * <p>The actual insert is being handled using Spring's {@link JdbcTemplate}.
+ * The actual insert is being handled using Spring's {@link JdbcTemplate}.
  *
- * <p>Many of the configuration methods return the current instance of the
+ * Many of the configuration methods return the current instance of the
  * SimpleJdbcCall in order to provide the ability to chain multiple ones
  * together in a "fluent" interface style.
  *

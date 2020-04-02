@@ -48,7 +48,7 @@ public class FormContentFilter extends OncePerRequestFilter {
 
 	/**
 	 * Set the converter to use for parsing form content.
-	 * <p>By default this is an instance of {@link AllEncompassingFormHttpMessageConverter}.
+	 * By default this is an instance of {@link AllEncompassingFormHttpMessageConverter}.
 	 */
 	public void setFormConverter(FormHttpMessageConverter converter) {
 		Assert.notNull(converter, "FormHttpMessageConverter is required");

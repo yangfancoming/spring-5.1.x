@@ -36,7 +36,7 @@ public class ServerResponseResultHandler implements HandlerResultHandler, Initia
 
 	/**
 	 * Configure HTTP message writers to serialize the request body with.
-	 * <p>By default this is set to {@link ServerCodecConfigurer}'s default writers.
+	 * By default this is set to {@link ServerCodecConfigurer}'s default writers.
 	 */
 	public void setMessageWriters(List<HttpMessageWriter<?>> configurer) {
 		this.messageWriters = configurer;
@@ -48,7 +48,7 @@ public class ServerResponseResultHandler implements HandlerResultHandler, Initia
 
 	/**
 	 * Set the order for this result handler relative to others.
-	 * <p>By default set to 0. It is generally safe to place it early in the
+	 * By default set to 0. It is generally safe to place it early in the
 	 * order as it looks for a concrete return type.
 	 */
 	public void setOrder(int order) {

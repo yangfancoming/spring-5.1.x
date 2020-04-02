@@ -8,7 +8,7 @@ package org.apache.commons.logging;
  * this interface must have a constructor that takes a single String
  * parameter representing the "name" of this Log.
  *
- * <p>The six logging levels used by <code>Log</code> are (in order):
+ * The six logging levels used by <code>Log</code> are (in order):
  * <ol>
  * <li>trace (the least serious)</li>
  * <li>debug</li>
@@ -23,12 +23,12 @@ package org.apache.commons.logging;
  * The implementation should ensure, though, that this ordering behaves
  * as expected.
  *
- * <p>Performance is often a logging concern.
+ * Performance is often a logging concern.
  * By examining the appropriate property,
  * a component can avoid expensive operations (producing information
  * to be logged).
  *
- * <p>For example,
+ * For example,
  * <pre>
  *    if (log.isDebugEnabled()) {
  *        ... do something expensive ...
@@ -36,7 +36,7 @@ package org.apache.commons.logging;
  *    }
  * </pre>
  *
- * <p>Configuration of the underlying logging system will generally be done
+ * Configuration of the underlying logging system will generally be done
  * external to the Logging APIs, through whatever mechanism is supported by
  * that system.
  *
@@ -47,7 +47,7 @@ public interface Log {
 
 	/**
 	 * Is fatal logging currently enabled?
-	 * <p>Call this method to prevent having to perform expensive operations
+	 * Call this method to prevent having to perform expensive operations
 	 * (for example, <code>String</code> concatenation)
 	 * when the log level is more than fatal.
 	 * @return true if fatal is enabled in the underlying logger.
@@ -56,7 +56,7 @@ public interface Log {
 
 	/**
 	 * Is error logging currently enabled?
-	 * <p>Call this method to prevent having to perform expensive operations
+	 * Call this method to prevent having to perform expensive operations
 	 * (for example, <code>String</code> concatenation)
 	 * when the log level is more than error.
 	 * @return true if error is enabled in the underlying logger.
@@ -65,7 +65,7 @@ public interface Log {
 
 	/**
 	 * Is warn logging currently enabled?
-	 * <p>Call this method to prevent having to perform expensive operations
+	 * Call this method to prevent having to perform expensive operations
 	 * (for example, <code>String</code> concatenation)
 	 * when the log level is more than warn.
 	 * @return true if warn is enabled in the underlying logger.
@@ -74,7 +74,7 @@ public interface Log {
 
 	/**
 	 * Is info logging currently enabled?
-	 * <p>Call this method to prevent having to perform expensive operations
+	 * Call this method to prevent having to perform expensive operations
 	 * (for example, <code>String</code> concatenation)
 	 * when the log level is more than info.
 	 * @return true if info is enabled in the underlying logger.
@@ -83,7 +83,7 @@ public interface Log {
 
 	/**
 	 * Is debug logging currently enabled?
-	 * <p>Call this method to prevent having to perform expensive operations
+	 * Call this method to prevent having to perform expensive operations
 	 * (for example, <code>String</code> concatenation)
 	 * when the log level is more than debug.
 	 * @return true if debug is enabled in the underlying logger.
@@ -92,7 +92,7 @@ public interface Log {
 
 	/**
 	 * Is trace logging currently enabled?
-	 * <p>Call this method to prevent having to perform expensive operations
+	 * Call this method to prevent having to perform expensive operations
 	 * (for example, <code>String</code> concatenation)
 	 * when the log level is more than trace.
 	 * @return true if trace is enabled in the underlying logger.

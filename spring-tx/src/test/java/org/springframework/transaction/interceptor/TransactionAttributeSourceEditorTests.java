@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 /**
  * Unit tests for {@link TransactionAttributeSourceEditor}.
  *
- * <p>Format is: {@code FQN.Method=tx attribute representation}
+ * Format is: {@code FQN.Method=tx attribute representation}
  *
  * @author Rod Johnson
  * @author Sam Brannen

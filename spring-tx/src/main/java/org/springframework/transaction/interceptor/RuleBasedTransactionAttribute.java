@@ -18,7 +18,7 @@ import org.springframework.lang.Nullable;
  * both positive and negative. If no rules are relevant to the exception, it
  * behaves like DefaultTransactionAttribute (rolling back on runtime exceptions).
  *
- * <p>{@link TransactionAttributeEditor} creates objects of this class.
+ * {@link TransactionAttributeEditor} creates objects of this class.
  *
  * @author Rod Johnson
 

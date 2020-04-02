@@ -72,11 +72,11 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 	/**
 	 * Configure the {@link ContentTypeResolver} to use to resolve the content
 	 * type of an input message.
-	 * <p>Note that if no resolver is configured, then
+	 * Note that if no resolver is configured, then
 	 * {@link #setStrictContentTypeMatch(boolean) strictContentTypeMatch} should
 	 * be left as {@code false} (the default) or otherwise this converter will
 	 * ignore all messages.
-	 * <p>By default, a {@code DefaultContentTypeResolver} instance is used.
+	 * By default, a {@code DefaultContentTypeResolver} instance is used.
 	 */
 	public void setContentTypeResolver(@Nullable ContentTypeResolver resolver) {
 		this.contentTypeResolver = resolver;
@@ -94,10 +94,10 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 	 * Whether this converter should convert messages for which no content type
 	 * could be resolved through the configured
 	 * {@link org.springframework.messaging.converter.ContentTypeResolver}.
-	 * <p>A converter can configured to be strict only when a
+	 * A converter can configured to be strict only when a
 	 * {@link #setContentTypeResolver contentTypeResolver} is configured and the
 	 * list of {@link #getSupportedMimeTypes() supportedMimeTypes} is not be empty.
-	 * <p>When this flag is set to {@code true}, {@link #supportsMimeType(MessageHeaders)}
+	 * When this flag is set to {@code true}, {@link #supportsMimeType(MessageHeaders)}
 	 * will return {@code false} if the {@link #setContentTypeResolver contentTypeResolver}
 	 * is not defined or if no content-type header is present.
 	 */
@@ -120,7 +120,7 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 	/**
 	 * Configure the preferred serialization class to use (byte[] or String) when
 	 * converting an Object payload to a {@link Message}.
-	 * <p>The default value is byte[].
+	 * The default value is byte[].
 	 * @param payloadClass either byte[] or String
 	 */
 	public void setSerializedPayloadClass(Class<?> payloadClass) {
@@ -141,7 +141,7 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 	 * Returns the default content type for the payload. Called when
 	 * {@link #toMessage(Object, MessageHeaders)} is invoked without message headers or
 	 * without a content type header.
-	 * <p>By default, this returns the first element of the {@link #getSupportedMimeTypes()
+	 * By default, this returns the first element of the {@link #getSupportedMimeTypes()
 	 * supportedMimeTypes}, if any. Can be overridden in sub-classes.
 	 * @param payload the payload being converted to message
 	 * @return the content type, or {@code null} if not known

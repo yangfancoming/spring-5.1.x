@@ -61,7 +61,7 @@ public abstract class AbstractServiceLoaderBasedFactoryBean extends AbstractFact
 
 	/**
 	 * Determine the actual object to expose for the given ServiceLoader.
-	 * <p>Left to concrete subclasses.
+	 * Left to concrete subclasses.
 	 * @param serviceLoader the ServiceLoader for the configured service class
 	 * @return the object to expose
 	 */

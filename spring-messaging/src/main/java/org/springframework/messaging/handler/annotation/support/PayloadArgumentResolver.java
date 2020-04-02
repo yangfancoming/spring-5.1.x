@@ -29,7 +29,7 @@ import org.springframework.validation.annotation.Validated;
  * {@link MessageConverter}. It also validates the payload using a
  * {@link Validator} if the argument is annotated with a Validation annotation.
  *
- * <p>This {@link HandlerMethodArgumentResolver} should be ordered last as it
+ * This {@link HandlerMethodArgumentResolver} should be ordered last as it
  * supports all types and does not require the {@link Payload} annotation.
  *
  * @author Rossen Stoyanchev
@@ -160,7 +160,7 @@ public class PayloadArgumentResolver implements HandlerMethodArgumentResolver {
 
 	/**
 	 * Validate the payload if applicable.
-	 * <p>The default implementation checks for {@code @javax.validation.Valid},
+	 * The default implementation checks for {@code @javax.validation.Valid},
 	 * Spring's {@link org.springframework.validation.annotation.Validated},
 	 * and custom annotations whose name starts with "Valid".
 	 * @param message the currently processed message

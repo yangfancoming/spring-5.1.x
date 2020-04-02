@@ -25,7 +25,7 @@ import org.springframework.lang.Nullable;
  * Implementation of {@link SQLExceptionTranslator} that analyzes vendor-specific error codes.
  * More precise than an implementation based on SQL state, but heavily vendor-specific.
  *
- * <p>This class applies the following matching rules:
+ * This class applies the following matching rules:
  * <ul>
  * <li>Try custom translation implemented by any subclass. Note that this class is
  * concrete and is typically used itself, in which case this rule doesn't apply.
@@ -39,7 +39,7 @@ import org.springframework.lang.Nullable;
  * to Spring's own SQL state translation when not encountering specific subclasses.
  * </ul>
  *
- * <p>The configuration file named "sql-error-codes.xml" is by default read from
+ * The configuration file named "sql-error-codes.xml" is by default read from
  * this package. It can be overridden through a file of the same name in the root
  * of the class path (e.g. in the "/WEB-INF/classes" directory), as long as the
  * Spring JDBC package is loaded from the same ClassLoader.
@@ -111,7 +111,7 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 
 	/**
 	 * Set the DataSource for this translator.
-	 * <p>Setting this property will cause a Connection to be obtained from
+	 * Setting this property will cause a Connection to be obtained from
 	 * the DataSource to get the meta-data.
 	 * @param dataSource the DataSource to use to find meta-data and establish
 	 * which error codes are usable
@@ -124,7 +124,7 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 
 	/**
 	 * Set the database product name for this translator.
-	 * <p>Setting this property will avoid obtaining a Connection from the DataSource
+	 * Setting this property will avoid obtaining a Connection from the DataSource
 	 * to get the meta-data.
 	 * @param dbName the database product name that identifies the error codes entry
 	 * @see SQLErrorCodesFactory#getErrorCodes(String)

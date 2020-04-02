@@ -12,10 +12,10 @@ import org.springframework.web.util.HtmlUtils;
  * Package-visible helper class for formatting values for rendering via a form tag.
  * Supports two styles of formatting: plain and {@link PropertyEditor}-aware.
  *
- * <p>Plain formatting simply prevents the string '{@code null}' from appearing,
+ * Plain formatting simply prevents the string '{@code null}' from appearing,
  * replacing it with an empty String, and adds HTML escaping as required.
  *
- * <p>{@link PropertyEditor}-aware formatting will attempt to use the supplied
+ * {@link PropertyEditor}-aware formatting will attempt to use the supplied
  * {@link PropertyEditor} to render any non-String value before applying the
  * default rules of plain formatting.
  *

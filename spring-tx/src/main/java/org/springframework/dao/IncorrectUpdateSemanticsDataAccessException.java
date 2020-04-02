@@ -33,7 +33,7 @@ public class IncorrectUpdateSemanticsDataAccessException extends InvalidDataAcce
 	/**
 	 * Return whether data was updated.
 	 * If this method returns false, there's nothing to roll back.
-	 * <p>The default implementation always returns true.
+	 * The default implementation always returns true.
 	 * This can be overridden in subclasses.
 	 */
 	public boolean wasDataUpdated() {

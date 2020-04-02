@@ -1,13 +1,13 @@
 package javax.servlet.http;
 
 /**
- * <p>Allows runtime discovery of the manner in which the {@link
+ * Allows runtime discovery of the manner in which the {@link
  * HttpServlet} for the current {@link HttpServletRequest} was invoked.
  * Invoking any of the methods must not block the caller.  The
  * implementation must be thread safe.  Instances are immutable and are
  * returned from {@link HttpServletRequest#getHttpServletMapping}.</p>
  *
- * <p>Following are some illustrative examples for various combinations
+ * Following are some illustrative examples for various combinations
  * of mappings.  Consider the following Servlet declaration:</p>
  *
  * <pre><code>
@@ -24,7 +24,7 @@ package javax.servlet.http;
  * &lt;/servlet-mapping&gt;
  * </code></pre>
  *
- * <p>The expected values of the properties for various incoming URI
+ * The expected values of the properties for various incoming URI
  * path values are as shown in this table.  The {@code servletName}
  * column is omitted as its value is always {@code MyServlet}.</p>
  * 
@@ -76,7 +76,7 @@ public interface HttpServletMapping {
 
     
     /**
-     * <p>Return the portion of the URI path that caused this request to
+     * Return the portion of the URI path that caused this request to
      * be matched.  If the {@link getMappingMatch} value is {@code
      * CONTEXT_ROOT} or {@code DEFAULT}, this method must return the
      * empty string.  If the {@link getMappingMatch} value is {@code
@@ -93,7 +93,7 @@ public interface HttpServletMapping {
     public String getMatchValue();
 
     /**
-     * <p>Return the String representation for the {@code url-pattern}
+     * Return the String representation for the {@code url-pattern}
      * for this mapping.  If the {@link getMappingMatch} value is {@code
      * CONTEXT_ROOT} or {@code DEFAULT}, this method must return the
      * empty string. If the {@link getMappingMatch} value is {@code
@@ -109,7 +109,7 @@ public interface HttpServletMapping {
     public String getPattern();
     
     /**
-     * <p>Return the String representation for the {@code servlet-name}
+     * Return the String representation for the {@code servlet-name}
      * for this mapping.  If the Servlet providing the response is the
      * default servlet, the return from this method is the name of the
      * defautl servlet, which is container specific.</p>
@@ -122,7 +122,7 @@ public interface HttpServletMapping {
     public String getServletName();
 
     /**
-     * <p>Return the {@link MappingMatch} for this 
+     * Return the {@link MappingMatch} for this
      * instance</p> 
      * 
      * @return the {@code MappingMatch} for this instance.

@@ -108,7 +108,7 @@ public abstract class BodyExtractors {
 
 	/**
 	 * Extractor to read form data into {@code MultiValueMap<String, String>}.
-	 * <p>As of 5.1 this method can also be used on the client side to read form
+	 * As of 5.1 this method can also be used on the client side to read form
 	 * data from a server response (e.g. OAuth).
 	 * @return {@code BodyExtractor} for form data
 	 */
@@ -151,7 +151,7 @@ public abstract class BodyExtractors {
 
 	/**
 	 * Extractor that returns the raw {@link DataBuffer DataBuffers}.
-	 * <p><strong>Note:</strong> the data buffers should be
+	 * <strong>Note:</strong> the data buffers should be
 	 * {@link org.springframework.core.io.buffer.DataBufferUtils#release(DataBuffer)
 	 * released} after being used.
 	 * @return {@code BodyExtractor} for data buffers

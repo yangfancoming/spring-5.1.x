@@ -14,7 +14,7 @@ import org.springframework.core.annotation.AliasFor;
  * Annotation which indicates that a method parameter should be bound to a URI template variable.
  *  Supported for {@link RequestMapping} annotated handler methods.
  *
- * <p>If the method parameter is {@link java.util.Map Map&lt;String, String&gt;}
+ * If the method parameter is {@link java.util.Map Map&lt;String, String&gt;}
  * then the map is populated with all path variable names and values.
 
  * @since 3.0
@@ -41,7 +41,7 @@ public @interface PathVariable {
 
 	/**
 	 * Whether the path variable is required.
-	 * <p>Defaults to {@code true}, leading to an exception being thrown if the path
+	 * Defaults to {@code true}, leading to an exception being thrown if the path
 	 * variable is missing in the incoming request. Switch this to {@code false} if
 	 * you prefer a {@code null} or Java 8 {@code java.util.Optional} in this case.
 	 * e.g. on a {@code ModelAttribute} method which serves for different requests.

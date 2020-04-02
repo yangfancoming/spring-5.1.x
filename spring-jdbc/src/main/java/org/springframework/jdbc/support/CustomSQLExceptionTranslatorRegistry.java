@@ -45,7 +45,7 @@ public final class CustomSQLExceptionTranslatorRegistry {
 
 	/**
 	 * Create a new instance of the {@link CustomSQLExceptionTranslatorRegistry} class.
-	 * <p>Not public to enforce Singleton design pattern.
+	 * Not public to enforce Singleton design pattern.
 	 */
 	private CustomSQLExceptionTranslatorRegistry() {
 	}

@@ -169,7 +169,7 @@ public abstract class JmxUtils {
 
 	/**
 	 * Return the JMX attribute name to use for the given JavaBeans property.
-	 * <p>When using strict casing, a JavaBean property with a getter method
+	 * When using strict casing, a JavaBean property with a getter method
 	 * such as {@code getFoo()} translates to an attribute called
 	 * {@code Foo}. With strict casing disabled, {@code getFoo()}
 	 * would translate to just {@code foo}.
@@ -212,7 +212,7 @@ public abstract class JmxUtils {
 	 * Return the class or interface to expose for the given bean.
 	 * This is the class that will be searched for attributes and operations
 	 * (for example, checked for annotations).
-	 * <p>This implementation returns the superclass for a CGLIB proxy and
+	 * This implementation returns the superclass for a CGLIB proxy and
 	 * the class of the given bean else (for a JDK proxy or a plain bean class).
 	 * @param managedBean the bean instance (might be an AOP proxy)
 	 * @return the bean class to expose
@@ -226,7 +226,7 @@ public abstract class JmxUtils {
 	 * Return the class or interface to expose for the given bean class.
 	 * This is the class that will be searched for attributes and operations
 	 * (for example, checked for annotations).
-	 * <p>This implementation returns the superclass for a CGLIB proxy and
+	 * This implementation returns the superclass for a CGLIB proxy and
 	 * the class of the given bean else (for a JDK proxy or a plain bean class).
 	 * @param clazz the bean class (might be an AOP proxy class)
 	 * @return the bean class to expose
@@ -238,7 +238,7 @@ public abstract class JmxUtils {
 
 	/**
 	 * Determine whether the given bean class qualifies as an MBean as-is.
-	 * <p>This implementation checks for {@link javax.management.DynamicMBean}
+	 * This implementation checks for {@link javax.management.DynamicMBean}
 	 * classes as well as classes with corresponding "*MBean" interface
 	 * (Standard MBeans) or corresponding "*MXBean" interface (Java 6 MXBeans).
 	 * @param clazz the bean class to analyze

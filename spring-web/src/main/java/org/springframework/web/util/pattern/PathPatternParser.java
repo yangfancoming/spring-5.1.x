@@ -6,12 +6,12 @@ package org.springframework.web.util.pattern;
  * Parser for URI path patterns producing {@link PathPattern} instances that can
  * then be matched to requests.
  *
- * <p>The {@link PathPatternParser} and {@link PathPattern} are specifically
+ * The {@link PathPatternParser} and {@link PathPattern} are specifically
  * designed for use with HTTP URL paths in web applications where a large number
  * of URI path patterns, continuously matched against incoming requests,
  * motivates the need for efficient matching.
  *
- * <p>For details of the path pattern syntax see {@link PathPattern}.
+ * For details of the path pattern syntax see {@link PathPattern}.
  *
  * @author Andy Clement
  * @since 5.0
@@ -27,12 +27,12 @@ public class PathPatternParser {
 	 * Whether a {@link PathPattern} produced by this parser should should
 	 * automatically match request paths with a trailing slash.
 	 *
-	 * <p>If set to {@code true} a {@code PathPattern} without a trailing slash
+	 * If set to {@code true} a {@code PathPattern} without a trailing slash
 	 * will also match request paths with a trailing slash. If set to
 	 * {@code false} a {@code PathPattern} will only match request paths with
 	 * a trailing slash.
 	 *
-	 * <p>The default is {@code true}.
+	 * The default is {@code true}.
 	 */
 	public void setMatchOptionalTrailingSeparator(boolean matchOptionalTrailingSeparator) {
 		this.matchOptionalTrailingSeparator = matchOptionalTrailingSeparator;
@@ -47,7 +47,7 @@ public class PathPatternParser {
 
 	/**
 	 * Whether path pattern matching should be case-sensitive.
-	 * <p>The default is {@code true}.
+	 * The default is {@code true}.
 	 */
 	public void setCaseSensitive(boolean caseSensitive) {
 		this.caseSensitive = caseSensitive;
@@ -62,7 +62,7 @@ public class PathPatternParser {
 
 	/**
 	 * Accessor used for the separator to use.
-	 * <p>Currently not exposed for configuration with URI path patterns and
+	 * Currently not exposed for configuration with URI path patterns and
 	 * mainly for use in InternalPathPatternParser and PathPattern. If required
 	 * in the future, a similar option would also need to be exposed in
 	 * {@link org.springframework.http.server.PathContainer PathContainer}.

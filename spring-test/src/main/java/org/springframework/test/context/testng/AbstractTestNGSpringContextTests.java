@@ -32,7 +32,7 @@ import org.springframework.test.context.web.ServletTestExecutionListener;
  * with explicit {@link ApplicationContext} testing support in a <strong>TestNG</strong>
  * environment.
  *
- * <p>Concrete subclasses:
+ * Concrete subclasses:
  * <ul>
  * <li>Typically declare a class-level {@link ContextConfiguration
  * &#064;ContextConfiguration} annotation to configure the {@linkplain ApplicationContext
@@ -46,7 +46,7 @@ import org.springframework.test.context.web.ServletTestExecutionListener;
  * {@code super();}.</li>
  * </ul>
  *
- * <p>The following {@link org.springframework.test.context.TestExecutionListener
+ * The following {@link org.springframework.test.context.TestExecutionListener
  * TestExecutionListeners} are configured by default:
  *
  * <ul>

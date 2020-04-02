@@ -64,7 +64,7 @@ public class SpringObjenesis implements Objenesis {
 	/**
 	 * Return whether this Objenesis instance is worth trying for instance creation,
 	 * i.e. whether it hasn't been used yet or is known to work.
-	 * <p>If the configured Objenesis instantiator strategy has been identified to not
+	 * If the configured Objenesis instantiator strategy has been identified to not
 	 * work on the current JVM at all or if the "spring.objenesis.ignore" property has
 	 * been set to "true", this method returns {@code false}.
 	 */

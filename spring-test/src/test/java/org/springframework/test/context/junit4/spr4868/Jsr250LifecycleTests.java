@@ -26,7 +26,7 @@ import static org.junit.Assert.*;
  * Integration tests that investigate the applicability of JSR-250 lifecycle
  * annotations in test classes.
  *
- * <p>This class does not really contain actual <em>tests</em> per se. Rather it
+ * This class does not really contain actual <em>tests</em> per se. Rather it
  * can be used to empirically verify the expected log output (see below). In
  * order to see the log output, one would naturally need to ensure that the
  * logger category for this class is enabled at {@code INFO} level.

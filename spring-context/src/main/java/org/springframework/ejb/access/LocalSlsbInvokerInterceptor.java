@@ -17,11 +17,11 @@ import org.springframework.lang.Nullable;
  * Invoker for a local Stateless Session Bean.
  * Designed for EJB 2.x, but works for EJB 3 Session Beans as well.
  *
- * <p>Caches the home object, since a local EJB home can never go stale.
+ * Caches the home object, since a local EJB home can never go stale.
  * See {@link org.springframework.jndi.JndiObjectLocator} for info on
  * how to specify the JNDI location of the target EJB.
  *
- * <p>In a bean container, this class is normally best used as a singleton. However,
+ * In a bean container, this class is normally best used as a singleton. However,
  * if that bean container pre-instantiates singletons (as do the XML ApplicationContext
  * variants) you may have a problem if the bean container is loaded before the EJB
  * container loads the target EJB. That is because by default the JNDI lookup will be
@@ -43,7 +43,7 @@ public class LocalSlsbInvokerInterceptor extends AbstractSlsbInvokerInterceptor 
 	/**
 	 * This implementation "creates" a new EJB instance for each invocation.
 	 * Can be overridden for custom invocation strategies.
-	 * <p>Alternatively, override {@link #getSessionBeanInstance} and
+	 * Alternatively, override {@link #getSessionBeanInstance} and
 	 * {@link #releaseSessionBeanInstance} to change EJB instance creation,
 	 * for example to hold a single shared EJB instance.
 	 */

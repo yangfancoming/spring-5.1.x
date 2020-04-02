@@ -43,7 +43,7 @@ public class AspectJProxyFactory extends ProxyCreatorSupport {
 
 	/**
 	 * Create a new AspectJProxyFactory.
-	 * <p>Will proxy all interfaces that the given target implements.
+	 * Will proxy all interfaces that the given target implements.
 	 * @param target the target object to be proxied
 	 */
 	public AspectJProxyFactory(Object target) {
@@ -157,9 +157,9 @@ public class AspectJProxyFactory extends ProxyCreatorSupport {
 
 	/**
 	 * Create a new proxy according to the settings in this factory.
-	 * <p>Can be called repeatedly. Effect will vary if we've added
+	 * Can be called repeatedly. Effect will vary if we've added
 	 * or removed interfaces. Can add and remove interceptors.
-	 * <p>Uses a default class loader: Usually, the thread context class loader
+	 * Uses a default class loader: Usually, the thread context class loader
 	 * (if necessary for proxy creation).
 	 * @return the new proxy
 	 */
@@ -170,9 +170,9 @@ public class AspectJProxyFactory extends ProxyCreatorSupport {
 
 	/**
 	 * Create a new proxy according to the settings in this factory.
-	 * <p>Can be called repeatedly. Effect will vary if we've added
+	 * Can be called repeatedly. Effect will vary if we've added
 	 * or removed interfaces. Can add and remove interceptors.
-	 * <p>Uses the given class loader (if necessary for proxy creation).
+	 * Uses the given class loader (if necessary for proxy creation).
 	 * @param classLoader the class loader to create the proxy with
 	 * @return the new proxy
 	 */

@@ -27,7 +27,7 @@ import org.springframework.web.context.WebApplicationContext;
  * configuring filters, default request properties, global expectations and
  * global result actions.
  *
- * <p>Subclasses can use different strategies to prepare the Spring
+ * Subclasses can use different strategies to prepare the Spring
  * {@code WebApplicationContext} that will be passed to the
  * {@code DispatcherServlet}.
  *

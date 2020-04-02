@@ -10,11 +10,11 @@ import java.util.concurrent.Future;
  * offering an overloaded {@link #execute(Runnable, long)} variant with a start
  * timeout parameter as well support for {@link java.util.concurrent.Callable}.
  *
- * <p>Note: The {@link java.util.concurrent.Executors} class includes a set of
+ * Note: The {@link java.util.concurrent.Executors} class includes a set of
  * methods that can convert some other common closure-like objects, for example,
  * {@link java.security.PrivilegedAction} to {@link Callable} before executing them.
  *
- * <p>Implementing this interface also indicates that the {@link #execute(Runnable)}
+ * Implementing this interface also indicates that the {@link #execute(Runnable)}
  * method will not execute its Runnable in the caller's thread but rather
  * asynchronously in some other thread.
  *

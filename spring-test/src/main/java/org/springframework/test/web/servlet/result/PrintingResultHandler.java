@@ -33,7 +33,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
  * stream ; for example: {@code System.out}, {@code System.err}, a
  * custom {@code java.io.PrintWriter}, etc.
  *
- * <p>An instance of this class is typically accessed via one of the
+ * An instance of this class is typically accessed via one of the
  * {@link MockMvcResultHandlers#print print} or {@link MockMvcResultHandlers#log log}
  * methods in {@link MockMvcResultHandlers}.
  *

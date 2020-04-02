@@ -35,11 +35,11 @@ import org.springframework.validation.SmartValidator;
  * exposes it as a Spring {@link org.springframework.validation.Validator}
  * while also exposing the original JSR-303 Validator interface itself.
  *
- * <p>Can be used as a programmatic wrapper. Also serves as base class for
+ * Can be used as a programmatic wrapper. Also serves as base class for
  * {@link CustomValidatorBean} and {@link LocalValidatorFactoryBean},
  * and as the primary implementation of the {@link SmartValidator} interface.
  *
- * <p>As of Spring Framework 5.0, this adapter is fully compatible with
+ * As of Spring Framework 5.0, this adapter is fully compatible with
  * Bean Validation 1.1 as well as 2.0.
  *
 
@@ -192,7 +192,7 @@ public class SpringValidatorAdapter implements SmartValidator, javax.validation.
 
 	/**
 	 * Determine a field for the given constraint violation.
-	 * <p>The default implementation returns the stringified property path.
+	 * The default implementation returns the stringified property path.
 	 * @param violation the current JSR-303 ConstraintViolation
 	 * @return the Spring-reported field (for use with {@link Errors})
 	 * @since 4.2
@@ -229,7 +229,7 @@ public class SpringValidatorAdapter implements SmartValidator, javax.validation.
 
 	/**
 	 * Determine a Spring-reported error code for the given constraint descriptor.
-	 * <p>The default implementation returns the simple class name of the descriptor's
+	 * The default implementation returns the simple class name of the descriptor's
 	 * annotation type. Note that the configured
 	 * {@link org.springframework.validation.MessageCodesResolver} will automatically
 	 * generate error code variations which include the object name and the field name.
@@ -246,11 +246,11 @@ public class SpringValidatorAdapter implements SmartValidator, javax.validation.
 	/**
 	 * Return FieldError arguments for a validation error on the given field.
 	 * Invoked for each violated constraint.
-	 * <p>The default implementation returns a first argument indicating the field name
+	 * The default implementation returns a first argument indicating the field name
 	 * (see {@link #getResolvableField}). Afterwards, it adds all actual constraint
 	 * annotation attributes (i.e. excluding "message", "groups" and "payload") in
 	 * alphabetical order of their attribute names.
-	 * <p>Can be overridden to e.g. add further attributes from the constraint descriptor.
+	 * Can be overridden to e.g. add further attributes from the constraint descriptor.
 	 * @param objectName the name of the target object
 	 * @param field the field that caused the binding error
 	 * @param descriptor the JSR-303 constraint descriptor
@@ -279,7 +279,7 @@ public class SpringValidatorAdapter implements SmartValidator, javax.validation.
 	/**
 	 * Build a resolvable wrapper for the specified field, allowing to resolve the field's
 	 * name in a {@code MessageSource}.
-	 * <p>The default implementation returns a first argument indicating the field:
+	 * The default implementation returns a first argument indicating the field:
 	 * of type {@code DefaultMessageSourceResolvable}, with "objectName.field" and "field"
 	 * as codes, and with the plain field name as default message.
 	 * @param objectName the name of the target object
@@ -299,7 +299,7 @@ public class SpringValidatorAdapter implements SmartValidator, javax.validation.
 	 * to be applied to it. Called for a Bean Validation defined message
 	 * (coming out {@code ValidationMessages.properties}) when rendered
 	 * as the default message in Spring's MessageSource.
-	 * <p>The default implementation considers a Spring-style "{0}" placeholder
+	 * The default implementation considers a Spring-style "{0}" placeholder
 	 * for the field name as an indication for {@link java.text.MessageFormat}.
 	 * Any other placeholder or escape syntax occurrences are typically a
 	 * mismatch, coming out of regex pattern values or the like. Note that

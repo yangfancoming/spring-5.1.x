@@ -24,7 +24,7 @@ public interface SimpUserRegistry {
 
 	/**
 	 * Return a snapshot of all connected users.
-	 * <p>The returned set is a copy and will not reflect further changes.
+	 * The returned set is a copy and will not reflect further changes.
 	 * @return the connected users, or an empty set if none
 	 */
 	Set<SimpUser> getUsers();

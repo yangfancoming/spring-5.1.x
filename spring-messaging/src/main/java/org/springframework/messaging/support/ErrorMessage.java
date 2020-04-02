@@ -11,12 +11,12 @@ import org.springframework.messaging.MessageHeaders;
 /**
  * A {@link GenericMessage} with a {@link Throwable} payload.
  *
- * <p>The payload is typically a {@link org.springframework.messaging.MessagingException}
+ * The payload is typically a {@link org.springframework.messaging.MessagingException}
  * with the message at the point of failure in its {@code failedMessage} property.
  * An optional {@code originalMessage} may be provided, which represents the message
  * that existed at the point in the stack where the error message is created.
  *
- * <p>Consider some code that starts with a message, invokes some process that performs
+ * Consider some code that starts with a message, invokes some process that performs
  * transformation on that message and then fails for some reason, throwing the exception.
  * The exception is caught and an error message produced that contains both the original
  * message, and the transformed message that failed.
@@ -57,7 +57,7 @@ public class ErrorMessage extends GenericMessage<Throwable> {
 
 	/**
 	 * A constructor with the {@link MessageHeaders} instance to use.
-	 * <p><strong>Note:</strong> the given {@code MessageHeaders} instance
+	 * <strong>Note:</strong> the given {@code MessageHeaders} instance
 	 * is used directly in the new message, i.e. it is not copied.
 	 * @param payload the message payload (never {@code null})
 	 * @param headers message headers
@@ -95,7 +95,7 @@ public class ErrorMessage extends GenericMessage<Throwable> {
 
 	/**
 	 * Create a new message with the payload, {@link MessageHeaders} and original message.
-	 * <p><strong>Note:</strong> the given {@code MessageHeaders} instance
+	 * <strong>Note:</strong> the given {@code MessageHeaders} instance
 	 * is used directly in the new message, i.e. it is not copied.
 	 * @param payload the message payload (never {@code null})
 	 * @param headers message headers

@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * from a {@link ClientHttpResponse}, but don't need to worry about exception
  * handling or closing resources.
  *
- * <p>Used internally by the {@link RestTemplate}, but also useful for
+ * Used internally by the {@link RestTemplate}, but also useful for
  * application code. There is one available factory method, see
  * {@link RestTemplate#responseEntityExtractor(Type)}.
  *

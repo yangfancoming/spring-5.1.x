@@ -14,14 +14,14 @@ import com.rometools.rome.feed.atom.Feed;
  * Abstract superclass for Atom Feed views, using the
  * <a href="https://github.com/rometools/rome">ROME</a> package.
  *
- * <p>><b>NOTE: As of Spring 4.1, this is based on the {@code com.rometools}
+ * ><b>NOTE: As of Spring 4.1, this is based on the {@code com.rometools}
  * variant of ROME, version 1.5. Please upgrade your build dependency.</b>
  *
- * <p>Application-specific view classes will extend this class.
+ * Application-specific view classes will extend this class.
  * The view will be held in the subclass itself, not in a template.
  * Main entry points are the {@link #buildFeedMetadata} and {@link #buildFeedEntries}.
  *
- * <p>Thanks to Jettro Coenradie and Sergio Bossa for the original feed view prototype!
+ * Thanks to Jettro Coenradie and Sergio Bossa for the original feed view prototype!
  *
  * @author Arjen Poutsma
 
@@ -46,7 +46,7 @@ public abstract class AbstractAtomFeedView extends AbstractFeedView<Feed> {
 
 	/**
 	 * Set the Rome feed type to use.
-	 * <p>Defaults to Atom 1.0.
+	 * Defaults to Atom 1.0.
 	 * @see Feed#setFeedType(String)
 	 * @see #DEFAULT_FEED_TYPE
 	 */
@@ -56,7 +56,7 @@ public abstract class AbstractAtomFeedView extends AbstractFeedView<Feed> {
 
 	/**
 	 * Create a new Feed instance to hold the entries.
-	 * <p>By default returns an Atom 1.0 feed, but the subclass can specify any Feed.
+	 * By default returns an Atom 1.0 feed, but the subclass can specify any Feed.
 	 * @see #setFeedType(String)
 	 */
 	@Override
@@ -78,7 +78,7 @@ public abstract class AbstractAtomFeedView extends AbstractFeedView<Feed> {
 
 	/**
 	 * Subclasses must implement this method to build feed entries, given the model.
-	 * <p>Note that the passed-in HTTP response is just supposed to be used for
+	 * Note that the passed-in HTTP response is just supposed to be used for
 	 * setting cookies or other HTTP headers. The built feed itself will automatically
 	 * get written to the response after this method returns.
 	 * @param model	the model Map

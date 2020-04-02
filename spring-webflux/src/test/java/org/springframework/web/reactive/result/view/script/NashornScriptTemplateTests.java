@@ -37,7 +37,7 @@ public class NashornScriptTemplateTests {
 		model.put("body", "This is the body");
 		String url = "org/springframework/web/reactive/result/view/script/nashorn/template.html";
 		MockServerHttpResponse response = render(url, model, ScriptTemplatingConfiguration.class);
-		assertEquals("<html><head><title>Layout example</title></head><body><p>This is the body</p></body></html>",
+		assertEquals("<html><head><title>Layout example</title></head><body>This is the body</p></body></html>",
 				response.getBodyAsString().block());
 	}
 
@@ -46,7 +46,7 @@ public class NashornScriptTemplateTests {
 		String url = "org/springframework/web/reactive/result/view/script/nashorn/template.html";
 		Class<?> configClass = ScriptTemplatingWithUrlConfiguration.class;
 		MockServerHttpResponse response = render(url, null, configClass);
-		assertEquals("<html><head><title>Check url parameter</title></head><body><p>" + url + "</p></body></html>",
+		assertEquals("<html><head><title>Check url parameter</title></head><body>" + url + "</p></body></html>",
 				response.getBodyAsString().block());
 	}
 

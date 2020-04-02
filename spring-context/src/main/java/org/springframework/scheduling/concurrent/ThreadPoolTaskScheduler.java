@@ -63,7 +63,7 @@ public class ThreadPoolTaskScheduler extends ExecutorConfigurationSupport
 	/**
 	 * Set the ScheduledExecutorService's pool size.
 	 * Default is 1.
-	 * <p><b>This setting can be modified at runtime, for example through JMX.</b>
+	 * <b>This setting can be modified at runtime, for example through JMX.</b>
 	 */
 	public void setPoolSize(int poolSize) {
 		Assert.isTrue(poolSize > 0, "'poolSize' must be 1 or higher");
@@ -75,9 +75,9 @@ public class ThreadPoolTaskScheduler extends ExecutorConfigurationSupport
 
 	/**
 	 * Set the remove-on-cancel mode on {@link ScheduledThreadPoolExecutor}.
-	 * <p>Default is {@code false}. If set to {@code true}, the target executor will be
+	 * Default is {@code false}. If set to {@code true}, the target executor will be
 	 * switched into remove-on-cancel mode (if possible, with a soft fallback otherwise).
-	 * <p><b>This setting can be modified at runtime, for example through JMX.</b>
+	 * <b>This setting can be modified at runtime, for example through JMX.</b>
 	 */
 	public void setRemoveOnCancelPolicy(boolean removeOnCancelPolicy) {
 		this.removeOnCancelPolicy = removeOnCancelPolicy;
@@ -117,7 +117,7 @@ public class ThreadPoolTaskScheduler extends ExecutorConfigurationSupport
 
 	/**
 	 * Create a new {@link ScheduledExecutorService} instance.
-	 * <p>The default implementation creates a {@link ScheduledThreadPoolExecutor}.
+	 * The default implementation creates a {@link ScheduledThreadPoolExecutor}.
 	 * Can be overridden in subclasses to provide custom {@link ScheduledExecutorService} instances.
 	 * @param poolSize the specified pool size
 	 * @param threadFactory the ThreadFactory to use
@@ -157,7 +157,7 @@ public class ThreadPoolTaskScheduler extends ExecutorConfigurationSupport
 
 	/**
 	 * Return the current pool size.
-	 * <p>Requires an underlying {@link ScheduledThreadPoolExecutor}.
+	 * Requires an underlying {@link ScheduledThreadPoolExecutor}.
 	 * @see #getScheduledThreadPoolExecutor()
 	 * @see java.util.concurrent.ScheduledThreadPoolExecutor#getPoolSize()
 	 */
@@ -171,7 +171,7 @@ public class ThreadPoolTaskScheduler extends ExecutorConfigurationSupport
 
 	/**
 	 * Return the current setting for the remove-on-cancel mode.
-	 * <p>Requires an underlying {@link ScheduledThreadPoolExecutor}.
+	 * Requires an underlying {@link ScheduledThreadPoolExecutor}.
 	 */
 	public boolean isRemoveOnCancelPolicy() {
 		if (this.scheduledExecutor == null) {
@@ -183,7 +183,7 @@ public class ThreadPoolTaskScheduler extends ExecutorConfigurationSupport
 
 	/**
 	 * Return the number of currently active threads.
-	 * <p>Requires an underlying {@link ScheduledThreadPoolExecutor}.
+	 * Requires an underlying {@link ScheduledThreadPoolExecutor}.
 	 * @see #getScheduledThreadPoolExecutor()
 	 * @see java.util.concurrent.ScheduledThreadPoolExecutor#getActiveCount()
 	 */

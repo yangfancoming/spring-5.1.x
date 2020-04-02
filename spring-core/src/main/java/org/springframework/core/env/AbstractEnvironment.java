@@ -25,7 +25,7 @@ import org.springframework.util.StringUtils;
  * through the {@link #ACTIVE_PROFILES_PROPERTY_NAME} and
  * {@link #DEFAULT_PROFILES_PROPERTY_NAME} properties.
  *
- * <p>Concrete subclasses differ primarily on which {@link PropertySource} objects they
+ * Concrete subclasses differ primarily on which {@link PropertySource} objects they
  * add by default. {@code AbstractEnvironment} adds none. Subclasses should contribute
  * property sources through the protected {@link #customizePropertySources(MutablePropertySources)}
  * hook, while clients should customize using {@link ConfigurableEnvironment#getPropertySources()}
@@ -41,7 +41,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	/**
 	 * System property that instructs Spring to ignore system environment variables,
 	 * i.e. to never attempt to retrieve such a variable via {@link System#getenv()}.
-	 * <p>The default is "false", falling back to system environment variable checks if a
+	 * The default is "false", falling back to system environment variable checks if a
 	 * Spring environment property (e.g. a placeholder in a configuration String) isn't
 	 * resolvable otherwise. Consider switching this flag to "true" if you experience
 	 * log warnings from {@code getenv} calls coming from Spring, e.g. on WebSphere
@@ -53,7 +53,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	/**
 	 * Name of property to set to specify active profiles: {@value}. Value may be comma
 	 * delimited.
-	 * <p>Note that certain shell environments such as Bash disallow the use of the period
+	 * Note that certain shell environments such as Bash disallow the use of the period
 	 * character in variable names. Assuming that Spring's {@link SystemEnvironmentPropertySource}
 	 * is in use, this property may be specified as an environment variable as
 	 * {@code SPRING_PROFILES_ACTIVE}.
@@ -64,7 +64,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	/**
 	 * Name of property to set to specify profiles active by default: {@value}. Value may
 	 * be comma delimited.
-	 * <p>Note that certain shell environments such as Bash disallow the use of the period
+	 * Note that certain shell environments such as Bash disallow the use of the period
 	 * character in variable names. Assuming that Spring's {@link SystemEnvironmentPropertySource}
 	 * is in use, this property may be specified as an environment variable as
 	 * {@code SPRING_PROFILES_DEFAULT}.
@@ -112,7 +112,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	 * {@code Environment} during calls to {@link #getProperty(String)} and related
 	 * methods.
 	 *
-	 * <p>Subclasses that override this method are encouraged to add property
+	 * Subclasses that override this method are encouraged to add property
 	 * sources using {@link MutablePropertySources#addLast(PropertySource)} such that
 	 * further subclasses may call {@code super.customizePropertySources()} with
 	 * predictable results. For example:
@@ -152,13 +152,13 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	 * </pre>
 	 * The search order is now C, D, A, B as desired.
 	 *
-	 * <p>Beyond these recommendations, subclasses may use any of the {@code add&#42;},
+	 * Beyond these recommendations, subclasses may use any of the {@code add&#42;},
 	 * {@code remove}, or {@code replace} methods exposed by {@link MutablePropertySources}
 	 * in order to create the exact arrangement of property sources desired.
 	 *
-	 * <p>The base implementation registers no property sources.
+	 * The base implementation registers no property sources.
 	 *
-	 * <p>Note that clients of any {@link ConfigurableEnvironment} may further customize
+	 * Note that clients of any {@link ConfigurableEnvironment} may further customize
 	 * property sources via the {@link #getPropertySources()} accessor, typically within
 	 * an {@link org.springframework.context.ApplicationContextInitializer
 	 * ApplicationContextInitializer}. For example:
@@ -286,7 +286,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	/**
 	 * Specify the set of profiles to be made active by default if no other profiles
 	 * are explicitly made active through {@link #setActiveProfiles}.
-	 * <p>Calling this method removes overrides any reserved default profiles
+	 * Calling this method removes overrides any reserved default profiles
 	 * that may have been added during construction of the environment.
 	 * @see #AbstractEnvironment()
 	 * @see #getReservedDefaultProfiles()
@@ -340,7 +340,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	/**
 	 * Validate the given profile, called internally prior to adding to the set of
 	 * active or default profiles.
-	 * <p>Subclasses may override to impose further restrictions on profile syntax.
+	 * Subclasses may override to impose further restrictions on profile syntax.
 	 * @throws IllegalArgumentException if the profile is null, empty, whitespace-only or
 	 * begins with the profile NOT operator (!).
 	 * @see #acceptsProfiles
@@ -417,10 +417,10 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	/**
 	 * Determine whether to suppress {@link System#getenv()}/{@link System#getenv(String)}
 	 * access for the purposes of {@link #getSystemEnvironment()}.
-	 * <p>If this method returns {@code true}, an empty dummy Map will be used instead
+	 * If this method returns {@code true}, an empty dummy Map will be used instead
 	 * of the regular system environment Map, never even trying to call {@code getenv}
 	 * and therefore avoiding security manager warnings (if any).
-	 * <p>The default implementation checks for the "spring.getenv.ignore" system property,
+	 * The default implementation checks for the "spring.getenv.ignore" system property,
 	 * returning {@code true} if its value equals "true" in any case.
 	 * @see #IGNORE_GETENV_PROPERTY_NAME
 	 * @see SpringProperties#getFlag

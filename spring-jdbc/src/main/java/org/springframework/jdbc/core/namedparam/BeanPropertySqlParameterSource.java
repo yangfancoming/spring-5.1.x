@@ -19,7 +19,7 @@ import org.springframework.util.StringUtils;
  * from bean properties of a given JavaBean object. The names of the bean
  * properties have to match the parameter names.
  *
- * <p>Uses a Spring BeanWrapper for bean property access underneath.
+ * Uses a Spring BeanWrapper for bean property access underneath.
  *
  * @author Thomas Risberg
 

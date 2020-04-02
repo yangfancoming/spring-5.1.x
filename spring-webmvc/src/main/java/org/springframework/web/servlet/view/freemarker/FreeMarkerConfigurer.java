@@ -37,12 +37,12 @@ import org.springframework.web.context.ServletContextAware;
  * depending on the bean name the configurer. Each DispatcherServlet can define its
  * own FreeMarkerConfigurer if desired.
  *
- * <p>Note that you can also refer to a preconfigured FreeMarker Configuration
+ * Note that you can also refer to a preconfigured FreeMarker Configuration
  * instance, for example one set up by FreeMarkerConfigurationFactoryBean, via
  * the "configuration" property. This allows to share a FreeMarker Configuration
  * for web and email usage, for example.
  *
- * <p>This configurer registers a template loader for this package, allowing to
+ * This configurer registers a template loader for this package, allowing to
  * reference the "spring.ftl" macro library (contained in this package and thus
  * in spring.jar) like this:
  *
@@ -96,7 +96,7 @@ public class FreeMarkerConfigurer extends FreeMarkerConfigurationFactory
 	/**
 	 * Initialize FreeMarkerConfigurationFactory's Configuration
 	 * if not overridden by a preconfigured FreeMarker Configuration.
-	 * <p>Sets up a ClassTemplateLoader to use for loading Spring macros.
+	 * Sets up a ClassTemplateLoader to use for loading Spring macros.
 	 * @see #createConfiguration
 	 * @see #setConfiguration
 	 */

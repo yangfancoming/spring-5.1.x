@@ -68,7 +68,7 @@ public class ServletHttpHandlerAdapter implements Servlet {
 
 	/**
 	 * Set the size of the input buffer used for reading in bytes.
-	 * <p>By default this is set to 8192.
+	 * By default this is set to 8192.
 	 */
 	public void setBufferSize(int bufferSize) {
 		Assert.isTrue(bufferSize > 0, "Buffer size must be larger than zero");

@@ -3630,7 +3630,7 @@ public class AutowiredAnnotationBeanPostProcessorTests {
 
 
 	@SuppressWarnings("rawtypes")
-	public static class StockMovementImpl<P extends StockMovementInstruction> implements StockMovement<P> {
+	public static class StockMovementImpl<P extends StockMovementInstruction> implements StockMovement {
 	}
 
 

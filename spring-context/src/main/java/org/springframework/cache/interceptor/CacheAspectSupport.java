@@ -46,16 +46,16 @@ import org.springframework.util.function.SupplierUtils;
  * Base class for caching aspects, such as the {@link CacheInterceptor} or an
  * AspectJ aspect.
  *
- * <p>This enables the underlying Spring caching infrastructure to be used easily
+ * This enables the underlying Spring caching infrastructure to be used easily
  * to implement an aspect for any aspect system.
  *
- * <p>Subclasses are responsible for calling relevant methods in the correct order.
+ * Subclasses are responsible for calling relevant methods in the correct order.
  *
- * <p>Uses the <b>Strategy</b> design pattern. A {@link CacheOperationSource} is
+ * Uses the <b>Strategy</b> design pattern. A {@link CacheOperationSource} is
  * used for determining caching operations, a {@link KeyGenerator} will build the
  * cache keys, and a {@link CacheResolver} will resolve the actual cache(s) to use.
  *
- * <p>Note: A cache aspect is serializable but does not perform any actual caching
+ * Note: A cache aspect is serializable but does not perform any actual caching
  * after deserialization.
  *
  * @author Costin Leau
@@ -137,7 +137,7 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 	/**
 	 * Set the default {@link KeyGenerator} that this cache aspect should delegate to
 	 * if no specific key generator has been set for the operation.
-	 * <p>The default is a {@link SimpleKeyGenerator}.
+	 * The default is a {@link SimpleKeyGenerator}.
 	 */
 	public void setKeyGenerator(KeyGenerator keyGenerator) {
 		this.keyGenerator = SingletonSupplier.of(keyGenerator);
@@ -153,7 +153,7 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 	/**
 	 * Set the default {@link CacheResolver} that this cache aspect should delegate
 	 * to if no specific cache resolver has been set for the operation.
-	 * <p>The default resolver resolves the caches against their names and the
+	 * The default resolver resolves the caches against their names and the
 	 * default cache manager.
 	 * @see #setCacheManager
 	 * @see SimpleCacheResolver
@@ -253,7 +253,7 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 
 	/**
 	 * Return the {@link CacheOperationMetadata} for the specified operation.
-	 * <p>Resolve the {@link CacheResolver} and the {@link KeyGenerator} to be
+	 * Resolve the {@link CacheResolver} and the {@link KeyGenerator} to be
 	 * used for the operation.
 	 * @param operation the operation
 	 * @param method the method on which the operation is invoked

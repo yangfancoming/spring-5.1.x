@@ -12,7 +12,7 @@ import org.apache.taglibs.standard.lang.support.ExpressionEvaluatorManager;
  * interface, delegating to the Apache JSTL {@link ExpressionEvaluatorManager}.
  * Only necessary for testing applications when testing custom JSP tags.
  *
- * <p>Note that the Apache JSTL implementation (jstl.jar, standard.jar) has to be
+ * Note that the Apache JSTL implementation (jstl.jar, standard.jar) has to be
  * available on the classpath to use this expression evaluator.
  *
 

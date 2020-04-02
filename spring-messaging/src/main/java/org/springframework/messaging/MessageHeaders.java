@@ -24,12 +24,12 @@ import org.springframework.util.IdGenerator;
 /**
  * The headers for a {@link Message}.
  *
- * <p><b>IMPORTANT</b>: This class is immutable. Any mutating operation such as
+ * <b>IMPORTANT</b>: This class is immutable. Any mutating operation such as
  * {@code put(..)}, {@code putAll(..)} and others will throw
  * {@link UnsupportedOperationException}.
- * <p>Subclasses do have access to the raw headers, however, via {@link #getRawHeaders()}.
+ * Subclasses do have access to the raw headers, however, via {@link #getRawHeaders()}.
  *
- * <p>One way to create message headers is to use the
+ * One way to create message headers is to use the
  * {@link org.springframework.messaging.support.MessageBuilder MessageBuilder}:
  * <pre class="code">
  * MessageBuilder.withPayload("foo").setHeader("key1", "value1").setHeader("key2", "value2");

@@ -12,7 +12,7 @@ import org.springframework.web.context.WebApplicationContext;
  * {@link MockMvcConfigurer} that stores and re-uses the HTTP session across
  * multiple requests performed through the same {@code MockMvc} instance.
  *
- * <p>Example use:
+ * Example use:
  * <pre class="code">
  * import static org.springframework.test.web.servlet.setup.SharedHttpSessionConfigurer.sharedHttpSession;
  *

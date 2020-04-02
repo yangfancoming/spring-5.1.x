@@ -20,9 +20,9 @@ import org.springframework.transaction.PlatformTransactionManager;
  * AOP Alliance MethodInterceptor for declarative transaction management using the common Spring transaction infrastructure
  * ({@link org.springframework.transaction.PlatformTransactionManager}).
  *
- * <p>Derives from the {@link TransactionAspectSupport} class which contains the integration with Spring's underlying transaction API.
+ * Derives from the {@link TransactionAspectSupport} class which contains the integration with Spring's underlying transaction API.
  * TransactionInterceptor simply calls the relevant superclass methods such as {@link #invokeWithinTransaction} in the correct order.
- * <p>TransactionInterceptors are thread-safe.
+ * TransactionInterceptors are thread-safe.
  * @see TransactionProxyFactoryBean
  * @see org.springframework.aop.framework.ProxyFactoryBean
  * @see org.springframework.aop.framework.ProxyFactory
@@ -32,7 +32,7 @@ public class TransactionInterceptor extends TransactionAspectSupport implements 
 
 	/**
 	 * Create a new TransactionInterceptor.
-	 * <p>Transaction manager and transaction attributes still need to be set.
+	 * Transaction manager and transaction attributes still need to be set.
 	 * @see #setTransactionManager
 	 * @see #setTransactionAttributes(java.util.Properties)
 	 * @see #setTransactionAttributeSource(TransactionAttributeSource)

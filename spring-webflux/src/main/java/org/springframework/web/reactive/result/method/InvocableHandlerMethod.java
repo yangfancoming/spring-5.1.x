@@ -83,7 +83,7 @@ public class InvocableHandlerMethod extends HandlerMethod {
 	/**
 	 * Set the ParameterNameDiscoverer for resolving parameter names when needed
 	 * (e.g. default request attribute name).
-	 * <p>Default is a {@link DefaultParameterNameDiscoverer}.
+	 * Default is a {@link DefaultParameterNameDiscoverer}.
 	 */
 	public void setParameterNameDiscoverer(ParameterNameDiscoverer nameDiscoverer) {
 		this.parameterNameDiscoverer = nameDiscoverer;
@@ -99,7 +99,7 @@ public class InvocableHandlerMethod extends HandlerMethod {
 	/**
 	 * Configure a reactive adapter registry. This is needed for cases where the response is
 	 * fully handled within the controller in combination with an async void return value.
-	 * <p>By default this is a {@link ReactiveAdapterRegistry} with default settings.
+	 * By default this is a {@link ReactiveAdapterRegistry} with default settings.
 	 */
 	public void setReactiveAdapterRegistry(ReactiveAdapterRegistry registry) {
 		this.reactiveAdapterRegistry = registry;

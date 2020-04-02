@@ -8,7 +8,7 @@ import org.springframework.lang.Nullable;
  * Extension of the {@link WebRequest} interface, exposing the
  * native request and response objects in a generic fashion.
  *
- * <p>Mainly intended for framework-internal usage,
+ * Mainly intended for framework-internal usage,
  * in particular for generic argument resolution code.
  *
 

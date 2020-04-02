@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * or a {@code ResponseEntity} controller method but before the body is written
  * with an {@code HttpMessageConverter}.
  *
- * <p>Implementations may be registered directly with
+ * Implementations may be registered directly with
  * {@code RequestMappingHandlerAdapter} and {@code ExceptionHandlerExceptionResolver}
  * or more likely annotated with {@code @ControllerAdvice} in which case they
  * will be auto-detected by both.

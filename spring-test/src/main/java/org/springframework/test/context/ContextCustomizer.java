@@ -9,9 +9,9 @@ import org.springframework.context.ConfigurableApplicationContext;
  * application contexts} that are created and managed by the <em>Spring
  * TestContext Framework</em>.
  *
- * <p>Customizers are created by {@link ContextCustomizerFactory} implementations.
+ * Customizers are created by {@link ContextCustomizerFactory} implementations.
  *
- * <p>Implementations must implement correct {@code equals} and {@code hashCode}
+ * Implementations must implement correct {@code equals} and {@code hashCode}
  * methods since customizers form part of the {@link MergedContextConfiguration}
  * which is used as a cache key.
  *

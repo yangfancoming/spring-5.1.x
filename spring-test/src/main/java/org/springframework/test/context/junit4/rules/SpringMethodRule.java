@@ -25,13 +25,13 @@ import org.springframework.test.context.junit4.statements.SpringRepeat;
  * of the {@link TestContextManager} and associated support classes and
  * annotations.
  *
- * <p>In contrast to the {@link org.springframework.test.context.junit4.SpringJUnit4ClassRunner
+ * In contrast to the {@link org.springframework.test.context.junit4.SpringJUnit4ClassRunner
  * SpringJUnit4ClassRunner}, Spring's rule-based JUnit support has the advantage
  * that it is independent of any {@link org.junit.runner.Runner Runner} and
  * can therefore be combined with existing alternative runners like JUnit's
  * {@code Parameterized} or third-party runners such as the {@code MockitoJUnitRunner}.
  *
- * <p>In order to achieve the same functionality as the {@code SpringJUnit4ClassRunner},
+ * In order to achieve the same functionality as the {@code SpringJUnit4ClassRunner},
  * however, a {@code SpringMethodRule} must be combined with a {@link SpringClassRule},
  * since {@code SpringMethodRule} only supports the instance-level and method-level
  * features of the {@code SpringJUnit4ClassRunner}.
@@ -48,7 +48,7 @@ import org.springframework.test.context.junit4.statements.SpringRepeat;
  *    // ...
  * }</code></pre>
  *
- * <p>The following list constitutes all annotations currently supported directly
+ * The following list constitutes all annotations currently supported directly
  * or indirectly by {@code SpringMethodRule}. <em>(Note that additional annotations
  * may be supported by various
  * {@link org.springframework.test.context.TestExecutionListener TestExecutionListener} or
@@ -62,9 +62,9 @@ import org.springframework.test.context.junit4.statements.SpringRepeat;
  * <li>{@link org.springframework.test.annotation.IfProfileValue @IfProfileValue}</li>
  * </ul>
  *
- * <p><strong>NOTE:</strong> As of Spring Framework 4.3, this class requires JUnit 4.12 or higher.
+ * <strong>NOTE:</strong> As of Spring Framework 4.3, this class requires JUnit 4.12 or higher.
  *
- * <p><strong>WARNING:</strong> Due to the shortcomings of JUnit rules, the
+ * <strong>WARNING:</strong> Due to the shortcomings of JUnit rules, the
  * {@code SpringMethodRule} does <strong>not</strong> support the
  * {@code beforeTestExecution()} and {@code afterTestExecution()} callbacks of the
  * {@link org.springframework.test.context.TestExecutionListener TestExecutionListener}
@@ -87,13 +87,13 @@ public class SpringMethodRule implements MethodRule {
 	 * Apply <em>instance-level</em> and <em>method-level</em> features of
 	 * the <em>Spring TestContext Framework</em> to the supplied {@code base}
 	 * statement.
-	 * <p>Specifically, this method invokes the
+	 * Specifically, this method invokes the
 	 * {@link TestContextManager#prepareTestInstance prepareTestInstance()},
 	 * {@link TestContextManager#beforeTestMethod beforeTestMethod()}, and
 	 * {@link TestContextManager#afterTestMethod afterTestMethod()} methods
 	 * on the {@code TestContextManager}, potentially with Spring timeouts
 	 * and repetitions.
-	 * <p>In addition, this method checks whether the test is enabled in
+	 * In addition, this method checks whether the test is enabled in
 	 * the current execution environment. This prevents methods with a
 	 * non-matching {@code @IfProfileValue} annotation from running altogether,
 	 * even skipping the execution of {@code prepareTestInstance()} methods
@@ -163,7 +163,7 @@ public class SpringMethodRule implements MethodRule {
 
 	/**
 	 * Wrap the supplied {@link Statement} with a {@code SpringRepeat} statement.
-	 * <p>Supports Spring's {@link org.springframework.test.annotation.Repeat @Repeat}
+	 * Supports Spring's {@link org.springframework.test.annotation.Repeat @Repeat}
 	 * annotation.
 	 * @see SpringRepeat
 	 */
@@ -173,7 +173,7 @@ public class SpringMethodRule implements MethodRule {
 
 	/**
 	 * Wrap the supplied {@link Statement} with a {@code SpringFailOnTimeout} statement.
-	 * <p>Supports Spring's {@link org.springframework.test.annotation.Timed @Timed}
+	 * Supports Spring's {@link org.springframework.test.annotation.Timed @Timed}
 	 * annotation.
 	 * @see SpringFailOnTimeout
 	 */

@@ -25,7 +25,7 @@ import org.springframework.util.Assert;
  * for each service will consist of the server's base address with the
  * service name appended (e.g. "http://localhost:8080/OrderService").
  *
- * <p>Note that this exporter will only work on Sun's JDK 1.6 or higher, as well
+ * Note that this exporter will only work on Sun's JDK 1.6 or higher, as well
  * as on JDKs that ship Sun's entire class library as included in the Sun JDK.
  * For a portable JAX-WS exporter, have a look at {@link SimpleJaxWsServiceExporter}.
  *
@@ -69,7 +69,7 @@ public class SimpleHttpServerJaxWsServiceExporter extends AbstractJaxWsServiceEx
 	 * Specify an existing HTTP server to register the web service contexts
 	 * with. This will typically be a server managed by the general Spring
 	 * {@link org.springframework.remoting.support.SimpleHttpServerFactoryBean}.
-	 * <p>Alternatively, configure a local HTTP server through the
+	 * Alternatively, configure a local HTTP server through the
 	 * {@link #setPort "port"}, {@link #setHostname "hostname"} and
 	 * {@link #setBacklog "backlog"} properties (or rely on the defaults there).
 	 */
@@ -79,7 +79,7 @@ public class SimpleHttpServerJaxWsServiceExporter extends AbstractJaxWsServiceEx
 
 	/**
 	 * Specify the HTTP server's port. Default is 8080.
-	 * <p>Only applicable for a locally configured HTTP server.
+	 * Only applicable for a locally configured HTTP server.
 	 * Ignored when the {@link #setServer "server"} property has been specified.
 	 */
 	public void setPort(int port) {
@@ -89,7 +89,7 @@ public class SimpleHttpServerJaxWsServiceExporter extends AbstractJaxWsServiceEx
 	/**
 	 * Specify the HTTP server's hostname to bind to. Default is localhost;
 	 * can be overridden with a specific network address to bind to.
-	 * <p>Only applicable for a locally configured HTTP server.
+	 * Only applicable for a locally configured HTTP server.
 	 * Ignored when the {@link #setServer "server"} property has been specified.
 	 */
 	public void setHostname(String hostname) {
@@ -99,7 +99,7 @@ public class SimpleHttpServerJaxWsServiceExporter extends AbstractJaxWsServiceEx
 	/**
 	 * Specify the HTTP server's TCP backlog. Default is -1,
 	 * indicating the system's default value.
-	 * <p>Only applicable for a locally configured HTTP server.
+	 * Only applicable for a locally configured HTTP server.
 	 * Ignored when the {@link #setServer "server"} property has been specified.
 	 */
 	public void setBacklog(int backlog) {
@@ -109,7 +109,7 @@ public class SimpleHttpServerJaxWsServiceExporter extends AbstractJaxWsServiceEx
 	/**
 	 * Specify the number of seconds to wait until HTTP exchanges have
 	 * completed when shutting down the HTTP server. Default is 0.
-	 * <p>Only applicable for a locally configured HTTP server.
+	 * Only applicable for a locally configured HTTP server.
 	 * Ignored when the {@link #setServer "server"} property has been specified.
 	 */
 	public void setShutdownDelay(int shutdownDelay) {
@@ -118,7 +118,7 @@ public class SimpleHttpServerJaxWsServiceExporter extends AbstractJaxWsServiceEx
 
 	/**
 	 * Set the base path for context publication. Default is "/".
-	 * <p>For each context publication path, the service name will be
+	 * For each context publication path, the service name will be
 	 * appended to this base address. E.g. service name "OrderService"
 	 * -> "/OrderService".
 	 * @see javax.xml.ws.Endpoint#publish(Object)

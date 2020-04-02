@@ -13,7 +13,7 @@ import org.springframework.core.io.buffer.DataBufferFactory;
 /**
  * A "reactive" HTTP output message that accepts output as a {@link Publisher}.
  *
- * <p>Typically implemented by an HTTP request on the client-side or an
+ * Typically implemented by an HTTP request on the client-side or an
  * HTTP response on the server-side.
  *
  * @author Arjen Poutsma
@@ -31,7 +31,7 @@ public interface ReactiveHttpOutputMessage extends HttpMessage {
 
 	/**
 	 * Register an action to apply just before the HttpOutputMessage is committed.
-	 * <p><strong>Note:</strong> the supplied action must be properly deferred,
+	 * <strong>Note:</strong> the supplied action must be properly deferred,
 	 * e.g. via {@link Mono#defer} or {@link Mono#fromRunnable}, to ensure it's
 	 * executed in the right order, relative to other actions.
 	 * @param action the action to apply
@@ -66,7 +66,7 @@ public interface ReactiveHttpOutputMessage extends HttpMessage {
 	 * end-of-processing tasks to be performed such as applying header changes
 	 * made via {@link #getHeaders()} to the underlying HTTP message (if not
 	 * applied already).
-	 * <p>This method should be automatically invoked at the end of message
+	 * This method should be automatically invoked at the end of message
 	 * processing so typically applications should not have to invoke it.
 	 * If invoked multiple times it should have no side effects.
 	 * @return a {@link Mono} that indicates completion or error

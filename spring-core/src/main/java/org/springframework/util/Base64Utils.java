@@ -8,7 +8,7 @@ import java.util.Base64;
 
 /**
  * A simple utility class for Base64 encoding and decoding.
- * <p>Adapts to Java 8's {@link java.util.Base64} in a convenience fashion.
+ * Adapts to Java 8's {@link java.util.Base64} in a convenience fashion.
  * @since 4.1
  * @see java.util.Base64
  */

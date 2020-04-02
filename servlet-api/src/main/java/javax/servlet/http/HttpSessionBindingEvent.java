@@ -10,7 +10,7 @@ package javax.servlet.http;
  * configured in the deployment descriptor when any attribute is bound, unbound
  * or replaced in a session.
  *
- * <p>The session binds the object by a call to
+ * The session binds the object by a call to
  * <code>HttpSession.setAttribute</code> and unbinds the object
  * by a call to <code>HttpSession.removeAttribute</code>.
  *

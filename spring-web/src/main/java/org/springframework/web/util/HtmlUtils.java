@@ -7,13 +7,13 @@ import org.springframework.util.Assert;
 /**
  * Utility class for HTML escaping.
  *
- * <p>Escapes and unescapes based on the W3C HTML 4.01 recommendation, handling
+ * Escapes and unescapes based on the W3C HTML 4.01 recommendation, handling
  * character entity references.
  *
- * <p>Reference:
+ * Reference:
  * <a href="http://www.w3.org/TR/html4/charset.html">http://www.w3.org/TR/html4/charset.html</a>
  *
- * <p>For a comprehensive set of String escaping utilities, consider
+ * For a comprehensive set of String escaping utilities, consider
  * <a href="https://commons.apache.org/proper/commons-text/">Apache Commons Text</a>
  * and its {@code StringEscapeUtils} class. We do not use that class here in order
  * to avoid a runtime dependency on Commons Text just for HTML escaping. Furthermore,
@@ -32,10 +32,10 @@ public abstract class HtmlUtils {
 
 	/**
 	 * Turn special characters into HTML character references.
-	 * <p>Handles complete character set defined in HTML 4.01 recommendation.
-	 * <p>Escapes all special characters to their corresponding
+	 * Handles complete character set defined in HTML 4.01 recommendation.
+	 * Escapes all special characters to their corresponding
 	 * entity reference (e.g. {@code &lt;}).
-	 * <p>Reference:
+	 * Reference:
 	 * <a href="http://www.w3.org/TR/html4/sgml/entities.html">
 	 * http://www.w3.org/TR/html4/sgml/entities.html
 	 * </a>
@@ -48,12 +48,12 @@ public abstract class HtmlUtils {
 
 	/**
 	 * Turn special characters into HTML character references.
-	 * <p>Handles complete character set defined in HTML 4.01 recommendation.
-	 * <p>Escapes all special characters to their corresponding
+	 * Handles complete character set defined in HTML 4.01 recommendation.
+	 * Escapes all special characters to their corresponding
 	 * entity reference (e.g. {@code &lt;}) at least as required by the
 	 * specified encoding. In other words, if a special character does
 	 * not have to be escaped for the given encoding, it may not be.
-	 * <p>Reference:
+	 * Reference:
 	 * <a href="http://www.w3.org/TR/html4/sgml/entities.html">
 	 * http://www.w3.org/TR/html4/sgml/entities.html
 	 * </a>
@@ -81,10 +81,10 @@ public abstract class HtmlUtils {
 
 	/**
 	 * Turn special characters into HTML character references.
-	 * <p>Handles complete character set defined in HTML 4.01 recommendation.
-	 * <p>Escapes all special characters to their corresponding numeric
+	 * Handles complete character set defined in HTML 4.01 recommendation.
+	 * Escapes all special characters to their corresponding numeric
 	 * reference in decimal format (&#<i>Decimal</i>;).
-	 * <p>Reference:
+	 * Reference:
 	 * <a href="http://www.w3.org/TR/html4/sgml/entities.html">
 	 * http://www.w3.org/TR/html4/sgml/entities.html
 	 * </a>
@@ -97,12 +97,12 @@ public abstract class HtmlUtils {
 
 	/**
 	 * Turn special characters into HTML character references.
-	 * <p>Handles complete character set defined in HTML 4.01 recommendation.
-	 * <p>Escapes all special characters to their corresponding numeric
+	 * Handles complete character set defined in HTML 4.01 recommendation.
+	 * Escapes all special characters to their corresponding numeric
 	 * reference in decimal format (&#<i>Decimal</i>;) at least as required by the
 	 * specified encoding. In other words, if a special character does
 	 * not have to be escaped for the given encoding, it may not be.
-	 * <p>Reference:
+	 * Reference:
 	 * <a href="http://www.w3.org/TR/html4/sgml/entities.html">
 	 * http://www.w3.org/TR/html4/sgml/entities.html
 	 * </a>
@@ -131,10 +131,10 @@ public abstract class HtmlUtils {
 
 	/**
 	 * Turn special characters into HTML character references.
-	 * <p>Handles complete character set defined in HTML 4.01 recommendation.
-	 * <p>Escapes all special characters to their corresponding numeric
+	 * Handles complete character set defined in HTML 4.01 recommendation.
+	 * Escapes all special characters to their corresponding numeric
 	 * reference in hex format (&#x<i>Hex</i>;).
-	 * <p>Reference:
+	 * Reference:
 	 * <a href="http://www.w3.org/TR/html4/sgml/entities.html">
 	 * http://www.w3.org/TR/html4/sgml/entities.html
 	 * </a>
@@ -147,12 +147,12 @@ public abstract class HtmlUtils {
 
 	/**
 	 * Turn special characters into HTML character references.
-	 * <p>Handles complete character set defined in HTML 4.01 recommendation.
-	 * <p>Escapes all special characters to their corresponding numeric
+	 * Handles complete character set defined in HTML 4.01 recommendation.
+	 * Escapes all special characters to their corresponding numeric
 	 * reference in hex format (&#x<i>Hex</i>;) at least as required by the
 	 * specified encoding. In other words, if a special character does
 	 * not have to be escaped for the given encoding, it may not be.
-	 * <p>Reference:
+	 * Reference:
 	 * <a href="http://www.w3.org/TR/html4/sgml/entities.html">
 	 * http://www.w3.org/TR/html4/sgml/entities.html
 	 * </a>
@@ -181,17 +181,17 @@ public abstract class HtmlUtils {
 
 	/**
 	 * Turn HTML character references into their plain text UNICODE equivalent.
-	 * <p>Handles complete character set defined in HTML 4.01 recommendation
+	 * Handles complete character set defined in HTML 4.01 recommendation
 	 * and all reference types (decimal, hex, and entity).
-	 * <p>Correctly converts the following formats:
+	 * Correctly converts the following formats:
 	 * <blockquote>
 	 * &amp;#<i>Entity</i>; - <i>(Example: &amp;amp;) case sensitive</i>
 	 * &amp;#<i>Decimal</i>; - <i>(Example: &amp;#68;)</i><br>
 	 * &amp;#x<i>Hex</i>; - <i>(Example: &amp;#xE5;) case insensitive</i><br>
 	 * </blockquote>
-	 * <p>Gracefully handles malformed character references by copying original
+	 * Gracefully handles malformed character references by copying original
 	 * characters as is when encountered.
-	 * <p>Reference:
+	 * Reference:
 	 * <a href="http://www.w3.org/TR/html4/sgml/entities.html">
 	 * http://www.w3.org/TR/html4/sgml/entities.html
 	 * </a>

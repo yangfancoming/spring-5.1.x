@@ -35,7 +35,7 @@ public interface ResourceResolverChain {
 	 * Resolve the externally facing <em>public</em> URL path for clients to use
 	 * to access the resource that is located at the given <em>internal</em>
 	 * resource path.
-	 * <p>This is useful when rendering URL links to clients.
+	 * This is useful when rendering URL links to clients.
 	 * @param resourcePath the internal resource path
 	 * @param locations the locations to search in when looking up resources
 	 * @return the resolved public URL path, or {@code null} if unresolved

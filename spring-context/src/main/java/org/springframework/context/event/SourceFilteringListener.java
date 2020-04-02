@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * events from a specified event source, invoking its delegate listener for
  * matching {@link org.springframework.context.ApplicationEvent} objects only.
  *
- * <p>Can also be used as base class, overriding the {@link #onApplicationEventInternal}
+ * Can also be used as base class, overriding the {@link #onApplicationEventInternal}
  * method instead of specifying a delegate listener.
  *
 
@@ -84,7 +84,7 @@ public class SourceFilteringListener implements GenericApplicationListener, Smar
 	/**
 	 * Actually process the event, after having filtered according to the
 	 * desired event source already.
-	 * <p>The default implementation invokes the specified delegate, if any.
+	 * The default implementation invokes the specified delegate, if any.
 	 * @param event the event to process (matching the specified source)
 	 */
 	protected void onApplicationEventInternal(ApplicationEvent event) {

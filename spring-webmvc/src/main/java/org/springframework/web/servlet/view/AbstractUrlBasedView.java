@@ -60,7 +60,7 @@ public abstract class AbstractUrlBasedView extends AbstractView implements Initi
 
 	/**
 	 * Return whether the 'url' property is required.
-	 * <p>The default implementation returns {@code true}.
+	 * The default implementation returns {@code true}.
 	 * This can be overridden in subclasses.
 	 */
 	protected boolean isUrlRequired() {

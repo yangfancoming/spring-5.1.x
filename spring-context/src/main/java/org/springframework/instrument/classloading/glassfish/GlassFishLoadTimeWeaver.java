@@ -16,7 +16,7 @@ import org.springframework.util.ClassUtils;
  * {@link LoadTimeWeaver} implementation for GlassFish's
  * {@code org.glassfish.api.deployment.InstrumentableClassLoader InstrumentableClassLoader}.
  *
- * <p>As of Spring Framework 5.0, this weaver supports GlassFish 4+.
+ * As of Spring Framework 5.0, this weaver supports GlassFish 4+.
  *
  * @author Costin Leau
 

@@ -22,7 +22,7 @@ import org.springframework.util.ObjectUtils;
 /**
  * Mock implementation of the {@link javax.servlet.FilterChain} interface.
  *
- * <p>A {@link MockFilterChain} can be configured with one or more filters and a
+ * A {@link MockFilterChain} can be configured with one or more filters and a
  * Servlet to invoke. The first time the chain is called, it invokes all filters
  * and the Servlet, and saves the request and response. Subsequent invocations
  * raise an {@link IllegalStateException} unless {@link #reset()} is called.

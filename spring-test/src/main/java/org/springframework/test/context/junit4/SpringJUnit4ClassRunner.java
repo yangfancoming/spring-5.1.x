@@ -45,10 +45,10 @@ import org.springframework.util.ReflectionUtils;
  * <em>Spring TestContext Framework</em> to standard JUnit tests by means of the
  * {@link TestContextManager} and associated support classes and annotations.
  *
- * <p>To use this class, simply annotate a JUnit 4 based test class with
+ * To use this class, simply annotate a JUnit 4 based test class with
  * {@code @RunWith(SpringJUnit4ClassRunner.class)} or {@code @RunWith(SpringRunner.class)}.
  *
- * <p>The following list constitutes all annotations currently supported directly
+ * The following list constitutes all annotations currently supported directly
  * or indirectly by {@code SpringJUnit4ClassRunner}. <em>(Note that additional
  * annotations may be supported by various
  * {@link org.springframework.test.context.TestExecutionListener TestExecutionListener}
@@ -65,10 +65,10 @@ import org.springframework.util.ReflectionUtils;
  * <li>{@link org.springframework.test.annotation.IfProfileValue @IfProfileValue}</li>
  * </ul>
  *
- * <p>If you would like to use the Spring TestContext Framework with a runner
+ * If you would like to use the Spring TestContext Framework with a runner
  * other than this one, use {@link SpringClassRule} and {@link SpringMethodRule}.
  *
- * <p><strong>NOTE:</strong> As of Spring Framework 4.3, this class requires JUnit 4.12 or higher.
+ * <strong>NOTE:</strong> As of Spring Framework 4.3, this class requires JUnit 4.12 or higher.
  *
  * @author Sam Brannen
 
@@ -130,7 +130,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 
 	/**
 	 * Create a new {@link TestContextManager} for the supplied test class.
-	 * <p>Can be overridden by subclasses.
+	 * Can be overridden by subclasses.
 	 * @param clazz the test class to be managed
 	 */
 	protected TestContextManager createTestContextManager(Class<?> clazz) {
@@ -160,7 +160,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 
 	/**
 	 * Check whether the test is enabled in the current execution environment.
-	 * <p>This prevents classes with a non-matching {@code @IfProfileValue}
+	 * This prevents classes with a non-matching {@code @IfProfileValue}
 	 * annotation from running altogether, even skipping the execution of
 	 * {@code prepareTestInstance()} methods in {@code TestExecutionListeners}.
 	 * @see ProfileValueUtils#isTestEnabledInThisEnvironment(Class)
@@ -242,7 +242,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	 * Augment the default JUnit behavior
 	 * {@linkplain #withPotentialRepeat with potential repeats} of the entire
 	 * execution chain.
-	 * <p>Furthermore, support for timeouts has been moved down the execution
+	 * Furthermore, support for timeouts has been moved down the execution
 	 * chain in order to include execution of {@link org.junit.Before @Before}
 	 * and {@link org.junit.After @After} methods within the timed execution.
 	 * Note that this differs from the default JUnit behavior of executing
@@ -328,8 +328,8 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	/**
 	 * Get the {@code exception} that the supplied {@linkplain FrameworkMethod
 	 * test method} is expected to throw.
-	 * <p>Supports JUnit's {@link Test#expected() @Test(expected=...)} annotation.
-	 * <p>Can be overridden by subclasses.
+	 * Supports JUnit's {@link Test#expected() @Test(expected=...)} annotation.
+	 * Can be overridden by subclasses.
 	 * @return the expected exception, or {@code null} if none was specified
 	 */
 	@Nullable
@@ -342,7 +342,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	 * Perform the same logic as
 	 * {@link BlockJUnit4ClassRunner#withPotentialTimeout(FrameworkMethod, Object, Statement)}
 	 * but with additional support for Spring's {@code @Timed} annotation.
-	 * <p>Supports both Spring's {@link org.springframework.test.annotation.Timed @Timed}
+	 * Supports both Spring's {@link org.springframework.test.annotation.Timed @Timed}
 	 * and JUnit's {@link Test#timeout() @Test(timeout=...)} annotations, but not both
 	 * simultaneously.
 	 * @return either a {@link SpringFailOnTimeout}, a {@link FailOnTimeout},
@@ -448,7 +448,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 
 	/**
 	 * Wrap the supplied {@link Statement} with a {@code SpringRepeat} statement.
-	 * <p>Supports Spring's {@link org.springframework.test.annotation.Repeat @Repeat}
+	 * Supports Spring's {@link org.springframework.test.annotation.Repeat @Repeat}
 	 * annotation.
 	 * @see TestAnnotationUtils#getRepeatCount(Method)
 	 * @see SpringRepeat

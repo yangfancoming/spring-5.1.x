@@ -17,7 +17,7 @@ import org.springframework.util.Assert;
  * Simple implementation of the JCA 1.7 {@link javax.resource.spi.BootstrapContext}
  * interface, used for bootstrapping a JCA ResourceAdapter in a local environment.
  *
- * <p>Delegates to the given WorkManager and XATerminator, if any. Creates simple
+ * Delegates to the given WorkManager and XATerminator, if any. Creates simple
  * local instances of {@code java.util.Timer}.
  *
 

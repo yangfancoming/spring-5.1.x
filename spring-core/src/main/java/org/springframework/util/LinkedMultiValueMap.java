@@ -15,7 +15,7 @@ import org.springframework.lang.Nullable;
 /**
  * Simple implementation of {@link MultiValueMap} that wraps a {@link LinkedHashMap},
  * storing multiple values in a {@link LinkedList}.
- * <p>This Map implementation is generally not thread-safe. It is primarily designed
+ * This Map implementation is generally not thread-safe. It is primarily designed
  * for data structures exposed from request objects, for use in a single thread only.
  * @since 3.0
  * @param <K> the key type

@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
 /**
  * Strategy interface that encapsulates the creation of {@code ObjectName} instances.
  *
- * <p>Used by the {@code MBeanExporter} to obtain {@code ObjectName}s
+ * Used by the {@code MBeanExporter} to obtain {@code ObjectName}s
  * when registering beans.
  *
  * @author Rob Harrop

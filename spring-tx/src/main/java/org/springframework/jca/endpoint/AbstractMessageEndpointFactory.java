@@ -51,10 +51,10 @@ public abstract class AbstractMessageEndpointFactory implements MessageEndpointF
 	/**
 	 * Set the XA transaction manager to use for wrapping endpoint
 	 * invocations, enlisting the endpoint resource in each such transaction.
-	 * <p>The passed-in object may be a transaction manager which implements
+	 * The passed-in object may be a transaction manager which implements
 	 * Spring's {@link org.springframework.transaction.jta.TransactionFactory}
 	 * interface, or a plain {@link javax.transaction.TransactionManager}.
-	 * <p>If no transaction manager is specified, the endpoint invocation
+	 * If no transaction manager is specified, the endpoint invocation
 	 * will simply not be wrapped in an XA transaction. Check out your
 	 * resource provider's ActivationSpec documentation for local
 	 * transaction options of your particular provider.
@@ -78,9 +78,9 @@ public abstract class AbstractMessageEndpointFactory implements MessageEndpointF
 	/**
 	 * Set the Spring TransactionFactory to use for wrapping endpoint
 	 * invocations, enlisting the endpoint resource in each such transaction.
-	 * <p>Alternatively, specify an appropriate transaction manager through
+	 * Alternatively, specify an appropriate transaction manager through
 	 * the {@link #setTransactionManager "transactionManager"} property.
-	 * <p>If no transaction factory is specified, the endpoint invocation
+	 * If no transaction factory is specified, the endpoint invocation
 	 * will simply not be wrapped in an XA transaction. Check out your
 	 * resource provider's ActivationSpec documentation for local
 	 * transaction options of your particular provider.
@@ -93,7 +93,7 @@ public abstract class AbstractMessageEndpointFactory implements MessageEndpointF
 
 	/**
 	 * Specify the name of the transaction, if any.
-	 * <p>Default is none. A specified name will be passed on to the transaction
+	 * Default is none. A specified name will be passed on to the transaction
 	 * manager, allowing to identify the transaction in a transaction monitor.
 	 */
 	public void setTransactionName(String transactionName) {
@@ -102,7 +102,7 @@ public abstract class AbstractMessageEndpointFactory implements MessageEndpointF
 
 	/**
 	 * Specify the transaction timeout, if any.
-	 * <p>Default is -1: rely on the transaction manager's default timeout.
+	 * Default is -1: rely on the transaction manager's default timeout.
 	 * Specify a concrete timeout to restrict the maximum duration of each
 	 * endpoint invocation.
 	 */
@@ -154,7 +154,7 @@ public abstract class AbstractMessageEndpointFactory implements MessageEndpointF
 
 	/**
 	 * The standard JCA 1.5 version of {@code createEndpoint}.
-	 * <p>This implementation delegates to {@link #createEndpointInternal()},
+	 * This implementation delegates to {@link #createEndpointInternal()},
 	 * initializing the endpoint's XAResource before the endpoint gets invoked.
 	 */
 	@Override
@@ -166,7 +166,7 @@ public abstract class AbstractMessageEndpointFactory implements MessageEndpointF
 
 	/**
 	 * The alternative JCA 1.6 version of {@code createEndpoint}.
-	 * <p>This implementation delegates to {@link #createEndpointInternal()},
+	 * This implementation delegates to {@link #createEndpointInternal()},
 	 * ignoring the specified timeout. It is only here for JCA 1.6 compliance.
 	 */
 	@Override
@@ -211,7 +211,7 @@ public abstract class AbstractMessageEndpointFactory implements MessageEndpointF
 		 * This {@code beforeDelivery} implementation starts a transaction,
 		 * if necessary, and exposes the endpoint ClassLoader as current
 		 * thread context ClassLoader.
-		 * <p>Note that the JCA 1.7 specification does not require a ResourceAdapter
+		 * Note that the JCA 1.7 specification does not require a ResourceAdapter
 		 * to call this method before invoking the concrete endpoint. If this method
 		 * has not been called (check {@link #hasBeforeDeliveryBeenCalled()}), the
 		 * concrete endpoint method should call {@code beforeDelivery} and its
@@ -251,7 +251,7 @@ public abstract class AbstractMessageEndpointFactory implements MessageEndpointF
 		/**
 		 * Callback method for notifying the endpoint base class
 		 * that the concrete endpoint invocation led to an exception.
-		 * <p>To be invoked by subclasses in case of the concrete
+		 * To be invoked by subclasses in case of the concrete
 		 * endpoint throwing an exception.
 		 * @param ex the exception thrown from the concrete endpoint
 		 */
@@ -264,7 +264,7 @@ public abstract class AbstractMessageEndpointFactory implements MessageEndpointF
 		/**
 		 * This {@code afterDelivery} implementation resets the thread context
 		 * ClassLoader and completes the transaction, if any.
-		 * <p>Note that the JCA 1.7 specification does not require a ResourceAdapter
+		 * Note that the JCA 1.7 specification does not require a ResourceAdapter
 		 * to call this method after invoking the concrete endpoint. See the
 		 * explanation in {@link #beforeDelivery}'s javadoc.
 		 */

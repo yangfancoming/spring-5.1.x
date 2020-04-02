@@ -43,9 +43,9 @@ import static org.springframework.http.MediaType.TEXT_PLAIN;
  * {@link com.google.protobuf.Message com.google.protobuf.Messages} using
  * <a href="https://developers.google.com/protocol-buffers/">Google Protocol Buffers</a>.
  *
- * <p>To generate {@code Message} Java classes, you need to install the {@code protoc} binary.
+ * To generate {@code Message} Java classes, you need to install the {@code protoc} binary.
  *
- * <p>This converter supports by default {@code "application/x-protobuf"} and {@code "text/plain"}
+ * This converter supports by default {@code "application/x-protobuf"} and {@code "text/plain"}
  * with the official {@code "com.google.protobuf:protobuf-java"} library. Other formats can be
  * supported with one of the following additional libraries on the classpath:
  * <ul>
@@ -55,7 +55,7 @@ import static org.springframework.http.MediaType.TEXT_PLAIN;
  * for Protobuf 3 (see {@link ProtobufJsonFormatHttpMessageConverter} for a configurable variant)
  * </ul>
  *
- * <p>Requires Protobuf 2.6 or higher (and Protobuf Java Format 1.4 or higher for formatting).
+ * Requires Protobuf 2.6 or higher (and Protobuf Java Format 1.4 or higher for formatting).
  * This converter will auto-adapt to Protobuf 3 and its default {@code protobuf-java-util} JSON
  * format if the Protobuf 2 based {@code protobuf-java-format} isn't present; however, for more
  * explicit JSON setup on Protobuf 3, consider {@link ProtobufJsonFormatHttpMessageConverter}.
@@ -193,7 +193,7 @@ public class ProtobufHttpMessageConverter extends AbstractHttpMessageConverter<M
 
 	/**
 	 * Create a new {@code Message.Builder} instance for the given class.
-	 * <p>This method uses a ConcurrentReferenceHashMap for caching method lookups.
+	 * This method uses a ConcurrentReferenceHashMap for caching method lookups.
 	 */
 	private Message.Builder getMessageBuilder(Class<? extends Message> clazz) {
 		try {
@@ -252,7 +252,7 @@ public class ProtobufHttpMessageConverter extends AbstractHttpMessageConverter<M
 	/**
 	 * Set the "X-Protobuf-*" HTTP headers when responding with a message of
 	 * content type "application/x-protobuf"
-	 * <p><b>Note:</b> <code>outputMessage.getBody()</code> should not have been called
+	 * <b>Note:</b> <code>outputMessage.getBody()</code> should not have been called
 	 * before because it writes HTTP headers (making them read only).</p>
 	 */
 	private void setProtoHeader(HttpOutputMessage response, Message message) {

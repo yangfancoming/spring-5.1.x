@@ -19,7 +19,7 @@ import static org.springframework.test.util.AssertionErrors.assertTrue;
 /**
  * Factory for response header assertions.
  *
- * <p>An instance of this class is available via
+ * An instance of this class is available via
  * {@link MockMvcResultMatchers#header}.
  *
  * @author Rossen Stoyanchev
@@ -95,7 +95,7 @@ public class HeaderResultMatchers {
 
 	/**
 	 * Assert the primary value of the named response header as a {@code long}.
-	 * <p>The {@link ResultMatcher} returned by this method throws an
+	 * The {@link ResultMatcher} returned by this method throws an
 	 * {@link AssertionError} if the response does not contain the specified
 	 * header, or if the supplied {@code value} does not match the primary value.
 	 */
@@ -113,7 +113,7 @@ public class HeaderResultMatchers {
 	/**
 	 * Assert the primary value of the named response header parsed into a date
 	 * using the preferred date format described in RFC 7231.
-	 * <p>The {@link ResultMatcher} returned by this method throws an
+	 * The {@link ResultMatcher} returned by this method throws an
 	 * {@link AssertionError} if the response does not contain the specified
 	 * header, or if the supplied {@code value} does not match the primary value.
 	 * @since 4.2

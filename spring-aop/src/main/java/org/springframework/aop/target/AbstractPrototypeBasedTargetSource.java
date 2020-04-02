@@ -18,7 +18,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
  * that create new prototype bean instances to support a pooling or
  * new-instance-per-invocation strategy.
  *
- * <p>Such TargetSources must run in a {@link BeanFactory}, as it needs to
+ * Such TargetSources must run in a {@link BeanFactory}, as it needs to
  * call the {@code getBean} method to create a new prototype instance.
  * Therefore, this base class extends {@link AbstractBeanFactoryBasedTargetSource}.
  * @see org.springframework.beans.factory.BeanFactory#getBean
@@ -93,7 +93,7 @@ public abstract class AbstractPrototypeBasedTargetSource extends AbstractBeanFac
 	 * Protected as otherwise it won't be invoked for subclasses.
 	 * (The {@code writeReplace()} method must be visible to the class
 	 * being serialized.)
-	 * <p>With this implementation of this method, there is no need to mark
+	 * With this implementation of this method, there is no need to mark
 	 * non-serializable fields in this class or subclasses as transient.
 	 */
 	protected Object writeReplace() throws ObjectStreamException {

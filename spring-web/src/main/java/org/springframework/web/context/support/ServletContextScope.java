@@ -15,17 +15,17 @@ import org.springframework.util.Assert;
 /**
  * {@link Scope} wrapper for a ServletContext, i.e. for global web application attributes.
  *
- * <p>This differs from traditional Spring singletons in that it exposes attributes in the
+ * This differs from traditional Spring singletons in that it exposes attributes in the
  * ServletContext. Those attributes will get destroyed whenever the entire application
  * shuts down, which might be earlier or later than the shutdown of the containing Spring
  * ApplicationContext.
  *
- * <p>The associated destruction mechanism relies on a
+ * The associated destruction mechanism relies on a
  * {@link org.springframework.web.context.ContextCleanupListener} being registered in
  * {@code web.xml}. Note that {@link org.springframework.web.context.ContextLoaderListener}
  * includes ContextCleanupListener's functionality.
  *
- * <p>This scope is registered as default scope with key
+ * This scope is registered as default scope with key
  * {@link org.springframework.web.context.WebApplicationContext#SCOPE_APPLICATION "application"}.
  *
 

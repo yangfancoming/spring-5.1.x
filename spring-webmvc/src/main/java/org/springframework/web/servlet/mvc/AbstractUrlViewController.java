@@ -14,7 +14,7 @@ import org.springframework.web.util.UrlPathHelper;
  * Abstract base class for {@code Controllers} that return a view name
  * based on the request URL.
  *
- * <p>Provides infrastructure for determining view names from URLs and configurable
+ * Provides infrastructure for determining view names from URLs and configurable
  * URL lookup. For information on the latter, see {@code alwaysUseFullPath}
  * and {@code urlDecode} properties.
  *
@@ -43,7 +43,7 @@ public abstract class AbstractUrlViewController extends AbstractController {
 	 * Set if context path and request URI should be URL-decoded.
 	 * Both are returned <i>undecoded</i> by the Servlet API,
 	 * in contrast to the servlet path.
-	 * <p>Uses either the request encoding or the default encoding according
+	 * Uses either the request encoding or the default encoding according
 	 * to the Servlet spec (ISO-8859-1).
 	 * @see org.springframework.web.util.UrlPathHelper#setUrlDecode
 	 */
@@ -61,7 +61,7 @@ public abstract class AbstractUrlViewController extends AbstractController {
 
 	/**
 	 * Set the UrlPathHelper to use for the resolution of lookup paths.
-	 * <p>Use this to override the default UrlPathHelper with a custom subclass,
+	 * Use this to override the default UrlPathHelper with a custom subclass,
 	 * or to share common UrlPathHelper settings across multiple MethodNameResolvers
 	 * and HandlerMappings.
 	 * @see org.springframework.web.servlet.handler.AbstractUrlHandlerMapping#setUrlPathHelper

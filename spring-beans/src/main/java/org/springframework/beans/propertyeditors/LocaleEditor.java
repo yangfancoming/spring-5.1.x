@@ -9,7 +9,7 @@ import org.springframework.util.StringUtils;
 /**
  * Editor for {@code java.util.Locale}, to directly populate a Locale property.
  *
- * <p>Expects the same syntax as Locale's {@code toString}, i.e. language +
+ * Expects the same syntax as Locale's {@code toString}, i.e. language +
  * optionally country + optionally variant, separated by "_" (e.g. "en", "en_US").
  * Also accepts spaces as separators, as alternative to underscores.
  *

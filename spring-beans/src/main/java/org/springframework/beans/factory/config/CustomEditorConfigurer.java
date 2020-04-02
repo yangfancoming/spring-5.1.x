@@ -18,7 +18,7 @@ import org.springframework.util.ClassUtils;
  * {@link BeanFactoryPostProcessor} implementation that allows for convenient
  * registration of custom {@link PropertyEditor property editors}.
  *
- * <p>In case you want to register {@link PropertyEditor} instances,
+ * In case you want to register {@link PropertyEditor} instances,
  * the recommended usage as of Spring 2.0 is to use custom
  * {@link PropertyEditorRegistrar} implementations that in turn register any
  * desired editor instances on a given
@@ -36,7 +36,7 @@ import org.springframework.util.ClassUtils;
  * &lt;/bean&gt;
  * </pre>
  *
- * <p>
+ *
  * It's perfectly fine to register {@link PropertyEditor} <em>classes</em> via
  * the {@code customEditors} property. Spring will create fresh instances of
  * them for each editing attempt then:
@@ -52,7 +52,7 @@ import org.springframework.util.ClassUtils;
  * &lt;/bean&gt;
  * </pre>
  *
- * <p>
+ *
  * Note, that you shouldn't register {@link PropertyEditor} bean instances via
  * the {@code customEditors} property as {@link PropertyEditor PropertyEditors} are stateful
  * and the instances will then have to be synchronized for every editing
@@ -60,12 +60,12 @@ import org.springframework.util.ClassUtils;
  * {@link PropertyEditor PropertyEditors}, use a {@link PropertyEditorRegistrar} to register
  * them.
  *
- * <p>
+ *
  * Also supports "java.lang.String[]"-style array class names and primitive
  * class names (e.g. "boolean"). Delegates to {@link ClassUtils} for actual
  * class name resolution.
  *
- * <p><b>NOTE:</b> Custom property editors registered with this configurer do
+ * <b>NOTE:</b> Custom property editors registered with this configurer do
  * <i>not</i> apply to data binding. Custom editors for data binding need to
  * be registered on the {@link org.springframework.validation.DataBinder}:
  * Use a common base class or delegate to common PropertyEditorRegistrar
@@ -104,7 +104,7 @@ public class CustomEditorConfigurer implements BeanFactoryPostProcessor, Ordered
 	/**
 	 * Specify the {@link PropertyEditorRegistrar PropertyEditorRegistrars}
 	 * to apply to beans defined within the current application context.
-	 * <p>This allows for sharing {@code PropertyEditorRegistrars} with
+	 * This allows for sharing {@code PropertyEditorRegistrars} with
 	 * {@link org.springframework.validation.DataBinder DataBinders}, etc.
 	 * Furthermore, it avoids the need for synchronization on custom editors:
 	 * A {@code PropertyEditorRegistrar} will always create fresh editor

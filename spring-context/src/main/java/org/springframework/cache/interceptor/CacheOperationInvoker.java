@@ -5,7 +5,7 @@ package org.springframework.cache.interceptor;
 /**
  * Abstract the invocation of a cache operation.
  *
- * <p>Does not provide a way to transmit checked exceptions but
+ * Does not provide a way to transmit checked exceptions but
  * provide a special exception that should be used to wrap any
  * exception that was thrown by the underlying invocation.
  * Callers are expected to handle this issue type specifically.

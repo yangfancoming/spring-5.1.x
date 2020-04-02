@@ -22,7 +22,7 @@ import org.springframework.web.reactive.function.BodyInserter;
  * {@link ExchangeFunction}. Instances of this interface can be created via static
  * builder methods.
  *
- * <p>Note that applications are more likely to perform requests through
+ * Note that applications are more likely to perform requests through
  * {@link WebClient} rather than using this directly.
  *
  * @author Brian Clozel
@@ -206,7 +206,7 @@ public interface ClientRequest {
 		 * @param publisher the {@code Publisher} to write to the request
 		 * @param elementClass the class of elements contained in the publisher
 		 * @param <S> the type of the elements contained in the publisher
-		 * @param <P> the type of the {@code Publisher}
+		 * @param  the type of the {@code Publisher}
 		 * @return the built request
 		 */
 		<S, P extends Publisher<S>> Builder body(P publisher, Class<S> elementClass);
@@ -216,7 +216,7 @@ public interface ClientRequest {
 		 * @param publisher the {@code Publisher} to write to the request
 		 * @param typeReference a type reference describing the elements contained in the publisher
 		 * @param <S> the type of the elements contained in the publisher
-		 * @param <P> the type of the {@code Publisher}
+		 * @param  the type of the {@code Publisher}
 		 * @return the built request
 		 */
 		<S, P extends Publisher<S>> Builder body(P publisher, ParameterizedTypeReference<S> typeReference);

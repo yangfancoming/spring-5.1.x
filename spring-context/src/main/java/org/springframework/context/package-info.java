@@ -4,7 +4,7 @@
  * ability for application objects to obtain resources using a
  * consistent API.
  *
- * <p>There is no necessity for Spring applications to depend
+ * There is no necessity for Spring applications to depend
  * on ApplicationContext or even BeanFactory functionality
  * explicitly. One of the strengths of the Spring architecture
  * is that application objects can often be configured without

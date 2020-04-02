@@ -28,7 +28,7 @@ import org.springframework.util.Assert;
  * {@link KeyDeserializer}, {@link TypeResolverBuilder}, {@link TypeIdResolver})
  * beans with autowiring against a Spring {@link ApplicationContext}.
  *
- * <p>As of Spring 4.3, this overrides all factory methods in {@link HandlerInstantiator},
+ * As of Spring 4.3, this overrides all factory methods in {@link HandlerInstantiator},
  * including non-abstract ones and recently introduced ones from Jackson 2.4 and 2.5:
  * for {@link ValueInstantiator}, {@link ObjectIdGenerator}, {@link ObjectIdResolver},
  * {@link PropertyNamingStrategy}, {@link Converter}, {@link VirtualBeanPropertyWriter}.

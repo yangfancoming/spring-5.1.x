@@ -29,7 +29,7 @@ import org.springframework.web.server.ServerWebInputException;
  * individual part instead. The arguments may be wrapped with a reactive type
  * for a single value (e.g. Reactor {@code Mono}, RxJava {@code Single}).
  *
- * <p>This resolver also supports arguments of type {@link Part} which may be
+ * This resolver also supports arguments of type {@link Part} which may be
  * wrapped with are reactive type for a single or multiple values.
  *
  * @author Rossen Stoyanchev

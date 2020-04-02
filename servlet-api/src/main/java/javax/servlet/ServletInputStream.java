@@ -13,11 +13,11 @@ import java.io.InputStream;
  * as HTTP POST and PUT, a <code>ServletInputStream</code>
  * object can be used to read data sent from the client.
  *
- * <p>A <code>ServletInputStream</code> object is normally retrieved via
+ * A <code>ServletInputStream</code> object is normally retrieved via
  * the {@link ServletRequest#getInputStream} method.
  *
  *
- * <p>This is an abstract class that a servlet container implements.
+ * This is an abstract class that a servlet container implements.
  * Subclasses of this class
  * must implement the <code>java.io.InputStream.read()</code> method.
  *
@@ -49,7 +49,7 @@ public abstract class ServletInputStream extends InputStream {
      * of bytes or reaches a newline character, which it reads into the
      * array as well.
      *
-     * <p>This method returns -1 if it reaches the end of the input
+     * This method returns -1 if it reaches the end of the input
      * stream before reading the maximum number of bytes.
      *
      *

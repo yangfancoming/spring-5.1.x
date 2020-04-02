@@ -8,13 +8,13 @@ import org.springframework.aop.Advisor;
 
 /**
  * Interface for registries of Advisor adapters.
- * <p><i>This is an SPI interface, not to be implemented by any Spring user.</i>
+ * <i>This is an SPI interface, not to be implemented by any Spring user.</i>
  */
 public interface AdvisorAdapterRegistry {
 
 	/**
 	 * Return an {@link Advisor} wrapping the given advice.
-	 * <p>Should by default at least support
+	 * Should by default at least support
 	 * {@link org.aopalliance.intercept.MethodInterceptor},
 	 * {@link org.springframework.aop.MethodBeforeAdvice},
 	 * {@link org.springframework.aop.AfterReturningAdvice},
@@ -30,7 +30,7 @@ public interface AdvisorAdapterRegistry {
 	/**
 	 * Return an array of AOP Alliance MethodInterceptors to allow use of the
 	 * given Advisor in an interception-based framework.
-	 * <p>Don't worry about the pointcut associated with the {@link Advisor}, if it is
+	 * Don't worry about the pointcut associated with the {@link Advisor}, if it is
 	 * a {@link org.springframework.aop.PointcutAdvisor}: just return an interceptor.
 	 * @param advisor the Advisor to find an interceptor for
 	 * @return an array of MethodInterceptors to expose this Advisor's behavior

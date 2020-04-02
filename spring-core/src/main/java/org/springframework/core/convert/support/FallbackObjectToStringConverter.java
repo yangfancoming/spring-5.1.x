@@ -14,11 +14,11 @@ import org.springframework.lang.Nullable;
  * Simply calls {@link Object#toString()} to convert any supported object
  * to a {@link String}.
  *
- * <p>Supports {@link CharSequence}, {@link StringWriter}, and any class
+ * Supports {@link CharSequence}, {@link StringWriter}, and any class
  * with a String constructor or one of the following static factory methods:
  * {@code valueOf(String)}, {@code of(String)}, {@code from(String)}.
  *
- * <p>Used by the {@link DefaultConversionService} as a fallback if there
+ * Used by the {@link DefaultConversionService} as a fallback if there
  * are no other explicit to-String converters registered.
  *
  * @author Keith Donald

@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
 
 /**
  * Convenient Pointcut-driven Advisor implementation.
- * <p>This is the most commonly used Advisor implementation. It can be used
+ * This is the most commonly used Advisor implementation. It can be used
  * with any pointcut and advice type, except for introductions. There is
  * normally no need to subclass this class, or to implement custom Advisors.
  * @see #setPointcut
@@ -24,7 +24,7 @@ public class DefaultPointcutAdvisor extends AbstractGenericPointcutAdvisor imple
 
 	/**
 	 * Create an empty DefaultPointcutAdvisor.
-	 * <p>Advice must be set before use using setter methods.
+	 * Advice must be set before use using setter methods.
 	 * Pointcut will normally be set also, but defaults to {@code Pointcut.TRUE}.
 	 */
 	public DefaultPointcutAdvisor() {
@@ -32,7 +32,7 @@ public class DefaultPointcutAdvisor extends AbstractGenericPointcutAdvisor imple
 
 	/**
 	 * Create a DefaultPointcutAdvisor that matches all methods.
-	 * <p>{@code Pointcut.TRUE} will be used as Pointcut.
+	 * {@code Pointcut.TRUE} will be used as Pointcut.
 	 * @param advice the Advice to use
 	 */
 	public DefaultPointcutAdvisor(Advice advice) {
@@ -52,7 +52,7 @@ public class DefaultPointcutAdvisor extends AbstractGenericPointcutAdvisor imple
 
 	/**
 	 * Specify the pointcut targeting the advice.
-	 * <p>Default is {@code Pointcut.TRUE}.
+	 * Default is {@code Pointcut.TRUE}.
 	 * @see #setAdvice
 	 */
 	public void setPointcut(@Nullable Pointcut pointcut) {

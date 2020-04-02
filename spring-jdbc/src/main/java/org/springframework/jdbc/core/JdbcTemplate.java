@@ -47,27 +47,27 @@ import org.springframework.util.StringUtils;
  * them to the generic, more informative exception hierarchy defined in the
  * {@code org.springframework.dao} package.
  *
- * <p>Code using this class need only implement callback interfaces, giving
+ * Code using this class need only implement callback interfaces, giving
  * them a clearly defined contract. The {@link PreparedStatementCreator} callback
  * interface creates a prepared statement given a Connection, providing SQL and
  * any necessary parameters. The {@link ResultSetExtractor} interface extracts
  * values from a ResultSet. See also {@link PreparedStatementSetter} and
  * {@link RowMapper} for two popular alternative callback interfaces.
  *
- * <p>Can be used within a service implementation via direct instantiation
+ * Can be used within a service implementation via direct instantiation
  * with a DataSource reference, or get prepared in an application context
  * and given to services as bean reference. Note: The DataSource should
  * always be configured as a bean in the application context, in the first case
  * given to the service directly, in the second case to the prepared template.
  *
- * <p>Because this class is parameterizable by the callback interfaces and
+ * Because this class is parameterizable by the callback interfaces and
  * the {@link org.springframework.jdbc.support.SQLExceptionTranslator}
  * interface, there should be no need to subclass it.
  *
- * <p>All SQL operations performed by this class are logged at debug level,
+ * All SQL operations performed by this class are logged at debug level,
  * using "org.springframework.jdbc.core.JdbcTemplate" as log category.
  *
- * <p><b>NOTE: An instance of this class is thread-safe once configured.</b>
+ * <b>NOTE: An instance of this class is thread-safe once configured.</b>
  * @since May 3, 2001
  * @see PreparedStatementCreator
  * @see PreparedStatementSetter
@@ -131,7 +131,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 	/**
 	 * Construct a new JdbcTemplate for bean usage.
-	 * <p>Note: The DataSource has to be set before using the instance.
+	 * Note: The DataSource has to be set before using the instance.
 	 * @see #setDataSource
 	 */
 	public JdbcTemplate() {
@@ -139,7 +139,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 	/**
 	 * Construct a new JdbcTemplate, given a DataSource to obtain connections from.
-	 * <p>Note: This will not trigger initialization of the exception translator.
+	 * Note: This will not trigger initialization of the exception translator.
 	 * @param dataSource the JDBC DataSource to obtain connections from
 	 */
 	public JdbcTemplate(DataSource dataSource) {
@@ -149,7 +149,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 	/**
 	 * Construct a new JdbcTemplate, given a DataSource to obtain connections from.
-	 * <p>Note: Depending on the "lazyInit" flag, initialization of the exception translator
+	 * Note: Depending on the "lazyInit" flag, initialization of the exception translator
 	 * will be triggered.
 	 * @param dataSource the JDBC DataSource to obtain connections from
 	 * @param lazyInit whether to lazily initialize the SQLExceptionTranslator
@@ -163,7 +163,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 	/**
 	 * Set whether or not we want to ignore SQLWarnings.
-	 * <p>Default is "true", swallowing and logging all warnings. Switch this flag
+	 * Default is "true", swallowing and logging all warnings. Switch this flag
 	 * to "false" to make the JdbcTemplate throw a SQLWarningException instead.
 	 * @see java.sql.SQLWarning
 	 * @see org.springframework.jdbc.SQLWarningException
@@ -185,9 +185,9 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	 * result sets: Setting this higher than the default value will increase processing
 	 * speed at the cost of memory consumption; setting this lower can avoid transferring
 	 * row data that will never be read by the application.
-	 * <p>Default is -1, indicating to use the JDBC driver's default configuration
+	 * Default is -1, indicating to use the JDBC driver's default configuration
 	 * (i.e. to not pass a specific fetch size setting on to the driver).
-	 * <p>Note: As of 4.3, negative values other than -1 will get passed on to the
+	 * Note: As of 4.3, negative values other than -1 will get passed on to the
 	 * driver, since e.g. MySQL supports special behavior for {@code Integer.MIN_VALUE}.
 	 * @see java.sql.Statement#setFetchSize
 	 */
@@ -208,9 +208,9 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	 * result set in the database or in the JDBC driver if we're never interested in
 	 * the entire result in the first place (for example, when performing searches
 	 * that might return a large number of matches).
-	 * <p>Default is -1, indicating to use the JDBC driver's default configuration
+	 * Default is -1, indicating to use the JDBC driver's default configuration
 	 * (i.e. to not pass a specific max rows setting on to the driver).
-	 * <p>Note: As of 4.3, negative values other than -1 will get passed on to the
+	 * Note: As of 4.3, negative values other than -1 will get passed on to the
 	 * driver, in sync with {@link #setFetchSize}'s support for special MySQL values.
 	 * @see java.sql.Statement#setMaxRows
 	 */
@@ -227,9 +227,9 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 	/**
 	 * Set the query timeout for statements that this JdbcTemplate executes.
-	 * <p>Default is -1, indicating to use the JDBC driver's default
+	 * Default is -1, indicating to use the JDBC driver's default
 	 * (i.e. to not pass a specific query timeout setting on the driver).
-	 * <p>Note: Any timeout specified here will be overridden by the remaining
+	 * Note: Any timeout specified here will be overridden by the remaining
 	 * transaction timeout when executing within a transaction that has a
 	 * timeout specified at the transaction level.
 	 * @see java.sql.Statement#setQueryTimeout
@@ -321,7 +321,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	/**
 	 * Create a close-suppressing proxy for the given JDBC Connection.
 	 * Called by the {@code execute} method.
-	 * <p>The proxy also prepares returned JDBC Statements, applying
+	 * The proxy also prepares returned JDBC Statements, applying
 	 * statement settings such as fetch size, max rows, and query timeout.
 	 * @param con the JDBC Connection to create a proxy for
 	 * @return the Connection proxy
@@ -1256,7 +1256,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 	/**
 	 * Create a Map instance to be used as the results map.
-	 * <p>If {@link #resultsMapCaseInsensitive} has been set to true,
+	 * If {@link #resultsMapCaseInsensitive} has been set to true,
 	 * a {@link LinkedCaseInsensitiveMap} will be created; otherwise, a
 	 * {@link LinkedHashMap} will be created.
 	 * @return the results Map instance
@@ -1295,7 +1295,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 	/**
 	 * Create a new arg-based PreparedStatementSetter using the args passed in.
-	 * <p>By default, we'll create an {@link ArgumentPreparedStatementSetter}.
+	 * By default, we'll create an {@link ArgumentPreparedStatementSetter}.
 	 * This method allows for the creation to be overridden by subclasses.
 	 * @param args object array with arguments
 	 * @return the new PreparedStatementSetter to use
@@ -1306,7 +1306,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 	/**
 	 * Create a new arg-type-based PreparedStatementSetter using the args and types passed in.
-	 * <p>By default, we'll create an {@link ArgumentTypePreparedStatementSetter}.
+	 * By default, we'll create an {@link ArgumentTypePreparedStatementSetter}.
 	 * This method allows for the creation to be overridden by subclasses.
 	 * @param args object array with arguments
 	 * @param argTypes int array of SQLTypes for the associated arguments
@@ -1507,7 +1507,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 	/**
 	 * Adapter to enable use of a RowCallbackHandler inside a ResultSetExtractor.
-	 * <p>Uses a regular ResultSet, so we have to be careful when using it:
+	 * Uses a regular ResultSet, so we have to be careful when using it:
 	 * We don't use it for navigating since this could lead to unpredictable consequences.
 	 */
 	private static class RowCallbackHandlerResultSetExtractor implements ResultSetExtractor<Object> {

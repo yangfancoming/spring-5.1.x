@@ -39,7 +39,7 @@ import static org.junit.Assert.*;
  * Test fixture with {@link HttpEntityMethodProcessor} delegating to
  * actual {@link HttpMessageConverter} instances.
  *
- * <p>Also see {@link HttpEntityMethodProcessorMockTests}.
+ * Also see {@link HttpEntityMethodProcessorMockTests}.
  *
  * @author Rossen Stoyanchev
  */

@@ -23,14 +23,14 @@ public interface ConfigurableMockMvcBuilder<B extends ConfigurableMockMvcBuilder
 	 * <pre class="code">
 	 * mockMvcBuilder.addFilters(springSecurityFilterChain);
 	 * </pre>
-	 * <p>is the equivalent of the following web.xml configuration:
+	 * is the equivalent of the following web.xml configuration:
 	 * <pre class="code">
 	 * &lt;filter-mapping&gt;
 	 *     &lt;filter-name&gt;springSecurityFilterChain&lt;/filter-name&gt;
 	 *     &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
 	 * &lt;/filter-mapping&gt;
 	 * </pre>
-	 * <p>Filters will be invoked in the order in which they are provided.
+	 * Filters will be invoked in the order in which they are provided.
 	 * @param filters the filters to add
 	 */
 	<T extends B> T addFilters(Filter... filters);
@@ -40,14 +40,14 @@ public interface ConfigurableMockMvcBuilder<B extends ConfigurableMockMvcBuilder
 	 * <pre class="code">
 	 * mockMvcBuilder.addFilters(myResourceFilter, "/resources/*");
 	 * </pre>
-	 * <p>is the equivalent of:
+	 * is the equivalent of:
 	 * <pre class="code">
 	 * &lt;filter-mapping&gt;
 	 *     &lt;filter-name&gt;myResourceFilter&lt;/filter-name&gt;
 	 *     &lt;url-pattern&gt;/resources/*&lt;/url-pattern&gt;
 	 * &lt;/filter-mapping&gt;
 	 * </pre>
-	 * <p>Filters will be invoked in the order in which they are provided.
+	 * Filters will be invoked in the order in which they are provided.
 	 * @param filter the filter to add
 	 * @param urlPatterns the URL patterns to map to; if empty, "/*" is used by default
 	 */
@@ -59,7 +59,7 @@ public interface ConfigurableMockMvcBuilder<B extends ConfigurableMockMvcBuilder
 	 * common initialization for all requests such as the content type, request
 	 * parameters, session attributes, and any other request property.
 	 *
-	 * <p>Properties specified at the time of performing a request override the
+	 * Properties specified at the time of performing a request override the
 	 * default properties defined here.
 	 * @param requestBuilder a RequestBuilder; see static factory methods in
 	 * {@link org.springframework.test.web.servlet.request.MockMvcRequestBuilders}
@@ -94,7 +94,7 @@ public interface ConfigurableMockMvcBuilder<B extends ConfigurableMockMvcBuilder
 	/**
 	 * Add a {@code MockMvcConfigurer} that automates MockMvc setup and
 	 * configures it for some specific purpose (e.g. security).
-	 * <p>There is a built-in {@link SharedHttpSessionConfigurer} that can be
+	 * There is a built-in {@link SharedHttpSessionConfigurer} that can be
 	 * used to re-use the HTTP session across requests. 3rd party frameworks
 	 * like Spring Security also use this mechanism to provide configuration
 	 * shortcuts.

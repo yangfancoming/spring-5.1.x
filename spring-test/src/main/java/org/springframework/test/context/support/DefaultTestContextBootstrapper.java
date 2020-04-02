@@ -8,7 +8,7 @@ import org.springframework.test.context.TestContextBootstrapper;
 /**
  * Default implementation of the {@link TestContextBootstrapper} SPI.
  *
- * <p>Uses {@link DelegatingSmartContextLoader} as the default {@link ContextLoader}.
+ * Uses {@link DelegatingSmartContextLoader} as the default {@link ContextLoader}.
  *
  * @author Sam Brannen
  * @since 4.1

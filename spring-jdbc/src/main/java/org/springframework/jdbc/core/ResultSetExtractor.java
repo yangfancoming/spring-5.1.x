@@ -15,12 +15,12 @@ import org.springframework.lang.Nullable;
  * about exception handling. {@link java.sql.SQLException SQLExceptions}
  * will be caught and handled by the calling JdbcTemplate.
  *
- * <p>This interface is mainly used within the JDBC framework itself.
+ * This interface is mainly used within the JDBC framework itself.
  * A {@link RowMapper} is usually a simpler choice for ResultSet processing,
  * mapping one result object per row instead of one result object for
  * the entire ResultSet.
  *
- * <p>Note: In contrast to a {@link RowCallbackHandler}, a ResultSetExtractor
+ * Note: In contrast to a {@link RowCallbackHandler}, a ResultSetExtractor
  * object is typically stateless and thus reusable, as long as it doesn't
  * access stateful resources (such as output streams when streaming LOB
  * contents) or keep result state within the object.

@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
 /**
  * Factory that creates a JSR-310 {@link java.time.format.DateTimeFormatter}.
  *
- * <p>Formatters will be created using the defined {@link #setPattern pattern},
+ * Formatters will be created using the defined {@link #setPattern pattern},
  * {@link #setIso ISO}, and <code>xxxStyle</code> methods (considered in that order).
  *
 
@@ -103,7 +103,7 @@ public class DateTimeFormatterFactory {
 
 	/**
 	 * Set the two characters to use to format date values, in Joda-Time style.
-	 * <p>The first character is used for the date style; the second is for
+	 * The first character is used for the date style; the second is for
 	 * the time style. Supported characters are:
 	 * <ul>
 	 * <li>'S' = Small</li>
@@ -112,7 +112,7 @@ public class DateTimeFormatterFactory {
 	 * <li>'F' = Full</li>
 	 * <li>'-' = Omitted</li>
 	 * </ul>
-	 * <p>This method mimics the styles supported by Joda-Time. Note that
+	 * This method mimics the styles supported by Joda-Time. Note that
 	 * JSR-310 natively favors {@link java.time.format.FormatStyle} as used for
 	 * {@link #setDateStyle}, {@link #setTimeStyle} and {@link #setDateTimeStyle}.
 	 * @param style two characters from the set {"S", "M", "L", "F", "-"}
@@ -146,7 +146,7 @@ public class DateTimeFormatterFactory {
 
 	/**
 	 * Create a new {@code DateTimeFormatter} using this factory.
-	 * <p>If no specific pattern or style has been defined,
+	 * If no specific pattern or style has been defined,
 	 * {@link FormatStyle#MEDIUM medium date time format} will be used.
 	 * @return a new date time formatter
 	 * @see #createDateTimeFormatter(DateTimeFormatter)
@@ -157,7 +157,7 @@ public class DateTimeFormatterFactory {
 
 	/**
 	 * Create a new {@code DateTimeFormatter} using this factory.
-	 * <p>If no specific pattern or style has been defined,
+	 * If no specific pattern or style has been defined,
 	 * the supplied {@code fallbackFormatter} will be used.
 	 * @param fallbackFormatter the fall-back formatter to use
 	 * when no specific factory properties have been set

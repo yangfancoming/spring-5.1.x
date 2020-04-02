@@ -27,12 +27,12 @@ public class DependencyInjectionTestExecutionListener extends AbstractTestExecut
 	 * dependencies will be injected in
 	 * {@link #prepareTestInstance(TestContext) prepareTestInstance()} in any
 	 * case.
-	 * <p>Clients of a {@link TestContext} (e.g., other
+	 * Clients of a {@link TestContext} (e.g., other
 	 * {@link org.springframework.test.context.TestExecutionListener TestExecutionListeners})
 	 * may therefore choose to set this attribute to signal that dependencies
 	 * should be reinjected <em>between</em> execution of individual test
 	 * methods.
-	 * <p>Permissible values include {@link Boolean#TRUE} and {@link Boolean#FALSE}.
+	 * Permissible values include {@link Boolean#TRUE} and {@link Boolean#FALSE}.
 	 */
 	public static final String REINJECT_DEPENDENCIES_ATTRIBUTE = Conventions.getQualifiedAttributeName(
 			DependencyInjectionTestExecutionListener.class, "reinjectDependencies");
@@ -58,7 +58,7 @@ public class DependencyInjectionTestExecutionListener extends AbstractTestExecut
 	 * the test instance via its own
 	 * {@link TestContext#getApplicationContext() application context} (without
 	 * checking dependencies).
-	 * <p>The {@link #REINJECT_DEPENDENCIES_ATTRIBUTE} will be subsequently removed
+	 * The {@link #REINJECT_DEPENDENCIES_ATTRIBUTE} will be subsequently removed
 	 * from the test context, regardless of its value.
 	 */
 	@Override
@@ -90,7 +90,7 @@ public class DependencyInjectionTestExecutionListener extends AbstractTestExecut
 	 * Performs dependency injection and bean initialization for the supplied
 	 * {@link TestContext} as described in
 	 * {@link #prepareTestInstance(TestContext) prepareTestInstance()}.
-	 * <p>The {@link #REINJECT_DEPENDENCIES_ATTRIBUTE} will be subsequently removed
+	 * The {@link #REINJECT_DEPENDENCIES_ATTRIBUTE} will be subsequently removed
 	 * from the test context, regardless of its value.
 	 * @param testContext the test context for which dependency injection should
 	 * be performed (never {@code null})

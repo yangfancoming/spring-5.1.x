@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
  * event loop threads, and {@link ConnectionProvider} for the connection pool,
  * within the lifecycle of a Spring {@code ApplicationContext}.
  *
- * <p>This factory implements {@link InitializingBean} and {@link DisposableBean}
+ * This factory implements {@link InitializingBean} and {@link DisposableBean}
  * and is expected typically to be declared as a Spring-managed bean.
  *
  * @author Rossen Stoyanchev
@@ -49,7 +49,7 @@ public class ReactorResourceFactory implements InitializingBean, DisposableBean 
 
 	/**
 	 * Whether to use global Reactor Netty resources via {@link HttpResources}.
-	 * <p>Default is "true" in which case this factory initializes and stops the
+	 * Default is "true" in which case this factory initializes and stops the
 	 * global Reactor Netty resources within Spring's {@code ApplicationContext}
 	 * lifecycle. If set to "false" the factory manages its resources independent
 	 * of the global ones.
@@ -84,8 +84,8 @@ public class ReactorResourceFactory implements InitializingBean, DisposableBean 
 	/**
 	 * Use this option when you don't want to participate in global resources and
 	 * you want to customize the creation of the managed {@code ConnectionProvider}.
-	 * <p>By default, {@code ConnectionProvider.elastic("http")} is used.
-	 * <p>Note that this option is ignored if {@code userGlobalResources=false} or
+	 * By default, {@code ConnectionProvider.elastic("http")} is used.
+	 * Note that this option is ignored if {@code userGlobalResources=false} or
 	 * {@link #setConnectionProvider(ConnectionProvider)} is set.
 	 * @param supplier the supplier to use
 	 */
@@ -96,8 +96,8 @@ public class ReactorResourceFactory implements InitializingBean, DisposableBean 
 	/**
 	 * Use this option when you don't want to participate in global resources and
 	 * you want to customize the creation of the managed {@code LoopResources}.
-	 * <p>By default, {@code LoopResources.create("reactor-http")} is used.
-	 * <p>Note that this option is ignored if {@code userGlobalResources=false} or
+	 * By default, {@code LoopResources.create("reactor-http")} is used.
+	 * Note that this option is ignored if {@code userGlobalResources=false} or
 	 * {@link #setLoopResources(LoopResources)} is set.
 	 * @param supplier the supplier to use
 	 */

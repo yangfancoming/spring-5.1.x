@@ -14,7 +14,7 @@ import org.apache.poi.xssf.streaming.SXSSFWorkbook;
  * Convenient superclass for Excel document views in the Office 2007 XLSX format,
  * using POI's streaming variant. Compatible with Apache POI 3.9 and higher.
  *
- * <p>For working with the workbook in subclasses, see
+ * For working with the workbook in subclasses, see
  * <a href="https://poi.apache.org">Apache's POI site</a>.
  *
 

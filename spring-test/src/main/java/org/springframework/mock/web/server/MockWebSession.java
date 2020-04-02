@@ -18,7 +18,7 @@ import org.springframework.web.server.session.InMemoryWebSessionStore;
  * Implementation of {@code WebSession} that delegates to a session instance
  * obtained via {@link InMemoryWebSessionStore}.
  *
- * <p>This is intended for use with the
+ * This is intended for use with the
  * {@link MockServerWebExchange.Builder#session(WebSession) session(WebSession)}
  * method of the {@code MockServerWebExchange} builder, eliminating the need
  * to use {@code WebSessionManager} or {@code WebSessionStore} altogether.

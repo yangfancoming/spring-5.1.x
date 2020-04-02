@@ -73,8 +73,8 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 		 * {@link AbstractClassGenerator} here holds "cache key" (e.g. {@link org.springframework.cglib.proxy.Enhancer}
 		 * configuration), and the value is the generated class plus some additional values
 		 * (see {@link #unwrapCachedValue(Object)}.
-		 * <p>The generated classes can be reused as long as their classloader is reachable.</p>
-		 * <p>Note: the only way to access a class is to find it through generatedClasses cache, thus
+		 * The generated classes can be reused as long as their classloader is reachable.</p>
+		 * Note: the only way to access a class is to find it through generatedClasses cache, thus
 		 * the key should not expire as long as the class itself is alive (its classloader is alive).</p>
 		 */
 		private final LoadingCache<AbstractClassGenerator, Object, Object> generatedClasses;
@@ -181,7 +181,7 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 	 * Set the <code>ClassLoader</code> in which the class will be generated.
 	 * Concrete subclasses of <code>AbstractClassGenerator</code> (such as <code>Enhancer</code>)
 	 * will try to choose an appropriate default if this is unset.
-	 * <p>
+	 *
 	 * Classes are cached per-<code>ClassLoader</code> using a <code>WeakHashMap</code>, to allow
 	 * the generated classes to be removed when the associated loader is garbage collected.
 	 * @param classLoader the loader to generate the new class with, or null to use the default
@@ -288,7 +288,7 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 
 	/**
 	 * Returns the protection domain to use when defining the class.
-	 * <p>
+	 *
 	 * Default implementation returns <code>null</code> for using a default protection domain. Sub-classes may
 	 * override to use a more specific protection domain.
 	 * </p>

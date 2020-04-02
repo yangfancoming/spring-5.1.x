@@ -9,17 +9,17 @@ import org.springframework.web.context.request.NativeWebRequest;
  * obtained by waiting for a {@link DeferredResult} to be set from a thread
  * chosen by the application (e.g. in response to some external event).
  *
- * <p>A {@code DeferredResultProcessingInterceptor} is invoked before the start
+ * A {@code DeferredResultProcessingInterceptor} is invoked before the start
  * of async processing, after the {@code DeferredResult} is set as well as on
  * timeout/error, or after completing for any reason including a timeout or network
  * error.
  *
- * <p>As a general rule exceptions raised by interceptor methods will cause
+ * As a general rule exceptions raised by interceptor methods will cause
  * async processing to resume by dispatching back to the container and using
  * the Exception instance as the concurrent result. Such exceptions will then
  * be processed through the {@code HandlerExceptionResolver} mechanism.
  *
- * <p>The {@link #handleTimeout(NativeWebRequest, DeferredResult) handleTimeout}
+ * The {@link #handleTimeout(NativeWebRequest, DeferredResult) handleTimeout}
  * method can set the {@code DeferredResult} in order to resume processing.
  *
  * @author Rossen Stoyanchev
@@ -44,7 +44,7 @@ public interface DeferredResultProcessingInterceptor {
 	 * Invoked immediately after the start of concurrent handling, in the same
 	 * thread that started it. This method may be used to detect the start of
 	 * concurrent processing with the given {@code DeferredResult}.
-	 * <p>The {@code DeferredResult} may have already been set, for example at
+	 * The {@code DeferredResult} may have already been set, for example at
 	 * the time of its creation or by another thread.
 	 * @param request the current request
 	 * @param deferredResult the DeferredResult for the current request
@@ -59,7 +59,7 @@ public interface DeferredResultProcessingInterceptor {
 	 * {@link DeferredResult#setResult(Object)} or
 	 * {@link DeferredResult#setErrorResult(Object)}, and is also ready to
 	 * handle the concurrent result.
-	 * <p>This method may also be invoked after a timeout when the
+	 * This method may also be invoked after a timeout when the
 	 * {@code DeferredResult} was created with a constructor accepting a default
 	 * timeout result.
 	 * @param request the current request

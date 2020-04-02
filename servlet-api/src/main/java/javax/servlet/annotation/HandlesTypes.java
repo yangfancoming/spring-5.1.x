@@ -22,7 +22,7 @@ public @interface HandlesTypes {
      * The classes in which a {@link javax.servlet.ServletContainerInitializer
      * ServletContainerInitializer} has expressed interest.
      *
-     * <p>If an implementation of <tt>ServletContainerInitializer</tt> 
+     * If an implementation of <tt>ServletContainerInitializer</tt>
      * specifies this annotation, the Servlet container must pass the
      * <tt>Set</tt> of application classes that extend, implement, or have
      * been annotated with the class types listed by this annotation to

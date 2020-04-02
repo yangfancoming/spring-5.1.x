@@ -12,11 +12,11 @@ import org.springframework.util.Assert;
  * {@link Runnable} and a delay plus period. The period needs to be specified;
  * there is no point in a default for it.
  *
- * <p>The {@link java.util.concurrent.ScheduledExecutorService} does not offer
+ * The {@link java.util.concurrent.ScheduledExecutorService} does not offer
  * more sophisticated scheduling options such as cron expressions.
  * Consider using {@link ThreadPoolTaskScheduler} for such needs.
  *
- * <p>Note that the {@link java.util.concurrent.ScheduledExecutorService} mechanism
+ * Note that the {@link java.util.concurrent.ScheduledExecutorService} mechanism
  * uses a {@link Runnable} instance that is shared between repeated executions,
  * in contrast to Quartz which creates a new Job instance for each execution.
  *
@@ -117,11 +117,11 @@ public class ScheduledExecutorTask {
 
 	/**
 	 * Set the period between repeated task executions, in milliseconds.
-	 * <p>Default is -1, leading to one-time execution. In case of a positive value,
+	 * Default is -1, leading to one-time execution. In case of a positive value,
 	 * the task will be executed repeatedly, with the given interval in-between executions.
-	 * <p>Note that the semantics of the period value vary between fixed-rate and
+	 * Note that the semantics of the period value vary between fixed-rate and
 	 * fixed-delay execution.
-	 * <p><b>Note:</b> A period of 0 (for example as fixed delay) is <i>not</i> supported,
+	 * <b>Note:</b> A period of 0 (for example as fixed delay) is <i>not</i> supported,
 	 * simply because {@code java.util.concurrent.ScheduledExecutorService} itself
 	 * does not support it. Hence a value of 0 will be treated as one-time execution;
 	 * however, that value should never be specified explicitly in the first place!
@@ -169,7 +169,7 @@ public class ScheduledExecutorTask {
 	/**
 	 * Set whether to schedule as fixed-rate execution, rather than
 	 * fixed-delay execution. Default is "false", that is, fixed delay.
-	 * <p>See ScheduledExecutorService javadoc for details on those execution modes.
+	 * See ScheduledExecutorService javadoc for details on those execution modes.
 	 * @see java.util.concurrent.ScheduledExecutorService#scheduleWithFixedDelay(java.lang.Runnable, long, long, java.util.concurrent.TimeUnit)
 	 * @see java.util.concurrent.ScheduledExecutorService#scheduleAtFixedRate(java.lang.Runnable, long, long, java.util.concurrent.TimeUnit)
 	 */

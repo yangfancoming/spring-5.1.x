@@ -62,7 +62,7 @@ public class DefaultTransactionAttribute extends DefaultTransactionDefinition im
 
 	/**
 	 * Associate a qualifier value with this transaction attribute.
-	 * <p>This may be used for choosing a corresponding transaction manager
+	 * This may be used for choosing a corresponding transaction manager
 	 * to process this specific transaction.
 	 * @since 3.0
 	 */
@@ -107,7 +107,7 @@ public class DefaultTransactionAttribute extends DefaultTransactionDefinition im
 	 * considered a business exception and therefore a regular expected outcome of the
 	 * transactional business method, i.e. a kind of alternative return value which
 	 * still allows for regular completion of resource operations.
-	 * <p>This is largely consistent with TransactionTemplate's default behavior,
+	 * This is largely consistent with TransactionTemplate's default behavior,
 	 * except that TransactionTemplate also rolls back on undeclared checked exceptions
 	 * (a corner case). For declarative transactions, we expect checked exceptions to be
 	 * intentionally declared as business exceptions, leading to a commit by default.
@@ -123,7 +123,7 @@ public class DefaultTransactionAttribute extends DefaultTransactionDefinition im
 
 	/**
 	 * Return an identifying description for this transaction attribute.
-	 * <p>Available to subclasses, for inclusion in their {@code toString()} result.
+	 * Available to subclasses, for inclusion in their {@code toString()} result.
 	 */
 	protected final StringBuilder getAttributeDescription() {
 		StringBuilder result = getDefinitionDescription();

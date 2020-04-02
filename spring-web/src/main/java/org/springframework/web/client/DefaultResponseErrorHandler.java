@@ -15,7 +15,7 @@ import org.springframework.util.FileCopyUtils;
 /**
  * Spring's default implementation of the {@link ResponseErrorHandler} interface.
  *
- * <p>This error handler checks for the status code on the {@link ClientHttpResponse}:
+ * This error handler checks for the status code on the {@link ClientHttpResponse}:
  * Any code with series {@link org.springframework.http.HttpStatus.Series#CLIENT_ERROR}
  * or {@link org.springframework.http.HttpStatus.Series#SERVER_ERROR} is considered to be
  * an error; this behavior can be changed by overriding the {@link #hasError(HttpStatus)}
@@ -45,7 +45,7 @@ public class DefaultResponseErrorHandler implements ResponseErrorHandler {
 
 	/**
 	 * Template method called from {@link #hasError(ClientHttpResponse)}.
-	 * <p>The default implementation checks {@link HttpStatus#isError()}.
+	 * The default implementation checks {@link HttpStatus#isError()}.
 	 * Can be overridden in subclasses.
 	 * @param statusCode the HTTP status code as enum value
 	 * @return {@code true} if the response indicates an error; {@code false} otherwise
@@ -57,7 +57,7 @@ public class DefaultResponseErrorHandler implements ResponseErrorHandler {
 
 	/**
 	 * Template method called from {@link #hasError(ClientHttpResponse)}.
-	 * <p>The default implementation checks if the given status code is
+	 * The default implementation checks if the given status code is
 	 * {@code HttpStatus.Series#CLIENT_ERROR CLIENT_ERROR} or
 	 * {@code HttpStatus.Series#SERVER_ERROR SERVER_ERROR}.
 	 * Can be overridden in subclasses.
@@ -90,7 +90,7 @@ public class DefaultResponseErrorHandler implements ResponseErrorHandler {
 
 	/**
 	 * Handle the error in the given response with the given resolved status code.
-	 * <p>The default implementation throws an {@link HttpClientErrorException}
+	 * The default implementation throws an {@link HttpClientErrorException}
 	 * if the status code is {@link HttpStatus.Series#CLIENT_ERROR}, an
 	 * {@link HttpServerErrorException} if it is {@link HttpStatus.Series#SERVER_ERROR},
 	 * and an {@link UnknownHttpStatusCodeException} in other cases.

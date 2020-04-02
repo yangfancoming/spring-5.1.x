@@ -15,7 +15,7 @@ import org.springframework.util.ObjectUtils;
  * An implementation of the {@code ObjectNamingStrategy} interface that
  * creates a name based on the identity of a given instance.
  *
- * <p>The resulting {@code ObjectName} will be in the form
+ * The resulting {@code ObjectName} will be in the form
  * <i>package</i>:class=<i>class name</i>,hashCode=<i>identity hash (in hex)</i>
  *
  * @author Rob Harrop

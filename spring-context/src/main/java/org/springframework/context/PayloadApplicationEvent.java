@@ -9,7 +9,7 @@ import org.springframework.util.Assert;
 /**
  * An {@link ApplicationEvent} that carries an arbitrary payload.
  *
- * <p>Mainly intended for internal use within the framework.
+ * Mainly intended for internal use within the framework.
  *
  * @author Stephane Nicoll
  * @since 4.2

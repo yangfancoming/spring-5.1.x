@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
  * Typically implemented to detect special return types, resolving
  * well-known result values for them.
  *
- * <p>A typical implementation could look like as follows:
+ * A typical implementation could look like as follows:
  *
  * <pre class="code">
  * public class MyModelAndViewResolver implements ModelAndViewResolver {

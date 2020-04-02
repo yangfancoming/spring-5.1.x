@@ -15,7 +15,7 @@ import org.springframework.lang.Nullable;
 /**
  * Type filter that is aware of traversing over hierarchy.
  *
- * <p>This filter is useful when matching needs to be made based on potentially the
+ * This filter is useful when matching needs to be made based on potentially the
  * whole class/interface hierarchy. The algorithm employed uses a succeed-fast
  * strategy: if at any time a match is declared, no further processing is
  * carried out.

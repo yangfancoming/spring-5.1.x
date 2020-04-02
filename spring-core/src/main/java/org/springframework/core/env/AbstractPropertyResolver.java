@@ -72,7 +72,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 
 	/**
 	 * Set the prefix that placeholders replaced by this resolver must begin with.
-	 * <p>The default is "${".
+	 * The default is "${".
 	 * @see org.springframework.util.SystemPropertyUtils#PLACEHOLDER_PREFIX
 	 */
 	@Override
@@ -83,7 +83,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 
 	/**
 	 * Set the suffix that placeholders replaced by this resolver must end with.
-	 * <p>The default is "}".
+	 * The default is "}".
 	 * @see org.springframework.util.SystemPropertyUtils#PLACEHOLDER_SUFFIX
 	 */
 	@Override
@@ -96,7 +96,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 	 * Specify the separating character between the placeholders replaced by this
 	 * resolver and their associated default value, or {@code null} if no such
 	 * special character should be processed as a value separator.
-	 * <p>The default is ":".
+	 * The default is ":".
 	 * @see org.springframework.util.SystemPropertyUtils#VALUE_SEPARATOR
 	 */
 	@Override
@@ -110,7 +110,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 	 * resolution, i.e. that an exception will be thrown. A {@code true} value indicates
 	 * that unresolvable nested placeholders should be passed through in their unresolved
 	 * ${...} form.
-	 * <p>The default is {@code false}.
+	 * The default is {@code false}.
 	 * @since 3.2
 	 */
 	@Override
@@ -201,7 +201,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 	 * Resolve placeholders within the given string, deferring to the value of
 	 * {@link #setIgnoreUnresolvableNestedPlaceholders} to determine whether any
 	 * unresolvable placeholders should raise an exception or be ignored.
-	 * <p>Invoked from {@link #getProperty} and its variants, implicitly resolving
+	 * Invoked from {@link #getProperty} and its variants, implicitly resolving
 	 * nested placeholders. In contrast, {@link #resolvePlaceholders} and
 	 * {@link #resolveRequiredPlaceholders} do <i>not</i> delegate
 	 * to this method but rather perform their own handling of unresolvable

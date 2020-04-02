@@ -10,7 +10,7 @@ import org.springframework.transaction.TransactionTimedOutException;
 /**
  * Convenient base class for resource holders.
  *
- * <p>Features rollback-only support for participating transactions.
+ * Features rollback-only support for participating transactions.
  * Can expire after a certain number of seconds or milliseconds
  * in order to determine a transactional timeout.
  *
@@ -56,7 +56,7 @@ public abstract class ResourceHolderSupport implements ResourceHolder {
 
 	/**
 	 * Reset the rollback-only status for this resource transaction.
-	 * <p>Only really intended to be called after custom rollback steps which
+	 * Only really intended to be called after custom rollback steps which
 	 * keep the original resource in action, e.g. in case of a savepoint.
 	 * @since 5.0
 	 * @see org.springframework.transaction.SavepointManager#rollbackToSavepoint

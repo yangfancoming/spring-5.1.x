@@ -8,7 +8,7 @@ import org.springframework.dao.DataAccessException;
  * Interface that defines contract of incrementing any data store field's
  * maximum value. Works much like a sequence number generator.
  *
- * <p>Typical implementations may use standard SQL, native RDBMS sequences
+ * Typical implementations may use standard SQL, native RDBMS sequences
  * or Stored Procedures to do the job.
  */
 public interface DataFieldMaxValueIncrementer {

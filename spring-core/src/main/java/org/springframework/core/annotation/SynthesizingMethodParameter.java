@@ -99,7 +99,7 @@ public class SynthesizingMethodParameter extends MethodParameter {
 
 	/**
 	 * Create a new SynthesizingMethodParameter for the given method or constructor.
-	 * <p>This is a convenience factory method for scenarios where a
+	 * This is a convenience factory method for scenarios where a
 	 * Method or Constructor reference is treated in a generic fashion.
 	 * @param executable the Method or Constructor to specify a parameter for
 	 * @param parameterIndex the index of the parameter
@@ -120,7 +120,7 @@ public class SynthesizingMethodParameter extends MethodParameter {
 
 	/**
 	 * Create a new SynthesizingMethodParameter for the given parameter descriptor.
-	 * <p>This is a convenience factory method for scenarios where a
+	 * This is a convenience factory method for scenarios where a
 	 * Java 8 {@link Parameter} descriptor is already available.
 	 * @param parameter the parameter descriptor
 	 * @return the corresponding SynthesizingMethodParameter instance

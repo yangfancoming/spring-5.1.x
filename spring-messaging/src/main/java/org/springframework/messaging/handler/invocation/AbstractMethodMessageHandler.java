@@ -44,7 +44,7 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
  * the logic required to discover handler methods at startup, find a matching handler
  * method at runtime for a given message and invoke it.
  *
- * <p>Also supports discovering and invoking exception handling methods to process
+ * Also supports discovering and invoking exception handling methods to process
  * exceptions raised during message handling.
  *
  * @author Rossen Stoyanchev
@@ -59,11 +59,11 @@ public abstract class AbstractMethodMessageHandler<T>
 	/**
 	 * Bean name prefix for target beans behind scoped proxies. Used to exclude those
 	 * targets from handler method detection, in favor of the corresponding proxies.
-	 * <p>We're not checking the autowire-candidate status here, which is how the
+	 * We're not checking the autowire-candidate status here, which is how the
 	 * proxy target filtering problem is being handled at the autowiring level,
 	 * since autowire-candidate may have been turned to {@code false} for other
 	 * reasons, while still expecting the bean to be eligible for handler methods.
-	 * <p>Originally defined in {@link org.springframework.aop.scope.ScopedProxyUtils}
+	 * Originally defined in {@link org.springframework.aop.scope.ScopedProxyUtils}
 	 * but duplicated here to avoid a hard dependency on the spring-aop module.
 	 */
 	private static final String SCOPED_TARGET_NAME_PREFIX = "scopedTarget.";
@@ -106,7 +106,7 @@ public abstract class AbstractMethodMessageHandler<T>
 	 * one of the configured prefixes are eligible for handling. When there is a
 	 * match the prefix is removed and only the remaining part of the destination
 	 * is used for method-mapping purposes.
-	 * <p>By default, no prefixes are configured in which case all messages are
+	 * By default, no prefixes are configured in which case all messages are
 	 * eligible for handling.
 	 */
 	public void setDestinationPrefixes(@Nullable Collection<String> prefixes) {
@@ -255,7 +255,7 @@ public abstract class AbstractMethodMessageHandler<T>
 	/**
 	 * Return the list of argument resolvers to use. Invoked only if the resolvers
 	 * have not already been set via {@link #setArgumentResolvers}.
-	 * <p>Subclasses should also take into account custom argument types configured via
+	 * Subclasses should also take into account custom argument types configured via
 	 * {@link #setCustomArgumentResolvers}.
 	 */
 	protected abstract List<? extends HandlerMethodArgumentResolver> initArgumentResolvers();
@@ -263,7 +263,7 @@ public abstract class AbstractMethodMessageHandler<T>
 	/**
 	 * Return the list of return value handlers to use. Invoked only if the return
 	 * value handlers have not already been set via {@link #setReturnValueHandlers}.
-	 * <p>Subclasses should also take into account custom return value types configured
+	 * Subclasses should also take into account custom return value types configured
 	 * via {@link #setCustomReturnValueHandlers}.
 	 */
 	protected abstract List<? extends HandlerMethodReturnValueHandler> initReturnValueHandlers();
@@ -433,8 +433,8 @@ public abstract class AbstractMethodMessageHandler<T>
 	 * Check whether the given destination (of an incoming message) matches to
 	 * one of the configured destination prefixes and if so return the remaining
 	 * portion of the destination after the matched prefix.
-	 * <p>If there are no matching prefixes, return {@code null}.
-	 * <p>If there are no destination prefixes, return the destination as is.
+	 * If there are no matching prefixes, return {@code null}.
+	 * If there are no destination prefixes, return the destination as is.
 	 */
 	@SuppressWarnings("ForLoopReplaceableByForEach")
 	@Nullable

@@ -110,7 +110,7 @@ public interface ServerWebExchange {
 	/**
 	 * Return the form data from the body of the request if the Content-Type is
 	 * {@code "application/x-www-form-urlencoded"} or an empty map otherwise.
-	 * <p><strong>Note:</strong> calling this method causes the request body to
+	 * <strong>Note:</strong> calling this method causes the request body to
 	 * be read and parsed in full and the resulting {@code MultiValueMap} is
 	 * cached so that this method is safe to call more than once.
 	 */
@@ -119,7 +119,7 @@ public interface ServerWebExchange {
 	/**
 	 * Return the parts of a multipart request if the Content-Type is
 	 * {@code "multipart/form-data"} or an empty map otherwise.
-	 * <p><strong>Note:</strong> calling this method causes the request body to
+	 * <strong>Note:</strong> calling this method causes the request body to
 	 * be read and parsed in full and the resulting {@code MultiValueMap} is
 	 * cached so that this method is safe to call more than once.
 	 */
@@ -170,7 +170,7 @@ public interface ServerWebExchange {
 	 * status, and adding "ETag" and "Last-Modified" headers when applicable.
 	 * This method works with conditional GET/HEAD requests as well as with
 	 * conditional POST/PUT/DELETE requests.
-	 * <p><strong>Note:</strong> The HTTP specification recommends setting both
+	 * <strong>Note:</strong> The HTTP specification recommends setting both
 	 * ETag and Last-Modified values, but you can also use
 	 * {@code #checkNotModified(String)} or
 	 * {@link #checkNotModified(Instant)}.
@@ -196,7 +196,7 @@ public interface ServerWebExchange {
 	 * Register an additional URL transformation function for use with {@link #transformUrl}.
 	 * The given function can be used to insert an id for authentication, a nonce for CSRF
 	 * protection, etc.
-	 * <p>Note that the given function is applied after any previously registered functions.
+	 * Note that the given function is applied after any previously registered functions.
 	 * @param transformer a URL transformation function to add
 	 */
 	void addUrlTransformer(Function<String, String> transformer);
@@ -230,7 +230,7 @@ public interface ServerWebExchange {
 
 		/**
 		 * Configure a consumer to modify the current request using a builder.
-		 * <p>Effectively this:
+		 * Effectively this:
 		 * <pre>
 		 * exchange.mutate().request(builder-> builder.method(HttpMethod.PUT));
 		 *

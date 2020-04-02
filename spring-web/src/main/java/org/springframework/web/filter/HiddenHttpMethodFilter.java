@@ -27,10 +27,10 @@ import org.springframework.web.util.WebUtils;
  * the {@link HttpServletRequestWrapper#getMethod()} return value accordingly.
  * Only {@code "PUT"}, {@code "DELETE"} and {@code "PATCH"} HTTP methods are allowed.
  *
- * <p>The name of the request parameter defaults to {@code _method}, but can be
+ * The name of the request parameter defaults to {@code _method}, but can be
  * adapted via the {@link #setMethodParam(String) methodParam} property.
  *
- * <p><b>NOTE: This filter needs to run after multipart processing in case of a multipart
+ * <b>NOTE: This filter needs to run after multipart processing in case of a multipart
  * POST request, due to its inherent need for checking a POST body parameter.</b>
  * So typically, put a Spring {@link org.springframework.web.multipart.support.MultipartFilter}
  * <i>before</i> this HiddenHttpMethodFilter in your {@code web.xml} filter chain.

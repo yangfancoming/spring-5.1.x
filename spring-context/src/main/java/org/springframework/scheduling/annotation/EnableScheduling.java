@@ -80,14 +80,14 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  *     }
  * }</pre>
  *
- * <p>By default, will be searching for an associated scheduler definition: either
+ * By default, will be searching for an associated scheduler definition: either
  * a unique {@link org.springframework.scheduling.TaskScheduler} bean in the context,
  * or a {@code TaskScheduler} bean named "taskScheduler" otherwise; the same lookup
  * will also be performed for a {@link java.util.concurrent.ScheduledExecutorService}
  * bean. If neither of the two is resolvable, a local single-threaded default
  * scheduler will be created and used within the registrar.
  *
- * <p>When more control is desired, a {@code @Configuration} class may implement
+ * When more control is desired, a {@code @Configuration} class may implement
  * {@link SchedulingConfigurer}. This allows access to the underlying
  * {@link ScheduledTaskRegistrar} instance. For example, the following example
  * demonstrates how to customize the {@link Executor} used to execute scheduled
@@ -109,11 +109,11 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  *     }
  * }</pre>
  *
- * <p>Note in the example above the use of {@code @Bean(destroyMethod="shutdown")}.
+ * Note in the example above the use of {@code @Bean(destroyMethod="shutdown")}.
  * This ensures that the task executor is properly shut down when the Spring
  * application context itself is closed.
  *
- * <p>Implementing {@code SchedulingConfigurer} also allows for fine-grained
+ * Implementing {@code SchedulingConfigurer} also allows for fine-grained
  * control over task registration via the {@code ScheduledTaskRegistrar}.
  * For example, the following configures the execution of a particular bean
  * method per a custom {@code Trigger} implementation:
@@ -147,7 +147,7 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  *     }
  * }</pre>
  *
- * <p>For reference, the example above can be compared to the following Spring XML
+ * For reference, the example above can be compared to the following Spring XML
  * configuration:
  *
  * <pre class="code">
@@ -170,7 +170,7 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  * instead of a custom <em>{@code Trigger}</em> implementation; this is because the
  * {@code task:} namespace {@code scheduled} cannot easily expose such support. This is
  * but one demonstration how the code-based approach allows for maximum configurability
- * through direct access to actual componentry.<p>
+ * through direct access to actual componentry.
  *
  * <b>Note: {@code @EnableScheduling} applies to its local application context only,
  * allowing for selective scheduling of beans at different levels.</b> Please redeclare

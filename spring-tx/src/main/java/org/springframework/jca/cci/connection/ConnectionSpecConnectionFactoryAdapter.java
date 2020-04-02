@@ -18,11 +18,11 @@ import org.springframework.util.Assert;
  * on the target. All other methods simply delegate to the corresponding methods
  * of the target ConnectionFactory.
  *
- * <p>Can be used to proxy a target JNDI ConnectionFactory that does not have a
+ * Can be used to proxy a target JNDI ConnectionFactory that does not have a
  * ConnectionSpec configured. Client code can work with the ConnectionFactory
  * without passing in a ConnectionSpec on every {@code getConnection()} call.
  *
- * <p>In the following example, client code can simply transparently work with
+ * In the following example, client code can simply transparently work with
  * the preconfigured "myConnectionFactory", implicitly accessing
  * "myTargetConnectionFactory" with the specified user credentials.
  *
@@ -41,7 +41,7 @@ import org.springframework.util.Assert;
  *   &lt;/property&gt;
  * &lt;/bean&gt;</pre>
  *
- * <p>If the "connectionSpec" is empty, this proxy will simply delegate to the
+ * If the "connectionSpec" is empty, this proxy will simply delegate to the
  * standard {@code getConnection()} method of the target ConnectionFactory.
  * This can be used to keep a UserCredentialsConnectionFactoryAdapter bean definition
  * just for the <i>option</i> of implicitly passing in a ConnectionSpec if the
@@ -73,7 +73,7 @@ public class ConnectionSpecConnectionFactoryAdapter extends DelegatingConnection
 	 * Set a ConnectionSpec for this proxy and the current thread.
 	 * The given ConnectionSpec will be applied to all subsequent
 	 * {@code getConnection()} calls on this ConnectionFactory proxy.
-	 * <p>This will override any statically specified "connectionSpec" property.
+	 * This will override any statically specified "connectionSpec" property.
 	 * @param spec the ConnectionSpec to apply
 	 * @see #removeConnectionSpecFromCurrentThread
 	 */

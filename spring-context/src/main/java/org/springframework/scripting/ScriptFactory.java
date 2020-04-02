@@ -22,7 +22,7 @@ public interface ScriptFactory {
 	/**
 	 * Return a locator that points to the source of the script.
 	 * Interpreted by the post-processor that actually creates the script.
-	 * <p>Typical supported locators are Spring resource locations
+	 * Typical supported locators are Spring resource locations
 	 * (such as "file:C:/myScript.bsh" or "classpath:myPackage/myScript.bsh")
 	 * and inline scripts ("inline:myScriptText...").
 	 * @return the script source locator
@@ -33,7 +33,7 @@ public interface ScriptFactory {
 
 	/**
 	 * Return the business interfaces that the script is supposed to implement.
-	 * <p>Can return {@code null} if the script itself determines
+	 * Can return {@code null} if the script itself determines
 	 * its Java interfaces (such as in the case of Groovy).
 	 * @return the interfaces for the script
 	 */
@@ -52,7 +52,7 @@ public interface ScriptFactory {
 
 	/**
 	 * Factory method for creating the scripted Java object.
-	 * <p>Implementations are encouraged to cache script metadata such as
+	 * Implementations are encouraged to cache script metadata such as
 	 * a generated script class. Note that this method may be invoked
 	 * concurrently and must be implemented in a thread-safe fashion.
 	 * @param scriptSource the actual ScriptSource to retrieve
@@ -70,7 +70,7 @@ public interface ScriptFactory {
 
 	/**
 	 * Determine the type of the scripted Java object.
-	 * <p>Implementations are encouraged to cache script metadata such as
+	 * Implementations are encouraged to cache script metadata such as
 	 * a generated script class. Note that this method may be invoked
 	 * concurrently and must be implemented in a thread-safe fashion.
 	 * @param scriptSource the actual ScriptSource to retrieve

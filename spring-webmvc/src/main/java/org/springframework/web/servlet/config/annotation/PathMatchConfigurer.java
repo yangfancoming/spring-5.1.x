@@ -14,7 +14,7 @@ import org.springframework.web.util.UrlPathHelper;
  * Helps with configuring HandlerMappings path matching options such as trailing
  * slash match, suffix registration, path matcher and path helper.
  *
- * <p>Configured path matcher and path helper instances are shared for:
+ * Configured path matcher and path helper instances are shared for:
  * <ul>
  * <li>RequestMappings</li>
  * <li>ViewControllerMappings</li>
@@ -50,7 +50,7 @@ public class PathMatchConfigurer {
 	/**
 	 * Whether to use suffix pattern match (".*") when matching patterns to
 	 * requests. If enabled a method mapped to "/users" also matches to "/users.*".
-	 * <p>By default this is set to {@code true}.
+	 * By default this is set to {@code true}.
 	 * @see #registeredSuffixPatternMatch
 	 */
 	public PathMatchConfigurer setUseSuffixPatternMatch(Boolean suffixPatternMatch) {
@@ -61,7 +61,7 @@ public class PathMatchConfigurer {
 	/**
 	 * Whether to match to URLs irrespective of the presence of a trailing slash.
 	 * If enabled a method mapped to "/users" also matches to "/users/".
-	 * <p>The default value is {@code true}.
+	 * The default value is {@code true}.
 	 */
 	public PathMatchConfigurer setUseTrailingSlashMatch(Boolean trailingSlashMatch) {
 		this.trailingSlashMatch = trailingSlashMatch;
@@ -74,7 +74,7 @@ public class PathMatchConfigurer {
 	 * {@link WebMvcConfigurer#configureContentNegotiation configure content
 	 * negotiation}. This is generally recommended to reduce ambiguity and to
 	 * avoid issues such as when a "." appears in the path for other reasons.
-	 * <p>By default this is set to "false".
+	 * By default this is set to "false".
 	 * @see WebMvcConfigurer#configureContentNegotiation
 	 */
 	public PathMatchConfigurer setUseRegisteredSuffixPatternMatch(Boolean registeredSuffixPatternMatch) {
@@ -84,7 +84,7 @@ public class PathMatchConfigurer {
 
 	/**
 	 * Set the UrlPathHelper to use for resolution of lookup paths.
-	 * <p>Use this to override the default UrlPathHelper with a custom subclass,
+	 * Use this to override the default UrlPathHelper with a custom subclass,
 	 * or to share common UrlPathHelper settings across multiple HandlerMappings
 	 * and MethodNameResolvers.
 	 */
@@ -105,10 +105,10 @@ public class PathMatchConfigurer {
 
 	/**
 	 * Configure a path prefix to apply to matching controller methods.
-	 * <p>Prefixes are used to enrich the mappings of every {@code @RequestMapping}
+	 * Prefixes are used to enrich the mappings of every {@code @RequestMapping}
 	 * method whose controller type is matched by the corresponding
 	 * {@code Predicate}. The prefix for the first matching predicate is used.
-	 * <p>Consider using {@link org.springframework.web.method.HandlerTypePredicate
+	 * Consider using {@link org.springframework.web.method.HandlerTypePredicate
 	 * HandlerTypePredicate} to group controllers.
 	 * @param prefix the prefix to apply
 	 * @param predicate a predicate for matching controller types

@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
  * Expressions are executed in an evaluation context. It is in this context that
  * references are resolved when encountered during expression evaluation.
  *
- * <p>There is a default implementation of this EvaluationContext interface:
+ * There is a default implementation of this EvaluationContext interface:
  * {@link org.springframework.expression.spel.support.StandardEvaluationContext}
  * which can be extended, rather than having to implement everything manually.
  *

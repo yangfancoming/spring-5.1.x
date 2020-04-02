@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 /**
  * Handler for a WebSocket session.
  *
- * <p>A server {@code WebSocketHandler} is mapped to requests with
+ * A server {@code WebSocketHandler} is mapped to requests with
  * {@link org.springframework.web.reactive.handler.SimpleUrlHandlerMapping
  * SimpleUrlHandlerMapping} and
  * {@link org.springframework.web.reactive.socket.server.support.WebSocketHandlerAdapter
@@ -19,7 +19,7 @@ import reactor.core.publisher.Mono;
  * {@link org.springframework.web.reactive.socket.client.WebSocketClient
  * WebSocketClient} execute method.
  *
- * <p>Use {@link WebSocketSession#receive() session.receive()} to compose on
+ * Use {@link WebSocketSession#receive() session.receive()} to compose on
  * the inbound message stream, and {@link WebSocketSession#send(Publisher)
  * session.send(publisher)} for the outbound message stream. Below is an
  * example, combined flow to process inbound and to send outbound messages:
@@ -44,7 +44,7 @@ import reactor.core.publisher.Mono;
  * }
  * </pre>
  *
- * <p>If processing inbound and sending outbound messages are independent
+ * If processing inbound and sending outbound messages are independent
  * streams, they can be joined together with the "zip" operator:
  *
  * <pre class="code">
@@ -70,7 +70,7 @@ import reactor.core.publisher.Mono;
  * }
  * </pre>
  *
- * <p>A {@code WebSocketHandler} must compose the inbound and outbound streams
+ * A {@code WebSocketHandler} must compose the inbound and outbound streams
  * into a unified flow and return a {@code Mono<Void>} that reflects the
  * completion of that flow. That means there is no need to check if the
  * connection is open, since Reactive Streams signals will terminate activity.
@@ -84,7 +84,7 @@ public interface WebSocketHandler {
 
 	/**
 	 * Return the list of sub-protocols supported by this handler.
-	 * <p>By default an empty list is returned.
+	 * By default an empty list is returned.
 	 */
 	default List<String> getSubProtocols() {
 		return Collections.emptyList();
@@ -94,7 +94,7 @@ public interface WebSocketHandler {
 	 * Invoked when a new WebSocket connection is established, and allows
 	 * handling of the session.
 	 *
-	 * <p>See the class-level doc and the reference for more details and
+	 * See the class-level doc and the reference for more details and
 	 * examples of how to handle the session.
 	 *
 	 * @param session the session to handle

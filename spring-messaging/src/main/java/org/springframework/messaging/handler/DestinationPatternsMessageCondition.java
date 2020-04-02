@@ -163,7 +163,7 @@ public class DestinationPatternsMessageCondition
 	 * {@link org.springframework.util.PathMatcher#getPatternComparator(String)}.
 	 * If all compared patterns match equally, but one instance has more patterns,
 	 * it is considered a closer match.
-	 * <p>It is assumed that both instances have been obtained via
+	 * It is assumed that both instances have been obtained via
 	 * {@link #getMatchingCondition(Message)} to ensure they contain only patterns
 	 * that match the request and are sorted with the best matches on top.
 	 */

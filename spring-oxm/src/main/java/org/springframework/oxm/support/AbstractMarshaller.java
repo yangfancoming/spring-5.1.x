@@ -73,7 +73,7 @@ public abstract class AbstractMarshaller implements Marshaller, Unmarshaller {
 
 	/**
 	 * Indicate whether DTD parsing should be supported.
-	 * <p>Default is {@code false} meaning that DTD is disabled.
+	 * Default is {@code false} meaning that DTD is disabled.
 	 */
 	public void setSupportDtd(boolean supportDtd) {
 		this.supportDtd = supportDtd;
@@ -88,12 +88,12 @@ public abstract class AbstractMarshaller implements Marshaller, Unmarshaller {
 
 	/**
 	 * Indicate whether external XML entities are processed when unmarshalling.
-	 * <p>Default is {@code false}, meaning that external entities are not resolved.
+	 * Default is {@code false}, meaning that external entities are not resolved.
 	 * Note that processing of external entities will only be enabled/disabled when the
 	 * {@code Source} passed to {@link #unmarshal(Source)} is a {@link SAXSource} or
 	 * {@link StreamSource}. It has no effect for {@link DOMSource} or {@link StAXSource}
 	 * instances.
-	 * <p><strong>Note:</strong> setting this option to {@code true} also
+	 * <strong>Note:</strong> setting this option to {@code true} also
 	 * automatically sets {@link #setSupportDtd} to {@code true}.
 	 */
 	public void setProcessExternalEntities(boolean processExternalEntities) {
@@ -137,7 +137,7 @@ public abstract class AbstractMarshaller implements Marshaller, Unmarshaller {
 	/**
 	 * Create a {@code DocumentBuilder} that this marshaller will use for creating
 	 * DOM documents when passed an empty {@code DOMSource}.
-	 * <p>The resulting {@code DocumentBuilderFactory} is cached, so this method
+	 * The resulting {@code DocumentBuilderFactory} is cached, so this method
 	 * will only be called once.
 	 * @return the DocumentBuilderFactory
 	 * @throws ParserConfigurationException if thrown by JAXP methods
@@ -154,7 +154,7 @@ public abstract class AbstractMarshaller implements Marshaller, Unmarshaller {
 	/**
 	 * Create a {@code DocumentBuilder} that this marshaller will use for creating
 	 * DOM documents when passed an empty {@code DOMSource}.
-	 * <p>Can be overridden in subclasses, adding further initialization of the builder.
+	 * Can be overridden in subclasses, adding further initialization of the builder.
 	 * @param factory the {@code DocumentBuilderFactory} that the DocumentBuilder should be created with
 	 * @return the {@code DocumentBuilder}
 	 * @throws ParserConfigurationException if thrown by JAXP methods
@@ -188,7 +188,7 @@ public abstract class AbstractMarshaller implements Marshaller, Unmarshaller {
 	/**
 	 * Determine the default encoding to use for marshalling or unmarshalling from
 	 * a byte stream, or {@code null} if none.
-	 * <p>The default implementation returns {@code null}.
+	 * The default implementation returns {@code null}.
 	 */
 	@Nullable
 	protected String getDefaultEncoding() {
@@ -200,7 +200,7 @@ public abstract class AbstractMarshaller implements Marshaller, Unmarshaller {
 
 	/**
 	 * Marshals the object graph with the given root into the provided {@code javax.xml.transform.Result}.
-	 * <p>This implementation inspects the given result, and calls {@code marshalDomResult},
+	 * This implementation inspects the given result, and calls {@code marshalDomResult},
 	 * {@code marshalSaxResult}, or {@code marshalStreamResult}.
 	 * @param graph the root of the object graph to marshal
 	 * @param result the result to marshal to
@@ -233,7 +233,7 @@ public abstract class AbstractMarshaller implements Marshaller, Unmarshaller {
 
 	/**
 	 * Template method for handling {@code DOMResult}s.
-	 * <p>This implementation delegates to {@code marshalDomNode}.
+	 * This implementation delegates to {@code marshalDomNode}.
 	 * @param graph the root of the object graph to marshal
 	 * @param domResult the {@code DOMResult}
 	 * @throws XmlMappingException if the given object cannot be marshalled to the result
@@ -249,7 +249,7 @@ public abstract class AbstractMarshaller implements Marshaller, Unmarshaller {
 
 	/**
 	 * Template method for handling {@code StaxResult}s.
-	 * <p>This implementation delegates to {@code marshalXMLSteamWriter} or
+	 * This implementation delegates to {@code marshalXMLSteamWriter} or
 	 * {@code marshalXMLEventConsumer}, depending on what is contained in the
 	 * {@code StaxResult}.
 	 * @param graph the root of the object graph to marshal
@@ -276,7 +276,7 @@ public abstract class AbstractMarshaller implements Marshaller, Unmarshaller {
 
 	/**
 	 * Template method for handling {@code SAXResult}s.
-	 * <p>This implementation delegates to {@code marshalSaxHandlers}.
+	 * This implementation delegates to {@code marshalSaxHandlers}.
 	 * @param graph the root of the object graph to marshal
 	 * @param saxResult the {@code SAXResult}
 	 * @throws XmlMappingException if the given object cannot be marshalled to the result
@@ -291,7 +291,7 @@ public abstract class AbstractMarshaller implements Marshaller, Unmarshaller {
 
 	/**
 	 * Template method for handling {@code StreamResult}s.
-	 * <p>This implementation delegates to {@code marshalOutputStream} or {@code marshalWriter},
+	 * This implementation delegates to {@code marshalOutputStream} or {@code marshalWriter},
 	 * depending on what is contained in the {@code StreamResult}
 	 * @param graph the root of the object graph to marshal
 	 * @param streamResult the {@code StreamResult}
@@ -319,7 +319,7 @@ public abstract class AbstractMarshaller implements Marshaller, Unmarshaller {
 
 	/**
 	 * Unmarshals the given provided {@code javax.xml.transform.Source} into an object graph.
-	 * <p>This implementation inspects the given result, and calls {@code unmarshalDomSource},
+	 * This implementation inspects the given result, and calls {@code unmarshalDomSource},
 	 * {@code unmarshalSaxSource}, or {@code unmarshalStreamSource}.
 	 * @param source the source to marshal from
 	 * @return the object graph
@@ -352,7 +352,7 @@ public abstract class AbstractMarshaller implements Marshaller, Unmarshaller {
 
 	/**
 	 * Template method for handling {@code DOMSource}s.
-	 * <p>This implementation delegates to {@code unmarshalDomNode}.
+	 * This implementation delegates to {@code unmarshalDomNode}.
 	 * If the given source is empty, an empty source {@code Document}
 	 * will be created as a placeholder.
 	 * @param domSource the {@code DOMSource}
@@ -380,7 +380,7 @@ public abstract class AbstractMarshaller implements Marshaller, Unmarshaller {
 
 	/**
 	 * Template method for handling {@code StaxSource}s.
-	 * <p>This implementation delegates to {@code unmarshalXmlStreamReader} or
+	 * This implementation delegates to {@code unmarshalXmlStreamReader} or
 	 * {@code unmarshalXmlEventReader}.
 	 * @param staxSource the {@code StaxSource}
 	 * @return the object graph
@@ -404,7 +404,7 @@ public abstract class AbstractMarshaller implements Marshaller, Unmarshaller {
 
 	/**
 	 * Template method for handling {@code SAXSource}s.
-	 * <p>This implementation delegates to {@code unmarshalSaxReader}.
+	 * This implementation delegates to {@code unmarshalSaxReader}.
 	 * @param saxSource the {@code SAXSource}
 	 * @return the object graph
 	 * @throws XmlMappingException if the given source cannot be mapped to an object
@@ -438,7 +438,7 @@ public abstract class AbstractMarshaller implements Marshaller, Unmarshaller {
 
 	/**
 	 * Template method for handling {@code StreamSource}s.
-	 * <p>This implementation delegates to {@code unmarshalInputStream} or {@code unmarshalReader}.
+	 * This implementation delegates to {@code unmarshalInputStream} or {@code unmarshalReader}.
 	 * @param streamSource the {@code StreamSource}
 	 * @return the object graph
 	 * @throws IOException if an I/O exception occurs
@@ -473,7 +473,7 @@ public abstract class AbstractMarshaller implements Marshaller, Unmarshaller {
 
 	/**
 	 * Abstract template method for marshalling the given object graph to a DOM {@code Node}.
-	 * <p>In practice, node is be a {@code Document} node, a {@code DocumentFragment} node,
+	 * In practice, node is be a {@code Document} node, a {@code DocumentFragment} node,
 	 * or a {@code Element} node. In other words, a node that accepts children.
 	 * @param graph the root of the object graph to marshal
 	 * @param node the DOM node that will contain the result tree

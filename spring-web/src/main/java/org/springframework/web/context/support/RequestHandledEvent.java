@@ -8,7 +8,7 @@ import org.springframework.lang.Nullable;
 /**
  * Event raised when a request is handled within an ApplicationContext.
  *
- * <p>Supported by Spring's own FrameworkServlet (through a specific
+ * Supported by Spring's own FrameworkServlet (through a specific
  * ServletRequestHandledEvent subclass), but can also be raised by any
  * other web component. Used, for example, by Spring's out-of-the-box
  * PerformanceMonitorListener.

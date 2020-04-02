@@ -14,7 +14,7 @@ import org.springframework.web.server.ServerWebExchange;
 /**
  * A strategy for resolving a request to a server-side resource.
  *
- * <p>Provides mechanisms for resolving an incoming request to an actual
+ * Provides mechanisms for resolving an incoming request to an actual
  * {@link Resource} and for obtaining the
  * public URL path that clients should use when requesting the resource.
  *
@@ -40,7 +40,7 @@ public interface ResourceResolver {
 	 * Resolve the externally facing <em>public</em> URL path for clients to use
 	 * to access the resource that is located at the given <em>internal</em>
 	 * resource path.
-	 * <p>This is useful when rendering URL links to clients.
+	 * This is useful when rendering URL links to clients.
 	 * @param resourcePath the "internal" resource path to resolve a path for
 	 * public use. This is expected to be the encoded path.
 	 * @param locations the locations to search in when looking up resources

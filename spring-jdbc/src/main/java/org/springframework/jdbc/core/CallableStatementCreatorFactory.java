@@ -63,7 +63,7 @@ public class CallableStatementCreatorFactory {
 
 	/**
 	 * Add a new declared parameter.
-	 * <p>Order of parameter addition is significant.
+	 * Order of parameter addition is significant.
 	 * @param param the parameter to add to the list of declared parameters
 	 */
 	public void addParameter(SqlParameter param) {

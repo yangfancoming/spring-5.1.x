@@ -15,10 +15,10 @@ import org.springframework.util.Assert;
  * {@link DataSourceTransactionManager} binds instances of this class
  * to the thread, for a specific {@link javax.sql.DataSource}.
  *
- * <p>Inherits rollback-only support for nested JDBC transactions
+ * Inherits rollback-only support for nested JDBC transactions
  * and reference count functionality from the base class.
  *
- * <p>Note: This is an SPI class, not intended to be used by applications.
+ * Note: This is an SPI class, not intended to be used by applications.
 
  * @since 06.05.2003
  * @see DataSourceTransactionManager
@@ -115,7 +115,7 @@ public class ConnectionHolder extends ResourceHolderSupport {
 	/**
 	 * Override the existing Connection handle with the given Connection.
 	 * Reset the handle if given {@code null}.
-	 * <p>Used for releasing the Connection on suspend (with a {@code null}
+	 * Used for releasing the Connection on suspend (with a {@code null}
 	 * argument) and setting a fresh Connection on resume.
 	 */
 	protected void setConnection(@Nullable Connection connection) {
@@ -135,7 +135,7 @@ public class ConnectionHolder extends ResourceHolderSupport {
 
 	/**
 	 * Return the current Connection held by this ConnectionHolder.
-	 * <p>This will be the same Connection until {@code released}
+	 * This will be the same Connection until {@code released}
 	 * gets called on the ConnectionHolder, which will reset the
 	 * held Connection, fetching a new Connection on demand.
 	 * @see ConnectionHandle#getConnection()
@@ -174,7 +174,7 @@ public class ConnectionHolder extends ResourceHolderSupport {
 
 	/**
 	 * Releases the current Connection held by this ConnectionHolder.
-	 * <p>This is necessary for ConnectionHandles that expect "Connection borrowing",
+	 * This is necessary for ConnectionHandles that expect "Connection borrowing",
 	 * where each returned Connection is only temporarily leased and needs to be
 	 * returned once the data operation is done, to make the Connection available
 	 * for other operations within the same transaction.

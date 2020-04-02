@@ -25,7 +25,7 @@ import org.springframework.web.util.NestedServletException;
 /**
  * An {@link AbstractTemplateView} subclass based on Groovy XML/XHTML markup templates.
  *
- * <p>Spring's Groovy Markup Template support requires Groovy 2.3.1 and higher.
+ * Spring's Groovy Markup Template support requires Groovy 2.3.1 and higher.
  *
  * @author Brian Clozel
  * @author Rossen Stoyanchev
@@ -43,7 +43,7 @@ public class GroovyMarkupView extends AbstractTemplateView {
 
 	/**
 	 * Set the MarkupTemplateEngine to use in this view.
-	 * <p>If not set, the engine is auto-detected by looking up a single
+	 * If not set, the engine is auto-detected by looking up a single
 	 * {@link GroovyMarkupConfig} bean in the web application context and using
 	 * it to obtain the configured {@code MarkupTemplateEngine} instance.
 	 * @see GroovyMarkupConfig

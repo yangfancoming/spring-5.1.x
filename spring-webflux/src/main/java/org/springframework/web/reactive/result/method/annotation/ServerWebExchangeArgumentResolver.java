@@ -36,7 +36,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  * relative to the current request
  * </ul>
  *
- * <p>For the {@code WebSession} see {@link WebSessionArgumentResolver}
+ * For the {@code WebSession} see {@link WebSessionArgumentResolver}
  * and for the {@code Principal} see {@link PrincipalArgumentResolver}.
  *
  * @author Rossen Stoyanchev

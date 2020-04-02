@@ -22,7 +22,7 @@ import org.springframework.lang.Nullable;
 /**
  * Type filter that uses AspectJ type pattern for matching.
  *
- * <p>A critical implementation details of this type filter is that it does not
+ * A critical implementation details of this type filter is that it does not
  * load the class being examined to match with a type pattern.
  *
  * @author Ramnivas Laddad

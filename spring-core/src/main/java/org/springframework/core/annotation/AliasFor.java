@@ -35,7 +35,7 @@ import java.lang.annotation.Target;
  * </ul>
  *
  * <h3>Usage Requirements</h3>
- * <p>Like with any annotation in Java, the mere presence of {@code @AliasFor}
+ * Like with any annotation in Java, the mere presence of {@code @AliasFor}
  * on its own will not enforce alias semantics. For alias semantics to be
  * enforced, annotations must be <em>loaded</em> via the utility methods in
  * {@link AnnotationUtils}. Behind the scenes, Spring will <em>synthesize</em>
@@ -89,7 +89,7 @@ import java.lang.annotation.Target;
  * </ul>
  *
  * <h3>Example: Explicit Aliases within an Annotation</h3>
- * <p>In {@code @ContextConfiguration}, {@code value} and {@code locations}
+ * In {@code @ContextConfiguration}, {@code value} and {@code locations}
  * are explicit aliases for each other.
  *
  * <pre class="code"> public &#064;interface ContextConfiguration {
@@ -104,7 +104,7 @@ import java.lang.annotation.Target;
  * }</pre>
  *
  * <h3>Example: Explicit Alias for Attribute in Meta-annotation</h3>
- * <p>In {@code @XmlTestConfig}, {@code xmlFiles} is an explicit alias for
+ * In {@code @XmlTestConfig}, {@code xmlFiles} is an explicit alias for
  * {@code locations} in {@code @ContextConfiguration}. In other words,
  * {@code xmlFiles} overrides the {@code locations} attribute in
  * {@code @ContextConfiguration}.
@@ -117,7 +117,7 @@ import java.lang.annotation.Target;
  * }</pre>
  *
  * <h3>Example: Implicit Aliases within an Annotation</h3>
- * <p>In {@code @MyTestConfig}, {@code value}, {@code groovyScripts}, and
+ * In {@code @MyTestConfig}, {@code value}, {@code groovyScripts}, and
  * {@code xmlFiles} are all explicit meta-annotation attribute overrides for
  * the {@code locations} attribute in {@code @ContextConfiguration}. These
  * three attributes are therefore also implicit aliases for each other.
@@ -136,7 +136,7 @@ import java.lang.annotation.Target;
  * }</pre>
  *
  * <h3>Example: Transitive Implicit Aliases within an Annotation</h3>
- * <p>In {@code @GroovyOrXmlTestConfig}, {@code groovy} is an explicit
+ * In {@code @GroovyOrXmlTestConfig}, {@code groovy} is an explicit
  * override for the {@code groovyScripts} attribute in {@code @MyTestConfig};
  * whereas, {@code xml} is an explicit override for the {@code locations}
  * attribute in {@code @ContextConfiguration}. Furthermore, {@code groovy}
@@ -155,7 +155,7 @@ import java.lang.annotation.Target;
  * }</pre>
  *
  * <h3>Spring Annotations Supporting Attribute Aliases</h3>
- * <p>As of Spring Framework 4.2, several annotations within core Spring
+ * As of Spring Framework 4.2, several annotations within core Spring
  * have been updated to use {@code @AliasFor} to configure their internal
  * attribute aliases. Consult the Javadoc for individual annotations as well
  * as the reference manual for details.
@@ -174,7 +174,7 @@ public @interface AliasFor {
 
 	/**
 	 * Alias for {@link #attribute}.
-	 * <p>Intended to be used instead of {@link #attribute} when {@link #annotation}
+	 * Intended to be used instead of {@link #attribute} when {@link #annotation}
 	 * is not declared ; for example: {@code @AliasFor("value")} instead of
 	 * {@code @AliasFor(attribute = "value")}.
 	 */
@@ -190,7 +190,7 @@ public @interface AliasFor {
 
 	/**
 	 * The type of annotation in which the aliased {@link #attribute} is declared.
-	 * <p>Defaults to {@link Annotation}, implying that the aliased attribute is
+	 * Defaults to {@link Annotation}, implying that the aliased attribute is
 	 * declared in the same annotation as <em>this</em> attribute.
 	 */
 	Class<? extends Annotation> annotation() default Annotation.class;

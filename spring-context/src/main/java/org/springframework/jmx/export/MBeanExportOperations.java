@@ -8,7 +8,7 @@ import javax.management.ObjectName;
  * Interface that defines the set of MBean export operations that are intended to be
  * accessed by application developers during application runtime.
  *
- * <p>This interface should be used to export application resources to JMX using Spring's
+ * This interface should be used to export application resources to JMX using Spring's
  * management interface generation capabilities and, optionally, it's {@link ObjectName}
  * generation capabilities.
  *

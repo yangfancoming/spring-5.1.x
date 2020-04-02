@@ -17,7 +17,7 @@ import org.springframework.test.context.TestContextManager;
  * JUnit 4 execution chain by calling {@link TestContextManager#afterTestExecution
  * afterTestExecution()} on the supplied {@link TestContextManager}.
  *
- * <p><strong>NOTE:</strong> This class requires JUnit 4.9 or higher.
+ * <strong>NOTE:</strong> This class requires JUnit 4.9 or higher.
  *
  * @author Sam Brannen
  * @since 5.0
@@ -58,7 +58,7 @@ public class RunAfterTestExecutionCallbacks extends Statement {
 	 * instance of {@link RunBeforeTestExecutionCallbacks}), catching any exceptions
 	 * thrown, and then invoke {@link TestContextManager#afterTestExecution} supplying
 	 * the first caught exception (if any).
-	 * <p>If the invocation of {@code afterTestExecution()} throws an exception, that
+	 * If the invocation of {@code afterTestExecution()} throws an exception, that
 	 * exception will also be tracked. Multiple exceptions will be combined into a
 	 * {@link MultipleFailureException}.
 	 */

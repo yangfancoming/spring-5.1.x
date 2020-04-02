@@ -25,7 +25,7 @@ public class ProxyFactory extends ProxyCreatorSupport {
 
 	/**
 	 * Create a new ProxyFactory.
-	 * <p>Will proxy all interfaces that the given target implements.
+	 * Will proxy all interfaces that the given target implements.
 	 * @param target the target object to be proxied
 	 */
 	public ProxyFactory(Object target) {
@@ -35,7 +35,7 @@ public class ProxyFactory extends ProxyCreatorSupport {
 
 	/**
 	 * Create a new ProxyFactory.
-	 * <p>No target, only interfaces. Must add interceptors.
+	 * No target, only interfaces. Must add interceptors.
 	 * @param proxyInterfaces the interfaces that the proxy should implement
 	 */
 	public ProxyFactory(Class<?>... proxyInterfaces) {
@@ -44,7 +44,7 @@ public class ProxyFactory extends ProxyCreatorSupport {
 
 	/**
 	 * Create a new ProxyFactory for the given interface and interceptor.
-	 * <p>Convenience method for creating a proxy for a single interceptor,
+	 * Convenience method for creating a proxy for a single interceptor,
 	 * assuming that the interceptor handles all calls itself rather than
 	 * delegating to a target, like in the case of remoting proxies.
 	 * @param proxyInterface the interface that the proxy should implement
@@ -69,9 +69,9 @@ public class ProxyFactory extends ProxyCreatorSupport {
 
 	/**
 	 * Create a new proxy according to the settings in this factory.
-	 * <p>Can be called repeatedly. Effect will vary if we've added
+	 * Can be called repeatedly. Effect will vary if we've added
 	 * or removed interfaces. Can add and remove interceptors.
-	 * <p>Uses a default class loader: Usually, the thread context class loader
+	 * Uses a default class loader: Usually, the thread context class loader
 	 * (if necessary for proxy creation).
 	 * @return the proxy object
 	 */
@@ -81,9 +81,9 @@ public class ProxyFactory extends ProxyCreatorSupport {
 
 	/**
 	 * Create a new proxy according to the settings in this factory.
-	 * <p>Can be called repeatedly. Effect will vary if we've added
+	 * Can be called repeatedly. Effect will vary if we've added
 	 * or removed interfaces. Can add and remove interceptors.
-	 * <p>Uses the given class loader (if necessary for proxy creation).
+	 * Uses the given class loader (if necessary for proxy creation).
 	 * @param classLoader the class loader to create the proxy with
 	 * (or {@code null} for the low-level proxy facility's default)
 	 * @return the proxy object
@@ -97,7 +97,7 @@ public class ProxyFactory extends ProxyCreatorSupport {
 
 	/**
 	 * Create a new proxy for the given interface and interceptor.
-	 * <p>Convenience method for creating a proxy for a single interceptor,
+	 * Convenience method for creating a proxy for a single interceptor,
 	 * assuming that the interceptor handles all calls itself rather than
 	 * delegating to a target, like in the case of remoting proxies.
 	 * @param proxyInterface the interface that the proxy should implement

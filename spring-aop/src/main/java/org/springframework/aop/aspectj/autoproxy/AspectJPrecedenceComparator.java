@@ -13,7 +13,7 @@ import org.springframework.util.Assert;
 /**
  * Orders AspectJ advice/advisors by precedence (<i>not</i> invocation order).
  *
- * <p>Given two pieces of advice, {@code a} and {@code b}:
+ * Given two pieces of advice, {@code a} and {@code b}:
  * <ul>
  * <li>if {@code a} and {@code b} are defined in different aspects, then the advice
  * in the aspect with the lowest order value has the highest precedence</li>
@@ -24,7 +24,7 @@ import org.springframework.util.Assert;
  * highest precedence.</li>
  * </ul>
  *
- * <p>Important: Note that unlike a normal comparator a return of 0 means
+ * Important: Note that unlike a normal comparator a return of 0 means
  * we don't care about the ordering, not that the two elements must be sorted
  * identically. Used with AspectJ PartialOrder class.
  * @since 2.0

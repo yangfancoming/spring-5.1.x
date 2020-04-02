@@ -17,14 +17,14 @@ import org.springframework.util.Assert;
  * {@link AspectJAwareAdvisorAutoProxyCreator} subclass that processes all AspectJ
  * annotation aspects in the current application context, as well as Spring Advisors.
  *
- * <p>Any AspectJ annotated classes will automatically be recognized, and their
+ * Any AspectJ annotated classes will automatically be recognized, and their
  * advice applied if Spring AOP's proxy-based model is capable of applying it.
  * This covers method execution joinpoints.
  *
- * <p>If the &lt;aop:include&gt; element is used, only @AspectJ beans with names matched by
+ * If the &lt;aop:include&gt; element is used, only @AspectJ beans with names matched by
  * an include pattern will be considered as defining aspects to use for Spring auto-proxying.
  *
- * <p>Processing of Spring Advisors follows the rules established in {@link org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator}.
+ * Processing of Spring Advisors follows the rules established in {@link org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator}.
  * @since 2.0
  * @see org.springframework.aop.aspectj.annotation.AspectJAdvisorFactory
  */
@@ -42,7 +42,7 @@ public class AnnotationAwareAspectJAutoProxyCreator extends AspectJAwareAdvisorA
 
 	/**
 	 * Set a list of regex patterns, matching eligible @AspectJ bean names.
-	 * <p>Default is to consider all @AspectJ beans as eligible.
+	 * Default is to consider all @AspectJ beans as eligible.
 	 */
 	public void setIncludePatterns(List<String> patterns) {
 		this.includePatterns = new ArrayList<>(patterns.size());
@@ -95,7 +95,7 @@ public class AnnotationAwareAspectJAutoProxyCreator extends AspectJAwareAdvisorA
 
 	/**
 	 * Check whether the given aspect bean is eligible for auto-proxying.
-	 * <p>If no &lt;aop:include&gt; elements were used then "includePatterns" will be
+	 * If no &lt;aop:include&gt; elements were used then "includePatterns" will be
 	 * {@code null} and all beans are included. If "includePatterns" is non-null,
 	 * then one of the patterns must match.
 	 */

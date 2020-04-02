@@ -13,12 +13,12 @@ import org.springframework.lang.Nullable;
  * Base class for those {@link BeanDefinitionParser} implementations that
  * need to parse and define just a <i>single</i> {@code BeanDefinition}.
  *
- * <p>Extend this parser class when you want to create a single bean definition
+ * Extend this parser class when you want to create a single bean definition
  * from an arbitrarily complex XML element. You may wish to consider extending
  * the {@link AbstractSimpleBeanDefinitionParser} when you want to create a
  * single bean definition from a relatively simple custom XML element.
  *
- * <p>The resulting {@code BeanDefinition} will be automatically registered
+ * The resulting {@code BeanDefinition} will be automatically registered
  * with the {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}.
  * Your job simply is to {@link #doParse parse} the custom XML {@link Element}
  * into a single {@code BeanDefinition}.
@@ -75,7 +75,7 @@ public abstract class AbstractSingleBeanDefinitionParser extends AbstractBeanDef
 	/**
 	 * Determine the name for the parent of the currently parsed bean,
 	 * in case of the current bean being defined as a child bean.
-	 * <p>The default implementation returns {@code null},
+	 * The default implementation returns {@code null},
 	 * indicating a root bean definition.
 	 * @param element the {@code Element} that is being parsed
 	 * @return the name of the parent bean for the currently parsed bean,
@@ -88,7 +88,7 @@ public abstract class AbstractSingleBeanDefinitionParser extends AbstractBeanDef
 
 	/**
 	 * Determine the bean class corresponding to the supplied {@link Element}.
-	 * <p>Note that, for application classes, it is generally preferable to
+	 * Note that, for application classes, it is generally preferable to
 	 * override {@link #getBeanClassName} instead, in order to avoid a direct
 	 * dependence on the bean implementation class. The BeanDefinitionParser
 	 * and its NamespaceHandler can be used within an IDE plugin then, even
@@ -118,7 +118,7 @@ public abstract class AbstractSingleBeanDefinitionParser extends AbstractBeanDef
 	/**
 	 * Parse the supplied {@link Element} and populate the supplied
 	 * {@link BeanDefinitionBuilder} as required.
-	 * <p>The default implementation delegates to the {@code doParse}
+	 * The default implementation delegates to the {@code doParse}
 	 * version without ParserContext argument.
 	 * @param element the XML element being parsed
 	 * @param parserContext the object encapsulating the current state of the parsing process
@@ -132,7 +132,7 @@ public abstract class AbstractSingleBeanDefinitionParser extends AbstractBeanDef
 	/**
 	 * Parse the supplied {@link Element} and populate the supplied
 	 * {@link BeanDefinitionBuilder} as required.
-	 * <p>The default implementation does nothing.
+	 * The default implementation does nothing.
 	 * @param element the XML element being parsed
 	 * @param builder used to define the {@code BeanDefinition}
 	 */

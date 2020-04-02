@@ -17,7 +17,7 @@ import org.springframework.util.ObjectUtils;
  * {@code RequestCondition} types and using a logical conjunction (' && ') to
  * ensure all conditions match a given request.
  *
- * <p>When {@code CompositeRequestCondition} instances are combined or compared
+ * When {@code CompositeRequestCondition} instances are combined or compared
  * they are expected to (a) contain the same number of conditions and (b) that
  * conditions in the respective index are of the same type. It is acceptable to
  * provide {@code null} conditions or no conditions at all to the constructor.
@@ -126,7 +126,7 @@ public class CompositeRequestCondition extends AbstractRequestCondition<Composit
 	/**
 	 * Delegate to <em>all</em> contained conditions to match the request and return the
 	 * resulting "matching" condition instances.
-	 * <p>An empty {@code CompositeRequestCondition} matches to all requests.
+	 * An empty {@code CompositeRequestCondition} matches to all requests.
 	 */
 	@Override
 	@Nullable

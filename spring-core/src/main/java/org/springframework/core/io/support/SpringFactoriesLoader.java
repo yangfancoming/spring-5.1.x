@@ -28,7 +28,7 @@ import org.springframework.util.StringUtils;
 /**
  * General purpose factory loading mechanism for internal use within the framework.
  *
- * <p>{@code SpringFactoriesLoader} {@linkplain #loadFactories loads} and instantiates
+ * {@code SpringFactoriesLoader} {@linkplain #loadFactories loads} and instantiates
  * factories of a given type from {@value #FACTORIES_RESOURCE_LOCATION} files which
  * may be present in multiple JAR files in the classpath. The {@code spring.factories}
  * file must be in {@link Properties} format, where the key is the fully qualified
@@ -58,8 +58,8 @@ public final class SpringFactoriesLoader {
 	/**
 	 * Load and instantiate the factory implementations of the given type from
 	 * {@value #FACTORIES_RESOURCE_LOCATION}, using the given class loader.
-	 * <p>The returned factories are sorted through {@link AnnotationAwareOrderComparator}.
-	 * <p>If a custom instantiation strategy is required, use {@link #loadFactoryNames}
+	 * The returned factories are sorted through {@link AnnotationAwareOrderComparator}.
+	 * If a custom instantiation strategy is required, use {@link #loadFactoryNames}
 	 * to obtain all registered factory names.
 	 * @param factoryClass the interface or abstract class representing the factory
 	 * @param classLoader the ClassLoader to use for loading (can be {@code null} to use the default)

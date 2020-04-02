@@ -32,7 +32,7 @@ public class FixedContentTypeResolver implements RequestedContentTypeResolver {
 	/**
 	 * Constructor with an ordered List of default {@code MediaType}'s to return
 	 * for use in applications that support a variety of content types.
-	 * <p>Consider appending {@link MediaType#ALL} at the end if destinations
+	 * Consider appending {@link MediaType#ALL} at the end if destinations
 	 * are present which do not support any of the other default media types.
 	 */
 	public FixedContentTypeResolver(List<MediaType> contentTypes) {

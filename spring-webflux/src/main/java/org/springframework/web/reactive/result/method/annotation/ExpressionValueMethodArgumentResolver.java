@@ -13,7 +13,7 @@ import org.springframework.web.server.ServerWebExchange;
 /**
  * Resolves method arguments annotated with {@code @Value}.
  *
- * <p>An {@code @Value} does not have a name but gets resolved from the default
+ * An {@code @Value} does not have a name but gets resolved from the default
  * value string, which may contain ${...} placeholder or Spring Expression
  * Language #{...} expressions.
  *

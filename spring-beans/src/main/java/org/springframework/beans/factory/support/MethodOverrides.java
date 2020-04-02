@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * Set of method overrides, determining which, if any, methods on a
  * managed object the Spring IoC container will override at runtime.
  *
- * <p>The currently supported {@link MethodOverride} variants are
+ * The currently supported {@link MethodOverride} variants are
  * {@link LookupOverride} and {@link ReplaceOverride}.
  *
  * @author Rod Johnson

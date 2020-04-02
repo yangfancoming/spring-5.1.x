@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
  * A {@link MessageConverter} that delegates to a list of registered converters
  * to be invoked until one of them returns a non-null result.
  *
- * <p>As of 4.2.1, this composite converter implements {@link SmartMessageConverter}
+ * As of 4.2.1, this composite converter implements {@link SmartMessageConverter}
  * in order to support the delegation of conversion hints.
  *
  * @author Rossen Stoyanchev

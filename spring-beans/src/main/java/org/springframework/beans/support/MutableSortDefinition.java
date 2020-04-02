@@ -73,7 +73,7 @@ public class MutableSortDefinition implements SortDefinition, Serializable {
 
 	/**
 	 * Set the property to compare.
-	 * <p>If the property was the same as the current, the sort is reversed if
+	 * If the property was the same as the current, the sort is reversed if
 	 * "toggleAscendingOnProperty" is activated, else simply ignored.
 	 * @see #setToggleAscendingOnProperty
 	 */
@@ -122,7 +122,7 @@ public class MutableSortDefinition implements SortDefinition, Serializable {
 	/**
 	 * Set whether to toggle the ascending flag if the same property gets set again
 	 * (that is, {@link #setProperty} gets called with already set property name again).
-	 * <p>This is particularly useful for parameter binding through a web request,
+	 * This is particularly useful for parameter binding through a web request,
 	 * where clicking on the field header again might be supposed to trigger a
 	 * resort for the same field but opposite order.
 	 */

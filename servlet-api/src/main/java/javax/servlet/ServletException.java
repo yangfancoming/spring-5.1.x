@@ -84,7 +84,7 @@ public class ServletException extends Exception {
      * normal operation.  The exception's message is based on the localized
      * message of the underlying exception.
      *
-     * <p>This method calls the <code>getLocalizedMessage</code> method
+     * This method calls the <code>getLocalizedMessage</code> method
      * on the <code>Throwable</code> exception to get a localized exception
      * message. When subclassing <code>ServletException</code>, 
      * this method can be overridden to create an exception message 

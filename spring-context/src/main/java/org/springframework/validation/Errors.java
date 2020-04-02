@@ -11,14 +11,14 @@ import org.springframework.lang.Nullable;
  * Stores and exposes information about data-binding and validation
  * errors for a specific object.
  *
- * <p>Field names can be properties of the target object (e.g. "name"
+ * Field names can be properties of the target object (e.g. "name"
  * when binding to a customer object), or nested fields in case of
  * subobjects (e.g. "address.street"). Supports subtree navigation
  * via {@link #setNestedPath(String)}: for example, an
  * {@code AddressValidator} validates "address", not being aware
  * that this is a subobject of customer.
  *
- * <p>Note: {@code Errors} objects are single-threaded.
+ * Note: {@code Errors} objects are single-threaded.
  *
  * @author Rod Johnson
 
@@ -32,7 +32,7 @@ public interface Errors {
 	/**
 	 * The separator between path elements in a nested path,
 	 * for example in "customer.name" or "customer.address.street".
-	 * <p>"." = same as the
+	 * "." = same as the
 	 * {@link org.springframework.beans.PropertyAccessor#NESTED_PROPERTY_SEPARATOR nested property separator}
 	 * in the beans package.
 	 */
@@ -47,7 +47,7 @@ public interface Errors {
 	/**
 	 * Allow context to be changed so that standard validators can validate
 	 * subtrees. Reject calls prepend the given path to the field names.
-	 * <p>For example, an address validator could validate the subobject
+	 * For example, an address validator could validate the subobject
 	 * "address" of a customer object.
 	 * @param nestedPath nested path within this object,
 	 * e.g. "address" (defaults to "", {@code null} is also acceptable).
@@ -57,19 +57,19 @@ public interface Errors {
 
 	/**
 	 * Return the current nested path of this {@link Errors} object.
-	 * <p>Returns a nested path with a dot, i.e. "address.", for easy
+	 * Returns a nested path with a dot, i.e. "address.", for easy
 	 * building of concatenated paths. Default is an empty String.
 	 */
 	String getNestedPath();
 
 	/**
 	 * Push the given sub path onto the nested path stack.
-	 * <p>A {@link #popNestedPath()} call will reset the original
+	 * A {@link #popNestedPath()} call will reset the original
 	 * nested path before the corresponding
 	 * {@code pushNestedPath(String)} call.
-	 * <p>Using the nested path stack allows to set temporary nested paths
+	 * Using the nested path stack allows to set temporary nested paths
 	 * for subobjects without having to worry about a temporary path holder.
-	 * <p>For example: current path "spouse.", pushNestedPath("child") ->
+	 * For example: current path "spouse.", pushNestedPath("child") ->
 	 * result path "spouse.child."; popNestedPath() -> "spouse." again.
 	 * @param subPath the sub path to push onto the nested path stack
 	 * @see #popNestedPath
@@ -112,7 +112,7 @@ public interface Errors {
 	 * Register a field error for the specified field of the current object
 	 * (respecting the current nested path, if any), using the given error
 	 * description.
-	 * <p>The field name may be {@code null} or empty String to indicate
+	 * The field name may be {@code null} or empty String to indicate
 	 * the current object itself rather than a field of it. This may result
 	 * in a corresponding field error within the nested object graph or a
 	 * global error if the current object is the top object.
@@ -126,7 +126,7 @@ public interface Errors {
 	 * Register a field error for the specified field of the current object
 	 * (respecting the current nested path, if any), using the given error
 	 * description.
-	 * <p>The field name may be {@code null} or empty String to indicate
+	 * The field name may be {@code null} or empty String to indicate
 	 * the current object itself rather than a field of it. This may result
 	 * in a corresponding field error within the nested object graph or a
 	 * global error if the current object is the top object.
@@ -141,7 +141,7 @@ public interface Errors {
 	 * Register a field error for the specified field of the current object
 	 * (respecting the current nested path, if any), using the given error
 	 * description.
-	 * <p>The field name may be {@code null} or empty String to indicate
+	 * The field name may be {@code null} or empty String to indicate
 	 * the current object itself rather than a field of it. This may result
 	 * in a corresponding field error within the nested object graph or a
 	 * global error if the current object is the top object.
@@ -158,10 +158,10 @@ public interface Errors {
 	/**
 	 * Add all errors from the given {@code Errors} instance to this
 	 * {@code Errors} instance.
-	 * <p>This is a convenience method to avoid repeated {@code reject(..)}
+	 * This is a convenience method to avoid repeated {@code reject(..)}
 	 * calls for merging an {@code Errors} instance into another
 	 * {@code Errors} instance.
-	 * <p>Note that the passed-in {@code Errors} instance is supposed
+	 * Note that the passed-in {@code Errors} instance is supposed
 	 * to refer to the same target object, or at least contain compatible errors
 	 * that apply to the target object of this {@code Errors} instance.
 	 * @param errors the {@code Errors} instance to merge in
@@ -254,7 +254,7 @@ public interface Errors {
 
 	/**
 	 * Get all errors associated with the given field.
-	 * <p>Implementations should support not only full field names like
+	 * Implementations should support not only full field names like
 	 * "name" but also pattern matches like "na*" or "address.*".
 	 * @param field the field name
 	 * @return a List of {@link FieldError} instances
@@ -272,7 +272,7 @@ public interface Errors {
 	/**
 	 * Return the current value of the given field, either the current
 	 * bean property value or a rejected update from the last binding.
-	 * <p>Allows for convenient access to user-specified field values,
+	 * Allows for convenient access to user-specified field values,
 	 * even if there were type mismatches.
 	 * @param field the field name
 	 * @return the current value of the given field
@@ -282,7 +282,7 @@ public interface Errors {
 
 	/**
 	 * Return the type of a given field.
-	 * <p>Implementations should be able to determine the type even
+	 * Implementations should be able to determine the type even
 	 * when the field value is {@code null}, for example from some
 	 * associated descriptor.
 	 * @param field the field name

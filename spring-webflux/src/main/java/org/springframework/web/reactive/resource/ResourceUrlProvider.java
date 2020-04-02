@@ -28,7 +28,7 @@ import org.springframework.web.util.pattern.PathPatternParser;
  * A central component to use to obtain the public URL path that clients should
  * use to access a static resource.
  *
- * <p>This class is aware of Spring WebFlux handler mappings used to serve static
+ * This class is aware of Spring WebFlux handler mappings used to serve static
  * resources and uses the {@code ResourceResolver} chains of the configured
  * {@code ResourceHttpRequestHandler}s to make its decisions.
  *
@@ -56,7 +56,7 @@ public class ResourceUrlProvider implements ApplicationListener<ContextRefreshed
 
 	/**
 	 * Manually configure resource handler mappings.
-	 * <p><strong>Note:</strong> by default resource mappings are auto-detected
+	 * <strong>Note:</strong> by default resource mappings are auto-detected
 	 * from the Spring {@code ApplicationContext}. If this property is used,
 	 * auto-detection is turned off.
 	 */
@@ -97,7 +97,7 @@ public class ResourceUrlProvider implements ApplicationListener<ContextRefreshed
 
 	/**
 	 * Get the public resource URL for the given URI string.
-	 * <p>The URI string is expected to be a path and if it contains a query or
+	 * The URI string is expected to be a path and if it contains a query or
 	 * fragment those will be preserved in the resulting public resource URL.
 	 * @param uriString the URI string to transform
 	 * @param exchange the current exchange

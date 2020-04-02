@@ -22,19 +22,19 @@ import org.springframework.util.Assert;
  * The simplest way to use this class is to specify just a "templateLoaderPath"
  * (e.g. "classpath:templates"); you do not need any further configuration then.
  *
- * <p>This bean must be included in the application context of any application
+ * This bean must be included in the application context of any application
  * using {@link FreeMarkerView}. It exists purely to configure FreeMarker.
  * It is not meant to be referenced by application components but just internally
  * by {@code FreeMarkerView}. Implements {@link FreeMarkerConfig} to be found by
  * {@code FreeMarkerView} without depending on the bean name the configurer.
  *
- * <p>Note that you can also refer to a pre-configured FreeMarker Configuration
+ * Note that you can also refer to a pre-configured FreeMarker Configuration
  * instance via the "configuration" property. This allows to share a FreeMarker
  * Configuration for web and email usage for example.
  *
- * <p>TODO: macros
+ * TODO: macros
  *
- * <p>This configurer registers a template loader for this package, allowing to
+ * This configurer registers a template loader for this package, allowing to
  * reference the "spring.ftl" macro library contained in this package:
  *
  * <pre class="code">
@@ -73,7 +73,7 @@ public class FreeMarkerConfigurer extends FreeMarkerConfigurationFactory
 	/**
 	 * Initialize FreeMarkerConfigurationFactory's Configuration
 	 * if not overridden by a pre-configured FreeMarker Configuration.
-	 * <p>Sets up a ClassTemplateLoader to use for loading Spring macros.
+	 * Sets up a ClassTemplateLoader to use for loading Spring macros.
 	 * @see #createConfiguration
 	 * @see #setConfiguration
 	 */

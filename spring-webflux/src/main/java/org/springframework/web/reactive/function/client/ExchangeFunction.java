@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
  * Represents a function that exchanges a {@linkplain ClientRequest request} for a (delayed)
  * {@linkplain ClientResponse}. Can be used as an alternative to {@link WebClient}.
  *
- * <p>For example:
+ * For example:
  * <pre class="code">
  * ExchangeFunction exchangeFunction = ExchangeFunctions.create(new ReactorClientHttpConnector());
  * ClientRequest&lt;Void&gt; request = ClientRequest.method(HttpMethod.GET, "https://example.com/resource").build();

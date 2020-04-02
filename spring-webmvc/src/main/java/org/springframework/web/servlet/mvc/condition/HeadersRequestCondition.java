@@ -17,7 +17,7 @@ import org.springframework.web.cors.CorsUtils;
  * A logical conjunction (' && ') request condition that matches a request against
  * a set of header expressions with syntax defined in {@link RequestMapping#headers()}.
  *
- * <p>Expressions passed to the constructor with header names 'Accept' or
+ * Expressions passed to the constructor with header names 'Accept' or
  * 'Content-Type' are ignored. See {@link ConsumesRequestCondition} and
  * {@link ProducesRequestCondition} for those.
  *
@@ -114,7 +114,7 @@ public final class HeadersRequestCondition extends AbstractRequestCondition<Head
 	 * <li>A greater number of expressions.
 	 * <li>A greater number of non-negated expressions with a concrete value.
 	 * </ol>
-	 * <p>It is assumed that both instances have been obtained via
+	 * It is assumed that both instances have been obtained via
 	 * {@link #getMatchingCondition(HttpServletRequest)} and each instance
 	 * contains the matching header expression only or is otherwise empty.
 	 */

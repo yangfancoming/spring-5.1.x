@@ -9,7 +9,7 @@ import org.springframework.mock.web.MockHttpServletRequest;
 /**
  * Builds a {@link MockHttpServletRequest}.
  *
- * <p>See static factory methods in
+ * See static factory methods in
  * {@link org.springframework.test.web.servlet.request.MockMvcRequestBuilders MockMvcRequestBuilders}.
  *
  * @author Arjen Poutsma

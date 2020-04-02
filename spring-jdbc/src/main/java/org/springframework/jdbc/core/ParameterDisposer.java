@@ -6,7 +6,7 @@ package org.springframework.jdbc.core;
  * Interface to be implemented by objects that can close resources
  * allocated by parameters like {@code SqlLobValue} objects.
  *
- * <p>Typically implemented by {@code PreparedStatementCreators} and
+ * Typically implemented by {@code PreparedStatementCreators} and
  * {@code PreparedStatementSetters} that support {@link DisposableSqlTypeValue}
  * objects (e.g. {@code SqlLobValue}) as parameters.
 

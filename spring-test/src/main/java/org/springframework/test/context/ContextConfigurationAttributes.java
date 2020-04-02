@@ -183,7 +183,7 @@ public class ContextConfigurationAttributes {
 	/**
 	 * Get the annotated classes that were declared via
 	 * {@link ContextConfiguration @ContextConfiguration}.
-	 * <p>Note: this is a mutable property. The returned value may therefore
+	 * Note: this is a mutable property. The returned value may therefore
 	 * represent a <em>processed</em> value that does not match the original value
 	 * declared via {@link ContextConfiguration @ContextConfiguration}.
 	 * @return the annotated classes (potentially {<em>empty</em>)
@@ -217,7 +217,7 @@ public class ContextConfigurationAttributes {
 	/**
 	 * Get the resource locations that were declared via
 	 * {@link ContextConfiguration @ContextConfiguration}.
-	 * <p>Note: this is a mutable property. The returned value may therefore
+	 * Note: this is a mutable property. The returned value may therefore
 	 * represent a <em>processed</em> value that does not match the original value
 	 * declared via {@link ContextConfiguration @ContextConfiguration}.
 	 * @return the resource locations (potentially <em>empty</em>)

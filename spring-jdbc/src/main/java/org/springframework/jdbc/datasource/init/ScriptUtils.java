@@ -23,7 +23,7 @@ import org.springframework.util.StringUtils;
 /**
  * Generic utility methods for working with SQL scripts.
  *
- * <p>Mainly for internal use within the framework.
+ * Mainly for internal use within the framework.
  *
  * @author Thomas Risberg
  * @author Sam Brannen
@@ -45,14 +45,14 @@ public abstract class ScriptUtils {
 
 	/**
 	 * Fallback statement separator within SQL scripts: {@code "\n"}.
-	 * <p>Used if neither a custom separator nor the
+	 * Used if neither a custom separator nor the
 	 * {@link #DEFAULT_STATEMENT_SEPARATOR} is present in a given script.
 	 */
 	public static final String FALLBACK_STATEMENT_SEPARATOR = "\n";
 
 	/**
 	 * End of file (EOF) SQL statement separator: {@code "^^^ END OF SCRIPT ^^^"}.
-	 * <p>This value may be supplied as the {@code separator} to {@link
+	 * This value may be supplied as the {@code separator} to {@link
 	 * #executeSqlScript(Connection, EncodedResource, boolean, boolean, String, String, String, String)}
 	 * to denote that an SQL script contains a single statement (potentially
 	 * spanning multiple lines) with no explicit statement separator. Note that
@@ -84,7 +84,7 @@ public abstract class ScriptUtils {
 	 * Split an SQL script into separate statements delimited by the provided
 	 * separator character. Each individual statement will be added to the
 	 * provided {@code List}.
-	 * <p>Within the script, {@value #DEFAULT_COMMENT_PREFIX} will be used as the
+	 * Within the script, {@value #DEFAULT_COMMENT_PREFIX} will be used as the
 	 * comment prefix; any text beginning with the comment prefix and extending to
 	 * the end of the line will be omitted from the output. Similarly,
 	 * {@value #DEFAULT_BLOCK_COMMENT_START_DELIMITER} and
@@ -107,7 +107,7 @@ public abstract class ScriptUtils {
 	 * Split an SQL script into separate statements delimited by the provided
 	 * separator string. Each individual statement will be added to the
 	 * provided {@code List}.
-	 * <p>Within the script, {@value #DEFAULT_COMMENT_PREFIX} will be used as the
+	 * Within the script, {@value #DEFAULT_COMMENT_PREFIX} will be used as the
 	 * comment prefix; any text beginning with the comment prefix and extending to
 	 * the end of the line will be omitted from the output. Similarly,
 	 * {@value #DEFAULT_BLOCK_COMMENT_START_DELIMITER} and
@@ -132,7 +132,7 @@ public abstract class ScriptUtils {
 	 * Split an SQL script into separate statements delimited by the provided
 	 * separator string. Each individual statement will be added to the provided
 	 * {@code List}.
-	 * <p>Within the script, the provided {@code commentPrefix} will be honored:
+	 * Within the script, the provided {@code commentPrefix} will be honored:
 	 * any text beginning with the comment prefix and extending to the end of the
 	 * line will be omitted from the output. Similarly, the provided
 	 * {@code blockCommentStartDelimiter} and {@code blockCommentEndDelimiter}
@@ -252,7 +252,7 @@ public abstract class ScriptUtils {
 	/**
 	 * Read a script from the provided resource, using the supplied comment prefix
 	 * and statement separator, and build a {@code String} containing the lines.
-	 * <p>Lines <em>beginning</em> with the comment prefix are excluded from the
+	 * Lines <em>beginning</em> with the comment prefix are excluded from the
 	 * results; however, line comments anywhere else ; for example, within
 	 * a statement ; will be included in the results.
 	 * @param resource the {@code EncodedResource} containing the script
@@ -280,7 +280,7 @@ public abstract class ScriptUtils {
 	 * Read a script from the provided {@code LineNumberReader}, using the supplied
 	 * comment prefix and statement separator, and build a {@code String} containing
 	 * the lines.
-	 * <p>Lines <em>beginning</em> with the comment prefix are excluded from the
+	 * Lines <em>beginning</em> with the comment prefix are excluded from the
 	 * results; however, line comments anywhere else ; for example, within
 	 * a statement ; will be included in the results.
 	 * @param lineNumberReader the {@code LineNumberReader} containing the script
@@ -360,9 +360,9 @@ public abstract class ScriptUtils {
 	/**
 	 * Execute the given SQL script using default settings for statement
 	 * separators, comment delimiters, and exception handling flags.
-	 * <p>Statement separators and comments will be removed before executing
+	 * Statement separators and comments will be removed before executing
 	 * individual statements within the supplied script.
-	 * <p><strong>Warning</strong>: this method does <em>not</em> release the
+	 * <strong>Warning</strong>: this method does <em>not</em> release the
 	 * provided {@link Connection}.
 	 * @param connection the JDBC connection to use to execute the script; already
 	 * configured and ready to use
@@ -384,9 +384,9 @@ public abstract class ScriptUtils {
 	/**
 	 * Execute the given SQL script using default settings for statement
 	 * separators, comment delimiters, and exception handling flags.
-	 * <p>Statement separators and comments will be removed before executing
+	 * Statement separators and comments will be removed before executing
 	 * individual statements within the supplied script.
-	 * <p><strong>Warning</strong>: this method does <em>not</em> release the
+	 * <strong>Warning</strong>: this method does <em>not</em> release the
 	 * provided {@link Connection}.
 	 * @param connection the JDBC connection to use to execute the script; already
 	 * configured and ready to use
@@ -408,9 +408,9 @@ public abstract class ScriptUtils {
 
 	/**
 	 * Execute the given SQL script.
-	 * <p>Statement separators and comments will be removed before executing
+	 * Statement separators and comments will be removed before executing
 	 * individual statements within the supplied script.
-	 * <p><strong>Warning</strong>: this method does <em>not</em> release the
+	 * <strong>Warning</strong>: this method does <em>not</em> release the
 	 * provided {@link Connection}.
 	 * @param connection the JDBC connection to use to execute the script; already
 	 * configured and ready to use

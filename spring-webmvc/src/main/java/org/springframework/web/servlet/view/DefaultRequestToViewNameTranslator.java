@@ -14,20 +14,20 @@ import org.springframework.web.util.UrlPathHelper;
  * {@link RequestToViewNameTranslator} that simply transforms the URI of
  * the incoming request into a view name.
  *
- * <p>Can be explicitly defined as the {@code viewNameTranslator} bean in a
+ * Can be explicitly defined as the {@code viewNameTranslator} bean in a
  * {@link org.springframework.web.servlet.DispatcherServlet} context.
  * Otherwise, a plain default instance will be used.
  *
- * <p>The default transformation simply strips leading and trailing slashes
+ * The default transformation simply strips leading and trailing slashes
  * as well as the file extension of the URI, and returns the result as the
  * view name with the configured {@link #setPrefix prefix} and a
  * {@link #setSuffix suffix} added as appropriate.
  *
- * <p>The stripping of the leading slash and file extension can be disabled
+ * The stripping of the leading slash and file extension can be disabled
  * using the {@link #setStripLeadingSlash stripLeadingSlash} and
  * {@link #setStripExtension stripExtension} properties, respectively.
  *
- * <p>Find below some examples of request to view name translation.
+ * Find below some examples of request to view name translation.
  * <ul>
  * <li>{@code http://localhost:8080/gamecast/display.html} &raquo; {@code display}</li>
  * <li>{@code http://localhost:8080/gamecast/displayShoppingCart.html} &raquo; {@code displayShoppingCart}</li>
@@ -136,7 +136,7 @@ public class DefaultRequestToViewNameTranslator implements RequestToViewNameTran
 	/**
 	 * Set the {@link org.springframework.web.util.UrlPathHelper} to use for
 	 * the resolution of lookup paths.
-	 * <p>Use this to override the default UrlPathHelper with a custom subclass,
+	 * Use this to override the default UrlPathHelper with a custom subclass,
 	 * or to share common UrlPathHelper settings across multiple web components.
 	 */
 	public void setUrlPathHelper(UrlPathHelper urlPathHelper) {

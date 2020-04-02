@@ -14,7 +14,7 @@ import org.springframework.remoting.support.RemoteInvocation;
  * wrapping exported services. A client uses a stub implementing
  * this interface to access such a service.
  *
- * <p>This is an SPI interface, not to be used directly by applications.
+ * This is an SPI interface, not to be used directly by applications.
  *
 
  * @since 14.05.2003
@@ -32,7 +32,7 @@ public interface RmiInvocationHandler extends Remote {
 
 	/**
 	 * Apply the given invocation to the target object.
-	 * <p>Called by
+	 * Called by
 	 * {@link RmiClientInterceptor#doInvoke(org.aopalliance.intercept.MethodInvocation, RmiInvocationHandler)}.
 	 * @param invocation object that encapsulates invocation parameters
 	 * @return the object returned from the invoked method, if any

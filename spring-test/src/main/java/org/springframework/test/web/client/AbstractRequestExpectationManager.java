@@ -22,7 +22,7 @@ import org.springframework.util.Assert;
  * for storing expectations and actual requests, and checking for unsatisfied
  * expectations at the end.
  *
- * <p>Subclasses are responsible for validating each request by matching it to
+ * Subclasses are responsible for validating each request by matching it to
  * to expectations following the order of declaration or not.
  *
  * @author Rossen Stoyanchev
@@ -206,7 +206,7 @@ public abstract class AbstractRequestExpectationManager implements RequestExpect
 
 		/**
 		 * Invoke this for an expectation that has been matched.
-		 * <p>The count of the given expectation is incremented, then it is
+		 * The count of the given expectation is incremented, then it is
 		 * either stored if remainingCount > 0 or removed otherwise.
 		 */
 		public void update(RequestExpectation expectation) {

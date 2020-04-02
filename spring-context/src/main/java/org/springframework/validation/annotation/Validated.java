@@ -13,11 +13,11 @@ import java.lang.annotation.Target;
  * specification of validation groups. Designed for convenient use with
  * Spring's JSR-303 support but not JSR-303 specific.
  *
- * <p>Can be used e.g. with Spring MVC handler methods arguments.
+ * Can be used e.g. with Spring MVC handler methods arguments.
  * Supported through {@link org.springframework.validation.SmartValidator}'s
  * validation hint concept, with validation group classes acting as hint objects.
  *
- * <p>Can also be used with method level validation, indicating that a specific
+ * Can also be used with method level validation, indicating that a specific
  * class is supposed to be validated at the method level (acting as a pointcut
  * for the corresponding validation interceptor), but also optionally specifying
  * the validation groups for method-level validation in the annotated class.
@@ -42,10 +42,10 @@ public @interface Validated {
 	/**
 	 * Specify one or more validation groups to apply to the validation step
 	 * kicked off by this annotation.
-	 * <p>JSR-303 defines validation groups as custom annotations which an application declares
+	 * JSR-303 defines validation groups as custom annotations which an application declares
 	 * for the sole purpose of using them as type-safe group arguments, as implemented in
 	 * {@link org.springframework.validation.beanvalidation.SpringValidatorAdapter}.
-	 * <p>Other {@link org.springframework.validation.SmartValidator} implementations may
+	 * Other {@link org.springframework.validation.SmartValidator} implementations may
 	 * support class arguments in other ways as well.
 	 */
 	Class<?>[] value() default {};

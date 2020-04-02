@@ -23,28 +23,28 @@ import org.springframework.util.Assert;
  * transaction coordinator, <i>beyond standard JTA</i>: transaction names,
  * per-transaction isolation levels, and proper resuming of transactions in all cases.
  *
- * <p>Uses WebLogic's special {@code begin(name)} method to start a JTA transaction,
+ * Uses WebLogic's special {@code begin(name)} method to start a JTA transaction,
  * in order to make <b>Spring-driven transactions visible in WebLogic's transaction
  * monitor</b>. In case of Spring's declarative transactions, the exposed name will
  * (by default) be the fully-qualified class name + "." + method name.
  *
- * <p>Supports a <b>per-transaction isolation level</b> through WebLogic's corresponding
+ * Supports a <b>per-transaction isolation level</b> through WebLogic's corresponding
  * JTA transaction property "ISOLATION LEVEL". This will apply the specified isolation
  * level (e.g. ISOLATION_SERIALIZABLE) to all JDBC Connections that participate in the
  * given transaction.
  *
- * <p>Invokes WebLogic's special {@code forceResume} method if standard JTA resume
+ * Invokes WebLogic's special {@code forceResume} method if standard JTA resume
  * failed, to <b>also resume if the target transaction was marked rollback-only</b>.
  * If you're not relying on this feature of transaction suspension in the first
  * place, Spring's standard JtaTransactionManager will behave properly too.
  *
- * <p>By default, the JTA UserTransaction and TransactionManager handles are
+ * By default, the JTA UserTransaction and TransactionManager handles are
  * fetched directly from WebLogic's {@code TransactionHelper}. This can be
  * overridden by specifying "userTransaction"/"userTransactionName" and
  * "transactionManager"/"transactionManagerName", passing in existing handles
  * or specifying corresponding JNDI locations to look up.
  *
- * <p><b>NOTE: This JtaTransactionManager is intended to refine specific transaction
+ * <b>NOTE: This JtaTransactionManager is intended to refine specific transaction
  * demarcation behavior on Spring's side. It will happily co-exist with independently
  * configured WebLogic transaction strategies in your persistence provider, with no
  * need to specifically connect those setups in any way.</b>

@@ -7,7 +7,7 @@ import org.springframework.util.Assert;
 /**
  * A simple type representing a range for an expected count.
  *
- * <p>Examples:
+ * Examples:
  * <pre>
  * import static org.springframework.test.web.client.ExpectedCount.*
  *

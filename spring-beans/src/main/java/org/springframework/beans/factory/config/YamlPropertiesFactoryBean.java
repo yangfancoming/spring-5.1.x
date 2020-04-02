@@ -13,16 +13,16 @@ import org.springframework.lang.Nullable;
  * Factory for {@link java.util.Properties} that reads from a YAML source,
  * exposing a flat structure of String property values.
  *
- * <p>YAML is a nice human-readable format for configuration, and it has some
+ * YAML is a nice human-readable format for configuration, and it has some
  * useful hierarchical properties. It's more or less a superset of JSON, so it
  * has a lot of similar features.
  *
- * <p><b>Note: All exposed values are of type {@code String}</b> for access through
+ * <b>Note: All exposed values are of type {@code String}</b> for access through
  * the common {@link Properties#getProperty} method (e.g. in configuration property
  * resolution through {@link PropertyResourceConfigurer#setProperties(Properties)}).
  * If this is not desirable, use {@link YamlMapFactoryBean} instead.
  *
- * <p>The Properties created by this factory have nested paths for hierarchical
+ * The Properties created by this factory have nested paths for hierarchical
  * objects, so for instance this YAML
  *
  * <pre class="code">
@@ -60,7 +60,7 @@ import org.springframework.lang.Nullable;
  * servers[1]=foo.bar.com
  * </pre>
  *
- * <p>Requires SnakeYAML 1.18 or higher, as of Spring Framework 5.0.6.
+ * Requires SnakeYAML 1.18 or higher, as of Spring Framework 5.0.6.
  * @since 4.1
  */
 public class YamlPropertiesFactoryBean extends YamlProcessor implements FactoryBean<Properties>, InitializingBean {
@@ -106,7 +106,7 @@ public class YamlPropertiesFactoryBean extends YamlProcessor implements FactoryB
 	 * Template method that subclasses may override to construct the object
 	 * returned by this factory. The default implementation returns a
 	 * properties with the content of all resources.
-	 * <p>Invoked lazily the first time {@link #getObject()} is invoked in
+	 * Invoked lazily the first time {@link #getObject()} is invoked in
 	 * case of a shared singleton; else, on each {@link #getObject()} call.
 	 * @return the object returned by this factory
 	 * @see #process(MatchCallback)

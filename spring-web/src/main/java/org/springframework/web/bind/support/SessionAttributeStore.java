@@ -16,7 +16,7 @@ public interface SessionAttributeStore {
 
 	/**
 	 * Store the supplied attribute in the backend session.
-	 * <p>Can be called for new attributes as well as for existing attributes.
+	 * Can be called for new attributes as well as for existing attributes.
 	 * In the latter case, this signals that the attribute value may have been modified.
 	 * @param request the current request
 	 * @param attributeName the name of the attribute
@@ -26,7 +26,7 @@ public interface SessionAttributeStore {
 
 	/**
 	 * Retrieve the specified attribute from the backend session.
-	 * <p>This will typically be called with the expectation that the
+	 * This will typically be called with the expectation that the
 	 * attribute is already present, with an exception to be thrown
 	 * if this method returns {@code null}.
 	 * @param request the current request
@@ -38,7 +38,7 @@ public interface SessionAttributeStore {
 
 	/**
 	 * Clean up the specified attribute in the backend session.
-	 * <p>Indicates that the attribute name will not be used anymore.
+	 * Indicates that the attribute name will not be used anymore.
 	 * @param request the current request
 	 * @param attributeName the name of the attribute
 	 */

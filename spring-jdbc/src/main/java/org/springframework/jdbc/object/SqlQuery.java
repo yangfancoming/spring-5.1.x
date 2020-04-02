@@ -17,18 +17,18 @@ import org.springframework.lang.Nullable;
 /**
  * Reusable operation object representing a SQL query.
  *
- * <p>Subclasses must implement the {@link #newRowMapper} method to provide
+ * Subclasses must implement the {@link #newRowMapper} method to provide
  * an object that can extract the results of iterating over the
  * {@code ResultSet} created during the execution of the query.
  *
- * <p>This class provides a number of public {@code execute} methods that are
+ * This class provides a number of public {@code execute} methods that are
  * analogous to the different convenient JDO query execute methods. Subclasses
  * can either rely on one of these inherited methods, or can add their own
  * custom execution methods, with meaningful names and typed parameters
  * (definitely a best practice). Each custom query method will invoke one of
  * this class's untyped query methods.
  *
- * <p>Like all {@code RdbmsOperation} classes that ship with the Spring
+ * Like all {@code RdbmsOperation} classes that ship with the Spring
  * Framework, {@code SqlQuery} instances are thread-safe after their
  * initialization is complete. That is, after they are constructed and configured
  * via their setter methods, they can be used safely from multiple threads.
@@ -42,7 +42,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 
 	/**
 	 * Constructor to allow use as a JavaBean.
-	 * <p>The {@code DataSource} and SQL must be supplied before
+	 * The {@code DataSource} and SQL must be supplied before
 	 * compilation and use.
 	 */
 	public SqlQuery() {
@@ -61,7 +61,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 
 	/**
 	 * Set the number of rows expected.
-	 * <p>This can be used to ensure efficient storage of results. The
+	 * This can be used to ensure efficient storage of results. The
 	 * default behavior is not to expect any specific number of rows.
 	 */
 	public void setRowsExpected(int rowsExpected) {

@@ -99,7 +99,7 @@ public final class ParamsRequestCondition extends AbstractRequestCondition<Param
 	 * <li>A greater number of expressions.
 	 * <li>A greater number of non-negated expressions with a concrete value.
 	 * </ol>
-	 * <p>It is assumed that both instances have been obtained via
+	 * It is assumed that both instances have been obtained via
 	 * {@link #getMatchingCondition(HttpServletRequest)} and each instance
 	 * contains the matching parameter expressions only or is otherwise empty.
 	 */

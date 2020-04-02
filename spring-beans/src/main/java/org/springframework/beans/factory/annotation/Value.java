@@ -12,13 +12,13 @@ import java.lang.annotation.Target;
  * Annotation at the field or method/constructor parameter level
  * that indicates a default value expression for the affected argument.
  *
- * <p>Typically used for expression-driven dependency injection. Also supported
+ * Typically used for expression-driven dependency injection. Also supported
  * for dynamic resolution of handler method parameters, e.g. in Spring MVC.
  *
- * <p>A common use case is to assign default field values using
+ * A common use case is to assign default field values using
  * {@code #{systemProperties.myProp}} style expressions.
  *
- * <p>Note that actual processing of the {@code @Value} annotation is performed
+ * Note that actual processing of the {@code @Value} annotation is performed
  * by a {@link org.springframework.beans.factory.config.BeanPostProcessor
  * BeanPostProcessor} which in turn means that you <em>cannot</em> use
  * {@code @Value} within

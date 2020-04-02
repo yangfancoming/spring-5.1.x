@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * implementation that passes the BootstrapContext to beans that implement
  * the {@link BootstrapContextAware} interface.
  *
- * <p>{@link ResourceAdapterApplicationContext} automatically registers
+ * {@link ResourceAdapterApplicationContext} automatically registers
  * this processor with its underlying bean factory.
  *
 

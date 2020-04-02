@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.fail;
  * Integration tests which verify support for {@link DisabledIf @DisabledIf}
  * in conjunction with the {@link SpringExtension} in a JUnit Jupiter environment.
  *
- * <p>To run these tests in an IDE that does not have built-in support for the JUnit
+ * To run these tests in an IDE that does not have built-in support for the JUnit
  * Platform, simply run {@link SpringJUnitJupiterTestSuite} as a JUnit 4 test.
  *
  * @author Tadaya Tsuyukubo

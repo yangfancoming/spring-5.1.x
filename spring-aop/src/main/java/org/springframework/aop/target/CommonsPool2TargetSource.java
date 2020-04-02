@@ -16,23 +16,23 @@ import org.springframework.util.Assert;
  * {@link org.springframework.aop.TargetSource} implementation that holds
  * objects in a configurable Apache Commons2 Pool.
  *
- * <p>By default, an instance of {@code GenericObjectPool} is created.
+ * By default, an instance of {@code GenericObjectPool} is created.
  * Subclasses may change the type of {@code ObjectPool} used by
  * overriding the {@code createObjectPool()} method.
  *
- * <p>Provides many configuration properties mirroring those of the Commons Pool
+ * Provides many configuration properties mirroring those of the Commons Pool
  * {@code GenericObjectPool} class; these properties are passed to the
  * {@code GenericObjectPool} during construction. If creating a subclass of this
  * class to change the {@code ObjectPool} implementation type, pass in the values
  * of configuration properties that are relevant to your chosen implementation.
  *
- * <p>The {@code testOnBorrow}, {@code testOnReturn} and {@code testWhileIdle}
+ * The {@code testOnBorrow}, {@code testOnReturn} and {@code testWhileIdle}
  * properties are explicitly not mirrored because the implementation of
  * {@code PoolableObjectFactory} used by this class does not implement
  * meaningful validation. All exposed Commons Pool properties use the
  * corresponding Commons Pool defaults.
  *
- * <p>Compatible with Apache Commons Pool 2.4, as of Spring 4.2.
+ * Compatible with Apache Commons Pool 2.4, as of Spring 4.2.
 
  * @since 4.2
  * @see GenericObjectPool
@@ -146,7 +146,7 @@ public class CommonsPool2TargetSource extends AbstractPoolingTargetSource implem
 	/**
 	 * Set the minimum time that an idle object can sit in the pool before
 	 * it becomes subject to eviction. Default is 1800000 (30 minutes).
-	 * <p>Note that eviction runs need to be performed to take this
+	 * Note that eviction runs need to be performed to take this
 	 * setting into effect.
 	 * @see #setTimeBetweenEvictionRunsMillis
 	 * @see GenericObjectPool#setMinEvictableIdleTimeMillis
@@ -191,7 +191,7 @@ public class CommonsPool2TargetSource extends AbstractPoolingTargetSource implem
 	/**
 	 * Subclasses can override this if they want to return a specific Commons pool.
 	 * They should apply any configuration properties to the pool here.
-	 * <p>Default is a GenericObjectPool instance with the given pool size.
+	 * Default is a GenericObjectPool instance with the given pool size.
 	 * @return an empty Commons {@code ObjectPool}.
 	 * @see GenericObjectPool
 	 * @see #setMaxSize

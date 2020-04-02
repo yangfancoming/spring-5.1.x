@@ -22,7 +22,7 @@ import org.springframework.util.Assert;
  * An implementation of the AspectJ {@link ProceedingJoinPoint} interface
  * wrapping an AOP Alliance {@link org.aopalliance.intercept.MethodInvocation}.
  *
- * <p><b>Note</b>: The {@code getThis()} method returns the current Spring AOP proxy.
+ * <b>Note</b>: The {@code getThis()} method returns the current Spring AOP proxy.
  * The {@code getTarget()} method returns the current Spring AOP target (which may be
  * {@code null} if there is no target instance) as a plain POJO without any advice.
  * <b>If you want to call the object and have the advice take effect, use {@code getThis()}.</b>

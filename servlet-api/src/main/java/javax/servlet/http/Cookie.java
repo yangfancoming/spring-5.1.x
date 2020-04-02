@@ -12,31 +12,31 @@ import java.util.ResourceBundle;
  * a Web browser, saved by the browser, and later sent back to the server.
  * A cookie's value can uniquely
  * identify a client, so cookies are commonly used for session management.
- * <p>
- * <p>A cookie has a name, a single value, and optional attributes
+ *
+ * A cookie has a name, a single value, and optional attributes
  * such as a comment, path and domain qualifiers, a maximum age, and a
  * version number. Some Web browsers have bugs in how they handle the
  * optional attributes, so use them sparingly to improve the interoperability
  * of your servlets.
- * <p>
- * <p>The servlet sends cookies to the browser by using the
+ *
+ * The servlet sends cookies to the browser by using the
  * {@link HttpServletResponse#addCookie} method, which adds
  * fields to HTTP response headers to send cookies to the
  * browser, one at a time. The browser is expected to
  * support 20 cookies for each Web server, 300 cookies total, and
  * may limit cookie size to 4 KB each.
- * <p>
- * <p>The browser returns cookies to the servlet by adding
+ *
+ * The browser returns cookies to the servlet by adding
  * fields to HTTP request headers. Cookies can be retrieved
  * from a request by using the {@link HttpServletRequest#getCookies} method.
  * Several cookies might have the same name but different path attributes.
- * <p>
- * <p>Cookies affect the caching of the Web pages that use them.
+ *
+ * Cookies affect the caching of the Web pages that use them.
  * HTTP 1.0 does not cache pages that use cookies created with
  * this class. This class does not support the cache control
  * defined with HTTP 1.1.
- * <p>
- * <p>This class supports both the Version 0 (by Netscape) and Version 1
+ *
+ * This class supports both the Version 0 (by Netscape) and Version 1
  * (by RFC 2109) cookie specifications. By default, cookies are
  * created using Version 0 to ensure the best interoperability.
  *
@@ -78,21 +78,21 @@ public class Cookie implements Cloneable, Serializable {
 
     /**
      * Constructs a cookie with the specified name and value.
-     * <p>
-     * <p>The name must conform to RFC 2109. However, vendors may
+     *
+     * The name must conform to RFC 2109. However, vendors may
      * provide a configuration option that allows cookie names conforming
      * to the original Netscape Cookie Specification to be accepted.
-     * <p>
+     *
      * 名字一旦指定不允许更改，value可以更改
-     * <p>The name of a cookie cannot be changed once the cookie has
+     * The name of a cookie cannot be changed once the cookie has
      * been created.
-     * <p>
-     * <p>The value can be anything the server chooses to send. Its
+     *
+     * The value can be anything the server chooses to send. Its
      * value is probably of interest only to the server. The cookie's
      * value can be changed after creation with the
      * <code>setValue</code> method.
-     * <p>
-     * <p>By default, cookies are created according to the Netscape
+     *
+     * By default, cookies are created according to the Netscape
      * cookie specification. The version can be changed with the
      * <code>setVersion</code> method.
      */
@@ -150,8 +150,8 @@ public class Cookie implements Cloneable, Serializable {
 
     /**
      * Specifies the domain within which this cookie should be presented.
-     * <p>
-     * <p>The form of the domain name is specified by RFC 2109. A domain
+     *
+     * The form of the domain name is specified by RFC 2109. A domain
      * name begins with a dot (<code>.foo.com</code>) and means that
      * the cookie is visible to servers in a specified Domain Name System
      * (DNS) zone (for example, <code>www.foo.com</code>, but not
@@ -168,8 +168,8 @@ public class Cookie implements Cloneable, Serializable {
 
     /**
      * Gets the domain name of this Cookie.
-     * <p>
-     * <p>Domain names are formatted according to RFC 2109.
+     *
+     * Domain names are formatted according to RFC 2109.
      *
      * @return the domain name of this Cookie
      * @see #setDomain
@@ -184,13 +184,13 @@ public class Cookie implements Cloneable, Serializable {
      * 如果是负数 则浏览器关闭则删除
      * 如果是0 则直接删除
      * Sets the maximum age in seconds for this Cookie.
-     * <p>
-     * <p>A positive value indicates that the cookie will expire
+     *
+     * A positive value indicates that the cookie will expire
      * after that many seconds have passed. Note that the value is
      * the <i>maximum</i> age when the cookie will expire, not the cookie's
      * current age.
-     * <p>
-     * <p>A negative value means
+     *
+     * A negative value means
      * that the cookie is not stored persistently and will be deleted
      * when the Web browser exits. A zero value causes the cookie
      * to be deleted.
@@ -207,8 +207,8 @@ public class Cookie implements Cloneable, Serializable {
 
     /**
      * Gets the maximum age in seconds of this Cookie.
-     * <p>
-     * <p>By default, <code>-1</code> is returned, which indicates that
+     *
+     * By default, <code>-1</code> is returned, which indicates that
      * the cookie will persist until browser shutdown.
      *
      * @return an integer specifying the maximum age of the
@@ -224,14 +224,14 @@ public class Cookie implements Cloneable, Serializable {
      * 访问哪些路径需要携带此cookie
      * Specifies a path for the cookie
      * to which the client should return the cookie.
-     * <p>
-     * <p>The cookie is visible to all the pages in the directory
+     *
+     * The cookie is visible to all the pages in the directory
      * you specify, and all the pages in that directory's subdirectories.
      * A cookie's path must include the servlet that set the cookie,
      * for example, <i>/catalog</i>, which makes the cookie
      * visible to all directories on the server under <i>/catalog</i>.
-     * <p>
-     * <p>Consult RFC 2109 (available on the Internet) for more
+     *
+     * Consult RFC 2109 (available on the Internet) for more
      * information on setting path names for cookies.
      *
      * @param uri a <code>String</code> specifying a path
@@ -258,8 +258,8 @@ public class Cookie implements Cloneable, Serializable {
      * 是否需要通过安全协议传送
      * Indicates to the browser whether the cookie should only be sent
      * using a secure protocol, such as HTTPS or SSL.
-     * <p>
-     * <p>The default value is <code>false</code>.
+     *
+     * The default value is <code>false</code>.
      *
      * @param flag if <code>true</code>, sends the cookie from the browser
      *             to the server only when using a secure protocol; if <code>false</code>,
@@ -295,10 +295,10 @@ public class Cookie implements Cloneable, Serializable {
 
     /**
      * Assigns a new value to this Cookie.
-     * <p>
-     * <p>If you use a binary value, you may want to use BASE64 encoding.
-     * <p>
-     * <p>With Version 0 cookies, values should not contain white
+     *
+     * If you use a binary value, you may want to use BASE64 encoding.
+     *
+     * With Version 0 cookies, values should not contain white
      * space, brackets, parentheses, equals signs, commas,
      * double quotes, slashes, question marks, at signs, colons,
      * and semicolons. Empty values may not behave the same way
@@ -340,11 +340,11 @@ public class Cookie implements Cloneable, Serializable {
     /**
      * Sets the version of the cookie protocol that this Cookie complies
      * with.
-     * <p>
-     * <p>Version 0 complies with the original Netscape cookie
+     *
+     * Version 0 complies with the original Netscape cookie
      * specification. Version 1 complies with RFC 2109.
-     * <p>
-     * <p>Since RFC 2109 is still somewhat new, consider
+     *
+     * Since RFC 2109 is still somewhat new, consider
      * version 1 as experimental; do not use it yet on production sites.
      *
      * @param v 0 if the cookie should comply with the original Netscape
@@ -391,12 +391,12 @@ public class Cookie implements Cloneable, Serializable {
     /**
      * 是否只是通过Http传送
      * Marks or unmarks this Cookie as <i>HttpOnly</i>.
-     * <p>
-     * <p>If <tt>isHttpOnly</tt> is set to <tt>true</tt>, this cookie is
+     *
+     * If <tt>isHttpOnly</tt> is set to <tt>true</tt>, this cookie is
      * marked as <i>HttpOnly</i>, by adding the <tt>HttpOnly</tt> attribute
      * to it.
-     * <p>
-     * <p><i>HttpOnly</i> cookies are not supposed to be exposed to
+     *
+     * <i>HttpOnly</i> cookies are not supposed to be exposed to
      * client-side scripting code, and may therefore help mitigate certain
      * kinds of cross-site scripting attacks.
      *

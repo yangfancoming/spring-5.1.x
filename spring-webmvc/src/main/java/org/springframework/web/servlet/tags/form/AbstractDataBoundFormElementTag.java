@@ -19,7 +19,7 @@ import org.springframework.web.servlet.tags.NestedPathTag;
 /**
  * Base tag for all data-binding aware JSP form tags.
  *
- * <p>Provides the common {@link #setPath path} and {@link #setId id} properties.
+ * Provides the common {@link #setPath path} and {@link #setId id} properties.
  * Provides sub-classes with utility methods for accessing the {@link BindStatus}
  * of their bound value and also for {@link #writeOptionalAttribute interacting}
  * with the {@link TagWriter}.
@@ -76,7 +76,7 @@ public abstract class AbstractDataBoundFormElementTag extends AbstractFormTag im
 
 	/**
 	 * Set the value of the '{@code id}' attribute.
-	 * <p>May be a runtime expression; defaults to the value of {@link #getName()}.
+	 * May be a runtime expression; defaults to the value of {@link #getName()}.
 	 * Note that the default value may not be valid for certain tags.
 	 */
 	@Override
@@ -99,7 +99,7 @@ public abstract class AbstractDataBoundFormElementTag extends AbstractFormTag im
 	 * Further abstract sub-classes should override this method to add in
 	 * any additional default attributes but <strong>must</strong> remember
 	 * to call the {@code super} method.
-	 * <p>Concrete sub-classes should call this method when/if they want
+	 * Concrete sub-classes should call this method when/if they want
 	 * to render default attributes.
 	 * @param tagWriter the {@link TagWriter} to which any attributes are to be written
 	 */
@@ -126,7 +126,7 @@ public abstract class AbstractDataBoundFormElementTag extends AbstractFormTag im
 
 	/**
 	 * Autogenerate the '{@code id}' attribute value for this tag.
-	 * <p>The default implementation simply delegates to {@link #getName()},
+	 * The default implementation simply delegates to {@link #getName()},
 	 * deleting invalid characters (such as "[" or "]").
 	 */
 	@Nullable
@@ -137,7 +137,7 @@ public abstract class AbstractDataBoundFormElementTag extends AbstractFormTag im
 
 	/**
 	 * Get the value for the HTML '{@code name}' attribute.
-	 * <p>The default implementation simply delegates to
+	 * The default implementation simply delegates to
 	 * {@link #getPropertyPath()} to use the property path as the name.
 	 * For the most part this is desirable as it links with the server-side
 	 * expectation for data binding. However, some subclasses may wish to change
@@ -204,7 +204,7 @@ public abstract class AbstractDataBoundFormElementTag extends AbstractFormTag im
 
 	/**
 	 * Exposes the {@link PropertyEditor} for {@link EditorAwareTag}.
-	 * <p>Use {@link #getPropertyEditor()} for internal rendering purposes.
+	 * Use {@link #getPropertyEditor()} for internal rendering purposes.
 	 */
 	@Override
 	@Nullable

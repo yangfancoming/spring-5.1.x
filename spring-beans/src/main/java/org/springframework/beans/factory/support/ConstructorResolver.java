@@ -90,7 +90,7 @@ class ConstructorResolver {
 	 * "autowire constructor" (with constructor arguments by type) behavior.
 	 * Also applied if explicit constructor argument values are specified,
 	 * matching all remaining arguments with beans from the bean factory.
-	 * <p>This corresponds to constructor injection: In this mode, a Spring
+	 * This corresponds to constructor injection: In this mode, a Spring
 	 * bean factory is able to host components that expect constructor-based
 	 * dependency resolution.
 	 * @param beanName the name of the bean
@@ -432,7 +432,7 @@ class ConstructorResolver {
 	 * Instantiate the bean using a named factory method. The method may be static, if the
 	 * bean definition parameter specifies a class, rather than a "factory-bean", or
 	 * an instance variable on a factory object itself configured using Dependency Injection.
-	 * <p>Implementation requires iterating over the static or instance methods with the
+	 * Implementation requires iterating over the static or instance methods with the
 	 * name specified in the RootBeanDefinition (the method may be overloaded) and trying
 	 * to match with the parameters. We don't have the types attached to constructor args,
 	 * so trial and error is the only way to go here. The explicitArgs array may contain
@@ -698,7 +698,7 @@ class ConstructorResolver {
 	/**
 	 * Resolve the constructor arguments for this bean into the resolvedValues object.
 	 * This may involve looking up other beans.
-	 * <p>This method is also used for handling invocations of static factory methods.
+	 * This method is also used for handling invocations of static factory methods.
 	 */
 	private int resolveConstructorArguments(String beanName, RootBeanDefinition mbd, BeanWrapper bw,ConstructorArgumentValues cargs, ConstructorArgumentValues resolvedValues) {
 

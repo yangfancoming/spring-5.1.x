@@ -17,13 +17,13 @@ import org.springframework.util.Assert;
  * {@link javax.transaction.TransactionManager} reference and creating
  * a JTA {@link javax.transaction.UserTransaction} handle for it.
  *
- * <p>The JTA UserTransaction interface is an exact subset of the JTA
+ * The JTA UserTransaction interface is an exact subset of the JTA
  * TransactionManager interface. Unfortunately, it does not serve as
  * super-interface of TransactionManager, though, which requires an
  * adapter such as this class to be used when intending to talk to
  * a TransactionManager handle through the UserTransaction interface.
  *
- * <p>Used internally by Spring's {@link JtaTransactionManager} for certain
+ * Used internally by Spring's {@link JtaTransactionManager} for certain
  * scenarios. Not intended for direct use in application code.
  *
 

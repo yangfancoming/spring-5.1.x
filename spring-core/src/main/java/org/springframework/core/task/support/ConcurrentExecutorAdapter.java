@@ -11,7 +11,7 @@ import org.springframework.util.Assert;
  * Adapter that exposes the {@link java.util.concurrent.Executor} interface
  * for any Spring {@link org.springframework.core.task.TaskExecutor}.
  *
- * <p>This is less useful as of Spring 3.0, since TaskExecutor itself
+ * This is less useful as of Spring 3.0, since TaskExecutor itself
  * extends the Executor interface. The adapter is only relevant for
  * <em>hiding</em> the TaskExecutor nature of a given object now,
  * solely exposing the standard Executor interface to a client.

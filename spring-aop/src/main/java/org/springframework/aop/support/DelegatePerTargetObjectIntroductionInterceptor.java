@@ -17,18 +17,18 @@ import org.springframework.util.ReflectionUtils;
  * Convenient implementation of the
  * {@link org.springframework.aop.IntroductionInterceptor} interface.
  *
- * <p>This differs from {@link DelegatingIntroductionInterceptor} in that a single
+ * This differs from {@link DelegatingIntroductionInterceptor} in that a single
  * instance of this class can be used to advise multiple target objects, and each target
  * object will have its <i>own</i> delegate (whereas DelegatingIntroductionInterceptor
  * shares the same delegate, and hence the same state across all targets).
  *
- * <p>The {@code suppressInterface} method can be used to suppress interfaces
+ * The {@code suppressInterface} method can be used to suppress interfaces
  * implemented by the delegate class but which should not be introduced to the
  * owning AOP proxy.
  *
- * <p>An instance of this class is serializable if the delegates are.
+ * An instance of this class is serializable if the delegates are.
  *
- * <p><i>Note: There are some implementation similarities between this class and
+ * <i>Note: There are some implementation similarities between this class and
  * {@link DelegatingIntroductionInterceptor} that suggest a possible refactoring
  * to extract a common ancestor class in the future.</i>
  * @since 2.0

@@ -53,10 +53,10 @@ import org.springframework.util.StringUtils;
  * Spring {@link org.springframework.aop.Pointcut} implementation
  * that uses the AspectJ weaver to evaluate a pointcut expression.
  *
- * <p>The pointcut expression value is an AspectJ expression. This can
+ * The pointcut expression value is an AspectJ expression. This can
  * reference other pointcuts and use composition and other operations.
  *
- * <p>Naturally, as this is to be processed by Spring AOP's proxy-based model,
+ * Naturally, as this is to be processed by Spring AOP's proxy-based model,
  * only method execution pointcuts are supported.
  * @since 2.0
  */
@@ -229,7 +229,7 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 	 * If a pointcut expression has been specified in XML, the user cannot
 	 * write {@code and} as "&&" (though &amp;&amp; will work).
 	 * We also allow {@code and} between two pointcut sub-expressions.
-	 * <p>This method converts back to {@code &&} for the AspectJ pointcut parser.
+	 * This method converts back to {@code &&} for the AspectJ pointcut parser.
 	 */
 	private String replaceBooleanOperators(String pcExpr) {
 		String result = StringUtils.replace(pcExpr, " and ", " && ");
@@ -339,7 +339,7 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 			 * ensure that 'this' is correctly checked against. Without this check,
 			 * we get incorrect match on this(TYPE) where TYPE matches the target
 			 * type but not 'this' (as would be the case of JDK dynamic proxies).
-			 * <p>See SPR-2979 for the original bug.
+			 * See SPR-2979 for the original bug.
 			 */
 			if (pmi != null && thisObject != null) {  // there is a current invocation
 				RuntimeTestWalker originalMethodResidueTest = getRuntimeTestWalker(getShadowMatch(method, method));
@@ -559,7 +559,7 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 	/**
 	 * Handler for the Spring-specific {@code bean()} pointcut designator
 	 * extension to AspectJ.
-	 * <p>This handler must be added to each pointcut object that needs to
+	 * This handler must be added to each pointcut object that needs to
 	 * handle the {@code bean()} PCD. Matching context is obtained
 	 * automatically by examining a thread local variable and therefore a matching
 	 * context need not be set on the pointcut.
@@ -582,7 +582,7 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 
 	/**
 	 * Matcher class for the BeanNamePointcutDesignatorHandler.
-	 * <p>Dynamic match tests for this matcher always return true,
+	 * Dynamic match tests for this matcher always return true,
 	 * since the matching decision is made at the proxy creation time.
 	 * For static match tests, this matcher abstains to allow the overall
 	 * pointcut to match even when negation is used with the bean() pointcut.

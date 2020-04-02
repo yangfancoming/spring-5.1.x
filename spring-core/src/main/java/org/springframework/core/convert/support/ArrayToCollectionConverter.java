@@ -16,7 +16,7 @@ import org.springframework.lang.Nullable;
 /**
  * Converts an array to a Collection.
  *
- * <p>First, creates a new Collection of the requested target type.
+ * First, creates a new Collection of the requested target type.
  * Then adds each array element to the target collection.
  * Will perform an element conversion from the source component type
  * to the collection's parameterized type if necessary.

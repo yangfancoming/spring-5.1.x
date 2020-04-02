@@ -15,7 +15,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 /**
  * Resolves {@link Model} arguments and handles {@link Model} return values.
  *
- * <p>A {@link Model} return type has a set purpose. Therefore this handler
+ * A {@link Model} return type has a set purpose. Therefore this handler
  * should be configured ahead of handlers that support any return value type
  * annotated with {@code @ModelAttribute} or {@code @ResponseBody} to ensure
  * they don't take over.

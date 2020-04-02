@@ -16,7 +16,7 @@ import java.util.Map;
  * Extends the {@link javax.servlet.ServletRequest} interface to provide
  * request information for HTTP servlets.
  *
- * <p>The servlet container creates an <code>HttpServletRequest</code>
+ * The servlet container creates an <code>HttpServletRequest</code>
  * object and passes it as an argument to the servlet's service
  * methods (<code>doGet</code>, <code>doPost</code>, etc).
  *
@@ -53,7 +53,7 @@ public interface HttpServletRequest extends ServletRequest {
      * authentication.
      * If the servlet is not authenticated <code>null</code> is returned.
      *
-     * <p>Same as the value of the CGI variable AUTH_TYPE.
+     * Same as the value of the CGI variable AUTH_TYPE.
      *
      * @return		one of the static members BASIC_AUTH,
      *			FORM_AUTH, CLIENT_CERT_AUTH, DIGEST_AUTH
@@ -83,11 +83,11 @@ public interface HttpServletRequest extends ServletRequest {
      * headers that contain dates, such as
      * <code>If-Modified-Since</code>.
      *
-     * <p>The date is returned as
+     * The date is returned as
      * the number of milliseconds since January 1, 1970 GMT.
      * The header name is case insensitive.
      *
-     * <p>If the request did not have a header of the
+     * If the request did not have a header of the
      * specified name, this method returns -1. If the header
      * can't be converted to a date, the method throws
      * an <code>IllegalArgumentException</code>.
@@ -134,11 +134,11 @@ public interface HttpServletRequest extends ServletRequest {
      * Returns all the values of the specified request header
      * as an <code>Enumeration</code> of <code>String</code> objects.
      *
-     * <p>Some headers, such as <code>Accept-Language</code> can be sent
+     * Some headers, such as <code>Accept-Language</code> can be sent
      * by clients as several headers each with a different value rather than
      * sending the header as a comma separated list.
      *
-     * <p>If the request did not include any headers
+     * If the request did not include any headers
      * of the specified name, this method returns an empty
      * <code>Enumeration</code>.
      * The header name is case insensitive. You can use
@@ -162,7 +162,7 @@ public interface HttpServletRequest extends ServletRequest {
      * this request contains. If the request has no
      * headers, this method returns an empty enumeration.
      *
-     * <p>Some servlet containers do not allow
+     * Some servlet containers do not allow
      * servlets to access headers using this method, in
      * which case this method returns <code>null</code>
      *
@@ -183,7 +183,7 @@ public interface HttpServletRequest extends ServletRequest {
      * header cannot be converted to an integer, this method
      * throws a <code>NumberFormatException</code>.
      *
-     * <p>The header name is case insensitive.
+     * The header name is case insensitive.
      *
      * @param name		a <code>String</code> specifying the name
      *				of a request header
@@ -200,7 +200,7 @@ public interface HttpServletRequest extends ServletRequest {
     public int getIntHeader(String name);
 
     /**
-     * <p>Return the {@link HttpServletMapping} by which the {@link
+     * Return the {@link HttpServletMapping} by which the {@link
      * HttpServlet} for this {@code HttpServletRequest} was invoked.
      * The mappings for any applicable {@link javax.servlet.Filter}s are
      * not indicated in the result.  If the currently active {@link
@@ -229,7 +229,7 @@ public interface HttpServletRequest extends ServletRequest {
      * the returned {@code HttpServletMapping} is the one corresponding
      * to the path for the mapping last applied to this request.</p>
      *
-     * <p>The returned object is immutable.  Servlet 4.0 compliant
+     * The returned object is immutable.  Servlet 4.0 compliant
      * implementations must override this method.</p>
      *
      * @implSpec The default implementation returns a {@code
@@ -298,10 +298,10 @@ public interface HttpServletRequest extends ServletRequest {
      * but precedes the query string and will start with
      * a "/" character.
      *
-     * <p>This method returns <code>null</code> if there
+     * This method returns <code>null</code> if there
      * was no extra path information.
      *
-     * <p>Same as the value of the CGI variable PATH_INFO.
+     * Same as the value of the CGI variable PATH_INFO.
      *
      * @return		a <code>String</code>, decoded by the
      *			web container, specifying
@@ -318,7 +318,7 @@ public interface HttpServletRequest extends ServletRequest {
      * but before the query string, and translates it to a real
      * path. Same as the value of the CGI variable PATH_TRANSLATED.
      *
-     * <p>If the URL does not have any extra path information,
+     * If the URL does not have any extra path information,
      * this method returns <code>null</code> or the servlet container
      * cannot translate the virtual path to a real path for any reason
      * (such as when the web application is executed from an archive).
@@ -358,7 +358,7 @@ public interface HttpServletRequest extends ServletRequest {
      * character. For servlets in the default (root) context, this method
      * returns "". The container does not decode this string.
      *
-     * <p>It is possible that a servlet container may match a context by
+     * It is possible that a servlet container may match a context by
      * more than one context path. In such cases this method will return the
      * actual context path used by the request and it may differ from the
      * path returned by the
@@ -409,7 +409,7 @@ public interface HttpServletRequest extends ServletRequest {
      * defined using deployment descriptors.  If the user has not been
      * authenticated, the method returns <code>false</code>.
      *
-     * <p>The role name "*" should never be used as an argument in calling
+     * The role name "*" should never be used as an argument in calling
      * <code>isUserInRole</code>. Any call to <code>isUserInRole</code> with
      * "*" must return false.
      * If the role-name of the security-role to be tested is "**", and
@@ -472,7 +472,7 @@ public interface HttpServletRequest extends ServletRequest {
      * <tr><td>HEAD /xyz?a=b HTTP/1.1<td><td>/xyz
      * </table>
      *
-     * <p>To reconstruct an URL with a scheme and host, use
+     * To reconstruct an URL with a scheme and host, use
      * {@link HttpUtils#getRequestURL}.
      *
      * @return		a <code>String</code> containing
@@ -489,16 +489,16 @@ public interface HttpServletRequest extends ServletRequest {
      * number, and server path, but it does not include query
      * string parameters.
      *
-     * <p>If this request has been forwarded using
+     * If this request has been forwarded using
      * {@link javax.servlet.RequestDispatcher#forward}, the server path in the
      * reconstructed URL must reflect the path used to obtain the
      * RequestDispatcher, and not the server path specified by the client.
      *
-     * <p>Because this method returns a <code>StringBuffer</code>,
+     * Because this method returns a <code>StringBuffer</code>,
      * not a string, you can modify the URL easily, for example,
      * to append query parameters.
      *
-     * <p>This method is useful for creating redirect messages
+     * This method is useful for creating redirect messages
      * and for reporting errors.
      *
      * @return		a <code>StringBuffer</code> object containing
@@ -514,7 +514,7 @@ public interface HttpServletRequest extends ServletRequest {
      * information or a query string. Same as the value of
      * the CGI variable SCRIPT_NAME.
      *
-     * <p>This method will return an empty string ("") if the
+     * This method will return an empty string ("") if the
      * servlet used to process this request was matched using
      * the "/*" pattern.
      *
@@ -533,11 +533,11 @@ public interface HttpServletRequest extends ServletRequest {
      * current session and <code>create</code> is true, returns
      * a new session.
      *
-     * <p>If <code>create</code> is <code>false</code>
+     * If <code>create</code> is <code>false</code>
      * and the request has no valid <code>HttpSession</code>,
      * this method returns <code>null</code>.
      *
-     * <p>To make sure the session is properly maintained,
+     * To make sure the session is properly maintained,
      * you must call this method before
      * the response is committed. If the container is using cookies
      * to maintain session integrity and is asked to create a new session
@@ -584,7 +584,7 @@ public interface HttpServletRequest extends ServletRequest {
     /**
      * Checks whether the requested session ID is still valid.
      *
-     * <p>If the client did not specify any session ID, this method returns
+     * If the client did not specify any session ID, this method returns
      * <code>false</code>.
      *
      * @return			<code>true</code> if this
@@ -599,7 +599,7 @@ public interface HttpServletRequest extends ServletRequest {
     public boolean isRequestedSessionIdValid();
 
     /**
-     * <p>Checks whether the requested session ID was conveyed to the
+     * Checks whether the requested session ID was conveyed to the
      * server as an HTTP cookie.</p>
      *
      * @return			<code>true</code> if the session ID
@@ -611,7 +611,7 @@ public interface HttpServletRequest extends ServletRequest {
     public boolean isRequestedSessionIdFromCookie();
 
     /**
-     * <p>Checks whether the requested session ID was conveyed to the
+     * Checks whether the requested session ID was conveyed to the
      * server as part of the request URL.</p>
      *
      * @return <code>true</code> if the session ID was conveyed to the
@@ -639,7 +639,7 @@ public interface HttpServletRequest extends ServletRequest {
      * <code>ServletContext</code> to authenticate the user making
      * this request.
      *
-     * <p>This method may modify and commit the argument
+     * This method may modify and commit the argument
      * <code>HttpServletResponse</code>.
      *
      * @param response The <code>HttpServletResponse</code>
@@ -673,7 +673,7 @@ public interface HttpServletRequest extends ServletRequest {
      * realm used by the web container login mechanism configured for the
      * <code>ServletContext</code>.
      *
-     * <p>This method returns without throwing a <code>ServletException</code>
+     * This method returns without throwing a <code>ServletException</code>
      * when the login mechanism configured for the <code>ServletContext</code>
      * supports username password validation, and when, at the time of the
      * call to login, the identity of the caller of the request had
@@ -683,7 +683,7 @@ public interface HttpServletRequest extends ServletRequest {
      * Otherwise, this method throws a <code>ServletException</code> as
      * described below.
      *
-     * <p>When this method returns without throwing an exception, it must
+     * When this method returns without throwing an exception, it must
      * have established non-null values as the values returned by
      * <code>getUserPrincipal</code>, <code>getRemoteUser</code>, and
      * <code>getAuthType</code>.
@@ -723,11 +723,11 @@ public interface HttpServletRequest extends ServletRequest {
      * Gets all the {@link Part} components of this request, provided
      * that it is of type <code>multipart/form-data</code>.
      *
-     * <p>If this request is of type <code>multipart/form-data</code>, but
+     * If this request is of type <code>multipart/form-data</code>, but
      * does not contain any <code>Part</code> components, the returned
      * <code>Collection</code> will be empty.
      *
-     * <p>Any changes to the returned <code>Collection</code> must not
+     * Any changes to the returned <code>Collection</code> must not
      * affect this <code>HttpServletRequest</code>.
      *
      * @return a (possibly empty) <code>Collection</code> of the
@@ -805,11 +805,11 @@ public interface HttpServletRequest extends ServletRequest {
     /**
      * Get the request trailer fields.
      *
-     * <p>The returned map is not backed by the {@code HttpServletRequest} object,
+     * The returned map is not backed by the {@code HttpServletRequest} object,
      * so changes in the returned map are not reflected in the
      * {@code HttpServletRequest} object, and vice-versa.</p>
      * 
-     * <p>{@link #isTrailerFieldsReady()} should be called first to determine
+     * {@link #isTrailerFieldsReady()} should be called first to determine
      * if it is safe to call this method without causing an exception.</p>
      *
      * @implSpec

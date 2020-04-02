@@ -41,22 +41,22 @@ import org.springframework.util.StringUtils;
  * {@link Sql#scripts scripts} and inlined {@link Sql#statements statements}
  * configured via the {@link Sql @Sql} annotation.
  *
- * <p>Scripts and inlined statements will be executed {@linkplain #beforeTestMethod(TestContext) before}
+ * Scripts and inlined statements will be executed {@linkplain #beforeTestMethod(TestContext) before}
  * or {@linkplain #afterTestMethod(TestContext) after} execution of the corresponding
  * {@linkplain java.lang.reflect.Method test method}, depending on the configured
  * value of the {@link Sql#executionPhase executionPhase} flag.
  *
- * <p>Scripts and inlined statements will be executed without a transaction,
+ * Scripts and inlined statements will be executed without a transaction,
  * within an existing Spring-managed transaction, or within an isolated transaction,
  * depending on the configured value of {@link SqlConfig#transactionMode} and the
  * presence of a transaction manager.
  *
  * <h3>Script Resources</h3>
- * <p>For details on default script detection and how script resource locations
+ * For details on default script detection and how script resource locations
  * are interpreted, see {@link Sql#scripts}.
  *
  * <h3>Required Spring Beans</h3>
- * <p>A {@link PlatformTransactionManager} <em>and</em> a {@link DataSource},
+ * A {@link PlatformTransactionManager} <em>and</em> a {@link DataSource},
  * just a {@link PlatformTransactionManager}, or just a {@link DataSource}
  * must be defined as beans in the Spring {@link ApplicationContext} for the
  * corresponding test. Consult the javadocs for {@link SqlConfig#transactionMode},
@@ -132,7 +132,7 @@ public class SqlScriptsTestExecutionListener extends AbstractTestExecutionListen
 	/**
 	 * Execute the SQL scripts configured via the supplied {@link Sql @Sql}
 	 * annotation for the given {@link ExecutionPhase} and {@link TestContext}.
-	 * <p>Special care must be taken in order to properly support the configured
+	 * Special care must be taken in order to properly support the configured
 	 * {@link SqlConfig#transactionMode}.
 	 * @param sql the {@code @Sql} annotation to parse
 	 * @param executionPhase the current execution phase

@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
  * {@code WebConnectionHtmlUnitDriver} enables configuration of the
  * {@link WebConnection} for an {@link HtmlUnitDriver} instance.
  *
- * <p>This is useful because it allows a
+ * This is useful because it allows a
  * {@link org.springframework.test.web.servlet.htmlunit.MockMvcWebConnection
  * MockMvcWebConnection} to be injected.
  *
@@ -49,7 +49,7 @@ public class WebConnectionHtmlUnitDriver extends HtmlUnitDriver {
 	/**
 	 * Modify the supplied {@link WebClient} and retain a reference to it so that its
 	 * {@link WebConnection} is {@linkplain #getWebConnection accessible} for later use.
-	 * <p>Delegates to {@link HtmlUnitDriver#modifyWebClient} for default behavior
+	 * Delegates to {@link HtmlUnitDriver#modifyWebClient} for default behavior
 	 * and to {@link #modifyWebClientInternal} for further customization.
 	 * @param webClient the client to modify
 	 * @return the modified client
@@ -65,8 +65,8 @@ public class WebConnectionHtmlUnitDriver extends HtmlUnitDriver {
 
 	/**
 	 * Modify the supplied {@link WebClient}.
-	 * <p>The default implementation simply returns the supplied client unmodified.
-	 * <p>Subclasses can override this method to customize the {@code WebClient}
+	 * The default implementation simply returns the supplied client unmodified.
+	 * Subclasses can override this method to customize the {@code WebClient}
 	 * that the {@link HtmlUnitDriver} uses.
 	 * @param webClient the client to modify
 	 * @return the modified client

@@ -7,18 +7,18 @@ import java.util.Set;
  * application's startup phase and perform any required programmatic
  * registration of servlets, filters, and listeners in response to it.
  *
- * <p>Implementations of this interface may be annotated with
+ * Implementations of this interface may be annotated with
  * {@link javax.servlet.annotation.HandlesTypes HandlesTypes}, in order to
  * receive (at their {@link #onStartup} method) the Set of application
  * classes that implement, extend, or have been annotated with the class
  * types specified by the annotation.
  * 
- * <p>If an implementation of this interface does not use <tt>HandlesTypes</tt>
+ * If an implementation of this interface does not use <tt>HandlesTypes</tt>
  * annotation, or none of the application classes match the ones specified
  * by the annotation, the container must pass a <tt>null</tt> Set of classes
  * to {@link #onStartup}.
  *
- * <p>When examining the classes of an application to see if they match
+ * When examining the classes of an application to see if they match
  * any of the criteria specified by the <tt>HandlesTypes</tt> annotation
  * of a <tt>ServletContainerInitializer</tt>, the container may run into
  * classloading problems if any of the application's optional JAR
@@ -28,7 +28,7 @@ import java.util.Set;
  * while at the same time providing a configuration option that would
  * log them. 
  *
- * <p>Implementations of this interface must be declared by a JAR file
+ * Implementations of this interface must be declared by a JAR file
  * resource located inside the <tt>META-INF/services</tt> directory and
  * named for the fully qualified class name of this interface, and will be 
  * discovered using the runtime's service provider lookup mechanism
@@ -48,7 +48,7 @@ public interface ServletContainerInitializer {
      * Notifies this <tt>ServletContainerInitializer</tt> of the startup
      * of the application represented by the given <tt>ServletContext</tt>.
      *
-     * <p>If this <tt>ServletContainerInitializer</tt> is bundled in a JAR
+     * If this <tt>ServletContainerInitializer</tt> is bundled in a JAR
      * file inside the <tt>WEB-INF/lib</tt> directory of an application,
      * its <tt>onStartup</tt> method will be invoked only once during the
      * startup of the bundling application. If this

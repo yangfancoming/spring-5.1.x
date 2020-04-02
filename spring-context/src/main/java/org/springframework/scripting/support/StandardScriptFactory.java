@@ -24,7 +24,7 @@ import org.springframework.util.StringUtils;
  * on the JSR-223 script engine abstraction (as included in Java 6+).
  * Supports JavaScript, Groovy, JRuby, and other JSR-223 compliant engines.
  *
- * <p>Typically used in combination with a
+ * Typically used in combination with a
  * {@link org.springframework.scripting.support.ScriptFactoryPostProcessor};
  * see the latter's javadoc for a configuration example.
  *

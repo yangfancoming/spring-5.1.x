@@ -18,7 +18,7 @@ import org.springframework.web.server.session.WebSessionManager;
  * Extension of {@link DefaultServerWebExchange} for use in tests, along with
  * {@link MockServerHttpRequest} and {@link MockServerHttpResponse}.
  *
- * <p>See static factory methods to create an instance.
+ * See static factory methods to create an instance.
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -93,7 +93,7 @@ public final class MockServerWebExchange extends DefaultServerWebExchange {
 
 		/**
 		 * Set the session to use for the exchange.
-		 * <p>This method is mutually exclusive with
+		 * This method is mutually exclusive with
 		 * {@link #sessionManager(WebSessionManager)}.
 		 * @param session the session to use
 		 * @see MockWebSession
@@ -105,7 +105,7 @@ public final class MockServerWebExchange extends DefaultServerWebExchange {
 
 		/**
 		 * Provide a {@code WebSessionManager} instance to use with the exchange.
-		 * <p>This is mutually exclusive with {@link #session(WebSession)}.
+		 * This is mutually exclusive with {@link #session(WebSession)}.
 		 * @param sessionManager the session manager to use
 		 */
 		public Builder sessionManager(WebSessionManager sessionManager) {

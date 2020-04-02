@@ -18,7 +18,7 @@ import org.springframework.util.ObjectUtils;
  * {@link ByteBuffer} internally. with separate read and write positions.
  * Constructed using the {@link DefaultDataBufferFactory}.
  *
- * <p>Inspired by Netty's {@code ByteBuf}. Introduced so that non-Netty runtimes
+ * Inspired by Netty's {@code ByteBuf}. Introduced so that non-Netty runtimes
  * (i.e. Servlet) do not require Netty on the classpath.
  *
  * @since 5.0

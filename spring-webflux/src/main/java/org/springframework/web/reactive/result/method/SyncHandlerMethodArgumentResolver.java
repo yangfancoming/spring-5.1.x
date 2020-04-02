@@ -20,7 +20,7 @@ public interface SyncHandlerMethodArgumentResolver extends HandlerMethodArgument
 
 	/**
 	 * {@inheritDoc}
-	 * <p>By default this simply delegates to {@link #resolveArgumentValue} for
+	 * By default this simply delegates to {@link #resolveArgumentValue} for
 	 * synchronous resolution.
 	 */
 	@Override

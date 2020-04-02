@@ -17,7 +17,7 @@ import org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler
  * to be used when the Spring MVC {@link DispatcherServlet} is mapped to "/"
  * thus overriding the Servlet container's default handling of static resources.
  *
- * <p>Since this handler is configured at the lowest precedence, effectively
+ * Since this handler is configured at the lowest precedence, effectively
  * it allows all other handler mappings to handle the request, and if none
  * of them do, this handler can forward it to the "default" Servlet.
  *
@@ -46,7 +46,7 @@ public class DefaultServletHandlerConfigurer {
 
 	/**
 	 * Enable forwarding to the "default" Servlet.
-	 * <p>When this method is used the {@link DefaultServletHttpRequestHandler}
+	 * When this method is used the {@link DefaultServletHttpRequestHandler}
 	 * will try to autodetect the "default" Servlet name. Alternatively, you can
 	 * specify the name of the default Servlet via {@link #enable(String)}.
 	 * @see DefaultServletHttpRequestHandler
@@ -57,7 +57,7 @@ public class DefaultServletHandlerConfigurer {
 
 	/**
 	 * Enable forwarding to the "default" Servlet identified by the given name.
-	 * <p>This is useful when the default Servlet cannot be autodetected,
+	 * This is useful when the default Servlet cannot be autodetected,
 	 * for example when it has been manually configured.
 	 * @see DefaultServletHttpRequestHandler
 	 */

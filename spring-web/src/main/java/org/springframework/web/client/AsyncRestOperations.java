@@ -40,7 +40,7 @@ public interface AsyncRestOperations {
 	/**
 	 * Asynchronously retrieve an entity by doing a GET on the specified URL.
 	 * The response is converted and stored in an {@link ResponseEntity}.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * URI Template variables are expanded using the given URI variables, if any.
 	 * @param url the URL
 	 * @param responseType the type of the return value
 	 * @param uriVariables the variables to expand the template
@@ -52,7 +52,7 @@ public interface AsyncRestOperations {
 	/**
 	 * Asynchronously retrieve a representation by doing a GET on the URI template.
 	 * The response is converted and stored in an {@link ResponseEntity}.
-	 * <p>URI Template variables are expanded using the given map.
+	 * URI Template variables are expanded using the given map.
 	 * @param url the URL
 	 * @param responseType the type of the return value
 	 * @param uriVariables the map containing variables for the URI template
@@ -76,7 +76,7 @@ public interface AsyncRestOperations {
 
 	/**
 	 * Asynchronously retrieve all headers of the resource specified by the URI template.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * URI Template variables are expanded using the given URI variables, if any.
 	 * @param url the URL
 	 * @param uriVariables the variables to expand the template
 	 * @return all HTTP headers of that resource wrapped in a {@link Future}
@@ -86,7 +86,7 @@ public interface AsyncRestOperations {
 
 	/**
 	 * Asynchronously retrieve all headers of the resource specified by the URI template.
-	 * <p>URI Template variables are expanded using the given map.
+	 * URI Template variables are expanded using the given map.
 	 * @param url the URL
 	 * @param uriVariables the map containing variables for the URI template
 	 * @return all HTTP headers of that resource wrapped in a {@link Future}
@@ -108,7 +108,7 @@ public interface AsyncRestOperations {
 	 * Create a new resource by POSTing the given object to the URI template, and
 	 * asynchronously returns the value of the {@code Location} header. This header
 	 * typically indicates where the new resource is stored.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * URI Template variables are expanded using the given URI variables, if any.
 	 * @param url the URL
 	 * @param request the Object to be POSTed (may be {@code null})
 	 * @param uriVariables the variables to expand the template
@@ -122,7 +122,7 @@ public interface AsyncRestOperations {
 	 * Create a new resource by POSTing the given object to the URI template, and
 	 * asynchronously returns the value of the {@code Location} header. This header
 	 * typically indicates where the new resource is stored.
-	 * <p>URI Template variables are expanded using the given map.
+	 * URI Template variables are expanded using the given map.
 	 * @param url the URL
 	 * @param request the Object to be POSTed (may be {@code null})
 	 * @param uriVariables the variables to expand the template
@@ -146,7 +146,7 @@ public interface AsyncRestOperations {
 	/**
 	 * Create a new resource by POSTing the given object to the URI template,
 	 * and asynchronously returns the response as {@link ResponseEntity}.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * URI Template variables are expanded using the given URI variables, if any.
 	 * @param url the URL
 	 * @param request the Object to be POSTed (may be {@code null})
 	 * @param uriVariables the variables to expand the template
@@ -159,7 +159,7 @@ public interface AsyncRestOperations {
 	/**
 	 * Create a new resource by POSTing the given object to the URI template,
 	 * and asynchronously returns the response as {@link ResponseEntity}.
-	 * <p>URI Template variables are expanded using the given map.
+	 * URI Template variables are expanded using the given map.
 	 * @param url the URL
 	 * @param request the Object to be POSTed (may be {@code null})
 	 * @param uriVariables the variables to expand the template
@@ -185,8 +185,8 @@ public interface AsyncRestOperations {
 
 	/**
 	 * Create or update a resource by PUTting the given object to the URI.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
-	 * <p>The Future will return a {@code null} result upon completion.
+	 * URI Template variables are expanded using the given URI variables, if any.
+	 * The Future will return a {@code null} result upon completion.
 	 * @param url the URL
 	 * @param request the Object to be PUT (may be {@code null})
 	 * @param uriVariables the variables to expand the template
@@ -197,8 +197,8 @@ public interface AsyncRestOperations {
 
 	/**
 	 * Creates a new resource by PUTting the given object to URI template.
-	 * <p>URI Template variables are expanded using the given map.
-	 * <p>The Future will return a {@code null} result upon completion.
+	 * URI Template variables are expanded using the given map.
+	 * The Future will return a {@code null} result upon completion.
 	 * @param url the URL
 	 * @param request the Object to be PUT (may be {@code null})
 	 * @param uriVariables the variables to expand the template
@@ -209,7 +209,7 @@ public interface AsyncRestOperations {
 
 	/**
 	 * Creates a new resource by PUTting the given object to URL.
-	 * <p>The Future will return a {@code null} result upon completion.
+	 * The Future will return a {@code null} result upon completion.
 	 * @param url the URL
 	 * @param request the Object to be PUT (may be {@code null})
 	 * @see HttpEntity
@@ -221,8 +221,8 @@ public interface AsyncRestOperations {
 
 	/**
 	 * Asynchronously delete the resources at the specified URI.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
-	 * <p>The Future will return a {@code null} result upon completion.
+	 * URI Template variables are expanded using the given URI variables, if any.
+	 * The Future will return a {@code null} result upon completion.
 	 * @param url the URL
 	 * @param uriVariables the variables to expand in the template
 	 */
@@ -230,8 +230,8 @@ public interface AsyncRestOperations {
 
 	/**
 	 * Asynchronously delete the resources at the specified URI.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
-	 * <p>The Future will return a {@code null} result upon completion.
+	 * URI Template variables are expanded using the given URI variables, if any.
+	 * The Future will return a {@code null} result upon completion.
 	 * @param url the URL
 	 * @param uriVariables the variables to expand in the template
 	 */
@@ -239,8 +239,8 @@ public interface AsyncRestOperations {
 
 	/**
 	 * Asynchronously delete the resources at the specified URI.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
-	 * <p>The Future will return a {@code null} result upon completion.
+	 * URI Template variables are expanded using the given URI variables, if any.
+	 * The Future will return a {@code null} result upon completion.
 	 * @param url the URL
 	 */
 	ListenableFuture<?> delete(URI url) throws RestClientException;
@@ -250,7 +250,7 @@ public interface AsyncRestOperations {
 
 	/**
 	 * Asynchronously return the value of the Allow header for the given URI.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * URI Template variables are expanded using the given URI variables, if any.
 	 * @param url the URL
 	 * @param uriVariables the variables to expand in the template
 	 * @return the value of the allow header wrapped in a {@link Future}
@@ -260,7 +260,7 @@ public interface AsyncRestOperations {
 
 	/**
 	 * Asynchronously return the value of the Allow header for the given URI.
-	 * <p>URI Template variables are expanded using the given map.
+	 * URI Template variables are expanded using the given map.
 	 * @param url the URL
 	 * @param uriVariables the variables to expand in the template
 	 * @return the value of the allow header wrapped in a {@link Future}
@@ -282,7 +282,7 @@ public interface AsyncRestOperations {
 	 * Asynchronously execute the HTTP method to the given URI template, writing the
 	 * given request entity to the request, and returns the response as
 	 * {@link ResponseEntity}.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * URI Template variables are expanded using the given URI variables, if any.
 	 * @param url the URL
 	 * @param method the HTTP method (GET, POST, etc)
 	 * @param requestEntity the entity (headers and/or body) to write to the request
@@ -299,7 +299,7 @@ public interface AsyncRestOperations {
 	 * Asynchronously execute the HTTP method to the given URI template, writing the
 	 * given request entity to the request, and returns the response as
 	 * {@link ResponseEntity}.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * URI Template variables are expanded using the given URI variables, if any.
 	 * @param url the URL
 	 * @param method the HTTP method (GET, POST, etc)
 	 * @param requestEntity the entity (headers and/or body) to write to the request
@@ -405,7 +405,7 @@ public interface AsyncRestOperations {
 	 * Asynchronously execute the HTTP method to the given URI template, preparing the
 	 * request with the {@link AsyncRequestCallback}, and reading the response with a
 	 * {@link ResponseExtractor}.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * URI Template variables are expanded using the given URI variables, if any.
 	 * @param url the URL
 	 * @param method the HTTP method (GET, POST, etc)
 	 * @param requestCallback object that prepares the request
@@ -421,7 +421,7 @@ public interface AsyncRestOperations {
 	 * Asynchronously execute the HTTP method to the given URI template, preparing the
 	 * request with the {@link AsyncRequestCallback}, and reading the response with a
 	 * {@link ResponseExtractor}.
-	 * <p>URI Template variables are expanded using the given URI variables map.
+	 * URI Template variables are expanded using the given URI variables map.
 	 * @param url the URL
 	 * @param method the HTTP method (GET, POST, etc)
 	 * @param requestCallback object that prepares the request

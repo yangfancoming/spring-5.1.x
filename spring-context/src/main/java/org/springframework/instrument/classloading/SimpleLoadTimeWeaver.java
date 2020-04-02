@@ -11,7 +11,7 @@ import org.springframework.util.ClassUtils;
  * {@code LoadTimeWeaver} that builds and exposes a
  * {@link SimpleInstrumentableClassLoader}.
  *
- * <p>Mainly intended for testing environments, where it is sufficient to
+ * Mainly intended for testing environments, where it is sufficient to
  * perform all class transformation on a newly created
  * {@code ClassLoader} instance.
  *

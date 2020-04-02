@@ -56,7 +56,7 @@ public final class ResponseCookie extends HttpCookie {
 
 	/**
 	 * Return the cookie "Max-Age" attribute in seconds.
-	 * <p>A positive value indicates when the cookie expires relative to the
+	 * A positive value indicates when the cookie expires relative to the
 	 * current time. A value of 0 means the cookie should expire immediately.
 	 * A negative value means no "Max-Age" attribute in which case the cookie
 	 * is removed when the browser is closed.
@@ -98,7 +98,7 @@ public final class ResponseCookie extends HttpCookie {
 
 	/**
 	 * Return the cookie "SameSite" attribute, or {@code null} if not set.
-	 * <p>This limits the scope of the cookie such that it will only be attached to
+	 * This limits the scope of the cookie such that it will only be attached to
 	 * same site requests if {@code "Strict"} or cross-site requests if {@code "Lax"}.
 	 * @see <a href="https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis#section-4.1.2.7">RFC6265 bis</a>
 	 * @since 5.1
@@ -245,7 +245,7 @@ public final class ResponseCookie extends HttpCookie {
 		/**
 		 * Set the cookie "Max-Age" attribute.
 		 *
-		 * <p>A positive value indicates when the cookie should expire relative
+		 * A positive value indicates when the cookie should expire relative
 		 * to the current time. A value of 0 means the cookie should expire
 		 * immediately. A negative value results in no "Max-Age" attribute in
 		 * which case the cookie is removed when the browser is closed.
@@ -280,7 +280,7 @@ public final class ResponseCookie extends HttpCookie {
 
 		/**
 		 * Add the "SameSite" attribute to the cookie.
-		 * <p>This limits the scope of the cookie such that it will only be
+		 * This limits the scope of the cookie such that it will only be
 		 * attached to same site requests if {@code "Strict"} or cross-site
 		 * requests if {@code "Lax"}.
 		 * @since 5.1

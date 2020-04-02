@@ -46,7 +46,7 @@ import org.springframework.web.servlet.view.AbstractTemplateView;
 /**
  * View using the FreeMarker template engine.
  *
- * <p>Exposes the following JavaBean properties:
+ * Exposes the following JavaBean properties:
  * <ul>
  * <li><b>url</b>: the location of the FreeMarker template to be wrapped,
  * relative to the FreeMarker template context (directory).
@@ -54,12 +54,12 @@ import org.springframework.web.servlet.view.AbstractTemplateView;
  * the encoding of the FreeMarker template file
  * </ul>
  *
- * <p>Depends on a single {@link FreeMarkerConfig} object such as {@link FreeMarkerConfigurer}
+ * Depends on a single {@link FreeMarkerConfig} object such as {@link FreeMarkerConfigurer}
  * being accessible in the current web application context, with any bean name.
  * Alternatively, you can set the FreeMarker {@link Configuration} object as bean property.
  * See {@link #setConfiguration} for more details on the impacts of this approach.
  *
- * <p>Note: Spring's FreeMarker support requires FreeMarker 2.3 or higher.
+ * Note: Spring's FreeMarker support requires FreeMarker 2.3 or higher.
  *
  * @author Darren Davison
 
@@ -89,7 +89,7 @@ public class FreeMarkerView extends AbstractTemplateView {
 	/**
 	 * Set the encoding of the FreeMarker template file. Default is determined
 	 * by the FreeMarker Configuration: "ISO-8859-1" if not specified otherwise.
-	 * <p>Specify the encoding in the FreeMarker Configuration rather than per
+	 * Specify the encoding in the FreeMarker Configuration rather than per
 	 * template if all your templates share a common encoding.
 	 */
 	public void setEncoding(@Nullable String encoding) {
@@ -106,7 +106,7 @@ public class FreeMarkerView extends AbstractTemplateView {
 
 	/**
 	 * Set the FreeMarker Configuration to be used by this view.
-	 * <p>If this is not set, the default lookup will occur: a single {@link FreeMarkerConfig}
+	 * If this is not set, the default lookup will occur: a single {@link FreeMarkerConfig}
 	 * is expected in the current web application context, with any bean name.
 	 * <strong>Note:</strong> using this method will cause a new instance of {@link TaglibFactory}
 	 * to created for every single {@link FreeMarkerView} instance. This can be quite expensive
@@ -141,7 +141,7 @@ public class FreeMarkerView extends AbstractTemplateView {
 	/**
 	 * Invoked on startup. Looks for a single FreeMarkerConfig bean to
 	 * find the relevant Configuration for this factory.
-	 * <p>Checks that the template for the default Locale can be found:
+	 * Checks that the template for the default Locale can be found:
 	 * FreeMarker will check non-Locale-specific templates if a
 	 * locale-specific one is not found.
 	 * @see freemarker.cache.TemplateCache#getTemplate
@@ -200,7 +200,7 @@ public class FreeMarkerView extends AbstractTemplateView {
 
 	/**
 	 * Check that the FreeMarker template used for this view exists and is valid.
-	 * <p>Can be overridden to customize the behavior, for example in case of
+	 * Can be overridden to customize the behavior, for example in case of
 	 * multiple templates to be rendered into a single view.
 	 */
 	@Override
@@ -229,7 +229,7 @@ public class FreeMarkerView extends AbstractTemplateView {
 	/**
 	 * Process the model map by merging it with the FreeMarker template.
 	 * Output is directed to the servlet response.
-	 * <p>This method can be overridden if custom behavior is needed.
+	 * This method can be overridden if custom behavior is needed.
 	 */
 	@Override
 	protected void renderMergedTemplateModel(
@@ -242,7 +242,7 @@ public class FreeMarkerView extends AbstractTemplateView {
 	/**
 	 * Expose helpers unique to each rendering operation. This is necessary so that
 	 * different rendering operations can't overwrite each other's formats etc.
-	 * <p>Called by {@code renderMergedTemplateModel}. The default implementation
+	 * Called by {@code renderMergedTemplateModel}. The default implementation
 	 * is empty. This method can be overridden to add custom helpers to the model.
 	 * @param model the model that will be passed to the template at merge time
 	 * @param request current HTTP request
@@ -255,14 +255,14 @@ public class FreeMarkerView extends AbstractTemplateView {
 	/**
 	 * Render the FreeMarker view to the given response, using the given model
 	 * map which contains the complete template model to use.
-	 * <p>The default implementation renders the template specified by the "url"
+	 * The default implementation renders the template specified by the "url"
 	 * bean property, retrieved via {@code getTemplate}. It delegates to the
 	 * {@code processTemplate} method to merge the template instance with
 	 * the given template model.
-	 * <p>Adds the standard Freemarker hash models to the model: request parameters,
+	 * Adds the standard Freemarker hash models to the model: request parameters,
 	 * request, session and application (ServletContext), as well as the JSP tag
 	 * library hash model.
-	 * <p>Can be overridden to customize the behavior, for example to render
+	 * Can be overridden to customize the behavior, for example to render
 	 * multiple templates into a single view.
 	 * @param model the model to use for rendering
 	 * @param request current HTTP request
@@ -290,7 +290,7 @@ public class FreeMarkerView extends AbstractTemplateView {
 
 	/**
 	 * Build a FreeMarker template model for the given model Map.
-	 * <p>The default implementation builds a {@link AllHttpScopesHashModel}.
+	 * The default implementation builds a {@link AllHttpScopesHashModel}.
 	 * @param model the model to use for rendering
 	 * @param request current HTTP request
 	 * @param response current servlet response
@@ -329,7 +329,7 @@ public class FreeMarkerView extends AbstractTemplateView {
 	/**
 	 * Retrieve the FreeMarker template for the given locale,
 	 * to be rendering by this view.
-	 * <p>By default, the template specified by the "url" bean property
+	 * By default, the template specified by the "url" bean property
 	 * will be retrieved.
 	 * @param locale the current locale
 	 * @return the FreeMarker template to render
@@ -346,7 +346,7 @@ public class FreeMarkerView extends AbstractTemplateView {
 	/**
 	 * Retrieve the FreeMarker template specified by the given name,
 	 * using the encoding specified by the "encoding" bean property.
-	 * <p>Can be called by subclasses to retrieve a specific template,
+	 * Can be called by subclasses to retrieve a specific template,
 	 * for example to render multiple templates into a single view.
 	 * @param name the file name of the desired template
 	 * @param locale the current locale
@@ -361,7 +361,7 @@ public class FreeMarkerView extends AbstractTemplateView {
 
 	/**
 	 * Process the FreeMarker template to the servlet response.
-	 * <p>Can be overridden to customize the behavior.
+	 * Can be overridden to customize the behavior.
 	 * @param template the template to process
 	 * @param model the model for the template
 	 * @param response servlet response (use this to get the OutputStream or Writer)

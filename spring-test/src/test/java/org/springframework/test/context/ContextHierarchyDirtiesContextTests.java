@@ -151,7 +151,7 @@ public class ContextHierarchyDirtiesContextTests {
 	/**
 	 * {@link DirtiesContext} is declared at the class level, without specifying
 	 * the {@link DirtiesContext.HierarchyMode}.
-	 * <p>After running this test class, the context cache should be <em>exhaustively</em>
+	 * After running this test class, the context cache should be <em>exhaustively</em>
 	 * cleared beginning from the current context hierarchy, upwards to the highest
 	 * parent context, and then back down through all subhierarchies of the parent
 	 * context.
@@ -167,7 +167,7 @@ public class ContextHierarchyDirtiesContextTests {
 	/**
 	 * {@link DirtiesContext} is declared at the class level, specifying the
 	 * {@link DirtiesContext.HierarchyMode#CURRENT_LEVEL CURRENT_LEVEL} hierarchy mode.
-	 * <p>After running this test class, the context cache should be cleared
+	 * After running this test class, the context cache should be cleared
 	 * beginning from the current context hierarchy and down through all subhierarchies.
 	 */
 	@DirtiesContext(hierarchyMode = HierarchyMode.CURRENT_LEVEL)
@@ -181,7 +181,7 @@ public class ContextHierarchyDirtiesContextTests {
 	/**
 	 * {@link DirtiesContext} is declared at the method level, without specifying
 	 * the {@link DirtiesContext.HierarchyMode}.
-	 * <p>After running this test class, the context cache should be <em>exhaustively</em>
+	 * After running this test class, the context cache should be <em>exhaustively</em>
 	 * cleared beginning from the current context hierarchy, upwards to the highest
 	 * parent context, and then back down through all subhierarchies of the parent
 	 * context.
@@ -197,7 +197,7 @@ public class ContextHierarchyDirtiesContextTests {
 	/**
 	 * {@link DirtiesContext} is declared at the method level, specifying the
 	 * {@link DirtiesContext.HierarchyMode#CURRENT_LEVEL CURRENT_LEVEL} hierarchy mode.
-	 * <p>After running this test class, the context cache should be cleared
+	 * After running this test class, the context cache should be cleared
 	 * beginning from the current context hierarchy and down through all subhierarchies.
 	 */
 	public static class MethodLevelDirtiesContextWithCurrentLevelModeTestCase extends BazTestCase {

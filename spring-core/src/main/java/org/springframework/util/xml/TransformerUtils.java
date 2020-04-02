@@ -19,14 +19,14 @@ public abstract class TransformerUtils {
 
 	/**
 	 * The indent amount of characters if {@link #enableIndenting indenting is enabled}.
-	 * <p>Defaults to "2".
+	 * Defaults to "2".
 	 */
 	public static final int DEFAULT_INDENT_AMOUNT = 2;
 
 
 	/**
 	 * Enable indenting for the supplied {@link javax.xml.transform.Transformer}.
-	 * <p>If the underlying XSLT engine is Xalan, then the special output key {@code indent-amount}
+	 * If the underlying XSLT engine is Xalan, then the special output key {@code indent-amount}
 	 * will be also be set to a value of {@link #DEFAULT_INDENT_AMOUNT} characters.
 	 * @param transformer the target transformer
 	 * @see javax.xml.transform.Transformer#setOutputProperty(String, String)
@@ -38,7 +38,7 @@ public abstract class TransformerUtils {
 
 	/**
 	 * Enable indenting for the supplied {@link javax.xml.transform.Transformer}.
-	 * <p>If the underlying XSLT engine is Xalan, then the special output key {@code indent-amount}
+	 * If the underlying XSLT engine is Xalan, then the special output key {@code indent-amount}
 	 * will be also be set to a value of {@link #DEFAULT_INDENT_AMOUNT} characters.
 	 * @param transformer the target transformer
 	 * @param indentAmount the size of the indent (2 characters, 3 characters, etc)

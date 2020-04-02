@@ -16,13 +16,13 @@ import org.springframework.web.server.ServerWebExchange;
 /**
  * Contract to render {@link HandlerResult} to the HTTP response.
  *
- * <p>In contrast to an {@link org.springframework.core.codec.Encoder Encoder}
+ * In contrast to an {@link org.springframework.core.codec.Encoder Encoder}
  * which is a singleton and encodes any object of a given type, a {@code View}
  * is typically selected by name and resolved using a {@link ViewResolver}
  * which may for example match it to an HTML template. Furthermore a {@code View}
  * may render based on multiple attributes contained in the model.
  *
- * <p>A {@code View} can also choose to select an attribute from the model use
+ * A {@code View} can also choose to select an attribute from the model use
  * any existing {@code Encoder} to render alternate media types.
  *
  * @author Rossen Stoyanchev
@@ -36,7 +36,7 @@ public interface View {
 	 * for the request which can be used to create
 	 * {@link org.springframework.validation.BindingResult BindingResult}
 	 * instances for objects in to the model.
-	 * <p>Note: This attribute is not required and may not be present.
+	 * Note: This attribute is not required and may not be present.
 	 * @since 5.1.8
 	 */
 	String BINDING_CONTEXT_ATTRIBUTE = View.class.getName() + ".bindingContext";

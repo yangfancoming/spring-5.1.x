@@ -10,10 +10,10 @@ import org.springframework.lang.Nullable;
  * Abstract {@link Scope} implementation that reads from a particular scope
  * in the current thread-bound {@link RequestAttributes} object.
  *
- * <p>Subclasses simply need to implement {@link #getScope()} to instruct
+ * Subclasses simply need to implement {@link #getScope()} to instruct
  * this class which {@link RequestAttributes} scope to read attributes from.
  *
- * <p>Subclasses may wish to override the {@link #get} and {@link #remove}
+ * Subclasses may wish to override the {@link #get} and {@link #remove}
  * methods to add synchronization around the call back into this super class.
  *
  * @author Rod Johnson

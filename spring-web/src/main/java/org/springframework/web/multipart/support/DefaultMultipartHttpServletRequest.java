@@ -20,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
  * {@link org.springframework.web.multipart.MultipartHttpServletRequest}
  * interface. Provides management of pre-generated parameter values.
  *
- * <p>Used by {@link org.springframework.web.multipart.commons.CommonsMultipartResolver}.
+ * Used by {@link org.springframework.web.multipart.commons.CommonsMultipartResolver}.
  *
  * @author Trevor D. Cook
 

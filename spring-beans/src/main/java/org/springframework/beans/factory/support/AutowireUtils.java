@@ -68,7 +68,7 @@ abstract class AutowireUtils {
 
 	/**
 	 * Determine whether the given bean property is excluded from dependency checks.
-	 * <p>This implementation excludes properties defined by CGLIB.
+	 * This implementation excludes properties defined by CGLIB.
 	 * @param pd the PropertyDescriptor of the bean property
 	 * @return whether the bean property is excluded
 	 */
@@ -133,7 +133,7 @@ abstract class AutowireUtils {
 	 * Determine the target type for the generic return type of the given
 	 * <em>generic factory method</em>, where formal type variables are declared
 	 * on the given method itself.
-	 * <p>For example, given a factory method with the following signature, if
+	 * For example, given a factory method with the following signature, if
 	 * {@code resolveReturnTypeForFactoryMethod()} is invoked with the reflected
 	 * method for {@code createProxy()} and an {@code Object[]} array containing
 	 * {@code MyService.class}, {@code resolveReturnTypeForFactoryMethod()} will

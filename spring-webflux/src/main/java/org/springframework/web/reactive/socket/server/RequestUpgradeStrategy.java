@@ -17,7 +17,7 @@ import org.springframework.web.server.ServerWebExchange;
  * A strategy for upgrading an HTTP request to a WebSocket session depending
  * on the underlying network runtime.
  *
- * <p>Typically there is one such strategy for every {@link ServerHttpRequest}
+ * Typically there is one such strategy for every {@link ServerHttpRequest}
  * and {@link ServerHttpResponse} type except in the case of Servlet containers
  * for which the standard Java WebSocket API JSR-356 does not define a way to
  * upgrade a request so a custom strategy is needed for every Servlet container.

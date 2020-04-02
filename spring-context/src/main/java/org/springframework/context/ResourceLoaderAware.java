@@ -11,12 +11,12 @@ import org.springframework.core.io.ResourceLoader;
  * This is an alternative to a full {@link ApplicationContext} dependency via
  * the {@link org.springframework.context.ApplicationContextAware} interface.
  *
- * <p>Note that {@link org.springframework.core.io.Resource} dependencies can also
+ * Note that {@link org.springframework.core.io.Resource} dependencies can also
  * be exposed as bean properties of type {@code Resource}, populated via Strings
  * with automatic type conversion by the bean factory. This removes the need for
  * implementing any callback interface just for the purpose of accessing a specific file resource.
  *
- * <p>You typically need a {@link ResourceLoader} when your application object has to
+ * You typically need a {@link ResourceLoader} when your application object has to
  * access a variety of file resources whose names are calculated. A good strategy is
  * to make the object use a {@link org.springframework.core.io.DefaultResourceLoader}
  * but still implement {@code ResourceLoaderAware} to allow for overriding when
@@ -24,7 +24,7 @@ import org.springframework.core.io.ResourceLoader;
  * {@link org.springframework.context.support.ReloadableResourceBundleMessageSource}
  * for an example.
  *
- * <p>A passed-in {@code ResourceLoader} can also be checked for the
+ * A passed-in {@code ResourceLoader} can also be checked for the
  * {@link org.springframework.core.io.support.ResourcePatternResolver} interface
  * and cast accordingly, in order to resolve resource patterns into arrays of
  * {@code Resource} objects. This will always work when running in an ApplicationContext
@@ -32,7 +32,7 @@ import org.springframework.core.io.ResourceLoader;
  * {@link org.springframework.core.io.support.PathMatchingResourcePatternResolver} as
  * default; see also the {@code ResourcePatternUtils.getResourcePatternResolver} method.
  *
- * <p>As an alternative to a {@code ResourcePatternResolver} dependency, consider
+ * As an alternative to a {@code ResourcePatternResolver} dependency, consider
  * exposing bean properties of type {@code Resource} array, populated via pattern
  * Strings with automatic type conversion by the bean factory at binding time.
  * @since 10.03.2004
@@ -45,10 +45,10 @@ public interface ResourceLoaderAware extends Aware {
 
 	/**
 	 * Set the ResourceLoader that this object runs in.
-	 * <p>This might be a ResourcePatternResolver, which can be checked
+	 * This might be a ResourcePatternResolver, which can be checked
 	 * through {@code instanceof ResourcePatternResolver}. See also the
 	 * {@code ResourcePatternUtils.getResourcePatternResolver} method.
-	 * <p>Invoked after population of normal bean properties but before an init callback
+	 * Invoked after population of normal bean properties but before an init callback
 	 * like InitializingBean's {@code afterPropertiesSet} or a custom init-method.
 	 * Invoked before ApplicationContextAware's {@code setApplicationContext}.
 	 * @param resourceLoader the ResourceLoader object to be used by this object

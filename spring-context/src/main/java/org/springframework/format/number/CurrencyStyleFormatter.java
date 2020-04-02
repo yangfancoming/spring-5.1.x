@@ -15,7 +15,7 @@ import org.springframework.lang.Nullable;
 /**
  * A BigDecimal formatter for number values in currency style.
  *
- * <p>Delegates to {@link java.text.NumberFormat#getCurrencyInstance(Locale)}.
+ * Delegates to {@link java.text.NumberFormat#getCurrencyInstance(Locale)}.
  * Configures BigDecimal parsing so there is no loss of precision.
  * Can apply a specified {@link java.math.RoundingMode} to parsed values.
  *

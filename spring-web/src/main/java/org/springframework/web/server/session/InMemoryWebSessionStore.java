@@ -46,7 +46,7 @@ public class InMemoryWebSessionStore implements WebSessionStore {
 	 * Set the maximum number of sessions that can be stored. Once the limit is
 	 * reached, any attempt to store an additional session will result in an
 	 * {@link IllegalStateException}.
-	 * <p>By default set to 10000.
+	 * By default set to 10000.
 	 * @param maxSessions the maximum number of sessions
 	 * @since 5.0.8
 	 */
@@ -65,10 +65,10 @@ public class InMemoryWebSessionStore implements WebSessionStore {
 	/**
 	 * Configure the {@link Clock} to use to set lastAccessTime on every created
 	 * session and to calculate if it is expired.
-	 * <p>This may be useful to align to different timezone or to set the clock
+	 * This may be useful to align to different timezone or to set the clock
 	 * back in a test, e.g. {@code Clock.offset(clock, Duration.ofMinutes(-31))}
 	 * in order to simulate session expiration.
-	 * <p>By default this is {@code Clock.system(ZoneId.of("GMT"))}.
+	 * By default this is {@code Clock.system(ZoneId.of("GMT"))}.
 	 * @param clock the clock to use
 	 */
 	public void setClock(Clock clock) {

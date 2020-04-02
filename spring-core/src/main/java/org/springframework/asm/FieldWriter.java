@@ -96,7 +96,7 @@ final class FieldWriter extends FieldVisitor {
    * The first non standard attribute of this field. The next ones can be accessed with the {@link
    * Attribute#nextAttribute} field. May be {@literal null}.
    *
-   * <p><b>WARNING</b>: this list stores the attributes in the <i>reverse</i> order of their visit.
+   * <b>WARNING</b>: this list stores the attributes in the <i>reverse</i> order of their visit.
    * firstAttribute is actually the last attribute visited in {@link #visitAttribute}. The {@link
    * #putFieldInfo} method writes the attributes in the order defined by this list, i.e. in the
    * reverse order specified by the user.

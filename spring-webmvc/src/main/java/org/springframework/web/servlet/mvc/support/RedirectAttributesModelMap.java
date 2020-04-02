@@ -54,7 +54,7 @@ public class RedirectAttributesModelMap extends ModelMap implements RedirectAttr
 
 	/**
 	 * {@inheritDoc}
-	 * <p>Formats the attribute value as a String before adding it.
+	 * Formats the attribute value as a String before adding it.
 	 */
 	@Override
 	public RedirectAttributesModelMap addAttribute(String attributeName, @Nullable Object attributeValue) {
@@ -72,7 +72,7 @@ public class RedirectAttributesModelMap extends ModelMap implements RedirectAttr
 
 	/**
 	 * {@inheritDoc}
-	 * <p>Formats the attribute value as a String before adding it.
+	 * Formats the attribute value as a String before adding it.
 	 */
 	@Override
 	public RedirectAttributesModelMap addAttribute(Object attributeValue) {
@@ -82,7 +82,7 @@ public class RedirectAttributesModelMap extends ModelMap implements RedirectAttr
 
 	/**
 	 * {@inheritDoc}
-	 * <p>Each attribute value is formatted as a String before being added.
+	 * Each attribute value is formatted as a String before being added.
 	 */
 	@Override
 	public RedirectAttributesModelMap addAllAttributes(@Nullable Collection<?> attributeValues) {
@@ -92,7 +92,7 @@ public class RedirectAttributesModelMap extends ModelMap implements RedirectAttr
 
 	/**
 	 * {@inheritDoc}
-	 * <p>Each attribute value is formatted as a String before being added.
+	 * Each attribute value is formatted as a String before being added.
 	 */
 	@Override
 	public RedirectAttributesModelMap addAllAttributes(@Nullable Map<String, ?> attributes) {
@@ -104,7 +104,7 @@ public class RedirectAttributesModelMap extends ModelMap implements RedirectAttr
 
 	/**
 	 * {@inheritDoc}
-	 * <p>Each attribute value is formatted as a String before being merged.
+	 * Each attribute value is formatted as a String before being merged.
 	 */
 	@Override
 	public RedirectAttributesModelMap mergeAttributes(@Nullable Map<String, ?> attributes) {
@@ -125,7 +125,7 @@ public class RedirectAttributesModelMap extends ModelMap implements RedirectAttr
 
 	/**
 	 * {@inheritDoc}
-	 * <p>The value is formatted as a String before being added.
+	 * The value is formatted as a String before being added.
 	 */
 	@Override
 	public Object put(String key, @Nullable Object value) {
@@ -134,7 +134,7 @@ public class RedirectAttributesModelMap extends ModelMap implements RedirectAttr
 
 	/**
 	 * {@inheritDoc}
-	 * <p>Each value is formatted as a String before being added.
+	 * Each value is formatted as a String before being added.
 	 */
 	@Override
 	public void putAll(@Nullable Map<? extends String, ? extends Object> map) {

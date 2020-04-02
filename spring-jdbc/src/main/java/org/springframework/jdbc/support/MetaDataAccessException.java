@@ -7,7 +7,7 @@ import org.springframework.core.NestedCheckedException;
 /**
  * Exception indicating that something went wrong during JDBC meta-data lookup.
  *
- * <p>This is a checked exception since we want it to be caught, logged and
+ * This is a checked exception since we want it to be caught, logged and
  * handled rather than cause the application to fail. Failure to read JDBC
  * meta-data is usually not a fatal problem.
  * @since 1.0.1

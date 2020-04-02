@@ -20,9 +20,9 @@ import org.springframework.util.StringUtils;
 /**
  * {@link FactoryBean} that evaluates a property path on a given target object.
  *
- * <p>The target object can be specified directly or via a bean name.
+ * The target object can be specified directly or via a bean name.
  *
- * <p>Usage examples:
+ * Usage examples:
  *
  * <pre class="code">&lt;!-- target bean to be referenced by name --&gt;
  * &lt;bean id="tb" class="org.springframework.beans.TestBean" singleton="false"&gt;
@@ -53,7 +53,7 @@ import org.springframework.util.StringUtils;
  * &lt;!-- will result in 10, which is the value of property 'age' of bean 'tb' --&gt;
  * &lt;bean id="tb.age" class="org.springframework.beans.factory.config.PropertyPathFactoryBean"/&gt;</pre>
  *
- * <p>If you are using Spring 2.0 and XML Schema support in your configuration file(s),
+ * If you are using Spring 2.0 and XML Schema support in your configuration file(s),
  * you can also use the following style of configuration for property path access.
  * (See also the appendix entitled 'XML Schema-based configuration' in the Spring
  * reference manual for more examples.)
@@ -125,7 +125,7 @@ public class PropertyPathFactoryBean implements FactoryBean<Object>, BeanNameAwa
 
 	/**
 	 * Specify the type of the result from evaluating the property path.
-	 * <p>Note: This is not necessary for directly specified target objects
+	 * Note: This is not necessary for directly specified target objects
 	 * or singleton target beans, where the type can be determined through
 	 * introspection. Just specify this in case of a prototype target,
 	 * provided that you need matching by type (for example, for autowiring).

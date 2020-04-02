@@ -15,7 +15,7 @@ import org.springframework.lang.Nullable;
  * the abstract mapRow(ResultSet, int) method to map each row of
  * the JDBC ResultSet into an object.
  *
- * <p>Such manual mapping is usually preferable to "automatic"
+ * Such manual mapping is usually preferable to "automatic"
  * mapping using reflection, which can become complex in non-trivial
  * cases. For example, the present class allows different objects
  * to be used for different rows (for example, if a subclass is indicated).
@@ -25,7 +25,7 @@ import org.springframework.lang.Nullable;
  * the extraction process makes the framework much more complex
  * and delivers little real benefit.
  *
- * <p>Subclasses can be constructed providing SQL, parameter types
+ * Subclasses can be constructed providing SQL, parameter types
  * and a DataSource. SQL will often vary between subclasses.
  *
  * @author Rod Johnson

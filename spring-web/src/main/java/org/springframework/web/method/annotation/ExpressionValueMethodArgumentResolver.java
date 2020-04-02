@@ -15,11 +15,11 @@ import org.springframework.web.context.request.NativeWebRequest;
 /**
  * Resolves method arguments annotated with {@code @Value}.
  *
- * <p>An {@code @Value} does not have a name but gets resolved from the default
+ * An {@code @Value} does not have a name but gets resolved from the default
  * value string, which may contain ${...} placeholder or Spring Expression
  * Language #{...} expressions.
  *
- * <p>A {@link WebDataBinder} may be invoked to apply type conversion to
+ * A {@link WebDataBinder} may be invoked to apply type conversion to
  * resolved argument value.
  *
  * @author Rossen Stoyanchev

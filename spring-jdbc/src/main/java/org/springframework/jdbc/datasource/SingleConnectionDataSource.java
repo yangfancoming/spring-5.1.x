@@ -18,16 +18,16 @@ import org.springframework.util.ObjectUtils;
  * Implementation of {@link SmartDataSource} that wraps a single JDBC Connection
  * which is not closed after use. Obviously, this is not multi-threading capable.
  *
- * <p>Note that at shutdown, someone should close the underlying Connection
+ * Note that at shutdown, someone should close the underlying Connection
  * via the {@code close()} method. Client code will never call close
  * on the Connection handle if it is SmartDataSource-aware (e.g. uses
  * {@code DataSourceUtils.releaseConnection}).
  *
- * <p>If client code will call {@code close()} in the assumption of a pooled
+ * If client code will call {@code close()} in the assumption of a pooled
  * Connection, like when using persistence tools, set "suppressClose" to "true".
  * This will return a close-suppressing proxy instead of the physical Connection.
  *
- * <p>This is primarily intended for testing. For example, it enables easy testing
+ * This is primarily intended for testing. For example, it enables easy testing
  * outside an application server, for code that expects to work on a DataSource.
  * In contrast to {@link DriverManagerDataSource}, it reuses the same Connection
  * all the time, avoiding excessive creation of physical Connections.
@@ -185,7 +185,7 @@ public class SingleConnectionDataSource extends DriverManagerDataSource implemen
 	/**
 	 * Close the underlying Connection.
 	 * The provider of this DataSource needs to care for proper shutdown.
-	 * <p>As this bean implements DisposableBean, a bean factory will
+	 * As this bean implements DisposableBean, a bean factory will
 	 * automatically invoke this on destruction of its cached singletons.
 	 */
 	@Override
@@ -227,7 +227,7 @@ public class SingleConnectionDataSource extends DriverManagerDataSource implemen
 
 	/**
 	 * Prepare the given Connection before it is exposed.
-	 * <p>The default implementation applies the auto-commit flag, if necessary.
+	 * The default implementation applies the auto-commit flag, if necessary.
 	 * Can be overridden in subclasses.
 	 * @param con the Connection to prepare
 	 * @see #setAutoCommit

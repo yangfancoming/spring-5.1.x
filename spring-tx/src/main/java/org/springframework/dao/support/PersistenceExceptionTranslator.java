@@ -9,7 +9,7 @@ import org.springframework.lang.Nullable;
  * Interface implemented by Spring integrations with data access technologies
  * that throw runtime exceptions, such as JPA and Hibernate.
  *
- * <p>This allows consistent usage of combined exception translation functionality,
+ * This allows consistent usage of combined exception translation functionality,
  * without forcing a single translator to understand every single possible type
  * of exception.
  *
@@ -24,10 +24,10 @@ public interface PersistenceExceptionTranslator {
 	 * Translate the given runtime exception thrown by a persistence framework to a
 	 * corresponding exception from Spring's generic
 	 * {@link org.springframework.dao.DataAccessException} hierarchy, if possible.
-	 * <p>Do not translate exceptions that are not understood by this translator:
+	 * Do not translate exceptions that are not understood by this translator:
 	 * for example, if coming from another persistence framework, or resulting
 	 * from user code or otherwise unrelated to persistence.
-	 * <p>Of particular importance is the correct translation to
+	 * Of particular importance is the correct translation to
 	 * DataIntegrityViolationException, for example on constraint violation.
 	 * Implementations may use Spring JDBC's sophisticated exception translation
 	 * to provide further information in the event of SQLException as a root cause.

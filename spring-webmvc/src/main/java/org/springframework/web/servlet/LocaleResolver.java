@@ -13,16 +13,16 @@ import org.springframework.lang.Nullable;
  * both locale resolution via the request and locale modification via
  * request and response.
  *
- * <p>This interface allows for implementations based on request, session,
+ * This interface allows for implementations based on request, session,
  * cookies, etc. The default implementation is
  * {@link org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver},
  * simply using the request's locale provided by the respective HTTP header.
  *
- * <p>Use {@link org.springframework.web.servlet.support.RequestContext#getLocale()}
+ * Use {@link org.springframework.web.servlet.support.RequestContext#getLocale()}
  * to retrieve the current locale in controllers or views, independent
  * of the actual resolution strategy.
  *
- * <p>Note: As of Spring 4.0, there is an extended strategy interface
+ * Note: As of Spring 4.0, there is an extended strategy interface
  * called {@link LocaleContextResolver}, allowing for resolution of
  * a {@link org.springframework.context.i18n.LocaleContext} object,
  * potentially including associated time zone information. Spring's

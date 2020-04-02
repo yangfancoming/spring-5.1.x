@@ -147,7 +147,7 @@ public class ContentRequestMatchers {
 	 * Parse the request body and the given String as XML and assert that the
 	 * two are "similar" - i.e. they contain the same elements and attributes
 	 * regardless of order.
-	 * <p>Use of this matcher assumes the
+	 * Use of this matcher assumes the
 	 * <a href="http://xmlunit.sourceforge.net/">XMLUnit</a> library is available.
 	 * @param expectedXmlContent the expected XML content
 	 */
@@ -190,7 +190,7 @@ public class ContentRequestMatchers {
 	 * are "similar" - i.e. they contain the same attribute-value pairs
 	 * regardless of formatting with a lenient checking (extensible, and non-strict array
 	 * ordering).
-	 * <p>Use of this matcher requires the <a
+	 * Use of this matcher requires the <a
 	 * href="https://jsonassert.skyscreamer.org/">JSONassert</a> library.
 	 * @param expectedJsonContent the expected JSON content
 	 * @since 5.0.5
@@ -203,12 +203,12 @@ public class ContentRequestMatchers {
 	 * Parse the request body and the given string as JSON and assert the two
 	 * are "similar" - i.e. they contain the same attribute-value pairs
 	 * regardless of formatting.
-	 * <p>Can compare in two modes, depending on {@code strict} parameter value:
+	 * Can compare in two modes, depending on {@code strict} parameter value:
 	 * <ul>
 	 * <li>{@code true}: strict checking. Not extensible, and strict array ordering.</li>
 	 * <li>{@code false}: lenient checking. Extensible, and non-strict array ordering.</li>
 	 * </ul>
-	 * <p>Use of this matcher requires the <a
+	 * Use of this matcher requires the <a
 	 * href="https://jsonassert.skyscreamer.org/">JSONassert</a> library.
 	 * @param expectedJsonContent the expected JSON content
 	 * @param strict enables strict checking

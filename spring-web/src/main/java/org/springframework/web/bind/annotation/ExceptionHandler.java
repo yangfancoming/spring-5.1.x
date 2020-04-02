@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
  * Annotation for handling exceptions in specific handler classes and/or
  * handler methods.
  *
- * <p>Handler methods which are annotated with this annotation are allowed to
+ * Handler methods which are annotated with this annotation are allowed to
  * have very flexible signatures. They may have parameters of the following
  * types, in arbitrary order:
  * <ul>
@@ -50,7 +50,7 @@ import java.lang.annotation.Target;
  * as a convenience for preparing the model for an exception-specific view.
  * </ul>
  *
- * <p>The following return types are supported for handler methods:
+ * The following return types are supported for handler methods:
  * <ul>
  * <li>A {@code ModelAndView} object (from Servlet MVC).
  * <li>A {@link org.springframework.ui.Model} object, with the view name implicitly
@@ -77,7 +77,7 @@ import java.lang.annotation.Target;
  * (not declaring a response argument in the handler method signature).
  * </ul>
  *
- * <p>You may combine the {@code ExceptionHandler} annotation with
+ * You may combine the {@code ExceptionHandler} annotation with
  * {@link ResponseStatus @ResponseStatus} for a specific HTTP error status.
  * @since 3.0
  * @see org.springframework.web.context.request.WebRequest

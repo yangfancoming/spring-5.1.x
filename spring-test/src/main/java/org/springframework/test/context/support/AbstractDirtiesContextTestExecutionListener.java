@@ -23,7 +23,7 @@ import org.springframework.util.Assert;
  * a test as <em>dirty</em> for both test classes and test methods annotated
  * with the {@link DirtiesContext @DirtiesContext} annotation.
  *
- * <p>The core functionality for this class was extracted from
+ * The core functionality for this class was extracted from
  * {@link DirtiesContextTestExecutionListener} in Spring Framework 4.2.
  *
  * @author Sam Brannen

@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * Implemented by CciTemplate. Not often used, but a useful option
  * to enhance testability, as it can easily be mocked or stubbed.
  *
- * <p>Alternatively, the standard CCI infrastructure can be mocked.
+ * Alternatively, the standard CCI infrastructure can be mocked.
  * However, mocking this interface constitutes significantly less work.
  *
 
@@ -28,7 +28,7 @@ public interface CciOperations {
 	 * data access operations, within Spring's managed CCI environment:
 	 * that is, participating in Spring-managed transactions and converting
 	 * JCA ResourceExceptions into Spring's DataAccessException hierarchy.
-	 * <p>The callback action can return a result object, for example a
+	 * The callback action can return a result object, for example a
 	 * domain object or a collection of domain objects.
 	 * @param action the callback object that specifies the action
 	 * @return the result object returned by the action, if any
@@ -44,7 +44,7 @@ public interface CciOperations {
 	 * CCI environment: that is, participating in Spring-managed transactions
 	 * and converting JCA ResourceExceptions into Spring's DataAccessException
 	 * hierarchy.
-	 * <p>The callback action can return a result object, for example a
+	 * The callback action can return a result object, for example a
 	 * domain object or a collection of domain objects.
 	 * @param action the callback object that specifies the action
 	 * @return the result object returned by the action, if any

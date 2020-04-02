@@ -13,14 +13,14 @@ import org.springframework.util.StringUtils;
  * Convenient superclass for JNDI-based service locators,
  * providing configurable lookup of a specific JNDI resource.
  *
- * <p>Exposes a {@link #setJndiName "jndiName"} property. This may or may not
+ * Exposes a {@link #setJndiName "jndiName"} property. This may or may not
  * include the "java:comp/env/" prefix expected by Java EE applications when
  * accessing a locally mapped (Environmental Naming Context) resource. If it
  * doesn't, the "java:comp/env/" prefix will be prepended if the "resourceRef"
  * property is true (the default is <strong>false</strong>) and no other scheme
  * (e.g. "java:") is given.
  *
- * <p>Subclasses may invoke the {@link #lookup()} method whenever it is appropriate.
+ * Subclasses may invoke the {@link #lookup()} method whenever it is appropriate.
  * Some classes might do this on initialization, while others might do it
  * on demand. The latter strategy is more flexible in that it allows for
  * initialization of the locator before the JNDI object is available.

@@ -35,11 +35,11 @@ import org.springframework.test.context.transaction.programmatic.ProgrammaticTxM
  * <em>Spring TestContext Framework</em>; only intended to be run manually as a
  * convenience.
  *
- * <p>This test suite serves a dual purpose of verifying that tests run with
+ * This test suite serves a dual purpose of verifying that tests run with
  * {@link SpringRunner} can be used in conjunction with JUnit's
  * {@link Suite} runner.
  *
- * <p>Note that tests included in this suite will be executed at least twice if
+ * Note that tests included in this suite will be executed at least twice if
  * run from an automated build process, test runner, etc. that is not configured
  * to exclude tests based on a {@code "*TestSuite.class"} pattern match.
  *

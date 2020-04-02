@@ -124,7 +124,7 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 
 	/**
 	 * Set the view's name. Helpful for traceability.
-	 * <p>Framework code must call this when constructing views.
+	 * Framework code must call this when constructing views.
 	 */
 	@Override
 	public void setBeanName(@Nullable String beanName) {
@@ -195,7 +195,7 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 
 	/**
 	 * Prepare the model to use for rendering.
-	 * <p>The default implementation creates a combined output Map that includes
+	 * The default implementation creates a combined output Map that includes
 	 * model as well as static attributes with the former taking precedence.
 	 */
 	protected Mono<Map<String, Object>> getModelAttributes(
@@ -295,7 +295,7 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 
 	/**
 	 * Create a RequestContext to expose under the specified attribute name.
-	 * <p>The default implementation creates a standard RequestContext instance
+	 * The default implementation creates a standard RequestContext instance
 	 * for the given request and model. Can be overridden in subclasses for
 	 * custom instances.
 	 * @param exchange current exchange
@@ -310,7 +310,7 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 
 	/**
 	 * Return the {@link RequestDataValueProcessor} to use.
-	 * <p>The default implementation looks in the {@link #getApplicationContext()
+	 * The default implementation looks in the {@link #getApplicationContext()
 	 * Spring configuration} for a {@code RequestDataValueProcessor} bean with
 	 * the name {@link #REQUEST_DATA_VALUE_PROCESSOR_BEAN_NAME}.
 	 * @return the RequestDataValueProcessor, or null if there is none at the

@@ -23,7 +23,7 @@ import org.springframework.util.Assert;
  * transactional Connections, e.g. managed by {@link DataSourceTransactionManager}
  * or {@link org.springframework.transaction.jta.JtaTransactionManager}.
  *
- * <p>Used internally by Spring's {@link org.springframework.jdbc.core.JdbcTemplate},
+ * Used internally by Spring's {@link org.springframework.jdbc.core.JdbcTemplate},
  * Spring's JDBC operation objects and the JDBC {@link DataSourceTransactionManager}.
  * Can also be used directly in application code.
  * @see #getConnection
@@ -46,7 +46,7 @@ public abstract class DataSourceUtils {
 	 * Obtain a Connection from the given DataSource. Translates SQLExceptions into
 	 * the Spring hierarchy of unchecked generic data access exceptions, simplifying
 	 * calling code and making any exception that is thrown more meaningful.
-	 * <p>Is aware of a corresponding Connection bound to the current thread, for example
+	 * Is aware of a corresponding Connection bound to the current thread, for example
 	 * when using {@link DataSourceTransactionManager}. Will bind a Connection to the
 	 * thread if transaction synchronization is active, e.g. when running within a
 	 * {@link org.springframework.transaction.jta.JtaTransactionManager JTA} transaction).
@@ -69,10 +69,10 @@ public abstract class DataSourceUtils {
 	/**
 	 * Actually obtain a JDBC Connection from the given DataSource.
 	 * Same as {@link #getConnection}, but throwing the original SQLException.
-	 * <p>Is aware of a corresponding Connection bound to the current thread, for example
+	 * Is aware of a corresponding Connection bound to the current thread, for example
 	 * when using {@link DataSourceTransactionManager}. Will bind a Connection to the thread
 	 * if transaction synchronization is active (e.g. if in a JTA transaction).
-	 * <p>Directly accessed by {@link TransactionAwareDataSourceProxy}.
+	 * Directly accessed by {@link TransactionAwareDataSourceProxy}.
 	 * @param dataSource the DataSource to obtain Connections from
 	 * @return a JDBC Connection from the given DataSource
 	 * @throws SQLException if thrown by JDBC methods
@@ -289,7 +289,7 @@ public abstract class DataSourceUtils {
 	/**
 	 * Actually close the given Connection, obtained from the given DataSource.
 	 * Same as {@link #releaseConnection}, but throwing the original SQLException.
-	 * <p>Directly accessed by {@link TransactionAwareDataSourceProxy}.
+	 * Directly accessed by {@link TransactionAwareDataSourceProxy}.
 	 * @param con the Connection to close if necessary
 	 * (if this is {@code null}, the call will be ignored)
 	 * @param dataSource the DataSource that the Connection was obtained from

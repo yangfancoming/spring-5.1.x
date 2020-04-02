@@ -9,7 +9,7 @@ import org.springframework.lang.Nullable;
 /**
  * Base class for databinding-aware JSP tags that render HTML form input element.
  *
- * <p>Provides a set of properties corresponding to the set of HTML attributes
+ * Provides a set of properties corresponding to the set of HTML attributes
  * that are common across form input elements.
  *
  * @author Rob Harrop

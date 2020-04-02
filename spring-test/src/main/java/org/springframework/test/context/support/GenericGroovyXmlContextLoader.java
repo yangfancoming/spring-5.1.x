@@ -10,7 +10,7 @@ import org.springframework.test.context.MergedContextConfiguration;
  * Concrete implementation of {@link AbstractGenericContextLoader} that reads
  * bean definitions from Groovy scripts <em>and</em> XML configuration files.
  *
- * <p>Default resource locations are detected using the suffixes
+ * Default resource locations are detected using the suffixes
  * {@code "-context.xml"} and {@code "Context.groovy"}.
  *
  * @author Sam Brannen

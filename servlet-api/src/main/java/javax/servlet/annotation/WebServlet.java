@@ -5,7 +5,7 @@ import java.lang.annotation.*;
 /**
  * Annotation used to declare a servlet.
  *
- * <p>This annotation is processed by the container at deployment time,
+ * This annotation is processed by the container at deployment time,
  * and the corresponding servlet made available at the specified URL
  * patterns.
  * 

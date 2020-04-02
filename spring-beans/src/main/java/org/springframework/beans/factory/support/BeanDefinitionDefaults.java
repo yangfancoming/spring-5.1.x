@@ -29,7 +29,7 @@ public class BeanDefinitionDefaults {
 
 	/**
 	 * Set whether beans should be lazily initialized by default.
-	 * <p>If {@code false}, the bean will get instantiated on startup by bean
+	 * If {@code false}, the bean will get instantiated on startup by bean
 	 * factories that perform eager initialization of singletons.
 	 */
 	public void setLazyInit(boolean lazyInit) {

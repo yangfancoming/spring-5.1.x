@@ -50,7 +50,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
  * An {@link AbstractHandlerMethodExceptionResolver} that resolves exceptions
  * through {@code @ExceptionHandler} methods.
  *
- * <p>Support for custom argument and return value types can be added via
+ * Support for custom argument and return value types can be added via
  * {@link #setCustomArgumentResolvers} and {@link #setCustomReturnValueHandlers}.
  * Or alternatively to re-configure all argument and return value types use
  * {@link #setArgumentResolvers} and {@link #setReturnValueHandlers(List)}.
@@ -189,7 +189,7 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 
 	/**
 	 * Set the message body converters to use.
-	 * <p>These converters are used to convert from and to HTTP requests and responses.
+	 * These converters are used to convert from and to HTTP requests and responses.
 	 */
 	public void setMessageConverters(List<HttpMessageConverter<?>> messageConverters) {
 		this.messageConverters = messageConverters;

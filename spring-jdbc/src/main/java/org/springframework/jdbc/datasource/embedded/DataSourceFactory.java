@@ -10,7 +10,7 @@ import javax.sql.DataSource;
  * {@link org.springframework.jdbc.datasource.SimpleDriverDataSource
  * SimpleDriverDataSource} or a connection pool such as Apache DBCP or C3P0.
  *
- * <p>Call {@link #getConnectionProperties()} to configure normalized
+ * Call {@link #getConnectionProperties()} to configure normalized
  * {@code DataSource} properties before calling {@link #getDataSource()} to
  * actually get the configured {@code DataSource} instance.
  *

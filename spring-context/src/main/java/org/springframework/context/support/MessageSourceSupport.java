@@ -18,7 +18,7 @@ import org.springframework.util.ObjectUtils;
  * such as {@link java.text.MessageFormat} handling but not implementing concrete
  * methods defined in the {@link org.springframework.context.MessageSource}.
  *
- * <p>{@link AbstractMessageSource} derives from this class, providing concrete
+ * {@link AbstractMessageSource} derives from this class, providing concrete
  * {@code getMessage} implementations that delegate to a central template
  * method for message code resolution.
  *
@@ -45,11 +45,11 @@ public abstract class MessageSourceSupport {
 	/**
 	 * Set whether to always apply the {@code MessageFormat} rules,
 	 * parsing even messages without arguments.
-	 * <p>Default is "false": Messages without arguments are by default
+	 * Default is "false": Messages without arguments are by default
 	 * returned as-is, without parsing them through MessageFormat.
 	 * Set this to "true" to enforce MessageFormat for all messages,
 	 * expecting all message texts to be written with MessageFormat escaping.
-	 * <p>For example, MessageFormat expects a single quote to be escaped
+	 * For example, MessageFormat expects a single quote to be escaped
 	 * as "''". If your message texts are all written with such escaping,
 	 * even when not defining argument placeholders, you need to set this
 	 * flag to "true". Else, only message texts with actual arguments
@@ -73,7 +73,7 @@ public abstract class MessageSourceSupport {
 	 * Render the given default message String. The default message is
 	 * passed in as specified by the caller and can be rendered into
 	 * a fully formatted default message shown to the user.
-	 * <p>The default implementation passes the String to {@code formatMessage},
+	 * The default implementation passes the String to {@code formatMessage},
 	 * resolving any argument placeholders found in them. Subclasses may override
 	 * this method to plug in custom processing of default messages.
 	 * @param defaultMessage the passed-in default message String
@@ -147,7 +147,7 @@ public abstract class MessageSourceSupport {
 
 	/**
 	 * Template method for resolving argument objects.
-	 * <p>The default implementation simply returns the given argument array as-is.
+	 * The default implementation simply returns the given argument array as-is.
 	 * Can be overridden in subclasses in order to resolve special argument types.
 	 * @param args the original argument array
 	 * @param locale the Locale to resolve against

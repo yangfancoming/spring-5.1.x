@@ -31,7 +31,7 @@ public class TransactionalAnnotatedConfigClassWithAtConfigurationTests extends
 	/**
 	 * This is <b>intentionally</b> annotated with {@code @Configuration}.
 	 *
-	 * <p>Consequently, this class contains standard singleton bean methods
+	 * Consequently, this class contains standard singleton bean methods
 	 * instead of <i>annotated factory bean methods</i>.
 	 */
 	@Configuration

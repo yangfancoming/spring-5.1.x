@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
 /**
  * Utility class for handling registration of auto-proxy creators used internally
  * by the '{@code aop}' namespace tags.
- * <p>Only a single auto-proxy creator should be registered and multiple configuration
+ * Only a single auto-proxy creator should be registered and multiple configuration
  * elements may wish to register different concrete implementations. As such this class
  * delegates to {@link AopConfigUtils} which provides a simple escalation protocol.
  * Callers may request a particular auto-proxy creator and know that creator,

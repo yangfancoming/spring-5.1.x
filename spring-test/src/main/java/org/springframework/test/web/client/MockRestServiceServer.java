@@ -22,7 +22,7 @@ import org.springframework.web.client.support.RestGatewaySupport;
  * {@code RestTemplate} as well as mock responses to send back thus removing the
  * need for an actual server.
  *
- * <p>Below is an example that assumes static imports from
+ * Below is an example that assumes static imports from
  * {@code MockRestRequestMatchers}, {@code MockRestResponseCreators},
  * and {@code ExpectedCount}:
  *
@@ -40,7 +40,7 @@ import org.springframework.web.client.support.RestGatewaySupport;
  * server.verify();
  * </pre>
  *
- * <p>Note that as an alternative to the above you can also set the
+ * Note that as an alternative to the above you can also set the
  * {@link MockMvcClientHttpRequestFactory} on a {@code RestTemplate} which
  * allows executing requests against an instance of
  * {@link org.springframework.test.web.servlet.MockMvc MockMvc}.
@@ -68,7 +68,7 @@ public final class MockRestServiceServer {
 	 * Set up an expectation for a single HTTP request. The returned
 	 * {@link ResponseActions} can be used to set up further expectations as
 	 * well as to define the response.
-	 * <p>This method may be invoked any number times before starting to make
+	 * This method may be invoked any number times before starting to make
 	 * request through the underlying {@code RestTemplate} in order to set up
 	 * all expected requests.
 	 * @param matcher request matcher
@@ -81,7 +81,7 @@ public final class MockRestServiceServer {
 	/**
 	 * An alternative to {@link #expect(RequestMatcher)} that also indicates how
 	 * many times the request is expected to be executed.
-	 * <p>When request expectations have an expected count greater than one, only
+	 * When request expectations have an expected count greater than one, only
 	 * the first execution is expected to match the order of declaration. Subsequent
 	 * request executions may be inserted anywhere thereafter.
 	 * @param count the expected count
@@ -181,9 +181,9 @@ public final class MockRestServiceServer {
 		/**
 		 * Whether to allow expected requests to be executed in any order not
 		 * necessarily matching the order of declaration.
-		 * <p>Effectively a shortcut for:<br>
+		 * Effectively a shortcut for:<br>
 		 * {@code builder.build(new UnorderedRequestExpectationManager)}.
-		 * <p>By default this is set to {@code false}
+		 * By default this is set to {@code false}
 		 * @param ignoreExpectOrder whether to ignore the order of expectations
 		 */
 		MockRestServiceServerBuilder ignoreExpectOrder(boolean ignoreExpectOrder);

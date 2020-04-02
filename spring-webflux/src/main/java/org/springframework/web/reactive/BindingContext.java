@@ -14,11 +14,11 @@ import org.springframework.web.server.ServerWebExchange;
  * Context to assist with binding request data onto Objects and provide access
  * to a shared {@link Model} with controller-specific attributes.
  *
- * <p>Provides  methods to create a {@link WebExchangeDataBinder} for a specific
+ * Provides  methods to create a {@link WebExchangeDataBinder} for a specific
  * target, command Object to apply data binding and validation to, or without a
  * target Object for simple type conversion from request values.
  *
- * <p>Container for the default model for the request.
+ * Container for the default model for the request.
  *
  * @author Rossen Stoyanchev
  * @since 5.0

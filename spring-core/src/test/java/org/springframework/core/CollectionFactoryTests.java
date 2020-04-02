@@ -39,7 +39,7 @@ public class CollectionFactoryTests {
 	 * The test demonstrates that the generics-based API for
 	 * {@link CollectionFactory#createApproximateCollection(Object, int)}
 	 * is not type-safe.
-	 * <p>Specifically, the parameterized type {@code E} is not bound to
+	 * Specifically, the parameterized type {@code E} is not bound to
 	 * the type of elements contained in the {@code collection} argument
 	 * passed to {@code createApproximateCollection()}. Thus casting the
 	 * value returned by {@link EnumSet#copyOf(EnumSet)} to
@@ -86,7 +86,7 @@ public class CollectionFactoryTests {
 	 * The test demonstrates that the generics-based API for
 	 * {@link CollectionFactory#createApproximateMap(Object, int)}
 	 * is not type-safe.
-	 * <p>The reasoning is similar that described in
+	 * The reasoning is similar that described in
 	 * {@link #createApproximateCollectionIsNotTypeSafeForEnumSet}.
 	 */
 	@Test

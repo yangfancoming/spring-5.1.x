@@ -17,11 +17,11 @@ import org.springframework.util.concurrent.SuccessCallback;
  * A pass-through {@code Future} handle that can be used for method signatures
  * which are declared with a {@code Future} return type for asynchronous execution.
  *
- * <p>As of Spring 4.1, this class implements {@link ListenableFuture}, not just
+ * As of Spring 4.1, this class implements {@link ListenableFuture}, not just
  * plain {@link java.util.concurrent.Future}, along with the corresponding support
  * in {@code @Async} processing.
  *
- * <p>As of Spring 4.2, this class also supports passing execution exceptions back
+ * As of Spring 4.2, this class also supports passing execution exceptions back
  * to the caller.
  *
 

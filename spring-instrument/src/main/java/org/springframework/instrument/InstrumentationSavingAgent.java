@@ -39,7 +39,7 @@ public final class InstrumentationSavingAgent {
 
 	/**
 	 * Return the {@link Instrumentation} interface exposed by the JVM.
-	 * <p>Note that this agent class will typically not be available in the classpath
+	 * Note that this agent class will typically not be available in the classpath
 	 * unless the agent is actually specified on JVM startup. If you intend to do
 	 * conditional checking with respect to agent availability, consider using
 	 * {@link org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver#getInstrumentation()}

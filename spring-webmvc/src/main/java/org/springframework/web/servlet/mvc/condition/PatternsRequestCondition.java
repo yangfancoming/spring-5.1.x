@@ -169,7 +169,7 @@ public final class PatternsRequestCondition extends AbstractRequestCondition<Pat
 	 * Checks if any of the patterns match the given request and returns an instance
 	 * that is guaranteed to contain matching patterns, sorted via
 	 * {@link PathMatcher#getPatternComparator(String)}.
-	 * <p>A matching pattern is obtained by making checks in the following order:
+	 * A matching pattern is obtained by making checks in the following order:
 	 * <ul>
 	 * <li>Direct match
 	 * <li>Pattern match with ".*" appended if the pattern doesn't already contain a "."
@@ -254,7 +254,7 @@ public final class PatternsRequestCondition extends AbstractRequestCondition<Pat
 	 * {@link PathMatcher#getPatternComparator(String)}. If all compared
 	 * patterns match equally, but one instance has more patterns, it is
 	 * considered a closer match.
-	 * <p>It is assumed that both instances have been obtained via
+	 * It is assumed that both instances have been obtained via
 	 * {@link #getMatchingCondition(HttpServletRequest)} to ensure they
 	 * contain only patterns that match the request and are sorted with
 	 * the best matches on top.

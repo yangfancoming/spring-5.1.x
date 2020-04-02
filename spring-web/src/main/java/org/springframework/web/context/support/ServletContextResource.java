@@ -24,7 +24,7 @@ import org.springframework.web.util.WebUtils;
  * {@link javax.servlet.ServletContext} resources, interpreting
  * relative paths within the web application root directory.
  *
- * <p>Always supports stream access and URL access, but only allows
+ * Always supports stream access and URL access, but only allows
  * {@code java.io.File} access when the web application archive
  * is expanded.
  *
@@ -43,7 +43,7 @@ public class ServletContextResource extends AbstractFileResolvingResource implem
 
 	/**
 	 * Create a new ServletContextResource.
-	 * <p>The Servlet spec requires that resource paths start with a slash,
+	 * The Servlet spec requires that resource paths start with a slash,
 	 * even if many containers accept paths without leading slash too.
 	 * Consequently, the given path will be prepended with a slash if it
 	 * doesn't already start with one.

@@ -70,7 +70,7 @@ import org.springframework.util.StringValueResolver;
  * as base class for bean factory implementations which obtain bean definitions
  * from some backend resource (where bean definition access is an expensive operation).
  *
- * <p>This class provides a singleton cache (through its base class
+ * This class provides a singleton cache (through its base class
  * {@link org.springframework.beans.factory.support.DefaultSingletonBeanRegistry},
  * singleton/prototype determination, {@link org.springframework.beans.factory.FactoryBean}
  * handling, aliases, bean definition merging for child bean definitions,
@@ -79,7 +79,7 @@ import org.springframework.util.StringValueResolver;
  * hierarchy (delegating to the parent in case of an unknown bean), through implementing
  * the {@link org.springframework.beans.factory.HierarchicalBeanFactory} interface.
  *
- * <p>The main template methods to be implemented by subclasses are
+ * The main template methods to be implemented by subclasses are
  * {@link #getBeanDefinition} and {@link #createBean}, retrieving a bean definition
  * for a given bean name and creating a bean instance for a given bean definition,
  * respectively. Default implementations of those operations can be found in
@@ -956,7 +956,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	/**
 	 * Return a 'merged' BeanDefinition for the given bean name,
 	 * merging a child bean definition with its parent if necessary.
-	 * <p>This {@code getMergedBeanDefinition} considers bean definition
+	 * This {@code getMergedBeanDefinition} considers bean definition
 	 * in ancestors as well.
 	 * @param name the name of the bean to retrieve the merged definition for
 	 * (may be an alias)
@@ -1007,7 +1007,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 	/**
 	 * Callback before prototype creation.
-	 * <p>The default implementation register the prototype as currently in creation.
+	 * The default implementation register the prototype as currently in creation.
 	 * @param beanName the name of the prototype about to be created
 	 * @see #isPrototypeCurrentlyInCreation
 	 */
@@ -1029,7 +1029,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 	/**
 	 * Callback after prototype creation.
-	 * <p>The default implementation marks the prototype as not in creation anymore.
+	 * The default implementation marks the prototype as not in creation anymore.
 	 * @param beanName the name of the prototype that has been created
 	 * @see #isPrototypeCurrentlyInCreation
 	 */
@@ -1114,7 +1114,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * Initialize the given BeanWrapper with the custom editors registered
 	 * with this factory. To be called for BeanWrappers that will create
 	 * and populate bean instances.
-	 * <p>The default implementation delegates to {@link #registerCustomEditors}.
+	 * The default implementation delegates to {@link #registerCustomEditors}.
 	 * Can be overridden in subclasses.
 	 * @param bw the BeanWrapper to initialize
 	 */
@@ -1126,7 +1126,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	/**
 	 * Initialize the given PropertyEditorRegistry with the custom editors
 	 * that have been registered with this BeanFactory.
-	 * <p>To be called for BeanWrappers that will create and populate bean
+	 * To be called for BeanWrappers that will create and populate bean
 	 * instances, and for SimpleTypeConverter used for constructor argument
 	 * and factory method type conversion.
 	 * @param registry the PropertyEditorRegistry to initialize
@@ -1313,7 +1313,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	/**
 	 * Clear the merged bean definition cache, removing entries for beans
 	 * which are not considered eligible for full metadata caching yet.
-	 * <p>Typically triggered after changes to the original bean definitions,
+	 * Typically triggered after changes to the original bean definitions,
 	 * e.g. after applying a {@code BeanFactoryPostProcessor}. Note that metadata
 	 * for beans which have already been created at this point will be kept around.
 	 * @since 4.2
@@ -1436,7 +1436,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * specified bean. Called by {@link #getType} and {@link #isTypeMatch}.
 	 * Does not need to handle FactoryBeans specifically, since it is only
 	 * supposed to operate on the raw bean type.
-	 * <p>This implementation is simplistic in that it is not able to
+	 * This implementation is simplistic in that it is not able to
 	 * handle factory methods and InstantiationAwareBeanPostProcessors.
 	 * It only predicts the bean type correctly for a standard bean.
 	 * To be overridden in subclasses, applying more sophisticated type detection.
@@ -1469,7 +1469,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	/**
 	 * Determine the bean type for the given FactoryBean definition, as far as possible.
 	 * Only called if there is no singleton instance registered for the target bean already.
-	 * <p>The default implementation creates the FactoryBean via {@code getBean}
+	 * The default implementation creates the FactoryBean via {@code getBean}
 	 * to call its {@code getObjectType} method. Subclasses are encouraged to optimize
 	 * this, typically by just instantiating the FactoryBean but not populating it yet,
 	 * trying whether its {@code getObjectType} method already returns a type.
@@ -1503,7 +1503,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 	/**
 	 * Mark the specified bean as already created (or about to be created).
-	 * <p>This allows the bean factory to optimize its caching for repeated creation of the specified bean.
+	 * This allows the bean factory to optimize its caching for repeated creation of the specified bean.
 	 * @param beanName the name of the bean
 	 */
 	protected void markBeanAsCreated(String beanName) {
@@ -1659,7 +1659,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 	/**
 	 * Determine whether the given bean requires destruction on shutdown.
-	 * <p>The default implementation checks the DisposableBean interface as well as
+	 * The default implementation checks the DisposableBean interface as well as
 	 * a specified destroy method and registered DestructionAwareBeanPostProcessors.
 	 * @param bean the bean instance to check
 	 * @param mbd the corresponding bean definition
@@ -1710,7 +1710,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * Check if this bean factory contains a bean definition with the given name.
 	 * Does not consider any hierarchy this factory may participate in.
 	 * Invoked by {@code containsBean} when no cached singleton instance is found.
-	 * <p>Depending on the nature of the concrete bean factory implementation,
+	 * Depending on the nature of the concrete bean factory implementation,
 	 * this operation might be expensive (for example, because of directory lookups
 	 * in external registries). However, for listable bean factories, this usually
 	 * just amounts to a local hash lookup: The operation is therefore part of the
@@ -1727,7 +1727,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * Return the bean definition for the given bean name.
 	 * Subclasses should normally implement caching, as this method is invoked
 	 * by this class every time bean definition metadata is needed.
-	 * <p>Depending on the nature of the concrete bean factory implementation,
+	 * Depending on the nature of the concrete bean factory implementation,
 	 * this operation might be expensive (for example, because of directory lookups
 	 * in external registries). However, for listable bean factories, this usually
 	 * just amounts to a local hash lookup: The operation is therefore part of the
@@ -1748,7 +1748,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * Create a bean instance for the given merged bean definition (and arguments).
 	 * The bean definition will already have been merged with the parent definition
 	 * in case of a child definition.
-	 * <p>All bean retrieval methods delegate to this method for actual bean creation.
+	 * All bean retrieval methods delegate to this method for actual bean creation.
 	 * @param beanName the name of the bean
 	 * @param mbd the merged bean definition for the bean
 	 * @param args explicit arguments to use for constructor or factory method invocation

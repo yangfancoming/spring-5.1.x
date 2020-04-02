@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
 /**
  * {@code @Configuration} class that registers a {@link LoadTimeWeaver} bean.
  *
- * <p>This configuration class is automatically imported when using the
+ * This configuration class is automatically imported when using the
  * {@link EnableLoadTimeWeaving} annotation. See {@code @EnableLoadTimeWeaving}
  * javadoc for complete usage details.
 

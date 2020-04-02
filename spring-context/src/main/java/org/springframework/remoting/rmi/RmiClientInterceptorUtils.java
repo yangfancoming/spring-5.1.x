@@ -26,7 +26,7 @@ import org.springframework.util.ReflectionUtils;
  * Factored-out methods for performing invocations within an RMI client.
  * Can handle both RMI and non-RMI service interfaces working on an RMI stub.
  *
- * <p>Note: This is an SPI class, not intended to be used by applications.
+ * Note: This is an SPI class, not intended to be used by applications.
  *
 
  * @since 1.1
@@ -75,7 +75,7 @@ public abstract class RmiClientInterceptorUtils {
 	 * Wrap the given arbitrary exception that happened during remote access
 	 * in either a RemoteException or a Spring RemoteAccessException (if the
 	 * method signature does not support RemoteException).
-	 * <p>Only call this for remote access exceptions, not for exceptions
+	 * Only call this for remote access exceptions, not for exceptions
 	 * thrown by the target service itself!
 	 * @param method the invoked method
 	 * @param ex the exception that happened, to be used as cause for the
@@ -141,7 +141,7 @@ public abstract class RmiClientInterceptorUtils {
 
 	/**
 	 * Determine whether the given RMI exception indicates a connect failure.
-	 * <p>Treats RMI's ConnectException, ConnectIOException, UnknownHostException,
+	 * Treats RMI's ConnectException, ConnectIOException, UnknownHostException,
 	 * NoSuchObjectException and StubNotFoundException as connect failure.
 	 * @param ex the RMI exception to check
 	 * @return whether the exception should be treated as connect failure

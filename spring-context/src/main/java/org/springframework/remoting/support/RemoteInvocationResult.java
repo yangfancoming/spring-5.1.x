@@ -11,10 +11,10 @@ import org.springframework.lang.Nullable;
  * Encapsulates a remote invocation result, holding a result value or an exception.
  * Used for HTTP-based serialization invokers.
  *
- * <p>This is an SPI class, typically not used directly by applications.
+ * This is an SPI class, typically not used directly by applications.
  * Can be subclassed for additional invocation parameters.
  *
- * <p>Both {@link RemoteInvocation} and {@link RemoteInvocationResult} are designed
+ * Both {@link RemoteInvocation} and {@link RemoteInvocationResult} are designed
  * for use with standard Java serialization as well as JavaBean-style serialization.
  *
 
@@ -65,7 +65,7 @@ public class RemoteInvocationResult implements Serializable {
 	/**
 	 * Set the result value returned by a successful invocation of the
 	 * target method, if any.
-	 * <p>This setter is intended for JavaBean-style deserialization.
+	 * This setter is intended for JavaBean-style deserialization.
 	 * Use {@link #RemoteInvocationResult(Object)} otherwise.
 	 * @see #RemoteInvocationResult()
 	 */
@@ -86,7 +86,7 @@ public class RemoteInvocationResult implements Serializable {
 	/**
 	 * Set the exception thrown by an unsuccessful invocation of the
 	 * target method, if any.
-	 * <p>This setter is intended for JavaBean-style deserialization.
+	 * This setter is intended for JavaBean-style deserialization.
 	 * Use {@link #RemoteInvocationResult(Throwable)} otherwise.
 	 * @see #RemoteInvocationResult()
 	 */

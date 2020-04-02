@@ -59,7 +59,7 @@ public final class EmptyTargetSource implements TargetSource, Serializable {
 
 	/**
 	 * Create a new instance of the {@link EmptyTargetSource} class.
-	 * <p>This constructor is {@code private} to enforce the
+	 * This constructor is {@code private} to enforce the
 	 * Singleton pattern / factory method pattern.
 	 * @param targetClass the target class to expose (may be {@code null})
 	 * @param isStatic whether the TargetSource is marked as static

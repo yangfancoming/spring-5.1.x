@@ -8,12 +8,12 @@ import org.springframework.aop.SpringProxy;
 
 /**
  * Default {@link AopProxyFactory} implementation, creating either a CGLIB proxy or a JDK dynamic proxy.
- * <p>Creates a CGLIB proxy if one the following is true for a given
+ * Creates a CGLIB proxy if one the following is true for a given
  * {@link AdvisedSupport} instance:
  * <li>the {@code optimize} flag is set
  * <li>the {@code proxyTargetClass} flag is set
  * <li>no proxy interfaces have been specified
- * <p>In general, specify {@code proxyTargetClass} to enforce a CGLIB proxy,
+ * In general, specify {@code proxyTargetClass} to enforce a CGLIB proxy,
  * or specify one or more interfaces to use a JDK dynamic proxy.
  * @since 12.03.2004
  * @see AdvisedSupport#setOptimize

@@ -20,7 +20,7 @@ import org.springframework.util.FastByteArrayOutputStream;
  * the {@linkplain #getOutputStream() output stream} and {@linkplain #getWriter() writer},
  * and allows this content to be retrieved via a {@link #getContentAsByteArray() byte array}.
  *
- * <p>Used e.g. by {@link org.springframework.web.filter.ShallowEtagHeaderFilter}.
+ * Used e.g. by {@link org.springframework.web.filter.ShallowEtagHeaderFilter}.
  * Note: As of Spring Framework 5.0, this wrapper is built on the Servlet 3.1 API.
  *
 

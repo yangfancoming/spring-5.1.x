@@ -21,11 +21,11 @@ import org.springframework.web.util.WebUtils;
  * Base class for {@code Filter}s that perform logging operations before and after a request
  * is processed.
  *
- * <p>Subclasses should override the {@code beforeRequest(HttpServletRequest, String)} and
+ * Subclasses should override the {@code beforeRequest(HttpServletRequest, String)} and
  * {@code afterRequest(HttpServletRequest, String)} methods to perform the actual logging
  * around the request.
  *
- * <p>Subclasses are passed the message to write to the log in the {@code beforeRequest} and
+ * Subclasses are passed the message to write to the log in the {@code beforeRequest} and
  * {@code afterRequest} methods. By default, only the URI of the request is logged. However,
  * setting the {@code includeQueryString} property to {@code true} will cause the query string of
  * the request to be included also; this can be further extended through {@code includeClientInfo}
@@ -33,7 +33,7 @@ import org.springframework.web.util.WebUtils;
  * {@code includePayload} flag: Note that this will only log the part of the payload which has
  * actually been read, not necessarily the entire body of the request.
  *
- * <p>Prefixes and suffixes for the before and after messages can be configured using the
+ * Prefixes and suffixes for the before and after messages can be configured using the
  * {@code beforeMessagePrefix}, {@code afterMessagePrefix}, {@code beforeMessageSuffix} and
  * {@code afterMessageSuffix} properties.
  *
@@ -94,7 +94,7 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 
 	/**
 	 * Set whether the query string should be included in the log message.
-	 * <p>Should be configured using an {@code <init-param>} for parameter name
+	 * Should be configured using an {@code <init-param>} for parameter name
 	 * "includeQueryString" in the filter definition in {@code web.xml}.
 	 */
 	public void setIncludeQueryString(boolean includeQueryString) {
@@ -111,7 +111,7 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 	/**
 	 * Set whether the client address and session id should be included in the
 	 * log message.
-	 * <p>Should be configured using an {@code <init-param>} for parameter name
+	 * Should be configured using an {@code <init-param>} for parameter name
 	 * "includeClientInfo" in the filter definition in {@code web.xml}.
 	 */
 	public void setIncludeClientInfo(boolean includeClientInfo) {
@@ -128,7 +128,7 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 
 	/**
 	 * Set whether the request headers should be included in the log message.
-	 * <p>Should be configured using an {@code <init-param>} for parameter name
+	 * Should be configured using an {@code <init-param>} for parameter name
 	 * "includeHeaders" in the filter definition in {@code web.xml}.
 	 * @since 4.3
 	 */
@@ -146,7 +146,7 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 
 	/**
 	 * Set whether the request payload (body) should be included in the log message.
-	 * <p>Should be configured using an {@code <init-param>} for parameter name
+	 * Should be configured using an {@code <init-param>} for parameter name
 	 * "includePayload" in the filter definition in {@code web.xml}.
 	 * @since 3.0
 	 */
@@ -272,10 +272,10 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 
 	/**
 	 * Create a log message for the given request, prefix and suffix.
-	 * <p>If {@code includeQueryString} is {@code true}, then the inner part
+	 * If {@code includeQueryString} is {@code true}, then the inner part
 	 * of the log message will take the form {@code request_uri?query_string};
 	 * otherwise the message will simply be of the form {@code request_uri}.
-	 * <p>The final message is composed of the inner part as described and
+	 * The final message is composed of the inner part as described and
 	 * the supplied prefix and suffix.
 	 */
 	protected String createMessage(HttpServletRequest request, String prefix, String suffix) {
@@ -350,7 +350,7 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 	 * Determine whether to call the {@link #beforeRequest}/{@link #afterRequest}
 	 * methods for the current request, i.e. whether logging is currently active
 	 * (and the log message is worth building).
-	 * <p>The default implementation always returns {@code true}. Subclasses may
+	 * The default implementation always returns {@code true}. Subclasses may
 	 * override this with a log level check.
 	 * @param request current HTTP request
 	 * @return {@code true} if the before/after method should get called;

@@ -21,12 +21,12 @@ import org.springframework.web.servlet.mvc.annotation.ModelAndViewResolver;
  * attempts to handle _any_ return value type (i.e. returns {@code true} for
  * all return types).
  *
- * <p>The return value is handled either with a {@link ModelAndViewResolver}
+ * The return value is handled either with a {@link ModelAndViewResolver}
  * or otherwise by regarding it as a model attribute if it is a non-simple
  * type. If neither of these succeeds (essentially simple type other than
  * String), {@link UnsupportedOperationException} is raised.
  *
- * <p><strong>Note:</strong> This class is primarily needed to support
+ * <strong>Note:</strong> This class is primarily needed to support
  * {@link ModelAndViewResolver}, which unfortunately cannot be properly
  * adapted to the {@link HandlerMethodReturnValueHandler} contract since the
  * {@link HandlerMethodReturnValueHandler#supportsReturnType} method

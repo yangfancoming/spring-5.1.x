@@ -9,7 +9,7 @@ import org.springframework.util.ResourceUtils;
  * Extension of {@link SpringJUnit4ClassRunnerAppCtxTests}, which verifies that
  * we can specify multiple resource locations for our application context, each
  * configured differently.
- * <p>
+ *
  * As of Spring 3.0,
  * {@code MultipleResourcesSpringJUnit4ClassRunnerAppCtxTests} is also used
  * to verify support for the new {@code value} attribute alias for

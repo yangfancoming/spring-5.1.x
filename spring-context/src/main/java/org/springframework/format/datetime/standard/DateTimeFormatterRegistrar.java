@@ -64,7 +64,7 @@ public class DateTimeFormatterRegistrar implements FormatterRegistrar {
 	/**
 	 * Set whether standard ISO formatting should be applied to all date/time types.
 	 * Default is "false" (no).
-	 * <p>If set to "true", the "dateStyle", "timeStyle" and "dateTimeStyle"
+	 * If set to "true", the "dateStyle", "timeStyle" and "dateTimeStyle"
 	 * properties are effectively ignored.
 	 */
 	public void setUseIsoFormat(boolean useIsoFormat) {
@@ -99,7 +99,7 @@ public class DateTimeFormatterRegistrar implements FormatterRegistrar {
 
 	/**
 	 * Set the formatter that will be used for objects representing date values.
-	 * <p>This formatter will be used for the {@link LocalDate} type.
+	 * This formatter will be used for the {@link LocalDate} type.
 	 * When specified, the {@link #setDateStyle dateStyle} and
 	 * {@link #setUseIsoFormat useIsoFormat} properties will be ignored.
 	 * @param formatter the formatter to use
@@ -112,7 +112,7 @@ public class DateTimeFormatterRegistrar implements FormatterRegistrar {
 
 	/**
 	 * Set the formatter that will be used for objects representing time values.
-	 * <p>This formatter will be used for the {@link LocalTime} and {@link OffsetTime}
+	 * This formatter will be used for the {@link LocalTime} and {@link OffsetTime}
 	 * types. When specified, the {@link #setTimeStyle timeStyle} and
 	 * {@link #setUseIsoFormat useIsoFormat} properties will be ignored.
 	 * @param formatter the formatter to use
@@ -125,7 +125,7 @@ public class DateTimeFormatterRegistrar implements FormatterRegistrar {
 
 	/**
 	 * Set the formatter that will be used for objects representing date and time values.
-	 * <p>This formatter will be used for {@link LocalDateTime}, {@link ZonedDateTime}
+	 * This formatter will be used for {@link LocalDateTime}, {@link ZonedDateTime}
 	 * and {@link OffsetDateTime} types. When specified, the
 	 * {@link #setDateTimeStyle dateTimeStyle} and
 	 * {@link #setUseIsoFormat useIsoFormat} properties will be ignored.

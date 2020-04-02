@@ -58,7 +58,7 @@ import org.springframework.web.server.i18n.LocaleContextResolver;
 /**
  * The main class for Spring WebFlux configuration.
  *
- * <p>Import directly or extend and override protected methods to customize.
+ * Import directly or extend and override protected methods to customize.
  *
  * @author Rossen Stoyanchev
  * @author Brian Clozel
@@ -279,7 +279,7 @@ public class WebFluxConfigurationSupport implements ApplicationContextAware {
 
 	/**
 	 * Return the configurer for HTTP message readers and writers.
-	 * <p>Use {@link #configureHttpMessageCodecs(ServerCodecConfigurer)} to
+	 * Use {@link #configureHttpMessageCodecs(ServerCodecConfigurer)} to
 	 * configure the readers and writers.
 	 */
 	@Bean
@@ -324,7 +324,7 @@ public class WebFluxConfigurationSupport implements ApplicationContextAware {
 
 	/**
 	 * Return a {@link FormattingConversionService} for use with annotated controllers.
-	 * <p>See {@link #addFormatters} as an alternative to overriding this method.
+	 * See {@link #addFormatters} as an alternative to overriding this method.
 	 */
 	@Bean
 	public FormattingConversionService webFluxConversionService() {
@@ -352,7 +352,7 @@ public class WebFluxConfigurationSupport implements ApplicationContextAware {
 	/**
 	 * Return a global {@link Validator} instance for example for validating
 	 * {@code @RequestBody} method arguments.
-	 * <p>Delegates to {@link #getValidator()} first. If that returns {@code null}
+	 * Delegates to {@link #getValidator()} first. If that returns {@code null}
 	 * checks the classpath for the presence of a JSR-303 implementations
 	 * before creating a {@code OptionalValidatorFactoryBean}. If a JSR-303
 	 * implementation is not available, a "no-op" {@link Validator} is returned.

@@ -34,15 +34,15 @@ import org.springframework.web.multipart.support.RequestPartServletServerHttpReq
  * <li>Of type {@code javax.servlet.http.Part} in conjunction with Servlet 3.0 multipart requests
  * </ul>
  *
- * <p>When a parameter is annotated with {@code @RequestPart}, the content of the part is
+ * When a parameter is annotated with {@code @RequestPart}, the content of the part is
  * passed through an {@link HttpMessageConverter} to resolve the method argument with the
  * 'Content-Type' of the request part in mind. This is analogous to what @{@link RequestBody}
  * does to resolve an argument based on the content of a regular request.
  *
- * <p>When a parameter is not annotated or the name of the part is not specified,
+ * When a parameter is not annotated or the name of the part is not specified,
  * it is derived from the name of the method argument.
  *
- * <p>Automatic validation may be applied if the argument is annotated with
+ * Automatic validation may be applied if the argument is annotated with
  * {@code @javax.validation.Valid}. In case of validation failure, a {@link MethodArgumentNotValidException}
  * is raised and a 400 response status code returned if
  * {@link org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver} is configured.

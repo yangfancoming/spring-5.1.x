@@ -25,7 +25,7 @@ public abstract class FileSystemUtils {
 	/**
 	 * Delete the supplied {@link File} - for directories,
 	 * recursively delete any nested directories or files as well.
-	 * <p>Note: Like {@link File#delete()}, this method does not throw any
+	 * Note: Like {@link File#delete()}, this method does not throw any
 	 * exception but rather silently returns {@code false} in case of I/O
 	 * errors. Consider using {@link #deleteRecursively(Path)} for NIO-style
 	 * handling of I/O errors, clearly differentiating between non-existence and failure to delete an existing file.

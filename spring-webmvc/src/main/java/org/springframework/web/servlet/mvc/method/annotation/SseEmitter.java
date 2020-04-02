@@ -39,7 +39,7 @@ public class SseEmitter extends ResponseBodyEmitter {
 
 	/**
 	 * Create a SseEmitter with a custom timeout value.
-	 * <p>By default not set in which case the default configured in the MVC
+	 * By default not set in which case the default configured in the MVC
 	 * Java Config or the MVC namespace is used, or if that's not set, then the
 	 * timeout depends on the default of the underlying server.
 	 * @param timeout timeout value in milliseconds
@@ -69,7 +69,7 @@ public class SseEmitter extends ResponseBodyEmitter {
 	 * emitter.send(event().data(myObject));
 	 * </pre>
 	 *
-	 * <p>Please, see {@link ResponseBodyEmitter#send(Object) parent Javadoc}
+	 * Please, see {@link ResponseBodyEmitter#send(Object) parent Javadoc}
 	 * for important notes on exception handling.
 	 *
 	 * @param object the object to write
@@ -90,7 +90,7 @@ public class SseEmitter extends ResponseBodyEmitter {
 	 * emitter.send(event().data(myObject, MediaType.APPLICATION_JSON));
 	 * </pre>
 	 *
-	 * <p>Please, see {@link ResponseBodyEmitter#send(Object) parent Javadoc}
+	 * Please, see {@link ResponseBodyEmitter#send(Object) parent Javadoc}
 	 * for important notes on exception handling.
 	 *
 	 * @param object the object to write

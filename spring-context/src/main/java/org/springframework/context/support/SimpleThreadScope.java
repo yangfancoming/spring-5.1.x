@@ -16,21 +16,21 @@ import org.springframework.lang.Nullable;
 /**
  * A simple thread-backed {@link Scope} implementation.
  *
- * <p><b>NOTE:</b> This thread scope is not registered by default in common contexts.
+ * <b>NOTE:</b> This thread scope is not registered by default in common contexts.
  * Instead, you need to explicitly assign it to a scope key in your setup, either through
  * {@link org.springframework.beans.factory.config.ConfigurableBeanFactory#registerScope}
  * or through a {@link org.springframework.beans.factory.config.CustomScopeConfigurer} bean.
  *
- * <p>{@code SimpleThreadScope} <em>does not clean up any objects</em> associated with it.
+ * {@code SimpleThreadScope} <em>does not clean up any objects</em> associated with it.
  * It is therefore typically preferable to use a request-bound scope implementation such
  * as {@code org.springframework.web.context.request.RequestScope} in web environments,
  * implementing the full lifecycle for scoped attributes (including reliable destruction).
  *
- * <p>For an implementation of a thread-based {@code Scope} with support for destruction
+ * For an implementation of a thread-based {@code Scope} with support for destruction
  * callbacks, refer to
  * <a href="https://www.springbyexample.org/examples/custom-thread-scope-module.html">Spring by Example</a>.
  *
- * <p>Thanks to Eugene Kuleshov for submitting the original prototype for a thread scope!
+ * Thanks to Eugene Kuleshov for submitting the original prototype for a thread scope!
  *
  * @author Arjen Poutsma
 

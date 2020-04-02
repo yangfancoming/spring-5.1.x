@@ -8,10 +8,10 @@ package org.springframework.core;
  * lookup key comparisons. Note that this interface does imply such special
  * semantics and does not constitute a general-purpose mixin!
  *
- * <p>Such wrappers will automatically be unwrapped for key comparisons in
+ * Such wrappers will automatically be unwrapped for key comparisons in
  * {@link org.springframework.transaction.support.TransactionSynchronizationManager}.
  *
- * <p>Only fully transparent proxies, e.g. for redirection or service lookups,
+ * Only fully transparent proxies, e.g. for redirection or service lookups,
  * are supposed to implement this interface. Proxies that decorate the target
  * object with new behavior, such as AOP proxies, do <i>not</i> qualify here!
  *

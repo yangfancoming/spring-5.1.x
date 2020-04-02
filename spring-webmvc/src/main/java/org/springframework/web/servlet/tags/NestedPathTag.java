@@ -11,14 +11,14 @@ import org.springframework.beans.PropertyAccessor;
 import org.springframework.lang.Nullable;
 
 /**
- * <p>The {@code <nestedPath>} tag supports and assists with nested beans or
+ * The {@code <nestedPath>} tag supports and assists with nested beans or
  * bean properties in the model. Exports a "nestedPath" variable of type String
  * in request scope, visible to the current page and also included pages, if any.
  *
- * <p>The BindTag will auto-detect the current nested path and automatically
+ * The BindTag will auto-detect the current nested path and automatically
  * prepend it to its own path to form a complete path to the bean or bean property.
  *
- * <p>This tag will also prepend any existing nested path that is currently set.
+ * This tag will also prepend any existing nested path that is currently set.
  * Thus, you can nest multiple nested-path tags.
  *
  * <table>
@@ -64,7 +64,7 @@ public class NestedPathTag extends TagSupport implements TryCatchFinally {
 
 	/**
 	 * Set the path that this tag should apply.
-	 * <p>E.g. "customer" to allow bind paths like "address.street"
+	 * E.g. "customer" to allow bind paths like "address.street"
 	 * rather than "customer.address.street".
 	 * @see BindTag#setPath
 	 */

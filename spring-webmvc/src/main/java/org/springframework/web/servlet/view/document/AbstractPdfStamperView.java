@@ -19,14 +19,14 @@ import org.springframework.web.servlet.view.AbstractUrlBasedView;
  * document with an AcroForm. Application-specific view classes
  * will extend this class to merge the PDF form with model data.
  *
- * <p>This view implementation uses Bruno Lowagie's
+ * This view implementation uses Bruno Lowagie's
  * <a href="https://www.lowagie.com/iText">iText</a> API.
  * Known to work with the original iText 2.1.7 as well as its fork
  * <a href="https://github.com/LibrePDF/OpenPDF">OpenPDF</a>.
  * <b>We strongly recommend OpenPDF since it is actively maintained
  * and fixes an important vulnerability for untrusted PDF content.</b>
  *
- * <p>Thanks to Bryant Larsen for the suggestion and the original prototype!
+ * Thanks to Bryant Larsen for the suggestion and the original prototype!
  *
 
  * @since 2.5.4
@@ -62,7 +62,7 @@ public abstract class AbstractPdfStamperView extends AbstractUrlBasedView {
 
 	/**
 	 * Read the raw PDF resource into an iText PdfReader.
-	 * <p>The default implementation resolve the specified "url" property
+	 * The default implementation resolve the specified "url" property
 	 * as ApplicationContext resource.
 	 * @return the PdfReader instance
 	 * @throws IOException if resource access failed
@@ -77,7 +77,7 @@ public abstract class AbstractPdfStamperView extends AbstractUrlBasedView {
 	/**
 	 * Subclasses must implement this method to merge the PDF form
 	 * with the given model data.
-	 * <p>This is where you are able to set values on the AcroForm.
+	 * This is where you are able to set values on the AcroForm.
 	 * An example of what can be done at this level is:
 	 * <pre class="code">
 	 * // get the form from the document
@@ -89,7 +89,7 @@ public abstract class AbstractPdfStamperView extends AbstractUrlBasedView {
 	 *
 	 * // set the disposition and filename
 	 * response.setHeader("Content-disposition", "attachment; FILENAME=someName.pdf");</pre>
-	 * <p>Note that the passed-in HTTP response is just supposed to be used
+	 * Note that the passed-in HTTP response is just supposed to be used
 	 * for setting cookies or other HTTP headers. The built PDF document itself
 	 * will automatically get written to the response after this method returns.
 	 * @param model the model Map

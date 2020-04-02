@@ -19,7 +19,7 @@ import org.springframework.web.servlet.support.BindStatus;
  * tags based on some source object. This object can be either an array, a
  * {@link Collection}, or a {@link Map}.
  * <h3>Using an array or a {@link Collection}:</h3>
- * <p>
+ *
  * If you supply an array or {@link Collection} source object to render the
  * inner '{@code option}' tags, you may optionally specify the name of
  * the property on the objects which corresponds to the <em>value</em> of the
@@ -32,11 +32,11 @@ import org.springframework.web.servlet.support.BindStatus;
  * if the item is an enum, {@link Enum#name()} is used as the default value.
  * </p>
  * <h3>Using a {@link Map}:</h3>
- * <p>
+ *
  * You can alternatively choose to render '{@code option}' tags by
  * supplying a {@link Map} as the source object.
  * </p>
- * <p>
+ *
  * If you <strong>omit</strong> property names for the <em>value</em> and
  * <em>label</em>:
  * </p>
@@ -46,7 +46,7 @@ import org.springframework.web.servlet.support.BindStatus;
  * <li>the {@code value} of each {@link Map} entry will correspond to
  * the <em>label</em> of the rendered '{@code option}'.</li>
  * </ul>
- * <p>
+ *
  * If you <strong>supply</strong> property names for the <em>value</em> and
  * <em>label</em>:
  * </p>
@@ -240,7 +240,7 @@ class OptionWriter {
 
 	/**
 	 * Process the option value before it is written.
-	 * <p>The default implementation simply returns the same value unchanged.
+	 * The default implementation simply returns the same value unchanged.
 	 */
 	protected String processOptionValue(String resolvedValue) {
 		return resolvedValue;
@@ -248,7 +248,7 @@ class OptionWriter {
 
 	/**
 	 * Determine whether the supplied values matched the selected value.
-	 * <p>Delegates to {@link SelectedValueComparator#isSelected}.
+	 * Delegates to {@link SelectedValueComparator#isSelected}.
 	 */
 	private boolean isOptionSelected(@Nullable Object resolvedValue) {
 		return SelectedValueComparator.isSelected(this.bindStatus, resolvedValue);

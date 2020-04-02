@@ -20,7 +20,7 @@ import org.springframework.util.Assert;
  * registered with an {@code ApplicationEventPublisher} after each
  * <i>successful</i> method invocation.
  *
- * <p>Note that this interceptor is only capable of publishing <i>stateless</i>
+ * Note that this interceptor is only capable of publishing <i>stateless</i>
  * events configured via the
  * {@link #setApplicationEventClass "applicationEventClass"} property.
  *
@@ -45,7 +45,7 @@ public class EventPublicationInterceptor
 
 	/**
 	 * Set the application event class to publish.
-	 * <p>The event class <b>must</b> have a constructor with a single
+	 * The event class <b>must</b> have a constructor with a single
 	 * {@code Object} argument for the event source. The interceptor
 	 * will pass in the invoked object.
 	 * @throws IllegalArgumentException if the supplied {@code Class} is

@@ -28,7 +28,7 @@ import org.springframework.util.StringUtils;
  * Supports resolution as a {@code File} and also as a {@code URL}.
  * Implements the extended {@link WritableResource} interface.
  *
- * <p>Note: As of Spring Framework 5.0, this {@link Resource} implementation uses
+ * Note: As of Spring Framework 5.0, this {@link Resource} implementation uses
  * NIO.2 API for read/write interactions. As of 5.1, it may be constructed with a
  * {@link java.nio.file.Path} handle in which case it will perform all file system
  * interactions via NIO.2, only resorting to {@link File} on {@link #getFile()}.
@@ -52,7 +52,7 @@ public class FileSystemResource extends AbstractResource implements WritableReso
 
 	/**
 	 * Create a new {@code FileSystemResource} from a file path.
-	 * <p>Note: When building relative resources via {@link #createRelative},
+	 * Note: When building relative resources via {@link #createRelative},
 	 * it makes a difference whether the specified resource base path here
 	 * ends with a slash or not. In the case of "C:/dir1/", relative paths
 	 * will be built underneath that root: e.g. relative path "dir2" ->
@@ -70,7 +70,7 @@ public class FileSystemResource extends AbstractResource implements WritableReso
 
 	/**
 	 * Create a new {@code FileSystemResource} from a {@link File} handle.
-	 * <p>Note: When building relative resources via {@link #createRelative},
+	 * Note: When building relative resources via {@link #createRelative},
 	 * the relative path will apply <i>at the same directory level</i>:
 	 * e.g. new File("C:/dir1"), relative path "dir2" -> "C:/dir2"!
 	 * If you prefer to have relative paths built underneath the given root directory,
@@ -91,7 +91,7 @@ public class FileSystemResource extends AbstractResource implements WritableReso
 	/**
 	 * Create a new {@code FileSystemResource} from a {@link Path} handle,
 	 * performing all file system interactions via NIO.2 instead of {@link File}.
-	 * <p>In contrast to {@link PathResource}, this variant strictly follows the
+	 * In contrast to {@link PathResource}, this variant strictly follows the
 	 * general {@link FileSystemResource} conventions, in particular in terms of
 	 * path cleaning and {@link #createRelative(String)} handling.
 	 * @param filePath a Path handle to a file
@@ -108,7 +108,7 @@ public class FileSystemResource extends AbstractResource implements WritableReso
 	/**
 	 * Create a new {@code FileSystemResource} from a {@link FileSystem} handle,
 	 * locating the specified path.
-	 * <p>This is an alternative to {@link #FileSystemResource(String)},
+	 * This is an alternative to {@link #FileSystemResource(String)},
 	 * performing all file system interactions via NIO.2 instead of {@link File}.
 	 * @param fileSystem the FileSystem to locate the path within
 	 * @param path a file path

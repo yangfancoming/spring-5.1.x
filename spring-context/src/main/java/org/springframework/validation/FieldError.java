@@ -10,7 +10,7 @@ import org.springframework.util.ObjectUtils;
  * Encapsulates a field error, that is, a reason for rejecting a specific
  * field value.
  *
- * <p>See the {@link DefaultMessageCodesResolver} javadoc for details on
+ * See the {@link DefaultMessageCodesResolver} javadoc for details on
  * how a message code list is built for a {@code FieldError}.
  *
  * @author Rod Johnson

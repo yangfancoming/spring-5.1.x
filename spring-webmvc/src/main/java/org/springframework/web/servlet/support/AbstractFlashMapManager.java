@@ -43,7 +43,7 @@ public abstract class AbstractFlashMapManager implements FlashMapManager {
 	/**
 	 * Set the amount of time in seconds after a {@link FlashMap} is saved
 	 * (at request completion) and before it expires.
-	 * <p>The default value is 180 seconds.
+	 * The default value is 180 seconds.
 	 */
 	public void setFlashMapTimeout(int flashMapTimeout) {
 		this.flashMapTimeout = flashMapTimeout;
@@ -235,7 +235,7 @@ public abstract class AbstractFlashMapManager implements FlashMapManager {
 	/**
 	 * Obtain a mutex for modifying the FlashMap List as handled by
 	 * {@link #retrieveFlashMaps} and {@link #updateFlashMaps},
-	 * <p>The default implementation returns a shared static mutex.
+	 * The default implementation returns a shared static mutex.
 	 * Subclasses are encouraged to return a more specific mutex, or
 	 * {@code null} to indicate that no synchronization is necessary.
 	 * @param request the current request

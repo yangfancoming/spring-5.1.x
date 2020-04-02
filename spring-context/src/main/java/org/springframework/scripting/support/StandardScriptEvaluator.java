@@ -66,7 +66,7 @@ public class StandardScriptEvaluator implements ScriptEvaluator, BeanClassLoader
 
 	/**
 	 * Set the name of the language meant for evaluating the scripts (e.g. "Groovy").
-	 * <p>This is effectively an alias for {@link #setEngineName "engineName"},
+	 * This is effectively an alias for {@link #setEngineName "engineName"},
 	 * potentially (but not yet) providing common abbreviations for certain languages
 	 * beyond what the JSR-223 script engine factory exposes.
 	 * @see #setEngineName

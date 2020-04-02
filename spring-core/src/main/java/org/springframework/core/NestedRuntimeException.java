@@ -7,12 +7,12 @@ import org.springframework.lang.Nullable;
 /**
  * Handy class for wrapping runtime {@code Exceptions} with a root cause.
  *
- * <p>This class is {@code abstract} to force the programmer to extend
+ * This class is {@code abstract} to force the programmer to extend
  * the class. {@code getMessage} will include nested exception
  * information; {@code printStackTrace} and other like methods will
  * delegate to the wrapped exception, if any.
  *
- * <p>The similarity between this class and the {@link NestedCheckedException}
+ * The similarity between this class and the {@link NestedCheckedException}
  * class is unavoidable, as Java forces these two classes to have different
  * superclasses (ah, the inflexibility of concrete inheritance!).
  * @see #getMessage

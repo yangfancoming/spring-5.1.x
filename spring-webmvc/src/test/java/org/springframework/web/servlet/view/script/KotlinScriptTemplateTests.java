@@ -48,7 +48,7 @@ public class KotlinScriptTemplateTests {
 		model.put("foo", "Foo");
 		String url = "org/springframework/web/servlet/view/script/kotlin/template.kts";
 		MockHttpServletResponse response = render(url, model, Locale.FRENCH, ScriptTemplatingConfiguration.class);
-		assertEquals("<html><body>\n<p>Bonjour Foo</p>\n</body></html>", response.getContentAsString());
+		assertEquals("<html><body>\nBonjour Foo</p>\n</body></html>", response.getContentAsString());
 	}
 
 	@Test
@@ -57,7 +57,7 @@ public class KotlinScriptTemplateTests {
 		model.put("foo", "Foo");
 		String url = "org/springframework/web/servlet/view/script/kotlin/template.kts";
 		MockHttpServletResponse response = render(url, model, Locale.ENGLISH, ScriptTemplatingConfiguration.class);
-		assertEquals("<html><body>\n<p>Hello Foo</p>\n</body></html>", response.getContentAsString());
+		assertEquals("<html><body>\nHello Foo</p>\n</body></html>", response.getContentAsString());
 	}
 
 	@Test
@@ -69,7 +69,7 @@ public class KotlinScriptTemplateTests {
 		model.put("footer", "</body></html>");
 		MockHttpServletResponse response = render("org/springframework/web/servlet/view/script/kotlin/eval.kts",
 				model, Locale.ENGLISH, ScriptTemplatingConfigurationWithoutRenderFunction.class);
-		assertEquals("<html><body>\n<p>Hello Foo</p>\n</body></html>",
+		assertEquals("<html><body>\nHello Foo</p>\n</body></html>",
 				response.getContentAsString());
 	}
 

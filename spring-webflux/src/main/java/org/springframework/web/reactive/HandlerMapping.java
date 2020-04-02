@@ -29,7 +29,7 @@ public interface HandlerMapping {
 	 * Name of the {@link ServerWebExchange#getAttributes() attribute} that
 	 * contains the path within the handler mapping, in case of a pattern match
 	 * such as {@code "/static/**"} or the full relevant URI otherwise.
-	 * <p>Note: This attribute is not required to be supported by all
+	 * Note: This attribute is not required to be supported by all
 	 * HandlerMapping implementations. URL-based HandlerMappings will
 	 * typically support it but handlers should not necessarily expect
 	 * this request attribute to be present in all scenarios.
@@ -39,7 +39,7 @@ public interface HandlerMapping {
 	/**
 	 * Name of the {@link ServerWebExchange#getAttributes() attribute} that
 	 * contains the URI templates map mapping variable names to values.
-	 * <p>Note: This attribute is not required to be supported by all
+	 * Note: This attribute is not required to be supported by all
 	 * HandlerMapping implementations. URL-based HandlerMappings will
 	 * typically support it, but handlers should not necessarily expect
 	 * this request attribute to be present in all scenarios.
@@ -50,7 +50,7 @@ public interface HandlerMapping {
 	 * Name of the {@link ServerWebExchange#getAttributes() attribute} that
 	 * contains a map with URI variable names and a corresponding MultiValueMap
 	 * of URI matrix variables for each.
-	 * <p>Note: This attribute is not required to be supported by all
+	 * Note: This attribute is not required to be supported by all
 	 * HandlerMapping implementations and may also not be present depending on
 	 * whether the HandlerMapping is configured to keep matrix variable content
 	 * in the request URI.
@@ -60,7 +60,7 @@ public interface HandlerMapping {
 	/**
 	 * Name of the {@link ServerWebExchange#getAttributes() attribute} containing
 	 * the set of producible MediaType's applicable to the mapped handler.
-	 * <p>Note: This attribute is not required to be supported by all
+	 * Note: This attribute is not required to be supported by all
 	 * HandlerMapping implementations. Handlers should not necessarily expect
 	 * this request attribute to be present in all scenarios.
 	 */

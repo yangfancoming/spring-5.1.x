@@ -9,7 +9,7 @@ import org.springframework.core.codec.Encoder;
  * Extension of {@link CodecConfigurer} for HTTP message reader and writer
  * options relevant on the client side.
  *
- * <p>HTTP message readers for the following are registered by default:
+ * HTTP message readers for the following are registered by default:
  * <ul>{@code byte[]}
  * <li>{@link java.nio.ByteBuffer}
  * <li>{@link org.springframework.core.io.buffer.DataBuffer DataBuffer}
@@ -22,7 +22,7 @@ import org.springframework.core.codec.Encoder;
  * <li>Server-Sent Events
  * </ul>
  *
- * <p>HTTP message writers registered by default:
+ * HTTP message writers registered by default:
  * <ul>{@code byte[]}
  * <li>{@link java.nio.ByteBuffer}
  * <li>{@link org.springframework.core.io.buffer.DataBuffer DataBuffer}
@@ -43,7 +43,7 @@ public interface ClientCodecConfigurer extends CodecConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>On the client side, built-in default also include customizations related
+	 * On the client side, built-in default also include customizations related
 	 * to multipart readers and writers, as well as the decoder for SSE.
 	 */
 	@Override
@@ -72,7 +72,7 @@ public interface ClientCodecConfigurer extends CodecConfigurer {
 
 		/**
 		 * Configure the {@code Decoder} to use for Server-Sent Events.
-		 * <p>By default if this is not set, and Jackson is available, the
+		 * By default if this is not set, and Jackson is available, the
 		 * {@link #jackson2JsonDecoder} override is used instead. Use this property
 		 * if you want to further customize the SSE decoder.
 		 * @param decoder the decoder to use

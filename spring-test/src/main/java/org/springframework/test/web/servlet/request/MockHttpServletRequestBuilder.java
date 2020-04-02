@@ -51,10 +51,10 @@ import org.springframework.web.util.UrlPathHelper;
  * Default builder for {@link MockHttpServletRequest} required as input to
  * perform requests in {@link MockMvc}.
  *
- * <p>Application tests will typically access this builder through the static
+ * Application tests will typically access this builder through the static
  * factory methods in {@link MockMvcRequestBuilders}.
  *
- * <p>This class is not open for extension. To apply custom initialization to
+ * This class is not open for extension. To apply custom initialization to
  * the created {@code MockHttpServletRequest}, please use the
  * {@link #with(RequestPostProcessor)} extension point.
  *
@@ -120,7 +120,7 @@ public class MockHttpServletRequestBuilder
 	/**
 	 * Package private constructor. To get an instance, use static factory
 	 * methods in {@link MockMvcRequestBuilders}.
-	 * <p>Although this class cannot be extended, additional ways to initialize
+	 * Although this class cannot be extended, additional ways to initialize
 	 * the {@code MockHttpServletRequest} can be plugged in via
 	 * {@link #with(RequestPostProcessor)}.
 	 * @param httpMethod the HTTP method (GET, POST, etc)
@@ -159,7 +159,7 @@ public class MockHttpServletRequestBuilder
 	/**
 	 * Specify the portion of the requestURI that represents the context path.
 	 * The context path, if specified, must match to the start of the request URI.
-	 * <p>In most cases, tests can be written by omitting the context path from
+	 * In most cases, tests can be written by omitting the context path from
 	 * the requestURI. This is because most applications don't actually depend
 	 * on the name under which they're deployed. If specified here, the context
 	 * path must start with a "/" and must not end with a "/".
@@ -178,7 +178,7 @@ public class MockHttpServletRequestBuilder
 	 * Specify the portion of the requestURI that represents the path to which
 	 * the Servlet is mapped. This is typically a portion of the requestURI
 	 * after the context path.
-	 * <p>In most cases, tests can be written by omitting the servlet path from
+	 * In most cases, tests can be written by omitting the servlet path from
 	 * the requestURI. This is because most applications don't actually depend
 	 * on the prefix to which a servlet is mapped. For example if a Servlet is
 	 * mapped to {@code "/main/*"}, tests can be written with the requestURI
@@ -198,10 +198,10 @@ public class MockHttpServletRequestBuilder
 
 	/**
 	 * Specify the portion of the requestURI that represents the pathInfo.
-	 * <p>If left unspecified (recommended), the pathInfo will be automatically derived
+	 * If left unspecified (recommended), the pathInfo will be automatically derived
 	 * by removing the contextPath and the servletPath from the requestURI and using any
 	 * remaining part. If specified here, the pathInfo must start with a "/".
-	 * <p>If specified, the pathInfo will be used as-is.
+	 * If specified, the pathInfo will be used as-is.
 	 * @see javax.servlet.http.HttpServletRequest#getPathInfo()
 	 */
 	public MockHttpServletRequestBuilder pathInfo(@Nullable String pathInfo) {
@@ -314,7 +314,7 @@ public class MockHttpServletRequestBuilder
 
 	/**
 	 * Add a request parameter to the {@link MockHttpServletRequest}.
-	 * <p>If called more than once, new values get added to existing ones.
+	 * If called more than once, new values get added to existing ones.
 	 * @param name the parameter name
 	 * @param values one or more values
 	 */
@@ -326,7 +326,7 @@ public class MockHttpServletRequestBuilder
 	/**
 	 * Add a map of request parameters to the {@link MockHttpServletRequest},
 	 * for example when testing a form submission.
-	 * <p>If called more than once, new values get added to existing ones.
+	 * If called more than once, new values get added to existing ones.
 	 * @param params the parameters to add
 	 * @since 4.2.4
 	 */
@@ -426,7 +426,7 @@ public class MockHttpServletRequestBuilder
 
 	/**
 	 * Set the HTTP session to use, possibly re-used across requests.
-	 * <p>Individual attributes provided via {@link #sessionAttr(String, Object)}
+	 * Individual attributes provided via {@link #sessionAttr(String, Object)}
 	 * override the content of the session provided here.
 	 * @param session the HTTP session
 	 */
@@ -658,7 +658,7 @@ public class MockHttpServletRequestBuilder
 	/**
 	 * Create a new {@link MockHttpServletRequest} based on the supplied
 	 * {@code ServletContext}.
-	 * <p>Can be overridden in subclasses.
+	 * Can be overridden in subclasses.
 	 */
 	protected MockHttpServletRequest createServletRequest(ServletContext servletContext) {
 		return new MockHttpServletRequest(servletContext);

@@ -13,12 +13,12 @@ import org.springframework.lang.Nullable;
  * Implementation of RowCallbackHandler. Convenient superclass for callback handlers.
  * An instance can only be used once.
  *
- * <p>We can either use this on its own (for example, in a test case, to ensure
+ * We can either use this on its own (for example, in a test case, to ensure
  * that our result sets have valid dimensions), or use it as a superclass
  * for callback handlers that actually do something, and will benefit
  * from the dimension information it provides.
  *
- * <p>A usage example with JdbcTemplate:
+ * A usage example with JdbcTemplate:
  *
  * <pre class="code">JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  // reusable object
  *
@@ -52,7 +52,7 @@ public class RowCountCallbackHandler implements RowCallbackHandler {
 	/**
 	 * Implementation of ResultSetCallbackHandler.
 	 * Work out column size if this is the first row, otherwise just count rows.
-	 * <p>Subclasses can perform custom extraction or processing
+	 * Subclasses can perform custom extraction or processing
 	 * by overriding the {@code processRow(ResultSet, int)} method.
 	 * @see #processRow(java.sql.ResultSet, int)
 	 */

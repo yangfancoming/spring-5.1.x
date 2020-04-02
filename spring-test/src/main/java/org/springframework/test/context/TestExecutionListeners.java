@@ -16,10 +16,10 @@ import org.springframework.core.annotation.AliasFor;
  * which {@link TestExecutionListener TestExecutionListeners} should be
  * registered with a {@link TestContextManager}.
  *
- * <p>Typically, {@code @TestExecutionListeners} will be used in conjunction
+ * Typically, {@code @TestExecutionListeners} will be used in conjunction
  * with {@link ContextConfiguration @ContextConfiguration}.
  *
- * <p>As of Spring Framework 4.0, this annotation may be used as a
+ * As of Spring Framework 4.0, this annotation may be used as a
  * <em>meta-annotation</em> to create custom <em>composed annotations</em>.
  *
  * @author Sam Brannen
@@ -36,7 +36,7 @@ public @interface TestExecutionListeners {
 
 	/**
 	 * Alias for {@link #listeners}.
-	 * <p>This attribute may <strong>not</strong> be used in conjunction with
+	 * This attribute may <strong>not</strong> be used in conjunction with
 	 * {@link #listeners}, but it may be used instead of {@link #listeners}.
 	 */
 	@AliasFor("listeners")
@@ -45,7 +45,7 @@ public @interface TestExecutionListeners {
 	/**
 	 * The {@link TestExecutionListener TestExecutionListeners} to register with
 	 * the {@link TestContextManager}.
-	 * <p>This attribute may <strong>not</strong> be used in conjunction with
+	 * This attribute may <strong>not</strong> be used in conjunction with
 	 * {@link #value}, but it may be used instead of {@link #value}.
 	 * @see org.springframework.test.context.web.ServletTestExecutionListener
 	 * @see org.springframework.test.context.support.DependencyInjectionTestExecutionListener
@@ -59,7 +59,7 @@ public @interface TestExecutionListeners {
 	/**
 	 * Whether or not {@link #listeners TestExecutionListeners} from superclasses
 	 * should be <em>inherited</em>.
-	 * <p>The default value is {@code true}, which means that an annotated
+	 * The default value is {@code true}, which means that an annotated
 	 * class will <em>inherit</em> the listeners defined by an annotated
 	 * superclass. Specifically, the listeners for an annotated class will be
 	 * appended to the list of listeners defined by an annotated superclass.
@@ -84,7 +84,7 @@ public @interface TestExecutionListeners {
 	 * public class TransactionalTest extends AbstractBaseTest {
 	 * 	 // ...
 	 * }</pre>
-	 * <p>If {@code inheritListeners} is set to {@code false}, the listeners for
+	 * If {@code inheritListeners} is set to {@code false}, the listeners for
 	 * the annotated class will <em>shadow</em> and effectively replace any
 	 * listeners defined by a superclass.
 	 */
@@ -94,11 +94,11 @@ public @interface TestExecutionListeners {
 	 * The <em>merge mode</em> to use when {@code @TestExecutionListeners} is
 	 * declared on a class that does <strong>not</strong> inherit listeners
 	 * from a superclass.
-	 * <p>Can be set to {@link MergeMode#MERGE_WITH_DEFAULTS MERGE_WITH_DEFAULTS}
+	 * Can be set to {@link MergeMode#MERGE_WITH_DEFAULTS MERGE_WITH_DEFAULTS}
 	 * to have locally declared listeners <em>merged</em> with the default
 	 * listeners.
-	 * <p>The mode is ignored if listeners are inherited from a superclass.
-	 * <p>Defaults to {@link MergeMode#REPLACE_DEFAULTS REPLACE_DEFAULTS}
+	 * The mode is ignored if listeners are inherited from a superclass.
+	 * Defaults to {@link MergeMode#REPLACE_DEFAULTS REPLACE_DEFAULTS}
 	 * for backwards compatibility.
 	 * @see MergeMode
 	 * @since 4.1
@@ -124,7 +124,7 @@ public @interface TestExecutionListeners {
 		/**
 		 * Indicates that locally declared listeners should be merged with the
 		 * default listeners.
-		 * <p>The merging algorithm ensures that duplicates are removed from
+		 * The merging algorithm ensures that duplicates are removed from
 		 * the list and that the resulting set of merged listeners is sorted
 		 * according to the semantics of
 		 * {@link org.springframework.core.annotation.AnnotationAwareOrderComparator

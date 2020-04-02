@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
 /**
  * A general-purpose number formatter using NumberFormat's number style.
  *
- * <p>Delegates to {@link java.text.NumberFormat#getInstance(Locale)}.
+ * Delegates to {@link java.text.NumberFormat#getInstance(Locale)}.
  * Configures BigDecimal parsing so there is no loss in precision.
  * Allows configuration over the decimal number pattern.
  * The {@link #parse(String, Locale)} routine always returns a BigDecimal.

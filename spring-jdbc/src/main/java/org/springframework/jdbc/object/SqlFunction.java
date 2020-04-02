@@ -15,19 +15,19 @@ import org.springframework.lang.Nullable;
  * The default behavior is to return an int, but that can be overridden by
  * using the constructor with an extra return type parameter.
  *
- * <p>Intended to use to call SQL functions that return a single result using a
+ * Intended to use to call SQL functions that return a single result using a
  * query like "select user()" or "select sysdate from dual". It is not intended
  * for calling more complex stored functions or for using a CallableStatement to
  * invoke a stored procedure or stored function. Use StoredProcedure or SqlCall
  * for this type of processing.
  *
- * <p>This is a concrete class, which there is often no need to subclass.
+ * This is a concrete class, which there is often no need to subclass.
  * Code using this package can create an object of this type, declaring SQL
  * and parameters, and then invoke the appropriate {@code run} method
  * repeatedly to execute the function. Subclasses are only supposed to add
  * specialized {@code run} methods for specific parameter and return types.
  *
- * <p>Like all RdbmsOperation objects, SqlFunction objects are thread-safe.
+ * Like all RdbmsOperation objects, SqlFunction objects are thread-safe.
  * @param <T> the result type
  * @see StoredProcedure
  */
@@ -95,7 +95,7 @@ public class SqlFunction<T> extends MappingSqlQuery<T> {
 
 	/**
 	 * Specify the type that the result object is required to match.
-	 * <p>If not specified, the result value will be exposed as
+	 * If not specified, the result value will be exposed as
 	 * returned by the JDBC driver.
 	 */
 	public void setResultType(Class<T> resultType) {

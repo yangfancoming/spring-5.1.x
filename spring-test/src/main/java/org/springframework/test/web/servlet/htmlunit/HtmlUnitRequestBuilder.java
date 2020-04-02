@@ -45,7 +45,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  * Internal class used to transform a {@link WebRequest} into a
  * {@link MockHttpServletRequest} using Spring MVC Test's {@link RequestBuilder}.
  *
- * <p>By default the first path segment of the URL is used as the context path.
+ * By default the first path segment of the URL is used as the context path.
  * To override this default see {@link #setContextPath(String)}.
  *
  * @author Rob Winch
@@ -189,7 +189,7 @@ final class HtmlUnitRequestBuilder implements RequestBuilder, Mergeable {
 
 	/**
 	 * Set the contextPath to be used.
-	 * <p>The value may be null in which case the first path segment of the
+	 * The value may be null in which case the first path segment of the
 	 * URL is turned into the contextPath. Otherwise it must conform to
 	 * {@link HttpServletRequest#getContextPath()} which states it can be
 	 * an empty string, or it must start with a "/" and not end with a "/".

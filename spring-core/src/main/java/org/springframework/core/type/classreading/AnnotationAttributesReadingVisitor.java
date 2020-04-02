@@ -19,7 +19,7 @@ import org.springframework.util.ObjectUtils;
  * ASM visitor which looks for annotations defined on a class or method,
  * including meta-annotations.
  *
- * <p>This visitor is fully recursive, taking into account any nested
+ * This visitor is fully recursive, taking into account any nested
  * annotations or nested annotation arrays.
  *
 

@@ -29,11 +29,11 @@ import org.springframework.util.Assert;
  * a request-response pattern and use it for example to obtain some data upon
  * initialization.
  *
- * <p>The value returned from the method is converted and turned into a
+ * The value returned from the method is converted and turned into a
  * {@link Message} that is then enriched with the sessionId, subscriptionId, and
  * destination of the input message.
  *
- * <p><strong>Note:</strong> this default behavior for interpreting the return
+ * <strong>Note:</strong> this default behavior for interpreting the return
  * value from an {@code @SubscribeMapping} method can be overridden through use
  * of the {@link SendTo} or {@link SendToUser} annotations in which case a
  * message is prepared and sent to the broker instead.
@@ -67,7 +67,7 @@ public class SubscriptionMethodReturnValueHandler implements HandlerMethodReturn
 	/**
 	 * Configure a {@link MessageHeaderInitializer} to apply to the headers of all
 	 * messages sent to the client outbound channel.
-	 * <p>By default this property is not set.
+	 * By default this property is not set.
 	 */
 	public void setHeaderInitializer(@Nullable MessageHeaderInitializer headerInitializer) {
 		this.headerInitializer = headerInitializer;

@@ -7,7 +7,7 @@ import org.springframework.beans.BeansException;
 /**
  * Subinterface of {@link BeanPostProcessor} that adds a before-destruction callback.
  *
- * <p>The typical usage will be to invoke custom destruction callbacks on
+ * The typical usage will be to invoke custom destruction callbacks on
  * specific bean types, matching corresponding initialization callbacks.
  *
 
@@ -18,7 +18,7 @@ public interface DestructionAwareBeanPostProcessor extends BeanPostProcessor {
 	/**
 	 * Apply this BeanPostProcessor to the given bean instance before its
 	 * destruction, e.g. invoking custom destruction callbacks.
-	 * <p>Like DisposableBean's {@code destroy} and a custom destroy method, this
+	 * Like DisposableBean's {@code destroy} and a custom destroy method, this
 	 * callback will only apply to beans which the container fully manages the
 	 * lifecycle for. This is usually the case for singletons and scoped beans.
 	 * @param bean the bean instance to be destroyed
@@ -32,7 +32,7 @@ public interface DestructionAwareBeanPostProcessor extends BeanPostProcessor {
 	/**
 	 * Determine whether the given bean instance requires destruction by this
 	 * post-processor.
-	 * <p>The default implementation returns {@code true}. If a pre-5 implementation
+	 * The default implementation returns {@code true}. If a pre-5 implementation
 	 * of {@code DestructionAwareBeanPostProcessor} does not provide a concrete
 	 * implementation of this method, Spring silently assumes {@code true} as well.
 	 * @param bean the bean instance to check

@@ -19,7 +19,7 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
  * the exact same features as any regular {@link EventListener} annotated method
  * but is aware of the transactional context of the event publisher.
  *
- * <p>Processing of {@link TransactionalEventListener} is enabled automatically
+ * Processing of {@link TransactionalEventListener} is enabled automatically
  * when Spring's transaction management is enabled. For other cases, registering
  * a bean of type {@link TransactionalEventListenerFactory} is required.
  *

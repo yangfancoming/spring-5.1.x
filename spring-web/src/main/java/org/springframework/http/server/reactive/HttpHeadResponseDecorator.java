@@ -44,7 +44,7 @@ public class HttpHeadResponseDecorator extends ServerHttpResponseDecorator {
 
 	/**
 	 * Invoke {@link #setComplete()} without writing.
-	 * <p>RFC 7302 allows HTTP HEAD response without content-length and it's not
+	 * RFC 7302 allows HTTP HEAD response without content-length and it's not
 	 * something that can be computed on a streaming response.
 	 */
 	@Override

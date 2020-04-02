@@ -25,7 +25,7 @@ import org.springframework.util.StringUtils;
 /**
  * Formats fields annotated with the {@link DateTimeFormat} annotation using Joda-Time.
  *
- * <p><b>NOTE:</b> Spring's Joda-Time support requires Joda-Time 2.x, as of Spring 4.0.
+ * <b>NOTE:</b> Spring's Joda-Time support requires Joda-Time 2.x, as of Spring 4.0.
  *
  * @author Keith Donald
 

@@ -16,19 +16,19 @@ import org.springframework.core.annotation.AliasFor;
  * Annotation indicating that the result of invoking a method (or all methods
  * in a class) can be cached.
  *
- * <p>Each time an advised method is invoked, caching behavior will be applied,
+ * Each time an advised method is invoked, caching behavior will be applied,
  * checking whether the method has been already invoked for the given arguments.
  * A sensible default simply uses the method parameters to compute the key, but
  * a SpEL expression can be provided via the {@link #key} attribute, or a custom
  * {@link org.springframework.cache.interceptor.KeyGenerator} implementation can
  * replace the default one (see {@link #keyGenerator}).
  *
- * <p>If no value is found in the cache for the computed key, the target method
+ * If no value is found in the cache for the computed key, the target method
  * will be invoked and the returned value stored in the associated cache. Note
  * that Java8's {@code Optional} return types are automatically handled and its
  * content is stored in the cache if present.
  *
- * <p>This annotation may be used as a <em>meta-annotation</em> to create custom
+ * This annotation may be used as a <em>meta-annotation</em> to create custom
  * <em>composed annotations</em> with attribute overrides.
  *
  * @author Costin Leau
@@ -52,7 +52,7 @@ public @interface Cacheable {
 
 	/**
 	 * Names of the caches in which method invocation results are stored.
-	 * <p>Names may be used to determine the target cache (or caches), matching
+	 * Names may be used to determine the target cache (or caches), matching
 	 * the qualifier value or bean name of a specific bean definition.
 	 * @since 4.2
 	 * @see #value
@@ -63,9 +63,9 @@ public @interface Cacheable {
 
 	/**
 	 * Spring Expression Language (SpEL) expression for computing the key dynamically.
-	 * <p>Default is {@code ""}, meaning all method parameters are considered as a key,
+	 * Default is {@code ""}, meaning all method parameters are considered as a key,
 	 * unless a custom {@link #keyGenerator} has been configured.
-	 * <p>The SpEL expression evaluates against a dedicated context that provides the
+	 * The SpEL expression evaluates against a dedicated context that provides the
 	 * following meta-data:
 	 * <ul>
 	 * <li>{@code #root.method}, {@code #root.target}, and {@code #root.caches} for
@@ -83,7 +83,7 @@ public @interface Cacheable {
 	/**
 	 * The bean name of the custom {@link org.springframework.cache.interceptor.KeyGenerator}
 	 * to use.
-	 * <p>Mutually exclusive with the {@link #key} attribute.
+	 * Mutually exclusive with the {@link #key} attribute.
 	 * @see CacheConfig#keyGenerator
 	 */
 	String keyGenerator() default "";
@@ -92,7 +92,7 @@ public @interface Cacheable {
 	 * The bean name of the custom {@link org.springframework.cache.CacheManager} to use to
 	 * create a default {@link org.springframework.cache.interceptor.CacheResolver} if none
 	 * is set already.
-	 * <p>Mutually exclusive with the {@link #cacheResolver}  attribute.
+	 * Mutually exclusive with the {@link #cacheResolver}  attribute.
 	 * @see org.springframework.cache.interceptor.SimpleCacheResolver
 	 * @see CacheConfig#cacheManager
 	 */
@@ -108,8 +108,8 @@ public @interface Cacheable {
 	/**
 	 * Spring Expression Language (SpEL) expression used for making the method
 	 * caching conditional.
-	 * <p>Default is {@code ""}, meaning the method result is always cached.
-	 * <p>The SpEL expression evaluates against a dedicated context that provides the
+	 * Default is {@code ""}, meaning the method result is always cached.
+	 * The SpEL expression evaluates against a dedicated context that provides the
 	 * following meta-data:
 	 * <ul>
 	 * <li>{@code #root.method}, {@code #root.target}, and {@code #root.caches} for
@@ -126,10 +126,10 @@ public @interface Cacheable {
 
 	/**
 	 * Spring Expression Language (SpEL) expression used to veto method caching.
-	 * <p>Unlike {@link #condition}, this expression is evaluated after the method
+	 * Unlike {@link #condition}, this expression is evaluated after the method
 	 * has been called and can therefore refer to the {@code result}.
-	 * <p>Default is {@code ""}, meaning that caching is never vetoed.
-	 * <p>The SpEL expression evaluates against a dedicated context that provides the
+	 * Default is {@code ""}, meaning that caching is never vetoed.
+	 * The SpEL expression evaluates against a dedicated context that provides the
 	 * following meta-data:
 	 * <ul>
 	 * <li>{@code #result} for a reference to the result of the method invocation. For

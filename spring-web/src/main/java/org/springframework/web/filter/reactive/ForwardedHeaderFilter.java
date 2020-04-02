@@ -15,7 +15,7 @@ import org.springframework.web.server.adapter.ForwardedHeaderTransformer;
  * request URI (i.e. {@link ServerHttpRequest#getURI()}) so it reflects the
  * client-originated protocol and address.
  *
- * <p>Alternatively if {@link #setRemoveOnly removeOnly} is set to "true", then
+ * Alternatively if {@link #setRemoveOnly removeOnly} is set to "true", then
  * "Forwarded" and "X-Forwarded-*" headers are only removed, and not used.
  *
  * @author Arjen Poutsma

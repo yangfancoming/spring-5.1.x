@@ -22,7 +22,7 @@ import org.springframework.util.NumberUtils;
  * (effectively decreasing that character), so 'd'-3='a'
  * </ul>
  *
- * <p>It can be used as a unary operator for numbers.
+ * It can be used as a unary operator for numbers.
  * The standard promotions are performed when the operand types vary (double-int=double).
  * For other options it defers to the registered overloader.
  *

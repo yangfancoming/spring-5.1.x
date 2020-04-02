@@ -17,7 +17,7 @@ import org.springframework.util.StringUtils;
  * {@link PropertySource} instances. Necessary in cases where multiple property sources
  * share the same name, e.g. when multiple values are supplied to {@code @PropertySource}.
  *
- * <p>As of Spring 4.1.2, this class extends {@link EnumerablePropertySource} instead
+ * As of Spring 4.1.2, this class extends {@link EnumerablePropertySource} instead
  * of plain {@link PropertySource}, exposing {@link #getPropertyNames()} based on the
  * accumulated property names from all contained sources (as far as possible).
 

@@ -11,10 +11,10 @@ import org.springframework.util.Assert;
  * programmatic interaction with <em>test-managed transactions</em> within
  * <em>test</em> methods, <em>before</em> methods, and <em>after</em> methods.
  *
- * <p>Consult the javadocs for {@link TransactionalTestExecutionListener}
+ * Consult the javadocs for {@link TransactionalTestExecutionListener}
  * for a detailed explanation of <em>test-managed transactions</em>.
  *
- * <p>Support for {@code TestTransaction} is automatically available whenever
+ * Support for {@code TestTransaction} is automatically available whenever
  * the {@code TransactionalTestExecutionListener} is enabled. Note that the
  * {@code TransactionalTestExecutionListener} is typically enabled by default,
  * but it can also be manually enabled via the
@@ -65,7 +65,7 @@ public final class TestTransaction {
 
 	/**
 	 * Flag the current test-managed transaction for <em>rollback</em>.
-	 * <p>Invoking this method will <em>not</em> end the current transaction.
+	 * Invoking this method will <em>not</em> end the current transaction.
 	 * Rather, the value of this flag will be used to determine whether or not
 	 * the current test-managed transaction should be rolled back or committed
 	 * once it is {@linkplain #end ended}.
@@ -81,7 +81,7 @@ public final class TestTransaction {
 
 	/**
 	 * Flag the current test-managed transaction for <em>commit</em>.
-	 * <p>Invoking this method will <em>not</em> end the current transaction.
+	 * Invoking this method will <em>not</em> end the current transaction.
 	 * Rather, the value of this flag will be used to determine whether or not
 	 * the current test-managed transaction should be rolled back or committed
 	 * once it is {@linkplain #end ended}.
@@ -97,7 +97,7 @@ public final class TestTransaction {
 
 	/**
 	 * Start a new test-managed transaction.
-	 * <p>Only call this method if {@link #end} has been called or if no
+	 * Only call this method if {@link #end} has been called or if no
 	 * transaction has been previously started.
 	 * @throws IllegalStateException if the transaction context could not be
 	 * retrieved or if a transaction is already active for the current test

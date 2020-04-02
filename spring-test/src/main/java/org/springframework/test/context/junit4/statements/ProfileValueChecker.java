@@ -58,9 +58,9 @@ public class ProfileValueChecker extends Statement {
 	 * {@linkplain #ProfileValueChecker constructor} is <em>enabled</em> in
 	 * the current environment, as configured via the {@link IfProfileValue
 	 * &#064;IfProfileValue} annotation.
-	 * <p>If the test is not annotated with {@code @IfProfileValue} it is
+	 * If the test is not annotated with {@code @IfProfileValue} it is
 	 * considered enabled.
-	 * <p>If a test is not enabled, this method will abort further evaluation
+	 * If a test is not enabled, this method will abort further evaluation
 	 * of the execution chain with a failed assumption; otherwise, this method
 	 * will simply evaluate the next {@link Statement} in the execution chain.
 	 * @see ProfileValueUtils#isTestEnabledInThisEnvironment(Class)

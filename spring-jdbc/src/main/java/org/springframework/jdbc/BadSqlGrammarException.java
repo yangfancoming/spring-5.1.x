@@ -9,7 +9,7 @@ import org.springframework.dao.InvalidDataAccessResourceUsageException;
 /**
  * Exception thrown when SQL specified is invalid. Such exceptions always have
  * a {@code java.sql.SQLException} root cause.
- * <p>It would be possible to have subclasses for no such table, no such column etc.
+ * It would be possible to have subclasses for no such table, no such column etc.
  * A custom SQLExceptionTranslator could create such more specific exceptions,
  * without affecting code using this class.
  * @see InvalidResultSetAccessException

@@ -45,13 +45,13 @@ import static org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder.*
  * {@code @BeforeTransaction} and {@code @AfterTransaction} methods can fail
  * tests run via the {@link SpringExtension} in a JUnit Jupiter environment.
  *
- * <p>See: <a href="https://jira.spring.io/browse/SPR-3960" target="_blank">SPR-3960</a>
+ * See: <a href="https://jira.spring.io/browse/SPR-3960" target="_blank">SPR-3960</a>
  * and <a href="https://jira.spring.io/browse/SPR-4365" target="_blank">SPR-4365</a>.
  *
- * <p>Indirectly, this class also verifies that all {@code TestExecutionListener}
+ * Indirectly, this class also verifies that all {@code TestExecutionListener}
  * lifecycle callbacks are called.
  *
- * <p>To run these tests in an IDE that does not have built-in support for the JUnit
+ * To run these tests in an IDE that does not have built-in support for the JUnit
  * Platform, simply run {@link SpringJUnitJupiterTestSuite} as a JUnit 4 test.
  *
  * @author Sam Brannen

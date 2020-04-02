@@ -233,7 +233,7 @@ public class CacheResolverCustomizationTests {
 	/**
 	 * Example of {@link CacheResolver} that resolve the caches at
 	 * runtime (i.e. based on method invocation parameters).
-	 * <p>Expects the second argument to hold the name of the cache to use
+	 * Expects the second argument to hold the name of the cache to use
 	 */
 	private static class RuntimeCacheResolver extends AbstractCacheResolver {
 

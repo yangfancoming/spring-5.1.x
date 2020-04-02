@@ -12,14 +12,14 @@ import java.lang.annotation.Target;
  * Test-specific annotation to indicate that a test method has to finish
  * execution in a {@linkplain #millis() specified time period}.
  *
- * <p>If the text execution takes longer than the specified time period, then
+ * If the text execution takes longer than the specified time period, then
  * the test is considered to have failed.
  *
- * <p>Note that the time period includes execution of the test method itself,
+ * Note that the time period includes execution of the test method itself,
  * any {@linkplain Repeat repetitions} of the test, and any <em>set up</em> or
  * <em>tear down</em> of the test fixture.
  *
- * <p>As of Spring Framework 4.0, this annotation may be used as a
+ * As of Spring Framework 4.0, this annotation may be used as a
  * <em>meta-annotation</em> to create custom <em>composed annotations</em>.
  *
  * @author Rod Johnson

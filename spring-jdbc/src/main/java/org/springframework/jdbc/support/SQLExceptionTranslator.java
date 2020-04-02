@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
  * and Spring's data access strategy-agnostic {@link DataAccessException}
  * hierarchy.
  *
- * <p>Implementations can be generic (for example, using
+ * Implementations can be generic (for example, using
  * {@link java.sql.SQLException#getSQLState() SQLState} codes for JDBC) or wholly
  * proprietary (for example, using Oracle error codes) for greater precision.
  * @see org.springframework.dao.DataAccessException
@@ -22,7 +22,7 @@ public interface SQLExceptionTranslator {
 
 	/**
 	 * Translate the given {@link SQLException} into a generic {@link DataAccessException}.
-	 * <p>The returned DataAccessException is supposed to contain the original
+	 * The returned DataAccessException is supposed to contain the original
 	 * {@code SQLException} as root cause. However, client code may not generally
 	 * rely on this due to DataAccessExceptions possibly being caused by other resource
 	 * APIs as well. That said, a {@code getRootCause() instanceof SQLException}

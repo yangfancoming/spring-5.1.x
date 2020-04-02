@@ -15,7 +15,7 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  * org.springframework.scheduling.Trigger Trigger}-based tasks, which are not supported by
  * the {@code @Scheduled} annotation.
  *
- * <p>See @{@link EnableScheduling} for detailed usage examples.
+ * See @{@link EnableScheduling} for detailed usage examples.
 
  * @since 3.1
  * @see EnableScheduling

@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  * Interface to be implemented for retrieving values for more complex database-specific
  * types not supported by the standard {@code CallableStatement.getObject} method.
  *
- * <p>Implementations perform the actual work of getting the actual values. They must
+ * Implementations perform the actual work of getting the actual values. They must
  * implement the callback method {@code getTypeValue} which can throw SQLExceptions
  * that will be caught and translated by the calling code. This callback method has
  * access to the underlying Connection via the given CallableStatement object, if that

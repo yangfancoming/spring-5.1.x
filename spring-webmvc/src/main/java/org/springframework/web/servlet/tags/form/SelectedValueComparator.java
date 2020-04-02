@@ -17,20 +17,20 @@ import org.springframework.web.servlet.support.BindStatus;
  * Eagerly attempts to prove a comparison through a number of avenues to deal with issues such as instance
  * inequality, logical (String-representation-based) equality and {@link PropertyEditor}-based comparison.
  *
- * <p>Full support is provided for comparing arrays, {@link Collection Collections} and {@link Map Maps}.
+ * Full support is provided for comparing arrays, {@link Collection Collections} and {@link Map Maps}.
  *
- * <p><h1><a name="equality-contract">Equality Contract</a></h1>
+ * <h1><a name="equality-contract">Equality Contract</a></h1>
  * For single-valued objects equality is first tested using standard {@link Object#equals Java equality}. As
  * such, user code should endeavour to implement {@link Object#equals} to speed up the comparison process. If
  * {@link Object#equals} returns {@code false} then an attempt is made at an
  * {@link #exhaustiveCompare exhaustive comparison} with the aim being to <strong>prove</strong> equality rather
  * than disprove it.
  *
- * <p>Next, an attempt is made to compare the {@code String} representations of both the candidate and bound
+ * Next, an attempt is made to compare the {@code String} representations of both the candidate and bound
  * values. This may result in {@code true} in a number of cases due to the fact both values will be represented
  * as {@code Strings} when shown to the user.
  *
- * <p>Next, if the candidate value is a {@code String}, an attempt is made to compare the bound value to
+ * Next, if the candidate value is a {@code String}, an attempt is made to compare the bound value to
  * result of applying the corresponding {@link PropertyEditor} to the candidate. This comparison may be
  * executed twice, once against the direct {@code String} instances, and then against the {@code String}
  * representations if the first comparison results in {@code false}.

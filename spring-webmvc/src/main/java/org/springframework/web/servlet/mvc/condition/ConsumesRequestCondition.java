@@ -177,7 +177,7 @@ public final class ConsumesRequestCondition extends AbstractRequestCondition<Con
 	 * <li>Less than 0 if "this" has more or more specific media type expressions
 	 * <li>Greater than 0 if "other" has more or more specific media type expressions
 	 * </ul>
-	 * <p>It is assumed that both instances have been obtained via
+	 * It is assumed that both instances have been obtained via
 	 * {@link #getMatchingCondition(HttpServletRequest)} and each instance contains
 	 * the matching consumable media type expression only or is otherwise empty.
 	 */

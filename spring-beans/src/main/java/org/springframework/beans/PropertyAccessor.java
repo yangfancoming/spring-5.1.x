@@ -58,7 +58,7 @@ public interface PropertyAccessor {
 
 	/**
 	 * Determine whether the specified property is readable.
-	 * <p>Returns {@code false} if the property doesn't exist.
+	 * Returns {@code false} if the property doesn't exist.
 	 * @param propertyName the property to check
 	 * (may be a nested path and/or an indexed/mapped property)
 	 * @return whether the property is readable
@@ -67,7 +67,7 @@ public interface PropertyAccessor {
 
 	/**
 	 * Determine whether the specified property is writable.
-	 * <p>Returns {@code false} if the property doesn't exist.
+	 * Returns {@code false} if the property doesn't exist.
 	 * @param propertyName the property to check
 	 * (may be a nested path and/or an indexed/mapped property)
 	 * @return whether the property is writable
@@ -138,7 +138,7 @@ public interface PropertyAccessor {
 
 	/**
 	 * Perform a batch update from a Map.
-	 * <p>Bulk updates from PropertyValues are more powerful: This method is
+	 * Bulk updates from PropertyValues are more powerful: This method is
 	 * provided for convenience. Behavior will be identical to that of
 	 * the {@link #setPropertyValues(PropertyValues)} method.
 	 * @param map a Map to take properties from. Contains property value objects,
@@ -154,14 +154,14 @@ public interface PropertyAccessor {
 
 	/**
 	 * The preferred way to perform a batch update.
-	 * <p>Note that performing a batch update differs from performing a single update,
+	 * Note that performing a batch update differs from performing a single update,
 	 * in that an implementation of this class will continue to update properties
 	 * if a <b>recoverable</b> error (such as a type mismatch, but <b>not</b> an
 	 * invalid field name or the like) is encountered, throwing a
 	 * {@link PropertyBatchUpdateException} containing all the individual errors.
 	 * This exception can be examined later to see all binding errors.
 	 * Properties that were successfully updated remain changed.
-	 * <p>Does not allow unknown fields or invalid fields.
+	 * Does not allow unknown fields or invalid fields.
 	 * @param pvs a PropertyValues to set on the target object
 	 * @throws InvalidPropertyException if there is no such property or
 	 * if the property isn't writable
@@ -175,7 +175,7 @@ public interface PropertyAccessor {
 
 	/**
 	 * Perform a batch update with more control over behavior.
-	 * <p>Note that performing a batch update differs from performing a single update,
+	 * Note that performing a batch update differs from performing a single update,
 	 * in that an implementation of this class will continue to update properties
 	 * if a <b>recoverable</b> error (such as a type mismatch, but <b>not</b> an
 	 * invalid field name or the like) is encountered, throwing a
@@ -196,7 +196,7 @@ public interface PropertyAccessor {
 
 	/**
 	 * Perform a batch update with full control over behavior.
-	 * <p>Note that performing a batch update differs from performing a single update,
+	 * Note that performing a batch update differs from performing a single update,
 	 * in that an implementation of this class will continue to update properties
 	 * if a <b>recoverable</b> error (such as a type mismatch, but <b>not</b> an
 	 * invalid field name or the like) is encountered, throwing a

@@ -19,7 +19,7 @@ import org.springframework.jdbc.core.BatchPreparedStatementSetter;
  * queuing up records to be updated, and adds them as a single batch once
  * {@code flush} is called or the given batch size has been met.
  *
- * <p>Note that this class is a <b>non-thread-safe object</b>, in contrast
+ * Note that this class is a <b>non-thread-safe object</b>, in contrast
  * to all other JDBC operations objects in this package. You need to create
  * a new instance of it for each use, or call {@code reset} before reuse within the same thread.
  * @since 1.1
@@ -97,7 +97,7 @@ public class BatchSqlUpdate extends SqlUpdate {
 	 * flush. {@code update} calls or the given statement parameters will
 	 * be queued until the batch size is met, at which point it will empty the
 	 * queue and execute the batch.
-	 * <p>You can also flush already queued statements with an explicit
+	 * You can also flush already queued statements with an explicit
 	 * {@code flush} call. Note that you need to this after queueing
 	 * all parameters to guarantee that all statements have been flushed.
 	 */
@@ -108,7 +108,7 @@ public class BatchSqlUpdate extends SqlUpdate {
 	/**
 	 * Set whether to track the rows affected by batch updates performed
 	 * by this operation object.
-	 * <p>Default is "true". Turn this off to save the memory needed for
+	 * Default is "true". Turn this off to save the memory needed for
 	 * the list of row counts.
 	 * @see #getRowsAffected()
 	 */
@@ -130,7 +130,7 @@ public class BatchSqlUpdate extends SqlUpdate {
 	 * parameters to the queue rather than executing them immediately.
 	 * All other {@code update} methods of the SqlUpdate base class go
 	 * through this method and will thus behave similarly.
-	 * <p>You need to call {@code flush} to actually execute the batch.
+	 * You need to call {@code flush} to actually execute the batch.
 	 * If the specified batch size is reached, an implicit flush will happen;
 	 * you still need to finally call {@code flush} to flush all statements.
 	 * @param params array of parameter objects

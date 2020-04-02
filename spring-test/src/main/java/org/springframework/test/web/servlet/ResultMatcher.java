@@ -6,7 +6,7 @@ package org.springframework.test.web.servlet;
  * A {@code ResultMatcher} matches the result of an executed request against
  * some expectation.
  *
- * <p>See static factory methods in
+ * See static factory methods in
  * {@link org.springframework.test.web.servlet.result.MockMvcResultMatchers
  * MockMvcResultMatchers}.
  *

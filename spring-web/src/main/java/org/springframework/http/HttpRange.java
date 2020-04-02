@@ -102,7 +102,7 @@ public abstract class HttpRange {
 
 	/**
 	 * Parse the given, comma-separated string into a list of {@code HttpRange} objects.
-	 * <p>This method can be used to parse an {@code Range} header.
+	 * This method can be used to parse an {@code Range} header.
 	 * @param ranges the string to parse
 	 * @return the list of ranges
 	 * @throws IllegalArgumentException if the string cannot be parsed
@@ -194,7 +194,7 @@ public abstract class HttpRange {
 
 	/**
 	 * Return a string representation of the given list of {@code HttpRange} objects.
-	 * <p>This method can be used to for an {@code Range} header.
+	 * This method can be used to for an {@code Range} header.
 	 * @param ranges the ranges to create a string of
 	 * @return the string representation
 	 */

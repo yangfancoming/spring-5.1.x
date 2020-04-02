@@ -26,13 +26,13 @@ public class CorsRegistry {
 	/**
 	 * Enable cross-origin request handling for the specified path pattern.
 	 *
-	 * <p>Exact path mapping URIs (such as {@code "/admin"}) are supported as
+	 * Exact path mapping URIs (such as {@code "/admin"}) are supported as
 	 * well as Ant-style path patterns (such as {@code "/admin/**"}).
-	 * <p>By default, all origins, all headers, credentials and {@code GET},
+	 * By default, all origins, all headers, credentials and {@code GET},
 	 * {@code HEAD}, and {@code POST} methods are allowed, and the max age
 	 * is set to 30 minutes.
 	 *
-	 * <p>The following defaults are applied to the {@link CorsRegistration}:
+	 * The following defaults are applied to the {@link CorsRegistration}:
 	 * <ul>
 	 *     <li>Allow all origins.</li>
 	 *     <li>Allow "simple" methods {@code GET}, {@code HEAD} and {@code POST}.</li>

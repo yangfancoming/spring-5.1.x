@@ -39,7 +39,7 @@ public class SetFactoryBean extends AbstractFactoryBean<Set<Object>> {
 	/**
 	 * Set the class to use for the target Set. Can be populated with a fully
 	 * qualified class name when defined in a Spring application context.
-	 * <p>Default is a linked HashSet, keeping the registration order.
+	 * Default is a linked HashSet, keeping the registration order.
 	 * @see java.util.LinkedHashSet
 	 */
 	@SuppressWarnings("rawtypes")

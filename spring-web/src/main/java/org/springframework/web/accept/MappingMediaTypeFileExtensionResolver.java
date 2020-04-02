@@ -18,7 +18,7 @@ import org.springframework.lang.Nullable;
  * An implementation of {@code MediaTypeFileExtensionResolver} that maintains
  * lookups between file extensions and MediaTypes in both directions.
  *
- * <p>Initially created with a map of file extensions and media types.
+ * Initially created with a map of file extensions and media types.
  * Subsequently subclasses can use {@link #addMapping} to add more mappings.
  *
  * @author Rossen Stoyanchev

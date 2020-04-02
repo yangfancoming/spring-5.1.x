@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
 /**
  * Abstraction for handling XML object mapping to fields in a database.
  *
- * <p>Provides accessor methods for XML fields unmarshalled to an Object,
+ * Provides accessor methods for XML fields unmarshalled to an Object,
  * and acts as factory for {@link SqlXmlValue} instances for marshalling
  * purposes.
  *
@@ -27,7 +27,7 @@ public interface SqlXmlObjectMappingHandler extends SqlXmlHandler {
 	/**
 	 * Retrieve the given column as an object marshalled from the XML data retrieved
 	 * from the given ResultSet.
-	 * <p>Works with an internal Object to XML Mapping implementation.
+	 * Works with an internal Object to XML Mapping implementation.
 	 * @param rs the ResultSet to retrieve the content from
 	 * @param columnName the column name to use
 	 * @return the content as an Object, or {@code null} in case of SQL NULL
@@ -40,7 +40,7 @@ public interface SqlXmlObjectMappingHandler extends SqlXmlHandler {
 	/**
 	 * Retrieve the given column as an object marshalled from the XML data retrieved
 	 * from the given ResultSet.
-	 * <p>Works with an internal Object to XML Mapping implementation.
+	 * Works with an internal Object to XML Mapping implementation.
 	 * @param rs the ResultSet to retrieve the content from
 	 * @param columnIndex the column index to use
 	 * @return the content as an Object, or {@code null} in case of SQL NULL

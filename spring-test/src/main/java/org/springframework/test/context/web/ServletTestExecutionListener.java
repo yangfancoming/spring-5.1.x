@@ -30,7 +30,7 @@ import org.springframework.web.context.request.ServletWebRequest;
  * {@link WebApplicationContext WebApplicationContexts} loaded by the <em>Spring
  * TestContext Framework</em>.
  *
- * <p>Specifically, {@code ServletTestExecutionListener} sets up thread-local
+ * Specifically, {@code ServletTestExecutionListener} sets up thread-local
  * state via Spring Web's {@link RequestContextHolder} during {@linkplain
  * #prepareTestInstance(TestContext) test instance preparation} and {@linkplain
  * #beforeTestMethod(TestContext) before each test method} and creates a {@link
@@ -41,7 +41,7 @@ import org.springframework.web.context.request.ServletWebRequest;
  * into the test instance, and once the test is complete this listener {@linkplain
  * #afterTestMethod(TestContext) cleans up} thread-local state.
  *
- * <p>Note that {@code ServletTestExecutionListener} is enabled by default but
+ * Note that {@code ServletTestExecutionListener} is enabled by default but
  * generally takes no action if the {@linkplain TestContext#getTestClass() test
  * class} is not annotated with {@link WebAppConfiguration @WebAppConfiguration}.
  * See the javadocs for individual methods in this class for details.
@@ -57,7 +57,7 @@ public class ServletTestExecutionListener extends AbstractTestExecutionListener 
 	 * whether or not the {@code ServletTestExecutionListener} should {@linkplain
 	 * RequestContextHolder#resetRequestAttributes() reset} Spring Web's
 	 * {@code RequestContextHolder} in {@link #afterTestMethod(TestContext)}.
-	 * <p>Permissible values include {@link Boolean#TRUE} and {@link Boolean#FALSE}.
+	 * Permissible values include {@link Boolean#TRUE} and {@link Boolean#FALSE}.
 	 */
 	public static final String RESET_REQUEST_CONTEXT_HOLDER_ATTRIBUTE = Conventions.getQualifiedAttributeName(
 			ServletTestExecutionListener.class, "resetRequestContextHolder");
@@ -66,7 +66,7 @@ public class ServletTestExecutionListener extends AbstractTestExecutionListener 
 	 * Attribute name for a {@link TestContext} attribute which indicates that
 	 * {@code ServletTestExecutionListener} has already populated Spring Web's
 	 * {@code RequestContextHolder}.
-	 * <p>Permissible values include {@link Boolean#TRUE} and {@link Boolean#FALSE}.
+	 * Permissible values include {@link Boolean#TRUE} and {@link Boolean#FALSE}.
 	 */
 	public static final String POPULATED_REQUEST_CONTEXT_HOLDER_ATTRIBUTE = Conventions.getQualifiedAttributeName(
 			ServletTestExecutionListener.class, "populatedRequestContextHolder");
@@ -76,7 +76,7 @@ public class ServletTestExecutionListener extends AbstractTestExecutionListener 
 	 * {@link MockHttpServletRequest} stored in the {@link RequestAttributes}
 	 * in Spring Web's {@link RequestContextHolder} was created by the TestContext
 	 * framework.
-	 * <p>Permissible values include {@link Boolean#TRUE} and {@link Boolean#FALSE}.
+	 * Permissible values include {@link Boolean#TRUE} and {@link Boolean#FALSE}.
 	 * @since 4.2
 	 */
 	public static final String CREATED_BY_THE_TESTCONTEXT_FRAMEWORK = Conventions.getQualifiedAttributeName(
@@ -87,7 +87,7 @@ public class ServletTestExecutionListener extends AbstractTestExecutionListener 
 	 * {@code ServletTestExecutionListener} should be activated. When not set to
 	 * {@code true}, activation occurs when the {@linkplain TestContext#getTestClass()
 	 * test class} is annotated with {@link WebAppConfiguration @WebAppConfiguration}.
-	 * <p>Permissible values include {@link Boolean#TRUE} and {@link Boolean#FALSE}.
+	 * Permissible values include {@link Boolean#TRUE} and {@link Boolean#FALSE}.
 	 * @since 4.3
 	 */
 	public static final String ACTIVATE_LISTENER = Conventions.getQualifiedAttributeName(
@@ -140,7 +140,7 @@ public class ServletTestExecutionListener extends AbstractTestExecutionListener 
 	 * into the test instance for subsequent tests by setting the
 	 * {@link DependencyInjectionTestExecutionListener#REINJECT_DEPENDENCIES_ATTRIBUTE}
 	 * in the test context to {@code true}.
-	 * <p>The {@link #RESET_REQUEST_CONTEXT_HOLDER_ATTRIBUTE} and
+	 * The {@link #RESET_REQUEST_CONTEXT_HOLDER_ATTRIBUTE} and
 	 * {@link #POPULATED_REQUEST_CONTEXT_HOLDER_ATTRIBUTE} will be subsequently
 	 * removed from the test context, regardless of their values.
 	 * @see TestExecutionListener#afterTestMethod(TestContext)

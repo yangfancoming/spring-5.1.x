@@ -17,30 +17,30 @@ import org.springframework.lang.Nullable;
  * awareness of Spring-managed transactions. Similar to a transactional JNDI
  * ConnectionFactory as provided by a Java EE server.
  *
- * <p>Data access code that should remain unaware of Spring's data access support
+ * Data access code that should remain unaware of Spring's data access support
  * can work with this proxy to seamlessly participate in Spring-managed transactions.
  * Note that the transaction manager, for example the {@link CciLocalTransactionManager},
  * still needs to work with underlying ConnectionFactory, <i>not</i> with this proxy.
  *
- * <p><b>Make sure that TransactionAwareConnectionFactoryProxy is the outermost
+ * <b>Make sure that TransactionAwareConnectionFactoryProxy is the outermost
  * ConnectionFactory of a chain of ConnectionFactory proxies/adapters.</b>
  * TransactionAwareConnectionFactoryProxy can delegate either directly to the
  * target connection pool or to some intermediate proxy/adapter like
  * {@link ConnectionSpecConnectionFactoryAdapter}.
  *
- * <p>Delegates to {@link ConnectionFactoryUtils} for automatically participating in
+ * Delegates to {@link ConnectionFactoryUtils} for automatically participating in
  * thread-bound transactions, for example managed by {@link CciLocalTransactionManager}.
  * {@code getConnection} calls and {@code close} calls on returned Connections
  * will behave properly within a transaction, i.e. always operate on the transactional
  * Connection. If not within a transaction, normal ConnectionFactory behavior applies.
  *
- * <p>This proxy allows data access code to work with the plain JCA CCI API and still
+ * This proxy allows data access code to work with the plain JCA CCI API and still
  * participate in Spring-managed transactions, similar to CCI code in a Java EE/JTA
  * environment. However, if possible, use Spring's ConnectionFactoryUtils, CciTemplate or
  * CCI operation objects to get transaction participation even without a proxy for
  * the target ConnectionFactory, avoiding the need to define such a proxy in the first place.
  *
- * <p><b>NOTE:</b> This ConnectionFactory proxy needs to return wrapped Connections
+ * <b>NOTE:</b> This ConnectionFactory proxy needs to return wrapped Connections
  * in order to handle close calls properly. Therefore, the returned Connections cannot
  * be cast to a native CCI Connection type or to a connection pool implementation type.
  *

@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  * Base class for JSF NavigationHandler implementations that want
  * to be capable of decorating an original NavigationHandler.
  *
- * <p>Supports the standard JSF style of decoration (through a constructor argument)
+ * Supports the standard JSF style of decoration (through a constructor argument)
  * as well as an overloaded {@code handleNavigation} method with explicit
  * NavigationHandler argument (passing in the original NavigationHandler). Subclasses
  * are forced to implement this overloaded {@code handleNavigation} method.
@@ -69,7 +69,7 @@ public abstract class DecoratingNavigationHandler extends NavigationHandler {
 	 * argument. Either called directly, by code with an explicit original handler,
 	 * or called from the standard {@code handleNavigation} method, as
 	 * plain JSF-defined NavigationHandler.
-	 * <p>Implementations should invoke {@code callNextHandlerInChain} to
+	 * Implementations should invoke {@code callNextHandlerInChain} to
 	 * delegate to the next handler in the chain. This will always call the most
 	 * appropriate next handler (see {@code callNextHandlerInChain} javadoc).
 	 * Alternatively, the decorated NavigationHandler or the passed-in original
@@ -94,7 +94,7 @@ public abstract class DecoratingNavigationHandler extends NavigationHandler {
 	 * appropriate next handler, either the decorated NavigationHandler passed
 	 * in as constructor argument or the original NavigationHandler as passed
 	 * into this method - according to the position of this instance in the chain.
-	 * <p>Will call the decorated NavigationHandler specified as constructor
+	 * Will call the decorated NavigationHandler specified as constructor
 	 * argument, if any. In case of a DecoratingNavigationHandler as target, the
 	 * original NavigationHandler as passed into this method will be passed on to
 	 * the next element in the chain: This ensures propagation of the original
@@ -102,7 +102,7 @@ public abstract class DecoratingNavigationHandler extends NavigationHandler {
 	 * In case of a standard NavigationHandler as target, the original handler
 	 * will simply not get passed on; no delegating back to the original is
 	 * possible further down the chain in that scenario.
-	 * <p>If no decorated NavigationHandler specified as constructor argument,
+	 * If no decorated NavigationHandler specified as constructor argument,
 	 * this instance is the last element in the chain. Hence, this method will
 	 * call the original NavigationHandler as passed into this method. If no
 	 * original NavigationHandler has been passed in (for example if this

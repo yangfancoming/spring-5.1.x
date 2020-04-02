@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
  * via "depends-on" from beans that depend on database startup, like a Hibernate
  * SessionFactory or custom data access objects that access a DataSource directly.
  *
- * <p>Useful to defer application initialization until a database has started up.
+ * Useful to defer application initialization until a database has started up.
  * Particularly appropriate for waiting on a slowly starting Oracle database.
  * @since 18.12.2003
  */

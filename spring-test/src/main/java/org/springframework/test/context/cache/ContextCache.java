@@ -12,13 +12,13 @@ import org.springframework.test.context.MergedContextConfiguration;
  * {@link ApplicationContext ApplicationContexts} within the
  * <em>Spring TestContext Framework</em>.
  *
- * <p>A {@code ContextCache} maintains a cache of {@code ApplicationContexts}
+ * A {@code ContextCache} maintains a cache of {@code ApplicationContexts}
  * keyed by {@link MergedContextConfiguration} instances, potentially configured
  * with a {@linkplain ContextCacheUtils#retrieveMaxCacheSize maximum size} and
  * a custom eviction policy.
  *
  * <h3>Rationale</h3>
- * <p>Context caching can have significant performance benefits if context
+ * Context caching can have significant performance benefits if context
  * initialization is complex. Although the initialization of a Spring context
  * itself is typically very quick, some beans in a context ; for example,
  * an embedded database or a {@code LocalContainerEntityManagerFactoryBean} for
@@ -46,7 +46,7 @@ public interface ContextCache {
 	 * System property used to configure the maximum size of the {@link ContextCache}
 	 * as a positive integer. May alternatively be configured via the
 	 * {@link org.springframework.core.SpringProperties} mechanism.
-	 * <p>Note that implementations of {@code ContextCache} are not required to
+	 * Note that implementations of {@code ContextCache} are not required to
 	 * actually support a maximum cache size. Consult the documentation of the
 	 * corresponding implementation for details.
 	 * @since 4.3
@@ -64,7 +64,7 @@ public interface ContextCache {
 
 	/**
 	 * Obtain a cached {@code ApplicationContext} for the given key.
-	 * <p>The {@linkplain #getHitCount() hit} and {@linkplain #getMissCount() miss}
+	 * The {@linkplain #getHitCount() hit} and {@linkplain #getMissCount() miss}
 	 * counts must be updated accordingly.
 	 * @param key the context key (never {@code null})
 	 * @return the corresponding {@code ApplicationContext} instance, or {@code null}
@@ -86,11 +86,11 @@ public interface ContextCache {
 	 * Remove the context with the given key from the cache and explicitly
 	 * {@linkplain org.springframework.context.ConfigurableApplicationContext#close() close}
 	 * it if it is an instance of {@code ConfigurableApplicationContext}.
-	 * <p>Generally speaking, this method should be called to properly evict
+	 * Generally speaking, this method should be called to properly evict
 	 * a context from the cache (e.g., due to a custom eviction policy) or if
 	 * the state of a singleton bean has been modified, potentially affecting
 	 * future interaction with the context.
-	 * <p>In addition, the semantics of the supplied {@code HierarchyMode} must
+	 * In addition, the semantics of the supplied {@code HierarchyMode} must
 	 * be honored. See the Javadoc for {@link HierarchyMode} for details.
 	 * @param key the context key; never {@code null}
 	 * @param hierarchyMode the hierarchy mode; may be {@code null} if the context
@@ -100,7 +100,7 @@ public interface ContextCache {
 
 	/**
 	 * Determine the number of contexts currently stored in the cache.
-	 * <p>If the cache contains more than {@code Integer.MAX_VALUE} elements,
+	 * If the cache contains more than {@code Integer.MAX_VALUE} elements,
 	 * this method must return {@code Integer.MAX_VALUE}.
 	 */
 	int size();
@@ -112,14 +112,14 @@ public interface ContextCache {
 
 	/**
 	 * Get the overall hit count for this cache.
-	 * <p>A <em>hit</em> is any access to the cache that returns a non-null
+	 * A <em>hit</em> is any access to the cache that returns a non-null
 	 * context for the queried key.
 	 */
 	int getHitCount();
 
 	/**
 	 * Get the overall miss count for this cache.
-	 * <p>A <em>miss</em> is any access to the cache that returns a {@code null}
+	 * A <em>miss</em> is any access to the cache that returns a {@code null}
 	 * context for the queried key.
 	 */
 	int getMissCount();
@@ -144,7 +144,7 @@ public interface ContextCache {
 	/**
 	 * Log the statistics for this {@code ContextCache} at {@code DEBUG} level
 	 * using the {@value #CONTEXT_CACHE_LOGGING_CATEGORY} logging category.
-	 * <p>The following information should be logged.
+	 * The following information should be logged.
 	 * <ul>
 	 * <li>name of the concrete {@code ContextCache} implementation</li>
 	 * <li>{@linkplain #size}</li>

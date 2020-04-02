@@ -18,7 +18,7 @@ import static org.testng.Assert.*;
  * {@link org.springframework.context.annotation.Configuration @Configuration} classes
  * with TestNG-based tests.
  *
- * <p>Configuration will be loaded from
+ * Configuration will be loaded from
  * {@link AnnotationConfigTestNGSpringContextTests.Config}.
  *
  * @author Sam Brannen

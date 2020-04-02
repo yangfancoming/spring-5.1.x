@@ -10,7 +10,7 @@ import org.springframework.expression.spel.ExpressionState;
  * Represents assignment. An alternative to calling {@code setValue}
  * for an expression which indicates an assign statement.
  *
- * <p>Example: 'someNumberProperty=42'
+ * Example: 'someNumberProperty=42'
  *
  * @author Andy Clement
  * @since 3.0

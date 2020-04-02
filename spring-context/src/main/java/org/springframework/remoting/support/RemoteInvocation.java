@@ -17,10 +17,10 @@ import org.springframework.util.ClassUtils;
  * Encapsulates a remote invocation, providing core method invocation properties
  * in a serializable fashion. Used for RMI and HTTP-based serialization invokers.
  *
- * <p>This is an SPI class, typically not used directly by applications.
+ * This is an SPI class, typically not used directly by applications.
  * Can be subclassed for additional invocation parameters.
  *
- * <p>Both {@link RemoteInvocation} and {@link RemoteInvocationResult} are designed
+ * Both {@link RemoteInvocation} and {@link RemoteInvocationResult} are designed
  * for use with standard Java serialization as well as JavaBean-style serialization.
  *
 
@@ -80,7 +80,7 @@ public class RemoteInvocation implements Serializable {
 
 	/**
 	 * Set the name of the target method.
-	 * <p>This setter is intended for JavaBean-style deserialization.
+	 * This setter is intended for JavaBean-style deserialization.
 	 */
 	public void setMethodName(String methodName) {
 		this.methodName = methodName;
@@ -95,7 +95,7 @@ public class RemoteInvocation implements Serializable {
 
 	/**
 	 * Set the parameter types of the target method.
-	 * <p>This setter is intended for JavaBean-style deserialization.
+	 * This setter is intended for JavaBean-style deserialization.
 	 */
 	public void setParameterTypes(Class<?>[] parameterTypes) {
 		this.parameterTypes = parameterTypes;
@@ -110,7 +110,7 @@ public class RemoteInvocation implements Serializable {
 
 	/**
 	 * Set the arguments for the target method call.
-	 * <p>This setter is intended for JavaBean-style deserialization.
+	 * This setter is intended for JavaBean-style deserialization.
 	 */
 	public void setArguments(Object[] arguments) {
 		this.arguments = arguments;
@@ -127,9 +127,9 @@ public class RemoteInvocation implements Serializable {
 	/**
 	 * Add an additional invocation attribute. Useful to add additional
 	 * invocation context without having to subclass RemoteInvocation.
-	 * <p>Attribute keys have to be unique, and no overriding of existing
+	 * Attribute keys have to be unique, and no overriding of existing
 	 * attributes is allowed.
-	 * <p>The implementation avoids to unnecessarily create the attributes
+	 * The implementation avoids to unnecessarily create the attributes
 	 * Map, to minimize serialization size.
 	 * @param key the attribute key
 	 * @param value the attribute value
@@ -147,7 +147,7 @@ public class RemoteInvocation implements Serializable {
 
 	/**
 	 * Retrieve the attribute for the given key, if any.
-	 * <p>The implementation avoids to unnecessarily create the attributes
+	 * The implementation avoids to unnecessarily create the attributes
 	 * Map, to minimize serialization size.
 	 * @param key the attribute key
 	 * @return the attribute value, or {@code null} if not defined

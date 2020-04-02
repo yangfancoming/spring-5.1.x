@@ -23,7 +23,7 @@ import static org.junit.Assert.*;
  * annotation are correctly reflected in the {@link BeanDefinition} created when
  * processing the {@link Configuration} class.
  *
- * <p>Also includes tests proving that using {@link Lazy} and {@link Primary}
+ * Also includes tests proving that using {@link Lazy} and {@link Primary}
  * annotations in conjunction with Bean propagate their respective metadata
  * correctly into the resulting BeanDefinition
 

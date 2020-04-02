@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
  * A context that holds user-specific Joda-Time settings such as the user's
  * Chronology (calendar system) and time zone.
  *
- * <p>A {@code null} property value indicate the user has not specified a setting.
+ * A {@code null} property value indicate the user has not specified a setting.
  *
  * @author Keith Donald
  * @since 3.0
@@ -49,7 +49,7 @@ public class JodaTimeContext {
 
 	/**
 	 * Set the user's time zone.
-	 * <p>Alternatively, set a {@link TimeZoneAwareLocaleContext} on
+	 * Alternatively, set a {@link TimeZoneAwareLocaleContext} on
 	 * {@link LocaleContextHolder}. This context class will fall back to
 	 * checking the locale context if no setting has been provided here.
 	 * @see org.springframework.context.i18n.LocaleContextHolder#getTimeZone()

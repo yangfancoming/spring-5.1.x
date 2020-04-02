@@ -33,16 +33,16 @@ import org.springframework.util.concurrent.ListenableFutureTask;
  * that delegates to a JCA 1.7 WorkManager, implementing the
  * {@link javax.resource.spi.work.WorkManager} interface.
  *
- * <p>This is mainly intended for use within a JCA ResourceAdapter implementation,
+ * This is mainly intended for use within a JCA ResourceAdapter implementation,
  * but may also be used in a standalone environment, delegating to a locally
  * embedded WorkManager implementation (such as Geronimo's).
  *
- * <p>Also implements the JCA 1.7 WorkManager interface itself, delegating all
+ * Also implements the JCA 1.7 WorkManager interface itself, delegating all
  * calls to the target WorkManager. Hence, a caller can choose whether it wants
  * to talk to this executor through the Spring TaskExecutor interface or the
  * WorkManager interface.
  *
- * <p>This adapter is also capable of obtaining a JCA WorkManager from JNDI.
+ * This adapter is also capable of obtaining a JCA WorkManager from JNDI.
  * This is for example appropriate on the Geronimo application server, where
  * WorkManager GBeans (e.g. Geronimo's default "DefaultWorkManager" GBean)
  * can be linked into the Java EE environment through "gbean-ref" entries
@@ -99,7 +99,7 @@ public class WorkManagerTaskExecutor extends JndiLocatorSupport
 
 	/**
 	 * Set the JNDI name of the JCA WorkManager.
-	 * <p>This can either be a fully qualified JNDI name,
+	 * This can either be a fully qualified JNDI name,
 	 * or the JNDI name relative to the current environment
 	 * naming context if "resourceRef" is set to "true".
 	 * @see #setWorkManager
@@ -122,7 +122,7 @@ public class WorkManagerTaskExecutor extends JndiLocatorSupport
 	/**
 	 * Set whether to let {@link #execute} block until the work
 	 * has been actually started.
-	 * <p>Uses the JCA {@code startWork} operation underneath,
+	 * Uses the JCA {@code startWork} operation underneath,
 	 * instead of the default {@code scheduleWork}.
 	 * @see javax.resource.spi.work.WorkManager#startWork
 	 * @see javax.resource.spi.work.WorkManager#scheduleWork
@@ -134,7 +134,7 @@ public class WorkManagerTaskExecutor extends JndiLocatorSupport
 	/**
 	 * Set whether to let {@link #execute} block until the work
 	 * has been completed.
-	 * <p>Uses the JCA {@code doWork} operation underneath,
+	 * Uses the JCA {@code doWork} operation underneath,
 	 * instead of the default {@code scheduleWork}.
 	 * @see javax.resource.spi.work.WorkManager#doWork
 	 * @see javax.resource.spi.work.WorkManager#scheduleWork
@@ -145,7 +145,7 @@ public class WorkManagerTaskExecutor extends JndiLocatorSupport
 
 	/**
 	 * Specify a JCA WorkListener to apply, if any.
-	 * <p>This shared WorkListener instance will be passed on to the
+	 * This shared WorkListener instance will be passed on to the
 	 * WorkManager by all {@link #execute} calls on this TaskExecutor.
 	 */
 	public void setWorkListener(@Nullable WorkListener workListener) {
@@ -155,10 +155,10 @@ public class WorkManagerTaskExecutor extends JndiLocatorSupport
 	/**
 	 * Specify a custom {@link TaskDecorator} to be applied to any {@link Runnable}
 	 * about to be executed.
-	 * <p>Note that such a decorator is not necessarily being applied to the
+	 * Note that such a decorator is not necessarily being applied to the
 	 * user-supplied {@code Runnable}/{@code Callable} but rather to the actual
 	 * execution callback (which may be a wrapper around the user-supplied task).
-	 * <p>The primary use case is to set some execution context around the task's
+	 * The primary use case is to set some execution context around the task's
 	 * invocation, or to provide some monitoring/statistics for task execution.
 	 * @since 4.3
 	 */
@@ -181,7 +181,7 @@ public class WorkManagerTaskExecutor extends JndiLocatorSupport
 	/**
 	 * Obtain a default WorkManager to delegate to.
 	 * Called if no explicit WorkManager or WorkManager JNDI name has been specified.
-	 * <p>The default implementation returns a {@link SimpleTaskWorkManager}.
+	 * The default implementation returns a {@link SimpleTaskWorkManager}.
 	 * Can be overridden in subclasses.
 	 */
 	protected WorkManager getDefaultWorkManager() {

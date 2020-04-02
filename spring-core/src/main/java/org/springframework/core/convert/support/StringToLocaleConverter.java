@@ -11,7 +11,7 @@ import org.springframework.util.StringUtils;
 /**
  * Converts from a String to a {@link java.util.Locale}.
  *
- * <p>Accepts the classic {@link Locale} String format ({@link Locale#toString()})
+ * Accepts the classic {@link Locale} String format ({@link Locale#toString()})
  * as well as BCP 47 language tags ({@link Locale#forLanguageTag} on Java 7+).
  *
  * @author Keith Donald

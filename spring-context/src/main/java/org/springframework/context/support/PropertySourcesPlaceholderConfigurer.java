@@ -26,19 +26,19 @@ import org.springframework.util.StringValueResolver;
  * within bean definition property values and {@code @Value} annotations against the current
  * Spring {@link Environment} and its set of {@link PropertySources}.
  *
- * <p>This class is designed as a general replacement for {@code PropertyPlaceholderConfigurer}.
+ * This class is designed as a general replacement for {@code PropertyPlaceholderConfigurer}.
  * It is used by default to support the {@code property-placeholder} element in working against
  * the spring-context-3.1 or higher XSD; whereas, spring-context versions &lt;= 3.0 default to
  * {@code PropertyPlaceholderConfigurer} to ensure backward compatibility. See the spring-context
  * XSD documentation for complete details.
  *
- * <p>Any local properties (e.g. those added via {@link #setProperties}, {@link #setLocations}
+ * Any local properties (e.g. those added via {@link #setProperties}, {@link #setLocations}
  * et al.) are added as a {@code PropertySource}. Search precedence of local properties is
  * based on the value of the {@link #setLocalOverride localOverride} property, which is by
  * default {@code false} meaning that local properties are to be searched last, after all
  * environment property sources.
  *
- * <p>See {@link org.springframework.core.env.ConfigurableEnvironment} and related javadocs
+ * See {@link org.springframework.core.env.ConfigurableEnvironment} and related javadocs
  * for details on manipulating environment property sources.
 
 
@@ -74,7 +74,7 @@ public class PropertySourcesPlaceholderConfigurer extends PlaceholderConfigurerS
 
 	/**
 	 * Customize the set of {@link PropertySources} to be used by this configurer.
-	 * <p>Setting this property indicates that environment property sources and
+	 * Setting this property indicates that environment property sources and
 	 * local properties should be ignored.
 	 * @see #postProcessBeanFactory
 	 */
@@ -105,7 +105,7 @@ public class PropertySourcesPlaceholderConfigurer extends PlaceholderConfigurerS
 	 * {@linkplain #setPropertiesArray specified}
 	 * <li>any property sources set by calling {@link #setPropertySources}
 	 * </ul>
-	 * <p>If {@link #setPropertySources} is called, <strong>environment and local properties will be
+	 * If {@link #setPropertySources} is called, <strong>environment and local properties will be
 	 * ignored</strong>. This method is designed to give the user fine-grained control over property
 	 * sources, and once set, the configurer makes no assumptions about adding additional sources.
 	 */

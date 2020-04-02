@@ -35,7 +35,7 @@ import org.springframework.util.function.SingletonSupplier;
  * {@code org.springframework.scheduling.annotation.AnnotationAsyncExecutionInterceptor}
  * or {@code org.springframework.scheduling.aspectj.AnnotationAsyncExecutionAspect}.
  *
- * <p>Provides support for <i>executor qualification</i> on a method-by-method basis.
+ * Provides support for <i>executor qualification</i> on a method-by-method basis.
  * {@code AsyncExecutionAspectSupport} objects must be constructed with a default {@code
  * Executor}, but each individual method may further qualify a specific {@code Executor}
  * bean to be used when executing it, e.g. through an annotation attribute.
@@ -46,7 +46,7 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 
 	/**
 	 * The default name of the {@link TaskExecutor} bean to pick up: "taskExecutor".
-	 * <p>Note that the initial lookup happens by type; this is just the fallback
+	 * Note that the initial lookup happens by type; this is just the fallback
 	 * in case of multiple executor beans found in the context.
 	 * @since 4.2.6
 	 */
@@ -192,7 +192,7 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 	/**
 	 * Retrieve or build a default executor for this advice instance.
 	 * An executor returned from here will be cached for further use.
-	 * <p>The default implementation searches for a unique {@link TaskExecutor} bean
+	 * The default implementation searches for a unique {@link TaskExecutor} bean
 	 * in the context, or for an {@link Executor} bean named "taskExecutor" otherwise.
 	 * If neither of the two is resolvable, this implementation will return {@code null}.
 	 * @param beanFactory the BeanFactory to use for a default executor lookup
@@ -264,7 +264,7 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 	/**
 	 * Handles a fatal error thrown while asynchronously invoking the specified
 	 * {@link Method}.
-	 * <p>If the return type of the method is a {@link Future} object, the original
+	 * If the return type of the method is a {@link Future} object, the original
 	 * exception can be propagated by just throwing it at the higher level. However,
 	 * for all other cases, the exception will not be transmitted back to the client.
 	 * In that later case, the current {@link AsyncUncaughtExceptionHandler} will be

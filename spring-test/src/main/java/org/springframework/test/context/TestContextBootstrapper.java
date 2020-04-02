@@ -8,18 +8,18 @@ import java.util.List;
  * {@code TestContextBootstrapper} defines the SPI for bootstrapping the
  * <em>Spring TestContext Framework</em>.
  *
- * <p>A {@code TestContextBootstrapper} is used by the {@link TestContextManager} to
+ * A {@code TestContextBootstrapper} is used by the {@link TestContextManager} to
  * {@linkplain #getTestExecutionListeners get the TestExecutionListeners} for the
  * current test and to {@linkplain #buildTestContext build the TestContext} that
  * it manages.
  *
  * <h3>Configuration</h3>
  *
- * <p>A custom bootstrapping strategy can be configured for a test class (or
+ * A custom bootstrapping strategy can be configured for a test class (or
  * test class hierarchy) via {@link BootstrapWith @BootstrapWith}, either
  * directly or as a meta-annotation.
  *
- * <p>If a bootstrapper is not explicitly configured via {@code @BootstrapWith},
+ * If a bootstrapper is not explicitly configured via {@code @BootstrapWith},
  * either the {@link org.springframework.test.context.support.DefaultTestContextBootstrapper
  * DefaultTestContextBootstrapper} or the
  * {@link org.springframework.test.context.web.WebTestContextBootstrapper
@@ -28,9 +28,9 @@ import java.util.List;
  *
  * <h3>Implementation Notes</h3>
  *
- * <p>Concrete implementations must provide a {@code public} no-args constructor.
+ * Concrete implementations must provide a {@code public} no-args constructor.
  *
- * <p><strong>WARNING</strong>: this SPI will likely change in the future in
+ * <strong>WARNING</strong>: this SPI will likely change in the future in
  * order to accommodate new requirements. Implementers are therefore strongly encouraged
  * <strong>not</strong> to implement this interface directly but rather to <em>extend</em>
  * {@link org.springframework.test.context.support.AbstractTestContextBootstrapper
@@ -66,7 +66,7 @@ public interface TestContextBootstrapper {
 	 * Build the {@linkplain MergedContextConfiguration merged context configuration}
 	 * for the test class in the {@link BootstrapContext} associated with this
 	 * bootstrapper.
-	 * <p>Implementations must take the following into account when building the
+	 * Implementations must take the following into account when building the
 	 * merged configuration:
 	 * <ul>
 	 * <li>Context hierarchies declared via {@link ContextHierarchy @ContextHierarchy}
@@ -76,11 +76,11 @@ public interface TestContextBootstrapper {
 	 * Context initializers} declared via {@link ContextConfiguration#initializers}</li>
 	 * <li>Test property sources declared via {@link TestPropertySource @TestPropertySource}</li>
 	 * </ul>
-	 * <p>Consult the Javadoc for the aforementioned annotations for details on
+	 * Consult the Javadoc for the aforementioned annotations for details on
 	 * the required semantics.
-	 * <p>Note that the implementation of {@link #buildTestContext()} should
+	 * Note that the implementation of {@link #buildTestContext()} should
 	 * typically delegate to this method when constructing the {@code TestContext}.
-	 * <p>When determining which {@link ContextLoader} to use for a given test
+	 * When determining which {@link ContextLoader} to use for a given test
 	 * class, the following algorithm should be used:
 	 * <ol>
 	 * <li>If a {@code ContextLoader} class has been explicitly declared via
@@ -96,19 +96,19 @@ public interface TestContextBootstrapper {
 	/**
 	 * Get a list of newly instantiated {@link TestExecutionListener TestExecutionListeners}
 	 * for the test class in the {@link BootstrapContext} associated with this bootstrapper.
-	 * <p>If {@link TestExecutionListeners @TestExecutionListeners} is not
+	 * If {@link TestExecutionListeners @TestExecutionListeners} is not
 	 * <em>present</em> on the test class in the {@code BootstrapContext},
 	 * <em>default</em> listeners should be returned. Furthermore, default
 	 * listeners must be sorted using
 	 * {@link org.springframework.core.annotation.AnnotationAwareOrderComparator
 	 * AnnotationAwareOrderComparator}.
-	 * <p>Concrete implementations are free to determine what comprises the
+	 * Concrete implementations are free to determine what comprises the
 	 * set of default listeners. However, by default, the Spring TestContext
 	 * Framework will use the
 	 * {@link org.springframework.core.io.support.SpringFactoriesLoader SpringFactoriesLoader}
 	 * mechanism to look up all {@code TestExecutionListener} class names
 	 * configured in all {@code META-INF/spring.factories} files on the classpath.
-	 * <p>The {@link TestExecutionListeners#inheritListeners() inheritListeners}
+	 * The {@link TestExecutionListeners#inheritListeners() inheritListeners}
 	 * flag of {@link TestExecutionListeners @TestExecutionListeners} must be
 	 * taken into consideration. Specifically, if the {@code inheritListeners}
 	 * flag is set to {@code true}, listeners declared for a given test class must

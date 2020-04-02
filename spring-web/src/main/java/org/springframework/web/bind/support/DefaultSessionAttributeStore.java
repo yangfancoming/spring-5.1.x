@@ -24,7 +24,7 @@ public class DefaultSessionAttributeStore implements SessionAttributeStore {
 
 	/**
 	 * Specify a prefix to use for the attribute names in the backend session.
-	 * <p>Default is to use no prefix, storing the session attributes with the
+	 * Default is to use no prefix, storing the session attributes with the
 	 * same name as in the model.
 	 */
 	public void setAttributeNamePrefix(@Nullable String attributeNamePrefix) {
@@ -61,7 +61,7 @@ public class DefaultSessionAttributeStore implements SessionAttributeStore {
 
 	/**
 	 * Calculate the attribute name in the backend session.
-	 * <p>The default implementation simply prepends the configured
+	 * The default implementation simply prepends the configured
 	 * {@link #setAttributeNamePrefix "attributeNamePrefix"}, if any.
 	 * @param request the current request
 	 * @param attributeName the name of the attribute

@@ -11,7 +11,7 @@ import org.springframework.util.MultiValueMap;
  * into a sequence of {@link Separator Separator} and {@link PathSegment
  * PathSegment} elements.
  *
- * <p>An instance of this class can be created via {@link #parsePath(String)}.
+ * An instance of this class can be created via {@link #parsePath(String)}.
  * Each {@link PathSegment PathSegment} exposes its structure decoded
  * safely without the risk of encoded reserved characters altering the path or
  * segment structure and without path parameters for path matching purposes.

@@ -20,7 +20,7 @@ import org.springframework.web.util.WebUtils;
  * dispatch, on any servlet container. It provides a {@link #doFilterInternal}
  * method with HttpServletRequest and HttpServletResponse arguments.
  *
- * <p>As of Servlet 3.0, a filter may be invoked as part of a
+ * As of Servlet 3.0, a filter may be invoked as part of a
  * {@link javax.servlet.DispatcherType#REQUEST REQUEST} or
  * {@link javax.servlet.DispatcherType#ASYNC ASYNC} dispatches that occur in
  * separate threads. A filter can be configured in {@code web.xml} whether it
@@ -32,18 +32,18 @@ import org.springframework.web.util.WebUtils;
  * and so on. This mechanism complements and does not replace the need to
  * configure a filter in {@code web.xml} with dispatcher types.
  *
- * <p>Subclasses may use {@link #isAsyncDispatch(HttpServletRequest)} to
+ * Subclasses may use {@link #isAsyncDispatch(HttpServletRequest)} to
  * determine when a filter is invoked as part of an async dispatch, and use
  * {@link #isAsyncStarted(HttpServletRequest)} to determine when the request
  * has been placed in async mode and therefore the current dispatch won't be
  * the last one for the given request.
  *
- * <p>Yet another dispatch type that also occurs in its own thread is
+ * Yet another dispatch type that also occurs in its own thread is
  * {@link javax.servlet.DispatcherType#ERROR ERROR}. Subclasses can override
  * {@link #shouldNotFilterErrorDispatch()} if they wish to declare statically
  * if they should be invoked <em>once</em> during error dispatches.
  *
- * <p>The {@link #getAlreadyFilteredAttributeName} method determines how to
+ * The {@link #getAlreadyFilteredAttributeName} method determines how to
  * identify that a request is already filtered. The default implementation is
  * based on the configured name of the concrete filter instance.
  *
@@ -139,7 +139,7 @@ public abstract class OncePerRequestFilter extends GenericFilterBean {
 	/**
 	 * Return the name of the request attribute that identifies that a request
 	 * is already filtered.
-	 * <p>The default implementation takes the configured name of the concrete filter
+	 * The default implementation takes the configured name of the concrete filter
 	 * instance and appends ".FILTERED". If the filter is not fully initialized,
 	 * it falls back to its class name.
 	 * @see #getFilterName
@@ -171,7 +171,7 @@ public abstract class OncePerRequestFilter extends GenericFilterBean {
 	/**
 	 * Can be overridden in subclasses for custom filtering control,
 	 * returning {@code true} to avoid filtering of the given request.
-	 * <p>The default implementation always returns {@code false}.
+	 * The default implementation always returns {@code false}.
 	 * @param request current HTTP request
 	 * @return whether the given request should <i>not</i> be filtered
 	 * @throws ServletException in case of errors
@@ -187,11 +187,11 @@ public abstract class OncePerRequestFilter extends GenericFilterBean {
 	 * the initial thread (e.g. request wrapping) while others may need
 	 * to be invoked at least once in each additional thread for example for
 	 * setting up thread locals or to perform final processing at the very end.
-	 * <p>Note that although a filter can be mapped to handle specific dispatcher
+	 * Note that although a filter can be mapped to handle specific dispatcher
 	 * types via {@code web.xml} or in Java through the {@code ServletContext},
 	 * servlet containers may enforce different defaults with regards to
 	 * dispatcher types. This flag enforces the design intent of the filter.
-	 * <p>The default return value is "true", which means the filter will not be
+	 * The default return value is "true", which means the filter will not be
 	 * invoked during subsequent async dispatches. If "false", the filter will
 	 * be invoked during async dispatches with the same guarantees of being
 	 * invoked only once during a request within a single thread.
@@ -217,7 +217,7 @@ public abstract class OncePerRequestFilter extends GenericFilterBean {
 	 * Same contract as for {@code doFilter}, but guaranteed to be
 	 * just invoked once per request within a single request thread.
 	 * See {@link #shouldNotFilterAsyncDispatch()} for details.
-	 * <p>Provides HttpServletRequest and HttpServletResponse arguments instead of the
+	 * Provides HttpServletRequest and HttpServletResponse arguments instead of the
 	 * default ServletRequest and ServletResponse ones.
 	 */
 	protected abstract void doFilterInternal(

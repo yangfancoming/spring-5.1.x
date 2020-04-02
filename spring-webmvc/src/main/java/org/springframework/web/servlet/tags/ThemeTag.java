@@ -10,13 +10,13 @@ import org.springframework.context.NoSuchMessageException;
  * Messages are looked up using the ApplicationContext's ThemeSource,
  * and thus should support internationalization.
  *
- * <p>Regards a HTML escaping setting, either on this tag instance,
+ * Regards a HTML escaping setting, either on this tag instance,
  * the page level, or the web.xml level.
  *
- * <p>If "code" isn't set or cannot be resolved, "text" will be used
+ * If "code" isn't set or cannot be resolved, "text" will be used
  * as default message.
  *
- * <p>Message arguments can be specified via the {@link #setArguments(Object)
+ * Message arguments can be specified via the {@link #setArguments(Object)
  * arguments} attribute or by using nested {@code <spring:argument>} tags.
  *
  * <table>

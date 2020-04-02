@@ -17,7 +17,7 @@ import org.springframework.util.Assert;
  * the exposed proxy (either an existing AOP proxy or a newly generated proxy that
  * implements all of the target's interfaces).
  *
- * <p>Translates native resource exceptions to Spring's
+ * Translates native resource exceptions to Spring's
  * {@link org.springframework.dao.DataAccessException DataAccessException} hierarchy.
  * Autodetects beans that implement the
  * {@link org.springframework.dao.support.PersistenceExceptionTranslator
@@ -25,7 +25,7 @@ import org.springframework.util.Assert;
  * candidate exceptions.
  *
 
- * <p>All of Spring's applicable resource factories (e.g.
+ * All of Spring's applicable resource factories (e.g.
  * {@link org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean})
  * implement the {@code PersistenceExceptionTranslator} interface out of the box.
  * As a consequence, all that is usually needed to enable automatic exception
@@ -50,7 +50,7 @@ public class PersistenceExceptionTranslationPostProcessor extends AbstractBeanFa
 	/**
 	 * Set the 'repository' annotation type.
 	 * The default repository annotation type is the {@link Repository} annotation.
-	 * <p>This setter property exists so that developers can provide their own
+	 * This setter property exists so that developers can provide their own
 	 * (non-Spring-specific) annotation type to indicate that a class has a
 	 * repository role.
 	 * @param repositoryAnnotationType the desired annotation type

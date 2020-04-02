@@ -61,7 +61,7 @@ public class CommonsMultipartFile implements MultipartFile, Serializable {
 	/**
 	 * Set whether to preserve the filename as sent by the client, not stripping off
 	 * path information in {@link CommonsMultipartFile#getOriginalFilename()}.
-	 * <p>Default is "false", stripping off path information that may prefix the
+	 * Default is "false", stripping off path information that may prefix the
 	 * actual filename e.g. from Opera. Switch this to "true" for preserving the
 	 * client-specified filename as-is, including potential path separators.
 	 * @since 4.3.5

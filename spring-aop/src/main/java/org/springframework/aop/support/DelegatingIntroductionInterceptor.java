@@ -14,20 +14,20 @@ import org.springframework.util.Assert;
  * Convenient implementation of the
  * {@link org.springframework.aop.IntroductionInterceptor} interface.
  *
- * <p>Subclasses merely need to extend this class and implement the interfaces
+ * Subclasses merely need to extend this class and implement the interfaces
  * to be introduced themselves. In this case the delegate is the subclass
  * instance itself. Alternatively a separate delegate may implement the
  * interface, and be set via the delegate bean property.
  *
- * <p>Delegates or subclasses may implement any number of interfaces.
+ * Delegates or subclasses may implement any number of interfaces.
  * All interfaces except IntroductionInterceptor are picked up from
  * the subclass or delegate by default.
  *
- * <p>The {@code suppressInterface} method can be used to suppress interfaces
+ * The {@code suppressInterface} method can be used to suppress interfaces
  * implemented by the delegate but which should not be introduced to the owning
  * AOP proxy.
  *
- * <p>An instance of this class is serializable if the delegate is.
+ * An instance of this class is serializable if the delegate is.
  *
  * @author Rod Johnson
 

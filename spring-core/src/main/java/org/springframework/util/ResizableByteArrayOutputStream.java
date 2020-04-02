@@ -13,7 +13,7 @@ import java.io.ByteArrayOutputStream;
  * <li>has a higher initial capacity (256) by default</li>
  * </ul>
  *
- * <p>As of 4.2, this class has been superseded by {@link FastByteArrayOutputStream}
+ * As of 4.2, this class has been superseded by {@link FastByteArrayOutputStream}
  * for Spring's internal use where no assignability to {@link ByteArrayOutputStream}
  * is needed (since {@link FastByteArrayOutputStream} is more efficient with buffer
  * resize management but doesn't extend the standard {@link ByteArrayOutputStream}).

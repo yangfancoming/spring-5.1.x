@@ -26,7 +26,7 @@ import org.springframework.beans.factory.InitializingBean;
  * Starts the HTTP server on initialization and stops it on destruction.
  * Exposes the resulting {@link com.sun.net.httpserver.HttpServer} object.
  *
- * <p>Allows for registering {@link com.sun.net.httpserver.HttpHandler HttpHandlers}
+ * Allows for registering {@link com.sun.net.httpserver.HttpHandler HttpHandlers}
  * for specific {@link #setContexts context paths}. Alternatively,
  * register such context-specific handlers programmatically on the
  * {@link com.sun.net.httpserver.HttpServer} itself.

@@ -14,7 +14,7 @@ import org.apache.commons.logging.LogFactory;
  * Abstract base class for Spring's {@link javax.sql.DataSource}
  * implementations, taking care of the padding.
  *
- * <p>'Padding' in the context of this class means default implementations
+ * 'Padding' in the context of this class means default implementations
  * for certain methods from the {@code DataSource} interface, such as
  * {@link #getLoginTimeout()}, {@link #setLoginTimeout(int)}, and so forth.
 

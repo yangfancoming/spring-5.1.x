@@ -29,7 +29,7 @@ import org.springframework.util.StringUtils;
 /**
  * Default object instantiation strategy for use in BeanFactories.
  *
- * <p>Uses CGLIB to generate subclasses dynamically if methods need to be
+ * Uses CGLIB to generate subclasses dynamically if methods need to be
  * overridden by the container to implement <em>Method Injection</em>.
  *
  * @author Rod Johnson

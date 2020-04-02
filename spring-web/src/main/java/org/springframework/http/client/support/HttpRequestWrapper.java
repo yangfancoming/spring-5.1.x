@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
  * Provides a convenient implementation of the {@link HttpRequest} interface
  * that can be overridden to adapt the request.
  *
- * <p>These methods default to calling through to the wrapped request object.
+ * These methods default to calling through to the wrapped request object.
  *
  * @author Arjen Poutsma
  * @since 3.1

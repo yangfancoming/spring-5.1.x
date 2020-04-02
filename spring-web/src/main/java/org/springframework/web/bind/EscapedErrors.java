@@ -17,7 +17,7 @@ import org.springframework.web.util.HtmlUtils;
  * for convenient usage in HTML views. Can be retrieved easily via
  * RequestContext's {@code getErrors} method.
  *
- * <p>Note that BindTag does <i>not</i> use this class to avoid unnecessary
+ * Note that BindTag does <i>not</i> use this class to avoid unnecessary
  * creation of ObjectError instances. It just escapes the messages and values
  * that get copied into the respective BindStatus instance.
  *

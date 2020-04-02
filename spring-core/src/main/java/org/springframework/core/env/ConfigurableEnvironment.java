@@ -12,7 +12,7 @@ import java.util.Map;
  * superinterface.
  *
  * <h2>Manipulating property sources</h2>
- * <p>Property sources may be removed, reordered, or replaced; and additional
+ * Property sources may be removed, reordered, or replaced; and additional
  * property sources may be added using the {@link MutablePropertySources}
  * instance returned from {@link #getPropertySources()}. The following examples
  * are against the {@link StandardEnvironment} implementation of
@@ -60,7 +60,7 @@ public interface ConfigurableEnvironment extends Environment, ConfigurableProper
 	 * Specify the set of profiles active for this {@code Environment}. Profiles are
 	 * evaluated during container bootstrap to determine whether bean definitions
 	 * should be registered with the container.
-	 * <p>Any existing active profiles will be replaced with the given arguments; call
+	 * Any existing active profiles will be replaced with the given arguments; call
 	 * with zero arguments to clear the current set of active profiles. Use
 	 * {@link #addActiveProfile} to add a profile while preserving the existing set.
 	 * @throws IllegalArgumentException if any profile is null, empty or whitespace-only
@@ -107,11 +107,11 @@ public interface ConfigurableEnvironment extends Environment, ConfigurableProper
 	 * Return the value of {@link System#getProperties()} if allowed by the current
 	 * {@link SecurityManager}, otherwise return a map implementation that will attempt
 	 * to access individual keys using calls to {@link System#getProperty(String)}.
-	 * <p>Note that most {@code Environment} implementations will include this system
+	 * Note that most {@code Environment} implementations will include this system
 	 * properties map as a default {@link PropertySource} to be searched. Therefore, it is
 	 * recommended that this method not be used directly unless bypassing other property
 	 * sources is expressly intended.
-	 * <p>Calls to {@link Map#get(Object)} on the Map returned will never throw
+	 * Calls to {@link Map#get(Object)} on the Map returned will never throw
 	 * {@link IllegalAccessException}; in cases where the SecurityManager forbids access
 	 * to a property, {@code null} will be returned and an INFO-level log message will be
 	 * issued noting the exception.
@@ -122,11 +122,11 @@ public interface ConfigurableEnvironment extends Environment, ConfigurableProper
 	 * Return the value of {@link System#getenv()} if allowed by the current
 	 * {@link SecurityManager}, otherwise return a map implementation that will attempt
 	 * to access individual keys using calls to {@link System#getenv(String)}.
-	 * <p>Note that most {@link Environment} implementations will include this system
+	 * Note that most {@link Environment} implementations will include this system
 	 * environment map as a default {@link PropertySource} to be searched. Therefore, it
 	 * is recommended that this method not be used directly unless bypassing other
 	 * property sources is expressly intended.
-	 * <p>Calls to {@link Map#get(Object)} on the Map returned will never throw
+	 * Calls to {@link Map#get(Object)} on the Map returned will never throw
 	 * {@link IllegalAccessException}; in cases where the SecurityManager forbids access
 	 * to a property, {@code null} will be returned and an INFO-level log message will be
 	 * issued noting the exception.
@@ -136,14 +136,14 @@ public interface ConfigurableEnvironment extends Environment, ConfigurableProper
 	/**
 	 * Append the given parent environment's active profiles, default profiles and
 	 * property sources to this (child) environment's respective collections of each.
-	 * <p>For any identically-named {@code PropertySource} instance existing in both
+	 * For any identically-named {@code PropertySource} instance existing in both
 	 * parent and child, the child instance is to be preserved and the parent instance
 	 * discarded. This has the effect of allowing overriding of property sources by the
 	 * child as well as avoiding redundant searches through common property source types,
 	 * e.g. system environment and system properties.
-	 * <p>Active and default profile names are also filtered for duplicates, to avoid
+	 * Active and default profile names are also filtered for duplicates, to avoid
 	 * confusion and redundant storage.
-	 * <p>The parent environment remains unmodified in any case. Note that any changes to
+	 * The parent environment remains unmodified in any case. Note that any changes to
 	 * the parent environment occurring after the call to {@code merge} will not be
 	 * reflected in the child. Therefore, care should be taken to configure parent
 	 * property sources and profile information prior to calling {@code merge}.

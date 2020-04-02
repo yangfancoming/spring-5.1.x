@@ -26,7 +26,7 @@ import org.springframework.util.Assert;
  * {@link Source} implementation that uses a {@link Marshaller}.Can be constructed with a
  * {@code Marshaller} and an object to be marshalled.
  *
- * <p>Even though {@code MarshallingSource} extends from {@code SAXSource}, calling the methods of
+ * Even though {@code MarshallingSource} extends from {@code SAXSource}, calling the methods of
  * {@code SAXSource} is <strong>not supported</strong>. In general, the only supported operation on this class is
  * to use the {@code XMLReader} obtained via {@link #getXMLReader()} to parse the input source obtained via {@link
  * #getInputSource()}. Calling {@link #setXMLReader(XMLReader)} or {@link #setInputSource(InputSource)} will result in

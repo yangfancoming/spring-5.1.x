@@ -30,7 +30,7 @@ import org.springframework.web.util.UriUtils;
  * URI template in which case the URI template variables will be replaced with
  * values from the model or with URI variables from the current request.
  *
- * <p>By default {@link HttpStatus#SEE_OTHER} is used but alternate status codes
+ * By default {@link HttpStatus#SEE_OTHER} is used but alternate status codes
  * may be via constructor or setters arguments.
  *
  * @author Sebastien Deleuze
@@ -128,9 +128,9 @@ public class RedirectView extends AbstractUrlBasedView {
 	/**
 	 * Configure one or more hosts associated with the application.
 	 * All other hosts will be considered external hosts.
-	 * <p>In effect this provides a way turn off encoding for URLs that
+	 * In effect this provides a way turn off encoding for URLs that
 	 * have a host and that host is not listed as a known host.
-	 * <p>If not set (the default) all redirect URLs are encoded.
+	 * If not set (the default) all redirect URLs are encoded.
 	 * @param hosts one or more application hosts
 	 */
 	public void setHosts(@Nullable String... hosts) {

@@ -19,7 +19,7 @@ import static org.springframework.test.annotation.DirtiesContext.MethodMode.AFTE
  * both test classes and test methods annotated with the
  * {@link DirtiesContext @DirtiesContext} annotation.
  *
- * <p>This listener supports test methods with the
+ * This listener supports test methods with the
  * {@linkplain DirtiesContext#methodMode method mode} set to
  * {@link MethodMode#AFTER_METHOD AFTER_METHOD} and test classes with the
  * {@linkplain DirtiesContext#classMode() class mode} set to
@@ -27,7 +27,7 @@ import static org.springframework.test.annotation.DirtiesContext.MethodMode.AFTE
  * {@link ClassMode#AFTER_CLASS AFTER_CLASS}. For support for <em>BEFORE</em>
  * modes, see {@link DirtiesContextBeforeModesTestExecutionListener}.
  *
- * <p>When {@linkplain TestExecutionListeners#mergeMode merging}
+ * When {@linkplain TestExecutionListeners#mergeMode merging}
  * {@code TestExecutionListeners} with the defaults, this listener will
  * automatically be ordered after the {@link DependencyInjectionTestExecutionListener};
  * otherwise, this listener must be manually configured to execute after the

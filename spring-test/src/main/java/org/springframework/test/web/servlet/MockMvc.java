@@ -112,10 +112,10 @@ public final class MockMvc {
 	/**
 	 * Return the underlying {@link DispatcherServlet} instance that this
 	 * {@code MockMvc} was initialized with.
-	 * <p>This is intended for use in custom request processing scenario where a
+	 * This is intended for use in custom request processing scenario where a
 	 * request handling component happens to delegate to the {@code DispatcherServlet}
 	 * at runtime and therefore needs to be injected with it.
-	 * <p>For most processing scenarios, simply use {@link MockMvc#perform},
+	 * For most processing scenarios, simply use {@link MockMvc#perform},
 	 * or if you need to configure the {@code DispatcherServlet}, provide a
 	 * {@link DispatcherServletCustomizer} to the {@code MockMvcBuilder}.
 	 * @since 5.1

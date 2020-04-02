@@ -9,11 +9,11 @@ import org.springframework.lang.Nullable;
 /**
  * Factory for creating {@link ContextCustomizer ContextCustomizers}.
  *
- * <p>Factories are invoked after {@link ContextLoader ContextLoaders} have
+ * Factories are invoked after {@link ContextLoader ContextLoaders} have
  * processed context configuration attributes but before the
  * {@link MergedContextConfiguration} is created.
  *
- * <p>By default, the Spring TestContext Framework will use the
+ * By default, the Spring TestContext Framework will use the
  * {@link org.springframework.core.io.support.SpringFactoriesLoader SpringFactoriesLoader}
  * mechanism for loading factories configured in all {@code META-INF/spring.factories}
  * files on the classpath.

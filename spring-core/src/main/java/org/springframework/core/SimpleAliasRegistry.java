@@ -129,7 +129,7 @@ public class SimpleAliasRegistry implements AliasRegistry {
 
 	/**
 	 * Resolve all alias target names and aliases registered in this factory, applying the given StringValueResolver to them.
-	 * <p>The value resolver may for example resolve placeholders in target bean names and even in alias names.
+	 * The value resolver may for example resolve placeholders in target bean names and even in alias names.
 	 * @param valueResolver the StringValueResolver to apply
 	 */
 	public void resolveAliases(StringValueResolver valueResolver) {

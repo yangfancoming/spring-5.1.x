@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
  * Integration tests that verify support for configuration classes in
  * the Spring TestContext Framework.
  *
- * <p>Configuration will be loaded from {@link DefaultConfigClassesBaseTests.ContextConfiguration}
+ * Configuration will be loaded from {@link DefaultConfigClassesBaseTests.ContextConfiguration}
  * and {@link BeanOverridingDefaultConfigClassesInheritedTests.ContextConfiguration}.
  *
  * @author Sam Brannen

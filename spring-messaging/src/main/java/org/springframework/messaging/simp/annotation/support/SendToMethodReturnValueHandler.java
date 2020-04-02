@@ -35,7 +35,7 @@ import org.springframework.util.StringUtils;
  * A {@link HandlerMethodReturnValueHandler} for sending to destinations specified in a
  * {@link SendTo} or {@link SendToUser} method-level annotations.
  *
- * <p>The value returned from the method is converted, and turned to a {@link Message} and
+ * The value returned from the method is converted, and turned to a {@link Message} and
  * sent through the provided {@link MessageChannel}. The message is then enriched with the
  * session id of the input message as well as the destination from the annotation(s).
  * If multiple destinations are specified, a copy of the message is sent to each destination.
@@ -71,7 +71,7 @@ public class SendToMethodReturnValueHandler implements HandlerMethodReturnValueH
 	 * Configure a default prefix to add to message destinations in cases where a method
 	 * is not annotated with {@link SendTo @SendTo} or does not specify any destinations
 	 * through the annotation's value attribute.
-	 * <p>By default, the prefix is set to "/topic".
+	 * By default, the prefix is set to "/topic".
 	 */
 	public void setDefaultDestinationPrefix(String defaultDestinationPrefix) {
 		this.defaultDestinationPrefix = defaultDestinationPrefix;
@@ -89,7 +89,7 @@ public class SendToMethodReturnValueHandler implements HandlerMethodReturnValueH
 	 * Configure a default prefix to add to message destinations in cases where a
 	 * method is annotated with {@link SendToUser @SendToUser} but does not specify
 	 * any destinations through the annotation's value attribute.
-	 * <p>By default, the prefix is set to "/queue".
+	 * By default, the prefix is set to "/queue".
 	 */
 	public void setDefaultUserDestinationPrefix(String prefix) {
 		this.defaultUserDestinationPrefix = prefix;
@@ -106,7 +106,7 @@ public class SendToMethodReturnValueHandler implements HandlerMethodReturnValueH
 	/**
 	 * Configure a {@link MessageHeaderInitializer} to apply to the headers of all
 	 * messages sent to the client outbound channel.
-	 * <p>By default this property is not set.
+	 * By default this property is not set.
 	 */
 	public void setHeaderInitializer(@Nullable MessageHeaderInitializer headerInitializer) {
 		this.headerInitializer = headerInitializer;

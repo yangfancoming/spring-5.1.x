@@ -283,9 +283,9 @@ public final class MultipartBodyBuilder {
 	 * {@link Publisher}-based body, for which we also need to keep track of
 	 * the element type.
 	 * @param <T> the type contained in the publisher
-	 * @param <P> the publisher
+	 * @param  the publisher
 	 */
-	static final class PublisherEntity<T, P extends Publisher<T>> extends HttpEntity<P>
+	static final class PublisherEntity<T, P extends Publisher<T>> extends HttpEntity
 			implements ResolvableTypeProvider  {
 
 		private final ResolvableType resolvableType;

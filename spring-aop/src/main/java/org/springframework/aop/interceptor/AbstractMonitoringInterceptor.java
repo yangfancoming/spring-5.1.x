@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * Provides configurable "prefix and "suffix" properties that help to
  * classify/group performance monitoring results.
  *
- * <p>In their {@link #invokeUnderTrace} implementation, subclasses should call the
+ * In their {@link #invokeUnderTrace} implementation, subclasses should call the
  * {@link #createInvocationTraceName} method to create a name for the given trace,
  * including information about the method invocation along with a prefix/suffix.
  * @since 1.2.7
@@ -32,7 +32,7 @@ public abstract class AbstractMonitoringInterceptor extends AbstractTraceInterce
 
 	/**
 	 * Set the text that will get appended to the trace data.
-	 * <p>Default is none.
+	 * Default is none.
 	 */
 	public void setPrefix(@Nullable String prefix) {
 		this.prefix = (prefix != null ? prefix : "");
@@ -47,7 +47,7 @@ public abstract class AbstractMonitoringInterceptor extends AbstractTraceInterce
 
 	/**
 	 * Set the text that will get prepended to the trace data.
-	 * <p>Default is none.
+	 * Default is none.
 	 */
 	public void setSuffix(@Nullable String suffix) {
 		this.suffix = (suffix != null ? suffix : "");
@@ -63,7 +63,7 @@ public abstract class AbstractMonitoringInterceptor extends AbstractTraceInterce
 	/**
 	 * Set whether to log the invocation on the target class, if applicable
 	 * (i.e. if the method is actually delegated to the target class).
-	 * <p>Default is "false", logging the invocation based on the proxy
+	 * Default is "false", logging the invocation based on the proxy
 	 * interface/class name.
 	 */
 	public void setLogTargetClassInvocation(boolean logTargetClassInvocation) {

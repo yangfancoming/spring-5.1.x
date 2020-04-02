@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 /**
  * Type-level annotation that indicates a JMX notification emitted by a bean.
  *
- * <p>As of Spring Framework 4.2.4, this annotation is declared as repeatable.
+ * As of Spring Framework 4.2.4, this annotation is declared as repeatable.
  *
  * @author Rob Harrop
  * @since 2.0

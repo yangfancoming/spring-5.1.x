@@ -16,7 +16,7 @@ import org.springframework.util.ClassUtils;
  * {@link org.springframework.aop.aspectj.AspectInstanceFactory} implementation
  * backed by a Spring {@link org.springframework.beans.factory.BeanFactory}.
  *
- * <p>Note that this may instantiate multiple times if using a prototype,
+ * Note that this may instantiate multiple times if using a prototype,
  * which probably won't give the semantics you expect.
  * Use a {@link LazySingletonAspectInstanceFactoryDecorator} to wrap this to ensure only one new aspect comes back.
  * @since 2.0

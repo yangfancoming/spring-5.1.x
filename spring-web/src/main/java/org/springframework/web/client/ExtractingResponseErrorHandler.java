@@ -19,7 +19,7 @@ import org.springframework.util.CollectionUtils;
  * HttpMessageConverters} to convert HTTP error responses to {@link RestClientException
  * RestClientExceptions}.
  *
- * <p>To use this error handler, you must specify a
+ * To use this error handler, you must specify a
  * {@linkplain #setStatusMapping(Map) status mapping} and/or a
  * {@linkplain #setSeriesMapping(Map) series mapping}. If either of these mappings has a match
  * for the {@linkplain ClientHttpResponse#getStatusCode() status code} of a given
@@ -30,7 +30,7 @@ import org.springframework.util.CollectionUtils;
  * {@linkplain #setStatusMapping(Map) status mapping} takes precedence over
  * {@linkplain #setSeriesMapping(Map) series mapping}.
  *
- * <p>If there is no match, this error handler will default to the behavior of
+ * If there is no match, this error handler will default to the behavior of
  * {@link DefaultResponseErrorHandler}. Note that you can override this default behavior
  * by specifying a {@linkplain #setSeriesMapping(Map) series mapping} from
  * {@code HttpStatus.Series#CLIENT_ERROR} and/or {@code HttpStatus.Series#SERVER_ERROR}
@@ -52,7 +52,7 @@ public class ExtractingResponseErrorHandler extends DefaultResponseErrorHandler 
 
 	/**
 	 * Create a new, empty {@code ExtractingResponseErrorHandler}.
-	 * <p>Note that {@link #setMessageConverters(List)} must be called when using this constructor.
+	 * Note that {@link #setMessageConverters(List)} must be called when using this constructor.
 	 */
 	public ExtractingResponseErrorHandler() {
 	}

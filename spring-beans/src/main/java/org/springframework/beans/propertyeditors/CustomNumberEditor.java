@@ -15,12 +15,12 @@ import org.springframework.util.StringUtils;
  * (locale-specific) parsing and rendering, or alternatively the default
  * {@code decode} / {@code valueOf} / {@code toString} methods.
  *
- * <p>This is not meant to be used as system PropertyEditor but rather
+ * This is not meant to be used as system PropertyEditor but rather
  * as locale-specific number editor within custom controller code,
  * parsing user-entered number strings into Number properties of beans
  * and rendering them in the UI form.
  *
- * <p>In web MVC code, this editor will typically be registered with
+ * In web MVC code, this editor will typically be registered with
  * {@code binder.registerCustomEditor} calls.
  *
 
@@ -43,7 +43,7 @@ public class CustomNumberEditor extends PropertyEditorSupport {
 	 * Create a new CustomNumberEditor instance, using the default
 	 * {@code valueOf} methods for parsing and {@code toString}
 	 * methods for rendering.
-	 * <p>The "allowEmpty" parameter states if an empty String should
+	 * The "allowEmpty" parameter states if an empty String should
 	 * be allowed for parsing, i.e. get interpreted as {@code null} value.
 	 * Else, an IllegalArgumentException gets thrown in that case.
 	 * @param numberClass the Number subclass to generate
@@ -60,7 +60,7 @@ public class CustomNumberEditor extends PropertyEditorSupport {
 	/**
 	 * Create a new CustomNumberEditor instance, using the given NumberFormat
 	 * for parsing and rendering.
-	 * <p>The allowEmpty parameter states if an empty String should
+	 * The allowEmpty parameter states if an empty String should
 	 * be allowed for parsing, i.e. get interpreted as {@code null} value.
 	 * Else, an IllegalArgumentException gets thrown in that case.
 	 * @param numberClass the Number subclass to generate

@@ -29,7 +29,7 @@ import org.springframework.util.StringUtils;
  * Implementation of the {@link MBeanInfoAssembler} interface that reads
  * the management interface information from source level metadata.
  *
- * <p>Uses the {@link JmxAttributeSource} strategy interface, so that
+ * Uses the {@link JmxAttributeSource} strategy interface, so that
  * metadata can be read using any supported implementation. Out of the box,
  * Spring provides an implementation based on annotations:
  * {@code AnnotationJmxAttributeSource}.

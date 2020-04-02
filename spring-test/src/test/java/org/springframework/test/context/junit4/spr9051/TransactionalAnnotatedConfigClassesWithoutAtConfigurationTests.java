@@ -37,7 +37,7 @@ public class TransactionalAnnotatedConfigClassesWithoutAtConfigurationTests exte
 	/**
 	 * This is intentionally <b>not</b> annotated with {@code @Configuration}.
 	 *
-	 * <p>Consequently, this class contains <i>annotated factory bean methods</i>
+	 * Consequently, this class contains <i>annotated factory bean methods</i>
 	 * instead of standard singleton bean methods.
 	 */
 	// @Configuration
@@ -98,7 +98,7 @@ public class TransactionalAnnotatedConfigClassesWithoutAtConfigurationTests exte
 	/**
 	 * Overrides {@code afterTransaction()} in order to assert a different result.
 	 *
-	 * <p>See in-line comments for details.
+	 * See in-line comments for details.
 	 *
 	 * @see AbstractTransactionalAnnotatedConfigClassTests#afterTransaction()
 	 * @see AbstractTransactionalAnnotatedConfigClassTests#modifyTestDataWithinTransaction()

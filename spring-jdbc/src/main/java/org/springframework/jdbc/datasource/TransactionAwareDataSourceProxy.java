@@ -19,35 +19,35 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
  * Spring-managed transactions. Similar to a transactional JNDI DataSource
  * as provided by a Java EE server.
  *
- * <p>Data access code that should remain unaware of Spring's data access support
+ * Data access code that should remain unaware of Spring's data access support
  * can work with this proxy to seamlessly participate in Spring-managed transactions.
  * Note that the transaction manager, for example {@link DataSourceTransactionManager},
  * still needs to work with the underlying DataSource, <i>not</i> with this proxy.
  *
- * <p><b>Make sure that TransactionAwareDataSourceProxy is the outermost DataSource
+ * <b>Make sure that TransactionAwareDataSourceProxy is the outermost DataSource
  * of a chain of DataSource proxies/adapters.</b> TransactionAwareDataSourceProxy
  * can delegate either directly to the target connection pool or to some
  * intermediary proxy/adapter like {@link LazyConnectionDataSourceProxy} or
  * {@link UserCredentialsDataSourceAdapter}.
  *
- * <p>Delegates to {@link DataSourceUtils} for automatically participating in
+ * Delegates to {@link DataSourceUtils} for automatically participating in
  * thread-bound transactions, for example managed by {@link DataSourceTransactionManager}.
  * {@code getConnection} calls and {@code close} calls on returned Connections
  * will behave properly within a transaction, i.e. always operate on the transactional
  * Connection. If not within a transaction, normal DataSource behavior applies.
  *
- * <p>This proxy allows data access code to work with the plain JDBC API and still
+ * This proxy allows data access code to work with the plain JDBC API and still
  * participate in Spring-managed transactions, similar to JDBC code in a Java EE/JTA
  * environment. However, if possible, use Spring's DataSourceUtils, JdbcTemplate or
  * JDBC operation objects to get transaction participation even without a proxy for
  * the target DataSource, avoiding the need to define such a proxy in the first place.
  *
- * <p>As a further effect, using a transaction-aware DataSource will apply remaining
+ * As a further effect, using a transaction-aware DataSource will apply remaining
  * transaction timeouts to all created JDBC (Prepared/Callable)Statement. This means
  * that all operations performed through standard JDBC will automatically participate
  * in Spring-managed transaction timeouts.
  *
- * <p><b>NOTE:</b> This DataSource proxy needs to return wrapped Connections (which
+ * <b>NOTE:</b> This DataSource proxy needs to return wrapped Connections (which
  * implement the {@link ConnectionProxy} interface) in order to handle close calls
  * properly. Use {@link Connection#unwrap} to retrieve the native JDBC Connection.
 
@@ -80,10 +80,10 @@ public class TransactionAwareDataSourceProxy extends DelegatingDataSource {
 	/**
 	 * Specify whether to reobtain the target Connection for each operation
 	 * performed within a transaction.
-	 * <p>The default is "false". Specify "true" to reobtain transactional
+	 * The default is "false". Specify "true" to reobtain transactional
 	 * Connections for every call on the Connection proxy; this is advisable
 	 * on JBoss if you hold on to a Connection handle across transaction boundaries.
-	 * <p>The effect of this setting is similar to the
+	 * The effect of this setting is similar to the
 	 * "hibernate.connection.release_mode" value "after_statement".
 	 */
 	public void setReobtainTransactionalConnections(boolean reobtainTransactionalConnections) {
@@ -94,7 +94,7 @@ public class TransactionAwareDataSourceProxy extends DelegatingDataSource {
 	/**
 	 * Delegates to DataSourceUtils for automatically participating in Spring-managed
 	 * transactions. Throws the original SQLException, if any.
-	 * <p>The returned Connection handle implements the ConnectionProxy interface,
+	 * The returned Connection handle implements the ConnectionProxy interface,
 	 * allowing to retrieve the underlying target Connection.
 	 * @return a transactional Connection if any, a new one else
 	 * @see DataSourceUtils#doGetConnection
@@ -123,7 +123,7 @@ public class TransactionAwareDataSourceProxy extends DelegatingDataSource {
 	/**
 	 * Determine whether to obtain a fixed target Connection for the proxy
 	 * or to reobtain the target Connection for each operation.
-	 * <p>The default implementation returns {@code true} for all
+	 * The default implementation returns {@code true} for all
 	 * standard cases. This can be overridden through the
 	 * {@link #setReobtainTransactionalConnections "reobtainTransactionalConnections"}
 	 * flag, which enforces a non-fixed target Connection within an active transaction.

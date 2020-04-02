@@ -59,13 +59,13 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  * controllers and their dependencies similar to plain unit tests, and also
  * making it possible to test one controller at a time.
  *
- * <p>This builder creates the minimum infrastructure required by the
+ * This builder creates the minimum infrastructure required by the
  * {@link DispatcherServlet} to serve requests with annotated controllers and
  * also provides methods for customization. The resulting configuration and
  * customization options are equivalent to using MVC Java config except
  * using builder style methods.
  *
- * <p>To configure view resolution, either select a "fixed" view to use for every
+ * To configure view resolution, either select a "fixed" view to use for every
  * request performed (see {@link #setSingleView(View)}) or provide a list of
  * {@code ViewResolver}s (see {@link #setViewResolvers(ViewResolver...)}).
  *
@@ -142,7 +142,7 @@ public class StandaloneMockMvcBuilder extends AbstractMockMvcBuilder<StandaloneM
 	/**
 	 * Register one or more {@link org.springframework.web.bind.annotation.ControllerAdvice}
 	 * instances to be used in tests (specified {@code Class} will be turned into instance).
-	 * <p>Normally {@code @ControllerAdvice} are auto-detected as long as they're declared
+	 * Normally {@code @ControllerAdvice} are auto-detected as long as they're declared
 	 * as Spring beans. However since the standalone setup does not load any Spring config,
 	 * they need to be registered explicitly here instead much like controllers.
 	 * @since 4.2
@@ -293,7 +293,7 @@ public class StandaloneMockMvcBuilder extends AbstractMockMvcBuilder<StandaloneM
 	/**
 	 * Whether to use suffix pattern match (".*") when matching patterns to
 	 * requests. If enabled a method mapped to "/users" also matches to "/users.*".
-	 * <p>The default value is {@code true}.
+	 * The default value is {@code true}.
 	 */
 	public StandaloneMockMvcBuilder setUseSuffixPatternMatch(boolean useSuffixPatternMatch) {
 		this.useSuffixPatternMatch = useSuffixPatternMatch;
@@ -303,7 +303,7 @@ public class StandaloneMockMvcBuilder extends AbstractMockMvcBuilder<StandaloneM
 	/**
 	 * Whether to match to URLs irrespective of the presence of a trailing slash.
 	 * If enabled a method mapped to "/users" also matches to "/users/".
-	 * <p>The default value is {@code true}.
+	 * The default value is {@code true}.
 	 */
 	public StandaloneMockMvcBuilder setUseTrailingSlashPatternMatch(boolean useTrailingSlashPatternMatch) {
 		this.useTrailingSlashPatternMatch = useTrailingSlashPatternMatch;

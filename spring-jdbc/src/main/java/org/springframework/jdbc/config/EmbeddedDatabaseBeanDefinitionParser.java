@@ -18,7 +18,7 @@ import org.springframework.util.StringUtils;
  * parses an {@code embedded-database} element and creates a {@link BeanDefinition}
  * for an {@link EmbeddedDatabaseFactoryBean}.
  *
- * <p>Picks up nested {@code script} elements and configures a
+ * Picks up nested {@code script} elements and configures a
  * {@link ResourceDatabasePopulator} for each of them.
 
 

@@ -168,7 +168,7 @@ public abstract class AbstractPropertyBindingResult extends AbstractBindingResul
 	/**
 	 * Provide the PropertyAccessor to work with, according to the
 	 * concrete strategy of access.
-	 * <p>Note that a PropertyAccessor used by a BindingResult should
+	 * Note that a PropertyAccessor used by a BindingResult should
 	 * always have its "extractOldValueForEditor" flag set to "true"
 	 * by default, since this is typically possible without side effects
 	 * for model objects that serve as data binding target.

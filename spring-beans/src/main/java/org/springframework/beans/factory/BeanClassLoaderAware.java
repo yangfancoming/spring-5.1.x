@@ -7,11 +7,11 @@ package org.springframework.beans.factory;
  * {@link ClassLoader class loader}; that is, the class loader used by the
  * present bean factory to load bean classes.
  *
- * <p>This is mainly intended to be implemented by framework classes which
+ * This is mainly intended to be implemented by framework classes which
  * have to pick up application classes by name despite themselves potentially
  * being loaded from a shared class loader.
  *
- * <p>For a list of all bean lifecycle methods, see the
+ * For a list of all bean lifecycle methods, see the
  * {@link BeanFactory BeanFactory javadocs}.
  *
 
@@ -26,7 +26,7 @@ public interface BeanClassLoaderAware extends Aware {
 	/**
 	 * Callback that supplies the bean {@link ClassLoader class loader} to
 	 * a bean instance.
-	 * <p>Invoked <i>after</i> the population of normal bean properties but
+	 * Invoked <i>after</i> the population of normal bean properties but
 	 * <i>before</i> an initialization callback such as
 	 * {@link InitializingBean InitializingBean's}
 	 * {@link InitializingBean#afterPropertiesSet()}

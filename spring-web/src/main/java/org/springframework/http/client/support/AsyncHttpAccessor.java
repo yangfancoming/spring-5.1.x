@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
  * such as the {@link org.springframework.http.client.AsyncClientHttpRequestFactory}
  * to operate on.
  *
- * <p>Not intended to be used directly. See
+ * Not intended to be used directly. See
  * {@link org.springframework.web.client.AsyncRestTemplate}.
  *
  * @author Arjen Poutsma

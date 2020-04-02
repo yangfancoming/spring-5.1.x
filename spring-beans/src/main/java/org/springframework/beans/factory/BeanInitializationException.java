@@ -9,7 +9,7 @@ import org.springframework.beans.FatalBeanException;
  * factory-aware initialization code fails. BeansExceptions thrown by
  * bean factory methods themselves should simply be propagated as-is.
  *
- * <p>Note that {@code afterPropertiesSet()} or a custom "init-method"
+ * Note that {@code afterPropertiesSet()} or a custom "init-method"
  * can throw any exception.
  *
 

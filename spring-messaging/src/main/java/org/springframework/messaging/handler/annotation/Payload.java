@@ -34,10 +34,10 @@ public @interface Payload {
 
 	/**
 	 * A SpEL expression to be evaluated against the payload object as the root context.
-	 * <p>This attribute may or may not be supported depending on whether the message being
+	 * This attribute may or may not be supported depending on whether the message being
 	 * handled contains a non-primitive Object as its payload or is in serialized form and
 	 * requires message conversion.
-	 * <p>When processing STOMP over WebSocket messages this attribute is not supported.
+	 * When processing STOMP over WebSocket messages this attribute is not supported.
 	 * @since 4.2
 	 */
 	@AliasFor("value")
@@ -45,7 +45,7 @@ public @interface Payload {
 
 	/**
 	 * Whether payload content is required.
-	 * <p>Default is {@code true}, leading to an exception if there is no payload. Switch
+	 * Default is {@code true}, leading to an exception if there is no payload. Switch
 	 * to {@code false} to have {@code null} passed when there is no payload.
 	 */
 	boolean required() default true;

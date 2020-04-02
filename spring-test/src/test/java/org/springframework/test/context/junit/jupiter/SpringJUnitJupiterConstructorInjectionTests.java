@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * parameters in test class constructors using {@link Autowired @Autowired}
  * and {@link Value @Value} with the Spring TestContext Framework and JUnit Jupiter.
  *
- * <p>To run these tests in an IDE that does not have built-in support for the JUnit
+ * To run these tests in an IDE that does not have built-in support for the JUnit
  * Platform, simply run {@link SpringJUnitJupiterTestSuite} as a JUnit 4 test.
  *
  * @author Sam Brannen

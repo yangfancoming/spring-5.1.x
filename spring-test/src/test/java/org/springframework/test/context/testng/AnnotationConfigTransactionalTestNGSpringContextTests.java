@@ -32,7 +32,7 @@ import static org.testng.Assert.*;
  * {@link org.springframework.context.annotation.Configuration @Configuration} classes
  * with transactional TestNG-based tests.
  *
- * <p>Configuration will be loaded from
+ * Configuration will be loaded from
  * {@link AnnotationConfigTransactionalTestNGSpringContextTests.ContextConfiguration}.
  *
  * @author Sam Brannen

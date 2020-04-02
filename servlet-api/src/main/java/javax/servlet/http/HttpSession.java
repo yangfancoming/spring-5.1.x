@@ -10,14 +10,14 @@ import java.util.Enumeration;
  * Provides a way to identify a user across more than one page
  * request or visit to a Web site and to store information about that user.
  *
- * <p>The servlet container uses this interface to create a session
+ * The servlet container uses this interface to create a session
  * between an HTTP client and an HTTP server. The session persists
  * for a specified time period, across more than one connection or
  * page request from the user. A session usually corresponds to one 
  * user, who may visit a site many times. The server can maintain a 
  * session in many ways such as using cookies or rewriting URLs.
  *
- * <p>This interface allows servlets to 
+ * This interface allows servlets to
  * <ul>
  * <li>View and manipulate information about a session, such as
  *     the session identifier, creation time, and last accessed time
@@ -25,7 +25,7 @@ import java.util.Enumeration;
  *     across multiple user connections
  * </ul>
  *
- * <p>When an application stores an object in or removes an object from a
+ * When an application stores an object in or removes an object from a
  * session, the session checks whether the object implements
  * {@link HttpSessionBindingListener}. If it does,
  * the servlet notifies the object that it has been bound to or unbound 
@@ -33,11 +33,11 @@ import java.util.Enumeration;
  * For session that are invalidated or expire, notifications are sent after
  * the session has been invalidated or expired.
  *
- * <p> When container migrates a session between VMs in a distributed container
+ *  When container migrates a session between VMs in a distributed container
  * setting, all session attributes implementing the {@link HttpSessionActivationListener}
  * interface are notified.
  * 
- * <p>A servlet should be able to handle cases in which
+ * A servlet should be able to handle cases in which
  * the client does not choose to join a session, such as when cookies are
  * intentionally turned off. Until the client joins the session,
  * <code>isNew</code> returns <code>true</code>.  If the client chooses 
@@ -46,7 +46,7 @@ import java.util.Enumeration;
  * on each request, and <code>isNew</code> will always return
  * <code>true</code>.
  *
- * <p>Session information is scoped only to the current web application
+ * Session information is scoped only to the current web application
  * (<code>ServletContext</code>), so information stored in one context
  * will not be directly visible in another.
  *
@@ -92,7 +92,7 @@ public interface HttpSession {
      * January 1, 1970 GMT, and marked by the time the container received the
      * request. 
      *
-     * <p>Actions that your application takes, such as getting or setting
+     * Actions that your application takes, such as getting or setting
      * a value associated with the session, do not affect the access
      * time.
      *
@@ -121,7 +121,7 @@ public interface HttpSession {
      * Specifies the time, in seconds, between client requests before the 
      * servlet container will invalidate this session. 
      *
-     * <p>An <tt>interval</tt> value of zero or less indicates that the
+     * An <tt>interval</tt> value of zero or less indicates that the
      * session should never timeout.
      *
      * @param interval		An integer specifying the number
@@ -137,7 +137,7 @@ public interface HttpSession {
      * will invalidate the session.  The maximum time interval can be set
      * with the <code>setMaxInactiveInterval</code> method.
      *
-     * <p>A return value of zero or less indicates that the
+     * A return value of zero or less indicates that the
      * session will never timeout.
      *
      * @return		an integer specifying the number of
@@ -227,18 +227,18 @@ public interface HttpSession {
      * If an object of the same name is already bound to the session,
      * the object is replaced.
      *
-     * <p>After this method executes, and if the new object
+     * After this method executes, and if the new object
      * implements <code>HttpSessionBindingListener</code>,
      * the container calls 
      * <code>HttpSessionBindingListener.valueBound</code>. The container then   
      * notifies any <code>HttpSessionAttributeListener</code>s in the web 
      * application.
      
-     * <p>If an object was already bound to this session of this name
+     * If an object was already bound to this session of this name
      * that implements <code>HttpSessionBindingListener</code>, its 
      * <code>HttpSessionBindingListener.valueUnbound</code> method is called.
      *
-     * <p>If the value passed in is null, this has the same effect as calling 
+     * If the value passed in is null, this has the same effect as calling
      * <code>removeAttribute()</code>.
      *
      *
@@ -274,7 +274,7 @@ public interface HttpSession {
      * this session. If the session does not have an object
      * bound with the specified name, this method does nothing.
      *
-     * <p>After this method executes, and if the object
+     * After this method executes, and if the object
      * implements <code>HttpSessionBindingListener</code>,
      * the container calls 
      * <code>HttpSessionBindingListener.valueUnbound</code>. The container

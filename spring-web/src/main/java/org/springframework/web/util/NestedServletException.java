@@ -11,13 +11,13 @@ import org.springframework.lang.Nullable;
  * Subclass of {@link ServletException} that properly handles a root cause in terms
  * of message and stacktrace, just like NestedChecked/RuntimeException does.
  *
- * <p>Note that the plain ServletException doesn't expose its root cause at all,
+ * Note that the plain ServletException doesn't expose its root cause at all,
  * neither in the exception message nor in printed stack traces! While this might
  * be fixed in later Servlet API variants (which even differ per vendor for the
  * same API version), it is not reliably available on Servlet 2.4 (the minimum
  * version required by Spring 3.x), which is why we need to do it ourselves.
  *
- * <p>The similarity between this class and the NestedChecked/RuntimeException
+ * The similarity between this class and the NestedChecked/RuntimeException
  * class is unavoidable, as this class needs to derive from ServletException.
  *
 

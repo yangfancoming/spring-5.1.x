@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
  * Helper class that allows for specifying a method to invoke in a declarative
  * fashion, be it static or non-static.
  *
- * <p>Usage: Specify "targetClass"/"targetMethod" or "targetObject"/"targetMethod",
+ * Usage: Specify "targetClass"/"targetMethod" or "targetObject"/"targetMethod",
  * optionally specify arguments, prepare the invoker. Afterwards, you may
  * invoke the method any number of times, obtaining the invocation result.
  * @since 19.02.2004
@@ -171,7 +171,7 @@ public class MethodInvoker {
 
 	/**
 	 * Resolve the given class name into a Class.
-	 * <p>The default implementations uses {@code ClassUtils.forName},
+	 * The default implementations uses {@code ClassUtils.forName},
 	 * using the thread context class loader.
 	 * @param className the class name to resolve
 	 * @return the resolved Class
@@ -217,7 +217,7 @@ public class MethodInvoker {
 
 	/**
 	 * Return the prepared Method object that will be invoked.
-	 * <p>Can for example be used to determine the return type.
+	 * Can for example be used to determine the return type.
 	 * @return the prepared Method object (never {@code null})
 	 * @throws IllegalStateException if the invoker hasn't been prepared yet
 	 * @see #prepare
@@ -240,7 +240,7 @@ public class MethodInvoker {
 
 	/**
 	 * Invoke the specified method.
-	 * <p>The invoker needs to have been prepared before.
+	 * The invoker needs to have been prepared before.
 	 * @return the object (possibly null) returned by the method invocation,
 	 * or {@code null} if the method has a void return type
 	 * @throws InvocationTargetException if the target method threw an exception
@@ -263,7 +263,7 @@ public class MethodInvoker {
 	/**
 	 * Algorithm that judges the match between the declared parameter types of a candidate method
 	 * and a specific list of arguments that this method is supposed to be invoked with.
-	 * <p>Determines a weight that represents the class hierarchy difference between types and
+	 * Determines a weight that represents the class hierarchy difference between types and
 	 * arguments. A direct match, i.e. type Integer -> arg of class Integer, does not increase
 	 * the result - all direct matches means weight 0. A match between type Object and arg of
 	 * class Integer would increase the weight by 2, due to the superclass 2 steps up in the
@@ -273,7 +273,7 @@ public class MethodInvoker {
 	 * Therefore, with an arg of type Integer, a constructor (Integer) would be preferred to a
 	 * constructor (Number) which would in turn be preferred to a constructor (Object).
 	 * All argument weights get accumulated.
-	 * <p>Note: This is the algorithm used by MethodInvoker itself and also the algorithm
+	 * Note: This is the algorithm used by MethodInvoker itself and also the algorithm
 	 * used for constructor and factory method selection in Spring's bean container (in case
 	 * of lenient constructor resolution which is the default for regular bean definitions).
 	 * @param paramTypes the parameter types to match

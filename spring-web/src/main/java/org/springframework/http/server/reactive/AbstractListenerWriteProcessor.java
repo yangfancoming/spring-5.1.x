@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
  * Abstract base class for {@code Processor} implementations that bridge between
  * event-listener write APIs and Reactive Streams.
  *
- * <p>Specifically a base class for writing to the HTTP response body with
+ * Specifically a base class for writing to the HTTP response body with
  * Servlet 3.1 non-blocking I/O and Undertow XNIO as well for writing WebSocket
  * messages through the Java WebSocket API (JSR-356), Jetty, and Undertow.
  *
@@ -184,7 +184,7 @@ public abstract class AbstractListenerWriteProcessor<T> implements Processor<T, 
 
 	/**
 	 * Write the given item.
-	 * <p><strong>Note:</strong> Sub-classes are responsible for releasing any
+	 * <strong>Note:</strong> Sub-classes are responsible for releasing any
 	 * data buffer associated with the item, once fully written, if pooled
 	 * buffers apply to the underlying container.
 	 * @param data the item to write
@@ -196,7 +196,7 @@ public abstract class AbstractListenerWriteProcessor<T> implements Processor<T, 
 	/**
 	 * Invoked after the current data has been written and before requesting
 	 * the next item from the upstream, write Publisher.
-	 * <p>The default implementation is a no-op.
+	 * The default implementation is a no-op.
 	 * @deprecated originally introduced for Undertow to stop write notifications
 	 * when no data is available, but deprecated as of as of 5.0.6 since constant
 	 * switching on every requested item causes a significant slowdown.
@@ -207,7 +207,7 @@ public abstract class AbstractListenerWriteProcessor<T> implements Processor<T, 
 
 	/**
 	 * Invoked after onComplete or onError notification.
-	 * <p>The default implementation is a no-op.
+	 * The default implementation is a no-op.
 	 */
 	protected void writingComplete() {
 	}
@@ -216,7 +216,7 @@ public abstract class AbstractListenerWriteProcessor<T> implements Processor<T, 
 	 * Invoked when an I/O error occurs during a write. Sub-classes may choose
 	 * to ignore this if they know the underlying API will provide an error
 	 * notification in a container thread.
-	 * <p>Defaults to no-op.
+	 * Defaults to no-op.
 	 */
 	protected void writingFailed(Throwable ex) {
 	}
@@ -281,7 +281,7 @@ public abstract class AbstractListenerWriteProcessor<T> implements Processor<T, 
 	/**
 	 * Represents a state for the {@link Processor} to be in.
 	 *
-	 * <p><pre>
+	 * <pre>
 	 *        UNSUBSCRIBED
 	 *             |
 	 *             v

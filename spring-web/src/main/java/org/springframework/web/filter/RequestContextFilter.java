@@ -17,11 +17,11 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  * through both {@link org.springframework.context.i18n.LocaleContextHolder} and
  * {@link RequestContextHolder}. To be registered as filter in {@code web.xml}.
  *
- * <p>Alternatively, Spring's {@link org.springframework.web.context.request.RequestContextListener}
+ * Alternatively, Spring's {@link org.springframework.web.context.request.RequestContextListener}
  * and Spring's {@link org.springframework.web.servlet.DispatcherServlet} also expose
  * the same request context to the current thread.
  *
- * <p>This filter is mainly for use with third-party servlets, e.g. the JSF FacesServlet.
+ * This filter is mainly for use with third-party servlets, e.g. the JSF FacesServlet.
  * Within Spring's own web support, DispatcherServlet's processing is perfectly sufficient.
  *
 
@@ -41,11 +41,11 @@ public class RequestContextFilter extends OncePerRequestFilter {
 	/**
 	 * Set whether to expose the LocaleContext and RequestAttributes as inheritable
 	 * for child threads (using an {@link java.lang.InheritableThreadLocal}).
-	 * <p>Default is "false", to avoid side effects on spawned background threads.
+	 * Default is "false", to avoid side effects on spawned background threads.
 	 * Switch this to "true" to enable inheritance for custom child threads which
 	 * are spawned during request processing and only used for this request
 	 * (that is, ending after their initial task, without reuse of the thread).
-	 * <p><b>WARNING:</b> Do not use inheritance for child threads if you are
+	 * <b>WARNING:</b> Do not use inheritance for child threads if you are
 	 * accessing a thread pool which is configured to potentially add new threads
 	 * on demand (e.g. a JDK {@link java.util.concurrent.ThreadPoolExecutor}),
 	 * since this will expose the inherited context to such a pooled thread.

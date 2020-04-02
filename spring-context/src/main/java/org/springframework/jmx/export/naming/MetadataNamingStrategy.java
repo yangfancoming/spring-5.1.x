@@ -22,7 +22,7 @@ import org.springframework.util.StringUtils;
  * Falls back to the bean key (bean name) if no {@code ObjectName}
  * can be found in source-level metadata.
  *
- * <p>Uses the {@link JmxAttributeSource} strategy interface, so that
+ * Uses the {@link JmxAttributeSource} strategy interface, so that
  * metadata can be read using any supported implementation. Out of the box,
  * {@link org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource}
  * introspects a well-defined set of Java 5 annotations that come with Spring.
@@ -75,7 +75,7 @@ public class MetadataNamingStrategy implements ObjectNamingStrategy, Initializin
 	/**
 	 * Specify the default domain to be used for generating ObjectNames
 	 * when no source-level metadata has been specified.
-	 * <p>The default is to use the domain specified in the bean name
+	 * The default is to use the domain specified in the bean name
 	 * (if the bean name follows the JMX ObjectName syntax); else,
 	 * the package name of the managed bean class.
 	 */

@@ -17,13 +17,13 @@ import org.springframework.web.servlet.support.BindStatus;
  * {@link org.springframework.web.servlet.support.BindStatus},
  * to both Java expressions and JSP EL expressions.
  *
- * <p>Can be used to bind to any bean or bean property in the model.
+ * Can be used to bind to any bean or bean property in the model.
  * The specified path determines whether the tag exposes the status of the
  * bean itself (showing object-level errors), a specific bean property
  * (showing field errors), or a matching set of bean properties
  * (showing all corresponding field errors).
  *
- * <p>The {@link org.springframework.validation.Errors} object that has
+ * The {@link org.springframework.validation.Errors} object that has
  * been bound using this tag is exposed to collaborating tags, as well
  * as the bean property that this errors object applies to. Nested tags
  * such as the {@link TransformTag} can access those exposed properties.
@@ -40,24 +40,24 @@ import org.springframework.web.servlet.support.BindStatus;
  * </thead>
  * <tbody>
  * <tr class="altColor">
- * <td><p>htmlEscape</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>Set HTML escaping for this tag, as boolean value. Overrides the default
+ * <td>htmlEscape</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>Set HTML escaping for this tag, as boolean value. Overrides the default
  * HTML escaping setting for the current page.</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>ignoreNestedPath</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>Set whether to ignore a nested path, if any.
+ * <td>ignoreNestedPath</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>Set whether to ignore a nested path, if any.
  * Default is to not ignore.</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>path</p></td>
- * <td><p>true</p></td>
- * <td><p>true</p></td>
- * <td><p>The path to the bean or bean property to bind status information for.
+ * <td>path</p></td>
+ * <td>true</p></td>
+ * <td>true</p></td>
+ * <td>The path to the bean or bean property to bind status information for.
  * For instance account.name, company.address.zipCode or just employee. The status
  * object will exported to the page scope, specifically for this bean or bean
  * property</p></td>

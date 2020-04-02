@@ -39,7 +39,7 @@ import org.springframework.util.StringUtils;
  * annotation.
  *
  * <h3>Test-managed Transactions</h3>
- * <p><em>Test-managed transactions</em> are transactions that are managed
+ * <em>Test-managed transactions</em> are transactions that are managed
  * declaratively via this listener or programmatically via
  * {@link TestTransaction}. Such transactions should not be confused with
  * <em>Spring-managed transactions</em> (i.e., those managed directly
@@ -54,7 +54,7 @@ import org.springframework.util.StringUtils;
  * or {@link org.springframework.transaction.annotation.Propagation#SUPPORTS SUPPORTS}.
  *
  * <h3>Enabling and Disabling Transactions</h3>
- * <p>Annotating a test method with {@code @Transactional} causes the test
+ * Annotating a test method with {@code @Transactional} causes the test
  * to be run within a transaction that will, by default, be automatically
  * <em>rolled back</em> after completion of the test. If a test class is
  * annotated with {@code @Transactional}, each test method within that class
@@ -68,20 +68,20 @@ import org.springframework.util.StringUtils;
  * will not be run within a transaction.
  *
  * <h3>Declarative Rollback and Commit Behavior</h3>
- * <p>By default, test transactions will be automatically <em>rolled back</em>
+ * By default, test transactions will be automatically <em>rolled back</em>
  * after completion of the test; however, transactional commit and rollback
  * behavior can be configured declaratively via the {@link Commit @Commit}
  * and {@link Rollback @Rollback} annotations at the class level and at the
  * method level.
  *
  * <h3>Programmatic Transaction Management</h3>
- * <p>As of Spring Framework 4.1, it is possible to interact with test-managed
+ * As of Spring Framework 4.1, it is possible to interact with test-managed
  * transactions programmatically via the static methods in {@link TestTransaction}.
  * {@code TestTransaction} may be used within <em>test</em> methods,
  * <em>before</em> methods, and <em>after</em> methods.
  *
  * <h3>Executing Code outside of a Transaction</h3>
- * <p>When executing transactional tests, it is sometimes useful to be able to
+ * When executing transactional tests, it is sometimes useful to be able to
  * execute certain <em>set up</em> or <em>tear down</em> code outside of a
  * transaction. {@code TransactionalTestExecutionListener} provides such
  * support for methods annotated with {@link BeforeTransaction @BeforeTransaction}
@@ -90,7 +90,7 @@ import org.springframework.util.StringUtils;
  * on Java 8 based interface default methods.
  *
  * <h3>Configuring a Transaction Manager</h3>
- * <p>{@code TransactionalTestExecutionListener} expects a
+ * {@code TransactionalTestExecutionListener} expects a
  * {@link PlatformTransactionManager} bean to be defined in the Spring
  * {@code ApplicationContext} for the test. In case there are multiple
  * instances of {@code PlatformTransactionManager} within the test's
@@ -136,7 +136,7 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 	 * is configured to run within a transaction, this method will run
 	 * {@link BeforeTransaction @BeforeTransaction} methods and start a new
 	 * transaction.
-	 * <p>Note that if a {@code @BeforeTransaction} method fails, any remaining
+	 * Note that if a {@code @BeforeTransaction} method fails, any remaining
 	 * {@code @BeforeTransaction} methods will not be invoked, and a transaction
 	 * will not be started.
 	 * @see org.springframework.transaction.annotation.Transactional
@@ -184,7 +184,7 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 	 * If a transaction is currently active for the supplied
 	 * {@linkplain TestContext test context}, this method will end the transaction
 	 * and run {@link AfterTransaction @AfterTransaction} methods.
-	 * <p>{@code @AfterTransaction} methods are guaranteed to be invoked even if
+	 * {@code @AfterTransaction} methods are guaranteed to be invoked even if
 	 * an error occurs while ending the transaction.
 	 */
 	@Override
@@ -282,7 +282,7 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 	/**
 	 * Get the {@linkplain PlatformTransactionManager transaction manager} to use
 	 * for the supplied {@linkplain TestContext test context} and {@code qualifier}.
-	 * <p>Delegates to {@link #getTransactionManager(TestContext)} if the
+	 * Delegates to {@link #getTransactionManager(TestContext)} if the
 	 * supplied {@code qualifier} is {@code null} or empty.
 	 * @param testContext the test context for which the transaction manager
 	 * should be retrieved
@@ -320,7 +320,7 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 	/**
 	 * Get the {@linkplain PlatformTransactionManager transaction manager}
 	 * to use for the supplied {@linkplain TestContext test context}.
-	 * <p>The default implementation simply delegates to
+	 * The default implementation simply delegates to
 	 * {@link TestContextTransactionUtils#retrieveTransactionManager}.
 	 * @param testContext the test context for which the transaction manager
 	 * should be retrieved
@@ -339,7 +339,7 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 	/**
 	 * Determine whether or not to rollback transactions by default for the
 	 * supplied {@linkplain TestContext test context}.
-	 * <p>Supports {@link Rollback @Rollback} or {@link Commit @Commit} at the
+	 * Supports {@link Rollback @Rollback} or {@link Commit @Commit} at the
 	 * class-level.
 	 * @param testContext the test context for which the default rollback flag
 	 * should be retrieved
@@ -402,7 +402,7 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 	 * Get all methods in the supplied {@link Class class} and its superclasses
 	 * which are annotated with the supplied {@code annotationType} but
 	 * which are not <em>shadowed</em> by methods overridden in subclasses.
-	 * <p>Default methods on interfaces are also detected.
+	 * Default methods on interfaces are also detected.
 	 * @param clazz the class for which to retrieve the annotated methods
 	 * @param annotationType the annotation type for which to search
 	 * @return all annotated methods in the supplied class and its superclasses

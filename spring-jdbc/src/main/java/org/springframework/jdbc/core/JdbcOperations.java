@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
  * Implemented by {@link JdbcTemplate}. Not often used directly, but a useful
  * option to enhance testability, as it can easily be mocked or stubbed.
  *
- * <p>Alternatively, the standard JDBC infrastructure can be mocked.
+ * Alternatively, the standard JDBC infrastructure can be mocked.
  * However, mocking this interface constitutes significantly less work.
  * As an alternative to a mock objects approach to testing data access code,
  * consider the powerful integration testing support provided in the
@@ -37,7 +37,7 @@ public interface JdbcOperations {
 	 * data access operations, within Spring's managed JDBC environment:
 	 * that is, participating in Spring-managed transactions and converting
 	 * JDBC SQLExceptions into Spring's DataAccessException hierarchy.
-	 * <p>The callback action can return a result object, for example a domain
+	 * The callback action can return a result object, for example a domain
 	 * object or a collection of domain objects.
 	 * @param action a callback object that specifies the action
 	 * @return a result object returned by the action, or {@code null} if none
@@ -57,7 +57,7 @@ public interface JdbcOperations {
 	 * access operations on a single Statement, within Spring's managed JDBC
 	 * environment: that is, participating in Spring-managed transactions and
 	 * converting JDBC SQLExceptions into Spring's DataAccessException hierarchy.
-	 * <p>The callback action can return a result object, for example a domain
+	 * The callback action can return a result object, for example a domain
 	 * object or a collection of domain objects.
 	 * @param action a callback that specifies the action
 	 * @return a result object returned by the action, or {@code null} if none
@@ -76,7 +76,7 @@ public interface JdbcOperations {
 	/**
 	 * Execute a query given static SQL, reading the ResultSet with a
 	 * ResultSetExtractor.
-	 * <p>Uses a JDBC Statement, not a PreparedStatement. If you want to
+	 * Uses a JDBC Statement, not a PreparedStatement. If you want to
 	 * execute a static query with a PreparedStatement, use the overloaded
 	 * {@code query} method with {@code null} as argument array.
 	 * @param sql the SQL query to execute
@@ -91,7 +91,7 @@ public interface JdbcOperations {
 	/**
 	 * Execute a query given static SQL, reading the ResultSet on a per-row
 	 * basis with a RowCallbackHandler.
-	 * <p>Uses a JDBC Statement, not a PreparedStatement. If you want to
+	 * Uses a JDBC Statement, not a PreparedStatement. If you want to
 	 * execute a static query with a PreparedStatement, use the overloaded
 	 * {@code query} method with {@code null} as argument array.
 	 * @param sql the SQL query to execute
@@ -104,7 +104,7 @@ public interface JdbcOperations {
 	/**
 	 * Execute a query given static SQL, mapping each row to a result object
 	 * via a RowMapper.
-	 * <p>Uses a JDBC Statement, not a PreparedStatement. If you want to
+	 * Uses a JDBC Statement, not a PreparedStatement. If you want to
 	 * execute a static query with a PreparedStatement, use the overloaded
 	 * {@code query} method with {@code null} as argument array.
 	 * @param sql the SQL query to execute
@@ -118,7 +118,7 @@ public interface JdbcOperations {
 	/**
 	 * Execute a query given static SQL, mapping a single result row to a
 	 * result object via a RowMapper.
-	 * <p>Uses a JDBC Statement, not a PreparedStatement. If you want to
+	 * Uses a JDBC Statement, not a PreparedStatement. If you want to
 	 * execute a static query with a PreparedStatement, use the overloaded
 	 * {@link #queryForObject(String, RowMapper, Object...)} method with
 	 * {@code null} as argument array.
@@ -136,11 +136,11 @@ public interface JdbcOperations {
 
 	/**
 	 * Execute a query for a result object, given static SQL.
-	 * <p>Uses a JDBC Statement, not a PreparedStatement. If you want to
+	 * Uses a JDBC Statement, not a PreparedStatement. If you want to
 	 * execute a static query with a PreparedStatement, use the overloaded
 	 * {@link #queryForObject(String, Class, Object...)} method with
 	 * {@code null} as argument array.
-	 * <p>This method is useful for running static SQL with a known outcome.
+	 * This method is useful for running static SQL with a known outcome.
 	 * The query is expected to be a single row/single column query; the returned
 	 * result will be directly mapped to the corresponding object type.
 	 * @param sql the SQL query to execute
@@ -156,11 +156,11 @@ public interface JdbcOperations {
 
 	/**
 	 * Execute a query for a result map, given static SQL.
-	 * <p>Uses a JDBC Statement, not a PreparedStatement. If you want to
+	 * Uses a JDBC Statement, not a PreparedStatement. If you want to
 	 * execute a static query with a PreparedStatement, use the overloaded
 	 * {@link #queryForMap(String, Object...)} method with {@code null}
 	 * as argument array.
-	 * <p>The query is expected to be a single row query; the result row will be
+	 * The query is expected to be a single row query; the result row will be
 	 * mapped to a Map (one entry for each column, using the column name as the key).
 	 * @param sql the SQL query to execute
 	 * @return the result Map (one entry per column, with column name as key)
@@ -174,10 +174,10 @@ public interface JdbcOperations {
 
 	/**
 	 * Execute a query for a result list, given static SQL.
-	 * <p>Uses a JDBC Statement, not a PreparedStatement. If you want to
+	 * Uses a JDBC Statement, not a PreparedStatement. If you want to
 	 * execute a static query with a PreparedStatement, use the overloaded
 	 * {@code queryForList} method with {@code null} as argument array.
-	 * <p>The results will be mapped to a List (one entry for each row) of
+	 * The results will be mapped to a List (one entry for each row) of
 	 * result objects, each of them matching the specified element type.
 	 * @param sql the SQL query to execute
 	 * @param elementType the required type of element in the result list
@@ -191,10 +191,10 @@ public interface JdbcOperations {
 
 	/**
 	 * Execute a query for a result list, given static SQL.
-	 * <p>Uses a JDBC Statement, not a PreparedStatement. If you want to
+	 * Uses a JDBC Statement, not a PreparedStatement. If you want to
 	 * execute a static query with a PreparedStatement, use the overloaded
 	 * {@code queryForList} method with {@code null} as argument array.
-	 * <p>The results will be mapped to a List (one entry for each row) of
+	 * The results will be mapped to a List (one entry for each row) of
 	 * Maps (one entry for each column using the column name as the key).
 	 * Each element in the list will be of the form returned by this interface's
 	 * {@code queryForMap} methods.
@@ -207,12 +207,12 @@ public interface JdbcOperations {
 
 	/**
 	 * Execute a query for a SqlRowSet, given static SQL.
-	 * <p>Uses a JDBC Statement, not a PreparedStatement. If you want to
+	 * Uses a JDBC Statement, not a PreparedStatement. If you want to
 	 * execute a static query with a PreparedStatement, use the overloaded
 	 * {@code queryForRowSet} method with {@code null} as argument array.
-	 * <p>The results will be mapped to an SqlRowSet which holds the data in a
+	 * The results will be mapped to an SqlRowSet which holds the data in a
 	 * disconnected fashion. This wrapper will translate any SQLExceptions thrown.
-	 * <p>Note that, for the default implementation, JDBC RowSet support needs to
+	 * Note that, for the default implementation, JDBC RowSet support needs to
 	 * be available at runtime: by default, Sun's {@code com.sun.rowset.CachedRowSetImpl}
 	 * class is used, which is part of JDK 1.5+ and also available separately as part of
 	 * Sun's JDBC RowSet Implementations download (rowset.jar).
@@ -236,7 +236,7 @@ public interface JdbcOperations {
 
 	/**
 	 * Issue multiple SQL updates on a single JDBC Statement using batching.
-	 * <p>Will fall back to separate updates on a single Statement if the JDBC
+	 * Will fall back to separate updates on a single Statement if the JDBC
 	 * driver does not support batch updates.
 	 * @param sql defining an array of SQL statements that will be executed.
 	 * @return an array of the number of rows affected by each statement
@@ -255,7 +255,7 @@ public interface JdbcOperations {
 	 * data access operations on a single Statement, within Spring's managed JDBC
 	 * environment: that is, participating in Spring-managed transactions and
 	 * converting JDBC SQLExceptions into Spring's DataAccessException hierarchy.
-	 * <p>The callback action can return a result object, for example a domain
+	 * The callback action can return a result object, for example a domain
 	 * object or a collection of domain objects.
 	 * @param psc a callback that creates a PreparedStatement given a Connection
 	 * @param action a callback that specifies the action
@@ -271,7 +271,7 @@ public interface JdbcOperations {
 	 * data access operations on a single Statement, within Spring's managed JDBC
 	 * environment: that is, participating in Spring-managed transactions and
 	 * converting JDBC SQLExceptions into Spring's DataAccessException hierarchy.
-	 * <p>The callback action can return a result object, for example a domain
+	 * The callback action can return a result object, for example a domain
 	 * object or a collection of domain objects.
 	 * @param sql the SQL to execute
 	 * @param action a callback that specifies the action
@@ -283,7 +283,7 @@ public interface JdbcOperations {
 
 	/**
 	 * Query using a prepared statement, reading the ResultSet with a ResultSetExtractor.
-	 * <p>A PreparedStatementCreator can either be implemented directly or
+	 * A PreparedStatementCreator can either be implemented directly or
 	 * configured through a PreparedStatementCreatorFactory.
 	 * @param psc a callback that creates a PreparedStatement given a Connection
 	 * @param rse a callback that will extract results
@@ -357,7 +357,7 @@ public interface JdbcOperations {
 	/**
 	 * Query using a prepared statement, reading the ResultSet on a per-row basis
 	 * with a RowCallbackHandler.
-	 * <p>A PreparedStatementCreator can either be implemented directly or
+	 * A PreparedStatementCreator can either be implemented directly or
 	 * configured through a PreparedStatementCreatorFactory.
 	 * @param psc a callback that creates a PreparedStatement given a Connection
 	 * @param rch a callback that will extract results, one row at a time
@@ -426,7 +426,7 @@ public interface JdbcOperations {
 	/**
 	 * Query using a prepared statement, mapping each row to a result object
 	 * via a RowMapper.
-	 * <p>A PreparedStatementCreator can either be implemented directly or
+	 * A PreparedStatementCreator can either be implemented directly or
 	 * configured through a PreparedStatementCreatorFactory.
 	 * @param psc a callback that creates a PreparedStatement given a Connection
 	 * @param rowMapper a callback that will map one object per row
@@ -559,7 +559,7 @@ public interface JdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL and a list of
 	 * arguments to bind to the query, expecting a result object.
-	 * <p>The query is expected to be a single row/single column query; the returned
+	 * The query is expected to be a single row/single column query; the returned
 	 * result will be directly mapped to the corresponding object type.
 	 * @param sql the SQL query to execute
 	 * @param args arguments to bind to the query
@@ -580,7 +580,7 @@ public interface JdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL and a list of
 	 * arguments to bind to the query, expecting a result object.
-	 * <p>The query is expected to be a single row/single column query; the returned
+	 * The query is expected to be a single row/single column query; the returned
 	 * result will be directly mapped to the corresponding object type.
 	 * @param sql the SQL query to execute
 	 * @param args arguments to bind to the query
@@ -600,7 +600,7 @@ public interface JdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL and a list of
 	 * arguments to bind to the query, expecting a result object.
-	 * <p>The query is expected to be a single row/single column query; the returned
+	 * The query is expected to be a single row/single column query; the returned
 	 * result will be directly mapped to the corresponding object type.
 	 * @param sql the SQL query to execute
 	 * @param requiredType the type that the result object is expected to match
@@ -621,7 +621,7 @@ public interface JdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL and a list of
 	 * arguments to bind to the query, expecting a result map.
-	 * <p>The query is expected to be a single row query; the result row will be
+	 * The query is expected to be a single row query; the result row will be
 	 * mapped to a Map (one entry for each column, using the column name as the key).
 	 * @param sql the SQL query to execute
 	 * @param args arguments to bind to the query
@@ -640,10 +640,10 @@ public interface JdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL and a list of
 	 * arguments to bind to the query, expecting a result map.
-	 * <p>The {@code queryForMap} methods defined by this interface are appropriate
+	 * The {@code queryForMap} methods defined by this interface are appropriate
 	 * when you don't have a domain model. Otherwise, consider using one of the
 	 * {@code queryForObject} methods.
-	 * <p>The query is expected to be a single row query; the result row will be
+	 * The query is expected to be a single row query; the result row will be
 	 * mapped to a Map (one entry for each column, using the column name as the key).
 	 * @param sql the SQL query to execute
 	 * @param args arguments to bind to the query
@@ -663,7 +663,7 @@ public interface JdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL and a list of
 	 * arguments to bind to the query, expecting a result list.
-	 * <p>The results will be mapped to a List (one entry for each row) of
+	 * The results will be mapped to a List (one entry for each row) of
 	 * result objects, each of them matching the specified element type.
 	 * @param sql the SQL query to execute
 	 * @param args arguments to bind to the query
@@ -682,7 +682,7 @@ public interface JdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL and a list of
 	 * arguments to bind to the query, expecting a result list.
-	 * <p>The results will be mapped to a List (one entry for each row) of
+	 * The results will be mapped to a List (one entry for each row) of
 	 * result objects, each of them matching the specified element type.
 	 * @param sql the SQL query to execute
 	 * @param args arguments to bind to the query
@@ -701,7 +701,7 @@ public interface JdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL and a list of
 	 * arguments to bind to the query, expecting a result list.
-	 * <p>The results will be mapped to a List (one entry for each row) of
+	 * The results will be mapped to a List (one entry for each row) of
 	 * result objects, each of them matching the specified element type.
 	 * @param sql the SQL query to execute
 	 * @param elementType the required type of element in the result list
@@ -721,7 +721,7 @@ public interface JdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL and a list of
 	 * arguments to bind to the query, expecting a result list.
-	 * <p>The results will be mapped to a List (one entry for each row) of
+	 * The results will be mapped to a List (one entry for each row) of
 	 * Maps (one entry for each column, using the column name as the key).
 	 * Each element in the list will be of the form returned by this interface's
 	 * {@code queryForMap} methods.
@@ -739,7 +739,7 @@ public interface JdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL and a list of
 	 * arguments to bind to the query, expecting a result list.
-	 * <p>The results will be mapped to a List (one entry for each row) of
+	 * The results will be mapped to a List (one entry for each row) of
 	 * Maps (one entry for each column, using the column name as the key).
 	 * Each element in the list will be of the form returned by this interface's
 	 * {@code queryForMap} methods.
@@ -757,9 +757,9 @@ public interface JdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL and a list of
 	 * arguments to bind to the query, expecting a SqlRowSet.
-	 * <p>The results will be mapped to an SqlRowSet which holds the data in a
+	 * The results will be mapped to an SqlRowSet which holds the data in a
 	 * disconnected fashion. This wrapper will translate any SQLExceptions thrown.
-	 * <p>Note that, for the default implementation, JDBC RowSet support needs to
+	 * Note that, for the default implementation, JDBC RowSet support needs to
 	 * be available at runtime: by default, Sun's {@code com.sun.rowset.CachedRowSetImpl}
 	 * class is used, which is part of JDK 1.5+ and also available separately as part of
 	 * Sun's JDBC RowSet Implementations download (rowset.jar).
@@ -780,9 +780,9 @@ public interface JdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL and a list of
 	 * arguments to bind to the query, expecting a SqlRowSet.
-	 * <p>The results will be mapped to an SqlRowSet which holds the data in a
+	 * The results will be mapped to an SqlRowSet which holds the data in a
 	 * disconnected fashion. This wrapper will translate any SQLExceptions thrown.
-	 * <p>Note that, for the default implementation, JDBC RowSet support needs to
+	 * Note that, for the default implementation, JDBC RowSet support needs to
 	 * be available at runtime: by default, Sun's {@code com.sun.rowset.CachedRowSetImpl}
 	 * class is used, which is part of JDK 1.5+ and also available separately as part of
 	 * Sun's JDBC RowSet Implementations download (rowset.jar).
@@ -804,7 +804,7 @@ public interface JdbcOperations {
 	 * Issue a single SQL update operation (such as an insert, update or delete
 	 * statement) using a PreparedStatementCreator to provide SQL and any
 	 * required parameters.
-	 * <p>A PreparedStatementCreator can either be implemented directly or
+	 * A PreparedStatementCreator can either be implemented directly or
 	 * configured through a PreparedStatementCreatorFactory.
 	 * @param psc a callback that provides SQL and any necessary parameters
 	 * @return the number of rows affected
@@ -816,7 +816,7 @@ public interface JdbcOperations {
 	/**
 	 * Issue an update statement using a PreparedStatementCreator to provide SQL and
 	 * any required parameters. Generated keys will be put into the given KeyHolder.
-	 * <p>Note that the given PreparedStatementCreator has to create a statement
+	 * Note that the given PreparedStatementCreator has to create a statement
 	 * with activated extraction of generated keys (a JDBC 3.0 feature). This can
 	 * either be done directly or through using a PreparedStatementCreatorFactory.
 	 * @param psc a callback that provides SQL and any necessary parameters
@@ -870,7 +870,7 @@ public interface JdbcOperations {
 	/**
 	 * Issue multiple update statements on a single PreparedStatement,
 	 * using batch updates and a BatchPreparedStatementSetter to set values.
-	 * <p>Will fall back to separate updates on a single PreparedStatement
+	 * Will fall back to separate updates on a single PreparedStatement
 	 * if the JDBC driver does not support batch updates.
 	 * @param sql defining PreparedStatement that will be reused.
 	 * All statements in the batch will use the same SQL.
@@ -925,7 +925,7 @@ public interface JdbcOperations {
 	 * data access operations on a single Statement, within Spring's managed JDBC
 	 * environment: that is, participating in Spring-managed transactions and
 	 * converting JDBC SQLExceptions into Spring's DataAccessException hierarchy.
-	 * <p>The callback action can return a result object, for example a domain
+	 * The callback action can return a result object, for example a domain
 	 * object or a collection of domain objects.
 	 * @param csc a callback that creates a CallableStatement given a Connection
 	 * @param action a callback that specifies the action
@@ -941,7 +941,7 @@ public interface JdbcOperations {
 	 * data access operations on a single Statement, within Spring's managed JDBC
 	 * environment: that is, participating in Spring-managed transactions and
 	 * converting JDBC SQLExceptions into Spring's DataAccessException hierarchy.
-	 * <p>The callback action can return a result object, for example a domain
+	 * The callback action can return a result object, for example a domain
 	 * object or a collection of domain objects.
 	 * @param callString the SQL call string to execute
 	 * @param action a callback that specifies the action

@@ -28,7 +28,7 @@ import org.springframework.util.StringUtils;
  * and creates a dynamic proxy which implements that interface, delegating to an
  * underlying {@link org.springframework.beans.factory.BeanFactory}.
  *
- * <p>Such service locators permit the decoupling of calling code from
+ * Such service locators permit the decoupling of calling code from
  * the {@link org.springframework.beans.factory.BeanFactory} API, by using an
  * appropriate custom locator interface. They will typically be used for
  * <b>prototype beans</b>, i.e. for factory methods that are supposed to
@@ -37,26 +37,26 @@ import org.springframework.util.StringUtils;
  * the locator's factory methods on demand. <b>For singleton beans, direct
  * setter or constructor injection of the target bean is preferable.</b>
  *
- * <p>On invocation of the no-arg factory method, or the single-arg factory
+ * On invocation of the no-arg factory method, or the single-arg factory
  * method with a String id of {@code null} or empty String, if exactly
  * <b>one</b> bean in the factory matches the return type of the factory
  * method, that bean is returned, otherwise a
  * {@link org.springframework.beans.factory.NoSuchBeanDefinitionException}
  * is thrown.
  *
- * <p>On invocation of the single-arg factory method with a non-null (and
+ * On invocation of the single-arg factory method with a non-null (and
  * non-empty) argument, the proxy returns the result of a
  * {@link org.springframework.beans.factory.BeanFactory#getBean(String)} call,
  * using a stringified version of the passed-in id as bean name.
  *
- * <p>A factory method argument will usually be a String, but can also be an
+ * A factory method argument will usually be a String, but can also be an
  * int or a custom enumeration type, for example, stringified via
  * {@code toString}. The resulting String can be used as bean name as-is,
  * provided that corresponding beans are defined in the bean factory.
  * Alternatively, {@linkplain #setServiceMappings(java.util.Properties) a custom
  * mapping} between service IDs and bean names can be defined.
  *
- * <p>By way of an example, consider the following service locator interface.
+ * By way of an example, consider the following service locator interface.
  * Note that this interface is not dependent on any Spring APIs.
  *
  * <pre class="code">package a.b.c;
@@ -66,7 +66,7 @@ import org.springframework.util.StringUtils;
  *    public MyService getService();
  *}</pre>
  *
- * <p>A sample config in an XML-based
+ * A sample config in an XML-based
  * {@link org.springframework.beans.factory.BeanFactory} might look as follows:
  *
  * <pre class="code">&lt;beans>
@@ -86,7 +86,7 @@ import org.springframework.util.StringUtils;
  *
  *&lt;/beans></pre>
  *
- * <p>The attendant {@code MyClientBean} class implementation might then
+ * The attendant {@code MyClientBean} class implementation might then
  * look something like this:
  *
  * <pre class="code">package a.b.c;
@@ -107,7 +107,7 @@ import org.springframework.util.StringUtils;
  *    }
  *}</pre>
  *
- * <p>By way of an example that looks up a bean <b>by name</b>, consider
+ * By way of an example that looks up a bean <b>by name</b>, consider
  * the following service locator interface. Again, note that this
  * interface is not dependent on any Spring APIs.
  *
@@ -118,7 +118,7 @@ import org.springframework.util.StringUtils;
  *    public MyService getService (String serviceName);
  *}</pre>
  *
- * <p>A sample config in an XML-based
+ * A sample config in an XML-based
  * {@link org.springframework.beans.factory.BeanFactory} might look as follows:
  *
  * <pre class="code">&lt;beans>
@@ -138,7 +138,7 @@ import org.springframework.util.StringUtils;
  *
  *&lt;/beans></pre>
  *
- * <p>The attendant {@code MyClientBean} class implementation might then
+ * The attendant {@code MyClientBean} class implementation might then
  * look something like this:
  *
  * <pre class="code">package a.b.c;
@@ -165,7 +165,7 @@ import org.springframework.util.StringUtils;
  *    }
  *}</pre>
  *
- * <p>See {@link ObjectFactoryCreatingFactoryBean} for an alternate approach.
+ * See {@link ObjectFactoryCreatingFactoryBean} for an alternate approach.
  *
  * @author Colin Sampaleanu
 
@@ -208,7 +208,7 @@ public class ServiceLocatorFactoryBean implements FactoryBean<Object>, BeanFacto
 	 * lookup failed. The specified exception class must have a constructor
 	 * with one of the following parameter types: {@code (String, Throwable)}
 	 * or {@code (Throwable)} or {@code (String)}.
-	 * <p>If not specified, subclasses of Spring's BeansException will be thrown,
+	 * If not specified, subclasses of Spring's BeansException will be thrown,
 	 * for example NoSuchBeanDefinitionException. As those are unchecked, the
 	 * caller does not need to handle them, so it might be acceptable that
 	 * Spring exceptions get thrown as long as they are just handled generically.
@@ -224,7 +224,7 @@ public class ServiceLocatorFactoryBean implements FactoryBean<Object>, BeanFacto
 	 * Set mappings between service ids (passed into the service locator)
 	 * and bean names (in the bean factory). Service ids that are not defined
 	 * here will be treated as bean names as-is.
-	 * <p>The empty string as service id key defines the mapping for {@code null} and
+	 * The empty string as service id key defines the mapping for {@code null} and
 	 * empty string, and for factory methods without parameter. If not defined,
 	 * a single matching bean will be retrieved from the bean factory.
 	 * @param serviceMappings mappings between service ids and bean names,
@@ -260,7 +260,7 @@ public class ServiceLocatorFactoryBean implements FactoryBean<Object>, BeanFacto
 	/**
 	 * Determine the constructor to use for the given service locator exception
 	 * class. Only called in case of a custom service locator exception.
-	 * <p>The default implementation looks for a constructor with one of the
+	 * The default implementation looks for a constructor with one of the
 	 * following parameter types: {@code (String, Throwable)}
 	 * or {@code (Throwable)} or {@code (String)}.
 	 * @param exceptionClass the exception class
@@ -292,7 +292,7 @@ public class ServiceLocatorFactoryBean implements FactoryBean<Object>, BeanFacto
 	/**
 	 * Create a service locator exception for the given cause.
 	 * Only called in case of a custom service locator exception.
-	 * <p>The default implementation can handle all variations of
+	 * The default implementation can handle all variations of
 	 * message and exception arguments.
 	 * @param exceptionConstructor the constructor to use
 	 * @param cause the cause of the service lookup failure

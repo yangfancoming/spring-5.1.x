@@ -12,7 +12,7 @@ import org.springframework.core.io.Resource;
  * resources, for use outside a WebApplicationContext (for example,
  * in an HttpServletBean or GenericFilterBean subclass).
  *
- * <p>Within a WebApplicationContext, resource paths are automatically
+ * Within a WebApplicationContext, resource paths are automatically
  * resolved as ServletContext resources by the context implementation.
  *
 

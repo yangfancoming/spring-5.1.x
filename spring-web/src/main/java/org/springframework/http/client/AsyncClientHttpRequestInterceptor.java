@@ -15,7 +15,7 @@ import org.springframework.util.concurrent.ListenableFuture;
  * {@link ClientHttpResponse} with help of a
  * {@link org.springframework.util.concurrent.ListenableFutureAdapter}.
  *
- * <p>The main entry point for interceptors is {@link #intercept}.
+ * The main entry point for interceptors is {@link #intercept}.
  *
  * @author Jakub Narloch
  * @author Rossen Stoyanchev
@@ -32,7 +32,7 @@ public interface AsyncClientHttpRequestInterceptor {
 	 * Intercept the given request, and return a response future. The given
 	 * {@link AsyncClientHttpRequestExecution} allows the interceptor to pass on
 	 * the request to the next entity in the chain.
-	 * <p>An implementation might follow this pattern:
+	 * An implementation might follow this pattern:
 	 * <ol>
 	 * <li>Examine the {@linkplain HttpRequest request} and body</li>
 	 * <li>Optionally {@linkplain org.springframework.http.client.support.HttpRequestWrapper

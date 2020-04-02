@@ -60,7 +60,7 @@ import org.springframework.util.xml.StaxUtils;
 /**
  * Implementation of the {@code Marshaller} and {@code Unmarshaller} interfaces for JiBX.
  *
- * <p>The typical usage will be to set the {@code targetClass} and optionally the
+ * The typical usage will be to set the {@code targetClass} and optionally the
  * {@code bindingName} property on this bean.
  *
  * @author Arjen Poutsma
@@ -112,7 +112,7 @@ public class JibxMarshaller extends AbstractMarshaller implements InitializingBe
 	/**
 	 * Set the target class for this instance. Setting either this property or the
 	 * {@link #setTargetPackage(String) targetPackage} property is required.
-	 * <p>If this property is set, {@link #setTargetPackage(String) targetPackage} is ignored.
+	 * If this property is set, {@link #setTargetPackage(String) targetPackage} is ignored.
 	 */
 	public void setTargetClass(Class<?> targetClass) {
 		this.targetClass = targetClass;
@@ -121,7 +121,7 @@ public class JibxMarshaller extends AbstractMarshaller implements InitializingBe
 	/**
 	 * Set the target package for this instance. Setting either this property or the
 	 * {@link #setTargetClass(Class) targetClass} property is required.
-	 * <p>If {@link #setTargetClass(Class) targetClass} is set, this property is ignored.
+	 * If {@link #setTargetClass(Class) targetClass} is set, this property is ignored.
 	 */
 	public void setTargetPackage(String targetPackage) {
 		this.targetPackage = targetPackage;
@@ -163,7 +163,7 @@ public class JibxMarshaller extends AbstractMarshaller implements InitializingBe
 	/**
 	 * Set the root element name for the DTD declaration written when marshalling.
 	 * By default, this is {@code null} (i.e. no DTD declaration is written).
-	 * <p>If set to a value, the system ID or public ID also need to be set.
+	 * If set to a value, the system ID or public ID also need to be set.
 	 * @see #setDocTypeSystemId(String)
 	 * @see #setDocTypePublicId(String)
 	 */
@@ -174,7 +174,7 @@ public class JibxMarshaller extends AbstractMarshaller implements InitializingBe
 	/**
 	 * Set the system id for the DTD declaration written when marshalling.
 	 * By default, this is {@code null}. Only used when the root element also has been set.
-	 * <p>Set either this property or {@code docTypePublicId}, not both.
+	 * Set either this property or {@code docTypePublicId}, not both.
 	 * @see #setDocTypeRootElementName(String)
 	 */
 	public void setDocTypeSystemId(String docTypeSystemId) {
@@ -184,7 +184,7 @@ public class JibxMarshaller extends AbstractMarshaller implements InitializingBe
 	/**
 	 * Set the public id for the DTD declaration written when marshalling.
 	 * By default, this is {@code null}. Only used when the root element also has been set.
-	 * <p>Set either this property or {@code docTypeSystemId}, not both.
+	 * Set either this property or {@code docTypeSystemId}, not both.
 	 * @see #setDocTypeRootElementName(String)
 	 */
 	public void setDocTypePublicId(String docTypePublicId) {
@@ -463,7 +463,7 @@ public class JibxMarshaller extends AbstractMarshaller implements InitializingBe
 	/**
 	 * Convert the given {@code JiBXException} to an appropriate exception from the
 	 * {@code org.springframework.oxm} hierarchy.
-	 * <p>A boolean flag is used to indicate whether this exception occurs during marshalling or
+	 * A boolean flag is used to indicate whether this exception occurs during marshalling or
 	 * unmarshalling, since JiBX itself does not make this distinction in its exception hierarchy.
 	 * @param ex {@code JiBXException} that occurred
 	 * @param marshalling indicates whether the exception occurs during marshalling ({@code true}),

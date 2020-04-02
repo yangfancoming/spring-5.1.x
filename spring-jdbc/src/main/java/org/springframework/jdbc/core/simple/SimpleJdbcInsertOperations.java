@@ -60,7 +60,7 @@ public interface SimpleJdbcInsertOperations {
 
 	/**
 	 * Include synonyms for the column meta-data lookups via JDBC.
-	 * <p>Note: This is only necessary to include for Oracle since other databases
+	 * Note: This is only necessary to include for Oracle since other databases
 	 * supporting synonyms seems to include the synonyms automatically.
 	 * @return the instance of this SimpleJdbcInsert
 	 */
@@ -83,7 +83,7 @@ public interface SimpleJdbcInsertOperations {
 
 	/**
 	 * Execute the insert using the values passed in and return the generated key.
-	 * <p>This requires that the name of the columns with auto generated keys have been specified.
+	 * This requires that the name of the columns with auto generated keys have been specified.
 	 * This method will always return a KeyHolder but the caller must verify that it actually
 	 * contains the generated keys.
 	 * @param args a Map containing column names and corresponding value
@@ -93,7 +93,7 @@ public interface SimpleJdbcInsertOperations {
 
 	/**
 	 * Execute the insert using the values passed in and return the generated key.
-	 * <p>This requires that the name of the columns with auto generated keys have been specified.
+	 * This requires that the name of the columns with auto generated keys have been specified.
 	 * This method will always return a KeyHolder but the caller must verify that it actually
 	 * contains the generated keys.
 	 * @param parameterSource the SqlParameterSource containing values to use for insert
@@ -103,7 +103,7 @@ public interface SimpleJdbcInsertOperations {
 
 	/**
 	 * Execute the insert using the values passed in and return the generated keys.
-	 * <p>This requires that the name of the columns with auto generated keys have been specified.
+	 * This requires that the name of the columns with auto generated keys have been specified.
 	 * This method will always return a KeyHolder but the caller must verify that it actually
 	 * contains the generated keys.
 	 * @param args a Map containing column names and corresponding value
@@ -113,7 +113,7 @@ public interface SimpleJdbcInsertOperations {
 
 	/**
 	 * Execute the insert using the values passed in and return the generated keys.
-	 * <p>This requires that the name of the columns with auto generated keys have been specified.
+	 * This requires that the name of the columns with auto generated keys have been specified.
 	 * This method will always return a KeyHolder but the caller must verify that it actually
 	 * contains the generated keys.
 	 * @param parameterSource the SqlParameterSource containing values to use for insert

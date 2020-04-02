@@ -60,7 +60,7 @@ public class RuntimeBeanReference implements BeanReference {
 
 	/**
 	 * Set the configuration source {@code Object} for this metadata element.
-	 * <p>The exact type of the object will depend on the configuration mechanism used.
+	 * The exact type of the object will depend on the configuration mechanism used.
 	 */
 	public void setSource(@Nullable Object source) {
 		this.source = source;

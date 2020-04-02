@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
  * Represents a set of character entity references defined by the
  * HTML 4.0 standard.
  *
- * <p>A complete description of the HTML 4.0 character set can be found
+ * A complete description of the HTML 4.0 character set can be found
  * at http://www.w3.org/TR/html4/charset.html.
  *
 

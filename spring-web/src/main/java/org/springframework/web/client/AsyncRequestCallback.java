@@ -9,7 +9,7 @@ import java.io.IOException;
  * {@link org.springframework.http.client.AsyncClientHttpRequest}. Allows to
  * manipulate the request headers, and write to the request body.
  *
- * <p>Used internally by the {@link AsyncRestTemplate}, but also useful for
+ * Used internally by the {@link AsyncRestTemplate}, but also useful for
  * application code.
  *
  * @author Arjen Poutsma

@@ -29,11 +29,11 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
  * Parse the {@code view-resolvers} MVC namespace element and register
  * {@link org.springframework.web.servlet.ViewResolver} bean definitions.
  *
- * <p>All registered resolvers are wrapped in a single (composite) ViewResolver
+ * All registered resolvers are wrapped in a single (composite) ViewResolver
  * with its order property set to 0 so that other external resolvers may be ordered
  * before or after it.
  *
- * <p>When content negotiation is enabled the order property is set to highest priority
+ * When content negotiation is enabled the order property is set to highest priority
  * instead with the ContentNegotiatingViewResolver encapsulating all other registered
  * view resolver instances. That way the resolvers registered through the MVC namespace
  * form self-encapsulated resolver chain.

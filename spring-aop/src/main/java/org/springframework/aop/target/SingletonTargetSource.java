@@ -14,7 +14,7 @@ import org.springframework.util.ObjectUtils;
  * interface, as used by the Spring AOP framework. There is usually no need to
  * create objects of this class in application code.
  *
- * <p>This class is serializable. However, the actual serializability of a
+ * This class is serializable. However, the actual serializability of a
  * SingletonTargetSource will depend on whether the target is serializable.
  * @see org.springframework.aop.framework.AdvisedSupport#setTarget(Object)
  */

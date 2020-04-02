@@ -12,7 +12,7 @@ import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
  * XStream {@link Converter} that supports all classes, but throws exceptions for
  * (un)marshalling.
  *
- * <p>The main purpose of this class is to
+ * The main purpose of this class is to
  * {@linkplain com.thoughtworks.xstream.XStream#registerConverter(com.thoughtworks.xstream.converters.Converter, int) register}
  * this converter as a catch-all last converter with a
  * {@linkplain com.thoughtworks.xstream.XStream#PRIORITY_NORMAL normal}
@@ -20,7 +20,7 @@ import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
  * classes that should be supported. As a result, default XStream converters with
  * lower priorities and possible security vulnerabilities do not get invoked.
  *
- * <p>For instance:
+ * For instance:
  * <pre class="code">
  * XStreamMarshaller unmarshaller = new XStreamMarshaller();
  * unmarshaller.getXStream().registerConverter(new MyDomainClassConverter(), XStream.PRIORITY_VERY_HIGH);

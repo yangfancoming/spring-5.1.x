@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
  * when used within a Spring container. Can be configured through bean properties;
  * uses the assigned Spring bean name as the default cache name.
  *
- * <p>Useful for testing or simple caching scenarios, typically in combination
+ * Useful for testing or simple caching scenarios, typically in combination
  * with {@link org.springframework.cache.support.SimpleCacheManager} or
  * dynamically through {@link ConcurrentMapCacheManager}.
  *
@@ -39,7 +39,7 @@ public class ConcurrentMapCacheFactoryBean
 
 	/**
 	 * Specify the name of the cache.
-	 * <p>Default is "" (empty String).
+	 * Default is "" (empty String).
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -48,7 +48,7 @@ public class ConcurrentMapCacheFactoryBean
 	/**
 	 * Specify the ConcurrentMap to use as an internal store
 	 * (possibly pre-populated).
-	 * <p>Default is a standard {@link java.util.concurrent.ConcurrentHashMap}.
+	 * Default is a standard {@link java.util.concurrent.ConcurrentHashMap}.
 	 */
 	public void setStore(ConcurrentMap<Object, Object> store) {
 		this.store = store;
@@ -57,7 +57,7 @@ public class ConcurrentMapCacheFactoryBean
 	/**
 	 * Set whether to allow {@code null} values
 	 * (adapting them to an internal null holder value).
-	 * <p>Default is "true".
+	 * Default is "true".
 	 */
 	public void setAllowNullValues(boolean allowNullValues) {
 		this.allowNullValues = allowNullValues;

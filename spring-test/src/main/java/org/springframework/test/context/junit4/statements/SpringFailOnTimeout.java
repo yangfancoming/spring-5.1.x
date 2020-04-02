@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
  * annotation by throwing an exception if the next statement in the execution
  * chain takes more than the specified number of milliseconds.
  *
- * <p>In contrast to JUnit's
+ * In contrast to JUnit's
  * {@link org.junit.internal.runners.statements.FailOnTimeout FailOnTimeout},
  * the next {@code statement} will be executed in the same thread as the
  * caller and will therefore not be aborted preemptively.
@@ -47,7 +47,7 @@ public class SpringFailOnTimeout extends Statement {
 	/**
 	 * Construct a new {@code SpringFailOnTimeout} statement for the supplied
 	 * {@code timeout}.
-	 * <p>If the supplied {@code timeout} is {@code 0}, the execution of the
+	 * If the supplied {@code timeout} is {@code 0}, the execution of the
 	 * {@code next} statement will not be timed.
 	 * @param next the next {@code Statement} in the execution chain; never {@code null}
 	 * @param timeout the configured {@code timeout} for the current test, in milliseconds;

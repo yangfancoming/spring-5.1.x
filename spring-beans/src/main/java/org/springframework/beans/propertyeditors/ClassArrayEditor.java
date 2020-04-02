@@ -14,7 +14,7 @@ import org.springframework.util.StringUtils;
  * the direct population of a {@code Class[]} property without having to
  * use a {@code String} class name property as bridge.
  *
- * <p>Also supports "java.lang.String[]"-style array class names, in contrast
+ * Also supports "java.lang.String[]"-style array class names, in contrast
  * to the standard {@link Class#forName(String)} method.
  *
  * @author Rob Harrop

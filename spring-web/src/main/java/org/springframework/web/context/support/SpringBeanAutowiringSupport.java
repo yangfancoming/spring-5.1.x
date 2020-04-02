@@ -21,7 +21,7 @@ import org.springframework.web.context.WebApplicationContext;
  * context ClassLoader, which needs to be the web application's ClassLoader).
  * Can alternatively be used as a delegate instead of as a base class.
  *
- * <p>A typical usage of this base class is a JAX-WS endpoint class:
+ * A typical usage of this base class is a JAX-WS endpoint class:
  * Such a Spring-based JAX-WS endpoint implementation will follow the
  * standard JAX-WS contract for endpoint classes but will be 'thin'
  * in that it delegates the actual work to one or more Spring-managed
@@ -30,7 +30,7 @@ import org.springframework.web.context.WebApplicationContext;
  * JAX-WS runtime, hence the need for this base class to provide
  * {@code @Autowired} processing based on the current Spring context.
  *
- * <p><b>NOTE:</b> If there is an explicit way to access the ServletContext,
+ * <b>NOTE:</b> If there is an explicit way to access the ServletContext,
  * prefer such a way over using this class. The {@link WebApplicationContextUtils}
  * class allows for easy access to the Spring root web application context
  * based on the ServletContext.
@@ -47,7 +47,7 @@ public abstract class SpringBeanAutowiringSupport {
 	/**
 	 * This constructor performs injection on this instance,
 	 * based on the current web application context.
-	 * <p>Intended for use as a base class.
+	 * Intended for use as a base class.
 	 * @see #processInjectionBasedOnCurrentContext
 	 */
 	public SpringBeanAutowiringSupport() {
@@ -58,7 +58,7 @@ public abstract class SpringBeanAutowiringSupport {
 	/**
 	 * Process {@code @Autowired} injection for the given target object,
 	 * based on the current web application context.
-	 * <p>Intended for use as a delegate.
+	 * Intended for use as a delegate.
 	 * @param target the target object to process
 	 * @see org.springframework.web.context.ContextLoader#getCurrentWebApplicationContext()
 	 */
@@ -83,7 +83,7 @@ public abstract class SpringBeanAutowiringSupport {
 	/**
 	 * Process {@code @Autowired} injection for the given target object,
 	 * based on the current root web application context as stored in the ServletContext.
-	 * <p>Intended for use as a delegate.
+	 * Intended for use as a delegate.
 	 * @param target the target object to process
 	 * @param servletContext the ServletContext to find the Spring web application context in
 	 * @see WebApplicationContextUtils#getWebApplicationContext(javax.servlet.ServletContext)

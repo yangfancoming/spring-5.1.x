@@ -57,7 +57,7 @@ public class XmlExpectationsHelper {
 	 * Parse the expected and actual content strings as XML and assert that the
 	 * two are "similar" -- i.e. they contain the same elements and attributes
 	 * regardless of order.
-	 * <p>Use of this method assumes the
+	 * Use of this method assumes the
 	 * <a href="https://github.com/xmlunit/xmlunit">XMLUnit</a> library is available.
 	 * @param expected the expected XML content
 	 * @param actual the actual XML content

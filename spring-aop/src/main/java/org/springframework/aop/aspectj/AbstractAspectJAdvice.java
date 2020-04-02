@@ -51,7 +51,7 @@ public abstract class AbstractAspectJAdvice implements Advice, AspectJPrecedence
 	/**
 	 * Lazily instantiate joinpoint for the current invocation.
 	 * Requires MethodInvocation to be bound with ExposeInvocationInterceptor.
-	 * <p>Do not use if access is available to the current ReflectiveMethodInvocation
+	 * Do not use if access is available to the current ReflectiveMethodInvocation
 	 * (in an around advice).
 	 * @return current AspectJ joinpoint, or through an exception if we're not in a
 	 * Spring AOP invocation.
@@ -226,7 +226,7 @@ public abstract class AbstractAspectJAdvice implements Advice, AspectJPrecedence
 
 	/**
 	 * Set by creator of this advice object if the argument names are known.
-	 * <p>This could be for example because they have been explicitly specified in XML,
+	 * This could be for example because they have been explicitly specified in XML,
 	 * or in an advice annotation.
 	 * @param argNames comma delimited list of arg names
 	 */
@@ -332,11 +332,11 @@ public abstract class AbstractAspectJAdvice implements Advice, AspectJPrecedence
 	/**
 	 * Do as much work as we can as part of the set-up so that argument binding
 	 * on subsequent advice invocations can be as fast as possible.
-	 * <p>If the first argument is of type JoinPoint or ProceedingJoinPoint then we
+	 * If the first argument is of type JoinPoint or ProceedingJoinPoint then we
 	 * pass a JoinPoint in that position (ProceedingJoinPoint for around advice).
-	 * <p>If the first argument is of type {@code JoinPoint.StaticPart}
+	 * If the first argument is of type {@code JoinPoint.StaticPart}
 	 * then we pass a {@code JoinPoint.StaticPart} in that position.
-	 * <p>Remaining arguments have to be bound by pointcut evaluation at
+	 * Remaining arguments have to be bound by pointcut evaluation at
 	 * a given join point. We will get back a map from argument name to
 	 * value. We need to calculate which advice parameter needs to be bound
 	 * to which argument name. There are multiple strategies for determining
@@ -411,7 +411,7 @@ public abstract class AbstractAspectJAdvice implements Advice, AspectJPrecedence
 
 	/**
 	 * Create a ParameterNameDiscoverer to be used for argument binding.
-	 * <p>The default implementation creates a {@link DefaultParameterNameDiscoverer}
+	 * The default implementation creates a {@link DefaultParameterNameDiscoverer}
 	 * and adds a specifically configured {@link AspectJAdviceParameterNameDiscoverer}.
 	 */
 	protected ParameterNameDiscoverer createParameterNameDiscoverer() {

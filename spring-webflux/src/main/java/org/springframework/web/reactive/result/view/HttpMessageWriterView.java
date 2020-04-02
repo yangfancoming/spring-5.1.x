@@ -62,7 +62,7 @@ public class HttpMessageWriterView implements View {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>The implementation of this method for {@link HttpMessageWriterView}
+	 * The implementation of this method for {@link HttpMessageWriterView}
 	 * delegates to {@link HttpMessageWriter#getWritableMediaTypes()}.
 	 */
 	@Override

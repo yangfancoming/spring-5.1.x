@@ -19,13 +19,13 @@ import org.springframework.util.StringUtils;
  * to specify method names to be exposed as MBean operations and attributes.
  * JavaBean getters and setters will automatically be exposed as JMX attributes.
  *
- * <p>You can supply an array of method names via the {@code managedMethods}
+ * You can supply an array of method names via the {@code managedMethods}
  * property. If you have multiple beans and you wish each bean to use a different
  * set of method names, then you can map bean keys (that is the name used to pass
  * the bean to the {@code MBeanExporter}) to a list of method names using the
  * {@code methodMappings} property.
  *
- * <p>If you specify values for both {@code methodMappings} and
+ * If you specify values for both {@code methodMappings} and
  * {@code managedMethods}, Spring will attempt to find method names in the
  * mappings first. If no method names for the bean are found, it will use the
  * method names defined by {@code managedMethods}.

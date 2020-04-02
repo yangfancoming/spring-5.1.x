@@ -38,11 +38,11 @@ import org.springframework.util.Assert;
  * catching ResourceExceptions and translating them to the generic exception
  * hierarchy defined in the {@code org.springframework.dao} package.
  *
- * <p>Code using this class can pass in and receive {@link javax.resource.cci.Record}
+ * Code using this class can pass in and receive {@link javax.resource.cci.Record}
  * instances, or alternatively implement callback interfaces for creating input
  * Records and extracting result objects from output Records (or CCI ResultSets).
  *
- * <p>Can be used within a service implementation via direct instantiation
+ * Can be used within a service implementation via direct instantiation
  * with a ConnectionFactory reference, or get prepared in an application context
  * and given to services as bean reference. Note: The ConnectionFactory should
  * always be configured as a bean in the application context, in the first case
@@ -70,7 +70,7 @@ public class CciTemplate implements CciOperations {
 
 	/**
 	 * Construct a new CciTemplate for bean usage.
-	 * <p>Note: The ConnectionFactory has to be set before using the instance.
+	 * Note: The ConnectionFactory has to be set before using the instance.
 	 * @see #setConnectionFactory
 	 */
 	public CciTemplate() {
@@ -141,10 +141,10 @@ public class CciTemplate implements CciOperations {
 
 	/**
 	 * Set a RecordCreator that should be used for creating default output Records.
-	 * <p>Default is none: When no explicit output Record gets passed into an
+	 * Default is none: When no explicit output Record gets passed into an
 	 * {@code execute} method, CCI's {@code Interaction.execute} variant
 	 * that returns an output Record will be called.
-	 * <p>Specify a RecordCreator here if you always need to call CCI's
+	 * Specify a RecordCreator here if you always need to call CCI's
 	 * {@code Interaction.execute} variant with a passed-in output Record.
 	 * Unless there is an explicitly specified output Record, CciTemplate will
 	 * then invoke this RecordCreator to create a default output Record instance.
@@ -367,7 +367,7 @@ public class CciTemplate implements CciOperations {
 
 	/**
 	 * Return a RecordFactory for the given ConnectionFactory.
-	 * <p>Default implementation returns the connector's RecordFactory if
+	 * Default implementation returns the connector's RecordFactory if
 	 * available, falling back to a NotSupportedRecordFactory placeholder.
 	 * This allows to invoke a RecordCreator callback with a non-null
 	 * RecordFactory reference in any case.

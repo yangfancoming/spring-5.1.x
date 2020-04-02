@@ -18,12 +18,12 @@ import org.springframework.core.NamedThreadLocal;
  * There's no contention for targets. Target object creation is kept to a minimum
  * on the running server.
  *
- * <p>Application code is written as to a normal pool; callers can't assume they
+ * Application code is written as to a normal pool; callers can't assume they
  * will be dealing with the same instance in invocations in different threads.
  * However, state can be relied on during the operations of a single thread:
  * for example, if one caller makes repeated calls on the AOP proxy.
  *
- * <p>Cleanup of thread-bound objects is performed on BeanFactory destruction,
+ * Cleanup of thread-bound objects is performed on BeanFactory destruction,
  * calling their {@code DisposableBean.destroy()} method if available.
  * Be aware that many thread-bound objects can be around until the application actually shuts down.
  * @see ThreadLocalTargetSourceStats

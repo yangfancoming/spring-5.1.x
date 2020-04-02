@@ -18,7 +18,7 @@ import org.springframework.lang.Nullable;
  * {@link EntityResolver} implementation for the Spring beans DTD,
  * to load the DTD from the Spring class path (or JAR file).
  *
- * <p>Fetches "spring-beans.dtd" from the class path resource
+ * Fetches "spring-beans.dtd" from the class path resource
  * "/org/springframework/beans/factory/xml/spring-beans.dtd",
  * no matter whether specified as some local URL that includes "spring-beans"
  * in the DTD name or as "https://www.springframework.org/dtd/spring-beans-2.0.dtd".

@@ -10,7 +10,7 @@ import org.springframework.messaging.handler.invocation.InvocableHandlerMethod;
  * A factory for {@link InvocableHandlerMethod} that is suitable to process
  * an incoming {@link org.springframework.messaging.Message}
  *
- * <p>Typically used by listener endpoints that require a flexible method
+ * Typically used by listener endpoints that require a flexible method
  * signature.
  *
  * @author Stephane Nicoll

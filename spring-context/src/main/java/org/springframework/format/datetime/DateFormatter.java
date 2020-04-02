@@ -75,7 +75,7 @@ public class DateFormatter implements Formatter<Date> {
 
 	/**
 	 * Set the pattern to use to format date values.
-	 * <p>If not specified, DateFormat's default style will be used.
+	 * If not specified, DateFormat's default style will be used.
 	 */
 	public void setPattern(String pattern) {
 		this.pattern = pattern;
@@ -92,7 +92,7 @@ public class DateFormatter implements Formatter<Date> {
 
 	/**
 	 * Set the style to use to format date values.
-	 * <p>If not specified, DateFormat's default style will be used.
+	 * If not specified, DateFormat's default style will be used.
 	 * @see DateFormat#DEFAULT
 	 * @see DateFormat#SHORT
 	 * @see DateFormat#MEDIUM
@@ -130,7 +130,7 @@ public class DateFormatter implements Formatter<Date> {
 
 	/**
 	 * Specify whether or not parsing is to be lenient. Default is false.
-	 * <p>With lenient parsing, the parser may allow inputs that do not precisely match the format.
+	 * With lenient parsing, the parser may allow inputs that do not precisely match the format.
 	 * With strict parsing, inputs must match the format exactly.
 	 */
 	public void setLenient(boolean lenient) {

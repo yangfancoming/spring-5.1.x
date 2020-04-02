@@ -17,12 +17,12 @@ import org.springframework.util.Assert;
  * Generic auto proxy creator that builds AOP proxies for specific beans
  * based on detected Advisors for each bean.
  *
- * <p>Subclasses may override the {@link #findCandidateAdvisors()} method to
+ * Subclasses may override the {@link #findCandidateAdvisors()} method to
  * return a custom list of Advisors applying to any object. Subclasses can
  * also override the inherited {@link #shouldSkip} method to exclude certain
  * objects from auto-proxying.
  *
- * <p>Advisors or advices requiring ordering should implement the
+ * Advisors or advices requiring ordering should implement the
  * {@link org.springframework.core.Ordered} interface. This class sorts
  * Advisors by Ordered order value. Advisors that don't implement the
  * Ordered interface will be considered as unordered; they will appear
@@ -149,8 +149,8 @@ public abstract class AbstractAdvisorAutoProxyCreator extends AbstractAutoProxyC
 	/**
 	 * Extension hook that subclasses can override to register additional Advisors,
 	 * given the sorted Advisors obtained to date.
-	 * <p>The default implementation is empty.
-	 * <p>Typically used to add Advisors that expose contextual information
+	 * The default implementation is empty.
+	 * Typically used to add Advisors that expose contextual information
 	 * required by some of the later advisors.
 	 * @param candidateAdvisors the Advisors that have already been identified as
 	 * applying to a given bean

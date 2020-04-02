@@ -15,12 +15,12 @@ import org.springframework.lang.Nullable;
  * {@link java.sql.SQLException SQLExceptions} will be caught and handled
  * by the calling JdbcTemplate.
  *
- * <p>Typically used either for {@link JdbcTemplate}'s query methods
+ * Typically used either for {@link JdbcTemplate}'s query methods
  * or for out parameters of stored procedures. RowMapper objects are
  * typically stateless and thus reusable; they are an ideal choice for
  * implementing row-mapping logic in a single place.
  *
- * <p>Alternatively, consider subclassing
+ * Alternatively, consider subclassing
  * {@link org.springframework.jdbc.object.MappingSqlQuery} from the
  * {@code jdbc.object} package: Instead of working with separate
  * JdbcTemplate and RowMapper objects, you can build executable query

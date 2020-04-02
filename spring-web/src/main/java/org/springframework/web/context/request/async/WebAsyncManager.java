@@ -26,7 +26,7 @@ import org.springframework.web.context.request.async.DeferredResult.DeferredResu
  * The central class for managing asynchronous request processing, mainly intended
  * as an SPI and not typically used directly by application classes.
  *
- * <p>An async scenario starts with request processing as usual in a thread (T1).
+ * An async scenario starts with request processing as usual in a thread (T1).
  * Concurrent request handling can be initiated by calling
  * {@link #startCallableProcessing(Callable, Object...) startCallableProcessing} or
  * {@link #startDeferredResultProcessing(DeferredResult, Object...) startDeferredResultProcessing},
@@ -103,7 +103,7 @@ public final class WebAsyncManager {
 	/**
 	 * Configure an AsyncTaskExecutor for use with concurrent processing via
 	 * {@link #startCallableProcessing(Callable, Object...)}.
-	 * <p>By default a {@link SimpleAsyncTaskExecutor} instance is used.
+	 * By default a {@link SimpleAsyncTaskExecutor} instance is used.
 	 */
 	public void setTaskExecutor(AsyncTaskExecutor taskExecutor) {
 		this.taskExecutor = taskExecutor;

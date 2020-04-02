@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  * Simple customizable helper class for creating new {@link Thread} instances.
  * Provides various bean properties: thread name prefix, thread priority, etc.
  *
- * <p>Serves as base class for thread factories such as
+ * Serves as base class for thread factories such as
  * {@link org.springframework.scheduling.concurrent.CustomizableThreadFactory}.
  * @since 2.0.3
  * @see org.springframework.scheduling.concurrent.CustomizableThreadFactory
@@ -81,10 +81,10 @@ public class CustomizableThreadCreator implements Serializable {
 	/**
 	 * Set whether this factory is supposed to create daemon threads,
 	 * just executing as long as the application itself is running.
-	 * <p>Default is "false": Concrete factories usually support explicit cancelling.
+	 * Default is "false": Concrete factories usually support explicit cancelling.
 	 * Hence, if the application shuts down, Runnables will by default finish their
 	 * execution.
-	 * <p>Specify "true" for eager shutdown of threads which still actively execute
+	 * Specify "true" for eager shutdown of threads which still actively execute
 	 * a {@link Runnable} at the time that the application itself shuts down.
 	 * @see java.lang.Thread#setDaemon
 	 */
@@ -126,7 +126,7 @@ public class CustomizableThreadCreator implements Serializable {
 
 	/**
 	 * Template method for the creation of a new {@link Thread}.
-	 * <p>The default implementation creates a new Thread for the given
+	 * The default implementation creates a new Thread for the given
 	 * {@link Runnable}, applying an appropriate thread name.
 	 * @param runnable the Runnable to execute
 	 * @see #nextThreadName()
@@ -140,7 +140,7 @@ public class CustomizableThreadCreator implements Serializable {
 
 	/**
 	 * Return the thread name to use for a newly created {@link Thread}.
-	 * <p>The default implementation returns the specified thread name prefix
+	 * The default implementation returns the specified thread name prefix
 	 * with an increasing thread count appended: e.g. "SimpleAsyncTaskExecutor-0".
 	 * @see #getThreadNamePrefix()
 	 */

@@ -29,7 +29,7 @@ import org.springframework.web.servlet.HandlerMapping;
  * is to provide access to multiple matrix variables, either all or associated with a specific
  * path variable.
  *
- * <p>When a name is specified, an argument of type Map is considered to be a single attribute
+ * When a name is specified, an argument of type Map is considered to be a single attribute
  * with a Map value, and is resolved by {@link MatrixVariableMethodArgumentResolver} instead.
  *
  * @author Rossen Stoyanchev

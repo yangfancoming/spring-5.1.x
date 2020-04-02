@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
  * client. A <code>ServletOutputStream</code> object is normally retrieved 
  * via the {@link ServletResponse#getOutputStream} method.
  *
- * <p>This is an abstract class that the servlet container implements.
+ * This is an abstract class that the servlet container implements.
  * Subclasses of this class
  * must implement the <code>java.io.OutputStream.write(int)</code>
  * method.

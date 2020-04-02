@@ -20,7 +20,7 @@ public abstract class SaxResourceUtils {
 
 	/**
 	 * Create a SAX {@code InputSource} from the given resource.
-	 * <p>Sets the system identifier to the resource's {@code URL}, if available.
+	 * Sets the system identifier to the resource's {@code URL}, if available.
 	 * @param resource the resource
 	 * @return the input source created from the resource
 	 * @throws IOException if an I/O exception occurs
@@ -35,7 +35,7 @@ public abstract class SaxResourceUtils {
 
 	/**
 	 * Retrieve the URL from the given resource as System ID.
-	 * <p>Returns {@code null} if it cannot be opened.
+	 * Returns {@code null} if it cannot be opened.
 	 */
 	@Nullable
 	private static String getSystemId(Resource resource) {

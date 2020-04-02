@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
  * {@code @CacheConfig} provides a mechanism for sharing common cache-related
  * settings at the class level.
  *
- * <p>When this annotation is present on a given class, it provides a set
+ * When this annotation is present on a given class, it provides a set
  * of default settings for any cache operation defined in that class.
  *
  * @author Stephane Nicoll
@@ -27,8 +27,8 @@ public @interface CacheConfig {
 	/**
 	 * Names of the default caches to consider for caching operations defined
 	 * in the annotated class.
-	 * <p>If none is set at the operation level, these are used instead of the default.
-	 * <p>May be used to determine the target cache (or caches), matching the
+	 * If none is set at the operation level, these are used instead of the default.
+	 * May be used to determine the target cache (or caches), matching the
 	 * qualifier value or the bean names of a specific bean definition.
 	 */
 	String[] cacheNames() default {};
@@ -36,8 +36,8 @@ public @interface CacheConfig {
 	/**
 	 * The bean name of the default {@link org.springframework.cache.interceptor.KeyGenerator} to
 	 * use for the class.
-	 * <p>If none is set at the operation level, this one is used instead of the default.
-	 * <p>The key generator is mutually exclusive with the use of a custom key. When such key is
+	 * If none is set at the operation level, this one is used instead of the default.
+	 * The key generator is mutually exclusive with the use of a custom key. When such key is
 	 * defined for the operation, the value of this key generator is ignored.
 	 */
 	String keyGenerator() default "";
@@ -46,7 +46,7 @@ public @interface CacheConfig {
 	 * The bean name of the custom {@link org.springframework.cache.CacheManager} to use to
 	 * create a default {@link org.springframework.cache.interceptor.CacheResolver} if none
 	 * is set already.
-	 * <p>If no resolver and no cache manager are set at the operation level, and no cache
+	 * If no resolver and no cache manager are set at the operation level, and no cache
 	 * resolver is set via {@link #cacheResolver}, this one is used instead of the default.
 	 * @see org.springframework.cache.interceptor.SimpleCacheResolver
 	 */
@@ -54,7 +54,7 @@ public @interface CacheConfig {
 
 	/**
 	 * The bean name of the custom {@link org.springframework.cache.interceptor.CacheResolver} to use.
-	 * <p>If no resolver and no cache manager are set at the operation level, this one is used
+	 * If no resolver and no cache manager are set at the operation level, this one is used
 	 * instead of the default.
 	 */
 	String cacheResolver() default "";

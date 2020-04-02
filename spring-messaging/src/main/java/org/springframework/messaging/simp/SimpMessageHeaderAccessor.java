@@ -20,7 +20,7 @@ import org.springframework.util.CollectionUtils;
  * across protocols such as a destination, message type (e.g. publish, subscribe, etc),
  * session id, and others.
  *
- * <p>Use one of the static factory method in this class, then call getters and setters,
+ * Use one of the static factory method in this class, then call getters and setters,
  * and at the end if necessary call {@link #toMap()} to obtain the updated headers.
  *
  * @author Rossen Stoyanchev

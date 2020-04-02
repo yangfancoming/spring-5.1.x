@@ -37,7 +37,7 @@ import org.springframework.util.ReflectionUtils;
  * transaction coordinator, including transaction suspension, in a manner that is
  * perfectly compliant with officially supported WebSphere API.
  *
- * <p>The {@link CallbackPreferringPlatformTransactionManager} interface
+ * The {@link CallbackPreferringPlatformTransactionManager} interface
  * implemented by this class indicates that callers should preferably pass in
  * a {@link TransactionCallback} through the {@link #execute} method, which
  * will be handled through the callback-based WebSphere UOWManager API instead
@@ -45,7 +45,7 @@ import org.springframework.util.ReflectionUtils;
  * the use of the non-public {@code javax.transaction.TransactionManager}
  * API on WebSphere, staying within supported WebSphere API boundaries.
  *
- * <p>This transaction manager implementation derives from Spring's standard
+ * This transaction manager implementation derives from Spring's standard
  * {@link JtaTransactionManager}, inheriting the capability to support programmatic
  * transaction demarcation via {@code getTransaction} / {@code commit} /
  * {@code rollback} calls through a JTA UserTransaction handle, for callers
@@ -55,13 +55,13 @@ import org.springframework.util.ReflectionUtils;
  * despite the official WebSphere recommendations). Use the {@link #execute} style
  * for any code that might require transaction suspension.
  *
- * <p>This transaction manager is compatible with WebSphere 6.1.0.9 and above.
+ * This transaction manager is compatible with WebSphere 6.1.0.9 and above.
  * The default JNDI location for the UOWManager is "java:comp/websphere/UOWManager".
  * If the location happens to differ according to your WebSphere documentation,
  * simply specify the actual location through this transaction manager's
  * "uowManagerName" bean property.
  *
- * <p><b>NOTE: This JtaTransactionManager is intended to refine specific transaction
+ * <b>NOTE: This JtaTransactionManager is intended to refine specific transaction
  * demarcation behavior on Spring's side. It will happily co-exist with independently
  * configured WebSphere transaction strategies in your persistence provider, with no
  * need to specifically connect those setups in any way.</b>
@@ -109,7 +109,7 @@ public class WebSphereUowTransactionManager extends JtaTransactionManager
 
 	/**
 	 * Set the WebSphere UOWManager to use as direct reference.
-	 * <p>Typically just used for test setups; in a Java EE environment,
+	 * Typically just used for test setups; in a Java EE environment,
 	 * the UOWManager will always be fetched from JNDI.
 	 * @see #setUserTransactionName
 	 */

@@ -76,7 +76,7 @@ public abstract class AbstractJackson2Encoder extends Jackson2CodecSupport imple
 	/**
 	 * Configure "streaming" media types for which flushing should be performed
 	 * automatically vs at the end of the stream.
-	 * <p>By default this is set to {@link MediaType#APPLICATION_STREAM_JSON}.
+	 * By default this is set to {@link MediaType#APPLICATION_STREAM_JSON}.
 	 * @param mediaTypes one or more media types to add to the list
 	 * @see HttpMessageEncoder#getStreamingMediaTypes()
 	 */

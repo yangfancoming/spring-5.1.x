@@ -24,7 +24,7 @@ import org.springframework.util.StringUtils;
 /**
  * Represents STOMP frame headers.
  *
- * <p>In addition to the normal methods defined by {@link Map}, this class offers
+ * In addition to the normal methods defined by {@link Map}, this class offers
  * the following convenience methods:
  * <ul>
  * <li>{@link #getFirst(String)} return the first value for a header name</li>

@@ -9,7 +9,7 @@ import org.springframework.cache.Cache;
 /**
  * Determine the {@link Cache} instance(s) to use for an intercepted method invocation.
  *
- * <p>Implementations must be thread-safe.
+ * Implementations must be thread-safe.
  *
  * @author Stephane Nicoll
  * @since 4.1

@@ -17,7 +17,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 /**
  * Resolves {@link Errors} method arguments.
  *
- * <p>An {@code Errors} method argument is expected to appear immediately after
+ * An {@code Errors} method argument is expected to appear immediately after
  * the model attribute in the method signature. It is resolved by expecting the
  * last two attributes added to the model to be the model attribute and its
  * {@link BindingResult}.

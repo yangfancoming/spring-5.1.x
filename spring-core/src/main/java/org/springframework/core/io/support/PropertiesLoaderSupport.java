@@ -60,7 +60,7 @@ public abstract class PropertiesLoaderSupport {
 
 	/**
 	 * Set a location of a properties file to be loaded.
-	 * <p>Can point to a classic properties file or to an XML file
+	 * Can point to a classic properties file or to an XML file
 	 * that follows JDK 1.5's properties XML format.
 	 */
 	public void setLocation(Resource location) {
@@ -69,9 +69,9 @@ public abstract class PropertiesLoaderSupport {
 
 	/**
 	 * Set locations of properties files to be loaded.
-	 * <p>Can point to classic properties files or to XML files
+	 * Can point to classic properties files or to XML files
 	 * that follow JDK 1.5's properties XML format.
-	 * <p>Note: Properties defined in later files will override
+	 * Note: Properties defined in later files will override
 	 * properties defined earlier files, in case of overlapping keys.
 	 * Hence, make sure that the most specific files are the last ones in the given list of locations.
 	 */
@@ -81,7 +81,7 @@ public abstract class PropertiesLoaderSupport {
 
 	/**
 	 * Set whether local properties override properties from files.
-	 * <p>Default is "false": Properties from files override local defaults.
+	 * Default is "false": Properties from files override local defaults.
 	 * Can be switched to "true" to let local properties override defaults from files.
 	 */
 	public void setLocalOverride(boolean localOverride) {
@@ -90,7 +90,7 @@ public abstract class PropertiesLoaderSupport {
 
 	/**
 	 * Set if failure to find the property resource should be ignored.
-	 * <p>"true" is appropriate if the properties file is completely optional.
+	 * "true" is appropriate if the properties file is completely optional.
 	 * Default is "false".
 	 */
 	public void setIgnoreResourceNotFound(boolean ignoreResourceNotFound) {
@@ -99,8 +99,8 @@ public abstract class PropertiesLoaderSupport {
 
 	/**
 	 * Set the encoding to use for parsing properties files.
-	 * <p>Default is none, using the {@code java.util.Properties} default encoding.
-	 * <p>Only applies to classic properties files, not to XML files.
+	 * Default is none, using the {@code java.util.Properties} default encoding.
+	 * Only applies to classic properties files, not to XML files.
 	 * @see org.springframework.util.PropertiesPersister#load
 	 */
 	public void setFileEncoding(String encoding) {

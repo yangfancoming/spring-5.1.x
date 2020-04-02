@@ -28,7 +28,7 @@ import org.springframework.util.StringUtils;
 /**
  * Internal helper class for converting property values to target types.
  *
- * <p>Works on a given {@link PropertyEditorRegistrySupport} instance.
+ * Works on a given {@link PropertyEditorRegistrySupport} instance.
  * Used as a delegate by {@link BeanWrapperImpl} and {@link SimpleTypeConverter}.
  *
 

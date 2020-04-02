@@ -49,10 +49,10 @@ public abstract class CollectionUtils {
 	/**
 	 * Convert the supplied array into a List. A primitive array gets converted
 	 * into a List of the appropriate wrapper type.
-	 * <p><b>NOTE:</b> Generally prefer the standard {@link Arrays#asList} method.
+	 * <b>NOTE:</b> Generally prefer the standard {@link Arrays#asList} method.
 	 * This {@code arrayToList} method is just meant to deal with an incoming Object
 	 * value that might be an {@code Object[]} or a primitive array at runtime.
-	 * <p>A {@code null} source value will be converted to an empty List.
+	 * A {@code null} source value will be converted to an empty List.
 	 * @param source the (potentially primitive) array
 	 * @return the converted List result
 	 * @see ObjectUtils#toObjectArray(Object)
@@ -78,7 +78,7 @@ public abstract class CollectionUtils {
 
 	/**
 	 * Merge the given Properties instance into the given Map,copying all properties (key-value pairs) over.
-	 * <p>Uses {@code Properties.propertyNames()} to even catch
+	 * Uses {@code Properties.propertyNames()} to even catch
 	 * default properties linked into the original Properties instance.
 	 * @param props the Properties instance to merge (may be {@code null})
 	 * @param map the target Map to merge the properties into
@@ -133,7 +133,7 @@ public abstract class CollectionUtils {
 
 	/**
 	 * Check whether the given Collection contains the given element instance.
-	 * <p>Enforces the given instance to be present, rather than returning
+	 * Enforces the given instance to be present, rather than returning
 	 * {@code true} for an equal element as well.
 	 * @param collection the Collection to check
 	 * @param element the element to look for

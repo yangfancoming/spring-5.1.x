@@ -9,7 +9,7 @@ import org.springframework.lang.Nullable;
 /**
  * Spring's strategy interface for evaluating a script.
  *
- * <p>Aside from language-specific implementations, Spring also ships
+ * Aside from language-specific implementations, Spring also ships
  * a version based on the standard {@code javax.script} package (JSR-223):
  * {@link org.springframework.scripting.support.StandardScriptEvaluator}.
  *

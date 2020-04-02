@@ -9,7 +9,7 @@ import org.springframework.beans.BeansException;
  * creates a new instance of the target bean for each request,
  * destroying each instance on release (after each request).
  *
- * <p>Obtains bean instances from its containing
+ * Obtains bean instances from its containing
  * {@link org.springframework.beans.factory.BeanFactory}.
 
  * @see #setBeanFactory

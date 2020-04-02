@@ -23,7 +23,7 @@ import org.springframework.http.converter.HttpMessageNotWritableException;
  * Abstract base class for {@link org.springframework.http.converter.HttpMessageConverter HttpMessageConverters}
  * that convert from/to XML.
  *
- * <p>By default, subclasses of this converter support {@code text/xml}, {@code application/xml}, and {@code
+ * By default, subclasses of this converter support {@code text/xml}, {@code application/xml}, and {@code
  * application/*-xml}. This can be overridden by setting the {@link #setSupportedMediaTypes(java.util.List)
  * supportedMediaTypes} property.
  *

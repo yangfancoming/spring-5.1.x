@@ -17,11 +17,11 @@ import org.springframework.web.context.WebApplicationContext;
  * {@code @ApplicationScope} is a specialization of {@link Scope @Scope} for a
  * component whose lifecycle is bound to the current web application.
  *
- * <p>Specifically, {@code @ApplicationScope} is a <em>composed annotation</em> that
+ * Specifically, {@code @ApplicationScope} is a <em>composed annotation</em> that
  * acts as a shortcut for {@code @Scope("application")} with the default
  * {@link #proxyMode} set to {@link ScopedProxyMode#TARGET_CLASS TARGET_CLASS}.
  *
- * <p>{@code @ApplicationScope} may be used as a meta-annotation to create custom
+ * {@code @ApplicationScope} may be used as a meta-annotation to create custom
  * composed annotations.
  *
  * @author Sam Brannen
@@ -42,7 +42,7 @@ public @interface ApplicationScope {
 
 	/**
 	 * Alias for {@link Scope#proxyMode}.
-	 * <p>Defaults to {@link ScopedProxyMode#TARGET_CLASS}.
+	 * Defaults to {@link ScopedProxyMode#TARGET_CLASS}.
 	 */
 	@AliasFor(annotation = Scope.class)
 	ScopedProxyMode proxyMode() default ScopedProxyMode.TARGET_CLASS;

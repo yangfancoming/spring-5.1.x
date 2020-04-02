@@ -47,7 +47,7 @@ import static org.mockito.BDDMockito.*;
  * Test fixture for {@link RequestResponseBodyMethodProcessor} delegating to a
  * mock HttpMessageConverter.
  *
- * <p>Also see {@link RequestResponseBodyMethodProcessorTests}.
+ * Also see {@link RequestResponseBodyMethodProcessorTests}.
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev

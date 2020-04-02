@@ -15,11 +15,11 @@ import org.springframework.core.annotation.AliasFor;
  * name-value pair within a path segment. Supported for {@link RequestMapping}
  * annotated handler methods.
  *
- * <p>If the method parameter type is {@link java.util.Map} and a matrix variable
+ * If the method parameter type is {@link java.util.Map} and a matrix variable
  * name is specified, then the matrix variable value is converted to a
  * {@link java.util.Map} assuming an appropriate conversion strategy is available.
  *
- * <p>If the method parameter is {@link java.util.Map Map&lt;String, String&gt;} or
+ * If the method parameter is {@link java.util.Map Map&lt;String, String&gt;} or
  * {@link org.springframework.util.MultiValueMap MultiValueMap&lt;String, String&gt;}
  * and a variable name is not specified, then the map is populated with all
  * matrix variable names and values.
@@ -56,17 +56,17 @@ public @interface MatrixVariable {
 
 	/**
 	 * Whether the matrix variable is required.
-	 * <p>Default is {@code true}, leading to an exception being thrown in
+	 * Default is {@code true}, leading to an exception being thrown in
 	 * case the variable is missing in the request. Switch this to {@code false}
 	 * if you prefer a {@code null} if the variable is missing.
-	 * <p>Alternatively, provide a {@link #defaultValue}, which implicitly sets
+	 * Alternatively, provide a {@link #defaultValue}, which implicitly sets
 	 * this flag to {@code false}.
 	 */
 	boolean required() default true;
 
 	/**
 	 * The default value to use as a fallback.
-	 * <p>Supplying a default value implicitly sets {@link #required} to
+	 * Supplying a default value implicitly sets {@link #required} to
 	 * {@code false}.
 	 */
 	String defaultValue() default ValueConstants.DEFAULT_NONE;

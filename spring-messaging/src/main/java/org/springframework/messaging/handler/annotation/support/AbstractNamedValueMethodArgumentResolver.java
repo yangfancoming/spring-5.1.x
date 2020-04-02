@@ -24,7 +24,7 @@ import org.springframework.util.ClassUtils;
  * and path variables are examples of named values. Each may have a name, a required flag,
  * and a default value.
  *
- * <p>Subclasses define how to do the following:
+ * Subclasses define how to do the following:
  * <ul>
  * <li>Obtain named value information for a method parameter
  * <li>Resolve names into argument values
@@ -32,11 +32,11 @@ import org.springframework.util.ClassUtils;
  * <li>Optionally handle a resolved value
  * </ul>
  *
- * <p>A default value string can contain ${...} placeholders and Spring Expression
+ * A default value string can contain ${...} placeholders and Spring Expression
  * Language {@code #{...}} expressions. For this to work a {@link ConfigurableBeanFactory}
  * must be supplied to the class constructor.
  *
- * <p>A {@link ConversionService} may be used to apply type conversion to the resolved
+ * A {@link ConversionService} may be used to apply type conversion to the resolved
  * argument value if it doesn't match the method parameter type.
  *
  * @author Rossen Stoyanchev

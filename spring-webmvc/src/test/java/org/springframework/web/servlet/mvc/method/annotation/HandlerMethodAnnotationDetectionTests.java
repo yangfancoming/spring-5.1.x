@@ -185,7 +185,7 @@ public class HandlerMethodAnnotationDetectionTests {
 
 	/**
 	 * CONTROLLER WITH ABSTRACT CLASS
-	 * <p>All annotations can be on methods in the abstract class except parameter annotations.
+	 * All annotations can be on methods in the abstract class except parameter annotations.
 	 */
 	static class AbstractClassController extends MappingAbstractClass {
 
@@ -234,8 +234,8 @@ public class HandlerMethodAnnotationDetectionTests {
 
 	/**
 	 * CONTROLLER WITH INTERFACE
-	 * <p>JDK Dynamic proxy: All annotations must be on the interface.
-	 * <p>Without AOP: Annotations can be on interface methods except parameter annotations.
+	 * JDK Dynamic proxy: All annotations must be on the interface.
+	 * Without AOP: Annotations can be on interface methods except parameter annotations.
 	 */
 	static class InterfaceController implements MappingInterface {
 
@@ -283,7 +283,7 @@ public class HandlerMethodAnnotationDetectionTests {
 
 	/**
 	 * CONTROLLER WITH PARAMETERIZED BASE CLASS
-	 * <p>All annotations can be on methods in the abstract class except parameter annotations.
+	 * All annotations can be on methods in the abstract class except parameter annotations.
 	 */
 	static class ParameterizedAbstractClassController extends MappingGenericAbstractClass<String, Date, Date> {
 
@@ -427,8 +427,8 @@ public class HandlerMethodAnnotationDetectionTests {
 
 	/**
 	 * CONTROLLER WITH PARAMETERIZED INTERFACE
-	 * <p>All annotations can be on interface except parameter annotations.
-	 * <p>Cannot be used as JDK dynamic proxy since parameterized interface does not contain type information.
+	 * All annotations can be on interface except parameter annotations.
+	 * Cannot be used as JDK dynamic proxy since parameterized interface does not contain type information.
 	 */
 	static class ParameterizedInterfaceController implements MappingGenericInterface<String, Date, Date> {
 
@@ -463,7 +463,7 @@ public class HandlerMethodAnnotationDetectionTests {
 
 	/**
 	 * SPR-8248
-	 * <p>Support class contains all annotations. Subclass has type-level @{@link RequestMapping}.
+	 * Support class contains all annotations. Subclass has type-level @{@link RequestMapping}.
 	 */
 	@Controller
 	static class MappingSupportClass {

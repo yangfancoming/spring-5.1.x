@@ -24,7 +24,7 @@ import static org.junit.Assert.*;
  * Integration tests that verify support for {@link DirtiesContext.HierarchyMode}
  * in conjunction with context hierarchies configured via {@link ContextHierarchy}.
  *
- * <p>Note that correct method execution order is essential, thus the use of
+ * Note that correct method execution order is essential, thus the use of
  * {@link FixMethodOrder}.
  *
  * @author Sam Brannen

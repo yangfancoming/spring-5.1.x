@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
  * Operation object representing a SQL-based operation such as a query or update,
  * as opposed to a stored procedure.
  *
- * <p>Configures a {@link org.springframework.jdbc.core.PreparedStatementCreatorFactory}
+ * Configures a {@link org.springframework.jdbc.core.PreparedStatementCreatorFactory}
  * based on the declared parameters.
  */
 public abstract class SqlOperation extends RdbmsOperation {
@@ -60,7 +60,7 @@ public abstract class SqlOperation extends RdbmsOperation {
 
 	/**
 	 * Obtain a parsed representation of this operation's SQL statement.
-	 * <p>Typically used for named parameter parsing.
+	 * Typically used for named parameter parsing.
 	 */
 	protected ParsedSql getParsedSql() {
 		synchronized (this.parsedSqlMonitor) {

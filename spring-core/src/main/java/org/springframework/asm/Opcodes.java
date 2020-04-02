@@ -68,7 +68,7 @@ public interface Opcodes {
   /**
    * Version flag indicating that the class is using 'preview' features.
    *
-   * <p>{@code version & V_PREVIEW == V_PREVIEW} tests if a version is flagged with {@code
+   * {@code version & V_PREVIEW == V_PREVIEW} tests if a version is flagged with {@code
    * V_PREVIEW}.
    */
   int V_PREVIEW = 0xFFFF0000;

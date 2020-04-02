@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 /**
  * A {@link ClientHttpRequestFactory} for requests executed via {@link MockMvc}.
  *
- * <p>As of 5.0 this class also implements
+ * As of 5.0 this class also implements
  * {@link org.springframework.http.client.AsyncClientHttpRequestFactory
  * AsyncClientHttpRequestFactory}. However note that
  * {@link org.springframework.web.client.AsyncRestTemplate} and related classes

@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
  * "org.springframework.core.convert.ConversionService", the value of
  * {@code ConversionService.class.getName()}.
  *
- * <p>Mainly for use within JSP tags such as the spring:eval tag.
+ * Mainly for use within JSP tags such as the spring:eval tag.
  *
  * @author Keith Donald
  * @since 3.0.1

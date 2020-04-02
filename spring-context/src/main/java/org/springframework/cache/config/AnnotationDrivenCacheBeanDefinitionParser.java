@@ -24,13 +24,13 @@ import org.springframework.util.StringUtils;
  * infrastructure beans required to enable annotation-driven cache
  * demarcation.
  *
- * <p>By default, all proxies are created as JDK proxies. This may cause
+ * By default, all proxies are created as JDK proxies. This may cause
  * some problems if you are injecting objects as concrete classes rather
  * than interfaces. To overcome this restriction you can set the
  * '{@code proxy-target-class}' attribute to '{@code true}', which will
  * result in class-based proxies being created.
  *
- * <p>If the JSR-107 API and Spring's JCache implementation are present,
+ * If the JSR-107 API and Spring's JCache implementation are present,
  * the necessary infrastructure beans required to handle methods annotated
  * with {@code CacheResult}, {@code CachePut}, {@code CacheRemove} or
  * {@code CacheRemoveAll} are also registered.

@@ -10,7 +10,7 @@ import org.springframework.util.SystemPropertyUtils;
 /**
  * Helper class for resolving placeholders in texts. Usually applied to file paths.
  *
- * <p>A text may contain {@code ${...}} placeholders, to be resolved as servlet context
+ * A text may contain {@code ${...}} placeholders, to be resolved as servlet context
  * init parameters or system properties: e.g. {@code ${user.dir}}. Default values can
  * be supplied using the ":" separator between key and value.
  *

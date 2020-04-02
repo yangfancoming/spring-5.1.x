@@ -18,11 +18,11 @@ import org.springframework.web.multipart.MultipartResolver;
  * Servlet Filter that resolves multipart requests via a {@link MultipartResolver}.
  * in the root web application context.
  *
- * <p>Looks up the MultipartResolver in Spring's root web application context.
+ * Looks up the MultipartResolver in Spring's root web application context.
  * Supports a "multipartResolverBeanName" filter init-param in {@code web.xml};
  * the default bean name is "filterMultipartResolver".
  *
- * <p>If no MultipartResolver bean is found, this filter falls back to a default
+ * If no MultipartResolver bean is found, this filter falls back to a default
  * MultipartResolver: {@link StandardServletMultipartResolver} for Servlet 3.0,
  * based on a multipart-config section in {@code web.xml}.
  * Note however that at present the Servlet specification only defines how to
@@ -30,13 +30,13 @@ import org.springframework.web.multipart.MultipartResolver;
  * processing is likely not possible in a Filter unless the Servlet container
  * provides a workaround such as Tomcat's "allowCasualMultipartParsing" property.
  *
- * <p>MultipartResolver lookup is customizable: Override this filter's
+ * MultipartResolver lookup is customizable: Override this filter's
  * {@code lookupMultipartResolver} method to use a custom MultipartResolver
  * instance, for example if not using a Spring web application context.
  * Note that the lookup method should not create a new MultipartResolver instance
  * for each call but rather return a reference to a pre-built instance.
  *
- * <p>Note: This filter is an <b>alternative</b> to using DispatcherServlet's
+ * Note: This filter is an <b>alternative</b> to using DispatcherServlet's
  * MultipartResolver support, for example for web applications with custom web views
  * which do not use Spring's web MVC, or for custom filters applied before a Spring MVC
  * DispatcherServlet (e.g. {@link org.springframework.web.filter.HiddenHttpMethodFilter}).
@@ -81,7 +81,7 @@ public class MultipartFilter extends OncePerRequestFilter {
 	/**
 	 * Check for a multipart request via this filter's MultipartResolver,
 	 * and wrap the original request with a MultipartHttpServletRequest if appropriate.
-	 * <p>All later elements in the filter chain, most importantly servlets, benefit
+	 * All later elements in the filter chain, most importantly servlets, benefit
 	 * from proper parameter extraction in the multipart case, and are able to cast to
 	 * MultipartHttpServletRequest if they need to.
 	 */
@@ -119,7 +119,7 @@ public class MultipartFilter extends OncePerRequestFilter {
 	/**
 	 * Look up the MultipartResolver that this filter should use,
 	 * taking the current HTTP request as argument.
-	 * <p>The default implementation delegates to the {@code lookupMultipartResolver}
+	 * The default implementation delegates to the {@code lookupMultipartResolver}
 	 * without arguments.
 	 * @return the MultipartResolver to use
 	 * @see #lookupMultipartResolver()
@@ -132,7 +132,7 @@ public class MultipartFilter extends OncePerRequestFilter {
 	 * Look for a MultipartResolver bean in the root web application context.
 	 * Supports a "multipartResolverBeanName" filter init param; the default
 	 * bean name is "filterMultipartResolver".
-	 * <p>This can be overridden to use a custom MultipartResolver instance,
+	 * This can be overridden to use a custom MultipartResolver instance,
 	 * for example if not using a Spring web application context.
 	 * @return the MultipartResolver instance
 	 */

@@ -41,7 +41,7 @@ import org.springframework.util.StringUtils;
  * that wraps each eligible bean with an AOP proxy, delegating to specified interceptors
  * before invoking the bean itself.
  *
- * <p>This class distinguishes between "common" interceptors: shared for all proxies it
+ * This class distinguishes between "common" interceptors: shared for all proxies it
  * creates, and "specific" interceptors: unique per bean instance. There need not be any
  * common interceptors. If there are, they are set using the interceptorNames property.
  * As with {@link org.springframework.aop.framework.ProxyFactoryBean}, interceptors names
@@ -49,17 +49,17 @@ import org.springframework.util.StringUtils;
  * of prototype advisors and interceptors: for example, to support stateful mixins.
  * Any advice type is supported for {@link #setInterceptorNames "interceptorNames"} entries.
  *
- * <p>Such auto-proxying is particularly useful if there's a large number of beans that
+ * Such auto-proxying is particularly useful if there's a large number of beans that
  * need to be wrapped with similar proxies, i.e. delegating to the same interceptors.
  * Instead of x repetitive proxy definitions for x target beans, you can register
  * one single such post processor with the bean factory to achieve the same effect.
  *
- * <p>Subclasses can apply any strategy to decide if a bean is to be proxied, e.g. by type,
+ * Subclasses can apply any strategy to decide if a bean is to be proxied, e.g. by type,
  * by name, by definition details, etc. They can also return additional interceptors that
  * should just be applied to the specific bean instance. A simple concrete implementation is
  * {@link BeanNameAutoProxyCreator}, identifying the beans to be proxied via given names.
  *
- * <p>Any number of {@link TargetSourceCreator} implementations can be used to create
+ * Any number of {@link TargetSourceCreator} implementations can be used to create
  * a custom target source: for example, to pool prototype objects. Auto-proxying will
  * occur even if there is no advice, as long as a TargetSourceCreator specifies a custom
  * {@link org.springframework.aop.TargetSource}. If there are no TargetSourceCreators set,
@@ -125,7 +125,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport imp
 	/**
 	 * Set whether or not the proxy should be frozen, preventing advice
 	 * from being added to it once it is created.
-	 * <p>Overridden from the super class to prevent the proxy configuration
+	 * Overridden from the super class to prevent the proxy configuration
 	 * from being frozen before the proxy is created.
 	 */
 	@Override
@@ -140,7 +140,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport imp
 
 	/**
 	 * Specify the {@link AdvisorAdapterRegistry} to use.
-	 * <p>Default is the global {@link AdvisorAdapterRegistry}.
+	 * Default is the global {@link AdvisorAdapterRegistry}.
 	 * @see org.springframework.aop.framework.adapter.GlobalAdvisorAdapterRegistry
 	 */
 	public void setAdvisorAdapterRegistry(AdvisorAdapterRegistry advisorAdapterRegistry) {
@@ -151,11 +151,11 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport imp
 	 * Set custom {@code TargetSourceCreators} to be applied in this order.
 	 * If the list is empty, or they all return null, a {@link SingletonTargetSource}
 	 * will be created for each bean.
-	 * <p>Note that TargetSourceCreators will kick in even for target beans
+	 * Note that TargetSourceCreators will kick in even for target beans
 	 * where no advices or advisors have been found. If a {@code TargetSourceCreator}
 	 * returns a {@link TargetSource} for a specific bean, that bean will be proxied
 	 * in any case.
-	 * <p>{@code TargetSourceCreators} can only be invoked if this post processor is used
+	 * {@code TargetSourceCreators} can only be invoked if this post processor is used
 	 * in a {@link BeanFactory} and its {@link BeanFactoryAware} callback is triggered.
 	 * @param targetSourceCreators the list of {@code TargetSourceCreators}.
 	 * Ordering is significant: The {@code TargetSource} returned from the first matching
@@ -168,7 +168,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport imp
 	/**
 	 * Set the common interceptors. These must be bean names in the current factory.
 	 * They can be of any advice or advisor type Spring supports.
-	 * <p>If this property isn't set, there will be zero common interceptors.
+	 * If this property isn't set, there will be zero common interceptors.
 	 * This is perfectly valid, if "specific" interceptors such as matching
 	 * Advisors are all we want.
 	 */
@@ -303,7 +303,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport imp
 
 	/**
 	 * Build a cache key for the given bean class and bean name.
-	 * <p>Note: As of 4.2.3, this implementation does not return a concatenated
+	 * Note: As of 4.2.3, this implementation does not return a concatenated
 	 * class/name String anymore but rather the most efficient cache key possible:
 	 * a plain bean name, prepended with {@link BeanFactory#FACTORY_BEAN_PREFIX}
 	 * in case of a {@code FactoryBean}; or if no bean name specified, then the
@@ -377,7 +377,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport imp
 	/**
 	 * Return whether the given bean class represents an infrastructure class
 	 * that should never be proxied.
-	 * <p>The default implementation considers Advices, Advisors and
+	 * The default implementation considers Advices, Advisors and
 	 * AopInfrastructureBeans as infrastructure classes.
 	 * @param beanClass the class of the bean
 	 * @return whether the bean represents an infrastructure class
@@ -400,7 +400,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport imp
 	/**
 	 * Subclasses should override this method to return {@code true} if the
 	 * given bean should not be considered for auto-proxying by this post-processor.
-	 * <p>Sometimes we need to be able to avoid this happening, e.g. if it will lead to
+	 * Sometimes we need to be able to avoid this happening, e.g. if it will lead to
 	 * a circular reference or if the existing target instance needs to be preserved.
 	 * This implementation returns {@code false} unless the bean name indicates an
 	 * "original instance" according to {@code AutowireCapableBeanFactory} conventions.
@@ -416,7 +416,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport imp
 	/**
 	 * Create a target source for bean instances. Uses any TargetSourceCreators if set.
 	 * Returns {@code null} if no custom TargetSource should be used.
-	 * <p>This implementation uses the "customTargetSourceCreators" property.
+	 * This implementation uses the "customTargetSourceCreators" property.
 	 * Subclasses can override this method to use a different mechanism.
 	 * @param beanClass the class of the bean to create a TargetSource for
 	 * @param beanName the name of the bean
@@ -498,7 +498,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport imp
 
 	/**
 	 * Determine whether the given bean should be proxied with its target class rather than its interfaces.
-	 * <p>Checks the {@link AutoProxyUtils#PRESERVE_TARGET_CLASS_ATTRIBUTE "preserveTargetClass" attribute}
+	 * Checks the {@link AutoProxyUtils#PRESERVE_TARGET_CLASS_ATTRIBUTE "preserveTargetClass" attribute}
 	 * of the corresponding bean definition.
 	 * @param beanClass the class of the bean
 	 * @param beanName the name of the bean
@@ -514,7 +514,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport imp
 	 * Return whether the Advisors returned by the subclass are pre-filtered
 	 * to match the bean's target class already, allowing the ClassFilter check
 	 * to be skipped when building advisors chains for AOP invocations.
-	 * <p>Default is {@code false}. Subclasses may override this if they
+	 * Default is {@code false}. Subclasses may override this if they
 	 * will always return pre-filtered Advisors.
 	 * @return whether the Advisors are pre-filtered
 	 * @see #getAdvicesAndAdvisorsForBean
@@ -583,7 +583,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport imp
 	/**
 	 * Subclasses may choose to implement this: for example,
 	 * to change the interfaces exposed.
-	 * <p>The default implementation is empty.
+	 * The default implementation is empty.
 	 * @param proxyFactory a ProxyFactory that is already configured with
 	 * TargetSource and interfaces and will be used to create the proxy
 	 * immediately after this method returns

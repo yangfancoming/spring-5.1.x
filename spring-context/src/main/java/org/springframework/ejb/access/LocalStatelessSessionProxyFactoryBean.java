@@ -14,13 +14,13 @@ import org.springframework.util.ClassUtils;
  * Convenient {@link FactoryBean} for local Stateless Session Bean (SLSB) proxies.
  * Designed for EJB 2.x, but works for EJB 3 Session Beans as well.
  *
- * <p>See {@link org.springframework.jndi.JndiObjectLocator} for info on
+ * See {@link org.springframework.jndi.JndiObjectLocator} for info on
  * how to specify the JNDI location of the target EJB.
  *
- * <p>If you want control over interceptor chaining, use an AOP ProxyFactoryBean
+ * If you want control over interceptor chaining, use an AOP ProxyFactoryBean
  * with LocalSlsbInvokerInterceptor rather than rely on this class.
  *
- * <p>In a bean container, this class is normally best used as a singleton. However,
+ * In a bean container, this class is normally best used as a singleton. However,
  * if that bean container pre-instantiates singletons (as do the XML ApplicationContext
  * variants) you may have a problem if the bean container is loaded before the EJB
  * container loads the target EJB. That is because by default the JNDI lookup will be

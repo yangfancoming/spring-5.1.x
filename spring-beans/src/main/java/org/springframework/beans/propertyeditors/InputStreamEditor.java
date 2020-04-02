@@ -15,10 +15,10 @@ import org.springframework.util.Assert;
  * {@code java.io.InputStream}, interpreting the given String as a
  * Spring resource location (e.g. a URL String).
  *
- * <p>Supports Spring-style URL notation: any fully qualified standard URL
+ * Supports Spring-style URL notation: any fully qualified standard URL
  * ("file:", "http:", etc.) and Spring's special "classpath:" pseudo-URL.
  *
- * <p>Note that such streams usually do not get closed by Spring itself!
+ * Note that such streams usually do not get closed by Spring itself!
  *
 
  * @since 1.0.1

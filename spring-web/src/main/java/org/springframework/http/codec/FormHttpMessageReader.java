@@ -52,7 +52,7 @@ public class FormHttpMessageReader extends LoggingCodecSupport
 	/**
 	 * Set the default character set to use for reading form data when the
 	 * request Content-Type header does not explicitly specify it.
-	 * <p>By default this is set to "UTF-8".
+	 * By default this is set to "UTF-8".
 	 */
 	public void setDefaultCharset(Charset charset) {
 		Assert.notNull(charset, "Charset must not be null");

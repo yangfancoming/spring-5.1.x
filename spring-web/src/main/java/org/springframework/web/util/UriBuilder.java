@@ -11,12 +11,12 @@ import org.springframework.util.MultiValueMap;
 /**
  * Builder-style methods to prepare and expand a URI template with variables.
  *
- * <p>Effectively a generalization of {@link UriComponentsBuilder} but with
+ * Effectively a generalization of {@link UriComponentsBuilder} but with
  * shortcuts to expand directly into {@link URI} rather than
  * {@link UriComponents} and also leaving common concerns such as encoding
  * preferences, a base URI, and others as implementation concerns.
  *
- * <p>Typically obtained via {@link UriBuilderFactory} which serves as a central
+ * Typically obtained via {@link UriBuilderFactory} which serves as a central
  * component configured once and used to create many URLs.
  *
  * @author Rossen Stoyanchev
@@ -85,7 +85,7 @@ public interface UriBuilder {
 	/**
 	 * Append the given query to the existing query of this builder.
 	 * The given query may contain URI template variables.
-	 * <p><strong>Note:</strong> The presence of reserved characters can prevent
+	 * <strong>Note:</strong> The presence of reserved characters can prevent
 	 * correct parsing of the URI string. For example if a query parameter
 	 * contains {@code '='} or {@code '&'} characters, the query string cannot
 	 * be parsed unambiguously. Such values should be substituted for URI

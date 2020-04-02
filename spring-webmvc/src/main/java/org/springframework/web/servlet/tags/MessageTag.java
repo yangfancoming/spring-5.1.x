@@ -24,13 +24,13 @@ import org.springframework.web.util.TagUtils;
  * Messages are resolved using the ApplicationContext and thus support
  * internationalization.
  *
- * <p>Detects an HTML escaping setting, either on this tag instance, the page level,
+ * Detects an HTML escaping setting, either on this tag instance, the page level,
  * or the {@code web.xml} level. Can also apply JavaScript escaping.
  *
- * <p>If "code" isn't set or cannot be resolved, "text" will be used as default
+ * If "code" isn't set or cannot be resolved, "text" will be used as default
  * message. Thus, this tag can also be used for HTML escaping of any texts.
  *
- * <p>Message arguments can be specified via the {@link #setArguments(Object) arguments}
+ * Message arguments can be specified via the {@link #setArguments(Object) arguments}
  * attribute or by using nested {@code <spring:argument>} tags.
  *
  * <table>
@@ -164,7 +164,7 @@ public class MessageTag extends HtmlEscapingAwareTag implements ArgumentAware {
 
 	/**
 	 * Set the MessageSourceResolvable for this tag.
-	 * <p>If a MessageSourceResolvable is specified, it effectively overrides
+	 * If a MessageSourceResolvable is specified, it effectively overrides
 	 * any code, arguments or text specified on this tag.
 	 */
 	public void setMessage(MessageSourceResolvable message) {
@@ -375,7 +375,7 @@ public class MessageTag extends HtmlEscapingAwareTag implements ArgumentAware {
 
 	/**
 	 * Write the message to the page.
-	 * <p>Can be overridden in subclasses, e.g. for testing purposes.
+	 * Can be overridden in subclasses, e.g. for testing purposes.
 	 * @param msg the message to write
 	 * @throws IOException if writing failed
 	 */

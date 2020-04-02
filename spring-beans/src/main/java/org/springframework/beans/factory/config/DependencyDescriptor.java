@@ -146,7 +146,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 
 	/**
 	 * Return whether this dependency is required.
-	 * <p>Optional semantics are derived from Java 8's {@link java.util.Optional},
+	 * Optional semantics are derived from Java 8's {@link java.util.Optional},
 	 * any variant of a parameter-level {@code Nullable} annotation (such as from
 	 * JSR-305 or the FindBugs set of annotations), or a language-level nullable
 	 * type declaration in Kotlin.
@@ -192,7 +192,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	/**
 	 * Resolve the specified not-unique scenario: by default,
 	 * throwing a {@link NoUniqueBeanDefinitionException}.
-	 * <p>Subclasses may override this to select one of the instances or
+	 * Subclasses may override this to select one of the instances or
 	 * to opt out with no result at all through returning {@code null}.
 	 * @param type the requested bean type
 	 * @param matchingBeans a map of bean names and corresponding bean
@@ -210,7 +210,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	/**
 	 * Resolve the specified not-unique scenario: by default,
 	 * throwing a {@link NoUniqueBeanDefinitionException}.
-	 * <p>Subclasses may override this to select one of the instances or
+	 * Subclasses may override this to select one of the instances or
 	 * to opt out with no result at all through returning {@code null}.
 	 * @param type the requested bean type
 	 * @param matchingBeans a map of bean names and corresponding bean
@@ -230,7 +230,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	/**
 	 * Resolve a shortcut for this dependency against the given factory, for example
 	 * taking some pre-resolved information into account.
-	 * <p>The resolution algorithm will first attempt to resolve a shortcut through this
+	 * The resolution algorithm will first attempt to resolve a shortcut through this
 	 * method before going into the regular type matching algorithm across all beans.
 	 * Subclasses may override this method to improve resolution performance based on
 	 * pre-cached information while still receiving {@link InjectionPoint} exposure etc.
@@ -247,7 +247,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	/**
 	 * Resolve the specified bean name, as a candidate result of the matching
 	 * algorithm for this dependency, to a bean instance from the given factory.
-	 * <p>The default implementation calls {@link BeanFactory#getBean(String)}.
+	 * The default implementation calls {@link BeanFactory#getBean(String)}.
 	 * Subclasses may provide additional arguments or other customizations.
 	 * @param beanName the bean name, as a candidate result for this dependency
 	 * @param requiredType the expected type of the bean (as an assertion)
@@ -322,7 +322,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 
 	/**
 	 * Return whether a fallback match is allowed.
-	 * <p>This is {@code false} by default but may be overridden to return {@code true} in order
+	 * This is {@code false} by default but may be overridden to return {@code true} in order
 	 * to suggest to an {@link org.springframework.beans.factory.support.AutowireCandidateResolver}
 	 * that a fallback match is acceptable as well.
 	 * @since 4.0
@@ -347,7 +347,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 
 	/**
 	 * Initialize parameter name discovery for the underlying method parameter, if any.
-	 * <p>This method does not actually try to retrieve the parameter name at
+	 * This method does not actually try to retrieve the parameter name at
 	 * this point; it just allows discovery to happen when the application calls
 	 * {@link #getDependencyName()} (if ever).
 	 */

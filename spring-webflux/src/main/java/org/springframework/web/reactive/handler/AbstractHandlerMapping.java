@@ -63,7 +63,7 @@ public abstract class AbstractHandlerMapping extends ApplicationObjectSupport
 	 * <li>{@link PathPatternParser#setCaseSensitive(boolean)} -- the case
 	 * sensitive slash option, including its default value.
 	 * </ul>
-	 * <p><strong>Note:</strong> aside from
+	 * <strong>Note:</strong> aside from
 	 */
 	public void setUseCaseSensitiveMatch(boolean caseSensitiveMatch) {
 		this.patternParser.setCaseSensitive(caseSensitiveMatch);
@@ -117,7 +117,7 @@ public abstract class AbstractHandlerMapping extends ApplicationObjectSupport
 	/**
 	 * Configure a custom {@link CorsProcessor} to use to apply the matched
 	 * {@link CorsConfiguration} for a request.
-	 * <p>By default an instance of {@link DefaultCorsProcessor} is used.
+	 * By default an instance of {@link DefaultCorsProcessor} is used.
 	 */
 	public void setCorsProcessor(CorsProcessor corsProcessor) {
 		Assert.notNull(corsProcessor, "CorsProcessor must not be null");
@@ -133,7 +133,7 @@ public abstract class AbstractHandlerMapping extends ApplicationObjectSupport
 
 	/**
 	 * Specify the order value for this HandlerMapping bean.
-	 * <p>The default value is {@code Ordered.LOWEST_PRECEDENCE}, meaning non-ordered.
+	 * The default value is {@code Ordered.LOWEST_PRECEDENCE}, meaning non-ordered.
 	 * @see org.springframework.core.Ordered#getOrder()
 	 */
 	public void setOrder(int order) {
@@ -177,7 +177,7 @@ public abstract class AbstractHandlerMapping extends ApplicationObjectSupport
 	/**
 	 * Look up a handler for the given request, returning an empty {@code Mono}
 	 * if no specific one is found. This method is called by {@link #getHandler}.
-	 * <p>On CORS pre-flight requests this method should return a match not for
+	 * On CORS pre-flight requests this method should return a match not for
 	 * the pre-flight request but for the expected actual request based on the URL
 	 * path, the HTTP methods from the "Access-Control-Request-Method" header, and
 	 * the headers from the "Access-Control-Request-Headers" header.

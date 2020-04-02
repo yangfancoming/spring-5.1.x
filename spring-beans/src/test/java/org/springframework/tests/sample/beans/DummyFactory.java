@@ -16,7 +16,7 @@ import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
  * Depending on whether its singleton property is set, it will return a singleton
  * or a prototype instance.
  *
- * <p>Implements InitializingBean interface, so we can check that
+ * Implements InitializingBean interface, so we can check that
  * factories get this lifecycle callback if they want.
  *
  * @author Rod Johnson

@@ -53,12 +53,12 @@ import org.springframework.web.server.ServerWebExchange;
  * <li>Non-simple value -- attribute for the model
  * </ul>
  *
- * <p>A String-based view name is resolved through the configured
+ * A String-based view name is resolved through the configured
  * {@link ViewResolver} instances into a {@link View} to use for rendering.
  * If a view is left unspecified (e.g. by returning {@code null} or a
  * model-related return value), a default view name is selected.
  *
- * <p>By default this resolver is ordered at {@link Ordered#LOWEST_PRECEDENCE}
+ * By default this resolver is ordered at {@link Ordered#LOWEST_PRECEDENCE}
  * and generally needs to be late in the order since it interprets any String
  * return value as a view name or any non-simple value type as a model attribute
  * while other result handlers may interpret the same otherwise based on the

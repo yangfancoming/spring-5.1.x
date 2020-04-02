@@ -3,7 +3,7 @@
  * Provides standard ThemeResolver implementations,
  * and a HandlerInterceptor for theme changes.
  *
- * <p>
+ *
  * <ul>
  * <li>If you don't provide a bean of one of these classes as {@code themeResolver},
  * a {@code FixedThemeResolver} will be provided with the default theme name 'theme'.</li>

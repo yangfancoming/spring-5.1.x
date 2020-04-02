@@ -29,12 +29,12 @@ import org.springframework.util.ObjectUtils;
  * Abstract implementation of the {@link ApplicationEventMulticaster} interface,
  * providing the basic listener registration facility.
  *
- * <p>Doesn't permit multiple instances of the same listener by default,
+ * Doesn't permit multiple instances of the same listener by default,
  * as it keeps listeners in a linked Set. The collection class used to hold
  * ApplicationListener objects can be overridden through the "collectionClass"
  * bean property.
  *
- * <p>Implementing ApplicationEventMulticaster's actual {@link #multicastEvent} method
+ * Implementing ApplicationEventMulticaster's actual {@link #multicastEvent} method
  * is left to subclasses. {@link SimpleApplicationEventMulticaster} simply multicasts
  * all events to all registered listeners, invoking them in the calling thread.
  * Alternative implementations could be more sophisticated in those respects.
@@ -253,7 +253,7 @@ public abstract class AbstractApplicationEventMulticaster
 	/**
 	 * Filter a listener early through checking its generically declared event
 	 * type before trying to instantiate it.
-	 * <p>If this method returns {@code true} for a given listener as a first pass,
+	 * If this method returns {@code true} for a given listener as a first pass,
 	 * the listener instance will get retrieved and fully evaluated through a
 	 * {@link #supportsEvent(ApplicationListener, ResolvableType, Class)} call afterwards.
 	 * @param listenerType the listener's type as determined by the BeanFactory
@@ -272,7 +272,7 @@ public abstract class AbstractApplicationEventMulticaster
 
 	/**
 	 * Determine whether the given listener supports the given event.
-	 * <p>The default implementation detects the {@link SmartApplicationListener}
+	 * The default implementation detects the {@link SmartApplicationListener}
 	 * and {@link GenericApplicationListener} interfaces. In case of a standard
 	 * {@link ApplicationListener}, a {@link GenericApplicationListenerAdapter}
 	 * will be used to introspect the generically declared type of the target listener.
@@ -347,7 +347,7 @@ public abstract class AbstractApplicationEventMulticaster
 	/**
 	 * Helper class that encapsulates a specific set of target listeners,
 	 * allowing for efficient retrieval of pre-filtered listeners.
-	 * <p>An instance of this helper gets cached per event type and source type.
+	 * An instance of this helper gets cached per event type and source type.
 	 */
 	private class ListenerRetriever {
 

@@ -17,11 +17,11 @@ import org.springframework.core.PriorityOrdered;
  * as a thread-local object. We occasionally need to do this; for example, when a pointcut
  * (e.g. an AspectJ expression pointcut) needs to know the full invocation context.
  *
- * <p>Don't use this interceptor unless this is really necessary. Target objects should
+ * Don't use this interceptor unless this is really necessary. Target objects should
  * not normally know about Spring AOP, as this creates a dependency on Spring API.
  * Target objects should be plain POJOs as far as possible.
  *
- * <p>If used, this interceptor will normally be the first in the interceptor chain.
+ * If used, this interceptor will normally be the first in the interceptor chain.
  */
 @SuppressWarnings("serial")
 public final class ExposeInvocationInterceptor implements MethodInterceptor, PriorityOrdered, Serializable {
@@ -85,7 +85,7 @@ public final class ExposeInvocationInterceptor implements MethodInterceptor, Pri
 	/**
 	 * Required to support serialization. Replaces with canonical instance
 	 * on deserialization, protecting Singleton pattern.
-	 * <p>Alternative to overriding the {@code equals} method.
+	 * Alternative to overriding the {@code equals} method.
 	 */
 	private Object readResolve() {
 		return INSTANCE;

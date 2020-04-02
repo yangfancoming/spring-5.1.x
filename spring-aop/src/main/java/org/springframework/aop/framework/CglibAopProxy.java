@@ -45,15 +45,15 @@ import org.springframework.util.ObjectUtils;
 /**
  * CGLIB-based {@link AopProxy} implementation for the Spring AOP framework.
  *
- * <p>Objects of this type should be obtained through proxy factories,
+ * Objects of this type should be obtained through proxy factories,
  * configured by an {@link AdvisedSupport} object. This class is internal
  * to Spring's AOP framework and need not be used directly by client code.
  *
- * <p>{@link DefaultAopProxyFactory} will automatically create CGLIB-based
+ * {@link DefaultAopProxyFactory} will automatically create CGLIB-based
  * proxies if necessary, for example in case of proxying a target class
  * (see the {@link DefaultAopProxyFactory attendant javadoc} for details).
  *
- * <p>Proxies created using this class are thread-safe if the underlying (target) class is thread-safe.
+ * Proxies created using this class are thread-safe if the underlying (target) class is thread-safe.
  * @see org.springframework.cglib.proxy.Enhancer
  * @see AdvisedSupport#setProxyTargetClass
  * @see DefaultAopProxyFactory
@@ -774,10 +774,10 @@ class CglibAopProxy implements AopProxy, Serializable {
 		/**
 		 * Implementation of CallbackFilter.accept() to return the index of the
 		 * callback we need.
-		 * <p>The callbacks for each proxy are built up of a set of fixed callbacks
+		 * The callbacks for each proxy are built up of a set of fixed callbacks
 		 * for general use and then a set of callbacks that are specific to a method
 		 * for use on static targets with a fixed advice chain.
-		 * <p>The callback used is determined thus:
+		 * The callback used is determined thus:
 		 * <dl>
 		 * <dt>For exposed proxies</dt>
 		 * <dd>Exposing the proxy requires code to execute before and after the

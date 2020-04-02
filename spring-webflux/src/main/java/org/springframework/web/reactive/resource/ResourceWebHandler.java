@@ -46,13 +46,13 @@ import org.springframework.web.server.WebHandler;
  * {@code HttpRequestHandler} that serves static resources in an optimized way
  * according to the guidelines of Page Speed, YSlow, etc.
  *
- * <p>The {@linkplain #setLocations "locations"} property takes a list of Spring
+ * The {@linkplain #setLocations "locations"} property takes a list of Spring
  * {@link Resource} locations from which static resources are allowed to
  * be served by this handler. Resources could be served from a classpath location,
  * e.g. "classpath:/META-INF/public-web-resources/", allowing convenient packaging
  * and serving of resources such as .js, .css, and others in jar files.
  *
- * <p>This request handler may also be configured with a
+ * This request handler may also be configured with a
  * {@link #setResourceResolvers(List) resourcesResolver} and
  * {@link #setResourceTransformers(List) resourceTransformer} chains to support
  * arbitrary resolution and transformation of resources being served. By default a
@@ -61,7 +61,7 @@ import org.springframework.web.server.WebHandler;
  * transformers such as the {@link VersionResourceResolver} which can resolve
  * and prepare URLs for resources with a version in the URL.
  *
- * <p>This handler also properly evaluates the {@code Last-Modified} header (if
+ * This handler also properly evaluates the {@code Last-Modified} header (if
  * present) so that a {@code 304} status code will be returned as appropriate,
  * avoiding unnecessary overhead for resources that are already cached by the
  * client.
@@ -134,7 +134,7 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 	/**
 	 * Return the {@code List} of {@code Resource} paths to use as sources
 	 * for serving static resources.
-	 * <p>Note that if {@link #setLocationValues(List) locationValues} are provided,
+	 * Note that if {@link #setLocationValues(List) locationValues} are provided,
 	 * instead of loaded Resource-based locations, this method will return
 	 * empty until after initialization via {@link #afterPropertiesSet()}.
 	 * @see #setLocationValues
@@ -146,7 +146,7 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 
 	/**
 	 * Configure the list of {@link ResourceResolver ResourceResolvers} to use.
-	 * <p>By default {@link PathResourceResolver} is configured. If using this property,
+	 * By default {@link PathResourceResolver} is configured. If using this property,
 	 * it is recommended to add {@link PathResourceResolver} as the last resolver.
 	 */
 	public void setResourceResolvers(@Nullable List<ResourceResolver> resourceResolvers) {
@@ -165,7 +165,7 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 
 	/**
 	 * Configure the list of {@link ResourceTransformer ResourceTransformers} to use.
-	 * <p>By default no transformers are configured for use.
+	 * By default no transformers are configured for use.
 	 */
 	public void setResourceTransformers(@Nullable List<ResourceTransformer> resourceTransformers) {
 		this.resourceTransformers.clear();
@@ -200,7 +200,7 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 
 	/**
 	 * Configure the {@link ResourceHttpMessageWriter} to use.
-	 * <p>By default a {@link ResourceHttpMessageWriter} will be configured.
+	 * By default a {@link ResourceHttpMessageWriter} will be configured.
 	 */
 	public void setResourceHttpMessageWriter(@Nullable ResourceHttpMessageWriter httpMessageWriter) {
 		this.resourceHttpMessageWriter = httpMessageWriter;
@@ -293,7 +293,7 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 
 	/**
 	 * Processes a resource request.
-	 * <p>Checks for the existence of the requested resource in the configured list of locations.
+	 * Checks for the existence of the requested resource in the configured list of locations.
 	 * If the resource does not exist, a {@code 404} response will be returned to the client.
 	 * If the resource exists, the request will be checked for the presence of the
 	 * {@code Last-Modified} header, and its value will be compared against the last-modified
@@ -381,7 +381,7 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 
 	/**
 	 * Process the given resource path.
-	 * <p>The default implementation replaces:
+	 * The default implementation replaces:
 	 * <ul>
 	 * <li>Backslash with forward slash.
 	 * <li>Duplicate occurrences of slash with a single slash.
@@ -470,7 +470,7 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 	 * <li>Paths that represent a {@link ResourceUtils#isUrl
 	 * valid URL} or would represent one after the leading slash is removed.
 	 * </ul>
-	 * <p><strong>Note:</strong> this method assumes that leading, duplicate '/'
+	 * <strong>Note:</strong> this method assumes that leading, duplicate '/'
 	 * or control characters (e.g. white space) have been trimmed so that the
 	 * path starts predictably with a single '/' or does not have one.
 	 * @param path the path to validate

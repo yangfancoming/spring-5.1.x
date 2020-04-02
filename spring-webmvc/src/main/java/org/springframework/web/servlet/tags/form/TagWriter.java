@@ -16,7 +16,7 @@ import org.springframework.util.StringUtils;
 /**
  * Utility class for writing HTML content to a {@link Writer} instance.
  *
- * <p>Intended to support output from JSP tag libraries.
+ * Intended to support output from JSP tag libraries.
  *
  * @author Rob Harrop
 
@@ -71,7 +71,7 @@ public class TagWriter {
 
 	/**
 	 * Write an HTML attribute with the specified name and value.
-	 * <p>Be sure to write all attributes <strong>before</strong> writing
+	 * Be sure to write all attributes <strong>before</strong> writing
 	 * any inner text or nested tags.
 	 * @throws IllegalStateException if the opening tag is closed
 	 */
@@ -111,7 +111,7 @@ public class TagWriter {
 	/**
 	 * Indicate that the currently open tag should be closed and marked
 	 * as a block level element.
-	 * <p>Useful when you plan to write additional content in the body
+	 * Useful when you plan to write additional content in the body
 	 * outside the context of the current {@link TagWriter}.
 	 */
 	public void forceBlock() throws JspException {
@@ -123,7 +123,7 @@ public class TagWriter {
 
 	/**
 	 * Close the current tag.
-	 * <p>Correctly writes an empty tag if no inner text or nested tags
+	 * Correctly writes an empty tag if no inner text or nested tags
 	 * have been written.
 	 */
 	public void endTag() throws JspException {
@@ -132,7 +132,7 @@ public class TagWriter {
 
 	/**
 	 * Close the current tag, allowing to enforce a full closing tag.
-	 * <p>Correctly writes an empty tag if no inner text or nested tags
+	 * Correctly writes an empty tag if no inner text or nested tags
 	 * have been written.
 	 * @param enforceClosingTag whether a full closing tag should be
 	 * rendered in any case, even in case of a non-block tag

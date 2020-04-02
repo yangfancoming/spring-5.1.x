@@ -12,7 +12,7 @@ import org.springframework.transaction.TransactionDefinition;
  * Default implementation of the {@link TransactionDefinition} interface,
  * offering bean-style configuration and sensible default values
  * (PROPAGATION_REQUIRED, ISOLATION_DEFAULT, TIMEOUT_DEFAULT, readOnly=false).
- * <p>Base class for both {@link TransactionTemplate} and
+ * Base class for both {@link TransactionTemplate} and
  * {@link org.springframework.transaction.interceptor.DefaultTransactionAttribute}.
  * @since 08.05.2003
  */
@@ -108,13 +108,13 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 	/**
 	 * Set the propagation behavior. Must be one of the propagation constants
 	 * in the TransactionDefinition interface. Default is PROPAGATION_REQUIRED.
-	 * <p>Exclusively designed for use with {@link #PROPAGATION_REQUIRED} or
+	 * Exclusively designed for use with {@link #PROPAGATION_REQUIRED} or
 	 * {@link #PROPAGATION_REQUIRES_NEW} since it only applies to newly started
 	 * transactions. Consider switching the "validateExistingTransactions" flag to
 	 * "true" on your transaction manager if you'd like isolation level declarations
 	 * to get rejected when participating in an existing transaction with a different
 	 * isolation level.
-	 * <p>Note that a transaction manager that does not support custom isolation levels
+	 * Note that a transaction manager that does not support custom isolation levels
 	 * will throw an exception when given any other level than {@link #ISOLATION_DEFAULT}.
 	 * @throws IllegalArgumentException if the supplied value is not one of the
 	 * {@code PROPAGATION_} constants
@@ -151,13 +151,13 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 	/**
 	 * Set the isolation level. Must be one of the isolation constants
 	 * in the TransactionDefinition interface. Default is ISOLATION_DEFAULT.
-	 * <p>Exclusively designed for use with {@link #PROPAGATION_REQUIRED} or
+	 * Exclusively designed for use with {@link #PROPAGATION_REQUIRED} or
 	 * {@link #PROPAGATION_REQUIRES_NEW} since it only applies to newly started
 	 * transactions. Consider switching the "validateExistingTransactions" flag to
 	 * "true" on your transaction manager if you'd like isolation level declarations
 	 * to get rejected when participating in an existing transaction with a different
 	 * isolation level.
-	 * <p>Note that a transaction manager that does not support custom isolation levels
+	 * Note that a transaction manager that does not support custom isolation levels
 	 * will throw an exception when given any other level than {@link #ISOLATION_DEFAULT}.
 	 * @throws IllegalArgumentException if the supplied value is not one of the
 	 * {@code ISOLATION_} constants
@@ -178,10 +178,10 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 	/**
 	 * Set the timeout to apply, as number of seconds.
 	 * Default is TIMEOUT_DEFAULT (-1).
-	 * <p>Exclusively designed for use with {@link #PROPAGATION_REQUIRED} or
+	 * Exclusively designed for use with {@link #PROPAGATION_REQUIRED} or
 	 * {@link #PROPAGATION_REQUIRES_NEW} since it only applies to newly started
 	 * transactions.
-	 * <p>Note that a transaction manager that does not support timeouts will throw
+	 * Note that a transaction manager that does not support timeouts will throw
 	 * an exception when given any other timeout than {@link #TIMEOUT_DEFAULT}.
 	 * @see #TIMEOUT_DEFAULT
 	 */
@@ -200,13 +200,13 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 	/**
 	 * Set whether to optimize as read-only transaction.
 	 * Default is "false".
-	 * <p>The read-only flag applies to any transaction context, whether backed
+	 * The read-only flag applies to any transaction context, whether backed
 	 * by an actual resource transaction ({@link #PROPAGATION_REQUIRED}/
 	 * {@link #PROPAGATION_REQUIRES_NEW}) or operating non-transactionally at
 	 * the resource level ({@link #PROPAGATION_SUPPORTS}). In the latter case,
 	 * the flag will only apply to managed resources within the application,
 	 * such as a Hibernate {@code Session}.
-	 * <p>This just serves as a hint for the actual transaction subsystem;
+	 * This just serves as a hint for the actual transaction subsystem;
 	 * it will <i>not necessarily</i> cause failure of write access attempts.
 	 * A transaction manager which cannot interpret the read-only hint will
 	 * <i>not</i> throw an exception when asked for a read-only transaction.
@@ -222,7 +222,7 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 
 	/**
 	 * Set the name of this transaction. Default is none.
-	 * <p>This will be used as transaction name to be shown in a
+	 * This will be used as transaction name to be shown in a
 	 * transaction monitor, if applicable (for example, WebLogic's).
 	 */
 	public final void setName(String name) {
@@ -256,11 +256,11 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 
 	/**
 	 * Return an identifying description for this transaction definition.
-	 * <p>The format matches the one used by
+	 * The format matches the one used by
 	 * {@link org.springframework.transaction.interceptor.TransactionAttributeEditor},
 	 * to be able to feed {@code toString} results into bean properties of type
 	 * {@link org.springframework.transaction.interceptor.TransactionAttribute}.
-	 * <p>Has to be overridden in subclasses for correct {@code equals}
+	 * Has to be overridden in subclasses for correct {@code equals}
 	 * and {@code hashCode} behavior. Alternatively, {@link #equals}
 	 * and {@link #hashCode} can be overridden themselves.
 	 * @see #getDefinitionDescription()
@@ -273,7 +273,7 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 
 	/**
 	 * Return an identifying description for this transaction definition.
-	 * <p>Available to subclasses, for inclusion in their {@code toString()} result.
+	 * Available to subclasses, for inclusion in their {@code toString()} result.
 	 */
 	protected final StringBuilder getDefinitionDescription() {
 		StringBuilder result = new StringBuilder();

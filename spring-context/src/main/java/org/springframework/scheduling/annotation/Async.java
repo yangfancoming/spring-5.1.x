@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
  * Can also be used at the type level, in which case all of the type's methods are
  * considered as asynchronous.
  *
- * <p>In terms of target method signatures, any parameter types are supported.
+ * In terms of target method signatures, any parameter types are supported.
  * However, the return type is constrained to either {@code void} or
  * {@link java.util.concurrent.Future}. In the latter case, you may declare the
  * more specific {@link org.springframework.util.concurrent.ListenableFuture} or
@@ -21,7 +21,7 @@ import java.lang.annotation.Target;
  * interaction with the asynchronous task and for immediate composition with
  * further processing steps.
  *
- * <p>A {@code Future} handle returned from the proxy will be an actual asynchronous
+ * A {@code Future} handle returned from the proxy will be an actual asynchronous
  * {@code Future} that can be used to track the result of the asynchronous method
  * execution. However, since the target method needs to implement the same signature,
  * it will have to return a temporary {@code Future} handle that just passes a value
@@ -41,12 +41,12 @@ public @interface Async {
 
 	/**
 	 * A qualifier value for the specified asynchronous operation(s).
-	 * <p>May be used to determine the target executor to be used when executing this
+	 * May be used to determine the target executor to be used when executing this
 	 * method, matching the qualifier value (or the bean name) of a specific
 	 * {@link java.util.concurrent.Executor Executor} or
 	 * {@link org.springframework.core.task.TaskExecutor TaskExecutor}
 	 * bean definition.
-	 * <p>When specified on a class level {@code @Async} annotation, indicates that the
+	 * When specified on a class level {@code @Async} annotation, indicates that the
 	 * given executor should be used for all methods within the class. Method level use
 	 * of {@code Async#value} always overrides any value set at the class level.
 	 * @since 3.1.2

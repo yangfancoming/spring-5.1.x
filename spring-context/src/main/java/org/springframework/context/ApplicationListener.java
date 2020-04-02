@@ -9,7 +9,7 @@ import java.util.EventListener;
  * Based on the standard {@code java.util.EventListener} interface
  * for the Observer design pattern.
  *
- * <p>As of Spring 3.0, an ApplicationListener can generically declare the event type
+ * As of Spring 3.0, an ApplicationListener can generically declare the event type
  * that it is interested in. When registered with a Spring ApplicationContext, events
  * will be filtered accordingly, with the listener getting invoked for matching event
  * objects only.

@@ -15,12 +15,12 @@ import org.springframework.web.util.JavaScriptUtils;
  * The {@code <escapeBody>} tag is used to escape its enclosed body content,
  * applying HTML escaping and/or JavaScript escaping.
  *
- * <p>Provides a "htmlEscape" property for explicitly specifying whether to
+ * Provides a "htmlEscape" property for explicitly specifying whether to
  * apply HTML escaping. If not set, a page-level default (e.g. from the
  * HtmlEscapeTag) or an application-wide default (the "defaultHtmlEscape"
  * context-param in web.xml) is used.
  *
- * <p>Provides a "javaScriptEscape" property for specifying whether to apply
+ * Provides a "javaScriptEscape" property for specifying whether to apply
  * JavaScript escaping. Can be combined with HTML escaping or used standalone.
  *
  * <table>
@@ -117,7 +117,7 @@ public class EscapeBodyTag extends HtmlEscapingAwareTag implements BodyTag {
 
 	/**
 	 * Write the escaped body content to the page.
-	 * <p>Can be overridden in subclasses, e.g. for testing purposes.
+	 * Can be overridden in subclasses, e.g. for testing purposes.
 	 * @param content the content to write
 	 * @throws IOException if writing failed
 	 */

@@ -40,7 +40,7 @@ import org.springframework.core.Ordered;
  *     }
  * }</pre>
  *
- * <p>For reference, the example above can be compared to the following Spring XML
+ * For reference, the example above can be compared to the following Spring XML
  * configuration:
  *
  * <pre class="code">
@@ -68,7 +68,7 @@ import org.springframework.core.Ordered;
  * interceptor into the call stack when {@code JdbcFooRepository}'s {@code @Transactional}
  * methods are invoked.
  *
- * <p>A minor difference between the two examples lies in the naming of the {@code
+ * A minor difference between the two examples lies in the naming of the {@code
  * PlatformTransactionManager} bean: In the {@code @Bean} case, the name is
  * <em>"txManager"</em> (per the name of the method); in the XML case, the name is
  * <em>"transactionManager"</em>. The {@code <tx:annotation-driven/>} is hard-wired to
@@ -77,7 +77,7 @@ import org.springframework.core.Ordered;
  * lookup for any {@code PlatformTransactionManager} bean in the container. Thus the name
  * can be "txManager", "transactionManager", or "tm": it simply does not matter.
  *
- * <p>For those that wish to establish a more direct relationship between
+ * For those that wish to establish a more direct relationship between
  * {@code @EnableTransactionManagement} and the exact transaction manager bean to be used,
  * the {@link TransactionManagementConfigurer} callback interface may be implemented -
  * notice the {@code implements} clause and the {@code @Override}-annotated method below:
@@ -116,12 +116,12 @@ import org.springframework.core.Ordered;
  * {@code @Transactional} methods. See {@link TransactionManagementConfigurer} Javadoc
  * for further details.
  *
- * <p>The {@link #mode} attribute controls how advice is applied: If the mode is
+ * The {@link #mode} attribute controls how advice is applied: If the mode is
  * {@link AdviceMode#PROXY} (the default), then the other attributes control the behavior
  * of the proxying. Please note that proxy mode allows for interception of calls through
  * the proxy only; local calls within the same class cannot get intercepted that way.
  *
- * <p>Note that if the {@linkplain #mode} is set to {@link AdviceMode#ASPECTJ}, then the
+ * Note that if the {@linkplain #mode} is set to {@link AdviceMode#ASPECTJ}, then the
  * value of the {@link #proxyTargetClass} attribute will be ignored. Note also that in
  * this case the {@code spring-aspects} module JAR must be present on the classpath, with
  * compile-time weaving or load-time weaving applying the aspect to the affected classes.
@@ -168,7 +168,7 @@ public @interface EnableTransactionManagement {
 	 * opposed to standard Java interface-based proxies ({@code false}). The default is
 	 * {@code false}. <strong>Applicable only if {@link #mode()} is set to
 	 * {@link AdviceMode#PROXY}</strong>.
-	 * <p>Note that setting this attribute to {@code true} will affect <em>all</em>
+	 * Note that setting this attribute to {@code true} will affect <em>all</em>
 	 * Spring-managed beans requiring proxying, not just those marked with
 	 * {@code @Transactional}. For example, other beans marked with Spring's
 	 * {@code @Async} annotation will be upgraded to subclass proxying at the same
@@ -179,7 +179,7 @@ public @interface EnableTransactionManagement {
 
 	/**
 	 * Indicate how transactional advice should be applied.
-	 * <p><b>The default is {@link AdviceMode#PROXY}.</b>
+	 * <b>The default is {@link AdviceMode#PROXY}.</b>
 	 * Please note that proxy mode allows for interception of calls through the proxy
 	 * only. Local calls within the same class cannot get intercepted that way; an
 	 * {@link Transactional} annotation on such a method within a local call will be
@@ -192,7 +192,7 @@ public @interface EnableTransactionManagement {
 	/**
 	 * Indicate the ordering of the execution of the transaction advisor
 	 * when multiple advices are applied at a specific joinpoint.
-	 * <p>The default is {@link Ordered#LOWEST_PRECEDENCE}.
+	 * The default is {@link Ordered#LOWEST_PRECEDENCE}.
 	 */
 	int order() default Ordered.LOWEST_PRECEDENCE;  // 基于aspectj模式的解析类是  AspectJTransactionManagementConfiguration
 

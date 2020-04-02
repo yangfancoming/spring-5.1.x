@@ -6,7 +6,7 @@ package org.springframework.util.backoff;
  * Provide a {@link BackOffExecution} that indicates the rate at which
  * an operation should be retried.
  *
- * <p>Users of this interface are expected to use it like this:
+ * Users of this interface are expected to use it like this:
  *
  * <pre class="code">
  * BackOffExecution exec = backOff.start();

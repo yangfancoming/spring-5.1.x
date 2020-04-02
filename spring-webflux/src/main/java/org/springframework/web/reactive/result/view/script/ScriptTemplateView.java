@@ -38,11 +38,11 @@ import org.springframework.web.server.ServerWebExchange;
  * An {@link AbstractUrlBasedView} subclass designed to run any template library
  * based on a JSR-223 script engine.
  *
- * <p>If not set, each property is auto-detected by looking up a single
+ * If not set, each property is auto-detected by looking up a single
  * {@link ScriptTemplateConfig} bean in the web application context and using
  * it to obtain the configured properties.
  *
- * <p>The Nashorn JavaScript engine requires Java 8+ and may require setting the
+ * The Nashorn JavaScript engine requires Java 8+ and may require setting the
  * {@code sharedEngine} property to {@code false} in order to run properly. See
  * {@link ScriptTemplateConfigurer#setSharedEngine(Boolean)} for more details.
  *

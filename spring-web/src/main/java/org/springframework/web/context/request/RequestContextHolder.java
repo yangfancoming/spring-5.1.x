@@ -15,7 +15,7 @@ import org.springframework.util.ClassUtils;
  * by any child threads spawned by the current thread if the
  * {@code inheritable} flag is set to {@code true}.
  *
- * <p>Use {@link RequestContextListener} or
+ * Use {@link RequestContextListener} or
  * {@link org.springframework.web.filter.RequestContextFilter} to expose
  * the current web request. Note that
  * {@link org.springframework.web.servlet.DispatcherServlet}
@@ -97,7 +97,7 @@ public abstract class RequestContextHolder  {
 
 	/**
 	 * Return the RequestAttributes currently bound to the thread.
-	 * <p>Exposes the previously bound RequestAttributes instance, if any.
+	 * Exposes the previously bound RequestAttributes instance, if any.
 	 * Falls back to the current JSF FacesContext, if any.
 	 * @return the RequestAttributes currently bound to the thread
 	 * @throws IllegalStateException if no RequestAttributes object

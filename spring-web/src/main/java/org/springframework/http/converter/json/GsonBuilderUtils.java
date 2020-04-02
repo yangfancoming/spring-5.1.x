@@ -29,7 +29,7 @@ public abstract class GsonBuilderUtils {
 	/**
 	 * Obtain a {@link GsonBuilder} which Base64-encodes {@code byte[]}
 	 * properties when reading and writing JSON.
-	 * <p>A custom {@link com.google.gson.TypeAdapter} will be registered via
+	 * A custom {@link com.google.gson.TypeAdapter} will be registered via
 	 * {@link GsonBuilder#registerTypeHierarchyAdapter(Class, Object)} which
 	 * serializes a {@code byte[]} property to and from a Base64-encoded String
 	 * instead of a JSON array.

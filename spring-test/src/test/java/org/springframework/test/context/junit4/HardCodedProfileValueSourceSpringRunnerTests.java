@@ -8,7 +8,7 @@ import org.springframework.test.annotation.ProfileValueSource;
 import org.springframework.test.annotation.ProfileValueSourceConfiguration;
 
 /**
- * <p>
+ *
  * Verifies proper handling of JUnit's {@link org.junit.Ignore &#064;Ignore} and
  * Spring's {@link org.springframework.test.annotation.IfProfileValue
  * &#064;IfProfileValue} and {@link ProfileValueSourceConfiguration

@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * Helper class for easy access to messages from a MessageSource,
  * providing various overloaded getMessage methods.
  *
- * <p>Available from ApplicationObjectSupport, but also reusable
+ * Available from ApplicationObjectSupport, but also reusable
  * as a standalone helper to delegate to in application objects.
  *
 
@@ -53,7 +53,7 @@ public class MessageSourceAccessor {
 
 	/**
 	 * Return the default locale to use if no explicit locale has been given.
-	 * <p>The default implementation returns the default locale passed into the
+	 * The default implementation returns the default locale passed into the
 	 * corresponding constructor, or LocaleContextHolder's locale as fallback.
 	 * Can be overridden in subclasses.
 	 * @see #MessageSourceAccessor(org.springframework.context.MessageSource, java.util.Locale)

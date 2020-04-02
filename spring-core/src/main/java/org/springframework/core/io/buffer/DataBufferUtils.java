@@ -125,7 +125,7 @@ public abstract class DataBufferUtils {
 
 	/**
 	 * Read the given {@code Resource} into a {@code Flux} of {@code DataBuffer}s.
-	 * <p>If the resource is a file, it is read into an
+	 * If the resource is a file, it is read into an
 	 * {@code AsynchronousFileChannel} and turned to {@code Flux} via
 	 * {@link #readAsynchronousFileChannel(Callable, DataBufferFactory, int)} or else
 	 * fall back to {@link #readByteChannel(Callable, DataBufferFactory, int)}.
@@ -142,7 +142,7 @@ public abstract class DataBufferUtils {
 	/**
 	 * Read the given {@code Resource} into a {@code Flux} of {@code DataBuffer}s
 	 * starting at the given position.
-	 * <p>If the resource is a file, it is read into an
+	 * If the resource is a file, it is read into an
 	 * {@code AsynchronousFileChannel} and turned to {@code Flux} via
 	 * {@link #readAsynchronousFileChannel(Callable, DataBufferFactory, int)} or else
 	 * fall back on {@link #readByteChannel(Callable, DataBufferFactory, int)}.
@@ -181,7 +181,7 @@ public abstract class DataBufferUtils {
 	 * {@linkplain #release(DataBuffer) release} the data buffers in the source.
 	 * If releasing is required, then subscribe to the returned {@code Flux}
 	 * with a {@link #releaseConsumer()}.
-	 * <p>Note that the writing process does not start until the returned
+	 * Note that the writing process does not start until the returned
 	 * {@code Flux} is subscribed to.
 	 * @param source the stream of data buffers to be written
 	 * @param outputStream the output stream to write to
@@ -203,7 +203,7 @@ public abstract class DataBufferUtils {
 	 * {@linkplain #release(DataBuffer) release} the data buffers in the source.
 	 * If releasing is required, then subscribe to the returned {@code Flux}
 	 * with a {@link #releaseConsumer()}.
-	 * <p>Note that the writing process does not start until the returned
+	 * Note that the writing process does not start until the returned
 	 * {@code Flux} is subscribed to.
 	 * @param source the stream of data buffers to be written
 	 * @param channel the channel to write to
@@ -229,7 +229,7 @@ public abstract class DataBufferUtils {
 	 * {@linkplain #release(DataBuffer) release} the data buffers in the source.
 	 * If releasing is required, then subscribe to the returned {@code Flux}
 	 * with a {@link #releaseConsumer()}.
-	 * <p>Note that the writing process does not start until the returned
+	 * Note that the writing process does not start until the returned
 	 * {@code Flux} is subscribed to.
 	 * @param source the stream of data buffers to be written
 	 * @param channel the channel to write to
@@ -249,7 +249,7 @@ public abstract class DataBufferUtils {
 	 * {@linkplain #release(DataBuffer) release} the data buffers in the source.
 	 * If releasing is required, then subscribe to the returned {@code Flux} with a
 	 * {@link #releaseConsumer()}.
-	 * <p>Note that the writing process does not start until the returned
+	 * Note that the writing process does not start until the returned
 	 * {@code Flux} is subscribed to.
 	 * @param source the stream of data buffers to be written
 	 * @param channel the channel to write to
@@ -391,10 +391,10 @@ public abstract class DataBufferUtils {
 	 * the returned buffer may be a single buffer containing all data of the
 	 * provided buffers, or it may be a zero-copy, composite with references to
 	 * the given buffers.
-	 * <p>If {@code dataBuffers} produces an error or if there is a cancel
+	 * If {@code dataBuffers} produces an error or if there is a cancel
 	 * signal, then all accumulated buffers will be
 	 * {@linkplain #release(DataBuffer) released}.
-	 * <p>Note that the given data buffers do <strong>not</strong> have to be
+	 * Note that the given data buffers do <strong>not</strong> have to be
 	 * released. They will be released as part of the returned composite.
 	 * @param dataBuffers the data buffers that are to be composed
 	 * @return a buffer that is composed from the {@code dataBuffers} argument

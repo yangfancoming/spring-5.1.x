@@ -18,7 +18,7 @@ import org.springframework.core.Ordered;
  * Enables Spring's asynchronous method execution capability, similar to functionality
  * found in Spring's {@code <task:*>} XML namespace.
  *
- * <p>To be used together with @{@link Configuration Configuration} classes as follows,
+ * To be used together with @{@link Configuration Configuration} classes as follows,
  * enabling annotation-driven async processing for an entire Spring application context:
  *
  * <pre class="code">
@@ -44,7 +44,7 @@ import org.springframework.core.Ordered;
  *     }
  * }</pre>
  *
- * <p>By default, Spring will be searching for an associated thread pool definition:
+ * By default, Spring will be searching for an associated thread pool definition:
  * either a unique {@link org.springframework.core.task.TaskExecutor} bean in the context,
  * or an {@link java.util.concurrent.Executor} bean named "taskExecutor" otherwise. If
  * neither of the two is resolvable, a {@link org.springframework.core.task.SimpleAsyncTaskExecutor}
@@ -52,7 +52,7 @@ import org.springframework.core.Ordered;
  * {@code void} return type cannot transmit any exception back to the caller. By default,
  * such uncaught exceptions are only logged.
  *
- * <p>To customize all this, implement {@link AsyncConfigurer} and provide:
+ * To customize all this, implement {@link AsyncConfigurer} and provide:
  * <ul>
  * <li>your own {@link java.util.concurrent.Executor Executor} through the
  * {@link AsyncConfigurer#getAsyncExecutor getAsyncExecutor()} method, and</li>
@@ -62,7 +62,7 @@ import org.springframework.core.Ordered;
  * method.</li>
  * </ul>
  *
- * <p><b>NOTE: {@link AsyncConfigurer} configuration classes get initialized early
+ * <b>NOTE: {@link AsyncConfigurer} configuration classes get initialized early
  * in the application context bootstrap. If you need any dependencies on other beans
  * there, make sure to declare them 'lazy' as far as possible in order to let them
  * go through other post-processors as well.</b>
@@ -89,17 +89,17 @@ import org.springframework.core.Ordered;
  *     }
  * }</pre>
  *
- * <p>If only one item needs to be customized, {@code null} can be returned to
+ * If only one item needs to be customized, {@code null} can be returned to
  * keep the default settings. Consider also extending from {@link AsyncConfigurerSupport}
  * when possible.
  *
- * <p>Note: In the above example the {@code ThreadPoolTaskExecutor} is not a fully managed
+ * Note: In the above example the {@code ThreadPoolTaskExecutor} is not a fully managed
  * Spring bean. Add the {@code @Bean} annotation to the {@code getAsyncExecutor()} method
  * if you want a fully managed bean. In such circumstances it is no longer necessary to
  * manually call the {@code executor.initialize()} method as this will be invoked
  * automatically when the bean is initialized.
  *
- * <p>For reference, the example above can be compared to the following Spring XML
+ * For reference, the example above can be compared to the following Spring XML
  * configuration:
  *
  * <pre class="code">
@@ -122,12 +122,12 @@ import org.springframework.core.Ordered;
  * demonstrates how the JavaConfig-based approach allows for maximum configurability
  * through direct access to actual componentry.
  *
- * <p>The {@link #mode} attribute controls how advice is applied: If the mode is
+ * The {@link #mode} attribute controls how advice is applied: If the mode is
  * {@link AdviceMode#PROXY} (the default), then the other attributes control the behavior
  * of the proxying. Please note that proxy mode allows for interception of calls through
  * the proxy only; local calls within the same class cannot get intercepted that way.
  *
- * <p>Note that if the {@linkplain #mode} is set to {@link AdviceMode#ASPECTJ}, then the
+ * Note that if the {@linkplain #mode} is set to {@link AdviceMode#ASPECTJ}, then the
  * value of the {@link #proxyTargetClass} attribute will be ignored. Note also that in
  * this case the {@code spring-aspects} module JAR must be present on the classpath, with
  * compile-time weaving or load-time weaving applying the aspect to the affected classes.
@@ -150,9 +150,9 @@ public @interface EnableAsync {
 	/**
 	 * Indicate the 'async' annotation type to be detected at either class
 	 * or method level.
-	 * <p>By default, both Spring's @{@link Async} annotation and the EJB 3.1
+	 * By default, both Spring's @{@link Async} annotation and the EJB 3.1
 	 * {@code @javax.ejb.Asynchronous} annotation will be detected.
-	 * <p>This attribute exists so that developers can provide their own
+	 * This attribute exists so that developers can provide their own
 	 * custom annotation type to indicate that a method (or all methods of
 	 * a given class) should be invoked asynchronously.
 	 */
@@ -161,9 +161,9 @@ public @interface EnableAsync {
 	/**
 	 * Indicate whether subclass-based (CGLIB) proxies are to be created as opposed
 	 * to standard Java interface-based proxies.
-	 * <p><strong>Applicable only if the {@link #mode} is set to {@link AdviceMode#PROXY}</strong>.
-	 * <p>The default is {@code false}.
-	 * <p>Note that setting this attribute to {@code true} will affect <em>all</em>
+	 * <strong>Applicable only if the {@link #mode} is set to {@link AdviceMode#PROXY}</strong>.
+	 * The default is {@code false}.
+	 * Note that setting this attribute to {@code true} will affect <em>all</em>
 	 * Spring-managed beans requiring proxying, not just those marked with {@code @Async}.
 	 * For example, other beans marked with Spring's {@code @Transactional} annotation
 	 * will be upgraded to subclass proxying at the same time. This approach has no
@@ -174,7 +174,7 @@ public @interface EnableAsync {
 
 	/**
 	 * Indicate how async advice should be applied.
-	 * <p><b>The default is {@link AdviceMode#PROXY}.</b>
+	 * <b>The default is {@link AdviceMode#PROXY}.</b>
 	 * Please note that proxy mode allows for interception of calls through the proxy
 	 * only. Local calls within the same class cannot get intercepted that way; an
 	 * {@link Async} annotation on such a method within a local call will be ignored
@@ -187,7 +187,7 @@ public @interface EnableAsync {
 	/**
 	 * Indicate the order in which the {@link AsyncAnnotationBeanPostProcessor}
 	 * should be applied.
-	 * <p>The default is {@link Ordered#LOWEST_PRECEDENCE} in order to run
+	 * The default is {@link Ordered#LOWEST_PRECEDENCE} in order to run
 	 * after all other post-processors, so that it can add an advisor to
 	 * existing proxies rather than double-proxy.
 	 */

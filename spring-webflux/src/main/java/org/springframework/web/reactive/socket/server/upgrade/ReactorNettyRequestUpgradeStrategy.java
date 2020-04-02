@@ -33,10 +33,10 @@ public class ReactorNettyRequestUpgradeStrategy implements RequestUpgradeStrateg
 	 * Configure the maximum allowable frame payload length. Setting this value
 	 * to your application's requirement may reduce denial of service attacks
 	 * using long data frames.
-	 * <p>Corresponds to the argument with the same name in the constructor of
+	 * Corresponds to the argument with the same name in the constructor of
 	 * {@link io.netty.handler.codec.http.websocketx.WebSocketServerHandshakerFactory
 	 * WebSocketServerHandshakerFactory} in Netty.
-	 * <p>By default set to 65536 (64K).
+	 * By default set to 65536 (64K).
 	 * @param maxFramePayloadLength the max length for frames.
 	 * @since 5.1
 	 */

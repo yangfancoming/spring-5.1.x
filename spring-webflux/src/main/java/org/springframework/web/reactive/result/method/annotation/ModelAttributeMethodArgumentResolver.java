@@ -38,14 +38,14 @@ import org.springframework.web.server.ServerWebExchange;
 /**
  * Resolve {@code @ModelAttribute} annotated method arguments.
  *
- * <p>Model attributes are sourced from the model, or created using a default
+ * Model attributes are sourced from the model, or created using a default
  * constructor and then added to the model. Once created the attribute is
  * populated via data binding to the request (form data, query params).
  * Validation also may be applied if the argument is annotated with
  * {@code @javax.validation.Valid} or Spring's own
  * {@code @org.springframework.validation.annotation.Validated}.
  *
- * <p>When this handler is created with {@code useDefaultResolution=true}
+ * When this handler is created with {@code useDefaultResolution=true}
  * any non-simple type argument and return value is regarded as a model
  * attribute with or without the presence of an {@code @ModelAttribute}.
  *

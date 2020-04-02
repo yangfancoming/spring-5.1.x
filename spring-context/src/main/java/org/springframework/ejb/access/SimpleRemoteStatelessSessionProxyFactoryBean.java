@@ -14,13 +14,13 @@ import org.springframework.util.ClassUtils;
  * Convenient {@link FactoryBean} for remote SLSB proxies.
  * Designed for EJB 2.x, but works for EJB 3 Session Beans as well.
  *
- * <p>See {@link org.springframework.jndi.JndiObjectLocator} for info on
+ * See {@link org.springframework.jndi.JndiObjectLocator} for info on
  * how to specify the JNDI location of the target EJB.
  *
- * <p>If you want control over interceptor chaining, use an AOP ProxyFactoryBean
+ * If you want control over interceptor chaining, use an AOP ProxyFactoryBean
  * with SimpleRemoteSlsbInvokerInterceptor rather than rely on this class.
  *
- * <p>In a bean container, this class is normally best used as a singleton. However,
+ * In a bean container, this class is normally best used as a singleton. However,
  * if that bean container pre-instantiates singletons (as do the XML ApplicationContext
  * variants) you may have a problem if the bean container is loaded before the EJB
  * container loads the target EJB. That is because by default the JNDI lookup will be
@@ -29,7 +29,7 @@ import org.springframework.util.ClassUtils;
  * property to false, in which case the home will be fetched on first access to the EJB.
  * (This flag is only true by default for backwards compatibility reasons).
  *
- * <p>This proxy factory is typically used with an RMI business interface, which serves
+ * This proxy factory is typically used with an RMI business interface, which serves
  * as super-interface of the EJB component interface. Alternatively, this factory
  * can also proxy a remote SLSB with a matching non-RMI business interface, i.e. an
  * interface that mirrors the EJB business methods but does not declare RemoteExceptions.
@@ -64,7 +64,7 @@ public class SimpleRemoteStatelessSessionProxyFactoryBean extends SimpleRemoteSl
 	 * Set the business interface of the EJB we're proxying.
 	 * This will normally be a super-interface of the EJB remote component interface.
 	 * Using a business methods interface is a best practice when implementing EJBs.
-	 * <p>You can also specify a matching non-RMI business interface, i.e. an interface
+	 * You can also specify a matching non-RMI business interface, i.e. an interface
 	 * that mirrors the EJB business methods but does not declare RemoteExceptions.
 	 * In this case, RemoteExceptions thrown by the EJB stub will automatically get
 	 * converted to Spring's generic RemoteAccessException.

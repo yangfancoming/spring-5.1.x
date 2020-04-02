@@ -10,7 +10,7 @@ import org.springframework.util.Assert;
  * {@code AopTestUtils} is a collection of AOP-related utility methods for
  * use in unit and integration testing scenarios.
  *
- * <p>For Spring's core AOP utilities, see
+ * For Spring's core AOP utilities, see
  * {@link org.springframework.aop.support.AopUtils AopUtils} and
  * {@link org.springframework.aop.framework.AopProxyUtils AopProxyUtils}.
  *
@@ -25,7 +25,7 @@ public abstract class AopTestUtils {
 
 	/**
 	 * Get the <em>target</em> object of the supplied {@code candidate} object.
-	 * <p>If the supplied {@code candidate} is a Spring
+	 * If the supplied {@code candidate} is a Spring
 	 * {@linkplain AopUtils#isAopProxy proxy}, the target of the proxy will
 	 * be returned; otherwise, the {@code candidate} will be returned
 	 * <em>as is</em>.
@@ -57,7 +57,7 @@ public abstract class AopTestUtils {
 	 * Get the ultimate <em>target</em> object of the supplied {@code candidate}
 	 * object, unwrapping not only a top-level proxy but also any number of
 	 * nested proxies.
-	 * <p>If the supplied {@code candidate} is a Spring
+	 * If the supplied {@code candidate} is a Spring
 	 * {@linkplain AopUtils#isAopProxy proxy}, the ultimate target of all
 	 * nested proxies will be returned; otherwise, the {@code candidate}
 	 * will be returned <em>as is</em>.

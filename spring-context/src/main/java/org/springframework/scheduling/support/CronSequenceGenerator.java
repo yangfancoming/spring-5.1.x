@@ -19,11 +19,11 @@ import org.springframework.util.StringUtils;
  * <a href="https://www.manpagez.com/man/5/crontab/">Crontab pattern</a>,
  * allowing clients to specify a pattern that the sequence matches.
  *
- * <p>The pattern is a list of six single space-separated fields: representing
+ * The pattern is a list of six single space-separated fields: representing
  * second, minute, hour, day, month, weekday. Month and weekday names can be
  * given as the first three letters of the English names.
  *
- * <p>Example patterns:
+ * Example patterns:
  * <ul>
  * <li>"0 0 * * * *" = the top of every hour of every day.</li>
  * <li>"*&#47;10 * * * * *" = every ten seconds.</li>

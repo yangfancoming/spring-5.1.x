@@ -42,7 +42,7 @@ abstract class FormatHelper {
 
 	/**
 	 * Determine a readable name for a given Class object.
-	 * <p>A String array will have the formatted name "java.lang.String[]".
+	 * A String array will have the formatted name "java.lang.String[]".
 	 * @param clazz the Class whose name is to be formatted
 	 * @return a formatted String suitable for message inclusion
 	 * @see ClassUtils#getQualifiedName(Class)

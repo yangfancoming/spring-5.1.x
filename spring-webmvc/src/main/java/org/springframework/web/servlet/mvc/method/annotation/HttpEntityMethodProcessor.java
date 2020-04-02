@@ -43,7 +43,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
  * Resolves {@link HttpEntity} and {@link RequestEntity} method argument values
  * and also handles {@link HttpEntity} and {@link ResponseEntity} return values.
  *
- * <p>An {@link HttpEntity} return type has a specific purpose. Therefore this
+ * An {@link HttpEntity} return type has a specific purpose. Therefore this
  * handler should be configured ahead of handlers that support any return
  * value type annotated with {@code @ModelAttribute} or {@code @ResponseBody}
  * to ensure they don't take over.

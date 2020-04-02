@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
 /**
  * Adapter for a Reactive Streams {@link Publisher} to and from an async/reactive
  * type such as {@code CompletableFuture}, RxJava {@code Observable}, and others.
- * <p>An adapter is typically obtained via {@link ReactiveAdapterRegistry}.
+ * An adapter is typically obtained via {@link ReactiveAdapterRegistry}.
  * @since 5.0
  */
 public class ReactiveAdapter {

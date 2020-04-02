@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
 /**
  * Interface specifying the API to be implemented by a class providing call meta-data.
  *
- * <p>This is intended for internal use by Spring's
+ * This is intended for internal use by Spring's
  * {@link org.springframework.jdbc.core.simple.SimpleJdbcCall}.
  *
  * @author Thomas Risberg

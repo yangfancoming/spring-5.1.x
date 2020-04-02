@@ -29,7 +29,7 @@ import org.springframework.util.StringUtils;
  * containing byte code that does the same thing as that expression. The compiled form of
  * an expression will evaluate far faster than the interpreted form.
  *
- * <p>The SpelCompiler is not currently handling all expression types but covers many of
+ * The SpelCompiler is not currently handling all expression types but covers many of
  * the common cases. The framework is extensible to cover more cases in the future. For
  * absolute maximum speed there is *no checking* in the compiled code. The compiled
  * version of the expression uses information learned during interpreted runs of the
@@ -40,13 +40,13 @@ import org.springframework.util.StringUtils;
  * compiled expression will fail - like a ClassCastException would occur if passing data
  * of an unexpected type in a regular Java program.
  *
- * <p>Due to the lack of checking there are likely some expressions that should never be
+ * Due to the lack of checking there are likely some expressions that should never be
  * compiled, for example if an expression is continuously dealing with different types of
  * data. Due to these cases the compiler is something that must be selectively turned on
  * for an associated SpelExpressionParser (through the {@link SpelParserConfiguration}
  * object), it is not on by default.
  *
- * <p>Individual expressions can be compiled by calling {@code SpelCompiler.compile(expression)}.
+ * Individual expressions can be compiled by calling {@code SpelCompiler.compile(expression)}.
  *
  * @author Andy Clement
  * @since 4.1

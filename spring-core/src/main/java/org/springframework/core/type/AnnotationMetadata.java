@@ -59,7 +59,7 @@ public interface AnnotationMetadata extends ClassMetadata, AnnotatedTypeMetadata
 	/**
 	 * Retrieve the method metadata for all methods that are annotated
 	 * (or meta-annotated) with the given annotation type.
-	 * <p>For any returned method, {@link MethodMetadata#isAnnotated} will
+	 * For any returned method, {@link MethodMetadata#isAnnotated} will
 	 * return {@code true} for the given annotation type.
 	 * @param annotationName the fully qualified class name of the annotation
 	 * type to look for

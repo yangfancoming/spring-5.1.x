@@ -9,7 +9,7 @@ import org.apache.commons.logging.Log;
  * Simple AOP Alliance {@code MethodInterceptor} that can be introduced
  * in a chain to display verbose trace information about intercepted method
  * invocations, with method entry and method exit info.
- * <p>Consider using {@code CustomizableTraceInterceptor} for more advanced needs.
+ * Consider using {@code CustomizableTraceInterceptor} for more advanced needs.
  * @since 1.2
  * @see CustomizableTraceInterceptor
  */

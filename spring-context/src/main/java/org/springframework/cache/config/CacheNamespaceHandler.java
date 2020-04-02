@@ -13,7 +13,7 @@ import org.springframework.util.StringUtils;
  * {@code NamespaceHandler} allowing for the configuration of declarative
  * cache management using either XML or using annotations.
  *
- * <p>This namespace handler is the central piece of functionality in the
+ * This namespace handler is the central piece of functionality in the
  * Spring cache management facilities.
  *
  * @author Costin Leau

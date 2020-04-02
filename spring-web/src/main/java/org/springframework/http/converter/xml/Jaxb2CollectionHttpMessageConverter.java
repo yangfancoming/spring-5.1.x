@@ -37,7 +37,7 @@ import org.springframework.util.xml.StaxUtils;
 /**
  * An {@code HttpMessageConverter} that can read XML collections using JAXB2.
  *
- * <p>This converter can read {@linkplain Collection collections} that contain classes
+ * This converter can read {@linkplain Collection collections} that contain classes
  * annotated with {@link XmlRootElement} and {@link XmlType}. Note that this converter
  * does not support writing.
  *
@@ -64,7 +64,7 @@ public class Jaxb2CollectionHttpMessageConverter<T extends Collection>
 
 	/**
 	 * {@inheritDoc}
-	 * <p>Jaxb2CollectionHttpMessageConverter can read a generic
+	 * Jaxb2CollectionHttpMessageConverter can read a generic
 	 * {@link Collection} where the generic type is a JAXB type annotated with
 	 * {@link XmlRootElement} or {@link XmlType}.
 	 */
@@ -233,7 +233,7 @@ public class Jaxb2CollectionHttpMessageConverter<T extends Collection>
 	 * Create an {@code XMLInputFactory} that this converter will use to create
 	 * {@link javax.xml.stream.XMLStreamReader} and {@link javax.xml.stream.XMLEventReader}
 	 * objects.
-	 * <p>Can be overridden in subclasses, adding further initialization of the factory.
+	 * Can be overridden in subclasses, adding further initialization of the factory.
 	 * The resulting factory is cached, so this method will only be called once.
 	 * @see StaxUtils#createDefensiveInputFactory()
 	 */

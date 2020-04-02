@@ -62,7 +62,7 @@ class TransactionContext {
 
 	/**
 	 * Has the current transaction been flagged for rollback?
-	 * <p>In other words, should we roll back or commit the current transaction
+	 * In other words, should we roll back or commit the current transaction
 	 * upon completion of the current test?
 	 */
 	boolean isFlaggedForRollback() {
@@ -77,7 +77,7 @@ class TransactionContext {
 
 	/**
 	 * Start a new transaction for the configured test context.
-	 * <p>Only call this method if {@link #endTransaction} has been called or if no
+	 * Only call this method if {@link #endTransaction} has been called or if no
 	 * transaction has been previously started.
 	 * @throws TransactionException if starting the transaction fails
 	 */

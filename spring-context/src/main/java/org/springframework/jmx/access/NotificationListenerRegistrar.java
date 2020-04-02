@@ -75,7 +75,7 @@ public class NotificationListenerRegistrar extends NotificationListenerHolder
 	/**
 	 * Allow Map access to the environment to be set for the connector,
 	 * with the option to add or override specific entries.
-	 * <p>Useful for specifying entries directly, for example via
+	 * Useful for specifying entries directly, for example via
 	 * "environment[myKey]". This is particularly useful for
 	 * adding or overriding entries in child bean definitions.
 	 */
@@ -93,11 +93,11 @@ public class NotificationListenerRegistrar extends NotificationListenerHolder
 
 	/**
 	 * Set the agent id of the {@code MBeanServer} to locate.
-	 * <p>Default is none. If specified, this will result in an
+	 * Default is none. If specified, this will result in an
 	 * attempt being made to locate the attendant MBeanServer, unless
 	 * the {@link #setServiceUrl "serviceUrl"} property has been set.
 	 * @see javax.management.MBeanServerFactory#findMBeanServer(String)
-	 * <p>Specifying the empty String indicates the platform MBeanServer.
+	 * Specifying the empty String indicates the platform MBeanServer.
 	 */
 	public void setAgentId(String agentId) {
 		this.agentId = agentId;
@@ -117,7 +117,7 @@ public class NotificationListenerRegistrar extends NotificationListenerHolder
 
 	/**
 	 * Registers the specified {@code NotificationListener}.
-	 * <p>Ensures that an {@code MBeanServerConnection} is configured and attempts
+	 * Ensures that an {@code MBeanServerConnection} is configured and attempts
 	 * to detect a local connection if one is not supplied.
 	 */
 	public void prepare() {

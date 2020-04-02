@@ -25,7 +25,7 @@ import org.springframework.web.reactive.result.view.script.ScriptTemplateViewRes
  * Assist with the configuration of a chain of {@link ViewResolver}'s supporting
  * different template mechanisms.
  *
- * <p>In addition, you can also configure {@link #defaultViews(View...)
+ * In addition, you can also configure {@link #defaultViews(View...)
  * defaultViews} for rendering according to the requested content type, e.g.
  * JSON, XML, etc.
  *
@@ -53,7 +53,7 @@ public class ViewResolverRegistry {
 
 	/**
 	 * Register a {@code FreeMarkerViewResolver} with a ".ftl" suffix.
-	 * <p><strong>Note</strong> that you must also configure FreeMarker by
+	 * <strong>Note</strong> that you must also configure FreeMarker by
 	 * adding a {@link FreeMarkerConfigurer} bean.
 	 */
 	public UrlBasedViewResolverRegistration freeMarker() {
@@ -74,7 +74,7 @@ public class ViewResolverRegistry {
 
 	/**
 	 * Register a script template view resolver with an empty default view name prefix and suffix.
-	 * <p><strong>Note</strong> that you must also configure script templating by
+	 * <strong>Note</strong> that you must also configure script templating by
 	 * adding a {@link ScriptTemplateConfigurer} bean.
 	 * @since 5.0.4
 	 */
@@ -107,7 +107,7 @@ public class ViewResolverRegistry {
 	/**
 	 * Set default views associated with any view name and selected based on the
 	 * best match for the requested content type.
-	 * <p>Use {@link HttpMessageWriterView
+	 * Use {@link HttpMessageWriterView
 	 * HttpMessageWriterView} to adapt and use any existing
 	 * {@code HttpMessageWriter} (e.g. JSON, XML) as a {@code View}.
 	 */
@@ -126,7 +126,7 @@ public class ViewResolverRegistry {
 	 * Set the order for the
 	 * {@link org.springframework.web.reactive.result.view.ViewResolutionResultHandler
 	 * ViewResolutionResultHandler}.
-	 * <p>By default this property is not set, which means the result handler is
+	 * By default this property is not set, which means the result handler is
 	 * ordered at {@link Ordered#LOWEST_PRECEDENCE}.
 	 */
 	public void order(int order) {

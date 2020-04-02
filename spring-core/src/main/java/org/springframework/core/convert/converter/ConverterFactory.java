@@ -5,7 +5,7 @@ package org.springframework.core.convert.converter;
 /**
  * A factory for "ranged" converters that can convert objects from S to subtypes of R.
  *
- * <p>Implementations may additionally implement {@link ConditionalConverter}.
+ * Implementations may additionally implement {@link ConditionalConverter}.
  *
  * @author Keith Donald
  * @since 3.0

@@ -37,7 +37,7 @@ import org.springframework.util.StringUtils;
  * in memory and uses a {@link org.springframework.util.PathMatcher PathMatcher}
  * for matching destinations.
  *
- * <p>As of 4.2, this class supports a {@link #setSelectorHeaderName selector}
+ * As of 4.2, this class supports a {@link #setSelectorHeaderName selector}
  * header on subscription messages with Spring EL expressions evaluated against
  * the headers to filter out messages in addition to destination matching.
  *
@@ -106,11 +106,11 @@ public class DefaultSubscriptionRegistry extends AbstractSubscriptionRegistry {
 	 * the purpose of filtering messages matched to the subscription. The header
 	 * value is expected to be a Spring EL boolean expression to be applied to
 	 * the headers of messages matched to the subscription.
-	 * <p>For example:
+	 * For example:
 	 * <pre>
 	 * headers.foo == 'bar'
 	 * </pre>
-	 * <p>By default this is set to "selector". You can set it to a different
+	 * By default this is set to "selector". You can set it to a different
 	 * name, or to {@code null} to turn off support for a selector header.
 	 * @param selectorHeaderName the name to use for a selector header
 	 * @since 4.2

@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  * class, indicating that instances of the <tt>Servlet</tt> expect requests
  * that conform to the <tt>multipart/form-data</tt> MIME type.
  *
- * <p>Servlets annotated with <tt>MultipartConfig</tt> may retrieve the
+ * Servlets annotated with <tt>MultipartConfig</tt> may retrieve the
  * {@link javax.servlet.http.Part} components of a given
  * <tt>multipart/form-data</tt> request by calling 
  * {@link javax.servlet.http.HttpServletRequest#getPart getPart} or
@@ -31,7 +31,7 @@ public @interface MultipartConfig {
     /**
      * The maximum size allowed for uploaded files.
      * 
-     * <p>The default is <tt>-1L</tt>, which means unlimited.
+     * The default is <tt>-1L</tt>, which means unlimited.
      *
      * @return the maximum size allowed for uploaded files
      */
@@ -41,7 +41,7 @@ public @interface MultipartConfig {
      * The maximum size allowed for <tt>multipart/form-data</tt>
      * requests
      * 
-     * <p>The default is <tt>-1L</tt>, which means unlimited.
+     * The default is <tt>-1L</tt>, which means unlimited.
      *
      * @return the maximum size allowed for <tt>multipart/form-data</tt> requests
      */

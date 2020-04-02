@@ -37,7 +37,7 @@ public abstract class AdviceModeImportSelector<A extends Annotation> implements 
 	 * validates that (a) the annotation is in fact present on the importing
 	 * {@code @Configuration} class and (b) that the given annotation has an
 	 * {@linkplain #getAdviceModeAttributeName() advice mode attribute} of type {@link AdviceMode}.
-	 * <p>The {@link #selectImports(AdviceMode)} method is then invoked, allowing the
+	 * The {@link #selectImports(AdviceMode)} method is then invoked, allowing the
 	 * concrete implementation to choose imports in a safe and convenient fashion.
 	 * @throws IllegalArgumentException if expected annotation {@code A} is not present
 	 * on the importing {@code @Configuration} class or if {@link #selectImports(AdviceMode)} returns {@code null}
@@ -62,7 +62,7 @@ public abstract class AdviceModeImportSelector<A extends Annotation> implements 
 
 	/**
 	 * Determine which classes should be imported based on the given {@code AdviceMode}.
-	 * <p>Returning {@code null} from this method indicates that the {@code AdviceMode}
+	 * Returning {@code null} from this method indicates that the {@code AdviceMode}
 	 * could not be handled or was unknown and that an {@code IllegalArgumentException} should be thrown.
 	 * @param adviceMode the value of the {@linkplain #getAdviceModeAttributeName()
 	 * advice mode attribute} for the annotation specified via generics.

@@ -653,7 +653,7 @@ public class BeanFactoryGenericsTests {
 	 * public static <T> T mock(Class<T> classToMock)
 	 * }
 	 * </pre>
-	 * <p>See SPR-9493
+	 * See SPR-9493
 	 */
 	@Test
 	public void parameterizedStaticFactoryMethod() {
@@ -679,7 +679,7 @@ public class BeanFactoryGenericsTests {
 	 * public <T> T createMock(Class<T> toMock)
 	 * }
 	 * </pre>
-	 * <p>See SPR-10411
+	 * See SPR-10411
 	 */
 	@Test
 	public void parameterizedInstanceFactoryMethod() {

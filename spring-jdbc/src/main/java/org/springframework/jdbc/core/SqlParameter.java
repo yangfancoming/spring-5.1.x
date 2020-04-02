@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
 /**
  * Object to represent a SQL parameter definition.
  *
- * <p>Parameters may be anonymous, in which case "name" is {@code null}.
+ * Parameters may be anonymous, in which case "name" is {@code null}.
  * However, all parameters must define a SQL type according to {@link java.sql.Types}.
  * @see java.sql.Types
  */
@@ -146,7 +146,7 @@ public class SqlParameter {
 	/**
 	 * Return whether this parameter holds input values that should be set
 	 * before execution even if they are {@code null}.
-	 * <p>This implementation always returns {@code true}.
+	 * This implementation always returns {@code true}.
 	 */
 	public boolean isInputValueProvided() {
 		return true;
@@ -155,7 +155,7 @@ public class SqlParameter {
 	/**
 	 * Return whether this parameter is an implicit return parameter used during the
 	 * results processing of {@code CallableStatement.getMoreResults/getUpdateCount}.
-	 * <p>This implementation always returns {@code false}.
+	 * This implementation always returns {@code false}.
 	 */
 	public boolean isResultsParameter() {
 		return false;

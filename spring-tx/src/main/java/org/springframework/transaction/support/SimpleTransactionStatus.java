@@ -7,7 +7,7 @@ package org.springframework.transaction.support;
  * implementation. Derives from {@link AbstractTransactionStatus} and
  * adds an explicit {@link #isNewTransaction() "newTransaction"} flag.
  *
- * <p>This class is not used by any of Spring's pre-built
+ * This class is not used by any of Spring's pre-built
  * {@link org.springframework.transaction.PlatformTransactionManager}
  * implementations. It is mainly provided as a start for custom transaction
  * manager implementations and as a static mock for testing transactional

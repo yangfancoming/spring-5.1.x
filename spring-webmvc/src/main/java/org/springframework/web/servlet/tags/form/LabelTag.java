@@ -11,10 +11,10 @@ import org.springframework.util.StringUtils;
 /**
  * The {@code <label>} tag renders a form field label in an HTML 'label' tag.
  *
- * <p>See the "formTags" showcase application that ships with the
+ * See the "formTags" showcase application that ships with the
  * full Spring distribution for an example of this class in action.
  *
- * <p>
+ *
  * <table>
  * <caption>Attribute Summary</caption>
  * <thead>
@@ -27,130 +27,130 @@ import org.springframework.util.StringUtils;
  * </thead>
  * <tbody>
  * <tr class="altColor">
- * <td><p>cssClass</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute.</p></td>
+ * <td>cssClass</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Optional Attribute.</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>cssErrorClass</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute. Used only when errors are present.</p></td>
+ * <td>cssErrorClass</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Optional Attribute. Used only when errors are present.</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>cssStyle</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td>cssStyle</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Optional Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>dir</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td>dir</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Standard Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>for</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td>for</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Standard Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>htmlEscape</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>Enable/disable HTML escaping of rendered values.</p></td>
+ * <td>htmlEscape</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>Enable/disable HTML escaping of rendered values.</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>id</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td>id</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Standard Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>lang</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td>lang</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Standard Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>onclick</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onclick</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>ondblclick</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>ondblclick</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>onkeydown</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onkeydown</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>onkeypress</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onkeypress</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>onkeyup</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onkeyup</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>onmousedown</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onmousedown</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>onmousemove</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onmousemove</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>onmouseout</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onmouseout</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>onmouseover</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onmouseover</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>onmouseup</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onmouseup</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>path</p></td>
- * <td><p>true</p></td>
- * <td><p>true</p></td>
- * <td><p>Path to errors object for data binding</p></td>
+ * <td>path</p></td>
+ * <td>true</p></td>
+ * <td>true</p></td>
+ * <td>Path to errors object for data binding</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>tabindex</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td>tabindex</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Standard Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>title</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td>title</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Standard Attribute</p></td>
  * </tr>
  * </tbody>
  * </table>
@@ -175,7 +175,7 @@ public class LabelTag extends AbstractHtmlElementTag {
 
 	/**
 	 * The {@link TagWriter} instance being used.
-	 * <p>Stored so we can close the tag on {@link #doEndTag()}.
+	 * Stored so we can close the tag on {@link #doEndTag()}.
 	 */
 	@Nullable
 	private TagWriter tagWriter;
@@ -189,7 +189,7 @@ public class LabelTag extends AbstractHtmlElementTag {
 
 	/**
 	 * Set the value of the '{@code for}' attribute.
-	 * <p>Defaults to the value of {@link #getPath}; may be a runtime expression.
+	 * Defaults to the value of {@link #getPath}; may be a runtime expression.
 	 */
 	public void setFor(String forId) {
 		this.forId = forId;
@@ -197,7 +197,7 @@ public class LabelTag extends AbstractHtmlElementTag {
 
 	/**
 	 * Get the value of the '{@code id}' attribute.
-	 * <p>May be a runtime expression.
+	 * May be a runtime expression.
 	 */
 	@Nullable
 	protected String getFor() {
@@ -250,7 +250,7 @@ public class LabelTag extends AbstractHtmlElementTag {
 
 	/**
 	 * Autogenerate the '{@code for}' attribute value for this tag.
-	 * <p>The default implementation delegates to {@link #getPropertyPath()},
+	 * The default implementation delegates to {@link #getPropertyPath()},
 	 * deleting invalid characters (such as "[" or "]").
 	 */
 	protected String autogenerateFor() throws JspException {

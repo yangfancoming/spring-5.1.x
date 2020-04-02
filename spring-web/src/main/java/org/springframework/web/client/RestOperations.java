@@ -28,7 +28,7 @@ public interface RestOperations {
 	/**
 	 * Retrieve a representation by doing a GET on the specified URL.
 	 * The response (if any) is converted and returned.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * URI Template variables are expanded using the given URI variables, if any.
 	 * @param url the URL
 	 * @param responseType the type of the return value
 	 * @param uriVariables the variables to expand the template
@@ -40,7 +40,7 @@ public interface RestOperations {
 	/**
 	 * Retrieve a representation by doing a GET on the URI template.
 	 * The response (if any) is converted and returned.
-	 * <p>URI Template variables are expanded using the given map.
+	 * URI Template variables are expanded using the given map.
 	 * @param url the URL
 	 * @param responseType the type of the return value
 	 * @param uriVariables the map containing variables for the URI template
@@ -62,7 +62,7 @@ public interface RestOperations {
 	/**
 	 * Retrieve an entity by doing a GET on the specified URL.
 	 * The response is converted and stored in an {@link ResponseEntity}.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * URI Template variables are expanded using the given URI variables, if any.
 	 * @param url the URL
 	 * @param responseType the type of the return value
 	 * @param uriVariables the variables to expand the template
@@ -74,7 +74,7 @@ public interface RestOperations {
 	/**
 	 * Retrieve a representation by doing a GET on the URI template.
 	 * The response is converted and stored in an {@link ResponseEntity}.
-	 * <p>URI Template variables are expanded using the given map.
+	 * URI Template variables are expanded using the given map.
 	 * @param url the URL
 	 * @param responseType the type of the return value
 	 * @param uriVariables the map containing variables for the URI template
@@ -98,7 +98,7 @@ public interface RestOperations {
 
 	/**
 	 * Retrieve all headers of the resource specified by the URI template.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * URI Template variables are expanded using the given URI variables, if any.
 	 * @param url the URL
 	 * @param uriVariables the variables to expand the template
 	 * @return all HTTP headers of that resource
@@ -107,7 +107,7 @@ public interface RestOperations {
 
 	/**
 	 * Retrieve all headers of the resource specified by the URI template.
-	 * <p>URI Template variables are expanded using the given map.
+	 * URI Template variables are expanded using the given map.
 	 * @param url the URL
 	 * @param uriVariables the map containing variables for the URI template
 	 * @return all HTTP headers of that resource
@@ -127,10 +127,10 @@ public interface RestOperations {
 	/**
 	 * Create a new resource by POSTing the given object to the URI template, and returns the value of
 	 * the {@code Location} header. This header typically indicates where the new resource is stored.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
-	 * <p>The {@code request} parameter can be a {@link HttpEntity} in order to
+	 * URI Template variables are expanded using the given URI variables, if any.
+	 * The {@code request} parameter can be a {@link HttpEntity} in order to
 	 * add additional HTTP headers to the request.
-	 * <p>The body of the entity, or {@code request} itself, can be a
+	 * The body of the entity, or {@code request} itself, can be a
 	 * {@link org.springframework.util.MultiValueMap MultiValueMap} to create a multipart request.
 	 * The values in the {@code MultiValueMap} can be any Object representing the body of the part,
 	 * or an {@link org.springframework.http.HttpEntity HttpEntity} representing a part with body
@@ -148,10 +148,10 @@ public interface RestOperations {
 	/**
 	 * Create a new resource by POSTing the given object to the URI template, and returns the value of
 	 * the {@code Location} header. This header typically indicates where the new resource is stored.
-	 * <p>URI Template variables are expanded using the given map.
-	 * <p>The {@code request} parameter can be a {@link HttpEntity} in order to
+	 * URI Template variables are expanded using the given map.
+	 * The {@code request} parameter can be a {@link HttpEntity} in order to
 	 * add additional HTTP headers to the request
-	 * <p>The body of the entity, or {@code request} itself, can be a
+	 * The body of the entity, or {@code request} itself, can be a
 	 * {@link org.springframework.util.MultiValueMap MultiValueMap} to create a multipart request.
 	 * The values in the {@code MultiValueMap} can be any Object representing the body of the part,
 	 * or an {@link org.springframework.http.HttpEntity HttpEntity} representing a part with body
@@ -169,9 +169,9 @@ public interface RestOperations {
 	/**
 	 * Create a new resource by POSTing the given object to the URL, and returns the value of the
 	 * {@code Location} header. This header typically indicates where the new resource is stored.
-	 * <p>The {@code request} parameter can be a {@link HttpEntity} in order to
+	 * The {@code request} parameter can be a {@link HttpEntity} in order to
 	 * add additional HTTP headers to the request.
-	 * <p>The body of the entity, or {@code request} itself, can be a
+	 * The body of the entity, or {@code request} itself, can be a
 	 * {@link org.springframework.util.MultiValueMap MultiValueMap} to create a multipart request.
 	 * The values in the {@code MultiValueMap} can be any Object representing the body of the part,
 	 * or an {@link org.springframework.http.HttpEntity HttpEntity} representing a part with body
@@ -188,10 +188,10 @@ public interface RestOperations {
 	/**
 	 * Create a new resource by POSTing the given object to the URI template,
 	 * and returns the representation found in the response.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
-	 * <p>The {@code request} parameter can be a {@link HttpEntity} in order to
+	 * URI Template variables are expanded using the given URI variables, if any.
+	 * The {@code request} parameter can be a {@link HttpEntity} in order to
 	 * add additional HTTP headers to the request.
-	 * <p>The body of the entity, or {@code request} itself, can be a
+	 * The body of the entity, or {@code request} itself, can be a
 	 * {@link org.springframework.util.MultiValueMap MultiValueMap} to create a multipart request.
 	 * The values in the {@code MultiValueMap} can be any Object representing the body of the part,
 	 * or an {@link org.springframework.http.HttpEntity HttpEntity} representing a part with body
@@ -210,10 +210,10 @@ public interface RestOperations {
 	/**
 	 * Create a new resource by POSTing the given object to the URI template,
 	 * and returns the representation found in the response.
-	 * <p>URI Template variables are expanded using the given map.
-	 * <p>The {@code request} parameter can be a {@link HttpEntity} in order to
+	 * URI Template variables are expanded using the given map.
+	 * The {@code request} parameter can be a {@link HttpEntity} in order to
 	 * add additional HTTP headers to the request.
-	 * <p>The body of the entity, or {@code request} itself, can be a
+	 * The body of the entity, or {@code request} itself, can be a
 	 * {@link org.springframework.util.MultiValueMap MultiValueMap} to create a multipart request.
 	 * The values in the {@code MultiValueMap} can be any Object representing the body of the part,
 	 * or an {@link org.springframework.http.HttpEntity HttpEntity} representing a part with body
@@ -232,9 +232,9 @@ public interface RestOperations {
 	/**
 	 * Create a new resource by POSTing the given object to the URL,
 	 * and returns the representation found in the response.
-	 * <p>The {@code request} parameter can be a {@link HttpEntity} in order to
+	 * The {@code request} parameter can be a {@link HttpEntity} in order to
 	 * add additional HTTP headers to the request.
-	 * <p>The body of the entity, or {@code request} itself, can be a
+	 * The body of the entity, or {@code request} itself, can be a
 	 * {@link org.springframework.util.MultiValueMap MultiValueMap} to create a multipart request.
 	 * The values in the {@code MultiValueMap} can be any Object representing the body of the part,
 	 * or an {@link org.springframework.http.HttpEntity HttpEntity} representing a part with body
@@ -252,10 +252,10 @@ public interface RestOperations {
 	/**
 	 * Create a new resource by POSTing the given object to the URI template,
 	 * and returns the response as {@link ResponseEntity}.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
-	 * <p>The {@code request} parameter can be a {@link HttpEntity} in order to
+	 * URI Template variables are expanded using the given URI variables, if any.
+	 * The {@code request} parameter can be a {@link HttpEntity} in order to
 	 * add additional HTTP headers to the request.
-	 * <p>The body of the entity, or {@code request} itself, can be a
+	 * The body of the entity, or {@code request} itself, can be a
 	 * {@link org.springframework.util.MultiValueMap MultiValueMap} to create a multipart request.
 	 * The values in the {@code MultiValueMap} can be any Object representing the body of the part,
 	 * or an {@link org.springframework.http.HttpEntity HttpEntity} representing a part with body
@@ -273,10 +273,10 @@ public interface RestOperations {
 	/**
 	 * Create a new resource by POSTing the given object to the URI template,
 	 * and returns the response as {@link HttpEntity}.
-	 * <p>URI Template variables are expanded using the given map.
-	 * <p>The {@code request} parameter can be a {@link HttpEntity} in order to
+	 * URI Template variables are expanded using the given map.
+	 * The {@code request} parameter can be a {@link HttpEntity} in order to
 	 * add additional HTTP headers to the request.
-	 * <p>The body of the entity, or {@code request} itself, can be a
+	 * The body of the entity, or {@code request} itself, can be a
 	 * {@link org.springframework.util.MultiValueMap MultiValueMap} to create a multipart request.
 	 * The values in the {@code MultiValueMap} can be any Object representing the body of the part,
 	 * or an {@link org.springframework.http.HttpEntity HttpEntity} representing a part with body
@@ -294,9 +294,9 @@ public interface RestOperations {
 	/**
 	 * Create a new resource by POSTing the given object to the URL,
 	 * and returns the response as {@link ResponseEntity}.
-	 * <p>The {@code request} parameter can be a {@link HttpEntity} in order to
+	 * The {@code request} parameter can be a {@link HttpEntity} in order to
 	 * add additional HTTP headers to the request.
-	 * <p>The body of the entity, or {@code request} itself, can be a
+	 * The body of the entity, or {@code request} itself, can be a
 	 * {@link org.springframework.util.MultiValueMap MultiValueMap} to create a multipart request.
 	 * The values in the {@code MultiValueMap} can be any Object representing the body of the part,
 	 * or an {@link org.springframework.http.HttpEntity HttpEntity} representing a part with body
@@ -314,8 +314,8 @@ public interface RestOperations {
 
 	/**
 	 * Create or update a resource by PUTting the given object to the URI.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
-	 * <p>The {@code request} parameter can be a {@link HttpEntity} in order to
+	 * URI Template variables are expanded using the given URI variables, if any.
+	 * The {@code request} parameter can be a {@link HttpEntity} in order to
 	 * add additional HTTP headers to the request.
 	 * @param url the URL
 	 * @param request the Object to be PUT (may be {@code null})
@@ -326,8 +326,8 @@ public interface RestOperations {
 
 	/**
 	 * Creates a new resource by PUTting the given object to URI template.
-	 * <p>URI Template variables are expanded using the given map.
-	 * <p>The {@code request} parameter can be a {@link HttpEntity} in order to
+	 * URI Template variables are expanded using the given map.
+	 * The {@code request} parameter can be a {@link HttpEntity} in order to
 	 * add additional HTTP headers to the request.
 	 * @param url the URL
 	 * @param request the Object to be PUT (may be {@code null})
@@ -338,7 +338,7 @@ public interface RestOperations {
 
 	/**
 	 * Creates a new resource by PUTting the given object to URL.
-	 * <p>The {@code request} parameter can be a {@link HttpEntity} in order to
+	 * The {@code request} parameter can be a {@link HttpEntity} in order to
 	 * add additional HTTP headers to the request.
 	 * @param url the URL
 	 * @param request the Object to be PUT (may be {@code null})
@@ -352,10 +352,10 @@ public interface RestOperations {
 	/**
 	 * Update a resource by PATCHing the given object to the URI template,
 	 * and return the representation found in the response.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
-	 * <p>The {@code request} parameter can be a {@link HttpEntity} in order to
+	 * URI Template variables are expanded using the given URI variables, if any.
+	 * The {@code request} parameter can be a {@link HttpEntity} in order to
 	 * add additional HTTP headers to the request.
-	 * <p><b>NOTE: The standard JDK HTTP library does not support HTTP PATCH.
+	 * <b>NOTE: The standard JDK HTTP library does not support HTTP PATCH.
 	 * You need to use the Apache HttpComponents or OkHttp request factory.</b>
 	 * @param url the URL
 	 * @param request the object to be PATCHed (may be {@code null})
@@ -374,10 +374,10 @@ public interface RestOperations {
 	/**
 	 * Update a resource by PATCHing the given object to the URI template,
 	 * and return the representation found in the response.
-	 * <p>URI Template variables are expanded using the given map.
-	 * <p>The {@code request} parameter can be a {@link HttpEntity} in order to
+	 * URI Template variables are expanded using the given map.
+	 * The {@code request} parameter can be a {@link HttpEntity} in order to
 	 * add additional HTTP headers to the request.
-	 * <p><b>NOTE: The standard JDK HTTP library does not support HTTP PATCH.
+	 * <b>NOTE: The standard JDK HTTP library does not support HTTP PATCH.
 	 * You need to use the Apache HttpComponents or OkHttp request factory.</b>
 	 * @param url the URL
 	 * @param request the object to be PATCHed (may be {@code null})
@@ -396,9 +396,9 @@ public interface RestOperations {
 	/**
 	 * Update a resource by PATCHing the given object to the URL,
 	 * and return the representation found in the response.
-	 * <p>The {@code request} parameter can be a {@link HttpEntity} in order to
+	 * The {@code request} parameter can be a {@link HttpEntity} in order to
 	 * add additional HTTP headers to the request.
-	 * <p><b>NOTE: The standard JDK HTTP library does not support HTTP PATCH.
+	 * <b>NOTE: The standard JDK HTTP library does not support HTTP PATCH.
 	 * You need to use the Apache HttpComponents or OkHttp request factory.</b>
 	 * @param url the URL
 	 * @param request the object to be PATCHed (may be {@code null})
@@ -418,7 +418,7 @@ public interface RestOperations {
 
 	/**
 	 * Delete the resources at the specified URI.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * URI Template variables are expanded using the given URI variables, if any.
 	 * @param url the URL
 	 * @param uriVariables the variables to expand in the template
 	 */
@@ -426,7 +426,7 @@ public interface RestOperations {
 
 	/**
 	 * Delete the resources at the specified URI.
-	 * <p>URI Template variables are expanded using the given map.
+	 * URI Template variables are expanded using the given map.
 	 *
 	 * @param url the URL
 	 * @param uriVariables the variables to expand the template
@@ -444,7 +444,7 @@ public interface RestOperations {
 
 	/**
 	 * Return the value of the Allow header for the given URI.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * URI Template variables are expanded using the given URI variables, if any.
 	 * @param url the URL
 	 * @param uriVariables the variables to expand in the template
 	 * @return the value of the allow header
@@ -453,7 +453,7 @@ public interface RestOperations {
 
 	/**
 	 * Return the value of the Allow header for the given URI.
-	 * <p>URI Template variables are expanded using the given map.
+	 * URI Template variables are expanded using the given map.
 	 * @param url the URL
 	 * @param uriVariables the variables to expand in the template
 	 * @return the value of the allow header
@@ -473,7 +473,7 @@ public interface RestOperations {
 	/**
 	 * Execute the HTTP method to the given URI template, writing the given request entity to the request, and
 	 * returns the response as {@link ResponseEntity}.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * URI Template variables are expanded using the given URI variables, if any.
 	 * @param url the URL
 	 * @param method the HTTP method (GET, POST, etc)
 	 * @param requestEntity the entity (headers and/or body) to write to the request
@@ -488,7 +488,7 @@ public interface RestOperations {
 	/**
 	 * Execute the HTTP method to the given URI template, writing the given request entity to the request, and
 	 * returns the response as {@link ResponseEntity}.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * URI Template variables are expanded using the given URI variables, if any.
 	 * @param url the URL
 	 * @param method the HTTP method (GET, POST, etc)
 	 * @param requestEntity the entity (headers and/or body) to write to the request
@@ -623,7 +623,7 @@ public interface RestOperations {
 	/**
 	 * Execute the HTTP method to the given URI template, preparing the request with the
 	 * {@link RequestCallback}, and reading the response with a {@link ResponseExtractor}.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * URI Template variables are expanded using the given URI variables, if any.
 	 * @param url the URL
 	 * @param method the HTTP method (GET, POST, etc)
 	 * @param requestCallback object that prepares the request
@@ -638,7 +638,7 @@ public interface RestOperations {
 	/**
 	 * Execute the HTTP method to the given URI template, preparing the request with the
 	 * {@link RequestCallback}, and reading the response with a {@link ResponseExtractor}.
-	 * <p>URI Template variables are expanded using the given URI variables map.
+	 * URI Template variables are expanded using the given URI variables map.
 	 * @param url the URL
 	 * @param method the HTTP method (GET, POST, etc)
 	 * @param requestCallback object that prepares the request

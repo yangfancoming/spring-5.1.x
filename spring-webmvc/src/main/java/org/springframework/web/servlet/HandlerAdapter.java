@@ -10,20 +10,20 @@ import org.springframework.lang.Nullable;
 /**
  * MVC framework SPI, allowing parameterization of the core MVC workflow.
  *
- * <p>Interface that must be implemented for each handler type to handle a request.
+ * Interface that must be implemented for each handler type to handle a request.
  * This interface is used to allow the {@link DispatcherServlet} to be indefinitely
  * extensible. The {@code DispatcherServlet} accesses all installed handlers through
  * this interface, meaning that it does not contain code specific to any handler type.
  *
- * <p>Note that a handler can be of type {@code Object}. This is to enable
+ * Note that a handler can be of type {@code Object}. This is to enable
  * handlers from other frameworks to be integrated with this framework without
  * custom coding, as well as to allow for annotation-driven handler objects that
  * do not obey any specific Java interface.
  *
- * <p>This interface is not intended for application developers. It is available
+ * This interface is not intended for application developers. It is available
  * to handlers who want to develop their own web workflow.
  *
- * <p>Note: {@code HandlerAdapter} implementors may implement the {@link
+ * Note: {@code HandlerAdapter} implementors may implement the {@link
  * org.springframework.core.Ordered} interface to be able to specify a sorting
  * order (and thus a priority) for getting applied by the {@code DispatcherServlet}.
  * Non-Ordered instances get treated as lowest priority.
@@ -40,8 +40,8 @@ public interface HandlerAdapter {
 	 * Given a handler instance, return whether or not this {@code HandlerAdapter} can support it.
 	 * Typical HandlerAdapters will base the decision on the handler type.
 	 * HandlerAdapters will usually only support one handler type each.
-	 * <p>A typical implementation:
-	 * <p>{@code
+	 * A typical implementation:
+	 * {@code
 	 * return (handler instanceof MyHandler);
 	 * }
 	 * @param handler handler object to check

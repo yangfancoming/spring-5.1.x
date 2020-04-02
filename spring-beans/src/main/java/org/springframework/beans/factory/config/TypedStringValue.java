@@ -13,7 +13,7 @@ import org.springframework.util.ObjectUtils;
  * in order to explicitly specify a target type for a String value,
  * for example for collection elements.
  *
- * <p>This holder will just store the String value and the target type.
+ * This holder will just store the String value and the target type.
  * The actual conversion will be performed by the bean factory.
  *
 
@@ -71,7 +71,7 @@ public class TypedStringValue implements BeanMetadataElement {
 
 	/**
 	 * Set the String value.
-	 * <p>Only necessary for manipulating a registered value,
+	 * Only necessary for manipulating a registered value,
 	 * for example in BeanFactoryPostProcessors.
 	 * @see PropertyPlaceholderConfigurer
 	 */
@@ -89,7 +89,7 @@ public class TypedStringValue implements BeanMetadataElement {
 
 	/**
 	 * Set the type to convert to.
-	 * <p>Only necessary for manipulating a registered value,
+	 * Only necessary for manipulating a registered value,
 	 * for example in BeanFactoryPostProcessors.
 	 * @see PropertyPlaceholderConfigurer
 	 */
@@ -159,7 +159,7 @@ public class TypedStringValue implements BeanMetadataElement {
 
 	/**
 	 * Set the configuration source {@code Object} for this metadata element.
-	 * <p>The exact type of the object will depend on the configuration mechanism used.
+	 * The exact type of the object will depend on the configuration mechanism used.
 	 */
 	public void setSource(@Nullable Object source) {
 		this.source = source;

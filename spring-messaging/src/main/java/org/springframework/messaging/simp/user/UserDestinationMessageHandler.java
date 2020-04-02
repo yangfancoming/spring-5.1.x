@@ -27,7 +27,7 @@ import org.springframework.util.StringUtils;
 /**
  * {@code MessageHandler} with support for "user" destinations.
  *
- * <p>Listens for messages with "user" destinations, translates their destination
+ * Listens for messages with "user" destinations, translates their destination
  * to actual target destinations unique to the active session(s) of a user, and
  * then sends the resolved messages to the broker channel to be delivered.
  *
@@ -91,7 +91,7 @@ public class UserDestinationMessageHandler implements MessageHandler, SmartLifec
 	 * Set a destination to broadcast messages to that remain unresolved because
 	 * the user is not connected. In a multi-application server scenario this
 	 * gives other application servers a chance to try.
-	 * <p>By default this is not set.
+	 * By default this is not set.
 	 * @param destination the target destination.
 	 */
 	public void setBroadcastDestination(@Nullable String destination) {
@@ -118,7 +118,7 @@ public class UserDestinationMessageHandler implements MessageHandler, SmartLifec
 	/**
 	 * Configure a custom {@link MessageHeaderInitializer} to initialize the
 	 * headers of resolved target messages.
-	 * <p>By default this is not set.
+	 * By default this is not set.
 	 */
 	public void setHeaderInitializer(@Nullable MessageHeaderInitializer headerInitializer) {
 		this.headerInitializer = headerInitializer;

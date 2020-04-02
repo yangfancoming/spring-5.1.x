@@ -10,15 +10,15 @@ import org.springframework.messaging.Message;
  *
  * @author Rossen Stoyanchev
  * @since 4.0
- * @param <P> the type of payload for in and outbound messages
+ * @param  the type of payload for in and outbound messages
  */
-public interface TcpConnectionHandler<P> {
+public interface TcpConnectionHandler {
 
 	/**
 	 * Invoked after a connection is successfully established.
 	 * @param connection the connection
 	 */
-	void afterConnected(TcpConnection<P> connection);
+	void afterConnected(TcpConnection connection);
 
 	/**
 	 * Invoked on failure to connect.
@@ -30,7 +30,7 @@ public interface TcpConnectionHandler<P> {
 	 * Handle a message received from the remote host.
 	 * @param message the message
 	 */
-	void handleMessage(Message<P> message);
+	void handleMessage(Message message);
 
 	/**
 	 * Handle a failure on the connection.

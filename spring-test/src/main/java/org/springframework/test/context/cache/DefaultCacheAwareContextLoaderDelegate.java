@@ -17,7 +17,7 @@ import org.springframework.util.Assert;
 /**
  * Default implementation of the {@link CacheAwareContextLoaderDelegate} interface.
  *
- * <p>To use a static {@code DefaultContextCache}, invoke the
+ * To use a static {@code DefaultContextCache}, invoke the
  * {@link #DefaultCacheAwareContextLoaderDelegate()} constructor; otherwise,
  * invoke the {@link #DefaultCacheAwareContextLoaderDelegate(ContextCache)}
  * and provide a custom {@link ContextCache} implementation.
@@ -40,7 +40,7 @@ public class DefaultCacheAwareContextLoaderDelegate implements CacheAwareContext
 	/**
 	 * Construct a new {@code DefaultCacheAwareContextLoaderDelegate} using
 	 * a static {@link DefaultContextCache}.
-	 * <p>This default cache is static so that each context can be cached
+	 * This default cache is static so that each context can be cached
 	 * and reused for all subsequent tests that declare the same unique
 	 * context configuration within the same JVM process.
 	 * @see #DefaultCacheAwareContextLoaderDelegate(ContextCache)
@@ -68,7 +68,7 @@ public class DefaultCacheAwareContextLoaderDelegate implements CacheAwareContext
 
 	/**
 	 * Load the {@code ApplicationContext} for the supplied merged context configuration.
-	 * <p>Supports both the {@link SmartContextLoader} and {@link ContextLoader} SPIs.
+	 * Supports both the {@link SmartContextLoader} and {@link ContextLoader} SPIs.
 	 * @throws Exception if an error occurs while loading the application context
 	 */
 	protected ApplicationContext loadContextInternal(MergedContextConfiguration mergedContextConfiguration)

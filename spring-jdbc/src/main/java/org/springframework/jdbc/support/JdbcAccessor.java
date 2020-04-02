@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
  * other JDBC-accessing DAO helpers, defining common properties such as
  * DataSource and exception translator.
  *
- * <p>Not intended to be used directly.
+ * Not intended to be used directly.
  * See {@link org.springframework.jdbc.core.JdbcTemplate}.
  * @since 28.11.2003
  * @see org.springframework.jdbc.core.JdbcTemplate
@@ -76,7 +76,7 @@ public abstract class JdbcAccessor implements InitializingBean {
 
 	/**
 	 * Set the exception translator for this instance.
-	 * <p>If no custom translator is provided, a default
+	 * If no custom translator is provided, a default
 	 * {@link SQLErrorCodeSQLExceptionTranslator} is used
 	 * which examines the SQLException's vendor-specific error code.
 	 * @see org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator
@@ -88,7 +88,7 @@ public abstract class JdbcAccessor implements InitializingBean {
 
 	/**
 	 * Return the exception translator for this instance.
-	 * <p>Creates a default {@link SQLErrorCodeSQLExceptionTranslator}
+	 * Creates a default {@link SQLErrorCodeSQLExceptionTranslator}
 	 * for the specified DataSource if none set, or a
 	 * {@link SQLStateSQLExceptionTranslator} in case of no DataSource.
 	 * @see #getDataSource()
@@ -117,7 +117,7 @@ public abstract class JdbcAccessor implements InitializingBean {
 	 * Set whether to lazily initialize the SQLExceptionTranslator for this accessor,
 	 * on first encounter of a SQLException. Default is "true"; can be switched to
 	 * "false" for initialization on startup.
-	 * <p>Early initialization just applies if {@code afterPropertiesSet()} is called.
+	 * Early initialization just applies if {@code afterPropertiesSet()} is called.
 	 * @see #getExceptionTranslator()
 	 * @see #afterPropertiesSet()
 	 */

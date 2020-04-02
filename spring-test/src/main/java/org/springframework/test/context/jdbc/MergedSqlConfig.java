@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
  * {@code MergedSqlConfig} encapsulates the <em>merged</em> {@link SqlConfig @SqlConfig}
  * attributes declared locally via {@link Sql#config} and globally as a class-level annotation.
  *
- * <p>Explicit local configuration attributes override global configuration attributes.
+ * Explicit local configuration attributes override global configuration attributes.
  *
  * @author Sam Brannen
  * @since 4.1
@@ -46,8 +46,8 @@ class MergedSqlConfig {
 	 * Construct a {@code MergedSqlConfig} instance by merging the configuration
 	 * from the supplied local (potentially method-level) {@code @SqlConfig} annotation
 	 * with class-level configuration discovered on the supplied {@code testClass}.
-	 * <p>Local configuration overrides class-level configuration.
-	 * <p>If the test class is not annotated with {@code @SqlConfig}, no merging
+	 * Local configuration overrides class-level configuration.
+	 * If the test class is not annotated with {@code @SqlConfig}, no merging
 	 * takes place and the local configuration is used "as is".
 	 */
 	MergedSqlConfig(SqlConfig localSqlConfig, Class<?> testClass) {

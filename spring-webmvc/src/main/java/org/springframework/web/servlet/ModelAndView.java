@@ -15,7 +15,7 @@ import org.springframework.util.CollectionUtils;
  * both to make it possible for a controller to return both model
  * and view in a single return value.
  *
- * <p>Represents a model and view returned by a handler, to be resolved
+ * Represents a model and view returned by a handler, to be resolved
  * by a DispatcherServlet. The view can take the form of a String
  * view name which will need to be resolved by a ViewResolver object;
  * alternatively a View object can be specified directly. The model
@@ -247,7 +247,7 @@ public class ModelAndView {
 
 	/**
 	 * Set the HTTP status to use for the response.
-	 * <p>The response status is set just prior to View rendering.
+	 * The response status is set just prior to View rendering.
 	 * @since 4.3
 	 */
 	public void setStatus(@Nullable HttpStatus status) {
@@ -302,7 +302,7 @@ public class ModelAndView {
 	/**
 	 * Clear the state of this ModelAndView object.
 	 * The object will be empty afterwards.
-	 * <p>Can be used to suppress rendering of a given ModelAndView object
+	 * Can be used to suppress rendering of a given ModelAndView object
 	 * in the {@code postHandle} method of a HandlerInterceptor.
 	 * @see #isEmpty()
 	 * @see HandlerInterceptor#postHandle
@@ -324,7 +324,7 @@ public class ModelAndView {
 	/**
 	 * Return whether this ModelAndView object is empty as a result of a call to {@link #clear}
 	 * i.e. whether it does not hold any view and does not contain a model.
-	 * <p>Returns {@code false} if any additional state was added to the instance
+	 * Returns {@code false} if any additional state was added to the instance
 	 * <strong>after</strong> the call to {@link #clear}.
 	 * @see #clear()
 	 */

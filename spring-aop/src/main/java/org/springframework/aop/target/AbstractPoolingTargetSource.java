@@ -17,17 +17,17 @@ import org.springframework.lang.Nullable;
  * This abstract base class is independent of concrete pooling technology;
  * see the subclass {@link CommonsPool2TargetSource} for a concrete example.
  *
- * <p>Subclasses must implement the {@link #getTarget} and
+ * Subclasses must implement the {@link #getTarget} and
  * {@link #releaseTarget} methods based on their chosen object pool.
  * The {@link #newPrototypeInstance()} method inherited from
  * {@link AbstractPrototypeBasedTargetSource} can be used to create objects
  * in order to put them into the pool.
  *
- * <p>Subclasses must also implement some of the monitoring methods from the
+ * Subclasses must also implement some of the monitoring methods from the
  * {@link PoolingConfig} interface. The {@link #getPoolingConfigMixin()} method
  * makes these stats available on proxied objects through an IntroductionAdvisor.
  *
- * <p>This class implements the {@link org.springframework.beans.factory.DisposableBean}
+ * This class implements the {@link org.springframework.beans.factory.DisposableBean}
  * interface in order to force subclasses to implement a {@link #destroy()}
  * method, closing down their object pool.
  *

@@ -5,7 +5,7 @@
  * annotation-based configuration used in, for example, a JUnit environment
  * can also be applied to tests written with TestNG, etc.
  *
- * <p>In addition to providing generic and extensible testing infrastructure,
+ * In addition to providing generic and extensible testing infrastructure,
  * the Spring TestContext Framework provides out-of-the-box support for
  * Spring-specific integration testing functionality such as context management
  * and caching, dependency injection of test fixtures, and transactional test

@@ -20,7 +20,7 @@ import org.springframework.core.codec.Encoder;
  * configured HTTP message readers and writers.
  * </ul>
  *
- * <p>HTTP message readers and writers are divided into 3 categories that are
+ * HTTP message readers and writers are divided into 3 categories that are
  * ordered as follows:
  * <ol>
  * <li>Typed readers and writers that support specific types, e.g. byte[], String.
@@ -28,7 +28,7 @@ import org.springframework.core.codec.Encoder;
  * <li>Catch-all readers or writers, e.g. String with any media type.
  * </ol>
  *
- * <p>Typed and object readers are further sub-divided and ordered as follows:
+ * Typed and object readers are further sub-divided and ordered as follows:
  * <ol>
  * <li>Default HTTP reader and writer registrations.
  * <li>Custom readers and writers.
@@ -56,7 +56,7 @@ public interface CodecConfigurer {
 	 * Provides a way to completely turn off registration of default HTTP message
 	 * readers and writers, and instead rely only on the ones provided via
 	 * {@link #customCodecs()}.
-	 * <p>By default this is set to {@code "true"} in which case default
+	 * By default this is set to {@code "true"} in which case default
 	 * registrations are made; setting this to {@code false} disables default
 	 * registrations.
 	 */
@@ -132,7 +132,7 @@ public interface CodecConfigurer {
 		/**
 		 * Whether to log form data at DEBUG level, and headers at TRACE level.
 		 * Both may contain sensitive information.
-		 * <p>By default set to {@code false} so that request details are not shown.
+		 * By default set to {@code false} so that request details are not shown.
 		 * @param enable whether to enable or not
 		 * @since 5.1
 		 */

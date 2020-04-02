@@ -11,7 +11,7 @@ import org.springframework.util.NumberUtils;
 /**
  * Converts from any JDK-standard Number implementation to any other JDK-standard Number implementation.
  *
- * <p>Support Number classes including Byte, Short, Integer, Float, Double, Long, BigInteger, BigDecimal. This class
+ * Support Number classes including Byte, Short, Integer, Float, Double, Long, BigInteger, BigDecimal. This class
  * delegates to {@link NumberUtils#convertNumberToTargetClass(Number, Class)} to perform the conversion.
  *
  * @author Keith Donald

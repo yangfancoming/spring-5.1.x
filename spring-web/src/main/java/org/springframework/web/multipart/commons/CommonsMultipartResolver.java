@@ -28,12 +28,12 @@ import org.springframework.web.util.WebUtils;
  * <a href="https://commons.apache.org/proper/commons-fileupload">Apache Commons FileUpload</a>
  * 1.2 or above.
  *
- * <p>Provides "maxUploadSize", "maxInMemorySize" and "defaultEncoding" settings as
+ * Provides "maxUploadSize", "maxInMemorySize" and "defaultEncoding" settings as
  * bean properties (inherited from {@link CommonsFileUploadSupport}). See corresponding
  * ServletFileUpload / DiskFileItemFactory properties ("sizeMax", "sizeThreshold",
  * "headerEncoding") for details in terms of defaults and accepted values.
  *
- * <p>Saves temporary files to the servlet container's temporary directory.
+ * Saves temporary files to the servlet container's temporary directory.
  * Needs to be initialized <i>either</i> by an application context <i>or</i>
  * via the constructor that takes a ServletContext (for standalone usage).
  *
@@ -77,7 +77,7 @@ public class CommonsMultipartResolver extends CommonsFileUploadSupport
 	/**
 	 * Set whether to resolve the multipart request lazily at the time of
 	 * file or parameter access.
-	 * <p>Default is "false", resolving the multipart elements immediately, throwing
+	 * Default is "false", resolving the multipart elements immediately, throwing
 	 * corresponding exceptions at the time of the {@link #resolveMultipart} call.
 	 * Switch this to "true" for lazy multipart parsing, throwing parse exceptions
 	 * once the application attempts to obtain multipart files or parameters.
@@ -158,7 +158,7 @@ public class CommonsMultipartResolver extends CommonsFileUploadSupport
 	/**
 	 * Determine the encoding for the given request.
 	 * Can be overridden in subclasses.
-	 * <p>The default implementation checks the request encoding,
+	 * The default implementation checks the request encoding,
 	 * falling back to the default encoding specified for this resolver.
 	 * @param request current HTTP request
 	 * @return the encoding for the request (never {@code null})

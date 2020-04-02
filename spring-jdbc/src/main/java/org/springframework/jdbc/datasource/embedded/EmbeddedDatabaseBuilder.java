@@ -67,11 +67,11 @@ public class EmbeddedDatabaseBuilder {
 
 	/**
 	 * Specify whether a unique ID should be generated and used as the database name.
-	 * <p>If the configuration for this builder is reused across multiple
+	 * If the configuration for this builder is reused across multiple
 	 * application contexts within a single JVM, this flag should be <em>enabled</em>
 	 * (i.e., set to {@code true}) in order to ensure that each application context
 	 * gets its own embedded database.
-	 * <p>Enabling this flag overrides any explicit name set via {@link #setName}.
+	 * Enabling this flag overrides any explicit name set via {@link #setName}.
 	 * @param flag {@code true} if a unique database name should be generated
 	 * @return {@code this}, to facilitate method chaining
 	 * @since 4.2
@@ -84,9 +84,9 @@ public class EmbeddedDatabaseBuilder {
 
 	/**
 	 * Set the name of the embedded database.
-	 * <p>Defaults to {@link EmbeddedDatabaseFactory#DEFAULT_DATABASE_NAME} if
+	 * Defaults to {@link EmbeddedDatabaseFactory#DEFAULT_DATABASE_NAME} if
 	 * not called.
-	 * <p>Will be overridden if the {@code generateUniqueName} flag has been
+	 * Will be overridden if the {@code generateUniqueName} flag has been
 	 * set to {@code true}.
 	 * @param databaseName the name of the embedded database to build
 	 * @return {@code this}, to facilitate method chaining
@@ -99,7 +99,7 @@ public class EmbeddedDatabaseBuilder {
 
 	/**
 	 * Set the type of embedded database.
-	 * <p>Defaults to HSQL if not called.
+	 * Defaults to HSQL if not called.
 	 * @param databaseType the type of embedded database to build
 	 * @return {@code this}, to facilitate method chaining
 	 */
@@ -111,7 +111,7 @@ public class EmbeddedDatabaseBuilder {
 	/**
 	 * Set the factory to use to create the {@link DataSource} instance that
 	 * connects to the embedded database.
-	 * <p>Defaults to {@link SimpleDriverDataSourceFactory} but can be overridden,
+	 * Defaults to {@link SimpleDriverDataSourceFactory} but can be overridden,
 	 * for example to introduce connection pooling.
 	 * @return {@code this}, to facilitate method chaining
 	 * @since 4.0.3
@@ -124,7 +124,7 @@ public class EmbeddedDatabaseBuilder {
 
 	/**
 	 * Add default SQL scripts to execute to populate the database.
-	 * <p>The default scripts are {@code "schema.sql"} to create the database
+	 * The default scripts are {@code "schema.sql"} to create the database
 	 * schema and {@code "data.sql"} to populate the database with data.
 	 * @return {@code this}, to facilitate method chaining
 	 */
@@ -169,7 +169,7 @@ public class EmbeddedDatabaseBuilder {
 
 	/**
 	 * Specify the statement separator used in all SQL scripts, if a custom one.
-	 * <p>Defaults to {@code ";"} if not specified and falls back to {@code "\n"}
+	 * Defaults to {@code ";"} if not specified and falls back to {@code "\n"}
 	 * as a last resort; may be set to {@link ScriptUtils#EOF_STATEMENT_SEPARATOR}
 	 * to signal that each script contains a single statement without a separator.
 	 * @param separator the statement separator
@@ -183,7 +183,7 @@ public class EmbeddedDatabaseBuilder {
 
 	/**
 	 * Specify the single-line comment prefix used in all SQL scripts.
-	 * <p>Defaults to {@code "--"}.
+	 * Defaults to {@code "--"}.
 	 * @param commentPrefix the prefix for single-line comments
 	 * @return {@code this}, to facilitate method chaining
 	 * @since 4.0.3
@@ -195,7 +195,7 @@ public class EmbeddedDatabaseBuilder {
 
 	/**
 	 * Specify the start delimiter for block comments in all SQL scripts.
-	 * <p>Defaults to {@code "/*"}.
+	 * Defaults to {@code "/*"}.
 	 * @param blockCommentStartDelimiter the start delimiter for block comments
 	 * @return {@code this}, to facilitate method chaining
 	 * @since 4.0.3
@@ -208,7 +208,7 @@ public class EmbeddedDatabaseBuilder {
 
 	/**
 	 * Specify the end delimiter for block comments in all SQL scripts.
-	 * <p>Defaults to <code>"*&#47;"</code>.
+	 * Defaults to <code>"*&#47;"</code>.
 	 * @param blockCommentEndDelimiter the end delimiter for block comments
 	 * @return {@code this}, to facilitate method chaining
 	 * @since 4.0.3
@@ -222,7 +222,7 @@ public class EmbeddedDatabaseBuilder {
 	/**
 	 * Specify that all failures which occur while executing SQL scripts should
 	 * be logged but should not cause a failure.
-	 * <p>Defaults to {@code false}.
+	 * Defaults to {@code false}.
 	 * @param flag {@code true} if script execution should continue on error
 	 * @return {@code this}, to facilitate method chaining
 	 * @since 4.0.3
@@ -235,9 +235,9 @@ public class EmbeddedDatabaseBuilder {
 	/**
 	 * Specify that a failed SQL {@code DROP} statement within an executed
 	 * script can be ignored.
-	 * <p>This is useful for a database whose SQL dialect does not support an
+	 * This is useful for a database whose SQL dialect does not support an
 	 * {@code IF EXISTS} clause in a {@code DROP} statement.
-	 * <p>The default is {@code false} so that {@link #build building} will fail
+	 * The default is {@code false} so that {@link #build building} will fail
 	 * fast if a script starts with a {@code DROP} statement.
 	 * @param flag {@code true} if failed drop statements should be ignored
 	 * @return {@code this}, to facilitate method chaining

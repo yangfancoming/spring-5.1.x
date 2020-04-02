@@ -38,16 +38,16 @@ import org.springframework.web.server.ServerWebExchange;
 /**
  * A {@code View} implementation that uses the FreeMarker template engine.
  *
- * <p>Depends on a single {@link FreeMarkerConfig} object such as
+ * Depends on a single {@link FreeMarkerConfig} object such as
  * {@link FreeMarkerConfigurer} being accessible in the application context.
  * Alternatively set the FreeMarker configuration can be set directly on this
  * class via {@link #setConfiguration}.
  *
- * <p>The {@link #setUrl(String) url} property is the location of the FreeMarker
+ * The {@link #setUrl(String) url} property is the location of the FreeMarker
  * template relative to the FreeMarkerConfigurer's
  * {@link FreeMarkerConfigurer#setTemplateLoaderPath templateLoaderPath}.
  *
- * <p>Note: Spring's FreeMarker support requires FreeMarker 2.3 or higher.
+ * Note: Spring's FreeMarker support requires FreeMarker 2.3 or higher.
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -63,7 +63,7 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 
 	/**
 	 * Set the FreeMarker Configuration to be used by this view.
-	 * <p>Typically this property is not set directly. Instead a single
+	 * Typically this property is not set directly. Instead a single
 	 * {@link FreeMarkerConfig} is expected in the Spring application context
 	 * which is used to obtain the FreeMarker configuration.
 	 */
@@ -93,7 +93,7 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 
 	/**
 	 * Set the encoding of the FreeMarker template file.
-	 * <p>By default {@link FreeMarkerConfigurer} sets the default encoding in
+	 * By default {@link FreeMarkerConfigurer} sets the default encoding in
 	 * the FreeMarker configuration to "UTF-8". It's recommended to specify the
 	 * encoding in the FreeMarker Configuration rather than per template if all
 	 * your templates share a common encoding.
@@ -142,7 +142,7 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 
 	/**
 	 * Check that the FreeMarker template used for this view exists and is valid.
-	 * <p>Can be overridden to customize the behavior, for example in case of
+	 * Can be overridden to customize the behavior, for example in case of
 	 * multiple templates to be rendered into a single view.
 	 */
 	@Override
@@ -206,7 +206,7 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 
 	/**
 	 * Build a FreeMarker template model for the given model Map.
-	 * <p>The default implementation builds a {@link SimpleHash}.
+	 * The default implementation builds a {@link SimpleHash}.
 	 * @param model the model to use for rendering
 	 * @param exchange current exchange
 	 * @return the FreeMarker template model, as a {@link SimpleHash} or subclass thereof
@@ -231,7 +231,7 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 	/**
 	 * Retrieve the FreeMarker template for the given locale,
 	 * to be rendering by this view.
-	 * <p>By default, the template specified by the "url" bean property
+	 * By default, the template specified by the "url" bean property
 	 * will be retrieved.
 	 * @param locale the current locale
 	 * @return the FreeMarker template to render

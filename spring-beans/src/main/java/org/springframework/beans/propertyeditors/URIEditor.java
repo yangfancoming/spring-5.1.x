@@ -17,15 +17,15 @@ import org.springframework.util.StringUtils;
  * Editor for {@code java.net.URI}, to directly populate a URI property
  * instead of using a String property as bridge.
  *
- * <p>Supports Spring-style URI notation: any fully qualified standard URI
+ * Supports Spring-style URI notation: any fully qualified standard URI
  * ("file:", "http:", etc) and Spring's special "classpath:" pseudo-URL,
  * which will be resolved to a corresponding URI.
  *
- * <p>By default, this editor will encode Strings into URIs. For instance,
+ * By default, this editor will encode Strings into URIs. For instance,
  * a space will be encoded into {@code %20}. This behavior can be changed
  * by calling the {@link #URIEditor(boolean)} constructor.
  *
- * <p>Note: A URI is more relaxed than a URL in that it does not require
+ * Note: A URI is more relaxed than a URL in that it does not require
  * a valid protocol to be specified. Any scheme within a valid URI syntax
  * is allowed, even without a matching protocol handler being registered.
  *
@@ -116,7 +116,7 @@ public class URIEditor extends PropertyEditorSupport {
 
 	/**
 	 * Create a URI instance for the given user-specified String value.
-	 * <p>The default implementation encodes the value into a RFC-2396 compliant URI.
+	 * The default implementation encodes the value into a RFC-2396 compliant URI.
 	 * @param value the value to convert into a URI instance
 	 * @return the URI instance
 	 * @throws java.net.URISyntaxException if URI conversion failed

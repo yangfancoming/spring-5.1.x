@@ -27,7 +27,7 @@ import org.springframework.util.MultiValueMap;
  * Container for request and response details for exchanges performed through
  * {@link WebTestClient}.
  *
- * <p>Note that a decoded response body is not exposed at this level since the
+ * Note that a decoded response body is not exposed at this level since the
  * body may not have been decoded and consumed yet. Sub-types
  * {@link EntityExchangeResult} and {@link FluxExchangeResult} provide access
  * to a decoded response entity and a decoded (but not consumed) response body
@@ -130,7 +130,7 @@ public class ExchangeResult {
 
 	/**
 	 * Return the raw request body content written through the request.
-	 * <p><strong>Note:</strong> If the request content has not been consumed
+	 * <strong>Note:</strong> If the request content has not been consumed
 	 * for any reason yet, use of this method will trigger consumption.
 	 * @throws IllegalStateException if the request body is not been fully written.
 	 */
@@ -163,7 +163,7 @@ public class ExchangeResult {
 
 	/**
 	 * Return the raw request body content written to the response.
-	 * <p><strong>Note:</strong> If the response content has not been consumed
+	 * <strong>Note:</strong> If the response content has not been consumed
 	 * yet, use of this method will trigger consumption.
 	 * @throws IllegalStateException if the response is not been fully read.
 	 */

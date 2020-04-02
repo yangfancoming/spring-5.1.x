@@ -22,13 +22,13 @@ import org.springframework.web.util.pattern.PathPattern;
  * Abstract base class for URL-mapped
  * {@link org.springframework.web.reactive.HandlerMapping} implementations.
  *
- * <p>Supports direct matches, e.g. a registered "/test" matches "/test", and
+ * Supports direct matches, e.g. a registered "/test" matches "/test", and
  * various path pattern matches, e.g. a registered "/t*" pattern matches
  * both "/test" and "/team", "/test/*" matches all paths under "/test",
  * "/test/**" matches all paths below "/test". For details, see the
  * {@link org.springframework.web.util.pattern.PathPattern} javadoc.
  *
- * <p>Will search all path patterns to find the most specific match for the
+ * Will search all path patterns to find the most specific match for the
  * current request path. The most specific pattern is defined as the longest
  * path pattern with the fewest captured variables and wildcards.
  * @since 5.0
@@ -48,7 +48,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping {
 	 * singleton handlers, as prototypes are always lazily initialized.
 	 * Default is "false", as eager initialization allows for more efficiency
 	 * through referencing the controller objects directly.
-	 * <p>If you want to allow your controllers to be lazily initialized,
+	 * If you want to allow your controllers to be lazily initialized,
 	 * make them "lazy-init" and set this flag to true. Just making them
 	 * "lazy-init" will not work, as they are initialized through the
 	 * references from the handler mapping in this case.
@@ -82,7 +82,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping {
 
 	/**
 	 * Look up a handler instance for the given URL lookup path.
-	 * <p>Supports direct matches, e.g. a registered "/test" matches "/test",
+	 * Supports direct matches, e.g. a registered "/test" matches "/test",
 	 * and various path pattern matches, e.g. a registered "/t*" matches
 	 * both "/test" and "/team". For details, see the PathPattern class.
 	 * @param lookupPath the URL the handler is mapped to
@@ -133,7 +133,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping {
 
 	/**
 	 * Validate the given handler against the current request.
-	 * <p>The default implementation is empty. Can be overridden in subclasses,
+	 * The default implementation is empty. Can be overridden in subclasses,
 	 * for example to enforce specific preconditions expressed in URL mappings.
 	 * @param handler the handler object to validate
 	 * @param exchange current exchange

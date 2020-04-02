@@ -67,7 +67,7 @@ public interface MvcResult {
 
 	/**
 	 * Get the result of async execution.
-	 * <p>This method will wait for the async result to be set within the
+	 * This method will wait for the async result to be set within the
 	 * timeout value associated with the async request, see
 	 * {@link org.springframework.mock.web.MockAsyncContext#setTimeout
 	 * MockAsyncContext#setTimeout}. Alternatively, use

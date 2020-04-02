@@ -39,7 +39,7 @@ import org.springframework.web.util.UriBuilder;
 /**
  * Represents a server-side HTTP request, as handled by a {@code HandlerFunction}.
  *
- * <p>Access to headers and body is offered by {@link Headers} and
+ * Access to headers and body is offered by {@link Headers} and
  * {@link #body(BodyExtractor)}, respectively.
  *
  * @author Arjen Poutsma
@@ -72,7 +72,7 @@ public interface ServerRequest {
 	/**
 	 * Get a {@code UriBuilderComponents} from the URI associated with this
 	 * {@code ServerRequest}.
-	 * <p><strong>Note:</strong> as of 5.1 this method ignores {@code "Forwarded"}
+	 * <strong>Note:</strong> as of 5.1 this method ignores {@code "Forwarded"}
 	 * and {@code "X-Forwarded-*"} headers that specify the
 	 * client-originated address. Consider using the {@code ForwardedHeaderFilter}
 	 * to extract and use, or to discard such headers.
@@ -229,10 +229,10 @@ public interface ServerRequest {
 
 	/**
 	 * Get the web session for this request.
-	 * <p>Always guaranteed to return an instance either matching the session id
+	 * Always guaranteed to return an instance either matching the session id
 	 * requested by the client, or with a new session id either because the client
 	 * did not specify one or because the underlying session had expired.
-	 * <p>Use of this method does not automatically create a session.
+	 * Use of this method does not automatically create a session.
 	 */
 	Mono<WebSession> session();
 
@@ -244,7 +244,7 @@ public interface ServerRequest {
 	/**
 	 * Get the form data from the body of the request if the Content-Type is
 	 * {@code "application/x-www-form-urlencoded"} or an empty map otherwise.
-	 * <p><strong>Note:</strong> calling this method causes the request body to
+	 * <strong>Note:</strong> calling this method causes the request body to
 	 * be read and parsed in full, and the resulting {@code MultiValueMap} is
 	 * cached so that this method is safe to call more than once.
 	 */
@@ -253,7 +253,7 @@ public interface ServerRequest {
 	/**
 	 * Get the parts of a multipart request if the Content-Type is
 	 * {@code "multipart/form-data"} or an empty map otherwise.
-	 * <p><strong>Note:</strong> calling this method causes the request body to
+	 * <strong>Note:</strong> calling this method causes the request body to
 	 * be read and parsed in full, and the resulting {@code MultiValueMap} is
 	 * cached so that this method is safe to call more than once.
 	 */
@@ -261,7 +261,7 @@ public interface ServerRequest {
 
 	/**
 	 * Get the web exchange that this request is based on.
-	 * <p>Note: Manipulating the exchange directly (instead of using the methods provided on
+	 * Note: Manipulating the exchange directly (instead of using the methods provided on
 	 * {@code ServerRequest} and {@code ServerResponse}) can lead to irregular results.
 	 * @since 5.1
 	 */
@@ -301,7 +301,7 @@ public interface ServerRequest {
 		/**
 		 * Get the list of acceptable media types, as specified by the {@code Accept}
 		 * header.
-		 * <p>Returns an empty list if the acceptable media types are unspecified.
+		 * Returns an empty list if the acceptable media types are unspecified.
 		 */
 		List<MediaType> accept();
 
@@ -331,7 +331,7 @@ public interface ServerRequest {
 
 		/**
 		 * Get the value of the {@code Host} header, if available.
-		 * <p>If the header value does not contain a port, the
+		 * If the header value does not contain a port, the
 		 * {@linkplain InetSocketAddress#getPort() port} in the returned address will
 		 * be {@code 0}.
 		 */
@@ -340,13 +340,13 @@ public interface ServerRequest {
 
 		/**
 		 * Get the value of the {@code Range} header.
-		 * <p>Returns an empty list when the range is unknown.
+		 * Returns an empty list when the range is unknown.
 		 */
 		List<HttpRange> range();
 
 		/**
 		 * Get the header value(s), if any, for the header of the given name.
-		 * <p>Returns an empty list if no header values are found.
+		 * Returns an empty list if no header values are found.
 		 * @param headerName the header name
 		 */
 		List<String> header(String headerName);
@@ -389,7 +389,7 @@ public interface ServerRequest {
 
 		/**
 		 * Manipulate this request's headers with the given consumer.
-		 * <p>The headers provided to the consumer are "live", so that the consumer can be used to
+		 * The headers provided to the consumer are "live", so that the consumer can be used to
 		 * {@linkplain HttpHeaders#set(String, String) overwrite} existing header values,
 		 * {@linkplain HttpHeaders#remove(Object) remove} values, or use any of the other
 		 * {@link HttpHeaders} methods.
@@ -408,7 +408,7 @@ public interface ServerRequest {
 
 		/**
 		 * Manipulate this request's cookies with the given consumer.
-		 * <p>The map provided to the consumer is "live", so that the consumer can be used to
+		 * The map provided to the consumer is "live", so that the consumer can be used to
 		 * {@linkplain MultiValueMap#set(Object, Object) overwrite} existing cookies,
 		 * {@linkplain MultiValueMap#remove(Object) remove} cookies, or use any of the other
 		 * {@link MultiValueMap} methods.
@@ -419,7 +419,7 @@ public interface ServerRequest {
 
 		/**
 		 * Set the body of the request.
-		 * <p>Calling this methods will
+		 * Calling this methods will
 		 * {@linkplain org.springframework.core.io.buffer.DataBufferUtils#release(DataBuffer) release}
 		 * the existing body of the builder.
 		 * @param body the new body
@@ -429,7 +429,7 @@ public interface ServerRequest {
 
 		/**
 		 * Set the body of the request to the UTF-8 encoded bytes of the given string.
-		 * <p>Calling this methods will
+		 * Calling this methods will
 		 * {@linkplain org.springframework.core.io.buffer.DataBufferUtils#release(DataBuffer) release}
 		 * the existing body of the builder.
 		 * @param body the new body
@@ -447,7 +447,7 @@ public interface ServerRequest {
 
 		/**
 		 * Manipulate this request's attributes with the given consumer.
-		 * <p>The map provided to the consumer is "live", so that the consumer can be used
+		 * The map provided to the consumer is "live", so that the consumer can be used
 		 * to {@linkplain Map#put(Object, Object) overwrite} existing attributes,
 		 * {@linkplain Map#remove(Object) remove} attributes, or use any of the other
 		 * {@link Map} methods.

@@ -29,12 +29,12 @@ import org.springframework.util.ReflectionUtils;
  * Simple template superclass for {@link FactoryBean} implementations that
  * creates a singleton or a prototype object, depending on a flag.
  *
- * <p>If the "singleton" flag is {@code true} (the default),
+ * If the "singleton" flag is {@code true} (the default),
  * this class will create the object that it creates exactly once
  * on initialization and subsequently return said singleton instance
  * on all calls to the {@link #getObject()} method.
  *
- * <p>Else, this class will create a new instance every time the
+ * Else, this class will create a new instance every time the
  * {@link #getObject()} method is invoked. Subclasses are responsible
  * for implementing the abstract {@link #createInstance()} template
  * method to actually create the object(s) to expose.
@@ -104,7 +104,7 @@ public abstract class AbstractFactoryBean<T>
 	 * Obtain a bean type converter from the BeanFactory that this bean
 	 * runs in. This is typically a fresh instance for each call,
 	 * since TypeConverters are usually <i>not</i> thread-safe.
-	 * <p>Falls back to a SimpleTypeConverter when not running in a BeanFactory.
+	 * Falls back to a SimpleTypeConverter when not running in a BeanFactory.
 	 * @see ConfigurableBeanFactory#getTypeConverter()
 	 * @see org.springframework.beans.SimpleTypeConverter
 	 */
@@ -199,7 +199,7 @@ public abstract class AbstractFactoryBean<T>
 	/**
 	 * Template method that subclasses must override to construct
 	 * the object returned by this factory.
-	 * <p>Invoked on initialization of this FactoryBean in case of
+	 * Invoked on initialization of this FactoryBean in case of
 	 * a singleton; else, on each {@link #getObject()} call.
 	 * @return the object returned by this factory
 	 * @throws Exception if an exception occurred during object creation
@@ -211,7 +211,7 @@ public abstract class AbstractFactoryBean<T>
 	 * Return an array of interfaces that a singleton object exposed by this
 	 * FactoryBean is supposed to implement, for use with an 'early singleton
 	 * proxy' that will be exposed in case of a circular reference.
-	 * <p>The default implementation returns this FactoryBean's object type,
+	 * The default implementation returns this FactoryBean's object type,
 	 * provided that it is an interface, or {@code null} otherwise. The latter
 	 * indicates that early singleton access is not supported by this FactoryBean.
 	 * This will lead to a FactoryBeanNotInitializedException getting thrown.
@@ -228,7 +228,7 @@ public abstract class AbstractFactoryBean<T>
 	/**
 	 * Callback for destroying a singleton instance. Subclasses may
 	 * override this to destroy the previously created instance.
-	 * <p>The default implementation is empty.
+	 * The default implementation is empty.
 	 * @param instance the singleton instance, as returned by
 	 * {@link #createInstance()}
 	 * @throws Exception in case of shutdown errors

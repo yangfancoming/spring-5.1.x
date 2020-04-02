@@ -33,7 +33,7 @@ import org.springframework.util.Assert;
  * Required bean properties are detected through a Java 5 annotation:
  * by default, Spring's {@link Required} annotation.
  *
- * <p>The motivation for the existence of this BeanPostProcessor is to allow
+ * The motivation for the existence of this BeanPostProcessor is to allow
  * developers to annotate the setter properties of their own classes with an
  * arbitrary JDK 1.5 annotation to indicate that the container must check
  * for the configuration of a dependency injected value. This neatly pushes
@@ -41,13 +41,13 @@ import org.springframework.util.Assert;
  * and obviates the need (<b>in part</b>) for a developer to code a method that
  * simply checks that all required properties have actually been set.
  *
- * <p>Please note that an 'init' method may still need to be implemented (and may
+ * Please note that an 'init' method may still need to be implemented (and may
  * still be desirable), because all that this class does is enforcing that a
  * 'required' property has actually been configured with a value. It does
  * <b>not</b> check anything else... In particular, it does not check that a
  * configured value is not {@code null}.
  *
- * <p>Note: A default RequiredAnnotationBeanPostProcessor will be registered
+ * Note: A default RequiredAnnotationBeanPostProcessor will be registered
  * by the "context:annotation-config" and "context:component-scan" XML tags.
  * Remove or turn off the default annotation configuration there if you intend
  * to specify a custom RequiredAnnotationBeanPostProcessor bean definition.
@@ -89,9 +89,9 @@ public class RequiredAnnotationBeanPostProcessor extends InstantiationAwareBeanP
 	/**
 	 * Set the 'required' annotation type, to be used on bean property
 	 * setter methods.
-	 * <p>The default required annotation type is the Spring-provided
+	 * The default required annotation type is the Spring-provided
 	 * {@link Required} annotation.
-	 * <p>This setter property exists so that developers can provide their own
+	 * This setter property exists so that developers can provide their own
 	 * (non-Spring-specific) annotation type to indicate that a property value
 	 * is required.
 	 */
@@ -152,7 +152,7 @@ public class RequiredAnnotationBeanPostProcessor extends InstantiationAwareBeanP
 	/**
 	 * Check whether the given bean definition is not subject to the annotation-based
 	 * required property check as performed by this post-processor.
-	 * <p>The default implementations check for the presence of the
+	 * The default implementations check for the presence of the
 	 * {@link #SKIP_REQUIRED_CHECK_ATTRIBUTE} attribute in the bean definition, if any.
 	 * It also suggests skipping in case of a bean definition with a "factory-bean"
 	 * reference set, assuming that instance-based factories pre-populate the bean.
@@ -174,7 +174,7 @@ public class RequiredAnnotationBeanPostProcessor extends InstantiationAwareBeanP
 
 	/**
 	 * Is the supplied property required to have a value (that is, to be dependency-injected)?
-	 * <p>This implementation looks for the existence of a
+	 * This implementation looks for the existence of a
 	 * {@link #setRequiredAnnotationType "required" annotation}
 	 * on the supplied {@link PropertyDescriptor property}.
 	 * @param propertyDescriptor the target PropertyDescriptor (never {@code null})

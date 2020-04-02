@@ -55,11 +55,11 @@ import static org.springframework.context.annotation.AnnotationConfigUtils.CONFI
  * {@link BeanFactoryPostProcessor} used for bootstrapping processing of
  * {@link Configuration @Configuration} classes.
  *
- * <p>Registered by default when using {@code <context:annotation-config/>} or
+ * Registered by default when using {@code <context:annotation-config/>} or
  * {@code <context:component-scan/>}. Otherwise, may be declared manually as
  * with any other BeanFactoryPostProcessor.
  *
- * <p>This post processor is priority-ordered as it is important that any
+ * This post processor is priority-ordered as it is important that any
  * {@link Bean} methods declared in {@code @Configuration} classes have
  * their corresponding bean definitions registered before any other
  * {@link BeanFactoryPostProcessor} executes.
@@ -131,7 +131,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 
 	/**
 	 * Set the {@link ProblemReporter} to use.
-	 * <p>Used to register any problems detected with {@link Configuration} or {@link Bean}
+	 * Used to register any problems detected with {@link Configuration} or {@link Bean}
 	 * declarations. For instance, an @Bean method marked as {@code final} is illegal
 	 * and would be reported as a problem. Defaults to {@link FailFastProblemReporter}.
 	 */
@@ -141,7 +141,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 
 	/**
 	 * Set the {@link MetadataReaderFactory} to use.
-	 * <p>Default is a {@link CachingMetadataReaderFactory} for the specified
+	 * Default is a {@link CachingMetadataReaderFactory} for the specified
 	 * {@linkplain #setBeanClassLoader bean class loader}.
 	 */
 	public void setMetadataReaderFactory(MetadataReaderFactory metadataReaderFactory) {
@@ -157,8 +157,8 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	 * for scanned components (compatible with the default in {@link ClassPathBeanDefinitionScanner})
 	 * and a variant thereof for imported configuration classes (using unique fully-qualified
 	 * class names instead of standard component overriding).
-	 * <p>Note that this strategy does <em>not</em> apply to {@link Bean} methods.
-	 * <p>This setter is typically only appropriate when configuring the post-processor as
+	 * Note that this strategy does <em>not</em> apply to {@link Bean} methods.
+	 * This setter is typically only appropriate when configuring the post-processor as
 	 * a standalone bean definition in XML, e.g. not using the dedicated
 	 * {@code AnnotationConfig*} application contexts or the {@code
 	 * <context:annotation-config>} element. Any bean name generator specified against

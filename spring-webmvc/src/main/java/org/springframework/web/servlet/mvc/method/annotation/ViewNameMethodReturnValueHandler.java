@@ -15,11 +15,11 @@ import org.springframework.web.servlet.RequestToViewNameTranslator;
  * as view name reference. As of 4.2, it also handles general {@code CharSequence}
  * types, e.g. {@code StringBuilder} or Groovy's {@code GString}, as view names.
  *
- * <p>A {@code null} return value, either due to a {@code void} return type or
+ * A {@code null} return value, either due to a {@code void} return type or
  * as the actual return value is left as-is allowing the configured
  * {@link RequestToViewNameTranslator} to select a view name by convention.
  *
- * <p>A String return value can be interpreted in more than one ways depending on
+ * A String return value can be interpreted in more than one ways depending on
  * the presence of annotations like {@code @ModelAttribute} or {@code @ResponseBody}.
  * Therefore this handler should be configured after the handlers that support these
  * annotations.
@@ -37,7 +37,7 @@ public class ViewNameMethodReturnValueHandler implements HandlerMethodReturnValu
 	/**
 	 * Configure one more simple patterns (as described in {@link PatternMatchUtils#simpleMatch})
 	 * to use in order to recognize custom redirect prefixes in addition to "redirect:".
-	 * <p>Note that simply configuring this property will not make a custom redirect prefix work.
+	 * Note that simply configuring this property will not make a custom redirect prefix work.
 	 * There must be a custom View that recognizes the prefix as well.
 	 * @since 4.1
 	 */

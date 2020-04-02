@@ -114,10 +114,10 @@ public class MessageBrokerRegistry {
 	 * annotated methods. For example destinations prefixed with "/app" may be
 	 * processed by annotated methods while other destinations may target the
 	 * message broker (e.g. "/topic", "/queue").
-	 * <p>When messages are processed, the matching prefix is removed from the destination
+	 * When messages are processed, the matching prefix is removed from the destination
 	 * in order to form the lookup path. This means annotations should not contain the
 	 * destination prefix.
-	 * <p>Prefixes that do not have a trailing slash will have one automatically appended.
+	 * Prefixes that do not have a trailing slash will have one automatically appended.
 	 */
 	public MessageBrokerRegistry setApplicationDestinationPrefixes(String... prefixes) {
 		this.applicationDestinationPrefixes = prefixes;
@@ -135,12 +135,12 @@ public class MessageBrokerRegistry {
 	 * provide the ability for a user to subscribe to queue names unique to their
 	 * session as well as for others to send messages to those unique,
 	 * user-specific queues.
-	 * <p>For example when a user attempts to subscribe to "/user/queue/position-updates",
+	 * For example when a user attempts to subscribe to "/user/queue/position-updates",
 	 * the destination may be translated to "/queue/position-updatesi9oqdfzo" yielding a
 	 * unique queue name that does not collide with any other user attempting to do the same.
 	 * Subsequently when messages are sent to "/user/{username}/queue/position-updates",
 	 * the destination is translated to "/queue/position-updatesi9oqdfzo".
-	 * <p>The default prefix used to identify such destinations is "/user/".
+	 * The default prefix used to identify such destinations is "/user/".
 	 */
 	public MessageBrokerRegistry setUserDestinationPrefix(String destinationPrefix) {
 		this.userDestinationPrefix = destinationPrefix;
@@ -171,16 +171,16 @@ public class MessageBrokerRegistry {
 	/**
 	 * Configure the PathMatcher to use to match the destinations of incoming
 	 * messages to {@code @MessageMapping} and {@code @SubscribeMapping} methods.
-	 * <p>By default {@link org.springframework.util.AntPathMatcher} is configured.
+	 * By default {@link org.springframework.util.AntPathMatcher} is configured.
 	 * However applications may provide an {@code AntPathMatcher} instance
 	 * customized to use "." (commonly used in messaging) instead of "/" as path
 	 * separator or provide a completely different PathMatcher implementation.
-	 * <p>Note that the configured PathMatcher is only used for matching the
+	 * Note that the configured PathMatcher is only used for matching the
 	 * portion of the destination after the configured prefix. For example given
 	 * application destination prefix "/app" and destination "/app/price.stock.**",
 	 * the message might be mapped to a controller with "price" and "stock.**"
 	 * as its type and method-level mappings respectively.
-	 * <p>When the simple broker is enabled, the PathMatcher configured here is
+	 * When the simple broker is enabled, the PathMatcher configured here is
 	 * also used to match message destinations when brokering messages.
 	 * @since 4.1
 	 * @see org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry#setPathMatcher
@@ -197,7 +197,7 @@ public class MessageBrokerRegistry {
 
 	/**
 	 * Configure the cache limit to apply for registrations with the broker.
-	 * <p>This is currently only applied for the destination cache in the
+	 * This is currently only applied for the destination cache in the
 	 * subscription registry. The default cache limit there is 1024.
 	 * @since 4.3.2
 	 * @see org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry#setCacheLimit
@@ -209,10 +209,10 @@ public class MessageBrokerRegistry {
 
 	/**
 	 * Whether the client must receive messages in the order of publication.
-	 * <p>By default messages sent to the {@code "clientOutboundChannel"} may
+	 * By default messages sent to the {@code "clientOutboundChannel"} may
 	 * not be processed in the same order because the channel is backed by a
 	 * ThreadPoolExecutor that in turn does not guarantee processing in order.
-	 * <p>When this flag is set to {@code true} messages within the same session
+	 * When this flag is set to {@code true} messages within the same session
 	 * will be sent to the {@code "clientOutboundChannel"} one at a time in
 	 * order to preserve the order of publication. Enable this only if needed
 	 * since there is some performance overhead to keep messages in order.

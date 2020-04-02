@@ -27,17 +27,17 @@ import org.springframework.util.Assert;
  * {@link PlatformTransactionManager} bean to be defined in the Spring
  * {@linkplain ApplicationContext application context}.
  *
- * <p>This class exposes a {@link JdbcTemplate} and provides an easy way to
+ * This class exposes a {@link JdbcTemplate} and provides an easy way to
  * {@linkplain #countRowsInTable count the number of rows in a table}
  * (potentially {@linkplain #countRowsInTableWhere with a WHERE clause}),
  * {@linkplain #deleteFromTables delete from tables},
  * {@linkplain #dropTables drop tables}, and
  * {@linkplain #executeSqlScript execute SQL scripts} within a transaction.
  *
- * <p>Concrete subclasses must fulfill the same requirements outlined in
+ * Concrete subclasses must fulfill the same requirements outlined in
  * {@link AbstractJUnit4SpringContextTests}.
  *
- * <p>The following {@link org.springframework.test.context.TestExecutionListener
+ * The following {@link org.springframework.test.context.TestExecutionListener
  * TestExecutionListeners} are configured by default:
  *
  * <ul>
@@ -48,7 +48,7 @@ import org.springframework.util.Assert;
  * <li>{@link org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener}
  * </ul>
  *
- * <p>This class serves only as a convenience for extension.
+ * This class serves only as a convenience for extension.
  * <ul>
  * <li>If you do not wish for your test classes to be tied to a Spring-specific
  * class hierarchy, you may configure your own custom test classes by using
@@ -61,7 +61,7 @@ import org.springframework.util.Assert;
  * and specify your runner of choice via {@link org.junit.runner.RunWith @RunWith(...)}.</li>
  * </ul>
  *
- * <p><strong>NOTE:</strong> As of Spring Framework 4.3, this class requires JUnit 4.12 or higher.
+ * <strong>NOTE:</strong> As of Spring Framework 4.3, this class requires JUnit 4.12 or higher.
  *
  * @author Sam Brannen
 
@@ -95,7 +95,7 @@ public abstract class AbstractTransactionalJUnit4SpringContextTests extends Abst
 
 	/**
 	 * Set the {@code DataSource}, typically provided via Dependency Injection.
-	 * <p>This method also instantiates the {@link #jdbcTemplate} instance variable.
+	 * This method also instantiates the {@link #jdbcTemplate} instance variable.
 	 */
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
@@ -123,7 +123,7 @@ public abstract class AbstractTransactionalJUnit4SpringContextTests extends Abst
 	/**
 	 * Convenience method for counting the rows in the given table, using the
 	 * provided {@code WHERE} clause.
-	 * <p>See the Javadoc for {@link JdbcTestUtils#countRowsInTableWhere} for details.
+	 * See the Javadoc for {@link JdbcTestUtils#countRowsInTableWhere} for details.
 	 * @param tableName the name of the table to count rows in
 	 * @param whereClause the {@code WHERE} clause to append to the query
 	 * @return the number of rows in the table that match the provided
@@ -137,7 +137,7 @@ public abstract class AbstractTransactionalJUnit4SpringContextTests extends Abst
 
 	/**
 	 * Convenience method for deleting all rows from the specified tables.
-	 * <p>Use with caution outside of a transaction!
+	 * Use with caution outside of a transaction!
 	 * @param names the names of the tables from which to delete
 	 * @return the total number of rows deleted from all specified tables
 	 * @see JdbcTestUtils#deleteFromTables
@@ -149,8 +149,8 @@ public abstract class AbstractTransactionalJUnit4SpringContextTests extends Abst
 	/**
 	 * Convenience method for deleting all rows from the given table, using the
 	 * provided {@code WHERE} clause.
-	 * <p>Use with caution outside of a transaction!
-	 * <p>See the Javadoc for {@link JdbcTestUtils#deleteFromTableWhere} for details.
+	 * Use with caution outside of a transaction!
+	 * See the Javadoc for {@link JdbcTestUtils#deleteFromTableWhere} for details.
 	 * @param tableName the name of the table to delete rows from
 	 * @param whereClause the {@code WHERE} clause to append to the query
 	 * @param args arguments to bind to the query (leaving it to the {@code
@@ -168,7 +168,7 @@ public abstract class AbstractTransactionalJUnit4SpringContextTests extends Abst
 
 	/**
 	 * Convenience method for dropping all of the specified tables.
-	 * <p>Use with caution outside of a transaction!
+	 * Use with caution outside of a transaction!
 	 * @param names the names of the tables to drop
 	 * @since 3.2
 	 * @see JdbcTestUtils#dropTables
@@ -179,9 +179,9 @@ public abstract class AbstractTransactionalJUnit4SpringContextTests extends Abst
 
 	/**
 	 * Execute the given SQL script.
-	 * <p>Use with caution outside of a transaction!
-	 * <p>The script will normally be loaded by classpath.
-	 * <p><b>Do not use this method to execute DDL if you expect rollback.</b>
+	 * Use with caution outside of a transaction!
+	 * The script will normally be loaded by classpath.
+	 * <b>Do not use this method to execute DDL if you expect rollback.</b>
 	 * @param sqlResourcePath the Spring resource path for the SQL script
 	 * @param continueOnError whether or not to continue without throwing an
 	 * exception in the event of an error

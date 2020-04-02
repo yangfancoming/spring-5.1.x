@@ -13,11 +13,11 @@ import org.springframework.core.log.LogDelegateFactory;
  * "org.springframework.messaging.simp" is off but logging for
  * "org.springframework.web" is on.
  *
- * <p>This makes it possible to enable all web related logging via
+ * This makes it possible to enable all web related logging via
  * "org.springframework.web" including logging from lower-level packages such as
  * "org.springframework.messaging.simp".
  *
- * <p>To see logging from the primary classes where log messages originate from,
+ * To see logging from the primary classes where log messages originate from,
  * simply enable logging for "org.springframework.messaging".
  *
  * @author Rossen Stoyanchev

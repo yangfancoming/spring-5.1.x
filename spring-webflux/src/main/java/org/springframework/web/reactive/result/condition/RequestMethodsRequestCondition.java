@@ -138,7 +138,7 @@ public final class RequestMethodsRequestCondition extends AbstractRequestConditi
 	 * <li>Less than 0 if "this" instance has an HTTP request method but "other" doesn't
 	 * <li>Greater than 0 "other" has an HTTP request method but "this" doesn't
 	 * </ul>
-	 * <p>It is assumed that both instances have been obtained via
+	 * It is assumed that both instances have been obtained via
 	 * {@link #getMatchingCondition(ServerWebExchange)} and therefore each instance
 	 * contains the matching HTTP request method only or is otherwise empty.
 	 */

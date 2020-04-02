@@ -12,10 +12,10 @@ import org.springframework.transaction.PlatformTransactionManager;
  * of a by-type lookup. One reason this might be necessary is if there are two
  * {@code PlatformTransactionManager} beans present in the container.
  *
- * <p>See @{@link EnableTransactionManagement} for general examples and context;
+ * See @{@link EnableTransactionManagement} for general examples and context;
  * see {@link #annotationDrivenTransactionManager()} for detailed instructions.
  *
- * <p>Note that in by-type lookup disambiguation cases, an alternative approach to
+ * Note that in by-type lookup disambiguation cases, an alternative approach to
  * implementing this interface is to simply mark one of the offending
  * {@code PlatformTransactionManager} {@code @Bean} methods as
  * {@link org.springframework.context.annotation.Primary @Primary}.
@@ -31,7 +31,7 @@ public interface TransactionManagementConfigurer {
 	/**
 	 * Return the default transaction manager bean to use for annotation-driven database
 	 * transaction management, i.e. when processing {@code @Transactional} methods.
-	 * <p>There are two basic approaches to implementing this method:
+	 * There are two basic approaches to implementing this method:
 	 * <h3>1. Implement the method and annotate it with {@code @Bean}</h3>
 	 * In this case, the implementing {@code @Configuration} class implements this method,
 	 * marks it with {@code @Bean} and configures and returns the transaction manager
@@ -56,7 +56,7 @@ public interface TransactionManagementConfigurer {
 	 * }</pre>
 	 * If taking approach #2, be sure that <em>only one</em> of the methods is marked
 	 * with {@code @Bean}!
-	 * <p>In either scenario #1 or #2, it is important that the
+	 * In either scenario #1 or #2, it is important that the
 	 * {@code PlatformTransactionManager} instance is managed as a Spring bean within the
 	 * container as all {@code PlatformTransactionManager} implementations take advantage
 	 * of Spring lifecycle callbacks such as {@code InitializingBean} and

@@ -11,7 +11,7 @@ import org.springframework.util.Assert;
  * Utility class for tag library related code, exposing functionality
  * such as translating {@link String Strings} to web scopes.
  *
- * <p>
+ *
  * <ul>
  * <li>{@code page} will be transformed to
  * {@link javax.servlet.jsp.PageContext#PAGE_SCOPE PageContext.PAGE_SCOPE}
@@ -45,7 +45,7 @@ public abstract class TagUtils {
 
 	/**
 	 * Determines the scope for a given input {@code String}.
-	 * <p>If the {@code String} does not match 'request', 'session',
+	 * If the {@code String} does not match 'request', 'session',
 	 * 'page' or 'application', the method will return {@link PageContext#PAGE_SCOPE}.
 	 * @param scope the {@code String} to inspect
 	 * @return the scope found, or {@link PageContext#PAGE_SCOPE} if no scope matched

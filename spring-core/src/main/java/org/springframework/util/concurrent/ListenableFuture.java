@@ -10,7 +10,7 @@ import java.util.concurrent.Future;
  * If the future has completed when the callback is added, the callback is
  * triggered immediately.
  *
- * <p>Inspired by {@code com.google.common.util.concurrent.ListenableFuture}.
+ * Inspired by {@code com.google.common.util.concurrent.ListenableFuture}.
  *
  * @author Arjen Poutsma
  * @author Sebastien Deleuze

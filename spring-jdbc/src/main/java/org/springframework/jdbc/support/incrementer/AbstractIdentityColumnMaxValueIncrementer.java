@@ -115,7 +115,7 @@ public abstract class AbstractIdentityColumnMaxValueIncrementer extends Abstract
 
 	/**
 	 * Statement to use to clean up "sequence" values.
-	 * <p>The default implementation either deletes the entire range below
+	 * The default implementation either deletes the entire range below
 	 * the current maximum value, or the specifically generated values
 	 * (starting with the lowest minus 1, just preserving the maximum value)
 	 * - according to the {@link #isDeleteSpecificValues()} setting.

@@ -36,7 +36,7 @@ public class DataSourceInitializer implements InitializingBean, DisposableBean {
 	/**
 	 * The {@link DataSource} for the database to populate when this component
 	 * is initialized and to clean up when this component is shut down.
-	 * <p>This property is mandatory with no default provided.
+	 * This property is mandatory with no default provided.
 	 * @param dataSource the DataSource
 	 */
 	public void setDataSource(DataSource dataSource) {

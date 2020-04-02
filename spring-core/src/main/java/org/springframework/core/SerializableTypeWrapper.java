@@ -25,11 +25,11 @@ import org.springframework.util.ReflectionUtils;
  * Internal utility class that can be used to obtain wrapped {@link Serializable}
  * variants of {@link java.lang.reflect.Type java.lang.reflect.Types}.
  *
- * <p>{@link #forField(Field) Fields} or {@link #forMethodParameter(MethodParameter)
+ * {@link #forField(Field) Fields} or {@link #forMethodParameter(MethodParameter)
  * MethodParameters} can be used as the root source for a serializable type.
  * Alternatively, a regular {@link Class} can also be used as source.
  *
- * <p>The returned type will either be a {@link Class} or a serializable proxy of
+ * The returned type will either be a {@link Class} or a serializable proxy of
  * {@link GenericArrayType}, {@link ParameterizedType}, {@link TypeVariable} or
  * {@link WildcardType}. With the exception of {@link Class} (which is final) calls
  * to methods that return further {@link Type Types} (for example
@@ -78,7 +78,7 @@ final class SerializableTypeWrapper {
 
 	/**
 	 * Return a {@link Serializable} {@link Type} backed by a {@link TypeProvider} .
-	 * <p>If type artifacts are generally not serializable in the current runtime
+	 * If type artifacts are generally not serializable in the current runtime
 	 * environment, this delegate will simply return the original {@code Type} as-is.
 	 */
 	@Nullable
@@ -136,7 +136,7 @@ final class SerializableTypeWrapper {
 
 		/**
 		 * Return the source of the type, or {@code null} if not known.
-		 * <p>The default implementations returns {@code null}.
+		 * The default implementations returns {@code null}.
 		 */
 		@Nullable
 		default Object getSource() {

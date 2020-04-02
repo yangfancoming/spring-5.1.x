@@ -18,10 +18,10 @@ import org.springframework.util.concurrent.ListenableFutureTask;
 /**
  * {@link TaskExecutor} implementation that fires up a new Thread for each task,executing it asynchronously.
  *
- * <p>Supports limiting concurrent threads through the "concurrencyLimit"
+ * Supports limiting concurrent threads through the "concurrencyLimit"
  * bean property. By default, the number of concurrent threads is unlimited.
  *
- * <p><b>NOTE: This implementation does not reuse threads!</b> Consider a thread-pooling TaskExecutor implementation instead,
+ * <b>NOTE: This implementation does not reuse threads!</b> Consider a thread-pooling TaskExecutor implementation instead,
  *  in particular for executing a large number of short-lived tasks.
  *   本类不是真的线程池,这个类不重用线程,每次调用都会创建一个新的线程
 
@@ -84,7 +84,7 @@ public class SimpleAsyncTaskExecutor extends CustomizableThreadCreator implement
 	/**
 	 * Specify an external factory to use for creating new Threads,
 	 * instead of relying on the local properties of this executor.
-	 * <p>You may specify an inner ThreadFactory bean or also a ThreadFactory reference
+	 * You may specify an inner ThreadFactory bean or also a ThreadFactory reference
 	 * obtained from JNDI (on a Java EE 6 server) or some other lookup mechanism.
 	 * @see #setThreadNamePrefix
 	 * @see #setThreadPriority
@@ -104,10 +104,10 @@ public class SimpleAsyncTaskExecutor extends CustomizableThreadCreator implement
 	/**
 	 * Specify a custom {@link TaskDecorator} to be applied to any {@link Runnable}
 	 * about to be executed.
-	 * <p>Note that such a decorator is not necessarily being applied to the
+	 * Note that such a decorator is not necessarily being applied to the
 	 * user-supplied {@code Runnable}/{@code Callable} but rather to the actual
 	 * execution callback (which may be a wrapper around the user-supplied task).
-	 * <p>The primary use case is to set some execution context around the task's
+	 * The primary use case is to set some execution context around the task's
 	 * invocation, or to provide some monitoring/statistics for task execution.
 	 * @since 4.3
 	 */
@@ -118,7 +118,7 @@ public class SimpleAsyncTaskExecutor extends CustomizableThreadCreator implement
 	/**
 	 * Set the maximum number of parallel accesses allowed.
 	 * -1 indicates no concurrency limit at all.
-	 * <p>In principle, this limit can be changed at runtime,
+	 * In principle, this limit can be changed at runtime,
 	 * although it is generally designed as a config time setting.
 	 * NOTE: Do not switch between -1 and any concrete limit at runtime,
 	 * as this will lead to inconsistent concurrency counts: A limit
@@ -161,7 +161,7 @@ public class SimpleAsyncTaskExecutor extends CustomizableThreadCreator implement
 	/**
 	 * Executes the given task, within a concurrency throttle
 	 * if configured (through the superclass's settings).
-	 * <p>Executes urgent tasks (with 'immediate' timeout) directly,
+	 * Executes urgent tasks (with 'immediate' timeout) directly,
 	 * bypassing the concurrency throttle (if active). All other
 	 * tasks are subject to throttling.
 	 * @see #TIMEOUT_IMMEDIATE
@@ -210,7 +210,7 @@ public class SimpleAsyncTaskExecutor extends CustomizableThreadCreator implement
 
 	/**
 	 * Template method for the actual execution of a task.
-	 * <p>The default implementation creates a new Thread and starts it.
+	 * The default implementation creates a new Thread and starts it.
 	 * @param task the Runnable to execute
 	 * @see #setThreadFactory
 	 * @see #createThread

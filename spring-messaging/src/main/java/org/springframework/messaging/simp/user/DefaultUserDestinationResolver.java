@@ -23,12 +23,12 @@ import org.springframework.util.StringUtils;
  * A default implementation of {@code UserDestinationResolver} that relies
  * on a {@link SimpUserRegistry} to find active sessions for a user.
  *
- * <p>When a user attempts to subscribe, e.g. to "/user/queue/position-updates",
+ * When a user attempts to subscribe, e.g. to "/user/queue/position-updates",
  * the "/user" prefix is removed and a unique suffix added based on the session
  * id, e.g. "/queue/position-updates-useri9oqdfzo" to ensure different users can
  * subscribe to the same logical destination without colliding.
  *
- * <p>When sending to a user, e.g. "/user/{username}/queue/position-updates", the
+ * When sending to a user, e.g. "/user/{username}/queue/position-updates", the
  * "/user/{username}" prefix is removed and a suffix based on active session id's
  * is added, e.g. "/queue/position-updates-useri9oqdfzo".
  *
@@ -69,7 +69,7 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 	/**
 	 * The prefix used to identify user destinations. Any destinations that do not
 	 * start with the given prefix are not be resolved.
-	 * <p>The default prefix is "/user/".
+	 * The default prefix is "/user/".
 	 * @param prefix the prefix to use
 	 */
 	public void setUserDestinationPrefix(String prefix) {
@@ -88,7 +88,7 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 	 * Use this property to indicate whether the leading slash from translated
 	 * user destinations should be removed or not. This depends on the
 	 * destination prefixes the message broker is configured with.
-	 * <p>By default this is set to {@code false}, i.e.
+	 * By default this is set to {@code false}, i.e.
 	 * "do not change the target destination", although
 	 * {@link org.springframework.messaging.simp.config.AbstractMessageBrokerConfiguration
 	 * AbstractMessageBrokerConfiguration} may change that to {@code true}
@@ -113,7 +113,7 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 	 * which in turn helps to determine whether the leading slash should be
 	 * kept in actual destinations after removing the
 	 * {@link #setUserDestinationPrefix userDestinationPrefix}.
-	 * <p>By default actual destinations have a leading slash, e.g.
+	 * By default actual destinations have a leading slash, e.g.
 	 * {@code /queue/position-updates} which makes sense with brokers that
 	 * support destinations with slash as separator. When a {@code PathMatcher}
 	 * is provided that supports an alternative separator, then resulting

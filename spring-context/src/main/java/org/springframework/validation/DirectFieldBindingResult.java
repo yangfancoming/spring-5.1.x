@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  * supporting registration and evaluation of binding errors on value objects.
  * Performs direct field access instead of going through JavaBean getters.
  *
- * <p>Since Spring 4.1 this implementation is able to traverse nested fields.
+ * Since Spring 4.1 this implementation is able to traverse nested fields.
  *
 
  * @since 2.0

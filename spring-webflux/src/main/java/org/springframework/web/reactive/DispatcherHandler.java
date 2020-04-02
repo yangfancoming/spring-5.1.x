@@ -26,7 +26,7 @@ import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
  * registered handlers for processing a request, providing convenient mapping
  * facilities.
  *
- * <p>{@code DispatcherHandler} discovers the delegate components it needs from
+ * {@code DispatcherHandler} discovers the delegate components it needs from
  * Spring configuration. It detects the following in the application context:
  * <ul>
  * <li>{@link HandlerMapping} -- map requests to handler objects
@@ -34,14 +34,14 @@ import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
  * <li>{@link HandlerResultHandler} -- process handler return values
  * </ul>
  *
- * <p>{@code DispatcherHandler} is also designed to be a Spring bean itself and
+ * {@code DispatcherHandler} is also designed to be a Spring bean itself and
  * implements {@link ApplicationContextAware} for access to the context it runs
  * in. If {@code DispatcherHandler} is declared with the bean name "webHandler"
  * it is discovered by {@link WebHttpHandlerBuilder#applicationContext} which
  * creates a processing chain together with {@code WebFilter},
  * {@code WebExceptionHandler} and others.
  *
- * <p>A {@code DispatcherHandler} bean declaration is included in
+ * A {@code DispatcherHandler} bean declaration is included in
  * {@link org.springframework.web.reactive.config.EnableWebFlux @EnableWebFlux}
  * configuration.
  *
@@ -88,7 +88,7 @@ public class DispatcherHandler implements WebHandler, ApplicationContextAware {
 	 * Return all {@link HandlerMapping} beans detected by type in the
 	 * {@link #setApplicationContext injected context} and also
 	 * {@link AnnotationAwareOrderComparator#sort(List) sorted}.
-	 * <p><strong>Note:</strong> This method may return {@code null} if invoked
+	 * <strong>Note:</strong> This method may return {@code null} if invoked
 	 * prior to {@link #setApplicationContext(ApplicationContext)}.
 	 * @return immutable list with the configured mappings or {@code null}
 	 */

@@ -15,12 +15,12 @@ import org.springframework.lang.Nullable;
 /**
  * Static holder for local Spring properties, i.e. defined at the Spring library level.
  *
- * <p>Reads a {@code spring.properties} file from the root of the Spring library classpath,
+ * Reads a {@code spring.properties} file from the root of the Spring library classpath,
  * and also allows for programmatically setting properties through {@link #setProperty}.
  * When checking a property, local entries are being checked first, then falling back
  * to JVM-level system properties through a {@link System#getProperty} check.
  *
- * <p>This is an alternative way to set Spring-related system properties such as
+ * This is an alternative way to set Spring-related system properties such as
  * "spring.getenv.ignore" and "spring.beaninfo.ignore", in particular for scenarios
  * where JVM system properties are locked on the target platform (e.g. WebSphere).
  * See {@link #setFlag} for a convenient way to locally set such flags to "true".

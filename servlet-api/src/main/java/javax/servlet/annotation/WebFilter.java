@@ -6,7 +6,7 @@ import java.lang.annotation.*;
 /**
  * Annotation used to declare a servlet filter.
  *
- * <p>This annotation is processed by the container at deployment time,
+ * This annotation is processed by the container at deployment time,
  * and the corresponding filter applied to the specified URL patterns,
  * servlets, and dispatcher types.
  * 

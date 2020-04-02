@@ -13,10 +13,10 @@ import static org.junit.Assume.*;
  * Provides utility methods that allow JUnit tests to {@link org.junit.Assume} certain
  * conditions hold {@code true}. If the assumption fails, it means the test should be skipped.
  *
- * <p>Tests can be categorized into {@link TestGroup}s. Active groups are enabled using
+ * Tests can be categorized into {@link TestGroup}s. Active groups are enabled using
  * the 'testGroups' system property, usually activated from the gradle command line:
  * gradle test -PtestGroups="performance"
- * <p>Groups can be specified as a comma separated list of values, or using the pseudo group
+ * Groups can be specified as a comma separated list of values, or using the pseudo group
  * 'all'. See {@link TestGroup} for a list of valid groups.
  * @since 3.2
  * @see #group(TestGroup)
@@ -41,7 +41,7 @@ public abstract class Assume {
 	/**
 	 * Assume that a particular {@link TestGroup} has been specified before
 	 * executing the supplied {@link Executable}.
-	 * <p>If the assumption fails, the executable will not be executed, but
+	 * If the assumption fails, the executable will not be executed, but
 	 * no {@link AssumptionViolatedException} will be thrown.
 	 * @param group the group that must be specified
 	 * @param executable the executable to execute if the test group is active

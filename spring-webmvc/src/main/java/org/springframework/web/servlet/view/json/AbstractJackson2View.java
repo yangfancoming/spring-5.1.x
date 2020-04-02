@@ -26,7 +26,7 @@ import org.springframework.web.servlet.view.AbstractView;
  * Abstract base class for Jackson based and content type independent
  * {@link AbstractView} implementations.
  *
- * <p>Compatible with Jackson 2.6 and higher, as of Spring 4.3.
+ * Compatible with Jackson 2.6 and higher, as of Spring 4.3.
  *
  * @author Jeremy Grelle
  * @author Arjen Poutsma
@@ -59,7 +59,7 @@ public abstract class AbstractJackson2View extends AbstractView {
 	/**
 	 * Set the {@code ObjectMapper} for this view.
 	 * If not set, a default {@link ObjectMapper#ObjectMapper() ObjectMapper} will be used.
-	 * <p>Setting a custom-configured {@code ObjectMapper} is one way to take further control of
+	 * Setting a custom-configured {@code ObjectMapper} is one way to take further control of
 	 * the JSON serialization process. The other option is to use Jackson's provided annotations
 	 * on the types to be serialized, in which case a custom-configured ObjectMapper is unnecessary.
 	 */
@@ -98,7 +98,7 @@ public abstract class AbstractJackson2View extends AbstractView {
 	 * ObjectMapper mapper = new ObjectMapper();
 	 * mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 	 * </pre>
-	 * <p>The default value is {@code false}.
+	 * The default value is {@code false}.
 	 */
 	public void setPrettyPrint(boolean prettyPrint) {
 		this.prettyPrint = prettyPrint;
@@ -113,7 +113,7 @@ public abstract class AbstractJackson2View extends AbstractView {
 
 	/**
 	 * Disables caching of the generated JSON.
-	 * <p>Default is {@code true}, which will prevent the client from caching the generated JSON.
+	 * Default is {@code true}, which will prevent the client from caching the generated JSON.
 	 */
 	public void setDisableCaching(boolean disableCaching) {
 		this.disableCaching = disableCaching;
@@ -123,7 +123,7 @@ public abstract class AbstractJackson2View extends AbstractView {
 	 * Whether to update the 'Content-Length' header of the response. When set to
 	 * {@code true}, the response is buffered in order to determine the content
 	 * length and set the 'Content-Length' header of the response.
-	 * <p>The default setting is {@code false}.
+	 * The default setting is {@code false}.
 	 */
 	public void setUpdateContentLength(boolean updateContentLength) {
 		this.updateContentLength = updateContentLength;

@@ -7,11 +7,11 @@ package org.springframework.transaction;
  * savepoints in a generic fashion. Extended by TransactionStatus to
  * expose savepoint management functionality for a specific transaction.
  *
- * <p>Note that savepoints can only work within an active transaction.
+ * Note that savepoints can only work within an active transaction.
  * Just use this programmatic savepoint handling for advanced needs;
  * else, a subtransaction with PROPAGATION_NESTED is preferable.
  *
- * <p>This interface is inspired by JDBC 3.0's Savepoint mechanism
+ * This interface is inspired by JDBC 3.0's Savepoint mechanism
  * but is independent from any specific persistence technology.
 
  * @since 1.1
@@ -25,7 +25,7 @@ public interface SavepointManager {
 	 * Create a new savepoint. You can roll back to a specific savepoint
 	 * via {@code rollbackToSavepoint}, and explicitly release a savepoint
 	 * that you don't need anymore via {@code releaseSavepoint}.
-	 * <p>Note that most transaction managers will automatically release
+	 * Note that most transaction managers will automatically release
 	 * savepoints at transaction completion.
 	 * @return a savepoint object, to be passed into
 	 * {@link #rollbackToSavepoint} or {@link #releaseSavepoint}
@@ -40,7 +40,7 @@ public interface SavepointManager {
 
 	/**
 	 * Roll back to the given savepoint.
-	 * <p>The savepoint will <i>not</i> be automatically released afterwards.
+	 * The savepoint will <i>not</i> be automatically released afterwards.
 	 * You may explicitly call {@link #releaseSavepoint(Object)} or rely on
 	 * automatic release on transaction completion.
 	 * @param savepoint the savepoint to roll back to
@@ -56,9 +56,9 @@ public interface SavepointManager {
 
 	/**
 	 * Explicitly release the given savepoint.
-	 * <p>Note that most transaction managers will automatically release
+	 * Note that most transaction managers will automatically release
 	 * savepoints on transaction completion.
-	 * <p>Implementations should fail as silently as possible if proper
+	 * Implementations should fail as silently as possible if proper
 	 * resource cleanup will eventually happen at transaction completion.
 	 * @param savepoint the savepoint to release
 	 * @throws NestedTransactionNotSupportedException if the underlying

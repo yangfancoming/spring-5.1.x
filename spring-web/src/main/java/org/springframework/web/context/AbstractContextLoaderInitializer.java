@@ -16,7 +16,7 @@ import org.springframework.web.WebApplicationInitializer;
  * Convenient base class for {@link WebApplicationInitializer} implementations
  * that register a {@link ContextLoaderListener} in the servlet context.
  *
- * <p>The only method required to be implemented by subclasses is
+ * The only method required to be implemented by subclasses is
  * {@link #createRootApplicationContext()}, which gets invoked from
  * {@link #registerContextLoaderListener(ServletContext)}.
  *
@@ -58,7 +58,7 @@ public abstract class AbstractContextLoaderInitializer implements WebApplication
 	/**
 	 * Create the "<strong>root</strong>" application context to be provided to the
 	 * {@code ContextLoaderListener}.
-	 * <p>The returned context is delegated to
+	 * The returned context is delegated to
 	 * {@link ContextLoaderListener#ContextLoaderListener(WebApplicationContext)} and will
 	 * be established as the parent context for any {@code DispatcherServlet} application
 	 * contexts. As such, it typically contains middle-tier services, data sources, etc.

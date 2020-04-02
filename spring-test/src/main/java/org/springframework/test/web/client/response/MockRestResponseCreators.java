@@ -13,7 +13,7 @@ import org.springframework.test.web.client.ResponseCreator;
 /**
  * Static factory methods for obtaining a {@link ResponseCreator} instance.
  *
- * <p><strong>Eclipse users:</strong> consider adding this class as a Java editor
+ * <strong>Eclipse users:</strong> consider adding this class as a Java editor
  * favorite. To navigate, open the Preferences and type "favorites".
  *
  * @author Rossen Stoyanchev

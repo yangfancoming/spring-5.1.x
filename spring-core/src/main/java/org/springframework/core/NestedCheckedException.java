@@ -7,12 +7,12 @@ import org.springframework.lang.Nullable;
 /**
  * Handy class for wrapping checked {@code Exceptions} with a root cause.
  *
- * <p>This class is {@code abstract} to force the programmer to extend
+ * This class is {@code abstract} to force the programmer to extend
  * the class. {@code getMessage} will include nested exception
  * information; {@code printStackTrace} and other like methods will
  * delegate to the wrapped exception, if any.
  *
- * <p>The similarity between this class and the {@link NestedRuntimeException}
+ * The similarity between this class and the {@link NestedRuntimeException}
  * class is unavoidable, as Java forces these two classes to have different
  * superclasses (ah, the inflexibility of concrete inheritance!).
  *
@@ -76,7 +76,7 @@ public abstract class NestedCheckedException extends Exception {
 	/**
 	 * Retrieve the most specific cause of this exception, that is,
 	 * either the innermost cause (root cause) or this exception itself.
-	 * <p>Differs from {@link #getRootCause()} in that it falls back
+	 * Differs from {@link #getRootCause()} in that it falls back
 	 * to the present exception if there is no root cause.
 	 * @return the most specific cause (never {@code null})
 	 * @since 2.0.3

@@ -76,7 +76,7 @@ public class NettyDataBufferFactory implements DataBufferFactory {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation uses Netty's {@link CompositeByteBuf}.
+	 * This implementation uses Netty's {@link CompositeByteBuf}.
 	 */
 	@Override
 	public DataBuffer join(List<? extends DataBuffer> dataBuffers) {
@@ -95,7 +95,7 @@ public class NettyDataBufferFactory implements DataBufferFactory {
 
 	/**
 	 * Return the given Netty {@link DataBuffer} as a {@link ByteBuf}.
-	 * <p>Returns the {@linkplain NettyDataBuffer#getNativeBuffer() native buffer}
+	 * Returns the {@linkplain NettyDataBuffer#getNativeBuffer() native buffer}
 	 * if {@code buffer} is a {@link NettyDataBuffer}; returns
 	 * {@link Unpooled#wrappedBuffer(ByteBuffer)} otherwise.
 	 * @param buffer the {@code DataBuffer} to return a {@code ByteBuf} for

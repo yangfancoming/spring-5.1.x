@@ -22,25 +22,25 @@ import org.springframework.util.ObjectUtils;
  * (by default: a {@link java.util.concurrent.ScheduledThreadPoolExecutor})
  * and exposes it for bean references.
  *
- * <p>Allows for registration of {@link ScheduledExecutorTask ScheduledExecutorTasks},
+ * Allows for registration of {@link ScheduledExecutorTask ScheduledExecutorTasks},
  * automatically starting the {@link ScheduledExecutorService} on initialization and
  * cancelling it on destruction of the context. In scenarios that only require static
  * registration of tasks at startup, there is no need to access the
  * {@link ScheduledExecutorService} instance itself in application code at all;
  * {@code ScheduledExecutorFactoryBean} is then just being used for lifecycle integration.
  *
- * <p>For an alternative, you may set up a {@link ScheduledThreadPoolExecutor} instance
+ * For an alternative, you may set up a {@link ScheduledThreadPoolExecutor} instance
  * directly using constructor injection, or use a factory method definition that points
  * to the {@link java.util.concurrent.Executors} class.
  * <b>This is strongly recommended in particular for common {@code @Bean} methods in
  * configuration classes, where this {@code FactoryBean} variant would force you to
  * return the {@code FactoryBean} type instead of {@code ScheduledExecutorService}.</b>
  *
- * <p>Note that {@link java.util.concurrent.ScheduledExecutorService}
+ * Note that {@link java.util.concurrent.ScheduledExecutorService}
  * uses a {@link Runnable} instance that is shared between repeated executions,
  * in contrast to Quartz which instantiates a new Job for each execution.
  *
- * <p><b>WARNING:</b> {@link Runnable Runnables} submitted via a native
+ * <b>WARNING:</b> {@link Runnable Runnables} submitted via a native
  * {@link java.util.concurrent.ScheduledExecutorService} are removed from
  * the execution schedule once they throw an exception. If you would prefer
  * to continue execution after such an exception, switch this FactoryBean's
@@ -98,7 +98,7 @@ public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
 
 	/**
 	 * Set the remove-on-cancel mode on {@link ScheduledThreadPoolExecutor}.
-	 * <p>Default is {@code false}. If set to {@code true}, the target executor will be
+	 * Default is {@code false}. If set to {@code true}, the target executor will be
 	 * switched into remove-on-cancel mode (if possible, with a soft fallback otherwise).
 	 */
 	public void setRemoveOnCancelPolicy(boolean removeOnCancelPolicy) {
@@ -108,7 +108,7 @@ public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
 	/**
 	 * Specify whether to continue the execution of a scheduled task
 	 * after it threw an exception.
-	 * <p>Default is "false", matching the native behavior of a
+	 * Default is "false", matching the native behavior of a
 	 * {@link java.util.concurrent.ScheduledExecutorService}.
 	 * Switch this flag to "true" for exception-proof execution of each task,
 	 * continuing scheduled execution as in the case of successful execution.
@@ -121,7 +121,7 @@ public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
 	/**
 	 * Specify whether this FactoryBean should expose an unconfigurable
 	 * decorator for the created executor.
-	 * <p>Default is "false", exposing the raw executor as bean reference.
+	 * Default is "false", exposing the raw executor as bean reference.
 	 * Switch this flag to "true" to strictly prevent clients from
 	 * modifying the executor's configuration.
 	 * @see java.util.concurrent.Executors#unconfigurableScheduledExecutorService
@@ -161,7 +161,7 @@ public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
 
 	/**
 	 * Create a new {@link ScheduledExecutorService} instance.
-	 * <p>The default implementation creates a {@link ScheduledThreadPoolExecutor}.
+	 * The default implementation creates a {@link ScheduledThreadPoolExecutor}.
 	 * Can be overridden in subclasses to provide custom {@link ScheduledExecutorService} instances.
 	 * @param poolSize the specified pool size
 	 * @param threadFactory the ThreadFactory to use
@@ -201,7 +201,7 @@ public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
 
 	/**
 	 * Determine the actual Runnable to schedule for the given task.
-	 * <p>Wraps the task's Runnable in a
+	 * Wraps the task's Runnable in a
 	 * {@link org.springframework.scheduling.support.DelegatingErrorHandlingRunnable}
 	 * that will catch and log the Exception. If necessary, it will suppress the
 	 * Exception according to the

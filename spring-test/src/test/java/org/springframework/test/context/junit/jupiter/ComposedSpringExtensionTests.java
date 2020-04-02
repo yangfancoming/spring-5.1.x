@@ -20,11 +20,11 @@ import static org.junit.jupiter.api.Assertions.*;
  * Integration tests which demonstrate the composability of annotations from
  * JUnit Jupiter and the Spring TestContext Framework.
  *
- * <p>Note that {@link SpringJUnitConfig @SpringJUnitConfig} is meta-annotated
+ * Note that {@link SpringJUnitConfig @SpringJUnitConfig} is meta-annotated
  * with JUnit Jupiter's {@link ExtendWith @ExtendWith} <b>and</b> Spring's
  * {@link ContextConfiguration @ContextConfiguration}.
  *
- * <p>To run these tests in an IDE that does not have built-in support for the JUnit
+ * To run these tests in an IDE that does not have built-in support for the JUnit
  * Platform, simply run {@link SpringJUnitJupiterTestSuite} as a JUnit 4 test.
  *
  * @author Sam Brannen

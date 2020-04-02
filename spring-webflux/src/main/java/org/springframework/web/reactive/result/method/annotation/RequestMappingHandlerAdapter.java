@@ -63,7 +63,7 @@ public class RequestMappingHandlerAdapter implements HandlerAdapter, Application
 
 	/**
 	 * Configure HTTP message readers to de-serialize the request body with.
-	 * <p>By default this is set to {@link ServerCodecConfigurer}'s readers with defaults.
+	 * By default this is set to {@link ServerCodecConfigurer}'s readers with defaults.
 	 */
 	public void setMessageReaders(List<HttpMessageReader<?>> messageReaders) {
 		Assert.notNull(messageReaders, "'messageReaders' must not be null");
@@ -110,7 +110,7 @@ public class RequestMappingHandlerAdapter implements HandlerAdapter, Application
 
 	/**
 	 * Configure the registry for adapting various reactive types.
-	 * <p>By default this is an instance of {@link ReactiveAdapterRegistry} with
+	 * By default this is an instance of {@link ReactiveAdapterRegistry} with
 	 * default settings.
 	 */
 	public void setReactiveAdapterRegistry(@Nullable ReactiveAdapterRegistry registry) {

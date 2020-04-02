@@ -27,9 +27,9 @@ import static org.springframework.test.context.junit4.JUnitTestingUtils.*;
  * {@code @BeforeTransaction} and {@code @AfterTransaction} methods can fail
  * tests run via the {@link SpringRunner} in a JUnit 4 environment.
  *
- * <p>See: <a href="https://jira.spring.io/browse/SPR-3960" target="_blank">SPR-3960</a>.
+ * See: <a href="https://jira.spring.io/browse/SPR-3960" target="_blank">SPR-3960</a>.
  *
- * <p>Indirectly, this class also verifies that all {@code TestExecutionListener}
+ * Indirectly, this class also verifies that all {@code TestExecutionListener}
  * lifecycle callbacks are called.
  *
  * @author Sam Brannen

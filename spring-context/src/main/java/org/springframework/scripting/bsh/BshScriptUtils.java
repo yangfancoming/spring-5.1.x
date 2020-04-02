@@ -29,7 +29,7 @@ public abstract class BshScriptUtils {
 
 	/**
 	 * Create a new BeanShell-scripted object from the given script source.
-	 * <p>With this {@code createBshObject} variant, the script needs to
+	 * With this {@code createBshObject} variant, the script needs to
 	 * declare a full class or return an actual instance of the scripted object.
 	 * @param scriptSource the script source text
 	 * @return the scripted Java object
@@ -42,7 +42,7 @@ public abstract class BshScriptUtils {
 	/**
 	 * Create a new BeanShell-scripted object from the given script source,
 	 * using the default ClassLoader.
-	 * <p>The script may either be a simple script that needs a corresponding proxy
+	 * The script may either be a simple script that needs a corresponding proxy
 	 * generated (implementing the specified interfaces), or declare a full class
 	 * or return an actual instance of the scripted object (in which case the
 	 * specified interfaces, if any, need to be implemented by that class/instance).
@@ -60,7 +60,7 @@ public abstract class BshScriptUtils {
 
 	/**
 	 * Create a new BeanShell-scripted object from the given script source.
-	 * <p>The script may either be a simple script that needs a corresponding proxy
+	 * The script may either be a simple script that needs a corresponding proxy
 	 * generated (implementing the specified interfaces), or declare a full class
 	 * or return an actual instance of the scripted object (in which case the
 	 * specified interfaces, if any, need to be implemented by that class/instance).
@@ -93,7 +93,7 @@ public abstract class BshScriptUtils {
 	/**
 	 * Evaluate the specified BeanShell script based on the given script source,
 	 * returning the Class defined by the script.
-	 * <p>The script may either declare a full class or return an actual instance of
+	 * The script may either declare a full class or return an actual instance of
 	 * the scripted object (in which case the Class of the object will be returned).
 	 * In any other case, the returned Class will be {@code null}.
 	 * @param scriptSource the script source text
@@ -123,7 +123,7 @@ public abstract class BshScriptUtils {
 	/**
 	 * Evaluate the specified BeanShell script based on the given script source,
 	 * keeping a returned script Class or script Object as-is.
-	 * <p>The script may either be a simple script that needs a corresponding proxy
+	 * The script may either be a simple script that needs a corresponding proxy
 	 * generated (implementing the specified interfaces), or declare a full class
 	 * or return an actual instance of the scripted object (in which case the
 	 * specified interfaces, if any, need to be implemented by that class/instance).

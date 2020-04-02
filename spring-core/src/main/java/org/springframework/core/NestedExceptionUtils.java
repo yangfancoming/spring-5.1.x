@@ -9,7 +9,7 @@ import org.springframework.lang.Nullable;
  * holding nested exceptions. Necessary because we can't share a base
  * class among different exception types.
  *
- * <p>Mainly for use within the framework.
+ * Mainly for use within the framework.
  *
 
  * @since 2.0
@@ -62,7 +62,7 @@ public abstract class NestedExceptionUtils {
 	/**
 	 * Retrieve the most specific cause of the given exception, that is,
 	 * either the innermost cause (root cause) or the exception itself.
-	 * <p>Differs from {@link #getRootCause} in that it falls back
+	 * Differs from {@link #getRootCause} in that it falls back
 	 * to the original exception if there is no root cause.
 	 * @param original the original exception to introspect
 	 * @return the most specific cause (never {@code null})

@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.CookieValue;
  * A base abstract class to resolve method arguments annotated with
  * {@code @CookieValue}. Subclasses extract the cookie value from the request.
  *
- * <p>An {@code @CookieValue} is a named value that is resolved from a cookie.
+ * An {@code @CookieValue} is a named value that is resolved from a cookie.
  * It has a required flag and a default value to fall back on when the cookie
  * does not exist.
  *
- * <p>A {@link WebDataBinder} may be invoked to apply type conversion to the
+ * A {@link WebDataBinder} may be invoked to apply type conversion to the
  * resolved cookie value.
  *
  * @author Arjen Poutsma

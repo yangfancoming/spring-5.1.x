@@ -16,7 +16,7 @@ import org.springframework.util.StringUtils;
 /**
  * Factory that creates a Joda-Time {@link DateTimeFormatter}.
  *
- * <p>Formatters will be created using the defined {@link #setPattern pattern},
+ * Formatters will be created using the defined {@link #setPattern pattern},
  * {@link #setIso ISO}, and {@link #setStyle style} methods (considered in that order).
  *
  * @author Phillip Webb
@@ -77,7 +77,7 @@ public class DateTimeFormatterFactory {
 
 	/**
 	 * Set the two characters to use to format date values, in Joda-Time style.
-	 * <p>The first character is used for the date style; the second is for
+	 * The first character is used for the date style; the second is for
 	 * the time style. Supported characters are:
 	 * <ul>
 	 * <li>'S' = Small</li>
@@ -103,7 +103,7 @@ public class DateTimeFormatterFactory {
 
 	/**
 	 * Create a new {@code DateTimeFormatter} using this factory.
-	 * <p>If no specific pattern or style has been defined,
+	 * If no specific pattern or style has been defined,
 	 * {@link DateTimeFormat#mediumDateTime() medium date time format} will be used.
 	 * @return a new date time formatter
 	 * @see #createDateTimeFormatter(DateTimeFormatter)
@@ -114,7 +114,7 @@ public class DateTimeFormatterFactory {
 
 	/**
 	 * Create a new {@code DateTimeFormatter} using this factory.
-	 * <p>If no specific pattern or style has been defined,
+	 * If no specific pattern or style has been defined,
 	 * the supplied {@code fallbackFormatter} will be used.
 	 * @param fallbackFormatter the fall-back formatter to use
 	 * when no specific factory properties have been set

@@ -11,7 +11,7 @@ import org.springframework.util.ObjectUtils;
 /**
  * Represents an override of a method that looks up an object in the same IoC context.
  *
- * <p>Methods eligible for lookup override must not have arguments.
+ * Methods eligible for lookup override must not have arguments.
  *
  * @author Rod Johnson
 
@@ -60,10 +60,10 @@ public class LookupOverride extends MethodOverride {
 
 	/**
 	 * Match the specified method by {@link Method} reference or method name.
-	 * <p>For backwards compatibility reasons, in a scenario with overloaded
+	 * For backwards compatibility reasons, in a scenario with overloaded
 	 * non-abstract methods of the given name, only the no-arg variant of a
 	 * method will be turned into a container-driven lookup method.
-	 * <p>In case of a provided {@link Method}, only straight matches will
+	 * In case of a provided {@link Method}, only straight matches will
 	 * be considered, usually demarcated by the {@code @Lookup} annotation.
 	 */
 	@Override

@@ -14,12 +14,12 @@ import org.springframework.test.web.servlet.RequestBuilder;
  * Static factory methods for {@link RequestBuilder RequestBuilders}.
  *
  * <h3>Integration with the Spring TestContext Framework</h3>
- * <p>Methods in this class will reuse a
+ * Methods in this class will reuse a
  * {@link org.springframework.mock.web.MockServletContext MockServletContext}
  * that was created by the Spring TestContext Framework.
  *
  * <h3>Eclipse Users</h3>
- * <p>Consider adding this class as a Java editor favorite. To navigate to
+ * Consider adding this class as a Java editor favorite. To navigate to
  * this setting, open the Preferences and type "favorites".
  *
  * @author Arjen Poutsma
@@ -234,13 +234,13 @@ public abstract class MockMvcRequestBuilders {
 	/**
 	 * Create a {@link RequestBuilder} for an async dispatch from the
 	 * {@link MvcResult} of the request that started async processing.
-	 * <p>Usage involves performing a request that starts async processing first:
+	 * Usage involves performing a request that starts async processing first:
 	 * <pre class="code">
 	 * MvcResult mvcResult = this.mockMvc.perform(get("/1"))
 	 *	.andExpect(request().asyncStarted())
 	 *	.andReturn();
 	 *  </pre>
-	 * <p>And then performing the async dispatch re-using the {@code MvcResult}:
+	 * And then performing the async dispatch re-using the {@code MvcResult}:
 	 * <pre class="code">
 	 * this.mockMvc.perform(asyncDispatch(mvcResult))
 	 * 	.andExpect(status().isOk())

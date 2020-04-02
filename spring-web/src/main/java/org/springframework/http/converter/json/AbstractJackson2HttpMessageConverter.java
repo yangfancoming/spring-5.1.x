@@ -43,7 +43,7 @@ import org.springframework.util.TypeUtils;
  * Abstract base class for Jackson based and content type independent
  * {@link HttpMessageConverter} implementations.
  *
- * <p>Compatible with Jackson 2.9 and higher, as of Spring 5.0.
+ * Compatible with Jackson 2.9 and higher, as of Spring 5.0.
  *
  * @author Arjen Poutsma
  * @author Keith Donald
@@ -92,7 +92,7 @@ public abstract class AbstractJackson2HttpMessageConverter extends AbstractGener
 	/**
 	 * Set the {@code ObjectMapper} for this view.
 	 * If not set, a default {@link ObjectMapper#ObjectMapper() ObjectMapper} is used.
-	 * <p>Setting a custom-configured {@code ObjectMapper} is one way to take further
+	 * Setting a custom-configured {@code ObjectMapper} is one way to take further
 	 * control of the JSON serialization process. For example, an extended
 	 * {@link com.fasterxml.jackson.databind.ser.SerializerFactory}
 	 * can be configured that provides custom serializers for specific types.

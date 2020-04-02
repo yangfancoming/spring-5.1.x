@@ -11,17 +11,17 @@ import org.springframework.util.Assert;
 /**
  * Generic converter interface for converting between two or more types.
  *
- * <p>This is the most flexible of the Converter SPI interfaces, but also the most complex.
+ * This is the most flexible of the Converter SPI interfaces, but also the most complex.
  * It is flexible in that a GenericConverter may support converting between multiple source/target
  * type pairs (see {@link #getConvertibleTypes()}. In addition, GenericConverter implementations
  * have access to source/target {@link TypeDescriptor field context} during the type conversion
  * process. This allows for resolving source and target field metadata such as annotations and
  * generics information, which can be used to influence the conversion logic.
  *
- * <p>This interface should generally not be used when the simpler {@link Converter} or
+ * This interface should generally not be used when the simpler {@link Converter} or
  * {@link ConverterFactory} interface is sufficient.
  *
- * <p>Implementations may additionally implement {@link ConditionalConverter}.
+ * Implementations may additionally implement {@link ConditionalConverter}.
  *
  * @author Keith Donald
 
@@ -35,8 +35,8 @@ public interface GenericConverter {
 
 	/**
 	 * Return the source and target types that this converter can convert between.
-	 * <p>Each entry is a convertible source-to-target type pair.
-	 * <p>For {@link ConditionalConverter conditional converters} this method may return
+	 * Each entry is a convertible source-to-target type pair.
+	 * For {@link ConditionalConverter conditional converters} this method may return
 	 * {@code null} to indicate all source-to-target pairs should be considered.
 	 */
 	@Nullable

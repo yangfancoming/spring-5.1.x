@@ -39,7 +39,7 @@ import org.springframework.util.StringUtils;
 /**
  * Static convenience methods for JavaBeans: for instantiating beans,
  * checking bean property types, copying bean properties, etc.
- * <p>Mainly for use within the framework, but to some degree also useful for application classes.
+ * Mainly for use within the framework, but to some degree also useful for application classes.
  */
 public abstract class BeanUtils {
 
@@ -75,7 +75,7 @@ public abstract class BeanUtils {
 	 * Instantiate a class using its 'primary' constructor (for Kotlin classes,
 	 * potentially having default arguments declared) or its default constructor
 	 * (for regular Java classes, expecting a standard no-arg setup).
-	 * <p>Note that this method tries to set the constructor accessible
+	 * Note that this method tries to set the constructor accessible
 	 * if given a non-accessible (that is, non-public) constructor.
 	 * @param clazz the class to instantiate
 	 * @return the new instance
@@ -108,9 +108,9 @@ public abstract class BeanUtils {
 	/**
 	 * Instantiate a class using its no-arg constructor and return the new instance
 	 * as the specified assignable type.
-	 * <p>Useful in cases where the type of the class to instantiate (clazz) is not
+	 * Useful in cases where the type of the class to instantiate (clazz) is not
 	 * available, but the type desired (assignableTo) is known.
-	 * <p>Note that this method tries to set the constructor accessible if given a
+	 * Note that this method tries to set the constructor accessible if given a
 	 * non-accessible (that is, non-public) constructor.
 	 * @param clazz class to instantiate
 	 * @param assignableTo type that clazz must be assignableTo
@@ -126,7 +126,7 @@ public abstract class BeanUtils {
 
 	/**
 	 * Convenience method to instantiate a class using the given constructor.
-	 * <p>Note that this method tries to set the constructor accessible if given a
+	 * Note that this method tries to set the constructor accessible if given a
 	 * non-accessible (that is, non-public) constructor, and supports Kotlin classes
 	 * with optional parameters and default values.
 	 * @param ctor the constructor to instantiate
@@ -181,7 +181,7 @@ public abstract class BeanUtils {
 	 * Find a method with the given method name and the given parameter types,
 	 * declared on the given class or one of its superclasses. Prefers public methods,
 	 * but will return a protected, package access, or private method too.
-	 * <p>Checks {@code Class.getMethod} first, falling back to
+	 * Checks {@code Class.getMethod} first, falling back to
 	 * {@code findDeclaredMethod}. This allows to find public methods
 	 * without issues even in environments with restricted Java security settings.
 	 * @param clazz the class to check
@@ -204,7 +204,7 @@ public abstract class BeanUtils {
 	 * Find a method with the given method name and the given parameter types,
 	 * declared on the given class or one of its superclasses. Will return a public,
 	 * protected, package access, or private method.
-	 * <p>Checks {@code Class.getDeclaredMethod}, cascading upwards to all superclasses.
+	 * Checks {@code Class.getDeclaredMethod}, cascading upwards to all superclasses.
 	 * @param clazz the class to check
 	 * @param methodName the name of the method to find
 	 * @param paramTypes the parameter types of the method to find
@@ -227,7 +227,7 @@ public abstract class BeanUtils {
 	 * Find a method with the given method name and minimal parameters (best case: none),
 	 * declared on the given class or one of its superclasses. Prefers public methods,
 	 * but will return a protected, package access, or private method too.
-	 * <p>Checks {@code Class.getMethods} first, falling back to
+	 * Checks {@code Class.getMethods} first, falling back to
 	 * {@code findDeclaredMethodWithMinimalParameters}. This allows for finding public
 	 * methods without issues even in environments with restricted Java security settings.
 	 * @param clazz the class to check
@@ -251,7 +251,7 @@ public abstract class BeanUtils {
 	 * Find a method with the given method name and minimal parameters (best case: none),
 	 * declared on the given class or one of its superclasses. Will return a public,
 	 * protected, package access, or private method.
-	 * <p>Checks {@code Class.getDeclaredMethods}, cascading upwards to all superclasses.
+	 * Checks {@code Class.getDeclaredMethods}, cascading upwards to all superclasses.
 	 * @param clazz the class to check
 	 * @param methodName the name of the method to find
 	 * @return the Method object, or {@code null} if not found
@@ -310,14 +310,14 @@ public abstract class BeanUtils {
 	 * Parse a method signature in the form {@code methodName[([arg_list])]},
 	 * where {@code arg_list} is an optional, comma-separated list of fully-qualified
 	 * type names, and attempts to resolve that signature against the supplied {@code Class}.
-	 * <p>When not supplying an argument list ({@code methodName}) the method whose name
+	 * When not supplying an argument list ({@code methodName}) the method whose name
 	 * matches and has the least number of parameters will be returned. When supplying an
 	 * argument type list, only the method whose name and argument types match will be returned.
-	 * <p>Note then that {@code methodName} and {@code methodName()} are <strong>not</strong>
+	 * Note then that {@code methodName} and {@code methodName()} are <strong>not</strong>
 	 * resolved in the same way. The signature {@code methodName} means the method called
 	 * {@code methodName} with the least number of arguments, whereas {@code methodName()}
 	 * means the method called {@code methodName} with exactly 0 arguments.
-	 * <p>If no method can be found, then {@code null} is returned.
+	 * If no method can be found, then {@code null} is returned.
 	 * @param signature the method signature as String representation
 	 * @param clazz the class to resolve the method signature against
 	 * @return the resolved Method
@@ -416,7 +416,7 @@ public abstract class BeanUtils {
 	/**
 	 * Find a JavaBeans PropertyEditor following the 'Editor' suffix convention
 	 * (e.g. "mypackage.MyDomainClass" -> "mypackage.MyDomainClassEditor").
-	 * <p>Compatible to the standard JavaBeans convention as implemented by
+	 * Compatible to the standard JavaBeans convention as implemented by
 	 * {@link java.beans.PropertyEditorManager} but isolated from the latter's
 	 * registered default editors for primitive types.
 	 * @param targetType the type to find an editor for
@@ -499,7 +499,7 @@ public abstract class BeanUtils {
 	 * Check if the given type represents a "simple" property:
 	 * a primitive, a String or other CharSequence, a Number, a Date,
 	 * a URI, a URL, a Locale, a Class, or a corresponding array.
-	 * <p>Used to determine properties to check for a "simple" dependency-check.
+	 * Used to determine properties to check for a "simple" dependency-check.
 	 * @param clazz the type to check
 	 * @return whether the given type represents a "simple" property
 	 * @see org.springframework.beans.factory.support.RootBeanDefinition#DEPENDENCY_CHECK_SIMPLE
@@ -530,10 +530,10 @@ public abstract class BeanUtils {
 
 	/**
 	 * Copy the property values of the given source bean into the target bean.
-	 * <p>Note: The source and target classes do not have to match or even be derived
+	 * Note: The source and target classes do not have to match or even be derived
 	 * from each other, as long as the properties match. Any bean properties that the
 	 * source bean exposes but the target bean does not will silently be ignored.
-	 * <p>This is just a convenience method. For more complex transfer needs,
+	 * This is just a convenience method. For more complex transfer needs,
 	 * consider using a full BeanWrapper.
 	 * @param source the source bean
 	 * @param target the target bean
@@ -547,10 +547,10 @@ public abstract class BeanUtils {
 	/**
 	 * Copy the property values of the given source bean into the given target bean,
 	 * only setting properties defined in the given "editable" class (or interface).
-	 * <p>Note: The source and target classes do not have to match or even be derived
+	 * Note: The source and target classes do not have to match or even be derived
 	 * from each other, as long as the properties match. Any bean properties that the
 	 * source bean exposes but the target bean does not will silently be ignored.
-	 * <p>This is just a convenience method. For more complex transfer needs,
+	 * This is just a convenience method. For more complex transfer needs,
 	 * consider using a full BeanWrapper.
 	 * @param source the source bean
 	 * @param target the target bean
@@ -565,10 +565,10 @@ public abstract class BeanUtils {
 	/**
 	 * Copy the property values of the given source bean into the given target bean,
 	 * ignoring the given "ignoreProperties".
-	 * <p>Note: The source and target classes do not have to match or even be derived
+	 * Note: The source and target classes do not have to match or even be derived
 	 * from each other, as long as the properties match. Any bean properties that the
 	 * source bean exposes but the target bean does not will silently be ignored.
-	 * <p>This is just a convenience method. For more complex transfer needs,
+	 * This is just a convenience method. For more complex transfer needs,
 	 * consider using a full BeanWrapper.
 	 * @param source the source bean
 	 * @param target the target bean
@@ -582,7 +582,7 @@ public abstract class BeanUtils {
 
 	/**
 	 * Copy the property values of the given source bean into the given target bean.
-	 * <p>Note: The source and target classes do not have to match or even be derived
+	 * Note: The source and target classes do not have to match or even be derived
 	 * from each other, as long as the properties match. Any bean properties that the
 	 * source bean exposes but the target bean does not will silently be ignored.
 	 * @param source the source bean

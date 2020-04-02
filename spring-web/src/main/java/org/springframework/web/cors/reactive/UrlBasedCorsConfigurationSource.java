@@ -16,7 +16,7 @@ import org.springframework.web.util.pattern.PathPatternParser;
  * Provide a per reactive request {@link CorsConfiguration} instance based on a
  * collection of {@link CorsConfiguration} mapped on path patterns.
  *
- * <p>Exact path mapping URIs (such as {@code "/admin"}) are supported
+ * Exact path mapping URIs (such as {@code "/admin"}) are supported
  * as well as Ant-style path patterns (such as {@code "/admin/**"}).
  *
  * @author Sebastien Deleuze

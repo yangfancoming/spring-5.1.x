@@ -272,7 +272,7 @@ public class DefaultContextCache implements ContextCache {
 	/**
 	 * Generate a text string containing the implementation type of this
 	 * cache and its statistics.
-	 * <p>The string returned by this method contains all information
+	 * The string returned by this method contains all information
 	 * required for compliance with the contract for {@link #logStatistics()}.
 	 * @return a string representation of this cache, including statistics
 	 */

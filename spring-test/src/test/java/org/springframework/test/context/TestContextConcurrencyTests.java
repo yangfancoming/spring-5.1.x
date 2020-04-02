@@ -22,7 +22,7 @@ import static org.junit.Assert.assertThat;
  * when a registered {@link TestExecutionListener} updates the mutable
  * state and attributes of the context from concurrently executing threads.
  *
- * <p>In other words, these tests verify that mutated state and attributes
+ * In other words, these tests verify that mutated state and attributes
  * are only be visible to the thread in which the mutation occurred.
  *
  * @author Sam Brannen

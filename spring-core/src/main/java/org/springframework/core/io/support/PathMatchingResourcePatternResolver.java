@@ -47,8 +47,8 @@ import org.springframework.util.StringUtils;
  * or alternatively may contain the special "{@code classpath*:}" prefix and/or
  * internal Ant-style regular expressions (matched using Spring's {@link org.springframework.util.AntPathMatcher} utility).
  * Both of the latter are effectively wildcards.
- * <p><b>No Wildcards:</b>
- * <p>In the simple case, if the specified location path does not start with the
+ * <b>No Wildcards:</b>
+ * In the simple case, if the specified location path does not start with the
  * {@code "classpath*:}" prefix, and does not contain a PathMatcher pattern,
  * this resolver will simply return a single resource via a
  * {@code getResource()} call on the underlying {@code ResourceLoader}.
@@ -58,9 +58,9 @@ import org.springframework.util.StringUtils;
  * fashion specific to the underlying {@code ResourceLoader} (e.g.
  * {@code ServletContextResource} for a {@code WebApplicationContext}).
  *
- * <p><b>Ant-style Patterns:</b>
+ * <b>Ant-style Patterns:</b>
  *
- * <p>When the path location contains an Ant-style pattern, e.g.:
+ * When the path location contains an Ant-style pattern, e.g.:
  * <pre class="code">
  * /WEB-INF/*-context.xml
  * com/mycompany/**&#47;applicationContext.xml
@@ -76,13 +76,13 @@ import org.springframework.util.StringUtils;
  * either gets a {@code java.net.JarURLConnection} from it, or manually parses
  * the jar URL, and then traverses the contents of the jar file, to resolve the wildcards.
  *
- * <p><b>Implications on portability:</b>
+ * <b>Implications on portability:</b>
  *
- * <p>If the specified path is already a file URL (either explicitly, or
+ * If the specified path is already a file URL (either explicitly, or
  * implicitly because the base {@code ResourceLoader} is a filesystem one,
  * then wildcarding is guaranteed to work in a completely portable fashion.
  *
- * <p>If the specified path is a classpath location, then the resolver must
+ * If the specified path is a classpath location, then the resolver must
  * obtain the last non-wildcard path segment URL via a
  * {@code Classloader.getResource()} call. Since this is just a
  * node of the path (not the file at the end) it is actually undefined
@@ -92,16 +92,16 @@ import org.springframework.util.StringUtils;
  * location, or a jar URL of some sort, where the classpath resource resolves
  * to a jar location. Still, there is a portability concern on this operation.
  *
- * <p>If a jar URL is obtained for the last non-wildcard segment, the resolver
+ * If a jar URL is obtained for the last non-wildcard segment, the resolver
  * must be able to get a {@code java.net.JarURLConnection} from it, or
  * manually parse the jar URL, to be able to walk the contents of the jar,
  * and resolve the wildcard. This will work in most environments, but will
  * fail in others, and it is strongly recommended that the wildcard
  * resolution of resources coming from jars be thoroughly tested in your specific environment before you rely on it.
  *
- * <p><b>{@code classpath*:} Prefix:</b>
+ * <b>{@code classpath*:} Prefix:</b>
  *
- * <p>There is special support for retrieving multiple class path resources with
+ * There is special support for retrieving multiple class path resources with
  * the same name, via the "{@code classpath*:}" prefix. For example,
  * "{@code classpath*:META-INF/beans.xml}" will find all "beans.xml"
  * files in the class path, be it in "classes" directories or in JAR files.
@@ -109,7 +109,7 @@ import org.springframework.util.StringUtils;
  * at the same location within each jar file. Internally, this happens via a
  * {@code ClassLoader.getResources()} call, and is completely portable.
  *
- * <p>The "classpath*:" prefix can also be combined with a PathMatcher pattern in
+ * The "classpath*:" prefix can also be combined with a PathMatcher pattern in
  * the rest of the location path, for example "classpath*:META-INF/*-beans.xml".
  * In this case, the resolution strategy is fairly simple: a
  * {@code ClassLoader.getResources()} call is used on the last non-wildcard
@@ -117,9 +117,9 @@ import org.springframework.util.StringUtils;
  * and then off each resource the same PathMatcher resolution strategy described
  * above is used for the wildcard subpath.
  *
- * <p><b>Other notes:</b>
+ * <b>Other notes:</b>
  *
- * <p><b>WARNING:</b> Note that "{@code classpath*:}" when combined with
+ * <b>WARNING:</b> Note that "{@code classpath*:}" when combined with
  * Ant-style patterns will only work reliably with at least one root directory
  * before the pattern starts, unless the actual target files reside in the file
  * system. This means that a pattern like "{@code classpath*:*.xml}" will
@@ -131,7 +131,7 @@ import org.springframework.util.StringUtils;
  * jar root lookup limitation through {@link URLClassLoader} introspection and
  * "java.class.path" manifest evaluation; however, without portability guarantees.
  *
- * <p><b>WARNING:</b> Ant-style patterns with "classpath:" resources are not
+ * <b>WARNING:</b> Ant-style patterns with "classpath:" resources are not
  * guaranteed to find matching resources if the root package to search is available
  * in multiple class path locations. This is because a resource such as
  * <pre class="code">
@@ -178,7 +178,7 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 
 	/**
 	 * Create a new PathMatchingResourcePatternResolver with a DefaultResourceLoader.
-	 * <p>ClassLoader access will happen via the thread context class loader.
+	 * ClassLoader access will happen via the thread context class loader.
 	 * @see org.springframework.core.io.DefaultResourceLoader
 	 */
 	public PathMatchingResourcePatternResolver() {
@@ -187,7 +187,7 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 
 	/**
 	 * Create a new PathMatchingResourcePatternResolver.
-	 * <p>ClassLoader access will happen via the thread context class loader.
+	 * ClassLoader access will happen via the thread context class loader.
 	 * @param resourceLoader the ResourceLoader to load root directories and actual resources with
 	 */
 	public PathMatchingResourcePatternResolver(ResourceLoader resourceLoader) {
@@ -319,7 +319,7 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 
 	/**
 	 * Convert the given URL as returned from the ClassLoader into a {@link Resource}.
-	 * <p>The default implementation simply creates a {@link UrlResource} instance.
+	 * The default implementation simply creates a {@link UrlResource} instance.
 	 * @param url a URL as returned from the ClassLoader
 	 * @return the corresponding Resource object
 	 * @see java.lang.ClassLoader#getResources
@@ -484,11 +484,11 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 
 	/**
 	 * Determine the root directory for the given location.
-	 * <p>Used for determining the starting point for file matching,
+	 * Used for determining the starting point for file matching,
 	 * resolving the root directory location to a {@code java.io.File}
 	 * and passing it into {@code retrieveMatchingFiles}, with the
 	 * remainder of the location as pattern.
-	 * <p>Will return "/WEB-INF/" for the pattern "/WEB-INF/*.xml",
+	 * Will return "/WEB-INF/" for the pattern "/WEB-INF/*.xml",
 	 * for example.
 	 * @param location the location to check
 	 * @return the part of the location that denotes the root directory
@@ -508,7 +508,7 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 
 	/**
 	 * Resolve the specified resource for path matching.
-	 * <p>By default, Equinox OSGi "bundleresource:" / "bundleentry:" URL will be
+	 * By default, Equinox OSGi "bundleresource:" / "bundleentry:" URL will be
 	 * resolved into a standard jar file URL that be traversed using Spring's
 	 * standard jar file traversal algorithm. For any preceding custom resolution,
 	 * override this method and replace the resource handle accordingly.
@@ -523,7 +523,7 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 	/**
 	 * Return whether the given resource handle indicates a jar resource
 	 * that the {@code doFindPathMatchingJarResources} method can handle.
-	 * <p>By default, the URL protocols "jar", "zip", "vfszip and "wsjar"
+	 * By default, the URL protocols "jar", "zip", "vfszip and "wsjar"
 	 * will be treated as jar resources. This template method allows for
 	 * detecting further kinds of jar-like resources, e.g. through
 	 * {@code instanceof} checks on the resource handle type.

@@ -16,7 +16,7 @@ import org.springframework.web.server.i18n.LocaleContextResolver;
 /**
  * Defines the strategies to be used for processing {@link HandlerFunction HandlerFunctions}.
  *
- * <p>An instance of this class is immutable. Instances are typically created through the
+ * An instance of this class is immutable. Instances are typically created through the
  * mutable {@link Builder}: either through {@link #builder()} to set up default strategies,
  * or {@link #empty()} to start from scratch.
  *

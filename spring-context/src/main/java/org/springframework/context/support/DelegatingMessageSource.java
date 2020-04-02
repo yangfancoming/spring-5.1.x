@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * Empty {@link MessageSource} that delegates all calls to the parent MessageSource.
  * If no parent is available, it simply won't resolve any message.
  *
- * <p>Used as placeholder by AbstractApplicationContext, if the context doesn't
+ * Used as placeholder by AbstractApplicationContext, if the context doesn't
  * define its own MessageSource. Not intended for direct use in applications.
  *
 

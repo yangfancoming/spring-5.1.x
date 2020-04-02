@@ -19,7 +19,7 @@ import org.springframework.util.CollectionUtils;
  * Static factory methods for {@link ResultHandler}-based result actions.
  *
  * <h3>Eclipse Users</h3>
- * <p>Consider adding this class as a Java editor favorite. To navigate to
+ * Consider adding this class as a Java editor favorite. To navigate to
  * this setting, open the Preferences and type "favorites".
  *
  * @author Rossen Stoyanchev
@@ -106,7 +106,7 @@ public abstract class MockMvcResultHandlers {
 	 * A {@link ResultHandler} that logs {@link MvcResult} details at
 	 * {@code DEBUG} level via Apache Commons Logging.
 	 *
-	 * <p>Delegates to a {@link PrintWriterPrintingResultHandler} for
+	 * Delegates to a {@link PrintWriterPrintingResultHandler} for
 	 * building the log message.
 	 *
 	 * @since 4.2

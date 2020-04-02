@@ -17,11 +17,11 @@ import org.springframework.util.StringUtils;
  * e.g. {@code file:C:/myfile.txt} or {@code classpath:myfile.txt} to
  * {@code Resource} properties instead of using a {@code String} location property.
  *
- * <p>The path may contain {@code ${...}} placeholders, to be
+ * The path may contain {@code ${...}} placeholders, to be
  * resolved as {@link org.springframework.core.env.Environment} properties:
  * e.g. {@code ${user.dir}}. Unresolvable placeholders are ignored by default.
  *
- * <p>Delegates to a {@link ResourceLoader} to do the heavy lifting,
+ * Delegates to a {@link ResourceLoader} to do the heavy lifting,
  * by default using a {@link DefaultResourceLoader}.
  *
 

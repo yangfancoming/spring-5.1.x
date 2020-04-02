@@ -9,7 +9,7 @@ package org.springframework.beans;
  * algorithm (including delegation to {@link java.beans.PropertyEditor} and
  * {@link org.springframework.core.convert.ConversionService}) underneath.
  *
- * <p><b>Note:</b> Due to its reliance on {@link java.beans.PropertyEditor PropertyEditors},
+ * <b>Note:</b> Due to its reliance on {@link java.beans.PropertyEditor PropertyEditors},
  * SimpleTypeConverter is <em>not</em> thread-safe. Use a separate instance for each thread.
  *
 

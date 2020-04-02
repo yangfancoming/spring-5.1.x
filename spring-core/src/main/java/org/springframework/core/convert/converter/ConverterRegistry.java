@@ -18,7 +18,7 @@ public interface ConverterRegistry {
 	/**
 	 * Add a plain converter to this registry.
 	 * The convertible source/target type pair is specified explicitly.
-	 * <p>Allows for a Converter to be reused for multiple distinct pairs without
+	 * Allows for a Converter to be reused for multiple distinct pairs without
 	 * having to create a Converter class for each pair.
 	 * @since 3.1
 	 */

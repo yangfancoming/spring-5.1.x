@@ -29,7 +29,7 @@ public class DefaultWebSessionManager implements WebSessionManager {
 
 	/**
 	 * Configure the id resolution strategy.
-	 * <p>By default an instance of {@link CookieWebSessionIdResolver}.
+	 * By default an instance of {@link CookieWebSessionIdResolver}.
 	 * @param sessionIdResolver the resolver to use
 	 */
 	public void setSessionIdResolver(WebSessionIdResolver sessionIdResolver) {
@@ -46,7 +46,7 @@ public class DefaultWebSessionManager implements WebSessionManager {
 
 	/**
 	 * Configure the persistence strategy.
-	 * <p>By default an instance of {@link InMemoryWebSessionStore}.
+	 * By default an instance of {@link InMemoryWebSessionStore}.
 	 * @param sessionStore the persistence strategy to use
 	 */
 	public void setSessionStore(WebSessionStore sessionStore) {

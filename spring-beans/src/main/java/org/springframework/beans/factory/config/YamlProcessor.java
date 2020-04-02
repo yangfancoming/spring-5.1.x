@@ -27,7 +27,7 @@ import org.springframework.util.StringUtils;
 /**
  * Base class for YAML factories.
  *
- * <p>Requires SnakeYAML 1.18 or higher, as of Spring Framework 5.0.6.
+ * Requires SnakeYAML 1.18 or higher, as of Spring Framework 5.0.6.
  *
  * @author Dave Syer
 
@@ -126,7 +126,7 @@ public abstract class YamlProcessor {
 
 	/**
 	 * Create the {@link Yaml} instance to use.
-	 * <p>The default implementation sets the "allowDuplicateKeys" flag to {@code false},
+	 * The default implementation sets the "allowDuplicateKeys" flag to {@code false},
 	 * enabling built-in duplicate key handling in SnakeYAML 1.18+.
 	 * @see LoaderOptions#setAllowDuplicateKeys(boolean)
 	 */

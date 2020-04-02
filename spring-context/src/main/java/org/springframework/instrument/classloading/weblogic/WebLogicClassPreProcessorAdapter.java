@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * Adapter that implements WebLogic ClassPreProcessor interface, delegating to a
  * standard JDK {@link ClassFileTransformer} underneath.
  *
- * <p>To avoid compile time checks again the vendor API, a dynamic proxy is
+ * To avoid compile time checks again the vendor API, a dynamic proxy is
  * being used.
  *
  * @author Costin Leau

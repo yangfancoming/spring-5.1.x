@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
  * Encapsulates methods for registering JavaBeans {@link PropertyEditor PropertyEditors}.
  * This is the central interface that a {@link PropertyEditorRegistrar} operates on.
  *
- * <p>Extended by {@link BeanWrapper}; implemented by {@link BeanWrapperImpl}
+ * Extended by {@link BeanWrapper}; implemented by {@link BeanWrapperImpl}
  * and {@link org.springframework.validation.DataBinder}.
  *
 
@@ -32,15 +32,15 @@ public interface PropertyEditorRegistry {
 	/**
 	 * Register the given custom property editor for the given type and
 	 * property, or for all properties of the given type.
-	 * <p>If the property path denotes an array or Collection property,
+	 * If the property path denotes an array or Collection property,
 	 * the editor will get applied either to the array/Collection itself
 	 * (the {@link PropertyEditor} has to create an array or Collection value) or
 	 * to each element (the {@code PropertyEditor} has to create the element type),
 	 * depending on the specified required type.
-	 * <p>Note: Only one single registered custom editor per property path
+	 * Note: Only one single registered custom editor per property path
 	 * is supported. In the case of a Collection/array, do not register an editor
 	 * for both the Collection/array and each element on the same property.
-	 * <p>For example, if you wanted to register an editor for "items[n].quantity"
+	 * For example, if you wanted to register an editor for "items[n].quantity"
 	 * (for all values n), you would use "items.quantity" as the value of the
 	 * 'propertyPath' argument to this method.
 	 * @param requiredType the type of the property. This may be {@code null}

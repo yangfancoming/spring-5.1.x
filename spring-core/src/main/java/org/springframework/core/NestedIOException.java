@@ -10,10 +10,10 @@ import org.springframework.lang.Nullable;
  * Subclass of {@link IOException} that properly handles a root cause,
  * exposing the root cause just like NestedChecked/RuntimeException does.
  *
- * <p>Proper root cause handling has not been added to standard IOException before
+ * Proper root cause handling has not been added to standard IOException before
  * Java 6, which is why we need to do it ourselves for Java 5 compatibility purposes.
  *
- * <p>The similarity between this class and the NestedChecked/RuntimeException
+ * The similarity between this class and the NestedChecked/RuntimeException
  * class is unavoidable, as this class needs to derive from IOException.
  *
 

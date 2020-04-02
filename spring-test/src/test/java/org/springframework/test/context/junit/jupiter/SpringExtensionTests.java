@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Integration tests which demonstrate that the Spring TestContext Framework can
  * be used with JUnit Jupiter via the {@link SpringExtension}.
  *
- * <p>To run these tests in an IDE that does not have built-in support for the JUnit
+ * To run these tests in an IDE that does not have built-in support for the JUnit
  * Platform, simply run {@link SpringJUnitJupiterTestSuite} as a JUnit 4 test.
  *
  * @author Sam Brannen

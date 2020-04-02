@@ -22,7 +22,7 @@ import org.springframework.web.context.request.WebRequest;
  * {@link SessionAttributes @SessionAttributes}. Actual storage is
  * delegated to a {@link SessionAttributeStore} instance.
  *
- * <p>When a controller annotated with {@code @SessionAttributes} adds
+ * When a controller annotated with {@code @SessionAttributes} adds
  * attributes to its model, those attributes are checked against names and
  * types specified via {@code @SessionAttributes}. Matching model attributes
  * are saved in the HTTP session and remain there until the controller calls
@@ -74,7 +74,7 @@ public class SessionAttributesHandler {
 	/**
 	 * Whether the attribute name or type match the names and types specified
 	 * via {@code @SessionAttributes} on the underlying controller.
-	 * <p>Attributes successfully resolved through this method are "remembered"
+	 * Attributes successfully resolved through this method are "remembered"
 	 * and subsequently used in {@link #retrieveAttributes(WebRequest)} and
 	 * {@link #cleanupAttributes(WebRequest)}.
 	 * @param attributeName the attribute name to check

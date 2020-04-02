@@ -44,7 +44,7 @@ public class ViewControllerRegistry {
 	/**
 	 * Map a view controller to the given URL path (or pattern) in order to render
 	 * a response with a pre-configured status code and view.
-	 * <p>Patterns like {@code "/admin/**"} or {@code "/articles/{articlename:\\w+}"}
+	 * Patterns like {@code "/admin/**"} or {@code "/articles/{articlename:\\w+}"}
 	 * are allowed. See {@link org.springframework.util.AntPathMatcher} for more details on the
 	 * syntax.
 	 */
@@ -84,7 +84,7 @@ public class ViewControllerRegistry {
 	/**
 	 * Specify the order to use for the {@code HandlerMapping} used to map view
 	 * controllers relative to other handler mappings configured in Spring MVC.
-	 * <p>By default this is set to 1, i.e. right after annotated controllers,
+	 * By default this is set to 1, i.e. right after annotated controllers,
 	 * which are ordered at 0.
 	 */
 	public void setOrder(int order) {

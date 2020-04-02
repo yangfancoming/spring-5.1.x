@@ -24,7 +24,7 @@ import org.springframework.util.ReflectionUtils;
  * A registry of adapters to adapt Reactive Streams {@link Publisher} to/from
  * various async/reactive types such as {@code CompletableFuture}, RxJava {@code Observable}, and others.
  *
- * <p>By default, depending on classpath availability, adapters are registered
+ * By default, depending on classpath availability, adapters are registered
  * for Reactor, RxJava 1, RxJava 2 types, {@link CompletableFuture}, and Java 9+ {@code Flow.Publisher}.
  * @since 5.0
  */
@@ -132,7 +132,7 @@ public class ReactiveAdapterRegistry {
 	/**
 	 * Return a shared default {@code ReactiveAdapterRegistry} instance,
 	 * lazily building it once needed.
-	 * <p><b>NOTE:</b> We highly recommend passing a long-lived, pre-configured
+	 * <b>NOTE:</b> We highly recommend passing a long-lived, pre-configured
 	 * {@code ReactiveAdapterRegistry} instance for customization purposes.
 	 * This accessor is only meant as a fallback for code paths that want to
 	 * fall back on a default instance if one isn't provided.

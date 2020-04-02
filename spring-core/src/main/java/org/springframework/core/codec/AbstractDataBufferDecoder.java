@@ -18,12 +18,12 @@ import org.springframework.util.MimeType;
  * Abstract base class for {@code Decoder} implementations that can decode
  * a {@code DataBuffer} directly to the target element type.
  *
- * <p>Sub-classes must implement {@link #decodeDataBuffer} to provide a way to
+ * Sub-classes must implement {@link #decodeDataBuffer} to provide a way to
  * transform a {@code DataBuffer} to the target data type. The default
  * {@link #decode} implementation transforms each individual data buffer while
  * {@link #decodeToMono} applies "reduce" and transforms the aggregated buffer.
  *
- * <p>Sub-classes can override {@link #decode} in order to split the input stream
+ * Sub-classes can override {@link #decode} in order to split the input stream
  * along different boundaries (e.g. on new line characters for {@code String})
  * or always reduce to a single data buffer (e.g. {@code Resource}).
  *

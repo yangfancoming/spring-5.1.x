@@ -44,13 +44,13 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * Resolve {@code @ModelAttribute} annotated method arguments and handle
  * return values from {@code @ModelAttribute} annotated methods.
  *
- * <p>Model attributes are obtained from the model or created with a default
+ * Model attributes are obtained from the model or created with a default
  * constructor (and then added to the model). Once created the attribute is
  * populated via data binding to Servlet request parameters. Validation may be
  * applied if the argument is annotated with {@code @javax.validation.Valid}.
  * or Spring's own {@code @org.springframework.validation.annotation.Validated}.
  *
- * <p>When this handler is created with {@code annotationNotRequired=true}
+ * When this handler is created with {@code annotationNotRequired=true}
  * any non-simple type argument and return value is regarded as a model
  * attribute with or without the presence of an {@code @ModelAttribute}.
  *
@@ -168,7 +168,7 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 	/**
 	 * Extension point to create the model attribute if not found in the model,
 	 * with subsequent parameter binding through bean properties (unless suppressed).
-	 * <p>The default implementation typically uses the unique public no-arg constructor
+	 * The default implementation typically uses the unique public no-arg constructor
 	 * if available but also handles a "primary constructor" approach for data classes:
 	 * It understands the JavaBeans {@link ConstructorProperties} annotation as well as
 	 * runtime-retained parameter names in the bytecode, associating request parameters
@@ -216,7 +216,7 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 
 	/**
 	 * Construct a new attribute instance with the given constructor.
-	 * <p>Called from
+	 * Called from
 	 * {@link #createAttribute(String, MethodParameter, WebDataBinderFactory, NativeWebRequest)}
 	 * after constructor resolution.
 	 * @param ctor the constructor to use
@@ -331,7 +331,7 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 
 	/**
 	 * Validate the model attribute if applicable.
-	 * <p>The default implementation checks for {@code @javax.validation.Valid},
+	 * The default implementation checks for {@code @javax.validation.Valid},
 	 * Spring's {@link org.springframework.validation.annotation.Validated},
 	 * and custom annotations whose name starts with "Valid".
 	 * @param binder the DataBinder to be used
@@ -351,7 +351,7 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 
 	/**
 	 * Validate the specified candidate value if applicable.
-	 * <p>The default implementation checks for {@code @javax.validation.Valid},
+	 * The default implementation checks for {@code @javax.validation.Valid},
 	 * Spring's {@link org.springframework.validation.annotation.Validated},
 	 * and custom annotations whose name starts with "Valid".
 	 * @param binder the DataBinder to be used
@@ -407,7 +407,7 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 
 	/**
 	 * Whether to raise a fatal bind exception on validation errors.
-	 * <p>The default implementation delegates to {@link #isBindExceptionRequired(MethodParameter)}.
+	 * The default implementation delegates to {@link #isBindExceptionRequired(MethodParameter)}.
 	 * @param binder the data binder used to perform data binding
 	 * @param parameter the method parameter declaration
 	 * @return {@code true} if the next method parameter is not of type {@link Errors}

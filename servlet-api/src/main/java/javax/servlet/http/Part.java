@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.util.Collection;
 
 /**
- * <p> This class represents a part or form item that was received within a
+ *  This class represents a part or form item that was received within a
  * <code>multipart/form-data</code> POST request.
  * 
  * @since Servlet 3.0
@@ -56,7 +56,7 @@ public interface Part {
     /**
      * A convenience method to write this uploaded item to disk.
      * 
-     * <p>This method is not guaranteed to succeed if called more than once for
+     * This method is not guaranteed to succeed if called more than once for
      * the same part. This allows a particular implementation to use, for
      * example, file renaming, where possible, rather than copying all of the
      * underlying data, thus gaining a significant performance benefit.
@@ -107,10 +107,10 @@ public interface Part {
     /**
      * Gets the values of the Part header with the given name.
      *
-     * <p>Any changes to the returned <code>Collection</code> must not 
+     * Any changes to the returned <code>Collection</code> must not
      * affect this <code>Part</code>.
      *
-     * <p>Part header names are case insensitive.
+     * Part header names are case insensitive.
      *
      * @param name the header name whose values to return
      *
@@ -122,11 +122,11 @@ public interface Part {
     /**
      * Gets the header names of this Part.
      *
-     * <p>Some servlet containers do not allow
+     * Some servlet containers do not allow
      * servlets to access headers using this method, in
      * which case this method returns <code>null</code>
      *
-     * <p>Any changes to the returned <code>Collection</code> must not 
+     * Any changes to the returned <code>Collection</code> must not
      * affect this <code>Part</code>.
      *
      * @return a (possibly empty) <code>Collection</code> of the header

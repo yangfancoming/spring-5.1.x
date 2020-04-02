@@ -19,7 +19,7 @@ import org.springframework.web.context.WebApplicationContext;
  * {@link HtmlUnitDriver} that delegates to {@link MockMvc} and optionally
  * delegates to an actual connection for specific requests.
  *
- * <p>By default, the driver will delegate to {@code MockMvc} to handle
+ * By default, the driver will delegate to {@code MockMvc} to handle
  * requests to {@code localhost} and to a {@link WebClient} to handle any
  * other URL (i.e. to perform an actual HTTP request).
  *
@@ -95,7 +95,7 @@ public class MockMvcHtmlUnitDriverBuilder extends MockMvcWebConnectionBuilderSup
 
 	/**
 	 * Specify whether JavaScript should be enabled.
-	 * <p>Default is {@code true}.
+	 * Default is {@code true}.
 	 * @param javascriptEnabled {@code true} if JavaScript should be enabled
 	 * @return this builder for further customizations
 	 * @see #build()
@@ -124,10 +124,10 @@ public class MockMvcHtmlUnitDriverBuilder extends MockMvcWebConnectionBuilderSup
 
 	/**
 	 * Build the {@link HtmlUnitDriver} configured via this builder.
-	 * <p>The returned driver will use the configured {@link MockMvc} instance
+	 * The returned driver will use the configured {@link MockMvc} instance
 	 * for processing any {@linkplain WebRequestMatcher matching} requests
 	 * and a delegate {@code HtmlUnitDriver} for all other requests.
-	 * <p>If a {@linkplain #withDelegate delegate} has been explicitly configured,
+	 * If a {@linkplain #withDelegate delegate} has been explicitly configured,
 	 * it will be used; otherwise, a default {@code WebConnectionHtmlUnitDriver}
 	 * with the {@link BrowserVersion} set to {@link BrowserVersion#CHROME CHROME}
 	 * will be configured as the delegate.

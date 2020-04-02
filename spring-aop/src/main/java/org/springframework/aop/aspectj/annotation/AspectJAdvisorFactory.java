@@ -24,7 +24,7 @@ public interface AspectJAdvisorFactory {
 	/**
 	 * Determine whether or not the given class is an aspect, as reported
 	 * by AspectJ's {@link org.aspectj.lang.reflect.AjTypeSystem}.
-	 * <p>Will simply return {@code false} if the supposed aspect is
+	 * Will simply return {@code false} if the supposed aspect is
 	 * invalid (such as an extension of a concrete aspect class).
 	 * Will return true for some aspects that Spring AOP cannot process,
 	 * such as those with unsupported instantiation models.

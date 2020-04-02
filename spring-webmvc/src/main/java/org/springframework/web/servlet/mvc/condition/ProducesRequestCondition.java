@@ -209,7 +209,7 @@ public final class ProducesRequestCondition extends AbstractRequestCondition<Pro
 	 * <li>If both indexes are equal, the media types at the index are
 	 * compared further with {@link MediaType#SPECIFICITY_COMPARATOR}.
 	 * </ol>
-	 * <p>It is assumed that both instances have been obtained via
+	 * It is assumed that both instances have been obtained via
 	 * {@link #getMatchingCondition(HttpServletRequest)} and each instance
 	 * contains the matching producible media type expression only or
 	 * is otherwise empty.

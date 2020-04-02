@@ -13,7 +13,7 @@ import org.springframework.web.servlet.support.RequestDataValueProcessor;
  * It is provided for completeness if the application relies on a
  * {@link RequestDataValueProcessor}.
  *
- * <p>
+ *
  * <table>
  * <caption>Attribute Summary</caption>
  * <thead>
@@ -26,29 +26,29 @@ import org.springframework.web.servlet.support.RequestDataValueProcessor;
  * </thead>
  * <tbody>
  * <tr class="altColor">
- * <td><p>disabled</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute. Setting the value of this attribute to 'true'
+ * <td>disabled</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Optional Attribute. Setting the value of this attribute to 'true'
  * will disable the HTML element.</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>id</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td>id</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Standard Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>name</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>The name attribute for the HTML button tag</p></td>
+ * <td>name</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>The name attribute for the HTML button tag</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>value</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>The name attribute for the HTML button tag</p></td>
+ * <td>value</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>The name attribute for the HTML button tag</p></td>
  * </tr>
  * </tbody>
  * </table>

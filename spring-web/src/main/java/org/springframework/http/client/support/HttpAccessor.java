@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
  * and other HTTP accessing gateway helpers, defining common properties
  * such as the {@link ClientHttpRequestFactory} to operate on.
  *
- * <p>Not intended to be used directly.
+ * Not intended to be used directly.
  * See {@link org.springframework.web.client.RestTemplate} for an entry point.
  *
  * @author Arjen Poutsma
@@ -38,9 +38,9 @@ public abstract class HttpAccessor {
 
 	/**
 	 * Set the request factory that this accessor uses for obtaining client request handles.
-	 * <p>The default is a {@link SimpleClientHttpRequestFactory} based on the JDK's own
+	 * The default is a {@link SimpleClientHttpRequestFactory} based on the JDK's own
 	 * HTTP libraries ({@link java.net.HttpURLConnection}).
-	 * <p><b>Note that the standard JDK HTTP library does not support the HTTP PATCH method.
+	 * <b>Note that the standard JDK HTTP library does not support the HTTP PATCH method.
 	 * Configure the Apache HttpComponents or OkHttp request factory to enable PATCH.</b>
 	 * @see #createRequest(URI, HttpMethod)
 	 * @see SimpleClientHttpRequestFactory

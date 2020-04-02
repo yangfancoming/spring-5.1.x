@@ -26,7 +26,7 @@ import org.springframework.util.MimeType;
  * Implementation of {@link MessageConverter} that can read and write XML using Spring's
  * {@link Marshaller} and {@link Unmarshaller} abstractions.
  *
- * <p>This converter requires a {@code Marshaller} and {@code Unmarshaller} before it can
+ * This converter requires a {@code Marshaller} and {@code Unmarshaller} before it can
  * be used. These can be injected by the {@linkplain #MarshallingMessageConverter(Marshaller)
  * constructor} or {@linkplain #setMarshaller(Marshaller) bean properties}.
  *
@@ -61,7 +61,7 @@ public class MarshallingMessageConverter extends AbstractMessageConverter {
 	/**
 	 * Constructor with {@link Marshaller}. If the given {@link Marshaller} also
 	 * implements {@link Unmarshaller}, it is also used for unmarshalling.
-	 * <p>Note that all {@code Marshaller} implementations in Spring also implement
+	 * Note that all {@code Marshaller} implementations in Spring also implement
 	 * {@code Unmarshaller} so that you can safely use this constructor.
 	 * @param marshaller object used as marshaller and unmarshaller
 	 */

@@ -25,7 +25,7 @@ import org.springframework.web.util.pattern.PathPattern;
 /**
  * {@code HandlerMapping} implementation that supports {@link RouterFunction RouterFunctions}.
  *
- * <p>If no {@link RouterFunction} is provided at
+ * If no {@link RouterFunction} is provided at
  * {@linkplain #RouterFunctionMapping(RouterFunction) construction time}, this mapping
  * will detect all router functions in the application context, and consult them in
  * {@linkplain org.springframework.core.annotation.Order order}.
@@ -43,7 +43,7 @@ public class RouterFunctionMapping extends AbstractHandlerMapping implements Ini
 
 	/**
 	 * Create an empty {@code RouterFunctionMapping}.
-	 * <p>If this constructor is used, this mapping will detect all
+	 * If this constructor is used, this mapping will detect all
 	 * {@link RouterFunction} instances available in the application context.
 	 */
 	public RouterFunctionMapping() {
@@ -51,7 +51,7 @@ public class RouterFunctionMapping extends AbstractHandlerMapping implements Ini
 
 	/**
 	 * Create a {@code RouterFunctionMapping} with the given {@link RouterFunction}.
-	 * <p>If this constructor is used, no application context detection will occur.
+	 * If this constructor is used, no application context detection will occur.
 	 * @param routerFunction the router function to use for mapping
 	 */
 	public RouterFunctionMapping(RouterFunction<?> routerFunction) {
@@ -61,7 +61,7 @@ public class RouterFunctionMapping extends AbstractHandlerMapping implements Ini
 
 	/**
 	 * Return the configured {@link RouterFunction}.
-	 * <p><strong>Note:</strong> When router functions are detected from the
+	 * <strong>Note:</strong> When router functions are detected from the
 	 * ApplicationContext, this method may return {@code null} if invoked
 	 * prior to {@link #afterPropertiesSet()}.
 	 * @return the router function or {@code null}
@@ -73,7 +73,7 @@ public class RouterFunctionMapping extends AbstractHandlerMapping implements Ini
 
 	/**
 	 * Configure HTTP message readers to de-serialize the request body with.
-	 * <p>By default this is set to the {@link ServerCodecConfigurer}'s defaults.
+	 * By default this is set to the {@link ServerCodecConfigurer}'s defaults.
 	 */
 	public void setMessageReaders(List<HttpMessageReader<?>> messageReaders) {
 		this.messageReaders = messageReaders;

@@ -220,7 +220,7 @@ public class MockServerHttpRequest extends AbstractServerHttpRequest {
 		 * Append the given query parameter to the existing query parameters.
 		 * If no values are given, the resulting URI will contain the query
 		 * parameter name only (i.e. {@code ?foo} instead of {@code ?foo=bar}).
-		 * <p>The provided query name and values will be encoded.
+		 * The provided query name and values will be encoded.
 		 * @param name the query parameter name
 		 * @param values the query parameter values
 		 * @return this UriComponentsBuilder
@@ -293,7 +293,7 @@ public class MockServerHttpRequest extends AbstractServerHttpRequest {
 
 		/**
 		 * Set the value of the {@code If-Modified-Since} header.
-		 * <p>The date should be specified as the number of milliseconds since
+		 * The date should be specified as the number of milliseconds since
 		 * January 1, 1970 GMT.
 		 * @param ifModifiedSince the new value of the header
 		 */
@@ -301,7 +301,7 @@ public class MockServerHttpRequest extends AbstractServerHttpRequest {
 
 		/**
 		 * Set the (new) value of the {@code If-Unmodified-Since} header.
-		 * <p>The date should be specified as the number of milliseconds since
+		 * The date should be specified as the number of milliseconds since
 		 * January 1, 1970 GMT.
 		 * @param ifUnmodifiedSince the new value of the header
 		 * @see HttpHeaders#setIfUnmodifiedSince(long)
@@ -363,7 +363,7 @@ public class MockServerHttpRequest extends AbstractServerHttpRequest {
 
 		/**
 		 * Set the body of the request and build it.
-		 * <p>The String is assumed to be UTF-8 encoded unless the request has a
+		 * The String is assumed to be UTF-8 encoded unless the request has a
 		 * "content-type" header with a charset attribute.
 		 * @param body the body as text
 		 * @return the built request entity

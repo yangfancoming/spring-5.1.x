@@ -22,16 +22,16 @@ import org.springframework.lang.Nullable;
  * implementing the extended
  * {@link org.springframework.aop.ProxyMethodInvocation} interface.
  *
- * <p>Invokes the target object using reflection. Subclasses can override the
+ * Invokes the target object using reflection. Subclasses can override the
  * {@link #invokeJoinpoint()} method to change this behavior, so this is also
  * a useful base class for more specialized MethodInvocation implementations.
  *
- * <p>It is possible to clone an invocation, to invoke {@link #proceed()}
+ * It is possible to clone an invocation, to invoke {@link #proceed()}
  * repeatedly (once per clone), using the {@link #invocableClone()} method.
  * It is also possible to attach custom attributes to the invocation,
  * using the {@link #setUserAttribute} / {@link #getUserAttribute} methods.
  *
- * <p><b>NOTE:</b> This class is considered internal and should not be
+ * <b>NOTE:</b> This class is considered internal and should not be
  * directly accessed. The sole reason for it being public is compatibility
  * with existing framework integrations (e.g. Pitchfork). For any other
  * purposes, use the {@link ProxyMethodInvocation} interface instead.
@@ -187,7 +187,7 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 	/**
 	 * This implementation returns a shallow copy of this invocation object,
 	 * including an independent copy of the original arguments array.
-	 * <p>We want a shallow copy in this case: We want to use the same interceptor
+	 * We want a shallow copy in this case: We want to use the same interceptor
 	 * chain and other object references, but we want an independent value for the
 	 * current interceptor index.
 	 * @see java.lang.Object#clone()
@@ -206,7 +206,7 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 	/**
 	 * This implementation returns a shallow copy of this invocation object,
 	 * using the given arguments array for the clone.
-	 * <p>We want a shallow copy in this case: We want to use the same interceptor
+	 * We want a shallow copy in this case: We want to use the same interceptor
 	 * chain and other object references, but we want an independent value for the
 	 * current interceptor index.
 	 * @see java.lang.Object#clone()
@@ -252,7 +252,7 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 	/**
 	 * Return user attributes associated with this invocation.
 	 * This method provides an invocation-bound alternative to a ThreadLocal.
-	 * <p>This map is initialized lazily and is not used in the AOP framework itself.
+	 * This map is initialized lazily and is not used in the AOP framework itself.
 	 * @return any user attributes associated with this invocation
 	 * (never {@code null})
 	 */

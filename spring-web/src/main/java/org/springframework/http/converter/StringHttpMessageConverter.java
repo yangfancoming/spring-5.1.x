@@ -19,7 +19,7 @@ import org.springframework.util.StreamUtils;
 /**
  * Implementation of {@link HttpMessageConverter} that can read and write strings.
  *
- * <p>By default, this converter supports all media types ({@code &#42;&#47;&#42;}),
+ * By default, this converter supports all media types ({@code &#42;&#47;&#42;}),
  * and writes with a {@code Content-Type} of {@code text/plain}. This can be overridden
  * by setting the {@link #setSupportedMediaTypes supportedMediaTypes} property.
  *
@@ -62,7 +62,7 @@ public class StringHttpMessageConverter extends AbstractHttpMessageConverter<Str
 	 * Whether the {@code Accept-Charset} header should be written to any outgoing
 	 * request sourced from the value of {@link Charset#availableCharsets()}.
 	 * The behavior is suppressed if the header has already been set.
-	 * <p>Default is {@code true}.
+	 * Default is {@code true}.
 	 */
 	public void setWriteAcceptCharset(boolean writeAcceptCharset) {
 		this.writeAcceptCharset = writeAcceptCharset;
@@ -99,7 +99,7 @@ public class StringHttpMessageConverter extends AbstractHttpMessageConverter<Str
 
 	/**
 	 * Return the list of supported {@link Charset Charsets}.
-	 * <p>By default, returns {@link Charset#availableCharsets()}.
+	 * By default, returns {@link Charset#availableCharsets()}.
 	 * Can be overridden in subclasses.
 	 * @return the list of accepted charsets
 	 */

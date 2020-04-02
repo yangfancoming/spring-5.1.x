@@ -43,7 +43,7 @@ import static org.junit.Assert.*;
  * <li>{@link InitializingBean}</li>
  * </ul>
  *
- * <p>Since no application context resource
+ * Since no application context resource
  * {@link ContextConfiguration#locations() locations} are explicitly declared
  * and since the {@link ContextConfiguration#loader() ContextLoader} is left set
  * to the default value of {@link GenericXmlContextLoader}, this test class's

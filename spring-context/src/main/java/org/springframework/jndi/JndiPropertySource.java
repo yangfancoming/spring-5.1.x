@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  * {@link PropertySource} implementation that reads properties from an underlying Spring
  * {@link JndiLocatorDelegate}.
  *
- * <p>By default, the underlying {@code JndiLocatorDelegate} will be configured with its
+ * By default, the underlying {@code JndiLocatorDelegate} will be configured with its
  * {@link JndiLocatorDelegate#setResourceRef(boolean) "resourceRef"} property set to
  * {@code true}, meaning that names looked up will automatically be prefixed with
  * "java:comp/env/" in alignment with published
@@ -22,7 +22,7 @@ import org.springframework.lang.Nullable;
  * be specified using {@link JndiLocatorDelegate#setJndiEnvironment(java.util.Properties)}
  * prior to construction of the {@code JndiPropertySource}.
  *
- * <p>Note that {@link org.springframework.web.context.support.StandardServletEnvironment
+ * Note that {@link org.springframework.web.context.support.StandardServletEnvironment
  * StandardServletEnvironment} includes a {@code JndiPropertySource} by default, and any
  * customization of the underlying {@link JndiLocatorDelegate} may be performed within an
  * {@link org.springframework.context.ApplicationContextInitializer

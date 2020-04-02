@@ -25,7 +25,7 @@ import org.springframework.web.context.support.GenericWebApplicationContext;
  * Abstract, generic extension of {@link AbstractContextLoader} that loads a
  * {@link GenericWebApplicationContext}.
  *
- * <p>If instances of concrete subclasses are invoked via the
+ * If instances of concrete subclasses are invoked via the
  * {@link org.springframework.test.context.SmartContextLoader SmartContextLoader}
  * SPI, the context will be loaded from the {@link MergedContextConfiguration}
  * provided to {@link #loadContext(MergedContextConfiguration)}. In such cases, a
@@ -35,7 +35,7 @@ import org.springframework.web.context.support.GenericWebApplicationContext;
  * loadContext(String... locations)} method from the legacy
  * {@link org.springframework.test.context.ContextLoader ContextLoader} SPI.
  *
- * <p>Concrete subclasses must provide an appropriate implementation of
+ * Concrete subclasses must provide an appropriate implementation of
  * {@link #loadBeanDefinitions}.
  *
  * @author Sam Brannen
@@ -54,7 +54,7 @@ public abstract class AbstractGenericWebContextLoader extends AbstractContextLoa
 	/**
 	 * Load a Spring {@link WebApplicationContext} from the supplied
 	 * {@link MergedContextConfiguration}.
-	 * <p>Implementation details:
+	 * Implementation details:
 	 * <ul>
 	 * <li>Calls {@link #validateMergedContextConfiguration(WebMergedContextConfiguration)}
 	 * to allow subclasses to validate the supplied configuration before proceeding.</li>
@@ -120,7 +120,7 @@ public abstract class AbstractGenericWebContextLoader extends AbstractContextLoa
 	/**
 	 * Validate the supplied {@link WebMergedContextConfiguration} with respect to
 	 * what this context loader supports.
-	 * <p>The default implementation is a <em>no-op</em> but can be overridden by
+	 * The default implementation is a <em>no-op</em> but can be overridden by
 	 * subclasses as appropriate.
 	 * @param mergedConfig the merged configuration to validate
 	 * @throws IllegalStateException if the supplied configuration is not valid
@@ -134,10 +134,10 @@ public abstract class AbstractGenericWebContextLoader extends AbstractContextLoa
 	/**
 	 * Configures web resources for the supplied web application context (WAC).
 	 * <h4>Implementation Details</h4>
-	 * <p>If the supplied WAC has no parent or its parent is not a WAC, the
+	 * If the supplied WAC has no parent or its parent is not a WAC, the
 	 * supplied WAC will be configured as the Root WAC (see "<em>Root WAC
 	 * Configuration</em>" below).
-	 * <p>Otherwise the context hierarchy of the supplied WAC will be traversed
+	 * Otherwise the context hierarchy of the supplied WAC will be traversed
 	 * to find the top-most WAC (i.e., the root); and the {@link ServletContext}
 	 * of the Root WAC will be set as the {@code ServletContext} for the supplied
 	 * WAC.
@@ -193,7 +193,7 @@ public abstract class AbstractGenericWebContextLoader extends AbstractContextLoa
 	/**
 	 * Customize the internal bean factory of the {@code WebApplicationContext}
 	 * created by this context loader.
-	 * <p>The default implementation is empty but can be overridden in subclasses
+	 * The default implementation is empty but can be overridden in subclasses
 	 * to customize {@code DefaultListableBeanFactory}'s standard settings.
 	 * @param beanFactory the bean factory created by this context loader
 	 * @param webMergedConfig the merged context configuration to use to load the
@@ -211,7 +211,7 @@ public abstract class AbstractGenericWebContextLoader extends AbstractContextLoa
 	/**
 	 * Load bean definitions into the supplied {@link GenericWebApplicationContext context}
 	 * from the locations or classes in the supplied {@code WebMergedContextConfiguration}.
-	 * <p>Concrete subclasses must provide an appropriate implementation.
+	 * Concrete subclasses must provide an appropriate implementation.
 	 * @param context the context into which the bean definitions should be loaded
 	 * @param webMergedConfig the merged context configuration to use to load the
 	 * web application context
@@ -224,7 +224,7 @@ public abstract class AbstractGenericWebContextLoader extends AbstractContextLoa
 	 * Customize the {@link GenericWebApplicationContext} created by this context
 	 * loader <i>after</i> bean definitions have been loaded into the context but
 	 * <i>before</i> the context is refreshed.
-	 * <p>The default implementation simply delegates to
+	 * The default implementation simply delegates to
 	 * {@link AbstractContextLoader#customizeContext(ConfigurableApplicationContext, MergedContextConfiguration)}.
 	 * @param context the newly created web application context
 	 * @param webMergedConfig the merged context configuration to use to load the

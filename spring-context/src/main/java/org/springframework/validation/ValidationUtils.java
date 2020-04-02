@@ -14,7 +14,7 @@ import org.springframework.util.StringUtils;
  * Utility class offering convenient methods for invoking a {@link Validator}
  * and for rejecting empty fields.
  *
- * <p>Checks for an empty field in {@code Validator} implementations can become
+ * Checks for an empty field in {@code Validator} implementations can become
  * one-liners when using {@link #rejectIfEmpty} or {@link #rejectIfEmptyOrWhitespace}.
  *
 
@@ -88,9 +88,9 @@ public abstract class ValidationUtils {
 
 	/**
 	 * Reject the given field with the given error code if the value is empty.
-	 * <p>An 'empty' value in this context means either {@code null} or
+	 * An 'empty' value in this context means either {@code null} or
 	 * the empty string "".
-	 * <p>The object whose field is being validated does not need to be passed
+	 * The object whose field is being validated does not need to be passed
 	 * in because the {@link Errors} instance can resolve field values by itself
 	 * (it will usually hold an internal reference to the target object).
 	 * @param errors the {@code Errors} instance to register errors on
@@ -104,9 +104,9 @@ public abstract class ValidationUtils {
 	/**
 	 * Reject the given field with the given error code and default message
 	 * if the value is empty.
-	 * <p>An 'empty' value in this context means either {@code null} or
+	 * An 'empty' value in this context means either {@code null} or
 	 * the empty string "".
-	 * <p>The object whose field is being validated does not need to be passed
+	 * The object whose field is being validated does not need to be passed
 	 * in because the {@link Errors} instance can resolve field values by itself
 	 * (it will usually hold an internal reference to the target object).
 	 * @param errors the {@code Errors} instance to register errors on
@@ -121,9 +121,9 @@ public abstract class ValidationUtils {
 	/**
 	 * Reject the given field with the given error code and error arguments
 	 * if the value is empty.
-	 * <p>An 'empty' value in this context means either {@code null} or
+	 * An 'empty' value in this context means either {@code null} or
 	 * the empty string "".
-	 * <p>The object whose field is being validated does not need to be passed
+	 * The object whose field is being validated does not need to be passed
 	 * in because the {@link Errors} instance can resolve field values by itself
 	 * (it will usually hold an internal reference to the target object).
 	 * @param errors the {@code Errors} instance to register errors on
@@ -139,9 +139,9 @@ public abstract class ValidationUtils {
 	/**
 	 * Reject the given field with the given error code, error arguments
 	 * and default message if the value is empty.
-	 * <p>An 'empty' value in this context means either {@code null} or
+	 * An 'empty' value in this context means either {@code null} or
 	 * the empty string "".
-	 * <p>The object whose field is being validated does not need to be passed
+	 * The object whose field is being validated does not need to be passed
 	 * in because the {@link Errors} instance can resolve field values by itself
 	 * (it will usually hold an internal reference to the target object).
 	 * @param errors the {@code Errors} instance to register errors on
@@ -164,9 +164,9 @@ public abstract class ValidationUtils {
 	/**
 	 * Reject the given field with the given error code if the value is empty
 	 * or just contains whitespace.
-	 * <p>An 'empty' value in this context means either {@code null},
+	 * An 'empty' value in this context means either {@code null},
 	 * the empty string "", or consisting wholly of whitespace.
-	 * <p>The object whose field is being validated does not need to be passed
+	 * The object whose field is being validated does not need to be passed
 	 * in because the {@link Errors} instance can resolve field values by itself
 	 * (it will usually hold an internal reference to the target object).
 	 * @param errors the {@code Errors} instance to register errors on
@@ -180,9 +180,9 @@ public abstract class ValidationUtils {
 	/**
 	 * Reject the given field with the given error code and default message
 	 * if the value is empty or just contains whitespace.
-	 * <p>An 'empty' value in this context means either {@code null},
+	 * An 'empty' value in this context means either {@code null},
 	 * the empty string "", or consisting wholly of whitespace.
-	 * <p>The object whose field is being validated does not need to be passed
+	 * The object whose field is being validated does not need to be passed
 	 * in because the {@link Errors} instance can resolve field values by itself
 	 * (it will usually hold an internal reference to the target object).
 	 * @param errors the {@code Errors} instance to register errors on
@@ -199,9 +199,9 @@ public abstract class ValidationUtils {
 	/**
 	 * Reject the given field with the given error code and error arguments
 	 * if the value is empty or just contains whitespace.
-	 * <p>An 'empty' value in this context means either {@code null},
+	 * An 'empty' value in this context means either {@code null},
 	 * the empty string "", or consisting wholly of whitespace.
-	 * <p>The object whose field is being validated does not need to be passed
+	 * The object whose field is being validated does not need to be passed
 	 * in because the {@link Errors} instance can resolve field values by itself
 	 * (it will usually hold an internal reference to the target object).
 	 * @param errors the {@code Errors} instance to register errors on
@@ -219,9 +219,9 @@ public abstract class ValidationUtils {
 	/**
 	 * Reject the given field with the given error code, error arguments
 	 * and default message if the value is empty or just contains whitespace.
-	 * <p>An 'empty' value in this context means either {@code null},
+	 * An 'empty' value in this context means either {@code null},
 	 * the empty string "", or consisting wholly of whitespace.
-	 * <p>The object whose field is being validated does not need to be passed
+	 * The object whose field is being validated does not need to be passed
 	 * in because the {@link Errors} instance can resolve field values by itself
 	 * (it will usually hold an internal reference to the target object).
 	 * @param errors the {@code Errors} instance to register errors on

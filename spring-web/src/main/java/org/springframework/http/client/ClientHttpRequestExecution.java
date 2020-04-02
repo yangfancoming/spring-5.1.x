@@ -9,7 +9,7 @@ import org.springframework.http.HttpRequest;
 /**
  * Represents the context of a client-side HTTP request execution.
  *
- * <p>Used to invoke the next interceptor in the interceptor chain,
+ * Used to invoke the next interceptor in the interceptor chain,
  * or - if the calling interceptor is last - execute the request itself.
  *
  * @author Arjen Poutsma

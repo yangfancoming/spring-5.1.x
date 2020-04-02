@@ -63,10 +63,10 @@ public interface EntityResponse<T> extends ServerResponse {
 	 * @param publisher the publisher that represents the body of the response
 	 * @param elementClass the class of elements contained in the publisher
 	 * @param <T> the type of the elements contained in the publisher
-	 * @param <P> the type of the {@code Publisher}
+	 * @param  the type of the {@code Publisher}
 	 * @return the created builder
 	 */
-	static <T, P extends Publisher<T>> Builder<P> fromPublisher(P publisher, Class<T> elementClass) {
+	static <T, P extends Publisher<T>> Builder fromPublisher(P publisher, Class<T> elementClass) {
 		return new DefaultEntityResponseBuilder<>(publisher,
 				BodyInserters.fromPublisher(publisher, elementClass));
 	}
@@ -76,10 +76,10 @@ public interface EntityResponse<T> extends ServerResponse {
 	 * @param publisher the publisher that represents the body of the response
 	 * @param typeReference the type of elements contained in the publisher
 	 * @param <T> the type of the elements contained in the publisher
-	 * @param <P> the type of the {@code Publisher}
+	 * @param  the type of the {@code Publisher}
 	 * @return the created builder
 	 */
-	static <T, P extends Publisher<T>> Builder<P> fromPublisher(P publisher,
+	static <T, P extends Publisher<T>> Builder fromPublisher(P publisher,
 			ParameterizedTypeReference<T> typeReference) {
 
 		return new DefaultEntityResponseBuilder<>(publisher,
@@ -173,7 +173,7 @@ public interface EntityResponse<T> extends ServerResponse {
 		/**
 		 * Set the time the resource was last changed, as specified by the
 		 * {@code Last-Modified} header.
-		 * <p>The date should be specified as the number of milliseconds since
+		 * The date should be specified as the number of milliseconds since
 		 * January 1, 1970 GMT.
 		 * @param lastModified the last modified date
 		 * @return this builder
@@ -184,7 +184,7 @@ public interface EntityResponse<T> extends ServerResponse {
 		/**
 		 * Set the time the resource was last changed, as specified by the
 		 * {@code Last-Modified} header.
-		 * <p>The date should be specified as the number of milliseconds since
+		 * The date should be specified as the number of milliseconds since
 		 * January 1, 1970 GMT.
 		 * @param lastModified the last modified date
 		 * @return this builder
@@ -204,7 +204,7 @@ public interface EntityResponse<T> extends ServerResponse {
 		/**
 		 * Set the caching directives for the resource, as specified by the HTTP 1.1
 		 * {@code Cache-Control} header.
-		 * <p>A {@code CacheControl} instance can be built like
+		 * A {@code CacheControl} instance can be built like
 		 * {@code CacheControl.maxAge(3600).cachePublic().noTransform()}.
 		 * @param cacheControl a builder for cache-related HTTP response headers
 		 * @return this builder

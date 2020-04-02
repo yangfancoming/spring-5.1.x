@@ -66,7 +66,7 @@ public abstract class AbstractHttpHandlerIntegrationTests {
 	 * Return an interval stream of N number of ticks and buffer the emissions
 	 * to avoid back pressure failures (e.g. on slow CI server).
 	 *
-	 * <p>Use this method as follows:
+	 * Use this method as follows:
 	 * <ul>
 	 * <li>Tests that verify N number of items followed by verifyOnComplete()
 	 * should set the number of emissions to N.

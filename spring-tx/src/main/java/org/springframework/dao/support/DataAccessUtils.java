@@ -24,7 +24,7 @@ public abstract class DataAccessUtils {
 
 	/**
 	 * Return a single result object from the given Collection.
-	 * <p>Returns {@code null} if 0 result objects found;
+	 * Returns {@code null} if 0 result objects found;
 	 * throws an exception if more than 1 element found.
 	 * @param results the result Collection (can be {@code null})
 	 * @return the single result object, or {@code null} if none
@@ -44,7 +44,7 @@ public abstract class DataAccessUtils {
 
 	/**
 	 * Return a single result object from the given Collection.
-	 * <p>Throws an exception if 0 or more than 1 element found.
+	 * Throws an exception if 0 or more than 1 element found.
 	 * @param results the result Collection (can be {@code null}
 	 * but is not expected to contain {@code null} elements)
 	 * @return the single result object
@@ -65,7 +65,7 @@ public abstract class DataAccessUtils {
 
 	/**
 	 * Return a single result object from the given Collection.
-	 * <p>Throws an exception if 0 or more than 1 element found.
+	 * Throws an exception if 0 or more than 1 element found.
 	 * @param results the result Collection (can be {@code null}
 	 * and is also expected to contain {@code null} elements)
 	 * @return the single result object
@@ -90,7 +90,7 @@ public abstract class DataAccessUtils {
 
 	/**
 	 * Return a unique result object from the given Collection.
-	 * <p>Returns {@code null} if 0 result objects found;
+	 * Returns {@code null} if 0 result objects found;
 	 * throws an exception if more than 1 instance found.
 	 * @param results the result Collection (can be {@code null})
 	 * @return the unique result object, or {@code null} if none
@@ -111,7 +111,7 @@ public abstract class DataAccessUtils {
 
 	/**
 	 * Return a unique result object from the given Collection.
-	 * <p>Throws an exception if 0 or more than 1 instance found.
+	 * Throws an exception if 0 or more than 1 instance found.
 	 * @param results the result Collection (can be {@code null}
 	 * but is not expected to contain {@code null} elements)
 	 * @return the unique result object

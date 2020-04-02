@@ -17,7 +17,7 @@ import javax.servlet.ServletResponse;
  * to a chain (list) of user-supplied filters, achieving the functionality of a
  * {@link FilterChain}, but conveniently using only {@link Filter} instances.
  *
- * <p>This is useful for filters that require dependency injection, and can
+ * This is useful for filters that require dependency injection, and can
  * therefore be set up in a Spring application context. Typically, this
  * composite would be used in conjunction with {@link DelegatingFilterProxy},
  * so that it can be declared in Spring but applied to a servlet context.

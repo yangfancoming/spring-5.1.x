@@ -35,7 +35,7 @@ import org.springframework.util.StringUtils;
  * the {@code ServletRequest.getParameter*()} family of methods during HTTP PUT
  * or PATCH requests.
  *
- * <p>The Servlet spec requires form data to be available for HTTP POST but
+ * The Servlet spec requires form data to be available for HTTP POST but
  * not for HTTP PUT or PATCH requests. This filter intercepts HTTP PUT and PATCH
  * requests where content type is {@code 'application/x-www-form-urlencoded'},
  * reads form encoded content from the body of the request, and wraps the ServletRequest
@@ -55,7 +55,7 @@ public class HttpPutFormContentFilter extends OncePerRequestFilter {
 
 	/**
 	 * Set the converter to use for parsing form content.
-	 * <p>By default this is an instance of {@link AllEncompassingFormHttpMessageConverter}.
+	 * By default this is an instance of {@link AllEncompassingFormHttpMessageConverter}.
 	 */
 	public void setFormConverter(FormHttpMessageConverter converter) {
 		Assert.notNull(converter, "FormHttpMessageConverter is required.");

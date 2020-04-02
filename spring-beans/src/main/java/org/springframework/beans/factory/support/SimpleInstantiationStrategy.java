@@ -19,7 +19,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * Simple object instantiation strategy for use in a BeanFactory.
- * <p>Does not support Method Injection, although it provides hooks for subclasses
+ * Does not support Method Injection, although it provides hooks for subclasses
  * to override to add Method Injection support, for example by overriding methods.
  * @since 1.1
  */
@@ -29,7 +29,7 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy {
 
 	/**
 	 * Return the factory method currently being invoked or {@code null} if none.
-	 * <p>Allows factory method implementations to determine whether the current
+	 * Allows factory method implementations to determine whether the current
 	 * caller is the container itself as opposed to user code.
 	 */
 	@Nullable

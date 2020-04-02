@@ -58,11 +58,11 @@ import org.springframework.util.StringUtils;
 /**
  * Mock implementation of the {@link javax.servlet.http.HttpServletRequest} interface.
  *
- * <p>The default, preferred {@link Locale} for the <em>server</em> mocked by this request
+ * The default, preferred {@link Locale} for the <em>server</em> mocked by this request
  * is {@link Locale#ENGLISH}. This value can be changed via {@link #addPreferredLocale}
  * or {@link #setPreferredLocales}.
  *
- * <p>As of Spring Framework 5.0, this set of mocks is designed on a Servlet 4.0 baseline.
+ * As of Spring Framework 5.0, this set of mocks is designed on a Servlet 4.0 baseline.
  *
 
  * @author Rod Johnson
@@ -299,7 +299,7 @@ public class MockHttpServletRequest implements HttpServletRequest {
 	/**
 	 * Create a new {@code MockHttpServletRequest} with the supplied {@link ServletContext},
 	 * {@code method}, and {@code requestURI}.
-	 * <p>The preferred locale will be set to {@link Locale#ENGLISH}.
+	 * The preferred locale will be set to {@link Locale#ENGLISH}.
 	 * @param servletContext the ServletContext that the request runs in (may be
 	 * {@code null} to use a default {@link MockServletContext})
 	 * @param method the request method (may be {@code null})
@@ -401,7 +401,7 @@ public class MockHttpServletRequest implements HttpServletRequest {
 
 	/**
 	 * Set the content of the request body as a byte array.
-	 * <p>If the supplied byte array represents text such as XML or JSON, the
+	 * If the supplied byte array represents text such as XML or JSON, the
 	 * {@link #setCharacterEncoding character encoding} should typically be
 	 * set as well.
 	 * @see #setCharacterEncoding(String)
@@ -503,7 +503,7 @@ public class MockHttpServletRequest implements HttpServletRequest {
 
 	/**
 	 * Set a single value for the specified HTTP parameter.
-	 * <p>If there are already one or more values registered for the given
+	 * If there are already one or more values registered for the given
 	 * parameter name, they will be replaced.
 	 */
 	public void setParameter(String name, String value) {
@@ -512,7 +512,7 @@ public class MockHttpServletRequest implements HttpServletRequest {
 
 	/**
 	 * Set an array of values for the specified HTTP parameter.
-	 * <p>If there are already one or more values registered for the given
+	 * If there are already one or more values registered for the given
 	 * parameter name, they will be replaced.
 	 */
 	public void setParameter(String name, String... values) {
@@ -543,7 +543,7 @@ public class MockHttpServletRequest implements HttpServletRequest {
 
 	/**
 	 * Add a single value for the specified HTTP parameter.
-	 * <p>If there are already one or more values registered for the given
+	 * If there are already one or more values registered for the given
 	 * parameter name, the given value will be added to the end of the list.
 	 */
 	public void addParameter(String name, @Nullable String value) {
@@ -552,7 +552,7 @@ public class MockHttpServletRequest implements HttpServletRequest {
 
 	/**
 	 * Add an array of values for the specified HTTP parameter.
-	 * <p>If there are already one or more values registered for the given
+	 * If there are already one or more values registered for the given
 	 * parameter name, the given values will be added to the end of the list.
 	 */
 	public void addParameter(String name, String... values) {
@@ -793,10 +793,10 @@ public class MockHttpServletRequest implements HttpServletRequest {
 	/**
 	 * Return the first preferred {@linkplain Locale locale} configured
 	 * in this mock request.
-	 * <p>If no locales have been explicitly configured, the default,
+	 * If no locales have been explicitly configured, the default,
 	 * preferred {@link Locale} for the <em>server</em> mocked by this
 	 * request is {@link Locale#ENGLISH}.
-	 * <p>In contrast to the Servlet specification, this mock implementation
+	 * In contrast to the Servlet specification, this mock implementation
 	 * does <strong>not</strong> take into consideration any locales
 	 * specified via the {@code Accept-Language} header.
 	 * @see javax.servlet.ServletRequest#getLocale()
@@ -811,10 +811,10 @@ public class MockHttpServletRequest implements HttpServletRequest {
 	/**
 	 * Return an {@linkplain Enumeration enumeration} of the preferred
 	 * {@linkplain Locale locales} configured in this mock request.
-	 * <p>If no locales have been explicitly configured, the default,
+	 * If no locales have been explicitly configured, the default,
 	 * preferred {@link Locale} for the <em>server</em> mocked by this
 	 * request is {@link Locale#ENGLISH}.
-	 * <p>In contrast to the Servlet specification, this mock implementation
+	 * In contrast to the Servlet specification, this mock implementation
 	 * does <strong>not</strong> take into consideration any locales
 	 * specified via the {@code Accept-Language} header.
 	 * @see javax.servlet.ServletRequest#getLocales()
@@ -983,7 +983,7 @@ public class MockHttpServletRequest implements HttpServletRequest {
 
 	/**
 	 * Add an HTTP header entry for the given name.
-	 * <p>While this method can take any {@code Object} as a parameter,
+	 * While this method can take any {@code Object} as a parameter,
 	 * it is recommended to use the following types:
 	 * <ul>
 	 * <li>String or any Object to be converted using {@code toString()}; see {@link #getHeader}.</li>
@@ -1052,7 +1052,7 @@ public class MockHttpServletRequest implements HttpServletRequest {
 
 	/**
 	 * Return the long timestamp for the date header with the given {@code name}.
-	 * <p>If the internal value representation is a String, this method will try
+	 * If the internal value representation is a String, this method will try
 	 * to parse it as a date using the supported date formats:
 	 * <ul>
 	 * <li>"EEE, dd MMM yyyy HH:mm:ss zzz"</li>

@@ -29,17 +29,17 @@ import org.springframework.util.ReflectionUtils;
  * that method isn't available)
  * </ul>
  *
- * <p>Please note that the above methods <i>must</i> reside in a class that is
+ * Please note that the above methods <i>must</i> reside in a class that is
  * publicly accessible, although the class itself does not have to be visible
  * to the application's class loader.
  *
- * <p>The reflective nature of this LoadTimeWeaver is particularly useful when the
+ * The reflective nature of this LoadTimeWeaver is particularly useful when the
  * underlying ClassLoader implementation is loaded in a different class loader itself
  * (such as the application server's class loader which is not visible to the
  * web application). There is no direct API dependency between this LoadTimeWeaver
  * adapter and the underlying ClassLoader, just a 'loose' method contract.
  *
- * <p>This is the LoadTimeWeaver to use e.g. with the Resin application server
+ * This is the LoadTimeWeaver to use e.g. with the Resin application server
  * version 3.1+.
  *
  * @author Costin Leau

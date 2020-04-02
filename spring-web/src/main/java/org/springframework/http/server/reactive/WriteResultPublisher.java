@@ -121,7 +121,7 @@ class WriteResultPublisher implements Publisher<Void> {
 
 	/**
 	 * Represents a state for the {@link Publisher} to be in.
-	 * <p><pre>
+	 * <pre>
 	 *     UNSUBSCRIBED
 	 *          |
 	 *          v

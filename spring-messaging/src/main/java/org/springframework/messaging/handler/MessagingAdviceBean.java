@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
  * applied to one or more Spring beans with annotation-based message
  * handling methods.
  *
- * <p>Component stereotypes such as
+ * Component stereotypes such as
  * {@link org.springframework.stereotype.Controller @Controller} with annotation
  * handler methods often need cross-cutting functionality across all or a subset
  * of such annotated components. A primary example of this is the need for "global"
@@ -23,7 +23,7 @@ public interface MessagingAdviceBean extends Ordered {
 
 	/**
 	 * Return the type of the contained advice bean.
-	 * <p>If the bean type is a CGLIB-generated class, the original user-defined
+	 * If the bean type is a CGLIB-generated class, the original user-defined
 	 * class is returned.
 	 */
 	@Nullable

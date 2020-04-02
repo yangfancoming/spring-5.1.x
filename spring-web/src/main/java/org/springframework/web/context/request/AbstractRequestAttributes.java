@@ -26,7 +26,7 @@ public abstract class AbstractRequestAttributes implements RequestAttributes {
 
 	/**
 	 * Signal that the request has been completed.
-	 * <p>Executes all request destruction callbacks and updates the
+	 * Executes all request destruction callbacks and updates the
 	 * session attributes that have been accessed during request processing.
 	 */
 	public void requestCompleted() {

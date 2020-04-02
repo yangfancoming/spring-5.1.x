@@ -17,14 +17,14 @@ import org.springframework.util.StringUtils;
  * the redirect (typically in the session) and is made available after the
  * redirect and removed immediately.
  *
- * <p>A FlashMap can be set up with a request path and request parameters to
+ * A FlashMap can be set up with a request path and request parameters to
  * help identify the target request. Without this information, a FlashMap is
  * made available to the next request, which may or may not be the intended
  * recipient. On a redirect, the target URL is known and a FlashMap can be
  * updated with that information. This is done automatically when the
  * {@code org.springframework.web.servlet.view.RedirectView} is used.
  *
- * <p>Note: annotated controllers will usually not use FlashMap directly.
+ * Note: annotated controllers will usually not use FlashMap directly.
  * See {@code org.springframework.web.servlet.mvc.support.RedirectAttributes}
  * for an overview of using flash attributes in annotated controllers.
  * @since 3.1
@@ -48,7 +48,7 @@ public final class FlashMap extends HashMap<String, Object> implements Comparabl
 
 	/**
 	 * Provide a URL path to help identify the target request for this FlashMap.
-	 * <p>The path may be absolute (e.g. "/application/resource") or relative to the
+	 * The path may be absolute (e.g. "/application/resource") or relative to the
 	 * current request (e.g. "../resource").
 	 */
 	public void setTargetRequestPath(@Nullable String path) {

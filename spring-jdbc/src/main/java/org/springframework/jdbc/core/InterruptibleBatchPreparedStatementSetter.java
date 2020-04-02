@@ -6,16 +6,16 @@ package org.springframework.jdbc.core;
  * Extension of the {@link BatchPreparedStatementSetter} interface,
  * adding a batch exhaustion check.
  *
- * <p>This interface allows you to signal the end of a batch rather than
+ * This interface allows you to signal the end of a batch rather than
  * having to determine the exact batch size upfront. Batch size is still
  * being honored but it is now the maximum size of the batch.
  *
- * <p>The {@link #isBatchExhausted} method is called after each call to
+ * The {@link #isBatchExhausted} method is called after each call to
  * {@link #setValues} to determine whether there were some values added,
  * or if the batch was determined to be complete and no additional values
  * were provided during the last call to {@code setValues}.
  *
- * <p>Consider extending the
+ * Consider extending the
  * {@link org.springframework.jdbc.core.support.AbstractInterruptibleBatchPreparedStatementSetter}
  * base class instead of implementing this interface directly, using a single
  * {@code setValuesIfAvailable} callback method that checks for available
@@ -32,7 +32,7 @@ public interface InterruptibleBatchPreparedStatementSetter extends BatchPrepared
 	/**
 	 * Return whether the batch is complete, that is, whether there were no
 	 * additional values added during the last {@code setValues} call.
-	 * <p><b>NOTE:</b> If this method returns {@code true}, any parameters
+	 * <b>NOTE:</b> If this method returns {@code true}, any parameters
 	 * that might have been set during the last {@code setValues} call will
 	 * be ignored! Make sure that you set a corresponding internal flag if you
 	 * detect exhaustion <i>at the beginning</i> of your {@code setValues}

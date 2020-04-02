@@ -13,7 +13,7 @@ import org.springframework.web.context.WebApplicationContext;
  * the current Spring {@link WebApplicationContext} for creating autowired
  * {@link ConstraintValidator} instances.
  *
- * <p>In contrast to
+ * In contrast to
  * {@link org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory},
  * this variant is meant for declarative use in a standard {@code validation.xml} file,
  * e.g. in combination with JAX-RS or JAX-WS.

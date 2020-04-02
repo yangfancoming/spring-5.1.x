@@ -11,7 +11,7 @@ import org.springframework.http.client.ClientHttpRequest;
  * Callback interface for code that operates on a {@link ClientHttpRequest}.
  * Allows manipulating the request headers, and write to the request body.
  *
- * <p>Used internally by the {@link RestTemplate}, but also useful for
+ * Used internally by the {@link RestTemplate}, but also useful for
  * application code. There several available factory methods:
  * <ul>
  * <li>{@link RestTemplate#acceptHeaderRequestCallback(Class)}

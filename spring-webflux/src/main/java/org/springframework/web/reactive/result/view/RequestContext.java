@@ -30,10 +30,10 @@ import org.springframework.web.util.UriTemplate;
  * use, current locale, binding errors, etc. Provides easy access to localized
  * messages and Errors instances.
  *
- * <p>Suitable for exposition to views, and usage within FreeMarker templates,
+ * Suitable for exposition to views, and usage within FreeMarker templates,
  * and tag libraries.
  *
- * <p>Can be instantiated manually, or automatically exposed to views as model
+ * Can be instantiated manually, or automatically exposed to views as model
  * attribute via AbstractView's "requestContextAttribute" property.
  *
  * @author Rossen Stoyanchev
@@ -139,7 +139,7 @@ public class RequestContext {
 	/**
 	 * (De)activate default HTML escaping for messages and errors, for the scope
 	 * of this RequestContext.
-	 * <p>TODO: currently no application-wide setting ...
+	 * TODO: currently no application-wide setting ...
 	 */
 	public void setDefaultHtmlEscape(boolean defaultHtmlEscape) {
 		this.defaultHtmlEscape = defaultHtmlEscape;
@@ -175,7 +175,7 @@ public class RequestContext {
 	/**
 	 * Return the context path of the current web application. This is
 	 * useful for building links to other resources within the application.
-	 * <p>Delegates to {@link ServerHttpRequest#getPath()}.
+	 * Delegates to {@link ServerHttpRequest#getPath()}.
 	 */
 	public String getContextPath() {
 		return this.exchange.getRequest().getPath().contextPath().value();

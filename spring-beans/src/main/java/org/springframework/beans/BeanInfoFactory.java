@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
  * Can be used to plug in custom bean property resolution strategies (e.g. for other
  * languages on the JVM) or more efficient {@link BeanInfo} retrieval algorithms.
  *
- * <p>BeanInfoFactories are instantiated by the {@link CachedIntrospectionResults},
+ * BeanInfoFactories are instantiated by the {@link CachedIntrospectionResults},
  * by using the {@link org.springframework.core.io.support.SpringFactoriesLoader}
  * utility class.
  *
@@ -22,7 +22,7 @@ import org.springframework.lang.Nullable;
  * If none of the factories support the class, a standard {@link BeanInfo} will be
  * created as a default.
  *
- * <p>Note that the {@link org.springframework.core.io.support.SpringFactoriesLoader}
+ * Note that the {@link org.springframework.core.io.support.SpringFactoriesLoader}
  * sorts the {@code BeanInfoFactory} instances by
  * {@link org.springframework.core.annotation.Order @Order}, so that ones with a
  * higher precedence come first.

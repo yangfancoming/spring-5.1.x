@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * A simple transaction-backed {@link Scope} implementation, delegating to
  * {@link TransactionSynchronizationManager}'s resource binding mechanism.
  *
- * <p><b>NOTE:</b> Like {@link org.springframework.context.support.SimpleThreadScope},
+ * <b>NOTE:</b> Like {@link org.springframework.context.support.SimpleThreadScope},
  * this transaction scope is not registered by default in common contexts. Instead,
  * you need to explicitly assign it to a scope key in your setup, either through
  * {@link org.springframework.beans.factory.config.ConfigurableBeanFactory#registerScope}

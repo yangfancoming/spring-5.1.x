@@ -7,7 +7,7 @@ import org.springframework.lang.Nullable;
 /**
  * Interface to be implemented by objects that can provide SQL strings.
  *
- * <p>Typically implemented by PreparedStatementCreators, CallableStatementCreators
+ * Typically implemented by PreparedStatementCreators, CallableStatementCreators
  * and StatementCallbacks that want to expose the SQL they use to create their
  * statements, to allow for better contextual information in case of exceptions.
 

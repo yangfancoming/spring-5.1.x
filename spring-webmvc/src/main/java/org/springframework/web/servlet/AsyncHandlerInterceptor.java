@@ -11,7 +11,7 @@ import org.springframework.web.method.HandlerMethod;
  * Extends {@code HandlerInterceptor} with a callback method invoked after the
  * start of asynchronous request handling.
  *
- * <p>When a handler starts an asynchronous request, the {@link DispatcherServlet}
+ * When a handler starts an asynchronous request, the {@link DispatcherServlet}
  * exits without invoking {@code postHandle} and {@code afterCompletion} as it
  * normally does for a synchronous request, since the result of request handling
  * (e.g. ModelAndView) is likely not yet ready and will be produced concurrently
@@ -19,7 +19,7 @@ import org.springframework.web.method.HandlerMethod;
  * is invoked instead, allowing implementations to perform tasks such as cleaning
  * up thread-bound attributes before releasing the thread to the Servlet container.
  *
- * <p>When asynchronous handling completes, the request is dispatched to the
+ * When asynchronous handling completes, the request is dispatched to the
  * container for further processing. At this stage the {@code DispatcherServlet}
  * invokes {@code preHandle}, {@code postHandle}, and {@code afterCompletion}.
  * To distinguish between the initial request and the subsequent dispatch
@@ -27,7 +27,7 @@ import org.springframework.web.method.HandlerMethod;
  * {@code javax.servlet.DispatcherType} of {@link javax.servlet.ServletRequest}
  * is {@code "REQUEST"} or {@code "ASYNC"}.
  *
- * <p>Note that {@code HandlerInterceptor} implementations may need to do work
+ * Note that {@code HandlerInterceptor} implementations may need to do work
  * when an async request times out or completes with a network error. For such
  * cases the Servlet container does not dispatch and therefore the
  * {@code postHandle} and {@code afterCompletion} methods will not be invoked.
@@ -47,7 +47,7 @@ public interface AsyncHandlerInterceptor extends HandlerInterceptor {
 	/**
 	 * Called instead of {@code postHandle} and {@code afterCompletion}
 	 * when the handler is being executed concurrently.
-	 * <p>Implementations may use the provided request and response but should
+	 * Implementations may use the provided request and response but should
 	 * avoid modifying them in ways that would conflict with the concurrent
 	 * execution of the handler. A typical use of this method would be to
 	 * clean up thread-local variables.

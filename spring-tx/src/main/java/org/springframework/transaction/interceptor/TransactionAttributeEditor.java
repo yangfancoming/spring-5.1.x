@@ -8,16 +8,16 @@ import org.springframework.util.StringUtils;
 
 /**
  * PropertyEditor for {@link TransactionAttribute} objects. Accepts a String of form
- * <p>{@code PROPAGATION_NAME, ISOLATION_NAME, readOnly, timeout_NNNN,+Exception1,-Exception2}
- * <p>where only propagation code is required. For example:
- * <p>{@code PROPAGATION_MANDATORY, ISOLATION_DEFAULT}
+ * {@code PROPAGATION_NAME, ISOLATION_NAME, readOnly, timeout_NNNN,+Exception1,-Exception2}
+ * where only propagation code is required. For example:
+ * {@code PROPAGATION_MANDATORY, ISOLATION_DEFAULT}
  *
- * <p>The tokens can be in <strong>any</strong> order. Propagation and isolation codes
+ * The tokens can be in <strong>any</strong> order. Propagation and isolation codes
  * must use the names of the constants in the TransactionDefinition class. Timeout values
  * are in seconds. If no timeout is specified, the transaction manager will apply a default
  * timeout specific to the particular transaction manager.
  *
- * <p>A "+" before an exception name substring indicates that transactions should commit
+ * A "+" before an exception name substring indicates that transactions should commit
  * even if this exception is thrown; a "-" that they should roll back.
  *
  * @author Rod Johnson

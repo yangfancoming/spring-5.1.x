@@ -63,8 +63,8 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	/**
 	 * Whether to use suffix pattern match (".*") when matching patterns to
 	 * requests. If enabled a method mapped to "/users" also matches to "/users.*".
-	 * <p>The default value is {@code true}.
-	 * <p>Also see {@link #setUseRegisteredSuffixPatternMatch(boolean)} for
+	 * The default value is {@code true}.
+	 * Also see {@link #setUseRegisteredSuffixPatternMatch(boolean)} for
 	 * more fine-grained control over specific suffixes to allow.
 	 */
 	public void setUseSuffixPatternMatch(boolean useSuffixPatternMatch) {
@@ -76,7 +76,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	 * explicitly registered with the {@link ContentNegotiationManager}. This
 	 * is generally recommended to reduce ambiguity and to avoid issues such as
 	 * when a "." appears in the path for other reasons.
-	 * <p>By default this is set to "false".
+	 * By default this is set to "false".
 	 */
 	public void setUseRegisteredSuffixPatternMatch(boolean useRegisteredSuffixPatternMatch) {
 		this.useRegisteredSuffixPatternMatch = useRegisteredSuffixPatternMatch;
@@ -86,7 +86,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	/**
 	 * Whether to match to URLs irrespective of the presence of a trailing slash.
 	 * If enabled a method mapped to "/users" also matches to "/users/".
-	 * <p>The default value is {@code true}.
+	 * The default value is {@code true}.
 	 */
 	public void setUseTrailingSlashMatch(boolean useTrailingSlashMatch) {
 		this.useTrailingSlashMatch = useTrailingSlashMatch;
@@ -94,10 +94,10 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 
 	/**
 	 * Configure path prefixes to apply to controller methods.
-	 * <p>Prefixes are used to enrich the mappings of every {@code @RequestMapping}
+	 * Prefixes are used to enrich the mappings of every {@code @RequestMapping}
 	 * method whose controller type is matched by the corresponding
 	 * {@code Predicate}. The prefix for the first matching predicate is used.
-	 * <p>Consider using {@link org.springframework.web.method.HandlerTypePredicate
+	 * Consider using {@link org.springframework.web.method.HandlerTypePredicate
 	 * HandlerTypePredicate} to group controllers.
 	 * @param prefixes a map with path prefixes as key
 	 * @since 5.1
@@ -181,7 +181,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 
 	/**
 	 * {@inheritDoc}
-	 * <p>Expects a handler to have either a type-level @{@link Controller}
+	 * Expects a handler to have either a type-level @{@link Controller}
 	 * annotation or a type-level @{@link RequestMapping} annotation.
 	 */
 	@Override
@@ -248,7 +248,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	 * The custom {@link RequestCondition} can be of any type so long as the
 	 * same condition type is returned from all calls to this method in order
 	 * to ensure custom request conditions can be combined and compared.
-	 * <p>Consider extending {@link AbstractRequestCondition} for custom
+	 * Consider extending {@link AbstractRequestCondition} for custom
 	 * condition types and using {@link CompositeRequestCondition} to provide
 	 * multiple custom conditions.
 	 * @param handlerType the handler type for which to create the condition
@@ -264,7 +264,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	 * The custom {@link RequestCondition} can be of any type so long as the
 	 * same condition type is returned from all calls to this method in order
 	 * to ensure custom request conditions can be combined and compared.
-	 * <p>Consider extending {@link AbstractRequestCondition} for custom
+	 * Consider extending {@link AbstractRequestCondition} for custom
 	 * condition types and using {@link CompositeRequestCondition} to provide
 	 * multiple custom conditions.
 	 * @param method the handler method for which to create the condition

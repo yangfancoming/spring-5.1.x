@@ -95,7 +95,7 @@ public class JavaConfigTests {
 	 * Verify that the breaking change introduced in <a
 	 * href="https://jira.spring.io/browse/SPR-12553">SPR-12553</a> has been reverted.
 	 *
-	 * <p>This code has been copied from
+	 * This code has been copied from
 	 * {@link org.springframework.test.context.hierarchies.web.ControllerIntegrationTests}.
 	 *
 	 * @see org.springframework.test.context.hierarchies.web.ControllerIntegrationTests#verifyRootWacSupport()

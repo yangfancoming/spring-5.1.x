@@ -72,7 +72,7 @@ public class HttpConstraintElement {
     /**
      * Gets the default authorization semantic.
      *
-     * <p>This value is insignificant when <code>getRolesAllowed</code>
+     * This value is insignificant when <code>getRolesAllowed</code>
      * returns a non-empty array, and should not be specified when a
      * non-empty array is specified for <tt>getRolesAllowed</tt>.
      *
@@ -98,7 +98,7 @@ public class HttpConstraintElement {
     /**
      * Gets the names of the authorized roles.
      *
-     * <p>Duplicate role names appearing in getRolesAllowed are insignificant
+     * Duplicate role names appearing in getRolesAllowed are insignificant
      * and may be discarded. The String <tt>"*"</tt> has no special meaning
      * as a role name (should it occur in getRolesAllowed).
      *

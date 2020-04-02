@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
  * Strategy interface for creating JTA {@link javax.transaction.Transaction}
  * objects based on specified transactional characteristics.
  *
- * <p>The default implementation, {@link SimpleTransactionFactory}, simply
+ * The default implementation, {@link SimpleTransactionFactory}, simply
  * wraps a standard JTA {@link javax.transaction.TransactionManager}.
  * This strategy interface allows for more sophisticated implementations
  * that adapt to vendor-specific JTA extensions.
@@ -40,7 +40,7 @@ public interface TransactionFactory {
 	/**
 	 * Determine whether the underlying transaction manager supports XA transactions
 	 * managed by a resource adapter (i.e. without explicit XA resource enlistment).
-	 * <p>Typically {@code false}. Checked by
+	 * Typically {@code false}. Checked by
 	 * {@link org.springframework.jca.endpoint.AbstractMessageEndpointFactory}
 	 * in order to differentiate between invalid configuration and valid
 	 * ResourceAdapter-managed transactions.

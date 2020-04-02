@@ -15,11 +15,11 @@ import java.lang.annotation.Target;
  * ApplicationContexts} for integration tests.
  *
  * <h3>Examples</h3>
- * <p>The following JUnit-based examples demonstrate common configuration
+ * The following JUnit-based examples demonstrate common configuration
  * scenarios for integration tests that require the use of context hierarchies.
  *
  * <h4>Single Test Class with Context Hierarchy</h4>
- * <p>{@code ControllerIntegrationTests} represents a typical integration testing
+ * {@code ControllerIntegrationTests} represents a typical integration testing
  * scenario for a Spring MVC web application by declaring a context hierarchy
  * consisting of two levels, one for the <em>root</em> {@code WebApplicationContext}
  * (with {@code TestAppConfig}) and one for the <em>dispatcher servlet</em>
@@ -43,7 +43,7 @@ import java.lang.annotation.Target;
  * }</pre>
  *
  * <h4>Class Hierarchy with Implicit Parent Context</h4>
- * <p>The following test classes define a context hierarchy within a test class
+ * The following test classes define a context hierarchy within a test class
  * hierarchy. {@code AbstractWebTests} declares the configuration for a root
  * {@code WebApplicationContext} in a Spring-powered web application. Note,
  * however, that {@code AbstractWebTests} does not declare {@code @ContextHierarchy};
@@ -69,7 +69,7 @@ import java.lang.annotation.Target;
  * public class RestWebServiceTests extends AbstractWebTests {}</pre>
  *
  * <h4>Class Hierarchy with Merged Context Hierarchy Configuration</h4>
- * <p>The following classes demonstrate the use of <em>named</em> hierarchy levels
+ * The following classes demonstrate the use of <em>named</em> hierarchy levels
  * in order to <em>merge</em> the configuration for specific levels in a context
  * hierarchy. {@code BaseTests} defines two levels in the hierarchy, {@code parent}
  * and {@code child}. {@code ExtendedTests} extends {@code BaseTests} and instructs
@@ -97,7 +97,7 @@ import java.lang.annotation.Target;
  * public class ExtendedTests extends BaseTests {}</pre>
  *
  * <h4>Class Hierarchy with Overridden Context Hierarchy Configuration</h4>
- * <p>In contrast to the previous example, this example demonstrates how to
+ * In contrast to the previous example, this example demonstrates how to
  * <em>override</em> the configuration for a given named level in a context hierarchy
  * by setting the {@link ContextConfiguration#inheritLocations} flag to {@code false}.
  * Consequently, the application context for {@code ExtendedTests} will be loaded
@@ -117,7 +117,7 @@ import java.lang.annotation.Target;
  * )
  * public class ExtendedTests extends BaseTests {}</pre>
  *
- * <p>As of Spring Framework 4.0, this annotation may be used as a
+ * As of Spring Framework 4.0, this annotation may be used as a
  * <em>meta-annotation</em> to create custom <em>composed annotations</em>.
  *
  * @author Sam Brannen
@@ -134,7 +134,7 @@ public @interface ContextHierarchy {
 	/**
 	 * A list of {@link ContextConfiguration @ContextConfiguration} instances,
 	 * each of which defines a level in the context hierarchy.
-	 * <p>If you need to merge or override the configuration for a given level
+	 * If you need to merge or override the configuration for a given level
 	 * of the context hierarchy within a test class hierarchy, you must explicitly
 	 * name that level by supplying the same value to the {@link ContextConfiguration#name
 	 * name} attribute in {@code @ContextConfiguration} at each level in the

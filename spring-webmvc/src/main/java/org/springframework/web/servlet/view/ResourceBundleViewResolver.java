@@ -26,15 +26,15 @@ import org.springframework.web.servlet.View;
  * A {@link org.springframework.web.servlet.ViewResolver} implementation that uses
  * bean definitions in a {@link ResourceBundle}, specified by the bundle basename.
  *
- * <p>The bundle is typically defined in a properties file, located in the classpath.
+ * The bundle is typically defined in a properties file, located in the classpath.
  * The default bundle basename is "views".
  *
- * <p>This {@code ViewResolver} supports localized view definitions, using the
+ * This {@code ViewResolver} supports localized view definitions, using the
  * default support of {@link java.util.PropertyResourceBundle}. For example, the
  * basename "views" will be resolved as class path resources "views_de_AT.properties",
  * "views_de.properties", "views.properties" - for a given Locale "de_AT".
  *
- * <p>Note: This {@code ViewResolver} implements the {@link Ordered} interface
+ * Note: This {@code ViewResolver} implements the {@link Ordered} interface
  * in order to allow for flexible participation in {@code ViewResolver} chaining.
  * For example, some special views could be defined via this {@code ViewResolver}
  * (giving it 0 as "order" value), while all remaining views could be resolved by
@@ -75,10 +75,10 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 	/**
 	 * Set a single basename, following {@link java.util.ResourceBundle} conventions.
 	 * The default is "views".
-	 * <p>{@code ResourceBundle} supports different locale suffixes. For example,
+	 * {@code ResourceBundle} supports different locale suffixes. For example,
 	 * a base name of "views" might map to {@code ResourceBundle} files
 	 * "views", "views_en_au" and "views_de".
-	 * <p>Note that ResourceBundle names are effectively classpath locations: As a
+	 * Note that ResourceBundle names are effectively classpath locations: As a
 	 * consequence, the JDK's standard ResourceBundle treats dots as package separators.
 	 * This means that "test.theme" is effectively equivalent to "test/theme",
 	 * just like it is for programmatic {@code java.util.ResourceBundle} usage.
@@ -93,13 +93,13 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 	/**
 	 * Set an array of basenames, each following {@link java.util.ResourceBundle}
 	 * conventions. The default is a single basename "views".
-	 * <p>{@code ResourceBundle} supports different locale suffixes. For example,
+	 * {@code ResourceBundle} supports different locale suffixes. For example,
 	 * a base name of "views" might map to {@code ResourceBundle} files
 	 * "views", "views_en_au" and "views_de".
-	 * <p>The associated resource bundles will be checked sequentially when resolving
+	 * The associated resource bundles will be checked sequentially when resolving
 	 * a message code. Note that message definitions in a <i>previous</i> resource
 	 * bundle will override ones in a later bundle, due to the sequential lookup.
-	 * <p>Note that ResourceBundle names are effectively classpath locations: As a
+	 * Note that ResourceBundle names are effectively classpath locations: As a
 	 * consequence, the JDK's standard ResourceBundle treats dots as package separators.
 	 * This means that "test.theme" is effectively equivalent to "test/theme",
 	 * just like it is for programmatic {@code java.util.ResourceBundle} usage.
@@ -121,7 +121,7 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 
 	/**
 	 * Return the {@link ClassLoader} to load resource bundles with.
-	 * <p>Default is the specified bundle {@code ClassLoader},
+	 * Default is the specified bundle {@code ClassLoader},
 	 * usually the thread context {@code ClassLoader}.
 	 */
 	protected ClassLoader getBundleClassLoader() {
@@ -130,12 +130,12 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 
 	/**
 	 * Set the default parent for views defined in the {@code ResourceBundle}.
-	 * <p>This avoids repeated "yyy1.(parent)=xxx", "yyy2.(parent)=xxx" definitions
+	 * This avoids repeated "yyy1.(parent)=xxx", "yyy2.(parent)=xxx" definitions
 	 * in the bundle, especially if all defined views share the same parent.
-	 * <p>The parent will typically define the view class and common attributes.
+	 * The parent will typically define the view class and common attributes.
 	 * Concrete views might simply consist of an URL definition then:
 	 * a la "yyy1.url=/my.jsp", "yyy2.url=/your.jsp".
-	 * <p>View definitions that define their own parent or carry their own
+	 * View definitions that define their own parent or carry their own
 	 * class can still override this. Strictly speaking, the rule that a
 	 * default parent setting does not apply to a bean definition that
 	 * carries a class is there for backwards compatibility reasons.
@@ -147,7 +147,7 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 
 	/**
 	 * Specify Locales to initialize eagerly, rather than lazily when actually accessed.
-	 * <p>Allows for pre-initialization of common Locales, eagerly checking
+	 * Allows for pre-initialization of common Locales, eagerly checking
 	 * the view configuration for those Locales.
 	 */
 	public void setLocalesToInitialize(Locale... localesToInitialize) {
@@ -156,7 +156,7 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 
 	/**
 	 * Specify the order value for this ViewResolver bean.
-	 * <p>The default value is {@code Ordered.LOWEST_PRECEDENCE}, meaning non-ordered.
+	 * The default value is {@code Ordered.LOWEST_PRECEDENCE}, meaning non-ordered.
 	 * @see org.springframework.core.Ordered#getOrder()
 	 */
 	public void setOrder(int order) {
@@ -197,7 +197,7 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 	/**
 	 * Initialize the View {@link BeanFactory} from the {@code ResourceBundle},
 	 * for the given {@link Locale locale}.
-	 * <p>Synchronized because of access by parallel threads.
+	 * Synchronized because of access by parallel threads.
 	 * @param locale the target {@code Locale}
 	 * @return the View factory for the given Locale
 	 * @throws BeansException in case of initialization errors

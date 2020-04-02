@@ -21,7 +21,7 @@ import org.springframework.util.ErrorHandler;
  * Internal adapter that reschedules an underlying {@link Runnable} according
  * to the next execution time suggested by a given {@link Trigger}.
  *
- * <p>Necessary because a native {@link ScheduledExecutorService} supports
+ * Necessary because a native {@link ScheduledExecutorService} supports
  * delay-driven execution only. The flexibility of the {@link Trigger} interface
  * will be translated onto a delay for the next execution time (repeatedly).
  *

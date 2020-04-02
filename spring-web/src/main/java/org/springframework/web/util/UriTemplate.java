@@ -19,8 +19,8 @@ import org.springframework.util.Assert;
  * Represents a URI template. A URI template is a URI-like String that contains variables
  * enclosed by braces ({@code {}}) which can be expanded to produce an actual URI.
  *
- * <p>See {@link #expand(Map)}, {@link #expand(Object[])}, and {@link #match(String)} for example usages.
- * <p>This class is designed to be thread-safe and reusable, allowing for any number of expand or match calls.
+ * See {@link #expand(Map)}, {@link #expand(Object[])}, and {@link #match(String)} for example usages.
+ * This class is designed to be thread-safe and reusable, allowing for any number of expand or match calls.
  * @since 3.0
  */
 @SuppressWarnings("serial")
@@ -61,7 +61,7 @@ public class UriTemplate implements Serializable {
 	/**
 	 * Given the Map of variables, expands this template into a URI. The Map keys represent variable names,
 	 * the Map values variable values. The order of variables is not significant.
-	 * <p>Example:
+	 * Example:
 	 * <pre class="code">
 	 * UriTemplate template = new UriTemplate("https://example.com/hotels/{hotel}/bookings/{booking}");
 	 * Map&lt;String, String&gt; uriVariables = new HashMap&lt;String, String&gt;();
@@ -84,7 +84,7 @@ public class UriTemplate implements Serializable {
 	/**
 	 * Given an array of variables, expand this template into a full URI. The array represent variable values.
 	 * The order of variables is significant.
-	 * <p>Example:
+	 * Example:
 	 * <pre class="code">
 	 * UriTemplate template = new UriTemplate("https://example.com/hotels/{hotel}/bookings/{booking}");
 	 * System.out.println(template.expand("Rest & Relax", 42));
@@ -117,7 +117,7 @@ public class UriTemplate implements Serializable {
 	/**
 	 * Match the given URI to a map of variable values. Keys in the returned map are variable names,
 	 * values are variable values, as occurred in the given URI.
-	 * <p>Example:
+	 * Example:
 	 * <pre class="code">
 	 * UriTemplate template = new UriTemplate("https://example.com/hotels/{hotel}/bookings/{booking}");
 	 * System.out.println(template.match("https://example.com/hotels/1/bookings/42"));

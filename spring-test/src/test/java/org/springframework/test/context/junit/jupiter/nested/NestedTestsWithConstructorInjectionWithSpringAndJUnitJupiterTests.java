@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * with the {@link SpringExtension} in a JUnit Jupiter environment ... when using
  * constructor injection as opposed to field injection (see SPR-16653).
  *
- * <p>
+ *
  * To run these tests in an IDE that does not have built-in support for the JUnit
  * Platform, simply run {@link SpringJUnitJupiterTestSuite} as a JUnit 4 test.
  *

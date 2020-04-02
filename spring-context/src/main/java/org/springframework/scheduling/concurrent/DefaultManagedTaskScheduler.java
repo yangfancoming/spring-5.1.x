@@ -15,7 +15,7 @@ import org.springframework.lang.Nullable;
  * JNDI-based variant of {@link ConcurrentTaskScheduler}, performing a default lookup for
  * JSR-236's "java:comp/DefaultManagedScheduledExecutorService" in a Java EE 7 environment.
  *
- * <p>Note: This class is not strictly JSR-236 based; it can work with any regular
+ * Note: This class is not strictly JSR-236 based; it can work with any regular
  * {@link java.util.concurrent.ScheduledExecutorService} that can be found in JNDI.
  * The actual adapting to {@link javax.enterprise.concurrent.ManagedScheduledExecutorService}
  * happens in the base class {@link ConcurrentTaskScheduler} itself.
@@ -60,7 +60,7 @@ public class DefaultManagedTaskScheduler extends ConcurrentTaskScheduler impleme
 	/**
 	 * Specify a JNDI name of the {@link java.util.concurrent.Executor} to delegate to,
 	 * replacing the default JNDI name "java:comp/DefaultManagedScheduledExecutorService".
-	 * <p>This can either be a fully qualified JNDI name, or the JNDI name relative
+	 * This can either be a fully qualified JNDI name, or the JNDI name relative
 	 * to the current environment naming context if "resourceRef" is set to "true".
 	 * @see #setConcurrentExecutor
 	 * @see #setResourceRef

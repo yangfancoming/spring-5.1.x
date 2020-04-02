@@ -35,7 +35,7 @@ public abstract class AbstractDestinationResolvingMessagingTemplate<D> extends A
 	/**
 	 * Configure the {@link DestinationResolver} to use to resolve String destination
 	 * names into actual destinations of type {@code <D>}.
-	 * <p>This field does not have a default setting. If not configured, methods that
+	 * This field does not have a default setting. If not configured, methods that
 	 * require resolving a destination name will raise an {@link IllegalArgumentException}.
 	 * @param destinationResolver the destination resolver to use
 	 */

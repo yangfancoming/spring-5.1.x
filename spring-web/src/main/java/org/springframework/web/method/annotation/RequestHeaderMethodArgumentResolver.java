@@ -19,11 +19,11 @@ import org.springframework.web.context.request.NativeWebRequest;
  * {@link Map} arguments. See {@link RequestHeaderMapMethodArgumentResolver} for
  * details on {@link Map} arguments annotated with {@code @RequestHeader}.
  *
- * <p>An {@code @RequestHeader} is a named value resolved from a request header.
+ * An {@code @RequestHeader} is a named value resolved from a request header.
  * It has a required flag and a default value to fall back on when the request
  * header does not exist.
  *
- * <p>A {@link WebDataBinder} is invoked to apply type conversion to resolved
+ * A {@link WebDataBinder} is invoked to apply type conversion to resolved
  * request header values that don't yet match the method parameter type.
  *
  * @author Arjen Poutsma

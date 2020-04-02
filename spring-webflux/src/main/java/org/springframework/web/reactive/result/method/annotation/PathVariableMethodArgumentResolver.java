@@ -22,13 +22,13 @@ import org.springframework.web.server.ServerWebExchange;
 /**
  * Resolves method arguments annotated with @{@link PathVariable}.
  *
- * <p>An @{@link PathVariable} is a named value that gets resolved from a URI
+ * An @{@link PathVariable} is a named value that gets resolved from a URI
  * template variable. It is always required and does not have a default value
  * to fall back on. See the base class
  * {@link org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver}
  * for more information on how named values are processed.
  *
- * <p>If the method parameter type is {@link Map}, the name specified in the
+ * If the method parameter type is {@link Map}, the name specified in the
  * annotation is used to resolve the URI variable String value. The value is
  * then converted to a {@link Map} via type conversion, assuming a suitable
  * {@link Converter}.

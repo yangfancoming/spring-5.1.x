@@ -8,11 +8,11 @@ import java.io.IOException;
 
 /**
  *
- * <p>Provides an abstract class to be subclassed to create
+ * Provides an abstract class to be subclassed to create
  * an HTTP filter suitable for a Web site. A subclass of
  * <code>HttpFilter</code> should override {@link #doFilter(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, javax.servlet.FilterChain) }.</p>
  *
- * <p>Filters typically run on multithreaded servers,
+ * Filters typically run on multithreaded servers,
  * so be aware that a filter must handle concurrent
  * requests and be careful to synchronize access to shared resources.
  * Shared resources include in-memory data such as
@@ -33,7 +33,7 @@ public abstract class HttpFilter extends GenericFilter
 {
 
     /**
-     * <p>Does nothing, because this is an abstract class.</p>
+     * Does nothing, because this is an abstract class.</p>
      *
      * @since 4.0
      */
@@ -42,14 +42,14 @@ public abstract class HttpFilter extends GenericFilter
 
     /**
      *
-     * <p>The <code>doFilter</code> method of the Filter is called by the
+     * The <code>doFilter</code> method of the Filter is called by the
      * container each time a request/response pair is passed through the
      * chain due to a client request for a resource at the end of the chain.
      * The FilterChain passed in to this method allows the Filter to pass
      * on the request and response to the next entity in the chain.  There's no need to
      * override this method.</p>
      *
-     * <p>The default implementation inspects the incoming {@code req} and {@code res}
+     * The default implementation inspects the incoming {@code req} and {@code res}
      * objects to determine if they are instances of {@link HttpServletRequest}
      * and {@link HttpServletResponse}, respectively.  If not, a {@link ServletException} is thrown.
      * Otherwise, the protected {@link #doFilter(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, javax.servlet.FilterChain)}
@@ -88,13 +88,13 @@ public abstract class HttpFilter extends GenericFilter
     
     /**
      *
-     * <p>The <code>doFilter</code> method of the Filter is called by the
+     * The <code>doFilter</code> method of the Filter is called by the
      * container each time a request/response pair is passed through the
      * chain due to a client request for a resource at the end of the chain.
      * The FilterChain passed in to this method allows the Filter to pass
      * on the request and response to the next entity in the chain.</p>
      * 
-     * <p>The default implementation simply calls {@link FilterChain#doFilter}</p>
+     * The default implementation simply calls {@link FilterChain#doFilter}</p>
      *
      * @param req   a {@link HttpServletRequest} object that
      *                  contains the request the client has made

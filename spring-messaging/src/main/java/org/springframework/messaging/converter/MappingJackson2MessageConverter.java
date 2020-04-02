@@ -34,13 +34,13 @@ import org.springframework.util.MimeType;
 /**
  * A Jackson 2 based {@link MessageConverter} implementation.
  *
- * <p>It customizes Jackson's default properties with the following ones:
+ * It customizes Jackson's default properties with the following ones:
  * <ul>
  * <li>{@link MapperFeature#DEFAULT_VIEW_INCLUSION} is disabled</li>
  * <li>{@link DeserializationFeature#FAIL_ON_UNKNOWN_PROPERTIES} is disabled</li>
  * </ul>
  *
- * <p>Compatible with Jackson 2.9 and higher, as of Spring 5.1.
+ * Compatible with Jackson 2.9 and higher, as of Spring 5.1.
  *
  * @author Rossen Stoyanchev
 
@@ -86,7 +86,7 @@ public class MappingJackson2MessageConverter extends AbstractMessageConverter {
 	/**
 	 * Set the {@code ObjectMapper} for this converter.
 	 * If not set, a default {@link ObjectMapper#ObjectMapper() ObjectMapper} is used.
-	 * <p>Setting a custom-configured {@code ObjectMapper} is one way to take further
+	 * Setting a custom-configured {@code ObjectMapper} is one way to take further
 	 * control of the JSON serialization process. For example, an extended
 	 * {@link com.fasterxml.jackson.databind.ser.SerializerFactory} can be
 	 * configured that provides custom serializers for specific types. The other

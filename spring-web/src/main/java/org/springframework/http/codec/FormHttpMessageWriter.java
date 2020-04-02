@@ -29,13 +29,13 @@ import org.springframework.util.MultiValueMap;
  * as HTML form data, i.e. {@code "application/x-www-form-urlencoded"}, to the
  * body of a request.
  *
- * <p>Note that unless the media type is explicitly set to
+ * Note that unless the media type is explicitly set to
  * {@link MediaType#APPLICATION_FORM_URLENCODED}, the {@link #canWrite} method
  * will need generic type information to confirm the target map has String values.
  * This is because a MultiValueMap with non-String values can be used to write
  * multipart requests.
  *
- * <p>To support both form data and multipart requests, consider using
+ * To support both form data and multipart requests, consider using
  * {@link org.springframework.http.codec.multipart.MultipartHttpMessageWriter}
  * configured with this writer as the fallback for writing plain form data.
  *
@@ -68,7 +68,7 @@ public class FormHttpMessageWriter extends LoggingCodecSupport
 	/**
 	 * Set the default character set to use for writing form data when the response
 	 * Content-Type header does not explicitly specify it.
-	 * <p>By default this is set to "UTF-8".
+	 * By default this is set to "UTF-8".
 	 */
 	public void setDefaultCharset(Charset charset) {
 		Assert.notNull(charset, "Charset must not be null");

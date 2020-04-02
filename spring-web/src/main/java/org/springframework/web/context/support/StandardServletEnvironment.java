@@ -20,7 +20,7 @@ import org.springframework.web.context.ConfigurableWebEnvironment;
  * applications. All web-related (servlet-based) {@code ApplicationContext} classes
  * initialize an instance by default.
  *
- * <p>Contributes {@code ServletConfig}, {@code ServletContext}, and JNDI-based
+ * Contributes {@code ServletConfig}, {@code ServletContext}, and JNDI-based
  * {@link PropertySource} instances. See {@link #customizePropertySources} method
  * documentation for details.
 
@@ -47,13 +47,13 @@ public class StandardServletEnvironment extends StandardEnvironment implements C
 	 * <li>{@value #SERVLET_CONTEXT_PROPERTY_SOURCE_NAME}
 	 * <li>{@value #JNDI_PROPERTY_SOURCE_NAME}
 	 * </ul>
-	 * <p>Properties present in {@value #SERVLET_CONFIG_PROPERTY_SOURCE_NAME} will
+	 * Properties present in {@value #SERVLET_CONFIG_PROPERTY_SOURCE_NAME} will
 	 * take precedence over those in {@value #SERVLET_CONTEXT_PROPERTY_SOURCE_NAME}, and
 	 * properties found in either of the above take precedence over those found in
 	 * {@value #JNDI_PROPERTY_SOURCE_NAME}.
-	 * <p>Properties in any of the above will take precedence over system properties and
+	 * Properties in any of the above will take precedence over system properties and
 	 * environment variables contributed by the {@link StandardEnvironment} superclass.
-	 * <p>The {@code Servlet}-related property sources are added as
+	 * The {@code Servlet}-related property sources are added as
 	 * {@link StubPropertySource stubs} at this stage, and will be
 	 * {@linkplain #initPropertySources(ServletContext, ServletConfig) fully initialized}
 	 * once the actual {@link ServletContext} object becomes available.

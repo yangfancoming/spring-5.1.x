@@ -17,7 +17,7 @@ import org.springframework.test.context.TestContextManager;
  * by calling {@link TestContextManager#afterTestMethod afterTestMethod()} on the supplied
  * {@link TestContextManager}.
  *
- * <p><strong>NOTE:</strong> This class requires JUnit 4.9 or higher.
+ * <strong>NOTE:</strong> This class requires JUnit 4.9 or higher.
  *
  * @author Sam Brannen
  * @since 3.0
@@ -60,7 +60,7 @@ public class RunAfterTestMethodCallbacks extends Statement {
 	 * exceptions thrown, and then invoke
 	 * {@link TestContextManager#afterTestMethod(Object, Method, Throwable)} supplying the
 	 * first caught exception (if any).
-	 * <p>If the invocation of {@code afterTestMethod()} throws an exception, that
+	 * If the invocation of {@code afterTestMethod()} throws an exception, that
 	 * exception will also be tracked. Multiple exceptions will be combined into a
 	 * {@link MultipleFailureException}.
 	 */

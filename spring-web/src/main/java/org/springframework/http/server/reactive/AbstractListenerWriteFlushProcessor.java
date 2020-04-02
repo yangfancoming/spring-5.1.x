@@ -159,14 +159,14 @@ public abstract class AbstractListenerWriteFlushProcessor<T> implements Processo
 	/**
 	 * Flush the output if ready, or otherwise {@link #isFlushPending()} should
 	 * return true after.
-	 * <p>This is primarily for the Servlet non-blocking I/O API where flush
+	 * This is primarily for the Servlet non-blocking I/O API where flush
 	 * cannot be called without a readyToWrite check.
 	 */
 	protected abstract void flush() throws IOException;
 
 	/**
 	 * Whether flushing is pending.
-	 * <p>This is primarily for the Servlet non-blocking I/O API where flush
+	 * This is primarily for the Servlet non-blocking I/O API where flush
 	 * cannot be called without a readyToWrite check.
 	 */
 	protected abstract boolean isFlushPending();
@@ -175,7 +175,7 @@ public abstract class AbstractListenerWriteFlushProcessor<T> implements Processo
 	 * Invoked when an error happens while flushing. Sub-classes may choose
 	 * to ignore this if they know the underlying API will provide an error
 	 * notification in a container thread.
-	 * <p>Defaults to no-op.
+	 * Defaults to no-op.
 	 */
 	protected void flushingFailed(Throwable t) {
 	}
@@ -205,7 +205,7 @@ public abstract class AbstractListenerWriteFlushProcessor<T> implements Processo
 	/**
 	 * Represents a state for the {@link Processor} to be in.
 	 *
-	 * <p><pre>
+	 * <pre>
 	 *       UNSUBSCRIBED
 	 *            |
 	 *            v

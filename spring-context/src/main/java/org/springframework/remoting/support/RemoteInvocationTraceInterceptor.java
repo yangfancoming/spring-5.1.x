@@ -15,12 +15,12 @@ import org.springframework.util.ClassUtils;
  * AOP Alliance MethodInterceptor for tracing remote invocations.
  * Automatically applied by RemoteExporter and its subclasses.
  *
- * <p>Logs an incoming remote call as well as the finished processing of a remote call
+ * Logs an incoming remote call as well as the finished processing of a remote call
  * at DEBUG level. If the processing of a remote call results in a checked exception,
  * the exception will get logged at INFO level; if it results in an unchecked
  * exception (or error), the exception will get logged at WARN level.
  *
- * <p>The logging of exceptions is particularly useful to save the stacktrace
+ * The logging of exceptions is particularly useful to save the stacktrace
  * information on the server-side rather than just propagating the exception
  * to the client (who might or might not log it properly).
  *

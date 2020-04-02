@@ -42,7 +42,7 @@ import org.springframework.web.reactive.result.method.SyncInvocableHandlerMethod
  * resolving, initializing, and caching annotated methods declared in
  * {@code @Controller} and {@code @ControllerAdvice} components.
  *
- * <p>Assists with the following annotations:
+ * Assists with the following annotations:
  * <ul>
  * <li>{@code @InitBinder}
  * <li>{@code @ModelAttribute}

@@ -10,7 +10,7 @@ import org.springframework.instrument.classloading.LoadTimeWeaver;
  * classes annotated with {@link EnableLoadTimeWeaving @EnableLoadTimeWeaving} that wish to
  * customize the {@link LoadTimeWeaver} instance to be used.
  *
- * <p>See {@link org.springframework.scheduling.annotation.EnableAsync @EnableAsync}
+ * See {@link org.springframework.scheduling.annotation.EnableAsync @EnableAsync}
  * for usage examples and information on how a default {@code LoadTimeWeaver}
  * is selected when this interface is not used.
 

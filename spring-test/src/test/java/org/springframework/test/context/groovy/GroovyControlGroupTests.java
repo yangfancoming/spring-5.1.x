@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
  * syntax and configuration of {@code "context.groovy"} without using the
  * Spring TestContext Framework.
  *
- * <p>In other words, this test class serves merely as a <em>control group</em>
+ * In other words, this test class serves merely as a <em>control group</em>
  * to ensure that there is nothing wrong with the Groovy script used by
  * other tests in this package.
  *

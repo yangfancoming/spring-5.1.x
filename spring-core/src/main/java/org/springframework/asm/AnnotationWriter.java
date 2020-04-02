@@ -61,7 +61,7 @@ final class AnnotationWriter extends AnnotationVisitor {
    * #visitEnd()}). The element_value_pairs array is filled incrementally in the various visit()
    * methods.
    *
-   * <p>Note: as an exception to the above rules, for AnnotationDefault attributes (which contain a
+   * Note: as an exception to the above rules, for AnnotationDefault attributes (which contain a
    * single element_value by definition), this ByteVector is initially empty when passed to the
    * constructor, and {@link #numElementValuePairsOffset} is set to -1.
    */

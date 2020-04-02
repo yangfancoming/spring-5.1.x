@@ -23,7 +23,7 @@ import org.springframework.util.Assert;
  * {@link ConnectionHolder} with a JDBC {@code Connection}, and implements the
  * {@link SavepointManager} interface based on that {@code ConnectionHolder}.
  *
- * <p>Allows for programmatic management of JDBC {@link java.sql.Savepoint Savepoints}.
+ * Allows for programmatic management of JDBC {@link java.sql.Savepoint Savepoints}.
  * Spring's {@link org.springframework.transaction.support.DefaultTransactionStatus}
  * automatically delegates to this, as it autodetects transaction objects which
  * implement the {@link SavepointManager} interface.

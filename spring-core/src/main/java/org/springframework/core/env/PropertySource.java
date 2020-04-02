@@ -17,18 +17,18 @@ import org.springframework.util.ObjectUtils;
  * parameters). Explore the {@code PropertySource} type hierarchy to see provided
  * implementations.
  *
- * <p>{@code PropertySource} objects are not typically used in isolation, but rather
+ * {@code PropertySource} objects are not typically used in isolation, but rather
  * through a {@link PropertySources} object, which aggregates property sources and in
  * conjunction with a {@link PropertyResolver} implementation that can perform
  * precedence-based searches across the set of {@code PropertySources}.
  *
- * <p>{@code PropertySource} identity is determined not based on the content of
+ * {@code PropertySource} identity is determined not based on the content of
  * encapsulated properties, but rather based on the {@link #getName() name} of the
  * {@code PropertySource} alone. This is useful for manipulating {@code PropertySource}
  * objects when in collection contexts. See operations in {@link MutablePropertySources}
  * as well as the {@link #named(String)} and {@link #toString()} methods for details.
  *
- * <p>Note that when working with @{@link
+ * Note that when working with @{@link
  * org.springframework.context.annotation.Configuration Configuration} classes that
  * the @{@link org.springframework.context.annotation.PropertySource PropertySource}
  * annotation provides a convenient and declarative way of adding property sources to the enclosing {@code Environment}.
@@ -61,7 +61,7 @@ public abstract class PropertySource<T> {
 	/**
 	 * Create a new {@code PropertySource} with the given name and with a new
 	 * {@code Object} instance as the underlying source.
-	 * <p>Often useful in testing scenarios when creating anonymous implementations
+	 * Often useful in testing scenarios when creating anonymous implementations
 	 * that never query an actual source but rather return hard-coded values.
 	 */
 	@SuppressWarnings("unchecked")
@@ -86,7 +86,7 @@ public abstract class PropertySource<T> {
 
 	/**
 	 * Return whether this {@code PropertySource} contains the given name.
-	 * <p>This implementation simply checks for a {@code null} return value
+	 * This implementation simply checks for a {@code null} return value
 	 * from {@link #getProperty(String)}. Subclasses may wish to implement  a more efficient algorithm if possible.
 	 * @param name the property name to find
 	 */
@@ -107,7 +107,7 @@ public abstract class PropertySource<T> {
 	 * This {@code PropertySource} object is equal to the given object if:
 	 * <li>they are the same instance
 	 * <li>the {@code name} properties for both objects are equal
-	 * <p>No properties other than {@code name} are evaluated.
+	 * No properties other than {@code name} are evaluated.
 	 */
 	@Override
 	public boolean equals(Object other) {
@@ -127,7 +127,7 @@ public abstract class PropertySource<T> {
 	 * Produce concise output (type and name) if the current log level does not include
 	 * debug. If debug is enabled, produce verbose output including the hash code of the
 	 * PropertySource instance and every name/value property pair.
-	 * <p>This variable verbosity is useful as a property source such as system properties
+	 * This variable verbosity is useful as a property source such as system properties
 	 * or environment variables may contain an arbitrary number of property pairs,
 	 * potentially leading to difficult to read exception and log messages.
 	 * @see Log#isDebugEnabled()
@@ -143,7 +143,7 @@ public abstract class PropertySource<T> {
 
 	/**
 	 * Return a {@code PropertySource} implementation intended for collection comparison purposes only.
-	 * <p>Primarily for internal use, but given a collection of {@code PropertySource} objects, may be
+	 * Primarily for internal use, but given a collection of {@code PropertySource} objects, may be
 	 * used as follows:
 	 * <pre class="code">
 	 * {@code List<PropertySource<?>> sources = new ArrayList<PropertySource<?>>();

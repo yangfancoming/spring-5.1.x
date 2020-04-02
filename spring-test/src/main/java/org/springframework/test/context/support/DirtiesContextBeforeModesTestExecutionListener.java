@@ -19,7 +19,7 @@ import static org.springframework.test.annotation.DirtiesContext.MethodMode.BEFO
  * both test classes and test methods annotated with the
  * {@link DirtiesContext @DirtiesContext} annotation.
  *
- * <p>This listener supports test methods with the
+ * This listener supports test methods with the
  * {@linkplain DirtiesContext#methodMode method mode} set to
  * {@link MethodMode#BEFORE_METHOD BEFORE_METHOD} and test classes with the
  * {@linkplain DirtiesContext#classMode() class mode} set to
@@ -27,7 +27,7 @@ import static org.springframework.test.annotation.DirtiesContext.MethodMode.BEFO
  * {@link ClassMode#BEFORE_CLASS BEFORE_CLASS}. For support for <em>AFTER</em>
  * modes, see {@link DirtiesContextTestExecutionListener}.
  *
- * <p>When {@linkplain TestExecutionListeners#mergeMode merging}
+ * When {@linkplain TestExecutionListeners#mergeMode merging}
  * {@code TestExecutionListeners} with the defaults, this listener will
  * automatically be ordered before the {@link DependencyInjectionTestExecutionListener};
  * otherwise, this listener must be manually configured to execute before the

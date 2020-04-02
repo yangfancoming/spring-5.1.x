@@ -1,7 +1,7 @@
 /**
  * Mock objects for the functional web framework.
  *
- * <p>Useful for testing router and handler functions.
+ * Useful for testing router and handler functions.
  *
  */
 @NonNullApi

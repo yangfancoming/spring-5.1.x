@@ -14,11 +14,11 @@ import org.springframework.web.servlet.support.RequestContext;
  * Specialization of {@link InternalResourceView} for JSTL pages,
  * i.e. JSP pages that use the JSP Standard Tag Library.
  *
- * <p>Exposes JSTL-specific request attributes specifying locale
+ * Exposes JSTL-specific request attributes specifying locale
  * and resource bundle for JSTL's formatting and message tags,
  * using Spring's locale and {@link org.springframework.context.MessageSource}.
  *
- * <p>Typical usage with {@link InternalResourceViewResolver} would look as follows,
+ * Typical usage with {@link InternalResourceViewResolver} would look as follows,
  * from the perspective of the DispatcherServlet context definition:
  *
  * <pre class="code">
@@ -36,19 +36,19 @@ import org.springframework.web.servlet.support.RequestContext;
  * resource (for example: "myView" -> "/WEB-INF/jsp/myView.jsp"), using
  * this view class to enable explicit JSTL support.
  *
- * <p>The specified MessageSource loads messages from "messages.properties" etc
+ * The specified MessageSource loads messages from "messages.properties" etc
  * files in the class path. This will automatically be exposed to views as
  * JSTL localization context, which the JSTL fmt tags (message etc) will use.
  * Consider using Spring's ReloadableResourceBundleMessageSource instead of
  * the standard ResourceBundleMessageSource for more sophistication.
  * Of course, any other Spring components can share the same MessageSource.
  *
- * <p>This is a separate class mainly to avoid JSTL dependencies in
+ * This is a separate class mainly to avoid JSTL dependencies in
  * {@link InternalResourceView} itself. JSTL has not been part of standard
  * J2EE up until J2EE 1.4, so we can't assume the JSTL API jar to be
  * available on the class path.
  *
- * <p>Hint: Set the {@link #setExposeContextBeansAsAttributes} flag to "true"
+ * Hint: Set the {@link #setExposeContextBeansAsAttributes} flag to "true"
  * in order to make all Spring beans in the application context accessible
  * within JSTL expressions (e.g. in a {@code c:out} value expression).
  * This will also make all such beans accessible in plain {@code ${...}}

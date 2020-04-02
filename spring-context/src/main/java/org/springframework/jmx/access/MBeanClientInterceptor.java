@@ -59,14 +59,14 @@ import org.springframework.util.StringUtils;
  * MBean running on the supplied {@code MBeanServerConnection}.
  * Works for both local and remote {@code MBeanServerConnection}s.
  *
- * <p>By default, the {@code MBeanClientInterceptor} will connect to the
+ * By default, the {@code MBeanClientInterceptor} will connect to the
  * {@code MBeanServer} and cache MBean metadata at startup. This can
  * be undesirable when running against a remote {@code MBeanServer}
  * that may not be running when the application starts. Through setting the
  * {@link #setConnectOnStartup(boolean) connectOnStartup} property to "false",
  * you can defer this process until the first invocation against the proxy.
  *
- * <p>This functionality is usually used through {@link MBeanProxyFactoryBean}.
+ * This functionality is usually used through {@link MBeanProxyFactoryBean}.
  * See the javadoc of that class for more information.
  *
  * @author Rob Harrop
@@ -151,7 +151,7 @@ public class MBeanClientInterceptor
 	/**
 	 * Allow Map access to the environment to be set for the connector,
 	 * with the option to add or override specific entries.
-	 * <p>Useful for specifying entries directly, for example via
+	 * Useful for specifying entries directly, for example via
 	 * "environment[myKey]". This is particularly useful for
 	 * adding or overriding entries in child bean definitions.
 	 */
@@ -162,11 +162,11 @@ public class MBeanClientInterceptor
 
 	/**
 	 * Set the agent id of the {@code MBeanServer} to locate.
-	 * <p>Default is none. If specified, this will result in an
+	 * Default is none. If specified, this will result in an
 	 * attempt being made to locate the attendant MBeanServer, unless
 	 * the {@link #setServiceUrl "serviceUrl"} property has been set.
 	 * @see javax.management.MBeanServerFactory#findMBeanServer(String)
-	 * <p>Specifying the empty String indicates the platform MBeanServer.
+	 * Specifying the empty String indicates the platform MBeanServer.
 	 */
 	public void setAgentId(String agentId) {
 		this.agentId = agentId;
@@ -184,7 +184,7 @@ public class MBeanClientInterceptor
 	/**
 	 * Set whether to refresh the MBeanServer connection on connect failure.
 	 * Default is "false".
-	 * <p>Can be turned on to allow for hot restart of the JMX server,
+	 * Can be turned on to allow for hot restart of the JMX server,
 	 * automatically reconnecting and retrying in case of an IOException.
 	 */
 	public void setRefreshOnConnectFailure(boolean refreshOnConnectFailure) {
@@ -201,7 +201,7 @@ public class MBeanClientInterceptor
 
 	/**
 	 * Set whether to use strict casing for attributes. Enabled by default.
-	 * <p>When using strict casing, a JavaBean property with a getter such as
+	 * When using strict casing, a JavaBean property with a getter such as
 	 * {@code getFoo()} translates to an attribute called {@code Foo}.
 	 * With strict casing disabled, {@code getFoo()} would translate to just
 	 * {@code foo}.
@@ -358,7 +358,7 @@ public class MBeanClientInterceptor
 
 	/**
 	 * Refresh the connection and retry the MBean invocation if possible.
-	 * <p>If not configured to refresh on connect failure, this method
+	 * If not configured to refresh on connect failure, this method
 	 * simply rethrows the original exception.
 	 * @param invocation the invocation that failed
 	 * @param ex the exception raised on remote invocation

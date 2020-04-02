@@ -16,7 +16,7 @@ import org.springframework.lang.Nullable;
  * passed into a controller method as an {@code @RequestBody} or an
  * {@code HttpEntity} method argument.
  *
- * <p>Implementations of this contract may be registered directly with the
+ * Implementations of this contract may be registered directly with the
  * {@code RequestMappingHandlerAdapter} or more likely annotated with
  * {@code @ControllerAdvice} in which case they are auto-detected.
  *

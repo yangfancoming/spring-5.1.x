@@ -45,7 +45,7 @@ public abstract class SpelNodeImpl implements SpelNode, Opcodes {
 	 * This is set as soon as it is known. For a literal node it is known immediately.
 	 * For a property access or method invocation it is known after one evaluation of
 	 * that node.
-	 * <p>The descriptor is like the bytecode form but is slightly easier to work with.
+	 * The descriptor is like the bytecode form but is slightly easier to work with.
 	 * It does not include the trailing semicolon (for non array reference types).
 	 * Some examples: Ljava/lang/String, I, [I
      */

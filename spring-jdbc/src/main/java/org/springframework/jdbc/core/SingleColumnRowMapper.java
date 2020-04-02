@@ -20,7 +20,7 @@ import org.springframework.util.NumberUtils;
  * result value per row. Expects to operate on a {@code java.sql.ResultSet}
  * that just contains a single column.
  *
- * <p>The type of the result value for each row can be specified. The value
+ * The type of the result value for each row can be specified. The value
  * for the single column will be extracted from the {@code ResultSet}
  * and converted into the specified target type.
  *
@@ -46,7 +46,7 @@ public class SingleColumnRowMapper<T> implements RowMapper<T> {
 
 	/**
 	 * Create a new {@code SingleColumnRowMapper}.
-	 * <p>Consider using the {@link #newInstance} factory method instead,
+	 * Consider using the {@link #newInstance} factory method instead,
 	 * which allows for specifying the required type once only.
 	 * @param requiredType the type that each result object is expected to match
 	 */
@@ -57,7 +57,7 @@ public class SingleColumnRowMapper<T> implements RowMapper<T> {
 
 	/**
 	 * Set the type that each result object is expected to match.
-	 * <p>If not specified, the column value will be exposed as
+	 * If not specified, the column value will be exposed as
 	 * returned by the JDBC driver.
 	 */
 	public void setRequiredType(Class<T> requiredType) {
@@ -66,7 +66,7 @@ public class SingleColumnRowMapper<T> implements RowMapper<T> {
 
 	/**
 	 * Set a {@link ConversionService} for converting a fetched value.
-	 * <p>Default is the {@link DefaultConversionService}.
+	 * Default is the {@link DefaultConversionService}.
 	 * @since 5.0.4
 	 * @see DefaultConversionService#getSharedInstance
 	 */
@@ -76,7 +76,7 @@ public class SingleColumnRowMapper<T> implements RowMapper<T> {
 
 	/**
 	 * Extract a value for the single column in the current row.
-	 * <p>Validates that there is only one column selected,
+	 * Validates that there is only one column selected,
 	 * then delegates to {@code getColumnValue()} and also
 	 * {@code convertValueToRequiredType}, if necessary.
 	 * @see java.sql.ResultSetMetaData#getColumnCount()
@@ -109,7 +109,7 @@ public class SingleColumnRowMapper<T> implements RowMapper<T> {
 
 	/**
 	 * Retrieve a JDBC object value for the specified column.
-	 * <p>The default implementation calls
+	 * The default implementation calls
 	 * {@link JdbcUtils#getResultSetValue(java.sql.ResultSet, int, Class)}.
 	 * If no required type has been specified, this method delegates to
 	 * {@code getColumnValue(rs, index)}, which basically calls
@@ -137,7 +137,7 @@ public class SingleColumnRowMapper<T> implements RowMapper<T> {
 	/**
 	 * Retrieve a JDBC object value for the specified column, using the most
 	 * appropriate value type. Called if no required type has been specified.
-	 * <p>The default implementation delegates to {@code JdbcUtils.getResultSetValue()},
+	 * The default implementation delegates to {@code JdbcUtils.getResultSetValue()},
 	 * which uses the {@code ResultSet.getObject(index)} method. Additionally,
 	 * it includes a "hack" to get around Oracle returning a non-standard object for
 	 * their TIMESTAMP datatype. See the {@code JdbcUtils#getResultSetValue()}
@@ -156,7 +156,7 @@ public class SingleColumnRowMapper<T> implements RowMapper<T> {
 	/**
 	 * Convert the given column value to the specified required type.
 	 * Only called if the extracted column value does not match already.
-	 * <p>If the required type is String, the value will simply get stringified
+	 * If the required type is String, the value will simply get stringified
 	 * via {@code toString()}. In case of a Number, the value will be
 	 * converted into a Number, either through number conversion or through
 	 * String parsing (depending on the value type). Otherwise, the value will

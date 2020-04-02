@@ -13,7 +13,7 @@ import static org.springframework.test.util.AssertionErrors.assertTrue;
 /**
  * Factory for "output" flash attribute assertions.
  *
- * <p>An instance of this class is typically accessed via
+ * An instance of this class is typically accessed via
  * {@link MockMvcResultMatchers#flash}.
  *
  * @author Rossen Stoyanchev

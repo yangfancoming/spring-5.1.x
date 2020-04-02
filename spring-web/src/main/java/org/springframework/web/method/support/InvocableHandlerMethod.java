@@ -80,7 +80,7 @@ public class InvocableHandlerMethod extends HandlerMethod {
 	/**
 	 * Set the ParameterNameDiscoverer for resolving parameter names when needed
 	 * (e.g. default request attribute name).
-	 * <p>Default is a {@link org.springframework.core.DefaultParameterNameDiscoverer}.
+	 * Default is a {@link org.springframework.core.DefaultParameterNameDiscoverer}.
 	 */
 	public void setParameterNameDiscoverer(ParameterNameDiscoverer parameterNameDiscoverer) {
 		this.parameterNameDiscoverer = parameterNameDiscoverer;
@@ -89,13 +89,13 @@ public class InvocableHandlerMethod extends HandlerMethod {
 
 	/**
 	 * Invoke the method after resolving its argument values in the context of the given request.
-	 * <p>Argument values are commonly resolved through
+	 * Argument values are commonly resolved through
 	 * {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}.
 	 * The {@code providedArgs} parameter however may supply argument values to be used directly,
 	 * i.e. without argument resolution. Examples of provided argument values include a
 	 * {@link WebDataBinder}, a {@link SessionStatus}, or a thrown exception instance.
 	 * Provided argument values are checked before argument resolvers.
-	 * <p>Delegates to {@link #getMethodArgumentValues} and calls {@link #doInvoke} with the
+	 * Delegates to {@link #getMethodArgumentValues} and calls {@link #doInvoke} with the
 	 * resolved arguments.
 	 * @param request the current request
 	 * @param mavContainer the ModelAndViewContainer for this request
@@ -118,7 +118,7 @@ public class InvocableHandlerMethod extends HandlerMethod {
 	/**
 	 * Get the method argument values for the current request, checking the provided
 	 * argument values and falling back to the configured argument resolvers.
-	 * <p>The resulting array will be passed into {@link #doInvoke}.
+	 * The resulting array will be passed into {@link #doInvoke}.
 	 * @since 5.1.2
 	 */
 	protected Object[] getMethodArgumentValues(NativeWebRequest request, @Nullable ModelAndViewContainer mavContainer,Object... providedArgs) throws Exception {

@@ -17,7 +17,7 @@ public interface WebSessionStore {
 
 	/**
 	 * Create a new WebSession.
-	 * <p>Note that this does nothing more than create a new instance.
+	 * Note that this does nothing more than create a new instance.
 	 * The session can later be started explicitly via {@link WebSession#start()}
 	 * or implicitly by adding attributes -- and then persisted via
 	 * {@link WebSession#save()}.
@@ -27,7 +27,7 @@ public interface WebSessionStore {
 
 	/**
 	 * Return the WebSession for the given id.
-	 * <p><strong>Note:</strong> This method should perform an expiration check,
+	 * <strong>Note:</strong> This method should perform an expiration check,
 	 * and if it has expired remove the session and return empty. This method
 	 * should also update the lastAccessTime of retrieved sessions.
 	 * @param sessionId the session to load

@@ -10,9 +10,9 @@ import org.springframework.util.Assert;
  * {@link TaskExecutor} implementation that executes each task <i>synchronously</i>
  * in the calling thread.
  *
- * <p>Mainly intended for testing scenarios.
+ * Mainly intended for testing scenarios.
  *
- * <p>Execution in the calling thread does have the advantage of participating
+ * Execution in the calling thread does have the advantage of participating
  * in it's thread context, for example the thread context class loader or the
  * thread's current transaction association. That said, in many cases,
  * asynchronous execution will be preferable: choose an asynchronous

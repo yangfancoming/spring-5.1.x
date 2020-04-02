@@ -115,7 +115,7 @@ public interface ServerHttpRequest extends HttpRequest, ReactiveHttpInputMessage
 
 		/**
 		 * Set the contextPath to use.
-		 * <p>The given value must be a valid {@link RequestPath#contextPath()
+		 * The given value must be a valid {@link RequestPath#contextPath()
 		 * contextPath} and it must match the start of the path of the URI of
 		 * the request. That means changing the contextPath, implies also
 		 * changing the path via {@link #path(String)}.

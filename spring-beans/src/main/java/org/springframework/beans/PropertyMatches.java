@@ -16,7 +16,7 @@ import org.springframework.util.StringUtils;
  * distance. Provide the list of potential matches and an easy way to generate
  * an error message. Works for both java bean properties and fields.
  *
- * <p>Mainly for use within the framework and in particular the binding facility.
+ * Mainly for use within the framework and in particular the binding facility.
  * @since 2.0
  * @see #forProperty(String, Class)
  * @see #forField(String, Class)

@@ -14,10 +14,10 @@ import org.springframework.util.StringUtils;
 /**
  * {@link SqlParameterSource} implementation that holds a given Map of parameters.
  *
- * <p>This class is intended for passing in a simple Map of parameter values
+ * This class is intended for passing in a simple Map of parameter values
  * to the methods of the {@link NamedParameterJdbcTemplate} class.
  *
- * <p>The {@code addValue} methods on this class will make adding several values
+ * The {@code addValue} methods on this class will make adding several values
  * easier. The methods return a reference to the {@link MapSqlParameterSource}
  * itself, so you can chain several method calls together within a single statement.
  *

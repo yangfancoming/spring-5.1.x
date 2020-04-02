@@ -9,7 +9,7 @@ import org.springframework.messaging.MessageHeaders;
 /**
  * An extended {@link MessageConverter} SPI with conversion hint support.
  *
- * <p>In case of a conversion hint being provided, the framework will call
+ * In case of a conversion hint being provided, the framework will call
  * these extended methods if a converter implements this interface, instead
  * of calling the regular {@code fromMessage} / {@code toMessage} variants.
  *

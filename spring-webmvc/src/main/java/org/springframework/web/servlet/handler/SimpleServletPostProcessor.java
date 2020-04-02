@@ -21,25 +21,25 @@ import org.springframework.web.context.ServletContextAware;
  * that applies initialization and destruction callbacks to beans that
  * implement the {@link javax.servlet.Servlet} interface.
  *
- * <p>After initialization of the bean instance, the Servlet {@code init}
+ * After initialization of the bean instance, the Servlet {@code init}
  * method will be called with a ServletConfig that contains the bean name
  * of the Servlet and the ServletContext that it is running in.
  *
- * <p>Before destruction of the bean instance, the Servlet {@code destroy}
+ * Before destruction of the bean instance, the Servlet {@code destroy}
  * will be called.
  *
- * <p><b>Note that this post-processor does not support Servlet initialization
+ * <b>Note that this post-processor does not support Servlet initialization
  * parameters.</b> Bean instances that implement the Servlet interface are
  * supposed to be configured like any other Spring bean, that is, through
  * constructor arguments or bean properties.
  *
- * <p>For reuse of a Servlet implementation in a plain Servlet container
+ * For reuse of a Servlet implementation in a plain Servlet container
  * and as a bean in a Spring context, consider deriving from Spring's
  * {@link org.springframework.web.servlet.HttpServletBean} base class that
  * applies Servlet initialization parameters as bean properties, supporting
  * both the standard Servlet and the Spring bean initialization style.
  *
- * <p><b>Alternatively, consider wrapping a Servlet with Spring's
+ * <b>Alternatively, consider wrapping a Servlet with Spring's
  * {@link org.springframework.web.servlet.mvc.ServletWrappingController}.</b>
  * This is particularly appropriate for existing Servlet classes,
  * allowing to specify Servlet initialization parameters etc.
@@ -65,7 +65,7 @@ public class SimpleServletPostProcessor implements
 	/**
 	 * Set whether to use the shared ServletConfig object passed in
 	 * through {@code setServletConfig}, if available.
-	 * <p>Default is "true". Turn this setting to "false" to pass in
+	 * Default is "true". Turn this setting to "false" to pass in
 	 * a mock ServletConfig object with the bean name as servlet name,
 	 * holding the current ServletContext.
 	 * @see #setServletConfig

@@ -17,12 +17,12 @@ import org.springframework.web.servlet.FlashMap;
  * them eligible to be appended to the query string or expanded as URI
  * variables in {@code org.springframework.web.servlet.view.RedirectView}.
  *
- * <p>This interface also provides a way to add flash attributes. For a
+ * This interface also provides a way to add flash attributes. For a
  * general overview of flash attributes see {@link FlashMap}. You can use
  * {@link RedirectAttributes} to store flash attributes and they will be
  * automatically propagated to the "output" FlashMap of the current request.
  *
- * <p>Example usage in an {@code @Controller}:
+ * Example usage in an {@code @Controller}:
  * <pre class="code">
  * &#064;RequestMapping(value = "/accounts", method = RequestMethod.POST)
  * public String handle(Account account, BindingResult result, RedirectAttributes redirectAttrs) {
@@ -35,10 +35,10 @@ import org.springframework.web.servlet.FlashMap;
  * }
  * </pre>
  *
- * <p>A RedirectAttributes model is empty when the method is called and is never
+ * A RedirectAttributes model is empty when the method is called and is never
  * used unless the method returns a redirect view name or a RedirectView.
  *
- * <p>After the redirect, flash attributes are automatically added to the model
+ * After the redirect, flash attributes are automatically added to the model
  * of the controller that serves the target URL.
  *
  * @author Rossen Stoyanchev

@@ -31,7 +31,7 @@ public class PathMatchConfigurer {
 	/**
 	 * Whether to match to URLs irrespective of their case.
 	 * If enabled a method mapped to "/users" won't match to "/Users/".
-	 * <p>The default value is {@code false}.
+	 * The default value is {@code false}.
 	 */
 	public PathMatchConfigurer setUseCaseSensitiveMatch(Boolean caseSensitiveMatch) {
 		this.caseSensitiveMatch = caseSensitiveMatch;
@@ -41,7 +41,7 @@ public class PathMatchConfigurer {
 	/**
 	 * Whether to match to URLs irrespective of the presence of a trailing slash.
 	 * If enabled a method mapped to "/users" also matches to "/users/".
-	 * <p>The default value is {@code true}.
+	 * The default value is {@code true}.
 	 */
 	public PathMatchConfigurer setUseTrailingSlashMatch(Boolean trailingSlashMatch) {
 		this.trailingSlashMatch = trailingSlashMatch;
@@ -50,10 +50,10 @@ public class PathMatchConfigurer {
 
 	/**
 	 * Configure a path prefix to apply to matching controller methods.
-	 * <p>Prefixes are used to enrich the mappings of every {@code @RequestMapping}
+	 * Prefixes are used to enrich the mappings of every {@code @RequestMapping}
 	 * method whose controller type is matched by the corresponding
 	 * {@code Predicate}. The prefix for the first matching predicate is used.
-	 * <p>Consider using {@link org.springframework.web.method.HandlerTypePredicate
+	 * Consider using {@link org.springframework.web.method.HandlerTypePredicate
 	 * HandlerTypePredicate} to group controllers.
 	 * @param prefix the path prefix to apply
 	 * @param predicate a predicate for matching controller types

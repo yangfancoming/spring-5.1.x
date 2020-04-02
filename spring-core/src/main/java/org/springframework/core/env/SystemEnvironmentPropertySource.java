@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
  * containing the period character and/or hyphen character; also allows for uppercase
  * variations on property names for more idiomatic shell use.
  *
- * <p>For example, a call to {@code getProperty("foo.bar")} will attempt to find a value
+ * For example, a call to {@code getProperty("foo.bar")} will attempt to find a value
  * for the original property or any 'equivalent' property, returning the first found:
  * <ul>
  * <li>{@code foo.bar} - the original name</li>
@@ -24,10 +24,10 @@ import org.springframework.util.Assert;
  * </ul>
  * Any hyphen variant of the above would work as well, or even mix dot/hyphen variants.
  *
- * <p>The same applies for calls to {@link #containsProperty(String)}, which returns
+ * The same applies for calls to {@link #containsProperty(String)}, which returns
  * {@code true} if any of the above properties are present, otherwise {@code false}.
  *
- * <p>This feature is particularly useful when specifying active or default profiles as
+ * This feature is particularly useful when specifying active or default profiles as
  * environment variables. The following is not allowable under Bash:
  *
  * <pre class="code">spring.profiles.active=p1 java -classpath ... MyApp</pre>
@@ -36,10 +36,10 @@ import org.springframework.util.Assert;
  *
  * <pre class="code">SPRING_PROFILES_ACTIVE=p1 java -classpath ... MyApp</pre>
  *
- * <p>Enable debug- or trace-level logging for this class (or package) for messages
+ * Enable debug- or trace-level logging for this class (or package) for messages
  * explaining when these 'property name resolutions' occur.
  *
- * <p>This property source is included by default in {@link StandardEnvironment}
+ * This property source is included by default in {@link StandardEnvironment}
  * and all its subclasses.
 
 

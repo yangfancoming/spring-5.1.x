@@ -36,11 +36,11 @@ import org.springframework.util.Assert;
  * <a href="https://hc.apache.org/httpcomponents-client-ga/httpclient/">Apache HttpComponents HttpClient</a>
  * to execute POST requests.
  *
- * <p>Allows to use a pre-configured {@link org.apache.http.client.HttpClient}
+ * Allows to use a pre-configured {@link org.apache.http.client.HttpClient}
  * instance, potentially with authentication, HTTP connection pooling, etc.
  * Also designed for easy subclassing, providing specific template methods.
  *
- * <p>As of Spring 4.1, this request executor requires Apache HttpComponents 4.3 or higher.
+ * As of Spring 4.1, this request executor requires Apache HttpComponents 4.3 or higher.
  *
 
  * @author Stephane Nicoll
@@ -117,7 +117,7 @@ public class HttpComponentsHttpInvokerRequestExecutor extends AbstractHttpInvoke
 	/**
 	 * Set the connection timeout for the underlying HttpClient.
 	 * A timeout value of 0 specifies an infinite timeout.
-	 * <p>Additional properties can be configured by specifying a
+	 * Additional properties can be configured by specifying a
 	 * {@link RequestConfig} instance on a custom {@link HttpClient}.
 	 * @param timeout the timeout value in milliseconds
 	 * @see RequestConfig#getConnectTimeout()
@@ -131,7 +131,7 @@ public class HttpComponentsHttpInvokerRequestExecutor extends AbstractHttpInvoke
 	 * Set the timeout in milliseconds used when requesting a connection from the connection
 	 * manager using the underlying HttpClient.
 	 * A timeout value of 0 specifies an infinite timeout.
-	 * <p>Additional properties can be configured by specifying a
+	 * Additional properties can be configured by specifying a
 	 * {@link RequestConfig} instance on a custom {@link HttpClient}.
 	 * @param connectionRequestTimeout the timeout value to request a connection in milliseconds
 	 * @see RequestConfig#getConnectionRequestTimeout()
@@ -143,7 +143,7 @@ public class HttpComponentsHttpInvokerRequestExecutor extends AbstractHttpInvoke
 	/**
 	 * Set the socket read timeout for the underlying HttpClient.
 	 * A timeout value of 0 specifies an infinite timeout.
-	 * <p>Additional properties can be configured by specifying a
+	 * Additional properties can be configured by specifying a
 	 * {@link RequestConfig} instance on a custom {@link HttpClient}.
 	 * @param timeout the timeout value in milliseconds
 	 * @see #DEFAULT_READ_TIMEOUT_MILLISECONDS
@@ -161,7 +161,7 @@ public class HttpComponentsHttpInvokerRequestExecutor extends AbstractHttpInvoke
 
 	/**
 	 * Execute the given request through the HttpClient.
-	 * <p>This method implements the basic processing workflow:
+	 * This method implements the basic processing workflow:
 	 * The actual work happens in this class's template methods.
 	 * @see #createHttpPost
 	 * @see #setRequestBody
@@ -189,7 +189,7 @@ public class HttpComponentsHttpInvokerRequestExecutor extends AbstractHttpInvoke
 
 	/**
 	 * Create a HttpPost for the given configuration.
-	 * <p>The default implementation creates a standard HttpPost with
+	 * The default implementation creates a standard HttpPost with
 	 * "application/x-java-serialized-object" as "Content-Type" header.
 	 * @param config the HTTP invoker configuration that specifies the
 	 * target service
@@ -223,7 +223,7 @@ public class HttpComponentsHttpInvokerRequestExecutor extends AbstractHttpInvoke
 	 * Create a {@link RequestConfig} for the given configuration. Can return {@code null}
 	 * to indicate that no custom request config should be set and the defaults of the
 	 * {@link HttpClient} should be used.
-	 * <p>The default implementation tries to merge the defaults of the client with the
+	 * The default implementation tries to merge the defaults of the client with the
 	 * local customizations of the instance, if any.
 	 * @param config the HTTP invoker configuration that specifies the
 	 * target service
@@ -262,7 +262,7 @@ public class HttpComponentsHttpInvokerRequestExecutor extends AbstractHttpInvoke
 
 	/**
 	 * Set the given serialized remote invocation as request body.
-	 * <p>The default implementation simply sets the serialized invocation as the
+	 * The default implementation simply sets the serialized invocation as the
 	 * HttpPost's request body. This can be overridden, for example, to write a
 	 * specific encoding and to potentially set appropriate HTTP request headers.
 	 * @param config the HTTP invoker configuration that specifies the target service
@@ -298,7 +298,7 @@ public class HttpComponentsHttpInvokerRequestExecutor extends AbstractHttpInvoke
 	/**
 	 * Validate the given response as contained in the HttpPost object,
 	 * throwing an exception if it does not correspond to a successful HTTP response.
-	 * <p>Default implementation rejects any HTTP status code beyond 2xx, to avoid
+	 * Default implementation rejects any HTTP status code beyond 2xx, to avoid
 	 * parsing the response body and trying to deserialize from a corrupted stream.
 	 * @param config the HTTP invoker configuration that specifies the target service
 	 * @param response the resulting HttpResponse to validate
@@ -317,7 +317,7 @@ public class HttpComponentsHttpInvokerRequestExecutor extends AbstractHttpInvoke
 
 	/**
 	 * Extract the response body from the given executed remote invocation request.
-	 * <p>The default implementation simply fetches the HttpPost's response body stream.
+	 * The default implementation simply fetches the HttpPost's response body stream.
 	 * If the response is recognized as GZIP response, the InputStream will get wrapped
 	 * in a GZIPInputStream.
 	 * @param config the HTTP invoker configuration that specifies the target service
@@ -340,7 +340,7 @@ public class HttpComponentsHttpInvokerRequestExecutor extends AbstractHttpInvoke
 
 	/**
 	 * Determine whether the given response indicates a GZIP response.
-	 * <p>The default implementation checks whether the HTTP "Content-Encoding"
+	 * The default implementation checks whether the HTTP "Content-Encoding"
 	 * header contains "gzip" (in any casing).
 	 * @param httpResponse the resulting HttpResponse to check
 	 * @return whether the given response indicates a GZIP response

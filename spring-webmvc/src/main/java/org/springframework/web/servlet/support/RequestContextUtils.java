@@ -33,7 +33,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  * Utility class for easy access to request-specific state which has been
  * set by the {@link org.springframework.web.servlet.DispatcherServlet}.
  *
- * <p>Supports lookup of current WebApplicationContext, LocaleResolver,
+ * Supports lookup of current WebApplicationContext, LocaleResolver,
  * Locale, ThemeResolver, Theme, and MultipartResolver.
  *
 
@@ -57,7 +57,7 @@ public abstract class RequestContextUtils {
 	 * that has initiated request processing, and for the global context if none
 	 * was found associated with the current request. The global context will
 	 * be found via the ServletContext or via ContextLoader's current context.
-	 * <p>NOTE: This variant remains compatible with Servlet 2.5, explicitly
+	 * NOTE: This variant remains compatible with Servlet 2.5, explicitly
 	 * checking a given ServletContext instead of deriving it from the request.
 	 * @param request current HTTP request
 	 * @param servletContext current servlet context
@@ -90,7 +90,7 @@ public abstract class RequestContextUtils {
 	 * that has initiated request processing, and for the global context if none
 	 * was found associated with the current request. The global context will
 	 * be found via the ServletContext or via ContextLoader's current context.
-	 * <p>NOTE: This variant requires Servlet 3.0+ and is generally recommended
+	 * NOTE: This variant requires Servlet 3.0+ and is generally recommended
 	 * for forward-looking custom user code.
 	 * @param request current HTTP request
 	 * @return the request-specific WebApplicationContext, or the global one
@@ -120,10 +120,10 @@ public abstract class RequestContextUtils {
 	 * Retrieve the current locale from the given request, using the
 	 * LocaleResolver bound to the request by the DispatcherServlet
 	 * (if available), falling back to the request's accept-header Locale.
-	 * <p>This method serves as a straightforward alternative to the standard
+	 * This method serves as a straightforward alternative to the standard
 	 * Servlet {@link javax.servlet.http.HttpServletRequest#getLocale()} method,
 	 * falling back to the latter if no more specific locale has been found.
-	 * <p>Consider using {@link org.springframework.context.i18n.LocaleContextHolder#getLocale()}
+	 * Consider using {@link org.springframework.context.i18n.LocaleContextHolder#getLocale()}
 	 * which will normally be populated with the same Locale.
 	 * @param request current HTTP request
 	 * @return the current locale for the given request, either from the
@@ -140,10 +140,10 @@ public abstract class RequestContextUtils {
 	 * Retrieve the current time zone from the given request, using the
 	 * TimeZoneAwareLocaleResolver bound to the request by the DispatcherServlet
 	 * (if available), falling back to the system's default time zone.
-	 * <p>Note: This method returns {@code null} if no specific time zone can be
+	 * Note: This method returns {@code null} if no specific time zone can be
 	 * resolved for the given request. This is in contrast to {@link #getLocale}
 	 * where there is always the request's accept-header locale to fall back to.
-	 * <p>Consider using {@link org.springframework.context.i18n.LocaleContextHolder#getTimeZone()}
+	 * Consider using {@link org.springframework.context.i18n.LocaleContextHolder#getTimeZone()}
 	 * which will normally be populated with the same TimeZone: That method only
 	 * differs in terms of its fallback to the system time zone if the LocaleResolver
 	 * hasn't provided a specific time zone (instead of this method's {@code null}).
@@ -231,7 +231,7 @@ public abstract class RequestContextUtils {
 
 	/**
 	 * Return the {@code FlashMapManager} instance to save flash attributes.
-	 * <p>As of 5.0 the convenience method {@link #saveOutputFlashMap} may be
+	 * As of 5.0 the convenience method {@link #saveOutputFlashMap} may be
 	 * used to save the "output" FlashMap.
 	 * @param request the current request
 	 * @return a {@link FlashMapManager} instance, never {@code null} within a

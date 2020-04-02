@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
 
 /**
  * RdbmsOperation using a JdbcTemplate and representing a SQL-based call such as a stored procedure or a stored function.
- * <p>Configures a CallableStatementCreatorFactory based on the declared  parameters.
+ * Configures a CallableStatementCreatorFactory based on the declared  parameters.
  * @see CallableStatementCreatorFactory
  */
 public abstract class SqlCall extends RdbmsOperation {

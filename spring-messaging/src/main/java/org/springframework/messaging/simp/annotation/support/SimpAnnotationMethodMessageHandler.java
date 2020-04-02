@@ -69,7 +69,7 @@ import org.springframework.validation.Validator;
  * A handler for messages delegating to {@link MessageMapping @MessageMapping}
  * and {@link SubscribeMapping @SubscribeMapping} annotated methods.
  *
- * <p>Supports Ant-style path patterns with template variables.
+ * Supports Ant-style path patterns with template variables.
  *
  * @author Rossen Stoyanchev
  * @author Brian Clozel
@@ -134,10 +134,10 @@ public class SimpAnnotationMethodMessageHandler extends AbstractMethodMessageHan
 
 	/**
 	 * {@inheritDoc}
-	 * <p>Destination prefixes are expected to be slash-separated Strings and
+	 * Destination prefixes are expected to be slash-separated Strings and
 	 * therefore a slash is automatically appended where missing to ensure a
 	 * proper prefix-based match (i.e. matching complete segments).
-	 * <p>Note however that the remaining portion of a destination after the
+	 * Note however that the remaining portion of a destination after the
 	 * prefix may use a different separator (e.g. commonly "." in messaging)
 	 * depending on the configured {@code PathMatcher}.
 	 */
@@ -182,7 +182,7 @@ public class SimpAnnotationMethodMessageHandler extends AbstractMethodMessageHan
 	/**
 	 * Configure a {@link ConversionService} to use when resolving method arguments,
 	 * for example message header values.
-	 * <p>By default, {@link DefaultFormattingConversionService} is used.
+	 * By default, {@link DefaultFormattingConversionService} is used.
 	 */
 	public void setConversionService(ConversionService conversionService) {
 		this.conversionService = conversionService;
@@ -198,7 +198,7 @@ public class SimpAnnotationMethodMessageHandler extends AbstractMethodMessageHan
 	/**
 	 * Set the PathMatcher implementation to use for matching destinations
 	 * against configured destination patterns.
-	 * <p>By default, {@link AntPathMatcher} is used.
+	 * By default, {@link AntPathMatcher} is used.
 	 */
 	public void setPathMatcher(PathMatcher pathMatcher) {
 		Assert.notNull(pathMatcher, "PathMatcher must not be null");
@@ -239,7 +239,7 @@ public class SimpAnnotationMethodMessageHandler extends AbstractMethodMessageHan
 	 * Configure a {@link MessageHeaderInitializer} to pass on to
 	 * {@link HandlerMethodReturnValueHandler HandlerMethodReturnValueHandlers}
 	 * that send messages from controller return values.
-	 * <p>By default, this property is not set.
+	 * By default, this property is not set.
 	 */
 	public void setHeaderInitializer(@Nullable MessageHeaderInitializer headerInitializer) {
 		this.headerInitializer = headerInitializer;

@@ -28,7 +28,7 @@ import org.springframework.util.Assert;
  * This context uses standard implementations of all applicable strategies,
  * based on reflection to resolve properties, methods and fields.
  *
- * <p>For a simpler builder-style context variant for data-binding purposes,
+ * For a simpler builder-style context variant for data-binding purposes,
  * consider using {@link SimpleEvaluationContext} instead which allows for
  * opting into several SpEL features as needed by specific evaluation cases.
  *
@@ -246,7 +246,7 @@ public class StandardEvaluationContext implements EvaluationContext {
 	/**
 	 * Register a {@code MethodFilter} which will be called during method resolution
 	 * for the specified type.
-	 * <p>The {@code MethodFilter} may remove methods and/or sort the methods which
+	 * The {@code MethodFilter} may remove methods and/or sort the methods which
 	 * will then be used by SpEL as the candidates to look through for a match.
 	 * @param type the type for which the filter should be called
 	 * @param filter a {@code MethodFilter}, or {@code null} to unregister a filter for the type

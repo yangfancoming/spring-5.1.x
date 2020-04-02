@@ -34,7 +34,7 @@ import org.springframework.util.StringUtils;
  *
  * See {@link CommandLinePropertySource} for complete general usage examples.
  *
- * <p>Requires JOpt Simple version 4.3 or higher. Tested against JOpt up until 5.0.
+ * Requires JOpt Simple version 4.3 or higher. Tested against JOpt up until 5.0.
 
 
  * @author Dave Syer

@@ -27,14 +27,14 @@ import org.springframework.util.StringUtils;
  * A {@code MessageHeaderAccessor} to use when creating a {@code Message} from
  * a decoded STOMP frame, or when encoding a {@code Message} to a STOMP frame.
  *
- * <p>When created from STOMP frame content, the actual STOMP headers are
+ * When created from STOMP frame content, the actual STOMP headers are
  * stored in the native header sub-map managed by the parent class
  * {@link org.springframework.messaging.support.NativeMessageHeaderAccessor}
  * while the parent class {@link SimpMessageHeaderAccessor} manages common
  * processing headers some of which are based on STOMP headers
  * (e.g. destination, content-type, etc).
  *
- * <p>An instance of this class can also be created by wrapping an existing
+ * An instance of this class can also be created by wrapping an existing
  * {@code Message}. That message may have been created with the more generic
  * {@link org.springframework.messaging.simp.SimpMessageHeaderAccessor} in
  * which case STOMP headers are created from common processing headers.

@@ -24,7 +24,7 @@ import org.springframework.util.StringUtils;
  * for an advice method from the pointcut expression, returning, and throwing clauses.
  * If an unambiguous interpretation is not available, it returns {@code null}.
  *
- * <p>This class interprets arguments in the following way:
+ * This class interprets arguments in the following way:
  * <ol>
  * <li>If the first parameter of the method is of type {@link JoinPoint}
  * or {@link ProceedingJoinPoint}, it is assumed to be for passing
@@ -82,7 +82,7 @@ import org.springframework.util.StringUtils;
  * possibilities, an {@code AmbiguousBindingException} is raised.</li>
  * </ol>
  *
- * <p>The behavior on raising an {@code IllegalArgumentException} or
+ * The behavior on raising an {@code IllegalArgumentException} or
  * {@code AmbiguousBindingException} is configurable to allow this discoverer
  * to be used as part of a chain-of-responsibility. By default the condition will
  * be logged and the {@code getParameterNames(..)} method will simply return
@@ -91,9 +91,9 @@ import org.springframework.util.StringUtils;
  * {@code IllegalArgumentException} and {@code AmbiguousBindingException},
  * respectively.
  *
- * <p>Was that perfectly clear? ;)
+ * Was that perfectly clear? ;)
  *
- * <p>Short version: If an unambiguous binding can be deduced, then it is.
+ * Short version: If an unambiguous binding can be deduced, then it is.
  * If the advice requirements cannot possibly be satisfied, then {@code null}
  * is returned. By setting the {@link #setRaiseExceptions(boolean) raiseExceptions}
  * property to {@code true}, descriptive exceptions will be thrown instead of
@@ -198,7 +198,7 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 
 	/**
 	 * Deduce the parameter names for an advice method.
-	 * <p>See the {@link AspectJAdviceParameterNameDiscoverer class level javadoc}
+	 * See the {@link AspectJAdviceParameterNameDiscoverer class level javadoc}
 	 * for this class for details of the algorithm used.
 	 * @param method the target {@link Method}
 	 * @return the parameter names
@@ -372,7 +372,7 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 	 * &#64;this, &#64;target, &#64;args, &#64;within, &#64;withincode, &#64;annotation.
 	 * If we find one of these pointcut expressions, try and extract a candidate variable
 	 * name (or variable names, in the case of args).
-	 * <p>Some more support from AspectJ in doing this exercise would be nice... :)
+	 * Some more support from AspectJ in doing this exercise would be nice... :)
 	 */
 	private void maybeBindAnnotationsFromPointcutExpression() {
 		List<String> varNames = new ArrayList<>();

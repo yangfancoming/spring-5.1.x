@@ -9,7 +9,7 @@ import java.io.OutputStream;
  * Represents an HTTP output message, consisting of {@linkplain #getHeaders() headers}
  * and a writable {@linkplain #getBody() body}.
  *
- * <p>Typically implemented by an HTTP request handle on the client side,
+ * Typically implemented by an HTTP request handle on the client side,
  * or an HTTP response handle on the server side.
  *
  * @author Arjen Poutsma

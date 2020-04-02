@@ -18,7 +18,7 @@ import org.springframework.util.StringUtils;
  * The {@code <errors>} tag renders field errors in an HTML 'span' tag.
  * Displays errors for either an object or a particular field.
  *
- * <p>This tag supports three main usage patterns:
+ * This tag supports three main usage patterns:
  *
  * <ol>
  *	<li>Field only - set '{@code path}' to the field name (or path)</li>
@@ -26,7 +26,7 @@ import org.springframework.util.StringUtils;
  *	<li>All errors - set '{@code path}' to '{@code *}'</li>
  * </ol>
  *
- * <p>
+ *
  * <table>
  * <caption>Attribute Summary</caption>
  * <thead>
@@ -39,132 +39,132 @@ import org.springframework.util.StringUtils;
  * </thead>
  * <tbody>
  * <tr class="altColor">
- * <td><p>cssClass</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td>cssClass</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Optional Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>cssStyle</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td>cssStyle</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Optional Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>delimiter</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>Delimiter for displaying multiple error messages.
+ * <td>delimiter</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>Delimiter for displaying multiple error messages.
  * Defaults to the br tag.</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>dir</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td>dir</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Standard Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>element</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>Specifies the HTML element that is used to render the enclosing
+ * <td>element</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>Specifies the HTML element that is used to render the enclosing
  * errors.</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>htmlEscape</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>Enable/disable HTML escaping of rendered values.</p></td>
+ * <td>htmlEscape</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>Enable/disable HTML escaping of rendered values.</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>id</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td>id</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Standard Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>lang</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td>lang</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Standard Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>onclick</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onclick</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>ondblclick</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>ondblclick</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>onkeydown</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onkeydown</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>onkeypress</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onkeypress</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>onkeyup</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onkeyup</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>onmousedown</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onmousedown</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>onmousemove</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onmousemove</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>onmouseout</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onmouseout</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>onmouseover</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onmouseover</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>onmouseup</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onmouseup</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>path</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>Path to errors object for data binding</p></td>
+ * <td>path</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>Path to errors object for data binding</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>tabindex</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td>tabindex</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Standard Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>title</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td>title</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Standard Attribute</p></td>
  * </tr>
  * </tbody>
  * </table>
@@ -204,7 +204,7 @@ public class ErrorsTag extends AbstractHtmlElementBodyTag implements BodyTag {
 
 	/**
 	 * Set the HTML element must be used to render the error messages.
-	 * <p>Defaults to an HTML '{@code <span/>}' tag.
+	 * Defaults to an HTML '{@code <span/>}' tag.
 	 */
 	public void setElement(String element) {
 		Assert.hasText(element, "'element' cannot be null or blank");
@@ -220,7 +220,7 @@ public class ErrorsTag extends AbstractHtmlElementBodyTag implements BodyTag {
 
 	/**
 	 * Set the delimiter to be used between error messages.
-	 * <p>Defaults to an HTML '{@code <br/>}' tag.
+	 * Defaults to an HTML '{@code <br/>}' tag.
 	 */
 	public void setDelimiter(String delimiter) {
 		this.delimiter = delimiter;
@@ -236,7 +236,7 @@ public class ErrorsTag extends AbstractHtmlElementBodyTag implements BodyTag {
 
 	/**
 	 * Get the value for the HTML '{@code id}' attribute.
-	 * <p>Appends '{@code .errors}' to the value returned by {@link #getPropertyPath()}
+	 * Appends '{@code .errors}' to the value returned by {@link #getPropertyPath()}
 	 * or to the model attribute name if the {@code <form:errors/>} tag's
 	 * '{@code path}' attribute has been omitted.
 	 * @return the value for the HTML '{@code id}' attribute
@@ -254,7 +254,7 @@ public class ErrorsTag extends AbstractHtmlElementBodyTag implements BodyTag {
 
 	/**
 	 * Get the value for the HTML '{@code name}' attribute.
-	 * <p>Simply returns {@code null} because the '{@code name}' attribute
+	 * Simply returns {@code null} because the '{@code name}' attribute
 	 * is not a validate attribute for the '{@code span}' element.
 	 */
 	@Override
@@ -265,7 +265,7 @@ public class ErrorsTag extends AbstractHtmlElementBodyTag implements BodyTag {
 
 	/**
 	 * Should rendering of this tag proceed at all?
-	 * <p>Only renders output when there are errors for the configured {@link #setPath path}.
+	 * Only renders output when there are errors for the configured {@link #setPath path}.
 	 * @return {@code true} only when there are errors for the configured {@link #setPath path}
 	 */
 	@Override
@@ -298,7 +298,7 @@ public class ErrorsTag extends AbstractHtmlElementBodyTag implements BodyTag {
 	/**
 	 * Exposes any bind status error messages under {@link #MESSAGES_ATTRIBUTE this key}
 	 * in the {@link PageContext#PAGE_SCOPE}.
-	 * <p>Only called if {@link #shouldRender()} returns {@code true}.
+	 * Only called if {@link #shouldRender()} returns {@code true}.
 	 * @see #removeAttributes()
 	 */
 	@Override

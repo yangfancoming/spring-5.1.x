@@ -7,20 +7,20 @@ package javax.servlet;
  * Defines an exception that a servlet or filter throws to indicate
  * that it is permanently or temporarily unavailable. 
  *
- * <p>When a servlet or filter is permanently unavailable, something is wrong
+ * When a servlet or filter is permanently unavailable, something is wrong
  * with it, and it cannot handle
  * requests until some action is taken. For example, a servlet
  * might be configured incorrectly, or a filter's state may be corrupted.
  * The component should log both the error and the corrective action
  * that is needed.
  *
- * <p>A servlet or filter is temporarily unavailable if it cannot handle
+ * A servlet or filter is temporarily unavailable if it cannot handle
  * requests momentarily due to some system-wide problem. For example,
  * a third-tier server might not be accessible, or there may be 
  * insufficient memory or disk storage to handle requests. A system
  * administrator may need to take corrective action.
  *
- * <p>Servlet containers can safely treat both types of unavailable
+ * Servlet containers can safely treat both types of unavailable
  * exceptions in the same way. However, treating temporary unavailability
  * effectively makes the servlet container more robust. Specifically,
  * the servlet container might block requests to the servlet or filter for a period
@@ -107,7 +107,7 @@ extends ServletException {
      * indicating that the servlet is temporarily unavailable
      * and giving an estimate of how long it will be unavailable.
      * 
-     * <p>In some cases, the servlet cannot make an estimate. For
+     * In some cases, the servlet cannot make an estimate. For
      * example, the servlet might know that a server it needs is
      * not running, but not be able to report how long it will take
      * to be restored to functionality. This can be indicated with
@@ -171,7 +171,7 @@ extends ServletException {
      * Returns the number of seconds the servlet expects to 
      * be temporarily unavailable.  
      *
-     * <p>If this method returns a negative number, the servlet
+     * If this method returns a negative number, the servlet
      * is permanently unavailable or cannot provide an estimate of
      * how long it will be unavailable. No effort is
      * made to correct for the time elapsed since the exception was

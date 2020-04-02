@@ -8,8 +8,8 @@ import org.springframework.lang.Nullable;
 
 /**
  * Interface to be implemented by objects that can resolve views by name.
- * <p>View state doesn't change during the running of the application,so implementations are free to cache views.
- * <p>Implementations are encouraged to support internationalization,i.e. localized view resolution.
+ * View state doesn't change during the running of the application,so implementations are free to cache views.
+ * Implementations are encouraged to support internationalization,i.e. localized view resolution.
 
  * @see org.springframework.web.servlet.view.InternalResourceViewResolver
  * @see org.springframework.web.servlet.view.ResourceBundleViewResolver
@@ -21,7 +21,7 @@ public interface ViewResolver {
 
 	/**
 	 * Resolve the given view by name.
-	 * <p>Note: To allow for ViewResolver chaining, a ViewResolver should
+	 * Note: To allow for ViewResolver chaining, a ViewResolver should
 	 * return {@code null} if a view with the given name is not defined in it.
 	 * However, this is not required: Some ViewResolvers will always attempt
 	 * to build View objects with the given name, unable to return {@code null}

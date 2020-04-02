@@ -26,7 +26,7 @@ import org.springframework.util.ReflectionUtils;
  * in the context prior to the expression being evaluated. Functions may also be static
  * Java methods, registered in the context prior to invocation of the expression.
  *
- * <p>Functions are very simplistic. The arguments are not part of the definition
+ * Functions are very simplistic. The arguments are not part of the definition
  * (right now), so the names must be unique.
  *
  * @author Andy Clement

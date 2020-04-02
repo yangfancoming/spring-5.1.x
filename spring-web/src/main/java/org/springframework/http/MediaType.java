@@ -83,7 +83,7 @@ public class MediaType extends MimeType implements Serializable {
 	/**
 	 * Public constant media type for {@code application/json;charset=UTF-8}.
 	 *
-	 * <p>This {@link MediaType#APPLICATION_JSON} variant should be used to set JSON
+	 * This {@link MediaType#APPLICATION_JSON} variant should be used to set JSON
 	 * content type because while
 	 * <a href="https://tools.ietf.org/html/rfc7159#section-11">RFC7159</a>
 	 * clearly states that "no charset parameter is defined for this registration", some
@@ -94,7 +94,7 @@ public class MediaType extends MimeType implements Serializable {
 	/**
 	 * A String equivalent of {@link MediaType#APPLICATION_JSON_UTF8}.
 	 *
-	 * <p>This {@link MediaType#APPLICATION_JSON_VALUE} variant should be used to set JSON
+	 * This {@link MediaType#APPLICATION_JSON_VALUE} variant should be used to set JSON
 	 * content type because while
 	 * <a href="https://tools.ietf.org/html/rfc7159#section-11">RFC7159</a>
 	 * clearly states that "no charset parameter is defined for this registration", some
@@ -337,7 +337,7 @@ public class MediaType extends MimeType implements Serializable {
 
 	/**
 	 * Create a new {@code MediaType} for the given primary type.
-	 * <p>The {@linkplain #getSubtype() subtype} is set to "&#42;", parameters empty.
+	 * The {@linkplain #getSubtype() subtype} is set to "&#42;", parameters empty.
 	 * @param type the primary type
 	 * @throws IllegalArgumentException if any of the parameters contain illegal characters
 	 */
@@ -347,7 +347,7 @@ public class MediaType extends MimeType implements Serializable {
 
 	/**
 	 * Create a new {@code MediaType} for the given primary type and subtype.
-	 * <p>The parameters are empty.
+	 * The parameters are empty.
 	 * @param type the primary type
 	 * @param subtype the subtype
 	 * @throws IllegalArgumentException if any of the parameters contain illegal characters
@@ -436,10 +436,10 @@ public class MediaType extends MimeType implements Serializable {
 
 	/**
 	 * Indicate whether this {@code MediaType} includes the given media type.
-	 * <p>For instance, {@code text/*} includes {@code text/plain} and {@code text/html},
+	 * For instance, {@code text/*} includes {@code text/plain} and {@code text/html},
 	 * and {@code application/*+xml} includes {@code application/soap+xml}, etc.
 	 * This method is <b>not</b> symmetric.
-	 * <p>Simply calls {@link #includes(MimeType)} but declared with a
+	 * Simply calls {@link #includes(MimeType)} but declared with a
 	 * {@code MediaType} parameter for binary backwards compatibility.
 	 * @param other the reference media type with which to compare
 	 * @return {@code true} if this media type includes the given media type;
@@ -451,10 +451,10 @@ public class MediaType extends MimeType implements Serializable {
 
 	/**
 	 * Indicate whether this {@code MediaType} is compatible with the given media type.
-	 * <p>For instance, {@code text/*} is compatible with {@code text/plain},
+	 * For instance, {@code text/*} is compatible with {@code text/plain},
 	 * {@code text/html}, and vice versa. In effect, this method is similar to
 	 * {@link #includes}, except that it <b>is</b> symmetric.
-	 * <p>Simply calls {@link #isCompatibleWith(MimeType)} but declared with a
+	 * Simply calls {@link #isCompatibleWith(MimeType)} but declared with a
 	 * {@code MediaType} parameter for binary backwards compatibility.
 	 * @param other the reference media type with which to compare
 	 * @return {@code true} if this media type is compatible with the given media type;
@@ -529,7 +529,7 @@ public class MediaType extends MimeType implements Serializable {
 
 	/**
 	 * Parse the comma-separated string into a list of {@code MediaType} objects.
-	 * <p>This method can be used to parse an Accept or Content-Type header.
+	 * This method can be used to parse an Accept or Content-Type header.
 	 * @param mediaTypes the string to parse
 	 * @return the list of media types
 	 * @throws InvalidMediaTypeException if the media type value cannot be parsed
@@ -545,7 +545,7 @@ public class MediaType extends MimeType implements Serializable {
 	/**
 	 * Parse the given list of (potentially) comma-separated strings into a
 	 * list of {@code MediaType} objects.
-	 * <p>This method can be used to parse an Accept or Content-Type header.
+	 * This method can be used to parse an Accept or Content-Type header.
 	 * @param mediaTypes the string to parse
 	 * @return the list of media types
 	 * @throws InvalidMediaTypeException if the media type value cannot be parsed
@@ -588,7 +588,7 @@ public class MediaType extends MimeType implements Serializable {
 
 	/**
 	 * Return a string representation of the given list of {@code MediaType} objects.
-	 * <p>This method can be used to for an {@code Accept} or {@code Content-Type} header.
+	 * This method can be used to for an {@code Accept} or {@code Content-Type} header.
 	 * @param mediaTypes the media types to create a string representation for
 	 * @return the string representation
 	 */
@@ -598,7 +598,7 @@ public class MediaType extends MimeType implements Serializable {
 
 	/**
 	 * Sorts the given list of {@code MediaType} objects by specificity.
-	 * <p>Given two media types:
+	 * Given two media types:
 	 * <ol>
 	 * <li>if either media type has a {@linkplain #isWildcardType() wildcard type}, then the media type without the
 	 * wildcard is ordered before the other.</li>
@@ -613,7 +613,7 @@ public class MediaType extends MimeType implements Serializable {
 	 * <li>if the two media types have a different amount of {@linkplain #getParameter(String) parameters}, then the
 	 * media type with the most parameters is ordered before the other.</li>
 	 * </ol>
-	 * <p>For example:
+	 * For example:
 	 * <blockquote>audio/basic &lt; audio/* &lt; *&#047;*</blockquote>
 	 * <blockquote>audio/* &lt; audio/*;q=0.7; audio/*;q=0.3</blockquote>
 	 * <blockquote>audio/basic;level=1 &lt; audio/basic</blockquote>
@@ -632,7 +632,7 @@ public class MediaType extends MimeType implements Serializable {
 
 	/**
 	 * Sorts the given list of {@code MediaType} objects by quality value.
-	 * <p>Given two media types:
+	 * Given two media types:
 	 * <ol>
 	 * <li>if the two media types have different {@linkplain #getQualityValue() quality value}, then the media type
 	 * with the highest quality value is ordered before the other.</li>

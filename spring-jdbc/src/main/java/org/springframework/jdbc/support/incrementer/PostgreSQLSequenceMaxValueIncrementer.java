@@ -8,7 +8,7 @@ import javax.sql.DataSource;
  * {@link DataFieldMaxValueIncrementer} that retrieves the next value
  * of a given PostgreSQL sequence.
  *
- * <p>Thanks to Tomislav Urban for the suggestion!
+ * Thanks to Tomislav Urban for the suggestion!
  *
 
  * @deprecated in favor of the differently named {@link PostgresSequenceMaxValueIncrementer}

@@ -22,16 +22,16 @@ import org.springframework.web.util.NestedServletException;
  * Servlet-API-based HTTP request handler that exports the specified service bean
  * as HTTP invoker service endpoint, accessible via an HTTP invoker proxy.
  *
- * <p>Deserializes remote invocation objects and serializes remote invocation
+ * Deserializes remote invocation objects and serializes remote invocation
  * result objects. Uses Java serialization just like RMI, but provides the
  * same ease of setup as Caucho's HTTP-based Hessian protocol.
  *
- * <p><b>HTTP invoker is the recommended protocol for Java-to-Java remoting.</b>
+ * <b>HTTP invoker is the recommended protocol for Java-to-Java remoting.</b>
  * It is more powerful and more extensible than Hessian, at the expense of
  * being tied to Java. Nevertheless, it is as easy to set up as Hessian,
  * which is its main advantage compared to RMI.
  *
- * <p><b>WARNING: Be aware of vulnerabilities due to unsafe Java deserialization:
+ * <b>WARNING: Be aware of vulnerabilities due to unsafe Java deserialization:
  * Manipulated input streams could lead to unwanted code execution on the server
  * during the deserialization step. As a consequence, do not expose HTTP invoker
  * endpoints to untrusted clients but rather just between your own services.</b>
@@ -69,7 +69,7 @@ public class HttpInvokerServiceExporter extends RemoteInvocationSerializingExpor
 
 	/**
 	 * Read a RemoteInvocation from the given HTTP request.
-	 * <p>Delegates to {@link #readRemoteInvocation(HttpServletRequest, InputStream)} with
+	 * Delegates to {@link #readRemoteInvocation(HttpServletRequest, InputStream)} with
 	 * the {@link HttpServletRequest#getInputStream() servlet request's input stream}.
 	 * @param request current HTTP request
 	 * @return the RemoteInvocation object
@@ -84,11 +84,11 @@ public class HttpInvokerServiceExporter extends RemoteInvocationSerializingExpor
 
 	/**
 	 * Deserialize a RemoteInvocation object from the given InputStream.
-	 * <p>Gives {@link #decorateInputStream} a chance to decorate the stream
+	 * Gives {@link #decorateInputStream} a chance to decorate the stream
 	 * first (for example, for custom encryption or compression). Creates a
 	 * {@link org.springframework.remoting.rmi.CodebaseAwareObjectInputStream}
 	 * and calls {@link #doReadRemoteInvocation} to actually read the object.
-	 * <p>Can be overridden for custom serialization of the invocation.
+	 * Can be overridden for custom serialization of the invocation.
 	 * @param request current HTTP request
 	 * @param is the InputStream to read from
 	 * @return the RemoteInvocation object
@@ -110,7 +110,7 @@ public class HttpInvokerServiceExporter extends RemoteInvocationSerializingExpor
 	/**
 	 * Return the InputStream to use for reading remote invocations,
 	 * potentially decorating the given original InputStream.
-	 * <p>The default implementation returns the given stream as-is.
+	 * The default implementation returns the given stream as-is.
 	 * Can be overridden, for example, for custom encryption or compression.
 	 * @param request current HTTP request
 	 * @param is the original InputStream
@@ -138,11 +138,11 @@ public class HttpInvokerServiceExporter extends RemoteInvocationSerializingExpor
 
 	/**
 	 * Serialize the given RemoteInvocation to the given OutputStream.
-	 * <p>The default implementation gives {@link #decorateOutputStream} a chance
+	 * The default implementation gives {@link #decorateOutputStream} a chance
 	 * to decorate the stream first (for example, for custom encryption or compression).
 	 * Creates an {@link java.io.ObjectOutputStream} for the final stream and calls
 	 * {@link #doWriteRemoteInvocationResult} to actually write the object.
-	 * <p>Can be overridden for custom serialization of the invocation.
+	 * Can be overridden for custom serialization of the invocation.
 	 * @param request current HTTP request
 	 * @param response current HTTP response
 	 * @param result the RemoteInvocationResult object
@@ -168,7 +168,7 @@ public class HttpInvokerServiceExporter extends RemoteInvocationSerializingExpor
 	/**
 	 * Return the OutputStream to use for writing remote invocation results,
 	 * potentially decorating the given original OutputStream.
-	 * <p>The default implementation returns the given stream as-is.
+	 * The default implementation returns the given stream as-is.
 	 * Can be overridden, for example, for custom encryption or compression.
 	 * @param request current HTTP request
 	 * @param response current HTTP response
@@ -186,7 +186,7 @@ public class HttpInvokerServiceExporter extends RemoteInvocationSerializingExpor
 	/**
 	 * Decorate an {@code OutputStream} to guard against {@code flush()} calls,
 	 * which are turned into no-ops.
-	 * <p>Because {@link ObjectOutputStream#close()} will in fact flush/drain
+	 * Because {@link ObjectOutputStream#close()} will in fact flush/drain
 	 * the underlying stream twice, this {@link FilterOutputStream} will
 	 * guard against individual flush calls. Multiple flush calls can lead
 	 * to performance issues, since writes aren't gathered as they should be.

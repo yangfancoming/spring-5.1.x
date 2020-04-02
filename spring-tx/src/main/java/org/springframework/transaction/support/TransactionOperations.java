@@ -18,7 +18,7 @@ public interface TransactionOperations {
 
 	/**
 	 * Execute the action specified by the given callback object within a transaction.
-	 * <p>Allows for returning a result object created within the transaction, that is,
+	 * Allows for returning a result object created within the transaction, that is,
 	 * a domain object or a collection of domain objects. A RuntimeException thrown
 	 * by the callback is treated as a fatal exception that enforces a rollback.
 	 * Such an exception gets propagated to the caller of the template.

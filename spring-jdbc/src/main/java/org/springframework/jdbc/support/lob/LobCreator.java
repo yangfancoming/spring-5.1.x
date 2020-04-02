@@ -16,17 +16,17 @@ import org.springframework.lang.Nullable;
  * and {@code java.sql.Clob} instances in the API, as some JDBC drivers
  * do not support these types as such.
  *
- * <p>The LOB creation part is where {@link LobHandler} implementations usually
+ * The LOB creation part is where {@link LobHandler} implementations usually
  * differ. Possible strategies include usage of
  * {@code PreparedStatement.setBinaryStream/setCharacterStream} but also
  * {@code PreparedStatement.setBlob/setClob} with either a stream argument
  * (requires JDBC 4.0) or {@code java.sql.Blob/Clob} wrapper objects.
  *
- * <p>A LobCreator represents a session for creating BLOBs: It is <i>not</i>
+ * A LobCreator represents a session for creating BLOBs: It is <i>not</i>
  * thread-safe and needs to be instantiated for each statement execution or for
  * each transaction. Each LobCreator needs to be closed after completion.
  *
- * <p>For convenient working with a PreparedStatement and a LobCreator,
+ * For convenient working with a PreparedStatement and a LobCreator,
  * consider using {@link org.springframework.jdbc.core.JdbcTemplate} with an
  *{@link org.springframework.jdbc.core.support.AbstractLobCreatingPreparedStatementCallback}
  * implementation. See the latter's javadoc for details.
@@ -118,7 +118,7 @@ public interface LobCreator extends Closeable {
 	 * Close this LobCreator session and free its temporarily created BLOBs and CLOBs.
 	 * Will not need to do anything if using PreparedStatement's standard methods,
 	 * but might be necessary to free database resources if using proprietary means.
-	 * <p><b>NOTE</b>: Needs to be invoked after the involved PreparedStatements have
+	 * <b>NOTE</b>: Needs to be invoked after the involved PreparedStatements have
 	 * been executed or the affected O/R mapping sessions have been flushed.
 	 * Otherwise, the database resources for the temporary BLOBs might stay allocated.
 	 */

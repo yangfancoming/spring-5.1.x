@@ -30,7 +30,7 @@ class MapAnnotationAttributeExtractor extends AbstractAliasAwareAnnotationAttrib
 
 	/**
 	 * Construct a new {@code MapAnnotationAttributeExtractor}.
-	 * <p>The supplied map must contain a key-value pair for every attribute
+	 * The supplied map must contain a key-value pair for every attribute
 	 * defined in the supplied {@code annotationType} that is not aliased or
 	 * does not have a default value.
 	 * @param attributes the map of annotation attributes; never {@code null}
@@ -63,11 +63,11 @@ class MapAnnotationAttributeExtractor extends AbstractAliasAwareAnnotationAttrib
 	 * that it contains a non-null entry for each annotation attribute in
 	 * the specified {@code annotationType} and that the type of the entry
 	 * matches the return type for the corresponding annotation attribute.
-	 * <p>If an entry is a map (presumably of annotation attributes), an
+	 * If an entry is a map (presumably of annotation attributes), an
 	 * attempt will be made to synthesize an annotation from it. Similarly,
 	 * if an entry is an array of maps, an attempt will be made to synthesize
 	 * an array of annotations from those maps.
-	 * <p>If an attribute is missing in the supplied map, it will be set
+	 * If an attribute is missing in the supplied map, it will be set
 	 * either to the value of its alias (if an alias exists) or to the
 	 * value of the attribute's default value (if defined), and otherwise
 	 * an {@link IllegalArgumentException} will be thrown.

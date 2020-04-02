@@ -18,13 +18,13 @@ import org.springframework.web.servlet.support.RequestContext;
 /**
  * Superclass for all tags that require a {@link RequestContext}.
  *
- * <p>The {@code RequestContext} instance provides easy access
+ * The {@code RequestContext} instance provides easy access
  * to current state like the
  * {@link org.springframework.web.context.WebApplicationContext},
  * the {@link java.util.Locale}, the
  * {@link org.springframework.ui.context.Theme}, etc.
  *
- * <p>Mainly intended for
+ * Mainly intended for
  * {@link org.springframework.web.servlet.DispatcherServlet} requests;
  * will use fallbacks when used outside {@code DispatcherServlet}.
  *

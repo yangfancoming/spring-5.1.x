@@ -31,7 +31,7 @@ import org.springframework.web.server.ServerWebExchange;
 /**
  * Handles {@link HttpEntity} and {@link ResponseEntity} return values.
  *
- * <p>By default the order for this result handler is set to 0. It is generally
+ * By default the order for this result handler is set to 0. It is generally
  * safe to place it early in the order as it looks for a concrete return type.
  *
  * @author Rossen Stoyanchev

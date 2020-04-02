@@ -17,11 +17,11 @@ import org.springframework.util.Assert;
  * for reading and writing content and a {@link ConversionService} for converting
  * the String content to and from the target object type.
  *
- * <p>By default, this converter supports the media type {@code text/plain} only.
+ * By default, this converter supports the media type {@code text/plain} only.
  * This can be overridden through the {@link #setSupportedMediaTypes supportedMediaTypes}
  * property.
  *
- * <p>A usage example:
+ * A usage example:
  *
  * <pre class="code">
  * &lt;bean class="org.springframework.http.converter.ObjectToStringHttpMessageConverter">
@@ -68,7 +68,7 @@ public class ObjectToStringHttpMessageConverter extends AbstractHttpMessageConve
 
 	/**
 	 * Indicates whether the {@code Accept-Charset} should be written to any outgoing request.
-	 * <p>Default is {@code true}.
+	 * Default is {@code true}.
 	 */
 	public void setWriteAcceptCharset(boolean writeAcceptCharset) {
 		this.stringHttpMessageConverter.setWriteAcceptCharset(writeAcceptCharset);

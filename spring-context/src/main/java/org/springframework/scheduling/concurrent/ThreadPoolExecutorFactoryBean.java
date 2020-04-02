@@ -23,7 +23,7 @@ import org.springframework.lang.Nullable;
  * "queueCapacity" properties) and exposing it as a bean reference of its native
  * {@link java.util.concurrent.ExecutorService} type.
  *
- * <p>The default configuration is a core pool size of 1, with unlimited max pool size
+ * The default configuration is a core pool size of 1, with unlimited max pool size
  * and unlimited queue capacity. This is roughly equivalent to
  * {@link java.util.concurrent.Executors#newSingleThreadExecutor()}, sharing a single
  * thread for all tasks. Setting {@link #setQueueCapacity "queueCapacity"} to 0 mimics
@@ -33,14 +33,14 @@ import org.springframework.lang.Nullable;
  * {@link #setCorePoolSize "corePoolSize"} (see also the
  * {@link #setAllowCoreThreadTimeOut "allowCoreThreadTimeOut"} mode of scaling).
  *
- * <p>For an alternative, you may set up a {@link ThreadPoolExecutor} instance directly
+ * For an alternative, you may set up a {@link ThreadPoolExecutor} instance directly
  * using constructor injection, or use a factory method definition that points to the
  * {@link java.util.concurrent.Executors} class.
  * <b>This is strongly recommended in particular for common {@code @Bean} methods in
  * configuration classes, where this {@code FactoryBean} variant would force you to
  * return the {@code FactoryBean} type instead of the actual {@code Executor} type.</b>
  *
- * <p>If you need a timing-based {@link java.util.concurrent.ScheduledExecutorService}
+ * If you need a timing-based {@link java.util.concurrent.ScheduledExecutorService}
  * instead, consider {@link ScheduledExecutorFactoryBean}.
 
 
@@ -97,7 +97,7 @@ public class ThreadPoolExecutorFactoryBean extends ExecutorConfigurationSupport
 	 * Specify whether to allow core threads to time out. This enables dynamic
 	 * growing and shrinking even in combination with a non-zero queue (since
 	 * the max pool size will only grow once the queue is full).
-	 * <p>Default is "false".
+	 * Default is "false".
 	 * @see java.util.concurrent.ThreadPoolExecutor#allowCoreThreadTimeOut(boolean)
 	 */
 	public void setAllowCoreThreadTimeOut(boolean allowCoreThreadTimeOut) {
@@ -107,7 +107,7 @@ public class ThreadPoolExecutorFactoryBean extends ExecutorConfigurationSupport
 	/**
 	 * Set the capacity for the ThreadPoolExecutor's BlockingQueue.
 	 * Default is {@code Integer.MAX_VALUE}.
-	 * <p>Any positive value will lead to a LinkedBlockingQueue instance;
+	 * Any positive value will lead to a LinkedBlockingQueue instance;
 	 * any other value will lead to a SynchronousQueue instance.
 	 * @see java.util.concurrent.LinkedBlockingQueue
 	 * @see java.util.concurrent.SynchronousQueue
@@ -119,7 +119,7 @@ public class ThreadPoolExecutorFactoryBean extends ExecutorConfigurationSupport
 	/**
 	 * Specify whether this FactoryBean should expose an unconfigurable
 	 * decorator for the created executor.
-	 * <p>Default is "false", exposing the raw executor as bean reference.
+	 * Default is "false", exposing the raw executor as bean reference.
 	 * Switch this flag to "true" to strictly prevent clients from
 	 * modifying the executor's configuration.
 	 * @see java.util.concurrent.Executors#unconfigurableExecutorService
@@ -149,7 +149,7 @@ public class ThreadPoolExecutorFactoryBean extends ExecutorConfigurationSupport
 
 	/**
 	 * Create a new instance of {@link ThreadPoolExecutor} or a subclass thereof.
-	 * <p>The default implementation creates a standard {@link ThreadPoolExecutor}.
+	 * The default implementation creates a standard {@link ThreadPoolExecutor}.
 	 * Can be overridden to provide custom {@link ThreadPoolExecutor} subclasses.
 	 * @param corePoolSize the specified core pool size
 	 * @param maxPoolSize the specified maximum pool size
@@ -170,7 +170,7 @@ public class ThreadPoolExecutorFactoryBean extends ExecutorConfigurationSupport
 
 	/**
 	 * Create the BlockingQueue to use for the ThreadPoolExecutor.
-	 * <p>A LinkedBlockingQueue instance will be created for a positive
+	 * A LinkedBlockingQueue instance will be created for a positive
 	 * capacity value; a SynchronousQueue else.
 	 * @param queueCapacity the specified queue capacity
 	 * @return the BlockingQueue instance

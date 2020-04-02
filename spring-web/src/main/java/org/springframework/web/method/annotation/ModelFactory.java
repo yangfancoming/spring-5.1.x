@@ -36,10 +36,10 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * Assist with initialization of the {@link Model} before controller method
  * invocation and with updates to it after the invocation.
  *
- * <p>On initialization the model is populated with attributes temporarily stored
+ * On initialization the model is populated with attributes temporarily stored
  * in the session and through the invocation of {@code @ModelAttribute} methods.
  *
- * <p>On update model attributes are synchronized with the session and also
+ * On update model attributes are synchronized with the session and also
  * {@link BindingResult} attributes are added if missing.
  *
  * @author Rossen Stoyanchev

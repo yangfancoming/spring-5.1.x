@@ -27,9 +27,9 @@ import org.springframework.util.StringValueResolver;
  * {@link ResourceLoaderAware}, {@link ApplicationEventPublisherAware},
  * {@link MessageSourceAware} and/or {@link ApplicationContextAware} interfaces.
  *
- * <p>Implemented interfaces are satisfied in order of their mention above.
+ * Implemented interfaces are satisfied in order of their mention above.
  *
- * <p>Application contexts will automatically register this with their
+ * Application contexts will automatically register this with their
  * underlying bean factory. Applications do not use this directly.
  *
 

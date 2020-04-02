@@ -20,13 +20,13 @@ import org.springframework.web.context.request.NativeWebRequest;
  * on behalf of the application, with a {@code DeferredResult} the application can
  * produce the result from a thread of its choice.
  *
- * <p>Subclasses can extend this class to easily associate additional data or behavior
+ * Subclasses can extend this class to easily associate additional data or behavior
  * with the {@link DeferredResult}. For example, one might want to associate the user
  * used to create the {@link DeferredResult} by extending the class and adding an
  * additional property for the user. In this way, the user could easily be accessed
  * later without the need to use a data structure to do the mapping.
  *
- * <p>An example of associating additional behavior to this class might be realized
+ * An example of associating additional behavior to this class might be realized
  * by extending the class to implement an additional interface. For example, one
  * might want to implement {@link Comparable} so that when the {@link DeferredResult}
  * is added to a {@link PriorityQueue} it is handled in the correct order.
@@ -71,7 +71,7 @@ public class DeferredResult<T> {
 
 	/**
 	 * Create a DeferredResult with a custom timeout value.
-	 * <p>By default not set in which case the default configured in the MVC
+	 * By default not set in which case the default configured in the MVC
 	 * Java Config or the MVC namespace is used, or if that's not set, then the
 	 * timeout depends on the default of the underlying server.
 	 * @param timeoutValue timeout value in milliseconds
@@ -107,7 +107,7 @@ public class DeferredResult<T> {
 	/**
 	 * Return {@code true} if this DeferredResult is no longer usable either
 	 * because it was previously set or because the underlying request expired.
-	 * <p>The result may have been set with a call to {@link #setResult(Object)},
+	 * The result may have been set with a call to {@link #setResult(Object)},
 	 * or {@link #setErrorResult(Object)}, or as a result of a timeout, if a
 	 * timeout result was provided to the constructor. The request may also
 	 * expire due to a timeout or network error.
@@ -146,7 +146,7 @@ public class DeferredResult<T> {
 
 	/**
 	 * Register code to invoke when the async request times out.
-	 * <p>This method is called from a container thread when an async request
+	 * This method is called from a container thread when an async request
 	 * times out before the {@code DeferredResult} has been populated.
 	 * It may invoke {@link DeferredResult#setResult setResult} or
 	 * {@link DeferredResult#setErrorResult setErrorResult} to resume processing.
@@ -157,7 +157,7 @@ public class DeferredResult<T> {
 
 	/**
 	 * Register code to invoke when an error occurred during the async request.
-	 * <p>This method is called from a container thread when an error occurs
+	 * This method is called from a container thread when an error occurs
 	 * while processing an async request before the {@code DeferredResult} has
 	 * been populated. It may invoke {@link DeferredResult#setResult setResult}
 	 * or {@link DeferredResult#setErrorResult setErrorResult} to resume
@@ -170,7 +170,7 @@ public class DeferredResult<T> {
 
 	/**
 	 * Register code to invoke when the async request completes.
-	 * <p>This method is called from a container thread when an async request
+	 * This method is called from a container thread when an async request
 	 * completed for any reason including timeout and network error. This is useful
 	 * for detecting that a {@code DeferredResult} instance is no longer usable.
 	 */

@@ -126,7 +126,7 @@ public final class Type {
    * {@link #OBJECT} and {@link #INTERNAL} types, and a field or method descriptor in the other
    * cases.
    *
-   * <p>For {@link #OBJECT} types, this field also contains the descriptor: the characters in
+   * For {@link #OBJECT} types, this field also contains the descriptor: the characters in
    * [{@link #valueBegin},{@link #valueEnd}) contain the internal name, and those in [{@link
    * #valueBegin} - 1, {@link #valueEnd} + 1) contain the descriptor.
    */

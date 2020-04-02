@@ -8,7 +8,7 @@ import org.springframework.lang.Nullable;
  * Request-backed {@link org.springframework.beans.factory.config.Scope}
  * implementation.
  *
- * <p>Relies on a thread-bound {@link RequestAttributes} instance, which
+ * Relies on a thread-bound {@link RequestAttributes} instance, which
  * can be exported through {@link RequestContextListener},
  * {@link org.springframework.web.filter.RequestContextFilter} or
  * {@link org.springframework.web.servlet.DispatcherServlet}.

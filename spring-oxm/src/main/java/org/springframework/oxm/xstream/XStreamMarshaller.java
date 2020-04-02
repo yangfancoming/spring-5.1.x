@@ -74,7 +74,7 @@ import org.springframework.util.xml.StaxUtils;
 /**
  * Implementation of the {@code Marshaller} interface for XStream.
  *
- * <p>By default, XStream does not require any further configuration and can (un)marshal
+ * By default, XStream does not require any further configuration and can (un)marshal
  * any class on the classpath. As such, it is <b>not recommended to use the
  * {@code XStreamMarshaller} to unmarshal XML from external sources</b> (i.e. the Web),
  * as this can result in <b>security vulnerabilities</b>. If you do use the
@@ -84,14 +84,14 @@ import org.springframework.util.xml.StaxUtils;
  * a {@link CatchAllConverter}) or override the {@link #customizeXStream(XStream)}
  * method to make sure it only accepts the classes you want it to support.
  *
- * <p>Due to XStream's API, it is required to set the encoding used for writing to
+ * Due to XStream's API, it is required to set the encoding used for writing to
  * OutputStreams. It defaults to {@code UTF-8}.
  *
- * <p><b>NOTE:</b> XStream is an XML serialization library, not a data binding library.
+ * <b>NOTE:</b> XStream is an XML serialization library, not a data binding library.
  * Therefore, it has limited namespace support. As such, it is rather unsuitable for
  * usage within Web Services.
  *
- * <p>This marshaller requires XStream 1.4.5 or higher, as of Spring 4.3.
+ * This marshaller requires XStream 1.4.5 or higher, as of Spring 4.3.
  * Note that {@link XStream} construction has been reworked in 4.0, with the
  * stream driver and the class loader getting passed into XStream itself now.
  *
@@ -185,7 +185,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 
 	/**
 	 * Set a XStream {@link HierarchicalStreamDriver} to be used for readers and writers.
-	 * <p>As of Spring 4.0, this stream driver will also be passed to the {@link XStream}
+	 * As of Spring 4.0, this stream driver will also be passed to the {@link XStream}
 	 * constructor and therefore used by streaming-related native API methods themselves.
 	 */
 	public void setStreamDriver(HierarchicalStreamDriver streamDriver) {
@@ -271,7 +271,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 
 	/**
 	 * Set the alias/type map, consisting of string aliases mapped to classes.
-	 * <p>Keys are aliases; values are either {@code Class} instances, or String class names.
+	 * Keys are aliases; values are either {@code Class} instances, or String class names.
 	 * @see XStream#alias(String, Class)
 	 */
 	public void setAliases(Map<String, ?> aliases) {
@@ -280,7 +280,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 
 	/**
 	 * Set the <em>aliases by type</em> map, consisting of string aliases mapped to classes.
-	 * <p>Any class that is assignable to this type will be aliased to the same name.
+	 * Any class that is assignable to this type will be aliased to the same name.
 	 * Keys are aliases; values are either {@code Class} instances, or String class names.
 	 * @see XStream#aliasType(String, Class)
 	 */
@@ -344,7 +344,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 
 	/**
 	 * Activate XStream's autodetection mode.
-	 * <p><b>Note</b>: Autodetection implies that the XStream instance is being configured while
+	 * <b>Note</b>: Autodetection implies that the XStream instance is being configured while
 	 * it is processing the XML streams, and thus introduces a potential concurrency problem.
 	 * @see XStream#autodetectAnnotations(boolean)
 	 */
@@ -376,7 +376,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 
 	/**
 	 * Set the classes supported by this marshaller.
-	 * <p>If this property is empty (the default), all classes are supported.
+	 * If this property is empty (the default), all classes are supported.
 	 * @see #supports(Class)
 	 */
 	public void setSupportedClasses(Class<?>... supportedClasses) {
@@ -590,7 +590,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 
 	/**
 	 * Template to allow for customizing the given {@link XStream}.
-	 * <p>The default implementation is empty.
+	 * The default implementation is empty.
 	 * @param xstream the {@code XStream} instance
 	 */
 	protected void customizeXStream(XStream xstream) {
@@ -598,7 +598,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 
 	/**
 	 * Return the native XStream delegate used by this marshaller.
-	 * <p><b>NOTE: This method has been marked as final as of Spring 4.0.</b>
+	 * <b>NOTE: This method has been marked as final as of Spring 4.0.</b>
 	 * It can be used to access the fully configured XStream for marshalling
 	 * but not configuration purposes anymore.
 	 */
@@ -820,7 +820,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	/**
 	 * Convert the given XStream exception to an appropriate exception from the
 	 * {@code org.springframework.oxm} hierarchy.
-	 * <p>A boolean flag is used to indicate whether this exception occurs during marshalling or
+	 * A boolean flag is used to indicate whether this exception occurs during marshalling or
 	 * unmarshalling, since XStream itself does not make this distinction in its exception hierarchy.
 	 * @param ex the XStream exception that occurred
 	 * @param marshalling indicates whether the exception occurs during marshalling ({@code true}),

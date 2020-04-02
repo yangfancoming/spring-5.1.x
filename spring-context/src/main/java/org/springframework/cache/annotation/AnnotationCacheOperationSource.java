@@ -20,7 +20,7 @@ import org.springframework.util.Assert;
  * Implementation of the {@link org.springframework.cache.interceptor.CacheOperationSource
  * CacheOperationSource} interface for working with caching metadata in annotation format.
  *
- * <p>This class reads Spring's {@link Cacheable}, {@link CachePut} and {@link CacheEvict}
+ * This class reads Spring's {@link Cacheable}, {@link CachePut} and {@link CacheEvict}
  * annotations and exposes corresponding caching operation definition to Spring's cache
  * infrastructure. This class may also serve as base class for a custom
  * {@code CacheOperationSource}.
@@ -103,10 +103,10 @@ public class AnnotationCacheOperationSource extends AbstractFallbackCacheOperati
 
 	/**
 	 * Determine the cache operation(s) for the given {@link CacheOperationProvider}.
-	 * <p>This implementation delegates to configured
+	 * This implementation delegates to configured
 	 * {@link CacheAnnotationParser CacheAnnotationParsers}
 	 * for parsing known annotations into Spring's metadata attribute class.
-	 * <p>Can be overridden to support custom annotations that carry caching metadata.
+	 * Can be overridden to support custom annotations that carry caching metadata.
 	 * @param provider the cache operation provider to use
 	 * @return the configured caching operations, or {@code null} if none found
 	 */

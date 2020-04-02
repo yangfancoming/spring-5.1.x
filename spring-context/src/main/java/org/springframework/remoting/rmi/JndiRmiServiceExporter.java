@@ -19,20 +19,20 @@ import org.springframework.util.ReflectionUtils;
  * Service exporter which binds RMI services to JNDI.
  * Typically used for RMI-IIOP (CORBA).
  *
- * <p>Exports services via the {@link javax.rmi.PortableRemoteObject} class.
+ * Exports services via the {@link javax.rmi.PortableRemoteObject} class.
  * You need to run "rmic" with the "-iiop" option to generate corresponding
  * stubs and skeletons for each exported service.
  *
- * <p>Also supports exposing any non-RMI service via RMI invokers, to be accessed
+ * Also supports exposing any non-RMI service via RMI invokers, to be accessed
  * via {@link JndiRmiClientInterceptor} / {@link JndiRmiProxyFactoryBean}'s
  * automatic detection of such invokers.
  *
- * <p>With an RMI invoker, RMI communication works on the {@link RmiInvocationHandler}
+ * With an RMI invoker, RMI communication works on the {@link RmiInvocationHandler}
  * level, needing only one stub for any service. Service interfaces do not have to
  * extend {@code java.rmi.Remote} or throw {@code java.rmi.RemoteException}
  * on all methods, but in and out parameters have to be serializable.
  *
- * <p>The JNDI environment can be specified as "jndiEnvironment" bean property,
+ * The JNDI environment can be specified as "jndiEnvironment" bean property,
  * or be configured in a {@code jndi.properties} file or as system properties.
  * For example:
  *

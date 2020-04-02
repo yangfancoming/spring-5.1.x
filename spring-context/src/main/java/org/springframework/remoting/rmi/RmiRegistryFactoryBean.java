@@ -22,20 +22,20 @@ import org.springframework.lang.Nullable;
  * exposes it for bean references. Can also create a local RMI registry
  * on the fly if none exists already.
  *
- * <p>Can be used to set up and pass around the actual Registry object to
+ * Can be used to set up and pass around the actual Registry object to
  * applications objects that need to work with RMI. One example for such an
  * object that needs to work with RMI is Spring's {@link RmiServiceExporter},
  * which either works with a passed-in Registry reference or falls back to
  * the registry as specified by its local properties and defaults.
  *
- * <p>Also useful to enforce creation of a local RMI registry at a given port,
+ * Also useful to enforce creation of a local RMI registry at a given port,
  * for example for a JMX connector. If used in conjunction with
  * {@link org.springframework.jmx.support.ConnectorServerFactoryBean},
  * it is recommended to mark the connector definition (ConnectorServerFactoryBean)
  * as "depends-on" the registry definition (RmiRegistryFactoryBean),
  * to guarantee starting up the registry first.
  *
- * <p>Note: The implementation of this class mirrors the corresponding logic
+ * Note: The implementation of this class mirrors the corresponding logic
  * in {@link RmiServiceExporter}, and also offers the same customization hooks.
  * RmiServiceExporter implements its own registry lookup as a convenience:
  * It is very common to simply rely on the registry defaults.
@@ -69,7 +69,7 @@ public class RmiRegistryFactoryBean implements FactoryBean<Registry>, Initializi
 	/**
 	 * Set the host of the registry for the exported RMI service,
 	 * i.e. {@code rmi://HOST:port/name}
-	 * <p>Default is localhost.
+	 * Default is localhost.
 	 */
 	public void setHost(String host) {
 		this.host = host;
@@ -85,7 +85,7 @@ public class RmiRegistryFactoryBean implements FactoryBean<Registry>, Initializi
 	/**
 	 * Set the port of the registry for the exported RMI service,
 	 * i.e. {@code rmi://host:PORT/name}
-	 * <p>Default is {@code Registry.REGISTRY_PORT} (1099).
+	 * Default is {@code Registry.REGISTRY_PORT} (1099).
 	 */
 	public void setPort(int port) {
 		this.port = port;
@@ -100,7 +100,7 @@ public class RmiRegistryFactoryBean implements FactoryBean<Registry>, Initializi
 
 	/**
 	 * Set a custom RMI client socket factory to use for the RMI registry.
-	 * <p>If the given object also implements {@code java.rmi.server.RMIServerSocketFactory},
+	 * If the given object also implements {@code java.rmi.server.RMIServerSocketFactory},
 	 * it will automatically be registered as server socket factory too.
 	 * @see #setServerSocketFactory
 	 * @see java.rmi.server.RMIClientSocketFactory
@@ -113,7 +113,7 @@ public class RmiRegistryFactoryBean implements FactoryBean<Registry>, Initializi
 
 	/**
 	 * Set a custom RMI server socket factory to use for the RMI registry.
-	 * <p>Only needs to be specified when the client socket factory does not
+	 * Only needs to be specified when the client socket factory does not
 	 * implement {@code java.rmi.server.RMIServerSocketFactory} already.
 	 * @see #setClientSocketFactory
 	 * @see java.rmi.server.RMIClientSocketFactory
@@ -127,7 +127,7 @@ public class RmiRegistryFactoryBean implements FactoryBean<Registry>, Initializi
 	/**
 	 * Set whether to always create the registry in-process,
 	 * not attempting to locate an existing registry at the specified port.
-	 * <p>Default is "false". Switch this flag to "true" in order to avoid
+	 * Default is "false". Switch this flag to "true" in order to avoid
 	 * the overhead of locating an existing registry when you always
 	 * intend to create a new registry in any case.
 	 */
@@ -260,7 +260,7 @@ public class RmiRegistryFactoryBean implements FactoryBean<Registry>, Initializi
 	/**
 	 * Test the given RMI registry, calling some operation on it to
 	 * check whether it is still active.
-	 * <p>Default implementation calls {@code Registry.list()}.
+	 * Default implementation calls {@code Registry.list()}.
 	 * @param registry the RMI registry to test
 	 * @throws RemoteException if thrown by registry methods
 	 * @see java.rmi.registry.Registry#list()

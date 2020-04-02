@@ -13,17 +13,17 @@ import org.springframework.lang.Nullable;
  * Task scheduler interface that abstracts the scheduling of
  * {@link Runnable Runnables} based on different kinds of triggers.
  *
- * <p>This interface is separate from {@link SchedulingTaskExecutor} since it
+ * This interface is separate from {@link SchedulingTaskExecutor} since it
  * usually represents for a different kind of backend, i.e. a thread pool with
  * different characteristics and capabilities. Implementations may implement
  * both interfaces if they can handle both kinds of execution characteristics.
  *
- * <p>The 'default' implementation is
+ * The 'default' implementation is
  * {@link org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler},
  * wrapping a native {@link java.util.concurrent.ScheduledExecutorService}
  * and adding extended trigger capabilities.
  *
- * <p>This interface is roughly equivalent to a JSR-236
+ * This interface is roughly equivalent to a JSR-236
  * {@code ManagedScheduledExecutorService} as supported in Java EE 7
  * environments but aligned with Spring's {@code TaskExecutor} model.
  *
@@ -38,7 +38,7 @@ public interface TaskScheduler {
 	/**
 	 * Schedule the given {@link Runnable}, invoking it whenever the trigger
 	 * indicates a next execution time.
-	 * <p>Execution will end once the scheduler shuts down or the returned
+	 * Execution will end once the scheduler shuts down or the returned
 	 * {@link ScheduledFuture} gets cancelled.
 	 * @param task the Runnable to execute whenever the trigger fires
 	 * @param trigger an implementation of the {@link Trigger} interface,
@@ -56,7 +56,7 @@ public interface TaskScheduler {
 
 	/**
 	 * Schedule the given {@link Runnable}, invoking it at the specified execution time.
-	 * <p>Execution will end once the scheduler shuts down or the returned
+	 * Execution will end once the scheduler shuts down or the returned
 	 * {@link ScheduledFuture} gets cancelled.
 	 * @param task the Runnable to execute whenever the trigger fires
 	 * @param startTime the desired execution time for the task
@@ -73,7 +73,7 @@ public interface TaskScheduler {
 
 	/**
 	 * Schedule the given {@link Runnable}, invoking it at the specified execution time.
-	 * <p>Execution will end once the scheduler shuts down or the returned
+	 * Execution will end once the scheduler shuts down or the returned
 	 * {@link ScheduledFuture} gets cancelled.
 	 * @param task the Runnable to execute whenever the trigger fires
 	 * @param startTime the desired execution time for the task
@@ -87,7 +87,7 @@ public interface TaskScheduler {
 	/**
 	 * Schedule the given {@link Runnable}, invoking it at the specified execution time
 	 * and subsequently with the given period.
-	 * <p>Execution will end once the scheduler shuts down or the returned
+	 * Execution will end once the scheduler shuts down or the returned
 	 * {@link ScheduledFuture} gets cancelled.
 	 * @param task the Runnable to execute whenever the trigger fires
 	 * @param startTime the desired first execution time for the task
@@ -106,7 +106,7 @@ public interface TaskScheduler {
 	/**
 	 * Schedule the given {@link Runnable}, invoking it at the specified execution time
 	 * and subsequently with the given period.
-	 * <p>Execution will end once the scheduler shuts down or the returned
+	 * Execution will end once the scheduler shuts down or the returned
 	 * {@link ScheduledFuture} gets cancelled.
 	 * @param task the Runnable to execute whenever the trigger fires
 	 * @param startTime the desired first execution time for the task
@@ -121,7 +121,7 @@ public interface TaskScheduler {
 	/**
 	 * Schedule the given {@link Runnable}, starting as soon as possible and
 	 * invoking it with the given period.
-	 * <p>Execution will end once the scheduler shuts down or the returned
+	 * Execution will end once the scheduler shuts down or the returned
 	 * {@link ScheduledFuture} gets cancelled.
 	 * @param task the Runnable to execute whenever the trigger fires
 	 * @param period the interval between successive executions of the task
@@ -138,7 +138,7 @@ public interface TaskScheduler {
 	/**
 	 * Schedule the given {@link Runnable}, starting as soon as possible and
 	 * invoking it with the given period.
-	 * <p>Execution will end once the scheduler shuts down or the returned
+	 * Execution will end once the scheduler shuts down or the returned
 	 * {@link ScheduledFuture} gets cancelled.
 	 * @param task the Runnable to execute whenever the trigger fires
 	 * @param period the interval between successive executions of the task (in milliseconds)
@@ -152,7 +152,7 @@ public interface TaskScheduler {
 	 * Schedule the given {@link Runnable}, invoking it at the specified execution time
 	 * and subsequently with the given delay between the completion of one execution
 	 * and the start of the next.
-	 * <p>Execution will end once the scheduler shuts down or the returned
+	 * Execution will end once the scheduler shuts down or the returned
 	 * {@link ScheduledFuture} gets cancelled.
 	 * @param task the Runnable to execute whenever the trigger fires
 	 * @param startTime the desired first execution time for the task
@@ -172,7 +172,7 @@ public interface TaskScheduler {
 	 * Schedule the given {@link Runnable}, invoking it at the specified execution time
 	 * and subsequently with the given delay between the completion of one execution
 	 * and the start of the next.
-	 * <p>Execution will end once the scheduler shuts down or the returned
+	 * Execution will end once the scheduler shuts down or the returned
 	 * {@link ScheduledFuture} gets cancelled.
 	 * @param task the Runnable to execute whenever the trigger fires
 	 * @param startTime the desired first execution time for the task
@@ -188,7 +188,7 @@ public interface TaskScheduler {
 	/**
 	 * Schedule the given {@link Runnable}, starting as soon as possible and invoking it with
 	 * the given delay between the completion of one execution and the start of the next.
-	 * <p>Execution will end once the scheduler shuts down or the returned
+	 * Execution will end once the scheduler shuts down or the returned
 	 * {@link ScheduledFuture} gets cancelled.
 	 * @param task the Runnable to execute whenever the trigger fires
 	 * @param delay the delay between the completion of one execution and the start of the next
@@ -205,7 +205,7 @@ public interface TaskScheduler {
 	/**
 	 * Schedule the given {@link Runnable}, starting as soon as possible and invoking it with
 	 * the given delay between the completion of one execution and the start of the next.
-	 * <p>Execution will end once the scheduler shuts down or the returned
+	 * Execution will end once the scheduler shuts down or the returned
 	 * {@link ScheduledFuture} gets cancelled.
 	 * @param task the Runnable to execute whenever the trigger fires
 	 * @param delay the delay between the completion of one execution and the start of the next

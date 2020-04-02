@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
  * sources, for particular beans. For example, they may base their choice
  * on attributes, such as a pooling attribute, on the target class.
  *
- * <p>AbstractAutoProxyCreator can support a number of TargetSourceCreators,
+ * AbstractAutoProxyCreator can support a number of TargetSourceCreators,
  * which will be applied in order.
  *
  * @author Rod Johnson

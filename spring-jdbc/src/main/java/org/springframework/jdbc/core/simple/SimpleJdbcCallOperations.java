@@ -42,7 +42,7 @@ public interface SimpleJdbcCallOperations {
 
 	/**
 	 * Optionally, specify the name of the catalog that contins the stored procedure.
-	 * <p>To provide consistency with the Oracle DatabaseMetaData, this is used to specify the
+	 * To provide consistency with the Oracle DatabaseMetaData, this is used to specify the
 	 * package name if the procedure is declared as part of a package.
 	 * @param catalogName the catalog or package name
 	 * @return the instance of this SimpleJdbcCall
@@ -58,7 +58,7 @@ public interface SimpleJdbcCallOperations {
 	/**
 	 * Specify one or more parameters if desired. These parameters will be supplemented with
 	 * any parameter information retrieved from the database meta-data.
-	 * <p>Note that only parameters declared as {@code SqlParameter} and {@code SqlInOutParameter}
+	 * Note that only parameters declared as {@code SqlParameter} and {@code SqlInOutParameter}
 	 * will be used to provide input values. This is different from the {@code StoredProcedure}
 	 * class which - for backwards compatibility reasons - allows input values to be provided
 	 * for parameters declared as {@code SqlOutParameter}.
@@ -74,7 +74,7 @@ public interface SimpleJdbcCallOperations {
 	 * Used to specify when a ResultSet is returned by the stored procedure and you want it
 	 * mapped by a {@link RowMapper}. The results will be returned using the parameter name
 	 * specified. Multiple ResultSets must be declared in the correct order.
-	 * <p>If the database you are using uses ref cursors then the name specified must match
+	 * If the database you are using uses ref cursors then the name specified must match
 	 * the name of the parameter declared for the procedure in the database.
 	 * @param parameterName the name of the returned results and/or the name of the ref cursor parameter
 	 * @param rowMapper the RowMapper implementation that will map the data returned for each row

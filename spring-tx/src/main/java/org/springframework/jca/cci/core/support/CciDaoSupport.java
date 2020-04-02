@@ -16,11 +16,11 @@ import org.springframework.util.Assert;
 /**
  * Convenient super class for CCI-based data access objects.
  *
- * <p>Requires a {@link javax.resource.cci.ConnectionFactory} to be set,
+ * Requires a {@link javax.resource.cci.ConnectionFactory} to be set,
  * providing a {@link org.springframework.jca.cci.core.CciTemplate} based
  * on it to subclasses through the {@link #getCciTemplate()} method.
  *
- * <p>This base class is mainly intended for CciTemplate usage but can
+ * This base class is mainly intended for CciTemplate usage but can
  * also be used when working with a Connection directly or when using
  * {@code org.springframework.jca.cci.object} classes.
  *
@@ -49,7 +49,7 @@ public abstract class CciDaoSupport extends DaoSupport {
 	/**
 	 * Create a CciTemplate for the given ConnectionFactory.
 	 * Only invoked if populating the DAO with a ConnectionFactory reference!
-	 * <p>Can be overridden in subclasses to provide a CciTemplate instance
+	 * Can be overridden in subclasses to provide a CciTemplate instance
 	 * with different configuration, or a custom CciTemplate subclass.
 	 * @param connectionFactory the CCI ConnectionFactory to create a CciTemplate for
 	 * @return the new CciTemplate instance

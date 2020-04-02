@@ -34,7 +34,7 @@ import org.springframework.util.concurrent.ListenableFutureTask;
  * providing several useful attributes: "corePoolSize", "maxPoolSize", "keepAliveSeconds"
  * (all supporting updates at runtime); "poolSize", "activeCount" (for introspection only).
  *
- * <p>The default configuration is a core pool size of 1, with unlimited max pool size
+ * The default configuration is a core pool size of 1, with unlimited max pool size
  * and unlimited queue capacity. This is roughly equivalent to
  * {@link java.util.concurrent.Executors#newSingleThreadExecutor()}, sharing a single
  * thread for all tasks. Setting {@link #setQueueCapacity "queueCapacity"} to 0 mimics
@@ -44,14 +44,14 @@ import org.springframework.util.concurrent.ListenableFutureTask;
  * {@link #setCorePoolSize "corePoolSize"} (see also the
  * {@link #setAllowCoreThreadTimeOut "allowCoreThreadTimeOut"} mode of scaling).
  *
- * <p><b>NOTE:</b> This class implements Spring's
+ * <b>NOTE:</b> This class implements Spring's
  * {@link org.springframework.core.task.TaskExecutor} interface as well as the
  * {@link java.util.concurrent.Executor} interface, with the former being the primary
  * interface, the other just serving as secondary convenience. For this reason, the
  * exception handling follows the TaskExecutor contract rather than the Executor contract,
  * in particular regarding the {@link org.springframework.core.task.TaskRejectedException}.
  *
- * <p>For an alternative, you may set up a ThreadPoolExecutor instance directly using
+ * For an alternative, you may set up a ThreadPoolExecutor instance directly using
  * constructor injection, or use a factory method definition that points to the
  * {@link java.util.concurrent.Executors} class. To expose such a raw Executor as a
  * Spring {@link org.springframework.core.task.TaskExecutor}, simply wrap it with a
@@ -94,7 +94,7 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 	/**
 	 * Set the ThreadPoolExecutor's core pool size.
 	 * Default is 1.
-	 * <p><b>This setting can be modified at runtime, for example through JMX.</b>
+	 * <b>This setting can be modified at runtime, for example through JMX.</b>
 	 */
 	public void setCorePoolSize(int corePoolSize) {
 		synchronized (this.poolSizeMonitor) {
@@ -117,7 +117,7 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 	/**
 	 * Set the ThreadPoolExecutor's maximum pool size.
 	 * Default is {@code Integer.MAX_VALUE}.
-	 * <p><b>This setting can be modified at runtime, for example through JMX.</b>
+	 * <b>This setting can be modified at runtime, for example through JMX.</b>
 	 */
 	public void setMaxPoolSize(int maxPoolSize) {
 		synchronized (this.poolSizeMonitor) {
@@ -140,7 +140,7 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 	/**
 	 * Set the ThreadPoolExecutor's keep-alive seconds.
 	 * Default is 60.
-	 * <p><b>This setting can be modified at runtime, for example through JMX.</b>
+	 * <b>This setting can be modified at runtime, for example through JMX.</b>
 	 */
 	public void setKeepAliveSeconds(int keepAliveSeconds) {
 		synchronized (this.poolSizeMonitor) {
@@ -163,7 +163,7 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 	/**
 	 * Set the capacity for the ThreadPoolExecutor's BlockingQueue.
 	 * Default is {@code Integer.MAX_VALUE}.
-	 * <p>Any positive value will lead to a LinkedBlockingQueue instance;
+	 * Any positive value will lead to a LinkedBlockingQueue instance;
 	 * any other value will lead to a SynchronousQueue instance.
 	 * @see java.util.concurrent.LinkedBlockingQueue
 	 * @see java.util.concurrent.SynchronousQueue
@@ -176,7 +176,7 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 	 * Specify whether to allow core threads to time out. This enables dynamic
 	 * growing and shrinking even in combination with a non-zero queue (since
 	 * the max pool size will only grow once the queue is full).
-	 * <p>Default is "false".
+	 * Default is "false".
 	 * @see java.util.concurrent.ThreadPoolExecutor#allowCoreThreadTimeOut(boolean)
 	 */
 	public void setAllowCoreThreadTimeOut(boolean allowCoreThreadTimeOut) {
@@ -186,10 +186,10 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 	/**
 	 * Specify a custom {@link TaskDecorator} to be applied to any {@link Runnable}
 	 * about to be executed.
-	 * <p>Note that such a decorator is not necessarily being applied to the
+	 * Note that such a decorator is not necessarily being applied to the
 	 * user-supplied {@code Runnable}/{@code Callable} but rather to the actual
 	 * execution callback (which may be a wrapper around the user-supplied task).
-	 * <p>The primary use case is to set some execution context around the task's
+	 * The primary use case is to set some execution context around the task's
 	 * invocation, or to provide some monitoring/statistics for task execution.
 	 * @since 4.3
 	 */
@@ -242,7 +242,7 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 
 	/**
 	 * Create the BlockingQueue to use for the ThreadPoolExecutor.
-	 * <p>A LinkedBlockingQueue instance will be created for a positive
+	 * A LinkedBlockingQueue instance will be created for a positive
 	 * capacity value; a SynchronousQueue else.
 	 * @param queueCapacity the specified queue capacity
 	 * @return the BlockingQueue instance

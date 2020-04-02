@@ -335,7 +335,7 @@ public class AnnotatedElementUtilsTests {
 	 * This test should never pass, simply because Spring does not support a hybrid
 	 * approach for annotation attribute overrides with transitive implicit aliases.
 	 * See SPR-13554 for details.
-	 * <p>Furthermore, if you choose to execute this test, it can fail for either
+	 * Furthermore, if you choose to execute this test, it can fail for either
 	 * the first test class or the second one (with different exceptions), depending
 	 * on the order in which the JVM returns the attribute methods via reflection.
 	 */

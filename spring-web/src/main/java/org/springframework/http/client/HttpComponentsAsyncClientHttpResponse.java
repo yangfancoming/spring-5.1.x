@@ -17,7 +17,7 @@ import org.springframework.util.StreamUtils;
  * {@link ClientHttpResponse} implementation based on
  * Apache HttpComponents HttpAsyncClient.
  *
- * <p>Created via the {@link HttpComponentsAsyncClientHttpRequest}.
+ * Created via the {@link HttpComponentsAsyncClientHttpRequest}.
  *
  * @author Oleg Kalnichevski
  * @author Arjen Poutsma

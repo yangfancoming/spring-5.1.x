@@ -21,7 +21,7 @@ import org.springframework.web.server.ServerWebExchange;
  * with {@code @ResponseBody} writing to the body of the request or response with
  * an {@link HttpMessageWriter}.
  *
- * <p>By default the order for this result handler is set to 100. As it detects
+ * By default the order for this result handler is set to 100. As it detects
  * the presence of {@code @ResponseBody} it should be ordered after result
  * handlers that look for a specific return type. Note however that this handler
  * does recognize and explicitly ignores the {@code ResponseEntity} return type.

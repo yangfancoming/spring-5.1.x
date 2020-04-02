@@ -112,7 +112,7 @@ public class ConfigurableObjectInputStream extends ObjectInputStream {
 
 	/**
 	 * Resolve the given class name against a fallback class loader.
-	 * <p>The default implementation simply rethrows the original exception,
+	 * The default implementation simply rethrows the original exception,
 	 * since there is no fallback available.
 	 * @param className the class name to resolve
 	 * @param ex the original exception thrown when attempting to load the class
@@ -127,7 +127,7 @@ public class ConfigurableObjectInputStream extends ObjectInputStream {
 	/**
 	 * Return the fallback ClassLoader to use when no ClassLoader was specified
 	 * and ObjectInputStream's own default class loader failed.
-	 * <p>The default implementation simply returns {@code null}, indicating
+	 * The default implementation simply returns {@code null}, indicating
 	 * that no specific fallback is available.
 	 */
 	@Nullable

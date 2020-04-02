@@ -135,7 +135,7 @@ public class DefaultStompSession implements ConnectionHandlingStompSession {
 	 * Set the {@link MessageConverter} to use to convert the payload of incoming
 	 * and outgoing messages to and from {@code byte[]} based on object type, or
 	 * expected object type, and the "content-type" header.
-	 * <p>By default, {@link SimpleMessageConverter} is configured.
+	 * By default, {@link SimpleMessageConverter} is configured.
 	 * @param messageConverter the message converter to use
 	 */
 	public void setMessageConverter(MessageConverter messageConverter) {
@@ -167,7 +167,7 @@ public class DefaultStompSession implements ConnectionHandlingStompSession {
 
 	/**
 	 * Configure the time in milliseconds before a receipt expires.
-	 * <p>By default set to 15,000 (15 seconds).
+	 * By default set to 15,000 (15 seconds).
 	 */
 	public void setReceiptTimeLimit(long receiptTimeLimit) {
 		Assert.isTrue(receiptTimeLimit > 0, "Receipt time limit must be larger than zero");

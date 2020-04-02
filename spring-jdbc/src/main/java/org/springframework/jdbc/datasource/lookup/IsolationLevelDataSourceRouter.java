@@ -14,7 +14,7 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
  * configured with the isolation level name as key, as defined on the
  * {@link org.springframework.transaction.TransactionDefinition TransactionDefinition interface}.
  *
- * <p>This is particularly useful in combination with JTA transaction management
+ * This is particularly useful in combination with JTA transaction management
  * (typically through Spring's {@link org.springframework.transaction.jta.JtaTransactionManager}).
  * Standard JTA does not support transaction-specific isolation levels. Some JTA
  * providers support isolation levels as a vendor-specific extension (e.g. WebLogic),
@@ -24,7 +24,7 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
  * The present DataSource router allows to transparently switch to the
  * appropriate DataSource based on the current transaction's isolation level.
  *
- * <p>The configuration can for example look like this, assuming that the target
+ * The configuration can for example look like this, assuming that the target
  * DataSources are defined as individual Spring beans with names
  * "myRepeatableReadDataSource", "mySerializableDataSource" and "myDefaultDataSource":
  *

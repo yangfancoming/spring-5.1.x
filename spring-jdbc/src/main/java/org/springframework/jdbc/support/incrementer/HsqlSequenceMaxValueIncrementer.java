@@ -8,9 +8,9 @@ import javax.sql.DataSource;
  * {@link DataFieldMaxValueIncrementer} that retrieves the next value
  * of a given HSQL sequence.
  *
- * <p>Thanks to Guillaume Bilodeau for the suggestion!
+ * Thanks to Guillaume Bilodeau for the suggestion!
  *
- * <p><b>NOTE:</b> This is an alternative to using a regular table to support
+ * <b>NOTE:</b> This is an alternative to using a regular table to support
  * generating unique keys that was necessary in previous versions of HSQL.
  * @since 2.5
  * @see HsqlMaxValueIncrementer

@@ -14,14 +14,14 @@ import org.aspectj.bridge.IMessageHandler;
  * routes AspectJ weaving messages through the same logging system as the
  * regular Spring messages.
  *
- * <p>Pass the option...
+ * Pass the option...
  *
- * <p><code class="code">-XmessageHandlerClass:org.springframework.aop.aspectj.AspectJWeaverMessageHandler</code>
+ * <code class="code">-XmessageHandlerClass:org.springframework.aop.aspectj.AspectJWeaverMessageHandler</code>
  *
- * <p>to the weaver; for example, specifying the following in a
+ * to the weaver; for example, specifying the following in a
  * "{@code META-INF/aop.xml} file:
  *
- * <p><code class="code">&lt;weaver options="..."/&gt;</code>
+ * <code class="code">&lt;weaver options="..."/&gt;</code>
  * @since 2.0
  */
 public class AspectJWeaverMessageHandler implements IMessageHandler {

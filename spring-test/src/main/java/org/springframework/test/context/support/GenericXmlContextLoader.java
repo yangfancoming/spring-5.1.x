@@ -12,7 +12,7 @@ import org.springframework.util.ObjectUtils;
  * Concrete implementation of {@link AbstractGenericContextLoader} that reads
  * bean definitions from XML resources.
  *
- * <p>Default resource locations are detected using the suffix
+ * Default resource locations are detected using the suffix
  * {@code "-context.xml"}.
  *
  * @author Sam Brannen

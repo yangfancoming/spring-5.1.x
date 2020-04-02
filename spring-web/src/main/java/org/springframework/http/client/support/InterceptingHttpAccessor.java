@@ -17,7 +17,7 @@ import org.springframework.util.CollectionUtils;
  * and other HTTP accessing gateway helpers, adding interceptor-related
  * properties to {@link HttpAccessor}'s common properties.
  *
- * <p>Not intended to be used directly.
+ * Not intended to be used directly.
  * See {@link org.springframework.web.client.RestTemplate} for an entry point.
  *
  * @author Arjen Poutsma
@@ -37,7 +37,7 @@ public abstract class InterceptingHttpAccessor extends HttpAccessor {
 
 	/**
 	 * Set the request interceptors that this accessor should use.
-	 * <p>The interceptors will get sorted according to their order
+	 * The interceptors will get sorted according to their order
 	 * once the {@link ClientHttpRequestFactory} will be built.
 	 * @see #getRequestFactory()
 	 * @see AnnotationAwareOrderComparator
@@ -53,7 +53,7 @@ public abstract class InterceptingHttpAccessor extends HttpAccessor {
 
 	/**
 	 * Return the request interceptors that this accessor uses.
-	 * <p>The returned {@link List} is active and may get appended to.
+	 * The returned {@link List} is active and may get appended to.
 	 */
 	public List<ClientHttpRequestInterceptor> getInterceptors() {
 		return this.interceptors;

@@ -23,13 +23,13 @@ import org.springframework.util.Assert;
  * in standard JUnit tests by means of the {@link TestContextManager} and
  * associated support classes and annotations.
  *
- * <p>In contrast to the {@link org.springframework.test.context.junit4.SpringJUnit4ClassRunner
+ * In contrast to the {@link org.springframework.test.context.junit4.SpringJUnit4ClassRunner
  * SpringJUnit4ClassRunner}, Spring's rule-based JUnit support has the advantage
  * that it is independent of any {@link org.junit.runner.Runner Runner} and
  * can therefore be combined with existing alternative runners like JUnit's
  * {@code Parameterized} or third-party runners such as the {@code MockitoJUnitRunner}.
  *
- * <p>In order to achieve the same functionality as the {@code SpringJUnit4ClassRunner},
+ * In order to achieve the same functionality as the {@code SpringJUnit4ClassRunner},
  * however, a {@code SpringClassRule} must be combined with a {@link SpringMethodRule},
  * since {@code SpringClassRule} only supports the class-level features of the
  * {@code SpringJUnit4ClassRunner}.
@@ -46,7 +46,7 @@ import org.springframework.util.Assert;
  *    // ...
  * }</code></pre>
  *
- * <p>The following list constitutes all annotations currently supported directly
+ * The following list constitutes all annotations currently supported directly
  * or indirectly by {@code SpringClassRule}. <em>(Note that additional annotations
  * may be supported by various
  * {@link org.springframework.test.context.TestExecutionListener TestExecutionListener} or
@@ -58,7 +58,7 @@ import org.springframework.util.Assert;
  * <li>{@link org.springframework.test.annotation.IfProfileValue @IfProfileValue}</li>
  * </ul>
  *
- * <p><strong>NOTE:</strong> As of Spring Framework 4.3, this class requires JUnit 4.12 or higher.
+ * <strong>NOTE:</strong> As of Spring Framework 4.3, this class requires JUnit 4.12 or higher.
  *
  * @author Sam Brannen
  * @author Philippe Marschall
@@ -81,12 +81,12 @@ public class SpringClassRule implements TestRule {
 	/**
 	 * Apply <em>class-level</em> features of the <em>Spring TestContext
 	 * Framework</em> to the supplied {@code base} statement.
-	 * <p>Specifically, this method retrieves the {@link TestContextManager}
+	 * Specifically, this method retrieves the {@link TestContextManager}
 	 * used by this rule and its associated {@link SpringMethodRule} and
 	 * invokes the {@link TestContextManager#beforeTestClass() beforeTestClass()}
 	 * and {@link TestContextManager#afterTestClass() afterTestClass()} methods
 	 * on the {@code TestContextManager}.
-	 * <p>In addition, this method checks whether the test is enabled in
+	 * In addition, this method checks whether the test is enabled in
 	 * the current execution environment. This prevents classes with a
 	 * non-matching {@code @IfProfileValue} annotation from running altogether,
 	 * even skipping the execution of {@code beforeTestClass()} methods

@@ -9,7 +9,7 @@ import org.springframework.util.Assert;
 /**
  * Class that models an arbitrary location in a {@link Resource resource}.
  *
- * <p>Typically used to track the location of problematic or erroneous
+ * Typically used to track the location of problematic or erroneous
  * metadata in XML configuration files. For example, a
  * {@link #getSource() source} location might be 'The bean defined on
  * line 76 of beans.properties has an invalid Class'; another source might
@@ -58,7 +58,7 @@ public class Location {
 	/**
 	 * Get the actual location within the associated {@link #getResource() resource}
 	 * (may be {@code null}).
-	 * <p>See the {@link Location class level javadoc for this class} for examples
+	 * See the {@link Location class level javadoc for this class} for examples
 	 * of what the actual type of the returned object may be.
 	 */
 	@Nullable

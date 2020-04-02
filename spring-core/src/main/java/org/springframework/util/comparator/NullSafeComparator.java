@@ -44,10 +44,10 @@ public class NullSafeComparator<T> implements Comparator<T> {
 	/**
 	 * Create a NullSafeComparator that sorts {@code null} based on
 	 * the provided flag, working on Comparables.
-	 * <p>When comparing two non-null objects, their Comparable implementation
+	 * When comparing two non-null objects, their Comparable implementation
 	 * will be used: this means that non-null elements (that this Comparator
 	 * will be applied to) need to implement Comparable.
-	 * <p>As a convenience, you can use the default shared instances:
+	 * As a convenience, you can use the default shared instances:
 	 * {@code NullSafeComparator.NULLS_LOW} and
 	 * {@code NullSafeComparator.NULLS_HIGH}.
 	 * @param nullsLow whether to treat nulls lower or higher than non-null objects
@@ -64,7 +64,7 @@ public class NullSafeComparator<T> implements Comparator<T> {
 	/**
 	 * Create a NullSafeComparator that sorts {@code null} based on the
 	 * provided flag, decorating the given Comparator.
-	 * <p>When comparing two non-null objects, the specified Comparator will be used.
+	 * When comparing two non-null objects, the specified Comparator will be used.
 	 * The given underlying Comparator must be able to handle the elements that this
 	 * Comparator will be applied to.
 	 * @param comparator the comparator to use when comparing two non-null objects

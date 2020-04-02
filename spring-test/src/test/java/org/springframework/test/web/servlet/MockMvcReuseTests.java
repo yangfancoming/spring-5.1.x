@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
  * Integration tests that verify that {@link MockMvc} can be reused multiple
  * times within the same test method without side effects between independent
  * requests.
- * <p>See <a href="https://jira.spring.io/browse/SPR-13260" target="_blank">SPR-13260</a>.
+ * See <a href="https://jira.spring.io/browse/SPR-13260" target="_blank">SPR-13260</a>.
  *
  * @author Sam Brannen
  * @author Rob Winch

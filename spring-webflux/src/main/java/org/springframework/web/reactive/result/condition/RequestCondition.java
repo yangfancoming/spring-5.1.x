@@ -8,7 +8,7 @@ import org.springframework.web.server.ServerWebExchange;
 /**
  * Contract for request mapping conditions.
  *
- * <p>Request conditions can be combined via {@link #combine(Object)}, matched to
+ * Request conditions can be combined via {@link #combine(Object)}, matched to
  * a request via {@link #getMatchingCondition(ServerWebExchange)}, and compared
  * to each other via {@link #compareTo(Object, ServerWebExchange)} to determine
  * which is a closer match for a given request.
@@ -34,7 +34,7 @@ public interface RequestCondition<T> {
 	 * instance created for the current request. For example a condition with
 	 * multiple URL patterns may return a new instance only with those patterns
 	 * that match the request.
-	 * <p>For CORS pre-flight requests, conditions should match to the would-be,
+	 * For CORS pre-flight requests, conditions should match to the would-be,
 	 * actual request (e.g. URL pattern, query parameters, and the HTTP method
 	 * from the "Access-Control-Request-Method" header). If a condition cannot
 	 * be matched to a pre-flight request it should return an instance with

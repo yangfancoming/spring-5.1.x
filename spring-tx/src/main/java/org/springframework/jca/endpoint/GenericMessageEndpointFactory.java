@@ -23,11 +23,11 @@ import org.springframework.util.ReflectionUtils;
  * listener object (e.g. {@link javax.jms.MessageListener} objects or
  * {@link javax.resource.cci.MessageListener} objects.
  *
- * <p>Uses AOP proxies for concrete endpoint instances, simply wrapping
+ * Uses AOP proxies for concrete endpoint instances, simply wrapping
  * the specified message listener object and exposing all of its implemented
  * interfaces on the endpoint instance.
  *
- * <p>Typically used with Spring's {@link GenericMessageEndpointManager},
+ * Typically used with Spring's {@link GenericMessageEndpointManager},
  * but not tied to it. As a consequence, this endpoint factory could
  * also be used with programmatic endpoint management on a native
  * {@link javax.resource.spi.ResourceAdapter} instance.
@@ -145,7 +145,7 @@ public class GenericMessageEndpointFactory extends AbstractMessageEndpointFactor
 	/**
 	 * Internal exception thrown when a ResourceException has been encountered
 	 * during the endpoint invocation.
-	 * <p>Will only be used if the ResourceAdapter does not invoke the
+	 * Will only be used if the ResourceAdapter does not invoke the
 	 * endpoint's {@code beforeDelivery} and {@code afterDelivery}
 	 * directly, leaving it up to the concrete endpoint to apply those -
 	 * and to handle any ResourceExceptions thrown from them.

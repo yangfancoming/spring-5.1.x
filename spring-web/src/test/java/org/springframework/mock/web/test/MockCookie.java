@@ -38,7 +38,7 @@ public class MockCookie extends Cookie {
 
 	/**
 	 * Add the "SameSite" attribute to the cookie.
-	 * <p>This limits the scope of the cookie such that it will only be attached
+	 * This limits the scope of the cookie such that it will only be attached
 	 * to same site requests if {@code "Strict"} or cross-site requests if
 	 * {@code "Lax"}.
 	 * @see <a href="https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis#section-4.1.2.7">RFC6265 bis</a>

@@ -28,7 +28,7 @@ import org.springframework.util.StringUtils;
  * evaluate expressions configured via annotations to determine if a container
  * or test is enabled.
  *
- * <p>Expressions can be any of the following.
+ * Expressions can be any of the following.
  *
  * <ul>
  * <li>Spring Expression Language (SpEL) expression ; for example:

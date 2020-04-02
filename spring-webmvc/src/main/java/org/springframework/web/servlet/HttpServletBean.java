@@ -37,23 +37,23 @@ import org.springframework.web.context.support.StandardServletEnvironment;
  * its config parameters ({@code init-param} entries within the
  * {@code servlet} tag in {@code web.xml}) as bean properties.
  *
- * <p>A handy superclass for any type of servlet. Type conversion of config
+ * A handy superclass for any type of servlet. Type conversion of config
  * parameters is automatic, with the corresponding setter method getting
  * invoked with the converted value. It is also possible for subclasses to
  * specify required properties. Parameters without matching bean property
  * setter will simply be ignored.
  *
- * <p>This servlet leaves request handling to subclasses, inheriting the default
+ * This servlet leaves request handling to subclasses, inheriting the default
  * behavior of HttpServlet ({@code doGet}, {@code doPost}, etc).
  *
- * <p>This generic servlet base class has no dependency on the Spring
+ * This generic servlet base class has no dependency on the Spring
  * {@link org.springframework.context.ApplicationContext} concept. Simple
  * servlets usually don't load their own context but rather access service
  * beans from the Spring root application context, accessible via the
  * filter's {@link #getServletContext() ServletContext} (see
  * {@link org.springframework.web.context.support.WebApplicationContextUtils}).
  *
- * <p>The {@link FrameworkServlet} class is a more specific servlet base
+ * The {@link FrameworkServlet} class is a more specific servlet base
  * class which loads its own application context. FrameworkServlet serves
  * as direct base class of Spring's full-fledged {@link DispatcherServlet}.
  * @see #addRequiredProperty
@@ -88,7 +88,7 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 	 * (which must match a JavaBean property they expose) is mandatory,
 	 * and must be supplied as a config parameter. This should be called
 	 * from the constructor of a subclass.
-	 * <p>This method is only relevant in case of traditional initialization
+	 * This method is only relevant in case of traditional initialization
 	 * driven by a ServletConfig instance.
 	 * @param property name of the required property
 	 */
@@ -98,7 +98,7 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 
 	/**
 	 * Set the {@code Environment} that this servlet runs in.
-	 * <p>Any environment set here overrides the {@link StandardServletEnvironment}
+	 * Any environment set here overrides the {@link StandardServletEnvironment}
 	 * provided by default.
 	 * @throws IllegalArgumentException if environment is not assignable to
 	 * {@code ConfigurableEnvironment}
@@ -111,7 +111,7 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 
 	/**
 	 * Return the {@link Environment} associated with this servlet.
-	 * <p>If none specified, a default environment will be initialized via
+	 * If none specified, a default environment will be initialized via
 	 * {@link #createEnvironment()}.
 	 */
 	@Override
@@ -124,7 +124,7 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 
 	/**
 	 * Create and return a new {@link StandardServletEnvironment}.
-	 * <p>Subclasses may override this in order to configure the environment or
+	 * Subclasses may override this in order to configure the environment or
 	 * specialize the environment type returned.
 	 */
 	protected ConfigurableEnvironment createEnvironment() {
@@ -176,7 +176,7 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 	/**
 	 * Initialize the BeanWrapper for this HttpServletBean,
 	 * possibly with custom editors.
-	 * <p>This default implementation is empty.
+	 * This default implementation is empty.
 	 * @param bw the BeanWrapper to initialize
 	 * @throws BeansException if thrown by BeanWrapper methods
 	 * @see org.springframework.beans.BeanWrapper#registerCustomEditor
@@ -188,7 +188,7 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 	 * Subclasses may override this to perform custom initialization.
 	 * All bean properties of this servlet will have been set before this
 	 * method is invoked.
-	 * <p>This default implementation is empty.
+	 * This default implementation is empty.
 	 * @throws ServletException if subclass initialization fails
 	 */
 	protected void initServletBean() throws ServletException {

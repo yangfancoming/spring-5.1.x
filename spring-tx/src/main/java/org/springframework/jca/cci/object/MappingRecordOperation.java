@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
  * EIS operation object that expects mapped input and output objects,
  * converting to and from CCI Records.
  *
- * <p>Concrete subclasses must implement the abstract
+ * Concrete subclasses must implement the abstract
  * {@code createInputRecord(RecordFactory, Object)} and
  * {@code extractOutputData(Record)} methods, to create an input
  * Record from an object and to convert an output Record into an object,
@@ -51,9 +51,9 @@ public abstract class MappingRecordOperation extends EisOperation {
 
 	/**
 	 * Set a RecordCreator that should be used for creating default output Records.
-	 * <p>Default is none: CCI's {@code Interaction.execute} variant
+	 * Default is none: CCI's {@code Interaction.execute} variant
 	 * that returns an output Record will be called.
-	 * <p>Specify a RecordCreator here if you always need to call CCI's
+	 * Specify a RecordCreator here if you always need to call CCI's
 	 * {@code Interaction.execute} variant with a passed-in output Record.
 	 * This RecordCreator will then be invoked to create a default output Record instance.
 	 * @see javax.resource.cci.Interaction#execute(javax.resource.cci.InteractionSpec, Record)

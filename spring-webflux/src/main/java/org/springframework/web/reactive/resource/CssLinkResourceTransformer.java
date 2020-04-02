@@ -31,7 +31,7 @@ import org.springframework.web.server.ServerWebExchange;
  * file to match the public URL paths that should be exposed to clients (e.g.
  * with an MD5 content-based hash inserted in the URL).
  *
- * <p>The implementation looks for links in CSS {@code @import} statements and
+ * The implementation looks for links in CSS {@code @import} statements and
  * also inside CSS {@code url()} functions. All links are then passed through the
  * {@link ResourceResolverChain} and resolved relative to the location of the
  * containing CSS file. If successfully resolved, the link is modified, otherwise

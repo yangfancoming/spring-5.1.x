@@ -8,7 +8,7 @@ import org.springframework.lang.Nullable;
 /**
  * Interface that encapsulates configuration methods for a PropertyAccessor.
  * Also extends the PropertyEditorRegistry interface, which defines methods for PropertyEditor management.
- * <p>Serves as base interface for {@link BeanWrapper}.
+ * Serves as base interface for {@link BeanWrapper}.
  * @since 2.0
  * @see BeanWrapper
  */
@@ -41,10 +41,10 @@ public interface ConfigurablePropertyAccessor extends PropertyAccessor, Property
 	/**
 	 * Set whether this instance should attempt to "auto-grow" a
 	 * nested path that contains a {@code null} value.
-	 * <p>If {@code true}, a {@code null} path location will be populated
+	 * If {@code true}, a {@code null} path location will be populated
 	 * with a default object value and traversed instead of resulting in a
 	 * {@link NullValueInNestedPathException}.
-	 * <p>Default is {@code false} on a plain PropertyAccessor instance.
+	 * Default is {@code false} on a plain PropertyAccessor instance.
 	 */
 	void setAutoGrowNestedPaths(boolean autoGrowNestedPaths);
 

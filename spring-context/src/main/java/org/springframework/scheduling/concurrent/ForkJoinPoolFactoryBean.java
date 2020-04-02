@@ -37,11 +37,11 @@ public class ForkJoinPoolFactoryBean implements FactoryBean<ForkJoinPool>, Initi
 
 	/**
 	 * Set whether to expose JDK 8's 'common' {@link ForkJoinPool}.
-	 * <p>Default is "false", creating a local {@link ForkJoinPool} instance based on the
+	 * Default is "false", creating a local {@link ForkJoinPool} instance based on the
 	 * {@link #setParallelism "parallelism"}, {@link #setThreadFactory "threadFactory"},
 	 * {@link #setUncaughtExceptionHandler "uncaughtExceptionHandler"} and
 	 * {@link #setAsyncMode "asyncMode"} properties on this FactoryBean.
-	 * <p><b>NOTE:</b> Setting this flag to "true" effectively ignores all other
+	 * <b>NOTE:</b> Setting this flag to "true" effectively ignores all other
 	 * properties on this FactoryBean, reusing the shared common JDK {@link ForkJoinPool}
 	 * instead. This is a fine choice on JDK 8 but does remove the application's ability
 	 * to customize ForkJoinPool behavior, in particular the use of custom threads.
@@ -91,12 +91,12 @@ public class ForkJoinPoolFactoryBean implements FactoryBean<ForkJoinPool>, Initi
 	 * before the rest of the container continues to shut down. This is particularly
 	 * useful if your remaining tasks are likely to need access to other resources
 	 * that are also managed by the container.
-	 * <p>By default, this ForkJoinPool won't wait for the termination of tasks at all.
+	 * By default, this ForkJoinPool won't wait for the termination of tasks at all.
 	 * It will continue to fully execute all ongoing tasks as well as all remaining
 	 * tasks in the queue, in parallel to the rest of the container shutting down.
 	 * In contrast, if you specify an await-termination period using this property,
 	 * this executor will wait for the given time (max) for the termination of tasks.
-	 * <p>Note that this feature works for the {@link #setCommonPool "commonPool"}
+	 * Note that this feature works for the {@link #setCommonPool "commonPool"}
 	 * mode as well. The underlying ForkJoinPool won't actually terminate in that
 	 * case but will wait for all tasks to terminate.
 	 * @see java.util.concurrent.ForkJoinPool#shutdown()

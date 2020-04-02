@@ -12,11 +12,11 @@ import org.springframework.util.Assert;
 /**
  * A comparator that chains a sequence of one or more Comparators.
  *
- * <p>A compound comparator calls each Comparator in sequence until a single
+ * A compound comparator calls each Comparator in sequence until a single
  * Comparator returns a non-zero result, or the comparators are exhausted and
  * zero is returned.
  *
- * <p>This facilitates in-memory sorting similar to multi-column sorting in SQL.
+ * This facilitates in-memory sorting similar to multi-column sorting in SQL.
  * The order of any single Comparator in the list can also be reversed.
  *
  * @author Keith Donald
@@ -44,7 +44,7 @@ public class CompoundComparator<T> implements Comparator<T>, Serializable {
 
 	/**
 	 * Construct a CompoundComparator from the Comparators in the provided array.
-	 * <p>All Comparators will default to ascending sort order,
+	 * All Comparators will default to ascending sort order,
 	 * unless they are InvertibleComparators.
 	 * @param comparators the comparators to build into a compound comparator
 	 * @see InvertibleComparator
@@ -61,7 +61,7 @@ public class CompoundComparator<T> implements Comparator<T>, Serializable {
 
 	/**
 	 * Add a Comparator to the end of the chain.
-	 * <p>The Comparator will default to ascending sort order,
+	 * The Comparator will default to ascending sort order,
 	 * unless it is a InvertibleComparator.
 	 * @param comparator the Comparator to add to the end of the chain
 	 * @see InvertibleComparator
@@ -88,7 +88,7 @@ public class CompoundComparator<T> implements Comparator<T>, Serializable {
 
 	/**
 	 * Replace the Comparator at the given index.
-	 * <p>The Comparator will default to ascending sort order,
+	 * The Comparator will default to ascending sort order,
 	 * unless it is a InvertibleComparator.
 	 * @param index the index of the Comparator to replace
 	 * @param comparator the Comparator to place at the given index

@@ -15,7 +15,7 @@ import org.springframework.lang.Nullable;
  * by any child threads spawned by the current thread if the
  * {@code inheritable} flag is set to {@code true}.
  *
- * <p>Used as a central holder for the current Locale in Spring,
+ * Used as a central holder for the current Locale in Spring,
  * wherever necessary: for example, in MessageSourceAccessor.
  * DispatcherServlet automatically exposes its current Locale here.
  * Other applications can expose theirs too, to make classes like
@@ -60,7 +60,7 @@ public final class LocaleContextHolder {
 	/**
 	 * Associate the given LocaleContext with the current thread,
 	 * <i>not</i> exposing it as inheritable for child threads.
-	 * <p>The given LocaleContext may be a {@link TimeZoneAwareLocaleContext},
+	 * The given LocaleContext may be a {@link TimeZoneAwareLocaleContext},
 	 * containing a locale with associated time zone information.
 	 * @param localeContext the current LocaleContext,
 	 * or {@code null} to reset the thread-bound context
@@ -73,7 +73,7 @@ public final class LocaleContextHolder {
 
 	/**
 	 * Associate the given LocaleContext with the current thread.
-	 * <p>The given LocaleContext may be a {@link TimeZoneAwareLocaleContext},
+	 * The given LocaleContext may be a {@link TimeZoneAwareLocaleContext},
 	 * containing a locale with associated time zone information.
 	 * @param localeContext the current LocaleContext,
 	 * or {@code null} to reset the thread-bound context
@@ -114,7 +114,7 @@ public final class LocaleContextHolder {
 	/**
 	 * Associate the given Locale with the current thread,
 	 * preserving any TimeZone that may have been set already.
-	 * <p>Will implicitly create a LocaleContext for the given Locale,
+	 * Will implicitly create a LocaleContext for the given Locale,
 	 * <i>not</i> exposing it as inheritable for child threads.
 	 * @param locale the current Locale, or {@code null} to reset
 	 * the locale part of thread-bound context
@@ -128,7 +128,7 @@ public final class LocaleContextHolder {
 	/**
 	 * Associate the given Locale with the current thread,
 	 * preserving any TimeZone that may have been set already.
-	 * <p>Will implicitly create a LocaleContext for the given Locale.
+	 * Will implicitly create a LocaleContext for the given Locale.
 	 * @param locale the current Locale, or {@code null} to reset
 	 * the locale part of thread-bound context
 	 * @param inheritable whether to expose the LocaleContext as inheritable
@@ -155,7 +155,7 @@ public final class LocaleContextHolder {
 	/**
 	 * Set a shared default locale at the framework level,
 	 * as an alternative to the JVM-wide default locale.
-	 * <p><b>NOTE:</b> This can be useful to set an application-level
+	 * <b>NOTE:</b> This can be useful to set an application-level
 	 * default locale which differs from the JVM-wide default locale.
 	 * However, this requires each such application to operate against
 	 * locally deployed Spring Framework jars. Do not deploy Spring
@@ -175,7 +175,7 @@ public final class LocaleContextHolder {
 	 * or the system default Locale otherwise. This is effectively a
 	 * replacement for {@link java.util.Locale#getDefault()},
 	 * able to optionally respect a user-level Locale setting.
-	 * <p>Note: This method has a fallback to the shared default Locale,
+	 * Note: This method has a fallback to the shared default Locale,
 	 * either at the framework level or at the JVM-wide system level.
 	 * If you'd like to check for the raw LocaleContext content
 	 * (which may indicate no specific locale through {@code null}, use
@@ -218,7 +218,7 @@ public final class LocaleContextHolder {
 	/**
 	 * Associate the given TimeZone with the current thread,
 	 * preserving any Locale that may have been set already.
-	 * <p>Will implicitly create a LocaleContext for the given Locale,
+	 * Will implicitly create a LocaleContext for the given Locale,
 	 * <i>not</i> exposing it as inheritable for child threads.
 	 * @param timeZone the current TimeZone, or {@code null} to reset
 	 * the time zone part of the thread-bound context
@@ -232,7 +232,7 @@ public final class LocaleContextHolder {
 	/**
 	 * Associate the given TimeZone with the current thread,
 	 * preserving any Locale that may have been set already.
-	 * <p>Will implicitly create a LocaleContext for the given Locale.
+	 * Will implicitly create a LocaleContext for the given Locale.
 	 * @param timeZone the current TimeZone, or {@code null} to reset
 	 * the time zone part of the thread-bound context
 	 * @param inheritable whether to expose the LocaleContext as inheritable
@@ -258,7 +258,7 @@ public final class LocaleContextHolder {
 	/**
 	 * Set a shared default time zone at the framework level,
 	 * as an alternative to the JVM-wide default time zone.
-	 * <p><b>NOTE:</b> This can be useful to set an application-level
+	 * <b>NOTE:</b> This can be useful to set an application-level
 	 * default time zone which differs from the JVM-wide default time zone.
 	 * However, this requires each such application to operate against
 	 * locally deployed Spring Framework jars. Do not deploy Spring
@@ -278,7 +278,7 @@ public final class LocaleContextHolder {
 	 * or the system default TimeZone otherwise. This is effectively a
 	 * replacement for {@link java.util.TimeZone#getDefault()},
 	 * able to optionally respect a user-level TimeZone setting.
-	 * <p>Note: This method has a fallback to the shared default TimeZone,
+	 * Note: This method has a fallback to the shared default TimeZone,
 	 * either at the framework level or at the JVM-wide system level.
 	 * If you'd like to check for the raw LocaleContext content
 	 * (which may indicate no specific time zone through {@code null}, use

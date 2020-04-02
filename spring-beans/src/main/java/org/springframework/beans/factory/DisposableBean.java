@@ -8,7 +8,7 @@ package org.springframework.beans.factory;
  * scoped bean. An {@link org.springframework.context.ApplicationContext} is supposed
  * to dispose all of its singletons on shutdown, driven by the application lifecycle.
  *
- * <p>A Spring-managed bean may also implement Java's {@link AutoCloseable} interface
+ * A Spring-managed bean may also implement Java's {@link AutoCloseable} interface
  * for the same purpose. An alternative to implementing an interface is specifying a
  * custom destroy method, for example in an XML bean definition. For a list of all
  * bean lifecycle methods, see the {@link BeanFactory BeanFactory javadocs}.

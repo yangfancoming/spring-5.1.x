@@ -13,11 +13,11 @@ import org.springframework.messaging.core.MessageSendingOperations;
  * A specialization of {@link MessageSendingOperations} with methods for use with
  * the Spring Framework support for Simple Messaging Protocols (like STOMP).
  *
- * <p>For more on user destinations see
+ * For more on user destinations see
  * {@link org.springframework.messaging.simp.user.UserDestinationResolver
  * UserDestinationResolver}.
  *
- * <p>Generally it is expected the user is the one authenticated with the
+ * Generally it is expected the user is the one authenticated with the
  * WebSocket session (or by extension the user authenticated with the
  * handshake request that started the session). However if the session is
  * not authenticated, it is also possible to pass the session id (if known)
@@ -41,12 +41,12 @@ public interface SimpMessageSendingOperations extends MessageSendingOperations<S
 
 	/**
 	 * Send a message to the given user.
-	 * <p>By default headers are interpreted as native headers (e.g. STOMP) and
+	 * By default headers are interpreted as native headers (e.g. STOMP) and
 	 * are saved under a special key in the resulting Spring
 	 * {@link org.springframework.messaging.Message Message}. In effect when the
 	 * message leaves the application, the provided headers are included with it
 	 * and delivered to the destination (e.g. the STOMP client or broker).
-	 * <p>If the map already contains the key
+	 * If the map already contains the key
 	 * {@link org.springframework.messaging.support.NativeMessageHeaderAccessor#NATIVE_HEADERS "nativeHeaders"}
 	 * or was prepared with
 	 * {@link org.springframework.messaging.simp.SimpMessageHeaderAccessor SimpMessageHeaderAccessor}
@@ -61,7 +61,7 @@ public interface SimpMessageSendingOperations extends MessageSendingOperations<S
 	 * MessageHeaders headers = accessor.getMessageHeaders();
 	 * messagingTemplate.convertAndSendToUser(user, destination, payload, headers);
 	 * </pre>
-	 * <p><strong>Note:</strong> if the {@code MessageHeaders} are mutable as in
+	 * <strong>Note:</strong> if the {@code MessageHeaders} are mutable as in
 	 * the above example, implementations of this interface should take notice and
 	 * update the headers in the same instance (rather than copy or re-create it)
 	 * and then set it immutable before sending the final message.
@@ -85,7 +85,7 @@ public interface SimpMessageSendingOperations extends MessageSendingOperations<S
 
 	/**
 	 * Send a message to the given user.
-	 * <p>See {@link #convertAndSend(Object, Object, java.util.Map)} for important
+	 * See {@link #convertAndSend(Object, Object, java.util.Map)} for important
 	 * notes regarding the input headers.
 	 * @param user the user that should receive the message
 	 * @param destination the destination to send the message to

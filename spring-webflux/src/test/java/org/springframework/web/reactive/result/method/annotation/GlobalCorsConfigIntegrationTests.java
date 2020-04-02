@@ -197,7 +197,7 @@ public class GlobalCorsConfigIntegrationTests extends AbstractRequestMappingInte
 
 		@GetMapping(value = "/ambiguous", produces = MediaType.TEXT_HTML_VALUE)
 		public String ambiguous2() {
-			return "<p>ambiguous</p>";
+			return "ambiguous</p>";
 		}
 	}
 

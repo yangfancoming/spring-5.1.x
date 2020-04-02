@@ -36,7 +36,7 @@ public abstract class AbstractResourceBasedMessageSource extends AbstractMessage
 	 * Set a single basename, following the basic ResourceBundle convention
 	 * of not specifying file extension or language codes. The resource location
 	 * format is up to the specific {@code MessageSource} implementation.
-	 * <p>Regular and XMl properties files are supported: e.g. "messages" will find
+	 * Regular and XMl properties files are supported: e.g. "messages" will find
 	 * a "messages.properties", "messages_en.properties" etc arrangement as well
 	 * as "messages.xml", "messages_en.xml" etc.
 	 * @param basename the single basename
@@ -52,13 +52,13 @@ public abstract class AbstractResourceBasedMessageSource extends AbstractMessage
 	 * Set an array of basenames, each following the basic ResourceBundle convention
 	 * of not specifying file extension or language codes. The resource location
 	 * format is up to the specific {@code MessageSource} implementation.
-	 * <p>Regular and XMl properties files are supported: e.g. "messages" will find
+	 * Regular and XMl properties files are supported: e.g. "messages" will find
 	 * a "messages.properties", "messages_en.properties" etc arrangement as well
 	 * as "messages.xml", "messages_en.xml" etc.
-	 * <p>The associated resource bundles will be checked sequentially when resolving
+	 * The associated resource bundles will be checked sequentially when resolving
 	 * a message code. Note that message definitions in a <i>previous</i> resource
 	 * bundle will override ones in a later bundle, due to the sequential lookup.
-	 * <p>Note: In contrast to {@link #addBasenames}, this replaces existing entries
+	 * Note: In contrast to {@link #addBasenames}, this replaces existing entries
 	 * with the given names and can therefore also be used to reset the configuration.
 	 * @param basenames an array of basenames
 	 * @see #setBasename
@@ -71,7 +71,7 @@ public abstract class AbstractResourceBasedMessageSource extends AbstractMessage
 
 	/**
 	 * Add the specified basenames to the existing basename configuration.
-	 * <p>Note: If a given basename already exists, the position of its entry
+	 * Note: If a given basename already exists, the position of its entry
 	 * will remain as in the original set. New entries will be added at the
 	 * end of the list, to be searched after existing basenames.
 	 * @since 4.3
@@ -90,7 +90,7 @@ public abstract class AbstractResourceBasedMessageSource extends AbstractMessage
 	/**
 	 * Return this {@code MessageSource}'s basename set, containing entries
 	 * in the order of registration.
-	 * <p>Calling code may introspect this set as well as add or remove entries.
+	 * Calling code may introspect this set as well as add or remove entries.
 	 * @since 4.3
 	 * @see #addBasenames
 	 */
@@ -101,10 +101,10 @@ public abstract class AbstractResourceBasedMessageSource extends AbstractMessage
 	/**
 	 * Set the default charset to use for parsing properties files.
 	 * Used if no file-specific charset is specified for a file.
-	 * <p>The effective default is the {@code java.util.Properties}
+	 * The effective default is the {@code java.util.Properties}
 	 * default encoding: ISO-8859-1. A {@code null} value indicates
 	 * the platform default encoding.
-	 * <p>Only applies to classic properties files, not to XML files.
+	 * Only applies to classic properties files, not to XML files.
 	 * @param defaultEncoding the default charset
 	 */
 	public void setDefaultEncoding(@Nullable String defaultEncoding) {
@@ -125,7 +125,7 @@ public abstract class AbstractResourceBasedMessageSource extends AbstractMessage
 	 * Locale have been found. Default is "true"; if this is turned off, the only
 	 * fallback will be the default file (e.g. "messages.properties" for
 	 * basename "messages").
-	 * <p>Falling back to the system Locale is the default behavior of
+	 * Falling back to the system Locale is the default behavior of
 	 * {@code java.util.ResourceBundle}. However, this is often not desirable
 	 * in an application server environment, where the system Locale is not relevant
 	 * to the application at all: set this flag to "false" in such a scenario.
@@ -156,7 +156,7 @@ public abstract class AbstractResourceBasedMessageSource extends AbstractMessage
 	 * <li>A value of "0" will check the last-modified timestamp of the file on
 	 * every message access. <b>Do not use this in a production environment!</b>
 	 * </ul>
-	 * <p><b>Note that depending on your ClassLoader, expiration might not work reliably
+	 * <b>Note that depending on your ClassLoader, expiration might not work reliably
 	 * since the ClassLoader may hold on to a cached version of the bundle file.</b>
 	 * Prefer {@link ReloadableResourceBundleMessageSource} over
 	 * {@link ResourceBundleMessageSource} in such a scenario, in combination with

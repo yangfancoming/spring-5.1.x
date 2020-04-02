@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
  * Utility class handling the SpEL expression parsing.
  * Meant to be used as a reusable, thread-safe component.
  *
- * <p>Performs internal caching for performance reasons
+ * Performs internal caching for performance reasons
  * using {@link AnnotatedElementKey}.
  *
  * @author Costin Leau

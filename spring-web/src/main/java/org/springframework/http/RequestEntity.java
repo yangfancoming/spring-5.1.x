@@ -17,7 +17,7 @@ import org.springframework.util.ObjectUtils;
  * Extension of {@link HttpEntity} that adds a {@linkplain HttpMethod method} and
  * {@linkplain URI uri}. Used in {@code RestTemplate} and {@code @Controller} methods.
  *
- * <p>In {@code RestTemplate}, this class is used as parameter in
+ * In {@code RestTemplate}, this class is used as parameter in
  * {@link org.springframework.web.client.RestTemplate#exchange(RequestEntity, Class) exchange()}:
  * <pre class="code">
  * MyRequest body = ...
@@ -28,14 +28,14 @@ import org.springframework.util.ObjectUtils;
  * ResponseEntity&lt;MyResponse&gt; response = template.exchange(request, MyResponse.class);
  * </pre>
  *
- * <p>If you would like to provide a URI template with variables, consider using
+ * If you would like to provide a URI template with variables, consider using
  * {@link org.springframework.web.util.UriTemplate}:
  * <pre class="code">
  * URI uri = new UriTemplate(&quot;https://example.com/{foo}&quot;).expand(&quot;bar&quot;);
  * RequestEntity&lt;MyRequest&gt; request = RequestEntity.post(uri).accept(MediaType.APPLICATION_JSON).body(body);
  * </pre>
  *
- * <p>Can also be used in Spring MVC, as a parameter in a @Controller method:
+ * Can also be used in Spring MVC, as a parameter in a @Controller method:
  * <pre class="code">
  * &#64;RequestMapping("/handle")
  * public void handle(RequestEntity&lt;String&gt; request) {
@@ -331,7 +331,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 
 		/**
 		 * Set the value of the {@code If-Modified-Since} header.
-		 * <p>The date should be specified as the number of milliseconds since
+		 * The date should be specified as the number of milliseconds since
 		 * January 1, 1970 GMT.
 		 * @param ifModifiedSince the new value of the header
 		 */

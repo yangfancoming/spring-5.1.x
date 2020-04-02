@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
  * as bean properties and being able to add and remove cookie to/from a
  * given response.
  *
- * <p>Can serve as base class for components that generate specific cookies,
+ * Can serve as base class for components that generate specific cookies,
  * such as CookieLocaleResolver and CookieThemeResolver.
  *
 
@@ -104,7 +104,7 @@ public class CookieGenerator {
 	/**
 	 * Use the given maximum age (in seconds) for cookies created by this generator.
 	 * Useful special value: -1 ... not persistent, deleted when client shuts down.
-	 * <p>Default is no specific maximum age at all, using the Servlet container's
+	 * Default is no specific maximum age at all, using the Servlet container's
 	 * default.
 	 * @see javax.servlet.http.Cookie#setMaxAge
 	 */
@@ -124,7 +124,7 @@ public class CookieGenerator {
 	 * Set whether the cookie should only be sent using a secure protocol,
 	 * such as HTTPS (SSL). This is an indication to the receiving browser,
 	 * not processed by the HTTP server itself.
-	 * <p>Default is "false".
+	 * Default is "false".
 	 * @see javax.servlet.http.Cookie#setSecure
 	 */
 	public void setCookieSecure(boolean cookieSecure) {
@@ -141,7 +141,7 @@ public class CookieGenerator {
 
 	/**
 	 * Set whether the cookie is supposed to be marked with the "HttpOnly" attribute.
-	 * <p>Default is "false".
+	 * Default is "false".
 	 * @see javax.servlet.http.Cookie#setHttpOnly
 	 */
 	public void setCookieHttpOnly(boolean cookieHttpOnly) {
@@ -159,7 +159,7 @@ public class CookieGenerator {
 	/**
 	 * Add a cookie with the given value to the response,
 	 * using the cookie descriptor settings of this generator.
-	 * <p>Delegates to {@link #createCookie} for cookie creation.
+	 * Delegates to {@link #createCookie} for cookie creation.
 	 * @param response the HTTP response to add the cookie to
 	 * @param cookieValue the value of the cookie to add
 	 * @see #setCookieName
@@ -189,7 +189,7 @@ public class CookieGenerator {
 	/**
 	 * Remove the cookie that this generator describes from the response.
 	 * Will generate a cookie with empty value and max age 0.
-	 * <p>Delegates to {@link #createCookie} for cookie creation.
+	 * Delegates to {@link #createCookie} for cookie creation.
 	 * @param response the HTTP response to remove the cookie from
 	 * @see #setCookieName
 	 * @see #setCookieDomain

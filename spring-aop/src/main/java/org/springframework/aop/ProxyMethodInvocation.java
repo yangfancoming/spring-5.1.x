@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
  * Extension of the AOP Alliance {@link org.aopalliance.intercept.MethodInvocation}
  * interface, allowing access to the proxy that the method invocation was made through.
  *
- * <p>Useful to be able to substitute return values with the proxy,
+ * Useful to be able to substitute return values with the proxy,
  * if necessary, for example if the invocation target returned itself.
  *
 
@@ -56,7 +56,7 @@ public interface ProxyMethodInvocation extends MethodInvocation {
 
 	/**
 	 * Add the specified user attribute with the given value to this invocation.
-	 * <p>Such attributes are not used within the AOP framework itself. They are
+	 * Such attributes are not used within the AOP framework itself. They are
 	 * just kept as part of the invocation object, for use in special interceptors.
 	 * @param key the name of the attribute
 	 * @param value the value of the attribute, or {@code null} to reset it

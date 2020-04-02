@@ -20,11 +20,11 @@ import org.springframework.web.util.WebUtils;
  * A target servlet doesn't even need a "servlet-mapping" in web.xml
  * in the first place: A "servlet" declaration is sufficient.
  *
- * <p>Useful to invoke an existing servlet via Spring's dispatching infrastructure,
+ * Useful to invoke an existing servlet via Spring's dispatching infrastructure,
  * for example to apply Spring HandlerInterceptors to its requests. This will work
  * even in a minimal Servlet container that does not support Servlet filters.
  *
- * <p><b>Example:</b> web.xml, mapping all "/myservlet" requests to a Spring dispatcher.
+ * <b>Example:</b> web.xml, mapping all "/myservlet" requests to a Spring dispatcher.
  * Also defines a custom "myServlet", but <i>without</i> servlet mapping.
  *
  * <pre class="code">
@@ -89,7 +89,7 @@ public class ServletForwardingController extends AbstractController implements B
 	/**
 	 * Set the name of the servlet to forward to,
 	 * i.e. the "servlet-name" of the target servlet in web.xml.
-	 * <p>Default is the bean name of this controller.
+	 * Default is the bean name of this controller.
 	 */
 	public void setServletName(String servletName) {
 		this.servletName = servletName;
@@ -137,7 +137,7 @@ public class ServletForwardingController extends AbstractController implements B
 	/**
 	 * Determine whether to use RequestDispatcher's {@code include} or
 	 * {@code forward} method.
-	 * <p>Performs a check whether an include URI attribute is found in the request,
+	 * Performs a check whether an include URI attribute is found in the request,
 	 * indicating an include request, and whether the response has already been committed.
 	 * In both cases, an include will be performed, as a forward is not possible anymore.
 	 * @param request current HTTP request

@@ -21,7 +21,7 @@ import org.springframework.web.context.request.NativeWebRequest;
  * for a request. This is done by delegating to a list of configured
  * {@code ContentNegotiationStrategy} instances.
  *
- * <p>Also provides methods to look up file extensions for a media type.
+ * Also provides methods to look up file extensions for a media type.
  * This is done by delegating to the list of configured
  * {@code MediaTypeFileExtensionResolver} instances.
  *
@@ -127,7 +127,7 @@ public class ContentNegotiationManager implements ContentNegotiationStrategy, Me
 
 	/**
 	 * {@inheritDoc}
-	 * <p>At startup this method returns extensions explicitly registered with
+	 * At startup this method returns extensions explicitly registered with
 	 * either {@link PathExtensionContentNegotiationStrategy} or
 	 * {@link ParameterContentNegotiationStrategy}. At runtime if there is a
 	 * "path extension" strategy and its

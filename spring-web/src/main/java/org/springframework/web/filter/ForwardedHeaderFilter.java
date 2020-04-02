@@ -40,7 +40,7 @@ import org.springframework.web.util.UrlPathHelper;
  * <li>{@link HttpServletResponse#sendRedirect(String) sendRedirect(String)}.
  * </ul>
  *
- * <p>This filter can also be used in a {@link #setRemoveOnly removeOnly} mode
+ * This filter can also be used in a {@link #setRemoveOnly removeOnly} mode
  * where "Forwarded" and "X-Forwarded-*" headers are eliminated, and not used.
  *
  * @author Rossen Stoyanchev
@@ -92,7 +92,7 @@ public class ForwardedHeaderFilter extends OncePerRequestFilter {
 	 * Use this property to enable relative redirects as explained in
 	 * {@link RelativeRedirectFilter}, and also using the same response wrapper
 	 * as that filter does, or if both are configured, only one will wrap.
-	 * <p>By default, if this property is set to false, in which case calls to
+	 * By default, if this property is set to false, in which case calls to
 	 * {@link HttpServletResponse#sendRedirect(String)} are overridden in order
 	 * to turn relative into absolute URLs, also taking into account forwarded
 	 * headers.

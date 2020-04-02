@@ -10,7 +10,7 @@ import org.springframework.aop.Pointcut;
  * Convenient superclass when we want to force subclasses to implement the
  * {@link MethodMatcher} interface but subclasses will want to be pointcuts.
  *
- * <p>The {@link #setClassFilter "classFilter"} property can be set to customize
+ * The {@link #setClassFilter "classFilter"} property can be set to customize
  * {@link ClassFilter} behavior. The default is {@link ClassFilter#TRUE}.
  */
 public abstract class StaticMethodMatcherPointcut extends StaticMethodMatcher implements Pointcut {

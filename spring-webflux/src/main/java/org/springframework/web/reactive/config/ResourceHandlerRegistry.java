@@ -26,11 +26,11 @@ import org.springframework.web.server.WebHandler;
  * served out of locations under web application root, from the classpath, and
  * others.
  *
- * <p>To create a resource handler, use {@link #addResourceHandler(String...)}
+ * To create a resource handler, use {@link #addResourceHandler(String...)}
  * providing the URL path patterns for which the handler should be invoked to
  * serve static resources (e.g. {@code "/resources/**"}).
  *
- * <p>Then use additional methods on the returned
+ * Then use additional methods on the returned
  * {@link ResourceHandlerRegistration} to add one or more locations from which
  * to serve static content from (e.g. {{@code "/"},
  * {@code "classpath:/META-INF/public-web-resources/"}}) or to specify a cache
@@ -77,7 +77,7 @@ public class ResourceHandlerRegistry {
 	 * Add a resource handler for serving static resources based on the specified
 	 * URL path patterns. The handler will be invoked for every incoming request
 	 * that matches to one of the specified path patterns.
-	 * <p>Patterns like {@code "/static/**"} or {@code "/css/{filename:\\w+\\.css}"}
+	 * Patterns like {@code "/static/**"} or {@code "/css/{filename:\\w+\\.css}"}
 	 * are allowed. See {@link org.springframework.web.util.pattern.PathPattern}
 	 * for more details on the syntax.
 	 * @return a {@link ResourceHandlerRegistration} to use to further configure
@@ -104,7 +104,7 @@ public class ResourceHandlerRegistry {
 	/**
 	 * Specify the order to use for resource handling relative to other
 	 * {@code HandlerMapping}s configured in the Spring configuration.
-	 * <p>The default value used is {@code Integer.MAX_VALUE-1}.
+	 * The default value used is {@code Integer.MAX_VALUE-1}.
 	 */
 	public ResourceHandlerRegistry setOrder(int order) {
 		this.order = order;

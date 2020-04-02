@@ -29,7 +29,7 @@ import org.springframework.util.StringUtils;
  * starting and stopping Spring-managed beans as part of the ResourceAdapter's
  * lifecycle.
  *
- * <p>Ideal for application contexts that do not need any HTTP entry points
+ * Ideal for application contexts that do not need any HTTP entry points
  * but rather just consist of message endpoints and scheduled jobs etc.
  * Beans in such a context may use application server resources such as the
  * JTA transaction manager and JNDI-bound JDBC DataSources and JMS
@@ -37,20 +37,20 @@ import org.springframework.util.StringUtils;
  * JMX server - all through Spring's standard transaction management and
  * JNDI and JMX support facilities.
  *
- * <p>If the need for scheduling asynchronous work arises, consider using
+ * If the need for scheduling asynchronous work arises, consider using
  * Spring's {@link org.springframework.jca.work.WorkManagerTaskExecutor}
  * as a standard bean definition, to be injected into application beans
  * through dependency injection. This WorkManagerTaskExecutor will automatically
  * use the JCA WorkManager from the BootstrapContext that has been provided
  * to this ResourceAdapter.
  *
- * <p>The JCA {@link javax.resource.spi.BootstrapContext} may also be
+ * The JCA {@link javax.resource.spi.BootstrapContext} may also be
  * accessed directly, through application components that implement the
  * {@link BootstrapContextAware} interface. When deployed using this
  * ResourceAdapter, the BootstrapContext is guaranteed to be passed on
  * to such components.
  *
- * <p>This ResourceAdapter is to be defined in a "META-INF/ra.xml" file
+ * This ResourceAdapter is to be defined in a "META-INF/ra.xml" file
  * within a Java EE ".rar" deployment unit like as follows:
  *
  * <pre class="code">
@@ -77,7 +77,7 @@ import org.springframework.util.StringUtils;
  * different/additional config files. So in the default case, you may remove
  * the entire {@code config-property} section above.
  *
- * <p><b>For simple deployment needs, all you need to do is the following:</b>
+ * <b>For simple deployment needs, all you need to do is the following:</b>
  * Package all application classes into a RAR file (which is just a standard
  * JAR file with a different file extension), add all required library jars
  * into the root of the RAR archive, add a "META-INF/ra.xml" deployment
@@ -120,9 +120,9 @@ public class SpringContextResourceAdapter implements ResourceAdapter {
 	 * resource adapter's deployment unit. This can be a delimited
 	 * String that consists of multiple resource location, separated
 	 * by commas, semicolons, whitespace, or line breaks.
-	 * <p>This can be specified as "ContextConfigLocation" config
+	 * This can be specified as "ContextConfigLocation" config
 	 * property in the {@code ra.xml} deployment descriptor.
-	 * <p>The default is "classpath:META-INF/applicationContext.xml".
+	 * The default is "classpath:META-INF/applicationContext.xml".
 	 */
 	public void setContextConfigLocation(String contextConfigLocation) {
 		this.contextConfigLocation = contextConfigLocation;
@@ -137,7 +137,7 @@ public class SpringContextResourceAdapter implements ResourceAdapter {
 
 	/**
 	 * Return a new {@link StandardEnvironment}.
-	 * <p>Subclasses may override this method in order to supply
+	 * Subclasses may override this method in order to supply
 	 * a custom {@link ConfigurableEnvironment} implementation.
 	 */
 	protected ConfigurableEnvironment createEnvironment() {
@@ -158,7 +158,7 @@ public class SpringContextResourceAdapter implements ResourceAdapter {
 
 	/**
 	 * Build a Spring ApplicationContext for the given JCA BootstrapContext.
-	 * <p>The default implementation builds a {@link ResourceAdapterApplicationContext}
+	 * The default implementation builds a {@link ResourceAdapterApplicationContext}
 	 * and delegates to {@link #loadBeanDefinitions} for actually parsing the
 	 * specified configuration files.
 	 * @param bootstrapContext this ResourceAdapter's BootstrapContext

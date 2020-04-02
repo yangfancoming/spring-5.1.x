@@ -10,7 +10,7 @@ import org.springframework.util.Assert;
  * Rule determining whether or not a given exception (and any subclasses)
  * should cause a rollback.
  *
- * <p>Multiple such rules can be applied to determine whether a transaction
+ * Multiple such rules can be applied to determine whether a transaction
  * should commit or rollback after an exception has been thrown.
  *
  * @author Rod Johnson
@@ -38,7 +38,7 @@ public class RollbackRuleAttribute implements Serializable{
 
 	/**
 	 * Create a new instance of the {@code RollbackRuleAttribute} class.
-	 * <p>This is the preferred way to construct a rollback rule that matches
+	 * This is the preferred way to construct a rollback rule that matches
 	 * the supplied {@link Exception} class (and subclasses).
 	 * @param clazz throwable class; must be {@link Throwable} or a subclass
 	 * of {@code Throwable}
@@ -57,10 +57,10 @@ public class RollbackRuleAttribute implements Serializable{
 	/**
 	 * Create a new instance of the {@code RollbackRuleAttribute} class
 	 * for the given {@code exceptionName}.
-	 * <p>This can be a substring, with no wildcard support at present. A value
+	 * This can be a substring, with no wildcard support at present. A value
 	 * of "ServletException" would match
 	 * {@code javax.servlet.ServletException} and subclasses, for example.
-	 * <p><b>NB:</b> Consider carefully how specific the pattern is, and
+	 * <b>NB:</b> Consider carefully how specific the pattern is, and
 	 * whether to include package information (which is not mandatory). For
 	 * example, "Exception" will match nearly anything, and will probably hide
 	 * other rules. "java.lang.Exception" would be correct if "Exception" was
@@ -87,7 +87,7 @@ public class RollbackRuleAttribute implements Serializable{
 
 	/**
 	 * Return the depth of the superclass matching.
-	 * <p>{@code 0} means {@code ex} matches exactly. Returns
+	 * {@code 0} means {@code ex} matches exactly. Returns
 	 * {@code -1} if there is no match. Otherwise, returns depth with the
 	 * lowest depth winning.
 	 */

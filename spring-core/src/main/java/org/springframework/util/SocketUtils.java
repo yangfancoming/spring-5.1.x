@@ -14,7 +14,7 @@ import javax.net.ServerSocketFactory;
  * Simple utility methods for working with network sockets ; for example,
  * for finding available ports on {@code localhost}.
  *
- * <p>Within this class, a TCP port refers to a port for a {@link ServerSocket};
+ * Within this class, a TCP port refers to a port for a {@link ServerSocket};
  * whereas, a UDP port refers to a port for a {@link DatagramSocket}.
  * @since 4.0
  */
@@ -38,7 +38,7 @@ public class SocketUtils {
 	 * Although {@code SocketUtils} consists solely of static utility methods,
 	 * this constructor is intentionally {@code public}.
 	 * <h4>Rationale</h4>
-	 * <p>Static methods from this class may be invoked from within XML
+	 * Static methods from this class may be invoked from within XML
 	 * configuration files using the Spring Expression Language (SpEL) and the
 	 * following syntax.
 	 * <pre><code>&lt;bean id="bean1" ... p:port="#{T(org.springframework.util.SocketUtils).findAvailableTcpPort(12000)}" /&gt;</code></pre>

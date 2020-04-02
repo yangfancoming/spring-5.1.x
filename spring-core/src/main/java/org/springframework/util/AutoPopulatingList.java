@@ -17,10 +17,10 @@ import java.util.ListIterator;
  * useful for data binding to {@link List Lists}, allowing for elements
  * to be created and added to the {@link List} in a "just in time" fashion.
  *
- * <p>Note: This class is not thread-safe. To create a thread-safe version,
+ * Note: This class is not thread-safe. To create a thread-safe version,
  * use the {@link java.util.Collections#synchronizedList} utility methods.
  *
- * <p>Inspired by {@code LazyList} from Commons Collections.
+ * Inspired by {@code LazyList} from Commons Collections.
 
  * @since 2.0
  * @param <E> the element type

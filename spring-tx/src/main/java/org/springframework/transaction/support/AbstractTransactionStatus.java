@@ -13,11 +13,11 @@ import org.springframework.transaction.TransactionUsageException;
  * Abstract base implementation of the
  * {@link org.springframework.transaction.TransactionStatus} interface.
  *
- * <p>Pre-implements the handling of local rollback-only and completed flags, and
+ * Pre-implements the handling of local rollback-only and completed flags, and
  * delegation to an underlying {@link org.springframework.transaction.SavepointManager}.
  * Also offers the option of a holding a savepoint within the transaction.
  *
- * <p>Does not assume any specific internal transaction handling, such as an
+ * Does not assume any specific internal transaction handling, such as an
  * underlying transaction object, and no transaction synchronization mechanism.
  *
 
@@ -63,7 +63,7 @@ public abstract class AbstractTransactionStatus implements TransactionStatus {
 
 	/**
 	 * Determine the rollback-only flag via checking this TransactionStatus.
-	 * <p>Will only return "true" if the application called {@code setRollbackOnly}
+	 * Will only return "true" if the application called {@code setRollbackOnly}
 	 * on this TransactionStatus object.
 	 */
 	public boolean isLocalRollbackOnly() {
@@ -73,7 +73,7 @@ public abstract class AbstractTransactionStatus implements TransactionStatus {
 	/**
 	 * Template method for determining the global rollback-only flag of the
 	 * underlying transaction, if any.
-	 * <p>This implementation always returns {@code false}.
+	 * This implementation always returns {@code false}.
 	 */
 	public boolean isGlobalRollbackOnly() {
 		return false;
@@ -201,7 +201,7 @@ public abstract class AbstractTransactionStatus implements TransactionStatus {
 
 	/**
 	 * Return a SavepointManager for the underlying transaction, if possible.
-	 * <p>Default implementation always throws a NestedTransactionNotSupportedException.
+	 * Default implementation always throws a NestedTransactionNotSupportedException.
 	 * @throws org.springframework.transaction.NestedTransactionNotSupportedException
 	 * if the underlying transaction does not support savepoints
 	 */

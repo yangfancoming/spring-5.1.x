@@ -24,11 +24,11 @@ import org.springframework.util.Assert;
  * {@code getConnection} calls, and ignores calls to
  * {@code Connection.close()}.
  *
- * <p>Useful for testing and standalone environments, to keep using the same
+ * Useful for testing and standalone environments, to keep using the same
  * Connection for multiple CciTemplate calls, without having a pooling
  * ConnectionFactory, also spanning any number of transactions.
  *
- * <p>You can either pass in a CCI Connection directly, or let this
+ * You can either pass in a CCI Connection directly, or let this
  * factory lazily create a Connection via a given target ConnectionFactory.
  *
 
@@ -114,7 +114,7 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 	/**
 	 * Close the underlying Connection.
 	 * The provider of this ConnectionFactory needs to care for proper shutdown.
-	 * <p>As this bean implements DisposableBean, a bean factory will
+	 * As this bean implements DisposableBean, a bean factory will
 	 * automatically invoke this on destruction of its cached singletons.
 	 */
 	@Override
@@ -125,7 +125,7 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 
 	/**
 	 * Initialize the single underlying Connection.
-	 * <p>Closes and reinitializes the Connection if an underlying
+	 * Closes and reinitializes the Connection if an underlying
 	 * Connection is present already.
 	 * @throws javax.resource.ResourceException if thrown by CCI API methods
 	 */
@@ -173,7 +173,7 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 
 	/**
 	 * Prepare the given Connection before it is exposed.
-	 * <p>The default implementation is empty. Can be overridden in subclasses.
+	 * The default implementation is empty. Can be overridden in subclasses.
 	 * @param con the Connection to prepare
 	 */
 	protected void prepareConnection(Connection con) throws ResourceException {

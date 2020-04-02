@@ -38,77 +38,77 @@ public abstract class WebUtils {
 
 	/**
 	 * Standard Servlet 2.3+ spec request attribute for include request URI.
-	 * <p>If included via a {@code RequestDispatcher}, the current resource will see the
+	 * If included via a {@code RequestDispatcher}, the current resource will see the
 	 * originating request. Its own request URI is exposed as a request attribute.
 	 */
 	public static final String INCLUDE_REQUEST_URI_ATTRIBUTE = "javax.servlet.include.request_uri";
 
 	/**
 	 * Standard Servlet 2.3+ spec request attribute for include context path.
-	 * <p>If included via a {@code RequestDispatcher}, the current resource will see the
+	 * If included via a {@code RequestDispatcher}, the current resource will see the
 	 * originating context path. Its own context path is exposed as a request attribute.
 	 */
 	public static final String INCLUDE_CONTEXT_PATH_ATTRIBUTE = "javax.servlet.include.context_path";
 
 	/**
 	 * Standard Servlet 2.3+ spec request attribute for include servlet path.
-	 * <p>If included via a {@code RequestDispatcher}, the current resource will see the
+	 * If included via a {@code RequestDispatcher}, the current resource will see the
 	 * originating servlet path. Its own servlet path is exposed as a request attribute.
 	 */
 	public static final String INCLUDE_SERVLET_PATH_ATTRIBUTE = "javax.servlet.include.servlet_path";
 
 	/**
 	 * Standard Servlet 2.3+ spec request attribute for include path info.
-	 * <p>If included via a {@code RequestDispatcher}, the current resource will see the
+	 * If included via a {@code RequestDispatcher}, the current resource will see the
 	 * originating path info. Its own path info is exposed as a request attribute.
 	 */
 	public static final String INCLUDE_PATH_INFO_ATTRIBUTE = "javax.servlet.include.path_info";
 
 	/**
 	 * Standard Servlet 2.3+ spec request attribute for include query string.
-	 * <p>If included via a {@code RequestDispatcher}, the current resource will see the
+	 * If included via a {@code RequestDispatcher}, the current resource will see the
 	 * originating query string. Its own query string is exposed as a request attribute.
 	 */
 	public static final String INCLUDE_QUERY_STRING_ATTRIBUTE = "javax.servlet.include.query_string";
 
 	/**
 	 * Standard Servlet 2.4+ spec request attribute for forward request URI.
-	 * <p>If forwarded to via a RequestDispatcher, the current resource will see its
+	 * If forwarded to via a RequestDispatcher, the current resource will see its
 	 * own request URI. The originating request URI is exposed as a request attribute.
 	 */
 	public static final String FORWARD_REQUEST_URI_ATTRIBUTE = "javax.servlet.forward.request_uri";
 
 	/**
 	 * Standard Servlet 2.4+ spec request attribute for forward context path.
-	 * <p>If forwarded to via a RequestDispatcher, the current resource will see its
+	 * If forwarded to via a RequestDispatcher, the current resource will see its
 	 * own context path. The originating context path is exposed as a request attribute.
 	 */
 	public static final String FORWARD_CONTEXT_PATH_ATTRIBUTE = "javax.servlet.forward.context_path";
 
 	/**
 	 * Standard Servlet 2.4+ spec request attribute for forward servlet path.
-	 * <p>If forwarded to via a RequestDispatcher, the current resource will see its
+	 * If forwarded to via a RequestDispatcher, the current resource will see its
 	 * own servlet path. The originating servlet path is exposed as a request attribute.
 	 */
 	public static final String FORWARD_SERVLET_PATH_ATTRIBUTE = "javax.servlet.forward.servlet_path";
 
 	/**
 	 * Standard Servlet 2.4+ spec request attribute for forward path info.
-	 * <p>If forwarded to via a RequestDispatcher, the current resource will see its
+	 * If forwarded to via a RequestDispatcher, the current resource will see its
 	 * own path ingo. The originating path info is exposed as a request attribute.
 	 */
 	public static final String FORWARD_PATH_INFO_ATTRIBUTE = "javax.servlet.forward.path_info";
 
 	/**
 	 * Standard Servlet 2.4+ spec request attribute for forward query string.
-	 * <p>If forwarded to via a RequestDispatcher, the current resource will see its
+	 * If forwarded to via a RequestDispatcher, the current resource will see its
 	 * own query string. The originating query string is exposed as a request attribute.
 	 */
 	public static final String FORWARD_QUERY_STRING_ATTRIBUTE = "javax.servlet.forward.query_string";
 
 	/**
 	 * Standard Servlet 2.3+ spec request attribute for error page status code.
-	 * <p>To be exposed to JSPs that are marked as error pages, when forwarding
+	 * To be exposed to JSPs that are marked as error pages, when forwarding
 	 * to them directly rather than through the servlet container's error page
 	 * resolution mechanism.
 	 */
@@ -116,7 +116,7 @@ public abstract class WebUtils {
 
 	/**
 	 * Standard Servlet 2.3+ spec request attribute for error page exception type.
-	 * <p>To be exposed to JSPs that are marked as error pages, when forwarding
+	 * To be exposed to JSPs that are marked as error pages, when forwarding
 	 * to them directly rather than through the servlet container's error page
 	 * resolution mechanism.
 	 */
@@ -124,7 +124,7 @@ public abstract class WebUtils {
 
 	/**
 	 * Standard Servlet 2.3+ spec request attribute for error page message.
-	 * <p>To be exposed to JSPs that are marked as error pages, when forwarding
+	 * To be exposed to JSPs that are marked as error pages, when forwarding
 	 * to them directly rather than through the servlet container's error page
 	 * resolution mechanism.
 	 */
@@ -132,7 +132,7 @@ public abstract class WebUtils {
 
 	/**
 	 * Standard Servlet 2.3+ spec request attribute for error page exception.
-	 * <p>To be exposed to JSPs that are marked as error pages, when forwarding
+	 * To be exposed to JSPs that are marked as error pages, when forwarding
 	 * to them directly rather than through the servlet container's error page
 	 * resolution mechanism.
 	 */
@@ -140,7 +140,7 @@ public abstract class WebUtils {
 
 	/**
 	 * Standard Servlet 2.3+ spec request attribute for error page request URI.
-	 * <p>To be exposed to JSPs that are marked as error pages, when forwarding
+	 * To be exposed to JSPs that are marked as error pages, when forwarding
 	 * to them directly rather than through the servlet container's error page
 	 * resolution mechanism.
 	 */
@@ -148,7 +148,7 @@ public abstract class WebUtils {
 
 	/**
 	 * Standard Servlet 2.3+ spec request attribute for error page servlet name.
-	 * <p>To be exposed to JSPs that are marked as error pages, when forwarding
+	 * To be exposed to JSPs that are marked as error pages, when forwarding
 	 * to them directly rather than through the servlet container's error page
 	 * resolution mechanism.
 	 */
@@ -205,7 +205,7 @@ public abstract class WebUtils {
 	 * Set a system property to the web application root directory.
 	 * The key of the system property can be defined with the "webAppRootKey"
 	 * context-param in {@code web.xml}. Default is "webapp.root".
-	 * <p>Can be used for tools that support substitution with {@code System.getProperty}
+	 * Can be used for tools that support substitution with {@code System.getProperty}
 	 * values, like log4j's "${key}" syntax within log file locations.
 	 * @param servletContext the servlet context of the web application
 	 * @throws IllegalStateException if the system property is already set,
@@ -247,7 +247,7 @@ public abstract class WebUtils {
 	/**
 	 * Return whether default HTML escaping is enabled for the web application,
 	 * i.e. the value of the "defaultHtmlEscape" context-param in {@code web.xml} (if any).
-	 * <p>This method differentiates between no param specified at all and
+	 * This method differentiates between no param specified at all and
 	 * an actual boolean value specified, allowing to have a context-specific
 	 * default in case of no setting at the global level.
 	 * @param servletContext the servlet context of the web application
@@ -267,7 +267,7 @@ public abstract class WebUtils {
 	 * This option is enabled for the web application with a ServletContext param,
 	 * i.e. the value of the "responseEncodedHtmlEscape" context-param in {@code web.xml}
 	 * (if any).
-	 * <p>This method differentiates between no param specified at all and
+	 * This method differentiates between no param specified at all and
 	 * an actual boolean value specified, allowing to have a context-specific
 	 * default in case of no setting at the global level.
 	 * @param servletContext the servlet context of the web application
@@ -296,7 +296,7 @@ public abstract class WebUtils {
 
 	/**
 	 * Return the real path of the given path within the web application,as provided by the servlet container.
-	 * <p>Prepends a slash if the path does not already start with a slash,
+	 * Prepends a slash if the path does not already start with a slash,
 	 * and throws a FileNotFoundException if the path cannot be resolved to
 	 * a resource (in contrast to ServletContext's {@code getRealPath},
 	 * which returns null).
@@ -386,15 +386,15 @@ public abstract class WebUtils {
 	/**
 	 * Return the best available mutex for the given session:
 	 * that is, an object to synchronize on for the given session.
-	 * <p>Returns the session mutex attribute if available; usually,
+	 * Returns the session mutex attribute if available; usually,
 	 * this means that the HttpSessionMutexListener needs to be defined
 	 * in {@code web.xml}. Falls back to the HttpSession itself
 	 * if no mutex attribute found.
-	 * <p>The session mutex is guaranteed to be the same object during
+	 * The session mutex is guaranteed to be the same object during
 	 * the entire lifetime of the session, available under the key defined
 	 * by the {@code SESSION_MUTEX_ATTRIBUTE} constant. It serves as a
 	 * safe reference to synchronize on for locking on the current session.
-	 * <p>In many cases, the HttpSession reference itself is a safe mutex
+	 * In many cases, the HttpSession reference itself is a safe mutex
 	 * as well, since it will always be the same object reference for the
 	 * same active logical session. However, this is not guaranteed across
 	 * different servlet containers; the only 100% safe way is a session mutex.
@@ -455,7 +455,7 @@ public abstract class WebUtils {
 	/**
 	 * Determine whether the given request is an include request,
 	 * that is, not a top-level HTTP request coming in from the outside.
-	 * <p>Checks the presence of the "javax.servlet.include.request_uri"
+	 * Checks the presence of the "javax.servlet.include.request_uri"
 	 * request attribute. Could check any request attribute that is only
 	 * present in an include request.
 	 * @param request current servlet request
@@ -475,9 +475,9 @@ public abstract class WebUtils {
 	 * {@code javax.servlet.error.exception},
 	 * {@code javax.servlet.error.request_uri},
 	 * {@code javax.servlet.error.servlet_name}.
-	 * <p>Does not override values if already present, to respect attribute values
+	 * Does not override values if already present, to respect attribute values
 	 * that have been exposed explicitly before.
-	 * <p>Exposes status code 200 by default. Set the "javax.servlet.error.status_code"
+	 * Exposes status code 200 by default. Set the "javax.servlet.error.status_code"
 	 * attribute explicitly (before or after) in order to expose a different status code.
 	 * @param request current servlet request
 	 * @param ex the exception encountered
@@ -571,7 +571,7 @@ public abstract class WebUtils {
 
 	/**
 	 * Obtain a named parameter from the given request parameters.
-	 * <p>See {@link #findParameterValue(java.util.Map, String)}
+	 * See {@link #findParameterValue(java.util.Map, String)}
 	 * for a description of the lookup algorithm.
 	 * @param request current HTTP request
 	 * @param name the <i>logical</i> name of the request parameter
@@ -585,7 +585,7 @@ public abstract class WebUtils {
 
 	/**
 	 * Obtain a named parameter from the given request parameters.
-	 * <p>This method will try to obtain a parameter value using the  following algorithm:
+	 * This method will try to obtain a parameter value using the  following algorithm:
 	 * <ol>
 	 * <li>Try to get the parameter value using just the given <i>logical</i> name.
 	 * This handles parameters of the form <tt>logicalName = value</tt>. For normal
@@ -634,7 +634,7 @@ public abstract class WebUtils {
 	/**
 	 * Return a map containing all parameters with the given prefix.
 	 * Maps single values to String and multiple values to String array.
-	 * <p>For example, with a prefix of "spring_", "spring_param1" and
+	 * For example, with a prefix of "spring_", "spring_param1" and
 	 * "spring_param2" result in a Map with "param1" and "param2" as keys.
 	 * @param request the HTTP request in which to look for parameters
 	 * @param prefix the beginning of parameter names
@@ -707,7 +707,7 @@ public abstract class WebUtils {
 	 * A list containing "*" means that all origins are allowed.
 	 * An empty list means only same origin is allowed.
 	 *
-	 * <p><strong>Note:</strong> as of 5.1 this method ignores
+	 * <strong>Note:</strong> as of 5.1 this method ignores
 	 * {@code "Forwarded"} and {@code "X-Forwarded-*"} headers that specify the
 	 * client-originated address. Consider using the {@code ForwardedHeaderFilter}
 	 * to extract and use, or to discard such headers.
@@ -734,7 +734,7 @@ public abstract class WebUtils {
 	 * {@code Forwarded}, {@code X-Forwarded-Proto}, {@code X-Forwarded-Host} and
 	 * {@code X-Forwarded-Port} headers.
 	 *
-	 * <p><strong>Note:</strong> as of 5.1 this method ignores
+	 * <strong>Note:</strong> as of 5.1 this method ignores
 	 * {@code "Forwarded"} and {@code "X-Forwarded-*"} headers that specify the
 	 * client-originated address. Consider using the {@code ForwardedHeaderFilter}
 	 * to extract and use, or to discard such headers.

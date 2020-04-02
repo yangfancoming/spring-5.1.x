@@ -9,7 +9,7 @@ package org.apache.commons.logging;
  * compatible with all common use of the Commons Logging API (in particular:
  * with {@code LogFactory.getLog(Class/String)} field initializers).
  *
- * <p>This implementation does not support Commons Logging's original provider
+ * This implementation does not support Commons Logging's original provider
  * detection. It rather only checks for the presence of the Log4j 2.x API
  * and the SLF4J 1.7 API in the Spring Framework classpath, falling back to
  * {@code java.util.logging} if none of the two is available. In that sense,
@@ -21,13 +21,13 @@ package org.apache.commons.logging;
  * on the classpath anymore since this embedded log factory automatically
  * delegates to {@code java.util.logging} in such a scenario.
  *
- * <p><b>Note that this Commons Logging variant is only meant to be used for
+ * <b>Note that this Commons Logging variant is only meant to be used for
  * infrastructure logging purposes in the core framework and in extensions.</b>
  * It also serves as a common bridge for third-party libraries using the
  * Commons Logging API, e.g. Apache HttpClient, Castor and HtmlUnit, bringing
  * them into the same consistent arrangement without any extra bridge jars.
  *
- * <p><b>For logging need in application code, prefer direct use of Log4j 2.x
+ * <b>For logging need in application code, prefer direct use of Log4j 2.x
  * or SLF4J or {@code java.util.logging}.</b> Simply put Log4j 2.x or Logback
  * (or another SLF4J provider) onto your classpath, without any extra bridges,
  * and let the framework auto-adapt to your choice.
@@ -68,7 +68,7 @@ public abstract class LogFactory {
 
 	/**
 	 * Convenience method to return a named logger.
-	 * <p>This variant just dispatches straight to {@link #getLog(Class)}.
+	 * This variant just dispatches straight to {@link #getLog(Class)}.
 	 * @param clazz containing Class from which a log name will be derived
 	 * @deprecated in favor of {@link #getLog(Class)}
 	 */
@@ -79,7 +79,7 @@ public abstract class LogFactory {
 
 	/**
 	 * Convenience method to return a named logger.
-	 * <p>This variant just dispatches straight to {@link #getLog(String)}.
+	 * This variant just dispatches straight to {@link #getLog(String)}.
 	 * @param name logical name of the <code>Log</code> instance to be returned
 	 * @deprecated in favor of {@link #getLog(String)}
 	 */

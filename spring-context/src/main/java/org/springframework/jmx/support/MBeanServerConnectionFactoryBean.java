@@ -87,7 +87,7 @@ public class MBeanServerConnectionFactoryBean
 
 	/**
 	 * Set whether to connect to the server on startup. Default is "true".
-	 * <p>Can be turned off to allow for late start of the JMX server.
+	 * Can be turned off to allow for late start of the JMX server.
 	 * In this case, the JMX connector will be fetched on first access.
 	 */
 	public void setConnectOnStartup(boolean connectOnStartup) {

@@ -21,7 +21,7 @@ import org.springframework.web.util.HtmlUtils;
  * Simple adapter to expose the bind status of a field or object.
  * Set as a variable both by the JSP bind tag and FreeMarker macros.
  *
- * <p>Obviously, object status representations (i.e. errors at the object level
+ * Obviously, object status representations (i.e. errors at the object level
  * rather than the field level) do not have an expression and a value but only
  * error codes and messages. For simplicity's sake and to be able to use the same
  * tags and macros, the same status class is used for both scenarios.
@@ -178,7 +178,7 @@ public class BindStatus {
 	/**
 	 * Return a bind expression that can be used in HTML forms as input name
 	 * for the respective field, or {@code null} if not field-specific.
-	 * <p>Returns a bind path appropriate for resubmission, e.g. "address.street".
+	 * Returns a bind path appropriate for resubmission, e.g. "address.street".
 	 * Note that the complete bind path as required by the bind tag is
 	 * "customer.address.street", if bound to a "customer" bean.
 	 */
@@ -190,7 +190,7 @@ public class BindStatus {
 	/**
 	 * Return the current value of the field, i.e. either the property value
 	 * or a rejected update, or {@code null} if not field-specific.
-	 * <p>This value will be an HTML-escaped String if the original value
+	 * This value will be an HTML-escaped String if the original value
 	 * already was a String.
 	 */
 	@Nullable
@@ -220,7 +220,7 @@ public class BindStatus {
 	/**
 	 * Return a suitable display value for the field, i.e. the stringified
 	 * value if not null, and an empty string in case of a null value.
-	 * <p>This value will be an HTML-escaped String if the original value
+	 * This value will be an HTML-escaped String if the original value
 	 * was non-null: the {@code toString} result of the original value
 	 * will get HTML-escaped.
 	 */

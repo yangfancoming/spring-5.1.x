@@ -7,14 +7,14 @@ import org.junit.runners.model.InitializationError;
 /**
  * {@code SpringRunner} is an <em>alias</em> for the {@link SpringJUnit4ClassRunner}.
  *
- * <p>To use this class, simply annotate a JUnit 4 based test class with
+ * To use this class, simply annotate a JUnit 4 based test class with
  * {@code @RunWith(SpringRunner.class)}.
  *
- * <p>If you would like to use the Spring TestContext Framework with a runner other than
+ * If you would like to use the Spring TestContext Framework with a runner other than
  * this one, use {@link org.springframework.test.context.junit4.rules.SpringClassRule}
  * and {@link org.springframework.test.context.junit4.rules.SpringMethodRule}.
  *
- * <p><strong>NOTE:</strong> This class requires JUnit 4.12 or higher.
+ * <strong>NOTE:</strong> This class requires JUnit 4.12 or higher.
  *
  * @author Sam Brannen
  * @since 4.3

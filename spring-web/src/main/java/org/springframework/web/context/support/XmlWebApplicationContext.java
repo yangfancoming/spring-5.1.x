@@ -16,21 +16,21 @@ import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
  * This is essentially the equivalent of
  * {@link org.springframework.context.support.GenericXmlApplicationContext}  for a web environment.
  *
- * <p>By default, the configuration will be taken from "/WEB-INF/applicationContext.xml"
+ * By default, the configuration will be taken from "/WEB-INF/applicationContext.xml"
  * for the root context, and "/WEB-INF/test-servlet.xml" for a context with the namespace
  * "test-servlet" (like for a DispatcherServlet instance with the servlet-name "test").
  *
- * <p>The config location defaults can be overridden via the "contextConfigLocation"
+ * The config location defaults can be overridden via the "contextConfigLocation"
  * context-param of {@link org.springframework.web.context.ContextLoader} and servlet
  * init-param of {@link org.springframework.web.servlet.FrameworkServlet}. Config locations
  * can either denote concrete files like "/WEB-INF/context.xml" or Ant-style patterns
  * like "/WEB-INF/*-context.xml" (see {@link org.springframework.util.PathMatcher} javadoc for pattern details).
  *
- * <p>Note: In case of multiple config locations, later bean definitions will
+ * Note: In case of multiple config locations, later bean definitions will
  * override ones defined in earlier loaded files. This can be leveraged to
  * deliberately override certain bean definitions via an extra XML file.
  *
- * <p><b>For a WebApplicationContext that reads in a different bean definition format,
+ * <b>For a WebApplicationContext that reads in a different bean definition format,
  * create an analogous subclass of {@link AbstractRefreshableWebApplicationContext}.</b>
  * Such a context implementation can be specified as "contextClass" context-param
  * for ContextLoader or "contextClass" init-param for FrameworkServlet.
@@ -83,7 +83,7 @@ public class XmlWebApplicationContext extends AbstractRefreshableWebApplicationC
 	/**
 	 * Initialize the bean definition reader used for loading the bean
 	 * definitions of this context. Default implementation is empty.
-	 * <p>Can be overridden in subclasses, e.g. for turning off XML validation
+	 * Can be overridden in subclasses, e.g. for turning off XML validation
 	 * or using a different XmlBeanDefinitionParser implementation.
 	 * @param beanDefinitionReader the bean definition reader used by this context
 	 * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader#setValidationMode
@@ -94,9 +94,9 @@ public class XmlWebApplicationContext extends AbstractRefreshableWebApplicationC
 
 	/**
 	 * Load the bean definitions with the given XmlBeanDefinitionReader.
-	 * <p>The lifecycle of the bean factory is handled by the refreshBeanFactory method;
+	 * The lifecycle of the bean factory is handled by the refreshBeanFactory method;
 	 * therefore this method is just supposed to load and/or register bean definitions.
-	 * <p>Delegates to a ResourcePatternResolver for resolving location patterns into Resource instances.
+	 * Delegates to a ResourcePatternResolver for resolving location patterns into Resource instances.
 	 * @throws IOException if the required XML document isn't found
 	 * @see #refreshBeanFactory
 	 * @see #getConfigLocations

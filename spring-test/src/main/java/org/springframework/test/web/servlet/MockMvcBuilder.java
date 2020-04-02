@@ -5,7 +5,7 @@ package org.springframework.test.web.servlet;
 /**
  * Builds a {@link MockMvc} instance.
  *
- * <p>See static factory methods in
+ * See static factory methods in
  * {@link org.springframework.test.web.servlet.setup.MockMvcBuilders MockMvcBuilders}.
  *
  * @author Rossen Stoyanchev

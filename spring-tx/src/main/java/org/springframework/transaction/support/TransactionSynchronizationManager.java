@@ -22,31 +22,31 @@ import org.springframework.util.Assert;
  * Central delegate that manages resources and transaction synchronizations per thread.
  * To be used by resource management code but not by typical application code.
  *
- * <p>Supports one resource per key without overwriting, that is, a resource needs
+ * Supports one resource per key without overwriting, that is, a resource needs
  * to be removed before a new one can be set for the same key.
  * Supports a list of transaction synchronizations if synchronization is active.
  *
- * <p>Resource management code should check for thread-bound resources, e.g. JDBC
+ * Resource management code should check for thread-bound resources, e.g. JDBC
  * Connections or Hibernate Sessions, via {@code getResource}. Such code is
  * normally not supposed to bind resources to threads, as this is the responsibility
  * of transaction managers. A further option is to lazily bind on first use if
  * transaction synchronization is active, for performing transactions that span
  * an arbitrary number of resources.
  *
- * <p>Transaction synchronization must be activated and deactivated by a transaction
+ * Transaction synchronization must be activated and deactivated by a transaction
  * manager via {@link #initSynchronization()} and {@link #clearSynchronization()}.
  * This is automatically supported by {@link AbstractPlatformTransactionManager},
  * and thus by all standard Spring transaction managers, such as
  * {@link org.springframework.transaction.jta.JtaTransactionManager} and
  * {@link org.springframework.jdbc.datasource.DataSourceTransactionManager}.
  *
- * <p>Resource management code should only register synchronizations when this
+ * Resource management code should only register synchronizations when this
  * manager is active, which can be checked via {@link #isSynchronizationActive};
  * it should perform immediate resource cleanup else. If transaction synchronization
  * isn't active, there is either no current transaction, or the transaction manager
  * doesn't support transaction synchronization.
  *
- * <p>Synchronization is for example used to always return the same resources
+ * Synchronization is for example used to always return the same resources
  * within a JTA transaction, e.g. a JDBC Connection or a Hibernate Session for
  * any given DataSource or SessionFactory, respectively.
  *
@@ -83,7 +83,7 @@ public abstract class TransactionSynchronizationManager {
 
 	/**
 	 * Return all resources that are bound to the current thread.
-	 * <p>Mainly for debugging purposes. Resource managers should always invoke
+	 * Mainly for debugging purposes. Resource managers should always invoke
 	 * {@code hasResource} for a specific resource key that they are interested in.
 	 * @return a Map with resource keys (usually the resource factory) and resource
 	 * values (usually the active resource object), or an empty Map if there are
@@ -256,7 +256,7 @@ public abstract class TransactionSynchronizationManager {
 	/**
 	 * Register a new transaction synchronization for the current thread.
 	 * Typically called by resource management code.
-	 * <p>Note that synchronizations can implement the
+	 * Note that synchronizations can implement the
 	 * {@link org.springframework.core.Ordered} interface.
 	 * They will be executed in an order according to their order value (if any).
 	 * @param synchronization the synchronization object to register
@@ -352,7 +352,7 @@ public abstract class TransactionSynchronizationManager {
 	 * Return whether the current transaction is marked as read-only.
 	 * To be called by resource management code when preparing a newly
 	 * created resource (for example, a Hibernate Session).
-	 * <p>Note that transaction synchronizations receive the read-only flag
+	 * Note that transaction synchronizations receive the read-only flag
 	 * as argument for the {@code beforeCommit} callback, to be able
 	 * to suppress change detection on commit. The present method is meant
 	 * to be used for earlier read-only checks, for example to set the
@@ -420,7 +420,7 @@ public abstract class TransactionSynchronizationManager {
 	 * Return whether there currently is an actual transaction active.
 	 * This indicates whether the current thread is associated with an actual
 	 * transaction rather than just with active transaction synchronization.
-	 * <p>To be called by resource management code that wants to discriminate
+	 * To be called by resource management code that wants to discriminate
 	 * between active transaction synchronization (with or without backing
 	 * resource transaction; also on PROPAGATION_SUPPORTS) and an actual
 	 * transaction being active (with backing resource transaction;

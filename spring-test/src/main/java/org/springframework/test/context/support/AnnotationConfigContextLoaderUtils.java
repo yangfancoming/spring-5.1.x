@@ -30,11 +30,11 @@ public abstract class AnnotationConfigContextLoaderUtils {
 
 	/**
 	 * Detect the default configuration classes for the supplied test class.
-	 * <p>The returned class array will contain all static nested classes of
+	 * The returned class array will contain all static nested classes of
 	 * the supplied class that meet the requirements for {@code @Configuration}
 	 * class implementations as specified in the documentation for
 	 * {@link Configuration @Configuration}.
-	 * <p>The implementation of this method adheres to the contract defined in the
+	 * The implementation of this method adheres to the contract defined in the
 	 * {@link org.springframework.test.context.SmartContextLoader SmartContextLoader}
 	 * SPI. Specifically, this method uses introspection to detect default
 	 * configuration classes that comply with the constraints required of
@@ -78,7 +78,7 @@ public abstract class AnnotationConfigContextLoaderUtils {
 	/**
 	 * Determine if the supplied {@link Class} meets the criteria for being
 	 * considered a <em>default configuration class</em> candidate.
-	 * <p>Specifically, such candidates:
+	 * Specifically, such candidates:
 	 * <ul>
 	 * <li>must not be {@code null}</li>
 	 * <li>must not be {@code private}</li>

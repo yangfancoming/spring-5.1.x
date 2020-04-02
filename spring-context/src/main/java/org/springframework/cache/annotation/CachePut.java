@@ -15,13 +15,13 @@ import org.springframework.core.annotation.AliasFor;
  * Annotation indicating that a method (or all methods on a class) triggers a
  * {@link org.springframework.cache.Cache#put(Object, Object) cache put} operation.
  *
- * <p>In contrast to the {@link Cacheable @Cacheable} annotation, this annotation
+ * In contrast to the {@link Cacheable @Cacheable} annotation, this annotation
  * does not cause the advised method to be skipped. Rather, it always causes the
  * method to be invoked and its result to be stored in the associated cache. Note
  * that Java8's {@code Optional} return types are automatically handled and its
  * content is stored in the cache if present.
  *
- * <p>This annotation may be used as a <em>meta-annotation</em> to create custom
+ * This annotation may be used as a <em>meta-annotation</em> to create custom
  * <em>composed annotations</em> with attribute overrides.
  *
  * @author Costin Leau
@@ -45,7 +45,7 @@ public @interface CachePut {
 
 	/**
 	 * Names of the caches to use for the cache put operation.
-	 * <p>Names may be used to determine the target cache (or caches), matching
+	 * Names may be used to determine the target cache (or caches), matching
 	 * the qualifier value or bean name of a specific bean definition.
 	 * @since 4.2
 	 * @see #value
@@ -56,9 +56,9 @@ public @interface CachePut {
 
 	/**
 	 * Spring Expression Language (SpEL) expression for computing the key dynamically.
-	 * <p>Default is {@code ""}, meaning all method parameters are considered as a key,
+	 * Default is {@code ""}, meaning all method parameters are considered as a key,
 	 * unless a custom {@link #keyGenerator} has been set.
-	 * <p>The SpEL expression evaluates against a dedicated context that provides the
+	 * The SpEL expression evaluates against a dedicated context that provides the
 	 * following meta-data:
 	 * <ul>
 	 * <li>{@code #result} for a reference to the result of the method invocation. For
@@ -79,7 +79,7 @@ public @interface CachePut {
 	/**
 	 * The bean name of the custom {@link org.springframework.cache.interceptor.KeyGenerator}
 	 * to use.
-	 * <p>Mutually exclusive with the {@link #key} attribute.
+	 * Mutually exclusive with the {@link #key} attribute.
 	 * @see CacheConfig#keyGenerator
 	 */
 	String keyGenerator() default "";
@@ -88,7 +88,7 @@ public @interface CachePut {
 	 * The bean name of the custom {@link org.springframework.cache.CacheManager} to use to
 	 * create a default {@link org.springframework.cache.interceptor.CacheResolver} if none
 	 * is set already.
-	 * <p>Mutually exclusive with the {@link #cacheResolver} attribute.
+	 * Mutually exclusive with the {@link #cacheResolver} attribute.
 	 * @see org.springframework.cache.interceptor.SimpleCacheResolver
 	 * @see CacheConfig#cacheManager
 	 */
@@ -104,8 +104,8 @@ public @interface CachePut {
 	/**
 	 * Spring Expression Language (SpEL) expression used for making the cache
 	 * put operation conditional.
-	 * <p>Default is {@code ""}, meaning the method result is always cached.
-	 * <p>The SpEL expression evaluates against a dedicated context that provides the
+	 * Default is {@code ""}, meaning the method result is always cached.
+	 * The SpEL expression evaluates against a dedicated context that provides the
 	 * following meta-data:
 	 * <ul>
 	 * <li>{@code #root.method}, {@code #root.target}, and {@code #root.caches} for
@@ -122,10 +122,10 @@ public @interface CachePut {
 
 	/**
 	 * Spring Expression Language (SpEL) expression used to veto the cache put operation.
-	 * <p>Unlike {@link #condition}, this expression is evaluated after the method
+	 * Unlike {@link #condition}, this expression is evaluated after the method
 	 * has been called and can therefore refer to the {@code result}.
-	 * <p>Default is {@code ""}, meaning that caching is never vetoed.
-	 * <p>The SpEL expression evaluates against a dedicated context that provides the
+	 * Default is {@code ""}, meaning that caching is never vetoed.
+	 * The SpEL expression evaluates against a dedicated context that provides the
 	 * following meta-data:
 	 * <ul>
 	 * <li>{@code #result} for a reference to the result of the method invocation. For

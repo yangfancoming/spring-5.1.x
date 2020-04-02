@@ -37,7 +37,7 @@ public class MockMultipartHttpServletRequestBuilder extends MockHttpServletReque
 	/**
 	 * Package-private constructor. Use static factory methods in
 	 * {@link MockMvcRequestBuilders}.
-	 * <p>For other ways to initialize a {@code MockMultipartHttpServletRequest},
+	 * For other ways to initialize a {@code MockMultipartHttpServletRequest},
 	 * see {@link #with(RequestPostProcessor)} and the
 	 * {@link RequestPostProcessor} extension point.
 	 * @param urlTemplate a URL template; the resulting URL will be encoded
@@ -51,7 +51,7 @@ public class MockMultipartHttpServletRequestBuilder extends MockHttpServletReque
 	/**
 	 * Package-private constructor. Use static factory methods in
 	 * {@link MockMvcRequestBuilders}.
-	 * <p>For other ways to initialize a {@code MockMultipartHttpServletRequest},
+	 * For other ways to initialize a {@code MockMultipartHttpServletRequest},
 	 * see {@link #with(RequestPostProcessor)} and the
 	 * {@link RequestPostProcessor} extension point.
 	 * @param uri the URL

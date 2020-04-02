@@ -31,7 +31,7 @@ public class NameMatchTransactionAttributeSource implements TransactionAttribute
 
 	/**
 	 * Logger available to subclasses.
-	 * <p>Static for optimal serialization.
+	 * Static for optimal serialization.
 	 */
 	protected static final Log logger = LogFactory.getLog(NameMatchTransactionAttributeSource.class);
 
@@ -71,7 +71,7 @@ public class NameMatchTransactionAttributeSource implements TransactionAttribute
 
 	/**
 	 * Add an attribute for a transactional method.
-	 * <p>Method names can be exact matches, or of the pattern "xxx*",
+	 * Method names can be exact matches, or of the pattern "xxx*",
 	 * "*xxx" or "*xxx*" for matching multiple methods.
 	 * @param methodName the name of the method
 	 * @param attr attribute associated with the method
@@ -112,7 +112,7 @@ public class NameMatchTransactionAttributeSource implements TransactionAttribute
 
 	/**
 	 * Return if the given method name matches the mapped name.
-	 * <p>The default implementation checks for "xxx*", "*xxx" and "*xxx*" matches,
+	 * The default implementation checks for "xxx*", "*xxx" and "*xxx*" matches,
 	 * as well as direct equality. Can be overridden in subclasses.
 	 * @param methodName the method name of the class
 	 * @param mappedName the name in the descriptor

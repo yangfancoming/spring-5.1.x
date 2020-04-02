@@ -42,7 +42,7 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link GenericConversionService}.
- * <p>In this package for access to package-local converter implementations.
+ * In this package for access to package-local converter implementations.
 
  */
 public class GenericConversionServiceTests {

@@ -12,11 +12,11 @@ import java.sql.SQLException;
  * by the JdbcTemplate class. Implementations are responsible for providing
  * SQL and any necessary parameters.
  *
- * <p>Implementations <i>do not</i> need to concern themselves with
+ * Implementations <i>do not</i> need to concern themselves with
  * SQLExceptions that may be thrown from operations they attempt.
  * The JdbcTemplate class will catch and handle SQLExceptions appropriately.
  *
- * <p>A PreparedStatementCreator should also implement the SqlProvider interface
+ * A PreparedStatementCreator should also implement the SqlProvider interface
  * if it is able to provide the SQL it uses for PreparedStatement creation.
  * This allows for better contextual information in case of exceptions.
  *

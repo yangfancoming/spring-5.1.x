@@ -15,7 +15,7 @@ import org.springframework.lang.Nullable;
  * by the container. Subclasses may override merely those methods that they are
  * actually interested in.
  *
- * <p>Note that this base class is only recommendable if you actually require
+ * Note that this base class is only recommendable if you actually require
  * {@link InstantiationAwareBeanPostProcessor} functionality. If all you need
  * is plain {@link BeanPostProcessor} functionality, prefer a straight
  * implementation of that (simpler) interface.

@@ -104,7 +104,7 @@ public abstract class ResourceHolderSynchronization<H extends ResourceHolder, K>
 	/**
 	 * Return whether this holder should be unbound at completion
 	 * (or should rather be left bound to the thread after the transaction).
-	 * <p>The default implementation returns {@code true}.
+	 * The default implementation returns {@code true}.
 	 */
 	protected boolean shouldUnbindAtCompletion() {
 		return true;
@@ -114,9 +114,9 @@ public abstract class ResourceHolderSynchronization<H extends ResourceHolder, K>
 	 * Return whether this holder's resource should be released before
 	 * transaction completion ({@code true}) or rather after
 	 * transaction completion ({@code false}).
-	 * <p>Note that resources will only be released when they are
+	 * Note that resources will only be released when they are
 	 * unbound from the thread ({@link #shouldUnbindAtCompletion()}).
-	 * <p>The default implementation returns {@code true}.
+	 * The default implementation returns {@code true}.
 	 * @see #releaseResource
 	 */
 	protected boolean shouldReleaseBeforeCompletion() {
@@ -126,7 +126,7 @@ public abstract class ResourceHolderSynchronization<H extends ResourceHolder, K>
 	/**
 	 * Return whether this holder's resource should be released after
 	 * transaction completion ({@code true}).
-	 * <p>The default implementation returns {@code !shouldReleaseBeforeCompletion()},
+	 * The default implementation returns {@code !shouldReleaseBeforeCompletion()},
 	 * releasing after completion if no attempt was made before completion.
 	 * @see #releaseResource
 	 */

@@ -34,16 +34,16 @@ import org.springframework.util.Assert;
  * Template class with a basic set of JDBC operations, allowing the use
  * of named parameters rather than traditional '?' placeholders.
  *
- * <p>This class delegates to a wrapped {@link #getJdbcOperations() JdbcTemplate}
+ * This class delegates to a wrapped {@link #getJdbcOperations() JdbcTemplate}
  * once the substitution from named parameters to JDBC style '?' placeholders is
  * done at execution time. It also allows for expanding a {@link java.util.List}
  * of values to the appropriate number of placeholders.
  *
- * <p>The underlying {@link org.springframework.jdbc.core.JdbcTemplate} is
+ * The underlying {@link org.springframework.jdbc.core.JdbcTemplate} is
  * exposed to allow for convenient access to the traditional
  * {@link org.springframework.jdbc.core.JdbcTemplate} methods.
  *
- * <p><b>NOTE: An instance of this class is thread-safe once configured.</b>
+ * <b>NOTE: An instance of this class is thread-safe once configured.</b>
  *
  * @author Thomas Risberg
 
@@ -75,7 +75,7 @@ public class NamedParameterJdbcTemplate implements NamedParameterJdbcOperations 
 
 	/**
 	 * Create a new NamedParameterJdbcTemplate for the given {@link DataSource}.
-	 * <p>Creates a classic Spring {@link org.springframework.jdbc.core.JdbcTemplate} and wraps it.
+	 * Creates a classic Spring {@link org.springframework.jdbc.core.JdbcTemplate} and wraps it.
 	 * @param dataSource the JDBC DataSource to access
 	 */
 	public NamedParameterJdbcTemplate(DataSource dataSource) {
@@ -106,7 +106,7 @@ public class NamedParameterJdbcTemplate implements NamedParameterJdbcOperations 
 	/**
 	 * Expose the classic Spring {@link JdbcTemplate} itself, if available,
 	 * in particular for passing it on to other {@code JdbcTemplate} consumers.
-	 * <p>If sufficient for the purposes at hand, {@link #getJdbcOperations()}
+	 * If sufficient for the purposes at hand, {@link #getJdbcOperations()}
 	 * is recommended over this variant.
 	 * @since 5.0.3
 	 */
@@ -366,7 +366,7 @@ public class NamedParameterJdbcTemplate implements NamedParameterJdbcOperations 
 
 	/**
 	 * Build a {@link PreparedStatementCreator} based on the given SQL and named parameters.
-	 * <p>Note: Directly called from all {@code query} variants. Delegates to the common
+	 * Note: Directly called from all {@code query} variants. Delegates to the common
 	 * {@link #getPreparedStatementCreator(String, SqlParameterSource, Consumer)} method.
 	 * @param sql the SQL statement to execute
 	 * @param paramSource container of arguments to bind
@@ -379,7 +379,7 @@ public class NamedParameterJdbcTemplate implements NamedParameterJdbcOperations 
 
 	/**
 	 * Build a {@link PreparedStatementCreator} based on the given SQL and named parameters.
-	 * <p>Note: Used for the {@code update} variant with generated key handling, and also
+	 * Note: Used for the {@code update} variant with generated key handling, and also
 	 * delegated from {@link #getPreparedStatementCreator(String, SqlParameterSource)}.
 	 * @param sql the SQL statement to execute
 	 * @param paramSource container of arguments to bind
@@ -406,7 +406,7 @@ public class NamedParameterJdbcTemplate implements NamedParameterJdbcOperations 
 
 	/**
 	 * Obtain a parsed representation of the given SQL statement.
-	 * <p>The default implementation uses an LRU cache with an upper limit of 256 entries.
+	 * The default implementation uses an LRU cache with an upper limit of 256 entries.
 	 * @param sql the original SQL statement
 	 * @return a representation of the parsed SQL statement
 	 */

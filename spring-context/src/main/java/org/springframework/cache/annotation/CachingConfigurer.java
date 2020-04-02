@@ -15,7 +15,7 @@ import org.springframework.lang.Nullable;
  * cache management. Consider extending {@link CachingConfigurerSupport}, which provides a
  * stub implementation of all interface methods.
  *
- * <p>See @{@link EnableCaching} for general examples and context; see
+ * See @{@link EnableCaching} for general examples and context; see
  * {@link #cacheManager()}, {@link #cacheResolver()} and {@link #keyGenerator()}
  * for detailed instructions.
 
@@ -32,7 +32,7 @@ public interface CachingConfigurer {
 	 * behind the scenes with this cache manager. For more fine-grained
 	 * management of the cache resolution, consider setting the
 	 * {@link CacheResolver} directly.
-	 * <p>Implementations must explicitly declare
+	 * Implementations must explicitly declare
 	 * {@link org.springframework.context.annotation.Bean @Bean}, e.g.
 	 * <pre class="code">
 	 * &#064;Configuration
@@ -55,9 +55,9 @@ public interface CachingConfigurer {
 	 * Return the {@link CacheResolver} bean to use to resolve regular caches for
 	 * annotation-driven cache management. This is an alternative and more powerful
 	 * option of specifying the {@link CacheManager} to use.
-	 * <p>If both a {@link #cacheManager()} and {@code #cacheResolver()} are set,
+	 * If both a {@link #cacheManager()} and {@code #cacheResolver()} are set,
 	 * the cache manager is ignored.
-	 * <p>Implementations must explicitly declare
+	 * Implementations must explicitly declare
 	 * {@link org.springframework.context.annotation.Bean @Bean}, e.g.
 	 * <pre class="code">
 	 * &#064;Configuration
@@ -99,9 +99,9 @@ public interface CachingConfigurer {
 
 	/**
 	 * Return the {@link CacheErrorHandler} to use to handle cache-related errors.
-	 * <p>By default,{@link org.springframework.cache.interceptor.SimpleCacheErrorHandler}
+	 * By default,{@link org.springframework.cache.interceptor.SimpleCacheErrorHandler}
 	 * is used and simply throws the exception back at the client.
-	 * <p>Implementations must explicitly declare
+	 * Implementations must explicitly declare
 	 * {@link org.springframework.context.annotation.Bean @Bean}, e.g.
 	 * <pre class="code">
 	 * &#064;Configuration

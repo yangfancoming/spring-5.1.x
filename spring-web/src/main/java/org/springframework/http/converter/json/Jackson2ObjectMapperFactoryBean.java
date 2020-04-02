@@ -39,13 +39,13 @@ import org.springframework.lang.Nullable;
  * {@link XmlMapper} ({@code createXmlMapper} property set to true) with setters
  * to enable or disable Jackson features from within XML configuration.
  *
- * <p>It customizes Jackson defaults properties with the following ones:
+ * It customizes Jackson defaults properties with the following ones:
  * <ul>
  * <li>{@link MapperFeature#DEFAULT_VIEW_INCLUSION} is disabled</li>
  * <li>{@link DeserializationFeature#FAIL_ON_UNKNOWN_PROPERTIES} is disabled</li>
  * </ul>
  *
- * <p>Example usage with
+ * Example usage with
  * {@link MappingJackson2HttpMessageConverter}:
  *
  * <pre class="code">
@@ -59,7 +59,7 @@ import org.springframework.lang.Nullable;
  * &lt;/bean>
  * </pre>
  *
- * <p>Example usage with MappingJackson2JsonView:
+ * Example usage with MappingJackson2JsonView:
  *
  * <pre class="code">
  * &lt;bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
@@ -77,7 +77,7 @@ import org.springframework.lang.Nullable;
  * &lt;/bean>
  * </pre>
  *
- * <p>In case there are no specific setters provided (for some rarely used options),
+ * In case there are no specific setters provided (for some rarely used options),
  * you can still use the more general methods  {@link #setFeaturesToEnable} and
  * {@link #setFeaturesToDisable}.
  *
@@ -97,7 +97,7 @@ import org.springframework.lang.Nullable;
  * &lt;/bean>
  * </pre>
  *
- * <p>It also automatically registers the following well-known modules if they are
+ * It also automatically registers the following well-known modules if they are
  * detected on the classpath:
  * <ul>
  * <li><a href="https://github.com/FasterXML/jackson-datatype-jdk7">jackson-datatype-jdk7</a>:
@@ -112,7 +112,7 @@ import org.springframework.lang.Nullable;
  * support for Kotlin classes and data classes</li>
  * </ul>
  *
- * <p>In case you want to configure Jackson's {@link ObjectMapper} with a custom {@link Module},
+ * In case you want to configure Jackson's {@link ObjectMapper} with a custom {@link Module},
  * you can register one or more such Modules by class name via {@link #setModulesToInstall}:
  *
  * <pre class="code">
@@ -121,7 +121,7 @@ import org.springframework.lang.Nullable;
  * &lt;/bean
  * </pre>
  *
- * <p>Compatible with Jackson 2.6 and higher, as of Spring 4.3.
+ * Compatible with Jackson 2.6 and higher, as of Spring 4.3.
  *
  * @author <a href="mailto:dmitry.katsubo@gmail.com">Dmitry Katsubo</a>
  * @author Rossen Stoyanchev
@@ -168,7 +168,7 @@ public class Jackson2ObjectMapperFactoryBean implements FactoryBean<ObjectMapper
 
 	/**
 	 * Define the format for date/time with the given {@link DateFormat}.
-	 * <p>Note: Setting this property makes the exposed {@link ObjectMapper}
+	 * Note: Setting this property makes the exposed {@link ObjectMapper}
 	 * non-thread-safe, according to Jackson's thread safety rules.
 	 * @see #setSimpleDateFormat(String)
 	 */
@@ -178,7 +178,7 @@ public class Jackson2ObjectMapperFactoryBean implements FactoryBean<ObjectMapper
 
 	/**
 	 * Define the date/time format with a {@link SimpleDateFormat}.
-	 * <p>Note: Setting this property makes the exposed {@link ObjectMapper}
+	 * Note: Setting this property makes the exposed {@link ObjectMapper}
 	 * non-thread-safe, according to Jackson's thread safety rules.
 	 * @see #setDateFormat(DateFormat)
 	 */
@@ -372,11 +372,11 @@ public class Jackson2ObjectMapperFactoryBean implements FactoryBean<ObjectMapper
 
 	/**
 	 * Set a complete list of modules to be registered with the {@link ObjectMapper}.
-	 * <p>Note: If this is set, no finding of modules is going to happen - not by
+	 * Note: If this is set, no finding of modules is going to happen - not by
 	 * Jackson, and not by Spring either (see {@link #setFindModulesViaServiceLoader}).
 	 * As a consequence, specifying an empty list here will suppress any kind of
 	 * module detection.
-	 * <p>Specify either this or {@link #setModulesToInstall}, not both.
+	 * Specify either this or {@link #setModulesToInstall}, not both.
 	 * @since 4.0
 	 * @see com.fasterxml.jackson.databind.Module
 	 */
@@ -387,11 +387,11 @@ public class Jackson2ObjectMapperFactoryBean implements FactoryBean<ObjectMapper
 	/**
 	 * Specify one or more modules by class (or class name in XML)
 	 * to be registered with the {@link ObjectMapper}.
-	 * <p>Modules specified here will be registered after
+	 * Modules specified here will be registered after
 	 * Spring's autodetection of JSR-310 and Joda-Time, or Jackson's
 	 * finding of modules (see {@link #setFindModulesViaServiceLoader}),
 	 * allowing to eventually override their configuration.
-	 * <p>Specify either this or {@link #setModules}, not both.
+	 * Specify either this or {@link #setModules}, not both.
 	 * @since 4.0.1
 	 * @see com.fasterxml.jackson.databind.Module
 	 */
@@ -403,7 +403,7 @@ public class Jackson2ObjectMapperFactoryBean implements FactoryBean<ObjectMapper
 	/**
 	 * Set whether to let Jackson find available modules via the JDK ServiceLoader,
 	 * based on META-INF metadata in the classpath. Requires Jackson 2.2 or higher.
-	 * <p>If this mode is not set, Spring's Jackson2ObjectMapperFactoryBean itself
+	 * If this mode is not set, Spring's Jackson2ObjectMapperFactoryBean itself
 	 * will try to find the JSR-310 and Joda-Time support modules on the classpath -
 	 * provided that Java 8 and Joda-Time themselves are available, respectively.
 	 * @since 4.0.1

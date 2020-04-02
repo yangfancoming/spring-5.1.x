@@ -16,7 +16,7 @@ import org.springframework.web.server.WebExceptionHandler;
 /**
  * Handle {@link ResponseStatusException} by setting the response status.
  *
- * <p>By default exception stack traces are not shown for successfully resolved
+ * By default exception stack traces are not shown for successfully resolved
  * exceptions. Use {@link #setWarnLogCategory(String)} to enable logging with
  * stack traces.
  *
@@ -35,7 +35,7 @@ public class ResponseStatusExceptionHandler implements WebExceptionHandler {
 
 	/**
 	 * Set the log category for warn logging.
-	 * <p>Default is no warn logging. Specify this setting to activate warn
+	 * Default is no warn logging. Specify this setting to activate warn
 	 * logging into a specific category.
 	 * @since 5.1
 	 * @see org.apache.commons.logging.LogFactory#getLog(String)

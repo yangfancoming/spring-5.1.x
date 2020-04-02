@@ -12,7 +12,7 @@ import java.lang.annotation.RetentionPolicy;
  * methods for which a corresponding {@link HttpMethodConstraint} element does
  * NOT occur within the {@link ServletSecurity} annotation.
  *
- * <p>For the special case where an <code>@HttpConstraint</code> that returns
+ * For the special case where an <code>@HttpConstraint</code> that returns
  * all default values occurs in combination with at least one
  * {@link HttpMethodConstraint} that returns other than all default values, the
  * <code>@HttpConstraint</code> represents that no security constraint is to be

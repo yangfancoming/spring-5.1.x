@@ -43,7 +43,7 @@ public class ProxyCreatorSupport extends AdvisedSupport {
 	/**
 	 * Customize the AopProxyFactory, allowing different strategies
 	 * to be dropped in without changing the core framework.
-	 * <p>Default is {@link DefaultAopProxyFactory}, using dynamic JDK
+	 * Default is {@link DefaultAopProxyFactory}, using dynamic JDK
 	 * proxies or CGLIB proxies based on the requirements.
 	 */
 	public void setAopProxyFactory(AopProxyFactory aopProxyFactory) {

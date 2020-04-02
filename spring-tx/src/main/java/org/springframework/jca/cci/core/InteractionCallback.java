@@ -16,7 +16,7 @@ import org.springframework.lang.Nullable;
  * example a single execute call or repeated execute calls with varying
  * parameters.
  *
- * <p>This is particularly useful for delegating to existing data access code
+ * This is particularly useful for delegating to existing data access code
  * that expects an Interaction to work on and throws ResourceException. For newly
  * written code, it is strongly recommended to use CciTemplate's more specific
  * {@code execute} variants.
@@ -36,12 +36,12 @@ public interface InteractionCallback<T> {
 	 * Gets called by {@code CciTemplate.execute} with an active CCI Interaction.
 	 * Does not need to care about activating or closing the Interaction, or
 	 * handling transactions.
-	 * <p>If called without a thread-bound CCI transaction (initiated by
+	 * If called without a thread-bound CCI transaction (initiated by
 	 * CciLocalTransactionManager), the code will simply get executed on the CCI
 	 * Interaction with its transactional semantics. If CciTemplate is configured
 	 * to use a JTA-aware ConnectionFactory, the CCI Interaction and thus the callback
 	 * code will be transactional if a JTA transaction is active.
-	 * <p>Allows for returning a result object created within the callback, i.e.
+	 * Allows for returning a result object created within the callback, i.e.
 	 * a domain object or a collection of domain objects. Note that there's special
 	 * support for single step actions: see the {@code CciTemplate.execute}
 	 * variants. A thrown RuntimeException is treated as application exception:

@@ -36,7 +36,7 @@ import static org.springframework.test.util.MetaAnnotationUtils.findAnnotationDe
  * Utility methods for working with {@link TestPropertySource @TestPropertySource}
  * and adding test {@link PropertySource PropertySources} to the {@code Environment}.
  *
- * <p>Primarily intended for use within the framework.
+ * Primarily intended for use within the framework.
  *
  * @author Sam Brannen
  * @since 4.1
@@ -132,7 +132,7 @@ public abstract class TestPropertySourceUtils {
 	/**
 	 * Add the {@link Properties} files from the given resource {@code locations}
 	 * to the {@link Environment} of the supplied {@code context}.
-	 * <p>This method simply delegates to
+	 * This method simply delegates to
 	 * {@link #addPropertiesFilesToEnvironment(ConfigurableEnvironment, ResourceLoader, String...)}.
 	 * @param context the application context whose environment should be updated;
 	 * never {@code null}
@@ -153,10 +153,10 @@ public abstract class TestPropertySourceUtils {
 	/**
 	 * Add the {@link Properties} files from the given resource {@code locations}
 	 * to the supplied {@link ConfigurableEnvironment environment}.
-	 * <p>Property placeholders in resource locations (i.e., <code>${...}</code>)
+	 * Property placeholders in resource locations (i.e., <code>${...}</code>)
 	 * will be {@linkplain Environment#resolveRequiredPlaceholders(String) resolved}
 	 * against the {@code Environment}.
-	 * <p>Each properties file will be converted to a {@link ResourcePropertySource}
+	 * Each properties file will be converted to a {@link ResourcePropertySource}
 	 * that will be added to the {@link PropertySources} of the environment with
 	 * highest precedence.
 	 * @param environment the environment to update; never {@code null}
@@ -191,7 +191,7 @@ public abstract class TestPropertySourceUtils {
 	/**
 	 * Add the given <em>inlined properties</em> to the {@link Environment} of the
 	 * supplied {@code context}.
-	 * <p>This method simply delegates to
+	 * This method simply delegates to
 	 * {@link #addInlinedPropertiesToEnvironment(ConfigurableEnvironment, String[])}.
 	 * @param context the application context whose environment should be updated;
 	 * never {@code null}
@@ -210,9 +210,9 @@ public abstract class TestPropertySourceUtils {
 	/**
 	 * Add the given <em>inlined properties</em> (in the form of <em>key-value</em>
 	 * pairs) to the supplied {@link ConfigurableEnvironment environment}.
-	 * <p>All key-value pairs will be added to the {@code Environment} as a
+	 * All key-value pairs will be added to the {@code Environment} as a
 	 * single {@link MapPropertySource} with the highest precedence.
-	 * <p>For details on the parsing of <em>inlined properties</em>, consult the
+	 * For details on the parsing of <em>inlined properties</em>, consult the
 	 * Javadoc for {@link #convertInlinedPropertiesToMap}.
 	 * @param environment the environment to update; never {@code null}
 	 * @param inlinedProperties the inlined properties to add to the environment;
@@ -245,10 +245,10 @@ public abstract class TestPropertySourceUtils {
 	 * Convert the supplied <em>inlined properties</em> (in the form of <em>key-value</em>
 	 * pairs) into a map keyed by property name, preserving the ordering of property names
 	 * in the returned map.
-	 * <p>Parsing of the key-value pairs is achieved by converting all pairs
+	 * Parsing of the key-value pairs is achieved by converting all pairs
 	 * into <em>virtual</em> properties files in memory and delegating to
 	 * {@link Properties#load(java.io.Reader)} to parse each virtual file.
-	 * <p>For a full discussion of <em>inlined properties</em>, consult the Javadoc
+	 * For a full discussion of <em>inlined properties</em>, consult the Javadoc
 	 * for {@link TestPropertySource#properties}.
 	 * @param inlinedProperties the inlined properties to convert; potentially empty
 	 * but never {@code null}

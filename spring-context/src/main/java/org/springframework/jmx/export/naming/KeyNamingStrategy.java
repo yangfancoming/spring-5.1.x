@@ -23,7 +23,7 @@ import org.springframework.util.CollectionUtils;
  * {@code ObjectName} instances from the key used in the
  * "beans" map passed to {@code MBeanExporter}.
  *
- * <p>Can also check object name mappings, given as {@code Properties}
+ * Can also check object name mappings, given as {@code Properties}
  * or as {@code mappingLocations} of properties files. The key used
  * to look up is the key used in {@code MBeanExporter}'s "beans" map.
  * If no mapping is found for a given key, the key itself is used to

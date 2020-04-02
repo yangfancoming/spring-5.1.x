@@ -20,13 +20,13 @@ import org.springframework.util.ClassUtils;
  * attributes for methods and implements a fallback policy: 1. specific target
  * method; 2. target class; 3. declaring method; 4. declaring class/interface.
  *
- * <p>Defaults to using the target class's transaction attribute if none is
+ * Defaults to using the target class's transaction attribute if none is
  * associated with the target method. Any transaction attribute associated with
  * the target method completely overrides a class transaction attribute.
  * If none found on the target class, the interface that the invoked method
  * has been called through (in case of a JDK proxy) will be checked.
  *
- * <p>This implementation caches attributes by method after they are first used.
+ * This implementation caches attributes by method after they are first used.
  * If it is ever desirable to allow dynamic changing of transaction attributes
  * (which is very unlikely), caching could be made configurable. Caching is
  * desirable because of the cost of evaluating rollback rules.
@@ -52,14 +52,14 @@ public abstract class AbstractFallbackTransactionAttributeSource implements Tran
 
 	/**
 	 * Logger available to subclasses.
-	 * <p>As this base class is not marked Serializable, the logger will be recreated
+	 * As this base class is not marked Serializable, the logger will be recreated
 	 * after serialization - provided that the concrete subclass is Serializable.
 	 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	/**
 	 * Cache of TransactionAttributes, keyed by method on a specific target class.
-	 * <p>As this base class is not marked Serializable, the cache will be recreated
+	 * As this base class is not marked Serializable, the cache will be recreated
 	 * after serialization - provided that the concrete subclass is Serializable.
 	 */
 	private final Map<Object, TransactionAttribute> attributeCache = new ConcurrentHashMap<>(1024);
@@ -67,7 +67,7 @@ public abstract class AbstractFallbackTransactionAttributeSource implements Tran
 
 	/**
 	 * Determine the transaction attribute for this method invocation.
-	 * <p>Defaults to the class's transaction attribute if no method attribute is found.
+	 * Defaults to the class's transaction attribute if no method attribute is found.
 	 * @param method the method for the current invocation (never {@code null})
 	 * @param targetClass the target class for this invocation (may be {@code null})
 	 * @return a TransactionAttribute for this method, or {@code null} if the method is not transactional
@@ -121,7 +121,7 @@ public abstract class AbstractFallbackTransactionAttributeSource implements Tran
 
 	/**
 	 * Determine a cache key for the given method and target class.
-	 * <p>Must not produce same key for overloaded methods.
+	 * Must not produce same key for overloaded methods.
 	 * Must produce same key for different instances of the same method.
 	 * @param method the method (never {@code null})
 	 * @param targetClass the target class (may be {@code null})
@@ -134,7 +134,7 @@ public abstract class AbstractFallbackTransactionAttributeSource implements Tran
 	/**
 	 * Same signature as {@link #getTransactionAttribute}, but doesn't cache the result.
 	 * {@link #getTransactionAttribute} is effectively a caching decorator for this method.
-	 * <p>As of 4.1.8, this method can be overridden.
+	 * As of 4.1.8, this method can be overridden.
 	 * @since 4.1.8
 	 * @see #getTransactionAttribute
 	 */
@@ -206,7 +206,7 @@ public abstract class AbstractFallbackTransactionAttributeSource implements Tran
 
 	/**
 	 * Should only public methods be allowed to have transactional semantics?
-	 * <p>The default implementation returns {@code false}.
+	 * The default implementation returns {@code false}.
 	 */
 	protected boolean allowPublicMethodsOnly() {
 		return false;

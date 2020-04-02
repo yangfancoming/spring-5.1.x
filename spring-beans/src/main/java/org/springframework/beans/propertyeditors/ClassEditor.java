@@ -13,7 +13,7 @@ import org.springframework.util.StringUtils;
  * population of a {@code Class} property without recourse to having to use a
  * String class name property as bridge.
  *
- * <p>Also supports "java.lang.String[]"-style array class names, in contrast to the
+ * Also supports "java.lang.String[]"-style array class names, in contrast to the
  * standard {@link Class#forName(String)} method.
  *
 

@@ -17,12 +17,12 @@ import org.springframework.util.ObjectUtils;
  * A controller method return value type for asynchronous request processing
  * where one or more objects are written to the response.
  *
- * <p>While {@link org.springframework.web.context.request.async.DeferredResult}
+ * While {@link org.springframework.web.context.request.async.DeferredResult}
  * is used to produce a single result, a {@code ResponseBodyEmitter} can be used
  * to send multiple objects where each object is written with a compatible
  * {@link org.springframework.http.converter.HttpMessageConverter}.
  *
- * <p>Supported as a return type on its own as well as within a
+ * Supported as a return type on its own as well as within a
  * {@link org.springframework.http.ResponseEntity}.
  *
  * <pre>
@@ -88,7 +88,7 @@ public class ResponseBodyEmitter {
 
 	/**
 	 * Create a ResponseBodyEmitter with a custom timeout value.
-	 * <p>By default not set in which case the default configured in the MVC
+	 * By default not set in which case the default configured in the MVC
 	 * Java Config or the MVC namespace is used, or if that's not set, then the
 	 * timeout depends on the default of the underlying server.
 	 * @param timeout timeout value in milliseconds
@@ -134,16 +134,16 @@ public class ResponseBodyEmitter {
 	 * Invoked after the response is updated with the status code and headers,
 	 * if the ResponseBodyEmitter is wrapped in a ResponseEntity, but before the
 	 * response is committed, i.e. before the response body has been written to.
-	 * <p>The default implementation is empty.
+	 * The default implementation is empty.
 	 */
 	protected void extendResponse(ServerHttpResponse outputMessage) {
 	}
 
 	/**
 	 * Write the given object to the response.
-	 * <p>If any exception occurs a dispatch is made back to the app server where
+	 * If any exception occurs a dispatch is made back to the app server where
 	 * Spring MVC will pass the exception through its exception handling mechanism.
-	 * <p><strong>Note:</strong> if the send fails with an IOException, you do
+	 * <strong>Note:</strong> if the send fails with an IOException, you do
 	 * not need to call {@link #completeWithError(Throwable)} in order to clean
 	 * up. Instead the Servlet container creates a notification that results in a
 	 * dispatch where Spring MVC invokes exception resolvers and completes
@@ -192,7 +192,7 @@ public class ResponseBodyEmitter {
 	 * Complete request processing by performing a dispatch into the servlet
 	 * container, where Spring MVC is invoked once more, and completes the
 	 * request processing lifecycle.
-	 * <p><strong>Note:</strong> this method should be called by the application
+	 * <strong>Note:</strong> this method should be called by the application
 	 * to complete request processing. It should not be used after container
 	 * related events such as an error while {@link #send(Object) sending}.
 	 */
@@ -209,11 +209,11 @@ public class ResponseBodyEmitter {
 
 	/**
 	 * Complete request processing with an error.
-	 * <p>A dispatch is made into the app server where Spring MVC will pass the
+	 * A dispatch is made into the app server where Spring MVC will pass the
 	 * exception through its exception handling mechanism. Note however that
 	 * at this stage of request processing, the response is committed and the
 	 * response status can no longer be changed.
-	 * <p><strong>Note:</strong> this method should be called by the application
+	 * <strong>Note:</strong> this method should be called by the application
 	 * to complete request processing with an error. It should not be used after
 	 * container related events such as an error while
 	 * {@link #send(Object) sending}.

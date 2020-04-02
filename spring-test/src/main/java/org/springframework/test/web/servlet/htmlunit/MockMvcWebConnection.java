@@ -26,8 +26,8 @@ import org.springframework.util.Assert;
 /**
  * {@code MockMvcWebConnection} enables {@link MockMvc} to transform a
  * {@link WebRequest} into a {@link WebResponse}.
- * <p>This is the core integration with <a href="http://htmlunit.sourceforge.net/">HtmlUnit</a>.
- * <p>Example usage can be seen below.
+ * This is the core integration with <a href="http://htmlunit.sourceforge.net/">HtmlUnit</a>.
+ * Example usage can be seen below.
  *
  * <pre class="code">
  * WebClient webClient = new WebClient();
@@ -57,7 +57,7 @@ public final class MockMvcWebConnection implements WebConnection {
 	/**
 	 * Create a new instance that assumes the context path of the application
 	 * is {@code ""} (i.e., the root context).
-	 * <p>For example, the URL {@code http://localhost/test/this} would use
+	 * For example, the URL {@code http://localhost/test/this} would use
 	 * {@code ""} as the context path.
 	 * @param mockMvc the {@code MockMvc} instance to use; never {@code null}
 	 * @param webClient the {@link WebClient} to use. never {@code null}
@@ -68,7 +68,7 @@ public final class MockMvcWebConnection implements WebConnection {
 
 	/**
 	 * Create a new instance with the specified context path.
-	 * <p>The path may be {@code null} in which case the first path segment
+	 * The path may be {@code null} in which case the first path segment
 	 * of the URL is turned into the contextPath. Otherwise it must conform
 	 * to {@link javax.servlet.http.HttpServletRequest#getContextPath()}
 	 * which states that it can be an empty string and otherwise must start
@@ -89,7 +89,7 @@ public final class MockMvcWebConnection implements WebConnection {
 
 	/**
 	 * Validate the supplied {@code contextPath}.
-	 * <p>If the value is not {@code null}, it must conform to
+	 * If the value is not {@code null}, it must conform to
 	 * {@link javax.servlet.http.HttpServletRequest#getContextPath()} which
 	 * states that it can be an empty string and otherwise must start with
 	 * a "/" character and not end with a "/" character.

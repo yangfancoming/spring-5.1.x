@@ -19,11 +19,11 @@ import org.springframework.web.server.WebHandler;
 /**
  * Default implementation of {@link WebFilterChain}.
  *
- * <p>Each instance of this class represents one link in the chain. The public
+ * Each instance of this class represents one link in the chain. The public
  * constructor {@link #DefaultWebFilterChain(WebHandler, List)}
  * initializes the full chain and represents its first link.
  *
- * <p>This class is immutable and thread-safe. It can be created once and
+ * This class is immutable and thread-safe. It can be created once and
  * re-used to handle request concurrently.
  *
  * @author Rossen Stoyanchev

@@ -10,7 +10,7 @@ import java.text.MessageFormat;
  * expect particular code numbers rather than particular text, enabling the message text
  * to more easily be modified and the tests to run successfully in different locales.
  *
- * <p>When a message is formatted, it will have this kind of form, capturing the prefix
+ * When a message is formatted, it will have this kind of form, capturing the prefix
  * and the error kind:
  *
  * <pre class="code">EL1004E: Type cannot be found 'String'</pre>

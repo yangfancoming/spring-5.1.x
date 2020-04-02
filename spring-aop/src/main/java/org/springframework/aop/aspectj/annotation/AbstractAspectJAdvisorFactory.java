@@ -33,7 +33,7 @@ import org.springframework.lang.Nullable;
  * Abstract base class for factories that can create Spring AOP Advisors
  * given AspectJ classes from classes honoring the AspectJ 5 annotation syntax.
  *
- * <p>This class handles annotation parsing and validation functionality.
+ * This class handles annotation parsing and validation functionality.
  * It does not actually generate Spring AOP Advisors, which is deferred to subclasses.
  * @since 2.0
  */

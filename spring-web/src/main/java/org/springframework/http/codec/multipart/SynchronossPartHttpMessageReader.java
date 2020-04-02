@@ -49,7 +49,7 @@ import org.springframework.util.Assert;
  * {@code HttpMessageReader} for parsing {@code "multipart/form-data"} requests
  * to a stream of {@link Part}'s using the Synchronoss NIO Multipart library.
  *
- * <p>This reader can be provided to {@link MultipartHttpMessageReader} in order
+ * This reader can be provided to {@link MultipartHttpMessageReader} in order
  * to aggregate all parts into a Map.
  *
  * @author Sebastien Deleuze

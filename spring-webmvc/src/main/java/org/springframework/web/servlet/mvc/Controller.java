@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
  * participate in an MVC workflow. Controllers are comparable to the
  * notion of a Struts {@code Action}.
  *
- * <p>Any implementation of the Controller interface should be a
+ * Any implementation of the Controller interface should be a
  * <i>reusable, thread-safe</i> class, capable of handling multiple
  * HTTP requests throughout the lifecycle of an application. To be able to
  * configure a Controller easily, Controller implementations are encouraged
@@ -23,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
  *
  * <h3><a name="workflow">Workflow</a></h3>
  *
- * <p>After a {@code DispatcherServlet} has received a request and has
+ * After a {@code DispatcherServlet} has received a request and has
  * done its work to resolve locales, themes, and suchlike, it then tries
  * to resolve a Controller, using a
  * {@link org.springframework.web.servlet.HandlerMapping HandlerMapping}.
@@ -37,7 +37,7 @@ import org.springframework.web.servlet.ModelAndView;
  * {@link org.springframework.web.servlet.DispatcherServlet DispatcherServlet}
  * which delegates requests to controllers.
  *
- * <p>So basically any <i>direct</i> implementation of the {@code Controller} interface
+ * So basically any <i>direct</i> implementation of the {@code Controller} interface
  * just handles HttpServletRequests and should return a ModelAndView, to be further
  * interpreted by the DispatcherServlet. Any additional functionality such as
  * optional validation, form handling, etc. should be obtained through extending
@@ -46,14 +46,14 @@ import org.springframework.web.servlet.ModelAndView;
  *
  * <h3>Notes on design and testing</h3>
  *
- * <p>The Controller interface is explicitly designed to operate on HttpServletRequest
+ * The Controller interface is explicitly designed to operate on HttpServletRequest
  * and HttpServletResponse objects, just like an HttpServlet. It does not aim to
  * decouple itself from the Servlet API, in contrast to, for example, WebWork, JSF or Tapestry.
  * Instead, the full power of the Servlet API is available, allowing Controllers to be
  * general-purpose: a Controller is able to not only handle web user interface
  * requests but also to process remoting protocols or to generate reports on demand.
  *
- * <p>Controllers can easily be tested by passing in mock objects for the
+ * Controllers can easily be tested by passing in mock objects for the
  * HttpServletRequest and HttpServletResponse objects as parameters to the
  * {@link #handleRequest(HttpServletRequest, HttpServletResponse) handleRequest}
  * method. As a convenience, Spring ships with a set of Servlet API mocks
@@ -62,7 +62,7 @@ import org.springframework.web.servlet.ModelAndView;
  * there is no need to mock the ActionServlet or any other infrastructure;
  * mocking HttpServletRequest and HttpServletResponse is sufficient.
  *
- * <p>If Controllers need to be aware of specific environment references, they can
+ * If Controllers need to be aware of specific environment references, they can
  * choose to implement specific awareness interfaces, just like any other bean in a
  * Spring (web) application context can do, for example:
  * <ul>
@@ -71,7 +71,7 @@ import org.springframework.web.servlet.ModelAndView;
  * <li>{@code org.springframework.web.context.ServletContextAware}</li>
  * </ul>
  *
- * <p>Such environment references can easily be passed in testing environments,
+ * Such environment references can easily be passed in testing environments,
  * through the corresponding setters defined in the respective awareness interfaces.
  * In general, it is recommended to keep the dependencies as minimal as possible:
  * for example, if all you need is resource loading, implement ResourceLoaderAware only.
@@ -79,7 +79,7 @@ import org.springframework.web.servlet.ModelAndView;
  * you all those references through convenient accessors but requires an
  * ApplicationContext reference on initialization.
  *
- * <p>Controllers can optionally implement the {@link LastModified} interface.
+ * Controllers can optionally implement the {@link LastModified} interface.
 
  * @see LastModified
  * @see SimpleControllerHandlerAdapter

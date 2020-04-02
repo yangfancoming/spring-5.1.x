@@ -75,12 +75,12 @@ import org.springframework.util.StringUtils;
  * any number of ConfigurationClass objects because one Configuration class may import
  * another using the {@link Import} annotation).
  *
- * <p>This class helps separate the concern of parsing the structure of a Configuration
+ * This class helps separate the concern of parsing the structure of a Configuration
  * class from the concern of registering BeanDefinition objects based on the content of
  * that model (with the exception of {@code @ComponentScan} annotations which need to be
  * registered immediately).
  *
- * <p>This ASM-based implementation avoids reflection and eager class loading in order to
+ * This ASM-based implementation avoids reflection and eager class loading in order to
  * interoperate effectively with lazy class loading in a Spring ApplicationContext.
 
 
@@ -502,7 +502,7 @@ class ConfigurationClassParser {
 	 * meta-annotations it is valid to have several {@code @Import}s declared with
 	 * different values; the usual process of returning values from the first
 	 * meta-annotation on a class is not sufficient.
-	 * <p>For example, it is common for a {@code @Configuration} class to declare direct
+	 * For example, it is common for a {@code @Configuration} class to declare direct
 	 * {@code @Import}s in addition to meta-imports originating from an {@code @Enable}
 	 * annotation.
 	 * @param sourceClass the class to search

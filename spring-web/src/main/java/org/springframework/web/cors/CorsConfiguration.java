@@ -20,7 +20,7 @@ import org.springframework.util.StringUtils;
  * A container for CORS configuration along with methods to check against the
  * actual origin, HTTP methods, and headers of a given request.
  *
- * <p>By default a newly created {@code CorsConfiguration} does not permit any
+ * By default a newly created {@code CorsConfiguration} does not permit any
  * cross-origin requests and must be configured explicitly to indicate what
  * should be allowed. Use {@link #applyPermitDefaultValues()} to flip the
  * initialization model to start with open defaults that permit all cross-origin
@@ -95,8 +95,8 @@ public class CorsConfiguration {
 
 	/**
 	 * Set the origins to allow, e.g. {@code "https://domain1.com"}.
-	 * <p>The special value {@code "*"} allows all domains.
-	 * <p>By default this is not set.
+	 * The special value {@code "*"} allows all domains.
+	 * By default this is not set.
 	 */
 	public void setAllowedOrigins(@Nullable List<String> allowedOrigins) {
 		this.allowedOrigins = (allowedOrigins != null ? new ArrayList<>(allowedOrigins) : null);
@@ -128,10 +128,10 @@ public class CorsConfiguration {
 	/**
 	 * Set the HTTP methods to allow, e.g. {@code "GET"}, {@code "POST"},
 	 * {@code "PUT"}, etc.
-	 * <p>The special value {@code "*"} allows all methods.
-	 * <p>If not set, only {@code "GET"} and {@code "HEAD"} are allowed.
-	 * <p>By default this is not set.
-	 * <p><strong>Note:</strong> CORS checks use values from "Forwarded"
+	 * The special value {@code "*"} allows all methods.
+	 * If not set, only {@code "GET"} and {@code "HEAD"} are allowed.
+	 * By default this is not set.
+	 * <strong>Note:</strong> CORS checks use values from "Forwarded"
 	 * (<a href="https://tools.ietf.org/html/rfc7239">RFC 7239</a>),
 	 * "X-Forwarded-Host", "X-Forwarded-Port", and "X-Forwarded-Proto" headers,
 	 * if present, in order to reflect the client-originated address.
@@ -200,12 +200,12 @@ public class CorsConfiguration {
 	/**
 	 * Set the list of headers that a pre-flight request can list as allowed
 	 * for use during an actual request.
-	 * <p>The special value {@code "*"} allows actual requests to send any
+	 * The special value {@code "*"} allows actual requests to send any
 	 * header.
-	 * <p>A header name is not required to be listed if it is one of:
+	 * A header name is not required to be listed if it is one of:
 	 * {@code Cache-Control}, {@code Content-Language}, {@code Expires},
 	 * {@code Last-Modified}, or {@code Pragma}.
-	 * <p>By default this is not set.
+	 * By default this is not set.
 	 */
 	public void setAllowedHeaders(@Nullable List<String> allowedHeaders) {
 		this.allowedHeaders = (allowedHeaders != null ? new ArrayList<>(allowedHeaders) : null);
@@ -239,8 +239,8 @@ public class CorsConfiguration {
 	 * {@code Cache-Control}, {@code Content-Language}, {@code Content-Type},
 	 * {@code Expires}, {@code Last-Modified}, or {@code Pragma}) that an
 	 * actual response might have and can be exposed.
-	 * <p>Note that {@code "*"} is not a valid exposed header value.
-	 * <p>By default this is not set.
+	 * Note that {@code "*"} is not a valid exposed header value.
+	 * By default this is not set.
 	 */
 	public void setExposedHeaders(@Nullable List<String> exposedHeaders) {
 		if (exposedHeaders != null && exposedHeaders.contains(ALL)) {
@@ -261,7 +261,7 @@ public class CorsConfiguration {
 
 	/**
 	 * Add a response header to expose.
-	 * <p>Note that {@code "*"} is not a valid exposed header value.
+	 * Note that {@code "*"} is not a valid exposed header value.
 	 */
 	public void addExposedHeader(String exposedHeader) {
 		if (ALL.equals(exposedHeader)) {
@@ -275,7 +275,7 @@ public class CorsConfiguration {
 
 	/**
 	 * Whether user credentials are supported.
-	 * <p>By default this is not set (i.e. user credentials are not supported).
+	 * By default this is not set (i.e. user credentials are not supported).
 	 */
 	public void setAllowCredentials(@Nullable Boolean allowCredentials) {
 		this.allowCredentials = allowCredentials;
@@ -293,7 +293,7 @@ public class CorsConfiguration {
 	/**
 	 * Configure how long, in seconds, the response from a pre-flight request
 	 * can be cached by clients.
-	 * <p>By default this is not set.
+	 * By default this is not set.
 	 */
 	public void setMaxAge(@Nullable Long maxAge) {
 		this.maxAge = maxAge;
@@ -313,11 +313,11 @@ public class CorsConfiguration {
 	 * By default a newly created {@code CorsConfiguration} does not permit any
 	 * cross-origin requests and must be configured explicitly to indicate what
 	 * should be allowed.
-	 * <p>Use this method to flip the initialization model to start with open
+	 * Use this method to flip the initialization model to start with open
 	 * defaults that permit all cross-origin requests for GET, HEAD, and POST
 	 * requests. Note however that this method will not override any existing
 	 * values already set.
-	 * <p>The following defaults are applied if not already set:
+	 * The following defaults are applied if not already set:
 	 * <ul>
 	 * <li>Allow all origins.</li>
 	 * <li>Allow "simple" methods {@code GET}, {@code HEAD} and {@code POST}.</li>
@@ -346,16 +346,16 @@ public class CorsConfiguration {
 	/**
 	 * Combine the non-null properties of the supplied
 	 * {@code CorsConfiguration} with this one.
-	 * <p>When combining single values like {@code allowCredentials} or
+	 * When combining single values like {@code allowCredentials} or
 	 * {@code maxAge}, {@code this} properties are overridden by non-null
 	 * {@code other} properties if any.
-	 * <p>Combining lists like {@code allowedOrigins}, {@code allowedMethods},
+	 * Combining lists like {@code allowedOrigins}, {@code allowedMethods},
 	 * {@code allowedHeaders} or {@code exposedHeaders} is done in an additive
 	 * way. For example, combining {@code ["GET", "POST"]} with
 	 * {@code ["PATCH"]} results in {@code ["GET", "POST", "PATCH"]}, but keep
 	 * in mind that combining {@code ["GET", "POST"]} with {@code ["*"]}
 	 * results in {@code ["*"]}.
-	 * <p>Notice that default permit values set by
+	 * Notice that default permit values set by
 	 * {@link CorsConfiguration#applyPermitDefaultValues()} are overridden by
 	 * any value explicitly defined.
 	 * @return the combined {@code CorsConfiguration}, or {@code this}

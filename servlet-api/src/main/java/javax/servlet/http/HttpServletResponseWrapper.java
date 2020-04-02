@@ -239,7 +239,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
      * {@link HttpServletResponse#getHeaders} on the wrapped response
      * object.
      *
-     * <p>Any changes to the returned <code>Collection</code> must not 
+     * Any changes to the returned <code>Collection</code> must not
      * affect this <code>HttpServletResponseWrapper</code>.
      *
      * @param name the name of the response header whose values to return
@@ -259,7 +259,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
      * {@link HttpServletResponse#getHeaderNames} on the wrapped response
      * object.
      *
-     * <p>Any changes to the returned <code>Collection</code> must not 
+     * Any changes to the returned <code>Collection</code> must not
      * affect this <code>HttpServletResponseWrapper</code>.
      *
      * @return a (possibly empty) <code>Collection</code> of the names

@@ -78,7 +78,7 @@ public class ViewResolverRegistry {
 	 * Enable use of a {@link ContentNegotiatingViewResolver} to front all other
 	 * configured view resolvers and select among all selected Views based on
 	 * media types requested by the client (e.g. in the Accept header).
-	 * <p>If invoked multiple times the provided default views will be added to
+	 * If invoked multiple times the provided default views will be added to
 	 * any other default views that may have been configured already.
 	 * @see ContentNegotiatingViewResolver#setDefaultViews
 	 */
@@ -90,7 +90,7 @@ public class ViewResolverRegistry {
 	 * Enable use of a {@link ContentNegotiatingViewResolver} to front all other
 	 * configured view resolvers and select among all selected Views based on
 	 * media types requested by the client (e.g. in the Accept header).
-	 * <p>If invoked multiple times the provided default views will be added to
+	 * If invoked multiple times the provided default views will be added to
 	 * any other default views that may have been configured already.
 	 * @see ContentNegotiatingViewResolver#setDefaultViews
 	 */
@@ -125,7 +125,7 @@ public class ViewResolverRegistry {
 	/**
 	 * Register JSP view resolver using a default view name prefix of "/WEB-INF/"
 	 * and a default suffix of ".jsp".
-	 * <p>When this method is invoked more than once, each call will register a
+	 * When this method is invoked more than once, each call will register a
 	 * new ViewResolver instance. Note that since it's not easy to determine
 	 * if a JSP exists without forwarding to it, using multiple JSP-based view
 	 * resolvers only makes sense in combination with the "viewNames" property
@@ -137,7 +137,7 @@ public class ViewResolverRegistry {
 
 	/**
 	 * Register JSP view resolver with the specified prefix and suffix.
-	 * <p>When this method is invoked more than once, each call will register a
+	 * When this method is invoked more than once, each call will register a
 	 * new ViewResolver instance. Note that since it's not easy to determine
 	 * if a JSP exists without forwarding to it, using multiple JSP-based view
 	 * resolvers only makes sense in combination with the "viewNames" property
@@ -153,7 +153,7 @@ public class ViewResolverRegistry {
 
 	/**
 	 * Register Tiles 3.x view resolver.
-	 * <p><strong>Note</strong> that you must also configure Tiles by adding a
+	 * <strong>Note</strong> that you must also configure Tiles by adding a
 	 * {@link org.springframework.web.servlet.view.tiles3.TilesConfigurer} bean.
 	 */
 	public UrlBasedViewResolverRegistration tiles() {
@@ -170,7 +170,7 @@ public class ViewResolverRegistry {
 	/**
 	 * Register a FreeMarker view resolver with an empty default view name
 	 * prefix and a default suffix of ".ftl".
-	 * <p><strong>Note</strong> that you must also configure FreeMarker by adding a
+	 * <strong>Note</strong> that you must also configure FreeMarker by adding a
 	 * {@link org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer} bean.
 	 */
 	public UrlBasedViewResolverRegistration freeMarker() {
@@ -248,7 +248,7 @@ public class ViewResolverRegistry {
 	 * This property determines the order of the ViewResolverComposite itself
 	 * relative to any additional ViewResolver's (not registered here) present in
 	 * the Spring configuration
-	 * <p>By default this property is not set, which means the resolver is ordered
+	 * By default this property is not set, which means the resolver is ordered
 	 * at {@link Ordered#LOWEST_PRECEDENCE} unless content negotiation is enabled
 	 * in which case the order (if not set explicitly) is changed to
 	 * {@link Ordered#HIGHEST_PRECEDENCE}.

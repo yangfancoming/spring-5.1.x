@@ -22,7 +22,7 @@ import org.springframework.util.MultiValueMap;
  * {@link ServerWebExchange}. Pre-implements all methods by delegating to the
  * wrapped instance.
  *
- * <p><strong>Note:</strong> if the purpose for using a decorator is to override
+ * <strong>Note:</strong> if the purpose for using a decorator is to override
  * properties like {@link #getPrincipal()}, consider using
  * {@link ServerWebExchange#mutate()} instead.
  *

@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
  * Editor for {@code org.xml.sax.InputSource}, converting from a
  * Spring resource location String to a SAX InputSource object.
  *
- * <p>Supports Spring-style URL notation: any fully qualified standard URL
+ * Supports Spring-style URL notation: any fully qualified standard URL
  * ("file:", "http:", etc) and Spring's special "classpath:" pseudo-URL.
  *
 

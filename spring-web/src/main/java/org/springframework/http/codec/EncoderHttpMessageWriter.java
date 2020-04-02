@@ -29,7 +29,7 @@ import org.springframework.util.StringUtils;
 /**
  * {@code HttpMessageWriter} that wraps and delegates to an {@link Encoder}.
  *
- * <p>Also a {@code HttpMessageWriter} that pre-resolves encoding hints
+ * Also a {@code HttpMessageWriter} that pre-resolves encoding hints
  * from the extra information available on the server side such as the request
  * or controller method annotations.
  *

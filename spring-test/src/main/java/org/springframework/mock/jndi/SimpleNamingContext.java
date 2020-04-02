@@ -27,7 +27,7 @@ import org.springframework.util.StringUtils;
  * Only supports binding plain Objects to String names.
  * Mainly for test environments, but also usable for standalone applications.
  *
- * <p>This class is not intended for direct usage by applications, although it
+ * This class is not intended for direct usage by applications, although it
  * can be used for example to override JndiTemplate's {@code createInitialContext}
  * method in unit tests. Typically, SimpleNamingContextBuilder will be used to
  * set up a JVM-level JNDI environment.
@@ -98,7 +98,7 @@ public class SimpleNamingContext implements Context {
 
 	/**
 	 * Look up the object with the given name.
-	 * <p>Note: Not intended for direct use by applications.
+	 * Note: Not intended for direct use by applications.
 	 * Will be used by any standard InitialContext JNDI lookups.
 	 * @throws javax.naming.NameNotFoundException if the object could not be found
 	 */

@@ -11,12 +11,12 @@ import org.springframework.lang.Nullable;
 /**
  * Simple stop watch, allowing for timing of a number of tasks,exposing total running time and running time for each named task.
  *
- * <p>Conceals use of {@code System.currentTimeMillis()}, improving the
+ * Conceals use of {@code System.currentTimeMillis()}, improving the
  * readability of application code and reducing the likelihood of calculation errors.
  *
- * <p>Note that this object is not designed to be thread-safe and does not use synchronization.
+ * Note that this object is not designed to be thread-safe and does not use synchronization.
  *
- * <p>This class is normally used to verify performance during proof-of-concepts
+ * This class is normally used to verify performance during proof-of-concepts
  * and in development, rather than as part of production applications.
  * @since May 2, 2001
  */

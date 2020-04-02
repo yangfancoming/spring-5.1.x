@@ -6,7 +6,7 @@ package org.springframework.test.web.servlet;
  * Allows applying actions, such as expectations, on the result of an executed
  * request.
  *
- * <p>See static factory methods in
+ * See static factory methods in
  * {@link org.springframework.test.web.servlet.result.MockMvcResultMatchers} and
  * {@link org.springframework.test.web.servlet.result.MockMvcResultHandlers}.
  *
@@ -28,7 +28,7 @@ public interface ResultActions {
 	 *   .andExpect(jsonPath("$.person.name").value("Jason"));
 	 * </pre>
 	 *
-	 * <p>Or alternatively provide all matchers as a vararg:
+	 * Or alternatively provide all matchers as a vararg:
 	 * <pre class="code">
 	 * static imports: MockMvcRequestBuilders.*, MockMvcResultMatchers.*, ResultMatcher.matchAll
 	 *

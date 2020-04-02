@@ -9,7 +9,7 @@ import javax.management.modelmbean.ModelMBeanInfo;
  * Interface to be implemented by all classes that can
  * create management interface metadata for a managed resource.
  *
- * <p>Used by the {@code MBeanExporter} to generate the management
+ * Used by the {@code MBeanExporter} to generate the management
  * interface for any bean that is not an MBean.
  *
  * @author Rob Harrop

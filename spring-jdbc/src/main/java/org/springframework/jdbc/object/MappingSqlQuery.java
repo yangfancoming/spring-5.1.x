@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * Reusable query in which concrete subclasses must implement the abstract
  * mapRow(ResultSet, int) method to convert each row of the JDBC ResultSet into an object.
  *
- * <p>Simplifies MappingSqlQueryWithParameters API by dropping parameters and
+ * Simplifies MappingSqlQueryWithParameters API by dropping parameters and
  * context. Most subclasses won't care about parameters. If you don't use
  * contextual information, subclass this instead of MappingSqlQueryWithParameters.
  * @param <T> the result type
@@ -51,7 +51,7 @@ public abstract class MappingSqlQuery<T> extends MappingSqlQueryWithParameters<T
 	/**
 	 * Subclasses must implement this method to convert each row of the
 	 * ResultSet into an object of the result type.
-	 * <p>Subclasses of this class, as opposed to direct subclasses of
+	 * Subclasses of this class, as opposed to direct subclasses of
 	 * MappingSqlQueryWithParameters, don't need to concern themselves
 	 * with the parameters to the execute method of the query object.
 	 * @param rs the ResultSet we're working through

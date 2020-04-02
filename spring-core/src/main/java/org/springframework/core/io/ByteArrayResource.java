@@ -12,9 +12,9 @@ import org.springframework.util.Assert;
 
 /**
  * {@link Resource} implementation for a given byte array.
- * <p>Creates a {@link ByteArrayInputStream} for the given byte array.
+ * Creates a {@link ByteArrayInputStream} for the given byte array.
  *
- * <p>Useful for loading content from any given byte array,
+ * Useful for loading content from any given byte array,
  * without having to resort to a single-use {@link InputStreamResource}.
  * Particularly useful for creating mail attachments from local content,
  * where JavaMail needs to be able to read the stream multiple times.

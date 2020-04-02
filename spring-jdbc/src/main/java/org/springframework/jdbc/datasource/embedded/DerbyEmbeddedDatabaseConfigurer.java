@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
 /**
  * {@link EmbeddedDatabaseConfigurer} for the Apache Derby database.
  *
- * <p>Call {@link #getInstance()} to get the singleton instance of this class.
+ * Call {@link #getInstance()} to get the singleton instance of this class.
 
 
  * @since 3.0

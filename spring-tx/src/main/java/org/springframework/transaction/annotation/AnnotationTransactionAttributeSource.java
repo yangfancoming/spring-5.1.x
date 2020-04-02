@@ -21,7 +21,7 @@ import org.springframework.util.ClassUtils;
  * {@link org.springframework.transaction.interceptor.TransactionAttributeSource}
  * interface for working with transaction metadata in JDK 1.5+ annotation format.
  *
- * <p>This class reads Spring's JDK 1.5+ {@link Transactional} annotation and
+ * This class reads Spring's JDK 1.5+ {@link Transactional} annotation and
  * exposes corresponding transaction attributes to Spring's transaction infrastructure.
  * Also supports JTA 1.2's {@link javax.transaction.Transactional} and EJB3's
  * {@link javax.ejb.TransactionAttribute} annotation (if present).
@@ -137,11 +137,11 @@ public class AnnotationTransactionAttributeSource extends AbstractFallbackTransa
 
 	/**
 	 * Determine the transaction attribute for the given method or class.
-	 * <p>This implementation delegates to configured
+	 * This implementation delegates to configured
 	 * {@link TransactionAnnotationParser TransactionAnnotationParsers}
 	 * for parsing known annotations into Spring's metadata attribute class.
 	 * Returns {@code null} if it's not transactional.
-	 * <p>Can be overridden to support custom annotations that carry transaction metadata.
+	 * Can be overridden to support custom annotations that carry transaction metadata.
 	 * @param element the annotated method or class
 	 * @return the configured transaction attribute, or {@code null} if none was found
 	 */

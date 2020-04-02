@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
  * the {@link SQLException} based on the first two digits (the SQL state "class").
  * Detects standard SQL state values and well-known vendor-specific SQL states.
  *
- * <p>Not able to diagnose all problems, but is portable between databases and
+ * Not able to diagnose all problems, but is portable between databases and
  * does not require special initialization (no database vendor detection, etc.).
  * For more precise translation, consider {@link SQLErrorCodeSQLExceptionTranslator}.
  * @see java.sql.SQLException#getSQLState()
@@ -108,7 +108,7 @@ public class SQLStateSQLExceptionTranslator extends AbstractFallbackSQLException
 
 	/**
 	 * Gets the SQL state code from the supplied {@link SQLException exception}.
-	 * <p>Some JDBC drivers nest the actual exception from a batched update, so we
+	 * Some JDBC drivers nest the actual exception from a batched update, so we
 	 * might need to dig down into the nested exception.
 	 * @param ex the exception from which the {@link SQLException#getSQLState() SQL state}
 	 * is to be extracted

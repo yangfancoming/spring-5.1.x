@@ -22,7 +22,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * For individual header values annotated with {@code @RequestHeader} see
  * {@link RequestHeaderMethodArgumentResolver} instead.
  *
- * <p>The created {@link Map} contains all request header name/value pairs.
+ * The created {@link Map} contains all request header name/value pairs.
  * The method parameter type may be a {@link MultiValueMap} to receive all
  * values for a header, not only the first one.
  *

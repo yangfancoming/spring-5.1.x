@@ -28,7 +28,7 @@ import org.springframework.util.MultiValueMap;
  * {@code HttpMessageReader} for reading {@code "multipart/form-data"} requests
  * into a {@code MultiValueMap<String, Part>}.
  *
- * <p>Note that this reader depends on access to an
+ * Note that this reader depends on access to an
  * {@code HttpMessageReader<Part>} for the actual parsing of multipart content.
  * The purpose of this reader is to collect the parts into a map.
  *

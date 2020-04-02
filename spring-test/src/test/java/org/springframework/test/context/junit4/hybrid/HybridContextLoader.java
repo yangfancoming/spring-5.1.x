@@ -17,9 +17,9 @@ import static org.springframework.test.context.support.AnnotationConfigContextLo
 /**
  * Hybrid {@link SmartContextLoader} that supports path-based and class-based
  * resources simultaneously.
- * <p>This test loader is inspired by Spring Boot.
- * <p>Detects defaults for XML configuration and annotated classes.
- * <p>Beans from XML configuration always override those from annotated classes.
+ * This test loader is inspired by Spring Boot.
+ * Detects defaults for XML configuration and annotated classes.
+ * Beans from XML configuration always override those from annotated classes.
  *
  * @author Sam Brannen
  * @since 4.0.4

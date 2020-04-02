@@ -39,13 +39,13 @@ public class HttpUtils {
      * should have key-value pairs in the form <i>key=value</i>,
      * with each pair separated from the next by a &amp; character.
      *
-     * <p>A key can appear more than once in the query string
+     * A key can appear more than once in the query string
      * with different values. However, the key appears only once in 
      * the hashtable, with its value being
      * an array of strings containing the multiple values sent
      * by the query string.
      * 
-     * <p>The keys and values in the hashtable are stored in their
+     * The keys and values in the hashtable are stored in their
      * decoded form, so
      * any + characters are converted to spaces, and characters
      * sent in hexadecimal notation (like <i>%xx</i>) are
@@ -103,14 +103,14 @@ public class HttpUtils {
      * the server using the HTTP POST method and the 
      * <i>application/x-www-form-urlencoded</i> MIME type.
      *
-     * <p>The data sent by the POST method contains key-value
+     * The data sent by the POST method contains key-value
      * pairs. A key can appear more than once in the POST data
      * with different values. However, the key appears only once in 
      * the hashtable, with its value being
      * an array of strings containing the multiple values sent
      * by the POST method.
      *
-     * <p>The keys and values in the hashtable are stored in their
+     * The keys and values in the hashtable are stored in their
      * decoded form, so
      * any + characters are converted to spaces, and characters
      * sent in hexadecimal notation (like <i>%xx</i>) are
@@ -228,11 +228,11 @@ public class HttpUtils {
      * number, and server path, but it does not include query
      * string parameters.
      * 
-     * <p>Because this method returns a <code>StringBuffer</code>,
+     * Because this method returns a <code>StringBuffer</code>,
      * not a string, you can modify the URL easily, for example,
      * to append query parameters.
      *
-     * <p>This method is useful for creating redirect messages
+     * This method is useful for creating redirect messages
      * and for reporting errors.
      *
      * @param req	a <code>HttpServletRequest</code> object

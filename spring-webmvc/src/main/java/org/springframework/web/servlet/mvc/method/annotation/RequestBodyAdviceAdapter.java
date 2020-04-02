@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * {@link org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice
  * ResponseBodyAdvice} with default method implementations.
  *
- * <p>Sub-classes are required to implement {@link #supports} to return true
+ * Sub-classes are required to implement {@link #supports} to return true
  * depending on when the advice applies.
  *
  * @author Rossen Stoyanchev

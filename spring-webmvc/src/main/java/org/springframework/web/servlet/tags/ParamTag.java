@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  * The {@code <param>} tag collects name-value parameters and passes them to a
  * {@link ParamAware} ancestor in the tag hierarchy.
  *
- * <p>This tag must be nested under a param aware tag.
+ * This tag must be nested under a param aware tag.
  *
  * <table>
  * <caption>Attribute Summary</caption>

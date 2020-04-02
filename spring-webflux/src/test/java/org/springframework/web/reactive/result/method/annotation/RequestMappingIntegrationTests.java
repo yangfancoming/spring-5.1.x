@@ -28,7 +28,7 @@ import static org.junit.Assert.*;
 /**
  * Integration tests with {@code @RequestMapping} handler methods.
  *
- * <p>Before adding tests here consider if they are a better fit for any of the
+ * Before adding tests here consider if they are a better fit for any of the
  * other {@code RequestMapping*IntegrationTests}.
  *
  * @author Rossen Stoyanchev

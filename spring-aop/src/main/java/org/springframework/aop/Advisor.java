@@ -10,7 +10,7 @@ import org.aopalliance.aop.Advice;
  * a pointcut). <i>This interface is not for use by Spring users, but to
  * allow for commonality in support for different types of advice.</i>
  *
- * <p>Spring AOP is based around <b>around advice</b> delivered via method
+ * Spring AOP is based around <b>around advice</b> delivered via method
  * <b>interception</b>, compliant with the AOP Alliance interception API.
  * The Advisor interface allows support for different types of advice,
  * such as <b>before</b> and <b>after</b> advice, which need not be
@@ -41,7 +41,7 @@ public interface Advisor {
 	 * Return whether this advice is associated with a particular instance
 	 * (for example, creating a mixin) or shared with all instances of
 	 * the advised class obtained from the same Spring bean factory.
-	 * <p><b>Note that this method is not currently used by the framework.</b>
+	 * <b>Note that this method is not currently used by the framework.</b>
 	 * Typical Advisor implementations always return {@code true}.
 	 * Use singleton/prototype bean definitions or appropriate programmatic
 	 * proxy creation to ensure that Advisors have the correct lifecycle model.

@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * interfaces, for the registration and evaluation of binding errors on
  * JavaBean objects.
  *
- * <p>Performs standard JavaBean property access, also supporting nested
+ * Performs standard JavaBean property access, also supporting nested
  * properties. Normally, application code will work with the
  * {@code Errors} interface or the {@code BindingResult} interface.
  * A {@link DataBinder} returns its {@code BindingResult} via

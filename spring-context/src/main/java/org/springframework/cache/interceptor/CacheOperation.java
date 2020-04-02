@@ -97,7 +97,7 @@ public abstract class CacheOperation implements BasicOperation {
 
 	/**
 	 * Return an identifying description for this cache operation.
-	 * <p>Returned value is produced by calling {@link Builder#getOperationDescription()}
+	 * Returned value is produced by calling {@link Builder#getOperationDescription()}
 	 * during object construction. This method is used in {@link #hashCode} and
 	 * {@link #equals}.
 	 * @see Builder#getOperationDescription()
@@ -193,7 +193,7 @@ public abstract class CacheOperation implements BasicOperation {
 
 		/**
 		 * Return an identifying description for this caching operation.
-		 * <p>Available to subclasses, for inclusion in their {@code toString()} result.
+		 * Available to subclasses, for inclusion in their {@code toString()} result.
 		 */
 		protected StringBuilder getOperationDescription() {
 			StringBuilder result = new StringBuilder(getClass().getSimpleName());

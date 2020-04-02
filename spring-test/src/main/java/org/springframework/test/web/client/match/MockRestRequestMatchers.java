@@ -26,7 +26,7 @@ import static org.springframework.test.util.AssertionErrors.fail;
  * provide input for {@link MockRestServiceServer#expect(RequestMatcher)}.
  *
  * <h3>Eclipse Users</h3>
- * <p>Consider adding this class as a Java editor favorite. To navigate to
+ * Consider adding this class as a Java editor favorite. To navigate to
  * this setting, open the Preferences and type "favorites".
  *
  * @author Craig Walls

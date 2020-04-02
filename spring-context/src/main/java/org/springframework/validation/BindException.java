@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
  * {@link BindingResult} interface (and its super-interface {@link Errors})
  * to allow for the direct analysis of binding errors.
  *
- * <p>As of Spring 2.0, this is a special-purpose class. Normally,
+ * As of Spring 2.0, this is a special-purpose class. Normally,
  * application code will work with the {@link BindingResult} interface,
  * or with a {@link DataBinder} that in turn exposes a BindingResult via
  * {@link org.springframework.validation.DataBinder#getBindingResult()}.

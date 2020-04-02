@@ -16,7 +16,7 @@ import org.springframework.util.StringUtils;
  * be used based on the value of {@link EnableCaching#mode} on the importing
  * {@code @Configuration} class.
  *
- * <p>Detects the presence of JSR-107 and enables JCache support accordingly.
+ * Detects the presence of JSR-107 and enables JCache support accordingly.
 
  * @author Stephane Nicoll
  * @since 3.1
@@ -65,7 +65,7 @@ public class CachingConfigurationSelector extends AdviceModeImportSelector<Enabl
 
 	/**
 	 * Return the imports to use if the {@link AdviceMode} is set to {@link AdviceMode#PROXY}.
-	 * <p>Take care of adding the necessary JSR-107 import if it is available.
+	 * Take care of adding the necessary JSR-107 import if it is available.
 	 */
 	private String[] getProxyImports() {
 		List<String> result = new ArrayList<>(3);
@@ -79,7 +79,7 @@ public class CachingConfigurationSelector extends AdviceModeImportSelector<Enabl
 
 	/**
 	 * Return the imports to use if the {@link AdviceMode} is set to {@link AdviceMode#ASPECTJ}.
-	 * <p>Take care of adding the necessary JSR-107 import if it is available.
+	 * Take care of adding the necessary JSR-107 import if it is available.
 	 */
 	private String[] getAspectJImports() {
 		List<String> result = new ArrayList<>(2);

@@ -30,7 +30,7 @@ import org.springframework.util.CommonsLogWriter;
 /**
  * General stream-based protocol exporter for a Hessian endpoint.
  *
- * <p>Hessian is a slim, binary RPC protocol.
+ * Hessian is a slim, binary RPC protocol.
  * For information on Hessian, see the
  * <a href="http://hessian.caucho.com">Hessian website</a>.
  * <b>Note: As of Spring 4.0, this exporter requires Hessian 4.0 or above.</b>
@@ -62,7 +62,7 @@ public class HessianExporter extends RemoteExporter implements InitializingBean 
 
 	/**
 	 * Specify the Hessian SerializerFactory to use.
-	 * <p>This will typically be passed in as an inner bean definition
+	 * This will typically be passed in as an inner bean definition
 	 * of type {@code com.caucho.hessian.io.SerializerFactory},
 	 * with custom bean property values applied.
 	 */

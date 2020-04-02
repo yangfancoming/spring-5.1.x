@@ -11,11 +11,11 @@ import org.springframework.aop.Advisor;
  * Interface allowing extension to the Spring AOP framework to allow
  * handling of new Advisors and Advice types.
  *
- * <p>Implementing objects can create AOP Alliance Interceptors from
+ * Implementing objects can create AOP Alliance Interceptors from
  * custom advice types, enabling these advice types to be used
  * in the Spring AOP framework, which uses interception under the covers.
  *
- * <p>There is no need for most Spring users to implement this interface;
+ * There is no need for most Spring users to implement this interface;
  * do so only if you need to introduce more Advisor or Advice types to Spring.
  */
 public interface AdvisorAdapter {
@@ -34,7 +34,7 @@ public interface AdvisorAdapter {
 	/**
 	 * Return an AOP Alliance MethodInterceptor exposing the behavior of
 	 * the given advice to an interception-based AOP framework.
-	 * <p>Don't worry about any Pointcut contained in the Advisor;
+	 * Don't worry about any Pointcut contained in the Advisor;
 	 * the AOP framework will take care of checking the pointcut.
 	 * @param advisor the Advisor. The supportsAdvice() method must have
 	 * returned true on this object

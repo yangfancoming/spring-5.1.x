@@ -27,9 +27,9 @@ public class IdTimestampMessageHeaderInitializer implements MessageHeaderInitial
 	/**
 	 * Configure the IdGenerator strategy to initialize {@code MessageHeaderAccessor}
 	 * instances with.
-	 * <p>By default this property is set to {@code null} in which case the default
+	 * By default this property is set to {@code null} in which case the default
 	 * IdGenerator of {@link org.springframework.messaging.MessageHeaders} is used.
-	 * <p>To have no ids generated at all, see {@link #setDisableIdGeneration()}.
+	 * To have no ids generated at all, see {@link #setDisableIdGeneration()}.
 	 */
 	public void setIdGenerator(@Nullable IdGenerator idGenerator) {
 		this.idGenerator = idGenerator;
@@ -55,7 +55,7 @@ public class IdTimestampMessageHeaderInitializer implements MessageHeaderInitial
 	 * Whether to enable the automatic addition of the
 	 * {@link org.springframework.messaging.MessageHeaders#TIMESTAMP} header on
 	 * {@code MessageHeaderAccessor} instances being initialized.
-	 * <p>By default this property is set to false.
+	 * By default this property is set to false.
 	 */
 	public void setEnableTimestamp(boolean enableTimestamp) {
 		this.enableTimestamp = enableTimestamp;

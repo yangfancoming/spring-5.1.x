@@ -12,11 +12,11 @@ import org.springframework.lang.Nullable;
  * have been processed. This type of selector can be particularly useful when the selected
  * imports are {@code @Conditional}.
  *
- * <p>Implementations can also extend the {@link org.springframework.core.Ordered}
+ * Implementations can also extend the {@link org.springframework.core.Ordered}
  * interface or use the {@link org.springframework.core.annotation.Order} annotation to
  * indicate a precedence against other {@link DeferredImportSelector DeferredImportSelectors}.
  *
- * <p>Implementations may also provide an {@link #getImportGroup() import group} which
+ * Implementations may also provide an {@link #getImportGroup() import group} which
  * can provide additional sorting and filtering logic across different selectors.
  *
  * @author Phillip Webb
@@ -27,7 +27,7 @@ public interface DeferredImportSelector extends ImportSelector {
 
 	/**
 	 * Return a specific import group.
-	 * <p>The default implementations return {@code null} for no grouping required.
+	 * The default implementations return {@code null} for no grouping required.
 	 * @return the import group class, or {@code null} if none
 	 * @since 5.0
 	 */

@@ -378,7 +378,7 @@ final class MethodWriter extends MethodVisitor {
    * The first non standard attribute of the Code attribute. The next ones can be accessed with the
    * {@link Attribute#nextAttribute} field. May be {@literal null}.
    *
-   * <p><b>WARNING</b>: this list stores the attributes in the <i>reverse</i> order of their visit.
+   * <b>WARNING</b>: this list stores the attributes in the <i>reverse</i> order of their visit.
    * firstAttribute is actually the last attribute visited in {@link #visitAttribute}. The {@link
    * #putMethodInfo} method writes the attributes in the order defined by this list, i.e. in the
    * reverse order specified by the user.
@@ -453,7 +453,7 @@ final class MethodWriter extends MethodVisitor {
    * The first non standard attribute of this method. The next ones can be accessed with the {@link
    * Attribute#nextAttribute} field. May be {@literal null}.
    *
-   * <p><b>WARNING</b>: this list stores the attributes in the <i>reverse</i> order of their visit.
+   * <b>WARNING</b>: this list stores the attributes in the <i>reverse</i> order of their visit.
    * firstAttribute is actually the last attribute visited in {@link #visitAttribute}. The {@link
    * #putMethodInfo} method writes the attributes in the order defined by this list, i.e. in the
    * reverse order specified by the user.
@@ -1793,7 +1793,7 @@ final class MethodWriter extends MethodVisitor {
    * Ends the current basic block. This method must be used in the case where the current basic
    * block does not have any successor.
    *
-   * <p>WARNING: this method must be called after the currently visited instruction has been put in
+   * WARNING: this method must be called after the currently visited instruction has been put in
    * {@link #code} (if frames are computed, this method inserts a new Label to start a new basic
    * block after the current instruction).
    */

@@ -7,7 +7,7 @@ package org.springframework.dao;
  * the database API in use but most likely thrown after the database interrupts or stops
  * the processing of a query before it has completed.
  *
- * <p>This exception can be thrown by user code trapping the native database exception or
+ * This exception can be thrown by user code trapping the native database exception or
  * by exception translation.
  *
  * @author Thomas Risberg

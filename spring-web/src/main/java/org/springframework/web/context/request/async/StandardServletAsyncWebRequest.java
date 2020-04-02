@@ -19,7 +19,7 @@ import org.springframework.web.context.request.ServletWebRequest;
 /**
  * A Servlet 3.0 implementation of {@link AsyncWebRequest}.
  *
- * <p>The servlet and all filters involved in an async request must have async
+ * The servlet and all filters involved in an async request must have async
  * support enabled using the Servlet API or by adding an
  * <code>&ltasync-supported&gttrue&lt/async-supported&gt</code> element to servlet and filter
  * declarations in {@code web.xml}.
@@ -84,7 +84,7 @@ public class StandardServletAsyncWebRequest extends ServletWebRequest implements
 
 	/**
 	 * Whether async request processing has completed.
-	 * <p>It is important to avoid use of request and response objects after async
+	 * It is important to avoid use of request and response objects after async
 	 * processing has completed. Servlet containers often re-use them.
 	 */
 	@Override

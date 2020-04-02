@@ -32,7 +32,7 @@ import org.springframework.util.Assert;
  * the {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}
  * interface in order to allow for applying any bean definition readers to it.
  *
- * <p>Typical usage is to register a variety of bean definitions via the
+ * Typical usage is to register a variety of bean definitions via the
  * {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}
  * interface and then call {@link #refresh()} to initialize those beans
  * with application context semantics (handling
@@ -40,12 +40,12 @@ import org.springframework.util.Assert;
  * {@link org.springframework.beans.factory.config.BeanFactoryPostProcessor BeanFactoryPostProcessors},
  * etc).
  *
- * <p>In contrast to other ApplicationContext implementations that create a new
+ * In contrast to other ApplicationContext implementations that create a new
  * internal BeanFactory instance for each refresh, the internal BeanFactory of
  * this context is available right from the start, to be able to register bean
  * definitions on it. {@link #refresh()} may only be called once.
  *
- * <p>Usage example:
+ * Usage example:
  *
  * <pre class="code">
  * GenericApplicationContext ctx = new GenericApplicationContext();
@@ -65,7 +65,7 @@ import org.springframework.util.Assert;
  * definition formats. The equivalent in a web environment is
  * {@link org.springframework.web.context.support.XmlWebApplicationContext}.
  *
- * <p>For custom application context implementations that are supposed to read
+ * For custom application context implementations that are supposed to read
  * special bean definition formats in a refreshable manner, consider deriving
  * from the {@link AbstractRefreshableApplicationContext} base class.
 
@@ -155,7 +155,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	/**
 	 * Set whether to allow circular references between beans - and automatically
 	 * try to resolve them.
-	 * <p>Default is "true". Turn this off to throw an exception when encountering
+	 * Default is "true". Turn this off to throw an exception when encountering
 	 * a circular reference, disallowing them completely.
 	 * @since 3.0
 	 * @see org.springframework.beans.factory.support.DefaultListableBeanFactory#setAllowCircularReferences
@@ -168,12 +168,12 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	 * Set a ResourceLoader to use for this context. If set, the context will
 	 * delegate all {@code getResource} calls to the given ResourceLoader.
 	 * If not set, default resource loading will apply.
-	 * <p>The main reason to specify a custom ResourceLoader is to resolve
+	 * The main reason to specify a custom ResourceLoader is to resolve
 	 * resource paths (without URL prefix) in a specific fashion.
 	 * The default behavior is to resolve such paths as class path locations.
 	 * To resolve resource paths as file system locations, specify a
 	 * FileSystemResourceLoader here.
-	 * <p>You can also pass in a full ResourcePatternResolver, which will
+	 * You can also pass in a full ResourcePatternResolver, which will
 	 * be autodetected by the context and used for {@code getResources}
 	 * calls as well. Else, default resource pattern matching will apply.
 	 * @see #getResource
@@ -278,7 +278,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	/**
 	 * Return the underlying bean factory of this context,
 	 * available for registering bean definitions.
-	 * <p><b>NOTE:</b> You need to call {@link #refresh()} to initialize the
+	 * <b>NOTE:</b> You need to call {@link #refresh()} to initialize the
 	 * bean factory and its contained beans with application context semantics
 	 * (autodetecting BeanFactoryPostProcessors, etc).
 	 * @return the internal bean factory (as DefaultListableBeanFactory)
@@ -388,7 +388,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	 * obtaining a new instance (typically declared as a lambda expression or
 	 * method reference), optionally customizing its bean definition metadata
 	 * (again typically declared as a lambda expression).
-	 * <p>This method can be overridden to adapt the registration mechanism for
+	 * This method can be overridden to adapt the registration mechanism for
 	 * all {@code registerBean} methods (since they all delegate to this one).
 	 * @param beanName the name of the bean (may be {@code null})
 	 * @param beanClass the class of the bean

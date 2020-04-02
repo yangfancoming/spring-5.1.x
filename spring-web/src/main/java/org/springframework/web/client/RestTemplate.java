@@ -54,11 +54,11 @@ import org.springframework.web.util.UriTemplateHandler;
  * method API over underlying HTTP client libraries such as the JDK
  * {@code HttpURLConnection}, Apache HttpComponents, and others.
  *
- * <p>The RestTemplate offers templates for common scenarios by HTTP method, in
+ * The RestTemplate offers templates for common scenarios by HTTP method, in
  * addition to the generalized {@code exchange} and {@code execute} methods that
  * support of less frequent cases.
  *
- * <p><strong>NOTE:</strong> As of 5.0, the non-blocking, reactive
+ * <strong>NOTE:</strong> As of 5.0, the non-blocking, reactive
  * {@code org.springframework.web.reactive.client.WebClient} offers a
  * modern alternative to the {@code RestTemplate} with efficient support for
  * both sync and async, as well as streaming scenarios. The {@code RestTemplate}
@@ -194,7 +194,7 @@ public class RestTemplate extends InterceptingHttpAccessor implements RestOperat
 
 	/**
 	 * Set the message body converters to use.
-	 * <p>These converters are used to convert from and to HTTP requests and responses.
+	 * These converters are used to convert from and to HTTP requests and responses.
 	 */
 	public void setMessageConverters(List<HttpMessageConverter<?>> messageConverters) {
 		Assert.notEmpty(messageConverters, "At least one HttpMessageConverter required");
@@ -207,7 +207,7 @@ public class RestTemplate extends InterceptingHttpAccessor implements RestOperat
 
 	/**
 	 * Return the list of message body converters.
-	 * <p>The returned {@link List} is active and may get appended to.
+	 * The returned {@link List} is active and may get appended to.
 	 */
 	public List<HttpMessageConverter<?>> getMessageConverters() {
 		return this.messageConverters;
@@ -215,7 +215,7 @@ public class RestTemplate extends InterceptingHttpAccessor implements RestOperat
 
 	/**
 	 * Set the error handler.
-	 * <p>By default, RestTemplate uses a {@link DefaultResponseErrorHandler}.
+	 * By default, RestTemplate uses a {@link DefaultResponseErrorHandler}.
 	 */
 	public void setErrorHandler(ResponseErrorHandler errorHandler) {
 		Assert.notNull(errorHandler, "ResponseErrorHandler must not be null");
@@ -258,11 +258,11 @@ public class RestTemplate extends InterceptingHttpAccessor implements RestOperat
 
 	/**
 	 * Configure a strategy for expanding URI templates.
-	 * <p>By default, {@link DefaultUriBuilderFactory} is used and for
+	 * By default, {@link DefaultUriBuilderFactory} is used and for
 	 * backwards compatibility, the encoding mode is set to
 	 * {@link EncodingMode#URI_COMPONENT URI_COMPONENT}. As of 5.0.8, prefer
 	 * using {@link EncodingMode#TEMPLATE_AND_VALUES TEMPLATE_AND_VALUES}.
-	 * <p><strong>Note:</strong> in 5.0 the switch from
+	 * <strong>Note:</strong> in 5.0 the switch from
 	 * {@link org.springframework.web.util.DefaultUriTemplateHandler
 	 * DefaultUriTemplateHandler} (deprecated in 4.3), as the default to use, to
 	 * {@link DefaultUriBuilderFactory} brings in a different default for the
@@ -634,7 +634,7 @@ public class RestTemplate extends InterceptingHttpAccessor implements RestOperat
 
 	/**
 	 * {@inheritDoc}
-	 * <p>To provide a {@code RequestCallback} or {@code ResponseExtractor} only,
+	 * To provide a {@code RequestCallback} or {@code ResponseExtractor} only,
 	 * but not both, consider using:
 	 * <ul>
 	 * <li>{@link #acceptHeaderRequestCallback(Class)}
@@ -654,7 +654,7 @@ public class RestTemplate extends InterceptingHttpAccessor implements RestOperat
 
 	/**
 	 * {@inheritDoc}
-	 * <p>To provide a {@code RequestCallback} or {@code ResponseExtractor} only,
+	 * To provide a {@code RequestCallback} or {@code ResponseExtractor} only,
 	 * but not both, consider using:
 	 * <ul>
 	 * <li>{@link #acceptHeaderRequestCallback(Class)}
@@ -675,7 +675,7 @@ public class RestTemplate extends InterceptingHttpAccessor implements RestOperat
 
 	/**
 	 * {@inheritDoc}
-	 * <p>To provide a {@code RequestCallback} or {@code ResponseExtractor} only,
+	 * To provide a {@code RequestCallback} or {@code ResponseExtractor} only,
 	 * but not both, consider using:
 	 * <ul>
 	 * <li>{@link #acceptHeaderRequestCallback(Class)}
@@ -694,7 +694,7 @@ public class RestTemplate extends InterceptingHttpAccessor implements RestOperat
 
 	/**
 	 * Execute the given method on the provided URI.
-	 * <p>The {@link ClientHttpRequest} is processed using the {@link RequestCallback};
+	 * The {@link ClientHttpRequest} is processed using the {@link RequestCallback};
 	 * the response with the {@link ResponseExtractor}.
 	 * @param url the fully-expanded URL to connect to
 	 * @param method the HTTP method to execute (GET, POST, etc.)
@@ -735,7 +735,7 @@ public class RestTemplate extends InterceptingHttpAccessor implements RestOperat
 	/**
 	 * Handle the given response, performing appropriate logging and
 	 * invoking the {@link ResponseErrorHandler} if necessary.
-	 * <p>Can be overridden in subclasses.
+	 * Can be overridden in subclasses.
 	 * @param url the fully-expanded URL to connect to
 	 * @param method the HTTP method to execute (GET, POST, etc.)
 	 * @param response the resulting {@link ClientHttpResponse}

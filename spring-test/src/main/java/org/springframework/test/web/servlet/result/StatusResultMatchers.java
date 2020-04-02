@@ -14,7 +14,7 @@ import static org.springframework.test.util.AssertionErrors.assertEquals;
 /**
  * Factory for assertions on the response status.
  *
- * <p>An instance of this class is typically accessed via
+ * An instance of this class is typically accessed via
  * {@link MockMvcResultMatchers#status}.
  *
  * @author Keesun Baik

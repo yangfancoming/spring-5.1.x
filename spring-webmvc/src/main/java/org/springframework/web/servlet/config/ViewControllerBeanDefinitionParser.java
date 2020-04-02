@@ -28,7 +28,7 @@ import org.springframework.web.servlet.view.RedirectView;
  * <li>{@code <status-controller>}
  * </ul>
  *
- * <p>All elements result in the registration of a
+ * All elements result in the registration of a
  * {@link org.springframework.web.servlet.mvc.ParameterizableViewController
  * ParameterizableViewController} with all controllers mapped using in a single
  * {@link org.springframework.web.servlet.handler.SimpleUrlHandlerMapping

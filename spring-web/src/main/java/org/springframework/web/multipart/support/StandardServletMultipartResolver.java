@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartResolver;
  * To be added as "multipartResolver" bean to a Spring DispatcherServlet context,
  * without any extra configuration at the bean level (see below).
  *
- * <p><b>Note:</b> In order to use Servlet 3.0 based multipart parsing,
+ * <b>Note:</b> In order to use Servlet 3.0 based multipart parsing,
  * you need to mark the affected servlet with a "multipart-config" section in
  * {@code web.xml}, or with a {@link javax.servlet.MultipartConfigElement}
  * in programmatic servlet registration, or (in case of a custom servlet class)
@@ -52,7 +52,7 @@ public class StandardServletMultipartResolver implements MultipartResolver {
 	/**
 	 * Set whether to resolve the multipart request lazily at the time of
 	 * file or parameter access.
-	 * <p>Default is "false", resolving the multipart elements immediately, throwing
+	 * Default is "false", resolving the multipart elements immediately, throwing
 	 * corresponding exceptions at the time of the {@link #resolveMultipart} call.
 	 * Switch this to "true" for lazy multipart parsing, throwing parse exceptions
 	 * once the application attempts to obtain multipart files or parameters.

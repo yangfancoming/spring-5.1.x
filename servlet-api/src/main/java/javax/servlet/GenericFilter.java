@@ -6,21 +6,21 @@ import java.util.Enumeration;
 import java.util.ResourceBundle;
 
 /**
- * <p>Defines a generic, protocol-independent
+ * Defines a generic, protocol-independent
  * filter. To write an HTTP filter for use on the
  * Web, extend {@link javax.servlet.http.HttpFilter} instead.</p>
  * 对于web应用，只需要继承HttpFilter即可
- * <p><code>GenericFilter</code> implements the <code>Filter</code>
+ * <code>GenericFilter</code> implements the <code>Filter</code>
  * and <code>FilterConfig</code> interfaces. <code>GenericFilter</code>
  * may be directly extended by a filter, although it's more common to extend
  * a protocol-specific subclass such as <code>HttpFilter</code>.
- * <p>
- * <p><code>GenericFilter</code> makes writing filters
+ *
+ * <code>GenericFilter</code> makes writing filters
  * easier. It provides simple versions of the lifecycle methods
  * <code>init</code> and <code>destroy</code> and of the methods
  * in the <code>FilterConfig</code> interface.
- * <p>
- * <p>To write a generic filter, you need only
+ *
+ * To write a generic filter, you need only
  * override the abstract <code>doFilter</code> method.
  *
  * @author Various
@@ -37,7 +37,7 @@ public abstract class GenericFilter
 
 
     /**
-     * <p>Does nothing. All of the filter initialization
+     * Does nothing. All of the filter initialization
      * is done by one of the <code>init</code> methods.</p>
      *
      * @since Servlet 4.0
@@ -47,11 +47,11 @@ public abstract class GenericFilter
 
 
     /**
-     * <p>Returns a <code>String</code> containing the value of the named
+     * Returns a <code>String</code> containing the value of the named
      * initialization parameter, or <code>null</code> if the parameter does
      * not exist.  See {@link FilterConfig#getInitParameter}.</p>
-     * <p>
-     * <p>This method is supplied for convenience. It gets the
+     *
+     * This method is supplied for convenience. It gets the
      * value of the named parameter from the servlet's
      * <code>ServletConfig</code> object.
      *
@@ -74,13 +74,13 @@ public abstract class GenericFilter
 
 
     /**
-     * <p>Returns the names of the filter's initialization parameters
+     * Returns the names of the filter's initialization parameters
      * as an <code>Enumeration</code> of <code>String</code> objects,
      * or an empty <code>Enumeration</code> if the filter has no
      * initialization parameters.  See {@link
      * FilterConfig#getInitParameterNames}.</p>
-     * <p>
-     * <p>This method is supplied for convenience. It gets the
+     *
+     * This method is supplied for convenience. It gets the
      * parameter names from the filter's <code>FilterConfig</code> object.
      *
      * @return Enumeration    an enumeration of <code>String</code>
@@ -101,7 +101,7 @@ public abstract class GenericFilter
 
 
     /**
-     * <p>Returns this servlet's {@link ServletConfig} object.</p>
+     * Returns this servlet's {@link ServletConfig} object.</p>
      *
      * @return FilterConfig    the <code>FilterConfig</code> object
      * that initialized this filter
@@ -113,10 +113,10 @@ public abstract class GenericFilter
 
 
     /**
-     * <p>Returns a reference to the {@link ServletContext} in which this filter
+     * Returns a reference to the {@link ServletContext} in which this filter
      * is running.  See {@link FilterConfig#getServletContext}.</p>
-     * <p>
-     * <p>This method is supplied for convenience. It gets the
+     *
+     * This method is supplied for convenience. It gets the
      * context from the filter's <code>FilterConfig</code> object.
      *
      * @return ServletContext    the <code>ServletContext</code> object
@@ -137,10 +137,10 @@ public abstract class GenericFilter
 
 
     /**
-     * <p>Called by the servlet container to indicate to a filter that
+     * Called by the servlet container to indicate to a filter that
      * it is being placed into service.  See {@link Filter#init}.</p>
-     * <p>
-     * <p>This implementation stores the {@link FilterConfig}
+     *
+     * This implementation stores the {@link FilterConfig}
      * object it receives from the servlet container for later use.
      * When overriding this form of the method, call
      * <code>super.init(config)</code>.
@@ -161,10 +161,10 @@ public abstract class GenericFilter
     }
 
     /**
-     * <p>A convenience method which can be overridden so that there's no need
+     * A convenience method which can be overridden so that there's no need
      * to call <code>super.init(config)</code>.</p>
-     * <p>
-     * <p>Instead of overriding {@link #init(FilterConfig)}, simply override
+     *
+     * Instead of overriding {@link #init(FilterConfig)}, simply override
      * this method and it will be called by
      * <code>GenericFilter.init(FilterConfig config)</code>.
      * The <code>FilterConfig</code> object can still be retrieved via {@link
@@ -181,7 +181,7 @@ public abstract class GenericFilter
 
 
     /**
-     * <p>Returns the name of this filter instance.
+     * Returns the name of this filter instance.
      * See {@link FilterConfig#getFilterName}.</p>
      *
      * @return the name of this filter instance

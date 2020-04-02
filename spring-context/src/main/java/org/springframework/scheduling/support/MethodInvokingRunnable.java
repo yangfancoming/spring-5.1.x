@@ -17,7 +17,7 @@ import org.springframework.util.ClassUtils;
  * Adapter that implements the {@link Runnable} interface as a configurable
  * method invocation based on Spring's MethodInvoker.
  *
- * <p>Inherits common configuration properties from
+ * Inherits common configuration properties from
  * {@link org.springframework.util.MethodInvoker}.
  *
 

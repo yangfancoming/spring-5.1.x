@@ -15,7 +15,7 @@ import org.springframework.web.server.handler.ResponseStatusExceptionHandler;
  * {@link ResponseStatus @ResponseStatus} by determining the HTTP status
  * for them and updating the status of the response accordingly.
  *
- * <p>If the response is already committed, the error remains unresolved
+ * If the response is already committed, the error remains unresolved
  * and is propagated.
  *
 

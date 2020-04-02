@@ -35,7 +35,7 @@ import org.springframework.util.StringUtils;
  * A basic {@link ConfigurablePropertyAccessor} that provides the necessary
  * infrastructure for all typical use cases.
  *
- * <p>This accessor will convert collection and array values to the corresponding
+ * This accessor will convert collection and array values to the corresponding
  * target collections or arrays, if necessary. Custom property editors that deal
  * with collections or arrays can either be written via PropertyEditor's
  * {@code setValue}, or against a comma-delimited String via {@code setAsText},
@@ -141,7 +141,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 
 	/**
 	 * Specify a limit for array and collection auto-growing.
-	 * <p>Default is unlimited on a plain accessor.
+	 * Default is unlimited on a plain accessor.
 	 */
 	public void setAutoGrowCollectionLimit(int autoGrowCollectionLimit) {
 		this.autoGrowCollectionLimit = autoGrowCollectionLimit;
@@ -775,7 +775,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	/**
 	 * Retrieve a Property accessor for the given nested property.
 	 * Create a new one if not found in the cache.
-	 * <p>Note: Caching nested PropertyAccessors is necessary now,
+	 * Note: Caching nested PropertyAccessors is necessary now,
 	 * to keep registered custom editors for nested properties.
 	 * @param nestedProperty property to create the PropertyAccessor for
 	 * @return the PropertyAccessor instance, either cached or newly created

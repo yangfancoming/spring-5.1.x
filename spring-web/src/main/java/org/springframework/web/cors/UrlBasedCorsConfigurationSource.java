@@ -17,7 +17,7 @@ import org.springframework.web.util.UrlPathHelper;
  * Provide a per request {@link CorsConfiguration} instance based on a
  * collection of {@link CorsConfiguration} mapped on path patterns.
  *
- * <p>Exact path mapping URIs (such as {@code "/admin"}) are supported
+ * Exact path mapping URIs (such as {@code "/admin"}) are supported
  * as well as Ant-style path patterns (such as {@code "/admin/**"}).
  *
  * @author Sebastien Deleuze
@@ -68,7 +68,7 @@ public class UrlBasedCorsConfigurationSource implements CorsConfigurationSource 
 
 	/**
 	 * Set the UrlPathHelper to use for resolution of lookup paths.
-	 * <p>Use this to override the default UrlPathHelper with a custom subclass.
+	 * Use this to override the default UrlPathHelper with a custom subclass.
 	 */
 	public void setUrlPathHelper(UrlPathHelper urlPathHelper) {
 		Assert.notNull(urlPathHelper, "UrlPathHelper must not be null");

@@ -13,14 +13,14 @@ import java.lang.annotation.Target;
  * Test annotation to indicate whether a test is enabled or disabled for a
  * specific testing profile.
  *
- * <p>In the context of this annotation, the term <em>profile</em> refers to
+ * In the context of this annotation, the term <em>profile</em> refers to
  * a Java system property by default; however, the semantics can be changed
  * by implementing a custom {@link ProfileValueSource}. If the configured
  * {@code ProfileValueSource} returns a matching {@link #value} for the
  * declared {@link #name}, the test will be enabled. Otherwise, the test
  * will be disabled and effectively <em>ignored</em>.
  *
- * <p>{@code @IfProfileValue} can be applied at the class level, the method
+ * {@code @IfProfileValue} can be applied at the class level, the method
  * level, or both. Class-level usage of {@code @IfProfileValue} takes
  * precedence over method-level usage for any methods within that class or
  * its subclasses. Specifically, a test is enabled if it is enabled both at
@@ -42,7 +42,7 @@ import java.lang.annotation.Target;
  * }</pre>
  *
  * <h3>'OR' Semantics</h3>
- * <p>You can alternatively configure {@code @IfProfileValue} with <em>OR</em>
+ * You can alternatively configure {@code @IfProfileValue} with <em>OR</em>
  * semantics for multiple {@link #values}. The following test will be enabled
  * if a {@code ProfileValueSource} has been appropriately configured for the
  * {@code "test-groups"} profile with a value of either {@code unit-tests}
@@ -57,7 +57,7 @@ import java.lang.annotation.Target;
  * }</pre>
  *
  * <h3>{@code @IfProfileValue} vs. {@code @Profile}</h3>
- * <p>Although the {@code @IfProfileValue} and
+ * Although the {@code @IfProfileValue} and
  * {@link org.springframework.context.annotation.Profile @Profile} annotations
  * both involve <em>profiles</em>, they are not directly related. {@code @Profile}
  * involves bean definition profiles configured in the
@@ -65,7 +65,7 @@ import java.lang.annotation.Target;
  * {@code @IfProfileValue} is used to enable or disable tests.
  *
  * <h3>Meta-annotation Support</h3>
- * <p>As of Spring Framework 4.0, this annotation may be used as a
+ * As of Spring Framework 4.0, this annotation may be used as a
  * <em>meta-annotation</em> to create custom <em>composed annotations</em>.
  *
  * @author Rod Johnson
@@ -95,7 +95,7 @@ public @interface IfProfileValue {
 	/**
 	 * A single, permissible {@code value} of the <em>profile value</em>
 	 * for the given {@link #name}.
-	 * <p>Note: Assigning values to both {@code #value} and {@link #values}
+	 * Note: Assigning values to both {@code #value} and {@link #values}
 	 * will lead to a configuration conflict.
 	 */
 	String value() default "";
@@ -103,7 +103,7 @@ public @interface IfProfileValue {
 	/**
 	 * A list of all permissible {@code values} of the <em>profile value</em>
 	 * for the given {@link #name}.
-	 * <p>Note: Assigning values to both {@link #value} and {@code #values}
+	 * Note: Assigning values to both {@link #value} and {@code #values}
 	 * will lead to a configuration conflict.
 	 */
 	String[] values() default {};

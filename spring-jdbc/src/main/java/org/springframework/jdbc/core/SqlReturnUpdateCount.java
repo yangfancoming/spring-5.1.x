@@ -6,7 +6,7 @@ import java.sql.Types;
 
 /**
  * Represents a returned update count from a stored procedure call.
- * <p>Returned update counts - like all stored procedure
+ * Returned update counts - like all stored procedure
  * parameters - <b>must</b> have names.
  */
 public class SqlReturnUpdateCount extends SqlParameter {

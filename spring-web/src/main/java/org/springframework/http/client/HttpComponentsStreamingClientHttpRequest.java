@@ -25,7 +25,7 @@ import org.springframework.lang.Nullable;
  * {@link ClientHttpRequest} implementation based on
  * Apache HttpComponents HttpClient in streaming mode.
  *
- * <p>Created via the {@link HttpComponentsClientHttpRequestFactory}.
+ * Created via the {@link HttpComponentsClientHttpRequestFactory}.
  *
  * @author Arjen Poutsma
  * @since 4.0

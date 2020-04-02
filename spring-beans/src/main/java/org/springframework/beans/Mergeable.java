@@ -24,7 +24,7 @@ public interface Mergeable {
 
 	/**
 	 * Merge the current value set with that of the supplied object.
-	 * <p>The supplied object is considered the parent, and values in
+	 * The supplied object is considered the parent, and values in
 	 * the callee's value set must override those of the supplied object.
 	 * @param parent the object to merge with
 	 * @return the result of the merge operation

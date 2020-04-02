@@ -124,7 +124,7 @@ public abstract class DomUtils {
 
 	/**
 	 * Extracts the text value from the given DOM element, ignoring XML comments.
-	 * <p>Appends all CharacterData nodes and EntityReference nodes into a single
+	 * Appends all CharacterData nodes and EntityReference nodes into a single
 	 * String value, excluding Comment nodes. Only exposes actual user-specified
 	 * text, no default values of any kind.
 	 * @see CharacterData

@@ -344,7 +344,7 @@ public final class ContentDisposition {
 
 	/**
 	 * Decode the given header field param as describe in RFC 5987.
-	 * <p>Only the US-ASCII, UTF-8 and ISO-8859-1 charsets are supported.
+	 * Only the US-ASCII, UTF-8 and ISO-8859-1 charsets are supported.
 	 * @param input the header field param
 	 * @return the encoded header field param
 	 * @see <a href="https://tools.ietf.org/html/rfc5987">RFC 5987</a>
@@ -443,7 +443,7 @@ public final class ContentDisposition {
 		 * Set the value of the {@literal filename*} that will be encoded as
 		 * defined in the RFC 5987. Only the US-ASCII, UTF-8 and ISO-8859-1
 		 * charsets are supported.
-		 * <p><strong>Note:</strong> Do not use this for a
+		 * <strong>Note:</strong> Do not use this for a
 		 * {@code "multipart/form-data"} requests as per
 		 * <a link="https://tools.ietf.org/html/rfc7578#section-4.2">RFC 7578, Section 4.2</a>
 		 * and also RFC 5987 itself mentions it does not apply to multipart

@@ -7,7 +7,7 @@ import org.skyscreamer.jsonassert.JSONAssert;
 /**
  * A helper class for assertions on JSON content.
  *
- * <p>Use of this class requires the <a
+ * Use of this class requires the <a
  * href="https://jsonassert.skyscreamer.org/">JSONassert</a> library.
  *
  * @author Sebastien Deleuze
@@ -33,7 +33,7 @@ public class JsonExpectationsHelper {
 	 * Parse the expected and actual strings as JSON and assert the two
 	 * are "similar" - i.e. they contain the same attribute-value pairs
 	 * regardless of formatting.
-	 * <p>Can compare in two modes, depending on {@code strict} parameter value:
+	 * Can compare in two modes, depending on {@code strict} parameter value:
 	 * <ul>
 	 * <li>{@code true}: strict checking. Not extensible, and strict array ordering.</li>
 	 * <li>{@code false}: lenient checking. Extensible, and non-strict array ordering.</li>
@@ -65,7 +65,7 @@ public class JsonExpectationsHelper {
 	 * Parse the expected and actual strings as JSON and assert the two
 	 * are "not similar" - i.e. they contain different attribute-value pairs
 	 * regardless of formatting.
-	 * <p>Can compare in two modes, depending on {@code strict} parameter value:
+	 * Can compare in two modes, depending on {@code strict} parameter value:
 	 * <ul>
 	 * <li>{@code true}: strict checking. Not extensible, and strict array ordering.</li>
 	 * <li>{@code false}: lenient checking. Extensible, and non-strict array ordering.</li>

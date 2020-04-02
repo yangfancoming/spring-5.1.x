@@ -14,7 +14,7 @@ import java.util.Map;
  * that can be subclassed by developers wishing to adapt the request to a
  * Servlet.
  *
- * <p>This class implements the Wrapper or Decorator pattern. Methods default
+ * This class implements the Wrapper or Decorator pattern. Methods default
  * to calling through to the wrapped request object.
  * 
  * @see javax.servlet.http.HttpServletRequest
@@ -102,7 +102,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * <p>The default behavior of this method is to
+     * The default behavior of this method is to
      * return getServletMapping() on the wrapped request object.</p>
      */
      @Override
@@ -326,7 +326,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
      * The default behavior of this method is to call getParts on the wrapped
      * request object.
      *
-     * <p>Any changes to the returned <code>Collection</code> must not 
+     * Any changes to the returned <code>Collection</code> must not
      * affect this <code>HttpServletRequestWrapper</code>.
      *
      * @since Servlet 3.0

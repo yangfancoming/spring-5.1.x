@@ -10,7 +10,7 @@ import org.springframework.util.StringUtils;
  * JavaBean for holding JDBC error codes for a particular database.
  * Instances of this class are normally loaded through a bean factory.
  *
- * <p>Used by Spring's {@link SQLErrorCodeSQLExceptionTranslator}.
+ * Used by Spring's {@link SQLErrorCodeSQLExceptionTranslator}.
  * The file "sql-error-codes.xml" in this package contains default
  * {@code SQLErrorCodes} instances for various databases.
  *

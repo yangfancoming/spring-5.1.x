@@ -17,7 +17,7 @@ import org.springframework.util.ObjectUtils;
  * Converts objects to String form, generally for debugging purposes,
  * using Spring's {@code toString} styling conventions.
  *
- * <p>Uses the reflective visitor pattern underneath the hood to nicely
+ * Uses the reflective visitor pattern underneath the hood to nicely
  * encapsulate styling algorithms for each type of styled object.
  *
  * @author Keith Donald

@@ -9,7 +9,7 @@ import java.util.Locale;
 /**
  * A formatter for number values in percent style.
  *
- * <p>Delegates to {@link java.text.NumberFormat#getPercentInstance(Locale)}.
+ * Delegates to {@link java.text.NumberFormat#getPercentInstance(Locale)}.
  * Configures BigDecimal parsing so there is no loss in precision.
  * The {@link #parse(String, Locale)} routine always returns a BigDecimal.
  *

@@ -20,23 +20,23 @@ import org.springframework.util.ObjectUtils;
  * implementing common handling of message variants, making it easy
  * to implement a specific strategy for a concrete MessageSource.
  *
- * <p>Subclasses must implement the abstract {@link #resolveCode}
+ * Subclasses must implement the abstract {@link #resolveCode}
  * method. For efficient resolution of messages without arguments, the
  * {@link #resolveCodeWithoutArguments} method should be overridden
  * as well, resolving messages without a MessageFormat being involved.
  *
- * <p><b>Note:</b> By default, message texts are only parsed through
+ * <b>Note:</b> By default, message texts are only parsed through
  * MessageFormat if arguments have been passed in for the message. In case
  * of no arguments, message texts will be returned as-is. As a consequence,
  * you should only use MessageFormat escaping for messages with actual
  * arguments, and keep all other messages unescaped. If you prefer to
  * escape all messages, set the "alwaysUseMessageFormat" flag to "true".
  *
- * <p>Supports not only MessageSourceResolvables as primary messages
+ * Supports not only MessageSourceResolvables as primary messages
  * but also resolution of message arguments that are in turn
  * MessageSourceResolvables themselves.
  *
- * <p>This class does not implement caching of messages per code, thus
+ * This class does not implement caching of messages per code, thus
  * subclasses can dynamically change messages over time. Subclasses are
  * encouraged to cache their messages in a modification-aware fashion,
  * allowing for hot deployment of updated messages.
@@ -73,7 +73,7 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 	/**
 	 * Specify locale-independent common messages, with the message code as key
 	 * and the full message String (may contain argument placeholders) as value.
-	 * <p>May also link to an externally defined Properties object, e.g. defined
+	 * May also link to an externally defined Properties object, e.g. defined
 	 * through a {@link org.springframework.beans.factory.config.PropertiesFactoryBean}.
 	 */
 	public void setCommonMessages(@Nullable Properties commonMessages) {
@@ -92,12 +92,12 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 	 * Set whether to use the message code as default message instead of
 	 * throwing a NoSuchMessageException. Useful for development and debugging.
 	 * Default is "false".
-	 * <p>Note: In case of a MessageSourceResolvable with multiple codes
+	 * Note: In case of a MessageSourceResolvable with multiple codes
 	 * (like a FieldError) and a MessageSource that has a parent MessageSource,
 	 * do <i>not</i> activate "useCodeAsDefaultMessage" in the <i>parent</i>:
 	 * Else, you'll get the first code returned as message by the parent,
 	 * without attempts to check further codes.
-	 * <p>To be able to work with "useCodeAsDefaultMessage" turned on in the parent,
+	 * To be able to work with "useCodeAsDefaultMessage" turned on in the parent,
 	 * AbstractMessageSource and AbstractApplicationContext contain special checks
 	 * to delegate to the internal {@link #getMessageInternal} method if available.
 	 * In general, it is recommended to just use "useCodeAsDefaultMessage" during
@@ -113,7 +113,7 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 	 * Return whether to use the message code as default message instead of
 	 * throwing a NoSuchMessageException. Useful for development and debugging.
 	 * Default is "false".
-	 * <p>Alternatively, consider overriding the {@link #getDefaultMessage}
+	 * Alternatively, consider overriding the {@link #getDefaultMessage}
 	 * method to return a custom fallback message for an unresolvable code.
 	 * @see #getDefaultMessage(String)
 	 */
@@ -258,7 +258,7 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 
 	/**
 	 * Get a default message for the given {@code MessageSourceResolvable}.
-	 * <p>This implementation fully renders the default message if available,
+	 * This implementation fully renders the default message if available,
 	 * or just returns the plain default message {@code String} if the primary
 	 * message code is being used as a default message.
 	 * @param resolvable the value object to resolve a default message for
@@ -290,7 +290,7 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 
 	/**
 	 * Return a fallback default message for the given code, if any.
-	 * <p>Default is to return the code itself if "useCodeAsDefaultMessage" is activated,
+	 * Default is to return the code itself if "useCodeAsDefaultMessage" is activated,
 	 * or return no fallback else. In case of no fallback, the caller will usually
 	 * receive a {@code NoSuchMessageException} from {@code getMessage}.
 	 * @param code the message code that we couldn't resolve
@@ -310,7 +310,7 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 	/**
 	 * Searches through the given array of objects, finds any MessageSourceResolvable
 	 * objects and resolves them.
-	 * <p>Allows for messages to have MessageSourceResolvables as arguments.
+	 * Allows for messages to have MessageSourceResolvables as arguments.
 	 * @param args array of arguments for a message
 	 * @param locale the locale to resolve through
 	 * @return an array of arguments with any MessageSourceResolvables resolved
@@ -335,10 +335,10 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 	/**
 	 * Subclasses can override this method to resolve a message without arguments
 	 * in an optimized fashion, i.e. to resolve without involving a MessageFormat.
-	 * <p>The default implementation <i>does</i> use MessageFormat, through
+	 * The default implementation <i>does</i> use MessageFormat, through
 	 * delegating to the {@link #resolveCode} method. Subclasses are encouraged
 	 * to replace this with optimized resolution.
-	 * <p>Unfortunately, {@code java.text.MessageFormat} is not implemented
+	 * Unfortunately, {@code java.text.MessageFormat} is not implemented
 	 * in an efficient fashion. In particular, it does not detect that a message
 	 * pattern doesn't contain argument placeholders in the first place. Therefore,
 	 * it is advisable to circumvent MessageFormat for messages without arguments.
@@ -362,9 +362,9 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 
 	/**
 	 * Subclasses must implement this method to resolve a message.
-	 * <p>Returns a MessageFormat instance rather than a message String,
+	 * Returns a MessageFormat instance rather than a message String,
 	 * to allow for appropriate caching of MessageFormats in subclasses.
-	 * <p><b>Subclasses are encouraged to provide optimized resolution
+	 * <b>Subclasses are encouraged to provide optimized resolution
 	 * for messages without arguments, not involving MessageFormat.</b>
 	 * See the {@link #resolveCodeWithoutArguments} javadoc for details.
 	 * @param code the code of the message to resolve

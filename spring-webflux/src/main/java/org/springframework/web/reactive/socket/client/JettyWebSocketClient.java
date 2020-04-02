@@ -27,7 +27,7 @@ import org.springframework.web.reactive.socket.adapter.JettyWebSocketSession;
  * A {@link WebSocketClient} implementation for use with Jetty
  * {@link org.eclipse.jetty.websocket.client.WebSocketClient}.
  *
- * <p><strong>Note: </strong> the Jetty {@code WebSocketClient} requires
+ * <strong>Note: </strong> the Jetty {@code WebSocketClient} requires
  * lifecycle management and must be started and stopped. This is automatically
  * managed when this class is declared as a Spring bean and created with the
  * default constructor. See constructor notes for more details.
@@ -54,7 +54,7 @@ public class JettyWebSocketClient implements WebSocketClient, Lifecycle {
 	 * The instance can be obtained with {@link #getJettyClient()} for further
 	 * configuration.
 	 *
-	 * <p><strong>Note: </strong> When this constructor is used {@link Lifecycle}
+	 * <strong>Note: </strong> When this constructor is used {@link Lifecycle}
 	 * methods of this class are delegated to the Jetty {@code WebSocketClient}.
 	 */
 	public JettyWebSocketClient() {
@@ -66,7 +66,7 @@ public class JettyWebSocketClient implements WebSocketClient, Lifecycle {
 	 * Constructor that accepts an existing instance of a Jetty
 	 * {@link org.eclipse.jetty.websocket.client.WebSocketClient WebSocketClient}.
 	 *
-	 * <p><strong>Note: </strong> Use of this constructor implies the Jetty
+	 * <strong>Note: </strong> Use of this constructor implies the Jetty
 	 * {@code WebSocketClient} is externally managed and hence {@link Lifecycle}
 	 * methods of this class are not delegated to it.
 	 */

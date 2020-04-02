@@ -29,7 +29,7 @@ public class FluxExchangeResult<T> extends ExchangeResult {
 	/**
 	 * Return the response body as a {@code Flux<T>} of decoded elements.
 	 *
-	 * <p>The response body stream can then be consumed further with the
+	 * The response body stream can then be consumed further with the
 	 * "reactor-test" {@code StepVerifier} and cancelled when enough elements have been
 	 * consumed from the (possibly infinite) stream:
 	 *

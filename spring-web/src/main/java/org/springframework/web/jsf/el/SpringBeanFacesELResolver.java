@@ -18,7 +18,7 @@ import org.springframework.web.jsf.FacesContextUtils;
  * JSF {@code ELResolver} that delegates to the Spring root {@code WebApplicationContext},
  * resolving name references to Spring-defined beans.
  *
- * <p>Configure this resolver in your {@code faces-config.xml} file as follows:
+ * Configure this resolver in your {@code faces-config.xml} file as follows:
  *
  * <pre class="code">
  * &lt;application>
@@ -127,7 +127,7 @@ public class SpringBeanFacesELResolver extends ELResolver {
 
 	/**
 	 * Retrieve the web application context to delegate bean name resolution to.
-	 * <p>The default implementation delegates to FacesContextUtils.
+	 * The default implementation delegates to FacesContextUtils.
 	 * @param elContext the current JSF ELContext
 	 * @return the Spring web application context (never {@code null})
 	 * @see org.springframework.web.jsf.FacesContextUtils#getRequiredWebApplicationContext

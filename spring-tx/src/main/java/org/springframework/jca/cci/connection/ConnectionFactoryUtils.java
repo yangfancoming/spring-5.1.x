@@ -23,7 +23,7 @@ import org.springframework.util.Assert;
  * by {@link CciLocalTransactionManager} or
  * {@link org.springframework.transaction.jta.JtaTransactionManager}.
  *
- * <p>Used internally by {@link org.springframework.jca.cci.core.CciTemplate},
+ * Used internally by {@link org.springframework.jca.cci.core.CciTemplate},
  * Spring's CCI operation objects and the {@link CciLocalTransactionManager}.
  * Can also be used directly in application code.
  *
@@ -45,7 +45,7 @@ public abstract class ConnectionFactoryUtils {
 	 * Obtain a Connection from the given ConnectionFactory. Translates ResourceExceptions
 	 * into the Spring hierarchy of unchecked generic data access exceptions, simplifying
 	 * calling code and making any exception that is thrown more meaningful.
-	 * <p>Is aware of a corresponding Connection bound to the current thread, for example
+	 * Is aware of a corresponding Connection bound to the current thread, for example
 	 * when using {@link CciLocalTransactionManager}. Will bind a Connection to the thread
 	 * if transaction synchronization is active (e.g. if in a JTA transaction).
 	 * @param cf the ConnectionFactory to obtain Connection from
@@ -62,7 +62,7 @@ public abstract class ConnectionFactoryUtils {
 	 * Obtain a Connection from the given ConnectionFactory. Translates ResourceExceptions
 	 * into the Spring hierarchy of unchecked generic data access exceptions, simplifying
 	 * calling code and making any exception that is thrown more meaningful.
-	 * <p>Is aware of a corresponding Connection bound to the current thread, for example
+	 * Is aware of a corresponding Connection bound to the current thread, for example
 	 * when using {@link CciLocalTransactionManager}. Will bind a Connection to the thread
 	 * if transaction synchronization is active (e.g. if in a JTA transaction).
 	 * @param cf the ConnectionFactory to obtain Connection from
@@ -93,10 +93,10 @@ public abstract class ConnectionFactoryUtils {
 	/**
 	 * Actually obtain a CCI Connection from the given ConnectionFactory.
 	 * Same as {@link #getConnection}, but throwing the original ResourceException.
-	 * <p>Is aware of a corresponding Connection bound to the current thread, for example
+	 * Is aware of a corresponding Connection bound to the current thread, for example
 	 * when using {@link CciLocalTransactionManager}. Will bind a Connection to the thread
 	 * if transaction synchronization is active (e.g. if in a JTA transaction).
-	 * <p>Directly accessed by {@link TransactionAwareConnectionFactoryProxy}.
+	 * Directly accessed by {@link TransactionAwareConnectionFactoryProxy}.
 	 * @param cf the ConnectionFactory to obtain Connection from
 	 * @return a CCI Connection from the given ConnectionFactory
 	 * @throws ResourceException if thrown by CCI API methods
@@ -164,7 +164,7 @@ public abstract class ConnectionFactoryUtils {
 	/**
 	 * Actually close the given Connection, obtained from the given ConnectionFactory.
 	 * Same as {@link #releaseConnection}, but throwing the original ResourceException.
-	 * <p>Directly accessed by {@link TransactionAwareConnectionFactoryProxy}.
+	 * Directly accessed by {@link TransactionAwareConnectionFactoryProxy}.
 	 * @param con the Connection to close if necessary
 	 * (if this is {@code null}, the call will be ignored)
 	 * @param cf the ConnectionFactory that the Connection was obtained from

@@ -15,7 +15,7 @@ import org.springframework.lang.Nullable;
  * the abstract updateRow(ResultSet, int, context) method to update each
  * row of the JDBC ResultSet and optionally map contents into an object.
  *
- * <p>Subclasses can be constructed providing SQL, parameter types
+ * Subclasses can be constructed providing SQL, parameter types
  * and a DataSource. SQL will often vary between subclasses.
  * @param <T> the result type
  * @see org.springframework.jdbc.object.SqlQuery

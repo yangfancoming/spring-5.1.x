@@ -58,7 +58,7 @@ public class MethodMapTransactionAttributeSource
 	 * (e.g. "com.mycompany.mycode.MyClass.myMethod") and
 	 * {@link TransactionAttribute} instances (or Strings to be converted
 	 * to {@code TransactionAttribute} instances).
-	 * <p>Intended for configuration via setter injection, typically within
+	 * Intended for configuration via setter injection, typically within
 	 * a Spring bean factory. Relies on {@link #afterPropertiesSet()}
 	 * being called afterwards.
 	 * @param methodMap said {@link Map} from method name to attribute value
@@ -101,7 +101,7 @@ public class MethodMapTransactionAttributeSource
 
 	/**
 	 * Add an attribute for a transactional method.
-	 * <p>Method names can end or start with "*" for matching multiple methods.
+	 * Method names can end or start with "*" for matching multiple methods.
 	 * @param name class and method name, separated by a dot
 	 * @param attr attribute associated with the method
 	 * @throws IllegalArgumentException in case of an invalid name
@@ -180,7 +180,7 @@ public class MethodMapTransactionAttributeSource
 
 	/**
 	 * Return if the given method name matches the mapped name.
-	 * <p>The default implementation checks for "xxx*", "*xxx" and "*xxx*"
+	 * The default implementation checks for "xxx*", "*xxx" and "*xxx*"
 	 * matches, as well as direct equality.
 	 * @param methodName the method name of the class
 	 * @param mappedName the name in the descriptor

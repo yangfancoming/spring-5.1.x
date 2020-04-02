@@ -15,7 +15,7 @@ import org.springframework.lang.Nullable;
 
 /**
  * Miscellaneous utility methods for number conversion and parsing.
- * <p>Mainly for internal use within the framework; consider Apache's
+ * Mainly for internal use within the framework; consider Apache's
  * Commons Lang for a more comprehensive suite of number utilities.
  * @since 1.1.2
  */
@@ -147,9 +147,9 @@ public abstract class NumberUtils {
 	/**
 	 * Parse the given {@code text} into a {@link Number} instance of the given
 	 * target class, using the corresponding {@code decode} / {@code valueOf} method.
-	 * <p>Trims all whitespace (leading, trailing, and in between characters) from
+	 * Trims all whitespace (leading, trailing, and in between characters) from
 	 * the input {@code String} before attempting to parse the number.
-	 * <p>Supports numbers in hex format (with leading "0x", "0X", or "#") as well.
+	 * Supports numbers in hex format (with leading "0x", "0X", or "#") as well.
 	 * @param text the text to convert
 	 * @param targetClass the target class to parse into
 	 * @return the parsed number
@@ -194,7 +194,7 @@ public abstract class NumberUtils {
 	/**
 	 * Parse the given {@code text} into a {@link Number} instance of the
 	 * given target class, using the supplied {@link NumberFormat}.
-	 * <p>Trims the input {@code String} before attempting to parse the number.
+	 * Trims the input {@code String} before attempting to parse the number.
 	 * @param text the text to convert
 	 * @param targetClass the target class to parse into
 	 * @param numberFormat the {@code NumberFormat} to use for parsing (if
@@ -246,7 +246,7 @@ public abstract class NumberUtils {
 
 	/**
 	 * Decode a {@link java.math.BigInteger} from the supplied {@link String} value.
-	 * <p>Supports decimal, hex, and octal notation.
+	 * Supports decimal, hex, and octal notation.
 	 * @see BigInteger#BigInteger(String, int)
 	 */
 	private static BigInteger decodeBigInteger(String value) {

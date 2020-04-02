@@ -11,7 +11,7 @@ import org.springframework.util.StringUtils;
 /**
  * Custom {@link java.beans.PropertyEditor} for String arrays.
  *
- * <p>Strings must be in CSV format, with a customizable separator.
+ * Strings must be in CSV format, with a customizable separator.
  * By default values in the result are trimmed of whitespace.
  *
  * @author Rod Johnson
@@ -41,7 +41,7 @@ public class StringArrayPropertyEditor extends PropertyEditorSupport {
 	/**
 	 * Create a new StringArrayPropertyEditor with the default separator
 	 * (a comma).
-	 * <p>An empty text (without elements) will be turned into an empty array.
+	 * An empty text (without elements) will be turned into an empty array.
 	 */
 	public StringArrayPropertyEditor() {
 		this(DEFAULT_SEPARATOR, null, false);
@@ -49,7 +49,7 @@ public class StringArrayPropertyEditor extends PropertyEditorSupport {
 
 	/**
 	 * Create a new StringArrayPropertyEditor with the given separator.
-	 * <p>An empty text (without elements) will be turned into an empty array.
+	 * An empty text (without elements) will be turned into an empty array.
 	 * @param separator the separator to use for splitting a {@link String}
 	 */
 	public StringArrayPropertyEditor(String separator) {

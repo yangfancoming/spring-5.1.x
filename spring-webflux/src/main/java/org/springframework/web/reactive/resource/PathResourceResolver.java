@@ -24,7 +24,7 @@ import org.springframework.web.util.UriUtils;
  * A simple {@code ResourceResolver} that tries to find a resource under the given
  * locations matching to the request path.
  *
- * <p>This resolver does not delegate to the {@code ResourceResolverChain} and is
+ * This resolver does not delegate to the {@code ResourceResolverChain} and is
  * expected to be configured at the end in a chain of resolvers.
  *
  * @author Rossen Stoyanchev
@@ -44,10 +44,10 @@ public class PathResourceResolver extends AbstractResourceResolver {
 	 * resolves public URLs of links it contains, the CSS file is the location
 	 * and the resources being resolved are css files, images, fonts and others
 	 * located in adjacent or parent directories.
-	 * <p>This property allows configuring a complete list of locations under
+	 * This property allows configuring a complete list of locations under
 	 * which resources must be so that if a resource is not under the location
 	 * relative to which it was found, this list may be checked as well.
-	 * <p>By default {@link ResourceWebHandler} initializes this property
+	 * By default {@link ResourceWebHandler} initializes this property
 	 * to match its list of locations.
 	 * @param locations the list of allowed locations
 	 */
@@ -88,7 +88,7 @@ public class PathResourceResolver extends AbstractResourceResolver {
 
 	/**
 	 * Find the resource under the given location.
-	 * <p>The default implementation checks if there is a readable
+	 * The default implementation checks if there is a readable
 	 * {@code Resource} for the given path relative to the location.
 	 * @param resourcePath the path to the resource
 	 * @param location the location to check

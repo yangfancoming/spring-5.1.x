@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
  * Implementations are typically usable both within an application context
  * and standalone.
  *
- * <p>There are two concrete implementations included in Spring, as of Spring 3.1:
+ * There are two concrete implementations included in Spring, as of Spring 3.1:
  * <ul>
  * <li>{@link org.springframework.web.multipart.commons.CommonsMultipartResolver}
  * for Apache Commons FileUpload
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
  * for the Servlet 3.0+ Part API
  * </ul>
  *
- * <p>There is no default resolver implementation used for Spring
+ * There is no default resolver implementation used for Spring
  * {@link org.springframework.web.servlet.DispatcherServlet DispatcherServlets},
  * as an application might choose to parse its multipart requests itself. To define
  * an implementation, create a bean with the id "multipartResolver" in a
@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletRequest;
  * application context. Such a resolver gets applied to all requests handled
  * by that {@link org.springframework.web.servlet.DispatcherServlet}.
  *
- * <p>If a {@link org.springframework.web.servlet.DispatcherServlet} detects a
+ * If a {@link org.springframework.web.servlet.DispatcherServlet} detects a
  * multipart request, it will resolve it via the configured {@link MultipartResolver}
  * and pass on a wrapped {@link javax.servlet.http.HttpServletRequest}. Controllers
  * can then cast their given request to the {@link MultipartHttpServletRequest}
@@ -46,14 +46,14 @@ import javax.servlet.http.HttpServletRequest;
  * with their data binder, to automatically apply multipart content to form
  * bean properties.
  *
- * <p>As an alternative to using a {@link MultipartResolver} with a
+ * As an alternative to using a {@link MultipartResolver} with a
  * {@link org.springframework.web.servlet.DispatcherServlet},
  * a {@link org.springframework.web.multipart.support.MultipartFilter} can be
  * registered in {@code web.xml}. It will delegate to a corresponding
  * {@link MultipartResolver} bean in the root application context. This is mainly
  * intended for applications that do not use Spring's own web MVC framework.
  *
- * <p>Note: There is hardly ever a need to access the {@link MultipartResolver}
+ * Note: There is hardly ever a need to access the {@link MultipartResolver}
  * itself from application code. It will simply do its work behind the scenes,
  * making {@link MultipartHttpServletRequest MultipartHttpServletRequests}
  * available to controllers.
@@ -72,7 +72,7 @@ public interface MultipartResolver {
 
 	/**
 	 * Determine if the given request contains multipart content.
-	 * <p>Will typically check for content type "multipart/form-data", but the actually
+	 * Will typically check for content type "multipart/form-data", but the actually
 	 * accepted requests might depend on the capabilities of the resolver implementation.
 	 * @param request the servlet request to be evaluated
 	 * @return whether the request contains multipart content

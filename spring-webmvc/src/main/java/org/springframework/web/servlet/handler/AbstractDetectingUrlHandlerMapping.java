@@ -21,10 +21,10 @@ public abstract class AbstractDetectingUrlHandlerMapping extends AbstractUrlHand
 
 	/**
 	 * Set whether to detect handler beans in ancestor ApplicationContexts.
-	 * <p>Default is "false": Only handler beans in the current ApplicationContext
+	 * Default is "false": Only handler beans in the current ApplicationContext
 	 * will be detected, i.e. only in the context that this HandlerMapping itself
 	 * is defined in (typically the current DispatcherServlet's context).
-	 * <p>Switch this flag on to detect handler beans in ancestor contexts
+	 * Switch this flag on to detect handler beans in ancestor contexts
 	 * (typically the Spring root WebApplicationContext) as well.
 	 */
 	public void setDetectHandlersInAncestorContexts(boolean detectHandlersInAncestorContexts) {
@@ -45,7 +45,7 @@ public abstract class AbstractDetectingUrlHandlerMapping extends AbstractUrlHand
 
 	/**
 	 * Register all handlers found in the current ApplicationContext.
-	 * <p>The actual URL determination for a handler is up to the concrete {@link #determineUrlsForHandler(String)} implementation.
+	 * The actual URL determination for a handler is up to the concrete {@link #determineUrlsForHandler(String)} implementation.
 	 *  A bean for which no such URLs could be determined is simply not considered a handler.
 	 *  对于无法确定此类URL的bean，不将其视为处理程序。
 	 * @throws org.springframework.beans.BeansException if the handler couldn't be registered

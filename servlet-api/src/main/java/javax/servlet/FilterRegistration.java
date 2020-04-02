@@ -15,15 +15,15 @@ public interface FilterRegistration extends Registration {
      * Adds a filter mapping with the given servlet names and dispatcher
      * types for the Filter represented by this FilterRegistration.
      *
-     * <p>Filter mappings are matched in the order in which they were
+     * Filter mappings are matched in the order in which they were
      * added.
      * 
-     * <p>Depending on the value of the <tt>isMatchAfter</tt> parameter, the
+     * Depending on the value of the <tt>isMatchAfter</tt> parameter, the
      * given filter mapping will be considered after or before any
      * <i>declared</i> filter mappings of the ServletContext from which this
      * FilterRegistration was obtained.
      *
-     * <p>If this method is called multiple times, each successive call
+     * If this method is called multiple times, each successive call
      * adds to the effects of the former.
      *
      * @param dispatcherTypes the dispatcher types of the filter mapping,
@@ -45,7 +45,7 @@ public interface FilterRegistration extends Registration {
      * Gets the currently available servlet name mappings
      * of the Filter represented by this <code>FilterRegistration</code>.
      *
-     * <p>If permitted, any changes to the returned <code>Collection</code> must not
+     * If permitted, any changes to the returned <code>Collection</code> must not
      * affect this <code>FilterRegistration</code>.
      *
      * @return a (possibly empty) <code>Collection</code> of the currently
@@ -59,15 +59,15 @@ public interface FilterRegistration extends Registration {
      * Adds a filter mapping with the given url patterns and dispatcher
      * types for the Filter represented by this FilterRegistration.
      *
-     * <p>Filter mappings are matched in the order in which they were
+     * Filter mappings are matched in the order in which they were
      * added.
      *
-     * <p>Depending on the value of the <tt>isMatchAfter</tt> parameter, the
+     * Depending on the value of the <tt>isMatchAfter</tt> parameter, the
      * given filter mapping will be considered after or before any
      * <i>declared</i> filter mappings of the ServletContext from which
      * this FilterRegistration was obtained.
      *
-     * <p>If this method is called multiple times, each successive call
+     * If this method is called multiple times, each successive call
      * adds to the effects of the former.
      *
      * @param dispatcherTypes the dispatcher types of the filter mapping,
@@ -89,7 +89,7 @@ public interface FilterRegistration extends Registration {
      * Gets the currently available URL pattern mappings of the Filter
      * represented by this <code>FilterRegistration</code>.
      *
-     * <p>If permitted, any changes to the returned <code>Collection</code> must not 
+     * If permitted, any changes to the returned <code>Collection</code> must not
      * affect this <code>FilterRegistration</code>.
      *
      * @return a (possibly empty) <code>Collection</code> of the currently

@@ -15,12 +15,12 @@ import org.springframework.lang.Nullable;
  * management using the common Spring caching infrastructure
  * ({@link org.springframework.cache.Cache}).
  *
- * <p>Derives from the {@link CacheAspectSupport} class which
+ * Derives from the {@link CacheAspectSupport} class which
  * contains the integration with Spring's underlying caching API.
  * CacheInterceptor simply calls the relevant superclass methods
  * in the correct order.
  *
- * <p>CacheInterceptors are thread-safe.
+ * CacheInterceptors are thread-safe.
  *
  * @author Costin Leau
 

@@ -29,7 +29,7 @@ import static org.junit.Assert.assertEquals;
  * annotation is used, even if the composed annotation is used to declare additional
  * {@code @Configuration} classes.
  *
- * <p>This class has been implemented in response to the following Stack Overflow question:
+ * This class has been implemented in response to the following Stack Overflow question:
  * <a href="https://stackoverflow.com/questions/35733344/can-contextconfiguration-in-a-custom-annotation-be-merged">
  * Can {@code @ContextConfiguration} in a custom annotation be merged?</a>
  *

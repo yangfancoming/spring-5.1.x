@@ -9,12 +9,12 @@ import org.springframework.core.convert.TypeDescriptor;
  * conditionally execute based on attributes of the {@code source} and {@code target}
  * {@link TypeDescriptor}.
  *
- * <p>Often used to selectively match custom conversion logic based on the presence of a
+ * Often used to selectively match custom conversion logic based on the presence of a
  * field or class-level characteristic, such as an annotation or method. For example, when
  * converting from a String field to a Date field, an implementation might return
  * {@code true} if the target field has also been annotated with {@code @DateTimeFormat}.
  *
- * <p>As another example, when converting from a String field to an {@code Account} field,
+ * As another example, when converting from a String field to an {@code Account} field,
  * an implementation might return {@code true} if the target Account class defines a
  * {@code public static findAccount(String)} method.
  *

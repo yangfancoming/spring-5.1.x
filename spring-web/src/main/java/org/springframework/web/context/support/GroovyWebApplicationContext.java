@@ -24,11 +24,11 @@ import org.springframework.lang.Nullable;
  * {@link org.springframework.context.support.GenericGroovyApplicationContext}
  * for a web environment.
  *
- * <p>By default, the configuration will be taken from "/WEB-INF/applicationContext.groovy"
+ * By default, the configuration will be taken from "/WEB-INF/applicationContext.groovy"
  * for the root context, and "/WEB-INF/test-servlet.groovy" for a context with the namespace
  * "test-servlet" (like for a DispatcherServlet instance with the servlet-name "test").
  *
- * <p>The config location defaults can be overridden via the "contextConfigLocation"
+ * The config location defaults can be overridden via the "contextConfigLocation"
  * context-param of {@link org.springframework.web.context.ContextLoader} and servlet
  * init-param of {@link org.springframework.web.servlet.FrameworkServlet}. Config locations
  * can either denote concrete files like "/WEB-INF/context.groovy" or Ant-style patterns
@@ -36,11 +36,11 @@ import org.springframework.lang.Nullable;
  * javadoc for pattern details). Note that ".xml" files will be parsed as XML content;
  * all other kinds of resources will be parsed as Groovy scripts.
  *
- * <p>Note: In case of multiple config locations, later bean definitions will
+ * Note: In case of multiple config locations, later bean definitions will
  * override ones defined in earlier loaded files. This can be leveraged to
  * deliberately override certain bean definitions via an extra Groovy script.
  *
- * <p><b>For a WebApplicationContext that reads in a different bean definition format,
+ * <b>For a WebApplicationContext that reads in a different bean definition format,
  * create an analogous subclass of {@link AbstractRefreshableWebApplicationContext}.</b>
  * Such a context implementation can be specified as "contextClass" context-param
  * for ContextLoader or "contextClass" init-param for FrameworkServlet.
@@ -95,7 +95,7 @@ public class GroovyWebApplicationContext extends AbstractRefreshableWebApplicati
 	/**
 	 * Initialize the bean definition reader used for loading the bean
 	 * definitions of this context. Default implementation is empty.
-	 * <p>Can be overridden in subclasses.
+	 * Can be overridden in subclasses.
 	 * @param beanDefinitionReader the bean definition reader used by this context
 	 */
 	protected void initBeanDefinitionReader(GroovyBeanDefinitionReader beanDefinitionReader) {
@@ -103,9 +103,9 @@ public class GroovyWebApplicationContext extends AbstractRefreshableWebApplicati
 
 	/**
 	 * Load the bean definitions with the given GroovyBeanDefinitionReader.
-	 * <p>The lifecycle of the bean factory is handled by the refreshBeanFactory method;
+	 * The lifecycle of the bean factory is handled by the refreshBeanFactory method;
 	 * therefore this method is just supposed to load and/or register bean definitions.
-	 * <p>Delegates to a ResourcePatternResolver for resolving location patterns
+	 * Delegates to a ResourcePatternResolver for resolving location patterns
 	 * into Resource instances.
 	 * @throws IOException if the required Groovy script or XML file isn't found
 	 * @see #refreshBeanFactory

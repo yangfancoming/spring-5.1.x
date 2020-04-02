@@ -68,9 +68,9 @@ public class CachingResourceResolver extends AbstractResourceResolver {
 	/**
 	 * Configure the supported content codings from the
 	 * {@literal "Accept-Encoding"} header for which to cache resource variations.
-	 * <p>The codings configured here are generally expected to match those
+	 * The codings configured here are generally expected to match those
 	 * configured on {@link EncodedResourceResolver#setContentCodings(List)}.
-	 * <p>By default this property is set to {@literal ["br", "gzip"]} based on
+	 * By default this property is set to {@literal ["br", "gzip"]} based on
 	 * the value of {@link EncodedResourceResolver#DEFAULT_CODINGS}.
 	 * @param codings one or more supported content codings
 	 * @since 5.1

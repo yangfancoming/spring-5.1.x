@@ -22,7 +22,7 @@ import org.springframework.util.StringUtils;
  * Any methods or properties that are defined in those interfaces are exposed
  * as MBean operations and attributes.
  *
- * <p>By default, this class votes on the inclusion of each operation or attribute
+ * By default, this class votes on the inclusion of each operation or attribute
  * based on the interfaces implemented by the bean class. However, you can supply an
  * array of interfaces via the {@code managedInterfaces} property that will be
  * used instead. If you have multiple beans and you wish each bean to use a different
@@ -30,7 +30,7 @@ import org.springframework.util.StringUtils;
  * bean to the {@code MBeanExporter}) to a list of interface names using the
  * {@code interfaceMappings} property.
  *
- * <p>If you specify values for both {@code interfaceMappings} and
+ * If you specify values for both {@code interfaceMappings} and
  * {@code managedInterfaces}, Spring will attempt to find interfaces in the
  * mappings first. If no interfaces for the bean are found, it will use the
  * interfaces defined by {@code managedInterfaces}.
@@ -84,7 +84,7 @@ public class InterfaceBasedMBeanInfoAssembler extends AbstractConfigurableMBeanI
 
 	/**
 	 * Set the mappings of bean keys to a comma-separated list of interface names.
-	 * <p>The property key should match the bean key and the property value should match
+	 * The property key should match the bean key and the property value should match
 	 * the list of interface names. When searching for interfaces for a bean, Spring
 	 * will check these mappings first.
 	 * @param mappings the mappings of bean keys to interface names

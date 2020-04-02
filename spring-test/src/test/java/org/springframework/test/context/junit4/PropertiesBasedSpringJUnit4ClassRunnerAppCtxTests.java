@@ -16,7 +16,7 @@ import org.springframework.tests.sample.beans.Pet;
 import static org.junit.Assert.*;
 
 /**
- * <p>
+ *
  * JUnit 4 based test class, which verifies the expected functionality of
  * {@link SpringRunner} in conjunction with support for application contexts
  * loaded from Java {@link Properties} files. Specifically, the
@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
  * {@link org.springframework.test.context.support.GenericPropertiesContextLoader#getResourceSuffix()
  * resourceSuffix} property of {@code GenericPropertiesContextLoader} are tested.
  * </p>
- * <p>
+ *
  * Since no {@link ContextConfiguration#locations() locations} are explicitly defined, the
  * {@code resourceSuffix} is set to &quot;-context.properties&quot;, and since default
  * resource locations will be detected by default, this test class's dependencies will be

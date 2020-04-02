@@ -15,7 +15,7 @@ import org.springframework.web.server.ServerWebInputException;
 /**
  * Resolve method arguments annotated with {@code @CookieValue}.
  *
- * <p>An {@code @CookieValue} is a named value that is resolved from a cookie.
+ * An {@code @CookieValue} is a named value that is resolved from a cookie.
  * It has a required flag and a default value to fall back on when the cookie
  * does not exist.
  *

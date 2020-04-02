@@ -42,7 +42,7 @@ public class ParameterContentTypeResolver implements RequestedContentTypeResolve
 
 	/**
 	 * Set the name of the parameter to use to determine requested media types.
-	 * <p>By default this is set to {@literal "format"}.
+	 * By default this is set to {@literal "format"}.
 	 */
 	public void setParameterName(String parameterName) {
 		Assert.notNull(parameterName, "'parameterName' is required");

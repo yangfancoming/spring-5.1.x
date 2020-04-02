@@ -15,9 +15,9 @@ import org.springframework.web.util.TagUtils;
  * The {@code <options>} tag renders a list of HTML 'option' tags.
  * Sets 'selected' as appropriate based on bound value.
  *
- * <p><i>Must</i> be used within a {@link SelectTag 'select' tag}.
+ * <i>Must</i> be used within a {@link SelectTag 'select' tag}.
  *
- * <p>
+ *
  * <table>
  * <caption>Attribute Summary</caption>
  * <thead>
@@ -30,143 +30,143 @@ import org.springframework.web.util.TagUtils;
  * </thead>
  * <tbody>
  * <tr class="altColor">
- * <td><p>cssClass</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td>cssClass</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Optional Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>cssErrorClass</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute. Used when the bound field has errors.</p></td>
+ * <td>cssErrorClass</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Optional Attribute. Used when the bound field has errors.</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>cssStyle</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td>cssStyle</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Optional Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>dir</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td>dir</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Standard Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>disabled</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute. Setting the value of this attribute
+ * <td>disabled</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Optional Attribute. Setting the value of this attribute
  * to 'true' will disable the HTML element.</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>htmlEscape</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>Enable/disable HTML escaping of rendered values.</p></td>
+ * <td>htmlEscape</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>Enable/disable HTML escaping of rendered values.</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>id</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td>id</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Standard Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>itemLabel</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>Name of the property mapped to the inner text of the 'option' tag</p></td>
+ * <td>itemLabel</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>Name of the property mapped to the inner text of the 'option' tag</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>items</p></td>
- * <td><p>true</p></td>
- * <td><p>true</p></td>
- * <td><p>The Collection, Map or array of objects used to generate the inner 'option' tags</p></td>
+ * <td>items</p></td>
+ * <td>true</p></td>
+ * <td>true</p></td>
+ * <td>The Collection, Map or array of objects used to generate the inner 'option' tags</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>itemValue</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>Name of the property mapped to 'value' attribute of the 'option' tag</p></td>
+ * <td>itemValue</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>Name of the property mapped to 'value' attribute of the 'option' tag</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>lang</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td>lang</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Standard Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>onclick</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onclick</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>ondblclick</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>ondblclick</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>onkeydown</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onkeydown</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>onkeypress</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onkeypress</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>onkeyup</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onkeyup</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>onmousedown</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onmousedown</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>onmousemove</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onmousemove</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>onmouseout</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onmouseout</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>onmouseover</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onmouseover</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>onmouseup</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td>onmouseup</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Event Attribute</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>tabindex</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td>tabindex</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Standard Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>title</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td>title</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Standard Attribute</p></td>
  * </tr>
  * </tbody>
  * </table>
@@ -206,9 +206,9 @@ public class OptionsTag extends AbstractHtmlElementTag {
 	/**
 	 * Set the {@link java.util.Collection}, {@link java.util.Map} or array
 	 * of objects used to generate the inner '{@code option}' tags.
-	 * <p>Required when wishing to render '{@code option}' tags from an
+	 * Required when wishing to render '{@code option}' tags from an
 	 * array, {@link java.util.Collection} or {@link java.util.Map}.
-	 * <p>Typically a runtime expression.
+	 * Typically a runtime expression.
 	 */
 	public void setItems(Object items) {
 		this.items = items;
@@ -217,7 +217,7 @@ public class OptionsTag extends AbstractHtmlElementTag {
 	/**
 	 * Get the {@link java.util.Collection}, {@link java.util.Map} or array
 	 * of objects used to generate the inner '{@code option}' tags.
-	 * <p>Typically a runtime expression.
+	 * Typically a runtime expression.
 	 */
 	@Nullable
 	protected Object getItems() {
@@ -227,7 +227,7 @@ public class OptionsTag extends AbstractHtmlElementTag {
 	/**
 	 * Set the name of the property mapped to the '{@code value}'
 	 * attribute of the '{@code option}' tag.
-	 * <p>Required when wishing to render '{@code option}' tags from
+	 * Required when wishing to render '{@code option}' tags from
 	 * an array or {@link java.util.Collection}.
 	 */
 	public void setItemValue(String itemValue) {

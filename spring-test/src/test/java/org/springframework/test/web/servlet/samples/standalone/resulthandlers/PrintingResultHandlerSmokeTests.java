@@ -22,10 +22,10 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 /**
  * Smoke test for {@link PrintingResultHandler}.
  *
- * <p>Prints debugging information about the executed request and response to
+ * Prints debugging information about the executed request and response to
  * various output streams.
  *
- * <p><strong>NOTE</strong>: this <em>smoke test</em> is not intended to be
+ * <strong>NOTE</strong>: this <em>smoke test</em> is not intended to be
  * executed with the build. To run this test, comment out the {@code @Ignore}
  * declaration and inspect the output manually.
  *

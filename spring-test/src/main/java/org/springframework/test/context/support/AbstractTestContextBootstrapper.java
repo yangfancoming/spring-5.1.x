@@ -45,14 +45,14 @@ import org.springframework.util.StringUtils;
  * Abstract implementation of the {@link TestContextBootstrapper} interface which
  * provides most of the behavior required by a bootstrapper.
  *
- * <p>Concrete subclasses typically will only need to provide implementations for
+ * Concrete subclasses typically will only need to provide implementations for
  * the following methods:
  * <ul>
  * <li>{@link #getDefaultContextLoaderClass}
  * <li>{@link #processMergedContextConfiguration}
  * </ul>
  *
- * <p>To plug in custom
+ * To plug in custom
  * {@link org.springframework.test.context.cache.ContextCache ContextCache}
  * support, override {@link #getCacheAwareContextLoaderDelegate()}.
  *
@@ -85,7 +85,7 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 	 * in the {@link BootstrapContext} associated with this bootstrapper and
 	 * by delegating to {@link #buildMergedContextConfiguration()} and
 	 * {@link #getCacheAwareContextLoaderDelegate()}.
-	 * <p>Concrete subclasses may choose to override this method to return a
+	 * Concrete subclasses may choose to override this method to return a
 	 * custom {@link TestContext} implementation.
 	 * @since 4.2
 	 */
@@ -192,10 +192,10 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 
 	/**
 	 * Get the default {@link TestExecutionListener} classes for this bootstrapper.
-	 * <p>This method is invoked by {@link #getTestExecutionListeners()} and
+	 * This method is invoked by {@link #getTestExecutionListeners()} and
 	 * delegates to {@link #getDefaultTestExecutionListenerClassNames()} to
 	 * retrieve the class names.
-	 * <p>If a particular class cannot be loaded, a {@code DEBUG} message will
+	 * If a particular class cannot be loaded, a {@code DEBUG} message will
 	 * be logged, but the associated exception will not be rethrown.
 	 */
 	@SuppressWarnings("unchecked")
@@ -219,10 +219,10 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 	/**
 	 * Get the names of the default {@link TestExecutionListener} classes for
 	 * this bootstrapper.
-	 * <p>The default implementation looks up all
+	 * The default implementation looks up all
 	 * {@code org.springframework.test.context.TestExecutionListener} entries
 	 * configured in all {@code META-INF/spring.factories} files on the classpath.
-	 * <p>This method is invoked by {@link #getDefaultTestExecutionListenerClasses()}.
+	 * This method is invoked by {@link #getDefaultTestExecutionListenerClasses()}.
 	 * @return an <em>unmodifiable</em> list of names of default {@code TestExecutionListener}
 	 * classes
 	 * @see SpringFactoriesLoader#loadFactoryNames
@@ -397,7 +397,7 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 
 	/**
 	 * Get the {@link ContextCustomizerFactory} instances for this bootstrapper.
-	 * <p>The default implementation uses the {@link SpringFactoriesLoader} mechanism
+	 * The default implementation uses the {@link SpringFactoriesLoader} mechanism
 	 * for loading factories configured in all {@code META-INF/spring.factories}
 	 * files on the classpath.
 	 * @since 4.3
@@ -411,7 +411,7 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 	 * Resolve the {@link ContextLoader} {@linkplain Class class} to use for the
 	 * supplied list of {@link ContextConfigurationAttributes} and then instantiate
 	 * and return that {@code ContextLoader}.
-	 * <p>If the user has not explicitly declared which loader to use, the value
+	 * If the user has not explicitly declared which loader to use, the value
 	 * returned from {@link #getDefaultContextLoaderClass} will be used as the
 	 * default context loader class. For details on the class resolution process,
 	 * see {@link #resolveExplicitContextLoaderClass} and
@@ -446,7 +446,7 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 	/**
 	 * Resolve the {@link ContextLoader} {@linkplain Class class} to use for the supplied
 	 * list of {@link ContextConfigurationAttributes}.
-	 * <p>Beginning with the first level in the context configuration attributes hierarchy:
+	 * Beginning with the first level in the context configuration attributes hierarchy:
 	 * <ol>
 	 * <li>If the {@link ContextConfigurationAttributes#getContextLoaderClass()
 	 * contextLoaderClass} property of {@link ContextConfigurationAttributes} is
@@ -490,9 +490,9 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 	/**
 	 * Get the {@link CacheAwareContextLoaderDelegate} to use for transparent
 	 * interaction with the {@code ContextCache}.
-	 * <p>The default implementation simply delegates to
+	 * The default implementation simply delegates to
 	 * {@code getBootstrapContext().getCacheAwareContextLoaderDelegate()}.
-	 * <p>Concrete subclasses may choose to override this method to return a custom
+	 * Concrete subclasses may choose to override this method to return a custom
 	 * {@code CacheAwareContextLoaderDelegate} implementation with custom
 	 * {@link org.springframework.test.context.cache.ContextCache ContextCache} support.
 	 * @return the context loader delegate (never {@code null})
@@ -504,7 +504,7 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 	/**
 	 * Determine the default {@link ContextLoader} {@linkplain Class class}
 	 * to use for the supplied test class.
-	 * <p>The class returned by this method will only be used if a {@code ContextLoader}
+	 * The class returned by this method will only be used if a {@code ContextLoader}
 	 * class has not been explicitly declared via {@link ContextConfiguration#loader}.
 	 * @param testClass the test class for which to retrieve the default
 	 * {@code ContextLoader} class
@@ -515,10 +515,10 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 
 	/**
 	 * Process the supplied, newly instantiated {@link MergedContextConfiguration} instance.
-	 * <p>The returned {@link MergedContextConfiguration} instance may be a wrapper
+	 * The returned {@link MergedContextConfiguration} instance may be a wrapper
 	 * around or a replacement for the original.
-	 * <p>The default implementation simply returns the supplied instance unmodified.
-	 * <p>Concrete subclasses may choose to return a specialized subclass of
+	 * The default implementation simply returns the supplied instance unmodified.
+	 * Concrete subclasses may choose to return a specialized subclass of
 	 * {@link MergedContextConfiguration} based on properties in the supplied instance.
 	 * @param mergedConfig the {@code MergedContextConfiguration} to process; never {@code null}
 	 * @return a fully initialized {@code MergedContextConfiguration}; never {@code null}

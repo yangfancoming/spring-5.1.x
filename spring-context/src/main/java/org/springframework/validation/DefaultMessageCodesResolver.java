@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
 /**
  * Default implementation of the {@link MessageCodesResolver} interface.
  *
- * <p>Will create two message codes for an object error, in the following order (when
+ * Will create two message codes for an object error, in the following order (when
  * using the {@link Format#PREFIX_ERROR_CODE prefixed}
  * {@link #setMessageCodeFormatter(MessageCodeFormatter) formatter}):
  * <ul>
@@ -23,7 +23,7 @@ import org.springframework.util.StringUtils;
  * <li>2.: code
  * </ul>
  *
- * <p>Will create four message codes for a field specification, in the following order:
+ * Will create four message codes for a field specification, in the following order:
  * <ul>
  * <li>1.: code + "." + object name + "." + field
  * <li>2.: code + "." + field
@@ -31,7 +31,7 @@ import org.springframework.util.StringUtils;
  * <li>4.: code
  * </ul>
  *
- * <p>For example, in case of code "typeMismatch", object name "user", field "age":
+ * For example, in case of code "typeMismatch", object name "user", field "age":
  * <ul>
  * <li>1. try "typeMismatch.user.age"
  * <li>2. try "typeMismatch.age"
@@ -39,7 +39,7 @@ import org.springframework.util.StringUtils;
  * <li>4. try "typeMismatch"
  * </ul>
  *
- * <p>This resolution algorithm thus can be leveraged for example to show
+ * This resolution algorithm thus can be leveraged for example to show
  * specific messages for binding errors like "required" and "typeMismatch":
  * <ul>
  * <li>at the object + field level ("age" field, but only on "user");
@@ -47,7 +47,7 @@ import org.springframework.util.StringUtils;
  * <li>or at the general level (all fields, on any object).
  * </ul>
  *
- * <p>In case of array, {@link List} or {@link java.util.Map} properties,
+ * In case of array, {@link List} or {@link java.util.Map} properties,
  * both codes for specific elements and for the whole collection are
  * generated. Assuming a field "name" of an array "groups" in object "user":
  * <ul>
@@ -60,12 +60,12 @@ import org.springframework.util.StringUtils;
  * <li>7. try "typeMismatch"
  * </ul>
  *
- * <p>By default the {@code errorCode}s will be placed at the beginning of constructed
+ * By default the {@code errorCode}s will be placed at the beginning of constructed
  * message strings. The {@link #setMessageCodeFormatter(MessageCodeFormatter)
  * messageCodeFormatter} property can be used to specify an alternative concatenation
  * {@link MessageCodeFormatter format}.
  *
- * <p>In order to group all codes into a specific category within your resource bundles,
+ * In order to group all codes into a specific category within your resource bundles,
  * e.g. "validation.typeMismatch.name" instead of the default "typeMismatch.name",
  * consider specifying a {@link #setPrefix prefix} to be applied.
  *
@@ -92,7 +92,7 @@ public class DefaultMessageCodesResolver implements MessageCodesResolver, Serial
 
 	/**
 	 * Specify a prefix to be applied to any code built by this resolver.
-	 * <p>Default is none. Specify, for example, "validation." to get
+	 * Default is none. Specify, for example, "validation." to get
 	 * error codes like "validation.typeMismatch.name".
 	 */
 	public void setPrefix(@Nullable String prefix) {
@@ -101,7 +101,7 @@ public class DefaultMessageCodesResolver implements MessageCodesResolver, Serial
 
 	/**
 	 * Return the prefix to be applied to any code built by this resolver.
-	 * <p>Returns an empty String in case of no prefix.
+	 * Returns an empty String in case of no prefix.
 	 */
 	protected String getPrefix() {
 		return this.prefix;
@@ -109,7 +109,7 @@ public class DefaultMessageCodesResolver implements MessageCodesResolver, Serial
 
 	/**
 	 * Specify the format for message codes built by this resolver.
-	 * <p>The default is {@link Format#PREFIX_ERROR_CODE}.
+	 * The default is {@link Format#PREFIX_ERROR_CODE}.
 	 * @since 3.2
 	 * @see Format
 	 */
@@ -126,9 +126,9 @@ public class DefaultMessageCodesResolver implements MessageCodesResolver, Serial
 	/**
 	 * Build the code list for the given code and field: an
 	 * object/field-specific code, a field-specific code, a plain error code.
-	 * <p>Arrays, Lists and Maps are resolved both for specific elements and
+	 * Arrays, Lists and Maps are resolved both for specific elements and
 	 * the whole collection.
-	 * <p>See the {@link DefaultMessageCodesResolver class level javadoc} for
+	 * See the {@link DefaultMessageCodesResolver class level javadoc} for
 	 * details on the generated codes.
 	 * @return the list of codes
 	 */
@@ -183,7 +183,7 @@ public class DefaultMessageCodesResolver implements MessageCodesResolver, Serial
 
 	/**
 	 * Post-process the given message code, built by this resolver.
-	 * <p>The default implementation applies the specified prefix, if any.
+	 * The default implementation applies the specified prefix, if any.
 	 * @param code the message code as built by this resolver
 	 * @return the final message code to be returned
 	 * @see #setPrefix

@@ -26,7 +26,7 @@ import org.springframework.util.Assert;
  * Binds a CCI Connection from the specified ConnectionFactory to the thread,
  * potentially allowing for one thread-bound Connection per ConnectionFactory.
  *
- * <p>Application code is required to retrieve the CCI Connection via
+ * Application code is required to retrieve the CCI Connection via
  * {@link ConnectionFactoryUtils#getConnection(ConnectionFactory)} instead of a standard
  * Java EE-style {@link ConnectionFactory#getConnection()} call. Spring classes such as
  * {@link org.springframework.jca.cci.core.CciTemplate} use this strategy implicitly.
@@ -34,7 +34,7 @@ import org.springframework.util.Assert;
  * {@link ConnectionFactoryUtils} lookup strategy behaves exactly like the native
  * DataSource lookup; it can thus be used in a portable fashion.
  *
- * <p>Alternatively, you can allow application code to work with the standard
+ * Alternatively, you can allow application code to work with the standard
  * Java EE lookup pattern {@link ConnectionFactory#getConnection()}, for example
  * for legacy code that is not aware of Spring at all. In that case, define a
  * {@link TransactionAwareConnectionFactoryProxy} for your target ConnectionFactory,

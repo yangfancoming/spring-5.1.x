@@ -8,7 +8,7 @@ import javax.sql.DataSource;
  * {@link DataFieldMaxValueIncrementer} that retrieves the next value
  * of a given sequence on DB2 LUW (for Linux, Unix and Windows).
  *
- * <p>Thanks to Mark MacMahon for the suggestion!
+ * Thanks to Mark MacMahon for the suggestion!
  *
 
  * @since 1.1.3

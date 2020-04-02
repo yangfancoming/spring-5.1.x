@@ -96,9 +96,9 @@ public abstract class JdbcUtils {
 
 	/**
 	 * Retrieve a JDBC column value from a ResultSet, using the specified value type.
-	 * <p>Uses the specifically typed ResultSet accessor methods, falling back to
+	 * Uses the specifically typed ResultSet accessor methods, falling back to
 	 * {@link #getResultSetValue(java.sql.ResultSet, int)} for unknown types.
-	 * <p>Note that the returned value may not be assignable to the specified
+	 * Note that the returned value may not be assignable to the specified
 	 * required type, in case of an unknown type. Calling code needs to deal
 	 * with this case appropriately, e.g. throwing a corresponding exception.
 	 * @param rs is the ResultSet holding the data
@@ -222,7 +222,7 @@ public abstract class JdbcUtils {
 	 * value type. The returned value should be a detached value object, not having
 	 * any ties to the active ResultSet: in particular, it should not be a Blob or
 	 * Clob object but rather a byte array or String representation, respectively.
-	 * <p>Uses the {@code getObject(index)} method, but includes additional "hacks"
+	 * Uses the {@code getObject(index)} method, but includes additional "hacks"
 	 * to get around Oracle 10g returning a non-standard object for its TIMESTAMP
 	 * datatype and a {@code java.sql.Date} for DATE columns leaving out the
 	 * time portion: These columns will explicitly be extracted as standard
@@ -272,10 +272,10 @@ public abstract class JdbcUtils {
 
 	/**
 	 * Extract database meta-data via the given DatabaseMetaDataCallback.
-	 * <p>This method will open a connection to the database and retrieve the database meta-data.
+	 * This method will open a connection to the database and retrieve the database meta-data.
 	 * Since this method is called before the exception translation feature is configured for
 	 * a datasource, this method can not rely on the SQLException translation functionality.
-	 * <p>Any exceptions will be wrapped in a MetaDataAccessException. This is a checked exception
+	 * Any exceptions will be wrapped in a MetaDataAccessException. This is a checked exception
 	 * and any calling code should catch and handle this exception. You can just log the
 	 * error and hope for the best, but there is probably a more serious error that will
 	 * reappear when you try to access the database again.
@@ -346,10 +346,10 @@ public abstract class JdbcUtils {
 
 	/**
 	 * Return whether the given JDBC driver supports JDBC 2.0 batch updates.
-	 * <p>Typically invoked right before execution of a given set of statements:
+	 * Typically invoked right before execution of a given set of statements:
 	 * to decide whether the set of SQL statements should be executed through
 	 * the JDBC 2.0 batch mechanism or simply in a traditional one-by-one fashion.
-	 * <p>Logs a warning if the "supportsBatchUpdates" methods throws an exception
+	 * Logs a warning if the "supportsBatchUpdates" methods throws an exception
 	 * and simply returns {@code false} in that case.
 	 * @param con the Connection to check
 	 * @return whether JDBC 2.0 batch updates are supported
@@ -408,9 +408,9 @@ public abstract class JdbcUtils {
 	/**
 	 * Determine the column name to use. The column name is determined based on a
 	 * lookup using ResultSetMetaData.
-	 * <p>This method implementation takes into account recent clarifications
+	 * This method implementation takes into account recent clarifications
 	 * expressed in the JDBC 4.0 specification:
-	 * <p><i>columnLabel - the label for the column specified with the SQL AS clause.
+	 * <i>columnLabel - the label for the column specified with the SQL AS clause.
 	 * If the SQL AS clause was not specified, then the label is the name of the column</i>.
 	 * @param resultSetMetaData the current meta-data to use
 	 * @param columnIndex the index of the column for the look up

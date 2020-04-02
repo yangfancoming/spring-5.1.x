@@ -48,11 +48,11 @@ import org.springframework.util.MultiValueMap;
  * as multipart form data, i.e. {@code "multipart/form-data"}, to the body
  * of a request.
  *
- * <p>The serialization of individual parts is delegated to other writers.
+ * The serialization of individual parts is delegated to other writers.
  * By default only {@link String} and {@link Resource} parts are supported but
  * you can configure others through a constructor argument.
  *
- * <p>This writer can be configured with a {@link FormHttpMessageWriter} to
+ * This writer can be configured with a {@link FormHttpMessageWriter} to
  * delegate to. It is the preferred way of supporting both form data and
  * multipart data (as opposed to registering each writer separately) so that
  * when the {@link MediaType} is not specified and generics are not present on
@@ -139,7 +139,7 @@ public class MultipartHttpMessageWriter extends LoggingCodecSupport
 	/**
 	 * Set the character set to use for part headers such as
 	 * "Content-Disposition" (and its filename parameter).
-	 * <p>By default this is set to "UTF-8".
+	 * By default this is set to "UTF-8".
 	 */
 	public void setCharset(Charset charset) {
 		Assert.notNull(charset, "Charset must not be null");
@@ -226,7 +226,7 @@ public class MultipartHttpMessageWriter extends LoggingCodecSupport
 
 	/**
 	 * Generate a multipart boundary.
-	 * <p>By default delegates to {@link MimeTypeUtils#generateMultipartBoundary()}.
+	 * By default delegates to {@link MimeTypeUtils#generateMultipartBoundary()}.
 	 */
 	protected byte[] generateMultipartBoundary() {
 		return MimeTypeUtils.generateMultipartBoundary();

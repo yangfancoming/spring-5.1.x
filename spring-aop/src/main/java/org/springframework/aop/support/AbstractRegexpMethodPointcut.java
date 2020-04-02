@@ -20,11 +20,11 @@ import org.springframework.util.StringUtils;
  * The result will be the union of these patterns.
  * </ul>
  *
- * <p>Note: the regular expressions must be a match. For example,
+ * Note: the regular expressions must be a match. For example,
  * {@code .*get.*} will match com.mycom.Foo.getBar().
  * {@code get.*} will not.
  *
- * <p>This base class is serializable. Subclasses should declare all fields transient;
+ * This base class is serializable. Subclasses should declare all fields transient;
  * the {@link #initPatternRepresentation} method will be invoked again on deserialization.
  * @since 1.1
  * @see JdkRegexpMethodPointcut
@@ -140,7 +140,7 @@ public abstract class AbstractRegexpMethodPointcut extends StaticMethodMatcherPo
 	/**
 	 * Subclasses must implement this to initialize regexp pointcuts.
 	 * Can be invoked multiple times.
-	 * <p>This method will be invoked from the {@link #setPatterns} method,
+	 * This method will be invoked from the {@link #setPatterns} method,
 	 * and also on deserialization.
 	 * @param patterns the patterns to initialize
 	 * @throws IllegalArgumentException in case of an invalid pattern
@@ -150,7 +150,7 @@ public abstract class AbstractRegexpMethodPointcut extends StaticMethodMatcherPo
 	/**
 	 * Subclasses must implement this to initialize regexp pointcuts.
 	 * Can be invoked multiple times.
-	 * <p>This method will be invoked from the {@link #setExcludedPatterns} method,
+	 * This method will be invoked from the {@link #setExcludedPatterns} method,
 	 * and also on deserialization.
 	 * @param patterns the patterns to initialize
 	 * @throws IllegalArgumentException in case of an invalid pattern

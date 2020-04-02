@@ -16,7 +16,7 @@ import org.springframework.web.context.ServletContextAware;
  * implementation that passes the ServletContext to beans that implement
  * the {@link ServletContextAware} interface.
  *
- * <p>Web application contexts will automatically register this with their
+ * Web application contexts will automatically register this with their
  * underlying bean factory. Applications do not use this directly.
  *
 

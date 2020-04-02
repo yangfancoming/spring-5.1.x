@@ -49,13 +49,13 @@ import org.springframework.web.util.UriBuilderFactory;
  * {@link WebClient} internally to perform requests and provides a fluent API
  * to verify responses.
  *
- * <p>{@code WebTestClient} can connect to any server over an HTTP connection.
+ * {@code WebTestClient} can connect to any server over an HTTP connection.
  * It can also bind directly to WebFlux applications using mock request and
  * response objects, without the need for an HTTP server.
  *
- * <p>See the static {@code bindToXxx} entry points for creating an instance.
+ * See the static {@code bindToXxx} entry points for creating an instance.
  *
- * <p><strong>Warning</strong>: {@code WebTestClient} is not usable yet in Kotlin due to a
+ * <strong>Warning</strong>: {@code WebTestClient} is not usable yet in Kotlin due to a
  * <a href="https://youtrack.jetbrains.com/issue/KT-5464">type inference issue</a> which is
  * expected to be fixed as of Kotlin 1.3. You can watch
  * <a href="https://jira.spring.io/browse/SPR-16057">SPR-16057</a> for up-to-date information.
@@ -183,7 +183,7 @@ public interface WebTestClient {
 	 * is passed to {@code WebHttpHandlerBuilder} to set up the request
 	 * processing chain. The resulting WebFlux application will be tested
 	 * without an HTTP server using a mock request and response.
-	 * <p>Consider using the TestContext framework and
+	 * Consider using the TestContext framework and
 	 * {@link org.springframework.test.context.ContextConfiguration @ContextConfiguration}
 	 * in order to efficiently load and inject the Spring configuration into the
 	 * test class.
@@ -208,7 +208,7 @@ public interface WebTestClient {
 	/**
 	 * This server setup option allows you to connect to a running server via
 	 * Reactor Netty.
-	 * <p><pre class="code">
+	 * <pre class="code">
 	 * WebTestClient client = WebTestClient.bindToServer()
 	 *         .baseUrl("http://localhost:8080")
 	 *         .build();
@@ -221,7 +221,7 @@ public interface WebTestClient {
 
 	/**
 	 * A variant of {@link #bindToServer()} with a pre-configured connector.
-	 * <p><pre class="code">
+	 * <pre class="code">
 	 * WebTestClient client = WebTestClient.bindToServer()
 	 *         .baseUrl("http://localhost:8080")
 	 *         .build();
@@ -249,7 +249,7 @@ public interface WebTestClient {
 
 		/**
 		 * Provide a session manager instance for the mock server.
-		 * <p>By default an instance of
+		 * By default an instance of
 		 * {@link org.springframework.web.server.session.DefaultWebSessionManager
 		 * DefaultWebSessionManager} is used.
 		 * @param sessionManager the session manager to use
@@ -422,21 +422,21 @@ public interface WebTestClient {
 
 		/**
 		 * Configure the {@link ExchangeStrategies} to use.
-		 * <p>By default {@link ExchangeStrategies#withDefaults()} is used.
+		 * By default {@link ExchangeStrategies#withDefaults()} is used.
 		 * @param strategies the strategies to use
 		 */
 		Builder exchangeStrategies(ExchangeStrategies strategies);
 
 		/**
 		 * Max amount of time to wait for responses.
-		 * <p>By default 5 seconds.
+		 * By default 5 seconds.
 		 * @param timeout the response timeout value
 		 */
 		Builder responseTimeout(Duration timeout);
 
 		/**
 		 * Apply the given configurer to this builder instance.
-		 * <p>This can be useful for applying pre-packaged customizations.
+		 * This can be useful for applying pre-packaged customizations.
 		 * @param configurer the configurer to apply
 		 */
 		Builder apply(WebTestClientConfigurer configurer);
@@ -530,7 +530,7 @@ public interface WebTestClient {
 
 		/**
 		 * Set the value of the {@code If-Modified-Since} header.
-		 * <p>The date should be specified as the number of milliseconds since
+		 * The date should be specified as the number of milliseconds since
 		 * January 1, 1970 GMT.
 		 * @param ifModifiedSince the new value of the header
 		 * @return the same instance
@@ -631,11 +631,11 @@ public interface WebTestClient {
 		/**
 		 * Set the body of the request to the given synchronous {@code Object} and
 		 * perform the request.
-		 * <p>This method is a convenient shortcut for:
+		 * This method is a convenient shortcut for:
 		 * <pre class="code">
 		 * .body(BodyInserters.fromObject(object))
 		 * </pre>
-		 * <p>The body can be a
+		 * The body can be a
 		 * {@link org.springframework.util.MultiValueMap MultiValueMap} to create
 		 * a multipart request. The values in the {@code MultiValueMap} can be
 		 * any Object representing the body of the part, or an
@@ -719,7 +719,7 @@ public interface WebTestClient {
 		 * from {@literal "reactor-test"} to assert the {@code Flux<T>} stream
 		 * of decoded objects.
 		 *
-		 * <p><strong>Note:</strong> Do not use this option for cases where there
+		 * <strong>Note:</strong> Do not use this option for cases where there
 		 * is no content (e.g. 204, 4xx) or you're not interested in the content.
 		 * For such cases you can use {@code expectBody().isEmpty()} or
 		 * {@code expectBody(Void.class)} which ensures that resources are
@@ -822,7 +822,7 @@ public interface WebTestClient {
 		/**
 		 * Parse the expected and actual response content as JSON and perform a
 		 * "lenient" comparison verifying the same attribute-value pairs.
-		 * <p>Use of this option requires the
+		 * Use of this option requires the
 		 * <a href="https://jsonassert.skyscreamer.org/">JSONassert</a> library
 		 * on to be on the classpath.
 		 * @param expectedJson the expected JSON content.
@@ -833,7 +833,7 @@ public interface WebTestClient {
 		 * Parse expected and actual response content as XML and assert that
 		 * the two are "similar", i.e. they contain the same elements and
 		 * attributes regardless of order.
-		 * <p>Use of this method requires the
+		 * Use of this method requires the
 		 * <a href="https://github.com/xmlunit/xmlunit">XMLUnit</a> library on
 		 * the classpath.
 		 * @param expectedXml the expected JSON content.
@@ -846,7 +846,7 @@ public interface WebTestClient {
 		 * Access to response body assertions using a
 		 * <a href="https://github.com/jayway/JsonPath">JsonPath</a> expression
 		 * to inspect a specific subset of the body.
-		 * <p>The JSON path expression can be a parameterized string using
+		 * The JSON path expression can be a parameterized string using
 		 * formatting specifiers as defined in {@link String#format}.
 		 * @param expression the JsonPath expression
 		 * @param args arguments to parameterize the expression
@@ -856,7 +856,7 @@ public interface WebTestClient {
 		/**
 		 * Access to response body assertions using an XPath expression to
 		 * inspect a specific subset of the body.
-		 * <p>The XPath expression can be a parameterized string using
+		 * The XPath expression can be a parameterized string using
 		 * formatting specifiers as defined in {@link String#format}.
 		 * @param expression the XPath expression
 		 * @param args arguments to parameterize the expression
@@ -870,7 +870,7 @@ public interface WebTestClient {
 		/**
 		 * Access to response body assertions with specific namespaces using an
 		 * XPath expression to inspect a specific subset of the body.
-		 * <p>The XPath expression can be a parameterized string using
+		 * The XPath expression can be a parameterized string using
 		 * formatting specifiers as defined in {@link String#format}.
 		 * @param expression the XPath expression
 		 * @param namespaces namespaces to use

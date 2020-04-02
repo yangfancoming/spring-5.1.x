@@ -15,7 +15,7 @@ import org.springframework.core.annotation.AliasFor;
  * Annotation which indicates that a method parameter should be bound to a web
  * request parameter.
  *
- * <p>Supported for annotated handler methods in Spring MVC and Spring WebFlux
+ * Supported for annotated handler methods in Spring MVC and Spring WebFlux
  * as follows:
  * <ul>
  * <li>In Spring MVC, "request parameters" map to query parameters, form data,
@@ -27,11 +27,11 @@ import org.springframework.core.annotation.AliasFor;
  * binding to a command object annotated with {@link ModelAttribute}.
  * </ul>
  *
- * <p>If the method parameter type is {@link Map} and a request parameter name
+ * If the method parameter type is {@link Map} and a request parameter name
  * is specified, then the request parameter value is converted to a {@link Map}
  * assuming an appropriate conversion strategy is available.
  *
- * <p>If the method parameter is {@link java.util.Map Map&lt;String, String&gt;} or
+ * If the method parameter is {@link java.util.Map Map&lt;String, String&gt;} or
  * {@link org.springframework.util.MultiValueMap MultiValueMap&lt;String, String&gt;}
  * and a parameter name is not specified, then the map parameter is populated
  * with all request parameter names and values.
@@ -64,11 +64,11 @@ public @interface RequestParam {
 
 	/**
 	 * Whether the parameter is required.
-	 * <p>Defaults to {@code true}, leading to an exception being thrown
+	 * Defaults to {@code true}, leading to an exception being thrown
 	 * if the parameter is missing in the request. Switch this to
 	 * {@code false} if you prefer a {@code null} value if the parameter is
 	 * not present in the request.
-	 * <p>Alternatively, provide a {@link #defaultValue}, which implicitly
+	 * Alternatively, provide a {@link #defaultValue}, which implicitly
 	 * sets this flag to {@code false}.
 	 */
 	boolean required() default true;
@@ -76,7 +76,7 @@ public @interface RequestParam {
 	/**
 	 * The default value to use as a fallback when the request parameter is
 	 * not provided or has an empty value.
-	 * <p>Supplying a default value implicitly sets {@link #required} to
+	 * Supplying a default value implicitly sets {@link #required} to
 	 * {@code false}.
 	 */
 	String defaultValue() default ValueConstants.DEFAULT_NONE;

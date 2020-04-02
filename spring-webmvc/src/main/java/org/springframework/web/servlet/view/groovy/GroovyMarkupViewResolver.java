@@ -11,10 +11,10 @@ import org.springframework.web.servlet.view.AbstractTemplateViewResolver;
  * {@link GroovyMarkupView} (i.e. Groovy XML/XHTML markup templates) and
  * custom subclasses of it.
  *
- * <p>The view class for all views created by this resolver can be specified
+ * The view class for all views created by this resolver can be specified
  * via the {@link #setViewClass(Class)} property.
  *
- * <p><b>Note:</b> When chaining ViewResolvers this resolver will check for the
+ * <b>Note:</b> When chaining ViewResolvers this resolver will check for the
  * existence of the specified template resources and only return a non-null
  * View object if a template is actually found.
  *

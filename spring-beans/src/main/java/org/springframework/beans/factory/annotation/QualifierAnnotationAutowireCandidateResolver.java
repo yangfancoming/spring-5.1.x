@@ -33,7 +33,7 @@ import org.springframework.util.StringUtils;
  * against {@link Qualifier qualifier annotations} on the field or parameter to be autowired.
  * Also supports suggested expression values through a {@link Value value} annotation.
  *
- * <p>Also supports JSR-330's {@link javax.inject.Qualifier} annotation, if available.
+ * Also supports JSR-330's {@link javax.inject.Qualifier} annotation, if available.
  *
  * @author Mark Fisher
 
@@ -53,7 +53,7 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 	/**
 	 * Create a new QualifierAnnotationAutowireCandidateResolver
 	 * for Spring's standard {@link Qualifier} annotation.
-	 * <p>Also supports JSR-330's {@link javax.inject.Qualifier} annotation, if available.
+	 * Also supports JSR-330's {@link javax.inject.Qualifier} annotation, if available.
 	 */
 	@SuppressWarnings("unchecked")
 	public QualifierAnnotationAutowireCandidateResolver() {
@@ -90,10 +90,10 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 
 	/**
 	 * Register the given type to be used as a qualifier when autowiring.
-	 * <p>This identifies qualifier annotations for direct use (on fields,
+	 * This identifies qualifier annotations for direct use (on fields,
 	 * method parameters and constructor parameters) as well as meta
 	 * annotations that in turn identify actual qualifier annotations.
-	 * <p>This implementation only supports annotations as qualifier types.
+	 * This implementation only supports annotations as qualifier types.
 	 * The default is Spring's {@link Qualifier} annotation which serves
 	 * as a qualifier for direct use and also as a meta annotation.
 	 * @param qualifierType the annotation type to register
@@ -105,9 +105,9 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 	/**
 	 * Set the 'value' annotation type, to be used on fields, method parameters
 	 * and constructor parameters.
-	 * <p>The default value annotation type is the Spring-provided
+	 * The default value annotation type is the Spring-provided
 	 * {@link Value} annotation.
-	 * <p>This setter property exists so that developers can provide their own
+	 * This setter property exists so that developers can provide their own
 	 * (non-Spring-specific) annotation type to indicate a default value
 	 * expression for a specific argument.
 	 */
@@ -118,7 +118,7 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 
 	/**
 	 * Determine whether the provided bean definition is an autowire candidate.
-	 * <p>To be considered a candidate the bean's <em>autowire-candidate</em>
+	 * To be considered a candidate the bean's <em>autowire-candidate</em>
 	 * attribute must not have been set to 'false'. Also, if an annotation on
 	 * the field or parameter to be autowired is recognized by this bean factory
 	 * as a <em>qualifier</em>, the bean must 'match' against the annotation as

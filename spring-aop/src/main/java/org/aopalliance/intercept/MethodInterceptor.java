@@ -6,7 +6,7 @@ package org.aopalliance.intercept;
  * Intercepts calls on an interface on its way to the target.
  * These are nested "on top" of the target.
  *
- * <p>The user should implement the {@link #invoke(MethodInvocation)} method to modify the original behavior.
+ * The user should implement the {@link #invoke(MethodInvocation)} method to modify the original behavior.
  * E.g. the following class implements a tracing interceptor (traces all the calls on the intercepted method(s)):
  *
  * class TracingInterceptor implements MethodInterceptor {

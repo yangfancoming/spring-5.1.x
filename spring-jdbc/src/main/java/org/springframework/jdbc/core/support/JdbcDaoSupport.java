@@ -16,11 +16,11 @@ import org.springframework.util.Assert;
 /**
  * Convenient super class for JDBC-based data access objects.
  *
- * <p>Requires a {@link javax.sql.DataSource} to be set, providing a
+ * Requires a {@link javax.sql.DataSource} to be set, providing a
  * {@link org.springframework.jdbc.core.JdbcTemplate} based on it to
  * subclasses through the {@link #getJdbcTemplate()} method.
  *
- * <p>This base class is mainly intended for JdbcTemplate usage but can
+ * This base class is mainly intended for JdbcTemplate usage but can
  * also be used when working with a Connection directly or when using
  * {@code org.springframework.jdbc.object} operation objects.
  *
@@ -49,7 +49,7 @@ public abstract class JdbcDaoSupport extends DaoSupport {
 	/**
 	 * Create a JdbcTemplate for the given DataSource.
 	 * Only invoked if populating the DAO with a DataSource reference!
-	 * <p>Can be overridden in subclasses to provide a JdbcTemplate instance
+	 * Can be overridden in subclasses to provide a JdbcTemplate instance
 	 * with different configuration, or a custom JdbcTemplate subclass.
 	 * @param dataSource the JDBC DataSource to create a JdbcTemplate for
 	 * @return the new JdbcTemplate instance
@@ -89,7 +89,7 @@ public abstract class JdbcDaoSupport extends DaoSupport {
 	 * Initialize the template-based configuration of this DAO.
 	 * Called after a new JdbcTemplate has been set, either directly
 	 * or through a DataSource.
-	 * <p>This implementation is empty. Subclasses may override this
+	 * This implementation is empty. Subclasses may override this
 	 * to configure further objects based on the JdbcTemplate.
 	 * @see #getJdbcTemplate()
 	 */

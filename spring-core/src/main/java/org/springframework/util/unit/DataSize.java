@@ -11,7 +11,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * A data size, such as '12MB'.
- * <p>This class models a size in terms of bytes and is immutable and thread-safe.
+ * This class models a size in terms of bytes and is immutable and thread-safe.
  * @since 5.1
  */
 public final class DataSize implements Comparable<DataSize> {
@@ -109,7 +109,7 @@ public final class DataSize implements Comparable<DataSize> {
 	/**
 	 * Obtain a {@link DataSize} from a text string such as {@code 12MB} using
 	 * {@link DataUnit#BYTES} if no unit is specified.
-	 * <p>
+	 *
 	 * Examples:
 	 * <pre>
 	 * "12KB" -- parses as "12 kilobytes"
@@ -127,10 +127,10 @@ public final class DataSize implements Comparable<DataSize> {
 	/**
 	 * Obtain a {@link DataSize} from a text string such as {@code 12MB} using
 	 * the specified default {@link DataUnit} if no unit is specified.
-	 * <p>
+	 *
 	 * The string starts with a number followed optionally by a unit matching one of the
 	 * supported {@link DataUnit suffixes}.
-	 * <p>
+	 *
 	 * Examples:
 	 * <pre>
 	 * "12KB" -- parses as "12 kilobytes"

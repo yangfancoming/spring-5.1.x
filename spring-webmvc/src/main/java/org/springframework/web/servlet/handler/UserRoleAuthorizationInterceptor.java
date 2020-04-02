@@ -50,7 +50,7 @@ public class UserRoleAuthorizationInterceptor extends HandlerInterceptorAdapter 
 	/**
 	 * Handle a request that is not authorized according to this interceptor.
 	 * Default implementation sends HTTP status code 403 ("forbidden").
-	 * <p>This method can be overridden to write a custom message, forward or
+	 * This method can be overridden to write a custom message, forward or
 	 * redirect to some error page or login page, or throw a ServletException.
 	 * @param request current HTTP request
 	 * @param response current HTTP response

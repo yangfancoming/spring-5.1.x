@@ -16,7 +16,7 @@ import org.springframework.web.util.WebUtils;
  * Convenient superclass for controller implementations, using the Template Method
  * design pattern.
  *
- * <p><b>Workflow
+ * <b>Workflow
  * (<a href="Controller.html#workflow">and that defined by interface</a>):</b><br>
  * <ol>
  * <li>{@link #handleRequest(HttpServletRequest, HttpServletResponse) handleRequest()}
@@ -32,7 +32,7 @@ import org.springframework.web.util.WebUtils;
  * functionality to return {@link org.springframework.web.servlet.ModelAndView ModelAndView} objects.</li>
  * </ol>
  *
- * <p><b><a name="config">Exposed configuration properties</a>
+ * <b><a name="config">Exposed configuration properties</a>
  * (<a href="Controller.html#config">and those defined by interface</a>):</b><br>
  * <table border="1">
  * <tr>
@@ -104,15 +104,15 @@ public abstract class AbstractController extends WebContentGenerator implements 
 	/**
 	 * Set if controller execution should be synchronized on the session,
 	 * to serialize parallel invocations from the same client.
-	 * <p>More specifically, the execution of the {@code handleRequestInternal}
+	 * More specifically, the execution of the {@code handleRequestInternal}
 	 * method will get synchronized if this flag is "true". The best available
 	 * session mutex will be used for the synchronization; ideally, this will
 	 * be a mutex exposed by HttpSessionMutexListener.
-	 * <p>The session mutex is guaranteed to be the same object during
+	 * The session mutex is guaranteed to be the same object during
 	 * the entire lifetime of the session, available under the key defined
 	 * by the {@code SESSION_MUTEX_ATTRIBUTE} constant. It serves as a
 	 * safe reference to synchronize on for locking on the current session.
-	 * <p>In many cases, the HttpSession reference itself is a safe mutex
+	 * In many cases, the HttpSession reference itself is a safe mutex
 	 * as well, since it will always be the same object reference for the
 	 * same active logical session. However, this is not guaranteed across
 	 * different servlet containers; the only 100% safe way is a session mutex.

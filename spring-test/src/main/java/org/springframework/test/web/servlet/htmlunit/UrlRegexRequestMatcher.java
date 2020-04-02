@@ -10,7 +10,7 @@ import com.gargoylesoftware.htmlunit.WebRequest;
  * A {@link WebRequestMatcher} that allows matching on
  * {@code WebRequest#getUrl().toExternalForm()} using a regular expression.
  *
- * <p>For example, if you would like to match on the domain {@code code.jquery.com},
+ * For example, if you would like to match on the domain {@code code.jquery.com},
  * you might want to use the following.
  *
  * <pre class="code">

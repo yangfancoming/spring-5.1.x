@@ -30,11 +30,11 @@ import org.springframework.util.ReflectionUtils;
  * {@link org.springframework.scripting.ScriptFactory} implementation
  * for a Groovy script.
  *
- * <p>Typically used in combination with a
+ * Typically used in combination with a
  * {@link org.springframework.scripting.support.ScriptFactoryPostProcessor};
  * see the latter's javadoc for a configuration example.
  *
- * <p>Note: Spring 4.0 supports Groovy 1.8 and higher.
+ * Note: Spring 4.0 supports Groovy 1.8 and higher.
  *
 
  * @author Rob Harrop
@@ -72,7 +72,7 @@ public class GroovyScriptFactory implements ScriptFactory, BeanFactoryAware, Bea
 
 	/**
 	 * Create a new GroovyScriptFactory for the given script source.
-	 * <p>We don't need to specify script interfaces here, since
+	 * We don't need to specify script interfaces here, since
 	 * a Groovy script defines its Java interfaces itself.
 	 * @param scriptSourceLocator a locator that points to the source of the script.
 	 * Interpreted by the post-processor that actually creates the script.

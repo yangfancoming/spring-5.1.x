@@ -123,7 +123,7 @@ public class ComposablePointcut implements Pointcut, Serializable {
 
 	/**
 	 * Apply a union with the given Pointcut.
-	 * <p>Note that for a Pointcut union, methods will only match if their
+	 * Note that for a Pointcut union, methods will only match if their
 	 * original ClassFilter (from the originating Pointcut) matches as well.
 	 * MethodMatchers and ClassFilters from different Pointcuts will never
 	 * get interleaved with each other.

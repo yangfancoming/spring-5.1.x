@@ -33,7 +33,7 @@ import org.springframework.util.StringUtils;
  * {@link GenericApplicationListener} adapter that delegates the processing of
  * an event to an {@link EventListener} annotated method.
  *
- * <p>Delegates to {@link #processEvent(ApplicationEvent)} to give sub-classes
+ * Delegates to {@link #processEvent(ApplicationEvent)} to give sub-classes
  * a chance to deviate from the default. Unwraps the content of a
  * {@link PayloadApplicationEvent} if necessary to allow method declaration
  * to define any arbitrary event type. If a condition is defined, it is
@@ -181,7 +181,7 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 
 	/**
 	 * Resolve the method arguments to use for the specified {@link ApplicationEvent}.
-	 * <p>These arguments will be used to invoke the method handled by this instance.
+	 * These arguments will be used to invoke the method handled by this instance.
 	 * Can return {@code null} to indicate that no suitable arguments could be resolved
 	 * and therefore the method should not be invoked at all for the specified event.
 	 * // 处理事务监听方法的参数
@@ -295,7 +295,7 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 
 	/**
 	 * Return the condition to use.
-	 * <p>Matches the {@code condition} attribute of the {@link EventListener}
+	 * Matches the {@code condition} attribute of the {@link EventListener}
 	 * annotation or any matching attribute on a composed annotation that
 	 * is meta-annotated with {@code @EventListener}.
 	 */

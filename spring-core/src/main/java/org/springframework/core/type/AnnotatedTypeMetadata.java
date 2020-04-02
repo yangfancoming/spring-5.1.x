@@ -19,7 +19,7 @@ public interface AnnotatedTypeMetadata {
 	/**
 	 * Determine whether the underlying element has an annotation or meta-annotation
 	 * of the given type defined.
-	 * <p>If this method returns {@code true}, then
+	 * If this method returns {@code true}, then
 	 * {@link #getAnnotationAttributes} will return a non-null Map.
 	 * @param annotationName the fully qualified class name of the annotation
 	 * type to look for

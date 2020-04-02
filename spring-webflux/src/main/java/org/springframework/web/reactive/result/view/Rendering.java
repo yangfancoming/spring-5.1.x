@@ -15,12 +15,12 @@ import org.springframework.ui.Model;
  * controllers. Comparable to the use of {@code ModelAndView} as a return value
  * in Spring MVC controllers.
  *
- * <p>Controllers typically return a {@link String} view name and rely on the
+ * Controllers typically return a {@link String} view name and rely on the
  * "implicit" model which can also be injected into the controller method.
  * Or controllers may return model attribute(s) and rely on a default view name
  * being selected based on the request path.
  *
- * <p>{@link Rendering} can be used to combine a view name with model attributes,
+ * {@link Rendering} can be used to combine a view name with model attributes,
  * set the HTTP status or headers, and for other more advanced options around
  * redirect scenarios.
  *
@@ -134,7 +134,7 @@ public interface Rendering {
 		/**
 		 * Whether to the provided redirect URL should be prepended with the
 		 * application context path (if any).
-		 * <p>By default this is set to {@code true}.
+		 * By default this is set to {@code true}.
 		 *
 		 * @see RedirectView#setContextRelative(boolean)
 		 */
@@ -143,7 +143,7 @@ public interface Rendering {
 		/**
 		 * Whether to append the query string of the current URL to the target
 		 * redirect URL or not.
-		 * <p>By default this is set to {@code false}.
+		 * By default this is set to {@code false}.
 		 *
 		 * @see RedirectView#setPropagateQuery(boolean)
 		 */

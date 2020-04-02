@@ -64,7 +64,7 @@ public abstract class AbstractMessageSendingTemplate<D> implements MessageSendin
 
 	/**
 	 * Set the {@link MessageConverter} to use in {@code convertAndSend} methods.
-	 * <p>By default, {@link SimpleMessageConverter} is used.
+	 * By default, {@link SimpleMessageConverter} is used.
 	 * @param messageConverter the message converter to use
 	 */
 	public void setMessageConverter(MessageConverter messageConverter) {
@@ -181,7 +181,7 @@ public abstract class AbstractMessageSendingTemplate<D> implements MessageSendin
 	/**
 	 * Provides access to the map of input headers before a send operation.
 	 * Subclasses can modify the headers and then return the same or a different map.
-	 * <p>This default implementation in this class returns the input map.
+	 * This default implementation in this class returns the input map.
 	 * @param headers the headers to send (or {@code null} if none)
 	 * @return the actual headers to send (or {@code null} if none)
 	 */

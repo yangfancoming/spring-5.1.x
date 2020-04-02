@@ -25,11 +25,11 @@ import org.springframework.web.servlet.View;
  * resource location. The file will typically be located in the WEB-INF directory;
  * the default is "/WEB-INF/views.xml".
  *
- * <p>This {@code ViewResolver} does not support internationalization at the level
+ * This {@code ViewResolver} does not support internationalization at the level
  * of its definition resources. Consider {@link ResourceBundleViewResolver} if you
  * need to apply different view resources per locale.
  *
- * <p>Note: This {@code ViewResolver} implements the {@link Ordered} interface
+ * Note: This {@code ViewResolver} implements the {@link Ordered} interface
  * in order to allow for flexible participation in {@code ViewResolver} chaining.
  * For example, some special views could be defined via this {@code ViewResolver}
  * (giving it 0 as "order" value), while all remaining views could be resolved by
@@ -59,7 +59,7 @@ public class XmlViewResolver extends AbstractCachingViewResolver
 
 	/**
 	 * Set the location of the XML file that defines the view beans.
-	 * <p>The default is "/WEB-INF/views.xml".
+	 * The default is "/WEB-INF/views.xml".
 	 * @param location the location of the XML file.
 	 */
 	public void setLocation(Resource location) {
@@ -68,7 +68,7 @@ public class XmlViewResolver extends AbstractCachingViewResolver
 
 	/**
 	 * Specify the order value for this ViewResolver bean.
-	 * <p>The default value is {@code Ordered.LOWEST_PRECEDENCE}, meaning non-ordered.
+	 * The default value is {@code Ordered.LOWEST_PRECEDENCE}, meaning non-ordered.
 	 * @see org.springframework.core.Ordered#getOrder()
 	 */
 	public void setOrder(int order) {

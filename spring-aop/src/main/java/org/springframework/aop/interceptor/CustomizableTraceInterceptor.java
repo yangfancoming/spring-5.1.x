@@ -20,7 +20,7 @@ import org.springframework.util.StringUtils;
  * {@code MethodInterceptor} implementation that allows for highly customizable
  * method-level tracing, using placeholders.
  *
- * <p>Trace messages are written on method entry, and if the method invocation succeeds
+ * Trace messages are written on method entry, and if the method invocation succeeds
  * on method exit. If an invocation results in an exception, then an exception message
  * is written. The contents of these trace messages is fully customizable and special
  * placeholders are available to allow you to include runtime information in your log
@@ -41,7 +41,7 @@ import org.springframework.util.StringUtils;
  * <li>{@code $[invocationTime]} - replaced with the time, in milliseconds,
  * taken by the method invocation</li>
  *
- * <p>There are restrictions on which placeholders can be used in which messages:
+ * There are restrictions on which placeholders can be used in which messages:
  * see the individual message properties for details on the valid placeholders.
  * @since 1.2
  * @see #setEnterMessage

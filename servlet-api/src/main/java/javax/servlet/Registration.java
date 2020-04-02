@@ -7,7 +7,7 @@ import java.util.Set;
  * Interface through which a {@link Servlet} or {@link Filter} may be
  * further configured.
  *
- * <p>A Registration object whose {@link #getClassName} method returns null
+ * A Registration object whose {@link #getClassName} method returns null
  * is considered <i>preliminary</i>. Servlets and Filters whose implementation
  * class is container implementation specific may be declared without
  * any <tt>servlet-class</tt> or <tt>filter-class</tt> elements, respectively,
@@ -82,7 +82,7 @@ public interface Registration {
      * Sets the given initialization parameters on the Servlet or Filter
      * that is represented by this Registration.
      *
-     * <p>The given map of initialization parameters is processed
+     * The given map of initialization parameters is processed
      * <i>by-value</i>, i.e., for each initialization parameter contained
      * in the map, this method calls {@link #setInitParameter(String,String)}.
      * If that method would return false for any of the
@@ -92,7 +92,7 @@ public interface Registration {
      * updates will be performed, and an IllegalArgumentException will be
      * thrown.
      *
-     * <p>The returned set is not backed by the {@code Registration} object,
+     * The returned set is not backed by the {@code Registration} object,
      * so changes in the returned set are not reflected in the
      * {@code Registration} object, and vice-versa.</p>
      *
@@ -132,10 +132,10 @@ public interface Registration {
          * Configures the Servlet or Filter represented by this dynamic
          * Registration as supporting asynchronous operations or not.
          *
-         * <p>By default, servlet and filters do not support asynchronous
+         * By default, servlet and filters do not support asynchronous
          * operations.
          *
-         * <p>A call to this method overrides any previous setting.
+         * A call to this method overrides any previous setting.
          *
          * @param isAsyncSupported true if the Servlet or Filter represented
          * by this dynamic Registration supports asynchronous operations,

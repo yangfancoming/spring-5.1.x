@@ -15,7 +15,7 @@ import org.springframework.web.context.WebApplicationContext;
  * Base class for MockMvc builder implementations, providing the capability to
  * create a {@link MockMvc} instance.
  *
- * <p>{@link org.springframework.test.web.servlet.setup.DefaultMockMvcBuilder},
+ * {@link org.springframework.test.web.servlet.setup.DefaultMockMvcBuilder},
  * which derives from this class, provides a concrete {@code build} method,
  * and delegates to abstract methods to obtain a {@link WebApplicationContext}.
  *

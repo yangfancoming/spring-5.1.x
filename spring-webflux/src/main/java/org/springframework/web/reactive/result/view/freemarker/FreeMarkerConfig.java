@@ -17,7 +17,7 @@ public interface FreeMarkerConfig {
 	/**
 	 * Return the FreeMarker Configuration object for the current
 	 * web application context.
-	 * <p>A FreeMarker Configuration object may be used to set FreeMarker
+	 * A FreeMarker Configuration object may be used to set FreeMarker
 	 * properties and shared objects, and allows to retrieve templates.
 	 * @return the FreeMarker Configuration
 	 */

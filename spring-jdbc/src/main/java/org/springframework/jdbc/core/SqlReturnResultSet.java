@@ -5,10 +5,10 @@ package org.springframework.jdbc.core;
 /**
  * Represents a returned {@link java.sql.ResultSet} from a stored procedure call.
  *
- * <p>A {@link ResultSetExtractor}, {@link RowCallbackHandler} or {@link RowMapper}
+ * A {@link ResultSetExtractor}, {@link RowCallbackHandler} or {@link RowMapper}
  * must be provided to handle any returned rows.
  *
- * <p>Returned {@link java.sql.ResultSet ResultSets} - like all stored procedure
+ * Returned {@link java.sql.ResultSet ResultSets} - like all stored procedure
  * parameters - must have names.
  */
 public class SqlReturnResultSet extends ResultSetSupportingSqlParameter {

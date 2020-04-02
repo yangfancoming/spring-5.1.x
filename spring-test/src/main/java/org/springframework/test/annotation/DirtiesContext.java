@@ -15,18 +15,18 @@ import java.lang.annotation.Target;
  * associated with a test is <em>dirty</em> and should therefore be closed
  * and removed from the context cache.
  *
- * <p>Use this annotation if a test has modified the context ; for
+ * Use this annotation if a test has modified the context ; for
  * example, by modifying the state of a singleton bean, modifying the state
  * of an embedded database, etc. Subsequent tests that request the same
  * context will be supplied a new context.
  *
- * <p>{@code @DirtiesContext} may be used as a class-level and method-level
+ * {@code @DirtiesContext} may be used as a class-level and method-level
  * annotation within the same class or class hierarchy. In such scenarios, the
  * {@code ApplicationContext} will be marked as <em>dirty</em> before or
  * after any such annotated method as well as before or after the current test
  * class, depending on the configured {@link #methodMode} and {@link #classMode}.
  *
- * <p>As of Spring Framework 4.0, this annotation may be used as a
+ * As of Spring Framework 4.0, this annotation may be used as a
  * <em>meta-annotation</em> to create custom <em>composed annotations</em>.
  *
  * <h3>Supported Test Phases</h3>
@@ -50,7 +50,7 @@ import java.lang.annotation.Target;
  * {@link ClassMode#AFTER_CLASS AFTER_CLASS}</li>
  * </ul>
  *
- * <p>{@code BEFORE_*} modes are supported by the
+ * {@code BEFORE_*} modes are supported by the
  * {@link org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener DirtiesContextBeforeModesTestExecutionListener};
  * {@code AFTER_*} modes are supported by the
  * {@link org.springframework.test.context.support.DirtiesContextTestExecutionListener DirtiesContextTestExecutionListener}.
@@ -71,8 +71,8 @@ public @interface DirtiesContext {
 	/**
 	 * The <i>mode</i> to use when a test method is annotated with
 	 * {@code @DirtiesContext}.
-	 * <p>Defaults to {@link MethodMode#AFTER_METHOD AFTER_METHOD}.
-	 * <p>Setting the method mode on an annotated test class has no meaning.
+	 * Defaults to {@link MethodMode#AFTER_METHOD AFTER_METHOD}.
+	 * Setting the method mode on an annotated test class has no meaning.
 	 * For class-level control, use {@link #classMode} instead.
 	 * @since 4.2
 	 */
@@ -81,8 +81,8 @@ public @interface DirtiesContext {
 	/**
 	 * The <i>mode</i> to use when a test class is annotated with
 	 * {@code @DirtiesContext}.
-	 * <p>Defaults to {@link ClassMode#AFTER_CLASS AFTER_CLASS}.
-	 * <p>Setting the class mode on an annotated test method has no meaning.
+	 * Defaults to {@link ClassMode#AFTER_CLASS AFTER_CLASS}.
+	 * Setting the class mode on an annotated test method has no meaning.
 	 * For method-level control, use {@link #methodMode} instead.
 	 * @since 3.0
 	 */
@@ -92,7 +92,7 @@ public @interface DirtiesContext {
 	 * The context cache clearing <em>mode</em> to use when a context is
 	 * configured as part of a hierarchy via
 	 * {@link org.springframework.test.context.ContextHierarchy @ContextHierarchy}.
-	 * <p>Defaults to {@link HierarchyMode#EXHAUSTIVE EXHAUSTIVE}.
+	 * Defaults to {@link HierarchyMode#EXHAUSTIVE EXHAUSTIVE}.
 	 * @since 3.2.2
 	 */
 	HierarchyMode hierarchyMode() default HierarchyMode.EXHAUSTIVE;
@@ -171,7 +171,7 @@ public @interface DirtiesContext {
 		 * but also all other context hierarchies that share an ancestor context
 		 * common to the current test.
 		 *
-		 * <p>All {@code ApplicationContexts} that reside in a subhierarchy of
+		 * All {@code ApplicationContexts} that reside in a subhierarchy of
 		 * the common ancestor context will be removed from the context cache and
 		 * closed.
 		 */
@@ -182,7 +182,7 @@ public @interface DirtiesContext {
 		 * context hierarchy and all contexts in subhierarchies of the current
 		 * level will be removed from the context cache and closed.
 		 *
-		 * <p>The <em>current level</em> refers to the {@code ApplicationContext}
+		 * The <em>current level</em> refers to the {@code ApplicationContext}
 		 * at the lowest level in the context hierarchy that is visible from the
 		 * current test.
 		 */

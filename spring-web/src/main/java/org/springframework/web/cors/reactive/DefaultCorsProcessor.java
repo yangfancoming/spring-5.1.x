@@ -23,7 +23,7 @@ import org.springframework.web.server.ServerWebExchange;
  * The default implementation of {@link CorsProcessor},
  * as defined by the <a href="https://www.w3.org/TR/cors/">CORS W3C recommendation</a>.
  *
- * <p>Note that when input {@link CorsConfiguration} is {@code null}, this
+ * Note that when input {@link CorsConfiguration} is {@code null}, this
  * implementation does not reject simple or actual requests outright but simply
  * avoid adding CORS headers to the response. CORS processing is also skipped
  * if the response already contains CORS headers, or if the request is detected

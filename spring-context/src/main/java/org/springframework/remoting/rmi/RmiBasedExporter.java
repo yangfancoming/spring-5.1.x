@@ -13,7 +13,7 @@ import org.springframework.remoting.support.RemoteInvocationBasedExporter;
  * to automatically wrap a given plain Java service object with an
  * RmiInvocationWrapper, exposing the {@link RmiInvocationHandler} remote interface.
  *
- * <p>Using the RMI invoker mechanism, RMI communication operates at the {@link RmiInvocationHandler}
+ * Using the RMI invoker mechanism, RMI communication operates at the {@link RmiInvocationHandler}
  * level, sharing a common invoker stub for any number of services. Service interfaces are <i>not</i>
  * required to extend {@code java.rmi.Remote} or declare {@code java.rmi.RemoteException}
  * on all service methods. However, in and out parameters still have to be serializable.

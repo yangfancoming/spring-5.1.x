@@ -50,16 +50,16 @@ import org.springframework.util.concurrent.SettableListenableFuture;
  * @author Rossen Stoyanchev
  * @author Stephane Maldini
  * @since 5.0
- * @param <P> the type of payload for in and outbound messages
+ * @param  the type of payload for in and outbound messages
  */
-public class ReactorNettyTcpClient<P> implements TcpOperations<P> {
+public class ReactorNettyTcpClient implements TcpOperations {
 
 	private static final int PUBLISH_ON_BUFFER_SIZE = 16;
 
 
 	private final TcpClient tcpClient;
 
-	private final ReactorNettyCodec<P> codec;
+	private final ReactorNettyCodec codec;
 
 	@Nullable
 	private final ChannelGroup channelGroup;
@@ -79,17 +79,17 @@ public class ReactorNettyTcpClient<P> implements TcpOperations<P> {
 
 	/**
 	 * Simple constructor with the host and port to use to connect to.
-	 * <p>This constructor manages the lifecycle of the {@link TcpClient} and
+	 * This constructor manages the lifecycle of the {@link TcpClient} and
 	 * underlying resources such as {@link ConnectionProvider},
 	 * {@link LoopResources}, and {@link ChannelGroup}.
-	 * <p>For full control over the initialization and lifecycle of the
+	 * For full control over the initialization and lifecycle of the
 	 * TcpClient, use {@link #ReactorNettyTcpClient(TcpClient, ReactorNettyCodec)}.
 	 * @param host the host to connect to
 	 * @param port the port to connect to
 	 * @param codec for encoding and decoding the input/output byte streams
 	 * @see org.springframework.messaging.simp.stomp.StompReactorNettyCodec
 	 */
-	public ReactorNettyTcpClient(String host, int port, ReactorNettyCodec<P> codec) {
+	public ReactorNettyTcpClient(String host, int port, ReactorNettyCodec codec) {
 		Assert.notNull(host, "host is required");
 		Assert.notNull(codec, "ReactorNettyCodec is required");
 
@@ -114,7 +114,7 @@ public class ReactorNettyTcpClient<P> implements TcpOperations<P> {
 	 * @since 5.1.3
 	 * @see org.springframework.messaging.simp.stomp.StompReactorNettyCodec
 	 */
-	public ReactorNettyTcpClient(Function<TcpClient, TcpClient> clientConfigurer, ReactorNettyCodec<P> codec) {
+	public ReactorNettyTcpClient(Function<TcpClient, TcpClient> clientConfigurer, ReactorNettyCodec codec) {
 		Assert.notNull(codec, "ReactorNettyCodec is required");
 
 		this.channelGroup = new DefaultChannelGroup(ImmediateEventExecutor.INSTANCE);
@@ -135,7 +135,7 @@ public class ReactorNettyTcpClient<P> implements TcpOperations<P> {
 	 * @param codec for encoding and decoding the input/output byte streams
 	 * @see org.springframework.messaging.simp.stomp.StompReactorNettyCodec
 	 */
-	public ReactorNettyTcpClient(TcpClient tcpClient, ReactorNettyCodec<P> codec) {
+	public ReactorNettyTcpClient(TcpClient tcpClient, ReactorNettyCodec codec) {
 		Assert.notNull(tcpClient, "TcpClient is required");
 		Assert.notNull(codec, "ReactorNettyCodec is required");
 		this.tcpClient = tcpClient;
@@ -166,7 +166,7 @@ public class ReactorNettyTcpClient<P> implements TcpOperations<P> {
 
 
 	@Override
-	public ListenableFuture<Void> connect(final TcpConnectionHandler<P> handler) {
+	public ListenableFuture<Void> connect(final TcpConnectionHandler handler) {
 		Assert.notNull(handler, "TcpConnectionHandler is required");
 
 		if (this.stopping) {
@@ -183,7 +183,7 @@ public class ReactorNettyTcpClient<P> implements TcpOperations<P> {
 	}
 
 	@Override
-	public ListenableFuture<Void> connect(TcpConnectionHandler<P> handler, ReconnectStrategy strategy) {
+	public ListenableFuture<Void> connect(TcpConnectionHandler handler, ReconnectStrategy strategy) {
 		Assert.notNull(handler, "TcpConnectionHandler is required");
 		Assert.notNull(strategy, "ReconnectStrategy is required");
 
@@ -208,7 +208,7 @@ public class ReactorNettyTcpClient<P> implements TcpOperations<P> {
 		return new MonoToListenableFutureAdapter<>(connectMono);
 	}
 
-	private ListenableFuture<Void> handleShuttingDownConnectFailure(TcpConnectionHandler<P> handler) {
+	private ListenableFuture<Void> handleShuttingDownConnectFailure(TcpConnectionHandler handler) {
 		IllegalStateException ex = new IllegalStateException("Shutting down.");
 		handler.afterConnectFailure(ex);
 		return new MonoToListenableFutureAdapter<>(Mono.error(ex));
@@ -288,9 +288,9 @@ public class ReactorNettyTcpClient<P> implements TcpOperations<P> {
 
 	private class ReactorNettyHandler implements BiFunction<NettyInbound, NettyOutbound, Publisher<Void>> {
 
-		private final TcpConnectionHandler<P> connectionHandler;
+		private final TcpConnectionHandler connectionHandler;
 
-		ReactorNettyHandler(TcpConnectionHandler<P> handler) {
+		ReactorNettyHandler(TcpConnectionHandler handler) {
 			this.connectionHandler = handler;
 		}
 
@@ -303,7 +303,7 @@ public class ReactorNettyTcpClient<P> implements TcpOperations<P> {
 				}
 			});
 			DirectProcessor<Void> completion = DirectProcessor.create();
-			TcpConnection<P> connection = new ReactorNettyTcpConnection<>(inbound, outbound,  codec, completion);
+			TcpConnection connection = new ReactorNettyTcpConnection<>(inbound, outbound,  codec, completion);
 			scheduler.schedule(() -> this.connectionHandler.afterConnected(connection));
 
 			inbound.withConnection(conn -> conn.addHandler(new StompMessageDecoder<>(codec)));
@@ -321,17 +321,17 @@ public class ReactorNettyTcpClient<P> implements TcpOperations<P> {
 	}
 
 
-	private static class StompMessageDecoder<P> extends ByteToMessageDecoder {
+	private static class StompMessageDecoder extends ByteToMessageDecoder {
 
-		private final ReactorNettyCodec<P> codec;
+		private final ReactorNettyCodec codec;
 
-		public StompMessageDecoder(ReactorNettyCodec<P> codec) {
+		public StompMessageDecoder(ReactorNettyCodec codec) {
 			this.codec = codec;
 		}
 
 		@Override
 		protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) {
-			Collection<Message<P>> messages = this.codec.decode(in);
+			Collection<Message> messages = this.codec.decode(in);
 			out.addAll(messages);
 		}
 	}

@@ -9,7 +9,7 @@ import javax.management.ObjectName;
  * Interface that allows infrastructure components to provide their own
  * {@code ObjectName}s to the {@code MBeanExporter}.
  *
- * <p><b>Note:</b> This interface is mainly intended for internal usage.
+ * <b>Note:</b> This interface is mainly intended for internal usage.
  *
  * @author Rob Harrop
  * @since 1.2.2

@@ -39,7 +39,7 @@ public class DelegatingEntityResolver implements EntityResolver {
 	/**
 	 * Create a new DelegatingEntityResolver that delegates to
 	 * a default {@link BeansDtdResolver} and a default {@link PluggableSchemaResolver}.
-	 * <p>Configures the {@link PluggableSchemaResolver} with the supplied
+	 * Configures the {@link PluggableSchemaResolver} with the supplied
 	 * {@link ClassLoader}.
 	 * @param classLoader the ClassLoader to use for loading
 	 * (can be {@code null}) to use the default ClassLoader)

@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
  * Simple utility methods for dealing with streams. The copy methods of this class are
  * similar to those defined in {@link FileCopyUtils} except that all affected streams are
  * left open when done. All copy methods use a block size of 4096 bytes.
- * <p>Mainly for use within the framework, but also useful for application code.
+ * Mainly for use within the framework, but also useful for application code.
  * @since 3.2.2
  * @see FileCopyUtils
  */
@@ -124,9 +124,9 @@ public abstract class StreamUtils {
 
 	/**
 	 * Copy a range of content of the given InputStream to the given OutputStream.
-	 * <p>If the specified range exceeds the length of the InputStream, this copies
+	 * If the specified range exceeds the length of the InputStream, this copies
 	 * up to the end of the stream and returns the actual number of copied bytes.
-	 * <p>Leaves both streams open when done.
+	 * Leaves both streams open when done.
 	 * @param in the InputStream to copy from
 	 * @param out the OutputStream to copy to
 	 * @param start the position to start copying from

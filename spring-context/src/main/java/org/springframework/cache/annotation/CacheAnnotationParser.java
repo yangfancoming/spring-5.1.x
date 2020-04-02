@@ -25,7 +25,7 @@ public interface CacheAnnotationParser {
 	/**
 	 * Parse the cache definition for the given class,
 	 * based on an annotation type understood by this parser.
-	 * <p>This essentially parses a known cache annotation into Spring's metadata
+	 * This essentially parses a known cache annotation into Spring's metadata
 	 * attribute class. Returns {@code null} if the class is not cacheable.
 	 * @param type the annotated class
 	 * @return the configured caching operation, or {@code null} if none found
@@ -37,7 +37,7 @@ public interface CacheAnnotationParser {
 	/**
 	 * Parse the cache definition for the given method,
 	 * based on an annotation type understood by this parser.
-	 * <p>This essentially parses a known cache annotation into Spring's metadata
+	 * This essentially parses a known cache annotation into Spring's metadata
 	 * attribute class. Returns {@code null} if the method is not cacheable.
 	 * @param method the annotated method
 	 * @return the configured caching operation, or {@code null} if none found

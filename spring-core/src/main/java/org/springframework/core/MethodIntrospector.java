@@ -18,7 +18,7 @@ import org.springframework.util.ReflectionUtils;
  * including interfaces and parent classes while also dealing with parameterized methods
  * as well as common scenarios encountered with interface and class-based proxies.
  *
- * <p>Typically, but not necessarily, used for finding annotated handler methods.
+ * Typically, but not necessarily, used for finding annotated handler methods.
  *
 
  * @author Rossen Stoyanchev
@@ -32,7 +32,7 @@ public final class MethodIntrospector {
 
 	/**
 	 * Select methods on the given target type based on the lookup of associated metadata.
-	 * <p>Callers define methods of interest through the {@link MetadataLookup} parameter,
+	 * Callers define methods of interest through the {@link MetadataLookup} parameter,
 	 * allowing to collect the associated metadata into the result map.
 	 * @param targetType the target type to search methods on
 	 * @param metadataLookup a {@link MetadataLookup} callback to inspect methods of interest,
@@ -72,7 +72,7 @@ public final class MethodIntrospector {
 
 	/**
 	 * Select methods on the given target type based on a filter.
-	 * <p>Callers define methods of interest through the {@code MethodFilter} parameter.
+	 * Callers define methods of interest through the {@code MethodFilter} parameter.
 	 * @param targetType the target type to search methods on
 	 * @param methodFilter a {@code MethodFilter} to help
 	 * recognize handler methods of interest
@@ -87,7 +87,7 @@ public final class MethodIntrospector {
 	 * Select an invocable method on the target type: either the given method itself
 	 * if actually exposed on the target type, or otherwise a corresponding method
 	 * on one of the target type's interfaces or on the target type itself.
-	 * <p>Matches on user-declared interfaces will be preferred since they are likely
+	 * Matches on user-declared interfaces will be preferred since they are likely
 	 * to contain relevant metadata that corresponds to the method on the target class.
 	 * @param method the method to check
 	 * @param targetType the target type to search methods on

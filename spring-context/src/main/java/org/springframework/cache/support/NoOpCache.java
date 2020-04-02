@@ -11,7 +11,7 @@ import org.springframework.util.Assert;
 /**
  * A no operation {@link Cache} implementation suitable for disabling caching.
  *
- * <p>Will simply accept any items into the cache not actually storing them.
+ * Will simply accept any items into the cache not actually storing them.
  *
  * @author Costin Leau
  * @author Stephane Nicoll

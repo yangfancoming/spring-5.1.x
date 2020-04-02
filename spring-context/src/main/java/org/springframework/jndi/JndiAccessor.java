@@ -30,7 +30,7 @@ public class JndiAccessor {
 
 	/**
 	 * Set the JNDI template to use for JNDI lookups.
-	 * <p>You can also specify JNDI environment settings via "jndiEnvironment".
+	 * You can also specify JNDI environment settings via "jndiEnvironment".
 	 * @see #setJndiEnvironment
 	 */
 	public void setJndiTemplate(@Nullable JndiTemplate jndiTemplate) {
@@ -46,7 +46,7 @@ public class JndiAccessor {
 
 	/**
 	 * Set the JNDI environment to use for JNDI lookups.
-	 * <p>Creates a JndiTemplate with the given environment settings.
+	 * Creates a JndiTemplate with the given environment settings.
 	 * @see #setJndiTemplate
 	 */
 	public void setJndiEnvironment(@Nullable Properties jndiEnvironment) {

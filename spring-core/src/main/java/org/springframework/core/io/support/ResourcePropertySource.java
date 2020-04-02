@@ -17,7 +17,7 @@ import org.springframework.util.StringUtils;
  * from a given {@link org.springframework.core.io.Resource} or resource location such as
  * {@code "classpath:/com/myco/foo.properties"} or {@code "file:/path/to/file.xml"}.
  *
- * <p>Both traditional and XML-based properties file formats are supported; however, in
+ * Both traditional and XML-based properties file formats are supported; however, in
  * order for XML processing to take effect, the underlying {@code Resource}'s
  * {@link org.springframework.core.io.Resource#getFilename() getFilename()} method must
  * return a non-{@code null} value that ends in {@code ".xml"}.

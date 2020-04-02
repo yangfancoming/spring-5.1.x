@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * methods and Java generics in JUnit Jupiter test classes when used with the Spring
  * TestContext Framework and the {@link SpringExtension}.
  *
- * <p>To run these tests in an IDE that does not have built-in support for the JUnit
+ * To run these tests in an IDE that does not have built-in support for the JUnit
  * Platform, simply run {@link SpringJUnitJupiterTestSuite} as a JUnit 4 test.
  *
  * @author Sam Brannen

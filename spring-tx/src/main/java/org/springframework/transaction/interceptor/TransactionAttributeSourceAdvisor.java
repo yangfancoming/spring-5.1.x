@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
  * Advisor driven by a {@link TransactionAttributeSource}, used to include
  * a {@link TransactionInterceptor} only for methods that are transactional.
  *
- * <p>Because the AOP framework caches advice calculations, this is normally
+ * Because the AOP framework caches advice calculations, this is normally
  * faster than just letting the TransactionInterceptor run and find out
  * itself that it has no work to do.
  *

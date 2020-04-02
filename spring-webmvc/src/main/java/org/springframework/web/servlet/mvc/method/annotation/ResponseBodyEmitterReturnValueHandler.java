@@ -35,7 +35,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * such as {@link SseEmitter} including the same types wrapped with
  * {@link ResponseEntity}.
  *
- * <p>As of 5.0 also supports reactive return value types for any reactive
+ * As of 5.0 also supports reactive return value types for any reactive
  * library with registered adapters in {@link ReactiveAdapterRegistry}.
  *
  * @author Rossen Stoyanchev

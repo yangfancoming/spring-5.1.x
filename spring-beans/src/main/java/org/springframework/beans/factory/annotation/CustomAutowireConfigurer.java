@@ -63,7 +63,7 @@ public class CustomAutowireConfigurer implements BeanFactoryPostProcessor, BeanC
 	 * when autowiring beans. Each element of the provided set may
 	 * be either a Class instance or a String representation of the
 	 * fully-qualified class name of the custom annotation.
-	 * <p>Note that any annotation that is itself annotated with Spring's
+	 * Note that any annotation that is itself annotated with Spring's
 	 * {@link org.springframework.beans.factory.annotation.Qualifier}
 	 * does not require explicit registration.
 	 * @param customQualifierTypes the custom types to register

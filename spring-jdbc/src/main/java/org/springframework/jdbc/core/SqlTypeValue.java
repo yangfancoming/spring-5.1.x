@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * types not supported by the standard {@code setObject} method. This is
  * effectively an extended variant of {@link org.springframework.jdbc.support.SqlValue}.
  *
- * <p>Implementations perform the actual work of setting the actual values. They must
+ * Implementations perform the actual work of setting the actual values. They must
  * implement the callback method {@code setTypeValue} which can throw SQLExceptions
  * that will be caught and translated by the calling code. This callback method has
  * access to the underlying Connection via the given PreparedStatement object, if that

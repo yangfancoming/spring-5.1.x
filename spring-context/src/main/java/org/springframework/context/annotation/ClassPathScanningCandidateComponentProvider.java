@@ -56,7 +56,7 @@ import org.springframework.util.ClassUtils;
  * supported: if any other include filter is specified, the index is ignored and
  * classpath scanning is used instead.
  *
- * <p>This implementation is based on Spring's
+ * This implementation is based on Spring's
  * {@link org.springframework.core.type.classreading.MetadataReader MetadataReader}
  * facility, backed by an ASM {@link org.springframework.asm.ClassReader ClassReader}.
  * @since 2.5
@@ -173,11 +173,11 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 
 	/**
 	 * Register the default filter for {@link Component @Component}.
-	 * <p>This will implicitly register all annotations that have the
+	 * This will implicitly register all annotations that have the
 	 * {@link Component @Component} meta-annotation including the
 	 * {@link Repository @Repository}, {@link Service @Service}, and
 	 * {@link Controller @Controller} stereotype annotations.
-	 * <p>Also supports Java EE 6's {@link javax.annotation.ManagedBean} and
+	 * Also supports Java EE 6's {@link javax.annotation.ManagedBean} and
 	 * JSR-330's {@link javax.inject.Named} annotations, if available.
 	 *
 	 */
@@ -206,7 +206,7 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	/**
 	 * Set the Environment to use when resolving placeholders and evaluating
 	 * {@link Conditional @Conditional}-annotated component classes.
-	 * <p>The default is a {@link StandardEnvironment}.
+	 * The default is a {@link StandardEnvironment}.
 	 * @param environment the Environment to use
 	 */
 	public void setEnvironment(Environment environment) {
@@ -234,7 +234,7 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	/**
 	 * Set the {@link ResourceLoader} to use for resource locations.
 	 * This will typically be a {@link ResourcePatternResolver} implementation.
-	 * <p>Default is a {@code PathMatchingResourcePatternResolver}, also capable of
+	 * Default is a {@code PathMatchingResourcePatternResolver}, also capable of
 	 * resource pattern resolving through the {@code ResourcePatternResolver} interface.
 	 * @see org.springframework.core.io.support.ResourcePatternResolver
 	 * @see org.springframework.core.io.support.PathMatchingResourcePatternResolver
@@ -262,9 +262,9 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 
 	/**
 	 * Set the {@link MetadataReaderFactory} to use.
-	 * <p>Default is a {@link CachingMetadataReaderFactory} for the specified
+	 * Default is a {@link CachingMetadataReaderFactory} for the specified
 	 * {@linkplain #setResourceLoader resource loader}.
-	 * <p>Call this setter method <i>after</i> {@link #setResourceLoader} in order
+	 * Call this setter method <i>after</i> {@link #setResourceLoader} in order
 	 * for the given MetadataReaderFactory to override the default factory.
 	 */
 	public void setMetadataReaderFactory(MetadataReaderFactory metadataReaderFactory) {
@@ -455,7 +455,7 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 
 	/**
 	 * Resolve the specified base package into a pattern specification for the package search path.
-	 * <p>The default implementation resolves placeholders against system properties,
+	 * The default implementation resolves placeholders against system properties,
 	 * and converts a "."-based package path to a "/"-based resource path.
 	 * @param basePackage the base package as specified by the user
 	 * @return the pattern specification to be used for package searching
@@ -498,8 +498,8 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 
 	/**
 	 * Determine whether the given bean definition qualifies as candidate.
-	 * <p>The default implementation checks whether the class is not an interface and not dependent on an enclosing class.
-	 * <p>Can be overridden in subclasses.
+	 * The default implementation checks whether the class is not an interface and not dependent on an enclosing class.
+	 * Can be overridden in subclasses.
 	 * @param beanDefinition the bean definition to check
 	 * @return whether the bean definition qualifies as a candidate component
 	 */

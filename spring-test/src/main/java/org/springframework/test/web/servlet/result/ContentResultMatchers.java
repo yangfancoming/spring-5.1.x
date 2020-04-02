@@ -22,7 +22,7 @@ import static org.springframework.test.util.AssertionErrors.assertTrue;
 /**
  * Factory for response content assertions.
  *
- * <p>An instance of this class is typically accessed via
+ * An instance of this class is typically accessed via
  * {@link MockMvcResultMatchers#content}.
  *
  * @author Rossen Stoyanchev
@@ -134,7 +134,7 @@ public class ContentResultMatchers {
 	 * Parse the response content and the given string as XML and assert the two
 	 * are "similar" - i.e. they contain the same elements and attributes
 	 * regardless of order.
-	 * <p>Use of this matcher requires the <a
+	 * Use of this matcher requires the <a
 	 * href="http://xmlunit.sourceforge.net/">XMLUnit</a> library.
 	 * @param xmlContent the expected XML content
 	 * @see MockMvcResultMatchers#xpath(String, Object...)
@@ -185,12 +185,12 @@ public class ContentResultMatchers {
 	/**
 	 * Parse the response content and the given string as JSON and assert the two are "similar" -
 	 * i.e. they contain the same attribute-value pairs regardless of formatting.
-	 * <p>Can compare in two modes, depending on {@code strict} parameter value:
+	 * Can compare in two modes, depending on {@code strict} parameter value:
 	 * <ul>
 	 * <li>{@code true}: strict checking. Not extensible, and strict array ordering.</li>
 	 * <li>{@code false}: lenient checking. Extensible, and non-strict array ordering.</li>
 	 * </ul>
-	 * <p>Use of this matcher requires the <a
+	 * Use of this matcher requires the <a
 	 * href="https://jsonassert.skyscreamer.org/">JSONassert</a> library.
 	 * @param jsonContent the expected JSON content
 	 * @param strict enables strict checking

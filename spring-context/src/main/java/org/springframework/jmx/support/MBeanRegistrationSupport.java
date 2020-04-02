@@ -23,23 +23,23 @@ import org.springframework.util.Assert;
  * an existing MBean at a given {@link ObjectName} is fully configurable
  * allowing for flexible registration settings.
  *
- * <p>All registered MBeans are tracked and can be unregistered by calling
+ * All registered MBeans are tracked and can be unregistered by calling
  * the #{@link #unregisterBeans()} method.
  *
- * <p>Sub-classes can receive notifications when an MBean is registered or
+ * Sub-classes can receive notifications when an MBean is registered or
  * unregistered by overriding the {@link #onRegister(ObjectName)} and
  * {@link #onUnregister(ObjectName)} methods respectively.
  *
- * <p>By default, the registration process will fail if attempting to
+ * By default, the registration process will fail if attempting to
  * register an MBean using a {@link javax.management.ObjectName} that is
  * already used.
  *
- * <p>By setting the {@link #setRegistrationPolicy(RegistrationPolicy) registrationPolicy}
+ * By setting the {@link #setRegistrationPolicy(RegistrationPolicy) registrationPolicy}
  * property to {@link RegistrationPolicy#IGNORE_EXISTING} the registration process
  * will simply ignore existing MBeans leaving them registered. This is useful in settings
  * where multiple applications want to share a common MBean in a shared {@link MBeanServer}.
  *
- * <p>Setting {@link #setRegistrationPolicy(RegistrationPolicy) registrationPolicy} property
+ * Setting {@link #setRegistrationPolicy(RegistrationPolicy) registrationPolicy} property
  * to {@link RegistrationPolicy#REPLACE_EXISTING} will cause existing MBeans to be replaced
  * during registration if necessary. This is useful in situations where you can't guarantee
  * the state of your {@link MBeanServer}.
@@ -224,7 +224,7 @@ public class MBeanRegistrationSupport {
 	/**
 	 * Called when an MBean is registered under the given {@link ObjectName}. Allows
 	 * subclasses to perform additional processing when an MBean is registered.
-	 * <p>The default implementation delegates to {@link #onRegister(ObjectName)}.
+	 * The default implementation delegates to {@link #onRegister(ObjectName)}.
 	 * @param objectName the actual {@link ObjectName} that the MBean was registered with
 	 * @param mbean the registered MBean instance
 	 */
@@ -235,7 +235,7 @@ public class MBeanRegistrationSupport {
 	/**
 	 * Called when an MBean is registered under the given {@link ObjectName}. Allows
 	 * subclasses to perform additional processing when an MBean is registered.
-	 * <p>The default implementation is empty. Can be overridden in subclasses.
+	 * The default implementation is empty. Can be overridden in subclasses.
 	 * @param objectName the actual {@link ObjectName} that the MBean was registered with
 	 */
 	protected void onRegister(ObjectName objectName) {
@@ -244,7 +244,7 @@ public class MBeanRegistrationSupport {
 	/**
 	 * Called when an MBean is unregistered under the given {@link ObjectName}. Allows
 	 * subclasses to perform additional processing when an MBean is unregistered.
-	 * <p>The default implementation is empty. Can be overridden in subclasses.
+	 * The default implementation is empty. Can be overridden in subclasses.
 	 * @param objectName the {@link ObjectName} that the MBean was registered with
 	 */
 	protected void onUnregister(ObjectName objectName) {

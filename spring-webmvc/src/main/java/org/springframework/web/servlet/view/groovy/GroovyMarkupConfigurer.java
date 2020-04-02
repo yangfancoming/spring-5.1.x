@@ -50,17 +50,17 @@ import org.springframework.util.StringUtils;
  * You can provide the {@link MarkupTemplateEngine} instance directly to this bean
  * in which case all other properties will not be effectively ignored.
  *
- * <p>This bean must be included in the application context of any application
+ * This bean must be included in the application context of any application
  * using the Spring MVC {@link GroovyMarkupView} for rendering. It exists purely
  * for the purpose of configuring Groovy's Markup templates. It is not meant to be
  * referenced by application components directly. It implements GroovyMarkupConfig
  * to be found by GroovyMarkupView without depending on a bean name. Each
  * DispatcherServlet can define its own GroovyMarkupConfigurer if desired.
  *
- * <p>Note that resource caching is enabled by default in {@link MarkupTemplateEngine}.
+ * Note that resource caching is enabled by default in {@link MarkupTemplateEngine}.
  * Use the {@link #setCacheTemplates(boolean)} to configure that as necessary.
 
- * <p>Spring's Groovy Markup template support requires Groovy 2.3.1 or higher.
+ * Spring's Groovy Markup template support requires Groovy 2.3.1 or higher.
  *
  * @author Brian Clozel
  * @author Rossen Stoyanchev
@@ -100,7 +100,7 @@ public class GroovyMarkupConfigurer extends TemplateConfiguration
 	/**
 	 * Set a pre-configured MarkupTemplateEngine to use for the Groovy Markup
 	 * Template web configuration.
-	 * <p>Note that this engine instance has to be manually configured, since all
+	 * Note that this engine instance has to be manually configured, since all
 	 * other bean properties of this configurer will be ignored.
 	 */
 	public void setTemplateEngine(MarkupTemplateEngine templateEngine) {
@@ -171,7 +171,7 @@ public class GroovyMarkupConfigurer extends TemplateConfiguration
 
 	/**
 	 * Resolve a template from the given template path.
-	 * <p>The default implementation uses the Locale associated with the current request,
+	 * The default implementation uses the Locale associated with the current request,
 	 * as obtained through {@link org.springframework.context.i18n.LocaleContextHolder LocaleContextHolder},
 	 * to find the template file. Effectively the locale configured at the engine level is ignored.
 	 * @see LocaleContextHolder

@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * defined JAX-WS Service references.
  * Uses {@link LocalJaxWsServiceFactory}'s facilities underneath.
  *
- * <p>Alternatively, JAX-WS Service references can be looked up
+ * Alternatively, JAX-WS Service references can be looked up
  * in the JNDI environment of the Java EE container.
  *
 

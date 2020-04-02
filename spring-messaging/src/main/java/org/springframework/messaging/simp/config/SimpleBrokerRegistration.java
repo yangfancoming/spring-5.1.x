@@ -35,7 +35,7 @@ public class SimpleBrokerRegistration extends AbstractBrokerRegistration {
 	 * Configure the {@link org.springframework.scheduling.TaskScheduler} to
 	 * use for providing heartbeat support. Setting this property also sets the
 	 * {@link #setHeartbeatValue heartbeatValue} to "10000, 10000".
-	 * <p>By default this is not set.
+	 * By default this is not set.
 	 * @since 4.2
 	 */
 	public SimpleBrokerRegistration setTaskScheduler(TaskScheduler taskScheduler) {
@@ -47,7 +47,7 @@ public class SimpleBrokerRegistration extends AbstractBrokerRegistration {
 	 * Configure the value for the heartbeat settings. The first number
 	 * represents how often the server will write or send a heartbeat.
 	 * The second is how often the client should write. 0 means no heartbeats.
-	 * <p>By default this is set to "0, 0" unless the {@link #setTaskScheduler
+	 * By default this is set to "0, 0" unless the {@link #setTaskScheduler
 	 * taskScheduler} in which case the default becomes "10000,10000"
 	 * (in milliseconds).
 	 * @since 4.2
@@ -62,11 +62,11 @@ public class SimpleBrokerRegistration extends AbstractBrokerRegistration {
 	 * the purpose of filtering messages matched to the subscription. The header
 	 * value is expected to be a Spring EL boolean expression to be applied to
 	 * the headers of messages matched to the subscription.
-	 * <p>For example:
+	 * For example:
 	 * <pre>
 	 * headers.foo == 'bar'
 	 * </pre>
-	 * <p>By default this is set to "selector". You can set it to a different
+	 * By default this is set to "selector". You can set it to a different
 	 * name, or to {@code null} to turn off support for a selector header.
 	 * @param selectorHeaderName the name to use for a selector header
 	 * @since 4.3.17

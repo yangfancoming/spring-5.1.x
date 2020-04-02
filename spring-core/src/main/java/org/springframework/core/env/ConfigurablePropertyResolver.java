@@ -17,7 +17,7 @@ public interface ConfigurablePropertyResolver extends PropertyResolver {
 	/**
 	 * Return the {@link ConfigurableConversionService} used when performing type
 	 * conversions on properties.
-	 * <p>The configurable nature of the returned conversion service allows for
+	 * The configurable nature of the returned conversion service allows for
 	 * the convenient addition and removal of individual {@code Converter} instances:
 	 * <pre class="code">
 	 * ConfigurableConversionService cs = env.getConversionService();
@@ -31,7 +31,7 @@ public interface ConfigurablePropertyResolver extends PropertyResolver {
 	/**
 	 * Set the {@link ConfigurableConversionService} to be used when performing type
 	 * conversions on properties.
-	 * <p><strong>Note:</strong> as an alternative to fully replacing the
+	 * <strong>Note:</strong> as an alternative to fully replacing the
 	 * {@code ConversionService}, consider adding or removing individual
 	 * {@code Converter} instances by drilling into {@link #getConversionService()}
 	 * and calling methods such as {@code #addConverter}.
@@ -64,7 +64,7 @@ public interface ConfigurablePropertyResolver extends PropertyResolver {
 	 * resolution, i.e. that an exception will be thrown. A {@code true} value indicates
 	 * that unresolvable nested placeholders should be passed through in their unresolved
 	 * ${...} form.
-	 * <p>Implementations of {@link #getProperty(String)} and its variants must inspect
+	 * Implementations of {@link #getProperty(String)} and its variants must inspect
 	 * the value set here to determine correct behavior when property values contain
 	 * unresolvable placeholders.
 	 * @since 3.2

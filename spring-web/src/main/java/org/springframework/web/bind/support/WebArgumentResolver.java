@@ -11,7 +11,7 @@ import org.springframework.web.context.request.NativeWebRequest;
  * Typically implemented to detect special parameter types, resolving
  * well-known argument values for them.
  *
- * <p>A typical implementation could look like as follows:
+ * A typical implementation could look like as follows:
  *
  * <pre class="code">
  * public class MySpecialArgumentResolver implements WebArgumentResolver {

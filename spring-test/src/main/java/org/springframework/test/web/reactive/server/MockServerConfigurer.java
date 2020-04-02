@@ -9,7 +9,7 @@ import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
  * customizations to a {@link WebTestClient.MockServerSpec} and expose that
  * as a shortcut.
  *
- * <p>An implementation of this interface can be plugged in via
+ * An implementation of this interface can be plugged in via
  * {@link WebTestClient.MockServerSpec#apply} where instances are likely obtained
  * via static methods, e.g.:
  *

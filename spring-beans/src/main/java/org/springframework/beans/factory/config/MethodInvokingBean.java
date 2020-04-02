@@ -17,7 +17,7 @@ import org.springframework.util.ClassUtils;
  * Simple method invoker bean: just invoking a target method, not expecting a result
  * to expose to the container (in contrast to {@link MethodInvokingFactoryBean}).
  *
- * <p>This invoker supports any kind of target method. A static method may be specified
+ * This invoker supports any kind of target method. A static method may be specified
  * by setting the {@link #setTargetMethod targetMethod} property to a String representing
  * the static method name, with {@link #setTargetClass targetClass} specifying the Class
  * that the static method is defined on. Alternatively, a target instance method may be
@@ -26,10 +26,10 @@ import org.springframework.util.ClassUtils;
  * method to call on that target object. Arguments for the method invocation may be
  * specified by setting the {@link #setArguments arguments} property.
  *
- * <p>This class depends on {@link #afterPropertiesSet()} being called once
+ * This class depends on {@link #afterPropertiesSet()} being called once
  * all properties have been set, as per the InitializingBean contract.
  *
- * <p>An example (in an XML based bean factory definition) of a bean definition
+ * An example (in an XML based bean factory definition) of a bean definition
  * which uses this class to call a static initialization method:
  *
  * <pre class="code">
@@ -37,7 +37,7 @@ import org.springframework.util.ClassUtils;
  *   &lt;property name="staticMethod" value="com.whatever.MyClass.init"/>
  * &lt;/bean></pre>
  *
- * <p>An example of calling an instance method to start some server bean:
+ * An example of calling an instance method to start some server bean:
  *
  * <pre class="code">
  * &lt;bean id="myStarter" class="org.springframework.beans.factory.config.MethodInvokingBean">

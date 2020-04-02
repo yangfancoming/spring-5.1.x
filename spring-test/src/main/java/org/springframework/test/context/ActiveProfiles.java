@@ -17,7 +17,7 @@ import org.springframework.core.annotation.AliasFor;
  * an {@link org.springframework.context.ApplicationContext ApplicationContext}
  * for test classes.
  *
- * <p>As of Spring Framework 4.0, this annotation may be used as a
+ * As of Spring Framework 4.0, this annotation may be used as a
  * <em>meta-annotation</em> to create custom <em>composed annotations</em>.
  *
  * @author Sam Brannen
@@ -37,7 +37,7 @@ public @interface ActiveProfiles {
 
 	/**
 	 * Alias for {@link #profiles}.
-	 * <p>This attribute may <strong>not</strong> be used in conjunction with
+	 * This attribute may <strong>not</strong> be used in conjunction with
 	 * {@link #profiles}, but it may be used <em>instead</em> of {@link #profiles}.
 	 */
 	@AliasFor("profiles")
@@ -45,7 +45,7 @@ public @interface ActiveProfiles {
 
 	/**
 	 * The bean definition profiles to activate.
-	 * <p>This attribute may <strong>not</strong> be used in conjunction with
+	 * This attribute may <strong>not</strong> be used in conjunction with
 	 * {@link #value}, but it may be used <em>instead</em> of {@link #value}.
 	 */
 	@AliasFor("value")
@@ -62,16 +62,16 @@ public @interface ActiveProfiles {
 	/**
 	 * Whether or not bean definition profiles from superclasses should be
 	 * <em>inherited</em>.
-	 * <p>The default value is {@code true}, which means that a test
+	 * The default value is {@code true}, which means that a test
 	 * class will <em>inherit</em> bean definition profiles defined by a
 	 * test superclass. Specifically, the bean definition profiles for a test
 	 * class will be appended to the list of bean definition profiles
 	 * defined by a test superclass. Thus, subclasses have the option of
 	 * <em>extending</em> the list of bean definition profiles.
-	 * <p>If {@code inheritProfiles} is set to {@code false}, the bean
+	 * If {@code inheritProfiles} is set to {@code false}, the bean
 	 * definition profiles for the test class will <em>shadow</em> and
 	 * effectively replace any bean definition profiles defined by a superclass.
-	 * <p>In the following example, the {@code ApplicationContext} for
+	 * In the following example, the {@code ApplicationContext} for
 	 * {@code BaseTest} will be loaded using only the &quot;base&quot;
 	 * bean definition profile; beans defined in the &quot;extended&quot; profile
 	 * will therefore not be loaded. In contrast, the {@code ApplicationContext}
@@ -90,7 +90,7 @@ public @interface ActiveProfiles {
 	 *     // ...
 	 * }
 	 * </pre>
-	 * <p>Note: {@code @ActiveProfiles} can be used when loading an
+	 * Note: {@code @ActiveProfiles} can be used when loading an
 	 * {@code ApplicationContext} from path-based resource locations or
 	 * annotated classes.
 	 * @see ContextConfiguration#locations

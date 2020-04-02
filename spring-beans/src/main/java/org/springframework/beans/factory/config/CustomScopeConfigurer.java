@@ -17,11 +17,11 @@ import org.springframework.util.ClassUtils;
  * Simple {@link BeanFactoryPostProcessor} implementation that registers
  * custom {@link Scope Scope(s)} with the containing {@link ConfigurableBeanFactory}.
  *
- * <p>Will register all of the supplied {@link #setScopes(java.util.Map) scopes}
+ * Will register all of the supplied {@link #setScopes(java.util.Map) scopes}
  * with the {@link ConfigurableListableBeanFactory} that is passed to the
  * {@link #postProcessBeanFactory(ConfigurableListableBeanFactory)} method.
  *
- * <p>This class allows for <i>declarative</i> registration of custom scopes.
+ * This class allows for <i>declarative</i> registration of custom scopes.
  * Alternatively, consider implementing a custom {@link BeanFactoryPostProcessor}
  * that calls {@link ConfigurableBeanFactory#registerScope} programmatically.
  *
@@ -43,7 +43,7 @@ public class CustomScopeConfigurer implements BeanFactoryPostProcessor, BeanClas
 
 	/**
 	 * Specify the custom scopes that are to be registered.
-	 * <p>The keys indicate the scope names (of type String); each value
+	 * The keys indicate the scope names (of type String); each value
 	 * is expected to be the corresponding custom {@link Scope} instance
 	 * or class name.
 	 */

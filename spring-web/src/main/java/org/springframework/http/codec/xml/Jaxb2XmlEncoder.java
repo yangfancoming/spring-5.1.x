@@ -32,7 +32,7 @@ import org.springframework.util.MimeTypeUtils;
 /**
  * Encode from single value to a byte stream containing XML elements.
  *
- * <p>{@link javax.xml.bind.annotation.XmlElements @XmlElements} and
+ * {@link javax.xml.bind.annotation.XmlElements @XmlElements} and
  * {@link javax.xml.bind.annotation.XmlElement @XmlElement} can be used
  * to specify how collections should be marshalled.
  *

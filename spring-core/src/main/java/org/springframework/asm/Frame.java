@@ -30,7 +30,7 @@ package org.springframework.asm;
 /**
  * The input and output stack map frames of a basic block.
  *
- * <p>Stack map frames are computed in two steps:
+ * Stack map frames are computed in two steps:
  *
  * <ul>
  *   <li>During the visit of each instruction in MethodWriter, the state of the frame at the end of
@@ -41,14 +41,14 @@ package org.springframework.asm;
  *       the basic block). See {@link MethodWriter#computeAllFrames}.
  * </ul>
  *
- * <p>Output stack map frames are computed relatively to the input frame of the basic block, which
+ * Output stack map frames are computed relatively to the input frame of the basic block, which
  * is not yet known when output frames are computed. It is therefore necessary to be able to
  * represent abstract types such as "the type at position x in the input frame locals" or "the type
  * at position x from the top of the input frame stack" or even "the type at position x in the input
  * frame, with y more (or less) array dimensions". This explains the rather complicated type format
  * used in this class, explained below.
  *
- * <p>The local variables and the operand stack of input and output frames contain values called
+ * The local variables and the operand stack of input and output frames contain values called
  * "abstract types" hereafter. An abstract type is represented with 4 fields named DIM, KIND, FLAGS
  * and VALUE, packed in a single int value for better performance and memory efficiency:
  *
@@ -86,14 +86,14 @@ package org.springframework.asm;
  *       </ul>
  * </ul>
  *
- * <p>Output frames can contain abstract types of any kind and with a positive or negative array
+ * Output frames can contain abstract types of any kind and with a positive or negative array
  * dimension (and even unassigned types, represented by 0 - which does not correspond to any valid
  * abstract type value). Input frames can only contain CONSTANT_KIND, REFERENCE_KIND or
  * UNINITIALIZED_KIND abstract types of positive or null array dimension. In all cases the type
  * table contains only internal type names (array type descriptors are forbidden - array dimensions
  * must be represented through the DIM field).
  *
- * <p>The LONG and DOUBLE types are always represented by using two slots (LONG + TOP or DOUBLE +
+ * The LONG and DOUBLE types are always represented by using two slots (LONG + TOP or DOUBLE +
  * TOP), for local variables as well as in the operand stack. This is necessary to be able to
  * simulate DUPx_y instructions, whose effect would be dependent on the concrete types represented
  * by the abstract types in the stack (which are not always known).
@@ -239,7 +239,7 @@ class Frame {
   /**
    * Sets this frame to the value of the given frame.
    *
-   * <p>WARNING: after this method is called the two frames share the same data structures. It is
+   * WARNING: after this method is called the two frames share the same data structures. It is
    * recommended to discard the given frame to avoid unexpected side effects.
    *
    * @param frame The new frame value.

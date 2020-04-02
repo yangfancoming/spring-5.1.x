@@ -7,7 +7,7 @@ package org.springframework.jmx.export.assembler;
  * Implementations of this interface are given the opportunity by the
  * {@code MBeanExporter} to include additional beans in the registration process.
  *
- * <p>The exact mechanism for deciding which beans to include is left to
+ * The exact mechanism for deciding which beans to include is left to
  * implementing classes.
  *
  * @author Rob Harrop

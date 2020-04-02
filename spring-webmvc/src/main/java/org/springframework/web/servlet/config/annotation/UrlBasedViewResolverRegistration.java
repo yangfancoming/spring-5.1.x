@@ -88,9 +88,9 @@ public class UrlBasedViewResolverRegistration {
 
 	/**
 	 * Enable or disable caching.
-	 * <p>This is equivalent to setting the {@link #cacheLimit "cacheLimit"}
+	 * This is equivalent to setting the {@link #cacheLimit "cacheLimit"}
 	 * property to the default limit (1024) or to 0, respectively.
-	 * <p>Default is "true": caching is enabled.
+	 * Default is "true": caching is enabled.
 	 * Disable this only for debugging and development.
 	 * @see org.springframework.web.servlet.view.UrlBasedViewResolver#setCache(boolean)
 	 */

@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
  * Main contract for using a server-side session that provides access to session
  * attributes across HTTP requests.
  *
- * <p>The creation of a {@code WebSession} instance does not automatically start
+ * The creation of a {@code WebSession} instance does not automatically start
  * a session thus causing the session id to be sent to the client (typically via
  * a cookie). A session starts implicitly when session attributes are added.
  * A session may also be created explicitly via {@link #start()}.
@@ -111,7 +111,7 @@ public interface WebSession {
 	 * the implementation for this method must check whether the session was
 	 * {@link #invalidate() invalidated} and if so return an error.
 	 * </ul>
-	 * <p>Note that this method is not intended for direct use by applications.
+	 * Note that this method is not intended for direct use by applications.
 	 * Instead it is automatically invoked just before the response is
 	 * committed.
 	 * @return {@code Mono} to indicate completion with success or error
@@ -121,7 +121,7 @@ public interface WebSession {
 	/**
 	 * Return {@code true} if the session expired after {@link #getMaxIdleTime()
 	 * maxIdleTime} elapsed.
-	 * <p>Typically expiration checks should be automatically made when a session
+	 * Typically expiration checks should be automatically made when a session
 	 * is accessed, a new {@code WebSession} instance created if necessary, at
 	 * the start of request processing so that applications don't have to worry
 	 * about expired session by default.

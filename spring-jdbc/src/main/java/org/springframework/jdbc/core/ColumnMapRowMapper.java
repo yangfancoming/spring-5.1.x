@@ -16,11 +16,11 @@ import org.springframework.util.LinkedCaseInsensitiveMap;
  * for each row, representing all columns as key-value pairs: one
  * entry for each column, with the column name as key.
  *
- * <p>The Map implementation to use and the key to use for each column
+ * The Map implementation to use and the key to use for each column
  * in the column Map can be customized through overriding
  * {@link #createColumnMap} and {@link #getColumnKey}, respectively.
  *
- * <p><b>Note:</b> By default, ColumnMapRowMapper will try to build a linked Map
+ * <b>Note:</b> By default, ColumnMapRowMapper will try to build a linked Map
  * with case-insensitive keys, to preserve column order as well as allow any
  * casing to be used for column names. This requires Commons Collections on the
  * classpath (which will be autodetected). Else, the fallback is a standard linked
@@ -46,7 +46,7 @@ public class ColumnMapRowMapper implements RowMapper<Map<String, Object>> {
 
 	/**
 	 * Create a Map instance to be used as column map.
-	 * <p>By default, a linked case-insensitive Map will be created.
+	 * By default, a linked case-insensitive Map will be created.
 	 * @param columnCount the column count, to be used as initial
 	 * capacity for the Map
 	 * @return the new Map instance
@@ -68,7 +68,7 @@ public class ColumnMapRowMapper implements RowMapper<Map<String, Object>> {
 
 	/**
 	 * Retrieve a JDBC object value for the specified column.
-	 * <p>The default implementation uses the {@code getObject} method.
+	 * The default implementation uses the {@code getObject} method.
 	 * Additionally, this implementation includes a "hack" to get around Oracle
 	 * returning a non standard object for their TIMESTAMP datatype.
 	 * @param rs is the ResultSet holding the data

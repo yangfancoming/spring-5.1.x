@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
  * Factory for locally defined JAX-WS {@link javax.xml.ws.Service} references.
  * Uses the JAX-WS {@link javax.xml.ws.Service#create} factory API underneath.
  *
- * <p>Serves as base class for {@link LocalJaxWsServiceFactoryBean} as well as
+ * Serves as base class for {@link LocalJaxWsServiceFactoryBean} as well as
  * {@link JaxWsPortClientInterceptor} and {@link JaxWsPortProxyFactoryBean}.
  *
 

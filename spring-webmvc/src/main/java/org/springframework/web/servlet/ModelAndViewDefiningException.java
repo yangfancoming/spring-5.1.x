@@ -10,7 +10,7 @@ import org.springframework.util.Assert;
  * Exception to be thrown on error conditions that should forward
  * to a specific view with a specific model.
  *
- * <p>Can be thrown at any time during handler processing.
+ * Can be thrown at any time during handler processing.
  * This includes any template methods of pre-built controllers.
  * For example, a form controller might abort to a specific error page
  * if certain parameters do not allow to proceed with the normal workflow.

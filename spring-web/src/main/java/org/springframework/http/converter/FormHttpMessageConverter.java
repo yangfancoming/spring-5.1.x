@@ -35,19 +35,19 @@ import org.springframework.util.StringUtils;
  * Implementation of {@link HttpMessageConverter} to read and write 'normal' HTML
  * forms and also to write (but not read) multipart data (e.g. file uploads).
  *
- * <p>In other words, this converter can read and write the
+ * In other words, this converter can read and write the
  * {@code "application/x-www-form-urlencoded"} media type as
  * {@link MultiValueMap MultiValueMap&lt;String, String&gt;} and it can also
  * write (but not read) the {@code "multipart/form-data"} media type as
  * {@link MultiValueMap MultiValueMap&lt;String, Object&gt;}.
  *
- * <p>When writing multipart data, this converter uses other
+ * When writing multipart data, this converter uses other
  * {@link HttpMessageConverter HttpMessageConverters} to write the respective
  * MIME parts. By default, basic converters are registered (for {@code Strings}
  * and {@code Resources}). These can be overridden through the
  * {@link #setPartConverters partConverters} property.
  *
- * <p>For example, the following snippet shows how to submit an HTML form:
+ * For example, the following snippet shows how to submit an HTML form:
  * <pre class="code">
  * RestTemplate template = new RestTemplate();
  * // AllEncompassingFormHttpMessageConverter is configured by default
@@ -60,7 +60,7 @@ import org.springframework.util.StringUtils;
  * template.postForLocation("https://example.com/myForm", form);
  * </pre>
  *
- * <p>The following snippet shows how to do a file upload:
+ * The following snippet shows how to do a file upload:
  * <pre class="code">
  * MultiValueMap&lt;String, Object&gt; parts = new LinkedMultiValueMap&lt;&gt;();
  * parts.add("field 1", "value 1");
@@ -68,7 +68,7 @@ import org.springframework.util.StringUtils;
  * template.postForLocation("https://example.com/myFileUpload", parts);
  * </pre>
  *
- * <p>Some methods in this class were inspired by
+ * Some methods in this class were inspired by
  * {@code org.apache.commons.httpclient.methods.multipart.MultipartRequestEntity}.
  *
  * @author Arjen Poutsma
@@ -147,14 +147,14 @@ public class FormHttpMessageConverter implements HttpMessageConverter<MultiValue
 	/**
 	 * Set the default character set to use for reading and writing form data when
 	 * the request or response Content-Type header does not explicitly specify it.
-	 * <p>As of 4.3, this is also used as the default charset for the conversion
+	 * As of 4.3, this is also used as the default charset for the conversion
 	 * of text bodies in a multipart request.
-	 * <p>As of 5.0 this is also used for part headers including
+	 * As of 5.0 this is also used for part headers including
 	 * "Content-Disposition" (and its filename parameter) unless (the mutually
 	 * exclusive) {@link #setMultipartCharset} is also set, in which case part
 	 * headers are encoded as ASCII and <i>filename</i> is encoded with the
 	 * "encoded-word" syntax from RFC 2047.
-	 * <p>By default this is set to "UTF-8".
+	 * By default this is set to "UTF-8".
 	 */
 	public void setCharset(@Nullable Charset charset) {
 		if (charset != this.charset) {
@@ -182,7 +182,7 @@ public class FormHttpMessageConverter implements HttpMessageConverter<MultiValue
 	 * Set the character set to use when writing multipart data to encode file
 	 * names. Encoding is based on the "encoded-word" syntax defined in RFC 2047
 	 * and relies on {@code MimeUtility} from "javax.mail".
-	 * <p>As of 5.0 by default part headers, including Content-Disposition (and
+	 * As of 5.0 by default part headers, including Content-Disposition (and
 	 * its filename parameter) will be encoded based on the setting of
 	 * {@link #setCharset(Charset)} or {@code UTF-8} by default.
 	 * @since 4.1.1
@@ -410,7 +410,7 @@ public class FormHttpMessageConverter implements HttpMessageConverter<MultiValue
 
 	/**
 	 * Generate a multipart boundary.
-	 * <p>This implementation delegates to
+	 * This implementation delegates to
 	 * {@link MimeTypeUtils#generateMultipartBoundary()}.
 	 */
 	protected byte[] generateMultipartBoundary() {
@@ -430,7 +430,7 @@ public class FormHttpMessageConverter implements HttpMessageConverter<MultiValue
 	/**
 	 * Return the filename of the given multipart part. This value will be used for the
 	 * {@code Content-Disposition} header.
-	 * <p>The default implementation returns {@link Resource#getFilename()} if the part is a
+	 * The default implementation returns {@link Resource#getFilename()} if the part is a
 	 * {@code Resource}, and {@code null} in other cases. Can be overridden in subclasses.
 	 * @param part the part to determine the file name for
 	 * @return the filename, or {@code null} if not known

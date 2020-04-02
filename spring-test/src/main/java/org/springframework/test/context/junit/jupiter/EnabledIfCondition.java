@@ -10,7 +10,7 @@ import org.junit.jupiter.api.extension.ExtensionContext;
  * that supports the {@link EnabledIf @EnabledIf} annotation when using the <em>Spring
  * TestContext Framework</em> in conjunction with JUnit 5's <em>Jupiter</em> programming model.
  *
- * <p>Any attempt to use the {@code EnabledIfCondition} without the presence of
+ * Any attempt to use the {@code EnabledIfCondition} without the presence of
  * {@link EnabledIf @EnabledIf} will result in an <em>enabled</em>
  * {@link ConditionEvaluationResult}.
  *

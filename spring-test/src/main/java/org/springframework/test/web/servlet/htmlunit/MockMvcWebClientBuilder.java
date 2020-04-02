@@ -14,7 +14,7 @@ import org.springframework.web.context.WebApplicationContext;
  * {@code MockMvcWebClientBuilder} simplifies the creation of an HtmlUnit
  * {@link WebClient} that delegates to a {@link MockMvc} instance.
  *
- * <p>The {@code MockMvc} instance used by the builder may be
+ * The {@code MockMvc} instance used by the builder may be
  * {@linkplain #mockMvcSetup supplied directly} or created transparently
  * from a {@link #webAppContextSetup WebApplicationContext}.
  *
@@ -101,10 +101,10 @@ public class MockMvcWebClientBuilder extends MockMvcWebConnectionBuilderSupport<
 
 	/**
 	 * Build the {@link WebClient} configured via this builder.
-	 * <p>The returned client will use the configured {@link MockMvc} instance
+	 * The returned client will use the configured {@link MockMvc} instance
 	 * for processing any {@linkplain WebRequestMatcher matching} requests
 	 * and a delegate {@code WebClient} for all other requests.
-	 * <p>If a {@linkplain #withDelegate delegate} has been explicitly configured,
+	 * If a {@linkplain #withDelegate delegate} has been explicitly configured,
 	 * it will be used; otherwise, a default {@code WebClient} will be configured
 	 * as the delegate.
 	 * @return the {@code WebClient} to use

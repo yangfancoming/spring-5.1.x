@@ -8,11 +8,11 @@ import java.io.Flushable;
  * Interface for transaction synchronization callbacks.
  * Supported by AbstractPlatformTransactionManager.
  *
- * <p>TransactionSynchronization implementations can implement the Ordered interface
+ * TransactionSynchronization implementations can implement the Ordered interface
  * to influence their execution order. A synchronization that does not implement the
  * Ordered interface is appended to the end of the synchronization chain.
  *
- * <p>System synchronizations performed by Spring itself use specific order values,
+ * System synchronizations performed by Spring itself use specific order values,
  * allowing for fine-grained interaction with their execution order (if necessary).
 
  * @since 02.06.2003
@@ -63,11 +63,11 @@ public interface TransactionSynchronization extends Flushable {
 	/**
 	 * Invoked before transaction commit (before "beforeCompletion").
 	 * Can e.g. flush transactional O/R Mapping sessions to the database.
-	 * <p>This callback does <i>not</i> mean that the transaction will actually be committed.
+	 * This callback does <i>not</i> mean that the transaction will actually be committed.
 	 * A rollback decision can still occur after this method has been called. This callback
 	 * is rather meant to perform work that's only relevant if a commit still has a chance
 	 * to happen, such as flushing SQL statements to the database.
-	 * <p>Note that exceptions will get propagated to the commit caller and cause a
+	 * Note that exceptions will get propagated to the commit caller and cause a
 	 * rollback of the transaction.
 	 * @param readOnly whether the transaction is defined as read-only transaction
 	 * @throws RuntimeException in case of errors; will be <b>propagated to the caller</b>
@@ -81,7 +81,7 @@ public interface TransactionSynchronization extends Flushable {
 	/**
 	 * Invoked before transaction commit/rollback.
 	 * Can perform resource cleanup <i>before</i> transaction completion.
-	 * <p>This method will be invoked after {@code beforeCommit}, even when
+	 * This method will be invoked after {@code beforeCommit}, even when
 	 * {@code beforeCommit} threw an exception. This callback allows for
 	 * closing resources before transaction completion, for any outcome.
 	 * @throws RuntimeException in case of errors; will be <b>logged but not propagated</b>
@@ -96,9 +96,9 @@ public interface TransactionSynchronization extends Flushable {
 	/**
 	 * Invoked after transaction commit. Can perform further operations right
 	 * <i>after</i> the main transaction has <i>successfully</i> committed.
-	 * <p>Can e.g. commit further operations that are supposed to follow on a successful
+	 * Can e.g. commit further operations that are supposed to follow on a successful
 	 * commit of the main transaction, like confirmation messages or emails.
-	 * <p><b>NOTE:</b> The transaction will have been committed already, but the
+	 * <b>NOTE:</b> The transaction will have been committed already, but the
 	 * transactional resources might still be active and accessible. As a consequence,
 	 * any data access code triggered at this point will still "participate" in the
 	 * original transaction, allowing to perform some cleanup (with no commit following
@@ -115,7 +115,7 @@ public interface TransactionSynchronization extends Flushable {
 	/**
 	 * Invoked after transaction commit/rollback.
 	 * Can perform resource cleanup <i>after</i> transaction completion.
-	 * <p><b>NOTE:</b> The transaction will have been committed or rolled back already,
+	 * <b>NOTE:</b> The transaction will have been committed or rolled back already,
 	 * but the transactional resources might still be active and accessible. As a
 	 * consequence, any data access code triggered at this point will still "participate"
 	 * in the original transaction, allowing to perform some cleanup (with no commit

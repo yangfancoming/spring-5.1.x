@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  * Interface to be implemented by objects that can manage a number of
  * {@link ApplicationListener} objects, and publish events to them.
  *
- * <p>An {@link org.springframework.context.ApplicationEventPublisher}, typically
+ * An {@link org.springframework.context.ApplicationEventPublisher}, typically
  * a Spring {@link org.springframework.context.ApplicationContext}, can use an
  * ApplicationEventMulticaster as a delegate for actually publishing events.
  *
@@ -47,14 +47,14 @@ public interface ApplicationEventMulticaster {
 
 	/**
 	 * Remove all listeners registered with this multicaster.
-	 * <p>After a remove call, the multicaster will perform no action
+	 * After a remove call, the multicaster will perform no action
 	 * on event notification until new listeners are being registered.
 	 */
 	void removeAllListeners();
 
 	/**
 	 * Multicast the given application event to appropriate listeners.
-	 * <p>Consider using {@link #multicastEvent(ApplicationEvent, ResolvableType)}
+	 * Consider using {@link #multicastEvent(ApplicationEvent, ResolvableType)}
 	 * if possible as it provides a better support for generics-based events.
 	 * @param event the event to multicast
 	 */
@@ -62,7 +62,7 @@ public interface ApplicationEventMulticaster {
 
 	/**
 	 * Multicast the given application event to appropriate listeners.
-	 * <p>If the {@code eventType} is {@code null}, a default type is built
+	 * If the {@code eventType} is {@code null}, a default type is built
 	 * based on the {@code event} instance.
 	 * @param event the event to multicast
 	 * @param eventType the type of event (can be null)

@@ -21,7 +21,7 @@ public enum TransactionPhase {
 
 	/**
 	 * Fire the event after the commit has completed successfully.
-	 * <p>Note: This is a specialization of {@link #AFTER_COMPLETION} and
+	 * Note: This is a specialization of {@link #AFTER_COMPLETION} and
 	 * therefore executes in the same after-completion sequence of events,
 	 * (and not in {@link TransactionSynchronization#afterCommit()}).
 	 * @see TransactionSynchronization#afterCompletion(int)
@@ -32,7 +32,7 @@ public enum TransactionPhase {
 
 	/**
 	 * Fire the event if the transaction has rolled back.
-	 * <p>Note: This is a specialization of {@link #AFTER_COMPLETION} and
+	 * Note: This is a specialization of {@link #AFTER_COMPLETION} and
 	 * therefore executes in the same after-completion sequence of events.
 	 * @see TransactionSynchronization#afterCompletion(int)
 	 * @see TransactionSynchronization#STATUS_ROLLED_BACK
@@ -42,7 +42,7 @@ public enum TransactionPhase {
 
 	/**
 	 * Fire the event after the transaction has completed.
-	 * <p>For more fine-grained events, use {@link #AFTER_COMMIT} or
+	 * For more fine-grained events, use {@link #AFTER_COMMIT} or
 	 * {@link #AFTER_ROLLBACK} to intercept transaction commit
 	 * or rollback, respectively.
 	 * @see TransactionSynchronization#afterCompletion(int)

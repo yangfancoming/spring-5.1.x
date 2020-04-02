@@ -58,7 +58,7 @@ public class NotificationListenerHolder {
 	/**
 	 * Set the {@link javax.management.NotificationFilter} associated
 	 * with the encapsulated {@link #getNotificationFilter() NotificationFilter}.
-	 * <p>May be {@code null}.
+	 * May be {@code null}.
 	 */
 	public void setNotificationFilter(@Nullable NotificationFilter notificationFilter) {
 		this.notificationFilter = notificationFilter;
@@ -67,7 +67,7 @@ public class NotificationListenerHolder {
 	/**
 	 * Return the {@link javax.management.NotificationFilter} associated
 	 * with the encapsulated {@link #getNotificationListener() NotificationListener}.
-	 * <p>May be {@code null}.
+	 * May be {@code null}.
 	 */
 	@Nullable
 	public NotificationFilter getNotificationFilter() {

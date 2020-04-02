@@ -9,7 +9,7 @@ import org.springframework.lang.Nullable;
  * Supports access to request-scoped attributes as well as to session-scoped
  * attributes, with the optional notion of a "global session".
  *
- * <p>Can be implemented for any kind of request/session mechanism,
+ * Can be implemented for any kind of request/session mechanism,
  * in particular for servlet requests.
  *
 
@@ -25,7 +25,7 @@ public interface RequestAttributes {
 
 	/**
 	 * Constant that indicates session scope.
-	 * <p>This preferably refers to a locally isolated session, if such
+	 * This preferably refers to a locally isolated session, if such
 	 * a distinction is available.
 	 * Else, it simply refers to the common session.
 	 */
@@ -65,7 +65,7 @@ public interface RequestAttributes {
 
 	/**
 	 * Remove the scoped attribute of the given name, if it exists.
-	 * <p>Note that an implementation should also remove a registered destruction
+	 * Note that an implementation should also remove a registered destruction
 	 * callback for the specified attribute, if any. It does, however, <i>not</i>
 	 * need to <i>execute</i> a registered destruction callback in this case,
 	 * since the object will be destroyed by the caller (if appropriate).
@@ -84,18 +84,18 @@ public interface RequestAttributes {
 	/**
 	 * Register a callback to be executed on destruction of the
 	 * specified attribute in the given scope.
-	 * <p>Implementations should do their best to execute the callback
+	 * Implementations should do their best to execute the callback
 	 * at the appropriate time: that is, at request completion or session
 	 * termination, respectively. If such a callback is not supported by the
 	 * underlying runtime environment, the callback <i>must be ignored</i>
 	 * and a corresponding warning should be logged.
-	 * <p>Note that 'destruction' usually corresponds to destruction of the
+	 * Note that 'destruction' usually corresponds to destruction of the
 	 * entire scope, not to the individual attribute having been explicitly
 	 * removed by the application. If an attribute gets removed via this
 	 * facade's {@link #removeAttribute(String, int)} method, any registered
 	 * destruction callback should be disabled as well, assuming that the
 	 * removed object will be reused or manually destroyed.
-	 * <p><b>NOTE:</b> Callback objects should generally be serializable if
+	 * <b>NOTE:</b> Callback objects should generally be serializable if
 	 * they are being registered for a session scope. Otherwise the callback
 	 * (or even the entire session) might not survive web app restarts.
 	 * @param name the name of the attribute to register the callback for
@@ -106,7 +106,7 @@ public interface RequestAttributes {
 
 	/**
 	 * Resolve the contextual reference for the given key, if any.
-	 * <p>At a minimum: the HttpServletRequest reference for key "request", and
+	 * At a minimum: the HttpServletRequest reference for key "request", and
 	 * the HttpSession reference for key "session".
 	 * @param key the contextual key
 	 * @return the corresponding object, or {@code null} if none found

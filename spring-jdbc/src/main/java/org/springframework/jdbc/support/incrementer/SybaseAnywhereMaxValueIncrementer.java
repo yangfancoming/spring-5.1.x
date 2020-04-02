@@ -9,12 +9,12 @@ import javax.sql.DataSource;
  * with the equivalent of an auto-increment column. Note: If you use this class, your table key
  * column should <i>NOT</i> be defined as an IDENTITY column, as the sequence table does the job.
  *
- * <p>This class is intended to be used with Sybase Anywhere.
+ * This class is intended to be used with Sybase Anywhere.
  *
- * <p>The sequence is kept in a table. There should be one sequence table per
+ * The sequence is kept in a table. There should be one sequence table per
  * table that needs an auto-generated key.
  *
- * <p>Example:
+ * Example:
  *
  * <pre class="code">create table tab (id int not null primary key, text varchar(100))
  * create table tab_sequence (id bigint identity)
@@ -32,7 +32,7 @@ import javax.sql.DataSource;
  * {@code update(PreparedStatementCreator psc, KeyHolder generatedKeyHolder)}
  * method of the {@link org.springframework.jdbc.core.JdbcTemplate}.
  *
- * <p>Thanks to Tarald Saxi Stormark for the suggestion!
+ * Thanks to Tarald Saxi Stormark for the suggestion!
  * @since 3.0.5
  */
 public class SybaseAnywhereMaxValueIncrementer extends SybaseMaxValueIncrementer {

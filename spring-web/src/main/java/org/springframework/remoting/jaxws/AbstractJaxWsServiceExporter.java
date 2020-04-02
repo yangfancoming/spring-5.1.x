@@ -26,7 +26,7 @@ import org.springframework.util.Assert;
  * Abstract exporter for JAX-WS services, autodetecting annotated service beans
  * (through the JAX-WS {@link javax.jws.WebService} annotation).
  *
- * <p>Subclasses need to implement the {@link #publishEndpoint} template methods
+ * Subclasses need to implement the {@link #publishEndpoint} template methods
  * for actual endpoint exposure.
  *
 

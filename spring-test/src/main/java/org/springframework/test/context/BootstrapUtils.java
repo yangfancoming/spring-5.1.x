@@ -47,7 +47,7 @@ abstract class BootstrapUtils {
 
 	/**
 	 * Create the {@code BootstrapContext} for the specified {@linkplain Class test class}.
-	 * <p>Uses reflection to create a {@link org.springframework.test.context.support.DefaultBootstrapContext}
+	 * Uses reflection to create a {@link org.springframework.test.context.support.DefaultBootstrapContext}
 	 * that uses a {@link org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate}.
 	 * @param testClass the test class for which the bootstrap context should be created
 	 * @return a new {@code BootstrapContext}; never {@code null}
@@ -93,7 +93,7 @@ abstract class BootstrapUtils {
 	 * Resolve the {@link TestContextBootstrapper} type for the test class in the
 	 * supplied {@link BootstrapContext}, instantiate it, and provide it a reference
 	 * to the {@link BootstrapContext}.
-	 * <p>If the {@link BootstrapWith @BootstrapWith} annotation is present on
+	 * If the {@link BootstrapWith @BootstrapWith} annotation is present on
 	 * the test class, either directly or as a meta-annotation, then its
 	 * {@link BootstrapWith#value value} will be used as the bootstrapper type.
 	 * Otherwise, either the

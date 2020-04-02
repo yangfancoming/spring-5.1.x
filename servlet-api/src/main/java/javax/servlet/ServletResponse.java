@@ -12,7 +12,7 @@ import java.util.Locale;
  * The servlet container creates a <code>ServletResponse</code> object and
  * passes it as an argument to the servlet's <code>service</code> method.
  *
- * <p>To send binary data in a MIME body response, use
+ * To send binary data in a MIME body response, use
  * the {@link ServletOutputStream} returned by {@link #getOutputStream}.
  * To send character data, use the <code>PrintWriter</code> object 
  * returned by {@link #getWriter}. To mix binary and text data,
@@ -20,7 +20,7 @@ import java.util.Locale;
  * <code>ServletOutputStream</code> and manage the character sections
  * manually.
  *
- * <p>The charset for the MIME body response can be specified explicitly
+ * The charset for the MIME body response can be specified explicitly
  * using any of the following techniques: per request, per web-app (using
  * {@link ServletContext#setRequestCharacterEncoding}, deployment descriptor),
  * and per container (for all web applications deployed in that container, 
@@ -37,7 +37,7 @@ import java.util.Locale;
  * be called before <code>getWriter</code> and before committing
  * the response for the character encoding to be used.
  * 
- * <p>See the Internet RFCs such as 
+ * See the Internet RFCs such as
  * <a href="http://www.ietf.org/rfc/rfc2045.txt">
  * RFC 2045</a> for more information on MIME. Protocols such as SMTP
  * and HTTP define profiles of MIME, and those standards
@@ -67,7 +67,7 @@ public interface ServletResponse {
      * called or after the response has been committed have no
      * effect on the character encoding. If no character encoding
      * has been specified, <code>ISO-8859-1</code> is returned.
-     * <p>See RFC 2047 (http://www.ietf.org/rfc/rfc2047.txt)
+     * See RFC 2047 (http://www.ietf.org/rfc/rfc2047.txt)
      * for more information about character encoding and MIME.
      *
      * @return a <code>String</code> specifying the name of
@@ -103,7 +103,7 @@ public interface ServletResponse {
      * data in the response. The servlet container does not encode the
      * binary data.  
      *
-     * <p> Calling flush() on the ServletOutputStream commits the response.
+     *  Calling flush() on the ServletOutputStream commits the response.
      *
      * Either this method or {@link #getWriter} may 
      * be called to write the body, not both, except when {@link #reset}
@@ -131,9 +131,9 @@ public interface ServletResponse {
      * (i.e., the method just returns the default value 
      * <code>ISO-8859-1</code>), <code>getWriter</code>
      * updates it to <code>ISO-8859-1</code>.
-     * <p>Calling flush() on the <code>PrintWriter</code>
+     * Calling flush() on the <code>PrintWriter</code>
      * commits the response.
-     * <p>Either this method or {@link #getOutputStream} may be called
+     * Either this method or {@link #getOutputStream} may be called
      * to write the body, not both, except when {@link #reset}
      * has been called.
      * 
@@ -170,12 +170,12 @@ public interface ServletResponse {
      * is equivalent with calling
      * <code>setContentType</code> with the <code>String</code> of
      * <code>text/html; charset=UTF-8</code>.
-     * <p>This method can be called repeatedly to change the character
+     * This method can be called repeatedly to change the character
      * encoding.
      * This method has no effect if it is called after
      * <code>getWriter</code> has been
      * called or after the response has been committed.
-     * <p>Containers must communicate the character encoding used for
+     * Containers must communicate the character encoding used for
      * the servlet response's writer to the client if the protocol
      * provides a way for doing so. In the case of HTTP, the character
      * encoding is communicated as part of the <code>Content-Type</code>
@@ -223,13 +223,13 @@ public interface ServletResponse {
      * The response's character encoding is only set from the given
      * content type if this method is called before <code>getWriter</code>
      * is called.
-     * <p>This method may be called repeatedly to change content type and
+     * This method may be called repeatedly to change content type and
      * character encoding.
      * This method has no effect if called after the response
      * has been committed. It does not set the response's character
      * encoding if it is called after <code>getWriter</code>
      * has been called or after the response has been committed.
-     * <p>Containers must communicate the content type and the character
+     * Containers must communicate the content type and the character
      * encoding used for the servlet response's writer to the client if
      * the protocol provides a way for doing so. In the case of HTTP,
      * the <code>Content-Type</code> header is used.
@@ -253,13 +253,13 @@ public interface ServletResponse {
      * the size requested.  The actual buffer size used can be found
      * using <code>getBufferSize</code>.
      *
-     * <p>A larger buffer allows more content to be written before anything is
+     * A larger buffer allows more content to be written before anything is
      * actually sent, thus providing the servlet with more time to set
      * appropriate status codes and headers.  A smaller buffer decreases 
      * server memory load and allows the client to start receiving data more
      * quickly.
      *
-     * <p>This method must be called before any response body content is
+     * This method must be called before any response body content is
      * written; if content has been written or the response object has
      * been committed, this method throws an 
      * <code>IllegalStateException</code>.
@@ -371,7 +371,7 @@ public interface ServletResponse {
      * element provides a mapping for the given locale, that mapping
      * is used. Otherwise, the mapping from locale to character
      * encoding is container dependent.
-     * <p>This method may be called repeatedly to change locale and
+     * This method may be called repeatedly to change locale and
      * character encoding. The method has no effect if called after the
      * response has been committed. It does not set the response's
      * character encoding if it is called after {@link #setContentType}
@@ -379,7 +379,7 @@ public interface ServletResponse {
      * {@link #setCharacterEncoding} has been called, after
      * <code>getWriter</code> has been called, or after the response
      * has been committed.
-     * <p>Containers must communicate the locale and the character encoding
+     * Containers must communicate the locale and the character encoding
      * used for the servlet response's writer to the client if the protocol
      * provides a way for doing so. In the case of HTTP, the locale is
      * communicated via the <code>Content-Language</code> header,

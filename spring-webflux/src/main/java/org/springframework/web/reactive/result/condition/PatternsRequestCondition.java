@@ -135,7 +135,7 @@ public final class PatternsRequestCondition extends AbstractRequestCondition<Pat
 	 * Patterns are compared one at a time, from top to bottom. If all compared
 	 * patterns match equally, but one instance has more patterns, it is
 	 * considered a closer match.
-	 * <p>It is assumed that both instances have been obtained via
+	 * It is assumed that both instances have been obtained via
 	 * {@link #getMatchingCondition(ServerWebExchange)} to ensure they
 	 * contain only patterns that match the request and are sorted with
 	 * the best matches on top.

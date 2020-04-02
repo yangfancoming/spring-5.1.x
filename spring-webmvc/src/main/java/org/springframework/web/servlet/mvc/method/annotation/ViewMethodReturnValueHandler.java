@@ -14,10 +14,10 @@ import org.springframework.web.servlet.View;
 /**
  * Handles return values that are of type {@link View}.
  *
- * <p>A {@code null} return value is left as-is leaving it to the configured
+ * A {@code null} return value is left as-is leaving it to the configured
  * {@link RequestToViewNameTranslator} to select a view name by convention.
  *
- * <p>A {@link View} return type has a set purpose. Therefore this handler
+ * A {@link View} return type has a set purpose. Therefore this handler
  * should be configured ahead of handlers that support any return value type
  * annotated with {@code @ModelAttribute} or {@code @ResponseBody} to ensure
  * they don't take over.

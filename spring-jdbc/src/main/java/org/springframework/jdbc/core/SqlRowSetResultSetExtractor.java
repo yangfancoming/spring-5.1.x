@@ -14,7 +14,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 /**
  * {@link ResultSetExtractor} implementation that returns a Spring {@link SqlRowSet}
  * representation for each given {@link ResultSet}.
- * <p>The default implementation uses a standard JDBC CachedRowSet underneath.
+ * The default implementation uses a standard JDBC CachedRowSet underneath.
  * @since 1.2
  * @see #newCachedRowSet
  * @see org.springframework.jdbc.support.rowset.SqlRowSet
@@ -42,7 +42,7 @@ public class SqlRowSetResultSetExtractor implements ResultSetExtractor<SqlRowSet
 	/**
 	 * Create a {@link SqlRowSet} that wraps the given {@link ResultSet},
 	 * representing its data in a disconnected fashion.
-	 * <p>This implementation creates a Spring {@link ResultSetWrappingSqlRowSet}
+	 * This implementation creates a Spring {@link ResultSetWrappingSqlRowSet}
 	 * instance that wraps a standard JDBC {@link CachedRowSet} instance.
 	 * Can be overridden to use a different implementation.
 	 * @param rs the original ResultSet (connected)
@@ -60,7 +60,7 @@ public class SqlRowSetResultSetExtractor implements ResultSetExtractor<SqlRowSet
 	/**
 	 * Create a new {@link CachedRowSet} instance, to be populated by
 	 * the {@code createSqlRowSet} implementation.
-	 * <p>The default implementation uses JDBC 4.1's {@link RowSetFactory}.
+	 * The default implementation uses JDBC 4.1's {@link RowSetFactory}.
 	 * @return a new CachedRowSet instance
 	 * @throws SQLException if thrown by JDBC methods
 	 * @see #createSqlRowSet

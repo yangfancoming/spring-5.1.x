@@ -19,12 +19,12 @@ import org.springframework.lang.Nullable;
  * Composite {@link CacheManager} implementation that iterates over
  * a given collection of delegate {@link CacheManager} instances.
  *
- * <p>Allows {@link NoOpCacheManager} to be automatically added to the end of
+ * Allows {@link NoOpCacheManager} to be automatically added to the end of
  * the list for handling cache declarations without a backing store. Otherwise,
  * any custom {@link CacheManager} may play that role of the last delegate as
  * well, lazily creating cache regions for any requested name.
  *
- * <p>Note: Regular CacheManagers that this composite manager delegates to need
+ * Note: Regular CacheManagers that this composite manager delegates to need
  * to return {@code null} from {@link #getCache(String)} if they are unaware of
  * the specified cache name, allowing for iteration to the next delegate in line.
  * However, most {@link CacheManager} implementations fall back to lazy creation

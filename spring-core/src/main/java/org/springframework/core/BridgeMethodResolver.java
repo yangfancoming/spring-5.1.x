@@ -16,14 +16,14 @@ import org.springframework.util.ReflectionUtils;
  * Helper for resolving synthetic {@link Method#isBridge bridge Methods} to the
  * {@link Method} being bridged.
  *
- * <p>Given a synthetic {@link Method#isBridge bridge Method} returns the {@link Method}
+ * Given a synthetic {@link Method#isBridge bridge Method} returns the {@link Method}
  * being bridged. A bridge method may be created by the compiler when extending a
  * parameterized type whose methods have parameterized arguments. During runtime
  * invocation the bridge {@link Method} may be invoked and/or used via reflection.
  * When attempting to locate annotations on {@link Method Methods}, it is wise to check
  * for bridge {@link Method Methods} as appropriate and find the bridged {@link Method}.
  *
- * <p>See <a href="https://java.sun.com/docs/books/jls/third_edition/html/expressions.html#15.12.4.5">
+ * See <a href="https://java.sun.com/docs/books/jls/third_edition/html/expressions.html#15.12.4.5">
  * The Java Language Specification</a> for more details on the use of bridge methods.
  *
  * @author Rob Harrop
@@ -39,7 +39,7 @@ public final class BridgeMethodResolver {
 
 	/**
 	 * Find the original method for the supplied {@link Method bridge Method}.
-	 * <p>It is safe to call this method passing in a non-bridge {@link Method} instance.
+	 * It is safe to call this method passing in a non-bridge {@link Method} instance.
 	 * In such a case, the supplied {@link Method} instance is returned directly to the caller.
 	 * Callers are <strong>not</strong> required to check for bridging before calling this method.
 	 * @param bridgeMethod the method to introspect

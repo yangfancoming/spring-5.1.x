@@ -17,7 +17,7 @@ import org.springframework.util.ConcurrentReferenceHashMap;
 
 /**
  * Helper class for resolving generic types against type variables.
- * <p>Mainly intended for usage within the framework, resolving method parameter types even when they are declared generically.
+ * Mainly intended for usage within the framework, resolving method parameter types even when they are declared generically.
  * @since 2.5.2
  */
 public final class GenericTypeResolver {
@@ -189,7 +189,7 @@ public final class GenericTypeResolver {
 
 	/**
 	 * Resolve the specified generic type against the given TypeVariable map.
-	 * <p>Used by Spring Data.
+	 * Used by Spring Data.
 	 * @param genericType the generic type to resolve
 	 * @param map the TypeVariable Map to resolved against
 	 * @return the type if it resolves to a Class, or {@code Object.class} otherwise

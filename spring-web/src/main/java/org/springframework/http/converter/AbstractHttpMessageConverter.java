@@ -24,7 +24,7 @@ import org.springframework.util.Assert;
 /**
  * Abstract base class for most {@link HttpMessageConverter} implementations.
  *
- * <p>This base class adds support for setting supported {@code MediaTypes}, through the
+ * This base class adds support for setting supported {@code MediaTypes}, through the
  * {@link #setSupportedMediaTypes(List) supportedMediaTypes} bean property. It also adds
  * support for {@code Content-Type} and {@code Content-Length} when writing to output messages.
  *
@@ -217,7 +217,7 @@ public abstract class AbstractHttpMessageConverter<T> implements HttpMessageConv
 
 	/**
 	 * Add default headers to the output message.
-	 * <p>This implementation delegates to {@link #getDefaultContentType(Object)} if a
+	 * This implementation delegates to {@link #getDefaultContentType(Object)} if a
 	 * content type was not provided, set if necessary the default character set, calls
 	 * {@link #getContentLength}, and sets the corresponding headers.
 	 * @since 4.2
@@ -253,7 +253,7 @@ public abstract class AbstractHttpMessageConverter<T> implements HttpMessageConv
 	/**
 	 * Returns the default content type for the given type. Called when {@link #write}
 	 * is invoked without a specified content type parameter.
-	 * <p>By default, this returns the first element of the
+	 * By default, this returns the first element of the
 	 * {@link #setSupportedMediaTypes(List) supportedMediaTypes} property, if any.
 	 * Can be overridden in subclasses.
 	 * @param t the type to return the content type for
@@ -267,7 +267,7 @@ public abstract class AbstractHttpMessageConverter<T> implements HttpMessageConv
 
 	/**
 	 * Returns the content length for the given type.
-	 * <p>By default, this returns {@code null}, meaning that the content length is unknown.
+	 * By default, this returns {@code null}, meaning that the content length is unknown.
 	 * Can be overridden in subclasses.
 	 * @param t the type to return the content length for
 	 * @return the content length, or {@code null} if not known

@@ -34,7 +34,7 @@ public class CookieWebSessionIdResolver implements WebSessionIdResolver {
 
 	/**
 	 * Set the name of the cookie to use for the session id.
-	 * <p>By default set to "SESSION".
+	 * By default set to "SESSION".
 	 * @param cookieName the cookie name
 	 */
 	public void setCookieName(String cookieName) {
@@ -52,7 +52,7 @@ public class CookieWebSessionIdResolver implements WebSessionIdResolver {
 	/**
 	 * Set the value for the "Max-Age" attribute of the cookie that holds the
 	 * session id. For the range of values see {@link ResponseCookie#getMaxAge()}.
-	 * <p>By default set to -1.
+	 * By default set to -1.
 	 * @param maxAge the maxAge duration value
 	 */
 	public void setCookieMaxAge(Duration maxAge) {

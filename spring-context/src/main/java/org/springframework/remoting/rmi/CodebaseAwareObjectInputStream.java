@@ -16,19 +16,19 @@ import org.springframework.lang.Nullable;
  * the codebase URL here, rather than the "java.rmi.server.codebase" system
  * property on the server.
  *
- * <p>Uses the JDK's RMIClassLoader to load classes from the specified codebase.
+ * Uses the JDK's RMIClassLoader to load classes from the specified codebase.
  * The codebase can consist of multiple URLs, separated by spaces.
  * Note that RMIClassLoader requires a SecurityManager to be set, like when
  * using dynamic class download with standard RMI! (See the RMI documentation
  * for details.)
  *
- * <p>Despite residing in the RMI package, this class is <i>not</i> used for
+ * Despite residing in the RMI package, this class is <i>not</i> used for
  * RmiClientInterceptor, which uses the standard RMI infrastructure instead
  * and thus is only able to rely on RMI's standard dynamic class download via
  * "java.rmi.server.codebase". CodebaseAwareObjectInputStream is used by
  * HttpInvokerClientInterceptor (see the "codebaseUrl" property there).
  *
- * <p>Thanks to Lionel Mestre for suggesting the option and providing
+ * Thanks to Lionel Mestre for suggesting the option and providing
  * a prototype!
  *
 

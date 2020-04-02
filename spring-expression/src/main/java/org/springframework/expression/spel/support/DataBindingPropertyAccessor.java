@@ -8,10 +8,10 @@ import java.lang.reflect.Method;
  * A {@link org.springframework.expression.PropertyAccessor} variant for data binding
  * purposes, using reflection to access properties for reading and possibly writing.
  *
- * <p>A property can be referenced through a public getter method (when being read)
+ * A property can be referenced through a public getter method (when being read)
  * or a public setter method (when being written), and also as a public field.
  *
- * <p>This accessor is explicitly designed for user-declared properties and does not
+ * This accessor is explicitly designed for user-declared properties and does not
  * resolve technical properties on {@code java.lang.Object} or {@code java.lang.Class}.
  * For unrestricted resolution, choose {@link ReflectivePropertyAccessor} instead.
  *

@@ -69,7 +69,7 @@ public class GroovyScriptEvaluator implements ScriptEvaluator, BeanClassLoaderAw
 
 	/**
 	 * Set one or more customizers to be applied to this evaluator's compiler configuration.
-	 * <p>Note that this modifies the shared compiler configuration held by this evaluator.
+	 * Note that this modifies the shared compiler configuration held by this evaluator.
 	 * @since 4.3.3
 	 * @see #setCompilerConfiguration
 	 */

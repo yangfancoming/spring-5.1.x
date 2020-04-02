@@ -28,7 +28,7 @@ import org.springframework.util.concurrent.SuccessCallback;
  * {@link ClientHttpRequest} implementation based on
  * Apache HttpComponents HttpAsyncClient.
  *
- * <p>Created via the {@link HttpComponentsClientHttpRequestFactory}.
+ * Created via the {@link HttpComponentsClientHttpRequestFactory}.
  *
  * @author Oleg Kalnichevski
  * @author Arjen Poutsma

@@ -17,11 +17,11 @@ import org.springframework.lang.Nullable;
  * Abstraction for handling XML fields in specific databases. Its main purpose
  * is to isolate database-specific handling of XML stored in the database.
  *
- * <p>JDBC 4.0 introduces the new data type {@code java.sql.SQLXML}
+ * JDBC 4.0 introduces the new data type {@code java.sql.SQLXML}
  * but most databases and their drivers currently rely on database-specific
  * data types and features.
  *
- * <p>Provides accessor methods for XML fields and acts as factory for
+ * Provides accessor methods for XML fields and acts as factory for
  * {@link SqlXmlValue} instances.
  *
  * @author Thomas Risberg
@@ -39,7 +39,7 @@ public interface SqlXmlHandler {
 
 	/**
 	 * Retrieve the given column as String from the given ResultSet.
-	 * <p>Might simply invoke {@code ResultSet.getString} or work with
+	 * Might simply invoke {@code ResultSet.getString} or work with
 	 * {@code SQLXML} or database-specific classes depending on the
 	 * database and driver.
 	 * @param rs the ResultSet to retrieve the content from
@@ -54,7 +54,7 @@ public interface SqlXmlHandler {
 
 	/**
 	 * Retrieve the given column as String from the given ResultSet.
-	 * <p>Might simply invoke {@code ResultSet.getString} or work with
+	 * Might simply invoke {@code ResultSet.getString} or work with
 	 * {@code SQLXML} or database-specific classes depending on the
 	 * database and driver.
 	 * @param rs the ResultSet to retrieve the content from
@@ -69,7 +69,7 @@ public interface SqlXmlHandler {
 
 	/**
 	 * Retrieve the given column as binary stream from the given ResultSet.
-	 * <p>Might simply invoke {@code ResultSet.getAsciiStream} or work with
+	 * Might simply invoke {@code ResultSet.getAsciiStream} or work with
 	 * {@code SQLXML} or database-specific classes depending on the
 	 * database and driver.
 	 * @param rs the ResultSet to retrieve the content from
@@ -84,7 +84,7 @@ public interface SqlXmlHandler {
 
 	/**
 	 * Retrieve the given column as binary stream from the given ResultSet.
-	 * <p>Might simply invoke {@code ResultSet.getAsciiStream} or work with
+	 * Might simply invoke {@code ResultSet.getAsciiStream} or work with
 	 * {@code SQLXML} or database-specific classes depending on the
 	 * database and driver.
 	 * @param rs the ResultSet to retrieve the content from
@@ -99,7 +99,7 @@ public interface SqlXmlHandler {
 
 	/**
 	 * Retrieve the given column as character stream from the given ResultSet.
-	 * <p>Might simply invoke {@code ResultSet.getCharacterStream} or work with
+	 * Might simply invoke {@code ResultSet.getCharacterStream} or work with
 	 * {@code SQLXML} or database-specific classes depending on the
 	 * database and driver.
 	 * @param rs the ResultSet to retrieve the content from
@@ -114,7 +114,7 @@ public interface SqlXmlHandler {
 
 	/**
 	 * Retrieve the given column as character stream from the given ResultSet.
-	 * <p>Might simply invoke {@code ResultSet.getCharacterStream} or work with
+	 * Might simply invoke {@code ResultSet.getCharacterStream} or work with
 	 * {@code SQLXML} or database-specific classes depending on the
 	 * database and driver.
 	 * @param rs the ResultSet to retrieve the content from
@@ -130,7 +130,7 @@ public interface SqlXmlHandler {
 	/**
 	 * Retrieve the given column as Source implemented using the specified source class
 	 * from the given ResultSet.
-	 * <p>Might work with {@code SQLXML} or database-specific classes depending
+	 * Might work with {@code SQLXML} or database-specific classes depending
 	 * on the database and driver.
 	 * @param rs the ResultSet to retrieve the content from
 	 * @param columnName the column name to use
@@ -146,7 +146,7 @@ public interface SqlXmlHandler {
 	/**
 	 * Retrieve the given column as Source implemented using the specified source class
 	 * from the given ResultSet.
-	 * <p>Might work with {@code SQLXML} or database-specific classes depending
+	 * Might work with {@code SQLXML} or database-specific classes depending
 	 * on the database and driver.
 	 * @param rs the ResultSet to retrieve the content from
 	 * @param columnIndex the column index to use

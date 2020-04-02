@@ -14,17 +14,17 @@ import java.lang.annotation.Target;
  * <em>test-managed transaction</em> should be <em>committed</em> after
  * the test method has completed.
  *
- * <p>Consult the class-level Javadoc for
+ * Consult the class-level Javadoc for
  * {@link org.springframework.test.context.transaction.TransactionalTestExecutionListener}
  * for an explanation of <em>test-managed transactions</em>.
  *
- * <p>When declared as a class-level annotation, {@code @Commit} defines
+ * When declared as a class-level annotation, {@code @Commit} defines
  * the default commit semantics for all test methods within the test class
  * hierarchy. When declared as a method-level annotation, {@code @Commit}
  * defines commit semantics for the specific test method, potentially
  * overriding class-level default commit or rollback semantics.
  *
- * <p><strong>Warning</strong>: {@code @Commit} can be used as direct
+ * <strong>Warning</strong>: {@code @Commit} can be used as direct
  * replacement for {@code @Rollback(false)}; however, it should
  * <strong>not</strong> be declared alongside {@code @Rollback}. Declaring
  * {@code @Commit} and {@code @Rollback} on the same test method or on the

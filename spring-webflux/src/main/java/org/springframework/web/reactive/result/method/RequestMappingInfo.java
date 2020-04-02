@@ -160,7 +160,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 
 	/**
 	 * Combines "this" request mapping info (i.e. the current instance) with another request mapping info instance.
-	 * <p>Example: combine type- and method-level request mappings.
+	 * Example: combine type- and method-level request mappings.
 	 * @return a new request mapping info instance; never {@code null}
 	 */
 	@Override
@@ -194,7 +194,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 	/**
 	 * Checks if all conditions in this request mapping info match the provided request and returns
 	 * a potentially new request mapping info with conditions tailored to the current request.
-	 * <p>For example the returned instance may contain the subset of URL patterns that match to
+	 * For example the returned instance may contain the subset of URL patterns that match to
 	 * the current request, sorted with best matching patterns on top.
 	 * @return a new instance in case all conditions match; or {@code null} otherwise
 	 */
@@ -236,7 +236,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 
 	/**
 	 * Compares "this" info (i.e. the current instance) with another info in the context of a request.
-	 * <p>Note: It is assumed both instances have been obtained via
+	 * Note: It is assumed both instances have been obtained via
 	 * {@link #getMatchingCondition(ServerWebExchange)} to ensure they have conditions with
 	 * content relevant to current request.
 	 */
@@ -361,7 +361,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 
 		/**
 		 * Set the header conditions.
-		 * <p>By default this is not set.
+		 * By default this is not set.
 		 */
 		Builder headers(String... headers);
 
@@ -538,7 +538,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 
 		/**
 		 * Set the ContentNegotiationManager to use for the ProducesRequestCondition.
-		 * <p>By default this is not set.
+		 * By default this is not set.
 		 */
 		public void setContentTypeResolver(RequestedContentTypeResolver resolver) {
 			this.contentTypeResolver = resolver;

@@ -17,7 +17,7 @@ import static org.springframework.test.util.AssertionErrors.assertTrue;
 /**
  * Factory for response cookie assertions.
  *
- * <p>An instance of this class is typically accessed via
+ * An instance of this class is typically accessed via
  * {@link MockMvcResultMatchers#cookie}.
  *
  * @author Rossen Stoyanchev

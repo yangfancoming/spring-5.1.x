@@ -19,7 +19,7 @@ import org.springframework.util.ClassUtils;
 /**
  * Support for implementations of {@link org.springframework.aop.IntroductionInfo}.
  *
- * <p>Allows subclasses to conveniently add all interfaces from a given object,
+ * Allows subclasses to conveniently add all interfaces from a given object,
  * and to suppress interfaces that should not be added. Also allows for querying
  * all introduced interfaces.
  *
@@ -38,7 +38,7 @@ public class IntroductionInfoSupport implements IntroductionInfo, Serializable {
 	 * Suppress the specified interface, which may have been autodetected
 	 * due to the delegate implementing it. Call this method to exclude
 	 * internal interfaces from being visible at the proxy level.
-	 * <p>Does nothing if the interface is not implemented by the delegate.
+	 * Does nothing if the interface is not implemented by the delegate.
 	 * @param ifc the interface to suppress
 	 */
 	public void suppressInterface(Class<?> ifc) {

@@ -16,7 +16,7 @@ import org.springframework.util.ObjectUtils;
  * consider caching the result of {@link #getPropertyNames()} to fully exploit this
  * performance opportunity.
  *
- * <p>Most framework-provided {@code PropertySource} implementations are enumerable;
+ * Most framework-provided {@code PropertySource} implementations are enumerable;
  * a counter-example would be {@code JndiPropertySource} where, due to the
  * nature of JNDI it is not possible to determine all possible property names at
  * any given time; rather it is only possible to try to access a property
@@ -36,7 +36,7 @@ public abstract class EnumerablePropertySource<T> extends PropertySource<T> {
 
 	/**
 	 * Return whether this {@code PropertySource} contains a property with the given name.
-	 * <p>This implementation checks for the presence of the given name within the
+	 * This implementation checks for the presence of the given name within the
 	 * {@link #getPropertyNames()} array.
 	 * @param name the name of the property to find
 	 */

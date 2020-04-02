@@ -13,7 +13,7 @@ import org.springframework.core.annotation.AliasFor;
 /**
  * Annotation to bind a method parameter to a request attribute.
  *
- * <p>The main motivation is to provide convenient access to request attributes
+ * The main motivation is to provide convenient access to request attributes
  * from a controller method with an optional/required check and a cast to the
  * target method parameter type.
  *
@@ -35,14 +35,14 @@ public @interface RequestAttribute {
 
 	/**
 	 * The name of the request attribute to bind to.
-	 * <p>The default name is inferred from the method parameter name.
+	 * The default name is inferred from the method parameter name.
 	 */
 	@AliasFor("value")
 	String name() default "";
 
 	/**
 	 * Whether the request attribute is required.
-	 * <p>Defaults to {@code true}, leading to an exception being thrown if
+	 * Defaults to {@code true}, leading to an exception being thrown if
 	 * the attribute is missing. Switch this to {@code false} if you prefer
 	 * a {@code null} or Java 8 {@code java.util.Optional} if the attribute
 	 * doesn't exist.

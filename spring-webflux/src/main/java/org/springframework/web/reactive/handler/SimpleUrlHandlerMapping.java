@@ -15,7 +15,7 @@ import org.springframework.util.CollectionUtils;
  * to bean instances and mapping to bean names; the latter is required for
  * non-singleton handlers.
  *
- * <p>The "urlMap" property is suitable for populating the handler map with
+ * The "urlMap" property is suitable for populating the handler map with
  * bean instances. Mappings to bean names can be set via the "mappings"
  * property, in a form accepted by the {@code java.util.Properties} class,
  * like as follows:
@@ -25,10 +25,10 @@ import org.springframework.util.CollectionUtils;
  * /show.html=ticketController
  * </pre>
  *
- * <p>The syntax is {@code PATH=HANDLER_BEAN_NAME}. If the path doesn't begin
+ * The syntax is {@code PATH=HANDLER_BEAN_NAME}. If the path doesn't begin
  * with a slash, one is prepended.
  *
- * <p>Supports direct matches, e.g. a registered "/test" matches "/test", and
+ * Supports direct matches, e.g. a registered "/test" matches "/test", and
  * various Ant-style pattern matches, e.g. a registered "/t*" pattern matches
  * both "/test" and "/team", "/test/*" matches all paths under "/test",
  * "/test/**" matches all paths below "/test". For details, see the
@@ -43,7 +43,7 @@ public class SimpleUrlHandlerMapping extends AbstractUrlHandlerMapping {
 	/**
 	 * Map URL paths to handler bean names.
 	 * This is the typical way of configuring this HandlerMapping.
-	 * <p>Supports direct URL matches and Ant-style pattern matches. For syntax details,
+	 * Supports direct URL matches and Ant-style pattern matches. For syntax details,
 	 * see the {@link org.springframework.web.util.pattern.PathPattern} javadoc.
 	 * @param mappings properties with URLs as keys and bean names as values
 	 * @see #setUrlMap
@@ -55,7 +55,7 @@ public class SimpleUrlHandlerMapping extends AbstractUrlHandlerMapping {
 	/**
 	 * Set a Map with URL paths as keys and handler beans (or handler bean names)
 	 * as values. Convenient for population with bean references.
-	 * <p>Supports direct URL matches and Ant-style pattern matches. For syntax details,
+	 * Supports direct URL matches and Ant-style pattern matches. For syntax details,
 	 * see the {@link org.springframework.web.util.pattern.PathPattern} javadoc.
 	 * @param urlMap map with URLs as keys and beans as values
 	 * @see #setMappings
@@ -68,7 +68,7 @@ public class SimpleUrlHandlerMapping extends AbstractUrlHandlerMapping {
 	/**
 	 * Allow Map access to the URL path mappings, with the option to add or
 	 * override specific entries.
-	 * <p>Useful for specifying entries directly, for example via "urlMap[myKey]".
+	 * Useful for specifying entries directly, for example via "urlMap[myKey]".
 	 * This is particularly useful for adding or overriding entries in child
 	 * bean definitions.
 	 */

@@ -32,12 +32,12 @@ import org.springframework.web.servlet.support.RequestContext;
  * implementations. Subclasses should be JavaBeans, to allow for
  * convenient configuration as Spring-managed bean instances.
  *
- * <p>Provides support for static attributes, to be made available to the view,
+ * Provides support for static attributes, to be made available to the view,
  * with a variety of ways to specify them. Static attributes will be merged
  * with the given dynamic attributes (the model that the controller returned)
  * for each render operation.
  *
- * <p>Extends {@link WebApplicationObjectSupport}, which will be helpful to
+ * Extends {@link WebApplicationObjectSupport}, which will be helpful to
  * some views. Subclasses just need to implement the actual rendering.
  *
  * @author Rod Johnson
@@ -78,7 +78,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	/**
 	 * Set the content type for this view.
 	 * Default is "text/html;charset=ISO-8859-1".
-	 * <p>May be ignored by subclasses if the view itself is assumed
+	 * May be ignored by subclasses if the view itself is assumed
 	 * to set the content type, e.g. in case of JSPs.
 	 */
 	public void setContentType(@Nullable String contentType) {
@@ -113,7 +113,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	/**
 	 * Set static attributes as a CSV string.
 	 * Format is: attname0={value1},attname1={value1}
-	 * <p>"Static" attributes are fixed attributes that are specified in
+	 * "Static" attributes are fixed attributes that are specified in
 	 * the View instance configuration. "Dynamic" attributes, on the other hand,
 	 * are values passed in as part of the model.
 	 */
@@ -146,13 +146,13 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	/**
 	 * Set static attributes for this view from a
 	 * {@code java.util.Properties} object.
-	 * <p>"Static" attributes are fixed attributes that are specified in
+	 * "Static" attributes are fixed attributes that are specified in
 	 * the View instance configuration. "Dynamic" attributes, on the other hand,
 	 * are values passed in as part of the model.
-	 * <p>This is the most convenient way to set static attributes. Note that
+	 * This is the most convenient way to set static attributes. Note that
 	 * static attributes can be overridden by dynamic attributes, if a value
 	 * with the same name is included in the model.
-	 * <p>Can be populated with a String "value" (parsed via PropertiesEditor)
+	 * Can be populated with a String "value" (parsed via PropertiesEditor)
 	 * or a "props" element in XML bean definitions.
 	 * @see org.springframework.beans.propertyeditors.PropertiesEditor
 	 */
@@ -163,10 +163,10 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	/**
 	 * Set static attributes for this view from a Map. This allows to set
 	 * any kind of attribute values, for example bean references.
-	 * <p>"Static" attributes are fixed attributes that are specified in
+	 * "Static" attributes are fixed attributes that are specified in
 	 * the View instance configuration. "Dynamic" attributes, on the other hand,
 	 * are values passed in as part of the model.
-	 * <p>Can be populated with a "map" or "props" element in XML bean definitions.
+	 * Can be populated with a "map" or "props" element in XML bean definitions.
 	 * @param attributes a Map with name Strings as keys and attribute objects as values
 	 */
 	public void setAttributesMap(@Nullable Map<String, ?> attributes) {
@@ -178,7 +178,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	/**
 	 * Allow Map access to the static attributes of this view,
 	 * with the option to add or override specific entries.
-	 * <p>Useful for specifying entries directly, for example via
+	 * Useful for specifying entries directly, for example via
 	 * "attributesMap[myKey]". This is particularly useful for
 	 * adding or overriding entries in child view definitions.
 	 */
@@ -188,10 +188,10 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 
 	/**
 	 * Add static data to this view, exposed in each view.
-	 * <p>"Static" attributes are fixed attributes that are specified in
+	 * "Static" attributes are fixed attributes that are specified in
 	 * the View instance configuration. "Dynamic" attributes, on the other hand,
 	 * are values passed in as part of the model.
-	 * <p>Must be invoked before any calls to {@code render}.
+	 * Must be invoked before any calls to {@code render}.
 	 * @param name the name of the attribute to expose
 	 * @param value the attribute value to expose
 	 * @see #render
@@ -202,7 +202,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 
 	/**
 	 * Return the static attributes for this view. Handy for testing.
-	 * <p>Returns an unmodifiable Map, as this is not intended for
+	 * Returns an unmodifiable Map, as this is not intended for
 	 * manipulating the Map but rather just for checking the contents.
 	 * @return the static attributes in this view
 	 */
@@ -212,13 +212,13 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 
 	/**
 	 * Specify whether to add path variables to the model or not.
-	 * <p>Path variables are commonly bound to URI template variables through the {@code @PathVariable}
+	 * Path variables are commonly bound to URI template variables through the {@code @PathVariable}
 	 * annotation. They're are effectively URI template variables with type conversion applied to
 	 * them to derive typed Object values. Such values are frequently needed in views for
 	 * constructing links to the same and other URLs.
-	 * <p>Path variables added to the model override static attributes (see {@link #setAttributes(Properties)})
+	 * Path variables added to the model override static attributes (see {@link #setAttributes(Properties)})
 	 * but not attributes already present in the model.
-	 * <p>By default this flag is set to {@code true}. Concrete view types can override this.
+	 * By default this flag is set to {@code true}. Concrete view types can override this.
 	 * @param exposePathVariables {@code true} to expose path variables, and {@code false} otherwise
 	 */
 	public void setExposePathVariables(boolean exposePathVariables) {
@@ -235,12 +235,12 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	/**
 	 * Set whether to make all Spring beans in the application context accessible
 	 * as request attributes, through lazy checking once an attribute gets accessed.
-	 * <p>This will make all such beans accessible in plain {@code ${...}}
+	 * This will make all such beans accessible in plain {@code ${...}}
 	 * expressions in a JSP 2.0 page, as well as in JSTL's {@code c:out}
 	 * value expressions.
-	 * <p>Default is "false". Switch this flag on to transparently expose all
+	 * Default is "false". Switch this flag on to transparently expose all
 	 * Spring beans in the request attribute namespace.
-	 * <p><b>NOTE:</b> Context beans will override any custom request or session
+	 * <b>NOTE:</b> Context beans will override any custom request or session
 	 * attributes of the same name that have been manually added. However, model
 	 * attributes (as explicitly exposed to this view) of the same name will
 	 * always override context beans.
@@ -254,7 +254,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	 * Specify the names of beans in the context which are supposed to be exposed.
 	 * If this is non-null, only the specified beans are eligible for exposure as
 	 * attributes.
-	 * <p>If you'd like to expose all Spring beans in the application context, switch
+	 * If you'd like to expose all Spring beans in the application context, switch
 	 * the {@link #setExposeContextBeansAsAttributes "exposeContextBeansAsAttributes"}
 	 * flag on but do not list specific bean names for this property.
 	 */
@@ -264,7 +264,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 
 	/**
 	 * Set the view's name. Helpful for traceability.
-	 * <p>Framework code must call this when constructing views.
+	 * Framework code must call this when constructing views.
 	 */
 	@Override
 	public void setBeanName(@Nullable String beanName) {
@@ -339,7 +339,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 
 	/**
 	 * Create a RequestContext to expose under the specified attribute name.
-	 * <p>The default implementation creates a standard RequestContext instance for the
+	 * The default implementation creates a standard RequestContext instance for the
 	 * given request and model. Can be overridden in subclasses for custom instances.
 	 * @param request current HTTP request
 	 * @param model combined output Map (never {@code null}),
@@ -356,7 +356,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 
 	/**
 	 * Prepare the given response for rendering.
-	 * <p>The default implementation applies a workaround for an IE bug
+	 * The default implementation applies a workaround for an IE bug
 	 * when sending download content via HTTPS.
 	 * @param request current HTTP request
 	 * @param response current HTTP response
@@ -371,7 +371,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	/**
 	 * Return whether this view generates download content
 	 * (typically binary content like PDF or Excel files).
-	 * <p>The default implementation returns {@code false}. Subclasses are
+	 * The default implementation returns {@code false}. Subclasses are
 	 * encouraged to return {@code true} here if they know that they are
 	 * generating download content that requires temporary caching on the
 	 * client side, typically via the response OutputStream.
@@ -384,7 +384,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 
 	/**
 	 * Get the request handle to expose to {@link #renderMergedOutputModel}, i.e. to the view.
-	 * <p>The default implementation wraps the original request for exposure of Spring beans
+	 * The default implementation wraps the original request for exposure of Spring beans
 	 * as request attributes (if demanded).
 	 * @param originalRequest the original servlet request as provided by the engine
 	 * @return the wrapped request, or the original request if no wrapping is necessary
@@ -403,7 +403,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 
 	/**
 	 * Subclasses must implement this method to actually render the view.
-	 * <p>The first step will be preparing the request: In the JSP case,
+	 * The first step will be preparing the request: In the JSP case,
 	 * this would mean setting model objects as request attributes.
 	 * The second step will be the actual rendering of the view,
 	 * for example including the JSP via a RequestDispatcher.
@@ -435,7 +435,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 
 	/**
 	 * Create a temporary OutputStream for this view.
-	 * <p>This is typically used as IE workaround, for setting the content length header
+	 * This is typically used as IE workaround, for setting the content length header
 	 * from the temporary stream before actually writing the content to the HTTP response.
 	 */
 	protected ByteArrayOutputStream createTemporaryOutputStream() {

@@ -25,7 +25,7 @@ import org.springframework.util.ClassUtils;
  * asynchronously, using a given {@link org.springframework.core.task.AsyncTaskExecutor}.
  * Typically used with the {@link org.springframework.scheduling.annotation.Async} annotation.
  *
- * <p>In terms of target method signatures, any parameter types are supported.
+ * In terms of target method signatures, any parameter types are supported.
  * However, the return type is constrained to either {@code void} or
  * {@code java.util.concurrent.Future}. In the latter case, the Future handle
  * returned from the proxy will be an actual asynchronous Future that can be used
@@ -35,12 +35,12 @@ import org.springframework.util.ClassUtils;
  * (like Spring's {@link org.springframework.scheduling.annotation.AsyncResult}
  * or EJB 3.1's {@code javax.ejb.AsyncResult}).
  *
- * <p>When the return type is {@code java.util.concurrent.Future}, any exception thrown
+ * When the return type is {@code java.util.concurrent.Future}, any exception thrown
  * during the execution can be accessed and managed by the caller. With {@code void}
  * return type however, such exceptions cannot be transmitted back. In that case an
  * {@link AsyncUncaughtExceptionHandler} can be registered to process such exceptions.
  *
- * <p>As of Spring 3.1.2 the {@code AnnotationAsyncExecutionInterceptor} subclass is
+ * As of Spring 3.1.2 the {@code AnnotationAsyncExecutionInterceptor} subclass is
  * preferred for use due to its support for executor qualification in conjunction with
  * Spring's {@code @Async} annotation.
  * @since 3.0

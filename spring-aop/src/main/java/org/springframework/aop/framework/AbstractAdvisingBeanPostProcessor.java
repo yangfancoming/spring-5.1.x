@@ -28,10 +28,10 @@ public abstract class AbstractAdvisingBeanPostProcessor extends ProxyProcessorSu
 	/**
 	 * Set whether this post-processor's advisor is supposed to apply before
 	 * existing advisors when encountering a pre-advised object.
-	 * <p>Default is "false", applying the advisor after existing advisors, i.e.
+	 * Default is "false", applying the advisor after existing advisors, i.e.
 	 * as close as possible to the target method. Switch this to "true" in order
 	 * for this post-processor's advisor to wrap existing advisors as well.
-	 * <p>Note: Check the concrete post-processor's javadoc whether it possibly
+	 * Note: Check the concrete post-processor's javadoc whether it possibly
 	 * changes this flag by default, depending on the nature of its advisor.
 	 */
 	public void setBeforeExistingAdvisors(boolean beforeExistingAdvisors) {
@@ -81,9 +81,9 @@ public abstract class AbstractAdvisingBeanPostProcessor extends ProxyProcessorSu
 	/**
 	 * Check whether the given bean is eligible for advising with this
 	 * post-processor's {@link Advisor}.
-	 * <p>Delegates to {@link #isEligible(Class)} for target class checking.
+	 * Delegates to {@link #isEligible(Class)} for target class checking.
 	 * Can be overridden e.g. to specifically exclude certain beans by name.
-	 * <p>Note: Only called for regular bean instances but not for existing
+	 * Note: Only called for regular bean instances but not for existing
 	 * proxy instances which implement {@link Advised} and allow for adding
 	 * the local {@link Advisor} to the existing proxy's {@link Advisor} chain.
 	 * For the latter, {@link #isEligible(Class)} is being called directly,
@@ -100,7 +100,7 @@ public abstract class AbstractAdvisingBeanPostProcessor extends ProxyProcessorSu
 	/**
 	 * Check whether the given class is eligible for advising with this
 	 * post-processor's {@link Advisor}.
-	 * <p>Implements caching of {@code canApply} results per bean target class.
+	 * Implements caching of {@code canApply} results per bean target class.
 	 * @param targetClass the class to check against
 	 * @see AopUtils#canApply(Advisor, Class)
 	 */
@@ -119,7 +119,7 @@ public abstract class AbstractAdvisingBeanPostProcessor extends ProxyProcessorSu
 
 	/**
 	 * Prepare a {@link ProxyFactory} for the given bean.
-	 * <p>Subclasses may customize the handling of the target instance and in
+	 * Subclasses may customize the handling of the target instance and in
 	 * particular the exposure of the target class. The default introspection
 	 * of interfaces for non-target-class proxies and the configured advisor
 	 * will be applied afterwards; {@link #customizeProxyFactory} allows for
@@ -141,7 +141,7 @@ public abstract class AbstractAdvisingBeanPostProcessor extends ProxyProcessorSu
 	/**
 	 * Subclasses may choose to implement this: for example,
 	 * to change the interfaces exposed.
-	 * <p>The default implementation is empty.
+	 * The default implementation is empty.
 	 * @param proxyFactory the ProxyFactory that is already configured with
 	 * target, advisor and interfaces and will be used to create the proxy
 	 * immediately after this method returns

@@ -26,7 +26,7 @@ import org.springframework.util.MimeType;
  * Mock extension of {@link AbstractServerHttpResponse} for use in tests without
  * an actual server.
  *
- * <p>By default response content is consumed in full upon writing and cached
+ * By default response content is consumed in full upon writing and cached
  * for subsequent access, however it is also possible to set a custom
  * {@link #setWriteHandler(Function) writeHandler}.
  *
@@ -59,7 +59,7 @@ public class MockServerHttpResponse extends AbstractServerHttpResponse {
 
 	/**
 	 * Configure a custom handler to consume the response body.
-	 * <p>By default, response body content is consumed in full and cached for
+	 * By default, response body content is consumed in full and cached for
 	 * subsequent access in tests. Use this option to take control over how the
 	 * response body is consumed.
 	 * @param writeHandler the write handler to use returning {@code Mono<Void>}

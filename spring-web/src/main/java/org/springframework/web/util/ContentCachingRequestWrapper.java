@@ -25,7 +25,7 @@ import org.springframework.lang.Nullable;
  * the {@linkplain #getInputStream() input stream} and {@linkplain #getReader() reader},
  * and allows this content to be retrieved via a {@link #getContentAsByteArray() byte array}.
  *
- * <p>Used e.g. by {@link org.springframework.web.filter.AbstractRequestLoggingFilter}.
+ * Used e.g. by {@link org.springframework.web.filter.AbstractRequestLoggingFilter}.
  * Note: As of Spring Framework 5.0, this wrapper is built on the Servlet 3.1 API.
  *
 
@@ -168,7 +168,7 @@ public class ContentCachingRequestWrapper extends HttpServletRequestWrapper {
 
 	/**
 	 * Return the cached request content as a byte array.
-	 * <p>The returned array will never be larger than the content cache limit.
+	 * The returned array will never be larger than the content cache limit.
 	 * @see #ContentCachingRequestWrapper(HttpServletRequest, int)
 	 */
 	public byte[] getContentAsByteArray() {
@@ -178,7 +178,7 @@ public class ContentCachingRequestWrapper extends HttpServletRequestWrapper {
 	/**
 	 * Template method for handling a content overflow: specifically, a request
 	 * body being read that exceeds the specified content cache limit.
-	 * <p>The default implementation is empty. Subclasses may override this to
+	 * The default implementation is empty. Subclasses may override this to
 	 * throw a payload-too-large exception or the like.
 	 * @param contentCacheLimit the maximum number of bytes to cache per request
 	 * which has just been exceeded

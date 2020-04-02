@@ -40,26 +40,26 @@ import org.springframework.web.servlet.ViewResolver;
  * Implementation of {@link ViewResolver} that resolves a view based on the request file name
  * or {@code Accept} header.
  *
- * <p>The {@code ContentNegotiatingViewResolver} does not resolve views itself, but delegates to
+ * The {@code ContentNegotiatingViewResolver} does not resolve views itself, but delegates to
  * other {@link ViewResolver ViewResolvers}. By default, these other view resolvers are picked up automatically
  * from the application context, though they can also be set explicitly by using the
  * {@link #setViewResolvers viewResolvers} property. <strong>Note</strong> that in order for this
  * view resolver to work properly, the {@link #setOrder order} property needs to be set to a higher
  * precedence than the others (the default is {@link Ordered#HIGHEST_PRECEDENCE}).
  *
- * <p>This view resolver uses the requested {@linkplain MediaType media type} to select a suitable
+ * This view resolver uses the requested {@linkplain MediaType media type} to select a suitable
  * {@link View} for a request. The requested media type is determined through the configured
  * {@link ContentNegotiationManager}. Once the requested media type has been determined, this resolver
  * queries each delegate view resolver for a {@link View} and determines if the requested media type
  * is {@linkplain MediaType#includes(MediaType) compatible} with the view's
  * {@linkplain View#getContentType() content type}). The most compatible view is returned.
  *
- * <p>Additionally, this view resolver exposes the {@link #setDefaultViews(List) defaultViews} property,
+ * Additionally, this view resolver exposes the {@link #setDefaultViews(List) defaultViews} property,
  * allowing you to override the views provided by the view resolvers. Note that these default views are
  * offered as candidates, and still need have the content type requested (via file extension, parameter,
  * or {@code Accept} header, described above).
  *
- * <p>For example, if the request path is {@code /view.html}, this view resolver will look for a view
+ * For example, if the request path is {@code /view.html}, this view resolver will look for a view
  * that has the {@code text/html} content type (based on the {@code html} file extension). A request
  * for {@code /view} with a {@code text/html} request {@code Accept} header has the same result.
  *
@@ -92,7 +92,7 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 
 	/**
 	 * Set the {@link ContentNegotiationManager} to use to determine requested media types.
-	 * <p>If not set, ContentNegotiationManager's default constructor will be used,
+	 * If not set, ContentNegotiationManager's default constructor will be used,
 	 * applying a {@link org.springframework.web.accept.HeaderContentNegotiationStrategy}.
 	 * @see ContentNegotiationManager#ContentNegotiationManager()
 	 */
@@ -112,7 +112,7 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 	/**
 	 * Indicate whether a {@link HttpServletResponse#SC_NOT_ACCEPTABLE 406 Not Acceptable}
 	 * status code should be returned if no suitable view can be found.
-	 * <p>Default is {@code false}, meaning that this view resolver returns {@code null} for
+	 * Default is {@code false}, meaning that this view resolver returns {@code null} for
 	 * {@link #resolveViewName(String, Locale)} when an acceptable view cannot be found.
 	 * This will allow for view resolvers chaining. When this property is set to {@code true},
 	 * {@link #resolveViewName(String, Locale)} will respond with a view that sets the
@@ -144,7 +144,7 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 
 	/**
 	 * Sets the view resolvers to be wrapped by this view resolver.
-	 * <p>If this property is not set, view resolvers will be detected automatically.
+	 * If this property is not set, view resolvers will be detected automatically.
 	 */
 	public void setViewResolvers(List<ViewResolver> viewResolvers) {
 		this.viewResolvers = viewResolvers;

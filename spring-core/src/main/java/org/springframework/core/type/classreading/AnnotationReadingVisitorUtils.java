@@ -91,7 +91,7 @@ abstract class AnnotationReadingVisitorUtils {
 	/**
 	 * Retrieve the merged attributes of the annotation of the given type,
 	 * if any, from the supplied {@code attributesMap}.
-	 * <p>Annotation attribute values appearing <em>lower</em> in the annotation
+	 * Annotation attribute values appearing <em>lower</em> in the annotation
 	 * hierarchy (i.e., closer to the declaring class) will override those
 	 * defined <em>higher</em> in the annotation hierarchy.
 	 * @param attributesMap the map of annotation attribute lists, keyed by

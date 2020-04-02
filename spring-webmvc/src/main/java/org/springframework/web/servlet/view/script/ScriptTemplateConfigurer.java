@@ -25,7 +25,7 @@ import org.springframework.lang.Nullable;
  * }
  * </pre>
  *
- * <p><b>NOTE:</b> It is possible to use non thread-safe script engines with
+ * <b>NOTE:</b> It is possible to use non thread-safe script engines with
  * templating libraries not designed for concurrency, like Handlebars or React running on
  * Nashorn, by setting the {@link #setSharedEngine sharedEngine} property to {@code false}.
  *
@@ -81,7 +81,7 @@ public class ScriptTemplateConfigurer implements ScriptTemplateConfig {
 	 * Set the {@link ScriptEngine} to use by the view.
 	 * If {@code renderFunction} is specified, the script engine must implement {@code Invocable}.
 	 * You must define {@code engine} or {@code engineName}, not both.
-	 * <p>When the {@code sharedEngine} flag is set to {@code false}, you should not specify
+	 * When the {@code sharedEngine} flag is set to {@code false}, you should not specify
 	 * the script engine with this setter, but with the {@link #setEngineName(String)}
 	 * one (since it implies multiple lazy instantiations of the script engine).
 	 * @see #setEngineName(String)
@@ -119,7 +119,7 @@ public class ScriptTemplateConfigurer implements ScriptTemplateConfig {
 	 * concurrency, like Handlebars or React running on Nashorn for example.
 	 * In this case, Java 8u60 or greater is required due to
 	 * <a href="https://bugs.openjdk.java.net/browse/JDK-8076099">this bug</a>.
-	 * <p>When this flag is set to {@code false}, the script engine must be specified using
+	 * When this flag is set to {@code false}, the script engine must be specified using
 	 * {@link #setEngineName(String)}. Using {@link #setEngine(ScriptEngine)} is not
 	 * possible because multiple instances of the script engine need to be created lazily
 	 * (one per thread).
@@ -139,7 +139,7 @@ public class ScriptTemplateConfigurer implements ScriptTemplateConfig {
 	 * Set the scripts to be loaded by the script engine (library or user provided).
 	 * Since {@code resourceLoaderPath} default value is "classpath:", you can load easily
 	 * any script available on the classpath.
-	 * <p>For example, in order to use a JavaScript library available as a WebJars dependency
+	 * For example, in order to use a JavaScript library available as a WebJars dependency
 	 * and a custom "render.js" file, you should call
 	 * {@code configurer.setScripts("/META-INF/resources/webjars/library/version/library.js",
 	 * "com/myproject/script/render.js");}.
@@ -174,7 +174,7 @@ public class ScriptTemplateConfigurer implements ScriptTemplateConfig {
 	/**
 	 * Set the render function name (optional). If not specified, the script templates
 	 * will be evaluated with {@link ScriptEngine#eval(String, Bindings)}.
-	 * <p>This function will be called with the following parameters:
+	 * This function will be called with the following parameters:
 	 * <ol>
 	 * <li>{@code String template}: the template content</li>
 	 * <li>{@code Map model}: the view model</li>
@@ -231,7 +231,7 @@ public class ScriptTemplateConfigurer implements ScriptTemplateConfig {
 	 * Standard URLs like "file:" and "classpath:" and pseudo URLs are supported
 	 * as understood by Spring's {@link org.springframework.core.io.ResourceLoader}.
 	 * Relative paths are allowed when running in an ApplicationContext.
-	 * <p>Default is "classpath:".
+	 * Default is "classpath:".
 	 */
 	public void setResourceLoaderPath(@Nullable String resourceLoaderPath) {
 		this.resourceLoaderPath = resourceLoaderPath;

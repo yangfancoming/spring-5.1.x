@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
  * scheduled <i>start</i> time of each execution instead, set the
  * 'fixedRate' property to {@code true}.
  *
- * <p>Note that the TaskScheduler interface already defines methods for scheduling
+ * Note that the TaskScheduler interface already defines methods for scheduling
  * tasks at fixed-rate or with fixed-delay. Both also support an optional value
  * for the initial delay. Those methods should be used directly whenever
  * possible. The value of this Trigger implementation is that it can be used

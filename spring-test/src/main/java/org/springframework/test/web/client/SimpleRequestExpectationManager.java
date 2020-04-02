@@ -13,7 +13,7 @@ import org.springframework.util.Assert;
  * Simple {@code RequestExpectationManager} that matches requests to expectations
  * sequentially, i.e. in the order of declaration of expectations.
  *
- * <p>When request expectations have an expected count greater than one,
+ * When request expectations have an expected count greater than one,
  * only the first execution is expected to match the order of declaration.
  * Subsequent request executions may be inserted anywhere thereafter.
  *

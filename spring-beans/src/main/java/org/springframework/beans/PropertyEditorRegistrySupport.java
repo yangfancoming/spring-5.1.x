@@ -130,7 +130,7 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 	/**
 	 * Activate config value editors which are only intended for configuration purposes,
 	 * such as {@link org.springframework.beans.propertyeditors.StringArrayPropertyEditor}.
-	 * <p>Those editors are not registered by default simply because they are in
+	 * Those editors are not registered by default simply because they are in
 	 * general inappropriate for data binding purposes. Of course, you may register
 	 * them individually in any case, through {@link #registerCustomEditor}.
 	 */
@@ -140,7 +140,7 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 
 	/**
 	 * Override the default editor for the specified type with the given property editor.
-	 * <p>Note that this is different from registering a custom editor in that the editor
+	 * Note that this is different from registering a custom editor in that the editor
 	 * semantically still is a default editor. A ConversionService will override such a
 	 * default editor, whereas custom editors usually override the ConversionService.
 	 * @param requiredType the type of the property
@@ -156,7 +156,7 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 
 	/**
 	 * Retrieve the default editor for the given property type, if any.
-	 * <p>Lazily registers the default editors, if they are active.
+	 * Lazily registers the default editors, if they are active.
 	 * @param requiredType type of the property
 	 * @return the default editor, or {@code null} if none found
 	 * @see #registerDefaultEditors
@@ -345,9 +345,9 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 
 	/**
 	 * Determine the property type for the given property path.
-	 * <p>Called by {@link #findCustomEditor} if no required type has been specified,
+	 * Called by {@link #findCustomEditor} if no required type has been specified,
 	 * to be able to find a type-specific editor even if just given a property path.
-	 * <p>The default implementation always returns {@code null}.
+	 * The default implementation always returns {@code null}.
 	 * BeanWrapperImpl overrides this with the standard {@code getPropertyType}
 	 * method as defined by the BeanWrapper interface.
 	 * @param propertyPath the property path to determine the type for

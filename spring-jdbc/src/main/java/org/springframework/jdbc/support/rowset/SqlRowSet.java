@@ -16,12 +16,12 @@ import org.springframework.jdbc.InvalidResultSetAccessException;
  * Mirror interface for {@link javax.sql.RowSet}, representing a disconnected variant of
  * {@link java.sql.ResultSet} data.
  *
- * <p>The main difference to the standard JDBC RowSet is that a {@link java.sql.SQLException}
+ * The main difference to the standard JDBC RowSet is that a {@link java.sql.SQLException}
  * is never thrown here. This allows a SqlRowSet to be used without having to deal with
  * checked exceptions. A SqlRowSet will throw Spring's {@link InvalidResultSetAccessException}
  * instead (when appropriate).
  *
- * <p>Note: This interface extends the {@code java.io.Serializable} marker interface.
+ * Note: This interface extends the {@code java.io.Serializable} marker interface.
  * Implementations, which typically hold disconnected data, are encouraged to be actually
  * serializable (as far as possible).
  *
@@ -469,7 +469,7 @@ public interface SqlRowSet extends Serializable {
 
 	/**
 	 * Report whether the last column read had a value of SQL {@code NULL}.
-	 * <p>Note that you must first call one of the getter methods and then
+	 * Note that you must first call one of the getter methods and then
 	 * call the {@code wasNull()} method.
 	 * @return {@code true} if the most recent column retrieved was
 	 * SQL {@code NULL}, {@code false} otherwise

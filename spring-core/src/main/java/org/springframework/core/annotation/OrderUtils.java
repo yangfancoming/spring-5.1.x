@@ -51,7 +51,7 @@ public abstract class OrderUtils {
 	/**
 	 * Return the order on the specified {@code type}, or the specified
 	 * default value if none can be found.
-	 * <p>Takes care of {@link Order @Order} and {@code @javax.annotation.Priority}.
+	 * Takes care of {@link Order @Order} and {@code @javax.annotation.Priority}.
 	 * @param type the type to handle
 	 * @return the priority value, or the specified default order if none can be found
 	 * @since 5.0
@@ -65,7 +65,7 @@ public abstract class OrderUtils {
 	/**
 	 * Return the order on the specified {@code type}, or the specified
 	 * default value if none can be found.
-	 * <p>Takes care of {@link Order @Order} and {@code @javax.annotation.Priority}.
+	 * Takes care of {@link Order @Order} and {@code @javax.annotation.Priority}.
 	 * @param type the type to handle
 	 * @return the priority value, or the specified default order if none can be found
 	 * @see #getPriority(Class)
@@ -78,7 +78,7 @@ public abstract class OrderUtils {
 
 	/**
 	 * Return the order on the specified {@code type}.
-	 * <p>Takes care of {@link Order @Order} and {@code @javax.annotation.Priority}.
+	 * Takes care of {@link Order @Order} and {@code @javax.annotation.Priority}.
 	 * @param type the type to handle
 	 * @return the order value, or {@code null} if none can be found
 	 * @see #getPriority(Class)

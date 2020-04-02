@@ -8,10 +8,10 @@ package org.springframework.test.context;
  * {@link org.springframework.context.ApplicationContext ApplicationContext}
  * for a test class.
  *
- * <p>A custom {@code ActiveProfilesResolver} can be registered via the
+ * A custom {@code ActiveProfilesResolver} can be registered via the
  * {@link ActiveProfiles#resolver resolver} attribute of {@code @ActiveProfiles}.
  *
- * <p>Concrete implementations must provide a {@code public} no-args constructor.
+ * Concrete implementations must provide a {@code public} no-args constructor.
  *
  * @author Sam Brannen
  * @author Michail Nikolaev

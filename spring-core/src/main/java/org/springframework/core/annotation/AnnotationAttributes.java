@@ -17,7 +17,7 @@ import org.springframework.util.StringUtils;
  * <em>key-value</em> pairs as read by {@link AnnotationUtils},
  * {@link AnnotatedElementUtils}, and Spring's reflection- and ASM-based
  * {@link org.springframework.core.type.AnnotationMetadata} implementations.
- * <p>Provides 'pseudo-reification' to avoid noisy Map generics in the calling
+ * Provides 'pseudo-reification' to avoid noisy Map generics in the calling
  * code as well as convenience methods for looking up annotation attributes
  * in a type-safe fashion.
  * @since 3.1.1
@@ -149,7 +149,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	/**
 	 * Get the value stored under the specified {@code attributeName} as an
 	 * array of strings.
-	 * <p>If the value stored under the specified {@code attributeName} is
+	 * If the value stored under the specified {@code attributeName} is
 	 * a string, it will be wrapped in a single-element array before
 	 * returning it.
 	 * @param attributeName the name of the attribute to get;
@@ -216,7 +216,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	/**
 	 * Get the value stored under the specified {@code attributeName} as an
 	 * array of classes.
-	 * <p>If the value stored under the specified {@code attributeName} is a class,
+	 * If the value stored under the specified {@code attributeName} is a class,
 	 * it will be wrapped in a single-element array before returning it.
 	 * @param attributeName the name of the attribute to get;
 	 * never {@code null} or empty
@@ -231,7 +231,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	/**
 	 * Get the {@link AnnotationAttributes} stored under the specified
 	 * {@code attributeName}.
-	 * <p>Note: if you expect an actual annotation, invoke
+	 * Note: if you expect an actual annotation, invoke
 	 * {@link #getAnnotation(String, Class)} instead.
 	 * @param attributeName the name of the attribute to get;
 	 * never {@code null} or empty
@@ -261,10 +261,10 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	/**
 	 * Get the array of {@link AnnotationAttributes} stored under the specified
 	 * {@code attributeName}.
-	 * <p>If the value stored under the specified {@code attributeName} is
+	 * If the value stored under the specified {@code attributeName} is
 	 * an instance of {@code AnnotationAttributes}, it will be wrapped in
 	 * a single-element array before returning it.
-	 * <p>Note: if you expect an actual array of annotations, invoke
+	 * Note: if you expect an actual array of annotations, invoke
 	 * {@link #getAnnotationArray(String, Class)} instead.
 	 * @param attributeName the name of the attribute to get;
 	 * never {@code null} or empty
@@ -279,7 +279,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	/**
 	 * Get the array of type {@code annotationType} stored under the specified
 	 * {@code attributeName}.
-	 * <p>If the value stored under the specified {@code attributeName} is
+	 * If the value stored under the specified {@code attributeName} is
 	 * an {@code Annotation}, it will be wrapped in a single-element array
 	 * before returning it.
 	 * @param attributeName the name of the attribute to get;
@@ -299,7 +299,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	/**
 	 * Get the value stored under the specified {@code attributeName},
 	 * ensuring that the value is of the {@code expectedType}.
-	 * <p>If the {@code expectedType} is an array and the value stored
+	 * If the {@code expectedType} is an array and the value stored
 	 * under the specified {@code attributeName} is a single element of the
 	 * component type of the expected array type, the single element will be
 	 * wrapped in a single-element array of the appropriate type before
@@ -398,7 +398,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 
 	/**
 	 * Return an {@link AnnotationAttributes} instance based on the given map.
-	 * <p>If the map is already an {@code AnnotationAttributes} instance, it
+	 * If the map is already an {@code AnnotationAttributes} instance, it
 	 * will be cast and returned immediately without creating a new instance.
 	 * Otherwise a new instance will be created by passing the supplied map
 	 * to the {@link #AnnotationAttributes(Map)} constructor.

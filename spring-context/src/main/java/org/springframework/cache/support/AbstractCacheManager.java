@@ -39,7 +39,7 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 
 	/**
 	 * Initialize the static configuration of caches.
-	 * <p>Triggered on startup through {@link #afterPropertiesSet()};
+	 * Triggered on startup through {@link #afterPropertiesSet()};
 	 * can also be called to re-initialize at runtime.
 	 * @since 4.2.2
 	 * @see #loadCaches()
@@ -62,7 +62,7 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 
 	/**
 	 * Load the initial caches for this cache manager.
-	 * <p>Called by {@link #afterPropertiesSet()} on startup.
+	 * Called by {@link #afterPropertiesSet()} on startup.
 	 * The returned collection may be empty but must not be {@code null}.
 	 */
 	protected abstract Collection<? extends Cache> loadCaches();
@@ -134,7 +134,7 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 
 	/**
 	 * Update the exposed {@link #cacheNames} set with the given name.
-	 * <p>This will always be called within a full {@link #cacheMap} lock
+	 * This will always be called within a full {@link #cacheMap} lock
 	 * and effectively behaves like a {@code CopyOnWriteArraySet} with
 	 * preserved order but exposed as an unmodifiable reference.
 	 * @param name the name of the cache to be added
@@ -162,7 +162,7 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 	/**
 	 * Return a missing cache with the specified {@code name} or {@code null} if
 	 * such cache does not exist or could not be created on the fly.
-	 * <p>Some caches may be created at runtime if the native provider supports
+	 * Some caches may be created at runtime if the native provider supports
 	 * it. If a lookup by name does not yield any result, a subclass gets a chance
 	 * to register such a cache at runtime. The returned cache will be automatically
 	 * added to this instance.

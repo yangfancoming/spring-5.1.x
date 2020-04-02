@@ -7,7 +7,7 @@ package org.springframework.aop.target;
  * freshly obtaining the specified target bean from its containing
  * Spring {@link org.springframework.beans.factory.BeanFactory}.
  *
- * <p>Can obtain any kind of target bean: singleton, scoped, or prototype.
+ * Can obtain any kind of target bean: singleton, scoped, or prototype.
  * Typically used for scoped beans.
  *
 

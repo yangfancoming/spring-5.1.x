@@ -18,14 +18,14 @@ import org.springframework.util.ObjectUtils;
  * {@code MetaAnnotationUtils} is a collection of utility methods that complements
  * the standard support already available in {@link AnnotationUtils}.
  *
- * <p>Whereas {@code AnnotationUtils} provides utilities for <em>getting</em> or
+ * Whereas {@code AnnotationUtils} provides utilities for <em>getting</em> or
  * <em>finding</em> an annotation, {@code MetaAnnotationUtils} goes a step further
  * by providing support for determining the <em>root class</em> on which an
  * annotation is declared, either directly or indirectly via a <em>composed
  * annotation</em>. This additional information is encapsulated in an
  * {@link AnnotationDescriptor}.
  *
- * <p>The additional information provided by an {@code AnnotationDescriptor} is
+ * The additional information provided by an {@code AnnotationDescriptor} is
  * required by the <em>Spring TestContext Framework</em> in order to be able to
  * support class hierarchy traversals for annotations such as
  * {@link org.springframework.test.context.ContextConfiguration @ContextConfiguration},
@@ -46,10 +46,10 @@ public abstract class MetaAnnotationUtils {
 	 * Find the {@link AnnotationDescriptor} for the supplied {@code annotationType}
 	 * on the supplied {@link Class}, traversing its annotations, interfaces, and
 	 * superclasses if no annotation can be found on the given class itself.
-	 * <p>This method explicitly handles class-level annotations which are not
+	 * This method explicitly handles class-level annotations which are not
 	 * declared as {@linkplain java.lang.annotation.Inherited inherited} <em>as
 	 * well as meta-annotations</em>.
-	 * <p>The algorithm operates as follows:
+	 * The algorithm operates as follows:
 	 * <ol>
 	 * <li>Search for the annotation on the given class and return a corresponding
 	 * {@code AnnotationDescriptor} if found.
@@ -57,7 +57,7 @@ public abstract class MetaAnnotationUtils {
 	 * <li>Recursively search through all interfaces implemented by the given class.
 	 * <li>Recursively search through the superclass hierarchy of the given class.
 	 * </ol>
-	 * <p>In this context, the term <em>recursively</em> means that the search
+	 * In this context, the term <em>recursively</em> means that the search
 	 * process continues by returning to step #1 with the current annotation,
 	 * interface, or superclass as the class to look for annotations on.
 	 * @param clazz the class to look for annotations on
@@ -128,13 +128,13 @@ public abstract class MetaAnnotationUtils {
 	 * in the inheritance hierarchy of the specified {@code clazz} (including
 	 * the specified {@code clazz} itself) which declares at least one of the
 	 * specified {@code annotationTypes}.
-	 * <p>This method traverses the annotations, interfaces, and superclasses
+	 * This method traverses the annotations, interfaces, and superclasses
 	 * of the specified {@code clazz} if no annotation can be found on the given
 	 * class itself.
-	 * <p>This method explicitly handles class-level annotations which are not
+	 * This method explicitly handles class-level annotations which are not
 	 * declared as {@linkplain java.lang.annotation.Inherited inherited} <em>as
 	 * well as meta-annotations</em>.
-	 * <p>The algorithm operates as follows:
+	 * The algorithm operates as follows:
 	 * <ol>
 	 * <li>Search for a local declaration of one of the annotation types on
 	 * the given class and return a corresponding {@code UntypedAnnotationDescriptor}
@@ -143,7 +143,7 @@ public abstract class MetaAnnotationUtils {
 	 * <li>Recursively search through all interfaces implemented by the given class.
 	 * <li>Recursively search through the superclass hierarchy of the given class.
 	 * </ol>
-	 * <p>In this context, the term <em>recursively</em> means that the search
+	 * In this context, the term <em>recursively</em> means that the search
 	 * process continues by returning to step #1 with the current annotation,
 	 * interface, or superclass as the class to look for annotations on.
 	 * @param clazz the class to look for annotations on
@@ -229,12 +229,12 @@ public abstract class MetaAnnotationUtils {
 	 * Descriptor for an {@link Annotation}, including the {@linkplain
 	 * #getDeclaringClass() class} on which the annotation is <em>declared</em>
 	 * as well as the actual {@linkplain #getAnnotation() annotation} instance.
-	 * <p>If the annotation is used as a meta-annotation, the descriptor also includes
+	 * If the annotation is used as a meta-annotation, the descriptor also includes
 	 * the {@linkplain #getComposedAnnotation() composed annotation} on which the
 	 * annotation is present. In such cases, the <em>root declaring class</em> is
 	 * not directly annotated with the annotation but rather indirectly via the
 	 * composed annotation.
-	 * <p>Given the following example, if we are searching for the {@code @Transactional}
+	 * Given the following example, if we are searching for the {@code @Transactional}
 	 * annotation <em>on</em> the {@code TransactionalTests} class, then the
 	 * properties of the {@code AnnotationDescriptor} would be as follows.
 	 * <ul>
@@ -248,7 +248,7 @@ public abstract class MetaAnnotationUtils {
 	 * &#064;ContextConfiguration({"/test-datasource.xml", "/repository-config.xml"})
 	 * public class TransactionalTests { }
 	 * </pre>
-	 * <p>Given the following example, if we are searching for the {@code @Transactional}
+	 * Given the following example, if we are searching for the {@code @Transactional}
 	 * annotation <em>on</em> the {@code UserRepositoryTests} class, then the
 	 * properties of the {@code AnnotationDescriptor} would be as follows.
 	 * <ul>

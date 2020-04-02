@@ -21,7 +21,7 @@ import org.springframework.transaction.PlatformTransactionManager;
  * {@link org.springframework.aop.framework.ProxyFactoryBean}
  * with a separate {@link TransactionInterceptor} definition.
  *
- * <p><strong>HISTORICAL NOTE:</strong> This class was originally designed to cover the
+ * <strong>HISTORICAL NOTE:</strong> This class was originally designed to cover the
  * typical case of declarative transaction demarcation: namely, wrapping a singleton
  * target object with a transactional proxy, proxying all the interfaces that the target
  * implements. However, in Spring versions 2.0 and beyond, the functionality provided here
@@ -34,7 +34,7 @@ import org.springframework.transaction.PlatformTransactionManager;
  * and @{@link org.springframework.transaction.annotation.EnableTransactionManagement
  * EnableTransactionManagement} annotations.</strong>
  *
- * <p>There are three main properties that need to be specified:
+ * There are three main properties that need to be specified:
  * <ul>
  * <li>"transactionManager": the {@link PlatformTransactionManager} implementation to use
  * (for example, a {@link org.springframework.transaction.jta.JtaTransactionManager} instance)
@@ -43,23 +43,23 @@ import org.springframework.transaction.PlatformTransactionManager;
  * behavior and "readOnly" flag) per target method name (or method name pattern)
  * </ul>
  *
- * <p>If the "transactionManager" property is not set explicitly and this {@link FactoryBean}
+ * If the "transactionManager" property is not set explicitly and this {@link FactoryBean}
  * is running in a {@link ListableBeanFactory}, a single matching bean of type
  * {@link PlatformTransactionManager} will be fetched from the {@link BeanFactory}.
  *
- * <p>In contrast to {@link TransactionInterceptor}, the transaction attributes are
+ * In contrast to {@link TransactionInterceptor}, the transaction attributes are
  * specified as properties, with method names as keys and transaction attribute
  * descriptors as values. Method names are always applied to the target class.
  *
- * <p>Internally, a {@link TransactionInterceptor} instance is used, but the user of this
+ * Internally, a {@link TransactionInterceptor} instance is used, but the user of this
  * class does not have to care. Optionally, a method pointcut can be specified
  * to cause conditional invocation of the underlying {@link TransactionInterceptor}.
  *
- * <p>The "preInterceptors" and "postInterceptors" properties can be set to add
+ * The "preInterceptors" and "postInterceptors" properties can be set to add
  * additional interceptors to the mix, like
  * {@link org.springframework.aop.interceptor.PerformanceMonitorInterceptor}.
  *
- * <p><b>HINT:</b> This class is often used with parent / child bean definitions.
+ * <b>HINT:</b> This class is often used with parent / child bean definitions.
  * Typically, you will define the transaction manager and default transaction
  * attributes (for method name patterns) in an abstract parent bean definition,
  * deriving concrete child bean definitions for specific target objects.
@@ -114,9 +114,9 @@ public class TransactionProxyFactoryBean extends AbstractSingletonProxyFactoryBe
 	 * Set properties with method names as keys and transaction attribute
 	 * descriptors (parsed via TransactionAttributeEditor) as values:
 	 * e.g. key = "myMethod", value = "PROPAGATION_REQUIRED,readOnly".
-	 * <p>Note: Method names are always applied to the target class,
+	 * Note: Method names are always applied to the target class,
 	 * no matter if defined in an interface or the class itself.
-	 * <p>Internally, a NameMatchTransactionAttributeSource will be
+	 * Internally, a NameMatchTransactionAttributeSource will be
 	 * created from the given properties.
 	 * @see #setTransactionAttributeSource
 	 * @see TransactionInterceptor#setTransactionAttributes

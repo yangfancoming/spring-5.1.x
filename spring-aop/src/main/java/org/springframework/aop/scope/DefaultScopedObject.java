@@ -10,7 +10,7 @@ import org.springframework.util.Assert;
 /**
  * Default implementation of the {@link ScopedObject} interface.
  *
- * <p>Simply delegates the calls to the underlying
+ * Simply delegates the calls to the underlying
  * {@link ConfigurableBeanFactory bean factory}
  * ({@link ConfigurableBeanFactory#getBean(String)}/
  * {@link ConfigurableBeanFactory#destroyScopedBean(String)}).

@@ -53,7 +53,7 @@ public class HandlerExceptionResolverComposite implements HandlerExceptionResolv
 
 	/**
 	 * Resolve the exception by iterating over the list of configured exception resolvers.
-	 * <p>The first one to return a {@link ModelAndView} wins. Otherwise {@code null} is returned.
+	 * The first one to return a {@link ModelAndView} wins. Otherwise {@code null} is returned.
 	 */
 	@Override
 	@Nullable

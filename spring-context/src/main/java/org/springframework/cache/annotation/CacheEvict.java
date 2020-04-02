@@ -15,7 +15,7 @@ import org.springframework.core.annotation.AliasFor;
  * Annotation indicating that a method (or all methods on a class) triggers a
  * {@link org.springframework.cache.Cache#evict(Object) cache evict} operation.
  *
- * <p>This annotation may be used as a <em>meta-annotation</em> to create custom
+ * This annotation may be used as a <em>meta-annotation</em> to create custom
  * <em>composed annotations</em> with attribute overrides.
  *
  * @author Costin Leau
@@ -38,7 +38,7 @@ public @interface CacheEvict {
 
 	/**
 	 * Names of the caches to use for the cache eviction operation.
-	 * <p>Names may be used to determine the target cache (or caches), matching
+	 * Names may be used to determine the target cache (or caches), matching
 	 * the qualifier value or bean name of a specific bean definition.
 	 * @since 4.2
 	 * @see #value
@@ -49,9 +49,9 @@ public @interface CacheEvict {
 
 	/**
 	 * Spring Expression Language (SpEL) expression for computing the key dynamically.
-	 * <p>Default is {@code ""}, meaning all method parameters are considered as a key,
+	 * Default is {@code ""}, meaning all method parameters are considered as a key,
 	 * unless a custom {@link #keyGenerator} has been set.
-	 * <p>The SpEL expression evaluates against a dedicated context that provides the
+	 * The SpEL expression evaluates against a dedicated context that provides the
 	 * following meta-data:
 	 * <ul>
 	 * <li>{@code #result} for a reference to the result of the method invocation, which
@@ -73,7 +73,7 @@ public @interface CacheEvict {
 	/**
 	 * The bean name of the custom {@link org.springframework.cache.interceptor.KeyGenerator}
 	 * to use.
-	 * <p>Mutually exclusive with the {@link #key} attribute.
+	 * Mutually exclusive with the {@link #key} attribute.
 	 * @see CacheConfig#keyGenerator
 	 */
 	String keyGenerator() default "";
@@ -82,7 +82,7 @@ public @interface CacheEvict {
 	 * The bean name of the custom {@link org.springframework.cache.CacheManager} to use to
 	 * create a default {@link org.springframework.cache.interceptor.CacheResolver} if none
 	 * is set already.
-	 * <p>Mutually exclusive with the {@link #cacheResolver} attribute.
+	 * Mutually exclusive with the {@link #cacheResolver} attribute.
 	 * @see org.springframework.cache.interceptor.SimpleCacheResolver
 	 * @see CacheConfig#cacheManager
 	 */
@@ -98,8 +98,8 @@ public @interface CacheEvict {
 	/**
 	 * Spring Expression Language (SpEL) expression used for making the cache
 	 * eviction operation conditional.
-	 * <p>Default is {@code ""}, meaning the cache eviction is always performed.
-	 * <p>The SpEL expression evaluates against a dedicated context that provides the
+	 * Default is {@code ""}, meaning the cache eviction is always performed.
+	 * The SpEL expression evaluates against a dedicated context that provides the
 	 * following meta-data:
 	 * <ul>
 	 * <li>{@code #root.method}, {@code #root.target}, and {@code #root.caches} for
@@ -116,18 +116,18 @@ public @interface CacheEvict {
 
 	/**
 	 * Whether all the entries inside the cache(s) are removed.
-	 * <p>By default, only the value under the associated key is removed.
-	 * <p>Note that setting this parameter to {@code true} and specifying a
+	 * By default, only the value under the associated key is removed.
+	 * Note that setting this parameter to {@code true} and specifying a
 	 * {@link #key} is not allowed.
 	 */
 	boolean allEntries() default false;
 
 	/**
 	 * Whether the eviction should occur before the method is invoked.
-	 * <p>Setting this attribute to {@code true}, causes the eviction to
+	 * Setting this attribute to {@code true}, causes the eviction to
 	 * occur irrespective of the method outcome (i.e., whether it threw an
 	 * exception or not).
-	 * <p>Defaults to {@code false}, meaning that the cache eviction operation
+	 * Defaults to {@code false}, meaning that the cache eviction operation
 	 * will occur <em>after</em> the advised method is invoked successfully (i.e.,
 	 * only if the invocation did not throw an exception).
 	 */

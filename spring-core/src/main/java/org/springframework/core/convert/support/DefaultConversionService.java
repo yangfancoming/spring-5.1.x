@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
 
 /**
  * A specialization of {@link GenericConversionService} configured by default with converters appropriate for most environments.
- * <p>Designed for direct instantiation but also exposes the static
+ * Designed for direct instantiation but also exposes the static
  * {@link #addDefaultConverters(ConverterRegistry)} utility method for ad-hoc
  * use against any {@code ConverterRegistry} instance.
  * @since 3.1
@@ -35,7 +35,7 @@ public class DefaultConversionService extends GenericConversionService {
 	/**
 	 * Return a shared default {@code ConversionService} instance,
 	 * lazily building it once needed.
-	 * <p><b>NOTE:</b> We highly recommend constructing individual
+	 * <b>NOTE:</b> We highly recommend constructing individual
 	 * {@code ConversionService} instances for customization purposes.
 	 * This accessor is only meant as a fallback for code paths which
 	 * need simple type coercion but cannot access a longer-lived

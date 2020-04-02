@@ -25,7 +25,7 @@ public interface ExpressionParser {
 
 	/**
 	 * Parse the expression string and return an Expression object you can use for repeated evaluation.
-	 * <p>Some examples:
+	 * Some examples:
 	 * <pre class="code">
 	 *     3 + 4
 	 *     name.firstName
@@ -38,7 +38,7 @@ public interface ExpressionParser {
 
 	/**
 	 * Parse the expression string and return an Expression object you can use for repeated evaluation.
-	 * <p>Some examples:
+	 * Some examples:
 	 * <pre class="code">
 	 *     3 + 4
 	 *     name.firstName

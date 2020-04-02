@@ -21,7 +21,7 @@ import org.springframework.util.StringUtils;
  * for fast matching and accumulates computed state for quick comparison of
  * patterns.
  *
- * <p>{@code PathPattern} matches URL paths using the following rules:<br>
+ * {@code PathPattern} matches URL paths using the following rules:<br>
  * <ul>
  * <li>{@code ?} matches one character</li>
  * <li>{@code *} matches zero or more characters within a path segment</li>
@@ -245,13 +245,13 @@ public class PathPattern implements Comparable<PathPattern> {
 
 	/**
 	 * Determine the pattern-mapped part for the given path.
-	 * <p>For example: <ul>
+	 * For example: <ul>
 	 * <li>'{@code /docs/cvs/commit.html}' and '{@code /docs/cvs/commit.html} &rarr; ''</li>
 	 * <li>'{@code /docs/*}' and '{@code /docs/cvs/commit}' &rarr; '{@code cvs/commit}'</li>
 	 * <li>'{@code /docs/cvs/*.html}' and '{@code /docs/cvs/commit.html} &rarr; '{@code commit.html}'</li>
 	 * <li>'{@code /docs/**}' and '{@code /docs/cvs/commit} &rarr; '{@code cvs/commit}'</li>
 	 * </ul>
-	 * <p><b>Notes:</b>
+	 * <b>Notes:</b>
 	 * <ul>
 	 * <li>Assumes that {@link #matches} returns {@code true} for
 	 * the same path but does <strong>not</strong> enforce this.

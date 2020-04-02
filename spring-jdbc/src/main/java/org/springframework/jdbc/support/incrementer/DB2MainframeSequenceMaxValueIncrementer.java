@@ -8,7 +8,7 @@ import javax.sql.DataSource;
  * {@link DataFieldMaxValueIncrementer} that retrieves the next value
  * of a given sequence on DB2 for the mainframe (z/OS, DB2/390, DB2/400).
  *
- * <p>Thanks to Jens Eickmeyer for the suggestion!
+ * Thanks to Jens Eickmeyer for the suggestion!
  * @since 2.5.3
  * @deprecated in favor of the differently named {@link Db2MainframeMaxValueIncrementer}
  */

@@ -57,7 +57,7 @@ public class LocalizedResourceHelper {
 	/**
 	 * Find the most specific localized resource for the given name,
 	 * extension and locale:
-	 * <p>The file will be searched with locations in the following order,
+	 * The file will be searched with locations in the following order,
 	 * similar to {@code java.util.ResourceBundle}'s search order:
 	 * <ul>
 	 * <li>[name]_[language]_[country]_[variant][extension]
@@ -65,7 +65,7 @@ public class LocalizedResourceHelper {
 	 * <li>[name]_[language][extension]
 	 * <li>[name][extension]
 	 * </ul>
-	 * <p>If none of the specific files can be found, a resource
+	 * If none of the specific files can be found, a resource
 	 * descriptor for the default location will be returned.
 	 * @param name the name of the file, without localization part nor extension
 	 * @param extension the file extension (e.g. ".xls")

@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
  * and execute SQL scripts configured via the {@link Sql @Sql} annotation.
  *
  * <h3>Configuration Scope</h3>
- * <p>When declared as a class-level annotation on an integration test class,
+ * When declared as a class-level annotation on an integration test class,
  * {@code @SqlConfig} serves as <strong><em>global</em></strong> configuration
  * for all SQL scripts within the test class hierarchy. When declared directly
  * via the {@link Sql#config config} attribute of the {@code @Sql} annotation,
@@ -22,7 +22,7 @@ import java.lang.annotation.Target;
  * for the SQL scripts declared within the enclosing {@code @Sql} annotation.
  *
  * <h3>Default Values</h3>
- * <p>Every attribute in {@code @SqlConfig} has an <em>implicit</em> default value
+ * Every attribute in {@code @SqlConfig} has an <em>implicit</em> default value
  * which is documented in the javadocs of the corresponding attribute. Due to the
  * rules defined for annotation attributes in the Java Language Specification, it
  * is unfortunately not possible to assign a value of {@code null} to an annotation
@@ -34,7 +34,7 @@ import java.lang.annotation.Target;
  * {@code @SqlConfig} by providing a value other than {@code ""} or {@code DEFAULT}.
  *
  * <h3>Inheritance and Overrides</h3>
- * <p>Global {@code @SqlConfig} attributes are <em>inherited</em> whenever local
+ * Global {@code @SqlConfig} attributes are <em>inherited</em> whenever local
  * {@code @SqlConfig} attributes do not supply an explicit value other than
  * {@code ""} or {@code DEFAULT}. Explicit local configuration therefore
  * <em>overrides</em> global configuration.
@@ -53,10 +53,10 @@ public @interface SqlConfig {
 	/**
 	 * The bean name of the {@link javax.sql.DataSource} against which the
 	 * scripts should be executed.
-	 * <p>The name is only required if there is more than one bean of type
+	 * The name is only required if there is more than one bean of type
 	 * {@code DataSource} in the test's {@code ApplicationContext}. If there
 	 * is only one such bean, it is not necessary to specify a bean name.
-	 * <p>Defaults to an empty string, requiring that one of the following is
+	 * Defaults to an empty string, requiring that one of the following is
 	 * true:
 	 * <ol>
 	 * <li>An explicit bean name is defined in a global declaration of
@@ -75,10 +75,10 @@ public @interface SqlConfig {
 	/**
 	 * The bean name of the {@link org.springframework.transaction.PlatformTransactionManager
 	 * PlatformTransactionManager} that should be used to drive transactions.
-	 * <p>The name is only used if there is more than one bean of type
+	 * The name is only used if there is more than one bean of type
 	 * {@code PlatformTransactionManager} in the test's {@code ApplicationContext}.
 	 * If there is only one such bean, it is not necessary to specify a bean name.
-	 * <p>Defaults to an empty string, requiring that one of the following is
+	 * Defaults to an empty string, requiring that one of the following is
 	 * true:
 	 * <ol>
 	 * <li>An explicit bean name is defined in a global declaration of
@@ -99,8 +99,8 @@ public @interface SqlConfig {
 	/**
 	 * The <em>mode</em> to use when determining whether SQL scripts should be
 	 * executed within a transaction.
-	 * <p>Defaults to {@link TransactionMode#DEFAULT DEFAULT}.
-	 * <p>Can be set to {@link TransactionMode#ISOLATED} to ensure that the SQL
+	 * Defaults to {@link TransactionMode#DEFAULT DEFAULT}.
+	 * Can be set to {@link TransactionMode#ISOLATED} to ensure that the SQL
 	 * scripts are executed in a new, isolated transaction that will be immediately
 	 * committed.
 	 * @see TransactionMode
@@ -110,16 +110,16 @@ public @interface SqlConfig {
 	/**
 	 * The encoding for the supplied SQL scripts, if different from the platform
 	 * encoding.
-	 * <p>An empty string denotes that the platform encoding should be used.
+	 * An empty string denotes that the platform encoding should be used.
 	 */
 	String encoding() default "";
 
 	/**
 	 * The character string used to separate individual statements within the
 	 * SQL scripts.
-	 * <p>Implicitly defaults to {@code ";"} if not specified and falls back to
+	 * Implicitly defaults to {@code ";"} if not specified and falls back to
 	 * {@code "\n"} as a last resort.
-	 * <p>May be set to
+	 * May be set to
 	 * {@link org.springframework.jdbc.datasource.init.ScriptUtils#EOF_STATEMENT_SEPARATOR}
 	 * to signal that each script contains a single statement without a
 	 * separator.
@@ -130,14 +130,14 @@ public @interface SqlConfig {
 
 	/**
 	 * The prefix that identifies single-line comments within the SQL scripts.
-	 * <p>Implicitly defaults to {@code "--"}.
+	 * Implicitly defaults to {@code "--"}.
 	 * @see org.springframework.jdbc.datasource.init.ScriptUtils#DEFAULT_COMMENT_PREFIX
 	 */
 	String commentPrefix() default "";
 
 	/**
 	 * The start delimiter that identifies block comments within the SQL scripts.
-	 * <p>Implicitly defaults to {@code "/*"}.
+	 * Implicitly defaults to {@code "/*"}.
 	 * @see #blockCommentEndDelimiter
 	 * @see org.springframework.jdbc.datasource.init.ScriptUtils#DEFAULT_BLOCK_COMMENT_START_DELIMITER
 	 */
@@ -145,7 +145,7 @@ public @interface SqlConfig {
 
 	/**
 	 * The end delimiter that identifies block comments within the SQL scripts.
-	 * <p>Implicitly defaults to <code>"*&#47;"</code>.
+	 * Implicitly defaults to <code>"*&#47;"</code>.
 	 * @see #blockCommentStartDelimiter
 	 * @see org.springframework.jdbc.datasource.init.ScriptUtils#DEFAULT_BLOCK_COMMENT_END_DELIMITER
 	 */
@@ -154,7 +154,7 @@ public @interface SqlConfig {
 	/**
 	 * The <em>mode</em> to use when an error is encountered while executing an
 	 * SQL statement.
-	 * <p>Defaults to {@link ErrorMode#DEFAULT DEFAULT}.
+	 * Defaults to {@link ErrorMode#DEFAULT DEFAULT}.
 	 * @see ErrorMode
 	 */
 	ErrorMode errorMode() default ErrorMode.DEFAULT;
@@ -169,7 +169,7 @@ public @interface SqlConfig {
 
 		/**
 		 * Indicates that the <em>default</em> transaction mode should be used.
-		 * <p>The meaning of <em>default</em> depends on the context in which
+		 * The meaning of <em>default</em> depends on the context in which
 		 * {@code @SqlConfig} is declared:
 		 * <ul>
 		 * <li>If {@code @SqlConfig} is declared <strong>only</strong> locally,
@@ -225,7 +225,7 @@ public @interface SqlConfig {
 		/**
 		 * Indicates that SQL scripts should always be executed in a new,
 		 * <em>isolated</em> transaction that will be immediately committed.
-		 * <p>In contrast to {@link #INFERRED}, this mode requires the
+		 * In contrast to {@link #INFERRED}, this mode requires the
 		 * presence of a transaction manager <strong>and</strong> a data
 		 * source.
 		 */
@@ -241,7 +241,7 @@ public @interface SqlConfig {
 
 		/**
 		 * Indicates that the <em>default</em> error mode should be used.
-		 * <p>The meaning of <em>default</em> depends on the context in which
+		 * The meaning of <em>default</em> depends on the context in which
 		 * {@code @SqlConfig} is declared:
 		 * <ul>
 		 * <li>If {@code @SqlConfig} is declared <strong>only</strong> locally,
@@ -258,7 +258,7 @@ public @interface SqlConfig {
 		/**
 		 * Indicates that script execution will fail if an error is encountered.
 		 * In other words, no errors should be ignored.
-		 * <p>This is effectively the default error mode so that if a script
+		 * This is effectively the default error mode so that if a script
 		 * is accidentally executed, it will fail fast if any SQL statement in
 		 * the script results in an error.
 		 * @see #CONTINUE_ON_ERROR
@@ -268,7 +268,7 @@ public @interface SqlConfig {
 		/**
 		 * Indicates that all errors in SQL scripts should be logged but not
 		 * propagated as exceptions.
-		 * <p>{@code CONTINUE_ON_ERROR} is the logical <em>opposite</em> of
+		 * {@code CONTINUE_ON_ERROR} is the logical <em>opposite</em> of
 		 * {@code FAIL_ON_ERROR} and a <em>superset</em> of {@code IGNORE_FAILED_DROPS}.
 		 * @see #FAIL_ON_ERROR
 		 * @see #IGNORE_FAILED_DROPS
@@ -277,7 +277,7 @@ public @interface SqlConfig {
 
 		/**
 		 * Indicates that failed SQL {@code DROP} statements can be ignored.
-		 * <p>This is useful for a non-embedded database whose SQL dialect does
+		 * This is useful for a non-embedded database whose SQL dialect does
 		 * not support an {@code IF EXISTS} clause in a {@code DROP} statement.
 		 * @see #CONTINUE_ON_ERROR
 		 */

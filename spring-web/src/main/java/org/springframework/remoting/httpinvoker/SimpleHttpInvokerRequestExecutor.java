@@ -20,7 +20,7 @@ import org.springframework.remoting.support.RemoteInvocationResult;
  * that uses standard Java facilities to execute POST requests, without support for HTTP
  * authentication or advanced configuration options.
  *
- * <p>Designed for easy subclassing, customizing specific template methods. However,
+ * Designed for easy subclassing, customizing specific template methods. However,
  * consider {@code HttpComponentsHttpInvokerRequestExecutor} for more sophisticated needs:
  * The standard {@link HttpURLConnection} class is rather limited in its capabilities.
  *
@@ -38,7 +38,7 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 	/**
 	 * Set the underlying URLConnection's connect timeout (in milliseconds).
 	 * A timeout value of 0 specifies an infinite timeout.
-	 * <p>Default is the system's default timeout.
+	 * Default is the system's default timeout.
 	 * @see URLConnection#setConnectTimeout(int)
 	 */
 	public void setConnectTimeout(int connectTimeout) {
@@ -48,7 +48,7 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 	/**
 	 * Set the underlying URLConnection's read timeout (in milliseconds).
 	 * A timeout value of 0 specifies an infinite timeout.
-	 * <p>Default is the system's default timeout.
+	 * Default is the system's default timeout.
 	 * @see URLConnection#setReadTimeout(int)
 	 */
 	public void setReadTimeout(int readTimeout) {
@@ -58,7 +58,7 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 
 	/**
 	 * Execute the given request through a standard {@link HttpURLConnection}.
-	 * <p>This method implements the basic processing workflow:
+	 * This method implements the basic processing workflow:
 	 * The actual work happens in this class's template methods.
 	 * @see #openConnection
 	 * @see #prepareConnection
@@ -99,7 +99,7 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 
 	/**
 	 * Prepare the given HTTP connection.
-	 * <p>The default implementation specifies POST as method,
+	 * The default implementation specifies POST as method,
 	 * "application/x-java-serialized-object" as "Content-Type" header,
 	 * and the given content length as "Content-Length" header.
 	 * @param connection the HTTP connection to prepare
@@ -136,7 +136,7 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 
 	/**
 	 * Set the given serialized remote invocation as request body.
-	 * <p>The default implementation simply write the serialized invocation to the
+	 * The default implementation simply write the serialized invocation to the
 	 * HttpURLConnection's OutputStream. This can be overridden, for example, to write
 	 * a specific encoding and potentially set appropriate HTTP request headers.
 	 * @param config the HTTP invoker configuration that specifies the target service
@@ -157,7 +157,7 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 	/**
 	 * Validate the given response as contained in the {@link HttpURLConnection} object,
 	 * throwing an exception if it does not correspond to a successful HTTP response.
-	 * <p>Default implementation rejects any HTTP status code beyond 2xx, to avoid
+	 * Default implementation rejects any HTTP status code beyond 2xx, to avoid
 	 * parsing the response body and trying to deserialize from a corrupted stream.
 	 * @param config the HTTP invoker configuration that specifies the target service
 	 * @param con the HttpURLConnection to validate
@@ -177,7 +177,7 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 	/**
 	 * Extract the response body from the given executed remote invocation
 	 * request.
-	 * <p>The default implementation simply reads the serialized invocation
+	 * The default implementation simply reads the serialized invocation
 	 * from the HttpURLConnection's InputStream. If the response is recognized
 	 * as GZIP response, the InputStream will get wrapped in a GZIPInputStream.
 	 * @param config the HTTP invoker configuration that specifies the target service
@@ -205,7 +205,7 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 
 	/**
 	 * Determine whether the given response is a GZIP response.
-	 * <p>Default implementation checks whether the HTTP "Content-Encoding"
+	 * Default implementation checks whether the HTTP "Content-Encoding"
 	 * header contains "gzip" (in any casing).
 	 * @param con the HttpURLConnection to check
 	 */

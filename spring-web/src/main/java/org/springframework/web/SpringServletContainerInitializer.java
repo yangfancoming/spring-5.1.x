@@ -71,7 +71,7 @@ import org.springframework.util.ReflectionUtils;
  * {@code WebApplicationInitializer} types are detected, this container initializer will
  * have no effect.
  *
- * <p>Note that use of this container initializer and of {@code WebApplicationInitializer}
+ * Note that use of this container initializer and of {@code WebApplicationInitializer}
  * is not in any way "tied" to Spring MVC other than the fact that the types are shipped
  * in the {@code spring-web} module JAR. Rather, they can be considered general-purpose
  * in their ability to facilitate convenient code-based configuration of the
@@ -79,13 +79,13 @@ import org.springframework.util.ReflectionUtils;
  * registered within a {@code WebApplicationInitializer}, not just Spring MVC-specific
  * components.
  *
- * <p>This class is neither designed for extension nor intended to be extended.
+ * This class is neither designed for extension nor intended to be extended.
  * It should be considered an internal type, with {@code WebApplicationInitializer}
  * being the public-facing SPI.
  *
  * <h2>See Also</h2>
  * See {@link WebApplicationInitializer} Javadoc for examples and detailed usage
- * recommendations.<p>
+ * recommendations.
 
 
  * @author Rossen Stoyanchev
@@ -99,15 +99,15 @@ public class SpringServletContainerInitializer implements ServletContainerInitia
 	/**
 	 * Delegate the {@code ServletContext} to any {@link WebApplicationInitializer}
 	 * implementations present on the application classpath.
-	 * <p>Because this class declares @{@code HandlesTypes(WebApplicationInitializer.class)},
+	 * Because this class declares @{@code HandlesTypes(WebApplicationInitializer.class)},
 	 * Servlet 3.0+ containers will automatically scan the classpath for implementations
 	 * of Spring's {@code WebApplicationInitializer} interface and provide the set of all
 	 * such types to the {@code webAppInitializerClasses} parameter of this method.
-	 * <p>If no {@code WebApplicationInitializer} implementations are found on the classpath,
+	 * If no {@code WebApplicationInitializer} implementations are found on the classpath,
 	 * this method is effectively a no-op. An INFO-level log message will be issued notifying
 	 * the user that the {@code ServletContainerInitializer} has indeed been invoked but that
 	 * no {@code WebApplicationInitializer} implementations were found.
-	 * <p>Assuming that one or more {@code WebApplicationInitializer} types are detected,
+	 * Assuming that one or more {@code WebApplicationInitializer} types are detected,
 	 * they will be instantiated (and <em>sorted</em> if the @{@link
 	 * org.springframework.core.annotation.Order @Order} annotation is present or
 	 * the {@link org.springframework.core.Ordered Ordered} interface has been

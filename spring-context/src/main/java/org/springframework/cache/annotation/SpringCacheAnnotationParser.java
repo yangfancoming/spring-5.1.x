@@ -179,7 +179,7 @@ public class SpringCacheAnnotationParser implements CacheAnnotationParser, Seria
 
 	/**
 	 * Validates the specified {@link CacheOperation}.
-	 * <p>Throws an {@link IllegalStateException} if the state of the operation is
+	 * Throws an {@link IllegalStateException} if the state of the operation is
 	 * invalid. As there might be multiple sources for default values, this ensure
 	 * that the operation is in a proper state before being returned.
 	 * @param ae the annotated element of the cache operation

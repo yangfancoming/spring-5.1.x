@@ -14,7 +14,7 @@ import java.util.Map;
  * servlet container creates a <code>ServletRequest</code> object and passes
  * it as an argument to the servlet's <code>service</code> method.
  *
- * <p>A <code>ServletRequest</code> object provides data including
+ * A <code>ServletRequest</code> object provides data including
  * parameter name and values, attributes, and an input stream.
  * Interfaces that extend <code>ServletRequest</code> can provide
  * additional protocol-specific data (for example, HTTP data is
@@ -31,7 +31,7 @@ public interface ServletRequest {
      * Returns the value of the named attribute as an <code>Object</code>,
      * or <code>null</code> if no attribute of the given name exists. 
      *
-     * <p> Attributes can be set two ways.  The servlet container may set
+     *  Attributes can be set two ways.  The servlet container may set
      * attributes to make available custom information about a request.
      * For example, for requests made using HTTPS, the attribute
      * <code>javax.servlet.request.X509Certificate</code> can be used to
@@ -40,7 +40,7 @@ public interface ServletRequest {
      * {@link ServletRequest#setAttribute}.  This allows information to be
      * embedded into a request before a {@link RequestDispatcher} call.
      *
-     * <p>Attribute names should follow the same conventions as package
+     * Attribute names should follow the same conventions as package
      * names. This specification reserves names matching <code>java.*</code>,
      * <code>javax.*</code>, and <code>sun.*</code>. 
      *
@@ -146,15 +146,15 @@ public interface ServletRequest {
      * are extra information sent with the request.  For HTTP servlets,
      * parameters are contained in the query string or posted form data.
      *
-     * <p>You should only use this method when you are sure the
+     * You should only use this method when you are sure the
      * parameter has only one value. If the parameter might have
      * more than one value, use {@link #getParameterValues}.
      *
-     * <p>If you use this method with a multivalued
+     * If you use this method with a multivalued
      * parameter, the value returned is equal to the first value
      * in the array returned by <code>getParameterValues</code>.
      *
-     * <p>If the parameter data was sent in the request body, such as occurs
+     * If the parameter data was sent in the request body, such as occurs
      * with an HTTP POST request, then reading the body directly via {@link
      * #getInputStream} or {@link #getReader} can interfere
      * with the execution of this method.
@@ -187,7 +187,7 @@ public interface ServletRequest {
      * all of the values the given request parameter has, or 
      * <code>null</code> if the parameter does not exist.
      *
-     * <p>If the parameter has a single value, the array has a length
+     * If the parameter has a single value, the array has a length
      * of 1.
      *
      * @param name a <code>String</code> containing the name of 
@@ -203,7 +203,7 @@ public interface ServletRequest {
     /**
      * Returns a java.util.Map of the parameters of this request.
      * 
-     * <p>Request parameters are extra information sent with the request.
+     * Request parameters are extra information sent with the request.
      * For HTTP servlets, parameters are contained in the query string or
      * posted form data.
      *
@@ -308,7 +308,7 @@ public interface ServletRequest {
      * Attributes are reset between requests.  This method is most
      * often used in conjunction with {@link RequestDispatcher}.
      *
-     * <p>Attribute names should follow the same conventions as
+     * Attribute names should follow the same conventions as
      * package names. Names beginning with <code>java.*</code>,
      * <code>javax.*</code>, and <code>com.sun.*</code>, are
      * reserved for use by Sun Microsystems.
@@ -333,7 +333,7 @@ public interface ServletRequest {
      * generally needed as attributes only persist as long as the request
      * is being handled.
      *
-     * <p>Attribute names should follow the same conventions as
+     * Attribute names should follow the same conventions as
      * package names. Names beginning with <code>java.*</code>,
      * <code>javax.*</code>, and <code>com.sun.*</code>, are
      * reserved for use by Sun Microsystems.
@@ -385,13 +385,13 @@ public interface ServletRequest {
      * a request to the resource or to include the resource in a response.
      * The resource can be dynamic or static.
      *
-     * <p>The pathname specified may be relative, although it cannot extend
+     * The pathname specified may be relative, although it cannot extend
      * outside the current servlet context.  If the path begins with 
      * a "/" it is interpreted as relative to the current context root.  
      * This method returns <code>null</code> if the servlet container
      * cannot return a <code>RequestDispatcher</code>.
      *
-     * <p>The difference between this method and {@link
+     * The difference between this method and {@link
      * ServletContext#getRequestDispatcher} is that this method can take a
      * relative path.
      *
@@ -478,12 +478,12 @@ public interface ServletRequest {
      * {@link AsyncContext} with the original (unwrapped) ServletRequest
      * and ServletResponse objects.
      *
-     * <p>Calling this method will cause committal of the associated
+     * Calling this method will cause committal of the associated
      * response to be delayed until {@link AsyncContext#complete} is
      * called on the returned {@link AsyncContext}, or the asynchronous
      * operation has timed out.
      *
-     * <p>Calling {@link AsyncContext#hasOriginalRequestAndResponse()} on
+     * Calling {@link AsyncContext#hasOriginalRequestAndResponse()} on
      * the returned AsyncContext will return <code>true</code>. Any filters
      * invoked in the <i>outbound</i> direction after this request was put
      * into asynchronous mode may use this as an indication that any request
@@ -492,13 +492,13 @@ public interface ServletRequest {
      * operation, and therefore any of their associated resources may be
      * released.
      *
-     * <p>This method clears the list of {@link AsyncListener} instances
+     * This method clears the list of {@link AsyncListener} instances
      * (if any) that were registered with the AsyncContext returned by the
      * previous call to one of the startAsync methods, after calling each
      * AsyncListener at its {@link AsyncListener#onStartAsync onStartAsync}
      * method.
      *
-     * <p>Subsequent invocations of this method, or its overloaded 
+     * Subsequent invocations of this method, or its overloaded
      * variant, will return the same AsyncContext instance, reinitialized
      * as appropriate.
      *
@@ -522,19 +522,19 @@ public interface ServletRequest {
      * Puts this request into asynchronous mode, and initializes its
      * {@link AsyncContext} with the given request and response objects.
      *
-     * <p>The ServletRequest and ServletResponse arguments must be
+     * The ServletRequest and ServletResponse arguments must be
      * the same instances, or instances of {@link ServletRequestWrapper} and
      * {@link ServletResponseWrapper} that wrap them, that were passed to the
      * {@link Servlet#service service} method of the Servlet or the
      * {@link Filter#doFilter doFilter} method of the Filter, respectively,
      * in whose scope this method is being called.
      *
-     * <p>Calling this method will cause committal of the associated
+     * Calling this method will cause committal of the associated
      * response to be delayed until {@link AsyncContext#complete} is
      * called on the returned {@link AsyncContext}, or the asynchronous
      * operation has timed out.
      *
-     * <p>Calling {@link AsyncContext#hasOriginalRequestAndResponse()} on
+     * Calling {@link AsyncContext#hasOriginalRequestAndResponse()} on
      * the returned AsyncContext will return <code>false</code>,
      * unless the passed in ServletRequest and ServletResponse arguments
      * are the original ones or do not carry any application-provided wrappers.
@@ -552,13 +552,13 @@ public interface ServletRequest {
      * ServletRequestWrapper. The same holds true for ServletResponseWrapper
      * instances. 
      *
-     * <p>This method clears the list of {@link AsyncListener} instances
+     * This method clears the list of {@link AsyncListener} instances
      * (if any) that were registered with the AsyncContext returned by the
      * previous call to one of the startAsync methods, after calling each
      * AsyncListener at its {@link AsyncListener#onStartAsync onStartAsync}
      * method.
      *
-     * <p>Subsequent invocations of this method, or its zero-argument
+     * Subsequent invocations of this method, or its zero-argument
      * variant, will return the same AsyncContext instance, reinitialized
      * as appropriate. If a call to this method is followed by a call to its
      * zero-argument variant, the specified (and possibly wrapped) request
@@ -589,11 +589,11 @@ public interface ServletRequest {
     /**
      * Checks if this request has been put into asynchronous mode.
      *
-     * <p>A ServletRequest is put into asynchronous mode by calling
+     * A ServletRequest is put into asynchronous mode by calling
      * {@link #startAsync} or
      * {@link #startAsync(ServletRequest, ServletResponse)} on it.
      * 
-     * <p>This method returns <tt>false</tt> if this request was
+     * This method returns <tt>false</tt> if this request was
      * put into asynchronous mode, but has since been dispatched using
      * one of the {@link AsyncContext#dispatch} methods or released
      * from asynchronous mode via a call to {@link AsyncContext#complete}.
@@ -608,7 +608,7 @@ public interface ServletRequest {
     /**
      * Checks if this request supports asynchronous operation.
      *
-     * <p>Asynchronous operation is disabled for this request if this request
+     * Asynchronous operation is disabled for this request if this request
      * is within the scope of a filter or servlet that has not been annotated
      * or flagged in the deployment descriptor as being able to support
      * asynchronous handling.
@@ -641,17 +641,17 @@ public interface ServletRequest {
     /**
      * Gets the dispatcher type of this request.
      *
-     * <p>The dispatcher type of a request is used by the container
+     * The dispatcher type of a request is used by the container
      * to select the filters that need to be applied to the request:
      * Only filters with matching dispatcher type and url patterns will
      * be applied.
      * 
-     * <p>Allowing a filter that has been configured for multiple 
+     * Allowing a filter that has been configured for multiple
      * dispatcher types to query a request for its dispatcher type
      * allows the filter to process the request differently depending on
      * its dispatcher type.
      *
-     * <p>The initial dispatcher type of a request is defined as
+     * The initial dispatcher type of a request is defined as
      * <code>DispatcherType.REQUEST</code>. The dispatcher type of a request
      * dispatched via {@link RequestDispatcher#forward(ServletRequest,
      * ServletResponse)} or {@link RequestDispatcher#include(ServletRequest,

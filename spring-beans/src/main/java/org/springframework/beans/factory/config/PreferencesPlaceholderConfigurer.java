@@ -14,12 +14,12 @@ import org.springframework.lang.Nullable;
  * Subclass of PropertyPlaceholderConfigurer that supports JDK 1.4's
  * Preferences API ({@code java.util.prefs}).
  *
- * <p>Tries to resolve placeholders as keys first in the user preferences,
+ * Tries to resolve placeholders as keys first in the user preferences,
  * then in the system preferences, then in this configurer's properties.
  * Thus, behaves like PropertyPlaceholderConfigurer if no corresponding
  * preferences defined.
  *
- * <p>Supports custom paths for the system and user preferences trees. Also
+ * Supports custom paths for the system and user preferences trees. Also
  * supports custom paths specified in placeholders ("myPath/myPlaceholderKey").
  * Uses the respective root node if not specified.
  *

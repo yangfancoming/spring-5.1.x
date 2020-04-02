@@ -16,7 +16,7 @@ import org.springframework.core.env.Profiles;
  * Indicates that a component is eligible for registration when one or more
  * {@linkplain #value specified profiles} are active.
  *
- * <p>A <em>profile</em> is a named logical grouping that may be activated
+ * A <em>profile</em> is a named logical grouping that may be activated
  * programmatically via {@link ConfigurableEnvironment#setActiveProfiles} or declaratively
  * by setting the {@link AbstractEnvironment#ACTIVE_PROFILES_PROPERTY_NAME
  * spring.profiles.active} property as a JVM system property, as an
@@ -24,7 +24,7 @@ import org.springframework.core.env.Profiles;
  * for web applications. Profiles may also be activated declaratively in
  * integration tests via the {@code @ActiveProfiles} annotation.
  *
- * <p>The {@code @Profile} annotation may be used in any of the following ways:
+ * The {@code @Profile} annotation may be used in any of the following ways:
  * <ul>
  * <li>as a type-level annotation on any class directly or indirectly annotated with
  * {@code @Component}, including {@link Configuration @Configuration} classes</li>
@@ -32,7 +32,7 @@ import org.springframework.core.env.Profiles;
  * <li>as a method-level annotation on any {@link Bean @Bean} method</li>
  * </ul>
  *
- * <p>If a {@code @Configuration} class is marked with {@code @Profile}, all of the
+ * If a {@code @Configuration} class is marked with {@code @Profile}, all of the
  * {@code @Bean} methods and {@link Import @Import} annotations associated with that class
  * will be bypassed unless one or more of the specified profiles are active. A profile
  * string may contain a simple profile name (for example {@code "p1"}) or a profile
@@ -40,22 +40,22 @@ import org.springframework.core.env.Profiles;
  * expressed, for example {@code "p1 & p2"}. See {@link Profiles#of(String...)} for more
  * details about supported formats.
  *
- * <p>This is analogous to the behavior in Spring XML: if the {@code profile} attribute of
+ * This is analogous to the behavior in Spring XML: if the {@code profile} attribute of
  * the {@code beans} element is supplied e.g., {@code <beans profile="p1,p2">}, the
  * {@code beans} element will not be parsed unless at least profile 'p1' or 'p2' has been
  * activated. Likewise, if a {@code @Component} or {@code @Configuration} class is marked
  * with {@code @Profile({"p1", "p2"})}, that class will not be registered or processed unless
  * at least profile 'p1' or 'p2' has been activated.
  *
- * <p>If a given profile is prefixed with the NOT operator ({@code !}), the annotated
+ * If a given profile is prefixed with the NOT operator ({@code !}), the annotated
  * component will be registered if the profile is <em>not</em> active ; for example,
  * given {@code @Profile({"p1", "!p2"})}, registration will occur if profile 'p1' is active
  * or if profile 'p2' is <em>not</em> active.
  *
- * <p>If the {@code @Profile} annotation is omitted, registration will occur regardless
+ * If the {@code @Profile} annotation is omitted, registration will occur regardless
  * of which (if any) profiles are active.
  *
- * <p><b>NOTE:</b> With {@code @Profile} on {@code @Bean} methods, a special scenario may
+ * <b>NOTE:</b> With {@code @Profile} on {@code @Bean} methods, a special scenario may
  * apply: In the case of overloaded {@code @Bean} methods of the same Java method name
  * (analogous to constructor overloading), an {@code @Profile} condition needs to be
  * consistently declared on all overloaded methods. If the conditions are inconsistent,
@@ -67,7 +67,7 @@ import org.springframework.core.env.Profiles;
  * if you'd like to define alternative beans with different profile conditions</b>;
  * see {@code ProfileDatabaseConfig} in {@link Configuration @Configuration}'s javadoc.
  *
- * <p>When defining Spring beans via XML, the {@code "profile"} attribute of the
+ * When defining Spring beans via XML, the {@code "profile"} attribute of the
  * {@code <beans>} element may be used. See the documentation in the
  * {@code spring-beans} XSD (version 3.1 or greater) for details.
 

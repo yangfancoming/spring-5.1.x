@@ -14,7 +14,7 @@ import org.springframework.test.context.junit.jupiter.comics.Dog;
  * test classes when used with the Spring TestContext Framework and the
  * {@link SpringExtension}.
  *
- * <p>
+ *
  * To run these tests in an IDE that does not have built-in support for the JUnit
  * Platform, simply run {@link SpringJUnitJupiterTestSuite} as a JUnit 4 test.
  *

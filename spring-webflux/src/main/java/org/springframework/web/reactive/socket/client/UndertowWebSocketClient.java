@@ -102,7 +102,7 @@ public class UndertowWebSocketClient implements WebSocketClient {
 	/**
 	 * Set the {@link io.undertow.connector.ByteBufferPool ByteBufferPool} to pass to
 	 * {@link io.undertow.websockets.client.WebSocketClient#connectionBuilder}.
-	 * <p>By default an indirect {@link io.undertow.server.DefaultByteBufferPool}
+	 * By default an indirect {@link io.undertow.server.DefaultByteBufferPool}
 	 * with a buffer size of 8192 is used.
 	 * @since 5.0.8
 	 * @see #DEFAULT_POOL_BUFFER_SIZE
@@ -168,7 +168,7 @@ public class UndertowWebSocketClient implements WebSocketClient {
 
 	/**
 	 * Create a {@link ConnectionBuilder} for the given URI.
-	 * <p>The default implementation creates a builder with the configured
+	 * The default implementation creates a builder with the configured
 	 * {@link #getXnioWorker() XnioWorker} and {@link #getByteBufferPool() ByteBufferPool} and
 	 * then passes it to the {@link #getConnectionBuilderConsumer() consumer}
 	 * provided at construction time.

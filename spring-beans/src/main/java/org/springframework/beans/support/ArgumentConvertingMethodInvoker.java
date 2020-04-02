@@ -18,7 +18,7 @@ import org.springframework.util.ReflectionUtils;
  * Subclass of {@link MethodInvoker} that tries to convert the given
  * arguments for the actual target method via a {@link TypeConverter}.
  *
- * <p>Supports flexible argument conversions, in particular for
+ * Supports flexible argument conversions, in particular for
  * invoking a specific overloaded method.
  *
 
@@ -35,7 +35,7 @@ public class ArgumentConvertingMethodInvoker extends MethodInvoker {
 
 	/**
 	 * Set a TypeConverter to use for argument type conversion.
-	 * <p>Default is a {@link org.springframework.beans.SimpleTypeConverter}.
+	 * Default is a {@link org.springframework.beans.SimpleTypeConverter}.
 	 * Can be overridden with any TypeConverter implementation, typically
 	 * a pre-configured SimpleTypeConverter or a BeanWrapperImpl instance.
 	 * @see org.springframework.beans.SimpleTypeConverter
@@ -48,7 +48,7 @@ public class ArgumentConvertingMethodInvoker extends MethodInvoker {
 
 	/**
 	 * Return the TypeConverter used for argument type conversion.
-	 * <p>Can be cast to {@link org.springframework.beans.PropertyEditorRegistry}
+	 * Can be cast to {@link org.springframework.beans.PropertyEditorRegistry}
 	 * if direct access to the underlying PropertyEditors is desired
 	 * (provided that the present TypeConverter actually implements the
 	 * PropertyEditorRegistry interface).
@@ -63,7 +63,7 @@ public class ArgumentConvertingMethodInvoker extends MethodInvoker {
 
 	/**
 	 * Obtain the default TypeConverter for this method invoker.
-	 * <p>Called if no explicit TypeConverter has been specified.
+	 * Called if no explicit TypeConverter has been specified.
 	 * The default implementation builds a
 	 * {@link org.springframework.beans.SimpleTypeConverter}.
 	 * Can be overridden in subclasses.
@@ -74,7 +74,7 @@ public class ArgumentConvertingMethodInvoker extends MethodInvoker {
 
 	/**
 	 * Register the given custom property editor for all properties of the given type.
-	 * <p>Typically used in conjunction with the default
+	 * Typically used in conjunction with the default
 	 * {@link org.springframework.beans.SimpleTypeConverter}; will work with any
 	 * TypeConverter that implements the PropertyEditorRegistry interface as well.
 	 * @param requiredType type of the property

@@ -18,7 +18,7 @@ import org.springframework.util.StringUtils;
 /**
  * A helper class for applying assertions via JSON path expressions.
  *
- * <p>Based on the <a href="https://github.com/jayway/JsonPath">JsonPath</a>
+ * Based on the <a href="https://github.com/jayway/JsonPath">JsonPath</a>
  * project: requiring version 0.9+, with 1.1+ strongly recommended.
  *
  * @author Rossen Stoyanchev
@@ -160,7 +160,7 @@ public class JsonPathExpectationsHelper {
 	 * Evaluate the JSON path expression against the supplied {@code content}
 	 * and assert that a non-null value, possibly an empty array or map, exists
 	 * at the given path.
-	 * <p>Note that if the JSON path expression is not
+	 * Note that if the JSON path expression is not
 	 * {@linkplain JsonPath#isDefinite() definite}, this method asserts
 	 * that the list of values at the given path is not <em>empty</em>.
 	 * @param content the JSON content
@@ -172,7 +172,7 @@ public class JsonPathExpectationsHelper {
 	/**
 	 * Evaluate the JSON path expression against the supplied {@code content}
 	 * and assert that a non-null value does not exist at the given path.
-	 * <p>Note that if the JSON path expression is not
+	 * Note that if the JSON path expression is not
 	 * {@linkplain JsonPath#isDefinite() definite}, this method asserts
 	 * that the list of values at the given path is <em>empty</em>.
 	 * @param content the JSON content
@@ -197,7 +197,7 @@ public class JsonPathExpectationsHelper {
 	/**
 	 * Evaluate the JSON path expression against the supplied {@code content}
 	 * and assert that an empty value exists at the given path.
-	 * <p>For the semantics of <em>empty</em>, consult the Javadoc for
+	 * For the semantics of <em>empty</em>, consult the Javadoc for
 	 * {@link ObjectUtils#isEmpty(Object)}.
 	 * @param content the JSON content
 	 */
@@ -209,7 +209,7 @@ public class JsonPathExpectationsHelper {
 	/**
 	 * Evaluate the JSON path expression against the supplied {@code content}
 	 * and assert that a non-empty value exists at the given path.
-	 * <p>For the semantics of <em>empty</em>, consult the Javadoc for
+	 * For the semantics of <em>empty</em>, consult the Javadoc for
 	 * {@link ObjectUtils#isEmpty(Object)}.
 	 * @param content the JSON content
 	 */
@@ -221,7 +221,7 @@ public class JsonPathExpectationsHelper {
 	/**
 	 * Evaluate the JSON path expression against the supplied {@code content}
 	 * and assert that a value, possibly {@code null}, exists.
-	 * <p>If the JSON path expression is not
+	 * If the JSON path expression is not
 	 * {@linkplain JsonPath#isDefinite() definite}, this method asserts
 	 * that the list of values at the given path is not <em>empty</em>.
 	 * @param content the JSON content
@@ -239,7 +239,7 @@ public class JsonPathExpectationsHelper {
 	 * Evaluate the JSON path expression against the supplied {@code content}
 	 * and assert that a value, including {@code null} values, does not exist
 	 * at the given path.
-	 * <p>If the JSON path expression is not
+	 * If the JSON path expression is not
 	 * {@linkplain JsonPath#isDefinite() definite}, this method asserts
 	 * that the list of values at the given path is <em>empty</em>.
 	 * @param content the JSON content

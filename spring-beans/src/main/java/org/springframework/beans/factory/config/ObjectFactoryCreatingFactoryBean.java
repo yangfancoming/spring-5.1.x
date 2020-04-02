@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
  * returns a value which is an {@link org.springframework.beans.factory.ObjectFactory}
  * that in turn returns a bean sourced from a {@link org.springframework.beans.factory.BeanFactory}.
  *
- * <p>As such, this may be used to avoid having a client object directly calling
+ * As such, this may be used to avoid having a client object directly calling
  * {@link org.springframework.beans.factory.BeanFactory#getBean(String)} to get
  * a (typically prototype) bean from a
  * {@link org.springframework.beans.factory.BeanFactory}, which would be a
@@ -25,7 +25,7 @@ import org.springframework.util.Assert;
  * property which directly returns only the one target bean (again, which is
  * typically a prototype bean).
  *
- * <p>A sample config in an XML-based
+ * A sample config in an XML-based
  * {@link org.springframework.beans.factory.BeanFactory} might look as follows:
  *
  * <pre class="code">&lt;beans&gt;
@@ -44,7 +44,7 @@ import org.springframework.util.Assert;
  *
  *&lt;/beans&gt;</pre>
  *
- * <p>The attendant {@code MyClientBean} class implementation might look
+ * The attendant {@code MyClientBean} class implementation might look
  * something like this:
  *
  * <pre class="code">package a.b.c;
@@ -66,7 +66,7 @@ import org.springframework.util.Assert;
  *   }
  * }</pre>
  *
- * <p>An alternate approach to this application of an object creational pattern
+ * An alternate approach to this application of an object creational pattern
  * would be to use the {@link ServiceLocatorFactoryBean}
  * to source (prototype) beans. The {@link ServiceLocatorFactoryBean} approach
  * has the advantage of the fact that one doesn't have to depend on any
@@ -89,7 +89,7 @@ public class ObjectFactoryCreatingFactoryBean extends AbstractFactoryBean<Object
 
 	/**
 	 * Set the name of the target bean.
-	 * <p>The target does not <i>have</i> to be a non-singleton bean, but realistically
+	 * The target does not <i>have</i> to be a non-singleton bean, but realistically
 	 * always will be (because if the target bean were a singleton, then said singleton
 	 * bean could simply be injected straight into the dependent object, thus obviating
 	 * the need for the extra level of indirection afforded by this factory approach).

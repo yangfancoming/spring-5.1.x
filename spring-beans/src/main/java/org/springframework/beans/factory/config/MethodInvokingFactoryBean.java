@@ -15,18 +15,18 @@ import org.springframework.lang.Nullable;
  * to force some sort of initialization to happen). This use case is not supported
  * by factory methods, since a return value is needed to obtain the bean instance.
  *
- * <p>Note that as it is expected to be used mostly for accessing factory methods,
+ * Note that as it is expected to be used mostly for accessing factory methods,
  * this factory by default operates in a <b>singleton</b> fashion. The first request
  * to {@link #getObject} by the owning bean factory will cause a method invocation,
  * whose return value will be cached for subsequent requests. An internal
  * {@link #setSingleton singleton} property may be set to "false", to cause this
  * factory to invoke the target method each time it is asked for an object.
  *
- * <p><b>NOTE: If your target method does not produce a result to expose, consider
+ * <b>NOTE: If your target method does not produce a result to expose, consider
  * {@link MethodInvokingBean} instead, which avoids the type determination and
  * lifecycle limitations that this {@link MethodInvokingFactoryBean} comes with.</b>
  *
- * <p>This invoker supports any kind of target method. A static method may be specified
+ * This invoker supports any kind of target method. A static method may be specified
  * by setting the {@link #setTargetMethod targetMethod} property to a String representing
  * the static method name, with {@link #setTargetClass targetClass} specifying the Class
  * that the static method is defined on. Alternatively, a target instance method may be
@@ -35,10 +35,10 @@ import org.springframework.lang.Nullable;
  * method to call on that target object. Arguments for the method invocation may be
  * specified by setting the {@link #setArguments arguments} property.
  *
- * <p>This class depends on {@link #afterPropertiesSet()} being called once
+ * This class depends on {@link #afterPropertiesSet()} being called once
  * all properties have been set, as per the InitializingBean contract.
  *
- * <p>An example (in an XML based bean factory definition) of a bean definition
+ * An example (in an XML based bean factory definition) of a bean definition
  * which uses this class to call a static factory method:
  *
  * <pre class="code">
@@ -46,7 +46,7 @@ import org.springframework.lang.Nullable;
  *   &lt;property name="staticMethod" value="com.whatever.MyClassFactory.getInstance"/>
  * &lt;/bean></pre>
  *
- * <p>An example of calling a static method then an instance method to get at a
+ * An example of calling a static method then an instance method to get at a
  * Java system property. Somewhat verbose, but it works.
  *
  * <pre class="code">

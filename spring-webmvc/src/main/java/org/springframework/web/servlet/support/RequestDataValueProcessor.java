@@ -12,12 +12,12 @@ import org.springframework.lang.Nullable;
  * as URL query parameters or form field values before they are rendered by a
  * view or before a redirect.
  *
- * <p>Implementations may use this contract for example as part of a solution
+ * Implementations may use this contract for example as part of a solution
  * to provide data integrity, confidentiality, protection against cross-site
  * request forgery (CSRF), and others or for other tasks such as automatically
  * adding a hidden field to all forms and URLs.
  *
- * <p>View technologies that support this contract can obtain an instance to
+ * View technologies that support this contract can obtain an instance to
  * delegate to via {@link RequestContext#getRequestDataValueProcessor()}.
  *
  * @author Rossen Stoyanchev

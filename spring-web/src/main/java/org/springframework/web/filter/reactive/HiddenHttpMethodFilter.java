@@ -25,7 +25,7 @@ import org.springframework.web.server.WebFilterChain;
  * This filter reads that parameter and changes the {@link ServerHttpRequest#getMethod()}
  * return value using {@link ServerWebExchange#mutate()}.
  *
- * <p>The name of the request parameter defaults to {@code _method}, but can be
+ * The name of the request parameter defaults to {@code _method}, but can be
  * adapted via the {@link #setMethodParamName(String) methodParamName} property.
  *
  * @author Greg Turnquist
@@ -47,7 +47,7 @@ public class HiddenHttpMethodFilter implements WebFilter {
 
 	/**
 	 * Set the name of the form parameter with the HTTP method to use.
-	 * <p>By default this is set to {@code "_method"}.
+	 * By default this is set to {@code "_method"}.
 	 */
 	public void setMethodParamName(String methodParamName) {
 		Assert.hasText(methodParamName, "'methodParamName' must not be empty");

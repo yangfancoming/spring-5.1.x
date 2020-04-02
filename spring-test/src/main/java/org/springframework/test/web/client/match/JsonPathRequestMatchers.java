@@ -17,7 +17,7 @@ import org.springframework.test.web.client.RequestMatcher;
  * Factory for assertions on the request content using
  * <a href="https://github.com/jayway/JsonPath">JsonPath</a> expressions.
  *
- * <p>An instance of this class is typically accessed via
+ * An instance of this class is typically accessed via
  * {@link MockRestRequestMatchers#jsonPath(String, Matcher)} or
  * {@link MockRestRequestMatchers#jsonPath(String, Object...)}.
  *
@@ -32,7 +32,7 @@ public class JsonPathRequestMatchers {
 
 	/**
 	 * Protected constructor.
-	 * <p>Use {@link MockRestRequestMatchers#jsonPath(String, Matcher)} or
+	 * Use {@link MockRestRequestMatchers#jsonPath(String, Matcher)} or
 	 * {@link MockRestRequestMatchers#jsonPath(String, Object...)}.
 	 * @param expression the {@link JsonPath} expression; never {@code null} or empty
 	 * @param args arguments to parameterize the {@code JsonPath} expression with,
@@ -60,7 +60,7 @@ public class JsonPathRequestMatchers {
 	 * An overloaded variant of {@link #value(Matcher)} that also accepts a
 	 * target type for the resulting value that the matcher can work reliably
 	 * against.
-	 * <p>This can be useful for matching numbers reliably ; for example,
+	 * This can be useful for matching numbers reliably ; for example,
 	 * to coerce an integer into a double.
 	 * @since 4.3.3
 	 */
@@ -90,7 +90,7 @@ public class JsonPathRequestMatchers {
 	/**
 	 * Evaluate the JSON path expression against the request content and
 	 * assert that a non-null value exists at the given path.
-	 * <p>If the JSON path expression is not {@linkplain JsonPath#isDefinite
+	 * If the JSON path expression is not {@linkplain JsonPath#isDefinite
 	 * definite}, this method asserts that the value at the given path is not
 	 * <em>empty</em>.
 	 */
@@ -106,7 +106,7 @@ public class JsonPathRequestMatchers {
 	/**
 	 * Evaluate the JSON path expression against the request content and
 	 * assert that a value does not exist at the given path.
-	 * <p>If the JSON path expression is not {@linkplain JsonPath#isDefinite
+	 * If the JSON path expression is not {@linkplain JsonPath#isDefinite
 	 * definite}, this method asserts that the value at the given path is
 	 * <em>empty</em>.
 	 */
@@ -122,7 +122,7 @@ public class JsonPathRequestMatchers {
 	/**
 	 * Evaluate the JSON path expression against the response content
 	 * and assert that a value, possibly {@code null}, exists.
-	 * <p>If the JSON path expression is not
+	 * If the JSON path expression is not
 	 * {@linkplain JsonPath#isDefinite() definite}, this method asserts
 	 * that the list of values at the given path is not <em>empty</em>.
 	 * @since 5.0.3
@@ -142,7 +142,7 @@ public class JsonPathRequestMatchers {
 	 * Evaluate the JSON path expression against the supplied {@code content}
 	 * and assert that a value, including {@code null} values, does not exist
 	 * at the given path.
-	 * <p>If the JSON path expression is not
+	 * If the JSON path expression is not
 	 * {@linkplain JsonPath#isDefinite() definite}, this method asserts
 	 * that the list of values at the given path is <em>empty</em>.
 	 * @since 5.0.3
@@ -161,7 +161,7 @@ public class JsonPathRequestMatchers {
 	/**
 	 * Evaluate the JSON path expression against the request content and
 	 * assert that an empty value exists at the given path.
-	 * <p>For the semantics of <em>empty</em>, consult the Javadoc for
+	 * For the semantics of <em>empty</em>, consult the Javadoc for
 	 * {@link org.springframework.util.ObjectUtils#isEmpty(Object)}.
 	 * @since 4.2.1
 	 * @see #isNotEmpty()
@@ -180,7 +180,7 @@ public class JsonPathRequestMatchers {
 	/**
 	 * Evaluate the JSON path expression against the request content and
 	 * assert that a non-empty value exists at the given path.
-	 * <p>For the semantics of <em>empty</em>, consult the Javadoc for
+	 * For the semantics of <em>empty</em>, consult the Javadoc for
 	 * {@link org.springframework.util.ObjectUtils#isEmpty(Object)}.
 	 * @since 4.2.1
 	 * @see #isEmpty()

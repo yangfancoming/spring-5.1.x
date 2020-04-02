@@ -32,7 +32,7 @@ import org.springframework.util.MimeTypeUtils;
  * This is to make sure that multibyte characters are decoded properly, and do not cross buffer
  * boundaries. The default delimiters ({@code \n}, {@code \r\n})can be customized.
  *
- * <p>Partially inspired by Netty's {@code DelimiterBasedFrameDecoder}.
+ * Partially inspired by Netty's {@code DelimiterBasedFrameDecoder}.
  * @since 5.0
  * @see CharSequenceEncoder
  */

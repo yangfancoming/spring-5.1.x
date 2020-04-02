@@ -5,15 +5,15 @@ package org.springframework.test.annotation;
 import org.springframework.lang.Nullable;
 
 /**
- * <p>
+ *
  * Strategy interface for retrieving <em>profile values</em> for a given
  * testing environment.
  * </p>
- * <p>
+ *
  * Concrete implementations must provide a {@code public} no-args
  * constructor.
  * </p>
- * <p>
+ *
  * Spring provides the following out-of-the-box implementations:
  * </p>
  * <ul>

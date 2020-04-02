@@ -52,12 +52,12 @@ public class ResourceHandlerRegistration {
 	 * Each location must point to a valid directory. Multiple locations may
 	 * be specified as a comma-separated list, and the locations will be checked
 	 * for a given resource in the order specified.
-	 * <p>For example, {{@code "/"}, {@code "classpath:/META-INF/public-web-resources/"}}
+	 * For example, {{@code "/"}, {@code "classpath:/META-INF/public-web-resources/"}}
 	 * allows resources to be served both from the web application root and
 	 * from any JAR on the classpath that contains a
 	 * {@code /META-INF/public-web-resources/} directory, with resources in the
 	 * web application root taking precedence.
-	 * <p>For {@link org.springframework.core.io.UrlResource URL-based resources}
+	 * For {@link org.springframework.core.io.UrlResource URL-based resources}
 	 * (e.g. files, HTTP URLs, etc) this method supports a special prefix to
 	 * indicate the charset associated with the URL so that relative paths
 	 * appended to it can be encoded correctly, e.g.
@@ -85,7 +85,7 @@ public class ResourceHandlerRegistration {
 	/**
 	 * Specify the {@link org.springframework.http.CacheControl} which should be used
 	 * by the resource handler.
-	 * <p>Setting a custom value here will override the configuration set with {@link #setCachePeriod}.
+	 * Setting a custom value here will override the configuration set with {@link #setCachePeriod}.
 	 * @param cacheControl the CacheControl configuration to use
 	 * @return the same {@link ResourceHandlerRegistration} instance, for chained method invocation
 	 * @since 4.2
@@ -98,7 +98,7 @@ public class ResourceHandlerRegistration {
 	/**
 	 * Configure a chain of resource resolvers and transformers to use. This
 	 * can be useful, for example, to apply a version strategy to resource URLs.
-	 * <p>If this method is not invoked, by default only a simple
+	 * If this method is not invoked, by default only a simple
 	 * {@link PathResourceResolver} is used in order to match URL paths to
 	 * resources under the configured locations.
 	 * @param cacheResources whether to cache the result of resource resolution;
@@ -115,7 +115,7 @@ public class ResourceHandlerRegistration {
 	/**
 	 * Configure a chain of resource resolvers and transformers to use. This
 	 * can be useful, for example, to apply a version strategy to resource URLs.
-	 * <p>If this method is not invoked, by default only a simple
+	 * If this method is not invoked, by default only a simple
 	 * {@link PathResourceResolver} is used in order to match URL paths to
 	 * resources under the configured locations.
 	 * @param cacheResources whether to cache the result of resource resolution;

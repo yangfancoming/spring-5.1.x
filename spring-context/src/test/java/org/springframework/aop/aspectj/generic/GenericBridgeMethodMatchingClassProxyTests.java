@@ -9,9 +9,9 @@ import static org.junit.Assert.*;
 /**
  * Tests for AspectJ pointcut expression matching when working with bridge methods.
  *
- * <p>This class focuses on class proxying.
+ * This class focuses on class proxying.
  *
- * <p>See GenericBridgeMethodMatchingTests for more details.
+ * See GenericBridgeMethodMatchingTests for more details.
  *
  * @author Ramnivas Laddad
 

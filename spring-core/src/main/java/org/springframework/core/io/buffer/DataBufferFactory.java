@@ -48,7 +48,7 @@ public interface DataBufferFactory {
 	 * Depending on the implementation, the returned buffer may be a single buffer containing all
 	 * data of the provided buffers, or it may be a true composite that contains references to the
 	 * buffers.
-	 * <p>Note that the given data buffers do <strong>not</strong> have to be released, as they are
+	 * Note that the given data buffers do <strong>not</strong> have to be released, as they are
 	 * released as part of the returned composite.
 	 * @param dataBuffers the data buffers to be composed
 	 * @return a buffer that is composed from the {@code dataBuffers} argument

@@ -37,7 +37,7 @@ import org.springframework.web.context.request.WebRequest;
  * a given {@link ServletContext}. This is useful for programmatically accessing
  * a Spring application context from within custom web views or MVC actions.
  *
- * <p>Note that there are more convenient ways of accessing the root context for
+ * Note that there are more convenient ways of accessing the root context for
  * many web frameworks, either part of Spring or available as an external library.
  * This helper class is just the most generic way to access the root context.
  *
@@ -57,7 +57,7 @@ public abstract class WebApplicationContextUtils {
 	/**
 	 * Find the root {@code WebApplicationContext} for this web app, typically
 	 * loaded via {@link org.springframework.web.context.ContextLoaderListener}.
-	 * <p>Will rethrow an exception that happened on root context startup,
+	 * Will rethrow an exception that happened on root context startup,
 	 * to differentiate between a failed context startup and no context at all.
 	 * @param sc the ServletContext to find the web application context for
 	 * @return the root WebApplicationContext for this web app
@@ -75,7 +75,7 @@ public abstract class WebApplicationContextUtils {
 	/**
 	 * Find the root {@code WebApplicationContext} for this web app, typically
 	 * loaded via {@link org.springframework.web.context.ContextLoaderListener}.
-	 * <p>Will rethrow an exception that happened on root context startup,
+	 * Will rethrow an exception that happened on root context startup,
 	 * to differentiate between a failed context startup and no context at all.
 	 * @param sc the ServletContext to find the web application context for
 	 * @return the root WebApplicationContext for this web app, or {@code null} if none
@@ -119,7 +119,7 @@ public abstract class WebApplicationContextUtils {
 	 * root web app context (preferred) or a unique {@code WebApplicationContext}
 	 * among the registered {@code ServletContext} attributes (typically coming
 	 * from a single {@code DispatcherServlet} in the current web application).
-	 * <p>Note that {@code DispatcherServlet}'s exposure of its context can be
+	 * Note that {@code DispatcherServlet}'s exposure of its context can be
 	 * controlled through its {@code publishContext} property, which is {@code true}
 	 * by default but can be selectively switched to only publish a single context
 	 * despite multiple {@code DispatcherServlet} registrations in the web app.
@@ -262,7 +262,7 @@ public abstract class WebApplicationContextUtils {
 	 * Replace {@code Servlet}-based {@link StubPropertySource stub property sources} with
 	 * actual instances populated with the given {@code servletContext} and
 	 * {@code servletConfig} objects.
-	 * <p>This method is idempotent with respect to the fact it may be called any number
+	 * This method is idempotent with respect to the fact it may be called any number
 	 * of times but will perform replacement of stub property sources with their
 	 * corresponding actual property sources once and only once.
 	 * @param sources the {@link MutablePropertySources} to initialize (must not

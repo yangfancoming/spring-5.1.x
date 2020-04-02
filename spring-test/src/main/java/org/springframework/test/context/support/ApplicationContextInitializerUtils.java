@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
  * Utility methods for working with
  * {@link ApplicationContextInitializer ApplicationContextInitializers}.
  *
- * <p>Although {@code ApplicationContextInitializerUtils} was first introduced
+ * Although {@code ApplicationContextInitializerUtils} was first introduced
  * in Spring Framework 4.1, the initial implementations of methods in this class
  * were based on the existing code base in {@code ContextLoaderUtils}.
  *
@@ -35,7 +35,7 @@ abstract class ApplicationContextInitializerUtils {
 	/**
 	 * Resolve the set of merged {@code ApplicationContextInitializer} classes for the
 	 * supplied list of {@code ContextConfigurationAttributes}.
-	 * <p>Note that the {@link ContextConfiguration#inheritInitializers inheritInitializers}
+	 * Note that the {@link ContextConfiguration#inheritInitializers inheritInitializers}
 	 * flag of {@link ContextConfiguration @ContextConfiguration} will be taken into
 	 * consideration. Specifically, if the {@code inheritInitializers} flag is set to
 	 * {@code true} for a given level in the class hierarchy represented by the provided

@@ -8,7 +8,7 @@ import org.springframework.lang.Nullable;
  * Class that exposes the Spring version. Fetches the
  * "Implementation-Version" manifest attribute from the jar file.
  *
- * <p>Note that some ClassLoaders do not expose the package metadata,
+ * Note that some ClassLoaders do not expose the package metadata,
  * hence this class might not be able to determine the Spring version
  * in all environments. Consider using a reflection-based check instead:
  * For example, checking for the presence of a specific Spring 5.0  method that you intend to call.

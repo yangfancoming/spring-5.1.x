@@ -19,7 +19,7 @@ import org.springframework.core.io.support.PropertySourceFactory;
  *
  * <h3>Example usage</h3>
  *
- * <p>Given a file {@code app.properties} containing the key/value pair
+ * Given a file {@code app.properties} containing the key/value pair
  * {@code testbean.name=myTestBean}, the following {@code @Configuration} class
  * uses {@code @PropertySource} to contribute {@code app.properties} to the
  * {@code Environment}'s set of {@code PropertySources}.
@@ -40,14 +40,14 @@ import org.springframework.core.io.support.PropertySourceFactory;
  *     }
  * }</pre>
  *
- * <p>Notice that the {@code Environment} object is
+ * Notice that the {@code Environment} object is
  * {@link org.springframework.beans.factory.annotation.Autowired @Autowired} into the
  * configuration class and then used when populating the {@code TestBean} object. Given
  * the configuration above, a call to {@code testBean.getName()} will return "myTestBean".
  *
  * <h3>Resolving <code>${...}</code> placeholders in {@code <bean>} and {@code @Value} annotations</h3>
  *
- * <p>In order to resolve ${...} placeholders in {@code <bean>} definitions or {@code @Value}
+ * In order to resolve ${...} placeholders in {@code <bean>} definitions or {@code @Value}
  * annotations using properties from a {@code PropertySource}, you must ensure that an
  * appropriate <em>embedded value resolver</em> is registered in the {@code BeanFactory}
  * used by the {@code ApplicationContext}. This happens automatically when using
@@ -63,7 +63,7 @@ import org.springframework.core.io.support.PropertySourceFactory;
  *
  * <h3>Resolving ${...} placeholders within {@code @PropertySource} resource locations</h3>
  *
- * <p>Any ${...} placeholders present in a {@code @PropertySource} {@linkplain #value()
+ * Any ${...} placeholders present in a {@code @PropertySource} {@linkplain #value()
  * resource location} will be resolved against the set of property sources already
  * registered against the environment. For example:
  *
@@ -83,7 +83,7 @@ import org.springframework.core.io.support.PropertySourceFactory;
  *     }
  * }</pre>
  *
- * <p>Assuming that "my.placeholder" is present in one of the property sources already
+ * Assuming that "my.placeholder" is present in one of the property sources already
  * registered, e.g. system properties or environment variables, the placeholder will
  * be resolved to the corresponding value. If not, then "default/path" will be used as a
  * default. Expressing a default value (delimited by colon ":") is optional.  If no
@@ -92,10 +92,10 @@ import org.springframework.core.io.support.PropertySourceFactory;
  *
  * <h3>A note on property overriding with @PropertySource</h3>
  *
- * <p>In cases where a given property key exists in more than one {@code .properties}
+ * In cases where a given property key exists in more than one {@code .properties}
  * file, the last {@code @PropertySource} annotation processed will 'win' and override.
  *
- * <p>For example, given two properties files {@code a.properties} and
+ * For example, given two properties files {@code a.properties} and
  * {@code b.properties}, consider the following two configuration classes
  * that reference them with {@code @PropertySource} annotations:
  *
@@ -109,7 +109,7 @@ import org.springframework.core.io.support.PropertySourceFactory;
  * public class ConfigB { }
  * </pre>
  *
- * <p>The override ordering depends on the order in which these classes are registered
+ * The override ordering depends on the order in which these classes are registered
  * with the application context.
  *
  * <pre class="code">
@@ -119,11 +119,11 @@ import org.springframework.core.io.support.PropertySourceFactory;
  * ctx.refresh();
  * </pre>
  *
- * <p>In the scenario above, the properties in {@code b.properties} will override any
+ * In the scenario above, the properties in {@code b.properties} will override any
  * duplicates that exist in {@code a.properties}, because {@code ConfigB} was registered
  * last.
  *
- * <p>In certain situations, it may not be possible or practical to tightly control
+ * In certain situations, it may not be possible or practical to tightly control
  * property source ordering when using {@code @PropertySource} annotations. For example,
  * if the {@code @Configuration} classes above were registered via component-scanning,
  * the ordering is difficult to predict. In such cases - and if overriding is important -
@@ -132,7 +132,7 @@ import org.springframework.core.io.support.PropertySourceFactory;
  * and {@link org.springframework.core.env.MutablePropertySources MutablePropertySources}
  * javadocs for details.
  *
- * <p><b>NOTE: This annotation is repeatable according to Java 8 conventions.</b>
+ * <b>NOTE: This annotation is repeatable according to Java 8 conventions.</b>
  * However, all such {@code @PropertySource} annotations need to be declared at the same
  * level: either directly on the configuration class or as meta-annotations within the
  * same custom annotation. Mixing of direct annotations and meta-annotations is not
@@ -164,15 +164,15 @@ public @interface PropertySource {
 
 	/**
 	 * Indicate the resource location(s) of the properties file to be loaded.
-	 * <p>Both traditional and XML-based properties file formats are supported
+	 * Both traditional and XML-based properties file formats are supported
 	 * ; for example, {@code "classpath:/com/myco/app.properties"}
 	 * or {@code "file:/path/to/file.xml"}.
-	 * <p>Resource location wildcards (e.g. *&#42;/*.properties) are not permitted;
+	 * Resource location wildcards (e.g. *&#42;/*.properties) are not permitted;
 	 * each location must evaluate to exactly one {@code .properties} resource.
-	 * <p>${...} placeholders will be resolved against any/all property sources already
+	 * ${...} placeholders will be resolved against any/all property sources already
 	 * registered with the {@code Environment}. See {@linkplain PropertySource above}
 	 * for examples.
-	 * <p>Each location will be added to the enclosing {@code Environment} as its own
+	 * Each location will be added to the enclosing {@code Environment} as its own
 	 * property source, and in the order declared.
 	 */
 	String[] value();
@@ -180,7 +180,7 @@ public @interface PropertySource {
 	/**
 	 * Indicate if failure to find the a {@link #value() property resource} should be
 	 * ignored.
-	 * <p>{@code true} is appropriate if the properties file is completely optional.
+	 * {@code true} is appropriate if the properties file is completely optional.
 	 * Default is {@code false}.
 	 * @since 4.0
 	 */
@@ -194,7 +194,7 @@ public @interface PropertySource {
 
 	/**
 	 * Specify a custom {@link PropertySourceFactory}, if any.
-	 * <p>By default, a default factory for standard resource files will be used.
+	 * By default, a default factory for standard resource files will be used.
 	 * @since 4.3
 	 * @see org.springframework.core.io.support.DefaultPropertySourceFactory
 	 * @see org.springframework.core.io.support.ResourcePropertySource

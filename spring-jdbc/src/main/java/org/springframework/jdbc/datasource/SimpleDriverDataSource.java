@@ -16,17 +16,17 @@ import org.springframework.util.Assert;
  * configuring a plain old JDBC {@link java.sql.Driver} via bean properties, and
  * returning a new {@link java.sql.Connection} from every {@code getConnection} call.
  *
- * <p><b>NOTE: This class is not an actual connection pool; it does not actually
+ * <b>NOTE: This class is not an actual connection pool; it does not actually
  * pool Connections.</b> It just serves as simple replacement for a full-blown
  * connection pool, implementing the same standard interface, but creating new
  * Connections on every call.
  *
- * <p>In a Java EE container, it is recommended to use a JNDI DataSource provided by
+ * In a Java EE container, it is recommended to use a JNDI DataSource provided by
  * the container. Such a DataSource can be exposed as a DataSource bean in a Spring
  * ApplicationContext via {@link org.springframework.jndi.JndiObjectFactoryBean},
  * for seamless switching to and from a local DataSource bean like this class.
  *
- * <p>If you need a "real" connection pool outside of a Java EE container, consider
+ * If you need a "real" connection pool outside of a Java EE container, consider
  * <a href="https://commons.apache.org/proper/commons-dbcp">Apache Commons DBCP</a>
  * or <a href="https://sourceforge.net/projects/c3p0">C3P0</a>.
  * Commons DBCP's BasicDataSource and C3P0's ComboPooledDataSource are full
@@ -90,7 +90,7 @@ public class SimpleDriverDataSource extends AbstractDriverBasedDataSource {
 
 	/**
 	 * Specify the JDBC Driver implementation class to use.
-	 * <p>An instance of this Driver class will be created and held
+	 * An instance of this Driver class will be created and held
 	 * within the SimpleDriverDataSource.
 	 * @see #setDriver
 	 */
@@ -100,7 +100,7 @@ public class SimpleDriverDataSource extends AbstractDriverBasedDataSource {
 
 	/**
 	 * Specify the JDBC Driver instance to use.
-	 * <p>This allows for passing in a shared, possibly pre-configured
+	 * This allows for passing in a shared, possibly pre-configured
 	 * Driver instance.
 	 * @see #setDriverClass
 	 */

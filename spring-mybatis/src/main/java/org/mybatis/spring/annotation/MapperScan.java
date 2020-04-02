@@ -12,7 +12,7 @@ import java.lang.annotation.*;
  * Use this annotation to register MyBatis mapper interfaces when using Java Config. It performs when same work as
  * {@link MapperScannerConfigurer} via {@link MapperScannerRegistrar}.
  *
- * <p>
+ *
  * Configuration example:
  * </p>
  * 

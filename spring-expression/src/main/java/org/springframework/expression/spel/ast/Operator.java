@@ -239,7 +239,7 @@ public abstract class Operator extends SpelNodeImpl {
 
 	/**
 	 * Perform an equality check for the given operand values.
-	 * <p>This method is not just used for reflective comparisons in subclasses
+	 * This method is not just used for reflective comparisons in subclasses
 	 * but also from compiled expression code, which is why it needs to be
 	 * declared as {@code public static} here.
 	 * @param context the current evaluation context
@@ -332,10 +332,10 @@ public abstract class Operator extends SpelNodeImpl {
 
 		/**
 		 * Return an object that indicates whether the input descriptors are compatible.
-		 * <p>A declared descriptor is what could statically be determined (e.g. from looking
+		 * A declared descriptor is what could statically be determined (e.g. from looking
 		 * at the return value of a property accessor method) whilst an actual descriptor
 		 * is the type of an actual object that was returned, which may differ.
-		 * <p>For generic types with unbound type variables, the declared descriptor
+		 * For generic types with unbound type variables, the declared descriptor
 		 * discovered may be 'Object' but from the actual descriptor it is possible to
 		 * observe that the objects are really numeric values (e.g. ints).
 		 * @param leftDeclaredDescriptor the statically determinable left descriptor

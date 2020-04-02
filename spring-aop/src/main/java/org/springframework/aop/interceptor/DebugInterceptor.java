@@ -8,7 +8,7 @@ import org.aopalliance.intercept.MethodInvocation;
  * AOP Alliance {@code MethodInterceptor} that can be introduced in a chain
  * to display verbose information about intercepted invocations to the logger.
  *
- * <p>Logs full invocation details on method entry and method exit,
+ * Logs full invocation details on method entry and method exit,
  * including invocation arguments and invocation count. This is only
  * intended for debugging purposes; use {@code SimpleTraceInterceptor}
  * or {@code CustomizableTraceInterceptor} for pure tracing purposes.

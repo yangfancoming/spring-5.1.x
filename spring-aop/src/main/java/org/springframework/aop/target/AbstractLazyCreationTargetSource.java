@@ -12,11 +12,11 @@ import org.springframework.lang.Nullable;
  * {@link org.springframework.aop.TargetSource} implementation that will
  * lazily create a user-managed object.
  *
- * <p>Creation of the lazy target object is controlled by the user by implementing
+ * Creation of the lazy target object is controlled by the user by implementing
  * the {@link #createObject()} method. This {@code TargetSource} will invoke
  * this method the first time the proxy is accessed.
  *
- * <p>Useful when you need to pass a reference to some dependency to an object
+ * Useful when you need to pass a reference to some dependency to an object
  * but you don't actually want the dependency to be created until it is first used.
  * A typical scenario for this is a connection to a remote resource.
  *
@@ -47,7 +47,7 @@ public abstract class AbstractLazyCreationTargetSource implements TargetSource {
 	 * This default implementation returns {@code null} if the
 	 * target is {@code null} (it is hasn't yet been initialized),
 	 * or the target class if the target has already been initialized.
-	 * <p>Subclasses may wish to override this method in order to provide
+	 * Subclasses may wish to override this method in order to provide
 	 * a meaningful value when the target is still {@code null}.
 	 * @see #isInitialized()
 	 */

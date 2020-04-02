@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
  * Default implementation of the {@link TransactionFactory} strategy interface,
  * simply wrapping a standard JTA {@link javax.transaction.TransactionManager}.
  *
- * <p>Does not support transaction names; simply ignores any specified name.
+ * Does not support transaction names; simply ignores any specified name.
  *
 
  * @since 2.5

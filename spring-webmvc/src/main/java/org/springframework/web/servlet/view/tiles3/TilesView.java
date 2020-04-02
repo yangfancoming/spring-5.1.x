@@ -70,7 +70,7 @@ public class TilesView extends AbstractUrlBasedView {
 
 	/**
 	 * Specify whether to always include the view rather than forward to it.
-	 * <p>Default is "false". Switch this flag on to enforce the use of a
+	 * Default is "false". Switch this flag on to enforce the use of a
 	 * Servlet include, even if a forward would be possible.
 	 * @since 4.1.2
 	 * @see TilesViewResolver#setAlwaysInclude
@@ -134,7 +134,7 @@ public class TilesView extends AbstractUrlBasedView {
 
 	/**
 	 * Create a Tiles {@link Request}.
-	 * <p>This implementation creates a {@link ServletRequest}.
+	 * This implementation creates a {@link ServletRequest}.
 	 * @param request the current request
 	 * @param response the current response
 	 * @return the Tiles request

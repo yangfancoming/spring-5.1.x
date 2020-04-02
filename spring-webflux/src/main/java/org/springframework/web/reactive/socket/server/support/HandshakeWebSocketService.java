@@ -137,7 +137,7 @@ public class HandshakeWebSocketService implements WebSocketService, Lifecycle {
 	 * Configure a predicate to use to extract
 	 * {@link org.springframework.web.server.WebSession WebSession} attributes
 	 * and use them to initialize the WebSocket session with.
-	 * <p>By default this is not set in which case no attributes are passed.
+	 * By default this is not set in which case no attributes are passed.
 	 * @param predicate the predicate
 	 * @since 5.1
 	 */

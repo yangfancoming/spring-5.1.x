@@ -21,7 +21,7 @@ public class Matchers {
 	 * is {@code null} not a {@link Throwable} the wrapped matcher will be called
 	 * with a {@code null} item.
 	 *
-	 * <p>Often useful when working with JUnit {@link ExpectedException}
+	 * Often useful when working with JUnit {@link ExpectedException}
 	 * {@link Rule @Rule}s, for example:
 	 * <pre>
 	 * thrown.expect(DataAccessException.class);

@@ -23,7 +23,7 @@ import org.springframework.util.Assert;
  * application servers and periodically broadcasts the content of the local
  * user registry.
  *
- * <p>The aggregated information is maintained in a {@link MultiServerUserRegistry}.
+ * The aggregated information is maintained in a {@link MultiServerUserRegistry}.
  *
  * @author Rossen Stoyanchev
  * @since 4.2
@@ -78,7 +78,7 @@ public class UserRegistryMessageHandler implements MessageHandler, ApplicationLi
 	/**
 	 * Configure the amount of time (in milliseconds) before a remote user
 	 * registry snapshot is considered expired.
-	 * <p>By default this is set to 20 seconds (value of 20000).
+	 * By default this is set to 20 seconds (value of 20000).
 	 * @param milliseconds the expiration period in milliseconds
 	 */
 	@SuppressWarnings("unused")

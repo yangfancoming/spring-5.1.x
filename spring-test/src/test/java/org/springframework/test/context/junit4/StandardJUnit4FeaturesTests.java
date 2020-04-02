@@ -15,12 +15,12 @@ import static org.junit.Assume.*;
 /**
  * Simple unit test to verify the expected functionality of standard JUnit 4.4+
  * testing features.
- * <p>
+ *
  * Currently testing: {@link Test @Test} (including expected exceptions and
  * timeouts), {@link BeforeClass @BeforeClass}, {@link Before @Before}, and
  * <em>assumptions</em>.
  * </p>
- * <p>
+ *
  * Due to the fact that JUnit does not guarantee a particular ordering of test
  * method execution, the following are currently not tested:
  * {@link org.junit.AfterClass @AfterClass} and {@link org.junit.After @After}.

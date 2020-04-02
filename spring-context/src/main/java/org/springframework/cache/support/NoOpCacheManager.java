@@ -18,7 +18,7 @@ import org.springframework.lang.Nullable;
  * for disabling caching, typically used for backing cache declarations
  * without an actual backing store.
  *
- * <p>Will simply accept any items into the cache not actually storing them.
+ * Will simply accept any items into the cache not actually storing them.
  *
  * @author Costin Leau
  * @author Stephane Nicoll

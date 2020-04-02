@@ -13,7 +13,7 @@ import org.springframework.util.Assert;
 /**
  * Simple {@link DataSourceLookup} implementation that relies on a map for doing lookups.
  *
- * <p>Useful for testing environments or applications that need to match arbitrary
+ * Useful for testing environments or applications that need to match arbitrary
  * {@link String} names to target {@link DataSource} objects.
  *
  * @author Costin Leau
@@ -54,7 +54,7 @@ public class MapDataSourceLookup implements DataSourceLookup {
 	/**
 	 * Set the {@link Map} of {@link DataSource DataSources}; the keys
 	 * are {@link String Strings}, the values are actual {@link DataSource} instances.
-	 * <p>If the supplied {@link Map} is {@code null}, then this method
+	 * If the supplied {@link Map} is {@code null}, then this method
 	 * call effectively has no effect.
 	 * @param dataSources said {@link Map} of {@link DataSource DataSources}
 	 */
@@ -66,7 +66,7 @@ public class MapDataSourceLookup implements DataSourceLookup {
 
 	/**
 	 * Get the {@link Map} of {@link DataSource DataSources} maintained by this object.
-	 * <p>The returned {@link Map} is {@link Collections#unmodifiableMap(java.util.Map) unmodifiable}.
+	 * The returned {@link Map} is {@link Collections#unmodifiableMap(java.util.Map) unmodifiable}.
 	 * @return said {@link Map} of {@link DataSource DataSources} (never {@code null})
 	 */
 	public Map<String, DataSource> getDataSources() {

@@ -7,7 +7,7 @@ package org.springframework.dao;
  * Thrown by Spring's SQLException translation mechanism
  * if a corresponding database error is encountered.
  *
- * <p>Serves as superclass for more specific exceptions, like
+ * Serves as superclass for more specific exceptions, like
  * CannotAcquireLockException and DeadlockLoserDataAccessException.
  *
  * @author Thomas Risberg

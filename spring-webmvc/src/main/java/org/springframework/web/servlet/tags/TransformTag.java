@@ -15,7 +15,7 @@ import org.springframework.web.util.TagUtils;
  * from controllers and other objects inside a {@code spring:bind} tag (or a
  * data-bound form element tag from Spring's form tag library).
  *
- * <p>The BindTag has a PropertyEditor that it uses to transform properties of
+ * The BindTag has a PropertyEditor that it uses to transform properties of
  * a bean to a String, usable in HTML forms. This tag uses that PropertyEditor
  * to transform objects passed into this tag.
  *
@@ -87,7 +87,7 @@ public class TransformTag extends HtmlEscapingAwareTag {
 	/**
 	 * Set the value to transform, using the appropriate PropertyEditor
 	 * from the enclosing BindTag.
-	 * <p>The value can either be a plain value to transform (a hard-coded String
+	 * The value can either be a plain value to transform (a hard-coded String
 	 * value in a JSP or a JSP expression), or a JSP EL expression to be evaluated
 	 * (transforming the result of the expression).
 	 */

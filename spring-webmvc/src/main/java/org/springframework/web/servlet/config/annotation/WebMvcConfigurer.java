@@ -21,7 +21,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
  * Defines callback methods to customize the Java-based configuration for
  * Spring MVC enabled via {@code @EnableWebMvc}.
  *
- * <p>{@code @EnableWebMvc}-annotated configuration classes may implement
+ * {@code @EnableWebMvc}-annotated configuration classes may implement
  * this interface to be called back and given a chance to customize the
  * default configuration.
  *
@@ -78,7 +78,7 @@ public interface WebMvcConfigurer {
 	 * Add Spring MVC lifecycle interceptors for pre- and post-processing of
 	 * controller method invocations. Interceptors can be registered to apply
 	 * to all requests or be limited to a subset of URL patterns.
-	 * <p><strong>Note</strong> that interceptors registered here only apply to
+	 * <strong>Note</strong> that interceptors registered here only apply to
 	 * controllers and not to resource handler requests. To intercept requests for
 	 * static resources either declare a
 	 * {@link org.springframework.web.servlet.handler.MappedInterceptor MappedInterceptor}
@@ -125,7 +125,7 @@ public interface WebMvcConfigurer {
 
 	/**
 	 * Add resolvers to support custom controller method argument types.
-	 * <p>This does not override the built-in support for resolving handler
+	 * This does not override the built-in support for resolving handler
 	 * method arguments. To customize the built-in support for argument
 	 * resolution, configure {@link RequestMappingHandlerAdapter} directly.
 	 * @param resolvers initially an empty list
@@ -135,7 +135,7 @@ public interface WebMvcConfigurer {
 
 	/**
 	 * Add handlers to support custom controller method return value types.
-	 * <p>Using this option does not override the built-in support for handling
+	 * Using this option does not override the built-in support for handling
 	 * return values. To customize the built-in support for handling return
 	 * values, configure RequestMappingHandlerAdapter directly.
 	 * @param handlers initially an empty list
@@ -147,7 +147,7 @@ public interface WebMvcConfigurer {
 	 * Configure the {@link HttpMessageConverter HttpMessageConverters} to use for reading or writing
 	 * to the body of the request or response. If no converters are added, a
 	 * default list of converters is registered.
-	 * <p><strong>Note</strong> that adding converters to the list, turns off
+	 * <strong>Note</strong> that adding converters to the list, turns off
 	 * default converter registration. To simply add a converter without impacting
 	 * default registration, consider using the method
 	 * {@link #extendMessageConverters(java.util.List)} instead.
@@ -168,13 +168,13 @@ public interface WebMvcConfigurer {
 
 	/**
 	 * Configure exception resolvers.
-	 * <p>The given list starts out empty. If it is left empty, the framework
+	 * The given list starts out empty. If it is left empty, the framework
 	 * configures a default set of resolvers, see
 	 * {@link WebMvcConfigurationSupport#addDefaultHandlerExceptionResolvers(List)}.
 	 * Or if any exception resolvers are added to the list, then the application
 	 * effectively takes over and must provide, fully initialized, exception
 	 * resolvers.
-	 * <p>Alternatively you can use
+	 * Alternatively you can use
 	 * {@link #extendHandlerExceptionResolvers(List)} which allows you to extend
 	 * or modify the list of exception resolvers configured by default.
 	 * @param resolvers initially an empty list

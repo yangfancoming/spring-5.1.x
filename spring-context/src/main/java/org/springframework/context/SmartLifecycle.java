@@ -12,7 +12,7 @@ package org.springframework.context;
  * callback's {@code run()} method upon shutdown completion to avoid unnecessary
  * delays in the overall ApplicationContext shutdown.
  *
- * <p>This interface extends {@link Phased}, and the {@link #getPhase()} method's
+ * This interface extends {@link Phased}, and the {@link #getPhase()} method's
  * return value indicates the phase within which this Lifecycle component should
  * be started and stopped. The startup process begins with the <i>lowest</i> phase
  * value and ends with the <i>highest</i> phase value ({@code Integer.MIN_VALUE}
@@ -20,21 +20,21 @@ package org.springframework.context;
  * The shutdown process will apply the reverse order. Any components with the
  * same value will be arbitrarily ordered within the same phase.
  *
- * <p>Example: if component B depends on component A having already started,
+ * Example: if component B depends on component A having already started,
  * then component A should have a lower phase value than component B. During
  * the shutdown process, component B would be stopped before component A.
  *
- * <p>Any explicit "depends-on" relationship will take precedence over the phase
+ * Any explicit "depends-on" relationship will take precedence over the phase
  * order such that the dependent bean always starts after its dependency and
  * always stops before its dependency.
  *
- * <p>Any {@code Lifecycle} components within the context that do not also
+ * Any {@code Lifecycle} components within the context that do not also
  * implement {@code SmartLifecycle} will be treated as if they have a phase
  * value of 0. That way a {@code SmartLifecycle} implementation may start
  * before those {@code Lifecycle} components if it has a negative phase value,
  * or it may start after those components if it has a positive phase value.
  *
- * <p>Note that, due to the auto-startup support in {@code SmartLifecycle}, a
+ * Note that, due to the auto-startup support in {@code SmartLifecycle}, a
  * {@code SmartLifecycle} bean instance will usually get initialized on startup
  * of the application context in any case. As a consequence, the bean definition
  * lazy-init flag has very limited actual effect on {@code SmartLifecycle} beans.
@@ -49,7 +49,7 @@ public interface SmartLifecycle extends Lifecycle, Phased {
 
 	/**
 	 * The default phase for {@code SmartLifecycle}: {@code Integer.MAX_VALUE}.
-	 * <p>This is different from the common phase 0 associated with regular
+	 * This is different from the common phase 0 associated with regular
 	 * {@link Lifecycle} implementations, putting the typically auto-started
 	 * {@code SmartLifecycle} beans into a separate later shutdown phase.
 	 * @since 5.1
@@ -63,10 +63,10 @@ public interface SmartLifecycle extends Lifecycle, Phased {
 	 * Returns {@code true} if this {@code Lifecycle} component should get
 	 * started automatically by the container at the time that the containing
 	 * {@link ApplicationContext} gets refreshed.
-	 * <p>A value of {@code false} indicates that the component is intended to
+	 * A value of {@code false} indicates that the component is intended to
 	 * be started through an explicit {@link #start()} call instead, analogous
 	 * to a plain {@link Lifecycle} implementation.
-	 * <p>The default implementation returns {@code true}.
+	 * The default implementation returns {@code true}.
 	 * @see #start()
 	 * @see #getPhase()
 	 * @see LifecycleProcessor#onRefresh()
@@ -78,15 +78,15 @@ public interface SmartLifecycle extends Lifecycle, Phased {
 
 	/**
 	 * Indicates that a Lifecycle component must stop if it is currently running.
-	 * <p>The provided callback is used by the {@link LifecycleProcessor} to support
+	 * The provided callback is used by the {@link LifecycleProcessor} to support
 	 * an ordered, and potentially concurrent, shutdown of all components having a
 	 * common shutdown order value. The callback <b>must</b> be executed after
 	 * the {@code SmartLifecycle} component does indeed stop.
-	 * <p>The {@link LifecycleProcessor} will call <i>only</i> this variant of the
+	 * The {@link LifecycleProcessor} will call <i>only</i> this variant of the
 	 * {@code stop} method; i.e. {@link Lifecycle#stop()} will not be called for
 	 * {@code SmartLifecycle} implementations unless explicitly delegated to within
 	 * the implementation of this method.
-	 * <p>The default implementation delegates to {@link #stop()} and immediately
+	 * The default implementation delegates to {@link #stop()} and immediately
 	 * triggers the given callback in the calling thread. Note that there is no
 	 * synchronization between the two, so custom implementations may at least
 	 * want to put the same steps within their common lifecycle monitor (if any).
@@ -100,7 +100,7 @@ public interface SmartLifecycle extends Lifecycle, Phased {
 
 	/**
 	 * Return the phase that this lifecycle object is supposed to run in.
-	 * <p>The default implementation returns {@link #DEFAULT_PHASE} in order to
+	 * The default implementation returns {@link #DEFAULT_PHASE} in order to
 	 * let stop callbacks execute after regular {@code Lifecycle} implementations.
 	 * @see #isAutoStartup()
 	 * @see #start()

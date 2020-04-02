@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
 /**
  * Helper methods for named parameter parsing.
  *
- * <p>Only intended for internal use within Spring's JDBC framework.
+ * Only intended for internal use within Spring's JDBC framework.
  *
  * @author Thomas Risberg
 
@@ -242,7 +242,7 @@ public abstract class NamedParameterUtils {
 	 * parentheses. This allows for the use of "expression lists" in the SQL statement
 	 * like: <br /><br />
 	 * {@code select id, name, state from table where (name, age) in (('John', 35), ('Ann', 50))}
-	 * <p>The parameter values passed in are used to determine the number of placeholders to
+	 * The parameter values passed in are used to determine the number of placeholders to
 	 * be used for a select list. Select lists should be limited to 100 or fewer elements.
 	 * A larger number of elements is not guaranteed to be supported by the database and
 	 * is strictly vendor-dependent.
@@ -426,7 +426,7 @@ public abstract class NamedParameterUtils {
 	/**
 	 * Parse the SQL statement and locate any placeholders or named parameters.
 	 * Named parameters are substituted for a JDBC placeholder.
-	 * <p>This is a shortcut version of
+	 * This is a shortcut version of
 	 * {@link #parseSqlStatement(String)} in combination with
 	 * {@link #substituteNamedParameters(ParsedSql, SqlParameterSource)}.
 	 * @param sql the SQL statement
@@ -441,7 +441,7 @@ public abstract class NamedParameterUtils {
 	 * Parse the SQL statement and locate any placeholders or named parameters.
 	 * Named parameters are substituted for a JDBC placeholder and any select list
 	 * is expanded to the required number of placeholders.
-	 * <p>This is a shortcut version of
+	 * This is a shortcut version of
 	 * {@link #substituteNamedParameters(ParsedSql, SqlParameterSource)}.
 	 * @param sql the SQL statement
 	 * @param paramSource the source for named parameters
@@ -454,7 +454,7 @@ public abstract class NamedParameterUtils {
 
 	/**
 	 * Convert a Map of named parameter values to a corresponding array.
-	 * <p>This is a shortcut version of
+	 * This is a shortcut version of
 	 * {@link #buildValueArray(ParsedSql, SqlParameterSource, java.util.List)}.
 	 * @param sql the SQL statement
 	 * @param paramMap the Map of parameters

@@ -15,13 +15,13 @@ import org.springframework.util.Assert;
  * that can read and write XML using <a href="https://github.com/FasterXML/jackson-dataformat-xml">
  * Jackson 2.x extension component for reading and writing XML encoded data</a>.
  *
- * <p>By default, this converter supports {@code application/xml}, {@code text/xml}, and
+ * By default, this converter supports {@code application/xml}, {@code text/xml}, and
  * {@code application/*+xml} with {@code UTF-8} character set. This can be overridden by
  * setting the {@link #setSupportedMediaTypes supportedMediaTypes} property.
  *
- * <p>The default constructor uses the default configuration provided by {@link Jackson2ObjectMapperBuilder}.
+ * The default constructor uses the default configuration provided by {@link Jackson2ObjectMapperBuilder}.
  *
- * <p>Compatible with Jackson 2.9 and higher, as of Spring 5.0.
+ * Compatible with Jackson 2.9 and higher, as of Spring 5.0.
  *
  * @author Sebastien Deleuze
  * @since 4.1

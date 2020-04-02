@@ -75,18 +75,18 @@ import org.springframework.util.StringUtils;
  * Implements the {@link org.springframework.beans.factory.config.AutowireCapableBeanFactory}
  * interface in addition to AbstractBeanFactory's {@link #createBean} method.
  *
- * <p>Provides bean creation (with constructor resolution), property population,
+ * Provides bean creation (with constructor resolution), property population,
  * wiring (including autowiring), and initialization. Handles runtime bean
  * references, resolves managed collections, calls initialization methods, etc.
  * Supports autowiring constructors, properties by name, and properties by type.
  *
- * <p>The main template method to be implemented by subclasses is
+ * The main template method to be implemented by subclasses is
  * {@link #resolveDependency(DependencyDescriptor, String, Set, TypeConverter)},
  * used for autowiring by type. In case of a factory which is capable of searching
  * its bean definitions, matching beans will typically be implemented through such
  * a search. For other factory styles, simplified matching algorithms can be implemented.
  *
- * <p>Note that this class does <i>not</i> assume or implement bean definition
+ * Note that this class does <i>not</i> assume or implement bean definition
  * registry capabilities. See {@link DefaultListableBeanFactory} for an implementation
  * of the {@link org.springframework.beans.factory.ListableBeanFactory} and
  * {@link BeanDefinitionRegistry} interfaces, which represent the API and SPI view of such a factory, respectively.
@@ -188,7 +188,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	/**
 	 * Set the ParameterNameDiscoverer to use for resolving method parameter
 	 * names if needed (e.g. for constructor names).
-	 * <p>Default is a {@link DefaultParameterNameDiscoverer}.
+	 * Default is a {@link DefaultParameterNameDiscoverer}.
 	 */
 	public void setParameterNameDiscoverer(@Nullable ParameterNameDiscoverer parameterNameDiscoverer) {
 		this.parameterNameDiscoverer = parameterNameDiscoverer;
@@ -206,13 +206,13 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	/**
 	 * Set whether to allow circular references between beans - and automatically
 	 * try to resolve them.
-	 * <p>Note that circular reference resolution means that one of the involved beans
+	 * Note that circular reference resolution means that one of the involved beans
 	 * will receive a reference to another bean that is not fully initialized yet.
 	 * This can lead to subtle and not-so-subtle side effects on initialization;
 	 * it does work fine for many scenarios, though.
-	 * <p>Default is "true". Turn this off to throw an exception when encountering
+	 * Default is "true". Turn this off to throw an exception when encountering
 	 * a circular reference, disallowing them completely.
-	 * <p><b>NOTE:</b> It is generally recommended to not rely on circular references
+	 * <b>NOTE:</b> It is generally recommended to not rely on circular references
 	 * between your beans. Refactor your application logic to have the two beans
 	 * involved delegate to a third bean that encapsulates their common logic.
 	 */
@@ -224,13 +224,13 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * Set whether to allow the raw injection of a bean instance into some other
 	 * bean's property, despite the injected bean eventually getting wrapped
 	 * (for example, through AOP auto-proxying).
-	 * <p>This will only be used as a last resort in case of a circular reference
+	 * This will only be used as a last resort in case of a circular reference
 	 * that cannot be resolved otherwise: essentially, preferring a raw instance
 	 * getting injected over a failure of the entire bean wiring process.
-	 * <p>Default is "false", as of Spring 2.0. Turn this on to allow for non-wrapped
+	 * Default is "false", as of Spring 2.0. Turn this on to allow for non-wrapped
 	 * raw beans injected into some of your references, which was Spring 1.2's
 	 * (arguably unclean) default behavior.
-	 * <p><b>NOTE:</b> It is generally recommended to not rely on circular references
+	 * <b>NOTE:</b> It is generally recommended to not rely on circular references
 	 * between your beans, in particular with auto-proxying involved.
 	 * @see #setAllowCircularReferences
 	 */
@@ -248,10 +248,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 	/**
 	 * Ignore the given dependency interface for autowiring.
-	 * <p>This will typically be used by application contexts to register
+	 * This will typically be used by application contexts to register
 	 * dependencies that are resolved in other ways, like BeanFactory through
 	 * BeanFactoryAware or ApplicationContext through ApplicationContextAware.
-	 * <p>By default, only the BeanFactoryAware interface is ignored.
+	 * By default, only the BeanFactoryAware interface is ignored.
 	 * For further types to ignore, invoke this method for each type.
 	 * @see org.springframework.beans.factory.BeanFactoryAware
 	 * @see org.springframework.context.ApplicationContextAware
@@ -518,7 +518,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	/**
 	 * Actually create the specified bean. Pre-creation processing has already happened
 	 * at this point, e.g. checking {@code postProcessBeforeInstantiation} callbacks.
-	 * <p>Differentiates between default bean instantiation, use of a
+	 * Differentiates between default bean instantiation, use of a
 	 * factory method, and autowiring a constructor.
 	 * @param beanName the name of the bean
 	 * @param mbd the merged bean definition for the bean
@@ -722,7 +722,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * Determine the target type for the given bean definition which is based on
 	 * a factory method. Only called if there is no singleton instance registered
 	 * for the target bean already.
-	 * <p>This implementation determines the type matching {@link #createBean}'s
+	 * This implementation determines the type matching {@link #createBean}'s
 	 * different creation strategies. As far as possible, we'll perform static
 	 * type checking to avoid creation of the target bean.
 	 * @param beanName the name of the bean (for error handling purposes)
@@ -836,7 +836,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * on a plain instance of the FactoryBean, without bean properties applied yet.
 	 * If this doesn't return a type yet, a full creation of the FactoryBean is
 	 * used as fallback (through delegation to the superclass's implementation).
-	 * <p>The shortcut check for a FactoryBean is only applied in case of a singleton
+	 * The shortcut check for a FactoryBean is only applied in case of a singleton
 	 * FactoryBean. If the FactoryBean instance itself is not kept as singleton,
 	 * it will be fully created to check the type of its exposed object.
 	 */
@@ -1133,7 +1133,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	/**
 	 * Apply InstantiationAwareBeanPostProcessors to the specified bean definition
 	 * (by class and name), invoking their {@code postProcessBeforeInstantiation} methods.
-	 * <p>Any returned object will be used as the bean instead of actually instantiating
+	 * Any returned object will be used as the bean instead of actually instantiating
 	 * the target bean. A {@code null} return value from the post-processor will
 	 * result in the target bean being instantiated.
 	 * @param beanClass the class of the bean to be instantiated
@@ -1373,7 +1373,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * "autowire constructor" (with constructor arguments by type) behavior.
 	 * Also applied if explicit constructor argument values are specified,
 	 * matching all remaining arguments with beans from the bean factory.
-	 * <p>This corresponds to constructor injection: In this mode, a Spring
+	 * This corresponds to constructor injection: In this mode, a Spring
 	 * bean factory is able to host components that expect constructor-based
 	 * dependency resolution.
 	 * @param beanName the name of the bean
@@ -1545,7 +1545,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 	/**
 	 * Abstract method defining "autowire by type" (bean properties by type) behavior.
-	 * <p>This is like PicoContainer default, in which there must be exactly one bean
+	 * This is like PicoContainer default, in which there must be exactly one bean
 	 * of the property type in the bean factory. This makes bean factories simple to
 	 * configure for small namespaces, but doesn't work as well as standard Spring
 	 * behavior for bigger applications.
@@ -1662,7 +1662,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 	/**
 	 * Determine whether the given bean property is excluded from dependency checks.
-	 * <p>This implementation excludes properties defined by CGLIB and
+	 * This implementation excludes properties defined by CGLIB and
 	 * properties whose type matches an ignored dependency type or which
 	 * are defined by an ignored dependency interface.
 	 * @param pd the PropertyDescriptor of the bean property
@@ -1876,7 +1876,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	/**
 	 * Initialize the given bean instance, applying factory callbacks as well as init methods and bean post processors.
 	 * 初始化给定的bean实例，应用工厂回调以及init方法和bean post处理器。
-	 * <p>Called from {@link #createBean} for traditionally defined beans,and from {@link #initializeBean} for existing bean instances.
+	 * Called from {@link #createBean} for traditionally defined beans,and from {@link #initializeBean} for existing bean instances.
 	 * @param beanName the bean name in the factory (for debugging purposes)
 	 * @param bean the new bean instance we may need to initialize
 	 * @param mbd the bean definition that the bean was created with (can also be {@code null}, if given an existing bean instance)
@@ -1996,7 +1996,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	/**
 	 * Invoke the specified custom init method on the given bean.
 	 * Called by invokeInitMethods.
-	 * <p>Can be overridden in subclasses for custom resolution of init methods with arguments.
+	 * Can be overridden in subclasses for custom resolution of init methods with arguments.
 	 * @see #invokeInitMethods
 	 */
 	protected void invokeCustomInitMethod(String beanName, final Object bean, RootBeanDefinition mbd) throws Throwable {

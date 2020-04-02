@@ -10,7 +10,7 @@ import javax.script.ScriptException;
  * call or {@link javax.script.Invocable#invokeMethod} /
  * {@link javax.script.Invocable#invokeFunction} call.
  *
- * <p>This exception does not print the Java stacktrace, since the JSR-223
+ * This exception does not print the Java stacktrace, since the JSR-223
  * {@link ScriptException} results in a rather convoluted text output.
  * From that perspective, this exception is primarily a decorator for a
  * {@link ScriptException} root cause passed into an outer exception.

@@ -41,7 +41,7 @@ import org.springframework.web.context.support.ServletContextResourcePatternReso
 /**
  * A stub WebApplicationContext that accepts registrations of object instances.
  *
- * <p>As registered object instances are instantiated and initialized externally,
+ * As registered object instances are instantiated and initialized externally,
  * there is no wiring, bean initialization, lifecycle events, as well as no
  * pre-processing and post-processing hooks typically associated with beans
  * managed by an {@link ApplicationContext}. Just a simple lookup into a

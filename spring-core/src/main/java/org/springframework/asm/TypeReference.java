@@ -170,7 +170,7 @@ public class TypeReference {
    * specific method {@link MethodVisitor#visitLocalVariableAnnotation}). Thus, both structures can
    * be stored in an int.
    *
-   * <p>This int field stores target_type (called the TypeReference 'sort' in the public API of this
+   * This int field stores target_type (called the TypeReference 'sort' in the public API of this
    * class) in its most significant byte, followed by the target_info fields. Depending on
    * target_type, 1, 2 or even 3 least significant bytes of this field are unused. target_info
    * fields which reference bytecode offsets are set to 0 (these offsets are ignored in ClassReader,

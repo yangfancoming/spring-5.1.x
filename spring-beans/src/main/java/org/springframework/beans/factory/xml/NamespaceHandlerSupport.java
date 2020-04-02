@@ -18,7 +18,7 @@ import org.springframework.lang.Nullable;
  * Parsing and decorating of individual {@link Node Nodes} is done via {@link BeanDefinitionParser}
  * and {@link BeanDefinitionDecorator} strategy interfaces, respectively.
  *
- * <p>Provides the {@link #registerBeanDefinitionParser} and {@link #registerBeanDefinitionDecorator}
+ * Provides the {@link #registerBeanDefinitionParser} and {@link #registerBeanDefinitionDecorator}
  * methods for registering a {@link BeanDefinitionParser} or {@link BeanDefinitionDecorator} to handle a specific element.
 
  * @since 2.0

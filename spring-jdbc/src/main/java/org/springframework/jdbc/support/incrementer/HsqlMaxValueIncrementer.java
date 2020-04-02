@@ -9,10 +9,10 @@ import javax.sql.DataSource;
  * with the equivalent of an auto-increment column. Note: If you use this class, your HSQL
  * key column should <i>NOT</i> be auto-increment, as the sequence table does the job.
  *
- * <p>The sequence is kept in a table. There should be one sequence table per
+ * The sequence is kept in a table. There should be one sequence table per
  * table that needs an auto-generated key.
  *
- * <p>Example:
+ * Example:
  *
  * <pre class="code">create table tab (id int not null primary key, text varchar(100));
  * create table tab_sequence (value identity);
@@ -23,7 +23,7 @@ import javax.sql.DataSource;
  * is rolled back, the unused values will never be served. The maximum hole size in
  * numbering is consequently the value of cacheSize.
  *
- * <p><b>NOTE:</b> HSQL now supports sequences and you should consider using them instead:
+ * <b>NOTE:</b> HSQL now supports sequences and you should consider using them instead:
  * {@link HsqlSequenceMaxValueIncrementer}
  * @see HsqlSequenceMaxValueIncrementer
  */

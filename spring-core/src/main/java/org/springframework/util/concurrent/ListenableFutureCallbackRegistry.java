@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
  * Helper class for {@link ListenableFuture} implementations that maintains a
  * of success and failure callbacks and helps to notify them.
  *
- * <p>Inspired by {@code com.google.common.util.concurrent.ExecutionList}.
+ * Inspired by {@code com.google.common.util.concurrent.ExecutionList}.
  *
  * @author Arjen Poutsma
  * @author Sebastien Deleuze

@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
  * {@code @BootstrapWith} defines class-level metadata that is used to determine
  * how to bootstrap the <em>Spring TestContext Framework</em>.
  *
- * <p>This annotation may also be used as a <em>meta-annotation</em> to create
+ * This annotation may also be used as a <em>meta-annotation</em> to create
  * custom <em>composed annotations</em>. As of Spring Framework 5.1, a locally
  * declared {@code @BootstrapWith} annotation (i.e., one that is <em>directly
  * present</em> on the current test class) will override any meta-present

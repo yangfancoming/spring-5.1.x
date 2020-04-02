@@ -89,7 +89,7 @@ import org.springframework.util.xml.StaxUtils;
 /**
  * Implementation of the {@code GenericMarshaller} interface for JAXB 2.2.
  *
- * <p>The typical usage will be to set either the "contextPath" or the "classesToBeBound"
+ * The typical usage will be to set either the "contextPath" or the "classesToBeBound"
  * property on this bean, possibly customize the marshaller and unmarshaller by setting
  * properties, schemas, adapters, and listeners, and to refer to it.
  *
@@ -196,7 +196,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 
 	/**
 	 * Set a JAXB context path.
-	 * <p>Setting either this property, {@link #setClassesToBeBound "classesToBeBound"}
+	 * Setting either this property, {@link #setClassesToBeBound "classesToBeBound"}
 	 * or {@link #setPackagesToScan "packagesToScan"} is required.
 	 */
 	public void setContextPath(@Nullable String contextPath) {
@@ -213,7 +213,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 
 	/**
 	 * Set the list of Java classes to be recognized by a newly created JAXBContext.
-	 * <p>Setting either this property, {@link #setContextPath "contextPath"}
+	 * Setting either this property, {@link #setContextPath "contextPath"}
 	 * or {@link #setPackagesToScan "packagesToScan"} is required.
 	 */
 	public void setClassesToBeBound(@Nullable Class<?>... classesToBeBound) {
@@ -232,7 +232,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	 * Set the packages to search for classes with JAXB2 annotations in the classpath.
 	 * This is using a Spring-bases search and therefore analogous to Spring's component-scan
 	 * feature ({@link org.springframework.context.annotation.ClassPathBeanDefinitionScanner}).
-	 * <p>Setting either this property, {@link #setContextPath "contextPath"} or
+	 * Setting either this property, {@link #setContextPath "contextPath"} or
 	 * {@link #setClassesToBeBound "classesToBeBound"} is required.
 	 */
 	public void setPackagesToScan(@Nullable String... packagesToScan) {
@@ -257,7 +257,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 
 	/**
 	 * Set the JAXB {@code Marshaller} properties.
-	 * <p>These properties will be set on the underlying JAXB {@code Marshaller},
+	 * These properties will be set on the underlying JAXB {@code Marshaller},
 	 * and allow for features such as indentation.
 	 * @param properties the properties
 	 * @see javax.xml.bind.Marshaller#setProperty(String, Object)
@@ -272,7 +272,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 
 	/**
 	 * Set the JAXB {@code Unmarshaller} properties.
-	 * <p>These properties will be set on the underlying JAXB {@code Unmarshaller}.
+	 * These properties will be set on the underlying JAXB {@code Unmarshaller}.
 	 * @param properties the properties
 	 * @see javax.xml.bind.Unmarshaller#setProperty(String, Object)
 	 */
@@ -347,7 +347,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	/**
 	 * Set whether to lazily initialize the {@link JAXBContext} for this marshaller.
 	 * Default is {@code false} to initialize on startup; can be switched to {@code true}.
-	 * <p>Early initialization just applies if {@link #afterPropertiesSet()} is called.
+	 * Early initialization just applies if {@link #afterPropertiesSet()} is called.
 	 */
 	public void setLazyInit(boolean lazyInit) {
 		this.lazyInit = lazyInit;
@@ -364,10 +364,10 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	/**
 	 * Specify whether the {@link #supports(Class)} returns {@code true} for the
 	 * {@link JAXBElement} class.
-	 * <p>Default is {@code false}, meaning that {@code supports(Class)} always returns
+	 * Default is {@code false}, meaning that {@code supports(Class)} always returns
 	 * {@code false} for {@code JAXBElement} classes (though {@link #supports(Type)} can
 	 * return {@code true}, since it can obtain the type parameters of {@code JAXBElement}).
-	 * <p>This property is typically enabled in combination with usage of classes like
+	 * This property is typically enabled in combination with usage of classes like
 	 * {@link org.springframework.web.servlet.view.xml.MarshallingView MarshallingView},
 	 * since the {@code ModelAndView} does not offer type parameter information at runtime.
 	 * @see #supports(Class)
@@ -380,7 +380,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	/**
 	 * Specify whether the {@link #supports(Class)} should check for
 	 * {@link XmlRootElement @XmlRootElement} annotations.
-	 * <p>Default is {@code true}, meaning that {@code supports(Class)} will check for
+	 * Default is {@code true}, meaning that {@code supports(Class)} will check for
 	 * this annotation. However, some JAXB implementations (i.e. EclipseLink MOXy) allow
 	 * for defining the bindings in an external definition file, thus keeping the classes
 	 * annotations free. Setting this property to {@code false} supports these
@@ -402,7 +402,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 
 	/**
 	 * Indicate whether DTD parsing should be supported.
-	 * <p>Default is {@code false} meaning that DTD is disabled.
+	 * Default is {@code false} meaning that DTD is disabled.
 	 */
 	public void setSupportDtd(boolean supportDtd) {
 		this.supportDtd = supportDtd;
@@ -417,12 +417,12 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 
 	/**
 	 * Indicate whether external XML entities are processed when unmarshalling.
-	 * <p>Default is {@code false}, meaning that external entities are not resolved.
+	 * Default is {@code false}, meaning that external entities are not resolved.
 	 * Note that processing of external entities will only be enabled/disabled when the
 	 * {@code Source} passed to {@link #unmarshal(Source)} is a {@link SAXSource} or
 	 * {@link StreamSource}. It has no effect for {@link DOMSource} or {@link StAXSource}
 	 * instances.
-	 * <p><strong>Note:</strong> setting this option to {@code true} also automatically
+	 * <strong>Note:</strong> setting this option to {@code true} also automatically
 	 * sets {@link #setSupportDtd} to {@code true}.
 	 */
 	public void setProcessExternalEntities(boolean processExternalEntities) {
@@ -701,7 +701,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 
 	/**
 	 * Return a newly created JAXB marshaller.
-	 * <p>Note: JAXB marshallers are not necessarily thread-safe.
+	 * Note: JAXB marshallers are not necessarily thread-safe.
 	 */
 	protected Marshaller createMarshaller() {
 		try {
@@ -734,7 +734,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	 * Template method that can be overridden by concrete JAXB marshallers
 	 * for custom initialization behavior. Gets called after creation of JAXB
 	 * {@code Marshaller}, and after the respective properties have been set.
-	 * <p>The default implementation sets the
+	 * The default implementation sets the
 	 * {@link #setMarshallerProperties defined properties}, the
 	 * {@link #setValidationEventHandler validation event handler}, the
 	 * {@link #setSchemas schemas}, {@link #setMarshallerListener listener},
@@ -803,7 +803,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 
 	/**
 	 * Return a newly created JAXB unmarshaller.
-	 * <p>Note: JAXB unmarshallers are not necessarily thread-safe.
+	 * Note: JAXB unmarshallers are not necessarily thread-safe.
 	 */
 	protected Unmarshaller createUnmarshaller() {
 		try {
@@ -885,7 +885,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	 * Template method that can be overridden by concrete JAXB marshallers
 	 * for custom initialization behavior. Gets called after creation of JAXB
 	 * {@code Marshaller}, and after the respective properties have been set.
-	 * <p>The default implementation sets the
+	 * The default implementation sets the
 	 * {@link #setUnmarshallerProperties defined properties}, the
 	 * {@link #setValidationEventHandler validation event handler}, the
 	 * {@link #setSchemas schemas}, {@link #setUnmarshallerListener listener},

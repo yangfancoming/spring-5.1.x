@@ -96,14 +96,14 @@ public class ChannelSendOperator<T> extends Mono<Void> implements Scannable {
 	 * (i.e. the HTTP server adapter) that pre-fetches and waits for the first
 	 * signal before deciding whether to hook in to the write subscriber.
 	 *
-	 * <p>Acts as:
+	 * Acts as:
 	 * <ul>
 	 * <li>Subscriber to the write source.
 	 * <li>Subscription to the write subscriber.
 	 * <li>Publisher to the write subscriber.
 	 * </ul>
 	 *
-	 * <p>Also uses {@link WriteCompletionBarrier} to communicate completion
+	 * Also uses {@link WriteCompletionBarrier} to communicate completion
 	 * and detect cancel signals from the completion subscriber.
 	 */
 	private class WriteBarrier implements CoreSubscriber<T>, Subscription, Publisher<T> {
@@ -352,7 +352,7 @@ public class ChannelSendOperator<T> extends Mono<Void> implements Scannable {
 	 * We need an extra barrier between the WriteBarrier itself and the actual
 	 * completion subscriber.
 	 *
-	 * <p>The completionSubscriber is subscribed initially to the WriteBarrier.
+	 * The completionSubscriber is subscribed initially to the WriteBarrier.
 	 * Later after the first signal is received, we need one more subscriber
 	 * instance (per spec can only subscribe once) to subscribe to the write
 	 * function and switch to delegating completion signals from it.

@@ -22,7 +22,7 @@ import static org.springframework.core.annotation.AnnotatedElementUtils.*;
  * Unit tests that verify support for finding multiple composed annotations on
  * a single annotated element.
  *
- * <p>See <a href="https://jira.spring.io/browse/SPR-13486">SPR-13486</a>.
+ * See <a href="https://jira.spring.io/browse/SPR-13486">SPR-13486</a>.
  *
  * @author Sam Brannen
  * @since 4.3

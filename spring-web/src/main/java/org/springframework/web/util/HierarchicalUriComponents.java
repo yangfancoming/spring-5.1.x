@@ -561,7 +561,7 @@ final class HierarchicalUriComponents extends UriComponents {
 
 	/**
 	 * Enumeration used to identify the allowed characters per URI component.
-	 * <p>Contains methods to indicate whether a given character is valid in a specific URI component.
+	 * Contains methods to indicate whether a given character is valid in a specific URI component.
 	 * @see <a href="https://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>
 	 */
 	enum Type {

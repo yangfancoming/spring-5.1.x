@@ -20,10 +20,10 @@ import org.springframework.web.bind.support.SimpleSessionStatus;
  * {@link HandlerMethodReturnValueHandler HandlerMethodReturnValueHandlers} during the course of invocation of
  * a controller method.
  *
- * <p>The {@link #setRequestHandled} flag can be used to indicate the request
+ * The {@link #setRequestHandled} flag can be used to indicate the request
  * has been handled directly and view resolution is not required.
  *
- * <p>A default {@link Model} is automatically created at instantiation.
+ * A default {@link Model} is automatically created at instantiation.
  * An alternate model instance may be provided via {@link #setRedirectModel}
  * for use in a redirect scenario. When {@link #setRedirectModelScenario} is set
  * to {@code true} signalling a redirect scenario, the {@link #getModel()}
@@ -64,12 +64,12 @@ public class ModelAndViewContainer {
 	 * rendering and redirect scenarios. Alternatively controller methods
 	 * can declare an argument of type {@code RedirectAttributes} and use
 	 * it to provide attributes to prepare the redirect URL.
-	 * <p>Setting this flag to {@code true} guarantees the "default" model is
+	 * Setting this flag to {@code true} guarantees the "default" model is
 	 * never used in a redirect scenario even if a RedirectAttributes argument
 	 * is not declared. Setting it to {@code false} means the "default" model
 	 * may be used in a redirect if the controller method doesn't declare a
 	 * RedirectAttributes argument.
-	 * <p>The default setting is {@code false}.
+	 * The default setting is {@code false}.
 	 */
 	public void setIgnoreDefaultModelOnRedirect(boolean ignoreDefaultModelOnRedirect) {
 		this.ignoreDefaultModelOnRedirect = ignoreDefaultModelOnRedirect;
@@ -144,7 +144,7 @@ public class ModelAndViewContainer {
 
 	/**
 	 * Return the "default" model created at instantiation.
-	 * <p>In general it is recommended to use {@link #getModel()} instead which
+	 * In general it is recommended to use {@link #getModel()} instead which
 	 * returns either the "default" model (template rendering) or the "redirect"
 	 * model (redirect URL preparation). Use of this method may be needed for
 	 * advanced cases when access to the "default" model is needed regardless,
@@ -158,7 +158,7 @@ public class ModelAndViewContainer {
 
 	/**
 	 * Provide a separate model instance to use in a redirect scenario.
-	 * <p>The provided additional model however is not used unless
+	 * The provided additional model however is not used unless
 	 * {@link #setRedirectModelScenario} gets set to {@code true}
 	 * to signal an actual redirect scenario.
 	 */
@@ -213,7 +213,7 @@ public class ModelAndViewContainer {
 	/**
 	 * Register whether data binding should occur for a corresponding model attribute,
 	 * corresponding to an {@code @ModelAttribute(binding=true/false)} declaration.
-	 * <p>Note: While this flag will be taken into account by {@link #isBindingDisabled},
+	 * Note: While this flag will be taken into account by {@link #isBindingDisabled},
 	 * a hard {@link #setBindingDisabled} declaration will always override it.
 	 * @param attributeName the name of the attribute
 	 * @since 4.3.13
@@ -240,7 +240,7 @@ public class ModelAndViewContainer {
 	 * {@code @ResponseBody} method, and therefore view resolution is not
 	 * necessary. This flag can also be set when controller methods declare an
 	 * argument of type {@code ServletResponse} or {@code OutputStream}).
-	 * <p>The default value is {@code false}.
+	 * The default value is {@code false}.
 	 */
 	public void setRequestHandled(boolean requestHandled) {
 		this.requestHandled = requestHandled;

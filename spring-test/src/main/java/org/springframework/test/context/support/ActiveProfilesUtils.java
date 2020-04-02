@@ -24,7 +24,7 @@ import org.springframework.util.StringUtils;
  * Utility methods for working with {@link ActiveProfiles @ActiveProfiles} and
  * {@link ActiveProfilesResolver ActiveProfilesResolvers}.
  *
- * <p>Although {@code ActiveProfilesUtils} was first introduced in Spring Framework
+ * Although {@code ActiveProfilesUtils} was first introduced in Spring Framework
  * 4.1, the initial implementations of methods in this class were based on the
  * existing code base in {@code ContextLoaderUtils}.
  *
@@ -41,7 +41,7 @@ abstract class ActiveProfilesUtils {
 
 	/**
 	 * Resolve <em>active bean definition profiles</em> for the supplied {@link Class}.
-	 * <p>Note that the {@link ActiveProfiles#inheritProfiles inheritProfiles} flag of
+	 * Note that the {@link ActiveProfiles#inheritProfiles inheritProfiles} flag of
 	 * {@link ActiveProfiles @ActiveProfiles} will be taken into consideration.
 	 * Specifically, if the {@code inheritProfiles} flag is set to {@code true}, profiles
 	 * defined in the test class will be merged with those defined in superclasses.

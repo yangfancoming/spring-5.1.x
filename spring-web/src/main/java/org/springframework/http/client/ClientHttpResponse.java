@@ -12,7 +12,7 @@ import org.springframework.http.HttpStatus;
  * Represents a client-side HTTP response.
  * Obtained via an calling of the {@link ClientHttpRequest#execute()}.
  *
- * <p>A {@code ClientHttpResponse} must be {@linkplain #close() closed},
+ * A {@code ClientHttpResponse} must be {@linkplain #close() closed},
  * typically in a {@code finally} block.
  *
  * @author Arjen Poutsma

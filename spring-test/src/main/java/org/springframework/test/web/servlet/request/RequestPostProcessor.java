@@ -10,7 +10,7 @@ import org.springframework.mock.web.MockHttpServletRequest;
  * by {@link MockHttpServletRequestBuilder} or its subclass
  * {@link MockMultipartHttpServletRequestBuilder}.
  *
- * <p>Implementations of this interface can be provided to
+ * Implementations of this interface can be provided to
  * {@link MockHttpServletRequestBuilder#with(RequestPostProcessor)} at the time
  * when a request is about to be constructed.
  *

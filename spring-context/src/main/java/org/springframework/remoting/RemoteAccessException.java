@@ -9,19 +9,19 @@ import org.springframework.core.NestedRuntimeException;
  * protocol should throw this exception or subclasses of it, in order
  * to transparently expose a plain Java business interface.
  *
- * <p>When using conforming proxies, switching the actual remoting protocol
+ * When using conforming proxies, switching the actual remoting protocol
  * e.g. from Hessian does not affect client code. Clients work with a plain
  * natural Java business interface that the service exposes. A client object
  * simply receives an implementation for the interface that it needs via a
  * bean reference, like it does for a local bean as well.
  *
- * <p>A client may catch RemoteAccessException if it wants to, but as
+ * A client may catch RemoteAccessException if it wants to, but as
  * remote access errors are typically unrecoverable, it will probably let
  * such exceptions propagate to a higher level that handles them generically.
  * In this case, the client code doesn't show any signs of being involved in
  * remote access, as there aren't any remoting-specific dependencies.
  *
- * <p>Even when switching from a remote service proxy to a local implementation
+ * Even when switching from a remote service proxy to a local implementation
  * of the same interface, this amounts to just a matter of configuration. Obviously,
  * the client code should be somewhat aware that it <i>might be working</i>
  * against a remote service, for example in terms of repeated method calls that

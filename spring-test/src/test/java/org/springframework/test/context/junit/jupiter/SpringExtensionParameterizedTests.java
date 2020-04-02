@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * can be used with JUnit Jupiter's {@link ParameterizedTest @ParameterizedTest}
  * support in conjunction with the {@link SpringExtension}.
  *
- * <p>To run these tests in an IDE that does not have built-in support for the
+ * To run these tests in an IDE that does not have built-in support for the
  * JUnit Platform, simply run {@link SpringJUnitJupiterTestSuite} as a JUnit 4 test.
  *
  * @author Sam Brannen

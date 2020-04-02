@@ -17,7 +17,7 @@ import org.springframework.util.StringUtils;
  * Auto proxy creator that identifies beans to proxy via a list of names.
  * Checks for direct, "xxx*", and "*xxx" matches.
  *
- * <p>For configuration details, see the javadoc of the parent class
+ * For configuration details, see the javadoc of the parent class
  * AbstractAutoProxyCreator. Typically, you will specify a list of
  * interceptor names to apply to all identified beans, via the
  * "interceptorNames" property.
@@ -40,7 +40,7 @@ public class BeanNameAutoProxyCreator extends AbstractAutoProxyCreator {
 	 * Set the names of the beans that should automatically get wrapped with proxies.
 	 * A name can specify a prefix to match by ending with "*", e.g. "myBean,tx*"
 	 * will match the bean named "myBean" and all beans whose name start with "tx".
-	 * <p><b>NOTE:</b> In case of a FactoryBean, only the objects created by the
+	 * <b>NOTE:</b> In case of a FactoryBean, only the objects created by the
 	 * FactoryBean will get proxied. This default behavior applies as of Spring 2.0.
 	 * If you intend to proxy a FactoryBean instance itself (a rare use case, but
 	 * Spring 1.2's default behavior), specify the bean name of the FactoryBean
@@ -92,7 +92,7 @@ public class BeanNameAutoProxyCreator extends AbstractAutoProxyCreator {
 
 	/**
 	 * Return if the given bean name matches the mapped name.
-	 * <p>The default implementation checks for "xxx*", "*xxx" and "*xxx*" matches,
+	 * The default implementation checks for "xxx*", "*xxx" and "*xxx*" matches,
 	 * as well as direct equality. Can be overridden in subclasses.
 	 * @param beanName the bean name to check
 	 * @param mappedName the name in the configured list of names

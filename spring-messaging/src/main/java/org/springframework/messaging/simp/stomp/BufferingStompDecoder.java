@@ -22,7 +22,7 @@ import org.springframework.util.MultiValueMap;
  * data, the decode method returns one or more messages or, if there is not
  * enough data still, continues to buffer.
  *
- * <p>A single instance of this decoder can be invoked repeatedly to read all
+ * A single instance of this decoder can be invoked repeatedly to read all
  * messages from a single stream (e.g. WebSocket session) as long as decoding
  * does not fail. If there is an exception, StompDecoder instance should not
  * be used any more as its internal state is not guaranteed to be consistent.
@@ -75,10 +75,10 @@ public class BufferingStompDecoder {
 	/**
 	 * Decodes one or more STOMP frames from the given {@code ByteBuffer} into a
 	 * list of {@link Message Messages}.
-	 * <p>If there was enough data to parse a "content-length" header, then the
+	 * If there was enough data to parse a "content-length" header, then the
 	 * value is used to determine how much more data is needed before a new
 	 * attempt to decode is made.
-	 * <p>If there was not enough data to parse the "content-length", or if there
+	 * If there was not enough data to parse the "content-length", or if there
 	 * is "content-length" header, every subsequent call to decode attempts to
 	 * parse again with all available data. Therefore the presence of a "content-length"
 	 * header helps to optimize the decoding of large messages.

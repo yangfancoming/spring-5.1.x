@@ -20,7 +20,7 @@ import static org.springframework.test.util.AssertionErrors.assertEquals;
 /**
  * Factory for assertions on the request.
  *
- * <p>An instance of this class is typically accessed via
+ * An instance of this class is typically accessed via
  * {@link MockMvcResultMatchers#request}.
  *
  * @author Rossen Stoyanchev
@@ -31,7 +31,7 @@ public class RequestResultMatchers {
 
 	/**
 	 * Protected constructor.
-	 * <p>Use {@link MockMvcResultMatchers#request()}.
+	 * Use {@link MockMvcResultMatchers#request()}.
 	 */
 	protected RequestResultMatchers() {
 	}
@@ -40,7 +40,7 @@ public class RequestResultMatchers {
 	/**
 	 * Assert whether asynchronous processing started, usually as a result of a
 	 * controller method returning {@link Callable} or {@link DeferredResult}.
-	 * <p>The test will await the completion of a {@code Callable} so that
+	 * The test will await the completion of a {@code Callable} so that
 	 * {@link #asyncResult(Matcher)} can be used to assert the resulting value.
 	 * Neither a {@code Callable} nor a {@code DeferredResult} will complete
 	 * processing all the way since a {@link MockHttpServletRequest} does not
@@ -66,7 +66,7 @@ public class RequestResultMatchers {
 
 	/**
 	 * Assert the result from asynchronous processing with the given matcher.
-	 * <p>This method can be used when a controller method returns {@link Callable}
+	 * This method can be used when a controller method returns {@link Callable}
 	 * or {@link WebAsyncTask}.
 	 */
 	@SuppressWarnings("unchecked")
@@ -80,7 +80,7 @@ public class RequestResultMatchers {
 
 	/**
 	 * Assert the result from asynchronous processing.
-	 * <p>This method can be used when a controller method returns {@link Callable}
+	 * This method can be used when a controller method returns {@link Callable}
 	 * or {@link WebAsyncTask}. The value matched is the value returned from the
 	 * {@code Callable} or the exception raised.
 	 */

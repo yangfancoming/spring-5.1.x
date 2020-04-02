@@ -30,25 +30,25 @@ import org.springframework.cglib.core.internal.CustomizerRegistry;
  * Generates classes to handle multi-valued keys, for use in things such as Maps and Sets.
  * Code for <code>equals</code> and <code>hashCode</code> methods follow the
  * the rules laid out in <i>Effective Java</i> by Joshua Bloch.
- * <p>
+ *
  * To generate a <code>KeyFactory</code>, you need to supply an interface which
  * describes the structure of the key. The interface should have a
  * single method named <code>newInstance</code>, which returns an
  * <code>Object</code>. The arguments array can be
  * <i>anything</i>--Objects, primitive values, or single or
  * multi-dimension arrays of either. For example:
- * <p><pre>
+ * <pre>
  *     private interface IntStringKey {
  *         public Object newInstance(int i, String s);
  *     }
- * </pre><p>
+ * </pre>
  * Once you have made a <code>KeyFactory</code>, you generate a new key by calling
  * the <code>newInstance</code> method defined by your interface.
- * <p><pre>
+ * <pre>
  *     IntStringKey factory = (IntStringKey)KeyFactory.create(IntStringKey.class);
  *     Object key1 = factory.newInstance(4, "Hello");
  *     Object key2 = factory.newInstance(4, "World");
- * </pre><p>
+ * </pre>
  * <b>Note:</b>
  * <code>hashCode</code> equality between two keys <code>key1</code> and <code>key2</code> is only guaranteed if
  * <code>key1.equals(key2)</code> <i>and</i> the keys were produced by the same factory.

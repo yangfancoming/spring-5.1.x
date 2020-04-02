@@ -7,18 +7,18 @@ import java.lang.reflect.Method;
 /**
  * Part of a {@link Pointcut}: Checks whether the target method is eligible for advice.
  *
- * <p>A MethodMatcher may be evaluated <b>statically</b> or at <b>runtime</b> (dynamically).
+ * A MethodMatcher may be evaluated <b>statically</b> or at <b>runtime</b> (dynamically).
  * Static matching involves method and (possibly) method attributes. Dynamic matching
  * also makes arguments for a particular call available, and any effects of running
  * previous advice applying to the joinpoint.
  *
- * <p>If an implementation returns {@code false} from its {@link #isRuntime()}
+ * If an implementation returns {@code false} from its {@link #isRuntime()}
  * method, evaluation can be performed statically, and the result will be the same
  * for all invocations of this method, whatever their arguments. This means that
  * if the {@link #isRuntime()} method returns {@code false}, the 3-arg
  * {@link #matches(java.lang.reflect.Method, Class, Object[])} method will never be invoked.
  *
- * <p>If an implementation returns {@code true} from its 2-arg
+ * If an implementation returns {@code true} from its 2-arg
  * {@link #matches(java.lang.reflect.Method, Class)} method and its {@link #isRuntime()} method
  * returns {@code true}, the 3-arg {@link #matches(java.lang.reflect.Method, Class, Object[])}
  * method will be invoked <i>immediately before each potential execution of the related advice</i>,
@@ -34,7 +34,7 @@ public interface MethodMatcher {
 
 	/**
 	 * Perform static checking whether the given method matches.
-	 * <p>If this returns {@code false} or if the {@link #isRuntime()}
+	 * If this returns {@code false} or if the {@link #isRuntime()}
 	 * method returns {@code false}, no runtime check (i.e. no
 	 * {@link #matches(java.lang.reflect.Method, Class, Object[])} call)
 	 * will be made.
@@ -48,7 +48,7 @@ public interface MethodMatcher {
 	 * Is this MethodMatcher dynamic, that is, must a final call be made on the
 	 * {@link #matches(java.lang.reflect.Method, Class, Object[])} method at
 	 * runtime even if the 2-arg matches method returns {@code true}?
-	 * <p>Can be invoked when an AOP proxy is created, and need not be invoked
+	 * Can be invoked when an AOP proxy is created, and need not be invoked
 	 * again before each method invocation,
 	 * @return whether or not a runtime match via the 3-arg
 	 * {@link #matches(java.lang.reflect.Method, Class, Object[])} method
@@ -59,7 +59,7 @@ public interface MethodMatcher {
 	/**
 	 * Check whether there a runtime (dynamic) match for this method,
 	 * which must have matched statically.
-	 * <p>This method is invoked only if the 2-arg matches method returns
+	 * This method is invoked only if the 2-arg matches method returns
 	 * {@code true} for the given method and target class, and if the
 	 * {@link #isRuntime()} method returns {@code true}. Invoked
 	 * immediately before potential running of the advice, after any

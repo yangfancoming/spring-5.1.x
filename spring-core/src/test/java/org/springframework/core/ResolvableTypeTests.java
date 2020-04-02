@@ -1551,7 +1551,7 @@ public class ResolvableTypeTests {
 	}
 
 
-	public interface IProvider<P> {
+	public interface IProvider {
 	}
 
 	public interface IBase<BT extends IBase<BT>> {

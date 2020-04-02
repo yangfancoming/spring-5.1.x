@@ -31,7 +31,7 @@ public class ViewControllerRegistration {
 
 	/**
 	 * Set the status code to set on the response. Optional.
-	 * <p>If not set the response status will be 200 (OK).
+	 * If not set the response status will be 200 (OK).
 	 */
 	public ViewControllerRegistration setStatusCode(HttpStatus statusCode) {
 		this.controller.setStatusCode(statusCode);
@@ -40,7 +40,7 @@ public class ViewControllerRegistration {
 
 	/**
 	 * Set the view name to return. Optional.
-	 * <p>If not specified, the view controller will return {@code null} as the
+	 * If not specified, the view controller will return {@code null} as the
 	 * view name in which case the configured {@link RequestToViewNameTranslator}
 	 * will select the view name. The {@code DefaultRequestToViewNameTranslator}
 	 * for example translates "/foo/bar" to "foo/bar".

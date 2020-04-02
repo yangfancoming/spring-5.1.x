@@ -26,11 +26,11 @@ import org.springframework.util.xml.DomUtils;
  * Allows for objects written using dynamic languages to be easily exposed with
  * the {@link org.springframework.beans.factory.BeanFactory}.
  *
- * <p>The script for each object can be specified either as a reference to the
+ * The script for each object can be specified either as a reference to the
  * resource containing it (using the '{@code script-source}' attribute) or inline
  * in the XML configuration itself (using the '{@code inline-script}' attribute.
  *
- * <p>By default, dynamic objects created with these tags are <strong>not</strong>
+ * By default, dynamic objects created with these tags are <strong>not</strong>
  * refreshable. To enable refreshing, specify the refresh check delay for each
  * object (in milliseconds) using the '{@code refresh-check-delay}' attribute.
  *

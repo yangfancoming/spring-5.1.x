@@ -23,7 +23,7 @@ public interface WebRequest extends RequestAttributes {
 
 	/**
 	 * Return the request header of the given name, or {@code null} if none.
-	 * <p>Retrieves the first header value in case of a multi-value header.
+	 * Retrieves the first header value in case of a multi-value header.
 	 * @since 3.0
 	 * @see javax.servlet.http.HttpServletRequest#getHeader(String)
 	 */
@@ -33,7 +33,7 @@ public interface WebRequest extends RequestAttributes {
 	/**
 	 * Return the request header values for the given header name,
 	 * or {@code null} if none.
-	 * <p>A single-value header will be exposed as an array with a single element.
+	 * A single-value header will be exposed as an array with a single element.
 	 * @since 3.0
 	 * @see javax.servlet.http.HttpServletRequest#getHeaders(String)
 	 */
@@ -49,7 +49,7 @@ public interface WebRequest extends RequestAttributes {
 
 	/**
 	 * Return the request parameter of the given name, or {@code null} if none.
-	 * <p>Retrieves the first parameter value in case of a multi-value parameter.
+	 * Retrieves the first parameter value in case of a multi-value parameter.
 	 * @see javax.servlet.http.HttpServletRequest#getParameter(String)
 	 */
 	@Nullable
@@ -58,7 +58,7 @@ public interface WebRequest extends RequestAttributes {
 	/**
 	 * Return the request parameter values for the given parameter name,
 	 * or {@code null} if none.
-	 * <p>A single-value parameter will be exposed as an array with a single element.
+	 * A single-value parameter will be exposed as an array with a single element.
 	 * @see javax.servlet.http.HttpServletRequest#getParameterValues(String)
 	 */
 	@Nullable
@@ -74,7 +74,7 @@ public interface WebRequest extends RequestAttributes {
 	/**
 	 * Return a immutable Map of the request parameters, with parameter names as map keys
 	 * and parameter values as map values. The map values will be of type String array.
-	 * <p>A single-value parameter will be exposed as an array with a single element.
+	 * A single-value parameter will be exposed as an array with a single element.
 	 * @see javax.servlet.http.HttpServletRequest#getParameterMap()
 	 */
 	Map<String, String[]> getParameterMap();
@@ -122,9 +122,9 @@ public interface WebRequest extends RequestAttributes {
 	/**
 	 * Check whether the requested resource has been modified given the
 	 * supplied last-modified timestamp (as determined by the application).
-	 * <p>This will also transparently set the "Last-Modified" response header
+	 * This will also transparently set the "Last-Modified" response header
 	 * and HTTP status when applicable.
-	 * <p>Typical usage:
+	 * Typical usage:
 	 * <pre class="code">
 	 * public String myHandleMethod(WebRequest webRequest, Model model) {
 	 *   long lastModified = // application-specific calculation
@@ -136,15 +136,15 @@ public interface WebRequest extends RequestAttributes {
 	 *   model.addAttribute(...);
 	 *   return "myViewName";
 	 * }</pre>
-	 * <p>This method works with conditional GET/HEAD requests, but
+	 * This method works with conditional GET/HEAD requests, but
 	 * also with conditional POST/PUT/DELETE requests.
-	 * <p><strong>Note:</strong> you can use either
+	 * <strong>Note:</strong> you can use either
 	 * this {@code #checkNotModified(long)} method; or
 	 * {@link #checkNotModified(String)}. If you want enforce both
 	 * a strong entity tag and a Last-Modified value,
 	 * as recommended by the HTTP specification,
 	 * then you should use {@link #checkNotModified(String, long)}.
-	 * <p>If the "If-Modified-Since" header is set but cannot be parsed
+	 * If the "If-Modified-Since" header is set but cannot be parsed
 	 * to a date value, this method will ignore the header and proceed
 	 * with setting the last-modified timestamp on the response.
 	 * @param lastModifiedTimestamp the last-modified timestamp in
@@ -159,9 +159,9 @@ public interface WebRequest extends RequestAttributes {
 	/**
 	 * Check whether the requested resource has been modified given the
 	 * supplied {@code ETag} (entity tag), as determined by the application.
-	 * <p>This will also transparently set the "ETag" response header
+	 * This will also transparently set the "ETag" response header
 	 * and HTTP status when applicable.
-	 * <p>Typical usage:
+	 * Typical usage:
 	 * <pre class="code">
 	 * public String myHandleMethod(WebRequest webRequest, Model model) {
 	 *   String eTag = // application-specific calculation
@@ -173,7 +173,7 @@ public interface WebRequest extends RequestAttributes {
 	 *   model.addAttribute(...);
 	 *   return "myViewName";
 	 * }</pre>
-	 * <p><strong>Note:</strong> you can use either
+	 * <strong>Note:</strong> you can use either
 	 * this {@code #checkNotModified(String)} method; or
 	 * {@link #checkNotModified(long)}. If you want enforce both
 	 * a strong entity tag and a Last-Modified value,
@@ -190,9 +190,9 @@ public interface WebRequest extends RequestAttributes {
 	 * Check whether the requested resource has been modified given the
 	 * supplied {@code ETag} (entity tag) and last-modified timestamp,
 	 * as determined by the application.
-	 * <p>This will also transparently set the "ETag" and "Last-Modified"
+	 * This will also transparently set the "ETag" and "Last-Modified"
 	 * response headers, and HTTP status when applicable.
-	 * <p>Typical usage:
+	 * Typical usage:
 	 * <pre class="code">
 	 * public String myHandleMethod(WebRequest webRequest, Model model) {
 	 *   String eTag = // application-specific calculation
@@ -205,9 +205,9 @@ public interface WebRequest extends RequestAttributes {
 	 *   model.addAttribute(...);
 	 *   return "myViewName";
 	 * }</pre>
-	 * <p>This method works with conditional GET/HEAD requests, but
+	 * This method works with conditional GET/HEAD requests, but
 	 * also with conditional POST/PUT/DELETE requests.
-	 * <p><strong>Note:</strong> The HTTP specification recommends
+	 * <strong>Note:</strong> The HTTP specification recommends
 	 * setting both ETag and Last-Modified values, but you can also
 	 * use {@code #checkNotModified(String)} or
 	 * {@link #checkNotModified(long)}.

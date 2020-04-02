@@ -19,11 +19,11 @@ import org.springframework.util.Assert;
  * {@code @JsonView} annotation declared on a Spring MVC {@code @HttpEntity}
  * or {@code @RequestBody} method parameter.
  *
- * <p>The deserialization view specified in the annotation will be passed in to the
+ * The deserialization view specified in the annotation will be passed in to the
  * {@link org.springframework.http.converter.json.MappingJackson2HttpMessageConverter}
  * which will then use it to deserialize the request body with.
  *
- * <p>Note that despite {@code @JsonView} allowing for more than one class to
+ * Note that despite {@code @JsonView} allowing for more than one class to
  * be specified, the use for a request body advice is only supported with
  * exactly one class argument. Consider the use of a composite interface.
  *

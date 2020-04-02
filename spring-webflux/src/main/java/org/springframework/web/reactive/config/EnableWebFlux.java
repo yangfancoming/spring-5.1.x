@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Import;
  * WebFlux configuration from {@link WebFluxConfigurationSupport} that enables
  * use of annotated controllers and functional endpoints.
  *
- * <p>For example:
+ * For example:
  *
  * <pre class="code">
  * &#064;Configuration
@@ -25,7 +25,7 @@ import org.springframework.context.annotation.Import;
  * }
  * </pre>
  *
- * <p>To customize the imported configuration, implement
+ * To customize the imported configuration, implement
  * {@link WebFluxConfigurer} and one or more of its methods:
  *
  * <pre class="code">
@@ -43,12 +43,12 @@ import org.springframework.context.annotation.Import;
  * }
  * </pre>
  *
- * <p>Only one {@code @Configuration} class should have the {@code @EnableWebFlux}
+ * Only one {@code @Configuration} class should have the {@code @EnableWebFlux}
  * annotation in order to import the Spring WebFlux configuration. There can
  * however be multiple {@code @Configuration} classes that implement
  * {@code WebFluxConfigurer} that customize the provided configuration.
  *
- * <p>If {@code WebFluxConfigurer} does not expose some setting that needs to be
+ * If {@code WebFluxConfigurer} does not expose some setting that needs to be
  * configured, consider switching to an advanced mode by removing the
  * {@code @EnableWebFlux} annotation and extending directly from
  * {@link WebFluxConfigurationSupport} or {@link DelegatingWebFluxConfiguration} --

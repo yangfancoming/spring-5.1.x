@@ -38,7 +38,7 @@ public class GsonFactoryBean implements FactoryBean<Gson>, InitializingBean {
 	/**
 	 * Whether to Base64-encode {@code byte[]} properties when reading and
 	 * writing JSON.
-	 * <p>When set to {@code true}, a custom {@link com.google.gson.TypeAdapter} will be
+	 * When set to {@code true}, a custom {@link com.google.gson.TypeAdapter} will be
 	 * registered via {@link GsonBuilder#registerTypeHierarchyAdapter(Class, Object)}
 	 * which serializes a {@code byte[]} property to and from a Base64-encoded String
 	 * instead of a JSON array.

@@ -14,19 +14,19 @@ import org.springframework.web.servlet.ModelAndView;
  * Adapter to use the Servlet interface with the generic DispatcherServlet.
  * Calls the Servlet's {@code service} method to handle a request.
  *
- * <p>Last-modified checking is not explicitly supported: This is typically
+ * Last-modified checking is not explicitly supported: This is typically
  * handled by the Servlet implementation itself (usually deriving from
  * the HttpServlet base class).
  *
- * <p>This adapter is not activated by default; it needs to be defined as a
+ * This adapter is not activated by default; it needs to be defined as a
  * bean in the DispatcherServlet context. It will automatically apply to
  * mapped handler beans that implement the Servlet interface then.
  *
- * <p>Note that Servlet instances defined as bean will not receive initialization
+ * Note that Servlet instances defined as bean will not receive initialization
  * and destruction callbacks, unless a special post-processor such as
  * SimpleServletPostProcessor is defined in the DispatcherServlet context.
  *
- * <p><b>Alternatively, consider wrapping a Servlet with Spring's
+ * <b>Alternatively, consider wrapping a Servlet with Spring's
  * ServletWrappingController.</b> This is particularly appropriate for
  * existing Servlet classes, allowing to specify Servlet initialization
  * parameters etc.

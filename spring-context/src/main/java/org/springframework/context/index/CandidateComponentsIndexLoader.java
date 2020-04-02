@@ -29,14 +29,14 @@ public final class CandidateComponentsIndexLoader {
 
 	/**
 	 * The location to look for components.
-	 * <p>Can be present in multiple JAR files.
+	 * Can be present in multiple JAR files.
 	 */
 	public static final String COMPONENTS_RESOURCE_LOCATION = "META-INF/spring.components";
 
 	/**
 	 * System property that instructs Spring to ignore the index, i.e.
 	 * to always return {@code null} from {@link #loadIndex(ClassLoader)}.
-	 * <p>The default is "false", allowing for regular use of the index. Switching this
+	 * The default is "false", allowing for regular use of the index. Switching this
 	 * flag to {@code true} fulfills a corner case scenario when an index is partially
 	 * available for some libraries (or use cases) but couldn't be built for the whole
 	 * application. In this case, the application context fallbacks to a regular

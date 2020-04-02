@@ -41,7 +41,7 @@ public abstract class ExchangeFilterFunctions {
 	/**
 	 * Consume up to the specified number of bytes from the response body and
 	 * cancel if any more data arrives.
-	 * <p>Internally delegates to {@link DataBufferUtils#takeUntilByteCount}.
+	 * Internally delegates to {@link DataBufferUtils#takeUntilByteCount}.
 	 * @param maxByteCount the limit as number of bytes
 	 * @return the filter to limit the response size with
 	 * @since 5.1

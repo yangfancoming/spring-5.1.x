@@ -8,7 +8,7 @@ import com.google.protobuf.ExtensionRegistry;
  * Google Protocol Messages can contain message extensions that can be parsed if
  * the appropriate configuration has been registered in the {@code ExtensionRegistry}.
  *
- * <p>This interface provides a facility to populate the {@code ExtensionRegistry}.
+ * This interface provides a facility to populate the {@code ExtensionRegistry}.
  *
  * @author Alex Antonov
  * @author Sebastien Deleuze

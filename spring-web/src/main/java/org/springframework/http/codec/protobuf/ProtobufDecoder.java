@@ -32,7 +32,7 @@ import org.springframework.util.MimeType;
  * A {@code Decoder} that reads {@link com.google.protobuf.Message}s using
  * <a href="https://developers.google.com/protocol-buffers/">Google Protocol Buffers</a>.
  *
- * <p>Flux deserialized via
+ * Flux deserialized via
  * {@link #decode(Publisher, ResolvableType, MimeType, Map)} are expected to use
  * <a href="https://developers.google.com/protocol-buffers/docs/techniques?hl=en#streaming">
  * delimited Protobuf messages</a> with the size of each message specified before
@@ -41,14 +41,14 @@ import org.springframework.util.MimeType;
  * to use regular Protobuf message format (without the size prepended before
  * the message).
  *
- * <p>Notice that default instance of Protobuf message produces empty byte
+ * Notice that default instance of Protobuf message produces empty byte
  * array, so {@code Mono.just(Msg.getDefaultInstance())} sent over the network
  * will be deserialized as an empty {@link Mono}.
  *
- * <p>To generate {@code Message} Java classes, you need to install the
+ * To generate {@code Message} Java classes, you need to install the
  * {@code protoc} binary.
  *
- * <p>This decoder requires Protobuf 3 or higher, and supports
+ * This decoder requires Protobuf 3 or higher, and supports
  * {@code "application/x-protobuf"} and {@code "application/octet-stream"} with
  * the official {@code "com.google.protobuf:protobuf-java"} library.
  *
@@ -135,7 +135,7 @@ public class ProtobufDecoder extends ProtobufCodecSupport implements Decoder<Mes
 
 	/**
 	 * Create a new {@code Message.Builder} instance for the given class.
-	 * <p>This method uses a ConcurrentHashMap for caching method lookups.
+	 * This method uses a ConcurrentHashMap for caching method lookups.
 	 */
 	private static Message.Builder getMessageBuilder(Class<?> clazz) throws Exception {
 		Method method = methodCache.get(clazz);

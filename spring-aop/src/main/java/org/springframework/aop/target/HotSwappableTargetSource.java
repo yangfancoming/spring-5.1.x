@@ -12,10 +12,10 @@ import org.springframework.util.Assert;
  * caches a local target object, but allows the target to be swapped
  * while the application is running.
  *
- * <p>If configuring an object of this class in a Spring IoC container,
+ * If configuring an object of this class in a Spring IoC container,
  * use constructor injection.
  *
- * <p>This TargetSource is serializable if the target is at the time
+ * This TargetSource is serializable if the target is at the time
  * of serialization.
  *
  * @author Rod Johnson
@@ -43,7 +43,7 @@ public class HotSwappableTargetSource implements TargetSource, Serializable {
 
 	/**
 	 * Return the type of the current target object.
-	 * <p>The returned type should usually be constant across all target objects.
+	 * The returned type should usually be constant across all target objects.
 	 */
 	@Override
 	public synchronized Class<?> getTargetClass() {

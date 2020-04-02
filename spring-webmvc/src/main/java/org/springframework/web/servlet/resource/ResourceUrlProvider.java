@@ -27,7 +27,7 @@ import org.springframework.web.util.UrlPathHelper;
  * A central component to use to obtain the public URL path that clients should
  * use to access a static resource.
  *
- * <p>This class is aware of Spring MVC handler mappings used to serve static
+ * This class is aware of Spring MVC handler mappings used to serve static
  * resources and uses the {@code ResourceResolver} chains of the configured
  * {@code ResourceHttpRequestHandler}s to make its decisions.
  *
@@ -81,7 +81,7 @@ public class ResourceUrlProvider implements ApplicationListener<ContextRefreshed
 
 	/**
 	 * Manually configure the resource mappings.
-	 * <p><strong>Note:</strong> by default resource mappings are auto-detected
+	 * <strong>Note:</strong> by default resource mappings are auto-detected
 	 * from the Spring {@code ApplicationContext}. However if this property is
 	 * used, the auto-detection is turned off.
 	 */
@@ -188,9 +188,9 @@ public class ResourceUrlProvider implements ApplicationListener<ContextRefreshed
 	 * if a match is found use the {@code ResourceResolver} chain of the matched
 	 * {@code ResourceHttpRequestHandler} to resolve the URL path to expose for
 	 * public use.
-	 * <p>It is expected that the given path is what Spring MVC would use for
+	 * It is expected that the given path is what Spring MVC would use for
 	 * request mapping purposes, i.e. excluding context and servlet path portions.
-	 * <p>If several handler mappings match, the handler used will be the one
+	 * If several handler mappings match, the handler used will be the one
 	 * configured with the most specific pattern.
 	 * @param lookupPath the lookup path to check
 	 * @return the resolved public URL path, or {@code null} if unresolved

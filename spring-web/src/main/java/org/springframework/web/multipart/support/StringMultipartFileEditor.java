@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
  * Custom {@link java.beans.PropertyEditor} for converting
  * {@link MultipartFile MultipartFiles} to Strings.
  *
- * <p>Allows one to specify the charset to use.
+ * Allows one to specify the charset to use.
  *
 
  * @since 13.10.2003

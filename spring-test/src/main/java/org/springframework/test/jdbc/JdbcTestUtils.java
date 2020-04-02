@@ -42,7 +42,7 @@ public abstract class JdbcTestUtils {
 
 	/**
 	 * Count the rows in the given table, using the provided {@code WHERE} clause.
-	 * <p>If the provided {@code WHERE} clause contains text, it will be prefixed
+	 * If the provided {@code WHERE} clause contains text, it will be prefixed
 	 * with {@code " WHERE "} and then appended to the generated {@code SELECT}
 	 * statement. For example, if the provided table name is {@code "person"} and
 	 * the provided where clause is {@code "name = 'Bob' and age > 25"}, the
@@ -83,13 +83,13 @@ public abstract class JdbcTestUtils {
 
 	/**
 	 * Delete rows from the given table, using the provided {@code WHERE} clause.
-	 * <p>If the provided {@code WHERE} clause contains text, it will be prefixed
+	 * If the provided {@code WHERE} clause contains text, it will be prefixed
 	 * with {@code " WHERE "} and then appended to the generated {@code DELETE}
 	 * statement. For example, if the provided table name is {@code "person"} and
 	 * the provided where clause is {@code "name = 'Bob' and age > 25"}, the
 	 * resulting SQL statement to execute will be
 	 * {@code "DELETE FROM person WHERE name = 'Bob' and age > 25"}.
-	 * <p>As an alternative to hard-coded values, the {@code "?"} placeholder can
+	 * As an alternative to hard-coded values, the {@code "?"} placeholder can
 	 * be used within the {@code WHERE} clause, binding to the given arguments.
 	 * @param jdbcTemplate the JdbcTemplate with which to perform JDBC operations
 	 * @param tableName the name of the table to delete rows from

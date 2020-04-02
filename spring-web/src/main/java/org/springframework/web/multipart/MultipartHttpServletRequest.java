@@ -15,7 +15,7 @@ import org.springframework.lang.Nullable;
  * {@link javax.servlet.ServletRequest} methods for parameter access, making
  * multipart parameters available.
  *
- * <p>A concrete implementation is
+ * A concrete implementation is
  * {@link org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest}.
  * As an intermediate step,
  * {@link org.springframework.web.multipart.support.AbstractMultipartHttpServletRequest}
@@ -47,7 +47,7 @@ public interface MultipartHttpServletRequest extends HttpServletRequest, Multipa
 
 	/**
 	 * Return the headers associated with the specified part of the multipart request.
-	 * <p>If the underlying implementation supports access to headers, then all headers are returned.
+	 * If the underlying implementation supports access to headers, then all headers are returned.
 	 * Otherwise, the returned headers will include a 'Content-Type' header at the very least.
 	 */
 	@Nullable

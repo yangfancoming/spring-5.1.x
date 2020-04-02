@@ -117,7 +117,7 @@ public abstract class UriComponents implements Serializable {
 	/**
 	 * Invoke this <em>after</em> expanding URI variables to encode the
 	 * resulting URI component values.
-	 * <p>In comparison to {@link UriComponentsBuilder#encode()}, this method
+	 * In comparison to {@link UriComponentsBuilder#encode()}, this method
 	 * <em>only</em> replaces non-ASCII and illegal (within a given URI
 	 * component type) characters, but not characters with reserved meaning.
 	 * For most cases, {@link UriComponentsBuilder#encode()} is more likely
@@ -137,7 +137,7 @@ public abstract class UriComponents implements Serializable {
 
 	/**
 	 * Replace all URI template variables with the values from a given map.
-	 * <p>The given map keys represent variable names; the corresponding values
+	 * The given map keys represent variable names; the corresponding values
 	 * represent variable values. The order of variables is not significant.
 	 * @param uriVariables the map of URI variables
 	 * @return the expanded URI components
@@ -149,7 +149,7 @@ public abstract class UriComponents implements Serializable {
 
 	/**
 	 * Replace all URI template variables with the values from a given array.
-	 * <p>The given array represents variable values. The order of variables is significant.
+	 * The given array represents variable values. The order of variables is significant.
 	 * @param uriVariableValues the URI variable values
 	 * @return the expanded URI components
 	 */
@@ -187,7 +187,7 @@ public abstract class UriComponents implements Serializable {
 
 	/**
 	 * Concatenate all URI components to return the fully formed URI String.
-	 * <p>This method does nothing more than a simple concatenation based on
+	 * This method does nothing more than a simple concatenation based on
 	 * current values. That means it could produce different results if invoked
 	 * before vs after methods that can change individual values such as
 	 * {@code encode}, {@code expand}, or {@code normalize}.
@@ -196,10 +196,10 @@ public abstract class UriComponents implements Serializable {
 
 	/**
 	 * Create a {@link URI} from this instance as follows:
-	 * <p>If the current instance is {@link #encode() encoded}, form the full
+	 * If the current instance is {@link #encode() encoded}, form the full
 	 * URI String via {@link #toUriString()}, and then pass it to the single
 	 * argument {@link URI} constructor which preserves percent encoding.
-	 * <p>If not yet encoded, pass individual URI component values to the
+	 * If not yet encoded, pass individual URI component values to the
 	 * multi-argument {@link URI} constructor which quotes illegal characters
 	 * that cannot appear in their respective URI component.
 	 */

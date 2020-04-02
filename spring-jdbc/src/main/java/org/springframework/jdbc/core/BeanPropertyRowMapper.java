@@ -35,25 +35,25 @@ import org.springframework.util.StringUtils;
  * of the specified mapped target class. The mapped target class must be a
  * top-level class and it must have a default or no-arg constructor.
  *
- * <p>Column values are mapped based on matching the column name as obtained from result set
+ * Column values are mapped based on matching the column name as obtained from result set
  * meta-data to public setters for the corresponding properties. The names are matched either
  * directly or by transforming a name separating the parts with underscores to the same name
  * using "camel" case.
  *
- * <p>Mapping is provided for fields in the target class for many common types, e.g.:
+ * Mapping is provided for fields in the target class for many common types, e.g.:
  * String, boolean, Boolean, byte, Byte, short, Short, int, Integer, long, Long,
  * float, Float, double, Double, BigDecimal, {@code java.util.Date}, etc.
  *
- * <p>To facilitate mapping between columns and fields that don't have matching names,
+ * To facilitate mapping between columns and fields that don't have matching names,
  * try using column aliases in the SQL statement like "select fname as first_name from customer".
  *
- * <p>For 'null' values read from the database, we will attempt to call the setter, but in the case of
+ * For 'null' values read from the database, we will attempt to call the setter, but in the case of
  * Java primitives, this causes a TypeMismatchException. This class can be configured (using the
  * primitivesDefaultedForNullValue property) to trap this exception and use the primitives default value.
  * Be aware that if you use the values from the generated bean to update the database the primitive value
  * will have been set to the primitive's default value instead of null.
  *
- * <p>Please note that this class is designed to provide convenience rather than high performance.
+ * Please note that this class is designed to provide convenience rather than high performance.
  * For best performance, consider using a custom {@link RowMapper} implementation.
  * @since 2.5
  * @param <T> the result type
@@ -97,7 +97,7 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	/**
 	 * Create a new {@code BeanPropertyRowMapper}, accepting unpopulated
 	 * properties in the target bean.
-	 * <p>Consider using the {@link #newInstance} factory method instead,
+	 * Consider using the {@link #newInstance} factory method instead,
 	 * which allows for specifying the mapped type once only.
 	 * @param mappedClass the class that each row should be mapped to
 	 */
@@ -143,7 +143,7 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	/**
 	 * Set whether we're strictly validating that all bean properties have been mapped
 	 * from corresponding database fields.
-	 * <p>Default is {@code false}, accepting unpopulated properties in the target bean.
+	 * Default is {@code false}, accepting unpopulated properties in the target bean.
 	 */
 	public void setCheckFullyPopulated(boolean checkFullyPopulated) {
 		this.checkFullyPopulated = checkFullyPopulated;
@@ -160,7 +160,7 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	/**
 	 * Set whether we're defaulting Java primitives in the case of mapping a null value
 	 * from corresponding database fields.
-	 * <p>Default is {@code false}, throwing an exception when nulls are mapped to Java primitives.
+	 * Default is {@code false}, throwing an exception when nulls are mapped to Java primitives.
 	 */
 	public void setPrimitivesDefaultedForNullValue(boolean primitivesDefaultedForNullValue) {
 		this.primitivesDefaultedForNullValue = primitivesDefaultedForNullValue;
@@ -177,7 +177,7 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	/**
 	 * Set a {@link ConversionService} for binding JDBC values to bean properties,
 	 * or {@code null} for none.
-	 * <p>Default is a {@link DefaultConversionService}, as of Spring 4.3. This
+	 * Default is a {@link DefaultConversionService}, as of Spring 4.3. This
 	 * provides support for {@code java.time} conversion and other special types.
 	 * @since 4.3
 	 * @see #initBeanWrapper(BeanWrapper)
@@ -258,7 +258,7 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 
 	/**
 	 * Extract the values for all columns in the current row.
-	 * <p>Utilizes public setters and result set meta-data.
+	 * Utilizes public setters and result set meta-data.
 	 * @see java.sql.ResultSetMetaData
 	 */
 	@Override
@@ -320,7 +320,7 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	/**
 	 * Initialize the given BeanWrapper to be used for row mapping.
 	 * To be called for each row.
-	 * <p>The default implementation applies the configured {@link ConversionService},
+	 * The default implementation applies the configured {@link ConversionService},
 	 * if any. Can be overridden in subclasses.
 	 * @param bw the BeanWrapper to initialize
 	 * @see #getConversionService()
@@ -335,7 +335,7 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 
 	/**
 	 * Retrieve a JDBC object value for the specified column.
-	 * <p>The default implementation calls
+	 * The default implementation calls
 	 * {@link JdbcUtils#getResultSetValue(java.sql.ResultSet, int, Class)}.
 	 * Subclasses may override this to check specific value types upfront,
 	 * or to post-process values return from {@code getResultSetValue}.

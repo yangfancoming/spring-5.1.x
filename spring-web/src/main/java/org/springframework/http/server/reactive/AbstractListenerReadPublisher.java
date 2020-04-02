@@ -20,7 +20,7 @@ import org.springframework.util.Assert;
  * Abstract base class for {@code Publisher} implementations that bridge between
  * event-listener read APIs and Reactive Streams.
  *
- * <p>Specifically a base class for reading from the HTTP request body with
+ * Specifically a base class for reading from the HTTP request body with
  * Servlet 3.1 non-blocking I/O and Undertow XNIO as well as handling incoming
  * WebSocket messages with standard Java WebSocket (JSR-356), Jetty, and
  * Undertow.
@@ -141,7 +141,7 @@ public abstract class AbstractListenerReadPublisher<T> implements Publisher<T> {
 
 	/**
 	 * Invoked when reading is paused due to a lack of demand.
-	 * <p><strong>Note:</strong> This method is guaranteed not to compete with
+	 * <strong>Note:</strong> This method is guaranteed not to compete with
 	 * {@link #checkOnDataAvailable()} so it can be used to safely suspend
 	 * reading, if the underlying API supports it, i.e. without competing with
 	 * an implicit call to resume via {@code checkOnDataAvailable()}.
@@ -241,7 +241,7 @@ public abstract class AbstractListenerReadPublisher<T> implements Publisher<T> {
 
 	/**
 	 * Represents a state for the {@link Publisher} to be in.
-	 * <p><pre>
+	 * <pre>
 	 *        UNSUBSCRIBED
 	 *             |
 	 *             v

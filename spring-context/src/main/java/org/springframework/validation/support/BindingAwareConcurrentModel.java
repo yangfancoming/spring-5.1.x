@@ -12,7 +12,7 @@ import org.springframework.validation.BindingResult;
  * the {@link BindingResult} object when its corresponding
  * target attribute is replaced through regular {@link Map} operations.
  *
- * <p>This is the class exposed to handler methods by Spring WebFlux,
+ * This is the class exposed to handler methods by Spring WebFlux,
  * typically consumed through a declaration of the
  * {@link org.springframework.ui.Model} interface as a parameter type.
  * There is typically no need to create it within user code.

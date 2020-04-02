@@ -8,7 +8,7 @@ package org.springframework.core.env;
  * <em>properties</em>. Methods related to property access are exposed via the
  * {@link PropertyResolver} superinterface.
  *
- * <p>A <em>profile</em> is a named, logical group of bean definitions to be registered
+ * A <em>profile</em> is a named, logical group of bean definitions to be registered
  * with the container only if the given profile is <em>active</em>. Beans may be assigned
  * to a profile whether defined in XML or via annotations; see the spring-beans 3.1 schema
  * or the {@link org.springframework.context.annotation.Profile @Profile} annotation for
@@ -17,18 +17,18 @@ package org.springframework.core.env;
  * active}, and which profiles (if any) should be {@linkplain #getDefaultProfiles active
  * by default}.
  *
- * <p><em>Properties</em> play an important role in almost all applications, and may
+ * <em>Properties</em> play an important role in almost all applications, and may
  * originate from a variety of sources: properties files, JVM system properties, system
  * environment variables, JNDI, servlet context parameters, ad-hoc Properties objects,
  * Maps, and so on. The role of the environment object with relation to properties is to
  * provide the user with a convenient service interface for configuring property sources
  * and resolving properties from them.
  *
- * <p>Beans managed within an {@code ApplicationContext} may register to be {@link
+ * Beans managed within an {@code ApplicationContext} may register to be {@link
  * org.springframework.context.EnvironmentAware EnvironmentAware} or {@code @Inject} the
  * {@code Environment} in order to query profile state or resolve properties directly.
  *
- * <p>In most cases, however, application-level beans should not need to interact with the
+ * In most cases, however, application-level beans should not need to interact with the
  * {@code Environment} directly but instead may have to have {@code ${...}} property
  * values replaced by a property placeholder configurer such as
  * {@link org.springframework.context.support.PropertySourcesPlaceholderConfigurer
@@ -36,7 +36,7 @@ package org.springframework.core.env;
  * as of Spring 3.1 is registered by default when using
  * {@code <context:property-placeholder/>}.
  *
- * <p>Configuration of the environment object must be done through the
+ * Configuration of the environment object must be done through the
  * {@code ConfigurableEnvironment} interface, returned from all
  * {@code AbstractApplicationContext} subclass {@code getEnvironment()} methods. See
  * {@link ConfigurableEnvironment} Javadoc for usage examples demonstrating manipulation
@@ -62,7 +62,7 @@ public interface Environment extends PropertyResolver {
 	 * activated by setting {@linkplain AbstractEnvironment#ACTIVE_PROFILES_PROPERTY_NAME
 	 * "spring.profiles.active"} as a system property or by calling
 	 * {@link ConfigurableEnvironment#setActiveProfiles(String...)}.
-	 * <p>If no profiles have explicitly been specified as active, then any
+	 * If no profiles have explicitly been specified as active, then any
 	 * {@linkplain #getDefaultProfiles() default profiles} will automatically be activated.
 	 * @see #getDefaultProfiles
 	 * @see ConfigurableEnvironment#setActiveProfiles

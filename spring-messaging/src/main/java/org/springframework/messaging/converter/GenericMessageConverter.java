@@ -15,7 +15,7 @@ import org.springframework.util.ClassUtils;
  * {@link ConversionService} to convert the payload of the message
  * to the requested type.
  *
- * <p>Return {@code null} if the conversion service cannot convert
+ * Return {@code null} if the conversion service cannot convert
  * from the payload type to the requested type.
  *
  * @author Stephane Nicoll

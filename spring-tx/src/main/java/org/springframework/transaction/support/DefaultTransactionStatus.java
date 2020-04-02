@@ -12,14 +12,14 @@ import org.springframework.util.Assert;
  * interface, used by {@link AbstractPlatformTransactionManager}. Based on the concept
  * of an underlying "transaction object".
  *
- * <p>Holds all status information that {@link AbstractPlatformTransactionManager}
+ * Holds all status information that {@link AbstractPlatformTransactionManager}
  * needs internally, including a generic transaction object determined by the
  * concrete transaction manager implementation.
  *
- * <p>Supports delegating savepoint-related methods to a transaction object
+ * Supports delegating savepoint-related methods to a transaction object
  * that implements the {@link SavepointManager} interface.
  *
- * <p><b>NOTE:</b> This is <i>not</i> intended for use with other PlatformTransactionManager
+ * <b>NOTE:</b> This is <i>not</i> intended for use with other PlatformTransactionManager
  * implementations, in particular not for mock transaction managers in testing environments.
  * Use the alternative {@link SimpleTransactionStatus} class or a mock for the plain
  * {@link org.springframework.transaction.TransactionStatus} interface instead.
@@ -141,7 +141,7 @@ public class DefaultTransactionStatus extends AbstractTransactionStatus {
 	/**
 	 * Determine the rollback-only flag via checking the transaction object, provided
 	 * that the latter implements the {@link SmartTransactionObject} interface.
-	 * <p>Will return {@code true} if the global transaction itself has been marked
+	 * Will return {@code true} if the global transaction itself has been marked
 	 * rollback-only by the transaction coordinator, for example in case of a timeout.
 	 * @see SmartTransactionObject#isRollbackOnly()
 	 */

@@ -64,7 +64,7 @@ import org.springframework.util.StringUtils;
  * given that arguments specified on the command line are naturally more specific than
  * those specified as environment variables.
  *
- * <p>As an alternative to injecting the {@code Environment}, Spring's {@code @Value}
+ * As an alternative to injecting the {@code Environment}, Spring's {@code @Value}
  * annotation may be used to inject these properties, given that a {@link
  * PropertySourcesPropertyResolver} bean has been registered, either directly or through
  * using the {@code <context:property-placeholder>} element. For example:
@@ -85,7 +85,7 @@ import org.springframework.util.StringUtils;
  *
  * <h3>Working with option arguments</h3>
  *
- * <p>Individual command line arguments are represented as properties through the usual
+ * Individual command line arguments are represented as properties through the usual
  * {@link PropertySource#getProperty(String)} and
  * {@link PropertySource#containsProperty(String)} methods. For example, given the
  * following command line:
@@ -110,14 +110,14 @@ import org.springframework.util.StringUtils;
  * resolves to {@code null} because it was not specified. This behavior is consistent with
  * the general contract to be followed by all {@code PropertySource} implementations.
  *
- * <p>Note also that while "--" was used in the examples above to denote an option
+ * Note also that while "--" was used in the examples above to denote an option
  * argument, this syntax may vary across individual command line argument libraries. For
  * example, a JOpt- or Commons CLI-based implementation may allow for single dash ("-")
  * "short" option arguments, etc.
  *
  * <h3>Working with non-option arguments</h3>
  *
- * <p>Non-option arguments are also supported through this abstraction. Any arguments
+ * Non-option arguments are also supported through this abstraction. Any arguments
  * supplied without an option-style prefix such as "-" or "--" are considered "non-option
  * arguments" and available through the special {@linkplain
  * #DEFAULT_NON_OPTION_ARGS_PROPERTY_NAME "nonOptionArgs"} property.  If multiple
@@ -144,7 +144,7 @@ import org.springframework.util.StringUtils;
  * assert ps.getProperty("nonOptionArgs").equals("/path/to/file1,/path/to/file2");
  * </pre>
  *
- * <p>As mentioned above, when used in conjunction with the Spring {@code Environment}
+ * As mentioned above, when used in conjunction with the Spring {@code Environment}
  * abstraction, this comma-delimited string may easily be converted to a String array or
  * list:
  *
@@ -155,7 +155,7 @@ import org.springframework.util.StringUtils;
  * assert nonOptionArgs[1].equals("/path/to/file2");
  * </pre>
  *
- * <p>The name of the special "non-option arguments" property may be customized through
+ * The name of the special "non-option arguments" property may be customized through
  * the {@link #setNonOptionArgsPropertyName(String)} method. Doing so is recommended as
  * it gives proper semantic value to non-option arguments. For example, if filesystem
  * paths are being specified as non-option arguments, it is likely preferable to refer to

@@ -29,7 +29,7 @@ import org.springframework.util.ClassUtils;
  * information in the method attributes to discover parameter names. Returns
  * {@code null} if the class file was compiled without debug information.
  *
- * <p>Uses ObjectWeb's ASM library for analyzing class files. Each discoverer instance
+ * Uses ObjectWeb's ASM library for analyzing class files. Each discoverer instance
  * caches the ASM discovered information for each introspected Class, in a thread-safe
  * manner. It is recommended to reuse ParameterNameDiscoverer instances as far as possible.
  *

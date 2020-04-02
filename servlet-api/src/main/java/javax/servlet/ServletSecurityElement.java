@@ -113,7 +113,7 @@ public class ServletSecurityElement extends HttpConstraintElement {
      * Gets the (possibly empty) collection of HTTP Method specific
      * constraint elements.
      *
-     * <p>If permitted, any changes to the returned <code>Collection</code> must not
+     * If permitted, any changes to the returned <code>Collection</code> must not
      * affect this <code>ServletSecurityElement</code>.
      *
      *
@@ -127,7 +127,7 @@ public class ServletSecurityElement extends HttpConstraintElement {
     /**
      * Gets the set of HTTP method names named by the HttpMethodConstraints.
      *
-     *  <p>If permitted, any changes to the returned <code>Collection</code> must not
+     *  If permitted, any changes to the returned <code>Collection</code> must not
      * affect this <code>ServletSecurityElement</code>.
      *
 

@@ -93,7 +93,7 @@ import org.springframework.web.util.UrlPathHelper;
  * subclass and {@link Bean @Bean} to overridden {@link Bean @Bean} methods.
  * For more details see the javadoc of {@link EnableWebMvc @EnableWebMvc}.
  *
- * <p>This class registers the following {@link HandlerMapping HandlerMappings}:</p>
+ * This class registers the following {@link HandlerMapping HandlerMappings}:</p>
  * <ul>
  * <li>{@link RequestMappingHandlerMapping}
  * ordered at 0 for mapping requests to annotated controller methods.
@@ -107,7 +107,7 @@ import org.springframework.web.util.UrlPathHelper;
  * ordered at {@code Integer.MAX_VALUE} to forward requests to the default servlet.
  * </ul>
  *
- * <p>Registers these {@link HandlerAdapter HandlerAdapters}:
+ * Registers these {@link HandlerAdapter HandlerAdapters}:
  * <ul>
  * <li>{@link RequestMappingHandlerAdapter}
  * for processing requests with annotated controller methods.
@@ -117,7 +117,7 @@ import org.springframework.web.util.UrlPathHelper;
  * for processing requests with interface-based {@link Controller Controllers}.
  * </ul>
  *
- * <p>Registers a {@link HandlerExceptionResolverComposite} with this chain of
+ * Registers a {@link HandlerExceptionResolverComposite} with this chain of
  * exception resolvers:
  * <ul>
  * <li>{@link ExceptionHandlerExceptionResolver} for handling exceptions through
@@ -128,7 +128,7 @@ import org.springframework.web.util.UrlPathHelper;
  * exception types
  * </ul>
  *
- * <p>Registers an {@link AntPathMatcher} and a {@link UrlPathHelper}
+ * Registers an {@link AntPathMatcher} and a {@link UrlPathHelper}
  * to be used by:
  * <ul>
  * <li>the {@link RequestMappingHandlerMapping},
@@ -137,7 +137,7 @@ import org.springframework.web.util.UrlPathHelper;
  * </ul>
  * Note that those beans can be configured with a {@link PathMatchConfigurer}.
  *
- * <p>Both the {@link RequestMappingHandlerAdapter} and the
+ * Both the {@link RequestMappingHandlerAdapter} and the
  * {@link ExceptionHandlerExceptionResolver} are configured with default
  * instances of the following by default:
  * <ul>
@@ -307,7 +307,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	/**
 	 * Provide access to the shared handler interceptors used to configure
 	 * {@link HandlerMapping} instances with.
-	 * <p>This method cannot be overridden; use {@link #addInterceptors} instead.
+	 * This method cannot be overridden; use {@link #addInterceptors} instead.
 	 */
 	protected final Object[] getInterceptors() {
 		if (this.interceptors == null) {
@@ -611,7 +611,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 
 	/**
 	 * Return a {@link FormattingConversionService} for use with annotated controllers.
-	 * <p>See {@link #addFormatters} as an alternative to overriding this method.
+	 * See {@link #addFormatters} as an alternative to overriding this method.
 	 */
 	@Bean
 	public FormattingConversionService mvcConversionService() {
@@ -669,7 +669,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	/**
 	 * Provide access to the shared custom argument resolvers used by the
 	 * {@link RequestMappingHandlerAdapter} and the {@link ExceptionHandlerExceptionResolver}.
-	 * <p>This method cannot be overridden; use {@link #addArgumentResolvers} instead.
+	 * This method cannot be overridden; use {@link #addArgumentResolvers} instead.
 	 * @since 4.3
 	 */
 	protected final List<HandlerMethodArgumentResolver> getArgumentResolvers() {
@@ -683,7 +683,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	/**
 	 * Add custom {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}
 	 * to use in addition to the ones registered by default.
-	 * <p>Custom argument resolvers are invoked before built-in resolvers except for
+	 * Custom argument resolvers are invoked before built-in resolvers except for
 	 * those that rely on the presence of annotations (e.g. {@code @RequestParameter},
 	 * {@code @PathVariable}, etc). The latter can be customized by configuring the
 	 * {@link RequestMappingHandlerAdapter} directly.
@@ -695,7 +695,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	/**
 	 * Provide access to the shared return value handlers used by the
 	 * {@link RequestMappingHandlerAdapter} and the {@link ExceptionHandlerExceptionResolver}.
-	 * <p>This method cannot be overridden; use {@link #addReturnValueHandlers} instead.
+	 * This method cannot be overridden; use {@link #addReturnValueHandlers} instead.
 	 * @since 4.3
 	 */
 	protected final List<HandlerMethodReturnValueHandler> getReturnValueHandlers() {
@@ -709,7 +709,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	/**
 	 * Add custom {@link HandlerMethodReturnValueHandler HandlerMethodReturnValueHandlers}
 	 * in addition to the ones registered by default.
-	 * <p>Custom return value handlers are invoked before built-in ones except for
+	 * Custom return value handlers are invoked before built-in ones except for
 	 * those that rely on the presence of annotations (e.g. {@code @ResponseBody},
 	 * {@code @ModelAttribute}, etc). The latter can be customized by configuring the
 	 * {@link RequestMappingHandlerAdapter} directly.
@@ -722,7 +722,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	 * Provides access to the shared {@link HttpMessageConverter HttpMessageConverters}
 	 * used by the {@link RequestMappingHandlerAdapter} and the
 	 * {@link ExceptionHandlerExceptionResolver}.
-	 * <p>This method cannot be overridden; use {@link #configureMessageConverters} instead.
+	 * This method cannot be overridden; use {@link #configureMessageConverters} instead.
 	 * Also see {@link #addDefaultHttpMessageConverters} for adding default message converters.
 	 */
 	protected final List<HttpMessageConverter<?>> getMessageConverters() {
@@ -741,7 +741,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	 * Override this method to add custom {@link HttpMessageConverter HttpMessageConverters}
 	 * to use with the {@link RequestMappingHandlerAdapter} and the
 	 * {@link ExceptionHandlerExceptionResolver}.
-	 * <p>Adding converters to the list turns off the default converters that would
+	 * Adding converters to the list turns off the default converters that would
 	 * otherwise be registered by default. Also see {@link #addDefaultHttpMessageConverters}
 	 * for adding default message converters.
 	 * @param converters a list to add message converters to (initially an empty list)
@@ -859,7 +859,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	 * Returns a {@link HandlerExceptionResolverComposite} containing a list of exception
 	 * resolvers obtained either through {@link #configureHandlerExceptionResolvers} or
 	 * through {@link #addDefaultHandlerExceptionResolvers}.
-	 * <p><strong>Note:</strong> This method cannot be made final due to CGLIB constraints.
+	 * <strong>Note:</strong> This method cannot be made final due to CGLIB constraints.
 	 * Rather than overriding it, consider overriding {@link #configureHandlerExceptionResolvers}
 	 * which allows for providing a list of resolvers.
 	 */
@@ -880,7 +880,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	/**
 	 * Override this method to configure the list of
 	 * {@link HandlerExceptionResolver HandlerExceptionResolvers} to use.
-	 * <p>Adding resolvers to the list turns off the default resolvers that would otherwise
+	 * Adding resolvers to the list turns off the default resolvers that would otherwise
 	 * be registered by default. Also see {@link #addDefaultHandlerExceptionResolvers}
 	 * that can be used to add the default exception resolvers.
 	 * @param exceptionResolvers a list to add exception resolvers to (initially an empty list)
@@ -891,7 +891,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	/**
 	 * Override this method to extend or modify the list of
 	 * {@link HandlerExceptionResolver HandlerExceptionResolvers} after it has been configured.
-	 * <p>This may be useful for example to allow default resolvers to be registered
+	 * This may be useful for example to allow default resolvers to be registered
 	 * and then insert a custom one through this method.
 	 * @param exceptionResolvers the list of configured resolvers to extend.
 	 * @since 4.3
@@ -902,7 +902,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	/**
 	 * A method available to subclasses for adding default
 	 * {@link HandlerExceptionResolver HandlerExceptionResolvers}.
-	 * <p>Adds the following exception resolvers:
+	 * Adds the following exception resolvers:
 	 * <ul>
 	 * <li>{@link ExceptionHandlerExceptionResolver} for handling exceptions through
 	 * {@link org.springframework.web.bind.annotation.ExceptionHandler} methods.
@@ -950,7 +950,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	 * resolution is used in which case the order is raised to
 	 * {@link org.springframework.core.Ordered#HIGHEST_PRECEDENCE
 	 * Ordered.HIGHEST_PRECEDENCE}.
-	 * <p>If no other resolvers are configured,
+	 * If no other resolvers are configured,
 	 * {@link ViewResolverComposite#resolveViewName(String, Locale)} returns null in order
 	 * to allow other potential {@link ViewResolver} beans to resolve views.
 	 * @since 4.1

@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  * the client but, in some circumstances, the infrastructure may need
  * to handle cache-provider exceptions in a different way.
  *
- * <p>Typically, failing to retrieve an object from the cache with
+ * Typically, failing to retrieve an object from the cache with
  * a given id can be transparently managed as a cache miss by not
  * throwing back such exception.
  *

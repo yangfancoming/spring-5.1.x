@@ -14,10 +14,10 @@ import org.springframework.web.servlet.HandlerMapping;
  * Simple {@code Controller} implementation that transforms the virtual
  * path of a URL into a view name and returns that view.
  *
- * <p>Can optionally prepend a {@link #setPrefix prefix} and/or append a
+ * Can optionally prepend a {@link #setPrefix prefix} and/or append a
  * {@link #setSuffix suffix} to build the viewname from the URL filename.
  *
- * <p>Find some examples below:
+ * Find some examples below:
  * <ol>
  * <li>{@code "/index" -> "index"}</li>
  * <li>{@code "/index.html" -> "index"}</li>
@@ -25,7 +25,7 @@ import org.springframework.web.servlet.HandlerMapping;
  * <li>{@code "/products/view.html" -> "products/view"}</li>
  * </ol>
  *
- * <p>Thanks to David Barri for suggesting prefix/suffix support!
+ * Thanks to David Barri for suggesting prefix/suffix support!
  *
  * @author Alef Arendsen
 
@@ -134,7 +134,7 @@ public class UrlFilenameViewController extends AbstractUrlViewController {
 	/**
 	 * Build the full view name based on the given view name
 	 * as indicated by the URL path.
-	 * <p>The default implementation simply applies prefix and suffix.
+	 * The default implementation simply applies prefix and suffix.
 	 * This can be overridden, for example, to manipulate upper case
 	 * / lower case, etc.
 	 * @param viewName the original view name, as indicated by the URL path

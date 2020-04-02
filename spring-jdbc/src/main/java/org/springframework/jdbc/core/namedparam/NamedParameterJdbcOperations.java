@@ -19,7 +19,7 @@ import org.springframework.lang.Nullable;
  * Interface specifying a basic set of JDBC operations allowing the use
  * of named parameters rather than the traditional '?' placeholders.
  *
- * <p>This is an alternative to the classic
+ * This is an alternative to the classic
  * {@link org.springframework.jdbc.core.JdbcOperations} interface,
  * implemented by {@link NamedParameterJdbcTemplate}. This interface is not
  * often used directly, but provides a useful option to enhance testability,
@@ -46,7 +46,7 @@ public interface NamedParameterJdbcOperations {
 	 * data access operations on a single Statement, within Spring's managed
 	 * JDBC environment: that is, participating in Spring-managed transactions
 	 * and converting JDBC SQLExceptions into Spring's DataAccessException hierarchy.
-	 * <p>The callback action can return a result object, for example a
+	 * The callback action can return a result object, for example a
 	 * domain object or a collection of domain objects.
 	 * @param sql the SQL to execute
 	 * @param paramSource container of arguments to bind to the query
@@ -64,7 +64,7 @@ public interface NamedParameterJdbcOperations {
 	 * data access operations on a single Statement, within Spring's managed
 	 * JDBC environment: that is, participating in Spring-managed transactions
 	 * and converting JDBC SQLExceptions into Spring's DataAccessException hierarchy.
-	 * <p>The callback action can return a result object, for example a
+	 * The callback action can return a result object, for example a
 	 * domain object or a collection of domain objects.
 	 * @param sql the SQL to execute
 	 * @param paramMap map of parameters to bind to the query
@@ -83,7 +83,7 @@ public interface NamedParameterJdbcOperations {
 	 * data access operations on a single Statement, within Spring's managed
 	 * JDBC environment: that is, participating in Spring-managed transactions
 	 * and converting JDBC SQLExceptions into Spring's DataAccessException hierarchy.
-	 * <p>The callback action can return a result object, for example a
+	 * The callback action can return a result object, for example a
 	 * domain object or a collection of domain objects.
 	 * @param sql the SQL to execute
 	 * @param action callback object that specifies the action
@@ -125,7 +125,7 @@ public interface NamedParameterJdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL,
 	 * reading the ResultSet with a ResultSetExtractor.
-	 * <p>Note: In contrast to the JdbcOperations method with the same signature,
+	 * Note: In contrast to the JdbcOperations method with the same signature,
 	 * this query variant always uses a PreparedStatement. It is effectively
 	 * equivalent to a query call with an empty parameter Map.
 	 * @param sql the SQL query to execute
@@ -163,7 +163,7 @@ public interface NamedParameterJdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL,
 	 * reading the ResultSet on a per-row basis with a RowCallbackHandler.
-	 * <p>Note: In contrast to the JdbcOperations method with the same signature,
+	 * Note: In contrast to the JdbcOperations method with the same signature,
 	 * this query variant always uses a PreparedStatement. It is effectively
 	 * equivalent to a query call with an empty parameter Map.
 	 * @param sql the SQL query to execute
@@ -202,7 +202,7 @@ public interface NamedParameterJdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL,
 	 * mapping each row to a Java object via a RowMapper.
-	 * <p>Note: In contrast to the JdbcOperations method with the same signature,
+	 * Note: In contrast to the JdbcOperations method with the same signature,
 	 * this query variant always uses a PreparedStatement. It is effectively
 	 * equivalent to a query call with an empty parameter Map.
 	 * @param sql the SQL query to execute
@@ -252,7 +252,7 @@ public interface NamedParameterJdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL and a
 	 * list of arguments to bind to the query, expecting a result object.
-	 * <p>The query is expected to be a single row/single column query; the returned
+	 * The query is expected to be a single row/single column query; the returned
 	 * result will be directly mapped to the corresponding object type.
 	 * @param sql the SQL query to execute
 	 * @param paramSource container of arguments to bind to the query
@@ -271,7 +271,7 @@ public interface NamedParameterJdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL and a
 	 * list of arguments to bind to the query, expecting a result object.
-	 * <p>The query is expected to be a single row/single column query; the returned
+	 * The query is expected to be a single row/single column query; the returned
 	 * result will be directly mapped to the corresponding object type.
 	 * @param sql the SQL query to execute
 	 * @param paramMap map of parameters to bind to the query
@@ -291,7 +291,7 @@ public interface NamedParameterJdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL and a
 	 * list of arguments to bind to the query, expecting a result Map.
-	 * <p>The query is expected to be a single row query; the result row will be
+	 * The query is expected to be a single row query; the result row will be
 	 * mapped to a Map (one entry for each column, using the column name as the key).
 	 * @param sql the SQL query to execute
 	 * @param paramSource container of arguments to bind to the query
@@ -310,7 +310,7 @@ public interface NamedParameterJdbcOperations {
 	 * The queryForMap() methods defined by this interface are appropriate
 	 * when you don't have a domain model. Otherwise, consider using
 	 * one of the queryForObject() methods.
-	 * <p>The query is expected to be a single row query; the result row will be
+	 * The query is expected to be a single row query; the result row will be
 	 * mapped to a Map (one entry for each column, using the column name as the key).
 	 * @param sql the SQL query to execute
 	 * @param paramMap map of parameters to bind to the query
@@ -327,7 +327,7 @@ public interface NamedParameterJdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL and a
 	 * list of arguments to bind to the query, expecting a result list.
-	 * <p>The results will be mapped to a List (one entry for each row) of
+	 * The results will be mapped to a List (one entry for each row) of
 	 * result objects, each of them matching the specified element type.
 	 * @param sql the SQL query to execute
 	 * @param paramSource container of arguments to bind to the query
@@ -344,7 +344,7 @@ public interface NamedParameterJdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL and a
 	 * list of arguments to bind to the query, expecting a result list.
-	 * <p>The results will be mapped to a List (one entry for each row) of
+	 * The results will be mapped to a List (one entry for each row) of
 	 * result objects, each of them matching the specified element type.
 	 * @param sql the SQL query to execute
 	 * @param paramMap map of parameters to bind to the query
@@ -362,7 +362,7 @@ public interface NamedParameterJdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL and a
 	 * list of arguments to bind to the query, expecting a result list.
-	 * <p>The results will be mapped to a List (one entry for each row) of
+	 * The results will be mapped to a List (one entry for each row) of
 	 * Maps (one entry for each column, using the column name as the key).
 	 * Each element in the list will be of the form returned by this interface's
 	 * {@code queryForMap} methods.
@@ -377,7 +377,7 @@ public interface NamedParameterJdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL and a
 	 * list of arguments to bind to the query, expecting a result list.
-	 * <p>The results will be mapped to a List (one entry for each row) of
+	 * The results will be mapped to a List (one entry for each row) of
 	 * Maps (one entry for each column, using the column name as the key).
 	 * Each element in the list will be of the form returned by this interface's
 	 * {@code queryForMap} methods.
@@ -393,9 +393,9 @@ public interface NamedParameterJdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL and a
 	 * list of arguments to bind to the query, expecting a SqlRowSet.
-	 * <p>The results will be mapped to an SqlRowSet which holds the data in a
+	 * The results will be mapped to an SqlRowSet which holds the data in a
 	 * disconnected fashion. This wrapper will translate any SQLExceptions thrown.
-	 * <p>Note that, for the default implementation, JDBC RowSet support needs to
+	 * Note that, for the default implementation, JDBC RowSet support needs to
 	 * be available at runtime: by default, Sun's {@code com.sun.rowset.CachedRowSetImpl}
 	 * class is used, which is part of JDK 1.5+ and also available separately as part of
 	 * Sun's JDBC RowSet Implementations download (rowset.jar).
@@ -413,9 +413,9 @@ public interface NamedParameterJdbcOperations {
 	/**
 	 * Query given SQL to create a prepared statement from SQL and a
 	 * list of arguments to bind to the query, expecting a SqlRowSet.
-	 * <p>The results will be mapped to an SqlRowSet which holds the data in a
+	 * The results will be mapped to an SqlRowSet which holds the data in a
 	 * disconnected fashion. This wrapper will translate any SQLExceptions thrown.
-	 * <p>Note that, for the default implementation, JDBC RowSet support needs to
+	 * Note that, for the default implementation, JDBC RowSet support needs to
 	 * be available at runtime: by default, Sun's {@code com.sun.rowset.CachedRowSetImpl}
 	 * class is used, which is part of JDK 1.5+ and also available separately as part of
 	 * Sun's JDBC RowSet Implementations download (rowset.jar).

@@ -47,13 +47,13 @@ import static java.util.stream.Collectors.*;
  *
  * <h1>Background</h1>
  *
- * <p>When testing annotated methods we create test classes such as
+ * When testing annotated methods we create test classes such as
  * "TestController" with a diverse range of method signatures representing
  * supported annotations and argument types. It becomes challenging to use
  * naming strategies to keep track of methods and arguments especially in
  * combination with variables for reflection metadata.
  *
- * <p>The idea with {@link ResolvableMethod} is NOT to rely on naming techniques
+ * The idea with {@link ResolvableMethod} is NOT to rely on naming techniques
  * but to use hints to zero in on method parameters. Such hints can be strongly
  * typed and explicit about what is being tested.
  *
@@ -358,7 +358,7 @@ public class ResolvableMethod {
 		/**
 		 * Build a {@code ResolvableMethod} from the provided filters which must
 		 * resolve to a unique, single method.
-		 * <p>See additional resolveXxx shortcut methods going directly to
+		 * See additional resolveXxx shortcut methods going directly to
 		 * {@link Method} or return type parameter.
 		 * @throws IllegalStateException for no match or multiple matches
 		 */
@@ -391,7 +391,7 @@ public class ResolvableMethod {
 
 		/**
 		 * Resolve and return the {@code Method} equivalent to:
-		 * <p>{@code build().method()}
+		 * {@code build().method()}
 		 */
 		public final Method resolveMethod() {
 			return build().method();
@@ -399,7 +399,7 @@ public class ResolvableMethod {
 
 		/**
 		 * Resolve and return the {@code Method} equivalent to:
-		 * <p>{@code named(methodName).build().method()}
+		 * {@code named(methodName).build().method()}
 		 */
 		public Method resolveMethod(String methodName) {
 			return named(methodName).build().method();
@@ -407,7 +407,7 @@ public class ResolvableMethod {
 
 		/**
 		 * Resolve and return the declared return type equivalent to:
-		 * <p>{@code build().returnType()}
+		 * {@code build().returnType()}
 		 */
 		public final MethodParameter resolveReturnType() {
 			return build().returnType();
@@ -415,7 +415,7 @@ public class ResolvableMethod {
 
 		/**
 		 * Shortcut to the unique return type equivalent to:
-		 * <p>{@code returning(returnType).build().returnType()}
+		 * {@code returning(returnType).build().returnType()}
 		 * @param returnType the return type
 		 * @param generics optional array of generic types
 		 */
@@ -425,7 +425,7 @@ public class ResolvableMethod {
 
 		/**
 		 * Shortcut to the unique return type equivalent to:
-		 * <p>{@code returning(returnType).build().returnType()}
+		 * {@code returning(returnType).build().returnType()}
 		 * @param returnType the return type
 		 * @param generic at least one generic type
 		 * @param generics optional extra generic types

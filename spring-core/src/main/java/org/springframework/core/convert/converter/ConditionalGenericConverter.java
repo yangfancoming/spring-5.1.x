@@ -8,7 +8,7 @@ import org.springframework.core.convert.TypeDescriptor;
  * A {@link GenericConverter} that may conditionally execute based on attributes
  * of the {@code source} and {@code target} {@link TypeDescriptor}.
  *
- * <p>See {@link ConditionalConverter} for details.
+ * See {@link ConditionalConverter} for details.
  *
  * @author Keith Donald
  * @author Phillip Webb

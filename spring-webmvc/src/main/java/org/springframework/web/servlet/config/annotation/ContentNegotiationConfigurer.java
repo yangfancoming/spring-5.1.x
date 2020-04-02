@@ -23,10 +23,10 @@ import org.springframework.web.accept.PathExtensionContentNegotiationStrategy;
  * Creates a {@code ContentNegotiationManager} and configures it with
  * one or more {@link ContentNegotiationStrategy} instances.
  *
- * <p>As of 5.0 you can set the exact strategies to use via
+ * As of 5.0 you can set the exact strategies to use via
  * {@link #strategies(List)}.
  *
- * <p>As an alternative you can also rely on the set of defaults described below
+ * As an alternative you can also rely on the set of defaults described below
  * which can be turned on or off or customized through the methods of this
  * builder:
  *
@@ -63,7 +63,7 @@ import org.springframework.web.accept.PathExtensionContentNegotiationStrategy;
  * </tr>
  * </table>
  *
- * <p>The order in which strategies are configured is fixed. You can only turn
+ * The order in which strategies are configured is fixed. You can only turn
  * them on or off.
  *
  * <strong>Note:</strong> if you must use URL-based content type resolution,
@@ -95,7 +95,7 @@ public class ContentNegotiationConfigurer {
 
 	/**
 	 * Set the exact list of strategies to use.
-	 * <p><strong>Note:</strong> use of this method is mutually exclusive with
+	 * <strong>Note:</strong> use of this method is mutually exclusive with
 	 * use of all other setters in this class which customize a default, fixed
 	 * set of strategies. See class level doc for more details.
 	 * @param strategies the strategies to use
@@ -108,7 +108,7 @@ public class ContentNegotiationConfigurer {
 	/**
 	 * Whether the path extension in the URL path should be used to determine
 	 * the requested media type.
-	 * <p>By default this is set to {@code true} in which case a request
+	 * By default this is set to {@code true} in which case a request
 	 * for {@code /hotels.pdf} will be interpreted as a request for
 	 * {@code "application/pdf"} regardless of the 'Accept' header.
 	 */
@@ -124,7 +124,7 @@ public class ContentNegotiationConfigurer {
 	 * whitelisted for the purpose of Reflected File Download attack detection
 	 * (see Spring Framework reference documentation for more details on RFD
 	 * attack protection).
-	 * <p>The path extension strategy will also try to use
+	 * The path extension strategy will also try to use
 	 * {@link ServletContext#getMimeType} and {@link MediaTypeFactory} to resolve path
 	 * extensions. To change this behavior see the {@link #useRegisteredExtensionsOnly} property.
 	 * @param extension the key to look up
@@ -164,7 +164,7 @@ public class ContentNegotiationConfigurer {
 	 * Whether to ignore requests with path extension that cannot be resolved
 	 * to any media type. Setting this to {@code false} will result in an
 	 * {@code HttpMediaTypeNotAcceptableException} if there is no match.
-	 * <p>By default this is set to {@code true}.
+	 * By default this is set to {@code true}.
 	 */
 	public ContentNegotiationConfigurer ignoreUnknownPathExtensions(boolean ignore) {
 		this.factory.setIgnoreUnknownPathExtensions(ignore);
@@ -187,7 +187,7 @@ public class ContentNegotiationConfigurer {
 	 * When {@link #favorPathExtension favorPathExtension} is set, this
 	 * property determines whether to use only registered {@code MediaType} mappings
 	 * to resolve a path extension to a specific MediaType.
-	 * <p>By default this is not set in which case
+	 * By default this is not set in which case
 	 * {@code PathExtensionContentNegotiationStrategy} will use defaults if available.
 	 */
 	public ContentNegotiationConfigurer useRegisteredExtensionsOnly(boolean useRegisteredExtensionsOnly) {
@@ -199,7 +199,7 @@ public class ContentNegotiationConfigurer {
 	 * Whether a request parameter ("format" by default) should be used to
 	 * determine the requested media type. For this option to work you must
 	 * register {@link #mediaType(String, MediaType) media type mappings}.
-	 * <p>By default this is set to {@code false}.
+	 * By default this is set to {@code false}.
 	 * @see #parameterName(String)
 	 */
 	public ContentNegotiationConfigurer favorParameter(boolean favorParameter) {
@@ -209,7 +209,7 @@ public class ContentNegotiationConfigurer {
 
 	/**
 	 * Set the query parameter name to use when {@link #favorParameter} is on.
-	 * <p>The default parameter name is {@code "format"}.
+	 * The default parameter name is {@code "format"}.
 	 */
 	public ContentNegotiationConfigurer parameterName(String parameterName) {
 		this.factory.setParameterName(parameterName);
@@ -218,7 +218,7 @@ public class ContentNegotiationConfigurer {
 
 	/**
 	 * Whether to disable checking the 'Accept' request header.
-	 * <p>By default this value is set to {@code false}.
+	 * By default this value is set to {@code false}.
 	 */
 	public ContentNegotiationConfigurer ignoreAcceptHeader(boolean ignoreAcceptHeader) {
 		this.factory.setIgnoreAcceptHeader(ignoreAcceptHeader);
@@ -228,9 +228,9 @@ public class ContentNegotiationConfigurer {
 	/**
 	 * Set the default content type(s) to use when no content type is requested
 	 * in order of priority.
-	 * <p>If destinations are present that do not support any of the given media
+	 * If destinations are present that do not support any of the given media
 	 * types, consider appending {@link MediaType#ALL} at the end.
-	 * <p>By default this is not set.
+	 * By default this is not set.
 	 * @see #defaultContentTypeStrategy
 	 */
 	public ContentNegotiationConfigurer defaultContentType(MediaType... defaultContentTypes) {
@@ -241,7 +241,7 @@ public class ContentNegotiationConfigurer {
 	/**
 	 * Set a custom {@link ContentNegotiationStrategy} to use to determine
 	 * the content type to use when no content type is requested.
-	 * <p>By default this is not set.
+	 * By default this is not set.
 	 * @since 4.1.2
 	 * @see #defaultContentType
 	 */

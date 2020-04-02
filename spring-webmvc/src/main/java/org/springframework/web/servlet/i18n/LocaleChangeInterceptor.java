@@ -97,7 +97,7 @@ public class LocaleChangeInterceptor extends HandlerInterceptorAdapter {
 	/**
 	 * Specify whether to parse request parameter values as BCP 47 language tags
 	 * instead of Java's legacy locale specification format.
-	 * <p><b>NOTE: As of 5.1, this resolver leniently accepts the legacy
+	 * <b>NOTE: As of 5.1, this resolver leniently accepts the legacy
 	 * {@link Locale#toString} format as well as BCP 47 language tags.</b>
 	 * @since 4.3
 	 * @see Locale#forLanguageTag(String)
@@ -169,7 +169,7 @@ public class LocaleChangeInterceptor extends HandlerInterceptorAdapter {
 
 	/**
 	 * Parse the given locale value as coming from a request parameter.
-	 * <p>The default implementation calls {@link StringUtils#parseLocale(String)},
+	 * The default implementation calls {@link StringUtils#parseLocale(String)},
 	 * accepting the {@link Locale#toString} format as well as BCP 47 language tags.
 	 * @param localeValue the locale value to parse
 	 * @return the corresponding {@code Locale} instance

@@ -101,7 +101,7 @@ public class WebAsyncTask<V> implements BeanFactoryAware {
 
 	/**
 	 * A {@link BeanFactory} to use for resolving an executor name.
-	 * <p>This factory reference will automatically be set when
+	 * This factory reference will automatically be set when
 	 * {@code WebAsyncTask} is used within a Spring MVC controller.
 	 */
 	public void setBeanFactory(BeanFactory beanFactory) {
@@ -129,7 +129,7 @@ public class WebAsyncTask<V> implements BeanFactoryAware {
 
 	/**
 	 * Register code to invoke when the async request times out.
-	 * <p>This method is called from a container thread when an async request times
+	 * This method is called from a container thread when an async request times
 	 * out before the {@code Callable} has completed. The callback is executed in
 	 * the same thread and therefore should return without blocking. It may return
 	 * an alternative value to use, including an {@link Exception} or return
@@ -141,7 +141,7 @@ public class WebAsyncTask<V> implements BeanFactoryAware {
 
 	/**
 	 * Register code to invoke for an error during async request processing.
-	 * <p>This method is called from a container thread when an error occurred
+	 * This method is called from a container thread when an error occurred
 	 * while processing an async request before the {@code Callable} has
 	 * completed. The callback is executed in the same thread and therefore
 	 * should return without blocking. It may return an alternative value to
@@ -155,7 +155,7 @@ public class WebAsyncTask<V> implements BeanFactoryAware {
 
 	/**
 	 * Register code to invoke when the async request completes.
-	 * <p>This method is called from a container thread when an async request
+	 * This method is called from a container thread when an async request
 	 * completed for any reason, including timeout and network error.
 	 */
 	public void onCompletion(Runnable callback) {

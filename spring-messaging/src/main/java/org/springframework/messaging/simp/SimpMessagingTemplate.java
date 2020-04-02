@@ -23,7 +23,7 @@ import org.springframework.util.StringUtils;
  * An implementation of
  * {@link org.springframework.messaging.simp.SimpMessageSendingOperations}.
  *
- * <p>Also provides methods for sending messages to a user. See
+ * Also provides methods for sending messages to a user. See
  * {@link org.springframework.messaging.simp.user.UserDestinationResolver
  * UserDestinationResolver}
  * for more on user destinations.
@@ -63,7 +63,7 @@ public class SimpMessagingTemplate extends AbstractMessageSendingTemplate<String
 
 	/**
 	 * Configure the prefix to use for destinations targeting a specific user.
-	 * <p>The default value is "/user/".
+	 * The default value is "/user/".
 	 * @see org.springframework.messaging.simp.user.UserDestinationMessageHandler
 	 */
 	public void setUserDestinationPrefix(String prefix) {
@@ -96,7 +96,7 @@ public class SimpMessagingTemplate extends AbstractMessageSendingTemplate<String
 	/**
 	 * Configure a {@link MessageHeaderInitializer} to apply to the headers of all
 	 * messages created through the {@code SimpMessagingTemplate}.
-	 * <p>By default, this property is not set.
+	 * By default, this property is not set.
 	 */
 	public void setHeaderInitializer(@Nullable MessageHeaderInitializer headerInitializer) {
 		this.headerInitializer = headerInitializer;
@@ -116,7 +116,7 @@ public class SimpMessagingTemplate extends AbstractMessageSendingTemplate<String
 	 * {@link org.springframework.messaging.simp.SimpMessageHeaderAccessor#DESTINATION_HEADER
 	 * SimpMessageHeaderAccessor#DESTINATION_HEADER} then the message is sent without
 	 * further changes.
-	 * <p>If a destination header is not already present ,the message is sent
+	 * If a destination header is not already present ,the message is sent
 	 * to the configured {@link #setDefaultDestination(Object) defaultDestination}
 	 * or an exception an {@code IllegalStateException} is raised if that isn't
 	 * configured.
@@ -221,10 +221,10 @@ public class SimpMessagingTemplate extends AbstractMessageSendingTemplate<String
 	 * {@link NativeMessageHeaderAccessor#NATIVE_HEADERS NATIVE_HEADERS NATIVE_HEADERS NATIVE_HEADERS}.
 	 * effectively treats the input header map as headers to be sent out to the
 	 * destination.
-	 * <p>However if the given headers already contain the key
+	 * However if the given headers already contain the key
 	 * {@code NATIVE_HEADERS NATIVE_HEADERS} then the same headers instance is
 	 * returned without changes.
-	 * <p>Also if the given headers were prepared and obtained with
+	 * Also if the given headers were prepared and obtained with
 	 * {@link SimpMessageHeaderAccessor#getMessageHeaders()} then the same headers
 	 * instance is also returned without changes.
 	 */

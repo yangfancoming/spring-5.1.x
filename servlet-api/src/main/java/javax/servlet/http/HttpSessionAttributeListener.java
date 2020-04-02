@@ -8,13 +8,13 @@ import java.util.EventListener;
  * Interface for receiving notification events about HttpSession
  * attribute changes.
  *
- * <p>In order to receive these notification events, the implementation
+ * In order to receive these notification events, the implementation
  * class must be either declared in the deployment descriptor of the web
  * application, annotated with {@link javax.servlet.annotation.WebListener},
  * or registered via one of the addListener methods defined on
  * {@link javax.servlet.ServletContext}.
  *
- * <p>The order in which implementations of this interface are invoked is
+ * The order in which implementations of this interface are invoked is
  * unspecified.
  *
  * @since Servlet 2.3

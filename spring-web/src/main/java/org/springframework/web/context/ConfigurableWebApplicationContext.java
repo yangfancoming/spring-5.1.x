@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * Supported by {@link ContextLoader} and
  * {@link org.springframework.web.servlet.FrameworkServlet}.
  *
- * <p>Note: The setters of this interface need to be called before an
+ * Note: The setters of this interface need to be called before an
  * invocation of the {@link #refresh} method inherited from
  * {@link org.springframework.context.ConfigurableApplicationContext}.
  * They do not cause an initialization of the context on their own.
@@ -40,7 +40,7 @@ public interface ConfigurableWebApplicationContext extends WebApplicationContext
 
 	/**
 	 * Set the ServletContext for this web application context.
-	 * <p>Does not cause an initialization of the context: refresh needs to be
+	 * Does not cause an initialization of the context: refresh needs to be
 	 * called after the setting of all configuration properties.
 	 * @see #refresh()
 	 */
@@ -75,14 +75,14 @@ public interface ConfigurableWebApplicationContext extends WebApplicationContext
 	/**
 	 * Set the config locations for this web application context in init-param style,
 	 * i.e. with distinct locations separated by commas, semicolons or whitespace.
-	 * <p>If not set, the implementation is supposed to use a default for the
+	 * If not set, the implementation is supposed to use a default for the
 	 * given namespace or the root web application context, as appropriate.
 	 */
 	void setConfigLocation(String configLocation);
 
 	/**
 	 * Set the config locations for this web application context.
-	 * <p>If not set, the implementation is supposed to use a default for the
+	 * If not set, the implementation is supposed to use a default for the
 	 * given namespace or the root web application context, as appropriate.
 	 */
 	void setConfigLocations(String... configLocations);

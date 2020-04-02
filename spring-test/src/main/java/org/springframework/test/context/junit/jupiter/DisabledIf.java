@@ -17,12 +17,12 @@ import org.springframework.core.annotation.AliasFor;
  * method is <em>disabled</em> and should not be executed if the supplied
  * {@link #expression} evaluates to {@code true}.
  *
- * <p>When applied at the class level, all test methods within that class
+ * When applied at the class level, all test methods within that class
  * are automatically disabled as well.
  *
- * <p>For basic examples, see the Javadoc for {@link #expression}.
+ * For basic examples, see the Javadoc for {@link #expression}.
  *
- * <p>This annotation may be used as a <em>meta-annotation</em> to create
+ * This annotation may be used as a <em>meta-annotation</em> to create
  * custom <em>composed annotations</em>. For example, a custom
  * {@code @DisabledOnMac} annotation can be created as follows.
  *
@@ -62,10 +62,10 @@ public @interface DisabledIf {
 	 * The expression that will be evaluated to determine if the annotated test
 	 * class or test method is <em>disabled</em>.
 	 *
-	 * <p>If the expression evaluates to {@link Boolean#TRUE} or a {@link String}
+	 * If the expression evaluates to {@link Boolean#TRUE} or a {@link String}
 	 * equal to {@code "true"} (ignoring case), the test will be disabled.
 	 *
-	 * <p>Expressions can be any of the following.
+	 * Expressions can be any of the following.
 	 *
 	 * <ul>
 	 * <li>Spring Expression Language (SpEL) expression ; for example:
@@ -77,7 +77,7 @@ public @interface DisabledIf {
 	 * <pre style="code">@DisabledIf("true")</pre>
 	 * </ul>
 	 *
-	 * <p>Note, however, that a <em>text literal</em> which is not the result of
+	 * Note, however, that a <em>text literal</em> which is not the result of
 	 * dynamic resolution of a property placeholder is of zero practical value
 	 * since {@code @DisabledIf("true")} is equivalent to {@code @Disabled}
 	 * and {@code @DisabledIf("false")} is logically meaningless.
@@ -100,7 +100,7 @@ public @interface DisabledIf {
 	 * Whether the {@code ApplicationContext} associated with the current test
 	 * should be eagerly loaded in order to evaluate the {@link #expression}.
 	 *
-	 * <p>Defaults to {@code false} so that test application contexts are not
+	 * Defaults to {@code false} so that test application contexts are not
 	 * eagerly loaded unnecessarily. If an expression is based solely on system
 	 * properties or environment variables or does not interact with beans in
 	 * the test's application context, there is no need to load the context

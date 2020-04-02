@@ -22,7 +22,7 @@ import org.springframework.util.ObjectUtils;
  * Native message headers are kept in a {@code Map<String, List<String>>} under the key
  * {@link #NATIVE_HEADERS}.
  *
- * <p>This class is not intended for direct use but is rather expected to be used
+ * This class is not intended for direct use but is rather expected to be used
  * indirectly through protocol-specific sub-classes such as
  * {@link org.springframework.messaging.simp.stomp.StompHeaderAccessor StompHeaderAccessor}.
  * Such sub-classes may provide factory methods to translate message headers from

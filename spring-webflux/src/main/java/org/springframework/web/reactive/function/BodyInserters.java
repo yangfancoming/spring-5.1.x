@@ -59,7 +59,7 @@ public abstract class BodyInserters {
 
 	/**
 	 * Inserter to write the given object.
-	 * <p>Alternatively, consider using the {@code syncBody(Object)} shortcuts on
+	 * Alternatively, consider using the {@code syncBody(Object)} shortcuts on
 	 * {@link org.springframework.web.reactive.function.client.WebClient WebClient} and
 	 * {@link org.springframework.web.reactive.function.server.ServerResponse ServerResponse}.
 	 * @param body the body to write to the response
@@ -73,13 +73,13 @@ public abstract class BodyInserters {
 
 	/**
 	 * Inserter to write the given {@link Publisher}.
-	 * <p>Alternatively, consider using the {@code body} shortcuts on
+	 * Alternatively, consider using the {@code body} shortcuts on
 	 * {@link org.springframework.web.reactive.function.client.WebClient WebClient} and
 	 * {@link org.springframework.web.reactive.function.server.ServerResponse ServerResponse}.
 	 * @param publisher the publisher to write with
 	 * @param elementClass the type of elements in the publisher
 	 * @param <T> the type of the elements contained in the publisher
-	 * @param <P> the {@code Publisher} type
+	 * @param  the {@code Publisher} type
 	 * @return the inserter to write a {@code Publisher}
 	 */
 	public static <T, P extends Publisher<T>> BodyInserter<P, ReactiveHttpOutputMessage> fromPublisher(
@@ -93,13 +93,13 @@ public abstract class BodyInserters {
 
 	/**
 	 * Inserter to write the given {@link Publisher}.
-	 * <p>Alternatively, consider using the {@code body} shortcuts on
+	 * Alternatively, consider using the {@code body} shortcuts on
 	 * {@link org.springframework.web.reactive.function.client.WebClient WebClient} and
 	 * {@link org.springframework.web.reactive.function.server.ServerResponse ServerResponse}.
 	 * @param publisher the publisher to write with
 	 * @param typeReference the type of elements contained in the publisher
 	 * @param <T> the type of the elements contained in the publisher
-	 * @param <P> the {@code Publisher} type
+	 * @param  the {@code Publisher} type
 	 * @return the inserter to write a {@code Publisher}
 	 */
 	public static <T, P extends Publisher<T>> BodyInserter<P, ReactiveHttpOutputMessage> fromPublisher(
@@ -113,7 +113,7 @@ public abstract class BodyInserters {
 
 	/**
 	 * Inserter to write the given {@code Resource}.
-	 * <p>If the resource can be resolved to a {@linkplain Resource#getFile() file}, it will
+	 * If the resource can be resolved to a {@linkplain Resource#getFile() file}, it will
 	 * be copied using <a href="https://en.wikipedia.org/wiki/Zero-copy">zero-copy</a>.
 	 * @param resource the resource to write to the output message
 	 * @param <T> the type of the {@code Resource}
@@ -130,7 +130,7 @@ public abstract class BodyInserters {
 
 	/**
 	 * Inserter to write the given {@code ServerSentEvent} publisher.
-	 * <p>Alternatively, you can provide event data objects via
+	 * Alternatively, you can provide event data objects via
 	 * {@link #fromPublisher(Publisher, Class)}, and set the "Content-Type" to
 	 * {@link MediaType#TEXT_EVENT_STREAM text/event-stream}.
 	 * @param eventsPublisher the {@code ServerSentEvent} publisher to write to the response body
@@ -155,7 +155,7 @@ public abstract class BodyInserters {
 	 * Return a {@link FormInserter} to write the given {@code MultiValueMap}
 	 * as URL-encoded form data. The returned inserter allows for additional
 	 * entries to be added via {@link FormInserter#with(String, Object)}.
-	 * <p>Note that you can also use the {@code syncBody(Object)} method in the
+	 * Note that you can also use the {@code syncBody(Object)} method in the
 	 * request builders of both the {@code WebClient} and {@code WebTestClient}.
 	 * In that case the setting of the request content type is also not required,
 	 * just be sure the map contains String values only or otherwise it would be
@@ -185,7 +185,7 @@ public abstract class BodyInserters {
 	 * Return a {@link MultipartInserter} to write the given
 	 * {@code MultiValueMap} as multipart data. Values in the map can be an
 	 * Object or an {@link HttpEntity}.
-	 * <p>Note that you can also build the multipart data externally with
+	 * Note that you can also build the multipart data externally with
 	 * {@link MultipartBodyBuilder}, and pass the resulting map directly to the
 	 * {@code syncBody(Object)} shortcut method in {@code WebClient}.
 	 * @param multipartData the form data to write to the output message
@@ -201,7 +201,7 @@ public abstract class BodyInserters {
 	 * Return a {@link MultipartInserter} to write the given parts,
 	 * as multipart data. Values in the map can be an Object or an
 	 * {@link HttpEntity}.
-	 * <p>Note that you can also build the multipart data externally with
+	 * Note that you can also build the multipart data externally with
 	 * {@link MultipartBodyBuilder}, and pass the resulting map directly to the
 	 * {@code syncBody(Object)} shortcut method in {@code WebClient}.
 	 * @param name the part name
@@ -217,7 +217,7 @@ public abstract class BodyInserters {
 	/**
 	 * Return a {@link MultipartInserter} to write the given asynchronous parts,
 	 * as multipart data.
-	 * <p>Note that you can also build the multipart data externally with
+	 * Note that you can also build the multipart data externally with
 	 * {@link MultipartBodyBuilder}, and pass the resulting map directly to the
 	 * {@code syncBody(Object)} shortcut method in {@code WebClient}.
 	 * @param name the part name
@@ -235,7 +235,7 @@ public abstract class BodyInserters {
 	 * Variant of {@link #fromMultipartAsyncData(String, Publisher, Class)} that
 	 * accepts a {@link ParameterizedTypeReference} for the element type, which
 	 * allows specifying generic type information.
-	 * <p>Note that you can also build the multipart data externally with
+	 * Note that you can also build the multipart data externally with
 	 * {@link MultipartBodyBuilder}, and pass the resulting map directly to the
 	 * {@code syncBody(Object)} shortcut method in {@code WebClient}.
 	 * @param name the part name

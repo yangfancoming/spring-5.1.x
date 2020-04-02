@@ -18,7 +18,7 @@ import org.springframework.lang.Nullable;
  * to the application context client methods in the
  * {@link org.springframework.context.ApplicationContext} interface.
  *
- * <p>Configuration and lifecycle methods are encapsulated here to avoid
+ * Configuration and lifecycle methods are encapsulated here to avoid
  * making them obvious to ApplicationContext client code. The present
  * methods should only be used by startup and shutdown code.
  * @since 03.11.2003
@@ -76,7 +76,7 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 
 	/**
 	 * Set the parent of this application context.
-	 * <p>Note that the parent shouldn't be changed: It should only be set outside
+	 * Note that the parent shouldn't be changed: It should only be set outside
 	 * a constructor if it isn't available when an object of this class is created,
 	 * for example in case of WebApplicationContext setup.
 	 * @param parent the parent context
@@ -110,7 +110,7 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	/**
 	 * Add a new ApplicationListener that will be notified on context events
 	 * such as context refresh and context shutdown.
-	 * <p>Note that any ApplicationListener registered here will be applied
+	 * Note that any ApplicationListener registered here will be applied
 	 * on refresh if the context is not active yet, or on the fly with the
 	 * current event multicaster in case of a context that is already active.
 	 * @param listener the ApplicationListener to register
@@ -122,7 +122,7 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	/**
 	 * Register the given protocol resolver with this application context,
 	 * allowing for additional resource protocols to be handled.
-	 * <p>Any such resolver will be invoked ahead of this context's standard
+	 * Any such resolver will be invoked ahead of this context's standard
 	 * resolution rules. It may therefore also override any default rules.
 	 * @since 4.3
 	 */
@@ -131,7 +131,7 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	/**
 	 * Load or refresh the persistent representation of the configuration,
 	 * which might an XML file, properties file, or relational database schema.
-	 * <p>As this is a startup method, it should destroy already created singletons
+	 * As this is a startup method, it should destroy already created singletons
 	 * if it fails, to avoid dangling resources. In other words, after invocation
 	 * of that method, either all or no singletons at all should be instantiated.
 	 * @throws BeansException if the bean factory could not be initialized
@@ -143,7 +143,7 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	/**
 	 * Register a shutdown hook with the JVM runtime, closing this context
 	 * on JVM shutdown unless it has already been closed at that time.
-	 * <p>This method can be called multiple times. Only one shutdown hook
+	 * This method can be called multiple times. Only one shutdown hook
 	 * (at max) will be registered for each context instance.
 	 * @see java.lang.Runtime#addShutdownHook
 	 * @see #close()
@@ -153,9 +153,9 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	/**
 	 * Close this application context, releasing all resources and locks that the
 	 * implementation might hold. This includes destroying all cached singleton beans.
-	 * <p>Note: Does <i>not</i> invoke {@code close} on a parent context;
+	 * Note: Does <i>not</i> invoke {@code close} on a parent context;
 	 * parent contexts have their own, independent lifecycle.
-	 * <p>This method can be called multiple times without side effects: Subsequent
+	 * This method can be called multiple times without side effects: Subsequent
 	 * {@code close} calls on an already closed context will be ignored.
 	 */
 	@Override
@@ -174,10 +174,10 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	/**
 	 * Return the internal bean factory of this application context.
 	 * Can be used to access specific functionality of the underlying factory.
-	 * <p>Note: Do not use this to post-process the bean factory; singletons
+	 * Note: Do not use this to post-process the bean factory; singletons
 	 * will already have been instantiated before. Use a BeanFactoryPostProcessor
 	 * to intercept the BeanFactory setup process before beans get touched.
-	 * <p>Generally, this internal factory will only be accessible while the context
+	 * Generally, this internal factory will only be accessible while the context
 	 * is active, that is, in-between {@link #refresh()} and {@link #close()}.
 	 * The {@link #isActive()} flag can be used to check whether the context
 	 * is in an appropriate state.

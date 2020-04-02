@@ -6,7 +6,7 @@ package org.springframework.core.style;
  * Simple utility class to allow for convenient access to value
  * styling logic, mainly to support descriptive logging messages.
  *
- * <p>For more sophisticated needs, use the {@link ValueStyler} abstraction
+ * For more sophisticated needs, use the {@link ValueStyler} abstraction
  * directly. This class simply uses a shared {@link DefaultValueStyler}
  * instance underneath.
  *

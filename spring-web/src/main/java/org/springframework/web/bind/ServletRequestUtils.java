@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
  * Parameter extraction methods, for an approach distinct from data binding,
  * in which parameters of specific types are required.
  *
- * <p>This approach is very useful for simple submissions, where binding
+ * This approach is very useful for simple submissions, where binding
  * request parameters to a command object would be overkill.
  *
 
@@ -351,7 +351,7 @@ public abstract class ServletRequestUtils {
 	/**
 	 * Get a Boolean parameter, or {@code null} if not present.
 	 * Throws an exception if it the parameter value isn't a boolean.
-	 * <p>Accepts "true", "on", "yes" (any case) and "1" as values for true;
+	 * Accepts "true", "on", "yes" (any case) and "1" as values for true;
 	 * treats every other non-empty value as false (i.e. parses leniently).
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
@@ -372,7 +372,7 @@ public abstract class ServletRequestUtils {
 	/**
 	 * Get a boolean parameter, with a fallback value. Never throws an exception.
 	 * Can pass a distinguished value as default to enable checks of whether it was supplied.
-	 * <p>Accepts "true", "on", "yes" (any case) and "1" as values for true;
+	 * Accepts "true", "on", "yes" (any case) and "1" as values for true;
 	 * treats every other non-empty value as false (i.e. parses leniently).
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
@@ -392,7 +392,7 @@ public abstract class ServletRequestUtils {
 
 	/**
 	 * Get an array of boolean parameters, return an empty array if not found.
-	 * <p>Accepts "true", "on", "yes" (any case) and "1" as values for true;
+	 * Accepts "true", "on", "yes" (any case) and "1" as values for true;
 	 * treats every other non-empty value as false (i.e. parses leniently).
 	 * @param request current HTTP request
 	 * @param name the name of the parameter with multiple possible values
@@ -409,7 +409,7 @@ public abstract class ServletRequestUtils {
 	/**
 	 * Get a boolean parameter, throwing an exception if it isn't found
 	 * or isn't a boolean.
-	 * <p>Accepts "true", "on", "yes" (any case) and "1" as values for true;
+	 * Accepts "true", "on", "yes" (any case) and "1" as values for true;
 	 * treats every other non-empty value as false (i.e. parses leniently).
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
@@ -425,7 +425,7 @@ public abstract class ServletRequestUtils {
 	/**
 	 * Get an array of boolean parameters, throwing an exception if not found
 	 * or one isn't a boolean.
-	 * <p>Accepts "true", "on", "yes" (any case) and "1" as values for true;
+	 * Accepts "true", "on", "yes" (any case) and "1" as values for true;
 	 * treats every other non-empty value as false (i.e. parses leniently).
 	 * @param request current HTTP request
 	 * @param name the name of the parameter

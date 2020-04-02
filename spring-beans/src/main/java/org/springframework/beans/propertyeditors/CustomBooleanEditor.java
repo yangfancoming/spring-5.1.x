@@ -10,12 +10,12 @@ import org.springframework.util.StringUtils;
 /**
  * Property editor for Boolean/boolean properties.
  *
- * <p>This is not meant to be used as system PropertyEditor but rather as
+ * This is not meant to be used as system PropertyEditor but rather as
  * locale-specific Boolean editor within custom controller code, to parse
  * UI-caused boolean strings into boolean properties of beans and check
  * them in the UI form.
  *
- * <p>In web MVC code, this editor will typically be registered with
+ * In web MVC code, this editor will typically be registered with
  * {@code binder.registerCustomEditor} calls.
  *
 
@@ -77,7 +77,7 @@ public class CustomBooleanEditor extends PropertyEditorSupport {
 	/**
 	 * Create a new CustomBooleanEditor instance, with "true"/"on"/"yes"
 	 * and "false"/"off"/"no" as recognized String values.
-	 * <p>The "allowEmpty" parameter states if an empty String should
+	 * The "allowEmpty" parameter states if an empty String should
 	 * be allowed for parsing, i.e. get interpreted as null value.
 	 * Else, an IllegalArgumentException gets thrown in that case.
 	 * @param allowEmpty if empty strings should be allowed
@@ -89,7 +89,7 @@ public class CustomBooleanEditor extends PropertyEditorSupport {
 	/**
 	 * Create a new CustomBooleanEditor instance,
 	 * with configurable String values for true and false.
-	 * <p>The "allowEmpty" parameter states if an empty String should
+	 * The "allowEmpty" parameter states if an empty String should
 	 * be allowed for parsing, i.e. get interpreted as null value.
 	 * Else, an IllegalArgumentException gets thrown in that case.
 	 * @param trueString the String value that represents true:

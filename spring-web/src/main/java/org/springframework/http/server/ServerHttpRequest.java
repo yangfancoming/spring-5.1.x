@@ -21,7 +21,7 @@ public interface ServerHttpRequest extends HttpRequest, HttpInputMessage {
 	/**
 	 * Return a {@link java.security.Principal} instance containing the name of the
 	 * authenticated user.
-	 * <p>If the user has not been authenticated, the method returns <code>null</code>.
+	 * If the user has not been authenticated, the method returns <code>null</code>.
 	 */
 	@Nullable
 	Principal getPrincipal();

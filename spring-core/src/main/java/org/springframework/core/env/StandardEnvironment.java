@@ -5,7 +5,7 @@ package org.springframework.core.env;
 /**
  * {@link Environment} implementation suitable for use in 'standard' (i.e. non-web) applications.
  *
- * <p>In addition to the usual functions of a {@link ConfigurableEnvironment} such as
+ * In addition to the usual functions of a {@link ConfigurableEnvironment} such as
  * property resolution and profile-related operations, this implementation configures two
  * default property sources, to be searched in the following order:
  * <ul>
@@ -19,12 +19,12 @@ package org.springframework.core.env;
  * environment variables may be the same across many JVMs on a given system.  Giving
  * system properties precedence allows for overriding of environment variables on a  per-JVM basis.
  *
- * <p>These default property sources may be removed, reordered, or replaced; and
+ * These default property sources may be removed, reordered, or replaced; and
  * additional property sources may be added using the {@link MutablePropertySources}
  * instance available from {@link #getPropertySources()}. See
  * {@link ConfigurableEnvironment} Javadoc for usage examples.
  *
- * <p>See {@link SystemEnvironmentPropertySource} javadoc for details on special handling
+ * See {@link SystemEnvironmentPropertySource} javadoc for details on special handling
  * of property names in shell environments (e.g. Bash) that disallow period characters in variable names.
 
  * @since 3.1
@@ -48,7 +48,7 @@ public class StandardEnvironment extends AbstractEnvironment {
 	 * Java environment:
 	 * <li>{@value #SYSTEM_PROPERTIES_PROPERTY_SOURCE_NAME}
 	 * <li>{@value #SYSTEM_ENVIRONMENT_PROPERTY_SOURCE_NAME}
-	 * <p>Properties present in {@value #SYSTEM_PROPERTIES_PROPERTY_SOURCE_NAME} will
+	 * Properties present in {@value #SYSTEM_PROPERTIES_PROPERTY_SOURCE_NAME} will
 	 * take precedence over those in {@value #SYSTEM_ENVIRONMENT_PROPERTY_SOURCE_NAME}.
 	 * @see AbstractEnvironment#customizePropertySources(MutablePropertySources)
 	 * @see #getSystemProperties()

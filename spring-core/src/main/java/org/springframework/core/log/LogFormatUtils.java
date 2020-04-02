@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
 /**
  * Utility methods for formatting and logging messages.
  *
- * <p>Mainly for internal use within the framework with Apache Commons Logging,
+ * Mainly for internal use within the framework with Apache Commons Logging,
  * typically in the form of the {@code spring-jcl} bridge but also compatible
  * with other Commons Logging bridges.
  *

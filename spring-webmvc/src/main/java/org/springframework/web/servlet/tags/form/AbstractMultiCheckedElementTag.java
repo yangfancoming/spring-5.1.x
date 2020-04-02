@@ -68,7 +68,7 @@ public abstract class AbstractMultiCheckedElementTag extends AbstractCheckedElem
 	/**
 	 * Set the {@link java.util.Collection}, {@link java.util.Map} or array of objects
 	 * used to generate the '{@code input type="checkbox/radio"}' tags.
-	 * <p>Typically a runtime expression.
+	 * Typically a runtime expression.
 	 * @param items said items
 	 */
 	public void setItems(Object items) {
@@ -88,7 +88,7 @@ public abstract class AbstractMultiCheckedElementTag extends AbstractCheckedElem
 	/**
 	 * Set the name of the property mapped to the '{@code value}' attribute
 	 * of the '{@code input type="checkbox/radio"}' tag.
-	 * <p>May be a runtime expression.
+	 * May be a runtime expression.
 	 */
 	public void setItemValue(String itemValue) {
 		Assert.hasText(itemValue, "'itemValue' must not be empty");
@@ -107,7 +107,7 @@ public abstract class AbstractMultiCheckedElementTag extends AbstractCheckedElem
 	/**
 	 * Set the value to be displayed as part of the
 	 * '{@code input type="checkbox/radio"}' tag.
-	 * <p>May be a runtime expression.
+	 * May be a runtime expression.
 	 */
 	public void setItemLabel(String itemLabel) {
 		Assert.hasText(itemLabel, "'itemLabel' must not be empty");
@@ -126,7 +126,7 @@ public abstract class AbstractMultiCheckedElementTag extends AbstractCheckedElem
 	/**
 	 * Set the delimiter to be used between each
 	 * '{@code input type="checkbox/radio"}' tag.
-	 * <p>By default, there is <em>no</em> delimiter.
+	 * By default, there is <em>no</em> delimiter.
 	 */
 	public void setDelimiter(String delimiter) {
 		this.delimiter = delimiter;
@@ -144,7 +144,7 @@ public abstract class AbstractMultiCheckedElementTag extends AbstractCheckedElem
 	/**
 	 * Set the HTML element used to enclose the
 	 * '{@code input type="checkbox/radio"}' tag.
-	 * <p>Defaults to an HTML '{@code <span/>}' tag.
+	 * Defaults to an HTML '{@code <span/>}' tag.
 	 */
 	public void setElement(String element) {
 		Assert.hasText(element, "'element' cannot be null or blank");

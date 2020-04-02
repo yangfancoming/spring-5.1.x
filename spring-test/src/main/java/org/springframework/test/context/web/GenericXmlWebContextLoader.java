@@ -11,7 +11,7 @@ import org.springframework.web.context.support.GenericWebApplicationContext;
  * Concrete implementation of {@link AbstractGenericWebContextLoader} that loads
  * bean definitions from XML resources.
  *
- * <p>Default resource locations are detected using the suffix
+ * Default resource locations are detected using the suffix
  * {@code "-context.xml"}.
  *
  * @author Sam Brannen

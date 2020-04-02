@@ -20,7 +20,7 @@ import org.springframework.web.servlet.view.AbstractView;
  * Spring-MVC {@link View} that allows for response context to be rendered as the result
  * of marshalling by a {@link Marshaller}.
  *
- * <p>The Object to be marshalled is supplied as a parameter in the model and then
+ * The Object to be marshalled is supplied as a parameter in the model and then
  * {@linkplain #locateToBeMarshalled(Map) detected} during response rendering. Users can
  * either specify a specific entry in the model via the {@link #setModelKey(String) sourceKey}
  * property or have Spring locate the Source object.
@@ -105,7 +105,7 @@ public class MarshallingView extends AbstractView {
 
 	/**
 	 * Locate the object to be marshalled.
-	 * <p>The default implementation first attempts to look under the configured
+	 * The default implementation first attempts to look under the configured
 	 * {@linkplain #setModelKey(String) model key}, if any, before attempting to
 	 * locate an object of {@linkplain Marshaller#supports(Class) supported type}.
 	 * @param model the model Map
@@ -140,7 +140,7 @@ public class MarshallingView extends AbstractView {
 	/**
 	 * Check whether the given value from the current view's model is eligible
 	 * for marshalling through the configured {@link Marshaller}.
-	 * <p>The default implementation calls {@link Marshaller#supports(Class)},
+	 * The default implementation calls {@link Marshaller#supports(Class)},
 	 * unwrapping a given {@link JAXBElement} first if applicable.
 	 * @param modelKey the value's key in the model (never {@code null})
 	 * @param value the value to check (never {@code null})

@@ -26,7 +26,7 @@ public abstract class RemoteInvocationBasedAccessor extends UrlBasedRemoteAccess
 	/**
 	 * Set the RemoteInvocationFactory to use for this accessor.
 	 * Default is a {@link DefaultRemoteInvocationFactory}.
-	 * <p>A custom invocation factory can add further context information
+	 * A custom invocation factory can add further context information
 	 * to the invocation, for example user credentials.
 	 */
 	public void setRemoteInvocationFactory(RemoteInvocationFactory remoteInvocationFactory) {
@@ -43,11 +43,11 @@ public abstract class RemoteInvocationBasedAccessor extends UrlBasedRemoteAccess
 
 	/**
 	 * Create a new RemoteInvocation object for the given AOP method invocation.
-	 * <p>The default implementation delegates to the configured
+	 * The default implementation delegates to the configured
 	 * {@link #setRemoteInvocationFactory RemoteInvocationFactory}.
 	 * This can be overridden in subclasses in order to provide custom RemoteInvocation
 	 * subclasses, containing additional invocation parameters (e.g. user credentials).
-	 * <p>Note that it is preferable to build a custom RemoteInvocationFactory
+	 * Note that it is preferable to build a custom RemoteInvocationFactory
 	 * as a reusable strategy, instead of overriding this method.
 	 * @param methodInvocation the current AOP method invocation
 	 * @return the RemoteInvocation object
@@ -59,7 +59,7 @@ public abstract class RemoteInvocationBasedAccessor extends UrlBasedRemoteAccess
 
 	/**
 	 * Recreate the invocation result contained in the given RemoteInvocationResult object.
-	 * <p>The default implementation calls the default {@code recreate()} method.
+	 * The default implementation calls the default {@code recreate()} method.
 	 * This can be overridden in subclass to provide custom recreation, potentially
 	 * processing the returned result object.
 	 * @param result the RemoteInvocationResult to recreate

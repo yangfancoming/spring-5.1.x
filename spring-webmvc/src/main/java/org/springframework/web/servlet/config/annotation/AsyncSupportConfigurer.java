@@ -41,7 +41,7 @@ public class AsyncSupportConfigurer {
 	 * <li>Perform blocking writes when streaming to the response
 	 * through a reactive (e.g. Reactor, RxJava) controller method return value.
 	 * </ol>
-	 * <p>By default only a {@link SimpleAsyncTaskExecutor} is used. However when
+	 * By default only a {@link SimpleAsyncTaskExecutor} is used. However when
 	 * using the above two use cases, it's recommended to configure an executor
 	 * backed by a thread pool such as {@link ThreadPoolTaskExecutor}.
 	 * @param taskExecutor the task executor instance to use by default
@@ -56,7 +56,7 @@ public class AsyncSupportConfigurer {
 	 * handling times out. In Servlet 3, the timeout begins after the main request
 	 * processing thread has exited and ends when the request is dispatched again
 	 * for further processing of the concurrently produced result.
-	 * <p>If this value is not set, the default timeout of the underlying
+	 * If this value is not set, the default timeout of the underlying
 	 * implementation is used, e.g. 10 seconds on Tomcat with Servlet 3.
 	 * @param timeout the timeout value in milliseconds
 	 */

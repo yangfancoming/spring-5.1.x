@@ -38,7 +38,7 @@ import org.springframework.web.server.ServerWebExchange;
  * Abstract base class for {@link HandlerMapping} implementations that define
  * a mapping between a request and a {@link HandlerMethod}.
  *
- * <p>For each registered handler method, a unique mapping is maintained with
+ * For each registered handler method, a unique mapping is maintained with
  * subclasses defining the details of the mapping type {@code <T>}.
  *
  * @author Rossen Stoyanchev
@@ -52,11 +52,11 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 	/**
 	 * Bean name prefix for target beans behind scoped proxies. Used to exclude those
 	 * targets from handler method detection, in favor of the corresponding proxies.
-	 * <p>We're not checking the autowire-candidate status here, which is how the
+	 * We're not checking the autowire-candidate status here, which is how the
 	 * proxy target filtering problem is being handled at the autowiring level,
 	 * since autowire-candidate may have been turned to {@code false} for other
 	 * reasons, while still expecting the bean to be eligible for handler methods.
-	 * <p>Originally defined in {@link org.springframework.aop.scope.ScopedProxyUtils}
+	 * Originally defined in {@link org.springframework.aop.scope.ScopedProxyUtils}
 	 * but duplicated here to avoid a hard dependency on the spring-aop module.
 	 */
 	private static final String SCOPED_TARGET_NAME_PREFIX = "scopedTarget.";
@@ -106,7 +106,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 
 	/**
 	 * Register the given mapping.
-	 * <p>This method may be invoked at runtime after initialization has completed.
+	 * This method may be invoked at runtime after initialization has completed.
 	 * @param mapping the mapping for the handler method
 	 * @param handler the handler
 	 * @param method the method
@@ -120,7 +120,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 
 	/**
 	 * Un-register the given mapping.
-	 * <p>This method may be invoked at runtime after initialization has completed.
+	 * This method may be invoked at runtime after initialization has completed.
 	 * @param mapping the mapping to unregister
 	 */
 	public void unregisterMapping(T mapping) {
@@ -419,7 +419,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 	 * A registry that maintains all mappings to handler methods, exposing methods
 	 * to perform lookups and providing concurrent access.
 	 *
-	 * <p>Package-private for testing purposes.
+	 * Package-private for testing purposes.
 	 */
 	class MappingRegistry {
 

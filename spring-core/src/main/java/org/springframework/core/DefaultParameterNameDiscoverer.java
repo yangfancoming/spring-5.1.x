@@ -8,12 +8,12 @@ package org.springframework.core;
  * to the ASM-based {@link LocalVariableTableParameterNameDiscoverer} for checking
  * debug information in the class file.
  *
- * <p>If a Kotlin reflection implementation is present,
+ * If a Kotlin reflection implementation is present,
  * {@link KotlinReflectionParameterNameDiscoverer} is added first in the list and used
  * for Kotlin classes and interfaces. When compiling or running as a Graal native image,
  * no {@link ParameterNameDiscoverer} is used.
  *
- * <p>Further discoverers may be added through {@link #addDiscoverer(ParameterNameDiscoverer)}.
+ * Further discoverers may be added through {@link #addDiscoverer(ParameterNameDiscoverer)}.
  *
 
  * @author Sebastien Deleuze

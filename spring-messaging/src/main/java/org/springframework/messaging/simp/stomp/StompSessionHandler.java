@@ -9,10 +9,10 @@ import org.springframework.lang.Nullable;
  * when the session is established and notifications of transport or message
  * handling failures.
  *
- * <p>This contract also extends {@link StompFrameHandler} in order to handle
+ * This contract also extends {@link StompFrameHandler} in order to handle
  * STOMP ERROR frames received from the broker.
  *
- * <p>Implementations of this interface should consider extending
+ * Implementations of this interface should consider extending
  * {@link StompSessionHandlerAdapter}.
  *
  * @author Rossen Stoyanchev
@@ -46,7 +46,7 @@ public interface StompSessionHandler extends StompFrameHandler {
 	/**
 	 * Handle a low level transport error which could be an I/O error or a
 	 * failure to encode or decode a STOMP message.
-	 * <p>Note that
+	 * Note that
 	 * {@link org.springframework.messaging.simp.stomp.ConnectionLostException
 	 * ConnectionLostException} will be passed into this method when the
 	 * connection is lost rather than closed normally via

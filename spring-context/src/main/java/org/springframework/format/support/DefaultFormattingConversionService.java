@@ -19,12 +19,12 @@ import org.springframework.util.StringValueResolver;
  * A specialization of {@link FormattingConversionService} configured by default with
  * converters and formatters appropriate for most applications.
  *
- * <p>Designed for direct instantiation but also exposes the static {@link #addDefaultFormatters}
+ * Designed for direct instantiation but also exposes the static {@link #addDefaultFormatters}
  * utility method for ad hoc use against any {@code FormatterRegistry} instance, just
  * as {@code DefaultConversionService} exposes its own
  * {@link DefaultConversionService#addDefaultConverters addDefaultConverters} method.
  *
- * <p>Automatically registers formatters for JSR-354 Money & Currency, JSR-310 Date-Time
+ * Automatically registers formatters for JSR-354 Money & Currency, JSR-310 Date-Time
  * and/or Joda-Time, depending on the presence of the corresponding API on the classpath.
 
 

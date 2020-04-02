@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
 /**
  * Abstract base class for {@link UriTemplateHandler} implementations.
  *
- * <p>Support {@link #setBaseUrl} and {@link #setDefaultUriVariables} properties
+ * Support {@link #setBaseUrl} and {@link #setDefaultUriVariables} properties
  * that should be relevant regardless of the URI template expand and encode
  * mechanism used in sub-classes.
  *

@@ -29,20 +29,20 @@ import org.springframework.util.StringUtils;
  * Base class for transactional aspects, such as the {@link TransactionInterceptor}
  * or an AspectJ aspect.
  *
- * <p>This enables the underlying Spring transaction infrastructure to be used easily
+ * This enables the underlying Spring transaction infrastructure to be used easily
  * to implement an aspect for any aspect system.
  *
- * <p>Subclasses are responsible for calling methods in this class in the correct order.
+ * Subclasses are responsible for calling methods in this class in the correct order.
  *
- * <p>If no transaction name has been specified in the {@code TransactionAttribute},
+ * If no transaction name has been specified in the {@code TransactionAttribute},
  * the exposed name will be the {@code fully-qualified class name + "." + method name}
  * (by default).
  *
- * <p>Uses the <b>Strategy</b> design pattern. A {@code PlatformTransactionManager}
+ * Uses the <b>Strategy</b> design pattern. A {@code PlatformTransactionManager}
  * implementation will perform the actual transaction management, and a
  * {@code TransactionAttributeSource} is used for determining transaction definitions.
  *
- * <p>A transaction aspect is serializable if its {@code PlatformTransactionManager}
+ * A transaction aspect is serializable if its {@code PlatformTransactionManager}
  * and {@code TransactionAttributeSource} are serializable.
  *
  * @author Rod Johnson
@@ -81,9 +81,9 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	 * need to use this mechanism to get at the current TransactionInfo.
 	 * An around advice such as an AOP Alliance MethodInterceptor can hold a
 	 * reference to the TransactionInfo throughout the aspect method.
-	 * <p>A TransactionInfo will be returned even if no transaction was created.
+	 * A TransactionInfo will be returned even if no transaction was created.
 	 * The {@code TransactionInfo.hasTransaction()} method can be used to query this.
-	 * <p>To find out about specific transaction characteristics, consider using
+	 * To find out about specific transaction characteristics, consider using
 	 * TransactionSynchronizationManager's {@code isSynchronizationActive()}
 	 * and/or {@code isActualTransactionActive()} methods.
 	 * @return the TransactionInfo bound to this thread, or {@code null} if none
@@ -147,7 +147,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 
 	/**
 	 * Specify the <em>default</em> transaction manager to use to drive transactions.
-	 * <p>The default transaction manager will be used if a <em>qualifier</em>
+	 * The default transaction manager will be used if a <em>qualifier</em>
 	 * has not been declared for a given transaction or if an explicit name for the
 	 * default transaction manager bean has not been specified.
 	 * @see #setTransactionManagerBeanName
@@ -168,9 +168,9 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	 * Set properties with method names as keys and transaction attribute
 	 * descriptors (parsed via TransactionAttributeEditor) as values:
 	 * e.g. key = "myMethod", value = "PROPAGATION_REQUIRED,readOnly".
-	 * <p>Note: Method names are always applied to the target class,
+	 * Note: Method names are always applied to the target class,
 	 * no matter if defined in an interface or the class itself.
-	 * <p>Internally, a NameMatchTransactionAttributeSource will be
+	 * Internally, a NameMatchTransactionAttributeSource will be
 	 * created from the given properties.
 	 * @see #setTransactionAttributeSource
 	 * @see TransactionAttributeEditor
@@ -433,7 +433,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	 * Convenience method to return a String representation of this Method
 	 * for use in logging. Can be overridden in subclasses to provide a
 	 * different identifier for the given method.
-	 * <p>The default implementation returns {@code null}, indicating the
+	 * The default implementation returns {@code null}, indicating the
 	 * use of {@link DefaultTransactionAttribute#getDescriptor()} instead,
 	 * ending up as {@link ClassUtils#getQualifiedMethodName(Method, Class)}.
 	 * @param method the method we're interested in
@@ -448,7 +448,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 
 	/**
 	 * Create a transaction if necessary based on the given TransactionAttribute.
-	 * <p>Allows callers to perform custom TransactionAttribute lookups through
+	 * Allows callers to perform custom TransactionAttribute lookups through
 	 * the TransactionAttributeSource.
 	 * @param txAttr the TransactionAttribute (may be {@code null})
 	 * @param joinpointIdentification the fully qualified method name
@@ -599,7 +599,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 
 	/**
 	 * Reset the TransactionInfo ThreadLocal.
-	 * <p>Call this in all cases: exception or normal return!
+	 * Call this in all cases: exception or normal return!
 	 * @param txInfo information about the current transaction (may be {@code null})
 	 */
 	protected void cleanupTransactionInfo(@Nullable TransactionInfo txInfo) {

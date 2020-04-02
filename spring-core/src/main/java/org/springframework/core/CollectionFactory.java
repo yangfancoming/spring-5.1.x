@@ -31,7 +31,7 @@ import org.springframework.util.ReflectionUtils;
 /**
  * Factory for collections that is aware of common Java and Spring collection types.
  *
- * <p>Mainly for internal use within the framework.
+ * Mainly for internal use within the framework.
  *
 
  * @author Arjen Poutsma
@@ -87,7 +87,7 @@ public final class CollectionFactory {
 
 	/**
 	 * Create the most approximate collection for the given collection.
-	 * <p><strong>Warning</strong>: Since the parameterized type {@code E} is
+	 * <strong>Warning</strong>: Since the parameterized type {@code E} is
 	 * not bound to the type of elements contained in the supplied
 	 * {@code collection}, type safety cannot be guaranteed if the supplied
 	 * {@code collection} is an {@link EnumSet}. In such scenarios, the caller
@@ -129,7 +129,7 @@ public final class CollectionFactory {
 
 	/**
 	 * Create the most appropriate collection for the given collection type.
-	 * <p>Delegates to {@link #createCollection(Class, Class, int)} with a
+	 * Delegates to {@link #createCollection(Class, Class, int)} with a
 	 * {@code null} element type.
 	 * @param collectionType the desired type of the target collection (never {@code null})
 	 * @param capacity the initial capacity
@@ -143,7 +143,7 @@ public final class CollectionFactory {
 
 	/**
 	 * Create the most appropriate collection for the given collection type.
-	 * <p><strong>Warning</strong>: Since the parameterized type {@code E} is
+	 * <strong>Warning</strong>: Since the parameterized type {@code E} is
 	 * not bound to the supplied {@code elementType}, type safety cannot be
 	 * guaranteed if the desired {@code collectionType} is {@link EnumSet}.
 	 * In such scenarios, the caller is responsible for ensuring that the
@@ -212,7 +212,7 @@ public final class CollectionFactory {
 
 	/**
 	 * Create the most approximate map for the given map.
-	 * <p><strong>Warning</strong>: Since the parameterized type {@code K} is
+	 * <strong>Warning</strong>: Since the parameterized type {@code K} is
 	 * not bound to the type of keys contained in the supplied {@code map},
 	 * type safety cannot be guaranteed if the supplied {@code map} is an
 	 * {@link EnumMap}. In such scenarios, the caller is responsible for
@@ -244,7 +244,7 @@ public final class CollectionFactory {
 
 	/**
 	 * Create the most appropriate map for the given map type.
-	 * <p>Delegates to {@link #createMap(Class, Class, int)} with a
+	 * Delegates to {@link #createMap(Class, Class, int)} with a
 	 * {@code null} key type.
 	 * @param mapType the desired type of the target map
 	 * @param capacity the initial capacity
@@ -258,7 +258,7 @@ public final class CollectionFactory {
 
 	/**
 	 * Create the most appropriate map for the given map type.
-	 * <p><strong>Warning</strong>: Since the parameterized type {@code K}
+	 * <strong>Warning</strong>: Since the parameterized type {@code K}
 	 * is not bound to the supplied {@code keyType}, type safety cannot be
 	 * guaranteed if the desired {@code mapType} is {@link EnumMap}. In such
 	 * scenarios, the caller is responsible for ensuring that the {@code keyType}

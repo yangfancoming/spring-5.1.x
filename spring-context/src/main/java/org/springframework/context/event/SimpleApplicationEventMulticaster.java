@@ -17,12 +17,12 @@ import org.springframework.util.ErrorHandler;
 /**
  * Simple implementation of the {@link ApplicationEventMulticaster} interface.
  *
- * <p>Multicasts all events to all registered listeners, leaving it up to
+ * Multicasts all events to all registered listeners, leaving it up to
  * the listeners to ignore events that they are not interested in.
  * Listeners will usually perform corresponding {@code instanceof}
  * checks on the passed-in event object.
  *
- * <p>By default, all listeners are invoked in the calling thread.
+ * By default, all listeners are invoked in the calling thread.
  * This allows the danger of a rogue listener blocking the entire application,
  * but adds minimal overhead. Specify an alternative task executor to have
  * listeners executed in different threads, for example from a thread pool.
@@ -58,9 +58,9 @@ public class SimpleApplicationEventMulticaster extends AbstractApplicationEventM
 	/**
 	 * Set a custom executor (typically a {@link org.springframework.core.task.TaskExecutor})
 	 * to invoke each listener with.
-	 * <p>Default is equivalent to {@link org.springframework.core.task.SyncTaskExecutor},
+	 * Default is equivalent to {@link org.springframework.core.task.SyncTaskExecutor},
 	 * executing all listeners synchronously in the calling thread.
-	 * <p>Consider specifying an asynchronous task executor here to not block the
+	 * Consider specifying an asynchronous task executor here to not block the
 	 * caller until all listeners have been executed. However, note that asynchronous
 	 * execution will not participate in the caller's thread context (class loader,
 	 * transaction association) unless the TaskExecutor explicitly supports this.
@@ -82,12 +82,12 @@ public class SimpleApplicationEventMulticaster extends AbstractApplicationEventM
 	/**
 	 * Set the {@link ErrorHandler} to invoke in case an exception is thrown
 	 * from a listener.
-	 * <p>Default is none, with a listener exception stopping the current
+	 * Default is none, with a listener exception stopping the current
 	 * multicast and getting propagated to the publisher of the current event.
 	 * If a {@linkplain #setTaskExecutor task executor} is specified, each
 	 * individual listener exception will get propagated to the executor but
 	 * won't necessarily stop execution of other listeners.
-	 * <p>Consider setting an {@link ErrorHandler} implementation that catches
+	 * Consider setting an {@link ErrorHandler} implementation that catches
 	 * and logs exceptions (a la
 	 * {@link org.springframework.scheduling.support.TaskUtils#LOG_AND_SUPPRESS_ERROR_HANDLER})
 	 * or an implementation that logs exceptions while nevertheless propagating them

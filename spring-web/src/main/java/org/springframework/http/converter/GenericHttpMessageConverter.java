@@ -55,7 +55,7 @@ public interface GenericHttpMessageConverter<T> extends HttpMessageConverter<T> 
 
 	/**
 	 * Indicates whether the given class can be written by this converter.
-	 * <p>This method should perform the same checks than
+	 * This method should perform the same checks than
 	 * {@link HttpMessageConverter#canWrite(Class, MediaType)} with additional ones
 	 * related to the generic type.
 	 * @param type the (potentially generic) type to test for writability

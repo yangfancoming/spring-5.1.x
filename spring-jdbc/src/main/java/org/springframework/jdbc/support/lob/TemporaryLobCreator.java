@@ -24,7 +24,7 @@ import org.springframework.util.FileCopyUtils;
  * using JDBC 4.0's {@link java.sql.Connection#createBlob()} /
  * {@link java.sql.Connection#createClob()} mechanism.
  *
- * <p>Used by DefaultLobHandler's {@link DefaultLobHandler#setCreateTemporaryLob} mode.
+ * Used by DefaultLobHandler's {@link DefaultLobHandler#setCreateTemporaryLob} mode.
  * Can also be used directly to reuse the tracking and freeing of temporary LOBs.
  *
 

@@ -9,7 +9,7 @@ import javax.servlet.ServletContextListener;
  * Bootstrap listener to start up and shut down Spring's root {@link WebApplicationContext}.
  * Simply delegates to {@link ContextLoader} as well as to {@link ContextCleanupListener}.
  *
- * <p>As of Spring 3.1, {@code ContextLoaderListener} supports injecting the root web
+ * As of Spring 3.1, {@code ContextLoaderListener} supports injecting the root web
  * application context via the {@link #ContextLoaderListener(WebApplicationContext)}
  * constructor, allowing for programmatic configuration in Servlet 3.0+ environments.
  * See {@link org.springframework.web.WebApplicationInitializer} for usage examples.
@@ -24,9 +24,9 @@ public class ContextLoaderListener extends ContextLoader implements ServletConte
 	 * Create a new {@code ContextLoaderListener} that will create a web application
 	 * context based on the "contextClass" and "contextConfigLocation" servlet
 	 * context-params. See {@link ContextLoader} superclass documentation for details on default values for each.
-	 * <p>This constructor is typically used when declaring {@code ContextLoaderListener}
+	 * This constructor is typically used when declaring {@code ContextLoaderListener}
 	 * as a {@code <listener>} within {@code web.xml}, where a no-arg constructor is required.
-	 * <p>The created application context will be registered into the ServletContext under
+	 * The created application context will be registered into the ServletContext under
 	 * the attribute name {@link WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE}
 	 * and the Spring application context will be closed when the {@link #contextDestroyed}
 	 * lifecycle method is invoked on this listener.
@@ -43,7 +43,7 @@ public class ContextLoaderListener extends ContextLoader implements ServletConte
 	 * constructor is useful in Servlet 3.0+ environments where instance-based
 	 * registration of listeners is possible through the {@link javax.servlet.ServletContext#addListener}
 	 * API.
-	 * <p>The context may or may not yet be {@linkplain
+	 * The context may or may not yet be {@linkplain
 	 * org.springframework.context.ConfigurableApplicationContext#refresh() refreshed}. If it
 	 * (a) is an implementation of {@link ConfigurableWebApplicationContext} and
 	 * (b) has <strong>not</strong> already been refreshed (the recommended approach),
@@ -62,8 +62,8 @@ public class ContextLoaderListener extends ContextLoader implements ServletConte
 	 * {@code ConfigurableWebApplicationContext}, none of the above will occur under the
 	 * assumption that the user has performed these actions (or not) per his or her
 	 * specific needs.
-	 * <p>See {@link org.springframework.web.WebApplicationInitializer} for usage examples.
-	 * <p>In any case, the given application context will be registered into the
+	 * See {@link org.springframework.web.WebApplicationInitializer} for usage examples.
+	 * In any case, the given application context will be registered into the
 	 * ServletContext under the attribute name {@link
 	 * WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE} and the Spring
 	 * application context will be closed when the {@link #contextDestroyed} lifecycle

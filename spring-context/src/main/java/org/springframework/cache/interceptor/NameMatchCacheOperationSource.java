@@ -27,7 +27,7 @@ public class NameMatchCacheOperationSource implements CacheOperationSource, Seri
 
 	/**
 	 * Logger available to subclasses.
-	 * <p>Static for optimal serialization.
+	 * Static for optimal serialization.
 	 */
 	protected static final Log logger = LogFactory.getLog(NameMatchCacheOperationSource.class);
 
@@ -48,7 +48,7 @@ public class NameMatchCacheOperationSource implements CacheOperationSource, Seri
 
 	/**
 	 * Add an attribute for a cacheable method.
-	 * <p>Method names can be exact matches, or of the pattern "xxx*",
+	 * Method names can be exact matches, or of the pattern "xxx*",
 	 * "*xxx" or "*xxx*" for matching multiple methods.
 	 * @param methodName the name of the method
 	 * @param ops operation associated with the method
@@ -84,7 +84,7 @@ public class NameMatchCacheOperationSource implements CacheOperationSource, Seri
 
 	/**
 	 * Return if the given method name matches the mapped name.
-	 * <p>The default implementation checks for "xxx*", "*xxx" and "*xxx*" matches,
+	 * The default implementation checks for "xxx*", "*xxx" and "*xxx*" matches,
 	 * as well as direct equality. Can be overridden in subclasses.
 	 * @param methodName the method name of the class
 	 * @param mappedName the name in the descriptor

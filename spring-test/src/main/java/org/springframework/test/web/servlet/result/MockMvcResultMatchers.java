@@ -19,7 +19,7 @@ import static org.springframework.test.util.AssertionErrors.assertTrue;
  * Static factory methods for {@link ResultMatcher}-based result actions.
  *
  * <h3>Eclipse Users</h3>
- * <p>Consider adding this class as a Java editor favorite. To navigate to
+ * Consider adding this class as a Java editor favorite. To navigate to
  * this setting, open the Preferences and type "favorites".
  *
  * @author Rossen Stoyanchev
@@ -69,7 +69,7 @@ public abstract class MockMvcResultMatchers {
 
 	/**
 	 * Asserts the request was forwarded to the given URL.
-	 * <p>This method accepts only exact matches.
+	 * This method accepts only exact matches.
 	 * @param expectedUrl the exact URL expected
 	 */
 	public static ResultMatcher forwardedUrl(@Nullable String expectedUrl) {
@@ -78,7 +78,7 @@ public abstract class MockMvcResultMatchers {
 
 	/**
 	 * Asserts the request was forwarded to the given URL template.
-	 * <p>This method accepts exact matches against the expanded and encoded URL template.
+	 * This method accepts exact matches against the expanded and encoded URL template.
 	 * @param urlTemplate a URL template; the expanded URL will be encoded
 	 * @param uriVars zero or more URI variables to populate the template
 	 * @see UriComponentsBuilder#fromUriString(String)
@@ -90,7 +90,7 @@ public abstract class MockMvcResultMatchers {
 
 	/**
 	 * Asserts the request was forwarded to the given URL.
-	 * <p>This method accepts {@link org.springframework.util.AntPathMatcher}
+	 * This method accepts {@link org.springframework.util.AntPathMatcher}
 	 * patterns.
 	 * @param urlPattern an AntPath pattern to match against
 	 * @since 4.0
@@ -107,7 +107,7 @@ public abstract class MockMvcResultMatchers {
 
 	/**
 	 * Asserts the request was redirected to the given URL.
-	 * <p>This method accepts only exact matches.
+	 * This method accepts only exact matches.
 	 * @param expectedUrl the exact URL expected
 	 */
 	public static ResultMatcher redirectedUrl(String expectedUrl) {
@@ -116,7 +116,7 @@ public abstract class MockMvcResultMatchers {
 
 	/**
 	 * Asserts the request was redirected to the given URL template.
-	 * <p>This method accepts exact matches against the expanded and encoded URL template.
+	 * This method accepts exact matches against the expanded and encoded URL template.
 	 * @param urlTemplate a URL template; the expanded URL will be encoded
 	 * @param uriVars zero or more URI variables to populate the template
 	 * @see UriComponentsBuilder#fromUriString(String)
@@ -128,7 +128,7 @@ public abstract class MockMvcResultMatchers {
 
 	/**
 	 * Asserts the request was redirected to the given URL.
-	 * <p>This method accepts {@link org.springframework.util.AntPathMatcher}
+	 * This method accepts {@link org.springframework.util.AntPathMatcher}
 	 * patterns.
 	 * @param urlPattern an AntPath pattern to match against
 	 * @since 4.0
@@ -168,7 +168,7 @@ public abstract class MockMvcResultMatchers {
 	 * Access to response body assertions using a
 	 * <a href="https://github.com/jayway/JsonPath">JsonPath</a> expression
 	 * to inspect a specific subset of the body.
-	 * <p>The JSON path expression can be a parameterized string using
+	 * The JSON path expression can be a parameterized string using
 	 * formatting specifiers as defined in
 	 * {@link String#format(String, Object...)}.
 	 * @param expression the JSON path expression, optionally parameterized with arguments
@@ -193,7 +193,7 @@ public abstract class MockMvcResultMatchers {
 	/**
 	 * Access to response body assertions using an XPath expression to
 	 * inspect a specific subset of the body.
-	 * <p>The XPath expression can be a parameterized string using formatting
+	 * The XPath expression can be a parameterized string using formatting
 	 * specifiers as defined in {@link String#format(String, Object...)}.
 	 * @param expression the XPath expression, optionally parameterized with arguments
 	 * @param args arguments to parameterize the XPath expression with
@@ -205,7 +205,7 @@ public abstract class MockMvcResultMatchers {
 	/**
 	 * Access to response body assertions using an XPath expression to
 	 * inspect a specific subset of the body.
-	 * <p>The XPath expression can be a parameterized string using formatting
+	 * The XPath expression can be a parameterized string using formatting
 	 * specifiers as defined in {@link String#format(String, Object...)}.
 	 * @param expression the XPath expression, optionally parameterized with arguments
 	 * @param namespaces namespaces referenced in the XPath expression

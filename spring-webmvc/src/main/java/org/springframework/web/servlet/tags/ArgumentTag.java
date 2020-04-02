@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  * The {@code <argument>} tag is based on the JSTL {@code fmt:param} tag.
  * The purpose is to support arguments inside the message and theme tags.
  *
- * <p>This tag must be nested under an argument aware tag.
+ * This tag must be nested under an argument aware tag.
  *
  * <table>
  * <caption>Attribute Summary</caption>

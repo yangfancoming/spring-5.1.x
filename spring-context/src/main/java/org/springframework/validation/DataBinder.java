@@ -42,7 +42,7 @@ import org.springframework.util.StringUtils;
  * The binding process can be customized through specifying allowed fields,
  * required fields, custom editors, etc.
  *
- * <p>Note that there are potential security implications in failing to set an array
+ * Note that there are potential security implications in failing to set an array
  * of allowed fields. In the case of HTTP form POST data for example, malicious clients
  * can attempt to subvert an application by supplying values for fields or properties
  * that do not exist on the form. In some cases this could lead to illegal data being
@@ -50,7 +50,7 @@ import org.springframework.util.StringUtils;
  * <b>highly recommended to specify the {@link #setAllowedFields allowedFields} property</b>
  * on the DataBinder.
  *
- * <p>The binding results can be examined via the {@link BindingResult} interface,
+ * The binding results can be examined via the {@link BindingResult} interface,
  * extending the {@link Errors} interface: see the {@link #getBindingResult()} method.
  * Missing fields and property access exceptions will be converted to {@link FieldError FieldErrors},
  * collected in the Errors instance, using the following error codes:
@@ -61,12 +61,12 @@ import org.springframework.util.StringUtils;
  * <li>Method invocation error: "methodInvocation"
  * </ul>
  *
- * <p>By default, binding errors get resolved through the {@link BindingErrorProcessor}
+ * By default, binding errors get resolved through the {@link BindingErrorProcessor}
  * strategy, processing for missing fields and property access exceptions: see the
  * {@link #setBindingErrorProcessor} method. You can override the default strategy
  * if needed, for example to generate different error codes.
  *
- * <p>Custom validation errors can be added afterwards. You will typically want to resolve
+ * Custom validation errors can be added afterwards. You will typically want to resolve
  * such error codes into proper user-visible error messages; this can be achieved through
  * resolving each error via a {@link org.springframework.context.MessageSource}, which is
  * able to resolve an {@link ObjectError}/{@link FieldError} through its
@@ -75,7 +75,7 @@ import org.springframework.util.StringUtils;
  * strategy: see the {@link #setMessageCodesResolver} method. {@link DefaultMessageCodesResolver}'s
  * javadoc states details on the default resolution rules.
  *
- * <p>This generic data binder can be used in any kind of environment.
+ * This generic data binder can be used in any kind of environment.
  *
  * @author Rod Johnson
 
@@ -185,10 +185,10 @@ public class DataBinder implements PropertyEditorRegistry, TypeConverter {
 
 	/**
 	 * Set whether this binder should attempt to "auto-grow" a nested path that contains a null value.
-	 * <p>If "true", a null path location will be populated with a default object value and traversed
+	 * If "true", a null path location will be populated with a default object value and traversed
 	 * instead of resulting in an exception. This flag also enables auto-growth of collection elements
 	 * when accessing an out-of-bounds index.
-	 * <p>Default is "true" on a standard DataBinder. Note that since Spring 4.1 this feature is supported
+	 * Default is "true" on a standard DataBinder. Note that since Spring 4.1 this feature is supported
 	 * for bean property access (DataBinder's default mode) and field access.
 	 * @see #initBeanPropertyAccess()
 	 * @see org.springframework.beans.BeanWrapper#setAutoGrowNestedPaths
@@ -208,7 +208,7 @@ public class DataBinder implements PropertyEditorRegistry, TypeConverter {
 
 	/**
 	 * Specify the limit for array and collection auto-growing.
-	 * <p>Default is 256, preventing OutOfMemoryErrors in case of large indexes.
+	 * Default is 256, preventing OutOfMemoryErrors in case of large indexes.
 	 * Raise this limit if your auto-growing needs are unusually high.
 	 * @see #initBeanPropertyAccess()
 	 * @see org.springframework.beans.BeanWrapper#setAutoGrowCollectionLimit
@@ -228,7 +228,7 @@ public class DataBinder implements PropertyEditorRegistry, TypeConverter {
 
 	/**
 	 * Initialize standard JavaBean property access for this DataBinder.
-	 * <p>This is the default; an explicit call just leads to eager initialization.
+	 * This is the default; an explicit call just leads to eager initialization.
 	 * @see #initDirectFieldAccess()
 	 * @see #createBeanPropertyBindingResult()
 	 */
@@ -360,9 +360,9 @@ public class DataBinder implements PropertyEditorRegistry, TypeConverter {
 	/**
 	 * Set whether to ignore unknown fields, that is, whether to ignore bind
 	 * parameters that do not have corresponding fields in the target object.
-	 * <p>Default is "true". Turn this off to enforce that all bind parameters
+	 * Default is "true". Turn this off to enforce that all bind parameters
 	 * must have a matching field in the target object.
-	 * <p>Note that this setting only applies to <i>binding</i> operations
+	 * Note that this setting only applies to <i>binding</i> operations
 	 * on this DataBinder, not to <i>retrieving</i> values via its
 	 * {@link #getBindingResult() BindingResult}.
 	 * @see #bind
@@ -382,9 +382,9 @@ public class DataBinder implements PropertyEditorRegistry, TypeConverter {
 	 * Set whether to ignore invalid fields, that is, whether to ignore bind
 	 * parameters that have corresponding fields in the target object which are
 	 * not accessible (for example because of null values in the nested path).
-	 * <p>Default is "false". Turn this on to ignore bind parameters for
+	 * Default is "false". Turn this on to ignore bind parameters for
 	 * nested objects in non-existing parts of the target object graph.
-	 * <p>Note that this setting only applies to <i>binding</i> operations
+	 * Note that this setting only applies to <i>binding</i> operations
 	 * on this DataBinder, not to <i>retrieving</i> values via its
 	 * {@link #getBindingResult() BindingResult}.
 	 * @see #bind
@@ -404,9 +404,9 @@ public class DataBinder implements PropertyEditorRegistry, TypeConverter {
 	 * Register fields that should be allowed for binding. Default is all
 	 * fields. Restrict this for example to avoid unwanted modifications
 	 * by malicious users when binding HTTP request parameters.
-	 * <p>Supports "xxx*", "*xxx" and "*xxx*" patterns. More sophisticated matching
+	 * Supports "xxx*", "*xxx" and "*xxx*" patterns. More sophisticated matching
 	 * can be implemented by overriding the {@code isAllowed} method.
-	 * <p>Alternatively, specify a list of <i>disallowed</i> fields.
+	 * Alternatively, specify a list of <i>disallowed</i> fields.
 	 * @param allowedFields array of field names
 	 * @see #setDisallowedFields
 	 * @see #isAllowed(String)
@@ -428,9 +428,9 @@ public class DataBinder implements PropertyEditorRegistry, TypeConverter {
 	 * Register fields that should <i>not</i> be allowed for binding. Default is none.
 	 * Mark fields as disallowed for example to avoid unwanted modifications
 	 * by malicious users when binding HTTP request parameters.
-	 * <p>Supports "xxx*", "*xxx" and "*xxx*" patterns. More sophisticated matching
+	 * Supports "xxx*", "*xxx" and "*xxx*" patterns. More sophisticated matching
 	 * can be implemented by overriding the {@code isAllowed} method.
-	 * <p>Alternatively, specify a list of <i>allowed</i> fields.
+	 * Alternatively, specify a list of <i>allowed</i> fields.
 	 * @param disallowedFields array of field names
 	 * @see #setAllowedFields
 	 * @see #isAllowed(String)
@@ -450,7 +450,7 @@ public class DataBinder implements PropertyEditorRegistry, TypeConverter {
 
 	/**
 	 * Register fields that are required for each binding process.
-	 * <p>If one of the specified fields is not contained in the list of
+	 * If one of the specified fields is not contained in the list of
 	 * incoming property values, a corresponding "missing field" error
 	 * will be created, with error code "required" (by the default
 	 * binding error processor).
@@ -478,7 +478,7 @@ public class DataBinder implements PropertyEditorRegistry, TypeConverter {
 	/**
 	 * Set the strategy to use for resolving errors into message codes.
 	 * Applies the given strategy to the underlying errors holder.
-	 * <p>Default is a DefaultMessageCodesResolver.
+	 * Default is a DefaultMessageCodesResolver.
 	 * @see BeanPropertyBindingResult#setMessageCodesResolver
 	 * @see DefaultMessageCodesResolver
 	 */
@@ -493,7 +493,7 @@ public class DataBinder implements PropertyEditorRegistry, TypeConverter {
 	/**
 	 * Set the strategy to use for processing binding errors, that is,
 	 * required field errors and {@code PropertyAccessException}s.
-	 * <p>Default is a DefaultBindingErrorProcessor.
+	 * Default is a DefaultBindingErrorProcessor.
 	 * @see DefaultBindingErrorProcessor
 	 */
 	public void setBindingErrorProcessor(BindingErrorProcessor bindingErrorProcessor) {
@@ -594,7 +594,7 @@ public class DataBinder implements PropertyEditorRegistry, TypeConverter {
 	/**
 	 * Add a custom formatter, applying it to all fields matching the
 	 * {@link Formatter}-declared type.
-	 * <p>Registers a corresponding {@link PropertyEditor} adapter underneath the covers.
+	 * Registers a corresponding {@link PropertyEditor} adapter underneath the covers.
 	 * @param formatter the formatter to add, generically declared for a specific type
 	 * @since 4.2
 	 * @see #registerCustomEditor(Class, PropertyEditor)
@@ -607,7 +607,7 @@ public class DataBinder implements PropertyEditorRegistry, TypeConverter {
 	/**
 	 * Add a custom formatter for the field type specified in {@link Formatter} class,
 	 * applying it to the specified fields only, if any, or otherwise to all fields.
-	 * <p>Registers a corresponding {@link PropertyEditor} adapter underneath the covers.
+	 * Registers a corresponding {@link PropertyEditor} adapter underneath the covers.
 	 * @param formatter the formatter to add, generically declared for a specific type
 	 * @param fields the fields to apply the formatter to, or none if to be applied to all
 	 * @since 4.2
@@ -629,7 +629,7 @@ public class DataBinder implements PropertyEditorRegistry, TypeConverter {
 	/**
 	 * Add a custom formatter, applying it to the specified field types only, if any,
 	 * or otherwise to all fields matching the {@link Formatter}-declared type.
-	 * <p>Registers a corresponding {@link PropertyEditor} adapter underneath the covers.
+	 * Registers a corresponding {@link PropertyEditor} adapter underneath the covers.
 	 * @param formatter the formatter to add (does not need to generically declare a
 	 * field type if field types are explicitly specified as parameters)
 	 * @param fieldTypes the field types to apply the formatter to, or none if to be
@@ -698,10 +698,10 @@ public class DataBinder implements PropertyEditorRegistry, TypeConverter {
 
 	/**
 	 * Bind the given property values to this binder's target.
-	 * <p>This call can create field errors, representing basic binding
+	 * This call can create field errors, representing basic binding
 	 * errors like a required field (code "required"), or type mismatch
 	 * between value and bean property (code "typeMismatch").
-	 * <p>Note that the given PropertyValues should be a throwaway instance:
+	 * Note that the given PropertyValues should be a throwaway instance:
 	 * For efficiency, it will be modified to just contain allowed fields if it
 	 * implements the MutablePropertyValues interface; else, an internal mutable
 	 * copy will be created for this purpose. Pass in a copy of the PropertyValues
@@ -755,11 +755,11 @@ public class DataBinder implements PropertyEditorRegistry, TypeConverter {
 	/**
 	 * Return if the given field is allowed for binding.
 	 * Invoked for each passed-in property value.
-	 * <p>The default implementation checks for "xxx*", "*xxx" and "*xxx*" matches,
+	 * The default implementation checks for "xxx*", "*xxx" and "*xxx*" matches,
 	 * as well as direct equality, in the specified lists of allowed fields and
 	 * disallowed fields. A field matching a disallowed pattern will not be accepted
 	 * even if it also happens to match a pattern in the allowed list.
-	 * <p>Can be overridden in subclasses.
+	 * Can be overridden in subclasses.
 	 * @param field the field to check
 	 * @return if the field is allowed
 	 * @see #setAllowedFields
@@ -818,7 +818,7 @@ public class DataBinder implements PropertyEditorRegistry, TypeConverter {
 
 	/**
 	 * Apply given property values to the target object.
-	 * <p>Default implementation applies all of the supplied property
+	 * Default implementation applies all of the supplied property
 	 * values as bean property values. By default, unknown fields will
 	 * be ignored.
 	 * @param mpvs the property values to be bound (can be modified)
@@ -859,7 +859,7 @@ public class DataBinder implements PropertyEditorRegistry, TypeConverter {
 
 	/**
 	 * Invoke the specified Validators, if any, with the given validation hints.
-	 * <p>Note: Validation hints may get ignored by the actual target Validator.
+	 * Note: Validation hints may get ignored by the actual target Validator.
 	 * @param validationHints one or more hint objects to be passed to a {@link SmartValidator}
 	 * @since 3.1
 	 * @see #setValidator(Validator)

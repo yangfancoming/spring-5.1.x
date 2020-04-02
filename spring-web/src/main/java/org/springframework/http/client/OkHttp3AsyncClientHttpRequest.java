@@ -19,7 +19,7 @@ import org.springframework.util.concurrent.SettableListenableFuture;
 /**
  * {@link AsyncClientHttpRequest} implementation based on OkHttp 3.x.
  *
- * <p>Created via the {@link OkHttp3ClientHttpRequestFactory}.
+ * Created via the {@link OkHttp3ClientHttpRequestFactory}.
  *
  * @author Luciano Leggieri
  * @author Arjen Poutsma

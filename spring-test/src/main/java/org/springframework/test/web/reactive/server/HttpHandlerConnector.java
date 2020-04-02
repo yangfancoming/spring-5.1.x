@@ -36,7 +36,7 @@ import org.springframework.util.MultiValueMap;
  * Connector that handles requests by invoking an {@link HttpHandler} rather
  * than making actual requests to a network socket.
  *
- * <p>Internally the connector uses and adapts<br>
+ * Internally the connector uses and adapts<br>
  * {@link MockClientHttpRequest} and {@link MockClientHttpResponse} to<br>
  * {@link MockServerHttpRequest} and {@link MockServerHttpResponse}.
  *

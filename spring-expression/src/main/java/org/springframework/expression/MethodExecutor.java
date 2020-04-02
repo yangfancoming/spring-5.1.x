@@ -10,7 +10,7 @@ package org.springframework.expression;
  * MethodExecutor can be reused without needing to go back to the resolver to discover
  * the method again.
  *
- * <p>They can become stale, and in that case should throw an AccessException:
+ * They can become stale, and in that case should throw an AccessException:
  * This will cause the infrastructure to go back to the resolvers to ask for a new one.
  *
  * @author Andy Clement

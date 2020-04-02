@@ -17,7 +17,7 @@ import org.springframework.util.StringUtils;
  * a set of properties corresponding to the set of HTML attributes that are common
  * across elements.
  *
- * <p>Additionally, this base class allows for rendering non-standard attributes
+ * Additionally, this base class allows for rendering non-standard attributes
  * as part of the tag's output.  These attributes are accessible to subclasses if
  * needed via the {@link AbstractHtmlElementTag#getDynamicAttributes() dynamicAttributes}
  * map.

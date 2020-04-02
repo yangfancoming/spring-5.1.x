@@ -8,7 +8,7 @@ import java.lang.instrument.ClassFileTransformer;
  * Defines the contract for adding one or more
  * {@link ClassFileTransformer ClassFileTransformers} to a {@link ClassLoader}.
  *
- * <p>Implementations may operate on the current context {@code ClassLoader}
+ * Implementations may operate on the current context {@code ClassLoader}
  * or expose their own instrumentable {@code ClassLoader}.
  *
  * @author Rod Johnson
@@ -29,7 +29,7 @@ public interface LoadTimeWeaver {
 	 * Return a {@code ClassLoader} that supports instrumentation
 	 * through AspectJ-style load-time weaving based on user-defined
 	 * {@link ClassFileTransformer ClassFileTransformers}.
-	 * <p>May be the current {@code ClassLoader}, or a {@code ClassLoader}
+	 * May be the current {@code ClassLoader}, or a {@code ClassLoader}
 	 * created by this {@link LoadTimeWeaver} instance.
 	 * @return the {@code ClassLoader} which will expose
 	 * instrumented classes according to the registered transformers
@@ -39,7 +39,7 @@ public interface LoadTimeWeaver {
 	/**
 	 * Return a throwaway {@code ClassLoader}, enabling classes to be
 	 * loaded and inspected without affecting the parent {@code ClassLoader}.
-	 * <p>Should <i>not</i> return the same instance of the {@link ClassLoader}
+	 * Should <i>not</i> return the same instance of the {@link ClassLoader}
 	 * returned from an invocation of {@link #getInstrumentableClassLoader()}.
 	 * @return a temporary throwaway {@code ClassLoader}; should return
 	 * a new instance for each call, with no existing state

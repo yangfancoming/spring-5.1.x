@@ -20,10 +20,10 @@ import org.springframework.web.util.UriComponentsBuilder;
  * the request URI (i.e. {@link ServerHttpRequest#getURI()}) so it reflects
  * the client-originated protocol and address.
  *
- * <p>Alternatively if {@link #setRemoveOnly removeOnly} is set to "true",
+ * Alternatively if {@link #setRemoveOnly removeOnly} is set to "true",
  * then "Forwarded" and "X-Forwarded-*" headers are only removed, and not used.
  *
- * <p>An instance of this class is typically declared as a bean with the name
+ * An instance of this class is typically declared as a bean with the name
  * "forwardedHeaderTransformer" and detected by
  * {@link WebHttpHandlerBuilder#applicationContext(ApplicationContext)}, or it
  * can also be registered directly via

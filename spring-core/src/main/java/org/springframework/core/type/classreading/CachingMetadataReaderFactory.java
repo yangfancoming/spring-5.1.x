@@ -71,7 +71,7 @@ public class CachingMetadataReaderFactory extends SimpleMetadataReaderFactory {
 
 	/**
 	 * Specify the maximum number of entries for the MetadataReader cache.
-	 * <p>Default is 256 for a local cache, whereas a shared cache is
+	 * Default is 256 for a local cache, whereas a shared cache is
 	 * typically unbounded. This method enforces a local resource cache,
 	 * even if the {@link ResourceLoader} supports a shared resource cache.
 	 */

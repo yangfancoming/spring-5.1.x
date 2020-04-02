@@ -10,7 +10,7 @@ import org.springframework.util.MimeType;
  * A default {@link ContentTypeResolver} that checks the
  * {@link MessageHeaders#CONTENT_TYPE} header or falls back to a default value.
  *
- * <p>The header value is expected to be a {@link org.springframework.util.MimeType}
+ * The header value is expected to be a {@link org.springframework.util.MimeType}
  * or a {@code String} that can be parsed into a {@code MimeType}.
  *
  * @author Rossen Stoyanchev
@@ -25,7 +25,7 @@ public class DefaultContentTypeResolver implements ContentTypeResolver {
 	/**
 	 * Set the default MIME type to use when there is no
 	 * {@link MessageHeaders#CONTENT_TYPE} header present.
-	 * <p>This property does not have a default value.
+	 * This property does not have a default value.
 	 */
 	public void setDefaultMimeType(@Nullable MimeType defaultMimeType) {
 		this.defaultMimeType = defaultMimeType;

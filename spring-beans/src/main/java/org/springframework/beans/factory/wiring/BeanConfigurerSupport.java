@@ -20,7 +20,7 @@ import org.springframework.util.ClassUtils;
  * Convenient base class for bean configurers that can perform Dependency Injection
  * on objects (however they may be created). Typically subclassed by AspectJ aspects.
  *
- * <p>Subclasses may also need a custom metadata resolution strategy, in the
+ * Subclasses may also need a custom metadata resolution strategy, in the
  * {@link BeanWiringInfoResolver} interface. The default implementation looks for
  * a bean with the same name as the fully-qualified class name. (This is the default
  * name of the bean in a Spring XML file if the '{@code id}' attribute is not used.)
@@ -47,7 +47,7 @@ public class BeanConfigurerSupport implements BeanFactoryAware, InitializingBean
 
 	/**
 	 * Set the {@link BeanWiringInfoResolver} to use.
-	 * <p>The default behavior is to look for a bean with the same name as the class.
+	 * The default behavior is to look for a bean with the same name as the class.
 	 * As an alternative, consider using annotation-driven bean wiring.
 	 * @see ClassNameBeanWiringInfoResolver
 	 * @see org.springframework.beans.factory.annotation.AnnotationBeanWiringInfoResolver
@@ -75,7 +75,7 @@ public class BeanConfigurerSupport implements BeanFactoryAware, InitializingBean
 	/**
 	 * Create the default BeanWiringInfoResolver to be used if none was
 	 * specified explicitly.
-	 * <p>The default implementation builds a {@link ClassNameBeanWiringInfoResolver}.
+	 * The default implementation builds a {@link ClassNameBeanWiringInfoResolver}.
 	 * @return the default BeanWiringInfoResolver (never {@code null})
 	 */
 	@Nullable
@@ -104,7 +104,7 @@ public class BeanConfigurerSupport implements BeanFactoryAware, InitializingBean
 
 	/**
 	 * Configure the bean instance.
-	 * <p>Subclasses can override this to provide custom configuration logic.
+	 * Subclasses can override this to provide custom configuration logic.
 	 * Typically called by an aspect, for all bean instances matched by a pointcut.
 	 * @param beanInstance the bean instance to configure (must <b>not</b> be {@code null})
 	 */

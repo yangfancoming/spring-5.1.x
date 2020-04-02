@@ -16,7 +16,7 @@ import org.springframework.test.context.TestContextManager;
  * by calling {@link TestContextManager#afterTestClass afterTestClass()} on the supplied
  * {@link TestContextManager}.
  *
- * <p><strong>NOTE:</strong> This class requires JUnit 4.9 or higher.
+ * <strong>NOTE:</strong> This class requires JUnit 4.9 or higher.
  *
  * @author Sam Brannen
  * @since 3.0
@@ -46,7 +46,7 @@ public class RunAfterTestClassCallbacks extends Statement {
 	 * Evaluate the next {@link Statement} in the execution chain (typically an instance of
 	 * {@link org.junit.internal.runners.statements.RunAfters RunAfters}), catching any
 	 * exceptions thrown, and then invoke {@link TestContextManager#afterTestClass()}.
-	 * <p>If the invocation of {@code afterTestClass()} throws an exception, it will also
+	 * If the invocation of {@code afterTestClass()} throws an exception, it will also
 	 * be tracked. Multiple exceptions will be combined into a {@link MultipleFailureException}.
 	 */
 	@Override

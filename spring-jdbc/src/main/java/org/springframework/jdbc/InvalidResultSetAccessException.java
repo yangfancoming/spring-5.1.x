@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
 /**
  * Exception thrown when a ResultSet has been accessed in an invalid fashion.
  * Such exceptions always have a {@code java.sql.SQLException} root cause.
- * <p>This typically happens when an invalid ResultSet column index or name
+ * This typically happens when an invalid ResultSet column index or name
  * has been specified. Also thrown by disconnected SqlRowSets.
 
  * @since 1.2

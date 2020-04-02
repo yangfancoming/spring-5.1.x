@@ -92,7 +92,7 @@ public class GenericMessagingTemplate extends AbstractDestinationResolvingMessag
 	/**
 	 * Set the name of the header used to determine the send timeout (if present).
 	 * Default {@value #DEFAULT_SEND_TIMEOUT_HEADER}.
-	 * <p>The header is removed before sending the message to avoid propagation.
+	 * The header is removed before sending the message to avoid propagation.
 	 * @since 5.0
 	 */
 	public void setSendTimeoutHeader(String sendTimeoutHeader) {
@@ -132,7 +132,7 @@ public class GenericMessagingTemplate extends AbstractDestinationResolvingMessag
 	 * receiving thread isn't going to receive the reply either because it timed out,
 	 * or because it already received a reply, or because it got an exception while
 	 * sending the request message.
-	 * <p>The default value is {@code false} in which case only a WARN message is logged.
+	 * The default value is {@code false} in which case only a WARN message is logged.
 	 * If set to {@code true} a {@link MessageDeliveryException} is raised in addition
 	 * to the log message.
 	 * @param throwExceptionOnLateReply whether to throw an exception or not

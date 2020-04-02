@@ -99,7 +99,7 @@ public class MockClientHttpRequest extends MockHttpOutputMessage implements Clie
 	/**
 	 * The default implementation returns the configured
 	 * {@link #setResponse(ClientHttpResponse) response}.
-	 * <p>Override this method to execute the request and provide a response,
+	 * Override this method to execute the request and provide a response,
 	 * potentially different than the configured response.
 	 */
 	protected ClientHttpResponse executeInternal() throws IOException {

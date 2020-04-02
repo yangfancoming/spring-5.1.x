@@ -99,7 +99,7 @@ public class BindErrorsTag extends HtmlEscapingAwareTag {
 
 	/**
 	 * Retrieve the Errors instance that this tag is currently bound to.
-	 * <p>Intended for cooperating nesting tags.
+	 * Intended for cooperating nesting tags.
 	 */
 	@Nullable
 	public final Errors getErrors() {

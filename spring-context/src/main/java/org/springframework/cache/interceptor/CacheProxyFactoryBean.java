@@ -16,7 +16,7 @@ import org.springframework.cache.CacheManager;
  * {@link org.springframework.aop.framework.ProxyFactoryBean}
  * with a separate {@link CacheInterceptor} definition.
  *
- * <p>This class is designed to facilitate declarative cache demarcation: namely, wrapping
+ * This class is designed to facilitate declarative cache demarcation: namely, wrapping
  * a singleton target object with a caching proxy, proxying all the interfaces that the
  * target implements. Exists primarily for third-party framework integration.
  * <strong>Users should favor the {@code cache:} XML namespace
@@ -50,7 +50,7 @@ public class CacheProxyFactoryBean extends AbstractSingletonProxyFactoryBean
 	/**
 	 * Set the default {@link KeyGenerator} that this cache aspect should delegate to
 	 * if no specific key generator has been set for the operation.
-	 * <p>The default is a {@link SimpleKeyGenerator}.
+	 * The default is a {@link SimpleKeyGenerator}.
 	 * @since 5.0.3
 	 * @see CacheInterceptor#setKeyGenerator
 	 */
@@ -61,7 +61,7 @@ public class CacheProxyFactoryBean extends AbstractSingletonProxyFactoryBean
 	/**
 	 * Set the default {@link CacheResolver} that this cache aspect should delegate
 	 * to if no specific cache resolver has been set for the operation.
-	 * <p>The default resolver resolves the caches against their names and the
+	 * The default resolver resolves the caches against their names and the
 	 * default cache manager.
 	 * @since 5.0.3
 	 * @see CacheInterceptor#setCacheResolver
@@ -83,7 +83,7 @@ public class CacheProxyFactoryBean extends AbstractSingletonProxyFactoryBean
 	/**
 	 * Set a pointcut, i.e. a bean that triggers conditional invocation of the
 	 * {@link CacheInterceptor} depending on the method and attributes passed.
-	 * <p>Note: Additional interceptors are always invoked.
+	 * Note: Additional interceptors are always invoked.
 	 * @see #setPreInterceptors
 	 * @see #setPostInterceptors
 	 */

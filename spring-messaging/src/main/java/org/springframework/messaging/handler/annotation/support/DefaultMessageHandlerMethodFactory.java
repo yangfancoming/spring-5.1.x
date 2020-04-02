@@ -26,10 +26,10 @@ import org.springframework.validation.Validator;
  * most of the use cases defined by
  * {@link org.springframework.messaging.handler.annotation.MessageMapping MessageMapping}.
  *
- * <p>Extra method argument resolvers can be added to customize the method
+ * Extra method argument resolvers can be added to customize the method
  * signature that can be handled.
  *
- * <p>By default, the validation process redirects to a no-op implementation, see
+ * By default, the validation process redirects to a no-op implementation, see
  * {@link #setValidator(Validator)} to customize it. The {@link ConversionService}
  * can be customized in a similar manner to tune how the message payload
  * can be converted

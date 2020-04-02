@@ -8,12 +8,12 @@ import javax.servlet.jsp.JspException;
  * The {@code <hidden>} tag renders an HTML 'input' tag with type 'hidden' using
  * the bound value.
  *
- * <p>Example (binding to 'name' property of form backing object):
+ * Example (binding to 'name' property of form backing object):
  * <pre class="code">
  * &lt;form:hidden path=&quot;name&quot;/&gt;
  * </pre>
  *
- * <p>
+ *
  * <table>
  * <caption>Attribute Summary</caption>
  * <thead>
@@ -26,22 +26,22 @@ import javax.servlet.jsp.JspException;
  * </thead>
  * <tbody>
  * <tr class="altColor">
- * <td><p>htmlEscape</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>Enable/disable HTML escaping of rendered values.</p></td>
+ * <td>htmlEscape</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>Enable/disable HTML escaping of rendered values.</p></td>
  * </tr>
  * <tr class="rowColor">
- * <td><p>id</p></td>
- * <td><p>false</p></td>
- * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td>id</p></td>
+ * <td>false</p></td>
+ * <td>true</p></td>
+ * <td>HTML Standard Attribute</p></td>
  * </tr>
  * <tr class="altColor">
- * <td><p>path</p></td>
- * <td><p>true</p></td>
- * <td><p>true</p></td>
- * <td><p>Path to property for data binding</p></td>
+ * <td>path</p></td>
+ * <td>true</p></td>
+ * <td>true</p></td>
+ * <td>Path to property for data binding</p></td>
  * </tr>
  * </tbody>
  * </table>

@@ -14,11 +14,11 @@ import org.springframework.util.ObjectUtils;
  * Convenient class for regexp method pointcuts that hold an Advice,
  * making them an {@link org.springframework.aop.Advisor}.
  *
- * <p>Configure this class using the "pattern" and "patterns"
+ * Configure this class using the "pattern" and "patterns"
  * pass-through properties. These are analogous to the pattern
  * and patterns properties of {@link AbstractRegexpMethodPointcut}.
  *
- * <p>Can delegate to any {@link AbstractRegexpMethodPointcut} subclass.
+ * Can delegate to any {@link AbstractRegexpMethodPointcut} subclass.
  * By default, {@link JdkRegexpMethodPointcut} will be used. To choose
  * a specific one, override the {@link #createPointcut} method.
  *
@@ -83,7 +83,7 @@ public class RegexpMethodPointcutAdvisor extends AbstractGenericPointcutAdvisor 
 
 	/**
 	 * Set the regular expression defining methods to match.
-	 * <p>Use either this method or {@link #setPatterns}, not both.
+	 * Use either this method or {@link #setPatterns}, not both.
 	 * @see #setPatterns
 	 */
 	public void setPattern(String pattern) {
@@ -93,7 +93,7 @@ public class RegexpMethodPointcutAdvisor extends AbstractGenericPointcutAdvisor 
 	/**
 	 * Set the regular expressions defining methods to match.
 	 * To be passed through to the pointcut implementation.
-	 * <p>Matching will be the union of all these; if any of the
+	 * Matching will be the union of all these; if any of the
 	 * patterns matches, the pointcut matches.
 	 * @see AbstractRegexpMethodPointcut#setPatterns
 	 */

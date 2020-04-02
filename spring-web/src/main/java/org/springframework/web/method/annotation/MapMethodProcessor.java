@@ -16,7 +16,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 /**
  * Resolves {@link Map} method arguments and handles {@link Map} return values.
  *
- * <p>A Map return value can be interpreted in more than one ways depending
+ * A Map return value can be interpreted in more than one ways depending
  * on the presence of annotations like {@code @ModelAttribute} or
  * {@code @ResponseBody}. Therefore this handler should be configured after
  * the handlers that support these annotations.

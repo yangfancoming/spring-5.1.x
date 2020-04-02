@@ -23,7 +23,7 @@ import org.springframework.test.context.web.ServletTestExecutionListener;
  * Framework</em> with explicit {@link ApplicationContext} testing support
  * in a <strong>JUnit</strong> environment.
  *
- * <p>Concrete subclasses should typically declare a class-level
+ * Concrete subclasses should typically declare a class-level
  * {@link ContextConfiguration @ContextConfiguration} annotation to
  * configure the {@linkplain ApplicationContext application context} {@link
  * ContextConfiguration#locations() resource locations} or {@link
@@ -33,7 +33,7 @@ import org.springframework.test.context.web.ServletTestExecutionListener;
  * the appropriate {@link org.springframework.test.context.TestExecutionListener
  * TestExecutionListeners} manually.</em>
  *
- * <p>The following {@link org.springframework.test.context.TestExecutionListener
+ * The following {@link org.springframework.test.context.TestExecutionListener
  * TestExecutionListeners} are configured by default:
  *
  * <ul>
@@ -43,7 +43,7 @@ import org.springframework.test.context.web.ServletTestExecutionListener;
  * <li>{@link org.springframework.test.context.support.DirtiesContextTestExecutionListener}
  * </ul>
  *
- * <p>This class serves only as a convenience for extension.
+ * This class serves only as a convenience for extension.
  * <ul>
  * <li>If you do not wish for your test classes to be tied to a Spring-specific
  * class hierarchy, you may configure your own custom test classes by using
@@ -56,7 +56,7 @@ import org.springframework.test.context.web.ServletTestExecutionListener;
  * and specify your runner of choice via {@link RunWith @RunWith(...)}.</li>
  * </ul>
  *
- * <p><strong>NOTE:</strong> As of Spring Framework 4.3, this class requires JUnit 4.12 or higher.
+ * <strong>NOTE:</strong> As of Spring Framework 4.3, this class requires JUnit 4.12 or higher.
  *
  * @author Sam Brannen
  * @since 2.5

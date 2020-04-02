@@ -18,16 +18,16 @@ import org.springframework.web.util.WebUtils;
  * Exposes model objects as request attributes and forwards the request to
  * the specified resource URL using a {@link javax.servlet.RequestDispatcher}.
  *
- * <p>A URL for this view is supposed to specify a resource within the web
+ * A URL for this view is supposed to specify a resource within the web
  * application, suitable for RequestDispatcher's {@code forward} or
  * {@code include} method.
  *
- * <p>If operating within an already included request or within a response that
+ * If operating within an already included request or within a response that
  * has already been committed, this view will fall back to an include instead of
  * a forward. This can be enforced by calling {@code response.flushBuffer()}
  * (which will commit the response) before rendering the view.
  *
- * <p>Typical usage with {@link InternalResourceViewResolver} looks as follows,
+ * Typical usage with {@link InternalResourceViewResolver} looks as follows,
  * from the perspective of the DispatcherServlet context definition:
  *
  * <pre class="code">&lt;bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt;
@@ -81,7 +81,7 @@ public class InternalResourceView extends AbstractUrlBasedView {
 
 	/**
 	 * Specify whether to always include the view rather than forward to it.
-	 * <p>Default is "false". Switch this flag on to enforce the use of a
+	 * Default is "false". Switch this flag on to enforce the use of a
 	 * Servlet include, even if a forward would be possible.
 	 * @see javax.servlet.RequestDispatcher#forward
 	 * @see javax.servlet.RequestDispatcher#include
@@ -94,7 +94,7 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	/**
 	 * Set whether to explicitly prevent dispatching back to the
 	 * current handler path.
-	 * <p>Default is "false". Switch this to "true" for convention-based
+	 * Default is "false". Switch this to "true" for convention-based
 	 * views where a dispatch back to the current handler path is a
 	 * definitive error.
 	 */
@@ -163,7 +163,7 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	/**
 	 * Expose helpers unique to each rendering operation. This is necessary so that
 	 * different rendering operations can't overwrite each other's contexts etc.
-	 * <p>Called by {@link #renderMergedOutputModel(Map, HttpServletRequest, HttpServletResponse)}.
+	 * Called by {@link #renderMergedOutputModel(Map, HttpServletRequest, HttpServletResponse)}.
 	 * The default implementation is empty. This method can be overridden to add
 	 * custom helpers as request attributes.
 	 * @param request current HTTP request
@@ -177,7 +177,7 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	/**
 	 * Prepare for rendering, and determine the request dispatcher path
 	 * to forward to (or to include).
-	 * <p>This implementation simply returns the configured URL.
+	 * This implementation simply returns the configured URL.
 	 * Subclasses can override this to determine a resource to render,
 	 * typically interpreting the URL in a different manner.
 	 * @param request current HTTP request
@@ -203,7 +203,7 @@ public class InternalResourceView extends AbstractUrlBasedView {
 
 	/**
 	 * Obtain the RequestDispatcher to use for the forward/include.
-	 * <p>The default implementation simply calls
+	 * The default implementation simply calls
 	 * {@link HttpServletRequest#getRequestDispatcher(String)}.
 	 * Can be overridden in subclasses.
 	 * @param request current HTTP request
@@ -218,7 +218,7 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	/**
 	 * Determine whether to use RequestDispatcher's {@code include} or
 	 * {@code forward} method.
-	 * <p>Performs a check whether an include URI attribute is found in the request,
+	 * Performs a check whether an include URI attribute is found in the request,
 	 * indicating an include request, and whether the response has already been committed.
 	 * In both cases, an include will be performed, as a forward is not possible anymore.
 	 * @param request current HTTP request

@@ -17,11 +17,11 @@ import org.springframework.util.ObjectUtils;
  * that are based on a Spring {@link org.springframework.beans.factory.BeanFactory},
  * delegating to Spring-managed bean instances.
  *
- * <p>Subclasses can create prototype instances or lazily access a
+ * Subclasses can create prototype instances or lazily access a
  * singleton target, for example. See {@link LazyInitTargetSource} and
  * {@link AbstractPrototypeBasedTargetSource}'s subclasses for concrete strategies.
  *
- * <p>BeanFactory-based TargetSources are serializable. This involves
+ * BeanFactory-based TargetSources are serializable. This involves
  * disconnecting the current target and turning into a {@link SingletonTargetSource}.
  *
 
@@ -57,7 +57,7 @@ public abstract class AbstractBeanFactoryBasedTargetSource implements TargetSour
 
 	/**
 	 * Set the name of the target bean in the factory.
-	 * <p>The target bean should not be a singleton, else the same instance will
+	 * The target bean should not be a singleton, else the same instance will
 	 * always be obtained from the factory, resulting in the same behavior as
 	 * provided by {@link SingletonTargetSource}.
 	 * @param targetBeanName name of the target bean in the BeanFactory
@@ -78,7 +78,7 @@ public abstract class AbstractBeanFactoryBasedTargetSource implements TargetSour
 	/**
 	 * Specify the target class explicitly, to avoid any kind of access to the
 	 * target bean (for example, to avoid initialization of a FactoryBean instance).
-	 * <p>Default is to detect the type automatically, through a {@code getType}
+	 * Default is to detect the type automatically, through a {@code getType}
 	 * call on the BeanFactory (or even a full {@code getBean} call as fallback).
 	 */
 	public void setTargetClass(Class<?> targetClass) {

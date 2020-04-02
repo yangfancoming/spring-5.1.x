@@ -9,7 +9,7 @@ import org.springframework.lang.Nullable;
 /**
  * Strategy interface for determining the current Locale.
  *
- * <p>A LocaleContext instance can be associated with a thread
+ * A LocaleContext instance can be associated with a thread
  * via the LocaleContextHolder class.
  *
 

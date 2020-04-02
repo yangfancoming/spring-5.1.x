@@ -34,7 +34,7 @@ import org.springframework.web.server.session.WebSessionManager;
 /**
  * Default adapter of {@link WebHandler} to the {@link HttpHandler} contract.
  *
- * <p>By default creates and configures a {@link DefaultServerWebExchange} and
+ * By default creates and configures a {@link DefaultServerWebExchange} and
  * then invokes the target {@code WebHandler}.
  *
  * @author Rossen Stoyanchev
@@ -45,9 +45,9 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 
 	/**
 	 * Dedicated log category for disconnected client exceptions.
-	 * <p>Servlet containers dn't expose a a client disconnected callback, see
+	 * Servlet containers dn't expose a a client disconnected callback, see
 	 * <a href="https://github.com/eclipse-ee4j/servlet-api/issues/44">eclipse-ee4j/servlet-api#44</a>.
-	 * <p>To avoid filling logs with unnecessary stack traces, we make an
+	 * To avoid filling logs with unnecessary stack traces, we make an
 	 * effort to identify such network failures on a per-server basis, and then
 	 * log under a separate log category a simple one-line message at DEBUG level
 	 * or a full stack trace only at TRACE level.
@@ -90,7 +90,7 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	 * Configure a custom {@link WebSessionManager} to use for managing web
 	 * sessions. The provided instance is set on each created
 	 * {@link DefaultServerWebExchange}.
-	 * <p>By default this is set to {@link DefaultWebSessionManager}.
+	 * By default this is set to {@link DefaultWebSessionManager}.
 	 * @param sessionManager the session manager to use
 	 */
 	public void setSessionManager(WebSessionManager sessionManager) {
@@ -108,7 +108,7 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	/**
 	 * Configure a custom {@link ServerCodecConfigurer}. The provided instance is set on
 	 * each created {@link DefaultServerWebExchange}.
-	 * <p>By default this is set to {@link ServerCodecConfigurer#create()}.
+	 * By default this is set to {@link ServerCodecConfigurer#create()}.
 	 * @param codecConfigurer the codec configurer to use
 	 */
 	public void setCodecConfigurer(ServerCodecConfigurer codecConfigurer) {
@@ -135,7 +135,7 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	/**
 	 * Configure a custom {@link LocaleContextResolver}. The provided instance is set on
 	 * each created {@link DefaultServerWebExchange}.
-	 * <p>By default this is set to
+	 * By default this is set to
 	 * {@link org.springframework.web.server.i18n.AcceptHeaderLocaleContextResolver}.
 	 * @param resolver the locale context resolver to use
 	 */
@@ -154,7 +154,7 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	/**
 	 * Enable processing of forwarded headers, either extracting and removing,
 	 * or remove only.
-	 * <p>By default this is not set.
+	 * By default this is not set.
 	 * @param transformer the transformer to use
 	 * @since 5.1
 	 */

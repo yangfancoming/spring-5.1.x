@@ -25,7 +25,7 @@ import org.springframework.util.Assert;
 /**
  * {@code HttpMessageReader} that wraps and delegates to a {@link Decoder}.
  *
- * <p>Also a {@code HttpMessageReader} that pre-resolves decoding hints
+ * Also a {@code HttpMessageReader} that pre-resolves decoding hints
  * from the extra information available on the server side such as the request
  * or controller method parameter annotations.
  *

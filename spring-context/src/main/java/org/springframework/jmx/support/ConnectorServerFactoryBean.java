@@ -26,11 +26,11 @@ import org.springframework.util.CollectionUtils;
  * {@link FactoryBean} that creates a JSR-160 {@link JMXConnectorServer},
  * optionally registers it with the {@link MBeanServer} and then starts it.
  *
- * <p>The {@code JMXConnectorServer} can be started in a separate thread by setting the
+ * The {@code JMXConnectorServer} can be started in a separate thread by setting the
  * {@code threaded} property to {@code true}. You can configure this thread to be a
  * daemon thread by setting the {@code daemon} property to {@code true}.
  *
- * <p>The {@code JMXConnectorServer} is correctly shutdown when an instance of this
+ * The {@code JMXConnectorServer} is correctly shutdown when an instance of this
  * class is destroyed on shutdown of the containing {@code ApplicationContext}.
  *
  * @author Rob Harrop

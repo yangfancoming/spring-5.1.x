@@ -52,7 +52,7 @@ import org.springframework.validation.Validator;
  * Provides essential configuration for handling messages with simple messaging
  * protocols such as STOMP.
  *
- * <p>{@link #clientInboundChannel()} and {@link #clientOutboundChannel()} deliver
+ * {@link #clientInboundChannel()} and {@link #clientOutboundChannel()} deliver
  * messages to and from remote clients to several message handlers such as the
  * following.
  * <ul>
@@ -62,11 +62,11 @@ import org.springframework.validation.Validator;
  * <li>{@link #userDestinationMessageHandler()}</li>
  * </ul>
  *
- * <p>{@link #brokerChannel()} delivers messages from within the application to the
+ * {@link #brokerChannel()} delivers messages from within the application to the
  * the respective message handlers. {@link #brokerMessagingTemplate()} can be injected
  * into any application component to send messages.
  *
- * <p>Subclasses are responsible for the parts of the configuration that feed messages
+ * Subclasses are responsible for the parts of the configuration that feed messages
  * to and from the client inbound/outbound channels (e.g. STOMP over WebSocket).
  *
  * @author Rossen Stoyanchev
@@ -438,7 +438,7 @@ public abstract class AbstractMessageBrokerConfiguration implements ApplicationC
 	/**
 	 * Return an {@link org.springframework.validation.Validator} instance for
 	 * validating {@code @Payload} method arguments.
-	 * <p>In order, this method tries to get a Validator instance:
+	 * In order, this method tries to get a Validator instance:
 	 * <ul>
 	 * <li>delegating to getValidator() first</li>
 	 * <li>if none returned, getting an existing instance with its well-known name "mvcValidator",

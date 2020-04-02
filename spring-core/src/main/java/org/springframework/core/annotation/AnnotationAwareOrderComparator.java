@@ -19,7 +19,7 @@ import org.springframework.lang.Nullable;
  * annotations, with an order value provided by an {@code Ordered}
  * instance overriding a statically defined annotation value (if any).
  *
- * <p>Consult the Javadoc for {@link OrderComparator} for details on the
+ * Consult the Javadoc for {@link OrderComparator} for details on the
  * sort semantics for non-ordered objects.
  *
 
@@ -101,7 +101,7 @@ public class AnnotationAwareOrderComparator extends OrderComparator {
 
 	/**
 	 * Sort the given List with a default AnnotationAwareOrderComparator.
-	 * <p>Optimized to skip sorting for lists with size 0 or 1,
+	 * Optimized to skip sorting for lists with size 0 or 1,
 	 * in order to avoid unnecessary array extraction.
 	 * @param list the List to sort
 	 * @see java.util.List#sort(java.util.Comparator)
@@ -114,7 +114,7 @@ public class AnnotationAwareOrderComparator extends OrderComparator {
 
 	/**
 	 * Sort the given array with a default AnnotationAwareOrderComparator.
-	 * <p>Optimized to skip sorting for lists with size 0 or 1,
+	 * Optimized to skip sorting for lists with size 0 or 1,
 	 * in order to avoid unnecessary array extraction.
 	 * @param array the array to sort
 	 * @see java.util.Arrays#sort(Object[], java.util.Comparator)
@@ -128,7 +128,7 @@ public class AnnotationAwareOrderComparator extends OrderComparator {
 	/**
 	 * Sort the given array or List with a default AnnotationAwareOrderComparator,
 	 * if necessary. Simply skips sorting when given any other value.
-	 * <p>Optimized to skip sorting for lists with size 0 or 1,
+	 * Optimized to skip sorting for lists with size 0 or 1,
 	 * in order to avoid unnecessary array extraction.
 	 * @param value the array or List to sort
 	 * @see java.util.Arrays#sort(Object[], java.util.Comparator)

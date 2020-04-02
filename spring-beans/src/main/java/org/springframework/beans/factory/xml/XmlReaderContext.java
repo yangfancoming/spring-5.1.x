@@ -62,7 +62,7 @@ public class XmlReaderContext extends ReaderContext {
 
 	/**
 	 * Return the resource loader to use, if any.
-	 * <p>This will be non-null in regular scenarios,
+	 * This will be non-null in regular scenarios,
 	 * also allowing access to the resource class loader.
 	 * @see XmlBeanDefinitionReader#setResourceLoader
 	 * @see ResourceLoader#getClassLoader()
@@ -74,7 +74,7 @@ public class XmlReaderContext extends ReaderContext {
 
 	/**
 	 * Return the bean class loader to use, if any.
-	 * <p>Note that this will be null in regular scenarios,
+	 * Note that this will be null in regular scenarios,
 	 * as an indication to lazily resolve bean classes.
 	 * @see XmlBeanDefinitionReader#setBeanClassLoader
 	 */

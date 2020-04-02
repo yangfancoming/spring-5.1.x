@@ -44,7 +44,7 @@ public abstract class PropertyAccessException extends BeansException {
 
 	/**
 	 * Return the PropertyChangeEvent that resulted in the problem.
-	 * <p>May be {@code null}; only available if an actual bean property
+	 * May be {@code null}; only available if an actual bean property
 	 * was affected.
 	 */
 	@Nullable

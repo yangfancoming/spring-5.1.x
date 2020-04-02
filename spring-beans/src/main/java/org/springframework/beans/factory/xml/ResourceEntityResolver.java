@@ -22,13 +22,13 @@ import org.springframework.lang.Nullable;
  * relative to the resource base of an {@code ApplicationContext}), if applicable.
  * Extends {@link DelegatingEntityResolver} to also provide DTD and XSD lookup.
  *
- * <p>Allows to use standard XML entities to include XML snippets into an
+ * Allows to use standard XML entities to include XML snippets into an
  * application context definition, for example to split a large XML file
  * into various modules. The include paths can be relative to the
  * application context's resource base as usual, instead of relative
  * to the JVM working directory (the XML parser's default).
  *
- * <p>Note: In addition to relative paths, every URL that specifies a
+ * Note: In addition to relative paths, every URL that specifies a
  * file in the current system root, i.e. the JVM working directory,
  * will be interpreted relative to the application context too.
 

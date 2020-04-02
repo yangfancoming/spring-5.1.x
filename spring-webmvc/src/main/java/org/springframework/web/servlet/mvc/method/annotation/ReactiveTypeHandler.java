@@ -45,11 +45,11 @@ import org.springframework.web.servlet.HandlerMapping;
  * that can be adapted to a Reactive Streams {@link Publisher} through the
  * {@link ReactiveAdapterRegistry}.
  *
- * <p>Such return values may be bridged to a {@link ResponseBodyEmitter} for
+ * Such return values may be bridged to a {@link ResponseBodyEmitter} for
  * streaming purposes at the presence of a streaming media type or based on the
  * generic type.
  *
- * <p>For all other cases {@code Publisher} output is collected and bridged to
+ * For all other cases {@code Publisher} output is collected and bridged to
  * {@link DeferredResult} for standard async request processing.
  *
  * @author Rossen Stoyanchev

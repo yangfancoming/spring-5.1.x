@@ -16,7 +16,7 @@ import org.springframework.lang.Nullable;
  * JSP-aware (and JSTL-aware) subclass of RequestContext, allowing for
  * population of the context from a {@code javax.servlet.jsp.PageContext}.
  *
- * <p>This context will detect a JSTL locale attribute in page/request/session/application
+ * This context will detect a JSTL locale attribute in page/request/session/application
  * scope, in addition to the fallback locale strategy provided by the base class.
  *
 

@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
  * Editor for {@code java.nio.file.Path}, to directly populate a Path
  * property instead of using a String property as bridge.
  *
- * <p>Based on {@link Paths#get(URI)}'s resolution algorithm, checking
+ * Based on {@link Paths#get(URI)}'s resolution algorithm, checking
  * registered NIO file system providers, including the default file system
  * for "file:..." paths. Also supports Spring-style URL notation: any fully
  * qualified standard URL and Spring's special "classpath:" pseudo-URL, as

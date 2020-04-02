@@ -21,12 +21,12 @@ import org.springframework.lang.Nullable;
  * The type is based on which constructor is used. Objects of this class are
  * immutable except for the LobCreator reference. Use them and discard them.
  *
- * <p>This class holds a reference to a LocCreator that must be closed after the
+ * This class holds a reference to a LocCreator that must be closed after the
  * update has completed. This is done via a call to the closeLobCreator method.
  * All handling of the LobCreator is done by the framework classes that use it -
  * no need to set or close the LobCreator for end users of this class.
  *
- * <p>A usage example:
+ * A usage example:
  *
  * <pre class="code">JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  // reusable object
  * LobHandler lobHandler = new DefaultLobHandler();  // reusable object

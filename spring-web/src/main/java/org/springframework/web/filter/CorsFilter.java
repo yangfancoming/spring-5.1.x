@@ -24,12 +24,12 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
  * {@link CorsConfigurationSource} (for example an {@link UrlBasedCorsConfigurationSource}
  * instance.
  *
- * <p>This is an alternative to Spring MVC Java config and XML namespace CORS configuration,
+ * This is an alternative to Spring MVC Java config and XML namespace CORS configuration,
  * useful for applications depending only on spring-web (not on spring-webmvc) or for
  * security constraints requiring CORS checks to be performed at {@link javax.servlet.Filter}
  * level.
  *
- * <p>This filter could be used in conjunction with {@link DelegatingFilterProxy} in order
+ * This filter could be used in conjunction with {@link DelegatingFilterProxy} in order
  * to help with its initialization.
  *
  * @author Sebastien Deleuze
@@ -57,7 +57,7 @@ public class CorsFilter extends OncePerRequestFilter {
 	/**
 	 * Configure a custom {@link CorsProcessor} to use to apply the matched
 	 * {@link CorsConfiguration} for a request.
-	 * <p>By default {@link DefaultCorsProcessor} is used.
+	 * By default {@link DefaultCorsProcessor} is used.
 	 */
 	public void setCorsProcessor(CorsProcessor processor) {
 		Assert.notNull(processor, "CorsProcessor must not be null");

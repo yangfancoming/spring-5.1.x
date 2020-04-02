@@ -10,7 +10,7 @@ import org.springframework.util.Assert;
  * Encapsulates an object error, that is, a global reason for rejecting
  * an object.
  *
- * <p>See the {@link DefaultMessageCodesResolver} javadoc for details on
+ * See the {@link DefaultMessageCodesResolver} javadoc for details on
  * how a message code list is built for an {@code ObjectError}.
  *
 
@@ -63,7 +63,7 @@ public class ObjectError extends DefaultMessageSourceResolvable {
 	 * Preserve the source behind this error: possibly an {@link Exception}
 	 * (typically {@link org.springframework.beans.PropertyAccessException})
 	 * or a Bean Validation {@link javax.validation.ConstraintViolation}.
-	 * <p>Note that any such source object is being stored as transient:
+	 * Note that any such source object is being stored as transient:
 	 * that is, it won't be part of a serialized error representation.
 	 * @param source the source object
 	 * @since 5.0.4
@@ -79,7 +79,7 @@ public class ObjectError extends DefaultMessageSourceResolvable {
 	 * Unwrap the source behind this error: possibly an {@link Exception}
 	 * (typically {@link org.springframework.beans.PropertyAccessException})
 	 * or a Bean Validation {@link javax.validation.ConstraintViolation}.
-	 * <p>The cause of the outermost exception will be introspected as well,
+	 * The cause of the outermost exception will be introspected as well,
 	 * e.g. the underlying conversion exception or exception thrown from a setter
 	 * (instead of having to unwrap the {@code PropertyAccessException} in turn).
 	 * @return the source object of the given type
@@ -104,7 +104,7 @@ public class ObjectError extends DefaultMessageSourceResolvable {
 	 * Check the source behind this error: possibly an {@link Exception}
 	 * (typically {@link org.springframework.beans.PropertyAccessException})
 	 * or a Bean Validation {@link javax.validation.ConstraintViolation}.
-	 * <p>The cause of the outermost exception will be introspected as well,
+	 * The cause of the outermost exception will be introspected as well,
 	 * e.g. the underlying conversion exception or exception thrown from a setter
 	 * (instead of having to unwrap the {@code PropertyAccessException} in turn).
 	 * @return whether this error has been caused by a source object of the given type

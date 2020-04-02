@@ -15,17 +15,17 @@ import org.springframework.util.Assert;
  * PagedListHolder is a simple state holder for handling lists of objects,
  * separating them into pages. Page numbering starts with 0.
  *
- * <p>This is mainly targeted at usage in web UIs. Typically, an instance will be
+ * This is mainly targeted at usage in web UIs. Typically, an instance will be
  * instantiated with a list of beans, put into the session, and exported as model.
  * The properties can all be set/get programmatically, but the most common way will
  * be data binding, i.e. populating the bean from request parameters. The getters
  * will mainly be used by the view.
  *
- * <p>Supports sorting the underlying list via a {@link SortDefinition} implementation,
+ * Supports sorting the underlying list via a {@link SortDefinition} implementation,
  * available as property "sort". By default, a {@link MutableSortDefinition} instance
  * will be used, toggling the ascending value on setting the same property again.
  *
- * <p>The data binding names have to be called "pageSize" and "sort.ascending",
+ * The data binding names have to be called "pageSize" and "sort.ascending",
  * as expected by BeanWrapper. Note that the names and the nesting syntax match
  * the respective JSTL EL expressions, like "myModelAttr.pageSize" and
  * "myModelAttr.sort.ascending".
@@ -145,7 +145,7 @@ public class PagedListHolder<E> implements Serializable {
 	/**
 	 * Set the current page size.
 	 * Resets the current page number if changed.
-	 * <p>Default value is 10.
+	 * Default value is 10.
 	 */
 	public void setPageSize(int pageSize) {
 		if (pageSize != this.pageSize) {
@@ -291,7 +291,7 @@ public class PagedListHolder<E> implements Serializable {
 	/**
 	 * Resort the list if necessary, i.e. if the current {@code sort} instance
 	 * isn't equal to the backed-up {@code sortUsed} instance.
-	 * <p>Calls {@code doSort} to trigger actual sorting.
+	 * Calls {@code doSort} to trigger actual sorting.
 	 * @see #doSort
 	 */
 	public void resort() {
@@ -306,7 +306,7 @@ public class PagedListHolder<E> implements Serializable {
 	/**
 	 * Create a deep copy of the given sort definition,
 	 * for use as state holder to compare a modified sort definition against.
-	 * <p>Default implementation creates a MutableSortDefinition instance.
+	 * Default implementation creates a MutableSortDefinition instance.
 	 * Can be overridden in subclasses, in particular in case of custom
 	 * extensions to the SortDefinition interface. Is allowed to return
 	 * null, which means that no sort state will be held, triggering
@@ -322,7 +322,7 @@ public class PagedListHolder<E> implements Serializable {
 	/**
 	 * Actually perform sorting of the given source list, according to
 	 * the given sort definition.
-	 * <p>The default implementation uses Spring's PropertyComparator.
+	 * The default implementation uses Spring's PropertyComparator.
 	 * Can be overridden in subclasses.
 	 * @see PropertyComparator#sort(java.util.List, SortDefinition)
 	 */

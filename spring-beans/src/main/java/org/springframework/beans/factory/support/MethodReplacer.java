@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
  * on an IoC-managed object: the <b>Method Injection</b> form of
  * Dependency Injection.
  *
- * <p>Such methods may be (but need not be) abstract, in which case the
+ * Such methods may be (but need not be) abstract, in which case the
  * container will create a concrete subclass to instantiate.
  *
  * @author Rod Johnson

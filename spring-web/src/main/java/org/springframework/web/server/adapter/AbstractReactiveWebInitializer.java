@@ -20,7 +20,7 @@ import org.springframework.web.WebApplicationInitializer;
  * Base class for a {@link org.springframework.web.WebApplicationInitializer}
  * that installs a Spring Reactive Web Application on a Servlet container.
  *
- * <p>Spring configuration is loaded and given to
+ * Spring configuration is loaded and given to
  * {@link WebHttpHandlerBuilder#applicationContext WebHttpHandlerBuilder}
  * which scans the context looking for specific beans and creates a reactive
  * {@link HttpHandler}. The resulting handler is installed as a Servlet through
@@ -64,7 +64,7 @@ public abstract class AbstractReactiveWebInitializer implements WebApplicationIn
 
 	/**
 	 * Return the name to use to register the {@link ServletHttpHandlerAdapter}.
-	 * <p>By default this is {@link #DEFAULT_SERVLET_NAME}.
+	 * By default this is {@link #DEFAULT_SERVLET_NAME}.
 	 */
 	protected String getServletName() {
 		return DEFAULT_SERVLET_NAME;
@@ -120,7 +120,7 @@ public abstract class AbstractReactiveWebInitializer implements WebApplicationIn
 	/**
 	 * Return the Servlet mapping to use. Only the default Servlet mapping '/'
 	 * and path-based Servlet mappings such as '/api/*' are supported.
-	 * <p>By default this is set to '/'.
+	 * By default this is set to '/'.
 	 */
 	protected String getServletMapping() {
 		return "/";

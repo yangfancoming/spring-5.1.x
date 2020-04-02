@@ -12,7 +12,7 @@ import org.springframework.remoting.support.RemoteInvocationResult;
  * Used by HttpInvokerClientInterceptor and its subclass
  * HttpInvokerProxyFactoryBean.
  *
- * <p>Two implementations are provided out of the box:
+ * Two implementations are provided out of the box:
  * <ul>
  * <li><b>{@code SimpleHttpInvokerRequestExecutor}:</b>
  * Uses JDK facilities to execute POST requests, without support

@@ -16,14 +16,14 @@ import org.springframework.jdbc.support.KeyHolder;
  * needed to construct a basic insert statement. All you need to provide is the
  * name of the table and a Map containing the column names and the column values.
  *
- * <p>The meta-data processing is based on the DatabaseMetaData provided by the
+ * The meta-data processing is based on the DatabaseMetaData provided by the
  * JDBC driver. As long as the JDBC driver can provide the names of the columns
  * for a specified table than we can rely on this auto-detection feature. If that
  * is not the case, then the column names must be specified explicitly.
  *
- * <p>The actual insert is being handled using Spring's {@link JdbcTemplate}.
+ * The actual insert is being handled using Spring's {@link JdbcTemplate}.
  *
- * <p>Many of the configuration methods return the current instance of the
+ * Many of the configuration methods return the current instance of the
  * SimpleJdbcInsert to provide the ability to chain multiple ones together
  * in a "fluent" interface style.
  *

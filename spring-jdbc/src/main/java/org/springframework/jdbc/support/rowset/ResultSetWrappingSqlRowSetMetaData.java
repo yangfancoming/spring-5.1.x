@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * {@link java.sql.ResultSetMetaData} instance, catching any {@link SQLException SQLExceptions}
  * and translating them to a corresponding Spring {@link InvalidResultSetAccessException}.
  *
- * <p>Used by {@link ResultSetWrappingSqlRowSet}.
+ * Used by {@link ResultSetWrappingSqlRowSet}.
  *
  * @author Thomas Risberg
 

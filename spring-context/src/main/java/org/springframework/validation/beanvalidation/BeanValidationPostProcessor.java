@@ -35,7 +35,7 @@ public class BeanValidationPostProcessor implements BeanPostProcessor, Initializ
 
 	/**
 	 * Set the JSR-303 Validator to delegate to for validating beans.
-	 * <p>Default is the default ValidatorFactory's default Validator.
+	 * Default is the default ValidatorFactory's default Validator.
 	 */
 	public void setValidator(Validator validator) {
 		this.validator = validator;
@@ -44,7 +44,7 @@ public class BeanValidationPostProcessor implements BeanPostProcessor, Initializ
 	/**
 	 * Set the JSR-303 ValidatorFactory to delegate to for validating beans,
 	 * using its default Validator.
-	 * <p>Default is the default ValidatorFactory's default Validator.
+	 * Default is the default ValidatorFactory's default Validator.
 	 * @see javax.validation.ValidatorFactory#getValidator()
 	 */
 	public void setValidatorFactory(ValidatorFactory validatorFactory) {
@@ -54,7 +54,7 @@ public class BeanValidationPostProcessor implements BeanPostProcessor, Initializ
 	/**
 	 * Choose whether to perform validation after bean initialization
 	 * (i.e. after init methods) instead of before (which is the default).
-	 * <p>Default is "false" (before initialization). Switch this to "true"
+	 * Default is "false" (before initialization). Switch this to "true"
 	 * (after initialization) if you would like to give init methods a chance
 	 * to populate constrained fields before they get validated.
 	 */

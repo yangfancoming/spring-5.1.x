@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
  * {@code null} values (and potentially other such special values) before
  * passing them on to the underlying store.
  *
- * <p>Transparently replaces given {@code null} user values with an internal
+ * Transparently replaces given {@code null} user values with an internal
  * {@link NullValue#INSTANCE}, if configured to support {@code null} values
  * (as indicated by {@link #isAllowNullValues()}.
  *

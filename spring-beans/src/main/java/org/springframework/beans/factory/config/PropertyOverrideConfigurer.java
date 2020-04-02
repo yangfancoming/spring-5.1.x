@@ -16,7 +16,7 @@ import org.springframework.beans.factory.BeanInitializationException;
  * Property resource configurer that overrides bean property values in an application
  * context definition. It <i>pushes</i> values from a properties file into bean definitions.
  *
- * <p>Configuration lines are expected to be of the following form:
+ * Configuration lines are expected to be of the following form:
  *
  * <pre class="code">beanName.property=value</pre>
  *
@@ -29,16 +29,16 @@ import org.springframework.beans.factory.BeanInitializationException;
  * values or no values at all for such bean properties. If an overriding properties file does
  * not have an entry for a certain bean property, the default context definition is used.
  *
- * <p>Note that the context definition <i>is not</i> aware of being overridden;
+ * Note that the context definition <i>is not</i> aware of being overridden;
  * so this is not immediately obvious when looking at the XML definition file.
  * Furthermore, note that specified override values are always <i>literal</i> values;
  * they are not translated into bean references. This also applies when the original
  * value in the XML bean definition specifies a bean reference.
  *
- * <p>In case of multiple PropertyOverrideConfigurers that define different values for
+ * In case of multiple PropertyOverrideConfigurers that define different values for
  * the same bean property, the <i>last</i> one will win (due to the overriding mechanism).
  *
- * <p>Property values can be converted after reading them in, through overriding
+ * Property values can be converted after reading them in, through overriding
  * the {@code convertPropertyValue} method. For example, encrypted values
  * can be detected and decrypted accordingly before processing them.
  *
@@ -76,7 +76,7 @@ public class PropertyOverrideConfigurer extends PropertyResourceConfigurer {
 
 	/**
 	 * Set whether to ignore invalid keys. Default is "false".
-	 * <p>If you ignore invalid keys, keys that do not follow the 'beanName.property' format
+	 * If you ignore invalid keys, keys that do not follow the 'beanName.property' format
 	 * (or refer to invalid bean names or properties) will just be logged at debug level.
 	 * This allows one to have arbitrary other keys in a properties file.
 	 */

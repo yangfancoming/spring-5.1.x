@@ -33,7 +33,7 @@ import static org.springframework.test.context.cache.ContextCacheTestUtils.*;
  * application context caching} in conjunction with Spring's TestNG support
  * and {@link DirtiesContext @DirtiesContext} at the class level.
  *
- * <p>This class is a direct copy of {@link ClassLevelDirtiesContextTests},
+ * This class is a direct copy of {@link ClassLevelDirtiesContextTests},
  * modified to verify behavior in conjunction with TestNG.
  *
  * @author Sam Brannen

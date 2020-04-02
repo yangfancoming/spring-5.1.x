@@ -27,11 +27,11 @@ import org.springframework.util.Assert;
  * the candidate that supports the merged, processed configuration will be used to
  * actually {@linkplain #loadContext load} the context.
  *
- * <p>Any reference to an <em>XML-based loader</em> can be interpreted to mean
+ * Any reference to an <em>XML-based loader</em> can be interpreted to mean
  * a context loader that supports only XML configuration files or one that
  * supports both XML configuration files and Groovy scripts simultaneously.
  *
- * <p>Placing an empty {@code @ContextConfiguration} annotation on a test class signals
+ * Placing an empty {@code @ContextConfiguration} annotation on a test class signals
  * that default resource locations (e.g., XML configuration files or Groovy scripts)
  * or default
  * {@linkplain org.springframework.context.annotation.Configuration configuration classes}
@@ -43,7 +43,7 @@ import org.springframework.util.Assert;
  * (e.g., XML configuration files and Groovy scripts) or annotated classes,
  * but not both simultaneously.
  *
- * <p>As of Spring 3.2, a test class may optionally declare neither path-based
+ * As of Spring 3.2, a test class may optionally declare neither path-based
  * resource locations nor annotated classes and instead declare only {@linkplain
  * ContextConfiguration#initializers application context initializers}. In such
  * cases, an attempt will still be made to detect defaults, but their absence will
@@ -105,7 +105,7 @@ public abstract class AbstractDelegatingSmartContextLoader implements SmartConte
 	/**
 	 * Delegates to candidate {@code SmartContextLoaders} to process the supplied
 	 * {@link ContextConfigurationAttributes}.
-	 * <p>Delegation is based on explicit knowledge of the implementations of the
+	 * Delegation is based on explicit knowledge of the implementations of the
 	 * default loaders for {@linkplain #getXmlLoader() XML configuration files and
 	 * Groovy scripts} and {@linkplain #getAnnotationConfigLoader() annotated classes}.
 	 * Specifically, the delegation algorithm is as follows:
@@ -195,7 +195,7 @@ public abstract class AbstractDelegatingSmartContextLoader implements SmartConte
 	/**
 	 * Delegates to an appropriate candidate {@code SmartContextLoader} to load
 	 * an {@link ApplicationContext}.
-	 * <p>Delegation is based on explicit knowledge of the implementations of the
+	 * Delegation is based on explicit knowledge of the implementations of the
 	 * default loaders for {@linkplain #getXmlLoader() XML configuration files and
 	 * Groovy scripts} and {@linkplain #getAnnotationConfigLoader() annotated classes}.
 	 * Specifically, the delegation algorithm is as follows:

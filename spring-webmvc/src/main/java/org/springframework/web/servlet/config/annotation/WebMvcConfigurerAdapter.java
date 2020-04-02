@@ -28,7 +28,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * This implementation is empty.
 	 */
 	@Override
 	public void configurePathMatch(PathMatchConfigurer configurer) {
@@ -36,7 +36,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * This implementation is empty.
 	 */
 	@Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
@@ -44,7 +44,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * This implementation is empty.
 	 */
 	@Override
 	public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
@@ -52,7 +52,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * This implementation is empty.
 	 */
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
@@ -60,7 +60,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * This implementation is empty.
 	 */
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
@@ -68,7 +68,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * This implementation is empty.
 	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -76,7 +76,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * This implementation is empty.
 	 */
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -84,7 +84,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * This implementation is empty.
 	 */
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
@@ -92,7 +92,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * This implementation is empty.
 	 */
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
@@ -100,7 +100,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * This implementation is empty.
 	 */
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
@@ -108,7 +108,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * This implementation is empty.
 	 */
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
@@ -116,7 +116,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * This implementation is empty.
 	 */
 	@Override
 	public void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> returnValueHandlers) {
@@ -124,7 +124,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * This implementation is empty.
 	 */
 	@Override
 	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
@@ -132,7 +132,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * This implementation is empty.
 	 */
 	@Override
 	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
@@ -140,7 +140,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * This implementation is empty.
 	 */
 	@Override
 	public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
@@ -148,7 +148,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * This implementation is empty.
 	 */
 	@Override
 	public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
@@ -156,7 +156,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation returns {@code null}.
+	 * This implementation returns {@code null}.
 	 */
 	@Override
 	@Nullable
@@ -166,7 +166,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation returns {@code null}.
+	 * This implementation returns {@code null}.
 	 */
 	@Override
 	@Nullable

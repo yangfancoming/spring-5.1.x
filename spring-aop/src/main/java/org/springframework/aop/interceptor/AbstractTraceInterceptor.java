@@ -15,12 +15,12 @@ import org.springframework.lang.Nullable;
 /**
  * Base {@code MethodInterceptor} implementation for tracing.
  *
- * <p>By default, log messages are written to the log for the interceptor class,
+ * By default, log messages are written to the log for the interceptor class,
  * not the class which is being intercepted. Setting the {@code useDynamicLogger}
  * bean property to {@code true} causes all log messages to be written to
  * the {@code Log} for the target class being intercepted.
  *
- * <p>Subclasses must implement the {@code invokeUnderTrace} method, which
+ * Subclasses must implement the {@code invokeUnderTrace} method, which
  * is invoked by this class ONLY when a particular invocation SHOULD be traced.
  * Subclasses should write to the {@code Log} instance provided.
  * @since 1.2
@@ -53,11 +53,11 @@ public abstract class AbstractTraceInterceptor implements MethodInterceptor, Ser
 	/**
 	 * Set whether to use a dynamic logger or a static logger.
 	 * Default is a static logger for this trace interceptor.
-	 * <p>Used to determine which {@code Log} instance should be used to write
+	 * Used to determine which {@code Log} instance should be used to write
 	 * log messages for a particular method invocation: a dynamic one for the
 	 * {@code Class} getting called, or a static one for the {@code Class}
 	 * of the trace interceptor.
-	 * <p><b>NOTE:</b> Specify either this property or "loggerName", not both.
+	 * <b>NOTE:</b> Specify either this property or "loggerName", not both.
 	 * @see #getLoggerForInvocation(org.aopalliance.intercept.MethodInvocation)
 	 */
 	public void setUseDynamicLogger(boolean useDynamicLogger) {
@@ -69,10 +69,10 @@ public abstract class AbstractTraceInterceptor implements MethodInterceptor, Ser
 	 * Set the name of the logger to use. The name will be passed to the
 	 * underlying logger implementation through Commons Logging, getting
 	 * interpreted as log category according to the logger's configuration.
-	 * <p>This can be specified to not log into the category of a class
+	 * This can be specified to not log into the category of a class
 	 * (whether this interceptor's class or the class getting called)
 	 * but rather into a specific named category.
-	 * <p><b>NOTE:</b> Specify either this property or "useDynamicLogger", not both.
+	 * <b>NOTE:</b> Specify either this property or "useDynamicLogger", not both.
 	 * @see org.apache.commons.logging.LogFactory#getLog(String)
 	 * @see java.util.logging.Logger#getLogger(String)
 	 */
@@ -149,7 +149,7 @@ public abstract class AbstractTraceInterceptor implements MethodInterceptor, Ser
 	/**
 	 * Determine whether the interceptor should kick in, that is,
 	 * whether the {@code invokeUnderTrace} method should be called.
-	 * <p>Default behavior is to check whether the given {@code Log}
+	 * Default behavior is to check whether the given {@code Log}
 	 * instance is enabled. Subclasses can override this to apply the
 	 * interceptor in other cases as well.
 	 * @param invocation the {@code MethodInvocation} being traced
@@ -163,7 +163,7 @@ public abstract class AbstractTraceInterceptor implements MethodInterceptor, Ser
 
 	/**
 	 * Determine whether the given {@link Log} instance is enabled.
-	 * <p>Default is {@code true} when the "trace" level is enabled.
+	 * Default is {@code true} when the "trace" level is enabled.
 	 * Subclasses can override this to change the level under which 'tracing' occurs.
 	 * @param logger the {@code Log} instance to check
 	 */
@@ -173,8 +173,8 @@ public abstract class AbstractTraceInterceptor implements MethodInterceptor, Ser
 
 	/**
 	 * Write the supplied trace message to the supplied {@code Log} instance.
-	 * <p>To be called by {@link #invokeUnderTrace} for enter/exit messages.
-	 * <p>Delegates to {@link #writeToLog(Log, String, Throwable)} as the
+	 * To be called by {@link #invokeUnderTrace} for enter/exit messages.
+	 * Delegates to {@link #writeToLog(Log, String, Throwable)} as the
 	 * ultimate delegate that controls the underlying logger invocation.
 	 * @since 4.3.10
 	 * @see #writeToLog(Log, String, Throwable)
@@ -186,10 +186,10 @@ public abstract class AbstractTraceInterceptor implements MethodInterceptor, Ser
 	/**
 	 * Write the supplied trace message and {@link Throwable} to the
 	 * supplied {@code Log} instance.
-	 * <p>To be called by {@link #invokeUnderTrace} for enter/exit outcomes,
+	 * To be called by {@link #invokeUnderTrace} for enter/exit outcomes,
 	 * potentially including an exception. Note that an exception's stack trace
 	 * won't get logged when {@link #setLogExceptionStackTrace} is "false".
-	 * <p>By default messages are written at {@code TRACE} level. Subclasses
+	 * By default messages are written at {@code TRACE} level. Subclasses
 	 * can override this method to control which level the message is written
 	 * at, typically also overriding {@link #isLogEnabled} accordingly.
 	 * @since 4.3.10
@@ -210,7 +210,7 @@ public abstract class AbstractTraceInterceptor implements MethodInterceptor, Ser
 	 * supplied {@code MethodInvocation}. Subclasses are responsible for
 	 * ensuring that the {@code MethodInvocation} actually executes by
 	 * calling {@code MethodInvocation.proceed()}.
-	 * <p>By default, the passed-in {@code Log} instance will have log level
+	 * By default, the passed-in {@code Log} instance will have log level
 	 * "trace" enabled. Subclasses do not have to check for this again, unless
 	 * they overwrite the {@code isInterceptorEnabled} method to modify
 	 * the default behavior, and may delegate to {@code writeToLog} for actual

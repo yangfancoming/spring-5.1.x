@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
  * This set of tests refutes the claims made in
  * <a href="https://jira.spring.io/browse/SPR-9051" target="_blank">SPR-9051</a>.
  *
- * <p><b>The Claims</b>:
+ * <b>The Claims</b>:
  *
  * <blockquote>
  * When a {@code @ContextConfiguration} test class references a config class

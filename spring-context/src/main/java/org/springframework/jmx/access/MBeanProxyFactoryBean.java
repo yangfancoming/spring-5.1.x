@@ -17,12 +17,12 @@ import org.springframework.util.ClassUtils;
  * properties that correspond to operations and attributes in the management
  * interface of the resource you wish to proxy.
  *
- * <p>There is no need for the managed resource to implement the proxy interface,
+ * There is no need for the managed resource to implement the proxy interface,
  * although you may find it convenient to do. It is not required that every
  * operation and attribute in the management interface is matched by a
  * corresponding property or method in the proxy interface.
  *
- * <p>Attempting to invoke or access any method or property on the proxy
+ * Attempting to invoke or access any method or property on the proxy
  * interface that does not correspond to the management interface will lead
  * to an {@code InvalidInvocationException}.
  *
@@ -47,7 +47,7 @@ public class MBeanProxyFactoryBean extends MBeanClientInterceptor
 
 	/**
 	 * Set the interface that the generated proxy will implement.
-	 * <p>This will usually be a management interface that matches the target MBean,
+	 * This will usually be a management interface that matches the target MBean,
 	 * exposing bean property setters and getters for MBean attributes and
 	 * conventional Java methods for MBean operations.
 	 * @see #setObjectName

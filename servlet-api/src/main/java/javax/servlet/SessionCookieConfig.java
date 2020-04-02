@@ -4,7 +4,7 @@ package javax.servlet;
  * Class that may be used to configure various properties of cookies 
  * used for session tracking purposes.
  *
- * <p>An instance of this class is acquired by a call to
+ * An instance of this class is acquired by a call to
  * {@link ServletContext#getSessionCookieConfig}.
  *
  * @since Servlet 3.0
@@ -17,7 +17,7 @@ public interface SessionCookieConfig {
      * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
      * was acquired.
      *
-     * <p>NOTE: Changing the name of session tracking cookies may break
+     * NOTE: Changing the name of session tracking cookies may break
      * other tiers (for example, a load balancing frontend) that assume
      * the cookie name to be equal to the default <tt>JSESSIONID</tt>,
      * and therefore should only be done cautiously.
@@ -37,7 +37,7 @@ public interface SessionCookieConfig {
      * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
      * was acquired.
      *
-     * <p>By default, <tt>JSESSIONID</tt> will be used as the cookie name.
+     * By default, <tt>JSESSIONID</tt> will be used as the cookie name.
      *
      * @return the cookie name set via {@link #setName}, or
      * <tt>null</tt> if {@link #setName} was never called
@@ -101,7 +101,7 @@ public interface SessionCookieConfig {
      * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
      * was acquired.
      *
-     * <p>By default, the context path of the <tt>ServletContext</tt>
+     * By default, the context path of the <tt>ServletContext</tt>
      * from which this <tt>SessionCookieConfig</tt> was acquired will
      * be used.
      *
@@ -119,7 +119,7 @@ public interface SessionCookieConfig {
      * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
      * was acquired.
      *
-     * <p>As a side effect of this call, the session tracking cookies
+     * As a side effect of this call, the session tracking cookies
      * will be marked with a <code>Version</code> attribute equal to
      * <code>1</code>.
      * 
@@ -155,7 +155,7 @@ public interface SessionCookieConfig {
      * which this <tt>SessionCookieConfig</tt> was acquired as
      * <i>HttpOnly</i>.
      *
-     * <p>A cookie is marked as <tt>HttpOnly</tt> by adding the
+     * A cookie is marked as <tt>HttpOnly</tt> by adding the
      * <tt>HttpOnly</tt> attribute to it. <i>HttpOnly</i> cookies are
      * not supposed to be exposed to client-side scripting code, and may
      * therefore help mitigate certain kinds of cross-site scripting
@@ -196,7 +196,7 @@ public interface SessionCookieConfig {
      * the application represented by the <tt>ServletContext</tt> from which
      * this <tt>SessionCookieConfig</tt> was acquired as <i>secure</i>.
      *
-     * <p>One use case for marking a session tracking cookie as
+     * One use case for marking a session tracking cookie as
      * <tt>secure</tt>, even though the request that initiated the session
      * came over HTTP, is to support a topology where the web container is
      * front-ended by an SSL offloading load balancer.
@@ -269,7 +269,7 @@ public interface SessionCookieConfig {
      * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
      * was acquired.
      *
-     * <p>By default, <tt>-1</tt> is returned.
+     * By default, <tt>-1</tt> is returned.
      *
      * @return the lifetime (in seconds) of the session tracking
      * cookies created on behalf of the application represented by the

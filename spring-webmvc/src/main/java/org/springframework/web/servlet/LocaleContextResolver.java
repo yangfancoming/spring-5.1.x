@@ -24,15 +24,15 @@ public interface LocaleContextResolver extends LocaleResolver {
 
 	/**
 	 * Resolve the current locale context via the given request.
-	 * <p>This is primarily intended for framework-level processing; consider using
+	 * This is primarily intended for framework-level processing; consider using
 	 * {@link org.springframework.web.servlet.support.RequestContextUtils} or
 	 * {@link org.springframework.web.servlet.support.RequestContext} for
 	 * application-level access to the current locale and/or time zone.
-	 * <p>The returned context may be a
+	 * The returned context may be a
 	 * {@link org.springframework.context.i18n.TimeZoneAwareLocaleContext},
 	 * containing a locale with associated time zone information.
 	 * Simply apply an {@code instanceof} check and downcast accordingly.
-	 * <p>Custom resolver implementations may also return extra settings in
+	 * Custom resolver implementations may also return extra settings in
 	 * the returned context, which again can be accessed through downcasting.
 	 * @param request the request to resolve the locale context for
 	 * @return the current locale context (never {@code null}

@@ -19,7 +19,7 @@ import org.springframework.lang.Nullable;
  * A {@code ResourceResolver} that delegates to the chain to locate a resource
  * and then attempts to find a variation with the ".gz" extension.
  *
- * <p>The resolver gets involved only if the "Accept-Encoding" request header
+ * The resolver gets involved only if the "Accept-Encoding" request header
  * contains the value "gzip" indicating the client accepts gzipped responses.
  *
  * @author Jeremy Grelle

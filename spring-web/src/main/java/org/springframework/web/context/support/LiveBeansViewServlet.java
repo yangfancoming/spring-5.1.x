@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
 /**
  * Servlet variant of {@link LiveBeansView}'s MBean exposure.
  *
- * <p>Generates a JSON snapshot for current beans and their dependencies in
+ * Generates a JSON snapshot for current beans and their dependencies in
  * all ApplicationContexts that live within the current web application.
  *
 

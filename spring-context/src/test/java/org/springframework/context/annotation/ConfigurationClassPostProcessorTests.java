@@ -73,7 +73,7 @@ public class ConfigurationClassPostProcessorTests {
 	/**
 	 * Enhanced {@link Configuration} classes are only necessary for respecting
 	 * certain bean semantics, like singleton-scoping, scoped proxies, etc.
-	 * <p>Technically, {@link ConfigurationClassPostProcessor} could fail to enhance the
+	 * Technically, {@link ConfigurationClassPostProcessor} could fail to enhance the
 	 * registered Configuration classes and many use cases would still work.
 	 * Certain cases, however, like inter-bean singleton references would not.
 	 * We test for such a case below, and in doing so prove that enhancement is

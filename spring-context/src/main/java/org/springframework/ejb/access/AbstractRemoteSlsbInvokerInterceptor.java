@@ -20,7 +20,7 @@ import org.springframework.remoting.rmi.RmiClientInterceptorUtils;
  * Base class for interceptors proxying remote Stateless Session Beans.
  * Designed for EJB 2.x, but works for EJB 3 Session Beans as well.
  *
- * <p>Such an interceptor must be the last interceptor in the advice chain.
+ * Such an interceptor must be the last interceptor in the advice chain.
  * In this case, there is no target object.
  *
  * @author Rod Johnson
@@ -37,7 +37,7 @@ public abstract class AbstractRemoteSlsbInvokerInterceptor extends AbstractSlsbI
 	/**
 	 * Set whether to refresh the EJB home on connect failure.
 	 * Default is "false".
-	 * <p>Can be turned on to allow for hot restart of the EJB server.
+	 * Can be turned on to allow for hot restart of the EJB server.
 	 * If a cached EJB home throws an RMI exception that indicates a
 	 * remote connect failure, a fresh home will be fetched and the
 	 * invocation will be retried.
@@ -74,7 +74,7 @@ public abstract class AbstractRemoteSlsbInvokerInterceptor extends AbstractSlsbI
 
 	/**
 	 * Fetches an EJB home object and delegates to {@code doInvoke}.
-	 * <p>If configured to refresh on connect failure, it will call
+	 * If configured to refresh on connect failure, it will call
 	 * {@link #refreshAndRetry} on corresponding RMI exceptions.
 	 * @see #getHome
 	 * @see #doInvoke
@@ -101,7 +101,7 @@ public abstract class AbstractRemoteSlsbInvokerInterceptor extends AbstractSlsbI
 
 	/**
 	 * Determine whether the given RMI exception indicates a connect failure.
-	 * <p>The default implementation delegates to RmiClientInterceptorUtils.
+	 * The default implementation delegates to RmiClientInterceptorUtils.
 	 * @param ex the RMI exception to check
 	 * @return whether the exception should be treated as connect failure
 	 * @see org.springframework.remoting.rmi.RmiClientInterceptorUtils#isConnectFailure
@@ -162,7 +162,7 @@ public abstract class AbstractRemoteSlsbInvokerInterceptor extends AbstractSlsbI
 	/**
 	 * Return a new instance of the stateless session bean.
 	 * To be invoked by concrete remote SLSB invoker subclasses.
-	 * <p>Can be overridden to change the algorithm.
+	 * Can be overridden to change the algorithm.
 	 * @throws NamingException if thrown by JNDI
 	 * @throws InvocationTargetException if thrown by the create method
 	 * @see #create

@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
  * {@code HttpHandler} delegating requests to one of several {@code HttpHandler}'s
  * based on simple, prefix-based mappings.
  *
- * <p>This is intended as a coarse-grained mechanism for delegating requests to
+ * This is intended as a coarse-grained mechanism for delegating requests to
  * one of several applications -- each represented by an {@code HttpHandler}, with
  * the application "context path" (the prefix-based mapping) exposed via
  * {@link ServerHttpRequest#getPath()}.

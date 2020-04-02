@@ -115,7 +115,7 @@ public abstract class AbstractServerHttpRequest implements ServerHttpRequest {
 	/**
 	 * A method for parsing of the query into name-value pairs. The return
 	 * value is turned into an immutable map and cached.
-	 * <p>Note that this method is invoked lazily on first access to
+	 * Note that this method is invoked lazily on first access to
 	 * {@link #getQueryParams()}. The invocation is not synchronized but the
 	 * parsing is thread-safe nevertheless.
 	 */
@@ -161,7 +161,7 @@ public abstract class AbstractServerHttpRequest implements ServerHttpRequest {
 	 * Obtain the cookies from the underlying "native" request and adapt those to
 	 * an {@link HttpCookie} map. The return value is turned into an immutable
 	 * map and cached.
-	 * <p>Note that this method is invoked lazily on access to
+	 * Note that this method is invoked lazily on access to
 	 * {@link #getCookies()}. Sub-classes should synchronize cookie
 	 * initialization if the underlying "native" request does not provide
 	 * thread-safe access to cookie data.
@@ -187,7 +187,7 @@ public abstract class AbstractServerHttpRequest implements ServerHttpRequest {
 
 	/**
 	 * Return the underlying server response.
-	 * <p><strong>Note:</strong> This is exposed mainly for internal framework
+	 * <strong>Note:</strong> This is exposed mainly for internal framework
 	 * use such as WebSocket upgrades in the spring-webflux module.
 	 */
 	public abstract <T> T getNativeRequest();

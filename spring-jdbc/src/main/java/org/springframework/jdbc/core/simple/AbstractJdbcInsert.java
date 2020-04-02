@@ -38,7 +38,7 @@ import org.springframework.util.Assert;
  * Abstract class to provide base functionality for easy inserts
  * based on configuration options and database meta-data.
  *
- * <p>This class provides the base SPI for {@link SimpleJdbcInsert}.
+ * This class provides the base SPI for {@link SimpleJdbcInsert}.
  *
  * @author Thomas Risberg
 
@@ -253,7 +253,7 @@ public abstract class AbstractJdbcInsert {
 
 	/**
 	 * Delegate method to perform the actual compilation.
-	 * <p>Subclasses can override this template method to perform  their own compilation.
+	 * Subclasses can override this template method to perform  their own compilation.
 	 * Invoked after this base class's compilation is complete.
 	 */
 	protected void compileInternal() {
@@ -270,7 +270,7 @@ public abstract class AbstractJdbcInsert {
 
 	/**
 	 * Hook method that subclasses may override to react to compilation.
-	 * <p>This implementation is empty.
+	 * This implementation is empty.
 	 */
 	protected void onCompileInternal() {
 	}
@@ -286,7 +286,7 @@ public abstract class AbstractJdbcInsert {
 	/**
 	 * Check whether this operation has been compiled already;
 	 * lazily compile it if not already compiled.
-	 * <p>Automatically called by {@code validateParameters}.
+	 * Automatically called by {@code validateParameters}.
 	 */
 	protected void checkCompiled() {
 		if (!isCompiled()) {

@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * A variant of {@link ObjectFactory} designed specifically for injection points,
  * allowing for programmatic optionality and lenient not-unique handling.
  *
- * <p>As of 5.1, this interface extends {@link Iterable} and provides {@link Stream}
+ * As of 5.1, this interface extends {@link Iterable} and provides {@link Stream}
  * support. It can be therefore be used in {@code for} loops, provides {@link #forEach}
  * iteration and allows for collection-style {@link #stream} access.
  *
@@ -29,7 +29,7 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 	/**
 	 * Return an instance (possibly shared or independent) of the object
 	 * managed by this factory.
-	 * <p>Allows for specifying explicit construction arguments, along the
+	 * Allows for specifying explicit construction arguments, along the
 	 * lines of {@link BeanFactory#getBean(String, Object...)}.
 	 * @param args arguments to use when creating a corresponding instance
 	 * @return an instance of the bean
@@ -149,7 +149,7 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 	/**
 	 * Return a sequential {@link Stream} over all matching object instances,
 	 * pre-ordered according to the factory's common order comparator.
-	 * <p>In a standard Spring application context, this will be ordered
+	 * In a standard Spring application context, this will be ordered
 	 * according to {@link org.springframework.core.Ordered} conventions,
 	 * and in case of annotation-based configuration also considering the
 	 * {@link org.springframework.core.annotation.Order} annotation,

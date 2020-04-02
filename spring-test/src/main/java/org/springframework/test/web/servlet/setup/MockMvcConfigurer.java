@@ -11,7 +11,7 @@ import org.springframework.web.context.WebApplicationContext;
  * specific way, e.g. a 3rd party library that wants to provide shortcuts for
  * setting up a MockMvc.
  *
- * <p>An implementation of this interface can be plugged in via
+ * An implementation of this interface can be plugged in via
  * {@link ConfigurableMockMvcBuilder#apply} with instances of this type likely
  * created via static methods, e.g.:
  *

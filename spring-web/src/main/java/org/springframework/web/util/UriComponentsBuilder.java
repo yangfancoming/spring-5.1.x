@@ -27,7 +27,7 @@ import org.springframework.web.util.UriComponents.UriTemplateVariables;
 /**
  * Builder for {@link UriComponents}.
  *
- * <p>Typical usage involves:
+ * Typical usage involves:
  * <ol>
  * <li>Create a {@code UriComponentsBuilder} with one of the static factory methods
  * (such as {@link #fromPath(String)} or {@link #fromUri(URI)})</li>
@@ -179,7 +179,7 @@ public class UriComponentsBuilder implements UriBuilder, Cloneable {
 
 	/**
 	 * Create a builder that is initialized with the given URI string.
-	 * <p><strong>Note:</strong> The presence of reserved characters can prevent
+	 * <strong>Note:</strong> The presence of reserved characters can prevent
 	 * correct parsing of the URI string. For example if a query parameter
 	 * contains {@code '='} or {@code '&'} characters, the query string cannot
 	 * be parsed unambiguously. Such values should be substituted for URI
@@ -239,7 +239,7 @@ public class UriComponentsBuilder implements UriBuilder, Cloneable {
 
 	/**
 	 * Create a URI components builder from the given HTTP URL String.
-	 * <p><strong>Note:</strong> The presence of reserved characters can prevent
+	 * <strong>Note:</strong> The presence of reserved characters can prevent
 	 * correct parsing of the URI string. For example if a query parameter
 	 * contains {@code '='} or {@code '&'} characters, the query string cannot
 	 * be parsed unambiguously. Such values should be substituted for URI
@@ -322,16 +322,16 @@ public class UriComponentsBuilder implements UriBuilder, Cloneable {
 	/**
 	 * Request to have the URI template pre-encoded at build time, and
 	 * URI variables encoded separately when expanded.
-	 * <p>In comparison to {@link UriComponents#encode()}, this method has the
+	 * In comparison to {@link UriComponents#encode()}, this method has the
 	 * same effect on the URI template, i.e. each URI component is encoded by
 	 * replacing non-ASCII and illegal (within the URI component type) characters
 	 * with escaped octets. However URI variables are encoded more strictly, by
 	 * also escaping characters with reserved meaning.
-	 * <p>For most cases, this method is more likely to give the expected result
+	 * For most cases, this method is more likely to give the expected result
 	 * because in treats URI variables as opaque data to be fully encoded, while
 	 * {@link UriComponents#encode()} is useful only if intentionally expanding
 	 * URI variables that contain reserved characters.
-	 * <p>For example ';' is legal in a path but has reserved meaning. This
+	 * For example ';' is legal in a path but has reserved meaning. This
 	 * method replaces ";" with "%3B" in URI variables but not in the URI
 	 * template. By contrast, {@link UriComponents#encode()} never replaces ";"
 	 * since it is a legal character in a path.
@@ -428,12 +428,12 @@ public class UriComponentsBuilder implements UriBuilder, Cloneable {
 
 	/**
 	 * Build a URI String.
-	 * <p>Effectively, a shortcut for building, encoding, and returning the
+	 * Effectively, a shortcut for building, encoding, and returning the
 	 * String representation:
 	 * <pre class="code">
 	 * String uri = builder.build().encode().toUriString()
 	 * </pre>
-	 * <p>However if {@link #uriVariables(Map) URI variables} have been provided
+	 * However if {@link #uriVariables(Map) URI variables} have been provided
 	 * then the URI template is pre-encoded separately from URI variables (see
 	 * {@link #encode()} for details), i.e. equivalent to:
 	 * <pre>
@@ -492,7 +492,7 @@ public class UriComponentsBuilder implements UriBuilder, Cloneable {
 	/**
 	 * Set or append individual URI components of this builder from the values
 	 * of the given {@link UriComponents} instance.
-	 * <p>For the semantics of each component (i.e. set vs append) check the
+	 * For the semantics of each component (i.e. set vs append) check the
 	 * builder methods on this class. For example {@link #host(String)} sets
 	 * while {@link #path(String)} appends.
 	 * @param uriComponents the UriComponents to copy from
@@ -628,7 +628,7 @@ public class UriComponentsBuilder implements UriBuilder, Cloneable {
 	/**
 	 * Append the given query to the existing query of this builder.
 	 * The given query may contain URI template variables.
-	 * <p><strong>Note:</strong> The presence of reserved characters can prevent
+	 * <strong>Note:</strong> The presence of reserved characters can prevent
 	 * correct parsing of the URI string. For example if a query parameter
 	 * contains {@code '='} or {@code '&'} characters, the query string cannot
 	 * be parsed unambiguously. Such values should be substituted for URI
@@ -766,10 +766,10 @@ public class UriComponentsBuilder implements UriBuilder, Cloneable {
 
 	/**
 	 * Configure URI variables to be expanded at build time.
-	 * <p>The provided variables may be a subset of all required ones. At build
+	 * The provided variables may be a subset of all required ones. At build
 	 * time, the available ones are expanded, while unresolved URI placeholders
 	 * are left in place and can still be expanded later.
-	 * <p>In contrast to {@link UriComponents#expand(Map)} or
+	 * In contrast to {@link UriComponents#expand(Map)} or
 	 * {@link #buildAndExpand(Map)}, this method is useful when you need to
 	 * supply URI variables without building the {@link UriComponents} instance
 	 * just yet, or perhaps pre-expand some shared default values such as host
@@ -788,7 +788,7 @@ public class UriComponentsBuilder implements UriBuilder, Cloneable {
 	 * "Forwarded" (<a href="https://tools.ietf.org/html/rfc7239">RFC 7239</a>,
 	 * or "X-Forwarded-Host", "X-Forwarded-Port", and "X-Forwarded-Proto" if
 	 * "Forwarded" is not found.
-	 * <p><strong>Note:</strong> this method uses values from forwarded headers,
+	 * <strong>Note:</strong> this method uses values from forwarded headers,
 	 * if present, in order to reflect the client-originated protocol and address.
 	 * Consider using the {@code ForwardedHeaderFilter} in order to choose from a
 	 * central place whether to extract and use, or to discard such headers.

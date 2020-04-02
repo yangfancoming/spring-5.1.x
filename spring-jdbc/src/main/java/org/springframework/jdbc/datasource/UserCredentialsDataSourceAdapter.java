@@ -17,11 +17,11 @@ import org.springframework.util.StringUtils;
  * All other methods simply delegate to the corresponding methods of the
  * target DataSource.
  *
- * <p>Can be used to proxy a target JNDI DataSource that does not have user
+ * Can be used to proxy a target JNDI DataSource that does not have user
  * credentials configured. Client code can work with this DataSource as usual,
  * using the standard {@code getConnection()} call.
  *
- * <p>In the following example, client code can simply transparently work with
+ * In the following example, client code can simply transparently work with
  * the preconfigured "myDataSource", implicitly accessing "myTargetDataSource"
  * with the specified user credentials.
  *
@@ -36,7 +36,7 @@ import org.springframework.util.StringUtils;
  *   &lt;property name="password" value="mypassword"/&gt;
  * &lt;/bean></pre>
  *
- * <p>If the "username" is empty, this proxy will simply delegate to the
+ * If the "username" is empty, this proxy will simply delegate to the
  * standard {@code getConnection()} method of the target DataSource.
  * This can be used to keep a UserCredentialsDataSourceAdapter bean definition
  * just for the <i>option</i> of implicitly passing in user credentials if
@@ -63,7 +63,7 @@ public class UserCredentialsDataSourceAdapter extends DelegatingDataSource {
 
 	/**
 	 * Set the default username that this adapter should use for retrieving Connections.
-	 * <p>Default is no specific user. Note that an explicitly specified username
+	 * Default is no specific user. Note that an explicitly specified username
 	 * will always override any username/password specified at the DataSource level.
 	 * @see #setPassword
 	 * @see #setCredentialsForCurrentThread(String, String)
@@ -75,7 +75,7 @@ public class UserCredentialsDataSourceAdapter extends DelegatingDataSource {
 
 	/**
 	 * Set the default user's password that this adapter should use for retrieving Connections.
-	 * <p>Default is no specific password. Note that an explicitly specified username
+	 * Default is no specific password. Note that an explicitly specified username
 	 * will always override any username/password specified at the DataSource level.
 	 * @see #setUsername
 	 * @see #setCredentialsForCurrentThread(String, String)
@@ -108,7 +108,7 @@ public class UserCredentialsDataSourceAdapter extends DelegatingDataSource {
 	 * Set user credententials for this proxy and the current thread.
 	 * The given username and password will be applied to all subsequent
 	 * {@code getConnection()} calls on this DataSource proxy.
-	 * <p>This will override any statically specified user credentials,
+	 * This will override any statically specified user credentials,
 	 * that is, values of the "username" and "password" bean properties.
 	 * @param username the username to apply
 	 * @param password the password to apply
@@ -132,7 +132,7 @@ public class UserCredentialsDataSourceAdapter extends DelegatingDataSource {
 	 * Determine whether there are currently thread-bound credentials,
 	 * using them if available, falling back to the statically specified
 	 * username and password (i.e. values of the bean properties) otherwise.
-	 * <p>Delegates to {@link #doGetConnection(String, String)} with the
+	 * Delegates to {@link #doGetConnection(String, String)} with the
 	 * determined credentials as parameters.
 	 * @see #doGetConnection
 	 */

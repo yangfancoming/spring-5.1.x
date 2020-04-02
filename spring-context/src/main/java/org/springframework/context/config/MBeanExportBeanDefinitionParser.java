@@ -16,7 +16,7 @@ import org.springframework.util.StringUtils;
 /**
  * Parser for the &lt;context:mbean-export/&gt; element.
  *
- * <p>Registers an instance of
+ * Registers an instance of
  * {@link org.springframework.jmx.export.annotation.AnnotationMBeanExporter}
  * within the context.
  *

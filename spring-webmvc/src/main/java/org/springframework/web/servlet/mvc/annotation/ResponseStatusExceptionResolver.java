@@ -22,15 +22,15 @@ import org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver;
  * HandlerExceptionResolver} that uses the {@link ResponseStatus @ResponseStatus}
  * annotation to map exceptions to HTTP status codes.
  *
- * <p>This exception resolver is enabled by default in the
+ * This exception resolver is enabled by default in the
  * {@link org.springframework.web.servlet.DispatcherServlet DispatcherServlet}
  * and the MVC Java config and the MVC namespace.
  *
- * <p>As of 4.2 this resolver also looks recursively for {@code @ResponseStatus}
+ * As of 4.2 this resolver also looks recursively for {@code @ResponseStatus}
  * present on cause exceptions, and as of 4.2.2 this resolver supports
  * attribute overrides for {@code @ResponseStatus} in custom composed annotations.
  *
- * <p>As of 5.0 this resolver also supports {@link ResponseStatusException}.
+ * As of 5.0 this resolver also supports {@link ResponseStatusException}.
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
@@ -80,7 +80,7 @@ public class ResponseStatusExceptionResolver extends AbstractHandlerExceptionRes
 
 	/**
 	 * Template method that handles the {@link ResponseStatus @ResponseStatus} annotation.
-	 * <p>The default implementation delegates to {@link #applyStatusAndReason}
+	 * The default implementation delegates to {@link #applyStatusAndReason}
 	 * with the status code and reason from the annotation.
 	 * @param responseStatus the {@code @ResponseStatus} annotation
 	 * @param request current HTTP request
@@ -100,7 +100,7 @@ public class ResponseStatusExceptionResolver extends AbstractHandlerExceptionRes
 
 	/**
 	 * Template method that handles an {@link ResponseStatusException}.
-	 * <p>The default implementation delegates to {@link #applyStatusAndReason}
+	 * The default implementation delegates to {@link #applyStatusAndReason}
 	 * with the status code and reason from the exception.
 	 * @param ex the exception
 	 * @param request current HTTP request
@@ -120,7 +120,7 @@ public class ResponseStatusExceptionResolver extends AbstractHandlerExceptionRes
 
 	/**
 	 * Apply the resolved status code and reason to the response.
-	 * <p>The default implementation sends a response error using
+	 * The default implementation sends a response error using
 	 * {@link HttpServletResponse#sendError(int)} or
 	 * {@link HttpServletResponse#sendError(int, String)} if there is a reason
 	 * and then returns an empty ModelAndView.

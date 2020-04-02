@@ -18,7 +18,7 @@ import org.springframework.util.ResourceUtils;
  * {@code TestPropertySourceAttributes} encapsulates the attributes declared
  * via {@link TestPropertySource @TestPropertySource}.
  *
- * <p>In addition to encapsulating declared attributes,
+ * In addition to encapsulating declared attributes,
  * {@code TestPropertySourceAttributes} also enforces configuration rules
  * and detects default properties files.
  *
@@ -82,7 +82,7 @@ class TestPropertySourceAttributes {
 
 	/**
 	 * Get the resource locations that were declared via {@code @TestPropertySource}.
-	 * <p>Note: The returned value may represent a <em>detected default</em>
+	 * Note: The returned value may represent a <em>detected default</em>
 	 * that does not match the original value declared via {@code @TestPropertySource}.
 	 * @return the resource locations; potentially <em>empty</em>
 	 * @see TestPropertySource#value

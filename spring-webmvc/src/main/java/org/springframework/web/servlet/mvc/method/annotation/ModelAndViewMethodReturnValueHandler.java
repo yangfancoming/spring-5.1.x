@@ -16,11 +16,11 @@ import org.springframework.web.servlet.View;
  * Handles return values of type {@link ModelAndView} copying view and model
  * information to the {@link ModelAndViewContainer}.
  *
- * <p>If the return value is {@code null}, the
+ * If the return value is {@code null}, the
  * {@link ModelAndViewContainer#setRequestHandled(boolean)} flag is set to
  * {@code true} to indicate the request was handled directly.
  *
- * <p>A {@link ModelAndView} return type has a set purpose. Therefore this
+ * A {@link ModelAndView} return type has a set purpose. Therefore this
  * handler should be configured ahead of handlers that support any return
  * value type annotated with {@code @ModelAttribute} or {@code @ResponseBody}
  * to ensure they don't take over.
@@ -37,7 +37,7 @@ public class ModelAndViewMethodReturnValueHandler implements HandlerMethodReturn
 	/**
 	 * Configure one more simple patterns (as described in {@link PatternMatchUtils#simpleMatch})
 	 * to use in order to recognize custom redirect prefixes in addition to "redirect:".
-	 * <p>Note that simply configuring this property will not make a custom redirect prefix work.
+	 * Note that simply configuring this property will not make a custom redirect prefix work.
 	 * There must be a custom {@link View} that recognizes the prefix as well.
 	 * @since 4.1
 	 */

@@ -29,15 +29,15 @@ import org.springframework.web.server.session.WebSessionManager;
 /**
  * This builder has two purposes:
  *
- * <p>One is to assemble a processing chain that consists of a target {@link WebHandler},
+ * One is to assemble a processing chain that consists of a target {@link WebHandler},
  * then decorated with a set of {@link WebFilter WebFilters}, then further decorated with
  * a set of {@link WebExceptionHandler WebExceptionHandlers}.
  *
- * <p>The second purpose is to adapt the resulting processing chain to an {@link HttpHandler}:
+ * The second purpose is to adapt the resulting processing chain to an {@link HttpHandler}:
  * the lowest-level reactive HTTP handling abstraction which can then be used with any of the
  * supported runtimes. The adaptation is done with the help of {@link HttpWebHandlerAdapter}.
  *
- * <p>The processing chain can be assembled manually via builder methods, or detected from
+ * The processing chain can be assembled manually via builder methods, or detected from
  * a Spring {@link ApplicationContext} via {@link #applicationContext}, or a mix of both.
  *
  * @author Rossen Stoyanchev
@@ -261,7 +261,7 @@ public final class WebHttpHandlerBuilder {
 	/**
 	 * Configure the {@link WebSessionManager} to set on the
 	 * {@link ServerWebExchange WebServerExchange}.
-	 * <p>By default {@link DefaultWebSessionManager} is used.
+	 * By default {@link DefaultWebSessionManager} is used.
 	 * @param manager the session manager
 	 * @see HttpWebHandlerAdapter#setSessionManager(WebSessionManager)
 	 */

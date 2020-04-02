@@ -75,7 +75,7 @@ import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolv
  * A {@link BeanDefinitionParser} that provides the configuration for the
  * {@code <annotation-driven/>} MVC namespace element.
  *
- * <p>This class registers the following {@link HandlerMapping HandlerMappings}:</p>
+ * This class registers the following {@link HandlerMapping HandlerMappings}:</p>
  * <ul>
  * <li>{@link RequestMappingHandlerMapping}
  * ordered at 0 for mapping requests to annotated controller methods.
@@ -83,11 +83,11 @@ import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolv
  * ordered at 2 to map URL paths to controller bean names.
  * </ul>
  *
- * <p><strong>Note:</strong> Additional HandlerMappings may be registered
+ * <strong>Note:</strong> Additional HandlerMappings may be registered
  * as a result of using the {@code <view-controller>} or the
  * {@code <resources>} MVC namespace elements.
  *
- * <p>This class registers the following {@link HandlerAdapter HandlerAdapters}:
+ * This class registers the following {@link HandlerAdapter HandlerAdapters}:
  * <ul>
  * <li>{@link RequestMappingHandlerAdapter}
  * for processing requests with annotated controller methods.
@@ -97,7 +97,7 @@ import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolv
  * for processing requests with interface-based {@link Controller Controllers}.
  * </ul>
  *
- * <p>This class registers the following {@link HandlerExceptionResolver HandlerExceptionResolvers}:
+ * This class registers the following {@link HandlerExceptionResolver HandlerExceptionResolvers}:
  * <ul>
  * <li>{@link ExceptionHandlerExceptionResolver} for handling exceptions through
  * {@link org.springframework.web.bind.annotation.ExceptionHandler} methods.
@@ -107,7 +107,7 @@ import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolv
  * exception types
  * </ul>
  *
- * <p>This class registers an {@link org.springframework.util.AntPathMatcher}
+ * This class registers an {@link org.springframework.util.AntPathMatcher}
  * and a {@link org.springframework.web.util.UrlPathHelper} to be used by:
  * <ul>
  * <li>the {@link RequestMappingHandlerMapping},
@@ -117,7 +117,7 @@ import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolv
  * Note that those beans can be configured by using the {@code path-matching}
  * MVC namespace element.
  *
- * <p>Both the {@link RequestMappingHandlerAdapter} and the
+ * Both the {@link RequestMappingHandlerAdapter} and the
  * {@link ExceptionHandlerExceptionResolver} are configured with instances of
  * the following by default:
  * <ul>

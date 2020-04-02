@@ -14,11 +14,11 @@ import org.springframework.lang.Nullable;
 /**
  * Custom {@link java.beans.PropertyEditor} for {@link Properties} objects.
  *
- * <p>Handles conversion from content {@link String} to {@code Properties} object.
+ * Handles conversion from content {@link String} to {@code Properties} object.
  * Also handles {@link Map} to {@code Properties} conversion, for populating
  * a {@code Properties} object via XML "map" entries.
  *
- * <p>The required format is defined in the standard {@code Properties}
+ * The required format is defined in the standard {@code Properties}
  * documentation. Each property must be on a new line.
  *
  * @author Rod Johnson

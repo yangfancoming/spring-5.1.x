@@ -12,7 +12,7 @@ import org.springframework.http.codec.HttpMessageWriter;
 /**
  * Provides strategies for use in an {@link ExchangeFunction}.
  *
- * <p>To create an instance, see the static methods {@link #withDefaults()},
+ * To create an instance, see the static methods {@link #withDefaults()},
  * {@link #builder()}, and {@link #empty()}.
  *
  * @author Brian Clozel

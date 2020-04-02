@@ -8,7 +8,7 @@ import org.springframework.lang.Nullable;
  * Strategy interface for building message codes from validation error codes.
  * Used by DataBinder to build the codes list for ObjectErrors and FieldErrors.
  *
- * <p>The resulting message codes correspond to the codes of a
+ * The resulting message codes correspond to the codes of a
  * MessageSourceResolvable (as implemented by ObjectError and FieldError).
  *
 

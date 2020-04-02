@@ -12,7 +12,7 @@ import org.springframework.util.concurrent.ListenableFuture;
  * Represents a client-side asynchronous HTTP request. Created via an
  * implementation of the {@link AsyncClientHttpRequestFactory}.
  *
- * <p>A {@code AsyncHttpRequest} can be {@linkplain #executeAsync() executed},
+ * A {@code AsyncHttpRequest} can be {@linkplain #executeAsync() executed},
  * getting a future {@link ClientHttpResponse} which can be read from.
  *
  * @author Arjen Poutsma

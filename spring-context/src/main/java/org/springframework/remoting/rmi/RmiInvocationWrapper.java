@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
  * of this class exists for each remote object. Automatically created
  * by {@link RmiServiceExporter} for non-RMI service implementations.
  *
- * <p>This is an SPI class, not to be used directly by applications.
+ * This is an SPI class, not to be used directly by applications.
  *
 
  * @since 14.05.2003

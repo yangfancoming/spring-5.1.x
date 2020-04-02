@@ -8,20 +8,20 @@ import org.springframework.context.ApplicationContext;
  * Strategy interface for loading an {@link ApplicationContext application context}
  * for an integration test managed by the Spring TestContext Framework.
  *
- * <p><b>Note</b>: as of Spring 3.1, implement {@link SmartContextLoader} instead
+ * <b>Note</b>: as of Spring 3.1, implement {@link SmartContextLoader} instead
  * of this interface in order to provide support for annotated classes, active
  * bean definition profiles, and application context initializers.
  *
- * <p>Clients of a ContextLoader should call
+ * Clients of a ContextLoader should call
  * {@link #processLocations(Class, String...) processLocations()} prior to
  * calling {@link #loadContext(String...) loadContext()} in case the
  * ContextLoader provides custom support for modifying or generating locations.
  * The results of {@link #processLocations(Class, String...) processLocations()}
  * should then be supplied to {@link #loadContext(String...) loadContext()}.
  *
- * <p>Concrete implementations must provide a {@code public} no-args constructor.
+ * Concrete implementations must provide a {@code public} no-args constructor.
  *
- * <p>Spring provides the following out-of-the-box implementations:
+ * Spring provides the following out-of-the-box implementations:
  * <ul>
  * <li>{@link org.springframework.test.context.support.GenericXmlContextLoader GenericXmlContextLoader}</li>
  * <li>{@link org.springframework.test.context.support.GenericPropertiesContextLoader GenericPropertiesContextLoader}</li>
@@ -37,7 +37,7 @@ public interface ContextLoader {
 
 	/**
 	 * Processes application context resource locations for a specified class.
-	 * <p>Concrete implementations may choose to modify the supplied locations,
+	 * Concrete implementations may choose to modify the supplied locations,
 	 * generate new locations, or simply return the supplied locations unchanged.
 	 * @param clazz the class with which the locations are associated: used to
 	 * determine how to process the supplied locations
@@ -51,16 +51,16 @@ public interface ContextLoader {
 	 * Loads a new {@link ApplicationContext context} based on the supplied
 	 * {@code locations}, configures the context, and finally returns
 	 * the context in fully <em>refreshed</em> state.
-	 * <p>Configuration locations are generally considered to be classpath
+	 * Configuration locations are generally considered to be classpath
 	 * resources by default.
-	 * <p>Concrete implementations should register annotation configuration
+	 * Concrete implementations should register annotation configuration
 	 * processors with bean factories of {@link ApplicationContext application
 	 * contexts} loaded by this ContextLoader. Beans will therefore automatically
 	 * be candidates for annotation-based dependency injection using
 	 * {@link org.springframework.beans.factory.annotation.Autowired @Autowired},
 	 * {@link javax.annotation.Resource @Resource}, and
 	 * {@link javax.inject.Inject @Inject}.
-	 * <p>Any ApplicationContext loaded by a ContextLoader <strong>must</strong>
+	 * Any ApplicationContext loaded by a ContextLoader <strong>must</strong>
 	 * register a JVM shutdown hook for itself. Unless the context gets closed
 	 * early, all context instances will be automatically closed on JVM
 	 * shutdown. This allows for freeing external resources held by beans within

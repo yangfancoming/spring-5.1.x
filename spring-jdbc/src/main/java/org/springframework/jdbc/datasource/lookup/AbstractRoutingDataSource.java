@@ -46,7 +46,7 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 	 * The mapped value can either be a corresponding {@link javax.sql.DataSource}
 	 * instance or a data source name String (to be resolved via a
 	 * {@link #setDataSourceLookup DataSourceLookup}).
-	 * <p>The key can be of arbitrary type; this class implements the
+	 * The key can be of arbitrary type; this class implements the
 	 * generic lookup process only. The concrete key representation will
 	 * be handled by {@link #resolveSpecifiedLookupKey(Object)} and
 	 * {@link #determineCurrentLookupKey()}.
@@ -57,10 +57,10 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 
 	/**
 	 * Specify the default target DataSource, if any.
-	 * <p>The mapped value can either be a corresponding {@link javax.sql.DataSource}
+	 * The mapped value can either be a corresponding {@link javax.sql.DataSource}
 	 * instance or a data source name String (to be resolved via a
 	 * {@link #setDataSourceLookup DataSourceLookup}).
-	 * <p>This DataSource will be used as target if none of the keyed
+	 * This DataSource will be used as target if none of the keyed
 	 * {@link #setTargetDataSources targetDataSources} match the
 	 * {@link #determineCurrentLookupKey()} current lookup key.
 	 */
@@ -71,10 +71,10 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 	/**
 	 * Specify whether to apply a lenient fallback to the default DataSource
 	 * if no specific DataSource could be found for the current lookup key.
-	 * <p>Default is "true", accepting lookup keys without a corresponding entry
+	 * Default is "true", accepting lookup keys without a corresponding entry
 	 * in the target DataSource map - simply falling back to the default DataSource
 	 * in that case.
-	 * <p>Switch this flag to "false" if you would prefer the fallback to only apply
+	 * Switch this flag to "false" if you would prefer the fallback to only apply
 	 * if the lookup key was {@code null}. Lookup keys without a DataSource
 	 * entry will then lead to an IllegalStateException.
 	 * @see #setTargetDataSources
@@ -88,7 +88,7 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 	/**
 	 * Set the DataSourceLookup implementation to use for resolving data source
 	 * name Strings in the {@link #setTargetDataSources targetDataSources} map.
-	 * <p>Default is a {@link JndiDataSourceLookup}, allowing the JNDI names
+	 * Default is a {@link JndiDataSourceLookup}, allowing the JNDI names
 	 * of application server DataSources to be specified directly.
 	 */
 	public void setDataSourceLookup(@Nullable DataSourceLookup dataSourceLookup) {
@@ -117,7 +117,7 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 	 * {@link #setTargetDataSources targetDataSources} map, into
 	 * the actual lookup key to be used for matching with the
 	 * {@link #determineCurrentLookupKey() current lookup key}.
-	 * <p>The default implementation simply returns the given key as-is.
+	 * The default implementation simply returns the given key as-is.
 	 * @param lookupKey the lookup key object as specified by the user
 	 * @return the lookup key as needed for matching
 	 */
@@ -127,7 +127,7 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 
 	/**
 	 * Resolve the specified data source object into a DataSource instance.
-	 * <p>The default implementation handles DataSource instances and data source
+	 * The default implementation handles DataSource instances and data source
 	 * names (to be resolved via a {@link #setDataSourceLookup DataSourceLookup}).
 	 * @param dataSource the data source value object as specified in the
 	 * {@link #setTargetDataSources targetDataSources} map
@@ -195,7 +195,7 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 	/**
 	 * Determine the current lookup key. This will typically be
 	 * implemented to check a thread-bound transaction context.
-	 * <p>Allows for arbitrary keys. The returned key needs
+	 * Allows for arbitrary keys. The returned key needs
 	 * to match the stored lookup key type, as resolved by the
 	 * {@link #resolveSpecifiedLookupKey} method.
 	 */

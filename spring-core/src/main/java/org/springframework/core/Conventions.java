@@ -30,11 +30,11 @@ public final class Conventions {
 	 * Determine the conventional variable name for the supplied {@code Object}
 	 * based on its concrete type. The convention used is to return the
 	 * un-capitalized short name of the {@code Class}, according to JavaBeans property naming rules.
-	 * <p>For example:<br>
+	 * For example:<br>
 	 * {@code com.myapp.Product} becomes {@code "product"}<br>
 	 * {@code com.myapp.MyProduct} becomes {@code "myProduct"}<br>
 	 * {@code com.myapp.UKProduct} becomes {@code "UKProduct"}<br>
-	 * <p>For arrays the pluralized version of the array component type is used.
+	 * For arrays the pluralized version of the array component type is used.
 	 * For {@code Collection}s an attempt is made to 'peek ahead' to determine
 	 * the component type and return its pluralized version.
 	 * @param value the value to generate a variable name for
@@ -66,7 +66,7 @@ public final class Conventions {
 
 	/**
 	 * Determine the conventional variable name for the given parameter taking the generic collection type, if any, into account.
-	 * <p>As of 5.0 this method supports reactive types:<br>
+	 * As of 5.0 this method supports reactive types:<br>
 	 * {@code Mono<com.myapp.Product>} becomes {@code "productMono"}<br>
 	 * {@code Flux<com.myapp.MyProduct>} becomes {@code "myProductFlux"}<br>
 	 * {@code Observable<com.myapp.MyProduct>} becomes {@code "myProductObservable"}<br>
@@ -131,7 +131,7 @@ public final class Conventions {
 	 * method, taking the generic collection type, if any, into account, falling
 	 * back on the given return value if the method declaration is not specific
 	 * enough, e.g. {@code Object} return type or untyped collection.
-	 * <p>As of 5.0 this method supports reactive types:<br>
+	 * As of 5.0 this method supports reactive types:<br>
 	 * {@code Mono<com.myapp.Product>} becomes {@code "productMono"}<br>
 	 * {@code Flux<com.myapp.MyProduct>} becomes {@code "myProductFlux"}<br>
 	 * {@code Observable<com.myapp.MyProduct>} becomes {@code "myProductObservable"}<br>
@@ -223,7 +223,7 @@ public final class Conventions {
 
 	/**
 	 * Determine the class to use for naming a variable containing the given value.
-	 * <p>Will return the class of the given value, except when encountering a
+	 * Will return the class of the given value, except when encountering a
 	 * JDK proxy, in which case it will determine the 'primary' interface  implemented by that proxy.
 	 * @param value the value to check
 	 * @return the class to use for naming a variable

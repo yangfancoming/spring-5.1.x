@@ -126,20 +126,20 @@ public class GroovyMarkupViewTests {
 		Map<String, Object> model = new HashMap<>();
 		model.put("name", "Spring");
 		MockHttpServletResponse response = renderViewWithModel("i18n.tpl", model, Locale.FRANCE);
-		assertEquals("<p>Bonjour Spring</p>", response.getContentAsString());
+		assertEquals("Bonjour Spring</p>", response.getContentAsString());
 
 		response = renderViewWithModel("i18n.tpl", model, Locale.GERMANY);
-		assertEquals("<p>Include German</p><p>Hallo Spring</p>", response.getContentAsString());
+		assertEquals("Include German</p>Hallo Spring</p>", response.getContentAsString());
 
 		response = renderViewWithModel("i18n.tpl", model, new Locale("es"));
-		assertEquals("<p>Include Default</p><p>Hola Spring</p>", response.getContentAsString());
+		assertEquals("Include Default</p>Hola Spring</p>", response.getContentAsString());
 	}
 
 	@Test
 	public void renderLayoutTemplate() throws Exception {
 		Map<String, Object> model = new HashMap<>();
 		MockHttpServletResponse response = renderViewWithModel("content.tpl", model, Locale.US);
-		assertEquals("<html><head><title>Layout example</title></head><body><p>This is the body</p></body></html>",
+		assertEquals("<html><head><title>Layout example</title></head><body>This is the body</p></body></html>",
 				response.getContentAsString());
 	}
 

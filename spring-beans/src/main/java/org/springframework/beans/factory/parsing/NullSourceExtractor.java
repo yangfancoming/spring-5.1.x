@@ -9,7 +9,7 @@ import org.springframework.lang.Nullable;
  * Simple implementation of {@link SourceExtractor} that returns {@code null}
  * as the source metadata.
  *
- * <p>This is the default implementation and prevents too much metadata from being
+ * This is the default implementation and prevents too much metadata from being
  * held in memory during normal (non-tooled) runtime usage.
  *
  * @author Rob Harrop

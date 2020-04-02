@@ -12,12 +12,12 @@ import org.apache.commons.logging.LogFactory;
 /**
  * Support class for throttling concurrent access to a specific resource.
  *
- * <p>Designed for use as a base class, with the subclass invoking
+ * Designed for use as a base class, with the subclass invoking
  * the {@link #beforeAccess()} and {@link #afterAccess()} methods at
  * appropriate points of its workflow. Note that {@code afterAccess}
  * should usually be called in a finally block!
  *
- * <p>The default concurrency limit of this support class is -1
+ * The default concurrency limit of this support class is -1
  * ("unbounded concurrency"). Subclasses may override this default;
  * check the javadoc of the concrete class that you're using.
 
@@ -55,9 +55,9 @@ public abstract class ConcurrencyThrottleSupport implements Serializable {
 	/**
 	 * Set the maximum number of concurrent access attempts allowed.
 	 * -1 indicates unbounded concurrency.
-	 * <p>In principle, this limit can be changed at runtime,
+	 * In principle, this limit can be changed at runtime,
 	 * although it is generally designed as a config time setting.
-	 * <p>NOTE: Do not switch between -1 and any concrete limit at runtime,
+	 * NOTE: Do not switch between -1 and any concrete limit at runtime,
 	 * as this will lead to inconsistent concurrency counts: A limit
 	 * of -1 effectively turns off concurrency counting completely.
 	 */
@@ -84,7 +84,7 @@ public abstract class ConcurrencyThrottleSupport implements Serializable {
 
 	/**
 	 * To be invoked before the main execution logic of concrete subclasses.
-	 * <p>This implementation applies the concurrency throttle.
+	 * This implementation applies the concurrency throttle.
 	 * @see #afterAccess()
 	 */
 	protected void beforeAccess() {

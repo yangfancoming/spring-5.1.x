@@ -14,7 +14,7 @@ import org.springframework.core.annotation.AliasFor;
  * Annotation for mapping HTTP {@code PUT} requests onto specific handler
  * methods.
  *
- * <p>Specifically, {@code @PutMapping} is a <em>composed annotation</em> that
+ * Specifically, {@code @PutMapping} is a <em>composed annotation</em> that
  * acts as a shortcut for {@code @RequestMapping(method = RequestMethod.PUT)}.
  *
  * @author Sam Brannen

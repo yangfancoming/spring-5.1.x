@@ -29,7 +29,7 @@ import org.springframework.web.server.ServerWebInputException;
  * Request parameters, request headers, and path variables are examples of named
  * values. Each may have a name, a required flag, and a default value.
  *
- * <p>Subclasses define how to do the following:
+ * Subclasses define how to do the following:
  * <ul>
  * <li>Obtain named value information for a method parameter
  * <li>Resolve names into argument values
@@ -37,7 +37,7 @@ import org.springframework.web.server.ServerWebInputException;
  * <li>Optionally handle a resolved value
  * </ul>
  *
- * <p>A default value string can contain ${...} placeholders and Spring Expression
+ * A default value string can contain ${...} placeholders and Spring Expression
  * Language #{...} expressions. For this to work a
  * {@link ConfigurableBeanFactory} must be supplied to the class constructor.
  *

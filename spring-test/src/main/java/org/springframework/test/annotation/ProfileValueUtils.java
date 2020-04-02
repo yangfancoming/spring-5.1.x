@@ -36,7 +36,7 @@ public abstract class ProfileValueUtils {
 	 * {@link ProfileValueSourceConfiguration
 	 * &#064;ProfileValueSourceConfiguration} annotation and instantiates a new
 	 * instance of that type.
-	 * <p>If {@link ProfileValueSourceConfiguration
+	 * If {@link ProfileValueSourceConfiguration
 	 * &#064;ProfileValueSourceConfiguration} is not present on the specified
 	 * class or if a custom {@link ProfileValueSource} is not declared, the
 	 * default {@link SystemProfileValueSource} will be returned instead.
@@ -94,7 +94,7 @@ public abstract class ProfileValueUtils {
 	 * Determine if the supplied {@code testClass} is <em>enabled</em> in
 	 * the current environment, as specified by the {@link IfProfileValue
 	 * &#064;IfProfileValue} annotation at the class level.
-	 * <p>Defaults to {@code true} if no {@link IfProfileValue
+	 * Defaults to {@code true} if no {@link IfProfileValue
 	 * &#064;IfProfileValue} annotation is declared.
 	 * @param testClass the test class
 	 * @return {@code true} if the test is <em>enabled</em> in the current
@@ -111,7 +111,7 @@ public abstract class ProfileValueUtils {
 	 * &#064;IfProfileValue} annotation, which may be declared on the test
 	 * method itself or at the class level. Class-level usage overrides
 	 * method-level usage.
-	 * <p>Defaults to {@code true} if no {@link IfProfileValue
+	 * Defaults to {@code true} if no {@link IfProfileValue
 	 * &#064;IfProfileValue} annotation is declared.
 	 * @param testMethod the test method
 	 * @param testClass the test class
@@ -128,7 +128,7 @@ public abstract class ProfileValueUtils {
 	 * &#064;IfProfileValue} annotation, which may be declared on the test
 	 * method itself or at the class level. Class-level usage overrides
 	 * method-level usage.
-	 * <p>Defaults to {@code true} if no {@link IfProfileValue
+	 * Defaults to {@code true} if no {@link IfProfileValue
 	 * &#064;IfProfileValue} annotation is declared.
 	 * @param profileValueSource the ProfileValueSource to use to determine if
 	 * the test is enabled

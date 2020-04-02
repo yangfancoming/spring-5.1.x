@@ -261,7 +261,7 @@ public class ReflectiveMethodResolver implements MethodResolver {
 	/**
 	 * Determine whether the given {@code Method} is a candidate for method resolution
 	 * on an instance of the given target class.
-	 * <p>The default implementation considers any method as a candidate, even for
+	 * The default implementation considers any method as a candidate, even for
 	 * static methods sand non-user-declared methods on the {@link Object} base class.
 	 * @param method the Method to evaluate
 	 * @param targetClass the concrete target class that is being introspected

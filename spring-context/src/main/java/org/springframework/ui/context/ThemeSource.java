@@ -17,7 +17,7 @@ public interface ThemeSource {
 
 	/**
 	 * Return the Theme instance for the given theme name.
-	 * <p>The returned Theme will resolve theme-specific messages, codes,
+	 * The returned Theme will resolve theme-specific messages, codes,
 	 * file paths, etc (e.g. CSS and image files in a web environment).
 	 * @param themeName the name of the theme
 	 * @return the corresponding Theme, or {@code null} if none defined.

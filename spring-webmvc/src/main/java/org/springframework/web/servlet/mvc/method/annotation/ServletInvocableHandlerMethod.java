@@ -35,7 +35,7 @@ import org.springframework.web.util.NestedServletException;
  * also supports setting the response status based on a method-level
  * {@code @ResponseStatus} annotation.
  *
- * <p>A {@code null} return value (including void) may be interpreted as the
+ * A {@code null} return value (including void) may be interpreted as the
  * end of request processing in combination with a {@code @ResponseStatus}
  * annotation, a not-modified check condition
  * (see {@link ServletWebRequest#checkNotModified(long)}), or a method argument that provides access to the response stream.

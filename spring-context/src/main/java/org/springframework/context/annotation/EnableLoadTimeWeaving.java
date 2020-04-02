@@ -16,7 +16,7 @@ import org.springframework.instrument.classloading.LoadTimeWeaver;
  * a bean with the name "loadTimeWeaver", similar to the {@code <context:load-time-weaver>}
  * element in Spring XML.
  *
- * <p>To be used on @{@link org.springframework.context.annotation.Configuration Configuration} classes;
+ * To be used on @{@link org.springframework.context.annotation.Configuration Configuration} classes;
  * the simplest possible example of which follows:
  *
  * <pre class="code">
@@ -48,7 +48,7 @@ import org.springframework.instrument.classloading.LoadTimeWeaver;
  * <h2>Customizing the {@code LoadTimeWeaver}</h2>
  * The default weaver is determined automatically: see {@link DefaultContextLoadTimeWeaver}.
  *
- * <p>To customize the weaver used, the {@code @Configuration} class annotated with
+ * To customize the weaver used, the {@code @Configuration} class annotated with
  * {@code @EnableLoadTimeWeaving} may also implement the {@link LoadTimeWeavingConfigurer}
  * interface and return a custom {@code LoadTimeWeaver} instance through the
  * {@code #getLoadTimeWeaver} method:
@@ -67,7 +67,7 @@ import org.springframework.instrument.classloading.LoadTimeWeaver;
  *     }
  * }</pre>
  *
- * <p>The example above can be compared to the following Spring XML configuration:
+ * The example above can be compared to the following Spring XML configuration:
  *
  * <pre class="code">
  * &lt;beans&gt;
@@ -77,7 +77,7 @@ import org.springframework.instrument.classloading.LoadTimeWeaver;
  * &lt;/beans&gt;
  * </pre>
  *
- * <p>The code example differs from the XML example in that it actually instantiates the
+ * The code example differs from the XML example in that it actually instantiates the
  * {@code MyLoadTimeWeaver} type, meaning that it can also configure the instance, e.g.
  * calling the {@code #addClassTransformer} method. This demonstrates how the code-based
  * configuration approach is more flexible through direct programmatic access.
@@ -96,7 +96,7 @@ import org.springframework.instrument.classloading.LoadTimeWeaver;
  * public class AppConfig {
  * }</pre>
  *
- * <p>The example above can be compared to the following Spring XML configuration:
+ * The example above can be compared to the following Spring XML configuration:
  *
  * <pre class="code">
  * &lt;beans&gt;
@@ -106,7 +106,7 @@ import org.springframework.instrument.classloading.LoadTimeWeaver;
  * &lt;/beans&gt;
  * </pre>
  *
- * <p>The two examples are equivalent with one significant exception: in the XML case,
+ * The two examples are equivalent with one significant exception: in the XML case,
  * the functionality of {@code <context:spring-configured>} is implicitly enabled when
  * {@code aspectj-weaving} is "on".  This does not occur when using
  * {@code @EnableLoadTimeWeaving(aspectjWeaving=ENABLED)}. Instead you must explicitly add

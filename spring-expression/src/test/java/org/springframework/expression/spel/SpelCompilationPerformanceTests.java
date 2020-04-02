@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 /**
  * Checks the speed of compiled SpEL expressions.
  *
- * <p>By default these tests are marked @Ignore since they can fail on a busy machine
+ * By default these tests are marked @Ignore since they can fail on a busy machine
  * because they compare relative performance of interpreted vs compiled.
  *
  * @author Andy Clement

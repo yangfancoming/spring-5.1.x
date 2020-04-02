@@ -19,7 +19,7 @@ import org.springframework.web.util.WebUtils;
 /**
  * Servlet-based implementation of the {@link RequestAttributes} interface.
  *
- * <p>Accesses objects from servlet request and HTTP session scope,
+ * Accesses objects from servlet request and HTTP session scope,
  * with no distinction between "session" and "global session".
  *
 
@@ -282,7 +282,7 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 	 * Determine whether the given value is to be considered as an immutable session
 	 * attribute, that is, doesn't have to be re-set via {@code session.setAttribute}
 	 * since its value cannot meaningfully change internally.
-	 * <p>The default implementation returns {@code true} for {@code String},
+	 * The default implementation returns {@code true} for {@code String},
 	 * {@code Character}, {@code Boolean} and standard {@code Number} values.
 	 * @param name the name of the attribute
 	 * @param value the corresponding value to check
@@ -296,7 +296,7 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 
 	/**
 	 * Register the given callback as to be executed after session termination.
-	 * <p>Note: The callback object should be serializable in order to survive
+	 * Note: The callback object should be serializable in order to survive
 	 * web app restarts.
 	 * @param name the name of the attribute to register the callback for
 	 * @param callback the callback to be executed for destruction

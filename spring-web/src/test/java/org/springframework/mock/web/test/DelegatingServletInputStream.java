@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
 /**
  * Delegating implementation of {@link javax.servlet.ServletInputStream}.
  *
- * <p>Used by {@link MockHttpServletRequest}; typically not directly
+ * Used by {@link MockHttpServletRequest}; typically not directly
  * used for testing application controllers.
  *
 

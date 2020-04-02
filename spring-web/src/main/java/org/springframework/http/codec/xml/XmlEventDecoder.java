@@ -35,7 +35,7 @@ import org.springframework.util.xml.StaxUtils;
 /**
  * Decodes a {@link DataBuffer} stream into a stream of {@link XMLEvent XMLEvents}.
  *
- * <p>Given the following XML:
+ * Given the following XML:
  *
  * <pre class="code">
  * &lt;root>
@@ -58,7 +58,7 @@ import org.springframework.util.xml.StaxUtils;
  * <li>{@link javax.xml.stream.events.EndElement} {@code root}</li>
  * </ol>
  *
- * <p>Note that this decoder is not registered by default but is used internally
+ * Note that this decoder is not registered by default but is used internally
  * by other decoders which are registered by default.
  *
  * @author Arjen Poutsma

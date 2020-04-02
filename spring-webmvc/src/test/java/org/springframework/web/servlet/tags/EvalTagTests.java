@@ -174,7 +174,7 @@ public class EvalTagTests extends AbstractTagTests {
 		}
 
 		public String html() {
-			return "<p>";
+			return "";
 		}
 
 		public String getBean() {

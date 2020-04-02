@@ -21,7 +21,7 @@ import org.springframework.util.StringUtils;
  * {@link WebAppConfiguration @WebAppConfiguration}, and
  * {@link org.springframework.test.context.ActiveProfiles @ActiveProfiles}.
  *
- * <p>{@code WebMergedContextConfiguration} extends the contract of
+ * {@code WebMergedContextConfiguration} extends the contract of
  * {@link MergedContextConfiguration} by adding support for the {@link
  * #getResourceBasePath() resource base path} configured via {@code @WebAppConfiguration}.
  * This allows the {@link org.springframework.test.context.TestContext TestContext}
@@ -48,7 +48,7 @@ public class WebMergedContextConfiguration extends MergedContextConfiguration {
 	/**
 	 * Create a new {@code WebMergedContextConfiguration} instance by copying
 	 * all properties from the supplied {@code MergedContextConfiguration}.
-	 * <p>If an <em>empty</em> value is supplied for the {@code resourceBasePath}
+	 * If an <em>empty</em> value is supplied for the {@code resourceBasePath}
 	 * an empty string will be used.
 	 * @param resourceBasePath the resource path to the root directory of the web application
 	 * @since 4.1
@@ -61,7 +61,7 @@ public class WebMergedContextConfiguration extends MergedContextConfiguration {
 	/**
 	 * Create a new {@code WebMergedContextConfiguration} instance for the
 	 * supplied parameters.
-	 * <p>If a {@code null} value is supplied for {@code locations},
+	 * If a {@code null} value is supplied for {@code locations},
 	 * {@code classes}, {@code activeProfiles}, {@code propertySourceLocations},
 	 * or {@code propertySourceProperties} an empty array will be stored instead.
 	 * If a {@code null} value is supplied for the
@@ -96,7 +96,7 @@ public class WebMergedContextConfiguration extends MergedContextConfiguration {
 	/**
 	 * Create a new {@code WebMergedContextConfiguration} instance for the
 	 * supplied parameters.
-	 * <p>If a {@code null} value is supplied for {@code locations},
+	 * If a {@code null} value is supplied for {@code locations},
 	 * {@code classes}, {@code activeProfiles}, {@code propertySourceLocations},
 	 * or {@code propertySourceProperties} an empty array will be stored instead.
 	 * If a {@code null} value is supplied for {@code contextInitializerClasses}

@@ -7,7 +7,7 @@ package org.springframework.expression;
  * They may use a custom {@link ClassLoader} and/or deal with common
  * package prefixes (e.g. {@code java.lang}) however they wish.
  *
- * <p>See {@link org.springframework.expression.spel.support.StandardTypeLocator}
+ * See {@link org.springframework.expression.spel.support.StandardTypeLocator}
  * for an example implementation.
  *
  * @author Andy Clement

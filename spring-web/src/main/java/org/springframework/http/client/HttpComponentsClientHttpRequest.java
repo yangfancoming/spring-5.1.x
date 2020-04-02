@@ -22,7 +22,7 @@ import org.springframework.util.StringUtils;
  * {@link ClientHttpRequest} implementation based on
  * Apache HttpComponents HttpClient.
  *
- * <p>Created via the {@link HttpComponentsClientHttpRequestFactory}.
+ * Created via the {@link HttpComponentsClientHttpRequestFactory}.
  *
  * @author Oleg Kalnichevski
  * @author Arjen Poutsma

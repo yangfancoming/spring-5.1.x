@@ -20,7 +20,7 @@ import org.springframework.web.util.UrlPathHelper;
  * A {@code ContentNegotiationStrategy} that resolves the file extension in the
  * request path to a key to be used to look up a media type.
  *
- * <p>If the file extension is not found in the explicit registrations provided
+ * If the file extension is not found in the explicit registrations provided
  * to the constructor, the {@link MediaTypeFactory} is used as a fallback
  * mechanism.
  *

@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * Provides convenient access to method parameters, the method return value,
  * method annotations, etc.
  *
- * <p>The class may be created with a bean instance or with a bean name
+ * The class may be created with a bean instance or with a bean name
  * (e.g. lazy-init bean, prototype bean). Use {@link #createWithResolvedBean()}
  * to obtain a {@code HandlerMethod} instance with a bean instance resolved
  * through the associated {@link BeanFactory}.
@@ -201,7 +201,7 @@ public class HandlerMethod {
 
 	/**
 	 * This method returns the type of the handler for this handler method.
-	 * <p>Note that if the bean type is a CGLIB-generated class, the original
+	 * Note that if the bean type is a CGLIB-generated class, the original
 	 * user-defined class is returned.
 	 */
 	public Class<?> getBeanType() {
@@ -267,7 +267,7 @@ public class HandlerMethod {
 	/**
 	 * Return a single annotation on the underlying method traversing its super methods
 	 * if no annotation can be found on the given method itself.
-	 * <p>Also supports <em>merged</em> composed annotations with attribute
+	 * Also supports <em>merged</em> composed annotations with attribute
 	 * overrides as of Spring Framework 4.2.2.
 	 * @param annotationType the type of annotation to introspect the method for
 	 * @return the annotation, or {@code null} if none found

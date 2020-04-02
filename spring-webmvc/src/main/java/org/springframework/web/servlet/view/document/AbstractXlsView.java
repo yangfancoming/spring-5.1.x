@@ -17,7 +17,7 @@ import org.springframework.web.servlet.view.AbstractView;
  * Convenient superclass for Excel document views in traditional XLS format.
  * Compatible with Apache POI 3.5 and higher.
  *
- * <p>For working with the workbook in the subclass, see
+ * For working with the workbook in the subclass, see
  * <a href="https://poi.apache.org">Apache's POI site</a>
  *
 
@@ -62,7 +62,7 @@ public abstract class AbstractXlsView extends AbstractView {
 
 	/**
 	 * Template method for creating the POI {@link Workbook} instance.
-	 * <p>The default implementation creates a traditional {@link HSSFWorkbook}.
+	 * The default implementation creates a traditional {@link HSSFWorkbook}.
 	 * Spring-provided subclasses are overriding this for the OOXML-based variants;
 	 * custom subclasses may override this for reading a workbook from a file.
 	 * @param model the model Map

@@ -20,25 +20,25 @@ import org.springframework.util.Assert;
  * Template class that simplifies programmatic transaction demarcation and
  * transaction exception handling.
  *
- * <p>The central method is {@link #execute}, supporting transactional code that
+ * The central method is {@link #execute}, supporting transactional code that
  * implements the {@link TransactionCallback} interface. This template handles
  * the transaction lifecycle and possible exceptions such that neither the
  * TransactionCallback implementation nor the calling code needs to explicitly
  * handle transactions.
  *
- * <p>Typical usage: Allows for writing low-level data access objects that use
+ * Typical usage: Allows for writing low-level data access objects that use
  * resources such as JDBC DataSources but are not transaction-aware themselves.
  * Instead, they can implicitly participate in transactions handled by higher-level
  * application services utilizing this class, making calls to the low-level
  * services via an inner-class callback object.
  *
- * <p>Can be used within a service implementation via direct instantiation with
+ * Can be used within a service implementation via direct instantiation with
  * a transaction manager reference, or get prepared in an application context
  * and passed to services as bean reference. Note: The transaction manager should
  * always be configured as bean in the application context: in the first case given
  * to the service directly, in the second case given to the prepared template.
  *
- * <p>Supports setting the propagation behavior and the isolation level by name,
+ * Supports setting the propagation behavior and the isolation level by name,
  * for convenient configuration in context definitions.
  *
 
@@ -60,7 +60,7 @@ public class TransactionTemplate extends DefaultTransactionDefinition
 
 	/**
 	 * Construct a new TransactionTemplate for bean usage.
-	 * <p>Note: The PlatformTransactionManager needs to be set before
+	 * Note: The PlatformTransactionManager needs to be set before
 	 * any {@code execute} calls.
 	 * @see #setTransactionManager
 	 */

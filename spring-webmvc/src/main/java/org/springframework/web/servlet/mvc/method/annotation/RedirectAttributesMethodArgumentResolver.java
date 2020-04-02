@@ -20,7 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 /**
  * Resolves method arguments of type {@link RedirectAttributes}.
  *
- * <p>This resolver must be listed ahead of
+ * This resolver must be listed ahead of
  * {@link org.springframework.web.method.annotation.ModelMethodProcessor} and
  * {@link org.springframework.web.method.annotation.MapMethodProcessor},
  * which support {@link Map} and {@link Model} arguments both of which are

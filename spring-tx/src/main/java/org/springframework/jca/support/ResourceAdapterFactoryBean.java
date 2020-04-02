@@ -22,7 +22,7 @@ import org.springframework.lang.Nullable;
  * on context shutdown. This corresponds to 'non-managed' bootstrap in a
  * local environment, according to the JCA 1.7 specification.
  *
- * <p>This is essentially an adapter for bean-style bootstrapping of a
+ * This is essentially an adapter for bean-style bootstrapping of a
  * JCA ResourceAdapter, allowing the BootstrapContext or its elements
  * (such as the JCA WorkManager) to be specified through bean properties.
  *
@@ -52,7 +52,7 @@ public class ResourceAdapterFactoryBean implements FactoryBean<ResourceAdapter>,
 	/**
 	 * Specify the target JCA ResourceAdapter as class, to be instantiated
 	 * with its default configuration.
-	 * <p>Alternatively, specify a pre-configured ResourceAdapter instance
+	 * Alternatively, specify a pre-configured ResourceAdapter instance
 	 * through the "resourceAdapter" property.
 	 * @see #setResourceAdapter
 	 */
@@ -72,7 +72,7 @@ public class ResourceAdapterFactoryBean implements FactoryBean<ResourceAdapter>,
 
 	/**
 	 * Specify the JCA BootstrapContext to use for starting the ResourceAdapter.
-	 * <p>Alternatively, you can specify the individual parts (such as the
+	 * Alternatively, you can specify the individual parts (such as the
 	 * JCA WorkManager) as individual references.
 	 * @see #setWorkManager
 	 * @see #setXaTerminator

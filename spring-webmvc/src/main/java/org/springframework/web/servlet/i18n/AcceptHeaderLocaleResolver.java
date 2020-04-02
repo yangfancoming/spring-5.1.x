@@ -18,7 +18,7 @@ import org.springframework.web.servlet.LocaleResolver;
  * specified in the "accept-language" header of the HTTP request (that is,
  * the locale sent by the client browser, normally that of the client's OS).
  *
- * <p>Note: Does not support {@code setLocale}, since the accept header
+ * Note: Does not support {@code setLocale}, since the accept header
  * can only be changed through changing the client's locale settings.
 
  * @since 27.02.2003
@@ -54,7 +54,7 @@ public class AcceptHeaderLocaleResolver implements LocaleResolver {
 	/**
 	 * Configure a fixed default locale to fall back on if the request does not
 	 * have an "Accept-Language" header.
-	 * <p>By default this is not set in which case when there is "Accept-Language"
+	 * By default this is not set in which case when there is "Accept-Language"
 	 * header, the default locale for the server is used as defined in
 	 * {@link HttpServletRequest#getLocale()}.
 	 * @param defaultLocale the default locale to use

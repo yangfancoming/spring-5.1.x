@@ -12,7 +12,7 @@ import static org.springframework.util.Assert.notNull;
 /**
  * BeanFactory that enables injection of MyBatis mapper interfaces. It can be set up with a SqlSessionFactory or a
  * pre-configured SqlSessionTemplate.
- * <p>
+ *
  * Sample configuration:
  *
  * <pre class="code">
@@ -30,7 +30,7 @@ import static org.springframework.util.Assert.notNull;
  *   </bean>
  * }
  * </pre>
- * <p>
+ *
  * Note that this factory can only inject <em>interfaces</em>, not concrete classes.
  * @see SqlSessionTemplate
  */

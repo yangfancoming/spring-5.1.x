@@ -71,7 +71,7 @@ public class ResourceEditorRegistrar implements PropertyEditorRegistrar {
 	 * Populate the given {@code registry} with the following resource editors:
 	 * ResourceEditor, InputStreamEditor, InputSourceEditor, FileEditor, URLEditor,
 	 * URIEditor, ClassEditor, ClassArrayEditor.
-	 * <p>If this registrar has been configured with a {@link ResourcePatternResolver},
+	 * If this registrar has been configured with a {@link ResourcePatternResolver},
 	 * a ResourceArrayPropertyEditor will be registered as well.
 	 * @see org.springframework.core.io.ResourceEditor
 	 * @see org.springframework.beans.propertyeditors.InputStreamEditor

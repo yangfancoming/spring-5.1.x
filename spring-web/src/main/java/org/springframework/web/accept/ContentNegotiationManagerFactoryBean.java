@@ -23,10 +23,10 @@ import org.springframework.web.context.ServletContextAware;
  * Factory to create a {@code ContentNegotiationManager} and configure it with
  * one or more {@link ContentNegotiationStrategy} instances.
  *
- * <p>As of 5.0 you can set the exact strategies to use via
+ * As of 5.0 you can set the exact strategies to use via
  * {@link #setStrategies(List)}.
  *
- * <p>As an alternative you can also rely on the set of defaults described below
+ * As an alternative you can also rely on the set of defaults described below
  * which can be turned on or off or customized through the methods of this
  * builder:
  *
@@ -108,7 +108,7 @@ public class ContentNegotiationManagerFactoryBean
 
 	/**
 	 * Set the exact list of strategies to use.
-	 * <p><strong>Note:</strong> use of this method is mutually exclusive with
+	 * <strong>Note:</strong> use of this method is mutually exclusive with
 	 * use of all other setters in this class which customize a default, fixed
 	 * set of strategies. See class level doc for more details.
 	 * @param strategies the strategies to use
@@ -121,7 +121,7 @@ public class ContentNegotiationManagerFactoryBean
 	/**
 	 * Whether the path extension in the URL path should be used to determine
 	 * the requested media type.
-	 * <p>By default this is set to {@code true} in which case a request
+	 * By default this is set to {@code true} in which case a request
 	 * for {@code /hotels.pdf} will be interpreted as a request for
 	 * {@code "application/pdf"} regardless of the 'Accept' header.
 	 */
@@ -136,7 +136,7 @@ public class ContentNegotiationManagerFactoryBean
 	 * whitelisted for the purpose of Reflected File Download attack detection
 	 * (see Spring Framework reference documentation for more details on RFD
 	 * attack protection).
-	 * <p>The path extension strategy will also try to use
+	 * The path extension strategy will also try to use
 	 * {@link ServletContext#getMimeType} and
 	 * {@link org.springframework.http.MediaTypeFactory} to resolve path extensions.
 	 * @param mediaTypes media type mappings
@@ -177,7 +177,7 @@ public class ContentNegotiationManagerFactoryBean
 	 * Whether to ignore requests with path extension that cannot be resolved
 	 * to any media type. Setting this to {@code false} will result in an
 	 * {@code HttpMediaTypeNotAcceptableException} if there is no match.
-	 * <p>By default this is set to {@code true}.
+	 * By default this is set to {@code true}.
 	 */
 	public void setIgnoreUnknownPathExtensions(boolean ignore) {
 		this.ignoreUnknownPathExtensions = ignore;
@@ -199,7 +199,7 @@ public class ContentNegotiationManagerFactoryBean
 	 * {@link #setFavorParameter(boolean)} is set, this property determines
 	 * whether to use only registered {@code MediaType} mappings or to allow
 	 * dynamic resolution, e.g. via {@link MediaTypeFactory}.
-	 * <p>By default this is not set in which case dynamic resolution is on.
+	 * By default this is not set in which case dynamic resolution is on.
 	 */
 	public void setUseRegisteredExtensionsOnly(boolean useRegisteredExtensionsOnly) {
 		this.useRegisteredExtensionsOnly = useRegisteredExtensionsOnly;
@@ -213,7 +213,7 @@ public class ContentNegotiationManagerFactoryBean
 	 * Whether a request parameter ("format" by default) should be used to
 	 * determine the requested media type. For this option to work you must
 	 * register {@link #setMediaTypes media type mappings}.
-	 * <p>By default this is set to {@code false}.
+	 * By default this is set to {@code false}.
 	 * @see #setParameterName
 	 */
 	public void setFavorParameter(boolean favorParameter) {
@@ -222,7 +222,7 @@ public class ContentNegotiationManagerFactoryBean
 
 	/**
 	 * Set the query parameter name to use when {@link #setFavorParameter} is on.
-	 * <p>The default parameter name is {@code "format"}.
+	 * The default parameter name is {@code "format"}.
 	 */
 	public void setParameterName(String parameterName) {
 		Assert.notNull(parameterName, "parameterName is required");
@@ -231,7 +231,7 @@ public class ContentNegotiationManagerFactoryBean
 
 	/**
 	 * Whether to disable checking the 'Accept' request header.
-	 * <p>By default this value is set to {@code false}.
+	 * By default this value is set to {@code false}.
 	 */
 	public void setIgnoreAcceptHeader(boolean ignoreAcceptHeader) {
 		this.ignoreAcceptHeader = ignoreAcceptHeader;
@@ -239,7 +239,7 @@ public class ContentNegotiationManagerFactoryBean
 
 	/**
 	 * Set the default content type to use when no content type is requested.
-	 * <p>By default this is not set.
+	 * By default this is not set.
 	 * @see #setDefaultContentTypeStrategy
 	 */
 	public void setDefaultContentType(MediaType contentType) {
@@ -248,7 +248,7 @@ public class ContentNegotiationManagerFactoryBean
 
 	/**
 	 * Set the default content types to use when no content type is requested.
-	 * <p>By default this is not set.
+	 * By default this is not set.
 	 * @since 5.0
 	 * @see #setDefaultContentTypeStrategy
 	 */
@@ -259,7 +259,7 @@ public class ContentNegotiationManagerFactoryBean
 	/**
 	 * Set a custom {@link ContentNegotiationStrategy} to use to determine
 	 * the content type to use when no content type is requested.
-	 * <p>By default this is not set.
+	 * By default this is not set.
 	 * @since 4.1.2
 	 * @see #setDefaultContentType
 	 */

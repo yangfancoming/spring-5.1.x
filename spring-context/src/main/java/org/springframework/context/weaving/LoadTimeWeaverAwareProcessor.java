@@ -16,11 +16,11 @@ import org.springframework.util.Assert;
  * implementation that passes the context's default {@link LoadTimeWeaver}
  * to beans that implement the {@link LoadTimeWeaverAware} interface.
  *
- * <p>{@link org.springframework.context.ApplicationContext Application contexts}
+ * {@link org.springframework.context.ApplicationContext Application contexts}
  * will automatically register this with their underlying {@link BeanFactory bean factory},
  * provided that a default {@code LoadTimeWeaver} is actually available.
  *
- * <p>Applications should not use this class directly.
+ * Applications should not use this class directly.
  *
 
  * @since 2.5
@@ -48,7 +48,7 @@ public class LoadTimeWeaverAwareProcessor implements BeanPostProcessor, BeanFact
 	/**
 	 * Create a new {@code LoadTimeWeaverAwareProcessor} for the given
 	 * {@link LoadTimeWeaver}.
-	 * <p>If the given {@code loadTimeWeaver} is {@code null}, then a
+	 * If the given {@code loadTimeWeaver} is {@code null}, then a
 	 * {@code LoadTimeWeaver} will be auto-retrieved from the containing
 	 * {@link BeanFactory}, expecting a bean named
 	 * {@link ConfigurableApplicationContext#LOAD_TIME_WEAVER_BEAN_NAME "loadTimeWeaver"}.
@@ -60,7 +60,7 @@ public class LoadTimeWeaverAwareProcessor implements BeanPostProcessor, BeanFact
 
 	/**
 	 * Create a new {@code LoadTimeWeaverAwareProcessor}.
-	 * <p>The {@code LoadTimeWeaver} will be auto-retrieved from
+	 * The {@code LoadTimeWeaver} will be auto-retrieved from
 	 * the given {@link BeanFactory}, expecting a bean named
 	 * {@link ConfigurableApplicationContext#LOAD_TIME_WEAVER_BEAN_NAME "loadTimeWeaver"}.
 	 * @param beanFactory the BeanFactory to retrieve the LoadTimeWeaver from

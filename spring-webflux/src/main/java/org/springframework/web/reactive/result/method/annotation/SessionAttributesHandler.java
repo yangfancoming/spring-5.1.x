@@ -57,7 +57,7 @@ class SessionAttributesHandler {
 	/**
 	 * Whether the attribute name or type match the names and types specified
 	 * via {@code @SessionAttributes} on the underlying controller.
-	 * <p>Attributes successfully resolved through this method are "remembered"
+	 * Attributes successfully resolved through this method are "remembered"
 	 * and subsequently used in {@link #retrieveAttributes(WebSession)}
 	 * and also {@link #cleanupAttributes(WebSession)}.
 	 * @param attributeName the attribute name to check

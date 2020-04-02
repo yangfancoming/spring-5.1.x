@@ -29,7 +29,7 @@ public interface TypeConverter {
 	/**
 	 * Convert (or coerce) a value from one type to another, for example from a
 	 * {@code boolean} to a {@code String}.
-	 * <p>The {@link TypeDescriptor} parameters enable support for typed collections:
+	 * The {@link TypeDescriptor} parameters enable support for typed collections:
 	 * A caller may prefer a {@code List&lt;Integer&gt;}, for example, rather than
 	 * simply any {@code List}.
 	 * @param value the value to be converted

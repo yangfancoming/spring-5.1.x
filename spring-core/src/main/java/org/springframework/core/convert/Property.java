@@ -23,7 +23,7 @@ import org.springframework.util.StringUtils;
  * is not available in a number of environments (e.g. Android, Java ME), so this is
  * desirable for portability of Spring's core conversion facility.
  *
- * <p>Used to build a {@link TypeDescriptor} from a property location. The built
+ * Used to build a {@link TypeDescriptor} from a property location. The built
  * {@code TypeDescriptor} can then be used to convert from/to the property type.
  *
  * @author Keith Donald

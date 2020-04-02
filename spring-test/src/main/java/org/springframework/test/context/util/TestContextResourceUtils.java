@@ -36,7 +36,7 @@ public abstract class TestContextResourceUtils {
 	/**
 	 * Convert the supplied paths to classpath resource paths.
 	 *
-	 * <p>For each of the supplied paths:
+	 * For each of the supplied paths:
 	 * <ul>
 	 * <li>A plain path ; for example, {@code "context.xml"} ; will
 	 * be treated as a classpath resource that is relative to the package in

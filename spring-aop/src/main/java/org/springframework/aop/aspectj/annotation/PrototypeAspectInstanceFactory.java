@@ -10,7 +10,7 @@ import org.springframework.beans.factory.BeanFactory;
  * {@link org.springframework.aop.aspectj.AspectInstanceFactory} backed by a
  * {@link BeanFactory}-provided prototype, enforcing prototype semantics.
  *
- * <p>Note that this may instantiate multiple times, which probably won't give the
+ * Note that this may instantiate multiple times, which probably won't give the
  * semantics you expect. Use a {@link LazySingletonAspectInstanceFactoryDecorator}
  * to wrap this to ensure only one new aspect comes back.
  * @since 2.0

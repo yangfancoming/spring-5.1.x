@@ -26,7 +26,7 @@ import org.springframework.web.util.UrlPathHelper;
  * specified {@link org.springframework.http.CacheControl} builder.
  * See superclass bean properties for configuration options.
  *
- * <p>All the settings supported by this interceptor can also be set on
+ * All the settings supported by this interceptor can also be set on
  * {@link AbstractController}. This interceptor is mainly intended for applying
  * checks and preparations to a set of controllers mapped by a HandlerMapping.
  *
@@ -55,7 +55,7 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 
 	/**
 	 * Shortcut to same property on underlying {@link #setUrlPathHelper UrlPathHelper}.
-	 * <p>Only relevant for the "cacheMappings" setting.
+	 * Only relevant for the "cacheMappings" setting.
 	 * @see #setCacheMappings
 	 * @see org.springframework.web.util.UrlPathHelper#setAlwaysUseFullPath
 	 */
@@ -65,7 +65,7 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 
 	/**
 	 * Shortcut to same property on underlying {@link #setUrlPathHelper UrlPathHelper}.
-	 * <p>Only relevant for the "cacheMappings" setting.
+	 * Only relevant for the "cacheMappings" setting.
 	 * @see #setCacheMappings
 	 * @see org.springframework.web.util.UrlPathHelper#setUrlDecode
 	 */
@@ -75,10 +75,10 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 
 	/**
 	 * Set the UrlPathHelper to use for resolution of lookup paths.
-	 * <p>Use this to override the default UrlPathHelper with a custom subclass,
+	 * Use this to override the default UrlPathHelper with a custom subclass,
 	 * or to share common UrlPathHelper settings across multiple HandlerMappings
 	 * and MethodNameResolvers.
-	 * <p>Only relevant for the "cacheMappings" setting.
+	 * Only relevant for the "cacheMappings" setting.
 	 * @see #setCacheMappings
 	 * @see org.springframework.web.servlet.handler.AbstractUrlHandlerMapping#setUrlPathHelper
 	 */
@@ -89,12 +89,12 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 
 	/**
 	 * Map specific URL paths to specific cache seconds.
-	 * <p>Overrides the default cache seconds setting of this interceptor.
+	 * Overrides the default cache seconds setting of this interceptor.
 	 * Can specify "-1" to exclude a URL path from default caching.
-	 * <p>Supports direct matches, e.g. a registered "/test" matches "/test",
+	 * Supports direct matches, e.g. a registered "/test" matches "/test",
 	 * and a various Ant-style pattern matches, e.g. a registered "/t*" matches
 	 * both "/test" and "/team". For details, see the AntPathMatcher javadoc.
-	 * <p><b>NOTE:</b> Path patterns are not supposed to overlap. If a request
+	 * <b>NOTE:</b> Path patterns are not supposed to overlap. If a request
 	 * matches several mappings, it is effectively undefined which one will apply
 	 * (due to the lack of key ordering in {@code java.util.Properties}).
 	 * @param cacheMappings a mapping between URL paths (as keys) and
@@ -114,13 +114,13 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 
 	/**
 	 * Map specific URL paths to a specific {@link org.springframework.http.CacheControl}.
-	 * <p>Overrides the default cache seconds setting of this interceptor.
+	 * Overrides the default cache seconds setting of this interceptor.
 	 * Can specify a empty {@link org.springframework.http.CacheControl} instance
 	 * to exclude a URL path from default caching.
-	 * <p>Supports direct matches, e.g. a registered "/test" matches "/test",
+	 * Supports direct matches, e.g. a registered "/test" matches "/test",
 	 * and a various Ant-style pattern matches, e.g. a registered "/t*" matches
 	 * both "/test" and "/team". For details, see the AntPathMatcher javadoc.
-	 * <p><b>NOTE:</b> Path patterns are not supposed to overlap. If a request
+	 * <b>NOTE:</b> Path patterns are not supposed to overlap. If a request
 	 * matches several mappings, it is effectively undefined which one will apply
 	 * (due to the lack of key ordering in the underlying {@code java.util.HashMap}).
 	 * @param cacheControl the {@code CacheControl} to use
@@ -183,7 +183,7 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 
 	/**
 	 * Look up a {@link org.springframework.http.CacheControl} instance for the given URL path.
-	 * <p>Supports direct matches, e.g. a registered "/test" matches "/test",
+	 * Supports direct matches, e.g. a registered "/test" matches "/test",
 	 * and various Ant-style pattern matches, e.g. a registered "/t*" matches
 	 * both "/test" and "/team". For details, see the AntPathMatcher class.
 	 * @param urlPath the URL the bean is mapped to
@@ -208,7 +208,7 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 
 	/**
 	 * Look up a cacheSeconds integer value for the given URL path.
-	 * <p>Supports direct matches, e.g. a registered "/test" matches "/test",
+	 * Supports direct matches, e.g. a registered "/test" matches "/test",
 	 * and various Ant-style pattern matches, e.g. a registered "/t*" matches
 	 * both "/test" and "/team". For details, see the AntPathMatcher class.
 	 * @param urlPath the URL the bean is mapped to

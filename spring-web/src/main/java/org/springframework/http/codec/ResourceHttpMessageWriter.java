@@ -39,10 +39,10 @@ import org.springframework.util.MimeTypeUtils;
 /**
  * {@code HttpMessageWriter} that can write a {@link Resource}.
  *
- * <p>Also an implementation of {@code HttpMessageWriter} with support for writing one
+ * Also an implementation of {@code HttpMessageWriter} with support for writing one
  * or more {@link ResourceRegion}'s based on the HTTP ranges specified in the request.
  *
- * <p>For reading to a Resource, use {@link ResourceDecoder} wrapped with
+ * For reading to a Resource, use {@link ResourceDecoder} wrapped with
  * {@link DecoderHttpMessageReader}.
  *
  * @author Arjen Poutsma

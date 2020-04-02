@@ -43,7 +43,7 @@ import org.springframework.web.util.WebUtils;
  * that wish to provide centralized exception handling across all
  * {@code @RequestMapping} methods through {@code @ExceptionHandler} methods.
  *
- * <p>This base class provides an {@code @ExceptionHandler} method for handling
+ * This base class provides an {@code @ExceptionHandler} method for handling
  * internal Spring MVC exceptions. This method returns a {@code ResponseEntity}
  * for writing to the response with a {@link HttpMessageConverter message converter},
  * in contrast to
@@ -51,11 +51,11 @@ import org.springframework.web.util.WebUtils;
  * DefaultHandlerExceptionResolver} which returns a
  * {@link org.springframework.web.servlet.ModelAndView ModelAndView}.
  *
- * <p>If there is no need to write error content to the response body, or when
+ * If there is no need to write error content to the response body, or when
  * using view resolution (e.g., via {@code ContentNegotiatingViewResolver}),
  * then {@code DefaultHandlerExceptionResolver} is good enough.
  *
- * <p>Note that in order for an {@code @ControllerAdvice} subclass to be
+ * Note that in order for an {@code @ControllerAdvice} subclass to be
  * detected, {@link ExceptionHandlerExceptionResolver} must be configured.
  *
  * @author Rossen Stoyanchev
@@ -180,7 +180,7 @@ public abstract class ResponseEntityExceptionHandler {
 
 	/**
 	 * Customize the response for HttpRequestMethodNotSupportedException.
-	 * <p>This method logs a warning, sets the "Allow" header, and delegates to
+	 * This method logs a warning, sets the "Allow" header, and delegates to
 	 * {@link #handleExceptionInternal}.
 	 * @param ex the exception
 	 * @param headers the headers to be written to the response
@@ -202,7 +202,7 @@ public abstract class ResponseEntityExceptionHandler {
 
 	/**
 	 * Customize the response for HttpMediaTypeNotSupportedException.
-	 * <p>This method sets the "Accept" header and delegates to
+	 * This method sets the "Accept" header and delegates to
 	 * {@link #handleExceptionInternal}.
 	 * @param ex the exception
 	 * @param headers the headers to be written to the response
@@ -223,7 +223,7 @@ public abstract class ResponseEntityExceptionHandler {
 
 	/**
 	 * Customize the response for HttpMediaTypeNotAcceptableException.
-	 * <p>This method delegates to {@link #handleExceptionInternal}.
+	 * This method delegates to {@link #handleExceptionInternal}.
 	 * @param ex the exception
 	 * @param headers the headers to be written to the response
 	 * @param status the selected response status
@@ -238,7 +238,7 @@ public abstract class ResponseEntityExceptionHandler {
 
 	/**
 	 * Customize the response for MissingPathVariableException.
-	 * <p>This method delegates to {@link #handleExceptionInternal}.
+	 * This method delegates to {@link #handleExceptionInternal}.
 	 * @param ex the exception
 	 * @param headers the headers to be written to the response
 	 * @param status the selected response status
@@ -254,7 +254,7 @@ public abstract class ResponseEntityExceptionHandler {
 
 	/**
 	 * Customize the response for MissingServletRequestParameterException.
-	 * <p>This method delegates to {@link #handleExceptionInternal}.
+	 * This method delegates to {@link #handleExceptionInternal}.
 	 * @param ex the exception
 	 * @param headers the headers to be written to the response
 	 * @param status the selected response status
@@ -269,7 +269,7 @@ public abstract class ResponseEntityExceptionHandler {
 
 	/**
 	 * Customize the response for ServletRequestBindingException.
-	 * <p>This method delegates to {@link #handleExceptionInternal}.
+	 * This method delegates to {@link #handleExceptionInternal}.
 	 * @param ex the exception
 	 * @param headers the headers to be written to the response
 	 * @param status the selected response status
@@ -284,7 +284,7 @@ public abstract class ResponseEntityExceptionHandler {
 
 	/**
 	 * Customize the response for ConversionNotSupportedException.
-	 * <p>This method delegates to {@link #handleExceptionInternal}.
+	 * This method delegates to {@link #handleExceptionInternal}.
 	 * @param ex the exception
 	 * @param headers the headers to be written to the response
 	 * @param status the selected response status
@@ -299,7 +299,7 @@ public abstract class ResponseEntityExceptionHandler {
 
 	/**
 	 * Customize the response for TypeMismatchException.
-	 * <p>This method delegates to {@link #handleExceptionInternal}.
+	 * This method delegates to {@link #handleExceptionInternal}.
 	 * @param ex the exception
 	 * @param headers the headers to be written to the response
 	 * @param status the selected response status
@@ -314,7 +314,7 @@ public abstract class ResponseEntityExceptionHandler {
 
 	/**
 	 * Customize the response for HttpMessageNotReadableException.
-	 * <p>This method delegates to {@link #handleExceptionInternal}.
+	 * This method delegates to {@link #handleExceptionInternal}.
 	 * @param ex the exception
 	 * @param headers the headers to be written to the response
 	 * @param status the selected response status
@@ -329,7 +329,7 @@ public abstract class ResponseEntityExceptionHandler {
 
 	/**
 	 * Customize the response for HttpMessageNotWritableException.
-	 * <p>This method delegates to {@link #handleExceptionInternal}.
+	 * This method delegates to {@link #handleExceptionInternal}.
 	 * @param ex the exception
 	 * @param headers the headers to be written to the response
 	 * @param status the selected response status
@@ -344,7 +344,7 @@ public abstract class ResponseEntityExceptionHandler {
 
 	/**
 	 * Customize the response for MethodArgumentNotValidException.
-	 * <p>This method delegates to {@link #handleExceptionInternal}.
+	 * This method delegates to {@link #handleExceptionInternal}.
 	 * @param ex the exception
 	 * @param headers the headers to be written to the response
 	 * @param status the selected response status
@@ -359,7 +359,7 @@ public abstract class ResponseEntityExceptionHandler {
 
 	/**
 	 * Customize the response for MissingServletRequestPartException.
-	 * <p>This method delegates to {@link #handleExceptionInternal}.
+	 * This method delegates to {@link #handleExceptionInternal}.
 	 * @param ex the exception
 	 * @param headers the headers to be written to the response
 	 * @param status the selected response status
@@ -374,7 +374,7 @@ public abstract class ResponseEntityExceptionHandler {
 
 	/**
 	 * Customize the response for BindException.
-	 * <p>This method delegates to {@link #handleExceptionInternal}.
+	 * This method delegates to {@link #handleExceptionInternal}.
 	 * @param ex the exception
 	 * @param headers the headers to be written to the response
 	 * @param status the selected response status
@@ -389,7 +389,7 @@ public abstract class ResponseEntityExceptionHandler {
 
 	/**
 	 * Customize the response for NoHandlerFoundException.
-	 * <p>This method delegates to {@link #handleExceptionInternal}.
+	 * This method delegates to {@link #handleExceptionInternal}.
 	 * @param ex the exception
 	 * @param headers the headers to be written to the response
 	 * @param status the selected response status
@@ -405,7 +405,7 @@ public abstract class ResponseEntityExceptionHandler {
 
 	/**
 	 * Customize the response for AsyncRequestTimeoutException.
-	 * <p>This method delegates to {@link #handleExceptionInternal}.
+	 * This method delegates to {@link #handleExceptionInternal}.
 	 * @param ex the exception
 	 * @param headers the headers to be written to the response
 	 * @param status the selected response status
@@ -433,7 +433,7 @@ public abstract class ResponseEntityExceptionHandler {
 
 	/**
 	 * A single place to customize the response body of all exception types.
-	 * <p>The default implementation sets the {@link WebUtils#ERROR_EXCEPTION_ATTRIBUTE}
+	 * The default implementation sets the {@link WebUtils#ERROR_EXCEPTION_ATTRIBUTE}
 	 * request attribute and creates a {@link ResponseEntity} from the given
 	 * body, headers, and status.
 	 * @param ex the exception

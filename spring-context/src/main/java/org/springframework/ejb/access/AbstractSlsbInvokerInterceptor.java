@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
  * Base class for AOP interceptors invoking local or remote Stateless Session Beans.
  * Designed for EJB 2.x, but works for EJB 3 Session Beans as well.
  *
- * <p>Such an interceptor must be the last interceptor in the advice chain.
+ * Such an interceptor must be the last interceptor in the advice chain.
  * In this case, there is no direct target object: The call is handled in a
  * special way, getting executed on an EJB instance retrieved via an EJB home.
  *
@@ -52,7 +52,7 @@ public abstract class AbstractSlsbInvokerInterceptor extends JndiObjectLocator
 	/**
 	 * Set whether to look up the EJB home object on startup.
 	 * Default is "true".
-	 * <p>Can be turned off to allow for late start of the EJB server.
+	 * Can be turned off to allow for late start of the EJB server.
 	 * In this case, the EJB home object will be fetched on first access.
 	 * @see #setCacheHome
 	 */
@@ -63,7 +63,7 @@ public abstract class AbstractSlsbInvokerInterceptor extends JndiObjectLocator
 	/**
 	 * Set whether to cache the EJB home object once it has been located.
 	 * Default is "true".
-	 * <p>Can be turned off to allow for hot restart of the EJB server.
+	 * Can be turned off to allow for hot restart of the EJB server.
 	 * In this case, the EJB home object will be fetched for each invocation.
 	 * @see #setLookupHomeOnStartup
 	 */
@@ -74,7 +74,7 @@ public abstract class AbstractSlsbInvokerInterceptor extends JndiObjectLocator
 	/**
 	 * Set whether to expose the JNDI environment context for all access to the target
 	 * EJB, i.e. for all method invocations on the exposed object reference.
-	 * <p>Default is "false", i.e. to only expose the JNDI context for object lookup.
+	 * Default is "false", i.e. to only expose the JNDI context for object lookup.
 	 * Switch this flag to "true" in order to expose the JNDI environment (including
 	 * the authorization context) for each EJB invocation, as needed by WebLogic
 	 * for EJBs with authorization requirements.
@@ -134,9 +134,9 @@ public abstract class AbstractSlsbInvokerInterceptor extends JndiObjectLocator
 
 	/**
 	 * Return the EJB home object to use. Called for each invocation.
-	 * <p>Default implementation returns the home created on initialization,
+	 * Default implementation returns the home created on initialization,
 	 * if any; else, it invokes lookup to get a new proxy for each invocation.
-	 * <p>Can be overridden in subclasses, for example to cache a home object
+	 * Can be overridden in subclasses, for example to cache a home object
 	 * for a given amount of time before recreating it, or to test the home
 	 * object whether it is still alive.
 	 * @return the EJB home object to use for an invocation

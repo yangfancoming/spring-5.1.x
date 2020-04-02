@@ -36,7 +36,7 @@ import org.springframework.util.StringUtils;
  * {@link org.aopalliance.intercept.MethodInterceptor} for accessing a
  * specific port of a JAX-WS service.
  *
- * <p>Uses either {@link LocalJaxWsServiceFactory}'s facilities underneath,
+ * Uses either {@link LocalJaxWsServiceFactory}'s facilities underneath,
  * or takes an explicit reference to an existing JAX-WS Service instance
  * (e.g. obtained via {@link org.springframework.jndi.JndiObjectFactoryBean}).
  *
@@ -229,7 +229,7 @@ public class JaxWsPortClientInterceptor extends LocalJaxWsServiceFactory
 
 	/**
 	 * Set custom properties to be set on the stub.
-	 * <p>Can be populated with a String "value" (parsed via PropertiesEditor)
+	 * Can be populated with a String "value" (parsed via PropertiesEditor)
 	 * or a "props" element in XML bean definitions.
 	 * @see javax.xml.ws.BindingProvider#getRequestContext()
 	 */
@@ -240,7 +240,7 @@ public class JaxWsPortClientInterceptor extends LocalJaxWsServiceFactory
 	/**
 	 * Allow Map access to the custom properties to be set on the stub,
 	 * with the option to add or override specific entries.
-	 * <p>Useful for specifying entries directly, for example via
+	 * Useful for specifying entries directly, for example via
 	 * "customProperties[myKey]". This is particularly useful for
 	 * adding or overriding entries in child bean definitions.
 	 */
@@ -292,7 +292,7 @@ public class JaxWsPortClientInterceptor extends LocalJaxWsServiceFactory
 
 	/**
 	 * Set whether to look up the JAX-WS service on startup.
-	 * <p>Default is "true". Turn this flag off to allow for late start
+	 * Default is "true". Turn this flag off to allow for late start
 	 * of the target server. In this case, the JAX-WS service will be
 	 * lazily fetched on first access.
 	 */

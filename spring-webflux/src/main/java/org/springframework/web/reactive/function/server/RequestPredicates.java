@@ -104,7 +104,7 @@ public abstract class RequestPredicates {
 	/**
 	 * Return a function that creates new path-matching {@code RequestPredicates}
 	 * from pattern Strings using the given {@link PathPatternParser}.
-	 * <p>This method can be used to specify a non-default, customized
+	 * This method can be used to specify a non-default, customized
 	 * {@code PathPatternParser} when resolving path patterns.
 	 * @param patternParser the parser used to parse patterns given to the returned function
 	 * @return a function that resolves a pattern String into a path-matching

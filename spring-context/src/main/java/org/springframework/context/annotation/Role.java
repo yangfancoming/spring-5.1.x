@@ -13,14 +13,14 @@ import org.springframework.beans.factory.config.BeanDefinition;
 /**
  * Indicates the 'role' hint for a given bean.
  *
- * <p>May be used on any class directly or indirectly annotated with
+ * May be used on any class directly or indirectly annotated with
  * {@link org.springframework.stereotype.Component} or on methods
  * annotated with {@link Bean}.
  *
- * <p>If this annotation is not present on a Component or Bean definition,
+ * If this annotation is not present on a Component or Bean definition,
  * the default value of {@link BeanDefinition#ROLE_APPLICATION} will apply.
  *
- * <p>If Role is present on a {@link Configuration @Configuration} class,
+ * If Role is present on a {@link Configuration @Configuration} class,
  * this indicates the role of the configuration class bean definition and
  * does not cascade to all @{@code Bean} methods defined within. This behavior
  * is different than that of the @{@link Lazy} annotation, for example.

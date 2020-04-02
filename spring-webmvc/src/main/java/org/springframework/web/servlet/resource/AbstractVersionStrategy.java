@@ -15,13 +15,13 @@ import org.springframework.util.StringUtils;
 /**
  * Abstract base class for {@link VersionStrategy} implementations.
  *
- * <p>Supports versions as:
+ * Supports versions as:
  * <ul>
  * <li>prefix in the request path, like "version/static/myresource.js"
  * <li>file name suffix in the request path, like "static/myresource-version.js"
  * </ul>
  *
- * <p>Note: This base class does <i>not</i> provide support for generating the
+ * Note: This base class does <i>not</i> provide support for generating the
  * version string.
  *
  * @author Brian Clozel

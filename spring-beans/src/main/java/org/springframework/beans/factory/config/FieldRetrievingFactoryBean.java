@@ -19,7 +19,7 @@ import org.springframework.util.StringUtils;
 /**
  * {@link FactoryBean} which retrieves a static or non-static field value.
  *
- * <p>Typically used for retrieving public static final constants. Usage example:
+ * Typically used for retrieving public static final constants. Usage example:
  *
  * <pre class="code">
  * // standard definition for exposing a static field, specifying the "staticField" property
@@ -32,7 +32,7 @@ import org.springframework.util.StringUtils;
  *       class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/&gt;
  * </pre>
  *
- * <p>If you are using Spring 2.0, you can also use the following style of configuration for
+ * If you are using Spring 2.0, you can also use the following style of configuration for
  * public static fields.
  *
  * <pre class="code">&lt;util:constant static-field="java.sql.Connection.TRANSACTION_SERIALIZABLE"/&gt;</pre>

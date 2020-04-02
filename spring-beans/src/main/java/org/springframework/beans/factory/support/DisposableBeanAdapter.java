@@ -153,7 +153,7 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 	 * {@code @Bean#destroyMethod} attribute and the value of the constant may also be
 	 * used in XML within the {@code <bean destroy-method="">} or {@code
 	 * <beans default-destroy-method="">} attributes.
-	 * <p>Also processes the {@link java.io.Closeable} and {@link java.lang.AutoCloseable}
+	 * Also processes the {@link java.io.Closeable} and {@link java.lang.AutoCloseable}
 	 * interfaces, reflectively calling the "close" method on implementing beans as well.
 	 */
 	@Nullable
@@ -279,7 +279,7 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 
 	/**
 	 * Invoke the specified custom destroy method on the given bean.
-	 * <p>This implementation invokes a no-arg method if found, else checking
+	 * This implementation invokes a no-arg method if found, else checking
 	 * for a method with a single boolean argument (passing in "true",
 	 * assuming a "force" parameter), else logging an error.
 	 */

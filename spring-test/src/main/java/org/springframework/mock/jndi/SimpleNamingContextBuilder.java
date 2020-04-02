@@ -20,21 +20,21 @@ import org.springframework.util.ReflectionUtils;
 /**
  * Simple implementation of a JNDI naming context builder.
  *
- * <p>Mainly targeted at test environments, where each test case can
+ * Mainly targeted at test environments, where each test case can
  * configure JNDI appropriately, so that {@code new InitialContext()}
  * will expose the required objects. Also usable for standalone applications,
  * e.g. for binding a JDBC DataSource to a well-known JNDI location, to be
  * able to use traditional Java EE data access code outside of a Java EE
  * container.
  *
- * <p>There are various choices for DataSource implementations:
+ * There are various choices for DataSource implementations:
  * <ul>
  * <li>{@code SingleConnectionDataSource} (using the same Connection for all getConnection calls)
  * <li>{@code DriverManagerDataSource} (creating a new Connection on each getConnection call)
  * <li>Apache's Commons DBCP offers {@code org.apache.commons.dbcp.BasicDataSource} (a real pool)
  * </ul>
  *
- * <p>Typical usage in bootstrap code:
+ * Typical usage in bootstrap code:
  *
  * <pre class="code">
  * SimpleNamingContextBuilder builder = new SimpleNamingContextBuilder();
@@ -55,7 +55,7 @@ import org.springframework.util.ReflectionUtils;
  * Note that you <i>should not</i> call {@code activate()} on a builder from
  * this factory method, as there will already be an activated one in any case.
  *
- * <p>An instance of this class is only necessary at setup time.
+ * An instance of this class is only necessary at setup time.
  * An application does not need to keep a reference to it after activation.
  *
 
@@ -92,7 +92,7 @@ public class SimpleNamingContextBuilder implements InitialContextFactoryBuilder 
 	 * If no SimpleNamingContextBuilder is already configuring JNDI,
 	 * create and activate one. Otherwise take the existing activated
 	 * SimpleNamingContextBuilder, clear it and return it.
-	 * <p>This is mainly intended for test suites that want to
+	 * This is mainly intended for test suites that want to
 	 * reinitialize JNDI bindings from scratch repeatedly.
 	 * @return an empty SimpleNamingContextBuilder that can be used
 	 * to control JNDI bindings
@@ -145,7 +145,7 @@ public class SimpleNamingContextBuilder implements InitialContextFactoryBuilder 
 	 * Temporarily deactivate this context builder. It will remain registered with
 	 * the JNDI NamingManager but will delegate to the standard JNDI InitialContextFactory
 	 * (if configured) instead of exposing its own bound objects.
-	 * <p>Call {@code activate()} again in order to expose this context builder's own
+	 * Call {@code activate()} again in order to expose this context builder's own
 	 * bound objects again. Such activate/deactivate sequences can be applied any number
 	 * of times (e.g. within a larger integration test suite running in the same VM).
 	 * @see #activate()

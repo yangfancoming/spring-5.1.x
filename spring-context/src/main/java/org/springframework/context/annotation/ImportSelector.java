@@ -9,7 +9,7 @@ import org.springframework.core.type.AnnotationMetadata;
  * class(es) should be imported based on a given selection criteria, usually one or
  * more annotation attributes.
  *
- * <p>An {@link ImportSelector} may implement any of the following
+ * An {@link ImportSelector} may implement any of the following
  * {@link org.springframework.beans.factory.Aware Aware} interfaces,
  * and their respective methods will be called prior to {@link #selectImports}:
  * <ul>
@@ -19,7 +19,7 @@ import org.springframework.core.type.AnnotationMetadata;
  * <li>{@link org.springframework.context.ResourceLoaderAware ResourceLoaderAware}</li>
  * </ul>
  *
- * <p>{@code ImportSelector} implementations are usually processed in the same way
+ * {@code ImportSelector} implementations are usually processed in the same way
  * as regular {@code @Import} annotations, however, it is also possible to defer
  * selection of imports until all {@code @Configuration} classes have been processed
  * (see {@link DeferredImportSelector} for details).

@@ -84,7 +84,7 @@ public abstract class AbstractCacheResolver implements CacheResolver, Initializi
 
 	/**
 	 * Provide the name of the cache(s) to resolve against the current cache manager.
-	 * <p>It is acceptable to return {@code null} to indicate that no cache could
+	 * It is acceptable to return {@code null} to indicate that no cache could
 	 * be resolved for this invocation.
 	 * @param context the context of the particular invocation
 	 * @return the cache name(s) to resolve, or {@code null} if no cache should be resolved

@@ -6,7 +6,7 @@ import org.springframework.lang.Nullable;
 
 /**
  * Enumeration of HTTP status codes.
- * <p>The HTTP status code series can be retrieved via {@link #series()}.
+ * The HTTP status code series can be retrieved via {@link #series()}.
  * @since 3.0
  * @see HttpStatus.Series
  * @see <a href="https://www.iana.org/assignments/http-status-codes">HTTP Status Code Registry</a>
@@ -529,7 +529,7 @@ public enum HttpStatus {
 
 	/**
 	 * Enumeration of HTTP status series.
-	 * <p>Retrievable via {@link HttpStatus#series()}.
+	 * Retrievable via {@link HttpStatus#series()}.
 	 */
 	public enum Series {
 

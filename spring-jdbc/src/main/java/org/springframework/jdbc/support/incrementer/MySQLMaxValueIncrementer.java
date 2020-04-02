@@ -18,12 +18,12 @@ import org.springframework.jdbc.support.JdbcUtils;
  * with the equivalent of an auto-increment column. Note: If you use this class, your MySQL
  * key column should <i>NOT</i> be auto-increment, as the sequence table does the job.
  *
- * <p>The sequence is kept in a table; there should be one sequence table per
+ * The sequence is kept in a table; there should be one sequence table per
  * table that needs an auto-generated key. The storage engine used by the sequence table
  * can be MYISAM or INNODB since the sequences are allocated using a separate connection
  * without being affected by any other transactions that might be in progress.
  *
- * <p>Example:
+ * Example:
  *
  * <pre class="code">create table tab (id int unsigned not null primary key, text varchar(100));
  * create table tab_sequence (value int not null);
@@ -34,7 +34,7 @@ import org.springframework.jdbc.support.JdbcUtils;
  * is rolled back, the unused values will never be served. The maximum hole size in
  * numbering is consequently the value of cacheSize.
  *
- * <p>It is possible to avoid acquiring a new connection for the incrementer by setting the
+ * It is possible to avoid acquiring a new connection for the incrementer by setting the
  * "useNewConnection" property to false. In this case you <i>MUST</i> use a non-transactional
  * storage engine like MYISAM when defining the incrementer table.
  */
@@ -75,12 +75,12 @@ public class MySQLMaxValueIncrementer extends AbstractColumnMaxValueIncrementer 
 
 	/**
 	 * Set whether to use a new connection for the incrementer.
-	 * <p>{@code true} is necessary to support transactional storage engines,
+	 * {@code true} is necessary to support transactional storage engines,
 	 * using an isolated separate transaction for the increment operation.
 	 * {@code false} is sufficient if the storage engine of the sequence table
 	 * is non-transactional (like MYISAM), avoiding the effort of acquiring an
 	 * extra {@code Connection} for the increment operation.
-	 * <p>Default is {@code true} since Spring Framework 5.0.
+	 * Default is {@code true} since Spring Framework 5.0.
 	 * @since 4.3.6
 	 * @see DataSource#getConnection()
 	 */

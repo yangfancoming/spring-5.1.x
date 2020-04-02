@@ -19,11 +19,11 @@ import org.springframework.lang.Nullable;
  * to other resolvers each implementing a different strategy to determine the
  * requested content type -- e.g. Accept header, query parameter, or other.
  *
- * <p>Use builder methods to add resolvers in the desired order. For a given
+ * Use builder methods to add resolvers in the desired order. For a given
  * request he first resolver to return a list that is not empty and does not
  * consist of just {@link MediaType#ALL}, will be used.
  *
- * <p>By default, if no resolvers are explicitly configured, the builder will
+ * By default, if no resolvers are explicitly configured, the builder will
  * add {@link HeaderContentTypeResolver}.
  *
  * @author Rossen Stoyanchev
@@ -122,7 +122,7 @@ public class RequestedContentTypeResolverBuilder {
 
 		/**
 		 * Set the name of the parameter to use to determine requested media types.
-		 * <p>By default this is set to {@literal "format"}.
+		 * By default this is set to {@literal "format"}.
 		 */
 		public ParameterResolverConfigurer parameterName(String parameterName) {
 			this.parameterName = parameterName;

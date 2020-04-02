@@ -14,7 +14,7 @@ import org.springframework.util.ReflectionUtils;
 /**
  * Utility methods for decorating tasks with error handling.
  *
- * <p><b>NOTE:</b> This class is intended for internal use by Spring's scheduler
+ * <b>NOTE:</b> This class is intended for internal use by Spring's scheduler
  * implementations. It is only public so that it may be accessed from impl classes
  * within other packages. It is <i>not</i> intended for general use.
  *

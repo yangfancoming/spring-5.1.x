@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
  * A {@link ListenableFuture} whose value can be set via {@link #set(Object)}
  * or {@link #setException(Throwable)}. It may also get cancelled.
  *
- * <p>Inspired by {@code com.google.common.util.concurrent.SettableFuture}.
+ * Inspired by {@code com.google.common.util.concurrent.SettableFuture}.
  *
  * @author Mattias Severson
  * @author Rossen Stoyanchev
@@ -94,7 +94,7 @@ public class SettableListenableFuture<T> implements ListenableFuture<T> {
 
 	/**
 	 * Retrieve the value.
-	 * <p>This method returns the value if it has been set via {@link #set(Object)},
+	 * This method returns the value if it has been set via {@link #set(Object)},
 	 * throws an {@link java.util.concurrent.ExecutionException} if an exception has
 	 * been set via {@link #setException(Throwable)}, or throws a
 	 * {@link java.util.concurrent.CancellationException} if the future has been cancelled.
@@ -107,7 +107,7 @@ public class SettableListenableFuture<T> implements ListenableFuture<T> {
 
 	/**
 	 * Retrieve the value.
-	 * <p>This method returns the value if it has been set via {@link #set(Object)},
+	 * This method returns the value if it has been set via {@link #set(Object)},
 	 * throws an {@link java.util.concurrent.ExecutionException} if an exception has
 	 * been set via {@link #setException(Throwable)}, or throws a
 	 * {@link java.util.concurrent.CancellationException} if the future has been cancelled.
@@ -124,7 +124,7 @@ public class SettableListenableFuture<T> implements ListenableFuture<T> {
 	 * Subclasses can override this method to implement interruption of the future's
 	 * computation. The method is invoked automatically by a successful call to
 	 * {@link #cancel(boolean) cancel(true)}.
-	 * <p>The default implementation is empty.
+	 * The default implementation is empty.
 	 */
 	protected void interruptTask() {
 	}

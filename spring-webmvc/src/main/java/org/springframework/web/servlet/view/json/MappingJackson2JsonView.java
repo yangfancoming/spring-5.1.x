@@ -23,13 +23,13 @@ import org.springframework.web.servlet.View;
  * Spring MVC {@link View} that renders JSON content by serializing the model for the current request
  * using <a href="https://github.com/FasterXML/jackson">Jackson 2's</a> {@link ObjectMapper}.
  *
- * <p>By default, the entire contents of the model map (with the exception of framework-specific classes)
+ * By default, the entire contents of the model map (with the exception of framework-specific classes)
  * will be encoded as JSON. If the model contains only one key, you can have it extracted encoded as JSON
  * alone via  {@link #setExtractValueFromSingleKeyModel}.
  *
- * <p>The default constructor uses the default configuration provided by {@link Jackson2ObjectMapperBuilder}.
+ * The default constructor uses the default configuration provided by {@link Jackson2ObjectMapperBuilder}.
  *
- * <p>Compatible with Jackson 2.6 and higher, as of Spring 4.3.
+ * Compatible with Jackson 2.6 and higher, as of Spring 4.3.
  *
  * @author Jeremy Grelle
  * @author Arjen Poutsma
@@ -86,7 +86,7 @@ public class MappingJackson2JsonView extends AbstractJackson2View {
 	/**
 	 * Indicates whether the JSON output by this view should be prefixed with <tt>")]}', "</tt>.
 	 * Default is {@code false}.
-	 * <p>Prefixing the JSON string in this manner is used to help prevent JSON Hijacking.
+	 * Prefixing the JSON string in this manner is used to help prevent JSON Hijacking.
 	 * The prefix renders the string syntactically invalid as a script so that it cannot be hijacked.
 	 * This prefix should be stripped before parsing the string as JSON.
 	 * @see #setJsonPrefix
@@ -122,10 +122,10 @@ public class MappingJackson2JsonView extends AbstractJackson2View {
 	/**
 	 * Set whether to serialize models containing a single attribute as a map or
 	 * whether to extract the single value from the model and serialize it directly.
-	 * <p>The effect of setting this flag is similar to using
+	 * The effect of setting this flag is similar to using
 	 * {@code MappingJackson2HttpMessageConverter} with an {@code @ResponseBody}
 	 * request-handling method.
-	 * <p>Default is {@code false}.
+	 * Default is {@code false}.
 	 */
 	public void setExtractValueFromSingleKeyModel(boolean extractValueFromSingleKeyModel) {
 		this.extractValueFromSingleKeyModel = extractValueFromSingleKeyModel;
@@ -134,7 +134,7 @@ public class MappingJackson2JsonView extends AbstractJackson2View {
 	/**
 	 * Filter out undesired attributes from the given model.
 	 * The return value can be either another {@link Map} or a single value object.
-	 * <p>The default implementation removes {@link BindingResult} instances and entries
+	 * The default implementation removes {@link BindingResult} instances and entries
 	 * not included in the {@link #setModelKeys modelKeys} property.
 	 * @param model the model, as passed on to {@link #renderMergedOutputModel}
 	 * @return the value to be rendered

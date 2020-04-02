@@ -48,10 +48,10 @@ public class ConfigurableWebBindingInitializer implements WebBindingInitializer 
 
 	/**
 	 * Set whether a binder should attempt to "auto-grow" a nested path that contains a null value.
-	 * <p>If "true", a null path location will be populated with a default object value and traversed
+	 * If "true", a null path location will be populated with a default object value and traversed
 	 * instead of resulting in an exception. This flag also enables auto-growth of collection elements
 	 * when accessing an out-of-bounds index.
-	 * <p>Default is "true" on a standard DataBinder. Note that this feature is only supported
+	 * Default is "true" on a standard DataBinder. Note that this feature is only supported
 	 * for bean property access (DataBinder's default mode), not for field access.
 	 * @see org.springframework.validation.DataBinder#initBeanPropertyAccess()
 	 * @see org.springframework.validation.DataBinder#setAutoGrowNestedPaths
@@ -69,7 +69,7 @@ public class ConfigurableWebBindingInitializer implements WebBindingInitializer 
 
 	/**
 	 * Set whether to use direct field access instead of bean property access.
-	 * <p>Default is {@code false}, using bean property access.
+	 * Default is {@code false}, using bean property access.
 	 * Switch this to {@code true} in order to enforce direct field access.
 	 * @see org.springframework.validation.DataBinder#initDirectFieldAccess()
 	 * @see org.springframework.validation.DataBinder#initBeanPropertyAccess()
@@ -88,7 +88,7 @@ public class ConfigurableWebBindingInitializer implements WebBindingInitializer 
 	/**
 	 * Set the strategy to use for resolving errors into message codes.
 	 * Applies the given strategy to all data binders used by this controller.
-	 * <p>Default is {@code null}, i.e. using the default strategy of
+	 * Default is {@code null}, i.e. using the default strategy of
 	 * the data binder.
 	 * @see org.springframework.validation.DataBinder#setMessageCodesResolver
 	 */
@@ -107,7 +107,7 @@ public class ConfigurableWebBindingInitializer implements WebBindingInitializer 
 	/**
 	 * Set the strategy to use for processing binding errors, that is,
 	 * required field errors and {@code PropertyAccessException}s.
-	 * <p>Default is {@code null}, that is, using the default strategy
+	 * Default is {@code null}, that is, using the default strategy
 	 * of the data binder.
 	 * @see org.springframework.validation.DataBinder#setBindingErrorProcessor
 	 */

@@ -7,27 +7,27 @@ package org.springframework.test.context;
  * test execution events published by the {@link TestContextManager} with which
  * the listener is registered.
  *
- * <p>Note that not all testing frameworks support all lifecycle callbacks defined
+ * Note that not all testing frameworks support all lifecycle callbacks defined
  * in this API. For example, {@link #beforeTestExecution} and
  * {@link #afterTestExecution} are not supported in conjunction with JUnit 4 when
  * using the {@link org.springframework.test.context.junit4.rules.SpringMethodRule
  * SpringMethodRule}.
  *
- * <p>This interface provides empty {@code default} implementations for all methods.
+ * This interface provides empty {@code default} implementations for all methods.
  * Concrete implementations can therefore choose to override only those methods
  * suitable for the task at hand.
  *
- * <p>Concrete implementations must provide a {@code public} no-args constructor,
+ * Concrete implementations must provide a {@code public} no-args constructor,
  * so that listeners can be instantiated transparently by tools and configuration
  * mechanisms.
  *
- * <p>Implementations may optionally declare the position in which they should
+ * Implementations may optionally declare the position in which they should
  * be ordered among the chain of default listeners via the
  * {@link org.springframework.core.Ordered Ordered} interface or
  * {@link org.springframework.core.annotation.Order @Order} annotation. See
  * {@link TestContextBootstrapper#getTestExecutionListeners()} for details.
  *
- * <p>Spring provides the following out-of-the-box implementations (all of
+ * Spring provides the following out-of-the-box implementations (all of
  * which implement {@code Ordered}):
  * <ul>
  * <li>{@link org.springframework.test.context.web.ServletTestExecutionListener
@@ -55,9 +55,9 @@ public interface TestExecutionListener {
 	/**
 	 * Pre-processes a test class <em>before</em> execution of all tests within
 	 * the class.
-	 * <p>This method should be called immediately before framework-specific
+	 * This method should be called immediately before framework-specific
 	 * <em>before class</em> lifecycle callbacks.
-	 * <p>The default implementation is <em>empty</em>. Can be overridden by
+	 * The default implementation is <em>empty</em>. Can be overridden by
 	 * concrete classes as necessary.
 	 * @param testContext the test context for the test; never {@code null}
 	 * @throws Exception allows any exception to propagate
@@ -69,9 +69,9 @@ public interface TestExecutionListener {
 	/**
 	 * Prepares the {@link Object test instance} of the supplied
 	 * {@link TestContext test context}, for example by injecting dependencies.
-	 * <p>This method should be called immediately after instantiation of the test
+	 * This method should be called immediately after instantiation of the test
 	 * instance but prior to any framework-specific lifecycle callbacks.
-	 * <p>The default implementation is <em>empty</em>. Can be overridden by
+	 * The default implementation is <em>empty</em>. Can be overridden by
 	 * concrete classes as necessary.
 	 * @param testContext the test context for the test; never {@code null}
 	 * @throws Exception allows any exception to propagate
@@ -83,14 +83,14 @@ public interface TestExecutionListener {
 	 * Pre-processes a test <em>before</em> execution of <em>before</em>
 	 * lifecycle callbacks of the underlying test framework ; for example,
 	 * by setting up test fixtures.
-	 * <p>This method <strong>must</strong> be called immediately prior to
+	 * This method <strong>must</strong> be called immediately prior to
 	 * framework-specific <em>before</em> lifecycle callbacks. For historical
 	 * reasons, this method is named {@code beforeTestMethod}. Since the
 	 * introduction of {@link #beforeTestExecution}, a more suitable name for
 	 * this method might be something like {@code beforeTestSetUp} or
 	 * {@code beforeEach}; however, it is unfortunately impossible to rename
 	 * this method due to backward compatibility concerns.
-	 * <p>The default implementation is <em>empty</em>. Can be overridden by
+	 * The default implementation is <em>empty</em>. Can be overridden by
 	 * concrete classes as necessary.
 	 * @param testContext the test context in which the test method will be
 	 * executed; never {@code null}
@@ -107,9 +107,9 @@ public interface TestExecutionListener {
 	 * {@link java.lang.reflect.Method test method} in the supplied
 	 * {@link TestContext test context} ; for example, for timing
 	 * or logging purposes.
-	 * <p>This method <strong>must</strong> be called after framework-specific
+	 * This method <strong>must</strong> be called after framework-specific
 	 * <em>before</em> lifecycle callbacks.
-	 * <p>The default implementation is <em>empty</em>. Can be overridden by
+	 * The default implementation is <em>empty</em>. Can be overridden by
 	 * concrete classes as necessary.
 	 * @param testContext the test context in which the test method will be
 	 * executed; never {@code null}
@@ -127,9 +127,9 @@ public interface TestExecutionListener {
 	 * {@link java.lang.reflect.Method test method} in the supplied
 	 * {@link TestContext test context} ; for example, for timing
 	 * or logging purposes.
-	 * <p>This method <strong>must</strong> be called before framework-specific
+	 * This method <strong>must</strong> be called before framework-specific
 	 * <em>after</em> lifecycle callbacks.
-	 * <p>The default implementation is <em>empty</em>. Can be overridden by
+	 * The default implementation is <em>empty</em>. Can be overridden by
 	 * concrete classes as necessary.
 	 * @param testContext the test context in which the test method will be
 	 * executed; never {@code null}
@@ -146,14 +146,14 @@ public interface TestExecutionListener {
 	 * Post-processes a test <em>after</em> execution of <em>after</em>
 	 * lifecycle callbacks of the underlying test framework ; for example,
 	 * by tearing down test fixtures.
-	 * <p>This method <strong>must</strong> be called immediately after
+	 * This method <strong>must</strong> be called immediately after
 	 * framework-specific <em>after</em> lifecycle callbacks. For historical
 	 * reasons, this method is named {@code afterTestMethod}. Since the
 	 * introduction of {@link #afterTestExecution}, a more suitable name for
 	 * this method might be something like {@code afterTestTearDown} or
 	 * {@code afterEach}; however, it is unfortunately impossible to rename
 	 * this method due to backward compatibility concerns.
-	 * <p>The default implementation is <em>empty</em>. Can be overridden by
+	 * The default implementation is <em>empty</em>. Can be overridden by
 	 * concrete classes as necessary.
 	 * @param testContext the test context in which the test method was
 	 * executed; never {@code null}
@@ -168,9 +168,9 @@ public interface TestExecutionListener {
 	/**
 	 * Post-processes a test class <em>after</em> execution of all tests within
 	 * the class.
-	 * <p>This method should be called immediately after framework-specific
+	 * This method should be called immediately after framework-specific
 	 * <em>after class</em> lifecycle callbacks.
-	 * <p>The default implementation is <em>empty</em>. Can be overridden by
+	 * The default implementation is <em>empty</em>. Can be overridden by
 	 * concrete classes as necessary.
 	 * @param testContext the test context for the test; never {@code null}
 	 * @throws Exception allows any exception to propagate

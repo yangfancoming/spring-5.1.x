@@ -14,16 +14,16 @@ import java.lang.annotation.Target;
  * the {@link #cron()}, {@link #fixedDelay()}, or {@link #fixedRate()}
  * attributes must be specified.
  *
- * <p>The annotated method must expect no arguments. It will typically have
+ * The annotated method must expect no arguments. It will typically have
  * a {@code void} return type; if not, the returned value will be ignored
  * when called through the scheduler.
  *
- * <p>Processing of {@code @Scheduled} annotations is performed by
+ * Processing of {@code @Scheduled} annotations is performed by
  * registering a {@link ScheduledAnnotationBeanPostProcessor}. This can be
  * done manually or, more conveniently, through the {@code <task:annotation-driven/>}
  * element or @{@link EnableScheduling} annotation.
  *
- * <p>This annotation may be used as a <em>meta-annotation</em> to create custom
+ * This annotation may be used as a <em>meta-annotation</em> to create custom
  * <em>composed annotations</em> with attribute overrides.
  *
  * @author Mark Fisher
@@ -43,7 +43,7 @@ public @interface Scheduled {
 
 	/**
 	 * A special cron expression value that indicates a disabled trigger: {@value}.
-	 * <p>This is primarily meant for use with ${...} placeholders, allowing for
+	 * This is primarily meant for use with ${...} placeholders, allowing for
 	 * external disabling of corresponding scheduled methods.
 	 * @since 5.1
 	 */
@@ -53,9 +53,9 @@ public @interface Scheduled {
 	/**
 	 * A cron-like expression, extending the usual UN*X definition to include triggers
 	 * on the second as well as minute, hour, day of month, month and day of week.
-	 * <p>E.g. {@code "0 * * * * MON-FRI"} means once per minute on weekdays
+	 * E.g. {@code "0 * * * * MON-FRI"} means once per minute on weekdays
 	 * (at the top of the minute - the 0th second).
-	 * <p>The special value {@link #CRON_DISABLED "-"} indicates a disabled cron trigger,
+	 * The special value {@link #CRON_DISABLED "-"} indicates a disabled cron trigger,
 	 * primarily meant for externally specified values resolved by a ${...} placeholder.
 	 * @return an expression that can be parsed to a cron schedule
 	 * @see org.springframework.scheduling.support.CronSequenceGenerator

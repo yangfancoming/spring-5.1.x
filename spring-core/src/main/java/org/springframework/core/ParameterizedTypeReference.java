@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
  *
  * ParameterizedTypeReference&lt;List&lt;String&gt;&gt; typeRef = new ParameterizedTypeReference&lt;List&lt;String&gt;&gt;() {};
  *
- * <p>The resulting {@code typeRef} instance can then be used to obtain a {@link Type}
+ * The resulting {@code typeRef} instance can then be used to obtain a {@link Type}
  * instance that carries the captured parameterized type information at runtime.
  * For more information on "super type tokens" see the link to Neal Gafter's blog post.
  * @since 3.2

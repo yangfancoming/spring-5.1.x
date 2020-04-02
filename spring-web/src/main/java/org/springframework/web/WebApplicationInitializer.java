@@ -10,7 +10,7 @@ import javax.servlet.ServletException;
  * {@link ServletContext} programmatically -- as opposed to (or possibly in conjunction
  * with) the traditional {@code web.xml}-based approach.
  *
- * <p>Implementations of this SPI will be detected automatically by {@link
+ * Implementations of this SPI will be detected automatically by {@link
  * SpringServletContainerInitializer}, which itself is bootstrapped automatically
  * by any Servlet 3.0 container. See {@linkplain SpringServletContainerInitializer its
  * Javadoc} for details on this bootstrapping mechanism.
@@ -65,12 +65,12 @@ import javax.servlet.ServletException;
  * this means that the {@code DispatcherServlet} can now be treated like any other object
  * -- receiving constructor injection of its application context in this case.
  *
- * <p>This style is both simpler and more concise. There is no concern for dealing with
+ * This style is both simpler and more concise. There is no concern for dealing with
  * init-params, etc, just normal JavaBean-style properties and constructor arguments. You
  * are free to create and work with your Spring application contexts as necessary before
  * injecting them into the {@code DispatcherServlet}.
  *
- * <p>Most major Spring Web components have been updated to support this style of
+ * Most major Spring Web components have been updated to support this style of
  * registration.  You'll find that {@code DispatcherServlet}, {@code FrameworkServlet},
  * {@code ContextLoaderListener} and {@code DelegatingFilterProxy} all now support
  * constructor arguments. Even if a component (e.g. non-Spring, other third party) has not
@@ -138,7 +138,7 @@ import javax.servlet.ServletException;
  * <h2>Caveats</h2>
  *
  * <h3>web.xml versioning</h3>
- * <p>{@code WEB-INF/web.xml} and {@code WebApplicationInitializer} use are not mutually
+ * {@code WEB-INF/web.xml} and {@code WebApplicationInitializer} use are not mutually
  * exclusive; for example, web.xml can register one servlet, and a {@code
  * WebApplicationInitializer} can register another. An initializer can even
  * <em>modify</em> registrations performed in {@code web.xml} through methods such as
@@ -148,10 +148,10 @@ import javax.servlet.ServletException;
  * bootstrapping will be ignored by the servlet container.</strong>
  *
  * <h3>Mapping to '/' under Tomcat</h3>
- * <p>Apache Tomcat maps its internal {@code DefaultServlet} to "/", and on Tomcat versions
+ * Apache Tomcat maps its internal {@code DefaultServlet} to "/", and on Tomcat versions
  * &lt;= 7.0.14, this servlet mapping <em>cannot be overridden programmatically</em>.
  * 7.0.15 fixes this issue. Overriding the "/" servlet mapping has also been tested
- * successfully under GlassFish 3.1.<p>
+ * successfully under GlassFish 3.1.
 
  * @since 3.1
  * @see SpringServletContainerInitializer

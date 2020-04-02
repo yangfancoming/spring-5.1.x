@@ -20,7 +20,7 @@ import org.springframework.util.StringValueResolver;
  * the property values and constructor argument values contained in them,
  * resolving bean metadata values.
  *
- * <p>Used by {@link PropertyPlaceholderConfigurer} to parse all String values
+ * Used by {@link PropertyPlaceholderConfigurer} to parse all String values
  * contained in a BeanDefinition, resolving any placeholders found.
  *
 

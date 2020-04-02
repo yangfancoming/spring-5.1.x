@@ -22,7 +22,7 @@ import static org.springframework.test.transaction.TransactionTestUtils.*;
  * Integration test which verifies proper transactional behavior when the
  * default rollback flag is set to {@code false} via {@link Rollback @Rollback}.
  *
- * <p>Also tests configuration of the transaction manager qualifier configured
+ * Also tests configuration of the transaction manager qualifier configured
  * via {@link Transactional @Transactional}.
  *
  * @author Sam Brannen

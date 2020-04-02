@@ -44,13 +44,13 @@ import org.springframework.web.util.WebUtils;
  * current theme, and potential binding errors. Provides easy access to localized messages and
  * Errors instances.
  *
- * <p>Suitable for exposition to views, and usage within JSP's "useBean" tag, JSP scriptlets, JSTL EL,
+ * Suitable for exposition to views, and usage within JSP's "useBean" tag, JSP scriptlets, JSTL EL,
  * etc. Necessary for views that do not have access to the servlet request, like FreeMarker templates.
  *
- * <p>Can be instantiated manually, or automatically exposed to views as model attribute via AbstractView's
+ * Can be instantiated manually, or automatically exposed to views as model attribute via AbstractView's
  * "requestContextAttribute" property.
  *
- * <p>Will also work outside of DispatcherServlet requests, accessing the root WebApplicationContext
+ * Will also work outside of DispatcherServlet requests, accessing the root WebApplicationContext
  * and using an appropriate fallback for the locale (the HttpServletRequest's primary locale).
  *
 
@@ -65,7 +65,7 @@ public class RequestContext {
 	/**
 	 * Default theme name used if the RequestContext cannot find a ThemeResolver.
 	 * Only applies to non-DispatcherServlet requests.
-	 * <p>Same as AbstractThemeResolver's default, but not linked in here to avoid package interdependencies.
+	 * Same as AbstractThemeResolver's default, but not linked in here to avoid package interdependencies.
 	 * @see org.springframework.web.servlet.theme.AbstractThemeResolver#ORIGINAL_DEFAULT_THEME_NAME
 	 */
 	public static final String DEFAULT_THEME_NAME = "theme";
@@ -116,9 +116,9 @@ public class RequestContext {
 
 	/**
 	 * Create a new RequestContext for the given request, using the request attributes for Errors retrieval.
-	 * <p>This only works with InternalResourceViews, as Errors instances are part of the model and not
+	 * This only works with InternalResourceViews, as Errors instances are part of the model and not
 	 * normally exposed as request attributes. It will typically be used within JSPs or custom tags.
-	 * <p><b>Will only work within a DispatcherServlet request.</b>
+	 * <b>Will only work within a DispatcherServlet request.</b>
 	 * Pass in a ServletContext to be able to fallback to the root WebApplicationContext.
 	 * @param request current HTTP request
 	 * @see org.springframework.web.servlet.DispatcherServlet
@@ -130,9 +130,9 @@ public class RequestContext {
 
 	/**
 	 * Create a new RequestContext for the given request, using the request attributes for Errors retrieval.
-	 * <p>This only works with InternalResourceViews, as Errors instances are part of the model and not
+	 * This only works with InternalResourceViews, as Errors instances are part of the model and not
 	 * normally exposed as request attributes. It will typically be used within JSPs or custom tags.
-	 * <p><b>Will only work within a DispatcherServlet request.</b>
+	 * <b>Will only work within a DispatcherServlet request.</b>
 	 * Pass in a ServletContext to be able to fallback to the root WebApplicationContext.
 	 * @param request current HTTP request
 	 * @param response current HTTP response
@@ -145,9 +145,9 @@ public class RequestContext {
 
 	/**
 	 * Create a new RequestContext for the given request, using the request attributes for Errors retrieval.
-	 * <p>This only works with InternalResourceViews, as Errors instances are part of the model and not
+	 * This only works with InternalResourceViews, as Errors instances are part of the model and not
 	 * normally exposed as request attributes. It will typically be used within JSPs or custom tags.
-	 * <p>If a ServletContext is specified, the RequestContext will also work with the root
+	 * If a ServletContext is specified, the RequestContext will also work with the root
 	 * WebApplicationContext (outside a DispatcherServlet).
 	 * @param request current HTTP request
 	 * @param servletContext the servlet context of the web application (can be {@code null};
@@ -161,8 +161,8 @@ public class RequestContext {
 
 	/**
 	 * Create a new RequestContext for the given request, using the given model attributes for Errors retrieval.
-	 * <p>This works with all View implementations. It will typically be used by View implementations.
-	 * <p><b>Will only work within a DispatcherServlet request.</b>
+	 * This works with all View implementations. It will typically be used by View implementations.
+	 * <b>Will only work within a DispatcherServlet request.</b>
 	 * Pass in a ServletContext to be able to fallback to the root WebApplicationContext.
 	 * @param request current HTTP request
 	 * @param model the model attributes for the current view (can be {@code null},
@@ -176,8 +176,8 @@ public class RequestContext {
 
 	/**
 	 * Create a new RequestContext for the given request, using the given model attributes for Errors retrieval.
-	 * <p>This works with all View implementations. It will typically be used by View implementations.
-	 * <p>If a ServletContext is specified, the RequestContext will also work with a root
+	 * This works with all View implementations. It will typically be used by View implementations.
+	 * If a ServletContext is specified, the RequestContext will also work with a root
 	 * WebApplicationContext (outside a DispatcherServlet).
 	 * @param request current HTTP request
 	 * @param response current HTTP response
@@ -285,7 +285,7 @@ public class RequestContext {
 
 	/**
 	 * Return the current Locale (falling back to the request locale; never {@code null}).
-	 * <p>Typically coming from a DispatcherServlet's {@link LocaleResolver}.
+	 * Typically coming from a DispatcherServlet's {@link LocaleResolver}.
 	 * Also includes a fallback check for JSTL's Locale attribute.
 	 * @see RequestContextUtils#getLocale
 	 */
@@ -295,7 +295,7 @@ public class RequestContext {
 
 	/**
 	 * Return the current TimeZone (or {@code null} if none derivable from the request).
-	 * <p>Typically coming from a DispatcherServlet's {@link LocaleContextResolver}.
+	 * Typically coming from a DispatcherServlet's {@link LocaleContextResolver}.
 	 * Also includes a fallback check for JSTL's TimeZone attribute.
 	 * @see RequestContextUtils#getTimeZone
 	 */
@@ -306,7 +306,7 @@ public class RequestContext {
 
 	/**
 	 * Determine the fallback locale for this context.
-	 * <p>The default implementation checks for a JSTL locale attribute in request, session
+	 * The default implementation checks for a JSTL locale attribute in request, session
 	 * or application scope; if not found, returns the {@code HttpServletRequest.getLocale()}.
 	 * @return the fallback locale (never {@code null})
 	 * @see javax.servlet.http.HttpServletRequest#getLocale()
@@ -323,7 +323,7 @@ public class RequestContext {
 
 	/**
 	 * Determine the fallback time zone for this context.
-	 * <p>The default implementation checks for a JSTL time zone attribute in request,
+	 * The default implementation checks for a JSTL time zone attribute in request,
 	 * session or application scope; returns {@code null} if not found.
 	 * @return the fallback time zone (or {@code null} if none derivable from the request)
 	 */
@@ -375,7 +375,7 @@ public class RequestContext {
 
 	/**
 	 * Return the current theme (never {@code null}).
-	 * <p>Resolved lazily for more efficiency when theme support is not being used.
+	 * Resolved lazily for more efficiency when theme support is not being used.
 	 */
 	public Theme getTheme() {
 		if (this.theme == null) {
@@ -391,7 +391,7 @@ public class RequestContext {
 
 	/**
 	 * Determine the fallback theme for this context.
-	 * <p>The default implementation returns the default theme (with name "theme").
+	 * The default implementation returns the default theme (with name "theme").
 	 * @return the fallback theme (never {@code null})
 	 */
 	protected Theme getFallbackTheme() {
@@ -439,7 +439,7 @@ public class RequestContext {
 
 	/**
 	 * (De)activate default HTML escaping for messages and errors, for the scope of this RequestContext.
-	 * <p>The default is the application-wide setting (the "defaultHtmlEscape" context-param in web.xml).
+	 * The default is the application-wide setting (the "defaultHtmlEscape" context-param in web.xml).
 	 * @see org.springframework.web.util.WebUtils#getDefaultHtmlEscape
 	 */
 	public void setDefaultHtmlEscape(boolean defaultHtmlEscape) {
@@ -465,7 +465,7 @@ public class RequestContext {
 	/**
 	 * Is HTML escaping using the response encoding by default?
 	 * If enabled, only XML markup significant characters will be escaped with UTF-* encodings.
-	 * <p>Falls back to {@code true} in case of no explicit default given, as of Spring 4.2.
+	 * Falls back to {@code true} in case of no explicit default given, as of Spring 4.2.
 	 * @since 4.1.2
 	 */
 	public boolean isResponseEncodedHtmlEscape() {
@@ -487,7 +487,7 @@ public class RequestContext {
 	/**
 	 * Set the UrlPathHelper to use for context path and request URI decoding.
 	 * Can be used to pass a shared UrlPathHelper instance in.
-	 * <p>A default UrlPathHelper is always available.
+	 * A default UrlPathHelper is always available.
 	 */
 	public void setUrlPathHelper(UrlPathHelper urlPathHelper) {
 		Assert.notNull(urlPathHelper, "UrlPathHelper must not be null");
@@ -497,7 +497,7 @@ public class RequestContext {
 	/**
 	 * Return the UrlPathHelper used for context path and request URI decoding.
 	 * Can be used to configure the current UrlPathHelper.
-	 * <p>A default UrlPathHelper is always available.
+	 * A default UrlPathHelper is always available.
 	 */
 	public UrlPathHelper getUrlPathHelper() {
 		return this.urlPathHelper;
@@ -517,7 +517,7 @@ public class RequestContext {
 	 * Return the context path of the original request, that is, the path that
 	 * indicates the current web application. This is useful for building links
 	 * to other resources within the application.
-	 * <p>Delegates to the UrlPathHelper for decoding.
+	 * Delegates to the UrlPathHelper for decoding.
 	 * @see javax.servlet.http.HttpServletRequest#getContextPath
 	 * @see #getUrlPathHelper
 	 */
@@ -561,7 +561,7 @@ public class RequestContext {
 	 * context path and the servlet path of the original request. This is useful
 	 * for building links to other resources within the application where a
 	 * servlet mapping of the style {@code "/main/*"} is used.
-	 * <p>Delegates to the UrlPathHelper to determine the context and servlet path.
+	 * Delegates to the UrlPathHelper to determine the context and servlet path.
 	 */
 	public String getPathToServlet() {
 		String path = this.urlPathHelper.getOriginatingContextPath(this.request);
@@ -575,7 +575,7 @@ public class RequestContext {
 	 * Return the request URI of the original request, that is, the invoked URL
 	 * without parameters. This is particularly useful as HTML form action target,
 	 * possibly in combination with the original query string.
-	 * <p>Delegates to the UrlPathHelper for decoding.
+	 * Delegates to the UrlPathHelper for decoding.
 	 * @see #getQueryString
 	 * @see org.springframework.web.util.UrlPathHelper#getOriginatingRequestUri
 	 * @see #getUrlPathHelper
@@ -588,7 +588,7 @@ public class RequestContext {
 	 * Return the query string of the current request, that is, the part after
 	 * the request path. This is particularly useful for building an HTML form
 	 * action target in combination with the original request URI.
-	 * <p>Delegates to the UrlPathHelper for decoding.
+	 * Delegates to the UrlPathHelper for decoding.
 	 * @see #getRequestUri
 	 * @see org.springframework.web.util.UrlPathHelper#getOriginatingQueryString
 	 * @see #getUrlPathHelper
@@ -714,7 +714,7 @@ public class RequestContext {
 
 	/**
 	 * Retrieve the theme message for the given code.
-	 * <p>Note that theme messages are never HTML-escaped, as they typically denote
+	 * Note that theme messages are never HTML-escaped, as they typically denote
 	 * theme-specific resource paths and not client-visible messages.
 	 * @param code code of the message
 	 * @param defaultMessage the String to return if the lookup fails
@@ -727,7 +727,7 @@ public class RequestContext {
 
 	/**
 	 * Retrieve the theme message for the given code.
-	 * <p>Note that theme messages are never HTML-escaped, as they typically denote
+	 * Note that theme messages are never HTML-escaped, as they typically denote
 	 * theme-specific resource paths and not client-visible messages.
 	 * @param code code of the message
 	 * @param args arguments for the message, or {@code null} if none
@@ -741,7 +741,7 @@ public class RequestContext {
 
 	/**
 	 * Retrieve the theme message for the given code.
-	 * <p>Note that theme messages are never HTML-escaped, as they typically denote
+	 * Note that theme messages are never HTML-escaped, as they typically denote
 	 * theme-specific resource paths and not client-visible messages.
 	 * @param code code of the message
 	 * @param args arguments for the message as a List, or {@code null} if none
@@ -756,7 +756,7 @@ public class RequestContext {
 
 	/**
 	 * Retrieve the theme message for the given code.
-	 * <p>Note that theme messages are never HTML-escaped, as they typically denote
+	 * Note that theme messages are never HTML-escaped, as they typically denote
 	 * theme-specific resource paths and not client-visible messages.
 	 * @param code code of the message
 	 * @return the message
@@ -768,7 +768,7 @@ public class RequestContext {
 
 	/**
 	 * Retrieve the theme message for the given code.
-	 * <p>Note that theme messages are never HTML-escaped, as they typically denote
+	 * Note that theme messages are never HTML-escaped, as they typically denote
 	 * theme-specific resource paths and not client-visible messages.
 	 * @param code code of the message
 	 * @param args arguments for the message, or {@code null} if none
@@ -781,7 +781,7 @@ public class RequestContext {
 
 	/**
 	 * Retrieve the theme message for the given code.
-	 * <p>Note that theme messages are never HTML-escaped, as they typically denote
+	 * Note that theme messages are never HTML-escaped, as they typically denote
 	 * theme-specific resource paths and not client-visible messages.
 	 * @param code code of the message
 	 * @param args arguments for the message as a List, or {@code null} if none
@@ -794,7 +794,7 @@ public class RequestContext {
 
 	/**
 	 * Retrieve the given MessageSourceResolvable in the current theme.
-	 * <p>Note that theme messages are never HTML-escaped, as they typically denote
+	 * Note that theme messages are never HTML-escaped, as they typically denote
 	 * theme-specific resource paths and not client-visible messages.
 	 * @param resolvable the MessageSourceResolvable
 	 * @return the message

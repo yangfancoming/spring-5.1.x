@@ -27,35 +27,35 @@ import org.springframework.web.util.UriUtils;
  * The {@code <url>} tag creates URLs. Modeled after the JSTL {@code c:url} tag with
  * backwards compatibility in mind.
  *
- * <p>Enhancements to the JSTL functionality include:
+ * Enhancements to the JSTL functionality include:
  * <ul>
  * <li>URL encoded template URI variables</li>
  * <li>HTML/XML escaping of URLs</li>
  * <li>JavaScript escaping of URLs</li>
  * </ul>
  *
- * <p>Template URI variables are indicated in the {@link #setValue(String) 'value'}
+ * Template URI variables are indicated in the {@link #setValue(String) 'value'}
  * attribute and marked by braces '{variableName}'. The braces and attribute name are
  * replaced by the URL encoded value of a parameter defined with the spring:param tag
  * in the body of the url tag. If no parameter is available the literal value is
  * passed through. Params matched to template variables will not be added to the query
  * string.
  *
- * <p>Use of the spring:param tag for URI template variables is strongly recommended
+ * Use of the spring:param tag for URI template variables is strongly recommended
  * over direct EL substitution as the values are URL encoded.  Failure to properly
  * encode URL can leave an application vulnerable to XSS and other injection attacks.
  *
- * <p>URLs can be HTML/XML escaped by setting the {@link #setHtmlEscape(boolean)
+ * URLs can be HTML/XML escaped by setting the {@link #setHtmlEscape(boolean)
  * 'htmlEscape'} attribute to 'true'.  Detects an HTML escaping setting, either on
  * this tag instance, the page level, or the {@code web.xml} level. The default
  * is 'false'.  When setting the URL value into a variable, escaping is not recommended.
  *
- * <p>Example usage:
+ * Example usage:
  * <pre class="code">&lt;spring:url value="/url/path/{variableName}"&gt;
  *   &lt;spring:param name="variableName" value="more than JSTL c:url" /&gt;
  * &lt;/spring:url&gt;</pre>
  *
- * <p>The above results in:
+ * The above results in:
  * {@code /currentApplicationContext/url/path/more%20than%20JSTL%20c%3Aurl}
  *
  * <table>
@@ -293,7 +293,7 @@ public class UrlTag extends HtmlEscapingAwareTag implements ParamAware {
 	/**
 	 * Build the query string from available parameters that have not already
 	 * been applied as template params.
-	 * <p>The names and values of parameters are URL encoded.
+	 * The names and values of parameters are URL encoded.
 	 * @param params the parameters to build the query string from
 	 * @param usedParams set of parameter names that have been applied as
 	 * template params
@@ -332,7 +332,7 @@ public class UrlTag extends HtmlEscapingAwareTag implements ParamAware {
 	/**
 	 * Replace template markers in the URL matching available parameters. The
 	 * name of matched parameters are added to the used parameters set.
-	 * <p>Parameter values are URL encoded.
+	 * Parameter values are URL encoded.
 	 * @param uri the URL with template parameters to replace
 	 * @param params parameters used to replace template markers
 	 * @param usedParams set of template parameter names that have been replaced

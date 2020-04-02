@@ -8,7 +8,7 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
  * Collection of JDK 1.4+ utilities for tests involving transactions. Intended
  * for internal use within the Spring testing suite.
  *
- * <p>All {@code assert*()} methods throw {@link AssertionError}s.
+ * All {@code assert*()} methods throw {@link AssertionError}s.
  *
  * @author Sam Brannen
  * @since 2.5

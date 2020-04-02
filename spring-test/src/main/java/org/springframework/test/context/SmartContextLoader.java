@@ -8,17 +8,17 @@ import org.springframework.context.ApplicationContext;
  * Strategy interface for loading an {@link ApplicationContext application context}
  * for an integration test managed by the Spring TestContext Framework.
  *
- * <p>The {@code SmartContextLoader} SPI supersedes the {@link ContextLoader} SPI
+ * The {@code SmartContextLoader} SPI supersedes the {@link ContextLoader} SPI
  * introduced in Spring 2.5: a {@code SmartContextLoader} can choose to process
  * either resource locations or annotated classes. Furthermore, a
  * {@code SmartContextLoader} can set active bean definition profiles in the
  * context that it loads (see {@link MergedContextConfiguration#getActiveProfiles()}
  * and {@link #loadContext(MergedContextConfiguration)}).
  *
- * <p>See the Javadoc for {@link ContextConfiguration @ContextConfiguration}
+ * See the Javadoc for {@link ContextConfiguration @ContextConfiguration}
  * for a definition of <em>annotated class</em>.
  *
- * <p>Clients of a {@code SmartContextLoader} should call
+ * Clients of a {@code SmartContextLoader} should call
  * {@link #processContextConfiguration(ContextConfigurationAttributes)
  * processContextConfiguration()} prior to calling
  * {@link #loadContext(MergedContextConfiguration) loadContext()}. This gives a
@@ -30,15 +30,15 @@ import org.springframework.context.ApplicationContext;
  * hierarchy of the root test class and then supplied to
  * {@link #loadContext(MergedContextConfiguration) loadContext()}.
  *
- * <p>Even though {@code SmartContextLoader} extends {@code ContextLoader},
+ * Even though {@code SmartContextLoader} extends {@code ContextLoader},
  * clients should favor {@code SmartContextLoader}-specific methods over those
  * defined in {@code ContextLoader}, particularly because a
  * {@code SmartContextLoader} may choose not to support methods defined in the
  * {@code ContextLoader} SPI.
  *
- * <p>Concrete implementations must provide a {@code public} no-args constructor.
+ * Concrete implementations must provide a {@code public} no-args constructor.
  *
- * <p>Spring provides the following out-of-the-box implementations:
+ * Spring provides the following out-of-the-box implementations:
  * <ul>
  * <li>{@link org.springframework.test.context.support.DelegatingSmartContextLoader DelegatingSmartContextLoader}</li>
  * <li>{@link org.springframework.test.context.support.AnnotationConfigContextLoader AnnotationConfigContextLoader}</li>
@@ -60,12 +60,12 @@ public interface SmartContextLoader extends ContextLoader {
 
 	/**
 	 * Processes the {@link ContextConfigurationAttributes} for a given test class.
-	 * <p>Concrete implementations may choose to <em>modify</em> the {@code locations}
+	 * Concrete implementations may choose to <em>modify</em> the {@code locations}
 	 * or {@code classes} in the supplied {@link ContextConfigurationAttributes},
 	 * <em>generate</em> default configuration locations, or <em>detect</em>
 	 * default configuration classes if the supplied values are {@code null}
 	 * or empty.
-	 * <p><b>Note</b>: in contrast to a standard {@code ContextLoader}, a
+	 * <b>Note</b>: in contrast to a standard {@code ContextLoader}, a
 	 * {@code SmartContextLoader} <b>must</b> <em>preemptively</em> verify that
 	 * a generated or detected default actually exists before setting the corresponding
 	 * {@code locations} or {@code classes} property in the supplied
@@ -81,7 +81,7 @@ public interface SmartContextLoader extends ContextLoader {
 	 * {@link MergedContextConfiguration merged context configuration},
 	 * configures the context, and finally returns the context in a fully
 	 * <em>refreshed</em> state.
-	 * <p>Concrete implementations should register annotation configuration
+	 * Concrete implementations should register annotation configuration
 	 * processors with bean factories of
 	 * {@link ApplicationContext application contexts} loaded by this
 	 * {@code SmartContextLoader}. Beans will therefore automatically be
@@ -91,7 +91,7 @@ public interface SmartContextLoader extends ContextLoader {
 	 * {@link javax.inject.Inject @Inject}. In addition, concrete implementations
 	 * should set the active bean definition profiles in the context's
 	 * {@link org.springframework.core.env.Environment Environment}.
-	 * <p>Any {@code ApplicationContext} loaded by a
+	 * Any {@code ApplicationContext} loaded by a
 	 * {@code SmartContextLoader} <strong>must</strong> register a JVM
 	 * shutdown hook for itself. Unless the context gets closed early, all context
 	 * instances will be automatically closed on JVM shutdown. This allows for

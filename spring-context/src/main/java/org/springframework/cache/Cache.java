@@ -32,7 +32,7 @@ public interface Cache {
 
 	/**
 	 * Return the value to which this cache maps the specified key.
-	 * <p>Returns {@code null} if the cache contains no mapping for this key;
+	 * Returns {@code null} if the cache contains no mapping for this key;
 	 * otherwise, the cached value (which may be {@code null} itself) will
 	 * be returned in a {@link ValueWrapper}.
 	 * @param key the key whose associated value is to be returned
@@ -48,7 +48,7 @@ public interface Cache {
 	/**
 	 * Return the value to which this cache maps the specified key,
 	 * generically specifying a type that return value will be cast to.
-	 * <p>Note: This variant of {@code get} does not allow for differentiating
+	 * Note: This variant of {@code get} does not allow for differentiating
 	 * between a cached {@code null} value and no cache entry found at all.
 	 * Use the standard {@link #get(Object)} variant for that purpose instead.
 	 * @param key the key whose associated value is to be returned
@@ -71,10 +71,10 @@ public interface Cache {
 	 * that value from {@code valueLoader} if necessary. This method provides
 	 * a simple substitute for the conventional "if cached, return; otherwise
 	 * create, cache and return" pattern.
-	 * <p>If possible, implementations should ensure that the loading operation
+	 * If possible, implementations should ensure that the loading operation
 	 * is synchronized so that the specified {@code valueLoader} is only called
 	 * once in case of concurrent access on the same key.
-	 * <p>If the {@code valueLoader} throws an exception, it is wrapped in
+	 * If the {@code valueLoader} throws an exception, it is wrapped in
 	 * a {@link ValueRetrievalException}
 	 * @param key the key whose associated value is to be returned
 	 * @return the value to which this cache maps the specified key
@@ -86,7 +86,7 @@ public interface Cache {
 
 	/**
 	 * Associate the specified value with the specified key in this cache.
-	 * <p>If the cache previously contained a mapping for this key, the old
+	 * If the cache previously contained a mapping for this key, the old
 	 * value is replaced by the specified value.
 	 * @param key the key with which the specified value is to be associated
 	 * @param value the value to be associated with the specified key
@@ -96,7 +96,7 @@ public interface Cache {
 	/**
 	 * Atomically associate the specified value with the specified key in this cache
 	 * if it is not set already.
-	 * <p>This is equivalent to:
+	 * This is equivalent to:
 	 * <pre><code>
 	 * Object existingValue = cache.get(key);
 	 * if (existingValue == null) {

@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
  * JSR-303 {@link ConstraintValidatorFactory} implementation that delegates to a
  * Spring BeanFactory for creating autowired {@link ConstraintValidator} instances.
  *
- * <p>Note that this class is meant for programmatic use, not for declarative use
+ * Note that this class is meant for programmatic use, not for declarative use
  * in a standard {@code validation.xml} file. Consider
  * {@link org.springframework.web.bind.support.SpringWebConstraintValidatorFactory}
  * for declarative use in a web application, e.g. with JAX-RS or JAX-WS.

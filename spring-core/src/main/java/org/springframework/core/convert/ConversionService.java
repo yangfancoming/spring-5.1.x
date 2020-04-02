@@ -13,9 +13,9 @@ public interface ConversionService {
 
 	/**
 	 * Return {@code true} if objects of {@code sourceType} can be converted to the {@code targetType}.
-	 * <p>If this method returns {@code true}, it means {@link #convert(Object, Class)} is capable
+	 * If this method returns {@code true}, it means {@link #convert(Object, Class)} is capable
 	 * of converting an instance of {@code sourceType} to {@code targetType}.
-	 * <p>Special note on collections, arrays, and maps types:
+	 * Special note on collections, arrays, and maps types:
 	 * For conversion between collection, array, and map types, this method will return {@code true}
 	 * even though a convert invocation may still generate a {@link ConversionException} if the
 	 * underlying elements are not convertible. Callers are expected to handle this exceptional case
@@ -31,9 +31,9 @@ public interface ConversionService {
 	 * Return {@code true} if objects of {@code sourceType} can be converted to the {@code targetType}.
 	 * The TypeDescriptors provide additional context about the source and target locations
 	 * where conversion would occur, often object fields or property locations.
-	 * <p>If this method returns {@code true}, it means {@link #convert(Object, TypeDescriptor, TypeDescriptor)}
+	 * If this method returns {@code true}, it means {@link #convert(Object, TypeDescriptor, TypeDescriptor)}
 	 * is capable of converting an instance of {@code sourceType} to {@code targetType}.
-	 * <p>Special note on collections, arrays, and maps types:
+	 * Special note on collections, arrays, and maps types:
 	 * For conversion between collection, array, and map types, this method will return {@code true}
 	 * even though a convert invocation may still generate a {@link ConversionException} if the
 	 * underlying elements are not convertible. Callers are expected to handle this exceptional case

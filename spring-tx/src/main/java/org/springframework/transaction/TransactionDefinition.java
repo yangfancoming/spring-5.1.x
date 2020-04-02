@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
  * Interface that defines Spring-compliant transaction properties.
  * Based on the propagation behavior definitions analogous to EJB CMT attributes.
  *
- * <p>Note that isolation level and timeout settings will not get applied unless
+ * Note that isolation level and timeout settings will not get applied unless
  * an actual new transaction gets started. As only {@link #PROPAGATION_REQUIRED},
  * {@link #PROPAGATION_REQUIRES_NEW} and {@link #PROPAGATION_NESTED} can cause
  * that, it usually doesn't make sense to specify those settings in other cases.
@@ -18,7 +18,7 @@ import org.springframework.lang.Nullable;
  * advanced features and thus might throw corresponding exceptions when given
  * non-default values.
  *
- * <p>The {@link #isReadOnly() read-only flag} applies to any transaction context,
+ * The {@link #isReadOnly() read-only flag} applies to any transaction context,
  * whether backed by an actual resource transaction or operating non-transactionally
  * at the resource level. In the latter case, the flag will only apply to managed
  * resources within the application, such as a Hibernate {@code Session}.
@@ -34,7 +34,7 @@ public interface TransactionDefinition {
 	/**
 	 * Support a current transaction; create a new one if none exists.
 	 * Analogous to the EJB transaction attribute of the same name.
-	 * <p>This is typically the default setting of a transaction definition,
+	 * This is typically the default setting of a transaction definition,
 	 * and typically defines a transaction synchronization scope.
 	 * 如果当前没有事物，则新建一个事物；如果已经存在一个事物，则加入到这个事物中
 	 */
@@ -43,14 +43,14 @@ public interface TransactionDefinition {
 	/**
 	 * Support a current transaction; execute non-transactionally if none exists.
 	 * Analogous to the EJB transaction attribute of the same name.
-	 * <p><b>NOTE:</b> For transaction managers with transaction synchronization,
+	 * <b>NOTE:</b> For transaction managers with transaction synchronization,
 	 * {@code PROPAGATION_SUPPORTS} is slightly different from no transaction
 	 * at all, as it defines a transaction scope that synchronization might apply to.
 	 * As a consequence, the same resources (a JDBC {@code Connection}, a
 	 * Hibernate {@code Session}, etc) will be shared for the entire specified
 	 * scope. Note that the exact behavior depends on the actual synchronization
 	 * configuration of the transaction manager!
-	 * <p>In general, use {@code PROPAGATION_SUPPORTS} with care! In particular, do
+	 * In general, use {@code PROPAGATION_SUPPORTS} with care! In particular, do
 	 * not rely on {@code PROPAGATION_REQUIRED} or {@code PROPAGATION_REQUIRES_NEW}
 	 * <i>within</i> a {@code PROPAGATION_SUPPORTS} scope (which may lead to
 	 * synchronization conflicts at runtime). If such nesting is unavoidable, make sure
@@ -65,7 +65,7 @@ public interface TransactionDefinition {
 	/**
 	 * Support a current transaction; throw an exception if no current transaction
 	 * exists. Analogous to the EJB transaction attribute of the same name.
-	 * <p>Note that transaction synchronization within a {@code PROPAGATION_MANDATORY}
+	 * Note that transaction synchronization within a {@code PROPAGATION_MANDATORY}
 	 * scope will always be driven by the surrounding transaction.
 	 * 使用当前事物，如果当前没有事物，则抛出异常。
 	 */
@@ -74,12 +74,12 @@ public interface TransactionDefinition {
 	/**
 	 * Create a new transaction, suspending the current transaction if one exists.
 	 * Analogous to the EJB transaction attribute of the same name.
-	 * <p><b>NOTE:</b> Actual transaction suspension will not work out-of-the-box
+	 * <b>NOTE:</b> Actual transaction suspension will not work out-of-the-box
 	 * on all transaction managers. This in particular applies to
 	 * {@link org.springframework.transaction.jta.JtaTransactionManager},
 	 * which requires the {@code javax.transaction.TransactionManager} to be
 	 * made available it to it (which is server-specific in standard Java EE).
-	 * <p>A {@code PROPAGATION_REQUIRES_NEW} scope always defines its own
+	 * A {@code PROPAGATION_REQUIRES_NEW} scope always defines its own
 	 * transaction synchronizations. Existing synchronizations will be suspended
 	 * and resumed appropriately.
 	 * @see org.springframework.transaction.jta.JtaTransactionManager#setTransactionManager
@@ -90,12 +90,12 @@ public interface TransactionDefinition {
 	/**
 	 * Do not support a current transaction; rather always execute non-transactionally.
 	 * Analogous to the EJB transaction attribute of the same name.
-	 * <p><b>NOTE:</b> Actual transaction suspension will not work out-of-the-box
+	 * <b>NOTE:</b> Actual transaction suspension will not work out-of-the-box
 	 * on all transaction managers. This in particular applies to
 	 * {@link org.springframework.transaction.jta.JtaTransactionManager},
 	 * which requires the {@code javax.transaction.TransactionManager} to be
 	 * made available it to it (which is server-specific in standard Java EE).
-	 * <p>Note that transaction synchronization is <i>not</i> available within a
+	 * Note that transaction synchronization is <i>not</i> available within a
 	 * {@code PROPAGATION_NOT_SUPPORTED} scope. Existing synchronizations
 	 * will be suspended and resumed appropriately.
 	 * @see org.springframework.transaction.jta.JtaTransactionManager#setTransactionManager
@@ -106,7 +106,7 @@ public interface TransactionDefinition {
 	/**
 	 * Do not support a current transaction; throw an exception if a current transaction
 	 * exists. Analogous to the EJB transaction attribute of the same name.
-	 * <p>Note that transaction synchronization is <i>not</i> available within a
+	 * Note that transaction synchronization is <i>not</i> available within a
 	 * {@code PROPAGATION_NEVER} scope.
 	 * 以非事物方式执行，如果当前存在事物，则抛出异常
 	 */
@@ -116,7 +116,7 @@ public interface TransactionDefinition {
 	 * Execute within a nested transaction if a current transaction exists,
 	 * behave like {@link #PROPAGATION_REQUIRED} otherwise. There is no
 	 * analogous feature in EJB.
-	 * <p><b>NOTE:</b> Actual creation of a nested transaction will only work on
+	 * <b>NOTE:</b> Actual creation of a nested transaction will only work on
 	 * specific transaction managers. Out of the box, this only applies to the JDBC
 	 * {@link org.springframework.jdbc.datasource.DataSourceTransactionManager}
 	 * when working on a JDBC 3.0 driver. Some JTA providers might support
@@ -138,7 +138,7 @@ public interface TransactionDefinition {
 	/**
 	 * Indicates that dirty reads, non-repeatable reads and phantom reads
 	 * can occur.
-	 * <p>This level allows a row changed by one transaction to be read by another
+	 * This level allows a row changed by one transaction to be read by another
 	 * transaction before any changes in that row have been committed (a "dirty read").
 	 * If any of the changes are rolled back, the second transaction will have
 	 * retrieved an invalid row.
@@ -150,7 +150,7 @@ public interface TransactionDefinition {
 	/**
 	 * Indicates that dirty reads are prevented; non-repeatable reads and
 	 * phantom reads can occur.
-	 * <p>This level only prohibits a transaction from reading a row
+	 * This level only prohibits a transaction from reading a row
 	 * with uncommitted changes in it.
 	 * @see java.sql.Connection#TRANSACTION_READ_COMMITTED
 	 */
@@ -159,7 +159,7 @@ public interface TransactionDefinition {
 	/**
 	 * Indicates that dirty reads and non-repeatable reads are prevented;
 	 * phantom reads can occur.
-	 * <p>This level prohibits a transaction from reading a row with uncommitted changes
+	 * This level prohibits a transaction from reading a row with uncommitted changes
 	 * in it, and it also prohibits the situation where one transaction reads a row,
 	 * a second transaction alters the row, and the first transaction re-reads the row,
 	 * getting different values the second time (a "non-repeatable read").
@@ -170,7 +170,7 @@ public interface TransactionDefinition {
 	/**
 	 * Indicates that dirty reads, non-repeatable reads and phantom reads
 	 * are prevented.
-	 * <p>This level includes the prohibitions in {@link #ISOLATION_REPEATABLE_READ}
+	 * This level includes the prohibitions in {@link #ISOLATION_REPEATABLE_READ}
 	 * and further prohibits the situation where one transaction reads all rows that
 	 * satisfy a {@code WHERE} condition, a second transaction inserts a row
 	 * that satisfies that {@code WHERE} condition, and the first transaction
@@ -189,7 +189,7 @@ public interface TransactionDefinition {
 
 	/**
 	 * Return the propagation behavior.
-	 * <p>Must return one of the {@code PROPAGATION_XXX} constants
+	 * Must return one of the {@code PROPAGATION_XXX} constants
 	 * defined on {@link TransactionDefinition this interface}.
 	 * @return the propagation behavior
 	 * @see #PROPAGATION_REQUIRED
@@ -200,16 +200,16 @@ public interface TransactionDefinition {
 
 	/**
 	 * Return the isolation level.
-	 * <p>Must return one of the {@code ISOLATION_XXX} constants defined on
+	 * Must return one of the {@code ISOLATION_XXX} constants defined on
 	 * {@link TransactionDefinition this interface}. Those constants are designed
 	 * to match the values of the same constants on {@link java.sql.Connection}.
-	 * <p>Exclusively designed for use with {@link #PROPAGATION_REQUIRED} or
+	 * Exclusively designed for use with {@link #PROPAGATION_REQUIRED} or
 	 * {@link #PROPAGATION_REQUIRES_NEW} since it only applies to newly started
 	 * transactions. Consider switching the "validateExistingTransactions" flag to
 	 * "true" on your transaction manager if you'd like isolation level declarations
 	 * to get rejected when participating in an existing transaction with a different
 	 * isolation level.
-	 * <p>Note that a transaction manager that does not support custom isolation levels
+	 * Note that a transaction manager that does not support custom isolation levels
 	 * will throw an exception when given any other level than {@link #ISOLATION_DEFAULT}.
 	 * @return the isolation level
 	 * @see #ISOLATION_DEFAULT
@@ -220,11 +220,11 @@ public interface TransactionDefinition {
 
 	/**
 	 * Return the transaction timeout.
-	 * <p>Must return a number of seconds, or {@link #TIMEOUT_DEFAULT}.
-	 * <p>Exclusively designed for use with {@link #PROPAGATION_REQUIRED} or
+	 * Must return a number of seconds, or {@link #TIMEOUT_DEFAULT}.
+	 * Exclusively designed for use with {@link #PROPAGATION_REQUIRED} or
 	 * {@link #PROPAGATION_REQUIRES_NEW} since it only applies to newly started
 	 * transactions.
-	 * <p>Note that a transaction manager that does not support timeouts will throw
+	 * Note that a transaction manager that does not support timeouts will throw
 	 * an exception when given any other timeout than {@link #TIMEOUT_DEFAULT}.
 	 * @return the transaction timeout
 	 * 获取事物超时时间
@@ -233,13 +233,13 @@ public interface TransactionDefinition {
 
 	/**
 	 * Return whether to optimize as a read-only transaction.
-	 * <p>The read-only flag applies to any transaction context, whether backed
+	 * The read-only flag applies to any transaction context, whether backed
 	 * by an actual resource transaction ({@link #PROPAGATION_REQUIRED}/
 	 * {@link #PROPAGATION_REQUIRES_NEW}) or operating non-transactionally at
 	 * the resource level ({@link #PROPAGATION_SUPPORTS}). In the latter case,
 	 * the flag will only apply to managed resources within the application,
 	 * such as a Hibernate {@code Session}.
-	 * <p>This just serves as a hint for the actual transaction subsystem;
+	 * This just serves as a hint for the actual transaction subsystem;
 	 * it will <i>not necessarily</i> cause failure of write access attempts.
 	 * A transaction manager which cannot interpret the read-only hint will
 	 * <i>not</i> throw an exception when asked for a read-only transaction.
@@ -252,9 +252,9 @@ public interface TransactionDefinition {
 
 	/**
 	 * Return the name of this transaction. Can be {@code null}.
-	 * <p>This will be used as the transaction name to be shown in a
+	 * This will be used as the transaction name to be shown in a
 	 * transaction monitor, if applicable (for example, WebLogic's).
-	 * <p>In case of Spring's declarative transactions, the exposed name will be
+	 * In case of Spring's declarative transactions, the exposed name will be
 	 * the {@code fully-qualified class name + "." + method name} (by default).
 	 * @return the name of this transaction
 	 * @see org.springframework.transaction.interceptor.TransactionAspectSupport

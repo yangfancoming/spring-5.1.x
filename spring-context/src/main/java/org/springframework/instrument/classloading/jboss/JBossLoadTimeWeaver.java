@@ -17,7 +17,7 @@ import org.springframework.util.ReflectionUtils;
  * {@link LoadTimeWeaver} implementation for JBoss's instrumentable ClassLoader.
  * Thanks to Ales Justin and Marius Bogoevici for the initial prototype.
  *
- * <p>As of Spring Framework 5.0, this weaver supports WildFly 8+.
+ * As of Spring Framework 5.0, this weaver supports WildFly 8+.
  * As of Spring Framework 5.1.5, it also supports WildFly 13+.
  *
  * @author Costin Leau

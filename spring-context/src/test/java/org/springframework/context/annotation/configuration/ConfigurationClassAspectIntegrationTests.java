@@ -30,7 +30,7 @@ import static org.junit.Assert.*;
  * In the latter case, advice methods are declared inline within the Configuration class.  This makes for a
  * particularly convenient syntax requiring no extra artifact for the aspect.
  *
- * <p>Currently it is assumed that the user is bootstrapping Configuration class processing via XML (using
+ * Currently it is assumed that the user is bootstrapping Configuration class processing via XML (using
  * annotation-config or component-scan), and thus will also use {@code <aop:aspectj-autoproxy/>} to enable
  * processing of the Aspect annotation.
 

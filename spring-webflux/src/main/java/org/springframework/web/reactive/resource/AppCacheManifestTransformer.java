@@ -32,7 +32,7 @@ import org.springframework.web.server.ServerWebExchange;
 /**
  * A {@link ResourceTransformer} HTML5 AppCache manifests.
  *
- * <p>This transformer:
+ * This transformer:
  * <ul>
  * <li>modifies links to match the public URL paths that should be exposed to
  * clients, using configured {@code ResourceResolver} strategies
@@ -41,7 +41,7 @@ import org.springframework.web.server.ServerWebExchange;
  * of the manifest in order to trigger an appcache reload in the browser.
  * </ul>
  *
- * <p>All files with an ".appcache" file extension (or the extension given
+ * All files with an ".appcache" file extension (or the extension given
  * to the constructor) will be transformed by this class. The hash is computed
  * using the content of the appcache manifest so that changes in the manifest
  * should invalidate the browser cache. This should also work with changes in

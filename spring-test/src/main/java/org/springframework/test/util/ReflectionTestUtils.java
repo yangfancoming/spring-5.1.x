@@ -20,7 +20,7 @@ import org.springframework.util.StringUtils;
  * {@code ReflectionTestUtils} is a collection of reflection-based utility
  * methods for use in unit and integration testing scenarios.
  *
- * <p>There are often times when it would be beneficial to be able to set a
+ * There are often times when it would be beneficial to be able to set a
  * non-{@code public} field, invoke a non-{@code public} setter method, or
  * invoke a non-{@code public} <em>configuration</em> or <em>lifecycle</em>
  * callback method when testing code involving, for example:
@@ -37,7 +37,7 @@ import org.springframework.util.StringUtils;
  * <li>Use of annotations such as {@link javax.annotation.PostConstruct @PostConstruct}
  * and {@link javax.annotation.PreDestroy @PreDestroy} for lifecycle callback
  * methods.</li>
- * <p>In addition, several methods in this class provide support for {@code static}
+ * In addition, several methods in this class provide support for {@code static}
  * fields ; for example, {@link #setField(Class, String, Object)},
  * {@link #getField(Class, String)}, etc.
  * @since 2.5
@@ -57,7 +57,7 @@ public abstract class ReflectionTestUtils {
 	/**
 	 * Set the {@linkplain Field field} with the given {@code name} on the
 	 * provided {@code targetObject} to the supplied {@code value}.
-	 * <p>This method delegates to {@link #setField(Object, String, Object, Class)},
+	 * This method delegates to {@link #setField(Object, String, Object, Class)},
 	 * supplying {@code null} for the {@code type} argument.
 	 * @param targetObject the target object on which to set the field; never {@code null}
 	 * @param name the name of the field to set; never {@code null}
@@ -70,7 +70,7 @@ public abstract class ReflectionTestUtils {
 	/**
 	 * Set the {@linkplain Field field} with the given {@code name}/{@code type}
 	 * on the provided {@code targetObject} to the supplied {@code value}.
-	 * <p>This method delegates to {@link #setField(Object, Class, String, Object, Class)},
+	 * This method delegates to {@link #setField(Object, Class, String, Object, Class)},
 	 * supplying {@code null} for the {@code targetClass} argument.
 	 * @param targetObject the target object on which to set the field; never {@code null}
 	 * @param name the name of the field to set; may be {@code null} if
@@ -86,7 +86,7 @@ public abstract class ReflectionTestUtils {
 	/**
 	 * Set the static {@linkplain Field field} with the given {@code name} on
 	 * the provided {@code targetClass} to the supplied {@code value}.
-	 * <p>This method delegates to {@link #setField(Object, Class, String, Object, Class)},
+	 * This method delegates to {@link #setField(Object, Class, String, Object, Class)},
 	 * supplying {@code null} for the {@code targetObject} and {@code type} arguments.
 	 * @param targetClass the target class on which to set the static field;
 	 * never {@code null}
@@ -102,7 +102,7 @@ public abstract class ReflectionTestUtils {
 	 * Set the static {@linkplain Field field} with the given
 	 * {@code name}/{@code type} on the provided {@code targetClass} to
 	 * the supplied {@code value}.
-	 * <p>This method delegates to {@link #setField(Object, Class, String, Object, Class)},
+	 * This method delegates to {@link #setField(Object, Class, String, Object, Class)},
 	 * supplying {@code null} for the {@code targetObject} argument.
 	 * @param targetClass the target class on which to set the static field;
 	 * never {@code null}
@@ -121,10 +121,10 @@ public abstract class ReflectionTestUtils {
 	 * Set the {@linkplain Field field} with the given {@code name}/{@code type}
 	 * on the provided {@code targetObject}/{@code targetClass} to the supplied
 	 * {@code value}.
-	 * <p>If the supplied {@code targetObject} is a <em>proxy</em>, it will
+	 * If the supplied {@code targetObject} is a <em>proxy</em>, it will
 	 * be {@linkplain AopTestUtils#getUltimateTargetObject unwrapped} allowing
 	 * the field to be set on the ultimate target of the proxy.
-	 * <p>This method traverses the class hierarchy in search of the desired
+	 * This method traverses the class hierarchy in search of the desired
 	 * field. In addition, an attempt will be made to make non-{@code public}
 	 * fields <em>accessible</em>, thus allowing one to set {@code protected},
 	 * {@code private}, and <em>package-private</em> fields.
@@ -168,7 +168,7 @@ public abstract class ReflectionTestUtils {
 	/**
 	 * Get the value of the {@linkplain Field field} with the given {@code name}
 	 * from the provided {@code targetObject}.
-	 * <p>This method delegates to {@link #getField(Object, Class, String)},
+	 * This method delegates to {@link #getField(Object, Class, String)},
 	 * supplying {@code null} for the {@code targetClass} argument.
 	 * @param targetObject the target object from which to get the field;
 	 * never {@code null}
@@ -184,7 +184,7 @@ public abstract class ReflectionTestUtils {
 	/**
 	 * Get the value of the static {@linkplain Field field} with the given
 	 * {@code name} from the provided {@code targetClass}.
-	 * <p>This method delegates to {@link #getField(Object, Class, String)},
+	 * This method delegates to {@link #getField(Object, Class, String)},
 	 * supplying {@code null} for the {@code targetObject} argument.
 	 * @param targetClass the target class from which to get the static field;
 	 * never {@code null}
@@ -201,10 +201,10 @@ public abstract class ReflectionTestUtils {
 	/**
 	 * Get the value of the {@linkplain Field field} with the given {@code name}
 	 * from the provided {@code targetObject}/{@code targetClass}.
-	 * <p>If the supplied {@code targetObject} is a <em>proxy</em>, it will
+	 * If the supplied {@code targetObject} is a <em>proxy</em>, it will
 	 * be {@linkplain AopTestUtils#getUltimateTargetObject unwrapped} allowing
 	 * the field to be retrieved from the ultimate target of the proxy.
-	 * <p>This method traverses the class hierarchy in search of the desired
+	 * This method traverses the class hierarchy in search of the desired
 	 * field. In addition, an attempt will be made to make non-{@code public}
 	 * fields <em>accessible</em>, thus allowing one to get {@code protected},
 	 * {@code private}, and <em>package-private</em> fields.
@@ -247,11 +247,11 @@ public abstract class ReflectionTestUtils {
 	/**
 	 * Invoke the setter method with the given {@code name} on the supplied
 	 * target object with the supplied {@code value}.
-	 * <p>This method traverses the class hierarchy in search of the desired
+	 * This method traverses the class hierarchy in search of the desired
 	 * method. In addition, an attempt will be made to make non-{@code public}
 	 * methods <em>accessible</em>, thus allowing one to invoke {@code protected},
 	 * {@code private}, and <em>package-private</em> setter methods.
-	 * <p>In addition, this method supports JavaBean-style <em>property</em>
+	 * In addition, this method supports JavaBean-style <em>property</em>
 	 * names. For example, if you wish to set the {@code name} property on the
 	 * target object, you may pass either &quot;name&quot; or
 	 * &quot;setName&quot; as the method name.
@@ -271,11 +271,11 @@ public abstract class ReflectionTestUtils {
 	/**
 	 * Invoke the setter method with the given {@code name} on the supplied
 	 * target object with the supplied {@code value}.
-	 * <p>This method traverses the class hierarchy in search of the desired
+	 * This method traverses the class hierarchy in search of the desired
 	 * method. In addition, an attempt will be made to make non-{@code public}
 	 * methods <em>accessible</em>, thus allowing one to invoke {@code protected},
 	 * {@code private}, and <em>package-private</em> setter methods.
-	 * <p>In addition, this method supports JavaBean-style <em>property</em>
+	 * In addition, this method supports JavaBean-style <em>property</em>
 	 * names. For example, if you wish to set the {@code name} property on the
 	 * target object, you may pass either &quot;name&quot; or
 	 * &quot;setName&quot; as the method name.
@@ -315,11 +315,11 @@ public abstract class ReflectionTestUtils {
 	/**
 	 * Invoke the getter method with the given {@code name} on the supplied
 	 * target object with the supplied {@code value}.
-	 * <p>This method traverses the class hierarchy in search of the desired
+	 * This method traverses the class hierarchy in search of the desired
 	 * method. In addition, an attempt will be made to make non-{@code public}
 	 * methods <em>accessible</em>, thus allowing one to invoke {@code protected},
 	 * {@code private}, and <em>package-private</em> getter methods.
-	 * <p>In addition, this method supports JavaBean-style <em>property</em>
+	 * In addition, this method supports JavaBean-style <em>property</em>
 	 * names. For example, if you wish to get the {@code name} property on the
 	 * target object, you may pass either &quot;name&quot; or &quot;getName&quot; as the method name.
 	 * @param target the target object on which to invoke the specified getter method
@@ -357,7 +357,7 @@ public abstract class ReflectionTestUtils {
 	/**
 	 * Invoke the method with the given {@code name} on the supplied target
 	 * object with the supplied arguments.
-	 * <p>This method traverses the class hierarchy in search of the desired
+	 * This method traverses the class hierarchy in search of the desired
 	 * method. In addition, an attempt will be made to make non-{@code public}
 	 * methods <em>accessible</em>, thus allowing one to invoke {@code protected},
 	 * {@code private}, and <em>package-private</em> methods.

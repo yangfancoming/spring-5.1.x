@@ -21,11 +21,11 @@ import org.springframework.jdbc.InvalidResultSetAccessException;
  * {@link java.sql.ResultSet}, catching any {@link SQLException SQLExceptions} and
  * translating them to a corresponding Spring {@link InvalidResultSetAccessException}.
  *
- * <p>The passed-in ResultSet should already be disconnected if the SqlRowSet is supposed
+ * The passed-in ResultSet should already be disconnected if the SqlRowSet is supposed
  * to be usable in a disconnected fashion. This means that you will usually pass in a
  * {@code javax.sql.rowset.CachedRowSet}, which implements the ResultSet interface.
  *
- * <p>Note: Since JDBC 4.0, it has been clarified that any methods using a String to identify
+ * Note: Since JDBC 4.0, it has been clarified that any methods using a String to identify
  * the column should be using the column label. The column label is assigned using the ALIAS
  * keyword in the SQL query string. When the query doesn't use an ALIAS, the default label is
  * the column name. Most JDBC ResultSet implementations follow this new pattern but there are
@@ -35,7 +35,7 @@ import org.springframework.jdbc.InvalidResultSetAccessException;
  * {@code com.sun.rowset.CachedRowSetImpl} which is the default implementation used by
  * {@link org.springframework.jdbc.core.JdbcTemplate} when working with RowSets.
  *
- * <p>Note: This class implements the {@code java.io.Serializable} marker interface
+ * Note: This class implements the {@code java.io.Serializable} marker interface
  * through the SqlRowSet interface, but is only actually serializable if the disconnected
  * ResultSet/RowSet contained in it is serializable. Most CachedRowSet implementations
  * are actually serializable, so this should usually work out.

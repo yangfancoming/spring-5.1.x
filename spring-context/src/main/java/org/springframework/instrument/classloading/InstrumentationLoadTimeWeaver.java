@@ -17,16 +17,16 @@ import org.springframework.util.ClassUtils;
 /**
  * {@link LoadTimeWeaver} relying on VM {@link Instrumentation}.
  *
- * <p>Start the JVM specifying the Java agent to be used, like as follows:
+ * Start the JVM specifying the Java agent to be used, like as follows:
  *
- * <p><code class="code">-javaagent:path/to/org.springframework.instrument.jar</code>
+ * <code class="code">-javaagent:path/to/org.springframework.instrument.jar</code>
  *
- * <p>where {@code org.springframework.instrument.jar} is a JAR file containing
+ * where {@code org.springframework.instrument.jar} is a JAR file containing
  * the {@link InstrumentationSavingAgent} class, as shipped with Spring.
  *
- * <p>In Eclipse, for example, set the "Run configuration"'s JVM args to be of the form:
+ * In Eclipse, for example, set the "Run configuration"'s JVM args to be of the form:
  *
- * <p><code class="code">-javaagent:${project_loc}/lib/org.springframework.instrument.jar</code>
+ * <code class="code">-javaagent:${project_loc}/lib/org.springframework.instrument.jar</code>
  *
  * @author Rod Johnson
 

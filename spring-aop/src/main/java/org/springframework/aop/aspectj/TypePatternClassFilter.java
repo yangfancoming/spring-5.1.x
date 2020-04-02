@@ -23,7 +23,7 @@ public class TypePatternClassFilter implements ClassFilter {
 
 	/**
 	 * Creates a new instance of the {@link TypePatternClassFilter} class.
-	 * <p>This is the JavaBean constructor; be sure to set the
+	 * This is the JavaBean constructor; be sure to set the
 	 * {@link #setTypePattern(String) typePattern} property, else a
 	 * no doubt fatal {@link IllegalStateException} will be thrown
 	 * when the {@link #matches(Class)} method is first invoked.
@@ -43,7 +43,7 @@ public class TypePatternClassFilter implements ClassFilter {
 
 	/**
 	 * Set the AspectJ type pattern to match.
-	 * <p>Examples include:
+	 * Examples include:
 	 * <code class="code">
 	 * org.springframework.beans.*
 	 * </code>
@@ -53,7 +53,7 @@ public class TypePatternClassFilter implements ClassFilter {
 	 * </code>
 	 * This will match the {@code ITestBean} interface and any class
 	 * that implements it.
-	 * <p>These conventions are established by AspectJ, not Spring AOP.
+	 * These conventions are established by AspectJ, not Spring AOP.
 	 * @param typePattern the type pattern that AspectJ weaver should parse
 	 */
 	public void setTypePattern(String typePattern) {
@@ -88,7 +88,7 @@ public class TypePatternClassFilter implements ClassFilter {
 	 * If a type pattern has been specified in XML, the user cannot
 	 * write {@code and} as "&&" (though &amp;&amp; will work).
 	 * We also allow {@code and} between two sub-expressions.
-	 * <p>This method converts back to {@code &&} for the AspectJ pointcut parser.
+	 * This method converts back to {@code &&} for the AspectJ pointcut parser.
 	 */
 	private String replaceBooleanOperators(String pcExpr) {
 		String result = StringUtils.replace(pcExpr," and "," && ");

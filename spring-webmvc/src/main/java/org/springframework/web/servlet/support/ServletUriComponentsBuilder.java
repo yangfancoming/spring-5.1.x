@@ -18,7 +18,7 @@ import org.springframework.web.util.UrlPathHelper;
  * UriComponentsBuilder with additional static factory methods to create links
  * based on the current HttpServletRequest.
  *
- * <p><strong>Note:</strong> As of 5.1, methods in this class do not extract
+ * <strong>Note:</strong> As of 5.1, methods in this class do not extract
  * {@code "Forwarded"} and {@code "X-Forwarded-*"} headers that specify the
  * client-originated address. Please, use
  * {@link org.springframework.web.filter.ForwardedHeaderFilter
@@ -71,7 +71,7 @@ public class ServletUriComponentsBuilder extends UriComponentsBuilder {
 	/**
 	 * Prepare a builder from the host, port, scheme, context path, and
 	 * servlet mapping of the given HttpServletRequest.
-	 * <p>If the servlet is mapped by name, e.g. {@code "/main/*"}, the path
+	 * If the servlet is mapped by name, e.g. {@code "/main/*"}, the path
 	 * will end with "/main". If the servlet is mapped otherwise, e.g.
 	 * {@code "/"} or {@code "*.do"}, the result will be the same as
 	 * if calling {@link #fromContextPath(HttpServletRequest)}.

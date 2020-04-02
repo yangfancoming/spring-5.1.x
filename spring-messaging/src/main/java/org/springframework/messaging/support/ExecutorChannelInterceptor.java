@@ -41,7 +41,7 @@ public interface ExecutorChannelInterceptor extends ChannelInterceptor {
 	 * Invoked inside the {@link Runnable} submitted to the Executor after calling
 	 * the target MessageHandler regardless of the outcome (i.e. Exception raised
 	 * or not) thus allowing for proper resource cleanup.
-	 * <p>Note that this will be invoked only if beforeHandle successfully completed
+	 * Note that this will be invoked only if beforeHandle successfully completed
 	 * and returned a Message, i.e. it did not return {@code null}.
 	 * @param message the message handled
 	 * @param channel the channel on which the message was sent to

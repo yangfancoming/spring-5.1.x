@@ -19,7 +19,7 @@ import org.springframework.util.StreamUtils;
  * {@link ClientHttpResponse} implementation based on
  * Apache HttpComponents HttpClient.
  *
- * <p>Created via the {@link HttpComponentsClientHttpRequest}.
+ * Created via the {@link HttpComponentsClientHttpRequest}.
  *
  * @author Oleg Kalnichevski
  * @author Arjen Poutsma

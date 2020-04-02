@@ -26,7 +26,7 @@ import static org.junit.Assert.*;
 /**
  * Integration tests for {@link Sql @Sql} that verify support for multiple
  * {@link DataSource}s and {@link PlatformTransactionManager}s.
- * <p>Simultaneously tests for method-level overrides via {@code @SqlConfig}.
+ * Simultaneously tests for method-level overrides via {@code @SqlConfig}.
  *
  * @author Sam Brannen
  * @since 4.1

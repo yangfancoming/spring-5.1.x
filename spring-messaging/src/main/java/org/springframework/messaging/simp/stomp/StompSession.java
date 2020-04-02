@@ -29,7 +29,7 @@ public interface StompSession {
 	 * causes the server to return a RECEIPT. An application can then use
 	 * the {@link StompSession.Receiptable Receiptable} returned from the
 	 * operation to track the receipt.
-	 * <p>A receipt header can also be added manually through the overloaded
+	 * A receipt header can also be added manually through the overloaded
 	 * methods that accept {@code StompHeaders}.
 	 */
 	void setAutoReceipt(boolean enabled);
@@ -77,7 +77,7 @@ public interface StompSession {
 	/**
 	 * Send an acknowledgement whether a message was consumed or not resulting
 	 * in an ACK or NACK frame respectively.
-	 * <p><strong>Note:</strong> to use this when subscribing you must set the
+	 * <strong>Note:</strong> to use this when subscribing you must set the
 	 * {@link StompHeaders#setAck(String) ack} header to "client" or
 	 * "client-individual" in order ot use this.
 	 * @param messageId the id of the message
@@ -156,7 +156,7 @@ public interface StompSession {
 		/**
 		 * Alternative to {@link #unsubscribe()} with additional custom headers
 		 * to send to the server.
-		 * <p><strong>Note:</strong> There is no need to set the subscription id.
+		 * <strong>Note:</strong> There is no need to set the subscription id.
 		 * @param headers the custom headers, if any
 		 * @since 5.0
 		 */

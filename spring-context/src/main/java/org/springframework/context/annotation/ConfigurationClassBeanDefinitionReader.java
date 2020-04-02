@@ -43,7 +43,7 @@ import org.springframework.util.StringUtils;
  * Reads a given fully-populated set of ConfigurationClass instances, registering bean
  * definitions with the given {@link BeanDefinitionRegistry} based on its contents.
  *
- * <p>This class was modeled after the {@link BeanDefinitionReader} hierarchy, but does
+ * This class was modeled after the {@link BeanDefinitionReader} hierarchy, but does
  * not implement/extend any of its artifacts as a set of configuration classes is not a
  * {@link Resource}.
 

@@ -9,7 +9,7 @@ import org.springframework.web.context.support.GenericWebApplicationContext;
  * Concrete implementation of {@link AbstractGenericWebContextLoader} that loads
  * bean definitions from Groovy scripts <em>and</em> XML configuration files.
  *
- * <p>Default resource locations are detected using the suffixes
+ * Default resource locations are detected using the suffixes
  * {@code "-context.xml"} and {@code "Context.groovy"}.
  *
  * @author Sam Brannen

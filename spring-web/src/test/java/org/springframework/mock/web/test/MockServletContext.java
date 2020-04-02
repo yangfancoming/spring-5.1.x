@@ -45,16 +45,16 @@ import org.springframework.web.util.WebUtils;
 /**
  * Mock implementation of the {@link javax.servlet.ServletContext} interface.
  *
- * <p>As of Spring 5.0, this set of mocks is designed on a Servlet 4.0 baseline.
+ * As of Spring 5.0, this set of mocks is designed on a Servlet 4.0 baseline.
  *
- * <p>Compatible with Servlet 3.1 but can be configured to expose a specific version
+ * Compatible with Servlet 3.1 but can be configured to expose a specific version
  * through {@link #setMajorVersion}/{@link #setMinorVersion}; default is 3.1.
  * Note that Servlet 3.1 support is limited: servlet, filter and listener
  * registration methods are not supported; neither is JSP configuration.
  * We generally do not recommend to unit test your ServletContainerInitializers and
  * WebApplicationInitializers which is where those registration methods would be used.
  *
- * <p>For setting up a full {@code WebApplicationContext} in a test environment, you can
+ * For setting up a full {@code WebApplicationContext} in a test environment, you can
  * use {@code AnnotationConfigWebApplicationContext}, {@code XmlWebApplicationContext},
  * or {@code GenericWebApplicationContext}, passing in a corresponding
  * {@code MockServletContext} instance. Consider configuring your
@@ -159,7 +159,7 @@ public class MockServletContext implements ServletContext {
 	/**
 	 * Create a new {@code MockServletContext} using the supplied resource base
 	 * path and resource loader.
-	 * <p>Registers a {@link MockRequestDispatcher} for the Servlet named
+	 * Registers a {@link MockRequestDispatcher} for the Servlet named
 	 * {@literal 'default'}.
 	 * @param resourceBasePath the root directory of the WAR (should not end with a slash)
 	 * @param resourceLoader the ResourceLoader to use (or null for the default)
@@ -378,7 +378,7 @@ public class MockServletContext implements ServletContext {
 
 	/**
 	 * Get the name of the <em>default</em> {@code Servlet}.
-	 * <p>Defaults to {@literal 'default'}.
+	 * Defaults to {@literal 'default'}.
 	 * @see #setDefaultServletName
 	 */
 	public String getDefaultServletName() {
@@ -387,7 +387,7 @@ public class MockServletContext implements ServletContext {
 
 	/**
 	 * Set the name of the <em>default</em> {@code Servlet}.
-	 * <p>Also {@link #unregisterNamedDispatcher unregisters} the current default
+	 * Also {@link #unregisterNamedDispatcher unregisters} the current default
 	 * {@link RequestDispatcher} and {@link #registerNamedDispatcher replaces}
 	 * it with a {@link MockRequestDispatcher} for the provided
 	 * {@code defaultServletName}.

@@ -21,7 +21,7 @@ import org.springframework.format.datetime.DateFormatterRegistrar;
  * Installs lower-level type converters required to integrate
  * Joda-Time support into Spring's field formatting system.
  *
- * <p>Note: {@link JodaTimeFormatterRegistrar} installs these converters
+ * Note: {@link JodaTimeFormatterRegistrar} installs these converters
  * and relies on several of them for its formatters. Some additional
  * converters are just being registered for custom conversion scenarios.
  *

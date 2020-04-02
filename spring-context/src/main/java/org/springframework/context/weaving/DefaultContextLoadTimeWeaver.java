@@ -25,11 +25,11 @@ import org.springframework.util.Assert;
  * Default {@link LoadTimeWeaver} bean for use in an application context,
  * decorating an automatically detected internal {@code LoadTimeWeaver}.
  *
- * <p>Typically registered for the default bean name
+ * Typically registered for the default bean name
  * "{@code loadTimeWeaver}"; the most convenient way to achieve this is
  * Spring's {@code <context:load-time-weaver>} XML tag.
  *
- * <p>This class implements a runtime environment check for obtaining the
+ * This class implements a runtime environment check for obtaining the
  * appropriate weaver implementation: As of Spring Framework 5.0, it detects
  * Oracle WebLogic 10+, GlassFish 4+, Tomcat 8+, WildFly 8+, IBM WebSphere 8.5+,
  * {@link InstrumentationSavingAgent Spring's VM agent}, and any {@link ClassLoader}

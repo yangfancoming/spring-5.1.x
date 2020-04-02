@@ -14,7 +14,7 @@ import org.springframework.test.annotation.DirtiesContext.HierarchyMode;
  * {@code TestContext} encapsulates the context in which a test is executed,
  * agnostic of the actual testing framework in use.
  *
- * <p>As of Spring Framework 5.0, concrete implementations are highly encouraged
+ * As of Spring Framework 5.0, concrete implementations are highly encouraged
  * to implement a <em>copy constructor</em> in order to allow the immutable state
  * and attributes of a {@code TestContext} to be used as a template for additional
  * contexts created for parallel test execution. The copy constructor must accept a
@@ -32,7 +32,7 @@ public interface TestContext extends AttributeAccessor, Serializable {
 	/**
 	 * Get the {@linkplain ApplicationContext application context} for this
 	 * test context, possibly cached.
-	 * <p>Implementations of this method are responsible for loading the
+	 * Implementations of this method are responsible for loading the
 	 * application context if the corresponding context has not already been
 	 * loaded, potentially caching the context as well.
 	 * @return the application context (never {@code null})
@@ -49,7 +49,7 @@ public interface TestContext extends AttributeAccessor, Serializable {
 
 	/**
 	 * Get the current {@linkplain Object test instance} for this test context.
-	 * <p>Note: this is a mutable property.
+	 * Note: this is a mutable property.
 	 * @return the current test instance (never {@code null})
 	 * @see #updateState(Object, Method, Throwable)
 	 */
@@ -57,7 +57,7 @@ public interface TestContext extends AttributeAccessor, Serializable {
 
 	/**
 	 * Get the current {@linkplain Method test method} for this test context.
-	 * <p>Note: this is a mutable property.
+	 * Note: this is a mutable property.
 	 * @return the current test method (never {@code null})
 	 * @see #updateState(Object, Method, Throwable)
 	 */
@@ -66,7 +66,7 @@ public interface TestContext extends AttributeAccessor, Serializable {
 	/**
 	 * Get the {@linkplain Throwable exception} that was thrown during execution
 	 * of the {@linkplain #getTestMethod() test method}.
-	 * <p>Note: this is a mutable property.
+	 * Note: this is a mutable property.
 	 * @return the exception that was thrown, or {@code null} if no exception was thrown
 	 * @see #updateState(Object, Method, Throwable)
 	 */
@@ -77,7 +77,7 @@ public interface TestContext extends AttributeAccessor, Serializable {
 	 * Call this method to signal that the {@linkplain ApplicationContext application
 	 * context} associated with this test context is <em>dirty</em> and should be
 	 * removed from the context cache.
-	 * <p>Do this if a test has modified the context ; for example, by
+	 * Do this if a test has modified the context ; for example, by
 	 * modifying the state of a singleton bean, modifying the state of an embedded
 	 * database, etc.
 	 * @param hierarchyMode the context cache clearing mode to be applied if the
@@ -87,7 +87,7 @@ public interface TestContext extends AttributeAccessor, Serializable {
 
 	/**
 	 * Update this test context to reflect the state of the currently executing test.
-	 * <p>Caution: concurrent invocations of this method might not be thread-safe,
+	 * Caution: concurrent invocations of this method might not be thread-safe,
 	 * depending on the underlying implementation.
 	 * @param testInstance the current test instance (may be {@code null})
 	 * @param testMethod the current test method (may be {@code null})

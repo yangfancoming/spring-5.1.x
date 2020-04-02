@@ -13,10 +13,10 @@ import java.lang.annotation.Target;
  * are qualified to autowire a single-valued dependency. If exactly one
  * 'primary' bean exists among the candidates, it will be the autowired value.
  *
- * <p>This annotation is semantically equivalent to the {@code <bean>} element's
+ * This annotation is semantically equivalent to the {@code <bean>} element's
  * {@code primary} attribute in Spring XML.
  *
- * <p>May be used on any class directly or indirectly annotated with
+ * May be used on any class directly or indirectly annotated with
  * {@code @Component} or on methods annotated with @{@link Bean}.
  *
  * <h2>Example</h2>
@@ -50,12 +50,12 @@ import java.lang.annotation.Target;
  * }
  * </pre>
  *
- * <p>Because {@code HibernateFooRepository} is marked with {@code @Primary},
+ * Because {@code HibernateFooRepository} is marked with {@code @Primary},
  * it will be injected preferentially over the jdbc-based variant assuming both
  * are present as beans within the same Spring application context, which is
  * often the case when component-scanning is applied liberally.
  *
- * <p>Note that using {@code @Primary} at the class level has no effect unless
+ * Note that using {@code @Primary} at the class level has no effect unless
  * component-scanning is being used. If a {@code @Primary}-annotated class is
  * declared via XML, {@code @Primary} annotation metadata is ignored, and
  * {@code <bean primary="true|false"/>} is respected instead.

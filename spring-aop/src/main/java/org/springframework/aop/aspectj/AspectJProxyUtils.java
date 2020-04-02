@@ -17,7 +17,7 @@ public abstract class AspectJProxyUtils {
 	/**
 	 * Add special advisors if necessary to work with a proxy chain that contains AspectJ advisors:
 	 * concretely, {@link ExposeInvocationInterceptor} at the beginning of the list.
-	 * <p>This will expose the current Spring AOP invocation (necessary for some AspectJ pointcut
+	 * This will expose the current Spring AOP invocation (necessary for some AspectJ pointcut
 	 * matching) and make available the current AspectJ JoinPoint. The call will have no effect
 	 * if there are no AspectJ advisors in the advisor chain.
 	 * @param advisors the advisors available

@@ -5,7 +5,7 @@ package org.springframework.util.backoff;
 /**
  * Represent a particular back-off execution.
  *
- * <p>Implementations do not need to be thread safe.
+ * Implementations do not need to be thread safe.
  *
  * @author Stephane Nicoll
  * @since 4.1

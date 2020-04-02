@@ -106,7 +106,7 @@ public class ServletServerHttpResponse implements ServerHttpResponse {
 	 * Extends HttpHeaders with the ability to look up headers already present in
 	 * the underlying HttpServletResponse.
 	 *
-	 * <p>The intent is merely to expose what is available through the HttpServletResponse
+	 * The intent is merely to expose what is available through the HttpServletResponse
 	 * i.e. the ability to look up specific header values by name. All other
 	 * map-related operations (e.g. iteration, removal, etc) apply only to values
 	 * added directly through HttpHeaders methods.

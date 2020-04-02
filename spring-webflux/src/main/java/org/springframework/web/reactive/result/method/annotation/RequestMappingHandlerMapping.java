@@ -51,11 +51,11 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 
 	/**
 	 * Configure path prefixes to apply to controller methods.
-	 * <p>Prefixes are used to enrich the mappings of every {@code @RequestMapping}
+	 * Prefixes are used to enrich the mappings of every {@code @RequestMapping}
 	 * method whose controller type is matched by a corresponding
 	 * {@code Predicate} in the map. The prefix for the first matching predicate
 	 * is used, assuming the input map has predictable order.
-	 * <p>Consider using {@link org.springframework.web.method.HandlerTypePredicate
+	 * Consider using {@link org.springframework.web.method.HandlerTypePredicate
 	 * HandlerTypePredicate} to group controllers.
 	 * @param prefixes a map with path prefixes as key
 	 * @since 5.1
@@ -167,7 +167,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	 * The custom {@link RequestCondition} can be of any type so long as the
 	 * same condition type is returned from all calls to this method in order
 	 * to ensure custom request conditions can be combined and compared.
-	 * <p>Consider extending
+	 * Consider extending
 	 * {@link org.springframework.web.reactive.result.condition.AbstractRequestCondition
 	 * AbstractRequestCondition} for custom condition types and using
 	 * {@link org.springframework.web.reactive.result.condition.CompositeRequestCondition
@@ -186,7 +186,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	 * The custom {@link RequestCondition} can be of any type so long as the
 	 * same condition type is returned from all calls to this method in order
 	 * to ensure custom request conditions can be combined and compared.
-	 * <p>Consider extending
+	 * Consider extending
 	 * {@link org.springframework.web.reactive.result.condition.AbstractRequestCondition
 	 * AbstractRequestCondition} for custom condition types and using
 	 * {@link org.springframework.web.reactive.result.condition.CompositeRequestCondition

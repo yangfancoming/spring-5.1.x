@@ -26,7 +26,7 @@ import org.springframework.util.StringUtils;
  * Utility methods for working with transactions and data access related beans
  * within the <em>Spring TestContext Framework</em>.
  *
- * <p>Mainly for internal use within the framework.
+ * Mainly for internal use within the framework.
  *
  * @author Sam Brannen
 
@@ -52,7 +52,7 @@ public abstract class TestContextTransactionUtils {
 	/**
 	 * Retrieve the {@link DataSource} to use for the supplied {@linkplain TestContext
 	 * test context}.
-	 * <p>The following algorithm is used to retrieve the {@code DataSource} from
+	 * The following algorithm is used to retrieve the {@code DataSource} from
 	 * the {@link org.springframework.context.ApplicationContext ApplicationContext}
 	 * of the supplied test context:
 	 * <ol>
@@ -121,7 +121,7 @@ public abstract class TestContextTransactionUtils {
 	/**
 	 * Retrieve the {@linkplain PlatformTransactionManager transaction manager}
 	 * to use for the supplied {@linkplain TestContext test context}.
-	 * <p>The following algorithm is used to retrieve the transaction manager
+	 * The following algorithm is used to retrieve the transaction manager
 	 * from the {@link org.springframework.context.ApplicationContext ApplicationContext}
 	 * of the supplied test context:
 	 * <ol>

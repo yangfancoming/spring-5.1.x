@@ -31,7 +31,7 @@ public class JythonScriptTemplateTests {
 		model.put("body", "This is the body");
 		String url = "org/springframework/web/reactive/result/view/script/jython/template.html";
 		MockServerHttpResponse response = renderViewWithModel(url, model);
-		assertEquals("<html><head><title>Layout example</title></head><body><p>This is the body</p></body></html>",
+		assertEquals("<html><head><title>Layout example</title></head><body>This is the body</p></body></html>",
 				response.getBodyAsString().block());
 	}
 

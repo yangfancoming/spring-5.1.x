@@ -15,11 +15,11 @@ import org.springframework.util.Assert;
  * Bean definition reader that reads values from a database table,
  * based on a given SQL statement.
  *
- * <p>Expects columns for bean name, property name and value as String.
+ * Expects columns for bean name, property name and value as String.
  * Formats for each are identical to the properties format recognized
  * by PropertiesBeanDefinitionReader.
  *
- * <p><b>NOTE:</b> This is mainly intended as an example for a custom
+ * <b>NOTE:</b> This is mainly intended as an example for a custom
  * JDBC-based bean definition reader. It does not aim to offer
  * comprehensive functionality.
  *
@@ -39,7 +39,7 @@ public class JdbcBeanDefinitionReader {
 	/**
 	 * Create a new JdbcBeanDefinitionReader for the given bean factory,
 	 * using a default PropertiesBeanDefinitionReader underneath.
-	 * <p>DataSource or JdbcTemplate still need to be set.
+	 * DataSource or JdbcTemplate still need to be set.
 	 * @see #setDataSource
 	 * @see #setJdbcTemplate
 	 */
@@ -50,7 +50,7 @@ public class JdbcBeanDefinitionReader {
 	/**
 	 * Create a new JdbcBeanDefinitionReader that delegates to the
 	 * given PropertiesBeanDefinitionReader underneath.
-	 * <p>DataSource or JdbcTemplate still need to be set.
+	 * DataSource or JdbcTemplate still need to be set.
 	 * @see #setDataSource
 	 * @see #setJdbcTemplate
 	 */

@@ -14,11 +14,11 @@ import org.springframework.core.annotation.AliasFor;
 /**
  * An {@link EventListener} that is invoked according to a {@link TransactionPhase}.
  *
- * <p>If the event is not published within the boundaries of a managed transaction, the
+ * If the event is not published within the boundaries of a managed transaction, the
  * event is discarded unless the {@link #fallbackExecution} flag is explicitly set. If a
  * transaction is running, the event is processed according to its {@code TransactionPhase}.
  *
- * <p>Adding {@link org.springframework.core.annotation.Order @Order} to your annotated
+ * Adding {@link org.springframework.core.annotation.Order @Order} to your annotated
  * method allows you to prioritize that listener amongst other listeners running before
  * or after transaction completion.
 
@@ -32,8 +32,8 @@ public @interface TransactionalEventListener {
 
 	/**
 	 * Phase to bind the handling of an event to.
-	 * <p>The default phase is {@link TransactionPhase#AFTER_COMMIT}.
-	 * <p>If no transaction is in progress, the event is not processed at
+	 * The default phase is {@link TransactionPhase#AFTER_COMMIT}.
+	 * If no transaction is in progress, the event is not processed at
 	 * all unless {@link #fallbackExecution} has been enabled explicitly.
 	 *  // 指定当前标注方法处理事务的类型
 	 */
@@ -55,7 +55,7 @@ public @interface TransactionalEventListener {
 
 	/**
 	 * The event classes that this listener handles.
-	 * <p>If this attribute is specified with a single value, the annotated
+	 * If this attribute is specified with a single value, the annotated
 	 * method may optionally accept a single parameter. However, if this
 	 * attribute is specified with multiple values, the annotated method
 	 * must <em>not</em> declare any parameters.
@@ -67,7 +67,7 @@ public @interface TransactionalEventListener {
 	/**
 	 * Spring Expression Language (SpEL) attribute used for making the event
 	 * handling conditional.
-	 * <p>The default is {@code ""}, meaning the event is always handled.
+	 * The default is {@code ""}, meaning the event is always handled.
 	 * @see EventListener#condition
 	 * // 这个属性使用Spring Expression Language对目标类和方法进行匹配，对于不匹配的方法将会过滤掉
 	 */

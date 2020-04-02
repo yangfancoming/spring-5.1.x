@@ -3,11 +3,11 @@
  * <a href="https://gitlab.ow2.org/asm/asm">ASM 7.0</a>
  * (with Spring-specific patches; for internal use only).
  *
- * <p>This repackaging technique avoids any potential conflicts with
+ * This repackaging technique avoids any potential conflicts with
  * dependencies on ASM at the application level or from third-party
  * libraries and frameworks.
  *
- * <p>As this repackaging happens at the class file level, sources
+ * As this repackaging happens at the class file level, sources
  * and javadocs are not available here.
  */
 package org.springframework.asm;

@@ -21,7 +21,7 @@ public class SimpleSecurityContextProvider implements SecurityContextProvider {
 
 	/**
 	 * Construct a new {@code SimpleSecurityContextProvider} instance.
-	 * <p>The security context will be retrieved on each call from the current
+	 * The security context will be retrieved on each call from the current
 	 * thread.
 	 */
 	public SimpleSecurityContextProvider() {
@@ -30,7 +30,7 @@ public class SimpleSecurityContextProvider implements SecurityContextProvider {
 
 	/**
 	 * Construct a new {@code SimpleSecurityContextProvider} instance.
-	 * <p>If the given control context is null, the security context will be
+	 * If the given control context is null, the security context will be
 	 * retrieved on each call from the current thread.
 	 * @param acc access control context (can be {@code null})
 	 * @see AccessController#getContext()

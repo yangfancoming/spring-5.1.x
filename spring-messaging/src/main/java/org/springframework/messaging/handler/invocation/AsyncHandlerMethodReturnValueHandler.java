@@ -11,7 +11,7 @@ import org.springframework.util.concurrent.ListenableFuture;
  * Future-like return value types that support success and error callbacks.
  * Essentially anything that can be adapted to a {@link ListenableFuture}.
  *
- * <p>Implementations should consider extending the convenient base class
+ * Implementations should consider extending the convenient base class
  * {@link AbstractAsyncReturnValueHandler}.
  *
  * @author Rossen Stoyanchev
@@ -25,7 +25,7 @@ public interface AsyncHandlerMethodReturnValueHandler extends HandlerMethodRetur
 	 * with success and error callbacks. If this method returns {@code true},
 	 * then {@link #toListenableFuture} is invoked next. If it returns
 	 * {@code false}, then {@link #handleReturnValue} is called.
-	 * <p><strong>Note:</strong> this method will only be invoked after
+	 * <strong>Note:</strong> this method will only be invoked after
 	 * {@link #supportsReturnType(org.springframework.core.MethodParameter)}
 	 * is called and it returns {@code true}.
 	 * @param returnValue the value returned from the handler method
@@ -40,7 +40,7 @@ public interface AsyncHandlerMethodReturnValueHandler extends HandlerMethodRetur
 	 * {@link org.springframework.util.concurrent.SettableListenableFuture
 	 * SettableListenableFuture}. Return value handling will then continue when
 	 * the ListenableFuture is completed with either success or error.
-	 * <p><strong>Note:</strong> this method will only be invoked after
+	 * <strong>Note:</strong> this method will only be invoked after
 	 * {@link #supportsReturnType(org.springframework.core.MethodParameter)}
 	 * is called and it returns {@code true}.
 	 * @param returnValue the value returned from the handler method

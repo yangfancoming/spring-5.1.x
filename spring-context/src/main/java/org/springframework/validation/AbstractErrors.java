@@ -90,7 +90,7 @@ public abstract class AbstractErrors implements Errors, Serializable {
 
 	/**
 	 * Determine the canonical field name for the given field.
-	 * <p>The default implementation simply returns the field name as-is.
+	 * The default implementation simply returns the field name as-is.
 	 * @param field the original field name
 	 * @return the canonical field name
 	 */

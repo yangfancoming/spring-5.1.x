@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * with JUnit Jupiter by registering the {@link SpringExtension} via a static field.
  * Note, however, that this is not the recommended way to register the {@code SpringExtension}.
  *
- * <p>
+ *
  * To run these tests in an IDE that does not have built-in support for the JUnit
  * Platform, simply run {@link SpringJUnitJupiterTestSuite} as a JUnit 4 test.
  *

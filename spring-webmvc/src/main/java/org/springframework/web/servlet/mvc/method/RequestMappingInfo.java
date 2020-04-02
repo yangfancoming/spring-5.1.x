@@ -160,7 +160,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 
 	/**
 	 * Combine "this" request mapping info (i.e. the current instance) with another request mapping info instance.
-	 * <p>Example: combine type- and method-level request mappings.
+	 * Example: combine type- and method-level request mappings.
 	 * @return a new request mapping info instance; never {@code null}
 	 */
 	@Override
@@ -195,7 +195,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 	/**
 	 * Checks if all conditions in this request mapping info match the provided request and returns
 	 * a potentially new request mapping info with conditions tailored to the current request.
-	 * <p>For example the returned instance may contain the subset of URL patterns that match to
+	 * For example the returned instance may contain the subset of URL patterns that match to
 	 * the current request, sorted with best matching patterns on top.
 	 * @return a new instance in case all conditions match; or {@code null} otherwise
 	 */
@@ -250,7 +250,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 
 	/**
 	 * Compares "this" info (i.e. the current instance) with another info in the context of a request.
-	 * <p>Note: It is assumed both instances have been obtained via
+	 * Note: It is assumed both instances have been obtained via
 	 * {@link #getMatchingCondition(HttpServletRequest)} to ensure they have conditions with
 	 * content relevant to current request.
 	 */
@@ -386,7 +386,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 
 		/**
 		 * Set the header conditions.
-		 * <p>By default this is not set.
+		 * By default this is not set.
 		 */
 		Builder headers(String... headers);
 
@@ -548,7 +548,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 
 		/**
 		 * Set a custom UrlPathHelper to use for the PatternsRequestCondition.
-		 * <p>By default this is not set.
+		 * By default this is not set.
 		 * @since 4.2.8
 		 */
 		public void setUrlPathHelper(@Nullable UrlPathHelper urlPathHelper) {
@@ -565,7 +565,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 
 		/**
 		 * Set a custom PathMatcher to use for the PatternsRequestCondition.
-		 * <p>By default this is not set.
+		 * By default this is not set.
 		 */
 		public void setPathMatcher(@Nullable PathMatcher pathMatcher) {
 			this.pathMatcher = pathMatcher;
@@ -581,7 +581,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 
 		/**
 		 * Set whether to apply trailing slash matching in PatternsRequestCondition.
-		 * <p>By default this is set to 'true'.
+		 * By default this is set to 'true'.
 		 */
 		public void setTrailingSlashMatch(boolean trailingSlashMatch) {
 			this.trailingSlashMatch = trailingSlashMatch;
@@ -596,7 +596,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 
 		/**
 		 * Set whether to apply suffix pattern matching in PatternsRequestCondition.
-		 * <p>By default this is set to 'true'.
+		 * By default this is set to 'true'.
 		 * @see #setRegisteredSuffixPatternMatch(boolean)
 		 */
 		public void setSuffixPatternMatch(boolean suffixPatternMatch) {
@@ -645,7 +645,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 
 		/**
 		 * Set the ContentNegotiationManager to use for the ProducesRequestCondition.
-		 * <p>By default this is not set.
+		 * By default this is not set.
 		 */
 		public void setContentNegotiationManager(ContentNegotiationManager contentNegotiationManager) {
 			this.contentNegotiationManager = contentNegotiationManager;

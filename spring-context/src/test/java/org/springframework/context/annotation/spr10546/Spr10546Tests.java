@@ -41,7 +41,7 @@ public class Spr10546Tests {
 	 * {@link #enclosingConfigFirstParentDefinesBean()} then it would fail. This test is
 	 * mostly for illustration purposes, but doesn't hurt to continue using it.
 	 *
-	 * <p>We purposely use the {@link AEnclosingConfig} to make it alphabetically prior to the
+	 * We purposely use the {@link AEnclosingConfig} to make it alphabetically prior to the
 	 * {@link AEnclosingConfig.ChildConfig} which encourages this to occur with the
 	 * classpath scanning implementation being used by the author of this test.
 	 */

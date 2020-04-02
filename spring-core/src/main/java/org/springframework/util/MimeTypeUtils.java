@@ -300,7 +300,7 @@ public abstract class MimeTypeUtils {
 
 	/**
 	 * Sorts the given list of {@code MimeType} objects by specificity.
-	 * <p>Given two mime types:
+	 * Given two mime types:
 	 * <ol>
 	 * <li>if either mime type has a {@linkplain MimeType#isWildcardType() wildcard type},
 	 * then the mime type without the wildcard is ordered before the other.</li>
@@ -314,7 +314,7 @@ public abstract class MimeTypeUtils {
 	 * {@linkplain MimeType#getParameter(String) parameters}, then the mime type with the most
 	 * parameters is ordered before the other.</li>
 	 * </ol>
-	 * <p>For example: <blockquote>audio/basic &lt; audio/* &lt; *&#047;*</blockquote>
+	 * For example: <blockquote>audio/basic &lt; audio/* &lt; *&#047;*</blockquote>
 	 * <blockquote>audio/basic;level=1 &lt; audio/basic</blockquote>
 	 * <blockquote>audio/basic == text/html</blockquote> <blockquote>audio/basic ==
 	 * audio/wave</blockquote>

@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * Collection of utilities for testing the execution of JUnit 4 based tests.
  *
- * <p>Note that these utilities use {@link Assertions} from JUnit Jupiter,
+ * Note that these utilities use {@link Assertions} from JUnit Jupiter,
  * but that should not result in any adverse side effects in terms of
  * proper test failure for failed assertions.
  *
@@ -54,7 +54,7 @@ public class JUnitTestingUtils {
 	 * Run the tests in the supplied {@code testClass}, using the specified
 	 * {@link Runner}, and assert the expectations of the test execution.
 	 *
-	 * <p>If the specified {@code runnerClass} is {@code null}, the tests
+	 * If the specified {@code runnerClass} is {@code null}, the tests
 	 * will be run with the runner that the test class is configured with
 	 * (i.e., via {@link RunWith @RunWith}) or the default JUnit runner.
 	 *
@@ -104,7 +104,7 @@ public class JUnitTestingUtils {
 	 * {@link RunWith @RunWith} or the default JUnit runner, and assert the
 	 * expectations of the test execution.
 	 *
-	 * <p>To have all tests executed in parallel, supply {@link ParallelComputer#methods()}
+	 * To have all tests executed in parallel, supply {@link ParallelComputer#methods()}
 	 * as the {@code Computer}. To have all tests executed serially, supply
 	 * {@link Computer#serial()} as the {@code Computer}.
 	 *

@@ -8,7 +8,7 @@ import org.springframework.lang.Nullable;
  * Bean used to pass name-value pair parameters from a {@link ParamTag} to a
  * {@link ParamAware} tag.
  *
- * <p>Attributes are the raw values passed to the spring:param tag and have not
+ * Attributes are the raw values passed to the spring:param tag and have not
  * been encoded or escaped.
  *
  * @author Scott Andrews

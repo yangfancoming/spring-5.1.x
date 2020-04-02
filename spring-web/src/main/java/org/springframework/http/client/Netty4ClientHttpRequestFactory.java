@@ -32,10 +32,10 @@ import org.springframework.util.Assert;
  * {@link org.springframework.http.client.ClientHttpRequestFactory} implementation
  * that uses <a href="https://netty.io/">Netty 4</a> to create requests.
  *
- * <p>Allows to use a pre-configured {@link EventLoopGroup} instance: useful for
+ * Allows to use a pre-configured {@link EventLoopGroup} instance: useful for
  * sharing across multiple clients.
  *
- * <p>Note that this implementation consistently closes the HTTP connection on each
+ * Note that this implementation consistently closes the HTTP connection on each
  * request.
  *
  * @author Arjen Poutsma
@@ -87,7 +87,7 @@ public class Netty4ClientHttpRequestFactory implements ClientHttpRequestFactory,
 	/**
 	 * Create a new {@code Netty4ClientHttpRequestFactory} with the given
 	 * {@link EventLoopGroup}.
-	 * <p><b>NOTE:</b> the given group will <strong>not</strong> be
+	 * <b>NOTE:</b> the given group will <strong>not</strong> be
 	 * {@linkplain EventLoopGroup#shutdownGracefully() shutdown} by this factory;
 	 * doing so becomes the responsibility of the caller.
 	 */
@@ -100,7 +100,7 @@ public class Netty4ClientHttpRequestFactory implements ClientHttpRequestFactory,
 
 	/**
 	 * Set the default maximum response size.
-	 * <p>By default this is set to {@link #DEFAULT_MAX_RESPONSE_SIZE}.
+	 * By default this is set to {@link #DEFAULT_MAX_RESPONSE_SIZE}.
 	 * @since 4.1.5
 	 * @see HttpObjectAggregator#HttpObjectAggregator(int)
 	 */
@@ -111,7 +111,7 @@ public class Netty4ClientHttpRequestFactory implements ClientHttpRequestFactory,
 	/**
 	 * Set the SSL context. When configured it is used to create and insert an
 	 * {@link io.netty.handler.ssl.SslHandler} in the channel pipeline.
-	 * <p>A default client SslContext is configured if none has been provided.
+	 * A default client SslContext is configured if none has been provided.
 	 */
 	public void setSslContext(SslContext sslContext) {
 		this.sslContext = sslContext;
@@ -207,7 +207,7 @@ public class Netty4ClientHttpRequestFactory implements ClientHttpRequestFactory,
 
 	/**
 	 * Template method for changing properties on the given {@link SocketChannelConfig}.
-	 * <p>The default implementation sets the connect timeout based on the set property.
+	 * The default implementation sets the connect timeout based on the set property.
 	 * @param config the channel configuration
 	 */
 	protected void configureChannel(SocketChannelConfig config) {

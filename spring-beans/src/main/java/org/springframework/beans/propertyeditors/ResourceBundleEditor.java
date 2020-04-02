@@ -13,7 +13,7 @@ import org.springframework.util.StringUtils;
  * {@link java.beans.PropertyEditor} implementation for standard JDK
  * {@link java.util.ResourceBundle ResourceBundles}.
  *
- * <p>Only supports conversion <i>from</i> a String, but not <i>to</i> a String.
+ * Only supports conversion <i>from</i> a String, but not <i>to</i> a String.
  *
  * Find below some examples of using this class in a (properly configured)
  * Spring container using XML-based metadata:
@@ -33,7 +33,7 @@ import org.springframework.util.StringUtils;
  *    &lt;property name="messages" value="com/messages/DialogMessages"/&gt;
  * &lt;/bean&gt;</pre>
  *
- * <p>A 'properly configured' Spring {@link org.springframework.context.ApplicationContext container}
+ * A 'properly configured' Spring {@link org.springframework.context.ApplicationContext container}
  * might contain a {@link org.springframework.beans.factory.config.CustomEditorConfigurer}
  * definition such that the conversion can be effected transparently:
  *
@@ -47,10 +47,10 @@ import org.springframework.util.StringUtils;
  *    &lt;/property&gt;
  * &lt;/bean&gt;</pre>
  *
- * <p>Please note that this {@link java.beans.PropertyEditor} is <b>not</b>
+ * Please note that this {@link java.beans.PropertyEditor} is <b>not</b>
  * registered by default with any of the Spring infrastructure.
  *
- * <p>Thanks to David Leal Valmana for the suggestion and initial prototype.
+ * Thanks to David Leal Valmana for the suggestion and initial prototype.
  *
  * @author Rick Evans
 

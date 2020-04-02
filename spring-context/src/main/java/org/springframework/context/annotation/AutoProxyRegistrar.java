@@ -28,7 +28,7 @@ public class AutoProxyRegistrar implements ImportBeanDefinitionRegistrar {
 	 * Works by finding the nearest annotation declared on the importing {@code @Configuration} class that has both {@code mode} and {@code proxyTargetClass} attributes.
 	 * If {@code mode} is set to {@code PROXY}, the APC is registered;
 	 * if {@code proxyTargetClass} is set to {@code true}, then the APC is forced to use subclass (CGLIB) proxying.
-	 * <p>Several {@code @Enable*} annotations expose both {@code mode} and @code proxyTargetClass} attributes.
+	 * Several {@code @Enable*} annotations expose both {@code mode} and @code proxyTargetClass} attributes.
 	 * { It is important to note that most of these capabilities end up sharing a {@linkplain AopConfigUtils#AUTO_PROXY_CREATOR_BEAN_NAME single APC}.
 	 * For this reason, this implementation doesn't "care" exactly which annotation it finds -- as long as it exposes the right {@code mode} and
 	 * {@code proxyTargetClass} attributes, the APC can be registered and configured all the same.

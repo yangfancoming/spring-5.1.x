@@ -41,7 +41,7 @@ import org.springframework.util.StringUtils;
  * A data structure representing HTTP request or response headers, mapping String header names
  * to a list of String values, also offering accessors for common application-level data types.
  *
- * <p>In addition to the regular methods defined by {@link Map}, this class offers many common
+ * In addition to the regular methods defined by {@link Map}, this class offers many common
  * convenience methods, for example:
  * <ul>
  * <li>{@link #getFirst(String)} returns the first value associated with a given header name</li>
@@ -49,7 +49,7 @@ import org.springframework.util.StringUtils;
  * <li>{@link #set(String, String)} sets the header value to a single string value</li>
  * </ul>
  *
- * <p>Note that {@code HttpHeaders} generally treats header names in a case-insensitive manner.
+ * Note that {@code HttpHeaders} generally treats header names in a case-insensitive manner.
  *
  * @author Arjen Poutsma
  * @author Sebastien Deleuze
@@ -403,7 +403,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * Construct a new, empty instance of the {@code HttpHeaders} object.
-	 * <p>This is the common constructor, using a case-insensitive map structure.
+	 * This is the common constructor, using a case-insensitive map structure.
 	 */
 	public HttpHeaders() {
 		this(CollectionUtils.toMultiValueMap(new LinkedCaseInsensitiveMap<>(8, Locale.ENGLISH)));
@@ -411,7 +411,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * Construct a new {@code HttpHeaders} instance backed by an existing map.
-	 * <p>This constructor is available as an optimization for adapting to existing
+	 * This constructor is available as an optimization for adapting to existing
 	 * headers map structures, primarily for internal use within the framework.
 	 * @param headers the headers map (expected to operate with case-insensitive keys)
 	 * @since 5.1
@@ -433,7 +433,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * Return the list of acceptable {@linkplain MediaType media types},
 	 * as specified by the {@code Accept} header.
-	 * <p>Returns an empty list when the acceptable media types are unspecified.
+	 * Returns an empty list when the acceptable media types are unspecified.
 	 */
 	public List<MediaType> getAccept() {
 		return MediaType.parseMediaTypes(get(ACCEPT));
@@ -458,7 +458,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * Return the language ranges from the {@literal "Accept-Language"} header.
-	 * <p>If you only need sorted, preferred locales only use
+	 * If you only need sorted, preferred locales only use
 	 * {@link #getAcceptLanguageAsLocales()} or if you need to filter based on
 	 * a list of supported locales you can pass the returned list to
 	 * {@link Locale#filter(List, Collection)}.
@@ -589,7 +589,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * Return the value of the {@code Access-Control-Max-Age} response header.
-	 * <p>Returns -1 when the max age is unknown.
+	 * Returns -1 when the max age is unknown.
 	 */
 	public long getAccessControlMaxAge() {
 		String value = getFirst(ACCESS_CONTROL_MAX_AGE);
@@ -681,7 +681,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * Return the set of allowed {@link HttpMethod HTTP methods},
 	 * as specified by the {@code Allow} header.
-	 * <p>Returns an empty set when the allowed methods are unspecified.
+	 * Returns an empty set when the allowed methods are unspecified.
 	 */
 	public Set<HttpMethod> getAllow() {
 		String value = getFirst(ALLOW);
@@ -704,7 +704,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * Set the value of the {@linkplain #AUTHORIZATION Authorization} header to
 	 * Basic Authentication based on the given username and password.
-	 * <p>Note that this method only supports characters in the
+	 * Note that this method only supports characters in the
 	 * {@link StandardCharsets#ISO_8859_1 ISO-8859-1} character set.
 	 * @param username the username
 	 * @param password the password
@@ -808,7 +808,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * Set the {@code Content-Disposition} header when creating a
 	 * {@code "multipart/form-data"} request.
-	 * <p>Applications typically would not set this header directly but
+	 * Applications typically would not set this header directly but
 	 * rather prepare a {@code MultiValueMap<String, Object>}, containing an
 	 * Object or a {@link org.springframework.core.io.Resource} for each part,
 	 * and then pass that to the {@code RestTemplate} or {@code WebClient}.
@@ -827,10 +827,10 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * Set the {@literal Content-Disposition} header.
-	 * <p>This could be used on a response to indicate if the content is
+	 * This could be used on a response to indicate if the content is
 	 * expected to be displayed inline in the browser or as an attachment to be
 	 * saved locally.
-	 * <p>It can also be used for a {@code "multipart/form-data"} request.
+	 * It can also be used for a {@code "multipart/form-data"} request.
 	 * For more details see notes on {@link #setContentDispositionFormData}.
 	 * @since 5.0
 	 * @see #getContentDisposition()
@@ -855,7 +855,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * Set the {@link Locale} of the content language,
 	 * as specified by the {@literal Content-Language} header.
-	 * <p>Use {@code put(CONTENT_LANGUAGE, list)} if you need
+	 * Use {@code put(CONTENT_LANGUAGE, list)} if you need
 	 * to set multiple content languages.</p>
 	 * @since 5.0
 	 */
@@ -866,8 +866,8 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * Return the first {@link Locale} of the content languages,
 	 * as specified by the {@literal Content-Language} header.
-	 * <p>Returns {@code null} when the content language is unknown.
-	 * <p>Use {@code getValuesAsList(CONTENT_LANGUAGE)} if you need
+	 * Returns {@code null} when the content language is unknown.
+	 * Use {@code getValuesAsList(CONTENT_LANGUAGE)} if you need
 	 * to get multiple content languages.</p>
 	 * @since 5.0
 	 */
@@ -891,7 +891,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * Return the length of the body in bytes, as specified by the
 	 * {@code Content-Length} header.
-	 * <p>Returns -1 when the content-length is unknown.
+	 * Returns -1 when the content-length is unknown.
 	 */
 	public long getContentLength() {
 		String value = getFirst(CONTENT_LENGTH);
@@ -916,7 +916,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * Return the {@linkplain MediaType media type} of the body, as specified
 	 * by the {@code Content-Type} header.
-	 * <p>Returns {@code null} when the content-type is unknown.
+	 * Returns {@code null} when the content-type is unknown.
 	 */
 	@Nullable
 	public MediaType getContentType() {
@@ -927,7 +927,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * Set the date and time at which the message was created, as specified
 	 * by the {@code Date} header.
-	 * <p>The date should be specified as the number of milliseconds since
+	 * The date should be specified as the number of milliseconds since
 	 * January 1, 1970 GMT.
 	 */
 	public void setDate(long date) {
@@ -937,7 +937,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * Return the date and time at which the message was created, as specified
 	 * by the {@code Date} header.
-	 * <p>The date is returned as the number of milliseconds since
+	 * The date is returned as the number of milliseconds since
 	 * January 1, 1970 GMT. Returns -1 when the date is unknown.
 	 * @throws IllegalArgumentException if the value cannot be converted to a date
 	 */
@@ -980,7 +980,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * Set the date and time at which the message is no longer valid,
 	 * as specified by the {@code Expires} header.
-	 * <p>The date should be specified as the number of milliseconds since
+	 * The date should be specified as the number of milliseconds since
 	 * January 1, 1970 GMT.
 	 */
 	public void setExpires(long expires) {
@@ -990,7 +990,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * Return the date and time at which the message is no longer valid,
 	 * as specified by the {@code Expires} header.
-	 * <p>The date is returned as the number of milliseconds since
+	 * The date is returned as the number of milliseconds since
 	 * January 1, 1970 GMT. Returns -1 when the date is unknown.
 	 * @see #getFirstZonedDateTime(String)
 	 */
@@ -1000,7 +1000,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * Set the (new) value of the {@code Host} header.
-	 * <p>If the given {@linkplain InetSocketAddress#getPort() port} is {@code 0},
+	 * If the given {@linkplain InetSocketAddress#getPort() port} is {@code 0},
 	 * the host header will only contain the
 	 * {@linkplain InetSocketAddress#getHostString() host name}.
 	 * @since 5.0
@@ -1021,7 +1021,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * Return the value of the {@code Host} header, if available.
-	 * <p>If the header value does not contain a port, the
+	 * If the header value does not contain a port, the
 	 * {@linkplain InetSocketAddress#getPort() port} in the returned address will
 	 * be {@code 0}.
 	 * @since 5.0
@@ -1097,7 +1097,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * Set the (new) value of the {@code If-Modified-Since} header.
-	 * <p>The date should be specified as the number of milliseconds since
+	 * The date should be specified as the number of milliseconds since
 	 * January 1, 1970 GMT.
 	 */
 	public void setIfModifiedSince(long ifModifiedSince) {
@@ -1106,7 +1106,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * Return the value of the {@code If-Modified-Since} header.
-	 * <p>The date is returned as the number of milliseconds since
+	 * The date is returned as the number of milliseconds since
 	 * January 1, 1970 GMT. Returns -1 when the date is unknown.
 	 * @see #getFirstZonedDateTime(String)
 	 */
@@ -1155,7 +1155,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * Set the (new) value of the {@code If-Unmodified-Since} header.
-	 * <p>The date should be specified as the number of milliseconds since
+	 * The date should be specified as the number of milliseconds since
 	 * January 1, 1970 GMT.
 	 * @since 4.3
 	 */
@@ -1165,7 +1165,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * Return the value of the {@code If-Unmodified-Since} header.
-	 * <p>The date is returned as the number of milliseconds since
+	 * The date is returned as the number of milliseconds since
 	 * January 1, 1970 GMT. Returns -1 when the date is unknown.
 	 * @since 4.3
 	 * @see #getFirstZonedDateTime(String)
@@ -1195,7 +1195,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * Set the time the resource was last changed, as specified by the
 	 * {@code Last-Modified} header.
-	 * <p>The date should be specified as the number of milliseconds since
+	 * The date should be specified as the number of milliseconds since
 	 * January 1, 1970 GMT.
 	 */
 	public void setLastModified(long lastModified) {
@@ -1205,7 +1205,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * Return the time the resource was last changed, as specified by the
 	 * {@code Last-Modified} header.
-	 * <p>The date is returned as the number of milliseconds since
+	 * The date is returned as the number of milliseconds since
 	 * January 1, 1970 GMT. Returns -1 when the date is unknown.
 	 * @see #getFirstZonedDateTime(String)
 	 */
@@ -1224,7 +1224,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	/**
 	 * Return the (new) location of a resource
 	 * as specified by the {@code Location} header.
-	 * <p>Returns {@code null} when the location is unknown.
+	 * Returns {@code null} when the location is unknown.
 	 */
 	@Nullable
 	public URI getLocation() {
@@ -1272,7 +1272,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 	/**
 	 * Return the value of the {@code Range} header.
-	 * <p>Returns an empty list when the range is unknown.
+	 * Returns an empty list when the range is unknown.
 	 */
 	public List<HttpRange> getRange() {
 		String value = getFirst(RANGE);

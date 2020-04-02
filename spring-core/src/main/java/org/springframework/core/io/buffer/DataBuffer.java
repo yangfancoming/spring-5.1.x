@@ -17,7 +17,7 @@ import org.springframework.util.Assert;
 /**
  * Basic abstraction over byte buffers.
  *
- * <p>{@code DataBuffer}s has a separate {@linkplain #readPosition() read} and
+ * {@code DataBuffer}s has a separate {@linkplain #readPosition() read} and
  * {@linkplain #writePosition() write} position, as opposed to {@code ByteBuffer}'s
  * single {@linkplain ByteBuffer#position() position}. As such, the {@code DataBuffer}
  * does not require a {@linkplain ByteBuffer#flip() flip} to read after writing. In general,
@@ -30,10 +30,10 @@ import org.springframework.util.Assert;
  *     <i>capacity</i>
  * </blockquote>
  *
- * <p>The {@linkplain #capacity() capacity} of a {@code DataBuffer} is expanded on demand,
+ * The {@linkplain #capacity() capacity} of a {@code DataBuffer} is expanded on demand,
  * similar to {@code StringBuilder}.
  *
- * <p>The main purpose of the {@code DataBuffer} abstraction is to provide a convenient wrapper
+ * The main purpose of the {@code DataBuffer} abstraction is to provide a convenient wrapper
  * around {@link ByteBuffer} which is similar to Netty's {@link io.netty.buffer.ByteBuf} but
  * can also be used on non-Netty platforms (i.e. Servlet containers).
  * @since 5.0
@@ -89,7 +89,7 @@ public interface DataBuffer {
 
 	/**
 	 * Set the number of bytes that this buffer can contain.
-	 * <p>If the new capacity is lower than the current capacity, the contents
+	 * If the new capacity is lower than the current capacity, the contents
 	 * of this buffer will be truncated. If the new capacity is higher than
 	 * the current capacity, it will be expanded.
 	 * @param capacity the new capacity
@@ -263,7 +263,7 @@ public interface DataBuffer {
 	 * data buffer's content.  Data between this data buffer and the returned buffer is
 	 * shared; though changes in the returned buffer's position will not be reflected
 	 * in the reading nor writing position of this data buffer.
-	 * <p><strong>Note</strong> that this method will <strong>not</strong> call
+	 * <strong>Note</strong> that this method will <strong>not</strong> call
 	 * {@link DataBufferUtils#retain(DataBuffer)} on the resulting slice: the reference
 	 * count will not be increased.
 	 * @param index the index at which to start the slice

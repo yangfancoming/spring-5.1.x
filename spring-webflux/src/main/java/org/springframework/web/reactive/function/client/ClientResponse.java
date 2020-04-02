@@ -29,7 +29,7 @@ import org.springframework.web.reactive.function.BodyExtractor;
  * {@link ExchangeFunction}. Provides access to the response status and headers,
  * and also methods to consume the response body.
  *
- * <p><strong>NOTE:</strong> When given access to a {@link ClientResponse},
+ * <strong>NOTE:</strong> When given access to a {@link ClientResponse},
  * through the {@code WebClient}
  * {@link WebClient.RequestHeadersSpec#exchange() exchange()} method,
  * you must always use one of the body or toEntity methods to ensure resources
@@ -221,7 +221,7 @@ public interface ClientResponse {
 
 		/**
 		 * Return the header value(s), if any, for the header of the given name.
-		 * <p>Return an empty list if no header values are found.
+		 * Return an empty list if no header values are found.
 		 * @param headerName the header name
 		 */
 		List<String> header(String headerName);

@@ -24,7 +24,7 @@ import org.springframework.util.StringUtils;
  * Factory for creating {@link SQLErrorCodes} based on the
  * "databaseProductName" taken from the {@link java.sql.DatabaseMetaData}.
  *
- * <p>Returns {@code SQLErrorCodes} populated with vendor codes
+ * Returns {@code SQLErrorCodes} populated with vendor codes
  * defined in a configuration file named "sql-error-codes.xml".
  * Reads the default file in this package if not overridden by a file in
  * the root of the class path (for example in the "/WEB-INF/classes" directory).
@@ -78,10 +78,10 @@ public class SQLErrorCodesFactory {
 
 	/**
 	 * Create a new instance of the {@link SQLErrorCodesFactory} class.
-	 * <p>Not public to enforce Singleton design pattern. Would be private
+	 * Not public to enforce Singleton design pattern. Would be private
 	 * except to allow testing via overriding the
 	 * {@link #loadResource(String)} method.
-	 * <p><b>Do not subclass in application code.</b>
+	 * <b>Do not subclass in application code.</b>
 	 * @see #loadResource(String)
 	 */
 	protected SQLErrorCodesFactory() {
@@ -124,9 +124,9 @@ public class SQLErrorCodesFactory {
 
 	/**
 	 * Load the given resource from the class path.
-	 * <p><b>Not to be overridden by application developers, who should obtain
+	 * <b>Not to be overridden by application developers, who should obtain
 	 * instances of this class from the static {@link #getInstance()} method.</b>
-	 * <p>Protected for testability.
+	 * Protected for testability.
 	 * @param path resource path; either a custom path or one of either
 	 * {@link #SQL_ERROR_CODE_DEFAULT_PATH} or
 	 * {@link #SQL_ERROR_CODE_OVERRIDE_PATH}.
@@ -141,7 +141,7 @@ public class SQLErrorCodesFactory {
 
 	/**
 	 * Return the {@link SQLErrorCodes} instance for the given database.
-	 * <p>No need for a database meta-data lookup.
+	 * No need for a database meta-data lookup.
 	 * @param databaseName the database name (must not be {@code null})
 	 * @return the {@code SQLErrorCodes} instance for the given database
 	 * @throws IllegalArgumentException if the supplied database name is {@code null}

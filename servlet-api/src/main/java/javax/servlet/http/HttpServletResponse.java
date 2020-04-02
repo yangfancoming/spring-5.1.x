@@ -14,7 +14,7 @@ import java.util.function.Supplier;
  * functionality in sending a response.  For example, it has methods
  * to access HTTP headers and cookies.
  *
- * <p>The servlet container creates an <code>HttpServletResponse</code> object
+ * The servlet container creates an <code>HttpServletResponse</code> object
  * and passes it as an argument to the servlet's service methods
  * (<code>doGet</code>, <code>doPost</code>, etc).
  *
@@ -54,12 +54,12 @@ public interface HttpServletResponse extends ServletResponse {
      * For example, if the browser supports cookies, or session
      * tracking is turned off, URL encoding is unnecessary.
      * 
-     * <p>For robust session tracking, all URLs emitted by a servlet 
+     * For robust session tracking, all URLs emitted by a servlet
      * should be run through this
      * method.  Otherwise, URL rewriting cannot be used with browsers
      * which do not support cookies.
      *
-     * <p>If the URL is relative, it is always relative to the current
+     * If the URL is relative, it is always relative to the current
      * HttpServletRequest.
      *
      * @param	url	the url to be encoded.
@@ -81,12 +81,12 @@ public interface HttpServletResponse extends ServletResponse {
      * encode a normal link, this method is separated from the
      * <code>encodeURL</code> method.
      * 
-     * <p>All URLs sent to the <code>HttpServletResponse.sendRedirect</code>
+     * All URLs sent to the <code>HttpServletResponse.sendRedirect</code>
      * method should be run through this method.  Otherwise, URL
      * rewriting cannot be used with browsers which do not support
      * cookies.
      *
-     * <p>If the URL is relative, it is always relative to the current
+     * If the URL is relative, it is always relative to the current
      * HttpServletRequest.
      *
      * @param	url	the url to be encoded.
@@ -123,7 +123,7 @@ public interface HttpServletResponse extends ServletResponse {
     public String encodeRedirectUrl(String url);
 
     /**
-     * <p>Sends an error response to the client using the specified
+     * Sends an error response to the client using the specified
      * status and clears the buffer.  The server defaults to creating
      * the response to look like an HTML-formatted server error page
      * containing the specified message, setting the content type to
@@ -135,12 +135,12 @@ public interface HttpServletResponse extends ServletResponse {
      * will preserve cookies and may clear or update any headers needed
      * to serve the error page as a valid response.</p>
      *
-     * <p>If an error-page declaration has been made for the web
+     * If an error-page declaration has been made for the web
      * application corresponding to the status code passed in, it will
      * be served back in preference to the suggested msg parameter and
      * the msg parameter will be ignored.</p>
      *
-     * <p>If the response has already been committed, this method throws 
+     * If the response has already been committed, this method throws
      * an IllegalStateException.
      * After using this method, the response should be considered
      * to be committed and should not be written to.
@@ -163,7 +163,7 @@ public interface HttpServletResponse extends ServletResponse {
      * corresponding to the status code passed in, it will be served back
      * the error page
      * 
-     * <p>If the response has already been committed, this method throws 
+     * If the response has already been committed, this method throws
      * an IllegalStateException.
      * After using this method, the response should be considered
      * to be committed and should not be written to.
@@ -192,7 +192,7 @@ public interface HttpServletResponse extends ServletResponse {
      * RFC 3986: Uniform Resource Identifier (URI): Generic Syntax</a>, section 4.2
      * &quot;Relative Reference&quot;).
      *
-     * <p>If the response has already been committed, this method throws 
+     * If the response has already been committed, this method throws
      * an IllegalStateException.
      * After using this method, the response should be considered
      * to be committed and should not be written to.
@@ -297,18 +297,18 @@ public interface HttpServletResponse extends ServletResponse {
     /**
      * Sets the status code for this response. 
      *
-     * <p>This method is used to set the return status code when there is
+     * This method is used to set the return status code when there is
      * no error (for example, for the SC_OK or SC_MOVED_TEMPORARILY status
      * codes).
      *
-     * <p>If this method is used to set an error code, then the container's
+     * If this method is used to set an error code, then the container's
      * error page mechanism will not be triggered. If there is an error and
      * the caller wishes to invoke an error page defined in the web
      * application, then {@link #sendError} must be used instead.
      *
-     * <p>This method preserves any cookies and other response headers. 
+     * This method preserves any cookies and other response headers.
      *
-     * <p>Valid status codes are those in the 2XX, 3XX, 4XX, and 5XX ranges.
+     * Valid status codes are those in the 2XX, 3XX, 4XX, and 5XX ranges.
      * Other status codes are treated as container specific.
      *
      * @param	sc	the status code
@@ -344,10 +344,10 @@ public interface HttpServletResponse extends ServletResponse {
     /**
      * Gets the value of the response header with the given name.
      * 
-     * <p>If a response header with the given name exists and contains
+     * If a response header with the given name exists and contains
      * multiple values, the value that was added first will be returned.
      *
-     * <p>This method considers only response headers set or added via
+     * This method considers only response headers set or added via
      * {@link #setHeader}, {@link #addHeader}, {@link #setDateHeader},
      * {@link #addDateHeader}, {@link #setIntHeader}, or
      * {@link #addIntHeader}, respectively.
@@ -365,12 +365,12 @@ public interface HttpServletResponse extends ServletResponse {
     /**
      * Gets the values of the response header with the given name.
      *
-     * <p>This method considers only response headers set or added via
+     * This method considers only response headers set or added via
      * {@link #setHeader}, {@link #addHeader}, {@link #setDateHeader},
      * {@link #addDateHeader}, {@link #setIntHeader}, or
      * {@link #addIntHeader}, respectively.
      *
-     * <p>Any changes to the returned <code>Collection</code> must not 
+     * Any changes to the returned <code>Collection</code> must not
      * affect this <code>HttpServletResponse</code>.
      *
      * @param name the name of the response header whose values to return
@@ -385,12 +385,12 @@ public interface HttpServletResponse extends ServletResponse {
     /**
      * Gets the names of the headers of this response.
      *
-     * <p>This method considers only response headers set or added via
+     * This method considers only response headers set or added via
      * {@link #setHeader}, {@link #addHeader}, {@link #setDateHeader},
      * {@link #addDateHeader}, {@link #setIntHeader}, or
      * {@link #addIntHeader}, respectively.
      *
-     * <p>Any changes to the returned <code>Collection</code> must not 
+     * Any changes to the returned <code>Collection</code> must not
      * affect this <code>HttpServletResponse</code>.
      *
      * @return a (possibly empty) <code>Collection</code> of the names
@@ -403,17 +403,17 @@ public interface HttpServletResponse extends ServletResponse {
     /**
      * Sets the supplier of trailer headers.
      *
-     * <p>The trailer header field value is defined as a comma-separated list
+     * The trailer header field value is defined as a comma-separated list
      * (see Section 3.2.2 and Section 4.1.2 of RFC 7230).</p>
      *
-     * <p>The supplier will be called within the scope of whatever thread/call
+     * The supplier will be called within the scope of whatever thread/call
      * causes the response content to be completed. Typically this will
      * be any thread calling close() on the output stream or writer.</p>
      *
-     * <p>The trailers that run afoul of the provisions of section 4.1.2 of
+     * The trailers that run afoul of the provisions of section 4.1.2 of
      * RFC 7230 are ignored.</p>
      *
-     * <p>The RFC requires the name of every key that is to be in the
+     * The RFC requires the name of every key that is to be in the
      * supplied Map is included in the comma separated list that is the value
      * of the "Trailer" response header.  The application is responsible for
      * ensuring this requirement is met.  Failure to do so may lead to

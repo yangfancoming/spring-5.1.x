@@ -16,7 +16,7 @@ import org.springframework.util.FileCopyUtils;
 /**
  * A representation of an uploaded file received in a multipart request.
  *
- * <p>The file contents are either stored in memory or temporarily on disk.
+ * The file contents are either stored in memory or temporarily on disk.
  * In either case, the user is responsible for copying file contents to a
  * session-level or persistent store as and if desired. The temporary storage
  * will be cleared at the end of request processing.
@@ -37,7 +37,7 @@ public interface MultipartFile extends InputStreamSource {
 
 	/**
 	 * Return the original filename in the client's filesystem.
-	 * <p>This may contain path information depending on the browser used,
+	 * This may contain path information depending on the browser used,
 	 * but it typically will not with any other than Opera.
 	 * @return the original filename, or the empty String if no file has been chosen
 	 * in the multipart form, or {@code null} if not defined or not available
@@ -76,7 +76,7 @@ public interface MultipartFile extends InputStreamSource {
 
 	/**
 	 * Return an InputStream to read the contents of the file from.
-	 * <p>The user is responsible for closing the returned stream.
+	 * The user is responsible for closing the returned stream.
 	 * @return the contents of the file as stream, or an empty stream if empty
 	 * @throws IOException in case of access errors (if the temporary store fails)
 	 */
@@ -96,13 +96,13 @@ public interface MultipartFile extends InputStreamSource {
 
 	/**
 	 * Transfer the received file to the given destination file.
-	 * <p>This may either move the file in the filesystem, copy the file in the
+	 * This may either move the file in the filesystem, copy the file in the
 	 * filesystem, or save memory-held contents to the destination file. If the
 	 * destination file already exists, it will be deleted first.
-	 * <p>If the target file has been moved in the filesystem, this operation
+	 * If the target file has been moved in the filesystem, this operation
 	 * cannot be invoked again afterwards. Therefore, call this method just once
 	 * in order to work with any storage mechanism.
-	 * <p><b>NOTE:</b> Depending on the underlying provider, temporary storage
+	 * <b>NOTE:</b> Depending on the underlying provider, temporary storage
 	 * may be container-dependent, including the base directory for relative
 	 * destinations specified here (e.g. with Servlet 3.0 multipart handling).
 	 * For absolute destinations, the target file may get renamed/moved from its
@@ -118,7 +118,7 @@ public interface MultipartFile extends InputStreamSource {
 
 	/**
 	 * Transfer the received file to the given destination file.
-	 * <p>The default implementation simply copies the file input stream.
+	 * The default implementation simply copies the file input stream.
 	 * @since 5.1
 	 * @see #getInputStream()
 	 * @see #transferTo(File)

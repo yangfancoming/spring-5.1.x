@@ -13,7 +13,7 @@ import org.springframework.core.io.Resource;
  * and {@link FileSystemXmlApplicationContext}, to be configured via setters,
  * with an eventual {@link #refresh()} call activating the context.
  *
- * <p>In case of multiple configuration files, bean definitions in later files
+ * In case of multiple configuration files, bean definitions in later files
  * will override those defined in earlier files. This can be leveraged to
  * intentionally override certain bean definitions via an extra configuration
  * file appended to the list.

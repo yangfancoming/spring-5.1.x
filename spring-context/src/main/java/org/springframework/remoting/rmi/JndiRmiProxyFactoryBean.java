@@ -13,18 +13,18 @@ import org.springframework.util.ClassUtils;
 /**
  * {@link FactoryBean} for RMI proxies from JNDI.
  *
- * <p>Typically used for RMI-IIOP (CORBA), but can also be used for EJB home objects
+ * Typically used for RMI-IIOP (CORBA), but can also be used for EJB home objects
  * (for example, a Stateful Session Bean home). In contrast to a plain JNDI lookup,
  * this accessor also performs narrowing through {@link javax.rmi.PortableRemoteObject}.
  *
- * <p>With conventional RMI services, this invoker is typically used with the RMI
+ * With conventional RMI services, this invoker is typically used with the RMI
  * service interface. Alternatively, this invoker can also proxy a remote RMI service
  * with a matching non-RMI business interface, i.e. an interface that mirrors the RMI
  * service methods but does not declare RemoteExceptions. In the latter case,
  * RemoteExceptions thrown by the RMI stub will automatically get converted to
  * Spring's unchecked RemoteAccessException.
  *
- * <p>The JNDI environment can be specified as "jndiEnvironment" property,
+ * The JNDI environment can be specified as "jndiEnvironment" property,
  * or be configured in a {@code jndi.properties} file or as system properties.
  * For example:
  *

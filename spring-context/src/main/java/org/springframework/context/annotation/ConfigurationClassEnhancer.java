@@ -132,9 +132,9 @@ class ConfigurationClassEnhancer {
 	 * Facilitates idempotent behavior for {@link ConfigurationClassEnhancer#enhance}
 	 * through checking to see if candidate classes are already assignable to it, e.g.
 	 * have already been enhanced.
-	 * <p>Also extends {@link BeanFactoryAware}, as all enhanced {@code @Configuration}
+	 * Also extends {@link BeanFactoryAware}, as all enhanced {@code @Configuration}
 	 * classes require access to the {@link BeanFactory} that created them.
-	 * <p>Note that this interface is intended for framework-internal use only, however
+	 * Note that this interface is intended for framework-internal use only, however
 	 * must remain public in order to allow access to subclasses generated from other
 	 * packages (i.e. user code).
 	 */
@@ -441,7 +441,7 @@ class ConfigurationClassEnhancer {
 		 * factory method's perspective, this means that the bean does not actually yet exist,
 		 * and that it is now our job to create it for the first time by executing the logic
 		 * in the corresponding factory method.
-		 * <p>Said another way, this check repurposes
+		 * Said another way, this check repurposes
 		 * {@link ConfigurableBeanFactory#isCurrentlyInCreation(String)} to determine whether
 		 * the container is calling this method or the user is calling this method.
 		 * @param beanName name of bean to check for

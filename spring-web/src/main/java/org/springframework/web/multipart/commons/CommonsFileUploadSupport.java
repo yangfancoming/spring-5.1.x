@@ -30,7 +30,7 @@ import org.springframework.web.util.WebUtils;
  * Base class for multipart resolvers that use Apache Commons FileUpload
  * 1.2 or above.
  *
- * <p>Provides common configuration properties and parsing functionality
+ * Provides common configuration properties and parsing functionality
  * for multipart requests, using a Map of Spring CommonsMultipartFile instances
  * as representation of uploaded files and a String-based parameter Map as
  * representation of uploaded form fields.
@@ -119,7 +119,7 @@ public abstract class CommonsFileUploadSupport {
 	 * Set the default character encoding to use for parsing requests,
 	 * to be applied to headers of individual parts and to form fields.
 	 * Default is ISO-8859-1, according to the Servlet spec.
-	 * <p>If the request specifies a character encoding itself, the request
+	 * If the request specifies a character encoding itself, the request
 	 * encoding will override this setting. This also allows for generically
 	 * overriding the character encoding in a filter that invokes the
 	 * {@code ServletRequest.setCharacterEncoding} method.
@@ -169,7 +169,7 @@ public abstract class CommonsFileUploadSupport {
 	/**
 	 * Set whether to preserve the filename as sent by the client, not stripping off
 	 * path information in {@link CommonsMultipartFile#getOriginalFilename()}.
-	 * <p>Default is "false", stripping off path information that may prefix the
+	 * Default is "false", stripping off path information that may prefix the
 	 * actual filename e.g. from Opera. Switch this to "true" for preserving the
 	 * client-specified filename as-is, including potential path separators.
 	 * @since 4.3.5
@@ -183,7 +183,7 @@ public abstract class CommonsFileUploadSupport {
 
 	/**
 	 * Factory method for a Commons DiskFileItemFactory instance.
-	 * <p>Default implementation returns a standard DiskFileItemFactory.
+	 * Default implementation returns a standard DiskFileItemFactory.
 	 * Can be overridden to use a custom subclass, e.g. for testing purposes.
 	 * @return the new DiskFileItemFactory instance
 	 */
@@ -193,7 +193,7 @@ public abstract class CommonsFileUploadSupport {
 
 	/**
 	 * Factory method for a Commons FileUpload instance.
-	 * <p><b>To be implemented by subclasses.</b>
+	 * <b>To be implemented by subclasses.</b>
 	 * @param fileItemFactory the Commons FileItemFactory to build upon
 	 * @return the Commons FileUpload instance
 	 */
@@ -202,7 +202,7 @@ public abstract class CommonsFileUploadSupport {
 
 	/**
 	 * Determine an appropriate FileUpload instance for the given encoding.
-	 * <p>Default implementation returns the shared FileUpload instance
+	 * Default implementation returns the shared FileUpload instance
 	 * if the encoding matches, else creates a new FileUpload instance
 	 * with the same configuration other than the desired encoding.
 	 * @param encoding the character encoding to use
@@ -295,7 +295,7 @@ public abstract class CommonsFileUploadSupport {
 	/**
 	 * Cleanup the Spring MultipartFiles created during multipart parsing,
 	 * potentially holding temporary data on disk.
-	 * <p>Deletes the underlying Commons FileItem instances.
+	 * Deletes the underlying Commons FileItem instances.
 	 * @param multipartFiles a Collection of MultipartFile instances
 	 * @see org.apache.commons.fileupload.FileItem#delete()
 	 */

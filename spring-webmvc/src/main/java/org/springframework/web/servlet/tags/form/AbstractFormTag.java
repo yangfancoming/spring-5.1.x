@@ -13,10 +13,10 @@ import org.springframework.web.servlet.tags.HtmlEscapingAwareTag;
  * Base class for all JSP form tags. Provides utility methods for
  * null-safe EL evaluation and for accessing and working with a {@link TagWriter}.
  *
- * <p>Subclasses should implement the {@link #writeTagContent(TagWriter)} to perform
+ * Subclasses should implement the {@link #writeTagContent(TagWriter)} to perform
  * actual tag rendering.
  *
- * <p>Subclasses (or test classes) can override the {@link #createTagWriter()} method to
+ * Subclasses (or test classes) can override the {@link #createTagWriter()} method to
  * redirect output to a {@link java.io.Writer} other than the {@link javax.servlet.jsp.JspWriter}
  * associated with the current {@link javax.servlet.jsp.PageContext}.
  *
@@ -29,7 +29,7 @@ public abstract class AbstractFormTag extends HtmlEscapingAwareTag {
 
 	/**
 	 * Evaluate the supplied value for the supplied attribute name.
-	 * <p>The default implementation simply returns the given value as-is.
+	 * The default implementation simply returns the given value as-is.
 	 */
 	@Nullable
 	protected Object evaluate(String attributeName, @Nullable Object value) throws JspException {

@@ -24,17 +24,17 @@ import org.springframework.util.CollectionUtils;
  * {@link EntityResolver} implementation that attempts to resolve schema URLs into
  * local {@link ClassPathResource classpath resources} using a set of mappings files.
  *
- * <p>By default, this class will look for mapping files in the classpath using the
+ * By default, this class will look for mapping files in the classpath using the
  * pattern: {@code META-INF/spring.schemas} allowing for multiple files to exist on
  * the classpath at any one time.
  *
- * <p>The format of {@code META-INF/spring.schemas} is a properties file where each line
+ * The format of {@code META-INF/spring.schemas} is a properties file where each line
  * should be of the form {@code systemId=schema-location} where {@code schema-location}
  * should also be a schema file in the classpath. Since {@code systemId} is commonly a
  * URL, one must be careful to escape any ':' characters which are treated as delimiters
  * in properties files.
  *
- * <p>The pattern for the mapping files can be overridden using the
+ * The pattern for the mapping files can be overridden using the
  * {@link #PluggableSchemaResolver(ClassLoader, String)} constructor.
  *
  * @author Rob Harrop

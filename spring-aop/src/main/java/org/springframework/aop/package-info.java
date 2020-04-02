@@ -1,7 +1,7 @@
 /**
  * Core Spring AOP interfaces, built on AOP Alliance AOP interoperability interfaces.
  *
- * <p>Any AOP Alliance MethodInterceptor is usable in Spring.
+ * Any AOP Alliance MethodInterceptor is usable in Spring.
  *
  * <br>Spring AOP also offers:
  * <ul>
@@ -14,7 +14,7 @@
  * be plugged in without modifying the core framework.
  * </ul>
  *
- * <p>Spring AOP can be used programmatically or (preferably)
+ * Spring AOP can be used programmatically or (preferably)
  * integrated with the Spring IoC container.
  */
 @NonNullApi

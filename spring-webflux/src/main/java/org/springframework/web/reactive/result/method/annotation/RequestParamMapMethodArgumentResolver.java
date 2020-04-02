@@ -20,7 +20,7 @@ import org.springframework.web.server.ServerWebExchange;
  * request parameter name. See {@link RequestParamMethodArgumentResolver} for
  * resolving {@link Map} method arguments with a request parameter name.
  *
- * <p>The created {@link Map} contains all request parameter name-value pairs.
+ * The created {@link Map} contains all request parameter name-value pairs.
  * If the method parameter type is {@link MultiValueMap} instead, the created
  * map contains all request parameters and all there values for cases where
  * request parameters have multiple values.

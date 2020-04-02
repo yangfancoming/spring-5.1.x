@@ -23,10 +23,10 @@ import static org.springframework.test.util.AssertionErrors.fail;
 /**
  * Factory for assertions on the selected handler or handler method.
  *
- * <p>An instance of this class is typically accessed via
+ * An instance of this class is typically accessed via
  * {@link MockMvcResultMatchers#handler}.
  *
- * <p><strong>Note:</strong> Expectations that assert the controller method
+ * <strong>Note:</strong> Expectations that assert the controller method
  * used to process the request work only for requests processed with
  * {@link RequestMappingHandlerMapping} and {@link RequestMappingHandlerAdapter}
  * which is used by default with the Spring MVC Java config and XML namespace.
@@ -64,9 +64,9 @@ public class HandlerResultMatchers {
 
 	/**
 	 * Assert the controller method used to process the request.
-	 * <p>The expected method is specified through a "mock" controller method
+	 * The expected method is specified through a "mock" controller method
 	 * invocation similar to {@link MvcUriComponentsBuilder#fromMethodCall(Object)}.
-	 * <p>For example, given this controller:
+	 * For example, given this controller:
 	 * <pre class="code">
 	 * &#064;RestController
 	 * public class SimpleController {
@@ -77,7 +77,7 @@ public class HandlerResultMatchers {
 	 *     }
 	 * }
 	 * </pre>
-	 * <p>A test that has statically imported {@link MvcUriComponentsBuilder#on}
+	 * A test that has statically imported {@link MvcUriComponentsBuilder#on}
 	 * can be performed as follows:
 	 * <pre class="code">
 	 * mockMvc.perform(get("/"))

@@ -246,9 +246,9 @@ public abstract class AbstractBindingResult extends AbstractErrors implements Bi
 	 * Return a model Map for the obtained state, exposing an Errors
 	 * instance as '{@link #MODEL_KEY_PREFIX MODEL_KEY_PREFIX} + objectName'
 	 * and the object itself.
-	 * <p>Note that the Map is constructed every time you're calling this method.
+	 * Note that the Map is constructed every time you're calling this method.
 	 * Adding things to the map and then re-calling this method will not work.
-	 * <p>The attributes in the model Map returned by this method are usually
+	 * The attributes in the model Map returned by this method are usually
 	 * included in the ModelAndView for a form view that uses Spring's bind tag,
 	 * which needs access to the Errors instance.
 	 * @see #getObjectName
@@ -324,7 +324,7 @@ public abstract class AbstractBindingResult extends AbstractErrors implements Bi
 
 	/**
 	 * Mark the specified disallowed field as suppressed.
-	 * <p>The data binder invokes this for each field value that was
+	 * The data binder invokes this for each field value that was
 	 * detected to target a disallowed field.
 	 * @see DataBinder#setAllowedFields
 	 */
@@ -335,7 +335,7 @@ public abstract class AbstractBindingResult extends AbstractErrors implements Bi
 
 	/**
 	 * Return the list of fields that were suppressed during the bind process.
-	 * <p>Can be used to determine whether any field values were targeting
+	 * Can be used to determine whether any field values were targeting
 	 * disallowed fields.
 	 * @see DataBinder#setAllowedFields
 	 */
@@ -386,7 +386,7 @@ public abstract class AbstractBindingResult extends AbstractErrors implements Bi
 
 	/**
 	 * Format the given value for the specified field.
-	 * <p>The default implementation simply returns the field value as-is.
+	 * The default implementation simply returns the field value as-is.
 	 * @param field the field to check
 	 * @param value the value of the field (either a rejected value
 	 * other than from a binding error, or an actual field value)

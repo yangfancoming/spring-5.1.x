@@ -9,7 +9,7 @@ import org.springframework.lang.Nullable;
 /**
  * Strategy interface used by {@link TransactionInterceptor} for metadata retrieval.
  *
- * <p>Implementations know how to source transaction attributes, whether from configuration,
+ * Implementations know how to source transaction attributes, whether from configuration,
  * metadata attributes at source level (such as Java 5 annotations), or anywhere else.
  * @since 15.04.2003
  * @see TransactionInterceptor#setTransactionAttributeSource

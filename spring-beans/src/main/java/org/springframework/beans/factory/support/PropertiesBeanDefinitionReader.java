@@ -27,9 +27,9 @@ import org.springframework.util.StringUtils;
 
 /**
  * Bean definition reader for a simple properties format.
- * <p>Provides bean definition registration methods for Map/Properties and ResourceBundle. Typically applied to a DefaultListableBeanFactory.
+ * Provides bean definition registration methods for Map/Properties and ResourceBundle. Typically applied to a DefaultListableBeanFactory.
  *
- * <p><b>Example:</b>
+ * <b>Example:</b>
  *
  * <pre class="code">
  * employee.(class)=MyClass       // bean is of class MyClass
@@ -138,11 +138,11 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 	 * Set the default parent bean for this bean factory.
 	 * If a child bean definition handled by this factory provides neither
 	 * a parent nor a class attribute, this default value gets used.
-	 * <p>Can be used e.g. for view definition files, to define a parent
+	 * Can be used e.g. for view definition files, to define a parent
 	 * with a default view class and common attributes for all views.
 	 * View definitions that define their own parent or carry their own
 	 * class can still override this.
-	 * <p>Strictly speaking, the rule that a default parent setting does
+	 * Strictly speaking, the rule that a default parent setting does
 	 * not apply to a bean definition that carries a class is there for
 	 * backwards compatibility reasons. It still matches the typical use case.
 	 */
@@ -255,7 +255,7 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 
 	/**
 	 * Register bean definitions contained in a ResourceBundle.
-	 * <p>Similar syntax as for a Map. This method is useful to enable  standard Java internationalization support.
+	 * Similar syntax as for a Map. This method is useful to enable  standard Java internationalization support.
 	 * @param rb the ResourceBundle to load from
 	 * @param prefix a filter within the keys in the map: e.g. 'beans.' (can be empty or {@code null})
 	 * @return the number of bean definitions found

@@ -87,11 +87,11 @@ public class ParameterizableViewController extends AbstractController {
 	/**
 	 * Configure the HTTP status code that this controller should set on the
 	 * response.
-	 * <p>When a "redirect:" prefixed view name is configured, there is no need
+	 * When a "redirect:" prefixed view name is configured, there is no need
 	 * to set this property since RedirectView will do that. However this property
 	 * may still be used to override the 3xx status code of {@code RedirectView}.
 	 * For full control over redirecting provide a {@code RedirectView} instance.
-	 * <p>If the status code is 204 and no view is configured, the request is
+	 * If the status code is 204 and no view is configured, the request is
 	 * fully handled within the controller.
 	 * @since 4.1
 	 */
@@ -113,7 +113,7 @@ public class ParameterizableViewController extends AbstractController {
 	 * The property can be used to indicate the request is considered fully
 	 * handled within the controller and that no view should be used for rendering.
 	 * Useful in combination with {@link #setStatusCode}.
-	 * <p>By default this is set to {@code false}.
+	 * By default this is set to {@code false}.
 	 * @since 4.1
 	 */
 	public void setStatusOnly(boolean statusOnly) {
@@ -130,7 +130,7 @@ public class ParameterizableViewController extends AbstractController {
 
 	/**
 	 * Return a ModelAndView object with the specified view name.
-	 * <p>The content of the {@link RequestContextUtils#getInputFlashMap
+	 * The content of the {@link RequestContextUtils#getInputFlashMap
 	 * "input" FlashMap} is also added to the model.
 	 * @see #getViewName()
 	 */

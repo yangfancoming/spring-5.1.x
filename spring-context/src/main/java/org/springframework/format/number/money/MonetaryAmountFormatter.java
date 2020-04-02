@@ -44,7 +44,7 @@ public class MonetaryAmountFormatter implements Formatter<MonetaryAmount> {
 	/**
 	 * Specify the format name, to be resolved by the JSR-354 provider
 	 * at runtime.
-	 * <p>Default is none, obtaining a {@link MonetaryAmountFormat}
+	 * Default is none, obtaining a {@link MonetaryAmountFormat}
 	 * based on the current locale.
 	 */
 	public void setFormatName(String formatName) {
@@ -65,7 +65,7 @@ public class MonetaryAmountFormatter implements Formatter<MonetaryAmount> {
 
 	/**
 	 * Obtain a MonetaryAmountFormat for the given locale.
-	 * <p>The default implementation simply calls
+	 * The default implementation simply calls
 	 * {@link javax.money.format.MonetaryFormats#getAmountFormat}
 	 * with either the configured format name or the given locale.
 	 * @param locale the current locale

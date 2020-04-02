@@ -14,7 +14,7 @@ import org.springframework.core.annotation.AliasFor;
  * Annotation for mapping HTTP {@code GET} requests onto specific handler
  * methods.
  *
- * <p>Specifically, {@code @GetMapping} is a <em>composed annotation</em> that
+ * Specifically, {@code @GetMapping} is a <em>composed annotation</em> that
  * acts as a shortcut for {@code @RequestMapping(method = RequestMethod.GET)}.
  *
  *

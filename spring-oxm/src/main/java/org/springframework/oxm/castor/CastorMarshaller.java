@@ -56,11 +56,11 @@ import org.springframework.util.xml.StaxUtils;
  * not require any further configuration, though setting target classes, target packages or
  * providing a mapping file can be used to have more control over the behavior of Castor.
  *
- * <p>If a target class is specified using {@code setTargetClass}, the {@code CastorMarshaller}
+ * If a target class is specified using {@code setTargetClass}, the {@code CastorMarshaller}
  * can only be used to unmarshal XML that represents that specific class. If you want to unmarshal
  * multiple classes, you have to provide a mapping file using {@code setMappingLocations}.
  *
- * <p>Due to limitations of Castor's API, it is required to set the encoding used for writing
+ * Due to limitations of Castor's API, it is required to set the encoding used for writing
  * to output streams. It defaults to {@code UTF-8}.
  *
  * @author Arjen Poutsma
@@ -223,7 +223,7 @@ public class CastorMarshaller extends AbstractMarshaller implements Initializing
 
 	/**
 	 * Set whether this marshaller should validate in- and outgoing documents.
-	 * <p>Default is {@code false}.
+	 * Default is {@code false}.
 	 * @see Marshaller#setValidation(boolean)
 	 */
 	public void setValidating(boolean validating) {
@@ -232,7 +232,7 @@ public class CastorMarshaller extends AbstractMarshaller implements Initializing
 
 	/**
 	 * Sets whether this marshaller should output namespaces.
-	 * <p>The default is {@code false}, i.e. namespaces are written.
+	 * The default is {@code false}, i.e. namespaces are written.
 	 * @see org.exolab.castor.xml.Marshaller#setSuppressNamespaces(boolean)
 	 */
 	public void setSuppressNamespaces(boolean suppressNamespaces) {
@@ -241,7 +241,7 @@ public class CastorMarshaller extends AbstractMarshaller implements Initializing
 
 	/**
 	 * Set whether this marshaller should output the {@code xsi:type} attribute.
-	 * <p>The default is {@code false}, i.e. the {@code xsi:type} is written.
+	 * The default is {@code false}, i.e. the {@code xsi:type} is written.
 	 * @see org.exolab.castor.xml.Marshaller#setSuppressXSIType(boolean)
 	 */
 	public void setSuppressXsiType(boolean suppressXsiType) {
@@ -250,7 +250,7 @@ public class CastorMarshaller extends AbstractMarshaller implements Initializing
 
 	/**
 	 * Set whether this marshaller should output the xml declaration.
-	 * <p>The default is {@code true}, the XML declaration will be written.
+	 * The default is {@code true}, the XML declaration will be written.
 	 * @see org.exolab.castor.xml.Marshaller#setMarshalAsDocument(boolean)
 	 */
 	public void setMarshalAsDocument(boolean marshalAsDocument) {
@@ -259,7 +259,7 @@ public class CastorMarshaller extends AbstractMarshaller implements Initializing
 
 	/**
 	 * Set whether this marshaller should output for given type the {@code xsi:type} attribute.
-	 * <p>The default is {@code true}, the {@code xsi:type} attribute will be written.
+	 * The default is {@code true}, the {@code xsi:type} attribute will be written.
 	 * @see org.exolab.castor.xml.Marshaller#setMarshalExtendedType(boolean)
 	 */
 	public void setMarshalExtendedType(boolean marshalExtendedType) {
@@ -295,7 +295,7 @@ public class CastorMarshaller extends AbstractMarshaller implements Initializing
 	/**
 	 * Sets whether this marshaller should output the {@code xsi:type} attribute for the root element.
 	 * This can be useful when the type of the element can not be simply determined from the element name.
-	 * <p>The default is {@code false}: The {@code xsi:type} attribute for the root element won't be written.
+	 * The default is {@code false}: The {@code xsi:type} attribute for the root element won't be written.
 	 * @see org.exolab.castor.xml.Marshaller#setUseXSITypeAtRoot(boolean)
 	 */
 	public void setUseXSITypeAtRoot(boolean useXSITypeAtRoot) {
@@ -304,7 +304,7 @@ public class CastorMarshaller extends AbstractMarshaller implements Initializing
 
 	/**
 	 * Set whether the Castor {@link Unmarshaller} should preserve "ignorable" whitespace.
-	 * <p>Default is {@code false}.
+	 * Default is {@code false}.
 	 * @see org.exolab.castor.xml.Unmarshaller#setWhitespacePreserve(boolean)
 	 */
 	public void setWhitespacePreserve(boolean whitespacePreserve) {
@@ -313,7 +313,7 @@ public class CastorMarshaller extends AbstractMarshaller implements Initializing
 
 	/**
 	 * Set whether the Castor {@link Unmarshaller} should ignore attributes that do not match a specific field.
-	 * <p>Default is {@code true}: Extra attributes are ignored.
+	 * Default is {@code true}: Extra attributes are ignored.
 	 * @see org.exolab.castor.xml.Unmarshaller#setIgnoreExtraAttributes(boolean)
 	 */
 	public void setIgnoreExtraAttributes(boolean ignoreExtraAttributes) {
@@ -322,7 +322,7 @@ public class CastorMarshaller extends AbstractMarshaller implements Initializing
 
 	/**
 	 * Set whether the Castor {@link Unmarshaller} should ignore elements that do not match a specific field.
-	 * <p>Default is {@code false}: Extra elements are flagged as an error.
+	 * Default is {@code false}: Extra elements are flagged as an error.
 	 * @see org.exolab.castor.xml.Unmarshaller#setIgnoreExtraElements(boolean)
 	 */
 	public void setIgnoreExtraElements(boolean ignoreExtraElements) {
@@ -340,7 +340,7 @@ public class CastorMarshaller extends AbstractMarshaller implements Initializing
 	/**
 	 * Set whether this unmarshaller should re-use objects.
 	 * This will be only used when unmarshalling to an existing object.
-	 * <p>The default is {@code false}, which means that the objects won't be re-used.
+	 * The default is {@code false}, which means that the objects won't be re-used.
 	 * @see org.exolab.castor.xml.Unmarshaller#setReuseObjects(boolean)
 	 */
 	public void setReuseObjects(boolean reuseObjects) {
@@ -349,7 +349,7 @@ public class CastorMarshaller extends AbstractMarshaller implements Initializing
 
 	/**
 	 * Sets whether this unmarshaller should clear collections upon the first use.
-	 * <p>The default is {@code false} which means that marshaller won't clear collections.
+	 * The default is {@code false} which means that marshaller won't clear collections.
 	 * @see org.exolab.castor.xml.Unmarshaller#setClearCollections(boolean)
 	 */
 	public void setClearCollections(boolean clearCollections) {
@@ -456,7 +456,7 @@ public class CastorMarshaller extends AbstractMarshaller implements Initializing
 
 	/**
 	 * Create the Castor {@code XMLContext}. Subclasses can override this to create a custom context.
-	 * <p>The default implementation loads mapping files if defined, or the target class or packages if defined.
+	 * The default implementation loads mapping files if defined, or the target class or packages if defined.
 	 * @return the created resolver
 	 * @throws MappingException when the mapping file cannot be loaded
 	 * @throws IOException in case of I/O errors
@@ -692,7 +692,7 @@ public class CastorMarshaller extends AbstractMarshaller implements Initializing
 	/**
 	 * Convert the given {@code XMLException} to an appropriate exception from the
 	 * {@code org.springframework.oxm} hierarchy.
-	 * <p>A boolean flag is used to indicate whether this exception occurs during marshalling or
+	 * A boolean flag is used to indicate whether this exception occurs during marshalling or
 	 * unmarshalling, since Castor itself does not make this distinction in its exception hierarchy.
 	 * @param ex the Castor {@code XMLException} that occurred
 	 * @param marshalling indicates whether the exception occurs during marshalling ({@code true}),

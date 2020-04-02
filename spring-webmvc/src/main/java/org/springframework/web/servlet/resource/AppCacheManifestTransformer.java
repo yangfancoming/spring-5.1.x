@@ -26,7 +26,7 @@ import org.springframework.util.StringUtils;
  * A {@link ResourceTransformer} implementation that helps handling resources
  * within HTML5 AppCache manifests for HTML5 offline applications.
  *
- * <p>This transformer:
+ * This transformer:
  * <ul>
  * <li>modifies links to match the public URL paths that should be exposed to clients,
  * using configured {@code ResourceResolver} strategies
@@ -34,12 +34,12 @@ import org.springframework.util.StringUtils;
  * thus changing the content of the manifest in order to trigger an appcache reload in the browser.
  * </ul>
  *
- * <p>All files that have the ".appcache" file extension, or the extension given in the constructor,
+ * All files that have the ".appcache" file extension, or the extension given in the constructor,
  * will be transformed by this class. This hash is computed using the content of the appcache manifest
  * and the content of the linked resources; so changing a resource linked in the manifest
  * or the manifest itself should invalidate the browser cache.
  *
- * <p>In order to serve manifest files with the proper {@code "text/manifest"} content type,
+ * In order to serve manifest files with the proper {@code "text/manifest"} content type,
  * it is required to configure it with
  * {@code contentNegotiationConfigurer.mediaType("appcache", MediaType.valueOf("text/manifest")}
  * in a {@code WebMvcConfigurer}.

@@ -13,7 +13,7 @@ import org.springframework.util.ObjectUtils;
  * Extension of MethodOverride that represents an arbitrary
  * override of a method by the IoC container.
  *
- * <p>Any non-final method can be overridden, irrespective of its
+ * Any non-final method can be overridden, irrespective of its
  * parameters and return types.
  *
  * @author Rod Johnson

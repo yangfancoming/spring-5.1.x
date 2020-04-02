@@ -13,23 +13,23 @@ import com.gargoylesoftware.htmlunit.WebRequest;
  * A {@link WebRequestMatcher} that allows matching on the host and optionally
  * the port of {@code WebRequest#getUrl()}.
  *
- * <p>For example, the following would match any request to the host
+ * For example, the following would match any request to the host
  * {@code "code.jquery.com"} without regard for the port.
  *
  * <pre class="code">WebRequestMatcher cdnMatcher = new HostMatcher("code.jquery.com");</pre>
  *
- * <p>Multiple hosts can also be passed in. For example, the following would
+ * Multiple hosts can also be passed in. For example, the following would
  * match any request to the host {@code "code.jquery.com"} or the host
  * {@code "cdn.com"} without regard for the port.
  *
  * <pre class="code">WebRequestMatcher cdnMatcher = new HostMatcher("code.jquery.com", "cdn.com");</pre>
  *
- * <p>Alternatively, one can also specify the port. For example, the following would match
+ * Alternatively, one can also specify the port. For example, the following would match
  * any request to the host {@code "code.jquery.com"} with the port of {@code 80}.
  *
  * <pre class="code">WebRequestMatcher cdnMatcher = new HostMatcher("code.jquery.com:80");</pre>
  *
- * <p>The above {@code cdnMatcher} would match {@code "http://code.jquery.com/jquery.js"}
+ * The above {@code cdnMatcher} would match {@code "http://code.jquery.com/jquery.js"}
  * which has a default port of {@code 80} and {@code "http://code.jquery.com:80/jquery.js"}.
  * However, it would not match {@code "https://code.jquery.com/jquery.js"}
  * which has a default port of {@code 443}.

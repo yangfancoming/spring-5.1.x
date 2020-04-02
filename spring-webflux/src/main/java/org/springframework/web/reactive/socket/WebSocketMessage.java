@@ -11,7 +11,7 @@ import org.springframework.util.ObjectUtils;
 
 /**
  * Representation of a WebSocket message.
- * <p>See static factory methods in {@link WebSocketSession} for creating messages
+ * See static factory methods in {@link WebSocketSession} for creating messages
  * with the {@link org.springframework.core.io.buffer.DataBufferFactory
  * DataBufferFactory} for the session.
  *
@@ -27,7 +27,7 @@ public class WebSocketMessage {
 
 	/**
 	 * Constructor for a WebSocketMessage.
-	 * <p>See static factory methods in {@link WebSocketSession} or alternatively
+	 * See static factory methods in {@link WebSocketSession} or alternatively
 	 * use {@link WebSocketSession#bufferFactory()} to create the payload and
 	 * then invoke this constructor.
 	 */

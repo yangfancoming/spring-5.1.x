@@ -9,14 +9,14 @@ import javax.sql.DataSource;
  * with the equivalent of an auto-increment column. Note: If you use this class, your Derby key
  * column should <i>NOT</i> be defined as an IDENTITY column, as the sequence table does the job.
  *
- * <p>The sequence is kept in a table. There should be one sequence table per
+ * The sequence is kept in a table. There should be one sequence table per
  * table that needs an auto-generated key.
  *
- * <p>Derby requires an additional column to be used for the insert since it is impossible
+ * Derby requires an additional column to be used for the insert since it is impossible
  * to insert a null into the identity column and have the value generated.  This is solved by
  * providing the name of a dummy column that also must be created in the sequence table.
  *
- * <p>Example:
+ * Example:
  *
  * <pre class="code">create table tab (id int not null primary key, text varchar(100));
  * create table tab_sequence (value int generated always as identity, dummy char(1));
@@ -33,7 +33,7 @@ import javax.sql.DataSource;
  * {@code update(PreparedStatementCreator psc, KeyHolder generatedKeyHolder)}
  * method of the {@link org.springframework.jdbc.core.JdbcTemplate}.
  *
- * <p>Thanks to Endre Stolsvik for the suggestion!
+ * Thanks to Endre Stolsvik for the suggestion!
  * @since 2.5
  */
 public class DerbyMaxValueIncrementer extends AbstractIdentityColumnMaxValueIncrementer {

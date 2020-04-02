@@ -8,13 +8,13 @@ import java.util.Set;
  * According section 8.2 of RFC 7540, a promised request must be cacheable and
  * safe without a request body.
  *
- * <p>A PushBuilder is obtained by calling {@link
+ * A PushBuilder is obtained by calling {@link
  * HttpServletRequest#newPushBuilder()}.  Each call to this method will
  * a new instance of a PushBuilder based off the current {@code
  * HttpServletRequest}, or null.  Any mutations to the returned PushBuilder are
  * not reflected on future returns.</p>
  *
- * <p>The instance is initialized as follows:</p>
+ * The instance is initialized as follows:</p>
  *
  * <ul>
  *
@@ -61,12 +61,12 @@ import java.util.Set;
  *
  * </ul> 
  *
- * <p>The {@link #path} method must be called on the {@code PushBuilder}
+ * The {@link #path} method must be called on the {@code PushBuilder}
  * instance before the call to {@link #push}.  Failure to do so must
  * cause an exception to be thrown from {@link
  * #push}, as specified in that method.</p>
  * 
- * <p>A PushBuilder can be customized by chained calls to mutator
+ * A PushBuilder can be customized by chained calls to mutator
  * methods before the {@link #push()} method is called to initiate an
  * asynchronous push request with the current state of the builder.
  * After the call to {@link #push()}, the builder may be reused for
@@ -79,7 +79,7 @@ import java.util.Set;
  */
 public interface PushBuilder {
     /** 
-     * <p>Set the method to be used for the push.</p>
+     * Set the method to be used for the push.</p>
      * 
      * @throws NullPointerException if the argument is {@code null}
      *
@@ -118,7 +118,7 @@ public interface PushBuilder {
     public PushBuilder sessionId(String sessionId);
     
     /** 
-     * <p>Set a request header to be used for the push.  If the builder has an
+     * Set a request header to be used for the push.  If the builder has an
      * existing header with the same name, its value is overwritten.</p>
      *
      * @param name The header name to set
@@ -128,7 +128,7 @@ public interface PushBuilder {
     public PushBuilder setHeader(String name, String value);
     
     /** 
-     * <p>Add a request header to be used for the push.</p>
+     * Add a request header to be used for the push.</p>
      * @param name The header name to add
      * @param value The header value to add
      * @return this builder.
@@ -136,7 +136,7 @@ public interface PushBuilder {
     public PushBuilder addHeader(String name, String value);
 
     /** 
-     * <p>Remove the named request header.  If the header does not exist, take
+     * Remove the named request header.  If the header does not exist, take
      * no action.</p>
      *
      * @param name The name of the header to remove
@@ -164,17 +164,17 @@ public interface PushBuilder {
      * Push a resource given the current state of the builder,
      * the method must be non-blocking.
      *
-     * <p>Push a resource based on the current state of the PushBuilder.
+     * Push a resource based on the current state of the PushBuilder.
      * Calling this method does not guarantee the resource will actually
      * be pushed, since it is possible the client can decline acceptance
      * of the pushed resource using the underlying HTTP/2 protocol.</p>
      *
-     * <p>If the builder has a session ID, then the pushed request will
+     * If the builder has a session ID, then the pushed request will
      * include the session ID either as a Cookie or as a URI parameter
      * as appropriate. The builders query string is merged with any
      * passed query string.</p>
      *
-     * <p>Before returning from this method, the builder has its path,
+     * Before returning from this method, the builder has its path,
      * conditional headers (defined in RFC 7232) nulled. All other fields
      * are left as is for possible reuse in another push.</p>
      *
@@ -209,7 +209,7 @@ public interface PushBuilder {
     /**
      * Return the set of header to be used for the push.
      *
-     * <p>The returned set is not backed by the {@code PushBuilder} object,
+     * The returned set is not backed by the {@code PushBuilder} object,
      * so changes in the returned set are not reflected in the
      * {@code PushBuilder} object, and vice-versa.</p>
      *

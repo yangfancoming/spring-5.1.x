@@ -14,7 +14,7 @@ import org.springframework.http.HttpMethod;
 /**
  * {@link ClientHttpRequest} implementation based on OkHttp 3.x.
  *
- * <p>Created via the {@link OkHttp3ClientHttpRequestFactory}.
+ * Created via the {@link OkHttp3ClientHttpRequestFactory}.
  *
  * @author Luciano Leggieri
  * @author Arjen Poutsma

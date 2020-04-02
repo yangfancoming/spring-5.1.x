@@ -31,7 +31,7 @@ import org.springframework.util.Assert;
  * {@code SpringExtension} integrates the <em>Spring TestContext Framework</em>
  * into JUnit 5's <em>Jupiter</em> programming model.
  *
- * <p>To use this extension, simply annotate a JUnit Jupiter based test class with
+ * To use this extension, simply annotate a JUnit Jupiter based test class with
  * {@code @ExtendWith(SpringExtension.class)}, {@code @SpringJUnitConfig}, or
  * {@code @SpringJUnitWebConfig}.
  *
@@ -128,10 +128,10 @@ public class SpringExtension implements BeforeAllCallback, AfterAllCallback, Tes
 	/**
 	 * Determine if the value for the {@link Parameter} in the supplied {@link ParameterContext}
 	 * should be autowired from the test's {@link ApplicationContext}.
-	 * <p>Returns {@code true} if the parameter is declared in a {@link Constructor}
+	 * Returns {@code true} if the parameter is declared in a {@link Constructor}
 	 * that is annotated with {@link Autowired @Autowired} and otherwise delegates to
 	 * {@link ParameterAutowireUtils#isAutowirable}.
-	 * <p><strong>WARNING</strong>: If the parameter is declared in a {@code Constructor}
+	 * <strong>WARNING</strong>: If the parameter is declared in a {@code Constructor}
 	 * that is annotated with {@code @Autowired}, Spring will assume the responsibility
 	 * for resolving all parameters in the constructor. Consequently, no other registered
 	 * {@link ParameterResolver} will be able to resolve parameters.
@@ -151,7 +151,7 @@ public class SpringExtension implements BeforeAllCallback, AfterAllCallback, Tes
 	/**
 	 * Resolve a value for the {@link Parameter} in the supplied {@link ParameterContext} by
 	 * retrieving the corresponding dependency from the test's {@link ApplicationContext}.
-	 * <p>Delegates to {@link ParameterAutowireUtils#resolveDependency}.
+	 * Delegates to {@link ParameterAutowireUtils#resolveDependency}.
 	 * @see #supportsParameter
 	 * @see ParameterAutowireUtils#resolveDependency
 	 */

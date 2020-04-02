@@ -21,11 +21,11 @@ import org.springframework.web.multipart.MultipartRequest;
  * Special {@link org.springframework.validation.DataBinder} to perform data binding
  * from web request parameters to JavaBeans, including support for multipart files.
  *
- * <p>See the DataBinder/WebDataBinder superclasses for customization options,
+ * See the DataBinder/WebDataBinder superclasses for customization options,
  * which include specifying allowed/required fields, and registering custom
  * property editors.
  *
- * <p>Can also used for manual data binding in custom web controllers or interceptors
+ * Can also used for manual data binding in custom web controllers or interceptors
  * that build on Spring's {@link org.springframework.web.context.request.WebRequest}
  * abstraction: e.g. in a {@link org.springframework.web.context.request.WebRequestInterceptor}
  * implementation. Simply instantiate a WebRequestDataBinder for each binding
@@ -78,13 +78,13 @@ public class WebRequestDataBinder extends WebDataBinder {
 	/**
 	 * Bind the parameters of the given request to this binder's target,
 	 * also binding multipart files in case of a multipart request.
-	 * <p>This call can create field errors, representing basic binding
+	 * This call can create field errors, representing basic binding
 	 * errors like a required field (code "required"), or type mismatch
 	 * between value and bean property (code "typeMismatch").
-	 * <p>Multipart files are bound via their parameter name, just like normal
+	 * Multipart files are bound via their parameter name, just like normal
 	 * HTTP parameters: i.e. "uploadedFile" to an "uploadedFile" bean property,
 	 * invoking a "setUploadedFile" setter method.
-	 * <p>The type of the target property for a multipart file can be Part, MultipartFile,
+	 * The type of the target property for a multipart file can be Part, MultipartFile,
 	 * byte[], or String. The latter two receive the contents of the uploaded file;
 	 * all metadata like original file name, content type, etc are lost in those cases.
 	 * @param request request with parameters to bind (can be multipart)
@@ -144,7 +144,7 @@ public class WebRequestDataBinder extends WebDataBinder {
 
 	/**
 	 * Treats errors as fatal.
-	 * <p>Use this method only if it's an error if the input isn't valid.
+	 * Use this method only if it's an error if the input isn't valid.
 	 * This might be appropriate if all input is from dropdowns, for example.
 	 * @throws BindException if binding errors have been encountered
 	 */

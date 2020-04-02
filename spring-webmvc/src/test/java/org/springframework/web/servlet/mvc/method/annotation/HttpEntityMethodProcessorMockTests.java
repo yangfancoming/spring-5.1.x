@@ -55,7 +55,7 @@ import static org.springframework.web.servlet.HandlerMapping.*;
  * Test fixture for {@link HttpEntityMethodProcessor} delegating to a mock
  * {@link HttpMessageConverter}.
  *
- * <p>Also see {@link HttpEntityMethodProcessorTests}.
+ * Also see {@link HttpEntityMethodProcessorTests}.
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev

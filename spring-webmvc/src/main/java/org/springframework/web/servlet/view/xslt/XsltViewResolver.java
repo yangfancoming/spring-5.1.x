@@ -51,7 +51,7 @@ public class XsltViewResolver extends UrlBasedViewResolver {
 	/**
 	 * Set the name of the model attribute that represents the XSLT Source.
 	 * If not specified, the model map will be searched for a matching value type.
-	 * <p>The following source types are supported out of the box:
+	 * The following source types are supported out of the box:
 	 * {@link javax.xml.transform.Source}, {@link org.w3c.dom.Document},
 	 * {@link org.w3c.dom.Node}, {@link java.io.Reader}, {@link java.io.InputStream}
 	 * and {@link org.springframework.core.io.Resource}.
@@ -62,7 +62,7 @@ public class XsltViewResolver extends UrlBasedViewResolver {
 
 	/**
 	 * Set the URIResolver used in the transform.
-	 * <p>The URIResolver handles calls to the XSLT {@code document()} function.
+	 * The URIResolver handles calls to the XSLT {@code document()} function.
 	 */
 	public void setUriResolver(URIResolver uriResolver) {
 		this.uriResolver = uriResolver;
@@ -71,7 +71,7 @@ public class XsltViewResolver extends UrlBasedViewResolver {
 	/**
 	 * Set an implementation of the {@link javax.xml.transform.ErrorListener}
 	 * interface for custom handling of transformation errors and warnings.
-	 * <p>If not set, a default
+	 * If not set, a default
 	 * {@link org.springframework.util.xml.SimpleTransformErrorListener} is
 	 * used that simply logs warnings using the logger instance of the view class,
 	 * and rethrows errors to discontinue the XML transformation.
@@ -84,7 +84,7 @@ public class XsltViewResolver extends UrlBasedViewResolver {
 	/**
 	 * Set whether the XSLT transformer may add additional whitespace when
 	 * outputting the result tree.
-	 * <p>Default is {@code true} (on); set this to {@code false} (off)
+	 * Default is {@code true} (on); set this to {@code false} (off)
 	 * to not specify an "indent" key, leaving the choice up to the stylesheet.
 	 * @see javax.xml.transform.OutputKeys#INDENT
 	 */
@@ -94,7 +94,7 @@ public class XsltViewResolver extends UrlBasedViewResolver {
 
 	/**
 	 * Set arbitrary transformer output properties to be applied to the stylesheet.
-	 * <p>Any values specified here will override defaults that this view sets
+	 * Any values specified here will override defaults that this view sets
 	 * programmatically.
 	 * @see javax.xml.transform.Transformer#setOutputProperty
 	 */
@@ -104,7 +104,7 @@ public class XsltViewResolver extends UrlBasedViewResolver {
 
 	/**
 	 * Turn on/off the caching of the XSLT templates.
-	 * <p>The default value is "true". Only set this to "false" in development,
+	 * The default value is "true". Only set this to "false" in development,
 	 * where caching does not seriously impact performance.
 	 */
 	public void setCacheTemplates(boolean cacheTemplates) {

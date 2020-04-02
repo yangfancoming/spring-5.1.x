@@ -17,11 +17,11 @@ import org.springframework.util.Assert;
  * that can read and write JSON using the
  * <a href="https://code.google.com/p/google-gson/">Google Gson</a> library.
  *
- * <p>This converter can be used to bind to typed beans or untyped {@code HashMap}s.
+ * This converter can be used to bind to typed beans or untyped {@code HashMap}s.
  * By default, it supports {@code application/json} and {@code application/*+json} with
  * {@code UTF-8} character set.
  *
- * <p>Tested against Gson 2.8; compatible with Gson 2.0 and higher.
+ * Tested against Gson 2.8; compatible with Gson 2.0 and higher.
  *
  * @author Roy Clarkson
 
@@ -56,7 +56,7 @@ public class GsonHttpMessageConverter extends AbstractJsonHttpMessageConverter {
 	/**
 	 * Set the {@code Gson} instance to use.
 	 * If not set, a default {@link Gson#Gson() Gson} instance will be used.
-	 * <p>Setting a custom-configured {@code Gson} is one way to take further
+	 * Setting a custom-configured {@code Gson} is one way to take further
 	 * control of the JSON serialization process.
 	 * @see #GsonHttpMessageConverter(Gson)
 	 */

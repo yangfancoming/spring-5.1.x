@@ -84,7 +84,7 @@ public class DefaultDataBufferFactory implements DataBufferFactory {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation creates a single {@link DefaultDataBuffer}
+	 * This implementation creates a single {@link DefaultDataBuffer}
 	 * to contain the data in {@code dataBuffers}.
 	 */
 	@Override

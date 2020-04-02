@@ -12,7 +12,7 @@ import org.springframework.web.server.ServerWebExchange;
 /**
  * Strategy to resolve the requested media types for a {@code ServerWebExchange}.
  *
- * <p>See {@link RequestedContentTypeResolverBuilder} to create a sequence of
+ * See {@link RequestedContentTypeResolverBuilder} to create a sequence of
  * strategies.
  *
  * @author Rossen Stoyanchev

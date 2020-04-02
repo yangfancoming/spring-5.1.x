@@ -24,7 +24,7 @@ import org.springframework.lang.Nullable;
 /**
  * Common base class for plain JSON converters, e.g. Gson and JSON-B.
  *
- * <p>Note that the Jackson converters have a dedicated class hierarchy
+ * Note that the Jackson converters have a dedicated class hierarchy
  * due to their multi-format support.
  *
 
@@ -62,7 +62,7 @@ public abstract class AbstractJsonHttpMessageConverter extends AbstractGenericHt
 	/**
 	 * Indicate whether the JSON output by this view should be prefixed with ")]}', ".
 	 * Default is {@code false}.
-	 * <p>Prefixing the JSON string in this manner is used to help prevent JSON
+	 * Prefixing the JSON string in this manner is used to help prevent JSON
 	 * Hijacking. The prefix renders the string syntactically invalid as a script
 	 * so that it cannot be hijacked.
 	 * This prefix should be stripped before parsing the string as JSON.

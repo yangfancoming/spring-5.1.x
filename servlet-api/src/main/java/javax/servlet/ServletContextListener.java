@@ -7,13 +7,13 @@ import java.util.EventListener;
 /** 
  * Interface for receiving notification events about ServletContext lifecycle changes.
  *
- * <p>In order to receive these notification events, the implementation
+ * In order to receive these notification events, the implementation
  * class must be either declared in the deployment descriptor of the web
  * application, annotated with {@link javax.servlet.annotation.WebListener},
  * or registered via one of the addListener methods defined on
  * {@link ServletContext}.
  *
- * <p>Implementations of this interface are invoked at their
+ * Implementations of this interface are invoked at their
  * {@link #contextInitialized} method in the order in which they have been
  * declared, and at their {@link #contextDestroyed} method in reverse order.
  *
@@ -25,7 +25,7 @@ public interface ServletContextListener extends EventListener {
     /**
      * Receives notification that the web application initialization process is starting.
      * 接收Web应用程序初始化进程正在启动的通知
-     * <p>All ServletContextListeners are notified of context initialization before any filters or servlets in the web application are initialized.
+     * All ServletContextListeners are notified of context initialization before any filters or servlets in the web application are initialized.
      *
      * 在初始化Web应用程序中的任何过滤器或servlet之前，将通知所有servletContextListener上下文初始化。
      *
@@ -37,7 +37,7 @@ public interface ServletContextListener extends EventListener {
     /**
      * Receives notification that the ServletContext is about to be shut down.
      *
-     * <p>All servlets and filters will have been destroyed before any
+     * All servlets and filters will have been destroyed before any
      * ServletContextListeners are notified of context
      * destruction.
      *

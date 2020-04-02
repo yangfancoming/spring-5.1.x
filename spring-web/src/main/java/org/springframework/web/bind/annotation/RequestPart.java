@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartResolver;
  * Annotation that can be used to associate the part of a "multipart/form-data" request
  * with a method argument.
  *
- * <p>Supported method argument types include {@link MultipartFile} in conjunction with
+ * Supported method argument types include {@link MultipartFile} in conjunction with
  * Spring's {@link MultipartResolver} abstraction, {@code javax.servlet.http.Part} in
  * conjunction with Servlet 3.0 multipart requests, or otherwise for any other method
  * argument, the content of the part is passed through an {@link HttpMessageConverter}
@@ -27,7 +27,7 @@ import org.springframework.web.multipart.MultipartResolver;
  * analogous to what @{@link RequestBody} does to resolve an argument based on the
  * content of a non-multipart regular request.
  *
- * <p>Note that @{@link RequestParam} annotation can also be used to associate the part
+ * Note that @{@link RequestParam} annotation can also be used to associate the part
  * of a "multipart/form-data" request with a method argument supporting the same method
  * argument types. The main difference is that when the method argument is not a String
  * or raw {@code MultipartFile} / {@code Part}, {@code @RequestParam} relies on type
@@ -65,7 +65,7 @@ public @interface RequestPart {
 
 	/**
 	 * Whether the part is required.
-	 * <p>Defaults to {@code true}, leading to an exception being thrown
+	 * Defaults to {@code true}, leading to an exception being thrown
 	 * if the part is missing in the request. Switch this to
 	 * {@code false} if you prefer a {@code null} value if the part is
 	 * not present in the request.

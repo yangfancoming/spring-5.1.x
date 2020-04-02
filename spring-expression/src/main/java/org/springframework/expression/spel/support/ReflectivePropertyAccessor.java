@@ -35,7 +35,7 @@ import org.springframework.util.StringUtils;
  * A powerful {@link PropertyAccessor} that uses reflection to access properties
  * for reading and possibly also for writing.
  *
- * <p>A property can be referenced through a public getter method (when being read)
+ * A property can be referenced through a public getter method (when being read)
  * or a public setter method (when being written), and also as a public field.
  *
  * @author Andy Clement
@@ -410,7 +410,7 @@ public class ReflectivePropertyAccessor implements PropertyAccessor {
 	/**
 	 * Determine whether the given {@code Method} is a candidate for property access
 	 * on an instance of the given target class.
-	 * <p>The default implementation considers any method as a candidate, even for
+	 * The default implementation considers any method as a candidate, even for
 	 * non-user-declared properties on the {@link Object} base class.
 	 * @param method the Method to evaluate
 	 * @param targetClass the concrete target class that is being introspected
@@ -500,7 +500,7 @@ public class ReflectivePropertyAccessor implements PropertyAccessor {
 	 * member (method/field) to use each time read() is called. This method will just
 	 * return the ReflectivePropertyAccessor instance if it is unable to build a more
 	 * optimal accessor.
-	 * <p>Note: An optimal accessor is currently only usable for read attempts.
+	 * Note: An optimal accessor is currently only usable for read attempts.
 	 * Do not call this method if you need a read-write accessor.
 	 * @see OptimalPropertyAccessor
 	 */

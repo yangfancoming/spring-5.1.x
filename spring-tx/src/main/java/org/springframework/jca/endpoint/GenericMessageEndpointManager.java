@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
  * application context, activating and deactivating the endpoint as part
  * of the application context's lifecycle.
  *
- * <p>This class is completely generic in that it may work with any
+ * This class is completely generic in that it may work with any
  * ResourceAdapter, any MessageEndpointFactory, and any ActivationSpec.
  * It can be configured in standard bean style, for example through
  * Spring's XML bean definition format, as follows:
@@ -73,13 +73,13 @@ import org.springframework.util.Assert;
  * listener (e.g. a CCI {@link javax.resource.cci.MessageListener} for a
  * resource adapter which is based on the JCA Common Client Interface).
  *
- * <p>The asynchronous execution strategy can be customized through the
+ * The asynchronous execution strategy can be customized through the
  * "workManager" property on the ResourceAdapterFactoryBean (as shown above).
  * Check out {@link org.springframework.jca.work.SimpleTaskWorkManager}'s
  * javadoc for its configuration options; alternatively, any other
  * JCA-compliant WorkManager can be used (e.g. Geronimo's).
  *
- * <p>Transactional execution is a responsibility of the concrete message endpoint,
+ * Transactional execution is a responsibility of the concrete message endpoint,
  * as built by the specified MessageEndpointFactory. {@link GenericMessageEndpointFactory}
  * supports XA transaction participation through its "transactionManager" property,
  * typically with a Spring {@link org.springframework.transaction.jta.JtaTransactionManager}
@@ -170,7 +170,7 @@ public class GenericMessageEndpointManager implements SmartLifecycle, Initializi
 	/**
 	 * Set the JCA MessageEndpointFactory to activate, pointing to a
 	 * MessageListener object that the endpoints will delegate to.
-	 * <p>A MessageEndpointFactory instance may be shared across multiple
+	 * A MessageEndpointFactory instance may be shared across multiple
 	 * endpoints (i.e. multiple GenericMessageEndpointManager instances),
 	 * with different {@link #setActivationSpec ActivationSpec} objects applied.
 	 * @see GenericMessageEndpointFactory#setMessageListener
@@ -189,7 +189,7 @@ public class GenericMessageEndpointManager implements SmartLifecycle, Initializi
 
 	/**
 	 * Set the JCA ActivationSpec to use for activating the endpoint.
-	 * <p>Note that this ActivationSpec instance should not be shared
+	 * Note that this ActivationSpec instance should not be shared
 	 * across multiple ResourceAdapter instances.
 	 */
 	public void setActivationSpec(@Nullable ActivationSpec activationSpec) {
@@ -207,7 +207,7 @@ public class GenericMessageEndpointManager implements SmartLifecycle, Initializi
 	/**
 	 * Set whether to auto-start the endpoint activation after this endpoint
 	 * manager has been initialized and the context has been refreshed.
-	 * <p>Default is "true". Turn this flag off to defer the endpoint
+	 * Default is "true". Turn this flag off to defer the endpoint
 	 * activation until an explicit {@link #start()} call.
 	 */
 	public void setAutoStartup(boolean autoStartup) {

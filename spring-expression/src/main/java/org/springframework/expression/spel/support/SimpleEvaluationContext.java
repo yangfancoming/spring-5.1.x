@@ -29,14 +29,14 @@ import org.springframework.lang.Nullable;
  * of essential SpEL features and customization options, targeting simple
  * condition evaluation and in particular data binding scenarios.
  *
- * <p>In many cases, the full extent of the SpEL language is not required and
+ * In many cases, the full extent of the SpEL language is not required and
  * should be meaningfully restricted. Examples include but are not limited to
  * data binding expressions, property-based filters, and others. To that effect,
  * {@code SimpleEvaluationContext} is tailored to support only a subset of the
  * SpEL language syntax, e.g. excluding references to Java types, constructors,
  * and bean references.
  *
- * <p>When creating a {@code SimpleEvaluationContext} you need to choose the
+ * When creating a {@code SimpleEvaluationContext} you need to choose the
  * level of support that you need for property access in SpEL expressions:
  * <ul>
  * <li>A custom {@code PropertyAccessor} (typically not reflection-based),
@@ -45,21 +45,21 @@ import org.springframework.lang.Nullable;
  * <li>Data binding properties for read and write</li>
  * </ul>
  *
- * <p>Conveniently, {@link SimpleEvaluationContext#forReadOnlyDataBinding()}
+ * Conveniently, {@link SimpleEvaluationContext#forReadOnlyDataBinding()}
  * enables read access to properties via {@link DataBindingPropertyAccessor};
  * same for {@link SimpleEvaluationContext#forReadWriteDataBinding()} when
  * write access is needed as well. Alternatively, configure custom accessors
  * via {@link SimpleEvaluationContext#forPropertyAccessors}, and potentially
  * activate method resolution and/or a type converter through the builder.
  *
- * <p>Note that {@code SimpleEvaluationContext} is typically not configured
+ * Note that {@code SimpleEvaluationContext} is typically not configured
  * with a default root object. Instead it is meant to be created once and
  * used repeatedly through {@code getValue} calls on a pre-compiled
  * {@link org.springframework.expression.Expression} with both an
  * {@code EvaluationContext} and a root object as arguments:
  * {@link org.springframework.expression.Expression#getValue(EvaluationContext, Object)}.
  *
- * <p>For more power and flexibility, in particular for internal configuration
+ * For more power and flexibility, in particular for internal configuration
  * scenarios, consider using {@link StandardEvaluationContext} instead.
  *
  * @author Rossen Stoyanchev
@@ -161,7 +161,7 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 
 	/**
 	 * The configured {@link TypeConverter}.
-	 * <p>By default this is {@link StandardTypeConverter}.
+	 * By default this is {@link StandardTypeConverter}.
 	 * @see Builder#withTypeConverter
 	 * @see Builder#withConversionService
 	 */
@@ -291,7 +291,7 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 
 		/**
 		 * Register a custom {@link ConversionService}.
-		 * <p>By default a {@link StandardTypeConverter} backed by a
+		 * By default a {@link StandardTypeConverter} backed by a
 		 * {@link org.springframework.core.convert.support.DefaultConversionService} is used.
 		 * @see #withTypeConverter
 		 * @see StandardTypeConverter#StandardTypeConverter(ConversionService)
@@ -302,7 +302,7 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 		}
 		/**
 		 * Register a custom {@link TypeConverter}.
-		 * <p>By default a {@link StandardTypeConverter} backed by a
+		 * By default a {@link StandardTypeConverter} backed by a
 		 * {@link org.springframework.core.convert.support.DefaultConversionService} is used.
 		 * @see #withConversionService
 		 * @see StandardTypeConverter#StandardTypeConverter()
@@ -314,7 +314,7 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 
 		/**
 		 * Specify a default root object to resolve against.
-		 * <p>Default is none, expecting an object argument at evaluation time.
+		 * Default is none, expecting an object argument at evaluation time.
 		 * @see org.springframework.expression.Expression#getValue(EvaluationContext)
 		 * @see org.springframework.expression.Expression#getValue(EvaluationContext, Object)
 		 */
@@ -325,7 +325,7 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 
 		/**
 		 * Specify a typed root object to resolve against.
-		 * <p>Default is none, expecting an object argument at evaluation time.
+		 * Default is none, expecting an object argument at evaluation time.
 		 * @see org.springframework.expression.Expression#getValue(EvaluationContext)
 		 * @see org.springframework.expression.Expression#getValue(EvaluationContext, Object)
 		 */

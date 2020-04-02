@@ -178,7 +178,7 @@ public class Label {
    *       and {@link #FORWARD_REFERENCE_HANDLE_MASK}.
    * </ul>
    *
-   * <p>For instance, for an ifnull instruction at bytecode offset x, 'sourceInsnBytecodeOffset' is
+   * For instance, for an ifnull instruction at bytecode offset x, 'sourceInsnBytecodeOffset' is
    * equal to x, and 'reference' is of type {@link #FORWARD_REFERENCE_TYPE_SHORT} with value x + 1
    * (because the ifnull instruction uses a 2 bytes bytecode offset operand stored one byte after
    * the start of the instruction itself). For the default case of a lookupswitch instruction at
@@ -271,7 +271,7 @@ public class Label {
    * belong to at most one list at a time (unless some lists share a common tail, but this is not
    * used in practice).
    *
-   * <p>List of labels are used in {@link MethodWriter#computeAllFrames} and {@link
+   * List of labels are used in {@link MethodWriter#computeAllFrames} and {@link
    * MethodWriter#computeMaxStackAndLocal} to compute stack map frames and the maximum stack size,
    * respectively, as well as in {@link #markSubroutine} and {@link #addSubroutineRetSuccessors} to
    * compute the basic blocks belonging to subroutines and their outgoing edges. Outside of these
@@ -310,7 +310,7 @@ public class Label {
    * of their visit by {@link MethodVisitor#visitLabel}) corresponding to this bytecode offset. It
    * cannot be known for labels which have not been visited yet.
    *
-   * <p><i>This method should only be used when the {@link MethodWriter#COMPUTE_ALL_FRAMES} option
+   * <i>This method should only be used when the {@link MethodWriter#COMPUTE_ALL_FRAMES} option
    * is used.</i>
    *
    * @return the label itself if {@link #frame} is null, otherwise the Label's frame owner. This
@@ -491,7 +491,7 @@ public class Label {
    * method follows the control flow graph to find all the blocks that are reachable from the
    * current basic block WITHOUT following any jsr target.
    *
-   * <p>Note: a precondition and postcondition of this method is that all labels must have a null
+   * Note: a precondition and postcondition of this method is that all labels must have a null
    * {@link #nextListElement}.
    *
    * @param subroutineId the id of the subroutine starting with the basic block corresponding to
@@ -526,7 +526,7 @@ public class Label {
    * corresponding to the return from this subroutine, when called from the given caller basic
    * block.
    *
-   * <p>Note: a precondition and postcondition of this method is that all labels must have a null
+   * Note: a precondition and postcondition of this method is that all labels must have a null
    * {@link #nextListElement}.
    *
    * @param subroutineCaller a basic block that ends with a jsr to the basic block corresponding to

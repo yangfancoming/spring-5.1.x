@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 /**
  * Indicate that the annotated element represents a stereotype for the index.
  *
- * <p>The {@code CandidateComponentsIndex} is an alternative to classpath
+ * The {@code CandidateComponentsIndex} is an alternative to classpath
  * scanning that uses a metadata file generated at compilation time. The
  * index allows retrieving the candidate components (i.e. fully qualified
  * name) based on a stereotype. This annotation instructs the generator to
@@ -19,12 +19,12 @@ import java.lang.annotation.Target;
  * implements or extends from the annotated element. The stereotype is the
  * fully qualified name of the annotated element.
  *
- * <p>Consider the default {@link Component} annotation that is meta-annotated
+ * Consider the default {@link Component} annotation that is meta-annotated
  * with this annotation. If a component is annotated with {@link Component},
  * an entry for that component will be added to the index using the
  * {@code org.springframework.stereotype.Component} stereotype.
  *
- * <p>This annotation is also honored on meta-annotations. Consider this
+ * This annotation is also honored on meta-annotations. Consider this
  * custom annotation:
  * <pre class="code">
  * package com.example;
@@ -42,7 +42,7 @@ import java.lang.annotation.Target;
  * {@code com.example.PrivilegedService}. While {@link Service} isn't directly
  * annotated with {@code Indexed}, it is meta-annotated with {@link Component}.
  *
- * <p>It is also possible to index all implementations of a certain interface or
+ * It is also possible to index all implementations of a certain interface or
  * all the subclasses of a given class by adding {@code @Indexed} on it.
  *
  * Consider this base interface:

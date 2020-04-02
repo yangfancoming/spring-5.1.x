@@ -21,7 +21,7 @@ import org.springframework.aop.support.ComposablePointcut;
  * Metadata for an AspectJ aspect class, with an additional Spring AOP pointcut
  * for the per clause.
  *
- * <p>Uses AspectJ 5 AJType reflection API, enabling us to work with different
+ * Uses AspectJ 5 AJType reflection API, enabling us to work with different
  * AspectJ instantiation models such as "singleton", "pertarget" and "perthis".
  * @since 2.0
  * @see org.springframework.aop.aspectj.AspectJExpressionPointcut

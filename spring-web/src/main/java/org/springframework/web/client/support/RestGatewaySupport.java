@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 /**
  * Convenient super class for application classes that need REST access.
  *
- * <p>Requires a {@link ClientHttpRequestFactory} or a {@link RestTemplate} instance to be set.
+ * Requires a {@link ClientHttpRequestFactory} or a {@link RestTemplate} instance to be set.
  *
  * @author Arjen Poutsma
  * @since 3.0

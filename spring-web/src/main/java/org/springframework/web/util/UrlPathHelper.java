@@ -21,7 +21,7 @@ import org.springframework.util.StringUtils;
  * Helper class for URL path matching. Provides support for URL paths in
  * {@code RequestDispatcher} includes and support for consistent URL decoding.
  *
- * <p>Used by {@link org.springframework.web.servlet.handler.AbstractUrlHandlerMapping}
+ * Used by {@link org.springframework.web.servlet.handler.AbstractUrlHandlerMapping}
  * and {@link org.springframework.web.servlet.support.RequestContext} for path matching
  * and/or URI determination.
  * @since 14.01.2004
@@ -56,10 +56,10 @@ public class UrlPathHelper {
 	 * Whether URL lookups should always use the full path within the current
 	 * web application context, i.e. within
 	 * {@link javax.servlet.ServletContext#getContextPath()}.
-	 * <p>If set to {@literal false} the path within the current servlet mapping
+	 * If set to {@literal false} the path within the current servlet mapping
 	 * is used instead if applicable (i.e. in the case of a prefix based Servlet
 	 * mapping such as "/myServlet/*").
-	 * <p>By default this is set to "false".
+	 * By default this is set to "false".
 	 */
 	public void setAlwaysUseFullPath(boolean alwaysUseFullPath) {
 		this.alwaysUseFullPath = alwaysUseFullPath;
@@ -69,10 +69,10 @@ public class UrlPathHelper {
 	 * Whether the context path and request URI should be decoded -- both of
 	 * which are returned <i>undecoded</i> by the Servlet API, in contrast to
 	 * the servlet path.
-	 * <p>Either the request encoding or the default Servlet spec encoding
+	 * Either the request encoding or the default Servlet spec encoding
 	 * (ISO-8859-1) is used when set to "true".
-	 * <p>By default this is set to {@literal true}.
-	 * <p><strong>Note:</strong> Be aware the servlet path will not match when
+	 * By default this is set to {@literal true}.
+	 * <strong>Note:</strong> Be aware the servlet path will not match when
 	 * compared to encoded paths. Therefore use of {@code urlDecode=false} is
 	 * not compatible with a prefix-based Servlet mapping and likewise implies
 	 * also setting {@code alwaysUseFullPath=true}.
@@ -97,7 +97,7 @@ public class UrlPathHelper {
 
 	/**
 	 * Set if ";" (semicolon) content should be stripped from the request URI.
-	 * <p>Default is "true".
+	 * Default is "true".
 	 */
 	public void setRemoveSemicolonContent(boolean removeSemicolonContent) {
 		this.removeSemicolonContent = removeSemicolonContent;
@@ -113,7 +113,7 @@ public class UrlPathHelper {
 	/**
 	 * Set the default character encoding to use for URL decoding.
 	 * Default is ISO-8859-1, according to the Servlet spec.
-	 * <p>If the request specifies a character encoding itself, the request
+	 * If the request specifies a character encoding itself, the request
 	 * encoding will override this setting. This also allows for generically
 	 * overriding the character encoding in a filter that invokes the
 	 * {@code ServletRequest.setCharacterEncoding} method.
@@ -138,7 +138,7 @@ public class UrlPathHelper {
 	/**
 	 * Return the mapping lookup path for the given request, within the current
 	 * servlet mapping if applicable, else within the web application.
-	 * <p>Detects include request URL if called within a RequestDispatcher include.
+	 * Detects include request URL if called within a RequestDispatcher include.
 	 * @param request current HTTP request
 	 * @return the lookup path
 	 * @see #getPathWithinServletMapping
@@ -163,12 +163,12 @@ public class UrlPathHelper {
 	 * Return the path within the servlet mapping for the given request,
 	 * i.e. the part of the request's URL beyond the part that called the servlet,
 	 * or "" if the whole URL has been used to identify the servlet.
-	 * <p>Detects include request URL if called within a RequestDispatcher include.
-	 * <p>E.g.: servlet mapping = "/*"; request URI = "/test/a" -> "/test/a".
-	 * <p>E.g.: servlet mapping = "/"; request URI = "/test/a" -> "/test/a".
-	 * <p>E.g.: servlet mapping = "/test/*"; request URI = "/test/a" -> "/a".
-	 * <p>E.g.: servlet mapping = "/test"; request URI = "/test" -> "".
-	 * <p>E.g.: servlet mapping = "/*.test"; request URI = "/a.test" -> "".
+	 * Detects include request URL if called within a RequestDispatcher include.
+	 * E.g.: servlet mapping = "/*"; request URI = "/test/a" -> "/test/a".
+	 * E.g.: servlet mapping = "/"; request URI = "/test/a" -> "/test/a".
+	 * E.g.: servlet mapping = "/test/*"; request URI = "/test/a" -> "/a".
+	 * E.g.: servlet mapping = "/test"; request URI = "/test" -> "".
+	 * E.g.: servlet mapping = "/*.test"; request URI = "/a.test" -> "".
 	 * @param request current HTTP request
 	 * @return the path within the servlet mapping, or ""
 	 * @see #getLookupPathForRequest
@@ -216,7 +216,7 @@ public class UrlPathHelper {
 
 	/**
 	 * Return the path within the web application for the given request.
-	 * <p>Detects include request URL if called within a RequestDispatcher include.
+	 * Detects include request URL if called within a RequestDispatcher include.
 	 * @param request current HTTP request
 	 * @return the path within the web application
 	 * @see #getLookupPathForRequest
@@ -294,9 +294,9 @@ public class UrlPathHelper {
 	/**
 	 * Return the request URI for the given request, detecting an include request
 	 * URL if called within a RequestDispatcher include.
-	 * <p>As the value returned by {@code request.getRequestURI()} is <i>not</i>
+	 * As the value returned by {@code request.getRequestURI()} is <i>not</i>
 	 * decoded by the servlet container, this method will decode it.
-	 * <p>The URI that the web container resolves <i>should</i> be correct, but some
+	 * The URI that the web container resolves <i>should</i> be correct, but some
 	 * containers like JBoss/Jetty incorrectly include ";" strings like ";jsessionid"
 	 * in the URI. This method cuts off such incorrect appendices.
 	 * @param request current HTTP request
@@ -313,7 +313,7 @@ public class UrlPathHelper {
 	/**
 	 * Return the context path for the given request, detecting an include request
 	 * URL if called within a RequestDispatcher include.
-	 * <p>As the value returned by {@code request.getContextPath()} is <i>not</i>
+	 * As the value returned by {@code request.getContextPath()} is <i>not</i>
 	 * decoded by the servlet container, this method will decode it.
 	 * @param request current HTTP request
 	 * @return the context path
@@ -333,7 +333,7 @@ public class UrlPathHelper {
 	/**
 	 * Return the servlet path for the given request, regarding an include request
 	 * URL if called within a RequestDispatcher include.
-	 * <p>As the value returned by {@code request.getServletPath()} is already
+	 * As the value returned by {@code request.getServletPath()} is already
 	 * decoded by the servlet container, this method will not attempt to decode it.
 	 * @param request current HTTP request
 	 * @return the servlet path
@@ -371,7 +371,7 @@ public class UrlPathHelper {
 	/**
 	 * Return the context path for the given request, detecting an include request
 	 * URL if called within a RequestDispatcher include.
-	 * <p>As the value returned by {@code request.getContextPath()} is <i>not</i>
+	 * As the value returned by {@code request.getContextPath()} is <i>not</i>
 	 * decoded by the servlet container, this method will decode it.
 	 * @param request current HTTP request
 	 * @return the context path
@@ -427,7 +427,7 @@ public class UrlPathHelper {
 	/**
 	 * Decode the given source string with a URLDecoder. The encoding will be taken
 	 * from the request, falling back to the default "ISO-8859-1".
-	 * <p>The default implementation uses {@code URLDecoder.decode(input, enc)}.
+	 * The default implementation uses {@code URLDecoder.decode(input, enc)}.
 	 * @param request current HTTP request
 	 * @param source the String to decode
 	 * @return the decoded String
@@ -461,7 +461,7 @@ public class UrlPathHelper {
 	/**
 	 * Determine the encoding for the given request.
 	 * Can be overridden in subclasses.
-	 * <p>The default implementation checks the request encoding,
+	 * The default implementation checks the request encoding,
 	 * falling back to the default encoding specified for this resolver.
 	 * @param request current HTTP request
 	 * @return the encoding for the request (never {@code null})

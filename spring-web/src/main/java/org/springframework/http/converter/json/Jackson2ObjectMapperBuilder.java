@@ -57,13 +57,13 @@ import org.springframework.util.xml.StaxUtils;
 /**
  * A builder used to create {@link ObjectMapper} instances with a fluent API.
  *
- * <p>It customizes Jackson's default properties with the following ones:
+ * It customizes Jackson's default properties with the following ones:
  * <ul>
  * <li>{@link MapperFeature#DEFAULT_VIEW_INCLUSION} is disabled</li>
  * <li>{@link DeserializationFeature#FAIL_ON_UNKNOWN_PROPERTIES} is disabled</li>
  * </ul>
  *
- * <p>It also automatically registers the following well-known modules if they are
+ * It also automatically registers the following well-known modules if they are
  * detected on the classpath:
  * <ul>
  * <li><a href="https://github.com/FasterXML/jackson-datatype-jdk8">jackson-datatype-jdk8</a>:
@@ -76,7 +76,7 @@ import org.springframework.util.xml.StaxUtils;
  * support for Kotlin classes and data classes</li>
  * </ul>
  *
- * <p>Compatible with Jackson 2.6 and higher, as of Spring 4.3.
+ * Compatible with Jackson 2.6 and higher, as of Spring 4.3.
  *
  * @author Sebastien Deleuze
 
@@ -176,7 +176,7 @@ public class Jackson2ObjectMapperBuilder {
 
 	/**
 	 * Define the format for date/time with the given {@link DateFormat}.
-	 * <p>Note: Setting this property makes the exposed {@link ObjectMapper}
+	 * Note: Setting this property makes the exposed {@link ObjectMapper}
 	 * non-thread-safe, according to Jackson's thread safety rules.
 	 * @see #simpleDateFormat(String)
 	 */
@@ -187,7 +187,7 @@ public class Jackson2ObjectMapperBuilder {
 
 	/**
 	 * Define the date/time format with a {@link SimpleDateFormat}.
-	 * <p>Note: Setting this property makes the exposed {@link ObjectMapper}
+	 * Note: Setting this property makes the exposed {@link ObjectMapper}
 	 * non-thread-safe, according to Jackson's thread safety rules.
 	 * @see #dateFormat(DateFormat)
 	 */
@@ -485,11 +485,11 @@ public class Jackson2ObjectMapperBuilder {
 	 * Specify one or more modules to be registered with the {@link ObjectMapper}.
 	 * Multiple invocations are not additive, the last one defines the modules to
 	 * register.
-	 * <p>Note: If this is set, no finding of modules is going to happen - not by
+	 * Note: If this is set, no finding of modules is going to happen - not by
 	 * Jackson, and not by Spring either (see {@link #findModulesViaServiceLoader}).
 	 * As a consequence, specifying an empty list here will suppress any kind of
 	 * module detection.
-	 * <p>Specify either this or {@link #modulesToInstall}, not both.
+	 * Specify either this or {@link #modulesToInstall}, not both.
 	 * @since 4.1.5
 	 * @see #modules(List)
 	 * @see com.fasterxml.jackson.databind.Module
@@ -502,11 +502,11 @@ public class Jackson2ObjectMapperBuilder {
 	 * Set a complete list of modules to be registered with the {@link ObjectMapper}.
 	 * Multiple invocations are not additive, the last one defines the modules to
 	 * register.
-	 * <p>Note: If this is set, no finding of modules is going to happen - not by
+	 * Note: If this is set, no finding of modules is going to happen - not by
 	 * Jackson, and not by Spring either (see {@link #findModulesViaServiceLoader}).
 	 * As a consequence, specifying an empty list here will suppress any kind of
 	 * module detection.
-	 * <p>Specify either this or {@link #modulesToInstall}, not both.
+	 * Specify either this or {@link #modulesToInstall}, not both.
 	 * @see #modules(Module...)
 	 * @see com.fasterxml.jackson.databind.Module
 	 */
@@ -521,11 +521,11 @@ public class Jackson2ObjectMapperBuilder {
 	 * Specify one or more modules to be registered with the {@link ObjectMapper}.
 	 * Multiple invocations are not additive, the last one defines the modules
 	 * to register.
-	 * <p>Modules specified here will be registered after
+	 * Modules specified here will be registered after
 	 * Spring's autodetection of JSR-310 and Joda-Time, or Jackson's
 	 * finding of modules (see {@link #findModulesViaServiceLoader}),
 	 * allowing to eventually override their configuration.
-	 * <p>Specify either this or {@link #modules}, not both.
+	 * Specify either this or {@link #modules}, not both.
 	 * @since 4.1.5
 	 * @see com.fasterxml.jackson.databind.Module
 	 */
@@ -539,11 +539,11 @@ public class Jackson2ObjectMapperBuilder {
 	 * Specify one or more modules by class to be registered with
 	 * the {@link ObjectMapper}. Multiple invocations are not additive,
 	 * the last one defines the modules to register.
-	 * <p>Modules specified here will be registered after
+	 * Modules specified here will be registered after
 	 * Spring's autodetection of JSR-310 and Joda-Time, or Jackson's
 	 * finding of modules (see {@link #findModulesViaServiceLoader}),
 	 * allowing to eventually override their configuration.
-	 * <p>Specify either this or {@link #modules}, not both.
+	 * Specify either this or {@link #modules}, not both.
 	 * @see #modulesToInstall(Module...)
 	 * @see com.fasterxml.jackson.databind.Module
 	 */
@@ -557,7 +557,7 @@ public class Jackson2ObjectMapperBuilder {
 	/**
 	 * Set whether to let Jackson find available modules via the JDK ServiceLoader,
 	 * based on META-INF metadata in the classpath.
-	 * <p>If this mode is not set, Spring's Jackson2ObjectMapperBuilder itself
+	 * If this mode is not set, Spring's Jackson2ObjectMapperBuilder itself
 	 * will try to find the JSR-310 and Joda-Time support modules on the classpath -
 	 * provided that Java 8 and Joda-Time themselves are available, respectively.
 	 * @see com.fasterxml.jackson.databind.ObjectMapper#findModules()
@@ -600,7 +600,7 @@ public class Jackson2ObjectMapperBuilder {
 
 	/**
 	 * Build a new {@link ObjectMapper} instance.
-	 * <p>Each build operation produces an independent {@link ObjectMapper} instance.
+	 * Each build operation produces an independent {@link ObjectMapper} instance.
 	 * The builder's settings can get modified, with a subsequent build operation
 	 * then producing a new {@link ObjectMapper} based on the most recent settings.
 	 * @return the newly built ObjectMapper

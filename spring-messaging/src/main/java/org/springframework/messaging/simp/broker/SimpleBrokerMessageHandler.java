@@ -83,7 +83,7 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 
 	/**
 	 * Configure a custom SubscriptionRegistry to use for storing subscriptions.
-	 * <p><strong>Note</strong> that when a custom PathMatcher is configured via
+	 * <strong>Note</strong> that when a custom PathMatcher is configured via
 	 * {@link #setPathMatcher}, if the custom registry is not an instance of
 	 * {@link DefaultSubscriptionRegistry}, the provided PathMatcher is not used
 	 * and must be configured directly on the custom registry.
@@ -103,7 +103,7 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	/**
 	 * When configured, the given PathMatcher is passed down to the underlying
 	 * SubscriptionRegistry to use for matching destination to subscriptions.
-	 * <p>Default is a standard {@link org.springframework.util.AntPathMatcher}.
+	 * Default is a standard {@link org.springframework.util.AntPathMatcher}.
 	 * @since 4.1
 	 * @see #setSubscriptionRegistry
 	 * @see DefaultSubscriptionRegistry#setPathMatcher
@@ -123,7 +123,7 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	/**
 	 * When configured, the specified cache limit is passed down to the
 	 * underlying SubscriptionRegistry, overriding any default there.
-	 * <p>With a standard {@link DefaultSubscriptionRegistry}, the default
+	 * With a standard {@link DefaultSubscriptionRegistry}, the default
 	 * cache limit is 1024.
 	 * @since 4.3.2
 	 * @see #setSubscriptionRegistry
@@ -146,11 +146,11 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	 * the purpose of filtering messages matched to the subscription. The header
 	 * value is expected to be a Spring EL boolean expression to be applied to
 	 * the headers of messages matched to the subscription.
-	 * <p>For example:
+	 * For example:
 	 * <pre>
 	 * headers.foo == 'bar'
 	 * </pre>
-	 * <p>By default this is set to "selector". You can set it to a different
+	 * By default this is set to "selector". You can set it to a different
 	 * name, or to {@code null} to turn off support for a selector header.
 	 * @param selectorHeaderName the name to use for a selector header
 	 * @since 4.3.17
@@ -172,7 +172,7 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	 * Configure the {@link org.springframework.scheduling.TaskScheduler} to
 	 * use for providing heartbeat support. Setting this property also sets the
 	 * {@link #setHeartbeatValue heartbeatValue} to "10000, 10000".
-	 * <p>By default this is not set.
+	 * By default this is not set.
 	 * @since 4.2
 	 */
 	public void setTaskScheduler(@Nullable TaskScheduler taskScheduler) {
@@ -195,7 +195,7 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	 * Configure the value for the heart-beat settings. The first number
 	 * represents how often the server will write or send a heartbeat.
 	 * The second is how often the client should write. 0 means no heartbeats.
-	 * <p>By default this is set to "0, 0" unless the {@link #setTaskScheduler
+	 * By default this is set to "0, 0" unless the {@link #setTaskScheduler
 	 * taskScheduler} in which case the default becomes "10000,10000"
 	 * (in milliseconds).
 	 * @since 4.2
@@ -219,7 +219,7 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	/**
 	 * Configure a {@link MessageHeaderInitializer} to apply to the headers
 	 * of all messages sent to the client outbound channel.
-	 * <p>By default this property is not set.
+	 * By default this property is not set.
 	 * @since 4.1
 	 */
 	public void setHeaderInitializer(@Nullable MessageHeaderInitializer headerInitializer) {

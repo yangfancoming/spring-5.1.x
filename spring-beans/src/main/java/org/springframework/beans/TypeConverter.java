@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
  * Interface that defines type conversion methods. Typically (but not necessarily)
  * implemented in conjunction with the {@link PropertyEditorRegistry} interface.
  *
- * <p><b>Note:</b> Since TypeConverter implementations are typically based on
+ * <b>Note:</b> Since TypeConverter implementations are typically based on
  * {@link java.beans.PropertyEditor PropertyEditors} which aren't thread-safe,
  * TypeConverters themselves are <em>not</em> to be considered as thread-safe either.
 
@@ -24,7 +24,7 @@ public interface TypeConverter {
 
 	/**
 	 * Convert the value to the required type (if necessary from a String).
-	 * <p>Conversions from String to any type will typically use the {@code setAsText}
+	 * Conversions from String to any type will typically use the {@code setAsText}
 	 * method of the PropertyEditor class, or a Spring Converter in a ConversionService.
 	 * @param value the value to convert
 	 * @param requiredType the type we must convert to
@@ -41,7 +41,7 @@ public interface TypeConverter {
 
 	/**
 	 * Convert the value to the required type (if necessary from a String).
-	 * <p>Conversions from String to any type will typically use the {@code setAsText}
+	 * Conversions from String to any type will typically use the {@code setAsText}
 	 * method of the PropertyEditor class, or a Spring Converter in a ConversionService.
 	 * @param value the value to convert
 	 * @param requiredType the type we must convert to
@@ -60,7 +60,7 @@ public interface TypeConverter {
 
 	/**
 	 * Convert the value to the required type (if necessary from a String).
-	 * <p>Conversions from String to any type will typically use the {@code setAsText}
+	 * Conversions from String to any type will typically use the {@code setAsText}
 	 * method of the PropertyEditor class, or a Spring Converter in a ConversionService.
 	 * @param value the value to convert
 	 * @param requiredType the type we must convert to
@@ -79,7 +79,7 @@ public interface TypeConverter {
 
 	/**
 	 * Convert the value to the required type (if necessary from a String).
-	 * <p>Conversions from String to any type will typically use the {@code setAsText}
+	 * Conversions from String to any type will typically use the {@code setAsText}
 	 * method of the PropertyEditor class, or a Spring Converter in a ConversionService.
 	 * @param value the value to convert
 	 * @param requiredType the type we must convert to

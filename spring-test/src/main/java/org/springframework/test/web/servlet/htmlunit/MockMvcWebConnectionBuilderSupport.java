@@ -20,7 +20,7 @@ import org.springframework.web.context.WebApplicationContext;
  * uses {@link MockMvc} and optionally delegates to a real {@link WebConnection}
  * for specific requests.
  *
- * <p>The default is to use {@link MockMvc} for requests to {@code localhost}
+ * The default is to use {@link MockMvc} for requests to {@code localhost}
  * and otherwise use a real {@link WebConnection}.
  *
  * @author Rob Winch
@@ -72,9 +72,9 @@ public abstract class MockMvcWebConnectionBuilderSupport<T extends MockMvcWebCon
 
 	/**
 	 * Set the context path to use.
-	 * <p>If the supplied value is {@code null} or empty, the first path
+	 * If the supplied value is {@code null} or empty, the first path
 	 * segment of the request URL is assumed to be the context path.
-	 * <p>Default is {@code ""}.
+	 * Default is {@code ""}.
 	 * @param contextPath the context path to use
 	 * @return this builder for further customization
 	 */

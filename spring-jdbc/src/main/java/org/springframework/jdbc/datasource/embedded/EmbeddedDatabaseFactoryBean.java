@@ -16,11 +16,11 @@ import org.springframework.lang.Nullable;
  * for registration as a Spring bean. Returns the actual {@link DataSource} that
  * provides connectivity to the embedded database to Spring.
  *
- * <p>The target {@link DataSource} is returned instead of an {@link EmbeddedDatabase}
+ * The target {@link DataSource} is returned instead of an {@link EmbeddedDatabase}
  * proxy since the {@link FactoryBean} will manage the initialization and destruction
  * lifecycle of the embedded database instance.
  *
- * <p>Implements {@link DisposableBean} to shutdown the embedded database when the
+ * Implements {@link DisposableBean} to shutdown the embedded database when the
  * managing Spring container is being closed.
  *
  * @author Keith Donald

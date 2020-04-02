@@ -32,10 +32,10 @@ import org.springframework.util.Assert;
  * uses <a href="https://hc.apache.org/httpcomponents-client-ga/">Apache HttpComponents
  * HttpClient</a> to create requests.
  *
- * <p>Allows to use a pre-configured {@link HttpClient} instance -
+ * Allows to use a pre-configured {@link HttpClient} instance -
  * potentially with authentication, HTTP connection pooling, etc.
  *
- * <p><b>NOTE:</b> Requires Apache HttpComponents 4.3 or higher, as of Spring 4.0.
+ * <b>NOTE:</b> Requires Apache HttpComponents 4.3 or higher, as of Spring 4.0.
  *
  * @author Oleg Kalnichevski
  * @author Arjen Poutsma
@@ -91,9 +91,9 @@ public class HttpComponentsClientHttpRequestFactory implements ClientHttpRequest
 	/**
 	 * Set the connection timeout for the underlying {@link RequestConfig}.
 	 * A timeout value of 0 specifies an infinite timeout.
-	 * <p>Additional properties can be configured by specifying a
+	 * Additional properties can be configured by specifying a
 	 * {@link RequestConfig} instance on a custom {@link HttpClient}.
-	 * <p>This options does not affect connection timeouts for SSL
+	 * This options does not affect connection timeouts for SSL
 	 * handshakes or CONNECT requests; for that, it is required to
 	 * use the {@link org.apache.http.config.SocketConfig} on the
 	 * {@link HttpClient} itself.
@@ -110,7 +110,7 @@ public class HttpComponentsClientHttpRequestFactory implements ClientHttpRequest
 	 * Set the timeout in milliseconds used when requesting a connection
 	 * from the connection manager using the underlying {@link RequestConfig}.
 	 * A timeout value of 0 specifies an infinite timeout.
-	 * <p>Additional properties can be configured by specifying a
+	 * Additional properties can be configured by specifying a
 	 * {@link RequestConfig} instance on a custom {@link HttpClient}.
 	 * @param connectionRequestTimeout the timeout value to request a connection in milliseconds
 	 * @see RequestConfig#getConnectionRequestTimeout()
@@ -123,7 +123,7 @@ public class HttpComponentsClientHttpRequestFactory implements ClientHttpRequest
 	/**
 	 * Set the socket read timeout for the underlying {@link RequestConfig}.
 	 * A timeout value of 0 specifies an infinite timeout.
-	 * <p>Additional properties can be configured by specifying a
+	 * Additional properties can be configured by specifying a
 	 * {@link RequestConfig} instance on a custom {@link HttpClient}.
 	 * @param timeout the timeout value in milliseconds
 	 * @see RequestConfig#getSocketTimeout()
@@ -135,7 +135,7 @@ public class HttpComponentsClientHttpRequestFactory implements ClientHttpRequest
 
 	/**
 	 * Indicates whether this request factory should buffer the request body internally.
-	 * <p>Default is {@code true}. When sending large amounts of data via POST or PUT, it is
+	 * Default is {@code true}. When sending large amounts of data via POST or PUT, it is
 	 * recommended to change this property to {@code false}, so as not to run out of memory.
 	 * @since 4.0
 	 */
@@ -191,7 +191,7 @@ public class HttpComponentsClientHttpRequestFactory implements ClientHttpRequest
 	 * Create a default {@link RequestConfig} to use with the given client.
 	 * Can return {@code null} to indicate that no custom request config should
 	 * be set and the defaults of the {@link HttpClient} should be used.
-	 * <p>The default implementation tries to merge the defaults of the client
+	 * The default implementation tries to merge the defaults of the client
 	 * with the local customizations of this factory instance, if any.
 	 * @param client the {@link HttpClient} (or {@code HttpAsyncClient}) to check
 	 * @return the actual RequestConfig to use (may be {@code null})
@@ -267,7 +267,7 @@ public class HttpComponentsClientHttpRequestFactory implements ClientHttpRequest
 	/**
 	 * Template method that allows for manipulating the {@link HttpUriRequest} before it is
 	 * returned as part of a {@link HttpComponentsClientHttpRequest}.
-	 * <p>The default implementation is empty.
+	 * The default implementation is empty.
 	 * @param request the request to process
 	 */
 	protected void postProcessHttpRequest(HttpUriRequest request) {
@@ -275,7 +275,7 @@ public class HttpComponentsClientHttpRequestFactory implements ClientHttpRequest
 
 	/**
 	 * Template methods that creates a {@link HttpContext} for the given HTTP method and URI.
-	 * <p>The default implementation returns {@code null}.
+	 * The default implementation returns {@code null}.
 	 * @param httpMethod the HTTP method
 	 * @param uri the URI
 	 * @return the http context

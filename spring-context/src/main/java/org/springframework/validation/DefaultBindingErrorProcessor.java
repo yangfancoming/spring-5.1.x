@@ -11,10 +11,10 @@ import org.springframework.util.StringUtils;
 /**
  * Default {@link BindingErrorProcessor} implementation.
  *
- * <p>Uses the "required" error code and the field name to resolve message codes
+ * Uses the "required" error code and the field name to resolve message codes
  * for a missing field error.
  *
- * <p>Creates a {@code FieldError} for each {@code PropertyAccessException}
+ * Creates a {@code FieldError} for each {@code PropertyAccessException}
  * given, using the {@code PropertyAccessException}'s error code ("typeMismatch",
  * "methodInvocation") for resolving message codes.
  *
@@ -70,7 +70,7 @@ public class DefaultBindingErrorProcessor implements BindingErrorProcessor {
 	/**
 	 * Return FieldError arguments for a binding error on the given field.
 	 * Invoked for each missing required field and each type mismatch.
-	 * <p>The default implementation returns a single argument indicating the field name
+	 * The default implementation returns a single argument indicating the field name
 	 * (of type DefaultMessageSourceResolvable, with "objectName.field" and "field" as codes).
 	 * @param objectName the name of the target object
 	 * @param field the field that caused the binding error

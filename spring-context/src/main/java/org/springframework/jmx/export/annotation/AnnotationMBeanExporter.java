@@ -12,7 +12,7 @@ import org.springframework.jmx.export.naming.MetadataNamingStrategy;
  * activating Java 5 annotation usage for JMX exposure of Spring beans:
  * {@link ManagedResource}, {@link ManagedAttribute}, {@link ManagedOperation}, etc.
  *
- * <p>Sets a {@link MetadataNamingStrategy} and a {@link MetadataMBeanInfoAssembler}
+ * Sets a {@link MetadataNamingStrategy} and a {@link MetadataMBeanInfoAssembler}
  * with an {@link AnnotationJmxAttributeSource}, and activates the
  * {@link #AUTODETECT_ALL} mode by default.
  *
@@ -41,7 +41,7 @@ public class AnnotationMBeanExporter extends MBeanExporter {
 	/**
 	 * Specify the default domain to be used for generating ObjectNames
 	 * when no source-level metadata has been specified.
-	 * <p>The default is to use the domain specified in the bean name
+	 * The default is to use the domain specified in the bean name
 	 * (if the bean name follows the JMX ObjectName syntax); else,
 	 * the package name of the managed bean class.
 	 * @see MetadataNamingStrategy#setDefaultDomain

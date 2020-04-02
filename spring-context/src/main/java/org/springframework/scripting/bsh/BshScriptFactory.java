@@ -19,7 +19,7 @@ import org.springframework.util.ReflectionUtils;
  * {@link org.springframework.scripting.ScriptFactory} implementation
  * for a BeanShell script.
  *
- * <p>Typically used in combination with a
+ * Typically used in combination with a
  * {@link org.springframework.scripting.support.ScriptFactoryPostProcessor};
  * see the latter's javadoc for a configuration example.
  *
@@ -49,7 +49,7 @@ public class BshScriptFactory implements ScriptFactory, BeanClassLoaderAware {
 
 	/**
 	 * Create a new BshScriptFactory for the given script source.
-	 * <p>With this {@code BshScriptFactory} variant, the script needs to
+	 * With this {@code BshScriptFactory} variant, the script needs to
 	 * declare a full class or return an actual instance of the scripted object.
 	 * @param scriptSourceLocator a locator that points to the source of the script.
 	 * Interpreted by the post-processor that actually creates the script.
@@ -62,7 +62,7 @@ public class BshScriptFactory implements ScriptFactory, BeanClassLoaderAware {
 
 	/**
 	 * Create a new BshScriptFactory for the given script source.
-	 * <p>The script may either be a simple script that needs a corresponding proxy
+	 * The script may either be a simple script that needs a corresponding proxy
 	 * generated (implementing the specified interfaces), or declare a full class
 	 * or return an actual instance of the scripted object (in which case the
 	 * specified interfaces, if any, need to be implemented by that class/instance).

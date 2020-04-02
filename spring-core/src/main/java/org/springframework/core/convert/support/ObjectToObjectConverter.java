@@ -38,7 +38,7 @@ import org.springframework.util.ReflectionUtils;
  * <li>Otherwise throw a {@link ConversionFailedException}.
  * </ol>
  *
- * <p><strong>Warning</strong>: this converter does <em>not</em> support the
+ * <strong>Warning</strong>: this converter does <em>not</em> support the
  * {@link Object#toString()} method for converting from a {@code sourceType}
  * to {@code java.lang.String}. For {@code toString()} support, use
  * {@link FallbackObjectToStringConverter} instead.

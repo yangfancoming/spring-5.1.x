@@ -16,7 +16,7 @@ import org.springframework.util.StringUtils;
  * {@code UriBuilderFactory} that relies on {@link UriComponentsBuilder} for
  * the actual building of the URI.
  *
- * <p>Provides options to create {@link UriBuilder} instances with a common
+ * Provides options to create {@link UriBuilder} instances with a common
  * base URI, alternative encoding mode strategies, among others.
  *
  * @author Rossen Stoyanchev
@@ -40,7 +40,7 @@ public class DefaultUriBuilderFactory implements UriBuilderFactory {
 		 * <li>For URI variables do the same and also replace characters with
 		 * reserved meaning.
 		 * </ul>
-		 * <p>For most cases, this mode is most likely to give the expected
+		 * For most cases, this mode is most likely to give the expected
 		 * result because in treats URI variables as opaque data to be fully
 		 * encoded, while {@link #URI_COMPONENT} by comparison is useful only
 		 * if intentionally expanding URI variables with reserved characters.
@@ -86,7 +86,7 @@ public class DefaultUriBuilderFactory implements UriBuilderFactory {
 
 	/**
 	 * Default constructor without a base URI.
-	 * <p>The target address must be specified on each UriBuilder.
+	 * The target address must be specified on each UriBuilder.
 	 */
 	public DefaultUriBuilderFactory() {
 		this.baseUri = null;
@@ -94,7 +94,7 @@ public class DefaultUriBuilderFactory implements UriBuilderFactory {
 
 	/**
 	 * Constructor with a base URI.
-	 * <p>The given URI template is parsed via
+	 * The given URI template is parsed via
 	 * {@link UriComponentsBuilder#fromUriString} and then applied as a base URI
 	 * to every UriBuilder via {@link UriComponentsBuilder#uriComponents} unless
 	 * the UriBuilder itself was created with a URI template that already has a
@@ -116,9 +116,9 @@ public class DefaultUriBuilderFactory implements UriBuilderFactory {
 
 	/**
 	 * Set the encoding mode to use.
-	 * <p>By default this is set to {@link EncodingMode#TEMPLATE_AND_VALUES
+	 * By default this is set to {@link EncodingMode#TEMPLATE_AND_VALUES
 	 * EncodingMode.TEMPLATE_AND_VALUES}.
-	 * <p><strong>Note:</strong> In 5.1 the default was changed from
+	 * <strong>Note:</strong> In 5.1 the default was changed from
 	 * {@link EncodingMode#URI_COMPONENT EncodingMode.URI_COMPONENT}.
 	 * Consequently the {@code WebClient}, which relies on the built-in default
 	 * has also been switched to the new default. The {@code RestTemplate}
@@ -162,7 +162,7 @@ public class DefaultUriBuilderFactory implements UriBuilderFactory {
 	 * is set to {@link EncodingMode#URI_COMPONENT EncodingMode.URI_COMPONENT},
 	 * which ensures that URI variables in the path are encoded according to
 	 * path segment rules and for example a '/' is encoded.
-	 * <p>By default this is set to {@code true}.
+	 * By default this is set to {@code true}.
 	 * @param parsePath whether to parse the path into path segments
 	 */
 	public void setParsePath(boolean parsePath) {

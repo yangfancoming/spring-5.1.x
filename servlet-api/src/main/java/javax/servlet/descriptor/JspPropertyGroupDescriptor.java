@@ -7,7 +7,7 @@ import java.util.Collection;
  * <code>&lt;jsp-property-group&gt;</code>
  * related configuration of a web application.
  *
- * <p>The configuration is aggregated from the <code>web.xml</code> and
+ * The configuration is aggregated from the <code>web.xml</code> and
  * <code>web-fragment.xml</code> descriptor files of the web application.
  *
  * @since Servlet 3.0
@@ -18,7 +18,7 @@ public interface JspPropertyGroupDescriptor {
      * Gets the URL patterns of the JSP property group represented by this
      * <code>JspPropertyGroupDescriptor</code>.
      *
-     * <p>Any changes to the returned <code>Collection</code> must not 
+     * Any changes to the returned <code>Collection</code> must not
      * affect this <code>JspPropertyGroupDescriptor</code>.
      *
      * @return a (possibly empty) <code>Collection</code> of the URL
@@ -76,7 +76,7 @@ public interface JspPropertyGroupDescriptor {
      * of the JSP property group represented by this
      * <code>JspPropertyGroupDescriptor</code>.
      *
-     * <p>Any changes to the returned <code>Collection</code> must not 
+     * Any changes to the returned <code>Collection</code> must not
      * affect this <code>JspPropertyGroupDescriptor</code>.
      *
      * @return a (possibly empty) <code>Collection</code> of the
@@ -91,7 +91,7 @@ public interface JspPropertyGroupDescriptor {
      * of the JSP property group represented by this
      * <code>JspPropertyGroupDescriptor</code>.
      *
-     * <p>Any changes to the returned <code>Collection</code> must not 
+     * Any changes to the returned <code>Collection</code> must not
      * affect this <code>JspPropertyGroupDescriptor</code>.
      *
      * @return a (possibly empty) <code>Collection</code> of the

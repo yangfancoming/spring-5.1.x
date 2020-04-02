@@ -11,7 +11,7 @@ import org.springframework.ui.context.ThemeSource;
  * Empty ThemeSource that delegates all calls to the parent ThemeSource.
  * If no parent is available, it simply won't resolve any theme.
  *
- * <p>Used as placeholder by UiApplicationContextUtils, if a context doesn't
+ * Used as placeholder by UiApplicationContextUtils, if a context doesn't
  * define its own ThemeSource. Not intended for direct use in applications.
  *
 

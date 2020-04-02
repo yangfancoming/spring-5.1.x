@@ -16,13 +16,13 @@ import org.springframework.web.cors.CorsConfiguration;
  * and/or handler methods. Processed if an appropriate {@code HandlerMapping}
  * is configured.
  *
- * <p>Both Spring Web MVC and Spring WebFlux support this annotation through the
+ * Both Spring Web MVC and Spring WebFlux support this annotation through the
  * {@code RequestMappingHandlerMapping} in their respective modules. The values
  * from each type and method level pair of annotations are added to a
  * {@link CorsConfiguration} and then default values are applied via
  * {@link CorsConfiguration#applyPermitDefaultValues()}.
  *
- * <p>The rules for combining global and local configuration are generally
+ * The rules for combining global and local configuration are generally
  * additive -- e.g. all global and all local origins. For those attributes
  * where only a single value can be accepted such as {@code allowCredentials}
  * and {@code maxAge}, the local overrides the global value.
@@ -64,10 +64,10 @@ public @interface CrossOrigin {
 	/**
 	 * The list of allowed origins that be specific origins, e.g.
 	 * {@code "https://domain1.com"}, or {@code "*"} for all origins.
-	 * <p>A matched origin is listed in the {@code Access-Control-Allow-Origin}
+	 * A matched origin is listed in the {@code Access-Control-Allow-Origin}
 	 * response header of preflight actual CORS requests.
-	 * <p>By default all origins are allowed.
-	 * <p><strong>Note:</strong> CORS checks use values from "Forwarded"
+	 * By default all origins are allowed.
+	 * <strong>Note:</strong> CORS checks use values from "Forwarded"
 	 * (<a href="https://tools.ietf.org/html/rfc7239">RFC 7239</a>),
 	 * "X-Forwarded-Host", "X-Forwarded-Port", and "X-Forwarded-Proto" headers,
 	 * if present, in order to reflect the client-originated address.
@@ -82,12 +82,12 @@ public @interface CrossOrigin {
 	/**
 	 * The list of request headers that are permitted in actual requests,
 	 * possibly {@code "*"}  to allow all headers.
-	 * <p>Allowed headers are listed in the {@code Access-Control-Allow-Headers}
+	 * Allowed headers are listed in the {@code Access-Control-Allow-Headers}
 	 * response header of preflight requests.
-	 * <p>A header name is not required to be listed if it is one of:
+	 * A header name is not required to be listed if it is one of:
 	 * {@code Cache-Control}, {@code Content-Language}, {@code Expires},
 	 * {@code Last-Modified}, or {@code Pragma} as per the CORS spec.
-	 * <p>By default all requested headers are allowed.
+	 * By default all requested headers are allowed.
 	 */
 	String[] allowedHeaders() default {};
 
@@ -96,15 +96,15 @@ public @interface CrossOrigin {
 	 * to access on an actual response, other than "simple" headers, i.e.
 	 * {@code Cache-Control}, {@code Content-Language}, {@code Content-Type},
 	 * {@code Expires}, {@code Last-Modified}, or {@code Pragma},
-	 * <p>Exposed headers are listed in the {@code Access-Control-Expose-Headers}
+	 * Exposed headers are listed in the {@code Access-Control-Expose-Headers}
 	 * response header of actual CORS requests.
-	 * <p>By default no headers are listed as exposed.
+	 * By default no headers are listed as exposed.
 	 */
 	String[] exposedHeaders() default {};
 
 	/**
 	 * The list of supported HTTP request methods.
-	 * <p>By default the supported methods are the same as the ones to which a
+	 * By default the supported methods are the same as the ones to which a
 	 * controller method is mapped.
 	 */
 	RequestMethod[] methods() default {};
@@ -114,11 +114,11 @@ public @interface CrossOrigin {
 	 * cross domain requests, to the annotated endpoint. The configured value is
 	 * set on the {@code Access-Control-Allow-Credentials} response header of
 	 * preflight requests.
-	 * <p><strong>NOTE:</strong> Be aware that this option establishes a high
+	 * <strong>NOTE:</strong> Be aware that this option establishes a high
 	 * level of trust with the configured domains and also increases the surface
 	 * attack of the web application by exposing sensitive user-specific
 	 * information such as cookies and CSRF tokens.
-	 * <p>By default this is not set in which case the
+	 * By default this is not set in which case the
 	 * {@code Access-Control-Allow-Credentials} header is also not set and
 	 * credentials are therefore not allowed.
 	 */
@@ -126,12 +126,12 @@ public @interface CrossOrigin {
 
 	/**
 	 * The maximum age (in seconds) of the cache duration for preflight responses.
-	 * <p>This property controls the value of the {@code Access-Control-Max-Age}
+	 * This property controls the value of the {@code Access-Control-Max-Age}
 	 * response header of preflight requests.
-	 * <p>Setting this to a reasonable value can reduce the number of preflight
+	 * Setting this to a reasonable value can reduce the number of preflight
 	 * request/response interactions required by the browser.
 	 * A negative value means <em>undefined</em>.
-	 * <p>By default this is set to {@code 1800} seconds (30 minutes).
+	 * By default this is set to {@code 1800} seconds (30 minutes).
 	 */
 	long maxAge() default -1;
 

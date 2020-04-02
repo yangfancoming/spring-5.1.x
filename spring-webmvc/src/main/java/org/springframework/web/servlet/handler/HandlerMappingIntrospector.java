@@ -34,7 +34,7 @@ import org.springframework.web.servlet.HandlerMapping;
  * Helper class to get information from the {@code HandlerMapping} that would
  * serve a specific request.
  *
- * <p>Provides the following methods:
+ * Provides the following methods:
  * <ul>
  * <li>{@link #getMatchableHandlerMapping} ; obtain a {@code HandlerMapping}
  * to check request-matching criteria against.
@@ -99,7 +99,7 @@ public class HandlerMappingIntrospector
 	 * Find the {@link HandlerMapping} that would handle the given request and
 	 * return it as a {@link MatchableHandlerMapping} that can be used to test
 	 * request-matching criteria.
-	 * <p>If the matching HandlerMapping is not an instance of
+	 * If the matching HandlerMapping is not an instance of
 	 * {@link MatchableHandlerMapping}, an IllegalStateException is raised.
 	 * @param request the current request
 	 * @return the resolved matcher, or {@code null}

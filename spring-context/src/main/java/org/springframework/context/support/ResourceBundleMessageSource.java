@@ -32,19 +32,19 @@ import org.springframework.util.ClassUtils;
  * in combination with the JDK's standard message parsing provided by
  * {@link java.text.MessageFormat}.
  *
- * <p>This MessageSource caches both the accessed ResourceBundle instances and
+ * This MessageSource caches both the accessed ResourceBundle instances and
  * the generated MessageFormats for each message. It also implements rendering of
  * no-arg messages without MessageFormat, as supported by the AbstractMessageSource
  * base class. The caching provided by this MessageSource is significantly faster
  * than the built-in caching of the {@code java.util.ResourceBundle} class.
  *
- * <p>The basenames follow {@link java.util.ResourceBundle} conventions: essentially,
+ * The basenames follow {@link java.util.ResourceBundle} conventions: essentially,
  * a fully-qualified classpath location. If it doesn't contain a package qualifier
  * (such as {@code org.mypackage}), it will be resolved from the classpath root.
  * Note that the JDK's standard ResourceBundle treats dots as package separators:
  * This means that "test.theme" is effectively equivalent to "test/theme".
  *
- * <p>On the classpath, bundle resources will be read with the locally configured
+ * On the classpath, bundle resources will be read with the locally configured
  * {@link #setDefaultEncoding encoding}: by default, ISO-8859-1; consider switching
  * this to UTF-8, or to {@code null} for the platform default encoding. On the JDK 9+
  * module path where locally provided {@code ResourceBundle.Control} handles are not
@@ -102,7 +102,7 @@ public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSou
 
 	/**
 	 * Set the ClassLoader to load resource bundles with.
-	 * <p>Default is the containing BeanFactory's
+	 * Default is the containing BeanFactory's
 	 * {@link org.springframework.beans.factory.BeanClassLoaderAware bean ClassLoader},
 	 * or the default ClassLoader determined by
 	 * {@link org.springframework.util.ClassUtils#getDefaultClassLoader()}
@@ -114,7 +114,7 @@ public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSou
 
 	/**
 	 * Return the ClassLoader to load resource bundles with.
-	 * <p>Default is the containing BeanFactory's bean ClassLoader.
+	 * Default is the containing BeanFactory's bean ClassLoader.
 	 * @see #setBundleClassLoader
 	 */
 	@Nullable
@@ -253,12 +253,12 @@ public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSou
 
 	/**
 	 * Load a property-based resource bundle from the given reader.
-	 * <p>This will be called in case of a {@link #setDefaultEncoding "defaultEncoding"},
+	 * This will be called in case of a {@link #setDefaultEncoding "defaultEncoding"},
 	 * including {@link ResourceBundleMessageSource}'s default ISO-8859-1 encoding.
 	 * Note that this method can only be called with a {@code ResourceBundle.Control}:
 	 * When running on the JDK 9+ module path where such control handles are not
 	 * supported, any overrides in custom subclasses will effectively get ignored.
-	 * <p>The default implementation returns a {@link PropertyResourceBundle}.
+	 * The default implementation returns a {@link PropertyResourceBundle}.
 	 * @param reader the reader for the target resource
 	 * @return the fully loaded bundle
 	 * @throws IOException in case of I/O failure
@@ -273,14 +273,14 @@ public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSou
 	/**
 	 * Load a property-based resource bundle from the given input stream,
 	 * picking up the default properties encoding on JDK 9+.
-	 * <p>This will only be called with {@link #setDefaultEncoding "defaultEncoding"}
+	 * This will only be called with {@link #setDefaultEncoding "defaultEncoding"}
 	 * set to {@code null}, explicitly enforcing the platform default encoding
 	 * (which is UTF-8 with a ISO-8859-1 fallback on JDK 9+ but configurable
 	 * through the "java.util.PropertyResourceBundle.encoding" system property).
 	 * Note that this method can only be called with a {@code ResourceBundle.Control}:
 	 * When running on the JDK 9+ module path where such control handles are not
 	 * supported, any overrides in custom subclasses will effectively get ignored.
-	 * <p>The default implementation returns a {@link PropertyResourceBundle}.
+	 * The default implementation returns a {@link PropertyResourceBundle}.
 	 * @param inputStream the input stream for the target resource
 	 * @return the fully loaded bundle
 	 * @throws IOException in case of I/O failure
@@ -346,10 +346,10 @@ public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSou
 	/**
 	 * Efficiently retrieve the String value for the specified key,
 	 * or return {@code null} if not found.
-	 * <p>As of 4.2, the default implementation checks {@code containsKey}
+	 * As of 4.2, the default implementation checks {@code containsKey}
 	 * before it attempts to call {@code getString} (which would require
 	 * catching {@code MissingResourceException} for key not found).
-	 * <p>Can be overridden in subclasses.
+	 * Can be overridden in subclasses.
 	 * @param bundle the ResourceBundle to perform the lookup in
 	 * @param key the key to look up
 	 * @return the associated value, or {@code null} if none

@@ -19,7 +19,7 @@ import org.springframework.util.ObjectUtils;
  * Extension of {@link HttpEntity} that adds a {@link HttpStatus} status code.
  * Used in {@code RestTemplate} as well {@code @Controller} methods.
  *
- * <p>In {@code RestTemplate}, this class is returned by
+ * In {@code RestTemplate}, this class is returned by
  * {@link org.springframework.web.client.RestTemplate#getForEntity getForEntity()} and
  * {@link org.springframework.web.client.RestTemplate#exchange exchange()}:
  * <pre class="code">
@@ -29,7 +29,7 @@ import org.springframework.util.ObjectUtils;
  * HttpStatus statusCode = entity.getStatusCode();
  * </pre>
  *
- * <p>Can also be used in Spring MVC, as the return value from a @Controller method:
+ * Can also be used in Spring MVC, as the return value from a @Controller method:
  * <pre class="code">
  * &#64;RequestMapping("/handle")
  * public ResponseEntity&lt;String&gt; handle() {
@@ -359,7 +359,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 		/**
 		 * Set the time the resource was last changed, as specified by the
 		 * {@code Last-Modified} header.
-		 * <p>The date should be specified as the number of milliseconds since
+		 * The date should be specified as the number of milliseconds since
 		 * January 1, 1970 GMT.
 		 * @param lastModified the last modified date
 		 * @return this builder
@@ -378,7 +378,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 		/**
 		 * Set the caching directives for the resource, as specified by the HTTP 1.1
 		 * {@code Cache-Control} header.
-		 * <p>A {@code CacheControl} instance can be built like
+		 * A {@code CacheControl} instance can be built like
 		 * {@code CacheControl.maxAge(3600).cachePublic().noTransform()}.
 		 * @param cacheControl a builder for cache-related HTTP response headers
 		 * @return this builder

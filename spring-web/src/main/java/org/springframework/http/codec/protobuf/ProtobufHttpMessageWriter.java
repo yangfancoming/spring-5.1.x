@@ -28,7 +28,7 @@ import org.springframework.util.ConcurrentReferenceHashMap;
  * {@code X-Protobuf-Schema}, {@code X-Protobuf-Message} headers and a
  * {@code delimited=true} parameter is added to the content type if a flux is serialized.
  *
- * <p>For {@code HttpMessageReader}, just use
+ * For {@code HttpMessageReader}, just use
  * {@code new DecoderHttpMessageReader(new ProtobufDecoder())}.
  *
  * @author Sébastien Deleuze
@@ -89,7 +89,7 @@ public class ProtobufHttpMessageWriter extends EncoderHttpMessageWriter<Message>
 
 	/**
 	 * Create a new {@code Message.Builder} instance for the given class.
-	 * <p>This method uses a ConcurrentHashMap for caching method lookups.
+	 * This method uses a ConcurrentHashMap for caching method lookups.
 	 */
 	private static Message.Builder getMessageBuilder(Class<?> clazz) throws Exception {
 		Method method = methodCache.get(clazz);

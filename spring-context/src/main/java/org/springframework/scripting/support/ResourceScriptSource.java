@@ -72,7 +72,7 @@ public class ResourceScriptSource implements ScriptSource {
 
 	/**
 	 * Set the encoding used for reading the script resource.
-	 * <p>The default value for regular Resources is "UTF-8".
+	 * The default value for regular Resources is "UTF-8".
 	 * A {@code null} value implies the platform default.
 	 */
 	public void setEncoding(@Nullable String encoding) {

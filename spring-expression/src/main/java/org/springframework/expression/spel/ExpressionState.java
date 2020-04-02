@@ -31,7 +31,7 @@ import org.springframework.util.CollectionUtils;
  * any changes to it will be seen by other expressions or any code that chooses to ask
  * questions of the context.
  *
- * <p>It also acts as a place for to define common utility routines that the various AST
+ * It also acts as a place for to define common utility routines that the various AST
  * nodes might need.
  *
  * @author Andy Clement

@@ -11,7 +11,7 @@ import java.util.Set;
  * Composite iterator that combines multiple other iterators,
  * as registered via {@link #add(Iterator)}.
  *
- * <p>This implementation maintains a linked set of iterators
+ * This implementation maintains a linked set of iterators
  * which are invoked in sequence until all iterators are exhausted.
 
  * @since 3.0

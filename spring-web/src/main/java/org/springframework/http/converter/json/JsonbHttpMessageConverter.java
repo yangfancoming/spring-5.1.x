@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
  * that can read and write JSON using the
  * <a href="http://json-b.net/">JSON Binding API</a>.
  *
- * <p>This converter can be used to bind to typed beans or untyped {@code HashMap}s.
+ * This converter can be used to bind to typed beans or untyped {@code HashMap}s.
  * By default, it supports {@code application/json} and {@code application/*+json} with
  * {@code UTF-8} character set.
  *
@@ -61,7 +61,7 @@ public class JsonbHttpMessageConverter extends AbstractJsonHttpMessageConverter 
 	/**
 	 * Set the {@code Jsonb} instance to use.
 	 * If not set, a default {@code Jsonb} instance will be created.
-	 * <p>Setting a custom-configured {@code Jsonb} is one way to take further
+	 * Setting a custom-configured {@code Jsonb} is one way to take further
 	 * control of the JSON serialization process.
 	 * @see #JsonbHttpMessageConverter(Jsonb)
 	 * @see #JsonbHttpMessageConverter(JsonbConfig)

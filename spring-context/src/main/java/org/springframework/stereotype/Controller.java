@@ -13,7 +13,7 @@ import org.springframework.core.annotation.AliasFor;
 /**
  * Indicates that an annotated class is a "Controller" (e.g. a web controller).
  *
- * <p>This annotation serves as a specialization of {@link Component @Component},
+ * This annotation serves as a specialization of {@link Component @Component},
  * allowing for implementation classes to be autodetected through classpath scanning.
  * It is typically used in combination with annotated handler methods based on the
  * {@link org.springframework.web.bind.annotation.RequestMapping} annotation.

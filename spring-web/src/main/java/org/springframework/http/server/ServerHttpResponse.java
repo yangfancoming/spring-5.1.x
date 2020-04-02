@@ -25,7 +25,7 @@ public interface ServerHttpResponse extends HttpOutputMessage, Flushable, Closea
 
 	/**
 	 * Ensure that the headers and the content of the response are written out.
-	 * <p>After the first flush, headers can no longer be changed.
+	 * After the first flush, headers can no longer be changed.
 	 * Only further content writing and content flushing is possible.
 	 */
 	@Override

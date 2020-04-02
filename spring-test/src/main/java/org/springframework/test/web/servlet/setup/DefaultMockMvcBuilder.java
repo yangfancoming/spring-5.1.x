@@ -13,7 +13,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
  * A concrete implementation of {@link AbstractMockMvcBuilder} that provides
  * the {@link WebApplicationContext} supplied to it as a constructor argument.
  *
- * <p>In addition, if the {@link ServletContext} in the supplied
+ * In addition, if the {@link ServletContext} in the supplied
  * {@code WebApplicationContext} does not contain an entry for the
  * {@link WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE}
  * key, the root {@code WebApplicationContext} will be detected and stored

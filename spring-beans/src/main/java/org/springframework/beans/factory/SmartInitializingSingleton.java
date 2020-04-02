@@ -11,7 +11,7 @@ package org.springframework.beans.factory;
  * In that sense, it is an alternative to {@link InitializingBean} which gets
  * triggered right at the end of a bean's local construction phase.
  *
- * <p>This callback variant is somewhat similar to
+ * This callback variant is somewhat similar to
  * {@link org.springframework.context.event.ContextRefreshedEvent} but doesn't
  * require an implementation of {@link org.springframework.context.ApplicationListener},
  * with no need to filter context references across a context hierarchy etc.
@@ -19,7 +19,7 @@ package org.springframework.beans.factory;
  * and is being honored by standalone {@link ListableBeanFactory} implementations,
  * not just in an {@link org.springframework.context.ApplicationContext} environment.
  *
- * <p><b>NOTE:</b> If you intend to start/manage asynchronous tasks, preferably
+ * <b>NOTE:</b> If you intend to start/manage asynchronous tasks, preferably
  * implement {@link org.springframework.context.Lifecycle} instead which offers
  * a richer model for runtime management and allows for phased startup/shutdown.
  *
@@ -34,7 +34,7 @@ public interface SmartInitializingSingleton {
 	 * with a guarantee that all regular singleton beans have been created
 	 * already. {@link ListableBeanFactory#getBeansOfType} calls within
 	 * this method won't trigger accidental side effects during bootstrap.
-	 * <p><b>NOTE:</b> This callback won't be triggered for singleton beans
+	 * <b>NOTE:</b> This callback won't be triggered for singleton beans
 	 * lazily initialized on demand after {@link BeanFactory} bootstrap,
 	 * and not for any other bean scope either. Carefully use it for beans
 	 * with the intended bootstrap semantics only.

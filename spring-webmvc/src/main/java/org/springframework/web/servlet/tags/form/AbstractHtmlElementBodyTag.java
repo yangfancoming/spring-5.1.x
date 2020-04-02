@@ -65,7 +65,7 @@ public abstract class AbstractHtmlElementBodyTag extends AbstractHtmlElementTag 
 
 	/**
 	 * Render the tag contents based on the supplied {@link BodyContent}.
-	 * <p>The default implementation simply {@link #flushBufferedBodyContent flushes}
+	 * The default implementation simply {@link #flushBufferedBodyContent flushes}
 	 * the {@link BodyContent} directly to the output. Subclasses may choose to
 	 * override this to add additional content to the output.
 	 */

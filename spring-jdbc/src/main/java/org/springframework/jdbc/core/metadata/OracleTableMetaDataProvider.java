@@ -18,7 +18,7 @@ import org.springframework.util.ReflectionUtils;
  * Supports a feature for including synonyms in the meta-data lookup. Also supports lookup of current schema
  * using the {@code sys_context}.
  *
- * <p>Thanks to Mike Youngstrom and Bruce Campbell for submitting the original suggestion for the Oracle
+ * Thanks to Mike Youngstrom and Bruce Campbell for submitting the original suggestion for the Oracle
  * current schema lookup implementation.
  *
  * @author Thomas Risberg

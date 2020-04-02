@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * allowing for a {@link Validator} to be applied, and adds
  * binding-specific analysis and model building.
  *
- * <p>Serves as result holder for a {@link DataBinder}, obtained via
+ * Serves as result holder for a {@link DataBinder}, obtained via
  * the {@link DataBinder#getBindingResult()} method. BindingResult
  * implementations can also be used directly, for example to invoke
  * a {@link Validator} on it (e.g. as part of a unit test).
@@ -48,9 +48,9 @@ public interface BindingResult extends Errors {
 	 * Return a model Map for the obtained state, exposing a BindingResult
 	 * instance as '{@link #MODEL_KEY_PREFIX MODEL_KEY_PREFIX} + objectName'
 	 * and the object itself as 'objectName'.
-	 * <p>Note that the Map is constructed every time you're calling this method.
+	 * Note that the Map is constructed every time you're calling this method.
 	 * Adding things to the map and then re-calling this method will not work.
-	 * <p>The attributes in the model Map returned by this method are usually
+	 * The attributes in the model Map returned by this method are usually
 	 * included in the {@link org.springframework.web.servlet.ModelAndView}
 	 * for a form view that uses Spring's {@code bind} tag in a JSP,
 	 * which needs access to the BindingResult instance. Spring's pre-built
@@ -94,7 +94,7 @@ public interface BindingResult extends Errors {
 
 	/**
 	 * Resolve the given error code into message codes.
-	 * <p>Calls the configured {@link MessageCodesResolver} with appropriate parameters.
+	 * Calls the configured {@link MessageCodesResolver} with appropriate parameters.
 	 * @param errorCode the error code to resolve into message codes
 	 * @return the resolved message codes
 	 */
@@ -102,7 +102,7 @@ public interface BindingResult extends Errors {
 
 	/**
 	 * Resolve the given error code into message codes for the given field.
-	 * <p>Calls the configured {@link MessageCodesResolver} with appropriate parameters.
+	 * Calls the configured {@link MessageCodesResolver} with appropriate parameters.
 	 * @param errorCode the error code to resolve into message codes
 	 * @param field the field to resolve message codes for
 	 * @return the resolved message codes
@@ -111,7 +111,7 @@ public interface BindingResult extends Errors {
 
 	/**
 	 * Add a custom {@link ObjectError} or {@link FieldError} to the errors list.
-	 * <p>Intended to be used by cooperating strategies such as {@link BindingErrorProcessor}.
+	 * Intended to be used by cooperating strategies such as {@link BindingErrorProcessor}.
 	 * @see ObjectError
 	 * @see FieldError
 	 * @see BindingErrorProcessor
@@ -120,7 +120,7 @@ public interface BindingResult extends Errors {
 
 	/**
 	 * Record the given value for the specified field.
-	 * <p>To be used when a target object cannot be constructed, making
+	 * To be used when a target object cannot be constructed, making
 	 * the original field values available through {@link #getFieldValue}.
 	 * In case of a registered error, the rejected value will be exposed
 	 * for each affected field.
@@ -134,7 +134,7 @@ public interface BindingResult extends Errors {
 
 	/**
 	 * Mark the specified disallowed field as suppressed.
-	 * <p>The data binder invokes this for each field value that was
+	 * The data binder invokes this for each field value that was
 	 * detected to target a disallowed field.
 	 * @see DataBinder#setAllowedFields
 	 */
@@ -143,7 +143,7 @@ public interface BindingResult extends Errors {
 
 	/**
 	 * Return the list of fields that were suppressed during the bind process.
-	 * <p>Can be used to determine whether any field values were targeting
+	 * Can be used to determine whether any field values were targeting
 	 * disallowed fields.
 	 * @see DataBinder#setAllowedFields
 	 */

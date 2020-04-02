@@ -12,7 +12,7 @@ package org.springframework.expression;
  * ConstructorExecutor can be reused without needing to go back to the resolver to
  * discover the constructor again.
  *
- * <p>They can become stale, and in that case should throw an AccessException - this will
+ * They can become stale, and in that case should throw an AccessException - this will
  * cause the infrastructure to go back to the resolvers to ask for a new one.
  *
  * @author Andy Clement

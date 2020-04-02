@@ -47,7 +47,7 @@ public class ReactorClientHttpConnector implements ClientHttpConnector {
 	 * Constructor with externally managed Reactor Netty resources, including
 	 * {@link LoopResources} for event loop threads, and {@link ConnectionProvider}
 	 * for the connection pool.
-	 * <p>This constructor should be used only when you don't want the client
+	 * This constructor should be used only when you don't want the client
 	 * to participate in the Reactor Netty global resources. By default the
 	 * client participates in the Reactor Netty global resources held in
 	 * {@link reactor.netty.http.HttpResources}, which is recommended since

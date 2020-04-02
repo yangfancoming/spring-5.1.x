@@ -60,7 +60,7 @@ public class TypeDescriptor implements Serializable {
 
 	/**
 	 * Create a new type descriptor from a {@link MethodParameter}.
-	 * <p>Use this constructor when a source or target conversion point is a
+	 * Use this constructor when a source or target conversion point is a
 	 * constructor parameter, method parameter, or method return value.
 	 * @param methodParameter the method parameter
 	 */
@@ -73,7 +73,7 @@ public class TypeDescriptor implements Serializable {
 
 	/**
 	 * Create a new type descriptor from a {@link Field}.
-	 * <p>Use this constructor when a source or target conversion point is a field.
+	 * Use this constructor when a source or target conversion point is a field.
 	 * @param field the field
 	 */
 	public TypeDescriptor(Field field) {
@@ -84,7 +84,7 @@ public class TypeDescriptor implements Serializable {
 
 	/**
 	 * Create a new type descriptor from a {@link Property}.
-	 * <p>Use this constructor when a source or target conversion point is a
+	 * Use this constructor when a source or target conversion point is a
 	 * property on a Java class.
 	 * @param property the property
 	 */
@@ -97,7 +97,7 @@ public class TypeDescriptor implements Serializable {
 
 	/**
 	 * Create a new type descriptor from a {@link ResolvableType}.
-	 * <p>This constructor is used internally and may also be used by subclasses
+	 * This constructor is used internally and may also be used by subclasses
 	 * that support non-Java languages with extended type systems. It is public
 	 * as of 5.1.4 whereas it was protected before.
 	 * @param resolvableType the resolvable type
@@ -115,7 +115,7 @@ public class TypeDescriptor implements Serializable {
 	/**
 	 * Variation of {@link #getType()} that accounts for a primitive type by
 	 * returning its object wrapper type.
-	 * <p>This is useful for conversion service implementations that wish to
+	 * This is useful for conversion service implementations that wish to
 	 * normalize to object-based types and not work with primitive types directly.
 	 */
 	public Class<?> getObjectType() {
@@ -125,7 +125,7 @@ public class TypeDescriptor implements Serializable {
 	/**
 	 * The type of the backing class, method parameter, field, or property
 	 * described by this TypeDescriptor.
-	 * <p>Returns primitive types as-is. See {@link #getObjectType()} for a
+	 * Returns primitive types as-is. See {@link #getObjectType()} for a
 	 * variation of this operation that resolves primitive types to their
 	 * corresponding Object types if necessary.
 	 * @see #getObjectType()
@@ -156,9 +156,9 @@ public class TypeDescriptor implements Serializable {
 	/**
 	 * Narrows this {@link TypeDescriptor} by setting its type to the class of the
 	 * provided value.
-	 * <p>If the value is {@code null}, no narrowing is performed and this TypeDescriptor
+	 * If the value is {@code null}, no narrowing is performed and this TypeDescriptor
 	 * is returned unchanged.
-	 * <p>Designed to be called by binding frameworks when they read property, field,
+	 * Designed to be called by binding frameworks when they read property, field,
 	 * or method return values. Allows such frameworks to narrow a TypeDescriptor built
 	 * from a declared property, field, or method return value type. For example, a field
 	 * declared as {@code java.lang.Object} would be narrowed to {@code java.util.HashMap}
@@ -218,7 +218,7 @@ public class TypeDescriptor implements Serializable {
 
 	/**
 	 * Determine if this type descriptor has the specified annotation.
-	 * <p>As of Spring Framework 4.2, this method supports arbitrary levels
+	 * As of Spring Framework 4.2, this method supports arbitrary levels
 	 * of meta-annotations.
 	 * @param annotationType the annotation type
 	 * @return <tt>true</tt> if the annotation is present
@@ -234,7 +234,7 @@ public class TypeDescriptor implements Serializable {
 
 	/**
 	 * Obtain the annotation of the specified {@code annotationType} that is on this type descriptor.
-	 * <p>As of Spring Framework 4.2, this method supports arbitrary levels of meta-annotations.
+	 * As of Spring Framework 4.2, this method supports arbitrary levels of meta-annotations.
 	 * @param annotationType the annotation type
 	 * @return the annotation, or {@code null} if no such annotation exists on this type descriptor
 	 */
@@ -251,11 +251,11 @@ public class TypeDescriptor implements Serializable {
 	/**
 	 * Returns true if an object of this type descriptor can be assigned to the location
 	 * described by the given type descriptor.
-	 * <p>For example, {@code valueOf(String.class).isAssignableTo(valueOf(CharSequence.class))}
+	 * For example, {@code valueOf(String.class).isAssignableTo(valueOf(CharSequence.class))}
 	 * returns {@code true} because a String value can be assigned to a CharSequence variable.
 	 * On the other hand, {@code valueOf(Number.class).isAssignableTo(valueOf(Integer.class))}
 	 * returns {@code false} because, while all Integers are Numbers, not all Numbers are Integers.
-	 * <p>For arrays, collections, and maps, element and key/value types are checked if declared.
+	 * For arrays, collections, and maps, element and key/value types are checked if declared.
 	 * For example, a List&lt;String&gt; field value is assignable to a Collection&lt;CharSequence&gt;
 	 * field, but List&lt;Number&gt; is not assignable to List&lt;Integer&gt;.
 	 * @return {@code true} if this type is assignable to the type represented by the provided
@@ -326,14 +326,14 @@ public class TypeDescriptor implements Serializable {
 	/**
 	 * If this type is a {@link Collection} or an array, creates a element TypeDescriptor
 	 * from the provided collection or array element.
-	 * <p>Narrows the {@link #getElementTypeDescriptor() elementType} property to the class
+	 * Narrows the {@link #getElementTypeDescriptor() elementType} property to the class
 	 * of the provided collection or array element. For example, if this describes a
 	 * {@code java.util.List&lt;java.lang.Number&lt;} and the element argument is an
 	 * {@code java.lang.Integer}, the returned TypeDescriptor will be {@code java.lang.Integer}.
 	 * If this describes a {@code java.util.List&lt;?&gt;} and the element argument is an
 	 * {@code java.lang.Integer}, the returned TypeDescriptor will be {@code java.lang.Integer}
 	 * as well.
-	 * <p>Annotation and nested type context will be preserved in the narrowed
+	 * Annotation and nested type context will be preserved in the narrowed
 	 * TypeDescriptor that is returned.
 	 * @param element the collection or array element
 	 * @return a element type descriptor, narrowed to the type of the provided element
@@ -370,14 +370,14 @@ public class TypeDescriptor implements Serializable {
 	/**
 	 * If this type is a {@link Map}, creates a mapKey {@link TypeDescriptor}
 	 * from the provided map key.
-	 * <p>Narrows the {@link #getMapKeyTypeDescriptor() mapKeyType} property
+	 * Narrows the {@link #getMapKeyTypeDescriptor() mapKeyType} property
 	 * to the class of the provided map key. For example, if this describes a
 	 * {@code java.util.Map&lt;java.lang.Number, java.lang.String&lt;} and the key
 	 * argument is a {@code java.lang.Integer}, the returned TypeDescriptor will be
 	 * {@code java.lang.Integer}. If this describes a {@code java.util.Map&lt;?, ?&gt;}
 	 * and the key argument is a {@code java.lang.Integer}, the returned
 	 * TypeDescriptor will be {@code java.lang.Integer} as well.
-	 * <p>Annotation and nested type context will be preserved in the narrowed
+	 * Annotation and nested type context will be preserved in the narrowed
 	 * TypeDescriptor that is returned.
 	 * @param mapKey the map key
 	 * @return the map key type descriptor
@@ -392,7 +392,7 @@ public class TypeDescriptor implements Serializable {
 	/**
 	 * If this type is a {@link Map} and its value type is parameterized,
 	 * returns the map's value type.
-	 * <p>If the Map's value type is not parameterized, returns {@code null}
+	 * If the Map's value type is not parameterized, returns {@code null}
 	 * indicating the value type is not declared.
 	 * @return the Map value type, or {@code null} if this type is a Map
 	 * but its value type is not parameterized
@@ -407,14 +407,14 @@ public class TypeDescriptor implements Serializable {
 	/**
 	 * If this type is a {@link Map}, creates a mapValue {@link TypeDescriptor}
 	 * from the provided map value.
-	 * <p>Narrows the {@link #getMapValueTypeDescriptor() mapValueType} property
+	 * Narrows the {@link #getMapValueTypeDescriptor() mapValueType} property
 	 * to the class of the provided map value. For example, if this describes a
 	 * {@code java.util.Map&lt;java.lang.String, java.lang.Number&lt;} and the value
 	 * argument is a {@code java.lang.Integer}, the returned TypeDescriptor will be
 	 * {@code java.lang.Integer}. If this describes a {@code java.util.Map&lt;?, ?&gt;}
 	 * and the value argument is a {@code java.lang.Integer}, the returned
 	 * TypeDescriptor will be {@code java.lang.Integer} as well.
-	 * <p>Annotation and nested type context will be preserved in the narrowed
+	 * Annotation and nested type context will be preserved in the narrowed
 	 * TypeDescriptor that is returned.
 	 * @param mapValue the map value
 	 * @return the map value type descriptor
@@ -506,9 +506,9 @@ public class TypeDescriptor implements Serializable {
 
 	/**
 	 * Create a new type descriptor for an object.
-	 * <p>Use this factory method to introspect a source object before asking the
+	 * Use this factory method to introspect a source object before asking the
 	 * conversion system to convert it to some another type.
-	 * <p>If the provided object is {@code null}, returns {@code null}, else calls
+	 * If the provided object is {@code null}, returns {@code null}, else calls
 	 * {@link #valueOf(Class)} to build a TypeDescriptor from the object's class.
 	 * @param source the source object
 	 * @return the type descriptor
@@ -520,10 +520,10 @@ public class TypeDescriptor implements Serializable {
 
 	/**
 	 * Create a new type descriptor from the given type.
-	 * <p>Use this to instruct the conversion system to convert an object to a
+	 * Use this to instruct the conversion system to convert an object to a
 	 * specific target type, when no type location such as a method parameter or
 	 * field is available to provide additional conversion context.
-	 * <p>Generally prefer use of {@link #forObject(Object)} for constructing type
+	 * Generally prefer use of {@link #forObject(Object)} for constructing type
 	 * descriptors from source objects, as it handles the {@code null} object case.
 	 * @param type the class (may be {@code null} to indicate {@code Object.class})
 	 * @return the corresponding type descriptor
@@ -538,8 +538,8 @@ public class TypeDescriptor implements Serializable {
 
 	/**
 	 * Create a new type descriptor from a {@link java.util.Collection} type.
-	 * <p>Useful for converting to typed Collections.
-	 * <p>For example, a {@code List<String>} could be converted to a
+	 * Useful for converting to typed Collections.
+	 * For example, a {@code List<String>} could be converted to a
 	 * {@code List<EmailAddress>} by converting to a targetType built with this method.
 	 * The method call to construct such a {@code TypeDescriptor} would look something
 	 * like: {@code collection(List.class, TypeDescriptor.valueOf(EmailAddress.class));}
@@ -559,8 +559,8 @@ public class TypeDescriptor implements Serializable {
 
 	/**
 	 * Create a new type descriptor from a {@link java.util.Map} type.
-	 * <p>Useful for converting to typed Maps.
-	 * <p>For example, a Map&lt;String, String&gt; could be converted to a Map&lt;Id, EmailAddress&gt;
+	 * Useful for converting to typed Maps.
+	 * For example, a Map&lt;String, String&gt; could be converted to a Map&lt;Id, EmailAddress&gt;
 	 * by converting to a targetType built with this method:
 	 * The method call to construct such a TypeDescriptor would look something like:
 	 * <pre class="code">
@@ -585,7 +585,7 @@ public class TypeDescriptor implements Serializable {
 
 	/**
 	 * Create a new type descriptor as an array of the specified type.
-	 * <p>For example to create a {@code Map<String,String>[]} use:
+	 * For example to create a {@code Map<String,String>[]} use:
 	 * <pre class="code">
 	 * TypeDescriptor.array(TypeDescriptor.map(Map.class, TypeDescriptor.value(String.class), TypeDescriptor.value(String.class)));
 	 * </pre>
@@ -604,15 +604,15 @@ public class TypeDescriptor implements Serializable {
 
 	/**
 	 * Create a type descriptor for a nested type declared within the method parameter.
-	 * <p>For example, if the methodParameter is a {@code List<String>} and the
+	 * For example, if the methodParameter is a {@code List<String>} and the
 	 * nesting level is 1, the nested type descriptor will be String.class.
-	 * <p>If the methodParameter is a {@code List<List<String>>} and the nesting
+	 * If the methodParameter is a {@code List<List<String>>} and the nesting
 	 * level is 2, the nested type descriptor will also be a String.class.
-	 * <p>If the methodParameter is a {@code Map<Integer, String>} and the nesting
+	 * If the methodParameter is a {@code Map<Integer, String>} and the nesting
 	 * level is 1, the nested type descriptor will be String, derived from the map value.
-	 * <p>If the methodParameter is a {@code List<Map<Integer, String>>} and the
+	 * If the methodParameter is a {@code List<Map<Integer, String>>} and the
 	 * nesting level is 2, the nested type descriptor will be String, derived from the map value.
-	 * <p>Returns {@code null} if a nested type cannot be obtained because it was not declared.
+	 * Returns {@code null} if a nested type cannot be obtained because it was not declared.
 	 * For example, if the method parameter is a {@code List<?>}, the nested type
 	 * descriptor returned will be {@code null}.
 	 * @param methodParameter the method parameter with a nestingLevel of 1
@@ -635,15 +635,15 @@ public class TypeDescriptor implements Serializable {
 
 	/**
 	 * Create a type descriptor for a nested type declared within the field.
-	 * <p>For example, if the field is a {@code List<String>} and the nesting
+	 * For example, if the field is a {@code List<String>} and the nesting
 	 * level is 1, the nested type descriptor will be {@code String.class}.
-	 * <p>If the field is a {@code List<List<String>>} and the nesting level is
+	 * If the field is a {@code List<List<String>>} and the nesting level is
 	 * 2, the nested type descriptor will also be a {@code String.class}.
-	 * <p>If the field is a {@code Map<Integer, String>} and the nesting level
+	 * If the field is a {@code Map<Integer, String>} and the nesting level
 	 * is 1, the nested type descriptor will be String, derived from the map value.
-	 * <p>If the field is a {@code List<Map<Integer, String>>} and the nesting
+	 * If the field is a {@code List<Map<Integer, String>>} and the nesting
 	 * level is 2, the nested type descriptor will be String, derived from the map value.
-	 * <p>Returns {@code null} if a nested type cannot be obtained because it was not
+	 * Returns {@code null} if a nested type cannot be obtained because it was not
 	 * declared. For example, if the field is a {@code List<?>}, the nested type
 	 * descriptor returned will be {@code null}.
 	 * @param field the field
@@ -661,15 +661,15 @@ public class TypeDescriptor implements Serializable {
 
 	/**
 	 * Create a type descriptor for a nested type declared within the property.
-	 * <p>For example, if the property is a {@code List<String>} and the nesting
+	 * For example, if the property is a {@code List<String>} and the nesting
 	 * level is 1, the nested type descriptor will be {@code String.class}.
-	 * <p>If the property is a {@code List<List<String>>} and the nesting level
+	 * If the property is a {@code List<List<String>>} and the nesting level
 	 * is 2, the nested type descriptor will also be a {@code String.class}.
-	 * <p>If the property is a {@code Map<Integer, String>} and the nesting level
+	 * If the property is a {@code Map<Integer, String>} and the nesting level
 	 * is 1, the nested type descriptor will be String, derived from the map value.
-	 * <p>If the property is a {@code List<Map<Integer, String>>} and the nesting
+	 * If the property is a {@code List<Map<Integer, String>>} and the nesting
 	 * level is 2, the nested type descriptor will be String, derived from the map value.
-	 * <p>Returns {@code null} if a nested type cannot be obtained because it was not
+	 * Returns {@code null} if a nested type cannot be obtained because it was not
 	 * declared. For example, if the property is a {@code List<?>}, the nested type
 	 * descriptor returned will be {@code null}.
 	 * @param property the property

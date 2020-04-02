@@ -7,7 +7,7 @@ import org.springframework.jmx.JmxException;
 /**
  * Thrown when a JMX {@link javax.management.Notification} is unable to be sent.
  *
- * <p>The root cause of just why a particular notification could not be sent
+ * The root cause of just why a particular notification could not be sent
  * will <i>typically</i> be available via the {@link #getCause()} property.
  *
  * @author Rob Harrop

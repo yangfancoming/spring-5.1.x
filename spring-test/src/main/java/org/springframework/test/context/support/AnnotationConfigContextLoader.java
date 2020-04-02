@@ -16,11 +16,11 @@ import org.springframework.util.ObjectUtils;
  * Concrete implementation of {@link AbstractGenericContextLoader} that loads
  * bean definitions from annotated classes.
  *
- * <p>See the Javadoc for
+ * See the Javadoc for
  * {@link org.springframework.test.context.ContextConfiguration @ContextConfiguration}
  * for a definition of <em>annotated class</em>.
  *
- * <p>Note: {@code AnnotationConfigContextLoader} supports <em>annotated classes</em>
+ * Note: {@code AnnotationConfigContextLoader} supports <em>annotated classes</em>
  * rather than the String-based resource locations defined by the legacy
  * {@link org.springframework.test.context.ContextLoader ContextLoader} API. Thus,
  * although {@code AnnotationConfigContextLoader} extends
@@ -48,7 +48,7 @@ public class AnnotationConfigContextLoader extends AbstractGenericContextLoader 
 
 	/**
 	 * Process <em>annotated classes</em> in the supplied {@link ContextConfigurationAttributes}.
-	 * <p>If the <em>annotated classes</em> are {@code null} or empty and
+	 * If the <em>annotated classes</em> are {@code null} or empty and
 	 * {@link #isGenerateDefaultLocations()} returns {@code true}, this
 	 * {@code SmartContextLoader} will attempt to {@link
 	 * #detectDefaultConfigurationClasses detect default configuration classes}.
@@ -73,7 +73,7 @@ public class AnnotationConfigContextLoader extends AbstractGenericContextLoader 
 
 	/**
 	 * Detect the default configuration classes for the supplied test class.
-	 * <p>The default implementation simply delegates to
+	 * The default implementation simply delegates to
 	 * {@link AnnotationConfigContextLoaderUtils#detectDefaultConfigurationClasses(Class)}.
 	 * @param declaringClass the test class that declared {@code @ContextConfiguration}
 	 * @return an array of default configuration classes, potentially empty but
@@ -153,10 +153,10 @@ public class AnnotationConfigContextLoader extends AbstractGenericContextLoader 
 	/**
 	 * Register classes in the supplied {@link GenericApplicationContext context}
 	 * from the classes in the supplied {@link MergedContextConfiguration}.
-	 * <p>Each class must represent an <em>annotated class</em>. An
+	 * Each class must represent an <em>annotated class</em>. An
 	 * {@link AnnotatedBeanDefinitionReader} is used to register the appropriate
 	 * bean definitions.
-	 * <p>Note that this method does not call {@link #createBeanDefinitionReader}
+	 * Note that this method does not call {@link #createBeanDefinitionReader}
 	 * since {@code AnnotatedBeanDefinitionReader} is not an instance of
 	 * {@link BeanDefinitionReader}.
 	 * @param context the context in which the annotated classes should be registered

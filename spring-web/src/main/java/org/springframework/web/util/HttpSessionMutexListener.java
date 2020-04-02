@@ -11,12 +11,12 @@ import javax.servlet.http.HttpSessionListener;
  * when an HttpSession gets created. To be registered as a listener in
  * {@code web.xml}.
  *
- * <p>The session mutex is guaranteed to be the same object during
+ * The session mutex is guaranteed to be the same object during
  * the entire lifetime of the session, available under the key defined
  * by the {@code SESSION_MUTEX_ATTRIBUTE} constant. It serves as a
  * safe reference to synchronize on for locking on the current session.
  *
- * <p>In many cases, the HttpSession reference itself is a safe mutex
+ * In many cases, the HttpSession reference itself is a safe mutex
  * as well, since it will always be the same object reference for the
  * same active logical session. However, this is not guaranteed across
  * different servlet containers; the only 100% safe way is a session mutex.

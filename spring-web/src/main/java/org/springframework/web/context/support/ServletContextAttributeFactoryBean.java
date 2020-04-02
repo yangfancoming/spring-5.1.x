@@ -13,13 +13,13 @@ import org.springframework.web.context.ServletContextAware;
  * Exposes that ServletContext attribute when used as bean reference,
  * effectively making it available as named Spring bean instance.
  *
- * <p>Intended to link in ServletContext attributes that exist before
+ * Intended to link in ServletContext attributes that exist before
  * the startup of the Spring application context. Typically, such
  * attributes will have been put there by third-party web frameworks.
  * In a purely Spring-based web application, no such linking in of
  * ServletContext attributes will be necessary.
  *
- * <p><b>NOTE:</b> As of Spring 3.0, you may also use the "contextAttributes" default
+ * <b>NOTE:</b> As of Spring 3.0, you may also use the "contextAttributes" default
  * bean which is of type Map, and dereference it using an "#{contextAttributes.myKey}"
  * expression to access a specific attribute by name.
  *

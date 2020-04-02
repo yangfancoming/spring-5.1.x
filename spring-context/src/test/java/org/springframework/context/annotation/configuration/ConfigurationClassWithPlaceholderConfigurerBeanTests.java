@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
  * instantiated in order to invoke the placeholder configurer bean method, and it is a
  * chicken-and-egg problem to process the {@code @Value} field.
  *
- * <p>Therefore, placeholder configurer bean methods should either be {@code static} or
+ * Therefore, placeholder configurer bean methods should either be {@code static} or
  * put in separate configuration classes as has been done in the tests below. Simply said,
  * placeholder configurer {@code @Bean} methods and {@code @Value} fields in the same
  * configuration class are mutually exclusive unless the placeholder configurer
@@ -37,10 +37,10 @@ public class ConfigurationClassWithPlaceholderConfigurerBeanTests {
 	 * in the same configuration class that has a {@code @Value} field in need of
 	 * placeholder replacement. It's an obvious chicken-and-egg issue.
 	 *
-	 * <p>One solution is to do as {@link #valueFieldsAreProcessedWhenPlaceholderConfigurerIsSegregated()}
+	 * One solution is to do as {@link #valueFieldsAreProcessedWhenPlaceholderConfigurerIsSegregated()}
 	 * does and segregate the two bean definitions across configuration classes.
 	 *
-	 * <p>Another solution is to simply make the {@code @Bean} method for the property
+	 * Another solution is to simply make the {@code @Bean} method for the property
 	 * placeholder {@code static} as in
 	 * {@link #valueFieldsAreProcessedWhenStaticPlaceholderConfigurerIsIntegrated()}.
 	 */

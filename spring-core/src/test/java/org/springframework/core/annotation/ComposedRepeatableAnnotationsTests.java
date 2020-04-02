@@ -26,7 +26,7 @@ import static org.springframework.core.annotation.AnnotatedElementUtils.*;
  * Unit tests that verify support for getting and finding all composed, repeatable
  * annotations on a single annotated element.
  *
- * <p>See <a href="https://jira.spring.io/browse/SPR-13973">SPR-13973</a>.
+ * See <a href="https://jira.spring.io/browse/SPR-13973">SPR-13973</a>.
  *
  * @author Sam Brannen
  * @since 4.3

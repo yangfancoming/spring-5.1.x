@@ -5,7 +5,7 @@ package org.springframework.web.servlet.view;
 /**
  * Abstract base class for template view resolvers, in particular for FreeMarker views.
  *
- * <p>Provides a convenient way to specify {@link AbstractTemplateView}'s exposure
+ * Provides a convenient way to specify {@link AbstractTemplateView}'s exposure
  * flags for request attributes, session attributes, and Spring's macro helpers.
  *
 

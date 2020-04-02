@@ -9,7 +9,7 @@ import java.sql.ResultSet;
  * Will return {@code true} for SqlParameter's {@link #isInputValueProvided}
  * test, in contrast to a standard SqlOutParameter.
  *
- * <p>Output parameters - like all stored procedure parameters - must have names.
+ * Output parameters - like all stored procedure parameters - must have names.
  * @since 2.0
  */
 public class SqlInOutParameter extends SqlOutParameter {

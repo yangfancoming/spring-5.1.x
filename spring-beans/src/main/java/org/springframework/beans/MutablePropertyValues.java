@@ -37,7 +37,7 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 
 	/**
 	 * Creates a new empty MutablePropertyValues object.
-	 * <p>Property values can be added with the {@code add} method.
+	 * Property values can be added with the {@code add} method.
 	 * @see #add(String, Object)
 	 */
 	public MutablePropertyValues() {
@@ -87,7 +87,7 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	/**
 	 * Construct a new MutablePropertyValues object using the given List of
 	 * PropertyValue objects as-is.
-	 * <p>This is a constructor for advanced usage scenarios.
+	 * This is a constructor for advanced usage scenarios.
 	 * It is not intended for typical programmatic use.
 	 * @param propertyValueList a List of PropertyValue objects
 	 */
@@ -100,7 +100,7 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	/**
 	 * Return the underlying List of PropertyValue objects in its raw form.
 	 * The returned List can be modified directly, although this is not recommended.
-	 * <p>This is an accessor for optimized access to all PropertyValue objects.
+	 * This is an accessor for optimized access to all PropertyValue objects.
 	 * It is not intended for typical programmatic use.
 	 */
 	public List<PropertyValue> getPropertyValueList() {
@@ -167,7 +167,7 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	/**
 	 * Overloaded version of {@code addPropertyValue} that takes
 	 * a property name and a property value.
-	 * <p>Note: As of Spring 3.0, we recommend using the more concise
+	 * Note: As of Spring 3.0, we recommend using the more concise
 	 * and chaining-capable variant {@link #add}.
 	 * @param propertyName name of the property
 	 * @param propertyValue value of the property
@@ -311,7 +311,7 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	 * Register the specified property as "processed" in the sense
 	 * of some processor calling the corresponding setter method
 	 * outside of the PropertyValue(s) mechanism.
-	 * <p>This will lead to {@code true} being returned from
+	 * This will lead to {@code true} being returned from
 	 * a {@link #contains} call for the specified property.
 	 * @param propertyName the name of the property.
 	 */

@@ -17,7 +17,7 @@ import org.springframework.web.servlet.support.RequestContext;
  * with the ability to use request and session attributes in their model and
  * the option to expose helper objects for Spring's FreeMarker macro library.
  *
- * <p>JSP/JSTL and other view technologies automatically have access to the
+ * JSP/JSTL and other view technologies automatically have access to the
  * HttpServletRequest object and thereby the request/session attributes
  * for the current user. Furthermore, they are able to create and cache
  * helper objects as request attributes themselves.
@@ -87,7 +87,7 @@ public abstract class AbstractTemplateView extends AbstractUrlBasedView {
 	/**
 	 * Set whether to expose a RequestContext for use by Spring's macro library,
 	 * under the name "springMacroRequestContext". Default is "true".
-	 * <p>Currently needed for Spring's FreeMarker default macros.
+	 * Currently needed for Spring's FreeMarker default macros.
 	 * Note that this is <i>not</i> required for templates that use HTML forms
 	 * <i>unless</i> you wish to take advantage of the Spring helper macros.
 	 * @see #SPRING_MACRO_REQUEST_CONTEXT_ATTRIBUTE
@@ -167,7 +167,7 @@ public abstract class AbstractTemplateView extends AbstractUrlBasedView {
 	/**
 	 * Apply this view's content type as specified in the "contentType"
 	 * bean property to the given response.
-	 * <p>Only applies the view's contentType if no content type has been
+	 * Only applies the view's contentType if no content type has been
 	 * set on the response before. This allows handlers to override the
 	 * default content type beforehand.
 	 * @param response current HTTP response

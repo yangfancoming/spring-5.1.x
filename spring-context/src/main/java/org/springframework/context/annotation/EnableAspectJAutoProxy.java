@@ -52,7 +52,7 @@ import java.lang.annotation.Target;
  * will be properly processed and that {@code FooService} will be proxied mixing in the
  * advice that it contributes.
  *
- * <p>Users can control the type of proxy that gets created for {@code FooService} using
+ * Users can control the type of proxy that gets created for {@code FooService} using
  * the {@link #proxyTargetClass()} attribute. The following enables CGLIB-style 'subclass'
  * proxies as opposed to the default interface-based JDK proxy approach.
  *
@@ -63,7 +63,7 @@ import java.lang.annotation.Target;
  *     // ...
  * }</pre>
  *
- * <p>Note that {@code @Aspect} beans may be component-scanned like any other.
+ * Note that {@code @Aspect} beans may be component-scanned like any other.
  * Simply mark the aspect with both {@code @Aspect} and {@code @Component}:
  *
  * <pre class="code">
@@ -93,7 +93,7 @@ import java.lang.annotation.Target;
  *  请在每个单独的上下文中重新声明@EnableAspectJautoProxy
  * e.g. the common root web application context and any separate {@code DispatcherServlet} application contexts,
  * if you need to apply its behavior at multiple levels.
- * <p>This feature requires the presence of {@code aspectjweaver} on the classpath.
+ * This feature requires the presence of {@code aspectjweaver} on the classpath.
  * 此功能要求类路径上存在AspectJWeaver
  * While that dependency is optional for {@code spring-aop} in general, it is required for {@code @EnableAspectJAutoProxy} and its underlying facilities.
 

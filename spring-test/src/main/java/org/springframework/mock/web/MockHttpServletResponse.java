@@ -35,7 +35,7 @@ import org.springframework.web.util.WebUtils;
 /**
  * Mock implementation of the {@link javax.servlet.http.HttpServletResponse} interface.
  *
- * <p>As of Spring Framework 5.0, this set of mocks is designed on a Servlet 4.0 baseline.
+ * As of Spring Framework 5.0, this set of mocks is designed on a Servlet 4.0 baseline.
  *
 
  * @author Rod Johnson
@@ -109,7 +109,7 @@ public class MockHttpServletResponse implements HttpServletResponse {
 
 	/**
 	 * Set whether {@link #getOutputStream()} access is allowed.
-	 * <p>Default is {@code true}.
+	 * Default is {@code true}.
 	 */
 	public void setOutputStreamAccessAllowed(boolean outputStreamAccessAllowed) {
 		this.outputStreamAccessAllowed = outputStreamAccessAllowed;
@@ -124,7 +124,7 @@ public class MockHttpServletResponse implements HttpServletResponse {
 
 	/**
 	 * Set whether {@link #getWriter()} access is allowed.
-	 * <p>Default is {@code true}.
+	 * Default is {@code true}.
 	 */
 	public void setWriterAccessAllowed(boolean writerAccessAllowed) {
 		this.writerAccessAllowed = writerAccessAllowed;
@@ -139,7 +139,7 @@ public class MockHttpServletResponse implements HttpServletResponse {
 
 	/**
 	 * Return whether the character encoding has been set.
-	 * <p>If {@code false}, {@link #getCharacterEncoding()} will return a default encoding value.
+	 * If {@code false}, {@link #getCharacterEncoding()} will return a default encoding value.
 	 */
 	public boolean isCharset() {
 		return this.charset;
@@ -371,7 +371,7 @@ public class MockHttpServletResponse implements HttpServletResponse {
 
 	/**
 	 * Return the names of all specified headers as a Set of Strings.
-	 * <p>As of Servlet 3.0, this method is also defined HttpServletResponse.
+	 * As of Servlet 3.0, this method is also defined HttpServletResponse.
 	 * @return the {@code Set} of header name {@code Strings}, or an empty {@code Set} if none
 	 */
 	@Override
@@ -382,7 +382,7 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	/**
 	 * Return the primary value for the given header as a String, if any.
 	 * Will return the first value in case of multiple values.
-	 * <p>As of Servlet 3.0, this method is also defined in HttpServletResponse.
+	 * As of Servlet 3.0, this method is also defined in HttpServletResponse.
 	 * As of Spring 3.1, it returns a stringified value for Servlet 3.0 compatibility.
 	 * Consider using {@link #getHeaderValue(String)} for raw Object access.
 	 * @param name the name of the header
@@ -397,7 +397,7 @@ public class MockHttpServletResponse implements HttpServletResponse {
 
 	/**
 	 * Return all values for the given header as a List of Strings.
-	 * <p>As of Servlet 3.0, this method is also defined in HttpServletResponse.
+	 * As of Servlet 3.0, this method is also defined in HttpServletResponse.
 	 * As of Spring 3.1, it returns a List of stringified values for Servlet 3.0 compatibility.
 	 * Consider using {@link #getHeaderValues(String)} for raw Object access.
 	 * @param name the name of the header
@@ -416,7 +416,7 @@ public class MockHttpServletResponse implements HttpServletResponse {
 
 	/**
 	 * Return the primary value for the given header, if any.
-	 * <p>Will return the first value in case of multiple values.
+	 * Will return the first value in case of multiple values.
 	 * @param name the name of the header
 	 * @return the associated header value, or {@code null} if none
 	 */
@@ -443,7 +443,7 @@ public class MockHttpServletResponse implements HttpServletResponse {
 
 	/**
 	 * The default implementation returns the given URL String as-is.
-	 * <p>Can be overridden in subclasses, appending a session id or the like.
+	 * Can be overridden in subclasses, appending a session id or the like.
 	 */
 	@Override
 	public String encodeURL(String url) {
@@ -453,7 +453,7 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	/**
 	 * The default implementation delegates to {@link #encodeURL},
 	 * returning the given URL String as-is.
-	 * <p>Can be overridden in subclasses, appending a session id or the like
+	 * Can be overridden in subclasses, appending a session id or the like
 	 * in a redirect-specific fashion. For general URL encoding rules,
 	 * override the common {@link #encodeURL} method instead, applying
 	 * to redirect URLs as well as to general URLs.

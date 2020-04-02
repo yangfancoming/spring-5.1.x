@@ -14,13 +14,13 @@ public interface ServletRegistration extends Registration {
      * Adds a servlet mapping with the given URL patterns for the Servlet
      * represented by this ServletRegistration.
      *
-     * <p>If any of the specified URL patterns are already mapped to a 
+     * If any of the specified URL patterns are already mapped to a
      * different Servlet, no updates will be performed.
      *
-     * <p>If this method is called multiple times, each successive call
+     * If this method is called multiple times, each successive call
      * adds to the effects of the former.
      *
-     * <p>The returned set is not backed by the {@code ServletRegistration}
+     * The returned set is not backed by the {@code ServletRegistration}
      * object, so changes in the returned set are not reflected in the
      * {@code ServletRegistration} object, and vice-versa.</p>
      *
@@ -40,7 +40,7 @@ public interface ServletRegistration extends Registration {
      * Gets the currently available mappings of the
      * Servlet represented by this <code>ServletRegistration</code>.
      *
-     * <p>If permitted, any changes to the returned <code>Collection</code> must not 
+     * If permitted, any changes to the returned <code>Collection</code> must not
      * affect this <code>ServletRegistration</code>.
      *
      * @return a (possibly empty) <code>Collection</code> of the currently
@@ -69,7 +69,7 @@ public interface ServletRegistration extends Registration {
          * Sets the <code>loadOnStartup</code> priority on the Servlet
          * represented by this dynamic ServletRegistration.
          *
-         * <p>A <tt>loadOnStartup</tt> value of greater than or equal to
+         * A <tt>loadOnStartup</tt> value of greater than or equal to
          * zero indicates to the container the initialization priority of
          * the Servlet. In this case, the container must instantiate and
          * initialize the Servlet during the initialization phase of the
@@ -78,12 +78,12 @@ public interface ServletRegistration extends Registration {
          * at their {@link ServletContextListener#contextInitialized}
          * method.
          *
-         * <p>If <tt>loadOnStartup</tt> is a negative integer, the container
+         * If <tt>loadOnStartup</tt> is a negative integer, the container
          * is free to instantiate and initialize the Servlet lazily.
          *
-         * <p>The default value for <tt>loadOnStartup</tt> is <code>-1</code>.
+         * The default value for <tt>loadOnStartup</tt> is <code>-1</code>.
          *
-         * <p>A call to this method overrides any previous setting.
+         * A call to this method overrides any previous setting.
          *
          * @param loadOnStartup the initialization priority of the Servlet
          *
@@ -96,24 +96,24 @@ public interface ServletRegistration extends Registration {
          * Sets the {@link ServletSecurityElement} to be applied to the
          * mappings defined for this <code>ServletRegistration</code>.
          *
-         * <p>This method applies to all mappings added to this
+         * This method applies to all mappings added to this
          * <code>ServletRegistration</code> up until the point that the
          * <code>ServletContext</code> from which it was obtained has been
          * initialized.
          * 
-         * <p>If a URL pattern of this ServletRegistration is an exact target
+         * If a URL pattern of this ServletRegistration is an exact target
          * of a <code>security-constraint</code> that was established via
          * the portable deployment descriptor, then this method does not
          * change the <code>security-constraint</code> for that pattern,
          * and the pattern will be included in the return value.
          * 
-         * <p>If a URL pattern of this ServletRegistration is an exact
+         * If a URL pattern of this ServletRegistration is an exact
          * target of a security constraint that was established via the
          * {@link javax.servlet.annotation.ServletSecurity} annotation
          * or a previous call to this method, then this method replaces
          * the security constraint for that pattern.
          * 
-         * <p>If a URL pattern of this ServletRegistration is neither the
+         * If a URL pattern of this ServletRegistration is neither the
          * exact target of a security constraint that was established via
          * the {@link javax.servlet.annotation.ServletSecurity} annotation
          * or a previous call to this method, nor the exact target of a
@@ -122,7 +122,7 @@ public interface ServletRegistration extends Registration {
          * for that pattern from the argument
          * <code>ServletSecurityElement</code>.
          *
-         * <p>The returned set is not backed by the {@code Dynamic} object,
+         * The returned set is not backed by the {@code Dynamic} object,
          * so changes in the returned set are not reflected in the
          * {@code Dynamic} object, and vice-versa.</p>
          * 

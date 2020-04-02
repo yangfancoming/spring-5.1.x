@@ -15,7 +15,7 @@ import org.springframework.util.ClassUtils;
 
 /**
  * Convenient superclass for {@link FactoryBean} types that produce singleton-scoped proxy objects.
- * <p>Manages pre- and post-interceptors (references, rather than
+ * Manages pre- and post-interceptors (references, rather than
  * interceptor names, as in {@link ProxyFactoryBean}) and provides
  * consistent interface management.
  * @since 2.0
@@ -48,7 +48,7 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
 
 	/**
 	 * Set the target object, that is, the bean to be wrapped with a transactional proxy.
-	 * <p>The target may be any object, in which case a SingletonTargetSource will
+	 * The target may be any object, in which case a SingletonTargetSource will
 	 * be created. If it is a TargetSource, no wrapper TargetSource is created:
 	 * This enables the use of a pooling or prototype TargetSource etc.
 	 * @see org.springframework.aop.TargetSource
@@ -63,7 +63,7 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
 
 	/**
 	 * Specify the set of interfaces being proxied.
-	 * <p>If not specified (the default), the AOP infrastructure works
+	 * If not specified (the default), the AOP infrastructure works
 	 * out which interfaces need proxying by analyzing the target,
 	 * proxying all the interfaces that the target object implements.
 	 */
@@ -74,7 +74,7 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
 	/**
 	 * Set additional interceptors (or advisors) to be applied before the
 	 * implicit transaction interceptor, e.g. a PerformanceMonitorInterceptor.
-	 * <p>You may specify any AOP Alliance MethodInterceptors or other
+	 * You may specify any AOP Alliance MethodInterceptors or other
 	 * Spring AOP Advices, as well as Spring AOP Advisors.
 	 * @see org.springframework.aop.interceptor.PerformanceMonitorInterceptor
 	 */
@@ -85,7 +85,7 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
 	/**
 	 * Set additional interceptors (or advisors) to be applied after the
 	 * implicit transaction interceptor.
-	 * <p>You may specify any AOP Alliance MethodInterceptors or other
+	 * You may specify any AOP Alliance MethodInterceptors or other
 	 * Spring AOP Advices, as well as Spring AOP Advisors.
 	 */
 	public void setPostInterceptors(Object[] postInterceptors) {
@@ -103,7 +103,7 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
 
 	/**
 	 * Set the ClassLoader to generate the proxy class in.
-	 * <p>Default is the bean ClassLoader, i.e. the ClassLoader used by the
+	 * Default is the bean ClassLoader, i.e. the ClassLoader used by the
 	 * containing BeanFactory for loading all bean classes. This can be
 	 * overridden here for specific proxies.
 	 */
@@ -228,7 +228,7 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
 	/**
 	 * Create the "main" interceptor for this proxy factory bean.
 	 * Typically an Advisor, but can also be any type of Advice.
-	 * <p>Pre-interceptors will be applied before, post-interceptors
+	 * Pre-interceptors will be applied before, post-interceptors
 	 * will be applied after this interceptor.
 	 */
 	protected abstract Object createMainInterceptor();

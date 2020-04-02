@@ -9,11 +9,11 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
  * A single {@code condition} that must be {@linkplain #matches matched} in order
  * for a component to be registered.
  *
- * <p>Conditions are checked immediately before the bean-definition is due to be
+ * Conditions are checked immediately before the bean-definition is due to be
  * registered and are free to veto registration based on any criteria that can
  * be determined at that point.
  *
- * <p>Conditions must follow the same restrictions as {@link BeanFactoryPostProcessor}
+ * Conditions must follow the same restrictions as {@link BeanFactoryPostProcessor}
  * and take care to never interact with bean instances. For more fine-grained control
  * of conditions that interact with {@code @Configuration} beans consider the
  * {@link ConfigurationCondition} interface.

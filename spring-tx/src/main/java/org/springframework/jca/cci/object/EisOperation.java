@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
  * Base class for EIS operation objects that work with the CCI API.
  * Encapsulates a CCI ConnectionFactory and a CCI InteractionSpec.
  *
- * <p>Works with a CciTemplate instance underneath. EIS operation objects
+ * Works with a CciTemplate instance underneath. EIS operation objects
  * are an alternative to working with a CciTemplate directly.
  *
 

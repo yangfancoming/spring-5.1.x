@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
  * CCI {@link ConnectionFactory} implementation that delegates all calls
  * to a given target {@link ConnectionFactory}.
  *
- * <p>This class is meant to be subclassed, with subclasses overriding only
+ * This class is meant to be subclassed, with subclasses overriding only
  * those methods (such as {@link #getConnection()}) that should not simply
  * delegate to the target {@link ConnectionFactory}.
  *

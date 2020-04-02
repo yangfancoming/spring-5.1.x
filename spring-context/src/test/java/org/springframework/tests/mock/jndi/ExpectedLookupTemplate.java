@@ -11,7 +11,7 @@ import org.springframework.jndi.JndiTemplate;
 /**
  * Simple extension of the JndiTemplate class that always returns a given object.
  *
- * <p>Very useful for testing. Effectively a mock object.
+ * Very useful for testing. Effectively a mock object.
  *
  * @author Rod Johnson
 

@@ -20,7 +20,7 @@ public interface BootstrapContextAware extends Aware {
 
 	/**
 	 * Set the BootstrapContext that this object runs in.
-	 * <p>Invoked after population of normal bean properties but before an init
+	 * Invoked after population of normal bean properties but before an init
 	 * callback like InitializingBean's {@code afterPropertiesSet} or a
 	 * custom init-method. Invoked after ApplicationContextAware's
 	 * {@code setApplicationContext}.

@@ -15,11 +15,11 @@ import org.springframework.lang.Nullable;
  * Implementation of the {@code Result} tagging interface for StAX writers. Can be constructed with
  * an {@code XMLEventConsumer} or an {@code XMLStreamWriter}.
  *
- * <p>This class is necessary because there is no implementation of {@code Source} for StaxReaders
+ * This class is necessary because there is no implementation of {@code Source} for StaxReaders
  * in JAXP 1.3. There is a {@code StAXResult} in JAXP 1.4 (JDK 1.6), but this class is kept around
  * for backwards compatibility reasons.
  *
- * <p>Even though {@code StaxResult} extends from {@code SAXResult}, calling the methods of
+ * Even though {@code StaxResult} extends from {@code SAXResult}, calling the methods of
  * {@code SAXResult} is <strong>not supported</strong>. In general, the only supported operation
  * on this class is to use the {@code ContentHandler} obtained via {@link #getHandler()} to parse an
  * input source using an {@code XMLReader}. Calling {@link #setHandler(org.xml.sax.ContentHandler)}
@@ -66,7 +66,7 @@ class StaxResult extends SAXResult {
 
 	/**
 	 * Return the {@code XMLEventWriter} used by this {@code StaxResult}.
-	 * <p>If this {@code StaxResult} was created with an {@code XMLStreamWriter},
+	 * If this {@code StaxResult} was created with an {@code XMLStreamWriter},
 	 * the result will be {@code null}.
 	 * @return the StAX event writer used by this result
 	 * @see #StaxResult(javax.xml.stream.XMLEventWriter)
@@ -78,7 +78,7 @@ class StaxResult extends SAXResult {
 
 	/**
 	 * Return the {@code XMLStreamWriter} used by this {@code StaxResult}.
-	 * <p>If this {@code StaxResult} was created with an {@code XMLEventConsumer},
+	 * If this {@code StaxResult} was created with an {@code XMLEventConsumer},
 	 * the result will be {@code null}.
 	 * @return the StAX stream writer used by this result
 	 * @see #StaxResult(javax.xml.stream.XMLStreamWriter)

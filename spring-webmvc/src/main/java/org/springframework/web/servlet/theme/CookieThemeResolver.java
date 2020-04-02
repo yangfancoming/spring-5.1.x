@@ -18,7 +18,7 @@ import org.springframework.web.util.WebUtils;
  * in case of a custom setting, with a fallback to the default theme.
  * This is particularly useful for stateless applications without user sessions.
  *
- * <p>Custom controllers can thus override the user's theme by calling
+ * Custom controllers can thus override the user's theme by calling
  * {@code setThemeName}, e.g. responding to a certain theme change request.
  *
  * @author Jean-Pierre Pawlak

@@ -16,11 +16,11 @@ import org.springframework.lang.Nullable;
  * reference through WebSphere's proprietary {@code AdminServiceFactory} API,
  * available on WebSphere 5.1 and higher.
  *
- * <p>Exposes the {@code MBeanServer} for bean references.
+ * Exposes the {@code MBeanServer} for bean references.
  * This FactoryBean is a direct alternative to {@link MBeanServerFactoryBean},
  * which uses standard JMX 1.2 API to access the platform's MBeanServer.
  *
- * <p>See the javadocs for WebSphere's
+ * See the javadocs for WebSphere's
  * <a href="https://bit.ly/UzccDt">{@code AdminServiceFactory}</a>
  * and <a href="https://bit.ly/TRlX2r">{@code MBeanFactory}</a>.
  *

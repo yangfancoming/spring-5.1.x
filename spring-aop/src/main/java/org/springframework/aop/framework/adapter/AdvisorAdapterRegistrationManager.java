@@ -9,7 +9,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
  * BeanPostProcessor that registers {@link AdvisorAdapter} beans in the BeanFactory with
  * an {@link AdvisorAdapterRegistry} (by default the {@link GlobalAdvisorAdapterRegistry}).
  *
- * <p>The only requirement for it to work is that it needs to be defined
+ * The only requirement for it to work is that it needs to be defined
  * in application context along with "non-native" Spring AdvisorAdapters
  * that need to be "recognized" by Spring's AOP framework.
 

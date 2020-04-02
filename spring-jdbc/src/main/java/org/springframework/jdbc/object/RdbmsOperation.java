@@ -27,12 +27,12 @@ import org.springframework.util.Assert;
  * as a command is not reusable. However, execute methods may take commands as
  * arguments. Subclasses should be JavaBeans, allowing easy configuration.
  *
- * <p>This class and subclasses throw runtime exceptions, defined in the
+ * This class and subclasses throw runtime exceptions, defined in the
  * {@code org.springframework.dao} package (and as thrown by the
  * {@code org.springframework.jdbc.core} package, which the classes
  * in this package use under the hood to perform raw JDBC operations).
  *
- * <p>Subclasses should set SQL and add parameters before invoking the
+ * Subclasses should set SQL and add parameters before invoking the
  * {@link #compile()} method. The order in which parameters are added is
  * significant. The appropriate {@code execute} or {@code update} method can then be invoked.
  * @see SqlQuery
@@ -100,7 +100,7 @@ public abstract class RdbmsOperation implements InitializingBean {
 	 * large result sets: Setting this higher than the default value will increase
 	 * processing speed at the cost of memory consumption; setting this lower can
 	 * avoid transferring row data that will never be read by the application.
-	 * <p>Default is -1, indicating to use the driver's default.
+	 * Default is -1, indicating to use the driver's default.
 	 * @see org.springframework.jdbc.core.JdbcTemplate#setFetchSize
 	 */
 	public void setFetchSize(int fetchSize) {
@@ -111,7 +111,7 @@ public abstract class RdbmsOperation implements InitializingBean {
 	 * Set the maximum number of rows for this RDBMS operation. This is important
 	 * for processing subsets of large result sets, avoiding to read and hold
 	 * the entire result set in the database or in the JDBC driver.
-	 * <p>Default is -1, indicating to use the driver's default.
+	 * Default is -1, indicating to use the driver's default.
 	 * @see org.springframework.jdbc.core.JdbcTemplate#setMaxRows
 	 */
 	public void setMaxRows(int maxRows) {
@@ -120,8 +120,8 @@ public abstract class RdbmsOperation implements InitializingBean {
 
 	/**
 	 * Set the query timeout for statements that this RDBMS operation executes.
-	 * <p>Default is -1, indicating to use the JDBC driver's default.
-	 * <p>Note: Any timeout specified here will be overridden by the remaining
+	 * Default is -1, indicating to use the JDBC driver's default.
+	 * Note: Any timeout specified here will be overridden by the remaining
 	 * transaction timeout when executing within a transaction that has a
 	 * timeout specified at the transaction level.
 	 */
@@ -236,7 +236,7 @@ public abstract class RdbmsOperation implements InitializingBean {
 	/**
 	 * Add anonymous parameters, specifying only their SQL types
 	 * as defined in the {@code java.sql.Types} class.
-	 * <p>Parameter ordering is significant. This method is an alternative
+	 * Parameter ordering is significant. This method is an alternative
 	 * to the {@link #declareParameter} method, which should normally be preferred.
 	 * @param types array of SQL types as defined in the
 	 * {@code java.sql.Types} class
@@ -255,7 +255,7 @@ public abstract class RdbmsOperation implements InitializingBean {
 
 	/**
 	 * Declare a parameter for this operation.
-	 * <p>The order in which this method is called is significant when using
+	 * The order in which this method is called is significant when using
 	 * positional parameters. It is not significant when using named parameters
 	 * with named SqlParameter objects here; it remains significant when using
 	 * named parameters in combination with unnamed SqlParameter objects here.
@@ -343,7 +343,7 @@ public abstract class RdbmsOperation implements InitializingBean {
 	/**
 	 * Check whether this operation has been compiled already;
 	 * lazily compile it if not already compiled.
-	 * <p>Automatically called by {@code validateParameters}.
+	 * Automatically called by {@code validateParameters}.
 	 * @see #validateParameters
 	 */
 	protected void checkCompiled() {
@@ -420,7 +420,7 @@ public abstract class RdbmsOperation implements InitializingBean {
 	/**
 	 * Subclasses must implement this template method to perform their own compilation.
 	 * Invoked after this base class's compilation is complete.
-	 * <p>Subclasses can assume that SQL and a DataSource have been supplied.
+	 * Subclasses can assume that SQL and a DataSource have been supplied.
 	 * @throws InvalidDataAccessApiUsageException if the subclass hasn't been
 	 * properly configured
 	 */
@@ -428,7 +428,7 @@ public abstract class RdbmsOperation implements InitializingBean {
 
 	/**
 	 * Return whether BLOB/CLOB parameters are supported for this kind of operation.
-	 * <p>The default is {@code true}.
+	 * The default is {@code true}.
 	 */
 	protected boolean supportsLobParameters() {
 		return true;
@@ -437,7 +437,7 @@ public abstract class RdbmsOperation implements InitializingBean {
 	/**
 	 * Return whether this operation accepts additional parameters that are
 	 * given but not actually used. Applies in particular to parameter Maps.
-	 * <p>The default is {@code false}.
+	 * The default is {@code false}.
 	 * @see StoredProcedure
 	 */
 	protected boolean allowsUnusedParameters() {

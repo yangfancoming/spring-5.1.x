@@ -4,7 +4,7 @@
  * {@link org.springframework.core.env.PropertySource PropertySource}
  * abstractions introduced in Spring 3.1.
  *
- * <p>These <em>mocks</em> are useful for developing <em>out-of-container</em>
+ * These <em>mocks</em> are useful for developing <em>out-of-container</em>
  * unit tests for code that depends on environment-specific properties.
  */
 @NonNullApi

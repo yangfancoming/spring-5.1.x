@@ -10,7 +10,7 @@ import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
 /**
  * Contract to handle a web request.
  *
- * <p>Use {@link HttpWebHandlerAdapter} to adapt a {@code WebHandler} to an
+ * Use {@link HttpWebHandlerAdapter} to adapt a {@code WebHandler} to an
  * {@link org.springframework.http.server.reactive.HttpHandler HttpHandler}.
  * The {@link WebHttpHandlerBuilder} provides a convenient way to do that while
  * also optionally configuring one or more filters and/or exception handlers.

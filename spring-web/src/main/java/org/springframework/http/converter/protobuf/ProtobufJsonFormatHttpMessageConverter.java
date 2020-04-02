@@ -11,11 +11,11 @@ import org.springframework.lang.Nullable;
  * Subclass of {@link ProtobufHttpMessageConverter} which enforces the use of Protobuf 3 and
  * its official library {@code "com.google.protobuf:protobuf-java-util"} for JSON processing.
  *
- * <p>Most importantly, this class allows for custom JSON parser and printer configurations
+ * Most importantly, this class allows for custom JSON parser and printer configurations
  * through the {@link JsonFormat} utility. If no special parser or printer configuration is
  * given, default variants will be used instead.
  *
- * <p>Requires Protobuf 3.x and {@code "com.google.protobuf:protobuf-java-util"} 3.x,
+ * Requires Protobuf 3.x and {@code "com.google.protobuf:protobuf-java-util"} 3.x,
  * with 3.3 or higher recommended.
  *
 

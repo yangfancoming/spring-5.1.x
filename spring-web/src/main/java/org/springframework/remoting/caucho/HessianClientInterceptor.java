@@ -29,12 +29,12 @@ import org.springframework.util.Assert;
  * Supports authentication via username and password.
  * The service URL must be an HTTP URL exposing a Hessian service.
  *
- * <p>Hessian is a slim, binary RPC protocol.
+ * Hessian is a slim, binary RPC protocol.
  * For information on Hessian, see the
  * <a href="http://hessian.caucho.com">Hessian website</a>
  * <b>Note: As of Spring 4.0, this client requires Hessian 4.0 or above.</b>
  *
- * <p>Note: There is no requirement for services accessed with this proxy factory
+ * Note: There is no requirement for services accessed with this proxy factory
  * to have been exported using Spring's {@link HessianServiceExporter}, as there is
  * no special handling involved. As a consequence, you can also access services that
  * have been exported using Caucho's {@link com.caucho.hessian.server.HessianServlet}.
@@ -61,7 +61,7 @@ public class HessianClientInterceptor extends UrlBasedRemoteAccessor implements 
 	/**
 	 * Set the HessianProxyFactory instance to use.
 	 * If not specified, a default HessianProxyFactory will be created.
-	 * <p>Allows to use an externally configured factory instance,
+	 * Allows to use an externally configured factory instance,
 	 * in particular a custom HessianProxyFactory subclass.
 	 */
 	public void setProxyFactory(@Nullable HessianProxyFactory proxyFactory) {
@@ -70,7 +70,7 @@ public class HessianClientInterceptor extends UrlBasedRemoteAccessor implements 
 
 	/**
 	 * Specify the Hessian SerializerFactory to use.
-	 * <p>This will typically be passed in as an inner bean definition
+	 * This will typically be passed in as an inner bean definition
 	 * of type {@code com.caucho.hessian.io.SerializerFactory},
 	 * with custom bean property values applied.
 	 */
@@ -106,7 +106,7 @@ public class HessianClientInterceptor extends UrlBasedRemoteAccessor implements 
 	/**
 	 * Set the username that this factory should use to access the remote service.
 	 * Default is none.
-	 * <p>The username will be sent by Hessian via HTTP Basic Authentication.
+	 * The username will be sent by Hessian via HTTP Basic Authentication.
 	 * @see com.caucho.hessian.client.HessianProxyFactory#setUser
 	 */
 	public void setUsername(String username) {
@@ -116,7 +116,7 @@ public class HessianClientInterceptor extends UrlBasedRemoteAccessor implements 
 	/**
 	 * Set the password that this factory should use to access the remote service.
 	 * Default is none.
-	 * <p>The password will be sent by Hessian via HTTP Basic Authentication.
+	 * The password will be sent by Hessian via HTTP Basic Authentication.
 	 * @see com.caucho.hessian.client.HessianProxyFactory#setPassword
 	 */
 	public void setPassword(String password) {
