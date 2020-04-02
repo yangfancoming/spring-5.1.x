@@ -29,20 +29,10 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * Encapsulates information about a handler method consisting of a
- * {@linkplain #getMethod() method} and a {@linkplain #getBean() bean}.
- * Provides convenient access to method parameters, the method return value,
- * method annotations, etc.
- *
- * The class may be created with a bean instance or with a bean name
- * (e.g. lazy-init bean, prototype bean). Use {@link #createWithResolvedBean()}
- * to obtain a {@code HandlerMethod} instance with a bean instance resolved
- * through the associated {@link BeanFactory}.
- *
- * @author Arjen Poutsma
- * @author Rossen Stoyanchev
-
- * @author Sam Brannen
+ * Encapsulates information about a handler method consisting of a {@linkplain #getMethod() method} and a {@linkplain #getBean() bean}.
+ * Provides convenient access to method parameters, the method return value,method annotations, etc.
+ * The class may be created with a bean instance or with a bean name (e.g. lazy-init bean, prototype bean).
+ * Use {@link #createWithResolvedBean()} to obtain a {@code HandlerMethod} instance with a bean instance resolved through the associated {@link BeanFactory}.
  * @since 3.1
  */
 public class HandlerMethod {
@@ -338,8 +328,7 @@ public class HandlerMethod {
 	}
 
 	private boolean isOverrideFor(Method candidate) {
-		if (!candidate.getName().equals(this.method.getName()) ||
-				candidate.getParameterCount() != this.method.getParameterCount()) {
+		if (!candidate.getName().equals(this.method.getName()) || candidate.getParameterCount() != this.method.getParameterCount()) {
 			return false;
 		}
 		Class<?>[] paramTypes = this.method.getParameterTypes();
@@ -347,8 +336,7 @@ public class HandlerMethod {
 			return true;
 		}
 		for (int i = 0; i < paramTypes.length; i++) {
-			if (paramTypes[i] !=
-					ResolvableType.forMethodParameter(candidate, i, this.method.getDeclaringClass()).resolve()) {
+			if (paramTypes[i] != ResolvableType.forMethodParameter(candidate, i, this.method.getDeclaringClass()).resolve()) {
 				return false;
 			}
 		}
@@ -358,9 +346,7 @@ public class HandlerMethod {
 
 	@Override
 	public boolean equals(Object other) {
-		if (this == other) {
-			return true;
-		}
+		if (this == other) return true;
 		if (!(other instanceof HandlerMethod)) {
 			return false;
 		}
@@ -378,9 +364,7 @@ public class HandlerMethod {
 		return this.method.toGenericString();
 	}
 
-
 	// Support methods for use in "InvocableHandlerMethod" sub-class variants..
-
 	@Nullable
 	protected static Object findProvidedArgument(MethodParameter parameter, @Nullable Object... providedArgs) {
 		if (!ObjectUtils.isEmpty(providedArgs)) {
@@ -394,8 +378,7 @@ public class HandlerMethod {
 	}
 
 	protected static String formatArgumentError(MethodParameter param, String message) {
-		return "Could not resolve parameter [" + param.getParameterIndex() + "] in " +
-				param.getExecutable().toGenericString() + (StringUtils.hasText(message) ? ": " + message : "");
+		return "Could not resolve parameter [" + param.getParameterIndex() + "] in " + param.getExecutable().toGenericString() + (StringUtils.hasText(message) ? ": " + message : "");
 	}
 
 	/**
@@ -409,24 +392,17 @@ public class HandlerMethod {
 		Class<?> methodDeclaringClass = method.getDeclaringClass();
 		Class<?> targetBeanClass = targetBean.getClass();
 		if (!methodDeclaringClass.isAssignableFrom(targetBeanClass)) {
-			String text = "The mapped handler method class '" + methodDeclaringClass.getName() +
-					"' is not an instance of the actual controller bean class '" +
-					targetBeanClass.getName() + "'. If the controller requires proxying " +
-					"(e.g. due to @Transactional), please use class-based proxying.";
+			String text = "The mapped handler method class '" + methodDeclaringClass.getName() + "' is not an instance of the actual controller bean class '" +
+					targetBeanClass.getName() + "'. If the controller requires proxying (e.g. due to @Transactional), please use class-based proxying.";
 			throw new IllegalStateException(formatInvokeError(text, args));
 		}
 	}
 
 	protected String formatInvokeError(String text, Object[] args) {
 		String formattedArgs = IntStream.range(0, args.length)
-				.mapToObj(i -> (args[i] != null ?
-						"[" + i + "] [type=" + args[i].getClass().getName() + "] [value=" + args[i] + "]" :
-						"[" + i + "] [null]"))
+				.mapToObj(i -> (args[i] != null ? "[" + i + "] [type=" + args[i].getClass().getName() + "] [value=" + args[i] + "]" : "[" + i + "] [null]"))
 				.collect(Collectors.joining(",\n", " ", " "));
-		return text + "\n" +
-				"Controller [" + getBeanType().getName() + "]\n" +
-				"Method [" + getBridgedMethod().toGenericString() + "] " +
-				"with argument values:\n" + formattedArgs;
+		return text + "\n Controller [" + getBeanType().getName() + "]\n Method [" + getBridgedMethod().toGenericString() + "] with argument values:\n" + formattedArgs;
 	}
 
 
@@ -501,7 +477,6 @@ public class HandlerMethod {
 			return new HandlerMethodParameter(this);
 		}
 	}
-
 
 	/**
 	 * A MethodParameter for a HandlerMethod return type based on an actual return value.

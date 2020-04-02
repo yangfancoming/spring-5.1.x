@@ -697,30 +697,22 @@ public class DispatcherServletTests {
 	public void dispatcherServletRefresh() throws ServletException {
 		MockServletContext servletContext = new MockServletContext("org/springframework/web/context");
 		DispatcherServlet servlet = new DispatcherServlet();
-
 		servlet.init(new MockServletConfig(servletContext, "empty"));
-		ServletContextAwareBean contextBean =
-				(ServletContextAwareBean) servlet.getWebApplicationContext().getBean("servletContextAwareBean");
-		ServletConfigAwareBean configBean =
-				(ServletConfigAwareBean) servlet.getWebApplicationContext().getBean("servletConfigAwareBean");
+		ServletContextAwareBean contextBean = (ServletContextAwareBean) servlet.getWebApplicationContext().getBean("servletContextAwareBean");
+		ServletConfigAwareBean configBean = (ServletConfigAwareBean) servlet.getWebApplicationContext().getBean("servletConfigAwareBean");
 		assertSame(servletContext, contextBean.getServletContext());
 		assertSame(servlet.getServletConfig(), configBean.getServletConfig());
 		MultipartResolver multipartResolver = servlet.getMultipartResolver();
 		assertNotNull(multipartResolver);
-
 		servlet.refresh();
-
-		ServletContextAwareBean contextBean2 =
-				(ServletContextAwareBean) servlet.getWebApplicationContext().getBean("servletContextAwareBean");
-		ServletConfigAwareBean configBean2 =
-				(ServletConfigAwareBean) servlet.getWebApplicationContext().getBean("servletConfigAwareBean");
+		ServletContextAwareBean contextBean2 = (ServletContextAwareBean) servlet.getWebApplicationContext().getBean("servletContextAwareBean");
+		ServletConfigAwareBean configBean2 = (ServletConfigAwareBean) servlet.getWebApplicationContext().getBean("servletConfigAwareBean");
 		assertSame(servletContext, contextBean2.getServletContext());
 		assertSame(servlet.getServletConfig(), configBean2.getServletConfig());
 		assertNotSame(contextBean, contextBean2);
 		assertNotSame(configBean, configBean2);
 		MultipartResolver multipartResolver2 = servlet.getMultipartResolver();
 		assertNotSame(multipartResolver, multipartResolver2);
-
 		servlet.destroy();
 	}
 
@@ -728,30 +720,22 @@ public class DispatcherServletTests {
 	public void dispatcherServletContextRefresh() throws ServletException {
 		MockServletContext servletContext = new MockServletContext("org/springframework/web/context");
 		DispatcherServlet servlet = new DispatcherServlet();
-
 		servlet.init(new MockServletConfig(servletContext, "empty"));
-		ServletContextAwareBean contextBean =
-				(ServletContextAwareBean) servlet.getWebApplicationContext().getBean("servletContextAwareBean");
-		ServletConfigAwareBean configBean =
-				(ServletConfigAwareBean) servlet.getWebApplicationContext().getBean("servletConfigAwareBean");
+		ServletContextAwareBean contextBean = (ServletContextAwareBean) servlet.getWebApplicationContext().getBean("servletContextAwareBean");
+		ServletConfigAwareBean configBean = (ServletConfigAwareBean) servlet.getWebApplicationContext().getBean("servletConfigAwareBean");
 		assertSame(servletContext, contextBean.getServletContext());
 		assertSame(servlet.getServletConfig(), configBean.getServletConfig());
 		MultipartResolver multipartResolver = servlet.getMultipartResolver();
 		assertNotNull(multipartResolver);
-
 		((ConfigurableApplicationContext) servlet.getWebApplicationContext()).refresh();
-
-		ServletContextAwareBean contextBean2 =
-				(ServletContextAwareBean) servlet.getWebApplicationContext().getBean("servletContextAwareBean");
-		ServletConfigAwareBean configBean2 =
-				(ServletConfigAwareBean) servlet.getWebApplicationContext().getBean("servletConfigAwareBean");
+		ServletContextAwareBean contextBean2 = (ServletContextAwareBean) servlet.getWebApplicationContext().getBean("servletContextAwareBean");
+		ServletConfigAwareBean configBean2 = (ServletConfigAwareBean) servlet.getWebApplicationContext().getBean("servletConfigAwareBean");
 		assertSame(servletContext, contextBean2.getServletContext());
 		assertSame(servlet.getServletConfig(), configBean2.getServletConfig());
 		assertTrue(contextBean != contextBean2);
 		assertTrue(configBean != configBean2);
 		MultipartResolver multipartResolver2 = servlet.getMultipartResolver();
 		assertTrue(multipartResolver != multipartResolver2);
-
 		servlet.destroy();
 	}
 
@@ -816,8 +800,7 @@ public class DispatcherServletTests {
 	public void globalInitializerClasses() throws Exception {
 		DispatcherServlet servlet = new DispatcherServlet();
 		servlet.setContextClass(SimpleWebApplicationContext.class);
-		getServletContext().setInitParameter(ContextLoader.GLOBAL_INITIALIZER_CLASSES_PARAM,
-				TestWebContextInitializer.class.getName() + "," + OtherWebContextInitializer.class.getName());
+		getServletContext().setInitParameter(ContextLoader.GLOBAL_INITIALIZER_CLASSES_PARAM,TestWebContextInitializer.class.getName() + "," + OtherWebContextInitializer.class.getName());
 		servlet.init(servletConfig);
 		assertEquals("true", getServletContext().getAttribute("initialized"));
 		assertEquals("true", getServletContext().getAttribute("otherInitialized"));
@@ -827,27 +810,21 @@ public class DispatcherServletTests {
 	public void mixedInitializerClasses() throws Exception {
 		DispatcherServlet servlet = new DispatcherServlet();
 		servlet.setContextClass(SimpleWebApplicationContext.class);
-		getServletContext().setInitParameter(ContextLoader.GLOBAL_INITIALIZER_CLASSES_PARAM,
-				TestWebContextInitializer.class.getName());
+		getServletContext().setInitParameter(ContextLoader.GLOBAL_INITIALIZER_CLASSES_PARAM,TestWebContextInitializer.class.getName());
 		servlet.setContextInitializerClasses(OtherWebContextInitializer.class.getName());
 		servlet.init(servletConfig);
 		assertEquals("true", getServletContext().getAttribute("initialized"));
 		assertEquals("true", getServletContext().getAttribute("otherInitialized"));
 	}
 
-
 	public static class ControllerFromParent implements Controller {
-
 		@Override
 		public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 			return new ModelAndView(ControllerFromParent.class.getName());
 		}
 	}
 
-
-	private static class TestWebContextInitializer
-			implements ApplicationContextInitializer<ConfigurableWebApplicationContext> {
-
+	private static class TestWebContextInitializer implements ApplicationContextInitializer<ConfigurableWebApplicationContext> {
 		@Override
 		public void initialize(ConfigurableWebApplicationContext applicationContext) {
 			applicationContext.getServletContext().setAttribute("initialized", "true");
@@ -855,9 +832,7 @@ public class DispatcherServletTests {
 	}
 
 
-	private static class OtherWebContextInitializer
-			implements ApplicationContextInitializer<ConfigurableWebApplicationContext> {
-
+	private static class OtherWebContextInitializer implements ApplicationContextInitializer<ConfigurableWebApplicationContext> {
 		@Override
 		public void initialize(ConfigurableWebApplicationContext applicationContext) {
 			applicationContext.getServletContext().setAttribute("otherInitialized", "true");

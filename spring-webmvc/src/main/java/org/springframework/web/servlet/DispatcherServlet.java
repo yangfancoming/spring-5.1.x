@@ -51,37 +51,29 @@ import org.springframework.web.util.NestedServletException;
 import org.springframework.web.util.WebUtils;
 
 /**
- * Central dispatcher for HTTP request handlers/controllers, e.g. for web UI controllers
- * or HTTP-based remote service exporters. Dispatches to registered handlers for processing
- * a web request, providing convenient mapping and exception handling facilities.
+ * Central dispatcher for HTTP request handlers/controllers, e.g. for web UI controllers or HTTP-based remote service exporters. 
+ * Dispatches to registered handlers for processing a web request, providing convenient mapping and exception handling facilities.
  *
- * This servlet is very flexible: It can be used with just about any workflow, with the
- * installation of the appropriate adapter classes. It offers the following functionality
- * that distinguishes it from other request-driven web MVC frameworks:
+ * This servlet is very flexible: It can be used with just about any workflow, with the installation of the appropriate adapter classes. 
+ * It offers the following functionality that distinguishes it from other request-driven web MVC frameworks:
  *
- * <ul>
- * <li>It is based around a JavaBeans configuration mechanism.
- *
- * <li>It can use any {@link HandlerMapping} implementation - pre-built or provided as part
- * of an application - to control the routing of requests to handler objects. Default is
- * {@link org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping} and
+ * It is based around a JavaBeans configuration mechanism.
+ * It can use any {@link HandlerMapping} implementation - pre-built or provided as part of an application - to control the routing of requests to handler objects.
+ *  Default is {@link org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping} and
  * {@link org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping}.
- * HandlerMapping objects can be defined as beans in the servlet's application context,
- * implementing the HandlerMapping interface, overriding the default HandlerMapping if
- * present. HandlerMappings can be given any bean name (they are tested by type).
+ * HandlerMapping objects can be defined as beans in the servlet's application context,implementing the HandlerMapping interface, 
+ * overriding the default HandlerMapping if present. 
+ * HandlerMappings can be given any bean name (they are tested by type).
  *
- * <li>It can use any {@link HandlerAdapter}; this allows for using any handler interface.
+ * It can use any {@link HandlerAdapter}; this allows for using any handler interface.
  * Default adapters are {@link org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter},
  * {@link org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter}, for Spring's
  * {@link org.springframework.web.HttpRequestHandler} and
  * {@link org.springframework.web.servlet.mvc.Controller} interfaces, respectively. A default
  * {@link org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter}
- * will be registered as well. HandlerAdapter objects can be added as beans in the
- * application context, overriding the default HandlerAdapters. Like HandlerMappings,
+ * will be registered as well. HandlerAdapter objects can be added as beans in the application context, overriding the default HandlerAdapters. Like HandlerMappings,
  * HandlerAdapters can be given any bean name (they are tested by type).
- *
- * <li>The dispatcher's exception resolution strategy can be specified via a
- * {@link HandlerExceptionResolver}, for example mapping certain exceptions to error pages.
+ * The dispatcher's exception resolution strategy can be specified via a {@link HandlerExceptionResolver}, for example mapping certain exceptions to error pages.
  * Default are
  * {@link org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver},
  * {@link org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver}, and
@@ -89,33 +81,31 @@ import org.springframework.web.util.WebUtils;
  * These HandlerExceptionResolvers can be overridden through the application context.
  * HandlerExceptionResolver can be given any bean name (they are tested by type).
  *
- * <li>Its view resolution strategy can be specified via a {@link ViewResolver}
- * implementation, resolving symbolic view names into View objects. Default is
- * {@link org.springframework.web.servlet.view.InternalResourceViewResolver}.
+ * Its view resolution strategy can be specified via a {@link ViewResolver} implementation, resolving symbolic view names into View objects. 
+ * Default is {@link org.springframework.web.servlet.view.InternalResourceViewResolver}.
  * ViewResolver objects can be added as beans in the application context, overriding the
  * default ViewResolver. ViewResolvers can be given any bean name (they are tested by type).
  *
- * <li>If a {@link View} or view name is not supplied by the user, then the configured
+ * If a {@link View} or view name is not supplied by the user, then the configured
  * {@link RequestToViewNameTranslator} will translate the current request into a view name.
- * The corresponding bean name is "viewNameTranslator"; the default is
- * {@link org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator}.
+ * The corresponding bean name is "viewNameTranslator"; the default is {@link org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator}.
  *
- * <li>The dispatcher's strategy for resolving multipart requests is determined by a
+ * The dispatcher's strategy for resolving multipart requests is determined by a
  * {@link org.springframework.web.multipart.MultipartResolver} implementation.
  * Implementations for Apache Commons FileUpload and Servlet 3 are included; the typical
  * choice is {@link org.springframework.web.multipart.commons.CommonsMultipartResolver}.
  * The MultipartResolver bean name is "multipartResolver"; default is none.
  *
- * <li>Its locale resolution strategy is determined by a {@link LocaleResolver}.
+ * Its locale resolution strategy is determined by a {@link LocaleResolver}.
  * Out-of-the-box implementations work via HTTP accept header, cookie, or session.
  * The LocaleResolver bean name is "localeResolver"; default is
  * {@link org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver}.
  *
- * <li>Its theme resolution strategy is determined by a {@link ThemeResolver}.
+ * Its theme resolution strategy is determined by a {@link ThemeResolver}.
  * Implementations for a fixed theme and for cookie and session storage are included.
  * The ThemeResolver bean name is "themeResolver"; default is
  * {@link org.springframework.web.servlet.theme.FixedThemeResolver}.
- * </ul>
+
  *
  * <b>NOTE: The {@code @RequestMapping} annotation will only be processed if a
  * corresponding {@code HandlerMapping} (for type-level annotations) and/or
@@ -264,7 +254,6 @@ public class DispatcherServlet extends FrameworkServlet {
 		/**
 		 * Load default strategy implementations from properties file.
 		 * This is currently strictly internal and not meant to be customized  by application developers.
-		 *
 		 * 使用静态代码块 加载 两个默认的 HandlerMapping 实现类 在 DispatcherServlet.properties 文件中可以看到  这样的配置：
 		 * org.springframework.web.servlet.HandlerMapping=org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping,\
 		 * org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
@@ -361,25 +350,25 @@ public class DispatcherServlet extends FrameworkServlet {
 	 * constructor is useful in Servlet 3.0+ environments where instance-based registration
 	 * of servlets is possible through the {@link ServletContext#addServlet} API.
 	 * Using this constructor indicates that the following properties / init-params will be ignored:
-	 * <li>{@link #setContextClass(Class)} / 'contextClass'</li>
-	 * <li>{@link #setContextConfigLocation(String)} / 'contextConfigLocation'</li>
-	 * <li>{@link #setContextAttribute(String)} / 'contextAttribute'</li>
-	 * <li>{@link #setNamespace(String)} / 'namespace'</li>
+	 * {@link #setContextClass(Class)} / 'contextClass'</li>
+	 * {@link #setContextConfigLocation(String)} / 'contextConfigLocation'</li>
+	 * {@link #setContextAttribute(String)} / 'contextAttribute'</li>
+	 * {@link #setNamespace(String)} / 'namespace'</li>
 	 * The given web application context may or may not yet be {@linkplain
 	 * ConfigurableApplicationContext#refresh() refreshed}. If it has <strong>not</strong>
 	 * already been refreshed (the recommended approach), then the following will occur:
-	 * <li>If the given context does not already have a {@linkplain
+	 * If the given context does not already have a {@linkplain
 	 * ConfigurableApplicationContext#setParent parent}, the root application context
 	 * will be set as the parent.</li>
-	 * <li>If the given context has not already been assigned an {@linkplain
+	 * If the given context has not already been assigned an {@linkplain
 	 * ConfigurableApplicationContext#setId id}, one will be assigned to it</li>
-	 * <li>{@code ServletContext} and {@code ServletConfig} objects will be delegated to
+	 * {@code ServletContext} and {@code ServletConfig} objects will be delegated to
 	 * the application context</li>
-	 * <li>{@link #postProcessWebApplicationContext} will be called</li>
-	 * <li>Any {@code ApplicationContextInitializer}s specified through the
+	 * {@link #postProcessWebApplicationContext} will be called</li>
+	 * Any {@code ApplicationContextInitializer}s specified through the
 	 * "contextInitializerClasses" init-param or through the {@link
 	 * #setContextInitializers} property will be applied.</li>
-	 * <li>{@link ConfigurableApplicationContext#refresh refresh()} will be called if the
+	 * {@link ConfigurableApplicationContext#refresh refresh()} will be called if the
 	 * context implements {@link ConfigurableApplicationContext}</li>
 	 * If the context has already been refreshed, none of the above will occur, under the
 	 * assumption that the user has performed these actions (or not) per their specific needs.
@@ -503,8 +492,7 @@ public class DispatcherServlet extends FrameworkServlet {
 
 	/**
 	 * Initialize the MultipartResolver used by this class.
-	 * If no bean is defined with the given name in the BeanFactory for this namespace,
-	 * no multipart handling is provided.
+	 * If no bean is defined with the given name in the BeanFactory for this namespace,no multipart handling is provided.
 	 */
 	private void initMultipartResolver(ApplicationContext context) {
 		try {

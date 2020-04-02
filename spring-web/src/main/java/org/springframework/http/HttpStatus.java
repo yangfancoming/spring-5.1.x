@@ -15,7 +15,6 @@ import org.springframework.lang.Nullable;
 public enum HttpStatus {
 
 	// 1xx Informational
-
 	/**
 	 * {@code 100 Continue}.
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.2.1">HTTP/1.1: Semantics and Content, section 6.2.1</a>
@@ -519,9 +518,7 @@ public enum HttpStatus {
 	@Nullable
 	public static HttpStatus resolve(int statusCode) {
 		for (HttpStatus status : values()) {
-			if (status.value == statusCode) {
-				return status;
-			}
+			if (status.value == statusCode) return status;
 		}
 		return null;
 	}
@@ -570,9 +567,7 @@ public enum HttpStatus {
 		 */
 		public static Series valueOf(int statusCode) {
 			Series series = resolve(statusCode);
-			if (series == null) {
-				throw new IllegalArgumentException("No matching constant for [" + statusCode + "]");
-			}
+			if (series == null) throw new IllegalArgumentException("No matching constant for [" + statusCode + "]");
 			return series;
 		}
 
@@ -586,9 +581,7 @@ public enum HttpStatus {
 		public static Series resolve(int statusCode) {
 			int seriesCode = statusCode / 100;
 			for (Series series : values()) {
-				if (series.value == seriesCode) {
-					return series;
-				}
+				if (series.value == seriesCode) return series;
 			}
 			return null;
 		}
