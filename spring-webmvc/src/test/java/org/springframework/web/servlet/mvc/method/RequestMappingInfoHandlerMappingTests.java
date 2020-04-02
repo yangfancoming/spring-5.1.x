@@ -416,7 +416,6 @@ public class RequestMappingInfoHandlerMappingTests {
 		@RequestMapping(value = "/foo", method = RequestMethod.GET, params="p")
 		public void fooParam() {}
 
-
 		@RequestMapping(value = "/ba*", method = { RequestMethod.GET, RequestMethod.HEAD })
 		public void bar() {}
 

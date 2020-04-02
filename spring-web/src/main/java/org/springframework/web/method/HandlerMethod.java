@@ -44,18 +44,20 @@ public class HandlerMethod {
 
 	@Nullable
 	private final BeanFactory beanFactory;
-
+	// 方法所属类
 	private final Class<?> beanType;
-
+	// 注册的方法
 	private final Method method;
-
+	// 被桥接的方法,如果method是原生的，这个属性的值就是method
 	private final Method bridgedMethod;
-
+	// 封装方法参数的类实例，一个MethodParameter就是一个参数
 	private final MethodParameter[] parameters;
 
+	// Http状态码
 	@Nullable
 	private HttpStatus responseStatus;
 
+	// ResponseStatus注解的reason值
 	@Nullable
 	private String responseStatusReason;
 
@@ -64,7 +66,6 @@ public class HandlerMethod {
 
 	@Nullable
 	private volatile List<Annotation[][]> interfaceParameterAnnotations;
-
 
 	/**
 	 * Create an instance from a bean instance and a method.

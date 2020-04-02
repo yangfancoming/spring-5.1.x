@@ -807,8 +807,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
-	 * Return the user-defined class for the given class: usually simply the given
-	 * class, but the original class in case of a CGLIB-generated subclass.
+	 * Return the user-defined class for the given class: usually simply the given class, but the original class in case of a CGLIB-generated subclass.
 	 * @param clazz the class to check
 	 * @return the user-defined class
 	 */
@@ -839,9 +838,7 @@ public abstract class ClassUtils {
 			Class<?>[] ifcs = clazz.getInterfaces();
 			for (int i = 0; i < ifcs.length; i++) {
 				result.append(ifcs[i].getName());
-				if (i < ifcs.length - 1) {
-					result.append(',');
-				}
+				if (i < ifcs.length - 1) result.append(',');
 			}
 			return result.toString();
 		}else {
@@ -868,9 +865,7 @@ public abstract class ClassUtils {
 		Assert.hasLength(className, "Class name must not be empty");
 		int lastDotIndex = className.lastIndexOf(PACKAGE_SEPARATOR);
 		int nameEndIndex = className.indexOf(CGLIB_CLASS_SEPARATOR);
-		if (nameEndIndex == -1) {
-			nameEndIndex = className.length();
-		}
+		if (nameEndIndex == -1) nameEndIndex = className.length();
 		String shortName = className.substring(lastDotIndex + 1, nameEndIndex);
 		shortName = shortName.replace(INNER_CLASS_SEPARATOR, PACKAGE_SEPARATOR);
 		return shortName;

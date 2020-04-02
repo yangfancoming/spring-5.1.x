@@ -3,19 +3,13 @@
 package org.springframework.web.servlet.mvc.condition;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.lang.Nullable;
 
 /**
  * Contract for request mapping conditions.
- *
  * Request conditions can be combined via {@link #combine(Object)}, matched to
  * a request via {@link #getMatchingCondition(HttpServletRequest)}, and compared
- * to each other via {@link #compareTo(Object, HttpServletRequest)} to determine
- * which is a closer match for a given request.
- *
- * @author Rossen Stoyanchev
- * @author Arjen Poutsma
+ * to each other via {@link #compareTo(Object, HttpServletRequest)} to determine which is a closer match for a given request.
  * @since 3.1
  * @param <T> the type of objects that this RequestCondition can be combined
  * with and compared to
@@ -23,19 +17,16 @@ import org.springframework.lang.Nullable;
 public interface RequestCondition<T> {
 
 	/**
-	 * Combine this condition with another such as conditions from a
-	 * type-level and method-level {@code @RequestMapping} annotation.
+	 * Combine this condition with another such as conditions from a type-level and method-level {@code @RequestMapping} annotation.
 	 * @param other the condition to combine with.
-	 * @return a request condition instance that is the result of combining
-	 * the two condition instances.
+	 * @return a request condition instance that is the result of combining the two condition instances.
 	 */
 	T combine(T other);
 
 	/**
 	 * Check if the condition matches the request returning a potentially new
 	 * instance created for the current request. For example a condition with
-	 * multiple URL patterns may return a new instance only with those patterns
-	 * that match the request.
+	 * multiple URL patterns may return a new instance only with those patterns that match the request.
 	 * For CORS pre-flight requests, conditions should match to the would-be,
 	 * actual request (e.g. URL pattern, query parameters, and the HTTP method
 	 * from the "Access-Control-Request-Method" header). If a condition cannot
@@ -47,10 +38,8 @@ public interface RequestCondition<T> {
 	T getMatchingCondition(HttpServletRequest request);
 
 	/**
-	 * Compare this condition to another condition in the context of
-	 * a specific request. This method assumes both instances have
-	 * been obtained via {@link #getMatchingCondition(HttpServletRequest)}
-	 * to ensure they have content relevant to current request only.
+	 * Compare this condition to another condition in the context of a specific request.
+	 * This method assumes both instances have been obtained via {@link #getMatchingCondition(HttpServletRequest)} to ensure they have content relevant to current request only.
 	 */
 	int compareTo(T other, HttpServletRequest request);
 
