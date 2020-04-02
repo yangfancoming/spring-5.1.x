@@ -51,15 +51,6 @@ import org.springframework.lang.Nullable;
  *
  * 扩展了BeanFactory接口,提供了对bean的枚举能力,即可以返回bean的实例集合,而不用像BeanFactory只能返回单个bean的实例
  * 注意:如果存在父容器的话该接口不会考虑父容器中的bean,只会返回当前容器中的bean
- *
- * containsBeanDefinition
- * findAnnotationOnBean
- * getBeanDefinitionCount
- * getBeanDefinitionNames
- * getBeanNamesForAnnotation
- * getBeanNamesForType
- * getBeansOfType
- * getBeansWithAnnotation
  */
 public interface ListableBeanFactory extends BeanFactory {
 
@@ -136,18 +127,14 @@ public interface ListableBeanFactory extends BeanFactory {
 
 	/**
 	 * Return the names of beans matching the given type (including subclasses),
-	 * judging from either bean definitions or the value of {@code getObjectType}
-	 * in the case of FactoryBeans.
+	 * judging from either bean definitions or the value of {@code getObjectType} in the case of FactoryBeans.
 	 * <b>NOTE: This method introspects top-level beans only.</b> It does <i>not</i>
 	 * check nested beans which might match the specified type as well.
-	 * Does consider objects created by FactoryBeans, which means that FactoryBeans
-	 * will get initialized. If the object created by the FactoryBean doesn't match,
-	 * the raw FactoryBean itself will be matched against the type.
+	 * Does consider objects created by FactoryBeans, which means that FactoryBeans will get initialized.
+	 * If the object created by the FactoryBean doesn't match, the raw FactoryBean itself will be matched against the type.
 	 * Does not consider any hierarchy this factory may participate in.
-	 * Use BeanFactoryUtils' {@code beanNamesForTypeIncludingAncestors}
-	 * to include beans in ancestor factories too.
-	 * Note: Does <i>not</i> ignore singleton beans that have been registered
-	 * by other means than bean definitions.
+	 * Use BeanFactoryUtils' {@code beanNamesForTypeIncludingAncestors} to include beans in ancestor factories too.
+	 * Note: Does <i>not</i> ignore singleton beans that have been registered by other means than bean definitions.
 	 * This version of {@code getBeanNamesForType} matches all kinds of beans,
 	 * be it singletons, prototypes, or FactoryBeans. In most implementations, the
 	 * result will be the same as for {@code getBeanNamesForType(type, true, true)}.
@@ -245,8 +232,7 @@ public interface ListableBeanFactory extends BeanFactory {
 
 	/**
 	 * Find all names of beans which are annotated with the supplied {@link Annotation} type, without creating corresponding bean instances yet.
-	 * Note that this method considers objects created by FactoryBeans, which means
-	 * that FactoryBeans will get initialized in order to determine their object type.
+	 * Note that this method considers objects created by FactoryBeans, which means that FactoryBeans will get initialized in order to determine their object type.
 	 * @param annotationType the type of annotation to look for
 	 * @return the names of all matching beans
 	 * @since 4.0
@@ -255,10 +241,8 @@ public interface ListableBeanFactory extends BeanFactory {
 	String[] getBeanNamesForAnnotation(Class<? extends Annotation> annotationType); // 找到所有带有指定注解类型的Bean
 
 	/**
-	 * Find all beans which are annotated with the supplied {@link Annotation} type,
-	 * returning a Map of bean names with corresponding bean instances.
-	 * Note that this method considers objects created by FactoryBeans, which means
-	 * that FactoryBeans will get initialized in order to determine their object type.
+	 * Find all beans which are annotated with the supplied {@link Annotation} type,returning a Map of bean names with corresponding bean instances.
+	 * Note that this method considers objects created by FactoryBeans, which means that FactoryBeans will get initialized in order to determine their object type.
 	 * @param annotationType the type of annotation to look for
 	 * @return a Map with the matching beans, containing the bean names as  keys and the corresponding bean instances as values
 	 * @throws BeansException if a bean could not be created
@@ -269,8 +253,7 @@ public interface ListableBeanFactory extends BeanFactory {
 	Map<String, Object> getBeansWithAnnotation(Class<? extends Annotation> annotationType) throws BeansException;
 
 	/**
-	 * Find an {@link Annotation} of {@code annotationType} on the specified bean,
-	 * traversing its interfaces and super classes if no annotation can be found on the given class itself.
+	 * Find an {@link Annotation} of {@code annotationType} on the specified bean,traversing its interfaces and super classes if no annotation can be found on the given class itself.
 	 * @param beanName the name of the bean to look for annotations on
 	 * @param annotationType the type of annotation to look for
 	 * @return the annotation of the given type if found, or {@code null} otherwise

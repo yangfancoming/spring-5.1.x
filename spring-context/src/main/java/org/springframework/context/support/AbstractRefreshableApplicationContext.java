@@ -43,19 +43,6 @@ import org.springframework.lang.Nullable;
  * @see ClassPathXmlApplicationContext
  * @see FileSystemXmlApplicationContext
  * @see org.springframework.context.annotation.AnnotationConfigApplicationContext
- *
- * AbstractRefreshableApplicationContext
- * assertBeanFactoryActive
- * cancelRefresh
- * closeBeanFactory
- * createBeanFactory
- * customizeBeanFactory
- * getBeanFactory
- * hasBeanFactory
- * loadBeanDefinitions
- * refreshBeanFactory
- * setAllowBeanDefinitionOverriding
- * setAllowCircularReferences
  */
 public abstract class AbstractRefreshableApplicationContext extends AbstractApplicationContext {
 
@@ -77,8 +64,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	/**
 	 * Create a new AbstractRefreshableApplicationContext with no parent.
 	 */
-	public AbstractRefreshableApplicationContext() {
-	}
+	public AbstractRefreshableApplicationContext() {}
 
 	/**
 	 * Create a new AbstractRefreshableApplicationContext with the given parent context.

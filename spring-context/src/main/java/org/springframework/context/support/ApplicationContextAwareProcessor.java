@@ -21,20 +21,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringValueResolver;
 
 /**
- * {@link org.springframework.beans.factory.config.BeanPostProcessor}
- * implementation that passes the ApplicationContext to beans that
- * implement the {@link EnvironmentAware}, {@link EmbeddedValueResolverAware},
- * {@link ResourceLoaderAware}, {@link ApplicationEventPublisherAware},
+ * {@link org.springframework.beans.factory.config.BeanPostProcessor} implementation that passes the ApplicationContext to beans that
+ * implement the {@link EnvironmentAware}, {@link EmbeddedValueResolverAware},{@link ResourceLoaderAware}, {@link ApplicationEventPublisherAware},
  * {@link MessageSourceAware} and/or {@link ApplicationContextAware} interfaces.
- *
  * Implemented interfaces are satisfied in order of their mention above.
- *
- * Application contexts will automatically register this with their
- * underlying bean factory. Applications do not use this directly.
- *
-
- * @author Costin Leau
-
+ * Application contexts will automatically register this with their underlying bean factory. Applications do not use this directly.
  * @since 10.10.2003
  * @see org.springframework.context.EnvironmentAware
  * @see org.springframework.context.EmbeddedValueResolverAware
@@ -51,7 +42,6 @@ class ApplicationContextAwareProcessor implements BeanPostProcessor {
 
 	private final StringValueResolver embeddedValueResolver;
 
-
 	/**
 	 * Create a new ApplicationContextAwareProcessor for the given context.
 	 */
@@ -59,7 +49,6 @@ class ApplicationContextAwareProcessor implements BeanPostProcessor {
 		this.applicationContext = applicationContext;
 		this.embeddedValueResolver = new EmbeddedValueResolver(applicationContext.getBeanFactory());
 	}
-
 
 	@Override
 	@Nullable
@@ -70,20 +59,16 @@ class ApplicationContextAwareProcessor implements BeanPostProcessor {
 				(bean instanceof EnvironmentAware || bean instanceof EmbeddedValueResolverAware ||
 						bean instanceof ResourceLoaderAware || bean instanceof ApplicationEventPublisherAware ||
 						bean instanceof MessageSourceAware || bean instanceof ApplicationContextAware)) {
-
 			acc = this.applicationContext.getBeanFactory().getAccessControlContext();
 		}
-
 		if (acc != null) {
 			AccessController.doPrivileged((PrivilegedAction<Object>) () -> {
 				invokeAwareInterfaces(bean);
 				return null;
 			}, acc);
-		}
-		else {
+		}else {
 			invokeAwareInterfaces(bean);
 		}
-
 		return bean;
 	}
 

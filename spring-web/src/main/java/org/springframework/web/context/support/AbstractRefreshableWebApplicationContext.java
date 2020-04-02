@@ -56,16 +56,13 @@ import org.springframework.web.context.ServletContextAware;
  * {@link ConfigurableWebApplicationContext} interface. In contrast, a standalone
  * application context might allow for configuration in custom startup code
  * (for example, {@link org.springframework.context.support.GenericApplicationContext}).
- *
-
  * @since 1.1.3
  * @see #loadBeanDefinitions
  * @see org.springframework.web.context.ConfigurableWebApplicationContext#setConfigLocations
  * @see org.springframework.ui.context.ThemeSource
  * @see XmlWebApplicationContext
  */
-public abstract class AbstractRefreshableWebApplicationContext extends AbstractRefreshableConfigApplicationContext
-		implements ConfigurableWebApplicationContext, ThemeSource {
+public abstract class AbstractRefreshableWebApplicationContext extends AbstractRefreshableConfigApplicationContext implements ConfigurableWebApplicationContext, ThemeSource {
 
 	/** Servlet context that this context runs in. */
 	@Nullable
@@ -87,7 +84,6 @@ public abstract class AbstractRefreshableWebApplicationContext extends AbstractR
 	public AbstractRefreshableWebApplicationContext() {
 		setDisplayName("Root WebApplicationContext");
 	}
-
 
 	@Override
 	public void setServletContext(@Nullable ServletContext servletContext) {
@@ -117,9 +113,7 @@ public abstract class AbstractRefreshableWebApplicationContext extends AbstractR
 	@Override
 	public void setNamespace(@Nullable String namespace) {
 		this.namespace = namespace;
-		if (namespace != null) {
-			setDisplayName("WebApplicationContext for namespace '" + namespace + "'");
-		}
+		if (namespace != null) setDisplayName("WebApplicationContext for namespace '" + namespace + "'");
 	}
 
 	@Override
@@ -155,7 +149,6 @@ public abstract class AbstractRefreshableWebApplicationContext extends AbstractR
 		beanFactory.addBeanPostProcessor(new ServletContextAwareProcessor(this.servletContext, this.servletConfig));
 		beanFactory.ignoreDependencyInterface(ServletContextAware.class);
 		beanFactory.ignoreDependencyInterface(ServletConfigAware.class);
-
 		WebApplicationContextUtils.registerWebApplicationScopes(beanFactory, this.servletContext);
 		WebApplicationContextUtils.registerEnvironmentBeans(beanFactory, this.servletContext, this.servletConfig);
 	}

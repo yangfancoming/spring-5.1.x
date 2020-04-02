@@ -512,7 +512,6 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 		getServletContext().log("Initializing Spring " + getClass().getSimpleName() + " '" + getServletName() + "'");
 		if (logger.isInfoEnabled()) logger.info("Initializing Servlet '" + getServletName() + "'");
 		long startTime = System.currentTimeMillis();
-
 		try {
 			// 初始化容器
 			// 初始化当前servlet配置的Spring配置
@@ -826,9 +825,8 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 
 
 	/**
-	 * This method will be invoked after any bean properties have been set and
-	 * the WebApplicationContext has been loaded. The default implementation is empty;
-	 * subclasses may override this method to perform any initialization they require.
+	 * This method will be invoked after any bean properties have been set and the WebApplicationContext has been loaded.
+	 * The default implementation is empty; subclasses may override this method to perform any initialization they require.
 	 * @throws ServletException in case of an initialization exception
 	 */
 	protected void initFrameworkServlet() throws ServletException {

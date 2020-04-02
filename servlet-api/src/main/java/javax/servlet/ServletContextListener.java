@@ -10,8 +10,7 @@ import java.util.EventListener;
  * In order to receive these notification events, the implementation
  * class must be either declared in the deployment descriptor of the web
  * application, annotated with {@link javax.servlet.annotation.WebListener},
- * or registered via one of the addListener methods defined on
- * {@link ServletContext}.
+ * or registered via one of the addListener methods defined on {@link ServletContext}.
  *
  * Implementations of this interface are invoked at their
  * {@link #contextInitialized} method in the order in which they have been
@@ -36,13 +35,9 @@ public interface ServletContextListener extends EventListener {
 
     /**
      * Receives notification that the ServletContext is about to be shut down.
-     *
      * All servlets and filters will have been destroyed before any
-     * ServletContextListeners are notified of context
-     * destruction.
-     *
+     * ServletContextListeners are notified of context destruction.
      * @param sce the ServletContextEvent containing the ServletContext that is being destroyed
-     *
      * @implSpec
      * The default implementation takes no action.
      */

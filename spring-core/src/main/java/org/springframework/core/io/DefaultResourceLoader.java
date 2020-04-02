@@ -18,9 +18,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * Default implementation of the {@link ResourceLoader} interface.
- * Used by {@link ResourceEditor}, and serves as base class for {@link org.springframework.context.support.AbstractApplicationContext}.
- * Can also be used standalone.
- *
+ * Used by {@link ResourceEditor}, and serves as base class for {@link org.springframework.context.support.AbstractApplicationContext}.Can also be used standalone.
  * Will return a {@link UrlResource} if the location value is a URL, and a {@link ClassPathResource} if it is a non-URL path or a "classpath:" pseudo-URL.
  * @since 10.03.2004
  * @see FileSystemResourceLoader
@@ -76,8 +74,7 @@ public class DefaultResourceLoader implements ResourceLoader {
 	}
 
 	/**
-	 * Return the collection of currently registered protocol resolvers,
-	 * allowing for introspection as well as modification.
+	 * Return the collection of currently registered protocol resolvers,allowing for introspection as well as modification.
 	 * @since 4.3
 	 */
 	public Collection<ProtocolResolver> getProtocolResolvers() {
@@ -106,8 +103,7 @@ public class DefaultResourceLoader implements ResourceLoader {
 
 	/**
 	 * Return a Resource handle for the resource at the given path.
-	 * The default implementation supports class path locations. This should
-	 * be appropriate for standalone implementations but can be overridden,
+	 * The default implementation supports class path locations. This should be appropriate for standalone implementations but can be overridden,
 	 * e.g. for implementations targeted at a Servlet container.
 	 * @param path the path to the resource
 	 * @return the corresponding Resource handle
@@ -120,8 +116,7 @@ public class DefaultResourceLoader implements ResourceLoader {
 	}
 
 	/**
-	 * ClassPathResource that explicitly expresses a context-relative path
-	 * through implementing the ContextResource interface.
+	 * ClassPathResource that explicitly expresses a context-relative path through implementing the ContextResource interface.
 	 */
 	protected static class ClassPathContextResource extends ClassPathResource implements ContextResource {
 		public ClassPathContextResource(String path, @Nullable ClassLoader classLoader) {

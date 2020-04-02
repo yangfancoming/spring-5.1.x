@@ -293,8 +293,7 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	 *  查找实现了MappedInterceptor接口的bean，并添加到映射拦截器列表
 	 */
 	protected void detectMappedInterceptors(List<HandlerInterceptor> mappedInterceptors) {
-		mappedInterceptors.addAll(
-				BeanFactoryUtils.beansOfTypeIncludingAncestors(obtainApplicationContext(), MappedInterceptor.class, true, false).values());
+		mappedInterceptors.addAll(BeanFactoryUtils.beansOfTypeIncludingAncestors(obtainApplicationContext(), MappedInterceptor.class, true, false).values());
 	}
 
 	/**
@@ -309,9 +308,7 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 		if (!this.interceptors.isEmpty()) {
 			for (int i = 0; i < this.interceptors.size(); i++) {
 				Object interceptor = this.interceptors.get(i);
-				if (interceptor == null) {
-					throw new IllegalArgumentException("Entry number " + i + " in interceptors array is null");
-				}
+				if (interceptor == null) throw new IllegalArgumentException("Entry number " + i + " in interceptors array is null");
 				this.adaptedInterceptors.add(adaptInterceptor(interceptor));
 			}
 		}

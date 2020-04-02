@@ -16,8 +16,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 /**
  * Handles method return values by delegating to a list of registered {@link HandlerMethodReturnValueHandler HandlerMethodReturnValueHandlers}.
  * Previously resolved return types are cached for faster lookups.
- *
- * @author Rossen Stoyanchev
+ * 对响应进行处理
  * @since 3.1
  */
 public class HandlerMethodReturnValueHandlerComposite implements HandlerMethodReturnValueHandler {
@@ -25,7 +24,6 @@ public class HandlerMethodReturnValueHandlerComposite implements HandlerMethodRe
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	private final List<HandlerMethodReturnValueHandler> returnValueHandlers = new ArrayList<>();
-
 
 	/**
 	 * Return a read-only list with the registered handlers, or an empty list.

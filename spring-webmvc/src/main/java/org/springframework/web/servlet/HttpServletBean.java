@@ -159,11 +159,8 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 				initBeanWrapper(bw);
 				// 设置配置信息到目标对象中
 				bw.setPropertyValues(pvs, true);
-			}
-			catch (BeansException ex) {
-				if (logger.isErrorEnabled()) {
-					logger.error("Failed to set bean properties on servlet '" + getServletName() + "'", ex);
-				}
+			}catch (BeansException ex) {
+				if (logger.isErrorEnabled()) logger.error("Failed to set bean properties on servlet '" + getServletName() + "'", ex);
 				throw ex;
 			}
 		}
@@ -174,8 +171,7 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 	}
 
 	/**
-	 * Initialize the BeanWrapper for this HttpServletBean,
-	 * possibly with custom editors.
+	 * Initialize the BeanWrapper for this HttpServletBean, possibly with custom editors.
 	 * This default implementation is empty.
 	 * @param bw the BeanWrapper to initialize
 	 * @throws BeansException if thrown by BeanWrapper methods
@@ -186,8 +182,7 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 
 	/**
 	 * Subclasses may override this to perform custom initialization.
-	 * All bean properties of this servlet will have been set before this
-	 * method is invoked.
+	 * All bean properties of this servlet will have been set before this method is invoked.
 	 * This default implementation is empty.
 	 * @throws ServletException if subclass initialization fails
 	 */
@@ -204,7 +199,6 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 	public String getServletName() {
 		return (getServletConfig() != null ? getServletConfig().getServletName() : null);
 	}
-
 
 	/**
 	 * PropertyValues implementation created from ServletConfig init parameters.

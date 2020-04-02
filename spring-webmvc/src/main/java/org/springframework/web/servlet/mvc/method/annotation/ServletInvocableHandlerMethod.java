@@ -30,14 +30,9 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.util.NestedServletException;
 
 /**
- * Extends {@link InvocableHandlerMethod} with the ability to handle return
- * values through a registered {@link HandlerMethodReturnValueHandler} and
- * also supports setting the response status based on a method-level
- * {@code @ResponseStatus} annotation.
- *
- * A {@code null} return value (including void) may be interpreted as the
- * end of request processing in combination with a {@code @ResponseStatus}
- * annotation, a not-modified check condition
+ * Extends {@link InvocableHandlerMethod} with the ability to handle return values through a registered {@link HandlerMethodReturnValueHandler} and
+ * also supports setting the response status based on a method-level {@code @ResponseStatus} annotation
+ * A {@code null} return value (including void) may be interpreted as the end of request processing in combination with a {@code @ResponseStatus} annotation, a not-modified check condition
  * (see {@link ServletWebRequest#checkNotModified(long)}), or a method argument that provides access to the response stream.
  * @since 3.1
  */
@@ -62,51 +57,40 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 		super(handlerMethod);
 	}
 
-
 	/**
-	 * Register {@link HandlerMethodReturnValueHandler} instances to use to
-	 * handle return values.
+	 * Register {@link HandlerMethodReturnValueHandler} instances to use to handle return values.
 	 */
 	public void setHandlerMethodReturnValueHandlers(HandlerMethodReturnValueHandlerComposite returnValueHandlers) {
 		this.returnValueHandlers = returnValueHandlers;
 	}
 
-
 	/**
-	 * Invoke the method and handle the return value through one of the
-	 * configured {@link HandlerMethodReturnValueHandler HandlerMethodReturnValueHandlers}.
+	 * Invoke the method and handle the return value through one of the configured {@link HandlerMethodReturnValueHandler HandlerMethodReturnValueHandlers}.
 	 * @param webRequest the current request
 	 * @param mavContainer the ModelAndViewContainer for this request
 	 * @param providedArgs "given" arguments matched by type (not resolved)
 	 */
 	public void invokeAndHandle(ServletWebRequest webRequest, ModelAndViewContainer mavContainer,Object... providedArgs) throws Exception {
-
 		// 处理请求
 		Object returnValue = invokeForRequest(webRequest, mavContainer, providedArgs);
 		setResponseStatus(webRequest);
-
 		if (returnValue == null) {
 			if (isRequestNotModified(webRequest) || getResponseStatus() != null || mavContainer.isRequestHandled()) {
 				disableContentCachingIfNecessary(webRequest);
 				mavContainer.setRequestHandled(true);
 				return;
 			}
-		}
-		else if (StringUtils.hasText(getResponseStatusReason())) {
+		}else if (StringUtils.hasText(getResponseStatusReason())) {
 			mavContainer.setRequestHandled(true);
 			return;
 		}
-
 		mavContainer.setRequestHandled(false);
 		Assert.state(this.returnValueHandlers != null, "No return value handlers");
 		try {
 			// 处理返回值
 			this.returnValueHandlers.handleReturnValue(returnValue, getReturnValueType(returnValue), mavContainer, webRequest);
-		}
-		catch (Exception ex) {
-			if (logger.isTraceEnabled()) {
-				logger.trace(formatErrorForReturnValue(returnValue), ex);
-			}
+		}catch (Exception ex) {
+			if (logger.isTraceEnabled()) logger.trace(formatErrorForReturnValue(returnValue), ex);
 			throw ex;
 		}
 	}
@@ -116,16 +100,13 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 	 */
 	private void setResponseStatus(ServletWebRequest webRequest) throws IOException {
 		HttpStatus status = getResponseStatus();
-		if (status == null) {
-			return;
-		}
+		if (status == null) return;
 		HttpServletResponse response = webRequest.getResponse();
 		if (response != null) {
 			String reason = getResponseStatusReason();
 			if (StringUtils.hasText(reason)) {
 				response.sendError(status.value(), reason);
-			}
-			else {
+			}else {
 				response.setStatus(status.value());
 			}
 		}

@@ -13,21 +13,17 @@ import org.springframework.lang.Nullable;
  * and {@link org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping}
  * are included in the framework. The former is the default if no HandlerMapping bean is registered in the application context.
  *
- * HandlerMapping implementations can support mapped interceptors but do not
- * have to. A handler will always be wrapped in a {@link HandlerExecutionChain}
- * instance, optionally accompanied by some {@link HandlerInterceptor} instances.
- * The DispatcherServlet will first call each HandlerInterceptor's
- * {@code preHandle} method in the given order, finally invoking the handler
- * itself if all {@code preHandle} methods have returned {@code true}.
+ * HandlerMapping implementations can support mapped interceptors but do not have to.
+ * A handler will always be wrapped in a {@link HandlerExecutionChain} instance, optionally accompanied by some {@link HandlerInterceptor} instances.
+ * The DispatcherServlet will first call each HandlerInterceptor's {@code preHandle} method in the given order,
+ * finally invoking the handler itself if all {@code preHandle} methods have returned {@code true}.
  *
- * The ability to parameterize this mapping is a powerful and unusual
- * capability of this MVC framework. For example, it is possible to write
- * a custom mapping based on session state, cookie state or many other
- * variables. No other MVC framework seems to be equally flexible.
+ * The ability to parameterize this mapping is a powerful and unusual capability of this MVC framework.
+ * For example, it is possible to write  a custom mapping based on session state, cookie state or many other variables.
+ * No other MVC framework seems to be equally flexible.
  *
- * Note: Implementations can implement the {@link org.springframework.core.Ordered}
- * interface to be able to specify a sorting order and thus a priority for getting
- * applied by DispatcherServlet. Non-Ordered instances get treated as lowest priority.
+ * Note: Implementations can implement the {@link org.springframework.core.Ordered} interface to be able to specify a sorting order and thus a priority for getting applied by DispatcherServlet.
+ * Non-Ordered instances get treated as lowest priority.
  * @see org.springframework.core.Ordered
  * @see org.springframework.web.servlet.handler.AbstractHandlerMapping
  * @see org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping
@@ -38,8 +34,7 @@ import org.springframework.lang.Nullable;
 public interface HandlerMapping {
 
 	/**
-	 * Name of the {@link HttpServletRequest} attribute that contains the mapped
-	 * handler for the best matching pattern.
+	 * Name of the {@link HttpServletRequest} attribute that contains the mapped handler for the best matching pattern.
 	 * @since 4.3.21
 	 */
 	String BEST_MATCHING_HANDLER_ATTRIBUTE = HandlerMapping.class.getName() + ".bestMatchingHandler";
@@ -85,8 +80,7 @@ public interface HandlerMapping {
 
 	/**
 	 * Name of the {@link HttpServletRequest} attribute that contains a map with
-	 * URI variable names and a corresponding MultiValueMap of URI matrix
-	 * variables for each.
+	 * URI variable names and a corresponding MultiValueMap of URI matrix variables for each.
 	 * Note: This attribute is not required to be supported by all
 	 * HandlerMapping implementations and may also not be present depending on
 	 * whether the HandlerMapping is configured to keep matrix variable content
@@ -103,18 +97,15 @@ public interface HandlerMapping {
 	String PRODUCIBLE_MEDIA_TYPES_ATTRIBUTE = HandlerMapping.class.getName() + ".producibleMediaTypes";
 
 	/**
-	 * Return a handler and any interceptors for this request. The choice may be made
-	 * on request URL, session state, or any factor the implementing class chooses.
-	 * The returned HandlerExecutionChain contains a handler Object, rather than
-	 * even a tag interface, so that handlers are not constrained in any way.
-	 * For example, a HandlerAdapter could be written to allow another framework's
-	 * handler objects to be used.
+	 * Return a handler and any interceptors for this request.
+	 * The choice may be made on request URL, session state, or any factor the implementing class chooses.
+	 * The returned HandlerExecutionChain contains a handler Object, rather than even a tag interface,
+	 * so that handlers are not constrained in any way.
+	 * For example, a HandlerAdapter could be written to allow another framework's handler objects to be used.
 	 * Returns {@code null} if no match was found. This is not an error.
-	 * The DispatcherServlet will query all registered HandlerMapping beans to find
-	 * a match, and only decide there is an error if none can find a handler.
+	 * The DispatcherServlet will query all registered HandlerMapping beans to find  a match, and only decide there is an error if none can find a handler.
 	 * @param request current HTTP request
-	 * @return a HandlerExecutionChain instance containing handler object and
-	 * any interceptors, or {@code null} if no mapping found
+	 * @return a HandlerExecutionChain instance containing handler object and any interceptors, or {@code null} if no mapping found
 	 * @throws Exception if there is an internal error
 	 * 通过request获取HandlerExecutionChain对象
 	 */

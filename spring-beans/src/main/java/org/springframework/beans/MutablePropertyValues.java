@@ -146,8 +146,7 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	}
 
 	/**
-	 * Add a PropertyValue object, replacing any existing one for the
-	 * corresponding property or getting merged with it (if applicable).
+	 * Add a PropertyValue object, replacing any existing one for the corresponding property or getting merged with it (if applicable).
 	 * @param pv the PropertyValue object to add
 	 * @return this in order to allow for adding multiple property values in a chain
 	 */

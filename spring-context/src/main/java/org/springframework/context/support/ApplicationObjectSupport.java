@@ -41,35 +41,9 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 	@Nullable
 	private MessageSourceAccessor messageSourceAccessor;
 
-
-	@Override
-	public final void setApplicationContext(@Nullable ApplicationContext context) throws BeansException {
-		if (context == null && !isContextRequired()) {
-			// Reset internal context state.
-			this.applicationContext = null;
-			this.messageSourceAccessor = null;
-		}
-		else if (this.applicationContext == null) {
-			// Initialize with passed-in context.
-			if (!requiredContextClass().isInstance(context)) {
-				throw new ApplicationContextException("Invalid application context: needs to be of type [" + requiredContextClass().getName() + "]");
-			}
-			this.applicationContext = context;
-			this.messageSourceAccessor = new MessageSourceAccessor(context);
-			initApplicationContext(context);
-		}
-		else {
-			// Ignore reinitialization if same context passed in.
-			if (this.applicationContext != context) {
-				throw new ApplicationContextException("Cannot reinitialize with different application context: current one is [" + this.applicationContext + "], passed-in one is [" + context + "]");
-			}
-		}
-	}
-
 	/**
 	 * Determine whether this application object needs to run in an ApplicationContext.
-	 * Default is "false". Can be overridden to enforce running in a context
-	 * (i.e. to throw IllegalStateException on accessors if outside a context).
+	 * Default is "false". Can be overridden to enforce running in a context (i.e. to throw IllegalStateException on accessors if outside a context).
 	 * @see #getApplicationContext
 	 * @see #getMessageSourceAccessor
 	 */
@@ -78,8 +52,7 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 	}
 
 	/**
-	 * Determine the context class that any context passed to
-	 * {@code setApplicationContext} must be an instance of.
+	 * Determine the context class that any context passed to {@code setApplicationContext} must be an instance of.
 	 * Can be overridden in subclasses.
 	 * @see #setApplicationContext
 	 */
@@ -92,8 +65,7 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 	 * Gets called by {@code setApplicationContext} after setting the context instance.
 	 * Note: Does <i>not</i> get called on re-initialization of the context
 	 * but rather just on first initialization of this object's context reference.
-	 * The default implementation calls the overloaded {@link #initApplicationContext()}
-	 * method without ApplicationContext reference.
+	 * The default implementation calls the overloaded {@link #initApplicationContext()} method without ApplicationContext reference.
 	 * @param context the containing ApplicationContext
 	 * @throws ApplicationContextException in case of initialization errors
 	 * @throws BeansException if thrown by ApplicationContext methods
@@ -105,14 +77,12 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 
 	/**
 	 * Subclasses can override this for custom initialization behavior.
-	 * The default implementation is empty. Called by
-	 * {@link #initApplicationContext(org.springframework.context.ApplicationContext)}.
+	 * The default implementation is empty. Called by {@link #initApplicationContext(org.springframework.context.ApplicationContext)}.
 	 * @throws ApplicationContextException in case of initialization errors
 	 * @throws BeansException if thrown by ApplicationContext methods
 	 * @see #setApplicationContext
 	 */
 	protected void initApplicationContext() throws BeansException {}
-
 
 	/**
 	 * Return the ApplicationContext that this object is associated with.
@@ -149,6 +119,33 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 			throw new IllegalStateException("ApplicationObjectSupport instance [" + this + "] does not run in an ApplicationContext");
 		}
 		return this.messageSourceAccessor;
+	}
+
+	//---------------------------------------------------------------------
+	// Implementation of 【ApplicationContextAware】 interface
+	//---------------------------------------------------------------------
+
+	@Override
+	public final void setApplicationContext(@Nullable ApplicationContext context) throws BeansException {
+		if (context == null && !isContextRequired()) {
+			// Reset internal context state.
+			this.applicationContext = null;
+			this.messageSourceAccessor = null;
+		}else if (this.applicationContext == null) {
+			// Initialize with passed-in context.
+			if (!requiredContextClass().isInstance(context)) {
+				throw new ApplicationContextException("Invalid application context: needs to be of type [" + requiredContextClass().getName() + "]");
+			}
+			this.applicationContext = context;
+			this.messageSourceAccessor = new MessageSourceAccessor(context);
+			// 重点
+			initApplicationContext(context);
+		}else {
+			// Ignore reinitialization if same context passed in.
+			if (this.applicationContext != context) {
+				throw new ApplicationContextException("Cannot reinitialize with different application context: current one is [" + this.applicationContext + "], passed-in one is [" + context + "]");
+			}
+		}
 	}
 
 }

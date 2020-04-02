@@ -21,16 +21,13 @@ public abstract class AbstractDetectingUrlHandlerMapping extends AbstractUrlHand
 
 	/**
 	 * Set whether to detect handler beans in ancestor ApplicationContexts.
-	 * Default is "false": Only handler beans in the current ApplicationContext
-	 * will be detected, i.e. only in the context that this HandlerMapping itself
-	 * is defined in (typically the current DispatcherServlet's context).
-	 * Switch this flag on to detect handler beans in ancestor contexts
-	 * (typically the Spring root WebApplicationContext) as well.
+	 * Default is "false": Only handler beans in the current ApplicationContext will be detected,
+	 * i.e. only in the context that this HandlerMapping itself is defined in (typically the current DispatcherServlet's context).
+	 * Switch this flag on to detect handler beans in ancestor contexts (typically the Spring root WebApplicationContext) as well.
 	 */
 	public void setDetectHandlersInAncestorContexts(boolean detectHandlersInAncestorContexts) {
 		this.detectHandlersInAncestorContexts = detectHandlersInAncestorContexts;
 	}
-
 
 	/**
 	 * Calls the {@link #detectHandlers()} method in addition to the superclass's initialization.
@@ -39,7 +36,7 @@ public abstract class AbstractDetectingUrlHandlerMapping extends AbstractUrlHand
 	public void initApplicationContext() throws ApplicationContextException {
 		// 调用父类AbstractHandlerMapping初始化拦截器，与SimpleUrlHandlerMapping一样
 		super.initApplicationContext();
-		// 处理url和bean name，具体注册调用父类AbstractUrlHandlerMapping类完成
+		// 处理url和bean name，具体注册调用父类 AbstractUrlHandlerMapping 类完成
 		detectHandlers();
 	}
 
@@ -51,25 +48,6 @@ public abstract class AbstractDetectingUrlHandlerMapping extends AbstractUrlHand
 	 * @throws org.springframework.beans.BeansException if the handler couldn't be registered
 	 * @see #determineUrlsForHandler(String)
 	 *  建立当前ApplicationContext中的所有controller和url的对应关系
-	 *
-	 * 0 = "sampleController"
-	 * 1 = "org.springframework.context.annotation.internalConfigurationAnnotationProcessor"
-	 * 2 = "org.springframework.context.annotation.internalAutowiredAnnotationProcessor"
-	 * 3 = "org.springframework.context.annotation.internalCommonAnnotationProcessor"
-	 * 4 = "org.springframework.context.event.internalEventListenerProcessor"
-	 * 5 = "org.springframework.context.event.internalEventListenerFactory"
-	 * 6 = "org.springframework.web.servlet.view.InternalResourceViewResolver#0"
-	 * 7 = "environment"
-	 * 8 = "systemProperties"
-	 * 9 = "systemEnvironment"
-	 * 10 = "servletContext"
-	 * 11 = "servletConfig"
-	 * 12 = "contextParameters"
-	 * 13 = "contextAttributes"
-	 * 14 = "org.springframework.context.annotation.ConfigurationClassPostProcessor.importRegistry"
-	 * 15 = "messageSource"
-	 * 16 = "applicationEventMulticaster"
-	 * 17 = "lifecycleProcessor"
 	 */
 	protected void detectHandlers() throws BeansException {
 		// 获取应用上下文
@@ -82,15 +60,12 @@ public abstract class AbstractDetectingUrlHandlerMapping extends AbstractUrlHand
 			String[] urls = determineUrlsForHandler(beanName);
 			if (!ObjectUtils.isEmpty(urls)) {
 				// URL paths found: Let's consider it a handler. // 保存urls和beanName的对应关系,put it to Map,该方法在父类AbstractUrlHandlerMapping中实现
-				// 调用父类AbstractUrlHandlerMapping将url与handler存入map
+				// 调用父类 AbstractUrlHandlerMapping 将url与handler存入map
 				registerHandler(urls, beanName);
 			}
 		}
-		if ((logger.isDebugEnabled() && !getHandlerMap().isEmpty()) || logger.isTraceEnabled()) {
-			logger.debug("Detected " + getHandlerMap().size() + " mappings in " + formatMappingName());
-		}
+		if ((logger.isDebugEnabled() && !getHandlerMap().isEmpty()) || logger.isTraceEnabled()) logger.debug("Detected " + getHandlerMap().size() + " mappings in " + formatMappingName());
 	}
-
 
 	/**
 	 * Determine the URLs for the given handler bean.

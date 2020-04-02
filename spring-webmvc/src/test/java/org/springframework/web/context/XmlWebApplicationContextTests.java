@@ -72,8 +72,7 @@ public class XmlWebApplicationContextTests extends AbstractApplicationContextTes
 	 * @see org.springframework.context.AbstractApplicationContextTests#testEvents()
 	 */
 	@Override
-	protected void doTestEvents(TestListener listener, TestListener parentListener,
-			MyEvent event) {
+	protected void doTestEvents(TestListener listener, TestListener parentListener,MyEvent event) {
 		TestListener listenerBean = (TestListener) this.applicationContext.getBean("testListener");
 		TestListener parentListenerBean = (TestListener) this.applicationContext.getParent().getBean("parentListener");
 		super.doTestEvents(listenerBean, parentListenerBean, event);
@@ -82,8 +81,7 @@ public class XmlWebApplicationContextTests extends AbstractApplicationContextTes
 	@Test
 	@Override
 	public void count() {
-		assertTrue("should have 14 beans, not "+ this.applicationContext.getBeanDefinitionCount(),
-			this.applicationContext.getBeanDefinitionCount() == 14);
+		assertTrue("should have 14 beans, not "+ this.applicationContext.getBeanDefinitionCount(),this.applicationContext.getBeanDefinitionCount() == 14);
 	}
 
 	@Test
@@ -99,8 +97,7 @@ public class XmlWebApplicationContextTests extends AbstractApplicationContextTes
 		try {
 			wac.getMessage("someMessage", null, Locale.getDefault());
 			fail("Should have thrown NoSuchMessageException");
-		}
-		catch (NoSuchMessageException ex) {
+		}catch (NoSuchMessageException ex) {
 			// expected;
 		}
 		String msg = wac.getMessage("someMessage", null, "default", Locale.getDefault());
