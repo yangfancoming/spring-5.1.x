@@ -23,18 +23,12 @@ import org.springframework.web.servlet.HandlerExecutionChain;
  * implementations. Provides infrastructure for mapping handlers to URLs and configurable
  * URL lookup. For information on the latter, see "alwaysUseFullPath" property.
  *
- * <p>Supports direct matches, e.g. a registered "/test" matches "/test", and
- * various Ant-style pattern matches, e.g. a registered "/t*" pattern matches
- * both "/test" and "/team", "/test/*" matches all paths in the "/test" directory,
+ * Supports direct matches, e.g. a registered "/test" matches "/test", and various Ant-style pattern matches,
+ * e.g. a registered "/t*" pattern matches both "/test" and "/team", "/test/*" matches all paths in the "/test" directory,
  * "/test/**" matches all paths below "/test". For details, see the
  * {@link org.springframework.util.AntPathMatcher AntPathMatcher} javadoc.
- *
- * <p>Will search all path patterns to find the most exact match for the
- * current request path. The most exact match is defined as the longest
- * path pattern that matches the current request path.
- *
-
- * @author Arjen Poutsma
+ * Will search all path patterns to find the most exact match for the
+ * current request path. The most exact match is defined as the longest path pattern that matches the current request path.
  * @since 16.04.2003
  */
 public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping implements MatchableHandlerMapping {
@@ -48,19 +42,16 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 
 	private final Map<String, Object> handlerMap = new LinkedHashMap<>();
 
-
 	/**
-	 * Set the root handler for this handler mapping, that is,
-	 * the handler to be registered for the root path ("/").
-	 * <p>Default is {@code null}, indicating no root handler.
+	 * Set the root handler for this handler mapping, that is,the handler to be registered for the root path ("/").
+	 * Default is {@code null}, indicating no root handler.
 	 */
 	public void setRootHandler(@Nullable Object rootHandler) {
 		this.rootHandler = rootHandler;
 	}
 
 	/**
-	 * Return the root handler for this handler mapping (registered for "/"),
-	 * or {@code null} if none.
+	 * Return the root handler for this handler mapping (registered for "/"),or {@code null} if none.
 	 */
 	@Nullable
 	public Object getRootHandler() {
@@ -69,8 +60,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 
 	/**
 	 * Whether to match to URLs irrespective of the presence of a trailing slash.
-	 * If enabled a URL pattern such as "/users" also matches to "/users/".
-	 * <p>The default value is {@code false}.
+	 * If enabled a URL pattern such as "/users" also matches to "/users/". The default value is {@code false}.
 	 */
 	public void setUseTrailingSlashMatch(boolean useTrailingSlashMatch) {
 		this.useTrailingSlashMatch = useTrailingSlashMatch;
@@ -88,7 +78,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	 * singleton handlers, as prototypes are always lazily initialized.
 	 * Default is "false", as eager initialization allows for more efficiency
 	 * through referencing the controller objects directly.
-	 * <p>If you want to allow your controllers to be lazily initialized,
+	 * If you want to allow your controllers to be lazily initialized,
 	 * make them "lazy-init" and set this flag to true. Just making them
 	 * "lazy-init" will not work, as they are initialized through the
 	 * references from the handler mapping in this case.
@@ -111,12 +101,8 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 			// We need to care for the default handler directly, since we need to
 			// expose the PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE for it as well.
 			Object rawHandler = null;
-			if ("/".equals(lookupPath)) {
-				rawHandler = getRootHandler();
-			}
-			if (rawHandler == null) {
-				rawHandler = getDefaultHandler();
-			}
+			if ("/".equals(lookupPath)) rawHandler = getRootHandler();
+			if (rawHandler == null) rawHandler = getDefaultHandler();
 			if (rawHandler != null) {
 				// Bean name or resolved handler?
 				if (rawHandler instanceof String) {
@@ -132,11 +118,10 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 
 	/**
 	 * Look up a handler instance for the given URL path.
-	 * <p>Supports direct matches, e.g. a registered "/test" matches "/test",
+	 * Supports direct matches, e.g. a registered "/test" matches "/test",
 	 * and various Ant-style pattern matches, e.g. a registered "/t*" matches
 	 * both "/test" and "/team". For details, see the AntPathMatcher class.
-	 * <p>Looks for the most exact pattern, where most exact is defined as
-	 * the longest path pattern.
+	 * Looks for the most exact pattern, where most exact is defined as the longest path pattern.
 	 * @param urlPath the URL the bean is mapped to
 	 * @param request current HTTP request (to expose the path within the mapping to)
 	 * @return the associated handler instance, or {@code null} if not found
@@ -174,9 +159,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 		Comparator<String> patternComparator = getPathMatcher().getPatternComparator(urlPath);
 		if (!matchingPatterns.isEmpty()) {
 			matchingPatterns.sort(patternComparator);
-			if (logger.isTraceEnabled() && matchingPatterns.size() > 1) {
-				logger.trace("Matching patterns " + matchingPatterns);
-			}
+			if (logger.isTraceEnabled() && matchingPatterns.size() > 1) logger.trace("Matching patterns " + matchingPatterns);
 			bestMatch = matchingPatterns.get(0);
 		}
 		if (bestMatch != null) {
@@ -185,9 +168,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 				if (bestMatch.endsWith("/")) {
 					handler = this.handlerMap.get(bestMatch.substring(0, bestMatch.length() - 1));
 				}
-				if (handler == null) {
-					throw new IllegalStateException("Could not find handler for best pattern match [" + bestMatch + "]");
-				}
+				if (handler == null) throw new IllegalStateException("Could not find handler for best pattern match [" + bestMatch + "]");
 			}
 			// Bean name or resolved handler?
 			if (handler instanceof String) {
@@ -207,20 +188,16 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 					uriTemplateVariables.putAll(decodedVars);
 				}
 			}
-			if (logger.isTraceEnabled() && uriTemplateVariables.size() > 0) {
-				logger.trace("URI variables " + uriTemplateVariables);
-			}
+			if (logger.isTraceEnabled() && uriTemplateVariables.size() > 0) logger.trace("URI variables " + uriTemplateVariables);
 			return buildPathExposingHandler(handler, bestMatch, pathWithinMapping, uriTemplateVariables);
 		}
-
 		// No handler found...
 		return null;
 	}
 
 	/**
 	 * Validate the given handler against the current request.
-	 * <p>The default implementation is empty. Can be overridden in subclasses,
-	 * for example to enforce specific preconditions expressed in URL mappings.
+	 * The default implementation is empty. Can be overridden in subclasses,for example to enforce specific preconditions expressed in URL mappings.
 	 * @param handler the handler object to validate
 	 * @param request current HTTP request
 	 * @throws Exception if validation failed
@@ -232,8 +209,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	 * Build a handler object for the given raw handler, exposing the actual
 	 * handler, the {@link #PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE}, as well as
 	 * the {@link #URI_TEMPLATE_VARIABLES_ATTRIBUTE} before executing the handler.
-	 * <p>The default implementation builds a {@link HandlerExecutionChain}
-	 * with a special interceptor that exposes the path attribute and uri template variables
+	 * The default implementation builds a {@link HandlerExecutionChain} with a special interceptor that exposes the path attribute and uri template variables
 	 * @param rawHandler the raw handler to expose
 	 * @param pathWithinMapping the path to expose before executing the handler
 	 * @param uriTemplateVariables the URI template variables, can be {@code null} if no variables found
@@ -254,9 +230,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	 * @param request the request to expose the path to
 	 * @see #PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE
 	 */
-	protected void exposePathWithinMapping(String bestMatchingPattern, String pathWithinMapping,
-			HttpServletRequest request) {
-
+	protected void exposePathWithinMapping(String bestMatchingPattern, String pathWithinMapping,HttpServletRequest request) {
 		request.setAttribute(BEST_MATCHING_PATTERN_ATTRIBUTE, bestMatchingPattern);
 		request.setAttribute(PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE, pathWithinMapping);
 	}
@@ -277,8 +251,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 		String lookupPath = getUrlPathHelper().getLookupPathForRequest(request);
 		if (getPathMatcher().match(pattern, lookupPath)) {
 			return new RequestMatchResult(pattern, lookupPath, getPathMatcher());
-		}
-		else if (useTrailingSlashMatch()) {
+		}else if (useTrailingSlashMatch()) {
 			if (!pattern.endsWith("/") && getPathMatcher().match(pattern + "/", lookupPath)) {
 				return new RequestMatchResult(pattern + "/", lookupPath, getPathMatcher());
 			}
@@ -303,8 +276,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	/**
 	 * Register the specified handler for the given URL path.
 	 * @param urlPath the URL the bean should be mapped to
-	 * @param handler the handler instance or handler bean name String
-	 * (a bean name will automatically be resolved into the corresponding handler bean)
+	 * @param handler the handler instance or handler bean name String (a bean name will automatically be resolved into the corresponding handler bean)
 	 * @throws BeansException if the handler couldn't be registered
 	 * @throws IllegalStateException if there is a conflicting handler registered
 	 */
@@ -327,25 +299,16 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 			if (mappedHandler != resolvedHandler) {
 				throw new IllegalStateException("Cannot map " + getHandlerDescription(handler) + " to URL path [" + urlPath + "]: There is already " + getHandlerDescription(mappedHandler) + " mapped.");
 			}
-		}
-		else {
+		}else {
 			if (urlPath.equals("/")) {
-				if (logger.isTraceEnabled()) {
-					logger.trace("Root mapping to " + getHandlerDescription(handler));
-				}
+				if (logger.isTraceEnabled()) logger.trace("Root mapping to " + getHandlerDescription(handler));
 				setRootHandler(resolvedHandler);
-			}
-			else if (urlPath.equals("/*")) {
-				if (logger.isTraceEnabled()) {
-					logger.trace("Default mapping to " + getHandlerDescription(handler));
-				}
+			}else if (urlPath.equals("/*")) {
+				if (logger.isTraceEnabled()) logger.trace("Default mapping to " + getHandlerDescription(handler));
 				setDefaultHandler(resolvedHandler);
-			}
-			else {
+			}else {
 				this.handlerMap.put(urlPath, resolvedHandler);
-				if (logger.isTraceEnabled()) {
-					logger.trace("Mapped [" + urlPath + "] onto " + getHandlerDescription(handler));
-				}
+				if (logger.isTraceEnabled()) logger.trace("Mapped [" + urlPath + "] onto " + getHandlerDescription(handler));
 			}
 		}
 	}
@@ -354,11 +317,9 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 		return (handler instanceof String ? "'" + handler + "'" : handler.toString());
 	}
 
-
 	/**
 	 * Return the registered handlers as an unmodifiable Map, with the registered path
-	 * as key and the handler object (or handler bean name in case of a lazy-init handler)
-	 * as value.
+	 * as key and the handler object (or handler bean name in case of a lazy-init handler) as value.
 	 * @see #getDefaultHandler()
 	 */
 	public final Map<String, Object> getHandlerMap() {
@@ -371,7 +332,6 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	protected boolean supportsTypeLevelMappings() {
 		return false;
 	}
-
 
 	/**
 	 * Special interceptor for exposing the
@@ -396,7 +356,6 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 			request.setAttribute(INTROSPECT_TYPE_LEVEL_MAPPING, supportsTypeLevelMappings());
 			return true;
 		}
-
 	}
 
 	/**

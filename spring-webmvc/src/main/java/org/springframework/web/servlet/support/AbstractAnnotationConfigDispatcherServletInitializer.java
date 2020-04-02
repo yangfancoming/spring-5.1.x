@@ -10,29 +10,19 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 /**
  * {@link org.springframework.web.WebApplicationInitializer WebApplicationInitializer}
  * to register a {@code DispatcherServlet} and use Java-based Spring configuration.
- *
- * <p>Implementations are required to implement:
- * <ul>
- * <li>{@link #getRootConfigClasses()} -- for "root" application context (non-web
- * infrastructure) configuration.
+ * Implementations are required to implement:
+ * <li>{@link #getRootConfigClasses()} -- for "root" application context (non-web infrastructure) configuration.
  * <li>{@link #getServletConfigClasses()} -- for {@code DispatcherServlet}
  * application context (Spring MVC infrastructure) configuration.
- * </ul>
- *
- * <p>If an application context hierarchy is not required, applications may
- * return all configuration via {@link #getRootConfigClasses()} and return
- * {@code null} from {@link #getServletConfigClasses()}.
- *
- * @author Arjen Poutsma
-
+ * If an application context hierarchy is not required, applications may
+ * return all configuration via {@link #getRootConfigClasses()} and return {@code null} from {@link #getServletConfigClasses()}.
  * @since 3.2
  */
-public abstract class AbstractAnnotationConfigDispatcherServletInitializer
-		extends AbstractDispatcherServletInitializer {
+public abstract class AbstractAnnotationConfigDispatcherServletInitializer extends AbstractDispatcherServletInitializer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation creates an {@link AnnotationConfigWebApplicationContext},
+	 * This implementation creates an {@link AnnotationConfigWebApplicationContext},
 	 * providing it the annotated classes returned by {@link #getRootConfigClasses()}.
 	 * Returns {@code null} if {@link #getRootConfigClasses()} returns {@code null}.
 	 */
@@ -44,15 +34,14 @@ public abstract class AbstractAnnotationConfigDispatcherServletInitializer
 			AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
 			context.register(configClasses);
 			return context;
-		}
-		else {
+		}else {
 			return null;
 		}
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation creates an {@link AnnotationConfigWebApplicationContext},
+	 * This implementation creates an {@link AnnotationConfigWebApplicationContext},
 	 * providing it the annotated classes returned by {@link #getServletConfigClasses()}.
 	 */
 	@Override

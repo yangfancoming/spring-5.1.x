@@ -23,19 +23,18 @@ import org.springframework.web.context.ServletContextAware;
  * Static {@link org.springframework.web.context.WebApplicationContext}
  * implementation for testing. Not intended for use in production applications.
  *
- * <p>Implements the {@link org.springframework.web.context.ConfigurableWebApplicationContext}
+ * Implements the {@link org.springframework.web.context.ConfigurableWebApplicationContext}
  * interface to allow for direct replacement of an {@link XmlWebApplicationContext},
  * despite not actually supporting external configuration files.
  *
- * <p>Interprets resource paths as servlet context resources, i.e. as paths beneath
+ * Interprets resource paths as servlet context resources, i.e. as paths beneath
  * the web application root. Absolute paths, e.g. for files outside the web app root,
  * can be accessed via "file:" URLs, as implemented by
  * {@link org.springframework.core.io.DefaultResourceLoader}.
  *
- * <p>In addition to the special beans detected by
+ * In addition to the special beans detected by
  * {@link org.springframework.context.support.AbstractApplicationContext},
- * this class detects a bean of type {@link org.springframework.ui.context.ThemeSource}
- * in the context, under the special bean name "themeSource".
+ * this class detects a bean of type {@link org.springframework.ui.context.ThemeSource} in the context, under the special bean name "themeSource".
  * @see org.springframework.ui.context.ThemeSource
  */
 public class StaticWebApplicationContext extends StaticApplicationContext implements ConfigurableWebApplicationContext, ThemeSource {
@@ -52,11 +51,9 @@ public class StaticWebApplicationContext extends StaticApplicationContext implem
 	@Nullable
 	private ThemeSource themeSource;
 
-
 	public StaticWebApplicationContext() {
 		setDisplayName("Root WebApplicationContext");
 	}
-
 
 	/**
 	 * Set the ServletContext that this WebApplicationContext runs in.
@@ -123,7 +120,6 @@ public class StaticWebApplicationContext extends StaticApplicationContext implem
 		return null;
 	}
 
-
 	/**
 	 * Register request/session scopes, a {@link ServletContextAwareProcessor}, etc.
 	 */
@@ -132,7 +128,6 @@ public class StaticWebApplicationContext extends StaticApplicationContext implem
 		beanFactory.addBeanPostProcessor(new ServletContextAwareProcessor(this.servletContext, this.servletConfig));
 		beanFactory.ignoreDependencyInterface(ServletContextAware.class);
 		beanFactory.ignoreDependencyInterface(ServletConfigAware.class);
-
 		WebApplicationContextUtils.registerWebApplicationScopes(beanFactory, this.servletContext);
 		WebApplicationContextUtils.registerEnvironmentBeans(beanFactory, this.servletContext, this.servletConfig);
 	}

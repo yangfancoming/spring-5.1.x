@@ -24,23 +24,17 @@ import org.springframework.web.HttpSessionRequiredException;
 import org.springframework.web.context.support.WebApplicationObjectSupport;
 
 /**
- * Convenient superclass for any kind of web content generator,
- * like {@link org.springframework.web.servlet.mvc.AbstractController}
+ * Convenient superclass for any kind of web content generator,like {@link org.springframework.web.servlet.mvc.AbstractController}
  * and {@link org.springframework.web.servlet.mvc.WebContentInterceptor}.
- * Can also be used for custom handlers that have their own
- * {@link org.springframework.web.servlet.HandlerAdapter}.
+ * Can also be used for custom handlers that have their own {@link org.springframework.web.servlet.HandlerAdapter}.
+ * 
+ * Supports HTTP cache control options. The usage of corresponding HTTP
+ * headers can be controlled via the {@link #setCacheSeconds "cacheSeconds"} and {@link #setCacheControl "cacheControl"} properties.
  *
- * <p>Supports HTTP cache control options. The usage of corresponding HTTP
- * headers can be controlled via the {@link #setCacheSeconds "cacheSeconds"}
- * and {@link #setCacheControl "cacheControl"} properties.
- *
- * <p><b>NOTE:</b> As of Spring 4.2, this generator's default behavior changed when
- * using only {@link #setCacheSeconds}, sending HTTP response headers that are in line
- * with current browsers and proxies implementations (i.e. no HTTP 1.0 headers anymore)
- * Reverting to the previous behavior can be easily done by using one of the newly
- * deprecated methods {@link #setUseExpiresHeader}, {@link #setUseCacheControlHeader},
+ * <b>NOTE:</b> As of Spring 4.2, this generator's default behavior changed when using only {@link #setCacheSeconds},
+ * sending HTTP response headers that are in line with current browsers and proxies implementations (i.e. no HTTP 1.0 headers anymore)
+ * Reverting to the previous behavior can be easily done by using one of the newly deprecated methods {@link #setUseExpiresHeader}, {@link #setUseCacheControlHeader},
  * {@link #setUseCacheControlNoStore} or {@link #setAlwaysMustRevalidate}.
-
  * @see #setCacheSeconds
  * @see #setCacheControl
  * @see #setRequireSession
@@ -62,7 +56,6 @@ public abstract class WebContentGenerator extends WebApplicationObjectSupport {
 
 	protected static final String HEADER_CACHE_CONTROL = "Cache-Control";
 
-
 	/** Set of supported HTTP methods. */
 	/** 支持的请求方法类型，默认支持：GET、HEAD、POST */
 	@Nullable
@@ -83,7 +76,6 @@ public abstract class WebContentGenerator extends WebApplicationObjectSupport {
 	@Nullable
 	private String[] varyByRequestHeaders;
 
-
 	// deprecated fields
 
 	/** Use HTTP 1.0 expires header? */
@@ -99,7 +91,6 @@ public abstract class WebContentGenerator extends WebApplicationObjectSupport {
 	private boolean useCacheControlNoStore = true;
 
 	private boolean alwaysMustRevalidate = false;
-
 
 	/**
 	 * Create a new WebContentGenerator which supports
@@ -136,14 +127,13 @@ public abstract class WebContentGenerator extends WebApplicationObjectSupport {
 
 	/**
 	 * Set the HTTP methods that this content generator should support.
-	 * <p>Default is GET, HEAD and POST for simple form controller types;
+	 * Default is GET, HEAD and POST for simple form controller types;
 	 * unrestricted for general controllers and interceptors.
 	 */
 	public final void setSupportedMethods(@Nullable String... methods) {
 		if (!ObjectUtils.isEmpty(methods)) {
 			this.supportedMethods = new LinkedHashSet<>(Arrays.asList(methods));
-		}
-		else {
+		}else {
 			this.supportedMethods = null;
 		}
 		initAllowHeader();
@@ -166,14 +156,11 @@ public abstract class WebContentGenerator extends WebApplicationObjectSupport {
 					allowedMethods.add(method.name());
 				}
 			}
-		}
-		else if (this.supportedMethods.contains(HttpMethod.OPTIONS.name())) {
+		}else if (this.supportedMethods.contains(HttpMethod.OPTIONS.name())) {
 			allowedMethods = this.supportedMethods;
-		}
-		else {
+		}else {
 			allowedMethods = new ArrayList<>(this.supportedMethods);
 			allowedMethods.add(HttpMethod.OPTIONS.name());
-
 		}
 		this.allowHeader = StringUtils.collectionToCommaDelimitedString(allowedMethods);
 	}
@@ -228,12 +215,10 @@ public abstract class WebContentGenerator extends WebApplicationObjectSupport {
 	/**
 	 * Cache content for the given number of seconds, by writing
 	 * cache-related HTTP headers to the response:
-	 * <ul>
 	 * <li>seconds == -1 (default value): no generation cache-related headers</li>
 	 * <li>seconds == 0: "Cache-Control: no-store" will prevent caching</li>
 	 * <li>seconds > 0: "Cache-Control: max-age=seconds" will ask to cache content</li>
-	 * </ul>
-	 * <p>For more specific needs, a custom {@link org.springframework.http.CacheControl}
+	 * For more specific needs, a custom {@link org.springframework.http.CacheControl}
 	 * should be used.
 	 * @see #setCacheControl
 	 */
@@ -273,7 +258,7 @@ public abstract class WebContentGenerator extends WebApplicationObjectSupport {
 	/**
 	 * Set whether to use the HTTP 1.0 expires header. Default is "false",
 	 * as of 4.2.
-	 * <p>Note: Cache headers will only get applied if caching is enabled
+	 * Note: Cache headers will only get applied if caching is enabled
 	 * (or explicitly prevented) for the current request.
 	 * @deprecated as of 4.2, since going forward, the HTTP 1.1 cache-control
 	 * header will be required, with the HTTP 1.0 headers disappearing
@@ -294,7 +279,7 @@ public abstract class WebContentGenerator extends WebApplicationObjectSupport {
 
 	/**
 	 * Set whether to use the HTTP 1.1 cache-control header. Default is "true".
-	 * <p>Note: Cache headers will only get applied if caching is enabled
+	 * Note: Cache headers will only get applied if caching is enabled
 	 * (or explicitly prevented) for the current request.
 	 * @deprecated as of 4.2, since going forward, the HTTP 1.1 cache-control
 	 * header will be required, with the HTTP 1.0 headers disappearing
@@ -337,7 +322,7 @@ public abstract class WebContentGenerator extends WebApplicationObjectSupport {
 	 * This may be useful with annotated controller methods, which can
 	 * programmatically do a last-modified calculation as described in
 	 * {@link org.springframework.web.context.request.WebRequest#checkNotModified(long)}.
-	 * <p>Default is "false".
+	 * Default is "false".
 	 * @deprecated as of 4.2, in favor of {@link #setCacheControl}
 	 */
 	@Deprecated
@@ -354,7 +339,6 @@ public abstract class WebContentGenerator extends WebApplicationObjectSupport {
 		return this.alwaysMustRevalidate;
 	}
 
-
 	/**
 	 * Check the given request for supported methods and a required session, if any.
 	 * @param request current HTTP request
@@ -367,7 +351,6 @@ public abstract class WebContentGenerator extends WebApplicationObjectSupport {
 		if (this.supportedMethods != null && !this.supportedMethods.contains(method)) {
 			throw new HttpRequestMethodNotSupportedException(method, this.supportedMethods);
 		}
-
 		// Check whether a session is required.
 		if (this.requireSession && request.getSession(false) == null) {
 			throw new HttpSessionRequiredException("Pre-existing session required but none found");
@@ -383,8 +366,7 @@ public abstract class WebContentGenerator extends WebApplicationObjectSupport {
 	protected final void prepareResponse(HttpServletResponse response) {
 		if (this.cacheControl != null) {
 			applyCacheControl(response, this.cacheControl);
-		}
-		else {
+		}else {
 			applyCacheSeconds(response, this.cacheSeconds);
 		}
 		if (this.varyByRequestHeaders != null) {
@@ -405,7 +387,6 @@ public abstract class WebContentGenerator extends WebApplicationObjectSupport {
 		if (ccValue != null) {
 			// Set computed HTTP 1.1 Cache-Control header
 			response.setHeader(HEADER_CACHE_CONTROL, ccValue);
-
 			if (response.containsHeader(HEADER_PRAGMA)) {
 				// Reset HTTP 1.0 Pragma header if present
 				response.setHeader(HEADER_PRAGMA, "");
@@ -432,37 +413,30 @@ public abstract class WebContentGenerator extends WebApplicationObjectSupport {
 			// Deprecated HTTP 1.0 cache behavior, as in previous Spring versions
 			if (cacheSeconds > 0) {
 				cacheForSeconds(response, cacheSeconds);
-			}
-			else if (cacheSeconds == 0) {
+			}else if (cacheSeconds == 0) {
 				preventCaching(response);
 			}
-		}
-		else {
+		}else {
 			CacheControl cControl;
 			if (cacheSeconds > 0) {
 				cControl = CacheControl.maxAge(cacheSeconds, TimeUnit.SECONDS);
 				if (this.alwaysMustRevalidate) {
 					cControl = cControl.mustRevalidate();
 				}
-			}
-			else if (cacheSeconds == 0) {
+			}else if (cacheSeconds == 0) {
 				cControl = (this.useCacheControlNoStore ? CacheControl.noStore() : CacheControl.noCache());
-			}
-			else {
+			}else {
 				cControl = CacheControl.empty();
 			}
 			applyCacheControl(response, cControl);
 		}
 	}
 
-
 	/**
-	 * Check and prepare the given request and response according to the settings
-	 * of this generator.
+	 * Check and prepare the given request and response according to the settings of this generator.
 	 * @see #checkRequest(HttpServletRequest)
 	 * @see #prepareResponse(HttpServletResponse)
-	 * @deprecated as of 4.2, since the {@code lastModified} flag is effectively ignored,
-	 * with a must-revalidate header only generated if explicitly configured
+	 * @deprecated as of 4.2, since the {@code lastModified} flag is effectively ignored,with a must-revalidate header only generated if explicitly configured
 	 */
 	@Deprecated
 	protected final void checkAndPrepare(HttpServletRequest request, HttpServletResponse response, boolean lastModified) throws ServletException {
@@ -471,39 +445,32 @@ public abstract class WebContentGenerator extends WebApplicationObjectSupport {
 	}
 
 	/**
-	 * Check and prepare the given request and response according to the settings
-	 * of this generator.
+	 * Check and prepare the given request and response according to the settings of this generator.
 	 * @see #checkRequest(HttpServletRequest)
 	 * @see #applyCacheSeconds(HttpServletResponse, int)
-	 * @deprecated as of 4.2, since the {@code lastModified} flag is effectively ignored,
-	 * with a must-revalidate header only generated if explicitly configured
+	 * @deprecated as of 4.2, since the {@code lastModified} flag is effectively ignored,with a must-revalidate header only generated if explicitly configured
 	 */
 	@Deprecated
 	protected final void checkAndPrepare(HttpServletRequest request, HttpServletResponse response, int cacheSeconds, boolean lastModified) throws ServletException {
-
 		checkRequest(request);
 		applyCacheSeconds(response, cacheSeconds);
 	}
 
 	/**
 	 * Apply the given cache seconds and generate respective HTTP headers.
-	 * <p>That is, allow caching for the given number of seconds in the
-	 * case of a positive value, prevent caching if given a 0 value, else
-	 * do nothing (i.e. leave caching to the client).
+	 * That is, allow caching for the given number of seconds in the
+	 * case of a positive value, prevent caching if given a 0 value, else do nothing (i.e. leave caching to the client).
 	 * @param response the current HTTP response
 	 * @param cacheSeconds the (positive) number of seconds into the future
-	 * that the response should be cacheable for; 0 to prevent caching; and
-	 * a negative value to leave caching to the client.
-	 * @param mustRevalidate whether the client should revalidate the resource
-	 * (typically only necessary for controllers with last-modified support)
+	 * that the response should be cacheable for; 0 to prevent caching; and a negative value to leave caching to the client.
+	 * @param mustRevalidate whether the client should revalidate the resource (typically only necessary for controllers with last-modified support)
 	 * @deprecated as of 4.2, in favor of {@link #applyCacheControl}
 	 */
 	@Deprecated
 	protected final void applyCacheSeconds(HttpServletResponse response, int cacheSeconds, boolean mustRevalidate) {
 		if (cacheSeconds > 0) {
 			cacheForSeconds(response, cacheSeconds, mustRevalidate);
-		}
-		else if (cacheSeconds == 0) {
+		}else if (cacheSeconds == 0) {
 			preventCaching(response);
 		}
 	}
@@ -537,8 +504,7 @@ public abstract class WebContentGenerator extends WebApplicationObjectSupport {
 		if (this.useExpiresHeader) {
 			// HTTP 1.0 header
 			response.setDateHeader(HEADER_EXPIRES, System.currentTimeMillis() + seconds * 1000L);
-		}
-		else if (response.containsHeader(HEADER_EXPIRES)) {
+		}else if (response.containsHeader(HEADER_EXPIRES)) {
 			// Reset HTTP 1.0 Expires header if present
 			response.setHeader(HEADER_EXPIRES, "");
 		}
@@ -561,18 +527,16 @@ public abstract class WebContentGenerator extends WebApplicationObjectSupport {
 	/**
 	 * Prevent the response from being cached.
 	 * Only called in HTTP 1.0 compatibility mode.
-	 * <p>See {@code https://www.mnot.net/cache_docs}.
+	 * See {@code https://www.mnot.net/cache_docs}.
 	 * @deprecated as of 4.2, in favor of {@link #applyCacheControl}
 	 */
 	@Deprecated
 	protected final void preventCaching(HttpServletResponse response) {
 		response.setHeader(HEADER_PRAGMA, "no-cache");
-
 		if (this.useExpiresHeader) {
 			// HTTP 1.0 Expires header
 			response.setDateHeader(HEADER_EXPIRES, 1L);
 		}
-
 		if (this.useCacheControlHeader) {
 			// HTTP 1.1 Cache-Control header: "no-cache" is the standard value,
 			// "no-store" is necessary to prevent caching on Firefox.

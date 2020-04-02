@@ -23,9 +23,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.support.WebContentGenerator;
 
 /**
- * Unit tests for
- * {@link org.springframework.web.servlet.handler.HandlerMappingTests}.
- * @author Brian Clozel
+ * Unit tests for {@link org.springframework.web.servlet.handler.HandlerMappingTests}.
  */
 public class HandlerMappingTests {
 
@@ -57,7 +55,6 @@ public class HandlerMappingTests {
 	}
 
 	class TestHandlerMapping extends AbstractHandlerMapping {
-
 		@Override
 		protected Object getHandlerInternal(HttpServletRequest request) throws Exception {
 			return new SimpleHandler();
@@ -65,11 +62,9 @@ public class HandlerMappingTests {
 	}
 
 	class SimpleHandler extends WebContentGenerator implements HttpRequestHandler {
-
 		public SimpleHandler() {
 			super(METHOD_GET);
 		}
-
 		@Override
 		public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			response.setStatus(HttpStatus.OK.value());

@@ -8,9 +8,7 @@ import org.springframework.beans.factory.Aware;
 
 /**
  * Interface to be implemented by any object that wishes to be notified of the
- * {@link ServletContext} (typically determined by the {@link WebApplicationContext})
- * that it runs in.
-
+ * {@link ServletContext} (typically determined by the {@link WebApplicationContext}) that it runs in.
  * @since 12.03.2004
  * @see ServletConfigAware
  */

@@ -26,20 +26,15 @@ import java.util.ResourceBundle;
  *
  * <p>To write a generic servlet, you need only
  * override the abstract <code>service</code> method. 
- *
- *
- * @author 	Various
  */
 
  
-public abstract class GenericServlet 
-    implements Servlet, ServletConfig, java.io.Serializable
-{
+public abstract class GenericServlet  implements Servlet, ServletConfig, java.io.Serializable {
+
     private static final String LSTRING_FILE = "javax.servlet.LocalStrings";
     private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
     private transient ServletConfig config;
-    
 
     /**
      *

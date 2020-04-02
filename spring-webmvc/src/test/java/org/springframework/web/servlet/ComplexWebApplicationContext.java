@@ -57,7 +57,6 @@ import org.springframework.web.servlet.view.ResourceBundleViewResolver;
 import org.springframework.web.util.WebUtils;
 
 /**
-
  * @since 21.05.2003
  */
 public class ComplexWebApplicationContext extends StaticWebApplicationContext {

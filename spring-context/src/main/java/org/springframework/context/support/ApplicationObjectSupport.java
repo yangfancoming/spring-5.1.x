@@ -19,13 +19,13 @@ import org.springframework.util.Assert;
  * context reference and provides an initialization callback method.
  * Furthermore, it offers numerous convenience methods for message lookup.
  *
- * <p>There is no requirement to subclass this class: It just makes things
+ * There is no requirement to subclass this class: It just makes things
  * a little easier if you need access to the context, e.g. for access to
  * file resources or to the message source. Note that many application
  * objects do not need to be aware of the application context at all,
  * as they can receive collaborating beans via bean references.
  *
- * <p>Many framework classes are derived from this class, particularly within the web support.
+ * Many framework classes are derived from this class, particularly within the web support.
  * @see org.springframework.web.context.support.WebApplicationObjectSupport
  */
 public abstract class ApplicationObjectSupport implements ApplicationContextAware {
@@ -68,7 +68,7 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 
 	/**
 	 * Determine whether this application object needs to run in an ApplicationContext.
-	 * <p>Default is "false". Can be overridden to enforce running in a context
+	 * Default is "false". Can be overridden to enforce running in a context
 	 * (i.e. to throw IllegalStateException on accessors if outside a context).
 	 * @see #getApplicationContext
 	 * @see #getMessageSourceAccessor
@@ -90,9 +90,9 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 	/**
 	 * Subclasses can override this for custom initialization behavior.
 	 * Gets called by {@code setApplicationContext} after setting the context instance.
-	 * <p>Note: Does <i>not</i> get called on re-initialization of the context
+	 * Note: Does <i>not</i> get called on re-initialization of the context
 	 * but rather just on first initialization of this object's context reference.
-	 * <p>The default implementation calls the overloaded {@link #initApplicationContext()}
+	 * The default implementation calls the overloaded {@link #initApplicationContext()}
 	 * method without ApplicationContext reference.
 	 * @param context the containing ApplicationContext
 	 * @throws ApplicationContextException in case of initialization errors
@@ -105,14 +105,13 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 
 	/**
 	 * Subclasses can override this for custom initialization behavior.
-	 * <p>The default implementation is empty. Called by
+	 * The default implementation is empty. Called by
 	 * {@link #initApplicationContext(org.springframework.context.ApplicationContext)}.
 	 * @throws ApplicationContextException in case of initialization errors
 	 * @throws BeansException if thrown by ApplicationContext methods
 	 * @see #setApplicationContext
 	 */
-	protected void initApplicationContext() throws BeansException {
-	}
+	protected void initApplicationContext() throws BeansException {}
 
 
 	/**

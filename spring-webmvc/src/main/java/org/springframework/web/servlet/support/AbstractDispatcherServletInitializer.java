@@ -24,15 +24,8 @@ import org.springframework.web.servlet.FrameworkServlet;
 /**
  * Base class for {@link org.springframework.web.WebApplicationInitializer}
  * implementations that register a {@link DispatcherServlet} in the servlet context.
- *
- * <p>Most applications should consider extending the Spring Java config subclass
+ * Most applications should consider extending the Spring Java config subclass
  * {@link AbstractAnnotationConfigDispatcherServletInitializer}.
- *
- * @author Arjen Poutsma
-
- * @author Rossen Stoyanchev
-
- * @author Stephane Nicoll
  * @since 3.2
  */
 public abstract class AbstractDispatcherServletInitializer extends AbstractContextLoaderInitializer {
@@ -42,7 +35,6 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 	 */
 	public static final String DEFAULT_SERVLET_NAME = "dispatcher";
 
-
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		super.onStartup(servletContext);
@@ -51,11 +43,10 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 
 	/**
 	 * Register a {@link DispatcherServlet} against the given servlet context.
-	 * <p>This method will create a {@code DispatcherServlet} with the name returned by
+	 * This method will create a {@code DispatcherServlet} with the name returned by
 	 * {@link #getServletName()}, initializing it with the application context returned
-	 * from {@link #createServletApplicationContext()}, and mapping it to the patterns
-	 * returned from {@link #getServletMappings()}.
-	 * <p>Further customization can be achieved by overriding {@link
+	 * from {@link #createServletApplicationContext()}, and mapping it to the patterns returned from {@link #getServletMappings()}.
+	 * Further customization can be achieved by overriding {@link
 	 * #customizeRegistration(ServletRegistration.Dynamic)} or
 	 * {@link #createDispatcherServlet(WebApplicationContext)}.
 	 * @param servletContext the context to register the servlet against
@@ -73,21 +64,17 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 
 		ServletRegistration.Dynamic registration = servletContext.addServlet(servletName, dispatcherServlet);
 		if (registration == null) {
-			throw new IllegalStateException("Failed to register servlet with name '" + servletName + "'. " +
-					"Check if there is another servlet registered under the same name.");
+			throw new IllegalStateException("Failed to register servlet with name '" + servletName + "'. " + "Check if there is another servlet registered under the same name.");
 		}
-
 		registration.setLoadOnStartup(1);
 		registration.addMapping(getServletMappings());
 		registration.setAsyncSupported(isAsyncSupported());
-
 		Filter[] filters = getServletFilters();
 		if (!ObjectUtils.isEmpty(filters)) {
 			for (Filter filter : filters) {
 				registerServletFilter(servletContext, filter);
 			}
 		}
-
 		customizeRegistration(registration);
 	}
 
@@ -102,7 +89,7 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 
 	/**
 	 * Create a servlet application context to be provided to the {@code DispatcherServlet}.
-	 * <p>The returned context is delegated to Spring's
+	 * The returned context is delegated to Spring's
 	 * {@link DispatcherServlet#DispatcherServlet(WebApplicationContext)}. As such,
 	 * it typically contains controllers, view resolvers, locale resolvers, and other
 	 * web-related beans.
@@ -113,7 +100,7 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 	/**
 	 * Create a {@link DispatcherServlet} (or other kind of {@link FrameworkServlet}-derived
 	 * dispatcher) with the specified {@link WebApplicationContext}.
-	 * <p>Note: This allows for any {@link FrameworkServlet} subclass as of 4.2.3.
+	 * Note: This allows for any {@link FrameworkServlet} subclass as of 4.2.3.
 	 * Previously, it insisted on returning a {@link DispatcherServlet} or subclass thereof.
 	 */
 	protected FrameworkServlet createDispatcherServlet(WebApplicationContext servletAppContext) {
@@ -134,8 +121,7 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 	}
 
 	/**
-	 * Specify the servlet mapping(s) for the {@code DispatcherServlet} ;
-	 * for example {@code "/"}, {@code "/app"}, etc.
+	 * Specify the servlet mapping(s) for the {@code DispatcherServlet} ; for example {@code "/"}, {@code "/app"}, etc.
 	 * @see #registerDispatcherServlet(ServletContext)
 	 */
 	protected abstract String[] getServletMappings();
@@ -153,15 +139,13 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 	/**
 	 * Add the given filter to the ServletContext and map it to the
 	 * {@code DispatcherServlet} as follows:
-	 * <ul>
 	 * <li>a default filter name is chosen based on its concrete type
 	 * <li>the {@code asyncSupported} flag is set depending on the
 	 * return value of {@link #isAsyncSupported() asyncSupported}
 	 * <li>a filter mapping is created with dispatcher types {@code REQUEST},
 	 * {@code FORWARD}, {@code INCLUDE}, and conditionally {@code ASYNC} depending
 	 * on the return value of {@link #isAsyncSupported() asyncSupported}
-	 * </ul>
-	 * <p>If the above defaults are not suitable or insufficient, override this
+	 * If the above defaults are not suitable or insufficient, override this
 	 * method and register filters directly with the {@code ServletContext}.
 	 * @param servletContext the servlet context to register filters with
 	 * @param filter the filter to be registered
@@ -175,14 +159,12 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 			int counter = 0;
 			while (registration == null) {
 				if (counter == 100) {
-					throw new IllegalStateException("Failed to register filter with name '" + filterName + "'. " +
-							"Check if there is another filter registered under the same name.");
+					throw new IllegalStateException("Failed to register filter with name '" + filterName + "'. " + "Check if there is another filter registered under the same name.");
 				}
 				registration = servletContext.addFilter(filterName + "#" + counter, filter);
 				counter++;
 			}
 		}
-
 		registration.setAsyncSupported(isAsyncSupported());
 		registration.addMappingForServletNames(getDispatcherTypes(), false, getServletName());
 		return registration;
@@ -197,7 +179,7 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 	/**
 	 * A single place to control the {@code asyncSupported} flag for the
 	 * {@code DispatcherServlet} and all filters added via {@link #getServletFilters()}.
-	 * <p>The default value is "true".
+	 * The default value is "true".
 	 */
 	protected boolean isAsyncSupported() {
 		return true;

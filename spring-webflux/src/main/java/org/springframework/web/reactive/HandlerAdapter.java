@@ -9,8 +9,7 @@ import reactor.core.publisher.Mono;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Contract that decouples the {@link DispatcherHandler} from the details of
- * invoking a handler and makes it possible to support any handler type.
+ * Contract that decouples the {@link DispatcherHandler} from the details of invoking a handler and makes it possible to support any handler type.
  * @since 5.0
  */
 public interface HandlerAdapter {
@@ -24,10 +23,10 @@ public interface HandlerAdapter {
 
 	/**
 	 * Handle the request with the given handler.
-	 * <p>Implementations are encouraged to handle exceptions resulting from the
+	 * Implementations are encouraged to handle exceptions resulting from the
 	 * invocation of a handler in order and if necessary to return an alternate
 	 * result that represents an error response.
-	 * <p>Furthermore since an async {@code HandlerResult} may produce an error
+	 * Furthermore since an async {@code HandlerResult} may produce an error
 	 * later during result handling implementations are also encouraged to
 	 * {@link HandlerResult#setExceptionHandler(Function) set an exception
 	 * handler} on the {@code HandlerResult} so that may also be applied later

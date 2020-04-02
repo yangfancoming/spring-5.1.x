@@ -17,8 +17,6 @@ import org.springframework.util.ObjectUtils;
 /**
  * Handler execution chain, consisting of handler object and any handler interceptors.
  * Returned by HandlerMapping's {@link HandlerMapping#getHandler} method.
- *
-
  * @since 20.06.2003
  * @see HandlerInterceptor
  */
@@ -35,7 +33,6 @@ public class HandlerExecutionChain {
 	private List<HandlerInterceptor> interceptorList;
 
 	private int interceptorIndex = -1;
-
 
 	/**
 	 * Create a new HandlerExecutionChain.
@@ -58,13 +55,11 @@ public class HandlerExecutionChain {
 			this.interceptorList = new ArrayList<>();
 			CollectionUtils.mergeArrayIntoCollection(originalChain.getInterceptors(), this.interceptorList);
 			CollectionUtils.mergeArrayIntoCollection(interceptors, this.interceptorList);
-		}
-		else {
+		}else {
 			this.handler = handler;
 			this.interceptors = interceptors;
 		}
 	}
-
 
 	/**
 	 * Return the handler object to execute.
@@ -107,7 +102,6 @@ public class HandlerExecutionChain {
 		return this.interceptors;
 	}
 
-
 	/**
 	 * Apply preHandle methods of registered interceptors.
 	 * @return {@code true} if the execution chain should proceed with the
@@ -132,9 +126,7 @@ public class HandlerExecutionChain {
 	/**
 	 * Apply postHandle methods of registered interceptors.
 	 */
-	void applyPostHandle(HttpServletRequest request, HttpServletResponse response, @Nullable ModelAndView mv)
-			throws Exception {
-
+	void applyPostHandle(HttpServletRequest request, HttpServletResponse response, @Nullable ModelAndView mv)throws Exception {
 		HandlerInterceptor[] interceptors = getInterceptors();
 		if (!ObjectUtils.isEmpty(interceptors)) {
 			for (int i = interceptors.length - 1; i >= 0; i--) {
@@ -149,17 +141,14 @@ public class HandlerExecutionChain {
 	 * Will just invoke afterCompletion for all interceptors whose preHandle invocation
 	 * has successfully completed and returned true.
 	 */
-	void triggerAfterCompletion(HttpServletRequest request, HttpServletResponse response, @Nullable Exception ex)
-			throws Exception {
-
+	void triggerAfterCompletion(HttpServletRequest request, HttpServletResponse response, @Nullable Exception ex)throws Exception {
 		HandlerInterceptor[] interceptors = getInterceptors();
 		if (!ObjectUtils.isEmpty(interceptors)) {
 			for (int i = this.interceptorIndex; i >= 0; i--) {
 				HandlerInterceptor interceptor = interceptors[i];
 				try {
 					interceptor.afterCompletion(request, response, this.handler, ex);
-				}
-				catch (Throwable ex2) {
+				}catch (Throwable ex2) {
 					logger.error("HandlerInterceptor.afterCompletion threw exception", ex2);
 				}
 			}
@@ -177,8 +166,7 @@ public class HandlerExecutionChain {
 					try {
 						AsyncHandlerInterceptor asyncInterceptor = (AsyncHandlerInterceptor) interceptors[i];
 						asyncInterceptor.afterConcurrentHandlingStarted(request, response, this.handler);
-					}
-					catch (Throwable ex) {
+					}catch (Throwable ex) {
 						logger.error("Interceptor [" + interceptors[i] + "] failed in afterConcurrentHandlingStarted", ex);
 					}
 				}
@@ -197,11 +185,9 @@ public class HandlerExecutionChain {
 		sb.append("HandlerExecutionChain with [").append(handler).append("] and ");
 		if (this.interceptorList != null) {
 			sb.append(this.interceptorList.size());
-		}
-		else if (this.interceptors != null) {
+		}else if (this.interceptors != null) {
 			sb.append(this.interceptors.length);
-		}
-		else {
+		}else {
 			sb.append(0);
 		}
 		return sb.append(" interceptors").toString();

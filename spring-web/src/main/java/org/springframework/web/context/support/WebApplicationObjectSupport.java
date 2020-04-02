@@ -21,7 +21,6 @@ import org.springframework.web.util.WebUtils;
  * <p>Note: It is generally recommended to use individual callback interfaces for the actual
  * callbacks needed. This broad base class is primarily intended for use within the framework,
  * in case of {@link ServletContext} access etc typically being needed.
- *
 
  * @since 28.08.2003
  * @see SpringBeanAutowiringSupport
@@ -30,7 +29,6 @@ public abstract class WebApplicationObjectSupport extends ApplicationObjectSuppo
 
 	@Nullable
 	private ServletContext servletContext;
-
 
 	@Override
 	public final void setServletContext(ServletContext servletContext) {

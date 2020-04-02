@@ -20,8 +20,6 @@ import static org.mockito.BDDMockito.*;
 
 /**
  * Test fixture for {@link MappedInterceptor} tests.
- *
- * @author Rossen Stoyanchev
  */
 public class MappedInterceptorTests {
 
@@ -103,9 +101,7 @@ public class MappedInterceptorTests {
 	public void afterCompletion() throws Exception {
 		HandlerInterceptor interceptor = mock(HandlerInterceptor.class);
 		MappedInterceptor mappedInterceptor = new MappedInterceptor(new String[] { "/**" }, interceptor);
-		mappedInterceptor.afterCompletion(mock(HttpServletRequest.class), mock(HttpServletResponse.class),
-				null, mock(Exception.class));
-
+		mappedInterceptor.afterCompletion(mock(HttpServletRequest.class), mock(HttpServletResponse.class),null, mock(Exception.class));
 		then(interceptor).should().afterCompletion(any(), any(), any(), any());
 	}
 
