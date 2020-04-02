@@ -29,11 +29,9 @@ import org.springframework.web.context.ServletContextAware;
  *
  * Interprets resource paths as servlet context resources, i.e. as paths beneath
  * the web application root. Absolute paths, e.g. for files outside the web app root,
- * can be accessed via "file:" URLs, as implemented by
- * {@link org.springframework.core.io.DefaultResourceLoader}.
+ * can be accessed via "file:" URLs, as implemented by {@link org.springframework.core.io.DefaultResourceLoader}.
  *
- * In addition to the special beans detected by
- * {@link org.springframework.context.support.AbstractApplicationContext},
+ * In addition to the special beans detected by {@link org.springframework.context.support.AbstractApplicationContext},
  * this class detects a bean of type {@link org.springframework.ui.context.ThemeSource} in the context, under the special bean name "themeSource".
  * @see org.springframework.ui.context.ThemeSource
  */

@@ -44,7 +44,6 @@ public class HandlerMethodMappingTests {
 
 	private Method method2;
 
-
 	@Before
 	public void setUp() throws Exception {
 		mapping = new MyHandlerMethodMapping();
@@ -52,7 +51,6 @@ public class HandlerMethodMappingTests {
 		method1 = handler.getClass().getMethod("handlerMethod1");
 		method2 = handler.getClass().getMethod("handlerMethod2");
 	}
-
 
 	@Test(expected = IllegalStateException.class)
 	public void registerDuplicates() {
@@ -64,7 +62,6 @@ public class HandlerMethodMappingTests {
 	public void directMatch() throws Exception {
 		String key = "foo";
 		mapping.registerMapping(key, handler, method1);
-
 		MockHttpServletRequest request = new MockHttpServletRequest("GET", key);
 		HandlerMethod result = mapping.getHandlerInternal(request);
 		assertEquals(method1, result.getMethod());
@@ -86,7 +83,6 @@ public class HandlerMethodMappingTests {
 	public void ambiguousMatch() throws Exception {
 		mapping.registerMapping("/f?o", handler, method1);
 		mapping.registerMapping("/fo?", handler, method2);
-
 		mapping.getHandlerInternal(new MockHttpServletRequest("GET", "/foo"));
 	}
 
@@ -225,13 +221,11 @@ public class HandlerMethodMappingTests {
 	}
 
 
-
 	private static class MyHandlerMethodMapping extends AbstractHandlerMethodMapping<String> {
 
 		private UrlPathHelper pathHelper = new UrlPathHelper();
 
 		private PathMatcher pathMatcher = new AntPathMatcher();
-
 
 		public MyHandlerMethodMapping() {
 			setHandlerMethodMappingNamingStrategy(new SimpleMappingNamingStrategy());
@@ -271,7 +265,6 @@ public class HandlerMethodMappingTests {
 			String lookupPath = pathHelper.getLookupPathForRequest(request);
 			return pathMatcher.getPatternComparator(lookupPath);
 		}
-
 	}
 
 	private static class SimpleMappingNamingStrategy implements HandlerMethodMappingNamingStrategy<String> {
@@ -283,13 +276,9 @@ public class HandlerMethodMappingTests {
 
 	@Controller
 	static class MyHandler {
-
 		@RequestMapping
-		public void handlerMethod1() {
-		}
-
+		public void handlerMethod1() {}
 		@RequestMapping
-		public void handlerMethod2() {
-		}
+		public void handlerMethod2() {}
 	}
 }

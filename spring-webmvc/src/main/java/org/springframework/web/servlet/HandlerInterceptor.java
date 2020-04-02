@@ -11,22 +11,18 @@ import org.springframework.web.method.HandlerMethod;
 /**
  * Workflow interface that allows for customized handler execution chains.
  * Applications can register any number of existing or custom interceptors
- * for certain groups of handlers, to add common preprocessing behavior
- * without needing to modify each handler implementation.
+ * for certain groups of handlers, to add common preprocessing behavior without needing to modify each handler implementation.
  *
  * A HandlerInterceptor gets called before the appropriate HandlerAdapter
  * triggers the execution of the handler itself. This mechanism can be used
- * for a large field of preprocessing aspects, e.g. for authorization checks,
- * or common handler behavior like locale or theme changes. Its main purpose
- * is to allow for factoring out repetitive handler code.
+ * for a large field of preprocessing aspects, e.g. for authorization checks,or common handler behavior like locale or theme changes.
+ * Its main purpose is to allow for factoring out repetitive handler code.
  *
- * In an asynchronous processing scenario, the handler may be executed in a
- * separate thread while the main thread exits without rendering or invoking the
- * {@code postHandle} and {@code afterCompletion} callbacks. When concurrent
- * handler execution completes, the request is dispatched back in order to
- * proceed with rendering the model and all methods of this contract are invoked
- * again. For further options and details see
- * {@code org.springframework.web.servlet.AsyncHandlerInterceptor}
+ *
+ * In an asynchronous processing scenario, the handler may be executed in a separate thread while the main thread exits without rendering or invoking the
+ * {@code postHandle} and {@code afterCompletion} callbacks. When concurrent handler execution completes,
+ * the request is dispatched back in order to proceed with rendering the model and all methods of this contract are invoked again.
+ * For further options and details see {@code org.springframework.web.servlet.AsyncHandlerInterceptor}
  *
  * Typically an interceptor chain is defined per HandlerMapping bean,
  * sharing its granularity. To be able to apply a certain interceptor chain
@@ -63,12 +59,9 @@ public interface HandlerInterceptor {
 	/**
 	 * Intercept the execution of a handler. Called after HandlerMapping determined
 	 * an appropriate handler object, but before HandlerAdapter invokes the handler.
-	 * DispatcherServlet processes a handler in an execution chain, consisting
-	 * of any number of interceptors, with the handler itself at the end.
-	 * With this method, each interceptor can decide to abort the execution chain,
-	 * typically sending a HTTP error or writing a custom response.
-	 * <strong>Note:</strong> special considerations apply for asynchronous request processing. For more details see
-	 * {@link org.springframework.web.servlet.AsyncHandlerInterceptor}.
+	 * DispatcherServlet processes a handler in an execution chain, consisting of any number of interceptors, with the handler itself at the end.
+	 * With this method, each interceptor can decide to abort the execution chain,typically sending a HTTP error or writing a custom response.
+	 * <strong>Note:</strong> special considerations apply for asynchronous request processing. For more details see {@link org.springframework.web.servlet.AsyncHandlerInterceptor}.
 	 * The default implementation returns {@code true}.
 	 * @param request current HTTP request
 	 * @param response current HTTP response
@@ -83,22 +76,15 @@ public interface HandlerInterceptor {
 
 	/**
 	 * Intercept the execution of a handler. Called after HandlerAdapter actually
-	 * invoked the handler, but before the DispatcherServlet renders the view.
-	 * Can expose additional model objects to the view via the given ModelAndView.
-	 * DispatcherServlet processes a handler in an execution chain, consisting
-	 * of any number of interceptors, with the handler itself at the end.
-	 * With this method, each interceptor can post-process an execution,
-	 * getting applied in inverse order of the execution chain.
-	 * <strong>Note:</strong> special considerations apply for asynchronous
-	 * request processing. For more details see
-	 * {@link org.springframework.web.servlet.AsyncHandlerInterceptor}.
+	 * invoked the handler, but before the DispatcherServlet renders the view.  Can expose additional model objects to the view via the given ModelAndView.
+	 * DispatcherServlet processes a handler in an execution chain, consisting of any number of interceptors, with the handler itself at the end.
+	 * With this method, each interceptor can post-process an execution, getting applied in inverse order of the execution chain.
+	 * <strong>Note:</strong> special considerations apply for asynchronous request processing. For more details see {@link org.springframework.web.servlet.AsyncHandlerInterceptor}.
 	 * The default implementation is empty.
 	 * @param request current HTTP request
 	 * @param response current HTTP response
-	 * @param handler handler (or {@link HandlerMethod}) that started asynchronous
-	 * execution, for type and/or instance examination
-	 * @param modelAndView the {@code ModelAndView} that the handler returned
-	 * (can also be {@code null})
+	 * @param handler handler (or {@link HandlerMethod}) that started asynchronous execution, for type and/or instance examination
+	 * @param modelAndView the {@code ModelAndView} that the handler returned (can also be {@code null})
 	 * @throws Exception in case of errors
 	 */
 	default void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,@Nullable ModelAndView modelAndView) throws Exception {
@@ -110,21 +96,16 @@ public interface HandlerInterceptor {
 	 * Note: Will only be called if this interceptor's {@code preHandle}
 	 * method has successfully completed and returned {@code true}!
 	 * As with the {@code postHandle} method, the method will be invoked on each
-	 * interceptor in the chain in reverse order, so the first interceptor will be
-	 * the last to be invoked.
-	 * <strong>Note:</strong> special considerations apply for asynchronous
-	 * request processing. For more details see
-	 * {@link org.springframework.web.servlet.AsyncHandlerInterceptor}.
-	 * The default implementation is empty.
+	 * interceptor in the chain in reverse order, so the first interceptor will be the last to be invoked.
+	 * <strong>Note:</strong> special considerations apply for asynchronous  request processing. For more details see
+	 * {@link org.springframework.web.servlet.AsyncHandlerInterceptor}. The default implementation is empty.
 	 * @param request current HTTP request
 	 * @param response current HTTP response
-	 * @param handler handler (or {@link HandlerMethod}) that started asynchronous
-	 * execution, for type and/or instance examination
+	 * @param handler handler (or {@link HandlerMethod}) that started asynchronous execution, for type and/or instance examination
 	 * @param ex exception thrown on handler execution, if any
 	 * @throws Exception in case of errors
 	 */
 	default void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,@Nullable Exception ex) throws Exception {
-
 	}
 
 }

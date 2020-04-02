@@ -9,10 +9,7 @@ import org.springframework.web.servlet.HandlerMapping;
 
 /**
  * Additional interface that a {@link HandlerMapping} can implement to expose
- * a request matching API aligned with its internal request matching
- * configuration and implementation.
- *
- * @author Rossen Stoyanchev
+ * a request matching API aligned with its internal request matching configuration and implementation.
  * @since 4.3.1
  * @see HandlerMappingIntrospector
  */

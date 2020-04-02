@@ -6,7 +6,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import org.springframework.util.AntPathMatcher;
@@ -23,55 +22,50 @@ import static org.mockito.BDDMockito.*;
  */
 public class MappedInterceptorTests {
 
-	private LocaleChangeInterceptor interceptor;
+	private LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
 
 	private final AntPathMatcher pathMatcher = new AntPathMatcher();
 
-	@Before
-	public void setup() {
-		this.interceptor = new LocaleChangeInterceptor();
-	}
-
 	@Test
 	public void noPatterns() {
-		MappedInterceptor mappedInterceptor = new MappedInterceptor(null, null, this.interceptor);
+		MappedInterceptor mappedInterceptor = new MappedInterceptor(null, null, interceptor);
 		assertTrue(mappedInterceptor.matches("/foo", pathMatcher));
+		assertTrue(mappedInterceptor.matches("/any", null));
 	}
 
 	@Test
 	public void includePattern() {
-		MappedInterceptor mappedInterceptor = new MappedInterceptor(new String[] { "/foo/*" }, this.interceptor);
+		MappedInterceptor mappedInterceptor = new MappedInterceptor(new String[] { "/foo/*" }, interceptor);
 		assertTrue(mappedInterceptor.matches("/foo/bar", pathMatcher));
 		assertFalse(mappedInterceptor.matches("/bar/foo", pathMatcher));
 	}
 
 	@Test
 	public void includePatternWithMatrixVariables() {
-		MappedInterceptor mappedInterceptor = new MappedInterceptor(new String[] { "/foo*/*" }, this.interceptor);
+		MappedInterceptor mappedInterceptor = new MappedInterceptor(new String[] { "/foo*/*" }, interceptor);
 		assertTrue(mappedInterceptor.matches("/foo;q=1/bar;s=2", pathMatcher));
 	}
 
 	@Test
 	public void excludePattern() {
-		MappedInterceptor mappedInterceptor = new MappedInterceptor(null, new String[] { "/admin/**" }, this.interceptor);
+		MappedInterceptor mappedInterceptor = new MappedInterceptor(null, new String[] { "/admin/**" }, interceptor);
 		assertTrue(mappedInterceptor.matches("/foo", pathMatcher));
 		assertFalse(mappedInterceptor.matches("/admin/foo", pathMatcher));
 	}
 
+	// 包含和排除同时存在  排除优先级永远高于包含
 	@Test
 	public void includeAndExcludePatterns() {
-		MappedInterceptor mappedInterceptor = new MappedInterceptor(
-				new String[] { "/**" }, new String[] { "/admin/**" }, this.interceptor);
-
+		MappedInterceptor mappedInterceptor = new MappedInterceptor(new String[] { "/**" }, new String[] { "/admin/**" }, interceptor);
 		assertTrue(mappedInterceptor.matches("/foo", pathMatcher));
 		assertFalse(mappedInterceptor.matches("/admin/foo", pathMatcher));
 	}
 
+	// 测试 自定义路径匹配器
 	@Test
 	public void customPathMatcher() {
-		MappedInterceptor mappedInterceptor = new MappedInterceptor(new String[] { "/foo/[0-9]*" }, this.interceptor);
+		MappedInterceptor mappedInterceptor = new MappedInterceptor(new String[] { "/foo/[0-9]*" }, interceptor);
 		mappedInterceptor.setPathMatcher(new TestPathMatcher());
-
 		assertTrue(mappedInterceptor.matches("/foo/123", pathMatcher));
 		assertFalse(mappedInterceptor.matches("/foo/bar", pathMatcher));
 	}
@@ -81,7 +75,6 @@ public class MappedInterceptorTests {
 		HandlerInterceptor interceptor = mock(HandlerInterceptor.class);
 		MappedInterceptor mappedInterceptor = new MappedInterceptor(new String[] { "/**" }, interceptor);
 		mappedInterceptor.preHandle(mock(HttpServletRequest.class), mock(HttpServletResponse.class), null);
-
 		then(interceptor).should().preHandle(any(HttpServletRequest.class), any(HttpServletResponse.class), any());
 	}
 
@@ -102,37 +95,30 @@ public class MappedInterceptorTests {
 	}
 
 	public static class TestPathMatcher implements PathMatcher {
-
 		@Override
 		public boolean isPattern(String path) {
 			return false;
 		}
-
 		@Override
 		public boolean match(String pattern, String path) {
 			return path.matches(pattern);
 		}
-
 		@Override
 		public boolean matchStart(String pattern, String path) {
 			return false;
 		}
-
 		@Override
 		public String extractPathWithinPattern(String pattern, String path) {
 			return null;
 		}
-
 		@Override
 		public Map<String, String> extractUriTemplateVariables(String pattern, String path) {
 			return null;
 		}
-
 		@Override
 		public Comparator<String> getPatternComparator(String path) {
 			return null;
 		}
-
 		@Override
 		public String combine(String pattern1, String pattern2) {
 			return null;

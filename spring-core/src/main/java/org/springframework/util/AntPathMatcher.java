@@ -33,9 +33,7 @@ import org.springframework.lang.Nullable;
  * <li><code>org/&#42;&#42;/servlet/bla.jsp</code> ; matches
  * {@code org/springframework/servlet/bla.jsp} but also
  * {@code org/springframework/testing/servlet/bla.jsp} and {@code org/servlet/bla.jsp}</li>
- * <li>{@code com/{filename:\\w+}.jsp} will match {@code com/test.jsp} and assign the value {@code test}
- * to the {@code filename} variable</li>
- *
+ * <li>{@code com/{filename:\\w+}.jsp} will match {@code com/test.jsp} and assign the value {@code test} to the {@code filename} variable</li>
  * <strong>Note:</strong> a pattern and a path must both be absolute or must
  * both be relative in order for the two to match. Therefore it is recommended
  * that users of this implementation to sanitize patterns in order to prefix
@@ -67,7 +65,6 @@ public class AntPathMatcher implements PathMatcher {
 	private final Map<String, String[]> tokenizedPatternCache = new ConcurrentHashMap<>(256);
 
 	final Map<String, AntPathStringMatcher> stringMatcherCache = new ConcurrentHashMap<>(256);
-
 
 	/**
 	 * Create a new instance with the {@link #DEFAULT_PATH_SEPARATOR}.
@@ -166,18 +163,13 @@ public class AntPathMatcher implements PathMatcher {
 	 * Actually match the given {@code path} against the given {@code pattern}.
 	 * @param pattern the pattern to match against
 	 * @param path the path String to test
-	 * @param fullMatch whether a full pattern match is required (else a pattern match
-	 * as far as the given base path goes is sufficient)
+	 * @param fullMatch whether a full pattern match is required (else a pattern match as far as the given base path goes is sufficient)
 	 * @return {@code true} if the supplied {@code path} matched, {@code false} if it didn't
 	 */
 	protected boolean doMatch(String pattern, String path, boolean fullMatch,@Nullable Map<String, String> uriTemplateVariables) {
-		if (path.startsWith(this.pathSeparator) != pattern.startsWith(this.pathSeparator)) {
-			return false;
-		}
+		if (path.startsWith(this.pathSeparator) != pattern.startsWith(this.pathSeparator)) return false;
 		String[] pattDirs = tokenizePattern(pattern);
-		if (fullMatch && this.caseSensitive && !isPotentialMatch(path, pattDirs)) {
-			return false;
-		}
+		if (fullMatch && this.caseSensitive && !isPotentialMatch(path, pattDirs)) return false;
 		String[] pathDirs = tokenizePath(path);
 		int pattIdxStart = 0;
 		int pattIdxEnd = pattDirs.length - 1;
@@ -186,12 +178,8 @@ public class AntPathMatcher implements PathMatcher {
 		// Match all elements up to the first **
 		while (pattIdxStart <= pattIdxEnd && pathIdxStart <= pathIdxEnd) {
 			String pattDir = pattDirs[pattIdxStart];
-			if ("**".equals(pattDir)) {
-				break;
-			}
-			if (!matchStrings(pattDir, pathDirs[pathIdxStart], uriTemplateVariables)) {
-				return false;
-			}
+			if ("**".equals(pattDir)) break;
+			if (!matchStrings(pattDir, pathDirs[pathIdxStart], uriTemplateVariables)) return false;
 			pattIdxStart++;
 			pathIdxStart++;
 		}
@@ -201,9 +189,7 @@ public class AntPathMatcher implements PathMatcher {
 			if (pattIdxStart > pattIdxEnd) {
 				return (pattern.endsWith(this.pathSeparator) == path.endsWith(this.pathSeparator));
 			}
-			if (!fullMatch) {
-				return true;
-			}
+			if (!fullMatch) return true;
 			if (pattIdxStart == pattIdxEnd && pattDirs[pattIdxStart].equals("*") && path.endsWith(this.pathSeparator)) {
 				return true;
 			}
@@ -220,7 +206,6 @@ public class AntPathMatcher implements PathMatcher {
 			// Path start definitely matches due to "**" part in pattern.
 			return true;
 		}
-
 		// up to last '**'
 		while (pattIdxStart <= pattIdxEnd && pathIdxStart <= pathIdxEnd) {
 			String pattDir = pattDirs[pattIdxEnd];
@@ -242,7 +227,6 @@ public class AntPathMatcher implements PathMatcher {
 			}
 			return true;
 		}
-
 		while (pattIdxStart != pattIdxEnd && pathIdxStart <= pathIdxEnd) {
 			int patIdxTmp = -1;
 			for (int i = pattIdxStart + 1; i <= pattIdxEnd; i++) {
@@ -275,12 +259,10 @@ public class AntPathMatcher implements PathMatcher {
 				foundIdx = pathIdxStart + i;
 				break;
 			}
-
 			if (foundIdx == -1) return false;
 			pattIdxStart = patIdxTmp;
 			pathIdxStart = foundIdx + patLength;
 		}
-
 		for (int i = pattIdxStart; i <= pattIdxEnd; i++) {
 			if (!pattDirs[i].equals("**")) {
 				return false;
@@ -309,16 +291,10 @@ public class AntPathMatcher implements PathMatcher {
 		int skipped = 0;
 		for (int i = 0; i < prefix.length(); i++) {
 			char c = prefix.charAt(i);
-			if (isWildcardChar(c)) {
-				return skipped;
-			}
+			if (isWildcardChar(c)) return skipped;
 			int currPos = pos + skipped;
-			if (currPos >= path.length()) {
-				return 0;
-			}
-			if (c == path.charAt(currPos)) {
-				skipped++;
-			}
+			if (currPos >= path.length()) return 0;
+			if (c == path.charAt(currPos)) skipped++;
 		}
 		return skipped;
 	}
@@ -439,7 +415,6 @@ public class AntPathMatcher implements PathMatcher {
 		String[] pathParts = StringUtils.tokenizeToStringArray(path, this.pathSeparator, this.trimTokens, true);
 		StringBuilder builder = new StringBuilder();
 		boolean pathStarted = false;
-
 		for (int segment = 0; segment < patternParts.length; segment++) {
 			String patternPart = patternParts[segment];
 			if (patternPart.indexOf('*') > -1 || patternPart.indexOf('?') > -1) {
@@ -649,17 +624,14 @@ public class AntPathMatcher implements PathMatcher {
 
 
 	/**
-	 * The default {@link Comparator} implementation returned by
-	 * {@link #getPatternComparator(String)}.
+	 * The default {@link Comparator} implementation returned by {@link #getPatternComparator(String)}.
 	 * In order, the most "generic" pattern is determined by the following:
-	 * <ul>
 	 * <li>if it's null or a capture all pattern (i.e. it is equal to "/**")</li>
 	 * <li>if the other pattern is an actual match</li>
 	 * <li>if it's a catch-all pattern (i.e. it ends with "**"</li>
 	 * <li>if it's got more "*" than the other pattern</li>
 	 * <li>if it's got more "{foo}" than the other pattern</li>
 	 * <li>if it's shorter than the other pattern</li>
-	 * </ul>
 	 */
 	protected static class AntPatternComparator implements Comparator<String> {
 
