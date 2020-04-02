@@ -517,7 +517,6 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 			// 初始化当前servlet配置的Spring配置
 			// 初始化WebApplicationContext，并调用子类（DispatcherServlet）的onRefresh(wac)方法
 			this.webApplicationContext = initWebApplicationContext();
-			// 这个里面没有任何实现方法
 			// 这里initFrameworkServlet()方法是一个空方法，供给用户对当前servlet对应的Spring容器进行自定义的处理
 			initFrameworkServlet();
 		}
@@ -535,8 +534,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 
 	/**
 	 * Initialize and publish the WebApplicationContext for this servlet.
-	 * Delegates to {@link #createWebApplicationContext} for actual creation
-	 * of the context. Can be overridden in subclasses.
+	 * Delegates to {@link #createWebApplicationContext} for actual creation of the context. Can be overridden in subclasses.
 	 * @return the WebApplicationContext instance
 	 * @see #FrameworkServlet(WebApplicationContext)
 	 * @see #setContextClass
@@ -822,7 +820,6 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	public final WebApplicationContext getWebApplicationContext() {
 		return this.webApplicationContext;
 	}
-
 
 	/**
 	 * This method will be invoked after any bean properties have been set and the WebApplicationContext has been loaded.

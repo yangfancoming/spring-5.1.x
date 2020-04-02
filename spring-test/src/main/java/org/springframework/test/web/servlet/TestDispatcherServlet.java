@@ -27,18 +27,13 @@ import org.springframework.web.util.WebUtils;
 
 /**
  * A sub-class of {@code DispatcherServlet} that saves the result in an
- * {@link MvcResult}. The {@code MvcResult} instance is expected to be available
- * as the request attribute {@link MockMvc#MVC_RESULT_ATTRIBUTE}.
- *
- * @author Rossen Stoyanchev
- * @author Rob Winch
+ * {@link MvcResult}. The {@code MvcResult} instance is expected to be available as the request attribute {@link MockMvc#MVC_RESULT_ATTRIBUTE}.
  * @since 3.2
  */
 @SuppressWarnings("serial")
 final class TestDispatcherServlet extends DispatcherServlet {
 
 	private static final String KEY = TestDispatcherServlet.class.getName() + ".interceptor";
-
 
 	/**
 	 * Create a new instance with the given web application context.
@@ -47,15 +42,10 @@ final class TestDispatcherServlet extends DispatcherServlet {
 		super(webApplicationContext);
 	}
 
-
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	protected void service(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		registerAsyncResultInterceptors(request);
-
 		super.service(request, response);
-
 		if (request.getAsyncContext() != null) {
 			MockAsyncContext asyncContext;
 			if (request.getAsyncContext() instanceof MockAsyncContext) {
@@ -66,8 +56,7 @@ final class TestDispatcherServlet extends DispatcherServlet {
 				Assert.notNull(mockRequest, "Expected MockHttpServletRequest");
 				asyncContext = (MockAsyncContext) mockRequest.getAsyncContext();
 				Assert.notNull(asyncContext, () ->
-						"Outer request wrapper " + request.getClass().getName() + " has an AsyncContext," +
-								"but it is not a MockAsyncContext, while the nested " +
+						"Outer request wrapper " + request.getClass().getName() + " has an AsyncContext,but it is not a MockAsyncContext, while the nested " +
 								mockRequest.getClass().getName() + " does not have an AsyncContext at all.");
 			}
 
@@ -113,25 +102,19 @@ final class TestDispatcherServlet extends DispatcherServlet {
 	}
 
 	@Override
-	protected void render(ModelAndView mv, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-
+	protected void render(ModelAndView mv, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		DefaultMvcResult mvcResult = getMvcResult(request);
 		mvcResult.setModelAndView(mv);
 		super.render(mv, request, response);
 	}
 
 	@Override
-	protected ModelAndView processHandlerException(HttpServletRequest request, HttpServletResponse response,
-			@Nullable Object handler, Exception ex) throws Exception {
-
+	protected ModelAndView processHandlerException(HttpServletRequest request, HttpServletResponse response,@Nullable Object handler, Exception ex) throws Exception {
 		ModelAndView mav = super.processHandlerException(request, response, handler, ex);
-
 		// We got this far, exception was processed..
 		DefaultMvcResult mvcResult = getMvcResult(request);
 		mvcResult.setResolvedException(ex);
 		mvcResult.setModelAndView(mav);
-
 		return mav;
 	}
 

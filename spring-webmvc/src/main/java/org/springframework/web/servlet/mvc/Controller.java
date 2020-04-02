@@ -65,11 +65,9 @@ import org.springframework.web.servlet.ModelAndView;
  * If Controllers need to be aware of specific environment references, they can
  * choose to implement specific awareness interfaces, just like any other bean in a
  * Spring (web) application context can do, for example:
- * <ul>
  * <li>{@code org.springframework.context.ApplicationContextAware}</li>
  * <li>{@code org.springframework.context.ResourceLoaderAware}</li>
  * <li>{@code org.springframework.web.context.ServletContextAware}</li>
- * </ul>
  *
  * Such environment references can easily be passed in testing environments,
  * through the corresponding setters defined in the respective awareness interfaces.

@@ -68,9 +68,7 @@ public abstract class GenericServlet  implements Servlet, ServletConfig, java.io
     */
     public Enumeration<String> getInitParameterNames() {
         ServletConfig sc = getServletConfig();
-        if (sc == null) {
-            throw new IllegalStateException(lStrings.getString("err.servlet_config_not_initialized"));
-        }
+        if (sc == null) throw new IllegalStateException(lStrings.getString("err.servlet_config_not_initialized"));
         return sc.getInitParameterNames();
     }   
      
@@ -92,9 +90,7 @@ public abstract class GenericServlet  implements Servlet, ServletConfig, java.io
      */
     public ServletContext getServletContext() {
         ServletConfig sc = getServletConfig();
-        if (sc == null) {
-            throw new IllegalStateException(lStrings.getString("err.servlet_config_not_initialized"));
-        }
+        if (sc == null)  throw new IllegalStateException(lStrings.getString("err.servlet_config_not_initialized"));
         return sc.getServletContext();
     }
 
@@ -125,10 +121,10 @@ public abstract class GenericServlet  implements Servlet, ServletConfig, java.io
      * @exception ServletException    if an exception occurs that interrupts the servlet's normal operation
      * @see 				UnavailableException
      */
-    public void init(ServletConfig config) throws ServletException {
-	this.config = config;
-	this.init();
-    }
+	public void init(ServletConfig config) throws ServletException {
+		this.config = config;
+		this.init();
+	}
 
 
     /**
