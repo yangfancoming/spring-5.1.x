@@ -609,7 +609,6 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 			// 当wac既没有没被编程式注册到容器中的，也没在ServletContext找得到，此时就要新建一个Spring MVC容器
 			wac = createWebApplicationContext(rootContext); // 如果没有WebApplicationContext则创建
 		}
-
 		if (!this.refreshEventReceived) {
 			// Either the context is not a ConfigurableApplicationContext with refresh
 			// support or the context injected at construction time had already been
@@ -636,21 +635,16 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	}
 
 	/**
-	 * Retrieve a {@code WebApplicationContext} from the {@code ServletContext}
-	 * attribute with the {@link #setContextAttribute configured name}. The
-	 * {@code WebApplicationContext} must have already been loaded and stored in the
-	 * {@code ServletContext} before this servlet gets initialized (or invoked).
-	 * Subclasses may override this method to provide a different
-	 * {@code WebApplicationContext} retrieval strategy.
+	 * Retrieve a {@code WebApplicationContext} from the {@code ServletContext} attribute with the {@link #setContextAttribute configured name}.
+	 * The {@code WebApplicationContext} must have already been loaded and stored in the {@code ServletContext} before this servlet gets initialized (or invoked).
+	 * Subclasses may override this method to provide a different {@code WebApplicationContext} retrieval strategy.
 	 * @return the WebApplicationContext for this servlet, or {@code null} if not found
 	 * @see #getContextAttribute()
 	 */
 	@Nullable
 	protected WebApplicationContext findWebApplicationContext() {
 		String attrName = getContextAttribute();
-		if (attrName == null) {
-			return null;
-		}
+		if (attrName == null) return null;
 		// 从 ServletContext 中查找已经发布的 WebApplicationContext 容器
 		WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(getServletContext(), attrName);
 		if (wac == null) {
@@ -661,15 +655,12 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 
 	/**
 	 * Instantiate the WebApplicationContext for this servlet, either a default
-	 * {@link org.springframework.web.context.support.XmlWebApplicationContext}
-	 * or a {@link #setContextClass custom context class}, if set.
+	 * {@link org.springframework.web.context.support.XmlWebApplicationContext} or a {@link #setContextClass custom context class}, if set.
 	 * This implementation expects custom contexts to implement the
-	 * {@link org.springframework.web.context.ConfigurableWebApplicationContext}
-	 * interface. Can be overridden in subclasses.
+	 * {@link org.springframework.web.context.ConfigurableWebApplicationContext} interface. Can be overridden in subclasses.
 	 * Do not forget to register this servlet instance as application listener on the
 	 * created context (for triggering its {@link #onRefresh callback}, and to call
-	 * {@link org.springframework.context.ConfigurableApplicationContext#refresh()}
-	 * before returning the context instance.
+	 * {@link org.springframework.context.ConfigurableApplicationContext#refresh()} before returning the context instance.
 	 * @param parent the parent ApplicationContext to use, or {@code null} if none
 	 * @return the WebApplicationContext for this servlet
 	 * @see org.springframework.web.context.support.XmlWebApplicationContext
@@ -710,14 +701,12 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 			if (this.contextId != null) {
 				// 设置容器 id
 				wac.setId(this.contextId);
-			}
-			else {
+			}else {
 				// 生成默认 id
 				// Generate default id...
 				wac.setId(ConfigurableWebApplicationContext.APPLICATION_CONTEXT_ID_PREFIX + ObjectUtils.getDisplayString(getServletContext().getContextPath()) + '/' + getServletName());
 			}
 		}
-
 		wac.setServletContext(getServletContext());
 		wac.setServletConfig(getServletConfig());
 		wac.setNamespace(getNamespace());
@@ -807,8 +796,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 			Class<?> initializerContextClass = GenericTypeResolver.resolveTypeArgument(initializerClass, ApplicationContextInitializer.class);
 			if (initializerContextClass != null && !initializerContextClass.isInstance(wac)) {
 				throw new ApplicationContextException(String.format(
-						"Could not apply context initializer [%s] since its generic parameter [%s] " +
-						"is not assignable from the type of application context used by this " +
+						"Could not apply context initializer [%s] since its generic parameter [%s] is not assignable from the type of application context used by this " +
 						"framework servlet: [%s]", initializerClass.getName(), initializerContextClass.getName(),wac.getClass().getName()));
 			}
 			return BeanUtils.instantiateClass(initializerClass, ApplicationContextInitializer.class);
@@ -908,8 +896,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 		// Spring3.0增加了PATCH方法拦截处理
 		if (httpMethod == HttpMethod.PATCH || httpMethod == null) {
 			processRequest(request, response);
-		}
-		else {
+		}else {
 			// GET, HEAD, POST, PUT, DELETE, OPTIONS, TRACE
 			super.service(request, response);
 		}
@@ -917,8 +904,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 
 	/**
 	 * Delegate GET requests to processRequest/doService.
-	 * Will also be invoked by HttpServlet's default implementation of {@code doHead},
-	 * with a {@code NoBodyResponse} that just captures the content length.
+	 * Will also be invoked by HttpServlet's default implementation of {@code doHead},with a {@code NoBodyResponse} that just captures the content length.
 	 * @see #doService
 	 * @see #doHead
 	 */
@@ -962,7 +948,6 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 */
 	@Override
 	protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		if (this.dispatchOptionsRequest || CorsUtils.isPreFlightRequest(request)) {
 			processRequest(request, response);
 			if (response.containsHeader("Allow")) {
@@ -1006,7 +991,6 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * The actual event handling is performed by the abstract {@link #doService} template method.
 	 */
 	protected final void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		long startTime = System.currentTimeMillis();
 		Throwable failureCause = null;
 		// 构建请求(request)的LocalContext上下文，提供基本的作为当前地区的主要语言环境
@@ -1027,22 +1011,17 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 		// 绑定request context上线到当前线程
 		// 将当前请求的Locale，Attributes信息初始化到对应的ThreadLocal对象中，用于后续使用
 		initContextHolders(request, localeContext, requestAttributes);
-
 		try {
 			// 对当前请求进行分发
 			// 模板方法，调用子类（DispatcherServlet）的doService方法进行处理
 			doService(request, response);
-		}
-		catch (ServletException | IOException ex) {
+		}catch (ServletException | IOException ex) {
 			failureCause = ex;
 			throw ex;
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			failureCause = ex;
 			throw new NestedServletException("Request processing failed", ex);
-		}
-
-		finally {
+		}finally {
 			// 在请求完成之后，判断当前请求的Locale和Attributes信息是否需要继承，如果需要继承，
 			// 则会将Locale信息设置到inheritableLocaleContextHolder中，而将Attributes
 			// 信息设置到inheritableRequestAttributesHolder中；否则就会移除对应的信息，
@@ -1108,11 +1087,9 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	}
 
 	private void logResult(HttpServletRequest request, HttpServletResponse response,@Nullable Throwable failureCause, WebAsyncManager asyncManager) {
-
 		if (!logger.isDebugEnabled()) {
 			return;
 		}
-
 		String dispatchType = request.getDispatcherType().name();
 		boolean initialDispatch = request.getDispatcherType().equals(DispatcherType.REQUEST);
 
@@ -1129,12 +1106,10 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 			}
 			return;
 		}
-
 		if (asyncManager.isConcurrentHandlingStarted()) {
 			logger.debug("Exiting but response remains open for further handling");
 			return;
 		}
-
 		int status = response.getStatus();
 		String headers = ""; // nothing below trace
 
@@ -1142,13 +1117,11 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 			Collection<String> names = response.getHeaderNames();
 			if (this.enableLoggingRequestDetails) {
 				headers = names.stream().map(name -> name + ":" + response.getHeaders(name)).collect(Collectors.joining(", "));
-			}
-			else {
+			}else {
 				headers = names.isEmpty() ? "" : "masked";
 			}
 			headers = ", headers={" + headers + "}";
 		}
-
 		if (!initialDispatch) {
 			logger.debug("Exiting from \"" + dispatchType + "\" dispatch, status " + status + headers);
 		}else {
@@ -1158,7 +1131,6 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	}
 
 	private void publishRequestHandledEvent(HttpServletRequest request, HttpServletResponse response,long startTime, @Nullable Throwable failureCause) {
-
 		if (this.publishEvents && this.webApplicationContext != null) {
 			// Whether or not we succeeded, publish an event.
 			long processingTime = System.currentTimeMillis() - startTime;

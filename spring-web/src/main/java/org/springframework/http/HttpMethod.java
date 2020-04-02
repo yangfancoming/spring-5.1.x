@@ -9,26 +9,17 @@ import org.springframework.lang.Nullable;
 
 /**
  * Java 5 enumeration of HTTP request methods. Intended for use
- * with {@link org.springframework.http.client.ClientHttpRequest}
- * and {@link org.springframework.web.client.RestTemplate}.
- *
- * @author Arjen Poutsma
-
+ * with {@link org.springframework.http.client.ClientHttpRequest} and {@link org.springframework.web.client.RestTemplate}.
  * @since 3.0
  */
 public enum HttpMethod {
-
 	GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE;
-
-
 	private static final Map<String, HttpMethod> mappings = new HashMap<>(16);
-
 	static {
 		for (HttpMethod httpMethod : values()) {
 			mappings.put(httpMethod.name(), httpMethod);
 		}
 	}
-
 
 	/**
 	 * Resolve the given method value to an {@code HttpMethod}.
@@ -41,10 +32,8 @@ public enum HttpMethod {
 		return (method != null ? mappings.get(method) : null);
 	}
 
-
 	/**
-	 * Determine whether this {@code HttpMethod} matches the given
-	 * method value.
+	 * Determine whether this {@code HttpMethod} matches the given method value.
 	 * @param method the method value as a String
 	 * @return {@code true} if it matches, {@code false} otherwise
 	 * @since 4.2.4

@@ -273,9 +273,6 @@ public interface HttpServletRequest extends ServletRequest {
                         + "} HttpServletRequest {" + HttpServletRequest.this.toString()
                         + '}';
             }
-
-
-
         };
     }
 
@@ -705,16 +702,13 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @since Servlet 3.0
      */
-    public void login(String username, String password)
-	throws ServletException;
+    public void login(String username, String password) throws ServletException;
 
     /**
      * Establish <code>null</code> as the value returned when
      * <code>getUserPrincipal</code>, <code>getRemoteUser</code>,
      * and <code>getAuthType</code> is called on the request.
-     *
      * @exception ServletException if logout fails
-     *
      * @since Servlet 3.0
      */
     public void logout() throws ServletException;
@@ -732,13 +726,8 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @return a (possibly empty) <code>Collection</code> of the
      * <code>Part</code> components of this request
-     *
-     * @throws IOException if an I/O error occurred during the retrieval
-     * of the {@link Part} components of this request
-     *
-     * @throws ServletException if this request is not of type
-     * <code>multipart/form-data</code>
-     *
+     * @throws IOException if an I/O error occurred during the retrieval of the {@link Part} components of this request
+     * @throws ServletException if this request is not of type <code>multipart/form-data</code>
      * @throws IllegalStateException if the request body is larger than
      * <code>maxRequestSize</code>, or any <code>Part</code> in the
      * request is larger than <code>maxFileSize</code>, or there is no
@@ -782,44 +771,30 @@ public interface HttpServletRequest extends ServletRequest {
     /**
      * Creates an instance of <code>HttpUpgradeHandler</code> for a given
      * class and uses it for the http protocol upgrade processing.
-     *
      * @param <T> The {@code Class}, which extends {@link
      * HttpUpgradeHandler}, of the {@code handlerClass}.
-
      * @param handlerClass The <code>HttpUpgradeHandler</code> class used for the upgrade.
-     *
      * @return an instance of the <code>HttpUpgradeHandler</code>
-     *
      * @exception IOException if an I/O error occurred during the upgrade
-     * @exception ServletException if the given <code>handlerClass</code> fails to
-     * be instantiated
-     *
+     * @exception ServletException if the given <code>handlerClass</code> fails to be instantiated
      * @see javax.servlet.http.HttpUpgradeHandler
      * @see javax.servlet.http.WebConnection
-     *
      * @since Servlet 3.1
      */
-    public <T extends HttpUpgradeHandler> T  upgrade(Class<T> handlerClass)
-        throws IOException, ServletException;
+    public <T extends HttpUpgradeHandler> T  upgrade(Class<T> handlerClass)  throws IOException, ServletException;
 
     /**
      * Get the request trailer fields.
-     *
      * The returned map is not backed by the {@code HttpServletRequest} object,
      * so changes in the returned map are not reflected in the
      * {@code HttpServletRequest} object, and vice-versa.</p>
-     * 
      * {@link #isTrailerFieldsReady()} should be called first to determine
      * if it is safe to call this method without causing an exception.</p>
-     *
      * @implSpec
      * The default implementation returns an empty map.
-     * 
      * @return A map of trailer fields in which all the keys are in lowercase,
      * regardless of the case they had at the protocol level. If there are no
-     * trailer fields, yet {@link #isTrailerFieldsReady} is returning true,
-     * the empty map is returned.
-     *
+     * trailer fields, yet {@link #isTrailerFieldsReady} is returning true,the empty map is returned.
      * @throws IllegalStateException if {@link #isTrailerFieldsReady()} is false
      *
      * @since Servlet 4.0
@@ -829,15 +804,12 @@ public interface HttpServletRequest extends ServletRequest {
     }
 
     /**
-     * Return a boolean indicating whether trailer fields are ready to read
-     * using {@link #getTrailerFields}.
-     *
+     * Return a boolean indicating whether trailer fields are ready to read using {@link #getTrailerFields}.
      * This methods returns true immediately if it is known that there is no
      * trailer in the request, for instance, the underlying protocol (such
      * as HTTP 1.0) does not supports the trailer fields, or the request is
      * not in chunked encoding in HTTP 1.1.
-     * And the method also returns true if both of the following conditions
-     * are satisfied:
+     * And the method also returns true if both of the following conditions are satisfied:
      * <ol type="a">
      *   <li> the application has read all the request data and an EOF
      *        indication has been returned from the {@link #getReader}
@@ -845,12 +817,9 @@ public interface HttpServletRequest extends ServletRequest {
      *   <li> all the trailer fields sent by the client have been received.
      *        Note that it is possible that the client has sent no trailer fields.
      * </ol>
-     *
      * @implSpec
      * The default implementation returns false.
-     *
      * @return a boolean whether trailer fields are ready to read
-     *
      * @since Servlet 4.0
      */
     default public boolean isTrailerFieldsReady() {
