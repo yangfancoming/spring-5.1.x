@@ -8,7 +8,8 @@ dependencyManagement {
 }
 
 dependencies {
-	provided("javax.servlet:javax.servlet-api:4.0.1")
+//	provided("javax.servlet:javax.servlet-api:4.0.1")
+	compile(project(":servlet-api"))
 	compile(project(":spring-aop"))
 	compile(project(":spring-beans"))
 	compile(project(":spring-context"))

@@ -56,8 +56,6 @@ import org.springframework.web.servlet.View;
  * determine the existence of the target resource upfront. In such a scenario,
  * a UrlBasedViewResolver will always return View for any given view name;
  * as a consequence, it should be configured as the last ViewResolver in the chain.
- *
-
  * @author Rob Harrop
  * @since 13.12.2003
  * @see #setViewClass
@@ -125,17 +123,14 @@ public class UrlBasedViewResolver extends AbstractCachingViewResolver implements
 
 	private int order = Ordered.LOWEST_PRECEDENCE;
 
-
 	/**
 	 * Set the view class that should be used to create views.
-	 * @param viewClass class that is assignable to the required view class
-	 * (by default, AbstractUrlBasedView)
+	 * @param viewClass class that is assignable to the required view class  (by default, AbstractUrlBasedView)
 	 * @see AbstractUrlBasedView
 	 */
 	public void setViewClass(@Nullable Class<?> viewClass) {
 		if (viewClass != null && !requiredViewClass().isAssignableFrom(viewClass)) {
-			throw new IllegalArgumentException("Given view class [" + viewClass.getName() +
-					"] is not of type [" + requiredViewClass().getName() + "]");
+			throw new IllegalArgumentException("Given view class [" + viewClass.getName() + "] is not of type [" + requiredViewClass().getName() + "]");
 		}
 		this.viewClass = viewClass;
 	}
@@ -430,7 +425,6 @@ public class UrlBasedViewResolver extends AbstractCachingViewResolver implements
 		}
 	}
 
-
 	/**
 	 * This implementation returns just the view name,
 	 * as this ViewResolver doesn't support localized resolution.
@@ -452,15 +446,12 @@ public class UrlBasedViewResolver extends AbstractCachingViewResolver implements
 	protected View createView(String viewName, Locale locale) throws Exception {
 		// If this resolver is not supposed to handle the given view,
 		// return null to pass on to the next resolver in the chain.
-		if (!canHandle(viewName, locale)) {
-			return null;
-		}
+		if (!canHandle(viewName, locale)) return null;
 
 		// Check for special "redirect:" prefix.
 		if (viewName.startsWith(REDIRECT_URL_PREFIX)) {
 			String redirectUrl = viewName.substring(REDIRECT_URL_PREFIX.length());
-			RedirectView view = new RedirectView(redirectUrl,
-					isRedirectContextRelative(), isRedirectHttp10Compatible());
+			RedirectView view = new RedirectView(redirectUrl,isRedirectContextRelative(), isRedirectHttp10Compatible());
 			String[] hosts = getRedirectHosts();
 			if (hosts != null) {
 				view.setHosts(hosts);
@@ -474,7 +465,6 @@ public class UrlBasedViewResolver extends AbstractCachingViewResolver implements
 			InternalResourceView view = new InternalResourceView(forwardUrl);
 			return applyLifecycleMethods(FORWARD_URL_PREFIX, view);
 		}
-
 		// Else fall back to superclass implementation: calling loadView.
 		return super.createView(viewName, locale);
 	}
@@ -566,7 +556,6 @@ public class UrlBasedViewResolver extends AbstractCachingViewResolver implements
 		if (exposedContextBeanNames != null) {
 			view.setExposedContextBeanNames(exposedContextBeanNames);
 		}
-
 		return view;
 	}
 

@@ -1563,7 +1563,7 @@ public class ResolvableTypeTests {
 	public class BaseImplementation extends AbstractBase<BaseImplementation> {
 	}
 
-	public class BaseProvider<BT extends IBase<BT>> implements IProvider<IBase<BT>> {
+	public class BaseProvider<BT extends IBase<BT>> implements IProvider {
 
 		public Collection<IBase<BT>> stuff;
 	}

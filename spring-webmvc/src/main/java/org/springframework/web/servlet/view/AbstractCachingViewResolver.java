@@ -51,15 +51,13 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 
 	/** Map from view key to View instance, synchronized for View creation. */
 	@SuppressWarnings("serial")
-	private final Map<Object, View> viewCreationCache =
-			new LinkedHashMap<Object, View>(DEFAULT_CACHE_LIMIT, 0.75f, true) {
+	private final Map<Object, View> viewCreationCache = new LinkedHashMap<Object, View>(DEFAULT_CACHE_LIMIT, 0.75f, true) {
 				@Override
 				protected boolean removeEldestEntry(Map.Entry<Object, View> eldest) {
 					if (size() > getCacheLimit()) {
 						viewAccessCache.remove(eldest.getKey());
 						return true;
-					}
-					else {
+					}else {
 						return false;
 					}
 				}
@@ -130,8 +128,7 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 		if (!isCache()) {
 			// 根据视图名称和用户地区信息创建View对象
 			return createView(viewName, locale);
-		}
-		else {
+		}else {
 			// 如果可以对视图进行缓存，则首先获取缓存使用的key，然后从缓存中获取该key，如果没有取到，
 			// 则对其进行加锁，再次获取，如果还是没有取到，则创建一个新的View，并且对其进行缓存。
 			// 这里使用的是双检查法来判断缓存中是否存在对应的逻辑视图。
@@ -153,11 +150,8 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 						}
 					}
 				}
-			}
-			else {
-				if (logger.isTraceEnabled()) {
-					logger.trace(formatKey(cacheKey) + "served from cache");
-				}
+			}else {
+				if (logger.isTraceEnabled()) logger.trace(formatKey(cacheKey) + "served from cache");
 			}
 			return (view != UNRESOLVED_VIEW ? view : null);
 		}
@@ -190,19 +184,15 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 	public void removeFromCache(String viewName, Locale locale) {
 		if (!isCache()) {
 			logger.warn("Caching is OFF (removal not necessary)");
-		}
-		else {
+		}else {
 			Object cacheKey = getCacheKey(viewName, locale);
 			Object cachedView;
 			synchronized (this.viewCreationCache) {
 				this.viewAccessCache.remove(cacheKey);
 				cachedView = this.viewCreationCache.remove(cacheKey);
 			}
-			if (logger.isDebugEnabled()) {
-				// Some debug output might be useful...
-				logger.debug(formatKey(cacheKey) +
-						(cachedView != null ? "cleared from cache" : "not found in the cache"));
-			}
+			// Some debug output might be useful...
+			if (logger.isDebugEnabled()) logger.debug(formatKey(cacheKey) + (cachedView != null ? "cleared from cache" : "not found in the cache"));
 		}
 	}
 

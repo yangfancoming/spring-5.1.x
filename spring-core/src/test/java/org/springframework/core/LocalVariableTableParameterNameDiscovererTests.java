@@ -285,13 +285,13 @@ public class LocalVariableTableParameterNameDiscovererTests {
 		public GenerifiedClass(K key, V value) {
 		}
 
-		public static  long generifiedStaticMethod(P param) {
-			return date;
-		}
-
-		public  void generifiedMethod(P param, long x, K key, V value) {
-			// nothing
-		}
+//		public static  long generifiedStaticMethod(P param) {
+//			return date;
+//		}
+//
+//		public  void generifiedMethod(P param, long x, K key, V value) {
+//			// nothing
+//		}
 
 		public static void voidStaticMethod(Object obj, long x, int i) {
 			// nothing
