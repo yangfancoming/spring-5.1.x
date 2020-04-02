@@ -21,17 +21,12 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 /**
  * Abstract base implementation of the MultipartHttpServletRequest interface.
  * Provides management of pre-generated MultipartFile instances.
- *
-
- * @author Arjen Poutsma
  * @since 06.10.2003
  */
-public abstract class AbstractMultipartHttpServletRequest extends HttpServletRequestWrapper
-		implements MultipartHttpServletRequest {
+public abstract class AbstractMultipartHttpServletRequest extends HttpServletRequestWrapper implements MultipartHttpServletRequest {
 
 	@Nullable
 	private MultiValueMap<String, MultipartFile> multipartFiles;
-
 
 	/**
 	 * Wrap the given HttpServletRequest in a MultipartHttpServletRequest.
@@ -112,8 +107,7 @@ public abstract class AbstractMultipartHttpServletRequest extends HttpServletReq
 	 * To be invoked by subclasses on initialization.
 	 */
 	protected final void setMultipartFiles(MultiValueMap<String, MultipartFile> multipartFiles) {
-		this.multipartFiles =
-				new LinkedMultiValueMap<>(Collections.unmodifiableMap(multipartFiles));
+		this.multipartFiles = new LinkedMultiValueMap<>(Collections.unmodifiableMap(multipartFiles));
 	}
 
 	/**

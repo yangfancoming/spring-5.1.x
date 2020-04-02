@@ -13,15 +13,11 @@ import java.util.Map;
 
 /**
  *
- * Extends the {@link javax.servlet.ServletRequest} interface to provide
- * request information for HTTP servlets.
+ * Extends the {@link javax.servlet.ServletRequest} interface to provide request information for HTTP servlets.
  *
  * The servlet container creates an <code>HttpServletRequest</code>
  * object and passes it as an argument to the servlet's service
  * methods (<code>doGet</code>, <code>doPost</code>, etc).
- *
- *
- * @author 	Various
  */
 
 public interface HttpServletRequest extends ServletRequest {

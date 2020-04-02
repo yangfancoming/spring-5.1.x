@@ -36,12 +36,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpUpgradeHandler;
-import javax.servlet.http.Part;
+import javax.servlet.http.*;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -59,18 +54,8 @@ import org.springframework.util.StringUtils;
  * Mock implementation of the {@link javax.servlet.http.HttpServletRequest} interface.
  *
  * The default, preferred {@link Locale} for the <em>server</em> mocked by this request
- * is {@link Locale#ENGLISH}. This value can be changed via {@link #addPreferredLocale}
- * or {@link #setPreferredLocales}.
- *
+ * is {@link Locale#ENGLISH}. This value can be changed via {@link #addPreferredLocale} or {@link #setPreferredLocales}.
  * As of Spring Framework 5.0, this set of mocks is designed on a Servlet 4.0 baseline.
- *
-
- * @author Rod Johnson
- * @author Rick Evans
- * @author Mark Fisher
-
- * @author Sam Brannen
- * @author Brian Clozel
  * @since 1.0.2
  */
 public class MockHttpServletRequest implements HttpServletRequest {

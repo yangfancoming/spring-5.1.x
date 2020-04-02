@@ -38,15 +38,15 @@ public abstract class WebUtils {
 
 	/**
 	 * Standard Servlet 2.3+ spec request attribute for include request URI.
-	 * If included via a {@code RequestDispatcher}, the current resource will see the
-	 * originating request. Its own request URI is exposed as a request attribute.
+	 * If included via a {@code RequestDispatcher}, the current resource will see the originating request.
+	 * Its own request URI is exposed as a request attribute.
 	 */
 	public static final String INCLUDE_REQUEST_URI_ATTRIBUTE = "javax.servlet.include.request_uri";
 
 	/**
 	 * Standard Servlet 2.3+ spec request attribute for include context path.
-	 * If included via a {@code RequestDispatcher}, the current resource will see the
-	 * originating context path. Its own context path is exposed as a request attribute.
+	 * If included via a {@code RequestDispatcher}, the current resource will see the originating context path.
+	 * Its own context path is exposed as a request attribute.
 	 */
 	public static final String INCLUDE_CONTEXT_PATH_ATTRIBUTE = "javax.servlet.include.context_path";
 

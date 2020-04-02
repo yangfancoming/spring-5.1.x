@@ -128,7 +128,6 @@ public class MockServletContext implements ServletContext {
 
 	private final Map<String, MediaType> mimeTypes = new LinkedHashMap<>();
 
-
 	/**
 	 * Create a new {@code MockServletContext}, using no base path and a
 	 * {@link DefaultResourceLoader} (i.e. the classpath root as WAR root).
@@ -168,13 +167,11 @@ public class MockServletContext implements ServletContext {
 	public MockServletContext(String resourceBasePath, @Nullable ResourceLoader resourceLoader) {
 		this.resourceLoader = (resourceLoader != null ? resourceLoader : new DefaultResourceLoader());
 		this.resourceBasePath = resourceBasePath;
-
 		// Use JVM temp dir as ServletContext temp dir.
 		String tempDir = System.getProperty(TEMP_DIR_SYSTEM_PROPERTY);
 		if (tempDir != null) {
 			this.attributes.put(WebUtils.TEMP_DIR_CONTEXT_ATTRIBUTE, new File(tempDir));
 		}
-
 		registerNamedDispatcher(this.defaultServletName, new MockRequestDispatcher(this.defaultServletName));
 	}
 
@@ -254,11 +251,8 @@ public class MockServletContext implements ServletContext {
 		String extension = StringUtils.getFilenameExtension(filePath);
 		if (this.mimeTypes.containsKey(extension)) {
 			return this.mimeTypes.get(extension).toString();
-		}
-		else {
-			return MediaTypeFactory.getMediaType(filePath).
-					map(MimeType::toString)
-					.orElse(null);
+		}else {
+			return MediaTypeFactory.getMediaType(filePath).map(MimeType::toString).orElse(null);
 		}
 	}
 
@@ -280,9 +274,7 @@ public class MockServletContext implements ServletContext {
 		try {
 			File file = resource.getFile();
 			String[] fileList = file.list();
-			if (ObjectUtils.isEmpty(fileList)) {
-				return null;
-			}
+			if (ObjectUtils.isEmpty(fileList)) return null;
 			Set<String> resourcePaths = new LinkedHashSet<>(fileList.length);
 			for (String fileEntry : fileList) {
 				String resultPath = actualPath + fileEntry;
@@ -292,11 +284,8 @@ public class MockServletContext implements ServletContext {
 				resourcePaths.add(resultPath);
 			}
 			return resourcePaths;
-		}
-		catch (IOException ex) {
-			if (logger.isWarnEnabled()) {
-				logger.warn("Could not get resource paths for " + resource, ex);
-			}
+		}catch (IOException ex) {
+			if (logger.isWarnEnabled()) logger.warn("Could not get resource paths for " + resource, ex);
 			return null;
 		}
 	}
@@ -305,19 +294,13 @@ public class MockServletContext implements ServletContext {
 	@Nullable
 	public URL getResource(String path) throws MalformedURLException {
 		Resource resource = this.resourceLoader.getResource(getResourceLocation(path));
-		if (!resource.exists()) {
-			return null;
-		}
+		if (!resource.exists()) return null;
 		try {
 			return resource.getURL();
-		}
-		catch (MalformedURLException ex) {
+		}catch (MalformedURLException ex) {
 			throw ex;
-		}
-		catch (IOException ex) {
-			if (logger.isWarnEnabled()) {
-				logger.warn("Could not get URL for " + resource, ex);
-			}
+		}catch (IOException ex) {
+			if (logger.isWarnEnabled()) logger.warn("Could not get URL for " + resource, ex);
 			return null;
 		}
 	}
@@ -326,16 +309,11 @@ public class MockServletContext implements ServletContext {
 	@Nullable
 	public InputStream getResourceAsStream(String path) {
 		Resource resource = this.resourceLoader.getResource(getResourceLocation(path));
-		if (!resource.exists()) {
-			return null;
-		}
+		if (!resource.exists()) return null;
 		try {
 			return resource.getInputStream();
-		}
-		catch (IOException ex) {
-			if (logger.isWarnEnabled()) {
-				logger.warn("Could not open InputStream for " + resource, ex);
-			}
+		}catch (IOException ex) {
+			if (logger.isWarnEnabled()) logger.warn("Could not open InputStream for " + resource, ex);
 			return null;
 		}
 	}
@@ -443,11 +421,8 @@ public class MockServletContext implements ServletContext {
 		Resource resource = this.resourceLoader.getResource(getResourceLocation(path));
 		try {
 			return resource.getFile().getAbsolutePath();
-		}
-		catch (IOException ex) {
-			if (logger.isWarnEnabled()) {
-				logger.warn("Could not determine real path of resource " + resource, ex);
-			}
+		}catch (IOException ex) {
+			if (logger.isWarnEnabled()) logger.warn("Could not determine real path of resource " + resource, ex);
 			return null;
 		}
 	}
@@ -471,9 +446,7 @@ public class MockServletContext implements ServletContext {
 	@Override
 	public boolean setInitParameter(String name, String value) {
 		Assert.notNull(name, "Parameter name must not be null");
-		if (this.initParameters.containsKey(name)) {
-			return false;
-		}
+		if (this.initParameters.containsKey(name)) return false;
 		this.initParameters.put(name, value);
 		return true;
 	}
@@ -500,8 +473,7 @@ public class MockServletContext implements ServletContext {
 		Assert.notNull(name, "Attribute name must not be null");
 		if (value != null) {
 			this.attributes.put(name, value);
-		}
-		else {
+		}else {
 			this.attributes.remove(name);
 		}
 	}
@@ -541,8 +513,7 @@ public class MockServletContext implements ServletContext {
 	}
 
 	@Override
-	public void setSessionTrackingModes(Set<SessionTrackingMode> sessionTrackingModes)
-			throws IllegalStateException, IllegalArgumentException {
+	public void setSessionTrackingModes(Set<SessionTrackingMode> sessionTrackingModes)throws IllegalStateException, IllegalArgumentException {
 		this.sessionTrackingModes = sessionTrackingModes;
 	}
 
@@ -553,8 +524,7 @@ public class MockServletContext implements ServletContext {
 
 	@Override
 	public Set<SessionTrackingMode> getEffectiveSessionTrackingModes() {
-		return (this.sessionTrackingModes != null ?
-				Collections.unmodifiableSet(this.sessionTrackingModes) : DEFAULT_SESSION_TRACKING_MODES);
+		return (this.sessionTrackingModes != null ? Collections.unmodifiableSet(this.sessionTrackingModes) : DEFAULT_SESSION_TRACKING_MODES);
 	}
 
 	@Override
@@ -593,7 +563,6 @@ public class MockServletContext implements ServletContext {
 	public String getResponseCharacterEncoding() {
 		return this.responseCharacterEncoding;
 	}
-
 
 	//---------------------------------------------------------------------
 	// Unsupported Servlet 3.0 registration methods

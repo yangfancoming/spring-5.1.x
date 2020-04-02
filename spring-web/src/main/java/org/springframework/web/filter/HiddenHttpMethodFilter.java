@@ -34,22 +34,17 @@ import org.springframework.web.util.WebUtils;
  * POST request, due to its inherent need for checking a POST body parameter.</b>
  * So typically, put a Spring {@link org.springframework.web.multipart.support.MultipartFilter}
  * <i>before</i> this HiddenHttpMethodFilter in your {@code web.xml} filter chain.
- *
- * @author Arjen Poutsma
 
  * @since 3.0
  */
 public class HiddenHttpMethodFilter extends OncePerRequestFilter {
 
-	private static final List<String> ALLOWED_METHODS =
-			Collections.unmodifiableList(Arrays.asList(HttpMethod.PUT.name(),
-					HttpMethod.DELETE.name(), HttpMethod.PATCH.name()));
+	private static final List<String> ALLOWED_METHODS = Collections.unmodifiableList(Arrays.asList(HttpMethod.PUT.name(),HttpMethod.DELETE.name(), HttpMethod.PATCH.name()));
 
 	/** Default method parameter: {@code _method}. */
 	public static final String DEFAULT_METHOD_PARAM = "_method";
 
 	private String methodParam = DEFAULT_METHOD_PARAM;
-
 
 	/**
 	 * Set the parameter name to look for HTTP methods.
@@ -61,11 +56,8 @@ public class HiddenHttpMethodFilter extends OncePerRequestFilter {
 	}
 
 	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-			throws ServletException, IOException {
-
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 		HttpServletRequest requestToUse = request;
-
 		if ("POST".equals(request.getMethod()) && request.getAttribute(WebUtils.ERROR_EXCEPTION_ATTRIBUTE) == null) {
 			String paramValue = request.getParameter(this.methodParam);
 			if (StringUtils.hasLength(paramValue)) {
@@ -75,24 +67,19 @@ public class HiddenHttpMethodFilter extends OncePerRequestFilter {
 				}
 			}
 		}
-
 		filterChain.doFilter(requestToUse, response);
 	}
 
 
 	/**
-	 * Simple {@link HttpServletRequest} wrapper that returns the supplied method for
-	 * {@link HttpServletRequest#getMethod()}.
+	 * Simple {@link HttpServletRequest} wrapper that returns the supplied method for {@link HttpServletRequest#getMethod()}.
 	 */
 	private static class HttpMethodRequestWrapper extends HttpServletRequestWrapper {
-
 		private final String method;
-
 		public HttpMethodRequestWrapper(HttpServletRequest request, String method) {
 			super(request);
 			this.method = method;
 		}
-
 		@Override
 		public String getMethod() {
 			return this.method;

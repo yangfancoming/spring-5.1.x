@@ -35,9 +35,6 @@ import org.springframework.web.multipart.MultipartFile;
  * Spring MultipartHttpServletRequest adapter, wrapping a Servlet 3.0 HttpServletRequest
  * and its Part objects. Parameters get exposed through the native request's getParameter
  * methods - without any custom processing on our side.
- *
-
- * @author Rossen Stoyanchev
  * @since 3.1
  * @see StandardServletMultipartResolver
  */
@@ -65,9 +62,7 @@ public class StandardMultipartHttpServletRequest extends AbstractMultipartHttpSe
 	 * @throws MultipartException if an immediate parsing attempt failed
 	 * @since 3.2.9
 	 */
-	public StandardMultipartHttpServletRequest(HttpServletRequest request, boolean lazyParsing)
-			throws MultipartException {
-
+	public StandardMultipartHttpServletRequest(HttpServletRequest request, boolean lazyParsing) throws MultipartException {
 		super(request);
 		if (!lazyParsing) {
 			parseRequest(request);
@@ -89,14 +84,12 @@ public class StandardMultipartHttpServletRequest extends AbstractMultipartHttpSe
 						filename = MimeDelegate.decode(filename);
 					}
 					files.add(part.getName(), new StandardMultipartFile(part, filename));
-				}
-				else {
+				}else {
 					this.multipartParameterNames.add(part.getName());
 				}
 			}
 			setMultipartFiles(files);
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			handleParseFailure(ex);
 		}
 	}
@@ -175,12 +168,10 @@ public class StandardMultipartHttpServletRequest extends AbstractMultipartHttpSe
 					headers.put(headerName, new ArrayList<>(part.getHeaders(headerName)));
 				}
 				return headers;
-			}
-			else {
+			}else {
 				return null;
 			}
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			throw new MultipartException("Could not access multipart servlet request", ex);
 		}
 	}

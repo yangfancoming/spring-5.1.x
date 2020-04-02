@@ -172,7 +172,6 @@ public class UrlPathHelper {
 		}else {
 			path = getRemainingPath(pathWithinApp, servletPath, false);
 		}
-
 		if (path != null) {
 			// Normal case: URI contains servlet path.
 			return path;
@@ -217,13 +216,13 @@ public class UrlPathHelper {
 	}
 
 	/**
-	 * Match the given "mapping" to the start of the "requestUri" and if there
-	 * is a match return the extra part. This method is needed because the
-	 * context path and the servlet path returned by the HttpServletRequest are
+	 * Match the given "mapping" to the start of the "requestUri" and if there is a match return the extra part.
+	 * This method is needed because the context path and the servlet path returned by the HttpServletRequest are
 	 * stripped of semicolon content unlike the requesUri.
 	 */
 	@Nullable
 	private String getRemainingPath(String requestUri, String mapping, boolean ignoreCase) {
+//	public String getRemainingPath(String requestUri, String mapping, boolean ignoreCase) {
 		int index1 = 0;
 		int index2 = 0;
 		for (; (index1 < requestUri.length()) && (index2 < mapping.length()); index1++, index2++) {
@@ -248,8 +247,7 @@ public class UrlPathHelper {
 	}
 
 	/**
-	 * Sanitize the given path. Uses the following rules:
-	 * <li>replace all "//" by "/"</li>
+	 * Sanitize the given path. Uses the following rules: replace all "//" by "/"
 	 */
 	private String getSanitizedPath(final String path) {
 		String sanitized = path;
@@ -267,8 +265,8 @@ public class UrlPathHelper {
 	/**
 	 * Return the request URI for the given request, detecting an include request URL if called within a RequestDispatcher include.
 	 * As the value returned by {@code request.getRequestURI()} is <i>not</i> decoded by the servlet container, this method will decode it.
-	 * The URI that the web container resolves <i>should</i> be correct, but some
-	 * containers like JBoss/Jetty incorrectly include ";" strings like ";jsessionid" in the URI.
+	 * The URI that the web container resolves <i>should</i> be correct,
+	 * but some containers like JBoss/Jetty incorrectly include ";" strings like ";jsessionid" in the URI.
 	 * This method cuts off such incorrect appendices.
 	 * @param request current HTTP request
 	 * @return the request URI
@@ -391,9 +389,7 @@ public class UrlPathHelper {
 	 * @see java.net.URLDecoder#decode(String)
 	 */
 	public String decodeRequestString(HttpServletRequest request, String source) {
-		if (this.urlDecode) {
-			return decodeInternal(request, source);
-		}
+		if (this.urlDecode) return decodeInternal(request, source);
 		return source;
 	}
 
@@ -413,8 +409,7 @@ public class UrlPathHelper {
 	/**
 	 * Determine the encoding for the given request.
 	 * Can be overridden in subclasses.
-	 * The default implementation checks the request encoding,
-	 * falling back to the default encoding specified for this resolver.
+	 * The default implementation checks the request encoding,falling back to the default encoding specified for this resolver.
 	 * @param request current HTTP request
 	 * @return the encoding for the request (never {@code null})
 	 * @see javax.servlet.ServletRequest#getCharacterEncoding()
@@ -427,9 +422,8 @@ public class UrlPathHelper {
 	}
 
 	/**
-	 * Remove ";" (semicolon) content from the given request URI if the
-	 * {@linkplain #setRemoveSemicolonContent removeSemicolonContent}
-	 * property is set to "true". Note that "jsessionid" is always removed.
+	 * Remove ";" (semicolon) content from the given request URI if the {@linkplain #setRemoveSemicolonContent removeSemicolonContent}  property is set to "true".
+	 * Note that "jsessionid" is always removed.
 	 * @param requestUri the request URI string to remove ";" content from
 	 * @return the updated URI string
 	 */

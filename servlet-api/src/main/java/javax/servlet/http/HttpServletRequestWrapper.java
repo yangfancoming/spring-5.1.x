@@ -11,12 +11,9 @@ import java.util.Map;
 
 /**
  * Provides a convenient implementation of the HttpServletRequest interface
- * that can be subclassed by developers wishing to adapt the request to a
- * Servlet.
- *
+ * that can be subclassed by developers wishing to adapt the request to a Servlet.
  * This class implements the Wrapper or Decorator pattern. Methods default
  * to calling through to the wrapped request object.
- * 
  * @see javax.servlet.http.HttpServletRequest
  * @since Servlet 2.3
  */
@@ -27,7 +24,6 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /** 
      * Constructs a request object wrapping the given request.
      * @throws IllegalArgumentException if the request is null
-     
      * @param request the {@link HttpServletRequest} to be wrapped.
      */
     public HttpServletRequestWrapper(HttpServletRequest request) {
