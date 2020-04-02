@@ -34,13 +34,7 @@ import org.springframework.web.util.WebUtils;
 
 /**
  * Mock implementation of the {@link javax.servlet.http.HttpServletResponse} interface.
- *
  * As of Spring Framework 5.0, this set of mocks is designed on a Servlet 4.0 baseline.
- *
-
- * @author Rod Johnson
- * @author Brian Clozel
- * @author Vedran Pavic
  * @since 1.0.2
  */
 public class MockHttpServletResponse implements HttpServletResponse {
@@ -51,11 +45,9 @@ public class MockHttpServletResponse implements HttpServletResponse {
 
 	private static final TimeZone GMT = TimeZone.getTimeZone("GMT");
 
-
 	//---------------------------------------------------------------------
 	// ServletResponse properties
 	//---------------------------------------------------------------------
-
 	private boolean outputStreamAccessAllowed = true;
 
 	private boolean writerAccessAllowed = true;
@@ -102,11 +94,9 @@ public class MockHttpServletResponse implements HttpServletResponse {
 
 	private final List<String> includedUrls = new ArrayList<>();
 
-
 	//---------------------------------------------------------------------
 	// ServletResponse interface
 	//---------------------------------------------------------------------
-
 	/**
 	 * Set whether {@link #getOutputStream()} access is allowed.
 	 * Default is {@code true}.
@@ -178,8 +168,7 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	public PrintWriter getWriter() throws UnsupportedEncodingException {
 		Assert.state(this.writerAccessAllowed, "Writer access not allowed");
 		if (this.writer == null) {
-			Writer targetWriter = (this.characterEncoding != null ?
-					new OutputStreamWriter(this.content, this.characterEncoding) : new OutputStreamWriter(this.content));
+			Writer targetWriter = (this.characterEncoding != null ? new OutputStreamWriter(this.content, this.characterEncoding) : new OutputStreamWriter(this.content));
 			this.writer = new ResponsePrintWriter(targetWriter);
 		}
 		return this.writer;
@@ -190,8 +179,7 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	}
 
 	public String getContentAsString() throws UnsupportedEncodingException {
-		return (this.characterEncoding != null ?
-				this.content.toString(this.characterEncoding) : this.content.toString());
+		return (this.characterEncoding != null ? this.content.toString(this.characterEncoding) : this.content.toString());
 	}
 
 	@Override
@@ -224,8 +212,7 @@ public class MockHttpServletResponse implements HttpServletResponse {
 					this.characterEncoding = mediaType.getCharset().name();
 					this.charset = true;
 				}
-			}
-			catch (Exception ex) {
+			}catch (Exception ex) {
 				// Try to get charset value anyway
 				int charsetIndex = contentType.toLowerCase().indexOf(CHARSET_PREFIX);
 				if (charsetIndex != -1) {
@@ -308,7 +295,6 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	//---------------------------------------------------------------------
 	// HttpServletResponse interface
 	//---------------------------------------------------------------------
-
 	@Override
 	public void addCookie(Cookie cookie) {
 		Assert.notNull(cookie, "Cookie must not be null");
@@ -408,8 +394,7 @@ public class MockHttpServletResponse implements HttpServletResponse {
 		HeaderValueHolder header = HeaderValueHolder.getByName(this.headers, name);
 		if (header != null) {
 			return header.getStringValues();
-		}
-		else {
+		}else {
 			return Collections.emptyList();
 		}
 	}
@@ -435,8 +420,7 @@ public class MockHttpServletResponse implements HttpServletResponse {
 		HeaderValueHolder header = HeaderValueHolder.getByName(this.headers, name);
 		if (header != null) {
 			return header.getValues();
-		}
-		else {
+		}else {
 			return Collections.emptyList();
 		}
 	}
@@ -521,10 +505,8 @@ public class MockHttpServletResponse implements HttpServletResponse {
 		}
 		try {
 			return newDateFormat().parse(getHeader(name)).getTime();
-		}
-		catch (ParseException ex) {
-			throw new IllegalArgumentException(
-					"Value for header '" + name + "' is not a valid Date: " + headerValue);
+		}catch (ParseException ex) {
+			throw new IllegalArgumentException("Value for header '" + name + "' is not a valid Date: " + headerValue);
 		}
 	}
 
@@ -566,9 +548,7 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	}
 
 	private void addHeaderValue(String name, Object value) {
-		if (setSpecialHeader(name, value)) {
-			return;
-		}
+		if (setSpecialHeader(name, value)) return;
 		doAddHeaderValue(name, value, false);
 	}
 
@@ -576,25 +556,21 @@ public class MockHttpServletResponse implements HttpServletResponse {
 		if (HttpHeaders.CONTENT_TYPE.equalsIgnoreCase(name)) {
 			setContentType(value.toString());
 			return true;
-		}
-		else if (HttpHeaders.CONTENT_LENGTH.equalsIgnoreCase(name)) {
+		}else if (HttpHeaders.CONTENT_LENGTH.equalsIgnoreCase(name)) {
 			setContentLength(value instanceof Number ? ((Number) value).intValue() :
 					Integer.parseInt(value.toString()));
 			return true;
-		}
-		else if (HttpHeaders.CONTENT_LANGUAGE.equalsIgnoreCase(name)) {
+		}else if (HttpHeaders.CONTENT_LANGUAGE.equalsIgnoreCase(name)) {
 			HttpHeaders headers = new HttpHeaders();
 			headers.add(HttpHeaders.CONTENT_LANGUAGE, value.toString());
 			Locale language = headers.getContentLanguage();
 			setLocale(language != null ? language : Locale.getDefault());
 			return true;
-		}
-		else if (HttpHeaders.SET_COOKIE.equalsIgnoreCase(name)) {
+		}else if (HttpHeaders.SET_COOKIE.equalsIgnoreCase(name)) {
 			MockCookie cookie = MockCookie.parse(value.toString());
 			addCookie(cookie);
 			return true;
-		}
-		else {
+		}else {
 			return false;
 		}
 	}
@@ -608,8 +584,7 @@ public class MockHttpServletResponse implements HttpServletResponse {
 		}
 		if (replace) {
 			header.setValue(value);
-		}
-		else {
+		}else {
 			header.addValue(value);
 		}
 	}
@@ -664,8 +639,7 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	@Nullable
 	public String getIncludedUrl() {
 		int count = this.includedUrls.size();
-		Assert.state(count <= 1,
-				() -> "More than 1 URL included - check getIncludedUrls instead: " + this.includedUrls);
+		Assert.state(count <= 1,() -> "More than 1 URL included - check getIncludedUrls instead: " + this.includedUrls);
 		return (count == 1 ? this.includedUrls.get(0) : null);
 	}
 
@@ -684,18 +658,15 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	 * response as committed once the buffer size is exceeded.
 	 */
 	private class ResponseServletOutputStream extends DelegatingServletOutputStream {
-
 		public ResponseServletOutputStream(OutputStream out) {
 			super(out);
 		}
-
 		@Override
 		public void write(int b) throws IOException {
 			super.write(b);
 			super.flush();
 			setCommittedIfBufferSizeExceeded();
 		}
-
 		@Override
 		public void flush() throws IOException {
 			super.flush();
@@ -709,38 +680,32 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	 * response as committed once the buffer size is exceeded.
 	 */
 	private class ResponsePrintWriter extends PrintWriter {
-
 		public ResponsePrintWriter(Writer out) {
 			super(out, true);
 		}
-
 		@Override
 		public void write(char[] buf, int off, int len) {
 			super.write(buf, off, len);
 			super.flush();
 			setCommittedIfBufferSizeExceeded();
 		}
-
 		@Override
 		public void write(String s, int off, int len) {
 			super.write(s, off, len);
 			super.flush();
 			setCommittedIfBufferSizeExceeded();
 		}
-
 		@Override
 		public void write(int c) {
 			super.write(c);
 			super.flush();
 			setCommittedIfBufferSizeExceeded();
 		}
-
 		@Override
 		public void flush() {
 			super.flush();
 			setCommitted(true);
 		}
-
 		@Override
 		public void close() {
 			super.flush();

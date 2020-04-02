@@ -142,7 +142,6 @@ public class HandlerMethodMappingTests {
 		assertEquals(handlerMethod2, handlerMethods.get(0));
 
 		// CORS lookup
-
 		CorsConfiguration config = mapping.getMappingRegistry().getCorsConfiguration(handlerMethod1);
 		assertNotNull(config);
 		assertEquals("http://" + handler.hashCode() + name1, config.getAllowedOrigins().get(0));
@@ -168,14 +167,12 @@ public class HandlerMethodMappingTests {
 		mapping.registerMapping(key2, handler2, method1);
 
 		// Direct URL lookup
-
 		List<String> directUrlMatches = mapping.getMappingRegistry().getMappingsByUrl(key1);
 		assertNotNull(directUrlMatches);
 		assertEquals(1, directUrlMatches.size());
 		assertEquals(key1, directUrlMatches.get(0));
 
 		// Mapping name lookup
-
 		String name = method1.getName();
 		List<HandlerMethod> handlerMethods = mapping.getMappingRegistry().getHandlerMethodsByMappingName(name);
 		assertNotNull(handlerMethods);
@@ -184,7 +181,6 @@ public class HandlerMethodMappingTests {
 		assertEquals(handlerMethod2, handlerMethods.get(1));
 
 		// CORS lookup
-
 		CorsConfiguration config = mapping.getMappingRegistry().getCorsConfiguration(handlerMethod1);
 		assertNotNull(config);
 		assertEquals("http://" + handler1.hashCode() + name, config.getAllowedOrigins().get(0));

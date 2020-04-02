@@ -14,8 +14,6 @@ import org.springframework.web.util.WebUtils;
 import static org.junit.Assert.*;
 
 /**
-
-
  * @since 28.08.2003
  */
 public class WebApplicationObjectSupportTests {
@@ -50,7 +48,7 @@ public class WebApplicationObjectSupportTests {
 	}
 
 
-	public static class TestWebApplicationObject extends WebApplicationObjectSupport {
-	}
+	public static class TestWebApplicationObject extends WebApplicationObjectSupport {}
+
 
 }

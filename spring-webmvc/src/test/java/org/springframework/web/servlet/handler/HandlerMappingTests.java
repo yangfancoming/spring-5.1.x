@@ -39,7 +39,7 @@ public class HandlerMappingTests {
 	}
 
 	@Test
-	public void orderedInterceptors() throws Exception {
+	public void orderedInterceptors()  {
 		HandlerInterceptor i1 = Mockito.mock(HandlerInterceptor.class);
 		MappedInterceptor mappedInterceptor1 = new MappedInterceptor(new String[]{"/**"}, i1);
 		HandlerInterceptor i2 = Mockito.mock(HandlerInterceptor.class);
@@ -50,13 +50,12 @@ public class HandlerMappingTests {
 		this.handlerMapping.setInterceptors(mappedInterceptor1, i2, mappedInterceptor3, i4);
 		this.handlerMapping.setApplicationContext(this.context);
 		HandlerExecutionChain chain = this.handlerMapping.getHandlerExecutionChain(new SimpleHandler(), this.request);
-		Assert.assertThat(chain.getInterceptors(), Matchers.arrayContaining(
-				mappedInterceptor1.getInterceptor(), i2, mappedInterceptor3.getInterceptor(), i4));
+		Assert.assertThat(chain.getInterceptors(), Matchers.arrayContaining(mappedInterceptor1.getInterceptor(), i2, mappedInterceptor3.getInterceptor(), i4));
 	}
 
 	class TestHandlerMapping extends AbstractHandlerMapping {
 		@Override
-		protected Object getHandlerInternal(HttpServletRequest request) throws Exception {
+		protected Object getHandlerInternal(HttpServletRequest request)  {
 			return new SimpleHandler();
 		}
 	}
@@ -66,7 +65,7 @@ public class HandlerMappingTests {
 			super(METHOD_GET);
 		}
 		@Override
-		public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		public void handleRequest(HttpServletRequest request, HttpServletResponse response) {
 			response.setStatus(HttpStatus.OK.value());
 		}
 

@@ -31,9 +31,6 @@ import java.util.Set;
  * The <code>ServletContext</code> object is contained within
  * the {@link ServletConfig} object, which the Web server provides the
  * servlet when the servlet is initialized.
- *
- * @author 	Various
- *
  * @see 	Servlet#getServletConfig
  * @see 	ServletConfig#getServletContext
  */
@@ -672,15 +669,9 @@ public interface ServletContext {
      * names. The Java Servlet API specification reserves names
      * matching <code>java.*</code>, <code>javax.*</code>, and
      * <code>sun.*</code>.
-     *
-     * @param name 	a <code>String</code> specifying the name
-     *			of the attribute
-     *
-     * @param object 	an <code>Object</code> representing the
-     *			attribute to be bound
-     *
+     * @param name 	a <code>String</code> specifying the name of the attribute
+     * @param object 	an <code>Object</code> representing the attribute to be bound
      * @throws NullPointerException if the name parameter is {@code null}
-     *
      */
     public void setAttribute(String name, Object object);
 

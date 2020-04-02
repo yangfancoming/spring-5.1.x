@@ -44,21 +44,17 @@ import org.springframework.web.util.WebUtils;
 
 /**
  * Mock implementation of the {@link javax.servlet.ServletContext} interface.
- *
  * As of Spring 5.0, this set of mocks is designed on a Servlet 4.0 baseline.
  *
- * Compatible with Servlet 3.1 but can be configured to expose a specific version
- * through {@link #setMajorVersion}/{@link #setMinorVersion}; default is 3.1.
- * Note that Servlet 3.1 support is limited: servlet, filter and listener
- * registration methods are not supported; neither is JSP configuration.
- * We generally do not recommend to unit test your ServletContainerInitializers and
- * WebApplicationInitializers which is where those registration methods would be used.
+ * Compatible with Servlet 3.1 but can be configured to expose a specific version through {@link #setMajorVersion}/{@link #setMinorVersion};
+ * default is 3.1.
+ * Note that Servlet 3.1 support is limited: servlet, filter and listener registration methods are not supported; neither is JSP configuration.
+ * We generally do not recommend to unit test your ServletContainerInitializers and WebApplicationInitializers which is where those registration methods would be used.
  *
  * For setting up a full {@code WebApplicationContext} in a test environment, you can
- * use {@code AnnotationConfigWebApplicationContext}, {@code XmlWebApplicationContext},
- * or {@code GenericWebApplicationContext}, passing in a corresponding
- * {@code MockServletContext} instance. Consider configuring your
- * {@code MockServletContext} with a {@code FileSystemResourceLoader} in order to
+ * use {@code AnnotationConfigWebApplicationContext}, {@code XmlWebApplicationContext}, or {@code GenericWebApplicationContext},
+ * passing in a corresponding {@code MockServletContext} instance.
+ * Consider configuring your {@code MockServletContext} with a {@code FileSystemResourceLoader} in order to
  * interpret resource paths as relative filesystem locations.
 
  * @since 1.0.2
@@ -81,7 +77,6 @@ public class MockServletContext implements ServletContext {
 		DEFAULT_SESSION_TRACKING_MODES.add(SessionTrackingMode.URL);
 		DEFAULT_SESSION_TRACKING_MODES.add(SessionTrackingMode.SSL);
 	}
-
 
 	private final Log logger = LogFactory.getLog(getClass());
 
@@ -156,8 +151,7 @@ public class MockServletContext implements ServletContext {
 	}
 
 	/**
-	 * Create a new {@code MockServletContext} using the supplied resource base
-	 * path and resource loader.
+	 * Create a new {@code MockServletContext} using the supplied resource base path and resource loader.
 	 * Registers a {@link MockRequestDispatcher} for the Servlet named
 	 * {@literal 'default'}.
 	 * @param resourceBasePath the root directory of the WAR (should not end with a slash)

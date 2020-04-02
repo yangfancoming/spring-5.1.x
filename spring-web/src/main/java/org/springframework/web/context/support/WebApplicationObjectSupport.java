@@ -15,13 +15,9 @@ import org.springframework.web.util.WebUtils;
 
 /**
  * Convenient superclass for application objects running in a {@link WebApplicationContext}.
- * Provides {@code getWebApplicationContext()}, {@code getServletContext()}, and
- * {@code getTempDir()} accessors.
- *
- * Note: It is generally recommended to use individual callback interfaces for the actual
- * callbacks needed. This broad base class is primarily intended for use within the framework,
- * in case of {@link ServletContext} access etc typically being needed.
-
+ * Provides {@code getWebApplicationContext()}, {@code getServletContext()}, and {@code getTempDir()} accessors.
+ * Note: It is generally recommended to use individual callback interfaces for the actual callbacks needed.
+ * This broad base class is primarily intended for use within the framework,in case of {@link ServletContext} access etc typically being needed.
  * @since 28.08.2003
  * @see SpringBeanAutowiringSupport
  */
@@ -71,20 +67,16 @@ public abstract class WebApplicationObjectSupport extends ApplicationObjectSuppo
 	 * Subclasses may override this for custom initialization based
 	 * on the ServletContext that this application object runs in.
 	 * The default implementation is empty. Called by
-	 * {@link #initApplicationContext(org.springframework.context.ApplicationContext)}
-	 * as well as {@link #setServletContext(javax.servlet.ServletContext)}.
-	 * @param servletContext the ServletContext that this application object runs in
-	 * (never {@code null})
+	 * {@link #initApplicationContext(org.springframework.context.ApplicationContext)} as well as {@link #setServletContext(javax.servlet.ServletContext)}.
+	 * @param servletContext the ServletContext that this application object runs in (never {@code null})
 	 */
 	protected void initServletContext(ServletContext servletContext) {
 	}
 
 	/**
 	 * Return the current application context as WebApplicationContext.
-	 * <b>NOTE:</b> Only use this if you actually need to access
-	 * WebApplicationContext-specific functionality. Preferably use
-	 * {@code getApplicationContext()} or {@code getServletContext()}
-	 * else, to be able to run in non-WebApplicationContext environments as well.
+	 * <b>NOTE:</b> Only use this if you actually need to access WebApplicationContext-specific functionality. Preferably use
+	 * {@code getApplicationContext()} or {@code getServletContext()} else, to be able to run in non-WebApplicationContext environments as well.
 	 * @throws IllegalStateException if not running in a WebApplicationContext
 	 * @see #getApplicationContext()
 	 */
@@ -93,12 +85,9 @@ public abstract class WebApplicationObjectSupport extends ApplicationObjectSuppo
 		ApplicationContext ctx = getApplicationContext();
 		if (ctx instanceof WebApplicationContext) {
 			return (WebApplicationContext) getApplicationContext();
-		}
-		else if (isContextRequired()) {
-			throw new IllegalStateException("WebApplicationObjectSupport instance [" + this +
-					"] does not run in a WebApplicationContext but in: " + ctx);
-		}
-		else {
+		}else if (isContextRequired()) {
+			throw new IllegalStateException("WebApplicationObjectSupport instance [" + this + "] does not run in a WebApplicationContext but in: " + ctx);
+		}else {
 			return null;
 		}
 	}
@@ -119,8 +108,7 @@ public abstract class WebApplicationObjectSupport extends ApplicationObjectSuppo
 			servletContext = wac.getServletContext();
 		}
 		if (servletContext == null && isContextRequired()) {
-			throw new IllegalStateException("WebApplicationObjectSupport instance [" + this +
-					"] does not run within a ServletContext. Make sure the object is fully configured!");
+			throw new IllegalStateException("WebApplicationObjectSupport instance [" + this + "] does not run within a ServletContext. Make sure the object is fully configured!");
 		}
 		return servletContext;
 	}

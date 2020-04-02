@@ -29,11 +29,7 @@ import org.springframework.web.server.ServerWebExchange;
 
 /**
  * Extension of {@link HandlerMethod} that invokes the underlying method with
- * argument values resolved from the current HTTP request through a list of
- * {@link HandlerMethodArgumentResolver}.
- *
- * @author Rossen Stoyanchev
-
+ * argument values resolved from the current HTTP request through a list of {@link HandlerMethodArgumentResolver}.
  * @since 5.0
  */
 public class InvocableHandlerMethod extends HandlerMethod {
@@ -41,7 +37,6 @@ public class InvocableHandlerMethod extends HandlerMethod {
 	private static final Mono<Object[]> EMPTY_ARGS = Mono.just(new Object[0]);
 
 	private static final Object NO_ARG_VALUE = new Object();
-
 
 	private HandlerMethodArgumentResolverComposite resolvers = new HandlerMethodArgumentResolverComposite();
 
@@ -113,9 +108,7 @@ public class InvocableHandlerMethod extends HandlerMethod {
 	 * @param providedArgs optional list of argument values to match by type
 	 * @return a Mono with a {@link HandlerResult}
 	 */
-	public Mono<HandlerResult> invoke(
-			ServerWebExchange exchange, BindingContext bindingContext, Object... providedArgs) {
-
+	public Mono<HandlerResult> invoke(ServerWebExchange exchange, BindingContext bindingContext, Object... providedArgs) {
 		return getMethodArgumentValues(exchange, bindingContext, providedArgs).flatMap(args -> {
 			Object value;
 			try {

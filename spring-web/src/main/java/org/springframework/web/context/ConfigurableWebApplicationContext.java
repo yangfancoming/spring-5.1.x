@@ -10,15 +10,11 @@ import org.springframework.lang.Nullable;
 
 /**
  * Interface to be implemented by configurable web application contexts.
- * Supported by {@link ContextLoader} and
- * {@link org.springframework.web.servlet.FrameworkServlet}.
+ * Supported by {@link ContextLoader} and {@link org.springframework.web.servlet.FrameworkServlet}.
  *
  * Note: The setters of this interface need to be called before an
- * invocation of the {@link #refresh} method inherited from
- * {@link org.springframework.context.ConfigurableApplicationContext}.
+ * invocation of the {@link #refresh} method inherited from {@link org.springframework.context.ConfigurableApplicationContext}.
  * They do not cause an initialization of the context on their own.
- *
-
  * @since 05.12.2003
  * @see #refresh
  * @see ContextLoader#createWebApplicationContext
@@ -37,11 +33,9 @@ public interface ConfigurableWebApplicationContext extends WebApplicationContext
 	 */
 	String SERVLET_CONFIG_BEAN_NAME = "servletConfig";
 
-
 	/**
 	 * Set the ServletContext for this web application context.
-	 * Does not cause an initialization of the context: refresh needs to be
-	 * called after the setting of all configuration properties.
+	 * Does not cause an initialization of the context: refresh needs to be called after the setting of all configuration properties.
 	 * @see #refresh()
 	 */
 	void setServletContext(@Nullable ServletContext servletContext);

@@ -41,7 +41,6 @@ public class MappedInterceptorTests {
 	@Test
 	public void includePattern() {
 		MappedInterceptor mappedInterceptor = new MappedInterceptor(new String[] { "/foo/*" }, this.interceptor);
-
 		assertTrue(mappedInterceptor.matches("/foo/bar", pathMatcher));
 		assertFalse(mappedInterceptor.matches("/bar/foo", pathMatcher));
 	}
@@ -55,7 +54,6 @@ public class MappedInterceptorTests {
 	@Test
 	public void excludePattern() {
 		MappedInterceptor mappedInterceptor = new MappedInterceptor(null, new String[] { "/admin/**" }, this.interceptor);
-
 		assertTrue(mappedInterceptor.matches("/foo", pathMatcher));
 		assertFalse(mappedInterceptor.matches("/admin/foo", pathMatcher));
 	}
@@ -91,9 +89,7 @@ public class MappedInterceptorTests {
 	public void postHandle() throws Exception {
 		HandlerInterceptor interceptor = mock(HandlerInterceptor.class);
 		MappedInterceptor mappedInterceptor = new MappedInterceptor(new String[] { "/**" }, interceptor);
-		mappedInterceptor.postHandle(mock(HttpServletRequest.class), mock(HttpServletResponse.class),
-				null, mock(ModelAndView.class));
-
+		mappedInterceptor.postHandle(mock(HttpServletRequest.class), mock(HttpServletResponse.class),null, mock(ModelAndView.class));
 		then(interceptor).should().postHandle(any(), any(), any(), any());
 	}
 
@@ -104,8 +100,6 @@ public class MappedInterceptorTests {
 		mappedInterceptor.afterCompletion(mock(HttpServletRequest.class), mock(HttpServletResponse.class),null, mock(Exception.class));
 		then(interceptor).should().afterCompletion(any(), any(), any(), any());
 	}
-
-
 
 	public static class TestPathMatcher implements PathMatcher {
 

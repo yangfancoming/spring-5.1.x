@@ -19,8 +19,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.HandlerMethod;
 
 /**
- * Extension of {@link HandlerMethod} that invokes the underlying method with
- * argument values resolved from the current HTTP request through a list of
+ * Extension of {@link HandlerMethod} that invokes the underlying method with  argument values resolved from the current HTTP request through a list of
  * {@link HandlerMethodArgumentResolver}.
  * @since 3.1
  */
@@ -162,25 +161,20 @@ public class InvocableHandlerMethod extends HandlerMethod {
 		ReflectionUtils.makeAccessible(getBridgedMethod());
 		try {
 			return getBridgedMethod().invoke(getBean(), args);
-		}
-		catch (IllegalArgumentException ex) {
+		}catch (IllegalArgumentException ex) {
 			assertTargetBean(getBridgedMethod(), getBean(), args);
 			String text = (ex.getMessage() != null ? ex.getMessage() : "Illegal argument");
 			throw new IllegalStateException(formatInvokeError(text, args), ex);
-		}
-		catch (InvocationTargetException ex) {
+		}catch (InvocationTargetException ex) {
 			// Unwrap for HandlerExceptionResolvers ...
 			Throwable targetException = ex.getTargetException();
 			if (targetException instanceof RuntimeException) {
 				throw (RuntimeException) targetException;
-			}
-			else if (targetException instanceof Error) {
+			}else if (targetException instanceof Error) {
 				throw (Error) targetException;
-			}
-			else if (targetException instanceof Exception) {
+			}else if (targetException instanceof Exception) {
 				throw (Exception) targetException;
-			}
-			else {
+			}else {
 				throw new IllegalStateException(formatInvokeError("Invocation failure", args), targetException);
 			}
 		}

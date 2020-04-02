@@ -171,23 +171,18 @@ public class AntPathMatcher implements PathMatcher {
 	 * @return {@code true} if the supplied {@code path} matched, {@code false} if it didn't
 	 */
 	protected boolean doMatch(String pattern, String path, boolean fullMatch,@Nullable Map<String, String> uriTemplateVariables) {
-
 		if (path.startsWith(this.pathSeparator) != pattern.startsWith(this.pathSeparator)) {
 			return false;
 		}
-
 		String[] pattDirs = tokenizePattern(pattern);
 		if (fullMatch && this.caseSensitive && !isPotentialMatch(path, pattDirs)) {
 			return false;
 		}
-
 		String[] pathDirs = tokenizePath(path);
-
 		int pattIdxStart = 0;
 		int pattIdxEnd = pattDirs.length - 1;
 		int pathIdxStart = 0;
 		int pathIdxEnd = pathDirs.length - 1;
-
 		// Match all elements up to the first **
 		while (pattIdxStart <= pattIdxEnd && pathIdxStart <= pathIdxEnd) {
 			String pattDir = pattDirs[pattIdxStart];
@@ -436,8 +431,7 @@ public class AntPathMatcher implements PathMatcher {
 	 * <li>'{@code /*.html}' and '{@code /docs/cvs/commit.html} -> '{@code docs/cvs/commit.html}'</li>
 	 * <li>'{@code *.html}' and '{@code /docs/cvs/commit.html} -> '{@code /docs/cvs/commit.html}'</li>
 	 * <li>'{@code *}' and '{@code /docs/cvs/commit.html} -> '{@code /docs/cvs/commit.html}'</li> </ul>
-	 * Assumes that {@link #match} returns {@code true} for '{@code pattern}' and '{@code path}', but
-	 * does <strong>not</strong> enforce this.
+	 * Assumes that {@link #match} returns {@code true} for '{@code pattern}' and '{@code path}', but does <strong>not</strong> enforce this.
 	 */
 	@Override
 	public String extractPathWithinPattern(String pattern, String path) {
@@ -546,7 +540,6 @@ public class AntPathMatcher implements PathMatcher {
 	private String concat(String path1, String path2) {
 		boolean path1EndsWithSeparator = path1.endsWith(this.pathSeparator);
 		boolean path2StartsWithSeparator = path2.startsWith(this.pathSeparator);
-
 		if (path1EndsWithSeparator && path2StartsWithSeparator) {
 			return path1 + path2.substring(1);
 		}else if (path1EndsWithSeparator || path2StartsWithSeparator) {
@@ -562,10 +555,8 @@ public class AntPathMatcher implements PathMatcher {
 	 * This{@code Comparator} will {@linkplain java.util.List#sort(Comparator) sort}
 	 * a list so that more specific patterns (without uri templates or wild cards) come before
 	 * generic patterns. So given a list with the following patterns:
-	 * <ol>
 	 * <li>{@code /hotels/new}</li>
 	 * <li>{@code /hotels/{hotel}}</li> <li>{@code /hotels/*}</li>
-	 * </ol>
 	 * the returned comparator will sort this list so that the order will be as indicated.
 	 * The full path given as parameter is used to test for exact matches. So when the given path
 	 * is {@code /hotels/2}, the pattern {@code /hotels/2} will be sorted before {@code /hotels/1}.
@@ -603,11 +594,9 @@ public class AntPathMatcher implements PathMatcher {
 				String match = matcher.group();
 				if ("?".equals(match)) {
 					patternBuilder.append('.');
-				}
-				else if ("*".equals(match)) {
+				}else if ("*".equals(match)) {
 					patternBuilder.append(".*");
-				}
-				else if (match.startsWith("{") && match.endsWith("}")) {
+				}else if (match.startsWith("{") && match.endsWith("}")) {
 					int colonIdx = match.indexOf(':');
 					if (colonIdx == -1) {
 						patternBuilder.append(DEFAULT_VARIABLE_PATTERN);
@@ -692,28 +681,23 @@ public class AntPathMatcher implements PathMatcher {
 			PatternInfo info2 = new PatternInfo(pattern2);
 			if (info1.isLeastSpecific() && info2.isLeastSpecific()) {
 				return 0;
-			}
-			else if (info1.isLeastSpecific()) {
+			}else if (info1.isLeastSpecific()) {
 				return 1;
-			}
-			else if (info2.isLeastSpecific()) {
+			}else if (info2.isLeastSpecific()) {
 				return -1;
 			}
 			boolean pattern1EqualsPath = pattern1.equals(this.path);
 			boolean pattern2EqualsPath = pattern2.equals(this.path);
 			if (pattern1EqualsPath && pattern2EqualsPath) {
 				return 0;
-			}
-			else if (pattern1EqualsPath) {
+			}else if (pattern1EqualsPath) {
 				return -1;
-			}
-			else if (pattern2EqualsPath) {
+			}else if (pattern2EqualsPath) {
 				return 1;
 			}
 			if (info1.isPrefixPattern() && info2.getDoubleWildcards() == 0) {
 				return 1;
-			}
-			else if (info2.isPrefixPattern() && info1.getDoubleWildcards() == 0) {
+			}else if (info2.isPrefixPattern() && info1.getDoubleWildcards() == 0) {
 				return -1;
 			}
 			if (info1.getTotalCount() != info2.getTotalCount()) {
@@ -724,23 +708,19 @@ public class AntPathMatcher implements PathMatcher {
 			}
 			if (info1.getSingleWildcards() < info2.getSingleWildcards()) {
 				return -1;
-			}
-			else if (info2.getSingleWildcards() < info1.getSingleWildcards()) {
+			}else if (info2.getSingleWildcards() < info1.getSingleWildcards()) {
 				return 1;
 			}
 			if (info1.getUriVars() < info2.getUriVars()) {
 				return -1;
-			}
-			else if (info2.getUriVars() < info1.getUriVars()) {
+			}else if (info2.getUriVars() < info1.getUriVars()) {
 				return 1;
 			}
 			return 0;
 		}
 
-
 		/**
-		 * Value class that holds information about the pattern, e.g. number of
-		 * occurrences of "*", "**", and "{" pattern elements.
+		 * Value class that holds information about the pattern, e.g. number of occurrences of "*", "**", and "{" pattern elements.
 		 */
 		private static class PatternInfo {
 			@Nullable
@@ -773,8 +753,7 @@ public class AntPathMatcher implements PathMatcher {
 						if (this.pattern.charAt(pos) == '{') {
 							this.uriVars++;
 							pos++;
-						}
-						else if (this.pattern.charAt(pos) == '*') {
+						}else if (this.pattern.charAt(pos) == '*') {
 							if (pos + 1 < this.pattern.length() && this.pattern.charAt(pos + 1) == '*') {
 								this.doubleWildcards++;
 								pos += 2;
@@ -794,27 +773,21 @@ public class AntPathMatcher implements PathMatcher {
 			public int getUriVars() {
 				return this.uriVars;
 			}
-
 			public int getSingleWildcards() {
 				return this.singleWildcards;
 			}
-
 			public int getDoubleWildcards() {
 				return this.doubleWildcards;
 			}
-
 			public boolean isLeastSpecific() {
 				return (this.pattern == null || this.catchAllPattern);
 			}
-
 			public boolean isPrefixPattern() {
 				return this.prefixPattern;
 			}
-
 			public int getTotalCount() {
 				return this.uriVars + this.singleWildcards + (2 * this.doubleWildcards);
 			}
-
 			/**
 			 * Returns the length of the given pattern, where template variables are considered to be 1 long.
 			 */
@@ -832,20 +805,15 @@ public class AntPathMatcher implements PathMatcher {
 	 * A simple cache for patterns that depend on the configured path separator.
 	 */
 	private static class PathSeparatorPatternCache {
-
 		private final String endsOnWildCard;
-
 		private final String endsOnDoubleWildCard;
-
 		public PathSeparatorPatternCache(String pathSeparator) {
 			this.endsOnWildCard = pathSeparator + "*";
 			this.endsOnDoubleWildCard = pathSeparator + "**";
 		}
-
 		public String getEndsOnWildCard() {
 			return this.endsOnWildCard;
 		}
-
 		public String getEndsOnDoubleWildCard() {
 			return this.endsOnDoubleWildCard;
 		}

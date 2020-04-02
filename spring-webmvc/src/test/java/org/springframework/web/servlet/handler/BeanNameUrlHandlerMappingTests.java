@@ -2,11 +2,8 @@
 
 package org.springframework.web.servlet.handler;
 
-import javax.servlet.ServletException;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import org.springframework.context.support.StaticApplicationContext;
 import org.springframework.mock.web.test.MockHttpServletRequest;
 import org.springframework.mock.web.test.MockServletContext;
@@ -14,16 +11,13 @@ import org.springframework.web.context.ConfigurableWebApplicationContext;
 import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.servlet.HandlerExecutionChain;
 import org.springframework.web.servlet.HandlerMapping;
-
 import static org.junit.Assert.*;
-
 
 public class BeanNameUrlHandlerMappingTests {
 
 	public static final String CONF = "/org/springframework/web/servlet/handler/map1.xml";
 
 	private ConfigurableWebApplicationContext wac;
-
 
 	@Before
 	public void setUp() throws Exception {
@@ -37,7 +31,6 @@ public class BeanNameUrlHandlerMappingTests {
 	@Test
 	public void requestsWithoutHandlers() throws Exception {
 		HandlerMapping hm = (HandlerMapping) wac.getBean("handlerMapping");
-
 		MockHttpServletRequest req = new MockHttpServletRequest("GET", "/mypath/nonsense.html");
 		req.setContextPath("/myapp");
 		Object h = hm.getHandler(req);
@@ -173,13 +166,12 @@ public class BeanNameUrlHandlerMappingTests {
 	}
 
 	@Test
-	public void doubleMappings() throws ServletException {
+	public void doubleMappings() {
 		BeanNameUrlHandlerMapping hm = (BeanNameUrlHandlerMapping) wac.getBean("handlerMapping");
 		try {
 			hm.registerHandler("/mypath/welcome.html", new Object());
 			fail("Should have thrown IllegalStateException");
-		}
-		catch (IllegalStateException ex) {
+		}catch (IllegalStateException ex) {
 			// expected
 		}
 	}

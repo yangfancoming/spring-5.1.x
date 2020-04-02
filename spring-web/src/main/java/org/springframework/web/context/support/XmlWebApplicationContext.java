@@ -34,7 +34,6 @@ import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
  * create an analogous subclass of {@link AbstractRefreshableWebApplicationContext}.</b>
  * Such a context implementation can be specified as "contextClass" context-param
  * for ContextLoader or "contextClass" init-param for FrameworkServlet.
-
  * @see #setNamespace
  * @see #setConfigLocations
  * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader
@@ -52,7 +51,6 @@ public class XmlWebApplicationContext extends AbstractRefreshableWebApplicationC
 	/** Default suffix for building a config location for a namespace. */
 	public static final String DEFAULT_CONFIG_LOCATION_SUFFIX = ".xml";
 
-
 	/**
 	 * Loads the bean definitions via an XmlBeanDefinitionReader.
 	 * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader
@@ -64,16 +62,12 @@ public class XmlWebApplicationContext extends AbstractRefreshableWebApplicationC
 		// Create a new XmlBeanDefinitionReader for the given BeanFactory.
 		// 创建一个XmlBeanDefinitionReader用于读取xml文件中的属性
 		XmlBeanDefinitionReader beanDefinitionReader = new XmlBeanDefinitionReader(beanFactory);
-
-		// Configure the bean definition reader with this context's
-		// resource loading environment.
+		// Configure the bean definition reader with this context's resource loading environment.
 		// 设置一些环境变量相关的信息
 		beanDefinitionReader.setEnvironment(getEnvironment());
 		beanDefinitionReader.setResourceLoader(this);
 		beanDefinitionReader.setEntityResolver(new ResourceEntityResolver(this));
-
-		// Allow a subclass to provide custom initialization of the reader,
-		// then proceed with actually loading the bean definitions.
+		// Allow a subclass to provide custom initialization of the reader,then proceed with actually loading the bean definitions.
 		// 提供的一个可供子类继承的方法，用于定制XmlBeanDefinitionReader相关的信息
 		initBeanDefinitionReader(beanDefinitionReader);
 		// 加载xml文件中的信息
@@ -81,16 +75,14 @@ public class XmlWebApplicationContext extends AbstractRefreshableWebApplicationC
 	}
 
 	/**
-	 * Initialize the bean definition reader used for loading the bean
-	 * definitions of this context. Default implementation is empty.
-	 * Can be overridden in subclasses, e.g. for turning off XML validation
-	 * or using a different XmlBeanDefinitionParser implementation.
+	 * Initialize the bean definition reader used for loading the bean definitions of this context.
+	 * Default implementation is empty. Can be overridden in subclasses,
+	 * e.g. for turning off XML validation or using a different XmlBeanDefinitionParser implementation.
 	 * @param beanDefinitionReader the bean definition reader used by this context
 	 * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader#setValidationMode
 	 * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader#setDocumentReaderClass
 	 */
-	protected void initBeanDefinitionReader(XmlBeanDefinitionReader beanDefinitionReader) {
-	}
+	protected void initBeanDefinitionReader(XmlBeanDefinitionReader beanDefinitionReader) {}
 
 	/**
 	 * Load the bean definitions with the given XmlBeanDefinitionReader.
@@ -114,15 +106,13 @@ public class XmlWebApplicationContext extends AbstractRefreshableWebApplicationC
 
 	/**
 	 * The default location for the root context is "/WEB-INF/applicationContext.xml",
-	 * and "/WEB-INF/test-servlet.xml" for a context with the namespace "test-servlet"
-	 * (like for a DispatcherServlet instance with the servlet-name "test").
+	 * and "/WEB-INF/test-servlet.xml" for a context with the namespace "test-servlet" (like for a DispatcherServlet instance with the servlet-name "test").
 	 */
 	@Override
 	protected String[] getDefaultConfigLocations() {
 		if (getNamespace() != null) {
 			return new String[] {DEFAULT_CONFIG_LOCATION_PREFIX + getNamespace() + DEFAULT_CONFIG_LOCATION_SUFFIX};
-		}
-		else {
+		}else {
 			return new String[] {DEFAULT_CONFIG_LOCATION};
 		}
 	}
