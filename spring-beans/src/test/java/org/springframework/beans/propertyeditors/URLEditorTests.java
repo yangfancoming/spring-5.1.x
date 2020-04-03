@@ -11,10 +11,7 @@ import org.springframework.util.ClassUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rick Evans
 
- */
 public class URLEditorTests {
 
 	@Test(expected = IllegalArgumentException.class)

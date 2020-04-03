@@ -42,8 +42,7 @@ public class BeanFactoryUtilsTests {
 
 	@Before
 	public void setUp() {
-		// Interesting hierarchical factory to test counts.
-		// Slow to read so we cache it.
+		// Interesting hierarchical factory to test counts. Slow to read so we cache it.
 		DefaultListableBeanFactory grandParent = new DefaultListableBeanFactory();
 		new XmlBeanDefinitionReader(grandParent).loadBeanDefinitions(ROOT_CONTEXT);
 
@@ -58,7 +57,6 @@ public class BeanFactoryUtilsTests {
 		dependentBeansFactory.preInstantiateSingletons();
 		listableBeanFactory = child;
 	}
-
 
 	// 测试 统计此工厂参与的任何层次结构中的所有bean
 	@Test

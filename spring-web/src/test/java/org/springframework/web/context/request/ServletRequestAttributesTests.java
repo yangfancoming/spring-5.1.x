@@ -15,10 +15,7 @@ import org.springframework.mock.web.test.MockHttpSession;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Rick Evans
 
- */
 public class ServletRequestAttributesTests {
 
 	private static final String KEY = "ThatThingThatThing";

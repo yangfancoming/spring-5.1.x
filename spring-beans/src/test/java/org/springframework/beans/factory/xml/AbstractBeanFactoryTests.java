@@ -96,8 +96,7 @@ public abstract class AbstractBeanFactoryTests {
 		try {
 			getBeanFactory().getBean("rod", BeanFactory.class);
 			fail("Rod bean is not of type BeanFactory; getBeanInstance(rod, BeanFactory.class) should throw BeanNotOfRequiredTypeException");
-		}
-		catch (BeanNotOfRequiredTypeException ex) {
+		}catch (BeanNotOfRequiredTypeException ex) {
 			// So far, so good
 			assertTrue("Exception has correct bean name", ex.getBeanName().equals("rod"));
 			assertTrue("Exception requiredType must be BeanFactory.class", ex.getRequiredType().equals(BeanFactory.class));
@@ -242,8 +241,7 @@ public abstract class AbstractBeanFactoryTests {
 		getBeanFactory().getBean("&rod");
 	}
 
-	// TODO: refactor in AbstractBeanFactory (tests for AbstractBeanFactory)
-	// and rename this class
+	// TODO: refactor in AbstractBeanFactory (tests for AbstractBeanFactory) and rename this class
 	@Test
 	public void aliasing() {
 		BeanFactory bf = getBeanFactory();
@@ -251,7 +249,6 @@ public abstract class AbstractBeanFactoryTests {
 			return;
 		}
 		ConfigurableBeanFactory cbf = (ConfigurableBeanFactory) bf;
-
 		String alias = "rods alias";
 		try {
 			cbf.getBean(alias);
@@ -261,7 +258,6 @@ public abstract class AbstractBeanFactoryTests {
 			// Ok
 			assertTrue(alias.equals(ex.getBeanName()));
 		}
-
 		// Create alias
 		cbf.registerAlias("rod", alias);
 		Object rod = getBeanFactory().getBean("rod");

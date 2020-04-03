@@ -13,10 +13,7 @@ import org.junit.Test;
 import org.springframework.core.task.AsyncListenableTaskExecutor;
 import org.springframework.core.task.NoOpRunnable;
 
-/**
- * @author Rick Evans
 
- */
 public class ConcurrentTaskExecutorTests extends AbstractSchedulingTaskExecutorTests {
 
 	private final ThreadPoolExecutor concurrentExecutor =

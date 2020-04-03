@@ -13,10 +13,7 @@ import org.springframework.jms.StubTopic;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Rick Evans
 
- */
 public class JndiDestinationResolverTests {
 
 	private static final String DESTINATION_NAME = "foo";

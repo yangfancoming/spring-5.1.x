@@ -6,10 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rick Evans
 
- */
 public class NullSourceExtractorTests {
 
 	@Test

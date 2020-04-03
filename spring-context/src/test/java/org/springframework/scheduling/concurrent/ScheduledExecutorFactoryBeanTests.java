@@ -16,10 +16,7 @@ import org.springframework.tests.TestGroup;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Rick Evans
 
- */
 public class ScheduledExecutorFactoryBeanTests {
 
 	@Test

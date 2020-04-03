@@ -15,10 +15,7 @@ import org.springframework.jmx.export.SpringModelMBean;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rick Evans
 
- */
 public class ModelMBeanNotificationPublisherTests {
 
 	@Test(expected = IllegalArgumentException.class)

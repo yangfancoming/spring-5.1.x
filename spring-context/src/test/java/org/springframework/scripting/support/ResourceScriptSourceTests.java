@@ -13,10 +13,7 @@ import org.springframework.util.StreamUtils;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Rick Evans
 
- */
 public class ResourceScriptSourceTests {
 
 	@Test

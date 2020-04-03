@@ -159,7 +159,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	 * Create a new DefaultListableBeanFactory.
 	 */
 	public DefaultListableBeanFactory() {
-		super();
+//		super(); // -modify
 	}
 
 	/**

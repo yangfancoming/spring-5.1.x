@@ -1,7 +1,6 @@
 package com.goat.chapter200.cyclicdependency.item04;
 
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -15,7 +14,7 @@ public class App {
 
 
 
-	ApplicationContext ac = new AnnotationConfigApplicationContext(Config.class);
+	AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(Config.class);
 
 	/**
 	 * 因为是延迟加载 所以容器启动正常

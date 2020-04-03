@@ -27,8 +27,7 @@ public class ThisAndTargetSelectionOnlyPointcutsAtAspectJTests {
 
 	@org.junit.Before
 	public void setup() {
-		ClassPathXmlApplicationContext ctx =
-				new ClassPathXmlApplicationContext(getClass().getSimpleName() + ".xml", getClass());
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(getClass().getSimpleName() + ".xml", getClass());
 		testBean = (TestInterface) ctx.getBean("testBean");
 		testAnnotatedClassBean = (TestInterface) ctx.getBean("testAnnotatedClassBean");
 		testAnnotatedMethodBean = (TestInterface) ctx.getBean("testAnnotatedMethodBean");

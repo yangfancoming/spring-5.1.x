@@ -12,10 +12,7 @@ import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rick Evans
 
- */
 public class MapDataSourceLookupTests {
 
 	private static final String DATA_SOURCE_NAME = "dataSource";

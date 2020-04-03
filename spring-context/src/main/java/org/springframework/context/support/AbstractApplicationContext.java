@@ -1033,7 +1033,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	//---------------------------------------------------------------------
 	// Implementation of BeanFactory interface
 	//---------------------------------------------------------------------
-
 	@Override
 	public Object getBean(String name) throws BeansException {
 		assertBeanFactoryActive();

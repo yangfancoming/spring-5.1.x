@@ -8,14 +8,11 @@ import org.springframework.beans.factory.wiring.BeanWiringInfo;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rick Evans
 
- */
 public class AnnotationBeanWiringInfoResolverTests {
 
 	@Test
-	public void testResolveWiringInfo() throws Exception {
+	public void testResolveWiringInfo()  {
 		try {
 			new AnnotationBeanWiringInfoResolver().resolveWiringInfo(null);
 			fail("Must have thrown an IllegalArgumentException by this point (null argument)");

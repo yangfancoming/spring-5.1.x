@@ -9,10 +9,7 @@ import org.springframework.mock.web.test.MockHttpServletRequest;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rick Evans
 
- */
 public class DefaultRequestToViewNameTranslatorTests {
 
 	private static final String VIEW_NAME = "apple";

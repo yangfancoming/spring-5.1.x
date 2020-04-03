@@ -12,10 +12,7 @@ import org.springframework.beans.factory.BeanFactory;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Rick Evans
 
- */
 public class MethodLocatingFactoryBeanTests {
 
 	private static final String BEAN_NAME = "string";

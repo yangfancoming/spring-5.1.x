@@ -14,9 +14,6 @@ import static org.junit.Assert.*;
 /**
  * Tests for target selection matching (see SPR-3783).
  * Thanks to Tomasz Blachowicz for the bug report!
- *
- * @author Ramnivas Laddad
-
  */
 public class TargetPointcutSelectionTests {
 

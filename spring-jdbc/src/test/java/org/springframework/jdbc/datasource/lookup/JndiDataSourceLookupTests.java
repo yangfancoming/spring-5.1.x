@@ -9,10 +9,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rick Evans
 
- */
 public class JndiDataSourceLookupTests {
 
 	private static final String DATA_SOURCE_NAME = "Love is like a stove, burns you when it's hot";
