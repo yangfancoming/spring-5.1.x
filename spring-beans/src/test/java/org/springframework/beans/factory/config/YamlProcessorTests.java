@@ -17,9 +17,6 @@ import static org.junit.Assert.*;
 
 /**
  * Tests for {@link YamlProcessor}.
- *
- * @author Dave Syer
-
  */
 public class YamlProcessorTests {
 
@@ -27,7 +24,6 @@ public class YamlProcessorTests {
 
 	@Rule
 	public ExpectedException exception = ExpectedException.none();
-
 
 	@Test
 	public void arrayConvertedToIndexedBeanReference() {

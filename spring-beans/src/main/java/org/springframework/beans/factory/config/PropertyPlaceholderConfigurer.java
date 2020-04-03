@@ -162,9 +162,7 @@ public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport 
 			}
 			return value;
 		}catch (Throwable ex) {
-			if (logger.isDebugEnabled()) {
-				logger.debug("Could not access system property '" + key + "': " + ex);
-			}
+			if (logger.isDebugEnabled()) logger.debug("Could not access system property '" + key + "': " + ex);
 			return null;
 		}
 	}
@@ -180,9 +178,7 @@ public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport 
 	}
 
 	private class PlaceholderResolvingStringValueResolver implements StringValueResolver {
-
 		private final PropertyPlaceholderHelper helper;
-
 		private final PlaceholderResolver resolver;
 
 		public PlaceholderResolvingStringValueResolver(Properties props) {

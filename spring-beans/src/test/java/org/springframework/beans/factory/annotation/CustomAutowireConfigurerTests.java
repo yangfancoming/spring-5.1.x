@@ -15,19 +15,13 @@ import static org.springframework.tests.TestResourceUtils.*;
 
 /**
  * Unit tests for {@link CustomAutowireConfigurer}.
- *
- * @author Mark Fisher
-
-
  */
 public class CustomAutowireConfigurerTests {
 
 	@Test
 	public void testCustomResolver() {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
-		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(
-				qualifiedResource(CustomAutowireConfigurerTests.class, "context.xml"));
-
+		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(qualifiedResource(CustomAutowireConfigurerTests.class, "context.xml"));
 		CustomAutowireConfigurer cac = new CustomAutowireConfigurer();
 		CustomResolver customResolver = new CustomResolver();
 		bf.setAutowireCandidateResolver(customResolver);

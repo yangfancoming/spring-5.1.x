@@ -24,7 +24,6 @@ import org.springframework.util.Assert;
  * It might have been created from multiple original bean definitions that inherit from each other,
  * typically registered as {@link GenericBeanDefinition GenericBeanDefinitions}.
  * A root bean definition is essentially the 'unified' bean definition view at runtime.
- *
  * Root bean definitions may also be used for registering individual bean definitions
  * in the configuration phase. However, since Spring 2.5, the preferred way to register
  * bean definitions programmatically is the {@link GenericBeanDefinition} class.

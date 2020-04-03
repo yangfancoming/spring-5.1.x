@@ -11,14 +11,10 @@ import org.springframework.tests.sample.beans.TestBean;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Karl Pietrzak
 
- */
 public class LookupAnnotationTests {
 
 	private DefaultListableBeanFactory beanFactory;
-
 
 	@Before
 	public void setUp() {

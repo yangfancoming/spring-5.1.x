@@ -24,8 +24,6 @@ import org.springframework.tests.sample.beans.TestBean;
 import static org.junit.Assert.*;
 
 /**
-
-
  * @since 31.07.2004
  */
 public class CustomEditorConfigurerTests {
@@ -35,13 +33,7 @@ public class CustomEditorConfigurerTests {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		CustomEditorConfigurer cec = new CustomEditorConfigurer();
 		final DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT, Locale.GERMAN);
-		cec.setPropertyEditorRegistrars(new PropertyEditorRegistrar[] {
-				new PropertyEditorRegistrar() {
-					@Override
-					public void registerCustomEditors(PropertyEditorRegistry registry) {
-						registry.registerCustomEditor(Date.class, new CustomDateEditor(df, true));
-					}
-				}});
+		cec.setPropertyEditorRegistrars(new PropertyEditorRegistrar[] {registry->registry.registerCustomEditor(Date.class, new CustomDateEditor(df, true))});
 		cec.postProcessBeanFactory(bf);
 
 		MutablePropertyValues pvs = new MutablePropertyValues();
@@ -82,7 +74,7 @@ public class CustomEditorConfigurerTests {
 	}
 
 	@Test
-	public void testCustomEditorConfigurerWithRequiredTypeArray() throws ParseException {
+	public void testCustomEditorConfigurerWithRequiredTypeArray() {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		CustomEditorConfigurer cec = new CustomEditorConfigurer();
 		Map<Class<?>, Class<? extends PropertyEditor>> editors = new HashMap<>();
@@ -101,17 +93,13 @@ public class CustomEditorConfigurerTests {
 		assertEquals("test", tb.getStringArray()[0]);
 	}
 
-
 	public static class MyDateEditor extends CustomDateEditor {
-
 		public MyDateEditor() {
 			super(DateFormat.getDateInstance(DateFormat.SHORT, Locale.GERMAN), true);
 		}
 	}
 
-
 	public static class MyTestEditor extends PropertyEditorSupport {
-
 		@Override
 		public void setAsText(String text) {
 			setValue(new String[] {"test"});

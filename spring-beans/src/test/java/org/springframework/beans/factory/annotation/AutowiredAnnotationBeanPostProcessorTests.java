@@ -60,19 +60,12 @@ import org.springframework.util.SerializationTestUtils;
 
 import static org.junit.Assert.*;
 
-/**
 
- * @author Mark Fisher
- * @author Sam Brannen
-
- * @author Stephane Nicoll
- */
 public class AutowiredAnnotationBeanPostProcessorTests {
 
 	private DefaultListableBeanFactory bf;
 
 	private AutowiredAnnotationBeanPostProcessor bpp;
-
 
 	@Before
 	public void setup() {

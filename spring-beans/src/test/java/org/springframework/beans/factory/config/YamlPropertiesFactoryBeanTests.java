@@ -21,15 +21,11 @@ import static org.springframework.beans.factory.config.YamlProcessor.*;
 
 /**
  * Tests for {@link YamlPropertiesFactoryBean}.
- *
- * @author Dave Syer
-
  */
 public class YamlPropertiesFactoryBeanTests {
 
 	@Rule
 	public ExpectedException exception = ExpectedException.none();
-
 
 	@Test
 	public void testLoadResource() {
@@ -81,8 +77,7 @@ public class YamlPropertiesFactoryBeanTests {
 	@Test
 	public void testLoadResourceWithMultipleDocuments() {
 		YamlPropertiesFactoryBean factory = new YamlPropertiesFactoryBean();
-		factory.setResources(new ByteArrayResource(
-				"foo: bar\nspam: baz\n---\nfoo: bag".getBytes()));
+		factory.setResources(new ByteArrayResource("foo: bar\nspam: baz\n---\nfoo: bag".getBytes()));
 		Properties properties = factory.getObject();
 		assertThat(properties.getProperty("foo"), equalTo("bag"));
 		assertThat(properties.getProperty("spam"), equalTo("baz"));
@@ -91,10 +86,8 @@ public class YamlPropertiesFactoryBeanTests {
 	@Test
 	public void testLoadResourceWithSelectedDocuments() {
 		YamlPropertiesFactoryBean factory = new YamlPropertiesFactoryBean();
-		factory.setResources(new ByteArrayResource(
-				"foo: bar\nspam: baz\n---\nfoo: bag\nspam: bad".getBytes()));
-		factory.setDocumentMatchers(properties -> ("bag".equals(properties.getProperty("foo")) ?
-				MatchStatus.FOUND : MatchStatus.NOT_FOUND));
+		factory.setResources(new ByteArrayResource("foo: bar\nspam: baz\n---\nfoo: bag\nspam: bad".getBytes()));
+		factory.setDocumentMatchers(properties -> ("bag".equals(properties.getProperty("foo")) ? MatchStatus.FOUND : MatchStatus.NOT_FOUND));
 		Properties properties = factory.getObject();
 		assertThat(properties.getProperty("foo"), equalTo("bag"));
 		assertThat(properties.getProperty("spam"), equalTo("bad"));
@@ -104,14 +97,12 @@ public class YamlPropertiesFactoryBeanTests {
 	public void testLoadResourceWithDefaultMatch() {
 		YamlPropertiesFactoryBean factory = new YamlPropertiesFactoryBean();
 		factory.setMatchDefault(true);
-		factory.setResources(new ByteArrayResource(
-				"one: two\n---\nfoo: bar\nspam: baz\n---\nfoo: bag\nspam: bad".getBytes()));
+		factory.setResources(new ByteArrayResource("one: two\n---\nfoo: bar\nspam: baz\n---\nfoo: bag\nspam: bad".getBytes()));
 		factory.setDocumentMatchers(properties -> {
 			if (!properties.containsKey("foo")) {
 				return MatchStatus.ABSTAIN;
 			}
-			return ("bag".equals(properties.getProperty("foo")) ?
-					MatchStatus.FOUND : MatchStatus.NOT_FOUND);
+			return ("bag".equals(properties.getProperty("foo")) ? MatchStatus.FOUND : MatchStatus.NOT_FOUND);
 		});
 		Properties properties = factory.getObject();
 		assertThat(properties.getProperty("foo"), equalTo("bag"));
@@ -123,17 +114,12 @@ public class YamlPropertiesFactoryBeanTests {
 	public void testLoadResourceWithoutDefaultMatch() {
 		YamlPropertiesFactoryBean factory = new YamlPropertiesFactoryBean();
 		factory.setMatchDefault(false);
-		factory.setResources(new ByteArrayResource(
-				"one: two\n---\nfoo: bar\nspam: baz\n---\nfoo: bag\nspam: bad".getBytes()));
-		factory.setDocumentMatchers(new DocumentMatcher() {
-			@Override
-			public MatchStatus matches(Properties properties) {
-				if (!properties.containsKey("foo")) {
-					return MatchStatus.ABSTAIN;
-				}
-				return ("bag".equals(properties.getProperty("foo")) ?
-						MatchStatus.FOUND : MatchStatus.NOT_FOUND);
+		factory.setResources(new ByteArrayResource("one: two\n---\nfoo: bar\nspam: baz\n---\nfoo: bag\nspam: bad".getBytes()));
+		factory.setDocumentMatchers((DocumentMatcher) properties->{
+			if (!properties.containsKey("foo")) {
+				return MatchStatus.ABSTAIN;
 			}
+			return ("bag".equals(properties.getProperty("foo")) ? MatchStatus.FOUND : MatchStatus.NOT_FOUND);
 		});
 		Properties properties = factory.getObject();
 		assertThat(properties.getProperty("foo"), equalTo("bag"));

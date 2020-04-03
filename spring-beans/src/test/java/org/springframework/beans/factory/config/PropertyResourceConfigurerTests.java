@@ -36,12 +36,7 @@ import static org.springframework.tests.TestResourceUtils.*;
 
 /**
  * Unit tests for various {@link PropertyResourceConfigurer} implementations including:
- * {@link PropertyPlaceholderConfigurer}, {@link PropertyOverrideConfigurer} and
- * {@link PreferencesPlaceholderConfigurer}.
- *
-
-
- * @author Phillip Webb
+ * {@link PropertyPlaceholderConfigurer}, {@link PropertyOverrideConfigurer} and {@link PreferencesPlaceholderConfigurer}.
  * @since 02.10.2003
  * @see PropertyPlaceholderConfigurerTests
  */
@@ -459,17 +454,13 @@ public class PropertyResourceConfigurerTests {
 
 	@Test
 	public void testPropertyPlaceholderConfigurerWithUnresolvableSystemProperty() {
-		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class)
-				.addPropertyValue("touchy", "${user.dir}").getBeanDefinition());
-
+		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class).addPropertyValue("touchy", "${user.dir}").getBeanDefinition());
 		PropertyPlaceholderConfigurer ppc = new PropertyPlaceholderConfigurer();
 		ppc.setSystemPropertiesMode(PropertyPlaceholderConfigurer.SYSTEM_PROPERTIES_MODE_NEVER);
-
 		try {
 			ppc.postProcessBeanFactory(factory);
 			fail("Should have thrown BeanDefinitionStoreException");
-		}
-		catch (BeanDefinitionStoreException ex) {
+		}catch (BeanDefinitionStoreException ex) {
 			// expected
 			assertTrue(ex.getMessage().contains("user.dir"));
 		}

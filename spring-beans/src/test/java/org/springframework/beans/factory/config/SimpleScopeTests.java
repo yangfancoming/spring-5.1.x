@@ -18,15 +18,10 @@ import static org.springframework.tests.TestResourceUtils.*;
 
 /**
  * Simple test to illustrate and verify scope usage.
- *
- * @author Rod Johnson
-
-
  */
 public class SimpleScopeTests {
 
 	private DefaultListableBeanFactory beanFactory;
-
 
 	@Before
 	public void setup() {
@@ -52,9 +47,7 @@ public class SimpleScopeTests {
 		assertEquals(1, scopeNames.length);
 		assertEquals("myScope", scopeNames[0]);
 		assertSame(scope, beanFactory.getRegisteredScope("myScope"));
-
-		new XmlBeanDefinitionReader(beanFactory).loadBeanDefinitions(
-				qualifiedResource(SimpleScopeTests.class, "context.xml"));
+		new XmlBeanDefinitionReader(beanFactory).loadBeanDefinitions(qualifiedResource(SimpleScopeTests.class, "context.xml"));
 	}
 
 

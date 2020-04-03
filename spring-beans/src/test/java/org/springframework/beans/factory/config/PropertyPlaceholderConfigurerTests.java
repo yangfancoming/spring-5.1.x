@@ -21,7 +21,6 @@ import static org.springframework.beans.factory.support.BeanDefinitionReaderUtil
 
 /**
  * Unit tests for {@link PropertyPlaceholderConfigurer}.
-
  */
 public class PropertyPlaceholderConfigurerTests {
 
@@ -35,7 +34,6 @@ public class PropertyPlaceholderConfigurerTests {
 	private Properties ppcProperties;
 
 	private AbstractBeanDefinition p1BeanDef;
-
 
 	@Before
 	public void setup() {
@@ -62,11 +60,7 @@ public class PropertyPlaceholderConfigurerTests {
 	@Test
 	public void localPropertiesViaResource() {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
-		bf.registerBeanDefinition("testBean",
-				genericBeanDefinition(TestBean.class)
-					.addPropertyValue("name", "${my.name}")
-					.getBeanDefinition());
-
+		bf.registerBeanDefinition("testBean",genericBeanDefinition(TestBean.class).addPropertyValue("name", "${my.name}").getBeanDefinition());
 		PropertyPlaceholderConfigurer pc = new PropertyPlaceholderConfigurer();
 		Resource resource = new ClassPathResource("PropertyPlaceholderConfigurerTests.properties", this.getClass());
 		pc.setLocation(resource);

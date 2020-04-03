@@ -17,11 +17,8 @@ import org.springframework.lang.Nullable;
  *
  * Supports loading from a properties file and/or setting local properties
  * on this FactoryBean. The created Properties instance will be merged from
- * loaded and local values. If neither a location nor local properties are set,
- * an exception will be thrown on initialization.
- *
- * Can create a singleton or a new object on each request.
- * Default is a singleton.
+ * loaded and local values. If neither a location nor local properties are set,an exception will be thrown on initialization.
+ * Can create a singleton or a new object on each request. Default is a singleton.
  * @see #setLocation
  * @see #setProperties
  * @see #setLocalOverride
@@ -35,8 +32,7 @@ public class PropertiesFactoryBean extends PropertiesLoaderSupport implements Fa
 	private Properties singletonInstance;
 
 	/**
-	 * Set whether a shared 'singleton' Properties instance should be
-	 * created, or rather a new Properties instance on each request.
+	 * Set whether a shared 'singleton' Properties instance should be created, or rather a new Properties instance on each request.
 	 * Default is "true" (a shared singleton).
 	 */
 	public final void setSingleton(boolean singleton) {

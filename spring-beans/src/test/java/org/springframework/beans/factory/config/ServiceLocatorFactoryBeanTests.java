@@ -19,10 +19,6 @@ import static org.springframework.beans.factory.support.BeanDefinitionBuilder.*;
 
 /**
  * Unit tests for {@link ServiceLocatorFactoryBean}.
- *
- * @author Colin Sampaleanu
- * @author Rick Evans
-
  */
 public class ServiceLocatorFactoryBeanTests {
 
@@ -273,50 +269,32 @@ public class ServiceLocatorFactoryBeanTests {
 	}
 
 
-	public static class TestService {
+	public static class TestService {}
 
-	}
+	public static class ExtendedTestService extends TestService {}
 
-
-	public static class ExtendedTestService extends TestService {
-
-	}
-
-
-	public static class TestService2 {
-
-	}
-
+	public static class TestService2 {}
 
 	public static interface TestServiceLocator {
 
 		TestService getTestService();
 	}
 
-
 	public static interface TestServiceLocator2 {
 
 		TestService getTestService(String id) throws CustomServiceLocatorException2;
 	}
 
-
 	public static interface TestServiceLocator3 {
-
 		TestService getTestService();
-
 		TestService getTestService(String id);
-
 		TestService getTestService(int id);
-
 		TestService someFactoryMethod();
 	}
 
-
 	public static interface TestService2Locator {
-
 		TestService2 getTestService() throws CustomServiceLocatorException3;
 	}
-
 
 	public static interface ServiceLocatorInterfaceWithExtraNonCompliantMethod {
 
@@ -324,7 +302,6 @@ public class ServiceLocatorFactoryBeanTests {
 
 		TestService2 getTestService(String serviceName, String defaultNotAllowedParameter);
 	}
-
 
 	@SuppressWarnings("serial")
 	public static class CustomServiceLocatorException1 extends NestedRuntimeException {
@@ -334,7 +311,6 @@ public class ServiceLocatorFactoryBeanTests {
 		}
 	}
 
-
 	@SuppressWarnings("serial")
 	public static class CustomServiceLocatorException2 extends NestedCheckedException {
 
@@ -343,7 +319,6 @@ public class ServiceLocatorFactoryBeanTests {
 		}
 	}
 
-
 	@SuppressWarnings("serial")
 	public static class CustomServiceLocatorException3 extends NestedCheckedException {
 
@@ -351,7 +326,6 @@ public class ServiceLocatorFactoryBeanTests {
 			super(message);
 		}
 	}
-
 
 	@SuppressWarnings("serial")
 	public static class ExceptionClassWithOnlyZeroArgCtor extends Exception {

@@ -18,14 +18,10 @@ import static org.junit.Assert.*;
 
 /**
  * Tests for {@link YamlMapFactoryBean}.
- *
- * @author Dave Syer
-
  */
 public class YamlMapFactoryBeanTests {
 
 	private final YamlMapFactoryBean factory = new YamlMapFactoryBean();
-
 
 	@Test
 	public void testSetIgnoreResourceNotFound() {
@@ -92,7 +88,6 @@ public class YamlMapFactoryBeanTests {
 	public void testMapWithIntegerValue() {
 		this.factory.setResources(new ByteArrayResource("foo:\n  ? key1.key2\n  : 3".getBytes()));
 		Map<String, Object> map = this.factory.getObject();
-
 		assertEquals(1, map.size());
 		assertTrue(map.containsKey("foo"));
 		Object object = map.get("foo");

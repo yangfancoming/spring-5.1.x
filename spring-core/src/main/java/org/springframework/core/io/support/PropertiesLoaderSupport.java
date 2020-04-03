@@ -135,7 +135,6 @@ public abstract class PropertiesLoaderSupport {
 			// Load properties from file afterwards, to let those properties override.
 			loadProperties(result);
 		}
-
 		return result;
 	}
 
@@ -148,17 +147,13 @@ public abstract class PropertiesLoaderSupport {
 	protected void loadProperties(Properties props) throws IOException {
 		if (this.locations != null) {
 			for (Resource location : this.locations) {
-				if (logger.isTraceEnabled()) {
-					logger.trace("Loading properties file from " + location);
-				}
+				if (logger.isTraceEnabled()) logger.trace("Loading properties file from " + location);
 				try {
 					PropertiesLoaderUtils.fillProperties(props, new EncodedResource(location, this.fileEncoding), this.propertiesPersister);
 				}
 				catch (FileNotFoundException | UnknownHostException ex) {
 					if (this.ignoreResourceNotFound) {
-						if (logger.isDebugEnabled()) {
-							logger.debug("Properties resource not found: " + ex.getMessage());
-						}
+						if (logger.isDebugEnabled()) logger.debug("Properties resource not found: " + ex.getMessage());
 					}else {
 						throw ex;
 					}

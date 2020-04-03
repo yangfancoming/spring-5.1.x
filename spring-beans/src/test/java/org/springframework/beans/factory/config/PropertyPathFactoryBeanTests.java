@@ -15,15 +15,11 @@ import static org.springframework.tests.TestResourceUtils.*;
 
 /**
  * Unit tests for {@link PropertyPathFactoryBean}.
- *
-
-
  * @since 04.10.2004
  */
 public class PropertyPathFactoryBeanTests {
 
 	private static final Resource CONTEXT = qualifiedResource(PropertyPathFactoryBeanTests.class, "context.xml");
-
 
 	@Test
 	public void testPropertyPathFactoryBeanWithSingletonResult() {

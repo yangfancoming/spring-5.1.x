@@ -91,11 +91,6 @@ import org.springframework.util.StringUtils;
  * methods to be replaced by the container at runtime. This is essentially a type-safe
  * version of {@code getBean(Class, args)} and {@code getBean(String, args)},
  * See {@link Lookup @Lookup's javadoc} for details.
- *
-
- * @author Mark Fisher
- * @author Stephane Nicoll
- * @author Sebastien Deleuze
  * @since 2.5
  * @see #setAutowiredAnnotationType
  * @see Autowired
