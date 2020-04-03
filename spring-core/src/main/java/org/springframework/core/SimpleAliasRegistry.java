@@ -26,63 +26,6 @@ public class SimpleAliasRegistry implements AliasRegistry {
 	/** Map from alias to canonical name. */
 	private final Map<String, String> aliasMap = new ConcurrentHashMap<>(16);
 
-	@Override
-	public void removeAlias(String alias) {
-		synchronized (aliasMap) {
-			String name = aliasMap.remove(alias);
-			if (name == null) throw new IllegalStateException("No alias '" + alias + "' registered");
-		}
-	}
-
-	@Override
-	public boolean isAlias(String name) {
-		return aliasMap.containsKey(name);
-	}
-
-	@Override
-	public String[] getAliases(String name) {
-		List<String> result = new ArrayList<>();
-		synchronized (aliasMap) {
-			retrieveAliases(name, result);
-		}
-		return StringUtils.toStringArray(result);
-	}
-
-	@Override
-	public void registerAlias(String name, String alias) {
-		// 参数校验
-		Assert.hasText(name, "'name' must not be empty");
-		Assert.hasText(alias, "'alias' must not be empty");
-		synchronized (aliasMap) {
-			// 如果真实的名字（beanName）和别名相同，则把别名移除点，因为真实的名字和别名相同没有意义
-			if (alias.equals(name)) {
-				// 移除别名
-				aliasMap.remove(alias);
-				if (logger.isDebugEnabled()) logger.debug("Alias definition '" + alias + "' ignored since it points to same name");
-			}else {
-				// 尝试从缓存中获取别名
-				String registeredName = aliasMap.get(alias);
-				 // 如果别名已经在缓存中存在
-				if (registeredName != null) {
-					// An existing alias - no need to re-register   缓存中的别名和beanName(注意:不是别名)相同,不做任何操作,没有必要再注册一次
-					if (registeredName.equals(name)) return;
-					// 如果别名不允许覆盖，则抛出异常  //缓存中存在别名,且不允许覆盖,抛出异常
-					if (!allowAliasOverriding()) {
-						throw new IllegalStateException("Cannot define alias '" + alias + "' for name '" + name + "': It is already registered for name '" + registeredName + "'.");
-					}
-					if (logger.isDebugEnabled()) logger.debug("Overriding alias '" + alias + "' definition for registered name '" + registeredName + "' with new target name '" + name + "'");
-				}
-				//确保添加的没有name和alias值相反的数据且alias和name不相等
-				// 检查是否有循环别名注册 //检查给定名称是否已指向另一个方向的别名作为别名,预先捕获循环引用并抛出相应的IllegalStateException
-				checkForAliasCircle(name, alias);
-				// 注册别名 // 将别名作为key，目标bean名称作为值注册到存储别名的Map中
-				// 缓存别名
-				aliasMap.put(alias, name);
-				if (logger.isTraceEnabled()) logger.trace("Alias definition '" + alias + "' registered for name '" + name + "'");
-			}
-		}
-	}
-
 	/**
 	 * Return whether alias overriding is allowed.
 	 * Default is {@code true}.
@@ -109,7 +52,6 @@ public class SimpleAliasRegistry implements AliasRegistry {
 		}
 		return false;
 	}
-
 
 	/**
 	 * Transitively retrieve all aliases for the given name.
@@ -205,4 +147,63 @@ public class SimpleAliasRegistry implements AliasRegistry {
 		return canonicalName;
 	}
 
+	//---------------------------------------------------------------------
+	// Implementation of 【AliasRegistry】 interface
+	//---------------------------------------------------------------------
+	@Override
+	public void removeAlias(String alias) {
+		synchronized (aliasMap) {
+			String name = aliasMap.remove(alias);
+			if (name == null) throw new IllegalStateException("No alias '" + alias + "' registered");
+		}
+	}
+
+	@Override
+	public boolean isAlias(String name) {
+		return aliasMap.containsKey(name);
+	}
+
+	@Override
+	public String[] getAliases(String name) {
+		List<String> result = new ArrayList<>();
+		synchronized (aliasMap) {
+			retrieveAliases(name, result);
+		}
+		return StringUtils.toStringArray(result);
+	}
+
+	@Override
+	public void registerAlias(String name, String alias) {
+		// 参数校验
+		Assert.hasText(name, "'name' must not be empty");
+		Assert.hasText(alias, "'alias' must not be empty");
+		synchronized (aliasMap) {
+			// 如果真实的名字（beanName）和别名相同，则把别名移除点，因为真实的名字和别名相同没有意义
+			if (alias.equals(name)) {
+				// 移除别名
+				aliasMap.remove(alias);
+				if (logger.isDebugEnabled()) logger.debug("Alias definition '" + alias + "' ignored since it points to same name");
+			}else {
+				// 尝试从缓存中获取别名
+				String registeredName = aliasMap.get(alias);
+				// 如果别名已经在缓存中存在
+				if (registeredName != null) {
+					// An existing alias - no need to re-register   缓存中的别名和beanName(注意:不是别名)相同,不做任何操作,没有必要再注册一次
+					if (registeredName.equals(name)) return;
+					// 如果别名不允许覆盖，则抛出异常  //缓存中存在别名,且不允许覆盖,抛出异常
+					if (!allowAliasOverriding()) {
+						throw new IllegalStateException("Cannot define alias '" + alias + "' for name '" + name + "': It is already registered for name '" + registeredName + "'.");
+					}
+					if (logger.isDebugEnabled()) logger.debug("Overriding alias '" + alias + "' definition for registered name '" + registeredName + "' with new target name '" + name + "'");
+				}
+				//确保添加的没有name和alias值相反的数据且alias和name不相等
+				// 检查是否有循环别名注册 //检查给定名称是否已指向另一个方向的别名作为别名,预先捕获循环引用并抛出相应的IllegalStateException
+				checkForAliasCircle(name, alias);
+				// 注册别名 // 将别名作为key，目标bean名称作为值注册到存储别名的Map中
+				// 缓存别名
+				aliasMap.put(alias, name);
+				if (logger.isTraceEnabled()) logger.trace("Alias definition '" + alias + "' registered for name '" + name + "'");
+			}
+		}
+	}
 }

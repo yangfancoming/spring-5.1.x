@@ -16,27 +16,27 @@ import org.springframework.messaging.Message;
  *
  * @author Rossen Stoyanchev
  * @since 5.0
- * @param  the message payload type
+ * @param <P> the message payload type
  */
-public abstract class AbstractNioBufferReactorNettyCodec implements ReactorNettyCodec {
+public abstract class AbstractNioBufferReactorNettyCodec<P> implements ReactorNettyCodec<P> {
 
 	@Override
-	public Collection<Message> decode(ByteBuf inputBuffer) {
+	public Collection<Message<P>> decode(ByteBuf inputBuffer) {
 		ByteBuffer nioBuffer = inputBuffer.nioBuffer();
 		int start = nioBuffer.position();
-		List<Message> messages = decodeInternal(nioBuffer);
+		List<Message<P>> messages = decodeInternal(nioBuffer);
 		inputBuffer.skipBytes(nioBuffer.position() - start);
 		return messages;
 	}
 
 	@Override
-	public void encode(Message message, ByteBuf outputBuffer) {
+	public void encode(Message<P> message, ByteBuf outputBuffer) {
 		outputBuffer.writeBytes(encodeInternal(message));
 	}
 
 
-	protected abstract List<Message> decodeInternal(ByteBuffer nioBuffer);
+	protected abstract List<Message<P>> decodeInternal(ByteBuffer nioBuffer);
 
-	protected abstract ByteBuffer encodeInternal(Message message);
+	protected abstract ByteBuffer encodeInternal(Message<P> message);
 
 }

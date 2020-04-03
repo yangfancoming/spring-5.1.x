@@ -18,21 +18,21 @@ import org.springframework.util.concurrent.MonoToListenableFutureAdapter;
  *
  * @author Rossen Stoyanchev
  * @since 5.0
- * @param  the type of payload for outbound messages
+ * @param <P> the type of payload for outbound messages
  */
-public class ReactorNettyTcpConnection implements TcpConnection {
+public class ReactorNettyTcpConnection<P> implements TcpConnection<P> {
 
 	private final NettyInbound inbound;
 
 	private final NettyOutbound outbound;
 
-	private final ReactorNettyCodec codec;
+	private final ReactorNettyCodec<P> codec;
 
 	private final DirectProcessor<Void> closeProcessor;
 
 
 	public ReactorNettyTcpConnection(NettyInbound inbound, NettyOutbound outbound,
-			ReactorNettyCodec codec, DirectProcessor<Void> closeProcessor) {
+									 ReactorNettyCodec<P> codec, DirectProcessor<Void> closeProcessor) {
 
 		this.inbound = inbound;
 		this.outbound = outbound;
@@ -42,7 +42,7 @@ public class ReactorNettyTcpConnection implements TcpConnection {
 
 
 	@Override
-	public ListenableFuture<Void> send(Message message) {
+	public ListenableFuture<Void> send(Message<P> message) {
 		ByteBuf byteBuf = this.outbound.alloc().buffer();
 		this.codec.encode(message, byteBuf);
 		Mono<Void> sendCompletion = this.outbound.send(Mono.just(byteBuf)).then();

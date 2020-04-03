@@ -12,9 +12,9 @@ import org.springframework.util.concurrent.ListenableFuture;
  *
  * @author Rossen Stoyanchev
  * @since 4.0
- * @param  the type of payload for outbound {@link Message Messages}
+ * @param <P> the type of payload for outbound {@link Message Messages}
  */
-public interface TcpConnection extends Closeable {
+public interface TcpConnection<P> extends Closeable {
 
 	/**
 	 * Send the given message.
@@ -22,7 +22,7 @@ public interface TcpConnection extends Closeable {
 	 * @return a ListenableFuture that can be used to determine when and if the
 	 * message was successfully sent
 	 */
-	ListenableFuture<Void> send(Message message);
+	ListenableFuture<Void> send(Message<P> message);
 
 	/**
 	 * Register a task to invoke after a period of read inactivity.

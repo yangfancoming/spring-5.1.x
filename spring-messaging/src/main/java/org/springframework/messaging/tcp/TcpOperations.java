@@ -9,9 +9,9 @@ import org.springframework.util.concurrent.ListenableFuture;
  *
  * @author Rossen Stoyanchev
  * @since 4.0
- * @param  the type of payload for in and outbound messages
+ * @param <P> the type of payload for in and outbound messages
  */
-public interface TcpOperations {
+public interface TcpOperations<P> {
 
 	/**
 	 * Open a new connection.
@@ -19,7 +19,7 @@ public interface TcpOperations {
 	 * @return a ListenableFuture that can be used to determine when and if the
 	 * connection is successfully established
 	 */
-	ListenableFuture<Void> connect(TcpConnectionHandler connectionHandler);
+	ListenableFuture<Void> connect(TcpConnectionHandler<P> connectionHandler);
 
 	/**
 	 * Open a new connection and a strategy for reconnecting if the connection fails.
@@ -28,7 +28,7 @@ public interface TcpOperations {
 	 * @return a ListenableFuture that can be used to determine when and if the
 	 * initial connection is successfully established
 	 */
-	ListenableFuture<Void> connect(TcpConnectionHandler connectionHandler, ReconnectStrategy reconnectStrategy);
+	ListenableFuture<Void> connect(TcpConnectionHandler<P> connectionHandler, ReconnectStrategy reconnectStrategy);
 
 	/**
 	 * Shut down and close any open connections.

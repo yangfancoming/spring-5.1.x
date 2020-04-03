@@ -15,22 +15,22 @@ import org.springframework.messaging.Message;
  *
  * @author Rossen Stoyanchev
  * @since 5.0
- * @param  the message payload type
+ * @param <P> the message payload type
  */
-public interface ReactorNettyCodec {
+public interface ReactorNettyCodec<P> {
 
 	/**
 	 * Decode the input {@link ByteBuf} into one or more {@link Message Messages}.
 	 * @param inputBuffer the input buffer to decode from
 	 * @return 0 or more decoded messages
 	 */
-	Collection<Message> decode(ByteBuf inputBuffer);
+	Collection<Message<P>> decode(ByteBuf inputBuffer);
 
 	/**
 	 * Encode the given {@link Message} to the output {@link ByteBuf}.
 	 * @param message the message to encode
 	 * @param outputBuffer the buffer to write to
 	 */
-	void encode(Message message, ByteBuf outputBuffer);
+	void encode(Message<P> message, ByteBuf outputBuffer);
 
 }

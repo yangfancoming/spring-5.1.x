@@ -6,6 +6,9 @@ import org.junit.Test;
 import org.springframework.tests.sample.beans.DerivedTestBean;
 import org.springframework.tests.sample.beans.TestBean;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 import static org.junit.Assert.*;
 
 /**
@@ -15,13 +18,25 @@ public class DefaultSingletonBeanRegistryTests {
 
 	DefaultSingletonBeanRegistry beanRegistry = new DefaultSingletonBeanRegistry();
 
+	// 测试 registerSingleton中的 singletonObjects.get(beanName) 可以替换成 singletonObjects.containsKey(beanName)
+	@Test
+	public void containsKey() {
+		Map<String, Object> singletonMutex = new ConcurrentHashMap<>();
+		singletonMutex.put("1",2);
+		System.out.println(singletonMutex);
+		System.out.println(singletonMutex.containsKey("1"));
+		System.out.println(singletonMutex.containsKey(1));
+		System.out.println(singletonMutex.containsKey("2"));
+	}
+
+	// 测试 key相同 不能覆盖 而是抛出异常
 	@Test
 	public void testSingletons1() {
 		TestBean tb = new TestBean();
-		tb.setName("goat");
-		beanRegistry.registerSingleton("tb", tb);
-		assertSame(tb, beanRegistry.getSingleton("tb"));
-		System.out.println(tb);
+		beanRegistry.registerSingleton("test1", tb);
+		beanRegistry.registerSingleton("test1", tb);
+		Map<String, Object> singletonMutex = (Map<String, Object>) beanRegistry.getSingletonMutex();
+		System.out.println(singletonMutex);
 	}
 
 	@Test
@@ -33,8 +48,6 @@ public class DefaultSingletonBeanRegistryTests {
 		TestBean tb2 = (TestBean) beanRegistry.getSingleton("tb2", ()->new TestBean());
 		assertSame(tb2, beanRegistry.getSingleton("tb2"));
 
-		assertSame(tb, beanRegistry.getSingleton("tb"));
-		assertSame(tb2, beanRegistry.getSingleton("tb2"));
 		assertEquals(2, beanRegistry.getSingletonCount());
 		String[] names = beanRegistry.getSingletonNames();
 		assertEquals(2, names.length);
