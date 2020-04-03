@@ -19,8 +19,7 @@ public interface PropertyResolver {
 	boolean containsProperty(String key);
 
 	/**
-	 * Return the property value associated with the given key,
-	 * or {@code null} if the key cannot be resolved.
+	 * Return the property value associated with the given key,or {@code null} if the key cannot be resolved.
 	 * @param key the property name to resolve
 	 * @see #getProperty(String, String)
 	 * @see #getProperty(String, Class)
@@ -30,8 +29,7 @@ public interface PropertyResolver {
 	String getProperty(String key);
 
 	/**
-	 * Return the property value associated with the given key, or
-	 * {@code defaultValue} if the key cannot be resolved.
+	 * Return the property value associated with the given key, or {@code defaultValue} if the key cannot be resolved.
 	 * @param key the property name to resolve
 	 * @param defaultValue the default value to return if no value is found
 	 * @see #getRequiredProperty(String)
@@ -40,8 +38,7 @@ public interface PropertyResolver {
 	String getProperty(String key, String defaultValue);
 
 	/**
-	 * Return the property value associated with the given key,
-	 * or {@code null} if the key cannot be resolved.
+	 * Return the property value associated with the given key,or {@code null} if the key cannot be resolved.
 	 * @param key the property name to resolve
 	 * @param targetType the expected type of the property value
 	 * @see #getRequiredProperty(String, Class)
@@ -50,8 +47,7 @@ public interface PropertyResolver {
 	<T> T getProperty(String key, Class<T> targetType);
 
 	/**
-	 * Return the property value associated with the given key,
-	 * or {@code defaultValue} if the key cannot be resolved.
+	 * Return the property value associated with the given key,or {@code defaultValue} if the key cannot be resolved.
 	 * @param key the property name to resolve
 	 * @param targetType the expected type of the property value
 	 * @param defaultValue the default value to return if no value is found
@@ -90,8 +86,7 @@ public interface PropertyResolver {
 	 * property values as resolved by {@link #getProperty}. Unresolvable placeholders with
 	 * no default value will cause an IllegalArgumentException to be thrown.
 	 * @return the resolved String (never {@code null})
-	 * @throws IllegalArgumentException if given text is {@code null}
-	 * or if any placeholders are unresolvable
+	 * @throws IllegalArgumentException if given text is {@code null} or if any placeholders are unresolvable
 	 * @see org.springframework.util.SystemPropertyUtils#resolvePlaceholders(String, boolean)
 	 */
 	String resolveRequiredPlaceholders(String text) throws IllegalArgumentException;

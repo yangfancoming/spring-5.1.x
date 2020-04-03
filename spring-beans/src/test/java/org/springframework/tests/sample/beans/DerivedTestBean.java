@@ -8,7 +8,6 @@ import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.DisposableBean;
 
 /**
-
  * @since 21.08.2003
  */
 @SuppressWarnings("serial")
@@ -19,7 +18,6 @@ public class DerivedTestBean extends TestBean implements Serializable, BeanNameA
 	private boolean initialized;
 
 	private boolean destroyed;
-
 
 	public DerivedTestBean() {
 	}

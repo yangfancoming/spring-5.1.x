@@ -42,7 +42,6 @@ public class StandardEnvironment extends AbstractEnvironment {
 	/** JVM系统环境属性 JVM system properties property source name: {@value}. */
 	public static final String SYSTEM_PROPERTIES_PROPERTY_SOURCE_NAME = "systemProperties";
 
-
 	/**
 	 * Customize the set of property sources with those appropriate for any standard
 	 * Java environment:

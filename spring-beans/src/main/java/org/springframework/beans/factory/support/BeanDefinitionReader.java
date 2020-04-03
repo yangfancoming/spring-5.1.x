@@ -46,8 +46,7 @@ public interface BeanDefinitionReader {
 	/**
 	 * Return the class loader to use for bean classes.
 	 * {@code null} suggests to not load bean classes eagerly
-	 * but rather to just register bean definitions with class names,
-	 * with the corresponding Classes to be resolved later (or never).
+	 * but rather to just register bean definitions with class names,with the corresponding Classes to be resolved later (or never).
 	 */
 	@Nullable
 	ClassLoader getBeanClassLoader();

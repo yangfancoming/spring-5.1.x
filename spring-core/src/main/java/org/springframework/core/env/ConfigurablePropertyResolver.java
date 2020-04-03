@@ -62,11 +62,9 @@ public interface ConfigurablePropertyResolver extends PropertyResolver {
 	 * Set whether to throw an exception when encountering an unresolvable placeholder
 	 * nested within the value of a given property. A {@code false} value indicates strict
 	 * resolution, i.e. that an exception will be thrown. A {@code true} value indicates
-	 * that unresolvable nested placeholders should be passed through in their unresolved
-	 * ${...} form.
+	 * that unresolvable nested placeholders should be passed through in their unresolved ${...} form.
 	 * Implementations of {@link #getProperty(String)} and its variants must inspect
-	 * the value set here to determine correct behavior when property values contain
-	 * unresolvable placeholders.
+	 * the value set here to determine correct behavior when property values contain unresolvable placeholders.
 	 * @since 3.2
 	 */
 	void setIgnoreUnresolvableNestedPlaceholders(boolean ignoreUnresolvableNestedPlaceholders);

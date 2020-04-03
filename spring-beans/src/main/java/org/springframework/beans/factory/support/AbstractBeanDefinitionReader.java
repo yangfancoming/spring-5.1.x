@@ -25,7 +25,7 @@ import org.springframework.util.Assert;
  * Provides common properties like the bean factory to work on and the class loader to use for loading bean classes.
  * @since 11.12.2003
  * @see BeanDefinitionReaderUtils
- * AbstractBeanDefinitionReader 中留下了 loadBeanDefinitions(Resource resource) 这个方法给子类实现。
+ * AbstractBeanDefinitionReader 中实现了3个loadBeanDefinitions 留下了一个 loadBeanDefinitions(Resource resource) 给子类实现。
  */
 public abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader, EnvironmentCapable {
 

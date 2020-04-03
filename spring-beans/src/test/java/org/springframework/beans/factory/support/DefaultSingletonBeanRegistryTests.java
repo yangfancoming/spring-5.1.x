@@ -16,8 +16,16 @@ public class DefaultSingletonBeanRegistryTests {
 	DefaultSingletonBeanRegistry beanRegistry = new DefaultSingletonBeanRegistry();
 
 	@Test
-	public void testSingletons() {
+	public void testSingletons1() {
+		TestBean tb = new TestBean();
+		tb.setName("goat");
+		beanRegistry.registerSingleton("tb", tb);
+		assertSame(tb, beanRegistry.getSingleton("tb"));
+		System.out.println(tb);
+	}
 
+	@Test
+	public void testSingletons() {
 		TestBean tb = new TestBean();
 		beanRegistry.registerSingleton("tb", tb);
 		assertSame(tb, beanRegistry.getSingleton("tb"));
@@ -41,6 +49,8 @@ public class DefaultSingletonBeanRegistryTests {
 	@Test
 	public void testDisposableBean() {
 		DerivedTestBean tb = new DerivedTestBean();
+		System.out.println(tb.getBeanName());
+		System.out.println(tb.getSex());
 		beanRegistry.registerSingleton("tb", tb);
 		beanRegistry.registerDisposableBean("tb", tb);
 		assertSame(tb, beanRegistry.getSingleton("tb"));

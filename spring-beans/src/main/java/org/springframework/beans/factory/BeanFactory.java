@@ -80,15 +80,6 @@ import org.springframework.lang.Nullable;
  *
  * 定义了获取bean、及获取bean的各种属性
  * BeanFactory 它是访问 Spring 容器的根接口，定义了获取bean的各种重载方法：
- *
- * getAliases
- * getBean
- * getBeanProvider
- * getType
- * containsBean
- * isPrototype
- * isSingleton
- * isTypeMatch
  */
 public interface BeanFactory {
 

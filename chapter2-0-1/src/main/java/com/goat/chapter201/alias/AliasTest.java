@@ -1,4 +1,4 @@
-package com.goat.chapter201;
+package com.goat.chapter201.alias;
 
 import com.goat.chapter201.bean.Person;
 import org.junit.Assert;
@@ -25,7 +25,7 @@ public class AliasTest  {
 		Person person1 = (Person) context.getBean("person");
 		Person person2 = (Person) context.getBean("goat");
 		Person person3 = (Person) context.getBean("goatLike");
-		// 验证 获取的都是同一个bean
+		// 验证 通过不同的别名 获取的都是同一个bean
 		Assert.assertTrue(person1 == person2 );
 		Assert.assertTrue(person2 == person3 );
 		System.out.println(person1.toString());

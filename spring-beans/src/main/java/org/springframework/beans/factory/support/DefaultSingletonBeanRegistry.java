@@ -53,24 +53,31 @@ import org.springframework.util.StringUtils;
  */
 public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements SingletonBeanRegistry {
 
-	/** Cache of singleton objects: bean name to bean instance. 一级缓存  单例bean缓存池 用于存放已注册的SingleBean实例 */
-	/** 缓存beanName和bean实例 key-->beanName,value-->beanInstance */
+	/**
+	 * Cache of singleton objects: bean name to bean instance.
+	 * 缓存beanName和bean实例 key-->beanName,value-->beanInstance
+	 * 一级缓存  单例bean缓存池 用于存放已注册的SingleBean实例
+	 */
 	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
 
-	/** Cache of singleton factories: bean name to ObjectFactory. 三级缓存  单例对应的工厂缓存，可以使用工厂来创建单例对象 bean name --> ObjectFactory */
 	/**
-	 * 用于存放bean工厂  bean 工厂所产生的 bean 是还未完成初始化的 bean   如代码所示，bean 工厂所生成的对象最终会被缓存到 earlySingletonObjects 中
-	*/
-	/** 缓存beanName和beanFactory key-->beanName,value-->beanFactory */
-	private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
-
-	/** Cache of early singleton objects: bean name to bean instance. 二级缓存  早期的单例对象(对象属性还没有进行赋值)  纯净态*/
-	/** 用来存放已存在但是未注册的SingleBean实例，解决循环依赖 */
-	/** 缓存beanName和bean实例 key-->beanName,value-->beanInstance 该缓存主要为了解决bean的循环依赖引用 */
+	 * Cache of early singleton objects: bean name to bean instance. 二级缓存  早期的单例对象(对象属性还没有进行赋值)  纯净态
+	 * 用来存放已存在但是未注册的SingleBean实例，解决循环依赖
+	 * 缓存beanName和bean实例 key-->beanName,value-->beanInstance 该缓存主要为了解决bean的循环依赖引用
+	 */
 	private final Map<String, Object> earlySingletonObjects = new HashMap<>(16);
 
-	/** Set of registered singletons, containing the bean names in registration order. 已经注册过了的单例对象*/
-	/** 缓存所有已注册的SingleBean对象的名称 */
+	/**
+	 * Cache of singleton factories: bean name to ObjectFactory. 三级缓存  单例对应的工厂缓存，可以使用工厂来创建单例对象 bean name --> ObjectFactory
+	 * 用于存放bean工厂  bean 工厂所产生的 bean 是还未完成初始化的 bean   如代码所示，bean 工厂所生成的对象最终会被缓存到 earlySingletonObjects 中
+	 * 缓存beanName和beanFactory key-->beanName,value-->beanFactory
+	 */
+	private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
+
+	/**
+	 * Set of registered singletons, containing the bean names in registration order. 已经注册过了的单例对象
+	 * 缓存所有已注册的SingleBean对象的名称
+	*/
 	private final Set<String> registeredSingletons = new LinkedHashSet<>(256);
 
 	/** Names of beans that are currently in creation. 当前正在创建的单例对象集合 */
@@ -98,23 +105,6 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 
 	/** Map between depending bean names: bean name to Set of bean names for the bean's dependencies. 存储当前bean被哪些其他bean组件依赖 */
 	private final Map<String, Set<String>> dependenciesForBeanMap = new ConcurrentHashMap<>(64);
-
-	// 注册单实例的bean
-	@Override
-	public void registerSingleton(String beanName, Object singletonObject) throws IllegalStateException {
-		Assert.notNull(beanName, "Bean name must not be null");
-		Assert.notNull(singletonObject, "Singleton object must not be null");
-		// 加锁：为什么用 ConcurrentHashMap 了还需要加锁？
-		synchronized (singletonObjects) {
-			// 判断是否已经注册过了,如果注册过了，则抛出异常
-			Object oldObject = singletonObjects.get(beanName);
-			if (oldObject != null) {
-				throw new IllegalStateException("Could not register object [" + singletonObject + "] under bean name '" + beanName + "': there is already object [" + oldObject + "] bound");
-			}
-			// 真正的注册逻辑
-			addSingleton(beanName, singletonObject);
-		}
-	}
 
 	/**
 	 * Add the given singleton object to the singleton cache of this factory.
@@ -150,20 +140,6 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 				registeredSingletons.add(beanName);
 			}
 		}
-	}
-
-	/**
-	 这里先尝试从缓存中获取，获取不到再走后面创建的流程
-	 获取到有两种情况：
-	 1.是Bean创建完成存储到最终的缓存中。
-	 2.是未创建完成，但先预存到一个单独的缓存中，这种是针对可能存在循环引用的情况的处理。
-	 如A引用B,B又引用了A,因而在初始化A时，A会先调用构造函数创建出一个实例，在依赖注入B之前，现将A实例缓存起来
-	 然后在初始化A时，依赖注入阶段，会触发初始化B，B创建后需要依赖注入A时，先从缓存中获取A（这个时候的A是不完整的)，避免循环依赖的问题出现。
-	 */
-	@Override
-	@Nullable
-	public Object getSingleton(String beanName) {
-		return getSingleton(beanName, true);
 	}
 
 	/**
@@ -221,8 +197,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 * Return the (raw) singleton object registered under the given name,creating and registering a new one if none registered yet.
 	 * 返回以给定名称注册的（原始）singleton对象，如果尚未注册，则创建并注册一个新对象。
 	 * @param beanName the name of the bean
-	 * @param singletonFactory the ObjectFactory to lazily create the singleton
-	 * with, if necessary
+	 * @param singletonFactory the ObjectFactory to lazily create the singleton with, if necessary
 	 * @return the registered singleton object
 	 */
 	public Object getSingleton(String beanName, ObjectFactory<?> singletonFactory) {
@@ -307,28 +282,6 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 			registeredSingletons.remove(beanName);
 		}
 	}
-
-	@Override
-	public boolean containsSingleton(String beanName) {
-		return singletonObjects.containsKey(beanName);
-	}
-
-	// 获取所有单例的name
-	@Override
-	public String[] getSingletonNames() {
-		synchronized (singletonObjects) {
-			return StringUtils.toStringArray(registeredSingletons);
-		}
-	}
-
-	// 获取所有已经注册了的单例的个数
-	@Override
-	public int getSingletonCount() {
-		synchronized (singletonObjects) {
-			return registeredSingletons.size();
-		}
-	}
-
 
 	public void setCurrentlyInCreation(String beanName, boolean inCreation) {
 		Assert.notNull(beanName, "Bean name must not be null");
@@ -617,6 +570,9 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		dependenciesForBeanMap.remove(beanName);
 	}
 
+	//---------------------------------------------------------------------
+	// Implementation of 【SingletonBeanRegistry】 interface
+	//---------------------------------------------------------------------
 	/**
 	 * Exposes the singleton mutex to subclasses and external collaborators.
 	 * Subclasses should synchronize on the given Object if they perform
@@ -624,8 +580,60 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 * should <i>not</i> have their own mutexes involved in singleton creation,
 	 * to avoid the potential for deadlocks in lazy-init situations.
 	 */
+	@Override
 	public final Object getSingletonMutex() {
 		return singletonObjects;
 	}
 
+	@Override
+	public boolean containsSingleton(String beanName) {
+		return singletonObjects.containsKey(beanName);
+	}
+
+	// 获取所有单例的name
+	@Override
+	public String[] getSingletonNames() {
+		synchronized (singletonObjects) {
+			return StringUtils.toStringArray(registeredSingletons);
+		}
+	}
+
+	// 获取所有已经注册了的单例的个数
+	@Override
+	public int getSingletonCount() {
+		synchronized (singletonObjects) {
+			return registeredSingletons.size();
+		}
+	}
+
+	// 注册单实例的bean
+	@Override
+	public void registerSingleton(String beanName, Object singletonObject) throws IllegalStateException {
+		Assert.notNull(beanName, "Bean name must not be null");
+		Assert.notNull(singletonObject, "Singleton object must not be null");
+		// 加锁：为什么用 ConcurrentHashMap 了还需要加锁？
+		synchronized (singletonObjects) {
+			// 判断是否已经注册过了,如果注册过了，则抛出异常
+			Object oldObject = singletonObjects.get(beanName);
+			if (oldObject != null) {
+				throw new IllegalStateException("Could not register object [" + singletonObject + "] under bean name '" + beanName + "': there is already object [" + oldObject + "] bound");
+			}
+			// 真正的注册逻辑
+			addSingleton(beanName, singletonObject);
+		}
+	}
+
+	/**
+	 这里先尝试从缓存中获取，获取不到再走后面创建的流程
+	 获取到有两种情况：
+	 1.是Bean创建完成存储到最终的缓存中。
+	 2.是未创建完成，但先预存到一个单独的缓存中，这种是针对可能存在循环引用的情况的处理。
+	 如A引用B,B又引用了A,因而在初始化A时，A会先调用构造函数创建出一个实例，在依赖注入B之前，现将A实例缓存起来
+	 然后在初始化A时，依赖注入阶段，会触发初始化B，B创建后需要依赖注入A时，先从缓存中获取A（这个时候的A是不完整的)，避免循环依赖的问题出现。
+	 */
+	@Override
+	@Nullable
+	public Object getSingleton(String beanName) {
+		return getSingleton(beanName, true);
+	}
 }

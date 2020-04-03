@@ -11,9 +11,7 @@ import org.springframework.core.convert.converter.ConverterRegistry;
  * the mutating operations of {@link ConverterRegistry} to allow for convenient ad-hoc
  * addition and removal of {@link org.springframework.core.convert.converter.Converter
  * Converters} through. The latter is particularly useful when working against a
- * {@link org.springframework.core.env.ConfigurableEnvironment ConfigurableEnvironment}
- * instance in application context bootstrapping code.
-
+ * {@link org.springframework.core.env.ConfigurableEnvironment ConfigurableEnvironment} instance in application context bootstrapping code.
  * @since 3.1
  * @see org.springframework.core.env.ConfigurablePropertyResolver#getConversionService()
  * @see org.springframework.core.env.ConfigurableEnvironment

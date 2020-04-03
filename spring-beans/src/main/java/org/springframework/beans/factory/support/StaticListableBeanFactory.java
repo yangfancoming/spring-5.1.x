@@ -33,11 +33,9 @@ import org.springframework.util.StringUtils;
  * Static {@link org.springframework.beans.factory.BeanFactory} implementation
  * which allows to register existing singleton instances programmatically.
  * Does not have support for prototype beans or aliases.
- * Serves as example for a simple implementation of the
- * {@link org.springframework.beans.factory.ListableBeanFactory} interface,
+ * Serves as example for a simple implementation of the {@link org.springframework.beans.factory.ListableBeanFactory} interface,
  * managing existing bean instances rather than creating new ones based on bean
- * definitions, and not implementing any extended SPI interfaces (such as
- * {@link org.springframework.beans.factory.config.ConfigurableBeanFactory}).
+ * definitions, and not implementing any extended SPI interfaces (such as {@link org.springframework.beans.factory.config.ConfigurableBeanFactory}).
  *
  * For a full-fledged factory based on bean definitions, have a look at {@link DefaultListableBeanFactory}.
  * @since 06.01.2003
@@ -89,7 +87,6 @@ public class StaticListableBeanFactory implements ListableBeanFactory {
 	public Object getBean(String name) throws BeansException {
 		String beanName = BeanFactoryUtils.transformedBeanName(name);
 		Object bean = this.beans.get(beanName);
-
 		if (bean == null) {
 			throw new NoSuchBeanDefinitionException(beanName,"Defined beans are [" + StringUtils.collectionToCommaDelimitedString(this.beans.keySet()) + "]");
 		}
@@ -97,7 +94,6 @@ public class StaticListableBeanFactory implements ListableBeanFactory {
 		if (BeanFactoryUtils.isFactoryDereference(name) && !(bean instanceof FactoryBean)) {
 			throw new BeanIsNotAFactoryException(beanName, bean.getClass());
 		}
-
 		if (bean instanceof FactoryBean && !BeanFactoryUtils.isFactoryDereference(name)) {
 			try {
 				Object exposedObject = ((FactoryBean<?>) bean).getObject();
