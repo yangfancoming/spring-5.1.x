@@ -17,7 +17,6 @@ import org.springframework.lang.Nullable;
  * As of 5.1, this interface extends {@link Iterable} and provides {@link Stream}
  * support. It can be therefore be used in {@code for} loops, provides {@link #forEach}
  * iteration and allows for collection-style {@link #stream} access.
- *
 
  * @since 4.3
  * @param <T> the object type

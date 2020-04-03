@@ -79,7 +79,7 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.beans.factory.support.RootBeanDefinition#getDestroyMethodName
  *
  * 定义了获取bean、及获取bean的各种属性
- * BeanFactory 它是访问 Spring 容器的根接口，定义了获取bean的各种重载方法：
+ * BeanFactory 是访问 Spring 容器的根接口，定义了获取bean的各种重载方法：
  */
 public interface BeanFactory {
 
@@ -212,6 +212,7 @@ public interface BeanFactory {
 	 * @param name the name of the bean to query
 	 * @return whether a bean with the given name is present
 	 * 提供对bean的检索，看看是否在IOC容器有这个名字的bean
+	 * 判断是否包含Bean。此处有个陷阱：这边不管类是否抽象类,懒加载,是否在容器范围内,只要符合都返回true,所以这边true,**不一定能从getBean获取实例**
 	 */
 	boolean containsBean(String name);
 

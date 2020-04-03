@@ -13,6 +13,10 @@ public class FurnitureFactoryBean implements FactoryBean<Furniture> {
 
 	private String furniture;
 
+	public void setFurniture(String furniture) {
+		this.furniture = furniture;
+	}
+
 	// 这个Bean是我们自己new的，这里我们就可以控制Bean的创建过程了
 	@Override
 	public Furniture getObject()  {
@@ -47,7 +51,4 @@ public class FurnitureFactoryBean implements FactoryBean<Furniture> {
 		return true;
 	}
 
-	public void setFurniture(String furniture) {
-		this.furniture = furniture;
-	}
 }

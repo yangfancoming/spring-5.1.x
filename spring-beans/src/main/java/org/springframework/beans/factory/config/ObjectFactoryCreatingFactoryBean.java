@@ -74,9 +74,6 @@ import org.springframework.util.Assert;
  * but has the disadvantage of requiring runtime class generation. Please do
  * consult the {@link ServiceLocatorFactoryBean ServiceLocatorFactoryBean JavaDoc}
  * for a fuller discussion of this issue.
- *
- * @author Colin Sampaleanu
-
  * @since 1.0.2
  * @see org.springframework.beans.factory.ObjectFactory
  * @see ServiceLocatorFactoryBean
@@ -85,7 +82,6 @@ public class ObjectFactoryCreatingFactoryBean extends AbstractFactoryBean<Object
 
 	@Nullable
 	private String targetBeanName;
-
 
 	/**
 	 * Set the name of the target bean.

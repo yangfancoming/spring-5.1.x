@@ -13,6 +13,9 @@ public class StudentFactoryBean implements FactoryBean<Student> {
 
 	private String studentInfo;
 
+	public void setStudentInfo(String studentInfo) {
+		this.studentInfo = studentInfo;
+	}
 	// 这个Bean是我们自己new的，这里我们就可以控制Bean的创建过程了
 	@Override
 	public Student getObject() {
@@ -42,7 +45,4 @@ public class StudentFactoryBean implements FactoryBean<Student> {
 		return true;
 	}
 
-	public void setStudentInfo(String studentInfo) {
-		this.studentInfo = studentInfo;
-	}
 }

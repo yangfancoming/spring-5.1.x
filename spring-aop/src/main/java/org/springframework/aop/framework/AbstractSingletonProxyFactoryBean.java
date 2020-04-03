@@ -16,13 +16,11 @@ import org.springframework.util.ClassUtils;
 /**
  * Convenient superclass for {@link FactoryBean} types that produce singleton-scoped proxy objects.
  * Manages pre- and post-interceptors (references, rather than
- * interceptor names, as in {@link ProxyFactoryBean}) and provides
- * consistent interface management.
+ * interceptor names, as in {@link ProxyFactoryBean}) and provides consistent interface management.
  * @since 2.0
  */
 @SuppressWarnings("serial")
-public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
-		implements FactoryBean<Object>, BeanClassLoaderAware, InitializingBean {
+public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig implements FactoryBean<Object>, BeanClassLoaderAware, InitializingBean {
 
 	@Nullable
 	private Object target;
@@ -44,7 +42,6 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
 
 	@Nullable
 	private Object proxy;
-
 
 	/**
 	 * Set the target object, that is, the bean to be wrapped with a transactional proxy.
@@ -130,24 +127,19 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
 		if (this.proxyClassLoader == null) {
 			this.proxyClassLoader = ClassUtils.getDefaultClassLoader();
 		}
-
 		ProxyFactory proxyFactory = new ProxyFactory();
-
 		if (this.preInterceptors != null) {
 			for (Object interceptor : this.preInterceptors) {
 				proxyFactory.addAdvisor(this.advisorAdapterRegistry.wrap(interceptor));
 			}
 		}
-
 		// Add the main interceptor (typically an Advisor).
 		proxyFactory.addAdvisor(this.advisorAdapterRegistry.wrap(createMainInterceptor()));
-
 		if (this.postInterceptors != null) {
 			for (Object interceptor : this.postInterceptors) {
 				proxyFactory.addAdvisor(this.advisorAdapterRegistry.wrap(interceptor));
 			}
 		}
-
 		proxyFactory.copyFrom(this);
 
 		TargetSource targetSource = createTargetSource(this.target);
@@ -162,9 +154,7 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
 				proxyFactory.setInterfaces(ClassUtils.getAllInterfacesForClass(targetClass, this.proxyClassLoader));
 			}
 		}
-
 		postProcessProxyFactory(proxyFactory);
-
 		this.proxy = proxyFactory.getProxy(this.proxyClassLoader);
 	}
 
@@ -177,8 +167,7 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
 	protected TargetSource createTargetSource(Object target) {
 		if (target instanceof TargetSource) {
 			return (TargetSource) target;
-		}
-		else {
+		}else {
 			return new SingletonTargetSource(target);
 		}
 	}
@@ -191,7 +180,6 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
 	 */
 	protected void postProcessProxyFactory(ProxyFactory proxyFactory) {
 	}
-
 
 	@Override
 	public Object getObject() {
@@ -223,7 +211,6 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
 	public final boolean isSingleton() {
 		return true;
 	}
-
 
 	/**
 	 * Create the "main" interceptor for this proxy factory bean.

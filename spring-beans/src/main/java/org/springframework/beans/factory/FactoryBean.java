@@ -38,10 +38,8 @@ public interface FactoryBean<T> {
 	/**
 	 * 返回的对象实例
 	 * Return an instance (possibly shared or independent) of the object managed by this factory.
-	 * As with a {@link BeanFactory}, this allows support for both the
-	 * Singleton and Prototype design pattern.
-	 * If this FactoryBean is not fully initialized yet at the time of
-	 * the call (for example because it is involved in a circular reference),
+	 * As with a {@link BeanFactory}, this allows support for both the Singleton and Prototype design pattern.
+	 * If this FactoryBean is not fully initialized yet at the time of the call (for example because it is involved in a circular reference),
 	 * throw a corresponding {@link FactoryBeanNotInitializedException}.
 	 * As of Spring 2.0, FactoryBeans are allowed to return {@code null} objects.
 	 * The factory will consider this as normal value to be used;
@@ -56,22 +54,16 @@ public interface FactoryBean<T> {
 
 	/**
 	 * 返回Bean的类型
-	 * Return the type of object that this FactoryBean creates,
-	 * or {@code null} if not known in advance.
-	 * This allows one to check for specific types of beans without
-	 * instantiating objects, for example on autowiring.
+	 * Return the type of object that this FactoryBean creates,or {@code null} if not known in advance.
+	 * This allows one to check for specific types of beans without  instantiating objects, for example on autowiring.
 	 * In the case of implementations that are creating a singleton object,
-	 * this method should try to avoid singleton creation as far as possible;
-	 * it should rather estimate the type in advance.
+	 * this method should try to avoid singleton creation as far as possible; it should rather estimate the type in advance.
 	 * For prototypes, returning a meaningful type here is advisable too.
-	 * This method can be called <i>before</i> this FactoryBean has
-	 * been fully initialized. It must not rely on state created during
-	 * initialization; of course, it can still use such state if available.
-	 * NOTE: Autowiring will simply ignore FactoryBeans that return
-	 * {@code null} here. Therefore it is highly recommended to implement
-	 * this method properly, using the current state of the FactoryBean.
-	 * @return the type of object that this FactoryBean creates,
-	 * or {@code null} if not known at the time of the call
+	 * This method can be called <i>before</i> this FactoryBean has been fully initialized.
+	 * It must not rely on state created during initialization; of course, it can still use such state if available.
+	 * NOTE: Autowiring will simply ignore FactoryBeans that return @code null} here.
+	 * {Therefore it is highly recommended to implement this method properly, using the current state of the FactoryBean.
+	 * @return the type of object that this FactoryBean creates,or {@code null} if not known at the time of the call
 	 * @see ListableBeanFactory#getBeansOfType
 	 */
 	@Nullable

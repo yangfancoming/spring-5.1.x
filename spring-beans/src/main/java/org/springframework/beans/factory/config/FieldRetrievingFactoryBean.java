@@ -35,14 +35,11 @@ import org.springframework.util.StringUtils;
  * If you are using Spring 2.0, you can also use the following style of configuration for
  * public static fields.
  *
- * <pre class="code">&lt;util:constant static-field="java.sql.Connection.TRANSACTION_SERIALIZABLE"/&gt;</pre>
- *
-
+ * <pre class="code">&lt;util:constant static-field="java.sql.Connection.TRANSACTIONimplements FactoryBean_SERIALIZABLE"/&gt;</pre>
  * @since 1.1
  * @see #setStaticField
  */
-public class FieldRetrievingFactoryBean
-		implements FactoryBean<Object>, BeanNameAware, BeanClassLoaderAware, InitializingBean {
+public class FieldRetrievingFactoryBean implements FactoryBean<Object>, BeanNameAware, BeanClassLoaderAware, InitializingBean {
 
 	@Nullable
 	private Class<?> targetClass;
@@ -204,8 +201,7 @@ public class FieldRetrievingFactoryBean
 		if (this.targetObject != null) {
 			// instance field
 			return this.fieldObject.get(this.targetObject);
-		}
-		else {
+		}else {
 			// class field
 			return this.fieldObject.get(null);
 		}

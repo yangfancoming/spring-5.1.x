@@ -38,16 +38,12 @@ import org.springframework.util.ReflectionUtils;
  * {@link #getObject()} method is invoked. Subclasses are responsible
  * for implementing the abstract {@link #createInstance()} template
  * method to actually create the object(s) to expose.
- *
-
- * @author Keith Donald
  * @since 1.0.2
  * @param <T> the bean type
  * @see #setSingleton
  * @see #createInstance()
  */
-public abstract class AbstractFactoryBean<T>
-		implements FactoryBean<T>, BeanClassLoaderAware, BeanFactoryAware, InitializingBean, DisposableBean {
+public abstract class AbstractFactoryBean<T> implements FactoryBean<T>, BeanClassLoaderAware, BeanFactoryAware, InitializingBean, DisposableBean {
 
 	/** Logger available to subclasses. */
 	protected final Log logger = LogFactory.getLog(getClass());
@@ -67,7 +63,6 @@ public abstract class AbstractFactoryBean<T>
 
 	@Nullable
 	private T earlySingletonInstance;
-
 
 	/**
 	 * Set if a singleton should be created, or a new object on each request
@@ -112,8 +107,7 @@ public abstract class AbstractFactoryBean<T>
 		BeanFactory beanFactory = getBeanFactory();
 		if (beanFactory instanceof ConfigurableBeanFactory) {
 			return ((ConfigurableBeanFactory) beanFactory).getTypeConverter();
-		}
-		else {
+		}else {
 			return new SimpleTypeConverter();
 		}
 	}
@@ -140,8 +134,7 @@ public abstract class AbstractFactoryBean<T>
 	public final T getObject() throws Exception {
 		if (isSingleton()) {
 			return (this.initialized ? this.singletonInstance : getEarlySingletonInstance());
-		}
-		else {
+		}else {
 			return createInstance();
 		}
 	}
@@ -154,12 +147,10 @@ public abstract class AbstractFactoryBean<T>
 	private T getEarlySingletonInstance() {
 		Class<?>[] ifcs = getEarlySingletonInterfaces();
 		if (ifcs == null) {
-			throw new FactoryBeanNotInitializedException(
-					getClass().getName() + " does not support circular references");
+			throw new FactoryBeanNotInitializedException(getClass().getName() + " does not support circular references");
 		}
 		if (this.earlySingletonInstance == null) {
-			this.earlySingletonInstance = (T) Proxy.newProxyInstance(
-					this.beanClassLoader, ifcs, new EarlySingletonInvocationHandler());
+			this.earlySingletonInstance = (T) Proxy.newProxyInstance(this.beanClassLoader, ifcs, new EarlySingletonInvocationHandler());
 		}
 		return this.earlySingletonInstance;
 	}
@@ -185,7 +176,6 @@ public abstract class AbstractFactoryBean<T>
 			destroyInstance(this.singletonInstance);
 		}
 	}
-
 
 	/**
 	 * This abstract method declaration mirrors the method in the FactoryBean
@@ -237,7 +227,6 @@ public abstract class AbstractFactoryBean<T>
 	protected void destroyInstance(@Nullable T instance) throws Exception {
 	}
 
-
 	/**
 	 * Reflective InvocationHandler for lazy access to the actual singleton object.
 	 */
@@ -248,19 +237,15 @@ public abstract class AbstractFactoryBean<T>
 			if (ReflectionUtils.isEqualsMethod(method)) {
 				// Only consider equal when proxies are identical.
 				return (proxy == args[0]);
-			}
-			else if (ReflectionUtils.isHashCodeMethod(method)) {
+			}else if (ReflectionUtils.isHashCodeMethod(method)) {
 				// Use hashCode of reference proxy.
 				return System.identityHashCode(proxy);
-			}
-			else if (!initialized && ReflectionUtils.isToStringMethod(method)) {
-				return "Early singleton proxy for interfaces " +
-						ObjectUtils.nullSafeToString(getEarlySingletonInterfaces());
+			}else if (!initialized && ReflectionUtils.isToStringMethod(method)) {
+				return "Early singleton proxy for interfaces " + ObjectUtils.nullSafeToString(getEarlySingletonInterfaces());
 			}
 			try {
 				return method.invoke(getSingletonInstance(), args);
-			}
-			catch (InvocationTargetException ex) {
+			}catch (InvocationTargetException ex) {
 				throw ex.getTargetException();
 			}
 		}

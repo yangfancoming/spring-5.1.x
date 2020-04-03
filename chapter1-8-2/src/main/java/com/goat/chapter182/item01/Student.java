@@ -7,7 +7,6 @@ package com.goat.chapter182.item01;
  * @ author  山羊来了
  * @ date 2019/8/17---19:41
  */
-
 public class Student {
 	/** 姓名 */
 	private String name;
@@ -15,8 +14,6 @@ public class Student {
 	private int age;
 	/** 班级名称 */
 	private String className;
-
-	// ...可能能会有更多的属性
 
 	public Student() {
 	}
