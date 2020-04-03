@@ -13,6 +13,7 @@ import org.springframework.beans.BeansException;
  * @since 1.0.2
  * @param <T> the object type
  * @see FactoryBean
+ * 它可以将创建对象的步骤封装到ObjectFactory中 交给自定义的Scope来选择是否需要创建对象来灵活的实现scope。  具体参见Scope接口
  */
 @FunctionalInterface
 public interface ObjectFactory<T> {

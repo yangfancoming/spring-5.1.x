@@ -340,14 +340,12 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		bd.setScope(BeanDefinition.SCOPE_PROTOTYPE);
 		if (bd.getResolvedAutowireMode() == AUTOWIRE_CONSTRUCTOR) {
 			return autowireConstructor(beanClass.getName(), bd, null, null).getWrappedInstance();
-		}
-		else {
+		}else {
 			Object bean;
 			final BeanFactory parent = this;
 			if (System.getSecurityManager() != null) {
 				bean = AccessController.doPrivileged((PrivilegedAction<Object>) () -> getInstantiationStrategy().instantiate(bd, null, parent),getAccessControlContext());
-			}
-			else {
+			}else {
 				bean = getInstantiationStrategy().instantiate(bd, null, parent);
 			}
 			populateBean(beanClass.getName(), bd, new BeanWrapperImpl(bean));
@@ -1399,8 +1397,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		if (bw == null) {
 			if (mbd.hasPropertyValues()) {
 				throw new BeanCreationException(mbd.getResourceDescription(), beanName, "Cannot apply property values to null instance");
-			}
-			else {
+			}else {
 				// Skip property population phase for null instance.
 				return;
 			}
