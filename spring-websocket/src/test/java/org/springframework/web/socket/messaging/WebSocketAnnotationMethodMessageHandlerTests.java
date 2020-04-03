@@ -1,0 +1,101 @@
+
+
+package org.springframework.web.socket.messaging;
+
+import java.util.concurrent.ConcurrentHashMap;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import org.mockito.Mockito;
+
+import org.springframework.context.support.StaticApplicationContext;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.SubscribableChannel;
+import org.springframework.messaging.handler.annotation.MessageExceptionHandler;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+
+import static org.junit.Assert.*;
+
+/**
+ * Unit tests for {@link WebSocketAnnotationMethodMessageHandler}.
+ * @author Rossen Stoyanchev
+ */
+public class WebSocketAnnotationMethodMessageHandlerTests {
+
+	private TestWebSocketAnnotationMethodMessageHandler messageHandler;
+
+	private StaticApplicationContext applicationContext;
+
+
+	@Before
+	public void setUp() throws Exception {
+		this.applicationContext = new StaticApplicationContext();
+		this.applicationContext.registerSingleton("controller", TestController.class);
+		this.applicationContext.registerSingleton("controllerAdvice", TestControllerAdvice.class);
+		this.applicationContext.refresh();
+
+		SubscribableChannel channel = Mockito.mock(SubscribableChannel.class);
+		SimpMessageSendingOperations brokerTemplate = new SimpMessagingTemplate(channel);
+
+		this.messageHandler = new TestWebSocketAnnotationMethodMessageHandler(brokerTemplate, channel, channel);
+		this.messageHandler.setApplicationContext(this.applicationContext);
+		this.messageHandler.afterPropertiesSet();
+	}
+
+	@Test
+	public void globalException() throws Exception {
+		SimpMessageHeaderAccessor headers = SimpMessageHeaderAccessor.create();
+		headers.setSessionId("session1");
+		headers.setSessionAttributes(new ConcurrentHashMap<>());
+		headers.setDestination("/exception");
+		Message<?> message = MessageBuilder.withPayload(new byte[0]).setHeaders(headers).build();
+		this.messageHandler.handleMessage(message);
+
+		TestControllerAdvice controllerAdvice = this.applicationContext.getBean(TestControllerAdvice.class);
+		assertTrue(controllerAdvice.isExceptionHandled());
+	}
+
+
+	@Controller
+	private static class TestController {
+
+		@MessageMapping("/exception")
+		public void handleWithSimulatedException() {
+			throw new IllegalStateException("simulated exception");
+		}
+	}
+
+	@ControllerAdvice
+	private static class TestControllerAdvice {
+
+		private boolean exceptionHandled;
+
+
+		public boolean isExceptionHandled() {
+			return this.exceptionHandled;
+		}
+
+		@MessageExceptionHandler
+		public void handleException(IllegalStateException ex) {
+			this.exceptionHandled = true;
+		}
+	}
+
+	private static class TestWebSocketAnnotationMethodMessageHandler extends WebSocketAnnotationMethodMessageHandler {
+
+		public TestWebSocketAnnotationMethodMessageHandler(SimpMessageSendingOperations brokerTemplate,
+				SubscribableChannel clientInboundChannel, MessageChannel clientOutboundChannel) {
+
+			super(clientInboundChannel, clientOutboundChannel, brokerTemplate);
+		}
+	}
+
+}
