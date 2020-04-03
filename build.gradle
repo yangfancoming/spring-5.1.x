@@ -30,6 +30,7 @@ ext {
     }
 
     aspectjVersion       = "1.9.4"
+//    aspectjVersion       = "1.5.4"
     freemarkerVersion    = "2.3.28"
     groovyVersion        = "2.5.7"
     hsqldbVersion        = "2.4.1"
