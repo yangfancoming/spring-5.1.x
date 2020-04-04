@@ -6,24 +6,21 @@ import org.junit.Test;
 
 /**
  * Unit tests for {@link PropertyEntry}.
- *
- * @author Rick Evans
-
  */
 public class PropertyEntryTests {
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testCtorBailsOnNullPropertyNameArgument() throws Exception {
+	public void testCtorBailsOnNullPropertyNameArgument()  {
 		new PropertyEntry(null);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testCtorBailsOnEmptyPropertyNameArgument() throws Exception {
+	public void testCtorBailsOnEmptyPropertyNameArgument()  {
 		new PropertyEntry("");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testCtorBailsOnWhitespacedPropertyNameArgument() throws Exception {
+	public void testCtorBailsOnWhitespacedPropertyNameArgument()  {
 		new PropertyEntry("\t   ");
 	}
 

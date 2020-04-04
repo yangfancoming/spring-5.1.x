@@ -6,8 +6,6 @@ import org.springframework.util.StringUtils;
 
 /**
  * {@link ParseState} entry representing a JavaBean property.
- *
- * @author Rob Harrop
  * @since 2.0
  */
 public class PropertyEntry implements ParseState.Entry {

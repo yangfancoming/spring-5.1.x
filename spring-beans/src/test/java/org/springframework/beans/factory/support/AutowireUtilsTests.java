@@ -14,9 +14,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link AutowireUtils}.
- *
-
- * @author Sam Brannen
  */
 public class AutowireUtilsTests {
 
