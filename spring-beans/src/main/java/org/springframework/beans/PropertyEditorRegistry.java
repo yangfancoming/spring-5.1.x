@@ -12,8 +12,6 @@ import org.springframework.lang.Nullable;
  *
  * Extended by {@link BeanWrapper}; implemented by {@link BeanWrapperImpl}
  * and {@link org.springframework.validation.DataBinder}.
- *
-
  * @since 1.2.6
  * @see java.beans.PropertyEditor
  * @see PropertyEditorRegistrar
