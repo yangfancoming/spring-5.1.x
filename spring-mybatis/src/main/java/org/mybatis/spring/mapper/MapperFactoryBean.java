@@ -10,9 +10,7 @@ import org.springframework.beans.factory.FactoryBean;
 import static org.springframework.util.Assert.notNull;
 
 /**
- * BeanFactory that enables injection of MyBatis mapper interfaces. It can be set up with a SqlSessionFactory or a
- * pre-configured SqlSessionTemplate.
- *
+ * BeanFactory that enables injection of MyBatis mapper interfaces. It can be set up with a SqlSessionFactory or a pre-configured SqlSessionTemplate.
  * Sample configuration:
  *
  * <pre class="code">
@@ -54,9 +52,7 @@ public class MapperFactoryBean<T> extends SqlSessionDaoSupport implements Factor
   @Override
   protected void checkDaoConfig() {
     super.checkDaoConfig();
-
     notNull(this.mapperInterface, "Property 'mapperInterface' is required");
-
     Configuration configuration = getSqlSession().getConfiguration();
     if (this.addToConfig && !configuration.hasMapper(this.mapperInterface)) {
       try {
@@ -78,17 +74,11 @@ public class MapperFactoryBean<T> extends SqlSessionDaoSupport implements Factor
     return getSqlSession().getMapper(this.mapperInterface);
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public Class<T> getObjectType() {
     return this.mapperInterface;
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public boolean isSingleton() {
     return true;

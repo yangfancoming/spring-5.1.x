@@ -296,10 +296,8 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 	/**
 	 * Set the JDBC {@code DataSource} that this instance should manage transactions for. The {@code DataSource} should
 	 * match the one used by the {@code SqlSessionFactory}: for example, you could specify the same JNDI DataSource for both.
-	 *
 	 * A transactional JDBC {@code Connection} for this {@code DataSource} will be provided to application code accessing
 	 * this {@code DataSource} directly via {@code DataSourceUtils} or {@code DataSourceTransactionManager}.
-	 *
 	 * The {@code DataSource} specified here should be the target {@code DataSource} to manage transactions for, not a
 	 * {@code TransactionAwareDataSourceProxy}. Only data access code may work with
 	 * {@code TransactionAwareDataSourceProxy}, while the transaction manager needs to work on the underlying target
@@ -331,11 +329,9 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 
 	/**
 	 * Set the MyBatis TransactionFactory to use. Default is {@code SpringManagedTransactionFactory}
-	 *
 	 * The default {@code SpringManagedTransactionFactory} should be appropriate for all cases: be it Spring transaction
 	 * management, EJB CMT or plain JTA. If there is no active transaction, SqlSession operations will execute SQL
 	 * statements non-transactionally.
-	 *
 	 * <b>It is strongly recommended to use the default {@code TransactionFactory}.</b> If not used, any attempt at
 	 * getting an SqlSession through Spring's MyBatis framework will throw an exception if a transaction is active.
 	 *
@@ -521,36 +517,22 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 		return this.sqlSessionFactoryBuilder.build(targetConfiguration);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public SqlSessionFactory getObject() throws Exception {
-		if (this.sqlSessionFactory == null) {
-			afterPropertiesSet();
-		}
+		if (this.sqlSessionFactory == null) afterPropertiesSet();
 		return this.sqlSessionFactory;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public Class<? extends SqlSessionFactory> getObjectType() {
 		return this.sqlSessionFactory == null ? SqlSessionFactory.class : this.sqlSessionFactory.getClass();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public boolean isSingleton() {
 		return true;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void onApplicationEvent(ApplicationEvent event) {
 		if (failFast && event instanceof ContextRefreshedEvent) {

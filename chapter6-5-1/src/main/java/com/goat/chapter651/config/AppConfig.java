@@ -15,7 +15,7 @@ import javax.sql.DataSource;
  *  因为不是 springboot 项目 需要手动自定组件扫描路径
  */
 @Configuration
-@MapperScan("com.goat.chapter651.dao")
+@MapperScan("com.goat.chapter651.dao") // 生成代理对象 交给spring的IOC容器管理
 @ComponentScan("com.goat.chapter651")
 public class AppConfig {
 
@@ -30,6 +30,17 @@ public class AppConfig {
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 		sqlSessionFactoryBean.setDataSource(dataSource);
 		return sqlSessionFactoryBean;
+	}
+
+	// 使用 spring 内置 数据库连接池
+	@Bean
+	public DataSource dataSource() {
+		DriverManagerDataSource ds = new DriverManagerDataSource();
+		ds.setDriverClassName("com.mysql.jdbc.Driver");
+		ds.setUrl("jdbc:mysql://47.98.148.84:3306/test2?Unicode=true&characterEncoding=utf8");
+		ds.setUsername("root");
+		ds.setPassword("12345");
+		return ds;
 	}
 
 
@@ -47,18 +58,5 @@ public class AppConfig {
  * 		return ds;
  * 	}
 */
-
-/**
- *  使用 spring 内置 数据库连接池
-*/
-	@Bean
-	public DataSource dataSource() {
-		DriverManagerDataSource ds = new DriverManagerDataSource();
-		ds.setDriverClassName("com.mysql.jdbc.Driver");
-		ds.setUrl("jdbc:mysql://47.98.148.84:3306/test2?Unicode=true&characterEncoding=utf8");
-		ds.setUsername("root");
-		ds.setPassword("12345");
-		return ds;
-	}
 
 }

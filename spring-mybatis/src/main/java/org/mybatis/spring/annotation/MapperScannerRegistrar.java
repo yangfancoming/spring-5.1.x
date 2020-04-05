@@ -33,7 +33,6 @@ import java.util.stream.Collectors;
 public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar, ResourceLoaderAware {
 
   /**
-   * {@inheritDoc}
    * @deprecated Since 2.0.2, this method not used never.
    */
   @Override
@@ -42,9 +41,6 @@ public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar, Re
     // NOP
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
     AnnotationAttributes mapperScanAttrs = AnnotationAttributes.fromMap(importingClassMetadata.getAnnotationAttributes(MapperScan.class.getName()));
