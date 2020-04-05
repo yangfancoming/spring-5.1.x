@@ -34,8 +34,7 @@ import org.springframework.util.CollectionUtils;
  * normally factories from which AOP proxy instances are obtained directly.
  *
  * This class frees subclasses of the housekeeping of Advices
- * and Advisors, but doesn't actually implement proxy creation
- * methods, which are provided by subclasses.
+ * and Advisors, but doesn't actually implement proxy creation methods, which are provided by subclasses.
  *
  * This class is serializable; subclasses need not be.
  * This class is used to hold snapshots of proxies.
@@ -50,7 +49,6 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 	 * Canonical TargetSource when there's no target, and behavior is supplied by the advisors.
 	 */
 	public static final TargetSource EMPTY_TARGET_SOURCE = EmptyTargetSource.INSTANCE;
-
 
 	/** Package-protected to allow direct access for efficiency. */
 	TargetSource targetSource = EMPTY_TARGET_SOURCE;
@@ -210,9 +208,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 	@Override
 	public boolean isInterfaceProxied(Class<?> intf) {
 		for (Class<?> proxyIntf : this.interfaces) {
-			if (intf.isAssignableFrom(proxyIntf)) {
-				return true;
-			}
+			if (intf.isAssignableFrom(proxyIntf)) return true;
 		}
 		return false;
 	}
@@ -256,7 +252,6 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 		if (index < 0 || index > this.advisors.size() - 1) {
 			throw new AopConfigException("Advisor index " + index + " is out of bounds: This configuration only has " + this.advisors.size() + " advisors.");
 		}
-
 		Advisor advisor = this.advisors.get(index);
 		if (advisor instanceof IntroductionAdvisor) {
 			IntroductionAdvisor ia = (IntroductionAdvisor) advisor;
@@ -354,7 +349,6 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 		return this.advisors;
 	}
 
-
 	@Override
 	public void addAdvice(Advice advice) throws AopConfigException {
 		int pos = this.advisors.size();
@@ -382,8 +376,9 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 	@Override
 	public boolean removeAdvice(Advice advice) throws AopConfigException {
 		int index = indexOf(advice);
-		if (index == -1) return false;
-		else {
+		if (index == -1) {
+			return false;
+		}else {
 			removeAdvisor(index);
 			return true;
 		}
@@ -545,37 +540,28 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 	 * Simple wrapper class around a Method. Used as the key when caching methods, for efficient equals and hashCode comparisons.
 	 */
 	private static final class MethodCacheKey implements Comparable<MethodCacheKey> {
-
 		private final Method method;
-
 		private final int hashCode;
-
 		public MethodCacheKey(Method method) {
 			this.method = method;
 			this.hashCode = method.hashCode();
 		}
-
 		@Override
 		public boolean equals(Object other) {
 			return (this == other || (other instanceof MethodCacheKey && this.method == ((MethodCacheKey) other).method));
 		}
-
 		@Override
 		public int hashCode() {
 			return this.hashCode;
 		}
-
 		@Override
 		public String toString() {
 			return this.method.toString();
 		}
-
 		@Override
 		public int compareTo(MethodCacheKey other) {
 			int result = this.method.getName().compareTo(other.method.getName());
-			if (result == 0) {
-				result = this.method.toString().compareTo(other.method.toString());
-			}
+			if (result == 0) result = this.method.toString().compareTo(other.method.toString());
 			return result;
 		}
 	}

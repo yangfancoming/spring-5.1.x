@@ -416,18 +416,15 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		new DisposableBeanAdapter(existingBean, getBeanPostProcessors(), getAccessControlContext()).destroy();
 	}
 
-
 	//-------------------------------------------------------------------------
 	// Delegate methods for resolving injection points
 	//-------------------------------------------------------------------------
-
 	@Override
 	public Object resolveBeanByName(String name, DependencyDescriptor descriptor) {
 		InjectionPoint previousInjectionPoint = ConstructorResolver.setCurrentInjectionPoint(descriptor);
 		try {
 			return getBean(name, descriptor.getDependencyType());
-		}
-		finally {
+		}finally {
 			ConstructorResolver.setCurrentInjectionPoint(previousInjectionPoint);
 		}
 	}
@@ -437,7 +434,6 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	public Object resolveDependency(DependencyDescriptor descriptor, @Nullable String requestingBeanName) throws BeansException {
 		return resolveDependency(descriptor, requestingBeanName, null, null);
 	}
-
 
 	//---------------------------------------------------------------------
 	// Implementation of relevant AbstractBeanFactory template methods
@@ -469,8 +465,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			 * 当用户配置了 lookup-method 和 replace-method 时，Spring 需要对目标 bean 进行增强。在增强之前，需要做一些准备工作，也就是 prepareMethodOverrides 中的逻辑
 			*/
 			mbdToUse.prepareMethodOverrides();
-		}
-		catch (BeanDefinitionValidationException ex) {
+		}catch (BeanDefinitionValidationException ex) {
 			throw new BeanDefinitionStoreException(mbdToUse.getResourceDescription(),beanName, "Validation of method overrides failed", ex);
 		}
 
@@ -610,8 +605,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			 * 另外，AOP 相关逻辑也会在该方法中织入切面逻辑，此时的 exposedObject 就变成了 一个代理对象了
 			 */
 			exposedObject = initializeBean(beanName, exposedObject, mbd);
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			if (ex instanceof BeanCreationException && beanName.equals(((BeanCreationException) ex).getBeanName())) {
 				throw (BeanCreationException) ex;
 			}else {
@@ -815,7 +809,6 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				if (result != null) return result;
 			}
 		}
-
 		String factoryBeanName = mbd.getFactoryBeanName();
 		String factoryMethodName = mbd.getFactoryMethodName();
 
@@ -839,12 +832,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				return null;
 			}
 		}
-
 		// Let's obtain a shortcut instance for an early getObjectType() call...
-		FactoryBean<?> fb = (mbd.isSingleton() ?
-				getSingletonFactoryBeanForTypeCheck(beanName, mbd) :
-				getNonSingletonFactoryBeanForTypeCheck(beanName, mbd));
-
+		FactoryBean<?> fb = (mbd.isSingleton() ? getSingletonFactoryBeanForTypeCheck(beanName, mbd) : getNonSingletonFactoryBeanForTypeCheck(beanName, mbd));
 		if (fb != null) {
 			// Try to obtain the FactoryBean's object type from this early stage of the instance.
 			Class<?> result = getTypeForFactoryBean(fb);
@@ -856,7 +845,6 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				return super.getTypeForFactoryBean(beanName, mbd);
 			}
 		}
-
 		if (factoryBeanName == null && mbd.hasBeanClass()) {
 			// No early bean instantiation possible: determine FactoryBean's type from
 			// static factory method signature or from class inheritance hierarchy...
