@@ -8,14 +8,9 @@ import org.springframework.lang.Nullable;
 
 /**
  * Simple {@link LinkedList}-based structure for tracking the logical position during
- * a parsing process. {@link Entry entries} are added to the LinkedList at
- * each point during the parse phase in a reader-specific manner.
- *
+ * a parsing process. {@link Entry entries} are added to the LinkedList at each point during the parse phase in a reader-specific manner.
  * Calling {@link #toString()} will render a tree-style view of the current logical
- * position in the parse phase. This representation is intended for use in
- * error messages.
- *
- * @author Rob Harrop
+ * position in the parse phase. This representation is intended for use in error messages.
  * @since 2.0
  */
 public final class ParseState {

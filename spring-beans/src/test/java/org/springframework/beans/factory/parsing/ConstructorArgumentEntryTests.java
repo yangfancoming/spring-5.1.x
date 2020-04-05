@@ -6,8 +6,6 @@ import org.junit.Test;
 
 /**
  * Unit tests for {@link ConstructorArgumentEntry}.
- *
- * @author Rick Evans
 
  */
 public class ConstructorArgumentEntryTests {

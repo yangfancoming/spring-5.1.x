@@ -5,17 +5,12 @@ package org.springframework.beans.factory.parsing;
 import org.springframework.util.Assert;
 
 /**
- * {@link ParseState} entry representing a (possibly indexed)
- * constructor argument.
- *
- * @author Rob Harrop
-
+ * {@link ParseState} entry representing a (possibly indexed) constructor argument.
  * @since 2.0
  */
 public class ConstructorArgumentEntry implements ParseState.Entry {
 
 	private final int index;
-
 
 	/**
 	 * Creates a new instance of the {@link ConstructorArgumentEntry} class
@@ -36,7 +31,6 @@ public class ConstructorArgumentEntry implements ParseState.Entry {
 		Assert.isTrue(index >= 0, "Constructor argument index must be greater than or equal to zero");
 		this.index = index;
 	}
-
 
 	@Override
 	public String toString() {
