@@ -1,4 +1,4 @@
-package com.goat.chapter185;
+package com.goat.chapter185.item01;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.MutablePropertyValues;

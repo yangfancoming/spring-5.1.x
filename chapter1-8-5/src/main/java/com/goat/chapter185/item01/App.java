@@ -1,7 +1,6 @@
-package com.goat.chapter185;
+package com.goat.chapter185.item01;
 
 import com.goat.chapter185.common.Dog;
-import org.junit.After;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -15,22 +14,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class App {
 
 	ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean1.xml");
-
-	@After
-	public void after() {
-		System.out.println("\n========测试方法结束=======\n");
-	}
-	/**
-	 * 测试BeanPostProcessor
-	 * BeanPostProcessor第1次被调动
-	 * BeanPostProcessor第2次被调动
-	 * 大家好, 我叫强强, 我今年5岁了
-	 */
-	@Test
-	public void test1() {
-		Dog dog = applicationContext.getBean("dog", Dog.class);
-		dog.sayHello();
-	}
 
 	/**
 	 * 测试BeanFactoryPostProcessor

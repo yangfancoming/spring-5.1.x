@@ -1,4 +1,4 @@
-package com.goat.chapter185.item02;
+package com.goat.chapter185.temp;
 
 import com.goat.chapter185.common.Dog;
 import org.springframework.context.annotation.Bean;
