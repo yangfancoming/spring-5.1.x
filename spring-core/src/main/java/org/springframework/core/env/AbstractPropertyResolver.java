@@ -183,17 +183,13 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 
 	@Override
 	public String resolvePlaceholders(String text) {
-		if (this.nonStrictHelper == null) {
-			this.nonStrictHelper = createPlaceholderHelper(true);
-		}
+		if (this.nonStrictHelper == null) this.nonStrictHelper = createPlaceholderHelper(true);
 		return doResolvePlaceholders(text, this.nonStrictHelper);
 	}
 
 	@Override
 	public String resolveRequiredPlaceholders(String text) throws IllegalArgumentException {
-		if (this.strictHelper == null) {
-			this.strictHelper = createPlaceholderHelper(false);
-		}
+		if (this.strictHelper == null) this.strictHelper = createPlaceholderHelper(false);
 		return doResolvePlaceholders(text, this.strictHelper);
 	}
 

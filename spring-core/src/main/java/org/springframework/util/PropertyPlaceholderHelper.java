@@ -100,9 +100,7 @@ public class PropertyPlaceholderHelper {
 	protected String parseStringValue(String value, PlaceholderResolver placeholderResolver, @Nullable Set<String> visitedPlaceholders) {
 		//获取路径中占位符前缀的索引
 		int startIndex = value.indexOf(this.placeholderPrefix);
-		if (startIndex == -1) {
-			return value;
-		}
+		if (startIndex == -1) return value;
 		StringBuilder result = new StringBuilder(value);
 		//匹配到占位符前缀,进入循环体
 		while (startIndex != -1) {
@@ -129,9 +127,7 @@ public class PropertyPlaceholderHelper {
 						String actualPlaceholder = placeholder.substring(0, separatorIndex);
 						String defaultValue = placeholder.substring(separatorIndex + this.valueSeparator.length());
 						propVal = placeholderResolver.resolvePlaceholder(actualPlaceholder);
-						if (propVal == null) {
-							propVal = defaultValue;
-						}
+						if (propVal == null) propVal = defaultValue;
 					}
 				}
 				if (propVal != null) {
@@ -140,22 +136,17 @@ public class PropertyPlaceholderHelper {
 					// 对替换完成的value进行解析,防止properties的value值里也有占位符
 					propVal = parseStringValue(propVal, placeholderResolver, visitedPlaceholders);
 					result.replace(startIndex, endIndex + this.placeholderSuffix.length(), propVal);
-					if (logger.isTraceEnabled()) {
-						logger.trace("Resolved placeholder '" + placeholder + "'");
-					}
+					if (logger.isTraceEnabled()) logger.trace("Resolved placeholder '" + placeholder + "'");
 					// 重新定位开始索引
 					startIndex = result.indexOf(this.placeholderPrefix, startIndex + propVal.length());
-				}
-				else if (this.ignoreUnresolvablePlaceholders) {
+				}else if (this.ignoreUnresolvablePlaceholders) {
 					// Proceed with unprocessed value.
 					startIndex = result.indexOf(this.placeholderPrefix, endIndex + this.placeholderSuffix.length());
-				}
-				else {
+				}else {
 					throw new IllegalArgumentException("Could not resolve placeholder '" + placeholder + "'" + " in value \"" + value + "\"");
 				}
 				visitedPlaceholders.remove(originalPlaceholder);
-			}
-			else {
+			}else {
 				startIndex = -1;
 			}
 		}
@@ -175,25 +166,21 @@ public class PropertyPlaceholderHelper {
 				if (withinNestedPlaceholder > 0) {
 					withinNestedPlaceholder--;
 					index = index + this.placeholderSuffix.length();
-				}
-				else {
+				}else {
 					return index;
 				}
-			}
-			else if (StringUtils.substringMatch(buf, index, this.simplePrefix)) {
+			}else if (StringUtils.substringMatch(buf, index, this.simplePrefix)) {
 				// 判断源字符串在index处是否与前缀匹配,若匹配,说明前缀后面还是前缀,则把前缀长度累加到index上,继续循环寻找后缀
 				// withinNestedPlaceholder确保前缀和后缀成对出现后
 				withinNestedPlaceholder++;
 				index = index + this.simplePrefix.length();
-			}
-			else {
+			}else {
 				//如果index出既不能和suffix又不能和simplePrefix匹配,则自增,继续循环
 				index++;
 			}
 		}
 		return -1;
 	}
-
 
 	/**
 	 * Strategy interface used to resolve replacement values for placeholders contained in Strings.

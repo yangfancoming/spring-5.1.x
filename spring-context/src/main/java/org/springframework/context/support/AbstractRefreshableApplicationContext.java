@@ -74,7 +74,6 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 		super(parent);
 	}
 
-
 	/**
 	 * Set whether it should be allowed to override bean definitions by registering
 	 * a different definition with the same name, automatically replacing the former.

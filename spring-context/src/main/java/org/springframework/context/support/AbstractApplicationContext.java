@@ -377,13 +377,10 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 	/**
 	 * Return the ResourcePatternResolver to use for resolving location patterns into Resource instances.
-	 *  Default is a {@link org.springframework.core.io.support.PathMatchingResourcePatternResolver},
-	 * supporting Ant-style location patterns.
-	 * Can be overridden in subclasses, for extended resolution strategies,
-	 * for example in a web environment.
+	 *  Default is a {@link org.springframework.core.io.support.PathMatchingResourcePatternResolver},supporting Ant-style location patterns.
+	 * Can be overridden in subclasses, for extended resolution strategies,for example in a web environment.
 	 * <b>Do not call this when needing to resolve a location pattern.</b>
-	 * Call the context's {@code getResources} method instead, which
-	 * will delegate to the ResourcePatternResolver.
+	 * Call the context's {@code getResources} method instead, which will delegate to the ResourcePatternResolver.
 	 * @return the ResourcePatternResolver for this context
 	 * @see #getResources
 	 * @see org.springframework.core.io.support.PathMatchingResourcePatternResolver

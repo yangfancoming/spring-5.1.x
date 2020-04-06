@@ -58,9 +58,7 @@ public class PropertySourcesPropertyResolver extends AbstractPropertyResolver {
 	protected <T> T getProperty(String key, Class<T> targetValueType, boolean resolveNestedPlaceholders) {
 		if (this.propertySources != null) {
 			for (PropertySource<?> propertySource : this.propertySources) {
-				if (logger.isTraceEnabled()) {
-					logger.trace("Searching for key '" + key + "' in PropertySource '" + propertySource.getName() + "'");
-				}
+				if (logger.isTraceEnabled()) logger.trace("Searching for key '" + key + "' in PropertySource '" + propertySource.getName() + "'");
 				Object value = propertySource.getProperty(key);
 				if (value != null) {
 					if (resolveNestedPlaceholders && value instanceof String) {
