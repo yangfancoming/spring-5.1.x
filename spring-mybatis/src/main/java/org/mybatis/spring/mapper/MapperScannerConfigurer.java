@@ -29,12 +29,10 @@ import static org.springframework.util.Assert.notNull;
 
 /**
  * BeanDefinitionRegistryPostProcessor that searches recursively starting from a base package for interfaces and
- * registers them as {@code MapperFactoryBean}. Note that only interfaces with at least one method will be registered;
- * concrete classes will be ignored.
+ * registers them as {@code MapperFactoryBean}. Note that only interfaces with at least one method will be registered;concrete classes will be ignored.
  *
  * This class was a {code BeanFactoryPostProcessor} until 1.0.1 version. It changed to
- * {@code BeanDefinitionRegistryPostProcessor} in 1.0.2. See https://jira.springsource.org/browse/SPR-8269 for the
- * details.
+ * {@code BeanDefinitionRegistryPostProcessor} in 1.0.2. See https://jira.springsource.org/browse/SPR-8269 for the details.
  *
  * The {@code basePackage} property can contain more than one package name, separated by either commas or semicolons.
  *
@@ -48,16 +46,13 @@ import static org.springframework.util.Assert.notNull;
  * proper {@code SqlSessionFactory} or {@code SqlSessionTemplate}. If there is more than one {@code SqlSessionFactory}
  * in the application, however, autowiring cannot be used. In this case you must explicitly specify either an
  * {@code SqlSessionFactory} or an {@code SqlSessionTemplate} to use via the <em>bean name</em> properties. Bean names
- * are used rather than actual objects because Spring does not initialize property placeholders until after this class
- * is processed.
+ * are used rather than actual objects because Spring does not initialize property placeholders until after this class is processed.
  *
  * Passing in an actual object which may require placeholders (i.e. DB user password) will fail. Using bean names defers
  * actual object creation until later in the startup process, after all placeholder substitution is completed. However,
  * note that this configurer does support property placeholders of its <em>own</em> properties. The
  * <code>basePackage</code> and bean name properties all support <code>${property}</code> style substitution.
- *
  * Configuration sample:
- *
  * <pre class="code">
  * {@code
  *   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
@@ -67,7 +62,6 @@ import static org.springframework.util.Assert.notNull;
  *   </bean>
  * }
  * </pre>
- *
  * @see MapperFactoryBean
  * @see ClassPathMapperScanner
  * MapperScannerConfigurer 类实现了 BeanDefinitionRegistryPostProcessor 接口，
@@ -124,8 +118,7 @@ public class MapperScannerConfigurer implements BeanDefinitionRegistryPostProces
 	}
 
 	/**
-	 * Set whether enable lazy initialization for mapper bean.
-	 * Default is {@code false}.
+	 * Set whether enable lazy initialization for mapper bean.Default is {@code false}.
 	 * @param lazyInitialization Set the @{code true} to enable
 	 * @since 2.0.2
 	 */
@@ -275,9 +268,7 @@ public class MapperScannerConfigurer implements BeanDefinitionRegistryPostProces
 	 */
 	@Override
 	public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) {
-		if (this.processPropertyPlaceHolders) {
-			processPropertyPlaceHolders();
-		}
+		if (this.processPropertyPlaceHolders) processPropertyPlaceHolders();
 		// 创建ClassPathMapperScanner对象
 		ClassPathMapperScanner scanner = new ClassPathMapperScanner(registry);
 		scanner.setAddToConfig(this.addToConfig);
@@ -316,25 +307,19 @@ public class MapperScannerConfigurer implements BeanDefinitionRegistryPostProces
 			// contains this mapper scanner and post process the factory.
 			DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 			factory.registerBeanDefinition(beanName, mapperScannerBean);
-
 			for (PropertyResourceConfigurer prc : prcs.values()) {
 				prc.postProcessBeanFactory(factory);
 			}
-
 			PropertyValues values = mapperScannerBean.getPropertyValues();
-
 			this.basePackage = updatePropertyValue("basePackage", values);
 			this.sqlSessionFactoryBeanName = updatePropertyValue("sqlSessionFactoryBeanName", values);
 			this.sqlSessionTemplateBeanName = updatePropertyValue("sqlSessionTemplateBeanName", values);
 			this.lazyInitialization = updatePropertyValue("lazyInitialization", values);
 		}
 		this.basePackage = Optional.ofNullable(this.basePackage).map(getEnvironment()::resolvePlaceholders).orElse(null);
-		this.sqlSessionFactoryBeanName = Optional.ofNullable(this.sqlSessionFactoryBeanName)
-				.map(getEnvironment()::resolvePlaceholders).orElse(null);
-		this.sqlSessionTemplateBeanName = Optional.ofNullable(this.sqlSessionTemplateBeanName)
-				.map(getEnvironment()::resolvePlaceholders).orElse(null);
-		this.lazyInitialization = Optional.ofNullable(this.lazyInitialization).map(getEnvironment()::resolvePlaceholders)
-				.orElse(null);
+		this.sqlSessionFactoryBeanName = Optional.ofNullable(this.sqlSessionFactoryBeanName).map(getEnvironment()::resolvePlaceholders).orElse(null);
+		this.sqlSessionTemplateBeanName = Optional.ofNullable(this.sqlSessionTemplateBeanName).map(getEnvironment()::resolvePlaceholders).orElse(null);
+		this.lazyInitialization = Optional.ofNullable(this.lazyInitialization).map(getEnvironment()::resolvePlaceholders).orElse(null);
 	}
 
 	private Environment getEnvironment() {
@@ -343,13 +328,8 @@ public class MapperScannerConfigurer implements BeanDefinitionRegistryPostProces
 
 	private String updatePropertyValue(String propertyName, PropertyValues values) {
 		PropertyValue property = values.getPropertyValue(propertyName);
-
-		if (property == null) {
-			return null;
-		}
-
+		if (property == null) return null;
 		Object value = property.getValue();
-
 		if (value == null) {
 			return null;
 		} else if (value instanceof String) {
