@@ -4,23 +4,21 @@
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="dog" class="com.goat.chapter185.Dog">
+	<bean id="dog" class="com.goat.chapter185.common.Dog">
 		<!-- 指定构造器参数 index对应构造器中参数的位置 -->
 		<!-- 也可以通过指定参数类型，指定参数名称来注入属性-->
 		<constructor-arg index="0" value="小明"/>
 		<constructor-arg index="1" value="3"/>
 	</bean>
 
-	<!-- ===== beanPostProcessor 配置begin =====-->
+	<!-- ===== beanPostProcessor 配置  =====-->
 	<bean id="myBeanPostProcessorOne" class="com.goat.chapter185.MyBeanPostProcessorOne"/>
 	<bean id="myBeanPostProcessorTwo" class="com.goat.chapter185.MyBeanPostProcessorTwo"/>
-	<!-- ===== beanPostProcessor 配置end =====-->
 
-	<!-- ===== beanFactoryPostProcessor 配置begin =====-->
+	<!-- ===== beanFactoryPostProcessor 配置  =====-->
 	<!--注册第一个后置工厂处理器-->
 	<bean id="myBeanFactoryPostProcessorOne" class="com.goat.chapter185.MyBeanFactoryPostProcessorOne"/>
 	<!--注册第二个后置工厂处理器-->
 	<bean id="myBeanFactoryPostProcessorTwo" class="com.goat.chapter185.MyBeanFactoryPostProcessorTwo"/>
-	<!-- ===== beanFactoryPostProcessor 配置end =====-->
 
 </beans>

@@ -2,12 +2,11 @@ package com.goat.chapter185;
 
 /**
  * Created by 64274 on 2019/8/17.
- *
  * @ Description: 继承BeanPostProcessor接口并重写其方法
  * @ author  山羊来了
  * @ date 2019/8/17---20:37
  */
-
+import com.goat.chapter185.common.Dog;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.core.Ordered;

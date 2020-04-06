@@ -472,14 +472,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			prepareBeanFactory(beanFactory);
 			try {
 				/**
-				 *  【这里需要知道 BeanFactoryPostProcessor 这个知识点，Bean 如果实现了此接口，
-				 *  那么在容器初始化以后，Spring 会负责调用里面的 postProcessBeanFactory 方法。】
+				 *  【这里需要知道 BeanFactoryPostProcessor 这个知识点，Bean 如果实现了此接口，那么在容器初始化以后，Spring 会负责调用里面的 postProcessBeanFactory 方法。】
 				 *  这里是提供给子类的扩展点，到这里的时候，所有的 Bean 都加载、注册完成了，但是都还没有初始化
 				 *  具体的子类可以在这步的时候添加一些特殊的 BeanFactoryPostProcessor 的实现类或做点什么事
-				 *
 				 *  Allows post-processing of the bean factory in context subclasses.
-				 *  上一步 prepareBeanFactory(beanFactory) 的 BeanFactory 创建完成后 进行的后置处理。当前为空实现，供子类拓展
-				 *  BeanFactory构建完成之后事件，这个方法没有实现，我们可以实现一个。
+				 *  上一步 prepareBeanFactory(beanFactory) 的 BeanFactory 创建完成后 进行的后置处理。当前为空实现，供子类拓展 BeanFactory构建完成之后事件，这个方法没有实现，我们可以实现一个。
 				*/
 				postProcessBeanFactory(beanFactory);
 				// 以上都是对beanFactory的预准备、创建、后置处理工作 ，以下都是 利用创建好的beanFactory来创建各种组件！
@@ -574,8 +571,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		// Store pre-refresh ApplicationListeners...  保存容器中一些早期的事件
 		if (earlyApplicationListeners == null) {
 			earlyApplicationListeners = new LinkedHashSet<>(applicationListeners);
-		}
-		else {
+		}else {
 			// Reset local application listeners to pre-refresh state.
 			applicationListeners.clear();
 			applicationListeners.addAll(earlyApplicationListeners);
