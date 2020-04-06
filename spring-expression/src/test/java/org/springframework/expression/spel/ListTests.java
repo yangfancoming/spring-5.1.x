@@ -22,7 +22,6 @@ public class ListTests extends AbstractExpressionTests {
 	// if the list is full of literals then it will be of the type unmodifiableClass rather than ArrayList
 	Class<?> unmodifiableClass = Collections.unmodifiableList(new ArrayList<>()).getClass();
 
-
 	@Test
 	public void testInlineListCreation01() {
 		evaluate("{1, 2, 3, 4, 5}", "[1, 2, 3, 4, 5]", unmodifiableClass);

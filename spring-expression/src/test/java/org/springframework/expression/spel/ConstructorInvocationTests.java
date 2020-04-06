@@ -22,8 +22,6 @@ import static org.junit.Assert.*;
 
 /**
  * Tests invocation of constructors.
- *
- * @author Andy Clement
  */
 public class ConstructorInvocationTests extends AbstractExpressionTests {
 
