@@ -10,9 +10,6 @@ import org.springframework.util.ClassUtils;
  * looking for a bean with the same name as the fully-qualified class name.
  * This matches the default name of the bean in a Spring XML file if the
  * bean tag's "id" attribute is not used.
- *
- * @author Rod Johnson
-
  * @since 2.0
  */
 public class ClassNameBeanWiringInfoResolver implements BeanWiringInfoResolver {

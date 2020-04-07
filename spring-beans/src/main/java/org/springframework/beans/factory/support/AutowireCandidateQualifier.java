@@ -9,9 +9,6 @@ import org.springframework.util.Assert;
  * Qualifier for resolving autowire candidates. A bean definition that
  * includes one or more such qualifiers enables fine-grained matching
  * against annotations on a field or parameter to be autowired.
- *
- * @author Mark Fisher
-
  * @since 2.5
  * @see org.springframework.beans.factory.annotation.Qualifier
  */
@@ -25,10 +22,8 @@ public class AutowireCandidateQualifier extends BeanMetadataAttributeAccessor {
 
 	private final String typeName;
 
-
 	/**
-	 * Construct a qualifier to match against an annotation of the
-	 * given type.
+	 * Construct a qualifier to match against an annotation of the given type.
 	 * @param type the annotation type
 	 */
 	public AutowireCandidateQualifier(Class<?> type) {
@@ -36,8 +31,7 @@ public class AutowireCandidateQualifier extends BeanMetadataAttributeAccessor {
 	}
 
 	/**
-	 * Construct a qualifier to match against an annotation of the
-	 * given type name.
+	 * Construct a qualifier to match against an annotation of the given type name.
 	 * The type name may match the fully-qualified class name of
 	 * the annotation or the short class name (without the package).
 	 * @param typeName the name of the annotation type

@@ -12,12 +12,8 @@ import org.springframework.lang.Nullable;
 /**
  * Set of method overrides, determining which, if any, methods on a
  * managed object the Spring IoC container will override at runtime.
- *
  * The currently supported {@link MethodOverride} variants are
  * {@link LookupOverride} and {@link ReplaceOverride}.
- *
- * @author Rod Johnson
-
  * @since 1.1
  * @see MethodOverride
  */
@@ -26,7 +22,6 @@ public class MethodOverrides {
 	private final Set<MethodOverride> overrides = Collections.synchronizedSet(new LinkedHashSet<>(2));
 
 	private volatile boolean modified = false;
-
 
 	/**
 	 * Create new MethodOverrides.
@@ -40,7 +35,6 @@ public class MethodOverrides {
 	public MethodOverrides(MethodOverrides other) {
 		addOverrides(other);
 	}
-
 
 	/**
 	 * Copy all given method overrides into this object.

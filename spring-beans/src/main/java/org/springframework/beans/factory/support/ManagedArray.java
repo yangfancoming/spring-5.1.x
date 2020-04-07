@@ -8,8 +8,6 @@ import org.springframework.util.Assert;
 /**
  * Tag collection class used to hold managed array elements, which may
  * include runtime bean references (to be resolved into bean objects).
- *
-
  * @since 3.0
  */
 @SuppressWarnings("serial")
@@ -18,7 +16,6 @@ public class ManagedArray extends ManagedList<Object> {
 	/** Resolved element type for runtime creation of the target array. */
 	@Nullable
 	volatile Class<?> resolvedElementType;
-
 
 	/**
 	 * Create a new managed array placeholder.

@@ -8,11 +8,8 @@ import java.lang.reflect.Method;
  * Interface to be implemented by classes that can reimplement any method
  * on an IoC-managed object: the <b>Method Injection</b> form of
  * Dependency Injection.
- *
  * Such methods may be (but need not be) abstract, in which case the
  * container will create a concrete subclass to instantiate.
- *
- * @author Rod Johnson
  * @since 1.1
  */
 public interface MethodReplacer {

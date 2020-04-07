@@ -11,9 +11,6 @@ import org.springframework.lang.Nullable;
 /**
  * Tag class which represents a Spring-managed {@link Properties} instance
  * that supports merging of parent/child definitions.
- *
- * @author Rob Harrop
-
  * @since 2.0
  */
 @SuppressWarnings("serial")
@@ -23,7 +20,6 @@ public class ManagedProperties extends Properties implements Mergeable, BeanMeta
 	private Object source;
 
 	private boolean mergeEnabled;
-
 
 	/**
 	 * Set the configuration source {@code Object} for this metadata element.

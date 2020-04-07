@@ -6,8 +6,6 @@ import java.security.AccessControlContext;
 
 /**
  * Provider of the security context of the code running inside the bean factory.
- *
- * @author Costin Leau
  * @since 3.0
  */
 public interface SecurityContextProvider {

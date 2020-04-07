@@ -15,9 +15,6 @@ import org.springframework.util.ObjectUtils;
  *
  * Any non-final method can be overridden, irrespective of its
  * parameters and return types.
- *
- * @author Rod Johnson
-
  * @since 1.1
  */
 public class ReplaceOverride extends MethodOverride {
@@ -25,7 +22,6 @@ public class ReplaceOverride extends MethodOverride {
 	private final String methodReplacerBeanName;
 
 	private List<String> typeIdentifiers = new LinkedList<>();
-
 
 	/**
 	 * Construct a new ReplaceOverride.

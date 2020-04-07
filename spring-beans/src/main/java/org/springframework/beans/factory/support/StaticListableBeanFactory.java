@@ -78,11 +78,9 @@ public class StaticListableBeanFactory implements ListableBeanFactory {
 		this.beans.put(name, bean);
 	}
 
-
 	//---------------------------------------------------------------------
 	// Implementation of BeanFactory interface
 	//---------------------------------------------------------------------
-
 	@Override
 	public Object getBean(String name) throws BeansException {
 		String beanName = BeanFactoryUtils.transformedBeanName(name);

@@ -43,7 +43,6 @@ abstract class AutowireUtils {
 		return Integer.compare(c2pl, c1pl);
 	};
 
-
 	/**
 	 * Sort the given constructors, preferring public constructors and "greedy" ones with
 	 * a maximum number of arguments. The result will contain public constructors first,
@@ -74,9 +73,7 @@ abstract class AutowireUtils {
 	 */
 	public static boolean isExcludedFromDependencyCheck(PropertyDescriptor pd) {
 		Method wm = pd.getWriteMethod();
-		if (wm == null) {
-			return false;
-		}
+		if (wm == null) return false;
 		if (!wm.getDeclaringClass().getName().contains("$$")) {
 			// Not a CGLIB method so it's OK.
 			return false;
@@ -99,8 +96,7 @@ abstract class AutowireUtils {
 		if (setter != null) {
 			Class<?> targetClass = setter.getDeclaringClass();
 			for (Class<?> ifc : interfaces) {
-				if (ifc.isAssignableFrom(targetClass) &&
-						ClassUtils.hasMethod(ifc, setter.getName(), setter.getParameterTypes())) {
+				if (ifc.isAssignableFrom(targetClass) && ClassUtils.hasMethod(ifc, setter.getName(), setter.getParameterTypes())) {
 					return true;
 				}
 			}
@@ -119,10 +115,8 @@ abstract class AutowireUtils {
 		if (autowiringValue instanceof ObjectFactory && !requiredType.isInstance(autowiringValue)) {
 			ObjectFactory<?> factory = (ObjectFactory<?>) autowiringValue;
 			if (autowiringValue instanceof Serializable && requiredType.isInterface()) {
-				autowiringValue = Proxy.newProxyInstance(requiredType.getClassLoader(),
-						new Class<?>[] {requiredType}, new ObjectFactoryDelegatingInvocationHandler(factory));
-			}
-			else {
+				autowiringValue = Proxy.newProxyInstance(requiredType.getClassLoader(),new Class<?>[] {requiredType}, new ObjectFactoryDelegatingInvocationHandler(factory));
+			}else {
 				return factory.getObject();
 			}
 		}
@@ -131,8 +125,7 @@ abstract class AutowireUtils {
 
 	/**
 	 * Determine the target type for the generic return type of the given
-	 * <em>generic factory method</em>, where formal type variables are declared
-	 * on the given method itself.
+	 * <em>generic factory method</em>, where formal type variables are declared on the given method itself.
 	 * For example, given a factory method with the following signature, if
 	 * {@code resolveReturnTypeForFactoryMethod()} is invoked with the reflected
 	 * method for {@code createProxy()} and an {@code Object[]} array containing
@@ -140,7 +133,6 @@ abstract class AutowireUtils {
 	 * infer that the target return type is {@code MyService}.
 	 * <pre class="code">{@code public static <T> T createProxy(Class<T> clazz)}</pre>
 	 * <h4>Possible Return Values</h4>
-	 * <ul>
 	 * <li>the target return type, if it can be inferred</li>
 	 * <li>the {@linkplain Method#getReturnType() standard return type}, if
 	 * the given {@code method} does not declare any {@linkplain
@@ -149,20 +141,14 @@ abstract class AutowireUtils {
 	 * target return type cannot be inferred (e.g., due to type erasure)</li>
 	 * <li>{@code null}, if the length of the given arguments array is shorter
 	 * than the length of the {@linkplain
-	 * Method#getGenericParameterTypes() formal argument list} for the given
-	 * method</li>
-	 * </ul>
+	 * Method#getGenericParameterTypes() formal argument list} for the given method</li>
 	 * @param method the method to introspect (never {@code null})
-	 * @param args the arguments that will be supplied to the method when it is
-	 * invoked (never {@code null})
-	 * @param classLoader the ClassLoader to resolve class names against,
-	 * if necessary (never {@code null})
+	 * @param args the arguments that will be supplied to the method when it is invoked (never {@code null})
+	 * @param classLoader the ClassLoader to resolve class names against,if necessary (never {@code null})
 	 * @return the resolved target return type or the standard method return type
 	 * @since 3.2.5
 	 */
-	public static Class<?> resolveReturnTypeForFactoryMethod(
-			Method method, Object[] args, @Nullable ClassLoader classLoader) {
-
+	public static Class<?> resolveReturnTypeForFactoryMethod(Method method, Object[] args, @Nullable ClassLoader classLoader) {
 		Assert.notNull(method, "Method must not be null");
 		Assert.notNull(args, "Argument array must not be null");
 
@@ -196,32 +182,26 @@ abstract class AutowireUtils {
 							if (resolvedType != null) {
 								return resolvedType;
 							}
+						}catch (ClassNotFoundException ex) {
+							throw new IllegalStateException("Failed to resolve value type [" + typedValue.getTargetTypeName() + "] for factory method argument", ex);
 						}
-						catch (ClassNotFoundException ex) {
-							throw new IllegalStateException("Failed to resolve value type [" +
-									typedValue.getTargetTypeName() + "] for factory method argument", ex);
-						}
-					}
-					else if (arg != null && !(arg instanceof BeanMetadataElement)) {
+					}else if (arg != null && !(arg instanceof BeanMetadataElement)) {
 						// Only consider argument type if it is a simple value...
 						return arg.getClass();
 					}
 					return method.getReturnType();
-				}
-				else if (methodParameterType instanceof ParameterizedType) {
+				}else if (methodParameterType instanceof ParameterizedType) {
 					ParameterizedType parameterizedType = (ParameterizedType) methodParameterType;
 					Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
 					for (Type typeArg : actualTypeArguments) {
 						if (typeArg.equals(genericReturnType)) {
 							if (arg instanceof Class) {
 								return (Class<?>) arg;
-							}
-							else {
+							}else {
 								String className = null;
 								if (arg instanceof String) {
 									className = (String) arg;
-								}
-								else if (arg instanceof TypedStringValue) {
+								}else if (arg instanceof TypedStringValue) {
 									TypedStringValue typedValue = ((TypedStringValue) arg);
 									String targetTypeName = typedValue.getTargetTypeName();
 									if (targetTypeName == null || Class.class.getName().equals(targetTypeName)) {
@@ -231,10 +211,8 @@ abstract class AutowireUtils {
 								if (className != null) {
 									try {
 										return ClassUtils.forName(className, classLoader);
-									}
-									catch (ClassNotFoundException ex) {
-										throw new IllegalStateException("Could not resolve class name [" + arg +
-												"] for factory method argument", ex);
+									}catch (ClassNotFoundException ex) {
+										throw new IllegalStateException("Could not resolve class name [" + arg + "] for factory method argument", ex);
 									}
 								}
 								// Consider adding logic to determine the class of the typeArg, if possible.
@@ -246,7 +224,6 @@ abstract class AutowireUtils {
 				}
 			}
 		}
-
 		// Fall back...
 		return method.getReturnType();
 	}
@@ -270,18 +247,15 @@ abstract class AutowireUtils {
 			if (methodName.equals("equals")) {
 				// Only consider equal when proxies are identical.
 				return (proxy == args[0]);
-			}
-			else if (methodName.equals("hashCode")) {
+			}else if (methodName.equals("hashCode")) {
 				// Use hashCode of proxy.
 				return System.identityHashCode(proxy);
-			}
-			else if (methodName.equals("toString")) {
+			}else if (methodName.equals("toString")) {
 				return this.objectFactory.toString();
 			}
 			try {
 				return method.invoke(this.objectFactory.getObject(), args);
-			}
-			catch (InvocationTargetException ex) {
+			}catch (InvocationTargetException ex) {
 				throw ex.getTargetException();
 			}
 		}

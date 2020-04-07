@@ -10,15 +10,9 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Object representing the override of a method on a managed object by the IoC
- * container.
- *
+ * Object representing the override of a method on a managed object by the IoC container.
  * Note that the override mechanism is <em>not</em> intended as a generic
  * means of inserting crosscutting code: use AOP for that.
- *
- * @author Rod Johnson
-
- * @author Sam Brannen
  * @since 1.1
  */
 public abstract class MethodOverride implements BeanMetadataElement {
@@ -29,7 +23,6 @@ public abstract class MethodOverride implements BeanMetadataElement {
 
 	@Nullable
 	private Object source;
-
 
 	/**
 	 * Construct a new override for the given method.

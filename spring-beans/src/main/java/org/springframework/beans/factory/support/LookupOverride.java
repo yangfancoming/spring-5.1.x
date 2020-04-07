@@ -10,11 +10,7 @@ import org.springframework.util.ObjectUtils;
 
 /**
  * Represents an override of a method that looks up an object in the same IoC context.
- *
  * Methods eligible for lookup override must not have arguments.
- *
- * @author Rod Johnson
-
  * @since 1.1
  */
 public class LookupOverride extends MethodOverride {
@@ -24,7 +20,6 @@ public class LookupOverride extends MethodOverride {
 
 	@Nullable
 	private Method method;
-
 
 	/**
 	 * Construct a new LookupOverride.
@@ -48,7 +43,6 @@ public class LookupOverride extends MethodOverride {
 		this.method = method;
 		this.beanName = beanName;
 	}
-
 
 	/**
 	 * Return the name of the bean that should be returned by this method.
@@ -84,8 +78,7 @@ public class LookupOverride extends MethodOverride {
 			return false;
 		}
 		LookupOverride that = (LookupOverride) other;
-		return (ObjectUtils.nullSafeEquals(this.method, that.method) &&
-				ObjectUtils.nullSafeEquals(this.beanName, that.beanName));
+		return (ObjectUtils.nullSafeEquals(this.method, that.method) && ObjectUtils.nullSafeEquals(this.beanName, that.beanName));
 	}
 
 	@Override

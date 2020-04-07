@@ -36,8 +36,6 @@ import org.springframework.util.StringUtils;
  * Operates on an {@link AbstractBeanFactory} and a plain
  * {@link org.springframework.beans.factory.config.BeanDefinition} object.
  * Used by {@link AbstractAutowireCapableBeanFactory}.
- *
-
  * @since 1.2
  * @see AbstractAutowireCapableBeanFactory
  */
@@ -51,7 +49,6 @@ class BeanDefinitionValueResolver {
 
 	private final TypeConverter typeConverter;
 
-
 	/**
 	 * Create a BeanDefinitionValueResolver for the given BeanFactory and BeanDefinition.
 	 * @param beanFactory the BeanFactory to resolve against
@@ -59,9 +56,7 @@ class BeanDefinitionValueResolver {
 	 * @param beanDefinition the BeanDefinition of the bean that we work on
 	 * @param typeConverter the TypeConverter to use for resolving TypedStringValues
 	 */
-	public BeanDefinitionValueResolver(
-			AbstractBeanFactory beanFactory, String beanName, BeanDefinition beanDefinition, TypeConverter typeConverter) {
-
+	public BeanDefinitionValueResolver(AbstractBeanFactory beanFactory, String beanName, BeanDefinition beanDefinition, TypeConverter typeConverter) {
 		this.beanFactory = beanFactory;
 		this.beanName = beanName;
 		this.beanDefinition = beanDefinition;
@@ -94,29 +89,23 @@ class BeanDefinitionValueResolver {
 		if (value instanceof RuntimeBeanReference) {
 			RuntimeBeanReference ref = (RuntimeBeanReference) value;
 			return resolveReference(argName, ref);
-		}
-		else if (value instanceof RuntimeBeanNameReference) {
+		}else if (value instanceof RuntimeBeanNameReference) {
 			String refName = ((RuntimeBeanNameReference) value).getBeanName();
 			refName = String.valueOf(doEvaluate(refName));
 			if (!this.beanFactory.containsBean(refName)) {
-				throw new BeanDefinitionStoreException(
-						"Invalid bean name '" + refName + "' in bean reference for " + argName);
+				throw new BeanDefinitionStoreException("Invalid bean name '" + refName + "' in bean reference for " + argName);
 			}
 			return refName;
-		}
-		else if (value instanceof BeanDefinitionHolder) {
+		}else if (value instanceof BeanDefinitionHolder) {
 			// Resolve BeanDefinitionHolder: contains BeanDefinition with name and aliases.
 			BeanDefinitionHolder bdHolder = (BeanDefinitionHolder) value;
 			return resolveInnerBean(argName, bdHolder.getBeanName(), bdHolder.getBeanDefinition());
-		}
-		else if (value instanceof BeanDefinition) {
+		}else if (value instanceof BeanDefinition) {
 			// Resolve plain BeanDefinition, without contained name: use dummy name.
 			BeanDefinition bd = (BeanDefinition) value;
-			String innerBeanName = "(inner bean)" + BeanFactoryUtils.GENERATED_BEAN_NAME_SEPARATOR +
-					ObjectUtils.getIdentityHexString(bd);
+			String innerBeanName = "(inner bean)" + BeanFactoryUtils.GENERATED_BEAN_NAME_SEPARATOR + ObjectUtils.getIdentityHexString(bd);
 			return resolveInnerBean(argName, innerBeanName, bd);
-		}
-		else if (value instanceof ManagedArray) {
+		}else if (value instanceof ManagedArray) {
 			// May need to resolve contained runtime references.
 			ManagedArray array = (ManagedArray) value;
 			Class<?> elementType = array.resolvedElementType;
@@ -126,33 +115,25 @@ class BeanDefinitionValueResolver {
 					try {
 						elementType = ClassUtils.forName(elementTypeName, this.beanFactory.getBeanClassLoader());
 						array.resolvedElementType = elementType;
-					}
-					catch (Throwable ex) {
+					}catch (Throwable ex) {
 						// Improve the message by showing the context.
-						throw new BeanCreationException(
-								this.beanDefinition.getResourceDescription(), this.beanName,
-								"Error resolving array type for " + argName, ex);
+						throw new BeanCreationException(this.beanDefinition.getResourceDescription(), this.beanName,"Error resolving array type for " + argName, ex);
 					}
-				}
-				else {
+				}else {
 					elementType = Object.class;
 				}
 			}
 			return resolveManagedArray(argName, (List<?>) value, elementType);
-		}
-		else if (value instanceof ManagedList) {
+		}else if (value instanceof ManagedList) {
 			// May need to resolve contained runtime references.
 			return resolveManagedList(argName, (List<?>) value);
-		}
-		else if (value instanceof ManagedSet) {
+		}else if (value instanceof ManagedSet) {
 			// May need to resolve contained runtime references.
 			return resolveManagedSet(argName, (Set<?>) value);
-		}
-		else if (value instanceof ManagedMap) {
+		}else if (value instanceof ManagedMap) {
 			// May need to resolve contained runtime references.
 			return resolveManagedMap(argName, (Map<?, ?>) value);
-		}
-		else if (value instanceof ManagedProperties) {
+		}else if (value instanceof ManagedProperties) {
 			Properties original = (Properties) value;
 			Properties copy = new Properties();
 			original.forEach((propKey, propValue) -> {
@@ -163,15 +144,12 @@ class BeanDefinitionValueResolver {
 					propValue = evaluate((TypedStringValue) propValue);
 				}
 				if (propKey == null || propValue == null) {
-					throw new BeanCreationException(
-							this.beanDefinition.getResourceDescription(), this.beanName,
-							"Error converting Properties key/value pair for " + argName + ": resolved to null");
+					throw new BeanCreationException(this.beanDefinition.getResourceDescription(), this.beanName,"Error converting Properties key/value pair for " + argName + ": resolved to null");
 				}
 				copy.put(propKey, propValue);
 			});
 			return copy;
-		}
-		else if (value instanceof TypedStringValue) {
+		}else if (value instanceof TypedStringValue) {
 			// Convert value to target type here.
 			TypedStringValue typedStringValue = (TypedStringValue) value;
 			Object valueObject = evaluate(typedStringValue);
@@ -179,22 +157,16 @@ class BeanDefinitionValueResolver {
 				Class<?> resolvedTargetType = resolveTargetType(typedStringValue);
 				if (resolvedTargetType != null) {
 					return this.typeConverter.convertIfNecessary(valueObject, resolvedTargetType);
-				}
-				else {
+				}else {
 					return valueObject;
 				}
-			}
-			catch (Throwable ex) {
+			}catch (Throwable ex) {
 				// Improve the message by showing the context.
-				throw new BeanCreationException(
-						this.beanDefinition.getResourceDescription(), this.beanName,
-						"Error converting typed String value for " + argName, ex);
+				throw new BeanCreationException(this.beanDefinition.getResourceDescription(), this.beanName,"Error converting typed String value for " + argName, ex);
 			}
-		}
-		else if (value instanceof NullBean) {
+		}else if (value instanceof NullBean) {
 			return null;
-		}
-		else {
+		}else {
 			return evaluate(value);
 		}
 	}
@@ -222,8 +194,7 @@ class BeanDefinitionValueResolver {
 	protected Object evaluate(@Nullable Object value) {
 		if (value instanceof String) {
 			return doEvaluate((String) value);
-		}
-		else if (value instanceof String[]) {
+		}else if (value instanceof String[]) {
 			String[] values = (String[]) value;
 			boolean actuallyResolved = false;
 			Object[] resolvedValues = new Object[values.length];
@@ -236,8 +207,7 @@ class BeanDefinitionValueResolver {
 				resolvedValues[i] = resolvedValue;
 			}
 			return (actuallyResolved ? resolvedValues : values);
-		}
-		else {
+		}else {
 			return value;
 		}
 	}
@@ -278,26 +248,17 @@ class BeanDefinitionValueResolver {
 			refName = String.valueOf(doEvaluate(refName));
 			if (ref.isToParent()) {
 				if (this.beanFactory.getParentBeanFactory() == null) {
-					throw new BeanCreationException(
-							this.beanDefinition.getResourceDescription(), this.beanName,
-							"Can't resolve reference to bean '" + refName +
-									"' in parent factory: no parent factory available");
+					throw new BeanCreationException(this.beanDefinition.getResourceDescription(), this.beanName,"Can't resolve reference to bean '" + refName + "' in parent factory: no parent factory available");
 				}
 				bean = this.beanFactory.getParentBeanFactory().getBean(refName);
-			}
-			else {
+			}else {
 				bean = this.beanFactory.getBean(refName);
 				this.beanFactory.registerDependentBean(refName, this.beanName);
 			}
-			if (bean instanceof NullBean) {
-				bean = null;
-			}
+			if (bean instanceof NullBean) bean = null;
 			return bean;
-		}
-		catch (BeansException ex) {
-			throw new BeanCreationException(
-					this.beanDefinition.getResourceDescription(), this.beanName,
-					"Cannot resolve reference to bean '" + ref.getBeanName() + "' while setting " + argName, ex);
+		}catch (BeansException ex) {
+			throw new BeanCreationException(this.beanDefinition.getResourceDescription(), this.beanName,"Cannot resolve reference to bean '" + ref.getBeanName() + "' while setting " + argName, ex);
 		}
 	}
 
@@ -332,8 +293,7 @@ class BeanDefinitionValueResolver {
 			Object innerBean = this.beanFactory.createBean(actualInnerBeanName, mbd, null);
 			if (innerBean instanceof FactoryBean) {
 				boolean synthetic = mbd.isSynthetic();
-				innerBean = this.beanFactory.getObjectFromFactoryBean(
-						(FactoryBean<?>) innerBean, actualInnerBeanName, !synthetic);
+				innerBean = this.beanFactory.getObjectFromFactoryBean((FactoryBean<?>) innerBean, actualInnerBeanName, !synthetic);
 			}
 			if (innerBean instanceof NullBean) {
 				innerBean = null;
@@ -342,10 +302,8 @@ class BeanDefinitionValueResolver {
 		}
 		catch (BeansException ex) {
 			throw new BeanCreationException(
-					this.beanDefinition.getResourceDescription(), this.beanName,
-					"Cannot create inner bean '" + innerBeanName + "' " +
-					(mbd != null && mbd.getBeanClassName() != null ? "of type [" + mbd.getBeanClassName() + "] " : "") +
-					"while setting " + argName, ex);
+					this.beanDefinition.getResourceDescription(), this.beanName,"Cannot create inner bean '" + innerBeanName + "' " +
+					(mbd != null && mbd.getBeanClassName() != null ? "of type [" + mbd.getBeanClassName() + "] " : "") + "while setting " + argName, ex);
 		}
 	}
 

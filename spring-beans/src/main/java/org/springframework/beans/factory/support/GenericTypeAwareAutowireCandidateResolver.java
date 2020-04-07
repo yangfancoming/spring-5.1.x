@@ -18,22 +18,16 @@ import org.springframework.util.ClassUtils;
 
 /**
  * Basic {@link AutowireCandidateResolver} that performs a full generic type
- * match with the candidate's type if the dependency is declared as a generic type
- * (e.g. Repository&lt;Customer&gt;).
- *
+ * match with the candidate's type if the dependency is declared as a generic type (e.g. Repository&lt;Customer&gt;).
  * This is the base class for
  * {@link org.springframework.beans.factory.annotation.QualifierAnnotationAutowireCandidateResolver},
  * providing an implementation all non-annotation-based resolution steps at this level.
- *
-
  * @since 4.0
  */
-public class GenericTypeAwareAutowireCandidateResolver extends SimpleAutowireCandidateResolver
-		implements BeanFactoryAware {
+public class GenericTypeAwareAutowireCandidateResolver extends SimpleAutowireCandidateResolver implements BeanFactoryAware {
 
 	@Nullable
 	private BeanFactory beanFactory;
-
 
 	@Override
 	public void setBeanFactory(BeanFactory beanFactory) {
@@ -44,7 +38,6 @@ public class GenericTypeAwareAutowireCandidateResolver extends SimpleAutowireCan
 	protected final BeanFactory getBeanFactory() {
 		return this.beanFactory;
 	}
-
 
 	@Override
 	public boolean isAutowireCandidate(BeanDefinitionHolder bdHolder, DependencyDescriptor descriptor) {
@@ -108,9 +101,7 @@ public class GenericTypeAwareAutowireCandidateResolver extends SimpleAutowireCan
 			}
 		}
 
-		if (targetType == null) {
-			return true;
-		}
+		if (targetType == null) return true;
 		if (cacheType) {
 			rbd.targetType = targetType;
 		}

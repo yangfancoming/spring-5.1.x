@@ -24,11 +24,6 @@ import org.springframework.util.ClassUtils;
  * {@link BeanWiringInfoResolver} interface. The default implementation looks for
  * a bean with the same name as the fully-qualified class name. (This is the default
  * name of the bean in a Spring XML file if the '{@code id}' attribute is not used.)
-
- * @author Rob Harrop
- * @author Rod Johnson
-
- * @author Adrian Colyer
  * @since 2.0
  * @see #setBeanWiringInfoResolver
  * @see ClassNameBeanWiringInfoResolver
@@ -43,7 +38,6 @@ public class BeanConfigurerSupport implements BeanFactoryAware, InitializingBean
 
 	@Nullable
 	private volatile ConfigurableListableBeanFactory beanFactory;
-
 
 	/**
 	 * Set the {@link BeanWiringInfoResolver} to use.
@@ -63,8 +57,7 @@ public class BeanConfigurerSupport implements BeanFactoryAware, InitializingBean
 	@Override
 	public void setBeanFactory(BeanFactory beanFactory) {
 		if (!(beanFactory instanceof ConfigurableListableBeanFactory)) {
-			throw new IllegalArgumentException(
-				"Bean configurer aspect needs to run in a ConfigurableListableBeanFactory: " + beanFactory);
+			throw new IllegalArgumentException("Bean configurer aspect needs to run in a ConfigurableListableBeanFactory: " + beanFactory);
 		}
 		this.beanFactory = (ConfigurableListableBeanFactory) beanFactory;
 		if (this.beanWiringInfoResolver == null) {
@@ -126,18 +119,15 @@ public class BeanConfigurerSupport implements BeanFactoryAware, InitializingBean
 			return;
 		}
 
-
 		ConfigurableListableBeanFactory beanFactory = this.beanFactory;
 		Assert.state(beanFactory != null, "No BeanFactory available");
 		try {
 			String beanName = bwi.getBeanName();
-			if (bwi.indicatesAutowiring() || (bwi.isDefaultBeanName() && beanName != null &&
-					!beanFactory.containsBean(beanName))) {
+			if (bwi.indicatesAutowiring() || (bwi.isDefaultBeanName() && beanName != null && !beanFactory.containsBean(beanName))) {
 				// Perform autowiring (also applying standard factory / post-processor callbacks).
 				beanFactory.autowireBeanProperties(beanInstance, bwi.getAutowireMode(), bwi.getDependencyCheck());
 				beanFactory.initializeBean(beanInstance, (beanName != null ? beanName : ""));
-			}
-			else {
+			}else {
 				// Perform explicit wiring based on the specified bean definition.
 				beanFactory.configureBean(beanInstance, (beanName != null ? beanName : ""));
 			}
@@ -149,10 +139,8 @@ public class BeanConfigurerSupport implements BeanFactoryAware, InitializingBean
 				String bceBeanName = bce.getBeanName();
 				if (bceBeanName != null && beanFactory.isCurrentlyInCreation(bceBeanName)) {
 					if (logger.isDebugEnabled()) {
-						logger.debug("Failed to create target bean '" + bce.getBeanName() +
-								"' while configuring object of type [" + beanInstance.getClass().getName() +
-								"] - probably due to a circular reference. This is a common startup situation " +
-								"and usually not fatal. Proceeding without injection. Original exception: " + ex);
+						logger.debug("Failed to create target bean '" + bce.getBeanName() + "' while configuring object of type [" + beanInstance.getClass().getName() +
+								"] - probably due to a circular reference. This is a common startup situation and usually not fatal. Proceeding without injection. Original exception: " + ex);
 					}
 					return;
 				}

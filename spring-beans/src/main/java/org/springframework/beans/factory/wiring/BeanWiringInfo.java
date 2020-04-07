@@ -10,9 +10,6 @@ import org.springframework.util.Assert;
  * Holder for bean wiring metadata information about a particular class. Used in
  * conjunction with the {@link org.springframework.beans.factory.annotation.Configurable}
  * annotation and the AspectJ {@code AnnotationBeanConfigurerAspect}.
- *
- * @author Rod Johnson
-
  * @since 2.0
  * @see BeanWiringInfoResolver
  * @see org.springframework.beans.factory.config.AutowireCapableBeanFactory

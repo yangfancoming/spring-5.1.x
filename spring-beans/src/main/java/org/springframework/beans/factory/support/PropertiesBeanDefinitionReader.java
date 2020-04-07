@@ -408,13 +408,11 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 					if (property.endsWith(REF_SUFFIX)) {
 						int index = Integer.parseInt(property.substring(1, property.length() - REF_SUFFIX.length()));
 						cas.addIndexedArgumentValue(index, new RuntimeBeanReference(entry.getValue().toString()));
-					}
-					else {
+					}else {
 						int index = Integer.parseInt(property.substring(1));
 						cas.addIndexedArgumentValue(index, readValue(entry));
 					}
-				}
-				else if (property.endsWith(REF_SUFFIX)) {
+				}else if (property.endsWith(REF_SUFFIX)) {
 					// This isn't a real property, but a reference to another prototype
 					// Extract property name: property is of form dog(ref)
 					property = property.substring(0, property.length() - REF_SUFFIX.length());
@@ -424,17 +422,14 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 					// this will ensure that the reference is resolved at runtime.
 					Object val = new RuntimeBeanReference(ref);
 					pvs.add(property, val);
-				}
-				else {
+				}else {
 					// It's a normal bean property.
 					pvs.add(property, readValue(entry));
 				}
 			}
 		}
 
-		if (logger.isTraceEnabled()) {
-			logger.trace("Registering bean definition for bean name '" + beanName + "' with " + pvs);
-		}
+		if (logger.isTraceEnabled()) logger.trace("Registering bean definition for bean name '" + beanName + "' with " + pvs);
 		// Just use default parent if we're not dealing with the parent itself,
 		// and if there's no class name specified. The latter has to happen for
 		// backwards compatibility reasons.
@@ -450,11 +445,9 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 			bd.setConstructorArgumentValues(cas);
 			bd.setPropertyValues(pvs);
 			getRegistry().registerBeanDefinition(beanName, bd);
-		}
-		catch (ClassNotFoundException ex) {
+		}catch (ClassNotFoundException ex) {
 			throw new CannotLoadBeanClassException(resourceDescription, beanName, className, ex);
-		}
-		catch (LinkageError err) {
+		}catch (LinkageError err) {
 			throw new CannotLoadBeanClassException(resourceDescription, beanName, className, err);
 		}
 	}

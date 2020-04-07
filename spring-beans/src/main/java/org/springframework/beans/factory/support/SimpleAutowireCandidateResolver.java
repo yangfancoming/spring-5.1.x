@@ -9,9 +9,6 @@ import org.springframework.lang.Nullable;
 /**
  * {@link AutowireCandidateResolver} implementation to use when no annotation
  * support is available. This implementation checks the bean definition only.
- *
- * @author Mark Fisher
-
  * @since 2.5
  */
 public class SimpleAutowireCandidateResolver implements AutowireCandidateResolver {

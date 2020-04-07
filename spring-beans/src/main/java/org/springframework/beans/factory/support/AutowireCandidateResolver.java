@@ -9,9 +9,6 @@ import org.springframework.lang.Nullable;
 /**
  * Strategy interface for determining whether a specific bean definition
  * qualifies as an autowire candidate for a specific dependency.
- *
-
- * @author Mark Fisher
  * @since 2.5
  */
 public interface AutowireCandidateResolver {
