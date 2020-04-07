@@ -106,7 +106,6 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 		return getEnvironment().resolveRequiredPlaceholders(path);
 	}
 
-
 	@Override
 	public void setId(String id) {
 		super.setId(id);

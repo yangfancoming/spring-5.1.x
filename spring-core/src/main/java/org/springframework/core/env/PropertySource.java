@@ -10,27 +10,19 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Abstract base class representing a source of name/value property pairs. The underlying
- * {@linkplain #getSource() source object} may be of any type {@code T} that encapsulates
- * properties. Examples include {@link java.util.Properties} objects, {@link java.util.Map}
- * objects, {@code ServletContext} and {@code ServletConfig} objects (for access to init
- * parameters). Explore the {@code PropertySource} type hierarchy to see provided
- * implementations.
- *
- * {@code PropertySource} objects are not typically used in isolation, but rather
- * through a {@link PropertySources} object, which aggregates property sources and in
- * conjunction with a {@link PropertyResolver} implementation that can perform
+ * Abstract base class representing a source of name/value property pairs.
+ * The underlying {@linkplain #getSource() source object} may be of any type {@code T} that encapsulates properties.
+ * Examples include {@link java.util.Properties} objects, {@link java.util.Map} objects, {@code ServletContext} and {@code ServletConfig} objects (for access to init parameters).
+ * Explore the {@code PropertySource} type hierarchy to see provided implementations.
+ * {@code PropertySource} objects are not typically used in isolation, but rather through a {@link PropertySources} object,
+ * which aggregates property sources and in  conjunction with a {@link PropertyResolver} implementation that can perform
  * precedence-based searches across the set of {@code PropertySources}.
- *
  * {@code PropertySource} identity is determined not based on the content of
- * encapsulated properties, but rather based on the {@link #getName() name} of the
- * {@code PropertySource} alone. This is useful for manipulating {@code PropertySource}
- * objects when in collection contexts. See operations in {@link MutablePropertySources}
- * as well as the {@link #named(String)} and {@link #toString()} methods for details.
+ * encapsulated properties, but rather based on the {@link #getName() name} of the {@code PropertySource} alone.
+ * This is useful for manipulating {@code PropertySource} objects when in collection contexts.
+ * See operations in {@link MutablePropertySources} as well as the {@link #named(String)} and {@link #toString()} methods for details.
  *
- * Note that when working with @{@link
- * org.springframework.context.annotation.Configuration Configuration} classes that
- * the @{@link org.springframework.context.annotation.PropertySource PropertySource}
+ * Note that when working with @{@link org.springframework.context.annotation.Configuration Configuration} classes that the @{@link org.springframework.context.annotation.PropertySource PropertySource}
  * annotation provides a convenient and declarative way of adding property sources to the enclosing {@code Environment}.
  * @since 3.1
  * @param <T> the source type
@@ -59,8 +51,7 @@ public abstract class PropertySource<T> {
 	}
 
 	/**
-	 * Create a new {@code PropertySource} with the given name and with a new
-	 * {@code Object} instance as the underlying source.
+	 * Create a new {@code PropertySource} with the given name and with a new {@code Object} instance as the underlying source.
 	 * Often useful in testing scenarios when creating anonymous implementations
 	 * that never query an actual source but rather return hard-coded values.
 	 */
@@ -68,7 +59,6 @@ public abstract class PropertySource<T> {
 	public PropertySource(String name) {
 		this(name, (T) new Object());
 	}
-
 
 	/**
 	 * Return the name of this {@code PropertySource}.
@@ -86,8 +76,8 @@ public abstract class PropertySource<T> {
 
 	/**
 	 * Return whether this {@code PropertySource} contains the given name.
-	 * This implementation simply checks for a {@code null} return value
-	 * from {@link #getProperty(String)}. Subclasses may wish to implement  a more efficient algorithm if possible.
+	 * This implementation simply checks for a {@code null} return value from {@link #getProperty(String)}.
+	 * Subclasses may wish to implement  a more efficient algorithm if possible.
 	 * @param name the property name to find
 	 */
 	public boolean containsProperty(String name) {
@@ -115,8 +105,7 @@ public abstract class PropertySource<T> {
 	}
 
 	/**
-	 * Return a hash code derived from the {@code name} property
-	 * of this {@code PropertySource} object.
+	 * Return a hash code derived from the {@code name} property of this {@code PropertySource} object.
 	 */
 	@Override
 	public int hashCode() {
@@ -124,11 +113,9 @@ public abstract class PropertySource<T> {
 	}
 
 	/**
-	 * Produce concise output (type and name) if the current log level does not include
-	 * debug. If debug is enabled, produce verbose output including the hash code of the
-	 * PropertySource instance and every name/value property pair.
-	 * This variable verbosity is useful as a property source such as system properties
-	 * or environment variables may contain an arbitrary number of property pairs,
+	 * Produce concise output (type and name) if the current log level does not include debug.
+	 * If debug is enabled, produce verbose output including the hash code of the PropertySource instance and every name/value property pair.
+	 * This variable verbosity is useful as a property source such as system properties or environment variables may contain an arbitrary number of property pairs,
 	 * potentially leading to difficult to read exception and log messages.
 	 * @see Log#isDebugEnabled()
 	 */
@@ -143,16 +130,13 @@ public abstract class PropertySource<T> {
 
 	/**
 	 * Return a {@code PropertySource} implementation intended for collection comparison purposes only.
-	 * Primarily for internal use, but given a collection of {@code PropertySource} objects, may be
-	 * used as follows:
-	 * <pre class="code">
+	 * Primarily for internal use, but given a collection of {@code PropertySource} objects, may be used as follows:
 	 * {@code List<PropertySource<?>> sources = new ArrayList<PropertySource<?>>();
 	 * sources.add(new MapPropertySource("sourceA", mapA));
 	 * sources.add(new MapPropertySource("sourceB", mapB));
 	 * assert sources.contains(PropertySource.named("sourceA"));
 	 * assert sources.contains(PropertySource.named("sourceB"));
 	 * assert !sources.contains(PropertySource.named("sourceC"));
-	 * }</pre>
 	 * The returned {@code PropertySource} will throw {@code UnsupportedOperationException}
 	 * if any methods other than {@code equals(Object)}, {@code hashCode()}, and {@code toString()} are called.
 	 * @param name the name of the comparison {@code PropertySource} to be created and returned.
@@ -161,11 +145,9 @@ public abstract class PropertySource<T> {
 		return new ComparisonPropertySource(name);
 	}
 
-
 	/**
-	 * {@code PropertySource} to be used as a placeholder in cases where an actual
-	 * property source cannot be eagerly initialized at application context
-	 * creation time.  For example, a {@code ServletContext}-based property source
+	 * {@code PropertySource} to be used as a placeholder in cases where an actual  property source cannot be eagerly initialized at application context creation time.
+	 * For example, a {@code ServletContext}-based property source
 	 * must wait until the {@code ServletContext} object is available to its enclosing
 	 * {@code ApplicationContext}.  In such cases, a stub should be used to hold the
 	 * intended default position/order of the property source, then be replaced during context refresh.
@@ -174,11 +156,9 @@ public abstract class PropertySource<T> {
 	 * @see org.springframework.web.context.support.ServletContextPropertySource
 	 */
 	public static class StubPropertySource extends PropertySource<Object> {
-
 		public StubPropertySource(String name) {
 			super(name, new Object());
 		}
-
 		/**
 		 * Always returns {@code null}.
 		 */

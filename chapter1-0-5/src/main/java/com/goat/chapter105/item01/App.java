@@ -33,7 +33,6 @@ public class App extends BaseTest {
 	 */
 	@Test
 	public void test1(){
-		logger.debug("goat - debug");
 		ApplicationContext ac = new ClassPathXmlApplicationContext("component-scan.xml");
 		look(ac);
 	}

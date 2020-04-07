@@ -13,12 +13,10 @@ import org.springframework.lang.Nullable;
 
 /**
  * The default implementation of the {@link PropertySources} interface.
- * Allows manipulation of contained property sources and provides a constructor
- * for copying an existing {@code PropertySources} instance.
+ * Allows manipulation of contained property sources and provides a constructor for copying an existing {@code PropertySources} instance.
  *
- * Where <em>precedence</em> is mentioned in methods such as {@link #addFirst}
- * and {@link #addLast}, this is with regard to the order in which property sources
- * will be searched when resolving a given property with a {@link PropertyResolver}.
+ * Where <em>precedence</em> is mentioned in methods such as {@link #addFirst} and {@link #addLast},
+ * this is with regard to the order in which property sources will be searched when resolving a given property with a {@link PropertyResolver}.
  * @since 3.1
  * @see PropertySourcesPropertyResolver
  */
@@ -70,7 +68,6 @@ public class MutablePropertySources implements PropertySources {
 		return (index != -1 ? this.propertySourceList.get(index) : null);
 	}
 
-
 	/**
 	 * Add the given property source object with highest precedence.
 	 */
@@ -99,8 +96,7 @@ public class MutablePropertySources implements PropertySources {
 	}
 
 	/**
-	 * Add the given property source object with precedence immediately lower
-	 * than the named relative property source.
+	 * Add the given property source object with precedence immediately lower than the named relative property source.
 	 */
 	public void addAfter(String relativePropertySourceName, PropertySource<?> propertySource) {
 		assertLegalRelativeAddition(relativePropertySourceName, propertySource);
@@ -156,8 +152,7 @@ public class MutablePropertySources implements PropertySources {
 	protected void assertLegalRelativeAddition(String relativePropertySourceName, PropertySource<?> propertySource) {
 		String newPropertySourceName = propertySource.getName();
 		if (relativePropertySourceName.equals(newPropertySourceName)) {
-			throw new IllegalArgumentException(
-					"PropertySource named '" + newPropertySourceName + "' cannot be added relative to itself");
+			throw new IllegalArgumentException("PropertySource named '" + newPropertySourceName + "' cannot be added relative to itself");
 		}
 	}
 

@@ -11,10 +11,6 @@ import org.springframework.mock.env.MockPropertySource;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-/**
-
-
- */
 public class MutablePropertySourcesTests {
 
 	@Test

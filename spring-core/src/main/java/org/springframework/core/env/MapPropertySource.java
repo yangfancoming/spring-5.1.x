@@ -18,7 +18,6 @@ public class MapPropertySource extends EnumerablePropertySource<Map<String, Obje
 		super(name, source);
 	}
 
-
 	@Override
 	@Nullable
 	public Object getProperty(String name) {

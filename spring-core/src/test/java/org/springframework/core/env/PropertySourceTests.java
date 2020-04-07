@@ -15,7 +15,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link PropertySource} implementations.
-
  * @since 3.1
  */
 public class PropertySourceTests {
