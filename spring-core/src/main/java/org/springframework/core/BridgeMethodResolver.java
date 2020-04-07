@@ -22,20 +22,14 @@ import org.springframework.util.ReflectionUtils;
  * invocation the bridge {@link Method} may be invoked and/or used via reflection.
  * When attempting to locate annotations on {@link Method Methods}, it is wise to check
  * for bridge {@link Method Methods} as appropriate and find the bridged {@link Method}.
- *
  * See <a href="https://java.sun.com/docs/books/jls/third_edition/html/expressions.html#15.12.4.5">
  * The Java Language Specification</a> for more details on the use of bridge methods.
- *
- * @author Rob Harrop
-
- * @author Phillip Webb
  * @since 2.0
  */
 public final class BridgeMethodResolver {
 
 	private BridgeMethodResolver() {
 	}
-
 
 	/**
 	 * Find the original method for the supplied {@link Method bridge Method}.
@@ -59,19 +53,16 @@ public final class BridgeMethodResolver {
 				candidateMethods.add(candidateMethod);
 			}
 		}
-
 		// Now perform simple quick check.
 		if (candidateMethods.size() == 1) {
 			return candidateMethods.get(0);
 		}
-
 		// Search for candidate match.
 		Method bridgedMethod = searchCandidates(candidateMethods, bridgeMethod);
 		if (bridgedMethod != null) {
 			// Bridged method found...
 			return bridgedMethod;
-		}
-		else {
+		}else {
 			// A bridge method was passed in but we couldn't find the bridged method.
 			// Let's proceed with the passed-in method and hope for the best...
 			return bridgeMethod;
@@ -98,18 +89,14 @@ public final class BridgeMethodResolver {
 	 */
 	@Nullable
 	private static Method searchCandidates(List<Method> candidateMethods, Method bridgeMethod) {
-		if (candidateMethods.isEmpty()) {
-			return null;
-		}
+		if (candidateMethods.isEmpty()) return null;
 		Method previousMethod = null;
 		boolean sameSig = true;
 		for (Method candidateMethod : candidateMethods) {
 			if (isBridgeMethodFor(bridgeMethod, candidateMethod, bridgeMethod.getDeclaringClass())) {
 				return candidateMethod;
-			}
-			else if (previousMethod != null) {
-				sameSig = sameSig &&
-						Arrays.equals(candidateMethod.getGenericParameterTypes(), previousMethod.getGenericParameterTypes());
+			}else if (previousMethod != null) {
+				sameSig = sameSig && Arrays.equals(candidateMethod.getGenericParameterTypes(), previousMethod.getGenericParameterTypes());
 			}
 			previousMethod = candidateMethod;
 		}
@@ -221,8 +208,7 @@ public final class BridgeMethodResolver {
 		if (bridgeMethod == bridgedMethod) {
 			return true;
 		}
-		return (bridgeMethod.getReturnType().equals(bridgedMethod.getReturnType()) &&
-				Arrays.equals(bridgeMethod.getParameterTypes(), bridgedMethod.getParameterTypes()));
+		return (bridgeMethod.getReturnType().equals(bridgedMethod.getReturnType()) && Arrays.equals(bridgeMethod.getParameterTypes(), bridgedMethod.getParameterTypes()));
 	}
 
 }

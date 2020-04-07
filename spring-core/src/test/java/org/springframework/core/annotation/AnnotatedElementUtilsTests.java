@@ -808,11 +808,8 @@ public class AnnotatedElementUtilsTests {
 	@Target({ElementType.TYPE, ElementType.METHOD})
 	@Inherited
 	@interface Transactional {
-
 		String value() default "";
-
 		String qualifier() default "transactionManager";
-
 		boolean readOnly() default false;
 	}
 

@@ -106,18 +106,14 @@ public class ConventionsTests {
 		return Arrays.stream(TestBean.class.getMethods())
 				.filter(method -> method.getReturnType().equals(returnType))
 				.findFirst()
-				.orElseThrow(() ->
-						new IllegalArgumentException("Unique return type not found: " + returnType));
+				.orElseThrow(() -> new IllegalArgumentException("Unique return type not found: " + returnType));
 	}
 
 
 	@SuppressWarnings("unused")
 	private static class TestBean {
 
-		public void handle(TestObject to,
-				List<TestObject> toList, Set<TestObject> toSet,
-				Mono<TestObject> toMono, Flux<TestObject> toFlux,
-				Single<TestObject> toSingle, Observable<TestObject> toObservable) { }
+		public void handle(TestObject to,List<TestObject> toList, Set<TestObject> toSet,Mono<TestObject> toMono, Flux<TestObject> toFlux,Single<TestObject> toSingle, Observable<TestObject> toObservable) { }
 
 		public TestObject handleTo() { return null; }
 

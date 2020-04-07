@@ -203,25 +203,19 @@ public class AnnotationAttributesTests {
 		aliases.stream().forEach(alias -> assertArrayEquals(new String[] {""}, attributes.getStringArray(alias)));
 	}
 
-
 	enum Color {
 
 		RED, WHITE, BLUE
 	}
 
-
 	@Retention(RetentionPolicy.RUNTIME)
 	@interface Filter {
-
 		@AliasFor(attribute = "classes")
 		Class<?>[] value() default {};
-
 		@AliasFor(attribute = "value")
 		Class<?>[] classes() default {};
-
 		String pattern();
 	}
-
 
 	@Filter(pattern = "foo")
 	static class FilteredClass {

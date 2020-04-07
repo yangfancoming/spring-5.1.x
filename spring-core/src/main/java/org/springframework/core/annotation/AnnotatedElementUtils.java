@@ -120,8 +120,7 @@ public abstract class AnnotatedElementUtils {
 	/**
 	 * Get the fully qualified class names of all meta-annotation types
 	 * <em>present</em> on the annotation (of the specified {@code annotationType}) on the supplied {@link AnnotatedElement}.
-	 * This method follows <em>get semantics</em> as described in the
-	 * {@linkplain AnnotatedElementUtils class-level javadoc}.
+	 * This method follows <em>get semantics</em> as described in the {@linkplain AnnotatedElementUtils class-level javadoc}.
 	 * @param element the annotated element
 	 * @param annotationType the annotation type on which to find meta-annotations
 	 * @return the names of all meta-annotations present on the annotation,or {@code null} if not found
@@ -135,8 +134,7 @@ public abstract class AnnotatedElementUtils {
 
 	/**
 	 * Get the fully qualified class names of all meta-annotation
-	 * types <em>present</em> on the annotation (of the specified
-	 * {@code annotationName}) on the supplied {@link AnnotatedElement}.
+	 * types <em>present</em> on the annotation (of the specified {@code annotationName}) on the supplied {@link AnnotatedElement}.
 	 * This method follows <em>get semantics</em> as described in the {@linkplain AnnotatedElementUtils class-level javadoc}.
 	 * @param element the annotated element
 	 * @param annotationName the fully qualified class name of the annotation type on which to find meta-annotations
@@ -150,7 +148,6 @@ public abstract class AnnotatedElementUtils {
 
 	private static Set<String> getMetaAnnotationTypes(AnnotatedElement element, @Nullable Annotation composed) {
 		if (composed == null) return Collections.emptySet();
-
 		try {
 			final Set<String> types = new LinkedHashSet<>();
 			searchWithGetSemantics(composed.annotationType(), Collections.emptySet(), null, null, new SimpleAnnotationProcessor<Object>(true) {
@@ -799,7 +796,6 @@ public abstract class AnnotatedElementUtils {
 	@Nullable
 	private static <T> T searchWithGetSemantics(AnnotatedElement element,Set<Class<? extends Annotation>> annotationTypes, @Nullable String annotationName,
 			@Nullable Class<? extends Annotation> containerType, Processor<T> processor,Set<AnnotatedElement> visited, int metaDepth) {
-
 		if (visited.add(element)) {
 			try {
 				// Start searching within locally declared annotations
@@ -918,13 +914,10 @@ public abstract class AnnotatedElementUtils {
 	 * @since 4.3
 	 */
 	@Nullable
-	private static <T> T searchWithFindSemantics(AnnotatedElement element,
-			Set<Class<? extends Annotation>> annotationTypes, @Nullable String annotationName,@Nullable Class<? extends Annotation> containerType, Processor<T> processor) {
-
+	private static <T> T searchWithFindSemantics(AnnotatedElement element,Set<Class<? extends Annotation>> annotationTypes, @Nullable String annotationName,@Nullable Class<? extends Annotation> containerType, Processor<T> processor) {
 		if (containerType != null && !processor.aggregates()) {
 			throw new IllegalArgumentException("Searches for repeatable annotations must supply an aggregating Processor");
 		}
-
 		try {
 			return searchWithFindSemantics(element, annotationTypes, annotationName, containerType, processor, new HashSet<>(), 0);
 		}catch (Throwable ex) {
@@ -948,8 +941,7 @@ public abstract class AnnotatedElementUtils {
 	 * @since 4.2
 	 */
 	@Nullable
-	private static <T> T searchWithFindSemantics(AnnotatedElement element,
-			Set<Class<? extends Annotation>> annotationTypes, @Nullable String annotationName,
+	private static <T> T searchWithFindSemantics(AnnotatedElement element,Set<Class<? extends Annotation>> annotationTypes, @Nullable String annotationName,
 			@Nullable Class<? extends Annotation> containerType, Processor<T> processor,Set<AnnotatedElement> visited, int metaDepth) {
 
 		if (visited.add(element)) {

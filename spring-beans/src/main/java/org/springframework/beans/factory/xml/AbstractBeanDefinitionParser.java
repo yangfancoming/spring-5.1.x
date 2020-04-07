@@ -88,13 +88,10 @@ public abstract class AbstractBeanDefinitionParser implements BeanDefinitionPars
 	 * @throws BeanDefinitionStoreException if no unique name could be generated
 	 * for the given bean definition
 	 */
-	protected String resolveId(Element element, AbstractBeanDefinition definition, ParserContext parserContext)
-			throws BeanDefinitionStoreException {
-
+	protected String resolveId(Element element, AbstractBeanDefinition definition, ParserContext parserContext) throws BeanDefinitionStoreException {
 		if (shouldGenerateId()) {
 			return parserContext.getReaderContext().generateBeanName(definition);
-		}
-		else {
+		}else {
 			String id = element.getAttribute(ID_ATTRIBUTE);
 			if (!StringUtils.hasText(id) && shouldGenerateIdAsFallback()) {
 				id = parserContext.getReaderContext().generateBeanName(definition);

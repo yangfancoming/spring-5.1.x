@@ -12,8 +12,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * Provides methods to support various naming and other conventions used
- * throughout the framework. Mainly for internal use within the framework.
+ * Provides methods to support various naming and other conventions used throughout the framework. Mainly for internal use within the framework.
  * @since 2.0
  */
 public final class Conventions {
@@ -27,16 +26,14 @@ public final class Conventions {
 	}
 
 	/**
-	 * Determine the conventional variable name for the supplied {@code Object}
-	 * based on its concrete type. The convention used is to return the
-	 * un-capitalized short name of the {@code Class}, according to JavaBeans property naming rules.
-	 * For example:<br>
+	 * Determine the conventional variable name for the supplied {@code Object} based on its concrete type.
+	 * The convention used is to return the un-capitalized short name of the {@code Class}, according to JavaBeans property naming rules.
+	 * For example:
 	 * {@code com.myapp.Product} becomes {@code "product"}<br>
 	 * {@code com.myapp.MyProduct} becomes {@code "myProduct"}<br>
 	 * {@code com.myapp.UKProduct} becomes {@code "UKProduct"}<br>
 	 * For arrays the pluralized version of the array component type is used.
-	 * For {@code Collection}s an attempt is made to 'peek ahead' to determine
-	 * the component type and return its pluralized version.
+	 * For {@code Collection}s an attempt is made to 'peek ahead' to determine the component type and return its pluralized version.
 	 * @param value the value to generate a variable name for
 	 * @return the generated variable name
 	 */
@@ -48,8 +45,7 @@ public final class Conventions {
 		if (value.getClass().isArray()) {
 			valueClass = value.getClass().getComponentType();
 			pluralize = true;
-		}
-		else if (value instanceof Collection) {
+		}else if (value instanceof Collection) {
 			Collection<?> collection = (Collection<?>) value;
 			if (collection.isEmpty()) {
 				throw new IllegalArgumentException("Cannot generate variable name for an empty Collection");
@@ -82,15 +78,13 @@ public final class Conventions {
 		if (parameter.getParameterType().isArray()) {
 			valueClass = parameter.getParameterType().getComponentType();
 			pluralize = true;
-		}
-		else if (Collection.class.isAssignableFrom(parameter.getParameterType())) {
+		}else if (Collection.class.isAssignableFrom(parameter.getParameterType())) {
 			valueClass = ResolvableType.forMethodParameter(parameter).asCollection().resolveGeneric();
 			if (valueClass == null) {
 				throw new IllegalArgumentException("Cannot generate variable name for non-typed Collection parameter type");
 			}
 			pluralize = true;
-		}
-		else {
+		}else {
 			valueClass = parameter.getParameterType();
 			ReactiveAdapter adapter = ReactiveAdapterRegistry.getSharedInstance().getAdapter(valueClass);
 			if (adapter != null && !adapter.getDescriptor().isNoValue()) {
@@ -98,7 +92,6 @@ public final class Conventions {
 				valueClass = parameter.nested().getNestedParameterType();
 			}
 		}
-
 		String name = ClassUtils.getShortNameAsProperty(valueClass);
 		return (pluralize ? pluralize(name) : name + reactiveSuffix);
 	}
@@ -237,8 +230,7 @@ public final class Conventions {
 					return ifc;
 				}
 			}
-		}
-		else if (valueClass.getName().lastIndexOf('$') != -1 && valueClass.getDeclaringClass() == null) {
+		}else if (valueClass.getName().lastIndexOf('$') != -1 && valueClass.getDeclaringClass() == null) {
 			// '$' in the class name but no inner class -
 			// assuming it's a special subclass (e.g. by OpenJPA)
 			valueClass = valueClass.getSuperclass();

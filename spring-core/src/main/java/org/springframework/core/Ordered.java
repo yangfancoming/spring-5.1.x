@@ -13,7 +13,6 @@ package org.springframework.core;
  * objects always apply before same order values expressed by <em>plain</em> {@link Ordered} objects.
  *
  * Consult the Javadoc for {@link OrderComparator} for details on the sort semantics for non-ordered objects.
-
  * @since 07.04.2003
  * @see PriorityOrdered
  * @see OrderComparator
