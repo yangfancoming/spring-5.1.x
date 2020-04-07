@@ -15,7 +15,6 @@ public class SimpleIdGenerator implements IdGenerator {
 
 	private final AtomicLong leastSigBits = new AtomicLong(0);
 
-
 	@Override
 	public UUID generateId() {
 		long leastSigBits = this.leastSigBits.incrementAndGet();

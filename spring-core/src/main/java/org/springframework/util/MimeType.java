@@ -36,7 +36,6 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 
 	private static final long serialVersionUID = 4085923477777865903L;
 
-
 	protected static final String WILDCARD_TYPE = "*";
 
 	private static final String PARAM_CHARSET = "charset";

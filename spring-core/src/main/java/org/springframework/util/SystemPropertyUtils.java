@@ -82,8 +82,7 @@ public abstract class SystemPropertyUtils {
 					propVal = System.getenv(placeholderName);
 				}
 				return propVal;
-			}
-			catch (Throwable ex) {
+			}catch (Throwable ex) {
 				System.err.println("Could not resolve placeholder '" + placeholderName + "' in [" + this.text + "] as system property: " + ex);
 				return null;
 			}

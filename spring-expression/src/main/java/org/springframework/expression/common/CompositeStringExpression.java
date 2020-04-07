@@ -13,17 +13,12 @@ import org.springframework.lang.Nullable;
  * Represents a template expression broken into pieces. Each piece will be an Expression
  * but pure text parts to the template will be represented as LiteralExpression objects.
  * An example of a template expression might be:
- *
  * <pre class="code">
  * &quot;Hello ${getName()}&quot;
  * </pre>
- *
  * which will be represented as a CompositeStringExpression of two parts. The first part
  * being a LiteralExpression representing 'Hello ' and the second part being a real
  * expression that will call {@code getName()} when invoked.
- *
- * @author Andy Clement
-
  * @since 3.0
  */
 public class CompositeStringExpression implements Expression {
@@ -33,12 +28,10 @@ public class CompositeStringExpression implements Expression {
 	/** The array of expressions that make up the composite expression. */
 	private final Expression[] expressions;
 
-
 	public CompositeStringExpression(String expressionString, Expression[] expressions) {
 		this.expressionString = expressionString;
 		this.expressions = expressions;
 	}
-
 
 	@Override
 	public final String getExpressionString() {
@@ -101,9 +94,7 @@ public class CompositeStringExpression implements Expression {
 
 	@Override
 	@Nullable
-	public <T> T getValue(EvaluationContext context, @Nullable Class<T> expectedResultType)
-			throws EvaluationException {
-
+	public <T> T getValue(EvaluationContext context, @Nullable Class<T> expectedResultType) throws EvaluationException {
 		Object value = getValue(context);
 		return ExpressionUtils.convertTypedValue(context, new TypedValue(value), expectedResultType);
 	}
@@ -122,9 +113,7 @@ public class CompositeStringExpression implements Expression {
 
 	@Override
 	@Nullable
-	public <T> T getValue(EvaluationContext context, Object rootObject, @Nullable Class<T> desiredResultType)
-			throws EvaluationException {
-
+	public <T> T getValue(EvaluationContext context, Object rootObject, @Nullable Class<T> desiredResultType) throws EvaluationException {
 		Object value = getValue(context,rootObject);
 		return ExpressionUtils.convertTypedValue(context, new TypedValue(value), desiredResultType);
 	}
@@ -165,9 +154,7 @@ public class CompositeStringExpression implements Expression {
 	}
 
 	@Override
-	public TypeDescriptor getValueTypeDescriptor(EvaluationContext context, Object rootObject)
-			throws EvaluationException {
-
+	public TypeDescriptor getValueTypeDescriptor(EvaluationContext context, Object rootObject) throws EvaluationException {
 		return TypeDescriptor.valueOf(String.class);
 	}
 

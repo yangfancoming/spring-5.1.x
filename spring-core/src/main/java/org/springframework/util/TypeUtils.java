@@ -17,8 +17,7 @@ import org.springframework.lang.Nullable;
 public abstract class TypeUtils {
 
 	/**
-	 * Check if the right-hand side type may be assigned to the left-hand side
-	 * type following the Java generics rules.
+	 * Check if the right-hand side type may be assigned to the left-hand side type following the Java generics rules.
 	 * @param lhsType the target type
 	 * @param rhsType the value type that should be assigned to the target type
 	 * @return true if rhs is assignable to lhs
@@ -26,20 +25,16 @@ public abstract class TypeUtils {
 	public static boolean isAssignable(Type lhsType, Type rhsType) {
 		Assert.notNull(lhsType, "Left-hand side type must not be null");
 		Assert.notNull(rhsType, "Right-hand side type must not be null");
-
 		// all types are assignable to themselves and to class Object
 		if (lhsType.equals(rhsType) || Object.class == lhsType) {
 			return true;
 		}
-
 		if (lhsType instanceof Class) {
 			Class<?> lhsClass = (Class<?>) lhsType;
-
 			// just comparing two classes
 			if (rhsType instanceof Class) {
 				return ClassUtils.isAssignable(lhsClass, (Class<?>) rhsType);
 			}
-
 			if (rhsType instanceof ParameterizedType) {
 				Type rhsRaw = ((ParameterizedType) rhsType).getRawType();
 
@@ -47,10 +42,8 @@ public abstract class TypeUtils {
 				if (rhsRaw instanceof Class) {
 					return ClassUtils.isAssignable(lhsClass, (Class<?>) rhsRaw);
 				}
-			}
-			else if (lhsClass.isArray() && rhsType instanceof GenericArrayType) {
+			}else if (lhsClass.isArray() && rhsType instanceof GenericArrayType) {
 				Type rhsComponent = ((GenericArrayType) rhsType).getGenericComponentType();
-
 				return isAssignable(lhsClass.getComponentType(), rhsComponent);
 			}
 		}
@@ -63,8 +56,7 @@ public abstract class TypeUtils {
 				if (lhsRaw instanceof Class) {
 					return ClassUtils.isAssignable((Class<?>) lhsRaw, (Class<?>) rhsType);
 				}
-			}
-			else if (rhsType instanceof ParameterizedType) {
+			}else if (rhsType instanceof ParameterizedType) {
 				return isAssignable((ParameterizedType) lhsType, (ParameterizedType) rhsType);
 			}
 		}
@@ -86,7 +78,6 @@ public abstract class TypeUtils {
 		if (lhsType instanceof WildcardType) {
 			return isAssignable((WildcardType) lhsType, rhsType);
 		}
-
 		return false;
 	}
 
@@ -94,7 +85,6 @@ public abstract class TypeUtils {
 		if (lhsType.equals(rhsType)) {
 			return true;
 		}
-
 		Type[] lhsTypeArguments = lhsType.getActualTypeArguments();
 		Type[] rhsTypeArguments = rhsType.getActualTypeArguments();
 
@@ -111,7 +101,6 @@ public abstract class TypeUtils {
 				return false;
 			}
 		}
-
 		return true;
 	}
 
@@ -174,8 +163,7 @@ public abstract class TypeUtils {
 					}
 				}
 			}
-		}
-		else {
+		}else {
 			for (Type lBound : lUpperBounds) {
 				if (!isAssignableBound(lBound, rhsType)) {
 					return false;
@@ -188,17 +176,12 @@ public abstract class TypeUtils {
 				}
 			}
 		}
-
 		return true;
 	}
 
 	public static boolean isAssignableBound(@Nullable Type lhsType, @Nullable Type rhsType) {
-		if (rhsType == null) {
-			return true;
-		}
-		if (lhsType == null) {
-			return false;
-		}
+		if (rhsType == null) return true;
+		if (lhsType == null) return false;
 		return isAssignable(lhsType, rhsType);
 	}
 

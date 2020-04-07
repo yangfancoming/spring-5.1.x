@@ -26,8 +26,6 @@ import org.springframework.util.StringUtils;
  * Standard implementation of the
  * {@link org.springframework.beans.factory.config.BeanExpressionResolver}
  * interface, parsing and evaluating Spring EL using Spring's expression module.
- *
-
  * @since 3.0
  * @see org.springframework.expression.ExpressionParser
  * @see org.springframework.expression.spel.standard.SpelExpressionParser
@@ -40,7 +38,6 @@ public class StandardBeanExpressionResolver implements BeanExpressionResolver {
 
 	/** Default expression suffix: "}". */
 	public static final String DEFAULT_EXPRESSION_SUFFIX = "}";
-
 
 	private String expressionPrefix = DEFAULT_EXPRESSION_PREFIX;
 
@@ -107,14 +104,12 @@ public class StandardBeanExpressionResolver implements BeanExpressionResolver {
 
 	/**
 	 * Specify the EL parser to use for expression parsing.
-	 * Default is a {@link org.springframework.expression.spel.standard.SpelExpressionParser},
-	 * compatible with standard Unified EL style expression syntax.
+	 * Default is a {@link org.springframework.expression.spel.standard.SpelExpressionParser}, compatible with standard Unified EL style expression syntax.
 	 */
 	public void setExpressionParser(ExpressionParser expressionParser) {
 		Assert.notNull(expressionParser, "ExpressionParser must not be null");
 		this.expressionParser = expressionParser;
 	}
-
 
 	@Override
 	@Nullable
@@ -145,15 +140,13 @@ public class StandardBeanExpressionResolver implements BeanExpressionResolver {
 				this.evaluationCache.put(evalContext, sec);
 			}
 			return expr.getValue(sec);
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			throw new BeanExpressionException("Expression parsing failed", ex);
 		}
 	}
 
 	/**
-	 * Template method for customizing the expression evaluation context.
-	 * The default implementation is empty.
+	 * Template method for customizing the expression evaluation context.The default implementation is empty.
 	 */
 	protected void customizeEvaluationContext(StandardEvaluationContext evalContext) {
 	}

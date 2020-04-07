@@ -16,10 +16,8 @@ import org.springframework.lang.Nullable;
 /**
  * {@link LinkedHashMap} variant that stores String keys in a case-insensitive
  * manner, for example for key-based access in a results table.
- *
  * Preserves the original order as well as the original casing of keys,
  * while allowing for contains, get and remove calls with any case of key.
- *
  * Does <i>not</i> support {@code null} keys.
  * @since 3.0
  * @param <V> the value type

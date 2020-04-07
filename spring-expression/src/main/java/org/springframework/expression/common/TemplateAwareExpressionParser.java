@@ -29,8 +29,7 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 	public Expression parseExpression(String expressionString, @Nullable ParserContext context) throws ParseException {
 		if (context != null && context.isTemplate()) {
 			return parseTemplate(expressionString, context);
-		}
-		else {
+		}else {
 			return doParseExpression(expressionString, context);
 		}
 	}
@@ -40,12 +39,10 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 		if (expressionString.isEmpty()) {
 			return new LiteralExpression("");
 		}
-
 		Expression[] expressions = parseExpressions(expressionString, context);
 		if (expressions.length == 1) {
 			return expressions[0];
-		}
-		else {
+		}else {
 			return new CompositeStringExpression(expressionString, expressions);
 		}
 	}
@@ -84,8 +81,7 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 				int afterPrefixIndex = prefixIndex + prefix.length();
 				int suffixIndex = skipToCorrectEndSuffix(suffix, expressionString, afterPrefixIndex);
 				if (suffixIndex == -1) {
-					throw new ParseException(expressionString, prefixIndex,
-							"No ending suffix '" + suffix + "' for expression starting at character " + prefixIndex + ": " + expressionString.substring(prefixIndex));
+					throw new ParseException(expressionString, prefixIndex,"No ending suffix '" + suffix + "' for expression starting at character " + prefixIndex + ": " + expressionString.substring(prefixIndex));
 				}
 				if (suffixIndex == afterPrefixIndex) {
 					throw new ParseException(expressionString, prefixIndex,"No expression defined within delimiter '" + prefix + suffix + "' at character " + prefixIndex);
@@ -97,14 +93,12 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 				}
 				expressions.add(doParseExpression(expr, context));
 				startIdx = suffixIndex + suffix.length();
-			}
-			else {
+			}else {
 				// no more ${expressions} found in string, add rest as static text
 				expressions.add(new LiteralExpression(expressionString.substring(startIdx)));
 				startIdx = expressionString.length();
 			}
 		}
-
 		return expressions.toArray(new Expression[0]);
 	}
 
@@ -191,7 +185,6 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 		return pos;
 	}
 
-
 	/**
 	 * Actually parse the expression string and return an Expression object.
 	 * @param expressionString the raw expression string to parse
@@ -220,8 +213,7 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 		boolean compatibleWithCloseBracket(char closeBracket) {
 			if (this.bracket == '{') {
 				return closeBracket == '}';
-			}
-			else if (this.bracket == '[') {
+			}else if (this.bracket == '[') {
 				return closeBracket == ']';
 			}
 			return closeBracket == ')';
@@ -230,8 +222,7 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 		static char theOpenBracketFor(char closeBracket) {
 			if (closeBracket == '}') {
 				return '{';
-			}
-			else if (closeBracket == ']') {
+			}else if (closeBracket == ']') {
 				return '[';
 			}
 			return '(';
@@ -240,8 +231,7 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 		static char theCloseBracketFor(char openBracket) {
 			if (openBracket == '{') {
 				return '}';
-			}
-			else if (openBracket == '[') {
+			}else if (openBracket == '[') {
 				return ']';
 			}
 			return ')';

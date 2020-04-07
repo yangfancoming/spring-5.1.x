@@ -6,15 +6,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringValueResolver;
 
 /**
- * {@link StringValueResolver} adapter for resolving placeholders and
- * expressions against a {@link ConfigurableBeanFactory}.
- *
- * Note that this adapter resolves expressions as well, in contrast
- * to the {@link ConfigurableBeanFactory#resolveEmbeddedValue} method.
- * The {@link BeanExpressionContext} used is for the plain bean factory,
- * with no scope specified for any contextual objects to access.
- *
-
+ * {@link StringValueResolver} adapter for resolving placeholders and expressions against a {@link ConfigurableBeanFactory}.
+ * Note that this adapter resolves expressions as well, in contrast to the {@link ConfigurableBeanFactory#resolveEmbeddedValue} method.
+ * The {@link BeanExpressionContext} used is for the plain bean factory,with no scope specified for any contextual objects to access.
  * @since 4.3
  * @see ConfigurableBeanFactory#resolveEmbeddedValue(String)
  * @see ConfigurableBeanFactory#getBeanExpressionResolver()

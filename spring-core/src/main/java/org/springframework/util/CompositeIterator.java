@@ -13,7 +13,6 @@ import java.util.Set;
  *
  * This implementation maintains a linked set of iterators
  * which are invoked in sequence until all iterators are exhausted.
-
  * @since 3.0
  * @param <E> the element type
  */

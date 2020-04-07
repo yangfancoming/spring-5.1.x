@@ -13,8 +13,6 @@ import static org.junit.Assert.*;
 /**
  * Parse some expressions and check we get the AST we expect. Rather than inspecting each node in the AST, we ask it to
  * write itself to a string form and check that is as expected.
- *
- * @author Andy Clement
  */
 public class ParsingTests {
 
@@ -390,10 +388,10 @@ public class ParsingTests {
 		parseCheck("1>2?3:4","(1 > 2) ? 3 : 4");
 	}
 
-	// public void testTernaryOperator01() {
-	// parseCheck("{1}.#isEven(#this) == 'y'?'it is even':'it is odd'",
-	// "({1}.#isEven(#this) == 'y') ? 'it is even' : 'it is odd'");
-	// }
+//	 public void testTernaryOperator01() {
+//	 parseCheck("{1}.#isEven(#this) == 'y'?'it is even':'it is odd'",
+//	 "({1}.#isEven(#this) == 'y') ? 'it is even' : 'it is odd'");
+//	 }
 
 	//
 	// public void testLambdaMax() {
@@ -433,7 +431,6 @@ public class ParsingTests {
 	/**
 	 * Parse the supplied expression and then create a string representation of the resultant AST, it should be the
 	 * expected value.
-	 *
 	 * @param expression the expression to parse
 	 * @param expectedStringFormOfAST the expected string form of the AST
 	 */
@@ -447,8 +444,7 @@ public class ParsingTests {
 				fail("Parsed exception was null");
 			}
 			assertEquals("String form of AST does not match expected output", expectedStringFormOfAST, e.toStringAST());
-		}
-		catch (ParseException ee) {
+		}catch (ParseException ee) {
 			ee.printStackTrace();
 			fail("Unexpected Exception: " + ee.getMessage());
 		}

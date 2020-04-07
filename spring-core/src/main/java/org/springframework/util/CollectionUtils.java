@@ -508,9 +508,7 @@ public abstract class CollectionUtils {
 
 		@Override
 		public boolean equals(Object other) {
-			if (this == other) {
-				return true;
-			}
+			if (this == other) return true;
 			return this.map.equals(other);
 		}
 

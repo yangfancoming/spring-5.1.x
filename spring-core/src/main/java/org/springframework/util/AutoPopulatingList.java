@@ -16,12 +16,9 @@ import java.util.ListIterator;
  * automatically populated as they are requested. This is particularly
  * useful for data binding to {@link List Lists}, allowing for elements
  * to be created and added to the {@link List} in a "just in time" fashion.
- *
  * Note: This class is not thread-safe. To create a thread-safe version,
  * use the {@link java.util.Collections#synchronizedList} utility methods.
- *
  * Inspired by {@code LazyList} from Commons Collections.
-
  * @since 2.0
  * @param <E> the element type
  */

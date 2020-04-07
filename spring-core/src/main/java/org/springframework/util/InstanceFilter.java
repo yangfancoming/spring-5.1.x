@@ -23,7 +23,6 @@ public class InstanceFilter<T> {
 
 	private final boolean matchIfEmpty;
 
-
 	/**
 	 * Create a new instance based on includes/excludes collections.
 	 * A particular element will match if it "matches" the one of the element in the

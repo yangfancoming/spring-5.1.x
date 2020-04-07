@@ -25,7 +25,6 @@ public class CommonsLogWriter extends Writer {
 		this.logger = logger;
 	}
 
-
 	public void write(char ch) {
 		if (ch == '\n' && this.buffer.length() > 0) {
 			logger.debug(this.buffer.toString());

@@ -120,8 +120,7 @@ class InternalSpelExpressionParser extends TemplateAwareExpressionParser {
 			}
 			Assert.isTrue(this.constructedNodes.isEmpty(), "At least one node expected");
 			return new SpelExpression(expressionString, ast, this.configuration);
-		}
-		catch (InternalParseException ex) {
+		}catch (InternalParseException ex) {
 			throw ex.getCause();
 		}
 	}

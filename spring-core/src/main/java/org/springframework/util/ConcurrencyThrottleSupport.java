@@ -129,11 +129,9 @@ public abstract class ConcurrencyThrottleSupport implements Serializable {
 		}
 	}
 
-
 	//---------------------------------------------------------------------
 	// Serialization support
 	//---------------------------------------------------------------------
-
 	private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
 		// Rely on default serialization, just initialize state after deserialization.
 		ois.defaultReadObject();
