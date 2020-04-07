@@ -11,9 +11,6 @@ import org.springframework.beans.factory.config.BeanReference;
  * of {@link #toString} which delegates to {@link #getDescription} in keeping with the recommended
  * implementation strategy. Also provides default implementations of {@link #getInnerBeanDefinitions}
  * and {@link #getBeanReferences} that return an empty array.
- *
- * @author Rob Harrop
-
  * @since 2.0
  */
 public abstract class AbstractComponentDefinition implements ComponentDefinition {

@@ -22,8 +22,6 @@ import org.springframework.lang.Nullable;
  * Supports custom paths for the system and user preferences trees. Also
  * supports custom paths specified in placeholders ("myPath/myPlaceholderKey").
  * Uses the respective root node if not specified.
- *
-
  * @since 16.02.2004
  * @see #setSystemTreePath
  * @see #setUserTreePath
@@ -41,18 +39,15 @@ public class PreferencesPlaceholderConfigurer extends PropertyPlaceholderConfigu
 
 	private Preferences userPrefs = Preferences.userRoot();
 
-
 	/**
-	 * Set the path in the system preferences tree to use for resolving
-	 * placeholders. Default is the root node.
+	 * Set the path in the system preferences tree to use for resolving  placeholders. Default is the root node.
 	 */
 	public void setSystemTreePath(String systemTreePath) {
 		this.systemTreePath = systemTreePath;
 	}
 
 	/**
-	 * Set the path in the system preferences tree to use for resolving
-	 * placeholders. Default is the root node.
+	 * Set the path in the system preferences tree to use for resolving placeholders. Default is the root node.
 	 */
 	public void setUserTreePath(String userTreePath) {
 		this.userTreePath = userTreePath;
@@ -60,8 +55,7 @@ public class PreferencesPlaceholderConfigurer extends PropertyPlaceholderConfigu
 
 
 	/**
-	 * This implementation eagerly fetches the Preferences instances
-	 * for the required system and user tree nodes.
+	 * This implementation eagerly fetches the Preferences instances for the required system and user tree nodes.
 	 */
 	@Override
 	public void afterPropertiesSet() {
@@ -111,16 +105,13 @@ public class PreferencesPlaceholderConfigurer extends PropertyPlaceholderConfigu
 			try {
 				if (preferences.nodeExists(path)) {
 					return preferences.node(path).get(key, null);
-				}
-				else {
+				}else {
 					return null;
 				}
-			}
-			catch (BackingStoreException ex) {
+			}catch (BackingStoreException ex) {
 				throw new BeanDefinitionStoreException("Cannot access specified node path [" + path + "]", ex);
 			}
-		}
-		else {
+		}else {
 			return preferences.get(key, null);
 		}
 	}

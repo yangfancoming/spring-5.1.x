@@ -10,10 +10,7 @@ import org.springframework.util.Assert;
 
 /**
  * {@link ComponentDefinition} implementation that holds one or more nested
- * {@link ComponentDefinition} instances, aggregating them into a named group
- * of components.
- *
-
+ * {@link ComponentDefinition} instances, aggregating them into a named group of components.
  * @since 2.0.1
  * @see #getNestedComponents()
  */
@@ -25,7 +22,6 @@ public class CompositeComponentDefinition extends AbstractComponentDefinition {
 	private final Object source;
 
 	private final List<ComponentDefinition> nestedComponents = new ArrayList<>();
-
 
 	/**
 	 * Create a new CompositeComponentDefinition.

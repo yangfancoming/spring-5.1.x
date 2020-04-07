@@ -900,8 +900,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	protected void resetBeanDefinition(String beanName) {
 		// Remove the merged bean definition for the given bean, if already created.
 		clearMergedBeanDefinition(beanName);
-		// Remove corresponding bean from singleton cache, if any. Shouldn't usually
-		// be necessary, rather just meant for overriding a context's default beans
+		// Remove corresponding bean from singleton cache, if any. Shouldn't usually  be necessary, rather just meant for overriding a context's default beans
 		// (e.g. the default StaticMessageSource in a StaticApplicationContext).
 		destroySingleton(beanName);
 		// Notify all post-processors that the specified bean definition has been reset.
@@ -910,7 +909,6 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				((MergedBeanDefinitionPostProcessor) processor).resetBeanDefinition(beanName);
 			}
 		}
-
 		// Reset all bean definitions that have the given bean as parent (recursively).
 		for (String bdName : this.beanDefinitionNames) {
 			if (!beanName.equals(bdName)) {

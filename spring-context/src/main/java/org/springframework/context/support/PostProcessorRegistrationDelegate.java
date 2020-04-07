@@ -32,8 +32,7 @@ import org.springframework.lang.Nullable;
  */
 final class PostProcessorRegistrationDelegate {
 
-	private PostProcessorRegistrationDelegate() {
-	}
+	private PostProcessorRegistrationDelegate() {}
 
 	public static void invokeBeanFactoryPostProcessors(ConfigurableListableBeanFactory beanFactory, List<BeanFactoryPostProcessor> beanFactoryPostProcessors) {
 		// Invoke BeanDefinitionRegistryPostProcessors first, if any.
@@ -42,7 +41,6 @@ final class PostProcessorRegistrationDelegate {
 			BeanDefinitionRegistry registry = (BeanDefinitionRegistry) beanFactory;
 			List<BeanFactoryPostProcessor> regularPostProcessors = new ArrayList<>();
 			List<BeanDefinitionRegistryPostProcessor> registryProcessors = new ArrayList<>();
-
 			for (BeanFactoryPostProcessor postProcessor : beanFactoryPostProcessors) {
 				if (postProcessor instanceof BeanDefinitionRegistryPostProcessor) {
 					BeanDefinitionRegistryPostProcessor registryProcessor = (BeanDefinitionRegistryPostProcessor) postProcessor;
@@ -52,11 +50,9 @@ final class PostProcessorRegistrationDelegate {
 					regularPostProcessors.add(postProcessor);
 				}
 			}
-
 			// Do not initialize FactoryBeans here: We need to leave all regular beans uninitial ized to let the bean factory post-processors apply to them!
 			// Separate between BeanDefinitionRegistryPostProcessors that implement  PriorityOrdered, Ordered, and the rest.
 			List<BeanDefinitionRegistryPostProcessor> currentRegistryProcessors = new ArrayList<>();
-
 			// First, invoke the BeanDefinitionRegistryPostProcessors that implement PriorityOrdered.
 			// 首先要看 优先级排序  因为要先执行实现了 PriorityOrdered 接口的BeanDefinitionRegistryPostProcessor
 			String[] postProcessorNames = beanFactory.getBeanNamesForType(BeanDefinitionRegistryPostProcessor.class, true, false);
@@ -163,9 +159,8 @@ final class PostProcessorRegistrationDelegate {
 	public static void registerBeanPostProcessors(ConfigurableListableBeanFactory beanFactory, AbstractApplicationContext applicationContext) {
 		// 获取所有的 BeanPostProcessor
 		String[] postProcessorNames = beanFactory.getBeanNamesForType(BeanPostProcessor.class, true, false);
-		// Register BeanPostProcessorChecker that logs an info message when
-		// a bean is created during BeanPostProcessor instantiation, i.e. when
-		// a bean is not eligible for getting processed by all BeanPostProcessors.
+		// Register BeanPostProcessorChecker that logs an info message when a bean is created during BeanPostProcessor instantiation,
+		// i.e. when  a bean is not eligible for getting processed by all BeanPostProcessors.
 		int beanProcessorTargetCount = beanFactory.getBeanPostProcessorCount() + 1 + postProcessorNames.length;
 		beanFactory.addBeanPostProcessor(new BeanPostProcessorChecker(beanFactory, beanProcessorTargetCount));
 		// Separate between BeanPostProcessors that implement PriorityOrdered, Ordered, and the rest.
@@ -226,9 +221,7 @@ final class PostProcessorRegistrationDelegate {
 		if (beanFactory instanceof DefaultListableBeanFactory) {
 			comparatorToUse = ((DefaultListableBeanFactory) beanFactory).getDependencyComparator();
 		}
-		if (comparatorToUse == null) {
-			comparatorToUse = OrderComparator.INSTANCE;
-		}
+		if (comparatorToUse == null) comparatorToUse = OrderComparator.INSTANCE;
 		postProcessors.sort(comparatorToUse);
 	}
 
@@ -262,8 +255,7 @@ final class PostProcessorRegistrationDelegate {
 
 	/**
 	 * BeanPostProcessor that logs an info message when a bean is created during
-	 * BeanPostProcessor instantiation, i.e. when a bean is not eligible for
-	 * getting processed by all BeanPostProcessors.
+	 * BeanPostProcessor instantiation, i.e. when a bean is not eligible for getting processed by all BeanPostProcessors.
 	 */
 	private static final class BeanPostProcessorChecker implements BeanPostProcessor {
 

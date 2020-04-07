@@ -166,9 +166,6 @@ import org.springframework.util.StringUtils;
  *}</pre>
  *
  * See {@link ObjectFactoryCreatingFactoryBean} for an alternate approach.
- *
- * @author Colin Sampaleanu
-
  * @since 1.1.4
  * @see #setServiceLocatorInterface
  * @see #setServiceMappings
@@ -190,7 +187,6 @@ public class ServiceLocatorFactoryBean implements FactoryBean<Object>, BeanFacto
 
 	@Nullable
 	private Object proxy;
-
 
 	/**
 	 * Set the service locator interface to use, which must have one or more methods with
@@ -216,8 +212,7 @@ public class ServiceLocatorFactoryBean implements FactoryBean<Object>, BeanFacto
 	 * @see #createServiceLocatorException
 	 */
 	public void setServiceLocatorExceptionClass(Class<? extends Exception> serviceLocatorExceptionClass) {
-		this.serviceLocatorExceptionConstructor =
-				determineServiceLocatorExceptionConstructor(serviceLocatorExceptionClass);
+		this.serviceLocatorExceptionConstructor = determineServiceLocatorExceptionConstructor(serviceLocatorExceptionClass);
 	}
 
 	/**
@@ -237,8 +232,7 @@ public class ServiceLocatorFactoryBean implements FactoryBean<Object>, BeanFacto
 	@Override
 	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
 		if (!(beanFactory instanceof ListableBeanFactory)) {
-			throw new FatalBeanException(
-					"ServiceLocatorFactoryBean needs to run in a BeanFactory that is a ListableBeanFactory");
+			throw new FatalBeanException("ServiceLocatorFactoryBean needs to run in a BeanFactory that is a ListableBeanFactory");
 		}
 		this.beanFactory = (ListableBeanFactory) beanFactory;
 	}
@@ -248,7 +242,6 @@ public class ServiceLocatorFactoryBean implements FactoryBean<Object>, BeanFacto
 		if (this.serviceLocatorInterface == null) {
 			throw new IllegalArgumentException("Property 'serviceLocatorInterface' is required");
 		}
-
 		// Create service locator proxy.
 		this.proxy = Proxy.newProxyInstance(
 				this.serviceLocatorInterface.getClassLoader(),
@@ -271,19 +264,14 @@ public class ServiceLocatorFactoryBean implements FactoryBean<Object>, BeanFacto
 	protected Constructor<Exception> determineServiceLocatorExceptionConstructor(Class<? extends Exception> exceptionClass) {
 		try {
 			return (Constructor<Exception>) exceptionClass.getConstructor(String.class, Throwable.class);
-		}
-		catch (NoSuchMethodException ex) {
+		}catch (NoSuchMethodException ex) {
 			try {
 				return (Constructor<Exception>) exceptionClass.getConstructor(Throwable.class);
-			}
-			catch (NoSuchMethodException ex2) {
+			}catch (NoSuchMethodException ex2) {
 				try {
 					return (Constructor<Exception>) exceptionClass.getConstructor(String.class);
-				}
-				catch (NoSuchMethodException ex3) {
-					throw new IllegalArgumentException(
-							"Service locator exception [" + exceptionClass.getName() +
-							"] neither has a (String, Throwable) constructor nor a (String) constructor");
+				}catch (NoSuchMethodException ex3) {
+					throw new IllegalArgumentException("Service locator exception [" + exceptionClass.getName() + "] neither has a (String, Throwable) constructor nor a (String) constructor");
 				}
 			}
 		}
@@ -305,8 +293,7 @@ public class ServiceLocatorFactoryBean implements FactoryBean<Object>, BeanFacto
 		for (int i = 0; i < paramTypes.length; i++) {
 			if (String.class == paramTypes[i]) {
 				args[i] = cause.getMessage();
-			}
-			else if (paramTypes[i].isInstance(cause)) {
+			}else if (paramTypes[i].isInstance(cause)) {
 				args[i] = cause;
 			}
 		}
@@ -341,15 +328,12 @@ public class ServiceLocatorFactoryBean implements FactoryBean<Object>, BeanFacto
 			if (ReflectionUtils.isEqualsMethod(method)) {
 				// Only consider equal when proxies are identical.
 				return (proxy == args[0]);
-			}
-			else if (ReflectionUtils.isHashCodeMethod(method)) {
+			}else if (ReflectionUtils.isHashCodeMethod(method)) {
 				// Use hashCode of service locator proxy.
 				return System.identityHashCode(proxy);
-			}
-			else if (ReflectionUtils.isToStringMethod(method)) {
+			}else if (ReflectionUtils.isToStringMethod(method)) {
 				return "Service locator: " + serviceLocatorInterface;
-			}
-			else {
+			}else {
 				return invokeServiceLocatorMethod(method, args);
 			}
 		}
@@ -362,13 +346,11 @@ public class ServiceLocatorFactoryBean implements FactoryBean<Object>, BeanFacto
 				if (StringUtils.hasLength(beanName)) {
 					// Service locator for a specific bean name
 					return beanFactory.getBean(beanName, serviceLocatorMethodReturnType);
-				}
-				else {
+				}else {
 					// Service locator for a bean type
 					return beanFactory.getBean(serviceLocatorMethodReturnType);
 				}
-			}
-			catch (BeansException ex) {
+			}catch (BeansException ex) {
 				if (serviceLocatorExceptionConstructor != null) {
 					throw createServiceLocatorException(serviceLocatorExceptionConstructor, ex);
 				}

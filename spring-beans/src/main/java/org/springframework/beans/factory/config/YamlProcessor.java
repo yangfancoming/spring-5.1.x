@@ -26,11 +26,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * Base class for YAML factories.
- *
  * Requires SnakeYAML 1.18 or higher, as of Spring Framework 5.0.6.
- *
- * @author Dave Syer
-
  * @since 4.1
  */
 public abstract class YamlProcessor {
@@ -44,7 +40,6 @@ public abstract class YamlProcessor {
 	private List<DocumentMatcher> documentMatchers = Collections.emptyList();
 
 	private boolean matchDefault = true;
-
 
 	/**
 	 * A map of document matchers allowing callers to selectively use only
@@ -151,26 +146,19 @@ public abstract class YamlProcessor {
 						}
 					}
 				}
-				if (logger.isDebugEnabled()) {
-					logger.debug("Loaded " + count + " document" + (count > 1 ? "s" : "") +
-							" from YAML resource: " + resource);
-				}
+				if (logger.isDebugEnabled()) logger.debug("Loaded " + count + " document" + (count > 1 ? "s" : "") + " from YAML resource: " + resource);
 			}
-		}
-		catch (IOException ex) {
+		}catch (IOException ex) {
 			handleProcessError(resource, ex);
 		}
 		return (count > 0);
 	}
 
 	private void handleProcessError(Resource resource, IOException ex) {
-		if (this.resolutionMethod != ResolutionMethod.FIRST_FOUND &&
-				this.resolutionMethod != ResolutionMethod.OVERRIDE_AND_IGNORE) {
+		if (this.resolutionMethod != ResolutionMethod.FIRST_FOUND && this.resolutionMethod != ResolutionMethod.OVERRIDE_AND_IGNORE) {
 			throw new IllegalStateException(ex);
 		}
-		if (logger.isWarnEnabled()) {
-			logger.warn("Could not load map from " + resource + ": " + ex.getMessage());
-		}
+		if (logger.isWarnEnabled()) logger.warn("Could not load map from " + resource + ": " + ex.getMessage());
 	}
 
 	@SuppressWarnings("unchecked")
@@ -190,8 +178,7 @@ public abstract class YamlProcessor {
 			}
 			if (key instanceof CharSequence) {
 				result.put(key.toString(), value);
-			}
-			else {
+			}else {
 				// It has to be a map key in this case
 				result.put("[" + key.toString() + "]", value);
 			}
@@ -202,39 +189,27 @@ public abstract class YamlProcessor {
 	private boolean process(Map<String, Object> map, MatchCallback callback) {
 		Properties properties = CollectionFactory.createStringAdaptingProperties();
 		properties.putAll(getFlattenedMap(map));
-
 		if (this.documentMatchers.isEmpty()) {
-			if (logger.isDebugEnabled()) {
-				logger.debug("Merging document (no matchers set): " + map);
-			}
+			if (logger.isDebugEnabled()) logger.debug("Merging document (no matchers set): " + map);
 			callback.process(properties, map);
 			return true;
 		}
-
 		MatchStatus result = MatchStatus.ABSTAIN;
 		for (DocumentMatcher matcher : this.documentMatchers) {
 			MatchStatus match = matcher.matches(properties);
 			result = MatchStatus.getMostSpecific(match, result);
 			if (match == MatchStatus.FOUND) {
-				if (logger.isDebugEnabled()) {
-					logger.debug("Matched document with document matcher: " + properties);
-				}
+				if (logger.isDebugEnabled()) logger.debug("Matched document with document matcher: " + properties);
 				callback.process(properties, map);
 				return true;
 			}
 		}
-
 		if (result == MatchStatus.ABSTAIN && this.matchDefault) {
-			if (logger.isDebugEnabled()) {
-				logger.debug("Matched document with default matcher: " + map);
-			}
+			if (logger.isDebugEnabled()) logger.debug("Matched document with default matcher: " + map);
 			callback.process(properties, map);
 			return true;
 		}
-
-		if (logger.isDebugEnabled()) {
-			logger.debug("Unmatched document: " + map);
-		}
+		if (logger.isDebugEnabled()) logger.debug("Unmatched document: " + map);
 		return false;
 	}
 
@@ -258,36 +233,30 @@ public abstract class YamlProcessor {
 			if (StringUtils.hasText(path)) {
 				if (key.startsWith("[")) {
 					key = path + key;
-				}
-				else {
+				}else {
 					key = path + '.' + key;
 				}
 			}
 			if (value instanceof String) {
 				result.put(key, value);
-			}
-			else if (value instanceof Map) {
+			}else if (value instanceof Map) {
 				// Need a compound key
 				@SuppressWarnings("unchecked")
 				Map<String, Object> map = (Map<String, Object>) value;
 				buildFlattenedMap(result, map, key);
-			}
-			else if (value instanceof Collection) {
+			}else if (value instanceof Collection) {
 				// Need a compound key
 				@SuppressWarnings("unchecked")
 				Collection<Object> collection = (Collection<Object>) value;
 				if (collection.isEmpty()) {
 					result.put(key, "");
-				}
-				else {
+				}else {
 					int count = 0;
 					for (Object object : collection) {
-						buildFlattenedMap(result, Collections.singletonMap(
-								"[" + (count++) + "]", object), key);
+						buildFlattenedMap(result, Collections.singletonMap("[" + (count++) + "]", object), key);
 					}
 				}
-			}
-			else {
+			}else {
 				result.put(key, (value != null ? value : ""));
 			}
 		});
@@ -309,7 +278,6 @@ public abstract class YamlProcessor {
 		void process(Properties properties, Map<String, Object> map);
 	}
 
-
 	/**
 	 * Strategy interface used to test if properties match.
 	 */
@@ -322,7 +290,6 @@ public abstract class YamlProcessor {
 		 */
 		MatchStatus matches(Properties properties);
 	}
-
 
 	/**
 	 * Status returned from {@link DocumentMatcher#matches(java.util.Properties)}.

@@ -8,8 +8,6 @@ import org.springframework.util.Assert;
 /**
  * Immutable placeholder class used for a property value object when it's a
  * reference to another bean name in the factory, to be resolved at runtime.
- *
-
  * @since 2.0
  * @see RuntimeBeanReference
  * @see BeanDefinition#getPropertyValues()
@@ -21,7 +19,6 @@ public class RuntimeBeanNameReference implements BeanReference {
 
 	@Nullable
 	private Object source;
-
 
 	/**
 	 * Create a new RuntimeBeanNameReference to the given bean name.
@@ -54,9 +51,7 @@ public class RuntimeBeanNameReference implements BeanReference {
 
 	@Override
 	public boolean equals(Object other) {
-		if (this == other) {
-			return true;
-		}
+		if (this == other) return true;
 		if (!(other instanceof RuntimeBeanNameReference)) {
 			return false;
 		}

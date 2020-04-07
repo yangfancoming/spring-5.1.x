@@ -69,8 +69,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 
 
 	/**
-	 * Create a new descriptor for a method or constructor parameter.
-	 * Considers the dependency as 'eager'.
+	 * Create a new descriptor for a method or constructor parameter.Considers the dependency as 'eager'.
 	 * @param methodParameter the MethodParameter to wrap
 	 * @param required whether the dependency is required
 	 */
@@ -87,7 +86,6 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	 */
 	public DependencyDescriptor(MethodParameter methodParameter, boolean required, boolean eager) {
 		super(methodParameter);
-
 		this.declaringClass = methodParameter.getDeclaringClass();
 		if (methodParameter.getMethod() != null) {
 			this.methodName = methodParameter.getMethod().getName();
@@ -118,7 +116,6 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	 */
 	public DependencyDescriptor(Field field, boolean required, boolean eager) {
 		super(field);
-
 		this.declaringClass = field.getDeclaringClass();
 		this.fieldName = field.getName();
 		this.required = required;
@@ -131,7 +128,6 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	 */
 	public DependencyDescriptor(DependencyDescriptor original) {
 		super(original);
-
 		this.declaringClass = original.declaringClass;
 		this.methodName = original.methodName;
 		this.parameterTypes = original.parameterTypes;
@@ -155,14 +151,12 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 		if (!this.required) {
 			return false;
 		}
-
 		if (this.field != null) {
 			return !(this.field.getType() == Optional.class || hasNullableAnnotation() ||
 					(KotlinDetector.isKotlinReflectPresent() &&
 							KotlinDetector.isKotlinType(this.field.getDeclaringClass()) &&
 							KotlinDelegate.isNullable(this.field)));
-		}
-		else {
+		}else {
 			return !obtainMethodParameter().isOptional();
 		}
 	}
@@ -257,9 +251,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	 * @since 4.3.2
 	 * @see BeanFactory#getBean(String)
 	 */
-	public Object resolveCandidate(String beanName, Class<?> requiredType, BeanFactory beanFactory)
-			throws BeansException {
-
+	public Object resolveCandidate(String beanName, Class<?> requiredType, BeanFactory beanFactory)throws BeansException {
 		return beanFactory.getBean(beanName);
 	}
 
@@ -382,20 +374,17 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 				}
 				if (type instanceof Class) {
 					return (Class<?>) type;
-				}
-				else if (type instanceof ParameterizedType) {
+				}else if (type instanceof ParameterizedType) {
 					Type arg = ((ParameterizedType) type).getRawType();
 					if (arg instanceof Class) {
 						return (Class<?>) arg;
 					}
 				}
 				return Object.class;
-			}
-			else {
+			}else {
 				return this.field.getType();
 			}
-		}
-		else {
+		}else {
 			return obtainMethodParameter().getNestedParameterType();
 		}
 	}
@@ -403,9 +392,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 
 	@Override
 	public boolean equals(Object other) {
-		if (this == other) {
-			return true;
-		}
+		if (this == other) return true;
 		if (!super.equals(other)) {
 			return false;
 		}
@@ -419,11 +406,9 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 		return 31 * super.hashCode() + ObjectUtils.nullSafeHashCode(this.containingClass);
 	}
 
-
 	//---------------------------------------------------------------------
 	// Serialization support
 	//---------------------------------------------------------------------
-
 	private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
 		// Rely on default serialization; just initialize state after deserialization.
 		ois.defaultReadObject();
@@ -432,22 +417,17 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 		try {
 			if (this.fieldName != null) {
 				this.field = this.declaringClass.getDeclaredField(this.fieldName);
-			}
-			else {
+			}else {
 				if (this.methodName != null) {
-					this.methodParameter = new MethodParameter(
-							this.declaringClass.getDeclaredMethod(this.methodName, this.parameterTypes), this.parameterIndex);
-				}
-				else {
-					this.methodParameter = new MethodParameter(
-							this.declaringClass.getDeclaredConstructor(this.parameterTypes), this.parameterIndex);
+					this.methodParameter = new MethodParameter(this.declaringClass.getDeclaredMethod(this.methodName, this.parameterTypes), this.parameterIndex);
+				}else {
+					this.methodParameter = new MethodParameter(this.declaringClass.getDeclaredConstructor(this.parameterTypes), this.parameterIndex);
 				}
 				for (int i = 1; i < this.nestingLevel; i++) {
 					this.methodParameter.increaseNestingLevel();
 				}
 			}
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			throw new IllegalStateException("Could not find original class structure", ex);
 		}
 	}

@@ -15,8 +15,6 @@ import org.springframework.util.ObjectUtils;
  *
  * This holder will just store the String value and the target type.
  * The actual conversion will be performed by the bean factory.
- *
-
  * @since 1.2
  * @see BeanDefinition#getPropertyValues
  * @see org.springframework.beans.MutablePropertyValues#addPropertyValue
@@ -36,7 +34,6 @@ public class TypedStringValue implements BeanMetadataElement {
 	private String specifiedTypeName;
 
 	private volatile boolean dynamic;
-
 
 	/**
 	 * Create a new {@link TypedStringValue} for the given String value.
@@ -148,9 +145,7 @@ public class TypedStringValue implements BeanMetadataElement {
 	@Nullable
 	public Class<?> resolveTargetType(@Nullable ClassLoader classLoader) throws ClassNotFoundException {
 		String typeName = getTargetTypeName();
-		if (typeName == null) {
-			return null;
-		}
+		if (typeName == null) return null;
 		Class<?> resolvedClass = ClassUtils.forName(typeName, classLoader);
 		this.targetType = resolvedClass;
 		return resolvedClass;
@@ -204,9 +199,7 @@ public class TypedStringValue implements BeanMetadataElement {
 
 	@Override
 	public boolean equals(Object other) {
-		if (this == other) {
-			return true;
-		}
+		if (this == other) return true;
 		if (!(other instanceof TypedStringValue)) {
 			return false;
 		}

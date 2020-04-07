@@ -9,8 +9,6 @@ import org.springframework.util.Assert;
 
 /**
  * Representation of an import that has been processed during the parsing process.
- *
-
  * @since 2.0
  * @see ReaderEventListener#importProcessed(ImportDefinition)
  */
@@ -23,7 +21,6 @@ public class ImportDefinition implements BeanMetadataElement {
 
 	@Nullable
 	private final Object source;
-
 
 	/**
 	 * Create a new ImportDefinition.

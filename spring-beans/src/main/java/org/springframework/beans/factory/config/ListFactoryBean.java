@@ -25,7 +25,6 @@ public class ListFactoryBean extends AbstractFactoryBean<List<Object>> {
 	@Nullable
 	private Class<? extends List> targetListClass;
 
-
 	/**
 	 * Set the source List, typically populated via XML "list" elements.
 	 */

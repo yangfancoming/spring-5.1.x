@@ -35,11 +35,9 @@ import org.springframework.util.ObjectUtils;
  * @see PropertyOverrideConfigurer
  * @see PropertyPlaceholderConfigurer
  */
-public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport
-		implements BeanFactoryPostProcessor, PriorityOrdered {
+public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport implements BeanFactoryPostProcessor, PriorityOrdered {
 
 	private int order = Ordered.LOWEST_PRECEDENCE;  // default: same as non-Ordered
-
 
 	/**
 	 * Set the order value of this object for sorting purposes.
@@ -54,7 +52,6 @@ public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport
 		return this.order;
 	}
 
-
 	/**
 	 * {@linkplain #mergeProperties Merge}, {@linkplain #convertProperties convert} and
 	 * {@linkplain #processProperties process} properties against the given bean factory.
@@ -64,14 +61,11 @@ public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
 		try {
 			Properties mergedProps = mergeProperties();
-
 			// Convert the merged properties, if necessary.
 			convertProperties(mergedProps);
-
 			// Let the subclass process the properties.
 			processProperties(beanFactory, mergedProps);
-		}
-		catch (IOException ex) {
+		}catch (IOException ex) {
 			throw new BeanInitializationException("Could not load properties", ex);
 		}
 	}
@@ -134,7 +128,6 @@ public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport
 	 * @param props the Properties to apply
 	 * @throws org.springframework.beans.BeansException in case of errors
 	 */
-	protected abstract void processProperties(ConfigurableListableBeanFactory beanFactory, Properties props)
-			throws BeansException;
+	protected abstract void processProperties(ConfigurableListableBeanFactory beanFactory, Properties props) throws BeansException;
 
 }

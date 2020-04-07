@@ -23,8 +23,7 @@ public class ServiceFactoryBean extends AbstractServiceLoaderBasedFactoryBean im
 	protected Object getObjectToExpose(ServiceLoader<?> serviceLoader) {
 		Iterator<?> it = serviceLoader.iterator();
 		if (!it.hasNext()) {
-			throw new IllegalStateException(
-					"ServiceLoader could not find service for type [" + getServiceType() + "]");
+			throw new IllegalStateException("ServiceLoader could not find service for type [" + getServiceType() + "]");
 		}
 		return it.next();
 	}

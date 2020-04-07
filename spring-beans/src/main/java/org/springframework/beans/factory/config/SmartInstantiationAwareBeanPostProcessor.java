@@ -16,8 +16,6 @@ import org.springframework.lang.Nullable;
  * post-processors should simply implement the plain {@link BeanPostProcessor}
  * interface or derive from the {@link InstantiationAwareBeanPostProcessorAdapter}
  * class. New methods might be added to this interface even in point releases.
- *
-
  * @since 2.0.3
  * @see InstantiationAwareBeanPostProcessorAdapter
  */

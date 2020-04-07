@@ -20,8 +20,6 @@ import org.springframework.util.Assert;
  * external dependency injection configuration that targets a property or
  * constructor argument of type {@code javax.inject.Provider}, as an
  * alternative to JSR-330's {@code @Inject} annotation-driven approach.
- *
-
  * @since 3.0.2
  * @see javax.inject.Provider
  * @see ObjectFactoryCreatingFactoryBean
@@ -30,7 +28,6 @@ public class ProviderCreatingFactoryBean extends AbstractFactoryBean<Provider<Ob
 
 	@Nullable
 	private String targetBeanName;
-
 
 	/**
 	 * Set the name of the target bean.

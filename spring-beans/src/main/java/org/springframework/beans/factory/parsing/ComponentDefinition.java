@@ -51,9 +51,6 @@ import org.springframework.beans.factory.config.BeanReference;
  * {@link BeanDefinition#ROLE_INFRASTRUCTURE INFRASTRUCTURE role identifier}. {@link BeanDefinition BeanDefinitions}
  * classified with this role are completely unimportant to the end user and are required only for
  * internal implementation reasons.
- *
- * @author Rob Harrop
-
  * @since 2.0
  * @see AbstractComponentDefinition
  * @see CompositeComponentDefinition

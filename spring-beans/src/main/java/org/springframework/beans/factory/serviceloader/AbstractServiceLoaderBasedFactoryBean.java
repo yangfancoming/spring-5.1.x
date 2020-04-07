@@ -13,20 +13,16 @@ import org.springframework.util.ClassUtils;
 /**
  * Abstract base class for FactoryBeans operating on the
  * JDK 1.6 {@link java.util.ServiceLoader} facility.
- *
-
  * @since 2.5
  * @see java.util.ServiceLoader
  */
-public abstract class AbstractServiceLoaderBasedFactoryBean extends AbstractFactoryBean<Object>
-		implements BeanClassLoaderAware {
+public abstract class AbstractServiceLoaderBasedFactoryBean extends AbstractFactoryBean<Object> implements BeanClassLoaderAware {
 
 	@Nullable
 	private Class<?> serviceType;
 
 	@Nullable
 	private ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();
-
 
 	/**
 	 * Specify the desired service type (typically the service's public API).

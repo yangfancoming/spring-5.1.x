@@ -11,8 +11,6 @@ import org.springframework.lang.Nullable;
  *
  * This is the default implementation and prevents too much metadata from being
  * held in memory during normal (non-tooled) runtime usage.
- *
- * @author Rob Harrop
  * @since 2.0
  */
 public class NullSourceExtractor implements SourceExtractor {

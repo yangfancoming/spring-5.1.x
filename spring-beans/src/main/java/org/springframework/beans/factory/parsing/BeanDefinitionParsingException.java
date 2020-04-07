@@ -5,11 +5,7 @@ package org.springframework.beans.factory.parsing;
 import org.springframework.beans.factory.BeanDefinitionStoreException;
 
 /**
- * Exception thrown when a bean definition reader encounters an error
- * during the parsing process.
- *
-
- * @author Rob Harrop
+ * Exception thrown when a bean definition reader encounters an error during the parsing process.
  * @since 2.0
  */
 @SuppressWarnings("serial")

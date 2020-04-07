@@ -62,8 +62,6 @@ import org.springframework.util.StringUtils;
  * &lt;util:property-path id="name" path="testBean.age"/&gt;</pre>
  *
  * Thanks to Matthias Ernst for the suggestion and initial prototype!
- *
-
  * @since 1.1.2
  * @see #setTargetObject
  * @see #setTargetBeanName
@@ -157,26 +155,20 @@ public class PropertyPathFactoryBean implements FactoryBean<Object>, BeanNameAwa
 
 		if (this.targetBeanWrapper == null && this.targetBeanName == null) {
 			if (this.propertyPath != null) {
-				throw new IllegalArgumentException(
-						"Specify 'targetObject' or 'targetBeanName' in combination with 'propertyPath'");
+				throw new IllegalArgumentException("Specify 'targetObject' or 'targetBeanName' in combination with 'propertyPath'");
 			}
 
 			// No other properties specified: check bean name.
 			int dotIndex = (this.beanName != null ? this.beanName.indexOf('.') : -1);
 			if (dotIndex == -1) {
-				throw new IllegalArgumentException(
-						"Neither 'targetObject' nor 'targetBeanName' specified, and PropertyPathFactoryBean " +
-						"bean name '" + this.beanName + "' does not follow 'beanName.property' syntax");
+				throw new IllegalArgumentException("Neither 'targetObject' nor 'targetBeanName' specified, and PropertyPathFactoryBean bean name '" + this.beanName + "' does not follow 'beanName.property' syntax");
 			}
 			this.targetBeanName = this.beanName.substring(0, dotIndex);
 			this.propertyPath = this.beanName.substring(dotIndex + 1);
-		}
-
-		else if (this.propertyPath == null) {
+		}else if (this.propertyPath == null) {
 			// either targetObject or targetBeanName specified
 			throw new IllegalArgumentException("'propertyPath' is required");
 		}
-
 		if (this.targetBeanWrapper == null && this.beanFactory.isSingleton(this.targetBeanName)) {
 			// Eagerly fetch singleton target bean, and determine result type.
 			Object bean = this.beanFactory.getBean(this.targetBeanName);
@@ -191,14 +183,10 @@ public class PropertyPathFactoryBean implements FactoryBean<Object>, BeanNameAwa
 	public Object getObject() throws BeansException {
 		BeanWrapper target = this.targetBeanWrapper;
 		if (target != null) {
-			if (logger.isWarnEnabled() && this.targetBeanName != null &&
-					this.beanFactory instanceof ConfigurableBeanFactory &&
-					((ConfigurableBeanFactory) this.beanFactory).isCurrentlyInCreation(this.targetBeanName)) {
-				logger.warn("Target bean '" + this.targetBeanName + "' is still in creation due to a circular " +
-						"reference - obtained value for property '" + this.propertyPath + "' may be outdated!");
+			if (logger.isWarnEnabled() && this.targetBeanName != null && this.beanFactory instanceof ConfigurableBeanFactory && ((ConfigurableBeanFactory) this.beanFactory).isCurrentlyInCreation(this.targetBeanName)) {
+				logger.warn("Target bean '" + this.targetBeanName + "' is still in creation due to a circular reference - obtained value for property '" + this.propertyPath + "' may be outdated!");
 			}
-		}
-		else {
+		}else {
 			// Fetch prototype target bean...
 			Assert.state(this.beanFactory != null, "No BeanFactory available");
 			Assert.state(this.targetBeanName != null, "No target bean name specified");

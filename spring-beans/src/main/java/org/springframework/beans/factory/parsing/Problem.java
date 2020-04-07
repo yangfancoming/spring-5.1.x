@@ -8,11 +8,7 @@ import org.springframework.util.Assert;
 /**
  * Represents a problem with a bean definition configuration.
  * Mainly serves as common argument passed into a {@link ProblemReporter}.
- *
  * May indicate a potentially fatal problem (an error) or just a warning.
- *
- * @author Rob Harrop
-
  * @since 2.0
  * @see ProblemReporter
  */
@@ -27,7 +23,6 @@ public class Problem {
 
 	@Nullable
 	private final Throwable rootCause;
-
 
 	/**
 	 * Create a new instance of the {@link Problem} class.

@@ -13,8 +13,6 @@ import org.springframework.lang.Nullable;
 /**
  * Simple factory for shared Set instances. Allows for central setup
  * of Sets via the "set" element in XML bean definitions.
- *
-
  * @since 09.12.2003
  * @see ListFactoryBean
  * @see MapFactoryBean
@@ -27,7 +25,6 @@ public class SetFactoryBean extends AbstractFactoryBean<Set<Object>> {
 	@SuppressWarnings("rawtypes")
 	@Nullable
 	private Class<? extends Set> targetSetClass;
-
 
 	/**
 	 * Set the source Set, typically populated via XML "set" elements.
@@ -69,8 +66,7 @@ public class SetFactoryBean extends AbstractFactoryBean<Set<Object>> {
 		Set<Object> result = null;
 		if (this.targetSetClass != null) {
 			result = BeanUtils.instantiateClass(this.targetSetClass);
-		}
-		else {
+		}else {
 			result = new LinkedHashSet<>(this.sourceSet.size());
 		}
 		Class<?> valueType = null;
@@ -82,8 +78,7 @@ public class SetFactoryBean extends AbstractFactoryBean<Set<Object>> {
 			for (Object elem : this.sourceSet) {
 				result.add(converter.convertIfNecessary(elem, valueType));
 			}
-		}
-		else {
+		}else {
 			result.addAll(this.sourceSet);
 		}
 		return result;

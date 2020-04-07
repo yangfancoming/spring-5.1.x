@@ -31,7 +31,6 @@ public abstract class ObjectUtils {
 	private static final String EMPTY_ARRAY = ARRAY_START + ARRAY_END;
 	private static final String ARRAY_ELEMENT_SEPARATOR = ", ";
 
-
 	/**
 	 * Return whether the given throwable is a checked exception:
 	 * that is, neither a RuntimeException nor an Error.
@@ -88,15 +87,12 @@ public abstract class ObjectUtils {
 	/**
 	 * Determine whether the given object is empty.
 	 * This method supports the following object types.
-	 * <ul>
 	 * <li>{@code Optional}: considered empty if {@link Optional#empty()}</li>
 	 * <li>{@code Array}: considered empty if its length is zero</li>
 	 * <li>{@link CharSequence}: considered empty if its length is zero</li>
 	 * <li>{@link Collection}: delegates to {@link Collection#isEmpty()}</li>
 	 * <li>{@link Map}: delegates to {@link Map#isEmpty()}</li>
-	 * </ul>
-	 * If the given object is non-null and not one of the aforementioned
-	 * supported types, this method returns {@code false}.
+	 * If the given object is non-null and not one of the aforementioned supported types, this method returns {@code false}.
 	 * @param obj the object to check
 	 * @return {@code true} if the object is {@code null} or <em>empty</em>
 	 * @since 4.2
@@ -544,13 +540,10 @@ public abstract class ObjectUtils {
 	/**
 	 * Return a String representation of an object's overall identity.
 	 * @param obj the object (may be {@code null})
-	 * @return the object's identity as String representation,
-	 * or an empty String if the object was {@code null}
+	 * @return the object's identity as String representation, or an empty String if the object was {@code null}
 	 */
 	public static String identityToString(@Nullable Object obj) {
-		if (obj == null) {
-			return EMPTY_STRING;
-		}
+		if (obj == null) return EMPTY_STRING;
 		return obj.getClass().getName() + "@" + getIdentityHexString(obj);
 	}
 
@@ -643,19 +636,14 @@ public abstract class ObjectUtils {
 	 * @return a String representation of {@code array}
 	 */
 	public static String nullSafeToString(@Nullable Object[] array) {
-		if (array == null) {
-			return NULL_STRING;
-		}
+		if (array == null) return NULL_STRING;
 		int length = array.length;
-		if (length == 0) {
-			return EMPTY_ARRAY;
-		}
+		if (length == 0) return EMPTY_ARRAY;
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < length; i++) {
 			if (i == 0) {
 				sb.append(ARRAY_START);
-			}
-			else {
+			}else {
 				sb.append(ARRAY_ELEMENT_SEPARATOR);
 			}
 			sb.append(String.valueOf(array[i]));
@@ -674,22 +662,16 @@ public abstract class ObjectUtils {
 	 * @return a String representation of {@code array}
 	 */
 	public static String nullSafeToString(@Nullable boolean[] array) {
-		if (array == null) {
-			return NULL_STRING;
-		}
+		if (array == null) return NULL_STRING;
 		int length = array.length;
-		if (length == 0) {
-			return EMPTY_ARRAY;
-		}
+		if (length == 0) return EMPTY_ARRAY;
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < length; i++) {
 			if (i == 0) {
 				sb.append(ARRAY_START);
-			}
-			else {
+			}else {
 				sb.append(ARRAY_ELEMENT_SEPARATOR);
 			}
-
 			sb.append(array[i]);
 		}
 		sb.append(ARRAY_END);
@@ -863,19 +845,14 @@ public abstract class ObjectUtils {
 	 * @return a String representation of {@code array}
 	 */
 	public static String nullSafeToString(@Nullable long[] array) {
-		if (array == null) {
-			return NULL_STRING;
-		}
+		if (array == null) return NULL_STRING;
 		int length = array.length;
-		if (length == 0) {
-			return EMPTY_ARRAY;
-		}
+		if (length == 0) return EMPTY_ARRAY;
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < length; i++) {
 			if (i == 0) {
 				sb.append(ARRAY_START);
-			}
-			else {
+			}else {
 				sb.append(ARRAY_ELEMENT_SEPARATOR);
 			}
 			sb.append(array[i]);
@@ -894,19 +871,14 @@ public abstract class ObjectUtils {
 	 * @return a String representation of {@code array}
 	 */
 	public static String nullSafeToString(@Nullable short[] array) {
-		if (array == null) {
-			return NULL_STRING;
-		}
+		if (array == null) return NULL_STRING;
 		int length = array.length;
-		if (length == 0) {
-			return EMPTY_ARRAY;
-		}
+		if (length == 0) return EMPTY_ARRAY;
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < length; i++) {
 			if (i == 0) {
 				sb.append(ARRAY_START);
-			}
-			else {
+			}else {
 				sb.append(ARRAY_ELEMENT_SEPARATOR);
 			}
 			sb.append(array[i]);

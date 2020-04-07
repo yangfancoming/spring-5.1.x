@@ -13,10 +13,7 @@ import org.springframework.lang.Nullable;
  * underlying configuration source metadata provided by the tool.
  *
  * This implementation <strong>should not</strong> be used in a production
- * application since it is likely to keep too much metadata in memory
- * (unnecessarily).
- *
- * @author Rob Harrop
+ * application since it is likely to keep too much metadata in memory (unnecessarily).
  * @since 2.0
  */
 public class PassThroughSourceExtractor implements SourceExtractor {

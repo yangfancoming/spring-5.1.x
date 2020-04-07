@@ -44,21 +44,17 @@ import org.springframework.util.ClassUtils;
  *   &lt;property name="targetObject" ref="myServer"/>
  *   &lt;property name="targetMethod" value="start"/>
  * &lt;/bean></pre>
- *
-
  * @since 4.0.3
  * @see MethodInvokingFactoryBean
  * @see org.springframework.util.MethodInvoker
  */
-public class MethodInvokingBean extends ArgumentConvertingMethodInvoker
-		implements BeanClassLoaderAware, BeanFactoryAware, InitializingBean {
+public class MethodInvokingBean extends ArgumentConvertingMethodInvoker implements BeanClassLoaderAware, BeanFactoryAware, InitializingBean {
 
 	@Nullable
 	private ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();
 
 	@Nullable
 	private ConfigurableBeanFactory beanFactory;
-
 
 	@Override
 	public void setBeanClassLoader(ClassLoader classLoader) {
@@ -86,8 +82,7 @@ public class MethodInvokingBean extends ArgumentConvertingMethodInvoker
 	protected TypeConverter getDefaultTypeConverter() {
 		if (this.beanFactory != null) {
 			return this.beanFactory.getTypeConverter();
-		}
-		else {
+		}else {
 			return super.getDefaultTypeConverter();
 		}
 	}
@@ -107,14 +102,9 @@ public class MethodInvokingBean extends ArgumentConvertingMethodInvoker
 	protected Object invokeWithTargetException() throws Exception {
 		try {
 			return invoke();
-		}
-		catch (InvocationTargetException ex) {
-			if (ex.getTargetException() instanceof Exception) {
-				throw (Exception) ex.getTargetException();
-			}
-			if (ex.getTargetException() instanceof Error) {
-				throw (Error) ex.getTargetException();
-			}
+		}catch (InvocationTargetException ex) {
+			if (ex.getTargetException() instanceof Exception) throw (Exception) ex.getTargetException();
+			if (ex.getTargetException() instanceof Error) throw (Error) ex.getTargetException();
 			throw ex;
 		}
 	}

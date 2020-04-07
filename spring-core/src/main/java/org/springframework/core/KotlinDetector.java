@@ -12,9 +12,6 @@ import org.springframework.util.ClassUtils;
 
 /**
  * A common delegate for detecting Kotlin's presence and for identifying Kotlin types.
- *
-
- * @author Sebastien Deleuze
  * @since 5.0
  */
 @SuppressWarnings("unchecked")
@@ -32,8 +29,7 @@ public abstract class KotlinDetector {
 		ClassLoader classLoader = KotlinDetector.class.getClassLoader();
 		try {
 			metadata = ClassUtils.forName("kotlin.Metadata", classLoader);
-		}
-		catch (ClassNotFoundException ex) {
+		}catch (ClassNotFoundException ex) {
 			// Kotlin API not available - no Kotlin support
 			metadata = null;
 		}

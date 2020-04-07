@@ -15,9 +15,6 @@ import org.springframework.lang.Nullable;
 /**
  * ComponentDefinition based on a standard BeanDefinition, exposing the given bean
  * definition as well as inner bean definitions and bean references for the given bean.
- *
- * @author Rob Harrop
-
  * @since 2.0
  */
 public class BeanComponentDefinition extends BeanDefinitionHolder implements ComponentDefinition {
@@ -25,7 +22,6 @@ public class BeanComponentDefinition extends BeanDefinitionHolder implements Com
 	private BeanDefinition[] innerBeanDefinitions;
 
 	private BeanReference[] beanReferences;
-
 
 	/**
 	 * Create a new BeanComponentDefinition for the given bean.
@@ -53,7 +49,6 @@ public class BeanComponentDefinition extends BeanDefinitionHolder implements Com
 	 */
 	public BeanComponentDefinition(BeanDefinitionHolder beanDefinitionHolder) {
 		super(beanDefinitionHolder);
-
 		List<BeanDefinition> innerBeans = new ArrayList<>();
 		List<BeanReference> references = new ArrayList<>();
 		PropertyValues propertyValues = beanDefinitionHolder.getBeanDefinition().getPropertyValues();
@@ -61,11 +56,9 @@ public class BeanComponentDefinition extends BeanDefinitionHolder implements Com
 			Object value = propertyValue.getValue();
 			if (value instanceof BeanDefinitionHolder) {
 				innerBeans.add(((BeanDefinitionHolder) value).getBeanDefinition());
-			}
-			else if (value instanceof BeanDefinition) {
+			}else if (value instanceof BeanDefinition) {
 				innerBeans.add((BeanDefinition) value);
-			}
-			else if (value instanceof BeanReference) {
+			}else if (value instanceof BeanReference) {
 				references.add((BeanReference) value);
 			}
 		}

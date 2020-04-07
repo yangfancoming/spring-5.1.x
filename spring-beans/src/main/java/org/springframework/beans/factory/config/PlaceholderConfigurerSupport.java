@@ -61,7 +61,6 @@ import org.springframework.util.StringValueResolver;
  * customizable via {@link #setValueSeparator(String)}.
  *
  * Example XML property with default value:
- *
  * <pre class="code">
  *   <property name="url" value="jdbc:${dbname:defaultdb}"/>
  * </pre>

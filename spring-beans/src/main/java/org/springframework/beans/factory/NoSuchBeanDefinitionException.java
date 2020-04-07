@@ -27,7 +27,6 @@ public class NoSuchBeanDefinitionException extends BeansException {
 	@Nullable
 	private final ResolvableType resolvableType;
 
-
 	/**
 	 * Create a new {@code NoSuchBeanDefinitionException}.
 	 * @param name the name of the missing bean

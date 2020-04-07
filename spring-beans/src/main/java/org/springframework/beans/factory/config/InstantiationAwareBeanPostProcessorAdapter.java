@@ -17,11 +17,7 @@ import org.springframework.lang.Nullable;
  *
  * Note that this base class is only recommendable if you actually require
  * {@link InstantiationAwareBeanPostProcessor} functionality. If all you need
- * is plain {@link BeanPostProcessor} functionality, prefer a straight
- * implementation of that (simpler) interface.
- *
- * @author Rod Johnson
-
+ * is plain {@link BeanPostProcessor} functionality, prefer a straight implementation of that (simpler) interface.
  * @since 2.0
  */
 public abstract class InstantiationAwareBeanPostProcessorAdapter implements SmartInstantiationAwareBeanPostProcessor {
@@ -55,17 +51,13 @@ public abstract class InstantiationAwareBeanPostProcessorAdapter implements Smar
 	}
 
 	@Override
-	public PropertyValues postProcessProperties(PropertyValues pvs, Object bean, String beanName)
-			throws BeansException {
-
+	public PropertyValues postProcessProperties(PropertyValues pvs, Object bean, String beanName)throws BeansException {
 		return null;
 	}
 
 	@Deprecated
 	@Override
-	public PropertyValues postProcessPropertyValues(
-			PropertyValues pvs, PropertyDescriptor[] pds, Object bean, String beanName) throws BeansException {
-
+	public PropertyValues postProcessPropertyValues(PropertyValues pvs, PropertyDescriptor[] pds, Object bean, String beanName) throws BeansException {
 		return pvs;
 	}
 

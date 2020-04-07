@@ -41,9 +41,7 @@ import org.springframework.beans.factory.BeanInitializationException;
  * Property values can be converted after reading them in, through overriding
  * the {@code convertPropertyValue} method. For example, encrypted values
  * can be detected and decrypted accordingly before processing them.
- *
 
- * @author Rod Johnson
  * @since 12.03.2003
  * @see #convertPropertyValue
  * @see PropertyPlaceholderConfigurer
@@ -86,22 +84,17 @@ public class PropertyOverrideConfigurer extends PropertyResourceConfigurer {
 
 
 	@Override
-	protected void processProperties(ConfigurableListableBeanFactory beanFactory, Properties props)
-			throws BeansException {
-
+	protected void processProperties(ConfigurableListableBeanFactory beanFactory, Properties props) throws BeansException {
 		for (Enumeration<?> names = props.propertyNames(); names.hasMoreElements();) {
 			String key = (String) names.nextElement();
 			try {
 				processKey(beanFactory, key, props.getProperty(key));
-			}
-			catch (BeansException ex) {
+			}catch (BeansException ex) {
 				String msg = "Could not process key '" + key + "' in PropertyOverrideConfigurer";
 				if (!this.ignoreInvalidKeys) {
 					throw new BeanInitializationException(msg, ex);
 				}
-				if (logger.isDebugEnabled()) {
-					logger.debug(msg, ex);
-				}
+				if (logger.isDebugEnabled()) logger.debug(msg, ex);
 			}
 		}
 	}
@@ -109,29 +102,22 @@ public class PropertyOverrideConfigurer extends PropertyResourceConfigurer {
 	/**
 	 * Process the given key as 'beanName.property' entry.
 	 */
-	protected void processKey(ConfigurableListableBeanFactory factory, String key, String value)
-			throws BeansException {
-
+	protected void processKey(ConfigurableListableBeanFactory factory, String key, String value) throws BeansException {
 		int separatorIndex = key.indexOf(this.beanNameSeparator);
 		if (separatorIndex == -1) {
-			throw new BeanInitializationException("Invalid key '" + key +
-					"': expected 'beanName" + this.beanNameSeparator + "property'");
+			throw new BeanInitializationException("Invalid key '" + key + "': expected 'beanName" + this.beanNameSeparator + "property'");
 		}
 		String beanName = key.substring(0, separatorIndex);
 		String beanProperty = key.substring(separatorIndex + 1);
 		this.beanNames.add(beanName);
 		applyPropertyValue(factory, beanName, beanProperty, value);
-		if (logger.isDebugEnabled()) {
-			logger.debug("Property '" + key + "' set to value [" + value + "]");
-		}
+		if (logger.isDebugEnabled()) logger.debug("Property '" + key + "' set to value [" + value + "]");
 	}
 
 	/**
 	 * Apply the given property value to the corresponding bean.
 	 */
-	protected void applyPropertyValue(
-			ConfigurableListableBeanFactory factory, String beanName, String property, String value) {
-
+	protected void applyPropertyValue(ConfigurableListableBeanFactory factory, String beanName, String property, String value) {
 		BeanDefinition bd = factory.getBeanDefinition(beanName);
 		BeanDefinition bdToUse = bd;
 		while (bd != null) {
@@ -142,7 +128,6 @@ public class PropertyOverrideConfigurer extends PropertyResourceConfigurer {
 		pv.setOptional(this.ignoreInvalidKeys);
 		bdToUse.getPropertyValues().addPropertyValue(pv);
 	}
-
 
 	/**
 	 * Were there overrides for this bean?

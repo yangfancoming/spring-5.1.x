@@ -12,7 +12,6 @@ public class PropertyEntry implements ParseState.Entry {
 
 	private final String name;
 
-
 	/**
 	 * Creates a new instance of the {@link PropertyEntry} class.
 	 * @param name the name of the JavaBean property represented by this instance
@@ -25,7 +24,6 @@ public class PropertyEntry implements ParseState.Entry {
 		}
 		this.name = name;
 	}
-
 
 	@Override
 	public String toString() {

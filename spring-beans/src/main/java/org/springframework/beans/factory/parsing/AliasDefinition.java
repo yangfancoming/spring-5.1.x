@@ -8,8 +8,6 @@ import org.springframework.util.Assert;
 
 /**
  * Representation of an alias that has been registered during the parsing process.
- *
-
  * @since 2.0
  * @see ReaderEventListener#aliasRegistered(AliasDefinition)
  */
@@ -21,7 +19,6 @@ public class AliasDefinition implements BeanMetadataElement {
 
 	@Nullable
 	private final Object source;
-
 
 	/**
 	 * Create a new AliasDefinition.

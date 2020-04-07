@@ -60,9 +60,6 @@ import org.springframework.lang.Nullable;
  *   &lt;property name="targetMethod" value="getProperty"/>
  *   &lt;property name="arguments" value="java.version"/>
  * &lt;/bean></pre>
- *
- * @author Colin Sampaleanu
-
  * @since 21.11.2003
  * @see MethodInvokingBean
  * @see org.springframework.util.MethodInvoker
@@ -76,7 +73,6 @@ public class MethodInvokingFactoryBean extends MethodInvokingBean implements Fac
 	/** Method call result in the singleton case. */
 	@Nullable
 	private Object singletonObject;
-
 
 	/**
 	 * Set if a singleton should be created, or a new object on each
@@ -110,16 +106,14 @@ public class MethodInvokingFactoryBean extends MethodInvokingBean implements Fac
 			}
 			// Singleton: return shared object.
 			return this.singletonObject;
-		}
-		else {
+		}else {
 			// Prototype: new object on each call.
 			return invokeWithTargetException();
 		}
 	}
 
 	/**
-	 * Return the type of object that this FactoryBean creates,
-	 * or {@code null} if not known in advance.
+	 * Return the type of object that this FactoryBean creates,or {@code null} if not known in advance.
 	 */
 	@Override
 	public Class<?> getObjectType() {
