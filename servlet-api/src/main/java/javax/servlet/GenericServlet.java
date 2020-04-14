@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
  * also implements the <code>log</code> method, declared in the  <code>ServletContext</code> interface.
  * To write a generic servlet, you need only override the abstract <code>service</code> method.
  */
-public abstract class GenericServlet  implements Servlet, ServletConfig, java.io.Serializable {
+public abstract class GenericServlet implements Servlet, ServletConfig, java.io.Serializable {
 
     private static final String LSTRING_FILE = "javax.servlet.LocalStrings";
     private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
@@ -49,7 +49,8 @@ public abstract class GenericServlet  implements Servlet, ServletConfig, java.io
      * @param name 		a <code>String</code> specifying the name  of the initialization parameter
      * @return String 		a <code>String</code> containing the value of the initialization parameter
      */
-    public String getInitParameter(String name) {
+    @Override
+	public String getInitParameter(String name) {
         ServletConfig sc = getServletConfig();
         if (sc == null) {
             throw new IllegalStateException(
@@ -67,7 +68,8 @@ public abstract class GenericServlet  implements Servlet, ServletConfig, java.io
     * This method is supplied for convenience. It gets the parameter names from the servlet's <code>ServletConfig</code> object.
     * @return Enumeration an enumeration of <code>String</code> objects containing the names of  the servlet's initialization parameters
     */
-    public Enumeration<String> getInitParameterNames() {
+    @Override
+	public Enumeration<String> getInitParameterNames() {
         ServletConfig sc = getServletConfig();
         if (sc == null) throw new IllegalStateException(lStrings.getString("err.servlet_config_not_initialized"));
         return sc.getInitParameterNames();
@@ -90,7 +92,8 @@ public abstract class GenericServlet  implements Servlet, ServletConfig, java.io
      * context from the servlet's <code>ServletConfig</code> object.
      * @return ServletContext 	the <code>ServletContext</code> object passed to this servlet by the <code>init</code> method
      */
-    public ServletContext getServletContext() {
+    @Override
+	public ServletContext getServletContext() {
         ServletConfig sc = getServletConfig();
         if (sc == null)  throw new IllegalStateException(lStrings.getString("err.servlet_config_not_initialized"));
         return sc.getServletContext();
@@ -140,7 +143,6 @@ public abstract class GenericServlet  implements Servlet, ServletConfig, java.io
      * @exception ServletException    if an exception occurs that interrupts the servlet's normal operation
      */
     public void init() throws ServletException {
-
     }
     
 
@@ -184,13 +186,10 @@ public abstract class GenericServlet  implements Servlet, ServletConfig, java.io
      * See {@link ServletConfig#getServletName}.
      * @return          the name of this servlet instance
      */
-    public String getServletName() {
+    @Override
+	public String getServletName() {
         ServletConfig sc = getServletConfig();
-        if (sc == null) {
-            throw new IllegalStateException(
-                lStrings.getString("err.servlet_config_not_initialized"));
-        }
-
+        if (sc == null)  throw new IllegalStateException(lStrings.getString("err.servlet_config_not_initialized"));
         return sc.getServletName();
     }
 }
