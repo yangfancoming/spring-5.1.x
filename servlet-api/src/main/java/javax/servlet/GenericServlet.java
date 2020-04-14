@@ -36,7 +36,8 @@ public abstract class GenericServlet  implements Servlet, ServletConfig, java.io
      * Called by the servlet container to indicate to a servlet that the
      * servlet is being taken out of service.  See {@link Servlet#destroy}.
      */
-    public void destroy() {
+    @Override
+	public void destroy() {
     }
     
     /**
@@ -77,6 +78,7 @@ public abstract class GenericServlet  implements Servlet, ServletConfig, java.io
      * Returns this servlet's {@link ServletConfig} object.
      * @return ServletConfig 	the <code>ServletConfig</code> object that initialized this servlet
      */
+	@Override
 	public ServletConfig getServletConfig() {
 		return config;
 	}
@@ -102,7 +104,8 @@ public abstract class GenericServlet  implements Servlet, ServletConfig, java.io
      * Servlet#getServletInfo}.
      * @return String 		information about this servlet, by default an empty string
      */
-    public String getServletInfo() {
+    @Override
+	public String getServletInfo() {
 	return "";
     }
 
@@ -121,6 +124,7 @@ public abstract class GenericServlet  implements Servlet, ServletConfig, java.io
      * @exception ServletException    if an exception occurs that interrupts the servlet's normal operation
      * @see 				UnavailableException
      */
+	@Override
 	public void init(ServletConfig config) throws ServletException {
 		this.config = config;
 		this.init();
@@ -172,7 +176,8 @@ public abstract class GenericServlet  implements Servlet, ServletConfig, java.io
      * @exception ServletException    if an exception occurs that interferes with the servlet's normal operation occurred
      * @exception IOException 	if an input or output exception occurs
      */
-    public abstract void service(ServletRequest req, ServletResponse res) throws ServletException, IOException;
+    @Override
+	public abstract void service(ServletRequest req, ServletResponse res) throws ServletException, IOException;
 
     /**
      * Returns the name of this servlet instance.

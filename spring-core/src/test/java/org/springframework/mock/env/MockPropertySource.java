@@ -33,7 +33,6 @@ public class MockPropertySource extends PropertiesPropertySource {
 	 */
 	public static final String MOCK_PROPERTIES_PROPERTY_SOURCE_NAME = "mockProperties";
 
-
 	/**
 	 * Create a new {@code MockPropertySource} named {@value #MOCK_PROPERTIES_PROPERTY_SOURCE_NAME}
 	 * that will maintain its own internal {@link Properties} instance.
@@ -69,7 +68,6 @@ public class MockPropertySource extends PropertiesPropertySource {
 	public MockPropertySource(String name, Properties properties) {
 		super(name, properties);
 	}
-
 
 	/**
 	 * Set the given property on the underlying {@link Properties} object.

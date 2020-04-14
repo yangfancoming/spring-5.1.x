@@ -1,9 +1,7 @@
 
 
 package javax.servlet;
-
 import java.io.IOException;
-
 
 /**
  * Defines methods that all servlets must implement.
@@ -18,15 +16,11 @@ import java.io.IOException;
  *
  * This interface defines methods to initialize a servlet,
  * to service requests, and to remove a servlet from the server.
- * These are known as life-cycle methods and are called in the
- * following sequence:
- * <ol>
+ * These are known as life-cycle methods and are called in the following sequence:
  * <li>The servlet is constructed, then initialized with the <code>init</code> method.
  * <li>Any calls from clients to the <code>service</code> method are handled.
  * <li>The servlet is taken out of service, then destroyed with the 
  * <code>destroy</code> method, then garbage collected and finalized.
- * </ol>
- *
  * In addition to the life-cycle methods, this interface
  * provides the <code>getServletConfig</code> method, which the servlet 
  * can use to get any startup information, and the <code>getServletInfo</code>
@@ -34,19 +28,15 @@ import java.io.IOException;
  * @see    GenericServlet
  * @see 	javax.servlet.http.HttpServlet
  */
-
-
 public interface Servlet {
 
     /**
      * Called by the servlet container to indicate to a servlet that the 
      * servlet is being placed into service.
-     *
      * The servlet container calls the <code>init</code>
      * method exactly once after instantiating the servlet.
      * The <code>init</code> method must complete successfully
      * before the servlet can receive any requests.
-     *
      * The servlet container cannot place the servlet into service
      * if the <code>init</code> method
      * <li>Throws a <code>ServletException</code>
@@ -56,13 +46,10 @@ public interface Servlet {
      * @see 				UnavailableException
      * @see 				#getServletConfig
      */
-
     public void init(ServletConfig config) throws ServletException;
-    
     
 
     /**
-     *
      * Returns a {@link ServletConfig} object, which contains
      * initialization and startup parameters for this servlet.
      * The <code>ServletConfig</code> object returned is the one 
@@ -74,22 +61,15 @@ public interface Servlet {
      * @return		the <code>ServletConfig</code> object that initializes this servlet
      * @see 		#init
      */
-
     public ServletConfig getServletConfig();
-    
-    
 
     /**
      * Called by the servlet container to allow the servlet to respond to 
      * a request.
-     *
      * This method is only called after the servlet's <code>init()</code>
      * method has completed successfully.
-     * 
-     *   The status code of the response always should be set for a servlet 
+     *   The status code of the response always should be set for a servlet
      * that throws or sends an error.
-     *
-     * 
      * Servlets typically run inside multithreaded servlet containers
      * that can handle multiple requests concurrently. Developers must 
      * be aware to synchronize access to any shared resources such as files,
@@ -103,22 +83,17 @@ public interface Servlet {
      * @exception ServletException    if an exception occurs that interferes with the servlet's normal operation 
      * @exception IOException 		if an input or output exception occurs
      */
-    public void service(ServletRequest req, ServletResponse res)
-	throws ServletException, IOException;
-	
+    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException;
+
     /**
      * Returns information about the servlet, such as author, version, and copyright.
      * The string that this method returns should
      * be plain text and not markup of any kind (such as HTML, XML,etc.).
      * @return 	a <code>String</code> containing servlet information
      */
-
     public String getServletInfo();
-    
-    
 
     /**
-     *
      * Called by the servlet container to indicate to a servlet that the
      * servlet is being taken out of service.  This method is
      * only called once all threads within the servlet's
@@ -131,8 +106,6 @@ public interface Servlet {
      * to clean up any resources that are being held (for example, memory,
      * file handles, threads) and make sure that any persistent state is
      * synchronized with the servlet's current state in memory.
-     *
      */
-
     public void destroy();
 }
