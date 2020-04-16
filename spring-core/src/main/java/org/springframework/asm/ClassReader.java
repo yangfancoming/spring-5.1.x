@@ -154,28 +154,22 @@ public class ClassReader {
 
   /**
    * Constructs a new {@link ClassReader} object.
-   *
    * @param classFileBuffer a byte array containing the JVMS ClassFile structure to be read.
    * @param classFileOffset the offset in byteBuffer of the first byte of the ClassFile to be read.
    * @param classFileLength the length in bytes of the ClassFile to be read.
    */
-  public ClassReader(
-      final byte[] classFileBuffer,
-      final int classFileOffset,
-      final int classFileLength) { // NOPMD(UnusedFormalParameter) used for backward compatibility.
+  public ClassReader( final byte[] classFileBuffer,final int classFileOffset, final int classFileLength) { // NOPMD(UnusedFormalParameter) used for backward compatibility.
     this(classFileBuffer, classFileOffset, /* checkClassVersion = */ true);
   }
 
   /**
    * Constructs a new {@link ClassReader} object. <i>This internal constructor must not be exposed
    * as a public API</i>.
-   *
    * @param classFileBuffer a byte array containing the JVMS ClassFile structure to be read.
    * @param classFileOffset the offset in byteBuffer of the first byte of the ClassFile to be read.
    * @param checkClassVersion whether to check the class version or not.
    */
-  ClassReader(
-      final byte[] classFileBuffer, final int classFileOffset, final boolean checkClassVersion) {
+  ClassReader(final byte[] classFileBuffer, final int classFileOffset, final boolean checkClassVersion) {
     b = classFileBuffer;
     // Check the class' major_version. This field is after the magic and minor_version fields, which
     // use 4 and 2 bytes respectively.

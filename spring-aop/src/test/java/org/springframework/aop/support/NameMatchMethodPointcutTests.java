@@ -24,7 +24,6 @@ public class NameMatchMethodPointcutTests {
 
 	protected SerializableNopInterceptor nop;
 
-
 	/**
 	 * Create an empty pointcut, populating instance variables.
 	 */

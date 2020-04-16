@@ -21,8 +21,7 @@ import static org.springframework.tests.TestResourceUtils.*;
 
 public class RegexpMethodPointcutAdvisorIntegrationTests {
 
-	private static final Resource CONTEXT =
-			qualifiedResource(RegexpMethodPointcutAdvisorIntegrationTests.class, "context.xml");
+	private static final Resource CONTEXT = qualifiedResource(RegexpMethodPointcutAdvisorIntegrationTests.class, "context.xml");
 
 
 	@Test

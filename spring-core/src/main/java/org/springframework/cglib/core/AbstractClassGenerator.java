@@ -16,8 +16,8 @@ import org.springframework.cglib.core.internal.LoadingCache;
 /**
  * Abstract class for all code-generating CGLIB utilities.
  * In addition to caching generated classes for performance, it provides hooks for
- * customizing the <code>ClassLoader</code>, name of the generated class, and transformations
- * applied before generation.
+ * customizing the <code>ClassLoader</code>, name of the generated class, and transformations applied before generation.
+ * AbstractClassGenerator是cglib中一个很重要的类，是字节码生成过程中的一个核心调度者，包括缓存、命名策略、字节码生成策略都由它定义，Enhancer就是它的一个子类。
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 abstract public class AbstractClassGenerator<T> implements ClassGenerator {
@@ -53,19 +53,17 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 		private final Set<String> reservedClassNames = new HashSet<>();
 
 		/**
-		 * {@link AbstractClassGenerator} here holds "cache key" (e.g. {@link org.springframework.cglib.proxy.Enhancer}
-		 * configuration), and the value is the generated class plus some additional values
-		 * (see {@link #unwrapCachedValue(Object)}.
-		 * The generated classes can be reused as long as their classloader is reachable.</p>
-		 * Note: the only way to access a class is to find it through generatedClasses cache, thus
-		 * the key should not expire as long as the class itself is alive (its classloader is alive).</p>
+		 * {@link AbstractClassGenerator} here holds "cache key" (e.g. {@link org.springframework.cglib.proxy.Enhancer} configuration),
+		 * and the value is the generated class plus some additional values (see {@link #unwrapCachedValue(Object)}.
+		 * The generated classes can be reused as long as their classloader is reachable.
+		 * Note: the only way to access a class is to find it through generatedClasses cache,
+		 * thus the key should not expire as long as the class itself is alive (its classloader is alive).
 		 */
 		private final LoadingCache<AbstractClassGenerator, Object, Object> generatedClasses;
 
 		/**
 		 * Note: ClassLoaderData object is stored as a value of {@code WeakHashMap<ClassLoader, ...>} thus
-		 * this classLoader reference should be weak otherwise it would make classLoader strongly reachable
-		 * and alive forever.
+		 * this classLoader reference should be weak otherwise it would make classLoader strongly reachable and alive forever.
 		 * Reference queue is not required since the cleanup is handled by {@link WeakHashMap}.
 		 */
 		private final WeakReference<ClassLoader> classLoader;
@@ -74,13 +72,16 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 
 		private static final Function<AbstractClassGenerator, Object> GET_KEY = gen->gen.key;
 
+		// 缓存在这个构造函数中进行初始化：
 		public ClassLoaderData(ClassLoader classLoader) {
 			if (classLoader == null) throw new IllegalArgumentException("classLoader == null is not yet supported");
 			this.classLoader = new WeakReference<>(classLoader);
 			Function<AbstractClassGenerator, Object> load = gen->{
+				// 产生字节码文件
 				Class klass = gen.generate(ClassLoaderData.this);
 				return gen.wrapCachedClass(klass);
 			};
+			// 生成二级缓存
 			generatedClasses = new LoadingCache<>(GET_KEY, load);
 		}
 
@@ -95,17 +96,17 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 		public Predicate getUniqueNamePredicate() {
 			return uniqueNamePredicate;
 		}
-
+		// 判断是否使用缓存
 		public Object get(AbstractClassGenerator gen, boolean useCache) {
 			if (!useCache) {
 				return gen.generate(ClassLoaderData.this);
 			}else {
+				// 从二级缓存中取出代理对象
 				Object cachedValue = generatedClasses.get(gen);
 				return gen.unwrapCachedValue(cachedValue);
 			}
 		}
 	}
-
 
 	protected T wrapCachedClass(Class klass) {
 		return (T) new WeakReference(klass);
@@ -230,6 +231,7 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 		return (AbstractClassGenerator) CURRENT.get();
 	}
 
+	// 类加载器是按照如下顺序来获取的：加载父类或者接口的类加载器 -> 自己的类加载器 -> 线程上下文类加载器
 	public ClassLoader getClassLoader() {
 		ClassLoader t = classLoader;
 		if (t == null) t = getDefaultClassLoader();
@@ -253,9 +255,12 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 
 	protected Object create(Object key) {
 		try {
+			// 获取类加载器
 			ClassLoader loader = getClassLoader();
 			Map<ClassLoader, ClassLoaderData> cache = CACHE;
+			// 优先从缓存加载，根据ClassLoader区分
 			ClassLoaderData data = cache.get(loader);
+			// 缓存为空，则需要进行初始化
 			if (data == null) {
 				synchronized (AbstractClassGenerator.class) {
 					cache = CACHE;
@@ -268,6 +273,7 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 					}
 				}
 			}
+			// 从缓存加载
 			this.key = key;
 			Object obj = data.get(this, getUseCache());
 			if (obj instanceof Class) {
@@ -293,6 +299,7 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 
 			}
 			synchronized (classLoader) {
+				// 根据命名策略生成代理类类名
 				String name = generateClassName(data.getUniqueNamePredicate());
 				data.reserveName(name);
 				this.setClassName(name);
@@ -305,11 +312,12 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 					// ignore
 				}
 			}
+			// 生成二进制流，默认实现DefaultGeneratorStrategy
 			byte[] b = strategy.generate(this);
 			String className = ClassNameReader.getClassName(new ClassReader(b));
 			ProtectionDomain protectionDomain = getProtectionDomain();
 			synchronized (classLoader) { // just in case
-				// SPRING PATCH BEGIN
+				// SPRING PATCH BEGIN // 根据二进制流生成字节码
 				gen = ReflectUtils.defineClass(className, b, classLoader, protectionDomain, contextClass);
 				// SPRING PATCH END
 			}

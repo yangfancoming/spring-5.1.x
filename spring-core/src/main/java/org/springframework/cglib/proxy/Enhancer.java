@@ -223,15 +223,13 @@ public class Enhancer extends AbstractClassGenerator {
 
 	/**
 	 * Set the {@link CallbackFilter} used to map the generated class' methods  to a particular callback index.
-	 * New object instances will always use the same mapping, but may use different
-	 * actual callback objects.
+	 * New object instances will always use the same mapping, but may use different  actual callback objects.
 	 * @param filter the callback filter to use when generating a new class
 	 * @see #setCallbacks
 	 */
 	public void setCallbackFilter(CallbackFilter filter) {
 		this.filter = filter;
 	}
-
 
 	/**
 	 * Set the single {@link Callback} to use.
@@ -246,8 +244,7 @@ public class Enhancer extends AbstractClassGenerator {
 	/**
 	 * Set the array of callbacks to use.
 	 * Ignored if you use {@link #createClass}.
-	 * You must use a {@link CallbackFilter} to specify the index into this
-	 * array for each method in the proxied class.
+	 * You must use a {@link CallbackFilter} to specify the index into this array for each method in the proxied class.
 	 * @param callbacks the callback array
 	 * @see #setCallbackFilter
 	 * @see #setCallback
@@ -307,8 +304,7 @@ public class Enhancer extends AbstractClassGenerator {
 	}
 
 	/**
-	 * Generate a new class if necessary and uses the specified
-	 * callbacks (if any) to create a new object instance.
+	 * Generate a new class if necessary and uses the specified  callbacks (if any) to create a new object instance.
 	 * Uses the no-arg constructor of the superclass.
 	 * @return a new instance
 	 */
@@ -319,10 +315,8 @@ public class Enhancer extends AbstractClassGenerator {
 	}
 
 	/**
-	 * Generate a new class if necessary and uses the specified
-	 * callbacks (if any) to create a new object instance.
-	 * Uses the constructor of the superclass matching the <code>argumentTypes</code>
-	 * parameter, with the given arguments.
+	 * Generate a new class if necessary and uses the specified callbacks (if any) to create a new object instance.
+	 * Uses the constructor of the superclass matching the <code>argumentTypes</code> parameter, with the given arguments.
 	 * @param argumentTypes constructor signature
 	 * @param arguments compatible wrapped arguments to pass to constructor
 	 * @return a new instance
@@ -340,9 +334,8 @@ public class Enhancer extends AbstractClassGenerator {
 	/**
 	 * Generate a new class if necessary and return it without creating a new instance.
 	 * This ignores any callbacks that have been set.
-	 * To create a new instance you will have to use reflection, and methods
-	 * called during the constructor will not be intercepted. To avoid this problem,
-	 * use the multi-arg <code>create</code> method.
+	 * To create a new instance you will have to use reflection, and methods called during the constructor will not be intercepted.
+	 * To avoid this problem, use the multi-arg <code>create</code> method.
 	 * @see #create(Class[], Object[])
 	 */
 	public Class createClass() {
@@ -485,7 +478,9 @@ public class Enhancer extends AbstractClassGenerator {
 	}
 
 	private Object createHelper() {
+		// 这里主要是一些参数校验，比较简单
 		preValidate();
+		// 根据代理配置生成缓存的key，作为二级缓存的key值，而一级缓存的key则是ClassLoader
 		Object key = KEY_FACTORY.newInstance((superclass != null) ? superclass.getName() : null,
 				ReflectUtils.getNames(interfaces),
 				filter == ALL_ZERO ? null : new WeakCacheKey<>(filter),
@@ -494,6 +489,7 @@ public class Enhancer extends AbstractClassGenerator {
 				interceptDuringConstruction,
 				serialVersionUID);
 		this.currentKey = key;
+		// 调用父类AbstractClassGenerator的create()方法
 		Object result = super.create(key);
 		return result;
 	}
@@ -551,8 +547,10 @@ public class Enhancer extends AbstractClassGenerator {
 	}
 
 	private static void getMethods(Class superclass, Class[] interfaces, List methods, List interfaceMethods, Set forcePublic) {
+		// 递归添加父类的所有方法
 		ReflectUtils.addAllMethods(superclass, methods);
 		List target = (interfaceMethods != null) ? interfaceMethods : methods;
+		// 递归添加接口的所有方法
 		if (interfaces != null) {
 			for (int i = 0; i < interfaces.length; i++) {
 				if (interfaces[i] != Factory.class) {
@@ -566,9 +564,13 @@ public class Enhancer extends AbstractClassGenerator {
 			}
 			methods.addAll(interfaceMethods);
 		}
+		// 过滤掉静态方法，在Modifier类中，静态方法的标识就是0x00000008
 		CollectionUtils.filter(methods, new RejectModifierPredicate(Constants.ACC_STATIC));
+		// 过滤掉不可见的方法(包括两类：私有方法、默认修饰符且与目标类不在同一个包中的方法)
 		CollectionUtils.filter(methods, new VisibilityPredicate(superclass, true));
+		// 过滤掉重复的方法(方法名、入参和返回类型都相同的方法)
 		CollectionUtils.filter(methods, new DuplicatesPredicate());
+		// 过滤掉final方法，在Modifier类中，静态方法的标识就是0x00000010
 		CollectionUtils.filter(methods, new RejectModifierPredicate(Constants.ACC_FINAL));
 	}
 
@@ -583,22 +585,24 @@ public class Enhancer extends AbstractClassGenerator {
 		List actualMethods = new ArrayList();
 		List interfaceMethods = new ArrayList();
 		final Set forcePublic = new HashSet();
+		// 采用递归的方式，找到目标类的父类、接口的所有方法，并过滤掉满足条件的方法，具体条件后文有详细说明
 		getMethods(sc, interfaces, actualMethods, interfaceMethods, forcePublic);
-		List methods = CollectionUtils.transform(actualMethods, new Transformer() {
-			public Object transform(Object value) {
-				Method method = (Method) value;
-				int modifiers = Constants.ACC_FINAL
-						| (method.getModifiers()
-						& ~Constants.ACC_ABSTRACT
-						& ~Constants.ACC_NATIVE
-						& ~Constants.ACC_SYNCHRONIZED);
-				if (forcePublic.contains(MethodWrapper.create(method))) {
-					modifiers = (modifiers & ~Constants.ACC_PROTECTED) | Constants.ACC_PUBLIC;
-				}
-				return ReflectUtils.getMethodInfo(method, modifiers);
+		// 对方法的修饰符作了变化，保存到methods中，转换之前的方法保存在actualMethods中
+		List methods = CollectionUtils.transform(actualMethods, value->{
+			Method method = (Method) value;
+			// 在Modifier类中，1024、256、32、16分别表示abstract、native、synchronized、final修饰符，因此这句话的意思是将abstract、native、synchronized修饰符全部去掉，然后加上final修饰符
+			int modifiers = Constants.ACC_FINAL
+					| (method.getModifiers()
+					& ~Constants.ACC_ABSTRACT
+					& ~Constants.ACC_NATIVE
+					& ~Constants.ACC_SYNCHRONIZED);
+			// 同理，这里是把protected修饰符换成public
+			if (forcePublic.contains(MethodWrapper.create(method))) {
+				modifiers = (modifiers & ~Constants.ACC_PROTECTED) | Constants.ACC_PUBLIC;
 			}
+			return ReflectUtils.getMethodInfo(method, modifiers);
 		});
-
+		// 这里有一段是根据asm框架产生字节码了，还没看懂，先跳过o(╯□╰)o
 		ClassEmitter e = new ClassEmitter(v);
 		if (currentData == null) {
 			e.begin_class(Constants.V1_2,
@@ -634,6 +638,7 @@ public class Enhancer extends AbstractClassGenerator {
 		e.declare_field(Constants.ACC_PRIVATE | Constants.ACC_STATIC, CALLBACK_FILTER_FIELD, OBJECT_TYPE, null);
 
 		if (currentData == null) {
+			// 上一篇讲过，CallbackFilter作为回调过滤器，其核心方法为accept()，返回值为int类型，代表了回调入口在callbacks数组中的位置，这里就是完成了CallbackFilter的处理，确定每个方法分别有哪个过滤器来处理
 			emitMethods(e, methods, actualMethods);
 			emitConstructors(e, constructorInfo);
 		}else {
@@ -1103,11 +1108,14 @@ public class Enhancer extends AbstractClassGenerator {
 		while (it1.hasNext()) {
 			MethodInfo method = (MethodInfo) it1.next();
 			Method actualMethod = (it2 != null) ? (Method) it2.next() : null;
+			// 选择具体的回调过滤器
 			int index = filter.accept(actualMethod);
 			if (index >= callbackTypes.length) {
 				throw new IllegalArgumentException("Callback filter returned an index that is too large: " + index);
 			}
+			// 把方法和其对应的修饰符的映射关系保存起来
 			originalModifiers.put(method, (actualMethod != null ? actualMethod.getModifiers() : method.getModifiers()));
+			// 把方法和其对应的回调过滤器下表的映射关系保存起来
 			indexes.put(method, index);
 			List group = (List) groups.get(generators[index]);
 			if (group == null) {
@@ -1117,6 +1125,8 @@ public class Enhancer extends AbstractClassGenerator {
 
 			// Optimization: build up a map of Class -> bridge methods in class
 			// so that we can look up all the bridge methods in one pass for a class.
+			// 建立类和桥接方法之间的映射关系
+			// 桥接方法：jdk1.5引入了泛型，并且在编译期会进行类型擦除，因此字节码文件中集合元素类型都是Object，同时由于对类型的校验也提前到了编译期，因此编译期会生成一个桥接方法，将Object类型转换为实际类型。
 			if (TypeUtils.isBridge(actualMethod.getModifiers())) {
 				Set bridges = (Set) declToBridge.get(actualMethod.getDeclaringClass());
 				if (bridges == null) {

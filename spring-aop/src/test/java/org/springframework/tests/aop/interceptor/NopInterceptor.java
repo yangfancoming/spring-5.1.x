@@ -7,13 +7,10 @@ import org.aopalliance.intercept.MethodInvocation;
 
 /**
  * Trivial interceptor that can be introduced in a chain to display it.
- *
- * @author Rod Johnson
  */
 public class NopInterceptor implements MethodInterceptor {
 
 	private int count;
-
 
 	@Override
 	public Object invoke(MethodInvocation invocation) throws Throwable {
@@ -28,7 +25,6 @@ public class NopInterceptor implements MethodInterceptor {
 	public int getCount() {
 		return this.count;
 	}
-
 
 	@Override
 	public boolean equals(Object other) {
