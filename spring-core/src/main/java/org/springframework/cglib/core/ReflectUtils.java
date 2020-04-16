@@ -62,48 +62,34 @@ public class ReflectUtils {
 		ProtectionDomain protectionDomain;
 		Throwable throwable = null;
 		try {
-			privateLookupIn = (Method) AccessController.doPrivileged(new PrivilegedExceptionAction() {
-				public Object run() throws Exception {
-					try {
-						return MethodHandles.class.getMethod("privateLookupIn", Class.class, MethodHandles.Lookup.class);
-					}
-					catch (NoSuchMethodException ex) {
-						return null;
-					}
-				}
-			});
-			lookupDefineClass = (Method) AccessController.doPrivileged(new PrivilegedExceptionAction() {
-				public Object run() throws Exception {
-					try {
-						return MethodHandles.Lookup.class.getMethod("defineClass", byte[].class);
-					}
-					catch (NoSuchMethodException ex) {
-						return null;
-					}
-				}
-			});
-			classLoaderDefineClass = (Method) AccessController.doPrivileged(new PrivilegedExceptionAction() {
-				public Object run() throws Exception {
-					return ClassLoader.class.getDeclaredMethod("defineClass",
-							String.class, byte[].class, Integer.TYPE, Integer.TYPE, ProtectionDomain.class);
-				}
-			});
-			protectionDomain = getProtectionDomain(ReflectUtils.class);
-			AccessController.doPrivileged(new PrivilegedExceptionAction() {
-				public Object run() throws Exception {
-					Method[] methods = Object.class.getDeclaredMethods();
-					for (Method method : methods) {
-						if ("finalize".equals(method.getName())
-								|| (method.getModifiers() & (Modifier.FINAL | Modifier.STATIC)) > 0) {
-							continue;
-						}
-						OBJECT_METHODS.add(method);
-					}
+			privateLookupIn = (Method) AccessController.doPrivileged((PrivilegedExceptionAction) ()->{
+				try {
+					return MethodHandles.class.getMethod("privateLookupIn", Class.class, MethodHandles.Lookup.class);
+				}catch (NoSuchMethodException ex) {
 					return null;
 				}
 			});
-		}
-		catch (Throwable t) {
+			lookupDefineClass = (Method) AccessController.doPrivileged((PrivilegedExceptionAction) ()->{
+				try {
+					return MethodHandles.Lookup.class.getMethod("defineClass", byte[].class);
+				}catch (NoSuchMethodException ex) {
+					return null;
+				}
+			});
+			classLoaderDefineClass = (Method) AccessController.doPrivileged((PrivilegedExceptionAction) ()->ClassLoader.class.getDeclaredMethod("defineClass",
+					String.class, byte[].class, Integer.TYPE, Integer.TYPE, ProtectionDomain.class));
+			protectionDomain = getProtectionDomain(ReflectUtils.class);
+			AccessController.doPrivileged((PrivilegedExceptionAction) ()->{
+				Method[] methods = Object.class.getDeclaredMethods();
+				for (Method method : methods) {
+					if ("finalize".equals(method.getName()) || (method.getModifiers() & (Modifier.FINAL | Modifier.STATIC)) > 0) {
+						continue;
+					}
+					OBJECT_METHODS.add(method);
+				}
+				return null;
+			});
+		}catch (Throwable t) {
 			privateLookupIn = null;
 			lookupDefineClass = null;
 			classLoaderDefineClass = null;
@@ -118,9 +104,7 @@ public class ReflectUtils {
 	}
 	// SPRING PATCH END
 
-	private static final String[] CGLIB_PACKAGES = {
-			"java.lang",
-	};
+	private static final String[] CGLIB_PACKAGES = { "java.lang",};
 
 	static {
 		primitives.put("byte", Byte.TYPE);
@@ -143,24 +127,16 @@ public class ReflectUtils {
 	}
 
 	public static ProtectionDomain getProtectionDomain(final Class source) {
-		if (source == null) {
-			return null;
-		}
-		return (ProtectionDomain) AccessController.doPrivileged(new PrivilegedAction() {
-			public Object run() {
-				return source.getProtectionDomain();
-			}
-		});
+		if (source == null) return null;
+		return (ProtectionDomain) AccessController.doPrivileged((PrivilegedAction) ()->source.getProtectionDomain());
 	}
 
 	public static Type[] getExceptionTypes(Member member) {
 		if (member instanceof Method) {
 			return TypeUtils.getTypes(((Method) member).getExceptionTypes());
-		}
-		else if (member instanceof Constructor) {
+		}else if (member instanceof Constructor) {
 			return TypeUtils.getTypes(((Constructor) member).getExceptionTypes());
-		}
-		else {
+		}else {
 			throw new IllegalArgumentException("Cannot get exception types of a field");
 		}
 	}
@@ -168,14 +144,10 @@ public class ReflectUtils {
 	public static Signature getSignature(Member member) {
 		if (member instanceof Method) {
 			return new Signature(member.getName(), Type.getMethodDescriptor((Method) member));
-		}
-		else if (member instanceof Constructor) {
+		}else if (member instanceof Constructor) {
 			Type[] types = TypeUtils.getTypes(((Constructor) member).getParameterTypes());
-			return new Signature(Constants.CONSTRUCTOR_NAME,
-					Type.getMethodDescriptor(Type.VOID_TYPE, types));
-
-		}
-		else {
+			return new Signature(Constants.CONSTRUCTOR_NAME,Type.getMethodDescriptor(Type.VOID_TYPE, types));
+		}else {
 			throw new IllegalArgumentException("Cannot get signature of a field");
 		}
 	}
@@ -189,8 +161,7 @@ public class ReflectUtils {
 			int lparen = desc.indexOf('(');
 			String className = desc.substring(0, lparen).trim();
 			return getClass(className, loader).getConstructor(parseTypes(desc, loader));
-		}
-		catch (ClassNotFoundException | NoSuchMethodException ex) {
+		}catch (ClassNotFoundException | NoSuchMethodException ex) {
 			throw new CodeGenerationException(ex);
 		}
 	}
@@ -206,8 +177,7 @@ public class ReflectUtils {
 			String className = desc.substring(0, dot).trim();
 			String methodName = desc.substring(dot + 1, lparen).trim();
 			return getClass(className, loader).getDeclaredMethod(methodName, parseTypes(desc, loader));
-		}
-		catch (ClassNotFoundException | NoSuchMethodException ex) {
+		}catch (ClassNotFoundException | NoSuchMethodException ex) {
 			throw new CodeGenerationException(ex);
 		}
 	}
@@ -256,14 +226,12 @@ public class ReflectUtils {
 		String suffix = (dimensions > 0) ? ";" : "";
 		try {
 			return Class.forName(prefix + className + suffix, false, loader);
-		}
-		catch (ClassNotFoundException ignore) {
+		}catch (ClassNotFoundException ignore) {
 		}
 		for (int i = 0; i < packages.length; i++) {
 			try {
 				return Class.forName(prefix + packages[i] + '.' + className + suffix, false, loader);
-			}
-			catch (ClassNotFoundException ignore) {
+			}catch (ClassNotFoundException ignore) {
 			}
 		}
 		if (dimensions == 0) {
@@ -271,14 +239,12 @@ public class ReflectUtils {
 			if (c != null) {
 				return c;
 			}
-		}
-		else {
+		}else {
 			String transform = (String) transforms.get(className);
 			if (transform != null) {
 				try {
 					return Class.forName(brackets + transform, false, loader);
-				}
-				catch (ClassNotFoundException ignore) {
+				}catch (ClassNotFoundException ignore) {
 				}
 			}
 		}
@@ -302,17 +268,13 @@ public class ReflectUtils {
 			}
 			Object result = cstruct.newInstance(args);
 			return result;
-		}
-		catch (InstantiationException e) {
+		}catch (InstantiationException e) {
 			throw new CodeGenerationException(e);
-		}
-		catch (IllegalAccessException e) {
+		}catch (IllegalAccessException e) {
 			throw new CodeGenerationException(e);
-		}
-		catch (InvocationTargetException e) {
+		}catch (InvocationTargetException e) {
 			throw new CodeGenerationException(e.getTargetException());
-		}
-		finally {
+		}finally {
 			if (!flag) {
 				cstruct.setAccessible(flag);
 			}
@@ -324,15 +286,13 @@ public class ReflectUtils {
 			Constructor constructor = type.getDeclaredConstructor(parameterTypes);
 			constructor.setAccessible(true);
 			return constructor;
-		}
-		catch (NoSuchMethodException e) {
+		}catch (NoSuchMethodException e) {
 			throw new CodeGenerationException(e);
 		}
 	}
 
 	public static String[] getNames(Class[] classes) {
-		if (classes == null)
-			return null;
+		if (classes == null) return null;
 		String[] names = new String[classes.length];
 		for (int i = 0; i < names.length; i++) {
 			names[i] = classes[i].getName();
@@ -393,28 +353,22 @@ public class ReflectUtils {
 			List properties = new ArrayList(all.length);
 			for (int i = 0; i < all.length; i++) {
 				PropertyDescriptor pd = all[i];
-				if ((read && pd.getReadMethod() != null) ||
-						(write && pd.getWriteMethod() != null)) {
+				if ((read && pd.getReadMethod() != null) || (write && pd.getWriteMethod() != null)) {
 					properties.add(pd);
 				}
 			}
 			return (PropertyDescriptor[]) properties.toArray(new PropertyDescriptor[properties.size()]);
-		}
-		catch (IntrospectionException e) {
+		}catch (IntrospectionException e) {
 			throw new CodeGenerationException(e);
 		}
 	}
 
-	public static Method findDeclaredMethod(final Class type,
-			final String methodName, final Class[] parameterTypes)
-			throws NoSuchMethodException {
-
+	public static Method findDeclaredMethod(final Class type,final String methodName, final Class[] parameterTypes) throws NoSuchMethodException {
 		Class cl = type;
 		while (cl != null) {
 			try {
 				return cl.getDeclaredMethod(methodName, parameterTypes);
-			}
-			catch (NoSuchMethodException e) {
+			}catch (NoSuchMethodException e) {
 				cl = cl.getSuperclass();
 			}
 		}
@@ -449,7 +403,6 @@ public class ReflectUtils {
 		return list;
 	}
 
-
 	public static Method findInterfaceMethod(Class iface) {
 		if (!iface.isInterface()) {
 			throw new IllegalArgumentException(iface + " is not an interface");
@@ -466,27 +419,19 @@ public class ReflectUtils {
 		return defineClass(className, b, loader, null, null);
 	}
 
-	public static Class defineClass(String className, byte[] b, ClassLoader loader,
-			ProtectionDomain protectionDomain) throws Exception {
-
+	public static Class defineClass(String className, byte[] b, ClassLoader loader,ProtectionDomain protectionDomain) throws Exception {
 		return defineClass(className, b, loader, protectionDomain, null);
 	}
 
 	@SuppressWarnings("deprecation")  // on JDK 9
-	public static Class defineClass(String className, byte[] b, ClassLoader loader,
-			ProtectionDomain protectionDomain, Class<?> contextClass) throws Exception {
-
+	public static Class defineClass(String className, byte[] b, ClassLoader loader,ProtectionDomain protectionDomain, Class<?> contextClass) throws Exception {
 		Class c = null;
-
 		// Preferred option: JDK 9+ Lookup.defineClass API if ClassLoader matches
-		if (contextClass != null && contextClass.getClassLoader() == loader &&
-				privateLookupInMethod != null && lookupDefineClassMethod != null) {
+		if (contextClass != null && contextClass.getClassLoader() == loader && privateLookupInMethod != null && lookupDefineClassMethod != null) {
 			try {
-				MethodHandles.Lookup lookup = (MethodHandles.Lookup)
-						privateLookupInMethod.invoke(null, contextClass, MethodHandles.lookup());
+				MethodHandles.Lookup lookup = (MethodHandles.Lookup) privateLookupInMethod.invoke(null, contextClass, MethodHandles.lookup());
 				c = (Class) lookupDefineClassMethod.invoke(lookup, b);
-			}
-			catch (InvocationTargetException ex) {
+			}catch (InvocationTargetException ex) {
 				Throwable target = ex.getTargetException();
 				if (target.getClass() != LinkageError.class && target.getClass() != IllegalArgumentException.class) {
 					throw new CodeGenerationException(target);
@@ -494,8 +439,7 @@ public class ReflectUtils {
 				// in case of plain LinkageError (class already defined)
 				// or IllegalArgumentException (class in different package):
 				// fall through to traditional ClassLoader.defineClass below
-			}
-			catch (Throwable ex) {
+			}catch (Throwable ex) {
 				throw new CodeGenerationException(ex);
 			}
 		}
@@ -511,11 +455,9 @@ public class ReflectUtils {
 					classLoaderDefineClassMethod.setAccessible(true);
 				}
 				c = (Class) classLoaderDefineClassMethod.invoke(loader, args);
-			}
-			catch (InvocationTargetException ex) {
+			}catch (InvocationTargetException ex) {
 				throw new CodeGenerationException(ex.getTargetException());
-			}
-			catch (Throwable ex) {
+			}catch (Throwable ex) {
 				// Fall through if setAccessible fails with InaccessibleObjectException on JDK 9+
 				// (on the module path and/or with a JVM bootstrapped with --illegal-access=deny)
 				if (!ex.getClass().getName().endsWith("InaccessibleObjectException")) {
@@ -525,26 +467,18 @@ public class ReflectUtils {
 		}
 
 		// Fallback option: JDK 9+ Lookup.defineClass API even if ClassLoader does not match
-		if (c == null && contextClass != null && contextClass.getClassLoader() != loader &&
-				privateLookupInMethod != null && lookupDefineClassMethod != null) {
+		if (c == null && contextClass != null && contextClass.getClassLoader() != loader && privateLookupInMethod != null && lookupDefineClassMethod != null) {
 			try {
-				MethodHandles.Lookup lookup = (MethodHandles.Lookup)
-						privateLookupInMethod.invoke(null, contextClass, MethodHandles.lookup());
+				MethodHandles.Lookup lookup = (MethodHandles.Lookup) privateLookupInMethod.invoke(null, contextClass, MethodHandles.lookup());
 				c = (Class) lookupDefineClassMethod.invoke(lookup, b);
-			}
-			catch (InvocationTargetException ex) {
+			}catch (InvocationTargetException ex) {
 				throw new CodeGenerationException(ex.getTargetException());
-			}
-			catch (Throwable ex) {
+			}catch (Throwable ex) {
 				throw new CodeGenerationException(ex);
 			}
 		}
-
 		// No defineClass variant available at all?
-		if (c == null) {
-			throw new CodeGenerationException(THROWABLE);
-		}
-
+		if (c == null) throw new CodeGenerationException(THROWABLE);
 		// Force static initializers to run.
 		Class.forName(className, true, loader);
 		return c;
