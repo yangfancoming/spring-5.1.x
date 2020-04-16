@@ -12,9 +12,9 @@ import org.junit.Test;
 public class App {
 
     @Test
-    public void test(){
+    public void test()  {
         Engineer engineerProxy = (Engineer) CglibProxy.getProxy(new Engineer());
-        engineerProxy.eat();
-        engineerProxy.work();
+        engineerProxy.eat(); // 可以被代理
+        engineerProxy.work();//  final 方法不会被生成的子类覆盖
     }
 }

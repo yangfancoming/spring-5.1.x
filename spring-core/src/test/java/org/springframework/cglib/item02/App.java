@@ -8,7 +8,6 @@ import org.springframework.cglib.proxy.NoOp;
 
 /**
  * Created by 64274 on 2019/4/9.
- *
  * @ Description: 再扩展一点点，比方说在AOP中我们经常碰到的一种复杂场景是：我们想对类A的B方法使用一种拦截策略、类A的C方法使用另外一种拦截策略。
  * @ author  山羊来了
  * @ date 2019/4/9---18:13
@@ -43,7 +42,8 @@ public class App {
          即构造函数中调用方法也是会拦截的
         */
         enhancer.setInterceptDuringConstruction(false);
-        MyDao dao = (MyDao)enhancer.create();// 使用字节码技术动态创建子类的实例（它是业务类的子类，可以用业务类引用指向它）。最后通过动态代理类对象进行方法调用。
+        MyDao dao = (MyDao)enhancer.create();// 使用字节码技术动态创建子类的实例（它是业务类的子类，可以用业务类引用指向它）。
+		// 最后通过动态代理类对象进行方法调用。
         dao.update(); // 对类A的B方法使用一种拦截策略
         dao.select(); // 类A的C方法使用另外一种拦截策略
     }

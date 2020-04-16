@@ -22,7 +22,7 @@ public class CglibProxy implements MethodInterceptor {
         return result;
     }
 
-    public static Object getProxy(Object target){
+    public static Object getProxy(Object target) {
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(target.getClass());
         enhancer.setCallback(new CglibProxy(target));

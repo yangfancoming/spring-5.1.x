@@ -150,14 +150,12 @@ abstract public class KeyFactory {
 		return create(loader, keyInterface, customizer, Collections.<KeyFactoryCustomizer>emptyList());
 	}
 
-	public static KeyFactory create(ClassLoader loader, Class keyInterface, KeyFactoryCustomizer customizer,
-			List<KeyFactoryCustomizer> next) {
+	public static KeyFactory create(ClassLoader loader, Class keyInterface, KeyFactoryCustomizer customizer,List<KeyFactoryCustomizer> next) {
 		Generator gen = new Generator();
 		gen.setInterface(keyInterface);
 		// SPRING PATCH BEGIN
 		gen.setContextClass(keyInterface);
 		// SPRING PATCH END
-
 		if (customizer != null) {
 			gen.addCustomizer(customizer);
 		}

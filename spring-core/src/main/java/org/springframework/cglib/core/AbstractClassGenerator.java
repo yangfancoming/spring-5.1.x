@@ -75,10 +75,8 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 		private static final Function<AbstractClassGenerator, Object> GET_KEY = gen->gen.key;
 
 		public ClassLoaderData(ClassLoader classLoader) {
-			if (classLoader == null) {
-				throw new IllegalArgumentException("classLoader == null is not yet supported");
-			}
-			this.classLoader = new WeakReference<ClassLoader>(classLoader);
+			if (classLoader == null) throw new IllegalArgumentException("classLoader == null is not yet supported");
+			this.classLoader = new WeakReference<>(classLoader);
 			Function<AbstractClassGenerator, Object> load = gen->{
 				Class klass = gen.generate(ClassLoaderData.this);
 				return gen.wrapCachedClass(klass);
@@ -101,8 +99,7 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 		public Object get(AbstractClassGenerator gen, boolean useCache) {
 			if (!useCache) {
 				return gen.generate(ClassLoaderData.this);
-			}
-			else {
+			}else {
 				Object cachedValue = generatedClasses.get(gen);
 				return gen.unwrapCachedValue(cachedValue);
 			}
@@ -120,7 +117,6 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 
 	protected static class Source {
 		String name;
-
 		public Source(String name) {
 			this.name = name;
 		}
@@ -247,10 +243,8 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 
 	/**
 	 * Returns the protection domain to use when defining the class.
-	 *
 	 * Default implementation returns <code>null</code> for using a default protection domain. Sub-classes may
 	 * override to use a more specific protection domain.
-	 * </p>
 	 * @return the protection domain (<code>null</code> for using a default)
 	 */
 	protected ProtectionDomain getProtectionDomain() {
@@ -267,7 +261,7 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 					cache = CACHE;
 					data = cache.get(loader);
 					if (data == null) {
-						Map<ClassLoader, ClassLoaderData> newCache = new WeakHashMap<ClassLoader, ClassLoaderData>(cache);
+						Map<ClassLoader, ClassLoaderData> newCache = new WeakHashMap<>(cache);
 						data = new ClassLoaderData(loader);
 						newCache.put(loader, data);
 						CACHE = newCache;
@@ -307,8 +301,7 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 				try {
 					gen = classLoader.loadClass(getClassName());
 					return gen;
-				}
-				catch (ClassNotFoundException e) {
+				}catch (ClassNotFoundException e) {
 					// ignore
 				}
 			}

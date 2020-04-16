@@ -152,16 +152,8 @@ public class Enhancer extends AbstractClassGenerator {
 	 * Internal interface, only public due to ClassLoader issues.
 	 */
 	public interface EnhancerKey {
-
-		public Object newInstance(String type,
-								  String[] interfaces,
-								  WeakCacheKey<CallbackFilter> filter,
-								  Type[] callbackTypes,
-								  boolean useFactory,
-								  boolean interceptDuringConstruction,
-								  Long serialVersionUID);
+		public Object newInstance(String type, String[] interfaces, WeakCacheKey<CallbackFilter> filter,Type[] callbackTypes,boolean useFactory,boolean interceptDuringConstruction,Long serialVersionUID);
 	}
-
 
 	private Class[] interfaces;
 
@@ -202,8 +194,7 @@ public class Enhancer extends AbstractClassGenerator {
 	 * Set the class which the generated class will extend. As a convenience,
 	 * if the supplied superclass is actually an interface, <code>setInterfaces</code>
 	 * will be called with the appropriate argument instead.
-	 * A non-interface argument must not be declared as final, and must have an
-	 * accessible constructor.
+	 * A non-interface argument must not be declared as final, and must have an accessible constructor.
 	 * @param superclass class to extend or interface to implement
 	 * @see #setInterfaces(Class[])
 	 */
@@ -222,8 +213,7 @@ public class Enhancer extends AbstractClassGenerator {
 	}
 
 	/**
-	 * Set the interfaces to implement. The <code>Factory</code> interface will
-	 * always be implemented regardless of what is specified here.
+	 * Set the interfaces to implement. The <code>Factory</code> interface will always be implemented regardless of what is specified here.
 	 * @param interfaces array of interfaces to implement, or null
 	 * @see Factory
 	 */
@@ -232,8 +222,7 @@ public class Enhancer extends AbstractClassGenerator {
 	}
 
 	/**
-	 * Set the {@link CallbackFilter} used to map the generated class' methods
-	 * to a particular callback index.
+	 * Set the {@link CallbackFilter} used to map the generated class' methods  to a particular callback index.
 	 * New object instances will always use the same mapping, but may use different
 	 * actual callback objects.
 	 * @param filter the callback filter to use when generating a new class
@@ -264,15 +253,12 @@ public class Enhancer extends AbstractClassGenerator {
 	 * @see #setCallback
 	 */
 	public void setCallbacks(Callback[] callbacks) {
-		if (callbacks != null && callbacks.length == 0) {
-			throw new IllegalArgumentException("Array cannot be empty");
-		}
+		if (callbacks != null && callbacks.length == 0) throw new IllegalArgumentException("Array cannot be empty");
 		this.callbacks = callbacks;
 	}
 
 	/**
-	 * Set whether the enhanced object instances should implement
-	 * the {@link Factory} interface.
+	 * Set whether the enhanced object instances should implement the {@link Factory} interface.
 	 * This was added for tools that need for proxies to be more
 	 * indistinguishable from their targets. Also, in some cases it may
 	 * be necessary to disable the <code>Factory</code> interface to
@@ -284,9 +270,8 @@ public class Enhancer extends AbstractClassGenerator {
 	}
 
 	/**
-	 * Set whether methods called from within the proxy's constructer
-	 * will be intercepted. The default value is true. Unintercepted methods
-	 * will call the method of the proxy's base class, if it exists.
+	 * Set whether methods called from within the proxy's constructer will be intercepted.
+	 * The default value is true. Unintercepted methods will call the method of the proxy's base class, if it exists.
 	 * @param interceptDuringConstruction whether to intercept methods called from the constructor
 	 */
 	public void setInterceptDuringConstruction(boolean interceptDuringConstruction) {
