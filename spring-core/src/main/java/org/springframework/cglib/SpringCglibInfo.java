@@ -8,7 +8,6 @@ package org.springframework.cglib;
  *
  * See <a href="package-summary.html">package-level javadocs</a> for more
  * information on {@code org.springframework.cglib}.
-
  * @since 3.2
  */
 public final class SpringCglibInfo {

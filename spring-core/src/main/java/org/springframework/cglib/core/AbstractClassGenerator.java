@@ -1,18 +1,4 @@
-/*
- * Copyright 2003,2004 The Apache Software Foundation
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 
 package org.springframework.cglib.core;
 
@@ -38,11 +24,9 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 
 	private static final ThreadLocal CURRENT = new ThreadLocal();
 
-	private static volatile Map<ClassLoader, ClassLoaderData> CACHE = new WeakHashMap<ClassLoader, ClassLoaderData>();
+	private static volatile Map<ClassLoader, ClassLoaderData> CACHE = new WeakHashMap<>();
 
-	private static final boolean DEFAULT_USE_CACHE =
-			Boolean.parseBoolean(System.getProperty("cglib.useCache", "true"));
-
+	private static final boolean DEFAULT_USE_CACHE = Boolean.parseBoolean(System.getProperty("cglib.useCache", "true"));
 
 	private GeneratorStrategy strategy = DefaultGeneratorStrategy.INSTANCE;
 
@@ -64,10 +48,9 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 
 	private boolean attemptLoad;
 
-
 	protected static class ClassLoaderData {
 
-		private final Set<String> reservedClassNames = new HashSet<String>();
+		private final Set<String> reservedClassNames = new HashSet<>();
 
 		/**
 		 * {@link AbstractClassGenerator} here holds "cache key" (e.g. {@link org.springframework.cglib.proxy.Enhancer}
@@ -87,31 +70,20 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 		 */
 		private final WeakReference<ClassLoader> classLoader;
 
-		private final Predicate uniqueNamePredicate = new Predicate() {
-			public boolean evaluate(Object name) {
-				return reservedClassNames.contains(name);
-			}
-		};
+		private final Predicate uniqueNamePredicate = name->reservedClassNames.contains(name);
 
-		private static final Function<AbstractClassGenerator, Object> GET_KEY = new Function<AbstractClassGenerator, Object>() {
-			public Object apply(AbstractClassGenerator gen) {
-				return gen.key;
-			}
-		};
+		private static final Function<AbstractClassGenerator, Object> GET_KEY = gen->gen.key;
 
 		public ClassLoaderData(ClassLoader classLoader) {
 			if (classLoader == null) {
 				throw new IllegalArgumentException("classLoader == null is not yet supported");
 			}
 			this.classLoader = new WeakReference<ClassLoader>(classLoader);
-			Function<AbstractClassGenerator, Object> load =
-					new Function<AbstractClassGenerator, Object>() {
-						public Object apply(AbstractClassGenerator gen) {
-							Class klass = gen.generate(ClassLoaderData.this);
-							return gen.wrapCachedClass(klass);
-						}
-					};
-			generatedClasses = new LoadingCache<AbstractClassGenerator, Object, Object>(GET_KEY, load);
+			Function<AbstractClassGenerator, Object> load = gen->{
+				Class klass = gen.generate(ClassLoaderData.this);
+				return gen.wrapCachedClass(klass);
+			};
+			generatedClasses = new LoadingCache<>(GET_KEY, load);
 		}
 
 		public ClassLoader getClassLoader() {
@@ -146,16 +118,13 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 		return ((WeakReference) cached).get();
 	}
 
-
 	protected static class Source {
-
 		String name;
 
 		public Source(String name) {
 			this.name = name;
 		}
 	}
-
 
 	protected AbstractClassGenerator(Source source) {
 		this.source = source;
@@ -202,8 +171,7 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 	 * @see DefaultNamingPolicy
 	 */
 	public void setNamingPolicy(NamingPolicy namingPolicy) {
-		if (namingPolicy == null)
-			namingPolicy = DefaultNamingPolicy.INSTANCE;
+		if (namingPolicy == null) namingPolicy = DefaultNamingPolicy.INSTANCE;
 		this.namingPolicy = namingPolicy;
 	}
 
@@ -247,8 +215,7 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 	 * By default an instance of {@see DefaultGeneratorStrategy} is used.
 	 */
 	public void setStrategy(GeneratorStrategy strategy) {
-		if (strategy == null)
-			strategy = DefaultGeneratorStrategy.INSTANCE;
+		if (strategy == null) strategy = DefaultGeneratorStrategy.INSTANCE;
 		this.strategy = strategy;
 	}
 
@@ -269,18 +236,10 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 
 	public ClassLoader getClassLoader() {
 		ClassLoader t = classLoader;
-		if (t == null) {
-			t = getDefaultClassLoader();
-		}
-		if (t == null) {
-			t = getClass().getClassLoader();
-		}
-		if (t == null) {
-			t = Thread.currentThread().getContextClassLoader();
-		}
-		if (t == null) {
-			throw new IllegalStateException("Cannot determine classloader");
-		}
+		if (t == null) t = getDefaultClassLoader();
+		if (t == null) t = getClass().getClassLoader();
+		if (t == null) t = Thread.currentThread().getContextClassLoader();
+		if (t == null) throw new IllegalStateException("Cannot determine classloader");
 		return t;
 	}
 
@@ -321,11 +280,9 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 				return firstInstance((Class) obj);
 			}
 			return nextInstance(obj);
-		}
-		catch (RuntimeException | Error ex) {
+		}catch (RuntimeException | Error ex) {
 			throw ex;
-		}
-		catch (Exception ex) {
+		}catch (Exception ex) {
 			throw new CodeGenerationException(ex);
 		}
 	}
@@ -338,8 +295,8 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 			ClassLoader classLoader = data.getClassLoader();
 			if (classLoader == null) {
 				throw new IllegalStateException("ClassLoader is null while trying to define class " +
-						getClassName() + ". It seems that the loader has been expired from a weak reference somehow. " +
-						"Please file an issue at cglib's issue tracker.");
+						getClassName() + ". It seems that the loader has been expired from a weak reference somehow. Please file an issue at cglib's issue tracker.");
+
 			}
 			synchronized (classLoader) {
 				String name = generateClassName(data.getUniqueNamePredicate());
@@ -364,14 +321,11 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 				// SPRING PATCH END
 			}
 			return gen;
-		}
-		catch (RuntimeException | Error ex) {
+		}catch (RuntimeException | Error ex) {
 			throw ex;
-		}
-		catch (Exception ex) {
+		}catch (Exception ex) {
 			throw new CodeGenerationException(ex);
-		}
-		finally {
+		}finally {
 			CURRENT.set(save);
 		}
 	}
