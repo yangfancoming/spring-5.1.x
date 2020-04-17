@@ -11,9 +11,6 @@ import static org.junit.Assert.*;
 
 /**
  * Tests for {@link SpringFactoriesLoader}.
- *
- * @author Arjen Poutsma
- * @author Phillip Webb
  */
 public class SpringFactoriesLoaderTests {
 
@@ -32,8 +29,7 @@ public class SpringFactoriesLoaderTests {
 
 	@Test
 	public void loadPackagePrivateFactory() {
-		List<DummyPackagePrivateFactory> factories =
-				SpringFactoriesLoader.loadFactories(DummyPackagePrivateFactory.class, null);
+		List<DummyPackagePrivateFactory> factories = SpringFactoriesLoader.loadFactories(DummyPackagePrivateFactory.class, null);
 		assertEquals(1, factories.size());
 		assertTrue((factories.get(0).getClass().getModifiers() & Modifier.PUBLIC) == 0);
 	}

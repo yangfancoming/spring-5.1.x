@@ -73,8 +73,7 @@ public abstract class YamlProcessor {
 
 	/**
 	 * Flag indicating that a document for which all the
-	 * {@link #setDocumentMatchers(DocumentMatcher...) document matchers} abstain will
-	 * nevertheless match. Default is {@code true}.
+	 * {@link #setDocumentMatchers(DocumentMatcher...) document matchers} abstain will  nevertheless match. Default is {@code true}.
 	 */
 	public void setMatchDefault(boolean matchDefault) {
 		this.matchDefault = matchDefault;
@@ -98,14 +97,11 @@ public abstract class YamlProcessor {
 		this.resources = resources;
 	}
 
-
 	/**
-	 * Provide an opportunity for subclasses to process the Yaml parsed from the supplied
-	 * resources. Each resource is parsed in turn and the documents inside checked against
-	 * the {@link #setDocumentMatchers(DocumentMatcher...) matchers}. If a document
-	 * matches it is passed into the callback, along with its representation as Properties.
-	 * Depending on the {@link #setResolutionMethod(ResolutionMethod)} not all of the
-	 * documents will be parsed.
+	 * Provide an opportunity for subclasses to process the Yaml parsed from the supplied resources.
+	 * Each resource is parsed in turn and the documents inside checked against the {@link #setDocumentMatchers(DocumentMatcher...) matchers}.
+	 * If a document matches it is passed into the callback, along with its representation as Properties.
+	 * Depending on the {@link #setResolutionMethod(ResolutionMethod)} not all of the documents will be parsed.
 	 * @param callback a callback to delegate to once matching documents are found
 	 * @see #createYaml()
 	 */
@@ -134,9 +130,7 @@ public abstract class YamlProcessor {
 	private boolean process(MatchCallback callback, Yaml yaml, Resource resource) {
 		int count = 0;
 		try {
-			if (logger.isDebugEnabled()) {
-				logger.debug("Loading from YAML: " + resource);
-			}
+			if (logger.isDebugEnabled()) logger.debug("Loading from YAML: " + resource);
 			try (Reader reader = new UnicodeReader(resource.getInputStream())) {
 				for (Object object : yaml.loadAll(reader)) {
 					if (object != null && process(asMap(object), callback)) {
@@ -295,22 +289,9 @@ public abstract class YamlProcessor {
 	 * Status returned from {@link DocumentMatcher#matches(java.util.Properties)}.
 	 */
 	public enum MatchStatus {
-
-		/**
-		 * A match was found.
-		 */
-		FOUND,
-
-		/**
-		 * No match was found.
-		 */
-		NOT_FOUND,
-
-		/**
-		 * The matcher should not be considered.
-		 */
-		ABSTAIN;
-
+		FOUND, //  A match was found.
+		NOT_FOUND, //  No match was found.
+		ABSTAIN; // The matcher should not be considered.
 		/**
 		 * Compare two {@link MatchStatus} items, returning the most specific status.
 		 */
@@ -319,26 +300,13 @@ public abstract class YamlProcessor {
 		}
 	}
 
-
 	/**
 	 * Method to use for resolving resources.
 	 */
 	public enum ResolutionMethod {
-
-		/**
-		 * Replace values from earlier in the list.
-		 */
-		OVERRIDE,
-
-		/**
-		 * Replace values from earlier in the list, ignoring any failures.
-		 */
-		OVERRIDE_AND_IGNORE,
-
-		/**
-		 * Take the first resource in the list that exists and use just that.
-		 */
-		FIRST_FOUND
+		OVERRIDE, // Replace values from earlier in the list.
+		OVERRIDE_AND_IGNORE, // Replace values from earlier in the list, ignoring any failures.
+		FIRST_FOUND // Take the first resource in the list that exists and use just that.
 	}
 
 }

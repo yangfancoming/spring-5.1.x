@@ -23,7 +23,6 @@ public class RegexpMethodPointcutAdvisorIntegrationTests {
 
 	private static final Resource CONTEXT = qualifiedResource(RegexpMethodPointcutAdvisorIntegrationTests.class, "context.xml");
 
-
 	@Test
 	public void testSinglePattern() throws Throwable {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();

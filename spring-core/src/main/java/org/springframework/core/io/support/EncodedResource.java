@@ -45,8 +45,7 @@ public class EncodedResource implements InputStreamSource {
 	}
 
 	/**
-	 * Create a new {@code EncodedResource} for the given {@code Resource},
-	 * using the specified {@code encoding}.
+	 * Create a new {@code EncodedResource} for the given {@code Resource},using the specified {@code encoding}.
 	 * @param resource the {@code Resource} to hold (never {@code null})
 	 * @param encoding the encoding to use for reading from the resource
 	 */
@@ -55,8 +54,7 @@ public class EncodedResource implements InputStreamSource {
 	}
 
 	/**
-	 * Create a new {@code EncodedResource} for the given {@code Resource},
-	 * using the specified {@code Charset}.
+	 * Create a new {@code EncodedResource} for the given {@code Resource},using the specified {@code Charset}.
 	 * @param resource the {@code Resource} to hold (never {@code null})
 	 * @param charset the {@code Charset} to use for reading from the resource
 	 */
@@ -80,8 +78,7 @@ public class EncodedResource implements InputStreamSource {
 	}
 
 	/**
-	 * Return the encoding to use for reading from the {@linkplain #getResource() resource},
-	 * or {@code null} if none specified.
+	 * Return the encoding to use for reading from the {@linkplain #getResource() resource}, or {@code null} if none specified.
 	 */
 	@Nullable
 	public final String getEncoding() {
@@ -89,8 +86,7 @@ public class EncodedResource implements InputStreamSource {
 	}
 
 	/**
-	 * Return the {@code Charset} to use for reading from the {@linkplain #getResource() resource},
-	 * or {@code null} if none specified.
+	 * Return the {@code Charset} to use for reading from the {@linkplain #getResource() resource},or {@code null} if none specified.
 	 */
 	@Nullable
 	public final Charset getCharset() {
@@ -99,8 +95,7 @@ public class EncodedResource implements InputStreamSource {
 
 	/**
 	 * Determine whether a {@link Reader} is required as opposed to an {@link InputStream},
-	 * i.e. whether an {@linkplain #getEncoding() encoding} or a {@link #getCharset() Charset}
-	 * has been specified.
+	 * i.e. whether an {@linkplain #getEncoding() encoding} or a {@link #getCharset() Charset} has been specified.
 	 * @see #getReader()
 	 * @see #getInputStream()
 	 */
@@ -144,9 +139,7 @@ public class EncodedResource implements InputStreamSource {
 			return false;
 		}
 		EncodedResource otherResource = (EncodedResource) other;
-		return (resource.equals(otherResource.resource) &&
-				ObjectUtils.nullSafeEquals(charset, otherResource.charset) &&
-				ObjectUtils.nullSafeEquals(encoding, otherResource.encoding));
+		return (resource.equals(otherResource.resource) && ObjectUtils.nullSafeEquals(charset, otherResource.charset) && ObjectUtils.nullSafeEquals(encoding, otherResource.encoding));
 	}
 
 	@Override

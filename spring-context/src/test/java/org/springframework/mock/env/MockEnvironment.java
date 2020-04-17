@@ -8,8 +8,6 @@ import org.springframework.core.env.ConfigurableEnvironment;
 /**
  * Simple {@link ConfigurableEnvironment} implementation exposing
  * {@link #setProperty} and {@link #withProperty} methods for testing purposes.
-
- * @author Sam Brannen
  * @since 3.2
  * @see org.springframework.mock.env.MockPropertySource
  */
@@ -17,14 +15,12 @@ public class MockEnvironment extends AbstractEnvironment {
 
 	private final MockPropertySource propertySource = new MockPropertySource();
 
-
 	/**
 	 * Create a new {@code MockEnvironment} with a single {@link MockPropertySource}.
 	 */
 	public MockEnvironment() {
 		getPropertySources().addLast(this.propertySource);
 	}
-
 
 	/**
 	 * Set a property on the underlying {@link MockPropertySource} for this environment.
