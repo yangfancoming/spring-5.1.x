@@ -72,8 +72,7 @@ public abstract class YamlProcessor {
 	}
 
 	/**
-	 * Flag indicating that a document for which all the
-	 * {@link #setDocumentMatchers(DocumentMatcher...) document matchers} abstain will  nevertheless match. Default is {@code true}.
+	 * Flag indicating that a document for which all the {@link #setDocumentMatchers(DocumentMatcher...) document matchers} abstain will  nevertheless match. Default is {@code true}.
 	 */
 	public void setMatchDefault(boolean matchDefault) {
 		this.matchDefault = matchDefault;
@@ -107,7 +106,7 @@ public abstract class YamlProcessor {
 	 */
 	protected void process(MatchCallback callback) {
 		Yaml yaml = createYaml();
-		for (Resource resource : this.resources) {
+		for (Resource resource : resources) {
 			boolean found = process(callback, yaml, resource);
 			if (this.resolutionMethod == ResolutionMethod.FIRST_FOUND && found) {
 				return;
@@ -264,10 +263,8 @@ public abstract class YamlProcessor {
 
 		/**
 		 * Process the given representation of the parsing results.
-		 * @param properties the properties to process (as a flattened
-		 * representation with indexed keys in case of a collection or map)
-		 * @param map the result map (preserving the original value structure
-		 * in the YAML document)
+		 * @param properties the properties to process (as a flattened representation with indexed keys in case of a collection or map)
+		 * @param map the result map (preserving the original value structure in the YAML document)
 		 */
 		void process(Properties properties, Map<String, Object> map);
 	}
@@ -308,5 +305,4 @@ public abstract class YamlProcessor {
 		OVERRIDE_AND_IGNORE, // Replace values from earlier in the list, ignoring any failures.
 		FIRST_FOUND // Take the first resource in the list that exists and use just that.
 	}
-
 }

@@ -8,6 +8,7 @@ import java.util.Map;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.springframework.core.io.Resource;
 import org.yaml.snakeyaml.parser.ParserException;
 import org.yaml.snakeyaml.scanner.ScannerException;
 
@@ -25,9 +26,13 @@ public class YamlProcessorTests {
 	@Rule
 	public ExpectedException exception = ExpectedException.none();
 
+	public Resource getResource(String string){
+		return new ByteArrayResource(string.getBytes());
+	}
+
 	@Test
 	public void arrayConvertedToIndexedBeanReference() {
-		this.processor.setResources(new ByteArrayResource("foo: bar\nbar: [1,2,3]".getBytes()));
+		this.processor.setResources(getResource("foo: bar\nbar: [1,2,3]"));
 		this.processor.process((properties, map) -> {
 			assertEquals(4, properties.size());
 			assertEquals("bar", properties.get("foo"));
@@ -43,13 +48,13 @@ public class YamlProcessorTests {
 
 	@Test
 	public void testStringResource() {
-		this.processor.setResources(new ByteArrayResource("foo # a document that is a literal".getBytes()));
+		this.processor.setResources(getResource("foo # a document that is a literal"));
 		this.processor.process((properties, map) -> assertEquals("foo", map.get("document")));
 	}
 
 	@Test
 	public void testBadDocumentStart() {
-		this.processor.setResources(new ByteArrayResource("foo # a document\nbar: baz".getBytes()));
+		this.processor.setResources(getResource("foo # a document\nbar: baz"));
 		this.exception.expect(ParserException.class);
 		this.exception.expectMessage("line 2, column 1");
 		this.processor.process((properties, map) -> {});
@@ -57,7 +62,7 @@ public class YamlProcessorTests {
 
 	@Test
 	public void testBadResource() {
-		this.processor.setResources(new ByteArrayResource("foo: bar\ncd\nspam:\n  foo: baz".getBytes()));
+		this.processor.setResources(getResource("foo: bar\ncd\nspam:\n  foo: baz"));
 		this.exception.expect(ScannerException.class);
 		this.exception.expectMessage("line 3, column 1");
 		this.processor.process((properties, map) -> {});
@@ -65,7 +70,7 @@ public class YamlProcessorTests {
 
 	@Test
 	public void mapConvertedToIndexedBeanReference() {
-		this.processor.setResources(new ByteArrayResource("foo: bar\nbar:\n spam: bucket".getBytes()));
+		this.processor.setResources(getResource("foo: bar\nbar:\n spam: bucket"));
 		this.processor.process((properties, map) -> {
 			assertEquals("bucket", properties.get("bar.spam"));
 			assertEquals(2, properties.size());
@@ -74,7 +79,7 @@ public class YamlProcessorTests {
 
 	@Test
 	public void integerKeyBehaves() {
-		this.processor.setResources(new ByteArrayResource("foo: bar\n1: bar".getBytes()));
+		this.processor.setResources(getResource("foo: bar\n1: bar"));
 		this.processor.process((properties, map) -> {
 			assertEquals("bar", properties.get("[1]"));
 			assertEquals(2, properties.size());
@@ -83,7 +88,7 @@ public class YamlProcessorTests {
 
 	@Test
 	public void integerDeepKeyBehaves() {
-		this.processor.setResources(new ByteArrayResource("foo:\n  1: bar".getBytes()));
+		this.processor.setResources(getResource("foo:\n  1: bar"));
 		this.processor.process((properties, map) -> {
 			assertEquals("bar", properties.get("foo[1]"));
 			assertEquals(1, properties.size());
@@ -93,7 +98,7 @@ public class YamlProcessorTests {
 	@Test
 	@SuppressWarnings("unchecked")
 	public void flattenedMapIsSameAsPropertiesButOrdered() {
-		this.processor.setResources(new ByteArrayResource("foo: bar\nbar:\n spam: bucket".getBytes()));
+		this.processor.setResources(getResource("foo: bar\nbar:\n spam: bucket"));
 		this.processor.process((properties, map) -> {
 			assertEquals("bucket", properties.get("bar.spam"));
 			assertEquals(2, properties.size());

@@ -22,9 +22,7 @@ import org.springframework.util.StringUtils;
 /**
  * Abstract base class for {@link Environment} implementations. Supports the notion of
  * reserved default profile names and enables specifying active and default profiles
- * through the {@link #ACTIVE_PROFILES_PROPERTY_NAME} and
- * {@link #DEFAULT_PROFILES_PROPERTY_NAME} properties.
- *
+ * through the {@link #ACTIVE_PROFILES_PROPERTY_NAME} and {@link #DEFAULT_PROFILES_PROPERTY_NAME} properties.
  * Concrete subclasses differ primarily on which {@link PropertySource} objects they
  * add by default. {@code AbstractEnvironment} adds none. Subclasses should contribute
  * property sources through the protected {@link #customizePropertySources(MutablePropertySources)}
@@ -318,11 +316,9 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	}
 
 	/**
-	 * Validate the given profile, called internally prior to adding to the set of
-	 * active or default profiles.
+	 * Validate the given profile, called internally prior to adding to the set of active or default profiles.
 	 * Subclasses may override to impose further restrictions on profile syntax.
-	 * @throws IllegalArgumentException if the profile is null, empty, whitespace-only or
-	 * begins with the profile NOT operator (!).
+	 * @throws IllegalArgumentException if the profile is null, empty, whitespace-only or begins with the profile NOT operator (!).
 	 * @see #acceptsProfiles
 	 * @see #addActiveProfile
 	 * @see #setDefaultProfiles
@@ -468,7 +464,6 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	public void validateRequiredProperties() throws MissingRequiredPropertiesException {
 		this.propertyResolver.validateRequiredProperties();
 	}
-
 
 	//---------------------------------------------------------------------
 	// Implementation of PropertyResolver interface

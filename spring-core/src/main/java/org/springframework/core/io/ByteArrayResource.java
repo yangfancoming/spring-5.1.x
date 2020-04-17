@@ -13,14 +13,10 @@ import org.springframework.util.Assert;
 /**
  * {@link Resource} implementation for a given byte array.
  * Creates a {@link ByteArrayInputStream} for the given byte array.
- *
  * Useful for loading content from any given byte array,
  * without having to resort to a single-use {@link InputStreamResource}.
  * Particularly useful for creating mail attachments from local content,
  * where JavaMail needs to be able to read the stream multiple times.
- *
-
- * @author Sam Brannen
  * @since 1.2.3
  * @see java.io.ByteArrayInputStream
  * @see InputStreamResource
@@ -31,7 +27,6 @@ public class ByteArrayResource extends AbstractResource {
 	private final byte[] byteArray;
 
 	private final String description;
-
 
 	/**
 	 * Create a new {@code ByteArrayResource}.
@@ -77,8 +72,7 @@ public class ByteArrayResource extends AbstractResource {
 	}
 
 	/**
-	 * This implementation returns a ByteArrayInputStream for the
-	 * underlying byte array.
+	 * This implementation returns a ByteArrayInputStream for the  underlying byte array.
 	 * @see java.io.ByteArrayInputStream
 	 */
 	@Override
@@ -87,14 +81,12 @@ public class ByteArrayResource extends AbstractResource {
 	}
 
 	/**
-	 * This implementation returns a description that includes the passed-in
-	 * {@code description}, if any.
+	 * This implementation returns a description that includes the passed-in {@code description}, if any.
 	 */
 	@Override
 	public String getDescription() {
 		return "Byte array resource [" + this.description + "]";
 	}
-
 
 	/**
 	 * This implementation compares the underlying byte array.
@@ -102,13 +94,11 @@ public class ByteArrayResource extends AbstractResource {
 	 */
 	@Override
 	public boolean equals(Object other) {
-		return (this == other || (other instanceof ByteArrayResource &&
-				Arrays.equals(((ByteArrayResource) other).byteArray, this.byteArray)));
+		return (this == other || (other instanceof ByteArrayResource && Arrays.equals(((ByteArrayResource) other).byteArray, this.byteArray)));
 	}
 
 	/**
-	 * This implementation returns the hash code based on the
-	 * underlying byte array.
+	 * This implementation returns the hash code based on the underlying byte array.
 	 */
 	@Override
 	public int hashCode() {
