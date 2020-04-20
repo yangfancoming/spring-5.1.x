@@ -15,12 +15,9 @@ import org.springframework.lang.Nullable;
 /**
  * SPI interface to be implemented by most if not all application contexts.
  * Provides facilities to configure an application context in addition
- * to the application context client methods in the
- * {@link org.springframework.context.ApplicationContext} interface.
- *
- * Configuration and lifecycle methods are encapsulated here to avoid
- * making them obvious to ApplicationContext client code. The present
- * methods should only be used by startup and shutdown code.
+ * to the application context client methods in the {@link org.springframework.context.ApplicationContext} interface.
+ * Configuration and lifecycle methods are encapsulated here to avoid making them obvious to ApplicationContext client code.
+ * The present methods should only be used by startup and shutdown code.
  * @since 03.11.2003
  */
 public interface ConfigurableApplicationContext extends ApplicationContext, Lifecycle, Closeable {
@@ -67,7 +64,6 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	 */
 	String SYSTEM_ENVIRONMENT_BEAN_NAME = "systemEnvironment";
 
-
 	/**
 	 * Set the unique id of this application context.
 	 * @since 3.0
@@ -76,8 +72,7 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 
 	/**
 	 * Set the parent of this application context.
-	 * Note that the parent shouldn't be changed: It should only be set outside
-	 * a constructor if it isn't available when an object of this class is created,
+	 * Note that the parent shouldn't be changed: It should only be set outside a constructor if it isn't available when an object of this class is created,
 	 * for example in case of WebApplicationContext setup.
 	 * @param parent the parent context
 	 * @see org.springframework.web.context.ConfigurableWebApplicationContext
@@ -129,32 +124,25 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	void addProtocolResolver(ProtocolResolver resolver);
 
 	/**
-	 * Load or refresh the persistent representation of the configuration,
-	 * which might an XML file, properties file, or relational database schema.
+	 * Load or refresh the persistent representation of the configuration,which might an XML file, properties file, or relational database schema.
 	 * As this is a startup method, it should destroy already created singletons
-	 * if it fails, to avoid dangling resources. In other words, after invocation
-	 * of that method, either all or no singletons at all should be instantiated.
+	 * if it fails, to avoid dangling resources. In other words, after invocation  of that method, either all or no singletons at all should be instantiated.
 	 * @throws BeansException if the bean factory could not be initialized
-	 * @throws IllegalStateException if already initialized and multiple refresh
-	 * attempts are not supported
+	 * @throws IllegalStateException if already initialized and multiple refresh  attempts are not supported
 	 */
 	void refresh() throws BeansException, IllegalStateException;
 
 	/**
-	 * Register a shutdown hook with the JVM runtime, closing this context
-	 * on JVM shutdown unless it has already been closed at that time.
-	 * This method can be called multiple times. Only one shutdown hook
-	 * (at max) will be registered for each context instance.
+	 * Register a shutdown hook with the JVM runtime, closing this context on JVM shutdown unless it has already been closed at that time.
+	 * This method can be called multiple times. Only one shutdown hook (at max) will be registered for each context instance.
 	 * @see java.lang.Runtime#addShutdownHook
 	 * @see #close()
 	 */
 	void registerShutdownHook();
 
 	/**
-	 * Close this application context, releasing all resources and locks that the
-	 * implementation might hold. This includes destroying all cached singleton beans.
-	 * Note: Does <i>not</i> invoke {@code close} on a parent context;
-	 * parent contexts have their own, independent lifecycle.
+	 * Close this application context, releasing all resources and locks that the implementation might hold. This includes destroying all cached singleton beans.
+	 * Note: Does <i>not</i> invoke {@code close} on a parent context; parent contexts have their own, independent lifecycle.
 	 * This method can be called multiple times without side effects: Subsequent
 	 * {@code close} calls on an already closed context will be ignored.
 	 */
@@ -162,8 +150,7 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	void close();
 
 	/**
-	 * Determine whether this application context is active, that is,
-	 * whether it has been refreshed at least once and has not been closed yet.
+	 * Determine whether this application context is active, that is,whether it has been refreshed at least once and has not been closed yet.
 	 * @return whether the context is still active
 	 * @see #refresh()
 	 * @see #close()
@@ -174,17 +161,13 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	/**
 	 * Return the internal bean factory of this application context.
 	 * Can be used to access specific functionality of the underlying factory.
-	 * Note: Do not use this to post-process the bean factory; singletons
-	 * will already have been instantiated before. Use a BeanFactoryPostProcessor
-	 * to intercept the BeanFactory setup process before beans get touched.
-	 * Generally, this internal factory will only be accessible while the context
-	 * is active, that is, in-between {@link #refresh()} and {@link #close()}.
-	 * The {@link #isActive()} flag can be used to check whether the context
-	 * is in an appropriate state.
+	 * Note: Do not use this to post-process the bean factory; singletons will already have been instantiated before.
+	 * Use a BeanFactoryPostProcessor to intercept the BeanFactory setup process before beans get touched.
+	 * Generally, this internal factory will only be accessible while the context is active, that is, in-between {@link #refresh()} and {@link #close()}.
+	 * The {@link #isActive()} flag can be used to check whether the context is in an appropriate state.
 	 * @return the underlying bean factory
 	 * @throws IllegalStateException if the context does not hold an internal
-	 * bean factory (usually if {@link #refresh()} hasn't been called yet or
-	 * if {@link #close()} has already been called)
+	 * bean factory (usually if {@link #refresh()} hasn't been called yet or if {@link #close()} has already been called)
 	 * @see #isActive()
 	 * @see #refresh()
 	 * @see #close()

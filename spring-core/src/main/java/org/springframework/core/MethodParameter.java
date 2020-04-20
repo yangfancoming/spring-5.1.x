@@ -205,9 +205,7 @@ public class MethodParameter {
 	 * @since 5.0
 	 */
 	public Parameter getParameter() {
-		if (this.parameterIndex < 0) {
-			throw new IllegalStateException("Cannot retrieve Parameter descriptor for method return type");
-		}
+		if (this.parameterIndex < 0) throw new IllegalStateException("Cannot retrieve Parameter descriptor for method return type");
 		Parameter parameter = this.parameter;
 		if (parameter == null) {
 			parameter = getExecutable().getParameters()[this.parameterIndex];
@@ -286,9 +284,7 @@ public class MethodParameter {
 	 * Obtain the (lazily constructed) type-indexes-per-level Map.
 	 */
 	private Map<Integer, Integer> getTypeIndexesPerLevel() {
-		if (this.typeIndexesPerLevel == null) {
-			this.typeIndexesPerLevel = new HashMap<>(4);
-		}
+		if (this.typeIndexesPerLevel == null) this.typeIndexesPerLevel = new HashMap<>(4);
 		return this.typeIndexesPerLevel;
 	}
 
@@ -319,8 +315,7 @@ public class MethodParameter {
 	 * @since 4.3
 	 */
 	public boolean isOptional() {
-		return (getParameterType() == Optional.class || hasNullableAnnotation() ||
-				(KotlinDetector.isKotlinReflectPresent() && KotlinDetector.isKotlinType(getContainingClass()) &&KotlinDelegate.isOptional(this)));
+		return (getParameterType() == Optional.class || hasNullableAnnotation() || (KotlinDetector.isKotlinReflectPresent() && KotlinDetector.isKotlinType(getContainingClass()) &&KotlinDelegate.isOptional(this)));
 	}
 
 	/**
@@ -688,8 +683,7 @@ public class MethodParameter {
 				return i;
 			}
 		}
-		// Potentially try again with object equality checks in order to avoid race
-		// conditions while invoking java.lang.reflect.Executable.getParameters().
+		// Potentially try again with object equality checks in order to avoid race conditions while invoking java.lang.reflect.Executable.getParameters().
 		for (int i = 0; i < allParams.length; i++) {
 			if (parameter.equals(allParams[i])) {
 				return i;

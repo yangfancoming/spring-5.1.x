@@ -3,19 +3,14 @@
 package org.springframework.context;
 
 /**
- * Callback interface for initializing a Spring {@link ConfigurableApplicationContext}
- * prior to being {@linkplain ConfigurableApplicationContext#refresh() refreshed}.
+ * Callback interface for initializing a Spring {@link ConfigurableApplicationContext} prior to being {@linkplain ConfigurableApplicationContext#refresh() refreshed}.
  *
- * Typically used within web applications that require some programmatic initialization
- * of the application context. For example, registering property sources or activating
- * profiles against the {@linkplain ConfigurableApplicationContext#getEnvironment()
- * context's environment}. See {@code ContextLoader} and {@code FrameworkServlet} support
- * for declaring a "contextInitializerClasses" context-param and init-param, respectively.
+ * Typically used within web applications that require some programmatic initialization of the application context.
+ * For example, registering property sources or activating profiles against the {@linkplain ConfigurableApplicationContext#getEnvironment()
+ * context's environment}. See {@code ContextLoader} and {@code FrameworkServlet} support for declaring a "contextInitializerClasses" context-param and init-param, respectively.
  *
- * {@code ApplicationContextInitializer} processors are encouraged to detect
- * whether Spring's {@link org.springframework.core.Ordered Ordered} interface has been
- * implemented or if the @{@link org.springframework.core.annotation.Order Order}
- * annotation is present and to sort instances accordingly if so prior to invocation.
+ * {@code ApplicationContextInitializer} processors are encouraged to detect whether Spring's {@link org.springframework.core.Ordered Ordered} interface has been
+ * implemented or if the @{@link org.springframework.core.annotation.Order Order} annotation is present and to sort instances accordingly if so prior to invocation.
 
  * @since 3.1
  * @param <C> the application context type

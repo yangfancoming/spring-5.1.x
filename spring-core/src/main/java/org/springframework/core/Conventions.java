@@ -41,7 +41,6 @@ public final class Conventions {
 		Assert.notNull(value, "Value must not be null");
 		Class<?> valueClass;
 		boolean pluralize = false;
-
 		if (value.getClass().isArray()) {
 			valueClass = value.getClass().getComponentType();
 			pluralize = true;
@@ -80,9 +79,7 @@ public final class Conventions {
 			pluralize = true;
 		}else if (Collection.class.isAssignableFrom(parameter.getParameterType())) {
 			valueClass = ResolvableType.forMethodParameter(parameter).asCollection().resolveGeneric();
-			if (valueClass == null) {
-				throw new IllegalArgumentException("Cannot generate variable name for non-typed Collection parameter type");
-			}
+			if (valueClass == null) throw new IllegalArgumentException("Cannot generate variable name for non-typed Collection parameter type");
 			pluralize = true;
 		}else {
 			valueClass = parameter.getParameterType();
@@ -136,16 +133,12 @@ public final class Conventions {
 	public static String getVariableNameForReturnType(Method method, Class<?> resolvedType, @Nullable Object value) {
 		Assert.notNull(method, "Method must not be null");
 		if (Object.class == resolvedType) {
-			if (value == null) {
-				throw new IllegalArgumentException("Cannot generate variable name for an Object return type with null value");
-			}
+			if (value == null) throw new IllegalArgumentException("Cannot generate variable name for an Object return type with null value");
 			return getVariableName(value);
 		}
-
 		Class<?> valueClass;
 		boolean pluralize = false;
 		String reactiveSuffix = "";
-
 		if (resolvedType.isArray()) {
 			valueClass = resolvedType.getComponentType();
 			pluralize = true;
@@ -156,9 +149,7 @@ public final class Conventions {
 					throw new IllegalArgumentException("Cannot generate variable name for non-typed Collection return type and a non-Collection value");
 				}
 				Collection<?> collection = (Collection<?>) value;
-				if (collection.isEmpty()) {
-					throw new IllegalArgumentException("Cannot generate variable name for non-typed Collection return type and an empty Collection value");
-				}
+				if (collection.isEmpty()) throw new IllegalArgumentException("Cannot generate variable name for non-typed Collection return type and an empty Collection value");
 				Object valueToCheck = peekAhead(collection);
 				valueClass = getClassForValue(valueToCheck);
 			}
@@ -213,7 +204,6 @@ public final class Conventions {
 		return enclosingClass.getName() + '.' + attributeName;
 	}
 
-
 	/**
 	 * Determine the class to use for naming a variable containing the given value.
 	 * Will return the class of the given value, except when encountering a
@@ -256,9 +246,7 @@ public final class Conventions {
 			throw new IllegalStateException("Unable to peek ahead in non-empty collection - no element found");
 		}
 		E value = it.next();
-		if (value == null) {
-			throw new IllegalStateException("Unable to peek ahead in non-empty collection - only null element found");
-		}
+		if (value == null) throw new IllegalStateException("Unable to peek ahead in non-empty collection - only null element found");
 		return value;
 	}
 
