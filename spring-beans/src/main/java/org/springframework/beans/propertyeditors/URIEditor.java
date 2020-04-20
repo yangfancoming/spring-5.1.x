@@ -28,8 +28,6 @@ import org.springframework.util.StringUtils;
  * Note: A URI is more relaxed than a URL in that it does not require
  * a valid protocol to be specified. Any scheme within a valid URI syntax
  * is allowed, even without a matching protocol handler being registered.
- *
-
  * @since 2.0.2
  * @see java.net.URI
  * @see URLEditor
@@ -40,8 +38,6 @@ public class URIEditor extends PropertyEditorSupport {
 	private final ClassLoader classLoader;
 
 	private final boolean encode;
-
-
 
 	/**
 	 * Create a new, encoding URIEditor, converting "classpath:" locations into
@@ -91,25 +87,20 @@ public class URIEditor extends PropertyEditorSupport {
 		if (StringUtils.hasText(text)) {
 			String uri = text.trim();
 			if (this.classLoader != null && uri.startsWith(ResourceUtils.CLASSPATH_URL_PREFIX)) {
-				ClassPathResource resource = new ClassPathResource(
-						uri.substring(ResourceUtils.CLASSPATH_URL_PREFIX.length()), this.classLoader);
+				ClassPathResource resource = new ClassPathResource(uri.substring(ResourceUtils.CLASSPATH_URL_PREFIX.length()), this.classLoader);
 				try {
 					setValue(resource.getURI());
-				}
-				catch (IOException ex) {
+				}catch (IOException ex) {
 					throw new IllegalArgumentException("Could not retrieve URI for " + resource + ": " + ex.getMessage());
 				}
-			}
-			else {
+			}else {
 				try {
 					setValue(createURI(uri));
-				}
-				catch (URISyntaxException ex) {
+				}catch (URISyntaxException ex) {
 					throw new IllegalArgumentException("Invalid URI syntax: " + ex);
 				}
 			}
-		}
-		else {
+		}else {
 			setValue(null);
 		}
 	}
@@ -129,13 +120,11 @@ public class URIEditor extends PropertyEditorSupport {
 			String ssp = value.substring(colonIndex + 1, (fragmentIndex > 0 ? fragmentIndex : value.length()));
 			String fragment = (fragmentIndex > 0 ? value.substring(fragmentIndex + 1) : null);
 			return new URI(scheme, ssp, fragment);
-		}
-		else {
+		}else {
 			// not encoding or the value contains no scheme - fallback to default
 			return new URI(value);
 		}
 	}
-
 
 	@Override
 	public String getAsText() {

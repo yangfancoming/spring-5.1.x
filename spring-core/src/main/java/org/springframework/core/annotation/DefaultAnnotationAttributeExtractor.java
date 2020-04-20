@@ -9,10 +9,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Default implementation of the {@link AnnotationAttributeExtractor} strategy
- * that is backed by an {@link Annotation}.
- *
- * @author Sam Brannen
+ * Default implementation of the {@link AnnotationAttributeExtractor} strategy that is backed by an {@link Annotation}.
  * @since 4.2
  * @see Annotation
  * @see AliasFor

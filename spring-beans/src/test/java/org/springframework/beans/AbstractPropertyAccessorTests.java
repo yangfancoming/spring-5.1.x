@@ -569,7 +569,7 @@ public abstract class AbstractPropertyAccessorTests {
 	}
 
 	@Test
-	public void setStringPropertyWithCustomEditor() throws Exception {
+	public void setStringPropertyWithCustomEditor()  {
 		TestBean target = new TestBean();
 		AbstractPropertyAccessor accessor = createAccessor(target);
 		accessor.registerCustomEditor(String.class, "name", new PropertyEditorSupport() {

@@ -18,10 +18,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * {@link InvocationHandler} for an {@link Annotation} that Spring has
- * <em>synthesized</em> (i.e., wrapped in a dynamic proxy) with additional
- * functionality.
- *
- * @author Sam Brannen
+ * <em>synthesized</em> (i.e., wrapped in a dynamic proxy) with additional functionality.
  * @since 4.2
  * @see Annotation
  * @see AnnotationAttributeExtractor
@@ -33,17 +30,14 @@ class SynthesizedAnnotationInvocationHandler implements InvocationHandler {
 
 	private final Map<String, Object> valueCache = new ConcurrentHashMap<>(8);
 
-
 	/**
-	 * Construct a new {@code SynthesizedAnnotationInvocationHandler} for
-	 * the supplied {@link AnnotationAttributeExtractor}.
+	 * Construct a new {@code SynthesizedAnnotationInvocationHandler} for the supplied {@link AnnotationAttributeExtractor}.
 	 * @param attributeExtractor the extractor to delegate to
 	 */
 	SynthesizedAnnotationInvocationHandler(AnnotationAttributeExtractor<?> attributeExtractor) {
 		Assert.notNull(attributeExtractor, "AnnotationAttributeExtractor must not be null");
 		this.attributeExtractor = attributeExtractor;
 	}
-
 
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
@@ -61,8 +55,7 @@ class SynthesizedAnnotationInvocationHandler implements InvocationHandler {
 			return annotationType();
 		}
 		if (!AnnotationUtils.isAttributeMethod(method)) {
-			throw new AnnotationConfigurationException(String.format(
-					"Method [%s] is unsupported for synthesized annotation type [%s]", method, annotationType()));
+			throw new AnnotationConfigurationException(String.format("Method [%s] is unsupported for synthesized annotation type [%s]", method, annotationType()));
 		}
 		// 真正获取注解的属性值
 		return getAttributeValue(method);
@@ -78,27 +71,21 @@ class SynthesizedAnnotationInvocationHandler implements InvocationHandler {
 		if (value == null) {
 			value = this.attributeExtractor.getAttributeValue(attributeMethod);
 			if (value == null) {
-				String msg = String.format("%s returned null for attribute name [%s] from attribute source [%s]",
-						this.attributeExtractor.getClass().getName(), attributeName, this.attributeExtractor.getSource());
+				String msg = String.format("%s returned null for attribute name [%s] from attribute source [%s]",this.attributeExtractor.getClass().getName(), attributeName, this.attributeExtractor.getSource());
 				throw new IllegalStateException(msg);
 			}
-
 			// Synthesize nested annotations before returning them.
 			if (value instanceof Annotation) {
 				value = AnnotationUtils.synthesizeAnnotation((Annotation) value, this.attributeExtractor.getAnnotatedElement());
-			}
-			else if (value instanceof Annotation[]) {
+			}else if (value instanceof Annotation[]) {
 				value = AnnotationUtils.synthesizeAnnotationArray((Annotation[]) value, this.attributeExtractor.getAnnotatedElement());
 			}
-
 			this.valueCache.put(attributeName, value);
 		}
-
 		// Clone arrays so that users cannot alter the contents of values in our cache.
 		if (value.getClass().isArray()) {
 			value = cloneArray(value);
 		}
-
 		return value;
 	}
 
@@ -132,7 +119,6 @@ class SynthesizedAnnotationInvocationHandler implements InvocationHandler {
 		if (array instanceof short[]) {
 			return ((short[]) array).clone();
 		}
-
 		// else
 		return ((Object[]) array).clone();
 	}
@@ -142,13 +128,10 @@ class SynthesizedAnnotationInvocationHandler implements InvocationHandler {
 	 * @param other the other object to compare against
 	 */
 	private boolean annotationEquals(Object other) {
-		if (this == other) {
-			return true;
-		}
+		if (this == other) return true;
 		if (!annotationType().isInstance(other)) {
 			return false;
 		}
-
 		for (Method attributeMethod : AnnotationUtils.getAttributeMethods(annotationType())) {
 			Object thisValue = getAttributeValue(attributeMethod);
 			Object otherValue = ReflectionUtils.invokeMethod(attributeMethod, other);
@@ -156,7 +139,6 @@ class SynthesizedAnnotationInvocationHandler implements InvocationHandler {
 				return false;
 			}
 		}
-
 		return true;
 	}
 
@@ -165,14 +147,12 @@ class SynthesizedAnnotationInvocationHandler implements InvocationHandler {
 	 */
 	private int annotationHashCode() {
 		int result = 0;
-
 		for (Method attributeMethod : AnnotationUtils.getAttributeMethods(annotationType())) {
 			Object value = getAttributeValue(attributeMethod);
 			int hashCode;
 			if (value.getClass().isArray()) {
 				hashCode = hashCodeForArray(value);
-			}
-			else {
+			}else {
 				hashCode = value.hashCode();
 			}
 			result += (127 * attributeMethod.getName().hashCode()) ^ hashCode;
@@ -182,10 +162,8 @@ class SynthesizedAnnotationInvocationHandler implements InvocationHandler {
 	}
 
 	/**
-	 * WARNING: we can NOT use any of the {@code nullSafeHashCode()} methods
-	 * in Spring's {@link ObjectUtils} because those hash code generation
-	 * algorithms do not comply with the requirements specified in
-	 * {@link Annotation#hashCode()}.
+	 * WARNING: we can NOT use any of the {@code nullSafeHashCode()} methods in Spring's {@link ObjectUtils} because those hash code generation
+	 * algorithms do not comply with the requirements specified in {@link Annotation#hashCode()}.
 	 * @param array the array to compute the hash code for
 	 */
 	private int hashCodeForArray(Object array) {
@@ -223,7 +201,6 @@ class SynthesizedAnnotationInvocationHandler implements InvocationHandler {
 	 */
 	private String annotationToString() {
 		StringBuilder sb = new StringBuilder("@").append(annotationType().getName()).append("(");
-
 		Iterator<Method> iterator = AnnotationUtils.getAttributeMethods(annotationType()).iterator();
 		while (iterator.hasNext()) {
 			Method attributeMethod = iterator.next();
@@ -232,7 +209,6 @@ class SynthesizedAnnotationInvocationHandler implements InvocationHandler {
 			sb.append(attributeValueToString(getAttributeValue(attributeMethod)));
 			sb.append(iterator.hasNext() ? ", " : "");
 		}
-
 		return sb.append(")").toString();
 	}
 

@@ -67,7 +67,6 @@ import org.springframework.util.ClassUtils;
  * Base implementation of the {@link PropertyEditorRegistry} interface.
  * Provides management of default editors and custom editors.
  * Mainly serves as base class for {@link BeanWrapperImpl}.
-
  * @since 1.2.6
  * @see java.beans.PropertyEditorManager
  * @see java.beans.PropertyEditorSupport#setAsText
@@ -183,7 +182,6 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 	 */
 	private void createDefaultEditors() {
 		this.defaultEditors = new HashMap<>(64);
-
 		// Simple editors, without parameterization capabilities.
 		// The JDK does not contain a default editor for any of these target types.
 		this.defaultEditors.put(Charset.class, new CharsetEditor());
@@ -531,14 +529,10 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 			// (If not registered for Collection or array, it is assumed to be intended
 			// for elements.)
 			if (this.registeredType == null ||
-					(requiredType != null &&
-					(ClassUtils.isAssignable(this.registeredType, requiredType) ||
-					ClassUtils.isAssignable(requiredType, this.registeredType))) ||
-					(requiredType == null &&
-					(!Collection.class.isAssignableFrom(this.registeredType) && !this.registeredType.isArray()))) {
+					(requiredType != null && (ClassUtils.isAssignable(this.registeredType, requiredType) || 	ClassUtils.isAssignable(requiredType, this.registeredType))) ||
+					(requiredType == null && (!Collection.class.isAssignableFrom(this.registeredType) && !this.registeredType.isArray()))) {
 				return this.propertyEditor;
-			}
-			else {
+			}else {
 				return null;
 			}
 		}
