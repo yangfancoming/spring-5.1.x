@@ -13,19 +13,16 @@ import org.springframework.lang.Nullable;
  * languages on the JVM) or more efficient {@link BeanInfo} retrieval algorithms.
  *
  * BeanInfoFactories are instantiated by the {@link CachedIntrospectionResults},
- * by using the {@link org.springframework.core.io.support.SpringFactoriesLoader}
- * utility class.
+ * by using the {@link org.springframework.core.io.support.SpringFactoriesLoader} utility class.
  *
  * When a {@link BeanInfo} is to be created, the {@code CachedIntrospectionResults}
  * will iterate through the discovered factories, calling {@link #getBeanInfo(Class)}
  * on each one. If {@code null} is returned, the next factory will be queried.
- * If none of the factories support the class, a standard {@link BeanInfo} will be
- * created as a default.
+ * If none of the factories support the class, a standard {@link BeanInfo} will be created as a default.
  *
  * Note that the {@link org.springframework.core.io.support.SpringFactoriesLoader}
  * sorts the {@code BeanInfoFactory} instances by
- * {@link org.springframework.core.annotation.Order @Order}, so that ones with a
- * higher precedence come first.
+ * {@link org.springframework.core.annotation.Order @Order}, so that ones with a  higher precedence come first.
  *
  * @author Arjen Poutsma
  * @since 3.2

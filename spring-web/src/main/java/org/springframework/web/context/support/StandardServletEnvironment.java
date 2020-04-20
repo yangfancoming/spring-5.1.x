@@ -35,17 +35,14 @@ public class StandardServletEnvironment extends StandardEnvironment implements C
 	public static final String JNDI_PROPERTY_SOURCE_NAME = "jndiProperties";
 
 	/**
-	 * Customize the set of property sources with those contributed by superclasses as
-	 * well as those appropriate for standard servlet-based environments:
+	 * Customize the set of property sources with those contributed by superclasses as well as those appropriate for standard servlet-based environments:
 	 * <li>{@value #SERVLET_CONFIG_PROPERTY_SOURCE_NAME}
 	 * <li>{@value #SERVLET_CONTEXT_PROPERTY_SOURCE_NAME}
 	 * <li>{@value #JNDI_PROPERTY_SOURCE_NAME}
 	 * Properties present in {@value #SERVLET_CONFIG_PROPERTY_SOURCE_NAME} will
 	 * take precedence over those in {@value #SERVLET_CONTEXT_PROPERTY_SOURCE_NAME}, and
-	 * properties found in either of the above take precedence over those found in
-	 * {@value #JNDI_PROPERTY_SOURCE_NAME}.
-	 * Properties in any of the above will take precedence over system properties and
-	 * environment variables contributed by the {@link StandardEnvironment} superclass.
+	 * properties found in either of the above take precedence over those found in {@value #JNDI_PROPERTY_SOURCE_NAME}.
+	 * Properties in any of the above will take precedence over system properties and environment variables contributed by the {@link StandardEnvironment} superclass.
 	 * The {@code Servlet}-related property sources are added as {@link StubPropertySource stubs} at this stage, and will be
 	 * {@linkplain #initPropertySources(ServletContext, ServletConfig) fully initialized} once the actual {@link ServletContext} object becomes available.
 	 * @see StandardEnvironment#customizePropertySources

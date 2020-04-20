@@ -6,17 +6,14 @@ import org.springframework.core.convert.support.ConfigurableConversionService;
 import org.springframework.lang.Nullable;
 
 /**
- * Configuration interface to be implemented by most if not all {@link PropertyResolver}
- * types. Provides facilities for accessing and customizing the
- * {@link org.springframework.core.convert.ConversionService ConversionService}
- * used when converting property values from one type to another.
+ * Configuration interface to be implemented by most if not all {@link PropertyResolver} types.
+ *  Provides facilities for accessing and customizing the {@link org.springframework.core.convert.ConversionService ConversionService} used when converting property values from one type to another.
  * @since 3.1
  */
 public interface ConfigurablePropertyResolver extends PropertyResolver {
 
 	/**
-	 * Return the {@link ConfigurableConversionService} used when performing type
-	 * conversions on properties.
+	 * Return the {@link ConfigurableConversionService} used when performing type conversions on properties.
 	 * The configurable nature of the returned conversion service allows for
 	 * the convenient addition and removal of individual {@code Converter} instances:
 	 * <pre class="code">

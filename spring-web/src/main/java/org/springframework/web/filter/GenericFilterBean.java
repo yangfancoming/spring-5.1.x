@@ -39,33 +39,23 @@ import org.springframework.web.util.NestedServletException;
 
 /**
  * Simple base implementation of {@link javax.servlet.Filter} which treats
- * its config parameters ({@code init-param} entries within the
- * {@code filter} tag in {@code web.xml}) as bean properties.
+ * its config parameters ({@code init-param} entries within the {@code filter} tag in {@code web.xml}) as bean properties.
  *
  * A handy superclass for any type of filter. Type conversion of config
- * parameters is automatic, with the corresponding setter method getting
- * invoked with the converted value. It is also possible for subclasses to
- * specify required properties. Parameters without matching bean property
- * setter will simply be ignored.
+ * parameters is automatic, with the corresponding setter method getting invoked with the converted value.
+ * It is also possible for subclasses to specify required properties. Parameters without matching bean property setter will simply be ignored.
  *
- * This filter leaves actual filtering to subclasses, which have to
- * implement the {@link javax.servlet.Filter#doFilter} method.
+ * This filter leaves actual filtering to subclasses, which have to implement the {@link javax.servlet.Filter#doFilter} method.
  *
- * This generic filter base class has no dependency on the Spring
- * {@link org.springframework.context.ApplicationContext} concept.
- * Filters usually don't load their own context but rather access service
- * beans from the Spring root application context, accessible via the
- * filter's {@link #getServletContext() ServletContext} (see
- * {@link org.springframework.web.context.support.WebApplicationContextUtils}).
- *
-
+ * This generic filter base class has no dependency on the Spring {@link org.springframework.context.ApplicationContext} concept.
+ * Filters usually don't load their own context but rather access service beans from the Spring root application context, accessible via the
+ * filter's {@link #getServletContext() ServletContext} (see{@link org.springframework.web.context.support.WebApplicationContextUtils}).
  * @since 06.12.2003
  * @see #addRequiredProperty
  * @see #initFilterBean
  * @see #doFilter
  */
-public abstract class GenericFilterBean implements Filter, BeanNameAware, EnvironmentAware,
-		EnvironmentCapable, ServletContextAware, InitializingBean, DisposableBean {
+public abstract class GenericFilterBean implements Filter, BeanNameAware, EnvironmentAware,EnvironmentCapable, ServletContextAware, InitializingBean, DisposableBean {
 
 	/** Logger available to subclasses. */
 	protected final Log logger = LogFactory.getLog(getClass());
@@ -118,9 +108,7 @@ public abstract class GenericFilterBean implements Filter, BeanNameAware, Enviro
 	 */
 	@Override
 	public Environment getEnvironment() {
-		if (this.environment == null) {
-			this.environment = createEnvironment();
-		}
+		if (this.environment == null) this.environment = createEnvironment();
 		return this.environment;
 	}
 
@@ -169,14 +157,11 @@ public abstract class GenericFilterBean implements Filter, BeanNameAware, Enviro
 	public void destroy() {
 	}
 
-
 	/**
 	 * Subclasses can invoke this method to specify that this property
-	 * (which must match a JavaBean property they expose) is mandatory,
-	 * and must be supplied as a config parameter. This should be called
-	 * from the constructor of a subclass.
-	 * This method is only relevant in case of traditional initialization
-	 * driven by a FilterConfig instance.
+	 * (which must match a JavaBean property they expose) is mandatory,and must be supplied as a config parameter.
+	 * This should be called from the constructor of a subclass.
+	 * This method is only relevant in case of traditional initialization driven by a FilterConfig instance.
 	 * @param property name of the required property
 	 */
 	protected final void addRequiredProperty(String property) {
@@ -195,9 +180,7 @@ public abstract class GenericFilterBean implements Filter, BeanNameAware, Enviro
 	@Override
 	public final void init(FilterConfig filterConfig) throws ServletException {
 		Assert.notNull(filterConfig, "FilterConfig must not be null");
-
 		this.filterConfig = filterConfig;
-
 		// Set bean properties from init parameters.
 		PropertyValues pvs = new FilterConfigPropertyValues(filterConfig, this.requiredProperties);
 		if (!pvs.isEmpty()) {
@@ -211,21 +194,15 @@ public abstract class GenericFilterBean implements Filter, BeanNameAware, Enviro
 				bw.registerCustomEditor(Resource.class, new ResourceEditor(resourceLoader, env));
 				initBeanWrapper(bw);
 				bw.setPropertyValues(pvs, true);
-			}
-			catch (BeansException ex) {
-				String msg = "Failed to set bean properties on filter '" +
-					filterConfig.getFilterName() + "': " + ex.getMessage();
+			}catch (BeansException ex) {
+				String msg = "Failed to set bean properties on filter '" + filterConfig.getFilterName() + "': " + ex.getMessage();
 				logger.error(msg, ex);
 				throw new NestedServletException(msg, ex);
 			}
 		}
-
 		// Let subclasses do whatever initialization they like.
 		initFilterBean();
-
-		if (logger.isDebugEnabled()) {
-			logger.debug("Filter '" + filterConfig.getFilterName() + "' configured for use");
-		}
+		if (logger.isDebugEnabled()) logger.debug("Filter '" + filterConfig.getFilterName() + "' configured for use");
 	}
 
 	/**
@@ -241,8 +218,7 @@ public abstract class GenericFilterBean implements Filter, BeanNameAware, Enviro
 
 	/**
 	 * Subclasses may override this to perform custom initialization.
-	 * All bean properties of this filter will have been set before this
-	 * method is invoked.
+	 * All bean properties of this filter will have been set before this method is invoked.
 	 * Note: This method will be called from standard filter initialization
 	 * as well as filter bean initialization in a Spring application context.
 	 * Filter name and ServletContext will be available in both cases.
@@ -313,7 +289,6 @@ public abstract class GenericFilterBean implements Filter, BeanNameAware, Enviro
 	 */
 	@SuppressWarnings("serial")
 	private static class FilterConfigPropertyValues extends MutablePropertyValues {
-
 		/**
 		 * Create new FilterConfigPropertyValues.
 		 * @param config the FilterConfig we'll use to take PropertyValues from
@@ -336,8 +311,7 @@ public abstract class GenericFilterBean implements Filter, BeanNameAware, Enviro
 			// Fail if we are still missing properties.
 			if (!CollectionUtils.isEmpty(missingProps)) {
 				throw new ServletException(
-						"Initialization from FilterConfig for filter '" + config.getFilterName() +
-						"' failed; the following required properties were missing: " +
+						"Initialization from FilterConfig for filter '" + config.getFilterName() + "' failed; the following required properties were missing: " +
 						StringUtils.collectionToDelimitedString(missingProps, ", "));
 			}
 		}

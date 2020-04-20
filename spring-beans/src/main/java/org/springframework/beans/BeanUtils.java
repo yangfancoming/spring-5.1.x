@@ -379,8 +379,7 @@ public abstract class BeanUtils {
 
 	/**
 	 * Find a JavaBeans {@code PropertyDescriptor} for the given method,
-	 * with the method either being the read method or the write method for
-	 * that bean property.
+	 * with the method either being the read method or the write method for that bean property.
 	 * @param method the method to find a corresponding PropertyDescriptor for,
 	 * introspecting its declaring class
 	 * @return the corresponding PropertyDescriptor, or {@code null} if none
@@ -393,8 +392,7 @@ public abstract class BeanUtils {
 
 	/**
 	 * Find a JavaBeans {@code PropertyDescriptor} for the given method,
-	 * with the method either being the read method or the write method for
-	 * that bean property.
+	 * with the method either being the read method or the write method for that bean property.
 	 * @param method the method to find a corresponding PropertyDescriptor for
 	 * @param clazz the (most specific) class to introspect for descriptors
 	 * @return the corresponding PropertyDescriptor, or {@code null} if none
@@ -417,8 +415,7 @@ public abstract class BeanUtils {
 	 * Find a JavaBeans PropertyEditor following the 'Editor' suffix convention
 	 * (e.g. "mypackage.MyDomainClass" -> "mypackage.MyDomainClassEditor").
 	 * Compatible to the standard JavaBeans convention as implemented by
-	 * {@link java.beans.PropertyEditorManager} but isolated from the latter's
-	 * registered default editors for primitive types.
+	 * {@link java.beans.PropertyEditorManager} but isolated from the latter's registered default editors for primitive types.
 	 * @param targetType the type to find an editor for
 	 * @return the corresponding editor, or {@code null} if none found
 	 */
@@ -431,14 +428,10 @@ public abstract class BeanUtils {
 		if (cl == null) {
 			try {
 				cl = ClassLoader.getSystemClassLoader();
-				if (cl == null) {
-					return null;
-				}
+				if (cl == null) return null;
 			} catch (Throwable ex) {
 				// e.g. AccessControlException on Google App Engine
-				if (logger.isDebugEnabled()) {
-					logger.debug("Could not access system ClassLoader: " + ex);
-				}
+				if (logger.isDebugEnabled()) logger.debug("Could not access system ClassLoader: " + ex);
 				return null;
 			}
 		}
@@ -446,17 +439,13 @@ public abstract class BeanUtils {
 		try {
 			Class<?> editorClass = cl.loadClass(editorName);
 			if (!PropertyEditor.class.isAssignableFrom(editorClass)) {
-				if (logger.isInfoEnabled()) {
-					logger.info("Editor class [" + editorName + "] does not implement [java.beans.PropertyEditor] interface");
-				}
+				if (logger.isInfoEnabled()) logger.info("Editor class [" + editorName + "] does not implement [java.beans.PropertyEditor] interface");
 				unknownEditorTypes.add(targetType);
 				return null;
 			}
 			return (PropertyEditor) instantiateClass(editorClass);
 		}catch (ClassNotFoundException ex) {
-			if (logger.isTraceEnabled()) {
-				logger.trace("No property editor [" + editorName + "] found for type " + targetType.getName() + " according to 'Editor' suffix convention");
-			}
+			if (logger.isTraceEnabled()) logger.trace("No property editor [" + editorName + "] found for type " + targetType.getName() + " according to 'Editor' suffix convention");
 			unknownEditorTypes.add(targetType);
 			return null;
 		}
@@ -497,8 +486,7 @@ public abstract class BeanUtils {
 
 	/**
 	 * Check if the given type represents a "simple" property:
-	 * a primitive, a String or other CharSequence, a Number, a Date,
-	 * a URI, a URL, a Locale, a Class, or a corresponding array.
+	 * a primitive, a String or other CharSequence, a Number, a Date,a URI, a URL, a Locale, a Class, or a corresponding array.
 	 * Used to determine properties to check for a "simple" dependency-check.
 	 * @param clazz the type to check
 	 * @return whether the given type represents a "simple" property
@@ -518,13 +506,9 @@ public abstract class BeanUtils {
 	 * @return whether the given type represents a "simple" value type
 	 */
 	public static boolean isSimpleValueType(Class<?> clazz) {
-		return (ClassUtils.isPrimitiveOrWrapper(clazz) ||
-				Enum.class.isAssignableFrom(clazz) ||
-				CharSequence.class.isAssignableFrom(clazz) ||
-				Number.class.isAssignableFrom(clazz) ||
-				Date.class.isAssignableFrom(clazz) ||
-				URI.class == clazz || URL.class == clazz ||
-				Locale.class == clazz || Class.class == clazz);
+		return (ClassUtils.isPrimitiveOrWrapper(clazz) || Enum.class.isAssignableFrom(clazz) ||
+				CharSequence.class.isAssignableFrom(clazz) || Number.class.isAssignableFrom(clazz) || Date.class.isAssignableFrom(clazz) ||
+				URI.class == clazz || URL.class == clazz || Locale.class == clazz || Class.class == clazz);
 	}
 
 
@@ -533,8 +517,7 @@ public abstract class BeanUtils {
 	 * Note: The source and target classes do not have to match or even be derived
 	 * from each other, as long as the properties match. Any bean properties that the
 	 * source bean exposes but the target bean does not will silently be ignored.
-	 * This is just a convenience method. For more complex transfer needs,
-	 * consider using a full BeanWrapper.
+	 * This is just a convenience method. For more complex transfer needs, consider using a full BeanWrapper.
 	 * @param source the source bean
 	 * @param target the target bean
 	 * @throws BeansException if the copying failed
@@ -563,13 +546,11 @@ public abstract class BeanUtils {
 	}
 
 	/**
-	 * Copy the property values of the given source bean into the given target bean,
-	 * ignoring the given "ignoreProperties".
+	 * Copy the property values of the given source bean into the given target bean,ignoring the given "ignoreProperties".
 	 * Note: The source and target classes do not have to match or even be derived
 	 * from each other, as long as the properties match. Any bean properties that the
 	 * source bean exposes but the target bean does not will silently be ignored.
-	 * This is just a convenience method. For more complex transfer needs,
-	 * consider using a full BeanWrapper.
+	 * This is just a convenience method. For more complex transfer needs,consider using a full BeanWrapper.
 	 * @param source the source bean
 	 * @param target the target bean
 	 * @param ignoreProperties array of property names to ignore
@@ -595,7 +576,6 @@ public abstract class BeanUtils {
 	private static void copyProperties(Object source, Object target, @Nullable Class<?> editable,@Nullable String... ignoreProperties) throws BeansException {
 		Assert.notNull(source, "Source must not be null");
 		Assert.notNull(target, "Target must not be null");
-
 		Class<?> actualEditable = target.getClass();
 		if (editable != null) {
 			if (!editable.isInstance(target)) {
@@ -647,16 +627,11 @@ public abstract class BeanUtils {
 		public static <T> Constructor<T> findPrimaryConstructor(Class<T> clazz) {
 			try {
 				KFunction<T> primaryCtor = KClasses.getPrimaryConstructor(JvmClassMappingKt.getKotlinClass(clazz));
-				if (primaryCtor == null) {
-					return null;
-				}
+				if (primaryCtor == null) return null;
 				Constructor<T> constructor = ReflectJvmMapping.getJavaConstructor(primaryCtor);
-				if (constructor == null) {
-					throw new IllegalStateException("Failed to find Java constructor for Kotlin primary constructor: " + clazz.getName());
-				}
+				if (constructor == null) throw new IllegalStateException("Failed to find Java constructor for Kotlin primary constructor: " + clazz.getName());
 				return constructor;
-			}
-			catch (UnsupportedOperationException ex) {
+			}catch (UnsupportedOperationException ex) {
 				return null;
 			}
 		}

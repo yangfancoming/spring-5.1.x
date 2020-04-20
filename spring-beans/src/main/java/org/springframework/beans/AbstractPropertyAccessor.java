@@ -22,7 +22,6 @@ public abstract class AbstractPropertyAccessor extends TypeConverterSupport impl
 
 	private boolean autoGrowNestedPaths = false;
 
-
 	@Override
 	public void setExtractOldValueForEditor(boolean extractOldValueForEditor) {
 		this.extractOldValueForEditor = extractOldValueForEditor;
@@ -65,9 +64,7 @@ public abstract class AbstractPropertyAccessor extends TypeConverterSupport impl
 	}
 
 	@Override
-	public void setPropertyValues(PropertyValues pvs, boolean ignoreUnknown, boolean ignoreInvalid)
-			throws BeansException {
-
+	public void setPropertyValues(PropertyValues pvs, boolean ignoreUnknown, boolean ignoreInvalid) throws BeansException {
 		List<PropertyAccessException> propertyAccessExceptions = null;
 		List<PropertyValue> propertyValues = (pvs instanceof MutablePropertyValues ?
 				((MutablePropertyValues) pvs).getPropertyValueList() : Arrays.asList(pvs.getPropertyValues()));
@@ -77,20 +74,17 @@ public abstract class AbstractPropertyAccessor extends TypeConverterSupport impl
 				// here, if there is a critical failure such as no matching field.
 				// We can attempt to deal only with less serious exceptions.
 				setPropertyValue(pv);
-			}
-			catch (NotWritablePropertyException ex) {
+			}catch (NotWritablePropertyException ex) {
 				if (!ignoreUnknown) {
 					throw ex;
 				}
 				// Otherwise, just ignore it and continue...
-			}
-			catch (NullValueInNestedPathException ex) {
+			}catch (NullValueInNestedPathException ex) {
 				if (!ignoreInvalid) {
 					throw ex;
 				}
 				// Otherwise, just ignore it and continue...
-			}
-			catch (PropertyAccessException ex) {
+			}catch (PropertyAccessException ex) {
 				if (propertyAccessExceptions == null) {
 					propertyAccessExceptions = new ArrayList<>();
 				}
@@ -104,7 +98,6 @@ public abstract class AbstractPropertyAccessor extends TypeConverterSupport impl
 			throw new PropertyBatchUpdateException(paeArray);
 		}
 	}
-
 
 	// Redefined with public visibility.
 	@Override
@@ -137,5 +130,4 @@ public abstract class AbstractPropertyAccessor extends TypeConverterSupport impl
 	 */
 	@Override
 	public abstract void setPropertyValue(String propertyName, @Nullable Object value) throws BeansException;
-
 }
