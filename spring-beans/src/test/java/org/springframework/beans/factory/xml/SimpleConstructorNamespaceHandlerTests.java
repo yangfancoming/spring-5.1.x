@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 public class SimpleConstructorNamespaceHandlerTests {
 
 	@Test
-	public void simpleValue() throws Exception {
+	public void simpleValue()  {
 		DefaultListableBeanFactory beanFactory = createFactory("simpleConstructorNamespaceHandlerTests.xml");
 		String name = "simple";
 		//		beanFactory.getBean("simple1", DummyBean.class);
@@ -25,7 +25,7 @@ public class SimpleConstructorNamespaceHandlerTests {
 	}
 
 	@Test
-	public void simpleRef() throws Exception {
+	public void simpleRef()  {
 		DefaultListableBeanFactory beanFactory = createFactory("simpleConstructorNamespaceHandlerTests.xml");
 		String name = "simple-ref";
 		//		beanFactory.getBean("name-value1", TestBean.class);
@@ -34,7 +34,7 @@ public class SimpleConstructorNamespaceHandlerTests {
 	}
 
 	@Test
-	public void nameValue() throws Exception {
+	public void nameValue()  {
 		DefaultListableBeanFactory beanFactory = createFactory("simpleConstructorNamespaceHandlerTests.xml");
 		String name = "name-value";
 		//		beanFactory.getBean("name-value1", TestBean.class);
@@ -44,17 +44,16 @@ public class SimpleConstructorNamespaceHandlerTests {
 	}
 
 	@Test
-	public void nameRef() throws Exception {
+	public void nameRef()  {
 		DefaultListableBeanFactory beanFactory = createFactory("simpleConstructorNamespaceHandlerTests.xml");
 		TestBean nameValue = beanFactory.getBean("name-value", TestBean.class);
 		DummyBean nameRef = beanFactory.getBean("name-ref", DummyBean.class);
-
 		assertEquals("some-name", nameRef.getName());
 		assertEquals(nameValue, nameRef.getSpouse());
 	}
 
 	@Test
-	public void typeIndexedValue() throws Exception {
+	public void typeIndexedValue()  {
 		DefaultListableBeanFactory beanFactory = createFactory("simpleConstructorNamespaceHandlerTests.xml");
 		DummyBean typeRef = beanFactory.getBean("indexed-value", DummyBean.class);
 
@@ -64,7 +63,7 @@ public class SimpleConstructorNamespaceHandlerTests {
 	}
 
 	@Test
-	public void typeIndexedRef() throws Exception {
+	public void typeIndexedRef()  {
 		DefaultListableBeanFactory beanFactory = createFactory("simpleConstructorNamespaceHandlerTests.xml");
 		DummyBean typeRef = beanFactory.getBean("indexed-ref", DummyBean.class);
 
@@ -73,14 +72,13 @@ public class SimpleConstructorNamespaceHandlerTests {
 	}
 
 	@Test(expected = BeanDefinitionStoreException.class)
-	public void ambiguousConstructor() throws Exception {
+	public void ambiguousConstructor()  {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
-		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(
-				new ClassPathResource("simpleConstructorNamespaceHandlerTestsWithErrors.xml", getClass()));
+		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(new ClassPathResource("simpleConstructorNamespaceHandlerTestsWithErrors.xml", getClass()));
 	}
 
 	@Test
-	public void constructorWithNameEndingInRef() throws Exception {
+	public void constructorWithNameEndingInRef()  {
 		DefaultListableBeanFactory beanFactory = createFactory("simpleConstructorNamespaceHandlerTests.xml");
 		DummyBean derivedBean = beanFactory.getBean("beanWithRefConstructorArg", DummyBean.class);
 		assertEquals(10, derivedBean.getAge());
@@ -89,8 +87,7 @@ public class SimpleConstructorNamespaceHandlerTests {
 
 	private DefaultListableBeanFactory createFactory(String resourceName) {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
-		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(
-				new ClassPathResource(resourceName, getClass()));
+		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(new ClassPathResource(resourceName, getClass()));
 		return bf;
 	}
 }

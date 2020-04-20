@@ -392,7 +392,6 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 * Detect which kind of validation to perform on the XML file identified by the supplied {@link Resource}.
 	 * If the file has a {@code DOCTYPE} definition then DTD validation is used otherwise XSD validation is assumed.
 	 * Override this method if you would like to customize resolution of the {@link #VALIDATION_AUTO} mode.
-	 *
 	 * isFile() 函数
 	 * 再 Resource 和 AbstractResource 顶层接口和抽象类中 返回 false
 	 * 再 InputStreamResource 和 MultipartFileResource 实现类中返回 true
@@ -407,8 +406,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		try {
 			inputStream = resource.getInputStream();
 		}catch (IOException ex) {
-			throw new BeanDefinitionStoreException(
-					"Unable to determine validation mode for [" + resource + "]: cannot open InputStream. " +
+			throw new BeanDefinitionStoreException("Unable to determine validation mode for [" + resource + "]: cannot open InputStream. " +
 					"Did you attempt to load directly from a SAX InputSource without specifying the validationMode on your XmlBeanDefinitionReader instance?", ex);
 		}
 		try {

@@ -427,7 +427,6 @@ public class BeanDefinitionParserDelegate {
 	 * Parse the bean definition itself, without regard to name or aliases. May return
 	 * {@code null} if problems occurred during the parsing of the bean definition.
 	 * // 解析属性和子节点
-	 *
 	 */
 	@Nullable
 	public AbstractBeanDefinition parseBeanDefinitionElement(Element ele, String beanName, @Nullable BeanDefinition containingBean) {
@@ -443,7 +442,6 @@ public class BeanDefinitionParserDelegate {
 		if (ele.hasAttribute(PARENT_ATTRIBUTE)) {
 			parent = ele.getAttribute(PARENT_ATTRIBUTE);
 		}
-
 		try {
 			// 3、创建 AbstractBeanDefinition 对象，底层是 GenericBeanDefinition // 创建一个BeanDefinition的对象
 			AbstractBeanDefinition bd = createBeanDefinition(className, parent);
@@ -889,19 +887,16 @@ public class BeanDefinitionParserDelegate {
 			RuntimeBeanReference ref = new RuntimeBeanReference(refName);
 			ref.setSource(extractSource(ele));
 			return ref;
-		}
+		}else if (hasValueAttribute) {
 		// 如果有value属性值，则对value属性值进行处理
-		else if (hasValueAttribute) {
 			// 将value属性值封装到TypedStringValue对象中
 			TypedStringValue valueHolder = new TypedStringValue(ele.getAttribute(VALUE_ATTRIBUTE));
 			valueHolder.setSource(extractSource(ele));
 			return valueHolder;
-		}
-		else if (subElement != null) {
+		}else if (subElement != null) {
 			// 如果当前标签还有子标签，那么对该子标签进行解析
 			return parsePropertySubElement(subElement, bd);
-		}
-		else {
+		}else {
 			// Neither child element nor "ref" or "value" attribute found.// 如果不满足前面任何一个条件，则抛出异常
 			error(elementName + " must specify a ref or value", ele);
 			return null;

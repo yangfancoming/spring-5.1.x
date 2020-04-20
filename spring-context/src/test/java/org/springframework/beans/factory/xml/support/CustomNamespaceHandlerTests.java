@@ -50,11 +50,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for custom XML namespace handler implementations.
- *
- * @author Rob Harrop
- * @author Rick Evans
-
-
  */
 public class CustomNamespaceHandlerTests {
 
@@ -70,7 +65,7 @@ public class CustomNamespaceHandlerTests {
 
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp()  {
 		NamespaceHandlerResolver resolver = new DefaultNamespaceHandlerResolver(CLASS.getClassLoader(), NS_PROPS);
 		this.beanFactory = new GenericApplicationContext();
 		XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(this.beanFactory);
@@ -83,19 +78,19 @@ public class CustomNamespaceHandlerTests {
 
 
 	@Test
-	public void testSimpleParser() throws Exception {
+	public void testSimpleParser()  {
 		TestBean bean = (TestBean) this.beanFactory.getBean("testBean");
 		assertTestBean(bean);
 	}
 
 	@Test
-	public void testSimpleDecorator() throws Exception {
+	public void testSimpleDecorator()  {
 		TestBean bean = (TestBean) this.beanFactory.getBean("customisedTestBean");
 		assertTestBean(bean);
 	}
 
 	@Test
-	public void testProxyingDecorator() throws Exception {
+	public void testProxyingDecorator()  {
 		ITestBean bean = (ITestBean) this.beanFactory.getBean("debuggingTestBean");
 		assertTestBean(bean);
 		assertTrue(AopUtils.isAopProxy(bean));
@@ -105,7 +100,7 @@ public class CustomNamespaceHandlerTests {
 	}
 
 	@Test
-	public void testProxyingDecoratorNoInstance() throws Exception {
+	public void testProxyingDecoratorNoInstance()  {
 		String[] beanNames = this.beanFactory.getBeanNamesForType(ApplicationListener.class);
 		assertTrue(Arrays.asList(beanNames).contains("debuggingTestBeanNoInstance"));
 		assertEquals(ApplicationListener.class, this.beanFactory.getType("debuggingTestBeanNoInstance"));
@@ -119,7 +114,7 @@ public class CustomNamespaceHandlerTests {
 	}
 
 	@Test
-	public void testChainedDecorators() throws Exception {
+	public void testChainedDecorators()  {
 		ITestBean bean = (ITestBean) this.beanFactory.getBean("chainedTestBean");
 		assertTestBean(bean);
 		assertTrue(AopUtils.isAopProxy(bean));
@@ -130,27 +125,27 @@ public class CustomNamespaceHandlerTests {
 	}
 
 	@Test
-	public void testDecorationViaAttribute() throws Exception {
+	public void testDecorationViaAttribute()  {
 		BeanDefinition beanDefinition = this.beanFactory.getBeanDefinition("decorateWithAttribute");
 		assertEquals("foo", beanDefinition.getAttribute("objectName"));
 	}
 
 	@Test  // SPR-2728
-	public void testCustomElementNestedWithinUtilList() throws Exception {
+	public void testCustomElementNestedWithinUtilList()  {
 		List<?> things = (List<?>) this.beanFactory.getBean("list.of.things");
 		assertNotNull(things);
 		assertEquals(2, things.size());
 	}
 
 	@Test  // SPR-2728
-	public void testCustomElementNestedWithinUtilSet() throws Exception {
+	public void testCustomElementNestedWithinUtilSet()  {
 		Set<?> things = (Set<?>) this.beanFactory.getBean("set.of.things");
 		assertNotNull(things);
 		assertEquals(2, things.size());
 	}
 
 	@Test  // SPR-2728
-	public void testCustomElementNestedWithinUtilMap() throws Exception {
+	public void testCustomElementNestedWithinUtilMap()  {
 		Map<?, ?> things = (Map<?, ?>) this.beanFactory.getBean("map.of.things");
 		assertNotNull(things);
 		assertEquals(2, things.size());
@@ -191,8 +186,6 @@ public class CustomNamespaceHandlerTests {
 
 /**
  * Custom namespace handler implementation.
- *
- * @author Rob Harrop
  */
 final class TestNamespaceHandler extends NamespaceHandlerSupport {
 

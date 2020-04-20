@@ -167,9 +167,8 @@ public final class Conventions {
 	}
 
 	/**
-	 * Convert {@code String}s in attribute name format (e.g. lowercase, hyphens
-	 * separating words) into property name format (camel-case). For example
-	 * {@code transaction-manager} becomes {@code "transactionManager"}.
+	 * Convert {@code String}s in attribute name format (e.g. lowercase, hyphens separating words) into property name format (camel-case).
+	 *  For example {@code transaction-manager} becomes {@code "transactionManager"}.
 	 */
 	public static String attributeNameToPropertyName(String attributeName) {
 		Assert.notNull(attributeName, "'attributeName' must not be null");
