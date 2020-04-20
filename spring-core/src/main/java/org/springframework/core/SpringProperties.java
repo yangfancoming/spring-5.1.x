@@ -76,8 +76,7 @@ public final class SpringProperties {
 	}
 
 	/**
-	 * Retrieve the property value for the given key, checking local Spring
-	 * properties first and falling back to JVM-level system properties.
+	 * Retrieve the property value for the given key, checking local Spring properties first and falling back to JVM-level system properties.
 	 * @param key the property key
 	 * @return the associated property value, or {@code null} if none found
 	 */

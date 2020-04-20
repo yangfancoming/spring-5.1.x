@@ -13,10 +13,7 @@ import org.springframework.core.Ordered;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Stephane Nicoll
 
- */
 public class OrderSourceProviderTests {
 
 	private final AnnotationAwareOrderComparator comparator = AnnotationAwareOrderComparator.INSTANCE;

@@ -55,10 +55,7 @@ import org.springframework.validation.beanvalidation.MethodValidationPostProcess
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
-/**
- * @author Stephane Nicoll
 
- */
 public class AnnotationDrivenEventListenerTests {
 
 	@Rule

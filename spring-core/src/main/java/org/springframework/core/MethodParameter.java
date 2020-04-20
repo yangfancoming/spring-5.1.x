@@ -73,7 +73,6 @@ public class MethodParameter {
 	@Nullable
 	private volatile MethodParameter nestedMethodParameter;
 
-
 	/**
 	 * Create a new {@code MethodParameter} for the given method, with nesting level 1.
 	 * @param method the Method to specify a parameter for
@@ -126,8 +125,7 @@ public class MethodParameter {
 	}
 
 	/**
-	 * Copy constructor, resulting in an independent MethodParameter object
-	 * based on the same metadata and cache state that the original object was in.
+	 * Copy constructor, resulting in an independent MethodParameter object based on the same metadata and cache state that the original object was in.
 	 * @param original the original MethodParameter object to copy from
 	 */
 	public MethodParameter(MethodParameter original) {
@@ -144,7 +142,6 @@ public class MethodParameter {
 		this.parameterNameDiscoverer = original.parameterNameDiscoverer;
 		this.parameterName = original.parameterName;
 	}
-
 
 	/**
 	 * Return the wrapped Method, if any.
@@ -183,8 +180,7 @@ public class MethodParameter {
 
 	/**
 	 * Return the wrapped annotated element.
-	 * Note: This method exposes the annotations declared on the method/constructor
-	 * itself (i.e. at the method/constructor level, not at the parameter level).
+	 * Note: This method exposes the annotations declared on the method/constructor itself (i.e. at the method/constructor level, not at the parameter level).
 	 * @return the Method or Constructor as AnnotatedElement
 	 */
 	public AnnotatedElement getAnnotatedElement() {
@@ -240,9 +236,7 @@ public class MethodParameter {
 	}
 
 	/**
-	 * Return the nesting level of the target type
-	 * (typically 1; e.g. in case of a List of Lists, 1 would indicate the
-	 * nested List, whereas 2 would indicate the element of the nested List).
+	 * Return the nesting level of the target type (typically 1; e.g. in case of a List of Lists, 1 would indicate the nested List, whereas 2 would indicate the element of the nested List).
 	 */
 	public int getNestingLevel() {
 		return this.nestingLevel;
@@ -250,8 +244,7 @@ public class MethodParameter {
 
 	/**
 	 * Set the type index for the current nesting level.
-	 * @param typeIndex the corresponding type index
-	 * (or {@code null} for the default type index)
+	 * @param typeIndex the corresponding type index (or {@code null} for the default type index)
 	 * @see #getNestingLevel()
 	 */
 	public void setTypeIndexForCurrentLevel(int typeIndex) {
@@ -260,8 +253,7 @@ public class MethodParameter {
 
 	/**
 	 * Return the type index for the current nesting level.
-	 * @return the corresponding type index, or {@code null}
-	 * if none specified (indicating the default type index)
+	 * @return the corresponding type index, or {@code null} if none specified (indicating the default type index)
 	 * @see #getNestingLevel()
 	 */
 	@Nullable
@@ -272,8 +264,7 @@ public class MethodParameter {
 	/**
 	 * Return the type index for the specified nesting level.
 	 * @param nestingLevel the nesting level to check
-	 * @return the corresponding type index, or {@code null}
-	 * if none specified (indicating the default type index)
+	 * @return the corresponding type index, or {@code null} if none specified (indicating the default type index)
 	 */
 	@Nullable
 	public Integer getTypeIndexForLevel(int nestingLevel) {
@@ -289,9 +280,8 @@ public class MethodParameter {
 	}
 
 	/**
-	 * Return a variant of this {@code MethodParameter} which points to the
-	 * same parameter but one nesting level deeper. This is effectively the
-	 * same as {@link #increaseNestingLevel()}, just with an independent
+	 * Return a variant of this {@code MethodParameter} which points to the same parameter but one nesting level deeper.
+	 * This is effectively the same as {@link #increaseNestingLevel()}, just with an independent
 	 * {@code MethodParameter} object (e.g. in case of the original being cached).
 	 * @since 4.3
 	 */
@@ -310,8 +300,7 @@ public class MethodParameter {
 	 * Return whether this method indicates a parameter which is not required:
 	 * either in the form of Java 8's {@link java.util.Optional}, any variant
 	 * of a parameter-level {@code Nullable} annotation (such as from JSR-305
-	 * or the FindBugs set of annotations), or a language-level nullable type
-	 * declaration in Kotlin.
+	 * or the FindBugs set of annotations), or a language-level nullable type declaration in Kotlin.
 	 * @since 4.3
 	 */
 	public boolean isOptional() {
@@ -602,31 +591,6 @@ public class MethodParameter {
 		return annotations;
 	}
 
-
-	@Override
-	public boolean equals(Object other) {
-		if (this == other) return true;
-		if (!(other instanceof MethodParameter)) return false;
-		MethodParameter otherParam = (MethodParameter) other;
-		return (this.parameterIndex == otherParam.parameterIndex && getExecutable().equals(otherParam.getExecutable()));
-	}
-
-	@Override
-	public int hashCode() {
-		return (getExecutable().hashCode() * 31 + this.parameterIndex);
-	}
-
-	@Override
-	public String toString() {
-		Method method = getMethod();
-		return (method != null ? "method '" + method.getName() + "'" : "constructor") + " parameter " + this.parameterIndex;
-	}
-
-	@Override
-	public MethodParameter clone() {
-		return new MethodParameter(this);
-	}
-
 	/**
 	 * Create a new MethodParameter for the given method or constructor.
 	 * This is a convenience factory method for scenarios where a  Method or Constructor reference is treated in a generic fashion.
@@ -645,8 +609,7 @@ public class MethodParameter {
 
 	/**
 	 * Create a new MethodParameter for the given method or constructor.
-	 * This is a convenience factory method for scenarios where a
-	 * Method or Constructor reference is treated in a generic fashion.
+	 * This is a convenience factory method for scenarios where a Method or Constructor reference is treated in a generic fashion.
 	 * @param executable the Method or Constructor to specify a parameter for
 	 * @param parameterIndex the index of the parameter
 	 * @return the corresponding MethodParameter instance
@@ -733,6 +696,33 @@ public class MethodParameter {
 			}
 			return false;
 		}
+	}
+
+	//---------------------------------------------------------------------
+	// Implementation of 【Object】 class
+	//---------------------------------------------------------------------
+	@Override
+	public boolean equals(Object other) {
+		if (this == other) return true;
+		if (!(other instanceof MethodParameter)) return false;
+		MethodParameter otherParam = (MethodParameter) other;
+		return (this.parameterIndex == otherParam.parameterIndex && getExecutable().equals(otherParam.getExecutable()));
+	}
+
+	@Override
+	public int hashCode() {
+		return (getExecutable().hashCode() * 31 + this.parameterIndex);
+	}
+
+	@Override
+	public String toString() {
+		Method method = getMethod();
+		return (method != null ? "method '" + method.getName() + "'" : "constructor") + " parameter " + this.parameterIndex;
+	}
+
+	@Override
+	public MethodParameter clone() {
+		return new MethodParameter(this);
 	}
 
 }

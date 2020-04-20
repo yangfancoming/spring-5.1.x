@@ -69,8 +69,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 
 	/**
 	 * Name of reserved default profile name: {@value}. If no default profile names are
-	 * explicitly and no active profile names are explicitly set, this profile will
-	 * automatically be activated by default.
+	 * explicitly and no active profile names are explicitly set, this profile will automatically be activated by default.
 	 * @see #getReservedDefaultProfiles
 	 * @see ConfigurableEnvironment#setDefaultProfiles
 	 * @see ConfigurableEnvironment#setActiveProfiles
@@ -90,10 +89,8 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	private final ConfigurablePropertyResolver propertyResolver = new PropertySourcesPropertyResolver(this.propertySources);
 
 	/**
-	 * Create a new {@code Environment} instance, calling back to
-	 * {@link #customizePropertySources(MutablePropertySources)} during construction to
-	 * allow subclasses to contribute or manipulate {@link PropertySource} instances as
-	 * appropriate.
+	 * Create a new {@code Environment} instance, calling back to {@link #customizePropertySources(MutablePropertySources)} during construction to
+	 * allow subclasses to contribute or manipulate {@link PropertySource} instances as appropriate.
 	 * @see #customizePropertySources(MutablePropertySources)
 	 */
 	public AbstractEnvironment() {
@@ -162,10 +159,9 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	 * callback is invoked by the {@link #AbstractEnvironment()} constructor, which may
 	 * lead to a {@code NullPointerException} or other problems. If you need to access
 	 * default values of instance variables, leave this method as a no-op and perform
-	 * property source manipulation and instance variable access directly within the
-	 * subclass constructor. Note that <em>assigning</em> values to instance variables is
-	 * not problematic; it is only attempting to read default values that must be avoided.
-	 *
+	 * property source manipulation and instance variable access directly within the subclass constructor.
+	 * Note that <em>assigning</em> values to instance variables is not problematic;
+	 * it is only attempting to read default values that must be avoided.
 	 * @see MutablePropertySources
 	 * @see PropertySourcesPropertyResolver
 	 * @see org.springframework.context.ApplicationContextInitializer
@@ -175,21 +171,12 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 
 	/**
 	 * Return the set of reserved default profile names. This implementation returns
-	 * {@value #RESERVED_DEFAULT_PROFILE_NAME}. Subclasses may override in order to
-	 * customize the set of reserved names.
+	 * {@value #RESERVED_DEFAULT_PROFILE_NAME}. Subclasses may override in order to customize the set of reserved names.
 	 * @see #RESERVED_DEFAULT_PROFILE_NAME
 	 * @see #doGetDefaultProfiles()
 	 */
 	protected Set<String> getReservedDefaultProfiles() {
 		return Collections.singleton(RESERVED_DEFAULT_PROFILE_NAME);
-	}
-
-	//---------------------------------------------------------------------
-	// Implementation of ConfigurableEnvironment interface
-	//---------------------------------------------------------------------
-	@Override
-	public String[] getActiveProfiles() {
-		return StringUtils.toStringArray(doGetActiveProfiles());
 	}
 
 	/**
@@ -210,6 +197,76 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 			}
 			return this.activeProfiles;
 		}
+	}
+
+	/**
+	 * Return the set of default profiles explicitly set via {@link #setDefaultProfiles(String...)} or if the current set of default profiles
+	 * consists only of {@linkplain #getReservedDefaultProfiles() reserved default profiles}, then check for the presence of the
+	 * {@value #DEFAULT_PROFILES_PROPERTY_NAME} property and assign its value (if any)  to the set of default profiles.
+	 * @see #AbstractEnvironment()
+	 * @see #getDefaultProfiles()
+	 * @see #DEFAULT_PROFILES_PROPERTY_NAME
+	 * @see #getReservedDefaultProfiles()
+	 */
+	protected Set<String> doGetDefaultProfiles() {
+		synchronized (this.defaultProfiles) {
+			if (this.defaultProfiles.equals(getReservedDefaultProfiles())) {
+				String profiles = getProperty(DEFAULT_PROFILES_PROPERTY_NAME);
+				if (StringUtils.hasText(profiles)) {
+					setDefaultProfiles(StringUtils.commaDelimitedListToStringArray(StringUtils.trimAllWhitespace(profiles)));
+				}
+			}
+			return this.defaultProfiles;
+		}
+	}
+
+	/**
+	 * Return whether the given profile is active, or if active profiles are empty
+	 * whether the profile should be active by default.
+	 * @throws IllegalArgumentException per {@link #validateProfile(String)}
+	 */
+	protected boolean isProfileActive(String profile) {
+		validateProfile(profile);
+		Set<String> currentActiveProfiles = doGetActiveProfiles();
+		return (currentActiveProfiles.contains(profile) || (currentActiveProfiles.isEmpty() && doGetDefaultProfiles().contains(profile)));
+	}
+
+	/**
+	 * Validate the given profile, called internally prior to adding to the set of active or default profiles.
+	 * Subclasses may override to impose further restrictions on profile syntax.
+	 * @throws IllegalArgumentException if the profile is null, empty, whitespace-only or begins with the profile NOT operator (!).
+	 * @see #acceptsProfiles
+	 * @see #addActiveProfile
+	 * @see #setDefaultProfiles
+	 */
+	protected void validateProfile(String profile) {
+		if (!StringUtils.hasText(profile)) {
+			throw new IllegalArgumentException("Invalid profile [" + profile + "]: must contain text");
+		}
+		if (profile.charAt(0) == '!') {
+			throw new IllegalArgumentException("Invalid profile [" + profile + "]: must not begin with ! operator");
+		}
+	}
+
+	/**
+	 * Determine whether to suppress {@link System#getenv()}/{@link System#getenv(String)}
+	 * access for the purposes of {@link #getSystemEnvironment()}.
+	 * If this method returns {@code true}, an empty dummy Map will be used instead
+	 * of the regular system environment Map, never even trying to call {@code getenv} and therefore avoiding security manager warnings (if any).
+	 * The default implementation checks for the "spring.getenv.ignore" system property,returning {@code true} if its value equals "true" in any case.
+	 * @see #IGNORE_GETENV_PROPERTY_NAME
+	 * @see SpringProperties#getFlag
+	 */
+	protected boolean suppressGetenvAccess() {
+		return SpringProperties.getFlag(IGNORE_GETENV_PROPERTY_NAME);
+	}
+
+	//---------------------------------------------------------------------
+	// Implementation of ConfigurableEnvironment interface
+	//---------------------------------------------------------------------
+	@Override
+	public String[] getActiveProfiles() {
+		return StringUtils.toStringArray(doGetActiveProfiles());
 	}
 
 	@Override
@@ -235,31 +292,9 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 		}
 	}
 
-
 	@Override
 	public String[] getDefaultProfiles() {
 		return StringUtils.toStringArray(doGetDefaultProfiles());
-	}
-
-	/**
-	 * Return the set of default profiles explicitly set via {@link #setDefaultProfiles(String...)} or if the current set of default profiles
-	 * consists only of {@linkplain #getReservedDefaultProfiles() reserved default profiles}, then check for the presence of the
-	 * {@value #DEFAULT_PROFILES_PROPERTY_NAME} property and assign its value (if any)  to the set of default profiles.
-	 * @see #AbstractEnvironment()
-	 * @see #getDefaultProfiles()
-	 * @see #DEFAULT_PROFILES_PROPERTY_NAME
-	 * @see #getReservedDefaultProfiles()
-	 */
-	protected Set<String> doGetDefaultProfiles() {
-		synchronized (this.defaultProfiles) {
-			if (this.defaultProfiles.equals(getReservedDefaultProfiles())) {
-				String profiles = getProperty(DEFAULT_PROFILES_PROPERTY_NAME);
-				if (StringUtils.hasText(profiles)) {
-					setDefaultProfiles(StringUtils.commaDelimitedListToStringArray(StringUtils.trimAllWhitespace(profiles)));
-				}
-			}
-			return this.defaultProfiles;
-		}
 	}
 
 	/**
@@ -304,34 +339,6 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 		return profiles.matches(this::isProfileActive);
 	}
 
-	/**
-	 * Return whether the given profile is active, or if active profiles are empty
-	 * whether the profile should be active by default.
-	 * @throws IllegalArgumentException per {@link #validateProfile(String)}
-	 */
-	protected boolean isProfileActive(String profile) {
-		validateProfile(profile);
-		Set<String> currentActiveProfiles = doGetActiveProfiles();
-		return (currentActiveProfiles.contains(profile) || (currentActiveProfiles.isEmpty() && doGetDefaultProfiles().contains(profile)));
-	}
-
-	/**
-	 * Validate the given profile, called internally prior to adding to the set of active or default profiles.
-	 * Subclasses may override to impose further restrictions on profile syntax.
-	 * @throws IllegalArgumentException if the profile is null, empty, whitespace-only or begins with the profile NOT operator (!).
-	 * @see #acceptsProfiles
-	 * @see #addActiveProfile
-	 * @see #setDefaultProfiles
-	 */
-	protected void validateProfile(String profile) {
-		if (!StringUtils.hasText(profile)) {
-			throw new IllegalArgumentException("Invalid profile [" + profile + "]: must contain text");
-		}
-		if (profile.charAt(0) == '!') {
-			throw new IllegalArgumentException("Invalid profile [" + profile + "]: must not begin with ! operator");
-		}
-	}
-
 	@Override
 	public MutablePropertySources getPropertySources() {
 		return this.propertySources;
@@ -342,8 +349,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	public Map<String, Object> getSystemProperties() {
 		try {
 			return (Map) System.getProperties();
-		}
-		catch (AccessControlException ex) {
+		}catch (AccessControlException ex) {
 			return (Map) new ReadOnlySystemAttributesMap() {
 				@Override
 				@Nullable
@@ -381,19 +387,6 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 				}
 			};
 		}
-	}
-
-	/**
-	 * Determine whether to suppress {@link System#getenv()}/{@link System#getenv(String)}
-	 * access for the purposes of {@link #getSystemEnvironment()}.
-	 * If this method returns {@code true}, an empty dummy Map will be used instead
-	 * of the regular system environment Map, never even trying to call {@code getenv} and therefore avoiding security manager warnings (if any).
-	 * The default implementation checks for the "spring.getenv.ignore" system property,returning {@code true} if its value equals "true" in any case.
-	 * @see #IGNORE_GETENV_PROPERTY_NAME
-	 * @see SpringProperties#getFlag
-	 */
-	protected boolean suppressGetenvAccess() {
-		return SpringProperties.getFlag(IGNORE_GETENV_PROPERTY_NAME);
 	}
 
 	@Override

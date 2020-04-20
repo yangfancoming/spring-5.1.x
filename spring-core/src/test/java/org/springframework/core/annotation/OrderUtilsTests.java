@@ -1,17 +1,9 @@
 
-
 package org.springframework.core.annotation;
-
 import javax.annotation.Priority;
-
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
-/**
- * @author Stephane Nicoll
-
- */
 public class OrderUtilsTests {
 
 	@Test

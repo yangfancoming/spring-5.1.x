@@ -12,7 +12,6 @@ import org.springframework.core.MethodParameter;
 import static org.junit.Assert.*;
 
 /**
-
  * @since 5.0
  */
 public class SynthesizingMethodParameterTests {

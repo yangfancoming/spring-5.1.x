@@ -31,7 +31,7 @@ public class MethodParameterTests {
 		intReturnType = new MethodParameter(method, -1);
 	}
 
-
+	// 测试 Equals  只有parameterIndex相同 才会相同
 	@Test
 	public void testEquals() throws NoSuchMethodException {
 		assertEquals(stringParameter, stringParameter);
@@ -49,10 +49,14 @@ public class MethodParameterTests {
 		MethodParameter methodParameter = new MethodParameter(method, 0);
 		assertEquals(stringParameter, methodParameter);
 		assertEquals(methodParameter, stringParameter);
+		assertTrue(stringParameter.equals(methodParameter));
+
 		assertNotEquals(longParameter, methodParameter);
 		assertNotEquals(methodParameter, longParameter);
+		assertFalse(methodParameter.equals(longParameter));
 	}
 
+	// 测试  HashCode 只有parameterIndex相同 才会相同
 	@Test
 	public void testHashCode() throws NoSuchMethodException {
 		assertEquals(stringParameter.hashCode(), stringParameter.hashCode());
@@ -78,7 +82,9 @@ public class MethodParameterTests {
 		assertEquals(longParameter, MethodParameter.forParameter(method.getParameters()[1]));
 	}
 
+	// 测试 异常参数索引范围
 	@Test(expected = IllegalArgumentException.class)
+//	@Test
 	public void testIndexValidation() {
 		new MethodParameter(method, 2);
 	}
@@ -122,10 +128,8 @@ public class MethodParameterTests {
 
 		methodParameter = MethodParameter.forExecutable(constructor, 2);
 		assertEquals(Callable.class, methodParameter.getParameterType());
-		assertEquals(ResolvableType.forClassWithGenerics(Callable.class, Integer.class).getType(),
-				methodParameter.getGenericParameterType());
+		assertEquals(ResolvableType.forClassWithGenerics(Callable.class, Integer.class).getType(),methodParameter.getGenericParameterType());
 	}
-
 
 	public int method(String p1, long p2) {
 		return 42;
@@ -133,14 +137,12 @@ public class MethodParameterTests {
 
 	@SuppressWarnings("unused")
 	private static class NestedClass {
-
 		NestedClass(@Param String s) {
 		}
 	}
 
 	@SuppressWarnings("unused")
 	private class InnerClass {
-
 		public InnerClass(@Param String s, Callable<Integer> i) {
 		}
 	}
@@ -149,5 +151,4 @@ public class MethodParameterTests {
 	@Target(ElementType.PARAMETER)
 	private @interface Param {
 	}
-
 }

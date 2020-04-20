@@ -11,11 +11,7 @@ import java.lang.reflect.Parameter;
 import org.springframework.core.MethodParameter;
 
 /**
- * A {@link MethodParameter} variant which synthesizes annotations that
- * declare attribute aliases via {@link AliasFor @AliasFor}.
- *
-
- * @author Sam Brannen
+ * A {@link MethodParameter} variant which synthesizes annotations that declare attribute aliases via {@link AliasFor @AliasFor}.
  * @since 4.2
  * @see AnnotationUtils#synthesizeAnnotation
  * @see AnnotationUtils#synthesizeAnnotationArray
@@ -23,8 +19,7 @@ import org.springframework.core.MethodParameter;
 public class SynthesizingMethodParameter extends MethodParameter {
 
 	/**
-	 * Create a new {@code SynthesizingMethodParameter} for the given method,
-	 * with nesting level 1.
+	 * Create a new {@code SynthesizingMethodParameter} for the given method,with nesting level 1.
 	 * @param method the Method to specify a parameter for
 	 * @param parameterIndex the index of the parameter: -1 for the method
 	 * return type; 0 for the first method parameter; 1 for the second method
@@ -79,7 +74,6 @@ public class SynthesizingMethodParameter extends MethodParameter {
 		super(original);
 	}
 
-
 	@Override
 	protected <A extends Annotation> A adaptAnnotation(A annotation) {
 		return AnnotationUtils.synthesizeAnnotation(annotation, getAnnotatedElement());
@@ -90,12 +84,10 @@ public class SynthesizingMethodParameter extends MethodParameter {
 		return AnnotationUtils.synthesizeAnnotationArray(annotations, getAnnotatedElement());
 	}
 
-
 	@Override
 	public SynthesizingMethodParameter clone() {
 		return new SynthesizingMethodParameter(this);
 	}
-
 
 	/**
 	 * Create a new SynthesizingMethodParameter for the given method or constructor.
@@ -109,19 +101,16 @@ public class SynthesizingMethodParameter extends MethodParameter {
 	public static SynthesizingMethodParameter forExecutable(Executable executable, int parameterIndex) {
 		if (executable instanceof Method) {
 			return new SynthesizingMethodParameter((Method) executable, parameterIndex);
-		}
-		else if (executable instanceof Constructor) {
+		}else if (executable instanceof Constructor) {
 			return new SynthesizingMethodParameter((Constructor<?>) executable, parameterIndex);
-		}
-		else {
+		}else {
 			throw new IllegalArgumentException("Not a Method/Constructor: " + executable);
 		}
 	}
 
 	/**
 	 * Create a new SynthesizingMethodParameter for the given parameter descriptor.
-	 * This is a convenience factory method for scenarios where a
-	 * Java 8 {@link Parameter} descriptor is already available.
+	 * This is a convenience factory method for scenarios where a  Java 8 {@link Parameter} descriptor is already available.
 	 * @param parameter the parameter descriptor
 	 * @return the corresponding SynthesizingMethodParameter instance
 	 * @since 5.0

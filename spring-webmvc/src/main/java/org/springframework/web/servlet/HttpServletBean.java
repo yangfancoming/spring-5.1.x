@@ -34,28 +34,19 @@ import org.springframework.web.context.support.StandardServletEnvironment;
 
 /**
  * Simple extension of {@link javax.servlet.http.HttpServlet} which treats
- * its config parameters ({@code init-param} entries within the
- * {@code servlet} tag in {@code web.xml}) as bean properties.
+ * its config parameters ({@code init-param} entries within the {@code servlet} tag in {@code web.xml}) as bean properties.
  *
- * A handy superclass for any type of servlet. Type conversion of config
- * parameters is automatic, with the corresponding setter method getting
- * invoked with the converted value. It is also possible for subclasses to
- * specify required properties. Parameters without matching bean property
- * setter will simply be ignored.
+ * A handy superclass for any type of servlet. Type conversion of config parameters is automatic, with the corresponding setter method getting invoked with the converted value.
+ * It is also possible for subclasses to specify required properties.
+ * Parameters without matching bean property  setter will simply be ignored.
+ * This servlet leaves request handling to subclasses, inheriting the default behavior of HttpServlet ({@code doGet}, {@code doPost}, etc).
  *
- * This servlet leaves request handling to subclasses, inheriting the default
- * behavior of HttpServlet ({@code doGet}, {@code doPost}, etc).
- *
- * This generic servlet base class has no dependency on the Spring
- * {@link org.springframework.context.ApplicationContext} concept. Simple
- * servlets usually don't load their own context but rather access service
- * beans from the Spring root application context, accessible via the
- * filter's {@link #getServletContext() ServletContext} (see
- * {@link org.springframework.web.context.support.WebApplicationContextUtils}).
+ * This generic servlet base class has no dependency on the Spring {@link org.springframework.context.ApplicationContext} concept.
+ * Simple servlets usually don't load their own context but rather access service beans from the Spring root application context,
+ * accessible via the filter's {@link #getServletContext() ServletContext} (see{@link org.springframework.web.context.support.WebApplicationContextUtils}).
  *
  * The {@link FrameworkServlet} class is a more specific servlet base
- * class which loads its own application context. FrameworkServlet serves
- * as direct base class of Spring's full-fledged {@link DispatcherServlet}.
+ * class which loads its own application context. FrameworkServlet serves as direct base class of Spring's full-fledged {@link DispatcherServlet}.
  * @see #addRequiredProperty
  * @see #initServletBean
  * @see #doGet
