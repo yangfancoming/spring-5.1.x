@@ -198,9 +198,7 @@ public abstract class CommandLinePropertySource<T> extends EnumerablePropertySou
 	/** The default name of the property representing non-option arguments: {@value}. */
 	public static final String DEFAULT_NON_OPTION_ARGS_PROPERTY_NAME = "nonOptionArgs";
 
-
 	private String nonOptionArgsPropertyName = DEFAULT_NON_OPTION_ARGS_PROPERTY_NAME;
-
 
 	/**
 	 * Create a new {@code CommandLinePropertySource} having the default name
@@ -217,7 +215,6 @@ public abstract class CommandLinePropertySource<T> extends EnumerablePropertySou
 	public CommandLinePropertySource(String name, T source) {
 		super(name, source);
 	}
-
 
 	/**
 	 * Specify the name of the special "non-option arguments" property.
@@ -258,16 +255,14 @@ public abstract class CommandLinePropertySource<T> extends EnumerablePropertySou
 			Collection<String> nonOptionArguments = this.getNonOptionArgs();
 			if (nonOptionArguments.isEmpty()) {
 				return null;
-			}
-			else {
+			}else {
 				return StringUtils.collectionToCommaDelimitedString(nonOptionArguments);
 			}
 		}
 		Collection<String> optionValues = this.getOptionValues(name);
 		if (optionValues == null) {
 			return null;
-		}
-		else {
+		}else {
 			return StringUtils.collectionToCommaDelimitedString(optionValues);
 		}
 	}
@@ -280,9 +275,7 @@ public abstract class CommandLinePropertySource<T> extends EnumerablePropertySou
 	protected abstract boolean containsOption(String name);
 
 	/**
-	 * Return the collection of values associated with the command line option having the
-	 * given name.
-	 * <ul>
+	 * Return the collection of values associated with the command line option having the given name.
 	 * <li>if the option is present and has no argument (e.g.: "--foo"), return an empty
 	 * collection ({@code []})</li>
 	 * <li>if the option is present and has a single value (e.g. "--foo=bar"), return a
@@ -291,14 +284,12 @@ public abstract class CommandLinePropertySource<T> extends EnumerablePropertySou
 	 * supports multiple arguments (e.g. "--foo=bar --foo=baz"), return a collection
 	 * having elements for each value ({@code ["bar", "baz"]})</li>
 	 * <li>if the option is not present, return {@code null}</li>
-	 * </ul>
 	 */
 	@Nullable
 	protected abstract List<String> getOptionValues(String name);
 
 	/**
-	 * Return the collection of non-option arguments parsed from the command line.
-	 * Never {@code null}.
+	 * Return the collection of non-option arguments parsed from the command line. Never {@code null}.
 	 */
 	protected abstract List<String> getNonOptionArgs();
 

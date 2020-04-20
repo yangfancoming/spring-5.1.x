@@ -17,11 +17,9 @@ import org.springframework.util.ObjectUtils;
  * {@code PropertySource} objects are not typically used in isolation, but rather through a {@link PropertySources} object,
  * which aggregates property sources and in  conjunction with a {@link PropertyResolver} implementation that can perform
  * precedence-based searches across the set of {@code PropertySources}.
- * {@code PropertySource} identity is determined not based on the content of
- * encapsulated properties, but rather based on the {@link #getName() name} of the {@code PropertySource} alone.
+ * {@code PropertySource} identity is determined not based on the content of encapsulated properties, but rather based on the {@link #getName() name} of the {@code PropertySource} alone.
  * This is useful for manipulating {@code PropertySource} objects when in collection contexts.
  * See operations in {@link MutablePropertySources} as well as the {@link #named(String)} and {@link #toString()} methods for details.
- *
  * Note that when working with @{@link org.springframework.context.annotation.Configuration Configuration} classes that the @{@link org.springframework.context.annotation.PropertySource PropertySource}
  * annotation provides a convenient and declarative way of adding property sources to the enclosing {@code Environment}.
  * @since 3.1
@@ -40,9 +38,7 @@ public abstract class PropertySource<T> {
 
 	protected final T source;
 
-	/**
-	 * Create a new {@code PropertySource} with the given name and source object.
-	 */
+	// Create a new {@code PropertySource} with the given name and source object.
 	public PropertySource(String name, T source) {
 		Assert.hasText(name, "Property source name must contain at least one character");
 		Assert.notNull(source, "Property source must not be null");
@@ -60,16 +56,12 @@ public abstract class PropertySource<T> {
 		this(name, (T) new Object());
 	}
 
-	/**
-	 * Return the name of this {@code PropertySource}.
-	 */
+	// Return the name of this {@code PropertySource}.
 	public String getName() {
 		return this.name;
 	}
 
-	/**
-	 * Return the underlying source object for this {@code PropertySource}.
-	 */
+	// Return the underlying source object for this {@code PropertySource}.
 	public T getSource() {
 		return this.source;
 	}
@@ -147,10 +139,8 @@ public abstract class PropertySource<T> {
 
 	/**
 	 * {@code PropertySource} to be used as a placeholder in cases where an actual  property source cannot be eagerly initialized at application context creation time.
-	 * For example, a {@code ServletContext}-based property source
-	 * must wait until the {@code ServletContext} object is available to its enclosing
-	 * {@code ApplicationContext}.  In such cases, a stub should be used to hold the
-	 * intended default position/order of the property source, then be replaced during context refresh.
+	 * For example, a {@code ServletContext}-based property source must wait until the {@code ServletContext} object is available to its enclosing {@code ApplicationContext}.
+	 * In such cases, a stub should be used to hold the intended default position/order of the property source, then be replaced during context refresh.
 	 * @see org.springframework.context.support.AbstractApplicationContext#initPropertySources()
 	 * @see org.springframework.web.context.support.StandardServletEnvironment
 	 * @see org.springframework.web.context.support.ServletContextPropertySource
@@ -159,9 +149,7 @@ public abstract class PropertySource<T> {
 		public StubPropertySource(String name) {
 			super(name, new Object());
 		}
-		/**
-		 * Always returns {@code null}.
-		 */
+		//  Always returns {@code null}.
 		@Override
 		@Nullable
 		public String getProperty(String name) {

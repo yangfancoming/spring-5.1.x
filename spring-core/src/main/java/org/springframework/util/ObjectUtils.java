@@ -32,8 +32,7 @@ public abstract class ObjectUtils {
 	private static final String ARRAY_ELEMENT_SEPARATOR = ", ";
 
 	/**
-	 * Return whether the given throwable is a checked exception:
-	 * that is, neither a RuntimeException nor an Error.
+	 * Return whether the given throwable is a checked exception:that is, neither a RuntimeException nor an Error.
 	 * @param ex the throwable to check
 	 * @return whether the throwable is a checked exception
 	 * @see java.lang.Exception
@@ -45,8 +44,7 @@ public abstract class ObjectUtils {
 	}
 
 	/**
-	 * Check whether the given exception is compatible with the specified
-	 * exception types, as declared in a throws clause.
+	 * Check whether the given exception is compatible with the specified exception types, as declared in a throws clause.
 	 * @param ex the exception to check
 	 * @param declaredExceptions the exception types declared in the throws clause
 	 * @return whether the given exception is compatible
@@ -66,8 +64,7 @@ public abstract class ObjectUtils {
 	}
 
 	/**
-	 * Determine whether the given object is an array:
-	 * either an Object array or a primitive array.
+	 * Determine whether the given object is an array: either an Object array or a primitive array.
 	 * @param obj the object to check
 	 */
 	public static boolean isArray(@Nullable Object obj) {
@@ -85,8 +82,7 @@ public abstract class ObjectUtils {
 	}
 
 	/**
-	 * Determine whether the given object is empty.
-	 * This method supports the following object types.
+	 * Determine whether the given object is empty. This method supports the following object types.
 	 * <li>{@code Optional}: considered empty if {@link Optional#empty()}</li>
 	 * <li>{@code Array}: considered empty if its length is zero</li>
 	 * <li>{@link CharSequence}: considered empty if its length is zero</li>
@@ -128,8 +124,7 @@ public abstract class ObjectUtils {
 	/**
 	 * Unwrap the given object which is potentially a {@link java.util.Optional}.
 	 * @param obj the candidate object
-	 * @return either the value held within the {@code Optional}, {@code null}
-	 * if the {@code Optional} is empty, or simply the given object as-is
+	 * @return either the value held within the {@code Optional}, {@code null} if the {@code Optional} is empty, or simply the given object as-is
 	 * @since 5.0
 	 */
 	@Nullable
@@ -148,8 +143,7 @@ public abstract class ObjectUtils {
 
 	/**
 	 * Check whether the given array contains the given element.
-	 * @param array the array to check (may be {@code null},
-	 * in which case the return value will always be {@code false})
+	 * @param array the array to check (may be {@code null}, in which case the return value will always be {@code false})
 	 * @param element the element to check for
 	 * @return whether the element has been found in the given array
 	 */
@@ -164,8 +158,7 @@ public abstract class ObjectUtils {
 	}
 
 	/**
-	 * Check whether the given array of enum constants contains a constant with the given name,
-	 * ignoring case when determining a match.
+	 * Check whether the given array of enum constants contains a constant with the given name,ignoring case when determining a match.
 	 * @param enumValues the enum values to check, typically obtained via {@code MyEnum.values()}
 	 * @param constant the constant name to find (must not be null or empty string)
 	 * @return whether the constant has been found in the given array
@@ -195,8 +188,7 @@ public abstract class ObjectUtils {
 	 * @param <E> the concrete Enum type
 	 * @param enumValues the array of all Enum constants in question, usually per {@code Enum.values()}
 	 * @param constant the constant to get the enum value of
-	 * @throws IllegalArgumentException if the given constant is not found in the given array
-	 * of enum values. Use {@link #containsConstant(Enum[], String)} as a guard to avoid this exception.
+	 * @throws IllegalArgumentException if the given constant is not found in the given array of enum values. Use {@link #containsConstant(Enum[], String)} as a guard to avoid this exception.
 	 */
 	public static <E extends Enum<?>> E caseInsensitiveValueOf(E[] enumValues, String constant) {
 		for (E candidate : enumValues) {
@@ -208,8 +200,7 @@ public abstract class ObjectUtils {
 	}
 
 	/**
-	 * Append the given object to the given array, returning a new array
-	 * consisting of the input array contents plus the given object.
+	 * Append the given object to the given array, returning a new array consisting of the input array contents plus the given object.
 	 * @param array the array to append to (can be {@code null})
 	 * @param obj the object to append
 	 * @return the new array (of the same component type; never {@code null})
@@ -232,10 +223,8 @@ public abstract class ObjectUtils {
 	}
 
 	/**
-	 * Convert the given array (which may be a primitive array) to an
-	 * object array (if necessary of primitive wrapper objects).
-	 * A {@code null} source value will be converted to an
-	 * empty Object array.
+	 * Convert the given array (which may be a primitive array) to an object array (if necessary of primitive wrapper objects).
+	 * A {@code null} source value will be converted to an empty Object array.
 	 * @param source the (potentially primitive) array
 	 * @return the corresponding object array (never {@code null})
 	 * @throws IllegalArgumentException if the parameter is not an array
@@ -266,10 +255,8 @@ public abstract class ObjectUtils {
 	//---------------------------------------------------------------------
 
 	/**
-	 * Determine if the given objects are equal, returning {@code true} if
-	 * both are {@code null} or {@code false} if only one is {@code null}.
-	 * Compares arrays with {@code Arrays.equals}, performing an equality
-	 * check based on the array elements rather than the array reference.
+	 * Determine if the given objects are equal, returning {@code true} if both are {@code null} or {@code false} if only one is {@code null}.
+	 * Compares arrays with {@code Arrays.equals}, performing an equality check based on the array elements rather than the array reference.
 	 * @param o1 first Object to compare
 	 * @param o2 second Object to compare
 	 * @return whether the given objects are equal
@@ -328,10 +315,8 @@ public abstract class ObjectUtils {
 
 	/**
 	 * Return as hash code for the given object; typically the value of
-	 * {@code Object#hashCode()}}. If the object is an array,
-	 * this method will delegate to any of the {@code nullSafeHashCode}
-	 * methods for arrays in this class. If the object is {@code null},
-	 * this method returns 0.
+	 * {@code Object#hashCode()}}. If the object is an array,this method will delegate to any of the {@code nullSafeHashCode}
+	 * methods for arrays in this class. If the object is {@code null},this method returns 0.
 	 * @see Object#hashCode()
 	 * @see #nullSafeHashCode(Object[])
 	 * @see #nullSafeHashCode(boolean[])
@@ -719,19 +704,14 @@ public abstract class ObjectUtils {
 	 * @return a String representation of {@code array}
 	 */
 	public static String nullSafeToString(@Nullable char[] array) {
-		if (array == null) {
-			return NULL_STRING;
-		}
+		if (array == null) return NULL_STRING;
 		int length = array.length;
-		if (length == 0) {
-			return EMPTY_ARRAY;
-		}
+		if (length == 0) return EMPTY_ARRAY;
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < length; i++) {
 			if (i == 0) {
 				sb.append(ARRAY_START);
-			}
-			else {
+			}else {
 				sb.append(ARRAY_ELEMENT_SEPARATOR);
 			}
 			sb.append("'").append(array[i]).append("'");
@@ -750,22 +730,16 @@ public abstract class ObjectUtils {
 	 * @return a String representation of {@code array}
 	 */
 	public static String nullSafeToString(@Nullable double[] array) {
-		if (array == null) {
-			return NULL_STRING;
-		}
+		if (array == null) return NULL_STRING;
 		int length = array.length;
-		if (length == 0) {
-			return EMPTY_ARRAY;
-		}
+		if (length == 0) return EMPTY_ARRAY;
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < length; i++) {
 			if (i == 0) {
 				sb.append(ARRAY_START);
-			}
-			else {
+			}else {
 				sb.append(ARRAY_ELEMENT_SEPARATOR);
 			}
-
 			sb.append(array[i]);
 		}
 		sb.append(ARRAY_END);
@@ -782,22 +756,16 @@ public abstract class ObjectUtils {
 	 * @return a String representation of {@code array}
 	 */
 	public static String nullSafeToString(@Nullable float[] array) {
-		if (array == null) {
-			return NULL_STRING;
-		}
+		if (array == null) return NULL_STRING;
 		int length = array.length;
-		if (length == 0) {
-			return EMPTY_ARRAY;
-		}
+		if (length == 0) return EMPTY_ARRAY;
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < length; i++) {
 			if (i == 0) {
 				sb.append(ARRAY_START);
-			}
-			else {
+			}else {
 				sb.append(ARRAY_ELEMENT_SEPARATOR);
 			}
-
 			sb.append(array[i]);
 		}
 		sb.append(ARRAY_END);

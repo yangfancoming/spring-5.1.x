@@ -3,24 +3,38 @@
   <ID>JAVA</ID>
   <OriginalElement>org.springframework.core.io.Resource</OriginalElement>
   <nodes>
-    <node x="30.0" y="0.0">org.springframework.core.env.PropertySource</node>
-    <node x="21.0" y="158.0">org.springframework.core.env.MapPropertySource</node>
-    <node x="0.0" y="79.0">org.springframework.core.env.EnumerablePropertySource</node>
+    <node x="0.0" y="237.0">org.springframework.core.env.SimpleCommandLinePropertySource</node>
+    <node x="18.0" y="158.0">org.springframework.core.env.CommandLinePropertySource</node>
+    <node x="147.0" y="0.0">org.springframework.core.env.PropertySource</node>
+    <node x="234.0" y="158.0">org.springframework.core.env.MapPropertySource</node>
+    <node x="117.00000000000001" y="79.0">org.springframework.core.env.EnumerablePropertySource</node>
   </nodes>
   <notes />
   <edges>
+    <edge source="org.springframework.core.env.SimpleCommandLinePropertySource" target="org.springframework.core.env.CommandLinePropertySource">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.core.env.CommandLinePropertySource" target="org.springframework.core.env.EnumerablePropertySource">
+      <point x="0.0" y="-14.5" />
+      <point x="116.0" y="133.0" />
+      <point x="164.5" y="133.0" />
+      <point x="-47.5" y="14.5" />
+    </edge>
     <edge source="org.springframework.core.env.EnumerablePropertySource" target="org.springframework.core.env.PropertySource">
       <point x="0.0" y="-14.5" />
       <point x="0.0" y="14.5" />
     </edge>
     <edge source="org.springframework.core.env.MapPropertySource" target="org.springframework.core.env.EnumerablePropertySource">
       <point x="0.0" y="-14.5" />
-      <point x="0.0" y="14.5" />
+      <point x="308.0" y="133.0" />
+      <point x="259.5" y="133.0" />
+      <point x="47.5" y="14.5" />
     </edge>
   </edges>
   <settings layout="Hierarchic Group" zoom="1.0" x="173.0" y="55.0" />
   <SelectedNodes>
-    <node>org.springframework.core.env.PropertySource</node>
+    <node>org.springframework.core.env.SimpleCommandLinePropertySource</node>
   </SelectedNodes>
   <Categories />
   <SCOPE>All</SCOPE>

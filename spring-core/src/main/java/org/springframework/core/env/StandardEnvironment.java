@@ -43,8 +43,7 @@ public class StandardEnvironment extends AbstractEnvironment {
 	public static final String SYSTEM_PROPERTIES_PROPERTY_SOURCE_NAME = "systemProperties";
 
 	/**
-	 * Customize the set of property sources with those appropriate for any standard
-	 * Java environment:
+	 * Customize the set of property sources with those appropriate for any standard Java environment:
 	 * <li>{@value #SYSTEM_PROPERTIES_PROPERTY_SOURCE_NAME}
 	 * <li>{@value #SYSTEM_ENVIRONMENT_PROPERTY_SOURCE_NAME}
 	 * Properties present in {@value #SYSTEM_PROPERTIES_PROPERTY_SOURCE_NAME} will

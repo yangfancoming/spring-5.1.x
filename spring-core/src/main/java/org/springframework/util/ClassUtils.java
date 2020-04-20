@@ -899,8 +899,8 @@ public abstract class ClassUtils {
 	/**
 	 * 根据类得到包名
 	 * Determine the name of the package of the given class, e.g. "java.lang" for the {@code java.lang.String} class.
-	 * @param clazz the class
-	 * @return the package name, or the empty String if the class is defined in the default package
+	 * @param clazz the class eg： String.class
+	 * @return the package name, or the empty String if the class is defined in the default package eg： "java.lang"
 	 */
 	public static String getPackageName(Class<?> clazz) {
 		Assert.notNull(clazz, "Class must not be null");

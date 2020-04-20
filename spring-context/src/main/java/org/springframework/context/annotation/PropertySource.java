@@ -16,9 +16,7 @@ import org.springframework.core.io.support.PropertySourceFactory;
  * {@link org.springframework.core.env.PropertySource PropertySource} to Spring's
  * {@link org.springframework.core.env.Environment Environment}. To be used in
  * conjunction with @{@link Configuration} classes.
- *
  * <h3>Example usage</h3>
- *
  * Given a file {@code app.properties} containing the key/value pair
  * {@code testbean.name=myTestBean}, the following {@code @Configuration} class
  * uses {@code @PropertySource} to contribute {@code app.properties} to the
@@ -67,7 +65,6 @@ import org.springframework.core.io.support.PropertySourceFactory;
  * resource location} will be resolved against the set of property sources already
  * registered against the environment. For example:
  *
- * <pre class="code">
  * &#064;Configuration
  * &#064;PropertySource("classpath:/com/${my.placeholder:default/path}/app.properties")
  * public class AppConfig {
@@ -81,7 +78,6 @@ import org.springframework.core.io.support.PropertySourceFactory;
  *         testBean.setName(env.getProperty("testbean.name"));
  *         return testBean;
  *     }
- * }</pre>
  *
  * Assuming that "my.placeholder" is present in one of the property sources already
  * registered, e.g. system properties or environment variables, the placeholder will
@@ -99,7 +95,6 @@ import org.springframework.core.io.support.PropertySourceFactory;
  * {@code b.properties}, consider the following two configuration classes
  * that reference them with {@code @PropertySource} annotations:
  *
- * <pre class="code">
  * &#064;Configuration
  * &#064;PropertySource("classpath:/com/myco/a.properties")
  * public class ConfigA { }
@@ -107,40 +102,30 @@ import org.springframework.core.io.support.PropertySourceFactory;
  * &#064;Configuration
  * &#064;PropertySource("classpath:/com/myco/b.properties")
  * public class ConfigB { }
- * </pre>
  *
  * The override ordering depends on the order in which these classes are registered
  * with the application context.
  *
- * <pre class="code">
  * AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
  * ctx.register(ConfigA.class);
  * ctx.register(ConfigB.class);
  * ctx.refresh();
- * </pre>
  *
  * In the scenario above, the properties in {@code b.properties} will override any
- * duplicates that exist in {@code a.properties}, because {@code ConfigB} was registered
- * last.
- *
+ * duplicates that exist in {@code a.properties}, because {@code ConfigB} was registered last.
  * In certain situations, it may not be possible or practical to tightly control
  * property source ordering when using {@code @PropertySource} annotations. For example,
  * if the {@code @Configuration} classes above were registered via component-scanning,
  * the ordering is difficult to predict. In such cases - and if overriding is important -
  * it is recommended that the user fall back to using the programmatic PropertySource API.
  * See {@link org.springframework.core.env.ConfigurableEnvironment ConfigurableEnvironment}
- * and {@link org.springframework.core.env.MutablePropertySources MutablePropertySources}
- * javadocs for details.
+ * and {@link org.springframework.core.env.MutablePropertySources MutablePropertySources} javadocs for details.
  *
  * <b>NOTE: This annotation is repeatable according to Java 8 conventions.</b>
  * However, all such {@code @PropertySource} annotations need to be declared at the same
  * level: either directly on the configuration class or as meta-annotations within the
  * same custom annotation. Mixing of direct annotations and meta-annotations is not
  * recommended since direct annotations will effectively override meta-annotations.
-
-
- * @author Phillip Webb
- * @author Sam Brannen
  * @since 3.1
  * @see PropertySources
  * @see Configuration
@@ -178,8 +163,7 @@ public @interface PropertySource {
 	String[] value();
 
 	/**
-	 * Indicate if failure to find the a {@link #value() property resource} should be
-	 * ignored.
+	 * Indicate if failure to find the a {@link #value() property resource} should be ignored.
 	 * {@code true} is appropriate if the properties file is completely optional.
 	 * Default is {@code false}.
 	 * @since 4.0

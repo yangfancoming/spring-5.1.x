@@ -17,13 +17,9 @@ import org.springframework.web.context.ConfigurableWebEnvironment;
 
 /**
  * {@link Environment} implementation to be used by {@code Servlet}-based web
- * applications. All web-related (servlet-based) {@code ApplicationContext} classes
- * initialize an instance by default.
- *
+ * applications. All web-related (servlet-based) {@code ApplicationContext} classes initialize an instance by default.
  * Contributes {@code ServletConfig}, {@code ServletContext}, and JNDI-based
- * {@link PropertySource} instances. See {@link #customizePropertySources} method
- * documentation for details.
-
+ * {@link PropertySource} instances. See {@link #customizePropertySources} method documentation for details.
  * @since 3.1
  * @see StandardEnvironment
  */
@@ -38,25 +34,20 @@ public class StandardServletEnvironment extends StandardEnvironment implements C
 	/** JNDI property source name: {@value}. */
 	public static final String JNDI_PROPERTY_SOURCE_NAME = "jndiProperties";
 
-
 	/**
 	 * Customize the set of property sources with those contributed by superclasses as
 	 * well as those appropriate for standard servlet-based environments:
-	 * <ul>
 	 * <li>{@value #SERVLET_CONFIG_PROPERTY_SOURCE_NAME}
 	 * <li>{@value #SERVLET_CONTEXT_PROPERTY_SOURCE_NAME}
 	 * <li>{@value #JNDI_PROPERTY_SOURCE_NAME}
-	 * </ul>
 	 * Properties present in {@value #SERVLET_CONFIG_PROPERTY_SOURCE_NAME} will
 	 * take precedence over those in {@value #SERVLET_CONTEXT_PROPERTY_SOURCE_NAME}, and
 	 * properties found in either of the above take precedence over those found in
 	 * {@value #JNDI_PROPERTY_SOURCE_NAME}.
 	 * Properties in any of the above will take precedence over system properties and
 	 * environment variables contributed by the {@link StandardEnvironment} superclass.
-	 * The {@code Servlet}-related property sources are added as
-	 * {@link StubPropertySource stubs} at this stage, and will be
-	 * {@linkplain #initPropertySources(ServletContext, ServletConfig) fully initialized}
-	 * once the actual {@link ServletContext} object becomes available.
+	 * The {@code Servlet}-related property sources are added as {@link StubPropertySource stubs} at this stage, and will be
+	 * {@linkplain #initPropertySources(ServletContext, ServletConfig) fully initialized} once the actual {@link ServletContext} object becomes available.
 	 * @see StandardEnvironment#customizePropertySources
 	 * @see org.springframework.core.env.AbstractEnvironment#customizePropertySources
 	 * @see ServletConfigPropertySource

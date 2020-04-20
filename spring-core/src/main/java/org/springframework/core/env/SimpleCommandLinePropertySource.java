@@ -56,9 +56,7 @@ import org.springframework.util.StringUtils;
  *
  * When more fully-featured command line parsing is necessary, consider using
  * the provided {@link JOptCommandLinePropertySource}, or implement your own
- * {@code CommandLinePropertySource} against the command line parsing library of your
- * choice!
-
+ * {@code CommandLinePropertySource} against the command line parsing library of your choice!
  * @since 3.1
  * @see CommandLinePropertySource
  * @see JOptCommandLinePropertySource
