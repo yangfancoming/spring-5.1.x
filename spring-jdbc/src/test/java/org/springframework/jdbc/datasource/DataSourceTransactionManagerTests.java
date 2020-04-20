@@ -97,8 +97,7 @@ public class DataSourceTransactionManagerTests  {
 		doTestTransactionCommitRestoringAutoCommit(false, true, true);
 	}
 
-	private void doTestTransactionCommitRestoringAutoCommit(
-			boolean autoCommit, boolean lazyConnection, final boolean createStatement) throws Exception {
+	private void doTestTransactionCommitRestoringAutoCommit(boolean autoCommit, boolean lazyConnection, final boolean createStatement) throws Exception {
 
 		if (lazyConnection) {
 			given(con.getAutoCommit()).willReturn(autoCommit);

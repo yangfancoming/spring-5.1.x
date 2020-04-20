@@ -30,20 +30,15 @@ import org.springframework.lang.Nullable;
  * This class implements the {@link org.springframework.beans.factory.DisposableBean}
  * interface in order to force subclasses to implement a {@link #destroy()}
  * method, closing down their object pool.
- *
- * @author Rod Johnson
-
  * @see #getTarget
  * @see #releaseTarget
  * @see #destroy
  */
 @SuppressWarnings("serial")
-public abstract class AbstractPoolingTargetSource extends AbstractPrototypeBasedTargetSource
-		implements PoolingConfig, DisposableBean {
+public abstract class AbstractPoolingTargetSource extends AbstractPrototypeBasedTargetSource implements PoolingConfig, DisposableBean {
 
 	/** The maximum size of the pool. */
 	private int maxSize = -1;
-
 
 	/**
 	 * Set the maximum size of the pool.
@@ -67,12 +62,10 @@ public abstract class AbstractPoolingTargetSource extends AbstractPrototypeBased
 		super.setBeanFactory(beanFactory);
 		try {
 			createPool();
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			throw new BeanInitializationException("Could not create instance pool for TargetSource", ex);
 		}
 	}
-
 
 	/**
 	 * Create the pool.
@@ -83,8 +76,7 @@ public abstract class AbstractPoolingTargetSource extends AbstractPrototypeBased
 	/**
 	 * Acquire an object from the pool.
 	 * @return an object from the pool
-	 * @throws Exception we may need to deal with checked exceptions from pool
-	 * APIs, so we're forgiving with our exception signature
+	 * @throws Exception we may need to deal with checked exceptions from pool APIs, so we're forgiving with our exception signature
 	 */
 	@Override
 	@Nullable
@@ -92,8 +84,7 @@ public abstract class AbstractPoolingTargetSource extends AbstractPrototypeBased
 
 	/**
 	 * Return the given object to the pool.
-	 * @param target object that must have been acquired from the pool
-	 * via a call to {@code getTarget()}
+	 * @param target object that must have been acquired from the pool via a call to {@code getTarget()}
 	 * @throws Exception to allow pooling APIs to throw exception
 	 * @see #getTarget
 	 */

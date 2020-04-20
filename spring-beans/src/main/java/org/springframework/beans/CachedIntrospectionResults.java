@@ -125,7 +125,6 @@ public final class CachedIntrospectionResults {
 		acceptedClassLoaders.removeIf(registeredLoader ->isUnderneathClassLoader(registeredLoader, classLoader));
 		strongClassCache.keySet().removeIf(beanClass ->isUnderneathClassLoader(beanClass.getClassLoader(), classLoader));
 		softClassCache.keySet().removeIf(beanClass ->isUnderneathClassLoader(beanClass.getClassLoader(), classLoader));
-
 	}
 
 	/**
@@ -199,7 +198,6 @@ public final class CachedIntrospectionResults {
 				Introspector.getBeanInfo(beanClass));
 	}
 
-
 	/** The BeanInfo object for the introspected bean class. */
 	private final BeanInfo beanInfo;
 
@@ -208,7 +206,6 @@ public final class CachedIntrospectionResults {
 
 	/** TypeDescriptor objects keyed by PropertyDescriptor. */
 	private final ConcurrentMap<PropertyDescriptor, TypeDescriptor> typeDescriptorCache;
-
 
 	/**
 	 * Create a new CachedIntrospectionResults instance for the given class.
@@ -247,8 +244,7 @@ public final class CachedIntrospectionResults {
 				currClass = currClass.getSuperclass();
 			}
 			this.typeDescriptorCache = new ConcurrentReferenceHashMap<>();
-		}
-		catch (IntrospectionException ex) {
+		}catch (IntrospectionException ex) {
 			throw new FatalBeanException("Failed to obtain BeanInfo for class [" + beanClass.getName() + "]", ex);
 		}
 	}
@@ -269,7 +265,6 @@ public final class CachedIntrospectionResults {
 			}
 		}
 	}
-
 
 	BeanInfo getBeanInfo() {
 		return this.beanInfo;

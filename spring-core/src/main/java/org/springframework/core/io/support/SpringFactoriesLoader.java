@@ -47,12 +47,11 @@ public final class SpringFactoriesLoader {
 
 	private static final Map<ClassLoader, MultiValueMap<String, String>> cache = new ConcurrentReferenceHashMap<>();
 
-	private SpringFactoriesLoader() {
-	}
+	private SpringFactoriesLoader() {}
 
 	/**
-	 * Load and instantiate the factory implementations of the given type from
-	 * {@value #FACTORIES_RESOURCE_LOCATION}, using the given class loader.
+	 * 本类中的唯一主方法  其他都是辅助方法
+	 * Load and instantiate the factory implementations of the given type from {@value #FACTORIES_RESOURCE_LOCATION}, using the given class loader.
 	 * The returned factories are sorted through {@link AnnotationAwareOrderComparator}.
 	 * If a custom instantiation strategy is required, use {@link #loadFactoryNames} to obtain all registered factory names.
 	 * @param factoryClass the interface or abstract class representing the factory
@@ -77,8 +76,7 @@ public final class SpringFactoriesLoader {
 	}
 
 	/**
-	 * Load the fully qualified class names of factory implementations of the
-	 * given type from {@value #FACTORIES_RESOURCE_LOCATION}, using the given class loader.
+	 * Load the fully qualified class names of factory implementations of the given type from {@value #FACTORIES_RESOURCE_LOCATION}, using the given class loader.
 	 * @param factoryClass the interface or abstract class representing the factory
 	 * @param classLoader the ClassLoader to use for loading resources; can be {@code null} to use the default
 	 * @throws IllegalArgumentException if an error occurs while loading factory names

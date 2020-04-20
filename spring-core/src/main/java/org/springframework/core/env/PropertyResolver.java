@@ -63,8 +63,7 @@ public interface PropertyResolver {
 	String getRequiredProperty(String key) throws IllegalStateException;
 
 	/**
-	 * Return the property value associated with the given key, converted to the given
-	 * targetType (never {@code null}).
+	 * Return the property value associated with the given key, converted to the given targetType (never {@code null}).
 	 * @throws IllegalStateException if the given key cannot be resolved
 	 */
 	<T> T getRequiredProperty(String key, Class<T> targetType) throws IllegalStateException;
