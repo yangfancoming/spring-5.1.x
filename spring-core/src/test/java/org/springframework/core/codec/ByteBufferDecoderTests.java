@@ -22,7 +22,6 @@ public class ByteBufferDecoderTests extends AbstractDecoderTestCase<ByteBufferDe
 
 	private final byte[] barBytes = "bar".getBytes(StandardCharsets.UTF_8);
 
-
 	public ByteBufferDecoderTests() {
 		super(new ByteBufferDecoder());
 	}

@@ -6,16 +6,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import javax.xml.XMLConstants;
-
 import org.junit.Test;
-
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-/**
- * @author Arjen Poutsma
- * @author Leo Arnold
- */
+
 public class SimpleNamespaceContextTests {
 
 	private final String unboundPrefix = "unbound";
@@ -27,7 +22,6 @@ public class SimpleNamespaceContextTests {
 
 	private final SimpleNamespaceContext context = new SimpleNamespaceContext();
 
-
 	@Test(expected = IllegalArgumentException.class)
 	public void getNamespaceURI_withNull() throws Exception {
 		context.getNamespaceURI(null);
@@ -36,43 +30,30 @@ public class SimpleNamespaceContextTests {
 	@Test
 	public void getNamespaceURI() {
 		context.bindNamespaceUri(XMLConstants.XMLNS_ATTRIBUTE, additionalNamespaceUri);
-		assertThat("Always returns \"http://www.w3.org/2000/xmlns/\" for \"xmlns\"",
-				context.getNamespaceURI(XMLConstants.XMLNS_ATTRIBUTE), is(XMLConstants.XMLNS_ATTRIBUTE_NS_URI));
+		assertThat("Always returns \"http://www.w3.org/2000/xmlns/\" for \"xmlns\"",context.getNamespaceURI(XMLConstants.XMLNS_ATTRIBUTE), is(XMLConstants.XMLNS_ATTRIBUTE_NS_URI));
 		context.bindNamespaceUri(XMLConstants.XML_NS_PREFIX, additionalNamespaceUri);
-		assertThat("Always returns \"http://www.w3.org/XML/1998/namespace\" for \"xml\"",
-				context.getNamespaceURI(XMLConstants.XML_NS_PREFIX), is(XMLConstants.XML_NS_URI));
-
-		assertThat("Returns \"\" for an unbound prefix", context.getNamespaceURI(unboundPrefix),
-				is(XMLConstants.NULL_NS_URI));
+		assertThat("Always returns \"http://www.w3.org/XML/1998/namespace\" for \"xml\"",context.getNamespaceURI(XMLConstants.XML_NS_PREFIX), is(XMLConstants.XML_NS_URI));
+		assertThat("Returns \"\" for an unbound prefix", context.getNamespaceURI(unboundPrefix),is(XMLConstants.NULL_NS_URI));
 		context.bindNamespaceUri(prefix, namespaceUri);
-		assertThat("Returns the bound namespace URI for a bound prefix", context.getNamespaceURI(prefix),
-				is(namespaceUri));
-
-		assertThat("By default returns URI \"\" for the default namespace prefix",
-				context.getNamespaceURI(XMLConstants.DEFAULT_NS_PREFIX), is(XMLConstants.NULL_NS_URI));
+		assertThat("Returns the bound namespace URI for a bound prefix", context.getNamespaceURI(prefix),is(namespaceUri));
+		assertThat("By default returns URI \"\" for the default namespace prefix",context.getNamespaceURI(XMLConstants.DEFAULT_NS_PREFIX), is(XMLConstants.NULL_NS_URI));
 		context.bindDefaultNamespaceUri(defaultNamespaceUri);
-		assertThat("Returns the set URI for the default namespace prefix",
-				context.getNamespaceURI(XMLConstants.DEFAULT_NS_PREFIX), is(defaultNamespaceUri));
+		assertThat("Returns the set URI for the default namespace prefix",context.getNamespaceURI(XMLConstants.DEFAULT_NS_PREFIX), is(defaultNamespaceUri));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void getPrefix_withNull() throws Exception {
+	public void getPrefix_withNull() {
 		context.getPrefix(null);
 	}
 
 	@Test
 	public void getPrefix() {
-		assertThat("Always returns \"xmlns\" for \"http://www.w3.org/2000/xmlns/\"",
-				context.getPrefix(XMLConstants.XMLNS_ATTRIBUTE_NS_URI), is(XMLConstants.XMLNS_ATTRIBUTE));
-		assertThat("Always returns \"xml\" for \"http://www.w3.org/XML/1998/namespace\"",
-				context.getPrefix(XMLConstants.XML_NS_URI), is(XMLConstants.XML_NS_PREFIX));
-
-		assertThat("Returns null for an unbound namespace URI", context.getPrefix(unboundNamespaceUri),
-				is(nullValue()));
+		assertThat("Always returns \"xmlns\" for \"http://www.w3.org/2000/xmlns/\"",context.getPrefix(XMLConstants.XMLNS_ATTRIBUTE_NS_URI), is(XMLConstants.XMLNS_ATTRIBUTE));
+		assertThat("Always returns \"xml\" for \"http://www.w3.org/XML/1998/namespace\"",context.getPrefix(XMLConstants.XML_NS_URI), is(XMLConstants.XML_NS_PREFIX));
+		assertThat("Returns null for an unbound namespace URI", context.getPrefix(unboundNamespaceUri),is(nullValue()));
 		context.bindNamespaceUri("prefix1", namespaceUri);
 		context.bindNamespaceUri("prefix2", namespaceUri);
-		assertThat("Returns a prefix for a bound namespace URI", context.getPrefix(namespaceUri),
-				anyOf(is("prefix1"), is("prefix2")));
+		assertThat("Returns a prefix for a bound namespace URI", context.getPrefix(namespaceUri),anyOf(is("prefix1"), is("prefix2")));
 	}
 
 	@Test(expected = IllegalArgumentException.class)

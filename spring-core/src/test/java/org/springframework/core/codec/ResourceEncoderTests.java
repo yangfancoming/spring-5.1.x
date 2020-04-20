@@ -53,13 +53,9 @@ public class ResourceEncoderTests extends AbstractEncoderTestCase<ResourceEncode
 
 	@Override
 	protected void testEncodeError(Publisher<?> input, ResolvableType outputType,@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
-
 		Flux<Resource> i = Flux.error(new InputException());
 		Flux<DataBuffer> result = ((Encoder<Resource>) this.encoder).encode(i,this.bufferFactory, outputType,mimeType, hints);
-
-		StepVerifier.create(result)
-				.expectError(InputException.class)
-				.verify();
+		StepVerifier.create(result).expectError(InputException.class).verify();
 	}
 
 }

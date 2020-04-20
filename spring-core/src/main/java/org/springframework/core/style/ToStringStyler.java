@@ -6,10 +6,7 @@ import org.springframework.lang.Nullable;
 
 /**
  * A strategy interface for pretty-printing {@code toString()} methods.
- * Encapsulates the print algorithms; some other object such as a builder
- * should provide the workflow.
- *
- * @author Keith Donald
+ * Encapsulates the print algorithms; some other object such as a builder should provide the workflow.
  * @since 1.2.2
  */
 public interface ToStringStyler {

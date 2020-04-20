@@ -13,9 +13,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Helper for resolving synthetic {@link Method#isBridge bridge Methods} to the
- * {@link Method} being bridged.
- *
+ * Helper for resolving synthetic {@link Method#isBridge bridge Methods} to the {@link Method} being bridged.
  * Given a synthetic {@link Method#isBridge bridge Method} returns the {@link Method}
  * being bridged. A bridge method may be created by the compiler when extending a
  * parameterized type whose methods have parameterized arguments. During runtime
@@ -145,8 +143,7 @@ public final class BridgeMethodResolver {
 	}
 
 	/**
-	 * Searches for the generic {@link Method} declaration whose erased signature
-	 * matches that of the supplied bridge method.
+	 * Searches for the generic {@link Method} declaration whose erased signature  matches that of the supplied bridge method.
 	 * @throws IllegalStateException if the generic declaration cannot be found
 	 */
 	@Nullable
@@ -171,8 +168,7 @@ public final class BridgeMethodResolver {
 			Method method = searchForMatch(ifc, bridgeMethod);
 			if (method != null && !method.isBridge()) {
 				return method;
-			}
-			else {
+			}else {
 				method = searchInterfaces(ifc.getInterfaces(), bridgeMethod);
 				if (method != null) {
 					return method;
@@ -191,8 +187,7 @@ public final class BridgeMethodResolver {
 	private static Method searchForMatch(Class<?> type, Method bridgeMethod) {
 		try {
 			return type.getDeclaredMethod(bridgeMethod.getName(), bridgeMethod.getParameterTypes());
-		}
-		catch (NoSuchMethodException ex) {
+		}catch (NoSuchMethodException ex) {
 			return null;
 		}
 	}
@@ -205,9 +200,7 @@ public final class BridgeMethodResolver {
 	 * @return whether signatures match as described
 	 */
 	public static boolean isVisibilityBridgeMethodPair(Method bridgeMethod, Method bridgedMethod) {
-		if (bridgeMethod == bridgedMethod) {
-			return true;
-		}
+		if (bridgeMethod == bridgedMethod) return true;
 		return (bridgeMethod.getReturnType().equals(bridgedMethod.getReturnType()) && Arrays.equals(bridgeMethod.getParameterTypes(), bridgedMethod.getParameterTypes()));
 	}
 

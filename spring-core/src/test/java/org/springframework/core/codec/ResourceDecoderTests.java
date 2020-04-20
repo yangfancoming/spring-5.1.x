@@ -24,7 +24,6 @@ public class ResourceDecoderTests extends AbstractDecoderTestCase<ResourceDecode
 	private final byte[] fooBytes = "foo".getBytes(StandardCharsets.UTF_8);
 	private final byte[] barBytes = "bar".getBytes(StandardCharsets.UTF_8);
 
-
 	public ResourceDecoderTests() {
 		super(new ResourceDecoder());
 	}
@@ -39,19 +38,16 @@ public class ResourceDecoderTests extends AbstractDecoderTestCase<ResourceDecode
 		assertFalse(this.decoder.canDecode(forClass(Object.class), MimeTypeUtils.APPLICATION_JSON));
 	}
 
-
 	@Override
 	@Test
 	public void decode() {
 		Flux<DataBuffer> input = Flux.concat(dataBuffer(this.fooBytes), dataBuffer(this.barBytes));
-
 		testDecodeAll(input, Resource.class, step -> step
 				.consumeNextWith(resource -> {
 					try {
 						byte[] bytes = StreamUtils.copyToByteArray(resource.getInputStream());
 						assertEquals("foobar", new String(bytes));
-					}
-					catch (IOException e) {
+					}catch (IOException e) {
 						fail(e.getMessage());
 					}
 				})
@@ -61,17 +57,14 @@ public class ResourceDecoderTests extends AbstractDecoderTestCase<ResourceDecode
 
 	@Override
 	public void decodeToMono() {
-		Flux<DataBuffer> input = Flux.concat(
-				dataBuffer(this.fooBytes),
-				dataBuffer(this.barBytes));
+		Flux<DataBuffer> input = Flux.concat(dataBuffer(this.fooBytes),dataBuffer(this.barBytes));
 
 		testDecodeToMonoAll(input, Resource.class, step -> step
 				.consumeNextWith(resource -> {
 					try {
 						byte[] bytes = StreamUtils.copyToByteArray(resource.getInputStream());
 						assertEquals("foobar", new String(bytes));
-					}
-					catch (IOException e) {
+					}catch (IOException e) {
 						fail(e.getMessage());
 					}
 				})

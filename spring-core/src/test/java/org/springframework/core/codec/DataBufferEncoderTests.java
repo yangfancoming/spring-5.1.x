@@ -25,7 +25,6 @@ public class DataBufferEncoderTests extends AbstractEncoderTestCase<DataBufferEn
 		super(new DataBufferEncoder());
 	}
 
-
 	@Override
 	@Test
 	public void canEncode() {

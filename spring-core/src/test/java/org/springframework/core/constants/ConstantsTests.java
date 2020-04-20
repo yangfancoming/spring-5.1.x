@@ -18,7 +18,6 @@ public class ConstantsTests {
 	public void constants() {
 		assertEquals(A.class.getName(), c.getClassName());
 		assertEquals(9, c.getSize());
-
 		assertEquals(A.DOG, c.asNumber("DOG").intValue());
 		assertEquals(A.DOG, c.asNumber("dog").intValue());
 		assertEquals(A.CAT, c.asNumber("cat").intValue());

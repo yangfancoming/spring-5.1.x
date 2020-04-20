@@ -26,13 +26,9 @@ public class DomContentHandlerTests {
 					"<prefix:child xmlns:prefix='namespace2' xmlns:prefix2='namespace3' prefix2:attr='value'>content</prefix:child>" +
 					"</root>";
 
-	private static final String XML_2_EXPECTED =
-			"<?xml version='1.0' encoding='UTF-8'?>" + "<root xmlns='namespace'>" + "<child xmlns='namespace2' />" +
-					"</root>";
+	private static final String XML_2_EXPECTED = "<?xml version='1.0' encoding='UTF-8'?>" + "<root xmlns='namespace'>" + "<child xmlns='namespace2' />" + "</root>";
 
-	private static final String XML_2_SNIPPET =
-			"<?xml version='1.0' encoding='UTF-8'?>" + "<child xmlns='namespace2' />";
-
+	private static final String XML_2_SNIPPET = "<?xml version='1.0' encoding='UTF-8'?>" + "<child xmlns='namespace2' />";
 
 	private Document expected;
 
@@ -43,7 +39,6 @@ public class DomContentHandlerTests {
 	private XMLReader xmlReader;
 
 	private DocumentBuilder documentBuilder;
-
 
 	@Before
 	@SuppressWarnings("deprecation")  // on JDK 9

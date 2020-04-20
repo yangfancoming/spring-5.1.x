@@ -37,19 +37,16 @@ public class CollectionFactoryTests {
 
 	/**
 	 * The test demonstrates that the generics-based API for
-	 * {@link CollectionFactory#createApproximateCollection(Object, int)}
-	 * is not type-safe.
+	 * {@link CollectionFactory#createApproximateCollection(Object, int)} is not type-safe.
 	 * Specifically, the parameterized type {@code E} is not bound to
 	 * the type of elements contained in the {@code collection} argument
 	 * passed to {@code createApproximateCollection()}. Thus casting the
-	 * value returned by {@link EnumSet#copyOf(EnumSet)} to
-	 * {@code (Collection<E>)} cannot guarantee that the returned collection
+	 * value returned by {@link EnumSet#copyOf(EnumSet)} to {@code (Collection<E>)} cannot guarantee that the returned collection
 	 * actually contains elements of type {@code E}.
 	 */
 	@Test
 	public void createApproximateCollectionIsNotTypeSafeForEnumSet() {
 		Collection<Integer> ints = createApproximateCollection(EnumSet.of(Color.BLUE), 3);
-
 		// Use a try-catch block to ensure that the exception is thrown as a result of the
 		// next line and not as a result of the previous line.
 		try {
@@ -58,8 +55,7 @@ public class CollectionFactoryTests {
 			// cannot be cast to a Color.
 			ints.add(42);
 			fail("Should have thrown a ClassCastException");
-		}
-		catch (ClassCastException e) {
+		}catch (ClassCastException e) {
 			/* expected */
 		}
 	}
@@ -67,7 +63,6 @@ public class CollectionFactoryTests {
 	@Test
 	public void createCollectionIsNotTypeSafeForEnumSet() {
 		Collection<Integer> ints = createCollection(EnumSet.class, Color.class, 3);
-
 		// Use a try-catch block to ensure that the exception is thrown as a result of the
 		// next line and not as a result of the previous line.
 		try {
@@ -76,18 +71,15 @@ public class CollectionFactoryTests {
 			// to a Color.
 			ints.add(42);
 			fail("Should have thrown a ClassCastException");
-		}
-		catch (ClassCastException e) {
+		}catch (ClassCastException e) {
 			/* expected */
 		}
 	}
 
 	/**
 	 * The test demonstrates that the generics-based API for
-	 * {@link CollectionFactory#createApproximateMap(Object, int)}
-	 * is not type-safe.
-	 * The reasoning is similar that described in
-	 * {@link #createApproximateCollectionIsNotTypeSafeForEnumSet}.
+	 * {@link CollectionFactory#createApproximateMap(Object, int)} is not type-safe.
+	 * The reasoning is similar that described in {@link #createApproximateCollectionIsNotTypeSafeForEnumSet}.
 	 */
 	@Test
 	public void createApproximateMapIsNotTypeSafeForEnumMap() {
@@ -95,7 +87,6 @@ public class CollectionFactoryTests {
 		enumMap.put(Color.RED, 1);
 		enumMap.put(Color.BLUE, 2);
 		Map<String, Integer> map = createApproximateMap(enumMap, 3);
-
 		// Use a try-catch block to ensure that the exception is thrown as a result of the
 		// next line and not as a result of the previous line.
 		try {
@@ -104,8 +95,7 @@ public class CollectionFactoryTests {
 			// cast to a Color.
 			map.put("foo", 1);
 			fail("Should have thrown a ClassCastException");
-		}
-		catch (ClassCastException e) {
+		}catch (ClassCastException e) {
 			/* expected */
 		}
 	}
@@ -113,7 +103,6 @@ public class CollectionFactoryTests {
 	@Test
 	public void createMapIsNotTypeSafeForEnumMap() {
 		Map<String, Integer> map = createMap(EnumMap.class, Color.class, 3);
-
 		// Use a try-catch block to ensure that the exception is thrown as a result of the
 		// next line and not as a result of the previous line.
 		try {
@@ -122,8 +111,7 @@ public class CollectionFactoryTests {
 			// Color.
 			map.put("foo", 1);
 			fail("Should have thrown a ClassCastException");
-		}
-		catch (ClassCastException e) {
+		}catch (ClassCastException e) {
 			/* expected */
 		}
 	}
@@ -131,7 +119,6 @@ public class CollectionFactoryTests {
 	@Test
 	public void createMapIsNotTypeSafeForLinkedMultiValueMap() {
 		Map<String, Integer> map = createMap(MultiValueMap.class, null, 3);
-
 		// Use a try-catch block to ensure that the exception is thrown as a result of the
 		// next line and not as a result of the previous line.
 		try {
@@ -140,8 +127,7 @@ public class CollectionFactoryTests {
 			// cast to a List.
 			map.put("foo", 1);
 			fail("Should have thrown a ClassCastException");
-		}
-		catch (ClassCastException e) {
+		}catch (ClassCastException e) {
 			/* expected */
 		}
 	}
@@ -287,7 +273,7 @@ public class CollectionFactoryTests {
 
 
 	enum Color {
-		RED, BLUE;
+		RED, BLUE
 	}
 
 }

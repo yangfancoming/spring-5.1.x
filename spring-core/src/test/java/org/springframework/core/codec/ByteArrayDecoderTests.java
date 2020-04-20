@@ -38,7 +38,6 @@ public class ByteArrayDecoderTests extends AbstractDecoderTestCase<ByteArrayDeco
 	@Test
 	public void decode() {
 		Flux<DataBuffer> input = Flux.concat( dataBuffer(this.fooBytes),dataBuffer(this.barBytes));
-
 		testDecodeAll(input, byte[].class, step -> step
 				.consumeNextWith(expectBytes(this.fooBytes))
 				.consumeNextWith(expectBytes(this.barBytes))
@@ -52,11 +51,9 @@ public class ByteArrayDecoderTests extends AbstractDecoderTestCase<ByteArrayDeco
 		Flux<DataBuffer> input = Flux.concat(
 				dataBuffer(this.fooBytes),
 				dataBuffer(this.barBytes));
-
 		byte[] expected = new byte[this.fooBytes.length + this.barBytes.length];
 		System.arraycopy(this.fooBytes, 0, expected, 0, this.fooBytes.length);
 		System.arraycopy(this.barBytes, 0, expected, this.fooBytes.length, this.barBytes.length);
-
 		testDecodeToMonoAll(input, byte[].class, step -> step
 				.consumeNextWith(expectBytes(expected))
 				.verifyComplete());

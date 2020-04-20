@@ -5,12 +5,9 @@ package org.springframework.util.concurrent;
 import java.io.IOException;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
-
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
-
 
 @SuppressWarnings("unchecked")
 public class ListenableFutureTaskTests {
@@ -32,7 +29,6 @@ public class ListenableFutureTaskTests {
 			}
 		});
 		task.run();
-
 		assertSame(s, task.get());
 		assertSame(s, task.completable().get());
 		task.completable().thenAccept(v -> assertSame(s, v));
@@ -61,15 +57,13 @@ public class ListenableFutureTaskTests {
 		try {
 			task.get();
 			fail("Should have thrown ExecutionException");
-		}
-		catch (ExecutionException ex) {
+		}catch (ExecutionException ex) {
 			assertSame(s, ex.getCause().getMessage());
 		}
 		try {
 			task.completable().get();
 			fail("Should have thrown ExecutionException");
-		}
-		catch (ExecutionException ex) {
+		}catch (ExecutionException ex) {
 			assertSame(s, ex.getCause().getMessage());
 		}
 	}
@@ -78,7 +72,6 @@ public class ListenableFutureTaskTests {
 	public void successWithLambdas() throws Exception {
 		final String s = "Hello World";
 		Callable<String> callable = () -> s;
-
 		SuccessCallback<String> successCallback = mock(SuccessCallback.class);
 		FailureCallback failureCallback = mock(FailureCallback.class);
 		ListenableFutureTask<String> task = new ListenableFutureTask<>(callable);
@@ -86,7 +79,6 @@ public class ListenableFutureTaskTests {
 		task.run();
 		verify(successCallback).onSuccess(s);
 		verifyZeroInteractions(failureCallback);
-
 		assertSame(s, task.get());
 		assertSame(s, task.completable().get());
 		task.completable().thenAccept(v -> assertSame(s, v));
@@ -99,7 +91,6 @@ public class ListenableFutureTaskTests {
 		Callable<String> callable = () -> {
 			throw ex;
 		};
-
 		SuccessCallback<String> successCallback = mock(SuccessCallback.class);
 		FailureCallback failureCallback = mock(FailureCallback.class);
 		ListenableFutureTask<String> task = new ListenableFutureTask<>(callable);
@@ -111,15 +102,13 @@ public class ListenableFutureTaskTests {
 		try {
 			task.get();
 			fail("Should have thrown ExecutionException");
-		}
-		catch (ExecutionException ex2) {
+		}catch (ExecutionException ex2) {
 			assertSame(s, ex2.getCause().getMessage());
 		}
 		try {
 			task.completable().get();
 			fail("Should have thrown ExecutionException");
-		}
-		catch (ExecutionException ex2) {
+		}catch (ExecutionException ex2) {
 			assertSame(s, ex2.getCause().getMessage());
 		}
 	}

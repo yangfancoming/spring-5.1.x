@@ -4,20 +4,16 @@ package org.springframework.util.concurrent;
 
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
-
 
 public class FutureAdapterTests {
 
 	private FutureAdapter<String, Integer> adapter;
 
 	private Future<Integer> adaptee;
-
 
 	@Before
 	@SuppressWarnings("unchecked")
@@ -65,6 +61,4 @@ public class FutureAdapterTests {
 		String result = adapter.get(1, TimeUnit.SECONDS);
 		assertEquals("42", result);
 	}
-
-
 }

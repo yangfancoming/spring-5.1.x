@@ -45,7 +45,7 @@ public class SimpleAliasRegistryTests {
 
 	//  与map不同点：  测试 如果注册两个别名和正名顺序颠倒  将抛出异常
 	// Cannot register alias 'foo' for name 'Goat': Circular reference - 'Goat' is a direct or indirect alias for 'foo' already
-	@Test
+	@Test(expected = IllegalStateException.class)
 	public void test3() {
 		registry.registerAlias("foo", "Goat");
 		registry.registerAlias("Goat", "foo");

@@ -267,8 +267,7 @@ public final class CollectionFactory {
 	 * {@link Object}. Similarly, type safety cannot be enforced if the
 	 * desired {@code mapType} is {@link MultiValueMap}.
 	 * @param mapType the desired type of the target map (never {@code null})
-	 * @param keyType the map's key type, or {@code null} if unknown
-	 * (note: only relevant for {@link EnumMap} creation)
+	 * @param keyType the map's key type, or {@code null} if unknown (note: only relevant for {@link EnumMap} creation)
 	 * @param capacity the initial capacity
 	 * @return a new map instance
 	 * @since 4.1.3
@@ -286,29 +285,23 @@ public final class CollectionFactory {
 		if (mapType.isInterface()) {
 			if (Map.class == mapType) {
 				return new LinkedHashMap<>(capacity);
-			}
-			else if (SortedMap.class == mapType || NavigableMap.class == mapType) {
+			}else if (SortedMap.class == mapType || NavigableMap.class == mapType) {
 				return new TreeMap<>();
-			}
-			else if (MultiValueMap.class == mapType) {
+			}else if (MultiValueMap.class == mapType) {
 				return new LinkedMultiValueMap();
-			}
-			else {
+			}else {
 				throw new IllegalArgumentException("Unsupported Map interface: " + mapType.getName());
 			}
-		}
-		else if (EnumMap.class == mapType) {
+		}else if (EnumMap.class == mapType) {
 			Assert.notNull(keyType, "Cannot create EnumMap for unknown key type");
 			return new EnumMap(asEnumType(keyType));
-		}
-		else {
+		}else {
 			if (!Map.class.isAssignableFrom(mapType)) {
 				throw new IllegalArgumentException("Unsupported Map type: " + mapType.getName());
 			}
 			try {
 				return (Map<K, V>) ReflectionUtils.accessibleConstructor(mapType).newInstance();
-			}
-			catch (Throwable ex) {
+			}catch (Throwable ex) {
 				throw new IllegalArgumentException("Could not instantiate Map type: " + mapType.getName(), ex);
 			}
 		}

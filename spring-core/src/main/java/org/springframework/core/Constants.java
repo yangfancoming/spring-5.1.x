@@ -25,9 +25,6 @@ import org.springframework.util.ReflectionUtils;
  * This class is ideal for use in PropertyEditors, enabling them to
  * recognize the same names as the constants themselves, and freeing them
  * from maintaining their own mapping.
- *
- * @author Rod Johnson
-
  * @since 16.03.2003
  */
 public class Constants {
@@ -232,8 +229,7 @@ public class Constants {
 
 
 	/**
-	 * Look up the given value within the given group of constants.
-	 * Will return the first match.
+	 * Look up the given value within the given group of constants.Will return the first match.
 	 * @param value constant value to look up
 	 * @param namePrefix prefix of the constant names to search (may be {@code null})
 	 * @return the name of the constant field
@@ -311,12 +307,10 @@ public class Constants {
 
 
 	/**
-	 * Exception thrown when the {@link Constants} class is asked for
-	 * an invalid constant name.
+	 * Exception thrown when the {@link Constants} class is asked for an invalid constant name.
 	 */
 	@SuppressWarnings("serial")
 	public static class ConstantException extends IllegalArgumentException {
-
 		/**
 		 * Thrown when an invalid constant name is requested.
 		 * @param className name of the class containing the constant definitions

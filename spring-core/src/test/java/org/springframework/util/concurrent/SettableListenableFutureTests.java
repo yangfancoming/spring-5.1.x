@@ -15,14 +15,10 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.*;
 
-/**
- * @author Mattias Severson
 
- */
 public class SettableListenableFutureTests {
 
 	private final SettableListenableFuture<String> settableListenableFuture = new SettableListenableFuture<>();
-
 
 	@Test
 	public void validateInitialValues() {
@@ -78,15 +74,12 @@ public class SettableListenableFutureTests {
 		Throwable exception = new RuntimeException();
 		assertTrue(settableListenableFuture.setException(exception));
 		Future<String> completable = settableListenableFuture.completable();
-
 		try {
 			completable.get();
 			fail("Expected ExecutionException");
-		}
-		catch (ExecutionException ex) {
+		}catch (ExecutionException ex) {
 			assertThat(ex.getCause(), equalTo(exception));
 		}
-
 		assertFalse(completable.isCancelled());
 		assertTrue(completable.isDone());
 	}
@@ -95,15 +88,12 @@ public class SettableListenableFutureTests {
 	public void throwsSetErrorWrappedInExecutionException() throws Exception {
 		Throwable exception = new OutOfMemoryError();
 		assertTrue(settableListenableFuture.setException(exception));
-
 		try {
 			settableListenableFuture.get();
 			fail("Expected ExecutionException");
-		}
-		catch (ExecutionException ex) {
+		}catch (ExecutionException ex) {
 			assertThat(ex.getCause(), equalTo(exception));
 		}
-
 		assertFalse(settableListenableFuture.isCancelled());
 		assertTrue(settableListenableFuture.isDone());
 	}
@@ -113,15 +103,12 @@ public class SettableListenableFutureTests {
 		Throwable exception = new OutOfMemoryError();
 		assertTrue(settableListenableFuture.setException(exception));
 		Future<String> completable = settableListenableFuture.completable();
-
 		try {
 			completable.get();
 			fail("Expected ExecutionException");
-		}
-		catch (ExecutionException ex) {
+		}catch (ExecutionException ex) {
 			assertThat(ex.getCause(), equalTo(exception));
 		}
-
 		assertFalse(completable.isCancelled());
 		assertTrue(completable.isDone());
 	}
@@ -130,7 +117,6 @@ public class SettableListenableFutureTests {
 	public void setValueTriggersCallback() {
 		String string = "hello";
 		final String[] callbackHolder = new String[1];
-
 		settableListenableFuture.addCallback(new ListenableFutureCallback<String>() {
 			@Override
 			public void onSuccess(String result) {
@@ -141,7 +127,6 @@ public class SettableListenableFutureTests {
 				fail("Expected onSuccess() to be called");
 			}
 		});
-
 		settableListenableFuture.set(string);
 		assertThat(callbackHolder[0], equalTo(string));
 		assertFalse(settableListenableFuture.isCancelled());
@@ -152,7 +137,6 @@ public class SettableListenableFutureTests {
 	public void setValueTriggersCallbackOnlyOnce() {
 		String string = "hello";
 		final String[] callbackHolder = new String[1];
-
 		settableListenableFuture.addCallback(new ListenableFutureCallback<String>() {
 			@Override
 			public void onSuccess(String result) {
@@ -163,7 +147,6 @@ public class SettableListenableFutureTests {
 				fail("Expected onSuccess() to be called");
 			}
 		});
-
 		settableListenableFuture.set(string);
 		assertFalse(settableListenableFuture.set("good bye"));
 		assertThat(callbackHolder[0], equalTo(string));
@@ -175,7 +158,6 @@ public class SettableListenableFutureTests {
 	public void setExceptionTriggersCallback() {
 		Throwable exception = new RuntimeException();
 		final Throwable[] callbackHolder = new Throwable[1];
-
 		settableListenableFuture.addCallback(new ListenableFutureCallback<String>() {
 			@Override
 			public void onSuccess(String result) {
@@ -186,7 +168,6 @@ public class SettableListenableFutureTests {
 				callbackHolder[0] = ex;
 			}
 		});
-
 		settableListenableFuture.setException(exception);
 		assertThat(callbackHolder[0], equalTo(exception));
 		assertFalse(settableListenableFuture.isCancelled());
@@ -197,7 +178,6 @@ public class SettableListenableFutureTests {
 	public void setExceptionTriggersCallbackOnlyOnce() {
 		Throwable exception = new RuntimeException();
 		final Throwable[] callbackHolder = new Throwable[1];
-
 		settableListenableFuture.addCallback(new ListenableFutureCallback<String>() {
 			@Override
 			public void onSuccess(String result) {
@@ -208,7 +188,6 @@ public class SettableListenableFutureTests {
 				callbackHolder[0] = ex;
 			}
 		});
-
 		settableListenableFuture.setException(exception);
 		assertFalse(settableListenableFuture.setException(new IllegalArgumentException()));
 		assertThat(callbackHolder[0], equalTo(exception));
@@ -228,16 +207,12 @@ public class SettableListenableFutureTests {
 	public void getWaitsForCompletion() throws ExecutionException, InterruptedException {
 		final String string = "hello";
 
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					Thread.sleep(20L);
-					settableListenableFuture.set(string);
-				}
-				catch (InterruptedException ex) {
-					throw new RuntimeException(ex);
-				}
+		new Thread(()->{
+			try {
+				Thread.sleep(20L);
+				settableListenableFuture.set(string);
+			}catch (InterruptedException ex) {
+				throw new RuntimeException(ex);
 			}
 		}).start();
 
@@ -252,8 +227,7 @@ public class SettableListenableFutureTests {
 		try {
 			settableListenableFuture.get(1L, TimeUnit.MILLISECONDS);
 			fail("Expected TimeoutException");
-		}
-		catch (TimeoutException ex) {
+		}catch (TimeoutException ex) {
 			// expected
 		}
 	}
@@ -261,17 +235,12 @@ public class SettableListenableFutureTests {
 	@Test
 	public void getWithTimeoutWaitsForCompletion() throws ExecutionException, InterruptedException, TimeoutException {
 		final String string = "hello";
-
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					Thread.sleep(20L);
-					settableListenableFuture.set(string);
-				}
-				catch (InterruptedException ex) {
-					throw new RuntimeException(ex);
-				}
+		new Thread(()->{
+			try {
+				Thread.sleep(20L);
+				settableListenableFuture.set(string);
+			}catch (InterruptedException ex) {
+				throw new RuntimeException(ex);
 			}
 		}).start();
 
@@ -341,42 +310,33 @@ public class SettableListenableFutureTests {
 	@Test
 	public void cancelStateThrowsExceptionWhenCallingGet() throws ExecutionException, InterruptedException {
 		settableListenableFuture.cancel(true);
-
 		try {
 			settableListenableFuture.get();
 			fail("Expected CancellationException");
-		}
-		catch (CancellationException ex) {
+		}catch (CancellationException ex) {
 			// expected
 		}
-
 		assertTrue(settableListenableFuture.isCancelled());
 		assertTrue(settableListenableFuture.isDone());
 	}
 
 	@Test
 	public void cancelStateThrowsExceptionWhenCallingGetWithTimeout() throws ExecutionException, TimeoutException, InterruptedException {
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					Thread.sleep(20L);
-					settableListenableFuture.cancel(true);
-				}
-				catch (InterruptedException ex) {
-					throw new RuntimeException(ex);
-				}
+		new Thread(()->{
+			try {
+				Thread.sleep(20L);
+				settableListenableFuture.cancel(true);
+			}catch (InterruptedException ex) {
+				throw new RuntimeException(ex);
 			}
 		}).start();
 
 		try {
 			settableListenableFuture.get(500L, TimeUnit.MILLISECONDS);
 			fail("Expected CancellationException");
-		}
-		catch (CancellationException ex) {
+		}catch (CancellationException ex) {
 			// expected
 		}
-
 		assertTrue(settableListenableFuture.isCancelled());
 		assertTrue(settableListenableFuture.isDone());
 	}
@@ -417,14 +377,11 @@ public class SettableListenableFutureTests {
 
 
 	private static class InterruptibleSettableListenableFuture extends SettableListenableFuture<String> {
-
 		private boolean interrupted = false;
-
 		@Override
 		protected void interruptTask() {
 			interrupted = true;
 		}
-
 		boolean calledInterruptTask() {
 			return interrupted;
 		}

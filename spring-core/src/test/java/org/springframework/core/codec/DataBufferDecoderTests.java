@@ -37,10 +37,7 @@ public class DataBufferDecoderTests extends AbstractDecoderTestCase<DataBufferDe
 
 	@Override
 	public void decode() {
-		Flux<DataBuffer> input = Flux.just(
-				this.bufferFactory.wrap(this.fooBytes),
-				this.bufferFactory.wrap(this.barBytes));
-
+		Flux<DataBuffer> input = Flux.just(this.bufferFactory.wrap(this.fooBytes),this.bufferFactory.wrap(this.barBytes));
 		testDecodeAll(input, DataBuffer.class, step -> step
 				.consumeNextWith(expectDataBuffer(this.fooBytes))
 				.consumeNextWith(expectDataBuffer(this.barBytes))
@@ -49,10 +46,7 @@ public class DataBufferDecoderTests extends AbstractDecoderTestCase<DataBufferDe
 
 	@Override
 	public void decodeToMono()  {
-		Flux<DataBuffer> input = Flux.concat(
-				dataBuffer(this.fooBytes),
-				dataBuffer(this.barBytes));
-
+		Flux<DataBuffer> input = Flux.concat(dataBuffer(this.fooBytes),dataBuffer(this.barBytes));
 		byte[] expected = new byte[this.fooBytes.length + this.barBytes.length];
 		System.arraycopy(this.fooBytes, 0, expected, 0, this.fooBytes.length);
 		System.arraycopy(this.barBytes, 0, expected, this.fooBytes.length, this.barBytes.length);

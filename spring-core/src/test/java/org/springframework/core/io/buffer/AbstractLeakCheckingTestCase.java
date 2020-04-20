@@ -8,8 +8,6 @@ import org.junit.After;
  * Abstract base class for unit tests that allocate data buffers via a {@link DataBufferFactory}.
  * After each unit test, this base class checks whether all created buffers have been released,
  * throwing an {@link AssertionError} if not.
- *
- * @author Arjen Poutsma
  * @since 5.1.3
  * @see LeakAwareDataBufferFactory
  */

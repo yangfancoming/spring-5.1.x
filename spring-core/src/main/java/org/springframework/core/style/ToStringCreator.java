@@ -6,12 +6,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Utility class that builds pretty-printing {@code toString()} methods
- * with pluggable styling conventions. By default, ToStringCreator adheres
- * to Spring's {@code toString()} styling conventions.
- *
- * @author Keith Donald
-
+ * Utility class that builds pretty-printing {@code toString()} methods with pluggable styling conventions.
+ * By default, ToStringCreator adheres to Spring's {@code toString()} styling conventions.
  * @since 1.2.2
  */
 public class ToStringCreator {
@@ -19,9 +15,7 @@ public class ToStringCreator {
 	/**
 	 * Default ToStringStyler instance used by this ToStringCreator.
 	 */
-	private static final ToStringStyler DEFAULT_TO_STRING_STYLER =
-			new DefaultToStringStyler(StylerUtils.DEFAULT_VALUE_STYLER);
-
+	private static final ToStringStyler DEFAULT_TO_STRING_STYLER = new DefaultToStringStyler(StylerUtils.DEFAULT_VALUE_STYLER);
 
 	private final StringBuilder buffer = new StringBuilder(256);
 
@@ -30,7 +24,6 @@ public class ToStringCreator {
 	private final Object object;
 
 	private boolean styledFirstField;
-
 
 	/**
 	 * Create a ToStringCreator for the given object.
@@ -147,8 +140,7 @@ public class ToStringCreator {
 	private void printFieldSeparatorIfNecessary() {
 		if (this.styledFirstField) {
 			this.styler.styleFieldSeparator(this.buffer);
-		}
-		else {
+		}else {
 			this.styledFirstField = true;
 		}
 	}
@@ -162,7 +154,6 @@ public class ToStringCreator {
 		this.styler.styleValue(this.buffer, value);
 		return this;
 	}
-
 
 	/**
 	 * Return the String representation that this ToStringCreator built.

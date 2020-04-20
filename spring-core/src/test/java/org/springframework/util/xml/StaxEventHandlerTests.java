@@ -16,5 +16,4 @@ public class StaxEventHandlerTests extends AbstractStaxHandlerTestCase {
 		XMLEventWriter eventWriter = outputFactory.createXMLEventWriter(result);
 		return new StaxEventHandler(eventWriter);
 	}
-
 }

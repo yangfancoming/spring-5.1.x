@@ -10,8 +10,6 @@ import static org.junit.Assert.*;
 
 /**
  * Tests for {@link DataSize}.
- *
- * @author Stephane Nicoll
  */
 public class DataSizeTests {
 

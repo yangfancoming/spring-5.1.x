@@ -1,15 +1,11 @@
 
 
 package org.springframework.core.codec;
-
 import java.nio.charset.StandardCharsets;
-
 import org.junit.Test;
 import reactor.core.publisher.Flux;
-
 import org.springframework.core.ResolvableType;
 import org.springframework.util.MimeTypeUtils;
-
 import static org.junit.Assert.*;
 
 
@@ -37,7 +33,6 @@ public class ByteArrayEncoderTests extends AbstractEncoderTestCase<ByteArrayEnco
 	@Override
 	public void encode() {
 		Flux<byte[]> input = Flux.just(this.fooBytes, this.barBytes);
-
 		testEncodeAll(input, byte[].class, step -> step
 				.consumeNextWith(expectBytes(this.fooBytes))
 				.consumeNextWith(expectBytes(this.barBytes))

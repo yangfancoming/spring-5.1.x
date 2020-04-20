@@ -57,7 +57,6 @@ public class ResolvableTypeTests {
 	@Captor
 	private ArgumentCaptor<TypeVariable<?>> typeVariableCaptor;
 
-
 	@Test
 	public void noneReturnValues() throws Exception {
 		ResolvableType none = ResolvableType.NONE;

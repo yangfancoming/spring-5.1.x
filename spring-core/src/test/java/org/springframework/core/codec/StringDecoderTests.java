@@ -32,7 +32,6 @@ public class StringDecoderTests extends AbstractDecoderTestCase<StringDecoder> {
 		super(StringDecoder.allMimeTypes());
 	}
 
-
 	@Override
 	@Test
 	public void canDecode() {
@@ -64,7 +63,6 @@ public class StringDecoderTests extends AbstractDecoderTestCase<StringDecoder> {
 		String s = String.format("%s\n%s\n%s", u, e, o);
 		Flux<DataBuffer> source = toDataBuffers(s, 2, UTF_16BE);
 		MimeType mimeType = MimeTypeUtils.parseMimeType("text/plain;charset=utf-16be");
-
 		testDecode(source, TYPE, step -> step.expectNext(u, e, o).verifyComplete(), mimeType, null);
 	}
 
@@ -137,32 +135,20 @@ public class StringDecoderTests extends AbstractDecoderTestCase<StringDecoder> {
 	@Test
 	public void decodeEmptyFlux() {
 		Flux<DataBuffer> input = Flux.empty();
-
-		testDecode(input, String.class, step -> step
-				.expectComplete()
-				.verify());
+		testDecode(input, String.class, step -> step.expectComplete().verify());
 	}
 
 	@Test
 	public void decodeEmptyDataBuffer() {
 		Flux<DataBuffer> input = Flux.just(stringBuffer(""));
-		Flux<String> output = this.decoder.decode(input,
-				TYPE, null, Collections.emptyMap());
-
-		StepVerifier.create(output)
-				.expectNext("")
-				.expectComplete().verify();
-
+		Flux<String> output = this.decoder.decode(input,TYPE, null, Collections.emptyMap());
+		StepVerifier.create(output).expectNext("").expectComplete().verify();
 	}
 
 	@Override
 	@Test
 	public void decodeToMono() {
-		Flux<DataBuffer> input = Flux.just(
-				stringBuffer("foo"),
-				stringBuffer("bar"),
-				stringBuffer("baz"));
-
+		Flux<DataBuffer> input = Flux.just(stringBuffer("foo"),stringBuffer("bar"),stringBuffer("baz"));
 		testDecodeToMonoAll(input, String.class, step -> step
 				.expectNext("foobarbaz")
 				.expectComplete()
@@ -172,10 +158,7 @@ public class StringDecoderTests extends AbstractDecoderTestCase<StringDecoder> {
 	@Test
 	public void decodeToMonoWithEmptyFlux() {
 		Flux<DataBuffer> input = Flux.empty();
-
-		testDecodeToMono(input, String.class, step -> step
-				.expectComplete()
-				.verify());
+		testDecodeToMono(input, String.class, step -> step.expectComplete().verify());
 	}
 
 	private DataBuffer stringBuffer(String value) {

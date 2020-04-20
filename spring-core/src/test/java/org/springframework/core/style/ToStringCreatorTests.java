@@ -21,7 +21,6 @@ public class ToStringCreatorTests {
 
 	private SomeObject s1, s2, s3;
 
-
 	@Before
 	public void setUp() throws Exception {
 		s1 = new SomeObject() {

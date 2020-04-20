@@ -32,13 +32,11 @@ import org.springframework.util.StringUtils;
  * {@link #getSuperType() supertypes}, {@link #getInterfaces() interfaces}, and
  * {@link #getGeneric(int...) generic parameters} along with the ability to ultimately
  * {@link #resolve() resolve} to a {@link java.lang.Class}.
- *
  * {@code ResolvableTypes} may be obtained from {@link #forField(Field) fields},
  * {@link #forMethodParameter(Method, int) method parameters},
  * {@link #forMethodReturnType(Method) method returns} or
  * {@link #forClass(Class) classes}. Most methods on this class will themselves return
  * {@link ResolvableType ResolvableTypes}, allowing easy navigation. For example:
- * <pre class="code">
  * private HashMap&lt;Integer, List&lt;String&gt;&gt; myMap;
  *
  * public void example() {
@@ -50,7 +48,6 @@ import org.springframework.util.StringUtils;
  *     t.getGeneric(1); // List&lt;String&gt;
  *     t.resolveGeneric(1, 0); // String
  * }
- * </pre>
  * @since 4.0
  * @see #forField(Field)
  * @see #forMethodParameter(Method, int)
@@ -126,8 +123,7 @@ public class ResolvableType implements Serializable {
 	}
 
 	/**
-	 * Private constructor used to create a new {@link ResolvableType} for cache value purposes,
-	 * with upfront resolution and a pre-calculated hash.
+	 * Private constructor used to create a new {@link ResolvableType} for cache value purposes, with upfront resolution and a pre-calculated hash.
 	 * @since 4.2
 	 */
 	private ResolvableType(Type type, @Nullable TypeProvider typeProvider,@Nullable VariableResolver variableResolver, @Nullable Integer hash) {
@@ -140,8 +136,7 @@ public class ResolvableType implements Serializable {
 	}
 
 	/**
-	 * Private constructor used to create a new {@link ResolvableType} for uncached purposes,
-	 * with upfront resolution but lazily calculated hash.
+	 * Private constructor used to create a new {@link ResolvableType} for uncached purposes,with upfront resolution but lazily calculated hash.
 	 */
 	private ResolvableType(Type type, @Nullable TypeProvider typeProvider,@Nullable VariableResolver variableResolver, @Nullable ResolvableType componentType) {
 		this.type = type;
@@ -178,9 +173,7 @@ public class ResolvableType implements Serializable {
 	 */
 	@Nullable
 	public Class<?> getRawClass() {
-		if (this.type == this.resolved) {
-			return this.resolved;
-		}
+		if (this.type == this.resolved) return this.resolved;
 		Type rawType = this.type;
 		if (rawType instanceof ParameterizedType) {
 			rawType = ((ParameterizedType) rawType).getRawType();
@@ -249,25 +242,20 @@ public class ResolvableType implements Serializable {
 		Assert.notNull(other, "ResolvableType must not be null");
 		// If we cannot resolve types, we are not assignable
 		if (this == NONE || other == NONE) return false;
-
 		// Deal with array by delegating to the component type
 		if (isArray()) {
 			return (other.isArray() && getComponentType().isAssignableFrom(other.getComponentType()));
 		}
-
 		if (matchedBefore != null && matchedBefore.get(this.type) == other.type) {
 			return true;
 		}
-
 		// Deal with wildcard bounds
 		WildcardBounds ourBounds = WildcardBounds.get(this);
 		WildcardBounds typeBounds = WildcardBounds.get(other);
-
 		// In the form X is assignable to <? extends Number>
 		if (typeBounds != null) {
 			return (ourBounds != null && ourBounds.isSameKind(typeBounds) && ourBounds.isAssignableFrom(typeBounds.getBounds()));
 		}
-
 		// In the form <? extends Number> is assignable to X...
 		if (ourBounds != null) {
 			return ourBounds.isAssignableFrom(other);
@@ -1559,9 +1547,7 @@ public class ResolvableType implements Serializable {
 	 */
 	@SuppressWarnings("serial")
 	static class EmptyType implements Type, Serializable {
-
 		static final Type INSTANCE = new EmptyType();
-
 		Object readResolve() {
 			return INSTANCE;
 		}

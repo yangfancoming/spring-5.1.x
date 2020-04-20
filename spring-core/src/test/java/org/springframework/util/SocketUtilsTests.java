@@ -69,8 +69,7 @@ public class SocketUtilsTests {
 			exception.expectMessage(endsWith("after 1 attempts"));
 			// will only look for the exact port
 			SocketUtils.findAvailableTcpPort(port, port);
-		}
-		finally {
+		}finally {
 			socket.close();
 		}
 	}
@@ -115,9 +114,7 @@ public class SocketUtilsTests {
 		findAvailableTcpPorts(50, 45000, 45010);
 	}
 
-
 	// UDP
-
 	@Test
 	public void findAvailableUdpPortWithZeroMinPort() {
 		exception.expect(IllegalArgumentException.class);
@@ -146,8 +143,7 @@ public class SocketUtilsTests {
 			exception.expectMessage(endsWith("after 1 attempts"));
 			// will only look for the exact port
 			SocketUtils.findAvailableUdpPort(port, port);
-		}
-		finally {
+		}finally {
 			socket.close();
 		}
 	}
