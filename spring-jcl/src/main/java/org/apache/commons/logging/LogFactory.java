@@ -31,7 +31,6 @@ package org.apache.commons.logging;
  * or SLF4J or {@code java.util.logging}.</b> Simply put Log4j 2.x or Logback
  * (or another SLF4J provider) onto your classpath, without any extra bridges,
  * and let the framework auto-adapt to your choice.
- *
  (for the {@code spring-jcl} variant)
  * @since 5.0
  */
@@ -52,7 +51,6 @@ public abstract class LogFactory {
 	public static Log getLog(String name) {
 		return LogAdapter.createLog(name);
 	}
-
 
 	/**
 	 * This method only exists for compatibility with unusual Commons Logging API

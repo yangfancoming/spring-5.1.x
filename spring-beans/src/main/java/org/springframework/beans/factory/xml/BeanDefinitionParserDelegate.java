@@ -213,7 +213,6 @@ public class BeanDefinitionParserDelegate {
 		this.readerContext.error(message, source, this.parseState.snapshot(), cause);
 	}
 
-
 	/**
 	 * Initialize the default settings assuming a {@code null} parent delegate.
 	 */
@@ -467,7 +466,6 @@ public class BeanDefinitionParserDelegate {
 			// 11、设置bean定义来源和元数据的来源  封装一些资源属性
 			bd.setResource(this.readerContext.getResource());
 			bd.setSource(extractSource(ele));
-
 			return bd;
 		}catch (ClassNotFoundException ex) {
 			error("Bean class [" + className + "] not found", ele, ex);
@@ -1245,7 +1243,6 @@ public class BeanDefinitionParserDelegate {
 		ManagedProperties props = new ManagedProperties();
 		props.setSource(extractSource(propsEle));
 		props.setMergeEnabled(parseMergeAttribute(propsEle));
-
 		List<Element> propEles = DomUtils.getChildElementsByTagName(propsEle, PROP_ELEMENT);
 		for (Element propEle : propEles) {
 			String key = propEle.getAttribute(KEY_ATTRIBUTE);

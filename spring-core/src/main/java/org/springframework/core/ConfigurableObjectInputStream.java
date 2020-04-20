@@ -15,8 +15,6 @@ import org.springframework.util.ClassUtils;
  * Special ObjectInputStream subclass that resolves class names
  * against a specific ClassLoader. Serves as base class for
  * {@link org.springframework.remoting.rmi.CodebaseAwareObjectInputStream}.
- *
-
  * @since 2.5.5
  */
 public class ConfigurableObjectInputStream extends ObjectInputStream {
@@ -25,7 +23,6 @@ public class ConfigurableObjectInputStream extends ObjectInputStream {
 	private final ClassLoader classLoader;
 
 	private final boolean acceptProxyClasses;
-
 
 	/**
 	 * Create a new ConfigurableObjectInputStream for the given InputStream and ClassLoader.
@@ -45,9 +42,7 @@ public class ConfigurableObjectInputStream extends ObjectInputStream {
 	 * (may be deactivated as a security measure)
 	 * @see java.io.ObjectInputStream#ObjectInputStream(java.io.InputStream)
 	 */
-	public ConfigurableObjectInputStream(
-			InputStream in, @Nullable ClassLoader classLoader, boolean acceptProxyClasses) throws IOException {
-
+	public ConfigurableObjectInputStream(InputStream in, @Nullable ClassLoader classLoader, boolean acceptProxyClasses) throws IOException {
 		super(in);
 		this.classLoader = classLoader;
 		this.acceptProxyClasses = acceptProxyClasses;
@@ -60,13 +55,11 @@ public class ConfigurableObjectInputStream extends ObjectInputStream {
 			if (this.classLoader != null) {
 				// Use the specified ClassLoader to resolve local classes.
 				return ClassUtils.forName(classDesc.getName(), this.classLoader);
-			}
-			else {
+			}else {
 				// Use the default ClassLoader...
 				return super.resolveClass(classDesc);
 			}
-		}
-		catch (ClassNotFoundException ex) {
+		}catch (ClassNotFoundException ex) {
 			return resolveFallbackIfPossible(classDesc.getName(), ex);
 		}
 	}
@@ -89,17 +82,14 @@ public class ConfigurableObjectInputStream extends ObjectInputStream {
 			}
 			try {
 				return ClassUtils.createCompositeInterface(resolvedInterfaces, this.classLoader);
-			}
-			catch (IllegalArgumentException ex) {
+			}catch (IllegalArgumentException ex) {
 				throw new ClassNotFoundException(null, ex);
 			}
-		}
-		else {
+		}else {
 			// Use ObjectInputStream's default ClassLoader...
 			try {
 				return super.resolveProxyClass(interfaces);
-			}
-			catch (ClassNotFoundException ex) {
+			}catch (ClassNotFoundException ex) {
 				Class<?>[] resolvedInterfaces = new Class<?>[interfaces.length];
 				for (int i = 0; i < interfaces.length; i++) {
 					resolvedInterfaces[i] = resolveFallbackIfPossible(interfaces[i], ex);
@@ -112,15 +102,12 @@ public class ConfigurableObjectInputStream extends ObjectInputStream {
 
 	/**
 	 * Resolve the given class name against a fallback class loader.
-	 * The default implementation simply rethrows the original exception,
-	 * since there is no fallback available.
+	 * The default implementation simply rethrows the original exception,since there is no fallback available.
 	 * @param className the class name to resolve
 	 * @param ex the original exception thrown when attempting to load the class
 	 * @return the newly resolved class (never {@code null})
 	 */
-	protected Class<?> resolveFallbackIfPossible(String className, ClassNotFoundException ex)
-			throws IOException, ClassNotFoundException{
-
+	protected Class<?> resolveFallbackIfPossible(String className, ClassNotFoundException ex) throws IOException, ClassNotFoundException{
 		throw ex;
 	}
 

@@ -18,8 +18,6 @@ package org.springframework.beans.factory;
  * In general, application-provided FactoryBeans should simply implement
  * the plain {@link FactoryBean} interface. New methods might be added
  * to this extended interface even in point releases.
- *
-
  * @since 2.0.3
  * @param <T> the bean type
  * @see #isPrototype()

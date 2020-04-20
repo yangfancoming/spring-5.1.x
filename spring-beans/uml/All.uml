@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor</OriginalElement>
+  <nodes>
+    <node x="438.0" y="79.0">org.springframework.aop.config.AopNamespaceHandler</node>
+    <node x="447.0" y="0.0">org.springframework.beans.factory.xml.NamespaceHandler</node>
+    <node x="0.0" y="79.0">org.springframework.beans.factory.xml.SimplePropertyNamespaceHandler</node>
+    <node x="882.0" y="79.0">org.mybatis.spring.config.NamespaceHandler</node>
+    <node x="618.0" y="79.0">org.springframework.beans.factory.xml.SimpleConstructorNamespaceHandler</node>
+    <node x="246.0" y="79.0">org.springframework.cache.config.CacheNamespaceHandler</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.mybatis.spring.config.NamespaceHandler" target="org.springframework.beans.factory.xml.NamespaceHandler">
+      <point x="0.0" y="-14.5" />
+      <point x="953.0" y="49.0" />
+      <point x="574.8" y="49.0" />
+      <point x="56.799999999999955" y="14.5" />
+    </edge>
+    <edge source="org.springframework.cache.config.CacheNamespaceHandler" target="org.springframework.beans.factory.xml.NamespaceHandler">
+      <point x="0.0" y="-14.5" />
+      <point x="332.0" y="59.0" />
+      <point x="489.6" y="59.0" />
+      <point x="-28.399999999999977" y="14.5" />
+    </edge>
+    <edge source="org.springframework.beans.factory.xml.SimplePropertyNamespaceHandler" target="org.springframework.beans.factory.xml.NamespaceHandler">
+      <point x="0.0" y="-14.5" />
+      <point x="113.0" y="49.0" />
+      <point x="461.2" y="49.0" />
+      <point x="-56.80000000000001" y="14.5" />
+    </edge>
+    <edge source="org.springframework.aop.config.AopNamespaceHandler" target="org.springframework.beans.factory.xml.NamespaceHandler">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.beans.factory.xml.SimpleConstructorNamespaceHandler" target="org.springframework.beans.factory.xml.NamespaceHandler">
+      <point x="0.0" y="-14.5" />
+      <point x="740.0" y="59.0" />
+      <point x="546.4" y="59.0" />
+      <point x="28.399999999999977" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="512.0" y="81.0" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

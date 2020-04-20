@@ -7,10 +7,6 @@ import java.lang.reflect.Method
 
 /**
  * Tests for Kotlin support in [MethodParameter].
- *
- * @author Raman Gupta
- * @author Sebastien Deleuze
- * @author Juergen Hoeller
  */
 class KotlinMethodParameterTests {
 

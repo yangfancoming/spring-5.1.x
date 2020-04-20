@@ -128,9 +128,7 @@ public class DefaultNamespaceHandlerResolver implements NamespaceHandlerResolver
 					if (logger.isTraceEnabled()) logger.trace("Loading NamespaceHandler mappings from [" + this.handlerMappingsLocation + "]");
 					try {
 						Properties mappings = PropertiesLoaderUtils.loadAllProperties(this.handlerMappingsLocation, this.classLoader);
-						if (logger.isTraceEnabled()) {
-							logger.trace("Loaded NamespaceHandler mappings: " + mappings);
-						}
+						if (logger.isTraceEnabled()) logger.trace("Loaded NamespaceHandler mappings: " + mappings);
 						handlerMappings = new ConcurrentHashMap<>(mappings.size());
 						CollectionUtils.mergePropertiesIntoMap(mappings, handlerMappings);
 						this.handlerMappings = handlerMappings;

@@ -17,7 +17,6 @@ import org.springframework.util.ObjectUtils;
  * parameter or a field. Exposed by {@link UnsatisfiedDependencyException}.
  * Also available as an argument for factory methods, reacting to the
  * requesting injection point for building a customized bean instance.
- *
 
  * @since 4.3
  * @see UnsatisfiedDependencyException#getInjectionPoint()
@@ -33,7 +32,6 @@ public class InjectionPoint {
 
 	@Nullable
 	private volatile Annotation[] fieldAnnotations;
-
 
 	/**
 	 * Create an injection point descriptor for a method or constructor parameter.
@@ -69,7 +67,6 @@ public class InjectionPoint {
 	 */
 	protected InjectionPoint() {
 	}
-
 
 	/**
 	 * Return the wrapped MethodParameter, if any.
@@ -113,8 +110,7 @@ public class InjectionPoint {
 				this.fieldAnnotations = fieldAnnotations;
 			}
 			return fieldAnnotations;
-		}
-		else {
+		}else {
 			return obtainMethodParameter().getParameterAnnotations();
 		}
 	}
@@ -163,9 +159,7 @@ public class InjectionPoint {
 
 	@Override
 	public boolean equals(Object other) {
-		if (this == other) {
-			return true;
-		}
+		if (this == other) return true;
 		if (other == null || getClass() != other.getClass()) {
 			return false;
 		}

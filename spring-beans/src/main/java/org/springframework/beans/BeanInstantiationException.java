@@ -10,8 +10,6 @@ import org.springframework.lang.Nullable;
 /**
  * Exception thrown when instantiation of a bean failed.
  * Carries the offending bean class.
- *
-
  * @since 1.2.8
  */
 @SuppressWarnings("serial")
@@ -24,7 +22,6 @@ public class BeanInstantiationException extends FatalBeanException {
 
 	@Nullable
 	private final Method constructingMethod;
-
 
 	/**
 	 * Create a new BeanInstantiationException.

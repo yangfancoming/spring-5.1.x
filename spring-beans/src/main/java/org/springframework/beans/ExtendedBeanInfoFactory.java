@@ -15,9 +15,7 @@ import org.springframework.lang.Nullable;
  * "non-standard" JavaBeans setter methods and are thus candidates for introspection
  * by Spring's (package-visible) {@code ExtendedBeanInfo} implementation.
  *
- * Ordered at {@link Ordered#LOWEST_PRECEDENCE} to allow other user-defined
- * {@link BeanInfoFactory} types to take precedence.
-
+ * Ordered at {@link Ordered#LOWEST_PRECEDENCE} to allow other user-defined {@link BeanInfoFactory} types to take precedence.
  * @since 3.2
  * @see BeanInfoFactory
  * @see CachedIntrospectionResults

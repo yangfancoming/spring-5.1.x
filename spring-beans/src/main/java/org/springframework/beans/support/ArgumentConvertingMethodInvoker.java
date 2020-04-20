@@ -20,8 +20,6 @@ import org.springframework.util.ReflectionUtils;
  *
  * Supports flexible argument conversions, in particular for
  * invoking a specific overloaded method.
- *
-
  * @since 1.1
  * @see org.springframework.beans.BeanWrapperImpl#convertIfNecessary
  */
@@ -31,7 +29,6 @@ public class ArgumentConvertingMethodInvoker extends MethodInvoker {
 	private TypeConverter typeConverter;
 
 	private boolean useDefaultConverter = true;
-
 
 	/**
 	 * Set a TypeConverter to use for argument type conversion.
@@ -85,8 +82,7 @@ public class ArgumentConvertingMethodInvoker extends MethodInvoker {
 	public void registerCustomEditor(Class<?> requiredType, PropertyEditor propertyEditor) {
 		TypeConverter converter = getTypeConverter();
 		if (!(converter instanceof PropertyEditorRegistry)) {
-			throw new IllegalStateException(
-					"TypeConverter does not implement PropertyEditorRegistry interface: " + converter);
+			throw new IllegalStateException("TypeConverter does not implement PropertyEditorRegistry interface: " + converter);
 		}
 		((PropertyEditorRegistry) converter).registerCustomEditor(requiredType, propertyEditor);
 	}
@@ -140,8 +136,7 @@ public class ArgumentConvertingMethodInvoker extends MethodInvoker {
 							// Verify that the supplied argument is assignable to the method parameter.
 							try {
 								convertedArguments[j] = converter.convertIfNecessary(arguments[j], paramTypes[j]);
-							}
-							catch (TypeMismatchException ex) {
+							}catch (TypeMismatchException ex) {
 								// Ignore -> simply doesn't match.
 								match = false;
 							}

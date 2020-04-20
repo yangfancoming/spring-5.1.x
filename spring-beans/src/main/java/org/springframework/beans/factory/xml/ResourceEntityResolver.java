@@ -74,16 +74,12 @@ public class ResourceEntityResolver extends DelegatingEntityResolver {
 				resourcePath = systemId;
 			}
 			if (resourcePath != null) {
-				if (logger.isTraceEnabled()) {
-					logger.trace("Trying to locate XML entity [" + systemId + "] as resource [" + resourcePath + "]");
-				}
+				if (logger.isTraceEnabled()) logger.trace("Trying to locate XML entity [" + systemId + "] as resource [" + resourcePath + "]");
 				Resource resource = this.resourceLoader.getResource(resourcePath);
 				source = new InputSource(resource.getInputStream());
 				source.setPublicId(publicId);
 				source.setSystemId(systemId);
-				if (logger.isDebugEnabled()) {
-					logger.debug("Found XML entity [" + systemId + "]: " + resource);
-				}
+				if (logger.isDebugEnabled()) logger.debug("Found XML entity [" + systemId + "]: " + resource);
 			} else if (systemId.endsWith(DTD_SUFFIX) || systemId.endsWith(XSD_SUFFIX)) {
 				// External dtd/xsd lookup via https even for canonical http declaration
 				String url = systemId;
@@ -95,9 +91,7 @@ public class ResourceEntityResolver extends DelegatingEntityResolver {
 					source.setPublicId(publicId);
 					source.setSystemId(systemId);
 				}catch (IOException ex) {
-					if (logger.isDebugEnabled()) {
-						logger.debug("Could not resolve XML entity [" + systemId + "] through URL [" + url + "]", ex);
-					}
+					if (logger.isDebugEnabled()) logger.debug("Could not resolve XML entity [" + systemId + "] through URL [" + url + "]", ex);
 					// Fall back to the parser's default behavior.
 					source = null;
 				}

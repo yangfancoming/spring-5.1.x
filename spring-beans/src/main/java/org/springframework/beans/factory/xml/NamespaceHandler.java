@@ -25,9 +25,6 @@ import org.springframework.lang.Nullable;
  * Developers writing their own custom element extensions typically will
  * not implement this interface directly, but rather make use of the provided
  * {@link NamespaceHandlerSupport} class.
- *
- * @author Rob Harrop
- * @author Erik Wiersma
  * @since 2.0
  * @see DefaultBeanDefinitionDocumentReader
  * @see NamespaceHandlerResolver

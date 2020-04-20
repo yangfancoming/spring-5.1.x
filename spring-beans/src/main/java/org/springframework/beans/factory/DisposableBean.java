@@ -12,7 +12,6 @@ package org.springframework.beans.factory;
  * for the same purpose. An alternative to implementing an interface is specifying a
  * custom destroy method, for example in an XML bean definition. For a list of all
  * bean lifecycle methods, see the {@link BeanFactory BeanFactory javadocs}.
- *
 
  * @since 12.08.2003
  * @see InitializingBean

@@ -45,7 +45,6 @@ public abstract class NamespaceHandlerSupport implements NamespaceHandler {
 	 */
 	private final Map<String, BeanDefinitionDecorator> attributeDecorators = new HashMap<>();
 
-
 	/**
 	 * Parses the supplied {@link Element} by delegating to the {@link BeanDefinitionParser} that is
 	 * registered for that {@link Element}.
@@ -76,8 +75,7 @@ public abstract class NamespaceHandlerSupport implements NamespaceHandler {
 	}
 
 	/**
-	 * Decorates the supplied {@link Node} by delegating to the {@link BeanDefinitionDecorator} that
-	 * is registered to handle that {@link Node}.
+	 * Decorates the supplied {@link Node} by delegating to the {@link BeanDefinitionDecorator} that is registered to handle that {@link Node}.
 	 */
 	@Override
 	@Nullable
@@ -101,11 +99,9 @@ public abstract class NamespaceHandlerSupport implements NamespaceHandler {
 		// 判断当前节点是属性还是子标签，根据情况不同获取不同的Decorator处理逻辑
 		if (node instanceof Element) {
 			decorator = this.decorators.get(localName);
-		}
-		else if (node instanceof Attr) {
+		}else if (node instanceof Attr) {
 			decorator = this.attributeDecorators.get(localName);
-		}
-		else {
+		}else {
 			parserContext.getReaderContext().fatal("Cannot decorate based on Nodes of type [" + node.getClass().getName() + "]", node);
 		}
 		if (decorator == null) {
@@ -113,7 +109,6 @@ public abstract class NamespaceHandlerSupport implements NamespaceHandler {
 		}
 		return decorator;
 	}
-
 
 	/**
 	 * Subclasses can call this to register the supplied {@link BeanDefinitionParser} to

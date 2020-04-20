@@ -21,7 +21,6 @@ import org.springframework.util.StringUtils;
  * The default implementation of the {@link PropertyValues} interface.
  * Allows simple manipulation of properties, and provides constructors
  * to support deep copy and construction from a Map.
-
  * @since 13 May 2001
  */
 @SuppressWarnings("serial")
@@ -33,7 +32,6 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	private Set<String> processedProperties;
 
 	private volatile boolean converted = false;
-
 
 	/**
 	 * Creates a new empty MutablePropertyValues object.
@@ -60,8 +58,7 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 			for (PropertyValue pv : pvs) {
 				this.propertyValueList.add(new PropertyValue(pv));
 			}
-		}
-		else {
+		}else {
 			this.propertyValueList = new ArrayList<>(0);
 		}
 	}
@@ -76,24 +73,20 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 		// There is no replacement of existing property values.
 		if (original != null) {
 			this.propertyValueList = new ArrayList<>(original.size());
-			original.forEach((attrName, attrValue) -> this.propertyValueList.add(
-					new PropertyValue(attrName.toString(), attrValue)));
-		}
-		else {
+			original.forEach((attrName, attrValue) -> this.propertyValueList.add(new PropertyValue(attrName.toString(), attrValue)));
+		}else {
 			this.propertyValueList = new ArrayList<>(0);
 		}
 	}
 
 	/**
-	 * Construct a new MutablePropertyValues object using the given List of
-	 * PropertyValue objects as-is.
+	 * Construct a new MutablePropertyValues object using the given List of  PropertyValue objects as-is.
 	 * This is a constructor for advanced usage scenarios.
 	 * It is not intended for typical programmatic use.
 	 * @param propertyValueList a List of PropertyValue objects
 	 */
 	public MutablePropertyValues(@Nullable List<PropertyValue> propertyValueList) {
-		this.propertyValueList =
-				(propertyValueList != null ? propertyValueList : new ArrayList<>());
+		this.propertyValueList = (propertyValueList != null ? propertyValueList : new ArrayList<>());
 	}
 
 
@@ -139,8 +132,7 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	 */
 	public MutablePropertyValues addPropertyValues(@Nullable Map<?, ?> other) {
 		if (other != null) {
-			other.forEach((attrName, attrValue) -> addPropertyValue(
-					new PropertyValue(attrName.toString(), attrValue)));
+			other.forEach((attrName, attrValue) -> addPropertyValue(new PropertyValue(attrName.toString(), attrValue)));
 		}
 		return this;
 	}
@@ -350,8 +342,7 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 
 	@Override
 	public boolean equals(Object other) {
-		return (this == other || (other instanceof MutablePropertyValues &&
-				this.propertyValueList.equals(((MutablePropertyValues) other).propertyValueList)));
+		return (this == other || (other instanceof MutablePropertyValues && this.propertyValueList.equals(((MutablePropertyValues) other).propertyValueList)));
 	}
 
 	@Override

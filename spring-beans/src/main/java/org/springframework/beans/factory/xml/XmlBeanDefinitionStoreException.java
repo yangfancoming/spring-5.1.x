@@ -11,8 +11,6 @@ import org.springframework.beans.factory.BeanDefinitionStoreException;
  * XML-specific BeanDefinitionStoreException subclass that wraps a
  * {@link org.xml.sax.SAXException}, typically a {@link org.xml.sax.SAXParseException}
  * which contains information about the error location.
- *
-
  * @since 2.0.2
  * @see #getLineNumber()
  * @see org.xml.sax.SAXParseException

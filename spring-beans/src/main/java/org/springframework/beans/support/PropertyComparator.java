@@ -17,9 +17,6 @@ import org.springframework.util.StringUtils;
 /**
  * PropertyComparator performs a comparison of two beans,
  * evaluating the specified bean property via a BeanWrapper.
- *
-
- * @author Jean-Pierre Pawlak
  * @since 19.05.2003
  * @param <T> the type of objects that may be compared by this comparator
  * @see org.springframework.beans.BeanWrapper
@@ -31,7 +28,6 @@ public class PropertyComparator<T> implements Comparator<T> {
 	private final SortDefinition sortDefinition;
 
 	private final BeanWrapperImpl beanWrapper = new BeanWrapperImpl(false);
-
 
 	/**
 	 * Create a new PropertyComparator for the given SortDefinition.
@@ -75,18 +71,13 @@ public class PropertyComparator<T> implements Comparator<T> {
 		try {
 			if (v1 != null) {
 				result = (v2 != null ? ((Comparable<Object>) v1).compareTo(v2) : -1);
-			}
-			else {
+			}else {
 				result = (v2 != null ? 1 : 0);
 			}
-		}
-		catch (RuntimeException ex) {
-			if (logger.isDebugEnabled()) {
-				logger.debug("Could not sort objects [" + o1 + "] and [" + o2 + "]", ex);
-			}
+		}catch (RuntimeException ex) {
+			if (logger.isDebugEnabled()) logger.debug("Could not sort objects [" + o1 + "] and [" + o2 + "]", ex);
 			return 0;
 		}
-
 		return (this.sortDefinition.isAscending() ? result : -result);
 	}
 
@@ -103,8 +94,7 @@ public class PropertyComparator<T> implements Comparator<T> {
 		try {
 			this.beanWrapper.setWrappedInstance(obj);
 			return this.beanWrapper.getPropertyValue(this.sortDefinition.getProperty());
-		}
-		catch (BeansException ex) {
+		}catch (BeansException ex) {
 			logger.debug("PropertyComparator could not access property - treating as null for sorting", ex);
 			return null;
 		}

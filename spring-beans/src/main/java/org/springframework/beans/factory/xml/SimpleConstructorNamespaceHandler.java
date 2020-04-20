@@ -82,7 +82,6 @@ public class SimpleConstructorNamespaceHandler implements NamespaceHandler {
 					if (index < 0) {
 						parserContext.getReaderContext().error("Constructor argument '" + argName + "' specifies a negative index", attr);
 					}
-
 					if (cvs.hasIndexedArgumentValue(index)) {
 						parserContext.getReaderContext().error("Constructor argument '" + argName + "' with index "+ index+" already defined using <constructor-arg>. Only one approach may be used per argument.", attr);
 					}

@@ -35,7 +35,6 @@ public class DocumentDefaultsDefinition implements DefaultsDefinition {
 	@Nullable
 	private Object source;
 
-
 	/**
 	 * Set the default lazy-init flag for the document that's currently parsed.
 	 */
@@ -141,5 +140,4 @@ public class DocumentDefaultsDefinition implements DefaultsDefinition {
 	public Object getSource() {
 		return this.source;
 	}
-
 }

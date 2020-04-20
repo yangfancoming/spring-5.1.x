@@ -31,9 +31,6 @@ package org.springframework.asm;
  * A visitor to visit a Java annotation. The methods of this class must be called in the following
  * order: ( {@code visit} | {@code visitEnum} | {@code visitAnnotation} | {@code visitArray} )*
  * {@code visitEnd}.
- *
- * @author Eric Bruneton
- * @author Eugene Kuleshov
  */
 public abstract class AnnotationVisitor {
 

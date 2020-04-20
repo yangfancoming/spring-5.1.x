@@ -12,8 +12,6 @@ import org.springframework.util.ObjectUtils;
 
 /**
  * Common delegate methods for Spring's internal {@link PropertyDescriptor} implementations.
-
-
  */
 abstract class PropertyDescriptorUtils {
 
@@ -45,11 +43,8 @@ abstract class PropertyDescriptorUtils {
 	 * See {@link java.beans.PropertyDescriptor#findPropertyType}.
 	 */
 	@Nullable
-	public static Class<?> findPropertyType(@Nullable Method readMethod, @Nullable Method writeMethod)
-			throws IntrospectionException {
-
+	public static Class<?> findPropertyType(@Nullable Method readMethod, @Nullable Method writeMethod) throws IntrospectionException {
 		Class<?> propertyType = null;
-
 		if (readMethod != null) {
 			Class<?>[] params = readMethod.getParameterTypes();
 			if (params.length != 0) {
@@ -70,20 +65,15 @@ abstract class PropertyDescriptorUtils {
 				if (propertyType.isAssignableFrom(params[0])) {
 					// Write method's property type potentially more specific
 					propertyType = params[0];
-				}
-				else if (params[0].isAssignableFrom(propertyType)) {
+				}else if (params[0].isAssignableFrom(propertyType)) {
 					// Proceed with read method's property type
+				}else {
+					throw new IntrospectionException("Type mismatch between read and write methods: " + readMethod + " - " + writeMethod);
 				}
-				else {
-					throw new IntrospectionException(
-							"Type mismatch between read and write methods: " + readMethod + " - " + writeMethod);
-				}
-			}
-			else {
+			}else {
 				propertyType = params[0];
 			}
 		}
-
 		return propertyType;
 	}
 
@@ -91,11 +81,8 @@ abstract class PropertyDescriptorUtils {
 	 * See {@link java.beans.IndexedPropertyDescriptor#findIndexedPropertyType}.
 	 */
 	@Nullable
-	public static Class<?> findIndexedPropertyType(String name, @Nullable Class<?> propertyType,
-			@Nullable Method indexedReadMethod, @Nullable Method indexedWriteMethod) throws IntrospectionException {
-
+	public static Class<?> findIndexedPropertyType(String name, @Nullable Class<?> propertyType,@Nullable Method indexedReadMethod, @Nullable Method indexedWriteMethod) throws IntrospectionException {
 		Class<?> indexedPropertyType = null;
-
 		if (indexedReadMethod != null) {
 			Class<?>[] params = indexedReadMethod.getParameterTypes();
 			if (params.length != 1) {
@@ -122,26 +109,18 @@ abstract class PropertyDescriptorUtils {
 				if (indexedPropertyType.isAssignableFrom(params[1])) {
 					// Write method's property type potentially more specific
 					indexedPropertyType = params[1];
-				}
-				else if (params[1].isAssignableFrom(indexedPropertyType)) {
+				}else if (params[1].isAssignableFrom(indexedPropertyType)) {
 					// Proceed with read method's property type
+				}else {
+					throw new IntrospectionException("Type mismatch between indexed read and write methods: " + indexedReadMethod + " - " + indexedWriteMethod);
 				}
-				else {
-					throw new IntrospectionException("Type mismatch between indexed read and write methods: " +
-							indexedReadMethod + " - " + indexedWriteMethod);
-				}
-			}
-			else {
+			}else {
 				indexedPropertyType = params[1];
 			}
 		}
-
-		if (propertyType != null && (!propertyType.isArray() ||
-				propertyType.getComponentType() != indexedPropertyType)) {
-			throw new IntrospectionException("Type mismatch between indexed and non-indexed methods: " +
-					indexedReadMethod + " - " + indexedWriteMethod);
+		if (propertyType != null && (!propertyType.isArray() || propertyType.getComponentType() != indexedPropertyType)) {
+			throw new IntrospectionException("Type mismatch between indexed and non-indexed methods: " + indexedReadMethod + " - " + indexedWriteMethod);
 		}
-
 		return indexedPropertyType;
 	}
 

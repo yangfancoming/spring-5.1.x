@@ -26,8 +26,7 @@ import org.springframework.util.StringUtils;
 public abstract class BeanFactoryUtils {
 
 	/**
-	 * Separator for generated bean names. If a class name or parent name is not
-	 * unique, "#1", "#2" etc will be appended, until the name becomes unique.
+	 * Separator for generated bean names. If a class name or parent name is not unique, "#1", "#2" etc will be appended, until the name becomes unique.
 	 */
 	public static final String GENERATED_BEAN_NAME_SEPARATOR = "#";
 

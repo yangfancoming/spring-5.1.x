@@ -297,8 +297,7 @@ public class Constants {
 			if (Character.isUpperCase(c)) {
 				parsedPrefix.append("_");
 				parsedPrefix.append(c);
-			}
-			else {
+			}else {
 				parsedPrefix.append(Character.toUpperCase(c));
 			}
 		}

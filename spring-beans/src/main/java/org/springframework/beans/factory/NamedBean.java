@@ -7,8 +7,6 @@ package org.springframework.beans.factory;
  *
  * This interface can be introduced to avoid a brittle dependence on
  * bean name in objects used with Spring IoC and Spring AOP.
- *
- * @author Rod Johnson
  * @since 2.0
  * @see BeanNameAware
  */

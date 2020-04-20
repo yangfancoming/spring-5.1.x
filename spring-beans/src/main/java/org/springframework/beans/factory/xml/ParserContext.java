@@ -15,11 +15,7 @@ import org.springframework.lang.Nullable;
 
 /**
  * Context that gets passed along a bean definition parsing process,
- * encapsulating all relevant configuration as well as state.
- * Nested inside an {@link XmlReaderContext}.
- *
- * @author Rob Harrop
-
+ * encapsulating all relevant configuration as well as state. Nested inside an {@link XmlReaderContext}.
  * @since 2.0
  * @see XmlReaderContext
  * @see BeanDefinitionParserDelegate
@@ -99,8 +95,7 @@ public final class ParserContext {
 		CompositeComponentDefinition containingComponent = getContainingComponent();
 		if (containingComponent != null) {
 			containingComponent.addNestedComponent(component);
-		}
-		else {
+		}else {
 			this.readerContext.fireComponentRegistered(component);
 		}
 	}

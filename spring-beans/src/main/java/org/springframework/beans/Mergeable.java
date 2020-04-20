@@ -5,10 +5,7 @@ package org.springframework.beans;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface representing an object whose value set can be merged with
- * that of a parent object.
- *
- * @author Rob Harrop
+ * Interface representing an object whose value set can be merged with that of a parent object.
  * @since 2.0
  * @see org.springframework.beans.factory.support.ManagedSet
  * @see org.springframework.beans.factory.support.ManagedList

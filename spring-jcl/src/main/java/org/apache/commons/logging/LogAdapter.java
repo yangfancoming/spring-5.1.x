@@ -16,8 +16,6 @@ import org.slf4j.spi.LocationAwareLogger;
 /**
  * Spring's common JCL adapter behind {@link LogFactory} and {@link LogFactoryService}.
  * Detects the presence of Log4j 2.x / SLF4J, falling back to {@code java.util.logging}.
- *
-
  * @since 5.1
  */
 final class LogAdapter {
@@ -30,7 +28,6 @@ final class LogAdapter {
 
 	private static final String SLF4J_API = "org.slf4j.Logger";
 
-
 	private static final LogApi logApi;
 
 	static {
@@ -40,30 +37,24 @@ final class LogAdapter {
 				// however, we still prefer Log4j over the plain SLF4J API since
 				// the latter does not have location awareness support.
 				logApi = LogApi.SLF4J_LAL;
-			}
-			else {
+			}else {
 				// Use Log4j 2.x directly, including location awareness support
 				logApi = LogApi.LOG4J;
 			}
-		}
-		else if (isPresent(SLF4J_SPI)) {
+		}else if (isPresent(SLF4J_SPI)) {
 			// Full SLF4J SPI including location awareness support
 			logApi = LogApi.SLF4J_LAL;
-		}
-		else if (isPresent(SLF4J_API)) {
+		}else if (isPresent(SLF4J_API)) {
 			// Minimal SLF4J API without location awareness support
 			logApi = LogApi.SLF4J;
-		}
-		else {
+		}else {
 			// java.util.logging as default
 			logApi = LogApi.JUL;
 		}
 	}
 
-
 	private LogAdapter() {
 	}
-
 
 	/**
 	 * Create an actual {@link Log} instance for the selected API.
@@ -71,12 +62,9 @@ final class LogAdapter {
 	 */
 	public static Log createLog(String name) {
 		switch (logApi) {
-			case LOG4J:
-				return Log4jAdapter.createLog(name);
-			case SLF4J_LAL:
-				return Slf4jAdapter.createLocationAwareLog(name);
-			case SLF4J:
-				return Slf4jAdapter.createLog(name);
+			case LOG4J: return Log4jAdapter.createLog(name);
+			case SLF4J_LAL: return Slf4jAdapter.createLocationAwareLog(name);
+			case SLF4J: return Slf4jAdapter.createLog(name);
 			default:
 				// Defensively use lazy-initializing adapter class here as well since the
 				// java.logging module is not present by default on JDK 9. We are requiring
@@ -92,32 +80,24 @@ final class LogAdapter {
 		try {
 			Class.forName(className, false, LogAdapter.class.getClassLoader());
 			return true;
-		}
-		catch (ClassNotFoundException ex) {
+		}catch (ClassNotFoundException ex) {
 			return false;
 		}
 	}
 
-
 	private enum LogApi {LOG4J, SLF4J_LAL, SLF4J, JUL}
 
-
 	private static class Log4jAdapter {
-
 		public static Log createLog(String name) {
 			return new Log4jLog(name);
 		}
 	}
 
-
 	private static class Slf4jAdapter {
-
 		public static Log createLocationAwareLog(String name) {
 			Logger logger = LoggerFactory.getLogger(name);
-			return (logger instanceof LocationAwareLogger ?
-					new Slf4jLocationAwareLog((LocationAwareLogger) logger) : new Slf4jLog<>(logger));
+			return (logger instanceof LocationAwareLogger ? new Slf4jLocationAwareLog((LocationAwareLogger) logger) : new Slf4jLog<>(logger));
 		}
-
 		public static Log createLog(String name) {
 			return new Slf4jLog<>(LoggerFactory.getLogger(name));
 		}
@@ -137,8 +117,7 @@ final class LogAdapter {
 
 		private static final String FQCN = Log4jLog.class.getName();
 
-		private static final LoggerContext loggerContext =
-				LogManager.getContext(Log4jLog.class.getClassLoader(), false);
+		private static final LoggerContext loggerContext = LogManager.getContext(Log4jLog.class.getClassLoader(), false);
 
 		private final ExtendedLogger logger;
 
@@ -242,17 +221,14 @@ final class LogAdapter {
 				// for message objects in case of "{}" sequences (SPR-16226)
 				if (exception != null) {
 					this.logger.logIfEnabled(FQCN, level, null, (String) message, exception);
-				}
-				else {
+				}else {
 					this.logger.logIfEnabled(FQCN, level, null, (String) message);
 				}
-			}
-			else {
+			}else {
 				this.logger.logIfEnabled(FQCN, level, null, message, exception);
 			}
 		}
 	}
-
 
 	@SuppressWarnings("serial")
 	private static class Slf4jLog<T extends Logger> implements Log, Serializable {
@@ -549,8 +525,7 @@ final class LogAdapter {
 				LogRecord rec;
 				if (message instanceof LogRecord) {
 					rec = (LogRecord) message;
-				}
-				else {
+				}else {
 					rec = new LocationResolvingLogRecord(level, String.valueOf(message));
 					rec.setLoggerName(this.name);
 					rec.setResourceBundleName(logger.getResourceBundleName());
@@ -615,8 +590,7 @@ final class LogAdapter {
 				String className = element.getClassName();
 				if (FQCN.equals(className)) {
 					found = true;
-				}
-				else if (found) {
+				}else if (found) {
 					sourceClassName = className;
 					sourceMethodName = element.getMethodName();
 					break;

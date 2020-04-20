@@ -6,15 +6,12 @@ package org.springframework.beans;
  * Simple factory facade for obtaining {@link PropertyAccessor} instances,
  * in particular for {@link BeanWrapper} instances. Conceals the actual
  * target implementation classes and their extended public signature.
- *
-
  * @since 2.5.2
  */
 public final class PropertyAccessorFactory {
 
 	private PropertyAccessorFactory() {
 	}
-
 
 	/**
 	 * Obtain a BeanWrapper for the given target object,

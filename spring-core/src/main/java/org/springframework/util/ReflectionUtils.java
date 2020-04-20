@@ -532,7 +532,6 @@ public abstract class ReflectionUtils {
 		}
 	}
 
-
 	// Field handling
 	/**
 	 * Attempt to find a {@link Field field} on the supplied {@link Class} with the supplied {@code name}.

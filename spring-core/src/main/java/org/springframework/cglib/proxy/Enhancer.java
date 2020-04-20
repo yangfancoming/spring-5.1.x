@@ -611,12 +611,7 @@ public class Enhancer extends AbstractClassGenerator {
 					Type.getType(sc),
 					(useFactory ? TypeUtils.add(TypeUtils.getTypes(interfaces), FACTORY) : TypeUtils.getTypes(interfaces)),Constants.SOURCE_FILE);
 		}else {
-			e.begin_class(Constants.V1_2,
-					Constants.ACC_PUBLIC,
-					getClassName(),
-					null,
-					new Type[]{FACTORY},
-					Constants.SOURCE_FILE);
+			e.begin_class(Constants.V1_2,Constants.ACC_PUBLIC,getClassName(),null,new Type[]{FACTORY},Constants.SOURCE_FILE);
 		}
 		List constructorInfo = CollectionUtils.transform(constructors, MethodInfoTransformer.getInstance());
 

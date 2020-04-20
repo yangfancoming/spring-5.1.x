@@ -17,8 +17,7 @@ import org.springframework.beans.factory.config.BeanDefinitionHolder;
  * required and to transform the
  * {@link org.springframework.beans.factory.config.BeanDefinition} of the enclosing
  * {@code <bean>} tag, potentially even returning a completely different
- * {@link org.springframework.beans.factory.config.BeanDefinition} to replace the
- * original.
+ * {@link org.springframework.beans.factory.config.BeanDefinition} to replace the original.
  *
  * {@link BeanDefinitionDecorator BeanDefinitionDecorators} should be aware that
  * they may be part of a chain. In particular, a {@link BeanDefinitionDecorator} should

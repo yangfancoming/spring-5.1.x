@@ -14,8 +14,6 @@ import org.springframework.lang.Nullable;
 /**
  * Exception thrown when a BeanFactory encounters an error when
  * attempting to create a bean from a bean definition.
- *
-
  */
 @SuppressWarnings("serial")
 public class BeanCreationException extends FatalBeanException {
@@ -28,7 +26,6 @@ public class BeanCreationException extends FatalBeanException {
 
 	@Nullable
 	private List<Throwable> relatedCauses;
-
 
 	/**
 	 * Create a new BeanCreationException.

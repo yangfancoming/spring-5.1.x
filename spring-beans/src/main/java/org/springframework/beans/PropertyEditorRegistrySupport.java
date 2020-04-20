@@ -281,8 +281,7 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 				this.customEditorsForPath = new LinkedHashMap<>(16);
 			}
 			this.customEditorsForPath.put(propertyPath, new CustomEditorHolder(propertyEditor, requiredType));
-		}
-		else {
+		}else {
 			if (this.customEditors == null) {
 				this.customEditors = new LinkedHashMap<>(16);
 			}
@@ -320,19 +319,15 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 	}
 
 	/**
-	 * Determine whether this registry contains a custom editor
-	 * for the specified array/collection element.
-	 * @param elementType the target type of the element
-	 * (can be {@code null} if not known)
-	 * @param propertyPath the property path (typically of the array/collection;
-	 * can be {@code null} if not known)
+	 * Determine whether this registry contains a custom editor  for the specified array/collection element.
+	 * @param elementType the target type of the element (can be {@code null} if not known)
+	 * @param propertyPath the property path (typically of the array/collection; can be {@code null} if not known)
 	 * @return whether a matching custom editor has been found
 	 */
 	public boolean hasCustomEditorForElement(@Nullable Class<?> elementType, @Nullable String propertyPath) {
 		if (propertyPath != null && this.customEditorsForPath != null) {
 			for (Map.Entry<String, CustomEditorHolder> entry : this.customEditorsForPath.entrySet()) {
-				if (PropertyAccessorUtils.matchesProperty(entry.getKey(), propertyPath) &&
-						entry.getValue().getPropertyEditor(elementType) != null) {
+				if (PropertyAccessorUtils.matchesProperty(entry.getKey(), propertyPath) && entry.getValue().getPropertyEditor(elementType) != null) {
 					return true;
 				}
 			}
@@ -365,15 +360,13 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 	 */
 	@Nullable
 	private PropertyEditor getCustomEditor(String propertyName, @Nullable Class<?> requiredType) {
-		CustomEditorHolder holder =
-				(this.customEditorsForPath != null ? this.customEditorsForPath.get(propertyName) : null);
+		CustomEditorHolder holder = (this.customEditorsForPath != null ? this.customEditorsForPath.get(propertyName) : null);
 		return (holder != null ? holder.getPropertyEditor(requiredType) : null);
 	}
 
 	/**
 	 * Get custom editor for the given type. If no direct match found,
-	 * try custom editor for superclass (which will in any case be able
-	 * to render a value as String via {@code getAsText}).
+	 * try custom editor for superclass (which will in any case be able to render a value as String via {@code getAsText}).
 	 * @param requiredType the type to look for
 	 * @return the custom editor, or {@code null} if none found for this type
 	 * @see java.beans.PropertyEditor#getAsText()
@@ -442,8 +435,7 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 	 * will be copied. If this is null, all editors will be copied.
 	 */
 	protected void copyCustomEditorsTo(PropertyEditorRegistry target, @Nullable String nestedProperty) {
-		String actualPropertyName =
-				(nestedProperty != null ? PropertyAccessorUtils.getPropertyName(nestedProperty) : null);
+		String actualPropertyName = (nestedProperty != null ? PropertyAccessorUtils.getPropertyName(nestedProperty) : null);
 		if (this.customEditors != null) {
 			this.customEditors.forEach(target::registerCustomEditor);
 		}
@@ -459,10 +451,8 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 									editorHolder.getRegisteredType(), editorNestedPath, editorHolder.getPropertyEditor());
 						}
 					}
-				}
-				else {
-					target.registerCustomEditor(
-							editorHolder.getRegisteredType(), editorPath, editorHolder.getPropertyEditor());
+				}else {
+					target.registerCustomEditor(editorHolder.getRegisteredType(), editorPath, editorHolder.getPropertyEditor());
 				}
 			});
 		}

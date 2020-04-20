@@ -6,8 +6,6 @@ package org.springframework.beans.factory;
  * Exception thrown in case of a bean being requested despite
  * bean creation currently not being allowed (for example, during
  * the shutdown phase of a bean factory).
- *
-
  * @since 2.0
  */
 @SuppressWarnings("serial")

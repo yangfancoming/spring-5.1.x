@@ -29,8 +29,6 @@ import org.springframework.util.Assert;
  * as expected by BeanWrapper. Note that the names and the nesting syntax match
  * the respective JSTL EL expressions, like "myModelAttr.pageSize" and
  * "myModelAttr.sort.ascending".
- *
-
  * @since 19.05.2003
  * @param <E> the element type
  * @see #getPageList()
@@ -39,16 +37,11 @@ import org.springframework.util.Assert;
 @SuppressWarnings("serial")
 public class PagedListHolder<E> implements Serializable {
 
-	/**
-	 * The default page size.
-	 */
+	// The default page size.
 	public static final int DEFAULT_PAGE_SIZE = 10;
 
-	/**
-	 * The default maximum number of page links.
-	 */
+	// The default maximum number of page links.
 	public static final int DEFAULT_MAX_LINKED_PAGES = 10;
-
 
 	private List<E> source = Collections.emptyList();
 
@@ -69,10 +62,8 @@ public class PagedListHolder<E> implements Serializable {
 
 	private int maxLinkedPages = DEFAULT_MAX_LINKED_PAGES;
 
-
 	/**
-	 * Create a new holder instance.
-	 * You'll need to set a source list to be able to use the holder.
+	 * Create a new holder instance. You'll need to set a source list to be able to use the holder.
 	 * @see #setSource
 	 */
 	public PagedListHolder() {
@@ -80,8 +71,7 @@ public class PagedListHolder<E> implements Serializable {
 	}
 
 	/**
-	 * Create a new holder instance with the given source list, starting with
-	 * a default sort definition (with "toggleAscendingOnProperty" activated).
+	 * Create a new holder instance with the given source list, starting with a default sort definition (with "toggleAscendingOnProperty" activated).
 	 * @param source the source List
 	 * @see MutableSortDefinition#setToggleAscendingOnProperty
 	 */
@@ -98,7 +88,6 @@ public class PagedListHolder<E> implements Serializable {
 		setSource(source);
 		setSort(sort);
 	}
-
 
 	/**
 	 * Set the source list for this holder.

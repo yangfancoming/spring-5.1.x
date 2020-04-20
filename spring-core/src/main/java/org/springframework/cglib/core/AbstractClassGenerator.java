@@ -147,7 +147,6 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 	 * Set the <code>ClassLoader</code> in which the class will be generated.
 	 * Concrete subclasses of <code>AbstractClassGenerator</code> (such as <code>Enhancer</code>)
 	 * will try to choose an appropriate default if this is unset.
-	 *
 	 * Classes are cached per-<code>ClassLoader</code> using a <code>WeakHashMap</code>, to allow
 	 * the generated classes to be removed when the associated loader is garbage collected.
 	 * @param classLoader the loader to generate the new class with, or null to use the default
@@ -180,8 +179,7 @@ abstract public class AbstractClassGenerator<T> implements ClassGenerator {
 	}
 
 	/**
-	 * Whether use and update the static cache of generated classes
-	 * for a class with the same properties. Default is <code>true</code>.
+	 * Whether use and update the static cache of generated classes for a class with the same properties. Default is <code>true</code>.
 	 */
 	public void setUseCache(boolean useCache) {
 		this.useCache = useCache;

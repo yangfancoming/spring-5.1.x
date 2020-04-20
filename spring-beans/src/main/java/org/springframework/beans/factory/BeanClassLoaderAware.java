@@ -10,12 +10,7 @@ package org.springframework.beans.factory;
  * This is mainly intended to be implemented by framework classes which
  * have to pick up application classes by name despite themselves potentially
  * being loaded from a shared class loader.
- *
- * For a list of all bean lifecycle methods, see the
- * {@link BeanFactory BeanFactory javadocs}.
- *
-
-
+ * For a list of all bean lifecycle methods, see the {@link BeanFactory BeanFactory javadocs}.
  * @since 2.0
  * @see BeanNameAware
  * @see BeanFactoryAware
@@ -24,8 +19,7 @@ package org.springframework.beans.factory;
 public interface BeanClassLoaderAware extends Aware {
 
 	/**
-	 * Callback that supplies the bean {@link ClassLoader class loader} to
-	 * a bean instance.
+	 * Callback that supplies the bean {@link ClassLoader class loader} to  a bean instance.
 	 * Invoked <i>after</i> the population of normal bean properties but
 	 * <i>before</i> an initialization callback such as
 	 * {@link InitializingBean InitializingBean's}

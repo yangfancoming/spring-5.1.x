@@ -17,15 +17,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Default {@link BeanWrapper} implementation that should be sufficient
- * for all typical use cases. Caches introspection results for efficiency.
+ * Default {@link BeanWrapper} implementation that should be sufficient for all typical use cases. Caches introspection results for efficiency.
  *
  * Note: Auto-registers default property editors from the
  * {@code org.springframework.beans.propertyeditors} package, which apply
  * in addition to the JDK's standard PropertyEditors. Applications can call
  * the {@link #registerCustomEditor(Class, java.beans.PropertyEditor)} method
- * to register an editor for a particular instance (i.e. they are not shared
- * across the application). See the base class
+ * to register an editor for a particular instance (i.e. they are not shared across the application). See the base class
  * {@link PropertyEditorRegistrySupport} for details.
  *
  * <b>NOTE: As of Spring 2.5, this is - for almost all purposes - an
@@ -114,7 +112,6 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 		setSecurityContext(parent.acc);
 	}
 
-
 	/**
 	 * Set a bean instance to hold, without any unwrapping of {@link java.util.Optional}.
 	 * @param object the actual target object
@@ -173,7 +170,6 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 		return this.acc;
 	}
 
-
 	/**
 	 * Convert the given value for the specified property to the latter's type.
 	 * This method is only intended for optimizations in a BeanFactory.
@@ -189,8 +185,7 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 		CachedIntrospectionResults cachedIntrospectionResults = getCachedIntrospectionResults();
 		PropertyDescriptor pd = cachedIntrospectionResults.getPropertyDescriptor(propertyName);
 		if (pd == null) {
-			throw new InvalidPropertyException(getRootClass(), getNestedPath() + propertyName,
-					"No property '" + propertyName + "' found");
+			throw new InvalidPropertyException(getRootClass(), getNestedPath() + propertyName,"No property '" + propertyName + "' found");
 		}
 		TypeDescriptor td = cachedIntrospectionResults.getTypeDescriptor(pd);
 		if (td == null) {
@@ -274,14 +269,11 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 					return null;
 				});
 				try {
-					return AccessController.doPrivileged((PrivilegedExceptionAction<Object>) () ->
-							readMethod.invoke(getWrappedInstance(), (Object[]) null), acc);
-				}
-				catch (PrivilegedActionException pae) {
+					return AccessController.doPrivileged((PrivilegedExceptionAction<Object>) () -> readMethod.invoke(getWrappedInstance(), (Object[]) null), acc);
+				}catch (PrivilegedActionException pae) {
 					throw pae.getException();
 				}
-			}
-			else {
+			}else {
 				ReflectionUtils.makeAccessible(readMethod);
 				return readMethod.invoke(getWrappedInstance(), (Object[]) null);
 			}
@@ -290,8 +282,7 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 		@Override
 		public void setValue(final @Nullable Object value) throws Exception {
 			// 获取 writeMethod，也就是 setter 方法
-			final Method writeMethod = (this.pd instanceof GenericTypeAwarePropertyDescriptor ?
-					((GenericTypeAwarePropertyDescriptor) this.pd).getWriteMethodForActualAccess() : this.pd.getWriteMethod());
+			final Method writeMethod = (this.pd instanceof GenericTypeAwarePropertyDescriptor ? ((GenericTypeAwarePropertyDescriptor) this.pd).getWriteMethodForActualAccess() : this.pd.getWriteMethod());
 			if (System.getSecurityManager() != null) {
 				AccessController.doPrivileged((PrivilegedAction<Object>) () -> {
 					ReflectionUtils.makeAccessible(writeMethod);
@@ -299,12 +290,10 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 				});
 				try {
 					AccessController.doPrivileged((PrivilegedExceptionAction<Object>) () -> writeMethod.invoke(getWrappedInstance(), value), acc);
-				}
-				catch (PrivilegedActionException ex) {
+				}catch (PrivilegedActionException ex) {
 					throw ex.getException();
 				}
-			}
-			else {
+			}else {
 				ReflectionUtils.makeAccessible(writeMethod);
 				// 调用 setter 方法，getWrappedInstance() 返回的是 bean 对象
 				writeMethod.invoke(getWrappedInstance(), value);

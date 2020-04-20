@@ -22,7 +22,6 @@ import org.springframework.util.ReflectionUtils;
  *
  * A DirectFieldAccessor's default for the "extractOldValueForEditor" setting
  * is "true", since a field can always be read without side effects.
- *
 
  * @author Stephane Nicoll
  * @since 2.0
@@ -115,11 +114,8 @@ public class DirectFieldAccessor extends AbstractNestablePropertyAccessor {
 			try {
 				ReflectionUtils.makeAccessible(this.field);
 				return this.field.get(getWrappedInstance());
-			}
-
-			catch (IllegalAccessException ex) {
-				throw new InvalidPropertyException(getWrappedClass(),
-						this.field.getName(), "Field is not accessible", ex);
+			}catch (IllegalAccessException ex) {
+				throw new InvalidPropertyException(getWrappedClass(),this.field.getName(), "Field is not accessible", ex);
 			}
 		}
 
@@ -128,10 +124,8 @@ public class DirectFieldAccessor extends AbstractNestablePropertyAccessor {
 			try {
 				ReflectionUtils.makeAccessible(this.field);
 				this.field.set(getWrappedInstance(), value);
-			}
-			catch (IllegalAccessException ex) {
-				throw new InvalidPropertyException(getWrappedClass(), this.field.getName(),
-						"Field is not accessible", ex);
+			}catch (IllegalAccessException ex) {
+				throw new InvalidPropertyException(getWrappedClass(), this.field.getName(),"Field is not accessible", ex);
 			}
 		}
 	}

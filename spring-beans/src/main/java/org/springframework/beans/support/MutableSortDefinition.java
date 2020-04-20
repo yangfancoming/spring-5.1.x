@@ -9,9 +9,6 @@ import org.springframework.util.StringUtils;
 /**
  * Mutable implementation of the {@link SortDefinition} interface.
  * Supports toggling the ascending value on setting the same property again.
- *
-
- * @author Jean-Pierre Pawlak
  * @since 26.05.2003
  * @see #setToggleAscendingOnProperty
  */
@@ -25,7 +22,6 @@ public class MutableSortDefinition implements SortDefinition, Serializable {
 	private boolean ascending = true;
 
 	private boolean toggleAscendingOnProperty = false;
-
 
 	/**
 	 * Create an empty MutableSortDefinition,
@@ -80,8 +76,7 @@ public class MutableSortDefinition implements SortDefinition, Serializable {
 	public void setProperty(String property) {
 		if (!StringUtils.hasLength(property)) {
 			this.property = "";
-		}
-		else {
+		}else {
 			// Implicit toggling of ascending?
 			if (isToggleAscendingOnProperty()) {
 				this.ascending = (!property.equals(this.property) || !this.ascending);

@@ -23,8 +23,6 @@ import org.springframework.util.StringUtils;
  * Extension of the standard JavaBeans {@link PropertyDescriptor} class,
  * overriding {@code getPropertyType()} such that a generically declared
  * type variable will be resolved against the containing bean class.
- *
-
  * @since 2.5.2
  */
 final class GenericTypeAwarePropertyDescriptor extends PropertyDescriptor {
@@ -49,28 +47,22 @@ final class GenericTypeAwarePropertyDescriptor extends PropertyDescriptor {
 	private final Class<?> propertyEditorClass;
 
 
-	public GenericTypeAwarePropertyDescriptor(Class<?> beanClass, String propertyName,
-			@Nullable Method readMethod, @Nullable Method writeMethod, Class<?> propertyEditorClass)
-			throws IntrospectionException {
-
+	public GenericTypeAwarePropertyDescriptor(Class<?> beanClass, String propertyName,@Nullable Method readMethod, @Nullable Method writeMethod, Class<?> propertyEditorClass) throws IntrospectionException {
 		super(propertyName, null, null);
 		this.beanClass = beanClass;
-
 		Method readMethodToUse = (readMethod != null ? BridgeMethodResolver.findBridgedMethod(readMethod) : null);
 		Method writeMethodToUse = (writeMethod != null ? BridgeMethodResolver.findBridgedMethod(writeMethod) : null);
 		if (writeMethodToUse == null && readMethodToUse != null) {
 			// Fallback: Original JavaBeans introspection might not have found matching setter
 			// method due to lack of bridge method resolution, in case of the getter using a
 			// covariant return type whereas the setter is defined for the concrete property type.
-			Method candidate = ClassUtils.getMethodIfAvailable(
-					this.beanClass, "set" + StringUtils.capitalize(getName()), (Class<?>[]) null);
+			Method candidate = ClassUtils.getMethodIfAvailable(this.beanClass, "set" + StringUtils.capitalize(getName()), (Class<?>[]) null);
 			if (candidate != null && candidate.getParameterCount() == 1) {
 				writeMethodToUse = candidate;
 			}
 		}
 		this.readMethod = readMethodToUse;
 		this.writeMethod = writeMethodToUse;
-
 		if (this.writeMethod != null) {
 			if (this.readMethod == null) {
 				// Write method not matched against read method: potentially ambiguous through
@@ -78,9 +70,7 @@ final class GenericTypeAwarePropertyDescriptor extends PropertyDescriptor {
 				// by the JDK's JavaBeans Introspector...
 				Set<Method> ambiguousCandidates = new HashSet<>();
 				for (Method method : beanClass.getMethods()) {
-					if (method.getName().equals(writeMethodToUse.getName()) &&
-							!method.equals(writeMethodToUse) && !method.isBridge() &&
-							method.getParameterCount() == writeMethodToUse.getParameterCount()) {
+					if (method.getName().equals(writeMethodToUse.getName()) && !method.equals(writeMethodToUse) && !method.isBridge() && method.getParameterCount() == writeMethodToUse.getParameterCount()) {
 						ambiguousCandidates.add(method);
 					}
 				}
@@ -91,14 +81,11 @@ final class GenericTypeAwarePropertyDescriptor extends PropertyDescriptor {
 			this.writeMethodParameter = new MethodParameter(this.writeMethod, 0);
 			GenericTypeResolver.resolveParameterType(this.writeMethodParameter, this.beanClass);
 		}
-
 		if (this.readMethod != null) {
 			this.propertyType = GenericTypeResolver.resolveReturnType(this.readMethod, this.beanClass);
-		}
-		else if (this.writeMethodParameter != null) {
+		}else if (this.writeMethodParameter != null) {
 			this.propertyType = this.writeMethodParameter.getParameterType();
 		}
-
 		this.propertyEditorClass = propertyEditorClass;
 	}
 
@@ -125,8 +112,7 @@ final class GenericTypeAwarePropertyDescriptor extends PropertyDescriptor {
 		if (ambiguousCandidates != null) {
 			this.ambiguousWriteMethods = null;
 			LogFactory.getLog(GenericTypeAwarePropertyDescriptor.class).warn("Invalid JavaBean property '" +
-					getName() + "' being accessed! Ambiguous write methods found next to actually used [" +
-					this.writeMethod + "]: " + ambiguousCandidates);
+					getName() + "' being accessed! Ambiguous write methods found next to actually used [" + this.writeMethod + "]: " + ambiguousCandidates);
 		}
 		return this.writeMethod;
 	}
@@ -146,7 +132,6 @@ final class GenericTypeAwarePropertyDescriptor extends PropertyDescriptor {
 	public Class<?> getPropertyEditorClass() {
 		return this.propertyEditorClass;
 	}
-
 
 	@Override
 	public boolean equals(Object other) {

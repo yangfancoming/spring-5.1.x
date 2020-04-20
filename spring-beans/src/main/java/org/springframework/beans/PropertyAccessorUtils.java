@@ -7,8 +7,6 @@ import org.springframework.lang.Nullable;
 /**
  * Utility methods for classes that perform bean property access
  * according to the {@link PropertyAccessor} interface.
- *
-
  * @since 1.2.6
  */
 public abstract class PropertyAccessorUtils {
@@ -20,8 +18,7 @@ public abstract class PropertyAccessorUtils {
 	 * @return the actual property name, without any key elements
 	 */
 	public static String getPropertyName(String propertyPath) {
-		int separatorIndex = (propertyPath.endsWith(PropertyAccessor.PROPERTY_KEY_SUFFIX) ?
-				propertyPath.indexOf(PropertyAccessor.PROPERTY_KEY_PREFIX_CHAR) : -1);
+		int separatorIndex = (propertyPath.endsWith(PropertyAccessor.PROPERTY_KEY_SUFFIX) ? propertyPath.indexOf(PropertyAccessor.PROPERTY_KEY_PREFIX_CHAR) : -1);
 		return (separatorIndex != -1 ? propertyPath.substring(0, separatorIndex) : propertyPath);
 	}
 
@@ -31,13 +28,10 @@ public abstract class PropertyAccessorUtils {
 	 * @return whether the path indicates an indexed or nested property
 	 */
 	public static boolean isNestedOrIndexedProperty(@Nullable String propertyPath) {
-		if (propertyPath == null) {
-			return false;
-		}
+		if (propertyPath == null) return false;
 		for (int i = 0; i < propertyPath.length(); i++) {
 			char ch = propertyPath.charAt(i);
-			if (ch == PropertyAccessor.NESTED_PROPERTY_SEPARATOR_CHAR ||
-					ch == PropertyAccessor.PROPERTY_KEY_PREFIX_CHAR) {
+			if (ch == PropertyAccessor.NESTED_PROPERTY_SEPARATOR_CHAR || ch == PropertyAccessor.PROPERTY_KEY_PREFIX_CHAR) {
 				return true;
 			}
 		}
@@ -113,8 +107,7 @@ public abstract class PropertyAccessorUtils {
 		if (registeredPath.charAt(propertyPath.length()) != PropertyAccessor.PROPERTY_KEY_PREFIX_CHAR) {
 			return false;
 		}
-		return (registeredPath.indexOf(PropertyAccessor.PROPERTY_KEY_SUFFIX_CHAR, propertyPath.length() + 1) ==
-				registeredPath.length() - 1);
+		return (registeredPath.indexOf(PropertyAccessor.PROPERTY_KEY_SUFFIX_CHAR, propertyPath.length() + 1) == registeredPath.length() - 1);
 	}
 
 	/**
@@ -126,18 +119,14 @@ public abstract class PropertyAccessorUtils {
 	 * @return the canonical representation of the property path
 	 */
 	public static String canonicalPropertyName(@Nullable String propertyName) {
-		if (propertyName == null) {
-			return "";
-		}
-
+		if (propertyName == null) return "";
 		StringBuilder sb = new StringBuilder(propertyName);
 		int searchIndex = 0;
 		while (searchIndex != -1) {
 			int keyStart = sb.indexOf(PropertyAccessor.PROPERTY_KEY_PREFIX, searchIndex);
 			searchIndex = -1;
 			if (keyStart != -1) {
-				int keyEnd = sb.indexOf(
-						PropertyAccessor.PROPERTY_KEY_SUFFIX, keyStart + PropertyAccessor.PROPERTY_KEY_PREFIX.length());
+				int keyEnd = sb.indexOf(PropertyAccessor.PROPERTY_KEY_SUFFIX, keyStart + PropertyAccessor.PROPERTY_KEY_PREFIX.length());
 				if (keyEnd != -1) {
 					String key = sb.substring(keyStart + PropertyAccessor.PROPERTY_KEY_PREFIX.length(), keyEnd);
 					if ((key.startsWith("'") && key.endsWith("'")) || (key.startsWith("\"") && key.endsWith("\""))) {
@@ -155,15 +144,12 @@ public abstract class PropertyAccessorUtils {
 	/**
 	 * Determine the canonical names for the given property paths.
 	 * @param propertyNames the bean property paths (as array)
-	 * @return the canonical representation of the property paths
-	 * (as array of the same size)
+	 * @return the canonical representation of the property paths (as array of the same size)
 	 * @see #canonicalPropertyName(String)
 	 */
 	@Nullable
 	public static String[] canonicalPropertyNames(@Nullable String[] propertyNames) {
-		if (propertyNames == null) {
-			return null;
-		}
+		if (propertyNames == null) return null;
 		String[] result = new String[propertyNames.length];
 		for (int i = 0; i < propertyNames.length; i++) {
 			result[i] = canonicalPropertyName(propertyNames[i]);
