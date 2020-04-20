@@ -33,12 +33,10 @@ public class DefaultConversionService extends GenericConversionService {
 
 
 	/**
-	 * Return a shared default {@code ConversionService} instance,
-	 * lazily building it once needed.
+	 * Return a shared default {@code ConversionService} instance, lazily building it once needed.
 	 * <b>NOTE:</b> We highly recommend constructing individual
 	 * {@code ConversionService} instances for customization purposes.
-	 * This accessor is only meant as a fallback for code paths which
-	 * need simple type coercion but cannot access a longer-lived
+	 * This accessor is only meant as a fallback for code paths which need simple type coercion but cannot access a longer-lived
 	 * {@code ConversionService} instance any other way.
 	 * @return the shared {@code ConversionService} instance (never {@code null})
 	 * @since 4.3.5

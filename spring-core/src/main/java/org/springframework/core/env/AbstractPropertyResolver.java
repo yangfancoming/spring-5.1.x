@@ -166,18 +166,14 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 	@Override
 	public String getRequiredProperty(String key) throws IllegalStateException {
 		String value = getProperty(key);
-		if (value == null) {
-			throw new IllegalStateException("Required key '" + key + "' not found");
-		}
+		if (value == null) throw new IllegalStateException("Required key '" + key + "' not found");
 		return value;
 	}
 
 	@Override
 	public <T> T getRequiredProperty(String key, Class<T> valueType) throws IllegalStateException {
 		T value = getProperty(key, valueType);
-		if (value == null) {
-			throw new IllegalStateException("Required key '" + key + "' not found");
-		}
+		if (value == null) throw new IllegalStateException("Required key '" + key + "' not found");
 		return value;
 	}
 

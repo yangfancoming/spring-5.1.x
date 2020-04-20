@@ -51,14 +51,9 @@ import org.springframework.util.StringUtils;
  * <li>{@link #getDefaultContextLoaderClass}
  * <li>{@link #processMergedContextConfiguration}
  * </ul>
- *
  * To plug in custom
  * {@link org.springframework.test.context.cache.ContextCache ContextCache}
  * support, override {@link #getCacheAwareContextLoaderDelegate()}.
- *
- * @author Sam Brannen
-
- * @author Phillip Webb
  * @since 4.1
  */
 public abstract class AbstractTestContextBootstrapper implements TestContextBootstrapper {
@@ -67,7 +62,6 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 
 	@Nullable
 	private BootstrapContext bootstrapContext;
-
 
 	@Override
 	public void setBootstrapContext(BootstrapContext bootstrapContext) {
@@ -91,8 +85,7 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 	 */
 	@Override
 	public TestContext buildTestContext() {
-		return new DefaultTestContext(getBootstrapContext().getTestClass(), buildMergedContextConfiguration(),
-				getCacheAwareContextLoaderDelegate());
+		return new DefaultTestContext(getBootstrapContext().getTestClass(), buildMergedContextConfiguration(),getCacheAwareContextLoaderDelegate());
 	}
 
 	@Override
@@ -102,8 +95,7 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 		List<Class<? extends TestExecutionListener>> classesList = new ArrayList<>();
 		boolean usingDefaults = false;
 
-		AnnotationDescriptor<TestExecutionListeners> descriptor =
-				MetaAnnotationUtils.findAnnotationDescriptor(clazz, annotationType);
+		AnnotationDescriptor<TestExecutionListeners> descriptor = MetaAnnotationUtils.findAnnotationDescriptor(clazz, annotationType);
 
 		// Use defaults?
 		if (descriptor == null) {

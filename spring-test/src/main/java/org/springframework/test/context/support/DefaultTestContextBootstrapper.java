@@ -7,10 +7,7 @@ import org.springframework.test.context.TestContextBootstrapper;
 
 /**
  * Default implementation of the {@link TestContextBootstrapper} SPI.
- *
  * Uses {@link DelegatingSmartContextLoader} as the default {@link ContextLoader}.
- *
- * @author Sam Brannen
  * @since 4.1
  */
 public class DefaultTestContextBootstrapper extends AbstractTestContextBootstrapper {
@@ -22,5 +19,4 @@ public class DefaultTestContextBootstrapper extends AbstractTestContextBootstrap
 	protected Class<? extends ContextLoader> getDefaultContextLoaderClass(Class<?> testClass) {
 		return DelegatingSmartContextLoader.class;
 	}
-
 }

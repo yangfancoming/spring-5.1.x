@@ -71,8 +71,7 @@ public abstract class ClassUtils {
 	private static final Map<Class<?>, Class<?>> primitiveTypeToWrapperMap = new IdentityHashMap<>(8);
 
 	/**
-	 * Map with primitive type name as key and corresponding primitive
-	 * type as value, for example: "int" -> "int.class".
+	 * Map with primitive type name as key and corresponding primitive type as value, for example: "int" -> "int.class".
 	 */
 	private static final Map<String, Class<?>> primitiveTypeNameMap = new HashMap<>(32);
 
@@ -260,7 +259,6 @@ public abstract class ClassUtils {
 		try {
 			return forName(className, classLoader);
 		}catch (IllegalAccessError err) {
-
 			throw new IllegalStateException("Readability mismatch in inheritance hierarchy of class [" + className + "]: " + err.getMessage(), err);
 		}catch (LinkageError err) {
 			throw new IllegalArgumentException("Unresolvable class definition for class [" + className + "]", err);
@@ -273,8 +271,7 @@ public abstract class ClassUtils {
 	 * Determine whether the {@link Class} identified by the supplied name is present and can be loaded.
 	 * Will return {@code false} if either the class or one of its dependencies is not present or cannot be loaded.
 	 * @param className the name of the class to check
-	 * @param classLoader the class loader to use
-	 * (may be {@code null} which indicates the default class loader)
+	 * @param classLoader the class loader to use (may be {@code null} which indicates the default class loader)
 	 * @return whether the specified class is present (including all of its superclasses and interfaces)
 	 * @throws IllegalStateException if the corresponding class is resolvable but
 	 * there was a readability mismatch in the inheritance hierarchy of the class
@@ -301,9 +298,7 @@ public abstract class ClassUtils {
 	 * (may be {@code null} in which case this method will always return {@code true})
 	 */
 	public static boolean isVisible(Class<?> clazz, @Nullable ClassLoader classLoader) {
-		if (classLoader == null) {
-			return true;
-		}
+		if (classLoader == null) return true;
 		try {
 			if (clazz.getClassLoader() == classLoader) {
 				return true;
@@ -328,9 +323,7 @@ public abstract class ClassUtils {
 		try {
 			ClassLoader target = clazz.getClassLoader();
 			// Common cases
-			if (target == classLoader || target == null) {
-				return true;
-			}
+			if (target == classLoader || target == null) return true;
 			if (classLoader == null) return false;
 			// Check for match in ancestors -> positive
 			ClassLoader current = classLoader;
@@ -440,8 +433,7 @@ public abstract class ClassUtils {
 
 	/**
 	 * 如果传入的类型是一个简单类型，返回这个简单类型的包装类型；
-	 * Resolve the given class if it is a primitive class,
-	 * returning the corresponding primitive wrapper type instead.
+	 * Resolve the given class if it is a primitive class,returning the corresponding primitive wrapper type instead.
 	 * @param clazz the class to check
 	 * @return the original class, or a primitive wrapper for the original primitive type
 	 */
@@ -477,8 +469,7 @@ public abstract class ClassUtils {
 
 	/**
 	 * Determine if the given type is assignable from the given value,
-	 * assuming setting by reflection. Considers primitive wrapper classes
-	 * as assignable to the corresponding primitive types.
+	 * assuming setting by reflection. Considers primitive wrapper classes  as assignable to the corresponding primitive types.
 	 * @param type the target type
 	 * @param value the value that should be assigned to the type
 	 * @return if the type is assignable from the value
@@ -555,8 +546,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
-	 * Build a String that consists of the names of the classes/interfaces
-	 * in the given array.
+	 * Build a String that consists of the names of the classes/interfaces in the given array.
 	 * Basically like {@code AbstractCollection.toString()}, but stripping
 	 * the "class "/"interface " prefix before every class name.
 	 * @param classes an array of Class objects
@@ -735,9 +725,7 @@ public abstract class ClassUtils {
 		Class<?> ancestor = clazz1;
 		do {
 			ancestor = ancestor.getSuperclass();
-			if (ancestor == null || Object.class == ancestor) {
-				return null;
-			}
+			if (ancestor == null || Object.class == ancestor) return null;
 		}
 		while (!ancestor.isAssignableFrom(clazz2));
 		return ancestor;
@@ -747,8 +735,7 @@ public abstract class ClassUtils {
 	 * Determine whether the given interface is a common Java language interface:
 	 * {@link Serializable}, {@link Externalizable}, {@link Closeable}, {@link AutoCloseable},
 	 * {@link Cloneable}, {@link Comparable} - all of which can be ignored when looking
-	 * for 'primary' user-level interfaces. Common characteristics: no service-level
-	 * operations, no bean property methods, no default methods.
+	 * for 'primary' user-level interfaces. Common characteristics: no service-level operations, no bean property methods, no default methods.
 	 * @param ifc the interface to check
 	 * @since 5.0.3
 	 */

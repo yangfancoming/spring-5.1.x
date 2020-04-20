@@ -423,6 +423,11 @@ public class ClassUtilsTests {
 		static boolean noArgCalled;
 		static boolean argCalled;
 		static boolean overloadedCalled;
+
+		public InnerClass() {
+			System.out.println("InnerClass  is  invoked!");
+		}
+
 		public static void staticMethod() {
 			System.out.println("staticMethod  is  invoked!");
 			noArgCalled = true;
