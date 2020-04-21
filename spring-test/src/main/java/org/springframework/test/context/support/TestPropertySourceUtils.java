@@ -35,10 +35,7 @@ import static org.springframework.test.util.MetaAnnotationUtils.findAnnotationDe
 /**
  * Utility methods for working with {@link TestPropertySource @TestPropertySource}
  * and adding test {@link PropertySource PropertySources} to the {@code Environment}.
- *
  * Primarily intended for use within the framework.
- *
- * @author Sam Brannen
  * @since 4.1
  * @see TestPropertySource
  */
@@ -52,7 +49,6 @@ public abstract class TestPropertySourceUtils {
 	public static final String INLINED_PROPERTIES_PROPERTY_SOURCE_NAME = "Inlined Test Properties";
 
 	private static final Log logger = LogFactory.getLog(TestPropertySourceUtils.class);
-
 
 	static MergedTestPropertySources buildMergedTestPropertySources(Class<?> testClass) {
 		Class<TestPropertySource> annotationType = TestPropertySource.class;
@@ -73,37 +69,26 @@ public abstract class TestPropertySourceUtils {
 		Class<TestPropertySource> annotationType = TestPropertySource.class;
 
 		AnnotationDescriptor<TestPropertySource> descriptor = findAnnotationDescriptor(testClass, annotationType);
-		Assert.notNull(descriptor, String.format(
-				"Could not find an 'annotation declaring class' for annotation type [%s] and class [%s]",
-				annotationType.getName(), testClass.getName()));
-
+		Assert.notNull(descriptor, String.format("Could not find an 'annotation declaring class' for annotation type [%s] and class [%s]",annotationType.getName(), testClass.getName()));
 		while (descriptor != null) {
 			TestPropertySource testPropertySource = descriptor.synthesizeAnnotation();
 			Class<?> rootDeclaringClass = descriptor.getRootDeclaringClass();
 			if (logger.isTraceEnabled()) {
-				logger.trace(String.format("Retrieved @TestPropertySource [%s] for declaring class [%s].",
-					testPropertySource, rootDeclaringClass.getName()));
+				logger.trace(String.format("Retrieved @TestPropertySource [%s] for declaring class [%s].",testPropertySource, rootDeclaringClass.getName()));
 			}
-			TestPropertySourceAttributes attributes =
-					new TestPropertySourceAttributes(rootDeclaringClass, testPropertySource);
-			if (logger.isTraceEnabled()) {
-				logger.trace("Resolved TestPropertySource attributes: " + attributes);
-			}
+			TestPropertySourceAttributes attributes = new TestPropertySourceAttributes(rootDeclaringClass, testPropertySource);
+			if (logger.isTraceEnabled()) logger.trace("Resolved TestPropertySource attributes: " + attributes);
 			attributesList.add(attributes);
 			descriptor = findAnnotationDescriptor(rootDeclaringClass.getSuperclass(), annotationType);
 		}
-
 		return attributesList;
 	}
 
 	private static String[] mergeLocations(List<TestPropertySourceAttributes> attributesList) {
 		List<String> locations = new ArrayList<>();
 		for (TestPropertySourceAttributes attrs : attributesList) {
-			if (logger.isTraceEnabled()) {
-				logger.trace(String.format("Processing locations for TestPropertySource attributes %s", attrs));
-			}
-			String[] locationsArray = TestContextResourceUtils.convertToClasspathResourcePaths(
-					attrs.getDeclaringClass(), attrs.getLocations());
+			if (logger.isTraceEnabled()) logger.trace(String.format("Processing locations for TestPropertySource attributes %s", attrs));
+			String[] locationsArray = TestContextResourceUtils.convertToClasspathResourcePaths(attrs.getDeclaringClass(), attrs.getLocations());
 			locations.addAll(0, Arrays.asList(locationsArray));
 			if (!attrs.isInheritLocations()) {
 				break;
@@ -115,9 +100,7 @@ public abstract class TestPropertySourceUtils {
 	private static String[] mergeProperties(List<TestPropertySourceAttributes> attributesList) {
 		List<String> properties = new ArrayList<>();
 		for (TestPropertySourceAttributes attrs : attributesList) {
-			if (logger.isTraceEnabled()) {
-				logger.trace(String.format("Processing inlined properties for TestPropertySource attributes %s", attrs));
-			}
+			if (logger.isTraceEnabled()) logger.trace(String.format("Processing inlined properties for TestPropertySource attributes %s", attrs));
 			String[] attrProps = attrs.getProperties();
 			if (attrProps != null) {
 				properties.addAll(0, Arrays.asList(attrProps));
@@ -130,14 +113,11 @@ public abstract class TestPropertySourceUtils {
 	}
 
 	/**
-	 * Add the {@link Properties} files from the given resource {@code locations}
-	 * to the {@link Environment} of the supplied {@code context}.
+	 * Add the {@link Properties} files from the given resource {@code locations} to the {@link Environment} of the supplied {@code context}.
 	 * This method simply delegates to
 	 * {@link #addPropertiesFilesToEnvironment(ConfigurableEnvironment, ResourceLoader, String...)}.
-	 * @param context the application context whose environment should be updated;
-	 * never {@code null}
-	 * @param locations the resource locations of {@code Properties} files to add
-	 * to the environment; potentially empty but never {@code null}
+	 * @param context the application context whose environment should be updated;never {@code null}
+	 * @param locations the resource locations of {@code Properties} files to add  to the environment; potentially empty but never {@code null}
 	 * @throws IllegalStateException if an error occurs while processing a properties file
 	 * @since 4.1.5
 	 * @see ResourcePropertySource
@@ -151,28 +131,21 @@ public abstract class TestPropertySourceUtils {
 	}
 
 	/**
-	 * Add the {@link Properties} files from the given resource {@code locations}
-	 * to the supplied {@link ConfigurableEnvironment environment}.
+	 * Add the {@link Properties} files from the given resource {@code locations} to the supplied {@link ConfigurableEnvironment environment}.
 	 * Property placeholders in resource locations (i.e., <code>${...}</code>)
-	 * will be {@linkplain Environment#resolveRequiredPlaceholders(String) resolved}
-	 * against the {@code Environment}.
+	 * will be {@linkplain Environment#resolveRequiredPlaceholders(String) resolved} against the {@code Environment}.
 	 * Each properties file will be converted to a {@link ResourcePropertySource}
-	 * that will be added to the {@link PropertySources} of the environment with
-	 * highest precedence.
+	 * that will be added to the {@link PropertySources} of the environment with highest precedence.
 	 * @param environment the environment to update; never {@code null}
-	 * @param resourceLoader the {@code ResourceLoader} to use to load each resource;
-	 * never {@code null}
-	 * @param locations the resource locations of {@code Properties} files to add
-	 * to the environment; potentially empty but never {@code null}
+	 * @param resourceLoader the {@code ResourceLoader} to use to load each resource;never {@code null}
+	 * @param locations the resource locations of {@code Properties} files to add to the environment; potentially empty but never {@code null}
 	 * @throws IllegalStateException if an error occurs while processing a properties file
 	 * @since 4.3
 	 * @see ResourcePropertySource
 	 * @see TestPropertySource#locations
 	 * @see #addPropertiesFilesToEnvironment(ConfigurableApplicationContext, String...)
 	 */
-	public static void addPropertiesFilesToEnvironment(ConfigurableEnvironment environment,
-			ResourceLoader resourceLoader, String... locations) {
-
+	public static void addPropertiesFilesToEnvironment(ConfigurableEnvironment environment,ResourceLoader resourceLoader, String... locations) {
 		Assert.notNull(environment, "'environment' must not be null");
 		Assert.notNull(resourceLoader, "'resourceLoader' must not be null");
 		Assert.notNull(locations, "'locations' must not be null");
@@ -182,21 +155,17 @@ public abstract class TestPropertySourceUtils {
 				Resource resource = resourceLoader.getResource(resolvedLocation);
 				environment.getPropertySources().addFirst(new ResourcePropertySource(resource));
 			}
-		}
-		catch (IOException ex) {
+		}catch (IOException ex) {
 			throw new IllegalStateException("Failed to add PropertySource to Environment", ex);
 		}
 	}
 
 	/**
-	 * Add the given <em>inlined properties</em> to the {@link Environment} of the
-	 * supplied {@code context}.
+	 * Add the given <em>inlined properties</em> to the {@link Environment} of the supplied {@code context}.
 	 * This method simply delegates to
 	 * {@link #addInlinedPropertiesToEnvironment(ConfigurableEnvironment, String[])}.
-	 * @param context the application context whose environment should be updated;
-	 * never {@code null}
-	 * @param inlinedProperties the inlined properties to add to the environment;
-	 * potentially empty but never {@code null}
+	 * @param context the application context whose environment should be updated;never {@code null}
+	 * @param inlinedProperties the inlined properties to add to the environment;potentially empty but never {@code null}
 	 * @since 4.1.5
 	 * @see TestPropertySource#properties
 	 * @see #addInlinedPropertiesToEnvironment(ConfigurableEnvironment, String[])
@@ -208,15 +177,11 @@ public abstract class TestPropertySourceUtils {
 	}
 
 	/**
-	 * Add the given <em>inlined properties</em> (in the form of <em>key-value</em>
-	 * pairs) to the supplied {@link ConfigurableEnvironment environment}.
-	 * All key-value pairs will be added to the {@code Environment} as a
-	 * single {@link MapPropertySource} with the highest precedence.
-	 * For details on the parsing of <em>inlined properties</em>, consult the
-	 * Javadoc for {@link #convertInlinedPropertiesToMap}.
+	 * Add the given <em>inlined properties</em> (in the form of <em>key-value</em> pairs) to the supplied {@link ConfigurableEnvironment environment}.
+	 * All key-value pairs will be added to the {@code Environment} as a single {@link MapPropertySource} with the highest precedence.
+	 * For details on the parsing of <em>inlined properties</em>, consult the Javadoc for {@link #convertInlinedPropertiesToMap}.
 	 * @param environment the environment to update; never {@code null}
-	 * @param inlinedProperties the inlined properties to add to the environment;
-	 * potentially empty but never {@code null}
+	 * @param inlinedProperties the inlined properties to add to the environment;potentially empty but never {@code null}
 	 * @since 4.1.5
 	 * @see MapPropertySource
 	 * @see #INLINED_PROPERTIES_PROPERTY_SOURCE_NAME
@@ -228,11 +193,9 @@ public abstract class TestPropertySourceUtils {
 		Assert.notNull(inlinedProperties, "'inlinedProperties' must not be null");
 		if (!ObjectUtils.isEmpty(inlinedProperties)) {
 			if (logger.isDebugEnabled()) {
-				logger.debug("Adding inlined properties to environment: " +
-						ObjectUtils.nullSafeToString(inlinedProperties));
+				logger.debug("Adding inlined properties to environment: " + ObjectUtils.nullSafeToString(inlinedProperties));
 			}
-			MapPropertySource ps = (MapPropertySource)
-					environment.getPropertySources().get(INLINED_PROPERTIES_PROPERTY_SOURCE_NAME);
+			MapPropertySource ps = (MapPropertySource)environment.getPropertySources().get(INLINED_PROPERTIES_PROPERTY_SOURCE_NAME);
 			if (ps == null) {
 				ps = new MapPropertySource(INLINED_PROPERTIES_PROPERTY_SOURCE_NAME, new LinkedHashMap<>());
 				environment.getPropertySources().addFirst(ps);
@@ -243,18 +206,14 @@ public abstract class TestPropertySourceUtils {
 
 	/**
 	 * Convert the supplied <em>inlined properties</em> (in the form of <em>key-value</em>
-	 * pairs) into a map keyed by property name, preserving the ordering of property names
-	 * in the returned map.
+	 * pairs) into a map keyed by property name, preserving the ordering of property names in the returned map.
 	 * Parsing of the key-value pairs is achieved by converting all pairs
 	 * into <em>virtual</em> properties files in memory and delegating to
 	 * {@link Properties#load(java.io.Reader)} to parse each virtual file.
-	 * For a full discussion of <em>inlined properties</em>, consult the Javadoc
-	 * for {@link TestPropertySource#properties}.
-	 * @param inlinedProperties the inlined properties to convert; potentially empty
-	 * but never {@code null}
+	 * For a full discussion of <em>inlined properties</em>, consult the Javadoc for {@link TestPropertySource#properties}.
+	 * @param inlinedProperties the inlined properties to convert; potentially empty but never {@code null}
 	 * @return a new, ordered map containing the converted properties
-	 * @throws IllegalStateException if a given key-value pair cannot be parsed, or if
-	 * a given inlined property contains multiple key-value pairs
+	 * @throws IllegalStateException if a given key-value pair cannot be parsed, or if a given inlined property contains multiple key-value pairs
 	 * @since 4.1.5
 	 * @see #addInlinedPropertiesToEnvironment(ConfigurableEnvironment, String[])
 	 */
@@ -262,15 +221,13 @@ public abstract class TestPropertySourceUtils {
 		Assert.notNull(inlinedProperties, "'inlinedProperties' must not be null");
 		Map<String, Object> map = new LinkedHashMap<>();
 		Properties props = new Properties();
-
 		for (String pair : inlinedProperties) {
 			if (!StringUtils.hasText(pair)) {
 				continue;
 			}
 			try {
 				props.load(new StringReader(pair));
-			}
-			catch (Exception ex) {
+			}catch (Exception ex) {
 				throw new IllegalStateException("Failed to load test environment property from [" + pair + "]", ex);
 			}
 			Assert.state(props.size() == 1, () -> "Failed to load exactly one test environment property from [" + pair + "]");
@@ -279,7 +236,6 @@ public abstract class TestPropertySourceUtils {
 			}
 			props.clear();
 		}
-
 		return map;
 	}
 

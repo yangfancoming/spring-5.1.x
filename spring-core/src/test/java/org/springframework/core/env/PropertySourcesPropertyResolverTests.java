@@ -17,17 +17,17 @@ import static org.junit.Assert.*;
  */
 public class PropertySourcesPropertyResolverTests {
 
+	private ConfigurablePropertyResolver propertyResolver;
 	private Properties testProperties;
-
 	private MutablePropertySources propertySources;
 
-	private ConfigurablePropertyResolver propertyResolver;
 
 	@Before
 	public void setUp() {
-		propertySources = new MutablePropertySources();
+
 		propertyResolver = new PropertySourcesPropertyResolver(propertySources);
 		testProperties = new Properties();
+		propertySources = new MutablePropertySources();
 		propertySources.addFirst(new PropertiesPropertySource("testProperties", testProperties));
 	}
 

@@ -16,18 +16,15 @@ public interface ConfigurablePropertyResolver extends PropertyResolver {
 	 * Return the {@link ConfigurableConversionService} used when performing type conversions on properties.
 	 * The configurable nature of the returned conversion service allows for
 	 * the convenient addition and removal of individual {@code Converter} instances:
-	 * <pre class="code">
 	 * ConfigurableConversionService cs = env.getConversionService();
 	 * cs.addConverter(new FooConverter());
-	 * </pre>
 	 * @see PropertyResolver#getProperty(String, Class)
 	 * @see org.springframework.core.convert.converter.ConverterRegistry#addConverter
 	 */
 	ConfigurableConversionService getConversionService();
 
 	/**
-	 * Set the {@link ConfigurableConversionService} to be used when performing type
-	 * conversions on properties.
+	 * Set the {@link ConfigurableConversionService} to be used when performing type conversions on properties.
 	 * <strong>Note:</strong> as an alternative to fully replacing the
 	 * {@code ConversionService}, consider adding or removing individual
 	 * {@code Converter} instances by drilling into {@link #getConversionService()}

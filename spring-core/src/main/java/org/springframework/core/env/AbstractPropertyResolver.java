@@ -49,8 +49,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 
 	@Override
 	public ConfigurableConversionService getConversionService() {
-		// Need to provide an independent DefaultConversionService, not the
-		// shared DefaultConversionService used by PropertySourcesPropertyResolver.
+		// Need to provide an independent DefaultConversionService, not the shared DefaultConversionService used by PropertySourcesPropertyResolver.
 		ConfigurableConversionService cs = this.conversionService;
 		if (cs == null) {
 			synchronized (this) {
@@ -71,8 +70,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 	}
 
 	/**
-	 * Set the prefix that placeholders replaced by this resolver must begin with.
-	 * The default is "${".
+	 * Set the prefix that placeholders replaced by this resolver must begin with.The default is "${".
 	 * @see org.springframework.util.SystemPropertyUtils#PLACEHOLDER_PREFIX
 	 */
 	@Override
@@ -82,8 +80,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 	}
 
 	/**
-	 * Set the suffix that placeholders replaced by this resolver must end with.
-	 * The default is "}".
+	 * Set the suffix that placeholders replaced by this resolver must end with.The default is "}".
 	 * @see org.springframework.util.SystemPropertyUtils#PLACEHOLDER_SUFFIX
 	 */
 	@Override
@@ -95,8 +92,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 	/**
 	 * Specify the separating character between the placeholders replaced by this
 	 * resolver and their associated default value, or {@code null} if no such
-	 * special character should be processed as a value separator.
-	 * The default is ":".
+	 * special character should be processed as a value separator.The default is ":".
 	 * @see org.springframework.util.SystemPropertyUtils#VALUE_SEPARATOR
 	 */
 	@Override
@@ -108,8 +104,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 	 * Set whether to throw an exception when encountering an unresolvable placeholder
 	 * nested within the value of a given property. A {@code false} value indicates strict
 	 * resolution, i.e. that an exception will be thrown. A {@code true} value indicates
-	 * that unresolvable nested placeholders should be passed through in their unresolved
-	 * ${...} form.
+	 * that unresolvable nested placeholders should be passed through in their unresolved ${...} form.
 	 * The default is {@code false}.
 	 * @since 3.2
 	 */

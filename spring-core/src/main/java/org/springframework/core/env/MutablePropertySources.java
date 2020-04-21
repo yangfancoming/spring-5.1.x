@@ -24,22 +24,16 @@ public class MutablePropertySources implements PropertySources {
 
 	private final List<PropertySource<?>> propertySourceList = new CopyOnWriteArrayList<>();
 
-	/**
-	 * Create a new {@link MutablePropertySources} object.
-	 */
+	// Create a new {@link MutablePropertySources} object.
 	public MutablePropertySources() {}
 
-	/**
-	 * Create a new {@code MutablePropertySources} from the given propertySources
-	 * object, preserving the original order of contained {@code PropertySource} objects.
-	 */
+	//  Create a new {@code MutablePropertySources} from the given propertySources object, preserving the original order of contained {@code PropertySource} objects.
 	public MutablePropertySources(PropertySources propertySources) {
 		this();
 		for (PropertySource<?> propertySource : propertySources) {
 			addLast(propertySource);
 		}
 	}
-
 
 	@Override
 	public Iterator<PropertySource<?>> iterator() {
@@ -68,26 +62,19 @@ public class MutablePropertySources implements PropertySources {
 		return (index != -1 ? this.propertySourceList.get(index) : null);
 	}
 
-	/**
-	 * Add the given property source object with highest precedence.
-	 */
+	// Add the given property source object with highest precedence.
 	public void addFirst(PropertySource<?> propertySource) {
 		removeIfPresent(propertySource);
 		this.propertySourceList.add(0, propertySource);
 	}
 
-	/**
-	 * Add the given property source object with lowest precedence.
-	 */
+	// Add the given property source object with lowest precedence.
 	public void addLast(PropertySource<?> propertySource) {
 		removeIfPresent(propertySource);
 		this.propertySourceList.add(propertySource);
 	}
 
-	/**
-	 * Add the given property source object with precedence immediately higher
-	 * than the named relative property source.
-	 */
+	// Add the given property source object with precedence immediately higher than the named relative property source.
 	public void addBefore(String relativePropertySourceName, PropertySource<?> propertySource) {
 		assertLegalRelativeAddition(relativePropertySourceName, propertySource);
 		removeIfPresent(propertySource);
@@ -95,9 +82,7 @@ public class MutablePropertySources implements PropertySources {
 		addAtIndex(index, propertySource);
 	}
 
-	/**
-	 * Add the given property source object with precedence immediately lower than the named relative property source.
-	 */
+	// Add the given property source object with precedence immediately lower than the named relative property source.
 	public void addAfter(String relativePropertySourceName, PropertySource<?> propertySource) {
 		assertLegalRelativeAddition(relativePropertySourceName, propertySource);
 		removeIfPresent(propertySource);
@@ -105,9 +90,7 @@ public class MutablePropertySources implements PropertySources {
 		addAtIndex(index + 1, propertySource);
 	}
 
-	/**
-	 * Return the precedence of the given property source, {@code -1} if not found.
-	 */
+	// Return the precedence of the given property source, {@code -1} if not found.
 	public int precedenceOf(PropertySource<?> propertySource) {
 		return this.propertySourceList.indexOf(propertySource);
 	}
@@ -134,9 +117,7 @@ public class MutablePropertySources implements PropertySources {
 		this.propertySourceList.set(index, propertySource);
 	}
 
-	/**
-	 * Return the number of {@link PropertySource} objects contained.
-	 */
+	// Return the number of {@link PropertySource} objects contained.
 	public int size() {
 		return this.propertySourceList.size();
 	}
@@ -146,9 +127,7 @@ public class MutablePropertySources implements PropertySources {
 		return this.propertySourceList.toString();
 	}
 
-	/**
-	 * Ensure that the given property source is not being added relative to itself.
-	 */
+	//  Ensure that the given property source is not being added relative to itself.
 	protected void assertLegalRelativeAddition(String relativePropertySourceName, PropertySource<?> propertySource) {
 		String newPropertySourceName = propertySource.getName();
 		if (relativePropertySourceName.equals(newPropertySourceName)) {
@@ -156,16 +135,12 @@ public class MutablePropertySources implements PropertySources {
 		}
 	}
 
-	/**
-	 * Remove the given property source if it is present.
-	 */
+	// Remove the given property source if it is present.
 	protected void removeIfPresent(PropertySource<?> propertySource) {
 		this.propertySourceList.remove(propertySource);
 	}
 
-	/**
-	 * Add the given property source at a particular index in the list.
-	 */
+	//  Add the given property source at a particular index in the list.
 	private void addAtIndex(int index, PropertySource<?> propertySource) {
 		removeIfPresent(propertySource);
 		this.propertySourceList.add(index, propertySource);
@@ -178,9 +153,7 @@ public class MutablePropertySources implements PropertySources {
 	 */
 	private int assertPresentAndGetIndex(String name) {
 		int index = this.propertySourceList.indexOf(PropertySource.named(name));
-		if (index == -1) {
-			throw new IllegalArgumentException("PropertySource named '" + name + "' does not exist");
-		}
+		if (index == -1) throw new IllegalArgumentException("PropertySource named '" + name + "' does not exist");
 		return index;
 	}
 

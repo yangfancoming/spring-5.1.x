@@ -26,8 +26,6 @@ import static org.springframework.test.context.support.TestPropertySourceUtils.*
 
 /**
  * Unit tests for {@link TestPropertySourceUtils}.
- *
- * @author Sam Brannen
  * @since 4.1
  */
 public class TestPropertySourceUtilsTests {
@@ -38,10 +36,8 @@ public class TestPropertySourceUtilsTests {
 
 	private static final String[] FOO_LOCATIONS = new String[] {"classpath:/foo.properties"};
 
-
 	@Rule
 	public ExpectedException expectedException = ExpectedException.none();
-
 
 	@Test
 	public void emptyAnnotation() {
