@@ -248,8 +248,8 @@ public interface ListableBeanFactory extends BeanFactory {
 	 * @throws BeansException if a bean could not be created
 	 * @since 3.0
 	 * @see #findAnnotationOnBean
+	 * 找到所有带有指定注解的Bean，返回一个以Bean的name为键，其对应的Bean实例为值的Map
 	 */
-	// 找到所有带有指定注解的Bean，返回一个以Bean的name为键，其对应的Bean实例为值的Map
 	Map<String, Object> getBeansWithAnnotation(Class<? extends Annotation> annotationType) throws BeansException;
 
 	/**
@@ -261,10 +261,8 @@ public interface ListableBeanFactory extends BeanFactory {
 	 * @since 3.0
 	 * @see #getBeanNamesForAnnotation
 	 * @see #getBeansWithAnnotation
+	 * 在指定name对应的Bean上找指定的注解，如果没有找到的话，去指定Bean的父类或者父接口上查找
 	 */
-	// 在指定name对应的Bean上找指定的注解，如果没有找到的话，去指定Bean的父类或者父接口上查找
 	@Nullable
 	<A extends Annotation> A findAnnotationOnBean(String beanName, Class<A> annotationType) throws NoSuchBeanDefinitionException;
-
-
 }

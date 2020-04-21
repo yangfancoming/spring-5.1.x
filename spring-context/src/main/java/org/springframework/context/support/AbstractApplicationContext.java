@@ -40,8 +40,8 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * Abstract implementation of the {@link org.springframework.context.ApplicationContext}
- * interface. Doesn't mandate the type of storage used for configuration; simply
+ * Abstract implementation of the {@link org.springframework.context.ApplicationContext} interface.
+ * Doesn't mandate the type of storage used for configuration; simply
  * implements common context functionality. Uses the Template Method design pattern,
  * requiring concrete subclasses to implement abstract methods.
  *
@@ -61,10 +61,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * in the context; otherwise, a default multicaster of type
  * {@link org.springframework.context.event.SimpleApplicationEventMulticaster} will be used.
  *
- * Implements resource loading by extending
- * {@link org.springframework.core.io.DefaultResourceLoader}.
- * Consequently treats non-URL resource paths as class path resources
- * (supporting full class path resource names that include the package path,
+ * Implements resource loading by extending {@link org.springframework.core.io.DefaultResourceLoader}.
+ * Consequently treats non-URL resource paths as class path resources (supporting full class path resource names that include the package path,
  * e.g. "mypackage/myresource.dat"), unless the {@link #getResourceByPath} method is overridden in a subclass.
  * @since January 21, 2001
  * @see #refreshBeanFactory

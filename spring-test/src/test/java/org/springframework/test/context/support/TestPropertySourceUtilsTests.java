@@ -57,8 +57,7 @@ public class TestPropertySourceUtilsTests {
 
 	@Test
 	public void value() {
-		assertMergedTestPropertySources(ValuePropertySources.class, asArray("classpath:/value.xml"),
-				EMPTY_STRING_ARRAY);
+		assertMergedTestPropertySources(ValuePropertySources.class, asArray("classpath:/value.xml"),EMPTY_STRING_ARRAY);
 	}
 
 	@Test

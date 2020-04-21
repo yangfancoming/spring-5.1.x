@@ -10,9 +10,9 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link AbstractRefreshableApplicationContext} subclass that adds common handling f specified config locations. Serves as base class for XML-based application
- * context implementations such as {@link ClassPathXmlApplicationContext} and
- * {@link FileSystemXmlApplicationContext}, as well as {@link org.springframework.web.context.support.XmlWebApplicationContext}.
+ * {@link AbstractRefreshableApplicationContext} subclass that adds common handling f specified config locations.
+ * Serves as base class for XML-based application context implementations such as {@link ClassPathXmlApplicationContext} and {@link FileSystemXmlApplicationContext},
+ * as well as {@link org.springframework.web.context.support.XmlWebApplicationContext}.
  * @since 2.5.2
  * @see #setConfigLocation
  * @see #setConfigLocations
@@ -22,15 +22,14 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 
 	// 设置配置文件存放位置： ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:beans.xml"); 中的配置字符串数组："classpath:beans.xml"
 	@Nullable
-	private String[] configLocations; //
+	private String[] configLocations;
 
 	private boolean setIdCalled = false;
 
 	/**
 	 * Create a new AbstractRefreshableConfigApplicationContext with no parent.
 	 */
-	public AbstractRefreshableConfigApplicationContext() {
-	}
+	public AbstractRefreshableConfigApplicationContext() {}
 
 	/**
 	 * Create a new AbstractRefreshableConfigApplicationContext with the given parent context.

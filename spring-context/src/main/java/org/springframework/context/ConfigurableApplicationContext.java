@@ -14,8 +14,7 @@ import org.springframework.lang.Nullable;
 
 /**
  * SPI interface to be implemented by most if not all application contexts.
- * Provides facilities to configure an application context in addition
- * to the application context client methods in the {@link org.springframework.context.ApplicationContext} interface.
+ * Provides facilities to configure an application context in addition to the application context client methods in the {@link org.springframework.context.ApplicationContext} interface.
  * Configuration and lifecycle methods are encapsulated here to avoid making them obvious to ApplicationContext client code.
  * The present methods should only be used by startup and shutdown code.
  * @since 03.11.2003
@@ -39,8 +38,7 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 
 	/**
 	 * Name of the LoadTimeWeaver bean in the factory. If such a bean is supplied,
-	 * the context will use a temporary ClassLoader for type matching, in order
-	 * to allow the LoadTimeWeaver to process all actual bean classes.
+	 * the context will use a temporary ClassLoader for type matching, in order to allow the LoadTimeWeaver to process all actual bean classes.
 	 * @since 2.5
 	 * @see org.springframework.instrument.classloading.LoadTimeWeaver
 	 */

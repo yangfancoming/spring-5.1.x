@@ -27,8 +27,7 @@ import org.springframework.util.Assert;
  *
  * <b>This is a simple, one-stop shop convenience ApplicationContext.
  * Consider using the {@link GenericApplicationContext} class in combination
- * with an {@link org.springframework.beans.factory.xml.XmlBeanDefinitionReader}
- * for more flexible context setup.</b>
+ * with an {@link org.springframework.beans.factory.xml.XmlBeanDefinitionReader} for more flexible context setup.</b>
  * @see #getResource
  * @see #getResourceByPath
  * @see GenericApplicationContext
@@ -47,7 +46,8 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 	 * @see #setConfigLocations
 	 * @see #afterPropertiesSet()
 	 */
-	public ClassPathXmlApplicationContext() {}
+	public ClassPathXmlApplicationContext() {
+	}
 
 	/**
 	 * Create a new ClassPathXmlApplicationContext for bean-style configuration.
