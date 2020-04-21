@@ -27,7 +27,6 @@ public class App  {
 		System.out.println(whatService.getMessage());
 	}
 
-
 	/**
 	 * 正常bean实例化 测试  通过构造函数
 	 * 懒加载bean  测试  去掉 bean标签中的 lazy-init="true"属性 再运行本测试
@@ -60,7 +59,6 @@ public class App  {
 		Person person = (Person) context.getBean("person");
 		System.out.println(person);
 	}
-
 
 /**
  * ========测试方法开始=======
