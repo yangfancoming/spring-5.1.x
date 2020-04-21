@@ -294,8 +294,7 @@ public class MapperScannerConfigurer implements BeanDefinitionRegistryPostProces
 	/*
 	 * BeanDefinitionRegistries are called early in application startup, before BeanFactoryPostProcessors. This means that
 	 * PropertyResourceConfigurers will not have been loaded and any property substitution of this class' properties will
-	 * fail. To avoid this, find any PropertyResourceConfigurers defined in the context and run them on this class' bean
-	 * definition. Then update the values.
+	 * fail. To avoid this, find any PropertyResourceConfigurers defined in the context and run them on this class' bean definition. Then update the values.
 	 */
 	private void processPropertyPlaceHolders() {
 		Map<String, PropertyResourceConfigurer> prcs = applicationContext.getBeansOfType(PropertyResourceConfigurer.class);
@@ -303,8 +302,7 @@ public class MapperScannerConfigurer implements BeanDefinitionRegistryPostProces
 		if (!prcs.isEmpty() && applicationContext instanceof ConfigurableApplicationContext) {
 			BeanDefinition mapperScannerBean = ((ConfigurableApplicationContext) applicationContext).getBeanFactory().getBeanDefinition(beanName);
 			// PropertyResourceConfigurer does not expose any methods to explicitly perform
-			// property placeholder substitution. Instead, create a BeanFactory that just
-			// contains this mapper scanner and post process the factory.
+			// property placeholder substitution. Instead, create a BeanFactory that just contains this mapper scanner and post process the factory.
 			DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 			factory.registerBeanDefinition(beanName, mapperScannerBean);
 			for (PropertyResourceConfigurer prc : prcs.values()) {

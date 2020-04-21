@@ -111,6 +111,9 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 		this.setIdCalled = true;
 	}
 
+	//---------------------------------------------------------------------
+	// Implementation of 【BeanNameAware】 interface
+	//---------------------------------------------------------------------
 	/**
 	 * Sets the id of this context to the bean name by default,for cases where the context instance is itself defined as a bean.
 	 */
@@ -122,6 +125,9 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 		}
 	}
 
+	//---------------------------------------------------------------------
+	// Implementation of 【InitializingBean】 interface
+	//---------------------------------------------------------------------
 	/**
 	 * Triggers {@link #refresh()} if not refreshed in the concrete context's constructor already.
 	 */

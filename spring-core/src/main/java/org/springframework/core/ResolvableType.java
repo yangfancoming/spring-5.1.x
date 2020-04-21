@@ -284,14 +284,10 @@ public class ResolvableType implements Serializable {
 					}
 				}
 			}
-			if (ourResolved == null) {
-				// Unresolved type variable, potentially nested -> never insist on exact match
-				exactMatch = false;
-			}
+			// Unresolved type variable, potentially nested -> never insist on exact match
+			if (ourResolved == null) exactMatch = false;
 		}
-		if (ourResolved == null) {
-			ourResolved = resolve(Object.class);
-		}
+		if (ourResolved == null) ourResolved = resolve(Object.class);
 		Class<?> otherResolved = other.toClass();
 
 		// We need an exact type match for generics
@@ -603,13 +599,11 @@ public class ResolvableType implements Serializable {
 	}
 
 	/**
-	 * Return an array of {@link ResolvableType ResolvableTypes} representing the generic parameters of
-	 * this type. If no generics are available an empty array is returned. If you need to
-	 * access a specific generic consider using the {@link #getGeneric(int...)} method as
-	 * it allows access to nested generics and protects against
+	 * Return an array of {@link ResolvableType ResolvableTypes} representing the generic parameters of this type.
+	 * If no generics are available an empty array is returned. If you need to
+	 * access a specific generic consider using the {@link #getGeneric(int...)} method as it allows access to nested generics and protects against
 	 * {@code IndexOutOfBoundsExceptions}.
-	 * @return an array of {@link ResolvableType ResolvableTypes} representing the generic parameters
-	 * (never {@code null})
+	 * @return an array of {@link ResolvableType ResolvableTypes} representing the generic parameters (never {@code null})
 	 * @see #hasGenerics()
 	 * @see #getGeneric(int...)
 	 * @see #resolveGeneric(int...)
@@ -640,10 +634,8 @@ public class ResolvableType implements Serializable {
 	}
 
 	/**
-	 * Convenience method that will {@link #getGenerics() get} and
-	 * {@link #resolve() resolve} generic parameters.
-	 * @return an array of resolved generic parameters (the resulting array
-	 * will never be {@code null}, but it may contain {@code null} elements})
+	 * Convenience method that will {@link #getGenerics() get} and {@link #resolve() resolve} generic parameters.
+	 * @return an array of resolved generic parameters (the resulting array will never be {@code null}, but it may contain {@code null} elements})
 	 * @see #getGenerics()
 	 * @see #resolve()
 	 */
@@ -658,8 +650,7 @@ public class ResolvableType implements Serializable {
 
 	/**
 	 * Convenience method that will {@link #getGenerics() get} and {@link #resolve()
-	 * resolve} generic parameters, using the specified {@code fallback} if any type
-	 * cannot be resolved.
+	 * resolve} generic parameters, using the specified {@code fallback} if any type cannot be resolved.
 	 * @param fallback the fallback class to use if resolution fails
 	 * @return an array of resolved generic parameters
 	 * @see #getGenerics()
@@ -1190,8 +1181,7 @@ public class ResolvableType implements Serializable {
 		Assert.notNull(methodParameter, "MethodParameter must not be null");
 		implementationType = (implementationType != null ? implementationType : forType(methodParameter.getContainingClass()));
 		ResolvableType owner = implementationType.as(methodParameter.getDeclaringClass());
-		return forType(null, new MethodParameterTypeProvider(methodParameter), owner.asVariableResolver()).
-				getNested(methodParameter.getNestingLevel(), methodParameter.typeIndexesPerLevel);
+		return forType(null, new MethodParameterTypeProvider(methodParameter), owner.asVariableResolver()).getNested(methodParameter.getNestingLevel(), methodParameter.typeIndexesPerLevel);
 	}
 
 	/**
@@ -1297,13 +1287,11 @@ public class ResolvableType implements Serializable {
 			type = SerializableTypeWrapper.forTypeProvider(typeProvider);
 		}
 		if (type == null) return NONE;
-
 		// For simple Class references, build the wrapper right away -
 		// no expensive resolution necessary, so not worth caching...
 		if (type instanceof Class) {
 			return new ResolvableType(type, typeProvider, variableResolver, (ResolvableType) null);
 		}
-
 		// Purge empty entries on access since we don't have a clean-up thread or the like.
 		cache.purgeUnreferencedEntries();
 		// Check the cache - we may have a ResolvableType which has been resolved before...
@@ -1326,13 +1314,9 @@ public class ResolvableType implements Serializable {
 		SerializableTypeWrapper.cache.clear();
 	}
 
-	/**
-	 * Strategy interface used to resolve {@link TypeVariable TypeVariables}.
-	 */
+	// Strategy interface used to resolve {@link TypeVariable TypeVariables}.
 	interface VariableResolver extends Serializable {
-		/**
-		 * Return the source of the resolver (used for hashCode and equals).
-		 */
+		// Return the source of the resolver (used for hashCode and equals).
 		Object getSource();
 		/**
 		 * Resolve the specified variable.
@@ -1342,7 +1326,6 @@ public class ResolvableType implements Serializable {
 		@Nullable
 		ResolvableType resolveVariable(TypeVariable<?> variable);
 	}
-
 
 	@SuppressWarnings("serial")
 	private class DefaultVariableResolver implements VariableResolver {
@@ -1358,7 +1341,6 @@ public class ResolvableType implements Serializable {
 			return ResolvableType.this;
 		}
 	}
-
 
 	@SuppressWarnings("serial")
 	private static class TypeVariablesVariableResolver implements VariableResolver {
@@ -1384,7 +1366,6 @@ public class ResolvableType implements Serializable {
 			}
 			return null;
 		}
-
 		@Override
 		public Object getSource() {
 			return this.generics;
@@ -1437,15 +1418,12 @@ public class ResolvableType implements Serializable {
 
 		@Override
 		public boolean equals(Object other) {
-			if (this == other) {
-				return true;
-			}
+			if (this == other) return true;
 			if (!(other instanceof ParameterizedType)) {
 				return false;
 			}
 			ParameterizedType otherType = (ParameterizedType) other;
-			return (otherType.getOwnerType() == null && this.rawType.equals(otherType.getRawType()) &&
-					Arrays.equals(this.typeArguments, otherType.getActualTypeArguments()));
+			return (otherType.getOwnerType() == null && this.rawType.equals(otherType.getRawType()) && Arrays.equals(this.typeArguments, otherType.getActualTypeArguments()));
 		}
 
 		@Override
@@ -1459,14 +1437,10 @@ public class ResolvableType implements Serializable {
 		}
 	}
 
-
-	/**
-	 * Internal helper to handle bounds from {@link WildcardType WildcardTypes}.
-	 */
+	// Internal helper to handle bounds from {@link WildcardType WildcardTypes}.
 	private static class WildcardBounds {
 
 		private final Kind kind;
-
 		private final ResolvableType[] bounds;
 
 		/**
@@ -1480,9 +1454,7 @@ public class ResolvableType implements Serializable {
 			this.bounds = bounds;
 		}
 
-		/**
-		 * Return {@code true} if this bounds is the same kind as the specified bounds.
-		 */
+		// Return {@code true} if this bounds is the same kind as the specified bounds.
 		public boolean isSameKind(WildcardBounds bounds) {
 			return this.kind == bounds.kind;
 		}
@@ -1515,8 +1487,7 @@ public class ResolvableType implements Serializable {
 		}
 
 		/**
-		 * Get a {@link WildcardBounds} instance for the specified type, returning
-		 * {@code null} if the specified type cannot be resolved to a {@link WildcardType}.
+		 * Get a {@link WildcardBounds} instance for the specified type, returning {@code null} if the specified type cannot be resolved to a {@link WildcardType}.
 		 * @param type the source type
 		 * @return a {@link WildcardBounds} instance or {@code null}
 		 */
@@ -1536,9 +1507,7 @@ public class ResolvableType implements Serializable {
 			}
 			return new WildcardBounds(boundsType, resolvableBounds);
 		}
-		/**
-		 * The various kinds of bounds.
-		 */
+		// The various kinds of bounds.
 		enum Kind {UPPER, LOWER}
 	}
 

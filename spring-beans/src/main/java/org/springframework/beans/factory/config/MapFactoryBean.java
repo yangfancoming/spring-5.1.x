@@ -40,15 +40,12 @@ public class MapFactoryBean extends AbstractFactoryBean<Map<Object, Object>> {
 	 */
 	@SuppressWarnings("rawtypes")
 	public void setTargetMapClass(@Nullable Class<? extends Map> targetMapClass) {
-		if (targetMapClass == null) {
-			throw new IllegalArgumentException("'targetMapClass' must not be null");
-		}
+		if (targetMapClass == null) throw new IllegalArgumentException("'targetMapClass' must not be null");
 		if (!Map.class.isAssignableFrom(targetMapClass)) {
 			throw new IllegalArgumentException("'targetMapClass' must implement [java.util.Map]");
 		}
 		this.targetMapClass = targetMapClass;
 	}
-
 
 	@Override
 	@SuppressWarnings("rawtypes")
@@ -60,7 +57,7 @@ public class MapFactoryBean extends AbstractFactoryBean<Map<Object, Object>> {
 	@SuppressWarnings("unchecked")
 	protected Map<Object, Object> createInstance() {
 		if (this.sourceMap == null) throw new IllegalArgumentException("'sourceMap' is required");
-		Map<Object, Object> result = null;
+		Map<Object, Object> result;
 		if (this.targetMapClass != null) {
 			result = BeanUtils.instantiateClass(this.targetMapClass);
 		}else {

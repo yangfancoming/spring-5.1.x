@@ -3,10 +3,9 @@
 package org.springframework.beans.factory;
 
 /**
- * Interface to be implemented by beans that want to be aware of their
- * bean name in a bean factory. Note that it is not usually recommended
- * that an object depends on its bean name, as this represents a potentially
- * brittle dependence on external configuration, as well as a possibly unnecessary dependence on a Spring API.
+ * Interface to be implemented by beans that want to be aware of their bean name in a bean factory.
+ * Note that it is not usually recommended that an object depends on its bean name,
+ * as this represents a potentially brittle dependence on external configuration, as well as a possibly unnecessary dependence on a Spring API.
  * For a list of all bean lifecycle methods, see the {@link BeanFactory BeanFactory javadocs}.
  * @since 01.11.2003
  * @see BeanClassLoaderAware

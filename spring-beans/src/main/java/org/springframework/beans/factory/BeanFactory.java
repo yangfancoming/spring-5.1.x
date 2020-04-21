@@ -23,8 +23,7 @@ import org.springframework.lang.Nullable;
  * rather than use any form of "pull" configuration like a BeanFactory lookup.
  * Spring's Dependency Injection functionality is implemented using this BeanFactory interface and its subinterfaces.
  *
- * Normally a BeanFactory will load bean definitions stored in a configuration source (such as an XML document),
- *  and use the {@code org.springframework.beans} package to configure the beans.
+ * Normally a BeanFactory will load bean definitions stored in a configuration source (such as an XML document),and use the {@code org.springframework.beans} package to configure the beans.
  * However, an implementation could simply return Java objects it creates as necessary directly in Java code.
  * There are no constraints on how the definitions could be stored: LDAP, RDBMS, XML,properties file, etc.
  * Implementations are encouraged to support references amongst beans (Dependency Injection).
@@ -35,30 +34,22 @@ import org.springframework.lang.Nullable;
  *
  * Bean factory implementations should support the standard bean lifecycle interfaces as far as possible. 
  * The full set of initialization methods and their standard order is:
- * 
  * BeanNameAware's {@code setBeanName}
  * BeanClassLoaderAware's {@code setBeanClassLoader}
  * BeanFactoryAware's {@code setBeanFactory}
  * EnvironmentAware's {@code setEnvironment}
  * EmbeddedValueResolverAware's {@code setEmbeddedValueResolver}
- * ResourceLoaderAware's {@code setResourceLoader}
- * (only applicable when running in an application context)
+ * ResourceLoaderAware's {@code setResourceLoader} (only applicable when running in an application context)
  * ApplicationEventPublisherAware's {@code setApplicationEventPublisher}
- * (only applicable when running in an application context)
- * MessageSourceAware's {@code setMessageSource}
- * (only applicable when running in an application context)
- * ApplicationContextAware's {@code setApplicationContext}
- * (only applicable when running in an application context)
- * ServletContextAware's {@code setServletContext}
- * (only applicable when running in a web application context)
+ * MessageSourceAware's {@code setMessageSource} (only applicable when running in an application context)
+ * ApplicationContextAware's {@code setApplicationContext} (only applicable when running in an application context)
+ * ServletContextAware's {@code setServletContext} (only applicable when running in a web application context)
  * {@code postProcessBeforeInitialization} methods of BeanPostProcessors
  * InitializingBean's {@code afterPropertiesSet} a custom init-method definition
  * {@code postProcessAfterInitialization} methods of BeanPostProcessors
- *
  * On shutdown of a bean factory, the following lifecycle methods apply:
  * {@code postProcessBeforeDestruction} methods of DestructionAwareBeanPostProcessors
  * DisposableBean's {@code destroy} a custom destroy-method definition
- *
  * @since 13 April 2001
  * @see BeanNameAware#setBeanName
  * @see BeanClassLoaderAware#setBeanClassLoader
