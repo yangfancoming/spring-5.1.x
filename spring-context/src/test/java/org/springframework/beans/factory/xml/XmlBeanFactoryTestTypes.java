@@ -504,9 +504,6 @@ abstract class OverrideOneMethodSubclass extends OverrideOneMethod {
 
 /**
  * Simple test of BeanFactory initialization and lifecycle callbacks.
- *
- * @author Rod Johnson
-
  */
 class ProtectedLifecycleBean implements BeanNameAware, BeanFactoryAware, InitializingBean, DisposableBean {
 

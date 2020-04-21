@@ -355,8 +355,7 @@ public abstract class BeanFactoryUtils {
 	 * @param allowEagerInit whether to initialize <i>lazy-init singletons</i> and
 	 * <i>objects created by FactoryBeans</i> (or by factory methods with a
 	 * "factory-bean" reference) for the type check. Note that FactoryBeans need to be
-	 * eagerly initialized to determine their type: So be aware that passing in "true"
-	 * for this flag will initialize FactoryBeans and "factory-bean" references.
+	 * eagerly initialized to determine their type: So be aware that passing in "true" for this flag will initialize FactoryBeans and "factory-bean" references.
 	 * @return the matching bean instance
 	 * @throws NoSuchBeanDefinitionException if no bean of the given type was found
 	 * @throws NoUniqueBeanDefinitionException if more than one bean of the given type was found
@@ -392,10 +391,8 @@ public abstract class BeanFactoryUtils {
 	/**
 	 * Return a single bean of the given type or subtypes, not looking in ancestor
 	 * factories. Useful convenience method when we expect a single bean and  don't care about the bean name.
-	 * Does consider objects created by FactoryBeans if the "allowEagerInit"
-	 * flag is set, which means that FactoryBeans will get initialized. If the
-	 * object created by the FactoryBean doesn't match, the raw FactoryBean itself
-	 * will be matched against the type. If "allowEagerInit" is not set,
+	 * Does consider objects created by FactoryBeans if the "allowEagerInit" flag is set, which means that FactoryBeans will get initialized.
+	 * If the object created by the FactoryBean doesn't match, the raw FactoryBean itself will be matched against the type. If "allowEagerInit" is not set,
 	 * only raw FactoryBeans will be checked (which doesn't require initialization of each FactoryBean).
 	 * @param lbf the bean factory
 	 * @param type type of bean to match
