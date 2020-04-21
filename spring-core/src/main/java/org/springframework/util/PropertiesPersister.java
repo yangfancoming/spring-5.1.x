@@ -10,15 +10,11 @@ import java.io.Writer;
 import java.util.Properties;
 
 /**
- * Strategy interface for persisting {@code java.util.Properties},
- * allowing for pluggable parsing strategies.
- *
+ * Strategy interface for persisting {@code java.util.Properties},allowing for pluggable parsing strategies.
  * The default implementation is DefaultPropertiesPersister,
  * providing the native parsing of {@code java.util.Properties},
  * but allowing for reading from any Reader and writing to any Writer
  * (which allows to specify an encoding for a properties file).
- *
-
  * @since 10.03.2004
  * @see DefaultPropertiesPersister
  * @see java.util.Properties
@@ -26,8 +22,7 @@ import java.util.Properties;
 public interface PropertiesPersister {
 
 	/**
-	 * Load properties from the given InputStream into the given
-	 * Properties object.
+	 * Load properties from the given InputStream into the given Properties object.
 	 * @param props the Properties object to load into
 	 * @param is the InputStream to load from
 	 * @throws IOException in case of I/O errors

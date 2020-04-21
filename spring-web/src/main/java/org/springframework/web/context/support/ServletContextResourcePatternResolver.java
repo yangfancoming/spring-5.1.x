@@ -22,17 +22,13 @@ import org.springframework.util.StringUtils;
 
 /**
  * ServletContext-aware subclass of {@link PathMatchingResourcePatternResolver},
- * able to find matching resources below the web application root directory
- * via {@link ServletContext#getResourcePaths}. Falls back to the superclass'
- * file system checking for other resources.
- *
-
+ * able to find matching resources below the web application root directory via {@link ServletContext#getResourcePaths}.
+ * Falls back to the superclass' file system checking for other resources.
  * @since 1.1.2
  */
 public class ServletContextResourcePatternResolver extends PathMatchingResourcePatternResolver {
 
 	private static final Log logger = LogFactory.getLog(ServletContextResourcePatternResolver.class);
-
 
 	/**
 	 * Create a new ServletContextResourcePatternResolver.
@@ -45,17 +41,14 @@ public class ServletContextResourcePatternResolver extends PathMatchingResourceP
 
 	/**
 	 * Create a new ServletContextResourcePatternResolver.
-	 * @param resourceLoader the ResourceLoader to load root directories and
-	 * actual resources with
+	 * @param resourceLoader the ResourceLoader to load root directories and  actual resources with
 	 */
 	public ServletContextResourcePatternResolver(ResourceLoader resourceLoader) {
 		super(resourceLoader);
 	}
 
-
 	/**
-	 * Overridden version which checks for ServletContextResource
-	 * and uses {@code ServletContext.getResourcePaths} to find
+	 * Overridden version which checks for ServletContextResource and uses {@code ServletContext.getResourcePaths} to find
 	 * matching resources below the web application root directory.
 	 * In case of other resources, delegates to the superclass version.
 	 * @see #doRetrieveMatchingServletContextResources
@@ -63,9 +56,7 @@ public class ServletContextResourcePatternResolver extends PathMatchingResourceP
 	 * @see javax.servlet.ServletContext#getResourcePaths
 	 */
 	@Override
-	protected Set<Resource> doFindPathMatchingFileResources(Resource rootDirResource, String subPattern)
-			throws IOException {
-
+	protected Set<Resource> doFindPathMatchingFileResources(Resource rootDirResource, String subPattern) throws IOException {
 		if (rootDirResource instanceof ServletContextResource) {
 			ServletContextResource scResource = (ServletContextResource) rootDirResource;
 			ServletContext sc = scResource.getServletContext();
@@ -73,28 +64,22 @@ public class ServletContextResourcePatternResolver extends PathMatchingResourceP
 			Set<Resource> result = new LinkedHashSet<>(8);
 			doRetrieveMatchingServletContextResources(sc, fullPattern, scResource.getPath(), result);
 			return result;
-		}
-		else {
+		}else {
 			return super.doFindPathMatchingFileResources(rootDirResource, subPattern);
 		}
 	}
 
 	/**
-	 * Recursively retrieve ServletContextResources that match the given pattern,
-	 * adding them to the given result set.
+	 * Recursively retrieve ServletContextResources that match the given pattern,adding them to the given result set.
 	 * @param servletContext the ServletContext to work on
-	 * @param fullPattern the pattern to match against,
-	 * with preprended root directory path
+	 * @param fullPattern the pattern to match against, with preprended root directory path
 	 * @param dir the current directory
 	 * @param result the Set of matching Resources to add to
 	 * @throws IOException if directory contents could not be retrieved
 	 * @see ServletContextResource
 	 * @see javax.servlet.ServletContext#getResourcePaths
 	 */
-	protected void doRetrieveMatchingServletContextResources(
-			ServletContext servletContext, String fullPattern, String dir, Set<Resource> result)
-			throws IOException {
-
+	protected void doRetrieveMatchingServletContextResources(ServletContext servletContext, String fullPattern, String dir, Set<Resource> result) throws IOException {
 		Set<String> candidates = servletContext.getResourcePaths(dir);
 		if (candidates != null) {
 			boolean dirDepthNotFixed = fullPattern.contains("**");
@@ -141,9 +126,7 @@ public class ServletContextResourcePatternResolver extends PathMatchingResourceP
 	 * @param result the Set of matching Resources to add to
 	 */
 	private void doRetrieveMatchingJarEntries(String jarFilePath, String entryPattern, Set<Resource> result) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("Searching jar file [" + jarFilePath + "] for entries matching [" + entryPattern + "]");
-		}
+		if (logger.isDebugEnabled()) logger.debug("Searching jar file [" + jarFilePath + "] for entries matching [" + entryPattern + "]");
 		try {
 			JarFile jarFile = new JarFile(jarFilePath);
 			try {
@@ -151,20 +134,15 @@ public class ServletContextResourcePatternResolver extends PathMatchingResourceP
 					JarEntry entry = entries.nextElement();
 					String entryPath = entry.getName();
 					if (getPathMatcher().match(entryPattern, entryPath)) {
-						result.add(new UrlResource(
-								ResourceUtils.URL_PROTOCOL_JAR,
-								ResourceUtils.FILE_URL_PREFIX + jarFilePath + ResourceUtils.JAR_URL_SEPARATOR + entryPath));
+						result.add(new UrlResource(ResourceUtils.URL_PROTOCOL_JAR,ResourceUtils.FILE_URL_PREFIX + jarFilePath + ResourceUtils.JAR_URL_SEPARATOR + entryPath));
 					}
 				}
-			}
-			finally {
+			}finally {
 				jarFile.close();
 			}
-		}
-		catch (IOException ex) {
+		}catch (IOException ex) {
 			if (logger.isWarnEnabled()) {
-				logger.warn("Cannot search for matching resources in jar file [" + jarFilePath +
-						"] because the jar cannot be opened through the file system", ex);
+				logger.warn("Cannot search for matching resources in jar file [" + jarFilePath + "] because the jar cannot be opened through the file system", ex);
 			}
 		}
 	}

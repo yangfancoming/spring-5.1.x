@@ -144,9 +144,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	/** Whether bean definition metadata may be cached for all beans. 是否可以为所有bean缓存bean 的元数据 */
 	private volatile boolean configurationFrozen = false;
 
-	/**
-	 * Create a new DefaultListableBeanFactory.
-	 */
+	// Create a new DefaultListableBeanFactory.
 	public DefaultListableBeanFactory() {
 //		super(); // -modify
 	}
@@ -159,9 +157,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		super(parentBeanFactory);
 	}
 
-	/**
-	 * Specify an id for serialization purposes, allowing this BeanFactory to be deserialized from this id back into the BeanFactory object, if needed.
-	 */
+	// Specify an id for serialization purposes, allowing this BeanFactory to be deserialized from this id back into the BeanFactory object, if needed.
 	public void setSerializationId(@Nullable String serializationId) {
 		if (serializationId != null) {
 			serializableFactories.put(serializationId, new WeakReference<>(this));
@@ -838,7 +834,6 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			if (logger.isTraceEnabled()) logger.trace("No bean named '" + beanName + "' found in " + this);
 			throw new NoSuchBeanDefinitionException(beanName);
 		}
-
 		if (hasBeanCreationStarted()) {
 			// Cannot modify startup-time collection elements anymore (for stable iteration)
 			synchronized (this.beanDefinitionMap) {
@@ -1049,7 +1044,6 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
 	@Nullable
 	public Object doResolveDependency(DependencyDescriptor descriptor, @Nullable String beanName, @Nullable Set<String> autowiredBeanNames, @Nullable TypeConverter typeConverter) throws BeansException {
-
 		InjectionPoint previousInjectionPoint = ConstructorResolver.setCurrentInjectionPoint(descriptor);
 		try {
 			// 该方法最终调用了 beanFactory.getBean(String, Class)，从容器中获取依赖
@@ -1145,7 +1139,6 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			if (instanceCandidate instanceof Class) {
 				instanceCandidate = descriptor.resolveCandidate(autowiredBeanName, type, this);
 			}
-
 			Object result = instanceCandidate;
 			// 返回候选项实例，如果实例是 Class 类型，则调用 beanFactory.getBean(String, Class) 获取相应的 bean。否则直接返回即可
 			if (result instanceof NullBean) {

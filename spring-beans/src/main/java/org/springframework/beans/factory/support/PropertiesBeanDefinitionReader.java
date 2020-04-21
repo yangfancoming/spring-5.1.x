@@ -28,9 +28,7 @@ import org.springframework.util.StringUtils;
 /**
  * Bean definition reader for a simple properties format.
  * Provides bean definition registration methods for Map/Properties and ResourceBundle. Typically applied to a DefaultListableBeanFactory.
- *
  * <b>Example:</b>
- *
  * <pre class="code">
  * employee.(class)=MyClass       // bean is of class MyClass
  * employee.(abstract)=true       // this bean can't be instantiated directly
@@ -119,12 +117,10 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 	 */
 	public static final String CONSTRUCTOR_ARG_PREFIX = "$";
 
-
 	@Nullable
 	private String defaultParentBean;
 
 	private PropertiesPersister propertiesPersister = new DefaultPropertiesPersister();
-
 
 	/**
 	 * Create new PropertiesBeanDefinitionReader for the given bean factory.

@@ -104,15 +104,13 @@ public class DefaultListableBeanFactoryTests {
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
 
-
 	@Test
 	public void testUnreferencedSingletonWasInstantiated() {
 		KnowsIfInstantiated.clearInstantiationRecord();
 		Properties p = new Properties();
+		assertFalse(KnowsIfInstantiated.wasInstantiated());
 		String name = KnowsIfInstantiated.class.getName();// org.springframework.beans.factory.DefaultListableBeanFactoryTests$KnowsIfInstantiated
 		p.setProperty("x1.(class)", name);
-		assertFalse(KnowsIfInstantiated.wasInstantiated());
-		System.out.println("---------------------");
 		(new PropertiesBeanDefinitionReader(lbf)).registerBeanDefinitions(p);
 		assertFalse(KnowsIfInstantiated.wasInstantiated());
 		lbf.preInstantiateSingletons();
@@ -2753,13 +2751,7 @@ public class DefaultListableBeanFactoryTests {
 		final Subject subject = new Subject();
 		subject.getPrincipals().add(new TestPrincipal("user1"));
 
-		TestSecuredBean bean = (TestSecuredBean) Subject.doAsPrivileged(subject,
-				new PrivilegedAction() {
-					@Override
-					public Object run() {
-						return lbf.getBean("test");
-					}
-				}, null);
+		TestSecuredBean bean = (TestSecuredBean) Subject.doAsPrivileged(subject, (PrivilegedAction) ()->lbf.getBean("test"), null);
 		assertNotNull(bean);
 		assertEquals("user1", bean.getUserName());
 	}
@@ -3137,17 +3129,13 @@ public class DefaultListableBeanFactoryTests {
 
 
 	public static class TestBeanFactory {
-
 		public static boolean initialized = false;
-
 		public TestBeanFactory() {
 			initialized = true;
 		}
-
 		public static TestBean createTestBean() {
 			return new TestBean();
 		}
-
 		public TestBean createTestBeanNonStatic() {
 			return new TestBean();
 		}
@@ -3155,31 +3143,23 @@ public class DefaultListableBeanFactoryTests {
 
 
 	public static class ArrayBean {
-
 		private Integer[] integerArray;
-
 		private Resource[] resourceArray;
-
 		public ArrayBean() {
 		}
-
 		public ArrayBean(Integer[] integerArray) {
 			this.integerArray = integerArray;
 		}
-
 		public ArrayBean(Integer[] integerArray, Resource[] resourceArray) {
 			this.integerArray = integerArray;
 			this.resourceArray = resourceArray;
 		}
-
 		public Integer[] getIntegerArray() {
 			return this.integerArray;
 		}
-
 		public void setResourceArray(Resource[] resourceArray) {
 			this.resourceArray = resourceArray;
 		}
-
 		public Resource[] getResourceArray() {
 			return this.resourceArray;
 		}
@@ -3276,7 +3256,6 @@ public class DefaultListableBeanFactoryTests {
 		}
 	}
 
-
 	@SuppressWarnings("unused")
 	private static class TestSecuredBean {
 
@@ -3301,7 +3280,6 @@ public class DefaultListableBeanFactoryTests {
 				return;
 			}
 		}
-
 		public String getUserName() {
 			return this.userName;
 		}
@@ -3310,75 +3288,57 @@ public class DefaultListableBeanFactoryTests {
 
 	@SuppressWarnings("unused")
 	private static class KnowsIfInstantiated {
-
 		private static boolean instantiated;
-
 		public KnowsIfInstantiated() {
 			System.out.println("调用 KnowsIfInstantiated 构造函数！");
 			instantiated = true;
 		}
-
 		public static void clearInstantiationRecord() {
 			instantiated = false;
 		}
-
 		public static boolean wasInstantiated() {
 			return instantiated;
 		}
 	}
 
-
 	@Priority(5)
 	private static class HighPriorityTestBean extends TestBean {
 	}
-
 
 	@Priority(500)
 	private static class LowPriorityTestBean extends TestBean {
 	}
 
-
 	private static class NullTestBeanFactoryBean<T> implements FactoryBean<TestBean> {
-
 		@Override
 		public TestBean getObject() {
 			return null;
 		}
-
 		@Override
 		public Class<?> getObjectType() {
 			return TestBean.class;
 		}
-
 		@Override
 		public boolean isSingleton() {
 			return true;
 		}
 	}
 
-
 	private static class TestBeanRecipient {
-
 		public TestBean testBean;
-
 		public TestBeanRecipient(TestBean testBean) {
 			this.testBean = testBean;
 		}
 	}
 
-
 	enum NonPublicEnum {
 		VALUE_1, VALUE_2
 	}
-
 	static class NonPublicEnumHolder {
-
 		final NonPublicEnum nonPublicEnum;
-
 		public NonPublicEnumHolder(NonPublicEnum nonPublicEnum) {
 			this.nonPublicEnum = nonPublicEnum;
 		}
-
 		public NonPublicEnum getNonPublicEnum() {
 			return nonPublicEnum;
 		}

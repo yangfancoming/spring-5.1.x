@@ -339,12 +339,9 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 				if (logger.isDebugEnabled()) logger.debug("Cannot introspect jar files since ClassLoader [" + classLoader + "] does not support 'getURLs()': " + ex);
 			}
 		}
-
-		if (classLoader == ClassLoader.getSystemClassLoader()) {
-			// "java.class.path" manifest evaluation...
+		if (classLoader == ClassLoader.getSystemClassLoader()) { // "java.class.path" manifest evaluation...
 			addClassPathManifestEntries(result);
 		}
-
 		if (classLoader != null) {
 			try {
 				// Hierarchy traversal...
@@ -388,12 +385,10 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 	}
 
 	/**
-	 * Check whether the given file path has a duplicate but differently structured entry
-	 * in the existing result, i.e. with or without a leading slash.
+	 * Check whether the given file path has a duplicate but differently structured entry in the existing result, i.e. with or without a leading slash.
 	 * @param filePath the file path (with or without a leading slash)
 	 * @param result the current result
-	 * @return {@code true} if there is a duplicate (i.e. to ignore the given file path),
-	 * {@code false} to proceed with adding a corresponding resource to the current result
+	 * @return {@code true} if there is a duplicate (i.e. to ignore the given file path), {@code false} to proceed with adding a corresponding resource to the current result
 	 */
 	private boolean hasDuplicate(String filePath, Set<Resource> result) {
 		if (result.isEmpty()) return false;
@@ -611,8 +606,7 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 	}
 
 	/**
-	 * Find all resources in the file system that match the given location pattern
-	 * via the Ant-style PathMatcher.
+	 * Find all resources in the file system that match the given location pattern  via the Ant-style PathMatcher.
 	 * @param rootDir the root directory in the file system
 	 * @param subPattern the sub pattern to match (below the root directory)
 	 * @return a mutable Set of matching Resource instances
@@ -712,12 +706,8 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 		return files;
 	}
 
-
-	/**
-	 * Inner delegate class, avoiding a hard JBoss VFS API dependency at runtime.
-	 */
+	// Inner delegate class, avoiding a hard JBoss VFS API dependency at runtime.
 	private static class VfsResourceMatchingDelegate {
-
 		public static Set<Resource> findMatchingResources(URL rootDirURL, String locationPattern, PathMatcher pathMatcher) throws IOException {
 			Object root = VfsPatternUtils.findRoot(rootDirURL);
 			PatternVirtualFileVisitor visitor = new PatternVirtualFileVisitor(VfsPatternUtils.getPath(root), locationPattern, pathMatcher);
@@ -726,10 +716,7 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 		}
 	}
 
-
-	/**
-	 * VFS visitor for path matching purposes.
-	 */
+	// VFS visitor for path matching purposes.
 	@SuppressWarnings("unused")
 	private static class PatternVirtualFileVisitor implements InvocationHandler {
 

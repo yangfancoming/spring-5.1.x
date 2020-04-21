@@ -28,18 +28,17 @@ import org.springframework.lang.Nullable;
 public interface ConfigurableListableBeanFactory extends ListableBeanFactory, AutowireCapableBeanFactory, ConfigurableBeanFactory {
 
 	/**
+	 * 忽略自动装配的依赖类型
 	 * Ignore the given dependency type for autowiring:
 	 * for example, String. Default is none.
 	 * @param type the dependency type to ignore
-	 *              忽略自动装配的依赖类型
 	 */
 	void ignoreDependencyType(Class<?> type);
 
 	/**
 	 * Ignore the given dependency interface for autowiring.
-	 * This will typically be used by application contexts to register
-	 * dependencies that are resolved in other ways, like BeanFactory through
-	 * BeanFactoryAware or ApplicationContext through ApplicationContextAware.
+	 * This will typically be used by application contexts to register dependencies that are resolved in other ways,
+	 * like BeanFactory through BeanFactoryAware or ApplicationContext through ApplicationContextAware.
 	 * By default, only the BeanFactoryAware interface is ignored.
 	 * For further types to ignore, invoke this method for each type.
 	 * @param ifc the dependency interface to ignore
@@ -51,26 +50,21 @@ public interface ConfigurableListableBeanFactory extends ListableBeanFactory, Au
 
 	/**
 	 * Register a special dependency type with corresponding autowired value.
-	 * This is intended for factory/context references that are supposed
-	 * to be autowirable but are not defined as beans in the factory:
-	 * e.g. a dependency of type ApplicationContext resolved to the
-	 * ApplicationContext instance that the bean is living in.
-	 * Note: There are no such default types registered in a plain BeanFactory,
-	 * not even for the BeanFactory interface itself.
-	 * @param dependencyType the dependency type to register. This will typically
-	 * be a base interface such as BeanFactory, with extensions of it resolved
-	 * as well if declared as an autowiring dependency (e.g. ListableBeanFactory),
+	 * This is intended for factory/context references that are supposed to be autowirable but are not defined as beans in the factory:
+	 * e.g. a dependency of type ApplicationContext resolved to the ApplicationContext instance that the bean is living in.
+	 * Note: There are no such default types registered in a plain BeanFactory,  not even for the BeanFactory interface itself.
+	 * @param dependencyType the dependency type to register.
+	 * This will typically  be a base interface such as BeanFactory,
+	 * with extensions of it resolved  as well if declared as an autowiring dependency (e.g. ListableBeanFactory),
 	 * as long as the given value actually implements the extended interface.
 	 * @param autowiredValue the corresponding autowired value. This may also be an
-	 * implementation of the {@link org.springframework.beans.factory.ObjectFactory}
-	 * interface, which allows for lazy resolution of the actual target value.
+	 * implementation of the {@link org.springframework.beans.factory.ObjectFactory} interface, which allows for lazy resolution of the actual target value.
 	 *  使用相应的自动装配值注册特殊依赖关系类型
 	 */
 	void registerResolvableDependency(Class<?> dependencyType, @Nullable Object autowiredValue);
 
 	/**
-	 * Determine whether the specified bean qualifies as an autowire candidate,
-	 * to be injected into other beans which declare a dependency of matching type.
+	 * Determine whether the specified bean qualifies as an autowire candidate,to be injected into other beans which declare a dependency of matching type.
 	 * This method checks ancestor factories as well.
 	 * @param beanName the name of the bean to check
 	 * @param descriptor the descriptor of the dependency to resolve
@@ -82,11 +76,9 @@ public interface ConfigurableListableBeanFactory extends ListableBeanFactory, Au
 
 	/**
 	 * Return the registered BeanDefinition for the specified bean, allowing access
-	 * to its property values and constructor argument value (which can be
-	 * modified during bean factory post-processing).
-	 * A returned BeanDefinition object should not be a copy but the original
-	 * definition object as registered in the factory. This means that it should
-	 * be castable to a more specific implementation type, if necessary.
+	 * to its property values and constructor argument value (which can be modified during bean factory post-processing).
+	 * A returned BeanDefinition object should not be a copy but the original definition object as registered in the factory.
+	 * This means that it should be castable to a more specific implementation type, if necessary.
 	 * <b>NOTE:</b> This method does <i>not</i> consider ancestor factories.
 	 * It is only meant for accessing local bean definitions of this factory.
 	 * @param beanName the name of the bean
@@ -98,8 +90,7 @@ public interface ConfigurableListableBeanFactory extends ListableBeanFactory, Au
 
 	/**
 	 * Return a unified view over all bean names managed by this factory.
-	 * Includes bean definition names as well as names of manually registered
-	 * singleton instances, with bean definition names consistently coming first,
+	 * Includes bean definition names as well as names of manually registered singleton instances, with bean definition names consistently coming first,
 	 * analogous to how type/annotation specific retrieval of bean names works.
 	 * @return the composite iterator for the bean names view
 	 * @since 4.1.2
@@ -115,8 +106,7 @@ public interface ConfigurableListableBeanFactory extends ListableBeanFactory, Au
 	 * Clear the merged bean definition cache, removing entries for beans
 	 * which are not considered eligible for full metadata caching yet.
 	 * Typically triggered after changes to the original bean definitions,
-	 * e.g. after applying a {@link BeanFactoryPostProcessor}. Note that metadata
-	 * for beans which have already been created at this point will be kept around.
+	 * e.g. after applying a {@link BeanFactoryPostProcessor}. Note that metadata for beans which have already been created at this point will be kept around.
 	 * @since 4.2
 	 * @see #getBeanDefinition
 	 * @see #getMergedBeanDefinition
@@ -125,8 +115,7 @@ public interface ConfigurableListableBeanFactory extends ListableBeanFactory, Au
 	void clearMetadataCache();
 
 	/**
-	 * Freeze all bean definitions, signalling that the registered bean definitions
-	 * will not be modified or post-processed any further.
+	 * Freeze all bean definitions, signalling that the registered bean definitions will not be modified or post-processed any further.
 	 * This allows the factory to aggressively cache bean definition metadata.
 	 * 冻结所有bean定义，表明注册的bean定义不会被修改或进一步后处理
 	 */
@@ -143,8 +132,7 @@ public interface ConfigurableListableBeanFactory extends ListableBeanFactory, Au
 	/**
 	 * Ensure that all non-lazy-init singletons are instantiated, also considering FactoryBeans {@link org.springframework.beans.factory.FactoryBean FactoryBeans}.
 	 * 确保所有非lazy-init单例都已被实例化，同时考虑到 factorybeans
-	 * Typically invoked at the end of factory setup, if desired.
-	 * 如果需要，通常在工厂设置结束时调用
+	 * Typically invoked at the end of factory setup, if desired. 如果需要，通常在工厂设置结束时调用
 	 * @throws BeansException if one of the singleton beans could not be created.
 	 * Note: This may have left the factory with some beans already initialized!
 	 * Call {@link #destroySingletons()} for full cleanup in this case.
