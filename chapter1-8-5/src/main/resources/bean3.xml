@@ -5,5 +5,6 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="gaga" class="com.goat.chapter185.item03.BeanNameAwareTest"/>
+	<bean id="gaga1" class="com.goat.chapter185.item03.BeanClassLoaderAwareTest"/>
 
 </beans>
