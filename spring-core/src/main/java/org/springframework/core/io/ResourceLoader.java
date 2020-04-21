@@ -16,10 +16,11 @@ import org.springframework.util.ResourceUtils;
  * @see org.springframework.context.ApplicationContext
  * @see org.springframework.context.ResourceLoaderAware
  * 定义资源加载器，主要应用于根据给定的资源文件地址返回对应的Resource
+ * 加载资源的策略接口 (如类路径和文件系统资源)
  */
 public interface ResourceLoader {
 
-	/** Pseudo URL prefix for loading from the class path: "classpath:". */
+	/** Pseudo URL prefix for loading from the class path: "classpath:".   用于从类路径加载的伪URL前缀：“classpath：” */
 	String CLASSPATH_URL_PREFIX = ResourceUtils.CLASSPATH_URL_PREFIX;
 
 	/**
@@ -35,6 +36,7 @@ public interface ResourceLoader {
 	 * @see #CLASSPATH_URL_PREFIX
 	 * @see Resource#exists()
 	 * @see Resource#getInputStream()
+	 * 返回指定资源位置的资源句柄
 	 */
 	Resource getResource(String location);
 
@@ -44,6 +46,7 @@ public interface ResourceLoader {
 	 * @return the ClassLoader (only {@code null} if even the system ClassLoader isn't accessible)
 	 * @see org.springframework.util.ClassUtils#getDefaultClassLoader()
 	 * @see org.springframework.util.ClassUtils#forName(String, ClassLoader)
+	 * 暴露此ResourceLoader使用的ClassLoader。
 	 */
 	@Nullable
 	ClassLoader getClassLoader();

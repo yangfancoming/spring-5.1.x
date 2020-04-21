@@ -33,10 +33,8 @@ public class ClassPathResource extends AbstractFileResolvingResource {
 
 	/**
 	 * Create a new {@code ClassPathResource} for {@code ClassLoader} usage.
-	 * A leading slash will be removed, as the ClassLoader resource access
-	 * methods will not accept it.
-	 * The thread context class loader will be used for
-	 * loading the resource.
+	 * A leading slash will be removed, as the ClassLoader resource access  methods will not accept it.
+	 * The thread context class loader will be used for loading the resource.
 	 * @param path the absolute path within the class path
 	 * @see java.lang.ClassLoader#getResourceAsStream(String)
 	 * @see org.springframework.util.ClassUtils#getDefaultClassLoader()
@@ -47,8 +45,7 @@ public class ClassPathResource extends AbstractFileResolvingResource {
 
 	/**
 	 * Create a new {@code ClassPathResource} for {@code ClassLoader} usage.
-	 * A leading slash will be removed, as the ClassLoader resource access
-	 * methods will not accept it.
+	 * A leading slash will be removed, as the ClassLoader resource access methods will not accept it.
 	 * @param path the absolute path within the classpath
 	 * @param classLoader the class loader to load the resource with,
 	 * or {@code null} for the thread context class loader
@@ -96,16 +93,12 @@ public class ClassPathResource extends AbstractFileResolvingResource {
 		this.clazz = clazz;
 	}
 
-	/**
-	 * Return the path for this resource (as resource path within the class path).
-	 */
+	// Return the path for this resource (as resource path within the class path).
 	public final String getPath() {
 		return this.path;
 	}
 
-	/**
-	 * Return the ClassLoader that this resource will be obtained from.
-	 */
+	// Return the ClassLoader that this resource will be obtained from.
 	@Nullable
 	public final ClassLoader getClassLoader() {
 		return (this.clazz != null ? this.clazz.getClassLoader() : this.classLoader);
@@ -170,9 +163,7 @@ public class ClassPathResource extends AbstractFileResolvingResource {
 	@Override
 	public URL getURL() throws IOException {
 		URL url = resolveURL();
-		if (url == null) {
-			throw new FileNotFoundException(getDescription() + " cannot be resolved to URL because it does not exist");
-		}
+		if (url == null) throw new FileNotFoundException(getDescription() + " cannot be resolved to URL because it does not exist");
 		return url;
 	}
 
@@ -196,9 +187,7 @@ public class ClassPathResource extends AbstractFileResolvingResource {
 		return StringUtils.getFilename(this.path);
 	}
 
-	/**
-	 * This implementation returns a description that includes the class path location.
-	 */
+	// This implementation returns a description that includes the class path location.
 	@Override
 	public String getDescription() {
 		StringBuilder builder = new StringBuilder("class path resource [");
@@ -215,9 +204,7 @@ public class ClassPathResource extends AbstractFileResolvingResource {
 		return builder.toString();
 	}
 
-	/**
-	 * This implementation compares the underlying class path locations.
-	 */
+	// This implementation compares the underlying class path locations.
 	@Override
 	public boolean equals(Object other) {
 		if (this == other) return true;
@@ -230,12 +217,9 @@ public class ClassPathResource extends AbstractFileResolvingResource {
 				ObjectUtils.nullSafeEquals(this.clazz, otherRes.clazz));
 	}
 
-	/**
-	 * This implementation returns the hash code of the underlying class path location.
-	 */
+	// This implementation returns the hash code of the underlying class path location.
 	@Override
 	public int hashCode() {
 		return this.path.hashCode();
 	}
-
 }

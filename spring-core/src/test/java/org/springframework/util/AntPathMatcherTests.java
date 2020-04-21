@@ -29,10 +29,11 @@ public class AntPathMatcherTests {
 
 	@Test
 	public void match() {
-		// test exact matching
+		// 【 test exact matching】
 		assertTrue(pathMatcher.match("test", "test"));
 		assertTrue(pathMatcher.match("/test", "/test"));
 		assertTrue(pathMatcher.match("https://example.org", "https://example.org")); // SPR-14141
+		// False
 		assertFalse(pathMatcher.match("/test.jpg", "test.jpg"));
 		assertFalse(pathMatcher.match("test", "/test"));
 		assertFalse(pathMatcher.match("/test", "test"));
@@ -43,6 +44,7 @@ public class AntPathMatcherTests {
 		assertTrue(pathMatcher.match("tes?", "test"));
 		assertTrue(pathMatcher.match("te??", "test"));
 		assertTrue(pathMatcher.match("?es?", "test"));
+
 		assertFalse(pathMatcher.match("tes?", "tes"));
 		assertFalse(pathMatcher.match("tes?", "testt"));
 		assertFalse(pathMatcher.match("tes?", "tsst"));
@@ -107,11 +109,8 @@ public class AntPathMatcherTests {
 		assertFalse(pathMatcher.match("*bla*/**/bla/*", "XXXblaXXXX/testing/testing/bla/testing/testing"));
 
 		assertFalse(pathMatcher.match("/x/x/**/bla", "/x/x/x/"));
-
 		assertTrue(pathMatcher.match("/foo/bar/**", "/foo/bar")) ;
-
 		assertTrue(pathMatcher.match("", ""));
-
 		assertTrue(pathMatcher.match("/{bla}.*", "/testing.html"));
 	}
 
@@ -119,7 +118,6 @@ public class AntPathMatcherTests {
 	@Test
 	public void matchWithTrimTokensEnabled() throws Exception {
 		pathMatcher.setTrimTokens(true);
-
 		assertTrue(pathMatcher.match("/foo/bar", "/foo /bar"));
 	}
 
@@ -302,7 +300,7 @@ public class AntPathMatcherTests {
 	}
 
 	@Test
-	public void extractUriTemplateVariables() throws Exception {
+	public void extractUriTemplateVariables() {
 		Map<String, String> result = pathMatcher.extractUriTemplateVariables("/hotels/{hotel}", "/hotels/1");
 		assertEquals(Collections.singletonMap("hotel", "1"), result);
 
@@ -336,14 +334,10 @@ public class AntPathMatcherTests {
 
 	@Test
 	public void extractUriTemplateVariablesRegex() {
-		Map<String, String> result = pathMatcher
-				.extractUriTemplateVariables("{symbolicName:[\\w\\.]+}-{version:[\\w\\.]+}.jar",
-						"com.example-1.0.0.jar");
+		Map<String, String> result = pathMatcher.extractUriTemplateVariables("{symbolicName:[\\w\\.]+}-{version:[\\w\\.]+}.jar","com.example-1.0.0.jar");
 		assertEquals("com.example", result.get("symbolicName"));
 		assertEquals("1.0.0", result.get("version"));
-
-		result = pathMatcher.extractUriTemplateVariables("{symbolicName:[\\w\\.]+}-sources-{version:[\\w\\.]+}.jar",
-				"com.example-sources-1.0.0.jar");
+		result = pathMatcher.extractUriTemplateVariables("{symbolicName:[\\w\\.]+}-sources-{version:[\\w\\.]+}.jar","com.example-sources-1.0.0.jar");
 		assertEquals("com.example", result.get("symbolicName"));
 		assertEquals("1.0.0", result.get("version"));
 	}
@@ -353,24 +347,17 @@ public class AntPathMatcherTests {
 	 */
 	@Test
 	public void extractUriTemplateVarsRegexQualifiers() {
-		Map<String, String> result = pathMatcher.extractUriTemplateVariables(
-				"{symbolicName:[\\p{L}\\.]+}-sources-{version:[\\p{N}\\.]+}.jar",
-				"com.example-sources-1.0.0.jar");
+		Map<String, String> result = pathMatcher.extractUriTemplateVariables("{symbolicName:[\\p{L}\\.]+}-sources-{version:[\\p{N}\\.]+}.jar","com.example-sources-1.0.0.jar");
 		assertEquals("com.example", result.get("symbolicName"));
 		assertEquals("1.0.0", result.get("version"));
-
-		result = pathMatcher.extractUriTemplateVariables(
-				"{symbolicName:[\\w\\.]+}-sources-{version:[\\d\\.]+}-{year:\\d{4}}{month:\\d{2}}{day:\\d{2}}.jar",
-				"com.example-sources-1.0.0-20100220.jar");
+		result = pathMatcher.extractUriTemplateVariables("{symbolicName:[\\w\\.]+}-sources-{version:[\\d\\.]+}-{year:\\d{4}}{month:\\d{2}}{day:\\d{2}}.jar","com.example-sources-1.0.0-20100220.jar");
 		assertEquals("com.example", result.get("symbolicName"));
 		assertEquals("1.0.0", result.get("version"));
 		assertEquals("2010", result.get("year"));
 		assertEquals("02", result.get("month"));
 		assertEquals("20", result.get("day"));
 
-		result = pathMatcher.extractUriTemplateVariables(
-				"{symbolicName:[\\p{L}\\.]+}-sources-{version:[\\p{N}\\.\\{\\}]+}.jar",
-				"com.example-sources-1.0.0.{12}.jar");
+		result = pathMatcher.extractUriTemplateVariables("{symbolicName:[\\p{L}\\.]+}-sources-{version:[\\p{N}\\.\\{\\}]+}.jar","com.example-sources-1.0.0.{12}.jar");
 		assertEquals("com.example", result.get("symbolicName"));
 		assertEquals("1.0.0.{12}", result.get("version"));
 	}
@@ -656,8 +643,7 @@ public class AntPathMatcherTests {
 	@Test
 	public void extensionMappingWithDotPathSeparator() {
 		pathMatcher.setPathSeparator(".");
-		assertEquals("Extension mapping should be disabled with \".\" as path separator",
-				"/*.html.hotel.*", pathMatcher.combine("/*.html", "hotel.*"));
+		assertEquals("Extension mapping should be disabled with \".\" as path separator","/*.html.hotel.*", pathMatcher.combine("/*.html", "hotel.*"));
 	}
 
 	@Test // gh-22959
@@ -666,6 +652,7 @@ public class AntPathMatcherTests {
 		assertTrue(pathMatcher.isPattern("/test/**/name"));
 		assertTrue(pathMatcher.isPattern("/test?"));
 		assertTrue(pathMatcher.isPattern("/test/{name}"));
+
 		assertFalse(pathMatcher.isPattern("/test/name"));
 		assertFalse(pathMatcher.isPattern("/test/foo{bar"));
 	}

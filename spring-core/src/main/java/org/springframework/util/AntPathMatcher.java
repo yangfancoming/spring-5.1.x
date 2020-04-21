@@ -22,27 +22,20 @@ import org.springframework.lang.Nullable;
  * <li>{@code **} matches zero or more <em>directories</em> in a path</li>
  * <li>{@code {spring:[a-z]+}} matches the regexp {@code [a-z]+} as a path variable named "spring"</li>
  * <h3>Examples</h3>
- * <li>{@code com/t?st.jsp} ; matches {@code com/test.jsp} but also
- * {@code com/tast.jsp} or {@code com/txst.jsp}</li>
- * <li>{@code com/*.jsp} ; matches all {@code .jsp} files in the
- * {@code com} directory</li>
- * <li><code>com/&#42;&#42;/test.jsp</code> ; matches all {@code test.jsp}
- * files underneath the {@code com} path</li>
- * <li><code>org/springframework/&#42;&#42;/*.jsp</code> ; matches all
- * {@code .jsp} files underneath the {@code org/springframework} path</li>
- * <li><code>org/&#42;&#42;/servlet/bla.jsp</code> ; matches
- * {@code org/springframework/servlet/bla.jsp} but also
+ * <li>{@code com/t?st.jsp} ; matches {@code com/test.jsp} but also {@code com/tast.jsp} or {@code com/txst.jsp}</li>
+ * <li>{@code com/*.jsp} ; matches all {@code .jsp} files in the {@code com} directory</li>
+ * <li><code>com/&#42;&#42;/test.jsp</code> ; matches all {@code test.jsp} files underneath the {@code com} path</li>
+ * <li><code>org/springframework/&#42;&#42;/*.jsp</code> ; matches all {@code .jsp} files underneath the {@code org/springframework} path</li>
+ * <li><code>org/&#42;&#42;/servlet/bla.jsp</code> ; matches {@code org/springframework/servlet/bla.jsp} but also
  * {@code org/springframework/testing/servlet/bla.jsp} and {@code org/servlet/bla.jsp}</li>
  * <li>{@code com/{filename:\\w+}.jsp} will match {@code com/test.jsp} and assign the value {@code test} to the {@code filename} variable</li>
- * <strong>Note:</strong> a pattern and a path must both be absolute or must
- * both be relative in order for the two to match. Therefore it is recommended
- * that users of this implementation to sanitize patterns in order to prefix
- * them with "/" as it makes sense in the context in which they're used.
+ * <strong>Note:</strong> a pattern and a path must both be absolute or must both be relative in order for the two to match.
+ * Therefore it is recommended that users of this implementation to sanitize patterns in order to prefix them with "/" as it makes sense in the context in which they're used.
  * @since 16.07.2003
  */
 public class AntPathMatcher implements PathMatcher {
 
-	/** Default path separator: "/". */
+	/**   Default path separator: "/".      */
 	public static final String DEFAULT_PATH_SEPARATOR = "/";
 
 	private static final int CACHE_TURNOFF_THRESHOLD = 65536;
@@ -112,14 +105,11 @@ public class AntPathMatcher implements PathMatcher {
 	}
 
 	/**
-	 * Specify whether to cache parsed pattern metadata for patterns passed
-	 * into this matcher's {@link #match} method. A value of {@code true}
-	 * activates an unlimited pattern cache; a value of {@code false} turns
-	 * the pattern cache off completely.
+	 * Specify whether to cache parsed pattern metadata for patterns passed into this matcher's {@link #match} method. A value of {@code true}
+	 * activates an unlimited pattern cache; a value of {@code false} turns the pattern cache off completely.
 	 * Default is for the cache to be on, but with the variant to automatically
-	 * turn it off when encountering too many patterns to cache at runtime
-	 * (the threshold is 65536), assuming that arbitrary permutations of patterns
-	 * are coming in, with little chance for encountering a recurring pattern.
+	 * turn it off when encountering too many patterns to cache at runtime (the threshold is 65536),
+	 * assuming that arbitrary permutations of patterns are coming in, with little chance for encountering a recurring pattern.
 	 * @since 4.0.1
 	 * @see #getStringMatcher(String)
 	 */
@@ -132,7 +122,6 @@ public class AntPathMatcher implements PathMatcher {
 		this.tokenizedPatternCache.clear();
 		this.stringMatcherCache.clear();
 	}
-
 
 	@Override
 	public boolean isPattern(String path) {
@@ -183,7 +172,6 @@ public class AntPathMatcher implements PathMatcher {
 			pattIdxStart++;
 			pathIdxStart++;
 		}
-
 		if (pathIdxStart > pathIdxEnd) {
 			// Path is exhausted, only match if rest of pattern is * or **'s
 			if (pattIdxStart > pattIdxEnd) {

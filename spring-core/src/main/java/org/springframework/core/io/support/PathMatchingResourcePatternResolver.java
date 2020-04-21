@@ -42,7 +42,7 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * A {@link ResourcePatternResolver} implementation that is able to resolve a  specified resource location path into one or more matching Resources.
+ * A {@link ResourcePatternResolver} implementation that is able to resolve a specified resource location path into one or more matching Resources.
  * The source path may be a simple path which has a one-to-one mapping to a target {@link org.springframework.core.io.Resource},
  * or alternatively may contain the special "{@code classpath*:}" prefix and/or
  * internal Ant-style regular expressions (matched using Spring's {@link org.springframework.util.AntPathMatcher} utility).
@@ -176,12 +176,14 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 	 * Create a new PathMatchingResourcePatternResolver with a DefaultResourceLoader.
 	 * ClassLoader access will happen via the thread context class loader.
 	 * @see org.springframework.core.io.DefaultResourceLoader
+	 * 第一种构造函数： 用DefaultResourceLoader设置resourceLoader
 	 */
 	public PathMatchingResourcePatternResolver() {
 		this.resourceLoader = new DefaultResourceLoader();
 	}
 
 	/**
+	 * 第二种构造函数： 用指定的 ResourceLoader 设置resourceLoader
 	 * Create a new PathMatchingResourcePatternResolver.
 	 * ClassLoader access will happen via the thread context class loader.
 	 * @param resourceLoader the ResourceLoader to load root directories and actual resources with
@@ -192,6 +194,7 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 	}
 
 	/**
+	 *  第二种构造函数： 用指定的 ClassLoader 设置resourceLoader (依然是用DefaultResourceLoader)
 	 * Create a new PathMatchingResourcePatternResolver with a DefaultResourceLoader.
 	 * @param classLoader the ClassLoader to load classpath resources with,
 	 * or {@code null} for using the thread context class loader
@@ -209,12 +212,6 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 		return this.resourceLoader;
 	}
 
-	@Override
-	@Nullable
-	public ClassLoader getClassLoader() {
-		return getResourceLoader().getClassLoader();
-	}
-
 	/**
 	 * Set the PathMatcher implementation to use for this
 	 * resource pattern resolver. Default is AntPathMatcher.
@@ -225,24 +222,36 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 		this.pathMatcher = pathMatcher;
 	}
 
-	/**
-	 * Return the PathMatcher that this resource pattern resolver uses.
-	 */
+	//  Return the PathMatcher that this resource pattern resolver uses.
 	public PathMatcher getPathMatcher() {
 		return this.pathMatcher;
 	}
 
+	//---------------------------------------------------------------------
+	// Implementation of 【ResourceLoader】 interface
+	//---------------------------------------------------------------------
+	@Override
+	@Nullable
+	public ClassLoader getClassLoader() {
+		return getResourceLoader().getClassLoader();
+	}
+
+	// 我们可以看到getResource是通过调用resourceLoader的getResource方法来实现的。本身并没有查找功能，只是一个中转
 	@Override
 	public Resource getResource(String location) {
 		return getResourceLoader().getResource(location);
 	}
 
+	//---------------------------------------------------------------------
+	// Implementation of 【ResourcePatternResolver】 interface   核心重构方法！！！
+	//---------------------------------------------------------------------
 	// classpath*:example/scannable/
 	@Override
 	public Resource[] getResources(String locationPattern) throws IOException {
 		Assert.notNull(locationPattern, "Location pattern must not be null");
+		// "classpath*:" 开始  判定标准，是否开头"classpath*:";及有无通配符，4个逻辑。
 		if (locationPattern.startsWith(CLASSPATH_ALL_URL_PREFIX)) {
-			// a class path resource (multiple resources for same name possible)
+			// a class path resource (multiple resources for same name possible) //有通配符
 			if (getPathMatcher().isPattern(locationPattern.substring(CLASSPATH_ALL_URL_PREFIX.length()))) {
 				// a class path resource pattern
 				return findPathMatchingResources(locationPattern);
@@ -251,8 +260,7 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 				return findAllClassPathResources(locationPattern.substring(CLASSPATH_ALL_URL_PREFIX.length()));
 			}
 		}else {
-			// Generally only look for a pattern after a prefix here,
-			// and on Tomcat only after the "*/" separator for its "war:" protocol.
+			// Generally only look for a pattern after a prefix here, and on Tomcat only after the "*/" separator for its "war:" protocol.
 			int prefixEnd = (locationPattern.startsWith("war:") ? locationPattern.indexOf("*/") + 1 : locationPattern.indexOf(':') + 1);
 			if (getPathMatcher().isPattern(locationPattern.substring(prefixEnd))) {
 				// a file pattern
@@ -660,10 +668,8 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 	}
 
 	/**
-	 * Recursively retrieve files that match the given pattern,
-	 * adding them to the given result list.
-	 * @param fullPattern the pattern to match against,
-	 * with prepended root directory path
+	 * Recursively retrieve files that match the given pattern,adding them to the given result list.
+	 * @param fullPattern the pattern to match against,with prepended root directory path
 	 * @param dir the current directory
 	 * @param result the Set of matching File instances to add to
 	 * @throws IOException if directory contents could not be retrieved
@@ -761,20 +767,16 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 				this.resources.add(new VfsResource(vfsResource));
 			}
 		}
-
 		@Nullable
 		public Object getAttributes() {
 			return VfsPatternUtils.getVisitorAttributes();
 		}
-
 		public Set<Resource> getResources() {
 			return this.resources;
 		}
-
 		public int size() {
 			return this.resources.size();
 		}
-
 		@Override
 		public String toString() {
 			return "sub-pattern: " + this.subPattern + ", resources: " + this.resources;

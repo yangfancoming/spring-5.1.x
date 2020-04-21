@@ -167,7 +167,6 @@ public abstract class StringUtils {
 	//---------------------------------------------------------------------
 	// General convenience methods for working with Strings  【字符串头尾操作】
 	//---------------------------------------------------------------------
-
 	/**
 	 * Trim leading and trailing whitespace from the given String.
 	 *  只干掉字符串的头尾空白符
@@ -574,11 +573,9 @@ public abstract class StringUtils {
 			prefix = prefix + FOLDER_SEPARATOR;
 			pathToUse = pathToUse.substring(1);
 		}
-
 		String[] pathArray = delimitedListToStringArray(pathToUse, FOLDER_SEPARATOR);
 		LinkedList<String> pathElements = new LinkedList<>();
 		int tops = 0;
-
 		for (int i = pathArray.length - 1; i >= 0; i--) {
 			String element = pathArray[i];
 			if (CURRENT_PATH.equals(element)) {
@@ -596,7 +593,6 @@ public abstract class StringUtils {
 				}
 			}
 		}
-
 		// Remaining top paths need to be retained.
 		for (int i = 0; i < tops; i++) {
 			pathElements.add(0, TOP_PATH);
@@ -620,8 +616,7 @@ public abstract class StringUtils {
 
 	/**
 	 * Decode the given encoded URI component value. Based on the following rules:
-	 * <li>Alphanumeric characters {@code "a"} through {@code "z"}, {@code "A"} through {@code "Z"},
-	 * and {@code "0"} through {@code "9"} stay the same.</li>
+	 * <li>Alphanumeric characters {@code "a"} through {@code "z"}, {@code "A"} through {@code "Z"},and {@code "0"} through {@code "9"} stay the same.</li>
 	 * <li>Special characters {@code "-"}, {@code "_"}, {@code "."}, and {@code "*"} stay the same.</li>
 	 * <li>A sequence "{@code %xy}" is interpreted as a hexadecimal representation of the character.</li>
 	 * @param source the encoded String
@@ -635,7 +630,6 @@ public abstract class StringUtils {
 		int length = source.length();
 		if (length == 0) return source;
 		Assert.notNull(charset, "Charset must not be null");
-
 		ByteArrayOutputStream bos = new ByteArrayOutputStream(length);
 		boolean changed = false;
 		for (int i = 0; i < length; i++) {
@@ -711,7 +705,6 @@ public abstract class StringUtils {
 		String country = (tokens.length > 1 ? tokens[1] : "");
 		validateLocalePart(language);
 		validateLocalePart(country);
-
 		String variant = "";
 		if (tokens.length > 2) {
 			// There is definitely a variant, and it is everything after the country
@@ -723,7 +716,6 @@ public abstract class StringUtils {
 				variant = trimLeadingCharacter(variant, '_');
 			}
 		}
-
 		if (variant.isEmpty() && country.startsWith("#")) {
 			variant = country;
 			country = "";
@@ -753,8 +745,7 @@ public abstract class StringUtils {
 
 	/**
 	 * Parse the given {@code timeZoneString} value into a {@link TimeZone}.
-	 * @param timeZoneString the time zone String, following {@link TimeZone#getTimeZone(String)}
-	 * but throwing {@link IllegalArgumentException} in case of an invalid time zone specification
+	 * @param timeZoneString the time zone String, following {@link TimeZone#getTimeZone(String)}  but throwing {@link IllegalArgumentException} in case of an invalid time zone specification
 	 * @return a corresponding {@link TimeZone} instance
 	 * @throws IllegalArgumentException in case of an invalid time zone specification
 	 */
@@ -771,7 +762,6 @@ public abstract class StringUtils {
 	//---------------------------------------------------------------------
 	// Convenience methods for working with String arrays
 	//---------------------------------------------------------------------
-
 	/**
 	 * 把字符串集合变成字符串数组
 	 * Copy the given {@link Collection} into a String array.
@@ -894,8 +884,7 @@ public abstract class StringUtils {
 	 * Does not include the delimiter in the result.
 	 * @param toSplit the string to split (potentially {@code null} or empty)
 	 * @param delimiter to split the string up with (potentially {@code null} or empty)
-	 * @return a two element array with index 0 being before the delimiter, and
-	 * index 1 being after the delimiter (neither element includes the delimiter);
+	 * @return a two element array with index 0 being before the delimiter, and index 1 being after the delimiter (neither element includes the delimiter);
 	 * or {@code null} if the delimiter wasn't found in the given input String
 	 */
 	@Nullable
@@ -910,13 +899,11 @@ public abstract class StringUtils {
 
 	/**
 	 * Take an array of strings and split each element based on the given delimiter.
-	 * A {@code Properties} instance is then generated, with the left of the delimiter providing the key,
-	 * and the right of the delimiter providing the value.
+	 * A {@code Properties} instance is then generated, with the left of the delimiter providing the key,and the right of the delimiter providing the value.
 	 * Will trim both the key and value before adding them to the {@code Properties}.
 	 * @param array the array to process
 	 * @param delimiter to split each element using (typically the equals symbol)
-	 * @return a {@code Properties} instance representing the array contents,
-	 * or {@code null} if the array to process was {@code null} or empty
+	 * @return a {@code Properties} instance representing the array contents,or {@code null} if the array to process was {@code null} or empty
 	 */
 	@Nullable
 	public static Properties splitArrayElementsIntoProperties(String[] array, String delimiter) {
@@ -926,16 +913,13 @@ public abstract class StringUtils {
 	/**
 	 * 把字符串数组中的每一个字符串按照给定的分隔符装配到一个Properties中,并删除指定字符串，比如括号之类的；
 	 * Take an array of strings and split each element based on the given delimiter.
-	 * A {@code Properties} instance is then generated, with the left of the
-	 * delimiter providing the key, and the right of the delimiter providing the value.
+	 * A {@code Properties} instance is then generated, with the left of the  delimiter providing the key, and the right of the delimiter providing the value.
 	 * Will trim both the key and value before adding them to the {@code Properties} instance.
 	 * @param array the array to process
 	 * @param delimiter to split each element using (typically the equals symbol)
 	 * @param charsToDelete one or more characters to remove from each element
-	 * prior to attempting the split operation (typically the quotation mark
-	 * symbol), or {@code null} if no removal should occur
-	 * @return a {@code Properties} instance representing the array contents,
-	 * or {@code null} if the array to process was {@code null} or empty
+	 * prior to attempting the split operation (typically the quotation mark symbol), or {@code null} if no removal should occur
+	 * @return a {@code Properties} instance representing the array contents,or {@code null} if the array to process was {@code null} or empty
 	 */
 	@Nullable
 	public static Properties splitArrayElementsIntoProperties(String[] array, String delimiter, @Nullable String charsToDelete) {
@@ -976,23 +960,18 @@ public abstract class StringUtils {
 	 * Tokenize the given String into a String array via a {@link StringTokenizer}.
 	 * The given {@code delimiters} string can consist of any number of delimiter characters.
 	 * Each of those characters can be used to separate tokens.
-	 * A delimiter is always a single character; for multi-character
-	 * delimiters, consider using {@link #delimitedListToStringArray}.
+	 * A delimiter is always a single character; for multi-character delimiters, consider using {@link #delimitedListToStringArray}.
 	 * @param str the String to tokenize (potentially {@code null} or empty)
-	 * @param delimiters the delimiter characters, assembled as a String
-	 * (each of the characters is individually considered as a delimiter)
+	 * @param delimiters the delimiter characters, assembled as a String (each of the characters is individually considered as a delimiter)
 	 * @param trimTokens trim the tokens via {@link String#trim()}
-	 * @param ignoreEmptyTokens omit empty tokens from the result array
-	 * (only applies to tokens that are empty after trimming; StringTokenizer will not consider subsequent delimiters as token in the first place).
+	 * @param ignoreEmptyTokens omit empty tokens from the result array (only applies to tokens that are empty after trimming; StringTokenizer will not consider subsequent delimiters as token in the first place).
 	 * @return an array of the tokens
 	 * @see java.util.StringTokenizer
 	 * @see String#trim()
 	 * @see #delimitedListToStringArray
 	 */
 	public static String[] tokenizeToStringArray(@Nullable String str, String delimiters, boolean trimTokens, boolean ignoreEmptyTokens) {
-		if (str == null) {
-			return new String[0];
-		}
+		if (str == null) return new String[0];
 		StringTokenizer st = new StringTokenizer(str, delimiters);
 		List<String> tokens = new ArrayList<>();
 		while (st.hasMoreTokens()) {

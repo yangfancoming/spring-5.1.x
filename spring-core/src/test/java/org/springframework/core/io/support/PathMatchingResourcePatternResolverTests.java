@@ -17,8 +17,7 @@ import org.springframework.util.StringUtils;
 import static org.junit.Assert.*;
 
 /**
- * If this test case fails, uncomment diagnostics in the
- * {@link #assertProtocolAndFilenames} method.
+ * If this test case fails, uncomment diagnostics in the {@link #assertProtocolAndFilenames} method.
  * @since 17.11.2004
  */
 public class PathMatchingResourcePatternResolverTests {
@@ -39,6 +38,7 @@ public class PathMatchingResourcePatternResolverTests {
 		resolver.getResources("xx**:**/*.xy");
 	}
 
+	// 加载本地class
 	@Test
 	public void singleResourceOnFileSystem() throws IOException {
 		Resource[] resources = resolver.getResources("org/springframework/core/io/support/PathMatchingResourcePatternResolverTests.class");
@@ -46,6 +46,7 @@ public class PathMatchingResourcePatternResolverTests {
 		assertProtocolAndFilenames(resources, "file", "PathMatchingResourcePatternResolverTests.class");
 	}
 
+	// 加载jar资源 org.reactivestream   reactive-stream-1.0.2.jar
 	@Test
 	public void singleResourceInJar() throws IOException {
 		Resource[] resources = resolver.getResources("org/reactivestreams/Publisher.class");
@@ -57,8 +58,7 @@ public class PathMatchingResourcePatternResolverTests {
 	@Test
 	public void classpathStarWithPatternOnFileSystem() throws IOException {
 		Resource[] resources = resolver.getResources("classpath*:org/springframework/core/io/sup*/*.class");
-		// Have to exclude Clover-generated class files here,
-		// as we might be running as part of a Clover test run.
+		// Have to exclude Clover-generated class files here, as we might be running as part of a Clover test run.
 		List<Resource> noCloverResources = new ArrayList<>();
 		for (Resource resource : resources) {
 			if (!resource.getFilename().contains("$__CLOVER_")) {
@@ -69,12 +69,14 @@ public class PathMatchingResourcePatternResolverTests {
 		assertProtocolAndFilenames(resources, "file",StringUtils.concatenateStringArrays(CLASSES_IN_CORE_IO_SUPPORT, TEST_CLASSES_IN_CORE_IO_SUPPORT));
 	}
 
+	// 以classpath: 方式加载jar包class
 	@Test
 	public void classpathWithPatternInJar() throws IOException {
 		Resource[] resources = resolver.getResources("classpath:org/reactivestreams/*.class");
 		assertProtocolAndFilenames(resources, "jar", CLASSES_IN_REACTIVESTREAMS);
 	}
 
+	// 以classpath*通配符的方式加jar包class
 	@Test
 	public void classpathStarWithPatternInJar() throws IOException {
 		Resource[] resources = resolver.getResources("classpath*:org/reactivestreams/*.class");
@@ -123,8 +125,7 @@ public class PathMatchingResourcePatternResolverTests {
 
 	private void assertFilenameIn(Resource resource, String... filenames) {
 		String filename = resource.getFilename();
-		assertTrue(resource + " does not have a filename that matches any of the specified names",
-				Arrays.stream(filenames).anyMatch(filename::endsWith));
+		assertTrue(resource + " does not have a filename that matches any of the specified names",Arrays.stream(filenames).anyMatch(filename::endsWith));
 	}
 
 }
