@@ -28,11 +28,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class App {
 
-	ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean3.xml");
+	ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean3.xml");
 
 	@Test
 	public void test() {
 		System.out.println(applicationContext);
+		applicationContext.close();
 	}
 
 	@Test

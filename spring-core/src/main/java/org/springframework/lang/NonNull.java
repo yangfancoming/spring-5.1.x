@@ -20,11 +20,7 @@ import javax.annotation.meta.TypeQualifierNickname;
  * repeat parent {@code @NonNull} annotations unless they behave differently.
  *
  * Use {@code @NonNullApi} (scope = parameters + return values) and/or {@code @NonNullFields}
- * (scope = fields) to set the default behavior to non-nullable in order to avoid annotating
- * your whole codebase with {@code @NonNull}.
- *
- * @author Sebastien Deleuze
-
+ * (scope = fields) to set the default behavior to non-nullable in order to avoid annotating your whole codebase with {@code @NonNull}.
  * @since 5.0
  * @see NonNullApi
  * @see NonNullFields

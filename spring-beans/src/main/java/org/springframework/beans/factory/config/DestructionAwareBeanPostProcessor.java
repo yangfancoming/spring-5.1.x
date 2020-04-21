@@ -6,11 +6,8 @@ import org.springframework.beans.BeansException;
 
 /**
  * Subinterface of {@link BeanPostProcessor} that adds a before-destruction callback.
- *
  * The typical usage will be to invoke custom destruction callbacks on
  * specific bean types, matching corresponding initialization callbacks.
- *
-
  * @since 1.0.1
  */
 public interface DestructionAwareBeanPostProcessor extends BeanPostProcessor {
