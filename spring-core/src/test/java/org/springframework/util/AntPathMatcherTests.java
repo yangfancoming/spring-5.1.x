@@ -2,12 +2,7 @@
 
 package org.springframework.util;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -26,10 +21,9 @@ public class AntPathMatcherTests {
 	@Rule
 	public final ExpectedException exception = ExpectedException.none();
 
-
 	@Test
 	public void match() {
-		// 【 test exact matching】
+		// 【 test exact matching 】
 		assertTrue(pathMatcher.match("test", "test"));
 		assertTrue(pathMatcher.match("/test", "/test"));
 		assertTrue(pathMatcher.match("https://example.org", "https://example.org")); // SPR-14141
@@ -38,18 +32,18 @@ public class AntPathMatcherTests {
 		assertFalse(pathMatcher.match("test", "/test"));
 		assertFalse(pathMatcher.match("/test", "test"));
 
-		// test matching with ?'s
+		// 【 test matching with ?'s 】
 		assertTrue(pathMatcher.match("t?st", "test"));
 		assertTrue(pathMatcher.match("??st", "test"));
 		assertTrue(pathMatcher.match("tes?", "test"));
 		assertTrue(pathMatcher.match("te??", "test"));
 		assertTrue(pathMatcher.match("?es?", "test"));
-
+		// False
 		assertFalse(pathMatcher.match("tes?", "tes"));
 		assertFalse(pathMatcher.match("tes?", "testt"));
 		assertFalse(pathMatcher.match("tes?", "tsst"));
 
-		// test matching with *'s
+		// 【 test matching with *'s 】
 		assertTrue(pathMatcher.match("*", "test"));
 		assertTrue(pathMatcher.match("test*", "test"));
 		assertTrue(pathMatcher.match("test*", "testTest"));
@@ -62,6 +56,7 @@ public class AntPathMatcherTests {
 		assertTrue(pathMatcher.match("*.*", "test.test"));
 		assertTrue(pathMatcher.match("*.*", "test.test.test"));
 		assertTrue(pathMatcher.match("test*aaa", "testblaaaa"));
+		// False
 		assertFalse(pathMatcher.match("test*", "tst"));
 		assertFalse(pathMatcher.match("test*", "tsttest"));
 		assertFalse(pathMatcher.match("test*", "test/"));
@@ -81,7 +76,7 @@ public class AntPathMatcherTests {
 		assertTrue(pathMatcher.match("/a/??", "/a/bb"));
 		assertTrue(pathMatcher.match("/?", "/a"));
 
-		// test matching with **'s
+		// 【 test matching with **'s 】
 		assertTrue(pathMatcher.match("/**", "/testing/testing"));
 		assertTrue(pathMatcher.match("/*/**", "/testing/testing"));
 		assertTrue(pathMatcher.match("/**/*", "/testing/testing"));
@@ -91,10 +86,10 @@ public class AntPathMatcherTests {
 		assertTrue(pathMatcher.match("/bla/**/**/bla", "/bla/bla/bla/bla/bla/bla"));
 		assertTrue(pathMatcher.match("/bla*bla/test", "/blaXXXbla/test"));
 		assertTrue(pathMatcher.match("/*bla/test", "/XXXbla/test"));
+		// False
 		assertFalse(pathMatcher.match("/bla*bla/test", "/blaXXXbl/test"));
 		assertFalse(pathMatcher.match("/*bla/test", "XXXblab/test"));
 		assertFalse(pathMatcher.match("/*bla/test", "XXXbl/test"));
-
 		assertFalse(pathMatcher.match("/????", "/bala/bla"));
 		assertFalse(pathMatcher.match("/**/*bla", "/bla/bla/bla/bbb"));
 
@@ -106,9 +101,10 @@ public class AntPathMatcherTests {
 		assertTrue(pathMatcher.match("*bla*/**/bla/**", "XXXblaXXXX/testing/testing/bla/testing/testing/"));
 		assertTrue(pathMatcher.match("*bla*/**/bla/*", "XXXblaXXXX/testing/testing/bla/testing"));
 		assertTrue(pathMatcher.match("*bla*/**/bla/**", "XXXblaXXXX/testing/testing/bla/testing/testing"));
+		// False
 		assertFalse(pathMatcher.match("*bla*/**/bla/*", "XXXblaXXXX/testing/testing/bla/testing/testing"));
-
 		assertFalse(pathMatcher.match("/x/x/**/bla", "/x/x/x/"));
+
 		assertTrue(pathMatcher.match("/foo/bar/**", "/foo/bar")) ;
 		assertTrue(pathMatcher.match("", ""));
 		assertTrue(pathMatcher.match("/{bla}.*", "/testing.html"));
@@ -116,7 +112,7 @@ public class AntPathMatcherTests {
 
 	// SPR-14247
 	@Test
-	public void matchWithTrimTokensEnabled() throws Exception {
+	public void matchWithTrimTokensEnabled()  {
 		pathMatcher.setTrimTokens(true);
 		assertTrue(pathMatcher.match("/foo/bar", "/foo /bar"));
 	}
@@ -271,14 +267,13 @@ public class AntPathMatcherTests {
 	}
 
 	@Test
-	public void extractPathWithinPattern() throws Exception {
+	public void extractPathWithinPattern()  {
 		assertEquals("", pathMatcher.extractPathWithinPattern("/docs/commit.html", "/docs/commit.html"));
 
 		assertEquals("cvs/commit", pathMatcher.extractPathWithinPattern("/docs/*", "/docs/cvs/commit"));
 		assertEquals("commit.html", pathMatcher.extractPathWithinPattern("/docs/cvs/*.html", "/docs/cvs/commit.html"));
 		assertEquals("cvs/commit", pathMatcher.extractPathWithinPattern("/docs/**", "/docs/cvs/commit"));
-		assertEquals("cvs/commit.html",
-				pathMatcher.extractPathWithinPattern("/docs/**/*.html", "/docs/cvs/commit.html"));
+		assertEquals("cvs/commit.html",pathMatcher.extractPathWithinPattern("/docs/**/*.html", "/docs/cvs/commit.html"));
 		assertEquals("commit.html", pathMatcher.extractPathWithinPattern("/docs/**/*.html", "/docs/commit.html"));
 		assertEquals("commit.html", pathMatcher.extractPathWithinPattern("/*.html", "/commit.html"));
 		assertEquals("docs/commit.html", pathMatcher.extractPathWithinPattern("/*.html", "/docs/commit.html"));
@@ -298,9 +293,8 @@ public class AntPathMatcherTests {
 		assertEquals("docs/cvs/commit.html",
 				pathMatcher.extractPathWithinPattern("/d?cs/**/*.html", "/docs/cvs/commit.html"));
 	}
-
 	@Test
-	public void extractUriTemplateVariables() {
+	public void extractUriTemplateVariables1() {
 		Map<String, String> result = pathMatcher.extractUriTemplateVariables("/hotels/{hotel}", "/hotels/1");
 		assertEquals(Collections.singletonMap("hotel", "1"), result);
 
@@ -312,7 +306,10 @@ public class AntPathMatcherTests {
 		expected.put("hotel", "1");
 		expected.put("booking", "2");
 		assertEquals(expected, result);
-
+	}
+	@Test
+	public void extractUriTemplateVariables() {
+		Map<String, String> result;
 		result = pathMatcher.extractUriTemplateVariables("/**/hotels/**/{hotel}", "/foo/hotels/bar/1");
 		assertEquals(Collections.singletonMap("hotel", "1"), result);
 
@@ -326,7 +323,7 @@ public class AntPathMatcherTests {
 		assertEquals(Collections.singletonMap("B", "b"), result);
 
 		result = pathMatcher.extractUriTemplateVariables("/{name}.{extension}", "/test.html");
-		expected = new LinkedHashMap<>();
+		Map<String, String> expected = new LinkedHashMap<>();
 		expected.put("name", "test");
 		expected.put("extension", "html");
 		assertEquals(expected, result);
