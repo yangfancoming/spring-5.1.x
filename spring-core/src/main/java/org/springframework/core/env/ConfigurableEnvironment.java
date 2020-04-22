@@ -149,5 +149,4 @@ public interface ConfigurableEnvironment extends Environment, ConfigurableProper
 	 * @see org.springframework.context.support.AbstractApplicationContext#setParent
 	 */
 	void merge(ConfigurableEnvironment parent);
-
 }

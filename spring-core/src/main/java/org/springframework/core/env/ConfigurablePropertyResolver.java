@@ -35,20 +35,15 @@ public interface ConfigurablePropertyResolver extends PropertyResolver {
 	 */
 	void setConversionService(ConfigurableConversionService conversionService);
 
-	/**
-	 * Set the prefix that placeholders replaced by this resolver must begin with.
-	 */
+	// Set the prefix that placeholders replaced by this resolver must begin with.
 	void setPlaceholderPrefix(String placeholderPrefix);
 
-	/**
-	 * Set the suffix that placeholders replaced by this resolver must end with.
-	 */
+	// Set the suffix that placeholders replaced by this resolver must end with.
 	void setPlaceholderSuffix(String placeholderSuffix);
 
 	/**
-	 * Specify the separating character between the placeholders replaced by this
-	 * resolver and their associated default value, or {@code null} if no such
-	 * special character should be processed as a value separator.
+	 * Specify the separating character between the placeholders replaced by this  resolver and their associated default value,
+	 * or {@code null} if no such special character should be processed as a value separator.
 	 */
 	void setValueSeparator(@Nullable String valueSeparator);
 
@@ -64,8 +59,7 @@ public interface ConfigurablePropertyResolver extends PropertyResolver {
 	void setIgnoreUnresolvableNestedPlaceholders(boolean ignoreUnresolvableNestedPlaceholders);
 
 	/**
-	 * Specify which properties must be present, to be verified by
-	 * {@link #validateRequiredProperties()}.
+	 * Specify which properties must be present, to be verified by {@link #validateRequiredProperties()}.
 	 */
 	void setRequiredProperties(String... requiredProperties);
 

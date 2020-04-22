@@ -6,20 +6,14 @@ import org.springframework.core.convert.TypeDescriptor;
 
 /**
  * Allows a {@link Converter}, {@link GenericConverter} or {@link ConverterFactory} to
- * conditionally execute based on attributes of the {@code source} and {@code target}
- * {@link TypeDescriptor}.
- *
+ * conditionally execute based on attributes of the {@code source} and {@code target} {@link TypeDescriptor}.
  * Often used to selectively match custom conversion logic based on the presence of a
  * field or class-level characteristic, such as an annotation or method. For example, when
  * converting from a String field to a Date field, an implementation might return
  * {@code true} if the target field has also been annotated with {@code @DateTimeFormat}.
  *
  * As another example, when converting from a String field to an {@code Account} field,
- * an implementation might return {@code true} if the target Account class defines a
- * {@code public static findAccount(String)} method.
- *
- * @author Phillip Webb
- * @author Keith Donald
+ * an implementation might return {@code true} if the target Account class defines a {@code public static findAccount(String)} method.
  * @since 3.2
  * @see Converter
  * @see GenericConverter

@@ -51,8 +51,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	 * Name of property to set to specify active profiles: {@value}. Value may be comma delimited.
 	 * Note that certain shell environments such as Bash disallow the use of the period
 	 * character in variable names. Assuming that Spring's {@link SystemEnvironmentPropertySource}
-	 * is in use, this property may be specified as an environment variable as
-	 * {@code SPRING_PROFILES_ACTIVE}.
+	 * is in use, this property may be specified as an environment variable as {@code SPRING_PROFILES_ACTIVE}.
 	 * @see ConfigurableEnvironment#setActiveProfiles
 	 */
 	public static final String ACTIVE_PROFILES_PROPERTY_NAME = "spring.profiles.active";
@@ -61,8 +60,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	 * Name of property to set to specify profiles active by default: {@value}. Value may be comma delimited.
 	 * Note that certain shell environments such as Bash disallow the use of the period
 	 * character in variable names. Assuming that Spring's {@link SystemEnvironmentPropertySource}
-	 * is in use, this property may be specified as an environment variable as
-	 * {@code SPRING_PROFILES_DEFAULT}.
+	 * is in use, this property may be specified as an environment variable as {@code SPRING_PROFILES_DEFAULT}.
 	 * @see ConfigurableEnvironment#setDefaultProfiles
 	 */
 	public static final String DEFAULT_PROFILES_PROPERTY_NAME = "spring.profiles.default";
@@ -170,8 +168,8 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	}
 
 	/**
-	 * Return the set of reserved default profile names. This implementation returns
-	 * {@value #RESERVED_DEFAULT_PROFILE_NAME}. Subclasses may override in order to customize the set of reserved names.
+	 * Return the set of reserved default profile names. This implementation returns {@value #RESERVED_DEFAULT_PROFILE_NAME}.
+	 * Subclasses may override in order to customize the set of reserved names.
 	 * @see #RESERVED_DEFAULT_PROFILE_NAME
 	 * @see #doGetDefaultProfiles()
 	 */
@@ -180,10 +178,8 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	}
 
 	/**
-	 * Return the set of active profiles as explicitly set through
-	 * {@link #setActiveProfiles} or if the current set of active profiles
-	 * is empty, check for the presence of the {@value #ACTIVE_PROFILES_PROPERTY_NAME}
-	 * property and assign its value to the set of active profiles.
+	 * Return the set of active profiles as explicitly set through {@link #setActiveProfiles} or if the current set of active profiles is empty,
+	 * check for the presence of the {@value #ACTIVE_PROFILES_PROPERTY_NAME} property and assign its value to the set of active profiles.
 	 * @see #getActiveProfiles()
 	 * @see #ACTIVE_PROFILES_PROPERTY_NAME
 	 */
@@ -262,13 +258,16 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	}
 
 	//---------------------------------------------------------------------
-	// Implementation of ConfigurableEnvironment interface
+	// Implementation of 【Environment】 interface
 	//---------------------------------------------------------------------
 	@Override
 	public String[] getActiveProfiles() {
 		return StringUtils.toStringArray(doGetActiveProfiles());
 	}
 
+	//---------------------------------------------------------------------
+	// Implementation of 【ConfigurableEnvironment】 interface
+	//---------------------------------------------------------------------
 	@Override
 	public void setActiveProfiles(String... profiles) {
 		Assert.notNull(profiles, "Profile array must not be null");

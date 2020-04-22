@@ -16,10 +16,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.context.ConfigurableWebEnvironment;
 
 /**
- * {@link Environment} implementation to be used by {@code Servlet}-based web
- * applications. All web-related (servlet-based) {@code ApplicationContext} classes initialize an instance by default.
- * Contributes {@code ServletConfig}, {@code ServletContext}, and JNDI-based
- * {@link PropertySource} instances. See {@link #customizePropertySources} method documentation for details.
+ * {@link Environment} implementation to be used by {@code Servlet}-based web applications.
+ * All web-related (servlet-based) {@code ApplicationContext} classes initialize an instance by default.
+ * Contributes {@code ServletConfig}, {@code ServletContext}, and JNDI-based {@link PropertySource} instances.
+ * See {@link #customizePropertySources} method documentation for details.
  * @since 3.1
  * @see StandardEnvironment
  */
@@ -39,9 +39,8 @@ public class StandardServletEnvironment extends StandardEnvironment implements C
 	 * <li>{@value #SERVLET_CONFIG_PROPERTY_SOURCE_NAME}
 	 * <li>{@value #SERVLET_CONTEXT_PROPERTY_SOURCE_NAME}
 	 * <li>{@value #JNDI_PROPERTY_SOURCE_NAME}
-	 * Properties present in {@value #SERVLET_CONFIG_PROPERTY_SOURCE_NAME} will
-	 * take precedence over those in {@value #SERVLET_CONTEXT_PROPERTY_SOURCE_NAME}, and
-	 * properties found in either of the above take precedence over those found in {@value #JNDI_PROPERTY_SOURCE_NAME}.
+	 * Properties present in {@value #SERVLET_CONFIG_PROPERTY_SOURCE_NAME} will  take precedence over those in {@value #SERVLET_CONTEXT_PROPERTY_SOURCE_NAME},
+	 * and properties found in either of the above take precedence over those found in {@value #JNDI_PROPERTY_SOURCE_NAME}.
 	 * Properties in any of the above will take precedence over system properties and environment variables contributed by the {@link StandardEnvironment} superclass.
 	 * The {@code Servlet}-related property sources are added as {@link StubPropertySource stubs} at this stage, and will be
 	 * {@linkplain #initPropertySources(ServletContext, ServletConfig) fully initialized} once the actual {@link ServletContext} object becomes available.
@@ -63,9 +62,11 @@ public class StandardServletEnvironment extends StandardEnvironment implements C
 		super.customizePropertySources(propertySources);
 	}
 
+	//---------------------------------------------------------------------
+	// Implementation of 【ConfigurableWebEnvironment】 interface
+	//---------------------------------------------------------------------
 	@Override
 	public void initPropertySources(@Nullable ServletContext servletContext, @Nullable ServletConfig servletConfig) {
 		WebApplicationContextUtils.initServletPropertySources(getPropertySources(), servletContext, servletConfig);
 	}
-
 }
