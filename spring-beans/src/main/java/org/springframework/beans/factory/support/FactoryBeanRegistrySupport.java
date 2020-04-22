@@ -18,12 +18,9 @@ import org.springframework.beans.factory.FactoryBeanNotInitializedException;
 import org.springframework.lang.Nullable;
 
 /**
- * Support base class for singleton registries which need to handle
- * {@link org.springframework.beans.factory.FactoryBean} instances,
- * integrated with {@link DefaultSingletonBeanRegistry}'s singleton management.
- * Serves as base class for {@link AbstractBeanFactory}.
+ * Support base class for singleton registries which need to handle {@link org.springframework.beans.factory.FactoryBean} instances,
+ * integrated with {@link DefaultSingletonBeanRegistry}'s singleton management. Serves as base class for {@link AbstractBeanFactory}.
  * @since 2.5.1
- *
  * 在 DefaultSingletonBeanRegistry 的基础上增加了对 FactoryBean 的特殊处理功能。
  */
 public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanRegistry {
@@ -34,8 +31,7 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 	/**
 	 * Determine the type for the given FactoryBean.
 	 * @param factoryBean the FactoryBean instance to check
-	 * @return the FactoryBean's object type,
-	 * or {@code null} if the type cannot be determined yet
+	 * @return the FactoryBean's object type,or {@code null} if the type cannot be determined yet
 	 */
 	@Nullable
 	protected Class<?> getTypeForFactoryBean(final FactoryBean<?> factoryBean) {
@@ -54,11 +50,9 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 	}
 
 	/**
-	 * Obtain an object to expose from the given FactoryBean, if available
-	 * in cached form. Quick check for minimal synchronization.
+	 * Obtain an object to expose from the given FactoryBean, if available in cached form. Quick check for minimal synchronization.
 	 * @param beanName the name of the bean
-	 * @return the object obtained from the FactoryBean,
-	 * or {@code null} if not available
+	 * @return the object obtained from the FactoryBean,or {@code null} if not available
 	 */
 	@Nullable
 	protected Object getCachedObjectForFactoryBean(String beanName) {
@@ -119,9 +113,7 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 				}
 				return object;
 			}
-		}
-		// 获取非单例实例
-		else {
+		}else {// 获取非单例实例
 			// 从工厂类中获取实例
 			Object object = doGetObjectFromFactoryBean(factory, beanName);
 			if (shouldPostProcess) {
@@ -165,9 +157,7 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 		}catch (Throwable ex) {
 			throw new BeanCreationException(beanName, "FactoryBean threw exception on object creation", ex);
 		}
-
-		// Do not accept a null value for a FactoryBean that's not fully
-		// initialized yet: Many FactoryBeans just return null then.
+		// Do not accept a null value for a FactoryBean that's not fully initialized yet: Many FactoryBeans just return null then.
 		if (object == null) {
 			if (isSingletonCurrentlyInCreation(beanName)) {
 				throw new BeanCurrentlyInCreationException(beanName, "FactoryBean which is currently in creation returned null from getObject");
@@ -205,9 +195,7 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 		return (FactoryBean<?>) beanInstance;
 	}
 
-	/**
-	 * Overridden to clear the FactoryBean object cache as well.
-	 */
+	// Overridden to clear the FactoryBean object cache as well.
 	@Override
 	protected void removeSingleton(String beanName) {
 		synchronized (getSingletonMutex()) {
@@ -216,9 +204,7 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 		}
 	}
 
-	/**
-	 * Overridden to clear the FactoryBean object cache as well.
-	 */
+	// Overridden to clear the FactoryBean object cache as well.
 	@Override
 	protected void clearSingletonCache() {
 		synchronized (getSingletonMutex()) {

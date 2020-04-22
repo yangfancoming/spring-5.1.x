@@ -188,30 +188,26 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * Return an instance, which may be shared or independent, of the specified bean.
 	 * @param name the name of the bean to retrieve
 	 * @param requiredType the required type of the bean to retrieve
-	 * @param args arguments to use when creating a bean instance using explicit arguments
-	 * (only applied when creating a new instance as opposed to retrieving an existing one)
+	 * @param args arguments to use when creating a bean instance using explicit arguments (only applied when creating a new instance as opposed to retrieving an existing one)
 	 * @param typeCheckOnly whether the instance is obtained for a type check,not for actual use
 	 * @return an instance of the bean
 	 * @throws BeansException if the bean could not be created
-	 *
 	 * 	进一步调用了如下方法，其中有参数：
 	 * 	requiredType=null： 一般情况用不到，如果获取到的字符串，但requiredType是Integer，会在最后进行类型转换。
 	 * 	args=null： 在获取prototype对象时传入，用来初始化原型对象
 	 * 	typeCheckOnly=false： 如果为false，会将Bean标志为已创建,记录在alreadyCreated变量中。
-	 * 	//真正实现向IOC容器获取Bean的功能，也是触发依赖注入功能的地方
+	 * 	真正实现向IOC容器获取Bean的功能，也是触发依赖注入功能的地方
 	 */
 
 	@SuppressWarnings("unchecked")
 	protected <T> T doGetBean(final String name, @Nullable final Class<T> requiredType,@Nullable final Object[] args, boolean typeCheckOnly) throws BeansException {
-		// 将参数 name 先进行转换
-		// 1、转换bean的名称,去掉&前缀,且如果bean有别名的话,优先使用别名
+		// 1、转换bean的名称,可能是工厂bean（需要去掉&前缀）,也可能是bean的别（优先使用别名）
 		final String beanName = transformedBeanName(name);
 		Object bean;
 		// Eagerly check singleton cache for manually registered singletons.急切地检查singleton缓存中手动注册的singleton
 		//  2、这里先尝试从缓存中获取，获取不到再走后面的创建流程
 		Object sharedInstance = getSingleton(beanName);
-		// 如果缓存map中有
-		if (sharedInstance != null && args == null) {
+		if (sharedInstance != null && args == null) { // 如果缓存map中有
 			if (logger.isTraceEnabled()) {
 				if (isSingletonCurrentlyInCreation(beanName)) {
 					logger.trace("Returning eagerly cached instance of singleton bean '" + beanName + "' that is not fully initialized yet - a consequence of a circular reference");
@@ -219,10 +215,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					logger.trace("Returning cached instance of singleton bean '" + beanName + "'");
 				}
 			}
-			//这里主要处理实现了FactoryBean的情况，需要调用重写的getObject()方法来获取实际的Bean实例。
+			// 这里主要处理实现了FactoryBean的情况，需要调用重写的getObject()方法来获取实际的Bean实例。
 			bean = getObjectForBeanInstance(sharedInstance, name, beanName, null);
-		}else {
-		// 如果缓存中没有，尝试从父容器中查找
+		}else { // 如果缓存中没有，尝试从父容器中查找
 			// Fail if we're already creating this bean instance: We're assumably within a circular reference.
 			// 原型对象不允许循环创建，如果是原型对象则抛异常 // BeanFactory 不缓存 Prototype 类型的 bean，无法处理该类型 bean 的循环依赖问题
 			// 判断指定的原型模式的bean是否当前正在创建(在当前线程内),如果是->则抛出异常(Spring不会解决原型模式bean的循环依赖)
@@ -788,9 +783,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * 	2.可能存在传入别名且别名存在多重映射的情况，这里会返回最终的名字，如存在多层别名映射A->B->C->D，传入D,最终会返回A
 	 * @param name the user-specified name  传入进来的name 可能是别名、也可能是工厂bean的名称，所以在这里需要转换
 	 * @return the transformed bean name
+	 * 转换并规范beanName
 	 */
 	protected String transformedBeanName(String name) {
-		// 转换并规范beanName
 		return canonicalName(BeanFactoryUtils.transformedBeanName(name));
 	}
 
@@ -911,7 +906,6 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			if (containingBd == null) {
 				mbd = this.mergedBeanDefinitions.get(beanName);
 			}
-
 			if (mbd == null) {
 				// bd.getParentName() == null，表明无父配置，这时直接将当前的 BeanDefinition 升级为 RootBeanDefinition
 				if (bd.getParentName() == null) {
@@ -1125,16 +1119,13 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	/**
 	 * Predict the eventual bean type (of the processed bean instance) for the
 	 * specified bean. Called by {@link #getType} and {@link #isTypeMatch}.
-	 * Does not need to handle FactoryBeans specifically, since it is only
-	 * supposed to operate on the raw bean type.
-	 * This implementation is simplistic in that it is not able to
-	 * handle factory methods and InstantiationAwareBeanPostProcessors.
+	 * Does not need to handle FactoryBeans specifically, since it is only supposed to operate on the raw bean type.
+	 * This implementation is simplistic in that it is not able to handle factory methods and InstantiationAwareBeanPostProcessors.
 	 * It only predicts the bean type correctly for a standard bean.
 	 * To be overridden in subclasses, applying more sophisticated type detection.
 	 * @param beanName the name of the bean
 	 * @param mbd the merged bean definition to determine the type for
-	 * @param typesToMatch the types to match in case of internal type matching purposes
-	 * (also signals that the returned {@code Class} will never be exposed to application code)
+	 * @param typesToMatch the types to match in case of internal type matching purposes (also signals that the returned {@code Class} will never be exposed to application code)
 	 * @return the type of the bean, or {@code null} if not predictable
 	 */
 	@Nullable
@@ -1164,8 +1155,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * to call its {@code getObjectType} method. Subclasses are encouraged to optimize
 	 * this, typically by just instantiating the FactoryBean but not populating it yet,
 	 * trying whether its {@code getObjectType} method already returns a type.
-	 * If no type found, a full FactoryBean creation as performed by this implementation
-	 * should be used as fallback.
+	 * If no type found, a full FactoryBean creation as performed by this implementation should be used as fallback.
 	 * @param beanName the name of the bean
 	 * @param mbd the merged bean definition for the bean
 	 * @return the type for the bean if determinable, or {@code null} otherwise
@@ -1178,8 +1168,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		try {
 			FactoryBean<?> factoryBean = doGetBean(FACTORY_BEAN_PREFIX + beanName, FactoryBean.class, null, true);
 			return getTypeForFactoryBean(factoryBean);
-		}
-		catch (BeanCreationException ex) {
+		}catch (BeanCreationException ex) {
 			if (ex.contains(BeanCurrentlyInCreationException.class)) {
 				if (logger.isTraceEnabled()) logger.trace("Bean currently in creation on FactoryBean type check: " + ex);
 			}else if (mbd.isLazyInit()) {

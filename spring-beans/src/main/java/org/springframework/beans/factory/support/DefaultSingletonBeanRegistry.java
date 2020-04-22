@@ -233,9 +233,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 				throw new BeanCreationNotAllowedException(beanName,"Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)");
 			}
 			if (logger.isDebugEnabled()) logger.debug("Creating shared instance of singleton bean '" + beanName + "'");
-			/*
-			 * 将 beanName 添加到 singletonsCurrentlyInCreation 集合中，用于表明 beanName 对应的 bean 正在创建中
-			 */
+			// 将 beanName 添加到 singletonsCurrentlyInCreation 集合中，用于表明 beanName 对应的 bean 正在创建中
 			beforeSingletonCreation(beanName);// 创建前置检查，默认实现是记录当前beanName正在注册中
 			boolean newSingleton = false;
 			boolean recordSuppressedExceptions = (suppressedExceptions == null);
@@ -246,7 +244,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 				/**
 				 * 	初始化bean  调用签名定义的内部类进行创建，内部调用了createBean(String beanName, RootBeanDefinition mbd, Object[] args)
 				 * 	singletonFactory.getObject() 其实是调用上一层函数的 sharedInstance = getSingleton(beanName, () -> 中的  createBean(beanName, mbd, args) 方法
-				 * 	  // 通过 getObject 方法调用 createBean 方法创建 bean 实例
+				 * 	 通过 getObject 方法调用 createBean 方法创建 bean 实例
 				 */
 				singletonObject = singletonFactory.getObject();
 				newSingleton = true;
@@ -277,11 +275,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		}
 	}
 
-
-	/**
-	 * Clear all cached singleton instances in this registry.
-	 * @since 4.3.15
-	 */
+	//  Clear all cached singleton instances in this registry. @since 4.3.15
 	protected void clearSingletonCache() {
 		synchronized (singletonObjects) {
 			singletonObjects.clear();
@@ -487,10 +481,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		return false;
 	}
 
-	/**
-	 * Determine whether a dependent bean has been registered for the given name.
-	 * @param beanName the name of the bean to check
-	 */
+	// Determine whether a dependent bean has been registered for the given name.  @param beanName the name of the bean to check
 	protected boolean hasDependentBean(String beanName) {
 		return dependentBeanMap.containsKey(beanName);
 	}

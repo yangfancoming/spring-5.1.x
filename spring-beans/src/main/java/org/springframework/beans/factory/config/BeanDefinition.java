@@ -29,7 +29,6 @@ import org.springframework.lang.Nullable;
  */
 public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 
-
 	/**
 	 * Scope identifier for the standard singleton scope: "singleton".
 	 * Note that extended bean factories might support further scopes.
@@ -68,15 +67,10 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 
 	// Modifiable attributes
 
-	/**
-	 * Set the name of the parent definition of this bean definition, if any.
-	 * 一句话就是：继承父 Bean 的配置信息而已
-	 */
+	// Set the name of the parent definition of this bean definition, if any. 一句话就是：继承父 Bean 的配置信息而已
 	void setParentName(@Nullable String parentName);
 
-	/**
-	 * Return the name of the parent definition of this bean definition, if any.
-	 */
+	//  Return the name of the parent definition of this bean definition, if any.
 	@Nullable
 	String getParentName();
 
@@ -112,9 +106,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 */
 	void setScope(@Nullable String scope);
 
-	/**
-	 * Return the name of the current target scope for this bean, or {@code null} if not known yet.
-	 */
+	// Return the name of the current target scope for this bean, or {@code null} if not known yet.
 	@Nullable
 	String getScope();
 
@@ -124,9 +116,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 */
 	void setLazyInit(boolean lazyInit);
 
-	/**
-	 * Return whether this bean should be lazily initialized, i.e. not eagerly instantiated on startup. Only applicable to a singleton bean.
-	 */
+	// Return whether this bean should be lazily initialized, i.e. not eagerly instantiated on startup. Only applicable to a singleton bean.
 	boolean isLazyInit();
 
 	/**
@@ -136,10 +126,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 */
 	void setDependsOn(@Nullable String... dependsOn);
 
-	/**
-	 * Return the bean names that this bean depends on.
-	 * 返回该 Bean 的所有依赖
-	 */
+	// Return the bean names that this bean depends on. 返回该 Bean 的所有依赖
 	@Nullable
 	String[] getDependsOn();
 
@@ -153,10 +140,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 */
 	void setAutowireCandidate(boolean autowireCandidate);
 
-	/**
-	 * Return whether this bean is a candidate for getting autowired into some other bean.
-	 * 该Bean是否可以注入到其他Bean中
-	 */
+	// Return whether this bean is a candidate for getting autowired into some other bean. 该Bean是否可以注入到其他Bean中
 	boolean isAutowireCandidate();
 
 	/**
@@ -166,9 +150,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 */
 	void setPrimary(boolean primary);
 
-	/**
-	 * Return whether this bean is a primary autowire candidate.
-	 */
+	// Return whether this bean is a primary autowire candidate.
 	boolean isPrimary();
 
 	/**
@@ -180,9 +162,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 */
 	void setFactoryBeanName(@Nullable String factoryBeanName);
 
-	/**
-	 * Return the factory bean name, if any.
-	 */
+	//  Return the factory bean name, if any.
 	@Nullable
 	String getFactoryBeanName();
 
@@ -196,17 +176,14 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 */
 	void setFactoryMethodName(@Nullable String factoryMethodName);
 
-	/**
-	 * Return a factory method, if any.
-	 */
+	//  Return a factory method, if any.
 	@Nullable
 	String getFactoryMethodName();
 
 	/**
 	 * Return the constructor argument values for this bean.
 	 * The returned instance can be modified during bean factory post-processing.
-	 * @return the ConstructorArgumentValues object (never {@code null})
-	 *   构造器参数
+	 * @return the ConstructorArgumentValues object (never {@code null})  构造器参数
 	 */
 	ConstructorArgumentValues getConstructorArgumentValues();
 
@@ -226,37 +203,22 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 */
 	MutablePropertyValues getPropertyValues();
 
-	/**
-	 * Return if there are property values values defined for this bean.
-	 * @since 5.0.2
-	 */
+	//  Return if there are property values values defined for this bean.  @since 5.0.2
 	default boolean hasPropertyValues() {
 		return !getPropertyValues().isEmpty();
 	}
 
-	/**
-	 * Set the name of the initializer method.
-	 * @since 5.1
-	 */
+	// Set the name of the initializer method.  @since 5.1
 	void setInitMethodName(@Nullable String initMethodName);
 
-	/**
-	 * Return the name of the initializer method.
-	 * @since 5.1
-	 */
+	//  Return the name of the initializer method. @since 5.1
 	@Nullable
 	String getInitMethodName();
 
-	/**
-	 * Set the name of the destroy method.
-	 * @since 5.1
-	 */
+	// Set the name of the destroy method.  @since 5.1
 	void setDestroyMethodName(@Nullable String destroyMethodName);
 
-	/**
-	 * Return the name of the destroy method.
-	 * @since 5.1
-	 */
+	// Return the name of the destroy method.  @since 5.1
 	@Nullable
 	String getDestroyMethodName();
 
@@ -281,15 +243,10 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 */
 	int getRole();
 
-	/**
-	 * Set a human-readable description of this bean definition.
-	 * @since 5.1
-	 */
+	// Set a human-readable description of this bean definition. @since 5.1
 	void setDescription(@Nullable String description);
 
-	/**
-	 * Return a human-readable description of this bean definition.
-	 */
+	// Return a human-readable description of this bean definition.
 	@Nullable
 	String getDescription();
 
@@ -315,9 +272,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 */
 	boolean isAbstract();
 
-	/**
-	 * Return a description of the resource that this bean definition came from (for the purpose of showing context in case of errors).
-	 */
+	// Return a description of the resource that this bean definition came from (for the purpose of showing context in case of errors).
 	@Nullable
 	String getResourceDescription();
 

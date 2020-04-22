@@ -1179,14 +1179,9 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			if (resolvedArrayType != type) {
 				componentType = resolvableType.getComponentType().resolve();
 			}
-			if (componentType == null) {
-				return null;
-			}
-			Map<String, Object> matchingBeans = findAutowireCandidates(beanName, componentType,
-					new MultiElementDescriptor(descriptor));
-			if (matchingBeans.isEmpty()) {
-				return null;
-			}
+			if (componentType == null) return null;
+			Map<String, Object> matchingBeans = findAutowireCandidates(beanName, componentType,new MultiElementDescriptor(descriptor));
+			if (matchingBeans.isEmpty()) return null;
 			if (autowiredBeanNames != null) {
 				autowiredBeanNames.addAll(matchingBeans.keySet());
 			}
@@ -1225,9 +1220,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			Class<?> valueType = mapType.resolveGeneric(1);
 			if (valueType == null) return null;
 			Map<String, Object> matchingBeans = findAutowireCandidates(beanName, valueType,new MultiElementDescriptor(descriptor));
-			if (matchingBeans.isEmpty()) {
-				return null;
-			}
+			if (matchingBeans.isEmpty()) return null;
 			if (autowiredBeanNames != null) {
 				autowiredBeanNames.addAll(matchingBeans.keySet());
 			}

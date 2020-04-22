@@ -60,12 +60,11 @@ public abstract class BeanFactoryUtils {
 		Assert.notNull(name, "'name' must not be null");
 		if (!name.startsWith(BeanFactory.FACTORY_BEAN_PREFIX)) return name;
 		// 循环处理 & 字符  比如 name = "&&&&&helloService"，最终会被转成 helloService
-		//beanName前缀为&,循环截取直至所有&被去掉
+		// beanName前缀为&,循环截取直至所有&被去掉
 		return transformedBeanNameCache.computeIfAbsent(name, beanName -> {
 			do {
 				beanName = beanName.substring(BeanFactory.FACTORY_BEAN_PREFIX.length());
-			}
-			while (beanName.startsWith(BeanFactory.FACTORY_BEAN_PREFIX));
+			}while (beanName.startsWith(BeanFactory.FACTORY_BEAN_PREFIX));
 			return beanName;
 		});
 	}

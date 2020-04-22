@@ -30,38 +30,36 @@ public class SimpleBeanDefinitionRegistry extends SimpleAliasRegistry implements
 	public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition) throws BeanDefinitionStoreException {
 		Assert.hasText(beanName, "'beanName' must not be empty");
 		Assert.notNull(beanDefinition, "BeanDefinition must not be null");
-		this.beanDefinitionMap.put(beanName, beanDefinition);
+		beanDefinitionMap.put(beanName, beanDefinition);
 	}
 
 	@Override
 	public void removeBeanDefinition(String beanName) throws NoSuchBeanDefinitionException {
-		if (this.beanDefinitionMap.remove(beanName) == null) {
+		if (beanDefinitionMap.remove(beanName) == null) {
 			throw new NoSuchBeanDefinitionException(beanName);
 		}
 	}
 
 	@Override
 	public BeanDefinition getBeanDefinition(String beanName) throws NoSuchBeanDefinitionException {
-		BeanDefinition bd = this.beanDefinitionMap.get(beanName);
-		if (bd == null) {
-			throw new NoSuchBeanDefinitionException(beanName);
-		}
+		BeanDefinition bd = beanDefinitionMap.get(beanName);
+		if (bd == null) throw new NoSuchBeanDefinitionException(beanName);
 		return bd;
 	}
 
 	@Override
 	public boolean containsBeanDefinition(String beanName) {
-		return this.beanDefinitionMap.containsKey(beanName);
+		return beanDefinitionMap.containsKey(beanName);
 	}
 
 	@Override
 	public String[] getBeanDefinitionNames() {
-		return StringUtils.toStringArray(this.beanDefinitionMap.keySet());
+		return StringUtils.toStringArray(beanDefinitionMap.keySet());
 	}
 
 	@Override
 	public int getBeanDefinitionCount() {
-		return this.beanDefinitionMap.size();
+		return beanDefinitionMap.size();
 	}
 
 	@Override

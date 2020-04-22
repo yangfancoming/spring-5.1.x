@@ -11,8 +11,7 @@ package org.springframework.beans.factory;
 public class BeanCurrentlyInCreationException extends BeanCreationException {
 
 	/**
-	 * Create a new BeanCurrentlyInCreationException,
-	 * with a default error message that indicates a circular reference.
+	 * Create a new BeanCurrentlyInCreationException,with a default error message that indicates a circular reference.
 	 * @param beanName the name of the bean requested
 	 */
 	public BeanCurrentlyInCreationException(String beanName) {

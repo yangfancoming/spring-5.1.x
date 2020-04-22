@@ -13,8 +13,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.StringValueResolver;
 
 /**
- * Simple implementation of the {@link AliasRegistry} interface.
- * Serves as base class for implementations
+ * Simple implementation of the {@link AliasRegistry} interface.Serves as base class for implementations
  * @since 2.5.2
  * AliasRegistry实现类  主要使用 map 作为 alias 的缓存
  */
@@ -26,10 +25,7 @@ public class SimpleAliasRegistry implements AliasRegistry {
 	/** Map from alias to canonical name. */
 	private final Map<String, String> aliasMap = new ConcurrentHashMap<>(16);
 
-	/**
-	 * Return whether alias overriding is allowed.
-	 * Default is {@code true}.
-	 */
+	// Return whether alias overriding is allowed. Default is {@code true}.
 	protected boolean allowAliasOverriding() {
 		return true;
 	}
@@ -133,7 +129,6 @@ public class SimpleAliasRegistry implements AliasRegistry {
 		 *   <bean id="hello" class="service.Hello"/>
 		 *   <alias name="hello" alias="aliasA"/>
 		 *   <alias name="aliasA" alias="aliasB"/>
-		 *
 		 * 上面的别名指向关系为 aliasB -> aliasA -> hello，对于上面的别名配置，
 		 * aliasMap 中数据视图为：aliasMap = [<aliasB, aliasA>, <aliasA, hello>]
 		 * 通过下面的循环解析别名  aliasB 最终指向的 beanName
