@@ -52,13 +52,13 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 	@Override
 	public ConfigurableConversionService getConversionService() {
 		// Need to provide an independent DefaultConversionService, not the shared DefaultConversionService used by PropertySourcesPropertyResolver.
-		ConfigurableConversionService cs = this.conversionService;
+		ConfigurableConversionService cs = conversionService;
 		if (cs == null) {
 			synchronized (this) {
-				cs = this.conversionService;
+				cs = conversionService;
 				if (cs == null) {
 					cs = new DefaultConversionService();
-					this.conversionService = cs;
+					conversionService = cs;
 				}
 			}
 		}
@@ -125,7 +125,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 	@Override
 	public void validateRequiredProperties() {
 		MissingRequiredPropertiesException ex = new MissingRequiredPropertiesException();
-		for (String key : this.requiredProperties) {
+		for (String key : requiredProperties) {
 			// 如果存在属性缺失，记录下来
 			if (this.getProperty(key) == null) {
 				ex.addMissingRequiredProperty(key);
@@ -179,14 +179,14 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 
 	@Override
 	public String resolvePlaceholders(String text) {
-		if (this.nonStrictHelper == null) this.nonStrictHelper = createPlaceholderHelper(true);
-		return doResolvePlaceholders(text, this.nonStrictHelper);
+		if (nonStrictHelper == null) nonStrictHelper = createPlaceholderHelper(true);
+		return doResolvePlaceholders(text, nonStrictHelper);
 	}
 
 	@Override
 	public String resolveRequiredPlaceholders(String text) throws IllegalArgumentException {
-		if (this.strictHelper == null) this.strictHelper = createPlaceholderHelper(false);
-		return doResolvePlaceholders(text, this.strictHelper);
+		if (strictHelper == null) strictHelper = createPlaceholderHelper(false);
+		return doResolvePlaceholders(text, strictHelper);
 	}
 
 	/**
@@ -200,11 +200,11 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 	 * @see #setIgnoreUnresolvableNestedPlaceholders
 	 */
 	protected String resolveNestedPlaceholders(String value) {
-		return (this.ignoreUnresolvableNestedPlaceholders ? resolvePlaceholders(value) : resolveRequiredPlaceholders(value));
+		return (ignoreUnresolvableNestedPlaceholders ? resolvePlaceholders(value) : resolveRequiredPlaceholders(value));
 	}
 
 	private PropertyPlaceholderHelper createPlaceholderHelper(boolean ignoreUnresolvablePlaceholders) {
-		return new PropertyPlaceholderHelper(this.placeholderPrefix, this.placeholderSuffix,this.valueSeparator, ignoreUnresolvablePlaceholders);
+		return new PropertyPlaceholderHelper(placeholderPrefix, placeholderSuffix,valueSeparator, ignoreUnresolvablePlaceholders);
 	}
 
 	private String doResolvePlaceholders(String text, PropertyPlaceholderHelper helper) {
@@ -224,7 +224,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 		if (targetType == null) {
 			return (T) value;
 		}
-		ConversionService conversionServiceToUse = this.conversionService;
+		ConversionService conversionServiceToUse = conversionService;
 		if (conversionServiceToUse == null) {
 			// Avoid initialization of shared DefaultConversionService if  no standard type conversion is needed in the first place...
 			if (ClassUtils.isAssignableValue(targetType, value)) {

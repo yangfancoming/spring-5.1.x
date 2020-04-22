@@ -17,11 +17,9 @@ public class AnnotationBindingTests {
 
 	@Before
 	public void setup() {
-		ClassPathXmlApplicationContext ctx =
-				new ClassPathXmlApplicationContext(getClass().getSimpleName() + "-context.xml", getClass());
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(getClass().getSimpleName() + "-context.xml", getClass());
 		testBean = (AnnotatedTestBean) ctx.getBean("testBean");
 	}
-
 
 	@Test
 	public void testAnnotationBindingInAroundAdvice() {
@@ -33,5 +31,4 @@ public class AnnotationBindingTests {
 	public void testNoMatchingWithoutAnnotationPresent() {
 		assertEquals("doTheOther", testBean.doTheOther());
 	}
-
 }

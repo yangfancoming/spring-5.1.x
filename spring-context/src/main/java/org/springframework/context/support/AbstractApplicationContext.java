@@ -528,10 +528,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	protected void prepareRefresh() {
 		// Switch to active. 记录启动时间 将 active 属性设置为 true，closed 属性设置为 false，它们都是 AtomicBoolean 类型
 		startupDate = System.currentTimeMillis();
-		// 设置容器非关闭状态
-		closed.set(false);
-		// 设置容器为激活状态
-		active.set(true);
+		closed.set(false); // 设置容器非关闭状态
+		active.set(true); // 设置容器为激活状态
 		if (logger.isDebugEnabled()) {
 			if (logger.isTraceEnabled()) {
 				logger.trace("Refreshing " + this);

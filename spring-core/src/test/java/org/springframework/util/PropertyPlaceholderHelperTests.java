@@ -60,7 +60,6 @@ public class PropertyPlaceholderHelperTests {
 		assertEquals("actualValue+actualValue", helper.replacePlaceholders(text, props));
 	}
 
-
 	@Test(expected = IllegalArgumentException.class)
 	public void testUnresolvedPlaceholderAsError() {
 		String text = "foo=${foo},bar=${bar}";
@@ -85,6 +84,7 @@ public class PropertyPlaceholderHelperTests {
 				return null;
 		}
 	}
+
 	// 测试 PlaceholderResolver 函数式编程接口
 	@Test
 	public void testWithResolver() {
@@ -93,7 +93,6 @@ public class PropertyPlaceholderHelperTests {
 		String text2 = "foo=${nocase}"; 	// 解析不了的情况
 		assertEquals("foo=${nocase}",helper.replacePlaceholders(text2, myPlaceholderResolver));
 	}
-
 
 	// 其他类型占位符测试
 	@Test
@@ -114,8 +113,8 @@ public class PropertyPlaceholderHelperTests {
 		assertEquals("foo=bar", test.replacePlaceholders(text, props));
 	}
 
-
 	private final static String PROPERTIES = "org/springframework/util/PropertyPlaceholderHelper.properties";
+
 	@Test
 	public void test3()throws Exception {
 		Properties properties = PropertiesLoaderUtils.loadProperties(new ClassPathResource(PROPERTIES));

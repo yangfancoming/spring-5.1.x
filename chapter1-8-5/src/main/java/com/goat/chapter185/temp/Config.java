@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @ author  山羊来了
  * @ date 2020/4/6---18:45
  */
-@ComponentScan("com.goat.chapter185.item02")
+@ComponentScan("com.goat.chapter185.temp")
 public class Config {
 
 	@Bean
