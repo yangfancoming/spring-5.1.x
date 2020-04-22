@@ -4,6 +4,9 @@ package org.springframework.core.env;
 
 public class DummyEnvironment implements Environment {
 
+	//---------------------------------------------------------------------
+	// Implementation of 【PropertyResolver】 interface
+	//---------------------------------------------------------------------
 	@Override
 	public boolean containsProperty(String key) {
 		return false;
@@ -39,6 +42,10 @@ public class DummyEnvironment implements Environment {
 		return null;
 	}
 
+
+	//---------------------------------------------------------------------
+	// Implementation of 【Environment】 interface
+	//---------------------------------------------------------------------
 	@Override
 	public String resolvePlaceholders(String text) {
 		return null;

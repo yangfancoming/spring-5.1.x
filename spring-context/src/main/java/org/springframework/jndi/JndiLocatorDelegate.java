@@ -9,10 +9,7 @@ import org.springframework.core.SpringProperties;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link JndiLocatorSupport} subclass with public lookup methods,
- * for convenient use as a delegate.
- *
-
+ * {@link JndiLocatorSupport} subclass with public lookup methods,for convenient use as a delegate.
  * @since 3.0.1
  */
 public class JndiLocatorDelegate extends JndiLocatorSupport {
@@ -35,9 +32,7 @@ public class JndiLocatorDelegate extends JndiLocatorSupport {
 	 */
 	public static final String IGNORE_JNDI_PROPERTY_NAME = "spring.jndi.ignore";
 
-
-	private static final boolean shouldIgnoreDefaultJndiEnvironment =
-			SpringProperties.getFlag(IGNORE_JNDI_PROPERTY_NAME);
+	private static final boolean shouldIgnoreDefaultJndiEnvironment = SpringProperties.getFlag(IGNORE_JNDI_PROPERTY_NAME);
 
 
 	@Override
@@ -50,10 +45,8 @@ public class JndiLocatorDelegate extends JndiLocatorSupport {
 		return super.lookup(jndiName, requiredType);
 	}
 
-
 	/**
-	 * Configure a {@code JndiLocatorDelegate} with its "resourceRef" property set to
-	 * {@code true}, meaning that all names will be prefixed with "java:comp/env/".
+	 * Configure a {@code JndiLocatorDelegate} with its "resourceRef" property set to  {@code true}, meaning that all names will be prefixed with "java:comp/env/".
 	 * @see #setResourceRef
 	 */
 	public static JndiLocatorDelegate createDefaultResourceRefLocator() {
@@ -63,20 +56,15 @@ public class JndiLocatorDelegate extends JndiLocatorSupport {
 	}
 
 	/**
-	 * Check whether a default JNDI environment, as in a Java EE environment,
-	 * is available on this JVM.
-	 * @return {@code true} if a default InitialContext can be used,
-	 * {@code false} if not
+	 * Check whether a default JNDI environment, as in a Java EE environment,  is available on this JVM.
+	 * @return {@code true} if a default InitialContext can be used,{@code false} if not
 	 */
 	public static boolean isDefaultJndiEnvironmentAvailable() {
-		if (shouldIgnoreDefaultJndiEnvironment) {
-			return false;
-		}
+		if (shouldIgnoreDefaultJndiEnvironment) return false;
 		try {
 			new InitialContext().getEnvironment();
 			return true;
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			return false;
 		}
 	}

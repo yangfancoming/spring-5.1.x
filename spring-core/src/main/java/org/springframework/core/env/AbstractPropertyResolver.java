@@ -46,7 +46,9 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 
 	private final Set<String> requiredProperties = new LinkedHashSet<>();
 
-
+	//---------------------------------------------------------------------
+	// Implementation of 【ConfigurablePropertyResolver】 interface
+	//---------------------------------------------------------------------
 	@Override
 	public ConfigurableConversionService getConversionService() {
 		// Need to provide an independent DefaultConversionService, not the shared DefaultConversionService used by PropertySourcesPropertyResolver.
@@ -135,6 +137,10 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 		}
 	}
 
+
+	//---------------------------------------------------------------------
+	// Implementation of 【PropertyResolver】 interface
+	//---------------------------------------------------------------------
 	@Override
 	public boolean containsProperty(String key) {
 		return (getProperty(key) != null);

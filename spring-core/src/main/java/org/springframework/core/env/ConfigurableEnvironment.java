@@ -47,9 +47,7 @@ import java.util.Map;
  * org.springframework.context.support.AbstractApplicationContext#refresh() refresh()}
  * method is called. This ensures that all property sources are available during the
  * container bootstrap process, including use by {@linkplain
- * org.springframework.context.support.PropertySourcesPlaceholderConfigurer property
- * placeholder configurers}.
-
+ * org.springframework.context.support.PropertySourcesPlaceholderConfigurer property placeholder configurers}.
  * @since 3.1
  * @see StandardEnvironment
  * @see org.springframework.context.ConfigurableApplicationContext#getEnvironment
@@ -57,9 +55,8 @@ import java.util.Map;
 public interface ConfigurableEnvironment extends Environment, ConfigurablePropertyResolver {
 
 	/**
-	 * Specify the set of profiles active for this {@code Environment}. Profiles are
-	 * evaluated during container bootstrap to determine whether bean definitions
-	 * should be registered with the container.
+	 * Specify the set of profiles active for this {@code Environment}.
+	 * Profiles are evaluated during container bootstrap to determine whether bean definitions should be registered with the container.
 	 * Any existing active profiles will be replaced with the given arguments; call
 	 * with zero arguments to clear the current set of active profiles. Use
 	 * {@link #addActiveProfile} to add a profile while preserving the existing set.

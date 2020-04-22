@@ -14,7 +14,6 @@ import org.springframework.lang.Nullable;
 
 /**
  * Static holder for local Spring properties, i.e. defined at the Spring library level.
- *
  * Reads a {@code spring.properties} file from the root of the Spring library classpath,
  * and also allows for programmatically setting properties through {@link #setProperty}.
  * When checking a property, local entries are being checked first, then falling back
@@ -38,7 +37,6 @@ public final class SpringProperties {
 
 	private static final Properties localProperties = new Properties();
 
-
 	static {
 		try {
 			ClassLoader cl = SpringProperties.class.getClassLoader();
@@ -52,8 +50,7 @@ public final class SpringProperties {
 					is.close();
 				}
 			}
-		}
-		catch (IOException ex) {
+		}catch (IOException ex) {
 			if (logger.isInfoEnabled()) logger.info("Could not load 'spring.properties' file from local classpath: " + ex);
 		}
 	}
@@ -62,8 +59,7 @@ public final class SpringProperties {
 	}
 
 	/**
-	 * Programmatically set a local property, overriding an entry in the
-	 * {@code spring.properties} file (if any).
+	 * Programmatically set a local property, overriding an entry in the {@code spring.properties} file (if any).
 	 * @param key the property key
 	 * @param value the associated property value, or {@code null} to reset it
 	 */
@@ -94,8 +90,7 @@ public final class SpringProperties {
 	}
 
 	/**
-	 * Programmatically set a local flag to "true", overriding an
-	 * entry in the {@code spring.properties} file (if any).
+	 * Programmatically set a local flag to "true", overriding an entry in the {@code spring.properties} file (if any).
 	 * @param key the property key
 	 */
 	public static void setFlag(String key) {
@@ -105,8 +100,7 @@ public final class SpringProperties {
 	/**
 	 * Retrieve the flag for the given property key.
 	 * @param key the property key
-	 * @return {@code true} if the property is set to "true",
-	 * {@code} false otherwise
+	 * @return {@code true} if the property is set to "true",{@code} false otherwise
 	 */
 	public static boolean getFlag(String key) {
 		return Boolean.parseBoolean(getProperty(key));

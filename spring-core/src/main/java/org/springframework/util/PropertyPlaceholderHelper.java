@@ -41,7 +41,6 @@ public class PropertyPlaceholderHelper {
 	// 标识 未能解析的占位符是否忽略 默认为true
 	private final boolean ignoreUnresolvablePlaceholders;
 
-
 	/**
 	 * Creates a new {@code PropertyPlaceholderHelper} that uses the supplied prefix and suffix.
 	 * Unresolvable placeholders are ignored.
@@ -130,8 +129,7 @@ public class PropertyPlaceholderHelper {
 					}
 				}
 				if (propVal != null) {
-					// Recursive invocation, parsing placeholders contained in the
-					// previously resolved placeholder value.
+					// Recursive invocation, parsing placeholders contained in the  previously resolved placeholder value.
 					// 对替换完成的value进行解析,防止properties的value值里也有占位符
 					propVal = parseStringValue(propVal, placeholderResolver, visitedPlaceholders);
 					result.replace(startIndex, endIndex + this.placeholderSuffix.length(), propVal);

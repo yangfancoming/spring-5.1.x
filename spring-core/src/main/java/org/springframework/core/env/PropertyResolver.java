@@ -12,10 +12,7 @@ import org.springframework.lang.Nullable;
  */
 public interface PropertyResolver {
 
-	/**
-	 * Return whether the given property key is available for resolution,
-	 * i.e. if the value for the given key is not {@code null}.
-	 */
+	//  Return whether the given property key is available for resolution, i.e. if the value for the given key is not {@code null}.
 	boolean containsProperty(String key);
 
 	/**
@@ -69,9 +66,8 @@ public interface PropertyResolver {
 	<T> T getRequiredProperty(String key, Class<T> targetType) throws IllegalStateException;
 
 	/**
-	 * Resolve ${...} placeholders in the given text, replacing them with corresponding
-	 * property values as resolved by {@link #getProperty}. Unresolvable placeholders with
-	 * no default value are ignored and passed through unchanged.
+	 * Resolve ${...} placeholders in the given text, replacing them with corresponding property values as resolved by {@link #getProperty}.
+	 * Unresolvable placeholders with no default value are ignored and passed through unchanged.
 	 * @param text the String to resolve
 	 * @return the resolved String (never {@code null})
 	 * @throws IllegalArgumentException if given text is {@code null}
@@ -81,9 +77,8 @@ public interface PropertyResolver {
 	String resolvePlaceholders(String text);
 
 	/**
-	 * Resolve ${...} placeholders in the given text, replacing them with corresponding
-	 * property values as resolved by {@link #getProperty}. Unresolvable placeholders with
-	 * no default value will cause an IllegalArgumentException to be thrown.
+	 * Resolve ${...} placeholders in the given text, replacing them with corresponding property values as resolved by {@link #getProperty}.
+	 * Unresolvable placeholders with no default value will cause an IllegalArgumentException to be thrown.
 	 * @return the resolved String (never {@code null})
 	 * @throws IllegalArgumentException if given text is {@code null} or if any placeholders are unresolvable
 	 * @see org.springframework.util.SystemPropertyUtils#resolvePlaceholders(String, boolean)

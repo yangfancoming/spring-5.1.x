@@ -24,6 +24,9 @@ public class PropertySourcesPropertyResolver extends AbstractPropertyResolver {
 		this.propertySources = propertySources;
 	}
 
+	//---------------------------------------------------------------------
+	// Implementation of 【AbstractPropertyResolver】 class
+	//---------------------------------------------------------------------
 	@Override
 	public boolean containsProperty(String key) {
 		if (this.propertySources != null) {
@@ -44,14 +47,17 @@ public class PropertySourcesPropertyResolver extends AbstractPropertyResolver {
 
 	@Override
 	@Nullable
-	public <T> T getProperty(String key, Class<T> targetValueType) {
-		return getProperty(key, targetValueType, true);
-	}
-
-	@Override
-	@Nullable
 	protected String getPropertyAsRawString(String key) {
 		return getProperty(key, String.class, false);
+	}
+
+	//---------------------------------------------------------------------
+	// Implementation of 【PropertyResolver】 interface
+	//---------------------------------------------------------------------
+	@Override
+	@Nullable
+	public <T> T getProperty(String key, Class<T> targetValueType) {
+		return getProperty(key, targetValueType, true);
 	}
 
 	@Nullable
@@ -69,15 +75,12 @@ public class PropertySourcesPropertyResolver extends AbstractPropertyResolver {
 				}
 			}
 		}
-		if (logger.isTraceEnabled()) {
-			logger.trace("Could not find key '" + key + "' in any property source");
-		}
+		if (logger.isTraceEnabled()) logger.trace("Could not find key '" + key + "' in any property source");
 		return null;
 	}
 
 	/**
-	 * Log the given key as found in the given {@link PropertySource}, resulting in
-	 * the given value.
+	 * Log the given key as found in the given {@link PropertySource}, resulting in the given value.
 	 * The default implementation writes a debug log message with key and source.
 	 * As of 4.3.3, this does not log the value anymore in order to avoid accidental
 	 * logging of sensitive settings. Subclasses may override this method to change

@@ -14,15 +14,12 @@ import org.springframework.util.StringUtils;
 
 /**
  * Internal parser used by {@link Profiles#of}.
- *
- * @author Phillip Webb
  * @since 5.1
  */
 final class ProfilesParser {
 
 	private ProfilesParser() {
 	}
-
 
 	static Profiles parse(String... expressions) {
 		Assert.notEmpty(expressions, "Must specify at least one profile");
@@ -53,9 +50,7 @@ final class ProfilesParser {
 			switch (token) {
 				case "(":
 					Profiles contents = parseTokens(expression, tokens, Context.BRACKET);
-					if (context == Context.INVERT) {
-						return contents;
-					}
+					if (context == Context.INVERT) return contents;
 					elements.add(contents);
 					break;
 				case "&":
@@ -71,18 +66,14 @@ final class ProfilesParser {
 					break;
 				case ")":
 					Profiles merged = merge(expression, elements, operator);
-					if (context == Context.BRACKET) {
-						return merged;
-					}
+					if (context == Context.BRACKET) return merged;
 					elements.clear();
 					elements.add(merged);
 					operator = null;
 					break;
 				default:
 					Profiles value = equals(token);
-					if (context == Context.INVERT) {
-						return value;
-					}
+					if (context == Context.INVERT) return value;
 					elements.add(value);
 			}
 		}
@@ -122,12 +113,9 @@ final class ProfilesParser {
 		return profiles -> profiles.matches(activeProfile);
 	}
 
-
 	private enum Operator {AND, OR}
 
-
 	private enum Context {NONE, INVERT, BRACKET}
-
 
 	private static class ParsedProfiles implements Profiles {
 
