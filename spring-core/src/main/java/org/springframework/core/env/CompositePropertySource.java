@@ -13,22 +13,15 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Composite {@link PropertySource} implementation that iterates over a set of
- * {@link PropertySource} instances. Necessary in cases where multiple property sources
- * share the same name, e.g. when multiple values are supplied to {@code @PropertySource}.
- *
- * As of Spring 4.1.2, this class extends {@link EnumerablePropertySource} instead
- * of plain {@link PropertySource}, exposing {@link #getPropertyNames()} based on the
- * accumulated property names from all contained sources (as far as possible).
-
-
- * @author Phillip Webb
+ * Composite {@link PropertySource} implementation that iterates over a set of {@link PropertySource} instances.
+ * Necessary in cases where multiple property sources share the same name, e.g. when multiple values are supplied to {@code @PropertySource}.
+ * As of Spring 4.1.2, this class extends {@link EnumerablePropertySource} instead of plain {@link PropertySource},
+ * exposing {@link #getPropertyNames()} based on the accumulated property names from all contained sources (as far as possible).
  * @since 3.1.1
  */
 public class CompositePropertySource extends EnumerablePropertySource<Object> {
 
 	private final Set<PropertySource<?>> propertySources = new LinkedHashSet<>();
-
 
 	/**
 	 * Create a new {@code CompositePropertySource}.
@@ -37,7 +30,6 @@ public class CompositePropertySource extends EnumerablePropertySource<Object> {
 	public CompositePropertySource(String name) {
 		super(name);
 	}
-
 
 	@Override
 	@Nullable
@@ -66,14 +58,12 @@ public class CompositePropertySource extends EnumerablePropertySource<Object> {
 		Set<String> names = new LinkedHashSet<>();
 		for (PropertySource<?> propertySource : this.propertySources) {
 			if (!(propertySource instanceof EnumerablePropertySource)) {
-				throw new IllegalStateException(
-						"Failed to enumerate property names due to non-enumerable property source: " + propertySource);
+				throw new IllegalStateException("Failed to enumerate property names due to non-enumerable property source: " + propertySource);
 			}
 			names.addAll(Arrays.asList(((EnumerablePropertySource<?>) propertySource).getPropertyNames()));
 		}
 		return StringUtils.toStringArray(names);
 	}
-
 
 	/**
 	 * Add the given {@link PropertySource} to the end of the chain.
@@ -102,7 +92,6 @@ public class CompositePropertySource extends EnumerablePropertySource<Object> {
 	public Collection<PropertySource<?>> getPropertySources() {
 		return this.propertySources;
 	}
-
 
 	@Override
 	public String toString() {

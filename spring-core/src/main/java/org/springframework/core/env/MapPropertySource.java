@@ -18,16 +18,23 @@ public class MapPropertySource extends EnumerablePropertySource<Map<String, Obje
 		super(name, source);
 	}
 
+	//---------------------------------------------------------------------
+	// Implementation of 【PropertySource】 class
+	//---------------------------------------------------------------------
 	@Override
 	@Nullable
 	public Object getProperty(String name) {
 		return this.source.get(name);
 	}
 
+	//---------------------------------------------------------------------
+	// Implementation of 【EnumerablePropertySource】 class
+	//---------------------------------------------------------------------
 	@Override
 	public boolean containsProperty(String name) {
 		return this.source.containsKey(name);
 	}
+
 
 	@Override
 	public String[] getPropertyNames() {

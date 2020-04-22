@@ -5,6 +5,8 @@ package org.springframework.core.env;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.convert.ConverterNotFoundException;
@@ -20,36 +22,37 @@ public class PropertySourcesPropertyResolverTests {
 
 	private ConfigurablePropertyResolver propertyResolver;
 	private Properties testProperties;
-	private MutablePropertySources propertySources;
+	private MutablePropertySources mutablePropertySources;
 
+	// doit 这里好蒙圈啊？？？
 	@Before
 	public void setUp() {
-		propertySources = new MutablePropertySources();// 这句代码不能放在//2 那里否则报错  注意执行顺序！
-		propertyResolver = new PropertySourcesPropertyResolver(propertySources);
+		mutablePropertySources = new MutablePropertySources();// 这句代码不能放在//2 那里否则报错  注意执行顺序！
+		propertyResolver = new PropertySourcesPropertyResolver(mutablePropertySources);
 		testProperties = new Properties();
 		//2
-		propertySources.addFirst(new PropertiesPropertySource("testProperties", testProperties));
+		mutablePropertySources.addFirst(new PropertiesPropertySource("testProperties", testProperties));
 	}
 
 	@Test
 	public void containsProperty() {
-		assertThat(propertyResolver.containsProperty("foo"), is(false));
+		Assert.assertFalse(propertyResolver.containsProperty("foo"));
 		testProperties.put("foo", "bar");
-		assertThat(propertyResolver.containsProperty("foo"), is(true));
+		Assert.assertTrue(propertyResolver.containsProperty("foo"));
 	}
 
 	@Test
 	public void getProperty() {
-		assertThat(propertyResolver.getProperty("foo"), nullValue());
+		Assert.assertEquals(null,propertyResolver.getProperty("foo"));
 		testProperties.put("foo", "bar");
-		assertThat(propertyResolver.getProperty("foo"), is("bar"));
+		Assert.assertEquals("bar",propertyResolver.getProperty("foo"));
 	}
 
 	@Test
 	public void getProperty_withDefaultValue() {
-		assertThat(propertyResolver.getProperty("foo", "myDefault"), is("myDefault"));
+		Assert.assertEquals("myDefault",propertyResolver.getProperty("foo", "myDefault"));
 		testProperties.put("foo", "bar");
-		assertThat(propertyResolver.getProperty("foo"), is("bar"));
+		Assert.assertEquals("bar",propertyResolver.getProperty("foo"));
 	}
 
 	@Test
@@ -68,7 +71,7 @@ public class PropertySourcesPropertyResolverTests {
 	public void getProperty_withExplicitNullValue() {
 		// java.util.Properties does not allow null values (because Hashtable does not)
 		Map<String, Object> nullableProperties = new HashMap<>();
-		propertySources.addLast(new MapPropertySource("nullableProperties", nullableProperties));
+		mutablePropertySources.addLast(new MapPropertySource("nullableProperties", nullableProperties));
 		nullableProperties.put("foo", null);
 		assertThat(propertyResolver.getProperty("foo"), nullValue());
 	}
@@ -126,17 +129,17 @@ public class PropertySourcesPropertyResolverTests {
 
 	@Test
 	public void getPropertySources_replacePropertySource() {
-		propertySources = new MutablePropertySources();
-		propertyResolver = new PropertySourcesPropertyResolver(propertySources);
-		propertySources.addLast(new MockPropertySource("local").withProperty("foo", "localValue"));
-		propertySources.addLast(new MockPropertySource("system").withProperty("foo", "systemValue"));
+		mutablePropertySources = new MutablePropertySources();
+		propertyResolver = new PropertySourcesPropertyResolver(mutablePropertySources);
+		mutablePropertySources.addLast(new MockPropertySource("local").withProperty("foo", "localValue"));
+		mutablePropertySources.addLast(new MockPropertySource("system").withProperty("foo", "systemValue"));
 		// 'local' was added first so has precedence
 		assertThat(propertyResolver.getProperty("foo"), equalTo("localValue"));
 		// replace 'local' with new property source
-		propertySources.replace("local", new MockPropertySource("new").withProperty("foo", "newValue"));
+		mutablePropertySources.replace("local", new MockPropertySource("new").withProperty("foo", "newValue"));
 		// 'system' now has precedence
 		assertThat(propertyResolver.getProperty("foo"), equalTo("newValue"));
-		assertThat(propertySources.size(), is(2));
+		assertThat(mutablePropertySources.size(), is(2));
 	}
 
 	@Test
@@ -184,8 +187,7 @@ public class PropertySourcesPropertyResolverTests {
 		MutablePropertySources propertySources = new MutablePropertySources();
 		propertySources.addFirst(new MockPropertySource().withProperty("key", "value"));
 		PropertyResolver resolver = new PropertySourcesPropertyResolver(propertySources);
-		assertThat(resolver.resolvePlaceholders("Replace this ${key} plus ${unknown:defaultValue}"),
-				equalTo("Replace this value plus defaultValue"));
+		assertThat(resolver.resolvePlaceholders("Replace this ${key} plus ${unknown:defaultValue}"),equalTo("Replace this value plus defaultValue"));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -293,20 +295,16 @@ public class PropertySourcesPropertyResolverTests {
 		assertThat(pr.getProperty("p1"), equalTo("v1"));
 		assertThat(pr.getProperty("p2"), equalTo("v2"));
 		assertThat(pr.getProperty("p3"), equalTo("v1:v2:def"));
-
-		// placeholders nested within the value of "p4" are unresolvable and cause an
-		// exception by default
+		// placeholders nested within the value of "p4" are unresolvable and cause an exception by default
 		try {
 			pr.getProperty("p4");
 		}catch (IllegalArgumentException ex) {
 			assertThat(ex.getMessage(), containsString("Could not resolve placeholder 'bogus' in value \"${p1}:${p2}:${bogus}\""));
 		}
-
 		// relax the treatment of unresolvable nested placeholders
 		pr.setIgnoreUnresolvableNestedPlaceholders(true);
 		// and observe they now pass through unresolved
 		assertThat(pr.getProperty("p4"), equalTo("v1:v2:${bogus}"));
-
 		// resolve[Nested]Placeholders methods behave as usual regardless the value of
 		// ignoreUnresolvableNestedPlaceholders
 		assertThat(pr.resolvePlaceholders("${p1}:${p2}:${bogus}"), equalTo("v1:v2:${bogus}"));

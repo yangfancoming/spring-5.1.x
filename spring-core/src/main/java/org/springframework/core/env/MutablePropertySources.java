@@ -36,41 +36,41 @@ public class MutablePropertySources implements PropertySources {
 
 	@Override
 	public Iterator<PropertySource<?>> iterator() {
-		return this.propertySourceList.iterator();
+		return propertySourceList.iterator();
 	}
 
 	@Override
 	public Spliterator<PropertySource<?>> spliterator() {
-		return Spliterators.spliterator(this.propertySourceList, 0);
+		return Spliterators.spliterator(propertySourceList, 0);
 	}
 
 	@Override
 	public Stream<PropertySource<?>> stream() {
-		return this.propertySourceList.stream();
+		return propertySourceList.stream();
 	}
 
 	@Override
 	public boolean contains(String name) {
-		return this.propertySourceList.contains(PropertySource.named(name));
+		return propertySourceList.contains(PropertySource.named(name));
 	}
 
 	@Override
 	@Nullable
 	public PropertySource<?> get(String name) {
-		int index = this.propertySourceList.indexOf(PropertySource.named(name));
-		return (index != -1 ? this.propertySourceList.get(index) : null);
+		int index = propertySourceList.indexOf(PropertySource.named(name));
+		return (index != -1 ? propertySourceList.get(index) : null);
 	}
 
 	// Add the given property source object with highest precedence.
 	public void addFirst(PropertySource<?> propertySource) {
 		removeIfPresent(propertySource);
-		this.propertySourceList.add(0, propertySource);
+		propertySourceList.add(0, propertySource);
 	}
 
 	// Add the given property source object with lowest precedence.
 	public void addLast(PropertySource<?> propertySource) {
 		removeIfPresent(propertySource);
-		this.propertySourceList.add(propertySource);
+		propertySourceList.add(propertySource);
 	}
 
 	// Add the given property source object with precedence immediately higher than the named relative property source.
@@ -91,7 +91,7 @@ public class MutablePropertySources implements PropertySources {
 
 	// Return the precedence of the given property source, {@code -1} if not found.
 	public int precedenceOf(PropertySource<?> propertySource) {
-		return this.propertySourceList.indexOf(propertySource);
+		return propertySourceList.indexOf(propertySource);
 	}
 
 	/**
@@ -100,8 +100,8 @@ public class MutablePropertySources implements PropertySources {
 	 */
 	@Nullable
 	public PropertySource<?> remove(String name) {
-		int index = this.propertySourceList.indexOf(PropertySource.named(name));
-		return (index != -1 ? this.propertySourceList.remove(index) : null);
+		int index = propertySourceList.indexOf(PropertySource.named(name));
+		return (index != -1 ? propertySourceList.remove(index) : null);
 	}
 
 	/**
@@ -113,17 +113,17 @@ public class MutablePropertySources implements PropertySources {
 	 */
 	public void replace(String name, PropertySource<?> propertySource) {
 		int index = assertPresentAndGetIndex(name);
-		this.propertySourceList.set(index, propertySource);
+		propertySourceList.set(index, propertySource);
 	}
 
 	// Return the number of {@link PropertySource} objects contained.
 	public int size() {
-		return this.propertySourceList.size();
+		return propertySourceList.size();
 	}
 
 	@Override
 	public String toString() {
-		return this.propertySourceList.toString();
+		return propertySourceList.toString();
 	}
 
 	//  Ensure that the given property source is not being added relative to itself.
@@ -136,13 +136,13 @@ public class MutablePropertySources implements PropertySources {
 
 	// Remove the given property source if it is present.
 	protected void removeIfPresent(PropertySource<?> propertySource) {
-		this.propertySourceList.remove(propertySource);
+		propertySourceList.remove(propertySource);
 	}
 
 	//  Add the given property source at a particular index in the list.
 	private void addAtIndex(int index, PropertySource<?> propertySource) {
 		removeIfPresent(propertySource);
-		this.propertySourceList.add(index, propertySource);
+		propertySourceList.add(index, propertySource);
 	}
 
 	/**
@@ -151,7 +151,7 @@ public class MutablePropertySources implements PropertySources {
 	 * @throws IllegalArgumentException if the named property source is not present
 	 */
 	private int assertPresentAndGetIndex(String name) {
-		int index = this.propertySourceList.indexOf(PropertySource.named(name));
+		int index = propertySourceList.indexOf(PropertySource.named(name));
 		if (index == -1) throw new IllegalArgumentException("PropertySource named '" + name + "' does not exist");
 		return index;
 	}
