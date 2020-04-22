@@ -13,29 +13,21 @@ import org.springframework.lang.Nullable;
 
 /**
  * Base class for {@link org.springframework.context.ApplicationContext}
- * implementations which are supposed to support multiple calls to {@link #refresh()},
- * creating a new internal bean factory instance every time.
- * Typically (but not necessarily), such a context will be driven by
- * a set of config locations to load bean definitions from.
+ * implementations which are supposed to support multiple calls to {@link #refresh()},creating a new internal bean factory instance every time.
+ * Typically (but not necessarily), such a context will be driven by a set of config locations to load bean definitions from.
  *
  * The only method to be implemented by subclasses is {@link #loadBeanDefinitions},
- * which gets invoked on each refresh. A concrete implementation is supposed to load
- * bean definitions into the given
- * {@link org.springframework.beans.factory.support.DefaultListableBeanFactory},
- * typically delegating to one or more specific bean definition readers.
+ * which gets invoked on each refresh. A concrete implementation is supposed to load bean definitions into the given
+ * {@link org.springframework.beans.factory.support.DefaultListableBeanFactory},typically delegating to one or more specific bean definition readers.
  *
  * <b>Note that there is a similar base class for WebApplicationContexts.</b>
- * provides the same subclassing strategy, but additionally pre-implements
- * all context functionality for web environments. There is also a
- * pre-defined way to receive config locations for a web context.
+ * provides the same subclassing strategy, but additionally pre-implements all context functionality for web environments.
+ * There is also a pre-defined way to receive config locations for a web context.
  *
- * Concrete standalone subclasses of this base class, reading in a
- * specific bean definition format, are {@link ClassPathXmlApplicationContext}
- * and {@link FileSystemXmlApplicationContext}, which both derive from the
- * common {@link AbstractXmlApplicationContext} base class;
- * {@link org.springframework.context.annotation.AnnotationConfigApplicationContext}
- * supports {@code @Configuration}-annotated classes as a source of bean definitions.
-
+ * Concrete standalone subclasses of this base class, reading in a specific bean definition format,
+ * are {@link ClassPathXmlApplicationContext} and {@link FileSystemXmlApplicationContext},
+ * which both derive from the common {@link AbstractXmlApplicationContext} base class;
+ * {@link org.springframework.context.annotation.AnnotationConfigApplicationContext} supports {@code @Configuration}-annotated classes as a source of bean definitions.
  * @since 1.1.3
  * @see #loadBeanDefinitions
  * @see org.springframework.beans.factory.support.DefaultListableBeanFactory
@@ -61,9 +53,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	/** Synchronization monitor for the internal BeanFactory. */
 	private final Object beanFactoryMonitor = new Object();
 
-	/**
-	 * Create a new AbstractRefreshableApplicationContext with no parent.
-	 */
+	// Create a new AbstractRefreshableApplicationContext with no parent.
 	public AbstractRefreshableApplicationContext() {}
 
 	/**
@@ -75,8 +65,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	}
 
 	/**
-	 * Set whether it should be allowed to override bean definitions by registering
-	 * a different definition with the same name, automatically replacing the former.
+	 * Set whether it should be allowed to override bean definitions by registering  a different definition with the same name, automatically replacing the former.
 	 * If not, an exception will be thrown. Default is "true".
 	 * @see org.springframework.beans.factory.support.DefaultListableBeanFactory#setAllowBeanDefinitionOverriding
 	 */
@@ -85,21 +74,17 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	}
 
 	/**
-	 * Set whether to allow circular references between beans - and automatically
-	 * try to resolve them.
-	 * Default is "true". Turn this off to throw an exception when encountering
-	 * a circular reference, disallowing them completely.
+	 * Set whether to allow circular references between beans - and automatically try to resolve them.
+	 * Default is "true". Turn this off to throw an exception when encountering  a circular reference, disallowing them completely.
 	 * @see org.springframework.beans.factory.support.DefaultListableBeanFactory#setAllowCircularReferences
 	 */
 	public void setAllowCircularReferences(boolean allowCircularReferences) {
 		this.allowCircularReferences = allowCircularReferences;
 	}
 
-
 	/**
-	 * This implementation performs an actual refresh of this context's underlying
-	 * bean factory, shutting down the previous bean factory (if any) and
-	 * initializing a fresh bean factory for the next phase of the context's lifecycle.
+	 * This implementation performs an actual refresh of this context's underlying bean factory,
+	 * shutting down the previous bean factory (if any) and initializing a fresh bean factory for the next phase of the context's lifecycle.
 	 */
 	@Override
 	protected final void refreshBeanFactory() throws BeansException {
@@ -112,7 +97,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			closeBeanFactory();
 		}
 		try {
-			// 创建一个默认的BeanFactory，即全功能的那个郭靖！
+			// 创建一个默认的BeanFactory
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
 			// 为当前BeanFactory设置一个标识id 用于 BeanFactory 的序列化，部分人应该都用不到
 			beanFactory.setSerializationId(getId());
@@ -158,9 +143,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 		}
 	}
 
-	/**
-	 * Determine whether this context currently holds a bean factory, i.e. has been refreshed at least once and not been closed yet.
-	 */
+	//  Determine whether this context currently holds a bean factory, i.e. has been refreshed at least once and not been closed yet.
 	protected final boolean hasBeanFactory() {
 		synchronized (beanFactoryMonitor) {
 			return (beanFactory != null);
@@ -186,13 +169,10 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	}
 
 	/**
-	 * Create an internal bean factory for this context.
-	 * Called for each {@link #refresh()} attempt.
-	 * The default implementation creates a
-	 * {@link org.springframework.beans.factory.support.DefaultListableBeanFactory}
-	 * with the {@linkplain #getInternalParentBeanFactory() internal bean factory} of this
-	 * context's parent as parent bean factory. Can be overridden in subclasses,
-	 * for example to customize DefaultListableBeanFactory's settings.
+	 * Create an internal bean factory for this context. Called for each {@link #refresh()} attempt.
+	 * The default implementation creates a {@link org.springframework.beans.factory.support.DefaultListableBeanFactory}
+	 * with the {@linkplain #getInternalParentBeanFactory() internal bean factory} of this context's parent as parent bean factory.
+	 * Can be overridden in subclasses,for example to customize DefaultListableBeanFactory's settings.
 	 * @return the bean factory for this context
 	 * @see org.springframework.beans.factory.support.DefaultListableBeanFactory#setAllowBeanDefinitionOverriding
 	 * @see org.springframework.beans.factory.support.DefaultListableBeanFactory#setAllowEagerClassLoading
@@ -215,24 +195,17 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 * @see DefaultListableBeanFactory#setAllowRawInjectionDespiteWrapping
 	 * @see DefaultListableBeanFactory#setAllowEagerClassLoading
 	 * customizeBeanFactory(beanFactory) 比较简单，就是配置是否允许 BeanDefinition 覆盖、是否允许循环引用。
-	 *
 	 * BeanDefinition 的覆盖问题可能会有开发者碰到这个坑，就是在配置文件中定义 bean 时使用了相同的 id 或 name，
 	 * 默认情况下，allowBeanDefinitionOverriding 属性为 null，如果在同一配置文件中重复了，会抛错，但是如果不是同一配置文件中，会发生覆盖。
-	 *
 	 * 循环引用也很好理解：A 依赖 B，而 B 依赖 A。或 A 依赖 B，B 依赖 C，而 C 依赖 A。
 	 */
 	protected void customizeBeanFactory(DefaultListableBeanFactory beanFactory) {
-		if (allowBeanDefinitionOverriding != null) {
-			beanFactory.setAllowBeanDefinitionOverriding(allowBeanDefinitionOverriding);
-		}
-		if (allowCircularReferences != null) {
-			beanFactory.setAllowCircularReferences(allowCircularReferences);
-		}
+		if (allowBeanDefinitionOverriding != null) beanFactory.setAllowBeanDefinitionOverriding(allowBeanDefinitionOverriding);
+		if (allowCircularReferences != null)	   beanFactory.setAllowCircularReferences(allowCircularReferences);
 	}
 
 	/**
-	 * Load bean definitions into the given bean factory, typically through
-	 * delegating to one or more bean definition readers.
+	 * Load bean definitions into the given bean factory, typically through delegating to one or more bean definition readers.
 	 * @param beanFactory the bean factory to load bean definitions into
 	 * @throws BeansException if parsing of the bean definitions failed
 	 * @throws IOException if loading of bean definition files failed
@@ -240,6 +213,5 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader
 	 */
 	protected abstract void loadBeanDefinitions(DefaultListableBeanFactory beanFactory) throws BeansException, IOException;
-
 
 }

@@ -541,7 +541,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		initPropertySources();
 		// Validate that all properties marked as required are resolvable: 验证所有标记为“必需”的属性是否可解析
 		// see ConfigurablePropertyResolver#setRequiredProperties
-		// 校验 xml 配置文件  校验必需的属性是否存在 检查环境变量的核心方法为，简单来说就是如果存在环境变量的value 为空的时候就抛异常，然后停止启动Spring
+		// 校验 xml 配置文件  校验必需的属性是否存在
 		getEnvironment().validateRequiredProperties();
 		// Store pre-refresh ApplicationListeners...  保存容器中一些早期的事件
 		if (earlyApplicationListeners == null) {

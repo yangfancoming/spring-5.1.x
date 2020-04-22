@@ -319,7 +319,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 			}catch (BeanDefinitionStoreException ex) {
 				getReaderContext().error("Failed to register bean definition with name '" + bdHolder.getBeanName() + "'", ele, ex);
 			}
-			// Send registration event.    // 发消息，可以忽略
+			// Send registration event.  // 发消息，可以忽略
 			// 4、发送注册事件
 			getReaderContext().fireComponentRegistered(new BeanComponentDefinition(bdHolder));
 		}

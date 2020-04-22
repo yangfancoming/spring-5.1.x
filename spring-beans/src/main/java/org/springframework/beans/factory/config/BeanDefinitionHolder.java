@@ -62,16 +62,12 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 		this.aliases = beanDefinitionHolder.getAliases();
 	}
 
-	/**
-	 * Return the wrapped BeanDefinition.
-	 */
+	//  Return the wrapped BeanDefinition.
 	public BeanDefinition getBeanDefinition() {
 		return this.beanDefinition;
 	}
 
-	/**
-	 * Return the primary name of the bean, as specified for the bean definition.
-	 */
+	//  Return the primary name of the bean, as specified for the bean definition.
 	public String getBeanName() {
 		return this.beanName;
 	}
@@ -95,14 +91,11 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 		return this.beanDefinition.getSource();
 	}
 
-	/**
-	 * Determine whether the given candidate name matches the bean name or the aliases stored in this bean definition.
-	 */
+	//  Determine whether the given candidate name matches the bean name or the aliases stored in this bean definition.
 	public boolean matchesName(@Nullable String candidateName) {
 		return (candidateName != null && (candidateName.equals(this.beanName) || candidateName.equals(BeanFactoryUtils.transformedBeanName(this.beanName)) ||
 				ObjectUtils.containsElement(this.aliases, candidateName)));
 	}
-
 
 	/**
 	 * Return a friendly, short description for the bean, stating name and aliases.
@@ -156,5 +149,4 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 		hashCode = 29 * hashCode + ObjectUtils.nullSafeHashCode(this.aliases);
 		return hashCode;
 	}
-
 }
