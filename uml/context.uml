@@ -296,7 +296,7 @@
       <point x="-98.25" y="-14.5" />
       <point x="2465.7807142857146" y="544.0" />
       <point x="2065.455357142857" y="544.0" />
-      <point x="41.333333333333485" y="14.5" />
+      <point x="41.33333333333326" y="14.5" />
     </edge>
     <edge source="org.springframework.beans.factory.serviceloader.ServiceListFactoryBean" target="org.springframework.beans.factory.serviceloader.AbstractServiceLoaderBasedFactoryBean">
       <point x="-44.500000000000455" y="-14.5" />
@@ -307,8 +307,8 @@
     <edge source="org.springframework.beans.BeanMetadataAttributeAccessor" target="org.springframework.beans.BeanMetadataElement">
       <point x="-55.0" y="-14.5" />
       <point x="626.7083333333333" y="989.0" />
-      <point x="493.04166666666663" y="989.0" />
-      <point x="53.33333333333337" y="14.5" />
+      <point x="493.0416666666665" y="989.0" />
+      <point x="53.333333333333314" y="14.5" />
     </edge>
     <edge source="org.springframework.core.type.StandardClassMetadata" target="org.springframework.core.type.ClassMetadata">
       <point x="0.0" y="-14.5" />
@@ -499,8 +499,8 @@
       <point x="-20.28571428571422" y="14.5" />
     </edge>
     <edge source="org.springframework.beans.factory.BeanNameAware" target="org.springframework.beans.factory.Aware">
-      <point x="0.0" y="-14.5" />
-      <point x="2024.1220238095236" y="395.0" />
+      <point x="2.2737367544323206E-13" y="-14.5" />
+      <point x="2024.1220238095239" y="395.0" />
       <point x="2977.955357142857" y="395.0" />
       <point x="-31.666666666666515" y="14.5" />
     </edge>
@@ -1043,10 +1043,8 @@
       <point x="0.0" y="14.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="3825.981838819523" y="756.0" />
-  <SelectedNodes>
-    <node>org.springframework.web.context.ConfigurableWebEnvironment</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic Group" zoom="1.0" x="937.2657342657344" y="406.50000000000017" />
+  <SelectedNodes />
   <Categories />
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>

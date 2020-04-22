@@ -13,7 +13,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link JOptCommandLinePropertySource}.
-
  * @since 3.1
  */
 public class JOptCommandLinePropertySourceTests {
@@ -23,9 +22,8 @@ public class JOptCommandLinePropertySourceTests {
 		OptionParser parser = new OptionParser();
 		parser.accepts("foo").withRequiredArg();
 		OptionSet options = parser.parse("--foo=bar");
-
 		PropertySource<?> ps = new JOptCommandLinePropertySource(options);
-		assertThat((String)ps.getProperty("foo"), equalTo("bar"));
+		assertThat(ps.getProperty("foo"), equalTo("bar"));
 	}
 
 	@Test
@@ -33,10 +31,9 @@ public class JOptCommandLinePropertySourceTests {
 		OptionParser parser = new OptionParser();
 		parser.accepts("foo").withOptionalArg();
 		OptionSet options = parser.parse("--foo");
-
 		PropertySource<?> ps = new JOptCommandLinePropertySource(options);
 		assertThat(ps.containsProperty("foo"), is(true));
-		assertThat((String)ps.getProperty("foo"), equalTo(""));
+		assertThat(ps.getProperty("foo"), equalTo(""));
 	}
 
 	@Test
@@ -45,7 +42,6 @@ public class JOptCommandLinePropertySourceTests {
 		parser.accepts("o1");
 		parser.accepts("o2");
 		OptionSet options = parser.parse("--o1");
-
 		PropertySource<?> ps = new JOptCommandLinePropertySource(options);
 		assertThat(ps.containsProperty("o1"), is(true));
 		assertThat(ps.containsProperty("o2"), is(false));
@@ -58,7 +54,6 @@ public class JOptCommandLinePropertySourceTests {
 		OptionParser parser = new OptionParser();
 		parser.accepts("foo").withRequiredArg().withValuesSeparatedBy(',');
 		OptionSet options = parser.parse("--foo=bar,baz,biz");
-
 		CommandLinePropertySource<?> ps = new JOptCommandLinePropertySource(options);
 		assertEquals(Arrays.asList("bar","baz","biz"), ps.getOptionValues("foo"));
 		assertThat(ps.getProperty("foo"), equalTo("bar,baz,biz"));
@@ -69,7 +64,6 @@ public class JOptCommandLinePropertySourceTests {
 		OptionParser parser = new OptionParser();
 		parser.accepts("foo").withRequiredArg().withValuesSeparatedBy(',');
 		OptionSet options = parser.parse("--foo=bar", "--foo=baz", "--foo=biz");
-
 		CommandLinePropertySource<?> ps = new JOptCommandLinePropertySource(options);
 		assertEquals(Arrays.asList("bar","baz","biz"), ps.getOptionValues("foo"));
 		assertThat(ps.getProperty("foo"), equalTo("bar,baz,biz"));
@@ -80,7 +74,6 @@ public class JOptCommandLinePropertySourceTests {
 		OptionParser parser = new OptionParser();
 		parser.accepts("foo").withRequiredArg().withValuesSeparatedBy(',');
 		OptionSet options = parser.parse(); // <-- no options whatsoever
-
 		PropertySource<?> ps = new JOptCommandLinePropertySource(options);
 		assertThat(ps.getProperty("foo"), nullValue());
 	}
@@ -90,7 +83,6 @@ public class JOptCommandLinePropertySourceTests {
 		OptionParser parser = new OptionParser();
 		parser.accepts("spring.profiles.active").withRequiredArg();
 		OptionSet options = parser.parse("--spring.profiles.active=p1");
-
 		CommandLinePropertySource<?> ps = new JOptCommandLinePropertySource(options);
 		assertThat(ps.getProperty("spring.profiles.active"), equalTo("p1"));
 	}
@@ -102,11 +94,9 @@ public class JOptCommandLinePropertySourceTests {
 		parser.accepts("o2");
 		OptionSet optionSet = parser.parse("--o1=v1", "--o2");
 		EnumerablePropertySource<?> ps = new JOptCommandLinePropertySource(optionSet);
-
 		assertThat(ps.containsProperty("nonOptionArgs"), is(false));
 		assertThat(ps.containsProperty("o1"), is(true));
 		assertThat(ps.containsProperty("o2"), is(true));
-
 		assertThat(ps.containsProperty("nonOptionArgs"), is(false));
 		assertThat(ps.getProperty("nonOptionArgs"), nullValue());
 		assertThat(ps.getPropertyNames().length, is(2));
@@ -119,11 +109,9 @@ public class JOptCommandLinePropertySourceTests {
 		parser.accepts("o2");
 		OptionSet optionSet = parser.parse("--o1=v1", "noa1", "--o2", "noa2");
 		PropertySource<?> ps = new JOptCommandLinePropertySource(optionSet);
-
 		assertThat(ps.containsProperty("nonOptionArgs"), is(true));
 		assertThat(ps.containsProperty("o1"), is(true));
 		assertThat(ps.containsProperty("o2"), is(true));
-
 		String nonOptionArgs = (String)ps.getProperty("nonOptionArgs");
 		assertThat(nonOptionArgs, equalTo("noa1,noa2"));
 	}
@@ -136,7 +124,6 @@ public class JOptCommandLinePropertySourceTests {
 		OptionSet optionSet = parser.parse("--o1=v1", "noa1", "--o2", "noa2");
 		CommandLinePropertySource<?> ps = new JOptCommandLinePropertySource(optionSet);
 		ps.setNonOptionArgsPropertyName("NOA");
-
 		assertThat(ps.containsProperty("nonOptionArgs"), is(false));
 		assertThat(ps.containsProperty("NOA"), is(true));
 		assertThat(ps.containsProperty("o1"), is(true));
@@ -150,7 +137,6 @@ public class JOptCommandLinePropertySourceTests {
 		OptionParser parser = new OptionParser();
 		parser.accepts("o1").withRequiredArg().ofType(OptionEnum.class);
 		OptionSet options = parser.parse("--o1=VAL_1");
-
 		PropertySource<?> ps = new JOptCommandLinePropertySource(options);
 		assertThat(ps.getProperty("o1"), equalTo("VAL_1"));
 	}

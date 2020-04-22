@@ -127,9 +127,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 		MissingRequiredPropertiesException ex = new MissingRequiredPropertiesException();
 		for (String key : requiredProperties) {
 			// 如果存在属性缺失，记录下来
-			if (this.getProperty(key) == null) {
-				ex.addMissingRequiredProperty(key);
-			}
+			if (this.getProperty(key) == null) ex.addMissingRequiredProperty(key);
 		}
 		// 存在缺失属性则抛出异常
 		if (!ex.getMissingRequiredProperties().isEmpty()) {
@@ -221,9 +219,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 	@SuppressWarnings("unchecked")
 	@Nullable
 	protected <T> T convertValueIfNecessary(Object value, @Nullable Class<T> targetType) {
-		if (targetType == null) {
-			return (T) value;
-		}
+		if (targetType == null) return (T) value;
 		ConversionService conversionServiceToUse = conversionService;
 		if (conversionServiceToUse == null) {
 			// Avoid initialization of shared DefaultConversionService if  no standard type conversion is needed in the first place...

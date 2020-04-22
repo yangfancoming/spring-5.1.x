@@ -36,13 +36,8 @@ import org.springframework.util.Assert;
  *
  * <pre class="code">SPRING_PROFILES_ACTIVE=p1 java -classpath ... MyApp</pre>
  *
- * Enable debug- or trace-level logging for this class (or package) for messages
- * explaining when these 'property name resolutions' occur.
- *
- * This property source is included by default in {@link StandardEnvironment}
- * and all its subclasses.
-
-
+ * Enable debug- or trace-level logging for this class (or package) for messages explaining when these 'property name resolutions' occur.
+ * This property source is included by default in {@link StandardEnvironment} and all its subclasses.
  * @since 3.1
  * @see StandardEnvironment
  * @see AbstractEnvironment#getSystemEnvironment()
@@ -77,8 +72,7 @@ public class SystemEnvironmentPropertySource extends MapPropertySource {
 	public Object getProperty(String name) {
 		String actualName = resolvePropertyName(name);
 		if (logger.isDebugEnabled() && !name.equals(actualName)) {
-			logger.debug("PropertySource '" + getName() + "' does not contain property '" + name +
-					"', but found equivalent '" + actualName + "'");
+			logger.debug("PropertySource '" + getName() + "' does not contain property '" + name + "', but found equivalent '" + actualName + "'");
 		}
 		return super.getProperty(actualName);
 	}

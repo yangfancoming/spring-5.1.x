@@ -23,11 +23,9 @@ import org.springframework.util.StringUtils;
  * Abstract base class for {@link Environment} implementations. Supports the notion of
  * reserved default profile names and enables specifying active and default profiles
  * through the {@link #ACTIVE_PROFILES_PROPERTY_NAME} and {@link #DEFAULT_PROFILES_PROPERTY_NAME} properties.
- * Concrete subclasses differ primarily on which {@link PropertySource} objects they
- * add by default. {@code AbstractEnvironment} adds none. Subclasses should contribute
- * property sources through the protected {@link #customizePropertySources(MutablePropertySources)}
- * hook, while clients should customize using {@link ConfigurableEnvironment#getPropertySources()}
- * and working against the {@link MutablePropertySources} API.
+ * Concrete subclasses differ primarily on which {@link PropertySource} objects they add by default.
+ * {@code AbstractEnvironment} adds none. Subclasses should contribute  property sources through the protected {@link #customizePropertySources(MutablePropertySources)}
+ * hook, while clients should customize using {@link ConfigurableEnvironment#getPropertySources()} and working against the {@link MutablePropertySources} API.
  * See {@link ConfigurableEnvironment} javadoc for usage examples.
  * @since 3.1
  * @see ConfigurableEnvironment
@@ -39,35 +37,33 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	 * System property that instructs Spring to ignore system environment variables,
 	 * i.e. to never attempt to retrieve such a variable via {@link System#getenv()}.
 	 * The default is "false", falling back to system environment variable checks if a
-	 * Spring environment property (e.g. a placeholder in a configuration String) isn't
-	 * resolvable otherwise. Consider switching this flag to "true" if you experience
-	 * log warnings from {@code getenv} calls coming from Spring, e.g. on WebSphere
-	 * with strict SecurityManager settings and AccessControlExceptions warnings.
+	 * Spring environment property (e.g. a placeholder in a configuration String) isn't  resolvable otherwise.
+	 * Consider switching this flag to "true" if you experience log warnings from {@code getenv} calls coming from Spring,
+	 * e.g. on WebSphere with strict SecurityManager settings and AccessControlExceptions warnings.
 	 * @see #suppressGetenvAccess()
 	 */
 	public static final String IGNORE_GETENV_PROPERTY_NAME = "spring.getenv.ignore";
 
 	/**
 	 * Name of property to set to specify active profiles: {@value}. Value may be comma delimited.
-	 * Note that certain shell environments such as Bash disallow the use of the period
-	 * character in variable names. Assuming that Spring's {@link SystemEnvironmentPropertySource}
-	 * is in use, this property may be specified as an environment variable as {@code SPRING_PROFILES_ACTIVE}.
+	 * Note that certain shell environments such as Bash disallow the use of the period character in variable names.
+	 * Assuming that Spring's {@link SystemEnvironmentPropertySource} is in use, this property may be specified as an environment variable as {@code SPRING_PROFILES_ACTIVE}.
 	 * @see ConfigurableEnvironment#setActiveProfiles
+	 * 对应配置文件中 全局配置文件中的 spring.profiles.active
 	 */
 	public static final String ACTIVE_PROFILES_PROPERTY_NAME = "spring.profiles.active";
 
 	/**
 	 * Name of property to set to specify profiles active by default: {@value}. Value may be comma delimited.
-	 * Note that certain shell environments such as Bash disallow the use of the period
-	 * character in variable names. Assuming that Spring's {@link SystemEnvironmentPropertySource}
-	 * is in use, this property may be specified as an environment variable as {@code SPRING_PROFILES_DEFAULT}.
+	 * Note that certain shell environments such as Bash disallow the use of the period character in variable names.
+	 * Assuming that Spring's {@link SystemEnvironmentPropertySource} is in use, this property may be specified as an environment variable as {@code SPRING_PROFILES_DEFAULT}.
 	 * @see ConfigurableEnvironment#setDefaultProfiles
 	 */
 	public static final String DEFAULT_PROFILES_PROPERTY_NAME = "spring.profiles.default";
 
 	/**
-	 * Name of reserved default profile name: {@value}. If no default profile names are
-	 * explicitly and no active profile names are explicitly set, this profile will automatically be activated by default.
+	 * Name of reserved default profile name: {@value}.
+	 * If no default profile names are explicitly and no active profile names are explicitly set, this profile will automatically be activated by default.
 	 * @see #getReservedDefaultProfiles
 	 * @see ConfigurableEnvironment#setDefaultProfiles
 	 * @see ConfigurableEnvironment#setActiveProfiles

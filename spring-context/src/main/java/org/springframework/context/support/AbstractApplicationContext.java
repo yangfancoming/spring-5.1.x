@@ -425,7 +425,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	*/
 	@Override
 	public void refresh() throws BeansException, IllegalStateException {
-		// 来个锁，不然 refresh() 还没结束，你又来个启动或销毁容器的操作，那不就乱套了嘛
 		// 为了避免`refresh()` 还没结束，再次发起启动或者销毁容器引起的冲突
 		synchronized (this.startupShutdownMonitor) {
 			/**
@@ -538,13 +537,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			}
 		}
 		// Initialize any placeholder property sources in the context environment.
-		// 内部是一个空实现，主要供子类拓展自己ApplicationContext，设置必需的属性
-		// 子类自定义个性化的属性设置方法
+		// 子类自定义个性化的属性设置方法，内部是一个空实现，主要供子类拓展自己ApplicationContext，设置必需的属性
 		initPropertySources();
-
 		// Validate that all properties marked as required are resolvable: 验证所有标记为“必需”的属性是否可解析
 		// see ConfigurablePropertyResolver#setRequiredProperties
-		//  校验 xml 配置文件  校验必需的属性是否存在
+		// 校验 xml 配置文件  校验必需的属性是否存在 检查环境变量的核心方法为，简单来说就是如果存在环境变量的value 为空的时候就抛异常，然后停止启动Spring
 		getEnvironment().validateRequiredProperties();
 		// Store pre-refresh ApplicationListeners...  保存容器中一些早期的事件
 		if (earlyApplicationListeners == null) {

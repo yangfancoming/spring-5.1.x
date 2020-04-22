@@ -13,6 +13,7 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
 /**
+ * @see PropertySourcesPropertyResolver
  * @since 3.1
  */
 public class PropertySourcesPropertyResolverTests {
@@ -21,13 +22,12 @@ public class PropertySourcesPropertyResolverTests {
 	private Properties testProperties;
 	private MutablePropertySources propertySources;
 
-
 	@Before
 	public void setUp() {
-
+		propertySources = new MutablePropertySources();// 这句代码不能放在//2 那里否则报错  注意执行顺序！
 		propertyResolver = new PropertySourcesPropertyResolver(propertySources);
 		testProperties = new Properties();
-		propertySources = new MutablePropertySources();
+		//2
 		propertySources.addFirst(new PropertiesPropertySource("testProperties", testProperties));
 	}
 
