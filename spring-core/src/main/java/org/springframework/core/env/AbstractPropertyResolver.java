@@ -137,7 +137,6 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 		}
 	}
 
-
 	//---------------------------------------------------------------------
 	// Implementation of 【PropertyResolver】 interface
 	//---------------------------------------------------------------------
@@ -192,11 +191,9 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 
 	/**
 	 * Resolve placeholders within the given string, deferring to the value of
-	 * {@link #setIgnoreUnresolvableNestedPlaceholders} to determine whether any
-	 * unresolvable placeholders should raise an exception or be ignored.
-	 * Invoked from {@link #getProperty} and its variants, implicitly resolving
-	 * nested placeholders. In contrast, {@link #resolvePlaceholders} and
-	 * {@link #resolveRequiredPlaceholders} do <i>not</i> delegate
+	 * {@link #setIgnoreUnresolvableNestedPlaceholders} to determine whether any unresolvable placeholders should raise an exception or be ignored.
+	 * Invoked from {@link #getProperty} and its variants, implicitly resolving nested placeholders.
+	 * In contrast, {@link #resolvePlaceholders} and {@link #resolveRequiredPlaceholders} do <i>not</i> delegate
 	 * to this method but rather perform their own handling of unresolvable
 	 * placeholders, as specified by each of those methods.
 	 * @since 3.2
@@ -218,8 +215,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 	 * Convert the given value to the specified target type, if necessary.
 	 * @param value the original property value
 	 * @param targetType the specified target type for property retrieval
-	 * @return the converted value, or the original value if no conversion
-	 * is necessary
+	 * @return the converted value, or the original value if no conversion is necessary
 	 * @since 4.3.5
 	 */
 	@SuppressWarnings("unchecked")
@@ -230,8 +226,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 		}
 		ConversionService conversionServiceToUse = this.conversionService;
 		if (conversionServiceToUse == null) {
-			// Avoid initialization of shared DefaultConversionService if
-			// no standard type conversion is needed in the first place...
+			// Avoid initialization of shared DefaultConversionService if  no standard type conversion is needed in the first place...
 			if (ClassUtils.isAssignableValue(targetType, value)) {
 				return (T) value;
 			}
@@ -242,8 +237,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 
 
 	/**
-	 * Retrieve the specified property as a raw String,
-	 * i.e. without resolution of nested placeholders.
+	 * Retrieve the specified property as a raw String, i.e. without resolution of nested placeholders.
 	 * @param key the property name to resolve
 	 * @return the property value or {@code null} if none found
 	 */

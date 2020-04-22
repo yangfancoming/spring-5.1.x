@@ -28,13 +28,13 @@ public class PropertyPlaceholderHelper {
 		wellKnownSimplePrefixes.put("]", "[");
 		wellKnownSimplePrefixes.put(")", "(");
 	}
-
+	// 占位符前缀
 	private final String placeholderPrefix;
-
+	// 占位符后缀
 	private final String placeholderSuffix;
-
+	// 简单前缀
 	private final String simplePrefix;
-
+	// 取值分隔符
 	@Nullable
 	private final String valueSeparator;
 
@@ -42,8 +42,7 @@ public class PropertyPlaceholderHelper {
 	private final boolean ignoreUnresolvablePlaceholders;
 
 	/**
-	 * Creates a new {@code PropertyPlaceholderHelper} that uses the supplied prefix and suffix.
-	 * Unresolvable placeholders are ignored.
+	 * Creates a new {@code PropertyPlaceholderHelper} that uses the supplied prefix and suffix. Unresolvable placeholders are ignored.
 	 * @param placeholderPrefix the prefix that denotes the start of a placeholder
 	 * @param placeholderSuffix the suffix that denotes the end of a placeholder
 	 */
@@ -63,6 +62,7 @@ public class PropertyPlaceholderHelper {
 		Assert.notNull(placeholderSuffix, "'placeholderSuffix' must not be null");
 		this.placeholderPrefix = placeholderPrefix;
 		this.placeholderSuffix = placeholderSuffix;
+		// doit 这里的逻辑有点绕
 		String simplePrefixForSuffix = wellKnownSimplePrefixes.get(this.placeholderSuffix);
 		if (simplePrefixForSuffix != null && this.placeholderPrefix.endsWith(simplePrefixForSuffix)) {
 			this.simplePrefix = simplePrefixForSuffix;
@@ -81,6 +81,7 @@ public class PropertyPlaceholderHelper {
 	 */
 	public String replacePlaceholders(String value, final Properties properties) {
 		Assert.notNull(properties, "'properties' must not be null");
+		// doit 这里的函数引用 是如何实现的呢？ 参数应该是PlaceholderResolver接口啊？
 		return replacePlaceholders(value, properties::getProperty);
 	}
 
@@ -107,9 +108,7 @@ public class PropertyPlaceholderHelper {
 				//截取前缀占位符和后缀占位符之间的字符串placeholder
 				String placeholder = result.substring(startIndex + this.placeholderPrefix.length(), endIndex);
 				String originalPlaceholder = placeholder;
-				if (visitedPlaceholders == null) {
-					visitedPlaceholders = new HashSet<>(4);
-				}
+				if (visitedPlaceholders == null) visitedPlaceholders = new HashSet<>(4);
 				if (!visitedPlaceholders.add(originalPlaceholder)) {
 					throw new IllegalArgumentException("Circular placeholder reference '" + originalPlaceholder + "' in property definitions");
 				}
@@ -179,9 +178,7 @@ public class PropertyPlaceholderHelper {
 		return -1;
 	}
 
-	/**
-	 * Strategy interface used to resolve replacement values for placeholders contained in Strings.
-	 */
+	// Strategy interface used to resolve replacement values for placeholders contained in Strings.
 	@FunctionalInterface
 	public interface PlaceholderResolver {
 		/**

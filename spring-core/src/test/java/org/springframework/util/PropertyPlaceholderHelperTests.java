@@ -1,14 +1,13 @@
 
 
 package org.springframework.util;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
+import org.junit.Test;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
 import java.util.HashSet;
 import java.util.Properties;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
 
 public class PropertyPlaceholderHelperTests {
 
@@ -23,25 +22,24 @@ public class PropertyPlaceholderHelperTests {
 		assertEquals("foo=bar", helper.replacePlaceholders(text, props));
 	}
 
-
-	// 测试多属性 Properties
+	// 测试多属性 Properties  不会嵌套关联 eg： foo只会映射成bar 不会映射成baz
 	@Test
 	public void testWithMultipleProperties() {
 		String text = "foo=${foo},bar=${bar}";
 		Properties props = new Properties();
 		props.setProperty("foo", "bar");
 		props.setProperty("bar", "baz");
-		assertEquals("foo=bar,bar=baz", this.helper.replacePlaceholders(text, props));
+		assertEquals("foo=bar,bar=baz", helper.replacePlaceholders(text, props));
 	}
 
-	// 测试递归属性 Properties
+	// 测试递归属性 Properties  递归关联
 	@Test
 	public void testRecurseInProperty() {
 		String text = "foo=${bar}";
 		Properties props = new Properties();
 		props.setProperty("bar", "${baz}");
 		props.setProperty("baz", "bar");
-		assertEquals("foo=bar", this.helper.replacePlaceholders(text, props));
+		assertEquals("foo=bar", helper.replacePlaceholders(text, props));
 	}
 
 	// 测试递归属性 Placeholder
@@ -49,9 +47,9 @@ public class PropertyPlaceholderHelperTests {
 	public void testRecurseInPlaceholder() {
 		String text = "foo=${b${inner}}";
 		Properties props = new Properties();
-		props.setProperty("bar", "bar");
+		props.setProperty("bar", "goat");
 		props.setProperty("inner", "ar");
-		assertEquals("foo=bar", this.helper.replacePlaceholders(text, props));
+		assertEquals("foo=goat", helper.replacePlaceholders(text, props));
 
 		text = "${top}";
 		props = new Properties();
@@ -59,16 +57,24 @@ public class PropertyPlaceholderHelperTests {
 		props.setProperty("child", "${${differentiator}.grandchild}");
 		props.setProperty("differentiator", "first");
 		props.setProperty("first.grandchild", "actualValue");
-		assertEquals("actualValue+actualValue", this.helper.replacePlaceholders(text, props));
+		assertEquals("actualValue+actualValue", helper.replacePlaceholders(text, props));
+	}
+
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testUnresolvedPlaceholderAsError() {
+		String text = "foo=${foo},bar=${bar}";
+		Properties props = new Properties();
+		props.setProperty("foo", "bar");
+		// 测试  Properties中未能匹配到的占位符  将被忽略
+		assertEquals("foo=bar,bar=${bar}", helper.replacePlaceholders(text, props));
+
+		// 测试 ignoreUnresolvablePlaceholders 参数指定为false时 并且没解析到对应的占位符 将导致抛出异常
+		PropertyPlaceholderHelper helper = new PropertyPlaceholderHelper("${", "}", null, false);
+		assertEquals("foo=bar,bar=${bar}", helper.replacePlaceholders(text, props));
 	}
 
 	MyPlaceholderResolver myPlaceholderResolver = new MyPlaceholderResolver();
-	// 测试 PlaceholderResolver 函数式编程接口
-	@Test
-	public void testWithResolver() {
-		String text = "foo=${goat}";
-		assertEquals("foo=bar",this.helper.replacePlaceholders(text, myPlaceholderResolver));
-	}
 
 	public static class MyPlaceholderResolver implements PropertyPlaceholderHelper.PlaceholderResolver {
 		@Override
@@ -79,26 +85,15 @@ public class PropertyPlaceholderHelperTests {
 				return null;
 		}
 	}
-
-	// 测试  Properties中未能匹配到的占位符  将被忽略
+	// 测试 PlaceholderResolver 函数式编程接口
 	@Test
-	public void testUnresolvedPlaceholderIsIgnored() {
-		String text = "foo=${foo},bar=${bar}";
-		Properties props = new Properties();
-		props.setProperty("foo", "bar");
-		assertEquals("foo=bar,bar=${bar}", this.helper.replacePlaceholders(text, props));
+	public void testWithResolver() {
+		String text1 = "foo=${goat}";	// 可以正确解析的情况
+		assertEquals("foo=bar",helper.replacePlaceholders(text1, myPlaceholderResolver));
+		String text2 = "foo=${nocase}"; 	// 解析不了的情况
+		assertEquals("foo=${nocase}",helper.replacePlaceholders(text2, myPlaceholderResolver));
 	}
 
-	// 测试 ignoreUnresolvablePlaceholders 参数指定为false时 并且没解析到对应的占位符 将导致抛出异常
-	@Test(expected = IllegalArgumentException.class)
-	public void testUnresolvedPlaceholderAsError() {
-		String text = "foo=${foo},bar=${bar}";
-		Properties props = new Properties();
-		props.setProperty("foo", "bar");
-
-		PropertyPlaceholderHelper helper = new PropertyPlaceholderHelper("${", "}", null, false);
-		assertEquals("foo=bar,bar=${bar}", helper.replacePlaceholders(text, props));
-	}
 
 	// 其他类型占位符测试
 	@Test
@@ -119,15 +114,13 @@ public class PropertyPlaceholderHelperTests {
 		assertEquals("foo=bar", test.replacePlaceholders(text, props));
 	}
 
+
+	private final static String PROPERTIES = "org/springframework/util/PropertyPlaceholderHelper.properties";
 	@Test
 	public void test3()throws Exception {
-		String a = "{name}{age}{sex}";
+		Properties properties = PropertiesLoaderUtils.loadProperties(new ClassPathResource(PROPERTIES));
+		String a = "${name}${age}${sex}";
 		String b = "{name{age}{sex}}";
-		// doit 获取配置文件方式？
-		InputStream in = new BufferedInputStream(new FileInputStream(new File("org/springframework/util/PropertyPlaceholderHelper.properties")));
-		Properties properties = new Properties();
-		properties.load(in);
-
 		System.out.println("替换前:" + a);
 		System.out.println("替换后:" + helper.parseStringValue(a, placeholderName->{
 			String value = properties.getProperty(placeholderName);
