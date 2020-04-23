@@ -13,7 +13,18 @@ public class SimpleAliasRegistryTests {
 
 	SimpleAliasRegistry registry = new SimpleAliasRegistry();
 
+	// 与map不同点：  测试 如果真实的beanName和要注册的别名相同，则直接删除，因为真实的名字和别名相同没有意义
+	// 源码搜索串： if (alias.equals(name)) {
+	@Test
+	public void test1() {
+		registry.registerAlias("foo", "Goat");
+		assertEquals(1, registry.aliasMap.size()); // 成功注册一个别名
+		registry.registerAlias("Goat", "Goat");
+		assertEquals(0, registry.aliasMap.size()); // 别名与正名相同 通过key为Goat 进行删除
+	}
+
 	// 与map相同点： 别名作为key  不会重复
+	// 源码搜索串： if (logger.isDebugEnabled()) logger.debug("Overriding alias '"
 	@Test
 	public void getAliases() {
 		// 成功注册一个别名
@@ -24,14 +35,6 @@ public class SimpleAliasRegistryTests {
 		assertEquals(Collections.singletonMap("Goat", "bar"), registry.aliasMap);
 	}
 
-	// 与map不同点：  测试 如果真实的beanName和要注册的别名相同，则直接删除，因为真实的名字和别名相同没有意义
-	@Test
-	public void test1() {
-		registry.registerAlias("foo", "Goat");
-		assertEquals(1, registry.aliasMap.size());
-		registry.registerAlias("Goat", "Goat");
-		assertEquals(0, registry.aliasMap.size());
-	}
 
 	// 测试 存在顺序问题 如果是先 别名与正名相同，再注册别名就可以
 	@Test
@@ -51,14 +54,8 @@ public class SimpleAliasRegistryTests {
 		assertEquals(Collections.singletonMap("goat", "person"), registry.aliasMap);
 	}
 
-	@Test
-	public void test32(){
-
-	}
-
-
 	//  与map不同点：  测试 如果注册两个别名和正名顺序颠倒  将抛出异常
-	// Cannot register alias 'foo' for name 'Goat': Circular reference - 'Goat' is a direct or indirect alias for 'foo' already
+	// 源码搜索串：  if (hasAlias(alias, name)) {
 	@Test(expected = IllegalStateException.class)
 	public void test3() {
 		registry.registerAlias("foo", "Goat");
