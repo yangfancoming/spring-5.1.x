@@ -858,7 +858,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	 * @see #removeBeanDefinition
 	 */
 	protected void resetBeanDefinition(String beanName) {
-		// Remove the merged bean definition for the given bean, if already created.
+		// Remove the merged bean definition for the given bean, if already created.  while (counter == -1 || registry.containsBeanDefinition(id)) {
 		clearMergedBeanDefinition(beanName);
 		// Remove corresponding bean from singleton cache, if any. Shouldn't usually  be necessary, rather just meant for overriding a context's default beans
 		// (e.g. the default StaticMessageSource in a StaticApplicationContext).

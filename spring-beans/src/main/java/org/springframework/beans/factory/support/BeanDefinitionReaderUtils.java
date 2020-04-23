@@ -19,10 +19,7 @@ import org.springframework.util.StringUtils;
  */
 public abstract class BeanDefinitionReaderUtils {
 
-	/**
-	 * Separator for generated bean names. If a class name or parent name is not
-	 * unique, "#1", "#2" etc will be appended, until the name becomes unique.
-	 */
+	// Separator for generated bean names. If a class name or parent name is not unique, "#1", "#2" etc will be appended, until the name becomes unique.
 	public static final String GENERATED_BEAN_NAME_SEPARATOR = BeanFactoryUtils.GENERATED_BEAN_NAME_SEPARATOR;
 
 	/**
@@ -62,10 +59,11 @@ public abstract class BeanDefinitionReaderUtils {
 	 * Generate a bean name for the given bean definition, unique within the given bean factory.
 	 * @param definition the bean definition to generate a bean name for
 	 * @param registry the bean factory that the definition is going to be registered with (to check for existing bean names)
-	 * @param isInnerBean whether the given bean definition will be registered
-	 * as inner bean or as top-level bean (allowing for special name generation for inner beans versus top-level beans)
+	 * @param isInnerBean whether the given bean definition will be registered as inner bean or as top-level bean (allowing for special name generation for inner beans versus top-level beans)
 	 * @return the generated bean name
 	 * @throws BeanDefinitionStoreException if no unique name can be generated for the given bean definition
+	 * 假如是innerBean（比如Spring AOP产生的Bean），使用【类全路径+#+对象HashCode的16进制】的格式来命名Bean
+	 * 假如不是innerBean，使用【类全路径+#+数字】的格式来命名Bean，其中数字指的是，同一个Bean出现1次，只要该Bean没有id，就从0开始依次向上累加，比如a.b.c#0、a.b.c#1、a.b.c#2
 	 */
 	public static String generateBeanName(BeanDefinition definition, BeanDefinitionRegistry registry, boolean isInnerBean) throws BeanDefinitionStoreException {
 		// 1、获取bean的className
@@ -98,11 +96,9 @@ public abstract class BeanDefinitionReaderUtils {
 	}
 
 	/**
-	 * Turn the given bean name into a unique bean name for the given bean factory,
-	 * appending a unique counter as suffix if necessary.
+	 * Turn the given bean name into a unique bean name for the given bean factory,appending a unique counter as suffix if necessary.
 	 * @param beanName the original bean name
-	 * @param registry the bean factory that the definition is going to be
-	 * registered with (to check for existing bean names)
+	 * @param registry the bean factory that the definition is going to be registered with (to check for existing bean names)
 	 * @return the unique bean name to use
 	 * @since 5.1
 	 */
@@ -138,13 +134,11 @@ public abstract class BeanDefinitionReaderUtils {
 	}
 
 	/**
-	 * Register the given bean definition with a generated name,
-	 * unique within the given bean factory.
+	 * Register the given bean definition with a generated name,unique within the given bean factory.
 	 * @param definition the bean definition to generate a bean name for
 	 * @param registry the bean factory to register with
 	 * @return the generated bean name
-	 * @throws BeanDefinitionStoreException if no unique name can be generated
-	 * for the given bean definition or the definition cannot be registered
+	 * @throws BeanDefinitionStoreException if no unique name can be generated for the given bean definition or the definition cannot be registered
 	 */
 	public static String registerWithGeneratedName(AbstractBeanDefinition definition, BeanDefinitionRegistry registry) throws BeanDefinitionStoreException {
 		String generatedName = generateBeanName(definition, registry, false);

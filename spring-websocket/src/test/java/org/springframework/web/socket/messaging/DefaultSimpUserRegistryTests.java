@@ -22,10 +22,7 @@ import org.springframework.web.socket.CloseStatus;
 import static org.junit.Assert.*;
 
 /**
- * Test fixture for
- * {@link DefaultSimpUserRegistry}
- *
- * @author Rossen Stoyanchev
+ * Test fixture for {@link DefaultSimpUserRegistry}
  * @since 4.0
  */
 public class DefaultSimpUserRegistryTests {

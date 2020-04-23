@@ -15,18 +15,15 @@ import org.springframework.messaging.support.MessageHeaderAccessor;
 
 /**
  * Unit tests for {@link StompSubProtocolErrorHandler}.
- * @author Rossen Stoyanchev
  */
 public class StompSubProtocolErrorHandlerTests {
 
 	private StompSubProtocolErrorHandler handler;
 
-
 	@Before
 	public void setUp() throws Exception {
 		this.handler = new StompSubProtocolErrorHandler();
 	}
-
 
 	@Test
 	public void handleClientMessageProcessingError() throws Exception {

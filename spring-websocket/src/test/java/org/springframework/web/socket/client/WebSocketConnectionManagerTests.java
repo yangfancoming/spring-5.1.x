@@ -24,8 +24,6 @@ import static org.junit.Assert.*;
 
 /**
  * Test fixture for {@link WebSocketConnectionManager}.
- *
- * @author Rossen Stoyanchev
  */
 public class WebSocketConnectionManagerTests {
 

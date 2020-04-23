@@ -30,9 +30,6 @@ import static org.junit.Assert.*;
 
 /**
  * Client and server-side WebSocket integration tests.
- *
- * @author Rossen Stoyanchev
-
  */
 @RunWith(Parameterized.class)
 public class WebSocketHandshakeTests extends AbstractWebSocketIntegrationTests {
@@ -45,7 +42,6 @@ public class WebSocketHandshakeTests extends AbstractWebSocketIntegrationTests {
 				{new UndertowTestServer(), new JettyWebSocketClient()}
 		});
 	}
-
 
 	@Override
 	protected Class<?>[] getAnnotatedConfigClasses() {

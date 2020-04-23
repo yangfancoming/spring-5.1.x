@@ -52,7 +52,6 @@ import static org.mockito.Mockito.*;
 
 /**
  * Test fixture for {@link StompSubProtocolHandler} tests.
- * @author Rossen Stoyanchev
  */
 public class StompSubProtocolHandlerTests {
 
@@ -66,7 +65,6 @@ public class StompSubProtocolHandlerTests {
 
 	@SuppressWarnings("rawtypes")
 	private ArgumentCaptor<Message> messageCaptor;
-
 
 	@Before
 	public void setup() {

@@ -151,7 +151,6 @@ public class BeanDefinitionParserDelegate {
 	public static final String DEFAULT_INIT_METHOD_ATTRIBUTE = "default-init-method";
 	public static final String DEFAULT_DESTROY_METHOD_ATTRIBUTE = "default-destroy-method";
 
-
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	private final XmlReaderContext readerContext;
@@ -161,15 +160,13 @@ public class BeanDefinitionParserDelegate {
 	private final ParseState parseState = new ParseState();
 
 	/**
-	 * Stores all used bean names so we can enforce uniqueness on a per
-	 * beans-element basis. Duplicate bean ids/names may not exist within the
-	 * same level of beans element nesting, but may be duplicated across levels.
+	 * Stores all used bean names so we can enforce uniqueness on a per beans-element basis.
+	 * Duplicate bean ids/names may not exist within the same level of beans element nesting, but may be duplicated across levels.
 	 */
 	private final Set<String> usedNames = new HashSet<>();
 
 	/**
-	 * Create a new BeanDefinitionParserDelegate associated with the supplied
-	 * {@link XmlReaderContext}.
+	 * Create a new BeanDefinitionParserDelegate associated with the supplied {@link XmlReaderContext}.
 	 */
 	public BeanDefinitionParserDelegate(XmlReaderContext readerContext) {
 		Assert.notNull(readerContext, "XmlReaderContext must not be null");
@@ -184,38 +181,29 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Invoke the {@link org.springframework.beans.factory.parsing.SourceExtractor}
-	 * to pull the source metadata from the supplied {@link Element}.
+	 * Invoke the {@link org.springframework.beans.factory.parsing.SourceExtractor} to pull the source metadata from the supplied {@link Element}.
 	 */
 	@Nullable
 	protected Object extractSource(Element ele) {
 		return this.readerContext.extractSource(ele);
 	}
 
-	/**
-	 * Report an error with the given message for the given source element.
-	 */
+	// Report an error with the given message for the given source element.
 	protected void error(String message, Node source) {
 		this.readerContext.error(message, source, this.parseState.snapshot());
 	}
 
-	/**
-	 * Report an error with the given message for the given source element.
-	 */
+	//  Report an error with the given message for the given source element.
 	protected void error(String message, Element source) {
 		this.readerContext.error(message, source, this.parseState.snapshot());
 	}
 
-	/**
-	 * Report an error with the given message for the given source element.
-	 */
+	//  Report an error with the given message for the given source element.
 	protected void error(String message, Element source, Throwable cause) {
 		this.readerContext.error(message, source, this.parseState.snapshot(), cause);
 	}
 
-	/**
-	 * Initialize the default settings assuming a {@code null} parent delegate.
-	 */
+	// Initialize the default settings assuming a {@code null} parent delegate.
 	public void initDefaults(Element root) {
 		initDefaults(root, null);
 	}
@@ -283,17 +271,12 @@ public class BeanDefinitionParserDelegate {
 		defaults.setSource(this.readerContext.extractSource(root));
 	}
 
-	/**
-	 * Return the defaults definition object.
-	 */
+	// Return the defaults definition object.
 	public DocumentDefaultsDefinition getDefaults() {
 		return this.defaults;
 	}
 
-	/**
-	 * Return the default settings for bean definitions as indicated within
-	 * the attributes of the top-level {@code <beans/>} element.
-	 */
+	// Return the default settings for bean definitions as indicated within the attributes of the top-level {@code <beans/>} element.
 	public BeanDefinitionDefaults getBeanDefinitionDefaults() {
 		BeanDefinitionDefaults bdd = new BeanDefinitionDefaults();
 		bdd.setLazyInit(TRUE_VALUE.equalsIgnoreCase(this.defaults.getLazyInit()));
@@ -303,10 +286,7 @@ public class BeanDefinitionParserDelegate {
 		return bdd;
 	}
 
-	/**
-	 * Return any patterns provided in the 'default-autowire-candidates'
-	 * attribute of the top-level {@code <beans/>} element.
-	 */
+	//  Return any patterns provided in the 'default-autowire-candidates' attribute of the top-level {@code <beans/>} element.
 	@Nullable
 	public String[] getAutowireCandidatePatterns() {
 		String candidatePattern = this.defaults.getAutowireCandidates();
@@ -315,8 +295,7 @@ public class BeanDefinitionParserDelegate {
 
 	/**
 	 * Parses the supplied {@code <bean>} element. May return {@code null}
-	 * if there were errors during parse. Errors are reported to the
-	 * {@link org.springframework.beans.factory.parsing.ProblemReporter}.
+	 * if there were errors during parse. Errors are reported to the {@link org.springframework.beans.factory.parsing.ProblemReporter}.
 	 * 解析bean的属性和子节点
 	 */
 	@Nullable
@@ -404,10 +383,7 @@ public class BeanDefinitionParserDelegate {
 		return null;
 	}
 
-	/**
-	 * Validate that the specified bean name and aliases have not been used already
-	 * within the current level of beans element nesting.
-	 */
+	// Validate that the specified bean name and aliases have not been used already within the current level of beans element nesting.
 	protected void checkNameUniqueness(String beanName, List<String> aliases, Element beanElement) {
 		String foundName = null;
 		if (StringUtils.hasText(beanName) && this.usedNames.contains(beanName)) {
@@ -426,7 +402,7 @@ public class BeanDefinitionParserDelegate {
 	/**
 	 * Parse the bean definition itself, without regard to name or aliases. May return
 	 * {@code null} if problems occurred during the parsing of the bean definition.
-	 * // 解析属性和子节点
+	 * 解析属性和子节点
 	 */
 	@Nullable
 	public AbstractBeanDefinition parseBeanDefinitionElement(Element ele, String beanName, @Nullable BeanDefinition containingBean) {
@@ -613,7 +589,7 @@ public class BeanDefinitionParserDelegate {
 	public int getAutowireMode(String attValue) {
 		String att = attValue;
 		if (isDefaultValue(att)) {
-			att = this.defaults.getAutowire();
+			att = defaults.getAutowire();
 		}
 		int autowire = AbstractBeanDefinition.AUTOWIRE_NO;
 		if (AUTOWIRE_BY_NAME_VALUE.equals(att)) {
@@ -629,9 +605,7 @@ public class BeanDefinitionParserDelegate {
 		return autowire;
 	}
 
-	/**
-	 * Parse constructor-arg sub-elements of the given bean element.
-	 */
+	//  Parse constructor-arg sub-elements of the given bean element.
 	public void parseConstructorArgElements(Element beanEle, BeanDefinition bd) {
 		NodeList nl = beanEle.getChildNodes();
 		for (int i = 0; i < nl.getLength(); i++) {
@@ -642,9 +616,7 @@ public class BeanDefinitionParserDelegate {
 		}
 	}
 
-	/**
-	 * Parse property sub-elements of the given bean element.
-	 */
+	// Parse property sub-elements of the given bean element.
 	public void parsePropertyElements(Element beanEle, BeanDefinition bd) {
 		NodeList nl = beanEle.getChildNodes();
 		for (int i = 0; i < nl.getLength(); i++) {
@@ -655,9 +627,7 @@ public class BeanDefinitionParserDelegate {
 		}
 	}
 
-	/**
-	 * Parse qualifier sub-elements of the given bean element.
-	 */
+	//  Parse qualifier sub-elements of the given bean element.
 	public void parseQualifierElements(Element beanEle, AbstractBeanDefinition bd) {
 		NodeList nl = beanEle.getChildNodes();
 		for (int i = 0; i < nl.getLength(); i++) {
@@ -668,9 +638,7 @@ public class BeanDefinitionParserDelegate {
 		}
 	}
 
-	/**
-	 * Parse lookup-override sub-elements of the given bean element.
-	 */
+	// Parse lookup-override sub-elements of the given bean element.
 	public void parseLookupOverrideSubElements(Element beanEle, MethodOverrides overrides) {
 		NodeList nl = beanEle.getChildNodes();
 		for (int i = 0; i < nl.getLength(); i++) {
@@ -686,9 +654,7 @@ public class BeanDefinitionParserDelegate {
 		}
 	}
 
-	/**
-	 * Parse replaced-method sub-elements of the given bean element.
-	 */
+	// Parse replaced-method sub-elements of the given bean element.
 	public void parseReplacedMethodSubElements(Element beanEle, MethodOverrides overrides) {
 		NodeList nl = beanEle.getChildNodes();
 		for (int i = 0; i < nl.getLength(); i++) {
@@ -716,9 +682,7 @@ public class BeanDefinitionParserDelegate {
 		}
 	}
 
-	/**
-	 * Parse a constructor-arg element.
-	 */
+	// Parse a constructor-arg element.
 	public void parseConstructorArgElement(Element ele, BeanDefinition bd) {
 		// 获取index，type和name属性值
 		String indexAttr = ele.getAttribute(INDEX_ATTRIBUTE);
@@ -757,9 +721,8 @@ public class BeanDefinitionParserDelegate {
 			}catch (NumberFormatException ex) {
 				error("Attribute 'index' of tag 'constructor-arg' must be an integer", ele);
 			}
-		}
+		}else {
 		// 当没有index属性值时的处理方式
-		else {
 			try {
 				this.parseState.push(new ConstructorArgumentEntry());
 				// 对属性值进行解析
@@ -782,9 +745,7 @@ public class BeanDefinitionParserDelegate {
 		}
 	}
 
-	/**
-	 * Parse a property element.
-	 */
+	//  Parse a property element.
 	public void parsePropertyElement(Element ele, BeanDefinition bd) {
 		// 获取name属性的值
 		String propertyName = ele.getAttribute(NAME_ATTRIBUTE);
@@ -792,7 +753,7 @@ public class BeanDefinitionParserDelegate {
 			error("Tag 'property' must have a 'name' attribute", ele);
 			return;
 		}
-		this.parseState.push(new PropertyEntry(propertyName));
+		parseState.push(new PropertyEntry(propertyName));
 		try {
 			if (bd.getPropertyValues().contains(propertyName)) {
 				error("Multiple 'property' definitions for property '" + propertyName + "'", ele);
@@ -805,20 +766,18 @@ public class BeanDefinitionParserDelegate {
 			pv.setSource(extractSource(ele));
 			bd.getPropertyValues().addPropertyValue(pv);
 		}finally {
-			this.parseState.pop();
+			parseState.pop();
 		}
 	}
 
-	/**
-	 * Parse a qualifier element.
-	 */
+	// Parse a qualifier element.
 	public void parseQualifierElement(Element ele, AbstractBeanDefinition bd) {
 		String typeName = ele.getAttribute(TYPE_ATTRIBUTE);
 		if (!StringUtils.hasLength(typeName)) {
 			error("Tag 'qualifier' must have a 'type' attribute", ele);
 			return;
 		}
-		this.parseState.push(new QualifierEntry(typeName));
+		parseState.push(new QualifierEntry(typeName));
 		try {
 			AutowireCandidateQualifier qualifier = new AutowireCandidateQualifier(typeName);
 			qualifier.setSource(extractSource(ele));
@@ -845,7 +804,7 @@ public class BeanDefinitionParserDelegate {
 			}
 			bd.addQualifier(qualifier);
 		}finally {
-			this.parseState.pop();
+			parseState.pop();
 		}
 	}
 
@@ -980,9 +939,7 @@ public class BeanDefinitionParserDelegate {
 		}
 	}
 
-	/**
-	 * Return a typed String value Object for the given 'idref' element.
-	 */
+	// Return a typed String value Object for the given 'idref' element.
 	@Nullable
 	public Object parseIdRefElement(Element ele) {
 		// A generic reference to any name of any bean.
@@ -1000,9 +957,7 @@ public class BeanDefinitionParserDelegate {
 		return ref;
 	}
 
-	/**
-	 * Return a typed String value Object for the given value element.
-	 */
+	// Return a typed String value Object for the given value element.
 	public Object parseValueElement(Element ele, @Nullable String defaultTypeName) {
 		// It's a literal value.
 		String value = DomUtils.getTextValue(ele);
@@ -1040,9 +995,7 @@ public class BeanDefinitionParserDelegate {
 		return typedValue;
 	}
 
-	/**
-	 * Parse an array element.
-	 */
+	//  Parse an array element.
 	public Object parseArrayElement(Element arrayEle, @Nullable BeanDefinition bd) {
 		String elementType = arrayEle.getAttribute(VALUE_TYPE_ATTRIBUTE);
 		NodeList nl = arrayEle.getChildNodes();
@@ -1054,9 +1007,7 @@ public class BeanDefinitionParserDelegate {
 		return target;
 	}
 
-	/**
-	 * Parse a list element.
-	 */
+	// Parse a list element.
 	public List<Object> parseListElement(Element collectionEle, @Nullable BeanDefinition bd) {
 		String defaultElementType = collectionEle.getAttribute(VALUE_TYPE_ATTRIBUTE);
 		NodeList nl = collectionEle.getChildNodes();
@@ -1068,9 +1019,7 @@ public class BeanDefinitionParserDelegate {
 		return target;
 	}
 
-	/**
-	 * Parse a set element.
-	 */
+	// Parse a set element.
 	public Set<Object> parseSetElement(Element collectionEle, @Nullable BeanDefinition bd) {
 		String defaultElementType = collectionEle.getAttribute(VALUE_TYPE_ATTRIBUTE);
 		NodeList nl = collectionEle.getChildNodes();
@@ -1091,9 +1040,7 @@ public class BeanDefinitionParserDelegate {
 		}
 	}
 
-	/**
-	 * Parse a map element.
-	 */
+	// Parse a map element.
 	public Map<Object, Object> parseMapElement(Element mapEle, @Nullable BeanDefinition bd) {
 		String defaultKeyType = mapEle.getAttribute(KEY_TYPE_ATTRIBUTE);
 		String defaultValueType = mapEle.getAttribute(VALUE_TYPE_ATTRIBUTE);
@@ -1133,7 +1080,6 @@ public class BeanDefinitionParserDelegate {
 					}
 				}
 			}
-
 			// Extract key from attribute or sub-element.
 			Object key = null;
 			boolean hasKeyAttribute = entryEle.hasAttribute(KEY_ATTRIBUTE);
@@ -1209,9 +1155,7 @@ public class BeanDefinitionParserDelegate {
 		}
 	}
 
-	/**
-	 * Parse a key sub-element of a map element.
-	 */
+	//  Parse a key sub-element of a map element.
 	@Nullable
 	protected Object parseKeyElement(Element keyEle, @Nullable BeanDefinition bd, String defaultKeyTypeName) {
 		NodeList nl = keyEle.getChildNodes();
@@ -1231,9 +1175,7 @@ public class BeanDefinitionParserDelegate {
 		return parsePropertySubElement(subElement, bd, defaultKeyTypeName);
 	}
 
-	/**
-	 * Parse a props element.
-	 */
+	// Parse a props element.
 	public Properties parsePropsElement(Element propsEle) {
 		ManagedProperties props = new ManagedProperties();
 		props.setSource(extractSource(propsEle));
@@ -1253,9 +1195,7 @@ public class BeanDefinitionParserDelegate {
 		return props;
 	}
 
-	/**
-	 * Parse the merge attribute of a collection element, if any.
-	 */
+	//  Parse the merge attribute of a collection element, if any.
 	public boolean parseMergeAttribute(Element collectionElement) {
 		String value = collectionElement.getAttribute(MERGE_ATTRIBUTE);
 		if (isDefaultValue(value)) {
@@ -1345,8 +1285,7 @@ public class BeanDefinitionParserDelegate {
 
 
 	/**
-	 * Get the namespace URI for the supplied node.
-	 * The default implementation uses {@link Node#getNamespaceURI}.
+	 * Get the namespace URI for the supplied node. The default implementation uses {@link Node#getNamespaceURI}.
 	 * Subclasses may override the default implementation to provide a different namespace identification mechanism.
 	 * @param node the node
 	 * @return eg：http://www.springframework.org/schema/beans
@@ -1357,8 +1296,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Get the local name for the supplied {@link Node}.
-	 * The default implementation calls {@link Node#getLocalName}.
+	 * Get the local name for the supplied {@link Node}. The default implementation calls {@link Node#getLocalName}.
 	 * Subclasses may override the default implementation to provide a different mechanism for getting the local name.
 	 * @param node the {@code Node}
 	 */
