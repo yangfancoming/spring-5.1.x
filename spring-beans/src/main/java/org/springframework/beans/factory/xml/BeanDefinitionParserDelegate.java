@@ -394,8 +394,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parse the bean definition itself, without regard to name or aliases. May return
-	 * {@code null} if problems occurred during the parsing of the bean definition.
+	 * Parse the bean definition itself, without regard to name or aliases. May return {@code null} if problems occurred during the parsing of the bean definition.
 	 * 解析属性和子节点
 	 * 将公共属性放入 AbstractBeanDefinition，具体实现在子类 GenericBeanDefinition
 	 */

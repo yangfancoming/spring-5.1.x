@@ -5,9 +5,7 @@
 	   http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-	<bean id="person" class="com.goat.chapter201.common.Person" >
-		<property name="name" value="jordan"></property>
-		<property name="age" value="23"></property>
+	<bean id="person" class="com.goat.chapter201.common.Person">
+		<meta key="test_key" value="test_value"/>
 	</bean>
-
 </beans>

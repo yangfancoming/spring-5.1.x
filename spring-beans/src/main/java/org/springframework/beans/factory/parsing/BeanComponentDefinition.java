@@ -13,8 +13,7 @@ import org.springframework.beans.factory.config.BeanReference;
 import org.springframework.lang.Nullable;
 
 /**
- * ComponentDefinition based on a standard BeanDefinition, exposing the given bean
- * definition as well as inner bean definitions and bean references for the given bean.
+ * ComponentDefinition based on a standard BeanDefinition, exposing the given bean definition as well as inner bean definitions and bean references for the given bean.
  * @since 2.0
  */
 public class BeanComponentDefinition extends BeanDefinitionHolder implements ComponentDefinition {
@@ -44,8 +43,7 @@ public class BeanComponentDefinition extends BeanDefinitionHolder implements Com
 
 	/**
 	 * Create a new BeanComponentDefinition for the given bean.
-	 * @param beanDefinitionHolder the BeanDefinitionHolder encapsulating
-	 * the bean definition as well as the name of the bean
+	 * @param beanDefinitionHolder the BeanDefinitionHolder encapsulating the bean definition as well as the name of the bean
 	 */
 	public BeanComponentDefinition(BeanDefinitionHolder beanDefinitionHolder) {
 		super(beanDefinitionHolder);
@@ -65,7 +63,6 @@ public class BeanComponentDefinition extends BeanDefinitionHolder implements Com
 		this.innerBeanDefinitions = innerBeans.toArray(new BeanDefinition[0]);
 		this.beanReferences = references.toArray(new BeanReference[0]);
 	}
-
 
 	@Override
 	public String getName() {
@@ -92,7 +89,6 @@ public class BeanComponentDefinition extends BeanDefinitionHolder implements Com
 		return this.beanReferences;
 	}
 
-
 	/**
 	 * This implementation returns this ComponentDefinition's description.
 	 * @see #getDescription()
@@ -102,10 +98,7 @@ public class BeanComponentDefinition extends BeanDefinitionHolder implements Com
 		return getDescription();
 	}
 
-	/**
-	 * This implementations expects the other object to be of type BeanComponentDefinition
-	 * as well, in addition to the superclass's equality requirements.
-	 */
+	// This implementations expects the other object to be of type BeanComponentDefinition  as well, in addition to the superclass's equality requirements.
 	@Override
 	public boolean equals(Object other) {
 		return (this == other || (other instanceof BeanComponentDefinition && super.equals(other)));

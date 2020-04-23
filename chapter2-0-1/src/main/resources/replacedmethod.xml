@@ -5,9 +5,10 @@
 	   http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-	<bean id="person" class="com.goat.chapter201.common.Person" >
-		<property name="name" value="jordan"></property>
-		<property name="age" value="23"></property>
+	<bean id="beforeMethodReplaced" class="com.goat.chapter201.replacedmethod.BeforeMethodReplaced">
+		<!-- 注释 2.7 方法替换 -->
+		<replaced-method name="printDefaultName" replacer="testMethodReplaced"/>
 	</bean>
 
+	<bean id="testMethodReplaced" class="com.goat.chapter201.replacedmethod.TestMethodReplaced"/>
 </beans>

@@ -84,8 +84,8 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	 * Return the descriptor for the XML resource that this parser works on.
 	 */
 	protected final XmlReaderContext getReaderContext() {
-		Assert.state(this.readerContext != null, "No XmlReaderContext available");
-		return this.readerContext;
+		Assert.state(readerContext != null, "No XmlReaderContext available");
+		return readerContext;
 	}
 
 	/**
@@ -114,13 +114,13 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		*/
 		//标签beans可能会存在递归的情况, 每次都创建自己的解析器
 		// 1、创建BeanDefinitionParserDelegate对象，用来解析Element元素
-		BeanDefinitionParserDelegate parent = this.delegate;
-		this.delegate = createDelegate(getReaderContext(), root, parent);
+		BeanDefinitionParserDelegate parent = delegate;
+		delegate = createDelegate(getReaderContext(), root, parent);
 		// 2、解析并验证profile节点，如果配置了profile属性，则验证当前环境是否激活了对应的profile节点，
 		// 用于多开发环境配置，该方式在开发中已不多见。
 		// 例如：System.setProperty("spring.profiles.active", "dev");
 		// 在解析之前，如果命名空间是以 http://www.springframework.org/schema/beans 开头，将会检查 profile 属性
-		if (this.delegate.isDefaultNamespace(root)) {
+		if (delegate.isDefaultNamespace(root)) {
 			//获取beans标签的profile属性
 			// 这块说的是根节点 <beans ... profile="dev" /> 中的 profile 是否是当前环境需要的，
 			// 如果当前环境配置的 profile 不包含此 profile，那就直接 return 了，不对此 <beans /> 解析
@@ -141,10 +141,10 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		// 钩子 // 解析前处理、留给子类实现   // 3、解析前置处理，空的模板方法
 		preProcessXml(root);
 		//解析bean definition // 4、解析并注册BeanDefinition
-		parseBeanDefinitions(root, this.delegate);
+		parseBeanDefinitions(root, delegate);
 		// 钩子 // 解析后处理、留给子类实现  // 5、解析后置处理，空的模板方法
 		postProcessXml(root);
-		this.delegate = parent;
+		delegate = parent;
 	}
 
 	protected BeanDefinitionParserDelegate createDelegate(XmlReaderContext readerContext, Element root, @Nullable BeanDefinitionParserDelegate parentDelegate) {
@@ -172,14 +172,13 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 				Node node = nl.item(i);
 				if (node instanceof Element) {
 					Element ele = (Element) node;
-					// 默认命名空间
-					if (delegate.isDefaultNamespace(ele)) {
+
+					if (delegate.isDefaultNamespace(ele)) { // 默认命名空间
 						// 当前标签使用的是默认的命名空间，如bean标签，则按照默认命名空间的逻辑对其进行处理
 						// 代表解析的节点是 default namespace 下面的几个元素  <import />、<alias />、<bean />、<beans />
 						parseDefaultElement(ele, delegate); // 解析默认的节点
-					}else {
-						// 解析其他 namespace 的元素  <mvc />、<task />、<context />、<aop />
-						// 自定义命名空间
+					}else { // 自定义命名空间
+						// 解析其他 namespace 的元素  <mvc />、<task />、<context />、<aop />、<tx:annotation-driven />
 						// 判断当前标签使用的命名空间是自定义的命名空间，如这里 springtag:user 所使用的就是自定义的命名空间，那么就按照定义命名空间逻辑进行处理
 						delegate.parseCustomElement(ele);// 解析自定义节点
 					}
@@ -211,9 +210,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		}
 	}
 
-	/**
-	 * Parse an "import" element and load the bean definitions from the given resource into the bean factory.
-	 */
+	// Parse an "import" element and load the bean definitions from the given resource into the bean factory.
 	protected void importBeanDefinitionResource(Element ele) {
 		String location = ele.getAttribute(RESOURCE_ATTRIBUTE);
 		if (!StringUtils.hasText(location)) {
@@ -271,9 +268,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		getReaderContext().fireImportProcessed(location, actResArray, extractSource(ele));
 	}
 
-	/**
-	 * Process the given alias element, registering the alias with the registry.
-	 */
+	// Process the given alias element, registering the alias with the registry.
 	protected void processAliasRegistration(Element ele) {
 		// 获取name属性的值
 		String name = ele.getAttribute(NAME_ATTRIBUTE);
@@ -301,9 +296,13 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	}
 
 	/**
-	 * Process the given bean element, parsing the bean definition and registering it with the registry.
-	 *  解析bean标签将其转换为definition并注册到BeanDefinitionRegistry
-	 */
+	 * 下面来完整描述这个方法的处理流程：
+	 * 创建实例 bdHolder：首先委托 BeanDefinitionParserDelegate 类的 parseBeanDefinitionElement 方法进行元素解析，经过解析后，bdHolder 实例已经包含刚才我们在配置文件中设定的各种属性，例如 class、 id、 name、 alias等属性。
+	 * 对实例 bdHolder 进行装饰：在这个步骤中，其实是扫描默认标签下的自定义标签，对这些自定义标签进行元素解析，设定自定义属性。
+	 * 注册 bdHolder 信息：解析完成了，需要往容器的 beanDefinitionMap 注册表注册 bean 信息，注册操作委托给了 BeanDefinitionReaderUtils.registerBeanDefinition，通过工具类完成信息注册。
+	 * 发送通知事件：通知相关监听器，表示这个 bean 已经加载完成
+	*/
+	//  Process the given bean element, parsing the bean definition and registering it with the registry. 解析bean标签将其转换为definition并注册到BeanDefinitionRegistry
 	protected void processBeanDefinition(Element ele, BeanDefinitionParserDelegate delegate) {
 		// 解析 bean的各种属性 // 对基本的bean标签属性进行解析
 		// 对bean标签的默认属性和子标签进行处理，将其封装为一个BeanDefinition对象，并放入BeanDefinitionHolder中
@@ -320,37 +319,29 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 			}catch (BeanDefinitionStoreException ex) {
 				getReaderContext().error("Failed to register bean definition with name '" + bdHolder.getBeanName() + "'", ele, ex);
 			}
-			// Send registration event.  // 发消息，可以忽略
-			// 4、发送注册事件
+			// Send registration event.
+			// 4、发送注册事件  通知相关的监听器，表示这个 bean 已经加载完成
 			getReaderContext().fireComponentRegistered(new BeanComponentDefinition(bdHolder));
 		}
 	}
 
-
 	/**
-	 * Allow the XML to be extensible by processing any custom element types first,
-	 * before we start to process the bean definitions. This method is a natural
-	 * extension point for any other custom pre-processing of the XML.
-	 * The default implementation is empty. Subclasses can override this method to
-	 * convert custom elements into standard Spring bean definitions, for example.
-	 * Implementors have access to the parser's bean definition reader and the
-	 * underlying XML resource, through the corresponding accessors.
+	 * Allow the XML to be extensible by processing any custom element types first,before we start to process the bean definitions.
+	 * This method is a natural extension point for any other custom pre-processing of the XML.
+	 * The default implementation is empty. Subclasses can override this method to  convert custom elements into standard Spring bean definitions, for example.
+	 * Implementors have access to the parser's bean definition reader and the underlying XML resource, through the corresponding accessors.
 	 * @see #getReaderContext()
 	 */
 	protected void preProcessXml(Element root) {
 	}
 
 	/**
-	 * Allow the XML to be extensible by processing any custom element types last,
-	 * after we finished processing the bean definitions. This method is a natural
-	 * extension point for any other custom post-processing of the XML.
-	 * The default implementation is empty. Subclasses can override this method to
-	 * convert custom elements into standard Spring bean definitions, for example.
-	 * Implementors have access to the parser's bean definition reader and the
-	 * underlying XML resource, through the corresponding accessors.
+	 * Allow the XML to be extensible by processing any custom element types last,after we finished processing the bean definitions.
+	 * This method is a natural extension point for any other custom post-processing of the XML.
+	 * The default implementation is empty. Subclasses can override this method to  convert custom elements into standard Spring bean definitions, for example.
+	 * Implementors have access to the parser's bean definition reader and the  underlying XML resource, through the corresponding accessors.
 	 * @see #getReaderContext()
 	 */
 	protected void postProcessXml(Element root) {
 	}
-
 }
