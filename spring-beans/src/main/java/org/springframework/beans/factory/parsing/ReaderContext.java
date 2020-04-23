@@ -34,7 +34,7 @@ public class ReaderContext {
 	}
 
 	public final Resource getResource() {
-		return this.resource;
+		return resource;
 	}
 
 	// Errors and warnings
@@ -57,7 +57,7 @@ public class ReaderContext {
 	// Raise a fatal error.
 	public void fatal(String message, @Nullable Object source, @Nullable ParseState parseState, @Nullable Throwable cause) {
 		Location location = new Location(getResource(), source);
-		this.problemReporter.fatal(new Problem(message, location, parseState, cause));
+		problemReporter.fatal(new Problem(message, location, parseState, cause));
 	}
 
 	// Raise a regular error.
@@ -78,7 +78,7 @@ public class ReaderContext {
 	// Raise a regular error.
 	public void error(String message, @Nullable Object source, @Nullable ParseState parseState, @Nullable Throwable cause) {
 		Location location = new Location(getResource(), source);
-		this.problemReporter.error(new Problem(message, location, parseState, cause));
+		problemReporter.error(new Problem(message, location, parseState, cause));
 	}
 
 	// Raise a non-critical warning.
@@ -99,41 +99,41 @@ public class ReaderContext {
 	//  Raise a non-critical warning.
 	public void warning(String message, @Nullable Object source, @Nullable ParseState parseState, @Nullable Throwable cause) {
 		Location location = new Location(getResource(), source);
-		this.problemReporter.warning(new Problem(message, location, parseState, cause));
+		problemReporter.warning(new Problem(message, location, parseState, cause));
 	}
 
 	// 【Explicit parse events】
 
 	// Fire an defaults-registered event.
 	public void fireDefaultsRegistered(DefaultsDefinition defaultsDefinition) {
-		this.eventListener.defaultsRegistered(defaultsDefinition);
+		eventListener.defaultsRegistered(defaultsDefinition);
 	}
 
 	// Fire an component-registered event.
 	public void fireComponentRegistered(ComponentDefinition componentDefinition) {
-		this.eventListener.componentRegistered(componentDefinition);
+		eventListener.componentRegistered(componentDefinition);
 	}
 
 	// Fire an alias-registered event.
 	public void fireAliasRegistered(String beanName, String alias, @Nullable Object source) {
-		this.eventListener.aliasRegistered(new AliasDefinition(beanName, alias, source));
+		eventListener.aliasRegistered(new AliasDefinition(beanName, alias, source));
 	}
 
 	// Fire an import-processed event.
 	public void fireImportProcessed(String importedResource, @Nullable Object source) {
-		this.eventListener.importProcessed(new ImportDefinition(importedResource, source));
+		eventListener.importProcessed(new ImportDefinition(importedResource, source));
 	}
 
 	//  Fire an import-processed event.
 	public void fireImportProcessed(String importedResource, Resource[] actualResources, @Nullable Object source) {
-		this.eventListener.importProcessed(new ImportDefinition(importedResource, actualResources, source));
+		eventListener.importProcessed(new ImportDefinition(importedResource, actualResources, source));
 	}
 
 	// 【Source extraction】
 
 	// Return the source extractor in use.
 	public SourceExtractor getSourceExtractor() {
-		return this.sourceExtractor;
+		return sourceExtractor;
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class ReaderContext {
 	 */
 	@Nullable
 	public Object extractSource(Object sourceCandidate) {
-		return this.sourceExtractor.extractSource(sourceCandidate, this.resource);
+		return sourceExtractor.extractSource(sourceCandidate, resource);
 	}
 
 }

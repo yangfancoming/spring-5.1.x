@@ -3,6 +3,9 @@
 package org.springframework.core;
 
 import org.junit.Test;
+
+import java.util.Collections;
+
 import static org.junit.Assert.*;
 
 
@@ -18,30 +21,41 @@ public class SimpleAliasRegistryTests {
 		// 覆盖掉 上面的 foo
 		registry.registerAlias("bar", "Goat");
 		// 验证被覆盖了
-		assertEquals(0,registry.getAliases("foo").length);
-		assertEquals(1,registry.getAliases("bar").length);
+		assertEquals(Collections.singletonMap("Goat", "bar"), registry.aliasMap);
 	}
 
-	// 与map不同点：  测试 如果真实的名字（beanName）和别名相同，则把别名移除点，因为真实的名字和别名相同没有意义
+	// 与map不同点：  测试 如果真实的beanName和要注册的别名相同，则直接删除，因为真实的名字和别名相同没有意义
 	@Test
 	public void test1() {
-		// 成功注册一个别名
 		registry.registerAlias("foo", "Goat");
-		assertEquals(1,registry.getAliases("foo").length);
-
-		// 别名与正名相同 不执行put 而是直接删除该key   此时SimpleAliasRegistry中的 map.size == 0
+		assertEquals(1, registry.aliasMap.size());
 		registry.registerAlias("Goat", "Goat");
-		assertEquals(0,registry.getAliases("Goat").length);
-		assertEquals(0,registry.getAliases("foo").length);
+		assertEquals(0, registry.aliasMap.size());
 	}
 
 	// 测试 存在顺序问题 如果是先 别名与正名相同，再注册别名就可以
 	@Test
 	public void test2() {
 		registry.registerAlias("Goat", "Goat");
+		assertEquals(0, registry.aliasMap.size());
 		registry.registerAlias("bar", "Goat");
-		assertEquals(1,registry.getAliases("bar").length);
+		assertEquals(1, registry.aliasMap.size());
 	}
+
+	// 源码搜索串：  if (registeredName.equals(name)) return;
+	@Test
+	public void test31(){
+		registry.registerAlias("person","goat");
+		// 如果别名已经在缓存中存在，并且缓存中的别名和beanName(注意:不是别名)相同,则直接返回,没有必要再注册一次
+		registry.registerAlias("person","goat");
+		assertEquals(Collections.singletonMap("goat", "person"), registry.aliasMap);
+	}
+
+	@Test
+	public void test32(){
+
+	}
+
 
 	//  与map不同点：  测试 如果注册两个别名和正名顺序颠倒  将抛出异常
 	// Cannot register alias 'foo' for name 'Goat': Circular reference - 'Goat' is a direct or indirect alias for 'foo' already

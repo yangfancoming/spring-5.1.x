@@ -178,8 +178,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
 	/**
 	 * Set whether it should be allowed to override bean definitions by registering a different definition with the same name, automatically replacing the former.
-	 * If not, an exception will be thrown. This also applies to overriding aliases.
-	 * Default is "true".
+	 * If not, an exception will be thrown. This also applies to overriding aliases. Default is "true".
 	 * @see #registerBeanDefinition
 	 */
 	public void setAllowBeanDefinitionOverriding(boolean allowBeanDefinitionOverriding) {
@@ -191,7 +190,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	 * @since 4.1.2
 	 */
 	public boolean isAllowBeanDefinitionOverriding() {
-		return this.allowBeanDefinitionOverriding;
+		return allowBeanDefinitionOverriding;
 	}
 
 	/**
@@ -205,12 +204,9 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		this.allowEagerClassLoading = allowEagerClassLoading;
 	}
 
-	/**
-	 * Return whether the factory is allowed to eagerly load bean classes even for bean definitions that are marked as "lazy-init".
-	 * @since 4.1.2
-	 */
+	// Return whether the factory is allowed to eagerly load bean classes even for bean definitions that are marked as "lazy-init".@since 4.1.2
 	public boolean isAllowEagerClassLoading() {
-		return this.allowEagerClassLoading;
+		return allowEagerClassLoading;
 	}
 
 	/**
@@ -223,19 +219,13 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		this.dependencyComparator = dependencyComparator;
 	}
 
-	/**
-	 * Return the dependency comparator for this BeanFactory (may be {@code null}.
-	 * @since 4.0
-	 */
+	// Return the dependency comparator for this BeanFactory (may be {@code null}.@since 4.0
 	@Nullable
 	public Comparator<Object> getDependencyComparator() {
 		return dependencyComparator;
 	}
 
-	/**
-	 * Set a custom autowire candidate resolver for this BeanFactory to use
-	 * when deciding whether a bean definition should be considered as a candidate for autowiring.
-	 */
+	//  Set a custom autowire candidate resolver for this BeanFactory to use  when deciding whether a bean definition should be considered as a candidate for autowiring.
 	public void setAutowireCandidateResolver(final AutowireCandidateResolver autowireCandidateResolver) {
 		Assert.notNull(autowireCandidateResolver, "AutowireCandidateResolver must not be null");
 		if (autowireCandidateResolver instanceof BeanFactoryAware) {
@@ -267,7 +257,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			// A clone of the AutowireCandidateResolver since it is potentially BeanFactoryAware...
 			setAutowireCandidateResolver(BeanUtils.instantiateClass(getAutowireCandidateResolver().getClass()));
 			// Make resolvable dependencies (e.g. ResourceLoader) available here as well...
-			this.resolvableDependencies.putAll(otherListableFactory.resolvableDependencies);
+			resolvableDependencies.putAll(otherListableFactory.resolvableDependencies);
 		}
 	}
 
@@ -1556,7 +1546,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		}
 
 		private Object readResolve() {
-			Reference<?> ref = serializableFactories.get(this.id);
+			Reference<?> ref = serializableFactories.get(id);
 			if (ref != null) {
 				Object result = ref.get();
 				if (result != null) {
@@ -1565,7 +1555,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			}
 			// Lenient fallback: dummy factory in case of original factory not found...
 			DefaultListableBeanFactory dummyFactory = new DefaultListableBeanFactory();
-			dummyFactory.serializationId = this.id;
+			dummyFactory.serializationId = id;
 			return dummyFactory;
 		}
 	}
@@ -1596,7 +1586,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		}
 
 		public boolean isOrdered() {
-			return this.ordered;
+			return ordered;
 		}
 	}
 
@@ -1621,8 +1611,8 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
 		@Override
 		public Object getObject() throws BeansException {
-			if (this.optional) {
-				return createOptionalDependency(this.descriptor, this.beanName);
+			if (optional) {
+				return createOptionalDependency(descriptor, beanName);
 			}else {
 				Object result = doResolveDependency(descriptor, beanName, null, null);
 				if (result == null) throw new NoSuchBeanDefinitionException(descriptor.getResolvableType());
@@ -1714,8 +1704,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
 	/**
 	 * Separate inner class for avoiding a hard dependency on the {@code javax.inject} API.
-	 * Actual {@code javax.inject.Provider} implementation is nested here in order to make it
-	 * invisible for Graal's introspection of DefaultListableBeanFactory's nested classes.
+	 * Actual {@code javax.inject.Provider} implementation is nested here in order to make it invisible for Graal's introspection of DefaultListableBeanFactory's nested classes.
 	 */
 	private class Jsr330Factory implements Serializable {
 
@@ -1739,8 +1728,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
 	/**
 	 * An {@link org.springframework.core.OrderComparator.OrderSourceProvider} implementation  that is aware of the bean metadata of the instances to sort.
-	 * Lookup for the method factory of an instance to sort, if any, and let the
-	 * comparator retrieve the {@link org.springframework.core.annotation.Order} value defined on it.
+	 * Lookup for the method factory of an instance to sort, if any, and let the comparator retrieve the {@link org.springframework.core.annotation.Order} value defined on it.
 	 * This essentially allows for the following construct:
 	 */
 	private class FactoryAwareOrderSourceProvider implements OrderComparator.OrderSourceProvider {

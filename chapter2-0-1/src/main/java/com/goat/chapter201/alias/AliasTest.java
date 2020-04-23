@@ -11,13 +11,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class AliasTest  {
 
-	ApplicationContext context = new ClassPathXmlApplicationContext("classpath:alias.xml");
-
 	/**
 	 * 通过 别名 <alias> 标签 获取bean测试
 	 */
 	@Test
-	public void test31(){
+	public void test1(){
+		ApplicationContext context = new ClassPathXmlApplicationContext("classpath:alias.xml");
 		Person person1 = (Person) context.getBean("person");
 		Person person2 = (Person) context.getBean("goat");
 		Person person3 = (Person) context.getBean("goatLike");
@@ -26,4 +25,5 @@ public class AliasTest  {
 		Assert.assertTrue(person2 == person3 );
 		System.out.println(person1.toString());
 	}
+
 }

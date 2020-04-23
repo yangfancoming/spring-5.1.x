@@ -22,8 +22,8 @@ public class SimpleAliasRegistry implements AliasRegistry {
 	/** Logger available to subclasses. */
 	protected final Log logger = LogFactory.getLog(getClass());
 
-	/** Map from alias to canonical name.  存储bean名称和bean别名的映射关系 */
-	private final Map<String, String> aliasMap = new ConcurrentHashMap<>(16);
+	/** Map from alias to canonical name. 存储bean名称和bean别名的映射关系（key 别名，value 真实名 ）  -modify*/
+	public final Map<String, String> aliasMap = new ConcurrentHashMap<>(16);
 
 	// Return whether alias overriding is allowed. Default is {@code true}.
 	protected boolean allowAliasOverriding() {
@@ -169,13 +169,11 @@ public class SimpleAliasRegistry implements AliasRegistry {
 
 	@Override
 	public void registerAlias(String name, String alias) {
-		// 参数校验
 		Assert.hasText(name, "'name' must not be empty");
 		Assert.hasText(alias, "'alias' must not be empty");
 		synchronized (aliasMap) {
-			// 如果真实的名字（beanName）和别名相同，则把别名移除点，因为真实的名字和别名相同没有意义
+			// 如果真实的beanName和要注册的别名相同，则直接删除，因为真实的名字和别名相同没有意义
 			if (alias.equals(name)) {
-				// 移除别名
 				aliasMap.remove(alias);
 				if (logger.isDebugEnabled()) logger.debug("Alias definition '" + alias + "' ignored since it points to same name");
 			}else {
@@ -183,7 +181,7 @@ public class SimpleAliasRegistry implements AliasRegistry {
 				String registeredName = aliasMap.get(alias);
 				// 如果别名已经在缓存中存在
 				if (registeredName != null) {
-					// An existing alias - no need to re-register   缓存中的别名和beanName(注意:不是别名)相同,不做任何操作,没有必要再注册一次
+					// An existing alias - no need to re-register   如果缓存中的别名和beanName(注意:不是别名)相同,则直接返回,没有必要再注册一次，
 					if (registeredName.equals(name)) return;
 					// 如果别名不允许覆盖，则抛出异常  //缓存中存在别名,且不允许覆盖,抛出异常
 					if (!allowAliasOverriding()) {
