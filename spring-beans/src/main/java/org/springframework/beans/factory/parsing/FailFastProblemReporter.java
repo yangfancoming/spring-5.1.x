@@ -8,7 +8,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.lang.Nullable;
 
 /**
- * Simple {@link ProblemReporter} implementation that exhibits fail-fast  behavior when errors are encountered.
+ * Simple {@link ProblemReporter} implementation that exhibits fail-fast behavior when errors are encountered.
  * The first error encountered results in a {@link BeanDefinitionParsingException} being thrown.
  * Warnings are written to {@link #setLogger(org.apache.commons.logging.Log) the log} for this class.
  * @since 2.0

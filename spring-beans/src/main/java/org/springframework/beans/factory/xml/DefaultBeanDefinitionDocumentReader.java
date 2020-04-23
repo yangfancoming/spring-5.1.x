@@ -172,7 +172,6 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 				Node node = nl.item(i);
 				if (node instanceof Element) {
 					Element ele = (Element) node;
-
 					if (delegate.isDefaultNamespace(ele)) { // 默认命名空间
 						// 当前标签使用的是默认的命名空间，如bean标签，则按照默认命名空间的逻辑对其进行处理
 						// 代表解析的节点是 default namespace 下面的几个元素  <import />、<alias />、<bean />、<beans />
@@ -283,16 +282,15 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 			getReaderContext().error("Alias must not be empty", ele);
 			valid = false;
 		}
-		if (valid) {
-			try {
-				// 注册别名信息
-				getReaderContext().getRegistry().registerAlias(name, alias);
-			}catch (Exception ex) {
-				getReaderContext().error("Failed to register alias '" + alias +"' for bean with name '" + name + "'", ele, ex);
-			}
-			// 激活对alias注册完成进行监听的监听器
-			getReaderContext().fireAliasRegistered(name, alias, extractSource(ele));
+		if (!valid) return; // -modify
+		try {
+			// 注册别名信息
+			getReaderContext().getRegistry().registerAlias(name, alias);
+		}catch (Exception ex) {
+			getReaderContext().error("Failed to register alias '" + alias +"' for bean with name '" + name + "'", ele, ex);
 		}
+		// 激活对alias注册完成进行监听的监听器
+		getReaderContext().fireAliasRegistered(name, alias, extractSource(ele));
 	}
 
 	/**

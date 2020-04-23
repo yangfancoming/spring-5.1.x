@@ -13,6 +13,6 @@
 		这里我们给person这个 beanName 起了一个别名goat，然后又给别名goat起了一个别名goatLike。
 		我们可以通过这两个别名获取到 person 这个bean 实例
 	-->
-	<alias name="person" alias="goat"></alias>
+	<alias name="person" alias="goat"/>
 	<alias name="goat" alias="goatLike"/>
 </beans>

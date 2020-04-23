@@ -134,9 +134,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		this.validationMode = validationMode;
 	}
 
-	/**
-	 * Return the validation mode to use.
-	 */
+	// Return the validation mode to use.
 	public int getValidationMode() {
 		return validationMode;
 	}
@@ -152,9 +150,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		this.namespaceAware = namespaceAware;
 	}
 
-	/**
-	 * Return whether or not the XML parser should be XML namespace aware.
-	 */
+	// Return whether or not the XML parser should be XML namespace aware.
 	public boolean isNamespaceAware() {
 		return namespaceAware;
 	}
@@ -216,9 +212,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		this.entityResolver = entityResolver;
 	}
 
-	/**
-	 * Return the EntityResolver to use, building a default resolver  if none specified.
-	 */
+	// Return the EntityResolver to use, building a default resolver  if none specified.
 	protected EntityResolver getEntityResolver() {
 		if (entityResolver == null) {
 			// Determine default EntityResolver to use.

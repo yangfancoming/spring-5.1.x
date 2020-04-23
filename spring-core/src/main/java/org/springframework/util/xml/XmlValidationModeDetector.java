@@ -15,45 +15,28 @@ import org.springframework.util.StringUtils;
  */
 public class XmlValidationModeDetector {
 
-	/**
-	 * Indicates that the validation should be disabled.
-	 */
+	// Indicates that the validation should be disabled.
 	public static final int VALIDATION_NONE = 0;
 
-	/**
-	 * Indicates that the validation mode should be auto-guessed, since we cannot find a clear indication (probably choked on some special characters, or the like).
-	 */
+	// Indicates that the validation mode should be auto-guessed, since we cannot find a clear indication (probably choked on some special characters, or the like).
 	public static final int VALIDATION_AUTO = 1;
 
-	/**
-	 * Indicates that DTD validation should be used (we found a "DOCTYPE" declaration).
-	 */
+	//  Indicates that DTD validation should be used (we found a "DOCTYPE" declaration).
 	public static final int VALIDATION_DTD = 2;
 
-	/**
-	 * Indicates that XSD validation should be used (found no "DOCTYPE" declaration).
-	 */
+	//  Indicates that XSD validation should be used (found no "DOCTYPE" declaration).
 	public static final int VALIDATION_XSD = 3;
 
-	/**
-	 * The token in a XML document that declares the DTD to use for validation and thus that DTD validation is being used.
-	 */
+	// The token in a XML document that declares the DTD to use for validation and thus that DTD validation is being used.
 	private static final String DOCTYPE = "DOCTYPE";
 
-	/**
-	 * The token that indicates the start of an XML comment.
-	 */
+	// The token that indicates the start of an XML comment.
 	private static final String START_COMMENT = "<!--";
 
-	/**
-	 * The token that indicates the end of an XML comment.
-	 */
+	//The token that indicates the end of an XML comment.
 	private static final String END_COMMENT = "-->";
 
-	/**
-	 * Indicates whether or not the current parse position is inside an XML comment.
-	 * 注：inCommen t这个标识位主要是为了多行注释处理。
-	 */
+	// Indicates whether or not the current parse position is inside an XML comment. 注：inCommen t这个标识位主要是为了多行注释处理。
 	private boolean inComment;
 
 	/**
@@ -134,9 +117,7 @@ public class XmlValidationModeDetector {
 		return null;
 	}
 
-	/**
-	 * Consume the next comment token, update the "inComment" flag and return the remaining content.
-	 */
+	// Consume the next comment token, update the "inComment" flag and return the remaining content.
 	@Nullable
 	private String consume(String line) {
 		// 如果当前在注释中，消费注释结尾标记-->，否则消耗<!--
@@ -159,9 +140,8 @@ public class XmlValidationModeDetector {
 	}
 
 	/**
-	 * Try to consume the supplied token against the supplied content and update the
-	 * in comment parse state to the supplied value. Returns the index into the content
-	 * which is after the token or -1 if the token is not found.
+	 * Try to consume the supplied token against the supplied content and update the in comment parse state to the supplied value.
+	 * Returns the index into the content which is after the token or -1 if the token is not found.
 	 */
 	private int commentToken(String line, String token, boolean inCommentIfPresent) {
 		// 如果找到注释标记
@@ -172,5 +152,4 @@ public class XmlValidationModeDetector {
 		// 得到去掉注释后内容的开头index
 		return (index == -1 ? index : index + token.length());
 	}
-
 }

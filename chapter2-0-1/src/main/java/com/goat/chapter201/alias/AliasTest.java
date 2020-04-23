@@ -7,18 +7,14 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * Created by 64274 on 2019/8/16.
- *
- * @ Description: TODO
- * @ author  山羊来了
- * @ date 2019/8/16---11:26
+ * 源码搜索串： processAliasRegistration(ele);
  */
 public class AliasTest  {
 
 	ApplicationContext context = new ClassPathXmlApplicationContext("classpath:alias.xml");
 
 	/**
-	 * 通过 别名 <alias>标签 获取bean测试 测试
+	 * 通过 别名 <alias> 标签 获取bean测试
 	 */
 	@Test
 	public void test31(){

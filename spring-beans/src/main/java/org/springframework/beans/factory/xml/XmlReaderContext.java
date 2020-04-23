@@ -49,7 +49,7 @@ public class XmlReaderContext extends ReaderContext {
 	 * Return the XML bean definition reader in use.
 	 */
 	public final XmlBeanDefinitionReader getReader() {
-		return this.reader;
+		return reader;
 	}
 
 	/**
@@ -57,7 +57,7 @@ public class XmlReaderContext extends ReaderContext {
 	 * @see XmlBeanDefinitionReader#XmlBeanDefinitionReader(BeanDefinitionRegistry)
 	 */
 	public final BeanDefinitionRegistry getRegistry() {
-		return this.reader.getRegistry();
+		return reader.getRegistry();
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class XmlReaderContext extends ReaderContext {
 	 */
 	@Nullable
 	public final ResourceLoader getResourceLoader() {
-		return this.reader.getResourceLoader();
+		return reader.getResourceLoader();
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class XmlReaderContext extends ReaderContext {
 	 */
 	@Nullable
 	public final ClassLoader getBeanClassLoader() {
-		return this.reader.getBeanClassLoader();
+		return reader.getBeanClassLoader();
 	}
 
 	/**
@@ -88,7 +88,7 @@ public class XmlReaderContext extends ReaderContext {
 	 * @see XmlBeanDefinitionReader#setEnvironment
 	 */
 	public final Environment getEnvironment() {
-		return this.reader.getEnvironment();
+		return reader.getEnvironment();
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class XmlReaderContext extends ReaderContext {
 	 * @see XmlBeanDefinitionReader#setNamespaceHandlerResolver
 	 */
 	public final NamespaceHandlerResolver getNamespaceHandlerResolver() {
-		return this.namespaceHandlerResolver;
+		return namespaceHandlerResolver;
 	}
 
 
@@ -107,7 +107,7 @@ public class XmlReaderContext extends ReaderContext {
 	 * @see org.springframework.beans.factory.support.BeanNameGenerator#generateBeanName
 	 */
 	public String generateBeanName(BeanDefinition beanDefinition) {
-		return this.reader.getBeanNameGenerator().generateBeanName(beanDefinition, getRegistry());
+		return reader.getBeanNameGenerator().generateBeanName(beanDefinition, getRegistry());
 	}
 
 	/**
@@ -130,7 +130,7 @@ public class XmlReaderContext extends ReaderContext {
 	public Document readDocumentFromString(String documentContent) {
 		InputSource is = new InputSource(new StringReader(documentContent));
 		try {
-			return this.reader.doLoadDocument(is, getResource());
+			return reader.doLoadDocument(is, getResource());
 		}catch (Exception ex) {
 			throw new BeanDefinitionStoreException("Failed to read XML document", ex);
 		}

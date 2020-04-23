@@ -46,16 +46,13 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 
 	/**
 	 * Create a new AbstractBeanDefinitionReader for the given bean factory.
-	 * If the passed-in bean factory does not only implement the BeanDefinitionRegistry
-	 * interface but also the ResourceLoader interface, it will be used as default
-	 * ResourceLoader as well. This will usually be the case for
-	 * {@link org.springframework.context.ApplicationContext} implementations.
-	 * If given a plain BeanDefinitionRegistry, the default ResourceLoader will be a
-	 * {@link org.springframework.core.io.support.PathMatchingResourcePatternResolver}.
-	 * If the passed-in bean factory also implements {@link EnvironmentCapable} its
-	 * environment will be used by this reader.  Otherwise, the reader will initialize and
-	 * use a {@link StandardEnvironment}. All ApplicationContext implementations are
-	 * EnvironmentCapable, while normal BeanFactory implementations are not.
+	 * If the passed-in bean factory does not only implement the BeanDefinitionRegistry nterface but also the ResourceLoader interface,
+	 * iit will be used as default ResourceLoader as well.
+	 * This will usually be the case for {@link org.springframework.context.ApplicationContext} implementations.
+	 * If given a plain BeanDefinitionRegistry, the default ResourceLoader will be a {@link org.springframework.core.io.support.PathMatchingResourcePatternResolver}.
+	 * If the passed-in bean factory also implements {@link EnvironmentCapable} its environment will be used by this reader.
+	 * Otherwise, the reader will initialize and use a {@link StandardEnvironment}.
+	 * All ApplicationContext implementations are  EnvironmentCapable, while normal BeanFactory implementations are not.
 	 * @param registry the BeanFactory to load bean definitions into,in the form of a BeanDefinitionRegistry
 	 * @see #setResourceLoader
 	 * @see #setEnvironment
@@ -223,5 +220,4 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 	public Environment getEnvironment() {
 		return environment;
 	}
-
 }
