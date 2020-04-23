@@ -80,10 +80,7 @@ public class BeanDefinitionParserDelegate {
 
 	public static final String BEANS_NAMESPACE_URI = "http://www.springframework.org/schema/beans";
 	public static final String MULTI_VALUE_ATTRIBUTE_DELIMITERS = ",; ";
-
-	/**
-	 * Value of a T/F attribute that represents true. Anything else represents false. Case seNsItive.
-	 */
+	// Value of a T/F attribute that represents true. Anything else represents false. Case seNsItive.
 	public static final String TRUE_VALUE = "true";
 	public static final String FALSE_VALUE = "false";
 	public static final String DEFAULT_VALUE = "default";
@@ -177,7 +174,7 @@ public class BeanDefinitionParserDelegate {
 	 * Get the {@link XmlReaderContext} associated with this helper instance.
 	 */
 	public final XmlReaderContext getReaderContext() {
-		return this.readerContext;
+		return readerContext;
 	}
 
 	/**
@@ -185,22 +182,22 @@ public class BeanDefinitionParserDelegate {
 	 */
 	@Nullable
 	protected Object extractSource(Element ele) {
-		return this.readerContext.extractSource(ele);
+		return readerContext.extractSource(ele);
 	}
 
 	// Report an error with the given message for the given source element.
 	protected void error(String message, Node source) {
-		this.readerContext.error(message, source, this.parseState.snapshot());
+		readerContext.error(message, source, parseState.snapshot());
 	}
 
 	//  Report an error with the given message for the given source element.
 	protected void error(String message, Element source) {
-		this.readerContext.error(message, source, this.parseState.snapshot());
+		readerContext.error(message, source, parseState.snapshot());
 	}
 
 	//  Report an error with the given message for the given source element.
 	protected void error(String message, Element source, Throwable cause) {
-		this.readerContext.error(message, source, this.parseState.snapshot(), cause);
+		readerContext.error(message, source, parseState.snapshot(), cause);
 	}
 
 	// Initialize the default settings assuming a {@code null} parent delegate.
@@ -211,14 +208,13 @@ public class BeanDefinitionParserDelegate {
 	/**
 	 * Initialize the default lazy-init, autowire, dependency check settings,
 	 * init-method, destroy-method and merge settings. Support nested 'beans'
-	 * element use cases by falling back to the given parent in case the
-	 * defaults are not explicitly set locally.
+	 * element use cases by falling back to the given parent in case the defaults are not explicitly set locally.
 	 * @see #populateDefaults(DocumentDefaultsDefinition, DocumentDefaultsDefinition, org.w3c.dom.Element)
 	 * @see #getDefaults()
 	 */
 	public void initDefaults(Element root, @Nullable BeanDefinitionParserDelegate parent) {
-		populateDefaults(this.defaults, (parent != null ? parent.defaults : null), root);
-		this.readerContext.fireDefaultsRegistered(this.defaults);
+		populateDefaults(defaults, (parent != null ? parent.defaults : null), root);
+		readerContext.fireDefaultsRegistered(defaults);
 	}
 
 	/**
@@ -268,28 +264,28 @@ public class BeanDefinitionParserDelegate {
 		}else if (parentDefaults != null) {
 			defaults.setDestroyMethod(parentDefaults.getDestroyMethod());
 		}
-		defaults.setSource(this.readerContext.extractSource(root));
+		defaults.setSource(readerContext.extractSource(root));
 	}
 
 	// Return the defaults definition object.
 	public DocumentDefaultsDefinition getDefaults() {
-		return this.defaults;
+		return defaults;
 	}
 
 	// Return the default settings for bean definitions as indicated within the attributes of the top-level {@code <beans/>} element.
 	public BeanDefinitionDefaults getBeanDefinitionDefaults() {
 		BeanDefinitionDefaults bdd = new BeanDefinitionDefaults();
-		bdd.setLazyInit(TRUE_VALUE.equalsIgnoreCase(this.defaults.getLazyInit()));
+		bdd.setLazyInit(TRUE_VALUE.equalsIgnoreCase(defaults.getLazyInit()));
 		bdd.setAutowireMode(getAutowireMode(DEFAULT_VALUE));
-		bdd.setInitMethodName(this.defaults.getInitMethod());
-		bdd.setDestroyMethodName(this.defaults.getDestroyMethod());
+		bdd.setInitMethodName(defaults.getInitMethod());
+		bdd.setDestroyMethodName(defaults.getDestroyMethod());
 		return bdd;
 	}
 
 	//  Return any patterns provided in the 'default-autowire-candidates' attribute of the top-level {@code <beans/>} element.
 	@Nullable
 	public String[] getAutowireCandidatePatterns() {
-		String candidatePattern = this.defaults.getAutowireCandidates();
+		String candidatePattern = defaults.getAutowireCandidates();
 		return (candidatePattern != null ? StringUtils.commaDelimitedListToStringArray(candidatePattern) : null);
 	}
 
@@ -304,22 +300,24 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 *  最终解析xml成BeanDefinition
-	 * 填充各种默认的属性
+	 *  填充各种默认的属性，最终解析xml成BeanDefinition
 	 * Parses the supplied {@code <bean>} element. May return {@code null} if there were errors during parse. Errors are reported to the
 	 * {@link org.springframework.beans.factory.parsing.ProblemReporter}.
+	 * 该方法主要工作流程如下：
+	 * 提取元素中的 id name 属性
+	 * 进一步解析其它所有属性并统一封装到 GenericBeanDefinition 类型的实例中
+	 * 检测到 bean 没有指定 beanName 使用默认规则生成 beanName
+	 * 将获取到的信息封装到 BeanDefinitionHolder 的实例中
 	 */
 	@Nullable
 	public BeanDefinitionHolder parseBeanDefinitionElement(Element ele, @Nullable BeanDefinition containingBean) {
-		// 1、解析bean的id和bean的别名
-		//  获取bean标签的id属性值
+		// 获取<bean>标签的id属性
 		String id = ele.getAttribute(ID_ATTRIBUTE);
-		// name 属性 "" // 获取bean标签的name（别名）属性值 ，缓存至List集合
+		// 获取<bean>标签的name属性
 		String nameAttr = ele.getAttribute(NAME_ATTRIBUTE);
-		// name 属性值就是别名 alias，解析 name 的值，放到 alias 集合中 // 对name属性值按照逗号和分号进行分割，将分割后的所有name属性值作为当前bean的别名
 		List<String> aliases = new ArrayList<>();
 		if (StringUtils.hasLength(nameAttr)) {
-			// 这里可以看到 name 的值可以使用 , ; 和空格进行分割
+			// 对name属性值按照逗号和分号进行分割，将分割后的所有name属性值作为当前bean的别名，放到 alias 集合中
 			String[] nameArr = StringUtils.tokenizeToStringArray(nameAttr, MULTI_VALUE_ATTRIBUTE_DELIMITERS);
 			aliases.addAll(Arrays.asList(nameArr));
 		}
@@ -330,16 +328,12 @@ public class BeanDefinitionParserDelegate {
 		// 如果 beanName 为空，且 alias 不为空，则获取第一个别名作为beanName
 		if (!StringUtils.hasText(beanName) && !aliases.isEmpty()) {
 			beanName = aliases.remove(0);
-			if (logger.isTraceEnabled()) {
-				logger.trace("No XML 'id' specified - using '" + beanName + "' as bean name and " + aliases + " as aliases");
-			}
+			if (logger.isTraceEnabled()) logger.trace("No XML 'id' specified - using '" + beanName + "' as bean name and " + aliases + " as aliases");
 		}
 		// 如果父 bean 为空，则检查beanName的唯一性
 		// 检查当前bean的名称与已经解析的bean名称是否有相同的，如果有相同的则抛出异常，保证所有不同bean的名称和别名相互之间不相同
 		// 2、containingBean不为空，则检查beanName和别名是否被使用
-		if (containingBean == null) {
-			checkNameUniqueness(beanName, aliases, ele);
-		}
+		if (containingBean == null) checkNameUniqueness(beanName, aliases, ele);
 		// 创建 AbstractBeanDefinition 在该方法内部，会解析bean所有的属性和子节点
 		// 对bean标签中的各个属性以及子标签进行解析
 		// 3、解析bean标签，将其转换为BeanDefinition对象
@@ -347,25 +341,24 @@ public class BeanDefinitionParserDelegate {
 		// 4、如果beanDefinition且未配置bean的id属性，name属性，则为当前bean生成id和别名
 		// 例如：<bean class="com.lyc.cn.v2.day01.Dog"/>，<bean factory-bean="dog4"/>，<bean parent="outer"/>等
 		if (beanDefinition != null) {
-			// 如果没有指定id或name属性，则为当前bean自动生成名称
+			// 如果 id 和 name 都是空，那么 spring 会给它生成一个默认的名称
 			if (!StringUtils.hasText(beanName)) {
 				try {
 					// containingBean不为null，则当前bean是内部bean，使用BeanDefinitionReaderUtils生成beanName
 					// 如果 beanName为空，则根据spring中的命名规则为该bean生成对应的beanName  // 如果父bean为空，那么按照默认方式生成bean名称
 					if (containingBean != null) {
-						beanName = BeanDefinitionReaderUtils.generateBeanName(beanDefinition, this.readerContext.getRegistry(), true);
+						beanName = BeanDefinitionReaderUtils.generateBeanName(beanDefinition, readerContext.getRegistry(), true);
 					}else {
 						// 否则，使用XmlReaderContext对象生成beanName
 						// 如果父bean不为空，则生成名称时按照一定规则将父bean加入生成的bean名称中
-						beanName = this.readerContext.generateBeanName(beanDefinition);
+						beanName = readerContext.generateBeanName(beanDefinition);
 						// Register an alias for the plain bean class name, if still possible,
 						// if the generator returned the class name plus a suffix.
 						// This is expected for Spring 1.2/2.0 backwards compatibility.
 						// 把该bean的类名也注册为别名，为了向后兼容
 						// 如果生成器返回的是类名加上后缀，则为普通bean类名注册一个别名。这在Spring 1.2/2.0的向后兼容性中是可以实现的。
 						String beanClassName = beanDefinition.getBeanClassName();
-						if (beanClassName != null && beanName.startsWith(beanClassName) && beanName.length() > beanClassName.length() &&
-								!this.readerContext.getRegistry().isBeanNameInUse(beanClassName)) {
+						if (beanClassName != null && beanName.startsWith(beanClassName) && beanName.length() > beanClassName.length() && !readerContext.getRegistry().isBeanNameInUse(beanClassName)) {
 							aliases.add(beanClassName);
 						}
 					}
@@ -384,30 +377,32 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	// Validate that the specified bean name and aliases have not been used already within the current level of beans element nesting.
+	// 检查名字是否唯一，如果 id 重复了，将抛出错误,内部 usedNames 是一个 HashSet，将会存储加载过的 name 和 aliases
 	protected void checkNameUniqueness(String beanName, List<String> aliases, Element beanElement) {
 		String foundName = null;
-		if (StringUtils.hasText(beanName) && this.usedNames.contains(beanName)) {
+		if (StringUtils.hasText(beanName) && usedNames.contains(beanName)) {
 			foundName = beanName;
 		}
 		if (foundName == null) {
-			foundName = CollectionUtils.findFirstMatch(this.usedNames, aliases);
+			foundName = CollectionUtils.findFirstMatch(usedNames, aliases);
 		}
 		if (foundName != null) {
 			error("Bean name '" + foundName + "' is already used in this <beans> element", beanElement);
 		}
-		this.usedNames.add(beanName);
-		this.usedNames.addAll(aliases);
+		usedNames.add(beanName);
+		usedNames.addAll(aliases);
 	}
 
 	/**
 	 * Parse the bean definition itself, without regard to name or aliases. May return
 	 * {@code null} if problems occurred during the parsing of the bean definition.
 	 * 解析属性和子节点
+	 * 将公共属性放入 AbstractBeanDefinition，具体实现在子类 GenericBeanDefinition
 	 */
 	@Nullable
 	public AbstractBeanDefinition parseBeanDefinitionElement(Element ele, String beanName, @Nullable BeanDefinition containingBean) {
 		// 将当前bean的名称push到parseState属性中，以标识当前beanName的bean正在被解析
-		this.parseState.push(new BeanEntry(beanName));
+		parseState.push(new BeanEntry(beanName));
 		// 1、解析class属性 // 获取 class 属性的值
 		String className = null;
 		if (ele.hasAttribute(CLASS_ATTRIBUTE)) {
@@ -438,7 +433,7 @@ public class BeanDefinitionParserDelegate {
 			// 10、解析 <qualifier /> // 解析并且封装qualifier子标签到BeanDefinition中
 			parseQualifierElements(ele, bd);
 			// 11、设置bean定义来源和元数据的来源  封装一些资源属性
-			bd.setResource(this.readerContext.getResource());
+			bd.setResource(readerContext.getResource());
 			bd.setSource(extractSource(ele));
 			return bd;
 		}catch (ClassNotFoundException ex) {
@@ -448,7 +443,7 @@ public class BeanDefinitionParserDelegate {
 		}catch (Throwable ex) {
 			error("Unexpected failure during bean definition parsing", ele, ex);
 		}finally {
-			this.parseState.pop();
+			parseState.pop();
 		}
 		return null;
 	}
@@ -491,7 +486,7 @@ public class BeanDefinitionParserDelegate {
 		// 获取并设置lazy-init属性值，如果当前bean的lazy-init是默认值， 则将beans标签中设置的lazy-init属性值设置给当前bean
 		String lazyInit = ele.getAttribute(LAZY_INIT_ATTRIBUTE);
 		if (isDefaultValue(lazyInit)) {
-			lazyInit = this.defaults.getLazyInit();
+			lazyInit = defaults.getLazyInit();
 		}
 		bd.setLazyInit(TRUE_VALUE.equals(lazyInit));
 		// 4、设置autowire属性，此属性默认不开启// 获取并设置autowire属性值
@@ -508,7 +503,7 @@ public class BeanDefinitionParserDelegate {
 		// 6、设置autowire-candidate属性，当一个接口有多个实现类时， 配置autowire-candidate属性可以明确指定实现类是否参与自动注入
 		String autowireCandidate = ele.getAttribute(AUTOWIRE_CANDIDATE_ATTRIBUTE);
 		if (isDefaultValue(autowireCandidate)) {
-			String candidatePattern = this.defaults.getAutowireCandidates();
+			String candidatePattern = defaults.getAutowireCandidates();
 			if (candidatePattern != null) {
 				String[] patterns = StringUtils.commaDelimitedListToStringArray(candidatePattern);
 				bd.setAutowireCandidate(PatternMatchUtils.simpleMatch(patterns, beanName));
@@ -527,11 +522,11 @@ public class BeanDefinitionParserDelegate {
 		if (ele.hasAttribute(INIT_METHOD_ATTRIBUTE)) {
 			String initMethodName = ele.getAttribute(INIT_METHOD_ATTRIBUTE);
 			bd.setInitMethodName(initMethodName);
-		}else if (this.defaults.getInitMethod() != null) {
+		}else if (defaults.getInitMethod() != null) {
 			// 尝试从DocumentDefaultsDefinition对象中获取init-method属性
 			// DocumentDefaultsDefinition对象保存了Spring bean的一些简单设置，
 			// 我们可以通过该类设定通用的bean属性模板
-			bd.setInitMethodName(this.defaults.getInitMethod());
+			bd.setInitMethodName(defaults.getInitMethod());
 			bd.setEnforceInitMethod(false);
 		}
 		// 获取并设置destroy-method属性的值，如果该属性值为空，
@@ -540,9 +535,9 @@ public class BeanDefinitionParserDelegate {
 		if (ele.hasAttribute(DESTROY_METHOD_ATTRIBUTE)) {
 			String destroyMethodName = ele.getAttribute(DESTROY_METHOD_ATTRIBUTE);
 			bd.setDestroyMethodName(destroyMethodName);
-		}else if (this.defaults.getDestroyMethod() != null) {
+		}else if (defaults.getDestroyMethod() != null) {
 			// 尝试从DocumentDefaultsDefinition对象中获取destroy-method属性
-			bd.setDestroyMethodName(this.defaults.getDestroyMethod());
+			bd.setDestroyMethodName(defaults.getDestroyMethod());
 			bd.setEnforceDestroyMethod(false);
 		}
 		// 10、设置factory-method属性，该属性可指定静态工厂或实例工厂方法实例化bean // 获取并设置fatory-method属性的值
@@ -565,7 +560,7 @@ public class BeanDefinitionParserDelegate {
 	 * @throws ClassNotFoundException if bean class resolution was attempted but failed
 	 */
 	protected AbstractBeanDefinition createBeanDefinition(@Nullable String className, @Nullable String parentName) throws ClassNotFoundException {
-		return BeanDefinitionReaderUtils.createBeanDefinition(parentName, className, this.readerContext.getBeanClassLoader());
+		return BeanDefinitionReaderUtils.createBeanDefinition(parentName, className, readerContext.getBeanClassLoader());
 	}
 
 	// 解析 <meta>
@@ -696,7 +691,7 @@ public class BeanDefinitionParserDelegate {
 					error("'index' cannot be lower than 0", ele);
 				}else {
 					try {
-						this.parseState.push(new ConstructorArgumentEntry(index));
+						parseState.push(new ConstructorArgumentEntry(index));
 						// 对属性值进行解析
 						Object value = parsePropertyValue(ele, bd, null);
 						ConstructorArgumentValues.ValueHolder valueHolder = new ConstructorArgumentValues.ValueHolder(value);
@@ -715,7 +710,7 @@ public class BeanDefinitionParserDelegate {
 							bd.getConstructorArgumentValues().addIndexedArgumentValue(index, valueHolder);
 						}
 					}finally {
-						this.parseState.pop();
+						parseState.pop();
 					}
 				}
 			}catch (NumberFormatException ex) {
@@ -724,7 +719,7 @@ public class BeanDefinitionParserDelegate {
 		}else {
 		// 当没有index属性值时的处理方式
 			try {
-				this.parseState.push(new ConstructorArgumentEntry());
+				parseState.push(new ConstructorArgumentEntry());
 				// 对属性值进行解析
 				Object value = parsePropertyValue(ele, bd, null);
 				// 对解析的属性值进行封装
@@ -740,7 +735,7 @@ public class BeanDefinitionParserDelegate {
 				valueHolder.setSource(extractSource(ele));
 				bd.getConstructorArgumentValues().addGenericArgumentValue(valueHolder);
 			}finally {
-				this.parseState.pop();
+				parseState.pop();
 			}
 		}
 	}
@@ -982,7 +977,7 @@ public class BeanDefinitionParserDelegate {
 	 * @see org.springframework.beans.factory.config.TypedStringValue
 	 */
 	protected TypedStringValue buildTypedStringValue(String value, @Nullable String targetTypeName) throws ClassNotFoundException {
-		ClassLoader classLoader = this.readerContext.getBeanClassLoader();
+		ClassLoader classLoader = readerContext.getBeanClassLoader();
 		TypedStringValue typedValue;
 		if (!StringUtils.hasText(targetTypeName)) {
 			typedValue = new TypedStringValue(value);
@@ -1199,7 +1194,7 @@ public class BeanDefinitionParserDelegate {
 	public boolean parseMergeAttribute(Element collectionElement) {
 		String value = collectionElement.getAttribute(MERGE_ATTRIBUTE);
 		if (isDefaultValue(value)) {
-			value = this.defaults.getMerge();
+			value = defaults.getMerge();
 		}
 		return TRUE_VALUE.equals(value);
 	}
@@ -1215,29 +1210,31 @@ public class BeanDefinitionParserDelegate {
 		String namespaceUri = getNamespaceURI(ele);
 		if (namespaceUri == null) return null;
 		// 获取当前url所对应的NameSpaceHandler处理逻辑，也即我们定义的MyNameSpaceHandler
-		NamespaceHandler handler = this.readerContext.getNamespaceHandlerResolver().resolve(namespaceUri);
+		NamespaceHandler handler = readerContext.getNamespaceHandlerResolver().resolve(namespaceUri);
 		if (handler == null) {
 			error("Unable to locate Spring NamespaceHandler for XML schema namespace [" + namespaceUri + "]", ele);
 			return null;
 		}
 		// 调用当前命名空间处理逻辑的parse()方法，以对当前标签进行转换
-		return handler.parse(ele, new ParserContext(this.readerContext, this, containingBd));
+		return handler.parse(ele, new ParserContext(readerContext, this, containingBd));
 	}
 
 	public BeanDefinitionHolder decorateBeanDefinitionIfRequired(Element ele, BeanDefinitionHolder definitionHolder) {
 		return decorateBeanDefinitionIfRequired(ele, definitionHolder, null);
 	}
 
+	// 方法中的第三个参数是父类 bean 。当对某个嵌套配置进行分析时，这里需要传递，是为了使用父类的 scope 属性，以备子类没设定 scope，可以使用父类的 scope 属性
 	public BeanDefinitionHolder decorateBeanDefinitionIfRequired(Element ele, BeanDefinitionHolder definitionHolder, @Nullable BeanDefinition containingBd) {
 		BeanDefinitionHolder finalDefinition = definitionHolder;
 		// Decorate based on custom attributes first.  // 处理自定义属性
 		NamedNodeMap attributes = ele.getAttributes();
+		// 遍历所有的属性，进行属性的修饰
 		for (int i = 0; i < attributes.getLength(); i++) {
 			Node node = attributes.item(i);
 			finalDefinition = decorateIfRequired(node, finalDefinition, containingBd);
 		}
-
 		// Decorate based on custom nested elements. // 处理自定义子标签
+		// 遍历所有的子节点，修饰子元素
 		NodeList children = ele.getChildNodes();
 		for (int i = 0; i < children.getLength(); i++) {
 			Node node = children.item(i);
@@ -1254,10 +1251,10 @@ public class BeanDefinitionParserDelegate {
 		// 判断其如果为spring默认的命名空间则不对其进行处理
 		if (namespaceUri != null && !isDefaultNamespace(namespaceUri)) {
 			// 获取当前命名空间对应的NamespaceHandler对象
-			NamespaceHandler handler = this.readerContext.getNamespaceHandlerResolver().resolve(namespaceUri);
+			NamespaceHandler handler = readerContext.getNamespaceHandlerResolver().resolve(namespaceUri);
 			if (handler != null) {
 				// 对当前的BeanDefinitionHolder进行装饰
-				BeanDefinitionHolder decorated = handler.decorate(node, originalDef, new ParserContext(this.readerContext, this, containingBd));
+				BeanDefinitionHolder decorated = handler.decorate(node, originalDef, new ParserContext(readerContext, this, containingBd));
 				if (decorated != null) {
 					return decorated;
 				}

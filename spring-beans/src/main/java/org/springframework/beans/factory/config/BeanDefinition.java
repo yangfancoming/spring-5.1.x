@@ -250,7 +250,6 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	@Nullable
 	String getDescription();
 
-
 	// Read-only attributes
 
 	/**

@@ -15,9 +15,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyInitPropertySources extends AbstractApplicationContext {
 
+	// doit 这个方法到底咋用？
 	@Override
 	protected void initPropertySources() {
-		System.out.println("goat initPropertySources...........");
+		super.initPropertySources();
+		//把"MYSQL_HOST"作为启动的时候必须验证的环境变量
+		getEnvironment().setRequiredProperties("MYSQL_HOST");
+		System.out.println("MyInitPropertySources#initPropertySources()...");
 	}
 
 	@Override

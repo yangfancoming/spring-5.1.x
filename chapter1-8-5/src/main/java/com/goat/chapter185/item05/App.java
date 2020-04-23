@@ -36,10 +36,9 @@ public class App {
 	}
 
 	private void common(String profile){
-		System.setProperty(DEFAULT_PROFILES_PROPERTY_NAME, profile);
+		System.setProperty(DEFAULT_PROFILES_PROPERTY_NAME, profile); // profile激活方式一
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean4.xml");
 		Dog dog = applicationContext.getBean("dog", Dog.class);
 		dog.sayHello();
 	}
-
 }

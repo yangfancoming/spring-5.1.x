@@ -21,14 +21,11 @@ import org.springframework.util.Assert;
 
 /**
  * A root bean definition represents the merged bean definition that backs a specific bean in a Spring BeanFactory at runtime. 
- * It might have been created from multiple original bean definitions that inherit from each other,
- * typically registered as {@link GenericBeanDefinition GenericBeanDefinitions}.
+ * It might have been created from multiple original bean definitions that inherit from each other,typically registered as {@link GenericBeanDefinition GenericBeanDefinitions}.
  * A root bean definition is essentially the 'unified' bean definition view at runtime.
- * Root bean definitions may also be used for registering individual bean definitions
- * in the configuration phase. However, since Spring 2.5, the preferred way to register
- * bean definitions programmatically is the {@link GenericBeanDefinition} class.
- * GenericBeanDefinition has the advantage that it allows to dynamically define
- * parent dependencies, not 'hard-coding' the role as a root bean definition.
+ * Root bean definitions may also be used for registering individual bean definitions in the configuration phase.
+ * However, since Spring 2.5, the preferred way to register bean definitions programmatically is the {@link GenericBeanDefinition} class.
+ * GenericBeanDefinition has the advantage that it allows to dynamically define parent dependencies, not 'hard-coding' the role as a root bean definition.
  * @see GenericBeanDefinition
  * @see ChildBeanDefinition
  */
@@ -152,8 +149,7 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 	 * Create a new RootBeanDefinition for a singleton,using the given autowire mode.
 	 * @param beanClass the class of the bean to instantiate
 	 * @param autowireMode by name or type, using the constants in this interface
-	 * @param dependencyCheck whether to perform a dependency check for objects
-	 * (not applicable to autowiring a constructor, thus ignored there)
+	 * @param dependencyCheck whether to perform a dependency check for objects (not applicable to autowiring a constructor, thus ignored there)
 	 */
 	public RootBeanDefinition(@Nullable Class<?> beanClass, int autowireMode, boolean dependencyCheck) {
 		super();
@@ -224,24 +220,18 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 
 	@Override
 	public void setParentName(@Nullable String parentName) {
-		if (parentName != null) {
-			throw new IllegalArgumentException("Root bean cannot be changed into a child bean with parent reference");
-		}
+		if (parentName != null) throw new IllegalArgumentException("Root bean cannot be changed into a child bean with parent reference");
 	}
 
-	/**
-	 * Register a target definition that is being decorated by this bean definition.
-	 */
+	// Register a target definition that is being decorated by this bean definition.
 	public void setDecoratedDefinition(@Nullable BeanDefinitionHolder decoratedDefinition) {
 		this.decoratedDefinition = decoratedDefinition;
 	}
 
-	/**
-	 * Return the target definition that is being decorated by this bean definition, if any.
-	 */
+	// Return the target definition that is being decorated by this bean definition, if any.
 	@Nullable
 	public BeanDefinitionHolder getDecoratedDefinition() {
-		return this.decoratedDefinition;
+		return decoratedDefinition;
 	}
 
 	/**
@@ -261,34 +251,24 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 	 */
 	@Nullable
 	public AnnotatedElement getQualifiedElement() {
-		return this.qualifiedElement;
+		return qualifiedElement;
 	}
 
-	/**
-	 * Specify a generics-containing target type of this bean definition, if known in advance.
-	 * @since 4.3.3
-	 */
+	// Specify a generics-containing target type of this bean definition, if known in advance. @since 4.3.3
 	public void setTargetType(ResolvableType targetType) {
 		this.targetType = targetType;
 	}
 
-	/**
-	 * Specify the target type of this bean definition, if known in advance.
-	 * @since 3.2.2
-	 */
+	// Specify the target type of this bean definition, if known in advance. @since 3.2.2
 	public void setTargetType(@Nullable Class<?> targetType) {
 		this.targetType = (targetType != null ? ResolvableType.forClass(targetType) : null);
 	}
 
-	/**
-	 * Return the target type of this bean definition, if known
-	 * (either specified in advance or resolved on first instantiation).
-	 * @since 3.2.2
-	 */
+	// Return the target type of this bean definition, if known (either specified in advance or resolved on first instantiation). @since 3.2.2
 	@Nullable
 	public Class<?> getTargetType() {
-		if (this.resolvedTargetType != null) {
-			return this.resolvedTargetType;
+		if (resolvedTargetType != null) {
+			return resolvedTargetType;
 		}
 		ResolvableType targetType = this.targetType;
 		return (targetType != null ? targetType.resolve() : null);
@@ -307,10 +287,8 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 	}
 
 	/**
-	 * Determine preferred constructors to use for default construction, if any.
-	 * Constructor arguments will be autowired if necessary.
-	 * @return one or more preferred constructors, or {@code null} if none
-	 * (in which case the regular no-arg default constructor will be called)
+	 * Determine preferred constructors to use for default construction, if any.Constructor arguments will be autowired if necessary.
+	 * @return one or more preferred constructors, or {@code null} if none (in which case the regular no-arg default constructor will be called)
 	 * @since 5.1
 	 */
 	@Nullable
@@ -318,18 +296,14 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 		return null;
 	}
 
-	/**
-	 * Specify a factory method name that refers to a non-overloaded method.
-	 */
+	// Specify a factory method name that refers to a non-overloaded method.
 	public void setUniqueFactoryMethodName(String name) {
 		Assert.hasText(name, "Factory method name must not be empty");
 		setFactoryMethodName(name);
-		this.isFactoryMethodUnique = true;
+		isFactoryMethodUnique = true;
 	}
 
-	/**
-	 * Check whether the given candidate qualifies as a factory method.
-	 */
+	// Check whether the given candidate qualifies as a factory method.
 	public boolean isFactoryMethod(Method candidate) {
 		return candidate.getName().equals(getFactoryMethodName());
 	}
@@ -340,54 +314,47 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 	 */
 	@Nullable
 	public Method getResolvedFactoryMethod() {
-		return this.factoryMethodToIntrospect;
+		return factoryMethodToIntrospect;
 	}
 
 	public void registerExternallyManagedConfigMember(Member configMember) {
-		synchronized (this.postProcessingLock) {
-			if (this.externallyManagedConfigMembers == null) {
-				this.externallyManagedConfigMembers = new HashSet<>(1);
-			}
-			this.externallyManagedConfigMembers.add(configMember);
+		synchronized (postProcessingLock) {
+			if (externallyManagedConfigMembers == null) externallyManagedConfigMembers = new HashSet<>(1);
+			externallyManagedConfigMembers.add(configMember);
 		}
 	}
 
 	public boolean isExternallyManagedConfigMember(Member configMember) {
-		synchronized (this.postProcessingLock) {
-			return (this.externallyManagedConfigMembers != null && this.externallyManagedConfigMembers.contains(configMember));
+		synchronized (postProcessingLock) {
+			return (externallyManagedConfigMembers != null && externallyManagedConfigMembers.contains(configMember));
 		}
 	}
 
 	public void registerExternallyManagedInitMethod(String initMethod) {
-		synchronized (this.postProcessingLock) {
-			if (this.externallyManagedInitMethods == null) {
-				this.externallyManagedInitMethods = new HashSet<>(1);
-			}
-			this.externallyManagedInitMethods.add(initMethod);
+		synchronized (postProcessingLock) {
+			if (externallyManagedInitMethods == null) externallyManagedInitMethods = new HashSet<>(1);
+			externallyManagedInitMethods.add(initMethod);
 		}
 	}
 
 	public boolean isExternallyManagedInitMethod(String initMethod) {
-		synchronized (this.postProcessingLock) {
-			return (this.externallyManagedInitMethods != null && this.externallyManagedInitMethods.contains(initMethod));
+		synchronized (postProcessingLock) {
+			return (externallyManagedInitMethods != null && externallyManagedInitMethods.contains(initMethod));
 		}
 	}
 
 	public void registerExternallyManagedDestroyMethod(String destroyMethod) {
-		synchronized (this.postProcessingLock) {
-			if (this.externallyManagedDestroyMethods == null) {
-				this.externallyManagedDestroyMethods = new HashSet<>(1);
-			}
-			this.externallyManagedDestroyMethods.add(destroyMethod);
+		synchronized (postProcessingLock) {
+			if (externallyManagedDestroyMethods == null) externallyManagedDestroyMethods = new HashSet<>(1);
+			externallyManagedDestroyMethods.add(destroyMethod);
 		}
 	}
 
 	public boolean isExternallyManagedDestroyMethod(String destroyMethod) {
-		synchronized (this.postProcessingLock) {
-			return (this.externallyManagedDestroyMethods != null && this.externallyManagedDestroyMethods.contains(destroyMethod));
+		synchronized (postProcessingLock) {
+			return (externallyManagedDestroyMethods != null && externallyManagedDestroyMethods.contains(destroyMethod));
 		}
 	}
-
 
 	@Override
 	public RootBeanDefinition cloneBeanDefinition() {

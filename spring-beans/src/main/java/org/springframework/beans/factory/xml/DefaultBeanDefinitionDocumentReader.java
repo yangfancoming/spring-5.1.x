@@ -119,6 +119,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		// 2、解析并验证profile节点，如果配置了profile属性，则验证当前环境是否激活了对应的profile节点，
 		// 用于多开发环境配置，该方式在开发中已不多见。
 		// 例如：System.setProperty("spring.profiles.active", "dev");
+		// 在解析之前，如果命名空间是以 http://www.springframework.org/schema/beans 开头，将会检查 profile 属性
 		if (this.delegate.isDefaultNamespace(root)) {
 			//获取beans标签的profile属性
 			// 这块说的是根节点 <beans ... profile="dev" /> 中的 profile 是否是当前环境需要的，

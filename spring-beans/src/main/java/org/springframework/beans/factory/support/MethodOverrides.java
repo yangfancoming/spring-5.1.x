@@ -10,10 +10,8 @@ import java.util.Set;
 import org.springframework.lang.Nullable;
 
 /**
- * Set of method overrides, determining which, if any, methods on a
- * managed object the Spring IoC container will override at runtime.
- * The currently supported {@link MethodOverride} variants are
- * {@link LookupOverride} and {@link ReplaceOverride}.
+ * Set of method overrides, determining which, if any, methods on a  managed object the Spring IoC container will override at runtime.
+ * The currently supported {@link MethodOverride} variants are {@link LookupOverride} and {@link ReplaceOverride}.
  * @since 1.1
  * @see MethodOverride
  */
@@ -23,22 +21,16 @@ public class MethodOverrides {
 
 	private volatile boolean modified = false;
 
-	/**
-	 * Create new MethodOverrides.
-	 */
+	//  Create new MethodOverrides.
 	public MethodOverrides() {
 	}
 
-	/**
-	 * Deep copy constructor.
-	 */
+	// Deep copy constructor.
 	public MethodOverrides(MethodOverrides other) {
 		addOverrides(other);
 	}
 
-	/**
-	 * Copy all given method overrides into this object.
-	 */
+	//  Copy all given method overrides into this object.
 	public void addOverrides(@Nullable MethodOverrides other) {
 		if (other != null) {
 			this.modified = true;
@@ -46,9 +38,7 @@ public class MethodOverrides {
 		}
 	}
 
-	/**
-	 * Add the given method override.
-	 */
+	//  Add the given method override.
 	public void addOverride(MethodOverride override) {
 		this.modified = true;
 		this.overrides.add(override);
@@ -64,9 +54,7 @@ public class MethodOverrides {
 		return this.overrides;
 	}
 
-	/**
-	 * Return whether the set of method overrides is empty.
-	 */
+	// Return whether the set of method overrides is empty.
 	public boolean isEmpty() {
 		return (!this.modified || this.overrides.isEmpty());
 	}
@@ -95,20 +83,14 @@ public class MethodOverrides {
 
 	@Override
 	public boolean equals(Object other) {
-		if (this == other) {
-			return true;
-		}
-		if (!(other instanceof MethodOverrides)) {
-			return false;
-		}
+		if (this == other) return true;
+		if (!(other instanceof MethodOverrides)) return false;
 		MethodOverrides that = (MethodOverrides) other;
 		return this.overrides.equals(that.overrides);
-
 	}
 
 	@Override
 	public int hashCode() {
 		return this.overrides.hashCode();
 	}
-
 }

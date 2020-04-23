@@ -12,8 +12,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link EntityResolver} implementation that delegates to a {@link BeansDtdResolver}
- * and a {@link PluggableSchemaResolver} for DTDs and XML schemas, respectively.
+ * {@link EntityResolver} implementation that delegates to a {@link BeansDtdResolver}  and a {@link PluggableSchemaResolver} for DTDs and XML schemas, respectively.
  * @since 2.0
  * @see BeansDtdResolver
  * @see PluggableSchemaResolver
@@ -31,8 +30,7 @@ public class DelegatingEntityResolver implements EntityResolver {
 	private final EntityResolver schemaResolver;
 
 	/**
-	 * Create a new DelegatingEntityResolver that delegates to
-	 * a default {@link BeansDtdResolver} and a default {@link PluggableSchemaResolver}.
+	 * Create a new DelegatingEntityResolver that delegates to a default {@link BeansDtdResolver} and a default {@link PluggableSchemaResolver}.
 	 * Configures the {@link PluggableSchemaResolver} with the supplied {@link ClassLoader}.
 	 * @param classLoader the ClassLoader to use for loading (can be {@code null}) to use the default ClassLoader)
 	 */
@@ -58,15 +56,14 @@ public class DelegatingEntityResolver implements EntityResolver {
 	public InputSource resolveEntity(@Nullable String publicId, @Nullable String systemId) throws SAXException, IOException {
 		if (systemId != null) {
 			if (systemId.endsWith(DTD_SUFFIX)) {
-				return this.dtdResolver.resolveEntity(publicId, systemId);
+				return dtdResolver.resolveEntity(publicId, systemId);
 			}else if (systemId.endsWith(XSD_SUFFIX)) {
-				return this.schemaResolver.resolveEntity(publicId, systemId);
+				return schemaResolver.resolveEntity(publicId, systemId);
 			}
 		}
 		// Fall back to the parser's default behavior.
 		return null;
 	}
-
 
 	@Override
 	public String toString() {

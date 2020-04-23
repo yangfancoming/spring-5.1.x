@@ -101,19 +101,9 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
 			// 为当前BeanFactory设置一个标识id 用于 BeanFactory 的序列化，部分人应该都用不到
 			beanFactory.setSerializationId(getId());
-			/**
-			 配置beanFactory的一些定制化属性， 如
-				 是否允许循环依赖，
-				 是否支持definition重写
-				 设置 BeanFactory 的两个配置属性：
-				 是否允许 Bean 覆盖、
-				 是否允许循环引用
-			*/
-			// 下面这两个方法很重要，别跟丢了，具体细节之后说
 			// 设置 BeanFactory 的两个配置属性：是否允许 Bean 覆盖、是否允许循环引用
 			customizeBeanFactory(beanFactory);
-			// 这步就关键了，加载xml文件信息 ，载入BeanDefinations，给BeanFactory工厂提供创建bean的原材料！
-			// 加载 Bean 到 BeanFactory 中
+			// 这步就关键了，加载xml文件信息 ，载入BeanDefinations， 加载Bean到BeanFactory中，给BeanFactory工厂提供创建bean的原材料！
 			loadBeanDefinitions(beanFactory);
 			synchronized (this.beanFactoryMonitor) {
 				this.beanFactory = beanFactory;
