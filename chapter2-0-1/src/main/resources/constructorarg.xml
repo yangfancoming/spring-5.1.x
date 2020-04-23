@@ -5,10 +5,9 @@
 	   http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-	<bean id="beforeMethodReplaced" class="com.goat.chapter201.replacedmethod.BeforeMethodReplaced">
-		<!-- 方法替换 -->
-		<replaced-method name="printDefaultName" replacer="testMethodReplaced"/>
+	<bean id="testConstructorArg" class="com.goat.chapter201.constructorarg.TestConstructorArg">
+		<!-- 这里展示一个构造函数的情况下，如果有两个以上，解析会更复杂 -->
+		<constructor-arg index="0" value="Goat"/>
+		<constructor-arg index="1" value="23"/>
 	</bean>
-
-	<bean id="testMethodReplaced" class="com.goat.chapter201.replacedmethod.TestMethodReplaced"/>
 </beans>

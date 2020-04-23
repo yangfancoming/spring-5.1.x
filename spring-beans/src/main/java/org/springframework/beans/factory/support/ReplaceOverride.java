@@ -10,11 +10,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Extension of MethodOverride that represents an arbitrary
- * override of a method by the IoC container.
- *
- * Any non-final method can be overridden, irrespective of its
- * parameters and return types.
+ * Extension of MethodOverride that represents an arbitrary override of a method by the IoC container.
+ * Any non-final method can be overridden, irrespective of its parameters and return types.
  * @since 1.1
  */
 public class ReplaceOverride extends MethodOverride {
@@ -34,17 +31,13 @@ public class ReplaceOverride extends MethodOverride {
 		this.methodReplacerBeanName = methodReplacerBeanName;
 	}
 
-
-	/**
-	 * Return the name of the bean implementing MethodReplacer.
-	 */
+	// Return the name of the bean implementing MethodReplacer.
 	public String getMethodReplacerBeanName() {
 		return this.methodReplacerBeanName;
 	}
 
 	/**
-	 * Add a fragment of a class string, like "Exception"
-	 * or "java.lang.Exc", to identify a parameter type.
+	 * Add a fragment of a class string, like "Exception" or "java.lang.Exc", to identify a parameter type.
 	 * @param identifier a substring of the fully qualified class name
 	 */
 	public void addTypeIdentifier(String identifier) {
@@ -74,15 +67,13 @@ public class ReplaceOverride extends MethodOverride {
 		return true;
 	}
 
-
 	@Override
 	public boolean equals(Object other) {
 		if (!(other instanceof ReplaceOverride) || !super.equals(other)) {
 			return false;
 		}
 		ReplaceOverride that = (ReplaceOverride) other;
-		return (ObjectUtils.nullSafeEquals(this.methodReplacerBeanName, that.methodReplacerBeanName) &&
-				ObjectUtils.nullSafeEquals(this.typeIdentifiers, that.typeIdentifiers));
+		return (ObjectUtils.nullSafeEquals(this.methodReplacerBeanName, that.methodReplacerBeanName) && ObjectUtils.nullSafeEquals(this.typeIdentifiers, that.typeIdentifiers));
 	}
 
 	@Override
@@ -97,5 +88,4 @@ public class ReplaceOverride extends MethodOverride {
 	public String toString() {
 		return "Replace override for method '" + getMethodName() + "'";
 	}
-
 }

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
-<xsd:schema xmlns="http://www.springframework.org/schema/beans"
-		xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-		targetNamespace="http://www.springframework.org/schema/beans">
+<xsd:schema xmlns="http://www.springframework.org/schema/beans" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.springframework.org/schema/beans">
 
 	<xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
 
@@ -42,17 +40,11 @@
 	<!-- base types -->
 	<xsd:complexType name="identifiedType" abstract="true">
 		<xsd:annotation>
-			<xsd:documentation><![CDATA[
-	The unique identifier for a com.goat.chapter115.bean. The scope of the identifier
-	is the enclosing bean factory.
-			]]></xsd:documentation>
+			<xsd:documentation><![CDATA[The unique identifier for a com.goat.chapter115.bean. The scope of the identifier is the enclosing bean factory.]]></xsd:documentation>
 		</xsd:annotation>
 		<xsd:attribute name="id" type="xsd:string">
 			<xsd:annotation>
-				<xsd:documentation><![CDATA[
-	The unique identifier for a com.goat.chapter115.bean. A bean id may not be used more than once
-	within the same <beans> element.
-				]]></xsd:documentation>
+				<xsd:documentation><![CDATA[The unique identifier for a com.goat.chapter115.bean. A bean id may not be used more than once within the same <beans> element.]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 	</xsd:complexType>
@@ -161,18 +153,12 @@
 			</xsd:attribute>
 			<xsd:attribute name="default-init-method" type="xsd:string">
 				<xsd:annotation>
-					<xsd:documentation><![CDATA[
-	The default 'init-method' value; see the documentation for the
-	'init-method' attribute of the 'bean' element.
-					]]></xsd:documentation>
+					<xsd:documentation><![CDATA[The default 'init-method' value; see the documentation for the 'init-method' attribute of the 'bean' element.]]></xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
 			<xsd:attribute name="default-destroy-method" type="xsd:string">
 				<xsd:annotation>
-					<xsd:documentation><![CDATA[
-	The default 'destroy-method' value; see the documentation for the
-	'destroy-method' attribute of the 'bean' element.
-					]]></xsd:documentation>
+					<xsd:documentation><![CDATA[The default 'destroy-method' value; see the documentation for the 'destroy-method' attribute of the 'bean' element.]]></xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
 			<xsd:anyAttribute namespace="##other" processContents="lax"/>
@@ -193,19 +179,14 @@
 
 	<xsd:element name="import">
 		<xsd:annotation>
-			<xsd:documentation source="java:org.springframework.core.io.Resource"><![CDATA[
-	Specifies an XML bean definition resource to import.
-			]]></xsd:documentation>
+			<xsd:documentation source="java:org.springframework.core.io.Resource"><![CDATA[Specifies an XML bean definition resource to import.]]></xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:restriction base="xsd:anyType">
 					<xsd:attribute name="resource" type="xsd:string" use="required">
 						<xsd:annotation>
-							<xsd:documentation><![CDATA[
-	The relative resource location of the XML (bean definition) file to import,
-	for example "myImport.xml" or "includes/myImport.xml" or "../myImport.xml".
-							]]></xsd:documentation>
+							<xsd:documentation><![CDATA[The relative resource location of the XML (bean definition) file to import,for example "myImport.xml" or "includes/myImport.xml" or "../myImport.xml".]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
 				</xsd:restriction>
@@ -215,26 +196,19 @@
 
 	<xsd:element name="alias">
 		<xsd:annotation>
-			<xsd:documentation><![CDATA[
-	Defines an alias for a bean (which can reside in a different definition
-	resource).
-			]]></xsd:documentation>
+			<xsd:documentation><![CDATA[Defines an alias for a bean (which can reside in a different definition resource).]]></xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:restriction base="xsd:anyType">
 					<xsd:attribute name="name" type="xsd:string" use="required">
 						<xsd:annotation>
-							<xsd:documentation><![CDATA[
-	The name of the bean to define an alias for.
-							]]></xsd:documentation>
+							<xsd:documentation><![CDATA[The name of the bean to define an alias for.]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
 					<xsd:attribute name="alias" type="xsd:string" use="required">
 						<xsd:annotation>
-							<xsd:documentation><![CDATA[
-	The alias name to define for the com.goat.chapter115.bean.
-							]]></xsd:documentation>
+							<xsd:documentation><![CDATA[The alias name to define for the com.goat.chapter115.bean.]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
 				</xsd:restriction>
@@ -514,25 +488,19 @@
 
 	<xsd:element name="meta" type="metaType">
 		<xsd:annotation>
-			<xsd:documentation><![CDATA[
-	Arbitrary metadata attached to a bean definition.
-			]]></xsd:documentation>
+			<xsd:documentation><![CDATA[Arbitrary metadata attached to a bean definition.]]></xsd:documentation>
 		</xsd:annotation>
 	</xsd:element>
 
 	<xsd:complexType name="metaType">
 		<xsd:attribute name="key" type="xsd:string" use="required">
 			<xsd:annotation>
-				<xsd:documentation><![CDATA[
-	The key name of the metadata attribute being defined.
-				]]></xsd:documentation>
+				<xsd:documentation><![CDATA[The key name of the metadata attribute being defined.]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 		<xsd:attribute name="value" type="xsd:string" use="required">
 			<xsd:annotation>
-				<xsd:documentation><![CDATA[
-	The value of the metadata attribute being defined (as a simple String).
-				]]></xsd:documentation>
+				<xsd:documentation><![CDATA[The value of the metadata attribute being defined (as a simple String).]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 	</xsd:complexType>
@@ -620,16 +588,12 @@
 			</xsd:attribute>
 			<xsd:attribute name="ref" type="xsd:string">
 				<xsd:annotation>
-					<xsd:documentation><![CDATA[
-	A short-cut alternative to a nested "<ref bean='...'/>" element.
-					]]></xsd:documentation>
+					<xsd:documentation><![CDATA[A short-cut alternative to a nested "<ref bean='...'/>" element.]]></xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
 			<xsd:attribute name="value" type="xsd:string">
 				<xsd:annotation>
-					<xsd:documentation><![CDATA[
-	A short-cut alternative to a nested "<value>...<value/>" element.
-					]]></xsd:documentation>
+					<xsd:documentation><![CDATA[A short-cut alternative to a nested "<value>...<value/>" element.]]></xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
 		</xsd:complexType>
@@ -717,8 +681,7 @@
 	<xsd:element name="replaced-method">
 		<xsd:annotation>
 			<xsd:documentation><![CDATA[
-	Similar to the lookup method mechanism, the replaced-method element
-	is used to control IoC container method overriding: Method Injection.
+	Similar to the lookup method mechanism, the replaced-method element is used to control IoC container method overriding: Method Injection.
 	This mechanism allows the overriding of a method with arbitrary code.
 			]]></xsd:documentation>
 		</xsd:annotation>
@@ -731,19 +694,17 @@
 			<xsd:attribute name="name" type="xsd:string">
 				<xsd:annotation>
 					<xsd:documentation><![CDATA[
-	The name of the method whose implementation must be replaced by the
-	IoC container. If this method is not overloaded, there is no need
-	to use arg-type subelements. If this method is overloaded, arg-type
-	subelements must be used for all override definitions for the method.
+	The name of the method whose implementation must be replaced by the IoC container.
+	If this method is not overloaded, there is no need to use arg-type subelements.
+	If this method is overloaded, arg-type subelements must be used for all override definitions for the method.
 					]]></xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
 			<xsd:attribute name="replacer" type="xsd:string">
 				<xsd:annotation>
 					<xsd:documentation source="java:org.springframework.beans.factory.support.MethodReplacer"><![CDATA[
-	Bean name of an implementation of the MethodReplacer interface in the
-	current or ancestor factories. This may be a singleton or prototype
-	com.goat.chapter115.bean. If it is a prototype, a new instance will be used for each
+	Bean name of an implementation of the MethodReplacer interface in the current or ancestor factories.
+	This may be a singleton or prototype com.goat.chapter115.bean. If it is a prototype, a new instance will be used for each
 	method replacement. Singleton usage is the norm.
 					]]></xsd:documentation>
 				</xsd:annotation>
@@ -753,10 +714,7 @@
 
 	<xsd:element name="arg-type">
 		<xsd:annotation>
-			<xsd:documentation><![CDATA[
-	Identifies an argument for a replaced method in the event of
-	method overloading.
-			]]></xsd:documentation>
+			<xsd:documentation><![CDATA[Identifies an argument for a replaced method in the event of method overloading.]]></xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType mixed="true">
 			<xsd:choice minOccurs="0" maxOccurs="unbounded"/>
@@ -769,7 +727,6 @@
 	- java.lang.String
 	- String
 	- Str
-
 	As the number of arguments will be checked also, this convenience
 	can often be used to save typing.
 					]]></xsd:documentation>
@@ -780,26 +737,19 @@
 
 	<xsd:element name="ref">
 		<xsd:annotation>
-			<xsd:documentation><![CDATA[
-	Defines a reference to another bean in this factory or an external
-	factory (parent or included factory).
-			]]></xsd:documentation>
+			<xsd:documentation><![CDATA[Defines a reference to another bean in this factory or an external factory (parent or included factory).]]></xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:restriction base="xsd:anyType">
 					<xsd:attribute name="bean" type="xsd:string">
 						<xsd:annotation>
-							<xsd:documentation><![CDATA[
-	The name of the referenced com.goat.chapter115.bean.
-							]]></xsd:documentation>
+							<xsd:documentation><![CDATA[The name of the referenced com.goat.chapter115.bean.]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
 					<xsd:attribute name="parent" type="xsd:string">
 						<xsd:annotation>
-							<xsd:documentation><![CDATA[
-	The name of the referenced bean in a parent factory.
-						]]></xsd:documentation>
+							<xsd:documentation><![CDATA[The name of the referenced bean in a parent factory.]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
 				</xsd:restriction>
@@ -822,9 +772,7 @@
 				<xsd:restriction base="xsd:anyType">
 					<xsd:attribute name="bean" type="xsd:string">
 						<xsd:annotation>
-							<xsd:documentation><![CDATA[
-	The name of the referenced com.goat.chapter115.bean.
-							]]></xsd:documentation>
+							<xsd:documentation><![CDATA[The name of the referenced com.goat.chapter115.bean.]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
 				</xsd:restriction>
@@ -897,8 +845,7 @@
 		<xsd:annotation>
 			<xsd:documentation><![CDATA[
 	An array can contain multiple inner bean, ref, collection, or value elements.
-	This configuration element will always result in an array, even when being
-	defined e.g. as a value for a map with value type Object.
+	This configuration element will always result in an array, even when being defined e.g. as a value for a map with value type Object.
 			]]></xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
@@ -906,9 +853,7 @@
 				<xsd:extension base="listOrSetType">
 					<xsd:attribute name="merge" default="default" type="defaultable-boolean">
 						<xsd:annotation>
-							<xsd:documentation><![CDATA[
-	Enables/disables merging for collections when using parent/child beans.
-							]]></xsd:documentation>
+							<xsd:documentation><![CDATA[Enables/disables merging for collections when using parent/child beans.]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
 				</xsd:extension>
@@ -920,8 +865,7 @@
 		<xsd:annotation>
 			<xsd:documentation><![CDATA[
 	A list can contain multiple inner bean, ref, collection, or value elements.
-	A list can also map to an array type; the necessary conversion is performed
-	automatically.
+	A list can also map to an array type; the necessary conversion is performed automatically.
 			]]></xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
@@ -929,9 +873,7 @@
 				<xsd:extension base="listOrSetType">
 					<xsd:attribute name="merge" default="default" type="defaultable-boolean">
 						<xsd:annotation>
-							<xsd:documentation><![CDATA[
-	Enables/disables merging for collections when using parent/child beans.
-							]]></xsd:documentation>
+							<xsd:documentation><![CDATA[Enables/disables merging for collections when using parent/child beans.]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
 				</xsd:extension>
@@ -941,18 +883,14 @@
 
 	<xsd:element name="set">
 		<xsd:annotation>
-			<xsd:documentation><![CDATA[
-	A set can contain multiple inner bean, ref, collection, or value elements.
-			]]></xsd:documentation>
+			<xsd:documentation><![CDATA[A set can contain multiple inner bean, ref, collection, or value elements.]]></xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="listOrSetType">
 					<xsd:attribute name="merge" default="default" type="defaultable-boolean">
 						<xsd:annotation>
-							<xsd:documentation><![CDATA[
-	Enables/disables merging for collections when using parent/child beans.
-							]]></xsd:documentation>
+							<xsd:documentation><![CDATA[Enables/disables merging for collections when using parent/child beans.]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
 				</xsd:extension>
@@ -962,18 +900,14 @@
 
 	<xsd:element name="map">
 		<xsd:annotation>
-			<xsd:documentation><![CDATA[
-	A mapping from a key to an object. Maps may be empty.
-			]]></xsd:documentation>
+			<xsd:documentation><![CDATA[A mapping from a key to an object. Maps may be empty.]]></xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="mapType">
 					<xsd:attribute name="merge" default="default" type="defaultable-boolean">
 						<xsd:annotation>
-							<xsd:documentation><![CDATA[
-	Enables/disables merging for collections when using parent/child beans.
-							]]></xsd:documentation>
+							<xsd:documentation><![CDATA[Enables/disables merging for collections when using parent/child beans.]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
 				</xsd:extension>
@@ -983,28 +917,20 @@
 
 	<xsd:element name="entry" type="entryType">
 		<xsd:annotation>
-			<xsd:documentation><![CDATA[
-	A map entry can be an inner bean, ref, value, or collection.
-	The key of the entry is given by the "key" attribute or child element.
-			]]></xsd:documentation>
+			<xsd:documentation><![CDATA[A map entry can be an inner bean, ref, value, or collection.The key of the entry is given by the "key" attribute or child element.]]></xsd:documentation>
 		</xsd:annotation>
 	</xsd:element>
 
 	<xsd:element name="props">
 		<xsd:annotation>
-			<xsd:documentation><![CDATA[
-	Props elements differ from map elements in that values must be strings.
-	Props may be empty.
-			]]></xsd:documentation>
+			<xsd:documentation><![CDATA[Props elements differ from map elements in that values must be strings.Props may be empty.]]></xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="propsType">
 					<xsd:attribute name="merge" default="default" type="defaultable-boolean">
 						<xsd:annotation>
-							<xsd:documentation><![CDATA[
-	Enables/disables merging for collections when using parent/child beans.
-							]]></xsd:documentation>
+							<xsd:documentation><![CDATA[Enables/disables merging for collections when using parent/child beans.]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
 				</xsd:extension>
@@ -1014,9 +940,7 @@
 
 	<xsd:element name="key">
 		<xsd:annotation>
-			<xsd:documentation><![CDATA[
-	A key element can contain an inner bean, ref, value, or collection.
-			]]></xsd:documentation>
+			<xsd:documentation><![CDATA[A key element can contain an inner bean, ref, value, or collection.]]></xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:group ref="collectionElements"/>
@@ -1025,18 +949,13 @@
 
 	<xsd:element name="prop">
 		<xsd:annotation>
-			<xsd:documentation><![CDATA[
-	The string value of the property. Note that whitespace is trimmed
-	off to avoid unwanted whitespace caused by typical XML formatting.
-			]]></xsd:documentation>
+			<xsd:documentation><![CDATA[The string value of the property. Note that whitespace is trimmed off to avoid unwanted whitespace caused by typical XML formatting.]]></xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType mixed="true">
 			<xsd:choice minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:attribute name="key" type="xsd:string" use="required">
 				<xsd:annotation>
-					<xsd:documentation><![CDATA[
-	The key of the property entry.
-					]]></xsd:documentation>
+					<xsd:documentation><![CDATA[The key of the property entry.]]></xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
 		</xsd:complexType>
@@ -1062,23 +981,17 @@
 		</xsd:sequence>
 		<xsd:attribute name="name" type="xsd:string" use="required">
 			<xsd:annotation>
-				<xsd:documentation><![CDATA[
-	The name of the property, following JavaBean naming conventions.
-				]]></xsd:documentation>
+				<xsd:documentation><![CDATA[The name of the property, following JavaBean naming conventions.]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 		<xsd:attribute name="ref" type="xsd:string">
 			<xsd:annotation>
-				<xsd:documentation><![CDATA[
-	A short-cut alternative to a nested "<ref bean='...'/>".
-				]]></xsd:documentation>
+				<xsd:documentation><![CDATA[A short-cut alternative to a nested "<ref bean='...'/>".]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 		<xsd:attribute name="value" type="xsd:string">
 			<xsd:annotation>
-				<xsd:documentation><![CDATA[
-	A short-cut alternative to a nested "<value>...</value>" element.
-				]]></xsd:documentation>
+				<xsd:documentation><![CDATA[A short-cut alternative to a nested "<value>...</value>" element.]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 	</xsd:complexType>
@@ -1089,10 +1002,7 @@
 	<xsd:complexType name="collectionType">
 		<xsd:attribute name="value-type" type="xsd:string">
 			<xsd:annotation>
-				<xsd:documentation source="java:java.lang.Class"><![CDATA[
-	The default Java type for nested values. Must be a fully qualified
-	class name.
-				]]></xsd:documentation>
+				<xsd:documentation source="java:java.lang.Class"><![CDATA[The default Java type for nested values. Must be a fully qualified class name.]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 	</xsd:complexType>
@@ -1118,10 +1028,7 @@
 				</xsd:sequence>
 				<xsd:attribute name="key-type" type="xsd:string">
 					<xsd:annotation>
-						<xsd:documentation source="java:java.lang.Class"><![CDATA[
-	The default Java type for nested entry keys. Must be a fully qualified
-	class name.
-						]]></xsd:documentation>
+						<xsd:documentation source="java:java.lang.Class"><![CDATA[The default Java type for nested entry keys. Must be a fully qualified class name.]]></xsd:documentation>
 					</xsd:annotation>
 				</xsd:attribute>
 			</xsd:extension>
@@ -1136,41 +1043,27 @@
 		</xsd:sequence>
 		<xsd:attribute name="key" type="xsd:string">
 			<xsd:annotation>
-				<xsd:documentation><![CDATA[
-	Each map element must specify its key as attribute or as child element.
-	A key attribute is always a String value.
-				]]></xsd:documentation>
+				<xsd:documentation><![CDATA[Each map element must specify its key as attribute or as child element.A key attribute is always a String value.]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 		<xsd:attribute name="key-ref" type="xsd:string">
 			<xsd:annotation>
-				<xsd:documentation><![CDATA[
-	A short-cut alternative to a to a "key" element with a nested
-	"<ref bean='...'/>".
-				]]></xsd:documentation>
+				<xsd:documentation><![CDATA[A short-cut alternative to a to a "key" element with a nested "<ref bean='...'/>".]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 		<xsd:attribute name="value" type="xsd:string">
 			<xsd:annotation>
-				<xsd:documentation><![CDATA[
-	A short-cut alternative to a nested "<value>...</value>"
-	element.
-				]]></xsd:documentation>
+				<xsd:documentation><![CDATA[A short-cut alternative to a nested "<value>...</value>" element.]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 		<xsd:attribute name="value-ref" type="xsd:string">
 			<xsd:annotation>
-				<xsd:documentation><![CDATA[
-	A short-cut alternative to a nested "<ref bean='...'/>".
-				]]></xsd:documentation>
+				<xsd:documentation><![CDATA[A short-cut alternative to a nested "<ref bean='...'/>".]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 		<xsd:attribute name="value-type" type="xsd:string">
 			<xsd:annotation>
-				<xsd:documentation><![CDATA[
-	A short-cut alternative to a 'type' attribute on a nested
-	"<value type='...' >...</value>" element.
-				]]></xsd:documentation>
+				<xsd:documentation><![CDATA[A short-cut alternative to a 'type' attribute on a nested "<value type='...' >...</value>" element.]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 	</xsd:complexType>
