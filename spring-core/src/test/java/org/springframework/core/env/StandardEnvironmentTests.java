@@ -20,8 +20,6 @@ import static org.springframework.core.env.AbstractEnvironment.*;
 
 /**
  * Unit tests for {@link StandardEnvironment}.
-
-
  */
 @SuppressWarnings("deprecation")
 public class StandardEnvironmentTests {
@@ -196,8 +194,7 @@ public class StandardEnvironmentTests {
 		System.setProperty(DEFAULT_PROFILES_PROPERTY_NAME, "${spring.profiles.default}");
 		try {
 			environment.getDefaultProfiles();
-		}
-		finally {
+		}finally {
 			System.getProperties().remove(DEFAULT_PROFILES_PROPERTY_NAME);
 		}
 	}
@@ -328,21 +325,16 @@ public class StandardEnvironmentTests {
 			protected void validateProfile(String profile) {
 				super.validateProfile(profile);
 				if (profile.contains("-")) {
-					throw new IllegalArgumentException(
-							"Invalid profile [" + profile + "]: must not contain dash character");
+					throw new IllegalArgumentException("Invalid profile [" + profile + "]: must not contain dash character");
 				}
 			}
 		};
-
 		env.addActiveProfile("validProfile"); // succeeds
-
 		try {
 			env.addActiveProfile("invalid-profile");
 			fail("expected validation exception");
-		}
-		catch (IllegalArgumentException ex) {
-			assertThat(ex.getMessage(),
-					equalTo("Invalid profile [invalid-profile]: must not contain dash character"));
+		}catch (IllegalArgumentException ex) {
+			assertThat(ex.getMessage(),equalTo("Invalid profile [invalid-profile]: must not contain dash character"));
 		}
 	}
 
@@ -397,8 +389,7 @@ public class StandardEnvironmentTests {
 			public void checkPropertyAccess(String key) {
 				// see https://download.oracle.com/javase/1.5.0/docs/api/java/lang/System.html#getProperty(java.lang.String)
 				if (DISALLOWED_PROPERTY_NAME.equals(key)) {
-					throw new AccessControlException(
-							String.format("Accessing the system property [%s] is disallowed", DISALLOWED_PROPERTY_NAME));
+					throw new AccessControlException(String.format("Accessing the system property [%s] is disallowed", DISALLOWED_PROPERTY_NAME));
 				}
 			}
 			@Override
@@ -407,12 +398,11 @@ public class StandardEnvironmentTests {
 			}
 		};
 		System.setSecurityManager(securityManager);
-
 		{
 			Map<?, ?> systemProperties = environment.getSystemProperties();
 			assertThat(systemProperties, notNullValue());
 			assertThat(systemProperties, instanceOf(ReadOnlySystemAttributesMap.class));
-			assertThat((String)systemProperties.get(ALLOWED_PROPERTY_NAME), equalTo(ALLOWED_PROPERTY_VALUE));
+			assertThat(systemProperties.get(ALLOWED_PROPERTY_NAME), equalTo(ALLOWED_PROPERTY_VALUE));
 			assertThat(systemProperties.get(DISALLOWED_PROPERTY_NAME), equalTo(null));
 
 			// nothing we can do here in terms of warning the user that there was
@@ -429,12 +419,10 @@ public class StandardEnvironmentTests {
 			try {
 				systemProperties.get(NON_STRING_PROPERTY_NAME);
 				fail("Expected IllegalArgumentException when searching with non-string key against ReadOnlySystemAttributesMap");
-			}
-			catch (IllegalArgumentException ex) {
+			}catch (IllegalArgumentException ex) {
 				// expected
 			}
 		}
-
 		System.setSecurityManager(oldSecurityManager);
 		System.clearProperty(ALLOWED_PROPERTY_NAME);
 		System.clearProperty(DISALLOWED_PROPERTY_NAME);
@@ -446,7 +434,6 @@ public class StandardEnvironmentTests {
 	public void getSystemEnvironment_withAndWithoutSecurityManager() {
 		getModifiableSystemEnvironment().put(ALLOWED_PROPERTY_NAME, ALLOWED_PROPERTY_VALUE);
 		getModifiableSystemEnvironment().put(DISALLOWED_PROPERTY_NAME, DISALLOWED_PROPERTY_VALUE);
-
 		{
 			Map<String, Object> systemEnvironment = environment.getSystemEnvironment();
 			assertThat(systemEnvironment, notNullValue());
@@ -463,18 +450,16 @@ public class StandardEnvironmentTests {
 				}
 				//see https://download.oracle.com/javase/1.5.0/docs/api/java/lang/System.html#getenv(java.lang.String)
 				if (("getenv."+DISALLOWED_PROPERTY_NAME).equals(perm.getName())) {
-					throw new AccessControlException(
-							String.format("Accessing the system environment variable [%s] is disallowed", DISALLOWED_PROPERTY_NAME));
+					throw new AccessControlException(String.format("Accessing the system environment variable [%s] is disallowed", DISALLOWED_PROPERTY_NAME));
 				}
 			}
 		};
 		System.setSecurityManager(securityManager);
-
 		{
 			Map<String, Object> systemEnvironment = environment.getSystemEnvironment();
 			assertThat(systemEnvironment, notNullValue());
 			assertThat(systemEnvironment, instanceOf(ReadOnlySystemAttributesMap.class));
-			assertThat(systemEnvironment.get(ALLOWED_PROPERTY_NAME), equalTo((Object)ALLOWED_PROPERTY_VALUE));
+			assertThat(systemEnvironment.get(ALLOWED_PROPERTY_NAME), equalTo(ALLOWED_PROPERTY_VALUE));
 			assertThat(systemEnvironment.get(DISALLOWED_PROPERTY_NAME), nullValue());
 		}
 
@@ -498,8 +483,7 @@ public class StandardEnvironmentTests {
 					if (obj != null && obj.getClass().getName().equals("java.lang.ProcessEnvironment$StringEnvironment")) {
 						return (Map<String, String>) obj;
 					}
-				}
-				catch (Exception ex) {
+				}catch (Exception ex) {
 					throw new RuntimeException(ex);
 				}
 			}
@@ -509,8 +493,7 @@ public class StandardEnvironmentTests {
 		Class<?> processEnvironmentClass;
 		try {
 			processEnvironmentClass = Class.forName("java.lang.ProcessEnvironment");
-		}
-		catch (Exception ex) {
+		}catch (Exception ex) {
 			throw new IllegalStateException(ex);
 		}
 
@@ -519,11 +502,9 @@ public class StandardEnvironmentTests {
 			theCaseInsensitiveEnvironmentField.setAccessible(true);
 			Object obj = theCaseInsensitiveEnvironmentField.get(null);
 			return (Map<String, String>) obj;
-		}
-		catch (NoSuchFieldException ex) {
+		}catch (NoSuchFieldException ex) {
 			// do nothing
-		}
-		catch (Exception ex) {
+		}catch (Exception ex) {
 			throw new IllegalStateException(ex);
 		}
 
@@ -532,14 +513,11 @@ public class StandardEnvironmentTests {
 			theEnvironmentField.setAccessible(true);
 			Object obj = theEnvironmentField.get(null);
 			return (Map<String, String>) obj;
-		}
-		catch (NoSuchFieldException ex) {
+		}catch (NoSuchFieldException ex) {
 			// do nothing
-		}
-		catch (Exception ex) {
+		}catch (Exception ex) {
 			throw new IllegalStateException(ex);
 		}
-
 		throw new IllegalStateException();
 	}
 

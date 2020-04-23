@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 测试环境配置文件 -->
+	<beans profile="test">
+<!--		<context:property-placeholder location="classpath:test/*.properties, classpath:common/*.properties" />-->
+		<bean id="dog" class="com.goat.chapter185.common.Dog">
+			<!-- 指定构造器参数 index对应构造器中参数的位置 -->
+			<!-- 也可以通过指定参数类型，指定参数名称来注入属性-->
+			<constructor-arg index="0" value="test"/>
+			<constructor-arg index="1" value="1"/>
+		</bean>
+	</beans>
+
+	<!-- 生产环境配置文件 -->
+	<beans profile="pro">
+<!--		<context:property-placeholder location="classpath:production/*.properties, classpath:common/*.properties" />-->
+		<bean id="dog" class="com.goat.chapter185.common.Dog">
+			<!-- 指定构造器参数 index对应构造器中参数的位置 -->
+			<!-- 也可以通过指定参数类型，指定参数名称来注入属性-->
+			<constructor-arg index="0" value="pro"/>
+			<constructor-arg index="1" value="2"/>
+		</bean>
+	</beans>
+
+	<!-- 开发环境配置文件 -->
+	<beans profile="dev">
+<!--		<context:property-placeholder location="classpath:dev/*.properties, classpath:common/*.properties" />-->
+		<bean id="dog" class="com.goat.chapter185.common.Dog">
+			<!-- 指定构造器参数 index对应构造器中参数的位置 -->
+			<!-- 也可以通过指定参数类型，指定参数名称来注入属性-->
+			<constructor-arg index="0" value="dev"/>
+			<constructor-arg index="1" value="3"/>
+		</bean>
+	</beans>
+
+</beans>
