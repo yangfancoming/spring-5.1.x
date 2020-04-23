@@ -19,8 +19,6 @@ import org.springframework.test.context.junit4.aci.xml.MultipleInitializersXmlCo
  * Convenience test suite for integration tests that verify support for
  * {@link ApplicationContextInitializer ApplicationContextInitializers} (ACIs)
  * in the TestContext framework.
- *
- * @author Sam Brannen
  * @since 3.2
  */
 @RunWith(Suite.class)

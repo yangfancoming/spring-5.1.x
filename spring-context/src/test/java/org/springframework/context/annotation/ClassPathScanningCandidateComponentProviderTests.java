@@ -51,16 +51,13 @@ public class ClassPathScanningCandidateComponentProviderTests {
 	private static final String TEST_PROFILE_PACKAGE = "example.profilescan";
 	private static final String TEST_DEFAULT_PROFILE_NAME = "testDefault";
 
-	private static final ClassLoader TEST_BASE_CLASSLOADER = CandidateComponentsTestClassLoader.index(
-			ClassPathScanningCandidateComponentProviderTests.class.getClassLoader(),
-			new ClassPathResource("spring.components", NamedComponent.class));
+	private static final ClassLoader TEST_BASE_CLASSLOADER = CandidateComponentsTestClassLoader.index(ClassPathScanningCandidateComponentProviderTests.class.getClassLoader(),new ClassPathResource("spring.components", NamedComponent.class));
 
 
 	@Test
 	public void defaultsWithScan() {
 		ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(true);
-		provider.setResourceLoader(new DefaultResourceLoader(
-				CandidateComponentsTestClassLoader.disableIndex(getClass().getClassLoader())));
+		provider.setResourceLoader(new DefaultResourceLoader(CandidateComponentsTestClassLoader.disableIndex(getClass().getClassLoader())));
 		testDefault(provider, ScannedGenericBeanDefinition.class);
 	}
 
@@ -71,8 +68,7 @@ public class ClassPathScanningCandidateComponentProviderTests {
 		testDefault(provider, AnnotatedGenericBeanDefinition.class);
 	}
 
-	private void testDefault(ClassPathScanningCandidateComponentProvider provider,
-			Class<? extends BeanDefinition> expectedBeanDefinitionType) {
+	private void testDefault(ClassPathScanningCandidateComponentProvider provider,Class<? extends BeanDefinition> expectedBeanDefinitionType) {
 		Set<BeanDefinition> candidates = provider.findCandidateComponents(TEST_BASE_PACKAGE);
 		assertTrue(containsBeanClass(candidates, DefaultNamedComponent.class));
 		assertTrue(containsBeanClass(candidates, NamedComponent.class));
@@ -491,11 +487,8 @@ public class ClassPathScanningCandidateComponentProviderTests {
 		return false;
 	}
 
-	private void assertBeanDefinitionType(Set<BeanDefinition> candidates,
-			Class<? extends BeanDefinition> expectedType) {
-		candidates.forEach(c -> {
-			assertThat(c, is(instanceOf(expectedType)));
-		});
+	private void assertBeanDefinitionType(Set<BeanDefinition> candidates,Class<? extends BeanDefinition> expectedType) {
+		candidates.forEach(c ->assertThat(c, is(instanceOf(expectedType))));
 	}
 
 

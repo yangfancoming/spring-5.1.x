@@ -27,11 +27,18 @@ import org.springframework.util.StringUtils;
  * {@code AbstractEnvironment} adds none. Subclasses should contribute  property sources through the protected {@link #customizePropertySources(MutablePropertySources)}
  * hook, while clients should customize using {@link ConfigurableEnvironment#getPropertySources()} and working against the {@link MutablePropertySources} API.
  * See {@link ConfigurableEnvironment} javadoc for usage examples.
+ * Spring 环境和属性是由四个部分组成：
+ * Environment ： 环境，由 Profile 和 PropertyResolver 组合。
+ * Profile : 配置文件，可以理解为，容器里多个配置组别的属性和 bean，只有激活的 profile，它对应的组别属性和 bean 才会被加载
+ * PropertySource ： 属性源， 使用 CopyOnWriteArrayList 数组进行属性对 key-value 形式存储
+ * PropertyResolver ：属性解析器，这个用途就是解析属性
  * @since 3.1
  * @see ConfigurableEnvironment
  * @see StandardEnvironment
  */
 public abstract class AbstractEnvironment implements ConfigurableEnvironment {
+
+	protected final Log logger = LogFactory.getLog(getClass());
 
 	/**
 	 * System property that instructs Spring to ignore system environment variables,
@@ -72,15 +79,13 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	 */
 	protected static final String RESERVED_DEFAULT_PROFILE_NAME = "default";
 
-	protected final Log logger = LogFactory.getLog(getClass());
-
 	private final Set<String> activeProfiles = new LinkedHashSet<>();
 
 	private final Set<String> defaultProfiles = new LinkedHashSet<>(getReservedDefaultProfiles());
 
 	private final MutablePropertySources propertySources = new MutablePropertySources();
 
-	private final ConfigurablePropertyResolver propertyResolver = new PropertySourcesPropertyResolver(this.propertySources);
+	private final ConfigurablePropertyResolver propertyResolver = new PropertySourcesPropertyResolver(propertySources);
 
 	/**
 	 * Create a new {@code Environment} instance, calling back to {@link #customizePropertySources(MutablePropertySources)} during construction to
@@ -88,7 +93,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	 * @see #customizePropertySources(MutablePropertySources)
 	 */
 	public AbstractEnvironment() {
-		customizePropertySources(this.propertySources);
+		customizePropertySources(propertySources);
 	}
 
 	/**
@@ -180,14 +185,14 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	 * @see #ACTIVE_PROFILES_PROPERTY_NAME
 	 */
 	protected Set<String> doGetActiveProfiles() {
-		synchronized (this.activeProfiles) {
-			if (this.activeProfiles.isEmpty()) {
+		synchronized (activeProfiles) {
+			if (activeProfiles.isEmpty()) {
 				String profiles = getProperty(ACTIVE_PROFILES_PROPERTY_NAME);
 				if (StringUtils.hasText(profiles)) {
 					setActiveProfiles(StringUtils.commaDelimitedListToStringArray(StringUtils.trimAllWhitespace(profiles)));
 				}
 			}
-			return this.activeProfiles;
+			return activeProfiles;
 		}
 	}
 
@@ -201,14 +206,14 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	 * @see #getReservedDefaultProfiles()
 	 */
 	protected Set<String> doGetDefaultProfiles() {
-		synchronized (this.defaultProfiles) {
-			if (this.defaultProfiles.equals(getReservedDefaultProfiles())) {
+		synchronized (defaultProfiles) {
+			if (defaultProfiles.equals(getReservedDefaultProfiles())) {
 				String profiles = getProperty(DEFAULT_PROFILES_PROPERTY_NAME);
 				if (StringUtils.hasText(profiles)) {
 					setDefaultProfiles(StringUtils.commaDelimitedListToStringArray(StringUtils.trimAllWhitespace(profiles)));
 				}
 			}
-			return this.defaultProfiles;
+			return defaultProfiles;
 		}
 	}
 
@@ -268,11 +273,11 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	public void setActiveProfiles(String... profiles) {
 		Assert.notNull(profiles, "Profile array must not be null");
 		if (logger.isDebugEnabled()) logger.debug("Activating profiles " + Arrays.asList(profiles));
-		synchronized (this.activeProfiles) {
-			this.activeProfiles.clear();
+		synchronized (activeProfiles) {
+			activeProfiles.clear();
 			for (String profile : profiles) {
 				validateProfile(profile);
-				this.activeProfiles.add(profile);
+				activeProfiles.add(profile);
 			}
 		}
 	}
@@ -282,8 +287,8 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 		if (logger.isDebugEnabled()) logger.debug("Activating profile '" + profile + "'");
 		validateProfile(profile);
 		doGetActiveProfiles();
-		synchronized (this.activeProfiles) {
-			this.activeProfiles.add(profile);
+		synchronized (activeProfiles) {
+			activeProfiles.add(profile);
 		}
 	}
 
@@ -303,11 +308,11 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	@Override
 	public void setDefaultProfiles(String... profiles) {
 		Assert.notNull(profiles, "Profile array must not be null");
-		synchronized (this.defaultProfiles) {
-			this.defaultProfiles.clear();
+		synchronized (defaultProfiles) {
+			defaultProfiles.clear();
 			for (String profile : profiles) {
 				validateProfile(profile);
-				this.defaultProfiles.add(profile);
+				defaultProfiles.add(profile);
 			}
 		}
 	}
@@ -336,7 +341,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 
 	@Override
 	public MutablePropertySources getPropertySources() {
-		return this.propertySources;
+		return propertySources;
 	}
 
 	@Override
@@ -387,24 +392,24 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	@Override
 	public void merge(ConfigurableEnvironment parent) {
 		for (PropertySource<?> ps : parent.getPropertySources()) {
-			if (!this.propertySources.contains(ps.getName())) {
-				this.propertySources.addLast(ps);
+			if (!propertySources.contains(ps.getName())) {
+				propertySources.addLast(ps);
 			}
 		}
 		String[] parentActiveProfiles = parent.getActiveProfiles();
 		if (!ObjectUtils.isEmpty(parentActiveProfiles)) {
-			synchronized (this.activeProfiles) {
+			synchronized (activeProfiles) {
 				for (String profile : parentActiveProfiles) {
-					this.activeProfiles.add(profile);
+					activeProfiles.add(profile);
 				}
 			}
 		}
 		String[] parentDefaultProfiles = parent.getDefaultProfiles();
 		if (!ObjectUtils.isEmpty(parentDefaultProfiles)) {
-			synchronized (this.defaultProfiles) {
-				this.defaultProfiles.remove(RESERVED_DEFAULT_PROFILE_NAME);
+			synchronized (defaultProfiles) {
+				defaultProfiles.remove(RESERVED_DEFAULT_PROFILE_NAME);
 				for (String profile : parentDefaultProfiles) {
-					this.defaultProfiles.add(profile);
+					defaultProfiles.add(profile);
 				}
 			}
 		}
@@ -415,42 +420,42 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	//---------------------------------------------------------------------
 	@Override
 	public ConfigurableConversionService getConversionService() {
-		return this.propertyResolver.getConversionService();
+		return propertyResolver.getConversionService();
 	}
 
 	@Override
 	public void setConversionService(ConfigurableConversionService conversionService) {
-		this.propertyResolver.setConversionService(conversionService);
+		propertyResolver.setConversionService(conversionService);
 	}
 
 	@Override
 	public void setPlaceholderPrefix(String placeholderPrefix) {
-		this.propertyResolver.setPlaceholderPrefix(placeholderPrefix);
+		propertyResolver.setPlaceholderPrefix(placeholderPrefix);
 	}
 
 	@Override
 	public void setPlaceholderSuffix(String placeholderSuffix) {
-		this.propertyResolver.setPlaceholderSuffix(placeholderSuffix);
+		propertyResolver.setPlaceholderSuffix(placeholderSuffix);
 	}
 
 	@Override
 	public void setValueSeparator(@Nullable String valueSeparator) {
-		this.propertyResolver.setValueSeparator(valueSeparator);
+		propertyResolver.setValueSeparator(valueSeparator);
 	}
 
 	@Override
 	public void setIgnoreUnresolvableNestedPlaceholders(boolean ignoreUnresolvableNestedPlaceholders) {
-		this.propertyResolver.setIgnoreUnresolvableNestedPlaceholders(ignoreUnresolvableNestedPlaceholders);
+		propertyResolver.setIgnoreUnresolvableNestedPlaceholders(ignoreUnresolvableNestedPlaceholders);
 	}
 
 	@Override
 	public void setRequiredProperties(String... requiredProperties) {
-		this.propertyResolver.setRequiredProperties(requiredProperties);
+		propertyResolver.setRequiredProperties(requiredProperties);
 	}
 
 	@Override
 	public void validateRequiredProperties() throws MissingRequiredPropertiesException {
-		this.propertyResolver.validateRequiredProperties();
+		propertyResolver.validateRequiredProperties();
 	}
 
 	//---------------------------------------------------------------------
@@ -458,53 +463,53 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	//---------------------------------------------------------------------
 	@Override
 	public boolean containsProperty(String key) {
-		return this.propertyResolver.containsProperty(key);
+		return propertyResolver.containsProperty(key);
 	}
 
 	@Override
 	@Nullable
 	public String getProperty(String key) {
-		return this.propertyResolver.getProperty(key);
+		return propertyResolver.getProperty(key);
 	}
 
 	@Override
 	public String getProperty(String key, String defaultValue) {
-		return this.propertyResolver.getProperty(key, defaultValue);
+		return propertyResolver.getProperty(key, defaultValue);
 	}
 
 	@Override
 	@Nullable
 	public <T> T getProperty(String key, Class<T> targetType) {
-		return this.propertyResolver.getProperty(key, targetType);
+		return propertyResolver.getProperty(key, targetType);
 	}
 
 	@Override
 	public <T> T getProperty(String key, Class<T> targetType, T defaultValue) {
-		return this.propertyResolver.getProperty(key, targetType, defaultValue);
+		return propertyResolver.getProperty(key, targetType, defaultValue);
 	}
 
 	@Override
 	public String getRequiredProperty(String key) throws IllegalStateException {
-		return this.propertyResolver.getRequiredProperty(key);
+		return propertyResolver.getRequiredProperty(key);
 	}
 
 	@Override
 	public <T> T getRequiredProperty(String key, Class<T> targetType) throws IllegalStateException {
-		return this.propertyResolver.getRequiredProperty(key, targetType);
+		return propertyResolver.getRequiredProperty(key, targetType);
 	}
 
 	@Override
 	public String resolvePlaceholders(String text) {
-		return this.propertyResolver.resolvePlaceholders(text);
+		return propertyResolver.resolvePlaceholders(text);
 	}
 
 	@Override
 	public String resolveRequiredPlaceholders(String text) throws IllegalArgumentException {
-		return this.propertyResolver.resolveRequiredPlaceholders(text);
+		return propertyResolver.resolveRequiredPlaceholders(text);
 	}
 
 	@Override
 	public String toString() {
-		return getClass().getSimpleName() + " {activeProfiles=" + this.activeProfiles + ", defaultProfiles=" + this.defaultProfiles + ", propertySources=" + this.propertySources + "}";
+		return getClass().getSimpleName() + " {activeProfiles=" + activeProfiles + ", defaultProfiles=" + defaultProfiles + ", propertySources=" + propertySources + "}";
 	}
 }

@@ -97,6 +97,7 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 	 * @see org.springframework.core.env.Environment#resolveRequiredPlaceholders(String)
 	 * 此方法的目的在于将占位符(placeholder)解析成实际的地址。
 	 * 比如可以这么写: new ClassPathXmlApplicationContext("classpath:config.xml");那么classpath:就是需要被解析的。
+	 * 我们有不同的运行环境，dev，test 或者 prod，这个时候加载的配置文件和属性应该有所不同，这个时候就需要使用到 Environment 来进行区分。
 	 */
 	protected String resolvePath(String path) {
 		return getEnvironment().resolveRequiredPlaceholders(path);

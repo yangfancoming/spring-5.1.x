@@ -175,12 +175,14 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 		return value;
 	}
 
+	// 非严格解析
 	@Override
 	public String resolvePlaceholders(String text) {
 		if (nonStrictHelper == null) nonStrictHelper = createPlaceholderHelper(true);
 		return doResolvePlaceholders(text, nonStrictHelper);
 	}
 
+	// 严格解析
 	@Override
 	public String resolveRequiredPlaceholders(String text) throws IllegalArgumentException {
 		if (strictHelper == null) strictHelper = createPlaceholderHelper(false);
@@ -231,7 +233,6 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 		return conversionServiceToUse.convert(value, targetType);
 	}
 
-
 	/**
 	 * Retrieve the specified property as a raw String, i.e. without resolution of nested placeholders.
 	 * @param key the property name to resolve
@@ -239,5 +240,4 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 	 */
 	@Nullable
 	protected abstract String getPropertyAsRawString(String key);
-
 }

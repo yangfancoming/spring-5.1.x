@@ -15,8 +15,6 @@ import org.springframework.core.io.Resource;
  * A test {@link ClassLoader} that can be used in testing context to control the
  * {@code spring.components} resource that should be loaded. Can also simulate a failure
  * by throwing a configurable {@link IOException}.
- *
- * @author Stephane Nicoll
  */
 public class CandidateComponentsTestClassLoader extends ClassLoader {
 
@@ -28,8 +26,7 @@ public class CandidateComponentsTestClassLoader extends ClassLoader {
 	 * @see CandidateComponentsIndexLoader#COMPONENTS_RESOURCE_LOCATION
 	 */
 	public static ClassLoader disableIndex(ClassLoader classLoader) {
-		return new CandidateComponentsTestClassLoader(classLoader,
-				Collections.enumeration(Collections.emptyList()));
+		return new CandidateComponentsTestClassLoader(classLoader,Collections.enumeration(Collections.emptyList()));
 	}
 
 	/**
@@ -44,8 +41,7 @@ public class CandidateComponentsTestClassLoader extends ClassLoader {
 				Collections.enumeration(Stream.of(resources).map(r -> {
 					try {
 						return r.getURL();
-					}
-					catch (Exception ex) {
+					}catch (Exception ex) {
 						throw new IllegalArgumentException("Invalid resource " + r, ex);
 					}
 				}).collect(Collectors.toList())));

@@ -62,10 +62,7 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	 */
 	String SYSTEM_ENVIRONMENT_BEAN_NAME = "systemEnvironment";
 
-	/**
-	 * Set the unique id of this application context.
-	 * @since 3.0
-	 */
+	// Set the unique id of this application context. @since 3.0
 	void setId(String id);
 
 	/**
@@ -84,11 +81,7 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	 */
 	void setEnvironment(ConfigurableEnvironment environment);
 
-	/**
-	 * Return the {@code Environment} for this application context in configurable
-	 * form, allowing for further customization.
-	 * @since 3.1
-	 */
+	// Return the {@code Environment} for this application context in configurable form, allowing for further customization.  @since 3.1
 	@Override
 	ConfigurableEnvironment getEnvironment();
 
@@ -172,5 +165,4 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	 * @see #addBeanFactoryPostProcessor
 	 */
 	ConfigurableListableBeanFactory getBeanFactory() throws IllegalStateException;
-
 }

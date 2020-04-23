@@ -6,7 +6,6 @@ import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.support.GenericApplicationContext;
 
 /**
- * @author Sam Brannen
  * @since 3.2
  */
 public class FooBarAliasInitializer implements ApplicationContextInitializer<GenericApplicationContext> {

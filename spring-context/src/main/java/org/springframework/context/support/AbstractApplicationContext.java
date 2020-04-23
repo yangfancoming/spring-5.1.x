@@ -169,7 +169,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 * Create a new AbstractApplicationContext with no parent.
 	 */
 	public AbstractApplicationContext() {
-		this.resourcePatternResolver = getResourcePatternResolver();
+		resourcePatternResolver = getResourcePatternResolver();
 	}
 
 	/**
@@ -197,7 +197,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 	@Override
 	public String getId() {
-		return this.id;
+		return id;
 	}
 
 	@Override
@@ -221,7 +221,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 */
 	@Override
 	public String getDisplayName() {
-		return this.displayName;
+		return displayName;
 	}
 
 	/**
@@ -230,7 +230,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	@Override
 	@Nullable
 	public ApplicationContext getParent() {
-		return this.parent;
+		return parent;
 	}
 
 	/**
@@ -252,8 +252,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 */
 	@Override
 	public ConfigurableEnvironment getEnvironment() {
-		if (this.environment == null) this.environment = createEnvironment();
-		return this.environment;
+		if (environment == null) environment = createEnvironment();
+		return environment;
 	}
 
 	/**
@@ -276,7 +276,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	// Return the timestamp (ms) when this context was first loaded.
 	@Override
 	public long getStartupDate() {
-		return this.startupDate;
+		return startupDate;
 	}
 
 	/**
@@ -321,18 +321,18 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		}
 
 		// Multicast right now if possible - or lazily once the multicaster is initialized
-		if (this.earlyApplicationEvents != null) {
-			this.earlyApplicationEvents.add(applicationEvent);
+		if (earlyApplicationEvents != null) {
+			earlyApplicationEvents.add(applicationEvent);
 		}else {
 			getApplicationEventMulticaster().multicastEvent(applicationEvent, eventType);
 		}
 
 		// Publish event via parent context as well...
-		if (this.parent != null) {
-			if (this.parent instanceof AbstractApplicationContext) {
-				((AbstractApplicationContext) this.parent).publishEvent(event, eventType);
+		if (parent != null) {
+			if (parent instanceof AbstractApplicationContext) {
+				((AbstractApplicationContext) parent).publishEvent(event, eventType);
 			}else {
-				this.parent.publishEvent(event);
+				parent.publishEvent(event);
 			}
 		}
 	}
@@ -343,10 +343,10 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 * @throws IllegalStateException if the context has not been initialized yet
 	 */
 	ApplicationEventMulticaster getApplicationEventMulticaster() throws IllegalStateException {
-		if (this.applicationEventMulticaster == null) {
+		if (applicationEventMulticaster == null) {
 			throw new IllegalStateException("ApplicationEventMulticaster not initialized - call 'refresh' before multicasting events via the context: " + this);
 		}
-		return this.applicationEventMulticaster;
+		return applicationEventMulticaster;
 	}
 
 	/**
@@ -355,10 +355,10 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 * @throws IllegalStateException if the context has not been initialized yet
 	 */
 	LifecycleProcessor getLifecycleProcessor() throws IllegalStateException {
-		if (this.lifecycleProcessor == null) {
+		if (lifecycleProcessor == null) {
 			throw new IllegalStateException("LifecycleProcessor not initialized - call 'refresh' before invoking lifecycle methods via the context: " + this);
 		}
-		return this.lifecycleProcessor;
+		return lifecycleProcessor;
 	}
 
 	/**
@@ -398,26 +398,26 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	@Override
 	public void addBeanFactoryPostProcessor(BeanFactoryPostProcessor postProcessor) {
 		Assert.notNull(postProcessor, "BeanFactoryPostProcessor must not be null");
-		this.beanFactoryPostProcessors.add(postProcessor);
+		beanFactoryPostProcessors.add(postProcessor);
 	}
 
 	// Return the list of BeanFactoryPostProcessors that will get applied  to the internal BeanFactory.
 	public List<BeanFactoryPostProcessor> getBeanFactoryPostProcessors() {
-		return this.beanFactoryPostProcessors;
+		return beanFactoryPostProcessors;
 	}
 
 	@Override
 	public void addApplicationListener(ApplicationListener<?> listener) {
 		Assert.notNull(listener, "ApplicationListener must not be null");
-		if (this.applicationEventMulticaster != null) {
-			this.applicationEventMulticaster.addApplicationListener(listener);
+		if (applicationEventMulticaster != null) {
+			applicationEventMulticaster.addApplicationListener(listener);
 		}
-		this.applicationListeners.add(listener);
+		applicationListeners.add(listener);
 	}
 
 	//  Return the list of statically specified ApplicationListeners.
 	public Collection<ApplicationListener<?>> getApplicationListeners() {
-		return this.applicationListeners;
+		return applicationListeners;
 	}
 
 	/**
@@ -431,7 +431,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		 * （1）refresh()方法和close()方法都使用了startUpShutdownMonitor对象锁加锁，这就保证了在调用refresh()方法的时候无法调用close()方法，反之亦然，避免了冲突
 		 * （2）另外一个好处不在这个方法中体现，但是提一下，使用对象锁可以减小了同步的范围，只对不能并发的代码块进行加锁，提高了整体代码运行的效率
 		*/
-		synchronized (this.startupShutdownMonitor) {
+		synchronized (startupShutdownMonitor) {
 			/**
 			 *  Prepare this context for refreshing. 准备工作，记录下容器的启动时间、标记“已启动”状态、处理配置文件中的占位符
 			 *  供子类拓展，添加创建前必需属性，校验如果必需属性不存在则抛出MissingRequiredPropertiesException
