@@ -148,19 +148,15 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 		Collections.addAll(this.basePackages, basePackages);
 	}
 
-
 	/**
 	 * Register a {@link org.springframework.beans.factory.config.BeanDefinition} for
 	 * any classes specified by {@link #register(Class...)} and scan any packages  specified by {@link #scan(String...)}.
-	 * For any values specified by {@link #setConfigLocation(String)} or
-	 * {@link #setConfigLocations(String[])}, attempt first to load each location as a
-	 * class, registering a {@code BeanDefinition} if class loading is successful,
+	 * For any values specified by {@link #setConfigLocation(String)} or {@link #setConfigLocations(String[])},
+	 * attempt first to load each location as a class, registering a {@code BeanDefinition} if class loading is successful,
 	 * and if class loading fails (i.e. a {@code ClassNotFoundException} is raised),
 	 * assume the value is a package and attempt to scan it for annotated classes.
-	 * Enables the default set of annotation configuration post processors, such that
-	 * {@code @Autowired}, {@code @Required}, and associated annotations can be used.
-	 * Configuration class bean definitions are registered with generated bean
-	 * definition names unless the {@code value} attribute is provided to the stereotype annotation.
+	 * Enables the default set of annotation configuration post processors, such that {@code @Autowired}, {@code @Required}, and associated annotations can be used.
+	 * Configuration class bean definitions are registered with generated bean  definition names unless the {@code value} attribute is provided to the stereotype annotation.
 	 * @param beanFactory the bean factory to load bean definitions into
 	 * @see #register(Class...)
 	 * @see #scan(String...)

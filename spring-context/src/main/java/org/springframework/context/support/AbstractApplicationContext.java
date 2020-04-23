@@ -425,7 +425,12 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	*/
 	@Override
 	public void refresh() throws BeansException, IllegalStateException {
-		// 为了避免`refresh()` 还没结束，再次发起启动或者销毁容器引起的冲突
+		/**
+		 * 为了避免`refresh()` 还没结束，再次发起启动或者销毁容器引起的冲突，避免多线程同时刷新上下文
+		 * 尽管加锁可以看到是针对整个方法体的，但是没有在方法前加synchronized关键字，而使用了对象锁startUpShutdownMonitor，这样做有两个好处：
+		 * （1）refresh()方法和close()方法都使用了startUpShutdownMonitor对象锁加锁，这就保证了在调用refresh()方法的时候无法调用close()方法，反之亦然，避免了冲突
+		 * （2）另外一个好处不在这个方法中体现，但是提一下，使用对象锁可以减小了同步的范围，只对不能并发的代码块进行加锁，提高了整体代码运行的效率
+		*/
 		synchronized (this.startupShutdownMonitor) {
 			/**
 			 *  Prepare this context for refreshing. 准备工作，记录下容器的启动时间、标记“已启动”状态、处理配置文件中的占位符

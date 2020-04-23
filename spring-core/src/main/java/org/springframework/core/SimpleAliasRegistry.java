@@ -22,7 +22,7 @@ public class SimpleAliasRegistry implements AliasRegistry {
 	/** Logger available to subclasses. */
 	protected final Log logger = LogFactory.getLog(getClass());
 
-	/** Map from alias to canonical name. */
+	/** Map from alias to canonical name.  存储bean名称和bean别名的映射关系 */
 	private final Map<String, String> aliasMap = new ConcurrentHashMap<>(16);
 
 	// Return whether alias overriding is allowed. Default is {@code true}.
