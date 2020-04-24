@@ -103,7 +103,6 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 	@Nullable
 	public MultiValueMap<String, Object> getAllAnnotationAttributes(String annotationName, boolean classValuesAsString) {
 		return (annotations.length > 0 ? AnnotatedElementUtils.getAllAnnotationAttributes(getIntrospectedClass(), annotationName, classValuesAsString, nestedAnnotationsAsMap) : null);
-
 	}
 
 	@Override

@@ -82,7 +82,6 @@ final class PostProcessorRegistrationDelegate {
 			// 排序后 开始执行
 			invokeBeanDefinitionRegistryPostProcessors(currentRegistryProcessors, registry);
 			currentRegistryProcessors.clear();
-
 			// Finally, invoke all other BeanDefinitionRegistryPostProcessors until no further ones appear.
 			// 最后一步 执行所有剩下的 既没有实现  PriorityOrdered接口 也没有实现 Ordered接口的BeanDefinitionRegistryPostProcessor
 			boolean reiterate = true;
@@ -144,7 +143,6 @@ final class PostProcessorRegistrationDelegate {
 		}
 		sortPostProcessors(orderedPostProcessors, beanFactory);
 		invokeBeanFactoryPostProcessors(orderedPostProcessors, beanFactory);
-
 		// Finally, invoke all other BeanFactoryPostProcessors.
 		List<BeanFactoryPostProcessor> nonOrderedPostProcessors = new ArrayList<>();
 		for (String postProcessorName : nonOrderedPostProcessorNames) {

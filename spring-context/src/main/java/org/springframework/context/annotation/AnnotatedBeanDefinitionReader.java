@@ -36,7 +36,6 @@ public class AnnotatedBeanDefinitionReader {
 
 	private ConditionEvaluator conditionEvaluator;
 
-
 	/**
 	 * Create a new {@code AnnotatedBeanDefinitionReader} for the given registry.
 	 * If the registry is {@link EnvironmentCapable}, e.g. is an {@code ApplicationContext},
@@ -64,9 +63,7 @@ public class AnnotatedBeanDefinitionReader {
 		AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry);
 	}
 
-	/**
-	 * Return the BeanDefinitionRegistry that this scanner operates on.
-	 */
+	// Return the BeanDefinitionRegistry that this scanner operates on.
 	public final BeanDefinitionRegistry getRegistry() {
 		return registry;
 	}
@@ -120,11 +117,9 @@ public class AnnotatedBeanDefinitionReader {
 
 	/**
 	 * Register a bean from the given bean class, deriving its metadata from
-	 * class-declared annotations, using the given supplier for obtaining a new
-	 * instance (possibly declared as a lambda expression or method reference).
+	 * class-declared annotations, using the given supplier for obtaining a new instance (possibly declared as a lambda expression or method reference).
 	 * @param annotatedClass the class of the bean
-	 * @param instanceSupplier a callback for creating an instance of the bean
-	 * (may be {@code null})
+	 * @param instanceSupplier a callback for creating an instance of the bean (may be {@code null})
 	 * @since 5.0
 	 */
 	public <T> void registerBean(Class<T> annotatedClass, @Nullable Supplier<T> instanceSupplier) {
@@ -133,12 +128,10 @@ public class AnnotatedBeanDefinitionReader {
 
 	/**
 	 * Register a bean from the given bean class, deriving its metadata from
-	 * class-declared annotations, using the given supplier for obtaining a new
-	 * instance (possibly declared as a lambda expression or method reference).
+	 * class-declared annotations, using the given supplier for obtaining a new instance (possibly declared as a lambda expression or method reference).
 	 * @param annotatedClass the class of the bean
 	 * @param name an explicit name for the bean
-	 * @param instanceSupplier a callback for creating an instance of the bean
-	 * (may be {@code null})
+	 * @param instanceSupplier a callback for creating an instance of the bean (may be {@code null})
 	 * @since 5.0
 	 */
 	public <T> void registerBean(Class<T> annotatedClass, String name, @Nullable Supplier<T> instanceSupplier) {
@@ -202,10 +195,7 @@ public class AnnotatedBeanDefinitionReader {
 		BeanDefinitionReaderUtils.registerBeanDefinition(definitionHolder, registry);
 	}
 
-	/**
-	 * Get the Environment from the given registry if possible, otherwise return a new
-	 * StandardEnvironment.
-	 */
+	// Get the Environment from the given registry if possible, otherwise return a new StandardEnvironment.
 	private static Environment getOrCreateEnvironment(BeanDefinitionRegistry registry) {
 		Assert.notNull(registry, "BeanDefinitionRegistry must not be null");
 		if (registry instanceof EnvironmentCapable) {

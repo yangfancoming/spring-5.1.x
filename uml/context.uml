@@ -1126,7 +1126,7 @@
       <point x="71.33333333333326" y="14.5" />
     </edge>
     <edge source="org.springframework.context.config.SpringConfiguredBeanDefinitionParser" target="org.springframework.beans.factory.xml.BeanDefinitionParser">
-      <point x="-1.1368683772161603E-13" y="-14.5" />
+      <point x="0.0" y="-14.5" />
       <point x="1736.4615384615386" y="1384.0" />
       <point x="1253.9285714285713" y="1384.0" />
       <point x="47.42857142857133" y="14.5" />
@@ -1154,9 +1154,9 @@
       <point x="0.0" y="14.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="748.0" y="426.5" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="995.0" y="1491.0" />
   <SelectedNodes>
-    <node>org.springframework.beans.factory.xml.BeanDefinitionDocumentReader</node>
+    <node>org.springframework.context.annotation.AnnotationConfigBeanDefinitionParser</node>
   </SelectedNodes>
   <Categories />
   <SCOPE>All</SCOPE>
