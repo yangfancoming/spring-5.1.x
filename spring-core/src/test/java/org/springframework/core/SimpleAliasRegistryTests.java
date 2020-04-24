@@ -31,7 +31,6 @@ public class SimpleAliasRegistryTests {
 		assertEquals(Collections.singletonMap("老K", "马文明"), registry.aliasMap);// 验证被覆盖了
 	}
 
-
 	// 测试 存在顺序问题 如果是先 别名与正名相同，再注册别名就可以
 	@Test
 	public void test2() {
@@ -94,5 +93,4 @@ public class SimpleAliasRegistryTests {
 		assertTrue(registry.hasAlias("real_name", "alias_b"));
 		assertTrue(registry.hasAlias("real_name", "alias_c"));
 	}
-
 }
