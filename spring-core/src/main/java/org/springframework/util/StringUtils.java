@@ -940,10 +940,9 @@ public abstract class StringUtils {
 	/**
 	 * Tokenize the given String into a String array via a {@link StringTokenizer}.
 	 * Trims tokens and omits empty tokens.
-	 * The given {@code delimiters} string can consist of any number of
-	 * delimiter characters. Each of those characters can be used to separate
-	 * tokens. A delimiter is always a single character; for multi-character
-	 * delimiters, consider using {@link #delimitedListToStringArray}.
+	 * The given {@code delimiters} string can consist of any number of delimiter characters.
+	 * Each of those characters can be used to separate tokens.
+	 * A delimiter is always a single character; for multi-character delimiters, consider using {@link #delimitedListToStringArray}.
 	 * @param str the String to tokenize (potentially {@code null} or empty)
 	 * @param delimiters the delimiter characters, assembled as a String (each of the characters is individually considered as a delimiter)
 	 * @return an array of the tokens

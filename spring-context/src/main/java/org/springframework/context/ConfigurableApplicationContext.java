@@ -45,8 +45,7 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	String LOAD_TIME_WEAVER_BEAN_NAME = "loadTimeWeaver";
 
 	/**
-	 * Name of the {@link Environment} bean in the factory.
-	 * @since 3.1
+	 * Name of the {@link Environment} bean in the factory.  @since 3.1
 	 */
 	String ENVIRONMENT_BEAN_NAME = "environment";
 

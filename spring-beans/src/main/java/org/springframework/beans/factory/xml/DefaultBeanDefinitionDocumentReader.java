@@ -89,8 +89,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	}
 
 	/**
-	 * Invoke the {@link org.springframework.beans.factory.parsing.SourceExtractor}
-	 * to pull the source metadata from the supplied {@link Element}.
+	 * Invoke the {@link org.springframework.beans.factory.parsing.SourceExtractor} to pull the source metadata from the supplied {@link Element}.
 	 */
 	@Nullable
 	protected Object extractSource(Element ele) {

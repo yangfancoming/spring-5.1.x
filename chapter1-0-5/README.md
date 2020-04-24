@@ -8,7 +8,7 @@
     简言之，有很多场景需要bean B应该被先于bean A被初始化，从而避免各种负面影响。我们可以在bean A上使用@DependsOn注解，告诉容器bean B应该先被初始化。下面通过示例来说明。
 
 
-#  item01   传统xml方式获取bean 及 扫描bean  
+#  item01   传统xml方式获取bean 及 扫描bean  <context:component-scan 标签解析
   
 # item02    注解方式获取bean 及 扫描bean  @bean   @Scope("prototype")   @ComponentScan
     sample01 @bean  
@@ -22,6 +22,7 @@
 # itme06    @Value 属性注入
 
 # itme07    @Autowire 自动装配
+
 # itme08    @Profile  环境切换
 
 

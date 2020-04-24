@@ -16,16 +16,12 @@ import org.springframework.core.type.filter.TypeFilter;
 /**
  * Configures component scanning directives for use with @{@link Configuration} classes.
  * Provides support parallel with Spring XML's {@code <context:component-scan>} element.
- *
- * Either {@link #basePackageClasses} or {@link #basePackages} (or its alias
- * {@link #value}) may be specified to define specific packages to scan.
- * If specific packages are not defined, scanning will occur from the package of the class that declares this annotation.
- * 如果未定义指定包扫描，则将从声明此批注的类的包中进行扫描。
- * Note that the {@code <context:component-scan>} element has an {@code annotation-config} attribute; 
- * however, this annotation does not. This is because in almost all cases when using {@code @ComponentScan},
- *  default annotation config  processing (e.g. processing {@code @Autowired} and friends) is assumed.
- * Furthermore,when using {@link AnnotationConfigApplicationContext}, annotation config processors are
- * always registered, meaning that any attempt to disable them at the {@code @ComponentScan} level would be ignored.
+ * Either {@link #basePackageClasses} or {@link #basePackages} (or its alias {@link #value}) may be specified to define specific packages to scan.
+ * If specific packages are not defined, scanning will occur from the package of the class that declares this annotation. 如果未定义指定包扫描，则将从声明此批注的类的包中进行扫描。
+ * Note that the {@code <context:component-scan>} element has an {@code annotation-config} attribute;
+ * however, this annotation does not. This is because in almost all cases when using {@code @ComponentScan}, default annotation config  processing (e.g. processing {@code @Autowired} and friends) is assumed.
+ * Furthermore,when using {@link AnnotationConfigApplicationContext}, annotation config processors are always registered,
+ * meaning that any attempt to disable them at the {@code @ComponentScan} level would be ignored.
  * See {@link Configuration @Configuration}'s Javadoc for usage examples.
  * @since 3.1
  * @see Configuration
@@ -170,8 +166,7 @@ public @interface ComponentScan {
 		 * <li>{@link org.springframework.beans.factory.BeanClassLoaderAware BeanClassLoaderAware}
 		 * <li>{@link org.springframework.context.ResourceLoaderAware ResourceLoaderAware}
 		 * </ul>
-		 * Specifying zero classes is permitted but will have no effect on component
-		 * scanning.
+		 * Specifying zero classes is permitted but will have no effect on component  scanning.
 		 * @since 4.2
 		 * @see #value
 		 * @see #type
@@ -180,12 +175,10 @@ public @interface ComponentScan {
 		Class<?>[] classes() default {};
 
 		/**
-		 * The pattern (or patterns) to use for the filter, as an alternative
-		 * to specifying a Class {@link #value}.
+		 * The pattern (or patterns) to use for the filter, as an alternative to specifying a Class {@link #value}.
 		 * If {@link #type} is set to {@link FilterType#ASPECTJ ASPECTJ},
-		 * this is an AspectJ type pattern expression. If {@link #type} is
-		 * set to {@link FilterType#REGEX REGEX}, this is a regex pattern
-		 * for the fully-qualified class names to match.
+		 * this is an AspectJ type pattern expression. If {@link #type} is set to {@link FilterType#REGEX REGEX},
+		 * this is a regex pattern for the fully-qualified class names to match.
 		 * @see #type
 		 * @see #classes
 		 */
