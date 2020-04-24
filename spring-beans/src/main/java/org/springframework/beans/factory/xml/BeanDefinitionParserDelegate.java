@@ -416,20 +416,20 @@ public class BeanDefinitionParserDelegate {
 			// 3、创建 AbstractBeanDefinition 对象，底层是 GenericBeanDefinition // 创建一个BeanDefinition的对象
 			AbstractBeanDefinition bd = createBeanDefinition(className, parent);
 			// 解析所有属性 // 转换基本的bean属性的值
-			// 4、解析bean标签属性
+			// 4、解析<bean>标签中的所有属性  例如：singleton、 lazy-init、 autowire 、depends-on、  primary、 init-method、 destroy-method、 factory-method、 factory-bean、
 			parseBeanDefinitionAttributes(ele, beanName, containingBean, bd);
 			bd.setDescription(DomUtils.getChildElementValueByTagName(ele, DESCRIPTION_ELEMENT));
 			// 5、解析meta标签  <meta> // 转换并封装元节点标签
 			parseMetaElements(ele, bd);
-			// 6、解析 <lookup-method /> // 转换lookup-method子标签，将其封装到MethodOverrides对象中
+			// 6、解析 <lookup-method/> // 转换lookup-method子标签，将其封装到MethodOverrides对象中
 			parseLookupOverrideSubElements(ele, bd.getMethodOverrides());
 			// 7、解析 <replaced-method/> // 转换replaced-method子标签，也将其封装到MethodOverrides对象中
 			parseReplacedMethodSubElements(ele, bd.getMethodOverrides());
-			// 8、解析 <constructor-arg /> // 解析并且封装constructor-arg子标签到BeanDefinition中
+			// 8、解析 <constructor-arg/> // 解析并且封装constructor-arg子标签到BeanDefinition中
 			parseConstructorArgElements(ele, bd);
-			// 9、解析 <property />  // 解析并且封装property子标签到BeanDefinition中
+			// 9、解析 <property/>  // 解析并且封装property子标签到BeanDefinition中
 			parsePropertyElements(ele, bd);
-			// 10、解析 <qualifier /> // 解析并且封装qualifier子标签到BeanDefinition中
+			// 10、解析 <qualifier/> // 解析并且封装qualifier子标签到BeanDefinition中
 			parseQualifierElements(ele, bd);
 			// 11、设置bean定义来源和元数据的来源  封装一些资源属性
 			bd.setResource(readerContext.getResource());

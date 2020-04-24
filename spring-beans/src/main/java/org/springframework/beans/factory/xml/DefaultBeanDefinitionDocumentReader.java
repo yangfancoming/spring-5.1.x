@@ -252,9 +252,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 					// 继续调用loadBeanDefinitions()方法读取下载得到的xml文件信息
 					importCount = getReaderContext().getReader().loadBeanDefinitions(StringUtils.applyRelativePath(baseLocation, location), actualResources);
 				}
-				if (logger.isTraceEnabled()) {
-					logger.trace("Imported " + importCount + " bean definitions from relative location [" + location + "]");
-				}
+				if (logger.isTraceEnabled()) logger.trace("Imported " + importCount + " bean definitions from relative location [" + location + "]");
 			}catch (IOException ex) {
 				getReaderContext().error("Failed to resolve current resource location", ele, ex);
 			}
