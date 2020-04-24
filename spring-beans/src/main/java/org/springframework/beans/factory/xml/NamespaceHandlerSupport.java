@@ -28,26 +28,22 @@ import org.springframework.lang.Nullable;
 public abstract class NamespaceHandlerSupport implements NamespaceHandler {
 
 	/**
-	 * Stores the {@link BeanDefinitionParser} implementations keyed by the
-	 * local name of the {@link Element Elements} they handle.
+	 * Stores the {@link BeanDefinitionParser} implementations keyed by the local name of the {@link Element Elements} they handle.
 	 */
 	private final Map<String, BeanDefinitionParser> parsers = new HashMap<>();
 
 	/**
-	 * Stores the {@link BeanDefinitionDecorator} implementations keyed by the
-	 * local name of the {@link Element Elements} they handle.
+	 * Stores the {@link BeanDefinitionDecorator} implementations keyed by the local name of the {@link Element Elements} they handle.
 	 */
 	private final Map<String, BeanDefinitionDecorator> decorators = new HashMap<>();
 
 	/**
-	 * Stores the {@link BeanDefinitionDecorator} implementations keyed by the local
-	 * name of the {@link Attr Attrs} they handle.
+	 * Stores the {@link BeanDefinitionDecorator} implementations keyed by the local  name of the {@link Attr Attrs} they handle.
 	 */
 	private final Map<String, BeanDefinitionDecorator> attributeDecorators = new HashMap<>();
 
 	/**
-	 * Parses the supplied {@link Element} by delegating to the {@link BeanDefinitionParser} that is
-	 * registered for that {@link Element}.
+	 * Parses the supplied {@link Element} by delegating to the {@link BeanDefinitionParser} that is  registered for that {@link Element}.
 	 */
 	@Override
 	@Nullable
@@ -67,10 +63,8 @@ public abstract class NamespaceHandlerSupport implements NamespaceHandler {
 		// 获取当前标签命名空间后的局部键名，即apple
 		String localName = parserContext.getDelegate().getLocalName(element);
 		// 通过使用的命名空间键获取对应的BeanDefinitionParser处理逻辑
-		BeanDefinitionParser parser = this.parsers.get(localName);
-		if (parser == null) {
-			parserContext.getReaderContext().fatal("Cannot locate BeanDefinitionParser for element [" + localName + "]", element);
-		}
+		BeanDefinitionParser parser = parsers.get(localName);
+		if (parser == null) parserContext.getReaderContext().fatal("Cannot locate BeanDefinitionParser for element [" + localName + "]", element);
 		return parser;
 	}
 
@@ -98,9 +92,9 @@ public abstract class NamespaceHandlerSupport implements NamespaceHandler {
 		String localName = parserContext.getDelegate().getLocalName(node);
 		// 判断当前节点是属性还是子标签，根据情况不同获取不同的Decorator处理逻辑
 		if (node instanceof Element) {
-			decorator = this.decorators.get(localName);
+			decorator = decorators.get(localName);
 		}else if (node instanceof Attr) {
-			decorator = this.attributeDecorators.get(localName);
+			decorator = attributeDecorators.get(localName);
 		}else {
 			parserContext.getReaderContext().fatal("Cannot decorate based on Nodes of type [" + node.getClass().getName() + "]", node);
 		}
@@ -116,7 +110,7 @@ public abstract class NamespaceHandlerSupport implements NamespaceHandler {
 	 * name.
 	 */
 	protected final void registerBeanDefinitionParser(String elementName, BeanDefinitionParser parser) {
-		this.parsers.put(elementName, parser);
+		parsers.put(elementName, parser);
 	}
 
 	/**
@@ -124,7 +118,7 @@ public abstract class NamespaceHandlerSupport implements NamespaceHandler {
 	 * handle the specified element. The element name is the local (non-namespace qualified)  name.
 	 */
 	protected final void registerBeanDefinitionDecorator(String elementName, BeanDefinitionDecorator dec) {
-		this.decorators.put(elementName, dec);
+		decorators.put(elementName, dec);
 	}
 
 	/**
@@ -132,7 +126,7 @@ public abstract class NamespaceHandlerSupport implements NamespaceHandler {
 	 * handle the specified attribute. The attribute name is the local (non-namespace qualified) name.
 	 */
 	protected final void registerBeanDefinitionDecoratorForAttribute(String attrName, BeanDefinitionDecorator dec) {
-		this.attributeDecorators.put(attrName, dec);
+		attributeDecorators.put(attrName, dec);
 	}
 
 }

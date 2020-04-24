@@ -1,7 +1,6 @@
 package com.goat.chapter105.common;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 /**
  * Created by Administrator on 2020/3/17.

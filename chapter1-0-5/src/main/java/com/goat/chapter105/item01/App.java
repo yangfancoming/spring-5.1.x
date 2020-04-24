@@ -2,7 +2,6 @@ package com.goat.chapter105.item01;
 
 import com.goat.chapter105.BaseTest;
 import com.goat.chapter105.model.Person;
-import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -15,20 +14,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class App extends BaseTest {
 
-	private static final Logger logger = Logger.getLogger(App.class);
-
-	@Test
-	public void testLog(){
-		logger.trace("goat - trace");
-		logger.info("goat - info");
-		logger.debug("goat - debug");
-		logger.error("goat - error");
-	}
-
 	/**
 	 * 传统标签 <component-scan> 可以扫描到 com.goat.chapter105.common 包下的
+	 * 其中6个类中 2个没有注解 因此只有4个会被加载到spring的容器中
 	 * ***---***	 testController
 	 * ***---***	 testDao
+	 * ***---***	 testFilterDao
 	 * ***---***	 testService
 	 */
 	@Test
@@ -44,6 +35,5 @@ public class App extends BaseTest {
 		Person person = (Person)ac.getBean("person");
 		System.out.println(person);
 	}
-
 
 }

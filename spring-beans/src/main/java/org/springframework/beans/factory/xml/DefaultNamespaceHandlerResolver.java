@@ -99,7 +99,7 @@ public class DefaultNamespaceHandlerResolver implements NamespaceHandlerResolver
 			// 如果当前url对应的处理逻辑还是一个没初始化的全路径类名，则通过反射对其进行初始化
 			String className = (String) handlerOrClassName;
 			try {
-				Class<?> handlerClass = ClassUtils.forName(className, this.classLoader);
+				Class<?> handlerClass = ClassUtils.forName(className, classLoader);
 				// 判断该全路径类是否为NamespaceHandler接口的实现类
 				if (!NamespaceHandler.class.isAssignableFrom(handlerClass)) {
 					throw new FatalBeanException("Class [" + className + "] for namespace [" + namespaceUri + "] does not implement the [" + NamespaceHandler.class.getName() + "] interface");
@@ -125,15 +125,15 @@ public class DefaultNamespaceHandlerResolver implements NamespaceHandlerResolver
 			synchronized (this) {
 				handlerMappings = this.handlerMappings;
 				if (handlerMappings == null) {
-					if (logger.isTraceEnabled()) logger.trace("Loading NamespaceHandler mappings from [" + this.handlerMappingsLocation + "]");
+					if (logger.isTraceEnabled()) logger.trace("Loading NamespaceHandler mappings from [" + handlerMappingsLocation + "]");
 					try {
-						Properties mappings = PropertiesLoaderUtils.loadAllProperties(this.handlerMappingsLocation, this.classLoader);
+						Properties mappings = PropertiesLoaderUtils.loadAllProperties(handlerMappingsLocation, classLoader);
 						if (logger.isTraceEnabled()) logger.trace("Loaded NamespaceHandler mappings: " + mappings);
 						handlerMappings = new ConcurrentHashMap<>(mappings.size());
 						CollectionUtils.mergePropertiesIntoMap(mappings, handlerMappings);
 						this.handlerMappings = handlerMappings;
 					}catch (IOException ex) {
-						throw new IllegalStateException("Unable to load NamespaceHandler mappings from location [" + this.handlerMappingsLocation + "]", ex);
+						throw new IllegalStateException("Unable to load NamespaceHandler mappings from location [" + handlerMappingsLocation + "]", ex);
 					}
 				}
 			}

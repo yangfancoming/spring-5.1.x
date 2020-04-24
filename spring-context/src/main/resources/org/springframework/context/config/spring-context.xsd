@@ -146,26 +146,17 @@
 					</xsd:attribute>
 					<xsd:attribute name="value-separator" default=":">
 						<xsd:annotation>
-							<xsd:documentation><![CDATA[
-	The separating character between the placeholder variable and the associated
-	default value: by default, a ':' symbol.
-				]]></xsd:documentation>
+							<xsd:documentation><![CDATA[The separating character between the placeholder variable and the associated default value: by default, a ':' symbol.]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
 					<xsd:attribute name="trim-values">
 						<xsd:annotation>
-							<xsd:documentation><![CDATA[
-	Whether to trim resolved values before applying them, removing superfluous
-	whitespace (in particular tab characters) from the beginning and end.
-				]]></xsd:documentation>
+							<xsd:documentation><![CDATA[Whether to trim resolved values before applying them, removing superfluous whitespace (in particular tab characters) from the beginning and end.]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
 					<xsd:attribute name="null-value">
 						<xsd:annotation>
-							<xsd:documentation><![CDATA[
-	A value that should be treated as 'null' when resolved as a placeholder value:
-	e.g. "" (empty String) or "null". By default, no such null value is defined.
-				]]></xsd:documentation>
+							<xsd:documentation><![CDATA[A value that should be treated as 'null' when resolved as a placeholder value:e.g. "" (empty String) or "null". By default, no such null value is defined.]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
 				</xsd:extension>
@@ -238,8 +229,7 @@
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element name="include-filter" type="filterType"
-					minOccurs="0" maxOccurs="unbounded">
+				<xsd:element name="include-filter" type="filterType" minOccurs="0" maxOccurs="unbounded">
 					<xsd:annotation>
 						<xsd:documentation><![CDATA[
 	Controls which eligible types to include for component scanning.
@@ -249,21 +239,15 @@
 							]]></xsd:documentation>
 					</xsd:annotation>
 				</xsd:element>
-				<xsd:element name="exclude-filter" type="filterType"
-					minOccurs="0" maxOccurs="unbounded">
+				<xsd:element name="exclude-filter" type="filterType" minOccurs="0" maxOccurs="unbounded">
 					<xsd:annotation>
-						<xsd:documentation><![CDATA[
-	Controls which eligible types to exclude for component scanning.
-						]]></xsd:documentation>
+						<xsd:documentation><![CDATA[Controls which eligible types to exclude for component scanning.]]></xsd:documentation>
 					</xsd:annotation>
 				</xsd:element>
 			</xsd:sequence>
-			<xsd:attribute name="base-package" type="xsd:string"
-				use="required">
+			<xsd:attribute name="base-package" type="xsd:string" use="required">
 				<xsd:annotation>
-					<xsd:documentation><![CDATA[
-	The comma/semicolon/space/tab/linefeed-separated list of packages to scan for annotated components.
-					]]></xsd:documentation>
+					<xsd:documentation><![CDATA[The comma/semicolon/space/tab/linefeed-separated list of packages to scan for annotated components.]]></xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
 			<xsd:attribute name="resource-pattern" type="xsd:string">
@@ -274,28 +258,19 @@
 					]]></xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
-			<xsd:attribute name="use-default-filters" type="xsd:boolean"
-				default="true">
+			<xsd:attribute name="use-default-filters" type="xsd:boolean" default="true">
 				<xsd:annotation>
-					<xsd:documentation><![CDATA[
-	Indicates whether automatic detection of classes annotated with @Component, @Repository, @Service,
-	or @Controller should be enabled. Default is "true".
-					]]></xsd:documentation>
+					<xsd:documentation><![CDATA[Indicates whether automatic detection of classes annotated with @Component, @Repository, @Service,or @Controller should be enabled. Default is "true".]]></xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
-			<xsd:attribute name="annotation-config" type="xsd:boolean"
-				default="true">
+			<xsd:attribute name="annotation-config" type="xsd:boolean" default="true">
 				<xsd:annotation>
-					<xsd:documentation><![CDATA[
-	Indicates whether the implicit annotation post-processors should be enabled. Default is "true".
-					]]></xsd:documentation>
+					<xsd:documentation><![CDATA[Indicates whether the implicit annotation post-processors should be enabled. Default is "true".]]></xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
 			<xsd:attribute name="name-generator" type="xsd:string">
 				<xsd:annotation>
-					<xsd:documentation><![CDATA[
-	The fully-qualified class name of the BeanNameGenerator to be used for naming detected components.
-					]]></xsd:documentation>
+					<xsd:documentation><![CDATA[The fully-qualified class name of the BeanNameGenerator to be used for naming detected components.]]></xsd:documentation>
 					<xsd:appinfo>
 						<tool:annotation>
 							<tool:expected-type type="java.lang.Class"/>
@@ -306,10 +281,7 @@
 			</xsd:attribute>
 			<xsd:attribute name="scope-resolver" type="xsd:string">
 				<xsd:annotation>
-					<xsd:documentation><![CDATA[
-	The fully-qualified class name of the ScopeMetadataResolver to be used for resolving the scope of
-	detected components.
-					]]></xsd:documentation>
+					<xsd:documentation><![CDATA[The fully-qualified class name of the ScopeMetadataResolver to be used for resolving the scope of detected components.]]></xsd:documentation>
 					<xsd:appinfo>
 						<tool:annotation>
 							<tool:expected-type type="java.lang.Class"/>
@@ -320,10 +292,7 @@
 			</xsd:attribute>
 			<xsd:attribute name="scoped-proxy">
 				<xsd:annotation>
-					<xsd:documentation><![CDATA[
-	Indicates whether proxies should be generated for detected components, which may be necessary
-	when using scopes in a proxy-style fashion. Default is to generate no such proxies.
-					]]></xsd:documentation>
+					<xsd:documentation><![CDATA[Indicates whether proxies should be generated for detected components, which may be necessary when using scopes in a proxy-style fashion. Default is to generate no such proxies.]]></xsd:documentation>
 				</xsd:annotation>
 				<xsd:simpleType>
 					<xsd:restriction base="xsd:string">
@@ -370,9 +339,7 @@
 		<xsd:complexType>
 			<xsd:attribute name="weaver-class" type="xsd:string">
 				<xsd:annotation>
-					<xsd:documentation><![CDATA[
-	The fully-qualified classname of the LoadTimeWeaver that is to be activated.
-					]]></xsd:documentation>
+					<xsd:documentation><![CDATA[The fully-qualified classname of the LoadTimeWeaver that is to be activated.]]></xsd:documentation>
 					<xsd:appinfo>
 						<tool:annotation>
 							<tool:expected-type type="java.lang.Class"/>
@@ -386,16 +353,12 @@
 					<xsd:restriction base="xsd:string">
 						<xsd:enumeration value="on">
 							<xsd:annotation>
-								<xsd:documentation><![CDATA[
-	Switches Spring-based AspectJ load-time weaving on.
-								]]></xsd:documentation>
+								<xsd:documentation><![CDATA[Switches Spring-based AspectJ load-time weaving on.]]></xsd:documentation>
 							</xsd:annotation>
 						</xsd:enumeration>
 						<xsd:enumeration value="off">
 							<xsd:annotation>
-								<xsd:documentation><![CDATA[
-	Switches Spring-based AspectJ load-time weaving off.
-								]]></xsd:documentation>
+								<xsd:documentation><![CDATA[Switches Spring-based AspectJ load-time weaving off.]]></xsd:documentation>
 							</xsd:annotation>
 						</xsd:enumeration>
 						<xsd:enumeration value="autodetect">
@@ -444,9 +407,7 @@
 		<xsd:complexType>
 			<xsd:attribute name="default-domain" type="xsd:string">
 				<xsd:annotation>
-					<xsd:documentation><![CDATA[
-	The default domain to use when generating JMX ObjectNames.
-					]]></xsd:documentation>
+					<xsd:documentation><![CDATA[The default domain to use when generating JMX ObjectNames.]]></xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
 			<xsd:attribute name="server" type="xsd:string">
@@ -464,7 +425,6 @@
 	The registration behavior, indicating how to deal with existing MBeans
 	of the same name: fail with an exception, ignore and keep the existing
 	MBean, or replace the existing one with the new MBean.
-
 	Default is to fail with an exception.
 					]]></xsd:documentation>
 				</xsd:annotation>
@@ -484,7 +444,6 @@
 			<xsd:documentation source="java:org.springframework.jmx.support.MBeanServerFactoryBean"><![CDATA[
 	Exposes a default MBeanServer for the current platform.
 	Autodetects WebLogic, WebSphere and the JVM's platform MBeanServer.
-
 	The default bean name for the exposed MBeanServer is "mbeanServer".
 	This may be customized through specifying the "id" attribute.
 			]]></xsd:documentation>
@@ -499,9 +458,7 @@
 				<xsd:extension base="beans:identifiedType">
 					<xsd:attribute name="agent-id" type="xsd:string">
 						<xsd:annotation>
-							<xsd:documentation><![CDATA[
-	The agent id of the target MBeanServer, if any.
-							]]></xsd:documentation>
+							<xsd:documentation><![CDATA[The agent id of the target MBeanServer, if any.]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
 				</xsd:extension>
@@ -537,9 +494,7 @@
 		</xsd:attribute>
 		<xsd:attribute name="expression" type="xsd:string" use="required">
 			<xsd:annotation>
-				<xsd:documentation><![CDATA[
-    Indicates the filter expression, the type of which is indicated by "type".
-                ]]></xsd:documentation>
+				<xsd:documentation><![CDATA[Indicates the filter expression, the type of which is indicated by "type". ]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 	</xsd:complexType>

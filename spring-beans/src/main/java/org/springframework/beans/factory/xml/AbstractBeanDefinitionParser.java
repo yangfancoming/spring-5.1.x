@@ -17,17 +17,12 @@ import org.springframework.util.StringUtils;
 /**
  * Abstract {@link BeanDefinitionParser} implementation providing
  * a number of convenience methods and a
- * {@link AbstractBeanDefinitionParser#parseInternal template method}
- * that subclasses must override to provide the actual parsing logic.
+ * {@link AbstractBeanDefinitionParser#parseInternal template method} that subclasses must override to provide the actual parsing logic.
  *
- * Use this {@link BeanDefinitionParser} implementation when you want
- * to parse some arbitrarily complex XML into one or more
+ * Use this {@link BeanDefinitionParser} implementation when you want to parse some arbitrarily complex XML into one or more
  * {@link BeanDefinition BeanDefinitions}. If you just want to parse some
- * XML into a single {@code BeanDefinition}, you may wish to consider
- * the simpler convenience extensions of this class, namely
- * {@link AbstractSingleBeanDefinitionParser} and
- * {@link AbstractSimpleBeanDefinitionParser}.
- *
+ * XML into a single {@code BeanDefinition}, you may wish to consider the simpler convenience extensions of this class, namely
+ * {@link AbstractSingleBeanDefinitionParser} and {@link AbstractSimpleBeanDefinitionParser}.
  * @since 2.0
  */
 public abstract class AbstractBeanDefinitionParser implements BeanDefinitionParser {
@@ -38,7 +33,6 @@ public abstract class AbstractBeanDefinitionParser implements BeanDefinitionPars
 	/** Constant for the "name" attribute. */
 	public static final String NAME_ATTRIBUTE = "name";
 
-
 	@Override
 	@Nullable
 	public final BeanDefinition parse(Element element, ParserContext parserContext) {
@@ -47,9 +41,7 @@ public abstract class AbstractBeanDefinitionParser implements BeanDefinitionPars
 			try {
 				String id = resolveId(element, definition, parserContext);
 				if (!StringUtils.hasText(id)) {
-					parserContext.getReaderContext().error(
-							"Id is required for element '" + parserContext.getDelegate().getLocalName(element)
-									+ "' when used as a top-level tag", element);
+					parserContext.getReaderContext().error("Id is required for element '" + parserContext.getDelegate().getLocalName(element) + "' when used as a top-level tag", element);
 				}
 				String[] aliases = null;
 				if (shouldParseNameAsAliases()) {
@@ -65,8 +57,7 @@ public abstract class AbstractBeanDefinitionParser implements BeanDefinitionPars
 					postProcessComponentDefinition(componentDefinition);
 					parserContext.registerComponent(componentDefinition);
 				}
-			}
-			catch (BeanDefinitionStoreException ex) {
+			}catch (BeanDefinitionStoreException ex) {
 				String msg = ex.getMessage();
 				parserContext.getReaderContext().error((msg != null ? msg : ex.toString()), element);
 				return null;
@@ -85,8 +76,7 @@ public abstract class AbstractBeanDefinitionParser implements BeanDefinitionPars
 	 * @param parserContext the object encapsulating the current state of the parsing process;
 	 * provides access to a {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}
 	 * @return the resolved id
-	 * @throws BeanDefinitionStoreException if no unique name could be generated
-	 * for the given bean definition
+	 * @throws BeanDefinitionStoreException if no unique name could be generated for the given bean definition
 	 */
 	protected String resolveId(Element element, AbstractBeanDefinition definition, ParserContext parserContext) throws BeanDefinitionStoreException {
 		if (shouldGenerateId()) {
@@ -104,12 +94,10 @@ public abstract class AbstractBeanDefinitionParser implements BeanDefinitionPars
 	 * Register the supplied {@link BeanDefinitionHolder bean} with the supplied
 	 * {@link BeanDefinitionRegistry registry}.
 	 * Subclasses can override this method to control whether or not the supplied
-	 * {@link BeanDefinitionHolder bean} is actually even registered, or to
-	 * register even more beans.
+	 * {@link BeanDefinitionHolder bean} is actually even registered, or to register even more beans.
 	 * The default implementation registers the supplied {@link BeanDefinitionHolder bean}
 	 * with the supplied {@link BeanDefinitionRegistry registry} only if the {@code isNested}
-	 * parameter is {@code false}, because one typically does not want inner beans
-	 * to be registered as top level beans.
+	 * parameter is {@code false}, because one typically does not want inner beans to be registered as top level beans.
 	 * @param definition the bean definition to be registered
 	 * @param registry the registry that the bean is to be registered with
 	 * @see BeanDefinitionReaderUtils#registerBeanDefinition(BeanDefinitionHolder, BeanDefinitionRegistry)
@@ -120,8 +108,7 @@ public abstract class AbstractBeanDefinitionParser implements BeanDefinitionPars
 
 
 	/**
-	 * Central template method to actually parse the supplied {@link Element}
-	 * into one or more {@link BeanDefinition BeanDefinitions}.
+	 * Central template method to actually parse the supplied {@link Element} into one or more {@link BeanDefinition BeanDefinitions}.
 	 * @param element the element that is to be parsed into one or more {@link BeanDefinition BeanDefinitions}
 	 * @param parserContext the object encapsulating the current state of the parsing process;
 	 * provides access to a {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}

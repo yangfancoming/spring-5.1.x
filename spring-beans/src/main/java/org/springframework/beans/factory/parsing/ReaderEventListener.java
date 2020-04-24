@@ -5,8 +5,7 @@ package org.springframework.beans.factory.parsing;
 import java.util.EventListener;
 
 /**
- * Interface that receives callbacks for component, alias and import
- * registrations during a bean definition reading process.
+ * Interface that receives callbacks for component, alias and import registrations during a bean definition reading process.
  * @since 2.0
  * @see ReaderContext
  */
