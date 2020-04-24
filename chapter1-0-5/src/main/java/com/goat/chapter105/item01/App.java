@@ -14,20 +14,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class App extends BaseTest {
 
-	/**
-	 * 传统标签 <component-scan> 可以扫描到 com.goat.chapter105.common 包下的
-	 * 其中6个类中 2个没有注解 因此只有4个会被加载到spring的容器中
-	 * ***---***	 testController
-	 * ***---***	 testDao
-	 * ***---***	 testFilterDao
-	 * ***---***	 testService
-	 */
-	@Test
-	public void test1(){
-		ApplicationContext ac = new ClassPathXmlApplicationContext("component-scan.xml");
-		look(ac);
-	}
-
 	// 传统标签 <bean>
 	@Test
 	public void test(){
