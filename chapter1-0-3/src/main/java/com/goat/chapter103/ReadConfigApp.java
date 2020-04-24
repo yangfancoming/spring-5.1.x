@@ -11,7 +11,6 @@ import java.util.Properties;
 
 /**
  * Created by Administrator on 2020/3/23.
- *
  * @ Description: java原生方式读取配置文件
  * @ author  山羊来了
  * @ date 2020/3/23---20:16

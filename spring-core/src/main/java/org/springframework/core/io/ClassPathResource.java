@@ -47,21 +47,18 @@ public class ClassPathResource extends AbstractFileResolvingResource {
 	 * Create a new {@code ClassPathResource} for {@code ClassLoader} usage.
 	 * A leading slash will be removed, as the ClassLoader resource access methods will not accept it.
 	 * @param path the absolute path within the classpath
-	 * @param classLoader the class loader to load the resource with,
-	 * or {@code null} for the thread context class loader
+	 * @param classLoader the class loader to load the resource with, or {@code null} for the thread context class loader
 	 * @see ClassLoader#getResourceAsStream(String)
 	 */
 	public ClassPathResource(String path, @Nullable ClassLoader classLoader) {
 		Assert.notNull(path, "Path must not be null");
-		//规范路径
+		// 转换路径
 		String pathToUse = StringUtils.cleanPath(path);
-		//如果路径以"/"开头,则截取开头"/"以后字符做为路径
-		if (pathToUse.startsWith("/")) {
-			pathToUse = pathToUse.substring(1);
-		}
-		//将处理后的路径赋给this.path
+		// 如果路径以"/"开头,则截取开头"/"以后字符做为路径
+		if (pathToUse.startsWith("/")) pathToUse = pathToUse.substring(1);
+		// 保存转换后的路径
 		this.path = pathToUse;
-		//获取classLoader并赋给this.classLoader
+		// 保存类加载器
 		this.classLoader = (classLoader != null ? classLoader : ClassUtils.getDefaultClassLoader());
 	}
 
@@ -83,8 +80,7 @@ public class ClassPathResource extends AbstractFileResolvingResource {
 	 * @param path relative or absolute path within the classpath
 	 * @param classLoader the class loader to load the resource with, if any
 	 * @param clazz the class to load resources with, if any
-	 * @deprecated as of 4.3.13, in favor of selective use of
-	 * {@link #ClassPathResource(String, ClassLoader)} vs {@link #ClassPathResource(String, Class)}
+	 * @deprecated as of 4.3.13, in favor of selective use of {@link #ClassPathResource(String, ClassLoader)} vs {@link #ClassPathResource(String, Class)}
 	 */
 	@Deprecated
 	protected ClassPathResource(String path, @Nullable ClassLoader classLoader, @Nullable Class<?> clazz) {
@@ -95,13 +91,13 @@ public class ClassPathResource extends AbstractFileResolvingResource {
 
 	// Return the path for this resource (as resource path within the class path).
 	public final String getPath() {
-		return this.path;
+		return path;
 	}
 
 	// Return the ClassLoader that this resource will be obtained from.
 	@Nullable
 	public final ClassLoader getClassLoader() {
-		return (this.clazz != null ? this.clazz.getClassLoader() : this.classLoader);
+		return (clazz != null ? clazz.getClassLoader() : classLoader);
 	}
 
 	/**
@@ -120,12 +116,12 @@ public class ClassPathResource extends AbstractFileResolvingResource {
 	 */
 	@Nullable
 	protected URL resolveURL() {
-		if (this.clazz != null) {
-			return this.clazz.getResource(this.path);
-		}else if (this.classLoader != null) {
-			return this.classLoader.getResource(this.path);
+		if (clazz != null) {
+			return clazz.getResource(path);
+		}else if (classLoader != null) {
+			return classLoader.getResource(path);
 		}else {
-			return ClassLoader.getSystemResource(this.path);
+			return ClassLoader.getSystemResource(path);
 		}
 	}
 
@@ -138,20 +134,17 @@ public class ClassPathResource extends AbstractFileResolvingResource {
 	public InputStream getInputStream() throws IOException {
 		InputStream is;
 		// ①如果类对象不为null,则使用类对象信息的getResourceAsStream获取输入流
-		if (this.clazz != null) {
-			is = this.clazz.getResourceAsStream(this.path);
-		}
+		if (clazz != null) {
+			is = clazz.getResourceAsStream(path);
+		}else if (classLoader != null) {
 		// ②如果类加载器不为null,则使用类加载器的getResourceAsStream获取输入流
-		else if (this.classLoader != null) {
-			is = this.classLoader.getResourceAsStream(this.path);
+			is = classLoader.getResourceAsStream(path);
 		}else {
 			// ③否则使用ClassLoader类的getSystemResourceAsStream方法获取输入流
-			is = ClassLoader.getSystemResourceAsStream(this.path);
+			is = ClassLoader.getSystemResourceAsStream(path);
 		}
-		if (is == null) {
-			//以上三种方法都无法获取到输入流的话,那么说明文件不存在,抛出异常
-			throw new FileNotFoundException(getDescription() + " cannot be opened because it does not exist");
-		}
+		//以上三种方法都无法获取到输入流的话,那么说明文件不存在,抛出异常
+		if (is == null) throw new FileNotFoundException(getDescription() + " cannot be opened because it does not exist or didn't find the right ClassLoader");// -modify
 		return is;
 	}
 
@@ -173,8 +166,8 @@ public class ClassPathResource extends AbstractFileResolvingResource {
 	 */
 	@Override
 	public Resource createRelative(String relativePath) {
-		String pathToUse = StringUtils.applyRelativePath(this.path, relativePath);
-		return (this.clazz != null ? new ClassPathResource(pathToUse, this.clazz) : new ClassPathResource(pathToUse, this.classLoader));
+		String pathToUse = StringUtils.applyRelativePath(path, relativePath);
+		return (clazz != null ? new ClassPathResource(pathToUse, clazz) : new ClassPathResource(pathToUse, classLoader));
 	}
 
 	/**
@@ -184,16 +177,16 @@ public class ClassPathResource extends AbstractFileResolvingResource {
 	@Override
 	@Nullable
 	public String getFilename() {
-		return StringUtils.getFilename(this.path);
+		return StringUtils.getFilename(path);
 	}
 
 	// This implementation returns a description that includes the class path location.
 	@Override
 	public String getDescription() {
 		StringBuilder builder = new StringBuilder("class path resource [");
-		String pathToUse = this.path;
-		if (this.clazz != null && !pathToUse.startsWith("/")) {
-			builder.append(ClassUtils.classPackageAsResourcePath(this.clazz));
+		String pathToUse = path;
+		if (clazz != null && !pathToUse.startsWith("/")) {
+			builder.append(ClassUtils.classPackageAsResourcePath(clazz));
 			builder.append('/');
 		}
 		if (pathToUse.startsWith("/")) {
@@ -212,14 +205,14 @@ public class ClassPathResource extends AbstractFileResolvingResource {
 			return false;
 		}
 		ClassPathResource otherRes = (ClassPathResource) other;
-		return (this.path.equals(otherRes.path) &&
-				ObjectUtils.nullSafeEquals(this.classLoader, otherRes.classLoader) &&
-				ObjectUtils.nullSafeEquals(this.clazz, otherRes.clazz));
+		return (path.equals(otherRes.path) &&
+				ObjectUtils.nullSafeEquals(classLoader, otherRes.classLoader) &&
+				ObjectUtils.nullSafeEquals(clazz, otherRes.clazz));
 	}
 
 	// This implementation returns the hash code of the underlying class path location.
 	@Override
 	public int hashCode() {
-		return this.path.hashCode();
+		return path.hashCode();
 	}
 }

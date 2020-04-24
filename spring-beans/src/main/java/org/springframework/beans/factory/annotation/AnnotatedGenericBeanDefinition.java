@@ -77,13 +77,13 @@ public class AnnotatedGenericBeanDefinition extends GenericBeanDefinition implem
 	//---------------------------------------------------------------------
 	@Override
 	public final AnnotationMetadata getMetadata() {
-		return this.metadata;
+		return metadata;
 	}
 
 	@Override
 	@Nullable
 	public final MethodMetadata getFactoryMethodMetadata() {
-		return this.factoryMethodMetadata;
+		return factoryMethodMetadata;
 	}
 
 }

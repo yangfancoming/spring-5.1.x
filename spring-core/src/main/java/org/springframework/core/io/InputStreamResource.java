@@ -47,57 +47,53 @@ public class InputStreamResource extends AbstractResource {
 		this.description = (description != null ? description : "");
 	}
 
-	/**
-	 * This implementation always returns {@code true}.
-	 */
+	//---------------------------------------------------------------------
+	// Implementation of 【InputStreamSource】 interface
+	//---------------------------------------------------------------------
+	// This implementation throws IllegalStateException if attempting to read the underlying stream multiple times.
+	@Override
+	public InputStream getInputStream() throws IOException, IllegalStateException {
+		if (read) {
+			throw new IllegalStateException("InputStream has already been read - do not use InputStreamResource if a stream needs to be read multiple times");
+		}
+		read = true;
+		return inputStream;
+	}
+
+	//---------------------------------------------------------------------
+	// Implementation of 【Resource】 interface
+	//---------------------------------------------------------------------
+	// This implementation returns a description that includes the passed-in description, if any.
+	@Override
+	public String getDescription() {
+		return "InputStream resource [" + description + "]";
+	}
+
+	//---------------------------------------------------------------------
+	// Implementation of 【AbstractResource】 class
+	//---------------------------------------------------------------------
+	//  This implementation always returns {@code true}.
 	@Override
 	public boolean exists() {
 		return true;
 	}
 
-	/**
-	 * This implementation always returns {@code true}.
-	 */
+	// This implementation always returns {@code true}.
 	@Override
 	public boolean isOpen() {
 		return true;
 	}
 
-	/**
-	 * This implementation throws IllegalStateException if attempting to
-	 * read the underlying stream multiple times.
-	 */
-	@Override
-	public InputStream getInputStream() throws IOException, IllegalStateException {
-		if (this.read) {
-			throw new IllegalStateException("InputStream has already been read - do not use InputStreamResource if a stream needs to be read multiple times");
-		}
-		this.read = true;
-		return this.inputStream;
-	}
-
-	/**
-	 * This implementation returns a description that includes the passed-in description, if any.
-	 */
-	@Override
-	public String getDescription() {
-		return "InputStream resource [" + this.description + "]";
-	}
-
-	/**
-	 * This implementation compares the underlying InputStream.
-	 */
+	// This implementation compares the underlying InputStream.
 	@Override
 	public boolean equals(Object other) {
-		return (this == other || (other instanceof InputStreamResource && ((InputStreamResource) other).inputStream.equals(this.inputStream)));
+		return (this == other || (other instanceof InputStreamResource && ((InputStreamResource) other).inputStream.equals(inputStream)));
 	}
 
-	/**
-	 * This implementation returns the hash code of the underlying InputStream.
-	 */
+	// This implementation returns the hash code of the underlying InputStream.
 	@Override
 	public int hashCode() {
-		return this.inputStream.hashCode();
+		return inputStream.hashCode();
 	}
 
 }

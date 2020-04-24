@@ -36,6 +36,7 @@ public abstract class PropertiesLoaderSupport {
 
 	private boolean ignoreResourceNotFound = false;
 
+	// 资源文件编码格式设置
 	@Nullable
 	private String fileEncoding;
 
@@ -43,16 +44,14 @@ public abstract class PropertiesLoaderSupport {
 
 	/**
 	 * Set local properties, e.g. via the "props" tag in XML bean definitions.
-	 * These can be considered defaults, to be overridden by properties
-	 * loaded from files.
+	 * These can be considered defaults, to be overridden by properties loaded from files.
 	 */
 	public void setProperties(Properties properties) {
-		this.localProperties = new Properties[] {properties};
+		localProperties = new Properties[] {properties};
 	}
 
 	/**
-	 * Set local properties, e.g. via the "props" tag in XML bean definitions,
-	 * allowing for merging multiple properties sets into one.
+	 * Set local properties, e.g. via the "props" tag in XML bean definitions,allowing for merging multiple properties sets into one.
 	 */
 	public void setPropertiesArray(Properties... propertiesArray) {
 		this.localProperties = propertiesArray;
@@ -60,19 +59,16 @@ public abstract class PropertiesLoaderSupport {
 
 	/**
 	 * Set a location of a properties file to be loaded.
-	 * Can point to a classic properties file or to an XML file
-	 * that follows JDK 1.5's properties XML format.
+	 * Can point to a classic properties file or to an XML file that follows JDK 1.5's properties XML format.
 	 */
 	public void setLocation(Resource location) {
-		this.locations = new Resource[] {location};
+		locations = new Resource[] {location};
 	}
 
 	/**
 	 * Set locations of properties files to be loaded.
-	 * Can point to classic properties files or to XML files
-	 * that follow JDK 1.5's properties XML format.
-	 * Note: Properties defined in later files will override
-	 * properties defined earlier files, in case of overlapping keys.
+	 * Can point to classic properties files or to XML files that follow JDK 1.5's properties XML format.
+	 * Note: Properties defined in later files will override properties defined earlier files, in case of overlapping keys.
 	 * Hence, make sure that the most specific files are the last ones in the given list of locations.
 	 */
 	public void setLocations(Resource... locations) {
@@ -81,16 +77,14 @@ public abstract class PropertiesLoaderSupport {
 
 	/**
 	 * Set whether local properties override properties from files.
-	 * Default is "false": Properties from files override local defaults.
-	 * Can be switched to "true" to let local properties override defaults from files.
+	 * Default is "false": Properties from files override local defaults.Can be switched to "true" to let local properties override defaults from files.
 	 */
 	public void setLocalOverride(boolean localOverride) {
 		this.localOverride = localOverride;
 	}
 
 	/**
-	 * Set if failure to find the property resource should be ignored.
-	 * "true" is appropriate if the properties file is completely optional.
+	 * Set if failure to find the property resource should be ignored."true" is appropriate if the properties file is completely optional.
 	 * Default is "false".
 	 */
 	public void setIgnoreResourceNotFound(boolean ignoreResourceNotFound) {
@@ -104,12 +98,11 @@ public abstract class PropertiesLoaderSupport {
 	 * @see org.springframework.util.PropertiesPersister#load
 	 */
 	public void setFileEncoding(String encoding) {
-		this.fileEncoding = encoding;
+		fileEncoding = encoding;
 	}
 
 	/**
-	 * Set the PropertiesPersister to use for parsing properties files.
-	 * The default is DefaultPropertiesPersister.
+	 * Set the PropertiesPersister to use for parsing properties files.The default is DefaultPropertiesPersister.
 	 * @see org.springframework.util.DefaultPropertiesPersister
 	 */
 	public void setPropertiesPersister(@Nullable PropertiesPersister propertiesPersister) {
@@ -117,21 +110,20 @@ public abstract class PropertiesLoaderSupport {
 	}
 
 	/**
-	 * Return a merged Properties instance containing both the
-	 * loaded properties and properties set on this FactoryBean.
+	 * Return a merged Properties instance containing both the loaded properties and properties set on this FactoryBean.
 	 */
 	protected Properties mergeProperties() throws IOException {
 		Properties result = new Properties();
-		if (this.localOverride) {
+		if (localOverride) {
 			// Load properties from file upfront, to let local properties override.
 			loadProperties(result);
 		}
-		if (this.localProperties != null) {
-			for (Properties localProp : this.localProperties) {
+		if (localProperties != null) {
+			for (Properties localProp : localProperties) {
 				CollectionUtils.mergePropertiesIntoMap(localProp, result);
 			}
 		}
-		if (!this.localOverride) {
+		if (!localOverride) {
 			// Load properties from file afterwards, to let those properties override.
 			loadProperties(result);
 		}
@@ -145,14 +137,13 @@ public abstract class PropertiesLoaderSupport {
 	 * @see #setLocations
 	 */
 	protected void loadProperties(Properties props) throws IOException {
-		if (this.locations != null) {
-			for (Resource location : this.locations) {
+		if (locations != null) {
+			for (Resource location : locations) {
 				if (logger.isTraceEnabled()) logger.trace("Loading properties file from " + location);
 				try {
-					PropertiesLoaderUtils.fillProperties(props, new EncodedResource(location, this.fileEncoding), this.propertiesPersister);
-				}
-				catch (FileNotFoundException | UnknownHostException ex) {
-					if (this.ignoreResourceNotFound) {
+					PropertiesLoaderUtils.fillProperties(props, new EncodedResource(location, fileEncoding), propertiesPersister);
+				}catch (FileNotFoundException | UnknownHostException ex) {
+					if (ignoreResourceNotFound) {
 						if (logger.isDebugEnabled()) logger.debug("Properties resource not found: " + ex.getMessage());
 					}else {
 						throw ex;

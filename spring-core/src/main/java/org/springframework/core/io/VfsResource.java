@@ -13,8 +13,7 @@ import org.springframework.util.Assert;
 
 /**
  * JBoss VFS based {@link Resource} implementation.
- * As of Spring 4.0, this class supports VFS 3.x on JBoss AS 6+
- * (package {@code org.jboss.vfs}) and is in particular compatible with JBoss AS 7 and WildFly 8+.
+ * As of Spring 4.0, this class supports VFS 3.x on JBoss AS 6+ (package {@code org.jboss.vfs}) and is in particular compatible with JBoss AS 7 and WildFly 8+.
  * @since 3.0
  * @see org.jboss.vfs.VirtualFile
  */
@@ -24,8 +23,7 @@ public class VfsResource extends AbstractResource {
 
 	/**
 	 * Create a new {@code VfsResource} wrapping the given resource handle.
-	 * @param resource a {@code org.jboss.vfs.VirtualFile} instance
-	 * (untyped in order to avoid a static dependency on the VFS API)
+	 * @param resource a {@code org.jboss.vfs.VirtualFile} instance (untyped in order to avoid a static dependency on the VFS API)
 	 */
 	public VfsResource(Object resource) {
 		Assert.notNull(resource, "VirtualFile must not be null");
@@ -111,5 +109,4 @@ public class VfsResource extends AbstractResource {
 	public int hashCode() {
 		return this.resource.hashCode();
 	}
-
 }

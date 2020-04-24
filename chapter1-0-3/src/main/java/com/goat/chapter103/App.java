@@ -22,23 +22,23 @@ public class App {
 		print(resource);
 	}
 
+	// 使用类信息加载   doit 为啥读取不到配置文件？？
 	@Test
 	public void test2() {
-		// 使用类信息加载   doit 为啥读取不到配置文件？？
 		Resource resource = new ClassPathResource("application.xml", Person.class);
 		print(resource);
 	}
 
+	// 使用类加载器从资源文件夹下加载
 	@Test
 	public void test3() {
-		// 使用类加载器从资源文件夹下加载
 		Resource resource = new ClassPathResource("application.xml", Person.class.getClassLoader());
 		print(resource);
 	}
 
+	// 使用DefaultResourceLoader加载
 	@Test
 	public void test4() {
-		// 使用DefaultResourceLoader加载
 		Resource resource = new DefaultResourceLoader().getResource("application.xml");
 		print(resource);
 	}

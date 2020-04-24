@@ -20,7 +20,7 @@ import org.springframework.util.ResourceUtils;
 
 /**
  * Convenient utility methods for loading of {@code java.util.Properties},performing standard handling of input streams.
- * For more configurable properties loading, including the option of a  customized encoding, consider using the PropertiesLoaderSupport class.
+ * For more configurable properties loading, including the option of a customized encoding, consider using the PropertiesLoaderSupport class.
  * @since 2.0
  * @see PropertiesLoaderSupport
  */

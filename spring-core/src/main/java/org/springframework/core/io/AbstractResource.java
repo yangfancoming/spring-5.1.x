@@ -25,8 +25,7 @@ import org.springframework.util.ResourceUtils;
 public abstract class AbstractResource implements Resource {
 
 	/**
-	 * This implementation checks whether a File can be opened,
-	 * falling back to whether an InputStream can be opened.
+	 * This implementation checks whether a File can be opened,falling back to whether an InputStream can be opened.
 	 * This will cover both directories and content resources.
 	 */
 	@Override
@@ -46,33 +45,26 @@ public abstract class AbstractResource implements Resource {
 	}
 
 	/**
-	 * This implementation always returns {@code true} for a resource
-	 * that {@link #exists() exists} (revised as of 5.1).
+	 * This implementation always returns {@code true} for a resource that {@link #exists() exists} (revised as of 5.1).
 	 */
 	@Override
 	public boolean isReadable() {
 		return exists();
 	}
 
-	/**
-	 * This implementation always returns {@code false}.
-	 */
+	// This implementation always returns {@code false}.
 	@Override
 	public boolean isOpen() {
 		return false;
 	}
 
-	/**
-	 * This implementation always returns {@code false}.
-	 */
+	// This implementation always returns {@code false}.
 	@Override
 	public boolean isFile() {
 		return false;
 	}
 
-	/**
-	 * This implementation throws a FileNotFoundException, assuming that the resource cannot be resolved to a URL.
-	 */
+	// This implementation throws a FileNotFoundException, assuming that the resource cannot be resolved to a URL.
 	@Override
 	public URL getURL() throws IOException {
 		throw new FileNotFoundException(getDescription() + " cannot be resolved to URL");
@@ -91,9 +83,7 @@ public abstract class AbstractResource implements Resource {
 		}
 	}
 
-	/**
-	 * This implementation throws a FileNotFoundException, assuming that the resource cannot be resolved to an absolute file path.
-	 */
+	// This implementation throws a FileNotFoundException, assuming that the resource cannot be resolved to an absolute file path.
 	@Override
 	public File getFile() throws IOException {
 		throw new FileNotFoundException(getDescription() + " cannot be resolved to absolute file path");
@@ -101,8 +91,7 @@ public abstract class AbstractResource implements Resource {
 
 	/**
 	 * This implementation returns {@link Channels#newChannel(InputStream)} with the result of {@link #getInputStream()}.
-	 * This is the same as in {@link Resource}'s corresponding default method
-	 * but mirrored here for efficient JVM-level dispatching in a class hierarchy.
+	 * This is the same as in {@link Resource}'s corresponding default method  but mirrored here for efficient JVM-level dispatching in a class hierarchy.
 	 */
 	@Override
 	public ReadableByteChannel readableChannel() throws IOException {
@@ -110,9 +99,8 @@ public abstract class AbstractResource implements Resource {
 	}
 
 	/**
-	 * This implementation reads the entire InputStream to calculate the
-	 * content length. Subclasses will almost always be able to provide
-	 * a more optimal version of this, e.g. checking a File length.
+	 * This implementation reads the entire InputStream to calculate the content length.
+	 * Subclasses will almost always be able to provide a more optimal version of this, e.g. checking a File length.
 	 * @see #getInputStream()
 	 */
 	@Override
@@ -159,19 +147,13 @@ public abstract class AbstractResource implements Resource {
 		return getFile();
 	}
 
-	/**
-	 * This implementation throws a FileNotFoundException, assuming
-	 * that relative resources cannot be created for this resource.
-	 */
+	// This implementation throws a FileNotFoundException, assuming  that relative resources cannot be created for this resource.
 	@Override
 	public Resource createRelative(String relativePath) throws IOException {
 		throw new FileNotFoundException("Cannot create a relative resource for " + getDescription());
 	}
 
-	/**
-	 * This implementation always returns {@code null},
-	 * assuming that this resource type does not have a filename.
-	 */
+	//  This implementation always returns {@code null},assuming that this resource type does not have a filename.
 	@Override
 	@Nullable
 	public String getFilename() {

@@ -63,8 +63,7 @@ public class DefaultResourceLoader implements ResourceLoader {
 
 	/**
 	 * Register the given resolver with this resource loader, allowing for  additional protocols to be handled.
-	 * Any such resolver will be invoked ahead of this loader's standard
-	 * resolution rules. It may therefore also override any default rules.
+	 * Any such resolver will be invoked ahead of this loader's standard  resolution rules. It may therefore also override any default rules.
 	 * @since 4.3
 	 * @see #getProtocolResolvers()
 	 */
