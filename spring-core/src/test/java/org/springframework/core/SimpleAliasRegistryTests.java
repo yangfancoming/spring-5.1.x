@@ -3,9 +3,8 @@
 package org.springframework.core;
 
 import org.junit.Test;
-
+import java.util.Arrays;
 import java.util.Collections;
-
 import static org.junit.Assert.*;
 
 
@@ -17,9 +16,9 @@ public class SimpleAliasRegistryTests {
 	// 源码搜索串： if (alias.equals(name)) {
 	@Test
 	public void test1() {
-		registry.registerAlias("foo", "Goat");
+		registry.registerAlias("李彦伯", "老K");
 		assertEquals(1, registry.aliasMap.size()); // 成功注册一个别名
-		registry.registerAlias("Goat", "Goat");
+		registry.registerAlias("老K", "老K");
 		assertEquals(0, registry.aliasMap.size()); // 别名与正名相同 通过key为Goat 进行删除
 	}
 
@@ -27,12 +26,9 @@ public class SimpleAliasRegistryTests {
 	// 源码搜索串： if (logger.isDebugEnabled()) logger.debug("Overriding alias '"
 	@Test
 	public void getAliases() {
-		// 成功注册一个别名
-		registry.registerAlias("foo", "Goat");
-		// 覆盖掉 上面的 foo
-		registry.registerAlias("bar", "Goat");
-		// 验证被覆盖了
-		assertEquals(Collections.singletonMap("Goat", "bar"), registry.aliasMap);
+		registry.registerAlias("李彦伯", "老K"); // 成功注册一个别名
+		registry.registerAlias("马文明", "老K"); // 马文明 覆盖掉 李彦伯
+		assertEquals(Collections.singletonMap("老K", "马文明"), registry.aliasMap);// 验证被覆盖了
 	}
 
 
@@ -48,36 +44,36 @@ public class SimpleAliasRegistryTests {
 	// 源码搜索串：  if (registeredName.equals(name)) return;
 	@Test
 	public void test31(){
-		registry.registerAlias("person","goat");
-		// 如果别名已经在缓存中存在，并且缓存中的别名和beanName(注意:不是别名)相同,则直接返回,没有必要再注册一次
-		registry.registerAlias("person","goat");
-		assertEquals(Collections.singletonMap("goat", "person"), registry.aliasMap);
+		registry.registerAlias("李彦伯","老K");
+		// 如果别名已经在缓存中存在，并且缓存中的正名和传入的正名相同,则直接返回,没有必要再注册一次
+		registry.registerAlias("李彦伯","老K");
+		assertEquals(Collections.singletonMap("老K", "李彦伯"), registry.aliasMap);
 	}
 
 	//  与map不同点：  测试 如果注册两个别名和正名顺序颠倒  将抛出异常
-	// 源码搜索串：  if (hasAlias(alias, name)) {
+	// 源码搜索串：  checkForAliasCircle(name, alias);
 	@Test(expected = IllegalStateException.class)
 	public void test3() {
-		registry.registerAlias("foo", "Goat");
-		registry.registerAlias("Goat", "foo");
+		registry.registerAlias("李彦伯", "老K");
+		registry.registerAlias("老K", "李彦伯");
 	}
 
 	// 测试别名 链式传递
 	@Test
 	public void testAliasChaining() {
-		registry.registerAlias("test", "testAlias");
-		registry.registerAlias("testAlias", "testAlias2");
-		registry.registerAlias("testAlias2", "testAlias3");
-		assertEquals(3,registry.getAliases("test").length);
-		assertEquals(2,registry.getAliases("testAlias").length);
-
-		assertTrue(registry.hasAlias("test", "testAlias"));
-		assertTrue(registry.hasAlias("test", "testAlias2"));
-		assertTrue(registry.hasAlias("test", "testAlias3"));
-
-		assertSame("test", registry.canonicalName("testAlias"));
-		assertSame("test", registry.canonicalName("testAlias2"));
-		assertSame("test", registry.canonicalName("testAlias3"));
+		registry.registerAlias("李彦伯", "李亮亮");
+		registry.registerAlias("李亮亮", "老K");
+		registry.registerAlias("老K", "JQK");
+		assertEquals(Arrays.asList("李亮亮","老K","JQK").toArray(),registry.getAliases("李彦伯"));
+		assertEquals(Arrays.asList("老K","JQK").toArray(),registry.getAliases("李亮亮"));
+		// hasAlias 测试
+		assertTrue(registry.hasAlias("李彦伯", "李亮亮"));
+		assertTrue(registry.hasAlias("李彦伯", "老K"));
+		assertTrue(registry.hasAlias("李彦伯", "JQK"));
+		// canonicalName 测试
+		assertSame("李彦伯", registry.canonicalName("李亮亮"));
+		assertSame("李彦伯", registry.canonicalName("老K"));
+		assertSame("李彦伯", registry.canonicalName("JQK"));
 	}
 
 	@Test  // SPR-17191

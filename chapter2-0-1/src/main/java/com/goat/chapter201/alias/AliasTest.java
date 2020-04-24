@@ -26,4 +26,17 @@ public class AliasTest  {
 		System.out.println(person1.toString());
 	}
 
+	@Test
+	public void test2(){
+		String str = "1";
+		System.out.println(str);
+		String gaga = gaga(str);
+		System.out.println(gaga);
+		System.out.println(str);
+	}
+	public String gaga(String string){
+		string = string + "1";
+		return string;
+	}
+
 }

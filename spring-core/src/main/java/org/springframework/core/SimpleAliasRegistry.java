@@ -115,30 +115,26 @@ public class SimpleAliasRegistry implements AliasRegistry {
 
 	/**
 	 * Determine the raw name, resolving aliases to canonical names.
-	 * 确定原始名称，将别名解析为规范名称。
+	 * 根据别名解析出正名。( 链式别名解析到最根源的正名)
 	 * @param name the user-specified name
 	 * @return the transformed name
-	 * 该方法用于转换别名
+	 * 	registry.registerAlias("李彦伯", "李亮亮");
+	 * 	registry.registerAlias("李亮亮", "老K");
+	 * 	registry.registerAlias("老K", "JQK");
+	 *
+	 * 	assertSame("李彦伯", registry.canonicalName("李亮亮"));
+	 * 	assertSame("李彦伯", registry.canonicalName("老K"));
+	 * 	assertSame("李彦伯", registry.canonicalName("JQK"));
 	 */
 	public String canonicalName(String name) {
-		String canonicalName = name;
-		// Handle aliasing...
-		String resolvedName;
-		/*
-		 * 这里使用 while 循环进行处理，原因是：可能会存在多重别名的问题，即别名指向别名。比如下面的配置：
-		 *   <bean id="hello" class="service.Hello"/>
-		 *   <alias name="hello" alias="aliasA"/>
-		 *   <alias name="aliasA" alias="aliasB"/>
-		 * 上面的别名指向关系为 aliasB -> aliasA -> hello，对于上面的别名配置，
-		 * aliasMap 中数据视图为：aliasMap = [<aliasB, aliasA>, <aliasA, hello>]
-		 * 通过下面的循环解析别名  aliasB 最终指向的 beanName
-		 */
+		String canonicalName = name; // doit  该行去掉 函数参数改成canonicalName 貌似也可以？
+		String resolvedName; // Handle aliasing...
+		// 这里使用 while 循环进行处理，原因是：可能会存在多重别名的问题，即别名指向别名。比如上面的配置
 		do {
-			//从别名缓存Map中获取对应beanName
+			// 根据别名获取正名
 			resolvedName = aliasMap.get(canonicalName);
 			if (resolvedName != null) canonicalName = resolvedName;
-		}
-		while (resolvedName != null);
+		}while (resolvedName != null);
 		return canonicalName;
 	}
 
@@ -177,11 +173,11 @@ public class SimpleAliasRegistry implements AliasRegistry {
 				aliasMap.remove(alias);
 				if (logger.isDebugEnabled()) logger.debug("Alias definition '" + alias + "' ignored since it points to same name");
 			}else {
-				// 尝试从缓存中获取别名
+				// 尝试从缓存中获取 正名
 				String registeredName = aliasMap.get(alias);
-				// 如果别名已经在缓存中存在
+				// 如果 正名 已经在缓存中存在
 				if (registeredName != null) {
-					// An existing alias - no need to re-register   如果缓存中的别名和beanName(注意:不是别名)相同,则直接返回,没有必要再注册一次，
+					// An existing alias - no need to re-register  如果正名已经在缓存中存在，并且缓存中的正名和传入的正名相同,则直接返回,没有必要再注册一次
 					if (registeredName.equals(name)) return;
 					// 如果别名不允许覆盖，则抛出异常  //缓存中存在别名,且不允许覆盖,抛出异常
 					if (!allowAliasOverriding()) {
@@ -189,8 +185,8 @@ public class SimpleAliasRegistry implements AliasRegistry {
 					}
 					if (logger.isDebugEnabled()) logger.debug("Overriding alias '" + alias + "' definition for registered name '" + registeredName + "' with new target name '" + name + "'");
 				}
-				//确保添加的没有name和alias值相反的数据且alias和name不相等
-				// 检查是否有循环别名注册 //检查给定名称是否已指向另一个方向的别名作为别名,预先捕获循环引用并抛出相应的IllegalStateException
+
+				// 检测别名和正名是否有循环引用注册，有则抛出异常。  eg："李彦伯" --- > "老K"  又 "老K" --- > "李彦伯"  则抛出异常
 				checkForAliasCircle(name, alias);
 				// 注册别名 // 将别名作为key，目标bean名称作为值注册到存储别名的Map中
 				// 缓存别名
