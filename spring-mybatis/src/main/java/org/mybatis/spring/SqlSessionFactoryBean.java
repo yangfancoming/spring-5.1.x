@@ -407,7 +407,6 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 			targetConfiguration = new Configuration();
 			Optional.ofNullable(this.configurationProperties).ifPresent(targetConfiguration::setVariables);
 		}
-
 		// 配置 objectFactory
 		// 根据Spring配置文件，设置Configuration.objectWrapperFactory
 		// 根据Spring配置文件，设置Configuration.objectFactory
@@ -418,7 +417,6 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 		// 注册指定的typeHandlers
 		// 配置databaseIdProvider
 		// 配置缓存
-
 		Optional.ofNullable(this.objectFactory).ifPresent(targetConfiguration::setObjectFactory);
 		Optional.ofNullable(this.objectWrapperFactory).ifPresent(targetConfiguration::setObjectWrapperFactory);
 		Optional.ofNullable(this.vfs).ifPresent(targetConfiguration::setVfsImpl);
@@ -472,9 +470,7 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 				throw new NestedIOException("Failed getting a databaseId", e);
 			}
 		}
-
 		Optional.ofNullable(this.cache).ifPresent(targetConfiguration::addCache);
-
 		// 调parse()方法解析配置文件
 		if (xmlConfigBuilder != null) {
 			try {

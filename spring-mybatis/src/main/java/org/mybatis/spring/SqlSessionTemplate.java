@@ -266,10 +266,6 @@ public class SqlSessionTemplate implements SqlSession, DisposableBean {
     this.sqlSessionProxy.clearCache();
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   */
   @Override
   public Configuration getConfiguration() {
     return this.sqlSessionFactory.getConfiguration();
@@ -282,7 +278,6 @@ public class SqlSessionTemplate implements SqlSession, DisposableBean {
   }
 
   /**
-   * {@inheritDoc}
    * @since 1.0.2
    */
   @Override

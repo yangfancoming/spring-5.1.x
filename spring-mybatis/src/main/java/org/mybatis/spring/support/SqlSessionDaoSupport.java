@@ -9,8 +9,7 @@ import org.springframework.dao.support.DaoSupport;
 import static org.springframework.util.Assert.notNull;
 
 /**
- * Convenient super class for MyBatis SqlSession data access objects. It gives you access to the template which can then
- * be used to execute SQL methods.
+ * Convenient super class for MyBatis SqlSession data access objects. It gives you access to the template which can then be used to execute SQL methods.
  * This class needs a SqlSessionTemplate or a SqlSessionFactory. If both are set the SqlSessionFactory will be ignored.
  * @see #setSqlSessionFactory
  * @see #setSqlSessionTemplate
@@ -31,10 +30,8 @@ public abstract class SqlSessionDaoSupport extends DaoSupport {
   }
 
   /**
-   * Create a SqlSessionTemplate for the given SqlSessionFactory. Only invoked if populating the DAO with a
-   * SqlSessionFactory reference!
-   * Can be overridden in subclasses to provide a SqlSessionTemplate instance with different configuration, or a custom
-   * SqlSessionTemplate subclass.
+   * Create a SqlSessionTemplate for the given SqlSessionFactory. Only invoked if populating the DAO with a SqlSessionFactory reference!
+   * Can be overridden in subclasses to provide a SqlSessionTemplate instance with different configuration, or a custom SqlSessionTemplate subclass.
    * @param sqlSessionFactory  the MyBatis SqlSessionFactory to create a SqlSessionTemplate for
    * @return the new SqlSessionTemplate instance
    * @see #setSqlSessionFactory
@@ -86,5 +83,4 @@ public abstract class SqlSessionDaoSupport extends DaoSupport {
   protected void checkDaoConfig() {
     notNull(this.sqlSessionTemplate, "Property 'sqlSessionFactory' or 'sqlSessionTemplate' are required");
   }
-
 }

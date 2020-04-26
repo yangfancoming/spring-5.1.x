@@ -37,7 +37,6 @@ public class MapperScannerBeanDefinitionParser extends AbstractBeanDefinitionPar
   private static final String ATTRIBUTE_LAZY_INITIALIZATION = "lazy-initialization";
 
   /**
-   * {@inheritDoc}
    * @since 2.0.2
    */
   @Override
@@ -85,7 +84,6 @@ public class MapperScannerBeanDefinitionParser extends AbstractBeanDefinitionPar
   }
 
   /**
-   * {@inheritDoc}
    * @since 2.0.2
    */
   @Override

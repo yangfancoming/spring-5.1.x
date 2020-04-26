@@ -38,12 +38,10 @@ public final class SqlSessionUtils {
   }
 
   /**
-   * Creates a new MyBatis {@code SqlSession} from the {@code SqlSessionFactory} provided as a parameter and using its
-   * {@code DataSource} and {@code ExecutorType}
+   * Creates a new MyBatis {@code SqlSession} from the {@code SqlSessionFactory} provided as a parameter and using its {@code DataSource} and {@code ExecutorType}
    * @param sessionFactory  a MyBatis {@code SqlSessionFactory} to create new sessions
    * @return a MyBatis {@code SqlSession}
-   * @throws TransientDataAccessResourceException
-   *           if a transaction is active and the {@code SqlSessionFactory} is not using a {@code SpringManagedTransactionFactory}
+   * @throws TransientDataAccessResourceException if a transaction is active and the {@code SqlSessionFactory} is not using a {@code SpringManagedTransactionFactory}
    */
   public static SqlSession getSqlSession(SqlSessionFactory sessionFactory) {
     ExecutorType executorType = sessionFactory.getConfiguration().getDefaultExecutorType();
@@ -175,13 +173,11 @@ public final class SqlSessionUtils {
       this.sessionFactory = sessionFactory;
     }
 
-
     @Override
     public int getOrder() {
       // order right before any Connection synchronization
       return DataSourceUtils.CONNECTION_SYNCHRONIZATION_ORDER - 1;
     }
-
 
     @Override
     public void suspend() {
@@ -190,7 +186,6 @@ public final class SqlSessionUtils {
         TransactionSynchronizationManager.unbindResource(this.sessionFactory);
       }
     }
-
 
     @Override
     public void resume() {
@@ -238,7 +233,6 @@ public final class SqlSessionUtils {
       }
     }
 
-
     @Override
     public void afterCompletion(int status) {
       if (this.holderActive) {
@@ -253,5 +247,4 @@ public final class SqlSessionUtils {
       this.holder.reset();
     }
   }
-
 }

@@ -138,16 +138,12 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	}
 
 	/**
-	 * Set the {@link BeanNameGenerator} to be used when triggering component scanning
-	 * from {@link Configuration} classes and when registering {@link Import}'ed
-	 * configuration classes. The default is a standard {@link AnnotationBeanNameGenerator}
-	 * for scanned components (compatible with the default in {@link ClassPathBeanDefinitionScanner})
-	 * and a variant thereof for imported configuration classes (using unique fully-qualified
-	 * class names instead of standard component overriding).
+	 * Set the {@link BeanNameGenerator} to be used when triggering component scanning from {@link Configuration} classes and when registering {@link Import}'ed configuration classes.
+	 * The default is a standard {@link AnnotationBeanNameGenerator} for scanned components (compatible with the default in {@link ClassPathBeanDefinitionScanner})
+	 * and a variant thereof for imported configuration classes (using unique fully-qualified class names instead of standard component overriding).
 	 * Note that this strategy does <em>not</em> apply to {@link Bean} methods.
-	 * This setter is typically only appropriate when configuring the post-processor as
-	 * a standalone bean definition in XML, e.g. not using the dedicated
-	 * {@code AnnotationConfig*} application contexts or the {@code <context:annotation-config>} element.
+	 * This setter is typically only appropriate when configuring the post-processor as a standalone bean definition in XML,
+	 * e.g. not using the dedicated {@code AnnotationConfig*} application contexts or the {@code <context:annotation-config>} element.
 	 * Any bean name generator specified against  the application context will take precedence over any value set here.
 	 * @since 3.1.1
 	 * @see AnnotationConfigApplicationContext#setBeanNameGenerator(BeanNameGenerator)
@@ -292,8 +288,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 			sbr.registerSingleton(IMPORT_REGISTRY_BEAN_NAME, parser.getImportRegistry());
 		}
 		if (metadataReaderFactory instanceof CachingMetadataReaderFactory) {
-			// Clear cache in externally provided MetadataReaderFactory; this is a no-op
-			// for a shared cache since it'll be cleared by the ApplicationContext.
+			// Clear cache in externally provided MetadataReaderFactory; this is a no-op  for a shared cache since it'll be cleared by the ApplicationContext.
 			((CachingMetadataReaderFactory) metadataReaderFactory).clearCache();
 		}
 	}

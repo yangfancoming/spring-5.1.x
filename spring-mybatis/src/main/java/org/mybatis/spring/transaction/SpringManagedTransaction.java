@@ -17,8 +17,7 @@ import static org.springframework.util.Assert.notNull;
 /**
  * {@code SpringManagedTransaction} handles the lifecycle of a JDBC connection.
  * It retrieves a connection from Spring's transaction manager and returns it back to it when it is no longer needed.
- * If Spring's transaction handling is active it will no-op all commit/rollback/close calls assuming that the Spring
- * transaction manager will do the job.
+ * If Spring's transaction handling is active it will no-op all commit/rollback/close calls assuming that the Spring transaction manager will do the job.
  * If it is not it will behave like {@code JdbcTransaction}.
  */
 public class SpringManagedTransaction implements Transaction {
@@ -38,14 +37,9 @@ public class SpringManagedTransaction implements Transaction {
     this.dataSource = dataSource;
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public Connection getConnection() throws SQLException {
-    if (this.connection == null) {
-      openConnection();
-    }
+    if (this.connection == null) openConnection();
     return this.connection;
   }
 
@@ -61,9 +55,6 @@ public class SpringManagedTransaction implements Transaction {
     LOGGER.debug(() -> "JDBC Connection [" + this.connection + "] will" + (this.isConnectionTransactional ? " " : " not ") + "be managed by Spring");
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public void commit() throws SQLException {
     if (this.connection != null && !this.isConnectionTransactional && !this.autoCommit) {
@@ -72,9 +63,6 @@ public class SpringManagedTransaction implements Transaction {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public void rollback() throws SQLException {
     if (this.connection != null && !this.isConnectionTransactional && !this.autoCommit) {
@@ -83,17 +71,11 @@ public class SpringManagedTransaction implements Transaction {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public void close() {
     DataSourceUtils.releaseConnection(this.connection, this.dataSource);
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public Integer getTimeout() {
     ConnectionHolder holder = (ConnectionHolder) TransactionSynchronizationManager.getResource(dataSource);
