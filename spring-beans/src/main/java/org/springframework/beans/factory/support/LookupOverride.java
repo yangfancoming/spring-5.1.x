@@ -24,8 +24,7 @@ public class LookupOverride extends MethodOverride {
 	/**
 	 * Construct a new LookupOverride.
 	 * @param methodName the name of the method to override
-	 * @param beanName the name of the bean in the current {@code BeanFactory}
-	 * that the overridden method should return (may be {@code null})
+	 * @param beanName the name of the bean in the current {@code BeanFactory} that the overridden method should return (may be {@code null})
 	 */
 	public LookupOverride(String methodName, @Nullable String beanName) {
 		super(methodName);
@@ -35,8 +34,7 @@ public class LookupOverride extends MethodOverride {
 	/**
 	 * Construct a new LookupOverride.
 	 * @param method the method to override
-	 * @param beanName the name of the bean in the current {@code BeanFactory}
-	 * that the overridden method should return (may be {@code null})
+	 * @param beanName the name of the bean in the current {@code BeanFactory} that the overridden method should return (may be {@code null})
 	 */
 	public LookupOverride(Method method, @Nullable String beanName) {
 		super(method.getName());
@@ -54,20 +52,16 @@ public class LookupOverride extends MethodOverride {
 
 	/**
 	 * Match the specified method by {@link Method} reference or method name.
-	 * For backwards compatibility reasons, in a scenario with overloaded
-	 * non-abstract methods of the given name, only the no-arg variant of a
-	 * method will be turned into a container-driven lookup method.
-	 * In case of a provided {@link Method}, only straight matches will
-	 * be considered, usually demarcated by the {@code @Lookup} annotation.
+	 * For backwards compatibility reasons, in a scenario with overloaded  non-abstract methods of the given name,
+	 * only the no-arg variant of a method will be turned into a container-driven lookup method.
+	 * In case of a provided {@link Method}, only straight matches will be considered, usually demarcated by the {@code @Lookup} annotation.
 	 */
 	@Override
 	public boolean matches(Method method) {
 		if (this.method != null) {
 			return method.equals(this.method);
-		}
-		else {
-			return (method.getName().equals(getMethodName()) && (!isOverloaded() ||
-					Modifier.isAbstract(method.getModifiers()) || method.getParameterCount() == 0));
+		}else {
+			return (method.getName().equals(getMethodName()) && (!isOverloaded() || Modifier.isAbstract(method.getModifiers()) || method.getParameterCount() == 0));
 		}
 	}
 
@@ -90,5 +84,4 @@ public class LookupOverride extends MethodOverride {
 	public String toString() {
 		return "LookupOverride for method '" + getMethodName() + "'";
 	}
-
 }

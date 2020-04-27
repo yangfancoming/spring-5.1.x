@@ -397,9 +397,8 @@ public abstract class BeanFactoryUtils {
 	 * @param type type of bean to match
 	 * @param includeNonSingletons whether to include prototype or scoped beans too or just singletons (also applies to FactoryBeans)
 	 * @param allowEagerInit whether to initialize <i>lazy-init singletons</i> and
-	 * <i>objects created by FactoryBeans</i> (or by factory methods with a
-	 * "factory-bean" reference) for the type check. Note that FactoryBeans need to be
-	 * eagerly initialized to determine their type: So be aware that passing in "true"
+	 * <i>objects created by FactoryBeans</i> (or by factory methods with a "factory-bean" reference) for the type check.
+	 * Note that FactoryBeans need to be eagerly initialized to determine their type: So be aware that passing in "true"
 	 * for this flag will initialize FactoryBeans and "factory-bean" references.
 	 * @return the matching bean instance
 	 * @throws NoSuchBeanDefinitionException if no bean of the given type was found

@@ -42,18 +42,16 @@ public abstract class MethodOverride implements BeanMetadataElement {
 	}
 
 	/**
-	 * Set whether the overridden method is <em>overloaded</em> (i.e., whether argument
-	 * type matching needs to occur to disambiguate methods of the same name).
-	 * Default is {@code true}; can be switched to {@code false} to optimize
-	 * runtime performance.
+	 * Set whether the overridden method is <em>overloaded</em> (i.e., whether argument type matching needs to occur to disambiguate methods of the same name).
+	 * Default is {@code true}; can be switched to {@code false} to optimize runtime performance.
+	 *
 	 */
 	protected void setOverloaded(boolean overloaded) {
 		this.overloaded = overloaded;
 	}
 
 	/**
-	 * Return whether the overridden method is <em>overloaded</em> (i.e., whether argument
-	 * type matching needs to occur to disambiguate methods of the same name).
+	 * Return whether the overridden method is <em>overloaded</em> (i.e., whether argument type matching needs to occur to disambiguate methods of the same name).
 	 */
 	protected boolean isOverloaded() {
 		return this.overloaded;
@@ -75,8 +73,7 @@ public abstract class MethodOverride implements BeanMetadataElement {
 
 	/**
 	 * Subclasses must override this to indicate whether they <em>match</em> the
-	 * given method. This allows for argument list checking as well as method
-	 * name checking.
+	 * given method. This allows for argument list checking as well as method name checking.
 	 * @param method the method to check
 	 * @return whether this override matches the given method
 	 */
@@ -85,15 +82,12 @@ public abstract class MethodOverride implements BeanMetadataElement {
 
 	@Override
 	public boolean equals(Object other) {
-		if (this == other) {
-			return true;
-		}
+		if (this == other) return true;
 		if (!(other instanceof MethodOverride)) {
 			return false;
 		}
 		MethodOverride that = (MethodOverride) other;
-		return (ObjectUtils.nullSafeEquals(this.methodName, that.methodName) &&
-				ObjectUtils.nullSafeEquals(this.source, that.source));
+		return (ObjectUtils.nullSafeEquals(this.methodName, that.methodName) && ObjectUtils.nullSafeEquals(this.source, that.source));
 	}
 
 	@Override

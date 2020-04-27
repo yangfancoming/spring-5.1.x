@@ -30,11 +30,8 @@ import org.springframework.util.StringUtils;
 
 /**
  * Helper class for use in bean factory implementations,
- * resolving values contained in bean definition objects
- * into the actual values applied to the target bean instance.
- *
- * Operates on an {@link AbstractBeanFactory} and a plain
- * {@link org.springframework.beans.factory.config.BeanDefinition} object.
+ * resolving values contained in bean definition objects into the actual values applied to the target bean instance.
+ * Operates on an {@link AbstractBeanFactory} and a plain {@link org.springframework.beans.factory.config.BeanDefinition} object.
  * Used by {@link AbstractAutowireCapableBeanFactory}.
  * @since 1.2
  * @see AbstractAutowireCapableBeanFactory
@@ -65,18 +62,13 @@ class BeanDefinitionValueResolver {
 
 
 	/**
-	 * Given a PropertyValue, return a value, resolving any references to other
-	 * beans in the factory if necessary. The value could be:
-	 * <li>A BeanDefinition, which leads to the creation of a corresponding
-	 * new bean instance. Singleton flags and names of such "inner beans"
-	 * are always ignored: Inner beans are anonymous prototypes.
+	 * Given a PropertyValue, return a value, resolving any references to other beans in the factory if necessary. The value could be:
+	 * <li>A BeanDefinition, which leads to the creation of a corresponding new bean instance.
+	 * Singleton flags and names of such "inner beans" are always ignored: Inner beans are anonymous prototypes.
 	 * <li>A RuntimeBeanReference, which must be resolved.
-	 * <li>A ManagedList. This is a special collection that may contain
-	 * RuntimeBeanReferences or Collections that will need to be resolved.
-	 * <li>A ManagedSet. May also contain RuntimeBeanReferences or
-	 * Collections that will need to be resolved.
-	 * <li>A ManagedMap. In this case the value may be a RuntimeBeanReference
-	 * or Collection that will need to be resolved.
+	 * <li>A ManagedList. This is a special collection that may contain  RuntimeBeanReferences or Collections that will need to be resolved.
+	 * <li>A ManagedSet. May also contain RuntimeBeanReferences or Collections that will need to be resolved.
+	 * <li>A ManagedMap. In this case the value may be a RuntimeBeanReference or Collection that will need to be resolved.
 	 * <li>An ordinary object or {@code null}, in which case it's left alone.
 	 * @param argName the name of the argument that the value is defined for
 	 * @param value the value object to resolve
@@ -371,10 +363,7 @@ class BeanDefinitionValueResolver {
 		return resolved;
 	}
 
-
-	/**
-	 * Holder class used for delayed toString building.
-	 */
+	// Holder class used for delayed toString building.
 	private static class KeyedArgName {
 
 		private final Object argName;
@@ -388,8 +377,7 @@ class BeanDefinitionValueResolver {
 
 		@Override
 		public String toString() {
-			return this.argName + " with key " + BeanWrapper.PROPERTY_KEY_PREFIX +
-					this.key + BeanWrapper.PROPERTY_KEY_SUFFIX;
+			return this.argName + " with key " + BeanWrapper.PROPERTY_KEY_PREFIX + this.key + BeanWrapper.PROPERTY_KEY_SUFFIX;
 		}
 	}
 

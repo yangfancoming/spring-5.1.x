@@ -9,8 +9,7 @@ import org.springframework.beans.Mergeable;
 import org.springframework.lang.Nullable;
 
 /**
- * Tag class which represents a Spring-managed {@link Properties} instance
- * that supports merging of parent/child definitions.
+ * Tag class which represents a Spring-managed {@link Properties} instance that supports merging of parent/child definitions.
  * @since 2.0
  */
 @SuppressWarnings("serial")
@@ -21,10 +20,7 @@ public class ManagedProperties extends Properties implements Mergeable, BeanMeta
 
 	private boolean mergeEnabled;
 
-	/**
-	 * Set the configuration source {@code Object} for this metadata element.
-	 * The exact type of the object will depend on the configuration mechanism used.
-	 */
+	// Set the configuration source {@code Object} for this metadata element.The exact type of the object will depend on the configuration mechanism used.
 	public void setSource(@Nullable Object source) {
 		this.source = source;
 	}
@@ -35,10 +31,7 @@ public class ManagedProperties extends Properties implements Mergeable, BeanMeta
 		return this.source;
 	}
 
-	/**
-	 * Set whether merging should be enabled for this collection,
-	 * in case of a 'parent' collection value being present.
-	 */
+	// Set whether merging should be enabled for this collection,in case of a 'parent' collection value being present.
 	public void setMergeEnabled(boolean mergeEnabled) {
 		this.mergeEnabled = mergeEnabled;
 	}

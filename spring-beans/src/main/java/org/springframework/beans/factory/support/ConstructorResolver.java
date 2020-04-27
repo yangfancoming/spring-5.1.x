@@ -82,8 +82,7 @@ class ConstructorResolver {
 	 * Also applied if explicit constructor argument values are specified,
 	 * matching all remaining arguments with beans from the bean factory.
 	 * This corresponds to constructor injection: In this mode, a Spring
-	 * bean factory is able to host components that expect constructor-based
-	 * dependency resolution.
+	 * bean factory is able to host components that expect constructor-based dependency resolution.
 	 * @param beanName the name of the bean
 	 * @param mbd the merged bean definition for the bean
 	 * @param chosenCtors chosen candidate constructors (or {@code null} if none)
@@ -94,7 +93,7 @@ class ConstructorResolver {
 	public BeanWrapper autowireConstructor(String beanName, RootBeanDefinition mbd,@Nullable Constructor<?>[] chosenCtors, @Nullable Object[] explicitArgs) {
 		// 创建 BeanWrapperImpl 对象
 		BeanWrapperImpl bw = new BeanWrapperImpl();
-		this.beanFactory.initBeanWrapper(bw);
+		beanFactory.initBeanWrapper(bw);
 		Constructor<?> constructorToUse = null;
 		ArgumentsHolder argsHolderToUse = null;
 		Object[] argsToUse = null;
@@ -131,8 +130,7 @@ class ConstructorResolver {
 				try {
 					candidates = (mbd.isNonPublicAccessAllowed() ? beanClass.getDeclaredConstructors() : beanClass.getConstructors());
 				}catch (Throwable ex) {
-					throw new BeanCreationException(mbd.getResourceDescription(), beanName,"Resolution of declared constructors on bean Class [" + beanClass.getName() +
-							"] from ClassLoader [" + beanClass.getClassLoader() + "] failed", ex);
+					throw new BeanCreationException(mbd.getResourceDescription(), beanName,"Resolution of declared constructors on bean Class [" + beanClass.getName() + "] from ClassLoader [" + beanClass.getClassLoader() + "] failed", ex);
 				}
 			}
 
@@ -156,8 +154,7 @@ class ConstructorResolver {
 			int minNrOfArgs;
 			if (explicitArgs != null) {
 				minNrOfArgs = explicitArgs.length;
-			}
-			else {
+			}else {
 				ConstructorArgumentValues cargs = mbd.getConstructorArgumentValues();
 				resolvedValues = new ConstructorArgumentValues();
 				/*
@@ -167,7 +164,6 @@ class ConstructorResolver {
 				 *         <constructor-arg index="1" value="1"/>
 				 *         <constructor-arg index="2" value="man"/>
 				 *     </bean>
-				 *
 				 * 此时 minNrOfArgs = maxIndex + 1 = 2 + 1 = 3，除了计算 minNrOfArgs，
 				 * 下面的方法还会将 cargs 中的参数数据转存到 resolvedValues 中
 				 */
@@ -178,7 +174,6 @@ class ConstructorResolver {
 			int minTypeDiffWeight = Integer.MAX_VALUE;
 			Set<Constructor<?>> ambiguousConstructors = null;
 			LinkedList<UnsatisfiedDependencyException> causes = null;
-
 			for (Constructor<?> candidate : candidates) {
 				Class<?>[] paramTypes = candidate.getParameterTypes();
 				/*
@@ -235,7 +230,7 @@ class ConstructorResolver {
 						 */
 						String[] paramNames = ConstructorPropertiesChecker.evaluate(candidate, paramTypes.length);
 						if (paramNames == null) {
-							ParameterNameDiscoverer pnd = this.beanFactory.getParameterNameDiscoverer();
+							ParameterNameDiscoverer pnd = beanFactory.getParameterNameDiscoverer();
 							if (pnd != null) {
 								/*
 								 * 获取构造方法参数名称列表，比如有这样一个构造方法:public Person(String name, int age, String sex)
@@ -256,15 +251,10 @@ class ConstructorResolver {
 						 * Person 的成员变量 age 是 Integer 类型的，但由于在 Spring 配置中只能配成 String 类型，所以这里要进行类型转换。
 						 */
 						argsHolder = createArgumentArray(beanName, mbd, resolvedValues, bw, paramTypes, paramNames,getUserDeclaredConstructor(candidate), autowiring, candidates.length == 1);
-					}
-					catch (UnsatisfiedDependencyException ex) {
-						if (logger.isTraceEnabled()) {
-							logger.trace("Ignoring constructor [" + candidate + "] of bean '" + beanName + "': " + ex);
-						}
+					}catch (UnsatisfiedDependencyException ex) {
+						if (logger.isTraceEnabled()) logger.trace("Ignoring constructor [" + candidate + "] of bean '" + beanName + "': " + ex);
 						// Swallow and try next constructor.
-						if (causes == null) {
-							causes = new LinkedList<>();
-						}
+						if (causes == null) causes = new LinkedList<>();
 						causes.add(ex);
 						continue;
 					}
@@ -294,13 +284,12 @@ class ConstructorResolver {
 					argsToUse = argsHolder.arguments;
 					minTypeDiffWeight = typeDiffWeight;
 					ambiguousConstructors = null;
-				}
+				}else if (constructorToUse != null && typeDiffWeight == minTypeDiffWeight) {
 				/*
 				 * 如果两个构造方法与参数值类型列表之间的差异量一致，那么这两个方法都可以作为
 				 * 候选项，这个时候就出现歧义了，这里先把有歧义的构造方法放入
 				 * ambiguousConstructors 集合中
 				 */
-				else if (constructorToUse != null && typeDiffWeight == minTypeDiffWeight) {
 					if (ambiguousConstructors == null) {
 						ambiguousConstructors = new LinkedHashSet<>();
 						ambiguousConstructors.add(constructorToUse);
@@ -313,18 +302,17 @@ class ConstructorResolver {
 				if (causes != null) {
 					UnsatisfiedDependencyException ex = causes.removeLast();
 					for (Exception cause : causes) {
-						this.beanFactory.onSuppressedException(cause);
+						beanFactory.onSuppressedException(cause);
 					}
 					throw ex;
 				}
 				throw new BeanCreationException(mbd.getResourceDescription(), beanName,"Could not resolve matching constructor (hint: specify index/type/name arguments for simple parameters to avoid type ambiguities)");
-			}
+			}else if (ambiguousConstructors != null && !mbd.isLenientConstructorResolution()) {
 			/*
 			 * 如果 constructorToUse != null，且 ambiguousConstructors 也不为空，表明解析
 			 * 出了多个的合适的构造方法，此时就出现歧义了。Spring 不会擅自决定使用哪个构造方法，
 			 * 所以抛出异常。
 			 */
-			else if (ambiguousConstructors != null && !mbd.isLenientConstructorResolution()) {
 				throw new BeanCreationException(mbd.getResourceDescription(), beanName,"Ambiguous constructor matches found in bean '" + beanName +
 						"'(hint: specify index/type/name arguments for simple parameters to avoid type ambiguities): " + ambiguousConstructors);
 			}
@@ -347,12 +335,12 @@ class ConstructorResolver {
 
 	private Object instantiate(String beanName, RootBeanDefinition mbd, Constructor<?> constructorToUse, Object[] argsToUse) {
 		try {
-			InstantiationStrategy strategy = this.beanFactory.getInstantiationStrategy();
+			InstantiationStrategy strategy = beanFactory.getInstantiationStrategy();
 			if (System.getSecurityManager() != null) {
 				return AccessController.doPrivileged((PrivilegedAction<Object>) () ->
-						strategy.instantiate(mbd, beanName, this.beanFactory, constructorToUse, argsToUse),this.beanFactory.getAccessControlContext());
+						strategy.instantiate(mbd, beanName, beanFactory, constructorToUse, argsToUse),beanFactory.getAccessControlContext());
 			}else {
-				return strategy.instantiate(mbd, beanName, this.beanFactory, constructorToUse, argsToUse);
+				return strategy.instantiate(mbd, beanName, beanFactory, constructorToUse, argsToUse);
 			}
 		}catch (Throwable ex) {
 			throw new BeanCreationException(mbd.getResourceDescription(), beanName,"Bean instantiation via constructor failed", ex);
@@ -368,7 +356,7 @@ class ConstructorResolver {
 		Class<?> factoryClass;
 		boolean isStatic;
 		if (mbd.getFactoryBeanName() != null) {
-			factoryClass = this.beanFactory.getType(mbd.getFactoryBeanName());
+			factoryClass = beanFactory.getType(mbd.getFactoryBeanName());
 			isStatic = false;
 		}else {
 			factoryClass = mbd.getBeanClass();
@@ -399,9 +387,7 @@ class ConstructorResolver {
 	 */
 	private Method[] getCandidateMethods(Class<?> factoryClass, RootBeanDefinition mbd) {
 		if (System.getSecurityManager() != null) {
-			return AccessController.doPrivileged((PrivilegedAction<Method[]>) () ->
-					(mbd.isNonPublicAccessAllowed() ?
-						ReflectionUtils.getAllDeclaredMethods(factoryClass) : factoryClass.getMethods()));
+			return AccessController.doPrivileged((PrivilegedAction<Method[]>) () -> (mbd.isNonPublicAccessAllowed() ? ReflectionUtils.getAllDeclaredMethods(factoryClass) : factoryClass.getMethods()));
 		}else {
 			return (mbd.isNonPublicAccessAllowed() ? ReflectionUtils.getAllDeclaredMethods(factoryClass) : factoryClass.getMethods());
 		}
@@ -424,7 +410,7 @@ class ConstructorResolver {
 	 */
 	public BeanWrapper instantiateUsingFactoryMethod(String beanName, RootBeanDefinition mbd, @Nullable Object[] explicitArgs) {
 		BeanWrapperImpl bw = new BeanWrapperImpl();
-		this.beanFactory.initBeanWrapper(bw);
+		beanFactory.initBeanWrapper(bw);
 		Object factoryBean;
 		Class<?> factoryClass;
 		boolean isStatic;
@@ -434,8 +420,8 @@ class ConstructorResolver {
 			if (factoryBeanName.equals(beanName)) {
 				throw new BeanDefinitionStoreException(mbd.getResourceDescription(), beanName,"factory-bean reference points back to the same bean definition");
 			}
-			factoryBean = this.beanFactory.getBean(factoryBeanName);
-			if (mbd.isSingleton() && this.beanFactory.containsSingleton(beanName)) {
+			factoryBean = beanFactory.getBean(factoryBeanName);
+			if (mbd.isSingleton() && beanFactory.containsSingleton(beanName)) {
 				throw new ImplicitlyAppearedSingletonException();
 			}
 			factoryClass = factoryBean.getClass();
@@ -540,7 +526,7 @@ class ConstructorResolver {
 						// Resolved constructor arguments: type conversion and/or autowiring necessary.
 						try {
 							String[] paramNames = null;
-							ParameterNameDiscoverer pnd = this.beanFactory.getParameterNameDiscoverer();
+							ParameterNameDiscoverer pnd = beanFactory.getParameterNameDiscoverer();
 							if (pnd != null) {
 								paramNames = pnd.getParameterNames(candidate);
 							}
@@ -573,10 +559,8 @@ class ConstructorResolver {
 					// and eventually raise an ambiguity exception.
 					// However, only perform that check in non-lenient constructor resolution mode,
 					// and explicitly ignore overridden methods (with the same parameter signature).
-					else if (factoryMethodToUse != null && typeDiffWeight == minTypeDiffWeight &&
-							!mbd.isLenientConstructorResolution() &&
-							paramTypes.length == factoryMethodToUse.getParameterCount() &&
-							!Arrays.equals(paramTypes, factoryMethodToUse.getParameterTypes())) {
+					else if (factoryMethodToUse != null && typeDiffWeight == minTypeDiffWeight && !mbd.isLenientConstructorResolution() &&
+							paramTypes.length == factoryMethodToUse.getParameterCount() && !Arrays.equals(paramTypes, factoryMethodToUse.getParameterTypes())) {
 						if (ambiguousFactoryMethods == null) {
 							ambiguousFactoryMethods = new LinkedHashSet<>();
 							ambiguousFactoryMethods.add(factoryMethodToUse);
@@ -590,7 +574,7 @@ class ConstructorResolver {
 				if (causes != null) {
 					UnsatisfiedDependencyException ex = causes.removeLast();
 					for (Exception cause : causes) {
-						this.beanFactory.onSuppressedException(cause);
+						beanFactory.onSuppressedException(cause);
 					}
 					throw ex;
 				}
@@ -609,11 +593,10 @@ class ConstructorResolver {
 					}
 				}
 				String argDesc = StringUtils.collectionToCommaDelimitedString(argTypes);
-				throw new BeanCreationException(mbd.getResourceDescription(), beanName,
-						"No matching factory method found: " + (mbd.getFactoryBeanName() != null ?
+				throw new BeanCreationException(mbd.getResourceDescription(), beanName, "No matching factory method found: " + (mbd.getFactoryBeanName() != null ?
 							"factory bean '" + mbd.getFactoryBeanName() + "'; " : "") + "factory method '" + mbd.getFactoryMethodName() + "(" + argDesc + ")'. " +
-						"Check that a method with the specified name " + (minNrOfArgs > 0 ? "and arguments " : "") +
-						"exists and that it is " + (isStatic ? "static" : "non-static") + ".");
+						"Check that a method with the specified name " + (minNrOfArgs > 0 ? "and arguments " : "") + "exists and that it is " + (isStatic ? "static" : "non-static") + ".");
+
 			}else if (void.class == factoryMethodToUse.getReturnType()) {
 				throw new BeanCreationException(mbd.getResourceDescription(), beanName,"Invalid factory method '" + mbd.getFactoryMethodName() + "': needs to have a non-void return type!");
 			}else if (ambiguousFactoryMethods != null) {
@@ -634,10 +617,10 @@ class ConstructorResolver {
 		try {
 			if (System.getSecurityManager() != null) {
 				return AccessController.doPrivileged((PrivilegedAction<Object>) () ->
-						this.beanFactory.getInstantiationStrategy().instantiate(mbd, beanName, this.beanFactory, factoryBean, factoryMethod, args),
-						this.beanFactory.getAccessControlContext());
+						beanFactory.getInstantiationStrategy().instantiate(mbd, beanName, beanFactory, factoryBean, factoryMethod, args),beanFactory.getAccessControlContext());
+
 			}else {
-				return this.beanFactory.getInstantiationStrategy().instantiate(mbd, beanName, this.beanFactory, factoryBean, factoryMethod, args);
+				return beanFactory.getInstantiationStrategy().instantiate(mbd, beanName, beanFactory, factoryBean, factoryMethod, args);
 
 			}
 		}catch (Throwable ex) {
@@ -652,9 +635,9 @@ class ConstructorResolver {
 	 */
 	private int resolveConstructorArguments(String beanName, RootBeanDefinition mbd, BeanWrapper bw,ConstructorArgumentValues cargs, ConstructorArgumentValues resolvedValues) {
 
-		TypeConverter customConverter = this.beanFactory.getCustomTypeConverter();
+		TypeConverter customConverter = beanFactory.getCustomTypeConverter();
 		TypeConverter converter = (customConverter != null ? customConverter : bw);
-		BeanDefinitionValueResolver valueResolver = new BeanDefinitionValueResolver(this.beanFactory, beanName, mbd, converter);
+		BeanDefinitionValueResolver valueResolver = new BeanDefinitionValueResolver(beanFactory, beanName, mbd, converter);
 		int minNrOfArgs = cargs.getArgumentCount();
 		for (Map.Entry<Integer, ConstructorArgumentValues.ValueHolder> entry : cargs.getIndexedArgumentValues().entrySet()) {
 			int index = entry.getKey();
@@ -700,7 +683,7 @@ class ConstructorResolver {
 			BeanWrapper bw, Class<?>[] paramTypes, @Nullable String[] paramNames, Executable executable,
 			boolean autowiring, boolean fallback) throws UnsatisfiedDependencyException {
 
-		TypeConverter customConverter = this.beanFactory.getCustomTypeConverter();
+		TypeConverter customConverter = beanFactory.getCustomTypeConverter();
 		TypeConverter converter = (customConverter != null ? customConverter : bw);
 
 		ArgumentsHolder args = new ArgumentsHolder(paramTypes.length);
@@ -774,7 +757,7 @@ class ConstructorResolver {
 		}
 
 		for (String autowiredBeanName : autowiredBeanNames) {
-			this.beanFactory.registerDependentBean(autowiredBeanName, beanName);
+			beanFactory.registerDependentBean(autowiredBeanName, beanName);
 			if (logger.isDebugEnabled()) {
 				logger.debug("Autowiring by type from bean name '" + beanName +
 						"' via " + (executable instanceof Constructor ? "constructor" : "factory method") + " to bean named '" + autowiredBeanName + "'");
@@ -787,9 +770,9 @@ class ConstructorResolver {
 	 * Resolve the prepared arguments stored in the given bean definition.
 	 */
 	private Object[] resolvePreparedArguments(String beanName, RootBeanDefinition mbd, BeanWrapper bw,Executable executable, Object[] argsToResolve, boolean fallback) {
-		TypeConverter customConverter = this.beanFactory.getCustomTypeConverter();
+		TypeConverter customConverter = beanFactory.getCustomTypeConverter();
 		TypeConverter converter = (customConverter != null ? customConverter : bw);
-		BeanDefinitionValueResolver valueResolver = new BeanDefinitionValueResolver(this.beanFactory, beanName, mbd, converter);
+		BeanDefinitionValueResolver valueResolver = new BeanDefinitionValueResolver(beanFactory, beanName, mbd, converter);
 		Class<?>[] paramTypes = executable.getParameterTypes();
 		Object[] resolvedArgs = new Object[argsToResolve.length];
 		for (int argIndex = 0; argIndex < argsToResolve.length; argIndex++) {
@@ -801,7 +784,7 @@ class ConstructorResolver {
 			}else if (argValue instanceof BeanMetadataElement) {
 				argValue = valueResolver.resolveValueIfNecessary("constructor argument", argValue);
 			}else if (argValue instanceof String) {
-				argValue = this.beanFactory.evaluateBeanDefinitionString((String) argValue, mbd);
+				argValue = beanFactory.evaluateBeanDefinitionString((String) argValue, mbd);
 			}
 			Class<?> paramType = paramTypes[argIndex];
 			try {
@@ -843,7 +826,7 @@ class ConstructorResolver {
 			return injectionPoint;
 		}
 		try {
-			return this.beanFactory.resolveDependency(new DependencyDescriptor(param, true), beanName, autowiredBeanNames, typeConverter);
+			return beanFactory.resolveDependency(new DependencyDescriptor(param, true), beanName, autowiredBeanNames, typeConverter);
 		}catch (NoUniqueBeanDefinitionException ex) {
 			throw ex;
 		}catch (NoSuchBeanDefinitionException ex) {
@@ -887,15 +870,15 @@ class ConstructorResolver {
 		public boolean resolveNecessary = false;
 
 		public ArgumentsHolder(int size) {
-			this.rawArguments = new Object[size];
-			this.arguments = new Object[size];
-			this.preparedArguments = new Object[size];
+			rawArguments = new Object[size];
+			arguments = new Object[size];
+			preparedArguments = new Object[size];
 		}
 
 		public ArgumentsHolder(Object[] args) {
-			this.rawArguments = args;
-			this.arguments = args;
-			this.preparedArguments = args;
+			rawArguments = args;
+			arguments = args;
+			preparedArguments = args;
 		}
 
 		public int getTypeDifferenceWeight(Class<?>[] paramTypes) {
@@ -903,19 +886,19 @@ class ConstructorResolver {
 			// Try type difference weight on both the converted arguments and
 			// the raw arguments. If the raw weight is better, use it.
 			// Decrease raw weight by 1024 to prefer it over equal converted weight.
-			int typeDiffWeight = MethodInvoker.getTypeDifferenceWeight(paramTypes, this.arguments);
-			int rawTypeDiffWeight = MethodInvoker.getTypeDifferenceWeight(paramTypes, this.rawArguments) - 1024;
+			int typeDiffWeight = MethodInvoker.getTypeDifferenceWeight(paramTypes, arguments);
+			int rawTypeDiffWeight = MethodInvoker.getTypeDifferenceWeight(paramTypes, rawArguments) - 1024;
 			return (rawTypeDiffWeight < typeDiffWeight ? rawTypeDiffWeight : typeDiffWeight);
 		}
 
 		public int getAssignabilityWeight(Class<?>[] paramTypes) {
 			for (int i = 0; i < paramTypes.length; i++) {
-				if (!ClassUtils.isAssignableValue(paramTypes[i], this.arguments[i])) {
+				if (!ClassUtils.isAssignableValue(paramTypes[i], arguments[i])) {
 					return Integer.MAX_VALUE;
 				}
 			}
 			for (int i = 0; i < paramTypes.length; i++) {
-				if (!ClassUtils.isAssignableValue(paramTypes[i], this.rawArguments[i])) {
+				if (!ClassUtils.isAssignableValue(paramTypes[i], rawArguments[i])) {
 					return Integer.MAX_VALUE - 512;
 				}
 			}
@@ -926,10 +909,10 @@ class ConstructorResolver {
 			synchronized (mbd.constructorArgumentLock) {
 				mbd.resolvedConstructorOrFactoryMethod = constructorOrFactoryMethod;
 				mbd.constructorArgumentsResolved = true;
-				if (this.resolveNecessary) {
-					mbd.preparedConstructorArguments = this.preparedArguments;
+				if (resolveNecessary) {
+					mbd.preparedConstructorArguments = preparedArguments;
 				}else {
-					mbd.resolvedConstructorArguments = this.arguments;
+					mbd.resolvedConstructorArguments = arguments;
 				}
 			}
 		}

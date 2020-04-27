@@ -28,9 +28,7 @@ class BeanDefinitionResource extends AbstractResource {
 		this.beanDefinition = beanDefinition;
 	}
 
-	/**
-	 * Return the wrapped BeanDefinition object.
-	 */
+	//  Return the wrapped BeanDefinition object.
 	public final BeanDefinition getBeanDefinition() {
 		return this.beanDefinition;
 	}
@@ -55,17 +53,13 @@ class BeanDefinitionResource extends AbstractResource {
 		return "BeanDefinition defined in " + this.beanDefinition.getResourceDescription();
 	}
 
-	/**
-	 * This implementation compares the underlying BeanDefinition.
-	 */
+	// This implementation compares the underlying BeanDefinition.
 	@Override
 	public boolean equals(Object other) {
 		return (this == other || (other instanceof BeanDefinitionResource && ((BeanDefinitionResource) other).beanDefinition.equals(this.beanDefinition)));
 	}
 
-	/**
-	 * This implementation returns the hash code of the underlying BeanDefinition.
-	 */
+	// This implementation returns the hash code of the underlying BeanDefinition.
 	@Override
 	public int hashCode() {
 		return this.beanDefinition.hashCode();

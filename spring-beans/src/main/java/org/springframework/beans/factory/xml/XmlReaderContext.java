@@ -62,8 +62,7 @@ public class XmlReaderContext extends ReaderContext {
 
 	/**
 	 * Return the resource loader to use, if any.
-	 * This will be non-null in regular scenarios,
-	 * also allowing access to the resource class loader.
+	 * This will be non-null in regular scenarios,also allowing access to the resource class loader.
 	 * @see XmlBeanDefinitionReader#setResourceLoader
 	 * @see ResourceLoader#getClassLoader()
 	 */
@@ -74,8 +73,7 @@ public class XmlReaderContext extends ReaderContext {
 
 	/**
 	 * Return the bean class loader to use, if any.
-	 * Note that this will be null in regular scenarios,
-	 * as an indication to lazily resolve bean classes.
+	 * Note that this will be null in regular scenarios,as an indication to lazily resolve bean classes.
 	 * @see XmlBeanDefinitionReader#setBeanClassLoader
 	 */
 	@Nullable
@@ -111,8 +109,7 @@ public class XmlReaderContext extends ReaderContext {
 	}
 
 	/**
-	 * Call the bean name generator for the given bean definition
-	 * and register the bean definition under the generated name.
+	 * Call the bean name generator for the given bean definition and register the bean definition under the generated name.
 	 * @see XmlBeanDefinitionReader#getBeanNameGenerator()
 	 * @see org.springframework.beans.factory.support.BeanNameGenerator#generateBeanName
 	 * @see BeanDefinitionRegistry#registerBeanDefinition

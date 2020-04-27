@@ -31,14 +31,11 @@ import org.springframework.lang.Nullable;
 public abstract class AbstractSingleBeanDefinitionParser extends AbstractBeanDefinitionParser {
 
 	/**
-	 * Creates a {@link BeanDefinitionBuilder} instance for the
-	 * {@link #getBeanClass bean Class} and passes it to the
-	 * {@link #doParse} strategy method.
+	 * Creates a {@link BeanDefinitionBuilder} instance for the @link #getBeanClass bean Class} and passes it to the {@link #doParse} strategy method.
 	 * @param element the element that is to be parsed into a single BeanDefinition
 	 * @param parserContext the object encapsulating the current state of the parsing process
 	 * @return the BeanDefinition resulting from the parsing of the supplied {@link Element}
-	 * @throws IllegalStateException if the bean {@link Class} returned from
-	 * {@link #getBeanClass(org.w3c.dom.Element)} is {@code null}
+	 * @throws IllegalStateException if the bean {@link Class} returned from {@link #getBeanClass(org.w3c.dom.Element)} is {@code null}
 	 * @see #doParse
 	 */
 	@Override
@@ -51,8 +48,7 @@ public abstract class AbstractSingleBeanDefinitionParser extends AbstractBeanDef
 		Class<?> beanClass = getBeanClass(element);
 		if (beanClass != null) {
 			builder.getRawBeanDefinition().setBeanClass(beanClass);
-		}
-		else {
+		}else {
 			String beanClassName = getBeanClassName(element);
 			if (beanClassName != null) {
 				builder.getRawBeanDefinition().setBeanClassName(beanClassName);
@@ -78,8 +74,7 @@ public abstract class AbstractSingleBeanDefinitionParser extends AbstractBeanDef
 	 * The default implementation returns {@code null},
 	 * indicating a root bean definition.
 	 * @param element the {@code Element} that is being parsed
-	 * @return the name of the parent bean for the currently parsed bean,
-	 * or {@code null} if none
+	 * @return the name of the parent bean for the currently parsed bean, or {@code null} if none
 	 */
 	@Nullable
 	protected String getParentName(Element element) {
@@ -130,8 +125,7 @@ public abstract class AbstractSingleBeanDefinitionParser extends AbstractBeanDef
 	}
 
 	/**
-	 * Parse the supplied {@link Element} and populate the supplied
-	 * {@link BeanDefinitionBuilder} as required.
+	 * Parse the supplied {@link Element} and populate the supplied {@link BeanDefinitionBuilder} as required.
 	 * The default implementation does nothing.
 	 * @param element the XML element being parsed
 	 * @param builder used to define the {@code BeanDefinition}

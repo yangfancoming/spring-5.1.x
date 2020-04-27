@@ -132,7 +132,6 @@ public class UtilNamespaceHandler extends NamespaceHandlerSupport {
 			if (StringUtils.hasText(setClass)) {
 				builder.addPropertyValue("targetSetClass", setClass);
 			}
-
 			String scope = element.getAttribute(SCOPE_ATTRIBUTE);
 			if (StringUtils.hasLength(scope)) {
 				builder.setScope(scope);

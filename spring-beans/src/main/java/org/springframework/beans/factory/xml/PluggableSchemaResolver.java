@@ -37,8 +37,7 @@ import org.springframework.util.CollectionUtils;
 public class PluggableSchemaResolver implements EntityResolver {
 
 	/**
-	 * The location of the file that defines schema mappings.
-	 * Can be present in multiple JAR files.
+	 * The location of the file that defines schema mappings.  Can be present in multiple JAR files.
 	 */
 	public static final String DEFAULT_SCHEMA_MAPPINGS_LOCATION = "META-INF/spring.schemas";
 

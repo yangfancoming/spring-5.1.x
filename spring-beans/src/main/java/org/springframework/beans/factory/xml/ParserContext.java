@@ -30,7 +30,6 @@ public final class ParserContext {
 
 	private final Deque<CompositeComponentDefinition> containingComponents = new ArrayDeque<>();
 
-
 	public ParserContext(XmlReaderContext readerContext, BeanDefinitionParserDelegate delegate) {
 		this.readerContext = readerContext;
 		this.delegate = delegate;

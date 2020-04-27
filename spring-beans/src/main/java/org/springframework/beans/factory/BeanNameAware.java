@@ -17,8 +17,7 @@ public interface BeanNameAware extends Aware {
 	/**
 	 * Set the name of the bean in the bean factory that created this bean.
 	 * Invoked after population of normal bean properties but before an
-	 * init callback such as {@link InitializingBean#afterPropertiesSet()}
-	 * or a custom init-method.
+	 * init callback such as {@link InitializingBean#afterPropertiesSet()} or a custom init-method.
 	 * @param name the name of the bean in the factory.
 	 * Note that this name is the actual bean name used in the factory, which may
 	 * differ from the originally specified name: in particular for inner bean

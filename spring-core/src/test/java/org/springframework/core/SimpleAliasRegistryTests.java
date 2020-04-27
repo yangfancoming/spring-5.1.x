@@ -12,7 +12,7 @@ public class SimpleAliasRegistryTests {
 
 	SimpleAliasRegistry registry = new SimpleAliasRegistry();
 
-	// 与map不同点：  测试 如果真实的beanName和要注册的别名相同，则直接删除，因为真实的名字和别名相同没有意义
+	// 与map不同点：  测试 如果证明和别名相同，则直接删除，因为真实的名字和别名相同没有意义
 	// 源码搜索串： if (alias.equals(name)) {
 	@Test
 	public void test1() {

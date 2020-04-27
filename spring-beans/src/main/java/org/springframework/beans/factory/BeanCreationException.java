@@ -98,7 +98,6 @@ public class BeanCreationException extends FatalBeanException {
 		initCause(cause);
 	}
 
-
 	/**
 	 * Return the description of the resource that the bean
 	 * definition came from, if any.

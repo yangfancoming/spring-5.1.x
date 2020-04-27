@@ -10,7 +10,6 @@ import org.springframework.util.ObjectUtils;
 /**
  * Bean definition for beans which inherit settings from their parent.
  * Child bean definitions have a fixed dependency on a parent bean definition.
- *
  * A child bean definition will inherit constructor argument values, property values and method overrides from the parent,
  * with the option to add new values.
  * If init method, destroy method and/or static factory  method are specified, they will override the corresponding parent settings.
@@ -113,9 +112,7 @@ public class ChildBeanDefinition extends AbstractBeanDefinition {
 	@Override
 	public void validate() throws BeanDefinitionValidationException {
 		super.validate();
-		if (this.parentName == null) {
-			throw new BeanDefinitionValidationException("'parentName' must be set in ChildBeanDefinition");
-		}
+		if (parentName == null) throw new BeanDefinitionValidationException("'parentName' must be set in ChildBeanDefinition");
 	}
 
 
@@ -133,17 +130,17 @@ public class ChildBeanDefinition extends AbstractBeanDefinition {
 			return false;
 		}
 		ChildBeanDefinition that = (ChildBeanDefinition) other;
-		return (ObjectUtils.nullSafeEquals(this.parentName, that.parentName) && super.equals(other));
+		return (ObjectUtils.nullSafeEquals(parentName, that.parentName) && super.equals(other));
 	}
 
 	@Override
 	public int hashCode() {
-		return ObjectUtils.nullSafeHashCode(this.parentName) * 29 + super.hashCode();
+		return ObjectUtils.nullSafeHashCode(parentName) * 29 + super.hashCode();
 	}
 
 	@Override
 	public String toString() {
-		return "Child bean with parent '" + this.parentName + "': " + super.toString();
+		return "Child bean with parent '" + parentName + "': " + super.toString();
 	}
 
 }

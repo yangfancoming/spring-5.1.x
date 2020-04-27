@@ -82,12 +82,7 @@ import org.springframework.util.StringUtils;
  * usage thus illustrated holds true for any number of attributes).
  * All that the {@code PropertiesBeanDefinitionParser} needs
  * actually do is supply an implementation of the
- * {@link #getBeanClass(org.w3c.dom.Element)} method to return the
- * {@code PropertiesFactoryBean} type.
- *
- * @author Rob Harrop
- * @author Rick Evans
-
+ * {@link #getBeanClass(org.w3c.dom.Element)} method to return the {@code PropertiesFactoryBean} type.
  * @since 2.0
  * @see Conventions#attributeNameToPropertyName(String)
  */
@@ -97,14 +92,10 @@ public abstract class AbstractSimpleBeanDefinitionParser extends AbstractSingleB
 	 * Parse the supplied {@link Element} and populate the supplied
 	 * {@link BeanDefinitionBuilder} as required.
 	 * This implementation maps any attributes present on the
-	 * supplied element to {@link org.springframework.beans.PropertyValue}
-	 * instances, and
-	 * {@link BeanDefinitionBuilder#addPropertyValue(String, Object) adds them}
-	 * to the
+	 * supplied element to {@link org.springframework.beans.PropertyValue} instances, and
+	 * {@link BeanDefinitionBuilder#addPropertyValue(String, Object) adds them} to the
 	 * {@link org.springframework.beans.factory.config.BeanDefinition builder}.
-	 * The {@link #extractPropertyName(String)} method is used to
-	 * reconcile the name of an attribute with the name of a JavaBean
-	 * property.
+	 * The {@link #extractPropertyName(String)} method is used to reconcile the name of an attribute with the name of a JavaBean property.
 	 * @param element the XML element being parsed
 	 * @param builder used to define the {@code BeanDefinition}
 	 * @see #extractPropertyName(String)
@@ -116,8 +107,7 @@ public abstract class AbstractSimpleBeanDefinitionParser extends AbstractSingleB
 			Attr attribute = (Attr) attributes.item(x);
 			if (isEligibleAttribute(attribute, parserContext)) {
 				String propertyName = extractPropertyName(attribute.getLocalName());
-				Assert.state(StringUtils.hasText(propertyName),
-						"Illegal property name returned from 'extractPropertyName(String)': cannot be null or empty.");
+				Assert.state(StringUtils.hasText(propertyName),"Illegal property name returned from 'extractPropertyName(String)': cannot be null or empty.");
 				builder.addPropertyValue(propertyName, attribute.getValue());
 			}
 		}
@@ -135,17 +125,13 @@ public abstract class AbstractSimpleBeanDefinitionParser extends AbstractSingleB
 	 */
 	protected boolean isEligibleAttribute(Attr attribute, ParserContext parserContext) {
 		String fullName = attribute.getName();
-		return (!fullName.equals("xmlns") && !fullName.startsWith("xmlns:") &&
-				isEligibleAttribute(parserContext.getDelegate().getLocalName(attribute)));
+		return (!fullName.equals("xmlns") && !fullName.startsWith("xmlns:") && isEligibleAttribute(parserContext.getDelegate().getLocalName(attribute)));
 	}
 
 	/**
-	 * Determine whether the given attribute is eligible for being
-	 * turned into a corresponding bean property value.
-	 * The default implementation considers any attribute as eligible,
-	 * except for the "id" attribute.
-	 * @param attributeName the attribute name taken straight from the
-	 * XML element being parsed (never {@code null})
+	 * Determine whether the given attribute is eligible for being turned into a corresponding bean property value.
+	 * The default implementation considers any attribute as eligible,except for the "id" attribute.
+	 * @param attributeName the attribute name taken straight from the XML element being parsed (never {@code null})
 	 */
 	protected boolean isEligibleAttribute(String attributeName) {
 		return !ID_ATTRIBUTE.equals(attributeName);
@@ -169,8 +155,7 @@ public abstract class AbstractSimpleBeanDefinitionParser extends AbstractSingleB
 	}
 
 	/**
-	 * Hook method that derived classes can implement to inspect/change a
-	 * bean definition after parsing is complete.
+	 * Hook method that derived classes can implement to inspect/change a  bean definition after parsing is complete.
 	 * The default implementation does nothing.
 	 * @param beanDefinition the parsed (and probably totally defined) bean definition being built
 	 * @param element the XML element that was the source of the bean definition's metadata

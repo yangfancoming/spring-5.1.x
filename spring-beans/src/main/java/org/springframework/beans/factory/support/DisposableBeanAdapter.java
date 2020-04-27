@@ -95,8 +95,7 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 				if (beanDefinition.isEnforceDestroyMethod()) {
 					throw new BeanDefinitionValidationException("Could not find a destroy method named '" + destroyMethodName + "' on bean with name '" + beanName + "'");
 				}
-			}
-			else {
+			}else {
 				Class<?>[] paramTypes = destroyMethod.getParameterTypes();
 				if (paramTypes.length > 1) {
 					throw new BeanDefinitionValidationException("Method '" + destroyMethodName + "' of bean '" + beanName + "' has more than one parameter - not supported as destroy method");
@@ -218,26 +217,21 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 		}
 
 		if (this.invokeDisposableBean) {
-			if (logger.isTraceEnabled()) {
-				logger.trace("Invoking destroy() on bean with name '" + this.beanName + "'");
-			}
+			if (logger.isTraceEnabled()) logger.trace("Invoking destroy() on bean with name '" + this.beanName + "'");
 			try {
 				if (System.getSecurityManager() != null) {
 					AccessController.doPrivileged((PrivilegedExceptionAction<Object>) () -> {
 						((DisposableBean) this.bean).destroy();
 						return null;
 					}, this.acc);
-				}
-				else {
+				}else {
 					((DisposableBean) this.bean).destroy();
 				}
-			}
-			catch (Throwable ex) {
+			}catch (Throwable ex) {
 				String msg = "Invocation of destroy method failed on bean with name '" + this.beanName + "'";
 				if (logger.isDebugEnabled()) {
 					logger.info(msg, ex);
-				}
-				else {
+				}else {
 					logger.info(msg + ": " + ex);
 				}
 			}
@@ -245,8 +239,7 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 
 		if (this.destroyMethod != null) {
 			invokeCustomDestroyMethod(this.destroyMethod);
-		}
-		else if (this.destroyMethodName != null) {
+		}else if (this.destroyMethodName != null) {
 			Method methodToInvoke = determineDestroyMethod(this.destroyMethodName);
 			if (methodToInvoke != null) {
 				invokeCustomDestroyMethod(ClassUtils.getInterfaceMethodIfPossible(methodToInvoke));
@@ -260,12 +253,10 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 		try {
 			if (System.getSecurityManager() != null) {
 				return AccessController.doPrivileged((PrivilegedAction<Method>) () -> findDestroyMethod(name));
-			}
-			else {
+			}else {
 				return findDestroyMethod(name);
 			}
-		}
-		catch (IllegalArgumentException ex) {
+		}catch (IllegalArgumentException ex) {
 			throw new BeanDefinitionValidationException("Could not find unique destroy method on bean with name '" + this.beanName + ": " + ex.getMessage());
 		}
 	}
@@ -300,26 +291,21 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 				});
 				try {
 					AccessController.doPrivileged((PrivilegedExceptionAction<Object>) () -> destroyMethod.invoke(this.bean, args), this.acc);
-				}
-				catch (PrivilegedActionException pax) {
+				}catch (PrivilegedActionException pax) {
 					throw (InvocationTargetException) pax.getException();
 				}
-			}
-			else {
+			}else {
 				ReflectionUtils.makeAccessible(destroyMethod);
 				destroyMethod.invoke(this.bean, args);
 			}
-		}
-		catch (InvocationTargetException ex) {
+		}catch (InvocationTargetException ex) {
 			String msg = "Destroy method '" + this.destroyMethodName + "' on bean with name '" + this.beanName + "' threw an exception";
 			if (logger.isDebugEnabled()) {
 				logger.info(msg, ex.getTargetException());
-			}
-			else {
+			}else {
 				logger.info(msg + ": " + ex.getTargetException());
 			}
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			logger.info("Failed to invoke destroy method '" + this.destroyMethodName + "' on bean with name '" + this.beanName + "'", ex);
 		}
 	}

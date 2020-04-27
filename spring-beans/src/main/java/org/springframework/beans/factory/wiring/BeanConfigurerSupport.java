@@ -104,8 +104,7 @@ public class BeanConfigurerSupport implements BeanFactoryAware, InitializingBean
 	public void configureBean(Object beanInstance) {
 		if (this.beanFactory == null) {
 			if (logger.isDebugEnabled()) {
-				logger.debug("BeanFactory has not been set on " + ClassUtils.getShortName(getClass()) + ": " +
-						"Make sure this configurer runs in a Spring container. Unable to configure bean of type [" +
+				logger.debug("BeanFactory has not been set on " + ClassUtils.getShortName(getClass()) + ": Make sure this configurer runs in a Spring container. Unable to configure bean of type [" +
 						ClassUtils.getDescriptiveType(beanInstance) + "]. Proceeding without injection.");
 			}
 			return;

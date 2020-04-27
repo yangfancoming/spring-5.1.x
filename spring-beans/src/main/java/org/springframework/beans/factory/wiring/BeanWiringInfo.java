@@ -92,7 +92,6 @@ public class BeanWiringInfo {
 		this.dependencyCheck = dependencyCheck;
 	}
 
-
 	/**
 	 * Return whether this BeanWiringInfo indicates autowiring.
 	 */
