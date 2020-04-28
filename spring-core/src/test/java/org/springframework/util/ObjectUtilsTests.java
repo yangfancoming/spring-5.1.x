@@ -72,7 +72,57 @@ public class ObjectUtilsTests {
 		assertTrue(ObjectUtils.isCompatibleWithThrowsClause(new Throwable(), throwable));
 	}
 
+	@Test
+	public void isEmptyNull() {
+		assertTrue(isEmpty(null));
+	}
 
+	@Test
+	public void isEmptyArray() {
+		assertTrue(isEmpty(new char[0]));
+		assertTrue(isEmpty(new Object[0]));
+		assertTrue(isEmpty(new Integer[0]));
+
+		assertFalse(isEmpty(new int[] {42}));
+		assertFalse(isEmpty(new Integer[] {42}));
+	}
+
+	@Test
+	public void isEmptyCollection() {
+		assertTrue(isEmpty(Collections.emptyList()));
+		assertTrue(isEmpty(Collections.emptySet()));
+
+		Set<String> set = new HashSet<>();
+		set.add("foo");
+		assertFalse(isEmpty(set));
+		assertFalse(isEmpty(Arrays.asList("foo")));
+	}
+
+	@Test
+	public void isEmptyMap() {
+		assertTrue(isEmpty(Collections.emptyMap()));
+
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("foo", 42L);
+		assertFalse(isEmpty(map));
+	}
+
+	@Test
+	public void isEmptyCharSequence() {
+		assertTrue(isEmpty(new StringBuilder()));
+		assertTrue(isEmpty(""));
+
+		assertFalse(isEmpty(new StringBuilder("foo")));
+		assertFalse(isEmpty("   "));
+		assertFalse(isEmpty("\t"));
+		assertFalse(isEmpty("foo"));
+	}
+
+	@Test
+	public void isEmptyUnsupportedObjectType() {
+		assertFalse(isEmpty(42L));
+		assertFalse(isEmpty(new Object()));
+	}
 
 	@Test
 	public void toObjectArray() {
@@ -150,7 +200,7 @@ public class ObjectUtilsTests {
 	}
 
 	@Test
-	public void addObjectToNullArray() throws Exception {
+	public void addObjectToNullArray() {
 		String newElement = "foo";
 		String[] newArray = ObjectUtils.addObjectToArray(null, newElement);
 		assertEquals(1, newArray.length);
@@ -158,14 +208,14 @@ public class ObjectUtilsTests {
 	}
 
 	@Test
-	public void addNullObjectToNullArray() throws Exception {
+	public void addNullObjectToNullArray() {
 		Object[] newArray = ObjectUtils.addObjectToArray(null, null);
 		assertEquals(1, newArray.length);
 		assertEquals(null, newArray[0]);
 	}
 
 	@Test
-	public void nullSafeEqualsWithArrays() throws Exception {
+	public void nullSafeEqualsWithArrays() {
 		assertTrue(ObjectUtils.nullSafeEquals(new String[] {"a", "b", "c"}, new String[] {"a", "b", "c"}));
 		assertTrue(ObjectUtils.nullSafeEquals(new int[] {1, 2, 3}, new int[] {1, 2, 3}));
 	}
