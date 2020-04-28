@@ -4,9 +4,9 @@
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="student" class="com.goat.chapter182.item01.StudentFactoryBean" p:studentInfo="张三,25,三年二班"/>
+	<bean id="student" class="com.goat.chapter185.item05.StudentFactoryBean" p:studentInfo="张三,25,三年二班"/>
 
 <!--	<bean id="furniture" class="com.goat.chapter182.item02.FurnitureFactoryBean" p:furniture="desk"/>-->
-	<bean id="furniture" class="com.goat.chapter182.item02.FurnitureFactoryBean" p:furniture="chair"/>
+	<bean id="furniture" class="com.goat.chapter185.item05.FurnitureFactoryBean" p:furniture="chair"/>
 </beans>
 
