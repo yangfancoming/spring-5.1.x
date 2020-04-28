@@ -58,15 +58,14 @@ import static org.springframework.util.StringUtils.tokenizeToStringArray;
  * This is the usual way to set up a shared MyBatis {@code SqlSessionFactory} in a Spring application context;
  * the SqlSessionFactory can then be passed to MyBatis-based DAOs via dependency injection.
  *
- * Either {@code DataSourceTransactionManager} or {@code JtaTransactionManager} can be used for transaction demarcation
- * in combination with a {@code SqlSessionFactory}.
+ * Either {@code DataSourceTransactionManager} or {@code JtaTransactionManager} can be used for transaction demarcation  in combination with a {@code SqlSessionFactory}.
  * JTA should be used for transactions which span multiple databases or when container managed transactions (CMT) are being used.
  * @see #setConfigLocation
  * @see #setDataSource
  * SqlSessionFactoryBean 实现了Spring的InitializingBean接口，其中的 afterPropertiesSet 方法中会调用 buildSqlSessionFactory 方法创建 SqlSessionFactory
  *  实现了FactoryBean接口，所以返回的不是 SqlSessionFactoryBean 的实例，而是它的 SqlSessionFactoryBean.getObject() 的返回值：
  *  我们知道，
- *  1.实现了FactoryBean的bean会调用它的getObject方法创建bean，
+ *  1.实现了FactoryBean的bean会调用它的getObject方法创建bean， （这里创建SqlSessionFactoryBean）
  *  2.实现了InitializingBean的bean会在属性填充完成之后调用它的afterPropertiesSet方法
  */
 public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, InitializingBean, ApplicationListener<ApplicationEvent> {
@@ -76,6 +75,7 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 	private static final ResourcePatternResolver RESOURCE_PATTERN_RESOLVER = new PathMatchingResourcePatternResolver();
 	private static final MetadataReaderFactory METADATA_READER_FACTORY = new CachingMetadataReaderFactory();
 
+	// 全局xml配置
 	private Resource configLocation;
 
 	private Configuration configuration;
@@ -372,6 +372,10 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 		this.defaultScriptingLanguageDriver = defaultScriptingLanguageDriver;
 	}
 
+
+	//---------------------------------------------------------------------
+	// Implementation of 【InitializingBean】 interface
+	//---------------------------------------------------------------------
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		notNull(dataSource, "Property 'dataSource' is required");
@@ -391,7 +395,7 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 	protected SqlSessionFactory buildSqlSessionFactory() throws Exception {
 		final Configuration targetConfiguration;
 		XMLConfigBuilder xmlConfigBuilder = null;
-		// 创建Configuration对象
+
 		if (configuration != null) {
 			targetConfiguration = configuration;
 			if (targetConfiguration.getVariables() == null) {
@@ -513,6 +517,9 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 		return sqlSessionFactoryBuilder.build(targetConfiguration);
 	}
 
+	//---------------------------------------------------------------------
+	// Implementation of 【FactoryBean<T>】 interface
+	//---------------------------------------------------------------------
 	@Override
 	public SqlSessionFactory getObject() throws Exception {
 		if (sqlSessionFactory == null) afterPropertiesSet();
@@ -529,6 +536,9 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 		return true;
 	}
 
+	//---------------------------------------------------------------------
+	// Implementation of 【ApplicationListener<T>】 interface
+	//---------------------------------------------------------------------
 	@Override
 	public void onApplicationEvent(ApplicationEvent event) {
 		if (failFast && event instanceof ContextRefreshedEvent) {
