@@ -16,16 +16,15 @@ import org.springframework.lang.Nullable;
  * implementations which are supposed to support multiple calls to {@link #refresh()},creating a new internal bean factory instance every time.
  * Typically (but not necessarily), such a context will be driven by a set of config locations to load bean definitions from.
  *
- * The only method to be implemented by subclasses is {@link #loadBeanDefinitions},
- * which gets invoked on each refresh. A concrete implementation is supposed to load bean definitions into the given
+ * The only method to be implemented by subclasses is {@link #loadBeanDefinitions},which gets invoked on each refresh.
+ * A concrete implementation is supposed to load bean definitions into the given
  * {@link org.springframework.beans.factory.support.DefaultListableBeanFactory},typically delegating to one or more specific bean definition readers.
  *
  * <b>Note that there is a similar base class for WebApplicationContexts.</b>
  * provides the same subclassing strategy, but additionally pre-implements all context functionality for web environments.
  * There is also a pre-defined way to receive config locations for a web context.
  *
- * Concrete standalone subclasses of this base class, reading in a specific bean definition format,
- * are {@link ClassPathXmlApplicationContext} and {@link FileSystemXmlApplicationContext},
+ * Concrete standalone subclasses of this base class, reading in a specific bean definition format,are {@link ClassPathXmlApplicationContext} and {@link FileSystemXmlApplicationContext},
  * which both derive from the common {@link AbstractXmlApplicationContext} base class;
  * {@link org.springframework.context.annotation.AnnotationConfigApplicationContext} supports {@code @Configuration}-annotated classes as a source of bean definitions.
  * @since 1.1.3

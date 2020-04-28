@@ -46,7 +46,7 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 	 * If not set, the implementation may use a default as appropriate.
 	 */
 	public void setConfigLocation(String location) {
-		//即多个资源文件路径之间用” ,; /t/n”分隔，解析成数组形式
+		// 即多个资源文件路径之间用” ,; /t/n”分隔，解析成数组形式
 		setConfigLocations(StringUtils.tokenizeToStringArray(location, CONFIG_LOCATION_DELIMITERS));
 	}
 
@@ -54,12 +54,12 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 	public void setConfigLocations(@Nullable String... locations) {
 		if (locations != null) {
 			Assert.noNullElements(locations, "Config locations must not be null");
-			this.configLocations = new String[locations.length];
+			configLocations = new String[locations.length];
 			for (int i = 0; i < locations.length; i++) {
-				this.configLocations[i] = resolvePath(locations[i]).trim();
+				configLocations[i] = resolvePath(locations[i]).trim();
 			}
 		}else {
-			this.configLocations = null;
+			configLocations = null;
 		}
 	}
 
@@ -106,7 +106,7 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 	@Override
 	public void setId(String id) {
 		super.setId(id);
-		this.setIdCalled = true;
+		setIdCalled = true;
 	}
 
 	//---------------------------------------------------------------------
@@ -117,7 +117,7 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 	 */
 	@Override
 	public void setBeanName(String name) {
-		if (!this.setIdCalled) {
+		if (!setIdCalled) {
 			super.setId(name);
 			setDisplayName("ApplicationContext '" + name + "'");
 		}

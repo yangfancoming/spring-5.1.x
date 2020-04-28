@@ -22,6 +22,7 @@ import org.springframework.core.ResolvableType;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.core.env.ConfigurablePropertyResolver;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.StandardEnvironment;
 import org.springframework.core.io.DefaultResourceLoader;
@@ -41,9 +42,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Abstract implementation of the {@link org.springframework.context.ApplicationContext} interface.
- * Doesn't mandate the type of storage used for configuration; simply
- * implements common context functionality. Uses the Template Method design pattern,
- * requiring concrete subclasses to implement abstract methods.
+ * Doesn't mandate the type of storage used for configuration; simply implements common context functionality.
+ * Uses the Template Method design pattern,requiring concrete subclasses to implement abstract methods.
  *
  * In contrast to a plain BeanFactory, an ApplicationContext is supposed to detect special beans defined in its internal bean factory:
  * Therefore, this class automatically registers
@@ -51,12 +51,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * {@link org.springframework.beans.factory.config.BeanPostProcessor BeanPostProcessors},
  * and {@link org.springframework.context.ApplicationListener ApplicationListeners} which are defined as beans in the context.
  *
- * A {@link org.springframework.context.MessageSource} may also be supplied
- * as a bean in the context, with the name "messageSource"; otherwise, message resolution is delegated to the parent context.
- * Furthermore, a multicaster for application events can be supplied as an "applicationEventMulticaster" bean
- * of type {@link org.springframework.context.event.ApplicationEventMulticaster}
+ * A {@link org.springframework.context.MessageSource} may also be supplied as a bean in the context, with the name "messageSource";
+ * otherwise, message resolution is delegated to the parent context.
+ * Furthermore, a multicaster for application events can be supplied as an "applicationEventMulticaster" bean of type {@link org.springframework.context.event.ApplicationEventMulticaster}
  * in the context; otherwise, a default multicaster of type {@link org.springframework.context.event.SimpleApplicationEventMulticaster} will be used.
- *
  * Implements resource loading by extending {@link org.springframework.core.io.DefaultResourceLoader}.
  * Consequently treats non-URL resource paths as class path resources (supporting full class path resource names that include the package path,
  * e.g. "mypackage/myresource.dat"), unless the {@link #getResourceByPath} method is overridden in a subclass.
@@ -185,16 +183,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	// Implementation of ApplicationContext interface
 	//---------------------------------------------------------------------
 
-	/**
-	 * Set the unique id of this application context.
-	 * Default is the object id of the context instance, or the name of the context bean if the context is itself defined as a bean.
-	 * @param id the unique id of the context
-	 */
-	@Override
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	@Override
 	public String getId() {
 		return id;
@@ -247,8 +235,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 	/**
 	 * Return the {@code Environment} for this application context in configurable form, allowing for further customization.
-	 * If none specified, a default environment will be initialized via
-	 * {@link #createEnvironment()}.
+	 * If none specified, a default environment will be initialized via {@link #createEnvironment()}.
 	 */
 	@Override
 	public ConfigurableEnvironment getEnvironment() {
@@ -378,6 +365,17 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	//---------------------------------------------------------------------
 	// Implementation of ConfigurableApplicationContext interface
 	//---------------------------------------------------------------------
+
+	/**
+	 * Set the unique id of this application context.
+	 * Default is the object id of the context instance, or the name of the context bean if the context is itself defined as a bean.
+	 * @param id the unique id of the context
+	 */
+	@Override
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	/**
 	 * Set the parent of this application context.
 	 * The parent {@linkplain ApplicationContext#getEnvironment() environment} is {@linkplain ConfigurableEnvironment#merge(ConfigurableEnvironment) merged} with
@@ -542,9 +540,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		// Initialize any placeholder property sources in the context environment.
 		// 子类自定义个性化的属性设置方法，内部是一个空实现，主要供子类拓展自己ApplicationContext，设置必需的属性
 		initPropertySources();
-		// Validate that all properties marked as required are resolvable: 验证所有标记为“必需”的属性是否可解析
-		// see ConfigurablePropertyResolver#setRequiredProperties
-		// 校验 xml 配置文件  校验必需的属性是否存在
+		/**
+		 * Validate that all properties marked as required are resolvable: 验证所有标记为“必需”的属性是否可解析
+		 * 校验 xml 配置文件  校验必需的属性是否存在，一旦发现不存则停止启动spring容器，并抛出异常。
+		 * @see ConfigurablePropertyResolver#setRequiredProperties(java.lang.String...)
+		 */
 		getEnvironment().validateRequiredProperties();
 		// Store pre-refresh ApplicationListeners...  保存容器中一些早期的事件
 		if (earlyApplicationListeners == null) {

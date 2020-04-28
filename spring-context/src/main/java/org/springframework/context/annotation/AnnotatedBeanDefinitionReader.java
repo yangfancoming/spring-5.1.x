@@ -39,8 +39,7 @@ public class AnnotatedBeanDefinitionReader {
 	/**
 	 * Create a new {@code AnnotatedBeanDefinitionReader} for the given registry.
 	 * If the registry is {@link EnvironmentCapable}, e.g. is an {@code ApplicationContext},
-	 * the {@link Environment} will be inherited, otherwise a new
-	 * {@link StandardEnvironment} will be created and used.
+	 * the {@link Environment} will be inherited, otherwise a new {@link StandardEnvironment} will be created and used.
 	 * @param registry the {@code BeanFactory} to load bean definitions into, in the form of a {@code BeanDefinitionRegistry}
 	 * @see #AnnotatedBeanDefinitionReader(BeanDefinitionRegistry, Environment)
 	 * @see #setEnvironment(Environment)
@@ -69,8 +68,7 @@ public class AnnotatedBeanDefinitionReader {
 	}
 
 	/**
-	 * Set the Environment to use when evaluating whether
-	 * {@link Conditional @Conditional}-annotated component classes should be registered.
+	 * Set the Environment to use when evaluating whether {@link Conditional @Conditional}-annotated component classes should be registered.
 	 * The default is a {@link StandardEnvironment}.
 	 * @see #registerBean(Class, String, Class...)
 	 */
@@ -203,5 +201,4 @@ public class AnnotatedBeanDefinitionReader {
 		}
 		return new StandardEnvironment();
 	}
-
 }

@@ -1,4 +1,4 @@
-#  SqlSessionFactoryBean 类中configLocation等所有属性 被spring反射赋值的源码 
+#  SqlSessionFactoryBean 类中的configLocation等所有属性 被spring反射赋值的源码调用栈：
     setConfigLocation:267, SqlSessionFactoryBean (org.mybatis.spring)
     setValue:299, BeanWrapperImpl$BeanPropertyHandler (org.springframework.beans)
     processLocalProperty:395, AbstractNestablePropertyAccessor (org.springframework.beans)

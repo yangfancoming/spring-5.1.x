@@ -149,11 +149,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	/** Names of beans that are currently in creation. 当前正在创建的bean的名称集合 */
 	private final ThreadLocal<Object> prototypesCurrentlyInCreation = new NamedThreadLocal<>("Prototype beans currently in creation");
 
-	/**
-	 * Create a new AbstractBeanFactory.
-	 */
-	public AbstractBeanFactory() {
-	}
+	// Create a new AbstractBeanFactory.
+	public AbstractBeanFactory() {}
 
 	/**
 	 * Create a new AbstractBeanFactory with the given parent.
@@ -307,14 +304,11 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					}
 					//这里主要处理实现了FactoryBean的情况，需要调用重写的getObject()方法来获取实际的Bean实例。
 					bean = getObjectForBeanInstance(prototypeInstance, name, beanName, mbd);
-				}
+				}else {
 				// 创建其他类型的 bean 实例
-				else {
 					String scopeName = mbd.getScope();
 					final Scope scope = scopes.get(scopeName);
-					if (scope == null) {
-						throw new IllegalStateException("No Scope registered for scope name '" + scopeName + "'");
-					}
+					if (scope == null) throw new IllegalStateException("No Scope registered for scope name '" + scopeName + "'");
 					try {
 						Object scopedInstance = scope.get(beanName, () -> {
 							beforePrototypeCreation(beanName);
@@ -1308,9 +1302,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * @see org.springframework.beans.factory.config.DestructionAwareBeanPostProcessor
 	 */
 	protected boolean requiresDestruction(Object bean, RootBeanDefinition mbd) {
-		return (bean.getClass() != NullBean.class &&
-				(DisposableBeanAdapter.hasDestroyMethod(bean, mbd) || (hasDestructionAwareBeanPostProcessors() &&
-						DisposableBeanAdapter.hasApplicableProcessors(bean, getBeanPostProcessors()))));
+		return (bean.getClass() != NullBean.class && (DisposableBeanAdapter.hasDestroyMethod(bean, mbd)
+				|| (hasDestructionAwareBeanPostProcessors() && DisposableBeanAdapter.hasApplicableProcessors(bean, getBeanPostProcessors()))));
 	}
 
 	/**
@@ -1330,8 +1323,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		if (!mbd.isPrototype() && requiresDestruction(bean, mbd)) {
 			if (mbd.isSingleton()) {
 				// Register a DisposableBean implementation that performs all destruction
-				// work for the given bean: DestructionAwareBeanPostProcessors,
-				// DisposableBean interface, custom destroy method.
+				// work for the given bean: DestructionAwareBeanPostProcessors,DisposableBean interface, custom destroy method.
 				registerDisposableBean(beanName,new DisposableBeanAdapter(bean, beanName, mbd, getBeanPostProcessors(), acc));
 			}else {
 				// A bean with a custom scope...
@@ -1507,9 +1499,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		if (isFactoryBean(beanName, mbd)) {
 			final FactoryBean<?> fb = (FactoryBean<?>) getBean(FACTORY_BEAN_PREFIX + beanName);
 			if (System.getSecurityManager() != null) {
-				return AccessController.doPrivileged((PrivilegedAction<Boolean>) () ->
-								((fb instanceof SmartFactoryBean && ((SmartFactoryBean<?>) fb).isPrototype()) || !fb.isSingleton()),
-						getAccessControlContext());
+				return AccessController.doPrivileged((PrivilegedAction<Boolean>) () -> ((fb instanceof SmartFactoryBean && ((SmartFactoryBean<?>) fb).isPrototype()) || !fb.isSingleton()),getAccessControlContext());
 			}else {
 				return ((fb instanceof SmartFactoryBean && ((SmartFactoryBean<?>) fb).isPrototype()) || !fb.isSingleton());
 			}
@@ -1587,10 +1577,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				return typeToMatch.isAssignableFrom(targetClass);
 			}
 		}
-
 		Class<?> beanType = predictBeanType(beanName, mbd, typesToMatch);
 		if (beanType == null) return false;
-
 		// Check bean class whether we're dealing with a FactoryBean.
 		if (FactoryBean.class.isAssignableFrom(beanType)) {
 			if (!BeanFactoryUtils.isFactoryDereference(name) && beanInstance == null) {
@@ -1607,7 +1595,6 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				return false;
 			}
 		}
-
 		ResolvableType resolvableType = mbd.targetType;
 		if (resolvableType == null) resolvableType = mbd.factoryMethodReturnType;
 		if (resolvableType != null && resolvableType.resolve() == beanType) {

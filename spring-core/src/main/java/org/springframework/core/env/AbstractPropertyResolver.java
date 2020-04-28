@@ -115,6 +115,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 		this.ignoreUnresolvableNestedPlaceholders = ignoreUnresolvableNestedPlaceholders;
 	}
 
+	// 添加应用所必须的属性！   全局唯一入口
 	@Override
 	public void setRequiredProperties(String... requiredProperties) {
 		for (String key : requiredProperties) {

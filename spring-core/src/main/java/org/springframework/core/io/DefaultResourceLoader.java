@@ -39,7 +39,7 @@ public class DefaultResourceLoader implements ResourceLoader {
 	 * @see java.lang.Thread#getContextClassLoader()
 	 */
 	public DefaultResourceLoader() {
-		this.classLoader = ClassUtils.getDefaultClassLoader();
+		classLoader = ClassUtils.getDefaultClassLoader();
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class DefaultResourceLoader implements ResourceLoader {
 	 */
 	public void addProtocolResolver(ProtocolResolver resolver) {
 		Assert.notNull(resolver, "ProtocolResolver must not be null");
-		this.protocolResolvers.add(resolver);
+		protocolResolvers.add(resolver);
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class DefaultResourceLoader implements ResourceLoader {
 	 * @since 4.3
 	 */
 	public Collection<ProtocolResolver> getProtocolResolvers() {
-		return this.protocolResolvers;
+		return protocolResolvers;
 	}
 
 	/**
@@ -88,7 +88,7 @@ public class DefaultResourceLoader implements ResourceLoader {
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> Map<Resource, T> getResourceCache(Class<T> valueType) {
-		return (Map<Resource, T>) this.resourceCaches.computeIfAbsent(valueType, key -> new ConcurrentHashMap<>());
+		return (Map<Resource, T>) resourceCaches.computeIfAbsent(valueType, key -> new ConcurrentHashMap<>());
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class DefaultResourceLoader implements ResourceLoader {
 	 * @see #getResourceCache
 	 */
 	public void clearResourceCaches() {
-		this.resourceCaches.clear();
+		resourceCaches.clear();
 	}
 
 	/**
@@ -143,17 +143,15 @@ public class DefaultResourceLoader implements ResourceLoader {
 	@Override
 	@Nullable
 	public ClassLoader getClassLoader() {
-		return (this.classLoader != null ? this.classLoader : ClassUtils.getDefaultClassLoader());
+		return (classLoader != null ? classLoader : ClassUtils.getDefaultClassLoader());
 	}
 
 	@Override
 	public Resource getResource(String location) {
 		Assert.notNull(location, "Location must not be null");
-		for (ProtocolResolver protocolResolver : this.protocolResolvers) {
+		for (ProtocolResolver protocolResolver : protocolResolvers) {
 			Resource resource = protocolResolver.resolve(location, this);
-			if (resource != null) {
-				return resource;
-			}
+			if (resource != null) return resource;
 		}
 		if (location.startsWith("/")) {
 			return getResourceByPath(location);

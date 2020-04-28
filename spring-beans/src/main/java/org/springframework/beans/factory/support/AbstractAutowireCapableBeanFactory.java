@@ -220,7 +220,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * @see org.springframework.context.ApplicationContextAware
 	 */
 	public void ignoreDependencyInterface(Class<?> ifc) {
-		this.ignoredDependencyInterfaces.add(ifc);
+		ignoredDependencyInterfaces.add(ifc);
 	}
 
 	@Override
@@ -228,10 +228,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		super.copyConfigurationFrom(otherFactory);
 		if (otherFactory instanceof AbstractAutowireCapableBeanFactory) {
 			AbstractAutowireCapableBeanFactory otherAutowireFactory = (AbstractAutowireCapableBeanFactory) otherFactory;
-			this.instantiationStrategy = otherAutowireFactory.instantiationStrategy;
-			this.allowCircularReferences = otherAutowireFactory.allowCircularReferences;
-			this.ignoredDependencyTypes.addAll(otherAutowireFactory.ignoredDependencyTypes);
-			this.ignoredDependencyInterfaces.addAll(otherAutowireFactory.ignoredDependencyInterfaces);
+			instantiationStrategy = otherAutowireFactory.instantiationStrategy;
+			allowCircularReferences = otherAutowireFactory.allowCircularReferences;
+			ignoredDependencyTypes.addAll(otherAutowireFactory.ignoredDependencyTypes);
+			ignoredDependencyInterfaces.addAll(otherAutowireFactory.ignoredDependencyInterfaces);
 		}
 	}
 
@@ -475,7 +475,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// BeanWrapper封装了具体的Bean实例，然后可以很方便地通过调用getPropertyValue和setPropertyValue等方法反射读写Bean的具体属性
 		BeanWrapper instanceWrapper = null;
 		if (mbd.isSingleton()) {  // 先尝试从缓存中取 BeanWrapper，并清理相关记录
-			instanceWrapper = this.factoryBeanInstanceCache.remove(beanName);
+			instanceWrapper = factoryBeanInstanceCache.remove(beanName);
 		}
 		if (instanceWrapper == null) {
 			/*
@@ -524,7 +524,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		 * earlySingletonExposure = 条件1 && 条件2 && 条件3
 		 *                        = 单例 && 是否允许循环依赖 && 是否存于创建状态中。
 		 */
-		boolean earlySingletonExposure = (mbd.isSingleton() && this.allowCircularReferences && isSingletonCurrentlyInCreation(beanName));
+		boolean earlySingletonExposure = (mbd.isSingleton() && allowCircularReferences && isSingletonCurrentlyInCreation(beanName));
 		if (earlySingletonExposure) {
 			if (logger.isTraceEnabled()) logger.trace("Eagerly caching bean '" + beanName + "' to allow for resolving potential circular references");
 			// 提前暴露一个单例工厂方法，确保其他Bean能引用到此bean
@@ -576,7 +576,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 					exposedObject = earlySingletonReference;
 				}
 				// 下面的逻辑我也没完全搞懂，就不分析了。见谅。
-				else if (!this.allowRawInjectionDespiteWrapping && hasDependentBean(beanName)) {
+				else if (!allowRawInjectionDespiteWrapping && hasDependentBean(beanName)) {
 					String[] dependentBeans = getDependentBeans(beanName);
 					Set<String> actualDependentBeans = new LinkedHashSet<>(dependentBeans.length);
 					for (String dependentBean : dependentBeans) {
@@ -681,7 +681,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		Class<?> commonType = null;
 		Method uniqueCandidate = null;
 		int minNrOfArgs = (mbd.hasConstructorArgumentValues() ? mbd.getConstructorArgumentValues().getArgumentCount() : 0);
-		Method[] candidates = this.factoryMethodCandidateCache.computeIfAbsent(	factoryClass, ReflectionUtils::getUniqueDeclaredMethods);
+		Method[] candidates = factoryMethodCandidateCache.computeIfAbsent(	factoryClass, ReflectionUtils::getUniqueDeclaredMethods);
 
 		for (Method candidate : candidates) {
 			if (Modifier.isStatic(candidate.getModifiers()) == isStatic && mbd.isFactoryMethod(candidate) && candidate.getParameterCount() >= minNrOfArgs) {
@@ -811,9 +811,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 */
 	@Nullable
 	private Class<?> getTypeForFactoryBeanFromMethod(Class<?> beanClass, final String factoryMethodName) {
-		/**
-		 * Holder used to keep a reference to a {@code Class} value.
-		 */
+		// Holder used to keep a reference to a {@code Class} value.
 		class Holder {
 			@Nullable
 			Class<?> value = null;
@@ -821,8 +819,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		final Holder objectType = new Holder();
 		// CGLIB subclass methods hide generic parameters; look at the original user class.
 		Class<?> fbClass = ClassUtils.getUserClass(beanClass);
-		// Find the given factory method, taking into account that in the case of
-		// @Bean methods, there may be parameters present.
+		// Find the given factory method, taking into account that in the case of @Bean methods, there may be parameters present.
 		ReflectionUtils.doWithMethods(fbClass, method -> {
 			if (method.getName().equals(factoryMethodName) && FactoryBean.class.isAssignableFrom(method.getReturnType())) {
 				Class<?> currentType = GenericTypeResolver.resolveReturnTypeArgument(method, FactoryBean.class);
@@ -867,7 +864,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	@Nullable
 	private FactoryBean<?> getSingletonFactoryBeanForTypeCheck(String beanName, RootBeanDefinition mbd) {
 		synchronized (getSingletonMutex()) {
-			BeanWrapper bw = this.factoryBeanInstanceCache.get(beanName);
+			BeanWrapper bw = factoryBeanInstanceCache.get(beanName);
 			if (bw != null) {
 				return (FactoryBean<?>) bw.getWrappedInstance();
 			}
@@ -902,7 +899,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			}
 			FactoryBean<?> fb = getFactoryBean(beanName, instance);
 			if (bw != null) {
-				this.factoryBeanInstanceCache.put(beanName, bw);
+				factoryBeanInstanceCache.put(beanName, bw);
 			}
 			return fb;
 		}
@@ -1103,15 +1100,15 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 */
 	protected BeanWrapper obtainFromSupplier(Supplier<?> instanceSupplier, String beanName) {
 		Object instance;
-		String outerBean = this.currentlyCreatedBean.get();
-		this.currentlyCreatedBean.set(beanName);
+		String outerBean = currentlyCreatedBean.get();
+		currentlyCreatedBean.set(beanName);
 		try {
 			instance = instanceSupplier.get();
 		}finally {
 			if (outerBean != null) {
-				this.currentlyCreatedBean.set(outerBean);
+				currentlyCreatedBean.set(outerBean);
 			}else {
-				this.currentlyCreatedBean.remove();
+				currentlyCreatedBean.remove();
 			}
 		}
 		if (instance == null) instance = new NullBean();
@@ -1422,11 +1419,11 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * @see #filterPropertyDescriptorsForDependencyCheck(org.springframework.beans.BeanWrapper)
 	 */
 	protected PropertyDescriptor[] filterPropertyDescriptorsForDependencyCheck(BeanWrapper bw, boolean cache) {
-		PropertyDescriptor[] filtered = this.filteredPropertyDescriptorsCache.get(bw.getWrappedClass());
+		PropertyDescriptor[] filtered = filteredPropertyDescriptorsCache.get(bw.getWrappedClass());
 		if (filtered == null) {
 			filtered = filterPropertyDescriptorsForDependencyCheck(bw);
 			if (cache) {
-				PropertyDescriptor[] existing = this.filteredPropertyDescriptorsCache.putIfAbsent(bw.getWrappedClass(), filtered);
+				PropertyDescriptor[] existing = filteredPropertyDescriptorsCache.putIfAbsent(bw.getWrappedClass(), filtered);
 				if (existing != null) {
 					filtered = existing;
 				}
@@ -1456,8 +1453,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * @see #ignoreDependencyInterface(Class)
 	 */
 	protected boolean isExcludedFromDependencyCheck(PropertyDescriptor pd) {
-		return (AutowireUtils.isExcludedFromDependencyCheck(pd) || this.ignoredDependencyTypes.contains(pd.getPropertyType()) ||
-				AutowireUtils.isSetterDefinedInInterface(pd, this.ignoredDependencyInterfaces));
+		return (AutowireUtils.isExcludedFromDependencyCheck(pd) || ignoredDependencyTypes.contains(pd.getPropertyType()) ||
+				AutowireUtils.isSetterDefinedInInterface(pd, ignoredDependencyInterfaces));
 	}
 
 	/**
@@ -1811,7 +1808,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	protected void removeSingleton(String beanName) {
 		synchronized (getSingletonMutex()) {
 			super.removeSingleton(beanName);
-			this.factoryBeanInstanceCache.remove(beanName);
+			factoryBeanInstanceCache.remove(beanName);
 		}
 	}
 
@@ -1820,7 +1817,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	protected void clearSingletonCache() {
 		synchronized (getSingletonMutex()) {
 			super.clearSingletonCache();
-			this.factoryBeanInstanceCache.clear();
+			factoryBeanInstanceCache.clear();
 		}
 	}
 
