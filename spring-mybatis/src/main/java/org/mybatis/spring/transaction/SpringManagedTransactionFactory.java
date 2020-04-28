@@ -29,5 +29,4 @@ public class SpringManagedTransactionFactory implements TransactionFactory {
   public void setProperties(Properties props) {
     // not needed in this version
   }
-
 }

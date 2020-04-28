@@ -7,14 +7,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.batch.item.support.AbstractItemCountingItemStreamItemReader;
 import org.springframework.beans.factory.InitializingBean;
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-
 import static org.springframework.util.Assert.notNull;
 import static org.springframework.util.ClassUtils.getShortName;
-
 
 public class MyBatisCursorItemReader<T> extends AbstractItemCountingItemStreamItemReader<T> implements InitializingBean {
 
@@ -47,7 +44,6 @@ public class MyBatisCursorItemReader<T> extends AbstractItemCountingItemStreamIt
     if (parameterValues != null) {
       parameters.putAll(parameterValues);
     }
-
     sqlSession = sqlSessionFactory.openSession(ExecutorType.SIMPLE);
     cursor = sqlSession.selectCursor(queryId, parameters);
     cursorIterator = cursor.iterator();

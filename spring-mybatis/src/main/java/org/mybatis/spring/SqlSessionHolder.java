@@ -28,10 +28,8 @@ public final class SqlSessionHolder extends ResourceHolderSupport {
    * @param exceptionTranslator the {@code PersistenceExceptionTranslator} has to be hold.
    */
   public SqlSessionHolder(SqlSession sqlSession, ExecutorType executorType, PersistenceExceptionTranslator exceptionTranslator) {
-
     notNull(sqlSession, "SqlSession must not be null");
     notNull(executorType, "ExecutorType must not be null");
-
     this.sqlSession = sqlSession;
     this.executorType = executorType;
     this.exceptionTranslator = exceptionTranslator;
