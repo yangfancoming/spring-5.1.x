@@ -3,6 +3,7 @@ package com.goat.chapter651;
 
 import com.goat.chapter651.config.AppConfig;
 import com.goat.chapter651.service.BookService;
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -16,6 +17,6 @@ public class App {
 		AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
 		BookService bookService = ac.getBean(BookService.class);
 		List<Map> test = bookService.test();
-		System.out.println(test);
+		Assert.assertEquals(10,test.size());
 	}
 }

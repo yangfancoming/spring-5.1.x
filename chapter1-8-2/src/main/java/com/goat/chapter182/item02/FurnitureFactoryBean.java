@@ -20,9 +20,7 @@ public class FurnitureFactoryBean implements FactoryBean<Furniture> {
 	// 这个Bean是我们自己new的，这里我们就可以控制Bean的创建过程了
 	@Override
 	public Furniture getObject()  {
-		if (null == furniture) {
-			throw new IllegalArgumentException("'furniture' is required");
-		}
+		if (null == furniture) throw new IllegalArgumentException("'furniture' is required");
 		if ("chair".equals(furniture)) {
 			return new Chair();
 		} else if ("desk".equals(furniture)) {
@@ -34,9 +32,7 @@ public class FurnitureFactoryBean implements FactoryBean<Furniture> {
 
 	@Override
 	public Class<?> getObjectType() {
-		if (null == furniture) {
-			throw new IllegalArgumentException("'furniture' is required");
-		}
+		if (null == furniture) throw new IllegalArgumentException("'furniture' is required");
 		if ("chair".equals(furniture)) {
 			return Chair.class;
 		} else if ("desk".equals(furniture)) {

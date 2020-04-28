@@ -11,7 +11,6 @@ import org.springframework.core.io.ClassPathResource;
 
 /**
  * Created by 64274 on 2019/8/17.
- *
  * @ Description: TODO
  * @ author  山羊来了
  * @ date 2019/8/17---19:18
@@ -39,14 +38,13 @@ public class App {
 		System.out.println(bean);
 	}
 
-
 	/**  返回不同Bean的实例
 	 * 新建了家具接口和桌子、椅子实现类，通过xml文件配置，
 	 * 在FurnitureFactoryBean的getObject方法进行判断，并返回不同的家具类型实例。
 	 * */
 	@Test
 	public void test12() {
-		//FactoryBean简单工厂测试
+		// FactoryBean简单工厂测试
 		Furniture furniture = xmlBeanFactory.getBean("furniture", Furniture.class);
 		furniture.sayHello();
 	}

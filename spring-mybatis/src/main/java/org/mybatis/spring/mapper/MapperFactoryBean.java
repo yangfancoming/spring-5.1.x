@@ -46,19 +46,16 @@ public class MapperFactoryBean<T> extends SqlSessionDaoSupport implements Factor
     this.mapperInterface = mapperInterface;
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   protected void checkDaoConfig() {
     super.checkDaoConfig();
-    notNull(this.mapperInterface, "Property 'mapperInterface' is required");
+    notNull(mapperInterface, "Property 'mapperInterface' is required");
     Configuration configuration = getSqlSession().getConfiguration();
-    if (this.addToConfig && !configuration.hasMapper(this.mapperInterface)) {
+    if (addToConfig && !configuration.hasMapper(mapperInterface)) {
       try {
-        configuration.addMapper(this.mapperInterface);
+        configuration.addMapper(mapperInterface);
       } catch (Exception e) {
-        logger.error("Error while adding the mapper '" + this.mapperInterface + "' to configuration.", e);
+        logger.error("Error while adding the mapper '" + mapperInterface + "' to configuration.", e);
         throw new IllegalArgumentException(e);
       } finally {
         ErrorContext.instance().reset();
@@ -68,12 +65,12 @@ public class MapperFactoryBean<T> extends SqlSessionDaoSupport implements Factor
 
   @Override
   public T getObject() throws Exception {
-    return getSqlSession().getMapper(this.mapperInterface);
+    return getSqlSession().getMapper(mapperInterface);
   }
 
   @Override
   public Class<T> getObjectType() {
-    return this.mapperInterface;
+    return mapperInterface;
   }
 
   @Override

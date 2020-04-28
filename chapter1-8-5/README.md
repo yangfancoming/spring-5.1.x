@@ -12,3 +12,10 @@
     （例如：配置文件中注册了一个自定义BeanFactoryPostProcessor类型的bean，
     一个User类型的bean，应用程序上下文会在创建User实例之前对User应用BeanFactoryPostProcessor）。
     
+
+
+#  
+
+    item03 生命周期
+     
+    item05 spring.profiles 配置

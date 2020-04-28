@@ -197,10 +197,8 @@ public final class SqlSessionUtils {
 
     @Override
     public void beforeCommit(boolean readOnly) {
-      // Connection commit or rollback will be handled by ConnectionSynchronization or
-      // DataSourceTransactionManager.
-      // But, do cleanup the SqlSession / Executor, including flushing BATCH statements so
-      // they are actually executed.
+      // Connection commit or rollback will be handled by ConnectionSynchronization or DataSourceTransactionManager.
+      // But, do cleanup the SqlSession / Executor, including flushing BATCH statements so  they are actually executed.
       // SpringManagedTransaction will no-op the commit over the jdbc connection
       // TODO This updates 2nd level caches but the tx may be rolledback later on!
       if (TransactionSynchronizationManager.isActualTransactionActive()) {

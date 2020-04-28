@@ -65,6 +65,9 @@ import static org.springframework.util.StringUtils.tokenizeToStringArray;
  * @see #setDataSource
  * SqlSessionFactoryBean 实现了Spring的InitializingBean接口，其中的 afterPropertiesSet 方法中会调用 buildSqlSessionFactory 方法创建 SqlSessionFactory
  *  实现了FactoryBean接口，所以返回的不是 SqlSessionFactoryBean 的实例，而是它的 SqlSessionFactoryBean.getObject() 的返回值：
+ *  我们知道，
+ *  1.实现了FactoryBean的bean会调用它的getObject方法创建bean，
+ *  2.实现了InitializingBean的bean会在属性填充完成之后调用它的afterPropertiesSet方法
  */
 public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, InitializingBean, ApplicationListener<ApplicationEvent> {
 
@@ -369,9 +372,6 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 		this.defaultScriptingLanguageDriver = defaultScriptingLanguageDriver;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		notNull(dataSource, "Property 'dataSource' is required");
@@ -392,20 +392,20 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 		final Configuration targetConfiguration;
 		XMLConfigBuilder xmlConfigBuilder = null;
 		// 创建Configuration对象
-		if (this.configuration != null) {
-			targetConfiguration = this.configuration;
+		if (configuration != null) {
+			targetConfiguration = configuration;
 			if (targetConfiguration.getVariables() == null) {
-				targetConfiguration.setVariables(this.configurationProperties);
-			} else if (this.configurationProperties != null) {
-				targetConfiguration.getVariables().putAll(this.configurationProperties);
+				targetConfiguration.setVariables(configurationProperties);
+			} else if (configurationProperties != null) {
+				targetConfiguration.getVariables().putAll(configurationProperties);
 			}
-		} else if (this.configLocation != null) {
-			xmlConfigBuilder = new XMLConfigBuilder(this.configLocation.getInputStream(), null, this.configurationProperties);
+		} else if (configLocation != null) {
+			xmlConfigBuilder = new XMLConfigBuilder(configLocation.getInputStream(), null, configurationProperties);
 			targetConfiguration = xmlConfigBuilder.getConfiguration();
 		} else {
 			LOGGER.debug( () -> "Property 'configuration' or 'configLocation' not specified, using default MyBatis Configuration");
 			targetConfiguration = new Configuration();
-			Optional.ofNullable(this.configurationProperties).ifPresent(targetConfiguration::setVariables);
+			Optional.ofNullable(configurationProperties).ifPresent(targetConfiguration::setVariables);
 		}
 		// 配置 objectFactory
 		// 根据Spring配置文件，设置Configuration.objectWrapperFactory
@@ -417,67 +417,67 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 		// 注册指定的typeHandlers
 		// 配置databaseIdProvider
 		// 配置缓存
-		Optional.ofNullable(this.objectFactory).ifPresent(targetConfiguration::setObjectFactory);
-		Optional.ofNullable(this.objectWrapperFactory).ifPresent(targetConfiguration::setObjectWrapperFactory);
-		Optional.ofNullable(this.vfs).ifPresent(targetConfiguration::setVfsImpl);
+		Optional.ofNullable(objectFactory).ifPresent(targetConfiguration::setObjectFactory);
+		Optional.ofNullable(objectWrapperFactory).ifPresent(targetConfiguration::setObjectWrapperFactory);
+		Optional.ofNullable(vfs).ifPresent(targetConfiguration::setVfsImpl);
 
-		if (hasLength(this.typeAliasesPackage)) {
-			scanClasses(this.typeAliasesPackage, this.typeAliasesSuperType).stream()
+		if (hasLength(typeAliasesPackage)) {
+			scanClasses(typeAliasesPackage, typeAliasesSuperType).stream()
 					.filter(clazz -> !clazz.isAnonymousClass()).filter(clazz -> !clazz.isInterface())
 					.filter(clazz -> !clazz.isMemberClass()).forEach(targetConfiguration.getTypeAliasRegistry()::registerAlias);
 		}
 
-		if (!isEmpty(this.typeAliases)) {
-			Stream.of(this.typeAliases).forEach(typeAlias -> {
+		if (!isEmpty(typeAliases)) {
+			Stream.of(typeAliases).forEach(typeAlias -> {
 				targetConfiguration.getTypeAliasRegistry().registerAlias(typeAlias);
 				LOGGER.debug(() -> "Registered type alias: '" + typeAlias + "'");
 			});
 		}
 
-		if (!isEmpty(this.plugins)) {
-			Stream.of(this.plugins).forEach(plugin -> {
+		if (!isEmpty(plugins)) {
+			Stream.of(plugins).forEach(plugin -> {
 				targetConfiguration.addInterceptor(plugin);
 				LOGGER.debug(() -> "Registered plugin: '" + plugin + "'");
 			});
 		}
 
-		if (hasLength(this.typeHandlersPackage)) {
-			scanClasses(this.typeHandlersPackage, TypeHandler.class).stream().filter(clazz -> !clazz.isAnonymousClass())
+		if (hasLength(typeHandlersPackage)) {
+			scanClasses(typeHandlersPackage, TypeHandler.class).stream().filter(clazz -> !clazz.isAnonymousClass())
 					.filter(clazz -> !clazz.isInterface()).filter(clazz -> !Modifier.isAbstract(clazz.getModifiers()))
 					.filter(clazz -> ClassUtils.getConstructorIfAvailable(clazz) != null)
 					.forEach(targetConfiguration.getTypeHandlerRegistry()::register);
 		}
 
-		if (!isEmpty(this.typeHandlers)) {
-			Stream.of(this.typeHandlers).forEach(typeHandler -> {
+		if (!isEmpty(typeHandlers)) {
+			Stream.of(typeHandlers).forEach(typeHandler -> {
 				targetConfiguration.getTypeHandlerRegistry().register(typeHandler);
 				LOGGER.debug(() -> "Registered type handler: '" + typeHandler + "'");
 			});
 		}
 
-		if (!isEmpty(this.scriptingLanguageDrivers)) {
-			Stream.of(this.scriptingLanguageDrivers).forEach(languageDriver -> {
+		if (!isEmpty(scriptingLanguageDrivers)) {
+			Stream.of(scriptingLanguageDrivers).forEach(languageDriver -> {
 				targetConfiguration.getLanguageRegistry().register(languageDriver);
 				LOGGER.debug(() -> "Registered scripting language driver: '" + languageDriver + "'");
 			});
 		}
-		Optional.ofNullable(this.defaultScriptingLanguageDriver) .ifPresent(targetConfiguration::setDefaultScriptingLanguage);
+		Optional.ofNullable(defaultScriptingLanguageDriver) .ifPresent(targetConfiguration::setDefaultScriptingLanguage);
 
-		if (this.databaseIdProvider != null) {// fix #64 set databaseId before parse mapper xmls
+		if (databaseIdProvider != null) {// fix #64 set databaseId before parse mapper xmls
 			try {
-				targetConfiguration.setDatabaseId(this.databaseIdProvider.getDatabaseId(this.dataSource));
+				targetConfiguration.setDatabaseId(databaseIdProvider.getDatabaseId(dataSource));
 			} catch (SQLException e) {
 				throw new NestedIOException("Failed getting a databaseId", e);
 			}
 		}
-		Optional.ofNullable(this.cache).ifPresent(targetConfiguration::addCache);
+		Optional.ofNullable(cache).ifPresent(targetConfiguration::addCache);
 		// 调parse()方法解析配置文件
 		if (xmlConfigBuilder != null) {
 			try {
 				xmlConfigBuilder.parse();
-				LOGGER.debug(() -> "Parsed configuration file: '" + this.configLocation + "'");
+				LOGGER.debug(() -> "Parsed configuration file: '" + configLocation + "'");
 			} catch (Exception ex) {
-				throw new NestedIOException("Failed to parse config resource: " + this.configLocation, ex);
+				throw new NestedIOException("Failed to parse config resource: " + configLocation, ex);
 			} finally {
 				ErrorContext.instance().reset();
 			}
@@ -485,14 +485,14 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 		// 如果未配置transactionFactory，则默认使用SpringManagedTransactionFactory
 		TransactionFactory transactionFactory = this.transactionFactory == null ? new SpringManagedTransactionFactory() : this.transactionFactory;
 		// 设置environment
-		targetConfiguration.setEnvironment(new Environment(this.environment,transactionFactory,this.dataSource));
+		targetConfiguration.setEnvironment(new Environment(environment,transactionFactory,dataSource));
 
-		if (this.mapperLocations != null) {
-			if (this.mapperLocations.length == 0) {
+		if (mapperLocations != null) {
+			if (mapperLocations.length == 0) {
 				LOGGER.warn(() -> "Property 'mapperLocations' was specified but matching resources are not found.");
 			} else {
 				// 遍历局部xml配置
-				for (Resource mapperLocation : this.mapperLocations) {
+				for (Resource mapperLocation : mapperLocations) {
 					if (mapperLocation == null) continue;
 					try {
 						// 使用 XMLConfigBuilder解析 局部xml配置
@@ -510,18 +510,18 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 			LOGGER.debug(() -> "Property 'mapperLocations' was not specified.");
 		}
 		// 最终 调用SqlSessionFactoryBuilder.build()方法，创建SqlSessionFactory对象并返回
-		return this.sqlSessionFactoryBuilder.build(targetConfiguration);
+		return sqlSessionFactoryBuilder.build(targetConfiguration);
 	}
 
 	@Override
 	public SqlSessionFactory getObject() throws Exception {
-		if (this.sqlSessionFactory == null) afterPropertiesSet();
-		return this.sqlSessionFactory;
+		if (sqlSessionFactory == null) afterPropertiesSet();
+		return sqlSessionFactory;
 	}
 
 	@Override
 	public Class<? extends SqlSessionFactory> getObjectType() {
-		return this.sqlSessionFactory == null ? SqlSessionFactory.class : this.sqlSessionFactory.getClass();
+		return sqlSessionFactory == null ? SqlSessionFactory.class : sqlSessionFactory.getClass();
 	}
 
 	@Override
@@ -533,7 +533,7 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 	public void onApplicationEvent(ApplicationEvent event) {
 		if (failFast && event instanceof ContextRefreshedEvent) {
 			// fail-fast -> check all statements are completed
-			this.sqlSessionFactory.getConfiguration().getMappedStatementNames();
+			sqlSessionFactory.getConfiguration().getMappedStatementNames();
 		}
 	}
 

@@ -10,8 +10,9 @@ import org.springframework.beans.factory.InitializingBean;
  * @ date 2020/4/21---13:50
  */
 public class InitializingBeanTest implements InitializingBean {
+
 	@Override
-	public void afterPropertiesSet() throws Exception {
+	public void afterPropertiesSet()  {
 		System.out.println("afterPropertiesSet...");
 	}
 }

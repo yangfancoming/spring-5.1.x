@@ -30,6 +30,6 @@ public class Spring2App {
 		BookMapper bookMapper = (BookMapper) context.getBean("bookMapper");
 		Assert.assertNotNull(bookMapper);
 		List<Map> maps = bookMapper.selectById();
-		System.out.println(maps);
+		Assert.assertEquals(2,maps.size());
 	}
 }

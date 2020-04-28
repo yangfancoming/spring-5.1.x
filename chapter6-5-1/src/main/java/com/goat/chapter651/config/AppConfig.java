@@ -43,7 +43,6 @@ public class AppConfig {
 		return ds;
 	}
 
-
 /**   使用 阿里巴巴 druid  数据库连接池
  *  @Bean
  * 	public DataSource dataSource() {

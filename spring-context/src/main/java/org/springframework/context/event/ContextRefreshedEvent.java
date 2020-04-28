@@ -6,8 +6,6 @@ import org.springframework.context.ApplicationContext;
 
 /**
  * Event raised when an {@code ApplicationContext} gets initialized or refreshed.
- *
-
  * @since 04.03.2003
  * @see ContextClosedEvent
  */

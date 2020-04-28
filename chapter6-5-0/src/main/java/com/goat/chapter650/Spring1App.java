@@ -11,7 +11,6 @@ import java.util.Map;
 
 /**
  * Created by Administrator on 2020/3/25.
- *
  * @ Description:   MapperScannerConfigurer 包扫描 方式一
  * @ author  山羊来了
  * @ date 2020/3/25---10:00
@@ -31,6 +30,6 @@ public class Spring1App {
 		BookMapper bookMapper = (BookMapper) context.getBean("bookMapper");
 		Assert.assertNotNull(bookMapper);
 		List<Map> maps = bookMapper.selectById();
-		System.out.println(maps);
+		Assert.assertEquals(2,maps.size());
 	}
 }

@@ -23,10 +23,13 @@
 	<!-- SqlSessionFactoryBean -->
 	<bean id="mySqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="myDataSource" />
+		<!-- 配置全局xml -->
 		<property name="configLocation" value="mybatis-config.xml"/>
+		<!-- 配置局部xml -->
 		<property name="mapperLocations" value="mapper/Foo.xml"/>
 	</bean>
 
+	<!--【MapperScannerConfigurer 包扫描 方式二 】 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.goat.chapter650.dao" />
 		<property name="markerInterface" value="com.goat.chapter650.dao.IFoo" />
