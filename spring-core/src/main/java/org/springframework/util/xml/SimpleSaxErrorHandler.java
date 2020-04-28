@@ -8,26 +8,20 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 /**
- * Simple {@code org.xml.sax.ErrorHandler} implementation:
- * logs warnings using the given Commons Logging logger instance,
+ * Simple {@code org.xml.sax.ErrorHandler} implementation:logs warnings using the given Commons Logging logger instance,
  * and rethrows errors to discontinue the XML transformation.
- *
-
  * @since 1.2
  */
 public class SimpleSaxErrorHandler implements ErrorHandler {
 
 	private final Log logger;
 
-
 	/**
-	 * Create a new SimpleSaxErrorHandler for the given
-	 * Commons Logging logger instance.
+	 * Create a new SimpleSaxErrorHandler for the given Commons Logging logger instance.
 	 */
 	public SimpleSaxErrorHandler(Log logger) {
 		this.logger = logger;
 	}
-
 
 	@Override
 	public void warning(SAXParseException ex) throws SAXException {
@@ -43,5 +37,4 @@ public class SimpleSaxErrorHandler implements ErrorHandler {
 	public void fatalError(SAXParseException ex) throws SAXException {
 		throw ex;
 	}
-
 }

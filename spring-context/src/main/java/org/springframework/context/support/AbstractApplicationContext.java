@@ -771,16 +771,14 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		}
 	}
 
-	/**
-	 * Finish the initialization of this context's bean factory, initializing all remaining singleton beans.
-	 */
+	//  Finish the initialization of this context's bean factory, initializing all remaining singleton beans.
 	protected void finishBeanFactoryInitialization(ConfigurableListableBeanFactory beanFactory) {
 		// Initialize conversion service for this context.
 		if (beanFactory.containsBean(CONVERSION_SERVICE_BEAN_NAME) && beanFactory.isTypeMatch(CONVERSION_SERVICE_BEAN_NAME, ConversionService.class)) {
 			beanFactory.setConversionService(beanFactory.getBean(CONVERSION_SERVICE_BEAN_NAME, ConversionService.class));
 		}
-		// Register a default embedded value resolver if no bean post-processor
-		// (such as a PropertyPlaceholderConfigurer bean) registered any before:at this point, primarily for resolution in annotation attribute values.
+		// Register a default embedded value resolver if no bean post-processor (such as a PropertyPlaceholderConfigurer bean) registered any before:
+		// at this point, primarily for resolution in annotation attribute values.
 		if (!beanFactory.hasEmbeddedValueResolver()) {
 			beanFactory.addEmbeddedValueResolver(strVal -> getEnvironment().resolvePlaceholders(strVal));
 		}

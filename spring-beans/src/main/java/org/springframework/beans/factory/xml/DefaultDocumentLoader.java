@@ -106,9 +106,13 @@ public class DefaultDocumentLoader implements DocumentLoader {
 		// 1、创建DocumentBuilder对象
 		DocumentBuilder docBuilder = factory.newDocumentBuilder();
 		// 2、尝试设置 entityResolver
-		if (entityResolver != null) docBuilder.setEntityResolver(entityResolver);
+		if (entityResolver != null){
+			docBuilder.setEntityResolver(entityResolver);
+		}
 		// 3、尝试设置 errorHandler
-		if (errorHandler != null) docBuilder.setErrorHandler(errorHandler);
+		if (errorHandler != null) {
+			docBuilder.setErrorHandler(errorHandler);
+		}
 		return docBuilder;
 	}
 

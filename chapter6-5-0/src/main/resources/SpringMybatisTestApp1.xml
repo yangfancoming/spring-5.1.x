@@ -5,7 +5,7 @@
 	   http://www.springframework.org/schema/beans/spring-beans.xsd" >
 
 	<bean id="mySqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-<!--		<property name="configLocation" value="mybatis-config.xml"/>-->
+		<property name="configLocation" value="mybatis-config.xml"/>
 	</bean>
 
 </beans>

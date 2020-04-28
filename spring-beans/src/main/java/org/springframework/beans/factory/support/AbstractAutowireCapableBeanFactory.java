@@ -593,7 +593,6 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				}
 			}
 		}
-
 		// Register bean as disposable.
 		// 如果实现了 Disposable 接口，会在这里进行注册，最后在销毁的时候调用相应的destroy方法
 		try {
@@ -1496,11 +1495,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 */
 	protected void applyPropertyValues(String beanName, BeanDefinition mbd, BeanWrapper bw, PropertyValues pvs) {
 		if (pvs.isEmpty()) return;
-
 		if (System.getSecurityManager() != null && bw instanceof BeanWrapperImpl) {
 			((BeanWrapperImpl) bw).setSecurityContext(getAccessControlContext());
 		}
-
 		MutablePropertyValues mpvs = null;
 		List<PropertyValue> original;
 		if (pvs instanceof MutablePropertyValues) {
