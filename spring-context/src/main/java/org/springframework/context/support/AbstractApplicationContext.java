@@ -497,9 +497,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 				// 给事件广播器注册一些监听器（观察者模式）
 				registerListeners();
 				/** 完成 容器的所有 初始化工作！
-				 * Instantiate all remaining (non-lazy-init) singletons.  初始化所有的 singleton beans （lazy-init 的除外）
+				 * Instantiate all remaining (non-lazy-init) singletons.  初始化所有（lazy-init 的除外）的 singleton beans
 				 * BeanFactory 初始化完成时调用，初始ConversionService Bean，冻结beanFactory配置，并开始创建BeanFactory中所有非懒加载的单例Bean
-				 * 完成BeanFacotry的初始化，初始化所有剩余的单例Bean
 				 */
 				finishBeanFactoryInitialization(beanFactory);
 				// Last step: publish corresponding event. 最后，广播事件，ApplicationContext 初始化完成
@@ -782,8 +781,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			beanFactory.setConversionService(beanFactory.getBean(CONVERSION_SERVICE_BEAN_NAME, ConversionService.class));
 		}
 		// Register a default embedded value resolver if no bean post-processor
-		// (such as a PropertyPlaceholderConfigurer bean) registered any before:
-		// at this point, primarily for resolution in annotation attribute values.
+		// (such as a PropertyPlaceholderConfigurer bean) registered any before:at this point, primarily for resolution in annotation attribute values.
 		if (!beanFactory.hasEmbeddedValueResolver()) {
 			beanFactory.addEmbeddedValueResolver(strVal -> getEnvironment().resolvePlaceholders(strVal));
 		}
