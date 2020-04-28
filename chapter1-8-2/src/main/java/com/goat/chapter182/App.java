@@ -38,7 +38,8 @@ public class App {
 		System.out.println(bean);
 	}
 
-	/**  返回不同Bean的实例
+	/**
+	 * 返回不同Bean的实例
 	 * 新建了家具接口和桌子、椅子实现类，通过xml文件配置，
 	 * 在FurnitureFactoryBean的getObject方法进行判断，并返回不同的家具类型实例。
 	 * */
