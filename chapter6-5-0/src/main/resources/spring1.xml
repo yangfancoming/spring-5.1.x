@@ -27,6 +27,7 @@
 		<property name="configLocation" value="mybatis-config.xml"/>
 		<!-- 配置局部xml -->
 		<property name="mapperLocations" value="mapper/Foo.xml"/>
+		<property name="typeAliasesPackage" value="com.goat.chapter650.model"/>
 	</bean>
 
 	<!--【MapperScannerConfigurer 包扫描 方式一 】 -->

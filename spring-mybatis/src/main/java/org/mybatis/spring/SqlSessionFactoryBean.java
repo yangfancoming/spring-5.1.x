@@ -337,7 +337,6 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 	 * statements non-transactionally.
 	 * <b>It is strongly recommended to use the default {@code TransactionFactory}.</b> If not used, any attempt at
 	 * getting an SqlSession through Spring's MyBatis framework will throw an exception if a transaction is active.
-	 *
 	 * @see SpringManagedTransactionFactory
 	 * @param transactionFactory  the MyBatis TransactionFactory
 	 */
@@ -381,7 +380,7 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 		notNull(dataSource, "Property 'dataSource' is required");
 		notNull(sqlSessionFactoryBuilder, "Property 'sqlSessionFactoryBuilder' is required");
 		state((configuration == null && configLocation == null) || !(configuration != null && configLocation != null),"Property 'configuration' and 'configLocation' can not specified with together");
-		this.sqlSessionFactory = buildSqlSessionFactory();
+		sqlSessionFactory = buildSqlSessionFactory();
 	}
 
 	/**
@@ -395,7 +394,6 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 	protected SqlSessionFactory buildSqlSessionFactory() throws Exception {
 		final Configuration targetConfiguration;
 		XMLConfigBuilder xmlConfigBuilder = null;
-
 		if (configuration != null) {
 			targetConfiguration = configuration;
 			if (targetConfiguration.getVariables() == null) {
@@ -403,10 +401,10 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 			} else if (configurationProperties != null) {
 				targetConfiguration.getVariables().putAll(configurationProperties);
 			}
-		} else if (configLocation != null) {
+		} else if (configLocation != null) { // 如果spring配置文件中指定了全局xml配置文件路径  则进行解析
 			xmlConfigBuilder = new XMLConfigBuilder(configLocation.getInputStream(), null, configurationProperties);
 			targetConfiguration = xmlConfigBuilder.getConfiguration();
-		} else {
+		} else { // 如果 configuration 为null 并且又没有指定全局xml配置文件路径的情况下，使用mybatis的默认配置
 			LOGGER.debug( () -> "Property 'configuration' or 'configLocation' not specified, using default MyBatis Configuration");
 			targetConfiguration = new Configuration();
 			Optional.ofNullable(configurationProperties).ifPresent(targetConfiguration::setVariables);
@@ -427,8 +425,9 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 
 		if (hasLength(typeAliasesPackage)) {
 			scanClasses(typeAliasesPackage, typeAliasesSuperType).stream()
-					.filter(clazz -> !clazz.isAnonymousClass()).filter(clazz -> !clazz.isInterface())
-					.filter(clazz -> !clazz.isMemberClass()).forEach(targetConfiguration.getTypeAliasRegistry()::registerAlias);
+					// 过滤掉匿名类、接口、内部类
+					.filter(clazz -> !clazz.isAnonymousClass()).filter(clazz -> !clazz.isInterface()).filter(clazz -> !clazz.isMemberClass())
+					.forEach(targetConfiguration.getTypeAliasRegistry()::registerAlias);
 		}
 
 		if (!isEmpty(typeAliases)) {

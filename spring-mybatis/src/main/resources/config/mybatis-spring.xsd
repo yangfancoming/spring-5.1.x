@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <xsd:schema xmlns="http://mybatis.org/schema/mybatis-spring"
-  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-  xmlns:beans="http://www.springframework.org/schema/beans"
-  xmlns:tool="http://www.springframework.org/schema/tool"
-  targetNamespace="http://mybatis.org/schema/mybatis-spring"
-  elementFormDefault="qualified" attributeFormDefault="unqualified">
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			xmlns:tool="http://www.springframework.org/schema/tool"
+			targetNamespace="http://mybatis.org/schema/mybatis-spring"
+			elementFormDefault="qualified">
 
   <xsd:element name="scan">
     <xsd:annotation>
@@ -17,8 +16,7 @@
       </xsd:documentation>
     </xsd:annotation>
     <xsd:complexType>
-      <xsd:attribute name="base-package" type="xsd:string"
-        use="required">
+      <xsd:attribute name="base-package" type="xsd:string"  use="required">
         <xsd:annotation>
           <xsd:documentation>
             <![CDATA[
@@ -30,9 +28,7 @@
       <xsd:attribute name="marker-interface" type="xsd:string">
         <xsd:annotation>
           <xsd:documentation>
-            <![CDATA[
-              The scanner will register all interfaces in the base package that also have the specified interface class as a parent.
-            ]]>
+            <![CDATA[The scanner will register all interfaces in the base package that also have the specified interface class as a parent. ]]>
           </xsd:documentation>
           <xsd:appinfo>
             <tool:annotation>
@@ -44,9 +40,7 @@
       <xsd:attribute name="annotation" type="xsd:string">
         <xsd:annotation>
           <xsd:documentation>
-            <![CDATA[
-              The scanner will register all interfaces in the base package that also have the specified annotation.
-            ]]>
+            <![CDATA[The scanner will register all interfaces in the base package that also have the specified annotation.]]>
           </xsd:documentation>
           <xsd:appinfo>
             <tool:annotation>
@@ -59,9 +53,7 @@
       <xsd:attribute name="factory-ref" type="xsd:string">
         <xsd:annotation>
           <xsd:documentation>
-            <![CDATA[
-              Specifies which SqlSessionFactory to use in the case that there is more than one in the spring context. Usually this is only needed when you have more than one datasource.
-                    ]]>
+            <![CDATA[ Specifies which SqlSessionFactory to use in the case that there is more than one in the spring context. Usually this is only needed when you have more than one datasource. ]]>
           </xsd:documentation>
           <xsd:appinfo>
             <tool:annotation kind="ref">
@@ -73,9 +65,7 @@
       <xsd:attribute name="template-ref" type="xsd:string">
         <xsd:annotation>
           <xsd:documentation>
-            <![CDATA[
-              Specifies which SqlSessionTemplate to use in the case that there is more than one in the spring context. Usually this is only needed when you have more than one datasource.
-            ]]>
+            <![CDATA[Specifies which SqlSessionTemplate to use in the case that there is more than one in the spring context. Usually this is only needed when you have more than one datasource. ]]>
           </xsd:documentation>
           <xsd:appinfo>
             <tool:annotation kind="ref">
@@ -87,9 +77,7 @@
       <xsd:attribute name="name-generator" type="xsd:string">
         <xsd:annotation>
           <xsd:documentation>
-            <![CDATA[
-              The fully-qualified class name of the BeanNameGenerator to be used for naming detected components.
-            ]]>
+            <![CDATA[The fully-qualified class name of the BeanNameGenerator to be used for naming detected components. ]]>
           </xsd:documentation>
           <xsd:appinfo>
             <tool:annotation>
@@ -102,9 +90,7 @@
       <xsd:attribute name="mapper-factory-bean-class" type="xsd:string">
         <xsd:annotation>
           <xsd:documentation>
-            <![CDATA[
-              The fully-qualified class name of the MapperFactoryBean to return a mybatis proxy as spring bean. (Since 2.0.1)
-            ]]>
+            <![CDATA[The fully-qualified class name of the MapperFactoryBean to return a mybatis proxy as spring bean. (Since 2.0.1)]]>
           </xsd:documentation>
           <xsd:appinfo>
             <tool:annotation>
@@ -117,9 +103,7 @@
       <xsd:attribute name="lazy-initialization" type="xsd:string">
         <xsd:annotation>
           <xsd:documentation>
-            <![CDATA[
-              Whether enable lazy initialization of mapper bean. Set true to enable lazy initialization. (Since 2.0.2)
-            ]]>
+            <![CDATA[Whether enable lazy initialization of mapper bean. Set true to enable lazy initialization. (Since 2.0.2) ]]>
           </xsd:documentation>
         </xsd:annotation>
       </xsd:attribute>
