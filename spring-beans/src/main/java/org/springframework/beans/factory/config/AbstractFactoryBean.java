@@ -92,7 +92,7 @@ public abstract class AbstractFactoryBean<T> implements FactoryBean<T>, BeanClas
 	 */
 	@Nullable
 	protected BeanFactory getBeanFactory() {
-		return this.beanFactory;
+		return beanFactory;
 	}
 
 	/**
@@ -118,9 +118,9 @@ public abstract class AbstractFactoryBean<T> implements FactoryBean<T>, BeanClas
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		if (isSingleton()) {
-			this.initialized = true;
-			this.singletonInstance = createInstance();
-			this.earlySingletonInstance = null;
+			initialized = true;
+			singletonInstance = createInstance();
+			earlySingletonInstance = null;
 		}
 	}
 
@@ -133,7 +133,7 @@ public abstract class AbstractFactoryBean<T> implements FactoryBean<T>, BeanClas
 	@Override
 	public final T getObject() throws Exception {
 		if (isSingleton()) {
-			return (this.initialized ? this.singletonInstance : getEarlySingletonInstance());
+			return (initialized ? singletonInstance : getEarlySingletonInstance());
 		}else {
 			return createInstance();
 		}
@@ -149,10 +149,10 @@ public abstract class AbstractFactoryBean<T> implements FactoryBean<T>, BeanClas
 		if (ifcs == null) {
 			throw new FactoryBeanNotInitializedException(getClass().getName() + " does not support circular references");
 		}
-		if (this.earlySingletonInstance == null) {
-			this.earlySingletonInstance = (T) Proxy.newProxyInstance(this.beanClassLoader, ifcs, new EarlySingletonInvocationHandler());
+		if (earlySingletonInstance == null) {
+			earlySingletonInstance = (T) Proxy.newProxyInstance(beanClassLoader, ifcs, new EarlySingletonInvocationHandler());
 		}
-		return this.earlySingletonInstance;
+		return earlySingletonInstance;
 	}
 
 	/**
@@ -162,8 +162,8 @@ public abstract class AbstractFactoryBean<T> implements FactoryBean<T>, BeanClas
 	 */
 	@Nullable
 	private T getSingletonInstance() throws IllegalStateException {
-		Assert.state(this.initialized, "Singleton instance not initialized yet");
-		return this.singletonInstance;
+		Assert.state(initialized, "Singleton instance not initialized yet");
+		return singletonInstance;
 	}
 
 	/**
@@ -173,7 +173,7 @@ public abstract class AbstractFactoryBean<T> implements FactoryBean<T>, BeanClas
 	@Override
 	public void destroy() throws Exception {
 		if (isSingleton()) {
-			destroyInstance(this.singletonInstance);
+			destroyInstance(singletonInstance);
 		}
 	}
 

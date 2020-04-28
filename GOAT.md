@@ -6,9 +6,9 @@
     chapter1-0-5  spring 注解学习
     chapter1-1-0  spring Bean的生命周期 注解 方式
     chapter1-1-5  spring Bean的生命周期 xml  方式    ？生命周期回调 ？
-  
     chapter1-2-0  spring 自定义标签/ 自定义命名空间  Spring解析xml默认命名空间
     chapter1-8-0  Spring 实例化Bean的三种方式
+    chapter1-8-2  
     chapter1-8-5  Spring 所有重要接口 测试用例
     
     chapter2-0-0  spring Bean的装配 （依赖注入）  四种方式 + 循环依赖

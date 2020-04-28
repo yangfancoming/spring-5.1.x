@@ -13,7 +13,9 @@
 	<bean id="gaga6" class="com.goat.chapter185.item03.ApplicationEventPublisherAwareTest"/>
 	<bean id="gaga7" class="com.goat.chapter185.item03.MessageSourceAwareTest"/>
 	<bean id="gaga8" class="com.goat.chapter185.item03.ApplicationContextAwareTest"/>
+
 	<bean id="gaga9" class="com.goat.chapter185.item03.InitializingBeanTest"/>
+
 	<bean id="gaga10" class="com.goat.chapter185.item03.BeanPostProcessorTest"/>
 	<bean id="gaga11" class="com.goat.chapter185.item03.DisposableBeanTest"/>
 

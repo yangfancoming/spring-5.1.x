@@ -16,7 +16,6 @@
      
 #    item04 spring.profiles 配置
 
-
 #    item05 
     
         FactoryBean 接口：可以返回bean的实例的工厂bean，通过实现该接口可以对bean进行一些额外的操作，

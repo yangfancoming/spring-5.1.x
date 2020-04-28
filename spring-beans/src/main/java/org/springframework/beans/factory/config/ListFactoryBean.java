@@ -59,28 +59,24 @@ public class ListFactoryBean extends AbstractFactoryBean<List<Object>> {
 	@Override
 	@SuppressWarnings("unchecked")
 	protected List<Object> createInstance() {
-		if (this.sourceList == null) {
-			throw new IllegalArgumentException("'sourceList' is required");
-		}
-		List<Object> result = null;
-		if (this.targetListClass != null) {
-			result = BeanUtils.instantiateClass(this.targetListClass);
-		}
-		else {
-			result = new ArrayList<>(this.sourceList.size());
+		if (sourceList == null) throw new IllegalArgumentException("'sourceList' is required");
+		List<Object> result;
+		if (targetListClass != null) {
+			result = BeanUtils.instantiateClass(targetListClass);
+		}else {
+			result = new ArrayList<>(sourceList.size());
 		}
 		Class<?> valueType = null;
-		if (this.targetListClass != null) {
-			valueType = ResolvableType.forClass(this.targetListClass).asCollection().resolveGeneric();
+		if (targetListClass != null) {
+			valueType = ResolvableType.forClass(targetListClass).asCollection().resolveGeneric();
 		}
 		if (valueType != null) {
 			TypeConverter converter = getBeanTypeConverter();
-			for (Object elem : this.sourceList) {
+			for (Object elem : sourceList) {
 				result.add(converter.convertIfNecessary(elem, valueType));
 			}
-		}
-		else {
-			result.addAll(this.sourceList);
+		}else {
+			result.addAll(sourceList);
 		}
 		return result;
 	}

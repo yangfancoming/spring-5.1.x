@@ -114,10 +114,7 @@ public class ObjectFactoryCreatingFactoryBean extends AbstractFactoryBean<Object
 		return new TargetBeanObjectFactory(beanFactory, this.targetBeanName);
 	}
 
-
-	/**
-	 * Independent inner class - for serialization purposes.
-	 */
+	// Independent inner class - for serialization purposes.
 	@SuppressWarnings("serial")
 	private static class TargetBeanObjectFactory implements ObjectFactory<Object>, Serializable {
 

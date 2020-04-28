@@ -1,7 +1,6 @@
 package com.goat.chapter185.item03;
 
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -9,7 +8,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @ Description: 测试 BeanNameAware
  * @ author  山羊来了
  * @ date 2019/8/17---20:40
- *
  * setBeanName:16, BeanNameAwareTest (com.goat.chapter185.item03)
  * invokeAwareMethods:1804, AbstractAutowireCapableBeanFactory (org.springframework.beans.factory.support)
  * initializeBean:1772, AbstractAutowireCapableBeanFactory (org.springframework.beans.factory.support)
@@ -38,8 +36,8 @@ public class App {
 
 	@Test
 	public void test1() {
+		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean3.xml");
 		BeanNameAwareTest temp = applicationContext.getBean("gaga", BeanNameAwareTest.class);
 		System.out.println(temp);
 	}
-
 }
