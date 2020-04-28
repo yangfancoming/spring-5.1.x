@@ -51,8 +51,7 @@ public class ResourceEditorTests {
 			editor.setAsText("${test.prop}");
 			Resource resolved = (Resource) editor.getValue();
 			assertEquals("foo", resolved.getFilename());
-		}
-		finally {
+		}finally {
 			System.getProperties().remove("test.prop");
 		}
 	}
@@ -65,8 +64,7 @@ public class ResourceEditorTests {
 			editor.setAsText("${test.prop}-${bar}");
 			Resource resolved = (Resource) editor.getValue();
 			assertEquals("foo-${bar}", resolved.getFilename());
-		}
-		finally {
+		}finally {
 			System.getProperties().remove("test.prop");
 		}
 	}
@@ -77,8 +75,7 @@ public class ResourceEditorTests {
 		System.setProperty("test.prop", "foo");
 		try {
 			editor.setAsText("${test.prop}-${bar}");
-		}
-		finally {
+		}finally {
 			System.getProperties().remove("test.prop");
 		}
 	}

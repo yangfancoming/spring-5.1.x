@@ -23,12 +23,17 @@ import org.springframework.util.StringUtils;
  * @since 10.03.2004
  * @see FileSystemResourceLoader
  * @see org.springframework.context.support.ClassPathXmlApplicationContext
+ *
+ * DefaultResourceLoader功能：
+ * 1.增加基于protocolResolvers的拦截增强
+ * 2.基于ClassPathResource 、FileUrlResource、UrlResource解析，优先级从左到右
  */
 public class DefaultResourceLoader implements ResourceLoader {
 
 	@Nullable
 	private ClassLoader classLoader;
 
+	// 为开发者提供了自定义扩展接口ProtocolResolver，开发者可实现该接口定制个性化资源表达式
 	private final Set<ProtocolResolver> protocolResolvers = new LinkedHashSet<>(4);
 
 	private final Map<Class<?>, Map<Resource, ?>> resourceCaches = new ConcurrentHashMap<>(4);
@@ -54,8 +59,7 @@ public class DefaultResourceLoader implements ResourceLoader {
 	/**
 	 * Specify the ClassLoader to load class path resources with, or {@code null}
 	 * for using the thread context class loader at the time of actual resource access.
-	 * The default is that ClassLoader access will happen using the thread context
-	 * class loader at the time of this ResourceLoader's initialization.
+	 * The default is that ClassLoader access will happen using the thread context class loader at the time of this ResourceLoader's initialization.
 	 */
 	public void setClassLoader(@Nullable ClassLoader classLoader) {
 		this.classLoader = classLoader;
@@ -116,15 +120,18 @@ public class DefaultResourceLoader implements ResourceLoader {
 
 	/**
 	 * ClassPathResource that explicitly expresses a context-relative path through implementing the ContextResource interface.
+	 * 通过实现ContextResource接口显式表达上下文相关路径的ClassPathResource，此方法重点在于实现ContextResource
 	 */
 	protected static class ClassPathContextResource extends ClassPathResource implements ContextResource {
 		public ClassPathContextResource(String path, @Nullable ClassLoader classLoader) {
+			// 基于父类构造
 			super(path, classLoader);
 		}
 		@Override
 		public String getPathWithinContext() {
 			return getPath();
 		}
+		// 基于当前路径的重新构建对象
 		@Override
 		public Resource createRelative(String relativePath) {
 			String pathToUse = StringUtils.applyRelativePath(getPath(), relativePath);
@@ -135,6 +142,38 @@ public class DefaultResourceLoader implements ResourceLoader {
 	//---------------------------------------------------------------------
 	// Implementation of 【ResourceLoader】 interface
 	//---------------------------------------------------------------------
+
+	/**
+	 * 默认查找方式主要分为三种
+	 * 1.匹配开头斜杠和异常。getResourceByPath   例如：/WEB-INF/classes/smart-context.xml
+	 * 2.匹配格式classpath:。ClassPathResource   classpath:前缀开头的表达式，例如: classpath:smart-context.xml
+	 * 3.尝试用FileUrlResource或者UrlResource获取   非“/”开头的表达，例如：WEB-INF/classes/smart-context.xml
+	 * 4.url协议，例如：file:/D:/ALANWANG-AIA/Horse-workspace/chapter3/target/classes/smart-context.xml
+	*/
+	@Override
+	public Resource getResource(String location) {
+		Assert.notNull(location, "Location must not be null");
+		// 【1】
+		for (ProtocolResolver protocolResolver : protocolResolvers) {
+			Resource resource = protocolResolver.resolve(location, this);
+			if (resource != null) return resource;
+		}
+		if (location.startsWith("/")) { // 【2】
+			return getResourceByPath(location);
+		}else if (location.startsWith(CLASSPATH_URL_PREFIX)) { // 【3】
+			return new ClassPathResource(location.substring(CLASSPATH_URL_PREFIX.length()), getClassLoader());
+		}else {
+			try {
+				// 【4】 Try to parse the location as a URL...
+				URL url = new URL(location);
+				return (ResourceUtils.isFileURL(url) ? new FileUrlResource(url) : new UrlResource(url));
+			}catch (MalformedURLException ex) {
+				// 【5】 No URL -> resolve as resource path.
+				return getResourceByPath(location);
+			}
+		}
+	}
+
 	/**
 	 * Return the ClassLoader to load class path resources with.
 	 * Will get passed to ClassPathResource's constructor for all ClassPathResource objects created by this resource loader.
@@ -144,28 +183,5 @@ public class DefaultResourceLoader implements ResourceLoader {
 	@Nullable
 	public ClassLoader getClassLoader() {
 		return (classLoader != null ? classLoader : ClassUtils.getDefaultClassLoader());
-	}
-
-	@Override
-	public Resource getResource(String location) {
-		Assert.notNull(location, "Location must not be null");
-		for (ProtocolResolver protocolResolver : protocolResolvers) {
-			Resource resource = protocolResolver.resolve(location, this);
-			if (resource != null) return resource;
-		}
-		if (location.startsWith("/")) {
-			return getResourceByPath(location);
-		}else if (location.startsWith(CLASSPATH_URL_PREFIX)) {
-			return new ClassPathResource(location.substring(CLASSPATH_URL_PREFIX.length()), getClassLoader());
-		}else {
-			try {
-				// Try to parse the location as a URL...
-				URL url = new URL(location);
-				return (ResourceUtils.isFileURL(url) ? new FileUrlResource(url) : new UrlResource(url));
-			}catch (MalformedURLException ex) {
-				// No URL -> resolve as resource path.
-				return getResourceByPath(location);
-			}
-		}
 	}
 }

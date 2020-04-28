@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
  * <li>Inheritance from a parent context. Definitions in a descendant context will always take priority.
  *  This means, for example, that a single parent context can be used by an entire web application,
  *  while each servlet has its own child context that is independent of that of any other servlet.
- * In addition to standard {@link org.springframework.beans.factory.BeanFactory} lifecycle capabilities,
+ *  In addition to standard {@link org.springframework.beans.factory.BeanFactory} lifecycle capabilities,
  *  ApplicationContext implementations detect and invoke {@link ApplicationContextAware} beans as well as
  *  {@link ResourceLoaderAware},{@link ApplicationEventPublisherAware} and {@link MessageSourceAware} beans.
  * @see ConfigurableApplicationContext

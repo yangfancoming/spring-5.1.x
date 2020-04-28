@@ -79,7 +79,6 @@ public class ResourceTests {
 		assertEquals(resource, resource2);
 		Resource resource3 = new ClassPathResource("org/springframework/core/").createRelative("../core/io/./Resource.class");
 		assertEquals(resource, resource3);
-
 		// Check whether equal/hashCode works in a HashSet.
 		HashSet<Resource> resources = new HashSet<>();
 		resources.add(resource);
@@ -89,11 +88,9 @@ public class ResourceTests {
 
 	@Test
 	public void testClassPathResourceWithClassLoader() throws IOException {
-		Resource resource =
-				new ClassPathResource("org/springframework/core/io/Resource.class", getClass().getClassLoader());
+		Resource resource = new ClassPathResource("org/springframework/core/io/Resource.class", getClass().getClassLoader());
 		doTestResource(resource);
-		assertEquals(resource,
-				new ClassPathResource("org/springframework/core/../core/io/./Resource.class", getClass().getClassLoader()));
+		assertEquals(resource,new ClassPathResource("org/springframework/core/../core/io/./Resource.class", getClass().getClassLoader()));
 	}
 
 	@Test
@@ -177,15 +174,13 @@ public class ResourceTests {
 		try {
 			relative4.contentLength();
 			fail("Should have thrown FileNotFoundException");
-		}
-		catch (FileNotFoundException ex) {
+		}catch (FileNotFoundException ex) {
 			// expected
 		}
 		try {
 			relative4.lastModified();
 			fail("Should have thrown FileNotFoundException");
-		}
-		catch (FileNotFoundException ex) {
+		}catch (FileNotFoundException ex) {
 			// expected
 		}
 	}
@@ -235,25 +230,21 @@ public class ResourceTests {
 		try {
 			resource.getURL();
 			fail("FileNotFoundException should have been thrown");
-		}
-		catch (FileNotFoundException ex) {
+		}catch (FileNotFoundException ex) {
 			assertTrue(ex.getMessage().contains(name));
 		}
 		try {
 			resource.getFile();
 			fail("FileNotFoundException should have been thrown");
-		}
-		catch (FileNotFoundException ex) {
+		}catch (FileNotFoundException ex) {
 			assertTrue(ex.getMessage().contains(name));
 		}
 		try {
 			resource.createRelative("/testing");
 			fail("FileNotFoundException should have been thrown");
-		}
-		catch (FileNotFoundException ex) {
+		}catch (FileNotFoundException ex) {
 			assertTrue(ex.getMessage().contains(name));
 		}
-
 		assertThat(resource.getFilename(), nullValue());
 	}
 

@@ -21,26 +21,21 @@ import org.springframework.web.context.ServletConfigAware;
 import org.springframework.web.context.ServletContextAware;
 
 /**
- * {@link org.springframework.context.support.AbstractRefreshableApplicationContext}
- * subclass which implements the
+ * {@link org.springframework.context.support.AbstractRefreshableApplicationContext} subclass which implements the
  * {@link org.springframework.web.context.ConfigurableWebApplicationContext}
  * interface for web environments. Provides a "configLocations" property,
- * to be populated through the ConfigurableWebApplicationContext interface
- * on web application startup.
+ * to be populated through the ConfigurableWebApplicationContext interface on web application startup.
  *
  * This class is as easy to subclass as AbstractRefreshableApplicationContext:
  * All you need to implements is the {@link #loadBeanDefinitions} method;
  * see the superclass javadoc for details. Note that implementations are supposed
- * to load bean definitions from the files specified by the locations returned
- * by the {@link #getConfigLocations} method.
+ * to load bean definitions from the files specified by the locations returned by the {@link #getConfigLocations} method.
  *
  * Interprets resource paths as servlet context resources, i.e. as paths beneath
  * the web application root. Absolute paths, e.g. for files outside the web app root,
- * can be accessed via "file:" URLs, as implemented by
- * {@link org.springframework.core.io.DefaultResourceLoader}.
+ * can be accessed via "file:" URLs, as implemented by {@link org.springframework.core.io.DefaultResourceLoader}.
  *
- * In addition to the special beans detected by
- * {@link org.springframework.context.support.AbstractApplicationContext},
+ * In addition to the special beans detected by {@link org.springframework.context.support.AbstractApplicationContext},
  * this class detects a bean of type {@link org.springframework.ui.context.ThemeSource}
  * in the context, under the special bean name "themeSource".
  *
@@ -79,7 +74,6 @@ public abstract class AbstractRefreshableWebApplicationContext extends AbstractR
 	/** the ThemeSource for this ApplicationContext. */
 	@Nullable
 	private ThemeSource themeSource;
-
 
 	public AbstractRefreshableWebApplicationContext() {
 		setDisplayName("Root WebApplicationContext");
@@ -172,18 +166,13 @@ public abstract class AbstractRefreshableWebApplicationContext extends AbstractR
 		return new ServletContextResourcePatternResolver(this);
 	}
 
-	/**
-	 * Initialize the theme capability.
-	 */
+	//  Initialize the theme capability.
 	@Override
 	protected void onRefresh() {
 		this.themeSource = UiApplicationContextUtils.initThemeSource(this);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * Replace {@code Servlet}-related property sources.
-	 */
+	//  Replace {@code Servlet}-related property sources.
 	@Override
 	protected void initPropertySources() {
 		ConfigurableEnvironment env = getEnvironment();
