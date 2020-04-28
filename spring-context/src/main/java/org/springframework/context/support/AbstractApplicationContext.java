@@ -446,7 +446,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			 * 	  初始化BeanFactory，存在则销毁，不存在则创建一个
 			 */
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
-
 			// 设定类加载器，spel解析器，属性编辑解析器等，忽略特定接口的依赖注册（在特定时刻相关Bean再完成注入)，注册一些系统Bean供依赖注入使用。
 			//  对即将在IOC容器里使用的BeanFactory做一些配置，比如设置类加载器，设置回调方法等
 			// Prepare the bean factory for use in this context.
