@@ -10,6 +10,7 @@ import org.springframework.beans.factory.DisposableBean;
  * @ date 2020/4/21---14:01
  */
 public class DisposableBeanTest implements DisposableBean {
+
 	@Override
 	public void destroy()  {
 		System.out.println("destroy...");
