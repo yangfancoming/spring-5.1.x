@@ -11,14 +11,7 @@ import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.security.PrivilegedActionException;
 import java.security.PrivilegedExceptionAction;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.function.Supplier;
@@ -593,7 +586,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// 如果实现了 Disposable 接口，会在这里进行注册，最后在销毁的时候调用相应的destroy方法
 		try {
 			// 注册销毁逻辑
-			registerDisposableBeanIfNecessary(beanName, bean, mbd);
+				registerDisposableBeanIfNecessary(beanName, bean, mbd);
 		}catch (BeanDefinitionValidationException ex) {
 			throw new BeanCreationException(mbd.getResourceDescription(), beanName, "Invalid destruction signature", ex);
 		}
@@ -1677,22 +1670,18 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * @see com.goat.chapter185.item03.InitializingBeanTestApp#test2()
 	 */
 	private void invokeAwareMethods(final String beanName, final Object bean) {
-		if (bean instanceof Aware) {
-			if (bean instanceof BeanNameAware) {
-				// 注入 beanName 字符串
-				((BeanNameAware) bean).setBeanName(beanName);
-			}
-			if (bean instanceof BeanClassLoaderAware) {
-				// 注入 ClassLoader 对象
-				ClassLoader bcl = getBeanClassLoader();
-				if (bcl != null) {
-					((BeanClassLoaderAware) bean).setBeanClassLoader(bcl);
-				}
-			}
-			if (bean instanceof BeanFactoryAware) {
-				// 注入 BeanFactory 对象
-				((BeanFactoryAware) bean).setBeanFactory(AbstractAutowireCapableBeanFactory.this);
-			}
+		if (!(bean instanceof Aware)) return; // -modify
+		// 注入 beanName 字符串
+		if (bean instanceof BeanNameAware) {
+			((BeanNameAware) bean).setBeanName(beanName);
+		}
+		// 注入 ClassLoader 对象 -moidfy
+		if (bean instanceof BeanClassLoaderAware) {
+			Optional.ofNullable(getBeanClassLoader()).ifPresent(((BeanClassLoaderAware) bean)::setBeanClassLoader);
+		}
+		// 注入 BeanFactory 对象
+		if (bean instanceof BeanFactoryAware) {
+			((BeanFactoryAware) bean).setBeanFactory(AbstractAutowireCapableBeanFactory.this);
 		}
 	}
 
@@ -1738,8 +1727,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	}
 
 	/**
-	 * Invoke the specified custom init method on the given bean.
-	 * Called by invokeInitMethods.
+	 * Invoke the specified custom init method on the given bean. Called by invokeInitMethods.
 	 * Can be overridden in subclasses for custom resolution of init methods with arguments.
 	 * @see #invokeInitMethods
 	 */
