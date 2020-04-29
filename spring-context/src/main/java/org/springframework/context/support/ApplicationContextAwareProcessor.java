@@ -68,25 +68,24 @@ class ApplicationContextAwareProcessor implements BeanPostProcessor {
 	}
 
 	private void invokeAwareInterfaces(Object bean) {
-		if (bean instanceof Aware) {
-			if (bean instanceof EnvironmentAware) {
-				((EnvironmentAware) bean).setEnvironment(applicationContext.getEnvironment());
-			}
-			if (bean instanceof EmbeddedValueResolverAware) {
-				((EmbeddedValueResolverAware) bean).setEmbeddedValueResolver(embeddedValueResolver);
-			}
-			if (bean instanceof ResourceLoaderAware) {
-				((ResourceLoaderAware) bean).setResourceLoader(applicationContext);
-			}
-			if (bean instanceof ApplicationEventPublisherAware) {
-				((ApplicationEventPublisherAware) bean).setApplicationEventPublisher(applicationContext);
-			}
-			if (bean instanceof MessageSourceAware) {
-				((MessageSourceAware) bean).setMessageSource(applicationContext);
-			}
-			if (bean instanceof ApplicationContextAware) {
-				((ApplicationContextAware) bean).setApplicationContext(applicationContext);
-			}
+		if(!(bean instanceof Aware)) return; // -modify
+		if (bean instanceof EnvironmentAware) {
+			((EnvironmentAware) bean).setEnvironment(applicationContext.getEnvironment());
+		}
+		if (bean instanceof EmbeddedValueResolverAware) {
+			((EmbeddedValueResolverAware) bean).setEmbeddedValueResolver(embeddedValueResolver);
+		}
+		if (bean instanceof ResourceLoaderAware) {
+			((ResourceLoaderAware) bean).setResourceLoader(applicationContext);
+		}
+		if (bean instanceof ApplicationEventPublisherAware) {
+			((ApplicationEventPublisherAware) bean).setApplicationEventPublisher(applicationContext);
+		}
+		if (bean instanceof MessageSourceAware) {
+			((MessageSourceAware) bean).setMessageSource(applicationContext);
+		}
+		if (bean instanceof ApplicationContextAware) {
+			((ApplicationContextAware) bean).setApplicationContext(applicationContext);
 		}
 	}
 
