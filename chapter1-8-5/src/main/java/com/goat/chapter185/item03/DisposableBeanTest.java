@@ -11,7 +11,7 @@ import org.springframework.beans.factory.DisposableBean;
  */
 public class DisposableBeanTest implements DisposableBean {
 	@Override
-	public void destroy() throws Exception {
+	public void destroy()  {
 		System.out.println("destroy...");
 	}
 }

@@ -968,7 +968,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	//  Set the name of the destroy method. The default is {@code null} in which case there is no destroy method.
 	@Override
 	public void setDestroyMethodName(@Nullable String destroyMethodName) {
-		destroyMethodName = destroyMethodName;
+		this.destroyMethodName = destroyMethodName;
 	}
 
 	// Return the name of the destroy method.
