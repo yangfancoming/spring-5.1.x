@@ -67,6 +67,7 @@ import static org.springframework.util.Assert.notNull;
  * MapperScannerConfigurer 类实现了 BeanDefinitionRegistryPostProcessor 接口，
  * 该接口中的 postProcessBeanDefinitionRegistry() 方法会在系统初始化的过程中被调用，
  * 该方法扫描了配置文件中配置的basePackage 下的所有 Mapper 类，最终生成 Spring 的 Bean 对象，注册到容器中。
+ * 它的作用是扫描用户配置的包自动注册MapperFactoryBean，这样就不用我们手动注册mapper
  */
 public class MapperScannerConfigurer implements BeanDefinitionRegistryPostProcessor, InitializingBean, ApplicationContextAware, BeanNameAware {
 
@@ -250,11 +251,10 @@ public class MapperScannerConfigurer implements BeanDefinitionRegistryPostProces
 		// left intentionally blank
 	}
 
-	/**
-	 * @since 1.0.2
-	 */
+	//  @since 1.0.2
 	@Override
 	public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) {
+		/* 处理properties配置 */
 		if (this.processPropertyPlaceHolders) processPropertyPlaceHolders();
 		// 创建ClassPathMapperScanner对象
 		ClassPathMapperScanner scanner = new ClassPathMapperScanner(registry);
@@ -271,10 +271,11 @@ public class MapperScannerConfigurer implements BeanDefinitionRegistryPostProces
 		if (StringUtils.hasText(lazyInitialization)) {
 			scanner.setLazyInitialization(Boolean.valueOf(lazyInitialization));
 		}
-		// 根据上面的配置，生成相应的过滤器。这些过滤器在扫描过程中会过滤掉不符合添加的内容，例如，
-		// annotationClass字段不为null时，则会添加AnnotationTypeFilter过滤器，通过该过滤器
-		// 实现只扫描annotationClass注解标识的接口的功能
+		// 根据上面的配置，生成相应的过滤器。这些过滤器在扫描过程中会过滤掉不符合添加的内容，
+		// 例如，annotationClass字段不为null时，则会添加AnnotationTypeFilter过滤器，
+		// 通过该过滤器 实现只扫描annotationClass注解标识的接口的功能
 		scanner.registerFilters();
+		/* 扫描 */
 		scanner.scan(StringUtils.tokenizeToStringArray(this.basePackage, ConfigurableApplicationContext.CONFIG_LOCATION_DELIMITERS));
 	}
 
@@ -290,12 +291,15 @@ public class MapperScannerConfigurer implements BeanDefinitionRegistryPostProces
 			BeanDefinition mapperScannerBean = ((ConfigurableApplicationContext) applicationContext).getBeanFactory().getBeanDefinition(beanName);
 			// PropertyResourceConfigurer does not expose any methods to explicitly perform
 			// property placeholder substitution. Instead, create a BeanFactory that just contains this mapper scanner and post process the factory.
+			// PropertyResourceConfigurer 不公开任何显式执行属性占位符替换的方法，代替的是创建一个只包含当前mapper扫描器和后处理工厂的BeanFactory
 			DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 			factory.registerBeanDefinition(beanName, mapperScannerBean);
 			for (PropertyResourceConfigurer prc : prcs.values()) {
+				// 提前执行PropertyResourceConfigurer的postProcessBeanFactory方法加载properties
 				prc.postProcessBeanFactory(factory);
 			}
 			PropertyValues values = mapperScannerBean.getPropertyValues();
+			// 更新需要替换的属性
 			this.basePackage = updatePropertyValue("basePackage", values);
 			this.sqlSessionFactoryBeanName = updatePropertyValue("sqlSessionFactoryBeanName", values);
 			this.sqlSessionTemplateBeanName = updatePropertyValue("sqlSessionTemplateBeanName", values);

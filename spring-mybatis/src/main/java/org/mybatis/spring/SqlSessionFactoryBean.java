@@ -310,10 +310,8 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 	 */
 	public void setDataSource(DataSource dataSource) {
 		if (dataSource instanceof TransactionAwareDataSourceProxy) {
-			// If we got a TransactionAwareDataSourceProxy, we need to perform
-			// transactions for its underlying target DataSource, else data
-			// access code won't see properly exposed transactions (i.e.
-			// transactions for the target DataSource).
+			// If we got a TransactionAwareDataSourceProxy, we need to perform transactions for its underlying target DataSource,
+			// else data  access code won't see properly exposed transactions (i.e. transactions for the target DataSource).
 			this.dataSource = ((TransactionAwareDataSourceProxy) dataSource).getTargetDataSource();
 		} else {
 			this.dataSource = dataSource;
@@ -345,8 +343,8 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 	}
 
 	/**
-	 * <b>NOTE:</b> This class <em>overrides</em> any {@code Environment} you have set in the MyBatis config file. This is
-	 * used only as a placeholder name. The default value is {@code SqlSessionFactoryBean.class.getSimpleName()}.
+	 * <b>NOTE:</b> This class <em>overrides</em> any {@code Environment} you have set in the MyBatis config file.
+	 * This is used only as a placeholder name. The default value is {@code SqlSessionFactoryBean.class.getSimpleName()}.
 	 * @param environment  the environment name
 	 */
 	public void setEnvironment(String environment) {
@@ -477,7 +475,7 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 		// 调parse()方法解析配置文件
 		if (xmlConfigBuilder != null) {
 			try {
-				xmlConfigBuilder.parse();
+				xmlConfigBuilder.parse(); // 如果配置了configLocation，则解析配置文件
 				LOGGER.debug(() -> "Parsed configuration file: '" + configLocation + "'");
 			} catch (Exception ex) {
 				throw new NestedIOException("Failed to parse config resource: " + configLocation, ex);
@@ -487,7 +485,7 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 		}
 		// 如果未配置transactionFactory，则默认使用SpringManagedTransactionFactory
 		TransactionFactory transactionFactory = this.transactionFactory == null ? new SpringManagedTransactionFactory() : this.transactionFactory;
-		// 设置environment
+		// 为Configuration设置环境
 		targetConfiguration.setEnvironment(new Environment(environment,transactionFactory,dataSource));
 
 		if (mapperLocations != null) {

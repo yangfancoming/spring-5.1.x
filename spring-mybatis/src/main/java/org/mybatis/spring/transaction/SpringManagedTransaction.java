@@ -39,41 +39,42 @@ public class SpringManagedTransaction implements Transaction {
 
   @Override
   public Connection getConnection() throws SQLException {
-    if (this.connection == null) openConnection();
-    return this.connection;
+  	// 获取spring数据库连接
+    if (connection == null) openConnection();
+    return connection;
   }
 
   /**
-   * Gets a connection from Spring transaction manager and discovers if this {@code Transaction} should manage  connection or let it to Spring.
+   * Gets a connection from Spring transaction manager and discovers if this {@code Transaction} should manage connection or let it to Spring.
    * It also reads autocommit setting because when using Spring Transaction MyBatis thinks that autocommit is always
    * false and will always call commit/rollback so we need to no-op that calls.
    */
   private void openConnection() throws SQLException {
-    this.connection = DataSourceUtils.getConnection(this.dataSource);
-    this.autoCommit = this.connection.getAutoCommit();
-    this.isConnectionTransactional = DataSourceUtils.isConnectionTransactional(this.connection, this.dataSource);
-    LOGGER.debug(() -> "JDBC Connection [" + this.connection + "] will" + (this.isConnectionTransactional ? " " : " not ") + "be managed by Spring");
+    connection = DataSourceUtils.getConnection(dataSource);// 获取spring数据库连接
+    autoCommit = connection.getAutoCommit();
+    isConnectionTransactional = DataSourceUtils.isConnectionTransactional(connection, dataSource);
+    LOGGER.debug(() -> "JDBC Connection [" + connection + "] will" + (isConnectionTransactional ? " " : " not ") + "be managed by Spring");
   }
 
   @Override
   public void commit() throws SQLException {
-    if (this.connection != null && !this.isConnectionTransactional && !this.autoCommit) {
-      LOGGER.debug(() -> "Committing JDBC Connection [" + this.connection + "]");
-      this.connection.commit();
+    if (connection != null && !isConnectionTransactional && !autoCommit) {
+      LOGGER.debug(() -> "Committing JDBC Connection [" + connection + "]");
+      connection.commit();
     }
   }
 
   @Override
   public void rollback() throws SQLException {
-    if (this.connection != null && !this.isConnectionTransactional && !this.autoCommit) {
-      LOGGER.debug(() -> "Rolling back JDBC Connection [" + this.connection + "]");
-      this.connection.rollback();
+    if (connection != null && !isConnectionTransactional && !autoCommit) {
+      LOGGER.debug(() -> "Rolling back JDBC Connection [" + connection + "]");
+      connection.rollback();
     }
   }
 
   @Override
   public void close() {
-    DataSourceUtils.releaseConnection(this.connection, this.dataSource);
+    DataSourceUtils.releaseConnection(connection, dataSource);
   }
 
   @Override
