@@ -11,6 +11,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
  * @ date 2020/4/21---13:54
  */
 public class BeanPostProcessorTest implements BeanPostProcessor {
+
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 		System.out.println("postProcessBeforeInitialization...Before");
