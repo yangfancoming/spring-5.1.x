@@ -416,16 +416,16 @@ public class ViewResolverTests {
 				return super.getResourceByPath(path);
 			}
 		};
-
 		wac.setServletContext(new MockServletContext());
 		wac.refresh();
 		XmlViewResolver vr = new XmlViewResolver();
 		try {
 			vr.setApplicationContext(wac);
-			vr.afterPropertiesSet();
+			vr.afterPropertiesSet(); // 触发调用 getResourceByPath 方法调用
 			fail("Should have thrown BeanDefinitionStoreException");
 		}catch (BeanDefinitionStoreException ex) {
 			// expected
+			System.out.println(ex);
 		}
 	}
 
@@ -444,15 +444,13 @@ public class ViewResolverTests {
 		vr.setCache(false);
 		try {
 			vr.setApplicationContext(wac);
-		}
-		catch (ApplicationContextException ex) {
+		}catch (ApplicationContextException ex) {
 			fail("Should not have thrown ApplicationContextException: " + ex.getMessage());
 		}
 		try {
 			vr.resolveViewName("example1", Locale.getDefault());
 			fail("Should have thrown BeanDefinitionStoreException");
-		}
-		catch (BeanDefinitionStoreException ex) {
+		}catch (BeanDefinitionStoreException ex) {
 			// expected
 		}
 	}

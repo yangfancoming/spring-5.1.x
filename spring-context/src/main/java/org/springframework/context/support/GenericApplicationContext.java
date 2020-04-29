@@ -301,16 +301,12 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 		return beanFactory.isAlias(beanName);
 	}
 
-
 	//---------------------------------------------------------------------
 	// Convenient methods for registering individual beans
 	//---------------------------------------------------------------------
-
 	/**
-	 * Register a bean from the given bean class, optionally customizing its
-	 * bean definition metadata (typically declared as a lambda expression).
-	 * @param beanClass the class of the bean (resolving a public constructor
-	 * to be autowired, possibly simply the default constructor)
+	 * Register a bean from the given bean class, optionally customizing its bean definition metadata (typically declared as a lambda expression).
+	 * @param beanClass the class of the bean (resolving a public constructor to be autowired, possibly simply the default constructor)
 	 * @param customizers one or more callbacks for customizing the factory's
 	 * {@link BeanDefinition}, e.g. setting a lazy-init or primary flag
 	 * @since 5.0
@@ -321,11 +317,9 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	}
 
 	/**
-	 * Register a bean from the given bean class, optionally customizing its
-	 * bean definition metadata (typically declared as a lambda expression).
+	 * Register a bean from the given bean class, optionally customizing its bean definition metadata (typically declared as a lambda expression).
 	 * @param beanName the name of the bean (may be {@code null})
-	 * @param beanClass the class of the bean (resolving a public constructor
-	 * to be autowired, possibly simply the default constructor)
+	 * @param beanClass the class of the bean (resolving a public constructor to be autowired, possibly simply the default constructor)
 	 * @param customizers one or more callbacks for customizing the factory's
 	 * {@link BeanDefinition}, e.g. setting a lazy-init or primary flag
 	 * @since 5.0
@@ -336,10 +330,8 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	}
 
 	/**
-	 * Register a bean from the given bean class, using the given supplier for
-	 * obtaining a new instance (typically declared as a lambda expression or
-	 * method reference), optionally customizing its bean definition metadata
-	 * (again typically declared as a lambda expression).
+	 * Register a bean from the given bean class, using the given supplier for obtaining a new instance (typically declared as a lambda expression or method reference),
+	 * optionally customizing its bean definition metadata (again typically declared as a lambda expression).
 	 * @param beanClass the class of the bean
 	 * @param supplier a callback for creating an instance of the bean
 	 * @param customizers one or more callbacks for customizing the factory's
@@ -352,18 +344,13 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	}
 
 	/**
-	 * Register a bean from the given bean class, using the given supplier for
-	 * obtaining a new instance (typically declared as a lambda expression or
-	 * method reference), optionally customizing its bean definition metadata
-	 * (again typically declared as a lambda expression).
-	 * This method can be overridden to adapt the registration mechanism for
-	 * all {@code registerBean} methods (since they all delegate to this one).
+	 * Register a bean from the given bean class, using the given supplier for obtaining a new instance (typically declared as a lambda expression or method reference),
+	 * optionally customizing its bean definition metadata (again typically declared as a lambda expression).
+	 * This method can be overridden to adapt the registration mechanism for all {@code registerBean} methods (since they all delegate to this one).
 	 * @param beanName the name of the bean (may be {@code null})
 	 * @param beanClass the class of the bean
-	 * @param supplier a callback for creating an instance of the bean (in case
-	 * of {@code null}, resolving a public constructor to be autowired instead)
-	 * @param customizers one or more callbacks for customizing the factory's
-	 * {@link BeanDefinition}, e.g. setting a lazy-init or primary flag
+	 * @param supplier a callback for creating an instance of the bean (in case of {@code null}, resolving a public constructor to be autowired instead)
+	 * @param customizers one or more callbacks for customizing the factory's {@link BeanDefinition}, e.g. setting a lazy-init or primary flag
 	 * @since 5.0
 	 */
 	public <T> void registerBean(@Nullable String beanName, Class<T> beanClass,@Nullable Supplier<T> supplier, BeanDefinitionCustomizer... customizers) {

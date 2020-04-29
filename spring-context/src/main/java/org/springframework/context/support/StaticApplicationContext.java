@@ -48,16 +48,13 @@ public class StaticApplicationContext extends GenericApplicationContext {
 		getBeanFactory().registerSingleton(MESSAGE_SOURCE_BEAN_NAME, this.staticMessageSource);
 	}
 
-	/**
-	 * Overridden to turn it into a no-op, to be more lenient towards test cases.
-	 */
+	// Overridden to turn it into a no-op, to be more lenient towards test cases.
 	@Override
 	protected void assertBeanFactoryActive() {
 	}
 
 	/**
-	 * Return the internal StaticMessageSource used by this context.
-	 * Can be used to register messages on it.
+	 * Return the internal StaticMessageSource used by this context. Can be used to register messages on it.
 	 * @see #addMessage
 	 */
 	public final StaticMessageSource getStaticMessageSource() {

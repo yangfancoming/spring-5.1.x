@@ -15,12 +15,10 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 
 /**
- * Convenient base class for {@link org.springframework.web.servlet.ViewResolver}
- * implementations. Caches {@link org.springframework.web.servlet.View} objects
- * once resolved: This means that view resolution won't be a performance problem,
- * no matter how costly initial view retrieval is.
- * Subclasses need to implement the {@link #loadView} template method,
- * building the View object for a specific view name and locale.
+ * Convenient base class for {@link org.springframework.web.servlet.ViewResolver} implementations.
+ * Caches {@link org.springframework.web.servlet.View} objects
+ * once resolved: This means that view resolution won't be a performance problem,no matter how costly initial view retrieval is.
+ * Subclasses need to implement the {@link #loadView} template method, building the View object for a specific view name and locale.
  */
 public abstract class AbstractCachingViewResolver extends WebApplicationObjectSupport implements ViewResolver {
 
@@ -38,7 +36,6 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 		public void render(@Nullable Map<String, ?> model, HttpServletRequest request, HttpServletResponse response) {
 		}
 	};
-
 
 	/** The maximum number of entries in the cache. */
 	private volatile int cacheLimit = DEFAULT_CACHE_LIMIT;
@@ -63,18 +60,12 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 				}
 			};
 
-
-	/**
-	 * Specify the maximum number of entries for the view cache.
-	 * Default is 1024.
-	 */
+	// Specify the maximum number of entries for the view cache.Default is 1024.
 	public void setCacheLimit(int cacheLimit) {
 		this.cacheLimit = cacheLimit;
 	}
 
-	/**
-	 * Return the maximum number of entries for the view cache.
-	 */
+	// Return the maximum number of entries for the view cache.
 	public int getCacheLimit() {
 		return this.cacheLimit;
 	}
@@ -90,32 +81,24 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 		this.cacheLimit = (cache ? DEFAULT_CACHE_LIMIT : 0);
 	}
 
-	/**
-	 * Return if caching is enabled.
-	 */
+	// Return if caching is enabled.
 	public boolean isCache() {
 		return (this.cacheLimit > 0);
 	}
 
 	/**
-	 * Whether a view name once resolved to {@code null} should be cached and
-	 * automatically resolved to {@code null} subsequently.
+	 * Whether a view name once resolved to {@code null} should be cached and automatically resolved to {@code null} subsequently.
 	 * Default is "true": unresolved view names are being cached, as of Spring 3.1.
-	 * Note that this flag only applies if the general {@link #setCache "cache"}
-	 * flag is kept at its default of "true" as well.
-	 * Of specific interest is the ability for some AbstractUrlBasedView
-	 * implementations (FreeMarker, Tiles) to check if an underlying resource
+	 * Note that this flag only applies if the general {@link #setCache "cache"} flag is kept at its default of "true" as well.
+	 * Of specific interest is the ability for some AbstractUrlBasedView implementations (FreeMarker, Tiles) to check if an underlying resource
 	 * exists via {@link AbstractUrlBasedView#checkResource(Locale)}.
-	 * With this flag set to "false", an underlying resource that re-appears
-	 * is noticed and used. With the flag set to "true", one check is made only.
+	 * With this flag set to "false", an underlying resource that re-appears is noticed and used. With the flag set to "true", one check is made only.
 	 */
 	public void setCacheUnresolved(boolean cacheUnresolved) {
 		this.cacheUnresolved = cacheUnresolved;
 	}
 
-	/**
-	 * Return if caching of unresolved views is enabled.
-	 */
+	//  Return if caching of unresolved views is enabled.
 	public boolean isCacheUnresolved() {
 		return this.cacheUnresolved;
 	}
@@ -213,12 +196,10 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 	 * Create the actual View object.
 	 * The default implementation delegates to {@link #loadView}.
 	 * This can be overridden to resolve certain view names in a special fashion,
-	 * before delegating to the actual {@code loadView} implementation
-	 * provided by the subclass.
+	 * before delegating to the actual {@code loadView} implementation provided by the subclass.
 	 * @param viewName the name of the view to retrieve
 	 * @param locale the Locale to retrieve the view for
-	 * @return the View instance, or {@code null} if not found
-	 * (optional, to allow for ViewResolver chaining)
+	 * @return the View instance, or {@code null} if not found (optional, to allow for ViewResolver chaining)
 	 * @throws Exception if the view couldn't be resolved
 	 * @see #loadView
 	 */
@@ -229,8 +210,7 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 
 	/**
 	 * Subclasses must implement this method, building a View object
-	 * for the specified view. The returned View objects will be
-	 * cached by this ViewResolver base class.
+	 * for the specified view. The returned View objects will be cached by this ViewResolver base class.
 	 * Subclasses are not forced to support internationalization:
 	 * A subclass that does not may simply ignore the locale parameter.
 	 * @param viewName the name of the view to retrieve
