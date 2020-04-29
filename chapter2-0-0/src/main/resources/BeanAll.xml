@@ -22,7 +22,6 @@
 
 	<bean id="testBean"  name="myTestBean" class="main.tsmyk.pojo.MyTestBean"
 		  init-method="getName" destroy-method="getName"
-
 		  abstract="true" autowire="byName" autowire-candidate="true"
 		  depends-on="conversionService"
 		  factory-bean="environment" factory-method=""
@@ -47,5 +46,4 @@
 
 	<alias name="testBean" alias="aaa"/>
 	<import resource=""/>
-
 </beans>

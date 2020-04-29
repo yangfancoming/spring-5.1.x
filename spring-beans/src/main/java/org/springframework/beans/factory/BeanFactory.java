@@ -45,14 +45,10 @@ import org.springframework.lang.Nullable;
  * ApplicationContextAware's {@code setApplicationContext} (only applicable when running in an application context)
  * ServletContextAware's {@code setServletContext} (only applicable when running in a web application context)
  *
- * {@code postProcessBeforeInitialization} methods of BeanPostProcessors
- * InitializingBean's {@code afterPropertiesSet} a custom init-method definition
- * {@code postProcessAfterInitialization} methods of BeanPostProcessors
- *
- * On shutdown of a bean factory, the following lifecycle methods apply:
+ * {@code postProcessBeforeInitialization} methods of BeanPostProcessors InitializingBean's {@code afterPropertiesSet} a custom init-method definition
+ * {@code postProcessAfterInitialization} methods of BeanPostProcessors On shutdown of a bean factory, the following lifecycle methods apply:
  * {@code postProcessBeforeDestruction} methods of DestructionAwareBeanPostProcessors
  * DisposableBean's {@code destroy} a custom destroy-method definition
- *
  * @since 13 April 2001
  * @see BeanNameAware#setBeanName
  * @see BeanClassLoaderAware#setBeanClassLoader

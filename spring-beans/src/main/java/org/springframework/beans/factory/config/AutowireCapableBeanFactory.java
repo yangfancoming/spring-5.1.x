@@ -232,18 +232,13 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	void applyBeanPropertyValues(Object existingBean, String beanName) throws BeansException;
 
 	/**
-	 * Initialize the given raw bean, applying factory callbacks
-	 * such as {@code setBeanName} and {@code setBeanFactory},
-	 * also applying all bean post processors (including ones which
-	 * might wrap the given raw bean).
-	 * Note that no bean definition of the given name has to exist
-	 * in the bean factory. The passed-in bean name will simply be used
-	 * for callbacks but not checked against the registered bean definitions.
+	 * Initialize the given raw bean, applying factory callbacks such as {@code setBeanName} and {@code setBeanFactory},
+	 * also applying all bean post processors (including ones which might wrap the given raw bean).
+	 * Note that no bean definition of the given name has to exist in the bean factory.
+	 * The passed-in bean name will simply be used for callbacks but not checked against the registered bean definitions.
 	 * @param existingBean the existing bean instance
-	 * @param beanName the name of the bean, to be passed to it if necessary
-	 * (only passed to {@link BeanPostProcessor BeanPostProcessors};
-	 * can follow the {@link #ORIGINAL_INSTANCE_SUFFIX} convention in order to
-	 * enforce the given instance to be returned, i.e. no proxies etc)
+	 * @param beanName the name of the bean, to be passed to it if necessary (only passed to {@link BeanPostProcessor BeanPostProcessors};
+	 * can follow the {@link #ORIGINAL_INSTANCE_SUFFIX} convention in order to  enforce the given instance to be returned, i.e. no proxies etc)
 	 * @return the bean instance to use, either the original or a wrapped one
 	 * @throws BeansException if the initialization failed
 	 * @see #ORIGINAL_INSTANCE_SUFFIX
@@ -251,14 +246,11 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	Object initializeBean(Object existingBean, String beanName) throws BeansException;
 
 	/**
-	 * Apply {@link BeanPostProcessor BeanPostProcessors} to the given existing bean
-	 * instance, invoking their {@code postProcessBeforeInitialization} methods.
+	 * Apply {@link BeanPostProcessor BeanPostProcessors} to the given existing bean instance, invoking their {@code postProcessBeforeInitialization} methods.
 	 * The returned bean instance may be a wrapper around the original.
 	 * @param existingBean the existing bean instance
-	 * @param beanName the name of the bean, to be passed to it if necessary
-	 * (only passed to {@link BeanPostProcessor BeanPostProcessors};
-	 * can follow the {@link #ORIGINAL_INSTANCE_SUFFIX} convention in order to
-	 * enforce the given instance to be returned, i.e. no proxies etc)
+	 * @param beanName the name of the bean, to be passed to it if necessary (only passed to {@link BeanPostProcessor BeanPostProcessors};
+	 * can follow the {@link #ORIGINAL_INSTANCE_SUFFIX} convention in order to enforce the given instance to be returned, i.e. no proxies etc)
 	 * @return the bean instance to use, either the original or a wrapped one
 	 * @throws BeansException if any post-processing failed
 	 * @see BeanPostProcessor#postProcessBeforeInitialization
@@ -272,10 +264,8 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	 * instance, invoking their {@code postProcessAfterInitialization} methods.
 	 * The returned bean instance may be a wrapper around the original.
 	 * @param existingBean the existing bean instance
-	 * @param beanName the name of the bean, to be passed to it if necessary
-	 * (only passed to {@link BeanPostProcessor BeanPostProcessors};
-	 * can follow the {@link #ORIGINAL_INSTANCE_SUFFIX} convention in order to
-	 * enforce the given instance to be returned, i.e. no proxies etc)
+	 * @param beanName the name of the bean, to be passed to it if necessary (only passed to {@link BeanPostProcessor BeanPostProcessors};
+	 * can follow the {@link #ORIGINAL_INSTANCE_SUFFIX} convention in order to enforce the given instance to be returned, i.e. no proxies etc)
 	 * @return the bean instance to use, either the original or a wrapped one
 	 * @throws BeansException if any post-processing failed
 	 * @see BeanPostProcessor#postProcessAfterInitialization
@@ -294,17 +284,13 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	 */
 	void destroyBean(Object existingBean);
 
-
 	//-------------------------------------------------------------------------
 	// Delegate methods for resolving injection points
 	// 委托方法解决注入点
 	//-------------------------------------------------------------------------
-
 	/**
-	 * Resolve the bean instance that uniquely matches the given object type, if any,
-	 * including its bean name.
-	 * This is effectively a variant of {@link #getBean(Class)} which preserves the
-	 * bean name of the matching instance.
+	 * Resolve the bean instance that uniquely matches the given object type, if any,including its bean name.
+	 * This is effectively a variant of {@link #getBean(Class)} which preserves the bean name of the matching instance.
 	 * @param requiredType type the bean must match; can be an interface or superclass
 	 * @return the bean name plus bean instance
 	 * @throws NoSuchBeanDefinitionException if no matching bean was found
@@ -316,11 +302,9 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	<T> NamedBeanHolder<T> resolveNamedBean(Class<T> requiredType) throws BeansException;
 
 	/**
-	 * Resolve a bean instance for the given bean name, providing a dependency descriptor
-	 * for exposure to target factory methods.
+	 * Resolve a bean instance for the given bean name, providing a dependency descriptor for exposure to target factory methods.
 	 * This is effectively a variant of {@link #getBean(String, Class)} which supports
-	 * factory methods with an {@link org.springframework.beans.factory.InjectionPoint}
-	 * argument.
+	 * factory methods with an {@link org.springframework.beans.factory.InjectionPoint} argument.
 	 * @param name the name of the bean to look up
 	 * @param descriptor the dependency descriptor for the requesting injection point
 	 * @return the corresponding bean instance
@@ -349,8 +333,7 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	 * Resolve the specified dependency against the beans defined in this factory.
 	 * @param descriptor the descriptor for the dependency (field/method/constructor)
 	 * @param requestingBeanName the name of the bean which declares the given dependency
-	 * @param autowiredBeanNames a Set that all names of autowired beans (used for
-	 * resolving the given dependency) are supposed to be added to
+	 * @param autowiredBeanNames a Set that all names of autowired beans (used for resolving the given dependency) are supposed to be added to
 	 * @param typeConverter the TypeConverter to use for populating arrays and collections
 	 * @return the resolved object, or {@code null} if none found
 	 * @throws NoSuchBeanDefinitionException if no matching bean was found

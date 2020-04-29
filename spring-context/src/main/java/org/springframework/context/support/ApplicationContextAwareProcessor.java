@@ -47,7 +47,7 @@ class ApplicationContextAwareProcessor implements BeanPostProcessor {
 	 */
 	public ApplicationContextAwareProcessor(ConfigurableApplicationContext applicationContext) {
 		this.applicationContext = applicationContext;
-		this.embeddedValueResolver = new EmbeddedValueResolver(applicationContext.getBeanFactory());
+		embeddedValueResolver = new EmbeddedValueResolver(applicationContext.getBeanFactory());
 	}
 
 	@Override
@@ -55,11 +55,8 @@ class ApplicationContextAwareProcessor implements BeanPostProcessor {
 	public Object postProcessBeforeInitialization(final Object bean, String beanName) throws BeansException {
 		AccessControlContext acc = null;
 		// 这里bean是Car,它实现了ApplicationContextAware接口
-		if (System.getSecurityManager() != null &&
-				(bean instanceof EnvironmentAware || bean instanceof EmbeddedValueResolverAware ||
-						bean instanceof ResourceLoaderAware || bean instanceof ApplicationEventPublisherAware ||
-						bean instanceof MessageSourceAware || bean instanceof ApplicationContextAware)) {
-			acc = this.applicationContext.getBeanFactory().getAccessControlContext();
+		if (System.getSecurityManager() != null && (bean instanceof EnvironmentAware || bean instanceof EmbeddedValueResolverAware || bean instanceof ResourceLoaderAware || bean instanceof ApplicationEventPublisherAware || bean instanceof MessageSourceAware || bean instanceof ApplicationContextAware)) {
+			acc = applicationContext.getBeanFactory().getAccessControlContext();
 		}
 		if (acc != null) {
 			AccessController.doPrivileged((PrivilegedAction<Object>) () -> {
@@ -75,22 +72,22 @@ class ApplicationContextAwareProcessor implements BeanPostProcessor {
 	private void invokeAwareInterfaces(Object bean) {
 		if (bean instanceof Aware) {
 			if (bean instanceof EnvironmentAware) {
-				((EnvironmentAware) bean).setEnvironment(this.applicationContext.getEnvironment());
+				((EnvironmentAware) bean).setEnvironment(applicationContext.getEnvironment());
 			}
 			if (bean instanceof EmbeddedValueResolverAware) {
-				((EmbeddedValueResolverAware) bean).setEmbeddedValueResolver(this.embeddedValueResolver);
+				((EmbeddedValueResolverAware) bean).setEmbeddedValueResolver(embeddedValueResolver);
 			}
 			if (bean instanceof ResourceLoaderAware) {
-				((ResourceLoaderAware) bean).setResourceLoader(this.applicationContext);
+				((ResourceLoaderAware) bean).setResourceLoader(applicationContext);
 			}
 			if (bean instanceof ApplicationEventPublisherAware) {
-				((ApplicationEventPublisherAware) bean).setApplicationEventPublisher(this.applicationContext);
+				((ApplicationEventPublisherAware) bean).setApplicationEventPublisher(applicationContext);
 			}
 			if (bean instanceof MessageSourceAware) {
-				((MessageSourceAware) bean).setMessageSource(this.applicationContext);
+				((MessageSourceAware) bean).setMessageSource(applicationContext);
 			}
 			if (bean instanceof ApplicationContextAware) {
-				((ApplicationContextAware) bean).setApplicationContext(this.applicationContext);
+				((ApplicationContextAware) bean).setApplicationContext(applicationContext);
 			}
 		}
 	}
