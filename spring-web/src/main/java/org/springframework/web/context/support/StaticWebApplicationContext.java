@@ -53,9 +53,7 @@ public class StaticWebApplicationContext extends StaticApplicationContext implem
 		setDisplayName("Root WebApplicationContext");
 	}
 
-	/**
-	 * Set the ServletContext that this WebApplicationContext runs in.
-	 */
+	// Set the ServletContext that this WebApplicationContext runs in.
 	@Override
 	public void setServletContext(@Nullable ServletContext servletContext) {
 		this.servletContext = servletContext;
@@ -64,7 +62,7 @@ public class StaticWebApplicationContext extends StaticApplicationContext implem
 	@Override
 	@Nullable
 	public ServletContext getServletContext() {
-		return this.servletContext;
+		return servletContext;
 	}
 
 	@Override
@@ -78,7 +76,7 @@ public class StaticWebApplicationContext extends StaticApplicationContext implem
 	@Override
 	@Nullable
 	public ServletConfig getServletConfig() {
-		return this.servletConfig;
+		return servletConfig;
 	}
 
 	@Override
@@ -92,7 +90,7 @@ public class StaticWebApplicationContext extends StaticApplicationContext implem
 	@Override
 	@Nullable
 	public String getNamespace() {
-		return this.namespace;
+		return namespace;
 	}
 
 	/**
@@ -123,11 +121,11 @@ public class StaticWebApplicationContext extends StaticApplicationContext implem
 	 */
 	@Override
 	protected void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) {
-		beanFactory.addBeanPostProcessor(new ServletContextAwareProcessor(this.servletContext, this.servletConfig));
+		beanFactory.addBeanPostProcessor(new ServletContextAwareProcessor(servletContext, servletConfig));
 		beanFactory.ignoreDependencyInterface(ServletContextAware.class);
 		beanFactory.ignoreDependencyInterface(ServletConfigAware.class);
-		WebApplicationContextUtils.registerWebApplicationScopes(beanFactory, this.servletContext);
-		WebApplicationContextUtils.registerEnvironmentBeans(beanFactory, this.servletContext, this.servletConfig);
+		WebApplicationContextUtils.registerWebApplicationScopes(beanFactory, servletContext);
+		WebApplicationContextUtils.registerEnvironmentBeans(beanFactory, servletContext, servletConfig);
 	}
 
 	/**
@@ -136,8 +134,8 @@ public class StaticWebApplicationContext extends StaticApplicationContext implem
 	 */
 	@Override
 	protected Resource getResourceByPath(String path) {
-		Assert.state(this.servletContext != null, "No ServletContext available");
-		return new ServletContextResource(this.servletContext, path);
+		Assert.state(servletContext != null, "No ServletContext available");
+		return new ServletContextResource(servletContext, path);
 	}
 
 	/**
@@ -157,25 +155,21 @@ public class StaticWebApplicationContext extends StaticApplicationContext implem
 		return new StandardServletEnvironment();
 	}
 
-	/**
-	 * Initialize the theme capability.
-	 */
+	// Initialize the theme capability.
 	@Override
 	protected void onRefresh() {
-		this.themeSource = UiApplicationContextUtils.initThemeSource(this);
+		themeSource = UiApplicationContextUtils.initThemeSource(this);
 	}
 
 	@Override
 	protected void initPropertySources() {
-		WebApplicationContextUtils.initServletPropertySources(getEnvironment().getPropertySources(),this.servletContext, this.servletConfig);
+		WebApplicationContextUtils.initServletPropertySources(getEnvironment().getPropertySources(),servletContext, servletConfig);
 	}
 
 	@Override
 	@Nullable
-
 	public Theme getTheme(String themeName) {
-		Assert.state(this.themeSource != null, "No ThemeSource available");
-		return this.themeSource.getTheme(themeName);
+		Assert.state(themeSource != null, "No ThemeSource available");
+		return themeSource.getTheme(themeName);
 	}
-
 }

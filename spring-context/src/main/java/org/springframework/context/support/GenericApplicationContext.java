@@ -26,27 +26,21 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Generic ApplicationContext implementation that holds a single internal
- * {@link org.springframework.beans.factory.support.DefaultListableBeanFactory}
- * instance and does not assume a specific bean definition format. Implements
- * the {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}
+ * Generic ApplicationContext implementation that holds a single internal {@link org.springframework.beans.factory.support.DefaultListableBeanFactory}
+ * instance and does not assume a specific bean definition format.
+ * Implements  the {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}
  * interface in order to allow for applying any bean definition readers to it.
  *
- * Typical usage is to register a variety of bean definitions via the
- * {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}
+ * Typical usage is to register a variety of bean definitions via the {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}
  * interface and then call {@link #refresh()} to initialize those beans
- * with application context semantics (handling
- * {@link org.springframework.context.ApplicationContextAware}, auto-detecting
- * {@link org.springframework.beans.factory.config.BeanFactoryPostProcessor BeanFactoryPostProcessors},
- * etc).
+ * with application context semantics (handling {@link org.springframework.context.ApplicationContextAware},
+ * auto-detecting {@link org.springframework.beans.factory.config.BeanFactoryPostProcessor BeanFactoryPostProcessors}, etc).
  *
- * In contrast to other ApplicationContext implementations that create a new
- * internal BeanFactory instance for each refresh, the internal BeanFactory of
- * this context is available right from the start, to be able to register bean
+ * In contrast to other ApplicationContext implementations that create a new internal BeanFactory instance for each refresh,
+ * the internal BeanFactory of this context is available right from the start, to be able to register bean
  * definitions on it. {@link #refresh()} may only be called once.
  *
  * Usage example:
- *
  * <pre class="code">
  * GenericApplicationContext ctx = new GenericApplicationContext();
  * XmlBeanDefinitionReader xmlReader = new XmlBeanDefinitionReader(ctx);
@@ -54,21 +48,17 @@ import org.springframework.util.Assert;
  * PropertiesBeanDefinitionReader propReader = new PropertiesBeanDefinitionReader(ctx);
  * propReader.loadBeanDefinitions(new ClassPathResource("otherBeans.properties"));
  * ctx.refresh();
- *
  * MyBean myBean = (MyBean) ctx.getBean("myBean");
  * ...</pre>
  *
- * For the typical case of XML bean definitions, simply use
- * {@link ClassPathXmlApplicationContext} or {@link FileSystemXmlApplicationContext},
- * which are easier to set up - but less flexible, since you can just use standard
- * resource locations for XML bean definitions, rather than mixing arbitrary bean
- * definition formats. The equivalent in a web environment is
+ * For the typical case of XML bean definitions, simply use  {@link ClassPathXmlApplicationContext} or {@link FileSystemXmlApplicationContext},
+ * which are easier to set up - but less flexible, since you can just use standard  resource locations for XML bean definitions,
+ * rather than mixing arbitrary bean definition formats. The equivalent in a web environment is
  * {@link org.springframework.web.context.support.XmlWebApplicationContext}.
  *
- * For custom application context implementations that are supposed to read
- * special bean definition formats in a refreshable manner, consider deriving
- * from the {@link AbstractRefreshableApplicationContext} base class.
-
+ * For custom application context implementations that are supposed to read  special bean definition formats in a refreshable manner,
+ * consider deriving  from the {@link AbstractRefreshableApplicationContext} base class.
+ *
  * @since 1.1.2
  * @see #registerBeanDefinition
  * @see #refresh()
@@ -183,6 +173,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	//---------------------------------------------------------------------
 	/**
 	 * This implementation delegates to this context's ResourceLoader if set,falling back to the default superclass behavior else.
+	 * 如果已设置，则此实现委托给此上下文的ResourceLoader，返回到默认的超类行为else。
 	 * @see #setResourceLoader
 	 */
 	@Override
@@ -224,7 +215,6 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	//---------------------------------------------------------------------
 	// Implementations of AbstractApplicationContext's template methods
 	//---------------------------------------------------------------------
-
 	/**
 	 * Do nothing: We hold a single internal BeanFactory and rely on callers to register beans through our public methods (or the BeanFactory's).
 	 * 什么都不做：我们拥有一个内部beanfactory，并依靠调用方通过我们的公共方法（或beanfactory）注册bean。
@@ -244,30 +234,22 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 		super.cancelRefresh(ex);
 	}
 
-	/**
-	 * Not much to do: We hold a single internal BeanFactory that will never
-	 * get released.
-	 */
+	// Not much to do: We hold a single internal BeanFactory that will never  get released.
 	@Override
 	protected final void closeBeanFactory() {
 		beanFactory.setSerializationId(null);
 	}
 
-	/**
-	 * Return the single internal BeanFactory held by this context
-	 * (as ConfigurableListableBeanFactory).
-	 */
+	// Return the single internal BeanFactory held by this context (as ConfigurableListableBeanFactory).
 	@Override
 	public final ConfigurableListableBeanFactory getBeanFactory() {
 		return beanFactory;
 	}
 
 	/**
-	 * Return the underlying bean factory of this context,
-	 * available for registering bean definitions.
+	 * Return the underlying bean factory of this context, available for registering bean definitions
 	 * <b>NOTE:</b> You need to call {@link #refresh()} to initialize the
-	 * bean factory and its contained beans with application context semantics
-	 * (autodetecting BeanFactoryPostProcessors, etc).
+	 * bean factory and its contained beans with application context semantics (autodetecting BeanFactoryPostProcessors, etc).
 	 * @return the internal bean factory (as DefaultListableBeanFactory)
 	 */
 	public final DefaultListableBeanFactory getDefaultListableBeanFactory() {
@@ -279,7 +261,6 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 		assertBeanFactoryActive();
 		return beanFactory;
 	}
-
 
 	//---------------------------------------------------------------------
 	// Implementation of BeanDefinitionRegistry
@@ -393,15 +374,13 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 		for (BeanDefinitionCustomizer customizer : customizers) {
 			customizer.customize(beanDefinition);
 		}
-
 		String nameToUse = (beanName != null ? beanName : beanClass.getName());
 		registerBeanDefinition(nameToUse, beanDefinition);
 	}
 
 
 	/**
-	 * {@link RootBeanDefinition} marker subclass for {@code #registerBean} based
-	 * registrations with flexible autowiring for public constructors.
+	 * {@link RootBeanDefinition} marker subclass for {@code #registerBean} based  registrations with flexible autowiring for public constructors.
 	 */
 	@SuppressWarnings("serial")
 	private static class ClassDerivedBeanDefinition extends RootBeanDefinition {

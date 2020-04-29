@@ -242,5 +242,4 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 	 */
 	@Nullable
 	protected abstract View loadView(String viewName, Locale locale) throws Exception;
-
 }

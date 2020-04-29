@@ -13,18 +13,14 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Convenient superclass for application objects that want to be aware of
- * the application context, e.g. for custom lookup of collaborating beans
- * or for context-specific resource access. It saves the application
- * context reference and provides an initialization callback method.
+ * Convenient superclass for application objects that want to be aware of the application context,
+ * e.g. for custom lookup of collaborating beans or for context-specific resource access.
+ * It saves the application context reference and provides an initialization callback method.
  * Furthermore, it offers numerous convenience methods for message lookup.
  *
- * There is no requirement to subclass this class: It just makes things
- * a little easier if you need access to the context, e.g. for access to
+ * There is no requirement to subclass this class: It just makes things  a little easier if you need access to the context, e.g. for access to
  * file resources or to the message source. Note that many application
- * objects do not need to be aware of the application context at all,
- * as they can receive collaborating beans via bean references.
- *
+ * objects do not need to be aware of the application context at all,as they can receive collaborating beans via bean references.
  * Many framework classes are derived from this class, particularly within the web support.
  * @see org.springframework.web.context.support.WebApplicationObjectSupport
  */
@@ -63,8 +59,7 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 	/**
 	 * Subclasses can override this for custom initialization behavior.
 	 * Gets called by {@code setApplicationContext} after setting the context instance.
-	 * Note: Does <i>not</i> get called on re-initialization of the context
-	 * but rather just on first initialization of this object's context reference.
+	 * Note: Does <i>not</i> get called on re-initialization of the context but rather just on first initialization of this object's context reference.
 	 * The default implementation calls the overloaded {@link #initApplicationContext()} method without ApplicationContext reference.
 	 * @param context the containing ApplicationContext
 	 * @throws ApplicationContextException in case of initialization errors
@@ -90,10 +85,10 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 	 */
 	@Nullable
 	public final ApplicationContext getApplicationContext() throws IllegalStateException {
-		if (this.applicationContext == null && isContextRequired()) {
+		if (applicationContext == null && isContextRequired()) {
 			throw new IllegalStateException("ApplicationObjectSupport instance [" + this + "] does not run in an ApplicationContext");
 		}
-		return this.applicationContext;
+		return applicationContext;
 	}
 
 	/**
@@ -109,16 +104,15 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 	}
 
 	/**
-	 * Return a MessageSourceAccessor for the application context
-	 * used by this object, for easy message access.
+	 * Return a MessageSourceAccessor for the application context  used by this object, for easy message access.
 	 * @throws IllegalStateException if not running in an ApplicationContext
 	 */
 	@Nullable
 	protected final MessageSourceAccessor getMessageSourceAccessor() throws IllegalStateException {
-		if (this.messageSourceAccessor == null && isContextRequired()) {
+		if (messageSourceAccessor == null && isContextRequired()) {
 			throw new IllegalStateException("ApplicationObjectSupport instance [" + this + "] does not run in an ApplicationContext");
 		}
-		return this.messageSourceAccessor;
+		return messageSourceAccessor;
 	}
 
 	//---------------------------------------------------------------------
@@ -129,21 +123,21 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 	public final void setApplicationContext(@Nullable ApplicationContext context) throws BeansException {
 		if (context == null && !isContextRequired()) {
 			// Reset internal context state.
-			this.applicationContext = null;
-			this.messageSourceAccessor = null;
-		}else if (this.applicationContext == null) {
+			applicationContext = null;
+			messageSourceAccessor = null;
+		}else if (applicationContext == null) {
 			// Initialize with passed-in context.
 			if (!requiredContextClass().isInstance(context)) {
 				throw new ApplicationContextException("Invalid application context: needs to be of type [" + requiredContextClass().getName() + "]");
 			}
-			this.applicationContext = context;
-			this.messageSourceAccessor = new MessageSourceAccessor(context);
+			applicationContext = context;
+			messageSourceAccessor = new MessageSourceAccessor(context);
 			// 重点
 			initApplicationContext(context);
 		}else {
 			// Ignore reinitialization if same context passed in.
-			if (this.applicationContext != context) {
-				throw new ApplicationContextException("Cannot reinitialize with different application context: current one is [" + this.applicationContext + "], passed-in one is [" + context + "]");
+			if (applicationContext != context) {
+				throw new ApplicationContextException("Cannot reinitialize with different application context: current one is [" + applicationContext + "], passed-in one is [" + context + "]");
 			}
 		}
 	}

@@ -110,5 +110,4 @@ public class GenericXmlApplicationContext extends GenericApplicationContext {
 		}
 		this.load(resources);
 	}
-
 }

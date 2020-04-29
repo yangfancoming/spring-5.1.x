@@ -20,33 +20,25 @@ import org.springframework.web.context.support.GenericWebApplicationContext;
 import org.springframework.web.servlet.View;
 
 /**
- * A {@link org.springframework.web.servlet.ViewResolver} implementation that uses
- * bean definitions in a dedicated XML file for view definitions, specified by
- * resource location. The file will typically be located in the WEB-INF directory;
- * the default is "/WEB-INF/views.xml".
+ * A {@link org.springframework.web.servlet.ViewResolver} implementation that uses  bean definitions in a dedicated XML file for view definitions,
+ * specified by  resource location.
+ * The file will typically be located in the WEB-INF directory; the default is "/WEB-INF/views.xml".
  *
- * This {@code ViewResolver} does not support internationalization at the level
- * of its definition resources. Consider {@link ResourceBundleViewResolver} if you
- * need to apply different view resources per locale.
+ * This {@code ViewResolver} does not support internationalization at the level of its definition resources.
+ * Consider {@link ResourceBundleViewResolver} if you  need to apply different view resources per locale.
  *
- * Note: This {@code ViewResolver} implements the {@link Ordered} interface
- * in order to allow for flexible participation in {@code ViewResolver} chaining.
+ * Note: This {@code ViewResolver} implements the {@link Ordered} interface in order to allow for flexible participation in {@code ViewResolver} chaining.
  * For example, some special views could be defined via this {@code ViewResolver}
- * (giving it 0 as "order" value), while all remaining views could be resolved by
- * a {@link UrlBasedViewResolver}.
- *
-
+ * (giving it 0 as "order" value), while all remaining views could be resolved by a {@link UrlBasedViewResolver}.
  * @since 18.06.2003
  * @see org.springframework.context.ApplicationContext#getResource
  * @see ResourceBundleViewResolver
  * @see UrlBasedViewResolver
  */
-public class XmlViewResolver extends AbstractCachingViewResolver
-		implements Ordered, InitializingBean, DisposableBean {
+public class XmlViewResolver extends AbstractCachingViewResolver implements Ordered, InitializingBean, DisposableBean {
 
 	/** Default if no other location is supplied. */
 	public static final String DEFAULT_LOCATION = "/WEB-INF/views.xml";
-
 
 	@Nullable
 	private Resource location;
@@ -56,10 +48,8 @@ public class XmlViewResolver extends AbstractCachingViewResolver
 
 	private int order = Ordered.LOWEST_PRECEDENCE;  // default: same as non-Ordered
 
-
 	/**
-	 * Set the location of the XML file that defines the view beans.
-	 * The default is "/WEB-INF/views.xml".
+	 * Set the location of the XML file that defines the view beans.The default is "/WEB-INF/views.xml".
 	 * @param location the location of the XML file.
 	 */
 	public void setLocation(Resource location) {
@@ -67,8 +57,7 @@ public class XmlViewResolver extends AbstractCachingViewResolver
 	}
 
 	/**
-	 * Specify the order value for this ViewResolver bean.
-	 * The default value is {@code Ordered.LOWEST_PRECEDENCE}, meaning non-ordered.
+	 * Specify the order value for this ViewResolver bean.The default value is {@code Ordered.LOWEST_PRECEDENCE}, meaning non-ordered.
 	 * @see org.springframework.core.Ordered#getOrder()
 	 */
 	public void setOrder(int order) {
@@ -77,13 +66,10 @@ public class XmlViewResolver extends AbstractCachingViewResolver
 
 	@Override
 	public int getOrder() {
-		return this.order;
+		return order;
 	}
 
-	/**
-	 * Pre-initialize the factory from the XML file.
-	 * Only effective if caching is enabled.
-	 */
+	// Pre-initialize the factory from the XML file.  Only effective if caching is enabled.
 	@Override
 	public void afterPropertiesSet() throws BeansException {
 		if (isCache()) {
@@ -91,11 +77,7 @@ public class XmlViewResolver extends AbstractCachingViewResolver
 		}
 	}
 
-
-	/**
-	 * This implementation returns just the view name,
-	 * as XmlViewResolver doesn't support localized resolution.
-	 */
+	// This implementation returns just the view name,as XmlViewResolver doesn't support localized resolution.
 	@Override
 	protected Object getCacheKey(String viewName, Locale locale) {
 		return viewName;
@@ -106,30 +88,25 @@ public class XmlViewResolver extends AbstractCachingViewResolver
 		BeanFactory factory = initFactory();
 		try {
 			return factory.getBean(viewName, View.class);
-		}
-		catch (NoSuchBeanDefinitionException ex) {
+		}catch (NoSuchBeanDefinitionException ex) {
 			// Allow for ViewResolver chaining...
 			return null;
 		}
 	}
 
 	/**
-	 * Initialize the view bean factory from the XML file.
-	 * Synchronized because of access by parallel threads.
+	 * Initialize the view bean factory from the XML file. Synchronized because of access by parallel threads.
 	 * @throws BeansException in case of initialization errors
 	 */
 	protected synchronized BeanFactory initFactory() throws BeansException {
-		if (this.cachedFactory != null) {
-			return this.cachedFactory;
+		if (cachedFactory != null) {
+			return cachedFactory;
 		}
-
 		ApplicationContext applicationContext = obtainApplicationContext();
-
-		Resource actualLocation = this.location;
+		Resource actualLocation = location;
 		if (actualLocation == null) {
 			actualLocation = applicationContext.getResource(DEFAULT_LOCATION);
 		}
-
 		// Create child ApplicationContext for views.
 		GenericWebApplicationContext factory = new GenericWebApplicationContext();
 		factory.setParent(applicationContext);
@@ -140,24 +117,18 @@ public class XmlViewResolver extends AbstractCachingViewResolver
 		reader.setEnvironment(applicationContext.getEnvironment());
 		reader.setEntityResolver(new ResourceEntityResolver(applicationContext));
 		reader.loadBeanDefinitions(actualLocation);
-
 		factory.refresh();
-
 		if (isCache()) {
-			this.cachedFactory = factory;
+			cachedFactory = factory;
 		}
 		return factory;
 	}
 
-
-	/**
-	 * Close the view bean factory on context shutdown.
-	 */
+	// Close the view bean factory on context shutdown.
 	@Override
 	public void destroy() throws BeansException {
-		if (this.cachedFactory != null) {
-			this.cachedFactory.close();
+		if (cachedFactory != null) {
+			cachedFactory.close();
 		}
 	}
-
 }

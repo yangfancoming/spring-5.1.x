@@ -416,6 +416,7 @@ public class ViewResolverTests {
 				return super.getResourceByPath(path);
 			}
 		};
+
 		wac.setServletContext(new MockServletContext());
 		wac.refresh();
 		XmlViewResolver vr = new XmlViewResolver();
@@ -423,8 +424,7 @@ public class ViewResolverTests {
 			vr.setApplicationContext(wac);
 			vr.afterPropertiesSet();
 			fail("Should have thrown BeanDefinitionStoreException");
-		}
-		catch (BeanDefinitionStoreException ex) {
+		}catch (BeanDefinitionStoreException ex) {
 			// expected
 		}
 	}

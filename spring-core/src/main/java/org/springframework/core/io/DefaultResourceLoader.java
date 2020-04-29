@@ -153,7 +153,10 @@ public class DefaultResourceLoader implements ResourceLoader {
 	@Override
 	public Resource getResource(String location) {
 		Assert.notNull(location, "Location must not be null");
-		// 【1】
+		/**
+		 * 【1】 步骤1，先用扩展协议解析器解析资源地址并返回
+		 *  @see org.springframework.core.io.DefaultResourceLoaderTest#test()
+		*/
 		for (ProtocolResolver protocolResolver : protocolResolvers) {
 			Resource resource = protocolResolver.resolve(location, this);
 			if (resource != null) return resource;

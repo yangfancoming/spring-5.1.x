@@ -59,9 +59,7 @@ public abstract class WebApplicationContextUtils {
 	 */
 	public static WebApplicationContext getRequiredWebApplicationContext(ServletContext sc) throws IllegalStateException {
 		WebApplicationContext wac = getWebApplicationContext(sc);
-		if (wac == null) {
-			throw new IllegalStateException("No WebApplicationContext found: no ContextLoaderListener registered?");
-		}
+		if (wac == null) throw new IllegalStateException("No WebApplicationContext found: no ContextLoaderListener registered?");
 		return wac;
 	}
 
@@ -289,9 +287,7 @@ public abstract class WebApplicationContextUtils {
 		@Override
 		public ServletResponse getObject() {
 			ServletResponse response = currentRequestAttributes().getResponse();
-			if (response == null) {
-				throw new IllegalStateException("Current servlet response not available - consider using RequestContextFilter instead of RequestContextListener");
-			}
+			if (response == null) throw new IllegalStateException("Current servlet response not available - consider using RequestContextFilter instead of RequestContextListener");
 			return response;
 		}
 		@Override
@@ -300,10 +296,7 @@ public abstract class WebApplicationContextUtils {
 		}
 	}
 
-
-	/**
-	 * Factory that exposes the current session object on demand.
-	 */
+	// Factory that exposes the current session object on demand.
 	@SuppressWarnings("serial")
 	private static class SessionObjectFactory implements ObjectFactory<HttpSession>, Serializable {
 
@@ -318,10 +311,7 @@ public abstract class WebApplicationContextUtils {
 		}
 	}
 
-
-	/**
-	 * Factory that exposes the current WebRequest object on demand.
-	 */
+	//  Factory that exposes the current WebRequest object on demand.
 	@SuppressWarnings("serial")
 	private static class WebRequestObjectFactory implements ObjectFactory<WebRequest>, Serializable {
 
@@ -337,10 +327,7 @@ public abstract class WebApplicationContextUtils {
 		}
 	}
 
-
-	/**
-	 * Inner class to avoid hard-coded JSF dependency.
- 	 */
+	// Inner class to avoid hard-coded JSF dependency.
 	private static class FacesDependencyRegistrar {
 
 		public static void registerFacesDependencies(ConfigurableListableBeanFactory beanFactory) {
