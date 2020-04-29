@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ *  源码搜索串：invokeInitMethods(beanName, wrappedBean, mbd)
+ *
  * bean的生命周期：
  * 		bean创建---初始化----销毁的过程
  * BeanPostProcessor.postProcessBeforeInitialization

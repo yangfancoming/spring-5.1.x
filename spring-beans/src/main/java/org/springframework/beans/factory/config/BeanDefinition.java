@@ -154,8 +154,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	boolean isPrimary();
 
 	/**
-	 * Specify the factory bean to use, if any.
-	 * This the name of the bean to call the specified factory method on.
+	 * Specify the factory bean to use, if any. This the name of the bean to call the specified factory method on.
 	 * @see #setFactoryMethodName
 	 *   如果该 Bean 采用工厂方法生成，指定工厂名称。对工厂不熟悉的读者，请参加附录
 	 *   一句话就是：有些实例不是用反射生成的，而是用工厂模式生成的
@@ -187,10 +186,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 */
 	ConstructorArgumentValues getConstructorArgumentValues();
 
-	/**
-	 * Return if there are constructor argument values defined for this bean.
-	 * @since 5.0.2
-	 */
+	// Return if there are constructor argument values defined for this bean. @since 5.0.2
 	default boolean hasConstructorArgumentValues() {
 		return !getConstructorArgumentValues().isEmpty();
 	}
@@ -223,9 +219,8 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	String getDestroyMethodName();
 
 	/**
-	 * Set the role hint for this {@code BeanDefinition}. The role hint
-	 * provides the frameworks as well as tools with an indication of
-	 * the role and importance of a particular {@code BeanDefinition}.
+	 * Set the role hint for this {@code BeanDefinition}.
+	 * The role hint provides the frameworks as well as tools with an indication of the role and importance of a particular {@code BeanDefinition}.
 	 * @since 5.1
 	 * @see #ROLE_APPLICATION
 	 * @see #ROLE_SUPPORT
@@ -234,9 +229,8 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	void setRole(int role);
 
 	/**
-	 * Get the role hint for this {@code BeanDefinition}. The role hint
-	 * provides the frameworks as well as tools with an indication of
-	 * the role and importance of a particular {@code BeanDefinition}.
+	 * Get the role hint for this {@code BeanDefinition}.
+	 * The role hint provides the frameworks as well as tools with an indication of the role and importance of a particular {@code BeanDefinition}.
 	 * @see #ROLE_APPLICATION
 	 * @see #ROLE_SUPPORT
 	 * @see #ROLE_INFRASTRUCTURE
@@ -251,7 +245,6 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	String getDescription();
 
 	// Read-only attributes
-
 	/**
 	 * Return whether this a <b>Singleton</b>, with a single, shared instance returned on all calls.
 	 * @see #SCOPE_SINGLETON
@@ -276,10 +269,8 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	String getResourceDescription();
 
 	/**
-	 * Return the originating BeanDefinition, or {@code null} if none.
-	 * Allows for retrieving the decorated bean definition, if any.
-	 * Note that this method returns the immediate originator. Iterate through the
-	 * originator chain to find the original BeanDefinition as defined by the user.
+	 * Return the originating BeanDefinition, or {@code null} if none.Allows for retrieving the decorated bean definition, if any.
+	 * Note that this method returns the immediate originator. Iterate through the  originator chain to find the original BeanDefinition as defined by the user.
 	 */
 	@Nullable
 	BeanDefinition getOriginatingBeanDefinition();

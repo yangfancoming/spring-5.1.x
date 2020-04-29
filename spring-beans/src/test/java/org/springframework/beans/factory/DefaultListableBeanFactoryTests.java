@@ -864,12 +864,9 @@ public class DefaultListableBeanFactoryTests {
 
 	@Test
 	public void testCustomEditor() {
-		lbf.addPropertyEditorRegistrar(new PropertyEditorRegistrar() {
-			@Override
-			public void registerCustomEditors(PropertyEditorRegistry registry) {
-				NumberFormat nf = NumberFormat.getInstance(Locale.GERMAN);
-				registry.registerCustomEditor(Float.class, new CustomNumberEditor(Float.class, nf, true));
-			}
+		lbf.addPropertyEditorRegistrar(registry->{
+			NumberFormat nf = NumberFormat.getInstance(Locale.GERMAN);
+			registry.registerCustomEditor(Float.class, new CustomNumberEditor(Float.class, nf, true));
 		});
 		MutablePropertyValues pvs = new MutablePropertyValues();
 		pvs.add("myFloat", "1,1");
@@ -883,16 +880,13 @@ public class DefaultListableBeanFactoryTests {
 	@Test
 	public void testCustomConverter() {
 		GenericConversionService conversionService = new DefaultConversionService();
-		conversionService.addConverter(new Converter<String, Float>() {
-			@Override
-			public Float convert(String source) {
-				try {
-					NumberFormat nf = NumberFormat.getInstance(Locale.GERMAN);
-					return nf.parse(source).floatValue();
-				}
-				catch (ParseException ex) {
-					throw new IllegalArgumentException(ex);
-				}
+		conversionService.addConverter((Converter<String, Float>) source->{
+			try {
+				NumberFormat nf = NumberFormat.getInstance(Locale.GERMAN);
+				return nf.parse(source).floatValue();
+			}
+			catch (ParseException ex) {
+				throw new IllegalArgumentException(ex);
 			}
 		});
 		lbf.setConversionService(conversionService);
@@ -907,12 +901,9 @@ public class DefaultListableBeanFactoryTests {
 
 	@Test
 	public void testCustomEditorWithBeanReference() {
-		lbf.addPropertyEditorRegistrar(new PropertyEditorRegistrar() {
-			@Override
-			public void registerCustomEditors(PropertyEditorRegistry registry) {
-				NumberFormat nf = NumberFormat.getInstance(Locale.GERMAN);
-				registry.registerCustomEditor(Float.class, new CustomNumberEditor(Float.class, nf, true));
-			}
+		lbf.addPropertyEditorRegistrar(registry->{
+			NumberFormat nf = NumberFormat.getInstance(Locale.GERMAN);
+			registry.registerCustomEditor(Float.class, new CustomNumberEditor(Float.class, nf, true));
 		});
 		MutablePropertyValues pvs = new MutablePropertyValues();
 		pvs.add("myFloat", new RuntimeBeanReference("myFloat"));
@@ -1288,8 +1279,7 @@ public class DefaultListableBeanFactoryTests {
 	public void testAutowireBeanByNameWithNoDependencyCheck() {
 		RootBeanDefinition bd = new RootBeanDefinition(TestBean.class);
 		lbf.registerBeanDefinition("spous", bd);
-		DependenciesBean bean = (DependenciesBean)
-				lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_NAME, false);
+		DependenciesBean bean = (DependenciesBean)lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_NAME, false);
 		assertNull(bean.getSpouse());
 	}
 
@@ -1304,8 +1294,7 @@ public class DefaultListableBeanFactoryTests {
 		try {
 			lbf.preInstantiateSingletons();
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		}catch (BeanCreationException ex) {
 			// expected
 			assertTrue(ex.getMessage().contains("Circular"));
 			assertTrue(ex.getMessage().contains("'tb2'"));
@@ -1327,8 +1316,7 @@ public class DefaultListableBeanFactoryTests {
 		try {
 			lbf.preInstantiateSingletons();
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		}catch (BeanCreationException ex) {
 			// expected
 			assertTrue(ex.getMessage().contains("Circular"));
 			assertTrue(ex.getMessage().contains("'tb3'"));
@@ -1468,8 +1456,7 @@ public class DefaultListableBeanFactoryTests {
 		try {
 			lbf.getBean(TestBean.class);
 			fail("Should have thrown NoSuchBeanDefinitionException");
-		}
-		catch (NoSuchBeanDefinitionException ex) {
+		}catch (NoSuchBeanDefinitionException ex) {
 			// expected
 		}
 	}
@@ -1494,19 +1481,16 @@ public class DefaultListableBeanFactoryTests {
 
 	@Test
 	public void testGetBeanByTypeInstanceWithNoneFound() {
-
 		try {
 			lbf.getBean(ConstructorDependency.class);
 			fail("Should have thrown NoSuchBeanDefinitionException");
-		}
-		catch (NoSuchBeanDefinitionException ex) {
+		}catch (NoSuchBeanDefinitionException ex) {
 			// expected
 		}
 		try {
 			lbf.getBean(ConstructorDependency.class, 42);
 			fail("Should have thrown NoSuchBeanDefinitionException");
-		}
-		catch (NoSuchBeanDefinitionException ex) {
+		}catch (NoSuchBeanDefinitionException ex) {
 			// expected
 		}
 
@@ -1514,15 +1498,13 @@ public class DefaultListableBeanFactoryTests {
 		try {
 			provider.getObject();
 			fail("Should have thrown NoSuchBeanDefinitionException");
-		}
-		catch (NoSuchBeanDefinitionException ex) {
+		}catch (NoSuchBeanDefinitionException ex) {
 			// expected
 		}
 		try {
 			provider.getObject(42);
 			fail("Should have thrown NoSuchBeanDefinitionException");
-		}
-		catch (NoSuchBeanDefinitionException ex) {
+		}catch (NoSuchBeanDefinitionException ex) {
 			// expected
 		}
 		assertNull(provider.getIfAvailable());
@@ -1535,14 +1517,12 @@ public class DefaultListableBeanFactoryTests {
 		RootBeanDefinition bd1 = createConstructorDependencyBeanDefinition(99);
 		parent.registerBeanDefinition("bd1", bd1);
 		DefaultListableBeanFactory lbf = new DefaultListableBeanFactory(parent);
-
 		ConstructorDependency bean = lbf.getBean(ConstructorDependency.class);
 		assertThat(bean.beanName, equalTo("bd1"));
 		assertThat(bean.spouseAge, equalTo(99));
 		bean = lbf.getBean(ConstructorDependency.class, 42);
 		assertThat(bean.beanName, equalTo("bd1"));
 		assertThat(bean.spouseAge, equalTo(42));
-
 		ObjectProvider<ConstructorDependency> provider = lbf.getBeanProvider(ConstructorDependency.class);
 		bean = provider.getObject();
 		assertThat(bean.beanName, equalTo("bd1"));
@@ -1570,15 +1550,13 @@ public class DefaultListableBeanFactoryTests {
 		try {
 			lbf.getBean(ConstructorDependency.class);
 			fail("Should have thrown NoUniqueBeanDefinitionException");
-		}
-		catch (NoUniqueBeanDefinitionException ex) {
+		}catch (NoUniqueBeanDefinitionException ex) {
 			// expected
 		}
 		try {
 			lbf.getBean(ConstructorDependency.class, 42);
 			fail("Should have thrown NoUniqueBeanDefinitionException");
-		}
-		catch (NoUniqueBeanDefinitionException ex) {
+		}catch (NoUniqueBeanDefinitionException ex) {
 			// expected
 		}
 
@@ -1586,22 +1564,19 @@ public class DefaultListableBeanFactoryTests {
 		try {
 			provider.getObject();
 			fail("Should have thrown NoUniqueBeanDefinitionException");
-		}
-		catch (NoUniqueBeanDefinitionException ex) {
+		}catch (NoUniqueBeanDefinitionException ex) {
 			// expected
 		}
 		try {
 			provider.getObject(42);
 			fail("Should have thrown NoUniqueBeanDefinitionException");
-		}
-		catch (NoUniqueBeanDefinitionException ex) {
+		}catch (NoUniqueBeanDefinitionException ex) {
 			// expected
 		}
 		try {
 			provider.getIfAvailable();
 			fail("Should have thrown NoUniqueBeanDefinitionException");
-		}
-		catch (NoUniqueBeanDefinitionException ex) {
+		}catch (NoUniqueBeanDefinitionException ex) {
 			// expected
 		}
 		assertNull(provider.getIfUnique());
@@ -1705,8 +1680,7 @@ public class DefaultListableBeanFactoryTests {
 		try {
 			lbf.getBean(TestBean.class, 67);
 			fail("Should have thrown NoSuchBeanDefinitionException");
-		}
-		catch (NoSuchBeanDefinitionException ex) {
+		}catch (NoSuchBeanDefinitionException ex) {
 			// expected
 		}
 	}
@@ -1714,21 +1688,18 @@ public class DefaultListableBeanFactoryTests {
 	@Test
 	public void testBeanProviderSerialization() throws Exception {
 		lbf.setSerializationId("test");
-
 		ObjectProvider<ConstructorDependency> provider = lbf.getBeanProvider(ConstructorDependency.class);
 		ObjectProvider deserialized = (ObjectProvider) SerializationTestUtils.serializeAndDeserialize(provider);
 		try {
 			deserialized.getObject();
 			fail("Should have thrown NoSuchBeanDefinitionException");
-		}
-		catch (NoSuchBeanDefinitionException ex) {
+		}catch (NoSuchBeanDefinitionException ex) {
 			// expected
 		}
 		try {
 			deserialized.getObject(42);
 			fail("Should have thrown NoSuchBeanDefinitionException");
-		}
-		catch (NoSuchBeanDefinitionException ex) {
+		}catch (NoSuchBeanDefinitionException ex) {
 			// expected
 		}
 		assertNull(deserialized.getIfAvailable());
@@ -1743,11 +1714,9 @@ public class DefaultListableBeanFactoryTests {
 		RootBeanDefinition bd2 = new RootBeanDefinition(ConstructorDependencyFactoryBean.class);
 		bd2.setScope(RootBeanDefinition.SCOPE_PROTOTYPE);
 		lbf.registerBeanDefinition("bd2", bd2);
-
 		ConstructorDependency bean = lbf.getBean(ConstructorDependency.class, 42);
 		assertThat(bean.beanName, equalTo("bd1"));
 		assertThat(bean.spouseAge, equalTo(42));
-
 		assertEquals(1, lbf.getBeanNamesForType(ConstructorDependency.class).length);
 		assertEquals(1, lbf.getBeanNamesForType(ConstructorDependencyFactoryBean.class).length);
 		assertEquals(1, lbf.getBeanNamesForType(ResolvableType.forClassWithGenerics(FactoryBean.class, Object.class)).length);
@@ -1765,8 +1734,7 @@ public class DefaultListableBeanFactoryTests {
 	public void testAutowireBeanByType() {
 		RootBeanDefinition bd = new RootBeanDefinition(TestBean.class);
 		lbf.registerBeanDefinition("test", bd);
-		DependenciesBean bean = (DependenciesBean)
-				lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, true);
+		DependenciesBean bean = (DependenciesBean)lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, true);
 		TestBean test = (TestBean) lbf.getBean("test");
 		assertEquals(test, bean.getSpouse());
 	}
@@ -1783,10 +1751,8 @@ public class DefaultListableBeanFactoryTests {
 		lbf.registerBeanDefinition("factoryBean", bd);
 		LazyInitFactory factoryBean = (LazyInitFactory) lbf.getBean("&factoryBean");
 		assertNotNull("The FactoryBean should have been registered.", factoryBean);
-		FactoryBeanDependentBean bean = (FactoryBeanDependentBean) lbf.autowire(FactoryBeanDependentBean.class,
-				AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, true);
-		assertEquals("The FactoryBeanDependentBean should have been autowired 'by type' with the LazyInitFactory.",
-				factoryBean, bean.getFactoryBean());
+		FactoryBeanDependentBean bean = (FactoryBeanDependentBean) lbf.autowire(FactoryBeanDependentBean.class,AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, true);
+		assertEquals("The FactoryBeanDependentBean should have been autowired 'by type' with the LazyInitFactory.",factoryBean, bean.getFactoryBean());
 	}
 
 	@Test
@@ -1878,16 +1844,14 @@ public class DefaultListableBeanFactoryTests {
 		try {
 			lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, true);
 			fail("Should have thrown UnsatisfiedDependencyException");
-		}
-		catch (UnsatisfiedDependencyException ex) {
+		}catch (UnsatisfiedDependencyException ex) {
 			// expected
 		}
 	}
 
 	@Test
 	public void testAutowireBeanByTypeWithNoDependencyCheck() {
-		DependenciesBean bean = (DependenciesBean)
-				lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, false);
+		DependenciesBean bean = (DependenciesBean)lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, false);
 		assertNull(bean.getSpouse());
 	}
 
@@ -1898,9 +1862,7 @@ public class DefaultListableBeanFactoryTests {
 		RootBeanDefinition bd2 = new RootBeanDefinition(TestBean.class);
 		lbf.registerBeanDefinition("test", bd);
 		lbf.registerBeanDefinition("spouse", bd2);
-
-		DependenciesBean bean = (DependenciesBean)
-				lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, true);
+		DependenciesBean bean = (DependenciesBean)lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, true);
 		assertThat(bean.getSpouse(), equalTo(lbf.getBean("test")));
 	}
 
@@ -1912,12 +1874,10 @@ public class DefaultListableBeanFactoryTests {
 		bd2.setPrimary(true);
 		lbf.registerBeanDefinition("test", bd);
 		lbf.registerBeanDefinition("spouse", bd2);
-
 		try {
 			lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, true);
 			fail("Should have thrown UnsatisfiedDependencyException");
-		}
-		catch (UnsatisfiedDependencyException ex) {
+		}catch (UnsatisfiedDependencyException ex) {
 			// expected
 			assertNotNull("Exception should have cause", ex.getCause());
 			assertEquals("Wrong cause type", NoUniqueBeanDefinitionException.class, ex.getCause().getClass());
@@ -1944,12 +1904,10 @@ public class DefaultListableBeanFactoryTests {
 		RootBeanDefinition bd2 = new RootBeanDefinition(HighPriorityTestBean.class);
 		lbf.registerBeanDefinition("test", bd);
 		lbf.registerBeanDefinition("spouse", bd2);
-
 		try {
 			lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, true);
 			fail("Should have thrown UnsatisfiedDependencyException");
-		}
-		catch (UnsatisfiedDependencyException ex) {
+		}catch (UnsatisfiedDependencyException ex) {
 			// expected
 			assertNotNull("Exception should have cause", ex.getCause());
 			assertEquals("Wrong cause type", NoUniqueBeanDefinitionException.class, ex.getCause().getClass());
@@ -2212,8 +2170,7 @@ public class DefaultListableBeanFactoryTests {
 		try {
 			lbf.getBean("test");
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		}catch (BeanCreationException ex) {
 			assertEquals("test", ex.getBeanName());
 			assertTrue(ex.getMessage().toLowerCase().contains("interface"));
 		}
@@ -2822,7 +2779,6 @@ public class DefaultListableBeanFactoryTests {
 	@Test(timeout = 1000)
 	public void testByTypeLookupIsFastEnough() {
 		Assume.group(TestGroup.PERFORMANCE);
-
 		for (int i = 0; i < 1000; i++) {
 			lbf.registerBeanDefinition("a" + i, new RootBeanDefinition(A.class));
 		}
@@ -2851,7 +2807,6 @@ public class DefaultListableBeanFactoryTests {
 		Assume.group(TestGroup.PERFORMANCE);
 		lbf.registerBeanDefinition("b", new RootBeanDefinition(B.class));
 		// lbf.getBean("b");
-
 		for (int i = 0; i < 100000; i++) {
 			lbf.registerSingleton("a" + i, new A());
 		}

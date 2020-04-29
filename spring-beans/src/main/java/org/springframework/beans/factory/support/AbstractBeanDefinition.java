@@ -469,9 +469,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 		this.autowireMode = autowireMode;
 	}
 
-	/**
-	 * Return the autowire mode as specified in the bean definition.
-	 */
+	// Return the autowire mode as specified in the bean definition.
 	public int getAutowireMode() {
 		return autowireMode;
 	}
@@ -954,86 +952,64 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 		return (propertyValues != null && !propertyValues.isEmpty());
 	}
 
-	/**
-	 * Set the name of the initializer method.
-	 * The default is {@code null} in which case there is no initializer method.
-	 */
+	//  Set the name of the initializer method.The default is {@code null} in which case there is no initializer method.
 	@Override
 	public void setInitMethodName(@Nullable String initMethodName) {
 		this.initMethodName = initMethodName;
 	}
 
-	/**
-	 * Return the name of the initializer method.
-	 */
+	//  Return the name of the initializer method.
 	@Override
 	@Nullable
 	public String getInitMethodName() {
 		return initMethodName;
 	}
 
-	/**
-	 * Set the name of the destroy method.
-	 * The default is {@code null} in which case there is no destroy method.
-	 */
+	//  Set the name of the destroy method. The default is {@code null} in which case there is no destroy method.
 	@Override
 	public void setDestroyMethodName(@Nullable String destroyMethodName) {
 		destroyMethodName = destroyMethodName;
 	}
 
-	/**
-	 * Return the name of the destroy method.
-	 */
+	// Return the name of the destroy method.
 	@Override
 	@Nullable
 	public String getDestroyMethodName() {
 		return destroyMethodName;
 	}
 
-	/**
-	 * Set the role hint for this {@code BeanDefinition}.
-	 */
+	// Set the role hint for this {@code BeanDefinition}.
 	@Override
 	public void setRole(int role) {
 		this.role = role;
 	}
 
-	/**
-	 * Return the role hint for this {@code BeanDefinition}.
-	 */
+	//  Return the role hint for this {@code BeanDefinition}.
 	@Override
 	public int getRole() {
 		return role;
 	}
 
-	/**
-	 * Set a human-readable description of this bean definition.
-	 */
+	// Set a human-readable description of this bean definition.
 	@Override
 	public void setDescription(@Nullable String description) {
 		this.description = description;
 	}
 
-	/**
-	 * Return a human-readable description of this bean definition.
-	 */
+	// Return a human-readable description of this bean definition.
 	@Override
 	@Nullable
 	public String getDescription() {
 		return description;
 	}
 
-	/**
-	 * Return the resource that this bean definition came from.
-	 */
+	// Return the resource that this bean definition came from.
 	@Nullable
 	public Resource getResource() {
 		return resource;
 	}
 
-	/**
-	 * Return a description of the resource that this bean definition came from (for the purpose of showing context in case of errors).
-	 */
+	// Return a description of the resource that this bean definition came from (for the purpose of showing context in case of errors).
 	@Override
 	@Nullable
 	public String getResourceDescription() {

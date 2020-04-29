@@ -18,11 +18,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Simple {@link BeanPostProcessor} that checks JSR-303 constraint annotations
- * in Spring-managed beans, throwing an initialization exception in case of
- * constraint violations right before calling the bean's init method (if any).
- *
-
+ * Simple {@link BeanPostProcessor} that checks JSR-303 constraint annotations in Spring-managed beans,
+ * throwing an initialization exception in case of  constraint violations right before calling the bean's init method (if any).
  * @since 3.0
  */
 public class BeanValidationPostProcessor implements BeanPostProcessor, InitializingBean {
@@ -32,18 +29,13 @@ public class BeanValidationPostProcessor implements BeanPostProcessor, Initializ
 
 	private boolean afterInitialization = false;
 
-
-	/**
-	 * Set the JSR-303 Validator to delegate to for validating beans.
-	 * Default is the default ValidatorFactory's default Validator.
-	 */
+	// Set the JSR-303 Validator to delegate to for validating beans.  Default is the default ValidatorFactory's default Validator.
 	public void setValidator(Validator validator) {
 		this.validator = validator;
 	}
 
 	/**
-	 * Set the JSR-303 ValidatorFactory to delegate to for validating beans,
-	 * using its default Validator.
+	 * Set the JSR-303 ValidatorFactory to delegate to for validating beans,using its default Validator.
 	 * Default is the default ValidatorFactory's default Validator.
 	 * @see javax.validation.ValidatorFactory#getValidator()
 	 */
@@ -52,11 +44,9 @@ public class BeanValidationPostProcessor implements BeanPostProcessor, Initializ
 	}
 
 	/**
-	 * Choose whether to perform validation after bean initialization
-	 * (i.e. after init methods) instead of before (which is the default).
+	 * Choose whether to perform validation after bean initialization (i.e. after init methods) instead of before (which is the default).
 	 * Default is "false" (before initialization). Switch this to "true"
-	 * (after initialization) if you would like to give init methods a chance
-	 * to populate constrained fields before they get validated.
+	 * (after initialization) if you would like to give init methods a chance to populate constrained fields before they get validated.
 	 */
 	public void setAfterInitialization(boolean afterInitialization) {
 		this.afterInitialization = afterInitialization;
@@ -64,15 +54,13 @@ public class BeanValidationPostProcessor implements BeanPostProcessor, Initializ
 
 	@Override
 	public void afterPropertiesSet() {
-		if (this.validator == null) {
-			this.validator = Validation.buildDefaultValidatorFactory().getValidator();
-		}
+		if (validator == null) validator = Validation.buildDefaultValidatorFactory().getValidator();
 	}
 
 
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-		if (!this.afterInitialization) {
+		if (!afterInitialization) {
 			doValidate(bean);
 		}
 		return bean;
@@ -80,12 +68,11 @@ public class BeanValidationPostProcessor implements BeanPostProcessor, Initializ
 
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-		if (this.afterInitialization) {
+		if (afterInitialization) {
 			doValidate(bean);
 		}
 		return bean;
 	}
-
 
 	/**
 	 * Perform validation of the given bean.
@@ -93,13 +80,10 @@ public class BeanValidationPostProcessor implements BeanPostProcessor, Initializ
 	 * @see javax.validation.Validator#validate
 	 */
 	protected void doValidate(Object bean) {
-		Assert.state(this.validator != null, "No Validator set");
+		Assert.state(validator != null, "No Validator set");
 		Object objectToValidate = AopProxyUtils.getSingletonTarget(bean);
-		if (objectToValidate == null) {
-			objectToValidate = bean;
-		}
-		Set<ConstraintViolation<Object>> result = this.validator.validate(objectToValidate);
-
+		if (objectToValidate == null) objectToValidate = bean;
+		Set<ConstraintViolation<Object>> result = validator.validate(objectToValidate);
 		if (!result.isEmpty()) {
 			StringBuilder sb = new StringBuilder("Bean state is invalid: ");
 			for (Iterator<ConstraintViolation<Object>> it = result.iterator(); it.hasNext();) {
@@ -112,5 +96,4 @@ public class BeanValidationPostProcessor implements BeanPostProcessor, Initializ
 			throw new BeanInitializationException(sb.toString());
 		}
 	}
-
 }
