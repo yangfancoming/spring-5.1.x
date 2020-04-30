@@ -97,9 +97,6 @@ import org.springframework.context.NoSuchMessageException;
  * </tr>
  * </tbody>
  * </table>
- *
- * @author Jean-Pierre Pawlak
-
  * @see org.springframework.ui.context.Theme
  * @see org.springframework.ui.context.ThemeSource
  * @see #setCode

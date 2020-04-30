@@ -23,10 +23,7 @@ import org.springframework.web.servlet.view.json.AbstractJackson2View;
  * {@link #setModelKey(String) sourceKey} property.
  *
  * The default constructor uses the default configuration provided by {@link Jackson2ObjectMapperBuilder}.
- *
  * Compatible with Jackson 2.6 and higher, as of Spring 4.3.
- *
- * @author Sebastien Deleuze
  * @since 4.1
  * @see org.springframework.web.servlet.view.json.MappingJackson2JsonView
  */
@@ -37,10 +34,8 @@ public class MappingJackson2XmlView extends AbstractJackson2View {
 	 */
 	public static final String DEFAULT_CONTENT_TYPE = "application/xml";
 
-
 	@Nullable
 	private String modelKey;
-
 
 	/**
 	 * Construct a new {@code MappingJackson2XmlView} using default configuration
@@ -60,7 +55,6 @@ public class MappingJackson2XmlView extends AbstractJackson2View {
 		super(xmlMapper, DEFAULT_CONTENT_TYPE);
 	}
 
-
 	@Override
 	public void setModelKey(String modelKey) {
 		this.modelKey = modelKey;
@@ -72,11 +66,9 @@ public class MappingJackson2XmlView extends AbstractJackson2View {
 		if (this.modelKey != null) {
 			value = model.get(this.modelKey);
 			if (value == null) {
-				throw new IllegalStateException(
-						"Model contains no object with key [" + this.modelKey + "]");
+				throw new IllegalStateException("Model contains no object with key [" + this.modelKey + "]");
 			}
-		}
-		else {
+		}else {
 			for (Map.Entry<String, Object> entry : model.entrySet()) {
 				if (!(entry.getValue() instanceof BindingResult) && !entry.getKey().equals(JsonView.class.getName())) {
 					if (value != null) {

@@ -12,11 +12,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 /**
  * {@link org.springframework.web.servlet.ViewResolver} implementation that
- * resolves instances of {@link XsltView} by translating the supplied view name
- * into the URL of the XSLT stylesheet.
- *
- * @author Rob Harrop
-
+ * resolves instances of {@link XsltView} by translating the supplied view name into the URL of the XSLT stylesheet.
  * @since 2.0
  */
 public class XsltViewResolver extends UrlBasedViewResolver {
@@ -37,7 +33,6 @@ public class XsltViewResolver extends UrlBasedViewResolver {
 
 	private boolean cacheTemplates = true;
 
-
 	public XsltViewResolver() {
 		setViewClass(requiredViewClass());
 	}
@@ -53,8 +48,7 @@ public class XsltViewResolver extends UrlBasedViewResolver {
 	 * If not specified, the model map will be searched for a matching value type.
 	 * The following source types are supported out of the box:
 	 * {@link javax.xml.transform.Source}, {@link org.w3c.dom.Document},
-	 * {@link org.w3c.dom.Node}, {@link java.io.Reader}, {@link java.io.InputStream}
-	 * and {@link org.springframework.core.io.Resource}.
+	 * {@link org.w3c.dom.Node}, {@link java.io.Reader}, {@link java.io.InputStream} and {@link org.springframework.core.io.Resource}.
 	 */
 	public void setSourceKey(String sourceKey) {
 		this.sourceKey = sourceKey;

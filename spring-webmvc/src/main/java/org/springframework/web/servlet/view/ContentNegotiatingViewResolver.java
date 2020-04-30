@@ -63,16 +63,12 @@ import org.springframework.web.servlet.ViewResolver;
  * that has the {@code text/html} content type (based on the {@code html} file extension). A request
  * for {@code /view} with a {@code text/html} request {@code Accept} header has the same result.
  *
- * @author Arjen Poutsma
-
- *
  * @since 3.0
  * @see ViewResolver
  * @see InternalResourceViewResolver
  * @see BeanNameViewResolver
  */
-public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
-		implements ViewResolver, Ordered, InitializingBean {
+public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport implements ViewResolver, Ordered, InitializingBean {
 
 	@Nullable
 	private ContentNegotiationManager contentNegotiationManager;
@@ -88,7 +84,6 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 	private List<ViewResolver> viewResolvers;
 
 	private int order = Ordered.HIGHEST_PRECEDENCE;
-
 
 	/**
 	 * Set the {@link ContentNegotiationManager} to use to determine requested media types.
@@ -151,8 +146,7 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 	}
 
 	public List<ViewResolver> getViewResolvers() {
-		return (this.viewResolvers != null ? Collections.unmodifiableList(this.viewResolvers) :
-				Collections.emptyList());
+		return (this.viewResolvers != null ? Collections.unmodifiableList(this.viewResolvers) : Collections.emptyList());
 	}
 
 	public void setOrder(int order) {
@@ -164,11 +158,9 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 		return this.order;
 	}
 
-
 	@Override
 	protected void initServletContext(ServletContext servletContext) {
-		Collection<ViewResolver> matchingBeans =
-				BeanFactoryUtils.beansOfTypeIncludingAncestors(obtainApplicationContext(), ViewResolver.class).values();
+		Collection<ViewResolver> matchingBeans = BeanFactoryUtils.beansOfTypeIncludingAncestors(obtainApplicationContext(), ViewResolver.class).values();
 		if (this.viewResolvers == null) {
 			this.viewResolvers = new ArrayList<>(matchingBeans.size());
 			for (ViewResolver viewResolver : matchingBeans) {
@@ -176,8 +168,7 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 					this.viewResolvers.add(viewResolver);
 				}
 			}
-		}
-		else {
+		}else {
 			for (int i = 0; i < this.viewResolvers.size(); i++) {
 				ViewResolver vr = this.viewResolvers.get(i);
 				if (matchingBeans.contains(vr)) {
@@ -186,7 +177,6 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 				String name = vr.getClass().getName() + i;
 				obtainApplicationContext().getAutowireCapableBeanFactory().initializeBean(vr, name);
 			}
-
 		}
 		AnnotationAwareOrderComparator.sort(this.viewResolvers);
 		this.cnmFactoryBean.setServletContext(servletContext);
@@ -202,7 +192,6 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 		}
 	}
 
-
 	@Override
 	@Nullable
 	public View resolveViewName(String viewName, Locale locale) throws Exception {
@@ -216,17 +205,12 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 				return bestView;
 			}
 		}
-
-		String mediaTypeInfo = logger.isDebugEnabled() && requestedMediaTypes != null ?
-				" given " + requestedMediaTypes.toString() : "";
+		String mediaTypeInfo = logger.isDebugEnabled() && requestedMediaTypes != null ? " given " + requestedMediaTypes.toString() : "";
 
 		if (this.useNotAcceptableStatusCode) {
-			if (logger.isDebugEnabled()) {
-				logger.debug("Using 406 NOT_ACCEPTABLE" + mediaTypeInfo);
-			}
+			if (logger.isDebugEnabled()) logger.debug("Using 406 NOT_ACCEPTABLE" + mediaTypeInfo);
 			return NOT_ACCEPTABLE_VIEW;
-		}
-		else {
+		}else {
 			logger.debug("View remains unresolved" + mediaTypeInfo);
 			return null;
 		}
@@ -255,39 +239,31 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 			List<MediaType> selectedMediaTypes = new ArrayList<>(compatibleMediaTypes);
 			MediaType.sortBySpecificityAndQuality(selectedMediaTypes);
 			return selectedMediaTypes;
-		}
-		catch (HttpMediaTypeNotAcceptableException ex) {
-			if (logger.isDebugEnabled()) {
-				logger.debug(ex.getMessage());
-			}
+		}catch (HttpMediaTypeNotAcceptableException ex) {
+			if (logger.isDebugEnabled()) logger.debug(ex.getMessage());
 			return null;
 		}
 	}
 
 	@SuppressWarnings("unchecked")
 	private List<MediaType> getProducibleMediaTypes(HttpServletRequest request) {
-		Set<MediaType> mediaTypes = (Set<MediaType>)
-				request.getAttribute(HandlerMapping.PRODUCIBLE_MEDIA_TYPES_ATTRIBUTE);
+		Set<MediaType> mediaTypes = (Set<MediaType>) request.getAttribute(HandlerMapping.PRODUCIBLE_MEDIA_TYPES_ATTRIBUTE);
 		if (!CollectionUtils.isEmpty(mediaTypes)) {
 			return new ArrayList<>(mediaTypes);
-		}
-		else {
+		}else {
 			return Collections.singletonList(MediaType.ALL);
 		}
 	}
 
 	/**
-	 * Return the more specific of the acceptable and the producible media types
-	 * with the q-value of the former.
+	 * Return the more specific of the acceptable and the producible media types with the q-value of the former.
 	 */
 	private MediaType getMostSpecificMediaType(MediaType acceptType, MediaType produceType) {
 		produceType = produceType.copyQualityValue(acceptType);
 		return (MediaType.SPECIFICITY_COMPARATOR.compare(acceptType, produceType) < 0 ? acceptType : produceType);
 	}
 
-	private List<View> getCandidateViews(String viewName, Locale locale, List<MediaType> requestedMediaTypes)
-			throws Exception {
-
+	private List<View> getCandidateViews(String viewName, Locale locale, List<MediaType> requestedMediaTypes) throws Exception {
 		List<View> candidateViews = new ArrayList<>();
 		if (this.viewResolvers != null) {
 			Assert.state(this.contentNegotiationManager != null, "No ContentNegotiationManager set");
@@ -329,9 +305,7 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 				if (StringUtils.hasText(candidateView.getContentType())) {
 					MediaType candidateContentType = MediaType.parseMediaType(candidateView.getContentType());
 					if (mediaType.isCompatibleWith(candidateContentType)) {
-						if (logger.isDebugEnabled()) {
-							logger.debug("Selected '" + mediaType + "' given " + requestedMediaTypes);
-						}
+						if (logger.isDebugEnabled()) logger.debug("Selected '" + mediaType + "' given " + requestedMediaTypes);
 						attrs.setAttribute(View.SELECTED_CONTENT_TYPE, mediaType, RequestAttributes.SCOPE_REQUEST);
 						return candidateView;
 					}
@@ -341,9 +315,7 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 		return null;
 	}
 
-
 	private static final View NOT_ACCEPTABLE_VIEW = new View() {
-
 		@Override
 		@Nullable
 		public String getContentType() {

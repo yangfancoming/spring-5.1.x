@@ -23,22 +23,17 @@ import org.springframework.web.util.UrlPathHelper;
 
 /**
  * A base class for {@link FlashMapManager} implementations.
- *
- *
-
  * @since 3.1.1
  */
 public abstract class AbstractFlashMapManager implements FlashMapManager {
 
 	private static final Object DEFAULT_FLASH_MAPS_MUTEX = new Object();
 
-
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	private int flashMapTimeout = 180;
 
 	private UrlPathHelper urlPathHelper = new UrlPathHelper();
-
 
 	/**
 	 * Set the amount of time in seconds after a {@link FlashMap} is saved
@@ -96,13 +91,11 @@ public abstract class AbstractFlashMapManager implements FlashMapManager {
 						updateFlashMaps(allFlashMaps, request, response);
 					}
 				}
-			}
-			else {
+			}else {
 				allFlashMaps.removeAll(mapsToRemove);
 				updateFlashMaps(allFlashMaps, request, response);
 			}
 		}
-
 		return match;
 	}
 

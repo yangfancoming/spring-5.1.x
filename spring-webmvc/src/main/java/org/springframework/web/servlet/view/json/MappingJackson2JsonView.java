@@ -22,20 +22,11 @@ import org.springframework.web.servlet.View;
 /**
  * Spring MVC {@link View} that renders JSON content by serializing the model for the current request
  * using <a href="https://github.com/FasterXML/jackson">Jackson 2's</a> {@link ObjectMapper}.
- *
  * By default, the entire contents of the model map (with the exception of framework-specific classes)
  * will be encoded as JSON. If the model contains only one key, you can have it extracted encoded as JSON
  * alone via  {@link #setExtractValueFromSingleKeyModel}.
- *
  * The default constructor uses the default configuration provided by {@link Jackson2ObjectMapperBuilder}.
- *
  * Compatible with Jackson 2.6 and higher, as of Spring 4.3.
- *
- * @author Jeremy Grelle
- * @author Arjen Poutsma
- *
-
- * @author Sebastien Deleuze
  * @since 3.1.2
  */
 public class MappingJackson2JsonView extends AbstractJackson2View {
@@ -54,11 +45,9 @@ public class MappingJackson2JsonView extends AbstractJackson2View {
 
 	private boolean extractValueFromSingleKeyModel = false;
 
-
 	/**
 	 * Construct a new {@code MappingJackson2JsonView} using default configuration
-	 * provided by {@link Jackson2ObjectMapperBuilder} and setting the content type
-	 * to {@code application/json}.
+	 * provided by {@link Jackson2ObjectMapperBuilder} and setting the content type to {@code application/json}.
 	 */
 	public MappingJackson2JsonView() {
 		super(Jackson2ObjectMapperBuilder.json().build(), DEFAULT_CONTENT_TYPE);
@@ -95,9 +84,6 @@ public class MappingJackson2JsonView extends AbstractJackson2View {
 		this.jsonPrefix = (prefixJson ? ")]}', " : null);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void setModelKey(String modelKey) {
 		this.modelKeys = Collections.singleton(modelKey);
@@ -123,8 +109,7 @@ public class MappingJackson2JsonView extends AbstractJackson2View {
 	 * Set whether to serialize models containing a single attribute as a map or
 	 * whether to extract the single value from the model and serialize it directly.
 	 * The effect of setting this flag is similar to using
-	 * {@code MappingJackson2HttpMessageConverter} with an {@code @ResponseBody}
-	 * request-handling method.
+	 * {@code MappingJackson2HttpMessageConverter} with an {@code @ResponseBody} request-handling method.
 	 * Default is {@code false}.
 	 */
 	public void setExtractValueFromSingleKeyModel(boolean extractValueFromSingleKeyModel) {
@@ -144,9 +129,7 @@ public class MappingJackson2JsonView extends AbstractJackson2View {
 		Map<String, Object> result = new HashMap<>(model.size());
 		Set<String> modelKeys = (!CollectionUtils.isEmpty(this.modelKeys) ? this.modelKeys : model.keySet());
 		model.forEach((clazz, value) -> {
-			if (!(value instanceof BindingResult) && modelKeys.contains(clazz) &&
-					!clazz.equals(JsonView.class.getName()) &&
-					!clazz.equals(FilterProvider.class.getName())) {
+			if (!(value instanceof BindingResult) && modelKeys.contains(clazz) && !clazz.equals(JsonView.class.getName()) && !clazz.equals(FilterProvider.class.getName())) {
 				result.put(clazz, value);
 			}
 		});

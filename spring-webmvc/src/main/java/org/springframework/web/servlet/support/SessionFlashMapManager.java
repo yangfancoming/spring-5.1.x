@@ -13,15 +13,11 @@ import org.springframework.web.util.WebUtils;
 
 /**
  * Store and retrieve {@link FlashMap} instances to and from the HTTP session.
- *
- *
-
  * @since 3.1.1
  */
 public class SessionFlashMapManager extends AbstractFlashMapManager {
 
 	private static final String FLASH_MAPS_SESSION_ATTRIBUTE = SessionFlashMapManager.class.getName() + ".FLASH_MAPS";
-
 
 	/**
 	 * Retrieves saved FlashMap instances from the HTTP session, if any.

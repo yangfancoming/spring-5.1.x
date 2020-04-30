@@ -56,7 +56,6 @@ import org.springframework.web.servlet.View;
  * determine the existence of the target resource upfront. In such a scenario,
  * a UrlBasedViewResolver will always return View for any given view name;
  * as a consequence, it should be configured as the last ViewResolver in the chain.
- * @author Rob Harrop
  * @since 13.12.2003
  * @see #setViewClass
  * @see #setPrefix
@@ -84,7 +83,6 @@ public class UrlBasedViewResolver extends AbstractCachingViewResolver implements
 	 * way but rather be treated as special shortcut.
 	 */
 	public static final String FORWARD_URL_PREFIX = "forward:";
-
 
 	@Nullable
 	private Class<?> viewClass;

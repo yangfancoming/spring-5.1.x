@@ -21,18 +21,13 @@ import org.springframework.web.servlet.ViewResolver;
 
 /**
  * A {@link org.springframework.web.servlet.ViewResolver} that delegates to others.
- *
- * @author Sebastien Deleuze
- *
  * @since 4.1
  */
-public class ViewResolverComposite implements ViewResolver, Ordered, InitializingBean,
-		ApplicationContextAware, ServletContextAware {
+public class ViewResolverComposite implements ViewResolver, Ordered, InitializingBean,ApplicationContextAware, ServletContextAware {
 
 	private final List<ViewResolver> viewResolvers = new ArrayList<>();
 
 	private int order = Ordered.LOWEST_PRECEDENCE;
-
 
 	/**
 	 * Set the list of view viewResolvers to delegate to.
@@ -98,5 +93,4 @@ public class ViewResolverComposite implements ViewResolver, Ordered, Initializin
 		}
 		return null;
 	}
-
 }

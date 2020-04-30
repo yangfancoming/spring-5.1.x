@@ -20,13 +20,10 @@ import org.springframework.web.context.support.GenericWebApplicationContext;
 import org.springframework.web.servlet.View;
 
 /**
- * A {@link org.springframework.web.servlet.ViewResolver} implementation that uses  bean definitions in a dedicated XML file for view definitions,
- * specified by  resource location.
+ * A {@link org.springframework.web.servlet.ViewResolver} implementation that uses  bean definitions in a dedicated XML file for view definitions,specified by  resource location.
  * The file will typically be located in the WEB-INF directory; the default is "/WEB-INF/views.xml".
- *
  * This {@code ViewResolver} does not support internationalization at the level of its definition resources.
  * Consider {@link ResourceBundleViewResolver} if you  need to apply different view resources per locale.
- *
  * Note: This {@code ViewResolver} implements the {@link Ordered} interface in order to allow for flexible participation in {@code ViewResolver} chaining.
  * For example, some special views could be defined via this {@code ViewResolver}
  * (giving it 0 as "order" value), while all remaining views could be resolved by a {@link UrlBasedViewResolver}.

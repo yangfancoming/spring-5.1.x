@@ -23,16 +23,8 @@ import org.springframework.util.Assert;
 import org.springframework.web.servlet.view.AbstractView;
 
 /**
- * Abstract base class for Jackson based and content type independent
- * {@link AbstractView} implementations.
- *
+ * Abstract base class for Jackson based and content type independent {@link AbstractView} implementations.
  * Compatible with Jackson 2.6 and higher, as of Spring 4.3.
- *
- * @author Jeremy Grelle
- * @author Arjen Poutsma
- *
-
- * @author Sebastien Deleuze
  * @since 4.1
  */
 public abstract class AbstractJackson2View extends AbstractView {
@@ -47,7 +39,6 @@ public abstract class AbstractJackson2View extends AbstractView {
 	private boolean disableCaching = true;
 
 	protected boolean updateContentLength = false;
-
 
 	protected AbstractJackson2View(ObjectMapper objectMapper, String contentType) {
 		this.objectMapper = objectMapper;
@@ -139,23 +130,18 @@ public abstract class AbstractJackson2View extends AbstractView {
 	}
 
 	@Override
-	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-
+	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,HttpServletResponse response) throws Exception {
 		ByteArrayOutputStream temporaryStream = null;
 		OutputStream stream;
 
 		if (this.updateContentLength) {
 			temporaryStream = createTemporaryOutputStream();
 			stream = temporaryStream;
-		}
-		else {
+		}else {
 			stream = response.getOutputStream();
 		}
-
 		Object value = filterAndWrapModel(model, request);
 		writeContent(stream, value);
-
 		if (temporaryStream != null) {
 			writeToResponse(response, temporaryStream);
 		}
@@ -193,29 +179,23 @@ public abstract class AbstractJackson2View extends AbstractView {
 	protected void writeContent(OutputStream stream, Object object) throws IOException {
 		JsonGenerator generator = this.objectMapper.getFactory().createGenerator(stream, this.encoding);
 		writePrefix(generator, object);
-
 		Object value = object;
 		Class<?> serializationView = null;
 		FilterProvider filters = null;
-
 		if (value instanceof MappingJacksonValue) {
 			MappingJacksonValue container = (MappingJacksonValue) value;
 			value = container.getValue();
 			serializationView = container.getSerializationView();
 			filters = container.getFilters();
 		}
-
-		ObjectWriter objectWriter = (serializationView != null ?
-				this.objectMapper.writerWithView(serializationView) : this.objectMapper.writer());
+		ObjectWriter objectWriter = (serializationView != null ? this.objectMapper.writerWithView(serializationView) : this.objectMapper.writer());
 		if (filters != null) {
 			objectWriter = objectWriter.with(filters);
 		}
 		objectWriter.writeValue(generator, value);
-
 		writeSuffix(generator, object);
 		generator.flush();
 	}
-
 
 	/**
 	 * Set the attribute in the model that should be rendered by this view.

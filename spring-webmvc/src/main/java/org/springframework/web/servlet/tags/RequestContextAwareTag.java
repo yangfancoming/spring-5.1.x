@@ -27,8 +27,6 @@ import org.springframework.web.servlet.support.RequestContext;
  * Mainly intended for
  * {@link org.springframework.web.servlet.DispatcherServlet} requests;
  * will use fallbacks when used outside {@code DispatcherServlet}.
- *
- * @author Rod Johnson
 
  * @see org.springframework.web.servlet.support.RequestContext
  * @see org.springframework.web.servlet.DispatcherServlet
@@ -37,20 +35,15 @@ import org.springframework.web.servlet.support.RequestContext;
 public abstract class RequestContextAwareTag extends TagSupport implements TryCatchFinally {
 
 	/**
-	 * {@link javax.servlet.jsp.PageContext} attribute for the
-	 * page-level {@link RequestContext} instance.
+	 * {@link javax.servlet.jsp.PageContext} attribute for the page-level {@link RequestContext} instance.
 	 */
-	public static final String REQUEST_CONTEXT_PAGE_ATTRIBUTE =
-			"org.springframework.web.servlet.tags.REQUEST_CONTEXT";
-
+	public static final String REQUEST_CONTEXT_PAGE_ATTRIBUTE = "org.springframework.web.servlet.tags.REQUEST_CONTEXT";
 
 	/** Logger available to subclasses. */
 	protected final Log logger = LogFactory.getLog(getClass());
 
-
 	@Nullable
 	private RequestContext requestContext;
-
 
 	/**
 	 * Create and expose the current RequestContext.
@@ -67,12 +60,10 @@ public abstract class RequestContextAwareTag extends TagSupport implements TryCa
 				this.pageContext.setAttribute(REQUEST_CONTEXT_PAGE_ATTRIBUTE, this.requestContext);
 			}
 			return doStartTagInternal();
-		}
-		catch (JspException | RuntimeException ex) {
+		}catch (JspException | RuntimeException ex) {
 			logger.error(ex.getMessage(), ex);
 			throw ex;
-		}
-		catch (Exception ex) {
+		}catch (Exception ex) {
 			logger.error(ex.getMessage(), ex);
 			throw new JspTagException(ex.getMessage());
 		}
@@ -89,12 +80,10 @@ public abstract class RequestContextAwareTag extends TagSupport implements TryCa
 	/**
 	 * Called by doStartTag to perform the actual work.
 	 * @return same as TagSupport.doStartTag
-	 * @throws Exception any exception, any checked one other than
-	 * a JspException gets wrapped in a JspException by doStartTag
+	 * @throws Exception any exception, any checked one other than  a JspException gets wrapped in a JspException by doStartTag
 	 * @see javax.servlet.jsp.tagext.TagSupport#doStartTag
 	 */
 	protected abstract int doStartTagInternal() throws Exception;
-
 
 	@Override
 	public void doCatch(Throwable throwable) throws Throwable {
@@ -105,5 +94,4 @@ public abstract class RequestContextAwareTag extends TagSupport implements TryCa
 	public void doFinally() {
 		this.requestContext = null;
 	}
-
 }

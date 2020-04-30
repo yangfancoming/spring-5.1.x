@@ -7,9 +7,6 @@ import org.springframework.web.servlet.ThemeResolver;
 /**
  * Abstract base class for {@link ThemeResolver} implementations.
  * Provides support for a default theme name.
- *
-
- * @author Jean-Pierre Pawlak
  * @since 17.06.2003
  */
 public abstract class AbstractThemeResolver implements ThemeResolver {
@@ -20,7 +17,6 @@ public abstract class AbstractThemeResolver implements ThemeResolver {
 	public static final String ORIGINAL_DEFAULT_THEME_NAME = "theme";
 
 	private String defaultThemeName = ORIGINAL_DEFAULT_THEME_NAME;
-
 
 	/**
 	 * Set the name of the default theme.

@@ -36,8 +36,7 @@ import org.springframework.web.util.WebUtils;
  * &lt;/bean&gt;</pre>
  *
  * Every view name returned from a handler will be translated to a JSP
- * resource (for example: "myView" -> "/WEB-INF/jsp/myView.jsp"), using
- * this view class by default.
+ * resource (for example: "myView" -> "/WEB-INF/jsp/myView.jsp"), using this view class by default.
 
  * @see javax.servlet.RequestDispatcher#forward
  * @see javax.servlet.RequestDispatcher#include
@@ -92,11 +91,9 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Set whether to explicitly prevent dispatching back to the
-	 * current handler path.
+	 * Set whether to explicitly prevent dispatching back to the current handler path.
 	 * Default is "false". Switch this to "true" for convention-based
-	 * views where a dispatch back to the current handler path is a
-	 * definitive error.
+	 * views where a dispatch back to the current handler path is a definitive error.
 	 */
 	public void setPreventDispatchLoop(boolean preventDispatchLoop) {
 		this.preventDispatchLoop = preventDispatchLoop;
@@ -110,24 +107,19 @@ public class InternalResourceView extends AbstractUrlBasedView {
 		return false;
 	}
 
-
 	/**
 	 * Render the internal resource given the specified model.
 	 * This includes setting the model as request attributes.
 	 */
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
-
 		// Expose the model object as request attributes.
 		// 这里主要是对model进行遍历，将其key和value设置到request中，当做request的一个属性供给页面调用
 		exposeModelAsRequestAttributes(model, request);
-
 		// Expose helpers as request attributes, if any.// 提供的一个hook方法，默认是空实现，用于用户进行request属性的自定义使用
 		exposeHelpers(request);
-
 		// Determine the path for the request dispatcher. // 检查当前是否存在循环类型的视图名称解析，主要是根据相对路径进行判断视图名是无法解析的
 		String dispatcherPath = prepareForRendering(request, response);
-
 		// 获取当前request的RequestDispatcher对象，该对象有两个方法：include()和forward()，
 		// 用于对当前的request进行转发，其实也就是将当前的request转发到另一个url，这里的另一个
 		// url就是要解析的视图地址，也就是说进行视图解析的时候请求的对于文件的解析实际上相当于
@@ -144,17 +136,11 @@ public class InternalResourceView extends AbstractUrlBasedView {
 		// If already included or response already committed, perform include, else forward.
 		if (useInclude(request, response)) {
 			response.setContentType(getContentType());
-			if (logger.isDebugEnabled()) {
-				logger.debug("Including [" + getUrl() + "]");
-			}
+			if (logger.isDebugEnabled()) logger.debug("Including [" + getUrl() + "]");
 			rd.include(request, response);
-		}
-
-		else {
+		}else {
 			// Note: The forwarded resource is supposed to determine the content type itself.
-			if (logger.isDebugEnabled()) {
-				logger.debug("Forwarding to [" + getUrl() + "]");
-			}
+			if (logger.isDebugEnabled()) logger.debug("Forwarding to [" + getUrl() + "]");
 			// 如果当前不是include()请求，则直接使用forward请求将当前请求转发到目标文件路径中，从而渲染该视图
 			rd.forward(request, response);
 		}
@@ -164,8 +150,7 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	 * Expose helpers unique to each rendering operation. This is necessary so that
 	 * different rendering operations can't overwrite each other's contexts etc.
 	 * Called by {@link #renderMergedOutputModel(Map, HttpServletRequest, HttpServletResponse)}.
-	 * The default implementation is empty. This method can be overridden to add
-	 * custom helpers as request attributes.
+	 * The default implementation is empty. This method can be overridden to add custom helpers as request attributes.
 	 * @param request current HTTP request
 	 * @throws Exception if there's a fatal error while we're adding attributes
 	 * @see #renderMergedOutputModel
@@ -194,8 +179,7 @@ public class InternalResourceView extends AbstractUrlBasedView {
 			String uri = request.getRequestURI();
 			if (path.startsWith("/") ? uri.equals(path) : uri.equals(StringUtils.applyRelativePath(uri, path))) {
 				throw new ServletException("Circular view path [" + path + "]: would dispatch back " +
-						"to the current handler URL [" + uri + "] again. Check your ViewResolver setup! " +
-						"(Hint: This may be the result of an unspecified view, due to default view name generation.)");
+						"to the current handler URL [" + uri + "] again. Check your ViewResolver setup! (Hint: This may be the result of an unspecified view, due to default view name generation.)");
 			}
 		}
 		return path;
@@ -203,9 +187,7 @@ public class InternalResourceView extends AbstractUrlBasedView {
 
 	/**
 	 * Obtain the RequestDispatcher to use for the forward/include.
-	 * The default implementation simply calls
-	 * {@link HttpServletRequest#getRequestDispatcher(String)}.
-	 * Can be overridden in subclasses.
+	 * The default implementation simply calls {@link HttpServletRequest#getRequestDispatcher(String)}. Can be overridden in subclasses.
 	 * @param request current HTTP request
 	 * @param path the target URL (as returned from {@link #prepareForRendering})
 	 * @return a corresponding RequestDispatcher
@@ -216,8 +198,7 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Determine whether to use RequestDispatcher's {@code include} or
-	 * {@code forward} method.
+	 * Determine whether to use RequestDispatcher's {@code include} or {@code forward} method.
 	 * Performs a check whether an include URI attribute is found in the request,
 	 * indicating an include request, and whether the response has already been committed.
 	 * In both cases, an include will be performed, as a forward is not possible anymore.

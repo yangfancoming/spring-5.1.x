@@ -63,9 +63,6 @@ import org.springframework.web.util.TagUtils;
  * </tr>
  * </tbody>
  * </table>
- *
- * @author Alef Arendsen
-
  * @since 20.09.2003
  * @see BindTag
  */
@@ -83,21 +80,17 @@ public class TransformTag extends HtmlEscapingAwareTag {
 	/** the scope of the variable the result will be put in. */
 	private String scope = TagUtils.SCOPE_PAGE;
 
-
 	/**
-	 * Set the value to transform, using the appropriate PropertyEditor
-	 * from the enclosing BindTag.
+	 * Set the value to transform, using the appropriate PropertyEditor from the enclosing BindTag.
 	 * The value can either be a plain value to transform (a hard-coded String
-	 * value in a JSP or a JSP expression), or a JSP EL expression to be evaluated
-	 * (transforming the result of the expression).
+	 * value in a JSP or a JSP expression), or a JSP EL expression to be evaluated (transforming the result of the expression).
 	 */
 	public void setValue(Object value) {
 		this.value = value;
 	}
 
 	/**
-	 * Set PageContext attribute name under which to expose
-	 * a variable that contains the result of the transformation.
+	 * Set PageContext attribute name under which to expose  a variable that contains the result of the transformation.
 	 * @see #setScope
 	 * @see javax.servlet.jsp.PageContext#setAttribute
 	 */
@@ -116,16 +109,12 @@ public class TransformTag extends HtmlEscapingAwareTag {
 		this.scope = scope;
 	}
 
-
 	@Override
 	protected final int doStartTagInternal() throws JspException {
 		if (this.value != null) {
 			// Find the containing EditorAwareTag (e.g. BindTag), if applicable.
 			EditorAwareTag tag = (EditorAwareTag) TagSupport.findAncestorWithClass(this, EditorAwareTag.class);
-			if (tag == null) {
-				throw new JspException("TransformTag can only be used within EditorAwareTag (e.g. BindTag)");
-			}
-
+			if (tag == null) throw new JspException("TransformTag can only be used within EditorAwareTag (e.g. BindTag)");
 			// OK, let's obtain the editor...
 			String result = null;
 			PropertyEditor editor = tag.getEditor();
@@ -133,26 +122,22 @@ public class TransformTag extends HtmlEscapingAwareTag {
 				// If an editor was found, edit the value.
 				editor.setValue(this.value);
 				result = editor.getAsText();
-			}
-			else {
+			}else {
 				// Else, just do a toString.
 				result = this.value.toString();
 			}
 			result = htmlEscape(result);
 			if (this.var != null) {
 				this.pageContext.setAttribute(this.var, result, TagUtils.getScope(this.scope));
-			}
-			else {
+			}else {
 				try {
 					// Else, just print it out.
 					this.pageContext.getOut().print(result);
-				}
-				catch (IOException ex) {
+				}catch (IOException ex) {
 					throw new JspException(ex);
 				}
 			}
 		}
-
 		return SKIP_BODY;
 	}
 

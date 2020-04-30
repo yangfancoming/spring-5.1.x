@@ -29,19 +29,12 @@ import org.springframework.web.servlet.support.RequestContext;
 
 /**
  * Abstract base class for {@link org.springframework.web.servlet.View}
- * implementations. Subclasses should be JavaBeans, to allow for
- * convenient configuration as Spring-managed bean instances.
- *
+ * implementations. Subclasses should be JavaBeans, to allow for convenient configuration as Spring-managed bean instances.
  * Provides support for static attributes, to be made available to the view,
  * with a variety of ways to specify them. Static attributes will be merged
- * with the given dynamic attributes (the model that the controller returned)
- * for each render operation.
- *
+ * with the given dynamic attributes (the model that the controller returned) for each render operation.
  * Extends {@link WebApplicationObjectSupport}, which will be helpful to
  * some views. Subclasses just need to implement the actual rendering.
- *
- * @author Rod Johnson
-
  * @see #setAttributes
  * @see #setAttributesMap
  * @see #renderMergedOutputModel
@@ -53,7 +46,6 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 
 	/** Initial size for the temporary output byte array (if any). */
 	private static final int OUTPUT_BYTE_ARRAY_INITIAL_SIZE = 4096;
-
 
 	@Nullable
 	private String contentType = DEFAULT_CONTENT_TYPE;
@@ -74,12 +66,10 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	private String beanName;
 
 
-
 	/**
 	 * Set the content type for this view.
 	 * Default is "text/html;charset=ISO-8859-1".
-	 * May be ignored by subclasses if the view itself is assumed
-	 * to set the content type, e.g. in case of JSPs.
+	 * May be ignored by subclasses if the view itself is assumed  to set the content type, e.g. in case of JSPs.
 	 */
 	public void setContentType(@Nullable String contentType) {
 		this.contentType = contentType;
@@ -114,8 +104,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	 * Set static attributes as a CSV string.
 	 * Format is: attname0={value1},attname1={value1}
 	 * "Static" attributes are fixed attributes that are specified in
-	 * the View instance configuration. "Dynamic" attributes, on the other hand,
-	 * are values passed in as part of the model.
+	 * the View instance configuration. "Dynamic" attributes, on the other hand,are values passed in as part of the model.
 	 */
 	public void setAttributesCSV(@Nullable String propString) throws IllegalArgumentException {
 		if (propString != null) {
@@ -124,36 +113,28 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 				String tok = st.nextToken();
 				int eqIdx = tok.indexOf('=');
 				if (eqIdx == -1) {
-					throw new IllegalArgumentException(
-							"Expected '=' in attributes CSV string '" + propString + "'");
+					throw new IllegalArgumentException("Expected '=' in attributes CSV string '" + propString + "'");
 				}
 				if (eqIdx >= tok.length() - 2) {
-					throw new IllegalArgumentException(
-							"At least 2 characters ([]) required in attributes CSV string '" + propString + "'");
+					throw new IllegalArgumentException("At least 2 characters ([]) required in attributes CSV string '" + propString + "'");
 				}
 				String name = tok.substring(0, eqIdx);
 				String value = tok.substring(eqIdx + 1);
-
 				// Delete first and last characters of value: { and }
 				value = value.substring(1);
 				value = value.substring(0, value.length() - 1);
-
 				addStaticAttribute(name, value);
 			}
 		}
 	}
 
 	/**
-	 * Set static attributes for this view from a
-	 * {@code java.util.Properties} object.
+	 * Set static attributes for this view from a {@code java.util.Properties} object.
 	 * "Static" attributes are fixed attributes that are specified in
-	 * the View instance configuration. "Dynamic" attributes, on the other hand,
-	 * are values passed in as part of the model.
+	 * the View instance configuration. "Dynamic" attributes, on the other hand,are values passed in as part of the model.
 	 * This is the most convenient way to set static attributes. Note that
-	 * static attributes can be overridden by dynamic attributes, if a value
-	 * with the same name is included in the model.
-	 * Can be populated with a String "value" (parsed via PropertiesEditor)
-	 * or a "props" element in XML bean definitions.
+	 * static attributes can be overridden by dynamic attributes, if a value  with the same name is included in the model.
+	 * Can be populated with a String "value" (parsed via PropertiesEditor) or a "props" element in XML bean definitions.
 	 * @see org.springframework.beans.propertyeditors.PropertiesEditor
 	 */
 	public void setAttributes(Properties attributes) {
@@ -161,11 +142,9 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	}
 
 	/**
-	 * Set static attributes for this view from a Map. This allows to set
-	 * any kind of attribute values, for example bean references.
-	 * "Static" attributes are fixed attributes that are specified in
-	 * the View instance configuration. "Dynamic" attributes, on the other hand,
-	 * are values passed in as part of the model.
+	 * Set static attributes for this view from a Map. This allows to set any kind of attribute values, for example bean references.
+	 * "Static" attributes are fixed attributes that are specified in the View instance configuration.
+	 * "Dynamic" attributes, on the other hand,are values passed in as part of the model.
 	 * Can be populated with a "map" or "props" element in XML bean definitions.
 	 * @param attributes a Map with name Strings as keys and attribute objects as values
 	 */
@@ -176,11 +155,9 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	}
 
 	/**
-	 * Allow Map access to the static attributes of this view,
-	 * with the option to add or override specific entries.
-	 * Useful for specifying entries directly, for example via
-	 * "attributesMap[myKey]". This is particularly useful for
-	 * adding or overriding entries in child view definitions.
+	 * Allow Map access to the static attributes of this view,with the option to add or override specific entries.
+	 * Useful for specifying entries directly, for example via "attributesMap[myKey]".
+	 * This is particularly useful for adding or overriding entries in child view definitions.
 	 */
 	public Map<String, Object> getAttributesMap() {
 		return this.staticAttributes;
@@ -188,9 +165,8 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 
 	/**
 	 * Add static data to this view, exposed in each view.
-	 * "Static" attributes are fixed attributes that are specified in
-	 * the View instance configuration. "Dynamic" attributes, on the other hand,
-	 * are values passed in as part of the model.
+	 * "Static" attributes are fixed attributes that are specified in  the View instance configuration.
+	 * "Dynamic" attributes, on the other hand, are values passed in as part of the model.
 	 * Must be invoked before any calls to {@code render}.
 	 * @param name the name of the attribute to expose
 	 * @param value the attribute value to expose
@@ -202,8 +178,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 
 	/**
 	 * Return the static attributes for this view. Handy for testing.
-	 * Returns an unmodifiable Map, as this is not intended for
-	 * manipulating the Map but rather just for checking the contents.
+	 * Returns an unmodifiable Map, as this is not intended for manipulating the Map but rather just for checking the contents.
 	 * @return the static attributes in this view
 	 */
 	public Map<String, Object> getStaticAttributes() {
@@ -271,10 +246,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 		this.beanName = beanName;
 	}
 
-	/**
-	 * Return the view's name. Should never be {@code null},
-	 * if the view was correctly configured.
-	 */
+	// Return the view's name. Should never be {@code null},if the view was correctly configured.
 	@Nullable
 	public String getBeanName() {
 		return this.beanName;
@@ -289,7 +261,6 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	 */
 	@Override
 	public void render(@Nullable Map<String, ?> model, HttpServletRequest request,HttpServletResponse response) throws Exception {
-
 		if (logger.isDebugEnabled()) {
 			logger.debug("View " + formatViewName() + ", model " + (model != null ? model : Collections.emptyMap()) +
 					(this.staticAttributes.isEmpty() ? "" : ", static attributes " + this.staticAttributes));
@@ -308,13 +279,9 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	 * Creates a combined output Map (never {@code null}) that includes dynamic values and static attributes.
 	 * Dynamic values take precedence over static attributes.
 	 */
-	protected Map<String, Object> createMergedOutputModel(@Nullable Map<String, ?> model,
-			HttpServletRequest request, HttpServletResponse response) {
-
+	protected Map<String, Object> createMergedOutputModel(@Nullable Map<String, ?> model,HttpServletRequest request, HttpServletResponse response) {
 		@SuppressWarnings("unchecked")
-		Map<String, Object> pathVars = (this.exposePathVariables ?
-				(Map<String, Object>) request.getAttribute(View.PATH_VARIABLES) : null);
-
+		Map<String, Object> pathVars = (this.exposePathVariables ? (Map<String, Object>) request.getAttribute(View.PATH_VARIABLES) : null);
 		// Consolidate static and dynamic model attributes.
 		int size = this.staticAttributes.size();
 		size += (model != null ? model.size() : 0);
@@ -328,12 +295,10 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 		if (model != null) {
 			mergedModel.putAll(model);
 		}
-
 		// Expose RequestContext?
 		if (this.requestContextAttribute != null) {
 			mergedModel.put(this.requestContextAttribute, createRequestContext(request, response, mergedModel));
 		}
-
 		return mergedModel;
 	}
 
@@ -342,22 +307,18 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	 * The default implementation creates a standard RequestContext instance for the
 	 * given request and model. Can be overridden in subclasses for custom instances.
 	 * @param request current HTTP request
-	 * @param model combined output Map (never {@code null}),
-	 * with dynamic values taking precedence over static attributes
+	 * @param model combined output Map (never {@code null}),with dynamic values taking precedence over static attributes
 	 * @return the RequestContext instance
 	 * @see #setRequestContextAttribute
 	 * @see org.springframework.web.servlet.support.RequestContext
 	 */
-	protected RequestContext createRequestContext(
-			HttpServletRequest request, HttpServletResponse response, Map<String, Object> model) {
-
+	protected RequestContext createRequestContext(HttpServletRequest request, HttpServletResponse response, Map<String, Object> model) {
 		return new RequestContext(request, response, getServletContext(), model);
 	}
 
 	/**
 	 * Prepare the given response for rendering.
-	 * The default implementation applies a workaround for an IE bug
-	 * when sending download content via HTTPS.
+	 * The default implementation applies a workaround for an IE bug when sending download content via HTTPS.
 	 * @param request current HTTP request
 	 * @param response current HTTP response
 	 */
@@ -384,8 +345,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 
 	/**
 	 * Get the request handle to expose to {@link #renderMergedOutputModel}, i.e. to the view.
-	 * The default implementation wraps the original request for exposure of Spring beans
-	 * as request attributes (if demanded).
+	 * The default implementation wraps the original request for exposure of Spring beans as request attributes (if demanded).
 	 * @param originalRequest the original servlet request as provided by the engine
 	 * @return the wrapped request, or the original request if no wrapping is necessary
 	 * @see #setExposeContextBeansAsAttributes
@@ -403,12 +363,9 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 
 	/**
 	 * Subclasses must implement this method to actually render the view.
-	 * The first step will be preparing the request: In the JSP case,
-	 * this would mean setting model objects as request attributes.
-	 * The second step will be the actual rendering of the view,
-	 * for example including the JSP via a RequestDispatcher.
-	 * @param model combined output Map (never {@code null}),
-	 * with dynamic values taking precedence over static attributes
+	 * The first step will be preparing the request: In the JSP case,this would mean setting model objects as request attributes.
+	 * The second step will be the actual rendering of the view, for example including the JSP via a RequestDispatcher.
+	 * @param model combined output Map (never {@code null}),with dynamic values taking precedence over static attributes
 	 * @param request current HTTP request
 	 * @param response current HTTP response
 	 * @throws Exception if rendering failed
@@ -426,8 +383,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 		model.forEach((name, value) -> {
 			if (value != null) {
 				request.setAttribute(name, value);
-			}
-			else {
+			}else {
 				request.removeAttribute(name);
 			}
 		});
@@ -435,8 +391,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 
 	/**
 	 * Create a temporary OutputStream for this view.
-	 * This is typically used as IE workaround, for setting the content length header
-	 * from the temporary stream before actually writing the content to the HTTP response.
+	 * This is typically used as IE workaround, for setting the content length header from the temporary stream before actually writing the content to the HTTP response.
 	 */
 	protected ByteArrayOutputStream createTemporaryOutputStream() {
 		return new ByteArrayOutputStream(OUTPUT_BYTE_ARRAY_INITIAL_SIZE);
@@ -452,7 +407,6 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 		// Write content type and also length (determined via byte array).
 		response.setContentType(getContentType());
 		response.setContentLength(baos.size());
-
 		// Flush byte array to servlet output stream.
 		ServletOutputStream out = response.getOutputStream();
 		baos.writeTo(out);
@@ -462,15 +416,13 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	/**
 	 * Set the content type of the response to the configured
 	 * {@link #setContentType(String) content type} unless the
-	 * {@link View#SELECTED_CONTENT_TYPE} request attribute is present and set
-	 * to a concrete media type.
+	 * {@link View#SELECTED_CONTENT_TYPE} request attribute is present and set to a concrete media type.
 	 */
 	protected void setResponseContentType(HttpServletRequest request, HttpServletResponse response) {
 		MediaType mediaType = (MediaType) request.getAttribute(View.SELECTED_CONTENT_TYPE);
 		if (mediaType != null && mediaType.isConcrete()) {
 			response.setContentType(mediaType.toString());
-		}
-		else {
+		}else {
 			response.setContentType(getContentType());
 		}
 	}

@@ -12,8 +12,6 @@ import org.springframework.lang.Nullable;
  * Interface to be implemented by objects that configure and manage a
  * JSR-223 {@link ScriptEngine} for automatic lookup in a web environment.
  * Detected and used by {@link ScriptTemplateView}.
- *
- * @author Sebastien Deleuze
  * @since 4.2
  */
 public interface ScriptTemplateConfig {

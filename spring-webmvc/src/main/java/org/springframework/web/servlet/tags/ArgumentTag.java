@@ -32,8 +32,6 @@ import org.springframework.lang.Nullable;
  * </tr>
  * </tbody>
  * </table>
- *
- * @author Nicholas Williams
  * @since 4.0
  * @see MessageTag
  * @see ThemeTag
@@ -45,7 +43,6 @@ public class ArgumentTag extends BodyTagSupport {
 	private Object value;
 
 	private boolean valueSet;
-
 
 	/**
 	 * Set the value of the argument (optional).
@@ -63,8 +60,7 @@ public class ArgumentTag extends BodyTagSupport {
 		Object argument = null;
 		if (this.valueSet) {
 			argument = this.value;
-		}
-		else if (getBodyContent() != null) {
+		}else if (getBodyContent() != null) {
 			// Get the value from the tag body
 			argument = getBodyContent().getString().trim();
 		}
@@ -75,7 +71,6 @@ public class ArgumentTag extends BodyTagSupport {
 			throw new JspException("The argument tag must be a descendant of a tag that supports arguments");
 		}
 		argumentAwareTag.addArgument(argument);
-
 		return EVAL_PAGE;
 	}
 

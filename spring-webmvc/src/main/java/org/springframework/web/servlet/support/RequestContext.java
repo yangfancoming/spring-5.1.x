@@ -52,9 +52,6 @@ import org.springframework.web.util.WebUtils;
  *
  * Will also work outside of DispatcherServlet requests, accessing the root WebApplicationContext
  * and using an appropriate fallback for the locale (the HttpServletRequest's primary locale).
- *
-
- *
  * @since 03.03.2003
  * @see org.springframework.web.servlet.DispatcherServlet
  * @see org.springframework.web.servlet.view.AbstractView#setRequestContextAttribute
@@ -218,29 +215,21 @@ public class RequestContext {
 			if (localeContext instanceof TimeZoneAwareLocaleContext) {
 				timeZone = ((TimeZoneAwareLocaleContext) localeContext).getTimeZone();
 			}
-		}
-		else if (localeResolver != null) {
+		}else if (localeResolver != null) {
 			// Try LocaleResolver (we're within a DispatcherServlet request).
 			locale = localeResolver.resolveLocale(request);
 		}
-
 		this.locale = locale;
 		this.timeZone = timeZone;
-
 		// Determine default HTML escape setting from the "defaultHtmlEscape"
 		// context-param in web.xml, if any.
 		this.defaultHtmlEscape = WebUtils.getDefaultHtmlEscape(this.webApplicationContext.getServletContext());
-
 		// Determine response-encoded HTML escape setting from the "responseEncodedHtmlEscape"
 		// context-param in web.xml, if any.
-		this.responseEncodedHtmlEscape =
-				WebUtils.getResponseEncodedHtmlEscape(this.webApplicationContext.getServletContext());
-
+		this.responseEncodedHtmlEscape = WebUtils.getResponseEncodedHtmlEscape(this.webApplicationContext.getServletContext());
 		this.urlPathHelper = new UrlPathHelper();
-
 		if (this.webApplicationContext.containsBean(RequestContextUtils.REQUEST_DATA_VALUE_PROCESSOR_BEAN_NAME)) {
-			this.requestDataValueProcessor = this.webApplicationContext.getBean(
-					RequestContextUtils.REQUEST_DATA_VALUE_PROCESSOR_BEAN_NAME, RequestDataValueProcessor.class);
+			this.requestDataValueProcessor = this.webApplicationContext.getBean(RequestContextUtils.REQUEST_DATA_VALUE_PROCESSOR_BEAN_NAME, RequestDataValueProcessor.class);
 		}
 	}
 
@@ -396,13 +385,9 @@ public class RequestContext {
 	 */
 	protected Theme getFallbackTheme() {
 		ThemeSource themeSource = RequestContextUtils.getThemeSource(getRequest());
-		if (themeSource == null) {
-			themeSource = new ResourceBundleThemeSource();
-		}
+		if (themeSource == null) themeSource = new ResourceBundleThemeSource();
 		Theme theme = themeSource.getTheme(DEFAULT_THEME_NAME);
-		if (theme == null) {
-			throw new IllegalStateException("No theme defined and no fallback theme found");
-		}
+		if (theme == null) throw new IllegalStateException("No theme defined and no fallback theme found");
 		return theme;
 	}
 
@@ -862,8 +847,7 @@ public class RequestContext {
 	protected Object getModelObject(String modelName) {
 		if (this.model != null) {
 			return this.model.get(modelName);
-		}
-		else {
+		}else {
 			return this.request.getAttribute(modelName);
 		}
 	}

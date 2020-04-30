@@ -4,11 +4,8 @@ package org.springframework.web.servlet.view;
 
 /**
  * Abstract base class for template view resolvers, in particular for FreeMarker views.
- *
  * Provides a convenient way to specify {@link AbstractTemplateView}'s exposure
  * flags for request attributes, session attributes, and Spring's macro helpers.
- *
-
  * @since 1.1
  * @see AbstractTemplateView
  * @see org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver
@@ -32,8 +29,7 @@ public class AbstractTemplateViewResolver extends UrlBasedViewResolver {
 	}
 
 	/**
-	 * Set whether all request attributes should be added to the
-	 * model prior to merging with the template. Default is "false".
+	 * Set whether all request attributes should be added to the model prior to merging with the template. Default is "false".
 	 * @see AbstractTemplateView#setExposeRequestAttributes
 	 */
 	public void setExposeRequestAttributes(boolean exposeRequestAttributes) {
@@ -43,8 +39,7 @@ public class AbstractTemplateViewResolver extends UrlBasedViewResolver {
 	/**
 	 * Set whether HttpServletRequest attributes are allowed to override (hide)
 	 * controller generated model attributes of the same name. Default is "false",
-	 * which causes an exception to be thrown if request attributes of the same
-	 * name as model attributes are found.
+	 * which causes an exception to be thrown if request attributes of the same name as model attributes are found.
 	 * @see AbstractTemplateView#setAllowRequestOverride
 	 */
 	public void setAllowRequestOverride(boolean allowRequestOverride) {
@@ -52,8 +47,7 @@ public class AbstractTemplateViewResolver extends UrlBasedViewResolver {
 	}
 
 	/**
-	 * Set whether all HttpSession attributes should be added to the
-	 * model prior to merging with the template. Default is "false".
+	 * Set whether all HttpSession attributes should be added to the model prior to merging with the template. Default is "false".
 	 * @see AbstractTemplateView#setExposeSessionAttributes
 	 */
 	public void setExposeSessionAttributes(boolean exposeSessionAttributes) {
@@ -72,8 +66,7 @@ public class AbstractTemplateViewResolver extends UrlBasedViewResolver {
 	}
 
 	/**
-	 * Set whether to expose a RequestContext for use by Spring's macro library,
-	 * under the name "springMacroRequestContext". Default is "true".
+	 * Set whether to expose a RequestContext for use by Spring's macro library,under the name "springMacroRequestContext". Default is "true".
 	 * @see AbstractTemplateView#setExposeSpringMacroHelpers
 	 */
 	public void setExposeSpringMacroHelpers(boolean exposeSpringMacroHelpers) {

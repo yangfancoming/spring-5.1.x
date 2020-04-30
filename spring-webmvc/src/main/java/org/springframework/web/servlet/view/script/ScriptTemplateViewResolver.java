@@ -5,17 +5,10 @@ package org.springframework.web.servlet.view.script;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 /**
- * Convenience subclass of {@link UrlBasedViewResolver} that supports
- * {@link ScriptTemplateView} and custom subclasses of it.
- *
- * The view class for all views created by this resolver can be specified
- * via the {@link #setViewClass(Class)} property.
- *
+ * Convenience subclass of {@link UrlBasedViewResolver} that supports {@link ScriptTemplateView} and custom subclasses of it.
+ * The view class for all views created by this resolver can be specified via the {@link #setViewClass(Class)} property.
  * <b>Note:</b> When chaining ViewResolvers this resolver will check for the
- * existence of the specified template resources and only return a non-null
- * View object if a template is actually found.
- *
- * @author Sebastien Deleuze
+ * existence of the specified template resources and only return a non-null View object if a template is actually found.
  * @since 4.2
  * @see ScriptTemplateConfigurer
  */

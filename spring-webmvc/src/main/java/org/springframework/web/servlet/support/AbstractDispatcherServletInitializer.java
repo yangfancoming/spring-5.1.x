@@ -137,16 +137,12 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 	}
 
 	/**
-	 * Add the given filter to the ServletContext and map it to the
-	 * {@code DispatcherServlet} as follows:
+	 * Add the given filter to the ServletContext and map it to the {@code DispatcherServlet} as follows:
 	 * <li>a default filter name is chosen based on its concrete type
-	 * <li>the {@code asyncSupported} flag is set depending on the
-	 * return value of {@link #isAsyncSupported() asyncSupported}
-	 * <li>a filter mapping is created with dispatcher types {@code REQUEST},
-	 * {@code FORWARD}, {@code INCLUDE}, and conditionally {@code ASYNC} depending
+	 * <li>the {@code asyncSupported} flag is set depending on the return value of {@link #isAsyncSupported() asyncSupported}
+	 * <li>a filter mapping is created with dispatcher types {@code REQUEST},{@code FORWARD}, {@code INCLUDE}, and conditionally {@code ASYNC} depending
 	 * on the return value of {@link #isAsyncSupported() asyncSupported}
-	 * If the above defaults are not suitable or insufficient, override this
-	 * method and register filters directly with the {@code ServletContext}.
+	 * If the above defaults are not suitable or insufficient, override this method and register filters directly with the {@code ServletContext}.
 	 * @param servletContext the servlet context to register filters with
 	 * @param filter the filter to be registered
 	 * @return the filter registration
@@ -154,7 +150,6 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 	protected FilterRegistration.Dynamic registerServletFilter(ServletContext servletContext, Filter filter) {
 		String filterName = Conventions.getVariableName(filter);
 		Dynamic registration = servletContext.addFilter(filterName, filter);
-
 		if (registration == null) {
 			int counter = 0;
 			while (registration == null) {
@@ -177,8 +172,7 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 	}
 
 	/**
-	 * A single place to control the {@code asyncSupported} flag for the
-	 * {@code DispatcherServlet} and all filters added via {@link #getServletFilters()}.
+	 * A single place to control the {@code asyncSupported} flag for the {@code DispatcherServlet} and all filters added via {@link #getServletFilters()}.
 	 * The default value is "true".
 	 */
 	protected boolean isAsyncSupported() {
@@ -186,8 +180,7 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 	}
 
 	/**
-	 * Optionally perform further registration customization once
-	 * {@link #registerDispatcherServlet(ServletContext)} has completed.
+	 * Optionally perform further registration customization once {@link #registerDispatcherServlet(ServletContext)} has completed.
 	 * @param registration the {@code DispatcherServlet} registration to be customized
 	 * @see #registerDispatcherServlet(ServletContext)
 	 */

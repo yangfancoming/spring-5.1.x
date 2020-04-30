@@ -525,8 +525,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 			throw ex;
 		}
 		if (logger.isDebugEnabled()) {
-			String value = this.enableLoggingRequestDetails ?
-					"shown which may lead to unsafe logging of potentially sensitive data" : "masked to prevent unsafe logging of potentially sensitive data";
+			String value = this.enableLoggingRequestDetails ? "shown which may lead to unsafe logging of potentially sensitive data" : "masked to prevent unsafe logging of potentially sensitive data";
 			logger.debug("enableLoggingRequestDetails='" + this.enableLoggingRequestDetails + "': request parameters and headers will be " + value);
 		}
 		if (logger.isInfoEnabled()) logger.info("Completed initialization in " + (System.currentTimeMillis() - startTime) + " ms");
@@ -772,13 +771,11 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 				this.contextInitializers.add(loadInitializer(className, wac));
 			}
 		}
-
 		if (this.contextInitializerClasses != null) {
 			for (String className : StringUtils.tokenizeToStringArray(this.contextInitializerClasses, INIT_PARAM_DELIMITERS)) {
 				this.contextInitializers.add(loadInitializer(className, wac));
 			}
 		}
-
 		AnnotationAwareOrderComparator.sort(this.contextInitializers);
 		for (ApplicationContextInitializer<ConfigurableApplicationContext> initializer : this.contextInitializers) {
 			initializer.initialize(wac);
@@ -830,8 +827,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	}
 
 	/**
-	 * Refresh this servlet's application context, as well as the
-	 * dependent state of the servlet.
+	 * Refresh this servlet's application context, as well as the dependent state of the servlet.
 	 * @see #getWebApplicationContext()
 	 * @see org.springframework.context.ConfigurableApplicationContext#refresh()
 	 */
@@ -1091,9 +1087,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 		if (failureCause != null) {
 			if (!initialDispatch) {
 				// FORWARD/ERROR/ASYNC: minimal message (there should be enough context already)
-				if (logger.isDebugEnabled()) {
-					logger.debug("Unresolved failure from \"" + dispatchType + "\" dispatch: " + failureCause);
-				}
+				if (logger.isDebugEnabled()) logger.debug("Unresolved failure from \"" + dispatchType + "\" dispatch: " + failureCause);
 			}else if (logger.isTraceEnabled()) {
 				logger.trace("Failed to complete request", failureCause);
 			}else {
@@ -1173,7 +1167,6 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * only, delegating to {@code onApplicationEvent} on the FrameworkServlet instance.
 	 */
 	private class ContextRefreshListener implements ApplicationListener<ContextRefreshedEvent> {
-
 		@Override
 		public void onApplicationEvent(ContextRefreshedEvent event) {
 			FrameworkServlet.this.onApplicationEvent(event);
@@ -1185,7 +1178,6 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * FrameworkServlet's context holders, i.e. LocaleContextHolder and RequestContextHolder.
 	 */
 	private class RequestBindingInterceptor implements CallableProcessingInterceptor {
-
 		@Override
 		public <T> void preProcess(NativeWebRequest webRequest, Callable<T> task) {
 			HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);

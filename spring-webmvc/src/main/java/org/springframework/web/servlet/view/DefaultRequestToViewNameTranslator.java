@@ -11,31 +11,22 @@ import org.springframework.web.servlet.RequestToViewNameTranslator;
 import org.springframework.web.util.UrlPathHelper;
 
 /**
- * {@link RequestToViewNameTranslator} that simply transforms the URI of
- * the incoming request into a view name.
+ * {@link RequestToViewNameTranslator} that simply transforms the URI of  the incoming request into a view name.
  *
- * Can be explicitly defined as the {@code viewNameTranslator} bean in a
- * {@link org.springframework.web.servlet.DispatcherServlet} context.
+ * Can be explicitly defined as the {@code viewNameTranslator} bean in a {@link org.springframework.web.servlet.DispatcherServlet} context.
  * Otherwise, a plain default instance will be used.
- *
  * The default transformation simply strips leading and trailing slashes
  * as well as the file extension of the URI, and returns the result as the
- * view name with the configured {@link #setPrefix prefix} and a
- * {@link #setSuffix suffix} added as appropriate.
+ * view name with the configured {@link #setPrefix prefix} and a {@link #setSuffix suffix} added as appropriate.
  *
  * The stripping of the leading slash and file extension can be disabled
- * using the {@link #setStripLeadingSlash stripLeadingSlash} and
- * {@link #setStripExtension stripExtension} properties, respectively.
- *
+ * using the {@link #setStripLeadingSlash stripLeadingSlash} and {@link #setStripExtension stripExtension} properties, respectively.
  * Find below some examples of request to view name translation.
  * <ul>
  * <li>{@code http://localhost:8080/gamecast/display.html} &raquo; {@code display}</li>
  * <li>{@code http://localhost:8080/gamecast/displayShoppingCart.html} &raquo; {@code displayShoppingCart}</li>
  * <li>{@code http://localhost:8080/gamecast/admin/index.html} &raquo; {@code admin/index}</li>
  * </ul>
- *
- * @author Rob Harrop
-
  * @since 2.0
  * @see org.springframework.web.servlet.RequestToViewNameTranslator
  * @see org.springframework.web.servlet.ViewResolver
@@ -43,7 +34,6 @@ import org.springframework.web.util.UrlPathHelper;
 public class DefaultRequestToViewNameTranslator implements RequestToViewNameTranslator {
 
 	private static final String SLASH = "/";
-
 
 	private String prefix = "";
 
@@ -58,7 +48,6 @@ public class DefaultRequestToViewNameTranslator implements RequestToViewNameTran
 	private boolean stripExtension = true;
 
 	private UrlPathHelper urlPathHelper = new UrlPathHelper();
-
 
 	/**
 	 * Set the prefix to prepend to generated view names.
@@ -86,24 +75,21 @@ public class DefaultRequestToViewNameTranslator implements RequestToViewNameTran
 	}
 
 	/**
-	 * Set whether or not leading slashes should be stripped from the URI when
-	 * generating the view name. Default is "true".
+	 * Set whether or not leading slashes should be stripped from the URI when  generating the view name. Default is "true".
 	 */
 	public void setStripLeadingSlash(boolean stripLeadingSlash) {
 		this.stripLeadingSlash = stripLeadingSlash;
 	}
 
 	/**
-	 * Set whether or not trailing slashes should be stripped from the URI when
-	 * generating the view name. Default is "true".
+	 * Set whether or not trailing slashes should be stripped from the URI when  generating the view name. Default is "true".
 	 */
 	public void setStripTrailingSlash(boolean stripTrailingSlash) {
 		this.stripTrailingSlash = stripTrailingSlash;
 	}
 
 	/**
-	 * Set whether or not file extensions should be stripped from the URI when
-	 * generating the view name. Default is "true".
+	 * Set whether or not file extensions should be stripped from the URI when  generating the view name. Default is "true".
 	 */
 	public void setStripExtension(boolean stripExtension) {
 		this.stripExtension = stripExtension;

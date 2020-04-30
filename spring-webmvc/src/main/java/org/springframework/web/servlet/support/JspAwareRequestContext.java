@@ -18,8 +18,6 @@ import org.springframework.lang.Nullable;
  *
  * This context will detect a JSTL locale attribute in page/request/session/application
  * scope, in addition to the fallback locale strategy provided by the base class.
- *
-
  * @since 1.1.4
  * @see #getFallbackLocale
  */
@@ -27,10 +25,8 @@ public class JspAwareRequestContext extends RequestContext {
 
 	private PageContext pageContext;
 
-
 	/**
-	 * Create a new JspAwareRequestContext for the given page context,
-	 * using the request attributes for Errors retrieval.
+	 * Create a new JspAwareRequestContext for the given page context,using the request attributes for Errors retrieval.
 	 * @param pageContext current JSP page context
 	 */
 	public JspAwareRequestContext(PageContext pageContext) {
@@ -38,18 +34,15 @@ public class JspAwareRequestContext extends RequestContext {
 	}
 
 	/**
-	 * Create a new JspAwareRequestContext for the given page context,
-	 * using the given model attributes for Errors retrieval.
+	 * Create a new JspAwareRequestContext for the given page context,using the given model attributes for Errors retrieval.
 	 * @param pageContext current JSP page context
-	 * @param model the model attributes for the current view
-	 * (can be {@code null}, using the request attributes for Errors retrieval)
+	 * @param model the model attributes for the current view (can be {@code null}, using the request attributes for Errors retrieval)
 	 */
 	public JspAwareRequestContext(PageContext pageContext, @Nullable Map<String, Object> model) {
 		super((HttpServletRequest) pageContext.getRequest(), (HttpServletResponse) pageContext.getResponse(),
 				pageContext.getServletContext(), model);
 		this.pageContext = pageContext;
 	}
-
 
 	/**
 	 * Return the underlying PageContext.
@@ -61,8 +54,7 @@ public class JspAwareRequestContext extends RequestContext {
 
 	/**
 	 * This implementation checks for a JSTL locale attribute in page,
-	 * request, session or application scope; if not found, returns the
-	 * {@code HttpServletRequest.getLocale()}.
+	 * request, session or application scope; if not found, returns the {@code HttpServletRequest.getLocale()}.
 	 */
 	@Override
 	protected Locale getFallbackLocale() {
@@ -76,8 +68,7 @@ public class JspAwareRequestContext extends RequestContext {
 	}
 
 	/**
-	 * This implementation checks for a JSTL time zone attribute in page,
-	 * request, session or application scope; if not found, returns {@code null}.
+	 * This implementation checks for a JSTL time zone attribute in page,request, session or application scope; if not found, returns {@code null}.
 	 */
 	@Override
 	protected TimeZone getFallbackTimeZone() {
@@ -92,8 +83,7 @@ public class JspAwareRequestContext extends RequestContext {
 
 
 	/**
-	 * Inner class that isolates the JSTL dependency.
-	 * Just called to resolve the fallback locale if the JSTL API is present.
+	 * Inner class that isolates the JSTL dependency. Just called to resolve the fallback locale if the JSTL API is present.
 	 */
 	private static class JstlPageLocaleResolver {
 

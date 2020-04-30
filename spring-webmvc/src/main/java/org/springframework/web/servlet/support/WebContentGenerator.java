@@ -124,11 +124,9 @@ public abstract class WebContentGenerator extends WebApplicationObjectSupport {
 		setSupportedMethods(supportedMethods);
 	}
 
-
 	/**
 	 * Set the HTTP methods that this content generator should support.
-	 * Default is GET, HEAD and POST for simple form controller types;
-	 * unrestricted for general controllers and interceptors.
+	 * Default is GET, HEAD and POST for simple form controller types;unrestricted for general controllers and interceptors.
 	 */
 	public final void setSupportedMethods(@Nullable String... methods) {
 		if (!ObjectUtils.isEmpty(methods)) {

@@ -21,7 +21,6 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 public abstract class AbstractAnnotationConfigDispatcherServletInitializer extends AbstractDispatcherServletInitializer {
 
 	/**
-	 * {@inheritDoc}
 	 * This implementation creates an {@link AnnotationConfigWebApplicationContext},
 	 * providing it the annotated classes returned by {@link #getRootConfigClasses()}.
 	 * Returns {@code null} if {@link #getRootConfigClasses()} returns {@code null}.
@@ -40,7 +39,6 @@ public abstract class AbstractAnnotationConfigDispatcherServletInitializer exten
 	}
 
 	/**
-	 * {@inheritDoc}
 	 * This implementation creates an {@link AnnotationConfigWebApplicationContext},
 	 * providing it the annotated classes returned by {@link #getServletConfigClasses()}.
 	 */

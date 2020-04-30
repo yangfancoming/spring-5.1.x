@@ -17,29 +17,20 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.lang.Nullable;
 
 /**
- * Helper class for preparing JSTL views,
- * in particular for exposing a JSTL localization context.
- *
-
+ * Helper class for preparing JSTL views,in particular for exposing a JSTL localization context.
  * @since 20.08.2003
  */
 public abstract class JstlUtils {
 
 	/**
 	 * Checks JSTL's "javax.servlet.jsp.jstl.fmt.localizationContext"
-	 * context-param and creates a corresponding child message source,
-	 * with the provided Spring-defined MessageSource as parent.
-	 * @param servletContext the ServletContext we're running in
-	 * (to check JSTL-related context-params in {@code web.xml})
-	 * @param messageSource the MessageSource to expose, typically
-	 * the ApplicationContext of the current DispatcherServlet
-	 * @return the MessageSource to expose to JSTL; first checking the
-	 * JSTL-defined bundle, then the Spring-defined MessageSource
+	 * context-param and creates a corresponding child message source,with the provided Spring-defined MessageSource as parent.
+	 * @param servletContext the ServletContext we're running in  (to check JSTL-related context-params in {@code web.xml})
+	 * @param messageSource the MessageSource to expose, typically the ApplicationContext of the current DispatcherServlet
+	 * @return the MessageSource to expose to JSTL; first checking the  JSTL-defined bundle, then the Spring-defined MessageSource
 	 * @see org.springframework.context.ApplicationContext
 	 */
-	public static MessageSource getJstlAwareMessageSource(
-			@Nullable ServletContext servletContext, MessageSource messageSource) {
-
+	public static MessageSource getJstlAwareMessageSource(@Nullable ServletContext servletContext, MessageSource messageSource) {
 		if (servletContext != null) {
 			String jstlInitParam = servletContext.getInitParameter(Config.FMT_LOCALIZATION_CONTEXT);
 			if (jstlInitParam != null) {
@@ -56,12 +47,10 @@ public abstract class JstlUtils {
 	}
 
 	/**
-	 * Exposes JSTL-specific request attributes specifying locale
-	 * and resource bundle for JSTL's formatting and message tags,
+	 * Exposes JSTL-specific request attributes specifying locale  and resource bundle for JSTL's formatting and message tags,
 	 * using Spring's locale and MessageSource.
 	 * @param request the current HTTP request
-	 * @param messageSource the MessageSource to expose,
-	 * typically the current ApplicationContext (may be {@code null})
+	 * @param messageSource the MessageSource to expose,typically the current ApplicationContext (may be {@code null})
 	 * @see #exposeLocalizationContext(RequestContext)
 	 */
 	public static void exposeLocalizationContext(HttpServletRequest request, @Nullable MessageSource messageSource) {
@@ -79,10 +68,8 @@ public abstract class JstlUtils {
 
 	/**
 	 * Exposes JSTL-specific request attributes specifying locale
-	 * and resource bundle for JSTL's formatting and message tags,
-	 * using Spring's locale and MessageSource.
-	 * @param requestContext the context for the current HTTP request,
-	 * including the ApplicationContext to expose as MessageSource
+	 * and resource bundle for JSTL's formatting and message tags,using Spring's locale and MessageSource.
+	 * @param requestContext the context for the current HTTP request, including the ApplicationContext to expose as MessageSource
 	 */
 	public static void exposeLocalizationContext(RequestContext requestContext) {
 		Config.set(requestContext.getRequest(), Config.FMT_LOCALE, requestContext.getLocale());
@@ -90,8 +77,7 @@ public abstract class JstlUtils {
 		if (timeZone != null) {
 			Config.set(requestContext.getRequest(), Config.FMT_TIME_ZONE, timeZone);
 		}
-		MessageSource messageSource = getJstlAwareMessageSource(
-				requestContext.getServletContext(), requestContext.getMessageSource());
+		MessageSource messageSource = getJstlAwareMessageSource(requestContext.getServletContext(), requestContext.getMessageSource());
 		LocalizationContext jstlContext = new SpringLocalizationContext(messageSource, requestContext.getRequest());
 		Config.set(requestContext.getRequest(), Config.FMT_LOCALIZATION_CONTEXT, jstlContext);
 	}

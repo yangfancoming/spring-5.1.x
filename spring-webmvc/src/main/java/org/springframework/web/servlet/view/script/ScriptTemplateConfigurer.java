@@ -9,8 +9,7 @@ import javax.script.ScriptEngine;
 import org.springframework.lang.Nullable;
 
 /**
- * An implementation of Spring MVC's {@link ScriptTemplateConfig} for creating
- * a {@code ScriptEngine} for use in a web application.
+ * An implementation of Spring MVC's {@link ScriptTemplateConfig} for creating a {@code ScriptEngine} for use in a web application.
  *
  * <pre class="code">
  * // Add the following to an &#64;Configuration class
@@ -24,12 +23,9 @@ import org.springframework.lang.Nullable;
  *    return configurer;
  * }
  * </pre>
- *
  * <b>NOTE:</b> It is possible to use non thread-safe script engines with
  * templating libraries not designed for concurrency, like Handlebars or React running on
  * Nashorn, by setting the {@link #setSharedEngine sharedEngine} property to {@code false}.
- *
- * @author Sebastien Deleuze
  * @since 4.2
  * @see ScriptTemplateView
  */
@@ -61,7 +57,6 @@ public class ScriptTemplateConfigurer implements ScriptTemplateConfig {
 
 	@Nullable
 	private String resourceLoaderPath;
-
 
 	/**
 	 * Default constructor.

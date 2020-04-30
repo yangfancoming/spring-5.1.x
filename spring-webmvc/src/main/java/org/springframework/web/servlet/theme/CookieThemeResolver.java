@@ -20,9 +20,6 @@ import org.springframework.web.util.WebUtils;
  *
  * Custom controllers can thus override the user's theme by calling
  * {@code setThemeName}, e.g. responding to a certain theme change request.
- *
- * @author Jean-Pierre Pawlak
-
  * @since 17.06.2003
  * @see #setThemeName
  */
@@ -78,7 +75,6 @@ public class CookieThemeResolver extends CookieGenerator implements ThemeResolve
 		if (themeName != null) {
 			return themeName;
 		}
-
 		// Retrieve cookie value from request.
 		String cookieName = getCookieName();
 		if (cookieName != null) {
@@ -100,11 +96,8 @@ public class CookieThemeResolver extends CookieGenerator implements ThemeResolve
 	}
 
 	@Override
-	public void setThemeName(
-			HttpServletRequest request, @Nullable HttpServletResponse response, @Nullable String themeName) {
-
+	public void setThemeName(HttpServletRequest request, @Nullable HttpServletResponse response, @Nullable String themeName) {
 		Assert.notNull(response, "HttpServletResponse is required for CookieThemeResolver");
-
 		if (StringUtils.hasText(themeName)) {
 			// Set request attribute and add cookie.
 			request.setAttribute(THEME_REQUEST_ATTRIBUTE_NAME, themeName);

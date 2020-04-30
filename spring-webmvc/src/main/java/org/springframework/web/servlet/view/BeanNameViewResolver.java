@@ -29,10 +29,7 @@ import org.springframework.web.servlet.ViewResolver;
  * Note: This {@code ViewResolver} implements the {@link Ordered} interface
  * in order to allow for flexible participation in {@code ViewResolver} chaining.
  * For example, some special views could be defined via this {@code ViewResolver}
- * (giving it 0 as "order" value), while all remaining views could be resolved by
- * a {@link UrlBasedViewResolver}.
- *
-
+ * (giving it 0 as "order" value), while all remaining views could be resolved by a {@link UrlBasedViewResolver}.
  * @since 18.06.2003
  * @see XmlViewResolver
  * @see ResourceBundleViewResolver
@@ -56,7 +53,6 @@ public class BeanNameViewResolver extends WebApplicationObjectSupport implements
 		return this.order;
 	}
 
-
 	@Override
 	@Nullable
 	public View resolveViewName(String viewName, Locale locale) throws BeansException {
@@ -66,9 +62,7 @@ public class BeanNameViewResolver extends WebApplicationObjectSupport implements
 			return null;
 		}
 		if (!context.isTypeMatch(viewName, View.class)) {
-			if (logger.isDebugEnabled()) {
-				logger.debug("Found bean named '" + viewName + "' but it does not implement View");
-			}
+			if (logger.isDebugEnabled()) logger.debug("Found bean named '" + viewName + "' but it does not implement View");
 			// Since we're looking into the general ApplicationContext here,
 			// let's accept this as a non-match and allow for chaining as well...
 			return null;

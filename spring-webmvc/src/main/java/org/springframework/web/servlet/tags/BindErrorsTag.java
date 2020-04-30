@@ -44,8 +44,6 @@ import org.springframework.validation.Errors;
  * </tbody>
  * </table>
  *
- * @author Rod Johnson
-
  * @see BindTag
  * @see org.springframework.validation.Errors
  */
@@ -57,12 +55,10 @@ public class BindErrorsTag extends HtmlEscapingAwareTag {
 	 */
 	public static final String ERRORS_VARIABLE_NAME = "errors";
 
-
 	private String name = "";
 
 	@Nullable
 	private Errors errors;
-
 
 	/**
 	 * Set the name of the bean that this tag should check.
@@ -85,8 +81,7 @@ public class BindErrorsTag extends HtmlEscapingAwareTag {
 		if (this.errors != null && this.errors.hasErrors()) {
 			this.pageContext.setAttribute(ERRORS_VARIABLE_NAME, this.errors, PageContext.REQUEST_SCOPE);
 			return EVAL_BODY_INCLUDE;
-		}
-		else {
+		}else {
 			return SKIP_BODY;
 		}
 	}

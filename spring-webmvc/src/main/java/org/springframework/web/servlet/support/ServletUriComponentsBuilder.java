@@ -15,24 +15,18 @@ import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.UrlPathHelper;
 
 /**
- * UriComponentsBuilder with additional static factory methods to create links
- * based on the current HttpServletRequest.
- *
+ * UriComponentsBuilder with additional static factory methods to create links based on the current HttpServletRequest.
  * <strong>Note:</strong> As of 5.1, methods in this class do not extract
  * {@code "Forwarded"} and {@code "X-Forwarded-*"} headers that specify the
  * client-originated address. Please, use
  * {@link org.springframework.web.filter.ForwardedHeaderFilter
- * ForwardedHeaderFilter}, or similar from the underlying server, to extract
- * and use such headers, or to discard them.
- *
- *
+ * ForwardedHeaderFilter}, or similar from the underlying server, to extract and use such headers, or to discard them.
  * @since 3.1
  */
 public class ServletUriComponentsBuilder extends UriComponentsBuilder {
 
 	@Nullable
 	private String originalPath;
-
 
 	/**
 	 * Default constructor. Protected to prevent direct instantiation.
@@ -55,12 +49,10 @@ public class ServletUriComponentsBuilder extends UriComponentsBuilder {
 		this.originalPath = other.originalPath;
 	}
 
-
 	// Factory methods based on a HttpServletRequest
 
 	/**
-	 * Prepare a builder from the host, port, scheme, and context path of the
-	 * given HttpServletRequest.
+	 * Prepare a builder from the host, port, scheme, and context path of the given HttpServletRequest.
 	 */
 	public static ServletUriComponentsBuilder fromContextPath(HttpServletRequest request) {
 		ServletUriComponentsBuilder builder = initFromRequest(request);
@@ -85,8 +77,7 @@ public class ServletUriComponentsBuilder extends UriComponentsBuilder {
 	}
 
 	/**
-	 * Prepare a builder from the host, port, scheme, and path (but not the query)
-	 * of the HttpServletRequest.
+	 * Prepare a builder from the host, port, scheme, and path (but not the query) of the HttpServletRequest.
 	 */
 	public static ServletUriComponentsBuilder fromRequestUri(HttpServletRequest request) {
 		ServletUriComponentsBuilder builder = initFromRequest(request);
@@ -95,8 +86,7 @@ public class ServletUriComponentsBuilder extends UriComponentsBuilder {
 	}
 
 	/**
-	 * Prepare a builder by copying the scheme, host, port, path, and
-	 * query string of an HttpServletRequest.
+	 * Prepare a builder by copying the scheme, host, port, path, and query string of an HttpServletRequest.
 	 */
 	public static ServletUriComponentsBuilder fromRequest(HttpServletRequest request) {
 		ServletUriComponentsBuilder builder = initFromRequest(request);
@@ -126,16 +116,14 @@ public class ServletUriComponentsBuilder extends UriComponentsBuilder {
 	// Alternative methods relying on RequestContextHolder to find the request
 
 	/**
-	 * Same as {@link #fromContextPath(HttpServletRequest)} except the
-	 * request is obtained through {@link RequestContextHolder}.
+	 * Same as {@link #fromContextPath(HttpServletRequest)} except the request is obtained through {@link RequestContextHolder}.
 	 */
 	public static ServletUriComponentsBuilder fromCurrentContextPath() {
 		return fromContextPath(getCurrentRequest());
 	}
 
 	/**
-	 * Same as {@link #fromServletMapping(HttpServletRequest)} except the
-	 * request is obtained through {@link RequestContextHolder}.
+	 * Same as {@link #fromServletMapping(HttpServletRequest)} except the request is obtained through {@link RequestContextHolder}.
 	 */
 	public static ServletUriComponentsBuilder fromCurrentServletMapping() {
 		return fromServletMapping(getCurrentRequest());
@@ -150,8 +138,7 @@ public class ServletUriComponentsBuilder extends UriComponentsBuilder {
 	}
 
 	/**
-	 * Same as {@link #fromRequest(HttpServletRequest)} except the
-	 * request is obtained through {@link RequestContextHolder}.
+	 * Same as {@link #fromRequest(HttpServletRequest)} except the request is obtained through {@link RequestContextHolder}.
 	 */
 	public static ServletUriComponentsBuilder fromCurrentRequest() {
 		return fromRequest(getCurrentRequest());
@@ -165,7 +152,6 @@ public class ServletUriComponentsBuilder extends UriComponentsBuilder {
 		Assert.state(attrs instanceof ServletRequestAttributes, "No current ServletRequestAttributes");
 		return ((ServletRequestAttributes) attrs).getRequest();
 	}
-
 
 	private void initPath(String path) {
 		this.originalPath = path;

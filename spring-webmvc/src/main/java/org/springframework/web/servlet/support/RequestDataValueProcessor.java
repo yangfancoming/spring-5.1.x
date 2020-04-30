@@ -19,8 +19,6 @@ import org.springframework.lang.Nullable;
  *
  * View technologies that support this contract can obtain an instance to
  * delegate to via {@link RequestContext#getRequestDataValueProcessor()}.
- *
- *
  * @since 3.1
  */
 public interface RequestDataValueProcessor {

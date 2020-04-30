@@ -37,21 +37,15 @@ import org.springframework.web.servlet.View;
  * Note: This {@code ViewResolver} implements the {@link Ordered} interface
  * in order to allow for flexible participation in {@code ViewResolver} chaining.
  * For example, some special views could be defined via this {@code ViewResolver}
- * (giving it 0 as "order" value), while all remaining views could be resolved by
- * a {@link UrlBasedViewResolver}.
- *
- * @author Rod Johnson
-
+ * (giving it 0 as "order" value), while all remaining views could be resolved by a {@link UrlBasedViewResolver}.
  * @see java.util.ResourceBundle#getBundle
  * @see java.util.PropertyResourceBundle
  * @see UrlBasedViewResolver
  */
-public class ResourceBundleViewResolver extends AbstractCachingViewResolver
-		implements Ordered, InitializingBean, DisposableBean {
+public class ResourceBundleViewResolver extends AbstractCachingViewResolver implements Ordered, InitializingBean, DisposableBean {
 
 	/** The default basename if no other basename is supplied. */
 	public static final String DEFAULT_BASENAME = "views";
-
 
 	private String[] basenames = new String[] {DEFAULT_BASENAME};
 
@@ -71,17 +65,13 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 	/* List of ResourceBundle -> BeanFactory */
 	private final Map<List<ResourceBundle>, ConfigurableApplicationContext> bundleCache = new HashMap<>();
 
-
 	/**
 	 * Set a single basename, following {@link java.util.ResourceBundle} conventions.
-	 * The default is "views".
-	 * {@code ResourceBundle} supports different locale suffixes. For example,
-	 * a base name of "views" might map to {@code ResourceBundle} files
-	 * "views", "views_en_au" and "views_de".
+	 * The default is "views". {@code ResourceBundle} supports different locale suffixes. For example,
+	 * a base name of "views" might map to {@code ResourceBundle} files "views", "views_en_au" and "views_de".
 	 * Note that ResourceBundle names are effectively classpath locations: As a
 	 * consequence, the JDK's standard ResourceBundle treats dots as package separators.
-	 * This means that "test.theme" is effectively equivalent to "test/theme",
-	 * just like it is for programmatic {@code java.util.ResourceBundle} usage.
+	 * This means that "test.theme" is effectively equivalent to "test/theme",just like it is for programmatic {@code java.util.ResourceBundle} usage.
 	 * @see #setBasenames
 	 * @see ResourceBundle#getBundle(String)
 	 * @see ResourceBundle#getBundle(String, Locale)
@@ -94,15 +84,13 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 	 * Set an array of basenames, each following {@link java.util.ResourceBundle}
 	 * conventions. The default is a single basename "views".
 	 * {@code ResourceBundle} supports different locale suffixes. For example,
-	 * a base name of "views" might map to {@code ResourceBundle} files
-	 * "views", "views_en_au" and "views_de".
+	 * a base name of "views" might map to {@code ResourceBundle} files "views", "views_en_au" and "views_de".
 	 * The associated resource bundles will be checked sequentially when resolving
 	 * a message code. Note that message definitions in a <i>previous</i> resource
 	 * bundle will override ones in a later bundle, due to the sequential lookup.
 	 * Note that ResourceBundle names are effectively classpath locations: As a
 	 * consequence, the JDK's standard ResourceBundle treats dots as package separators.
-	 * This means that "test.theme" is effectively equivalent to "test/theme",
-	 * just like it is for programmatic {@code java.util.ResourceBundle} usage.
+	 * This means that "test.theme" is effectively equivalent to "test/theme",just like it is for programmatic {@code java.util.ResourceBundle} usage.
 	 * @see #setBasename
 	 * @see ResourceBundle#getBundle(String)
 	 * @see ResourceBundle#getBundle(String, Locale)
@@ -181,22 +169,19 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 		}
 	}
 
-
 	@Override
 	protected View loadView(String viewName, Locale locale) throws Exception {
 		BeanFactory factory = initFactory(locale);
 		try {
 			return factory.getBean(viewName, View.class);
-		}
-		catch (NoSuchBeanDefinitionException ex) {
+		}catch (NoSuchBeanDefinitionException ex) {
 			// Allow for ViewResolver chaining...
 			return null;
 		}
 	}
 
 	/**
-	 * Initialize the View {@link BeanFactory} from the {@code ResourceBundle},
-	 * for the given {@link Locale locale}.
+	 * Initialize the View {@link BeanFactory} from the {@code ResourceBundle},for the given {@link Locale locale}.
 	 * Synchronized because of access by parallel threads.
 	 * @param locale the target {@code Locale}
 	 * @return the View factory for the given Locale
@@ -211,14 +196,12 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 				return cachedFactory;
 			}
 		}
-
 		// Build list of ResourceBundle references for Locale.
 		List<ResourceBundle> bundles = new LinkedList<>();
 		for (String basename : this.basenames) {
 			ResourceBundle bundle = getBundle(basename, locale);
 			bundles.add(bundle);
 		}
-
 		// Try to find cached factory for ResourceBundle list:
 		// even if Locale was different, same bundles might have been found.
 		if (isCache()) {
@@ -228,27 +211,22 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 				return cachedFactory;
 			}
 		}
-
 		// Create child ApplicationContext for views.
 		GenericWebApplicationContext factory = new GenericWebApplicationContext();
 		factory.setParent(getApplicationContext());
 		factory.setServletContext(getServletContext());
-
 		// Load bean definitions from resource bundle.
 		PropertiesBeanDefinitionReader reader = new PropertiesBeanDefinitionReader(factory);
 		reader.setDefaultParentBean(this.defaultParentView);
 		for (ResourceBundle bundle : bundles) {
 			reader.registerBeanDefinitions(bundle);
 		}
-
 		factory.refresh();
-
 		// Cache factory for both Locale and ResourceBundle list.
 		if (isCache()) {
 			this.localeCache.put(locale, factory);
 			this.bundleCache.put(bundles, factory);
 		}
-
 		return factory;
 	}
 
@@ -263,7 +241,6 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 	protected ResourceBundle getBundle(String basename, Locale locale) throws MissingResourceException {
 		return ResourceBundle.getBundle(basename, locale, getBundleClassLoader());
 	}
-
 
 	/**
 	 * Close the bundle View factories on context shutdown.

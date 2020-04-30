@@ -51,10 +51,7 @@ import org.springframework.web.servlet.support.RequestContext;
  * Hint: Set the {@link #setExposeContextBeansAsAttributes} flag to "true"
  * in order to make all Spring beans in the application context accessible
  * within JSTL expressions (e.g. in a {@code c:out} value expression).
- * This will also make all such beans accessible in plain {@code ${...}}
- * expressions in a JSP 2.0 page.
- *
-
+ * This will also make all such beans accessible in plain {@code ${...}} expressions in a JSP 2.0 page.
  * @since 27.02.2003
  * @see org.springframework.web.servlet.support.JstlUtils#exposeLocalizationContext
  * @see InternalResourceViewResolver
@@ -65,7 +62,6 @@ public class JstlView extends InternalResourceView {
 
 	@Nullable
 	private MessageSource messageSource;
-
 
 	/**
 	 * Constructor for use as a bean.
@@ -95,11 +91,9 @@ public class JstlView extends InternalResourceView {
 		this.messageSource = messageSource;
 	}
 
-
 	/**
 	 * Wraps the MessageSource with a JSTL-aware MessageSource that is aware
-	 * of JSTL's {@code javax.servlet.jsp.jstl.fmt.localizationContext}
-	 * context-param.
+	 * of JSTL's {@code javax.servlet.jsp.jstl.fmt.localizationContext} context-param.
 	 * @see JstlUtils#getJstlAwareMessageSource
 	 */
 	@Override
@@ -118,8 +112,7 @@ public class JstlView extends InternalResourceView {
 	protected void exposeHelpers(HttpServletRequest request) throws Exception {
 		if (this.messageSource != null) {
 			JstlUtils.exposeLocalizationContext(request, this.messageSource);
-		}
-		else {
+		}else {
 			JstlUtils.exposeLocalizationContext(new RequestContext(request, getServletContext()));
 		}
 	}
