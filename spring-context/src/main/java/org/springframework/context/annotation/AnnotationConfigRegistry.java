@@ -10,10 +10,8 @@ public interface AnnotationConfigRegistry {
 
 	/**
 	 * Register one or more annotated classes to be processed.
-	 * Calls to {@code register} are idempotent; adding the same
-	 * annotated class more than once has no additional effect.
-	 * @param annotatedClasses one or more annotated classes,
-	 * e.g. {@link Configuration @Configuration} classes
+	 * Calls to {@code register} are idempotent; adding the same annotated class more than once has no additional effect.
+	 * @param annotatedClasses one or more annotated classes,e.g. {@link Configuration @Configuration} classes
 	 */
 	void register(Class<?>... annotatedClasses);
 

@@ -13,17 +13,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Standalone application context, accepting annotated classes as input - in particular
- * {@link Configuration @Configuration}-annotated classes, but also plain
- * {@link org.springframework.stereotype.Component @Component} types and JSR-330 compliant
- * classes using {@code javax.inject} annotations. Allows for registering classes one by
- * one using {@link #register(Class...)} as well as for classpath scanning using {@link #scan(String...)}.
+ * Standalone application context, accepting annotated classes as input - in particular {@link Configuration @Configuration}-annotated classes,
+ * but also plain {@link org.springframework.stereotype.Component @Component} types and JSR-330 compliant classes using {@code javax.inject} annotations.
+ * Allows for registering classes one by one using {@link #register(Class...)} as well as for classpath scanning using {@link #scan(String...)}.
  *
  * In case of multiple {@code @Configuration} classes, @{@link Bean} methods defined in later classes will override those defined in earlier classes.
  * This can be leveraged to deliberately override certain bean definitions via an extra {@code @Configuration} class.
- *
  * See @{@link Configuration}'s javadoc for usage examples.
- *  AnnotationConfigApplicationContext 是基于注解来使用的，它不需要配置文件，采用 java 配置类和各种注解来配置，是比较简单的方式，也是大势所趋
  * @since 3.0
  * @see #register
  * @see #scan
@@ -114,9 +110,8 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	}
 
 	//---------------------------------------------------------------------
-	// Implementation of AnnotationConfigRegistry
+	// Implementation of 【AnnotationConfigRegistry】 interface
 	//---------------------------------------------------------------------
-
 	/**
 	 * Register one or more annotated classes to be processed.
 	 * Note that {@link #refresh()} must be called in order for the context to fully process the new classes.
@@ -146,7 +141,6 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	//---------------------------------------------------------------------
 	// Convenient methods for registering individual beans
 	//---------------------------------------------------------------------
-
 	/**
 	 * Register a bean from the given bean class, deriving its metadata from class-declared annotations,
 	 * and optionally providing explicit constructor arguments for consideration in the autowiring process.
