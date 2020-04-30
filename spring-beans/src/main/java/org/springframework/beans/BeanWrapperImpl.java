@@ -175,8 +175,7 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 	 * This method is only intended for optimizations in a BeanFactory.
 	 * Use the {@code convertIfNecessary} methods for programmatic conversion.
 	 * @param value the value to convert
-	 * @param propertyName the target property
-	 * (note that nested or indexed properties are not supported here)
+	 * @param propertyName the target property (note that nested or indexed properties are not supported here)
 	 * @return the new value, possibly the result of type conversion
 	 * @throws TypeMismatchException if type conversion failed
 	 */

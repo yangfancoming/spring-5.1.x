@@ -4,7 +4,6 @@ package org.springframework.beans.factory;
 
 /**
  * Counterpart of {@link BeanNameAware}. Returns the bean name of an object.
- *
  * This interface can be introduced to avoid a brittle dependence on
  * bean name in objects used with Spring IoC and Spring AOP.
  * @since 2.0

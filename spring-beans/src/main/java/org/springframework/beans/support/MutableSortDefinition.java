@@ -24,8 +24,7 @@ public class MutableSortDefinition implements SortDefinition, Serializable {
 	private boolean toggleAscendingOnProperty = false;
 
 	/**
-	 * Create an empty MutableSortDefinition,
-	 * to be populated via its bean properties.
+	 * Create an empty MutableSortDefinition,to be populated via its bean properties.
 	 * @see #setProperty
 	 * @see #setIgnoreCase
 	 * @see #setAscending
@@ -34,8 +33,7 @@ public class MutableSortDefinition implements SortDefinition, Serializable {
 	}
 
 	/**
-	 * Copy constructor: create a new MutableSortDefinition
-	 * that mirrors the given sort definition.
+	 * Copy constructor: create a new MutableSortDefinition that mirrors the given sort definition.
 	 * @param source the original sort definition
 	 */
 	public MutableSortDefinition(SortDefinition source) {

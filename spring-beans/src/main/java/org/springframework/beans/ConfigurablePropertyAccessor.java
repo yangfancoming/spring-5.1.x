@@ -39,10 +39,8 @@ public interface ConfigurablePropertyAccessor extends PropertyAccessor, Property
 	boolean isExtractOldValueForEditor();
 
 	/**
-	 * Set whether this instance should attempt to "auto-grow" a
-	 * nested path that contains a {@code null} value.
-	 * If {@code true}, a {@code null} path location will be populated
-	 * with a default object value and traversed instead of resulting in a
+	 * Set whether this instance should attempt to "auto-grow" a  nested path that contains a {@code null} value.
+	 * If {@code true}, a {@code null} path location will be populated  with a default object value and traversed instead of resulting in a
 	 * {@link NullValueInNestedPathException}.
 	 * Default is {@code false} on a plain PropertyAccessor instance.
 	 */

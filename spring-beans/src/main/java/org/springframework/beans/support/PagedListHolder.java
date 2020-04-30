@@ -27,8 +27,7 @@ import org.springframework.util.Assert;
  *
  * The data binding names have to be called "pageSize" and "sort.ascending",
  * as expected by BeanWrapper. Note that the names and the nesting syntax match
- * the respective JSTL EL expressions, like "myModelAttr.pageSize" and
- * "myModelAttr.sort.ascending".
+ * the respective JSTL EL expressions, like "myModelAttr.pageSize" and "myModelAttr.sort.ascending".
  * @since 19.05.2003
  * @param <E> the element type
  * @see #getPageList()
@@ -153,8 +152,7 @@ public class PagedListHolder<E> implements Serializable {
 	}
 
 	/**
-	 * Set the current page number.
-	 * Page numbering starts with 0.
+	 * Set the current page number.  Page numbering starts with 0.
 	 */
 	public void setPage(int page) {
 		this.page = page;
@@ -162,8 +160,7 @@ public class PagedListHolder<E> implements Serializable {
 	}
 
 	/**
-	 * Return the current page number.
-	 * Page numbering starts with 0.
+	 * Return the current page number. Page numbering starts with 0.
 	 */
 	public int getPage() {
 		this.newPageSet = false;
@@ -230,56 +227,40 @@ public class PagedListHolder<E> implements Serializable {
 		}
 	}
 
-	/**
-	 * Return the total number of elements in the source list.
-	 */
+	// Return the total number of elements in the source list.
 	public int getNrOfElements() {
 		return getSource().size();
 	}
 
-	/**
-	 * Return the element index of the first element on the current page.
-	 * Element numbering starts with 0.
-	 */
+	// Return the element index of the first element on the current page.Element numbering starts with 0.
 	public int getFirstElementOnPage() {
 		return (getPageSize() * getPage());
 	}
 
-	/**
-	 * Return the element index of the last element on the current page.
-	 * Element numbering starts with 0.
-	 */
+	// Return the element index of the last element on the current page. Element numbering starts with 0.
 	public int getLastElementOnPage() {
 		int endIndex = getPageSize() * (getPage() + 1);
 		int size = getNrOfElements();
 		return (endIndex > size ? size : endIndex) - 1;
 	}
 
-	/**
-	 * Return a sub-list representing the current page.
-	 */
+	// Return a sub-list representing the current page.
 	public List<E> getPageList() {
 		return getSource().subList(getFirstElementOnPage(), getLastElementOnPage() + 1);
 	}
 
-	/**
-	 * Return the first page to which create a link around the current page.
-	 */
+	// Return the first page to which create a link around the current page.
 	public int getFirstLinkedPage() {
 		return Math.max(0, getPage() - (getMaxLinkedPages() / 2));
 	}
 
-	/**
-	 * Return the last page to which create a link around the current page.
-	 */
+	// Return the last page to which create a link around the current page.
 	public int getLastLinkedPage() {
 		return Math.min(getFirstLinkedPage() + getMaxLinkedPages() - 1, getPageCount() - 1);
 	}
 
-
 	/**
-	 * Resort the list if necessary, i.e. if the current {@code sort} instance
-	 * isn't equal to the backed-up {@code sortUsed} instance.
+	 * Resort the list if necessary, i.e. if the current {@code sort} instance isn't equal to the backed-up {@code sortUsed} instance.
 	 * Calls {@code doSort} to trigger actual sorting.
 	 * @see #doSort
 	 */
@@ -293,13 +274,10 @@ public class PagedListHolder<E> implements Serializable {
 	}
 
 	/**
-	 * Create a deep copy of the given sort definition,
-	 * for use as state holder to compare a modified sort definition against.
+	 * Create a deep copy of the given sort definition, for use as state holder to compare a modified sort definition against.
 	 * Default implementation creates a MutableSortDefinition instance.
-	 * Can be overridden in subclasses, in particular in case of custom
-	 * extensions to the SortDefinition interface. Is allowed to return
-	 * null, which means that no sort state will be held, triggering
-	 * actual sorting for each {@code resort} call.
+	 * Can be overridden in subclasses, in particular in case of custom extensions to the SortDefinition interface.
+	 * Is allowed to return null, which means that no sort state will be held, triggering actual sorting for each {@code resort} call.
 	 * @param sort the current SortDefinition object
 	 * @return a deep copy of the SortDefinition object
 	 * @see MutableSortDefinition#MutableSortDefinition(SortDefinition)
@@ -309,8 +287,7 @@ public class PagedListHolder<E> implements Serializable {
 	}
 
 	/**
-	 * Actually perform sorting of the given source list, according to
-	 * the given sort definition.
+	 * Actually perform sorting of the given source list, according to the given sort definition.
 	 * The default implementation uses Spring's PropertyComparator.
 	 * Can be overridden in subclasses.
 	 * @see PropertyComparator#sort(java.util.List, SortDefinition)

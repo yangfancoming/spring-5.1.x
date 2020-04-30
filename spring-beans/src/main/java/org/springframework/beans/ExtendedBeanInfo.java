@@ -27,8 +27,7 @@ import org.springframework.util.ObjectUtils;
 
 /**
  * Decorator for a standard {@link BeanInfo} object, e.g. as created by
- * {@link Introspector#getBeanInfo(Class)}, designed to discover and register static
- * and/or non-void returning setter methods. For example:
+ * {@link Introspector#getBeanInfo(Class)}, designed to discover and register static and/or non-void returning setter methods. For example:
  *
  * <pre class="code">
  * public class Bean {
@@ -45,17 +44,14 @@ import org.springframework.util.ObjectUtils;
  *     }
  * }</pre>
  *
- * The standard JavaBeans {@code Introspector} will discover the {@code getFoo} read
- * method, but will bypass the {@code #setFoo(Foo)} write method, because its non-void
- * returning signature does not comply with the JavaBeans specification.
- * {@code ExtendedBeanInfo}, on the other hand, will recognize and include it. This is
- * designed to allow APIs with "builder" or method-chaining style setter signatures to be
- * used within Spring {@code <beans>} XML. {@link #getPropertyDescriptors()} returns all
- * existing property descriptors from the wrapped {@code BeanInfo} as well any added for
+ * The standard JavaBeans {@code Introspector} will discover the {@code getFoo} read method,
+ * but will bypass the {@code #setFoo(Foo)} write method, because its non-void  returning signature does not comply with the JavaBeans specification.
+ * {@code ExtendedBeanInfo}, on the other hand, will recognize and include it.
+ * This is designed to allow APIs with "builder" or method-chaining style setter signatures to be used within Spring {@code <beans>} XML.
+ * {@link #getPropertyDescriptors()} returns all existing property descriptors from the wrapped {@code BeanInfo} as well any added for
  * non-void returning setters. Both standard ("non-indexed") and
  * <a href="https://docs.oracle.com/javase/tutorial/javabeans/writing/properties.html">
  * indexed properties</a> are fully supported.
-
  * @since 3.1
  * @see #ExtendedBeanInfo(BeanInfo)
  * @see ExtendedBeanInfoFactory
@@ -101,7 +97,6 @@ class ExtendedBeanInfo implements BeanInfo {
 			}
 		}
 	}
-
 
 	private List<Method> findCandidateWriteMethods(MethodDescriptor[] methodDescriptors) {
 		List<Method> matches = new ArrayList<>();

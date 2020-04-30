@@ -38,12 +38,10 @@ public class UtilNamespaceHandler extends NamespaceHandlerSupport {
 	}
 
 	private static class ConstantBeanDefinitionParser extends AbstractSimpleBeanDefinitionParser {
-
 		@Override
 		protected Class<?> getBeanClass(Element element) {
 			return FieldRetrievingFactoryBean.class;
 		}
-
 		@Override
 		protected String resolveId(Element element, AbstractBeanDefinition definition, ParserContext parserContext) {
 			String id = super.resolveId(element, definition, parserContext);
@@ -53,7 +51,6 @@ public class UtilNamespaceHandler extends NamespaceHandlerSupport {
 			return id;
 		}
 	}
-
 
 	private static class PropertyPathBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
 
@@ -102,19 +99,16 @@ public class UtilNamespaceHandler extends NamespaceHandlerSupport {
 		protected void doParse(Element element, ParserContext parserContext, BeanDefinitionBuilder builder) {
 			List<Object> parsedList = parserContext.getDelegate().parseListElement(element, builder.getRawBeanDefinition());
 			builder.addPropertyValue("sourceList", parsedList);
-
 			String listClass = element.getAttribute("list-class");
 			if (StringUtils.hasText(listClass)) {
 				builder.addPropertyValue("targetListClass", listClass);
 			}
-
 			String scope = element.getAttribute(SCOPE_ATTRIBUTE);
 			if (StringUtils.hasLength(scope)) {
 				builder.setScope(scope);
 			}
 		}
 	}
-
 
 	private static class SetBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
 

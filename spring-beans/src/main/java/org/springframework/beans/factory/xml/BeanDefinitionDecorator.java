@@ -15,10 +15,8 @@ import org.springframework.beans.factory.config.BeanDefinitionHolder;
  * {@link org.springframework.beans.factory.config.BeanDefinition} to replace the original.
  * {@link BeanDefinitionDecorator BeanDefinitionDecorators} should be aware that
  * they may be part of a chain. In particular, a {@link BeanDefinitionDecorator} should
- * be aware that a previous {@link BeanDefinitionDecorator} may have replaced the
- * original {@link org.springframework.beans.factory.config.BeanDefinition} with a
+ * be aware that a previous {@link BeanDefinitionDecorator} may have replaced the original {@link org.springframework.beans.factory.config.BeanDefinition} with a
  * {@link org.springframework.aop.framework.ProxyFactoryBean} definition allowing for custom {@link org.aopalliance.intercept.MethodInterceptor interceptors} to be added.
- *
  * {@link BeanDefinitionDecorator BeanDefinitionDecorators} that wish to add an interceptor to the enclosing bean should extend
  * {@link org.springframework.aop.config.AbstractInterceptorDrivenBeanDefinitionDecorator}
  * which handles the chaining ensuring that only one proxy is created and that it contains all interceptors from the chain.

@@ -90,7 +90,6 @@ public abstract class AbstractPropertyAccessor extends TypeConverterSupport impl
 				propertyAccessExceptions.add(ex);
 			}
 		}
-
 		// If we encountered individual exceptions, throw the composite exception.
 		if (propertyAccessExceptions != null) {
 			PropertyAccessException[] paeArray = propertyAccessExceptions.toArray(new PropertyAccessException[0]);
@@ -109,10 +108,8 @@ public abstract class AbstractPropertyAccessor extends TypeConverterSupport impl
 	 * Actually get the value of a property.
 	 * @param propertyName name of the property to get the value of
 	 * @return the value of the property
-	 * @throws InvalidPropertyException if there is no such property or
-	 * if the property isn't readable
-	 * @throws PropertyAccessException if the property was valid but the
-	 * accessor method failed
+	 * @throws InvalidPropertyException if there is no such property or if the property isn't readable
+	 * @throws PropertyAccessException if the property was valid but the accessor method failed
 	 */
 	@Override
 	@Nullable
@@ -122,10 +119,8 @@ public abstract class AbstractPropertyAccessor extends TypeConverterSupport impl
 	 * Actually set a property value.
 	 * @param propertyName name of the property to set value of
 	 * @param value the new value
-	 * @throws InvalidPropertyException if there is no such property or
-	 * if the property isn't writable
-	 * @throws PropertyAccessException if the property was valid but the
-	 * accessor method failed or a type mismatch occurred
+	 * @throws InvalidPropertyException if there is no such property or if the property isn't writable
+	 * @throws PropertyAccessException if the property was valid but the accessor method failed or a type mismatch occurred
 	 */
 	@Override
 	public abstract void setPropertyValue(String propertyName, @Nullable Object value) throws BeansException;

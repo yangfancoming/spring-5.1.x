@@ -9,22 +9,18 @@ import org.springframework.lang.Nullable;
 
 /**
  * Strategy interface for creating {@link BeanInfo} instances for Spring beans.
- * Can be used to plug in custom bean property resolution strategies (e.g. for other
- * languages on the JVM) or more efficient {@link BeanInfo} retrieval algorithms.
+ * Can be used to plug in custom bean property resolution strategies (e.g. for other languages on the JVM) or more efficient {@link BeanInfo} retrieval algorithms.
  *
- * BeanInfoFactories are instantiated by the {@link CachedIntrospectionResults},
- * by using the {@link org.springframework.core.io.support.SpringFactoriesLoader} utility class.
+ * BeanInfoFactories are instantiated by the {@link CachedIntrospectionResults},  by using the {@link org.springframework.core.io.support.SpringFactoriesLoader} utility class.
  *
- * When a {@link BeanInfo} is to be created, the {@code CachedIntrospectionResults}
- * will iterate through the discovered factories, calling {@link #getBeanInfo(Class)}
- * on each one. If {@code null} is returned, the next factory will be queried.
+ * When a {@link BeanInfo} is to be created, the {@code CachedIntrospectionResults}  will iterate through the discovered factories,
+ * calling {@link #getBeanInfo(Class)} on each one.
+ * If {@code null} is returned, the next factory will be queried.
  * If none of the factories support the class, a standard {@link BeanInfo} will be created as a default.
  *
- * Note that the {@link org.springframework.core.io.support.SpringFactoriesLoader}
- * sorts the {@code BeanInfoFactory} instances by
+ * Note that the {@link org.springframework.core.io.support.SpringFactoriesLoader} sorts the {@code BeanInfoFactory} instances by
  * {@link org.springframework.core.annotation.Order @Order}, so that ones with a  higher precedence come first.
  *
- * @author Arjen Poutsma
  * @since 3.2
  * @see CachedIntrospectionResults
  * @see org.springframework.core.io.support.SpringFactoriesLoader

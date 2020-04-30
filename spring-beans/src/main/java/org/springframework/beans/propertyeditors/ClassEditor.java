@@ -15,9 +15,6 @@ import org.springframework.util.StringUtils;
  *
  * Also supports "java.lang.String[]"-style array class names, in contrast to the
  * standard {@link Class#forName(String)} method.
- *
-
- * @author Rick Evans
  * @since 13.05.2003
  * @see Class#forName
  * @see org.springframework.util.ClassUtils#forName(String, ClassLoader)
@@ -26,7 +23,6 @@ public class ClassEditor extends PropertyEditorSupport {
 
 	@Nullable
 	private final ClassLoader classLoader;
-
 
 	/**
 	 * Create a default ClassEditor, using the thread context ClassLoader.
@@ -37,13 +33,11 @@ public class ClassEditor extends PropertyEditorSupport {
 
 	/**
 	 * Create a default ClassEditor, using the given ClassLoader.
-	 * @param classLoader the ClassLoader to use
-	 * (or {@code null} for the thread context ClassLoader)
+	 * @param classLoader the ClassLoader to use (or {@code null} for the thread context ClassLoader)
 	 */
 	public ClassEditor(@Nullable ClassLoader classLoader) {
 		this.classLoader = (classLoader != null ? classLoader : ClassUtils.getDefaultClassLoader());
 	}
-
 
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {

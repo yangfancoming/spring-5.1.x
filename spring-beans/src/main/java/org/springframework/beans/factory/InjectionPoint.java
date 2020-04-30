@@ -15,9 +15,7 @@ import org.springframework.util.ObjectUtils;
 /**
  * A simple descriptor for an injection point, pointing to a method/constructor
  * parameter or a field. Exposed by {@link UnsatisfiedDependencyException}.
- * Also available as an argument for factory methods, reacting to the
- * requesting injection point for building a customized bean instance.
-
+ * Also available as an argument for factory methods, reacting to the requesting injection point for building a customized bean instance.
  * @since 4.3
  * @see UnsatisfiedDependencyException#getInjectionPoint()
  * @see org.springframework.beans.factory.config.DependencyDescriptor
@@ -62,9 +60,7 @@ public class InjectionPoint {
 		this.fieldAnnotations = original.fieldAnnotations;
 	}
 
-	/**
-	 * Just available for serialization purposes in subclasses.
-	 */
+	//  Just available for serialization purposes in subclasses.
 	protected InjectionPoint() {
 	}
 

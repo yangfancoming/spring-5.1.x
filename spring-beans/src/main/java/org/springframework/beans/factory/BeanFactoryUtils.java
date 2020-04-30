@@ -18,8 +18,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * Convenience methods operating on bean factories, in particular on the {@link ListableBeanFactory} interface.
- * Returns bean counts, bean names or bean instances,
- * taking into account the nesting hierarchy of a bean factory
+ * Returns bean counts, bean names or bean instances,taking into account the nesting hierarchy of a bean factory
  * (which the methods defined on the ListableBeanFactory interface don't,in contrast to the methods defined on the BeanFactory interface).
  * @since 04.07.2003
  */
@@ -119,13 +118,11 @@ public abstract class BeanFactoryUtils {
 	}
 
 	/**
-	 * Get all bean names for the given type, including those defined in ancestor
-	 * factories. Will return unique names in case of overridden bean definitions.
-	 * Does consider objects created by FactoryBeans, which means that FactoryBeans
-	 * will get initialized. If the object created by the FactoryBean doesn't match,
-	 * the raw FactoryBean itself will be matched against the type.
-	 * This version of {@code beanNamesForTypeIncludingAncestors} automatically
-	 * includes prototypes and FactoryBeans.
+	 * Get all bean names for the given type, including those defined in ancestor factories.
+	 * Will return unique names in case of overridden bean definitions.
+	 * Does consider objects created by FactoryBeans, which means that FactoryBeans will get initialized.
+	 * If the object created by the FactoryBean doesn't match,the raw FactoryBean itself will be matched against the type.
+	 * This version of {@code beanNamesForTypeIncludingAncestors} automatically includes prototypes and FactoryBeans.
 	 * @param lbf the bean factory
 	 * @param type the type that beans must match (as a {@code ResolvableType})
 	 * @return the array of matching bean names, or an empty array if none
@@ -172,18 +169,17 @@ public abstract class BeanFactoryUtils {
 	/**
 	 * Get all bean names for the given type, including those defined in ancestor factories.
 	 * Will return unique names in case of overridden bean definitions.
-	 * Does consider objects created by FactoryBeans if the "allowEagerInit" flag is set,
-	 * which means that FactoryBeans will get initialized.
-	 * If the object created by the FactoryBean doesn't match,
-	 * the raw FactoryBean itself will be matched against the type.
+	 * Does consider objects created by FactoryBeans if the "allowEagerInit" flag is set,which means that FactoryBeans will get initialized.
+	 * If the object created by the FactoryBean doesn't match,the raw FactoryBean itself will be matched against the type.
 	 * If "allowEagerInit" is not set, only raw FactoryBeans will be checked (which doesn't require initialization of each FactoryBean).
 	 * @param lbf the bean factory
 	 * @param includeNonSingletons whether to include prototype or scoped beans too or just singletons (also applies to FactoryBeans)
-	 * @param allowEagerInit whether to initialize <i>lazy-init singletons</i> and
-	 * <i>objects created by FactoryBeans</i> (or by factory methods with a
-	 * "factory-bean" reference) for the type check. Note that FactoryBeans need to be
-	 * eagerly initialized to determine their type: So be aware that passing in "true"
-	 * for this flag will initialize FactoryBeans and "factory-bean" references.
+	 * @param allowEagerInit whether to initialize
+	 * <i>lazy-init singletons</i> and
+	 * <i>objects created by FactoryBeans</i>
+	 *  (or by factory methods with a "factory-bean" reference) for the type check.
+	 * Note that FactoryBeans need to be eagerly initialized to determine their type:
+	 * So be aware that passing in "true"  for this flag will initialize FactoryBeans and "factory-bean" references.
 	 * @param type the type that beans must match
 	 * @return the array of matching bean names, or an empty array if none
 	 * @see ListableBeanFactory#getBeanNamesForType(Class, boolean, boolean)
@@ -202,9 +198,8 @@ public abstract class BeanFactoryUtils {
 	}
 
 	/**
-	 * Get all bean names whose {@code Class} has the supplied {@link Annotation}
-	 * type, including those defined in ancestor factories, without creating any bean
-	 * instances yet. Will return unique names in case of overridden bean definitions.
+	 * Get all bean names whose {@code Class} has the supplied {@link Annotation} type, including those defined in ancestor factories, without creating any bean instances yet.
+	 * Will return unique names in case of overridden bean definitions.
 	 * @param lbf the bean factory
 	 * @param annotationType the type of annotation to look for
 	 * @return the array of matching bean names, or an empty array if none
@@ -226,16 +221,13 @@ public abstract class BeanFactoryUtils {
 
 	// Retrieval of bean instances
 	/**
-	 * Return all beans of the given type or subtypes, also picking up beans defined in
-	 * ancestor bean factories if the current bean factory is a HierarchicalBeanFactory.
+	 * Return all beans of the given type or subtypes, also picking up beans defined in ancestor bean factories if the current bean factory is a HierarchicalBeanFactory.
 	 * The returned Map will only contain beans of this type.
-	 * Does consider objects created by FactoryBeans, which means that FactoryBeans
-	 * will get initialized. If the object created by the FactoryBean doesn't match,
-	 * the raw FactoryBean itself will be matched against the type.
+	 * Does consider objects created by FactoryBeans, which means that FactoryBeans will get initialized.
+	 * If the object created by the FactoryBean doesn't match,the raw FactoryBean itself will be matched against the type.
 	 * <b>Note: Beans of the same name will take precedence at the 'lowest' factory level,
-	 * i.e. such beans will be returned from the lowest factory that they are being found in,
-	 * hiding corresponding beans in ancestor factories.</b> This feature allows for
-	 * 'replacing' beans by explicitly choosing the same bean name in a child factory;
+	 * i.e. such beans will be returned from the lowest factory that they are being found in,hiding corresponding beans in ancestor factories.
+	 * </b> This feature allows for  'replacing' beans by explicitly choosing the same bean name in a child factory;
 	 * the bean in the ancestor factory won't be visible then, not even for by-type lookups.
 	 * @param lbf the bean factory
 	 * @param type type of bean to match
@@ -262,27 +254,21 @@ public abstract class BeanFactoryUtils {
 	}
 
 	/**
-	 * Return all beans of the given type or subtypes, also picking up beans defined in
-	 * ancestor bean factories if the current bean factory is a HierarchicalBeanFactory.
+	 * Return all beans of the given type or subtypes, also picking up beans defined in  ancestor bean factories if the current bean factory is a HierarchicalBeanFactory.
 	 * The returned Map will only contain beans of this type.
-	 * Does consider objects created by FactoryBeans if the "allowEagerInit" flag is set,
-	 * which means that FactoryBeans will get initialized. If the object created by the
-	 * FactoryBean doesn't match, the raw FactoryBean itself will be matched against the
-	 * type. If "allowEagerInit" is not set, only raw FactoryBeans will be checked
-	 * (which doesn't require initialization of each FactoryBean).
+	 * Does consider objects created by FactoryBeans if the "allowEagerInit" flag is set, which means that FactoryBeans will get initialized.
+	 * If the object created by the FactoryBean doesn't match, the raw FactoryBean itself will be matched against the type.
+	 * If "allowEagerInit" is not set, only raw FactoryBeans will be checked (which doesn't require initialization of each FactoryBean).
 	 * <b>Note: Beans of the same name will take precedence at the 'lowest' factory level,
 	 * i.e. such beans will be returned from the lowest factory that they are being found in,
-	 * hiding corresponding beans in ancestor factories.</b> This feature allows for
-	 * 'replacing' beans by explicitly choosing the same bean name in a child factory;
+	 * hiding corresponding beans in ancestor factories.</b> This feature allows for 'replacing' beans by explicitly choosing the same bean name in a child factory;
 	 * the bean in the ancestor factory won't be visible then, not even for by-type lookups.
 	 * @param lbf the bean factory
 	 * @param type type of bean to match
 	 * @param includeNonSingletons whether to include prototype or scoped beans too or just singletons (also applies to FactoryBeans)
 	 * @param allowEagerInit whether to initialize <i>lazy-init singletons</i> and
-	 * <i>objects created by FactoryBeans</i> (or by factory methods with a
-	 * "factory-bean" reference) for the type check. Note that FactoryBeans need to be
-	 * eagerly initialized to determine their type: So be aware that passing in "true"
-	 * for this flag will initialize FactoryBeans and "factory-bean" references.
+	 * <i>objects created by FactoryBeans</i> (or by factory methods with a "factory-bean" reference) for the type check. Note that FactoryBeans need to be
+	 * eagerly initialized to determine their type: So be aware that passing in "true" for this flag will initialize FactoryBeans and "factory-bean" references.
 	 * @return the Map of matching bean instances, or an empty Map if none
 	 * @throws BeansException if a bean could not be created
 	 * @see ListableBeanFactory#getBeansOfType(Class, boolean, boolean)
@@ -307,18 +293,15 @@ public abstract class BeanFactoryUtils {
 
 	/**
 	 * Return a single bean of the given type or subtypes, also picking up beans
-	 * defined in ancestor bean factories if the current bean factory is a
-	 * HierarchicalBeanFactory. Useful convenience method when we expect a
-	 * single bean and don't care about the bean name.
+	 * defined in ancestor bean factories if the current bean factory is a HierarchicalBeanFactory.
+	 * Useful convenience method when we expect a single bean and don't care about the bean name.
 	 * Does consider objects created by FactoryBeans, which means that FactoryBeans
 	 * will get initialized. If the object created by the FactoryBean doesn't match,
 	 * the raw FactoryBean itself will be matched against the type.
-	 * This version of {@code beanOfTypeIncludingAncestors} automatically includes
-	 * prototypes and FactoryBeans.
+	 * This version of {@code beanOfTypeIncludingAncestors} automatically includes  prototypes and FactoryBeans.
 	 * <b>Note: Beans of the same name will take precedence at the 'lowest' factory level,
-	 * i.e. such beans will be returned from the lowest factory that they are being found in,
-	 * hiding corresponding beans in ancestor factories.</b> This feature allows for
-	 * 'replacing' beans by explicitly choosing the same bean name in a child factory;
+	 * i.e. such beans will be returned from the lowest factory that they are being found in, hiding corresponding beans in ancestor factories.
+	 * </b> This feature allows for 'replacing' beans by explicitly choosing the same bean name in a child factory;
 	 * the bean in the ancestor factory won't be visible then, not even for by-type lookups.
 	 * @param lbf the bean factory
 	 * @param type type of bean to match
@@ -336,13 +319,10 @@ public abstract class BeanFactoryUtils {
 	/**
 	 * Return a single bean of the given type or subtypes, also picking up beans
 	 * defined in ancestor bean factories if the current bean factory is a
-	 * HierarchicalBeanFactory. Useful convenience method when we expect a
-	 * single bean and don't care about the bean name.
-	 * Does consider objects created by FactoryBeans if the "allowEagerInit" flag is set,
-	 * which means that FactoryBeans will get initialized. If the object created by the
-	 * FactoryBean doesn't match, the raw FactoryBean itself will be matched against the
-	 * type. If "allowEagerInit" is not set, only raw FactoryBeans will be checked
-	 * (which doesn't require initialization of each FactoryBean).
+	 * HierarchicalBeanFactory. Useful convenience method when we expect a  single bean and don't care about the bean name.
+	 * Does consider objects created by FactoryBeans if the "allowEagerInit" flag is set, which means that FactoryBeans will get initialized.
+	 * If the object created by the FactoryBean doesn't match, the raw FactoryBean itself will be matched against the type.
+	 * If "allowEagerInit" is not set, only raw FactoryBeans will be checked (which doesn't require initialization of each FactoryBean).
 	 * <b>Note: Beans of the same name will take precedence at the 'lowest' factory level,
 	 * i.e. such beans will be returned from the lowest factory that they are being found in,
 	 * hiding corresponding beans in ancestor factories.</b> This feature allows for
@@ -370,8 +350,7 @@ public abstract class BeanFactoryUtils {
 	 * Return a single bean of the given type or subtypes, not looking in ancestor
 	 * factories. Useful convenience method when we expect a single bean and  don't care about the bean name.
 	 * Does consider objects created by FactoryBeans, which means that FactoryBeans
-	 * will get initialized. If the object created by the FactoryBean doesn't match,
-	 * the raw FactoryBean itself will be matched against the type.
+	 * will get initialized. If the object created by the FactoryBean doesn't match,the raw FactoryBean itself will be matched against the type.
 	 * This version of {@code beanOfType} automatically includes prototypes and FactoryBeans.
 	 * @param lbf the bean factory
 	 * @param type type of bean to match
@@ -422,9 +401,7 @@ public abstract class BeanFactoryUtils {
 	 * @since 4.3.15
 	 */
 	private static String[] mergeNamesWithParent(String[] result, String[] parentResult, HierarchicalBeanFactory hbf) {
-		if (parentResult.length == 0) {
-			return result;
-		}
+		if (parentResult.length == 0) return result;
 		List<String> merged = new ArrayList<>(result.length + parentResult.length);
 		merged.addAll(Arrays.asList(result));
 		for (String beanName : parentResult) {

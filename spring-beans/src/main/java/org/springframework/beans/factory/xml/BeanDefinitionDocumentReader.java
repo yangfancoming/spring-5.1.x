@@ -7,7 +7,6 @@ import org.springframework.beans.factory.BeanDefinitionStoreException;
 /**
  * SPI for parsing an XML document that contains Spring bean definitions.
  * Used by {@link XmlBeanDefinitionReader} for actually parsing a DOM document.
- *
  * Instantiated per document to parse: implementations can hold state in instance variables during the execution of the {@code registerBeanDefinitions} method ;
  * for example, global settings that are defined for all bean definitions in the document.
  * @since 18.12.2003

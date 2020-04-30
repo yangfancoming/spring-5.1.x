@@ -52,8 +52,7 @@ public abstract class BeanUtils {
 	 * @param clazz class to instantiate
 	 * @return the new instance
 	 * @throws BeanInstantiationException if the bean cannot be instantiated
-	 * @deprecated as of Spring 5.0, following the deprecation of
-	 * {@link Class#newInstance()} in JDK 9
+	 * @deprecated as of Spring 5.0, following the deprecation of {@link Class#newInstance()} in JDK 9
 	 * @see Class#newInstance()
 	 */
 	@Deprecated
@@ -72,19 +71,15 @@ public abstract class BeanUtils {
 	}
 
 	/**
-	 * Instantiate a class using its 'primary' constructor (for Kotlin classes,
-	 * potentially having default arguments declared) or its default constructor
-	 * (for regular Java classes, expecting a standard no-arg setup).
-	 * Note that this method tries to set the constructor accessible
-	 * if given a non-accessible (that is, non-public) constructor.
+	 * Instantiate a class using its 'primary' constructor (for Kotlin classes,potentially having default arguments declared)
+	 * or its default constructor (for regular Java classes, expecting a standard no-arg setup).
+	 * Note that this method tries to set the constructor accessible if given a non-accessible (that is, non-public) constructor.
 	 * @param clazz the class to instantiate
 	 * @return the new instance
 	 * @throws BeanInstantiationException if the bean cannot be instantiated.
-	 * The cause may notably indicate a {@link NoSuchMethodException} if no
-	 * primary/default constructor was found, a {@link NoClassDefFoundError}
-	 * or other {@link LinkageError} in case of an unresolvable class definition
-	 * (e.g. due to a missing dependency at runtime), or an exception thrown
-	 * from the constructor invocation itself.
+	 * The cause may notably indicate a {@link NoSuchMethodException} if no primary/default constructor was found,
+	 * a {@link NoClassDefFoundError} or other {@link LinkageError} in case of an unresolvable class definition
+	 * (e.g. due to a missing dependency at runtime), or an exception thrown from the constructor invocation itself.
 	 * @see Constructor#newInstance
 	 */
 	public static <T> T instantiateClass(Class<T> clazz) throws BeanInstantiationException {
@@ -106,12 +101,9 @@ public abstract class BeanUtils {
 	}
 
 	/**
-	 * Instantiate a class using its no-arg constructor and return the new instance
-	 * as the specified assignable type.
-	 * Useful in cases where the type of the class to instantiate (clazz) is not
-	 * available, but the type desired (assignableTo) is known.
-	 * Note that this method tries to set the constructor accessible if given a
-	 * non-accessible (that is, non-public) constructor.
+	 * Instantiate a class using its no-arg constructor and return the new instance as the specified assignable type.
+	 * Useful in cases where the type of the class to instantiate (clazz) is not available, but the type desired (assignableTo) is known.
+	 * Note that this method tries to set the constructor accessible if given a non-accessible (that is, non-public) constructor.
 	 * @param clazz class to instantiate
 	 * @param assignableTo type that clazz must be assignableTo
 	 * @return the new instance
@@ -126,12 +118,10 @@ public abstract class BeanUtils {
 
 	/**
 	 * Convenience method to instantiate a class using the given constructor.
-	 * Note that this method tries to set the constructor accessible if given a
-	 * non-accessible (that is, non-public) constructor, and supports Kotlin classes
-	 * with optional parameters and default values.
+	 * Note that this method tries to set the constructor accessible if given a  non-accessible (that is, non-public) constructor,
+	 * and supports Kotlin classes with optional parameters and default values.
 	 * @param ctor the constructor to instantiate
-	 * @param args the constructor arguments to apply (use {@code null} for an unspecified
-	 * parameter if needed for Kotlin classes with optional parameters and default values)
+	 * @param args the constructor arguments to apply (use {@code null} for an unspecified  parameter if needed for Kotlin classes with optional parameters and default values)
 	 * @return the new instance
 	 * @throws BeanInstantiationException if the bean cannot be instantiated
 	 * @see Constructor#newInstance
@@ -142,8 +132,7 @@ public abstract class BeanUtils {
 			// 设置构造方法为可访问
 			ReflectionUtils.makeAccessible(ctor);
 			// 通过反射创建 bean 实例，这里的 args 是一个没有元素的空数组
-			return (KotlinDetector.isKotlinReflectPresent() && KotlinDetector.isKotlinType(ctor.getDeclaringClass()) ?
-					KotlinDelegate.instantiateClass(ctor, args) : ctor.newInstance(args));
+			return (KotlinDetector.isKotlinReflectPresent() && KotlinDetector.isKotlinType(ctor.getDeclaringClass()) ? KotlinDelegate.instantiateClass(ctor, args) : ctor.newInstance(args));
 		} catch (InstantiationException ex) {
 			throw new BeanInstantiationException(ctor, "Is it an abstract class?", ex);
 		} catch (IllegalAccessException ex) {
@@ -156,10 +145,8 @@ public abstract class BeanUtils {
 	}
 
 	/**
-	 * Return the primary constructor of the provided class. For Kotlin classes, this
-	 * returns the Java constructor corresponding to the Kotlin primary constructor
-	 * (as defined in the Kotlin specification). Otherwise, in particular for non-Kotlin
-	 * classes, this simply returns {@code null}.
+	 * Return the primary constructor of the provided class. For Kotlin classes, this  returns the Java constructor corresponding to the Kotlin primary constructor
+	 * (as defined in the Kotlin specification). Otherwise, in particular for non-Kotlin classes, this simply returns {@code null}.
 	 * @param clazz the class to check
 	 * @since 5.0
 	 * @see <a href="https://kotlinlang.org/docs/reference/classes.html#constructors">Kotlin docs</a>
@@ -178,11 +165,9 @@ public abstract class BeanUtils {
 	}
 
 	/**
-	 * Find a method with the given method name and the given parameter types,
-	 * declared on the given class or one of its superclasses. Prefers public methods,
+	 * Find a method with the given method name and the given parameter types,declared on the given class or one of its superclasses. Prefers public methods,
 	 * but will return a protected, package access, or private method too.
-	 * Checks {@code Class.getMethod} first, falling back to
-	 * {@code findDeclaredMethod}. This allows to find public methods
+	 * Checks {@code Class.getMethod} first, falling back to {@code findDeclaredMethod}. This allows to find public methods
 	 * without issues even in environments with restricted Java security settings.
 	 * @param clazz the class to check
 	 * @param methodName the name of the method to find
@@ -201,8 +186,7 @@ public abstract class BeanUtils {
 	}
 
 	/**
-	 * Find a method with the given method name and the given parameter types,
-	 * declared on the given class or one of its superclasses. Will return a public,
+	 * Find a method with the given method name and the given parameter types,declared on the given class or one of its superclasses. Will return a public,
 	 * protected, package access, or private method.
 	 * Checks {@code Class.getDeclaredMethod}, cascading upwards to all superclasses.
 	 * @param clazz the class to check
@@ -227,14 +211,12 @@ public abstract class BeanUtils {
 	 * Find a method with the given method name and minimal parameters (best case: none),
 	 * declared on the given class or one of its superclasses. Prefers public methods,
 	 * but will return a protected, package access, or private method too.
-	 * Checks {@code Class.getMethods} first, falling back to
-	 * {@code findDeclaredMethodWithMinimalParameters}. This allows for finding public
-	 * methods without issues even in environments with restricted Java security settings.
+	 * Checks {@code Class.getMethods} first, falling back to {@code findDeclaredMethodWithMinimalParameters}.
+	 * This allows for finding public  methods without issues even in environments with restricted Java security settings.
 	 * @param clazz the class to check
 	 * @param methodName the name of the method to find
 	 * @return the Method object, or {@code null} if not found
-	 * @throws IllegalArgumentException if methods of the given name were found but
-	 * could not be resolved to a unique method with minimal parameters
+	 * @throws IllegalArgumentException if methods of the given name were found but could not be resolved to a unique method with minimal parameters
 	 * @see Class#getMethods
 	 * @see #findDeclaredMethodWithMinimalParameters
 	 */
@@ -248,15 +230,13 @@ public abstract class BeanUtils {
 	}
 
 	/**
-	 * Find a method with the given method name and minimal parameters (best case: none),
-	 * declared on the given class or one of its superclasses. Will return a public,
+	 * Find a method with the given method name and minimal parameters (best case: none), declared on the given class or one of its superclasses. Will return a public,
 	 * protected, package access, or private method.
 	 * Checks {@code Class.getDeclaredMethods}, cascading upwards to all superclasses.
 	 * @param clazz the class to check
 	 * @param methodName the name of the method to find
 	 * @return the Method object, or {@code null} if not found
-	 * @throws IllegalArgumentException if methods of the given name were found but
-	 * could not be resolved to a unique method with minimal parameters
+	 * @throws IllegalArgumentException if methods of the given name were found but could not be resolved to a unique method with minimal parameters
 	 * @see Class#getDeclaredMethods
 	 */
 	@Nullable
@@ -269,13 +249,11 @@ public abstract class BeanUtils {
 	}
 
 	/**
-	 * Find a method with the given method name and minimal parameters (best case: none)
-	 * in the given list of methods.
+	 * Find a method with the given method name and minimal parameters (best case: none) in the given list of methods.
 	 * @param methods the methods to check
 	 * @param methodName the name of the method to find
 	 * @return the Method object, or {@code null} if not found
-	 * @throws IllegalArgumentException if methods of the given name were found but
-	 * could not be resolved to a unique method with minimal parameters
+	 * @throws IllegalArgumentException if methods of the given name were found but could not be resolved to a unique method with minimal parameters
 	 */
 	@Nullable
 	public static Method findMethodWithMinimalParameters(Method[] methods, String methodName) throws IllegalArgumentException {
@@ -308,14 +286,11 @@ public abstract class BeanUtils {
 
 	/**
 	 * Parse a method signature in the form {@code methodName[([arg_list])]},
-	 * where {@code arg_list} is an optional, comma-separated list of fully-qualified
-	 * type names, and attempts to resolve that signature against the supplied {@code Class}.
-	 * When not supplying an argument list ({@code methodName}) the method whose name
-	 * matches and has the least number of parameters will be returned. When supplying an
-	 * argument type list, only the method whose name and argument types match will be returned.
-	 * Note then that {@code methodName} and {@code methodName()} are <strong>not</strong>
-	 * resolved in the same way. The signature {@code methodName} means the method called
-	 * {@code methodName} with the least number of arguments, whereas {@code methodName()}
+	 * where {@code arg_list} is an optional, comma-separated list of fully-qualified  type names, and attempts to resolve that signature against the supplied {@code Class}.
+	 * When not supplying an argument list ({@code methodName}) the method whose name matches and has the least number of parameters will be returned.
+	 * When supplying an argument type list, only the method whose name and argument types match will be returned.
+	 * Note then that {@code methodName} and {@code methodName()} are <strong>not</strong> resolved in the same way.
+	 * The signature {@code methodName} means the method called {@code methodName} with the least number of arguments, whereas {@code methodName()}
 	 * means the method called {@code methodName} with exactly 0 arguments.
 	 * If no method can be found, then {@code null} is returned.
 	 * @param signature the method signature as String representation
@@ -351,7 +326,6 @@ public abstract class BeanUtils {
 			return findMethod(clazz, methodName, parameterTypes);
 		}
 	}
-
 
 	/**
 	 * Retrieve the JavaBeans {@code PropertyDescriptor}s of a given class.
@@ -391,8 +365,7 @@ public abstract class BeanUtils {
 	}
 
 	/**
-	 * Find a JavaBeans {@code PropertyDescriptor} for the given method,
-	 * with the method either being the read method or the write method for that bean property.
+	 * Find a JavaBeans {@code PropertyDescriptor} for the given method,with the method either being the read method or the write method for that bean property.
 	 * @param method the method to find a corresponding PropertyDescriptor for
 	 * @param clazz the (most specific) class to introspect for descriptors
 	 * @return the corresponding PropertyDescriptor, or {@code null} if none
@@ -412,10 +385,8 @@ public abstract class BeanUtils {
 	}
 
 	/**
-	 * Find a JavaBeans PropertyEditor following the 'Editor' suffix convention
-	 * (e.g. "mypackage.MyDomainClass" -> "mypackage.MyDomainClassEditor").
-	 * Compatible to the standard JavaBeans convention as implemented by
-	 * {@link java.beans.PropertyEditorManager} but isolated from the latter's registered default editors for primitive types.
+	 * Find a JavaBeans PropertyEditor following the 'Editor' suffix convention (e.g. "mypackage.MyDomainClass" -> "mypackage.MyDomainClassEditor").
+	 * Compatible to the standard JavaBeans convention as implemented by {@link java.beans.PropertyEditorManager} but isolated from the latter's registered default editors for primitive types.
 	 * @param targetType the type to find an editor for
 	 * @return the corresponding editor, or {@code null} if none found
 	 */
@@ -500,8 +471,7 @@ public abstract class BeanUtils {
 
 	/**
 	 * Check if the given type represents a "simple" value type:
-	 * a primitive, an enum, a String or other CharSequence, a Number, a Date,
-	 * a URI, a URL, a Locale or a Class.
+	 * a primitive, an enum, a String or other CharSequence, a Number, a Date,a URI, a URL, a Locale or a Class.
 	 * @param clazz the type to check
 	 * @return whether the given type represents a "simple" value type
 	 */
@@ -515,8 +485,7 @@ public abstract class BeanUtils {
 	/**
 	 * Copy the property values of the given source bean into the target bean.
 	 * Note: The source and target classes do not have to match or even be derived
-	 * from each other, as long as the properties match. Any bean properties that the
-	 * source bean exposes but the target bean does not will silently be ignored.
+	 * from each other, as long as the properties match. Any bean properties that the source bean exposes but the target bean does not will silently be ignored.
 	 * This is just a convenience method. For more complex transfer needs, consider using a full BeanWrapper.
 	 * @param source the source bean
 	 * @param target the target bean
@@ -528,13 +497,10 @@ public abstract class BeanUtils {
 	}
 
 	/**
-	 * Copy the property values of the given source bean into the given target bean,
-	 * only setting properties defined in the given "editable" class (or interface).
-	 * Note: The source and target classes do not have to match or even be derived
-	 * from each other, as long as the properties match. Any bean properties that the
-	 * source bean exposes but the target bean does not will silently be ignored.
-	 * This is just a convenience method. For more complex transfer needs,
-	 * consider using a full BeanWrapper.
+	 * Copy the property values of the given source bean into the given target bean,only setting properties defined in the given "editable" class (or interface).
+	 * Note: The source and target classes do not have to match or even be derived from each other, as long as the properties match.
+	 * Any bean properties that the source bean exposes but the target bean does not will silently be ignored.
+	 * This is just a convenience method. For more complex transfer needs,consider using a full BeanWrapper.
 	 * @param source the source bean
 	 * @param target the target bean
 	 * @param editable the class (or interface) to restrict property setting to
@@ -639,8 +605,7 @@ public abstract class BeanUtils {
 		/**
 		 * Instantiate a Kotlin class using the provided constructor.
 		 * @param ctor the constructor of the Kotlin class to instantiate
-		 * @param args the constructor arguments to apply
-		 * (use {@code null} for unspecified parameter if needed)
+		 * @param args the constructor arguments to apply (use {@code null} for unspecified parameter if needed)
 		 */
 		public static <T> T instantiateClass(Constructor<T> ctor, Object... args)throws IllegalAccessException, InvocationTargetException, InstantiationException {
 			KFunction<T> kotlinConstructor = ReflectJvmMapping.getKotlinFunction(ctor);

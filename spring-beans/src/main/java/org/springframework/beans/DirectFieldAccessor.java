@@ -22,7 +22,6 @@ import org.springframework.util.ReflectionUtils;
  *
  * A DirectFieldAccessor's default for the "extractOldValueForEditor" setting
  * is "true", since a field can always be read without side effects.
-
  * @author Stephane Nicoll
  * @since 2.0
  * @see #setExtractOldValueForEditor
@@ -34,7 +33,6 @@ public class DirectFieldAccessor extends AbstractNestablePropertyAccessor {
 
 	private final Map<String, FieldPropertyHandler> fieldMap = new HashMap<>();
 
-
 	/**
 	 * Create a new DirectFieldAccessor for the given object.
 	 * @param object object wrapped by this DirectFieldAccessor
@@ -44,8 +42,7 @@ public class DirectFieldAccessor extends AbstractNestablePropertyAccessor {
 	}
 
 	/**
-	 * Create a new DirectFieldAccessor for the given object,
-	 * registering a nested path that the object is in.
+	 * Create a new DirectFieldAccessor for the given object,registering a nested path that the object is in.
 	 * @param object object wrapped by this DirectFieldAccessor
 	 * @param nestedPath the nested path of the object
 	 * @param parent the containing DirectFieldAccessor (must not be {@code null})
@@ -53,7 +50,6 @@ public class DirectFieldAccessor extends AbstractNestablePropertyAccessor {
 	protected DirectFieldAccessor(Object object, String nestedPath, DirectFieldAccessor parent) {
 		super(object, nestedPath, parent);
 	}
-
 
 	@Override
 	@Nullable

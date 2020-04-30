@@ -12,9 +12,7 @@ import org.springframework.lang.Nullable;
 
 /**
  * {@link BeanInfoFactory} implementation that evaluates whether bean classes have
- * "non-standard" JavaBeans setter methods and are thus candidates for introspection
- * by Spring's (package-visible) {@code ExtendedBeanInfo} implementation.
- *
+ * "non-standard" JavaBeans setter methods and are thus candidates for introspection by Spring's (package-visible) {@code ExtendedBeanInfo} implementation.
  * Ordered at {@link Ordered#LOWEST_PRECEDENCE} to allow other user-defined {@link BeanInfoFactory} types to take precedence.
  * @since 3.2
  * @see BeanInfoFactory
@@ -32,8 +30,7 @@ public class ExtendedBeanInfoFactory implements BeanInfoFactory, Ordered {
 	}
 
 	/**
-	 * Return whether the given bean class declares or inherits any non-void
-	 * returning bean property or indexed property setter methods.
+	 * Return whether the given bean class declares or inherits any non-void returning bean property or indexed property setter methods.
 	 */
 	private boolean supports(Class<?> beanClass) {
 		for (Method method : beanClass.getMethods()) {

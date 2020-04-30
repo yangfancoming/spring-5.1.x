@@ -15,8 +15,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * PropertyComparator performs a comparison of two beans,
- * evaluating the specified bean property via a BeanWrapper.
+ * PropertyComparator performs a comparison of two beans,evaluating the specified bean property via a BeanWrapper.
  * @since 19.05.2003
  * @param <T> the type of objects that may be compared by this comparator
  * @see org.springframework.beans.BeanWrapper
@@ -54,7 +53,6 @@ public class PropertyComparator<T> implements Comparator<T> {
 		return this.sortDefinition;
 	}
 
-
 	@Override
 	@SuppressWarnings("unchecked")
 	public int compare(T o1, T o2) {
@@ -64,9 +62,7 @@ public class PropertyComparator<T> implements Comparator<T> {
 			v1 = ((String) v1).toLowerCase();
 			v2 = ((String) v2).toLowerCase();
 		}
-
 		int result;
-
 		// Put an object with null property at the end of the sort result.
 		try {
 			if (v1 != null) {
@@ -100,11 +96,9 @@ public class PropertyComparator<T> implements Comparator<T> {
 		}
 	}
 
-
 	/**
 	 * Sort the given List according to the given sort definition.
-	 * Note: Contained objects have to provide the given property
-	 * in the form of a bean property, i.e. a getXXX method.
+	 * Note: Contained objects have to provide the given property in the form of a bean property, i.e. a getXXX method.
 	 * @param source the input List
 	 * @param sortDefinition the parameters to sort by
 	 * @throws java.lang.IllegalArgumentException in case of a missing propertyName
@@ -117,8 +111,7 @@ public class PropertyComparator<T> implements Comparator<T> {
 
 	/**
 	 * Sort the given source according to the given sort definition.
-	 * Note: Contained objects have to provide the given property
-	 * in the form of a bean property, i.e. a getXXX method.
+	 * Note: Contained objects have to provide the given property in the form of a bean property, i.e. a getXXX method.
 	 * @param source input source
 	 * @param sortDefinition the parameters to sort by
 	 * @throws java.lang.IllegalArgumentException in case of a missing propertyName

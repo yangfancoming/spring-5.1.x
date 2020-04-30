@@ -32,14 +32,10 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * A basic {@link ConfigurablePropertyAccessor} that provides the necessary
- * infrastructure for all typical use cases.
- *
- * This accessor will convert collection and array values to the corresponding
- * target collections or arrays, if necessary. Custom property editors that deal
- * with collections or arrays can either be written via PropertyEditor's
- * {@code setValue}, or against a comma-delimited String via {@code setAsText},
- * as String arrays are converted in such a format if the array itself is not assignable.
+ * A basic {@link ConfigurablePropertyAccessor} that provides the necessary infrastructure for all typical use cases.
+ * This accessor will convert collection and array values to the corresponding  target collections or arrays, if necessary.
+ * Custom property editors that deal with collections or arrays can either be written via PropertyEditor's {@code setValue},
+ * or against a comma-delimited String via {@code setAsText}, as String arrays are converted in such a format if the array itself is not assignable.
  * @since 4.2
  * @see #registerCustomEditor
  * @see #setPropertyValues
@@ -81,8 +77,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 
 	/**
 	 * Create a new empty accessor. Wrapped instance needs to be set afterwards.
-	 * @param registerDefaultEditors whether to register default editors
-	 * (can be suppressed if the accessor won't need any type conversion)
+	 * @param registerDefaultEditors whether to register default editors (can be suppressed if the accessor won't need any type conversion)
 	 * @see #setWrappedInstance
 	 */
 	protected AbstractNestablePropertyAccessor(boolean registerDefaultEditors) {
@@ -111,8 +106,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	}
 
 	/**
-	 * Create a new accessor for the given object,
-	 * registering a nested path that the object is in.
+	 * Create a new accessor for the given object, registering a nested path that the object is in.
 	 * @param object object wrapped by this accessor
 	 * @param nestedPath the nested path of the object
 	 * @param rootObject the root object at the top of the path
@@ -123,8 +117,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	}
 
 	/**
-	 * Create a new accessor for the given object,
-	 * registering a nested path that the object is in.
+	 * Create a new accessor for the given object,registering a nested path that the object is in.
 	 * @param object object wrapped by this accessor
 	 * @param nestedPath the nested path of the object
 	 * @param parent the containing accessor (must not be {@code null})
@@ -138,8 +131,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	}
 
 	/**
-	 * Specify a limit for array and collection auto-growing.
-	 * Default is unlimited on a plain accessor.
+	 * Specify a limit for array and collection auto-growing. Default is unlimited on a plain accessor.
 	 */
 	public void setAutoGrowCollectionLimit(int autoGrowCollectionLimit) {
 		this.autoGrowCollectionLimit = autoGrowCollectionLimit;
@@ -335,14 +327,12 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 		getterTokens.canonicalName = tokens.canonicalName;
 		getterTokens.keys = new String[tokens.keys.length - 1];
 		System.arraycopy(tokens.keys, 0, getterTokens.keys, 0, tokens.keys.length - 1);
-
 		Object propValue;
 		try {
 			propValue = getPropertyValue(getterTokens);
 		}catch (NotReadablePropertyException ex) {
 			throw new NotWritablePropertyException(getRootClass(), this.nestedPath + tokens.canonicalName,"Cannot access indexed value in property referenced in indexed property path '" + tokens.canonicalName + "'", ex);
 		}
-
 		if (propValue == null) {
 			// null map value case
 			if (isAutoGrowNestedPaths()) {
