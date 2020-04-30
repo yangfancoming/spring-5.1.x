@@ -35,7 +35,7 @@ import org.springframework.web.servlet.view.AbstractUrlBasedView;
  *
  * @author Nicolas Le Bas
  * @author mick semb wever
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
  * @since 3.2
  */

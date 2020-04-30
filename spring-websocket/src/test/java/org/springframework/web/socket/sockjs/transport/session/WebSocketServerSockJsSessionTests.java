@@ -27,7 +27,7 @@ import static org.mockito.Mockito.*;
 /**
  * Unit tests for {@link WebSocketServerSockJsSession}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class WebSocketServerSockJsSessionTests extends AbstractSockJsSessionTests<TestWebSocketServerSockJsSession> {
 

@@ -15,7 +15,7 @@ import static org.springframework.mock.http.server.reactive.test.MockServerHttpR
 /**
  * Unit tests for {@link HeadersRequestCondition}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class HeadersRequestConditionTests {
 

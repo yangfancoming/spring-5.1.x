@@ -52,7 +52,7 @@ import static org.junit.Assert.*;
 /**
  * Test fixture for {@link ResponseEntityExceptionHandler}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class ResponseEntityExceptionHandlerTests {
 

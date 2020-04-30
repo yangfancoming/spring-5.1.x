@@ -7,7 +7,7 @@ import java.nio.ByteBuffer;
 /**
  * A WebSocket pong message.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public final class PongMessage extends AbstractWebSocketMessage<ByteBuffer> {

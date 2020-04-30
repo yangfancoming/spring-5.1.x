@@ -8,7 +8,7 @@ import org.springframework.web.socket.WebSocketSession;
  * SockJS extension of Spring's standard {@link WebSocketSession}.
  *
 
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public interface SockJsSession extends WebSocketSession {

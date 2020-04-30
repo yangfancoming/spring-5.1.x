@@ -19,7 +19,7 @@ import static org.mockito.BDDMockito.*;
  * Test fixture for {@link AbstractHttpReceivingTransportHandler} and sub-classes
  * {@link XhrReceivingTransportHandler}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class HttpReceivingTransportHandlerTests extends AbstractHttpRequestTests {
 

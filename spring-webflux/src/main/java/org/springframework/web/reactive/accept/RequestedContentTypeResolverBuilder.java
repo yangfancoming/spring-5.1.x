@@ -26,7 +26,7 @@ import org.springframework.lang.Nullable;
  * By default, if no resolvers are explicitly configured, the builder will
  * add {@link HeaderContentTypeResolver}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class RequestedContentTypeResolverBuilder {

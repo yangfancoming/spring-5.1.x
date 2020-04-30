@@ -25,7 +25,7 @@ import org.springframework.web.context.WebApplicationContext;
  * // Use mockMvc to perform requests ...
  * </pre>
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class SharedHttpSessionConfigurer implements MockMvcConfigurer {

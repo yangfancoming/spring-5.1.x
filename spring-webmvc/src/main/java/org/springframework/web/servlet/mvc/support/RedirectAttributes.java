@@ -41,7 +41,7 @@ import org.springframework.web.servlet.FlashMap;
  * After the redirect, flash attributes are automatically added to the model
  * of the controller that serves the target URL.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 public interface RedirectAttributes extends Model {

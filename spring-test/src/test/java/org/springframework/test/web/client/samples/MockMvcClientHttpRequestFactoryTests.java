@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * {@link MockMvc} instance that uses a {@link WebApplicationContext} loaded by
  * the TestContext framework.
  *
- * @author Rossen Stoyanchev
+ *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration

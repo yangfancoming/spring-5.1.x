@@ -22,7 +22,7 @@ import org.springframework.util.StringUtils;
  * A {@link MessageCondition} for matching the destination of a Message
  * against one or more destination patterns using a {@link PathMatcher}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class DestinationPatternsMessageCondition

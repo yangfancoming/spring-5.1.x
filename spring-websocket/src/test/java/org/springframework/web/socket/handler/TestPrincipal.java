@@ -7,7 +7,7 @@ import java.security.Principal;
 /**
  * An implementation of {@link Principal} for testing.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class TestPrincipal implements Principal {
 

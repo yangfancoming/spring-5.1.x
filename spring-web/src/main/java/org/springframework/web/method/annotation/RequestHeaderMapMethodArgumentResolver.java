@@ -27,7 +27,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * values for a header, not only the first one.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 public class RequestHeaderMapMethodArgumentResolver implements HandlerMethodArgumentResolver {

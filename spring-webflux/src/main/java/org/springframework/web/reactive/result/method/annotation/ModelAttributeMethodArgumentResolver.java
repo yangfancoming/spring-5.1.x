@@ -49,7 +49,7 @@ import org.springframework.web.server.ServerWebExchange;
  * any non-simple type argument and return value is regarded as a model
  * attribute with or without the presence of an {@code @ModelAttribute}.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 5.0
  */

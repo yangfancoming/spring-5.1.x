@@ -18,7 +18,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 /**
  * A HandlerMethodReturnValueHandler that wraps and delegates to others.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class HandlerMethodReturnValueHandlerComposite implements AsyncHandlerMethodReturnValueHandler {

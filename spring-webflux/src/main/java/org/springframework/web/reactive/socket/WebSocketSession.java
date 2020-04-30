@@ -18,7 +18,7 @@ import org.springframework.core.io.buffer.DataBufferFactory;
  * the inbound message stream, and {@link WebSocketSession#send(Publisher)
  * session.send(publisher)} to provide the outbound message stream.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public interface WebSocketSession {

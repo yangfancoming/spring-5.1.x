@@ -10,7 +10,7 @@ import org.springframework.web.context.request.WebRequest;
  * data binding in the context of a specific web request.
  *
 
- * @author Rossen Stoyanchev
+ *
  * @since 2.5
  */
 public interface WebBindingInitializer {

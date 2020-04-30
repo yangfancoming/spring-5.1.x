@@ -22,7 +22,7 @@ import org.springframework.web.reactive.socket.adapter.ReactorNettyWebSocketSess
 /**
  * {@link WebSocketClient} implementation for use with Reactor Netty.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class ReactorNettyWebSocketClient implements WebSocketClient {

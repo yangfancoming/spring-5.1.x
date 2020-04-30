@@ -12,7 +12,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 /**
  * Assists with the invocation of {@link DeferredResultProcessingInterceptor}'s.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 class DeferredResultInterceptorChain {

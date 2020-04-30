@@ -29,7 +29,7 @@ import static org.junit.Assert.*;
 /**
  * Integration tests for with a server-side session.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class WebSessionIntegrationTests extends AbstractHttpHandlerIntegrationTests {
 

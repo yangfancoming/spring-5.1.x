@@ -13,7 +13,7 @@ import org.springframework.web.socket.TextMessage;
  * is used to receive messages from the server while the
  * {@link #executeSendRequest} method here is used to send messages.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public interface XhrTransport extends Transport, InfoReceiver {

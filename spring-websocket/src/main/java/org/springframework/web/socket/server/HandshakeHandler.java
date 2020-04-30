@@ -12,7 +12,7 @@ import org.springframework.web.socket.handler.PerConnectionWebSocketHandler;
 /**
  * Contract for processing a WebSocket handshake request.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  * @see HandshakeInterceptor
  * @see org.springframework.web.socket.server.support.WebSocketHttpRequestHandler

@@ -10,7 +10,7 @@ import org.springframework.util.IdGenerator;
  * A {@link org.springframework.messaging.support.MessageHeaderInitializer MessageHeaderInitializer}
  * to customize the strategy for ID and TIMESTAMP message header generation.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public class IdTimestampMessageHeaderInitializer implements MessageHeaderInitializer {

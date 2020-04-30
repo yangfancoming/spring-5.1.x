@@ -9,7 +9,7 @@ import org.springframework.lang.Nullable;
 /**
  * A holder for SSL session information.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0.2
  */
 public interface SslInfo {

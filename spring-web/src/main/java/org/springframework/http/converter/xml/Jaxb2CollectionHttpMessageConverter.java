@@ -42,7 +42,7 @@ import org.springframework.util.xml.StaxUtils;
  * does not support writing.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  * @param <T> the converted object type
  */

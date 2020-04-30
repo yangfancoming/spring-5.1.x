@@ -42,7 +42,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * On update model attributes are synchronized with the session and also
  * {@link BindingResult} attributes are added if missing.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 public final class ModelFactory {

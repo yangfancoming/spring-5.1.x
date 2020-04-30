@@ -32,7 +32,7 @@ import org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler;
  * {@link org.springframework.web.socket.WebSocketHandler WebSocketHandlers}.
  *
  * @author Brian Clozel
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 class HandlersBeanDefinitionParser implements BeanDefinitionParser {

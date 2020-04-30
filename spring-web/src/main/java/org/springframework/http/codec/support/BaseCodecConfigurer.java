@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
  * Default implementation of {@link CodecConfigurer} that serves as a base for
  * client and server specific variants.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 class BaseCodecConfigurer implements CodecConfigurer {

@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
 /**
  * A {@link ServerHttpAsyncRequestControl} to use on Servlet containers (Servlet 3.0+).
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class ServletServerHttpAsyncRequestControl implements ServerHttpAsyncRequestControl, AsyncListener {

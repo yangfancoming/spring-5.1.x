@@ -26,7 +26,7 @@ import org.springframework.web.server.ServerWebInputException;
  *
  * @author Sebastien Deleuze
  * @author Stephane Maldini
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class RequestBodyArgumentResolver extends AbstractMessageReaderArgumentResolver {

@@ -18,7 +18,7 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.*
 /**
  * Sample tests demonstrating live server integration tests.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class HttpServerTests {

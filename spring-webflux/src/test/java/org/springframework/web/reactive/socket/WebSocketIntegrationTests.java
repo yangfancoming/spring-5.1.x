@@ -29,7 +29,7 @@ import static org.junit.Assert.*;
 /**
  * Integration tests with server-side {@link WebSocketHandler}s.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class WebSocketIntegrationTests extends AbstractWebSocketIntegrationTests {
 

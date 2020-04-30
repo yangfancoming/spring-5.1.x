@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
  * Default implementation of {@code RequestExpectation} that simply delegates
  * to the request matchers and the response creator it contains.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.3
  */
 public class DefaultRequestExpectation implements RequestExpectation {

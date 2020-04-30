@@ -47,7 +47,7 @@ import org.springframework.web.server.ServerWebExchange;
  * should invalidate the browser cache. This should also work with changes in
  * referenced resources whose links are also versioned.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  * @since 5.0
  * @see <a href="https://html.spec.whatwg.org/multipage/browsers.html#offline">HTML5 offline applications spec</a>

@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 /**
  * Examples of expectations on the view name selected by the controller.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class ViewNameAssertionTests {
 

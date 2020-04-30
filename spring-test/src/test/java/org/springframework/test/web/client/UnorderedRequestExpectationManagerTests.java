@@ -21,7 +21,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 /**
  * Unit tests for {@link UnorderedRequestExpectationManager}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class UnorderedRequestExpectationManagerTests {
 

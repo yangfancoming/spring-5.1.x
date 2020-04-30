@@ -5,7 +5,7 @@ package org.springframework.messaging.handler.annotation;
 /**
  * Common annotation value constants.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public interface ValueConstants {

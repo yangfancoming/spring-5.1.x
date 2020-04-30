@@ -22,7 +22,7 @@ import org.springframework.util.ReflectionUtils;
  * argument values resolved from the current HTTP request through a list of
  * {@link HandlerMethodArgumentResolver}.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 4.0
  */

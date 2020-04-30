@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  * is given a reference to the chain allowing it to delegate when necessary.
  *
  * @author Jeremy Grelle
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @since 4.1
  */

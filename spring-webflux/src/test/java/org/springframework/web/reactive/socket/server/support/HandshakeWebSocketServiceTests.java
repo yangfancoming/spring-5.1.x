@@ -25,7 +25,7 @@ import static org.mockito.Mockito.*;
 /**
  * Unit tests for {@link HandshakeWebSocketService}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class HandshakeWebSocketServiceTests {
 

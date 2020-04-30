@@ -34,7 +34,7 @@ import org.springframework.web.reactive.socket.WebSocketSession;
  * the completion subscriber for session handling
  *
  * @author Violeta Georgieva
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @param <T> the native delegate type
  */

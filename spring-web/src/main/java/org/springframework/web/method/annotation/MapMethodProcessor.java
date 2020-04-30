@@ -21,7 +21,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * {@code @ResponseBody}. Therefore this handler should be configured after
  * the handlers that support these annotations.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 public class MapMethodProcessor implements HandlerMethodArgumentResolver, HandlerMethodReturnValueHandler {

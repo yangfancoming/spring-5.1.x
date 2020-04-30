@@ -15,7 +15,7 @@ import org.springframework.web.socket.sockjs.frame.SockJsFrame;
 import org.springframework.web.socket.sockjs.transport.SockJsServiceConfig;
 
 /**
- * @author Rossen Stoyanchev
+ *
  */
 public class TestHttpSockJsSession extends StreamingSockJsSession {
 

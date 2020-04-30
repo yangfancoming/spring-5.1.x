@@ -20,7 +20,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
  * @author Rod Johnson
 
  * @author Keith Donald
- * @author Rossen Stoyanchev
+ *
  */
 public class ParameterizableViewController extends AbstractController {
 

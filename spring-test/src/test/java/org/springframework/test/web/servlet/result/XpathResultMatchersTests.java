@@ -14,7 +14,7 @@ import org.springframework.util.StreamUtils;
 /**
  * Tests for {@link XpathResultMatchers}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class XpathResultMatchersTests {
 

@@ -25,7 +25,7 @@ import org.springframework.web.util.UrlPathHelper;
  * ForwardedHeaderFilter}, or similar from the underlying server, to extract
  * and use such headers, or to discard them.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 public class ServletUriComponentsBuilder extends UriComponentsBuilder {

@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Test for issues related to form content.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class FormContentTests {
 

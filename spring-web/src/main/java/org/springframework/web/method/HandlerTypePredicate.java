@@ -30,7 +30,7 @@ import org.springframework.util.StringUtils;
  * 				.and(HandlerTypePredicate.forBasePackage("org.example"));
  * </pre>
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.1
  */
 public final class HandlerTypePredicate implements Predicate<Class<?>> {

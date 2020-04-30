@@ -30,7 +30,7 @@ import static org.junit.Assert.assertNull;
 
 /**
  * Unit tests for {@link ContentVersionStrategy}.
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  */
 public class ContentBasedVersionStrategyTests {

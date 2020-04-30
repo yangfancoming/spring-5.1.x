@@ -30,7 +30,7 @@ import static org.junit.Assert.*;
  *
  * @author Rick Evans
  * @author Mark Fisher
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @author Brian Clozel
  * @author Jakub Narloch

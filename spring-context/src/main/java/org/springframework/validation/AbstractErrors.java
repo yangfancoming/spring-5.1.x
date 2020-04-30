@@ -19,7 +19,7 @@ import org.springframework.util.StringUtils;
  * of {@link ObjectError ObjectErrors} and {@link FieldError FieldErrors}.
  *
 
- * @author Rossen Stoyanchev
+ *
  * @since 2.5.3
  */
 @SuppressWarnings("serial")

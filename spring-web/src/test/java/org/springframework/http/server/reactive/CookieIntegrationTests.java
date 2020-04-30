@@ -23,7 +23,7 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
 /**
- * @author Rossen Stoyanchev
+ *
  */
 @RunWith(Parameterized.class)
 public class CookieIntegrationTests extends AbstractHttpHandlerIntegrationTests {

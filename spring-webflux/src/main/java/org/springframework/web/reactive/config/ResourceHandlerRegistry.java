@@ -36,7 +36,7 @@ import org.springframework.web.server.WebHandler;
  * {@code "classpath:/META-INF/public-web-resources/"}}) or to specify a cache
  * period for served resources.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  * @since 5.0
  */

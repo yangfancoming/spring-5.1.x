@@ -20,7 +20,7 @@ import org.springframework.web.server.ServerWebExchange;
  * MediaType. Lookup keys can be registered or as a fallback
  * {@link MediaTypeFactory} can be used to perform a lookup.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class ParameterContentTypeResolver implements RequestedContentTypeResolver {

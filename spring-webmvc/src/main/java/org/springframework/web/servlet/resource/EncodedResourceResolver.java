@@ -34,7 +34,7 @@ import org.springframework.util.Assert;
  * {@link VersionResourceResolver} with a content-based, version strategy to
  * ensure the version calculation is not impacted by the encoding.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.1
  */
 public class EncodedResourceResolver extends AbstractResourceResolver {

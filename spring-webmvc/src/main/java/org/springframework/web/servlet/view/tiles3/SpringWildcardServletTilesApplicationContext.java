@@ -24,7 +24,7 @@ import org.springframework.web.context.support.ServletContextResourcePatternReso
 /**
  * Spring-specific subclass of the Tiles ServletApplicationContext.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 3.2
  */

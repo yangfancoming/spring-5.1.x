@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  * implementation methods except for {@link #getPayloadType} which returns String
  * as the default Object type expected for STOMP ERROR frame payloads.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 public abstract class StompSessionHandlerAdapter implements StompSessionHandler {

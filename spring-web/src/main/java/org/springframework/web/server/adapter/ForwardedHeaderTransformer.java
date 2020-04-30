@@ -29,7 +29,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  * can also be registered directly via
  * {@link WebHttpHandlerBuilder#forwardedHeaderTransformer(ForwardedHeaderTransformer)}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.1
  * @see <a href="https://tools.ietf.org/html/rfc7239">https://tools.ietf.org/html/rfc7239</a>
  */

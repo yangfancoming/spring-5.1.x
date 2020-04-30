@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * A stub implementation of the {@link MvcResult} contract.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class StubMvcResult implements MvcResult {
 

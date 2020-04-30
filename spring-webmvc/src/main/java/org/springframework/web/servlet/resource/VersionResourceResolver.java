@@ -44,7 +44,7 @@ import org.springframework.util.StringUtils;
  * by this resolver.
  *
  * @author Brian Clozel
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  * @see VersionStrategy
  */

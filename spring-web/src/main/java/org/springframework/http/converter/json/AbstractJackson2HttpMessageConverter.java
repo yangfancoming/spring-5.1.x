@@ -47,7 +47,7 @@ import org.springframework.util.TypeUtils;
  *
  * @author Arjen Poutsma
  * @author Keith Donald
- * @author Rossen Stoyanchev
+ *
 
  * @author Sebastien Deleuze
  * @since 4.1

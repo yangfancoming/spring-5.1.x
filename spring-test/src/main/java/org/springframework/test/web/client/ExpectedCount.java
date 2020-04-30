@@ -21,7 +21,7 @@ import org.springframework.util.Assert;
  * never()
  * </pre>
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.3
  */
 public final class ExpectedCount {

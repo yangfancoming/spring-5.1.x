@@ -20,7 +20,7 @@ import org.springframework.util.Assert;
  * Adapt {@link HttpHandler} to the Reactor Netty channel handling function.
  *
  * @author Stephane Maldini
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class ReactorHttpHandlerAdapter implements BiFunction<HttpServerRequest, HttpServerResponse, Mono<Void>> {

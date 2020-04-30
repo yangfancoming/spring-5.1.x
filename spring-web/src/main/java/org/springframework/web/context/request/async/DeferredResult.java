@@ -31,7 +31,7 @@ import org.springframework.web.context.request.NativeWebRequest;
  * might want to implement {@link Comparable} so that when the {@link DeferredResult}
  * is added to a {@link PriorityQueue} it is handled in the correct order.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @author Rob Winch
  * @since 3.2

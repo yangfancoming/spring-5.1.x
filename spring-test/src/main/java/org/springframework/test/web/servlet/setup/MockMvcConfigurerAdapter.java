@@ -9,7 +9,7 @@ import org.springframework.web.context.WebApplicationContext;
 /**
  * An empty method implementation of {@link MockMvcConfigurer}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public abstract class MockMvcConfigurerAdapter implements MockMvcConfigurer {

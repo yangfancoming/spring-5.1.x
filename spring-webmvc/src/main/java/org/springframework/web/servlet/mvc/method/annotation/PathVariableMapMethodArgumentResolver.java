@@ -23,7 +23,7 @@ import org.springframework.web.servlet.HandlerMapping;
  * where the annotation does not specify a path variable name. The created
  * {@link Map} contains all URI template name/value pairs.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  * @see PathVariableMethodArgumentResolver
  */

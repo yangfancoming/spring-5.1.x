@@ -27,7 +27,7 @@ import org.springframework.web.servlet.mvc.condition.HeadersRequestCondition.Hea
  * used, the semantics are the same.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 public final class ConsumesRequestCondition extends AbstractRequestCondition<ConsumesRequestCondition> {

@@ -12,7 +12,7 @@ import org.springframework.lang.Nullable;
 /**
  * Common base class for exceptions that contain actual HTTP response data.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.3
  */
 public class RestClientResponseException extends RestClientException {

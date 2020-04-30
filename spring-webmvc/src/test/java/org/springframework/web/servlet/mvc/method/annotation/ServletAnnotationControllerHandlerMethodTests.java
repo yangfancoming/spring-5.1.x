@@ -140,7 +140,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import static org.junit.Assert.*;
 
 /**
- * @author Rossen Stoyanchev
+ *
 
  */
 public class ServletAnnotationControllerHandlerMethodTests extends AbstractServletHandlerMethodTests {

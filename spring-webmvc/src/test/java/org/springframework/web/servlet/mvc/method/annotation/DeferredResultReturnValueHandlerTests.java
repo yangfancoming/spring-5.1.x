@@ -26,7 +26,7 @@ import static org.springframework.web.method.ResolvableMethod.*;
 /**
  * Unit tests for {@link DeferredResultMethodReturnValueHandler}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class DeferredResultReturnValueHandlerTests {
 

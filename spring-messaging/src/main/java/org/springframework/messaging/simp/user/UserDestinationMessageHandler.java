@@ -31,7 +31,7 @@ import org.springframework.util.StringUtils;
  * to actual target destinations unique to the active session(s) of a user, and
  * then sends the resolved messages to the broker channel to be delivered.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class UserDestinationMessageHandler implements MessageHandler, SmartLifecycle {

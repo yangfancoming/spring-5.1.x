@@ -42,7 +42,7 @@ import org.springframework.web.servlet.HandlerMapping;
  * request.
  * </ul>
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.3.1
  */
 public class HandlerMappingIntrospector

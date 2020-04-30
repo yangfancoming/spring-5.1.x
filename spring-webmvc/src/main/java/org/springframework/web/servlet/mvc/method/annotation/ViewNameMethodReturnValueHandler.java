@@ -24,7 +24,7 @@ import org.springframework.web.servlet.RequestToViewNameTranslator;
  * Therefore this handler should be configured after the handlers that support these
  * annotations.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 3.1
  */

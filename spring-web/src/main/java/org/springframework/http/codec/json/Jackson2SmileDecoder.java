@@ -16,7 +16,7 @@ import org.springframework.util.MimeType;
  * leveraging non-blocking parsing.
  *
  * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see Jackson2JsonEncoder
  */

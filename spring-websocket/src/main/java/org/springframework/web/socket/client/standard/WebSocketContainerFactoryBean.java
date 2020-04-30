@@ -12,7 +12,7 @@ import org.springframework.beans.factory.FactoryBean;
  * through Spring XML configuration. In Java configuration, ignore this class and use
  * {@code ContainerProvider.getWebSocketContainer()} instead.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class WebSocketContainerFactoryBean implements FactoryBean<WebSocketContainer> {

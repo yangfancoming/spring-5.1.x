@@ -35,7 +35,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  * Mock extension of {@link AbstractServerHttpRequest} for use in tests without
  * an actual server. Use the static methods to obtain a builder.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public final class MockServerHttpRequest extends AbstractServerHttpRequest {

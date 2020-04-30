@@ -9,7 +9,7 @@ import reactor.core.publisher.Mono;
  * be used to implement cross-cutting, application-agnostic requirements such
  * as security, timeouts, and others.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public interface WebFilter {

@@ -30,7 +30,7 @@ import static org.springframework.test.util.AssertionErrors.assertTrue;
  * Factory for request content {@code RequestMatcher}'s. An instance of this
  * class is typically accessed via {@link MockRestRequestMatchers#content()}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public class ContentRequestMatchers {

@@ -47,7 +47,7 @@ import org.springframework.util.MimeTypeUtils;
  *
  * @author Arjen Poutsma
  * @author Brian Clozel
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see ResourceEncoder
  * @see ResourceRegionEncoder

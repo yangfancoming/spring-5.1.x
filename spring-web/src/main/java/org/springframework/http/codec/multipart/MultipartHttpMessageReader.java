@@ -32,7 +32,7 @@ import org.springframework.util.MultiValueMap;
  * {@code HttpMessageReader<Part>} for the actual parsing of multipart content.
  * The purpose of this reader is to collect the parts into a map.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class MultipartHttpMessageReader extends LoggingCodecSupport

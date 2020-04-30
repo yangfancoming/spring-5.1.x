@@ -27,7 +27,7 @@ import static org.springframework.web.method.MvcAnnotationPredicates.requestPara
 
 /**
  * Unit tests for {@link RequestParamMapMethodArgumentResolver}.
- * @author Rossen Stoyanchev
+ *
  */
 public class RequestParamMapMethodArgumentResolverTests {
 

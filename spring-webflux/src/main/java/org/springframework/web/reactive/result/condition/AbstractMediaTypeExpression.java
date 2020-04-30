@@ -16,7 +16,7 @@ import org.springframework.web.server.UnsupportedMediaTypeStatusException;
  * Supports media type expressions as described in:
  * {@link RequestMapping#consumes()} and {@link RequestMapping#produces()}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 abstract class AbstractMediaTypeExpression implements Comparable<AbstractMediaTypeExpression>, MediaTypeExpression {

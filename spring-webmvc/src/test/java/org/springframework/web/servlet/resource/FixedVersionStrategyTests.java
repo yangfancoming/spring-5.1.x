@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
  * Unit tests for {@link FixedVersionStrategy}.
  *
  * @author Brian Clozel
- * @author Rossen Stoyanchev
+ *
  */
 public class FixedVersionStrategyTests {
 

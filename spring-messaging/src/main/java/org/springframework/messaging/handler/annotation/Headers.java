@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
  * message. The annotated parameter must be assignable to {@link java.util.Map} with
  * String keys and Object values.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 @Target(ElementType.PARAMETER)

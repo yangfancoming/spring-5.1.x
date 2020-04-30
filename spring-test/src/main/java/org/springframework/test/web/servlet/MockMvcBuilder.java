@@ -8,7 +8,7 @@ package org.springframework.test.web.servlet;
  * See static factory methods in
  * {@link org.springframework.test.web.servlet.setup.MockMvcBuilders MockMvcBuilders}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public interface MockMvcBuilder {

@@ -14,7 +14,7 @@ import org.springframework.web.server.WebHandler;
  * {@link WebHandlerDecorator} that invokes a chain of {@link WebFilter WebFilters}
  * before invoking the delegate {@link WebHandler}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class FilteringWebHandler extends WebHandlerDecorator {

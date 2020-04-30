@@ -17,7 +17,7 @@ package org.springframework.web.context.request;
  * container for further processing. At this stage the DispatcherServlet invokes
  * {@code preHandle}, {@code postHandle} and {@code afterCompletion} as usual.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  *
  * @see org.springframework.web.context.request.async.WebAsyncManager

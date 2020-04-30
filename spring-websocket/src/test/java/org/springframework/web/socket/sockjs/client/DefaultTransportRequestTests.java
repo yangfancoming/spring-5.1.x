@@ -27,7 +27,7 @@ import static org.mockito.Mockito.*;
 /**
  * Unit tests for {@link DefaultTransportRequest}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class DefaultTransportRequestTests {
 

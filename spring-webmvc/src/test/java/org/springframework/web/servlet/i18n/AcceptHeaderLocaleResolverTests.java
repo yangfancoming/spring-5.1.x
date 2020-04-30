@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 /**
  * Unit tests for {@link AcceptHeaderLocaleResolver}.
  *
- * @author Rossen Stoyanchev
+ *
 
  */
 public class AcceptHeaderLocaleResolverTests {

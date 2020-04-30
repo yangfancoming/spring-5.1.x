@@ -95,7 +95,7 @@ import org.springframework.util.xml.StaxUtils;
  *
  * @author Arjen Poutsma
 
- * @author Rossen Stoyanchev
+ *
  * @since 3.0
  * @see #setContextPath
  * @see #setClassesToBeBound

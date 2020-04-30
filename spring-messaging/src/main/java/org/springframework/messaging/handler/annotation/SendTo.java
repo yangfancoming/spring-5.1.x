@@ -21,7 +21,7 @@ import org.springframework.messaging.Message;
 * This annotation may be placed class-level in which case it is inherited by
  * methods of the class.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Stephane Nicoll
  * @since 4.0
  */

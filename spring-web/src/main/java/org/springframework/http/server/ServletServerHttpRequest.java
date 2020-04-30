@@ -35,7 +35,7 @@ import org.springframework.util.StringUtils;
  * {@link ServerHttpRequest} implementation that is based on a {@link HttpServletRequest}.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
 
  * @since 3.0
  */

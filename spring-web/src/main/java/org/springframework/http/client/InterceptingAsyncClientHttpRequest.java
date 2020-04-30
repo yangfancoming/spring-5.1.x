@@ -19,7 +19,7 @@ import org.springframework.util.concurrent.ListenableFuture;
  * request execution with calling the registered interceptors.
  *
  * @author Jakub Narloch
- * @author Rossen Stoyanchev
+ *
  * @see InterceptingAsyncClientHttpRequestFactory
  * @deprecated as of Spring 5.0, with no direct replacement
  */

@@ -5,7 +5,7 @@ package org.springframework.messaging.support;
 /**
  * Callback interface for initializing a {@link MessageHeaderAccessor}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public interface MessageHeaderInitializer {

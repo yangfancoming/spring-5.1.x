@@ -36,7 +36,7 @@ import org.springframework.web.context.request.async.DeferredResult.DeferredResu
  * result can be accessed via {@link #getConcurrentResult()} or its presence
  * detected via {@link #hasConcurrentResult()}.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 3.2
  * @see org.springframework.web.context.request.AsyncWebRequestInterceptor

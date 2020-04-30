@@ -25,7 +25,7 @@ import org.springframework.core.annotation.AliasFor;
  * {@code RequestMappingHandlerMapping}-{@code RequestMappingHandlerAdapter} pair
  * which are the default in the MVC Java config and the MVC namespace.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.3
  * @see RestController
  * @see ControllerAdvice

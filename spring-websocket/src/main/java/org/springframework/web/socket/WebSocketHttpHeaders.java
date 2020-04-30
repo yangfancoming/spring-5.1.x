@@ -17,7 +17,7 @@ import org.springframework.util.CollectionUtils;
  * An {@link org.springframework.http.HttpHeaders} variant that adds support for
  * the HTTP headers defined by the WebSocket specification RFC 6455.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class WebSocketHttpHeaders extends HttpHeaders {

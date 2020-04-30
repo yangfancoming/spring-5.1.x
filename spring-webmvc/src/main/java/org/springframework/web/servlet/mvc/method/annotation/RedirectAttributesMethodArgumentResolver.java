@@ -27,7 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
  * "super" types of {@code RedirectAttributes} and would also attempt to
  * resolve a {@code RedirectAttributes} argument.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 public class RedirectAttributesMethodArgumentResolver implements HandlerMethodArgumentResolver {

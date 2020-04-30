@@ -21,7 +21,7 @@ import static org.junit.Assert.fail;
 
 /**
  * Unit tests for {@link PathResourceResolver}.
- * @author Rossen Stoyanchev
+ *
  */
 public class PathResourceResolverTests {
 

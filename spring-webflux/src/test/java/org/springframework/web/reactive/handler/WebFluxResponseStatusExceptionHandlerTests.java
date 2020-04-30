@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
  * Unit tests for {@link WebFluxResponseStatusExceptionHandler}.
  *
 
- * @author Rossen Stoyanchev
+ *
  */
 public class WebFluxResponseStatusExceptionHandlerTests extends ResponseStatusExceptionHandlerTests {
 

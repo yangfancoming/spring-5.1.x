@@ -14,7 +14,7 @@ package org.springframework.web.socket;
  * ExceptionWebSocketHandlerDecorator} and it can be customized or replaced by decorating
  * the {@link WebSocketHandler} with a different decorator.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Phillip Webb
  * @since 4.0
  */

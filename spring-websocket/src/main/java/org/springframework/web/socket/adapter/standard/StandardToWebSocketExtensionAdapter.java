@@ -14,7 +14,7 @@ import org.springframework.web.socket.WebSocketExtension;
  * A sub-class of {@link org.springframework.web.socket.WebSocketExtension} that
  * can be constructed from an {@link javax.websocket.Extension}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class StandardToWebSocketExtensionAdapter extends WebSocketExtension {

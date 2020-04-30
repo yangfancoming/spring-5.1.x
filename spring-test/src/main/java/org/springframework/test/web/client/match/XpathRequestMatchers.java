@@ -20,7 +20,7 @@ import org.springframework.test.web.client.RequestMatcher;
  * expression. An instance of this class is typically accessed via
  * {@code RequestMatchers.xpath(..)}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public class XpathRequestMatchers {

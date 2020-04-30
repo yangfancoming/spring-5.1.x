@@ -17,20 +17,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Abstract base class for {@link HandlerExceptionResolver} implementations.
- *
  * Supports mapped {@linkplain #setMappedHandlers handlers} and
  * {@linkplain #setMappedHandlerClasses handler classes} that the resolver
  * should be applied to and implements the {@link Ordered} interface.
- *
- * @author Arjen Poutsma
-
- * @author Sam Brannen
  * @since 3.0
  */
 public abstract class AbstractHandlerExceptionResolver implements HandlerExceptionResolver, Ordered {
 
 	private static final String HEADER_CACHE_CONTROL = "Cache-Control";
-
 
 	/** Logger available to subclasses. */
 	protected final Log logger = LogFactory.getLog(getClass());
@@ -86,8 +80,7 @@ public abstract class AbstractHandlerExceptionResolver implements HandlerExcepti
 	/**
 	 * Set the log category for warn logging. The name will be passed to the underlying logger
 	 * implementation through Commons Logging, getting interpreted as a log category according
-	 * to the logger's configuration. If {@code null} or empty String is passed, warn logging
-	 * is turned off.
+	 * to the logger's configuration. If {@code null} or empty String is passed, warn logging is turned off.
 	 * By default there is no warn logging although subclasses like
 	 * {@link org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver}
 	 * can change that default. Specify this setting to activate warn logging into a specific

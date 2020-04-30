@@ -10,7 +10,7 @@ import org.springframework.util.MimeType;
 /**
  * Resolve the content type for a message.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 @FunctionalInterface

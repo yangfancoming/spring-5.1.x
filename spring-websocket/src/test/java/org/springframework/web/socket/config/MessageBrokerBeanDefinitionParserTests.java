@@ -85,7 +85,7 @@ import static org.junit.Assert.*;
  *
  * @author Brian Clozel
  * @author Artem Bilan
- * @author Rossen Stoyanchev
+ *
  */
 public class MessageBrokerBeanDefinitionParserTests {
 

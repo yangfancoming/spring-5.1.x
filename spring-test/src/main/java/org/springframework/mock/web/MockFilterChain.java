@@ -29,7 +29,7 @@ import org.springframework.util.ObjectUtils;
  *
 
  * @author Rob Winch
- * @author Rossen Stoyanchev
+ *
  * @since 2.0.3
  * @see MockFilterConfig
  * @see PassThroughFilterChain

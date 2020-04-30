@@ -16,7 +16,7 @@ import org.springframework.util.ClassUtils;
  * Note that this converter ignores any content type information that may be present in
  * message headers and should not be used if payload conversion is actually required.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class SimpleMessageConverter implements MessageConverter {

@@ -78,7 +78,7 @@ import static org.junit.Assert.*;
  * and arguments. A convenient place to test or confirm a problem with a
  * specific argument or return value type.
  *
- * @author Rossen Stoyanchev
+ *
  * @see HandlerMethodAnnotationDetectionTests
  * @see ServletAnnotationControllerHandlerMethodTests
  */

@@ -21,7 +21,7 @@ import org.springframework.lang.Nullable;
  * Initially created with a map of file extensions and media types.
  * Subsequently subclasses can use {@link #addMapping} to add more mappings.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 3.2
  */

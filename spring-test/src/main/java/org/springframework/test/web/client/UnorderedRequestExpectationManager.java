@@ -10,7 +10,7 @@ import org.springframework.http.client.ClientHttpRequest;
  * {@code RequestExpectationManager} that matches requests to expectations
  * regardless of the order of declaration of expected requests.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.3
  */
 public class UnorderedRequestExpectationManager extends AbstractRequestExpectationManager {

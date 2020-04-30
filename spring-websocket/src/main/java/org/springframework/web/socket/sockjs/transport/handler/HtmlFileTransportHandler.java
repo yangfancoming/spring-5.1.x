@@ -32,7 +32,7 @@ import org.springframework.web.util.JavaScriptUtils;
  * stackoverflow.com/questions/1481251/what-does-document-domain-document-domain-do</a>
  * for details.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class HtmlFileTransportHandler extends AbstractHttpSendingTransportHandler {

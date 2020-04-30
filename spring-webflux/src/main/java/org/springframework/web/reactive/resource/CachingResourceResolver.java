@@ -22,7 +22,7 @@ import org.springframework.web.server.ServerWebExchange;
  * A {@link ResourceResolver} that resolves resources from a {@link Cache} or
  * otherwise delegates to the resolver chain and caches the result.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  * @since 5.0
  */

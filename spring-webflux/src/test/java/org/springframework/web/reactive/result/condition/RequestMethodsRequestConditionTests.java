@@ -21,7 +21,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 /**
  * Unit tests for {@link RequestMethodsRequestCondition}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class RequestMethodsRequestConditionTests {
 

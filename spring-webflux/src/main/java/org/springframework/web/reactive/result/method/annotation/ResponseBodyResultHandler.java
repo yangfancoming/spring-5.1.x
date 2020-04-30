@@ -26,7 +26,7 @@ import org.springframework.web.server.ServerWebExchange;
  * handlers that look for a specific return type. Note however that this handler
  * does recognize and explicitly ignores the {@code ResponseEntity} return type.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Stephane Maldini
  * @author Sebastien Deleuze
  * @author Arjen Poutsma

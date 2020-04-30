@@ -18,7 +18,7 @@ import org.springframework.web.util.WebUtils;
  * a set parameter expressions with syntax defined in {@link RequestMapping#params()}.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 public final class ParamsRequestCondition extends AbstractRequestCondition<ParamsRequestCondition> {

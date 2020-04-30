@@ -13,7 +13,7 @@ import org.springframework.messaging.MessagingException;
  * to a destination specified as a (resolvable) String name.
  *
  * @author Mark Fisher
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  * @param <D> the destination type
  * @see DestinationResolver

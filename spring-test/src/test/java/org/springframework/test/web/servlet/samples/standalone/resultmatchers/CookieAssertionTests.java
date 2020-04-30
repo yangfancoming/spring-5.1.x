@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 /**
  * Examples of expectations on response cookies values.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Nikola Yovchev
  */
 public class CookieAssertionTests {

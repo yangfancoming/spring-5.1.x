@@ -51,7 +51,7 @@ import org.springframework.web.util.UrlPathHelper;
  * return values by writing to the response with {@link HttpMessageConverter HttpMessageConverters}.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
 
  * @since 3.1

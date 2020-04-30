@@ -50,7 +50,7 @@ import static org.mockito.BDDMockito.*;
  * Also see {@link RequestResponseBodyMethodProcessorTests}.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
 
  */
 public class RequestResponseBodyMethodProcessorMockTests {

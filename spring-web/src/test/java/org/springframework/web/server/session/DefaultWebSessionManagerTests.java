@@ -27,7 +27,7 @@ import static org.mockito.Mockito.*;
 
 /**
  * Unit tests for {@link DefaultWebSessionManager}.
- * @author Rossen Stoyanchev
+ *
  * @author Rob Winch
  */
 @RunWith(MockitoJUnitRunner.class)

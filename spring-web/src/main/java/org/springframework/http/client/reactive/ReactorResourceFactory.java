@@ -22,7 +22,7 @@ import org.springframework.util.Assert;
  * This factory implements {@link InitializingBean} and {@link DisposableBean}
  * and is expected typically to be declared as a Spring-managed bean.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.1
  */
 public class ReactorResourceFactory implements InitializingBean, DisposableBean {

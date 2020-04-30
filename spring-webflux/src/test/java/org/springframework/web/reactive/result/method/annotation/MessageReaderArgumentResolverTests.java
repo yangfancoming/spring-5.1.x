@@ -55,7 +55,7 @@ import static org.springframework.mock.http.server.reactive.test.MockServerHttpR
 /**
  * Unit tests for {@link AbstractMessageReaderArgumentResolver}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class MessageReaderArgumentResolverTests {
 

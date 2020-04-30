@@ -22,7 +22,7 @@ import reactor.core.publisher.Mono;
  * help of the {@link ContextPathCompositeHandler}.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see ContextPathCompositeHandler
  */

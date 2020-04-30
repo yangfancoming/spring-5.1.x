@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.setup.SharedHttpSessionConfig
 /**
  * Tests for {@link SharedHttpSessionConfigurer}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class SharedHttpSessionTests {
 

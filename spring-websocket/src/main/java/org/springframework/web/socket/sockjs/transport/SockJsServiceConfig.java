@@ -10,7 +10,7 @@ import org.springframework.web.socket.sockjs.frame.SockJsMessageCodec;
  * Provides transport handling code with access to the {@link SockJsService} configuration
  * options they need to have access to. Mainly for internal use.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public interface SockJsServiceConfig {

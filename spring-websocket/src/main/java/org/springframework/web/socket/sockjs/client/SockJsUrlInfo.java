@@ -17,7 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  * to derive related SockJS URLs: specifically, the {@link #getInfoUrl() info}
  * and {@link #getTransportUrl(TransportType) transport} URLs.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public class SockJsUrlInfo {

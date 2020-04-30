@@ -34,7 +34,7 @@ import org.springframework.web.server.ServerWebExchange;
  * By default the order for this result handler is set to 0. It is generally
  * safe to place it early in the order as it looks for a concrete return type.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class ResponseEntityResultHandler extends AbstractMessageWriterResultHandler implements HandlerResultHandler {

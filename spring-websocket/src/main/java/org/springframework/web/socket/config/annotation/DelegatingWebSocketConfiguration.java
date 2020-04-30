@@ -14,7 +14,7 @@ import org.springframework.util.CollectionUtils;
  * {@link WebSocketConfigurer} in Spring configuration and invokes them in order to
  * configure WebSocket request handling.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 @Configuration

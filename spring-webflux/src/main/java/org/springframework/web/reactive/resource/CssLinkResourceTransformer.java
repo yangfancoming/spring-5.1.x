@@ -37,7 +37,7 @@ import org.springframework.web.server.ServerWebExchange;
  * containing CSS file. If successfully resolved, the link is modified, otherwise
  * the original link is preserved.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class CssLinkResourceTransformer extends ResourceTransformerSupport {

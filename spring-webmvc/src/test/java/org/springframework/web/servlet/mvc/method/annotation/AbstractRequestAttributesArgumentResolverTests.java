@@ -34,7 +34,7 @@ import static org.mockito.BDDMockito.*;
  * Base class for {@code @RequestAttribute} and {@code @SessionAttribute} method
  * method argument resolution tests.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.3
  */
 public abstract class AbstractRequestAttributesArgumentResolverTests {

@@ -17,7 +17,7 @@ import org.springframework.messaging.SubscribableChannel;
  * A {@link SubscribableChannel} that sends messages to each of its subscribers.
  *
  * @author Phillip Webb
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class ExecutorSubscribableChannel extends AbstractSubscribableChannel {

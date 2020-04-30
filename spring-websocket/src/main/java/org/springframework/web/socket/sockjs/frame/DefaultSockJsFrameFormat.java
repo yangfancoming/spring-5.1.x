@@ -9,7 +9,7 @@ import org.springframework.util.Assert;
  * {@link org.springframework.web.socket.sockjs.frame.SockJsFrameFormat} that relies
  * on {@link java.lang.String#format(String, Object...)}..
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class DefaultSockJsFrameFormat implements SockJsFrameFormat {

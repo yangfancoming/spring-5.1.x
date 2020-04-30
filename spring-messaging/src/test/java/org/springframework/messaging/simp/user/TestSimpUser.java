@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author Rossen Stoyanchev
+ *
  */
 public class TestSimpUser implements SimpUser {
 

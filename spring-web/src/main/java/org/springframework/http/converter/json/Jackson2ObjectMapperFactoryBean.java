@@ -124,7 +124,7 @@ import org.springframework.lang.Nullable;
  * Compatible with Jackson 2.6 and higher, as of Spring 4.3.
  *
  * @author <a href="mailto:dmitry.katsubo@gmail.com">Dmitry Katsubo</a>
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
 
  * @author Tadaya Tsuyukubo

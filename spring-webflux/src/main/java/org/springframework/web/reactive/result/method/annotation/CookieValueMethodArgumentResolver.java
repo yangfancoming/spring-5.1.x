@@ -19,7 +19,7 @@ import org.springframework.web.server.ServerWebInputException;
  * It has a required flag and a default value to fall back on when the cookie
  * does not exist.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class CookieValueMethodArgumentResolver extends AbstractNamedValueSyncArgumentResolver {

@@ -15,7 +15,7 @@ import org.springframework.util.concurrent.SettableListenableFuture;
  * {@link org.springframework.http.client.AsyncClientHttpRequest} by wrapping the response in a
  * {@link SettableListenableFuture}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @since 4.1
  * @deprecated as of Spring 5.0, with no direct replacement

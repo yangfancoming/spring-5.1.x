@@ -42,7 +42,7 @@ import static org.junit.Assert.*;
  *
  * @author Rob Winch
  * @author Sam Brannen
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 @RunWith(SpringRunner.class)

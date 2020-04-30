@@ -25,7 +25,7 @@ import static org.mockito.Mockito.*;
 
 /**
  * Unit tests for {@link HeaderAssertions}.
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  */
 public class HeaderAssertionTests {

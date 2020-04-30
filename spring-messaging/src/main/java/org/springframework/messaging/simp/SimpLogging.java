@@ -20,7 +20,7 @@ import org.springframework.core.log.LogDelegateFactory;
  * To see logging from the primary classes where log messages originate from,
  * simply enable logging for "org.springframework.messaging".
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.1
  * @see LogDelegateFactory
  */

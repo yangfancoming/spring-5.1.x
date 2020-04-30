@@ -22,7 +22,7 @@ import org.springframework.util.Assert;
  * Submit messages to an {@link ExecutorSubscribableChannel}, one at a time.
  * The channel must have been configured with {@link #configureOutboundChannel}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.1
  */
 class OrderedMessageSender implements MessageChannel {

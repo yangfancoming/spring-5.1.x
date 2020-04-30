@@ -21,7 +21,7 @@ import org.springframework.web.server.ServerWebExchange;
  * by reading the body of the request through a compatible
  * {@code HttpMessageReader}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class HttpEntityArgumentResolver extends AbstractMessageReaderArgumentResolver {

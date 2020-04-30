@@ -12,7 +12,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 /**
  * A strategy for resolving the requested media types for a request.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 @FunctionalInterface

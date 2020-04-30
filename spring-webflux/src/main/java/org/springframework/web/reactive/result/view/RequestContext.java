@@ -36,7 +36,7 @@ import org.springframework.web.util.UriTemplate;
  * Can be instantiated manually, or automatically exposed to views as model
  * attribute via AbstractView's "requestContextAttribute" property.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class RequestContext {

@@ -25,7 +25,7 @@ import static org.hamcrest.core.Is.is;
 /**
  * Unit tests for {@link JsonPathExpectationsHelper}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @since 3.2
  */

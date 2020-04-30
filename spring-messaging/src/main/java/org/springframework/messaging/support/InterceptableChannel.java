@@ -9,7 +9,7 @@ import java.util.List;
  * maintains a list {@link org.springframework.messaging.support.ChannelInterceptor
  * ChannelInterceptors} and allows interception of message sending.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public interface InterceptableChannel {

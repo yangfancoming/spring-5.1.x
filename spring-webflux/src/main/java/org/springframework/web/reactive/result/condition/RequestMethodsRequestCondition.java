@@ -20,7 +20,7 @@ import org.springframework.web.server.ServerWebExchange;
  * A logical disjunction (' || ') request condition that matches a request
  * against a set of {@link RequestMethod RequestMethods}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public final class RequestMethodsRequestCondition extends AbstractRequestCondition<RequestMethodsRequestCondition> {

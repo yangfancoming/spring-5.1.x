@@ -28,7 +28,7 @@ import static org.junit.Assert.*;
 /**
  * Unit tests for {@link StompHeaderAccessor}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class StompHeaderAccessorTests {

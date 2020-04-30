@@ -63,7 +63,7 @@ import org.springframework.web.util.WebUtils;
  * @author Colin Sampaleanu
  * @author Sam Brannen
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  * @see #setContextRelative
  * @see #setHttp10Compatible
  * @see #setExposeModelAttributes

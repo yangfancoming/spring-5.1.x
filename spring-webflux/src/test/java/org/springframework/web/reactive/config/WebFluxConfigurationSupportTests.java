@@ -77,7 +77,7 @@ import static org.springframework.mock.http.server.reactive.test.MockServerHttpR
 /**
  * Unit tests for {@link WebFluxConfigurationSupport}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class WebFluxConfigurationSupportTests {
 

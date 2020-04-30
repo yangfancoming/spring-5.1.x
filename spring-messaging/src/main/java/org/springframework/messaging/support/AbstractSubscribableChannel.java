@@ -12,7 +12,7 @@ import org.springframework.messaging.SubscribableChannel;
 /**
  * Abstract base class for {@link SubscribableChannel} implementations.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public abstract class AbstractSubscribableChannel extends AbstractMessageChannel implements SubscribableChannel {

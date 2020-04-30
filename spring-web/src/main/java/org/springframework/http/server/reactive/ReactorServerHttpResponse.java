@@ -26,7 +26,7 @@ import org.springframework.util.Assert;
  * Adapt {@link ServerHttpResponse} to the {@link HttpServerResponse}.
  *
  * @author Stephane Maldini
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 class ReactorServerHttpResponse extends AbstractServerHttpResponse implements ZeroCopyHttpOutputMessage {

@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
 /**
  * Default immutable implementation of {@link ResourceResolverChain}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 class DefaultResourceResolverChain implements ResourceResolverChain {

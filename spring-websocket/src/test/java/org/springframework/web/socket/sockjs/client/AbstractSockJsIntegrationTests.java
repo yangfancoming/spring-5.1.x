@@ -64,7 +64,7 @@ import static org.junit.Assert.fail;
  * {@link org.springframework.web.socket.sockjs.client.SockJsClient SockJsClient}
  * against actual SockJS server endpoints.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  */
 public abstract class AbstractSockJsIntegrationTests {

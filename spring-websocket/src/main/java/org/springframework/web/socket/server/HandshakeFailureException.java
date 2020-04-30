@@ -14,7 +14,7 @@ import org.springframework.core.NestedRuntimeException;
  * failure. A {@link HandshakeHandler} implementation will have protected methods to
  * customize updates to the response in those cases.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 @SuppressWarnings("serial")

@@ -31,7 +31,7 @@ import java.lang.annotation.Target;
  * {@code @MessageMapping} and {@code @SubscribeMapping} - on
  * the controller <i>interface</i> rather than on the implementation class.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  * @see org.springframework.messaging.handler.annotation.MessageMapping
  * @see org.springframework.messaging.handler.annotation.SendTo

@@ -30,7 +30,7 @@ import org.springframework.web.servlet.HandlerMapping;
  * URI template variable or from a request parameter if the name matches the
  * model attribute name and there is an appropriate type conversion strategy.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 3.1
  */

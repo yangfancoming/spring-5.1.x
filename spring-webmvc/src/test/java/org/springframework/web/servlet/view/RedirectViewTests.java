@@ -43,7 +43,7 @@ import static org.mockito.BDDMockito.verify;
 
  * @author Sam Brannen
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  * @since 27.05.2003
  */
 public class RedirectViewTests {

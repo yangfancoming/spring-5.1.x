@@ -22,7 +22,7 @@ import org.springframework.util.CollectionUtils;
  *
  * xmlBeanDefinitionReaderThis class is typically imported via {@link EnableWebSocketMessageBroker}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 @Configuration

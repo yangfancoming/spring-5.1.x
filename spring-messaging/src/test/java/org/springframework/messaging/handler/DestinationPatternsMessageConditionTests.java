@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 /**
  * Unit tests for {@link DestinationPatternsMessageCondition}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class DestinationPatternsMessageConditionTests {
 

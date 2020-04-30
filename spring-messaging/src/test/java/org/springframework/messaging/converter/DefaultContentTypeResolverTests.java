@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 /**
  * Test fixture for {@link org.springframework.messaging.converter.DefaultContentTypeResolver}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class DefaultContentTypeResolverTests {
 

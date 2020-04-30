@@ -40,7 +40,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  * {@link org.springframework.web.socket.client.WebSocketConnectionManager
  * WebSocketConnectionManager} instead to auto-start a WebSocket connection.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class JettyWebSocketClient extends AbstractWebSocketClient implements Lifecycle {

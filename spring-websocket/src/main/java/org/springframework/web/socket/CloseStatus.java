@@ -13,7 +13,7 @@ import org.springframework.util.ObjectUtils;
  * xmlBeanDefinitionReaderSee <a href="https://tools.ietf.org/html/rfc6455#section-7.4.1">RFC 6455, Section 7.4.1
  * "Defined Status Codes"</a>.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public final class CloseStatus {

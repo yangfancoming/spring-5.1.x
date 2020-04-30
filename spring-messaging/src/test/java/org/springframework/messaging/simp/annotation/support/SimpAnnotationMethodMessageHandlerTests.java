@@ -62,7 +62,7 @@ import static org.mockito.BDDMockito.*;
  * Test fixture for
  * {@link org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  * @author Sebastien Deleuze
  */

@@ -25,7 +25,7 @@ import org.springframework.web.util.UriUtils;
 /**
  * Base class for HTTP transport handlers that push messages to connected clients.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public abstract class AbstractHttpSendingTransportHandler extends AbstractTransportHandler

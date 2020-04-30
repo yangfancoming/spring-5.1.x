@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
  * If necessary a handler method can return a regular {@code java.util.Map},
  * likely a {@code java.util.ConcurrentMap}, for a pre-determined model.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 @SuppressWarnings("serial")

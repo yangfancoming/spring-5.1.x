@@ -14,7 +14,7 @@ import org.springframework.web.util.WebUtils;
 /**
  * Store and retrieve {@link FlashMap} instances to and from the HTTP session.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 3.1.1
  */

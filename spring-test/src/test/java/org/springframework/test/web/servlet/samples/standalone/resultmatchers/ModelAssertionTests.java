@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 /**
  * Examples of expectations on the content of the model prepared by the controller.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class ModelAssertionTests {
 

@@ -23,7 +23,7 @@ import org.springframework.web.socket.handler.BeanCreatingHandlerProvider;
  * If {@link #setAutoStartup(boolean)} is set to {@code true} this will be
  * done automatically when the Spring ApplicationContext is refreshed.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class AnnotatedEndpointConnectionManager extends ConnectionManagerSupport implements BeanFactoryAware {

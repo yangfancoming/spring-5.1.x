@@ -9,7 +9,7 @@ import org.springframework.web.socket.WebSocketSession;
  * A {@link WebSocketSession} that exposes the underlying, native WebSocketSession
  * through a getter.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public interface NativeWebSocketSession extends WebSocketSession {

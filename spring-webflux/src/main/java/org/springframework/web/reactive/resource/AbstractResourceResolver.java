@@ -15,7 +15,7 @@ import org.springframework.web.server.ServerWebExchange;
 /**
  * Base {@link ResourceResolver} providing consistent logging.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public abstract class AbstractResourceResolver implements ResourceResolver {

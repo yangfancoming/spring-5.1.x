@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
  *
  * @author Arjen Poutsma
  * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  * @param <T> the callback result type
  */

@@ -14,7 +14,7 @@ package org.springframework.web.socket.sockjs.frame;
  * xmlBeanDefinitionReaderFor the various SockJS frame formats in use, see implementations of
  * {@link  org.springframework.web.socket.sockjs.transport.handler.AbstractHttpSendingTransportHandler#getFrameFormat(org.springframework.http.server.ServerHttpRequest) AbstractHttpSendingTransportHandler.getFrameFormat}
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public interface SockJsFrameFormat {

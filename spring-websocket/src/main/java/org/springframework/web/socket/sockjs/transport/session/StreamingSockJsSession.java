@@ -16,7 +16,7 @@ import org.springframework.web.socket.sockjs.transport.SockJsServiceConfig;
 /**
  * A SockJS session for use with streaming HTTP transports.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public abstract class StreamingSockJsSession extends AbstractHttpSockJsSession {

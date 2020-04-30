@@ -29,7 +29,7 @@ import org.springframework.web.socket.sockjs.transport.TransportType;
  * A SockJS {@link Transport} that uses a
  * {@link org.springframework.web.socket.client.WebSocketClient WebSocketClient}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public class WebSocketTransport implements Transport, Lifecycle {

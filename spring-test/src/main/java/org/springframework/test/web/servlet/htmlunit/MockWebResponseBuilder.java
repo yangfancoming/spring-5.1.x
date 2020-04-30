@@ -22,7 +22,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Rob Winch
  * @author Sam Brannen
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 final class MockWebResponseBuilder {

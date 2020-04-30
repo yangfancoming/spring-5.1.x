@@ -18,7 +18,7 @@ import org.springframework.util.MultiValueMap;
  * looks up information in messages but delegates to abstract methods for the
  * actual storage and retrieval.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public abstract class AbstractSubscriptionRegistry implements SubscriptionRegistry {

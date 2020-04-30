@@ -18,7 +18,7 @@ import org.springframework.web.server.ServerWebInputException;
 /**
  * Resolves method arguments annotated with an @{@link RequestAttribute}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see SessionAttributeMethodArgumentResolver
  */

@@ -8,7 +8,7 @@ import org.springframework.lang.Nullable;
  * Represents a STOMP session with operations to send messages,
  * create subscriptions and receive messages on those subscriptions.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 public interface StompSession {

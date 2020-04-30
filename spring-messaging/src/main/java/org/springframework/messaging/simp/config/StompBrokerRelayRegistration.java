@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
 /**
  * Registration class for configuring a {@link StompBrokerRelayMessageHandler}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class StompBrokerRelayRegistration extends AbstractBrokerRegistration {

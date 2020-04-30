@@ -30,7 +30,7 @@ import org.springframework.web.socket.sockjs.transport.session.WebSocketServerSo
  * xmlBeanDefinitionReaderAlso implements {@link HandshakeHandler} to support raw WebSocket communication at
  * SockJS URL "/websocket".
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class WebSocketTransportHandler extends AbstractTransportHandler

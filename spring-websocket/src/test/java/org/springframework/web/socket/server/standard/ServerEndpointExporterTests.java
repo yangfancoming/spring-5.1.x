@@ -22,7 +22,7 @@ import static org.mockito.Mockito.*;
 /**
  * Test fixture for {@link ServerEndpointExporter}.
  *
- * @author Rossen Stoyanchev
+ *
 
  */
 public class ServerEndpointExporterTests {

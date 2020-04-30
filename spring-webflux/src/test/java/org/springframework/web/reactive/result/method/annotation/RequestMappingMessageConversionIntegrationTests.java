@@ -53,7 +53,7 @@ import static org.springframework.http.MediaType.*;
  * {@code @RequestMapping} integration tests focusing on serialization and
  * deserialization of the request and response body.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
  */
 public class RequestMappingMessageConversionIntegrationTests extends AbstractRequestMappingIntegrationTests {

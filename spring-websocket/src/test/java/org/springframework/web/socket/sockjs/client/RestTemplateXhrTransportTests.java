@@ -47,7 +47,7 @@ import static org.mockito.BDDMockito.*;
 /**
  * Unit tests for {@link RestTemplateXhrTransport}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class RestTemplateXhrTransportTests {
 

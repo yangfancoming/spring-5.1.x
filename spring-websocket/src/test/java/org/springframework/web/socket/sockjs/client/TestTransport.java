@@ -23,7 +23,7 @@ import static org.mockito.Mockito.verify;
 /**
  * Test SockJS Transport.
  *
- * @author Rossen Stoyanchev
+ *
  */
 @SuppressWarnings("rawtypes")
 class TestTransport implements Transport {

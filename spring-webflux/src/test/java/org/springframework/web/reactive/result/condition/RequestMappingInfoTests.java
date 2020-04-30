@@ -33,7 +33,7 @@ import static org.springframework.web.reactive.result.method.RequestMappingInfo.
 /**
  * Unit tests for {@link RequestMappingInfo}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class RequestMappingInfoTests {
 

@@ -17,7 +17,7 @@ import org.springframework.web.reactive.resource.ResourceWebHandler;
 /**
  * Assist with creating and configuring a static resources handler.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class ResourceHandlerRegistration {

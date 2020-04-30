@@ -77,7 +77,7 @@ import reactor.core.publisher.Mono;
  * The inbound stream receives a completion/error signal, and the outbound
  * stream receives a cancellation signal.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public interface WebSocketHandler {

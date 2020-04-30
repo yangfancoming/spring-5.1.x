@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartResolver;
  * application is not configured correctly for processing  multipart requests,
  * e.g. no {@link MultipartResolver}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 @SuppressWarnings("serial")

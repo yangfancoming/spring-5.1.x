@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
  * Simple container of information related to the handshake request that started
  * the {@link WebSocketSession} session.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see WebSocketSession#getHandshakeInfo()
  */

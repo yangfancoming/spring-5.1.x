@@ -34,7 +34,7 @@ import org.springframework.util.StringUtils;
  * through the associated {@link BeanFactory}.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
 
  * @since 4.0
  */

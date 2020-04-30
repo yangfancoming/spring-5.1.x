@@ -18,7 +18,7 @@ import static org.springframework.web.servlet.mvc.method.annotation.SseEmitter.e
 
 /**
  * Unit tests for {@link org.springframework.web.servlet.mvc.method.annotation.SseEmitter}.
- * @author Rossen Stoyanchev
+ *
  */
 public class SseEmitterTests {
 

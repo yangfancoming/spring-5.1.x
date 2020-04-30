@@ -19,7 +19,7 @@ import org.springframework.util.MultiValueMap;
  * Wraps another {@link ServerHttpResponse} and delegates all methods to it.
  * Sub-classes can override specific methods selectively.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class ServerHttpResponseDecorator implements ServerHttpResponse {

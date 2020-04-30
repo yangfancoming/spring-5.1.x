@@ -37,7 +37,7 @@ import org.springframework.web.server.session.WebSessionManager;
  * By default creates and configures a {@link DefaultServerWebExchange} and
  * then invokes the target {@code WebHandler}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
  * @since 5.0
  */

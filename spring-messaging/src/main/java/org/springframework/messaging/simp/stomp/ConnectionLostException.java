@@ -5,7 +5,7 @@ package org.springframework.messaging.simp.stomp;
 /**
  * Raised when the connection for a STOMP session is lost rather than closed.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 @SuppressWarnings("serial")

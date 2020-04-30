@@ -18,7 +18,7 @@ import org.springframework.util.ConcurrentReferenceHashMap;
  * that should handle an exception. If multiple methods match, they are sorted using
  * {@link ExceptionDepthComparator} and the top match is returned.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 4.0
  */

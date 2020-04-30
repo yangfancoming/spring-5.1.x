@@ -18,7 +18,7 @@ import org.springframework.web.context.request.NativeWebRequest;
  * can install their own interceptor to handle a timeout and add a 'Retry-After'
  * header if necessary.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public class TimeoutDeferredResultProcessingInterceptor implements DeferredResultProcessingInterceptor {

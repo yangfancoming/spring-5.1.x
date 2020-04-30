@@ -7,7 +7,7 @@ import org.springframework.messaging.simp.SimpMessageType;
 /**
  * Represents a STOMP command.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 4.0
  */

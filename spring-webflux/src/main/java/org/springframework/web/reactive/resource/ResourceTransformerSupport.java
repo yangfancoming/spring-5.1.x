@@ -15,7 +15,7 @@ import org.springframework.web.server.ServerWebExchange;
  * A base class for a {@code ResourceTransformer} with an optional helper method
  * for resolving public links within a transformed resource.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  * @since 5.0
  */

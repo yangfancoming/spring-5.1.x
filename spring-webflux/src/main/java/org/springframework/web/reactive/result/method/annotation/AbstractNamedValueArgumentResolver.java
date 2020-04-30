@@ -41,7 +41,7 @@ import org.springframework.web.server.ServerWebInputException;
  * Language #{...} expressions. For this to work a
  * {@link ConfigurableBeanFactory} must be supplied to the class constructor.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public abstract class AbstractNamedValueArgumentResolver extends HandlerMethodArgumentResolverSupport {

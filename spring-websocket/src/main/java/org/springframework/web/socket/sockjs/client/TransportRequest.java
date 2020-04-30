@@ -18,7 +18,7 @@ import org.springframework.web.socket.sockjs.frame.SockJsMessageCodec;
  * in multiple instances of {@link TransportRequest}, one for each transport
  * before a connection is successfully established.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public interface TransportRequest {

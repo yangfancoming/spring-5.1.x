@@ -24,7 +24,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
 
 /**
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
  */
 public class ServerHttpResponseTests {

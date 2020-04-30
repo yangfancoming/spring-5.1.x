@@ -64,7 +64,7 @@ import org.springframework.web.server.ServerWebExchange;
  * while other result handlers may interpret the same otherwise based on the
  * presence of annotations, e.g. for {@code @ResponseBody}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class ViewResolutionResultHandler extends HandlerResultHandlerSupport

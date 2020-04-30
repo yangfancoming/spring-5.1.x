@@ -26,7 +26,7 @@ import org.springframework.web.server.ServerWebExchange;
  * Abstract base class for result handlers that handle return values by writing
  * to the response with {@link HttpMessageWriter}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
  * @since 5.0
  */

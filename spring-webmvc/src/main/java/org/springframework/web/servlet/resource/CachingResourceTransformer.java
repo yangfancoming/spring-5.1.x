@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
  * exists in the cache and returns it if found, and otherwise delegates to the resolver
  * chain and saves the result in the cache.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public class CachingResourceTransformer implements ResourceTransformer {

@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 /**
  * Examples of expectations on response header values.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @author Brian Clozel
  */

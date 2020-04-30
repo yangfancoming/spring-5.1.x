@@ -10,7 +10,7 @@ import org.springframework.web.server.WebSession;
 /**
  * Main class for for access to the {@link WebSession} for an HTTP request.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see WebSessionIdResolver
  * @see WebSessionStore

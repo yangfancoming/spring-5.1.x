@@ -53,7 +53,7 @@ import org.springframework.web.servlet.support.RequestDataValueProcessor;
  * </tbody>
  * </table>
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 @SuppressWarnings("serial")

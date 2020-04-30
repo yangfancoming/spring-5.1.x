@@ -29,7 +29,7 @@ import org.springframework.web.servlet.HandlerMapping;
  * specifies a name in which case it is considered to be a single attribute of
  * type map (vs multiple attributes collected in a map).
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @since 3.2
  */

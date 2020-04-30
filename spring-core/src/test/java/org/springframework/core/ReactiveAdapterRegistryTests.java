@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link ReactiveAdapterRegistry}.
- * @author Rossen Stoyanchev
+ *
  */
 @SuppressWarnings("unchecked")
 public class ReactiveAdapterRegistryTests {

@@ -39,7 +39,7 @@ import org.springframework.util.Assert;
  * request.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  * @author Mark Paluch
  * @since 4.1.2

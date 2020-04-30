@@ -24,7 +24,7 @@ import org.springframework.util.MimeType;
  * mainly to check if the converter supports the conversion based on the payload class
  * and MIME type.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
 
  * @since 4.0

@@ -14,7 +14,7 @@ import static org.mockito.Mockito.*;
 /**
  * DeferredResult tests.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class DeferredResultTests {
 

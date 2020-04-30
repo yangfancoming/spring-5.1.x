@@ -30,7 +30,7 @@ import org.springframework.web.socket.sockjs.SockJsService;
  * An {@link HttpRequestHandler} that allows mapping a {@link SockJsService} to requests
  * in a Servlet container.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
  * @since 4.0
  */

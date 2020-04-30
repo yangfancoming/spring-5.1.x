@@ -37,7 +37,7 @@ import static org.mockito.BDDMockito.*;
 /**
  * Test fixture for {@link SubscriptionMethodReturnValueHandler}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
  */
 public class SubscriptionMethodReturnValueHandlerTests {

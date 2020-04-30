@@ -31,7 +31,7 @@ import org.springframework.web.util.UrlPathHelper;
  * resources and uses the {@code ResourceResolver} chains of the configured
  * {@code ResourceHttpRequestHandler}s to make its decisions.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public class ResourceUrlProvider implements ApplicationListener<ContextRefreshedEvent> {

@@ -18,7 +18,7 @@ import org.springframework.lang.Nullable;
  * {@code ConversionService} to convert the source Object to the generic type
  * of Optional when known.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 4.1
  */

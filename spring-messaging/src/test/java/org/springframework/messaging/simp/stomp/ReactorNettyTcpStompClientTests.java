@@ -32,7 +32,7 @@ import static org.junit.Assert.*;
 /**
  * Integration tests for {@link ReactorNettyTcpStompClient}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class ReactorNettyTcpStompClientTests {
 

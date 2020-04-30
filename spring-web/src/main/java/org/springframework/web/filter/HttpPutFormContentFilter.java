@@ -42,7 +42,7 @@ import org.springframework.util.StringUtils;
  * in order to make the form data available as request parameters just like
  * it is for HTTP POST requests.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  * @deprecated as of 5.1 in favor of {@link FormContentFilter} which is the same
  * but also handles DELETE.

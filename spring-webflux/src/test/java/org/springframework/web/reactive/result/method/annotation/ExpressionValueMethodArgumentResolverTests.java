@@ -25,7 +25,7 @@ import static org.junit.Assert.fail;
 /**
  * Unit tests for {@link ExpressionValueMethodArgumentResolver}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class ExpressionValueMethodArgumentResolverTests {
 

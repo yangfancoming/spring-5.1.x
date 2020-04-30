@@ -29,7 +29,7 @@ import org.springframework.web.socket.sockjs.frame.SockJsMessageCodec;
  * events and messages to the (application) {@link WebSocketHandler}.
  * Sub-classes implement actual send as well as disconnect logic.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 4.1
  */

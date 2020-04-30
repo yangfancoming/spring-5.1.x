@@ -11,7 +11,7 @@ import org.springframework.core.io.Resource;
  * An abstraction for transforming the content of a resource.
  *
  * @author Jeremy Grelle
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 @FunctionalInterface

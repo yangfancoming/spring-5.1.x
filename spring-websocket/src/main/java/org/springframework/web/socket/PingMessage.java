@@ -7,7 +7,7 @@ import java.nio.ByteBuffer;
 /**
  * A WebSocket ping message.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public final class PingMessage extends AbstractWebSocketMessage<ByteBuffer> {

@@ -14,7 +14,7 @@ import org.springframework.messaging.simp.config.MessageBrokerRegistry;
  * A convenient abstract base class for {@link WebSocketMessageBrokerConfigurer}
  * implementations providing empty method implementations for optional methods.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0.1
  * @deprecated as of 5.0 in favor of simply using {@link WebSocketMessageBrokerConfigurer}
  * which has default methods, made possible by a Java 8 baseline.

@@ -17,7 +17,7 @@ import org.springframework.web.server.ServerWebExchange;
 /**
  * Default immutable implementation of {@link ResourceResolverChain}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 class DefaultResourceResolverChain implements ResourceResolverChain {

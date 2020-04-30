@@ -49,7 +49,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
  * to ensure they don't take over.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  * @since 3.1
  */

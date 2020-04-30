@@ -13,7 +13,7 @@ import org.springframework.web.socket.sockjs.transport.TransportHandler;
 /**
  * Common base class for {@link TransportHandler} implementations.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public abstract class AbstractTransportHandler implements TransportHandler {

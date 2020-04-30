@@ -28,7 +28,7 @@ import org.springframework.web.socket.WebSocketSession;
  * declaring this class as a Spring bean will do that. Otherwise, {@link WebSocketHandler}
  * instances of the target type will be created using the default constructor.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class PerConnectionWebSocketHandler implements WebSocketHandler, BeanFactoryAware {

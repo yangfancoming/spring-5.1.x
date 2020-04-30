@@ -20,7 +20,7 @@ import org.springframework.web.server.WebExceptionHandler;
  * exceptions. Use {@link #setWarnLogCategory(String)} to enable logging with
  * stack traces.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
  * @since 5.0
  */

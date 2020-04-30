@@ -10,7 +10,7 @@ import org.springframework.messaging.Message;
  * Holder class to expose SiMP attributes associated with a session (e.g. WebSocket)
  * in the form of a thread-bound {@link SimpAttributes} object.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public abstract class SimpAttributesContextHolder {

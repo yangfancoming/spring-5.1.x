@@ -17,7 +17,7 @@ import org.springframework.util.Assert;
 /**
  * Mock implementation of {@code javax.servlet.http.Part}.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 3.1
  * @see MockHttpServletRequest#addPart

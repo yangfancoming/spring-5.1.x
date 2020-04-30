@@ -32,7 +32,7 @@ import org.springframework.web.socket.messaging.SubProtocolWebSocketHandler;
  * name "webSocketMessageBrokerStats" and can be easily exported to JMX, e.g. with
  * the {@link org.springframework.jmx.export.MBeanExporter MBeanExporter}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public class WebSocketMessageBrokerStats {

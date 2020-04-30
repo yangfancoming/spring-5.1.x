@@ -45,7 +45,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Tests with Java configuration.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @author Sebastien Deleuze
  */

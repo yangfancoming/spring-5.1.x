@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
  * Unit tests for
  * {@link org.springframework.web.method.support.CompositeUriComponentsContributor}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class CompositeUriComponentsContributorTests {
 

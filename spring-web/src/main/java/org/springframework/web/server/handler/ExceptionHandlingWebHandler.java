@@ -16,7 +16,7 @@ import org.springframework.web.server.WebHandler;
  * WebHandler decorator that invokes one or more {@link WebExceptionHandler WebExceptionHandlers}
  * after the delegate {@link WebHandler}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class ExceptionHandlingWebHandler extends WebHandlerDecorator {

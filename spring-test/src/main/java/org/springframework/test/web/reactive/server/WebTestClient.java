@@ -62,7 +62,7 @@ import org.springframework.web.util.UriBuilderFactory;
  * Meanwhile, the proposed alternative is to use directly {@link WebClient} with its Reactor
  * and Spring Kotlin extensions to perform integration tests on an embedded WebFlux server.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see StatusAssertions
  * @see HeaderAssertions

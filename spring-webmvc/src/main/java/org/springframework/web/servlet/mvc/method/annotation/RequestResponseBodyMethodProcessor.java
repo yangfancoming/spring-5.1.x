@@ -41,7 +41,7 @@ import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolv
  * response status code if {@link DefaultHandlerExceptionResolver} is configured.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
 
  * @since 3.1
  */

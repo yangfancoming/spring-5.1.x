@@ -49,7 +49,7 @@ import static org.springframework.web.reactive.HandlerMapping.PRODUCIBLE_MEDIA_T
 /**
  * Unit tests for {@link AbstractMessageWriterResultHandler}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class MessageWriterResultHandlerTests {
 

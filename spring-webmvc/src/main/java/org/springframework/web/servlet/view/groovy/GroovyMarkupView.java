@@ -28,7 +28,7 @@ import org.springframework.web.util.NestedServletException;
  * Spring's Groovy Markup Template support requires Groovy 2.3.1 and higher.
  *
  * @author Brian Clozel
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  * @see GroovyMarkupViewResolver
  * @see GroovyMarkupConfigurer

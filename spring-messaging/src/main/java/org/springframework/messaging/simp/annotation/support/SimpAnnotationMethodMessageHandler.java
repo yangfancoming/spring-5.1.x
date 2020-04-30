@@ -71,7 +71,7 @@ import org.springframework.validation.Validator;
  *
  * Supports Ant-style path patterns with template variables.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
 
  * @since 4.0

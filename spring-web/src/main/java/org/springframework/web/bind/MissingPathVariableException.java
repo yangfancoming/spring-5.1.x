@@ -11,7 +11,7 @@ import org.springframework.core.MethodParameter;
  * Typically that means the URI template does not match the path variable name
  * declared on the method parameter.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  * @see MissingMatrixVariableException
  */

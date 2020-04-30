@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
  * Unit tests for
  * {@link org.springframework.web.servlet.resource.CachingResourceResolver}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class CachingResourceResolverTests {
 

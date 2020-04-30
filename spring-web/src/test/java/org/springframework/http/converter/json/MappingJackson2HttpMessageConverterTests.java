@@ -34,7 +34,7 @@ import static org.junit.Assert.*;
 /**
  * Jackson 2.x converter tests.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
 
  */

@@ -18,7 +18,7 @@ import org.springframework.web.server.ServerWebExchange;
  * the synchronous {@link #resolveNamedValue} to which the asynchronous
  * {@link #resolveName} delegates to by default.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public abstract class AbstractNamedValueSyncArgumentResolver extends AbstractNamedValueArgumentResolver

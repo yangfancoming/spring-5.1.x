@@ -33,7 +33,7 @@ import org.springframework.web.reactive.result.method.RequestMappingInfoHandlerM
  * {@link RequestMappingInfo} instances from class-level and method-level
  * {@link RequestMapping @RequestMapping} annotations.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMapping

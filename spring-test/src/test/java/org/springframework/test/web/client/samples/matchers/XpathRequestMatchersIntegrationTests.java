@@ -31,7 +31,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 /**
  * Examples of defining expectations on XML request content with XPath expressions.
  *
- * @author Rossen Stoyanchev
+ *
  * @see ContentRequestMatchersIntegrationTests
  * @see XmlContentRequestMatchersIntegrationTests
  */

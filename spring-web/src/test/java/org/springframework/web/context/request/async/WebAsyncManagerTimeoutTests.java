@@ -29,7 +29,7 @@ import static org.springframework.web.context.request.async.CallableProcessingIn
  * {@link WebAsyncManager} tests where container-triggered timeout/completion
  * events are simulated.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class WebAsyncManagerTimeoutTests {
 

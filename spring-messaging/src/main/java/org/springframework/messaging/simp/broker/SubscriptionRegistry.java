@@ -8,7 +8,7 @@ import org.springframework.util.MultiValueMap;
 /**
  * A registry of subscription by session that allows looking up subscriptions.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public interface SubscriptionRegistry {

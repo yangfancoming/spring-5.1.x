@@ -22,7 +22,7 @@ import org.springframework.web.servlet.View;
  * annotated with {@code @ModelAttribute} or {@code @ResponseBody} to ensure
  * they don't take over.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 public class ViewMethodReturnValueHandler implements HandlerMethodReturnValueHandler {

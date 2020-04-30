@@ -32,7 +32,7 @@ import org.springframework.web.server.ServerWebExchange;
  * A {@link RequestUpgradeStrategy} for use with Tomcat.
  *
  * @author Violeta Georgieva
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class TomcatRequestUpgradeStrategy implements RequestUpgradeStrategy {

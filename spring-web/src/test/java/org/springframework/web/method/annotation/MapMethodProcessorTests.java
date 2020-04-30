@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 /**
  * Test fixture with {@link org.springframework.web.method.annotation.MapMethodProcessor}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class MapMethodProcessorTests {
 

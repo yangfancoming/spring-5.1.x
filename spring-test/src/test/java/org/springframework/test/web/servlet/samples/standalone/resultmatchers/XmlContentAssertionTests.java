@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 /**
  * Examples of defining expectations on XML response content with XMLUnit.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @see ContentAssertionTests
  * @see XpathAssertionTests

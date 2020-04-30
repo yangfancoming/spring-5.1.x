@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author Rossen Stoyanchev
+ *
  */
 public class TestSimpSession implements SimpSession {
 

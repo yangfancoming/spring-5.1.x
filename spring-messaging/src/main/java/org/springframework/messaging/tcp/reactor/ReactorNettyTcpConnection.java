@@ -16,7 +16,7 @@ import org.springframework.util.concurrent.MonoToListenableFutureAdapter;
 /**
  * Reactor Netty based implementation of {@link TcpConnection}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @param <P> the type of payload for outbound messages
  */

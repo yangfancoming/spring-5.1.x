@@ -224,7 +224,7 @@ import org.springframework.web.util.UriUtils;
  * @author Rob Harrop
 
  * @author Scott Andrews
- * @author Rossen Stoyanchev
+ *
  * @since 2.0
  */
 @SuppressWarnings("serial")

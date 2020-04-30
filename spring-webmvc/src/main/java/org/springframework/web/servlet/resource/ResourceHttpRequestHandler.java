@@ -78,7 +78,7 @@ import org.springframework.web.util.UrlPathHelper;
 
  * @author Arjen Poutsma
  * @author Brian Clozel
- * @author Rossen Stoyanchev
+ *
  * @since 3.0.4
  */
 public class ResourceHttpRequestHandler extends WebContentGenerator

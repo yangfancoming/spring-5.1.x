@@ -8,7 +8,7 @@ import org.springframework.web.context.request.NativeWebRequest;
  * Abstract adapter class for the {@link DeferredResultProcessingInterceptor}
  * interface for simplified implementation of individual methods.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Rob Winch
  * @since 3.2
  * @deprecated as of 5.0 where DeferredResultProcessingInterceptor has default methods

@@ -10,7 +10,7 @@ import reactor.core.publisher.Flux;
  * {@code ExchangeResult} variant with the response body decoded as
  * {@code Flux<T>} but not yet consumed.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @param <T> the type of elements in the response body
  * @see EntityExchangeResult

@@ -39,7 +39,7 @@ import org.springframework.web.util.UriComponents.UriTemplateVariables;
  * </ol>
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  * @author Phillip Webb
  * @author Oliver Gierke
  * @author Brian Clozel

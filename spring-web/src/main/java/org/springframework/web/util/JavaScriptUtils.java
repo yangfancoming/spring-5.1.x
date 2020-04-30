@@ -12,7 +12,7 @@ package org.springframework.web.util;
  *
 
  * @author Rob Harrop
- * @author Rossen Stoyanchev
+ *
  * @since 1.1.1
  */
 public abstract class JavaScriptUtils {

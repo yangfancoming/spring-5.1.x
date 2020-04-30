@@ -13,7 +13,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 /**
  * Stub resolver for a fixed value type and/or value.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class StubArgumentResolver implements HandlerMethodArgumentResolver {
 

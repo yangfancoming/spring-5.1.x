@@ -30,7 +30,7 @@ import org.springframework.util.MimeType;
  * for subsequent access, however it is also possible to set a custom
  * {@link #setWriteHandler(Function) writeHandler}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class MockServerHttpResponse extends AbstractServerHttpResponse {

@@ -24,7 +24,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
  * Examples of defining expectations on JSON request content with
  * <a href="https://github.com/jayway/JsonPath">JsonPath</a> expressions.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @see org.springframework.test.web.client.match.JsonPathRequestMatchers
  * @see org.springframework.test.web.client.match.JsonPathRequestMatchersTests

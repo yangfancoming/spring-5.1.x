@@ -31,7 +31,7 @@ import static org.junit.Assert.*;
 /**
  * Test fixture with {@link PathVariableMethodArgumentResolver}.
  *
- * @author Rossen Stoyanchev
+ *
 
  */
 public class PathVariableMethodArgumentResolverTests {

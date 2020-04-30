@@ -18,7 +18,7 @@ import static org.junit.Assert.fail;
 /**
  * Unit tests for {@link BufferingStompDecoder}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0.3
  */
 public class BufferingStompDecoderTests {

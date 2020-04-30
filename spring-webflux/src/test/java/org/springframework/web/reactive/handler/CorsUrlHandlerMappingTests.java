@@ -24,7 +24,7 @@ import static org.junit.Assert.assertSame;
  * Unit tests for CORS support at {@link AbstractUrlHandlerMapping} level.
  *
  * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ *
  */
 public class CorsUrlHandlerMappingTests {
 

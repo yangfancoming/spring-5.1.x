@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
  * {@code RequestMappingHandlerAdapter} or more likely annotated with
  * {@code @ControllerAdvice} in which case they are auto-detected.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 public interface RequestBodyAdvice {

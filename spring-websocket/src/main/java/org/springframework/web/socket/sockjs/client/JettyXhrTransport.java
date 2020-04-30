@@ -44,7 +44,7 @@ import org.springframework.web.socket.sockjs.frame.SockJsFrame;
  * httpClient.setExecutor(new QueuedThreadPool(500));
  * </pre>
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public class JettyXhrTransport extends AbstractXhrTransport implements Lifecycle {

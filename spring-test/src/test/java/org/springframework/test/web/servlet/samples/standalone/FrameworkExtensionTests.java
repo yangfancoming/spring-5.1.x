@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
  * MockMvcConfigurer} for extending MockMvc building with some automatic setup.
  * </ul>
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public class FrameworkExtensionTests {

@@ -18,7 +18,7 @@ import org.springframework.util.StreamUtils;
  * of the resource and appends it to the file name, e.g.
  * {@code "styles/main-e36d2e05253c6c7085a91522ce43a0b4.css"}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  * @since 5.0
  * @see VersionResourceResolver

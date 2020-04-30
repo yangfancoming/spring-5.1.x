@@ -24,7 +24,7 @@ import org.springframework.web.reactive.socket.WebSocketSession;
  * convenience methods to convert Netty {@link WebSocketFrame WebSocketFrames} to and from
  * {@link WebSocketMessage WebSocketMessages}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @param <T> the native delegate type
  */

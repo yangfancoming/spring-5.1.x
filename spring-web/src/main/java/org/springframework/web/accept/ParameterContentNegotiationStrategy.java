@@ -18,7 +18,7 @@ import org.springframework.web.context.request.NativeWebRequest;
  * As of 5.0 this strategy also supports dynamic lookups of keys via
  * {@link org.springframework.http.MediaTypeFactory#getMediaType}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public class ParameterContentNegotiationStrategy extends AbstractMappingContentNegotiationStrategy {

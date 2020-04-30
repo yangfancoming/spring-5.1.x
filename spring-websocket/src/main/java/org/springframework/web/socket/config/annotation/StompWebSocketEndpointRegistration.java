@@ -8,7 +8,7 @@ import org.springframework.web.socket.server.HandshakeInterceptor;
 /**
  * A contract for configuring a STOMP over WebSocket endpoint.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public interface StompWebSocketEndpointRegistration {

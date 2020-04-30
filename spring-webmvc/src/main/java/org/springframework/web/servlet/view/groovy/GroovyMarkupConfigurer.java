@@ -63,7 +63,7 @@ import org.springframework.util.StringUtils;
  * Spring's Groovy Markup template support requires Groovy 2.3.1 or higher.
  *
  * @author Brian Clozel
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  * @see GroovyMarkupView
  * @see <a href="http://groovy-lang.org/templating.html#_the_markuptemplateengine">

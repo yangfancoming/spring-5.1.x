@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
  * Strategy for encoding a stream of objects of type {@code <T>} and writing
  * the encoded stream of bytes to an {@link ReactiveHttpOutputMessage}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Arjen Poutsma
  * @author Sebastien Deleuze
  * @since 5.0

@@ -32,7 +32,7 @@ import static org.junit.Assert.*;
  * Unit tests for {@link ContentVersionStrategy}.
  *
  * @author Brian Clozel
- * @author Rossen Stoyanchev
+ *
  */
 public class ContentBasedVersionStrategyTests {
 

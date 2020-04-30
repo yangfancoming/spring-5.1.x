@@ -14,7 +14,7 @@ import org.springframework.web.server.WebHandler;
  * {@link HandlerAdapter} that allows using the plain {@link WebHandler} contract
  * with the generic {@link DispatcherHandler}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
  * @since 5.0
  */

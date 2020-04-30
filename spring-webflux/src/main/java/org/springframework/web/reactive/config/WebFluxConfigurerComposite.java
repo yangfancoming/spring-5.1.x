@@ -21,7 +21,7 @@ import org.springframework.web.reactive.result.method.annotation.ArgumentResolve
  * A {@link WebFluxConfigurer} that delegates to one or more others.
  *
  * @author Brian Clozel
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class WebFluxConfigurerComposite implements WebFluxConfigurer {

@@ -58,7 +58,7 @@ import org.springframework.web.util.UrlPathHelper;
  * the created {@code MockHttpServletRequest}, please use the
  * {@link #with(RequestPostProcessor)} extension point.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @author Arjen Poutsma
  * @author Sam Brannen

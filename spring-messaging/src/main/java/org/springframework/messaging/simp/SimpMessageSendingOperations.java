@@ -26,7 +26,7 @@ import org.springframework.messaging.core.MessageSendingOperations;
  * {@link org.springframework.messaging.simp.SimpMessageHeaderAccessor#setSessionId
  * sessionId} header has been set accordingly.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public interface SimpMessageSendingOperations extends MessageSendingOperations<String> {

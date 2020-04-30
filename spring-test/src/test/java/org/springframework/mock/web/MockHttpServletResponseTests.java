@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  *
 
  * @author Rick Evans
- * @author Rossen Stoyanchev
+ *
  * @author Rob Winch
  * @author Sam Brannen
  * @author Brian Clozel

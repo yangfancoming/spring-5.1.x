@@ -10,7 +10,7 @@ package org.springframework.test.web.client;
  * sub-interface is the internal SPI for matching these expectations to actual
  * requests and for creating responses.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.3
  */
 public interface RequestExpectation extends ResponseActions, RequestMatcher, ResponseCreator {

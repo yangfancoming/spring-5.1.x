@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 /**
  * Tests with asynchronous request handling.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
  * @author Sam Brannen
  * @author Jacek Suchenia

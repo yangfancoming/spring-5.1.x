@@ -33,7 +33,7 @@ import org.springframework.util.MultiValueMap;
  * to a decoded response entity and a decoded (but not consumed) response body
  * respectively.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see EntityExchangeResult
  * @see FluxExchangeResult

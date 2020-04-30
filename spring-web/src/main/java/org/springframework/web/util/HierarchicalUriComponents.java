@@ -29,7 +29,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Arjen Poutsma
 
- * @author Rossen Stoyanchev
+ *
  * @author Phillip Webb
  * @since 3.1.3
  * @see <a href="https://tools.ietf.org/html/rfc3986#section-1.2.3">Hierarchical URIs</a>

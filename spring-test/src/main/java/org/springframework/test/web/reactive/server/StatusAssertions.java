@@ -13,7 +13,7 @@ import org.springframework.test.util.AssertionErrors;
 /**
  * Assertions on the response status.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see WebTestClient.ResponseSpec#expectStatus()
  */

@@ -25,7 +25,7 @@ import static org.mockito.BDDMockito.*;
 /**
  * Test fixture for {@link org.springframework.web.socket.server.support.DefaultHandshakeHandler}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class DefaultHandshakeHandlerTests extends AbstractHttpRequestTests {
 

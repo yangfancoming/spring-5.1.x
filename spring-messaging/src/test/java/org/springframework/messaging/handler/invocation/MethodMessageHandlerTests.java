@@ -36,7 +36,7 @@ import static org.junit.Assert.*;
  * {@link org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler}.
  *
  * @author Brian Clozel
- * @author Rossen Stoyanchev
+ *
  */
 public class MethodMessageHandlerTests {
 

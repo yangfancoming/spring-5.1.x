@@ -24,7 +24,7 @@ import org.springframework.stereotype.Controller;
  * {@code RequestMappingHandlerMapping}-{@code RequestMappingHandlerAdapter}
  * pair which are the default in the MVC Java config and the MVC namespace.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @since 4.0
  */

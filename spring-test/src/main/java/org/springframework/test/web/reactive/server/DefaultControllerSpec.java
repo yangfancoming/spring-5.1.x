@@ -27,7 +27,7 @@ import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
 /**
  * Default implementation of {@link WebTestClient.ControllerSpec}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 class DefaultControllerSpec extends AbstractMockServerSpec<WebTestClient.ControllerSpec>

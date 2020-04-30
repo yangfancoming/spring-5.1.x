@@ -43,7 +43,7 @@ import static org.junit.Assert.*;
  * on where they are located -- on interfaces, parent classes, in parameterized methods, or in
  * combination with proxies.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  */
 @RunWith(Parameterized.class)

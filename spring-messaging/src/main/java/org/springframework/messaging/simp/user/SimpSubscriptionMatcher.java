@@ -5,7 +5,7 @@ package org.springframework.messaging.simp.user;
 /**
  * A strategy for matching subscriptions.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 @FunctionalInterface

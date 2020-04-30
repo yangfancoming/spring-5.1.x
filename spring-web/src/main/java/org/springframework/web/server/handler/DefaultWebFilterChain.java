@@ -26,7 +26,7 @@ import org.springframework.web.server.WebHandler;
  * This class is immutable and thread-safe. It can be created once and
  * re-used to handle request concurrently.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class DefaultWebFilterChain implements WebFilterChain {

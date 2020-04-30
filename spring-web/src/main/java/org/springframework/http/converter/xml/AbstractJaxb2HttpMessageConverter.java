@@ -17,7 +17,7 @@ import org.springframework.util.Assert;
  * that use JAXB2. Creates {@link JAXBContext} object lazily.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  * @since 3.0
  * @param <T> the converted object type
  */

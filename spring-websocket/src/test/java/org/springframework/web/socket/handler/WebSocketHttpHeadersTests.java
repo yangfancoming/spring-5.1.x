@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 /**
  * Unit tests for WebSocketHttpHeaders.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class WebSocketHttpHeadersTests {
 

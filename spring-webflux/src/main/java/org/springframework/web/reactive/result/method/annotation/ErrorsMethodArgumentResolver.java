@@ -22,7 +22,7 @@ import org.springframework.web.server.ServerWebExchange;
  * An {@code Errors} argument is expected to appear immediately after the
  * model attribute in the method signature.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class ErrorsMethodArgumentResolver extends HandlerMethodArgumentResolverSupport {

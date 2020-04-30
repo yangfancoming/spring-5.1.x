@@ -10,7 +10,7 @@ import org.springframework.http.MediaType;
  * Strategy to resolve {@link MediaType} to a list of file extensions.
  * For example resolve "application/json" to "json".
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public interface MediaTypeFileExtensionResolver {

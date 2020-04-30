@@ -14,7 +14,7 @@ import org.springframework.web.socket.server.jetty.JettyRequestUpgradeStrategy;
 /**
  * SockJS integration tests using Jetty for client and server.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class JettySockJsIntegrationTests extends AbstractSockJsIntegrationTests {
 

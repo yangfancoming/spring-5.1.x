@@ -17,7 +17,7 @@ import org.springframework.web.method.annotation.AbstractNamedValueMethodArgumen
 /**
  * Resolves method arguments annotated with an @{@link SessionAttribute}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.3
  */
 public class SessionAttributeMethodArgumentResolver extends AbstractNamedValueMethodArgumentResolver {

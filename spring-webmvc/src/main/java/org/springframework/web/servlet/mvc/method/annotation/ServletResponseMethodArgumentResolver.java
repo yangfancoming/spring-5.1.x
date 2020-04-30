@@ -24,7 +24,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * </ul>
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
 
  * @since 3.1
  */

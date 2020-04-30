@@ -17,7 +17,7 @@ import org.springframework.messaging.converter.MessageConverter;
  * through a {@link MessageConverter} to convert it from serialized form with a
  * specific MIME type to an Object matching the target method parameter.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @since 4.0
  */

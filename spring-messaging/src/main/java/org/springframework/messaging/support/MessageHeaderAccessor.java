@@ -94,7 +94,7 @@ import org.springframework.util.StringUtils;
  * Note that the above examples aim to demonstrate the general idea of using
  * header accessors. The most likely usage however is through subclasses.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 4.0
  */

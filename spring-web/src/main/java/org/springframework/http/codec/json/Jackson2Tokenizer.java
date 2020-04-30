@@ -28,7 +28,7 @@ import org.springframework.core.io.buffer.DataBufferUtils;
  * well-formed JSON object.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
 
  * @since 5.0
  */

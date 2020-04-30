@@ -14,7 +14,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
  * A registration class for customizing the configuration for a
  * {@link org.springframework.messaging.MessageChannel}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class ChannelRegistration {

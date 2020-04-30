@@ -9,7 +9,7 @@ import org.springframework.messaging.MessageHandler;
  * Extension of the {@link Runnable} interface with methods to obtain the
  * {@link MessageHandler} and {@link Message} to be handled.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1.1
  */
 public interface MessageHandlingRunnable extends Runnable {

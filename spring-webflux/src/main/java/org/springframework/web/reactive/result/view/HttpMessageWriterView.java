@@ -24,7 +24,7 @@ import org.springframework.web.server.ServerWebExchange;
 /**
  * {@code View} that writes model attribute(s) with an {@link HttpMessageWriter}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class HttpMessageWriterView implements View {

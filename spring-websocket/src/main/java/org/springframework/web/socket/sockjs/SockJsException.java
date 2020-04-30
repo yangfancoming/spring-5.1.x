@@ -8,7 +8,7 @@ import org.springframework.lang.Nullable;
 /**
  * Base class for exceptions raised while processing SockJS HTTP requests.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 @SuppressWarnings("serial")

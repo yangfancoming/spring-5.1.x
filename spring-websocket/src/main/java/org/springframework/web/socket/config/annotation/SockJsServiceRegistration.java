@@ -22,7 +22,7 @@ import org.springframework.web.socket.sockjs.transport.handler.DefaultSockJsServ
  * {@link org.springframework.web.socket.config.annotation.EnableWebSocket} and
  * {@link WebSocketConfigurer} setup.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class SockJsServiceRegistration {

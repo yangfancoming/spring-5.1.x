@@ -21,7 +21,7 @@ import org.springframework.web.method.ControllerAdviceBean;
  * for {@link org.springframework.web.bind.annotation.ControllerAdvice
  * ControllerAdvice} with global {@code @MessageExceptionHandler} methods.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 public class WebSocketAnnotationMethodMessageHandler extends SimpAnnotationMethodMessageHandler {

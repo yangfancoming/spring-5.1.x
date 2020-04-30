@@ -9,7 +9,7 @@ import org.springframework.web.socket.sockjs.frame.SockJsMessageCodec;
 import org.springframework.web.socket.sockjs.transport.SockJsServiceConfig;
 
 /**
- * @author Rossen Stoyanchev
+ *
  */
 public class StubSockJsServiceConfig implements SockJsServiceConfig {
 

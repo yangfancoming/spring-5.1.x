@@ -11,7 +11,7 @@ import org.springframework.core.io.Resource;
  * A contract for invoking a chain of {@link ResourceTransformer ResourceTransformers} where each resolver
  * is given a reference to the chain allowing it to delegate when necessary.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public interface ResourceTransformerChain {

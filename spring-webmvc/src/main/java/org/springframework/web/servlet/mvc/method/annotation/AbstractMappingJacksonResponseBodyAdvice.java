@@ -16,7 +16,7 @@ import org.springframework.lang.Nullable;
  * that customize the response before JSON serialization with
  * {@link AbstractJackson2HttpMessageConverter}'s concrete subclasses.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
  * @since 4.1
  */

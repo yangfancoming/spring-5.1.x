@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 /**
  * Test fixture with a {@link DefaultServletHandlerConfigurer}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class DefaultServletHandlerConfigurerTests {
 

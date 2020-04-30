@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 /**
  * Test fixture with a ParameterizableViewController.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.1.1
  */
 public class ParameterizableViewControllerTests {

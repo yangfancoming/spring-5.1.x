@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link ConcurrentWebSocketSessionDecorator}.
- * @author Rossen Stoyanchev
+ *
  */
 @SuppressWarnings("resource")
 public class ConcurrentWebSocketSessionDecoratorTests {

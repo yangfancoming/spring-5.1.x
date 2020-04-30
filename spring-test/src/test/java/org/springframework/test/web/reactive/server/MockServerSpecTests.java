@@ -18,7 +18,7 @@ import static org.hamcrest.core.StringContains.*;
 
 /**
  * Unit tests for {@link AbstractMockServerSpec}.
- * @author Rossen Stoyanchev
+ *
  */
 public class MockServerSpecTests {
 

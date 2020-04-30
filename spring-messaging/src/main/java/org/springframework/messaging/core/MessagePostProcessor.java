@@ -9,7 +9,7 @@ import org.springframework.messaging.Message;
  * returning a modified (effectively new) message or returning the same.
  *
  * @author Mark Fisher
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  * @see MessageSendingOperations
  * @see MessageRequestReplyOperations

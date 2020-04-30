@@ -19,7 +19,7 @@ import static org.mockito.Mockito.*;
  * Unit tests for
  * {@link org.springframework.messaging.simp.SimpAttributes}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public class SimpAttributesTests {

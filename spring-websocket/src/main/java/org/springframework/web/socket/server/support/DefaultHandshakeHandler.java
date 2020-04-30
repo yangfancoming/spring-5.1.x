@@ -12,7 +12,7 @@ import org.springframework.web.socket.server.RequestUpgradeStrategy;
  * extending {@link AbstractHandshakeHandler} with Servlet-specific initialization support.
  * See {@link AbstractHandshakeHandler}'s javadoc for details on supported servers etc.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 4.0
  */

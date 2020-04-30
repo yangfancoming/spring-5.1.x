@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
 /**
  * Test fixture with a {@link ViewControllerRegistry}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class ViewControllerRegistryTests {
 

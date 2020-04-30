@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
  * from an Object stream.
  *
  * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 @SuppressWarnings("serial")

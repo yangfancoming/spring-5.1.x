@@ -55,7 +55,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
  * Or alternatively to re-configure all argument and return value types use
  * {@link #setArgumentResolvers} and {@link #setReturnValueHandlers(List)}.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 3.1
  */

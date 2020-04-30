@@ -25,7 +25,7 @@ import org.springframework.web.reactive.socket.WebSocketSession;
  * {@link WebSocketHandler} and its session.
  *
  * @author Violeta Georgieva
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class StandardWebSocketHandlerAdapter extends Endpoint {

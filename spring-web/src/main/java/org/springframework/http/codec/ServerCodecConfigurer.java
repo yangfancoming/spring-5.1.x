@@ -35,7 +35,7 @@ import org.springframework.core.codec.Encoder;
  * <li>Server-Sent Events
  * </ul>
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public interface ServerCodecConfigurer extends CodecConfigurer {

@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * Provides access to the result of an executed request.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public interface MvcResult {

@@ -36,7 +36,7 @@ import org.springframework.core.codec.Encoder;
  * <li>XML, if JAXB2 is present
  * </ul>
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public interface ClientCodecConfigurer extends CodecConfigurer {

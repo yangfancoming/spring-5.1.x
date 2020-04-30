@@ -14,7 +14,7 @@ import org.springframework.core.io.buffer.DataBufferUtils;
 /**
  * {@link ServerHttpResponse} decorator for HTTP HEAD requests.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class HttpHeadResponseDecorator extends ServerHttpResponseDecorator {

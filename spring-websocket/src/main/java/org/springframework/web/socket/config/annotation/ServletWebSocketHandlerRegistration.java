@@ -19,7 +19,7 @@ import org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler;
  * A helper class for configuring {@link WebSocketHandler} request handling
  * including SockJS fallback options.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class ServletWebSocketHandlerRegistration

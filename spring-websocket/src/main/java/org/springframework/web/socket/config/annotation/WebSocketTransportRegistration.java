@@ -12,7 +12,7 @@ import org.springframework.web.socket.handler.WebSocketHandlerDecoratorFactory;
 /**
  * Configure the processing of messages received from and sent to WebSocket clients.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0.3
  */
 public class WebSocketTransportRegistration {

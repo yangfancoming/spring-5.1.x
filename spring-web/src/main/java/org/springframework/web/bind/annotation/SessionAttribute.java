@@ -24,7 +24,7 @@ import org.springframework.core.annotation.AliasFor;
  * For temporary storage of model attributes in the session as part of the
  * workflow for a controller, consider using {@link SessionAttributes} instead.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.3
  * @see RequestMapping
  * @see SessionAttributes

@@ -7,7 +7,7 @@ import org.springframework.context.Lifecycle;
 import org.springframework.http.server.reactive.HttpHandler;
 
 /**
- * @author Rossen Stoyanchev
+ *
  */
 public interface HttpServer extends InitializingBean, Lifecycle {
 

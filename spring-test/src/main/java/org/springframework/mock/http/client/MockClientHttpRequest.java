@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
 /**
  * Mock implementation of {@link ClientHttpRequest}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @since 3.2
  */

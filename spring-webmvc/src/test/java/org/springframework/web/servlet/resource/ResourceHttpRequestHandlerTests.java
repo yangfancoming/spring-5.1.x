@@ -36,7 +36,7 @@ import static org.mockito.Mockito.*;
  *
  * @author Keith Donald
  * @author Jeremy Grelle
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  */
 public class ResourceHttpRequestHandlerTests {

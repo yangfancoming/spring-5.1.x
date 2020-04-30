@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 /**
  * Test fixture for {@link WebSocketHandlerDecorator}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class WebSocketHandlerDecoratorTests {
 

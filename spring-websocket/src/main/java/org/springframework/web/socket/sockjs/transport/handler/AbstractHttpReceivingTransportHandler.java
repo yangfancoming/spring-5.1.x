@@ -20,7 +20,7 @@ import org.springframework.web.socket.sockjs.transport.session.AbstractHttpSockJ
 /**
  * Base class for HTTP transport handlers that receive messages via HTTP POST.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public abstract class AbstractHttpReceivingTransportHandler extends AbstractTransportHandler {

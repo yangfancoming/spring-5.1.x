@@ -29,7 +29,7 @@ import static org.junit.Assert.assertThat;
 /**
  * Unit tests for {@link AbstractHandlerMethodMapping}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class HandlerMethodMappingTests {
 

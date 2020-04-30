@@ -28,7 +28,7 @@ import static org.junit.Assert.*;
  * Test fixture for {@link ParameterizedTypeReference}.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  */
 public class ParameterizedTypeReferenceTests {
 

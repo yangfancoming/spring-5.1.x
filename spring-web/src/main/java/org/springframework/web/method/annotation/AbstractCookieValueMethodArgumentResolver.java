@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.CookieValue;
  * resolved cookie value.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 public abstract class AbstractCookieValueMethodArgumentResolver extends AbstractNamedValueMethodArgumentResolver {

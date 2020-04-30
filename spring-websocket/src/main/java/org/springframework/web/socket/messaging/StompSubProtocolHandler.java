@@ -51,7 +51,7 @@ import org.springframework.web.socket.sockjs.transport.SockJsSession;
  * A {@link SubProtocolHandler} for STOMP that supports versions 1.0, 1.1, and 1.2
  * of the STOMP specification.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Andy Wilkinson
  * @since 4.0
  */

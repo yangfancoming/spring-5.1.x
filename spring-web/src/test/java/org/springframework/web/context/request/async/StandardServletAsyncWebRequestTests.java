@@ -27,7 +27,7 @@ import static org.mockito.BDDMockito.verify;
 
 /**
  * A test fixture with a {@link StandardServletAsyncWebRequest}.
- * @author Rossen Stoyanchev
+ *
  */
 public class StandardServletAsyncWebRequestTests {
 

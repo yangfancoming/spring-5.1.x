@@ -22,7 +22,7 @@ import org.springframework.util.StringUtils;
  * or otherwise applies {@link MessageConverter} to convert to the expected
  * payload type.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Stephane Nicoll
 
  * @since 4.0

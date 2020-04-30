@@ -26,7 +26,7 @@ import org.springframework.web.util.UrlPathHelper;
  * A registry for STOMP over WebSocket endpoints that maps the endpoints with a
  * {@link org.springframework.web.servlet.HandlerMapping} for use in Spring MVC.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Artem Bilan
  * @since 4.0
  */

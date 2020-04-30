@@ -47,7 +47,7 @@ import org.springframework.util.concurrent.SettableListenableFuture;
 /**
  * Reactor Netty based implementation of {@link TcpOperations}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Stephane Maldini
  * @since 5.0
  * @param <P> the type of payload for in and outbound messages

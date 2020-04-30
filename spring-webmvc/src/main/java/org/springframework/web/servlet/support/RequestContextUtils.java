@@ -37,7 +37,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  * Locale, ThemeResolver, Theme, and MultipartResolver.
  *
 
- * @author Rossen Stoyanchev
+ *
  * @since 03.03.2003
  * @see RequestContext
  * @see org.springframework.web.servlet.DispatcherServlet

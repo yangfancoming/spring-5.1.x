@@ -20,7 +20,7 @@ import static org.mockito.BDDMockito.*;
 /**
  * Test fixture with an {@link WebAsyncManager} with a mock AsyncWebRequest.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class WebAsyncManagerTests {
 

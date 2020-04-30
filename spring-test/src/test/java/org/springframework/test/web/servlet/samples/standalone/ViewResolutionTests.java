@@ -32,7 +32,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 /**
  * Tests with view resolution.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class ViewResolutionTests {
 

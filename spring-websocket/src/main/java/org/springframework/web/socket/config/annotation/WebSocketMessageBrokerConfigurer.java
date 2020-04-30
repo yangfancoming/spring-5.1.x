@@ -17,7 +17,7 @@ import org.springframework.messaging.simp.config.MessageBrokerRegistry;
  * xmlBeanDefinitionReaderTypically used to customize the configuration provided via
  * {@link EnableWebSocketMessageBroker @EnableWebSocketMessageBroker}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public interface WebSocketMessageBrokerConfigurer {

@@ -15,7 +15,7 @@ import org.springframework.messaging.Message;
  * but rather the client's first attempt to connect within the sub-protocol,
  * for example sending the STOMP CONNECT frame.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0.3
  */
 @SuppressWarnings("serial")

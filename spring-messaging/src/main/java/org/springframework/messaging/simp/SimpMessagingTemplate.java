@@ -28,7 +28,7 @@ import org.springframework.util.StringUtils;
  * UserDestinationResolver}
  * for more on user destinations.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class SimpMessagingTemplate extends AbstractMessageSendingTemplate<String>

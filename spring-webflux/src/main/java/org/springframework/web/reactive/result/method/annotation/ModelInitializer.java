@@ -31,7 +31,7 @@ import org.springframework.web.server.ServerWebExchange;
  * Package-private class to assist {@link RequestMappingHandlerAdapter} with
  * default model initialization through {@code @ModelAttribute} methods.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 class ModelInitializer {

@@ -31,7 +31,7 @@ import org.springframework.web.socket.adapter.AbstractWebSocketSession;
 /**
  * A {@link WebSocketSession} for use with the standard WebSocket for Java API.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class StandardWebSocketSession extends AbstractWebSocketSession<Session> {

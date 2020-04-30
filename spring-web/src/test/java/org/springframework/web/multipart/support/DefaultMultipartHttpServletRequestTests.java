@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 /**
  * Unit tests for {@link DefaultMultipartHttpServletRequest}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class DefaultMultipartHttpServletRequestTests {
 

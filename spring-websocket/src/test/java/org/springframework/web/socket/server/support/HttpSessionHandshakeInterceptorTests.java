@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 /**
  * Test fixture for {@link HttpSessionHandshakeInterceptor}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class HttpSessionHandshakeInterceptorTests extends AbstractHttpRequestTests {
 

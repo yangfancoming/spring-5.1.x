@@ -21,7 +21,7 @@ import org.springframework.web.cors.CorsUtils;
  * against a set of {@link RequestMethod RequestMethods}.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 public final class RequestMethodsRequestCondition extends AbstractRequestCondition<RequestMethodsRequestCondition> {

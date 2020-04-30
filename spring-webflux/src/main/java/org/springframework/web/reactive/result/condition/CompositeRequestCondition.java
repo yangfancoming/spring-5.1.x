@@ -21,7 +21,7 @@ import org.springframework.web.server.ServerWebExchange;
  * conditions in the respective index are of the same type. It is acceptable to
  * provide {@code null} conditions or no conditions at all to the constructor.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class CompositeRequestCondition extends AbstractRequestCondition<CompositeRequestCondition> {

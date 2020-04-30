@@ -10,7 +10,7 @@ import org.springframework.util.Assert;
  * the "Cookie" request header. The {@link ResponseCookie} sub-class has the
  * additional attributes expected in the "Set-Cookie" response header.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see <a href="https://tools.ietf.org/html/rfc6265">RFC 6265</a>
  */

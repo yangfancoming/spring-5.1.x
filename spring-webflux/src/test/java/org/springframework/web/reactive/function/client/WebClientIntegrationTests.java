@@ -48,7 +48,7 @@ import static org.junit.Assert.*;
  * Integration tests using an {@link ExchangeFunction} through {@link WebClient}.
  *
  * @author Brian Clozel
- * @author Rossen Stoyanchev
+ *
  * @author Denys Ivano
  * @author Sebastien Deleuze
  */

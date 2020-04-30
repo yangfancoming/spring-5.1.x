@@ -26,7 +26,7 @@ import org.springframework.web.socket.sockjs.transport.handler.WebSocketTranspor
 /**
  * An abstract base class for configuring STOMP over WebSocket/SockJS endpoints.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class WebMvcStompWebSocketEndpointRegistration implements StompWebSocketEndpointRegistration {

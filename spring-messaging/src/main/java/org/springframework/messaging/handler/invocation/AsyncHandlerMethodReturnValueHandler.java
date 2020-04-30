@@ -14,7 +14,7 @@ import org.springframework.util.concurrent.ListenableFuture;
  * Implementations should consider extending the convenient base class
  * {@link AbstractAsyncReturnValueHandler}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  * @see AbstractAsyncReturnValueHandler
  */

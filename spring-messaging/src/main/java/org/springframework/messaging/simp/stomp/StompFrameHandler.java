@@ -9,7 +9,7 @@ import org.springframework.lang.Nullable;
 /**
  * Contract to handle a STOMP frame.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 public interface StompFrameHandler {

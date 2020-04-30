@@ -23,7 +23,7 @@ import org.springframework.web.multipart.support.StandardMultipartHttpServletReq
 /**
  * Default builder for {@link MockMultipartHttpServletRequest}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Arjen Poutsma
  * @since 3.2
  */

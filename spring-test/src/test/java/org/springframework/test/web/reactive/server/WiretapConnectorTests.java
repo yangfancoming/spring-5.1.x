@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
 /**
  * Unit tests for {@link WiretapConnector}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class WiretapConnectorTests {

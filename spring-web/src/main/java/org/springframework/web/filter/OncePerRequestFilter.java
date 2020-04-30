@@ -48,7 +48,7 @@ import org.springframework.web.util.WebUtils;
  * based on the configured name of the concrete filter instance.
  *
 
- * @author Rossen Stoyanchev
+ *
  * @since 06.12.2003
  */
 public abstract class OncePerRequestFilter extends GenericFilterBean {

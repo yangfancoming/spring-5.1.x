@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 /**
  * Test fixture with {@link HandlerMethodArgumentResolverComposite}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class HandlerMethodArgumentResolverCompositeTests {
 

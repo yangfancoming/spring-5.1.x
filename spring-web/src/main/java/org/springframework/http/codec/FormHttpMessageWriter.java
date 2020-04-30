@@ -40,7 +40,7 @@ import org.springframework.util.MultiValueMap;
  * configured with this writer as the fallback for writing plain form data.
  *
  * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see org.springframework.http.codec.multipart.MultipartHttpMessageWriter
  */

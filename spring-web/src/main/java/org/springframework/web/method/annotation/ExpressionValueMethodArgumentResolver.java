@@ -22,7 +22,7 @@ import org.springframework.web.context.request.NativeWebRequest;
  * A {@link WebDataBinder} may be invoked to apply type conversion to
  * resolved argument value.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 public class ExpressionValueMethodArgumentResolver extends AbstractNamedValueMethodArgumentResolver {

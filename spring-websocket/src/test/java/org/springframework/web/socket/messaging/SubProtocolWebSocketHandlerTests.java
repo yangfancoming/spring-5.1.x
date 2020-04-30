@@ -37,7 +37,7 @@ import static org.mockito.BDDMockito.*;
 /**
  * Test fixture for {@link SubProtocolWebSocketHandler}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Andy Wilkinson
  */
 public class SubProtocolWebSocketHandlerTests {

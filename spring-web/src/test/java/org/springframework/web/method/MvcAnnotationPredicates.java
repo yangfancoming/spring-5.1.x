@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.ValueConstants;
 /**
  * Predicates for {@code @MVC} annotations.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  *
  * @see ResolvableMethod#annot(Predicate[])

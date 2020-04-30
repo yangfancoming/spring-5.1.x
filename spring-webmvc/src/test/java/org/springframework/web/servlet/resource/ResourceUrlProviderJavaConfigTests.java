@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
  * Integration tests using {@link ResourceUrlEncodingFilter} and
  * {@link ResourceUrlProvider} with the latter configured in Spring MVC Java config.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class ResourceUrlProviderJavaConfigTests {
 

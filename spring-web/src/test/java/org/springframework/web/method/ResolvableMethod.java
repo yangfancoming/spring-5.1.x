@@ -105,7 +105,7 @@ import static java.util.stream.Collectors.*;
  * ResolvableMethod.on(TestController.class).mockCall(o -> o.handle(null)).method();
  * </pre>
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class ResolvableMethod {

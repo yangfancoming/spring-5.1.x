@@ -23,7 +23,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 /**
  * Unit tests for {@link SimpleRequestExpectationManager}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class SimpleRequestExpectationManagerTests {
 

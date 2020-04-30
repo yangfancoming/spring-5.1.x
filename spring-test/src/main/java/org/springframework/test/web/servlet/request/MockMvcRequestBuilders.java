@@ -23,7 +23,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
  * this setting, open the Preferences and type "favorites".
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  * @author Greg Turnquist
  * @author Sebastien Deleuze
  * @author Sam Brannen

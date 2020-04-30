@@ -28,7 +28,7 @@ import org.springframework.web.reactive.socket.WebSocketSession;
  * {@link io.undertow.websockets.core.WebSocketChannel}.
  *
  * @author Violeta Georgieva
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class UndertowWebSocketSession extends AbstractListenerWebSocketSession<WebSocketChannel> {

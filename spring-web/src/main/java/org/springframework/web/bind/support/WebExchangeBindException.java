@@ -23,7 +23,7 @@ import org.springframework.web.server.ServerWebInputException;
  * super-interface {@link Errors}) to allow for direct analysis of binding and
  * validation errors.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 @SuppressWarnings("serial")

@@ -12,7 +12,7 @@ import org.springframework.web.socket.WebSocketExtension;
  * Adapt an instance of {@link org.springframework.web.socket.WebSocketExtension} to
  * the {@link javax.websocket.Extension} interface.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class WebSocketToStandardExtensionAdapter implements Extension {

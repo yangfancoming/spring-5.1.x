@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
  * Unit tests for
  * {@link org.springframework.messaging.converter.AbstractMessageConverter}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class MessageConverterTests {
 

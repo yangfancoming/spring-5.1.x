@@ -14,7 +14,7 @@ import org.springframework.web.server.ServerWebExchange;
  * A logical conjunction (' && ') request condition that matches a request against
  * a set parameter expressions with syntax defined in {@link RequestMapping#params()}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public final class ParamsRequestCondition extends AbstractRequestCondition<ParamsRequestCondition> {

@@ -24,7 +24,7 @@ import org.springframework.util.MultiValueMap;
  * request and response and also exposes additional server-side processing
  * related properties and features such as request attributes.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public interface ServerWebExchange {

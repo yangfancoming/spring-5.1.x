@@ -39,7 +39,7 @@ import org.springframework.web.socket.server.RequestUpgradeStrategy;
  * internal {@code org.eclipse.jetty.websocket.server.WebSocketHandler} class.
  *
  * @author Phillip Webb
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
 
  * @since 4.0

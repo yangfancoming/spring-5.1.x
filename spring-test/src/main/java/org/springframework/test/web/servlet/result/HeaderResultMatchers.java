@@ -22,7 +22,7 @@ import static org.springframework.test.util.AssertionErrors.assertTrue;
  * An instance of this class is available via
  * {@link MockMvcResultMatchers#header}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @author Brian Clozel
  * @since 3.2

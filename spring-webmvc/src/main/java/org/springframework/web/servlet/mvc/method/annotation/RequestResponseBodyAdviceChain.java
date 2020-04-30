@@ -23,7 +23,7 @@ import org.springframework.web.method.ControllerAdviceBean;
  * instance may be (and is most likely) wrapped with
  * {@link org.springframework.web.method.ControllerAdviceBean ControllerAdviceBean}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 class RequestResponseBodyAdviceChain implements RequestBodyAdvice, ResponseBodyAdvice<Object> {

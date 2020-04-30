@@ -28,7 +28,7 @@ import org.springframework.util.CollectionUtils;
  * Abstract base class for a {@link MessageHandler} that broker messages to
  * registered subscribers.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public abstract class AbstractBrokerMessageHandler

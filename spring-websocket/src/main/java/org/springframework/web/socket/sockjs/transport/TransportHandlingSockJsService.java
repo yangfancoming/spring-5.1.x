@@ -44,7 +44,7 @@ import org.springframework.web.socket.sockjs.support.AbstractSockJsService;
  *
  * xmlBeanDefinitionReaderSee the {@link AbstractSockJsService} base class for important details on request mapping.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @author Sebastien Deleuze
  * @since 4.0

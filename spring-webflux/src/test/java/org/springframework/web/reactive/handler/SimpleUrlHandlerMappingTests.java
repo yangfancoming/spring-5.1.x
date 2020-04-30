@@ -26,7 +26,7 @@ import static org.springframework.web.reactive.HandlerMapping.PATH_WITHIN_HANDLE
 /**
  * Unit tests for {@link SimpleUrlHandlerMapping}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class SimpleUrlHandlerMappingTests {
 

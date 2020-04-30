@@ -36,7 +36,7 @@ import org.springframework.web.servlet.mvc.annotation.ModelAndViewResolver;
  * a {@code ModelAndViewResolver} as {@code HandlerMethodReturnValueHandler},
  * which also provides better access to the return type and method information.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 public class ModelAndViewResolverMethodReturnValueHandler implements HandlerMethodReturnValueHandler {

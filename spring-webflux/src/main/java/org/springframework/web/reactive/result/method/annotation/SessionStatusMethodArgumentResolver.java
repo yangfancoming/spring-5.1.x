@@ -14,7 +14,7 @@ import org.springframework.web.server.ServerWebExchange;
  * Resolver for a {@link SessionStatus} argument obtaining it from the
  * {@link BindingContext}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class SessionStatusMethodArgumentResolver implements SyncHandlerMethodArgumentResolver {

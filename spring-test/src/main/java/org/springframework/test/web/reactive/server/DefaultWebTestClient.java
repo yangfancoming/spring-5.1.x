@@ -42,7 +42,7 @@ import org.springframework.web.util.UriBuilder;
 /**
  * Default implementation of {@link WebTestClient}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 class DefaultWebTestClient implements WebTestClient {

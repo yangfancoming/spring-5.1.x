@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
  * that should be relevant regardless of the URI template expand and encode
  * mechanism used in sub-classes.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.3
  * @deprecated as of 5.0 in favor of {@link DefaultUriBuilderFactory}
  */

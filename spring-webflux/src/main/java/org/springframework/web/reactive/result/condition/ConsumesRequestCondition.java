@@ -24,7 +24,7 @@ import org.springframework.web.server.UnsupportedMediaTypeStatusException;
  * where the header name is 'Content-Type'. Regardless of which syntax is
  * used, the semantics are the same.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public final class ConsumesRequestCondition extends AbstractRequestCondition<ConsumesRequestCondition> {

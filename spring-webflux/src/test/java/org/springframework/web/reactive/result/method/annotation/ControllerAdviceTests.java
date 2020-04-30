@@ -35,7 +35,7 @@ import static org.mockito.Mockito.mock;
 
 /**
  * {@code @ControllerAdvice} related tests for {@link RequestMappingHandlerAdapter}.
- * @author Rossen Stoyanchev
+ *
  */
 public class ControllerAdviceTests {
 

@@ -18,7 +18,7 @@ import org.springframework.web.util.WebUtils;
  * An {@link org.springframework.web.method.annotation.AbstractCookieValueMethodArgumentResolver}
  * that resolves cookie values from an {@link HttpServletRequest}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 public class ServletCookieValueMethodArgumentResolver extends AbstractCookieValueMethodArgumentResolver {

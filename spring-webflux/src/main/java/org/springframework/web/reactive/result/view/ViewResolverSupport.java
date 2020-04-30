@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
 /**
  * Base class for {@code ViewResolver} implementations with shared properties.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 5.0
  */

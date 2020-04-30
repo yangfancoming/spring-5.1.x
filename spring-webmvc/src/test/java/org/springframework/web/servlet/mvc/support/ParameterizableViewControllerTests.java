@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
  * Unit tests for
  * {@link org.springframework.web.servlet.mvc.ParameterizableViewController}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public class ParameterizableViewControllerTests {

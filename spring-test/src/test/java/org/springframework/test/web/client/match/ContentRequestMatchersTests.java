@@ -17,7 +17,7 @@ import static org.hamcrest.Matchers.*;
 /**
  * Unit tests for {@link ContentRequestMatchers}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class ContentRequestMatchersTests {
 

@@ -26,7 +26,7 @@ import org.springframework.util.Assert;
  * xmlBeanDefinitionReaderNote that Jackson's JSR-310 and Joda-Time support modules will be registered automatically
  * when available (and when Java 8 and Joda-Time themselves are available, respectively).
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class Jackson2SockJsMessageCodec extends AbstractSockJsMessageCodec {

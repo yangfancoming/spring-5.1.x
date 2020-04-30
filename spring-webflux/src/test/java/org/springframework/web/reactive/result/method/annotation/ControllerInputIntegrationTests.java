@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
  * <li>{@link RequestMappingDataBindingIntegrationTests}
  * <li>{@link RequestMappingMessageConversionIntegrationTests}
  * </ul>
- * @author Rossen Stoyanchev
+ *
  */
 public class ControllerInputIntegrationTests extends AbstractRequestMappingIntegrationTests {
 

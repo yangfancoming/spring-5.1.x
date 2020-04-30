@@ -45,7 +45,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
  * </ul>
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
 
  * @since 3.1
  */

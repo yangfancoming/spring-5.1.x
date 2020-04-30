@@ -17,7 +17,7 @@ import org.springframework.util.Assert;
  * only the first execution is expected to match the order of declaration.
  * Subsequent request executions may be inserted anywhere thereafter.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 4.3
  */

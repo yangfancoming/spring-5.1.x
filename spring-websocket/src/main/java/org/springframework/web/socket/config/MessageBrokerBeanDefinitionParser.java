@@ -80,7 +80,7 @@ import org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler;
  * xmlBeanDefinitionReaderRegisters a {@link UserDestinationMessageHandler} for handling user destinations.
  *
  * @author Brian Clozel
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 class MessageBrokerBeanDefinitionParser implements BeanDefinitionParser {

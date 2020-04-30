@@ -12,7 +12,7 @@ import org.springframework.web.cors.CorsConfiguration;
  * URL path pattern.
  *
  * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see CorsRegistry
  */

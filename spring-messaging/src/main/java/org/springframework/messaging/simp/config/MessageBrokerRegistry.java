@@ -17,7 +17,7 @@ import org.springframework.util.PathMatcher;
 /**
  * A registry for configuring message broker options.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
  * @since 4.0
  */

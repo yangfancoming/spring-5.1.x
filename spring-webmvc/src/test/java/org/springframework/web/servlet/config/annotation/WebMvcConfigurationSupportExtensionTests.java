@@ -92,7 +92,7 @@ import static org.springframework.http.MediaType.APPLICATION_XML;
  * configuration -- i.e. dropping @EnableWebMvc + WebMvcConfigurer and extending
  * directly from WebMvcConfigurationSupport.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
  */
 public class WebMvcConfigurationSupportExtensionTests {

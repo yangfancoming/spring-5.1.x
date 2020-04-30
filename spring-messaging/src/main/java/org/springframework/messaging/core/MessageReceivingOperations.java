@@ -10,7 +10,7 @@ import org.springframework.messaging.MessagingException;
  * Operations for receiving messages from a destination.
  *
  * @author Mark Fisher
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  * @param <D> the type of destination
  * @see GenericMessagingTemplate

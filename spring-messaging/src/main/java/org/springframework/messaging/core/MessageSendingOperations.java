@@ -12,7 +12,7 @@ import org.springframework.messaging.MessagingException;
  * Operations for sending messages to a destination.
  *
  * @author Mark Fisher
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  * @param <D> the destination type
  */

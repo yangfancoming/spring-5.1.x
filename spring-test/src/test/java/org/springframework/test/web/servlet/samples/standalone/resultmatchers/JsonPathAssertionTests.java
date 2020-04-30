@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
  * Examples of defining expectations on JSON response content with
  * <a href="https://github.com/jayway/JsonPath">JsonPath</a> expressions.
  *
- * @author Rossen Stoyanchev
+ *
  * @see ContentAssertionTests
  */
 public class JsonPathAssertionTests {

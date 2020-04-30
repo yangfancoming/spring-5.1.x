@@ -40,7 +40,7 @@ import org.springframework.util.StringUtils;
  * session id of the input message as well as the destination from the annotation(s).
  * If multiple destinations are specified, a copy of the message is sent to each destination.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
  * @since 4.0
  */

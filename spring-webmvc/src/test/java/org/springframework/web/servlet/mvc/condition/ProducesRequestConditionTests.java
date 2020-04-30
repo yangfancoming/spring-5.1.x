@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  * Unit tests for {@link ProducesRequestCondition}.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  */
 public class ProducesRequestConditionTests {
 

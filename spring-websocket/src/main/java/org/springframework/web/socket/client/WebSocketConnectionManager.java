@@ -20,7 +20,7 @@ import org.springframework.web.socket.handler.LoggingWebSocketHandlerDecorator;
  * {@link #stop()} methods. If {@link #setAutoStartup(boolean)} is set to {@code true}
  * this will be done automatically when the Spring ApplicationContext is refreshed.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class WebSocketConnectionManager extends ConnectionManagerSupport {

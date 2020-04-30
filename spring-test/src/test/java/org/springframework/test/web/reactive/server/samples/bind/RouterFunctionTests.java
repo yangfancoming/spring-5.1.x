@@ -15,7 +15,7 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 /**
  * Sample tests demonstrating "mock" server tests binding to a RouterFunction.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class RouterFunctionTests {

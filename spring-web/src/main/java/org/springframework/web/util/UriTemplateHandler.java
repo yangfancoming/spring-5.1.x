@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Defines methods for expanding a URI template with variables.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  * @see org.springframework.web.client.RestTemplate#setUriTemplateHandler(UriTemplateHandler)
  */

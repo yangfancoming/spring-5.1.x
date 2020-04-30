@@ -7,7 +7,7 @@ import org.springframework.web.socket.WebSocketHandler;
 /**
  * Provides methods for configuring {@link WebSocketHandler} request mappings.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public interface WebSocketHandlerRegistry {

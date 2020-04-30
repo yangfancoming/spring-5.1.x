@@ -24,7 +24,7 @@ import org.springframework.web.context.request.ServletWebRequest;
  * <code>&ltasync-supported&gttrue&lt/async-supported&gt</code> element to servlet and filter
  * declarations in {@code web.xml}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public class StandardServletAsyncWebRequest extends ServletWebRequest implements AsyncWebRequest, AsyncListener {

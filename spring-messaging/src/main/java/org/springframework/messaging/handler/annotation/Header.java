@@ -13,7 +13,7 @@ import org.springframework.core.annotation.AliasFor;
 /**
  * Annotation which indicates that a method parameter should be bound to a message header.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @since 4.0
  */

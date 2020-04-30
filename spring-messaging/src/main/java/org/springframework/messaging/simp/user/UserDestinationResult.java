@@ -11,7 +11,7 @@ import org.springframework.util.Assert;
  * Contains the result from parsing a "user" destination from a source message
  * and translating it to target destinations (one per active user session).
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0.2
  * @see org.springframework.messaging.simp.user.UserDestinationResolver
  */

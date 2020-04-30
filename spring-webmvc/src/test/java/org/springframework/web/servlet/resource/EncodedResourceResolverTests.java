@@ -32,7 +32,7 @@ import static org.junit.Assert.*;
  * Unit tests for {@link EncodedResourceResolver}.
  *
  * @author Jeremy Grelle
- * @author Rossen Stoyanchev
+ *
  */
 public class EncodedResourceResolverTests {
 

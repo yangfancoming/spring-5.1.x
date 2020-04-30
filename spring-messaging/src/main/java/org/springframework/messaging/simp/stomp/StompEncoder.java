@@ -27,7 +27,7 @@ import org.springframework.util.Assert;
  * An encoder for STOMP frames.
  *
  * @author Andy Wilkinson
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  * @see StompDecoder
  */

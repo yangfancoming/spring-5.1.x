@@ -10,7 +10,7 @@ import org.springframework.web.context.request.NativeWebRequest;
  * Abstract adapter class for the {@link CallableProcessingInterceptor} interface,
  * for simplified implementation of individual methods.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Rob Winch
  * @since 3.2
  * @deprecated as of 5.0 where CallableProcessingInterceptor has default methods

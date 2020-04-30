@@ -40,7 +40,7 @@ import static org.junit.Assert.*;
 /**
  * Integration tests for {@link StompBrokerRelayMessageHandler} running against ActiveMQ.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class StompBrokerRelayMessageHandlerIntegrationTests {
 

@@ -26,7 +26,7 @@ import org.springframework.util.Assert;
  * to send and receive messages from.
  *
  * @author Mark Fisher
- * @author Rossen Stoyanchev
+ *
  * @author Gary Russell
  * @since 4.0
  */

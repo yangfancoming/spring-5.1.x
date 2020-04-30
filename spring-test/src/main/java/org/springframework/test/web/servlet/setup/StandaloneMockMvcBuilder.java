@@ -69,7 +69,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  * request performed (see {@link #setSingleView(View)}) or provide a list of
  * {@code ViewResolver}s (see {@link #setViewResolvers(ViewResolver...)}).
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public class StandaloneMockMvcBuilder extends AbstractMockMvcBuilder<StandaloneMockMvcBuilder> {

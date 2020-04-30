@@ -26,7 +26,7 @@ import static org.springframework.web.servlet.mvc.method.annotation.MvcUriCompon
 /**
  * Examples of expectations on the controller type and controller method.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  */
 public class HandlerAssertionTests {

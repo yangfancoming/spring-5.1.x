@@ -21,7 +21,7 @@ import static org.mockito.Mockito.*;
  * Unit tests for
  * {@link org.springframework.messaging.simp.user.DefaultUserDestinationResolver}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class DefaultUserDestinationResolverTests {
 

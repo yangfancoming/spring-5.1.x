@@ -13,7 +13,7 @@ import org.springframework.core.io.Resource;
  * loading the JavaScript resources and need to know their relative paths.
  *
  * @author Brian Clozel
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  * @see VersionResourceResolver
  */

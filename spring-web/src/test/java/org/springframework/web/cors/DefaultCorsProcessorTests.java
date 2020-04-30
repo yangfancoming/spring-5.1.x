@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
  * Test {@link DefaultCorsProcessor} with simple or preflight CORS request.
  *
  * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ *
 
  */
 public class DefaultCorsProcessorTests {

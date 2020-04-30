@@ -20,7 +20,7 @@ import static org.mockito.BDDMockito.*;
  * Test fixture with {@link WebArgumentResolverAdapterTests}.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  */
 public class WebArgumentResolverAdapterTests {
 

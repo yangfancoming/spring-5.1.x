@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
  * Sub-classes are required to implement {@link #supports} to return true
  * depending on when the advice applies.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 public abstract class RequestBodyAdviceAdapter implements RequestBodyAdvice {

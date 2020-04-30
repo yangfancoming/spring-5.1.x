@@ -28,7 +28,7 @@ import org.springframework.web.socket.server.HandshakeFailureException;
  * when using Java configuration, access the container instance through the
  * "javax.websocket.server.ServerContainer" ServletContext attribute.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class TomcatRequestUpgradeStrategy extends AbstractStandardUpgradeStrategy {

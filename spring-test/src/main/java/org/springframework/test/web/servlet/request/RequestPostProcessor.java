@@ -14,7 +14,7 @@ import org.springframework.mock.web.MockHttpServletRequest;
  * {@link MockHttpServletRequestBuilder#with(RequestPostProcessor)} at the time
  * when a request is about to be constructed.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Rob Winch
  * @since 3.2
  */

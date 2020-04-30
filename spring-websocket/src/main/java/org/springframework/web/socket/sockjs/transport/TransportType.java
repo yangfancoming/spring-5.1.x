@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
 /**
  * SockJS transport types.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
  * @since 4.0
  */

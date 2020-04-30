@@ -25,7 +25,7 @@ import org.springframework.util.concurrent.SuccessCallback;
  * to the caller.
  *
 
- * @author Rossen Stoyanchev
+ *
  * @since 3.0
  * @param <V> the value type
  * @see Async

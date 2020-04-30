@@ -53,7 +53,7 @@ import org.springframework.util.Assert;
  * to aggregate all parts into a Map.
  *
  * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ *
  * @author Arjen Poutsma
  * @since 5.0
  * @see <a href="https://github.com/synchronoss/nio-multipart">Synchronoss NIO Multipart</a>

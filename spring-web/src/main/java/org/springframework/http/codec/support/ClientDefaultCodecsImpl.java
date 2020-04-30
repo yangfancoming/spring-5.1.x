@@ -21,7 +21,7 @@ import org.springframework.lang.Nullable;
 /**
  * Default implementation of {@link ClientCodecConfigurer.ClientDefaultCodecs}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 class ClientDefaultCodecsImpl extends BaseDefaultCodecs implements ClientCodecConfigurer.ClientDefaultCodecs {
 

@@ -30,7 +30,7 @@ import org.springframework.util.StringUtils;
  * containing CSS file. If successfully resolved, the link is modified, otherwise
  * the original link is preserved.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public class CssLinkResourceTransformer extends ResourceTransformerSupport {

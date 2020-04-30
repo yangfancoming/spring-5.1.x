@@ -10,7 +10,7 @@ import org.springframework.web.socket.WebSocketExtension;
  * Adapter class to convert a {@link WebSocketExtension} to a Jetty
  * {@link ExtensionConfig}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class WebSocketToJettyExtensionConfigAdapter extends ExtensionConfig {

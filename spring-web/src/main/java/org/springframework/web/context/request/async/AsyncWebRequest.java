@@ -10,7 +10,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 /**
  * Extends {@link NativeWebRequest} with methods for asynchronous request processing.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public interface AsyncWebRequest extends NativeWebRequest {

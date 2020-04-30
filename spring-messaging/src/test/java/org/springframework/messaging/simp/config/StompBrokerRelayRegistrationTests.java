@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
  * Unit tests for
  * {@link org.springframework.messaging.simp.config.StompBrokerRelayRegistration}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class StompBrokerRelayRegistrationTests {
 

@@ -14,7 +14,7 @@ import org.springframework.util.concurrent.ListenableFuture;
  * if the calling interceptor is last - execute the request itself.
  *
  * @author Jakub Narloch
- * @author Rossen Stoyanchev
+ *
  * @since 4.3
  * @see AsyncClientHttpRequestInterceptor
  * @deprecated as of Spring 5.0, in favor of

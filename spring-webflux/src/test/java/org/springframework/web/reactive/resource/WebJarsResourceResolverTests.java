@@ -27,7 +27,7 @@ import static org.mockito.BDDMockito.verify;
 /**
  * Unit tests for {@link WebJarsResourceResolver}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  */
 public class WebJarsResourceResolverTests {

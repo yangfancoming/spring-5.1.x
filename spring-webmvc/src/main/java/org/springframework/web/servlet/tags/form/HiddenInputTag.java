@@ -48,7 +48,7 @@ import javax.servlet.jsp.JspException;
  *
  * @author Rob Harrop
 
- * @author Rossen Stoyanchev
+ *
  * @since 2.0
  */
 @SuppressWarnings("serial")

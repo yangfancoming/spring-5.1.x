@@ -25,7 +25,7 @@ import org.springframework.util.StringUtils;
  * version string.
  *
  * @author Brian Clozel
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public abstract class AbstractVersionStrategy implements VersionStrategy {

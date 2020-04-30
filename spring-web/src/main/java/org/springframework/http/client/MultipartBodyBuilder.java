@@ -56,7 +56,7 @@ import org.springframework.util.MultiValueMap;
  * </pre>
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  * @since 5.0.2
  * @see <a href="https://tools.ietf.org/html/rfc7578">RFC 7578</a>
  */

@@ -42,7 +42,7 @@ import org.springframework.util.MimeType;
  *
  * Compatible with Jackson 2.9 and higher, as of Spring 5.1.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @author Sebastien Deleuze
  * @since 4.0

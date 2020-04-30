@@ -14,7 +14,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 /**
  * Assists with the invocation of {@link CallableProcessingInterceptor}'s.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Rob Winch
  * @since 3.2
  */

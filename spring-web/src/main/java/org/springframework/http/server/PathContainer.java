@@ -16,7 +16,7 @@ import org.springframework.util.MultiValueMap;
  * safely without the risk of encoded reserved characters altering the path or
  * segment structure and without path parameters for path matching purposes.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public interface PathContainer {

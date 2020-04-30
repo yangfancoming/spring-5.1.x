@@ -35,7 +35,7 @@ import org.springframework.web.socket.sockjs.frame.SockJsFrame;
  * An {@code XhrTransport} implementation that uses a
  * {@link org.springframework.web.client.RestTemplate RestTemplate}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public class RestTemplateXhrTransport extends AbstractXhrTransport {

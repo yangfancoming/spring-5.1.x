@@ -25,7 +25,7 @@ import org.springframework.web.context.request.NativeWebRequest;
  * This is done by delegating to the list of configured
  * {@code MediaTypeFileExtensionResolver} instances.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 3.2
  */

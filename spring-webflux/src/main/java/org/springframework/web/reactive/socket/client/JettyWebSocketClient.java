@@ -33,7 +33,7 @@ import org.springframework.web.reactive.socket.adapter.JettyWebSocketSession;
  * default constructor. See constructor notes for more details.
  *
  * @author Violeta Georgieva
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class JettyWebSocketClient implements WebSocketClient, Lifecycle {

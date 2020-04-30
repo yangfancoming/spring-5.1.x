@@ -25,7 +25,7 @@ import org.springframework.web.server.ServerWebExchange;
  * This resolver requires the {@code org.webjars:webjars-locator-core} library
  * on the classpath and is automatically registered if that library is present.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  * @since 5.0
  * @see <a href="https://www.webjars.org">webjars.org</a>

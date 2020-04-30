@@ -15,7 +15,7 @@ import org.springframework.web.socket.WebSocketSession;
  * declarative style {@link WebSocketConnectionManager} that starts a WebSocket connection
  * to a pre-configured URI when the application starts.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  * @see WebSocketConnectionManager
  */

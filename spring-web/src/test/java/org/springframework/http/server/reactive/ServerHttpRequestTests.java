@@ -26,7 +26,7 @@ import static org.mockito.Mockito.*;
 /**
  * Unit tests for {@link AbstractServerHttpRequest}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class ServerHttpRequestTests {
 

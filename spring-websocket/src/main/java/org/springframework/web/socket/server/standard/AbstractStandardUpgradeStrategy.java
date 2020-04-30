@@ -38,7 +38,7 @@ import org.springframework.web.socket.server.RequestUpgradeStrategy;
  * A base class for {@link RequestUpgradeStrategy} implementations that build
  * on the standard WebSocket API for Java (JSR-356).
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public abstract class AbstractStandardUpgradeStrategy implements RequestUpgradeStrategy {

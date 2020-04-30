@@ -22,7 +22,7 @@ import org.springframework.messaging.Message;
 /**
  * A contract for handling sub-protocol errors sent to clients.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  * @param <P> the message payload type
  */

@@ -17,7 +17,7 @@ import org.springframework.core.annotation.AliasFor;
  * from a controller method with an optional/required check and a cast to the
  * target method parameter type.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.3
  * @see RequestMapping
  * @see SessionAttribute

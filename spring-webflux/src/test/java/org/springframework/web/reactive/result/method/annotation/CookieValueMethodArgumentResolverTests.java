@@ -29,7 +29,7 @@ import static org.junit.Assert.fail;
 /**
  * Test fixture with {@link CookieValueMethodArgumentResolver}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class CookieValueMethodArgumentResolverTests {
 

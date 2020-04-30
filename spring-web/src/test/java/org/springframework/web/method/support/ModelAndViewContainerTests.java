@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 /**
  * Test fixture for {@link ModelAndViewContainer}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 public class ModelAndViewContainerTests {

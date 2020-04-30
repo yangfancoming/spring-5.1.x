@@ -45,7 +45,7 @@ import static org.springframework.mock.http.server.reactive.test.MockServerHttpR
 /**
  * "checkNotModified" unit tests for {@link DefaultServerWebExchange}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 @RunWith(Parameterized.class)
 public class DefaultServerWebExchangeCheckNotModifiedTests {

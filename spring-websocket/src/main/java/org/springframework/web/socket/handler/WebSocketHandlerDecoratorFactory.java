@@ -12,7 +12,7 @@ import org.springframework.web.socket.WebSocketHandler;
  * WebSocketHandlerDecorator} to allow any code to traverse decorators and/or
  * unwrap the original handler when necessary .
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1.2
  */
 public interface WebSocketHandlerDecoratorFactory {

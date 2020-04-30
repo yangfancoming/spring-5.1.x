@@ -88,7 +88,7 @@ import org.springframework.util.ReflectionUtils;
  * recommendations.
 
 
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  * @see #onStartup(Set, ServletContext)
  * @see WebApplicationInitializer

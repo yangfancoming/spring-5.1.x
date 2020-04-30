@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
  *
  * @author Arjen Poutsma
  * @author Violeta Georgieva
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 class WriteResultPublisher implements Publisher<Void> {

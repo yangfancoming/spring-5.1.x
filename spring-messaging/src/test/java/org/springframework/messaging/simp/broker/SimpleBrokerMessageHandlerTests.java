@@ -30,7 +30,7 @@ import static org.mockito.Mockito.*;
 /**
  * Unit tests for {@link SimpleBrokerMessageHandler}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 @SuppressWarnings("unchecked")

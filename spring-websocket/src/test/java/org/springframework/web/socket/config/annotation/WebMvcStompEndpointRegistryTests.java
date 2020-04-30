@@ -23,7 +23,7 @@ import org.springframework.web.util.UrlPathHelper;
  * Test fixture for
  * {@link org.springframework.web.socket.config.annotation.WebMvcStompEndpointRegistry}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class WebMvcStompEndpointRegistryTests {
 

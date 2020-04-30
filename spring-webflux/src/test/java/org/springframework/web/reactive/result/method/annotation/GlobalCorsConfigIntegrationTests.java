@@ -34,7 +34,7 @@ import static org.junit.Assert.fail;
  * CORS configuration.
  *
  * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ *
  */
 public class GlobalCorsConfigIntegrationTests extends AbstractRequestMappingIntegrationTests {
 

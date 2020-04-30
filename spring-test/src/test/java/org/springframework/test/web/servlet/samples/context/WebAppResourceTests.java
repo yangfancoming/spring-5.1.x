@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Tests dependent on access to resources under the web application root directory.
  *
- * @author Rossen Stoyanchev
+ *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration("src/test/resources/META-INF/web-resources")

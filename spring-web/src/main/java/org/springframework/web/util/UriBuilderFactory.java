@@ -6,7 +6,7 @@ package org.springframework.web.util;
  * such as a base URI, an encoding mode strategy, and others across all URI
  * builder instances created through a factory.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public interface UriBuilderFactory extends UriTemplateHandler {

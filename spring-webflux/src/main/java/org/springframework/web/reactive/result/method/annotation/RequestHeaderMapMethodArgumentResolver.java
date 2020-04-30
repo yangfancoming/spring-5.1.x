@@ -23,7 +23,7 @@ import org.springframework.web.server.ServerWebExchange;
  * The method parameter type may be a {@link MultiValueMap} to receive all
  * values for a header, not only the first one.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see RequestHeaderMethodArgumentResolver
  */

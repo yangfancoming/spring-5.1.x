@@ -20,7 +20,7 @@ import org.springframework.web.server.ServerWebExchange;
  *
  * Container for the default model for the request.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class BindingContext {

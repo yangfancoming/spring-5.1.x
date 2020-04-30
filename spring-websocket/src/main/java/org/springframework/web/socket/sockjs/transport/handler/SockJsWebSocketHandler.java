@@ -30,7 +30,7 @@ import org.springframework.web.socket.sockjs.transport.session.WebSocketServerSo
  * {@link WebSocketHandler#handleTransportError(WebSocketSession, Throwable)
  * handleTransportError} method of the wrapped handler and the session closed.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class SockJsWebSocketHandler extends TextWebSocketHandler implements SubProtocolCapable {

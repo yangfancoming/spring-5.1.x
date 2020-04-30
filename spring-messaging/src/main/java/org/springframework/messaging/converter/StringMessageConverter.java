@@ -15,7 +15,7 @@ import org.springframework.util.MimeType;
  * A {@link MessageConverter} that supports MIME type "text/plain" with the
  * payload converted to and from a String.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class StringMessageConverter extends AbstractMessageConverter {

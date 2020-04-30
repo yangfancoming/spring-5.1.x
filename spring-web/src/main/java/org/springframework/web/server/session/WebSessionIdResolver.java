@@ -11,7 +11,7 @@ import org.springframework.web.server.ServerWebExchange;
  * resolution through the request and for sending the session id or expiring
  * the session through the response.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see CookieWebSessionIdResolver
  */

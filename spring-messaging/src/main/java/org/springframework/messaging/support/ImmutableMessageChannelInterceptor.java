@@ -13,7 +13,7 @@ import org.springframework.messaging.MessageChannel;
  * sending the message to leave headers mutable for interceptors to modify prior
  * to the message actually being sent and exposed to concurrent access.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1.2
  */
 public class ImmutableMessageChannelInterceptor implements ChannelInterceptor {

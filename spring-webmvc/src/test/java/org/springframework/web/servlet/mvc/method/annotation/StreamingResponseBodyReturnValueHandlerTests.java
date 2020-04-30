@@ -32,7 +32,7 @@ import static org.junit.Assert.assertTrue;
  * Unit tests for
  * {@link org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBodyReturnValueHandler}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class StreamingResponseBodyReturnValueHandlerTests {
 

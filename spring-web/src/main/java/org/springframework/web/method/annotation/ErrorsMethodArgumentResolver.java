@@ -22,7 +22,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * last two attributes added to the model to be the model attribute and its
  * {@link BindingResult}.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 3.1
  */

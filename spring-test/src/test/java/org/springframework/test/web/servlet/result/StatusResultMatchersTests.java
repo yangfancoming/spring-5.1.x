@@ -24,7 +24,7 @@ import static org.junit.Assert.*;
 /**
  * Tests for {@link StatusResultMatchers}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class StatusResultMatchersTests {
 

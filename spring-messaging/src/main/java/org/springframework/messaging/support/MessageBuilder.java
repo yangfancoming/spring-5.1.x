@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
  *
  * @author Arjen Poutsma
  * @author Mark Fisher
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  * @param <T> the message payload type
  * @see GenericMessage

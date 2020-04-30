@@ -32,7 +32,7 @@ import org.springframework.web.util.WebUtils;
  * decorators built on the Servlet 3.1 API.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
 
  * @since 3.0

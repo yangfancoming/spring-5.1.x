@@ -12,7 +12,7 @@ import org.springframework.test.web.servlet.StubMvcResult;
 /**
  * Unit tests for {@link JsonPathResultMatchers}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Craig Andrews
  * @author Sam Brannen
  * @author Brian Clozel

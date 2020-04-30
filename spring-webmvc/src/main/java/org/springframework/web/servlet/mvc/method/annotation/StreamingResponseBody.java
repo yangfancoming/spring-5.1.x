@@ -18,7 +18,7 @@ import java.io.OutputStream;
  * {@link org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter
  * RequestMappingHandlerAdapter}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 @FunctionalInterface

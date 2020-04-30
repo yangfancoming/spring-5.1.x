@@ -34,7 +34,7 @@ import org.springframework.web.util.UriUtils;
  * may be via constructor or setters arguments.
  *
  * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class RedirectView extends AbstractUrlBasedView {

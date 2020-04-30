@@ -21,7 +21,7 @@ import org.springframework.web.server.ServerWebExchange;
  * path variable name. The resulting {@link Map} argument is a coyp of all URI
  * template name-value pairs.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see PathVariableMethodArgumentResolver
  */

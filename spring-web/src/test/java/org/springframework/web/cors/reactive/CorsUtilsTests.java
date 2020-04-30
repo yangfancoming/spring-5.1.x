@@ -19,7 +19,7 @@ import static org.springframework.mock.http.server.reactive.test.MockServerHttpR
 /**
  * Test case for reactive {@link CorsUtils}.
  * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ *
  */
 public class CorsUtilsTests {
 

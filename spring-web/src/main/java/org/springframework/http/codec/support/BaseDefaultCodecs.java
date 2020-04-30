@@ -40,7 +40,7 @@ import org.springframework.util.ClassUtils;
  * Default implementation of {@link CodecConfigurer.DefaultCodecs} that serves
  * as a base for client and server specific variants.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
  */
 class BaseDefaultCodecs implements CodecConfigurer.DefaultCodecs {

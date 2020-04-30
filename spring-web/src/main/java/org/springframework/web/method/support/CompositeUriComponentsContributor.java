@@ -19,7 +19,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  * to delegate and also encapsulating a specific {@link ConversionService} to
  * use for formatting method argument values to Strings.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class CompositeUriComponentsContributor implements UriComponentsContributor {

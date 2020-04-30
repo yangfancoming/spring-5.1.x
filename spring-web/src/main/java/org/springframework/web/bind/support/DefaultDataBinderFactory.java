@@ -10,7 +10,7 @@ import org.springframework.web.context.request.NativeWebRequest;
  * Create a {@link WebRequestDataBinder} instance and initialize it with a
  * {@link WebBindingInitializer}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 public class DefaultDataBinderFactory implements WebDataBinderFactory {

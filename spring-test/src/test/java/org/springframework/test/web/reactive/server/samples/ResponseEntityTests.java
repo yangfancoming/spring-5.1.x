@@ -33,7 +33,7 @@ import static org.springframework.http.MediaType.*;
 /**
  * Annotated controllers accepting and returning typed Objects.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class ResponseEntityTests {

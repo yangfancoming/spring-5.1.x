@@ -22,7 +22,7 @@ import org.springframework.web.socket.sockjs.transport.TransportHandlingSockJsSe
  * A default implementation of {@link org.springframework.web.socket.sockjs.SockJsService}
  * with all default {@link TransportHandler} implementations pre-registered.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 4.0
  */

@@ -9,7 +9,7 @@ import org.springframework.core.io.Resource;
  * to determine the actual version of a {@link Resource}.
  *
  * @author Brian Clozel
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  * @see VersionResourceResolver
 */

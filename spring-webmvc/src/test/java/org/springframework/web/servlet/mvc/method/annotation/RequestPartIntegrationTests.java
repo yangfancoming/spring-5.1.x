@@ -59,7 +59,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 /**
  * Test access to parts of a multipart request with {@link RequestPart}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  * @author Sam Brannen
  */

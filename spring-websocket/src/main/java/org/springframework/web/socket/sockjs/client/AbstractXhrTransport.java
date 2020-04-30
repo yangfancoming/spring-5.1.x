@@ -26,7 +26,7 @@ import org.springframework.web.socket.sockjs.transport.TransportType;
 /**
  * Abstract base class for XHR transport implementations to extend.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public abstract class AbstractXhrTransport implements XhrTransport {

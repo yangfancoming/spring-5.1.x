@@ -19,7 +19,7 @@ import org.springframework.web.socket.sockjs.transport.session.StreamingSockJsSe
 /**
  * A {@link TransportHandler} that sends messages over an HTTP streaming request.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class XhrStreamingTransportHandler extends AbstractHttpSendingTransportHandler {

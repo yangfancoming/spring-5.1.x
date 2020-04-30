@@ -29,7 +29,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 /**
  * Examples of defining expectations on XML request content with XMLUnit.
  *
- * @author Rossen Stoyanchev
+ *
  * @see ContentRequestMatchersIntegrationTests
  * @see XpathRequestMatchersIntegrationTests
  */

@@ -48,7 +48,7 @@ import org.springframework.web.server.UnsupportedMediaTypeStatusException;
  * {@link org.springframework.validation.annotation.Validated}. Validation
  * failure results in an {@link ServerWebInputException}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
  * @since 5.0
  */

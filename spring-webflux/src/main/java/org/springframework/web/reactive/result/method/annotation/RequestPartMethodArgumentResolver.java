@@ -32,7 +32,7 @@ import org.springframework.web.server.ServerWebInputException;
  * This resolver also supports arguments of type {@link Part} which may be
  * wrapped with are reactive type for a single or multiple values.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class RequestPartMethodArgumentResolver extends AbstractMessageReaderArgumentResolver {

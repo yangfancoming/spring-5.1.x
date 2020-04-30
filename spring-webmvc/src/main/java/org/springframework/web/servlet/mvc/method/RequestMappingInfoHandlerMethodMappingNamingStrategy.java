@@ -15,7 +15,7 @@ import org.springframework.web.servlet.handler.HandlerMethodMappingNamingStrateg
  * followed by "#" as a separator, and the method name. For example "TC#getFoo"
  * for a class named TestController with method getFoo.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public class RequestMappingInfoHandlerMethodMappingNamingStrategy

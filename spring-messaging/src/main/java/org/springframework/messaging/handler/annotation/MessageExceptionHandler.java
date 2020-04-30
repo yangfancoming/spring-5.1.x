@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
  * Annotation for handling exceptions thrown from message-handling methods within a
  * specific handler class.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 @Target(ElementType.METHOD)

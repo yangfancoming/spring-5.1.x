@@ -8,7 +8,7 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 /**
  * Unit tests for {@link SessionAttributeMethodArgumentResolver}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.3
  */
 public class SessionAttributeMethodArgumentResolverTests extends AbstractRequestAttributesArgumentResolverTests {

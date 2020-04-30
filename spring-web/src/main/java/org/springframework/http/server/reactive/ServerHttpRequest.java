@@ -19,7 +19,7 @@ import org.springframework.util.MultiValueMap;
  * Represents a reactive server-side HTTP request.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public interface ServerHttpRequest extends HttpRequest, ReactiveHttpInputMessage {

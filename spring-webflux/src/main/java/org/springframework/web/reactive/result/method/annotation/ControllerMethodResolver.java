@@ -50,7 +50,7 @@ import org.springframework.web.reactive.result.method.SyncInvocableHandlerMethod
  * <li>{@code @ExceptionHandler}
  * </ul>
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 class ControllerMethodResolver {

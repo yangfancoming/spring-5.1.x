@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 /**
  * Examples of expectations on created session attributes.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class SessionAttributeAssertionTests {
 

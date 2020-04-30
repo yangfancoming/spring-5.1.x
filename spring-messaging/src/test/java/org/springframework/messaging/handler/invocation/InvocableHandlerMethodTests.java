@@ -18,7 +18,7 @@ import static org.mockito.Mockito.*;
 /**
  * Unit tests for {@link InvocableHandlerMethod}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class InvocableHandlerMethodTests {
 

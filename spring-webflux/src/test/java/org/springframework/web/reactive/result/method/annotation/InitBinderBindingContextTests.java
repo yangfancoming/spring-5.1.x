@@ -30,7 +30,7 @@ import static org.junit.Assert.assertSame;
 
 /**
  * Unit tests for {@link InitBinderBindingContext}.
- * @author Rossen Stoyanchev
+ *
  */
 public class InitBinderBindingContextTests {
 

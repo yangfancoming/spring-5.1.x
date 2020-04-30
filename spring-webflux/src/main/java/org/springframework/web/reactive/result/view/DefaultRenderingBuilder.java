@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
 /**
  * Default implementation of {@link Rendering.RedirectBuilder}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 class DefaultRenderingBuilder implements Rendering.RedirectBuilder {

@@ -12,7 +12,7 @@ import org.springframework.web.server.ServerWebExchange;
  * Strategy to resolve the argument value for a method parameter in the context
  * of the current HTTP request.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public interface HandlerMethodArgumentResolver {

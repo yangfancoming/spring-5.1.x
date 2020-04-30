@@ -11,7 +11,7 @@ import org.springframework.mock.web.MockServletContext;
 import static org.junit.Assert.*;
 
 /**
- * @author Rossen Stoyanchev
+ *
  */
 public class MockMultipartHttpServletRequestBuilderTests {
 

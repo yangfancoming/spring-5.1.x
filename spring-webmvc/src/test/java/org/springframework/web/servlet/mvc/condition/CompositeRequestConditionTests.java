@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 /**
  * A test fixture for {@link CompositeRequestCondition} tests.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class CompositeRequestConditionTests {
 

@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 /**
  * A test fixture for PathExtensionContentNegotiationStrategy.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public class PathExtensionContentNegotiationStrategyTests {

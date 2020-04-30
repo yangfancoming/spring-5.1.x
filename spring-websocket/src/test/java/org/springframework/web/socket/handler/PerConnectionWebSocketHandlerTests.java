@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 /**
  * Test fixture for {@link PerConnectionWebSocketHandler}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class PerConnectionWebSocketHandlerTests {
 

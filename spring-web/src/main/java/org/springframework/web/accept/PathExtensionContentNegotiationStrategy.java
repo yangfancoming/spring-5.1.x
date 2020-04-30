@@ -24,7 +24,7 @@ import org.springframework.web.util.UrlPathHelper;
  * to the constructor, the {@link MediaTypeFactory} is used as a fallback
  * mechanism.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public class PathExtensionContentNegotiationStrategy extends AbstractMappingContentNegotiationStrategy {

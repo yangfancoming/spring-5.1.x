@@ -17,7 +17,7 @@ import org.springframework.http.client.ClientHttpResponse;
  * {@link org.springframework.test.web.client.MockRestServiceServer.MockRestServiceServerBuilder#build(RequestExpectationManager)
  * plugged} in through the {@code MockRestServiceServer} builder.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.3
  */
 public interface RequestExpectationManager {

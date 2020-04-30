@@ -65,7 +65,7 @@ import org.springframework.web.servlet.ViewResolver;
  *
  * @author Arjen Poutsma
 
- * @author Rossen Stoyanchev
+ *
  * @since 3.0
  * @see ViewResolver
  * @see InternalResourceViewResolver

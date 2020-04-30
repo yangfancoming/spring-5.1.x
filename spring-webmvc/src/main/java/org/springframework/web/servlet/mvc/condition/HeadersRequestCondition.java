@@ -22,7 +22,7 @@ import org.springframework.web.cors.CorsUtils;
  * {@link ProducesRequestCondition} for those.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 public final class HeadersRequestCondition extends AbstractRequestCondition<HeadersRequestCondition> {

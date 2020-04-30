@@ -38,7 +38,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * As of 5.0 also supports reactive return value types for any reactive
  * library with registered adapters in {@link ReactiveAdapterRegistry}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 public class ResponseBodyEmitterReturnValueHandler implements HandlerMethodReturnValueHandler {

@@ -21,7 +21,7 @@ import org.springframework.util.Assert;
  * Static factory methods to create an {@link ExchangeFunction}.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public abstract class ExchangeFunctions {

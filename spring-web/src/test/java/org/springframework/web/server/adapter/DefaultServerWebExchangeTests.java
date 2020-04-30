@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
  * Unit tests for {@link DefaultServerWebExchange}.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  */
 public class DefaultServerWebExchangeTests {
 

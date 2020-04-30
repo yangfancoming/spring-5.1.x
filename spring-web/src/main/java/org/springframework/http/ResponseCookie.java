@@ -14,7 +14,7 @@ import org.springframework.util.StringUtils;
  * the "Set-Cookie" response header. To build an instance use the {@link #from}
  * static method.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  * @since 5.0
  * @see <a href="https://tools.ietf.org/html/rfc6265">RFC 6265</a>

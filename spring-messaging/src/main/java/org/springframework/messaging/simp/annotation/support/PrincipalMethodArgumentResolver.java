@@ -12,7 +12,7 @@ import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 /**
  * {@link HandlerMethodArgumentResolver} to a {@link Principal}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class PrincipalMethodArgumentResolver implements HandlerMethodArgumentResolver {

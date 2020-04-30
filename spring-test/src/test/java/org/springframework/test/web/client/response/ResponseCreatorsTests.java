@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 /**
  * Tests for the {@link MockRestResponseCreators} static factory methods.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class ResponseCreatorsTests {
 

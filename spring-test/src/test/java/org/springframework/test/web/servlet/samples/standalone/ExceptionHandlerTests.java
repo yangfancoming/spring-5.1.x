@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 /**
  * Exception handling via {@code @ExceptionHandler} method.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class ExceptionHandlerTests {
 

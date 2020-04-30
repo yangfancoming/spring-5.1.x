@@ -21,7 +21,7 @@ import org.springframework.web.util.UriBuilderFactory;
 /**
  * Default implementation of {@link WebTestClient.Builder}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 class DefaultWebTestClientBuilder implements WebTestClient.Builder {

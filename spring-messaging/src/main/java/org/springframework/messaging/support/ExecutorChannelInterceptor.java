@@ -14,7 +14,7 @@ import org.springframework.messaging.MessageHandler;
  * Supported on {@link org.springframework.messaging.MessageChannel}
  * implementations that can be configured with an {@code Executor}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  * @see Message
  * @see MessageChannel

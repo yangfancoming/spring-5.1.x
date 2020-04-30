@@ -11,7 +11,7 @@ import org.springframework.web.reactive.socket.WebSocketHandler;
 /**
  * Contract for reactive-style handling of a WebSocket session.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public interface WebSocketClient {

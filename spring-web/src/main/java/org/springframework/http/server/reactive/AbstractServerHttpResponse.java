@@ -30,7 +30,7 @@ import org.springframework.util.MultiValueMap;
 /**
  * Base class for {@link ServerHttpResponse} implementations.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @author Sebastien Deleuze
  * @author Brian Clozel

@@ -69,7 +69,7 @@ import org.springframework.validation.Validator;
  * Subclasses are responsible for the parts of the configuration that feed messages
  * to and from the client inbound/outbound channels (e.g. STOMP over WebSocket).
  *
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  * @since 4.0
  */

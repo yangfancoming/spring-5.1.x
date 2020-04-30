@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
  * Unit tests for
  * {@link org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMethodMappingNamingStrategy}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class RequestMappingInfoHandlerMethodMappingNamingStrategyTests {
 

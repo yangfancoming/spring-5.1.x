@@ -30,7 +30,7 @@ import org.springframework.util.MultiValueMap;
  * incomplete content by buffering until there is more input available.
  *
  * @author Andy Wilkinson
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class StompDecoder {

@@ -25,7 +25,7 @@ import org.springframework.web.socket.WebSocketSession;
  * as well as a {@link #getLastSession()} method to go through all nested delegates
  * and return the "last" session.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0.3
  */
 public class WebSocketSessionDecorator implements WebSocketSession {

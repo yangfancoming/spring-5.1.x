@@ -20,7 +20,7 @@ import org.springframework.web.socket.WebSocketSession;
 /**
  * A {@link WebSocketSession} for use in tests.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class TestWebSocketSession implements WebSocketSession {
 

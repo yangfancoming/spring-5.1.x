@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
  * Examples of defining expectations on the response content, content type, and
  * the character encoding.
  *
- * @author Rossen Stoyanchev
+ *
  *
  * @see JsonPathAssertionTests
  * @see XmlContentAssertionTests

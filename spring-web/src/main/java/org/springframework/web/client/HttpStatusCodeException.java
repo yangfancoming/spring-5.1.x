@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Arjen Poutsma
 
- * @author Rossen Stoyanchev
+ *
  * @since 3.0
  */
 public abstract class HttpStatusCodeException extends RestClientResponseException {

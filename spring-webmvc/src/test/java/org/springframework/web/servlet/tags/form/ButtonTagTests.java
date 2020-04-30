@@ -13,7 +13,7 @@ import org.springframework.tests.sample.beans.TestBean;
 import static org.junit.Assert.*;
 
 /**
- * @author Rossen Stoyanchev
+ *
  */
 public class ButtonTagTests extends AbstractFormTagTests {
 

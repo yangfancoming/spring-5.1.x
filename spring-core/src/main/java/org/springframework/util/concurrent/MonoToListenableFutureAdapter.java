@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
 /**
  * Adapts a {@link Mono} into a {@link ListenableFuture}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Stephane Maldini
  * @since 5.1
  * @param <T> the object type

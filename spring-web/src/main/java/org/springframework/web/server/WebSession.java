@@ -20,7 +20,7 @@ import org.springframework.util.Assert;
  * a cookie). A session starts implicitly when session attributes are added.
  * A session may also be created explicitly via {@link #start()}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public interface WebSession {

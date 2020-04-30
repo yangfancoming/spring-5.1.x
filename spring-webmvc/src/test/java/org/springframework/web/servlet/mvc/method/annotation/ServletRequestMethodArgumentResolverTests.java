@@ -33,7 +33,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
 
  * @author Nicholas Williams
  */

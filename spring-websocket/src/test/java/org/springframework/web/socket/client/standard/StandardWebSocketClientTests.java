@@ -28,7 +28,7 @@ import org.springframework.web.socket.handler.AbstractWebSocketHandler;
 /**
  * Test fixture for {@link StandardWebSocketClient}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class StandardWebSocketClientTests {
 

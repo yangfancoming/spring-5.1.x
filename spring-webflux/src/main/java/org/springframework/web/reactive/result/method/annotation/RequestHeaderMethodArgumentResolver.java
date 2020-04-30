@@ -27,7 +27,7 @@ import org.springframework.web.server.ServerWebInputException;
  * A {@link ConversionService} is invoked to apply type conversion to resolved
  * request header values that don't yet match the method parameter type.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see RequestHeaderMapMethodArgumentResolver
  */

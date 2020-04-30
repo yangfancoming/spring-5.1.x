@@ -33,7 +33,7 @@ import org.springframework.web.socket.sockjs.transport.SockJsServiceConfig;
 /**
  * An abstract base class for use with HTTP transport SockJS sessions.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public abstract class AbstractHttpSockJsSession extends AbstractSockJsSession {

@@ -22,7 +22,7 @@ import org.springframework.web.reactive.result.method.annotation.ArgumentResolve
  * overriding the relevant methods for your needs.
  *
  * @author Brian Clozel
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see WebFluxConfigurationSupport
  * @see DelegatingWebFluxConfiguration

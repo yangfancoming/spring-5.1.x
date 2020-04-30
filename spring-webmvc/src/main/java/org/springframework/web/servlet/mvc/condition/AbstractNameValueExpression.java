@@ -12,7 +12,7 @@ import org.springframework.util.ObjectUtils;
  * {@link org.springframework.web.bind.annotation.RequestMapping#params()} and
  * {@link org.springframework.web.bind.annotation.RequestMapping#headers()}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Arjen Poutsma
  * @since 3.1
  * @param <T> the value type

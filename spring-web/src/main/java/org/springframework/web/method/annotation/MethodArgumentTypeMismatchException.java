@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  * Provides access to the target {@link org.springframework.core.MethodParameter
  * MethodParameter}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 @SuppressWarnings("serial")

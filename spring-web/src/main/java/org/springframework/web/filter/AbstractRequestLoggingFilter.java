@@ -39,7 +39,7 @@ import org.springframework.web.util.WebUtils;
  *
  * @author Rob Harrop
 
- * @author Rossen Stoyanchev
+ *
  * @since 1.2.5
  * @see #beforeRequest
  * @see #afterRequest

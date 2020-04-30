@@ -31,7 +31,7 @@ import org.springframework.util.Assert;
  * intercepting, capturing, and exposing actual request and response data
  * transmitted to and received from the server.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see HttpHandlerConnector
  */

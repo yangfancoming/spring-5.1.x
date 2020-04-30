@@ -33,7 +33,7 @@ import static org.junit.Assert.fail;
 /**
  * Unit tests for {@link PathVariableMethodArgumentResolver}.
  *
- * @author Rossen Stoyanchev
+ *
 
  */
 public class PathVariableMethodArgumentResolverTests {

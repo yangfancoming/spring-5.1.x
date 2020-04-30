@@ -20,7 +20,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
  * in the {@code ServletContext} under the
  * {@code ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE} key.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Rob Winch
  * @author Sam Brannen
  * @since 3.2

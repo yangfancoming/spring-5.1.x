@@ -12,7 +12,7 @@ import org.springframework.http.HttpLogging;
  * {@link HttpMessageWriter} that uses a logger and shows potentially sensitive
  * request data.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.1
  */
 public class LoggingCodecSupport {

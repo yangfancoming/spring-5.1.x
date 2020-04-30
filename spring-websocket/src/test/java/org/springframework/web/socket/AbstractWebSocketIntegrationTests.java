@@ -28,7 +28,7 @@ import org.springframework.web.socket.server.support.DefaultHandshakeHandler;
 /**
  * Base class for WebSocket integration tests.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  */
 public abstract class AbstractWebSocketIntegrationTests {

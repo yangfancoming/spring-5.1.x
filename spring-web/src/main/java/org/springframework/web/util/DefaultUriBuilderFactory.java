@@ -19,7 +19,7 @@ import org.springframework.util.StringUtils;
  * Provides options to create {@link UriBuilder} instances with a common
  * base URI, alternative encoding mode strategies, among others.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see UriComponentsBuilder
  */

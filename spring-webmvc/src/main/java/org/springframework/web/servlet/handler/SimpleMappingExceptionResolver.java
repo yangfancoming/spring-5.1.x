@@ -24,7 +24,7 @@ import org.springframework.web.util.WebUtils;
  *
 
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  * @since 22.11.2003
  * @see org.springframework.web.servlet.DispatcherServlet
  */

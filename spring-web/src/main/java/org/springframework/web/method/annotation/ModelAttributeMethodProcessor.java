@@ -54,7 +54,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * any non-simple type argument and return value is regarded as a model
  * attribute with or without the presence of an {@code @ModelAttribute}.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @author Sebastien Deleuze
  * @since 3.1

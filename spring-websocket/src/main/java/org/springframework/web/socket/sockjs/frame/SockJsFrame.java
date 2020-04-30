@@ -12,7 +12,7 @@ import org.springframework.util.StringUtils;
 /**
  * Represents a SockJS frame. Provides factory methods to create SockJS frames.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class SockJsFrame {

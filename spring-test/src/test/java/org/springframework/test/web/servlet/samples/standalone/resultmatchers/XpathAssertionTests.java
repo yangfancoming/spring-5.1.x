@@ -31,7 +31,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 /**
  * Examples of expectations on XML response content with XPath expressions.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @see ContentAssertionTests
  * @see XmlContentAssertionTests

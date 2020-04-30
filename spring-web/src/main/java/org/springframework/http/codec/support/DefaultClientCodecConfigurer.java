@@ -7,7 +7,7 @@ import org.springframework.http.codec.ClientCodecConfigurer;
 /**
  * Default implementation of {@link ClientCodecConfigurer}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class DefaultClientCodecConfigurer extends BaseCodecConfigurer implements ClientCodecConfigurer {

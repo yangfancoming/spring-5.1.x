@@ -20,7 +20,7 @@ import static org.mockito.Mockito.*;
 /**
  * Unit tests for {@link SockJsWebSocketHandler}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class SockJsWebSocketHandlerTests {
 

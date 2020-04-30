@@ -32,7 +32,7 @@ import org.springframework.util.StringUtils;
  * <li>{@link #set(String, String)} set a header name to a single string value</li>
  * </ul>
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  * @see <a href="https://stomp.github.io/stomp-specification-1.2.html#Frames_and_Headers">
  * https://stomp.github.io/stomp-specification-1.2.html#Frames_and_Headers</a>

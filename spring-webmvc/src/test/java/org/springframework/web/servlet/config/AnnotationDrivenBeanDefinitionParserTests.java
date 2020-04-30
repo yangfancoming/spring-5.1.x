@@ -41,7 +41,7 @@ import static org.junit.Assert.*;
 /**
  * Test fixture for the configuration in mvc-config-annotation-driven.xml.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  * @author Agim Emruli
  */

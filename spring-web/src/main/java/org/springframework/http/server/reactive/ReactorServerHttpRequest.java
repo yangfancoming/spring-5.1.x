@@ -27,7 +27,7 @@ import org.springframework.util.MultiValueMap;
  * Adapt {@link ServerHttpRequest} to the Reactor {@link HttpServerRequest}.
  *
  * @author Stephane Maldini
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 class ReactorServerHttpRequest extends AbstractServerHttpRequest {

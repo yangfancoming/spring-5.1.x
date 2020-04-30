@@ -72,7 +72,7 @@ import org.springframework.util.StringUtils;
  * {@code org.apache.commons.httpclient.methods.multipart.MultipartRequestEntity}.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
 
  * @since 3.0
  * @see org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter

@@ -22,7 +22,7 @@ import org.springframework.util.Assert;
  *
  * @author Arjen Poutsma
  * @author Violeta Georgieva
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @param <T> the type of element signaled to the {@link Subscriber}
  */

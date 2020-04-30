@@ -22,7 +22,7 @@ import org.springframework.web.socket.handler.ExceptionWebSocketHandlerDecorator
 /**
  * Adapts a {@link WebSocketHandler} to the standard WebSocket for Java API.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class StandardWebSocketHandlerAdapter extends Endpoint {

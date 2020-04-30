@@ -24,7 +24,7 @@ import org.springframework.web.util.UrlPathHelper;
 /**
  * A base class for {@link FlashMapManager} implementations.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 3.1.1
  */

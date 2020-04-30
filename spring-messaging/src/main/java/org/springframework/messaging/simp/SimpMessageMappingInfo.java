@@ -15,7 +15,7 @@ import org.springframework.messaging.handler.MessageCondition;
  * <li>{@link DestinationPatternsMessageCondition}
  * </ol>
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class SimpMessageMappingInfo implements MessageCondition<SimpMessageMappingInfo> {

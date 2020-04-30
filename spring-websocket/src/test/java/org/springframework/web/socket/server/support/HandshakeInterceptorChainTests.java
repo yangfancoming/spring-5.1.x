@@ -19,7 +19,7 @@ import static org.mockito.BDDMockito.*;
 /**
  * Test fixture for {@link HandshakeInterceptorChain}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class HandshakeInterceptorChainTests extends AbstractHttpRequestTests {
 

@@ -35,7 +35,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Arjen Poutsma
  * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  * @author Sam Brannen
  * @since 5.0

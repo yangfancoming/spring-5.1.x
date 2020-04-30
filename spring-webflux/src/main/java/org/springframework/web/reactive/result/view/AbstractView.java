@@ -32,7 +32,7 @@ import org.springframework.web.server.ServerWebExchange;
 /**
  * Base class for {@link View} implementations.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public abstract class AbstractView implements View, BeanNameAware, ApplicationContextAware {

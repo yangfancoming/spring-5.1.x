@@ -23,7 +23,7 @@ import org.springframework.util.StringUtils;
 /**
  * Package-private default implementation of {@link ServerHttpRequest.Builder}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
  * @since 5.0
  */

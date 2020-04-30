@@ -18,7 +18,7 @@ import org.springframework.web.server.ServerWebExchange;
 /**
  * Cookie-based {@link WebSessionIdResolver}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  * @since 5.0
  */

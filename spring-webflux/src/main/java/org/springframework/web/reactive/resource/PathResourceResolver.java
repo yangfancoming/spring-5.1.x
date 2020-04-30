@@ -27,7 +27,7 @@ import org.springframework.web.util.UriUtils;
  * This resolver does not delegate to the {@code ResourceResolverChain} and is
  * expected to be configured at the end in a chain of resolvers.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class PathResourceResolver extends AbstractResourceResolver {

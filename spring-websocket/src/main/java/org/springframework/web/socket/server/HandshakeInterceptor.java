@@ -14,7 +14,7 @@ import org.springframework.web.socket.WebSocketHandler;
  * handshake request and response as well as to pass attributes to the target
  * {@link WebSocketHandler}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  * @see org.springframework.web.socket.server.support.WebSocketHttpRequestHandler
  * @see org.springframework.web.socket.sockjs.transport.handler.DefaultSockJsService

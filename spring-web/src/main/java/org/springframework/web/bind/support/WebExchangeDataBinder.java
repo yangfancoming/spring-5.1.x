@@ -22,7 +22,7 @@ import org.springframework.web.server.ServerWebExchange;
  * Specialized {@link org.springframework.validation.DataBinder} to perform data
  * binding from URL query params or form data in the request data to Java objects.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class WebExchangeDataBinder extends WebDataBinder {

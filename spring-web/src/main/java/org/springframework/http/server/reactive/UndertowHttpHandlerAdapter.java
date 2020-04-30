@@ -20,7 +20,7 @@ import org.springframework.util.Assert;
  * Adapt {@link HttpHandler} to the Undertow {@link io.undertow.server.HttpHandler}.
  *
  * @author Marek Hawrylczak
- * @author Rossen Stoyanchev
+ *
  * @author Arjen Poutsma
  * @since 5.0
  */

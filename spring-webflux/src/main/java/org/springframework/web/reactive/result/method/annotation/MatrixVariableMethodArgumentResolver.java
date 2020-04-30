@@ -29,7 +29,7 @@ import org.springframework.web.server.ServerWebInputException;
  * specifies a name in which case it is considered to be a single attribute of
  * type map (vs multiple attributes collected in a map).
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0.1
  * @see MatrixVariableMapMethodArgumentResolver
  */

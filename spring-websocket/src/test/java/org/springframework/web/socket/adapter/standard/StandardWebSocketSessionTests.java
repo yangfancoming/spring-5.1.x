@@ -32,7 +32,7 @@ import static org.mockito.BDDMockito.*;
 /**
  * Unit tests for {@link org.springframework.web.socket.adapter.standard.StandardWebSocketSession}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class StandardWebSocketSessionTests {
 

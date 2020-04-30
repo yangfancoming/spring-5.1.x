@@ -27,7 +27,7 @@ import static org.mockito.Mockito.*;
 /**
  * Unit tests for {@link AbstractHttpSockJsSession}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class HttpSockJsSessionTests extends AbstractSockJsSessionTests<TestAbstractHttpSockJsSession> {
 

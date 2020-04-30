@@ -23,7 +23,7 @@ import org.springframework.messaging.converter.MessageConverter;
 /**
  * Unit tests for {@link MultiServerUserRegistry}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class MultiServerUserRegistryTests {
 

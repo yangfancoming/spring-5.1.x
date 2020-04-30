@@ -17,7 +17,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 /**
  * Unit tests for {@link MockRestServiceServer}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class MockRestServiceServerTests {
 

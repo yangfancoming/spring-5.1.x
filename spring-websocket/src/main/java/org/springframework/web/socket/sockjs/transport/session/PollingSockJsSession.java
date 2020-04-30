@@ -16,7 +16,7 @@ import org.springframework.web.socket.sockjs.transport.SockJsServiceConfig;
 /**
  * A SockJS session for use with polling HTTP transports.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class PollingSockJsSession extends AbstractHttpSockJsSession {

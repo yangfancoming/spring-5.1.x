@@ -23,7 +23,7 @@ import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
  *     .build();
  * </pre>
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see WebTestClientConfigurer
  */

@@ -25,7 +25,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Integration tests related to the use of context paths.
  *
- * @author Rossen Stoyanchev
+ *
  */
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class ContextPathIntegrationTests {

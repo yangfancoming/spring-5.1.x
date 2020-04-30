@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 /**
  * Test fixture for {@link BeanCreatingHandlerProvider}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class BeanCreatingHandlerProviderTests {
 

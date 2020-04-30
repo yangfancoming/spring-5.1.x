@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
  * {@code MessageCondition} that matches by the message type obtained via
  * {@link SimpMessageHeaderAccessor#getMessageType(Map)}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class SimpMessageTypeMessageCondition extends AbstractMessageCondition<SimpMessageTypeMessageCondition> {

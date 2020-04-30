@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Mark Fisher
- * @author Rossen Stoyanchev
+ *
  */
 public class MessageBuilderTests {
 

@@ -15,7 +15,7 @@ import org.springframework.util.ObjectUtils;
  * with the {@link org.springframework.core.io.buffer.DataBufferFactory
  * DataBufferFactory} for the session.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class WebSocketMessage {

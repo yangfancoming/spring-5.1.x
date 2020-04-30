@@ -9,7 +9,7 @@ import org.springframework.web.socket.server.HandshakeInterceptor;
 /**
  * Provides methods for configuring a WebSocket handler.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public interface WebSocketHandlerRegistration {

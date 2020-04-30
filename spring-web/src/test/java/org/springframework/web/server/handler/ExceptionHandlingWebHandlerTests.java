@@ -21,7 +21,7 @@ import static org.junit.Assert.assertNull;
 
 /**
  * Unit tests for {@link ExceptionHandlingWebHandler}.
- * @author Rossen Stoyanchev
+ *
  */
 public class ExceptionHandlingWebHandlerTests {
 

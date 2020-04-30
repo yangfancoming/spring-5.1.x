@@ -18,7 +18,7 @@ import org.springframework.test.util.AssertionErrors;
 /**
  * Assertions on headers of the response.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  * @author Sam Brannen
  * @since 5.0

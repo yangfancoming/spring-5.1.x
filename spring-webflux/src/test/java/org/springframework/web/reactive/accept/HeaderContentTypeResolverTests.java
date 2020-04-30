@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Unit tests for {@link HeaderContentTypeResolver}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class HeaderContentTypeResolverTests {
 

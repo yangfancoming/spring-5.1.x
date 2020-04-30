@@ -15,7 +15,7 @@ import org.springframework.messaging.Message;
  *
  * See implementation classes and the documentation for example destinations.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  *
  * @see org.springframework.messaging.simp.user.DefaultUserDestinationResolver

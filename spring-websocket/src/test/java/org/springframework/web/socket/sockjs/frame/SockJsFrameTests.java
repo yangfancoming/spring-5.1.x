@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 /**
  * Unit tests for {@link org.springframework.web.socket.sockjs.frame.SockJsFrame}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public class SockJsFrameTests {

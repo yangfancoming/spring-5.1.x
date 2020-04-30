@@ -12,7 +12,7 @@ import org.springframework.web.socket.TextMessage;
 /**
  * A builder for creating WebSocket messages with STOMP frame content.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class StompTextMessageBuilder {
 

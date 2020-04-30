@@ -12,7 +12,7 @@ import org.springframework.web.server.ServerWebExchange;
  * CORS related headers, based on a pre-selected {@link CorsConfiguration}.
  *
  * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see <a href="https://www.w3.org/TR/cors/">CORS W3C recommendation</a>
  */

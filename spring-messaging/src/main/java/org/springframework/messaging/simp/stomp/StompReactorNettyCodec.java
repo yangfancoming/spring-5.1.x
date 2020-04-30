@@ -10,7 +10,7 @@ import org.springframework.messaging.tcp.reactor.AbstractNioBufferReactorNettyCo
 /**
  * Simple delegation to StompDecoder and StompEncoder.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class StompReactorNettyCodec extends AbstractNioBufferReactorNettyCodec<byte[]> {

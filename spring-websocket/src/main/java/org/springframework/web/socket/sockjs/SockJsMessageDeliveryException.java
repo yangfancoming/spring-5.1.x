@@ -12,7 +12,7 @@ import java.util.List;
  *
  * xmlBeanDefinitionReaderThe SockJS session is not automatically closed after this exception.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 @SuppressWarnings("serial")

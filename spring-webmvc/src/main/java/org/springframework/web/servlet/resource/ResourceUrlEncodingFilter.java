@@ -25,7 +25,7 @@ import org.springframework.web.util.UrlPathHelper;
  * translate internal resource request URLs into public URL paths for external use.
  *
  * @author Jeremy Grelle
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @author Brian Clozel
  * @since 4.1

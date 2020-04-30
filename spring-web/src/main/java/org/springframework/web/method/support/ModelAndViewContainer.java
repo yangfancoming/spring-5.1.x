@@ -29,7 +29,7 @@ import org.springframework.web.bind.support.SimpleSessionStatus;
  * to {@code true} signalling a redirect scenario, the {@link #getModel()}
  * returns the redirect model instead of the default model.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 3.1
  */

@@ -36,7 +36,7 @@ import org.springframework.util.StringUtils;
  * and exposes it as Servlet request parameters. By default the Servlet spec
  * only requires this for HTTP POST.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.1
  */
 public class FormContentFilter extends OncePerRequestFilter {

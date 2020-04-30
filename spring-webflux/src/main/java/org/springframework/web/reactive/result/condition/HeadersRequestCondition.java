@@ -20,7 +20,7 @@ import org.springframework.web.server.ServerWebExchange;
  * 'Content-Type' are ignored. See {@link ConsumesRequestCondition} and
  * {@link ProducesRequestCondition} for those.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public final class HeadersRequestCondition extends AbstractRequestCondition<HeadersRequestCondition> {

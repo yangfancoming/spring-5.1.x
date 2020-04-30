@@ -20,7 +20,7 @@ import static org.mockito.BDDMockito.*;
 
  * @author Scott Andrews
  * @author Jeremy Grelle
- * @author Rossen Stoyanchev
+ *
  */
 public class FormTagTests extends AbstractHtmlElementTagTests {
 

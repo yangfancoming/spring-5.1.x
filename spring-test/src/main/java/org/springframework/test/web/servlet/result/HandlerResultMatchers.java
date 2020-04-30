@@ -31,7 +31,7 @@ import static org.springframework.test.util.AssertionErrors.fail;
  * {@link RequestMappingHandlerMapping} and {@link RequestMappingHandlerAdapter}
  * which is used by default with the Spring MVC Java config and XML namespace.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @since 3.2
  */

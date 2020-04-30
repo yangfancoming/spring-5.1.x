@@ -18,7 +18,7 @@ import static org.springframework.test.util.AssertionErrors.assertEquals;
  * {@link MockMvcResultMatchers#status}.
  *
  * @author Keesun Baik
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
  * @author Brian Clozel
  * @since 3.2

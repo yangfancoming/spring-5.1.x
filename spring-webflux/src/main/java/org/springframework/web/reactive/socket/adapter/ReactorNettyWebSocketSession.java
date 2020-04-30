@@ -22,7 +22,7 @@ import org.springframework.web.reactive.socket.WebSocketSession;
  * {@link WebSocketSession} implementation for use with the Reactor Netty's
  * {@link NettyInbound} and {@link NettyOutbound}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class ReactorNettyWebSocketSession

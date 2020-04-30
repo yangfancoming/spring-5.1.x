@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
  * A WebSocket session abstraction. Allows sending messages over a WebSocket
  * connection and closing it.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public interface WebSocketSession extends Closeable {

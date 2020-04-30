@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 /**
  * Examples of expectations on forwarded or redirected URLs.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class UrlAssertionTests {
 

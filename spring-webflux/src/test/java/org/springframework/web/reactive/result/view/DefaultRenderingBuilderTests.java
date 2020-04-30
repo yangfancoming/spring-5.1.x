@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 /**
  * Unit tests for {@link DefaultRenderingBuilder}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class DefaultRenderingBuilderTests {
 

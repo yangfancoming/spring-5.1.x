@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link HandlerTypePredicate}.
- * @author Rossen Stoyanchev
+ *
  */
 public class HandlerTypePredicateTests {
 

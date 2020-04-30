@@ -29,7 +29,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  * Mock implementation of {@link ClientHttpRequest}.
  *
  * @author Brian Clozel
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class MockClientHttpRequest extends AbstractClientHttpRequest {

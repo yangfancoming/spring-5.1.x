@@ -8,7 +8,7 @@ import org.springframework.web.socket.WebSocketHandler;
  * Defines callback methods to configure the WebSocket request handling
  * via {@link org.springframework.web.socket.config.annotation.EnableWebSocket @EnableWebSocket}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public interface WebSocketConfigurer {

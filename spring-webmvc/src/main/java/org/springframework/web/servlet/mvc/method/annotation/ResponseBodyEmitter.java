@@ -43,7 +43,7 @@ import org.springframework.util.ObjectUtils;
  * emitter.complete();
  * </pre>
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 4.2
  */

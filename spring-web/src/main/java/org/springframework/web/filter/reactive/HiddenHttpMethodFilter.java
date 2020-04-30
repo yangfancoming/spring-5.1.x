@@ -29,7 +29,7 @@ import org.springframework.web.server.WebFilterChain;
  * adapted via the {@link #setMethodParamName(String) methodParamName} property.
  *
  * @author Greg Turnquist
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class HiddenHttpMethodFilter implements WebFilter {

@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 /**
  * Test fixture for {@link org.springframework.messaging.converter.StringMessageConverter}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class StringMessageConverterTests {
 

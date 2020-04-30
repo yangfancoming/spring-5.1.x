@@ -54,7 +54,7 @@ import org.springframework.web.util.WebUtils;
  * and using an appropriate fallback for the locale (the HttpServletRequest's primary locale).
  *
 
- * @author Rossen Stoyanchev
+ *
  * @since 03.03.2003
  * @see org.springframework.web.servlet.DispatcherServlet
  * @see org.springframework.web.servlet.view.AbstractView#setRequestContextAttribute

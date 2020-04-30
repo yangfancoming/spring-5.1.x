@@ -28,7 +28,7 @@ import org.springframework.web.socket.server.HandshakeFailureException;
  *
  * xmlBeanDefinitionReaderTested with WAS Liberty beta (August 2015) for the upcoming 8.5.5.7 release.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2.1
  */
 public class WebSphereRequestUpgradeStrategy extends AbstractStandardUpgradeStrategy {

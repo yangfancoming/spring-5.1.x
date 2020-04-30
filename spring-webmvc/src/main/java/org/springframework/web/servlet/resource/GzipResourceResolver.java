@@ -23,7 +23,7 @@ import org.springframework.lang.Nullable;
  * contains the value "gzip" indicating the client accepts gzipped responses.
  *
  * @author Jeremy Grelle
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @since 4.1
  * @deprecated as of 5.1, in favor of using {@link EncodedResourceResolver}

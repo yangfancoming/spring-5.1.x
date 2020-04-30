@@ -26,7 +26,7 @@ import org.springframework.util.MimeTypeUtils;
  * error or cancellation signal.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class DataBufferDecoder extends AbstractDataBufferDecoder<DataBuffer> {

@@ -49,7 +49,7 @@ import static org.springframework.web.socket.messaging.StompTextMessageBuilder.*
 /**
  * Integration tests with annotated message-handling methods.
  *
- * @author Rossen Stoyanchev
+ *
  */
 @RunWith(Parameterized.class)
 public class StompWebSocketIntegrationTests extends AbstractWebSocketIntegrationTests {

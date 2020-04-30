@@ -11,7 +11,7 @@ import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
  * customizations to a {@link WebTestClient.Builder} and expose that
  * as a shortcut.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see MockServerConfigurer
  */

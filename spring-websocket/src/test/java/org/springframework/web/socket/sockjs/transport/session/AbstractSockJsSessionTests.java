@@ -13,7 +13,7 @@ import static org.mockito.Mockito.*;
 /**
  * Base class for SockJS Session tests classes.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public abstract class AbstractSockJsSessionTests<S extends AbstractSockJsSession> {
 

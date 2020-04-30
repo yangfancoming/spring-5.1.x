@@ -29,7 +29,7 @@ import org.springframework.util.MultiValueMap;
  *
  * @author Arjen Poutsma
  * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  * @since 5.0
  */

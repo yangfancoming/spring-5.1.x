@@ -23,7 +23,7 @@ import org.springframework.web.util.WebUtils;
 /**
  * Mock implementation of the {@link AsyncContext} interface.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public class MockAsyncContext implements AsyncContext {

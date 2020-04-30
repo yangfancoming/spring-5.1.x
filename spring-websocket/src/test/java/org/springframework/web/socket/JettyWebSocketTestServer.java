@@ -20,7 +20,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 /**
  * Jetty based {@link WebSocketTestServer}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  */
 public class JettyWebSocketTestServer implements WebSocketTestServer {

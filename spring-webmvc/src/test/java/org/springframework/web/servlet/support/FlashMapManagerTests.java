@@ -26,7 +26,7 @@ import org.springframework.web.util.WebUtils;
 /**
  * Test fixture for testing {@link AbstractFlashMapManager} methods.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class FlashMapManagerTests {
 

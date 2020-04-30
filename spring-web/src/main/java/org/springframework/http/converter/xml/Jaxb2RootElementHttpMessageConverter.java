@@ -42,7 +42,7 @@ import org.springframework.util.ClassUtils;
  *
  * @author Arjen Poutsma
  * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ *
  * @since 3.0
  * @see MarshallingHttpMessageConverter
  */

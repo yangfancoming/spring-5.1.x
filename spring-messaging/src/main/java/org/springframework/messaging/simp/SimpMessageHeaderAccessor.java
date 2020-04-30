@@ -23,7 +23,7 @@ import org.springframework.util.CollectionUtils;
  * Use one of the static factory method in this class, then call getters and setters,
  * and at the end if necessary call {@link #toMap()} to obtain the updated headers.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class SimpMessageHeaderAccessor extends NativeMessageHeaderAccessor {

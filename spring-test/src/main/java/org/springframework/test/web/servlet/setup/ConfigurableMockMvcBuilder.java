@@ -12,7 +12,7 @@ import org.springframework.test.web.servlet.ResultMatcher;
 /**
  * Defines common methods for building a {@code MockMvc}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  * @param <B> a self reference to the builder type
  */

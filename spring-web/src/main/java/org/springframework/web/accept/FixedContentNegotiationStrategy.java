@@ -15,7 +15,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 /**
  * A {@code ContentNegotiationStrategy} that returns a fixed content type.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public class FixedContentNegotiationStrategy implements ContentNegotiationStrategy {

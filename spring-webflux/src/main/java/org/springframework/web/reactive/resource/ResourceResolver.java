@@ -18,7 +18,7 @@ import org.springframework.web.server.ServerWebExchange;
  * {@link Resource} and for obtaining the
  * public URL path that clients should use when requesting the resource.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public interface ResourceResolver {

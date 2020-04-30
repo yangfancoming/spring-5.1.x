@@ -16,7 +16,7 @@ import org.springframework.web.socket.CloseStatus;
  * xmlBeanDefinitionReaderNote that this event may be raised more than once for a single session and
  * therefore event consumers should be idempotent and ignore a duplicate event.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0.3
  */
 @SuppressWarnings("serial")

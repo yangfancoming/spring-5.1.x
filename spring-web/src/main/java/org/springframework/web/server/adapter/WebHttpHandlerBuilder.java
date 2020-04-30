@@ -40,7 +40,7 @@ import org.springframework.web.server.session.WebSessionManager;
  * The processing chain can be assembled manually via builder methods, or detected from
  * a Spring {@link ApplicationContext} via {@link #applicationContext}, or a mix of both.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
  * @since 5.0
  * @see HttpWebHandlerAdapter

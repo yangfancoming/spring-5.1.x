@@ -25,7 +25,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 /**
  * Abstract base class for {@link WebSocketClient} implementations.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public abstract class AbstractWebSocketClient implements WebSocketClient {

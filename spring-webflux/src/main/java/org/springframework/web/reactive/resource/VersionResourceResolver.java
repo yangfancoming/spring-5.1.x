@@ -44,7 +44,7 @@ import org.springframework.web.server.ServerWebExchange;
  * links within CSS files to also contain the appropriate versions generated
  * by this resolver.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  * @since 5.0
  * @see VersionStrategy

@@ -40,7 +40,7 @@ import static org.springframework.http.codec.json.JacksonViewBean.*;
  * Unit tests for {@link Jackson2JsonDecoder}.
  *
  * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ *
  */
 public class Jackson2JsonDecoderTests extends AbstractDecoderTestCase<Jackson2JsonDecoder> {
 

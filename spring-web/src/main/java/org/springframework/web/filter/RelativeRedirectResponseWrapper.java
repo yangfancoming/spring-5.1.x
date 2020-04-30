@@ -13,7 +13,7 @@ import org.springframework.web.util.WebUtils;
  * A response wrapper used for the implementation of
  * {@link RelativeRedirectFilter} also shared with {@link ForwardedHeaderFilter}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.3.10
  */
 final class RelativeRedirectResponseWrapper extends HttpServletResponseWrapper {

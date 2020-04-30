@@ -14,7 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  * looking at a method parameter and an argument value and deciding what
  * part of the target URL should be updated.
 
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public interface UriComponentsContributor {

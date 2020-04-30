@@ -8,7 +8,7 @@ import org.springframework.util.Assert;
  * An base class for SockJS message codec that provides an implementation of
  * {@link #encode(String[])}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public abstract class AbstractSockJsMessageCodec implements SockJsMessageCodec {

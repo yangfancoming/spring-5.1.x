@@ -26,7 +26,7 @@ import org.springframework.web.WebApplicationInitializer;
  * {@link HttpHandler}. The resulting handler is installed as a Servlet through
  * the {@link ServletHttpHandlerAdapter}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0.2
  */
 public abstract class AbstractReactiveWebInitializer implements WebApplicationInitializer {

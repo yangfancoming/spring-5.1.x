@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
 /**
  * Default immutable implementation of {@link ResourceTransformerChain}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 class DefaultResourceTransformerChain implements ResourceTransformerChain {

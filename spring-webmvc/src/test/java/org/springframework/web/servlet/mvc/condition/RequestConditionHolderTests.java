@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 /**
  * A test fixture for {@link RequestConditionHolder} tests.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class RequestConditionHolderTests {
 

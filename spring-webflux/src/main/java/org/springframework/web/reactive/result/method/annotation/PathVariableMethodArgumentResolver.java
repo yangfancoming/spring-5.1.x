@@ -33,7 +33,7 @@ import org.springframework.web.server.ServerWebExchange;
  * then converted to a {@link Map} via type conversion, assuming a suitable
  * {@link Converter}.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 5.0
  * @see PathVariableMapMethodArgumentResolver

@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link ResponseCookie}.
- * @author Rossen Stoyanchev
+ *
  */
 public class ResponseCookieTests {
 

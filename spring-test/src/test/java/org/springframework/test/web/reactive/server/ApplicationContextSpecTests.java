@@ -17,7 +17,7 @@ import org.springframework.web.server.session.WebSessionManager;
 
 /**
  * Unit tests with {@link ApplicationContextSpec}.
- * @author Rossen Stoyanchev
+ *
  */
 public class ApplicationContextSpecTests {
 

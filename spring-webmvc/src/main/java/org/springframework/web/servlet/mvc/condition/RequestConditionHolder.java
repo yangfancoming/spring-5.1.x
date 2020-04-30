@@ -19,7 +19,7 @@ import org.springframework.lang.Nullable;
  * with each other, it is expected the conditions they hold are of the same type.
  * If they are not, a {@link ClassCastException} is raised.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 public final class RequestConditionHolder extends AbstractRequestCondition<RequestConditionHolder> {

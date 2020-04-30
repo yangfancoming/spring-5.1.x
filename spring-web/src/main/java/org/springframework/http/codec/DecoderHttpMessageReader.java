@@ -31,7 +31,7 @@ import org.springframework.util.Assert;
  *
  * @author Arjen Poutsma
  * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @param <T> the type of objects in the decoded output stream
  */

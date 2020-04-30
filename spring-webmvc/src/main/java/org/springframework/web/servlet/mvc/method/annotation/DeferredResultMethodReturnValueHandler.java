@@ -20,7 +20,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * Handler for return values of type {@link DeferredResult},
  * {@link ListenableFuture}, and {@link CompletionStage}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public class DeferredResultMethodReturnValueHandler implements HandlerMethodReturnValueHandler {

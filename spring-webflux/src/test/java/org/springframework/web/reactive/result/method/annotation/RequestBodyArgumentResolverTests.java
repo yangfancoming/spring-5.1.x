@@ -43,7 +43,7 @@ import static org.springframework.web.method.MvcAnnotationPredicates.requestBody
  * consider whether the logic under test is in a parent class, then see:
  * {@link MessageReaderArgumentResolverTests}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class RequestBodyArgumentResolverTests {
 

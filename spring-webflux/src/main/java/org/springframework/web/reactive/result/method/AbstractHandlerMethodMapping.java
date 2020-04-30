@@ -41,7 +41,7 @@ import org.springframework.web.server.ServerWebExchange;
  * For each registered handler method, a unique mapping is maintained with
  * subclasses defining the details of the mapping type {@code <T>}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  * @since 5.0
  * @param <T> the mapping for a {@link HandlerMethod} containing the conditions

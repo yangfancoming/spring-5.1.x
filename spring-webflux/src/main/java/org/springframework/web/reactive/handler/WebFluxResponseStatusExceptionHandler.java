@@ -19,7 +19,7 @@ import org.springframework.web.server.handler.ResponseStatusExceptionHandler;
  * and is propagated.
  *
 
- * @author Rossen Stoyanchev
+ *
  * @since 5.0.5
  */
 public class WebFluxResponseStatusExceptionHandler extends ResponseStatusExceptionHandler {

@@ -23,7 +23,7 @@ import org.springframework.util.ReflectionUtils;
  * <li>Parameters assignable to {@link MessageHeaderAccessor}
  * </ul>
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class HeadersMethodArgumentResolver implements HandlerMethodArgumentResolver {

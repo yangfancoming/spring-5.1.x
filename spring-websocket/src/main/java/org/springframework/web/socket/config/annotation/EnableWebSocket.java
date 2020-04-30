@@ -42,7 +42,7 @@ import org.springframework.context.annotation.Import;
  * }
  * </pre>
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 @Retention(RetentionPolicy.RUNTIME)

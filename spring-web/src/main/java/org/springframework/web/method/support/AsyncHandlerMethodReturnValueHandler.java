@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
  * ready. By contrast, built-in (async) handlers are already ordered ahead of
  * sync handlers.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 public interface AsyncHandlerMethodReturnValueHandler extends HandlerMethodReturnValueHandler {

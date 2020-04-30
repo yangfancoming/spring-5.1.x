@@ -12,7 +12,7 @@ import org.apache.commons.logging.impl.NoOpLog;
  * Implementation of {@link Log} that wraps a list of loggers and delegates
  * to the first one for which logging is enabled at the given level.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.1
  * @see LogDelegateFactory#getCompositeLog
  */

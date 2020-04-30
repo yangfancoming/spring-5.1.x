@@ -28,7 +28,7 @@ import org.springframework.util.Assert;
  * {@link AbstractSubProtocolEvent} application context events to keep
  * track of connected users and their subscriptions.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 public class DefaultSimpUserRegistry implements SimpUserRegistry, SmartApplicationListener {

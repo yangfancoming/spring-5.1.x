@@ -9,7 +9,7 @@ import org.springframework.lang.Nullable;
 /**
  * Represents a connected user.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 public interface SimpUser {

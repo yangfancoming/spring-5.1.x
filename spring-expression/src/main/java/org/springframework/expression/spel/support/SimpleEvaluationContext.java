@@ -62,7 +62,7 @@ import org.springframework.lang.Nullable;
  * For more power and flexibility, in particular for internal configuration
  * scenarios, consider using {@link StandardEvaluationContext} instead.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 4.3.15
  * @see #forPropertyAccessors

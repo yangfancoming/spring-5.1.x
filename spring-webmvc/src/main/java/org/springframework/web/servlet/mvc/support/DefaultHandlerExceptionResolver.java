@@ -120,7 +120,7 @@ import org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver;
  * </table>
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
 
  * @since 3.0
  * @see org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler

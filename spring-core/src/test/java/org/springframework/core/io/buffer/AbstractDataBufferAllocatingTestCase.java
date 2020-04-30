@@ -29,7 +29,7 @@ import static org.junit.Assert.*;
  * that allocated buffers have been released.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  */
 @RunWith(Parameterized.class)
 public abstract class AbstractDataBufferAllocatingTestCase {

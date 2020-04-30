@@ -43,7 +43,7 @@ import static org.springframework.mock.http.server.reactive.test.MockServerHttpR
  * consider whether the logic under test is in a parent class, then see:
  * {@link MessageReaderArgumentResolverTests}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
  */
 public class HttpEntityArgumentResolverTests {

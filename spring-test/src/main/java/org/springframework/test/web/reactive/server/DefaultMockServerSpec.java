@@ -10,7 +10,7 @@ import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
  * Simple extension of {@link AbstractMockServerSpec} that is given a target
  * {@link WebHandler}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 class DefaultMockServerSpec extends AbstractMockServerSpec<DefaultMockServerSpec> {

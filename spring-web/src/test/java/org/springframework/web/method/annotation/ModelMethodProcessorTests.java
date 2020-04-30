@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 /**
  * Test fixture with {@link org.springframework.web.method.annotation.ModelMethodProcessor}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class ModelMethodProcessorTests {
 

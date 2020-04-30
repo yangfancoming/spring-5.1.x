@@ -18,7 +18,7 @@ import static org.mockito.BDDMockito.*;
 /**
  * Unit tests for {@link org.springframework.messaging.simp.SimpSessionScope}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public class SimpSessionScopeTests {

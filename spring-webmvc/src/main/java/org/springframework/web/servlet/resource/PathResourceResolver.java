@@ -32,7 +32,7 @@ import org.springframework.web.util.UrlPathHelper;
  * expected to be configured at the end in a chain of resolvers.
  *
  * @author Jeremy Grelle
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @since 4.1
  */

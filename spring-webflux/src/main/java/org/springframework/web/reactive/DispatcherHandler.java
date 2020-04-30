@@ -45,7 +45,7 @@ import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
  * {@link org.springframework.web.reactive.config.EnableWebFlux @EnableWebFlux}
  * configuration.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
 
  * @since 5.0

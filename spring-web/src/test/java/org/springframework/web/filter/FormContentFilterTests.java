@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 /**
  * Test fixture for {@link FormContentFilter}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class FormContentFilterTests {
 

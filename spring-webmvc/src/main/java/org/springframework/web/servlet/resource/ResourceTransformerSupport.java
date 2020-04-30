@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
  * for resolving public links within a transformed resource.
  *
  * @author Brian Clozel
- * @author Rossen Stoyanchev
+ *
 
  * @since 4.1
  */

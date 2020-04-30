@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
  * Specialization of {@link Part} that represents an uploaded file received in
  * a multipart request.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 5.0
  */

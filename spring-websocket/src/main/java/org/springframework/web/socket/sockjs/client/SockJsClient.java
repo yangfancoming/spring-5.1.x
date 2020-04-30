@@ -41,7 +41,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  * xmlBeanDefinitionReaderImplements {@link Lifecycle} in order to propagate lifecycle events to
  * the transports it is configured with.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  * @see <a href="https://github.com/sockjs/sockjs-client">https://github.com/sockjs/sockjs-client</a>
  * @see org.springframework.web.socket.sockjs.client.Transport

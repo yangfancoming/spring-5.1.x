@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.StopWatch;
 
 /**
- * @author Rossen Stoyanchev
+ *
  */
 public abstract class AbstractHttpServer implements HttpServer {
 

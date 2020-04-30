@@ -24,7 +24,7 @@ import org.springframework.web.context.request.async.DeferredResultProcessingInt
  * 1) The session is bound/unbound when "callable processing" is started
  * 2) The session is closed if an async request times out or an error occurred
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2.5
  */
 class AsyncRequestInterceptor implements CallableProcessingInterceptor, DeferredResultProcessingInterceptor {

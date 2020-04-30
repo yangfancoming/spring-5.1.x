@@ -23,7 +23,7 @@ import org.springframework.web.socket.WebSocketSession;
  * the {@code Sec-WebSocket-Protocol} request header.
  *
  * @author Andy Wilkinson
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public interface SubProtocolHandler {

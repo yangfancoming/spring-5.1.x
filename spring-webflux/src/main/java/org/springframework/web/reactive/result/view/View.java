@@ -25,7 +25,7 @@ import org.springframework.web.server.ServerWebExchange;
  * A {@code View} can also choose to select an attribute from the model use
  * any existing {@code Encoder} to render alternate media types.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public interface View {

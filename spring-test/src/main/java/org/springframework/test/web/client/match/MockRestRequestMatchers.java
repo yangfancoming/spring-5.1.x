@@ -30,7 +30,7 @@ import static org.springframework.test.util.AssertionErrors.fail;
  * this setting, open the Preferences and type "favorites".
  *
  * @author Craig Walls
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @since 3.2
  */

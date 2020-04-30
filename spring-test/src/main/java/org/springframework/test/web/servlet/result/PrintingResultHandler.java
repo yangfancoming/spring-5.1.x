@@ -37,7 +37,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
  * {@link MockMvcResultHandlers#print print} or {@link MockMvcResultHandlers#log log}
  * methods in {@link MockMvcResultHandlers}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @since 3.2
  */

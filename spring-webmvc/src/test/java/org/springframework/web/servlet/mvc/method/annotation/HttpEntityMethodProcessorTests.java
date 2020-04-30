@@ -41,7 +41,7 @@ import static org.junit.Assert.*;
  *
  * Also see {@link HttpEntityMethodProcessorMockTests}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 @SuppressWarnings("unused")
 public class HttpEntityMethodProcessorTests {

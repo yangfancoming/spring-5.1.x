@@ -31,7 +31,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Integration tests for view resolution with {@code @EnableWebMvc}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public class ViewResolutionIntegrationTests {

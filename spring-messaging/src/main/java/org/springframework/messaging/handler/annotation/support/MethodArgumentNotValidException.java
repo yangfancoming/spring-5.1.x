@@ -14,7 +14,7 @@ import org.springframework.validation.ObjectError;
  * result of {@code @Valid} style validation, or perhaps because it is required.
  *
  * @author Brian Clozel
- * @author Rossen Stoyanchev
+ *
  * @since 4.0.1
  */
 @SuppressWarnings("serial")

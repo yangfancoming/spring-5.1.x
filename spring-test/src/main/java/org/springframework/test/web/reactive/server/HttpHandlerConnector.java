@@ -40,7 +40,7 @@ import org.springframework.util.MultiValueMap;
  * {@link MockClientHttpRequest} and {@link MockClientHttpResponse} to<br>
  * {@link MockServerHttpRequest} and {@link MockServerHttpResponse}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class HttpHandlerConnector implements ClientHttpConnector {

@@ -32,7 +32,7 @@ import static org.springframework.core.ResolvableType.forClass;
  * Unit tests for {@link ServerSentEventHttpMessageWriter}.
  *
  * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ *
  */
 @SuppressWarnings("rawtypes")
 public class ServerSentEventHttpMessageWriterTests extends AbstractDataBufferAllocatingTestCase {

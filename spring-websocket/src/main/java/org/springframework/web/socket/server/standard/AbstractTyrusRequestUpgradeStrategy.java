@@ -46,7 +46,7 @@ import static org.glassfish.tyrus.spi.WebSocketEngine.UpgradeStatus.SUCCESS;
  *
  * xmlBeanDefinitionReaderWorks with Tyrus 1.11 (WebLogic 12.2.1) and Tyrus 1.12 (GlassFish 4.1.1).
  *
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
 
  * @since 4.1

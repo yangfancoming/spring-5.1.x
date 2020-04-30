@@ -26,7 +26,7 @@ import org.springframework.web.reactive.socket.WebSocketSession;
  * WebSocket {@link org.eclipse.jetty.websocket.api.Session}.
  *
  * @author Violeta Georgieva
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class JettyWebSocketSession extends AbstractListenerWebSocketSession<Session> {

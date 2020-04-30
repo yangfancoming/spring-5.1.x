@@ -30,7 +30,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * model attributes and to {@code WebDataBinderFactory} (for type conversion).
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 public abstract class AbstractWebArgumentResolverAdapter implements HandlerMethodArgumentResolver {

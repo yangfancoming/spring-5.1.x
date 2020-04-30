@@ -12,7 +12,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 /**
  * A STOMP over TCP client that uses {@link ReactorNettyTcpClient}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class ReactorNettyTcpStompClient extends StompClientSupport {

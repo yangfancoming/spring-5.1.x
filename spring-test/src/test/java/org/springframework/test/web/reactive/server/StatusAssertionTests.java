@@ -19,7 +19,7 @@ import static org.mockito.Mockito.*;
 
 /**
  * Unit tests for {@link StatusAssertions}.
- * @author Rossen Stoyanchev
+ *
  */
 public class StatusAssertionTests {
 

@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
  * for use in {@code RequestUpgradeStrategy} implementations.
  *
  * @author Violeta Georgieva
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 class DefaultServerEndpointConfig extends ServerEndpointConfig.Configurator

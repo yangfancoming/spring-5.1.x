@@ -26,7 +26,7 @@ import org.springframework.web.reactive.socket.WebSocketSession;
  * {@link javax.websocket.Session}.
  *
  * @author Violeta Georgieva
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class StandardWebSocketSession extends AbstractListenerWebSocketSession<Session> {

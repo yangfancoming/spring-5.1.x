@@ -13,7 +13,7 @@ import org.springframework.mock.http.client.MockClientHttpRequest;
 /**
  * Unit tests for {@link XpathRequestMatchers}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class XpathRequestMatchersTests {
 

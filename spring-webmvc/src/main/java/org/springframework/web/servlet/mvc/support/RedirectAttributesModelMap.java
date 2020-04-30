@@ -15,7 +15,7 @@ import org.springframework.validation.DataBinder;
  * flash attributes so they can survive a redirect without the need to be
  * embedded in the redirect URL.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 @SuppressWarnings("serial")

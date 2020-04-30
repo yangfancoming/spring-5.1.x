@@ -24,7 +24,7 @@ import static org.mockito.Mockito.*;
 /**
  * Unit tests for {@link org.springframework.messaging.simp.broker.AbstractBrokerMessageHandler}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class BrokerMessageHandlerTests {
 

@@ -72,7 +72,7 @@ import org.springframework.messaging.Message;
  * {@code @MessageMapping} and {@code @SubscribeMapping} - on
  * the controller <i>interface</i> rather than on the implementation class.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  * @see org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler
  */

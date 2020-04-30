@@ -28,7 +28,7 @@ import org.springframework.util.ObjectUtils;
  * handled by {@link UserRegistryMessageHandler} which in turn notifies this
  * registry when updates are received.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 @SuppressWarnings("serial")

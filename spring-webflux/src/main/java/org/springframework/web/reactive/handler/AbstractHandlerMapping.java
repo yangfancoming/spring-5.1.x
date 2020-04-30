@@ -26,7 +26,7 @@ import org.springframework.web.util.pattern.PathPatternParser;
  * Abstract base class for {@link org.springframework.web.reactive.HandlerMapping}
  * implementations.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @author Brian Clozel
  * @since 5.0

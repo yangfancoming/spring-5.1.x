@@ -32,7 +32,7 @@ import org.springframework.web.util.pattern.PathPatternParser;
  * resources and uses the {@code ResourceResolver} chains of the configured
  * {@code ResourceHttpRequestHandler}s to make its decisions.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class ResourceUrlProvider implements ApplicationListener<ContextRefreshedEvent> {

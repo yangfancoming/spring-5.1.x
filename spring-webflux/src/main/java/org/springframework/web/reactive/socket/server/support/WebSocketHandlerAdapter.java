@@ -17,7 +17,7 @@ import org.springframework.web.server.ServerWebExchange;
  * Requests are handled by delegating to the configured {@link WebSocketService}
  * which by default is {@link HandshakeWebSocketService}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class WebSocketHandlerAdapter implements HandlerAdapter {

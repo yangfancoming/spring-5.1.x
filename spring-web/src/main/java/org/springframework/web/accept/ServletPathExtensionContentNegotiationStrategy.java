@@ -17,7 +17,7 @@ import org.springframework.web.context.request.NativeWebRequest;
  * Extends {@code PathExtensionContentNegotiationStrategy} that also uses
  * {@link ServletContext#getMimeType(String)} to resolve file extensions.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public class ServletPathExtensionContentNegotiationStrategy extends PathExtensionContentNegotiationStrategy {

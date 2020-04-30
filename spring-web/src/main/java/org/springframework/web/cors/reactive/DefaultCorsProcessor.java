@@ -30,7 +30,7 @@ import org.springframework.web.server.ServerWebExchange;
  * as a same-origin one.
  *
  * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class DefaultCorsProcessor implements CorsProcessor {

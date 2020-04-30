@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 /**
  * Response written from {@code @ResponseBody} method.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class ResponseBodyTests {
 

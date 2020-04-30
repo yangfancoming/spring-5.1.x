@@ -21,7 +21,7 @@ import org.springframework.util.Assert;
 /**
  * A {@code ResponseCreator} with builder-style methods for adding response details.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public class DefaultResponseCreator implements ResponseCreator {

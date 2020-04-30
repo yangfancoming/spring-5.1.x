@@ -16,7 +16,7 @@ import org.springframework.web.server.ServerWebExchange;
  * Resolver for a controller method argument of type {@link Model} that can
  * also be resolved as a {@link java.util.Map}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class ModelArgumentResolver extends HandlerMethodArgumentResolverSupport

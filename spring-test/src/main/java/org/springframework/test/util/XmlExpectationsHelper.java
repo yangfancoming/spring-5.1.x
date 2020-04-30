@@ -23,7 +23,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * A helper class for assertions on XML content.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public class XmlExpectationsHelper {

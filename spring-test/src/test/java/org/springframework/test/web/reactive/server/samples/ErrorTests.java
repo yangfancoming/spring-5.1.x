@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 /**
  * Tests with error status codes or error conditions.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class ErrorTests {

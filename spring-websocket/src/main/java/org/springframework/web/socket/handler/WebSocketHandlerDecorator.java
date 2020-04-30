@@ -16,7 +16,7 @@ import org.springframework.web.socket.WebSocketSession;
  * handler as well as a {@link #getLastHandler()} method to go through all nested
  * delegates and return the "last" handler.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class WebSocketHandlerDecorator implements WebSocketHandler {

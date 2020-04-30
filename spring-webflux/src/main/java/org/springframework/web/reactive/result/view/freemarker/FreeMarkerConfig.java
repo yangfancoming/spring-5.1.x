@@ -9,7 +9,7 @@ import freemarker.template.Configuration;
  * FreeMarker Configuration object in a web environment. Detected and
  * used by {@link FreeMarkerView}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public interface FreeMarkerConfig {

@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
  * {@link TilesView} (i.e. Tiles definitions) and custom subclasses of it.
  *
  * @author Nicolas Le Bas
- * @author Rossen Stoyanchev
+ *
 
  * @author Sebastien Deleuze
  * @since 3.2

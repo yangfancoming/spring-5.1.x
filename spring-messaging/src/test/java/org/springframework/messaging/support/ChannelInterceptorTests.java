@@ -21,7 +21,7 @@ import static org.mockito.Mockito.*;
 /**
  * Test fixture for the use of {@link ChannelInterceptor}s.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class ChannelInterceptorTests {
 

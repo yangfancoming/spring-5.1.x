@@ -9,7 +9,7 @@ import org.springframework.messaging.MessagingException;
  * Thrown by a {@link DestinationResolver} when it cannot resolve a destination.
  *
  * @author Mark Fisher
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 @SuppressWarnings("serial")

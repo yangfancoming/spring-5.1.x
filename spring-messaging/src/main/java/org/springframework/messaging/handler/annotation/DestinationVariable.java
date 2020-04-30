@@ -16,7 +16,7 @@ import java.lang.annotation.Target;
  * A {@code @DestinationVariable} template variable is always required.
  *
  * @author Brian Clozel
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  *
  * @see org.springframework.messaging.handler.annotation.MessageMapping

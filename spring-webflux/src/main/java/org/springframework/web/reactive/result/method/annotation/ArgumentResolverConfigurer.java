@@ -11,7 +11,7 @@ import org.springframework.web.reactive.result.method.HandlerMethodArgumentResol
 /**
  * Helps to configure resolvers for Controller method arguments.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class ArgumentResolverConfigurer {

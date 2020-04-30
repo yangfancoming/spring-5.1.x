@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
 /**
  * Base class for message broker registration classes.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public abstract class AbstractBrokerRegistration {

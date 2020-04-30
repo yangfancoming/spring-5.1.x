@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
 /**
  * Package-private implementation of {@link ServerWebExchange.Builder}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 class DefaultServerWebExchangeBuilder implements ServerWebExchange.Builder {

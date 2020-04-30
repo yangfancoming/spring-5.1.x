@@ -16,7 +16,7 @@ import static org.junit.Assert.assertSame;
 /**
  * Unit tests for {@link CompositeRequestCondition}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class CompositeRequestConditionTests {
 

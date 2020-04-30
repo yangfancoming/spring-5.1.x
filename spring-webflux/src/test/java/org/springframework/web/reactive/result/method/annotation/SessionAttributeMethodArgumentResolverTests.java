@@ -32,7 +32,7 @@ import static org.mockito.Mockito.*;
 
 /**
  * Unit tests for {@link SessionAttributeMethodArgumentResolver}.
- * @author Rossen Stoyanchev
+ *
  */
 public class SessionAttributeMethodArgumentResolverTests {
 

@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
 /**
  * Default implementation of {@link SslInfo}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0.2
  */
 final class DefaultSslInfo implements SslInfo {

@@ -12,7 +12,7 @@ import org.springframework.web.socket.sockjs.transport.TransportType;
 /**
  * A client-side implementation for a SockJS transport.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public interface Transport {

@@ -44,7 +44,7 @@ import static org.mockito.BDDMockito.verify;
 
 /**
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  */
 public class FormHttpMessageConverterTests {
 

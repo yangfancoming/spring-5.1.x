@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
 /**
  * Test fixture with {@link ExpressionValueMethodArgumentResolver}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class ExpressionValueMethodArgumentResolverTests {
 

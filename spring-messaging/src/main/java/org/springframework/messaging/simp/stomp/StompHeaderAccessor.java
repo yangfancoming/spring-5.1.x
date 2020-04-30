@@ -43,7 +43,7 @@ import org.springframework.util.StringUtils;
  * {@link #updateStompCommandAsServerMessage()} if sending a message and
  * depending on whether a message is sent to a client or the message broker.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class StompHeaderAccessor extends SimpMessageHeaderAccessor {

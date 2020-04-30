@@ -22,7 +22,7 @@ import static org.hamcrest.Matchers.*;
  * Unit tests for
  * {@link org.springframework.messaging.simp.SimpAttributesContextHolder}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public class SimpAttributesContextHolderTests {

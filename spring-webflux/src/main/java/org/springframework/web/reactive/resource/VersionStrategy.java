@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  * A strategy to determine the version of a static resource and to apply and/or
  * extract it from the URL path.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  * @since 5.0
  * @see VersionResourceResolver

@@ -48,7 +48,7 @@ import org.springframework.web.util.WebUtils;
  * By default, only same origin requests are allowed. Use {@link #setAllowedOrigins}
  * to specify a list of allowed origins (a list containing "*" will allow all origins).
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
  * @since 4.0
  */

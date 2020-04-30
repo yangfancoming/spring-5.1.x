@@ -11,7 +11,7 @@ import org.springframework.lang.Nullable;
  * Spring Web applications. The exception provides additional fields (e.g.
  * an optional {@link MethodParameter} if related to the error).
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 @SuppressWarnings("serial")

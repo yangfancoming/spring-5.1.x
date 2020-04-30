@@ -15,7 +15,7 @@ import org.springframework.lang.Nullable;
  * Base class for {@link org.springframework.web.servlet.resource.ResourceResolver}
  * implementations. Provides consistent logging.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public abstract class AbstractResourceResolver implements ResourceResolver {

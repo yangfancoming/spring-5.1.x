@@ -43,7 +43,7 @@ import org.springframework.stereotype.Component;
  * are performed at runtime, so adding many selectors may negatively impact
  * performance and add complexity.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  * @author Sam Brannen
  * @since 3.2

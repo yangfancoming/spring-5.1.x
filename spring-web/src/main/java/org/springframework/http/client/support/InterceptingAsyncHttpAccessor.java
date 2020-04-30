@@ -12,7 +12,7 @@ import org.springframework.util.CollectionUtils;
  * request intercepting functionality.
  *
  * @author Jakub Narloch
- * @author Rossen Stoyanchev
+ *
  * @since 4.3
  * @deprecated as of Spring 5.0, with no direct replacement
  */

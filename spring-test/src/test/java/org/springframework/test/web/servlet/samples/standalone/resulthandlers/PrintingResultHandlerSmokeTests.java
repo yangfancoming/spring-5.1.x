@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
  * executed with the build. To run this test, comment out the {@code @Ignore}
  * declaration and inspect the output manually.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @see org.springframework.test.web.servlet.result.PrintingResultHandlerTests
  */

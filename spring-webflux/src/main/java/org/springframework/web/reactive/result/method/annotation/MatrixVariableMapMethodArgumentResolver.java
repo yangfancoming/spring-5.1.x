@@ -32,7 +32,7 @@ import org.springframework.web.server.ServerWebExchange;
  * When a name is specified, an argument of type Map is considered to be a single attribute
  * with a Map value, and is resolved by {@link MatrixVariableMethodArgumentResolver} instead.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0.1
  * @see MatrixVariableMethodArgumentResolver
  */

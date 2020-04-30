@@ -15,7 +15,7 @@ import reactor.core.publisher.Mono;
  * {@link ViewResolutionResultHandler
  * ViewResolutionResultHandler}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see ViewResolutionResultHandler
  */

@@ -32,7 +32,7 @@ import org.springframework.util.Assert;
  * </pre>
  *
  * @author <a href="mailto:dmitry.katsubo@gmail.com">Dmitry Katsubo</a>
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public class ObjectToStringHttpMessageConverter extends AbstractHttpMessageConverter<Object> {

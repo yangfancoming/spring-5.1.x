@@ -22,7 +22,7 @@ import org.springframework.util.ObjectUtils;
  * conditions in the respective index are of the same type. It is acceptable to
  * provide {@code null} conditions or no conditions at all to the constructor.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public class CompositeRequestCondition extends AbstractRequestCondition<CompositeRequestCondition> {

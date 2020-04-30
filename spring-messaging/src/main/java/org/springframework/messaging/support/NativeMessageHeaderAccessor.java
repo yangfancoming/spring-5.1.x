@@ -30,7 +30,7 @@ import org.springframework.util.ObjectUtils;
  * reversely to translate Spring {@link Message} headers to a message to send to an
  * external source.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class NativeMessageHeaderAccessor extends MessageHeaderAccessor {

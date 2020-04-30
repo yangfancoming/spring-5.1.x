@@ -21,7 +21,7 @@ import org.springframework.web.method.annotation.AbstractWebArgumentResolverAdap
  * {@code HandlerMethodArgumentResolver}. For more details see javadoc of
  * {@link org.springframework.web.method.annotation.AbstractWebArgumentResolverAdapter}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 public class ServletWebArgumentResolverAdapter extends AbstractWebArgumentResolverAdapter {

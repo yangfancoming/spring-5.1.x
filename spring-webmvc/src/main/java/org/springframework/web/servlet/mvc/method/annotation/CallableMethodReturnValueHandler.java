@@ -14,7 +14,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 /**
  * Handles return values of type {@link Callable}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public class CallableMethodReturnValueHandler implements HandlerMethodReturnValueHandler {

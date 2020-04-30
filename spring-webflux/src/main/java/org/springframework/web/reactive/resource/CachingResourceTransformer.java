@@ -17,7 +17,7 @@ import org.springframework.web.server.ServerWebExchange;
  * previously transformed resource exists in the cache and returns it if found,
  * or otherwise delegates to the resolver chain and caches the result.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class CachingResourceTransformer implements ResourceTransformer {

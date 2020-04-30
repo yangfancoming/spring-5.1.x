@@ -25,7 +25,7 @@ import org.springframework.web.reactive.socket.WebSocketSession;
  * holds common fields and exposes accessors. Also implements the
  * {@code WebSocketMessage} factory methods.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @param <T> the native delegate type
  */

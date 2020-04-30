@@ -13,7 +13,7 @@ import org.springframework.messaging.Message;
  * Simple holder for a decoding {@link Function} and an encoding
  * {@link BiConsumer} to use with Reactor Netty.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @param <P> the message payload type
  */

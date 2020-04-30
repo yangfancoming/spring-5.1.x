@@ -49,7 +49,7 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
  * a request with {@link HttpMessageConverter HttpMessageConverters}.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
 
  * @since 3.1
  */

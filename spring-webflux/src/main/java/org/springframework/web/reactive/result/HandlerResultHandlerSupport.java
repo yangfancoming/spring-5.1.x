@@ -29,7 +29,7 @@ import org.springframework.web.server.ServerWebExchange;
  * HandlerResultHandler} with support for content negotiation and access to a
  * {@code ReactiveAdapter} registry.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public abstract class HandlerResultHandlerSupport implements Ordered {

@@ -20,7 +20,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * annotated with {@code @ModelAttribute} or {@code @ResponseBody} to ensure
  * they don't take over.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 public class ModelMethodProcessor implements HandlerMethodArgumentResolver, HandlerMethodReturnValueHandler {

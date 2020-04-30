@@ -23,7 +23,7 @@ import org.springframework.web.server.ServerWebExchange;
  * {@link InvocableHandlerMethod} but uses sync argument resolvers only and
  * thus can return directly a {@link HandlerResult} with no async wrappers.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class SyncInvocableHandlerMethod extends HandlerMethod {

@@ -15,7 +15,7 @@ import org.springframework.lang.Nullable;
  * typically in the form of the {@code spring-jcl} bridge but also compatible
  * with other Commons Logging bridges.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 5.1
  */

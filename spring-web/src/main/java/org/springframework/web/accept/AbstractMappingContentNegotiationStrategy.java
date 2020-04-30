@@ -32,7 +32,7 @@ import org.springframework.web.context.request.NativeWebRequest;
  * via base classes are then added to the base class
  * {@link MappingMediaTypeFileExtensionResolver}, i.e. cached for new lookups.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public abstract class AbstractMappingContentNegotiationStrategy extends MappingMediaTypeFileExtensionResolver

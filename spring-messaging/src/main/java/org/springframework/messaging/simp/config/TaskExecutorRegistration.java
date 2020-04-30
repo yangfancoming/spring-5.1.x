@@ -9,7 +9,7 @@ import org.springframework.util.Assert;
 /**
  * A registration class for customizing the properties of {@link ThreadPoolTaskExecutor}.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 4.0
  */

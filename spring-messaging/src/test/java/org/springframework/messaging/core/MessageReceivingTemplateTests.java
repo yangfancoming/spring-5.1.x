@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
 /**
  * Unit tests for receiving operations in {@link AbstractMessagingTemplate}.
  *
- * @author Rossen Stoyanchev
+ *
  * @see MessageRequestReplyTemplateTests
  */
 public class MessageReceivingTemplateTests {

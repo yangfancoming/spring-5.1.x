@@ -9,7 +9,7 @@ import org.springframework.lang.Nullable;
 /**
  * A text WebSocket message.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public final class TextMessage extends AbstractWebSocketMessage<String> {

@@ -45,7 +45,7 @@ import org.springframework.web.servlet.DispatcherServlet;
  *     .andExpect(forwardedUrl("/WEB-INF/layouts/main.jsp"));
  * </pre>
  *
- * @author Rossen Stoyanchev
+ *
  * @author Rob Winch
  * @author Sam Brannen
  * @since 3.2

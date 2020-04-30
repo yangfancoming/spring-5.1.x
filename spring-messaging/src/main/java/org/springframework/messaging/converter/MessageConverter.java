@@ -12,7 +12,7 @@ import org.springframework.messaging.MessageHeaders;
  * used to specify the media type of the message content.
  *
  * @author Mark Fisher
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public interface MessageConverter {

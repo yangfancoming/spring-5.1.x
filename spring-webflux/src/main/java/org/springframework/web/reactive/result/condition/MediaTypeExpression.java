@@ -9,7 +9,7 @@ import org.springframework.http.MediaType;
  * defined in the {@code @RequestMapping} annotation for "consumes" and
  * "produces" conditions.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public interface MediaTypeExpression {

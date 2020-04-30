@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 
 /**
  * Test fixture with {@link SessionAttributesHandler}.
- * @author Rossen Stoyanchev
+ *
  */
 public class SessionAttributesHandlerTests {
 

@@ -41,7 +41,7 @@ import static org.junit.Assert.*;
 /**
  * Test fixture with {@link ExceptionHandlerExceptionResolver}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Arjen Poutsma
  * @author Kazuki Shimizu
  * @author Brian Clozel

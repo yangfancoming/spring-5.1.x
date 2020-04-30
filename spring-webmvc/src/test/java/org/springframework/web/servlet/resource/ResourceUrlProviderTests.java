@@ -29,7 +29,7 @@ import static org.mockito.Mockito.when;
  * Unit tests for {@link ResourceUrlProvider}.
  *
  * @author Jeremy Grelle
- * @author Rossen Stoyanchev
+ *
  */
 public class ResourceUrlProviderTests {
 

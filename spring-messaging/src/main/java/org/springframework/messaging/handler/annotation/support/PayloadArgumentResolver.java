@@ -32,7 +32,7 @@ import org.springframework.validation.annotation.Validated;
  * This {@link HandlerMethodArgumentResolver} should be ordered last as it
  * supports all types and does not require the {@link Payload} annotation.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Brian Clozel
  * @author Stephane Nicoll
  * @since 4.0

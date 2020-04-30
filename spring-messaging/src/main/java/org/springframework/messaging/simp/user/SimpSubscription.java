@@ -5,7 +5,7 @@ package org.springframework.messaging.simp.user;
 /**
  * Represents a subscription within a user session.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 public interface SimpSubscription {

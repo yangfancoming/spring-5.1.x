@@ -34,7 +34,7 @@ import static org.mockito.BDDMockito.*;
 /**
  * Test fixture with {@link ModelAttributeMethodProcessor}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class ModelAttributeMethodProcessorTests {
 

@@ -21,7 +21,7 @@ import org.springframework.util.ObjectUtils;
 /**
  * Abstract base class for {@link MessageChannel} implementations.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public abstract class AbstractMessageChannel implements MessageChannel, InterceptableChannel, BeanNameAware {

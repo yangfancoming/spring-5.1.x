@@ -25,7 +25,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 /**
  * Examples of defining expectations on request content and content type.
  *
- * @author Rossen Stoyanchev
+ *
  * @see JsonPathRequestMatchersIntegrationTests
  * @see XmlContentRequestMatchersIntegrationTests
  * @see XpathRequestMatchersIntegrationTests

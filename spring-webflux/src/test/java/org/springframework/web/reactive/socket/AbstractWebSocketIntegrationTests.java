@@ -52,7 +52,7 @@ import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
  * {@link #getWebConfigClass()} to return Spring config class with (server-side)
  * handler mappings to {@code WebSocketHandler}'s.
  *
- * @author Rossen Stoyanchev
+ *
  */
 @RunWith(Parameterized.class)
 @SuppressWarnings({"unused", "WeakerAccess"})

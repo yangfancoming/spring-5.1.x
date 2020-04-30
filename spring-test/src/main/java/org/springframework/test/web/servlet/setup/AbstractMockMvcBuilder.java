@@ -31,7 +31,7 @@ import org.springframework.web.context.WebApplicationContext;
  * {@code WebApplicationContext} that will be passed to the
  * {@code DispatcherServlet}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Stephane Nicoll
  * @since 4.0
  * @param <B> a self reference to the builder type

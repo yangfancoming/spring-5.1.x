@@ -32,7 +32,7 @@ import org.springframework.web.servlet.HandlerMapping;
  * When a name is specified, an argument of type Map is considered to be a single attribute
  * with a Map value, and is resolved by {@link MatrixVariableMethodArgumentResolver} instead.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public class MatrixVariableMapMethodArgumentResolver implements HandlerMethodArgumentResolver {

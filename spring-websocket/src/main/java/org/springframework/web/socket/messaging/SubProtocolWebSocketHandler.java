@@ -45,7 +45,7 @@ import org.springframework.web.socket.sockjs.transport.session.StreamingSockJsSe
  * associated with the {@link Message} and passes it, along with the message, to the
  * sub-protocol handler to send messages from the application back to the client.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @author Andy Wilkinson
  * @author Artem Bilan

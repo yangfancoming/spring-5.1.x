@@ -27,7 +27,7 @@ import org.springframework.web.socket.sockjs.transport.TransportType;
 /**
  * A default implementation of {@link TransportRequest}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 class DefaultTransportRequest implements TransportRequest {

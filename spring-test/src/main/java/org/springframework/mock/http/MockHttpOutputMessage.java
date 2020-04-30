@@ -14,7 +14,7 @@ import org.springframework.http.HttpOutputMessage;
 /**
  * Mock implementation of {@link HttpOutputMessage}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public class MockHttpOutputMessage implements HttpOutputMessage {

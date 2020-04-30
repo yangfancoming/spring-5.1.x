@@ -12,7 +12,7 @@ package org.springframework.web.context.request.async;
  *
  * By default the exception will be handled as a 503 error.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2.8
  */
 @SuppressWarnings("serial")

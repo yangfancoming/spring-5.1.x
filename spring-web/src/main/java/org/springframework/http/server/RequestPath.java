@@ -8,7 +8,7 @@ import org.springframework.lang.Nullable;
 /**
  * Represents the complete path for a request.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public interface RequestPath extends PathContainer {

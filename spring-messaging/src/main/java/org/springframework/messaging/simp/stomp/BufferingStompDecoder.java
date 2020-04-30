@@ -28,7 +28,7 @@ import org.springframework.util.MultiValueMap;
  * be used any more as its internal state is not guaranteed to be consistent.
  * It is expected that the underlying session is closed at that point.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0.3
  * @see StompDecoder
  */

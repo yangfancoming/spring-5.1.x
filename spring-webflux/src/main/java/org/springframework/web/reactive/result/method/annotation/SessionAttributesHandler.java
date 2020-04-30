@@ -18,7 +18,7 @@ import org.springframework.web.server.WebSession;
  * attributes in the {@link WebSession} based on model attribute names and types
  * declared va {@link SessionAttributes @SessionAttributes}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 class SessionAttributesHandler {

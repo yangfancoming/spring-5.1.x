@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
  * the application "context path" (the prefix-based mapping) exposed via
  * {@link ServerHttpRequest#getPath()}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class ContextPathCompositeHandler implements HttpHandler {

@@ -40,7 +40,7 @@ import static org.mockito.Mockito.*;
 /**
  * Unit tests for {@link DefaultStompSession}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class DefaultStompSessionTests {
 

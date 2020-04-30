@@ -22,7 +22,7 @@ import org.springframework.web.util.UrlPathHelper;
  * {@link WebSocketHandlerRegistry} with Spring MVC handler mappings for the
  * handshake requests.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class ServletWebSocketHandlerRegistry implements WebSocketHandlerRegistry {

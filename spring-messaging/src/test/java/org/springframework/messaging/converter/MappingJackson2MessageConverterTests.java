@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
 /**
  * Test fixture for {@link MappingJackson2MessageConverter}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sebastien Deleuze
  */
 public class MappingJackson2MessageConverterTests {

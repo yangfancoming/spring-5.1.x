@@ -17,7 +17,7 @@ import org.springframework.web.socket.handler.ExceptionWebSocketHandlerDecorator
  * <code>&lt;async-support&gt;true&lt;/async-support&gt;</code> element to servlet and filter declarations
  * in web.xml.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  * @see org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler
  */

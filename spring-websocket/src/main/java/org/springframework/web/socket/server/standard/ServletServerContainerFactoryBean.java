@@ -26,7 +26,7 @@ import org.springframework.web.context.ServletContextAware;
  * {@link ServerEndpointExporter}, and separately declare this FactoryBean in order
  * to customize the properties of the (one and only) {@code ServerContainer} instance.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @since 4.0
  */

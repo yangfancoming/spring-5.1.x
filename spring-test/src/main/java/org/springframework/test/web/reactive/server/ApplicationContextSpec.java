@@ -10,7 +10,7 @@ import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
  * Spec for setting up server-less testing by detecting components in an
  * {@link ApplicationContext}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 class ApplicationContextSpec extends AbstractMockServerSpec<ApplicationContextSpec> {

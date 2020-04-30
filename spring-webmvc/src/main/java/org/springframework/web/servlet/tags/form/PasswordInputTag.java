@@ -220,7 +220,7 @@ import javax.servlet.jsp.JspException;
  *
  * @author Rob Harrop
  * @author Rick Evans
- * @author Rossen Stoyanchev
+ *
  * @since 2.0
  */
 @SuppressWarnings("serial")

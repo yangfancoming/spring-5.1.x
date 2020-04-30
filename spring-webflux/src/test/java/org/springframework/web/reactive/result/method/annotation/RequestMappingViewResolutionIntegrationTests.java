@@ -34,7 +34,7 @@ import static org.junit.Assert.*;
 /**
  * {@code @RequestMapping} integration tests with view resolution scenarios.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class RequestMappingViewResolutionIntegrationTests extends AbstractRequestMappingIntegrationTests {
 

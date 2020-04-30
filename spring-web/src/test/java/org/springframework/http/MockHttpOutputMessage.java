@@ -11,7 +11,7 @@ import static org.mockito.Mockito.spy;
 
 /**
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  */
 public class MockHttpOutputMessage implements HttpOutputMessage {
 

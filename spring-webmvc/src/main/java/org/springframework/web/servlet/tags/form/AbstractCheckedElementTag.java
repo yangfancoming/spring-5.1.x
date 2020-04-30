@@ -13,7 +13,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Thomas Risberg
 
- * @author Rossen Stoyanchev
+ *
  * @since 2.5
  */
 @SuppressWarnings("serial")

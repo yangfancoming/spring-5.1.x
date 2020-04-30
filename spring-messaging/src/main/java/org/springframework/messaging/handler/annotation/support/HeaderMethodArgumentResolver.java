@@ -21,7 +21,7 @@ import org.springframework.util.Assert;
 /**
  * Resolves method parameters annotated with {@link Header @Header}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class HeaderMethodArgumentResolver extends AbstractNamedValueMethodArgumentResolver {

@@ -10,7 +10,7 @@ package org.springframework.test.web.servlet;
  * {@link org.springframework.test.web.servlet.result.MockMvcResultMatchers} and
  * {@link org.springframework.test.web.servlet.result.MockMvcResultHandlers}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 public interface ResultActions {

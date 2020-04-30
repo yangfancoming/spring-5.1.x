@@ -23,7 +23,7 @@ import org.springframework.web.socket.server.HandshakeInterceptor;
  * xmlBeanDefinitionReaderCopies a subset or all HTTP session attributes and/or the HTTP session id
  * under the key {@link #HTTP_SESSION_ID_ATTR_NAME}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class HttpSessionHandshakeInterceptor implements HandshakeInterceptor {

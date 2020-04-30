@@ -52,7 +52,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  * including {@link org.springframework.web.socket.sockjs.client.SockJsClient
  * SockJsClient}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 public class WebSocketStompClient extends StompClientSupport implements SmartLifecycle {

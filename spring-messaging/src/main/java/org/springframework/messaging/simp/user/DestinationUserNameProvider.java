@@ -6,7 +6,7 @@ package org.springframework.messaging.simp.user;
  * {@link java.security.Principal#getName() getName()} isn't globally unique
  * and therefore not suited for use with "user" destinations.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0.1
  * @see org.springframework.messaging.simp.user.UserDestinationResolver
  */

@@ -21,7 +21,7 @@ import org.springframework.test.web.client.RequestMatcher;
  * {@link MockRestRequestMatchers#jsonPath(String, Matcher)} or
  * {@link MockRestRequestMatchers#jsonPath(String, Object...)}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @since 3.2
  */

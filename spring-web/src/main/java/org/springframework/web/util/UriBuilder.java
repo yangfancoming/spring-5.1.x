@@ -19,7 +19,7 @@ import org.springframework.util.MultiValueMap;
  * Typically obtained via {@link UriBuilderFactory} which serves as a central
  * component configured once and used to create many URLs.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see UriBuilderFactory
  * @see UriComponentsBuilder

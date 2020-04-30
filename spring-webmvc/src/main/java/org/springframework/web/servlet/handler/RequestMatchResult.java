@@ -12,7 +12,7 @@ import org.springframework.util.PathMatcher;
  * {@link MatchableHandlerMapping} with a method to further extract
  * URI template variables from the pattern.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.3.1
  */
 public class RequestMatchResult {

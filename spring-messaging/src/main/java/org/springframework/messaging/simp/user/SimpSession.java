@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * Represents a session of connected user.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 public interface SimpSession {

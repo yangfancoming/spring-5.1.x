@@ -24,7 +24,7 @@ import org.springframework.ui.Model;
  * set the HTTP status or headers, and for other more advanced options around
  * redirect scenarios.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public interface Rendering {

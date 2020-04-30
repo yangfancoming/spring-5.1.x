@@ -21,7 +21,7 @@ import org.springframework.web.server.ServerWebExchange;
 /**
  * A {@link RequestUpgradeStrategy} for use with Reactor Netty.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class ReactorNettyRequestUpgradeStrategy implements RequestUpgradeStrategy {

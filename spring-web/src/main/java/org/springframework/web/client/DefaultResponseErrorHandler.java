@@ -22,7 +22,7 @@ import org.springframework.util.FileCopyUtils;
  * method. Unknown status codes will be ignored by {@link #hasError(ClientHttpResponse)}.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
 
  * @since 3.0
  * @see RestTemplate#setErrorHandler

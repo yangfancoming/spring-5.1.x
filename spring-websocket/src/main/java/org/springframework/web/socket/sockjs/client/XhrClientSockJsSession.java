@@ -22,7 +22,7 @@ import org.springframework.web.socket.sockjs.transport.TransportType;
  * An extension of {@link AbstractClientSockJsSession} for use with HTTP
  * transports simulating a WebSocket session.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public class XhrClientSockJsSession extends AbstractClientSockJsSession {

@@ -27,7 +27,7 @@ import static org.springframework.web.servlet.mvc.method.RequestMappingInfo.path
  * Test fixture for {@link RequestMappingInfo} tests.
  *
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  */
 public class RequestMappingInfoTests {
 

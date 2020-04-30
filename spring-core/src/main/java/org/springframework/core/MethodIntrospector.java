@@ -21,7 +21,7 @@ import org.springframework.util.ReflectionUtils;
  * Typically, but not necessarily, used for finding annotated handler methods.
  *
 
- * @author Rossen Stoyanchev
+ *
  * @since 4.2.3
  */
 public final class MethodIntrospector {

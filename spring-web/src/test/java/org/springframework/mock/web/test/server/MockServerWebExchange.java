@@ -19,7 +19,7 @@ import org.springframework.web.server.session.WebSessionManager;
  *
  * See static factory methods to create an instance.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public final class MockServerWebExchange extends DefaultServerWebExchange {

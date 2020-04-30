@@ -31,7 +31,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
  * {@link org.springframework.web.client.AsyncRestTemplate} and related classes
  * have been deprecated at the same time.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.2
  */
 @SuppressWarnings("deprecation")

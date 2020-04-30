@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
  * except the content.
  *
  * @author Jeremy Grelle
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public class TransformedResource extends ByteArrayResource {

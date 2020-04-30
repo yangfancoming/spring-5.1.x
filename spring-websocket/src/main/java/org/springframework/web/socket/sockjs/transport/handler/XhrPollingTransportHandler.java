@@ -18,7 +18,7 @@ import org.springframework.web.socket.sockjs.transport.session.PollingSockJsSess
 /**
  * A {@link TransportHandler} based on XHR (long) polling.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class XhrPollingTransportHandler extends AbstractHttpSendingTransportHandler {

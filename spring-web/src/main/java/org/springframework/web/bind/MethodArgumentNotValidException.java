@@ -9,7 +9,7 @@ import org.springframework.validation.ObjectError;
 /**
  * Exception to be thrown when validation on an argument annotated with {@code @Valid} fails.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 3.1
  */
 @SuppressWarnings("serial")

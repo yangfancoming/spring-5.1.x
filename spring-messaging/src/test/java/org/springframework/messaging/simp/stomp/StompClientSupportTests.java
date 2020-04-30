@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 /**
  * Unit tests for {@link StompClientSupport}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class StompClientSupportTests {
 

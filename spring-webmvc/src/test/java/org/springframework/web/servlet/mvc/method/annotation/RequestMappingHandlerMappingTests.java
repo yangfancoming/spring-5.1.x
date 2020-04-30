@@ -40,7 +40,7 @@ import static org.mockito.Mockito.*;
 /**
  * Tests for {@link RequestMappingHandlerMapping}.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  */
 public class RequestMappingHandlerMappingTests {

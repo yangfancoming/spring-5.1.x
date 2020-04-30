@@ -39,7 +39,7 @@ import org.springframework.web.socket.server.HandshakeInterceptor;
  * also adapting the {@link HttpServletRequest} and {@link HttpServletResponse} to
  * {@link ServerHttpRequest} and {@link ServerHttpResponse}, respectively.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public class WebSocketHttpRequestHandler implements HttpRequestHandler, Lifecycle, ServletContextAware {

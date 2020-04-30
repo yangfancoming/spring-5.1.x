@@ -11,7 +11,7 @@ import org.springframework.test.util.JsonPathExpectationsHelper;
 /**
  * <a href="https://github.com/jayway/JsonPath">JsonPath</a> assertions.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see <a href="https://github.com/jayway/JsonPath">https://github.com/jayway/JsonPath</a>
  * @see JsonPathExpectationsHelper

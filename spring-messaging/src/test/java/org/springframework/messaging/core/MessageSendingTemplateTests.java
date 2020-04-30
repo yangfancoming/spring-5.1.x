@@ -27,7 +27,7 @@ import static org.junit.Assert.*;
 /**
  * Unit tests for {@link AbstractMessageSendingTemplate}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class MessageSendingTemplateTests {
 

@@ -28,7 +28,7 @@ import static org.junit.Assert.*;
  *
  * @author Arjen Poutsma
  * @author Sam Brannen
- * @author Rossen Stoyanchev
+ *
  */
 public class ResponseStatusExceptionResolverTests {
 

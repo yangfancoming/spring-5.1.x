@@ -32,7 +32,7 @@ import static org.mockito.Mockito.*;
  * Test fixture for
  * {@link org.springframework.web.socket.config.annotation.WebMvcStompWebSocketEndpointRegistration}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class WebMvcStompWebSocketEndpointRegistrationTests {
 

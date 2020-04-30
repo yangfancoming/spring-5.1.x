@@ -30,7 +30,7 @@ import org.springframework.web.servlet.support.WebContentGenerator;
 /**
  * Unit tests for CORS-related handling in {@link AbstractHandlerMapping}.
  * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ *
  */
 public class CorsAbstractHandlerMappingTests {
 

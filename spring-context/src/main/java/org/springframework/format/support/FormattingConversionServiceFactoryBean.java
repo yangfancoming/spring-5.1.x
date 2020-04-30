@@ -43,7 +43,7 @@ import org.springframework.util.StringValueResolver;
  *
  * @author Keith Donald
 
- * @author Rossen Stoyanchev
+ *
 
  * @since 3.0
  */

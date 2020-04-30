@@ -43,7 +43,7 @@ import org.springframework.web.util.UrlPathHelper;
  * This filter can also be used in a {@link #setRemoveOnly removeOnly} mode
  * where "Forwarded" and "X-Forwarded-*" headers are eliminated, and not used.
  *
- * @author Rossen Stoyanchev
+ *
  * @author Eddú Meléndez
  * @author Rob Winch
  * @since 4.3

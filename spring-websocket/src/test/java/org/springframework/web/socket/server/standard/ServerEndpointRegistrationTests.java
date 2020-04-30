@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 /**
  * Test fixture for {@link ServerEndpointRegistration}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class ServerEndpointRegistrationTests {
 

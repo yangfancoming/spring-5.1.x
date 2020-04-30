@@ -23,7 +23,7 @@ import org.springframework.util.Assert;
  * contracts that any subclass must adapt to while using {@link StompEncoder}
  * and {@link StompDecoder} to encode and decode STOMP messages.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 public abstract class StompClientSupport {

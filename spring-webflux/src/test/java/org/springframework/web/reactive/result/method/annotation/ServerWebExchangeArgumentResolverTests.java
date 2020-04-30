@@ -31,7 +31,7 @@ import static org.junit.Assert.fail;
 
 /**
  * Unit tests for {@link ServerWebExchangeArgumentResolver}.
- * @author Rossen Stoyanchev
+ *
  */
 public class ServerWebExchangeArgumentResolverTests {
 

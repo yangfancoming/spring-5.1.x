@@ -25,7 +25,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * {@link org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody}
  * and also {@code ResponseEntity<StreamingResponseBody>}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 public class StreamingResponseBodyReturnValueHandler implements HandlerMethodReturnValueHandler {

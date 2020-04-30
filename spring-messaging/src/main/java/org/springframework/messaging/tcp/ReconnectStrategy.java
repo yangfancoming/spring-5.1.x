@@ -7,7 +7,7 @@ import org.springframework.lang.Nullable;
 /**
  * A contract to determine the frequency of reconnect attempts after connection failure.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 @FunctionalInterface

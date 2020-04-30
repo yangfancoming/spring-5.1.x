@@ -18,7 +18,7 @@ import org.springframework.util.concurrent.ListenableFuture;
  * The main entry point for interceptors is {@link #intercept}.
  *
  * @author Jakub Narloch
- * @author Rossen Stoyanchev
+ *
  * @since 4.3
  * @see org.springframework.web.client.AsyncRestTemplate
  * @see org.springframework.http.client.support.InterceptingAsyncHttpAccessor

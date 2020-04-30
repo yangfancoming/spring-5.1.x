@@ -7,7 +7,7 @@ import java.nio.ByteBuffer;
 /**
  * A binary WebSocket message.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public final class BinaryMessage extends AbstractWebSocketMessage<ByteBuffer> {

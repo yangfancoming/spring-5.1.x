@@ -51,7 +51,7 @@ import org.springframework.util.StringUtils;
  * </ul>
  *
  * @author Andy Clement
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see PathContainer
  */

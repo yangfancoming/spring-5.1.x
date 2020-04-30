@@ -24,7 +24,7 @@ import org.springframework.web.server.ServerWebExchange;
  * The resolver gets involved only if the "Accept-Encoding" request header
  * contains the value "gzip" indicating the client accepts gzipped responses.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @deprecated as of 5.1, in favor of using {@link EncodedResourceResolver}
  */

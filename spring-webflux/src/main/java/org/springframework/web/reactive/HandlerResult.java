@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
 /**
  * Represent the result of the invocation of a handler or a handler method.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  */
 public class HandlerResult {

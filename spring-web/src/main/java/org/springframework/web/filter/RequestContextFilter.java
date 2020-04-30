@@ -26,7 +26,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  *
 
  * @author Rod Johnson
- * @author Rossen Stoyanchev
+ *
  * @since 2.0
  * @see org.springframework.context.i18n.LocaleContextHolder
  * @see org.springframework.web.context.request.RequestContextHolder

@@ -25,7 +25,7 @@ import org.springframework.util.Assert;
  * Subclasses are responsible for validating each request by matching it to
  * to expectations following the order of declaration or not.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 4.3
  */

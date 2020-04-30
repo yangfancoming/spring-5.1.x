@@ -14,7 +14,7 @@ import org.springframework.web.server.ServerWebExchange;
  * handshake request. For a SockJS endpoint it could mean handling all HTTP
  * requests defined in the SockJS protocol.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  * @see org.springframework.web.reactive.socket.server.support.HandshakeWebSocketService
  */

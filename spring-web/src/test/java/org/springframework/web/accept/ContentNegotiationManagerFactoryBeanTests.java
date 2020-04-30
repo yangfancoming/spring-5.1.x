@@ -24,7 +24,7 @@ import static org.junit.Assert.*;
 /**
  * Test fixture for {@link ContentNegotiationManagerFactoryBean} tests.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class ContentNegotiationManagerFactoryBeanTests {
 

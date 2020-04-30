@@ -12,7 +12,7 @@ import org.springframework.messaging.MessageChannel;
  * {@link MessageChannel}.
  *
  * @author Mark Fisher
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  * @see Message
  * @see MessageChannel

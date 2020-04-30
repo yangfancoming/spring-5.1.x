@@ -9,7 +9,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.StubMvcResult;
 
 /**
- * @author Rossen Stoyanchev
+ *
  */
 public class ContentResultMatchersTests {
 

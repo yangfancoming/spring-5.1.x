@@ -26,7 +26,7 @@ import org.springframework.util.MultiValueMap;
  * properties like {@link #getPrincipal()}, consider using
  * {@link ServerWebExchange#mutate()} instead.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.0
  *
  * @see ServerWebExchange#mutate()

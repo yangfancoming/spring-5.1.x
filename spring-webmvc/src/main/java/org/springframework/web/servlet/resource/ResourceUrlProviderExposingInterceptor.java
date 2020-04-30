@@ -12,7 +12,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  * An interceptor that exposes the {@link ResourceUrlProvider} instance it
  * is configured with as a request attribute.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.1
  */
 public class ResourceUrlProviderExposingInterceptor extends HandlerInterceptorAdapter {

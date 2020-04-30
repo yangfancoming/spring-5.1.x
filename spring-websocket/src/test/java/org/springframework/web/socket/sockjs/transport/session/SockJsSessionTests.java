@@ -32,7 +32,7 @@ import static org.mockito.BDDMockito.willThrow;
 /**
  * Test fixture for {@link AbstractSockJsSession}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class SockJsSessionTests extends AbstractSockJsSessionTests<TestSockJsSession> {
 

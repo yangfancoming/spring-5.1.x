@@ -11,7 +11,7 @@ import org.springframework.mock.web.MockHttpServletRequest;
 /**
  * Test fixture for {@link DefaultMvcResult}.
  *
- * @author Rossen Stoyanchev
+ *
  */
 public class DefaultMvcResultTests {
 

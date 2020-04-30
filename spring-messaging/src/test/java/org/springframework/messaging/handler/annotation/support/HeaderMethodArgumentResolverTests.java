@@ -28,7 +28,7 @@ import static org.junit.Assert.*;
 /**
  * Test fixture for {@link HeaderMethodArgumentResolver} tests.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 4.0
  */

@@ -17,7 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  * to {@code true}, or if set to {@code false}, the {@link #start()} and #stop methods can
  * be invoked manually.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public abstract class ConnectionManagerSupport implements SmartLifecycle {

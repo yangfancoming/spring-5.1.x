@@ -10,7 +10,7 @@ import org.springframework.messaging.Message;
  * Strategy interface to handle the value returned from the invocation of a
  * method handling a {@link Message}.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.0
  */
 public interface HandlerMethodReturnValueHandler {

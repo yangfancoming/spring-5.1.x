@@ -26,7 +26,7 @@ package org.springframework.test.web.servlet;
  * mockMvc.perform(get("/form")).andDo(print());
  * </pre>
  *
- * @author Rossen Stoyanchev
+ *
  * @author Sam Brannen
  * @since 3.2
  */

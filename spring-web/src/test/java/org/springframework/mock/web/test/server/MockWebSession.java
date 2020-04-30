@@ -23,7 +23,7 @@ import org.springframework.web.server.session.InMemoryWebSessionStore;
  * method of the {@code MockServerWebExchange} builder, eliminating the need
  * to use {@code WebSessionManager} or {@code WebSessionStore} altogether.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 5.1
  */
 public class MockWebSession implements WebSession {

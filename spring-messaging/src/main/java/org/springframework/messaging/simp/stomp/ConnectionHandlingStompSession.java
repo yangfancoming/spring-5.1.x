@@ -13,7 +13,7 @@ import org.springframework.util.concurrent.ListenableFuture;
  * A ConnectionHandlingStompSession can be used with any TCP or WebSocket
  * library that is adapted to the {@code TcpConnectionHandler} contract.
  *
- * @author Rossen Stoyanchev
+ *
  * @since 4.2
  */
 public interface ConnectionHandlingStompSession extends StompSession, TcpConnectionHandler<byte[]> {

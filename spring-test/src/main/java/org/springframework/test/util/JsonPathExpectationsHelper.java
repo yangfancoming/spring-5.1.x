@@ -21,7 +21,7 @@ import org.springframework.util.StringUtils;
  * Based on the <a href="https://github.com/jayway/JsonPath">JsonPath</a>
  * project: requiring version 0.9+, with 1.1+ strongly recommended.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @author Craig Andrews
  * @author Sam Brannen

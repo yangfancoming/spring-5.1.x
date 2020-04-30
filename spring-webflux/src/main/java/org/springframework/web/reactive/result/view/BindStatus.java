@@ -26,7 +26,7 @@ import org.springframework.web.util.HtmlUtils;
  * error codes and messages. For simplicity's sake and to be able to use the same
  * tags and macros, the same status class is used for both scenarios.
  *
- * @author Rossen Stoyanchev
+ *
 
  * @since 5.0
  * @see RequestContext#getBindStatus

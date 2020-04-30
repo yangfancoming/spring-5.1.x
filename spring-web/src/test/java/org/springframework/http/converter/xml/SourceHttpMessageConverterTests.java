@@ -39,7 +39,7 @@ import static org.xmlunit.matchers.CompareMatcher.*;
 
 /**
  * @author Arjen Poutsma
- * @author Rossen Stoyanchev
+ *
  */
 public class SourceHttpMessageConverterTests {
 

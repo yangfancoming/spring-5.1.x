@@ -36,7 +36,7 @@ import org.springframework.util.MimeType;
  * Abstract base class for Jackson 2.9 decoding, leveraging non-blocking parsing.
  *
  * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
+ *
  * @author Arjen Poutsma
  * @since 5.0
  * @see <a href="https://github.com/FasterXML/jackson-core/issues/57" target="_blank">Add support for non-blocking ("async") JSON parsing</a>
