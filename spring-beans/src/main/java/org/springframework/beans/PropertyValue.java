@@ -152,8 +152,7 @@ public class PropertyValue extends BeanMetadataAttributeAccessor implements Seri
 	// Implementation of 【JDK】 interface
 	//---------------------------------------------------------------------
 	/**
-	 * Return the converted value of this property value,
-	 * after processed type conversion.
+	 * Return the converted value of this property value, after processed type conversion.
 	 */
 	@Nullable
 	public synchronized Object getConvertedValue() {

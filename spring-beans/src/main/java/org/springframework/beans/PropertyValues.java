@@ -58,11 +58,9 @@ public interface PropertyValues extends Iterable<PropertyValue> {
 	PropertyValue getPropertyValue(String propertyName);
 
 	/**
-	 * Return the changes since the previous PropertyValues.
-	 * Subclasses should also override {@code equals}.
+	 * Return the changes since the previous PropertyValues.Subclasses should also override {@code equals}.
 	 * @param old old property values
-	 * @return the updated or new properties.
-	 * Return empty PropertyValues if there are no changes.
+	 * @return the updated or new properties.Return empty PropertyValues if there are no changes.
 	 * @see Object#equals
 	 */
 	PropertyValues changesSince(PropertyValues old);

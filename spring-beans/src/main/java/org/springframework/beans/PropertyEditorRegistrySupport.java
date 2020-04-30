@@ -96,7 +96,6 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 	@Nullable
 	private Map<Class<?>, PropertyEditor> customEditorCache;
 
-
 	/**
 	 * Specify a Spring 3.0 ConversionService to use for converting
 	 * property values, as an alternative to JavaBeans PropertyEditors.
@@ -113,14 +112,11 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 		return this.conversionService;
 	}
 
-
 	//---------------------------------------------------------------------
 	// Management of default editors
 	//---------------------------------------------------------------------
-
 	/**
-	 * Activate the default editors for this registry instance,
-	 * allowing for lazily registering default editors when needed.
+	 * Activate the default editors for this registry instance,allowing for lazily registering default editors when needed.
 	 */
 	protected void registerDefaultEditors() {
 		this.defaultEditorsActive = true;
@@ -129,9 +125,8 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 	/**
 	 * Activate config value editors which are only intended for configuration purposes,
 	 * such as {@link org.springframework.beans.propertyeditors.StringArrayPropertyEditor}.
-	 * Those editors are not registered by default simply because they are in
-	 * general inappropriate for data binding purposes. Of course, you may register
-	 * them individually in any case, through {@link #registerCustomEditor}.
+	 * Those editors are not registered by default simply because they are in general inappropriate for data binding purposes.
+	 * Of course, you may register them individually in any case, through {@link #registerCustomEditor}.
 	 */
 	public void useConfigValueEditors() {
 		this.configValueEditorsActive = true;
@@ -139,9 +134,8 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 
 	/**
 	 * Override the default editor for the specified type with the given property editor.
-	 * Note that this is different from registering a custom editor in that the editor
-	 * semantically still is a default editor. A ConversionService will override such a
-	 * default editor, whereas custom editors usually override the ConversionService.
+	 * Note that this is different from registering a custom editor in that the editor semantically still is a default editor.
+	 * A ConversionService will override such a default editor, whereas custom editors usually override the ConversionService.
 	 * @param requiredType the type of the property
 	 * @param propertyEditor the editor to register
 	 * @see #registerCustomEditor(Class, PropertyEditor)
@@ -261,11 +255,9 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 		target.overriddenDefaultEditors = this.overriddenDefaultEditors;
 	}
 
-
 	//---------------------------------------------------------------------
 	// Management of custom editors
 	//---------------------------------------------------------------------
-
 	@Override
 	public void registerCustomEditor(Class<?> requiredType, PropertyEditor propertyEditor) {
 		registerCustomEditor(requiredType, null, propertyEditor);

@@ -12,9 +12,9 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Helper class for calculating property matches, according to a configurable
- * distance. Provide the list of potential matches and an easy way to generate
- * an error message. Works for both java bean properties and fields.
+ * Helper class for calculating property matches, according to a configurable distance.
+ * Provide the list of potential matches and an easy way to generate an error message.
+ * Works for both java bean properties and fields.
  * Mainly for use within the framework and in particular the binding facility.
  * @since 2.0
  * @see #forProperty(String, Class)
@@ -26,7 +26,6 @@ public abstract class PropertyMatches {
 	public static final int DEFAULT_MAX_DISTANCE = 2;
 
 	// Static factory methods
-
 	/**
 	 * Create PropertyMatches for the given bean property.
 	 * @param propertyName the name of the property to find possible matches for
@@ -95,8 +94,7 @@ public abstract class PropertyMatches {
 	}
 
 	/**
-	 * Build an error message for the given invalid property name,
-	 * indicating the possible property matches.
+	 * Build an error message for the given invalid property name,indicating the possible property matches.
 	 */
 	public abstract String buildErrorMessage();
 
@@ -154,9 +152,7 @@ public abstract class PropertyMatches {
 		return d[s1.length()][s2.length()];
 	}
 
-
 	// Concrete subclasses
-
 	private static class BeanPropertyMatches extends PropertyMatches {
 
 		public BeanPropertyMatches(String propertyName, Class<?> beanClass, int maxDistance) {
