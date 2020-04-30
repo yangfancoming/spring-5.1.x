@@ -18,7 +18,7 @@
                                 2.autowire 自动装配 
                                 
     chapter2-0-2  spring Bean的装配 注解 方式
-    chapter2-1-0  spring bean装配 源码示例  BeanFactoryAware BeanPostProcessor  FactoryBean
+    chapter2-1-0 
 # aop 模块   
     chapter4-0-0  spring AOP
     chapter4-0-4  spring AOP 实现自定义的TargetSource

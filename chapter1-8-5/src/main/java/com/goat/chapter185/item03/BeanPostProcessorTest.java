@@ -12,15 +12,20 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
  */
 public class BeanPostProcessorTest implements BeanPostProcessor {
 
+	public BeanPostProcessorTest() {
+		super();
+		System.out.println("这是 BeanPostProcessor 实现类构造器！！");
+	}
+
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-		System.out.println("postProcessBeforeInitialization...Before");
+		System.out.println("postProcessBeforeInitialization...Before" + bean +  beanName);
 		return null;
 	}
 
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-		System.out.println("postProcessAfterInitialization...After");
+		System.out.println("postProcessAfterInitialization...After" + bean +  beanName);
 		return null;
 	}
 }
