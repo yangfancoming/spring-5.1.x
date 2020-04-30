@@ -42,11 +42,9 @@ public interface Resource extends InputStreamSource {
 
 	/**
 	 * Indicate whether non-empty contents of this resource can be read via {@link #getInputStream()}.
-	 * Will be {@code true} for typical resource descriptors that exist
-	 * since it strictly implies {@link #exists()} semantics as of 5.1.
+	 * Will be {@code true} for typical resource descriptors that exist since it strictly implies {@link #exists()} semantics as of 5.1.
 	 * Note that actual content reading may still fail when attempted.
-	 * However, a value of {@code false} is a definitive indication
-	 * that the resource content cannot be read.
+	 * However, a value of {@code false} is a definitive indication that the resource content cannot be read.
 	 * @see #getInputStream()
 	 * @see #exists()
 	 */
@@ -129,6 +127,7 @@ public interface Resource extends InputStreamSource {
 
 	/**
 	 * Create a resource relative to this resource.
+	 * 根据当前资源创建一个相对资源
 	 * @param relativePath the relative path (relative to this resource)
 	 * @return the resource handle for the relative resource
 	 * @throws IOException if the relative resource cannot be determined
@@ -143,6 +142,7 @@ public interface Resource extends InputStreamSource {
 	String getFilename();
 
 	/**
+	 *  在错误处理中的打印信息
 	 * Return a description for this resource, to be used for error output when working with the resource.
 	 * Implementations are also encouraged to return this value from their {@code toString} method.
 	 * @see Object#toString()
