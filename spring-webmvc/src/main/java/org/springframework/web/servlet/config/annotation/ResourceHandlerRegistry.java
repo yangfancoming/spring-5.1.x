@@ -33,8 +33,6 @@ import org.springframework.web.util.UrlPathHelper;
  * Then use additional methods on the returned {@link ResourceHandlerRegistration} to add one or more
  * locations from which to serve static content from (e.g. {{@code "/"},
  * {@code "classpath:/META-INF/public-web-resources/"}}) or to specify a cache period for served resources.
- *
- * @author Rossen Stoyanchev
  * @since 3.1
  * @see DefaultServletHandlerConfigurer
  */
@@ -54,7 +52,6 @@ public class ResourceHandlerRegistry {
 
 	private int order = Ordered.LOWEST_PRECEDENCE - 1;
 
-
 	/**
 	 * Create a new resource handler registry for the given application context.
 	 * @param applicationContext the Spring application context
@@ -71,21 +68,16 @@ public class ResourceHandlerRegistry {
 	 * @param contentNegotiationManager the content negotiation manager to use
 	 * @since 4.3
 	 */
-	public ResourceHandlerRegistry(ApplicationContext applicationContext, ServletContext servletContext,
-			@Nullable ContentNegotiationManager contentNegotiationManager) {
-
+	public ResourceHandlerRegistry(ApplicationContext applicationContext, ServletContext servletContext,@Nullable ContentNegotiationManager contentNegotiationManager) {
 		this(applicationContext, servletContext, contentNegotiationManager, null);
 	}
 
 	/**
-	 * A variant of
-	 * {@link #ResourceHandlerRegistry(ApplicationContext, ServletContext, ContentNegotiationManager)}
+	 * A variant of {@link #ResourceHandlerRegistry(ApplicationContext, ServletContext, ContentNegotiationManager)}
 	 * that also accepts the {@link UrlPathHelper} used for mapping requests to static resources.
 	 * @since 4.3.13
 	 */
-	public ResourceHandlerRegistry(ApplicationContext applicationContext, ServletContext servletContext,
-			@Nullable ContentNegotiationManager contentNegotiationManager, @Nullable UrlPathHelper pathHelper) {
-
+	public ResourceHandlerRegistry(ApplicationContext applicationContext, ServletContext servletContext,@Nullable ContentNegotiationManager contentNegotiationManager, @Nullable UrlPathHelper pathHelper) {
 		Assert.notNull(applicationContext, "ApplicationContext is required");
 		this.applicationContext = applicationContext;
 		this.servletContext = servletContext;
@@ -93,19 +85,16 @@ public class ResourceHandlerRegistry {
 		this.pathHelper = pathHelper;
 	}
 
-
 	/**
 	 * Add a resource handler for serving static resources based on the specified URL path patterns.
-	 * The handler will be invoked for every incoming request that matches to one of the specified
-	 * path patterns.
+	 * The handler will be invoked for every incoming request that matches to one of the specified path patterns.
 	 * Patterns like {@code "/static/**"} or {@code "/css/{filename:\\w+\\.css}"} are allowed.
 	 * See {@link org.springframework.util.AntPathMatcher} for more details on the syntax.
-	 * @return a {@link ResourceHandlerRegistration} to use to further configure the
-	 * registered resource handler
+	 * @return a {@link ResourceHandlerRegistration} to use to further configure the registered resource handler
 	 */
 	public ResourceHandlerRegistration addResourceHandler(String... pathPatterns) {
 		ResourceHandlerRegistration registration = new ResourceHandlerRegistration(pathPatterns);
-		this.registrations.add(registration);
+		registrations.add(registration);
 		return registration;
 	}
 
@@ -113,7 +102,7 @@ public class ResourceHandlerRegistry {
 	 * Whether a resource handler has already been registered for the given path pattern.
 	 */
 	public boolean hasMappingForPattern(String pathPattern) {
-		for (ResourceHandlerRegistration registration : this.registrations) {
+		for (ResourceHandlerRegistration registration : registrations) {
 			if (Arrays.asList(registration.getPathPatterns()).contains(pathPattern)) {
 				return true;
 			}
@@ -132,27 +121,23 @@ public class ResourceHandlerRegistry {
 	}
 
 	/**
-	 * Return a handler mapping with the mapped resource handlers; or {@code null} in case
-	 * of no registrations.
+	 * Return a handler mapping with the mapped resource handlers; or {@code null} in case of no registrations.
 	 */
 	@Nullable
 	protected AbstractHandlerMapping getHandlerMapping() {
-		if (this.registrations.isEmpty()) {
-			return null;
-		}
-
+		if (registrations.isEmpty()) return null;
 		Map<String, HttpRequestHandler> urlMap = new LinkedHashMap<>();
-		for (ResourceHandlerRegistration registration : this.registrations) {
+		for (ResourceHandlerRegistration registration : registrations) {
 			for (String pathPattern : registration.getPathPatterns()) {
 				ResourceHttpRequestHandler handler = registration.getRequestHandler();
-				if (this.pathHelper != null) {
-					handler.setUrlPathHelper(this.pathHelper);
+				if (pathHelper != null) {
+					handler.setUrlPathHelper(pathHelper);
 				}
-				if (this.contentNegotiationManager != null) {
-					handler.setContentNegotiationManager(this.contentNegotiationManager);
+				if (contentNegotiationManager != null) {
+					handler.setContentNegotiationManager(contentNegotiationManager);
 				}
-				handler.setServletContext(this.servletContext);
-				handler.setApplicationContext(this.applicationContext);
+				handler.setServletContext(servletContext);
+				handler.setApplicationContext(applicationContext);
 				try {
 					handler.afterPropertiesSet();
 				}
@@ -164,7 +149,7 @@ public class ResourceHandlerRegistry {
 		}
 
 		SimpleUrlHandlerMapping handlerMapping = new SimpleUrlHandlerMapping();
-		handlerMapping.setOrder(this.order);
+		handlerMapping.setOrder(order);
 		handlerMapping.setUrlMap(urlMap);
 		return handlerMapping;
 	}

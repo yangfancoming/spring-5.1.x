@@ -11,9 +11,6 @@ import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 /**
  * Assist with the registration of a single view controller.
- *
- * @author Rossen Stoyanchev
- * @author Keith Donald
  * @since 3.1
  */
 public class ViewControllerRegistration {
@@ -28,10 +25,8 @@ public class ViewControllerRegistration {
 		this.urlPath = urlPath;
 	}
 
-
 	/**
-	 * Set the status code to set on the response. Optional.
-	 * If not set the response status will be 200 (OK).
+	 * Set the status code to set on the response. Optional.If not set the response status will be 200 (OK).
 	 */
 	public ViewControllerRegistration setStatusCode(HttpStatus statusCode) {
 		this.controller.setStatusCode(statusCode);
@@ -40,10 +35,8 @@ public class ViewControllerRegistration {
 
 	/**
 	 * Set the view name to return. Optional.
-	 * If not specified, the view controller will return {@code null} as the
-	 * view name in which case the configured {@link RequestToViewNameTranslator}
-	 * will select the view name. The {@code DefaultRequestToViewNameTranslator}
-	 * for example translates "/foo/bar" to "foo/bar".
+	 * If not specified, the view controller will return {@code null} as the view name in which case the configured {@link RequestToViewNameTranslator}
+	 * will select the view name. The {@code DefaultRequestToViewNameTranslator} for example translates "/foo/bar" to "foo/bar".
 	 * @see org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator
 	 */
 	public void setViewName(String viewName) {

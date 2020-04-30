@@ -21,17 +21,13 @@ import org.springframework.web.servlet.resource.WebJarsResourceResolver;
 
 /**
  * Assists with the registration of resource resolvers and transformers.
- *
- * @author Rossen Stoyanchev
  * @since 4.1
  */
 public class ResourceChainRegistration {
 
 	private static final String DEFAULT_CACHE_NAME = "spring-resource-chain-cache";
 
-	private static final boolean isWebJarsAssetLocatorPresent = ClassUtils.isPresent(
-			"org.webjars.WebJarAssetLocator", ResourceChainRegistration.class.getClassLoader());
-
+	private static final boolean isWebJarsAssetLocatorPresent = ClassUtils.isPresent("org.webjars.WebJarAssetLocator", ResourceChainRegistration.class.getClassLoader());
 
 	private final List<ResourceResolver> resolvers = new ArrayList<>(4);
 
@@ -45,7 +41,6 @@ public class ResourceChainRegistration {
 
 	private boolean hasWebjarsResolver;
 
-
 	public ResourceChainRegistration(boolean cacheResources) {
 		this(cacheResources, (cacheResources ? new ConcurrentMapCache(DEFAULT_CACHE_NAME) : null));
 	}
@@ -58,7 +53,6 @@ public class ResourceChainRegistration {
 		}
 	}
 
-
 	/**
 	 * Add a resource resolver to the chain.
 	 * @param resolver the resolver to add
@@ -69,11 +63,9 @@ public class ResourceChainRegistration {
 		this.resolvers.add(resolver);
 		if (resolver instanceof VersionResourceResolver) {
 			this.hasVersionResolver = true;
-		}
-		else if (resolver instanceof PathResourceResolver) {
+		}else if (resolver instanceof PathResourceResolver) {
 			this.hasPathResolver = true;
-		}
-		else if (resolver instanceof WebJarsResourceResolver) {
+		}else if (resolver instanceof WebJarsResourceResolver) {
 			this.hasWebjarsResolver = true;
 		}
 		return this;

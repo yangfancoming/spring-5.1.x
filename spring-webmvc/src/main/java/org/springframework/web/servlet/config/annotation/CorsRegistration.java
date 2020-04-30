@@ -7,12 +7,7 @@ import java.util.Arrays;
 import org.springframework.web.cors.CorsConfiguration;
 
 /**
- * Assists with the creation of a {@link CorsConfiguration} instance for a given
- * URL path pattern.
- *
- * @author Sebastien Deleuze
- * @author Rossen Stoyanchev
- * @author Sam Brannen
+ * Assists with the creation of a {@link CorsConfiguration} instance for a given URL path pattern.
  * @since 4.2
  * @see CorsConfiguration
  * @see CorsRegistry
@@ -23,13 +18,11 @@ public class CorsRegistration {
 
 	private final CorsConfiguration config;
 
-
 	public CorsRegistration(String pathPattern) {
 		this.pathPattern = pathPattern;
 		// Same implicit default values as the @CrossOrigin annotation + allows simple methods
 		this.config = new CorsConfiguration().applyPermitDefaultValues();
 	}
-
 
 	/**
 	 * The list of allowed origins that be specific origins, e.g.
@@ -37,12 +30,10 @@ public class CorsRegistration {
 	 * A matched origin is listed in the {@code Access-Control-Allow-Origin}
 	 * response header of preflight actual CORS requests.
 	 * By default, all origins are allowed.
-	 * <strong>Note:</strong> CORS checks use values from "Forwarded"
-	 * (<a href="https://tools.ietf.org/html/rfc7239">RFC 7239</a>),
+	 * <strong>Note:</strong> CORS checks use values from "Forwarded"  (<a href="https://tools.ietf.org/html/rfc7239">RFC 7239</a>),
 	 * "X-Forwarded-Host", "X-Forwarded-Port", and "X-Forwarded-Proto" headers,
 	 * if present, in order to reflect the client-originated address.
-	 * Consider using the {@code ForwardedHeaderFilter} in order to choose from a
-	 * central place whether to extract and use, or to discard such headers.
+	 * Consider using the {@code ForwardedHeaderFilter} in order to choose from a  central place whether to extract and use, or to discard such headers.
 	 * See the Spring Framework reference for more on this filter.
 	 */
 	public CorsRegistration allowedOrigins(String... origins) {
@@ -54,8 +45,7 @@ public class CorsRegistration {
 	/**
 	 * Set the HTTP methods to allow, e.g. {@code "GET"}, {@code "POST"}, etc.
 	 * The special value {@code "*"} allows all methods.
-	 * By default "simple" methods, i.e. {@code GET}, {@code HEAD}, and
-	 * {@code POST} are allowed.
+	 * By default "simple" methods, i.e. {@code GET}, {@code HEAD}, and {@code POST} are allowed.
 	 */
 	public CorsRegistration allowedMethods(String... methods) {
 		this.config.setAllowedMethods(Arrays.asList(methods));
@@ -64,8 +54,7 @@ public class CorsRegistration {
 
 	/**
 	 * Set the list of headers that a preflight request can list as allowed
-	 * for use during an actual request. The special value {@code "*"} may be
-	 * used to allow all headers.
+	 * for use during an actual request. The special value {@code "*"} may be  used to allow all headers.
 	 * A header name is not required to be listed if it is one of:
 	 * {@code Cache-Control}, {@code Content-Language}, {@code Expires},
 	 * {@code Last-Modified}, or {@code Pragma} as per the CORS spec.
@@ -78,9 +67,8 @@ public class CorsRegistration {
 
 	/**
 	 * Set the list of response headers other than "simple" headers, i.e.
-	 * {@code Cache-Control}, {@code Content-Language}, {@code Content-Type},
-	 * {@code Expires}, {@code Last-Modified}, or {@code Pragma}, that an
-	 * actual response might have and can be exposed.
+	 * {@code Cache-Control}, {@code Content-Language}, {@code Content-Type},{@code Expires}, {@code Last-Modified}, or {@code Pragma},
+	 * that an actual response might have and can be exposed.
 	 * Note that {@code "*"} is not supported on this property.
 	 * By default this is not set.
 	 */
@@ -108,8 +96,7 @@ public class CorsRegistration {
 	}
 
 	/**
-	 * Configure how long in seconds the response from a pre-flight request
-	 * can be cached by clients.
+	 * Configure how long in seconds the response from a pre-flight request can be cached by clients.
 	 * By default this is set to 1800 seconds (30 minutes).
 	 */
 	public CorsRegistration maxAge(long maxAge) {

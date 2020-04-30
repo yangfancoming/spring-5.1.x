@@ -11,8 +11,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 /**
  * Assist with the registration of a single redirect view controller.
- *
- * @author Rossen Stoyanchev
  * @since 4.1
  */
 public class RedirectViewControllerRegistration {
@@ -23,7 +21,6 @@ public class RedirectViewControllerRegistration {
 
 	private final ParameterizableViewController controller = new ParameterizableViewController();
 
-
 	public RedirectViewControllerRegistration(String urlPath, String redirectUrl) {
 		Assert.notNull(urlPath, "'urlPath' is required.");
 		Assert.notNull(redirectUrl, "'redirectUrl' is required.");
@@ -33,11 +30,9 @@ public class RedirectViewControllerRegistration {
 		this.controller.setView(this.redirectView);
 	}
 
-
 	/**
 	 * Set the specific redirect 3xx status code to use.
-	 * If not set, {@link org.springframework.web.servlet.view.RedirectView}
-	 * will select {@code HttpStatus.MOVED_TEMPORARILY (302)} by default.
+	 * If not set, {@link org.springframework.web.servlet.view.RedirectView} will select {@code HttpStatus.MOVED_TEMPORARILY (302)} by default.
 	 */
 	public RedirectViewControllerRegistration setStatusCode(HttpStatus statusCode) {
 		Assert.isTrue(statusCode.is3xxRedirection(), "Not a redirect status code");
@@ -46,9 +41,7 @@ public class RedirectViewControllerRegistration {
 	}
 
 	/**
-	 * Whether to interpret a given redirect URL that starts with a slash ("/")
-	 * as relative to the current ServletContext, i.e. as relative to the web
-	 * application root.
+	 * Whether to interpret a given redirect URL that starts with a slash ("/") as relative to the current ServletContext, i.e. as relative to the web application root.
 	 * Default is {@code true}.
 	 */
 	public RedirectViewControllerRegistration setContextRelative(boolean contextRelative) {
@@ -57,8 +50,7 @@ public class RedirectViewControllerRegistration {
 	}
 
 	/**
-	 * Whether to propagate the query parameters of the current request through
-	 * to the target redirect URL.
+	 * Whether to propagate the query parameters of the current request through to the target redirect URL.
 	 * Default is {@code false}.
 	 */
 	public RedirectViewControllerRegistration setKeepQueryParams(boolean propagate) {

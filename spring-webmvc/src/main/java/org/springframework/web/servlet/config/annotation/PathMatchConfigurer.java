@@ -20,8 +20,6 @@ import org.springframework.web.util.UrlPathHelper;
  * <li>ViewControllerMappings</li>
  * <li>ResourcesMappings</li>
  * </ul>
- *
- * @author Brian Clozel
  * @since 4.0.3
  * @see org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
  * @see org.springframework.web.servlet.handler.SimpleUrlHandlerMapping
@@ -46,10 +44,8 @@ public class PathMatchConfigurer {
 	@Nullable
 	private Map<String, Predicate<Class<?>>> pathPrefixes;
 
-
 	/**
-	 * Whether to use suffix pattern match (".*") when matching patterns to
-	 * requests. If enabled a method mapped to "/users" also matches to "/users.*".
+	 * Whether to use suffix pattern match (".*") when matching patterns to requests. If enabled a method mapped to "/users" also matches to "/users.*".
 	 * By default this is set to {@code true}.
 	 * @see #registeredSuffixPatternMatch
 	 */
@@ -85,8 +81,7 @@ public class PathMatchConfigurer {
 	/**
 	 * Set the UrlPathHelper to use for resolution of lookup paths.
 	 * Use this to override the default UrlPathHelper with a custom subclass,
-	 * or to share common UrlPathHelper settings across multiple HandlerMappings
-	 * and MethodNameResolvers.
+	 * or to share common UrlPathHelper settings across multiple HandlerMappings and MethodNameResolvers.
 	 */
 	public PathMatchConfigurer setUrlPathHelper(UrlPathHelper urlPathHelper) {
 		this.urlPathHelper = urlPathHelper;
@@ -94,8 +89,7 @@ public class PathMatchConfigurer {
 	}
 
 	/**
-	 * Set the PathMatcher implementation to use for matching URL paths
-	 * against registered URL patterns. Default is AntPathMatcher.
+	 * Set the PathMatcher implementation to use for matching URL paths against registered URL patterns. Default is AntPathMatcher.
 	 * @see org.springframework.util.AntPathMatcher
 	 */
 	public PathMatchConfigurer setPathMatcher(PathMatcher pathMatcher) {
@@ -115,13 +109,10 @@ public class PathMatchConfigurer {
 	 * @since 5.1
 	 */
 	public PathMatchConfigurer addPathPrefix(String prefix, Predicate<Class<?>> predicate) {
-		if (this.pathPrefixes == null) {
-			this.pathPrefixes = new LinkedHashMap<>();
-		}
+		if (this.pathPrefixes == null) this.pathPrefixes = new LinkedHashMap<>();
 		this.pathPrefixes.put(prefix, predicate);
 		return this;
 	}
-
 
 	@Nullable
 	public Boolean isUseSuffixPatternMatch() {

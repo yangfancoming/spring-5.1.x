@@ -20,9 +20,6 @@ import org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler
  * Since this handler is configured at the lowest precedence, effectively
  * it allows all other handler mappings to handle the request, and if none
  * of them do, this handler can forward it to the "default" Servlet.
- *
- * @author Rossen Stoyanchev
-
  * @since 3.1
  * @see DefaultServletHttpRequestHandler
  */
@@ -33,7 +30,6 @@ public class DefaultServletHandlerConfigurer {
 	@Nullable
 	private DefaultServletHttpRequestHandler handler;
 
-
 	/**
 	 * Create a {@link DefaultServletHandlerConfigurer} instance.
 	 * @param servletContext the ServletContext to use.
@@ -42,7 +38,6 @@ public class DefaultServletHandlerConfigurer {
 		Assert.notNull(servletContext, "ServletContext is required");
 		this.servletContext = servletContext;
 	}
-
 
 	/**
 	 * Enable forwarding to the "default" Servlet.
@@ -57,8 +52,7 @@ public class DefaultServletHandlerConfigurer {
 
 	/**
 	 * Enable forwarding to the "default" Servlet identified by the given name.
-	 * This is useful when the default Servlet cannot be autodetected,
-	 * for example when it has been manually configured.
+	 * This is useful when the default Servlet cannot be autodetected,for example when it has been manually configured.
 	 * @see DefaultServletHttpRequestHandler
 	 */
 	public void enable(@Nullable String defaultServletName) {
@@ -69,19 +63,14 @@ public class DefaultServletHandlerConfigurer {
 		this.handler.setServletContext(this.servletContext);
 	}
 
-
 	/**
 	 * Return a handler mapping instance ordered at {@link Integer#MAX_VALUE} containing the
-	 * {@link DefaultServletHttpRequestHandler} instance mapped to {@code "/**"};
-	 * or {@code null} if default servlet handling was not been enabled.
+	 * {@link DefaultServletHttpRequestHandler} instance mapped to {@code "/**"};or {@code null} if default servlet handling was not been enabled.
 	 * @since 4.3.12
 	 */
 	@Nullable
 	protected SimpleUrlHandlerMapping buildHandlerMapping() {
-		if (this.handler == null) {
-			return null;
-		}
-
+		if (this.handler == null) return null;
 		SimpleUrlHandlerMapping handlerMapping = new SimpleUrlHandlerMapping();
 		handlerMapping.setUrlMap(Collections.singletonMap("/**", this.handler));
 		handlerMapping.setOrder(Integer.MAX_VALUE);

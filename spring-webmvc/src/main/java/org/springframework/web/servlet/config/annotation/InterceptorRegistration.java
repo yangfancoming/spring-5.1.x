@@ -15,9 +15,6 @@ import org.springframework.web.servlet.handler.MappedInterceptor;
 
 /**
  * Assists with the creation of a {@link MappedInterceptor}.
- *
- * @author Rossen Stoyanchev
- * @author Keith Donald
  * @since 3.1
  */
 public class InterceptorRegistration {
@@ -33,7 +30,6 @@ public class InterceptorRegistration {
 
 	private int order = 0;
 
-
 	/**
 	 * Create an {@link InterceptorRegistration} instance.
 	 */
@@ -41,7 +37,6 @@ public class InterceptorRegistration {
 		Assert.notNull(interceptor, "Interceptor is required");
 		this.interceptor = interceptor;
 	}
-
 
 	/**
 	 * Add URL patterns to which the registered interceptor should apply to.
@@ -110,7 +105,6 @@ public class InterceptorRegistration {
 		if (this.includePatterns.isEmpty() && this.excludePatterns.isEmpty()) {
 			return this.interceptor;
 		}
-
 		String[] include = StringUtils.toStringArray(this.includePatterns);
 		String[] exclude = StringUtils.toStringArray(this.excludePatterns);
 		MappedInterceptor mappedInterceptor = new MappedInterceptor(include, exclude, this.interceptor);

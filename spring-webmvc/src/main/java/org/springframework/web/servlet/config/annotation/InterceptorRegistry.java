@@ -15,15 +15,11 @@ import org.springframework.web.servlet.handler.WebRequestHandlerInterceptorAdapt
 
 /**
  * Helps with configuring a list of mapped interceptors.
- *
- * @author Rossen Stoyanchev
- * @author Keith Donald
  * @since 3.1
  */
 public class InterceptorRegistry {
 
 	private final List<InterceptorRegistration> registrations = new ArrayList<>();
-
 
 	/**
 	 * Adds the provided {@link HandlerInterceptor}.
@@ -59,7 +55,6 @@ public class InterceptorRegistry {
 				.map(InterceptorRegistration::getInterceptor)
 				.collect(Collectors.toList());
 	}
-
 
 	private static final Comparator<Object> INTERCEPTOR_ORDER_COMPARATOR =
 			OrderComparator.INSTANCE.withSourceProvider(object -> {

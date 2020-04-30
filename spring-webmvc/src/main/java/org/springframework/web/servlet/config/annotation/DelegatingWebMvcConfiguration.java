@@ -18,11 +18,8 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 
 /**
  * A subclass of {@code WebMvcConfigurationSupport} that detects and delegates
- * to all beans of type {@link WebMvcConfigurer} allowing them to customize the
- * configuration provided by {@code WebMvcConfigurationSupport}. This is the
- * class actually imported by {@link EnableWebMvc @EnableWebMvc}.
- *
- * @author Rossen Stoyanchev
+ * to all beans of type {@link WebMvcConfigurer} allowing them to customize the configuration provided by {@code WebMvcConfigurationSupport}.
+ * This is the class actually imported by {@link EnableWebMvc @EnableWebMvc}.
  * @since 3.1
  */
 @Configuration
@@ -30,14 +27,12 @@ public class DelegatingWebMvcConfiguration extends WebMvcConfigurationSupport {
 
 	private final WebMvcConfigurerComposite configurers = new WebMvcConfigurerComposite();
 
-
 	@Autowired(required = false)
 	public void setConfigurers(List<WebMvcConfigurer> configurers) {
 		if (!CollectionUtils.isEmpty(configurers)) {
 			this.configurers.addWebMvcConfigurers(configurers);
 		}
 	}
-
 
 	@Override
 	protected void configurePathMatch(PathMatchConfigurer configurer) {

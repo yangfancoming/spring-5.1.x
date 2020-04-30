@@ -43,8 +43,6 @@
     chapter5-4-0  视图解析器      即使前后端分离大行其道，视图解析器作为Spring源码的一部分，我们还是要研读。该文解读SpringMVC如何完成视图解析，提供Freemarker和Jsp的共存方案
     chapter5-4-5  异常解析器      解读SpringMVC如何完成异常解析、捕捉异常，并自定义异常和异常解析器
  
-
-
     chapter5-8-7  语言环境 SessionLocaleResolver  
     chapter5-8-8  语言环境 LocaleResolver (国际化)
     chapter5-8-9  语言环境 CookieLocaleResolver  

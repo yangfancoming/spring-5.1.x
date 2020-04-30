@@ -20,16 +20,10 @@ import org.springframework.web.accept.ParameterContentNegotiationStrategy;
 import org.springframework.web.accept.PathExtensionContentNegotiationStrategy;
 
 /**
- * Creates a {@code ContentNegotiationManager} and configures it with
- * one or more {@link ContentNegotiationStrategy} instances.
- *
- * As of 5.0 you can set the exact strategies to use via
- * {@link #strategies(List)}.
- *
- * As an alternative you can also rely on the set of defaults described below
- * which can be turned on or off or customized through the methods of this
+ * Creates a {@code ContentNegotiationManager} and configures it with one or more {@link ContentNegotiationStrategy} instances.
+ * As of 5.0 you can set the exact strategies to use via {@link #strategies(List)}.
+ * As an alternative you can also rely on the set of defaults described below which can be turned on or off or customized through the methods of this
  * builder:
- *
  * <table>
  * <tr>
  * <th>Configurer Property</th>
@@ -63,17 +57,11 @@ import org.springframework.web.accept.PathExtensionContentNegotiationStrategy;
  * </tr>
  * </table>
  *
- * The order in which strategies are configured is fixed. You can only turn
- * them on or off.
- *
+ * The order in which strategies are configured is fixed. You can only turn them on or off.
  * <strong>Note:</strong> if you must use URL-based content type resolution,
- * the use of a query parameter is simpler and preferable to the use of a path
- * extension since the latter can cause issues with URI variables, path
- * parameters, and URI decoding. Consider setting {@link #favorPathExtension}
- * to {@literal false} or otherwise set the strategies to use explicitly via
- * {@link #strategies(List)}.
- *
- * @author Rossen Stoyanchev
+ * the use of a query parameter is simpler and preferable to the use of a path extension since the latter can cause issues with URI variables,
+ * path  parameters, and URI decoding. Consider setting {@link #favorPathExtension}
+ * to {@literal false} or otherwise set the strategies to use explicitly via {@link #strategies(List)}.
  * @since 3.2
  */
 public class ContentNegotiationConfigurer {
@@ -81,7 +69,6 @@ public class ContentNegotiationConfigurer {
 	private final ContentNegotiationManagerFactoryBean factory = new ContentNegotiationManagerFactoryBean();
 
 	private final Map<String, MediaType> mediaTypes = new HashMap<>();
-
 
 	/**
 	 * Class constructor with {@link javax.servlet.ServletContext}.
@@ -91,7 +78,6 @@ public class ContentNegotiationConfigurer {
 			this.factory.setServletContext(servletContext);
 		}
 	}
-
 
 	/**
 	 * Set the exact list of strategies to use.
@@ -106,10 +92,8 @@ public class ContentNegotiationConfigurer {
 	}
 
 	/**
-	 * Whether the path extension in the URL path should be used to determine
-	 * the requested media type.
-	 * By default this is set to {@code true} in which case a request
-	 * for {@code /hotels.pdf} will be interpreted as a request for
+	 * Whether the path extension in the URL path should be used to determine the requested media type.
+	 * By default this is set to {@code true} in which case a request  for {@code /hotels.pdf} will be interpreted as a request for
 	 * {@code "application/pdf"} regardless of the 'Accept' header.
 	 */
 	public ContentNegotiationConfigurer favorPathExtension(boolean favorPathExtension) {
@@ -118,14 +102,11 @@ public class ContentNegotiationConfigurer {
 	}
 
 	/**
-	 * Add a mapping from a key, extracted from a path extension or a query
-	 * parameter, to a MediaType. This is required in order for the parameter
-	 * strategy to work. Any extensions explicitly registered here are also
+	 * Add a mapping from a key, extracted from a path extension or a query parameter, to a MediaType.
+	 * This is required in order for the parameter  strategy to work. Any extensions explicitly registered here are also
 	 * whitelisted for the purpose of Reflected File Download attack detection
-	 * (see Spring Framework reference documentation for more details on RFD
-	 * attack protection).
-	 * The path extension strategy will also try to use
-	 * {@link ServletContext#getMimeType} and {@link MediaTypeFactory} to resolve path
+	 * (see Spring Framework reference documentation for more details on RFD attack protection).
+	 * The path extension strategy will also try to use {@link ServletContext#getMimeType} and {@link MediaTypeFactory} to resolve path
 	 * extensions. To change this behavior see the {@link #useRegisteredExtensionsOnly} property.
 	 * @param extension the key to look up
 	 * @param mediaType the media type
@@ -161,8 +142,7 @@ public class ContentNegotiationConfigurer {
 	}
 
 	/**
-	 * Whether to ignore requests with path extension that cannot be resolved
-	 * to any media type. Setting this to {@code false} will result in an
+	 * Whether to ignore requests with path extension that cannot be resolved  to any media type. Setting this to {@code false} will result in an
 	 * {@code HttpMediaTypeNotAcceptableException} if there is no match.
 	 * By default this is set to {@code true}.
 	 */
@@ -172,8 +152,7 @@ public class ContentNegotiationConfigurer {
 	}
 
 	/**
-	 * When {@link #favorPathExtension} is set, this property determines whether
-	 * to allow use of JAF (Java Activation Framework) to resolve a path
+	 * When {@link #favorPathExtension} is set, this property determines whether to allow use of JAF (Java Activation Framework) to resolve a path
 	 * extension to a specific MediaType.
 	 * @deprecated as of 5.0, in favor of {@link #useRegisteredExtensionsOnly(boolean)}
 	 * which has reverse behavior
@@ -184,11 +163,9 @@ public class ContentNegotiationConfigurer {
 	}
 
 	/**
-	 * When {@link #favorPathExtension favorPathExtension} is set, this
-	 * property determines whether to use only registered {@code MediaType} mappings
-	 * to resolve a path extension to a specific MediaType.
-	 * By default this is not set in which case
-	 * {@code PathExtensionContentNegotiationStrategy} will use defaults if available.
+	 * When {@link #favorPathExtension favorPathExtension} is set,
+	 * this property determines whether to use only registered {@code MediaType} mappings to resolve a path extension to a specific MediaType.
+	 * By default this is not set in which case {@code PathExtensionContentNegotiationStrategy} will use defaults if available.
 	 */
 	public ContentNegotiationConfigurer useRegisteredExtensionsOnly(boolean useRegisteredExtensionsOnly) {
 		this.factory.setUseRegisteredExtensionsOnly(useRegisteredExtensionsOnly);

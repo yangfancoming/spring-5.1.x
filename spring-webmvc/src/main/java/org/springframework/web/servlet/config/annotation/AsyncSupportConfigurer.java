@@ -17,8 +17,6 @@ import org.springframework.web.context.request.async.DeferredResultProcessingInt
 
 /**
  * Helps with configuring options for asynchronous request processing.
- *
- * @author Rossen Stoyanchev
  * @since 3.2
  */
 public class AsyncSupportConfigurer {
@@ -33,17 +31,12 @@ public class AsyncSupportConfigurer {
 
 	private final List<DeferredResultProcessingInterceptor> deferredResultInterceptors = new ArrayList<>();
 
-
 	/**
 	 * The provided task executor is used to:
-	 * <ol>
 	 * <li>Handle {@link Callable} controller method return values.
-	 * <li>Perform blocking writes when streaming to the response
-	 * through a reactive (e.g. Reactor, RxJava) controller method return value.
-	 * </ol>
-	 * By default only a {@link SimpleAsyncTaskExecutor} is used. However when
-	 * using the above two use cases, it's recommended to configure an executor
-	 * backed by a thread pool such as {@link ThreadPoolTaskExecutor}.
+	 * <li>Perform blocking writes when streaming to the response through a reactive (e.g. Reactor, RxJava) controller method return value.
+	 * By default only a {@link SimpleAsyncTaskExecutor} is used.
+	 * However when using the above two use cases, it's recommended to configure an executor  backed by a thread pool such as {@link ThreadPoolTaskExecutor}.
 	 * @param taskExecutor the task executor instance to use by default
 	 */
 	public AsyncSupportConfigurer setTaskExecutor(AsyncTaskExecutor taskExecutor) {
@@ -66,9 +59,7 @@ public class AsyncSupportConfigurer {
 	}
 
 	/**
-	 * Configure lifecycle interceptors with callbacks around concurrent request
-	 * execution that starts when a controller returns a
-	 * {@link java.util.concurrent.Callable}.
+	 * Configure lifecycle interceptors with callbacks around concurrent request execution that starts when a controller returns a {@link java.util.concurrent.Callable}.
 	 * @param interceptors the interceptors to register
 	 */
 	public AsyncSupportConfigurer registerCallableInterceptors(CallableProcessingInterceptor... interceptors) {
@@ -77,17 +68,13 @@ public class AsyncSupportConfigurer {
 	}
 
 	/**
-	 * Configure lifecycle interceptors with callbacks around concurrent request
-	 * execution that starts when a controller returns a {@link DeferredResult}.
+	 * Configure lifecycle interceptors with callbacks around concurrent request execution that starts when a controller returns a {@link DeferredResult}.
 	 * @param interceptors the interceptors to register
 	 */
-	public AsyncSupportConfigurer registerDeferredResultInterceptors(
-			DeferredResultProcessingInterceptor... interceptors) {
-
+	public AsyncSupportConfigurer registerDeferredResultInterceptors(DeferredResultProcessingInterceptor... interceptors) {
 		this.deferredResultInterceptors.addAll(Arrays.asList(interceptors));
 		return this;
 	}
-
 
 	@Nullable
 	protected AsyncTaskExecutor getTaskExecutor() {

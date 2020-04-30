@@ -12,19 +12,11 @@ import org.springframework.util.CollectionUtils;
 /**
  * Holder for both Model and View in the web MVC framework.
  * Note that these are entirely distinct. This class merely holds
- * both to make it possible for a controller to return both model
- * and view in a single return value.
+ * both to make it possible for a controller to return both model and view in a single return value.
  *
- * Represents a model and view returned by a handler, to be resolved
- * by a DispatcherServlet. The view can take the form of a String
- * view name which will need to be resolved by a ViewResolver object;
- * alternatively a View object can be specified directly. The model
- * is a Map, allowing the use of multiple objects keyed by name.
- *
- * @author Rod Johnson
-
- * @author Rob Harrop
- * @author Rossen Stoyanchev
+ * Represents a model and view returned by a handler, to be resolved by a DispatcherServlet.
+ * The view can take the form of a String view name which will need to be resolved by a ViewResolver object;
+ * alternatively a View object can be specified directly. The model is a Map, allowing the use of multiple objects keyed by name.
  * @see DispatcherServlet
  * @see ViewResolver
  * @see HandlerAdapter#handle
@@ -46,7 +38,6 @@ public class ModelAndView {
 
 	/** Indicates whether or not this instance has been cleared with a call to {@link #clear()}. */
 	private boolean cleared = false;
-
 
 	/**
 	 * Default constructor for bean-style usage: populating bean
@@ -80,11 +71,9 @@ public class ModelAndView {
 
 	/**
 	 * Create a new ModelAndView given a view name and a model.
-	 * @param viewName name of the View to render, to be resolved
-	 * by the DispatcherServlet's ViewResolver
-	 * @param model a Map of model names (Strings) to model objects
-	 * (Objects). Model entries may not be {@code null}, but the
-	 * model Map may be {@code null} if there is no model data.
+	 * @param viewName name of the View to render, to be resolved by the DispatcherServlet's ViewResolver
+	 * @param model a Map of model names (Strings) to model objects (Objects).
+	 * Model entries may not be {@code null}, but the model Map may be {@code null} if there is no model data.
 	 */
 	public ModelAndView(String viewName, @Nullable Map<String, ?> model) {
 		this.view = viewName;

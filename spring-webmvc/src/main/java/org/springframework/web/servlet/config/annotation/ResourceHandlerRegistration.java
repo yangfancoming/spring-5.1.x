@@ -15,10 +15,6 @@ import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 
 /**
  * Encapsulates information required to create a resource handler.
- *
- * @author Rossen Stoyanchev
- * @author Keith Donald
- * @author Brian Clozel
  * @since 3.1
  */
 public class ResourceHandlerRegistration {
@@ -36,7 +32,6 @@ public class ResourceHandlerRegistration {
 	@Nullable
 	private ResourceChainRegistration resourceChainRegistration;
 
-
 	/**
 	 * Create a {@link ResourceHandlerRegistration} instance.
 	 * @param pathPatterns one or more resource URL path patterns
@@ -46,24 +41,19 @@ public class ResourceHandlerRegistration {
 		this.pathPatterns = pathPatterns;
 	}
 
-
 	/**
 	 * Add one or more resource locations from which to serve static content.
-	 * Each location must point to a valid directory. Multiple locations may
-	 * be specified as a comma-separated list, and the locations will be checked
-	 * for a given resource in the order specified.
+	 * Each location must point to a valid directory. Multiple locations may  be specified as a comma-separated list,
+	 * and the locations will be checked for a given resource in the order specified.
 	 * For example, {{@code "/"}, {@code "classpath:/META-INF/public-web-resources/"}}
 	 * allows resources to be served both from the web application root and
 	 * from any JAR on the classpath that contains a
-	 * {@code /META-INF/public-web-resources/} directory, with resources in the
-	 * web application root taking precedence.
+	 * {@code /META-INF/public-web-resources/} directory, with resources in the web application root taking precedence.
 	 * For {@link org.springframework.core.io.UrlResource URL-based resources}
 	 * (e.g. files, HTTP URLs, etc) this method supports a special prefix to
-	 * indicate the charset associated with the URL so that relative paths
-	 * appended to it can be encoded correctly, e.g.
+	 * indicate the charset associated with the URL so that relative paths appended to it can be encoded correctly, e.g.
 	 * {@code [charset=Windows-31J]https://example.org/path}.
-	 * @return the same {@link ResourceHandlerRegistration} instance, for
-	 * chained method invocation
+	 * @return the same {@link ResourceHandlerRegistration} instance, for chained method invocation
 	 */
 	public ResourceHandlerRegistration addResourceLocations(String... resourceLocations) {
 		this.locationValues.addAll(Arrays.asList(resourceLocations));
@@ -83,8 +73,7 @@ public class ResourceHandlerRegistration {
 	}
 
 	/**
-	 * Specify the {@link org.springframework.http.CacheControl} which should be used
-	 * by the resource handler.
+	 * Specify the {@link org.springframework.http.CacheControl} which should be used by the resource handler.
 	 * Setting a custom value here will override the configuration set with {@link #setCachePeriod}.
 	 * @param cacheControl the CacheControl configuration to use
 	 * @return the same {@link ResourceHandlerRegistration} instance, for chained method invocation
@@ -154,8 +143,7 @@ public class ResourceHandlerRegistration {
 		handler.setLocationValues(this.locationValues);
 		if (this.cacheControl != null) {
 			handler.setCacheControl(this.cacheControl);
-		}
-		else if (this.cachePeriod != null) {
+		}else if (this.cachePeriod != null) {
 			handler.setCacheSeconds(this.cachePeriod);
 		}
 		return handler;

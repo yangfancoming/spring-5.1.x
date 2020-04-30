@@ -94,64 +94,33 @@ import org.springframework.web.util.UrlPathHelper;
  * For more details see the javadoc of {@link EnableWebMvc @EnableWebMvc}.
  *
  * This class registers the following {@link HandlerMapping HandlerMappings}:</p>
- * <ul>
- * <li>{@link RequestMappingHandlerMapping}
- * ordered at 0 for mapping requests to annotated controller methods.
- * <li>{@link HandlerMapping}
- * ordered at 1 to map URL paths directly to view names.
- * <li>{@link BeanNameUrlHandlerMapping}
- * ordered at 2 to map URL paths to controller bean names.
- * <li>{@link HandlerMapping}
- * ordered at {@code Integer.MAX_VALUE-1} to serve static resource requests.
- * <li>{@link HandlerMapping}
- * ordered at {@code Integer.MAX_VALUE} to forward requests to the default servlet.
- * </ul>
+ * <li>{@link RequestMappingHandlerMapping} ordered at 0 for mapping requests to annotated controller methods.
+ * <li>{@link HandlerMapping} ordered at 1 to map URL paths directly to view names.
+ * <li>{@link BeanNameUrlHandlerMapping} ordered at 2 to map URL paths to controller bean names.
+ * <li>{@link HandlerMapping} ordered at {@code Integer.MAX_VALUE-1} to serve static resource requests.
+ * <li>{@link HandlerMapping} ordered at {@code Integer.MAX_VALUE} to forward requests to the default servlet.
  *
  * Registers these {@link HandlerAdapter HandlerAdapters}:
- * <ul>
- * <li>{@link RequestMappingHandlerAdapter}
- * for processing requests with annotated controller methods.
- * <li>{@link HttpRequestHandlerAdapter}
- * for processing requests with {@link HttpRequestHandler HttpRequestHandlers}.
- * <li>{@link SimpleControllerHandlerAdapter}
- * for processing requests with interface-based {@link Controller Controllers}.
- * </ul>
+ * <li>{@link RequestMappingHandlerAdapter} for processing requests with annotated controller methods.
+ * <li>{@link HttpRequestHandlerAdapter} for processing requests with {@link HttpRequestHandler HttpRequestHandlers}.
+ * <li>{@link SimpleControllerHandlerAdapter} for processing requests with interface-based {@link Controller Controllers}.
  *
- * Registers a {@link HandlerExceptionResolverComposite} with this chain of
- * exception resolvers:
- * <ul>
- * <li>{@link ExceptionHandlerExceptionResolver} for handling exceptions through
- * {@link org.springframework.web.bind.annotation.ExceptionHandler} methods.
- * <li>{@link ResponseStatusExceptionResolver} for exceptions annotated with
- * {@link org.springframework.web.bind.annotation.ResponseStatus}.
- * <li>{@link DefaultHandlerExceptionResolver} for resolving known Spring
- * exception types
- * </ul>
+ * Registers a {@link HandlerExceptionResolverComposite} with this chain of exception resolvers:
+ * <li>{@link ExceptionHandlerExceptionResolver} for handling exceptions through {@link org.springframework.web.bind.annotation.ExceptionHandler} methods.
+ * <li>{@link ResponseStatusExceptionResolver} for exceptions annotated with {@link org.springframework.web.bind.annotation.ResponseStatus}.
+ * <li>{@link DefaultHandlerExceptionResolver} for resolving known Spring exception types
  *
- * Registers an {@link AntPathMatcher} and a {@link UrlPathHelper}
- * to be used by:
- * <ul>
+ * Registers an {@link AntPathMatcher} and a {@link UrlPathHelper} to be used by:
  * <li>the {@link RequestMappingHandlerMapping},
  * <li>the {@link HandlerMapping} for ViewControllers
  * <li>and the {@link HandlerMapping} for serving resources
- * </ul>
  * Note that those beans can be configured with a {@link PathMatchConfigurer}.
  *
- * Both the {@link RequestMappingHandlerAdapter} and the
- * {@link ExceptionHandlerExceptionResolver} are configured with default
- * instances of the following by default:
- * <ul>
+ * Both the {@link RequestMappingHandlerAdapter} and the {@link ExceptionHandlerExceptionResolver} are configured with default instances of the following by default:
  * <li>a {@link ContentNegotiationManager}
  * <li>a {@link DefaultFormattingConversionService}
- * <li>an {@link org.springframework.validation.beanvalidation.OptionalValidatorFactoryBean}
- * if a JSR-303 implementation is available on the classpath
- * <li>a range of {@link HttpMessageConverter HttpMessageConverters} depending on the third-party
- * libraries available on the classpath.
- * </ul>
- *
- * @author Rossen Stoyanchev
- * @author Brian Clozel
- * @author Sebastien Deleuze
+ * <li>an {@link org.springframework.validation.beanvalidation.OptionalValidatorFactoryBean} if a JSR-303 implementation is available on the classpath
+ * <li>a range of {@link HttpMessageConverter HttpMessageConverters} depending on the third-party libraries available on the classpath.
  * @since 3.1
  * @see EnableWebMvc
  * @see WebMvcConfigurer
@@ -178,15 +147,13 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		ClassLoader classLoader = WebMvcConfigurationSupport.class.getClassLoader();
 		romePresent = ClassUtils.isPresent("com.rometools.rome.feed.WireFeed", classLoader);
 		jaxb2Present = ClassUtils.isPresent("javax.xml.bind.Binder", classLoader);
-		jackson2Present = ClassUtils.isPresent("com.fasterxml.jackson.databind.ObjectMapper", classLoader) &&
-						ClassUtils.isPresent("com.fasterxml.jackson.core.JsonGenerator", classLoader);
+		jackson2Present = ClassUtils.isPresent("com.fasterxml.jackson.databind.ObjectMapper", classLoader) && ClassUtils.isPresent("com.fasterxml.jackson.core.JsonGenerator", classLoader);
 		jackson2XmlPresent = ClassUtils.isPresent("com.fasterxml.jackson.dataformat.xml.XmlMapper", classLoader);
 		jackson2SmilePresent = ClassUtils.isPresent("com.fasterxml.jackson.dataformat.smile.SmileFactory", classLoader);
 		jackson2CborPresent = ClassUtils.isPresent("com.fasterxml.jackson.dataformat.cbor.CBORFactory", classLoader);
 		gsonPresent = ClassUtils.isPresent("com.google.gson.Gson", classLoader);
 		jsonbPresent = ClassUtils.isPresent("javax.json.bind.Jsonb", classLoader);
 	}
-
 
 	@Nullable
 	private ApplicationContext applicationContext;
@@ -214,7 +181,6 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 
 	@Nullable
 	private Map<String, CorsConfiguration> corsConfigurations;
-
 
 	/**
 	 * Set the Spring {@link ApplicationContext}, e.g. for resource loading.
@@ -278,7 +244,6 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		if (useTrailingSlashMatch != null) {
 			mapping.setUseTrailingSlashMatch(useTrailingSlashMatch);
 		}
-
 		UrlPathHelper pathHelper = configurer.getUrlPathHelper();
 		if (pathHelper != null) {
 			mapping.setUrlPathHelper(pathHelper);
@@ -291,7 +256,6 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		if (pathPrefixes != null) {
 			mapping.setPathPrefixes(pathPrefixes);
 		}
-
 		return mapping;
 	}
 
@@ -305,8 +269,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	}
 
 	/**
-	 * Provide access to the shared handler interceptors used to configure
-	 * {@link HandlerMapping} instances with.
+	 * Provide access to the shared handler interceptors used to configure {@link HandlerMapping} instances with.
 	 * This method cannot be overridden; use {@link #addInterceptors} instead.
 	 */
 	protected final Object[] getInterceptors() {
@@ -321,16 +284,14 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	}
 
 	/**
-	 * Override this method to add Spring MVC interceptors for
-	 * pre- and post-processing of controller invocation.
+	 * Override this method to add Spring MVC interceptors for pre- and post-processing of controller invocation.
 	 * @see InterceptorRegistry
 	 */
 	protected void addInterceptors(InterceptorRegistry registry) {
 	}
 
 	/**
-	 * Callback for building the {@link PathMatchConfigurer}.
-	 * Delegates to {@link #configurePathMatch}.
+	 * Callback for building the {@link PathMatchConfigurer}. Delegates to {@link #configurePathMatch}.
 	 * @since 4.1
 	 */
 	protected PathMatchConfigurer getPathMatchConfigurer() {
@@ -512,9 +473,8 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	}
 
 	/**
-	 * Return a handler mapping ordered at Integer.MAX_VALUE with a mapped
-	 * default servlet handler. To configure "default" Servlet handling,
-	 * override {@link #configureDefaultServletHandling}.
+	 * Return a handler mapping ordered at Integer.MAX_VALUE with a mapped default servlet handler.
+	 * To configure "default" Servlet handling,override {@link #configureDefaultServletHandling}.
 	 */
 	@Bean
 	@Nullable
