@@ -262,9 +262,11 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	 * @return a corresponding Set of autodetected bean definitions
 	 */
 	public Set<BeanDefinition> findCandidateComponents(String basePackage) {
+		//componentsIndex对象包含了扫描“META-INF/spring.components”文件后封装起来的需要注册的bean的信息，在这里与来basePackage同时进行处理，
+		//如果“META-INF/spring.components”文件不存在，则componentsIndex为null
 		if (this.componentsIndex != null && indexSupportsIncludeFilters()) {
 			return addCandidateComponentsFromIndex(this.componentsIndex, basePackage);
-		}else {
+		}else { //只处理basePackage
 			return scanCandidateComponents(basePackage);
 		}
 	}
@@ -361,21 +363,29 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	private Set<BeanDefinition> scanCandidateComponents(String basePackage) {
 		Set<BeanDefinition> candidates = new LinkedHashSet<>();
 		try {
+			//获取包路径
 			String packageSearchPath = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX + resolveBasePackage(basePackage) + '/' + this.resourcePattern;
+			//将对应的包中的类封装成resources
 			Resource[] resources = getResourcePatternResolver().getResources(packageSearchPath);// classpath*:example/scannable/**/*.class
 			boolean traceEnabled = logger.isTraceEnabled();
 			boolean debugEnabled = logger.isDebugEnabled();
 			for (Resource resource : resources) {
 				if (traceEnabled) logger.trace("Scanning " + resource);
+				//需要时可读的
 				if (resource.isReadable()) {
 					try {
+						//获取封装了resource的MetadataReader
 						MetadataReader metadataReader = getMetadataReaderFactory().getMetadataReader(resource);
+						//检查metadataReader中的对象的className是否符合指定的excludeFilters跟includeFilters的筛选
 						if (isCandidateComponent(metadataReader)) {
+							//创建一个ScannedGenericBeanDefinition对象
 							ScannedGenericBeanDefinition sbd = new ScannedGenericBeanDefinition(metadataReader);
 							sbd.setResource(resource);
 							sbd.setSource(resource);
+							//检查对应的对象1.是不是一个独立的类；2.一个具体的类不是抽象的不是接口类，如果是抽象的那么必须有对应的Lookup注解指定实现的方法
 							if (isCandidateComponent(sbd)) {
 								if (debugEnabled) logger.debug("Identified candidate component class: " + resource);
+								//加入到候选的bean中
 								candidates.add(sbd);
 							}else {
 								if (debugEnabled) logger.debug("Ignored because not a concrete top-level class: " + resource);

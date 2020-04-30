@@ -73,8 +73,7 @@ import org.springframework.util.StringUtils;
  * Parses a {@link Configuration} class definition, populating a collection of
  * {@link ConfigurationClass} objects (parsing a single Configuration class may result in
  * any number of ConfigurationClass objects because one Configuration class may import another using the {@link Import} annotation).
- * This class helps separate the concern of parsing the structure of a Configuration
- * class from the concern of registering BeanDefinition objects based on the content of
+ * This class helps separate the concern of parsing the structure of a Configuration class from the concern of registering BeanDefinition objects based on the content of
  * that model (with the exception of {@code @ComponentScan} annotations which need to be registered immediately).
  * This ASM-based implementation avoids reflection and eager class loading in order to interoperate effectively with lazy class loading in a Spring ApplicationContext.
  * @since 3.0
@@ -196,20 +195,25 @@ class ConfigurationClassParser {
 		SourceClass sourceClass = asSourceClass(configClass);
 		do {
 			sourceClass = doProcessConfigurationClass(configClass, sourceClass);
-		}
-		while (sourceClass != null);
+		}while (sourceClass != null);
 		configurationClasses.put(configClass, configClass);
 	}
 
 	/**
+	 * 该方法是处理Configuration以及@Bean类型注解的bean上的标签信息的方法。
+	 * 在这里面会处理@Component，@PropertySources，@ComponentScans，@ComponentScan，@Import，@ImportResource以及@Bean注解
 	 * Apply processing and build a complete {@link ConfigurationClass} by reading the annotations, members and methods from the source class.
 	 * This method can be called multiple times as relevant sources are discovered.
 	 * @param configClass the configuration class being build
 	 * @param sourceClass a source class
 	 * @return the superclass, or {@code null} if none found or previously processed
+	 *
+	 * 1.如果包含@ComponentScans或者@ComponentScan类型的注解则获取对应的注解中的信息包装成AnnotationAttributes对象集合。
+	 * 2.检查步骤1中集合是否为空，为空则跳过下面的步骤。不为空则继续检查，贴有@ComponentScans或者@ComponentScan注解的bean上面是否贴有@Conditional类中注解，又的话则进行匹配判断检查是否匹配来决定是否进入下一个步骤。@Conditional注解的解析
+	 * 3.循环对上面的集合进行处理，调用ComponentScanAnnotationParser的解析方法，获取扫描结果，然后对结果集进行解析。分析是否是候选bean，是的则进行注册。
 	 */
 	@Nullable
-	protected final SourceClass doProcessConfigurationClass(ConfigurationClass configClass, SourceClass sourceClass) 	throws IOException {
+	protected final SourceClass doProcessConfigurationClass(ConfigurationClass configClass, SourceClass sourceClass) throws IOException {
 		if (configClass.getMetadata().isAnnotated(Component.class.getName())) {
 			// Recursively process any member (nested) classes first
 			processMemberClasses(configClass, sourceClass);
@@ -224,16 +228,21 @@ class ConfigurationClassParser {
 			}
 		}
 
-		// Process any @ComponentScan annotations
+		// Process any @ComponentScan annotations  // @ComponentScans注解是对@ComponentScan注解的包装，一个@ComponentScans可以包含多个@ComponentScan
 		Set<AnnotationAttributes> componentScans = AnnotationConfigUtils.attributesForRepeatable(sourceClass.getMetadata(), ComponentScans.class, ComponentScan.class);
+		// 如果解析注解后存在扫描相关的注解，并且贴有当前注解的bean不需要跳过注册（贴有@condition注解）
 		if (!componentScans.isEmpty() && !conditionEvaluator.shouldSkip(sourceClass.getMetadata(), ConfigurationPhase.REGISTER_BEAN)) {
+			// 对 对应的注解信息进行循环处理
 			for (AnnotationAttributes componentScan : componentScans) {
-				// The config class is annotated with @ComponentScan -> perform the scan immediately
+				// The config class is annotated with @ComponentScan -> perform the scan immediately //ComponentScanAnnotationParser进行解析
 				Set<BeanDefinitionHolder> scannedBeanDefinitions = componentScanParser.parse(componentScan, sourceClass.getMetadata().getClassName());
 				// Check the set of scanned definitions for any further config classes and parse recursively if needed
+				// 处理扫描到的并封装成BeanDefinitionHolder对象的bean
 				for (BeanDefinitionHolder holder : scannedBeanDefinitions) {
+					// 检查时候是已经存在的bean
 					BeanDefinition bdCand = holder.getBeanDefinition().getOriginatingBeanDefinition();
 					if (bdCand == null) bdCand = holder.getBeanDefinition();
+					// 检查是否可作为候选bean，
 					if (ConfigurationClassUtils.checkConfigurationClassCandidate(bdCand, metadataReaderFactory)) {
 						parse(bdCand.getBeanClassName(), holder.getBeanName());
 					}
@@ -271,6 +280,7 @@ class ConfigurationClassParser {
 		// No superclass -> processing is complete
 		return null;
 	}
+
 
 	// Register member (nested) classes that happen to be configuration classes themselves.
 	private void processMemberClasses(ConfigurationClass configClass, SourceClass sourceClass) throws IOException {
@@ -318,8 +328,7 @@ class ConfigurationClassParser {
 		Set<MethodMetadata> beanMethods = original.getAnnotatedMethods(Bean.class.getName());
 		if (beanMethods.size() > 1 && original instanceof StandardAnnotationMetadata) {
 			// Try reading the class file via ASM for deterministic declaration order...
-			// Unfortunately, the JVM's standard reflection returns methods in arbitrary
-			// order, even between different runs of the same application on the same JVM.
+			// Unfortunately, the JVM's standard reflection returns methods in arbitrary order, even between different runs of the same application on the same JVM.
 			try {
 				AnnotationMetadata asm = metadataReaderFactory.getMetadataReader(original.getClassName()).getAnnotationMetadata();
 				Set<MethodMetadata> asmMethods = asm.getAnnotatedMethods(Bean.class.getName());
@@ -525,9 +534,7 @@ class ConfigurationClassParser {
 	 * Factory method to obtain a {@link SourceClass} from a {@link Class}.
 	 */
 	SourceClass asSourceClass(@Nullable Class<?> classType) throws IOException {
-		if (classType == null) {
-			return new SourceClass(Object.class);
-		}
+		if (classType == null) return new SourceClass(Object.class);
 		try {
 			// Sanity test that we can reflectively read annotations,
 			// including Class attributes; if not -> fall back to ASM
@@ -556,9 +563,7 @@ class ConfigurationClassParser {
 	 * Factory method to obtain a {@link SourceClass} from a class name.
 	 */
 	SourceClass asSourceClass(@Nullable String className) throws IOException {
-		if (className == null) {
-			return new SourceClass(Object.class);
-		}
+		if (className == null) return new SourceClass(Object.class);
 		if (className.startsWith("java")) {
 			// Never use ASM for core java types
 			try {
@@ -600,11 +605,9 @@ class ConfigurationClassParser {
 
 		/**
 		 * Given a stack containing (in order)
-		 * <ul>
 		 * <li>com.acme.Foo</li>
 		 * <li>com.acme.Bar</li>
 		 * <li>com.acme.Baz</li>
-		 * </ul>
 		 * return "[Foo->Bar->Baz]".
 		 */
 		@Override
@@ -627,10 +630,8 @@ class ConfigurationClassParser {
 		private List<DeferredImportSelectorHolder> deferredImportSelectors = new ArrayList<>();
 
 		/**
-		 * Handle the specified {@link DeferredImportSelector}. If deferred import
-		 * selectors are being collected, this registers this instance to the list. If
-		 * they are being processed, the {@link DeferredImportSelector} is also processed
-		 * immediately according to its {@link DeferredImportSelector.Group}.
+		 * Handle the specified {@link DeferredImportSelector}. If deferred import selectors are being collected, this registers this instance to the list.
+		 * If they are being processed, the {@link DeferredImportSelector} is also processed immediately according to its {@link DeferredImportSelector.Group}.
 		 * @param configClass the source configuration class
 		 * @param importSelector the selector to handle
 		 */

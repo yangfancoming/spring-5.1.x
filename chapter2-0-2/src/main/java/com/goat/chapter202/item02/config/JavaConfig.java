@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * @ date 2019/8/12---20:46
  */
 @Configuration
-@ComponentScan(value = "com.goat.chapter202.item02")
+@ComponentScan(value = "com.goat.chapter202.item02") // 等同于 <context:component-scan>
 public class JavaConfig {
 
 

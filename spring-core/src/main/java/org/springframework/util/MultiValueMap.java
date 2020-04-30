@@ -63,5 +63,4 @@ public interface MultiValueMap<K, V> extends Map<K, List<V>> {
 	 * @return a single value representation of this map
 	 */
 	Map<K, V> toSingleValueMap();
-
 }
