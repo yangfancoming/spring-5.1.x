@@ -31,8 +31,7 @@ public class AnnotationScopeMetadataResolver implements ScopeMetadataResolver {
 	}
 
 	/**
-	 * Construct a new {@code AnnotationScopeMetadataResolver} using the
-	 * supplied default {@link ScopedProxyMode}.
+	 * Construct a new {@code AnnotationScopeMetadataResolver} using the supplied default {@link ScopedProxyMode}.
 	 * @param defaultProxyMode the default scoped-proxy mode
 	 */
 	public AnnotationScopeMetadataResolver(ScopedProxyMode defaultProxyMode) {
@@ -41,8 +40,7 @@ public class AnnotationScopeMetadataResolver implements ScopeMetadataResolver {
 	}
 
 	/**
-	 * Set the type of annotation that is checked for by this
-	 * {@code AnnotationScopeMetadataResolver}.
+	 * Set the type of annotation that is checked for by this {@code AnnotationScopeMetadataResolver}.
 	 * @param scopeAnnotationType the target annotation type
 	 */
 	public void setScopeAnnotationType(Class<? extends Annotation> scopeAnnotationType) {

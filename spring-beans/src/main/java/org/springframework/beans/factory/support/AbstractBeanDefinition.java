@@ -24,16 +24,14 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Base class for concrete, full-fledged {@link BeanDefinition} classes,factoring out common properties of {@link GenericBeanDefinition},
- * {@link RootBeanDefinition}, and {@link ChildBeanDefinition}.
+ * Base class for concrete, full-fledged {@link BeanDefinition} classes,
+ * factoring out common properties of {@link GenericBeanDefinition},{@link RootBeanDefinition}, and {@link ChildBeanDefinition}.
  * The autowire constants match the ones defined in the {@link org.springframework.beans.factory.config.AutowireCapableBeanFactory} interface.
  * @see GenericBeanDefinition
  * @see RootBeanDefinition
  * @see ChildBeanDefinition
- *
  * AbstractBeanDefinition 实现了 BeanDefinition 接口，在 BeanDefinition 接口中只是定义了<bean>标签对应属性的 setter/getter 方法，
  * 而没有定义对应的属性，而在 AbstractBeanDefinition 类中就定义了对应的各种属性，并重写了接口的 setter/getter 方法
- *
  * XML 配置文件中所有的配置都可以在该类中找到对应的位置。
  */
 @SuppressWarnings("serial")
@@ -47,36 +45,31 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	public static final String SCOPE_DEFAULT = "";
 
 	/**
-	 * Constant that indicates no external autowiring at all.
-	 * 不进行自动装配
+	 * Constant that indicates no external autowiring at all. 不进行自动装配
 	 * @see #setAutowireMode
 	 */
 	public static final int AUTOWIRE_NO = AutowireCapableBeanFactory.AUTOWIRE_NO;
 
 	/**
-	 * Constant that indicates autowiring bean properties by name.
-	 * 根据Bean的名字进行自动装配，即autowired属性的值为byname
+	 * Constant that indicates autowiring bean properties by name.根据Bean的名字进行自动装配，即autowired属性的值为byname
 	 * @see #setAutowireMode
 	 */
 	public static final int AUTOWIRE_BY_NAME = AutowireCapableBeanFactory.AUTOWIRE_BY_NAME;
 
 	/**
-	 * Constant that indicates autowiring bean properties by type.
-	 * 根据Bean的类型进行自动装配，调用setter函数装配属性，即autowired属性的值为byType
+	 * Constant that indicates autowiring bean properties by type. 根据Bean的类型进行自动装配，调用setter函数装配属性，即autowired属性的值为byType
 	 * @see #setAutowireMode
 	 */
 	public static final int AUTOWIRE_BY_TYPE = AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE;
 
 	/**
-	 * Constant that indicates autowiring a constructor.
-	 * 自动装配构造函数的形参，完成对应属性的自动装配，即autowired属性的值为byConstructor
+	 * Constant that indicates autowiring a constructor.自动装配构造函数的形参，完成对应属性的自动装配，即autowired属性的值为byConstructor
 	 * @see #setAutowireMode
 	 */
 	public static final int AUTOWIRE_CONSTRUCTOR = AutowireCapableBeanFactory.AUTOWIRE_CONSTRUCTOR;
 
 	/**
-	 * Constant that indicates determining an appropriate autowire strategy
-	 * through introspection of the bean class.
+	 * Constant that indicates determining an appropriate autowire strategy through introspection of the bean class.
 	 * @see #setAutowireMode
 	 * @deprecated as of Spring 3.0: If you are using mixed autowiring strategies,
 	 * use annotation-based autowiring for clearer demarcation of autowiring needs.
@@ -115,13 +108,11 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 	/**
 	 * Constant that indicates the container should attempt to infer the {@link #setDestroyMethodName destroy method name} for a bean as opposed to
-	 * explicit specification of a method name. The value {@value} is specifically
-	 * designed to include characters otherwise illegal in a method name, ensuring
-	 * no possibility of collisions with legitimately named methods having the same name.
+	 * explicit specification of a method name. The value {@value} is specifically designed to include characters otherwise illegal in a method name,
+	 * ensuring no possibility of collisions with legitimately named methods having the same name.
 	 * Currently, the method names detected during destroy method inference are "close" and "shutdown", if present on the specific bean class.
 	 * 若Bean未指定销毁方法，容器应该尝试推断Bean的销毁方法的名字，
-	 * 目前来说，推断的销毁方法的名字一般为close或是shutdown
-	 * ( 即未指定Bean的销毁方法，但是内部定义了名为close或是shutdown的方法，则容器推断其为销毁方法)
+	 * 目前来说，推断的销毁方法的名字一般为close或是shutdown ( 即未指定Bean的销毁方法，但是内部定义了名为close或是shutdown的方法，则容器推断其为销毁方法)
 	 */
 	public static final String INFER_METHOD = "(inferred)";
 
@@ -147,23 +138,21 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	private int dependencyCheck = DEPENDENCY_CHECK_NONE;
 
 	/**
-	 * 用来表示一个bean的实例化依靠另一个bean先实例化，对应bean属性depend-on
-	 * 这里只会存放<bean/>标签的depends-on属性或是@DependsOn注解的值
-	 * */
+	 * 用来表示一个bean的实例化依靠另一个bean先实例化，对应bean属性depend-on 这里只会存放<bean/>标签的depends-on属性或是@DependsOn注解的值
+	 */
 	@Nullable
 	private String[] dependsOn;
 
 	/**
-	 * autowire-candidate属性设置为false，这样容器在查找自动装配对象时，
-	 * 将不考虑该bean，即它不会被考虑作为其他bean自动装配的候选者，
-	 * 但是该bean本身还是可以使用自动装配来注入其他bean的
-	 * 是自动装配的候选者，意味着可以自动装配到其他Bean的某个属性中
+	 * autowire-candidate属性设置为false，这样容器在查找自动装配对象时，将不考虑该bean，即它不会被考虑作为其他bean自动装配的候选者，
+	 * 但是该bean本身还是可以使用自动装配来注入其他bean的 是自动装配的候选者，意味着可以自动装配到其他Bean的某个属性中
 	 */
 	private boolean autowireCandidate = true;
 
-	/**  自动装配时出现多个bean候选者时，将作为首选者，对应bean属性primary
+	/**
+	 * 自动装配时出现多个bean候选者时，将作为首选者，对应bean属性primary
 	 * 当某个Bean的某个属性自动装配有多个候选者（包括自己）时，是否优先注入，即@Primary注解
-	 * */
+	  */
 	private boolean primary = false;
 
 	/**  用于记录Qualifier，对应子元素qualifier */
@@ -923,23 +912,16 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 		return constructorArgumentValues;
 	}
 
-	/**
-	 * Return if there are constructor argument values defined for this bean.
-	 */
+	// Return if there are constructor argument values defined for this bean.
 	@Override
 	public boolean hasConstructorArgumentValues() {
 		return (constructorArgumentValues != null && !constructorArgumentValues.isEmpty());
 	}
 
-
-	/**
-	 * Return property values for this bean (never {@code null}).
-	 */
+	//  Return property values for this bean (never {@code null}).
 	@Override
 	public MutablePropertyValues getPropertyValues() {
-		if (propertyValues == null) {
-			propertyValues = new MutablePropertyValues();
-		}
+		if (propertyValues == null) propertyValues = new MutablePropertyValues();
 		return propertyValues;
 	}
 
@@ -1112,5 +1094,4 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 		}
 		return sb.toString();
 	}
-
 }

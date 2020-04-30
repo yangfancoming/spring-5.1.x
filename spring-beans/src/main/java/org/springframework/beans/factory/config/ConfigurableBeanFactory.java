@@ -20,20 +20,15 @@ import org.springframework.util.StringValueResolver;
  * Configuration interface to be implemented by most bean factories. Provides
  * facilities to configure a bean factory, in addition to the bean factory
  * client methods in the {@link org.springframework.beans.factory.BeanFactory} interface.
- *
- * This bean factory interface is not meant to be used in normal application
- * code: Stick to {@link org.springframework.beans.factory.BeanFactory} or
- * {@link org.springframework.beans.factory.ListableBeanFactory} for typical
- * needs. This extended interface is just meant to allow for framework-internal
- * plug'n'play and for special access to bean factory configuration methods.
-
+ * This bean factory interface is not meant to be used in normal application code:
+ * Stick to {@link org.springframework.beans.factory.BeanFactory} or {@link org.springframework.beans.factory.ListableBeanFactory} for typical needs.
+ * This extended interface is just meant to allow for framework-internal plug'n'play and for special access to bean factory configuration methods.
  * @since 03.11.2003
  * @see org.springframework.beans.factory.BeanFactory
  * @see org.springframework.beans.factory.ListableBeanFactory
  * @see ConfigurableListableBeanFactory
  *
  * 提供了配置 Factory 的各种方法
- *
  * 扩展了HierarchicalBeanFactory，SingletonBeanRegistry,主要提供了对BeanFactory的配置能力
  * 该接口扩展的内容较多,比如类加载器,类型转化,属性编辑器,BeanPostProcessor,
  * 作用域,bean定义,处理bean依赖关系,合并其他ConfigurableBeanFactory,bean如何销毁等
@@ -41,21 +36,16 @@ import org.springframework.util.StringValueResolver;
 public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, SingletonBeanRegistry {
 
 	/**
-	 * Scope identifier for the standard singleton scope: "singleton".
-	 * Custom scopes can be added via {@code registerScope}.
-	 * @see #registerScope
-	 *  标准单例范围的范围标识符
+	 * Scope identifier for the standard singleton scope: "singleton".Custom scopes can be added via {@code registerScope}.
+	 * @see #registerScope 标准单例范围的范围标识符
 	 */
 	String SCOPE_SINGLETON = "singleton";
 
 	/**
-	 * Scope identifier for the standard prototype scope: "prototype".
-	 * Custom scopes can be added via {@code registerScope}.
-	 * @see #registerScope
-	 * 标准原型范围的范围标识符：“prototype”
+	 * Scope identifier for the standard prototype scope: "prototype". Custom scopes can be added via {@code registerScope}.
+	 * @see #registerScope 标准原型范围的范围标识符：“prototype”
 	 */
 	String SCOPE_PROTOTYPE = "prototype";
-
 
 	/**
 	 * Set the parent of this bean factory.
@@ -280,8 +270,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 
 	/**
 	 * Copy all relevant configuration from the given other factory.
-	 * Should include all standard configuration settings as well as
-	 * BeanPostProcessors, Scopes, and factory-specific internal settings.
+	 * Should include all standard configuration settings as well as BeanPostProcessors, Scopes, and factory-specific internal settings.
 	 * Should not include any metadata of actual bean definitions, such as BeanDefinition objects and bean name aliases.
 	 * @param otherFactory the other BeanFactory to copy from
 	 * 复制给定其他工厂的所有相关配置。

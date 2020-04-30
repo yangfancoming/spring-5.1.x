@@ -16,17 +16,11 @@ public class ScopeMetadata {
 
 	private ScopedProxyMode scopedProxyMode = ScopedProxyMode.NO;
 
-	/**
-	 * Set the name of the scope.
-	 */
 	public void setScopeName(String scopeName) {
 		Assert.notNull(scopeName, "'scopeName' must not be null");
 		this.scopeName = scopeName;
 	}
 
-	/**
-	 * Get the name of the scope.
-	 */
 	public String getScopeName() {
 		return this.scopeName;
 	}

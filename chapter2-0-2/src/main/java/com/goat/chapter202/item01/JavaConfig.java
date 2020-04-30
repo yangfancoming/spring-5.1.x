@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * @ author  山羊来了
  * @ date 2019/8/12---20:46
  */
-@Configuration // 这个注解 为什么不加 可以？
+//@Configuration // 这个注解 为什么不加 可以？
 public class JavaConfig {
 
 	@Bean

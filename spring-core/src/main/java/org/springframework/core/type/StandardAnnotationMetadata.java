@@ -19,7 +19,7 @@ import org.springframework.util.MultiValueMap;
  */
 public class StandardAnnotationMetadata extends StandardClassMetadata implements AnnotationMetadata {
 
-	// 持有对本类所有注解的引用
+	// 持有对本类上的所有注解对象
 	private final Annotation[] annotations;
 
 	private final boolean nestedAnnotationsAsMap;
@@ -44,7 +44,7 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 	 */
 	public StandardAnnotationMetadata(Class<?> introspectedClass, boolean nestedAnnotationsAsMap) {
 		super(introspectedClass);
-		annotations = introspectedClass.getAnnotations();
+		this.annotations = introspectedClass.getAnnotations();
 		this.nestedAnnotationsAsMap = nestedAnnotationsAsMap;
 	}
 
