@@ -16,10 +16,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.xml.DomUtils;
 
 /**
- * Parse the <code>&lt;mvc:script-template-configurer&gt;</code> MVC namespace element and
- * register a {@code ScriptTemplateConfigurer} bean.
- *
- * @author Sebastien Deleuze
+ * Parse the <code>&lt;mvc:script-template-configurer&gt;</code> MVC namespace element and register a {@code ScriptTemplateConfigurer} bean.
  * @since 4.2
  */
 public class ScriptTemplateConfigurerBeanDefinitionParser extends AbstractSimpleBeanDefinitionParser {
@@ -28,7 +25,6 @@ public class ScriptTemplateConfigurerBeanDefinitionParser extends AbstractSimple
 	 * The bean name used for the {@code ScriptTemplateConfigurer}.
 	 */
 	public static final String BEAN_NAME = "mvcScriptTemplateConfigurer";
-
 
 	@Override
 	protected String resolveId(Element element, AbstractBeanDefinition definition, ParserContext parserContext) {

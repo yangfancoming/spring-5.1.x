@@ -128,13 +128,6 @@ import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolv
  * <li>A range of {@link HttpMessageConverter HttpMessageConverters} depending on which third-party
  * libraries are available on the classpath.
  * </ul>
- *
- * @author Keith Donald
-
- * @author Arjen Poutsma
- * @author Rossen Stoyanchev
- * @author Brian Clozel
- * @author Agim Emruli
  * @since 3.0
  */
 class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
@@ -144,7 +137,6 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 	public static final String HANDLER_ADAPTER_BEAN_NAME = RequestMappingHandlerAdapter.class.getName();
 
 	public static final String CONTENT_NEGOTIATION_MANAGER_BEAN_NAME = "mvcContentNegotiationManager";
-
 
 	private static final boolean javaxValidationPresent;
 
@@ -167,14 +159,12 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 		javaxValidationPresent = ClassUtils.isPresent("javax.validation.Validator", classLoader);
 		romePresent = ClassUtils.isPresent("com.rometools.rome.feed.WireFeed", classLoader);
 		jaxb2Present = ClassUtils.isPresent("javax.xml.bind.Binder", classLoader);
-		jackson2Present = ClassUtils.isPresent("com.fasterxml.jackson.databind.ObjectMapper", classLoader) &&
-						ClassUtils.isPresent("com.fasterxml.jackson.core.JsonGenerator", classLoader);
+		jackson2Present = ClassUtils.isPresent("com.fasterxml.jackson.databind.ObjectMapper", classLoader) && ClassUtils.isPresent("com.fasterxml.jackson.core.JsonGenerator", classLoader);
 		jackson2XmlPresent = ClassUtils.isPresent("com.fasterxml.jackson.dataformat.xml.XmlMapper", classLoader);
 		jackson2SmilePresent = ClassUtils.isPresent("com.fasterxml.jackson.dataformat.smile.SmileFactory", classLoader);
 		jackson2CborPresent = ClassUtils.isPresent("com.fasterxml.jackson.dataformat.cbor.CBORFactory", classLoader);
 		gsonPresent = ClassUtils.isPresent("com.google.gson.Gson", classLoader);
 	}
-
 
 	@Override
 	@Nullable
@@ -253,8 +243,7 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 		handlerAdapterDef.getPropertyValues().add("deferredResultInterceptors", deferredResultInterceptors);
 		readerContext.getRegistry().registerBeanDefinition(HANDLER_ADAPTER_BEAN_NAME, handlerAdapterDef);
 
-		RootBeanDefinition uriContributorDef =
-				new RootBeanDefinition(CompositeUriComponentsContributorFactoryBean.class);
+		RootBeanDefinition uriContributorDef = new RootBeanDefinition(CompositeUriComponentsContributorFactoryBean.class);
 		uriContributorDef.setSource(source);
 		uriContributorDef.getPropertyValues().addPropertyValue("handlerAdapter", handlerAdapterDef);
 		uriContributorDef.getPropertyValues().addPropertyValue("conversionService", conversionService);
@@ -305,26 +294,21 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 		context.registerComponent(new BeanComponentDefinition(methodExceptionResolver, methodExResolverName));
 		context.registerComponent(new BeanComponentDefinition(statusExceptionResolver, statusExResolverName));
 		context.registerComponent(new BeanComponentDefinition(defaultExceptionResolver, defaultExResolverName));
-
 		// Ensure BeanNameUrlHandlerMapping (SPR-8289) and default HandlerAdapters are not "turned off"
 		MvcNamespaceUtils.registerDefaultComponents(context, source);
-
 		context.popAndRegisterContainingComponent();
-
 		return null;
 	}
 
 	protected void addRequestBodyAdvice(RootBeanDefinition beanDef) {
 		if (jackson2Present) {
-			beanDef.getPropertyValues().add("requestBodyAdvice",
-					new RootBeanDefinition(JsonViewRequestBodyAdvice.class));
+			beanDef.getPropertyValues().add("requestBodyAdvice",new RootBeanDefinition(JsonViewRequestBodyAdvice.class));
 		}
 	}
 
 	protected void addResponseBodyAdvice(RootBeanDefinition beanDef) {
 		if (jackson2Present) {
-			beanDef.getPropertyValues().add("responseBodyAdvice",
-					new RootBeanDefinition(JsonViewResponseBodyAdvice.class));
+			beanDef.getPropertyValues().add("responseBodyAdvice",new RootBeanDefinition(JsonViewResponseBodyAdvice.class));
 		}
 	}
 
@@ -332,8 +316,7 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 		RuntimeBeanReference conversionServiceRef;
 		if (element.hasAttribute("conversion-service")) {
 			conversionServiceRef = new RuntimeBeanReference(element.getAttribute("conversion-service"));
-		}
-		else {
+		}else {
 			RootBeanDefinition conversionDef = new RootBeanDefinition(FormattingConversionServiceFactoryBean.class);
 			conversionDef.setSource(source);
 			conversionDef.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
@@ -348,30 +331,24 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 	private RuntimeBeanReference getValidator(Element element, @Nullable Object source, ParserContext context) {
 		if (element.hasAttribute("validator")) {
 			return new RuntimeBeanReference(element.getAttribute("validator"));
-		}
-		else if (javaxValidationPresent) {
-			RootBeanDefinition validatorDef = new RootBeanDefinition(
-					"org.springframework.validation.beanvalidation.OptionalValidatorFactoryBean");
+		}else if (javaxValidationPresent) {
+			RootBeanDefinition validatorDef = new RootBeanDefinition("org.springframework.validation.beanvalidation.OptionalValidatorFactoryBean");
 			validatorDef.setSource(source);
 			validatorDef.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
 			String validatorName = context.getReaderContext().registerWithGeneratedName(validatorDef);
 			context.registerComponent(new BeanComponentDefinition(validatorDef, validatorName));
 			return new RuntimeBeanReference(validatorName);
-		}
-		else {
+		}else {
 			return null;
 		}
 	}
 
-	private RuntimeBeanReference getContentNegotiationManager(
-			Element element, @Nullable Object source, ParserContext context) {
-
+	private RuntimeBeanReference getContentNegotiationManager(Element element, @Nullable Object source, ParserContext context) {
 		RuntimeBeanReference beanRef;
 		if (element.hasAttribute("content-negotiation-manager")) {
 			String name = element.getAttribute("content-negotiation-manager");
 			beanRef = new RuntimeBeanReference(name);
-		}
-		else {
+		}else {
 			RootBeanDefinition factoryBeanDef = new RootBeanDefinition(ContentNegotiationManagerFactoryBean.class);
 			factoryBeanDef.setSource(source);
 			factoryBeanDef.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
@@ -384,13 +361,10 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 		return beanRef;
 	}
 
-	private void configurePathMatchingProperties(
-			RootBeanDefinition handlerMappingDef, Element element, ParserContext context) {
-
+	private void configurePathMatchingProperties(RootBeanDefinition handlerMappingDef, Element element, ParserContext context) {
 		Element pathMatchingElement = DomUtils.getChildElementByTagName(element, "path-matching");
 		if (pathMatchingElement != null) {
 			Object source = context.extractSource(element);
-
 			if (pathMatchingElement.hasAttribute("suffix-pattern")) {
 				Boolean useSuffixPatternMatch = Boolean.valueOf(pathMatchingElement.getAttribute("suffix-pattern"));
 				handlerMappingDef.getPropertyValues().add("useSuffixPatternMatch", useSuffixPatternMatch);
@@ -403,14 +377,12 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 				Boolean useRegisteredSuffixPatternMatch = Boolean.valueOf(pathMatchingElement.getAttribute("registered-suffixes-only"));
 				handlerMappingDef.getPropertyValues().add("useRegisteredSuffixPatternMatch", useRegisteredSuffixPatternMatch);
 			}
-
 			RuntimeBeanReference pathHelperRef = null;
 			if (pathMatchingElement.hasAttribute("path-helper")) {
 				pathHelperRef = new RuntimeBeanReference(pathMatchingElement.getAttribute("path-helper"));
 			}
 			pathHelperRef = MvcNamespaceUtils.registerUrlPathHelper(pathHelperRef, context, source);
 			handlerMappingDef.getPropertyValues().add("urlPathHelper", pathHelperRef);
-
 			RuntimeBeanReference pathMatcherRef = null;
 			if (pathMatchingElement.hasAttribute("path-matcher")) {
 				pathMatcherRef = new RuntimeBeanReference(pathMatchingElement.getAttribute("path-matcher"));
@@ -445,8 +417,7 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 	private RuntimeBeanReference getMessageCodesResolver(Element element) {
 		if (element.hasAttribute("message-codes-resolver")) {
 			return new RuntimeBeanReference(element.getAttribute("message-codes-resolver"));
-		}
-		else {
+		}else {
 			return null;
 		}
 	}
@@ -466,9 +437,7 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 		return null;
 	}
 
-	private ManagedList<?> getCallableInterceptors(
-			Element element, @Nullable Object source, ParserContext context) {
-
+	private ManagedList<?> getCallableInterceptors(Element element, @Nullable Object source, ParserContext context) {
 		ManagedList<Object> interceptors = new ManagedList<>();
 		Element asyncElement = DomUtils.getChildElementByTagName(element, "async-support");
 		if (asyncElement != null) {
@@ -487,9 +456,7 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 		return interceptors;
 	}
 
-	private ManagedList<?> getDeferredResultInterceptors(
-			Element element, @Nullable Object source, ParserContext context) {
-
+	private ManagedList<?> getDeferredResultInterceptors(Element element, @Nullable Object source, ParserContext context) {
 		ManagedList<Object> interceptors = new ManagedList<>();
 		Element asyncElement = DomUtils.getChildElementByTagName(element, "async-support");
 		if (asyncElement != null) {
@@ -580,8 +547,7 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 				jacksonFactoryDef.getPropertyValues().add("createXmlMapper", true);
 				jacksonConverterDef.getConstructorArgumentValues().addIndexedArgumentValue(0, jacksonFactoryDef);
 				messageConverters.add(jacksonConverterDef);
-			}
-			else if (jaxb2Present) {
+			}else if (jaxb2Present) {
 				messageConverters.add(createConverterDefinition(Jaxb2RootElementHttpMessageConverter.class, source));
 			}
 
@@ -591,8 +557,7 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 				GenericBeanDefinition jacksonFactoryDef = createObjectMapperFactoryDefinition(source);
 				jacksonConverterDef.getConstructorArgumentValues().addIndexedArgumentValue(0, jacksonFactoryDef);
 				messageConverters.add(jacksonConverterDef);
-			}
-			else if (gsonPresent) {
+			}else if (gsonPresent) {
 				messageConverters.add(createConverterDefinition(GsonHttpMessageConverter.class, source));
 			}
 
@@ -644,11 +609,9 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 
 	/**
 	 * A FactoryBean for a CompositeUriComponentsContributor that obtains the
-	 * HandlerMethodArgumentResolver's configured in RequestMappingHandlerAdapter
-	 * after it is fully initialized.
+	 * HandlerMethodArgumentResolver's configured in RequestMappingHandlerAdapter after it is fully initialized.
 	 */
-	static class CompositeUriComponentsContributorFactoryBean
-			implements FactoryBean<CompositeUriComponentsContributor>, InitializingBean {
+	static class CompositeUriComponentsContributorFactoryBean implements FactoryBean<CompositeUriComponentsContributor>, InitializingBean {
 
 		@Nullable
 		private RequestMappingHandlerAdapter handlerAdapter;
@@ -670,8 +633,7 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 		@Override
 		public void afterPropertiesSet() {
 			Assert.state(this.handlerAdapter != null, "No RequestMappingHandlerAdapter set");
-			this.uriComponentsContributor = new CompositeUriComponentsContributor(
-					this.handlerAdapter.getArgumentResolvers(), this.conversionService);
+			this.uriComponentsContributor = new CompositeUriComponentsContributor(this.handlerAdapter.getArgumentResolvers(), this.conversionService);
 		}
 
 		@Override

@@ -21,8 +21,6 @@ import org.springframework.web.servlet.handler.MappedInterceptor;
 /**
  * {@link org.springframework.beans.factory.xml.BeanDefinitionParser} that parses a
  * {@code interceptors} element to register a set of {@link MappedInterceptor} definitions.
- *
- * @author Keith Donald
  * @since 3.0
  */
 class InterceptorsBeanDefinitionParser implements BeanDefinitionParser {
@@ -30,9 +28,7 @@ class InterceptorsBeanDefinitionParser implements BeanDefinitionParser {
 	@Override
 	@Nullable
 	public BeanDefinition parse(Element element, ParserContext context) {
-		context.pushContainingComponent(
-				new CompositeComponentDefinition(element.getTagName(), context.extractSource(element)));
-
+		context.pushContainingComponent(new CompositeComponentDefinition(element.getTagName(), context.extractSource(element)));
 		RuntimeBeanReference pathMatcherRef = null;
 		if (element.hasAttribute("path-matcher")) {
 			pathMatcherRef = new RuntimeBeanReference(element.getAttribute("path-matcher"));
@@ -52,8 +48,7 @@ class InterceptorsBeanDefinitionParser implements BeanDefinitionParser {
 				excludePatterns = getIncludePatterns(interceptor, "exclude-mapping");
 				Element beanElem = DomUtils.getChildElementsByTagName(interceptor, "bean", "ref").get(0);
 				interceptorBean = context.getDelegate().parsePropertySubElement(beanElem, null);
-			}
-			else {
+			}else {
 				interceptorBean = context.getDelegate().parsePropertySubElement(interceptor, null);
 			}
 			mappedInterceptorDef.getConstructorArgumentValues().addIndexedArgumentValue(0, includePatterns);

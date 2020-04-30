@@ -106,8 +106,7 @@ public abstract class NamespaceHandlerSupport implements NamespaceHandler {
 
 	/**
 	 * Subclasses can call this to register the supplied {@link BeanDefinitionParser} to
-	 * handle the specified element. The element name is the local (non-namespace qualified)
-	 * name.
+	 * handle the specified element. The element name is the local (non-namespace qualified) name.
 	 */
 	protected final void registerBeanDefinitionParser(String elementName, BeanDefinitionParser parser) {
 		parsers.put(elementName, parser);

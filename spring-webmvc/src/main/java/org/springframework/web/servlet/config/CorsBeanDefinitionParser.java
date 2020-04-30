@@ -22,8 +22,6 @@ import org.springframework.web.cors.CorsConfiguration;
  * {@code cors} element in order to set the CORS configuration in the various
  * {AbstractHandlerMapping} beans created by {@link AnnotationDrivenBeanDefinitionParser},
  * {@link ResourcesBeanDefinitionParser} and {@link ViewControllerBeanDefinitionParser}.
- *
- * @author Sebastien Deleuze
  * @since 4.2
  */
 public class CorsBeanDefinitionParser implements BeanDefinitionParser {
@@ -38,8 +36,7 @@ public class CorsBeanDefinitionParser implements BeanDefinitionParser {
 		if (mappings.isEmpty()) {
 			CorsConfiguration config = new CorsConfiguration().applyPermitDefaultValues();
 			corsConfigurations.put("/**", config);
-		}
-		else {
+		}else {
 			for (Element mapping : mappings) {
 				CorsConfiguration config = new CorsConfiguration();
 				if (mapping.hasAttribute("allowed-origins")) {
@@ -68,8 +65,7 @@ public class CorsBeanDefinitionParser implements BeanDefinitionParser {
 			}
 		}
 
-		MvcNamespaceUtils.registerCorsConfigurations(
-				corsConfigurations, parserContext, parserContext.extractSource(element));
+		MvcNamespaceUtils.registerCorsConfigurations(corsConfigurations, parserContext, parserContext.extractSource(element));
 		return null;
 	}
 

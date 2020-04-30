@@ -63,7 +63,6 @@ class ResourcesBeanDefinitionParser implements BeanDefinitionParser {
 
 	private static final boolean isWebJarsAssetLocatorPresent = ClassUtils.isPresent("org.webjars.WebJarAssetLocator", ResourcesBeanDefinitionParser.class.getClassLoader());
 
-
 	@Override
 	public BeanDefinition parse(Element element, ParserContext context) {
 		Object source = context.extractSource(element);
