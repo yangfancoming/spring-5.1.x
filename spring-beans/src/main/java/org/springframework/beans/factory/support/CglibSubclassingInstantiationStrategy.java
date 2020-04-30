@@ -152,10 +152,7 @@ public class CglibSubclassingInstantiationStrategy extends SimpleInstantiationSt
 
 		@Override
 		public byte[] generate(ClassGenerator cg) throws Exception {
-			if (classLoader == null) {
-				return super.generate(cg);
-			}
-
+			if (classLoader == null) return super.generate(cg);
 			Thread currentThread = Thread.currentThread();
 			ClassLoader threadContextClassLoader;
 			try {
@@ -207,10 +204,8 @@ public class CglibSubclassingInstantiationStrategy extends SimpleInstantiationSt
 		}
 	}
 
-
 	/**
-	 * CGLIB MethodInterceptor to override methods, replacing them with an
-	 * implementation that returns a bean looked up in the container.
+	 * CGLIB MethodInterceptor to override methods, replacing them with an implementation that returns a bean looked up in the container.
 	 */
 	private static class LookupOverrideMethodInterceptor extends CglibIdentitySupport implements MethodInterceptor {
 

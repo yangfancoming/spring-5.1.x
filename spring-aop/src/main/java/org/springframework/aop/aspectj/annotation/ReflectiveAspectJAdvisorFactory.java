@@ -52,8 +52,7 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 
 	static {
 		Comparator<Method> adviceKindComparator = new ConvertingComparator<>(
-				new InstanceComparator<>(
-						Around.class, Before.class, After.class, AfterReturning.class, AfterThrowing.class),
+				new InstanceComparator<>(Around.class, Before.class, After.class, AfterReturning.class, AfterThrowing.class),
 				(Converter<Method, Annotation>) method -> {
 					AspectJAnnotation<?> annotation = AbstractAspectJAdvisorFactory.findAspectJAnnotationOnMethod(method);
 					return (annotation != null ? annotation.getAnnotation() : null);
@@ -277,8 +276,7 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 
 	/**
 	 * Synthetic advisor that instantiates the aspect.
-	 * Triggered by per-clause pointcut on non-singleton aspect.
-	 * The advice has no effect.
+	 * Triggered by per-clause pointcut on non-singleton aspect. The advice has no effect.
 	 */
 	@SuppressWarnings("serial")
 	protected static class SyntheticInstantiationAdvisor extends DefaultPointcutAdvisor {

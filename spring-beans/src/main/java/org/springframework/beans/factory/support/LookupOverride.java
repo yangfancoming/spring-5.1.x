@@ -42,9 +42,7 @@ public class LookupOverride extends MethodOverride {
 		this.beanName = beanName;
 	}
 
-	/**
-	 * Return the name of the bean that should be returned by this method.
-	 */
+	// Return the name of the bean that should be returned by this method.
 	@Nullable
 	public String getBeanName() {
 		return this.beanName;

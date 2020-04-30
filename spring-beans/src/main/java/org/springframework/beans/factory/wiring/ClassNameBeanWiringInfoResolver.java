@@ -8,8 +8,7 @@ import org.springframework.util.ClassUtils;
 /**
  * Simple default implementation of the {@link BeanWiringInfoResolver} interface,
  * looking for a bean with the same name as the fully-qualified class name.
- * This matches the default name of the bean in a Spring XML file if the
- * bean tag's "id" attribute is not used.
+ * This matches the default name of the bean in a Spring XML file if the bean tag's "id" attribute is not used.
  * @since 2.0
  */
 public class ClassNameBeanWiringInfoResolver implements BeanWiringInfoResolver {

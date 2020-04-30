@@ -47,8 +47,7 @@ public class StaticListableBeanFactory implements ListableBeanFactory {
 	private final Map<String, Object> beans;
 
 	/**
-	 * Create a regular {@code StaticListableBeanFactory}, to be populated
-	 * with singleton bean instances through {@link #addBean} calls.
+	 * Create a regular {@code StaticListableBeanFactory}, to be populated with singleton bean instances through {@link #addBean} calls.
 	 */
 	public StaticListableBeanFactory() {
 		this.beans = new LinkedHashMap<>();
@@ -56,12 +55,9 @@ public class StaticListableBeanFactory implements ListableBeanFactory {
 
 	/**
 	 * Create a {@code StaticListableBeanFactory} wrapping the given {@code Map}.
-	 * Note that the given {@code Map} may be pre-populated with beans;
-	 * or new, still allowing for beans to be registered via {@link #addBean};
-	 * or {@link java.util.Collections#emptyMap()} for a dummy factory which
-	 * enforces operating against an empty set of beans.
-	 * @param beans a {@code Map} for holding this factory's beans, with the
-	 * bean name String as key and the corresponding singleton object as value
+	 * Note that the given {@code Map} may be pre-populated with beans;or new, still allowing for beans to be registered via {@link #addBean};
+	 * or {@link java.util.Collections#emptyMap()} for a dummy factory which enforces operating against an empty set of beans.
+	 * @param beans a {@code Map} for holding this factory's beans, with the bean name String as key and the corresponding singleton object as value
 	 * @since 4.3
 	 */
 	public StaticListableBeanFactory(Map<String, Object> beans) {
@@ -262,7 +258,6 @@ public class StaticListableBeanFactory implements ListableBeanFactory {
 	//---------------------------------------------------------------------
 	// Implementation of ListableBeanFactory interface
 	//---------------------------------------------------------------------
-
 	@Override
 	public boolean containsBeanDefinition(String name) {
 		return this.beans.containsKey(name);

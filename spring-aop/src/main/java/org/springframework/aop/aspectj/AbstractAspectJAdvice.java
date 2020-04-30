@@ -402,8 +402,7 @@ public abstract class AbstractAspectJAdvice implements Advice, AspectJPrecedence
 		if (this.argumentNames != null) {
 			// We have been able to determine the arg names.
 			bindExplicitArguments(numArgumentsExpectingToBind);
-		}
-		else {
+		}else {
 			throw new IllegalStateException("Advice method [" + this.aspectJAdviceMethod.getName() + "] " +
 					"requires " + numArgumentsExpectingToBind + " arguments to be bound by name, but the argument names were not specified and could not be discovered.");
 		}
@@ -433,8 +432,7 @@ public abstract class AbstractAspectJAdvice implements Advice, AspectJPrecedence
 
 		int numExpectedArgumentNames = this.aspectJAdviceMethod.getParameterCount();
 		if (this.argumentNames.length != numExpectedArgumentNames) {
-			throw new IllegalStateException("Expecting to find " + numExpectedArgumentNames +
-					" arguments to bind by name in advice, but actually found " + this.argumentNames.length + " arguments.");
+			throw new IllegalStateException("Expecting to find " + numExpectedArgumentNames + " arguments to bind by name in advice, but actually found " + this.argumentNames.length + " arguments.");
 		}
 
 		// So we match in number...
@@ -512,7 +510,6 @@ public abstract class AbstractAspectJAdvice implements Advice, AspectJPrecedence
 	 */
 	protected Object[] argBinding(JoinPoint jp, @Nullable JoinPointMatch jpMatch,@Nullable Object returnValue, @Nullable Throwable ex) {
 		calculateArgumentBindings();
-
 		// AMC start
 		Object[] adviceInvocationArgs = new Object[this.parameterTypes.length];
 		int numBound = 0;

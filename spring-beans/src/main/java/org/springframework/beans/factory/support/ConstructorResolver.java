@@ -79,15 +79,12 @@ class ConstructorResolver {
 
 	/**
 	 * "autowire constructor" (with constructor arguments by type) behavior.
-	 * Also applied if explicit constructor argument values are specified,
-	 * matching all remaining arguments with beans from the bean factory.
-	 * This corresponds to constructor injection: In this mode, a Spring
-	 * bean factory is able to host components that expect constructor-based dependency resolution.
+	 * Also applied if explicit constructor argument values are specified, matching all remaining arguments with beans from the bean factory.
+	 * This corresponds to constructor injection: In this mode, a Spring bean factory is able to host components that expect constructor-based dependency resolution.
 	 * @param beanName the name of the bean
 	 * @param mbd the merged bean definition for the bean
 	 * @param chosenCtors chosen candidate constructors (or {@code null} if none)
-	 * @param explicitArgs argument values passed in programmatically via the getBean method,
-	 * or {@code null} if none (-> use constructor argument values from bean definition)
+	 * @param explicitArgs argument values passed in programmatically via the getBean method,or {@code null} if none (-> use constructor argument values from bean definition)
 	 * @return a BeanWrapper for the new instance
 	 */
 	public BeanWrapper autowireConstructor(String beanName, RootBeanDefinition mbd,@Nullable Constructor<?>[] chosenCtors, @Nullable Object[] explicitArgs) {
@@ -512,10 +509,8 @@ class ConstructorResolver {
 
 			for (Method candidate : candidates) {
 				Class<?>[] paramTypes = candidate.getParameterTypes();
-
 				if (paramTypes.length >= minNrOfArgs) {
 					ArgumentsHolder argsHolder;
-
 					if (explicitArgs != null) {
 						// Explicit arguments given -> arguments length must match exactly.
 						if (paramTypes.length != explicitArgs.length) {
@@ -536,16 +531,13 @@ class ConstructorResolver {
 								logger.trace("Ignoring factory method [" + candidate + "] of bean '" + beanName + "': " + ex);
 							}
 							// Swallow and try next overloaded factory method.
-							if (causes == null) {
-								causes = new LinkedList<>();
-							}
+							if (causes == null) causes = new LinkedList<>();
 							causes.add(ex);
 							continue;
 						}
 					}
 
-					int typeDiffWeight = (mbd.isLenientConstructorResolution() ?
-							argsHolder.getTypeDifferenceWeight(paramTypes) : argsHolder.getAssignabilityWeight(paramTypes));
+					int typeDiffWeight = (mbd.isLenientConstructorResolution() ? argsHolder.getTypeDifferenceWeight(paramTypes) : argsHolder.getAssignabilityWeight(paramTypes));
 					// Choose this factory method if it represents the closest match.
 					if (typeDiffWeight < minTypeDiffWeight) {
 						factoryMethodToUse = candidate;
@@ -554,13 +546,10 @@ class ConstructorResolver {
 						minTypeDiffWeight = typeDiffWeight;
 						ambiguousFactoryMethods = null;
 					}
-					// Find out about ambiguity: In case of the same type difference weight
-					// for methods with the same number of parameters, collect such candidates
-					// and eventually raise an ambiguity exception.
-					// However, only perform that check in non-lenient constructor resolution mode,
-					// and explicitly ignore overridden methods (with the same parameter signature).
-					else if (factoryMethodToUse != null && typeDiffWeight == minTypeDiffWeight && !mbd.isLenientConstructorResolution() &&
-							paramTypes.length == factoryMethodToUse.getParameterCount() && !Arrays.equals(paramTypes, factoryMethodToUse.getParameterTypes())) {
+					// Find out about ambiguity: In case of the same type difference weight for methods with the same number of parameters,
+					// collect such candidates and eventually raise an ambiguity exception.
+					// However, only perform that check in non-lenient constructor resolution mode, and explicitly ignore overridden methods (with the same parameter signature).
+					else if (factoryMethodToUse != null && typeDiffWeight == minTypeDiffWeight && !mbd.isLenientConstructorResolution() && paramTypes.length == factoryMethodToUse.getParameterCount() && !Arrays.equals(paramTypes, factoryMethodToUse.getParameterTypes())) {
 						if (ambiguousFactoryMethods == null) {
 							ambiguousFactoryMethods = new LinkedHashSet<>();
 							ambiguousFactoryMethods.add(factoryMethodToUse);
@@ -618,7 +607,6 @@ class ConstructorResolver {
 			if (System.getSecurityManager() != null) {
 				return AccessController.doPrivileged((PrivilegedAction<Object>) () ->
 						beanFactory.getInstantiationStrategy().instantiate(mbd, beanName, beanFactory, factoryBean, factoryMethod, args),beanFactory.getAccessControlContext());
-
 			}else {
 				return beanFactory.getInstantiationStrategy().instantiate(mbd, beanName, beanFactory, factoryBean, factoryMethod, args);
 
@@ -634,7 +622,6 @@ class ConstructorResolver {
 	 * This method is also used for handling invocations of static factory methods.
 	 */
 	private int resolveConstructorArguments(String beanName, RootBeanDefinition mbd, BeanWrapper bw,ConstructorArgumentValues cargs, ConstructorArgumentValues resolvedValues) {
-
 		TypeConverter customConverter = beanFactory.getCustomTypeConverter();
 		TypeConverter converter = (customConverter != null ? customConverter : bw);
 		BeanDefinitionValueResolver valueResolver = new BeanDefinitionValueResolver(beanFactory, beanName, mbd, converter);
@@ -650,8 +637,7 @@ class ConstructorResolver {
 			ConstructorArgumentValues.ValueHolder valueHolder = entry.getValue();
 			if (valueHolder.isConverted()) {
 				resolvedValues.addIndexedArgumentValue(index, valueHolder);
-			}
-			else {
+			}else {
 				Object resolvedValue = valueResolver.resolveValueIfNecessary("constructor argument", valueHolder.getValue());
 				ConstructorArgumentValues.ValueHolder resolvedValueHolder = new ConstructorArgumentValues.ValueHolder(resolvedValue, valueHolder.getType(), valueHolder.getName());
 				resolvedValueHolder.setSource(valueHolder);
@@ -662,21 +648,18 @@ class ConstructorResolver {
 		for (ConstructorArgumentValues.ValueHolder valueHolder : cargs.getGenericArgumentValues()) {
 			if (valueHolder.isConverted()) {
 				resolvedValues.addGenericArgumentValue(valueHolder);
-			}
-			else {
+			}else {
 				Object resolvedValue = valueResolver.resolveValueIfNecessary("constructor argument", valueHolder.getValue());
 				ConstructorArgumentValues.ValueHolder resolvedValueHolder = new ConstructorArgumentValues.ValueHolder(resolvedValue, valueHolder.getType(), valueHolder.getName());
 				resolvedValueHolder.setSource(valueHolder);
 				resolvedValues.addGenericArgumentValue(resolvedValueHolder);
 			}
 		}
-
 		return minNrOfArgs;
 	}
 
 	/**
-	 * Create an array of arguments to invoke a constructor or factory method,
-	 * given the resolved constructor argument values.
+	 * Create an array of arguments to invoke a constructor or factory method, given the resolved constructor argument values.
 	 */
 	private ArgumentsHolder createArgumentArray(
 			String beanName, RootBeanDefinition mbd, @Nullable ConstructorArgumentValues resolvedValues,
@@ -713,18 +696,14 @@ class ConstructorResolver {
 				if (valueHolder.isConverted()) {
 					convertedValue = valueHolder.getConvertedValue();
 					args.preparedArguments[paramIndex] = convertedValue;
-				}
-				else {
+				}else {
 					MethodParameter methodParam = MethodParameter.forExecutable(executable, paramIndex);
 					try {
 						convertedValue = converter.convertIfNecessary(originalValue, paramType, methodParam);
-					}
-					catch (TypeMismatchException ex) {
+					}catch (TypeMismatchException ex) {
 						throw new UnsatisfiedDependencyException(
-								mbd.getResourceDescription(), beanName, new InjectionPoint(methodParam),
-								"Could not convert argument value of type [" +
-										ObjectUtils.nullSafeClassName(valueHolder.getValue()) +
-										"] to required type [" + paramType.getName() + "]: " + ex.getMessage());
+								mbd.getResourceDescription(), beanName, new InjectionPoint(methodParam),"Could not convert argument value of type [" +
+										ObjectUtils.nullSafeClassName(valueHolder.getValue()) + "] to required type [" + paramType.getName() + "]: " + ex.getMessage());
 					}
 					Object sourceHolder = valueHolder.getSource();
 					if (sourceHolder instanceof ConstructorArgumentValues.ValueHolder) {
@@ -803,10 +782,8 @@ class ConstructorResolver {
 		if (userClass != declaringClass) {
 			try {
 				return userClass.getDeclaredConstructor(constructor.getParameterTypes());
-			}
-			catch (NoSuchMethodException ex) {
-				// No equivalent constructor on user class (superclass)...
-				// Let's proceed with the given constructor as we usually would.
+			}catch (NoSuchMethodException ex) {
+				// No equivalent constructor on user class (superclass)... Let's proceed with the given constructor as we usually would.
 			}
 		}
 		return constructor;
@@ -820,9 +797,7 @@ class ConstructorResolver {
 		Class<?> paramType = param.getParameterType();
 		if (InjectionPoint.class.isAssignableFrom(paramType)) {
 			InjectionPoint injectionPoint = currentInjectionPoint.get();
-			if (injectionPoint == null) {
-				throw new IllegalStateException("No current InjectionPoint available for " + param);
-			}
+			if (injectionPoint == null) throw new IllegalStateException("No current InjectionPoint available for " + param);
 			return injectionPoint;
 		}
 		try {
@@ -855,10 +830,7 @@ class ConstructorResolver {
 		return old;
 	}
 
-
-	/**
-	 * Private inner class for holding argument combinations.
-	 */
+	// Private inner class for holding argument combinations.
 	private static class ArgumentsHolder {
 
 		public final Object[] rawArguments;
@@ -918,10 +890,7 @@ class ConstructorResolver {
 		}
 	}
 
-
-	/**
-	 * Marker for autowired arguments in a cached argument array.
- 	 */
+	// Marker for autowired arguments in a cached argument array.
 	private static class AutowiredArgumentMarker {
 	}
 

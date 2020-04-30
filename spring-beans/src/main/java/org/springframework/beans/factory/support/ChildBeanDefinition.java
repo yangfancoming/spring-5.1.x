@@ -10,8 +10,7 @@ import org.springframework.util.ObjectUtils;
 /**
  * Bean definition for beans which inherit settings from their parent.
  * Child bean definitions have a fixed dependency on a parent bean definition.
- * A child bean definition will inherit constructor argument values, property values and method overrides from the parent,
- * with the option to add new values.
+ * A child bean definition will inherit constructor argument values, property values and method overrides from the parent,with the option to add new values.
  * If init method, destroy method and/or static factory  method are specified, they will override the corresponding parent settings.
  * The remaining settings will <i>always</i> be taken from the child definition: depends on, autowire mode, dependency check, singleton, lazy init.
  * <b>NOTE:</b> Since Spring 2.5, the preferred way to register bean definitions programmatically is the {@link GenericBeanDefinition} class,
@@ -89,14 +88,12 @@ public class ChildBeanDefinition extends AbstractBeanDefinition {
 	}
 
 	/**
-	 * Create a new ChildBeanDefinition as deep copy of the given
-	 * bean definition.
+	 * Create a new ChildBeanDefinition as deep copy of the given bean definition.
 	 * @param original the original bean definition to copy from
 	 */
 	public ChildBeanDefinition(ChildBeanDefinition original) {
 		super(original);
 	}
-
 
 	@Override
 	public void setParentName(@Nullable String parentName) {
@@ -115,7 +112,6 @@ public class ChildBeanDefinition extends AbstractBeanDefinition {
 		if (parentName == null) throw new BeanDefinitionValidationException("'parentName' must be set in ChildBeanDefinition");
 	}
 
-
 	@Override
 	public AbstractBeanDefinition cloneBeanDefinition() {
 		return new ChildBeanDefinition(this);
@@ -123,9 +119,7 @@ public class ChildBeanDefinition extends AbstractBeanDefinition {
 
 	@Override
 	public boolean equals(Object other) {
-		if (this == other) {
-			return true;
-		}
+		if (this == other) return true;
 		if (!(other instanceof ChildBeanDefinition)) {
 			return false;
 		}
@@ -142,5 +136,4 @@ public class ChildBeanDefinition extends AbstractBeanDefinition {
 	public String toString() {
 		return "Child bean with parent '" + parentName + "': " + super.toString();
 	}
-
 }

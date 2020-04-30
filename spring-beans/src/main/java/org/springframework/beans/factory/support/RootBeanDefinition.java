@@ -116,8 +116,7 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 	}
 
 	/**
-	 * Create a new RootBeanDefinition for a singleton bean, constructing each instance
-	 * through calling the given supplier (possibly a lambda or method reference).
+	 * Create a new RootBeanDefinition for a singleton bean, constructing each instance through calling the given supplier (possibly a lambda or method reference).
 	 * @param beanClass the class of the bean to instantiate
 	 * @param instanceSupplier the supplier to construct a bean instance,as an alternative to a declaratively specified factory method
 	 * @since 5.0
@@ -130,8 +129,7 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 	}
 
 	/**
-	 * Create a new RootBeanDefinition for a scoped bean, constructing each instance
-	 * through calling the given supplier (possibly a lambda or method reference).
+	 * Create a new RootBeanDefinition for a scoped bean, constructing each instance through calling the given supplier (possibly a lambda or method reference).
 	 * @param beanClass the class of the bean to instantiate
 	 * @param scope the name of the corresponding scope
 	 * @param instanceSupplier the supplier to construct a bean instance,as an alternative to a declaratively specified factory method
@@ -245,8 +243,7 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 	}
 
 	/**
-	 * Return the {@link AnnotatedElement} defining qualifiers, if any.
-	 * Otherwise, the factory method and target class will be checked.
+	 * Return the {@link AnnotatedElement} defining qualifiers, if any. Otherwise, the factory method and target class will be checked.
 	 * @since 4.3.3
 	 */
 	@Nullable

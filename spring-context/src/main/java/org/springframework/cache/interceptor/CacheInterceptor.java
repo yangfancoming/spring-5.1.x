@@ -19,11 +19,7 @@ import org.springframework.lang.Nullable;
  * contains the integration with Spring's underlying caching API.
  * CacheInterceptor simply calls the relevant superclass methods
  * in the correct order.
- *
  * CacheInterceptors are thread-safe.
- *
- * @author Costin Leau
-
  * @since 3.1
  */
 @SuppressWarnings("serial")
@@ -33,20 +29,16 @@ public class CacheInterceptor extends CacheAspectSupport implements MethodInterc
 	@Nullable
 	public Object invoke(final MethodInvocation invocation) throws Throwable {
 		Method method = invocation.getMethod();
-
 		CacheOperationInvoker aopAllianceInvoker = () -> {
 			try {
 				return invocation.proceed();
-			}
-			catch (Throwable ex) {
+			}catch (Throwable ex) {
 				throw new CacheOperationInvoker.ThrowableWrapper(ex);
 			}
 		};
-
 		try {
 			return execute(aopAllianceInvoker, invocation.getThis(), method, invocation.getArguments());
-		}
-		catch (CacheOperationInvoker.ThrowableWrapper th) {
+		}catch (CacheOperationInvoker.ThrowableWrapper th) {
 			throw th.getOriginal();
 		}
 	}

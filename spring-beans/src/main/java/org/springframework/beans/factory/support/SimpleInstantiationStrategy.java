@@ -19,8 +19,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * Simple object instantiation strategy for use in a BeanFactory.
- * Does not support Method Injection, although it provides hooks for subclasses
- * to override to add Method Injection support, for example by overriding methods.
+ * Does not support Method Injection, although it provides hooks for subclasses to override to add Method Injection support, for example by overriding methods.
  * @since 1.1
  */
 public class SimpleInstantiationStrategy implements InstantiationStrategy {
@@ -29,14 +28,12 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy {
 
 	/**
 	 * Return the factory method currently being invoked or {@code null} if none.
-	 * Allows factory method implementations to determine whether the current
-	 * caller is the container itself as opposed to user code.
+	 * Allows factory method implementations to determine whether the current caller is the container itself as opposed to user code.
 	 */
 	@Nullable
 	public static Method getCurrentlyInvokedFactoryMethod() {
 		return currentlyInvokedFactoryMethod.get();
 	}
-
 
 	@Override
 	public Object instantiate(RootBeanDefinition bd, @Nullable String beanName, BeanFactory owner) {
@@ -86,7 +83,6 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy {
 
 	@Override
 	public Object instantiate(RootBeanDefinition bd, @Nullable String beanName, BeanFactory owner,final Constructor<?> ctor, Object... args) {
-
 		if (!bd.hasMethodOverrides()) {
 			if (System.getSecurityManager() != null) {
 				// use own privileged to change accessibility (when security is on)
@@ -96,8 +92,7 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy {
 				});
 			}
 			return BeanUtils.instantiateClass(ctor, args);
-		}
-		else {
+		}else {
 			return instantiateWithMethodInjection(bd, beanName, owner, ctor, args);
 		}
 	}
@@ -128,9 +123,7 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy {
 			try {
 				currentlyInvokedFactoryMethod.set(factoryMethod);
 				Object result = factoryMethod.invoke(factoryBean, args);
-				if (result == null) {
-					result = new NullBean();
-				}
+				if (result == null) result = new NullBean();
 				return result;
 			}finally {
 				if (priorInvokedFactoryMethod != null) {

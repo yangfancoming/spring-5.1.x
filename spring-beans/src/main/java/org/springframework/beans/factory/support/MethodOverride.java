@@ -33,7 +33,6 @@ public abstract class MethodOverride implements BeanMetadataElement {
 		this.methodName = methodName;
 	}
 
-
 	/**
 	 * Return the name of the method to be overridden.
 	 */

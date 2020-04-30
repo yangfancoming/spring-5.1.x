@@ -98,8 +98,7 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 								// 应用后置处理
 								object = postProcessObjectFromFactoryBean(object, beanName);
 							}catch (Throwable ex) {
-								throw new BeanCreationException(beanName,
-										"Post-processing of FactoryBean's singleton object failed", ex);
+								throw new BeanCreationException(beanName,"Post-processing of FactoryBean's singleton object failed", ex);
 							}finally {
 								afterSingletonCreation(beanName);
 							}
@@ -113,7 +112,7 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 				}
 				return object;
 			}
-		}else {// 获取非单例实例
+		}else { // 获取非单例实例
 			// 从工厂类中获取实例
 			Object object = doGetObjectFromFactoryBean(factory, beanName);
 			if (shouldPostProcess) {
@@ -214,9 +213,8 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 	}
 
 	/**
-	 * Return the security context for this bean factory. If a security manager
-	 * is set, interaction with the user code will be executed using the privileged
-	 * of the security context returned by this method.
+	 * Return the security context for this bean factory. If a security manager is set,
+	 * interaction with the user code will be executed using the privileged of the security context returned by this method.
 	 * @see AccessController#getContext()
 	 */
 	protected AccessControlContext getAccessControlContext() {

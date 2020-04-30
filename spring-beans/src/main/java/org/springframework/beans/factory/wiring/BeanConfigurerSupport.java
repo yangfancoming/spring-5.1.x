@@ -19,11 +19,9 @@ import org.springframework.util.ClassUtils;
 /**
  * Convenient base class for bean configurers that can perform Dependency Injection
  * on objects (however they may be created). Typically subclassed by AspectJ aspects.
- *
- * Subclasses may also need a custom metadata resolution strategy, in the
- * {@link BeanWiringInfoResolver} interface. The default implementation looks for
- * a bean with the same name as the fully-qualified class name. (This is the default
- * name of the bean in a Spring XML file if the '{@code id}' attribute is not used.)
+ * Subclasses may also need a custom metadata resolution strategy, in the {@link BeanWiringInfoResolver} interface.
+ * The default implementation looks for a bean with the same name as the fully-qualified class name.
+ * (This is the default  name of the bean in a Spring XML file if the '{@code id}' attribute is not used.)
  * @since 2.0
  * @see #setBeanWiringInfoResolver
  * @see ClassNameBeanWiringInfoResolver
@@ -66,8 +64,7 @@ public class BeanConfigurerSupport implements BeanFactoryAware, InitializingBean
 	}
 
 	/**
-	 * Create the default BeanWiringInfoResolver to be used if none was
-	 * specified explicitly.
+	 * Create the default BeanWiringInfoResolver to be used if none was specified explicitly.
 	 * The default implementation builds a {@link ClassNameBeanWiringInfoResolver}.
 	 * @return the default BeanWiringInfoResolver (never {@code null})
 	 */
@@ -85,15 +82,13 @@ public class BeanConfigurerSupport implements BeanFactoryAware, InitializingBean
 	}
 
 	/**
-	 * Release references to the {@link BeanFactory} and
-	 * {@link BeanWiringInfoResolver} when the container is destroyed.
+	 * Release references to the {@link BeanFactory} and {@link BeanWiringInfoResolver} when the container is destroyed.
 	 */
 	@Override
 	public void destroy() {
 		this.beanFactory = null;
 		this.beanWiringInfoResolver = null;
 	}
-
 
 	/**
 	 * Configure the bean instance.
@@ -113,11 +108,8 @@ public class BeanConfigurerSupport implements BeanFactoryAware, InitializingBean
 		BeanWiringInfoResolver bwiResolver = this.beanWiringInfoResolver;
 		Assert.state(bwiResolver != null, "No BeanWiringInfoResolver available");
 		BeanWiringInfo bwi = bwiResolver.resolveWiringInfo(beanInstance);
-		if (bwi == null) {
-			// Skip the bean if no wiring info given.
-			return;
-		}
-
+		// Skip the bean if no wiring info given.
+		if (bwi == null) return;
 		ConfigurableListableBeanFactory beanFactory = this.beanFactory;
 		Assert.state(beanFactory != null, "No BeanFactory available");
 		try {
@@ -130,8 +122,7 @@ public class BeanConfigurerSupport implements BeanFactoryAware, InitializingBean
 				// Perform explicit wiring based on the specified bean definition.
 				beanFactory.configureBean(beanInstance, (beanName != null ? beanName : ""));
 			}
-		}
-		catch (BeanCreationException ex) {
+		}catch (BeanCreationException ex) {
 			Throwable rootCause = ex.getMostSpecificCause();
 			if (rootCause instanceof BeanCurrentlyInCreationException) {
 				BeanCreationException bce = (BeanCreationException) rootCause;

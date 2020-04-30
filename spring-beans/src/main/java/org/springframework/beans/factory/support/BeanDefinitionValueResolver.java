@@ -63,8 +63,7 @@ class BeanDefinitionValueResolver {
 
 	/**
 	 * Given a PropertyValue, return a value, resolving any references to other beans in the factory if necessary. The value could be:
-	 * <li>A BeanDefinition, which leads to the creation of a corresponding new bean instance.
-	 * Singleton flags and names of such "inner beans" are always ignored: Inner beans are anonymous prototypes.
+	 * <li>A BeanDefinition, which leads to the creation of a corresponding new bean instance. Singleton flags and names of such "inner beans" are always ignored: Inner beans are anonymous prototypes.
 	 * <li>A RuntimeBeanReference, which must be resolved.
 	 * <li>A ManagedList. This is a special collection that may contain  RuntimeBeanReferences or Collections that will need to be resolved.
 	 * <li>A ManagedSet. May also contain RuntimeBeanReferences or Collections that will need to be resolved.
@@ -300,8 +299,7 @@ class BeanDefinitionValueResolver {
 	}
 
 	/**
-	 * Checks the given bean name whether it is unique. If not already unique,
-	 * a counter is added, increasing the counter until the name is unique.
+	 * Checks the given bean name whether it is unique. If not already unique,a counter is added, increasing the counter until the name is unique.
 	 * @param innerBeanName the original name for the inner bean
 	 * @return the adapted name for the inner bean
 	 */
@@ -315,9 +313,7 @@ class BeanDefinitionValueResolver {
 		return actualInnerBeanName;
 	}
 
-	/**
-	 * For each element in the managed array, resolve reference if necessary.
-	 */
+	// For each element in the managed array, resolve reference if necessary.
 	private Object resolveManagedArray(Object argName, List<?> ml, Class<?> elementType) {
 		Object resolved = Array.newInstance(elementType, ml.size());
 		for (int i = 0; i < ml.size(); i++) {
@@ -326,9 +322,7 @@ class BeanDefinitionValueResolver {
 		return resolved;
 	}
 
-	/**
-	 * For each element in the managed list, resolve reference if necessary.
-	 */
+	//  For each element in the managed list, resolve reference if necessary.
 	private List<?> resolveManagedList(Object argName, List<?> ml) {
 		List<Object> resolved = new ArrayList<>(ml.size());
 		for (int i = 0; i < ml.size(); i++) {
@@ -337,9 +331,7 @@ class BeanDefinitionValueResolver {
 		return resolved;
 	}
 
-	/**
-	 * For each element in the managed set, resolve reference if necessary.
-	 */
+	// For each element in the managed set, resolve reference if necessary.
 	private Set<?> resolveManagedSet(Object argName, Set<?> ms) {
 		Set<Object> resolved = new LinkedHashSet<>(ms.size());
 		int i = 0;
@@ -350,9 +342,7 @@ class BeanDefinitionValueResolver {
 		return resolved;
 	}
 
-	/**
-	 * For each element in the managed map, resolve reference if necessary.
-	 */
+	// For each element in the managed map, resolve reference if necessary.
 	private Map<?, ?> resolveManagedMap(Object argName, Map<?, ?> mm) {
 		Map<Object, Object> resolved = new LinkedHashMap<>(mm.size());
 		mm.forEach((key, value) -> {
