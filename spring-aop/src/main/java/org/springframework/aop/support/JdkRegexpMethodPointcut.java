@@ -18,9 +18,6 @@ import java.util.regex.PatternSyntaxException;
  * Note: the regular expressions must be a match. For example,
  * {@code .*get.*} will match com.mycom.Foo.getBar().
  * {@code get.*} will not.
- *
- * @author Dmitriy Kopylenko
- * @author Rob Harrop
  * @since 1.1
  */
 @SuppressWarnings("serial")
@@ -35,7 +32,6 @@ public class JdkRegexpMethodPointcut extends AbstractRegexpMethodPointcut {
 	 * Compiled form of the exclusion patterns.
 	 */
 	private Pattern[] compiledExclusionPatterns = new Pattern[0];
-
 
 	/**
 	 * Initialize {@link Pattern Patterns} from the supplied {@code String[]}.
@@ -72,7 +68,6 @@ public class JdkRegexpMethodPointcut extends AbstractRegexpMethodPointcut {
 		Matcher matcher = this.compiledExclusionPatterns[patternIndex].matcher(candidate);
 		return matcher.matches();
 	}
-
 
 	/**
 	 * Compiles the supplied {@code String[]} into an array of

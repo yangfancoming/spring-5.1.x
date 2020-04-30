@@ -34,7 +34,6 @@ public class ProxyProcessorSupport extends ProxyConfig implements Ordered, BeanC
 
 	private boolean classLoaderConfigured = false;
 
-
 	/**
 	 * Set the ordering which will apply to this processor's implementation
 	 * of {@link Ordered}, used when applying multiple processors.
@@ -52,8 +51,7 @@ public class ProxyProcessorSupport extends ProxyConfig implements Ordered, BeanC
 
 	/**
 	 * Set the ClassLoader to generate the proxy class in.
-	 * Default is the bean ClassLoader, i.e. the ClassLoader used by the containing
-	 * {@link org.springframework.beans.factory.BeanFactory} for loading all bean classes.
+	 * Default is the bean ClassLoader, i.e. the ClassLoader used by the containing {@link org.springframework.beans.factory.BeanFactory} for loading all bean classes.
 	 * This can be overridden here for specific proxies.
 	 */
 	public void setProxyClassLoader(@Nullable ClassLoader classLoader) {
@@ -76,10 +74,8 @@ public class ProxyProcessorSupport extends ProxyConfig implements Ordered, BeanC
 		}
 	}
 
-
 	/**
-	 * Check the interfaces on the given bean class and apply them to the {@link ProxyFactory},
-	 * if appropriate.
+	 * Check the interfaces on the given bean class and apply them to the {@link ProxyFactory}, if appropriate.
 	 * Calls {@link #isConfigurationCallbackInterface} and {@link #isInternalLanguageInterface}
 	 * to filter for reasonable proxy interfaces, falling back to a target-class proxy otherwise.
 	 * @param beanClass the class of the bean
@@ -89,8 +85,7 @@ public class ProxyProcessorSupport extends ProxyConfig implements Ordered, BeanC
 		Class<?>[] targetInterfaces = ClassUtils.getAllInterfacesForClass(beanClass, getProxyClassLoader());
 		boolean hasReasonableProxyInterface = false;
 		for (Class<?> ifc : targetInterfaces) {
-			if (!isConfigurationCallbackInterface(ifc) && !isInternalLanguageInterface(ifc) &&
-					ifc.getMethods().length > 0) {
+			if (!isConfigurationCallbackInterface(ifc) && !isInternalLanguageInterface(ifc) && ifc.getMethods().length > 0) {
 				hasReasonableProxyInterface = true;
 				break;
 			}
@@ -108,8 +103,7 @@ public class ProxyProcessorSupport extends ProxyConfig implements Ordered, BeanC
 	/**
 	 * Determine whether the given interface is just a container callback and
 	 * therefore not to be considered as a reasonable proxy interface.
-	 * If no reasonable proxy interface is found for a given bean, it will get
-	 * proxied with its full target class, assuming that as the user's intention.
+	 * If no reasonable proxy interface is found for a given bean, it will get proxied with its full target class, assuming that as the user's intention.
 	 * @param ifc the interface to check
 	 * @return whether the given interface is just a container callback
 	 */
@@ -121,8 +115,7 @@ public class ProxyProcessorSupport extends ProxyConfig implements Ordered, BeanC
 	/**
 	 * Determine whether the given interface is a well-known internal language interface
 	 * and therefore not to be considered as a reasonable proxy interface.
-	 * If no reasonable proxy interface is found for a given bean, it will get
-	 * proxied with its full target class, assuming that as the user's intention.
+	 * If no reasonable proxy interface is found for a given bean, it will get proxied with its full target class, assuming that as the user's intention.
 	 * @param ifc the interface to check
 	 * @return whether the given interface is an internal language interface
 	 */

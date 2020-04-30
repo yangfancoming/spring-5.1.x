@@ -12,14 +12,9 @@ import org.springframework.util.Assert;
 
 /**
  * Static utility methods for composing {@link MethodMatcher MethodMatchers}.
- *
  * A MethodMatcher may be evaluated statically (based on method and target
  * class) or need further evaluation dynamically (based on arguments at the
  * time of method invocation).
- *
- * @author Rod Johnson
- * @author Rob Harrop
-
  * @since 11.11.2003
  * @see ClassFilters
  * @see Pointcuts
@@ -34,8 +29,7 @@ public abstract class MethodMatchers {
 	 * of the given MethodMatchers matches
 	 */
 	public static MethodMatcher union(MethodMatcher mm1, MethodMatcher mm2) {
-		return (mm1 instanceof IntroductionAwareMethodMatcher || mm2 instanceof IntroductionAwareMethodMatcher ?
-				new UnionIntroductionAwareMethodMatcher(mm1, mm2) : new UnionMethodMatcher(mm1, mm2));
+		return (mm1 instanceof IntroductionAwareMethodMatcher || mm2 instanceof IntroductionAwareMethodMatcher ? new UnionIntroductionAwareMethodMatcher(mm1, mm2) : new UnionMethodMatcher(mm1, mm2));
 	}
 
 	/**
@@ -79,8 +73,7 @@ public abstract class MethodMatchers {
 	public static boolean matches(MethodMatcher mm, Method method, Class<?> targetClass, boolean hasIntroductions) {
 		Assert.notNull(mm, "MethodMatcher must not be null");
 		return (mm instanceof IntroductionAwareMethodMatcher ?
-				((IntroductionAwareMethodMatcher) mm).matches(method, targetClass, hasIntroductions) :
-				mm.matches(method, targetClass));
+				((IntroductionAwareMethodMatcher) mm).matches(method, targetClass, hasIntroductions) : mm.matches(method, targetClass));
 	}
 
 
@@ -103,8 +96,7 @@ public abstract class MethodMatchers {
 
 		@Override
 		public boolean matches(Method method, Class<?> targetClass) {
-			return (matchesClass1(targetClass) && this.mm1.matches(method, targetClass)) ||
-					(matchesClass2(targetClass) && this.mm2.matches(method, targetClass));
+			return (matchesClass1(targetClass) && this.mm1.matches(method, targetClass)) || (matchesClass2(targetClass) && this.mm2.matches(method, targetClass));
 		}
 
 		protected boolean matchesClass1(Class<?> targetClass) {
@@ -150,8 +142,7 @@ public abstract class MethodMatchers {
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
-	private static class UnionIntroductionAwareMethodMatcher extends UnionMethodMatcher
-			implements IntroductionAwareMethodMatcher {
+	private static class UnionIntroductionAwareMethodMatcher extends UnionMethodMatcher implements IntroductionAwareMethodMatcher {
 
 		public UnionIntroductionAwareMethodMatcher(MethodMatcher mm1, MethodMatcher mm2) {
 			super(mm1, mm2);
@@ -164,10 +155,8 @@ public abstract class MethodMatchers {
 		}
 	}
 
-
 	/**
-	 * MethodMatcher implementation for a union of two given MethodMatchers,
-	 * supporting an associated ClassFilter per MethodMatcher.
+	 * MethodMatcher implementation for a union of two given MethodMatchers,supporting an associated ClassFilter per MethodMatcher.
 	 */
 	@SuppressWarnings("serial")
 	private static class ClassFilterAwareUnionMethodMatcher extends UnionMethodMatcher {
@@ -225,12 +214,8 @@ public abstract class MethodMatchers {
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
-	private static class ClassFilterAwareUnionIntroductionAwareMethodMatcher extends ClassFilterAwareUnionMethodMatcher
-			implements IntroductionAwareMethodMatcher {
-
-		public ClassFilterAwareUnionIntroductionAwareMethodMatcher(
-				MethodMatcher mm1, ClassFilter cf1, MethodMatcher mm2, ClassFilter cf2) {
-
+	private static class ClassFilterAwareUnionIntroductionAwareMethodMatcher extends ClassFilterAwareUnionMethodMatcher implements IntroductionAwareMethodMatcher {
+		public ClassFilterAwareUnionIntroductionAwareMethodMatcher(MethodMatcher mm1, ClassFilter cf1, MethodMatcher mm2, ClassFilter cf2) {
 			super(mm1, cf1, mm2, cf2);
 		}
 
@@ -240,7 +225,6 @@ public abstract class MethodMatchers {
 					(matchesClass2(targetClass) && MethodMatchers.matches(this.mm2, method, targetClass, hasIntroductions));
 		}
 	}
-
 
 	/**
 	 * MethodMatcher implementation for an intersection of two given MethodMatchers.
@@ -274,10 +258,8 @@ public abstract class MethodMatchers {
 			// Because a dynamic intersection may be composed of a static and dynamic part,
 			// we must avoid calling the 3-arg matches method on a dynamic matcher, as
 			// it will probably be an unsupported operation.
-			boolean aMatches = (this.mm1.isRuntime() ?
-					this.mm1.matches(method, targetClass, args) : this.mm1.matches(method, targetClass));
-			boolean bMatches = (this.mm2.isRuntime() ?
-					this.mm2.matches(method, targetClass, args) : this.mm2.matches(method, targetClass));
+			boolean aMatches = (this.mm1.isRuntime() ? this.mm1.matches(method, targetClass, args) : this.mm1.matches(method, targetClass));
+			boolean bMatches = (this.mm2.isRuntime() ? this.mm2.matches(method, targetClass, args) : this.mm2.matches(method, targetClass));
 			return aMatches && bMatches;
 		}
 
@@ -306,8 +288,7 @@ public abstract class MethodMatchers {
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
-	private static class IntersectionIntroductionAwareMethodMatcher extends IntersectionMethodMatcher
-			implements IntroductionAwareMethodMatcher {
+	private static class IntersectionIntroductionAwareMethodMatcher extends IntersectionMethodMatcher implements IntroductionAwareMethodMatcher {
 
 		public IntersectionIntroductionAwareMethodMatcher(MethodMatcher mm1, MethodMatcher mm2) {
 			super(mm1, mm2);

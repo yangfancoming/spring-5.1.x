@@ -14,10 +14,7 @@ import org.aopalliance.aop.Advice;
  *
  * Compared to {qlink IntroductionInfo}, this interface allows an advice to
  * implement a range of interfaces that is not necessarily known in advance.
- * Thus an {@link IntroductionAdvisor} can be used to specify which interfaces
- * will be exposed in an advised object.
- *
- * @author Rod Johnson
+ * Thus an {@link IntroductionAdvisor} can be used to specify which interfaces will be exposed in an advised object.
  * @since 1.1.1
  * @see IntroductionInfo
  * @see IntroductionAdvisor

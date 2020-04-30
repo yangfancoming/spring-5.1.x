@@ -13,10 +13,6 @@ import org.springframework.util.PatternMatchUtils;
 /**
  * Pointcut bean for simple method name matches, as alternative to regexp patterns.
  * Does not handle overloaded methods: all methods with a given name will be eligible.
- *
-
- * @author Rod Johnson
- * @author Rob Harrop
  * @since 11.02.2004
  * @see #isMatch
  */
@@ -24,7 +20,6 @@ import org.springframework.util.PatternMatchUtils;
 public class NameMatchMethodPointcut extends StaticMethodMatcherPointcut implements Serializable {
 
 	private List<String> mappedNames = new ArrayList<>();
-
 
 	/**
 	 * Convenience method when we have only a single method name to match.
@@ -85,8 +80,7 @@ public class NameMatchMethodPointcut extends StaticMethodMatcherPointcut impleme
 
 	@Override
 	public boolean equals(Object other) {
-		return (this == other || (other instanceof NameMatchMethodPointcut &&
-				this.mappedNames.equals(((NameMatchMethodPointcut) other).mappedNames)));
+		return (this == other || (other instanceof NameMatchMethodPointcut && this.mappedNames.equals(((NameMatchMethodPointcut) other).mappedNames)));
 	}
 
 	@Override

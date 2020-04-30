@@ -26,11 +26,7 @@ package org.springframework.aop;
  * with any method signature. However, if a throws-advice method throws a checked
  * exception, it will have to match the declared exceptions of the target method
  * and is hence to some degree coupled to specific target method signatures.
- * <b>Do not throw an undeclared checked exception that is incompatible with
- * the target method's signature!</b>
- *
- * @author Rod Johnson
-
+ * <b>Do not throw an undeclared checked exception that is incompatible with the target method's signature!</b>
  * @see AfterReturningAdvice
  * @see MethodBeforeAdvice
  */

@@ -11,9 +11,7 @@ import org.springframework.beans.factory.xml.BeanDefinitionParser;
 import org.springframework.beans.factory.xml.ParserContext;
 
 /**
- * {@link BeanDefinitionParser} responsible for parsing the
- * {@code <aop:spring-configured/>} tag.
- *
+ * {@link BeanDefinitionParser} responsible for parsing the {@code <aop:spring-configured/>} tag.
  * <b>NOTE:</b> This is essentially a duplicate of Spring 2.5's
  * {@link org.springframework.context.config.SpringConfiguredBeanDefinitionParser}
  * for the {@code <context:spring-configured/>} tag, mirrored here for compatibility with

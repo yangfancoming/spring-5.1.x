@@ -35,7 +35,6 @@ public class ScriptTemplateViewResolver extends UrlBasedViewResolver {
 		setSuffix(suffix);
 	}
 
-
 	@Override
 	protected Class<?> requiredViewClass() {
 		return ScriptTemplateView.class;

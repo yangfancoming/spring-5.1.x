@@ -38,7 +38,6 @@ public class SimpleBeanFactoryAwareAspectInstanceFactory implements AspectInstan
 		Assert.notNull(this.aspectBeanName, "'aspectBeanName' is required");
 	}
 
-
 	/**
 	 * Look up the aspect bean from the {@link BeanFactory} and returns it.
 	 * @see #setAspectBeanName

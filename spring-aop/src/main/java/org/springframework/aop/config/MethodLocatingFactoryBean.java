@@ -26,7 +26,6 @@ public class MethodLocatingFactoryBean implements FactoryBean<Method>, BeanFacto
 	@Nullable
 	private Method method;
 
-
 	/**
 	 * Set the name of the bean to locate the {@link Method} on.
 	 * This property is required.
@@ -59,7 +58,6 @@ public class MethodLocatingFactoryBean implements FactoryBean<Method>, BeanFacto
 			throw new IllegalArgumentException("Can't determine type of bean with name '" + this.targetBeanName + "'");
 		}
 		this.method = BeanUtils.resolveSignature(this.methodName, beanClass);
-
 		if (this.method == null) {
 			throw new IllegalArgumentException("Unable to locate method [" + this.methodName + "] on bean [" + this.targetBeanName + "]");
 		}

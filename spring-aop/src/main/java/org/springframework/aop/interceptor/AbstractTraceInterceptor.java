@@ -150,8 +150,7 @@ public abstract class AbstractTraceInterceptor implements MethodInterceptor, Ser
 	 * Determine whether the interceptor should kick in, that is,
 	 * whether the {@code invokeUnderTrace} method should be called.
 	 * Default behavior is to check whether the given {@code Log}
-	 * instance is enabled. Subclasses can override this to apply the
-	 * interceptor in other cases as well.
+	 * instance is enabled. Subclasses can override this to apply the interceptor in other cases as well.
 	 * @param invocation the {@code MethodInvocation} being traced
 	 * @param logger the {@code Log} instance to check
 	 * @see #invokeUnderTrace
@@ -184,8 +183,7 @@ public abstract class AbstractTraceInterceptor implements MethodInterceptor, Ser
 	}
 
 	/**
-	 * Write the supplied trace message and {@link Throwable} to the
-	 * supplied {@code Log} instance.
+	 * Write the supplied trace message and {@link Throwable} to the supplied {@code Log} instance.
 	 * To be called by {@link #invokeUnderTrace} for enter/exit outcomes,
 	 * potentially including an exception. Note that an exception's stack trace
 	 * won't get logged when {@link #setLogExceptionStackTrace} is "false".
@@ -213,12 +211,10 @@ public abstract class AbstractTraceInterceptor implements MethodInterceptor, Ser
 	 * By default, the passed-in {@code Log} instance will have log level
 	 * "trace" enabled. Subclasses do not have to check for this again, unless
 	 * they overwrite the {@code isInterceptorEnabled} method to modify
-	 * the default behavior, and may delegate to {@code writeToLog} for actual
-	 * messages to be written.
+	 * the default behavior, and may delegate to {@code writeToLog} for actual messages to be written.
 	 * @param logger the {@code Log} to write trace messages to
 	 * @return the result of the call to {@code MethodInvocation.proceed()}
-	 * @throws Throwable if the call to {@code MethodInvocation.proceed()}
-	 * encountered any errors
+	 * @throws Throwable if the call to {@code MethodInvocation.proceed()} encountered any errors
 	 * @see #isLogEnabled
 	 * @see #writeToLog(Log, String)
 	 * @see #writeToLog(Log, String, Throwable)

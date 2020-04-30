@@ -34,12 +34,10 @@ import org.springframework.util.function.SingletonSupplier;
  * Base class for asynchronous method execution aspects, such as
  * {@code org.springframework.scheduling.annotation.AnnotationAsyncExecutionInterceptor}
  * or {@code org.springframework.scheduling.aspectj.AnnotationAsyncExecutionAspect}.
- *
  * Provides support for <i>executor qualification</i> on a method-by-method basis.
  * {@code AsyncExecutionAspectSupport} objects must be constructed with a default {@code
  * Executor}, but each individual method may further qualify a specific {@code Executor}
  * bean to be used when executing it, e.g. through an annotation attribute.
- * @author Stephane Nicoll
  * @since 3.1.2
  */
 public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
@@ -52,7 +50,6 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 	 */
 	public static final String DEFAULT_TASK_EXECUTOR_BEAN_NAME = "taskExecutor";
 
-
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	private final Map<Method, AsyncTaskExecutor> executors = new ConcurrentHashMap<>(16);
@@ -63,7 +60,6 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 
 	@Nullable
 	private BeanFactory beanFactory;
-
 
 	/**
 	 * Create a new instance with a default {@link AsyncUncaughtExceptionHandler}.
@@ -92,13 +88,10 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 
 
 	/**
-	 * Configure this aspect with the given executor and exception handler suppliers,
-	 * applying the corresponding default if a supplier is not resolvable.
+	 * Configure this aspect with the given executor and exception handler suppliers,applying the corresponding default if a supplier is not resolvable.
 	 * @since 5.1
 	 */
-	public void configure(@Nullable Supplier<Executor> defaultExecutor,
-			@Nullable Supplier<AsyncUncaughtExceptionHandler> exceptionHandler) {
-
+	public void configure(@Nullable Supplier<Executor> defaultExecutor,@Nullable Supplier<AsyncUncaughtExceptionHandler> exceptionHandler) {
 		this.defaultExecutor = new SingletonSupplier<>(defaultExecutor, () -> getDefaultExecutor(this.beanFactory));
 		this.exceptionHandler = new SingletonSupplier<>(exceptionHandler, SimpleAsyncUncaughtExceptionHandler::new);
 	}
@@ -164,8 +157,7 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 	 * Return the qualifier or bean name of the executor to be used when executing the
 	 * given async method, typically specified in the form of an annotation attribute.
 	 * Returning an empty string or {@code null} indicates that no specific executor has
-	 * been specified and that the {@linkplain #setExecutor(Executor) default executor}
-	 * should be used.
+	 * been specified and that the {@linkplain #setExecutor(Executor) default executor} should be used.
 	 * @param method the method to inspect for executor qualifier metadata
 	 * @return the qualifier if specified, otherwise empty String or {@code null}
 	 * @see #determineAsyncExecutor(Method)
@@ -232,7 +224,6 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 		return null;
 	}
 
-
 	/**
 	 * Delegate for actually executing the given task with the chosen executor.
 	 * @param task the task to execute
@@ -262,13 +253,11 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 	}
 
 	/**
-	 * Handles a fatal error thrown while asynchronously invoking the specified
-	 * {@link Method}.
+	 * Handles a fatal error thrown while asynchronously invoking the specified {@link Method}.
 	 * If the return type of the method is a {@link Future} object, the original
 	 * exception can be propagated by just throwing it at the higher level. However,
 	 * for all other cases, the exception will not be transmitted back to the client.
-	 * In that later case, the current {@link AsyncUncaughtExceptionHandler} will be
-	 * used to manage such exception.
+	 * In that later case, the current {@link AsyncUncaughtExceptionHandler} will be used to manage such exception.
 	 * @param ex the exception to handle
 	 * @param method the method that was invoked
 	 * @param params the parameters used to invoke the method

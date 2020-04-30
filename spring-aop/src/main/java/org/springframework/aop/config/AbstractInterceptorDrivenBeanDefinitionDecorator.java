@@ -23,12 +23,10 @@ import org.springframework.util.StringUtils;
 /**
  * Base implementation for
  * {@link org.springframework.beans.factory.xml.BeanDefinitionDecorator BeanDefinitionDecorators}
- * wishing to add an {@link org.aopalliance.intercept.MethodInterceptor interceptor}
- * to the resulting bean.
+ * wishing to add an {@link org.aopalliance.intercept.MethodInterceptor interceptor} to the resulting bean.
  *
  * This base class controls the creation of the {@link ProxyFactoryBean} bean definition
- * and wraps the original as an inner-bean definition for the {@code target} property
- * of {@link ProxyFactoryBean}.
+ * and wraps the original as an inner-bean definition for the {@code target} property of {@link ProxyFactoryBean}.
  *
  * Chaining is correctly handled, ensuring that only one {@link ProxyFactoryBean} definition
  * is created. If a previous {@link org.springframework.beans.factory.xml.BeanDefinitionDecorator}

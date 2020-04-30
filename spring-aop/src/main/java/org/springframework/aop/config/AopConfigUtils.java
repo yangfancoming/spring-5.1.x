@@ -22,7 +22,6 @@ import org.springframework.util.Assert;
  * implementations are available. This class provides a simple escalation protocol,
  * allowing a caller to request a particular auto-proxy creator and know that creator,
  * <i>or a more capable variant thereof</i>, will be registered as a post-processor.
- * @author Mark Fisher
  * @since 2.5
  * @see AopNamespaceUtils
  */
@@ -44,7 +43,6 @@ public abstract class AopConfigUtils {
 		APC_PRIORITY_LIST.add(AspectJAwareAdvisorAutoProxyCreator.class);
 		APC_PRIORITY_LIST.add(AnnotationAwareAspectJAutoProxyCreator.class);
 	}
-
 
 	@Nullable
 	public static BeanDefinition registerAutoProxyCreatorIfNecessary(BeanDefinitionRegistry registry) {

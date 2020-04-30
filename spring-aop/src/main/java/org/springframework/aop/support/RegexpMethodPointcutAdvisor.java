@@ -21,9 +21,6 @@ import org.springframework.util.ObjectUtils;
  * Can delegate to any {@link AbstractRegexpMethodPointcut} subclass.
  * By default, {@link JdkRegexpMethodPointcut} will be used. To choose
  * a specific one, override the {@link #createPointcut} method.
- *
- * @author Rod Johnson
-
  * @see #setPattern
  * @see #setPatterns
  * @see JdkRegexpMethodPointcut
@@ -38,7 +35,6 @@ public class RegexpMethodPointcutAdvisor extends AbstractGenericPointcutAdvisor 
 	private AbstractRegexpMethodPointcut pointcut;
 
 	private final Object pointcutMonitor = new SerializableMonitor();
-
 
 	/**
 	 * Create an empty RegexpMethodPointcutAdvisor.
@@ -119,8 +115,7 @@ public class RegexpMethodPointcutAdvisor extends AbstractGenericPointcutAdvisor 
 	}
 
 	/**
-	 * Create the actual pointcut: By default, a {@link JdkRegexpMethodPointcut}
-	 * will be used.
+	 * Create the actual pointcut: By default, a {@link JdkRegexpMethodPointcut} will be used.
 	 * @return the Pointcut instance (never {@code null})
 	 */
 	protected AbstractRegexpMethodPointcut createPointcut() {
@@ -129,8 +124,7 @@ public class RegexpMethodPointcutAdvisor extends AbstractGenericPointcutAdvisor 
 
 	@Override
 	public String toString() {
-		return getClass().getName() + ": advice [" + getAdvice() +
-				"], pointcut patterns " + ObjectUtils.nullSafeToString(this.patterns);
+		return getClass().getName() + ": advice [" + getAdvice() + "], pointcut patterns " + ObjectUtils.nullSafeToString(this.patterns);
 	}
 
 

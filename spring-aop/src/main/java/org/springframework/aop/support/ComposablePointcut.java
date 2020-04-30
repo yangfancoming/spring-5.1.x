@@ -28,8 +28,7 @@ public class ComposablePointcut implements Pointcut, Serializable {
 	private MethodMatcher methodMatcher;
 
 	/**
-	 * Create a default ComposablePointcut, with {@code ClassFilter.TRUE}
-	 * and {@code MethodMatcher.TRUE}.
+	 * Create a default ComposablePointcut, with {@code ClassFilter.TRUE} and {@code MethodMatcher.TRUE}.
 	 */
 	public ComposablePointcut() {
 		this.classFilter = ClassFilter.TRUE;

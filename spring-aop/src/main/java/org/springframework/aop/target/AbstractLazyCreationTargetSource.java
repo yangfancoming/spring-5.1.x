@@ -19,9 +19,6 @@ import org.springframework.lang.Nullable;
  * Useful when you need to pass a reference to some dependency to an object
  * but you don't actually want the dependency to be created until it is first used.
  * A typical scenario for this is a connection to a remote resource.
- *
- * @author Rob Harrop
-
  * @since 1.2.4
  * @see #isInitialized()
  * @see #createObject()
@@ -34,10 +31,8 @@ public abstract class AbstractLazyCreationTargetSource implements TargetSource {
 	/** The lazily initialized target object. */
 	private Object lazyTarget;
 
-
 	/**
-	 * Return whether the lazy target object of this TargetSource
-	 * has already been fetched.
+	 * Return whether the lazy target object of this TargetSource has already been fetched.
 	 */
 	public synchronized boolean isInitialized() {
 		return (this.lazyTarget != null);
@@ -45,10 +40,8 @@ public abstract class AbstractLazyCreationTargetSource implements TargetSource {
 
 	/**
 	 * This default implementation returns {@code null} if the
-	 * target is {@code null} (it is hasn't yet been initialized),
-	 * or the target class if the target has already been initialized.
-	 * Subclasses may wish to override this method in order to provide
-	 * a meaningful value when the target is still {@code null}.
+	 * target is {@code null} (it is hasn't yet been initialized),or the target class if the target has already been initialized.
+	 * Subclasses may wish to override this method in order to provide  a meaningful value when the target is still {@code null}.
 	 * @see #isInitialized()
 	 */
 	@Override
@@ -63,8 +56,7 @@ public abstract class AbstractLazyCreationTargetSource implements TargetSource {
 	}
 
 	/**
-	 * Returns the lazy-initialized target object,
-	 * creating it on-the-fly if it doesn't exist already.
+	 * Returns the lazy-initialized target object, creating it on-the-fly if it doesn't exist already.
 	 * @see #createObject()
 	 */
 	@Override
@@ -80,7 +72,6 @@ public abstract class AbstractLazyCreationTargetSource implements TargetSource {
 	public void releaseTarget(Object target) throws Exception {
 		// nothing to do
 	}
-
 
 	/**
 	 * Subclasses should implement this method to return the lazy initialized object.

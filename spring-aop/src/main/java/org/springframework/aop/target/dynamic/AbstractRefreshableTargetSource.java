@@ -13,12 +13,7 @@ import org.springframework.lang.Nullable;
  * wraps a refreshable target object. Subclasses can determine whether a
  * refresh is required, and need to provide fresh target objects.
  *
- * Implements the {@link Refreshable} interface in order to allow for
- * explicit control over the refresh status.
- *
- * @author Rod Johnson
- * @author Rob Harrop
-
+ * Implements the {@link Refreshable} interface in order to allow for  explicit control over the refresh status.
  * @since 2.0
  * @see #requiresRefresh()
  * @see #freshTarget()
@@ -38,7 +33,6 @@ public abstract class AbstractRefreshableTargetSource implements TargetSource, R
 	private long lastRefreshTime = -1;
 
 	private long refreshCount = 0;
-
 
 	/**
 	 * Set the delay between refresh checks, in milliseconds.
@@ -122,7 +116,6 @@ public abstract class AbstractRefreshableTargetSource implements TargetSource, R
 
 		return false;
 	}
-
 
 	/**
 	 * Determine whether a refresh is required.

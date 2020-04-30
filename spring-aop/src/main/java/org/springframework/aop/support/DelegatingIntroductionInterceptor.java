@@ -11,8 +11,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Convenient implementation of the
- * {@link org.springframework.aop.IntroductionInterceptor} interface.
+ * Convenient implementation of the {@link org.springframework.aop.IntroductionInterceptor} interface.
  *
  * Subclasses merely need to extend this class and implement the interfaces
  * to be introduced themselves. In this case the delegate is the subclass
@@ -20,24 +19,18 @@ import org.springframework.util.Assert;
  * interface, and be set via the delegate bean property.
  *
  * Delegates or subclasses may implement any number of interfaces.
- * All interfaces except IntroductionInterceptor are picked up from
- * the subclass or delegate by default.
+ * All interfaces except IntroductionInterceptor are picked up from the subclass or delegate by default.
  *
  * The {@code suppressInterface} method can be used to suppress interfaces
- * implemented by the delegate but which should not be introduced to the owning
- * AOP proxy.
+ * implemented by the delegate but which should not be introduced to the owning AOP proxy.
  *
  * An instance of this class is serializable if the delegate is.
- *
- * @author Rod Johnson
-
  * @since 16.11.2003
  * @see #suppressInterface
  * @see DelegatePerTargetObjectIntroductionInterceptor
  */
 @SuppressWarnings("serial")
-public class DelegatingIntroductionInterceptor extends IntroductionInfoSupport
-		implements IntroductionInterceptor {
+public class DelegatingIntroductionInterceptor extends IntroductionInfoSupport implements IntroductionInterceptor {
 
 	/**
 	 * Object that actually implements the interfaces.
@@ -45,7 +38,6 @@ public class DelegatingIntroductionInterceptor extends IntroductionInfoSupport
 	 */
 	@Nullable
 	private Object delegate;
-
 
 	/**
 	 * Construct a new DelegatingIntroductionInterceptor, providing
@@ -65,7 +57,6 @@ public class DelegatingIntroductionInterceptor extends IntroductionInfoSupport
 		init(this);
 	}
 
-
 	/**
 	 * Both constructors use this init method, as it is impossible to pass
 	 * a "this" reference from one constructor to another.
@@ -75,7 +66,6 @@ public class DelegatingIntroductionInterceptor extends IntroductionInfoSupport
 		Assert.notNull(delegate, "Delegate must not be null");
 		this.delegate = delegate;
 		implementInterfacesOnObject(delegate);
-
 		// We don't want to expose the control interface
 		suppressInterface(IntroductionInterceptor.class);
 		suppressInterface(DynamicIntroductionAdvice.class);
@@ -95,7 +85,6 @@ public class DelegatingIntroductionInterceptor extends IntroductionInfoSupport
 			// get correct handling of InvocationTargetException
 			// if the introduced method throws an exception.
 			Object retVal = AopUtils.invokeJoinpointUsingReflection(this.delegate, mi.getMethod(), mi.getArguments());
-
 			// Massage return value if possible: if the delegate returned itself,
 			// we really want to return the proxy.
 			if (retVal == this.delegate && mi instanceof ProxyMethodInvocation) {
@@ -106,7 +95,6 @@ public class DelegatingIntroductionInterceptor extends IntroductionInfoSupport
 			}
 			return retVal;
 		}
-
 		return doProceed(mi);
 	}
 

@@ -38,7 +38,6 @@ class ObjenesisCglibAopProxy extends CglibAopProxy {
 	protected Object createProxyClassAndInstance(Enhancer enhancer, Callback[] callbacks) {
 		Class<?> proxyClass = enhancer.createClass();
 		Object proxyInstance = null;
-
 		if (objenesis.isWorthTrying()) {
 			try {
 				proxyInstance = objenesis.newInstance(proxyClass, enhancer.getUseCache());
@@ -46,7 +45,6 @@ class ObjenesisCglibAopProxy extends CglibAopProxy {
 				logger.debug("Unable to instantiate proxy using Objenesis, falling back to regular proxy construction", ex);
 			}
 		}
-
 		if (proxyInstance == null) {
 			// Regular instantiation via default constructor...
 			try {

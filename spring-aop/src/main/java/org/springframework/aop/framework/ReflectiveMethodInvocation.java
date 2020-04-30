@@ -18,23 +18,20 @@ import org.springframework.lang.Nullable;
 
 /**
  * Spring's implementation of the AOP Alliance
- * {@link org.aopalliance.intercept.MethodInvocation} interface,
- * implementing the extended
+ * {@link org.aopalliance.intercept.MethodInvocation} interface,implementing the extended
  * {@link org.springframework.aop.ProxyMethodInvocation} interface.
- *
  * Invokes the target object using reflection. Subclasses can override the
  * {@link #invokeJoinpoint()} method to change this behavior, so this is also
  * a useful base class for more specialized MethodInvocation implementations.
  *
  * It is possible to clone an invocation, to invoke {@link #proceed()}
  * repeatedly (once per clone), using the {@link #invocableClone()} method.
- * It is also possible to attach custom attributes to the invocation,
- * using the {@link #setUserAttribute} / {@link #getUserAttribute} methods.
+ * It is also possible to attach custom attributes to the invocation,using the {@link #setUserAttribute} / {@link #getUserAttribute} methods.
  *
  * <b>NOTE:</b> This class is considered internal and should not be
  * directly accessed. The sole reason for it being public is compatibility
- * with existing framework integrations (e.g. Pitchfork). For any other
- * purposes, use the {@link ProxyMethodInvocation} interface instead.
+ * with existing framework integrations (e.g. Pitchfork).
+ * For any other purposes, use the {@link ProxyMethodInvocation} interface instead.
  * @see #invokeJoinpoint
  * @see #proceed
  * @see #invocableClone
@@ -62,8 +59,7 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 	private Map<String, Object> userAttributes;
 
 	/**
-	 * List of MethodInterceptor and InterceptorAndDynamicMethodMatcher
-	 * that need dynamic checks.
+	 * List of MethodInterceptor and InterceptorAndDynamicMethodMatcher that need dynamic checks.
 	 */
 	protected final List<?> interceptorsAndDynamicMethodMatchers;
 
@@ -87,9 +83,7 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 	 * as far as was possibly statically. Passing an array might be about 10% faster,
 	 * but would complicate the code. And it would work only for static pointcuts.
 	 */
-	protected ReflectiveMethodInvocation(Object proxy, @Nullable Object target, Method method, @Nullable Object[] arguments,
-			@Nullable Class<?> targetClass, List<Object> interceptorsAndDynamicMethodMatchers) {
-
+	protected ReflectiveMethodInvocation(Object proxy, @Nullable Object target, Method method, @Nullable Object[] arguments,@Nullable Class<?> targetClass, List<Object> interceptorsAndDynamicMethodMatchers) {
 		this.proxy = proxy;
 		this.target = target;
 		this.targetClass = targetClass;
@@ -97,7 +91,6 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 		this.arguments = AopProxyUtils.adaptArgumentsIfNecessary(method, arguments);
 		this.interceptorsAndDynamicMethodMatchers = interceptorsAndDynamicMethodMatchers;
 	}
-
 
 	@Override
 	public final Object getProxy() {
@@ -117,8 +110,7 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 
 	/**
 	 * Return the method invoked on the proxied interface.
-	 * May or may not correspond with a method invoked on an underlying
-	 * implementation of that interface.
+	 * May or may not correspond with a method invoked on an underlying implementation of that interface.
 	 */
 	@Override
 	public final Method getMethod() {
@@ -204,11 +196,9 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 	}
 
 	/**
-	 * This implementation returns a shallow copy of this invocation object,
-	 * using the given arguments array for the clone.
+	 * This implementation returns a shallow copy of this invocation object,using the given arguments array for the clone.
 	 * We want a shallow copy in this case: We want to use the same interceptor
-	 * chain and other object references, but we want an independent value for the
-	 * current interceptor index.
+	 * chain and other object references, but we want an independent value for the  current interceptor index.
 	 * @see java.lang.Object#clone()
 	 */
 	@Override

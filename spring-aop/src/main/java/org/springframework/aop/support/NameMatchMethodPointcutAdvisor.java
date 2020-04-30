@@ -8,11 +8,7 @@ import org.springframework.aop.ClassFilter;
 import org.springframework.aop.Pointcut;
 
 /**
- * Convenient class for name-match method pointcuts that hold an Advice,
- * making them an Advisor.
- *
-
- * @author Rob Harrop
+ * Convenient class for name-match method pointcuts that hold an Advice,making them an Advisor.
  * @see NameMatchMethodPointcut
  */
 @SuppressWarnings("serial")
@@ -20,14 +16,12 @@ public class NameMatchMethodPointcutAdvisor extends AbstractGenericPointcutAdvis
 
 	private final NameMatchMethodPointcut pointcut = new NameMatchMethodPointcut();
 
-
 	public NameMatchMethodPointcutAdvisor() {
 	}
 
 	public NameMatchMethodPointcutAdvisor(Advice advice) {
 		setAdvice(advice);
 	}
-
 
 	/**
 	 * Set the {@link ClassFilter} to use for this pointcut.

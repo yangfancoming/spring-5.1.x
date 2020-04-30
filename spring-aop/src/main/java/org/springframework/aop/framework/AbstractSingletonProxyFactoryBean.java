@@ -118,44 +118,42 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig impl
 
 	@Override
 	public void afterPropertiesSet() {
-		if (this.target == null) {
-			throw new IllegalArgumentException("Property 'target' is required");
-		}
-		if (this.target instanceof String) {
+		if (target == null) throw new IllegalArgumentException("Property 'target' is required");
+		if (target instanceof String) {
 			throw new IllegalArgumentException("'target' needs to be a bean reference, not a bean name as value");
 		}
-		if (this.proxyClassLoader == null) {
-			this.proxyClassLoader = ClassUtils.getDefaultClassLoader();
+		if (proxyClassLoader == null) {
+			proxyClassLoader = ClassUtils.getDefaultClassLoader();
 		}
 		ProxyFactory proxyFactory = new ProxyFactory();
-		if (this.preInterceptors != null) {
-			for (Object interceptor : this.preInterceptors) {
-				proxyFactory.addAdvisor(this.advisorAdapterRegistry.wrap(interceptor));
+		if (preInterceptors != null) {
+			for (Object interceptor : preInterceptors) {
+				proxyFactory.addAdvisor(advisorAdapterRegistry.wrap(interceptor));
 			}
 		}
 		// Add the main interceptor (typically an Advisor).
-		proxyFactory.addAdvisor(this.advisorAdapterRegistry.wrap(createMainInterceptor()));
-		if (this.postInterceptors != null) {
-			for (Object interceptor : this.postInterceptors) {
-				proxyFactory.addAdvisor(this.advisorAdapterRegistry.wrap(interceptor));
+		proxyFactory.addAdvisor(advisorAdapterRegistry.wrap(createMainInterceptor()));
+		if (postInterceptors != null) {
+			for (Object interceptor : postInterceptors) {
+				proxyFactory.addAdvisor(advisorAdapterRegistry.wrap(interceptor));
 			}
 		}
 		proxyFactory.copyFrom(this);
 
-		TargetSource targetSource = createTargetSource(this.target);
+		TargetSource targetSource = createTargetSource(target);
 		proxyFactory.setTargetSource(targetSource);
 
-		if (this.proxyInterfaces != null) {
-			proxyFactory.setInterfaces(this.proxyInterfaces);
+		if (proxyInterfaces != null) {
+			proxyFactory.setInterfaces(proxyInterfaces);
 		}else if (!isProxyTargetClass()) {
 			// Rely on AOP infrastructure to tell us what interfaces to proxy.
 			Class<?> targetClass = targetSource.getTargetClass();
 			if (targetClass != null) {
-				proxyFactory.setInterfaces(ClassUtils.getAllInterfacesForClass(targetClass, this.proxyClassLoader));
+				proxyFactory.setInterfaces(ClassUtils.getAllInterfacesForClass(targetClass, proxyClassLoader));
 			}
 		}
 		postProcessProxyFactory(proxyFactory);
-		this.proxy = proxyFactory.getProxy(this.proxyClassLoader);
+		proxy = proxyFactory.getProxy(proxyClassLoader);
 	}
 
 	/**
@@ -183,26 +181,26 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig impl
 
 	@Override
 	public Object getObject() {
-		if (this.proxy == null) {
+		if (proxy == null) {
 			throw new FactoryBeanNotInitializedException();
 		}
-		return this.proxy;
+		return proxy;
 	}
 
 	@Override
 	@Nullable
 	public Class<?> getObjectType() {
-		if (this.proxy != null) {
-			return this.proxy.getClass();
+		if (proxy != null) {
+			return proxy.getClass();
 		}
-		if (this.proxyInterfaces != null && this.proxyInterfaces.length == 1) {
-			return this.proxyInterfaces[0];
+		if (proxyInterfaces != null && proxyInterfaces.length == 1) {
+			return proxyInterfaces[0];
 		}
-		if (this.target instanceof TargetSource) {
-			return ((TargetSource) this.target).getTargetClass();
+		if (target instanceof TargetSource) {
+			return ((TargetSource) target).getTargetClass();
 		}
-		if (this.target != null) {
-			return this.target.getClass();
+		if (target != null) {
+			return target.getClass();
 		}
 		return null;
 	}

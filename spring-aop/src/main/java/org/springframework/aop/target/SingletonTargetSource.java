@@ -35,7 +35,6 @@ public class SingletonTargetSource implements TargetSource, Serializable {
 		this.target = target;
 	}
 
-
 	@Override
 	public Class<?> getTargetClass() {
 		return this.target.getClass();
@@ -56,10 +55,8 @@ public class SingletonTargetSource implements TargetSource, Serializable {
 		return true;
 	}
 
-
 	/**
-	 * Two invoker interceptors are equal if they have the same target or if the
-	 * targets or the targets are equal.
+	 * Two invoker interceptors are equal if they have the same target or if the targets or the targets are equal.
 	 */
 	@Override
 	public boolean equals(Object other) {

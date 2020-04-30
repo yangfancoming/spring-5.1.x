@@ -6,8 +6,6 @@ import java.io.Serializable;
 
 /**
  * Canonical Pointcut instance that always matches.
- *
- * @author Rod Johnson
  */
 @SuppressWarnings("serial")
 final class TruePointcut implements Pointcut, Serializable {

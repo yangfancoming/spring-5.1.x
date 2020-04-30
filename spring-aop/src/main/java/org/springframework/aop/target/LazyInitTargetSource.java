@@ -36,9 +36,6 @@ import org.springframework.lang.Nullable;
  *
  * Subclasses can extend this class and override the {@link #postProcessTargetObject(Object)} to
  * perform some additional processing with the target object when it is first loaded.
- *
-
- * @author Rob Harrop
  * @since 1.1.4
  * @see org.springframework.beans.factory.BeanFactory#getBean
  * @see #postProcessTargetObject
@@ -48,7 +45,6 @@ public class LazyInitTargetSource extends AbstractBeanFactoryBasedTargetSource {
 
 	@Nullable
 	private Object target;
-
 
 	@Override
 	@Nullable
@@ -61,8 +57,7 @@ public class LazyInitTargetSource extends AbstractBeanFactoryBasedTargetSource {
 	}
 
 	/**
-	 * Subclasses may override this method to perform additional processing on
-	 * the target object when it is first loaded.
+	 * Subclasses may override this method to perform additional processing on the target object when it is first loaded.
 	 * @param targetObject the target object that has just been instantiated (and configured)
 	 */
 	protected void postProcessTargetObject(Object targetObject) {

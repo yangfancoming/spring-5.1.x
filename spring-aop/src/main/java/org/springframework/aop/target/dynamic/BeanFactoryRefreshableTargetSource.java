@@ -7,15 +7,8 @@ import org.springframework.util.Assert;
 
 /**
  * Refreshable TargetSource that fetches fresh target beans from a BeanFactory.
- *
  * Can be subclassed to override {@code requiresRefresh()} to suppress
- * unnecessary refreshes. By default, a refresh will be performed every time
- * the "refreshCheckDelay" has elapsed.
- *
- * @author Rob Harrop
- * @author Rod Johnson
-
- * @author Mark Fisher
+ * unnecessary refreshes. By default, a refresh will be performed every time the "refreshCheckDelay" has elapsed.
  * @since 2.0
  * @see org.springframework.beans.factory.BeanFactory
  * @see #requiresRefresh()
@@ -27,10 +20,8 @@ public class BeanFactoryRefreshableTargetSource extends AbstractRefreshableTarge
 
 	private final String beanName;
 
-
 	/**
-	 * Create a new BeanFactoryRefreshableTargetSource for the given
-	 * bean factory and bean name.
+	 * Create a new BeanFactoryRefreshableTargetSource for the given bean factory and bean name.
 	 * Note that the passed-in BeanFactory should have an appropriate
 	 * bean definition set up for the given bean name.
 	 * @param beanFactory the BeanFactory to fetch beans from
@@ -42,7 +33,6 @@ public class BeanFactoryRefreshableTargetSource extends AbstractRefreshableTarge
 		this.beanFactory = beanFactory;
 		this.beanName = beanName;
 	}
-
 
 	/**
 	 * Retrieve a fresh target object.

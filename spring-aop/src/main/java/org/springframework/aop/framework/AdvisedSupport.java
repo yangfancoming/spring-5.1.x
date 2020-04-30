@@ -193,8 +193,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 	 * Remove a proxied interface.
 	 * Does nothing if the given interface isn't proxied.
 	 * @param intf the interface to remove from the proxy
-	 * @return {@code true} if the interface was removed; {@code false}
-	 * if the interface was not found and hence could not be removed
+	 * @return {@code true} if the interface was removed; {@code false}  if the interface was not found and hence could not be removed
 	 */
 	public boolean removeInterface(Class<?> intf) {
 		return this.interfaces.remove(intf);

@@ -27,7 +27,7 @@ public class XmlWebApplicationContextTests extends AbstractApplicationContextTes
 	private ConfigurableWebApplicationContext root;
 
 	@Override
-	protected ConfigurableApplicationContext createContext() throws Exception {
+	protected ConfigurableApplicationContext createContext() {
 		InitAndIB.constructed = false;
 		root = new XmlWebApplicationContext();
 		root.getEnvironment().addActiveProfile("rootProfile1");

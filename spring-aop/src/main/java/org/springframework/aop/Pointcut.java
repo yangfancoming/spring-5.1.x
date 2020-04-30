@@ -8,7 +8,6 @@ package org.springframework.aop;
  * A pointcut is composed of a {@link ClassFilter} and a {@link MethodMatcher}.
  * Both these basic terms and a Pointcut itself can be combined to build up combinations
  * (e.g. through {@link org.springframework.aop.support.ComposablePointcut}).
-
  * @see ClassFilter
  * @see MethodMatcher
  * @see org.springframework.aop.support.Pointcuts

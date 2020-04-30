@@ -18,8 +18,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * Simple {@link org.springframework.aop.IntroductionAdvisor} implementation
- * that by default applies to any class.
+ * Simple {@link org.springframework.aop.IntroductionAdvisor} implementation that by default applies to any class.
  * @since 11.11.2003
  */
 @SuppressWarnings({"serial" })
@@ -146,8 +145,7 @@ public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFil
 
 	@Override
 	public String toString() {
-		return ClassUtils.getShortName(getClass()) + ": advice [" + this.advice + "]; interfaces " +
-				ClassUtils.classNamesToString(this.interfaces);
+		return ClassUtils.getShortName(getClass()) + ": advice [" + this.advice + "]; interfaces " + ClassUtils.classNamesToString(this.interfaces);
 	}
 
 }

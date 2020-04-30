@@ -5,9 +5,6 @@ package org.springframework.aop.target.dynamic;
 /**
  * Interface to be implemented by dynamic target objects,
  * which support reloading and optionally polling for updates.
- *
- * @author Rod Johnson
- * @author Rob Harrop
  * @since 2.0
  */
 public interface Refreshable {

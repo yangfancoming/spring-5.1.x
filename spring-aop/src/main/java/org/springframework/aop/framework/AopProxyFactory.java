@@ -7,29 +7,20 @@ package org.springframework.aop.framework;
  * AOP proxies based on {@link AdvisedSupport} configuration objects.
  *
  * Proxies should observe the following contract:
- * <li>They should implement all interfaces that the configuration
- * indicates should be proxied.
+ * <li>They should implement all interfaces that the configuration indicates should be proxied.
  * <li>They should implement the {@link Advised} interface.
- * <li>They should implement the equals method to compare proxied
- * interfaces, advice, and target.
- * <li>They should be serializable if all advisors and target
- * are serializable.
+ * <li>They should implement the equals method to compare proxied interfaces, advice, and target.
+ * <li>They should be serializable if all advisors and target are serializable.
  * <li>They should be thread-safe if advisors and target are thread-safe.
- *
  * Proxies may or may not allow advice changes to be made.
  * If they do not permit advice changes (for example, because
- * the configuration was frozen) a proxy should throw an
- * {@link AopConfigException} on an attempted advice change.
- *
- * @author Rod Johnson
-
+ * the configuration was frozen) a proxy should throw an {@link AopConfigException} on an attempted advice change.
  */
 public interface AopProxyFactory {
 
 	/**
 	 * Create an {@link AopProxy} for the given AOP configuration.
-	 * @param config the AOP configuration in the form of an
-	 * AdvisedSupport object
+	 * @param config the AOP configuration in the form of an AdvisedSupport object
 	 * @return the corresponding AOP proxy
 	 * @throws AopConfigException if the configuration is invalid
 	 */

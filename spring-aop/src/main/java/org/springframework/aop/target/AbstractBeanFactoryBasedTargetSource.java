@@ -23,9 +23,7 @@ import org.springframework.util.ObjectUtils;
  *
  * BeanFactory-based TargetSources are serializable. This involves
  * disconnecting the current target and turning into a {@link SingletonTargetSource}.
- *
 
- * @author Rod Johnson
  * @since 1.1.4
  * @see org.springframework.beans.factory.BeanFactory#getBean
  * @see LazyInitTargetSource
@@ -38,7 +36,6 @@ public abstract class AbstractBeanFactoryBasedTargetSource implements TargetSour
 	/** use serialVersionUID from Spring 1.2.7 for interoperability. */
 	private static final long serialVersionUID = -4721607536018568393L;
 
-
 	/** Logger available to subclasses. */
 	protected final Log logger = LogFactory.getLog(getClass());
 
@@ -49,8 +46,7 @@ public abstract class AbstractBeanFactoryBasedTargetSource implements TargetSour
 	private volatile Class<?> targetClass;
 
 	/**
-	 * BeanFactory that owns this TargetSource. We need to hold onto this
-	 * reference so that we can create new prototype instances as necessary.
+	 * BeanFactory that owns this TargetSource. We need to hold onto this reference so that we can create new prototype instances as necessary.
 	 */
 	private BeanFactory beanFactory;
 
@@ -58,10 +54,8 @@ public abstract class AbstractBeanFactoryBasedTargetSource implements TargetSour
 	/**
 	 * Set the name of the target bean in the factory.
 	 * The target bean should not be a singleton, else the same instance will
-	 * always be obtained from the factory, resulting in the same behavior as
-	 * provided by {@link SingletonTargetSource}.
-	 * @param targetBeanName name of the target bean in the BeanFactory
-	 * that owns this interceptor
+	 * always be obtained from the factory, resulting in the same behavior as provided by {@link SingletonTargetSource}.
+	 * @param targetBeanName name of the target bean in the BeanFactory that owns this interceptor
 	 * @see SingletonTargetSource
 	 */
 	public void setTargetBeanName(String targetBeanName) {
@@ -86,8 +80,7 @@ public abstract class AbstractBeanFactoryBasedTargetSource implements TargetSour
 	}
 
 	/**
-	 * Set the owning BeanFactory. We need to save a reference so that we can
-	 * use the {@code getBean} method on every invocation.
+	 * Set the owning BeanFactory. We need to save a reference so that we can use the {@code getBean} method on every invocation.
 	 */
 	@Override
 	public void setBeanFactory(BeanFactory beanFactory) {

@@ -14,8 +14,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Convenient implementation of the
- * {@link org.springframework.aop.IntroductionInterceptor} interface.
+ * Convenient implementation of the {@link org.springframework.aop.IntroductionInterceptor} interface.
  *
  * This differs from {@link DelegatingIntroductionInterceptor} in that a single
  * instance of this class can be used to advise multiple target objects, and each target
@@ -23,8 +22,7 @@ import org.springframework.util.ReflectionUtils;
  * shares the same delegate, and hence the same state across all targets).
  *
  * The {@code suppressInterface} method can be used to suppress interfaces
- * implemented by the delegate class but which should not be introduced to the
- * owning AOP proxy.
+ * implemented by the delegate class but which should not be introduced to the owning AOP proxy.
  *
  * An instance of this class is serializable if the delegates are.
  *
@@ -117,8 +115,7 @@ public class DelegatePerTargetObjectIntroductionInterceptor extends Introduction
 		try {
 			return ReflectionUtils.accessibleConstructor(this.defaultImplType).newInstance();
 		}catch (Throwable ex) {
-			throw new IllegalArgumentException("Cannot create default implementation for '" +
-					this.interfaceType.getName() + "' mixin (" + this.defaultImplType.getName() + "): " + ex);
+			throw new IllegalArgumentException("Cannot create default implementation for '" + this.interfaceType.getName() + "' mixin (" + this.defaultImplType.getName() + "): " + ex);
 		}
 	}
 

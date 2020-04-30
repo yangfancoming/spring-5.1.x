@@ -20,8 +20,7 @@ public abstract class ClassFilters {
 	 * Match all classes that <i>either</i> (or both) of the given ClassFilters matches.
 	 * @param cf1 the first ClassFilter
 	 * @param cf2 the second ClassFilter
-	 * @return a distinct ClassFilter that matches all classes that either
-	 * of the given ClassFilter matches
+	 * @return a distinct ClassFilter that matches all classes that either of the given ClassFilter matches
 	 */
 	public static ClassFilter union(ClassFilter cf1, ClassFilter cf2) {
 		Assert.notNull(cf1, "First ClassFilter must not be null");
@@ -32,8 +31,7 @@ public abstract class ClassFilters {
 	/**
 	 * Match all classes that <i>either</i> (or all) of the given ClassFilters matches.
 	 * @param classFilters the ClassFilters to match
-	 * @return a distinct ClassFilter that matches all classes that either
-	 * of the given ClassFilter matches
+	 * @return a distinct ClassFilter that matches all classes that either of the given ClassFilter matches
 	 */
 	public static ClassFilter union(ClassFilter[] classFilters) {
 		Assert.notEmpty(classFilters, "ClassFilter array must not be empty");
@@ -44,8 +42,7 @@ public abstract class ClassFilters {
 	 * Match all classes that <i>both</i> of the given ClassFilters match.
 	 * @param cf1 the first ClassFilter
 	 * @param cf2 the second ClassFilter
-	 * @return a distinct ClassFilter that matches all classes that both
-	 * of the given ClassFilter match
+	 * @return a distinct ClassFilter that matches all classes that both of the given ClassFilter match
 	 */
 	public static ClassFilter intersection(ClassFilter cf1, ClassFilter cf2) {
 		Assert.notNull(cf1, "First ClassFilter must not be null");
@@ -56,14 +53,12 @@ public abstract class ClassFilters {
 	/**
 	 * Match all classes that <i>all</i> of the given ClassFilters match.
 	 * @param classFilters the ClassFilters to match
-	 * @return a distinct ClassFilter that matches all classes that both
-	 * of the given ClassFilter match
+	 * @return a distinct ClassFilter that matches all classes that both  of the given ClassFilter match
 	 */
 	public static ClassFilter intersection(ClassFilter[] classFilters) {
 		Assert.notEmpty(classFilters, "ClassFilter array must not be empty");
 		return new IntersectionClassFilter(classFilters);
 	}
-
 
 	/**
 	 * ClassFilter implementation for a union of the given ClassFilters.
@@ -99,7 +94,6 @@ public abstract class ClassFilters {
 		}
 	}
 
-
 	/**
 	 * ClassFilter implementation for an intersection of the given ClassFilters.
 	 */
@@ -124,8 +118,7 @@ public abstract class ClassFilters {
 
 		@Override
 		public boolean equals(Object other) {
-			return (this == other || (other instanceof IntersectionClassFilter &&
-					ObjectUtils.nullSafeEquals(this.filters, ((IntersectionClassFilter) other).filters)));
+			return (this == other || (other instanceof IntersectionClassFilter && ObjectUtils.nullSafeEquals(this.filters, ((IntersectionClassFilter) other).filters)));
 		}
 
 		@Override

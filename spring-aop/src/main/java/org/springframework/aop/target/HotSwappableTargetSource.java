@@ -9,27 +9,17 @@ import org.springframework.util.Assert;
 
 /**
  * {@link org.springframework.aop.TargetSource} implementation that
- * caches a local target object, but allows the target to be swapped
- * while the application is running.
- *
- * If configuring an object of this class in a Spring IoC container,
- * use constructor injection.
- *
- * This TargetSource is serializable if the target is at the time
- * of serialization.
- *
- * @author Rod Johnson
-
+ * caches a local target object, but allows the target to be swapped while the application is running.
+ * If configuring an object of this class in a Spring IoC container, use constructor injection.
+ * This TargetSource is serializable if the target is at the time of serialization.
  */
 public class HotSwappableTargetSource implements TargetSource, Serializable {
 
 	/** use serialVersionUID from Spring 1.2 for interoperability. */
 	private static final long serialVersionUID = 7497929212653839187L;
 
-
 	/** The current target object. */
 	private Object target;
-
 
 	/**
 	 * Create a new HotSwappableTargetSource with the given initial target object.
@@ -39,7 +29,6 @@ public class HotSwappableTargetSource implements TargetSource, Serializable {
 		Assert.notNull(initialTarget, "Target object must not be null");
 		this.target = initialTarget;
 	}
-
 
 	/**
 	 * Return the type of the current target object.
@@ -65,7 +54,6 @@ public class HotSwappableTargetSource implements TargetSource, Serializable {
 		// nothing to do
 	}
 
-
 	/**
 	 * Swap the target, returning the old target object.
 	 * @param newTarget the new target object
@@ -79,10 +67,8 @@ public class HotSwappableTargetSource implements TargetSource, Serializable {
 		return old;
 	}
 
-
 	/**
-	 * Two HotSwappableTargetSources are equal if the current target
-	 * objects are equal.
+	 * Two HotSwappableTargetSources are equal if the current target objects are equal.
 	 */
 	@Override
 	public boolean equals(Object other) {

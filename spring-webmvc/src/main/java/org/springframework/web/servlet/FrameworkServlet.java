@@ -783,8 +783,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	}
 
 	@SuppressWarnings("unchecked")
-	private ApplicationContextInitializer<ConfigurableApplicationContext> loadInitializer(
-			String className, ConfigurableApplicationContext wac) {
+	private ApplicationContextInitializer<ConfigurableApplicationContext> loadInitializer(String className, ConfigurableApplicationContext wac) {
 		try {
 			Class<?> initializerClass = ClassUtils.forName(className, wac.getClassLoader());
 			Class<?> initializerContextClass = GenericTypeResolver.resolveTypeArgument(initializerClass, ApplicationContextInitializer.class);
@@ -801,8 +800,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 
 	/**
 	 * Return the ServletContext attribute name for this servlet's WebApplicationContext.
-	 * The default implementation returns
-	 * {@code SERVLET_CONTEXT_PREFIX + servlet name}.
+	 * The default implementation returns {@code SERVLET_CONTEXT_PREFIX + servlet name}.
 	 * @see #SERVLET_CONTEXT_PREFIX
 	 * @see #getServletName
 	 */
@@ -841,8 +839,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 
 	/**
 	 * Callback that receives refresh events from this servlet's WebApplicationContext.
-	 * The default implementation calls {@link #onRefresh},
-	 * triggering a refresh of this servlet's context-dependent state.
+	 * The default implementation calls {@link #onRefresh},triggering a refresh of this servlet's context-dependent state.
 	 * @param event the incoming ApplicationContext event
 	 */
 	public void onApplicationEvent(ContextRefreshedEvent event) {

@@ -21,5 +21,4 @@ public abstract class StaticMethodMatcher implements MethodMatcher {
 		// should never be invoked because isRuntime() returns false
 		throw new UnsupportedOperationException("Illegal MethodMatcher usage");
 	}
-
 }

@@ -8,10 +8,7 @@ import org.springframework.beans.BeansException;
  * {@link org.springframework.aop.TargetSource} implementation that
  * creates a new instance of the target bean for each request,
  * destroying each instance on release (after each request).
- *
- * Obtains bean instances from its containing
- * {@link org.springframework.beans.factory.BeanFactory}.
-
+ * Obtains bean instances from its containing {@link org.springframework.beans.factory.BeanFactory}.
  * @see #setBeanFactory
  * @see #setTargetBeanName
  */

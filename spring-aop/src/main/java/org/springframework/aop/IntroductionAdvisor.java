@@ -5,12 +5,8 @@ package org.springframework.aop;
 /**
  * Superinterface for advisors that perform one or more AOP <b>introductions</b>.
  *
- * This interface cannot be implemented directly; subinterfaces must
- * provide the advice type implementing the introduction.
- *
- * Introduction is the implementation of additional interfaces
- * (not implemented by a target) via AOP advice.
-
+ * This interface cannot be implemented directly; subinterfaces must provide the advice type implementing the introduction.
+ * Introduction is the implementation of additional interfaces (not implemented by a target) via AOP advice.
  * @since 04.04.2003
  * @see IntroductionInterceptor
  */
@@ -27,8 +23,7 @@ public interface IntroductionAdvisor extends Advisor, IntroductionInfo {
 	/**
 	 * Can the advised interfaces be implemented by the introduction advice?
 	 * Invoked before adding an IntroductionAdvisor.
-	 * @throws IllegalArgumentException if the advised interfaces can't be
-	 * implemented by the introduction advice
+	 * @throws IllegalArgumentException if the advised interfaces can't be implemented by the introduction advice
 	 */
 	void validateInterfaces() throws IllegalArgumentException;
 

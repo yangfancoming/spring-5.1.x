@@ -103,7 +103,6 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 		return this.cacheUnresolved;
 	}
 
-
 	@Override
 	@Nullable
 	public View resolveViewName(String viewName, Locale locale) throws Exception {

@@ -15,7 +15,6 @@ public class AspectEntry implements ParseState.Entry {
 
 	private final String ref;
 
-
 	/**
 	 * Create a new AspectEntry.
 	 * @param id the id of the aspect element

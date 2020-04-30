@@ -7,21 +7,17 @@ import java.lang.reflect.Method;
 
 /**
  * Canonical MethodMatcher instance that matches all methods.
- *
- * @author Rod Johnson
  */
 @SuppressWarnings("serial")
 final class TrueMethodMatcher implements MethodMatcher, Serializable {
 
 	public static final TrueMethodMatcher INSTANCE = new TrueMethodMatcher();
 
-
 	/**
 	 * Enforce Singleton pattern.
 	 */
 	private TrueMethodMatcher() {
 	}
-
 
 	@Override
 	public boolean isRuntime() {
@@ -38,7 +34,6 @@ final class TrueMethodMatcher implements MethodMatcher, Serializable {
 		// Should never be invoked as isRuntime returns false.
 		throw new UnsupportedOperationException();
 	}
-
 
 	@Override
 	public String toString() {

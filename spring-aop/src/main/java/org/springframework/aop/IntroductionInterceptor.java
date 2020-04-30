@@ -12,7 +12,6 @@ import org.aopalliance.intercept.MethodInterceptor;
  * Introductions are often <b>mixins</b>, enabling the building of composite
  * objects that can achieve many of the goals of multiple inheritance in Java.
  *
- * @author Rod Johnson
  * @see DynamicIntroductionAdvice
  */
 public interface IntroductionInterceptor extends MethodInterceptor, DynamicIntroductionAdvice {

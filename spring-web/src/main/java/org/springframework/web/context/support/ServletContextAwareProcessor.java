@@ -13,14 +13,8 @@ import org.springframework.web.context.ServletContextAware;
 
 /**
  * {@link org.springframework.beans.factory.config.BeanPostProcessor}
- * implementation that passes the ServletContext to beans that implement
- * the {@link ServletContextAware} interface.
- *
- * Web application contexts will automatically register this with their
- * underlying bean factory. Applications do not use this directly.
- *
-
- * @author Phillip Webb
+ * implementation that passes the ServletContext to beans that implement the {@link ServletContextAware} interface.
+ * Web application contexts will automatically register this with their underlying bean factory. Applications do not use this directly.
  * @since 12.03.2004
  * @see org.springframework.web.context.ServletContextAware
  * @see org.springframework.web.context.support.XmlWebApplicationContext#postProcessBeanFactory
@@ -33,11 +27,9 @@ public class ServletContextAwareProcessor implements BeanPostProcessor {
 	@Nullable
 	private ServletConfig servletConfig;
 
-
 	/**
 	 * Create a new ServletContextAwareProcessor without an initial context or config.
-	 * When this constructor is used the {@link #getServletContext()} and/or
-	 * {@link #getServletConfig()} methods should be overridden.
+	 * When this constructor is used the {@link #getServletContext()} and/or {@link #getServletConfig()} methods should be overridden.
 	 */
 	protected ServletContextAwareProcessor() {
 	}
@@ -64,7 +56,6 @@ public class ServletContextAwareProcessor implements BeanPostProcessor {
 		this.servletConfig = servletConfig;
 	}
 
-
 	/**
 	 * Returns the {@link ServletContext} to be injected or {@code null}. This method
 	 * can be overridden by subclasses when a context is obtained after the post-processor
@@ -80,8 +71,7 @@ public class ServletContextAwareProcessor implements BeanPostProcessor {
 
 	/**
 	 * Returns the {@link ServletConfig} to be injected or {@code null}. This method
-	 * can be overridden by subclasses when a context is obtained after the post-processor
-	 * has been registered.
+	 * can be overridden by subclasses when a context is obtained after the post-processor has been registered.
 	 */
 	@Nullable
 	protected ServletConfig getServletConfig() {

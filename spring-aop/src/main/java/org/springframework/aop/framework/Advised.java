@@ -185,16 +185,14 @@ public interface Advised extends TargetClassAware {
 	/**
 	 * Remove the Advisor containing the given advice.
 	 * @param advice the advice to remove
-	 * @return {@code true} of the advice was found and removed;
-	 * {@code false} if there was no such advice
+	 * @return {@code true} of the advice was found and removed;{@code false} if there was no such advice
 	 */
 	boolean removeAdvice(Advice advice);
 
 	/**
 	 * Return the index (from 0) of the given AOP Alliance Advice,
 	 * or -1 if no such advice is an advice for this proxy.
-	 * The return value of this method can be used to index into
-	 * the advisors array.
+	 * The return value of this method can be used to index into the advisors array.
 	 * @param advice the AOP Alliance advice to search for
 	 * @return index from 0 of this advice, or -1 if there's no such advice
 	 */

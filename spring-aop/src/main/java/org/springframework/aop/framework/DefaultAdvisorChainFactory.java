@@ -77,8 +77,7 @@ public class DefaultAdvisorChainFactory implements AdvisorChainFactory, Serializ
 							for (MethodInterceptor interceptor : interceptors) {
 								interceptorList.add(new InterceptorAndDynamicMethodMatcher(interceptor, mm));
 							}
-						}
-						else {
+						}else {
 							// 如果是静态匹配，则直接将调用链返回
 							interceptorList.addAll(Arrays.asList(interceptors));
 						}

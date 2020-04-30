@@ -79,26 +79,20 @@ class ConfigBeanDefinitionParser implements BeanDefinitionParser {
 	@Override
 	@Nullable
 	public BeanDefinition parse(Element element, ParserContext parserContext) {
-		CompositeComponentDefinition compositeDef =
-				new CompositeComponentDefinition(element.getTagName(), parserContext.extractSource(element));
+		CompositeComponentDefinition compositeDef = new CompositeComponentDefinition(element.getTagName(), parserContext.extractSource(element));
 		parserContext.pushContainingComponent(compositeDef);
-
 		configureAutoProxyCreator(parserContext, element);
-
 		List<Element> childElts = DomUtils.getChildElements(element);
 		for (Element elt: childElts) {
 			String localName = parserContext.getDelegate().getLocalName(elt);
 			if (POINTCUT.equals(localName)) {
 				parsePointcut(elt, parserContext);
-			}
-			else if (ADVISOR.equals(localName)) {
+			}else if (ADVISOR.equals(localName)) {
 				parseAdvisor(elt, parserContext);
-			}
-			else if (ASPECT.equals(localName)) {
+			}else if (ASPECT.equals(localName)) {
 				parseAspect(elt, parserContext);
 			}
 		}
-
 		parserContext.popAndRegisterContainingComponent();
 		return null;
 	}
@@ -121,7 +115,6 @@ class ConfigBeanDefinitionParser implements BeanDefinitionParser {
 	private void parseAdvisor(Element advisorElement, ParserContext parserContext) {
 		AbstractBeanDefinition advisorDef = createAdvisorBeanDefinition(advisorElement, parserContext);
 		String id = advisorElement.getAttribute(ID);
-
 		try {
 			this.parseState.push(new AdvisorEntry(id));
 			String advisorBeanName = id;
@@ -130,7 +123,6 @@ class ConfigBeanDefinitionParser implements BeanDefinitionParser {
 			}else {
 				advisorBeanName = parserContext.getReaderContext().registerWithGeneratedName(advisorDef);
 			}
-
 			Object pointcut = parsePointcutProperty(advisorElement, parserContext);
 			if (pointcut instanceof BeanDefinition) {
 				advisorDef.getPropertyValues().add(POINTCUT, pointcut);
@@ -153,36 +145,30 @@ class ConfigBeanDefinitionParser implements BeanDefinitionParser {
 	private AbstractBeanDefinition createAdvisorBeanDefinition(Element advisorElement, ParserContext parserContext) {
 		RootBeanDefinition advisorDefinition = new RootBeanDefinition(DefaultBeanFactoryPointcutAdvisor.class);
 		advisorDefinition.setSource(parserContext.extractSource(advisorElement));
-
 		String adviceRef = advisorElement.getAttribute(ADVICE_REF);
 		if (!StringUtils.hasText(adviceRef)) {
 			parserContext.getReaderContext().error("'advice-ref' attribute contains empty value.", advisorElement, this.parseState.snapshot());
 		}else {
 			advisorDefinition.getPropertyValues().add(ADVICE_BEAN_NAME, new RuntimeBeanNameReference(adviceRef));
 		}
-
 		if (advisorElement.hasAttribute(ORDER_PROPERTY)) {
 			advisorDefinition.getPropertyValues().add(ORDER_PROPERTY, advisorElement.getAttribute(ORDER_PROPERTY));
 		}
-
 		return advisorDefinition;
 	}
 
 	private void parseAspect(Element aspectElement, ParserContext parserContext) {
 		String aspectId = aspectElement.getAttribute(ID);
 		String aspectName = aspectElement.getAttribute(REF);
-
 		try {
 			this.parseState.push(new AspectEntry(aspectId, aspectName));
 			List<BeanDefinition> beanDefinitions = new ArrayList<>();
 			List<BeanReference> beanReferences = new ArrayList<>();
-
 			List<Element> declareParents = DomUtils.getChildElementsByTagName(aspectElement, DECLARE_PARENTS);
 			for (int i = METHOD_INDEX; i < declareParents.size(); i++) {
 				Element declareParentsElement = declareParents.get(i);
 				beanDefinitions.add(parseDeclareParents(declareParentsElement, parserContext));
 			}
-
 			// We have to parse "advice" and all the advice kinds in one loop, to get the
 			// ordering semantics right.
 			NodeList nodeList = aspectElement.getChildNodes();
@@ -202,7 +188,6 @@ class ConfigBeanDefinitionParser implements BeanDefinitionParser {
 					beanDefinitions.add(advisorDefinition);
 				}
 			}
-
 			AspectComponentDefinition aspectComponentDefinition = createAspectComponentDefinition(aspectElement, aspectId, beanDefinitions, beanReferences, parserContext);
 			parserContext.pushContainingComponent(aspectComponentDefinition);
 			List<Element> pointcuts = DomUtils.getChildElementsByTagName(aspectElement, POINTCUT);
@@ -215,10 +200,7 @@ class ConfigBeanDefinitionParser implements BeanDefinitionParser {
 		}
 	}
 
-	private AspectComponentDefinition createAspectComponentDefinition(
-			Element aspectElement, String aspectId, List<BeanDefinition> beanDefs,
-			List<BeanReference> beanRefs, ParserContext parserContext) {
-
+	private AspectComponentDefinition createAspectComponentDefinition(Element aspectElement, String aspectId, List<BeanDefinition> beanDefs,List<BeanReference> beanRefs, ParserContext parserContext) {
 		BeanDefinition[] beanDefArray = beanDefs.toArray(new BeanDefinition[0]);
 		BeanReference[] beanRefArray = beanRefs.toArray(new BeanReference[0]);
 		Object source = parserContext.extractSource(aspectElement);
@@ -233,11 +215,9 @@ class ConfigBeanDefinitionParser implements BeanDefinitionParser {
 	private boolean isAdviceNode(Node aNode, ParserContext parserContext) {
 		if (!(aNode instanceof Element)) {
 			return false;
-		}
-		else {
+		}else {
 			String name = parserContext.getDelegate().getLocalName(aNode);
-			return (BEFORE.equals(name) || AFTER.equals(name) || AFTER_RETURNING_ELEMENT.equals(name) ||
-					AFTER_THROWING_ELEMENT.equals(name) || AROUND.equals(name));
+			return (BEFORE.equals(name) || AFTER.equals(name) || AFTER_RETURNING_ELEMENT.equals(name) || AFTER_THROWING_ELEMENT.equals(name) || AROUND.equals(name));
 		}
 	}
 
@@ -250,19 +230,15 @@ class ConfigBeanDefinitionParser implements BeanDefinitionParser {
 		BeanDefinitionBuilder builder = BeanDefinitionBuilder.rootBeanDefinition(DeclareParentsAdvisor.class);
 		builder.addConstructorArgValue(declareParentsElement.getAttribute(IMPLEMENT_INTERFACE));
 		builder.addConstructorArgValue(declareParentsElement.getAttribute(TYPE_PATTERN));
-
 		String defaultImpl = declareParentsElement.getAttribute(DEFAULT_IMPL);
 		String delegateRef = declareParentsElement.getAttribute(DELEGATE_REF);
-
 		if (StringUtils.hasText(defaultImpl) && !StringUtils.hasText(delegateRef)) {
 			builder.addConstructorArgValue(defaultImpl);
 		}else if (StringUtils.hasText(delegateRef) && !StringUtils.hasText(defaultImpl)) {
 			builder.addConstructorArgReference(delegateRef);
 		}else {
-			parserContext.getReaderContext().error("Exactly one of the " + DEFAULT_IMPL + " or " + DELEGATE_REF + " attributes must be specified",
-					declareParentsElement, this.parseState.snapshot());
+			parserContext.getReaderContext().error("Exactly one of the " + DEFAULT_IMPL + " or " + DELEGATE_REF + " attributes must be specified",declareParentsElement, this.parseState.snapshot());
 		}
-
 		AbstractBeanDefinition definition = builder.getBeanDefinition();
 		definition.setSource(parserContext.extractSource(declareParentsElement));
 		parserContext.getReaderContext().registerWithGeneratedName(definition);
@@ -275,13 +251,9 @@ class ConfigBeanDefinitionParser implements BeanDefinitionParser {
 	 * BeanDefinition with the supplied BeanDefinitionRegistry.
 	 * @return the generated advice RootBeanDefinition
 	 */
-	private AbstractBeanDefinition parseAdvice(
-			String aspectName, int order, Element aspectElement, Element adviceElement, ParserContext parserContext,
-			List<BeanDefinition> beanDefinitions, List<BeanReference> beanReferences) {
-
+	private AbstractBeanDefinition parseAdvice(String aspectName, int order, Element aspectElement, Element adviceElement, ParserContext parserContext,List<BeanDefinition> beanDefinitions, List<BeanReference> beanReferences) {
 		try {
 			this.parseState.push(new AdviceEntry(parserContext.getDelegate().getLocalName(adviceElement)));
-
 			// create the method factory bean
 			RootBeanDefinition methodDefinition = new RootBeanDefinition(MethodLocatingFactoryBean.class);
 			methodDefinition.getPropertyValues().add("targetBeanName", aspectName);
@@ -316,10 +288,8 @@ class ConfigBeanDefinitionParser implements BeanDefinitionParser {
 	 * This same pointcut is also configured as the pointcut for the enclosing
 	 * Advisor definition using the supplied MutablePropertyValues.
 	 */
-	private AbstractBeanDefinition createAdviceDefinition(
-			Element adviceElement, ParserContext parserContext, String aspectName, int order,
-			RootBeanDefinition methodDef, RootBeanDefinition aspectFactoryDef,
-			List<BeanDefinition> beanDefinitions, List<BeanReference> beanReferences) {
+	private AbstractBeanDefinition createAdviceDefinition(Element adviceElement, ParserContext parserContext, String aspectName, int order,
+			RootBeanDefinition methodDef, RootBeanDefinition aspectFactoryDef,List<BeanDefinition> beanDefinitions, List<BeanReference> beanReferences) {
 
 		RootBeanDefinition adviceDefinition = new RootBeanDefinition(getAdviceClass(adviceElement, parserContext));
 		adviceDefinition.setSource(parserContext.extractSource(adviceElement));
@@ -361,20 +331,15 @@ class ConfigBeanDefinitionParser implements BeanDefinitionParser {
 		String elementName = parserContext.getDelegate().getLocalName(adviceElement);
 		if (BEFORE.equals(elementName)) {
 			return AspectJMethodBeforeAdvice.class;
-		}
-		else if (AFTER.equals(elementName)) {
+		}else if (AFTER.equals(elementName)) {
 			return AspectJAfterAdvice.class;
-		}
-		else if (AFTER_RETURNING_ELEMENT.equals(elementName)) {
+		}else if (AFTER_RETURNING_ELEMENT.equals(elementName)) {
 			return AspectJAfterReturningAdvice.class;
-		}
-		else if (AFTER_THROWING_ELEMENT.equals(elementName)) {
+		}else if (AFTER_THROWING_ELEMENT.equals(elementName)) {
 			return AspectJAfterThrowingAdvice.class;
-		}
-		else if (AROUND.equals(elementName)) {
+		}else if (AROUND.equals(elementName)) {
 			return AspectJAroundAdvice.class;
-		}
-		else {
+		}else {
 			throw new IllegalArgumentException("Unknown advice kind [" + elementName + "].");
 		}
 	}
@@ -386,29 +351,22 @@ class ConfigBeanDefinitionParser implements BeanDefinitionParser {
 	private AbstractBeanDefinition parsePointcut(Element pointcutElement, ParserContext parserContext) {
 		String id = pointcutElement.getAttribute(ID);
 		String expression = pointcutElement.getAttribute(EXPRESSION);
-
-		AbstractBeanDefinition pointcutDefinition = null;
-
+		AbstractBeanDefinition pointcutDefinition;
 		try {
 			this.parseState.push(new PointcutEntry(id));
 			pointcutDefinition = createPointcutDefinition(expression);
 			pointcutDefinition.setSource(parserContext.extractSource(pointcutElement));
-
 			String pointcutBeanName = id;
 			if (StringUtils.hasText(pointcutBeanName)) {
 				parserContext.getRegistry().registerBeanDefinition(pointcutBeanName, pointcutDefinition);
-			}
-			else {
+			}else {
 				pointcutBeanName = parserContext.getReaderContext().registerWithGeneratedName(pointcutDefinition);
 			}
-
-			parserContext.registerComponent(
-					new PointcutComponentDefinition(pointcutBeanName, pointcutDefinition, expression));
+			parserContext.registerComponent(new PointcutComponentDefinition(pointcutBeanName, pointcutDefinition, expression));
 		}
 		finally {
 			this.parseState.pop();
 		}
-
 		return pointcutDefinition;
 	}
 

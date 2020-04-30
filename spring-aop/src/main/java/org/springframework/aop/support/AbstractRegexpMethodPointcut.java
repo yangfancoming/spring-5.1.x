@@ -13,17 +13,10 @@ import org.springframework.util.StringUtils;
 
 /**
  * Abstract base regular expression pointcut bean. JavaBean properties are:
- * <ul>
- * <li>pattern: regular expression for the fully-qualified method names to match.
- * The exact regexp syntax will depend on the subclass (e.g. Perl5 regular expressions)
- * <li>patterns: alternative property taking a String array of patterns.
- * The result will be the union of these patterns.
- * </ul>
- *
+ * <li>pattern: regular expression for the fully-qualified method names to match.The exact regexp syntax will depend on the subclass (e.g. Perl5 regular expressions)
+ * <li>patterns: alternative property taking a String array of patterns.The result will be the union of these patterns.
  * Note: the regular expressions must be a match. For example,
- * {@code .*get.*} will match com.mycom.Foo.getBar().
- * {@code get.*} will not.
- *
+ * {@code .*get.*} will match com.mycom.Foo.getBar(). {@code get.*} will not.
  * This base class is serializable. Subclasses should declare all fields transient;
  * the {@link #initPatternRepresentation} method will be invoked again on deserialization.
  * @since 1.1
@@ -199,8 +192,7 @@ public abstract class AbstractRegexpMethodPointcut extends StaticMethodMatcherPo
 
 	@Override
 	public String toString() {
-		return getClass().getName() + ": patterns " + ObjectUtils.nullSafeToString(this.patterns) +
-				", excluded patterns " + ObjectUtils.nullSafeToString(this.excludedPatterns);
+		return getClass().getName() + ": patterns " + ObjectUtils.nullSafeToString(this.patterns) + ", excluded patterns " + ObjectUtils.nullSafeToString(this.excludedPatterns);
 	}
 
 }
