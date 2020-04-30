@@ -1,4 +1,4 @@
-package com.goat.chapter210.beanfactoryaware;
+package com.goat.chapter185.common;
 
 import org.springframework.stereotype.Component;
 
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
  * @ author  山羊来了
  * @ date 2019/8/10---11:34
  */
-
 @Component
 public class TestBean {
 
