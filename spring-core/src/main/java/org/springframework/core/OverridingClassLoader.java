@@ -105,13 +105,10 @@ public class OverridingClassLoader extends DecoratingClassLoader {
 	}
 
 	/**
-	 * Load the defining bytes for the given class,
-	 * to be turned into a Class object through a {@link #defineClass} call.
-	 * The default implementation delegates to {@link #openStreamForClass}
-	 * and {@link #transformIfNecessary}.
+	 * Load the defining bytes for the given class,to be turned into a Class object through a {@link #defineClass} call.
+	 * The default implementation delegates to {@link #openStreamForClass} and {@link #transformIfNecessary}.
 	 * @param name the name of the class
-	 * @return the byte content (with transformers already applied),
-	 * or {@code null} if no class defined for that name
+	 * @return the byte content (with transformers already applied),or {@code null} if no class defined for that name
 	 * @throws ClassNotFoundException if the class for the given name couldn't be loaded
 	 */
 	@Nullable
