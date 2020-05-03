@@ -8,9 +8,7 @@ import org.springframework.aop.support.AbstractBeanFactoryPointcutAdvisor;
 import org.springframework.lang.Nullable;
 
 /**
- * Advisor driven by a {@link TransactionAttributeSource}, used to include
- * a transaction advice bean for methods that are transactional.
-
+ * Advisor driven by a {@link TransactionAttributeSource}, used to include a transaction advice bean for methods that are transactional.
  * @since 2.5.5
  * @see #setAdviceBeanName
  * @see TransactionInterceptor
@@ -31,11 +29,9 @@ public class BeanFactoryTransactionAttributeSourceAdvisor extends AbstractBeanFa
 		}
 	};
 
-
 	/**
-	 * Set the transaction attribute source which is used to find transaction
-	 * attributes. This should usually be identical to the source reference
-	 * set on the transaction interceptor itself.
+	 * Set the transaction attribute source which is used to find transaction attributes.
+	 * This should usually be identical to the source reference set on the transaction interceptor itself.
 	 * @see TransactionInterceptor#setTransactionAttributeSource
 	 */
 	public void setTransactionAttributeSource(TransactionAttributeSource transactionAttributeSource) {
@@ -43,8 +39,7 @@ public class BeanFactoryTransactionAttributeSourceAdvisor extends AbstractBeanFa
 	}
 
 	/**
-	 * Set the {@link ClassFilter} to use for this pointcut.
-	 * Default is {@link ClassFilter#TRUE}.
+	 * Set the {@link ClassFilter} to use for this pointcut.Default is {@link ClassFilter#TRUE}.
 	 */
 	public void setClassFilter(ClassFilter classFilter) {
 		this.pointcut.setClassFilter(classFilter);

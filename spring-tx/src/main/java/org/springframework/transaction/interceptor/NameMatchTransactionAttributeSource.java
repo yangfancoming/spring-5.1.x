@@ -77,9 +77,7 @@ public class NameMatchTransactionAttributeSource implements TransactionAttribute
 	 * @param attr attribute associated with the method
 	 */
 	public void addTransactionalMethod(String methodName, TransactionAttribute attr) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("Adding transactional method [" + methodName + "] with attribute [" + attr + "]");
-		}
+		if (logger.isDebugEnabled()) logger.debug("Adding transactional method [" + methodName + "] with attribute [" + attr + "]");
 		this.nameMap.put(methodName, attr);
 	}
 
@@ -87,10 +85,10 @@ public class NameMatchTransactionAttributeSource implements TransactionAttribute
 	@Override
 	@Nullable
 	public TransactionAttribute getTransactionAttribute(Method method, @Nullable Class<?> targetClass) {
+		// 如果当前方法是Object类中的方法，则直接返回
 		if (!ClassUtils.isUserLevelMethod(method)) {
 			return null;
 		}
-
 		// Look for direct name match.
 		String methodName = method.getName();
 		TransactionAttribute attr = this.nameMap.get(methodName);
@@ -99,8 +97,7 @@ public class NameMatchTransactionAttributeSource implements TransactionAttribute
 			// Look for most specific name match.
 			String bestNameMatch = null;
 			for (String mappedName : this.nameMap.keySet()) {
-				if (isMatch(methodName, mappedName) &&
-						(bestNameMatch == null || bestNameMatch.length() <= mappedName.length())) {
+				if (isMatch(methodName, mappedName) && (bestNameMatch == null || bestNameMatch.length() <= mappedName.length())) {
 					attr = this.nameMap.get(mappedName);
 					bestNameMatch = mappedName;
 				}

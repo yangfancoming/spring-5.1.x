@@ -231,7 +231,7 @@ public abstract class AopUtils {
 		}
 		classes.addAll(ClassUtils.getAllInterfacesForClassAsSet(targetClass));
 		for (Class<?> clazz : classes) {
-			// 获取当前类的方法列表，包括从父类中继承的方法
+			// 获取当前类的所有方法，包括从父类中继承的方法
 			Method[] methods = ReflectionUtils.getAllDeclaredMethods(clazz);
 			for (Method method : methods) {
 				// 使用 methodMatcher 匹配方法，匹配成功即可立即返回

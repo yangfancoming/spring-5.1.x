@@ -16,8 +16,7 @@ import org.springframework.util.Assert;
 /**
  * Abstract BeanFactory-based PointcutAdvisor that allows for any Advice to be configured as reference to an Advice bean in a BeanFactory.
  * Specifying the name of an advice bean instead of the advice object itself
- * (if running within a BeanFactory) increases loose coupling at initialization time,
- * in order to not initialize the advice object until the pointcut actually matches.
+ * (if running within a BeanFactory) increases loose coupling at initialization time,in order to not initialize the advice object until the pointcut actually matches.
  * @since 2.0.2
  * @see #setAdviceBeanName
  * @see DefaultBeanFactoryPointcutAdvisor
@@ -38,9 +37,8 @@ public abstract class AbstractBeanFactoryPointcutAdvisor extends AbstractPointcu
 
 	/**
 	 * Specify the name of the advice bean that this advisor should refer to.
-	 * An instance of the specified bean will be obtained on first access
-	 * of this advisor's advice. This advisor will only ever obtain at most one
-	 * single instance of the advice bean, caching the instance for the lifetime of the advisor.
+	 * An instance of the specified bean will be obtained on first access of this advisor's advice.
+	 * This advisor will only ever obtain at most one single instance of the advice bean, caching the instance for the lifetime of the advisor.
 	 * @see #getAdvice()
 	 */
 	public void setAdviceBeanName(@Nullable String adviceBeanName) {
@@ -119,16 +117,13 @@ public abstract class AbstractBeanFactoryPointcutAdvisor extends AbstractPointcu
 		return sb.toString();
 	}
 
-
 	//---------------------------------------------------------------------
 	// Serialization support
 	//---------------------------------------------------------------------
-
 	private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
 		// Rely on default serialization, just initialize state after deserialization.
 		ois.defaultReadObject();
 		// Initialize transient fields.
 		resetAdviceMonitor();
 	}
-
 }

@@ -13,9 +13,7 @@ import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.type.AnnotationMetadata;
 
 /**
- * Registers an auto proxy creator against the current {@link BeanDefinitionRegistry}
- * as appropriate based on an {@code @Enable*} annotation having {@code mode} and
- * {@code proxyTargetClass} attributes set to the correct values.
+ * Registers an auto proxy creator against the current {@link BeanDefinitionRegistry} as appropriate based on an {@code @Enable*} annotation having {@code mode} and {@code proxyTargetClass} attributes set to the correct values.
  * @since 3.1
  * @see EnableAspectJAutoProxy
  */
@@ -39,9 +37,7 @@ public class AutoProxyRegistrar implements ImportBeanDefinitionRegistrar {
 		Set<String> annTypes = importingClassMetadata.getAnnotationTypes();
 		for (String annType : annTypes) {
 			AnnotationAttributes candidate = AnnotationConfigUtils.attributesFor(importingClassMetadata, annType);
-			if (candidate == null) {
-				continue;
-			}
+			if (candidate == null) continue;
 			Object mode = candidate.get("mode");
 			Object proxyTargetClass = candidate.get("proxyTargetClass");
 			if (mode != null && proxyTargetClass != null && AdviceMode.class == mode.getClass() && Boolean.class == proxyTargetClass.getClass()) {
@@ -58,12 +54,9 @@ public class AutoProxyRegistrar implements ImportBeanDefinitionRegistrar {
 		}
 		if (!candidateFound && logger.isInfoEnabled()) {
 			String name = getClass().getSimpleName();
-			logger.info(String.format("%s was imported but no annotations were found " +
-					"having both 'mode' and 'proxyTargetClass' attributes of type " +
-					"AdviceMode and boolean respectively. This means that auto proxy " +
-					"creator registration and configuration may not have occurred as " +
-					"intended, and components may not be proxied as expected. Check to " +
-					"ensure that %s has been @Import'ed on the same class where these " +
+			logger.info(String.format("%s was imported but no annotations were found having both 'mode' and 'proxyTargetClass' attributes of type " +
+					"AdviceMode and boolean respectively. This means that auto proxy creator registration and configuration may not have occurred as " +
+					"intended, and components may not be proxied as expected. Check to ensure that %s has been @Import'ed on the same class where these " +
 					"annotations are declared; otherwise remove the import of %s altogether.", name, name, name));
 		}
 	}
