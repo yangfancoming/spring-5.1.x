@@ -493,7 +493,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 				// 注册实现了ApplicationListener接口的事件监听器，用于后续广播器广播事件
 				// 给事件广播器注册一些监听器（观察者模式）
 				registerListeners();
-				/** 完成 容器的所有 初始化工作！
+				/**
+				 * 完成 容器的所有 初始化工作！
+				 * 刚才我们提到了bean还没有初始化。这个方法就是负责初始化所有的没有设置懒加载的singleton bean
 				 * Instantiate all remaining (non-lazy-init) singletons.  初始化所有（lazy-init 的除外）的 singleton beans
 				 * BeanFactory 初始化完成时调用，初始ConversionService Bean，冻结beanFactory配置，并开始创建BeanFactory中所有非懒加载的单例Bean
 				 */
@@ -782,16 +784,16 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		if (!beanFactory.hasEmbeddedValueResolver()) {
 			beanFactory.addEmbeddedValueResolver(strVal -> getEnvironment().resolvePlaceholders(strVal));
 		}
-		// Initialize LoadTimeWeaverAware beans early to allow for registering their transformers early.
+		// Initialize LoadTimeWeaverAware beans early to allow for registering their transformers early. 先初始化 LoadTimeWeaverAware 类型的 Bean
 		String[] weaverAwareNames = beanFactory.getBeanNamesForType(LoadTimeWeaverAware.class, false, false);
 		for (String weaverAwareName : weaverAwareNames) {
 			getBean(weaverAwareName);
 		}
-		// Stop using the temporary ClassLoader for type matching.
+		// Stop using the temporary ClassLoader for type matching.  // 停止使用用于类型匹配的临时类加载器
 		beanFactory.setTempClassLoader(null);
-		// Allow for caching all bean definition metadata, not expecting further changes.
+		// Allow for caching all bean definition metadata, not expecting further changes. 冻结所有的bean定义，即已注册的bean定义将不会被修改或后处理
 		beanFactory.freezeConfiguration();
-		// Instantiate all remaining (non-lazy-init) singletons. 预实例化所有非懒加载单例Bean
+		// Instantiate all remaining (non-lazy-init) singletons. 预实例化所有非懒加载单例Bean // 初始化
 		beanFactory.preInstantiateSingletons();
 	}
 
