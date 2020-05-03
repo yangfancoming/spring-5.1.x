@@ -193,10 +193,14 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	@SuppressWarnings("unchecked")
 	protected <T> T doGetBean(final String name, @Nullable final Class<T> requiredType,@Nullable final Object[] args, boolean typeCheckOnly) throws BeansException {
 		// 1、转换bean的名称,可能是工厂bean（需要去掉&前缀）,也可能是bean的别（优先使用别名）
+		// 获取beanName，处理两种情况，一个是前面说的 FactoryBean(前面带 ‘&’)，再一个这个方法是可以根据别名来获取Bean的，所以在这里是要转换成最正统的BeanName
+		// 主要逻辑就是如果是FactoryBean就把&去掉如果是别名就把根据别名获取真实名称后面就不贴代码了
 		final String beanName = transformedBeanName(name);
+		// 最后的返回值
 		Object bean;
 		// Eagerly check singleton cache for manually registered singletons.急切地检查singleton缓存中手动注册的singleton
 		//  2、这里先尝试从缓存中获取，获取不到再走后面的创建流程
+		// 检查是否已初始化
 		Object sharedInstance = getSingleton(beanName);
 		if (sharedInstance != null && args == null) { // 如果缓存map中有
 			if (logger.isTraceEnabled()) {
@@ -207,6 +211,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				}
 			}
 			// 这里主要处理实现了FactoryBean的情况，需要调用重写的getObject()方法来获取实际的Bean实例。
+			// 这里如果是普通Bean 的话，直接返回，如果是 FactoryBean 的话，返回它创建的那个实例对象
 			bean = getObjectForBeanInstance(sharedInstance, name, beanName, null);
 		}else { // 如果缓存中没有，尝试从父容器中查找
 			// Fail if we're already creating this bean instance: We're assumably within a circular reference.
@@ -673,8 +678,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	}
 
 	/**
-	 * Set the security context provider for this bean factory. If a security manager is set,
-	 * interaction with the user code will be executed using the privileged  of the provided security context.
+	 * Set the security context provider for this bean factory. If a security manager is set,interaction with the user code will be executed using the privileged  of the provided security context.
 	 */
 	public void setSecurityContextProvider(SecurityContextProvider securityProvider) {
 		this.securityContextProvider = securityProvider;

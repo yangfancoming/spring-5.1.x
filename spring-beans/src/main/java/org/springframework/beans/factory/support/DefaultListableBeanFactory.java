@@ -691,27 +691,32 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		if (logger.isTraceEnabled()) logger.trace("Pre-instantiating singletons in " + this);
 		// Iterate over a copy to allow for init methods which in turn register new bean definitions.
 		// While this may not be part of the regular factory bootstrap, it does otherwise work fine.
-		// 获取容器内加载的所有BeanDefinition
+		// 获取容器内加载的所有 bean的名称
 		List<String> beanNames = new ArrayList<>(beanDefinitionNames);
 
 		// Trigger initialization of all non-lazy singleton beans... 遍历初始化所有非懒加载单例Bean
 		for (String beanName : beanNames) {
 			/**
+			 * 合并父 Bean 中的配置，主意<bean id="" class="" parent="" /> 中的 parent属性
 			 Bean定义公共的抽象类是AbstractBeanDefinition，普通的Bean在Spring加载Bean定义的时候，实例化出来的是GenericBeanDefinition
 			 而Spring上下文包括实例化所有Bean用的AbstractBeanDefinition是RootBeanDefinition
 			 这时候就使用getMergedLocalBeanDefinition方法做了一次转化，将非RootBeanDefinition转换为RootBeanDefinition以供后续操作。
 			 注意如果当前BeanDefinition存在父BeanDefinition，会基于父BeanDefinition生成一个RootBeanDefinition,然后再将调用OverrideFrom子BeanDefinition的相关属性覆写进去。
 			 */
 			RootBeanDefinition bd = getMergedLocalBeanDefinition(beanName); // 拿到bean的定义信息
+			// 不是抽象类、是单例的且不是懒加载的
 			if (!bd.isAbstract() && bd.isSingleton() && !bd.isLazyInit()) {
 				/**
+				 *  处理 FactoryBean
 				 判断当前Bean是否是工厂bean (是否实现了FactoryBean接口)，如果实现了，判断是否要立即初始化
 				 判断是否需要立即初始化，则根据Bean是否实现了SmartFactoryBean并且重写的内部方法isEagerInit 返回true
 				 */
 				if (isFactoryBean(beanName)) {
 					Object bean = getBean(FACTORY_BEAN_PREFIX + beanName);
 					if (bean instanceof FactoryBean) {
+						//在 beanName 前面加上“&” 符号
 						final FactoryBean<?> factory = (FactoryBean<?>) bean;
+						// 判断当前 FactoryBean 是否是 SmartFactoryBean 的实现
 						boolean isEagerInit;
 						if (System.getSecurityManager() != null && factory instanceof SmartFactoryBean) {
 							isEagerInit = AccessController.doPrivileged((PrivilegedAction<Boolean>)	((SmartFactoryBean<?>) factory)::isEagerInit,getAccessControlContext());
@@ -721,12 +726,12 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 						if (isEagerInit) getBean(beanName);
 					}
 				}else {
-					// 非工厂bean 就是普通的bean  对其获取
+					// 非工厂bean 就是普通的bean  对其获取  // 不是FactoryBean的直接使用此方法进行初始化
 					getBean(beanName);
 				}
 			}
 		}
-
+		// 如果bean实现了 SmartInitializingSingleton 接口的，那么在这里得到回调
 		// Trigger post-initialization callback for all applicable beans...
 		for (String beanName : beanNames) {
 			Object singletonInstance = getSingleton(beanName);
