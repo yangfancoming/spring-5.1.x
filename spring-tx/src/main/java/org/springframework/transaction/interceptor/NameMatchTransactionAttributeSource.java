@@ -18,10 +18,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.PatternMatchUtils;
 
 /**
- * Simple {@link TransactionAttributeSource} implementation that
- * allows attributes to be matched by registered name.
- *
-
+ * Simple {@link TransactionAttributeSource} implementation that allows attributes to be matched by registered name.
  * @since 21.08.2003
  * @see #isMatch
  * @see MethodMapTransactionAttributeSource
@@ -71,8 +68,7 @@ public class NameMatchTransactionAttributeSource implements TransactionAttribute
 
 	/**
 	 * Add an attribute for a transactional method.
-	 * Method names can be exact matches, or of the pattern "xxx*",
-	 * "*xxx" or "*xxx*" for matching multiple methods.
+	 * Method names can be exact matches, or of the pattern "xxx*","*xxx" or "*xxx*" for matching multiple methods.
 	 * @param methodName the name of the method
 	 * @param attr attribute associated with the method
 	 */
@@ -92,7 +88,6 @@ public class NameMatchTransactionAttributeSource implements TransactionAttribute
 		// Look for direct name match.
 		String methodName = method.getName();
 		TransactionAttribute attr = this.nameMap.get(methodName);
-
 		if (attr == null) {
 			// Look for most specific name match.
 			String bestNameMatch = null;
@@ -103,7 +98,6 @@ public class NameMatchTransactionAttributeSource implements TransactionAttribute
 				}
 			}
 		}
-
 		return attr;
 	}
 
@@ -119,7 +113,6 @@ public class NameMatchTransactionAttributeSource implements TransactionAttribute
 	protected boolean isMatch(String methodName, String mappedName) {
 		return PatternMatchUtils.simpleMatch(mappedName, methodName);
 	}
-
 
 	@Override
 	public boolean equals(Object other) {
