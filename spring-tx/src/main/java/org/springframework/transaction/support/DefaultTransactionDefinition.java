@@ -12,8 +12,7 @@ import org.springframework.transaction.TransactionDefinition;
  * Default implementation of the {@link TransactionDefinition} interface,
  * offering bean-style configuration and sensible default values
  * (PROPAGATION_REQUIRED, ISOLATION_DEFAULT, TIMEOUT_DEFAULT, readOnly=false).
- * Base class for both {@link TransactionTemplate} and
- * {@link org.springframework.transaction.interceptor.DefaultTransactionAttribute}.
+ * Base class for both {@link TransactionTemplate} and {@link org.springframework.transaction.interceptor.DefaultTransactionAttribute}.
  * @since 08.05.2003
  */
 @SuppressWarnings("serial")
@@ -31,7 +30,6 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 	/** Marker for read-only transactions in description strings. */
 	public static final String READ_ONLY_MARKER = "readOnly";
 
-
 	/** Constants instance for TransactionDefinition. */
 	static final Constants constants = new Constants(TransactionDefinition.class);
 
@@ -45,7 +43,6 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 
 	@Nullable
 	private String name;
-
 
 	/**
 	 * Create a new DefaultTransactionDefinition, with default settings.
@@ -76,8 +73,7 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 	}
 
 	/**
-	 * Create a new DefaultTransactionDefinition with the given
-	 * propagation behavior. Can be modified through bean property setters.
+	 * Create a new DefaultTransactionDefinition with the given propagation behavior. Can be modified through bean property setters.
 	 * @param propagationBehavior one of the propagation constants in the
 	 * TransactionDefinition interface
 	 * @see #setIsolationLevel
@@ -88,13 +84,10 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 		this.propagationBehavior = propagationBehavior;
 	}
 
-
 	/**
-	 * Set the propagation behavior by the name of the corresponding constant in
-	 * TransactionDefinition, e.g. "PROPAGATION_REQUIRED".
+	 * Set the propagation behavior by the name of the corresponding constant in TransactionDefinition, e.g. "PROPAGATION_REQUIRED".
 	 * @param constantName name of the constant
-	 * @throws IllegalArgumentException if the supplied value is not resolvable
-	 * to one of the {@code PROPAGATION_} constants or is {@code null}
+	 * @throws IllegalArgumentException if the supplied value is not resolvable to one of the {@code PROPAGATION_} constants or is {@code null}
 	 * @see #setPropagationBehavior
 	 * @see #PROPAGATION_REQUIRED
 	 */
@@ -106,18 +99,12 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 	}
 
 	/**
-	 * Set the propagation behavior. Must be one of the propagation constants
-	 * in the TransactionDefinition interface. Default is PROPAGATION_REQUIRED.
-	 * Exclusively designed for use with {@link #PROPAGATION_REQUIRED} or
-	 * {@link #PROPAGATION_REQUIRES_NEW} since it only applies to newly started
-	 * transactions. Consider switching the "validateExistingTransactions" flag to
-	 * "true" on your transaction manager if you'd like isolation level declarations
-	 * to get rejected when participating in an existing transaction with a different
-	 * isolation level.
-	 * Note that a transaction manager that does not support custom isolation levels
-	 * will throw an exception when given any other level than {@link #ISOLATION_DEFAULT}.
-	 * @throws IllegalArgumentException if the supplied value is not one of the
-	 * {@code PROPAGATION_} constants
+	 * Set the propagation behavior. Must be one of the propagation constants  in the TransactionDefinition interface. Default is PROPAGATION_REQUIRED.
+	 * Exclusively designed for use with {@link #PROPAGATION_REQUIRED} or {@link #PROPAGATION_REQUIRES_NEW} since it only applies to newly started transactions.
+	 * Consider switching the "validateExistingTransactions" flag to "true" on your transaction manager if you'd like isolation level declarations
+	 * to get rejected when participating in an existing transaction with a different isolation level.
+	 * Note that a transaction manager that does not support custom isolation levels will throw an exception when given any other level than {@link #ISOLATION_DEFAULT}.
+	 * @throws IllegalArgumentException if the supplied value is not one of the {@code PROPAGATION_} constants
 	 * @see #PROPAGATION_REQUIRED
 	 */
 	public final void setPropagationBehavior(int propagationBehavior) {
@@ -136,8 +123,7 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 	 * Set the isolation level by the name of the corresponding constant in
 	 * TransactionDefinition, e.g. "ISOLATION_DEFAULT".
 	 * @param constantName name of the constant
-	 * @throws IllegalArgumentException if the supplied value is not resolvable
-	 * to one of the {@code ISOLATION_} constants or is {@code null}
+	 * @throws IllegalArgumentException if the supplied value is not resolvable to one of the {@code ISOLATION_} constants or is {@code null}
 	 * @see #setIsolationLevel
 	 * @see #ISOLATION_DEFAULT
 	 */
@@ -155,8 +141,7 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 	 * {@link #PROPAGATION_REQUIRES_NEW} since it only applies to newly started
 	 * transactions. Consider switching the "validateExistingTransactions" flag to
 	 * "true" on your transaction manager if you'd like isolation level declarations
-	 * to get rejected when participating in an existing transaction with a different
-	 * isolation level.
+	 * to get rejected when participating in an existing transaction with a different isolation level.
 	 * Note that a transaction manager that does not support custom isolation levels
 	 * will throw an exception when given any other level than {@link #ISOLATION_DEFAULT}.
 	 * @throws IllegalArgumentException if the supplied value is not one of the
@@ -179,8 +164,7 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 	 * Set the timeout to apply, as number of seconds.
 	 * Default is TIMEOUT_DEFAULT (-1).
 	 * Exclusively designed for use with {@link #PROPAGATION_REQUIRED} or
-	 * {@link #PROPAGATION_REQUIRES_NEW} since it only applies to newly started
-	 * transactions.
+	 * {@link #PROPAGATION_REQUIRES_NEW} since it only applies to newly started transactions.
 	 * Note that a transaction manager that does not support timeouts will throw
 	 * an exception when given any other timeout than {@link #TIMEOUT_DEFAULT}.
 	 * @see #TIMEOUT_DEFAULT
@@ -198,14 +182,12 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 	}
 
 	/**
-	 * Set whether to optimize as read-only transaction.
-	 * Default is "false".
+	 * Set whether to optimize as read-only transaction. Default is "false".
 	 * The read-only flag applies to any transaction context, whether backed
 	 * by an actual resource transaction ({@link #PROPAGATION_REQUIRED}/
 	 * {@link #PROPAGATION_REQUIRES_NEW}) or operating non-transactionally at
 	 * the resource level ({@link #PROPAGATION_SUPPORTS}). In the latter case,
-	 * the flag will only apply to managed resources within the application,
-	 * such as a Hibernate {@code Session}.
+	 * the flag will only apply to managed resources within the application,such as a Hibernate {@code Session}.
 	 * This just serves as a hint for the actual transaction subsystem;
 	 * it will <i>not necessarily</i> cause failure of write access attempts.
 	 * A transaction manager which cannot interpret the read-only hint will

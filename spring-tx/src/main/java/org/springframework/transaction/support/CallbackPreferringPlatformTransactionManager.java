@@ -20,8 +20,6 @@ import org.springframework.transaction.TransactionException;
  * Spring's {@link TransactionTemplate} and
  * {@link org.springframework.transaction.interceptor.TransactionInterceptor}
  * detect and use this PlatformTransactionManager variant automatically.
- *
-
  * @since 2.0
  * @see TransactionTemplate
  * @see org.springframework.transaction.interceptor.TransactionInterceptor
@@ -41,7 +39,5 @@ public interface CallbackPreferringPlatformTransactionManager extends PlatformTr
 	 * @throws RuntimeException if thrown by the TransactionCallback
 	 */
 	@Nullable
-	<T> T execute(@Nullable TransactionDefinition definition, TransactionCallback<T> callback)
-			throws TransactionException;
-
+	<T> T execute(@Nullable TransactionDefinition definition, TransactionCallback<T> callback) throws TransactionException;
 }

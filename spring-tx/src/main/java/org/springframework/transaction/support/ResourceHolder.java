@@ -4,10 +4,7 @@ package org.springframework.transaction.support;
 
 /**
  * Generic interface to be implemented by resource holders.
- * Allows Spring's transaction infrastructure to introspect
- * and reset the holder when necessary.
- *
-
+ * Allows Spring's transaction infrastructure to introspect and reset the holder when necessary.
  * @since 2.5.5
  * @see ResourceHolderSupport
  * @see ResourceHolderSynchronization

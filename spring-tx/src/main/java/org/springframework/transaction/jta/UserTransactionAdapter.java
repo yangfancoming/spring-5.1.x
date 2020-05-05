@@ -20,19 +20,14 @@ import org.springframework.util.Assert;
  * The JTA UserTransaction interface is an exact subset of the JTA
  * TransactionManager interface. Unfortunately, it does not serve as
  * super-interface of TransactionManager, though, which requires an
- * adapter such as this class to be used when intending to talk to
- * a TransactionManager handle through the UserTransaction interface.
- *
+ * adapter such as this class to be used when intending to talk to  a TransactionManager handle through the UserTransaction interface.
  * Used internally by Spring's {@link JtaTransactionManager} for certain
  * scenarios. Not intended for direct use in application code.
- *
-
  * @since 1.1.5
  */
 public class UserTransactionAdapter implements UserTransaction {
 
 	private final TransactionManager transactionManager;
-
 
 	/**
 	 * Create a new UserTransactionAdapter for the given TransactionManager.
@@ -50,7 +45,6 @@ public class UserTransactionAdapter implements UserTransaction {
 		return this.transactionManager;
 	}
 
-
 	@Override
 	public void setTransactionTimeout(int timeout) throws SystemException {
 		this.transactionManager.setTransactionTimeout(timeout);
@@ -62,9 +56,7 @@ public class UserTransactionAdapter implements UserTransaction {
 	}
 
 	@Override
-	public void commit()
-			throws RollbackException, HeuristicMixedException, HeuristicRollbackException,
-			SecurityException, SystemException {
+	public void commit() throws RollbackException, HeuristicMixedException, HeuristicRollbackException,SecurityException, SystemException {
 		this.transactionManager.commit();
 	}
 

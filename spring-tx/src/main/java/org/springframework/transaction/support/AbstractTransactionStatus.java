@@ -10,17 +10,12 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.TransactionUsageException;
 
 /**
- * Abstract base implementation of the
- * {@link org.springframework.transaction.TransactionStatus} interface.
- *
+ * Abstract base implementation of the {@link org.springframework.transaction.TransactionStatus} interface.
  * Pre-implements the handling of local rollback-only and completed flags, and
  * delegation to an underlying {@link org.springframework.transaction.SavepointManager}.
  * Also offers the option of a holding a savepoint within the transaction.
- *
  * Does not assume any specific internal transaction handling, such as an
  * underlying transaction object, and no transaction synchronization mechanism.
- *
-
  * @since 1.2.3
  * @see #setRollbackOnly()
  * @see #isRollbackOnly()
@@ -38,7 +33,6 @@ public abstract class AbstractTransactionStatus implements TransactionStatus {
 
 	@Nullable
 	private Object savepoint;
-
 
 	//---------------------------------------------------------------------
 	// Handling of current transaction state
@@ -63,16 +57,14 @@ public abstract class AbstractTransactionStatus implements TransactionStatus {
 
 	/**
 	 * Determine the rollback-only flag via checking this TransactionStatus.
-	 * Will only return "true" if the application called {@code setRollbackOnly}
-	 * on this TransactionStatus object.
+	 * Will only return "true" if the application called {@code setRollbackOnly} on this TransactionStatus object.
 	 */
 	public boolean isLocalRollbackOnly() {
 		return this.rollbackOnly;
 	}
 
 	/**
-	 * Template method for determining the global rollback-only flag of the
-	 * underlying transaction, if any.
+	 * Template method for determining the global rollback-only flag of the underlying transaction, if any.
 	 * This implementation always returns {@code false}.
 	 */
 	public boolean isGlobalRollbackOnly() {
@@ -140,8 +132,7 @@ public abstract class AbstractTransactionStatus implements TransactionStatus {
 	public void rollbackToHeldSavepoint() throws TransactionException {
 		Object savepoint = getSavepoint();
 		if (savepoint == null) {
-			throw new TransactionUsageException(
-					"Cannot roll back to savepoint - no savepoint associated with current transaction");
+			throw new TransactionUsageException("Cannot roll back to savepoint - no savepoint associated with current transaction");
 		}
 		getSavepointManager().rollbackToSavepoint(savepoint);
 		getSavepointManager().releaseSavepoint(savepoint);
@@ -154,8 +145,7 @@ public abstract class AbstractTransactionStatus implements TransactionStatus {
 	public void releaseHeldSavepoint() throws TransactionException {
 		Object savepoint = getSavepoint();
 		if (savepoint == null) {
-			throw new TransactionUsageException(
-					"Cannot release savepoint - no savepoint associated with current transaction");
+			throw new TransactionUsageException("Cannot release savepoint - no savepoint associated with current transaction");
 		}
 		getSavepointManager().releaseSavepoint(savepoint);
 		setSavepoint(null);

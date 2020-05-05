@@ -65,16 +65,13 @@ import org.springframework.util.ReflectionUtils;
  * demarcation behavior on Spring's side. It will happily co-exist with independently
  * configured WebSphere transaction strategies in your persistence provider, with no
  * need to specifically connect those setups in any way.</b>
- *
-
  * @since 2.5
  * @see #setUowManager
  * @see #setUowManagerName
  * @see com.ibm.wsspi.uow.UOWManager
  */
 @SuppressWarnings("serial")
-public class WebSphereUowTransactionManager extends JtaTransactionManager
-		implements CallbackPreferringPlatformTransactionManager {
+public class WebSphereUowTransactionManager extends JtaTransactionManager implements CallbackPreferringPlatformTransactionManager {
 
 	/**
 	 * Default JNDI location for the WebSphere UOWManager.
@@ -82,13 +79,11 @@ public class WebSphereUowTransactionManager extends JtaTransactionManager
 	 */
 	public static final String DEFAULT_UOW_MANAGER_NAME = "java:comp/websphere/UOWManager";
 
-
 	@Nullable
 	private UOWManager uowManager;
 
 	@Nullable
 	private String uowManagerName;
-
 
 	/**
 	 * Create a new WebSphereUowTransactionManager.
@@ -105,7 +100,6 @@ public class WebSphereUowTransactionManager extends JtaTransactionManager
 		this();
 		this.uowManager = uowManager;
 	}
-
 
 	/**
 	 * Set the WebSphere UOWManager to use as direct reference.
@@ -131,7 +125,6 @@ public class WebSphereUowTransactionManager extends JtaTransactionManager
 	@Override
 	public void afterPropertiesSet() throws TransactionSystemException {
 		initUserTransactionAndTransactionManager();
-
 		// Fetch UOWManager handle from JNDI, if necessary.
 		if (this.uowManager == null) {
 			if (this.uowManagerName != null) {
@@ -157,16 +150,13 @@ public class WebSphereUowTransactionManager extends JtaTransactionManager
 				logger.debug("Retrieving WebSphere UOWManager from JNDI location [" + uowManagerName + "]");
 			}
 			return getJndiTemplate().lookup(uowManagerName, UOWManager.class);
-		}
-		catch (NamingException ex) {
-			throw new TransactionSystemException(
-					"WebSphere UOWManager is not available at JNDI location [" + uowManagerName + "]", ex);
+		}catch (NamingException ex) {
+			throw new TransactionSystemException("WebSphere UOWManager is not available at JNDI location [" + uowManagerName + "]", ex);
 		}
 	}
 
 	/**
-	 * Obtain the WebSphere UOWManager from the default JNDI location
-	 * "java:comp/websphere/UOWManager".
+	 * Obtain the WebSphere UOWManager from the default JNDI location "java:comp/websphere/UOWManager".
 	 * @return the UOWManager object
 	 * @throws TransactionSystemException if the JNDI lookup failed
 	 * @see #setJndiTemplate
@@ -175,10 +165,8 @@ public class WebSphereUowTransactionManager extends JtaTransactionManager
 		try {
 			logger.debug("Retrieving WebSphere UOWManager from default JNDI location [" + DEFAULT_UOW_MANAGER_NAME + "]");
 			return getJndiTemplate().lookup(DEFAULT_UOW_MANAGER_NAME, UOWManager.class);
-		}
-		catch (NamingException ex) {
-			logger.debug("WebSphere UOWManager is not available at default JNDI location [" +
-					DEFAULT_UOW_MANAGER_NAME + "] - falling back to UOWManagerFactory lookup");
+		}catch (NamingException ex) {
+			logger.debug("WebSphere UOWManager is not available at default JNDI location [" + DEFAULT_UOW_MANAGER_NAME + "] - falling back to UOWManagerFactory lookup");
 			return UOWManagerFactory.getUOWManager();
 		}
 	}
@@ -188,20 +176,16 @@ public class WebSphereUowTransactionManager extends JtaTransactionManager
 		return this.uowManager;
 	}
 
-
 	/**
 	 * Registers the synchronizations as interposed JTA Synchronization on the UOWManager.
 	 */
 	@Override
-	protected void doRegisterAfterCompletionWithJtaTransaction(
-			JtaTransactionObject txObject, List<TransactionSynchronization> synchronizations) {
-
+	protected void doRegisterAfterCompletionWithJtaTransaction(JtaTransactionObject txObject, List<TransactionSynchronization> synchronizations) {
 		obtainUOWManager().registerInterposedSynchronization(new JtaAfterCompletionSynchronization(synchronizations));
 	}
 
 	/**
-	 * Returns {@code true} since WebSphere ResourceAdapters (as exposed in JNDI)
-	 * implicitly perform transaction enlistment if the MessageEndpointFactory's
+	 * Returns {@code true} since WebSphere ResourceAdapters (as exposed in JNDI) implicitly perform transaction enlistment if the MessageEndpointFactory's
 	 * {@code isDeliveryTransacted} method returns {@code true}.
 	 * In that case we'll simply skip the {@link #createTransaction} call.
 	 * @see javax.resource.spi.endpoint.MessageEndpointFactory#isDeliveryTransacted
@@ -216,104 +200,76 @@ public class WebSphereUowTransactionManager extends JtaTransactionManager
 
 	@Override
 	@Nullable
-	public <T> T execute(@Nullable TransactionDefinition definition, TransactionCallback<T> callback)
-			throws TransactionException {
-
+	public <T> T execute(@Nullable TransactionDefinition definition, TransactionCallback<T> callback) throws TransactionException {
 		if (definition == null) {
 			// Use defaults if no transaction definition given.
 			definition = new DefaultTransactionDefinition();
 		}
-
 		if (definition.getTimeout() < TransactionDefinition.TIMEOUT_DEFAULT) {
 			throw new InvalidTimeoutException("Invalid transaction timeout", definition.getTimeout());
 		}
 
 		UOWManager uowManager = obtainUOWManager();
 		int pb = definition.getPropagationBehavior();
-		boolean existingTx = (uowManager.getUOWStatus() != UOWSynchronizationRegistry.UOW_STATUS_NONE &&
-				uowManager.getUOWType() != UOWSynchronizationRegistry.UOW_TYPE_LOCAL_TRANSACTION);
-
+		boolean existingTx = (uowManager.getUOWStatus() != UOWSynchronizationRegistry.UOW_STATUS_NONE && uowManager.getUOWType() != UOWSynchronizationRegistry.UOW_TYPE_LOCAL_TRANSACTION);
 		int uowType = UOWSynchronizationRegistry.UOW_TYPE_GLOBAL_TRANSACTION;
 		boolean joinTx = false;
 		boolean newSynch = false;
-
 		if (existingTx) {
 			if (pb == TransactionDefinition.PROPAGATION_NEVER) {
-				throw new IllegalTransactionStateException(
-						"Transaction propagation 'never' but existing transaction found");
+				throw new IllegalTransactionStateException("Transaction propagation 'never' but existing transaction found");
 			}
 			if (pb == TransactionDefinition.PROPAGATION_NESTED) {
-				throw new NestedTransactionNotSupportedException(
-						"Transaction propagation 'nested' not supported for WebSphere UOW transactions");
+				throw new NestedTransactionNotSupportedException("Transaction propagation 'nested' not supported for WebSphere UOW transactions");
 			}
-			if (pb == TransactionDefinition.PROPAGATION_SUPPORTS ||
-					pb == TransactionDefinition.PROPAGATION_REQUIRED ||
-					pb == TransactionDefinition.PROPAGATION_MANDATORY) {
+			if (pb == TransactionDefinition.PROPAGATION_SUPPORTS || pb == TransactionDefinition.PROPAGATION_REQUIRED || pb == TransactionDefinition.PROPAGATION_MANDATORY) {
 				joinTx = true;
 				newSynch = (getTransactionSynchronization() != SYNCHRONIZATION_NEVER);
-			}
-			else if (pb == TransactionDefinition.PROPAGATION_NOT_SUPPORTED) {
+			}else if (pb == TransactionDefinition.PROPAGATION_NOT_SUPPORTED) {
 				uowType = UOWSynchronizationRegistry.UOW_TYPE_LOCAL_TRANSACTION;
 				newSynch = (getTransactionSynchronization() == SYNCHRONIZATION_ALWAYS);
-			}
-			else {
+			}else {
 				newSynch = (getTransactionSynchronization() != SYNCHRONIZATION_NEVER);
 			}
-		}
-		else {
+		}else {
 			if (pb == TransactionDefinition.PROPAGATION_MANDATORY) {
-				throw new IllegalTransactionStateException(
-						"Transaction propagation 'mandatory' but no existing transaction found");
+				throw new IllegalTransactionStateException("Transaction propagation 'mandatory' but no existing transaction found");
 			}
-			if (pb == TransactionDefinition.PROPAGATION_SUPPORTS ||
-					pb == TransactionDefinition.PROPAGATION_NOT_SUPPORTED ||
-					pb == TransactionDefinition.PROPAGATION_NEVER) {
+			if (pb == TransactionDefinition.PROPAGATION_SUPPORTS || pb == TransactionDefinition.PROPAGATION_NOT_SUPPORTED || pb == TransactionDefinition.PROPAGATION_NEVER) {
 				uowType = UOWSynchronizationRegistry.UOW_TYPE_LOCAL_TRANSACTION;
 				newSynch = (getTransactionSynchronization() == SYNCHRONIZATION_ALWAYS);
-			}
-			else {
+			}else {
 				newSynch = (getTransactionSynchronization() != SYNCHRONIZATION_NEVER);
 			}
 		}
 
 		boolean debug = logger.isDebugEnabled();
-		if (debug) {
-			logger.debug("Creating new transaction with name [" + definition.getName() + "]: " + definition);
-		}
+		if (debug) logger.debug("Creating new transaction with name [" + definition.getName() + "]: " + definition);
 		SuspendedResourcesHolder suspendedResources = (!joinTx ? suspend(null) : null);
 		UOWActionAdapter<T> action = null;
 		try {
 			if (definition.getTimeout() > TransactionDefinition.TIMEOUT_DEFAULT) {
 				uowManager.setUOWTimeout(uowType, definition.getTimeout());
 			}
-			if (debug) {
-				logger.debug("Invoking WebSphere UOW action: type=" + uowType + ", join=" + joinTx);
-			}
-			action = new UOWActionAdapter<>(
-					definition, callback, (uowType == UOWManager.UOW_TYPE_GLOBAL_TRANSACTION), !joinTx, newSynch, debug);
+			if (debug) logger.debug("Invoking WebSphere UOW action: type=" + uowType + ", join=" + joinTx);
+			action = new UOWActionAdapter<>(definition, callback, (uowType == UOWManager.UOW_TYPE_GLOBAL_TRANSACTION), !joinTx, newSynch, debug);
 			uowManager.runUnderUOW(uowType, joinTx, action);
-			if (debug) {
-				logger.debug("Returned from WebSphere UOW action: type=" + uowType + ", join=" + joinTx);
-			}
+			if (debug) logger.debug("Returned from WebSphere UOW action: type=" + uowType + ", join=" + joinTx);
 			return action.getResult();
-		}
-		catch (UOWException | UOWActionException ex) {
-			TransactionSystemException tse =
-					new TransactionSystemException("UOWManager transaction processing failed", ex);
+		}catch (UOWException | UOWActionException ex) {
+			TransactionSystemException tse = new TransactionSystemException("UOWManager transaction processing failed", ex);
 			Throwable appEx = action.getException();
 			if (appEx != null) {
 				logger.error("Application exception overridden by rollback exception", appEx);
 				tse.initApplicationException(appEx);
 			}
 			throw tse;
-		}
-		finally {
+		}finally {
 			if (suspendedResources != null) {
 				resume(null, suspendedResources);
 			}
 		}
 	}
-
 
 	/**
 	 * Adapter that executes the given Spring transaction within the WebSphere UOWAction shape.
@@ -338,9 +294,7 @@ public class WebSphereUowTransactionManager extends JtaTransactionManager
 		@Nullable
 		private Throwable exception;
 
-		public UOWActionAdapter(TransactionDefinition definition, TransactionCallback<T> callback,
-				boolean actualTransaction, boolean newTransaction, boolean newSynchronization, boolean debug) {
-
+		public UOWActionAdapter(TransactionDefinition definition, TransactionCallback<T> callback,boolean actualTransaction, boolean newTransaction, boolean newSynchronization, boolean debug) {
 			this.definition = definition;
 			this.callback = callback;
 			this.actualTransaction = actualTransaction;
@@ -352,25 +306,17 @@ public class WebSphereUowTransactionManager extends JtaTransactionManager
 		@Override
 		public void run() {
 			UOWManager uowManager = obtainUOWManager();
-			DefaultTransactionStatus status = prepareTransactionStatus(
-					this.definition, (this.actualTransaction ? this : null),
-					this.newTransaction, this.newSynchronization, this.debug, null);
+			DefaultTransactionStatus status = prepareTransactionStatus(this.definition, (this.actualTransaction ? this : null),this.newTransaction, this.newSynchronization, this.debug, null);
 			try {
 				this.result = this.callback.doInTransaction(status);
 				triggerBeforeCommit(status);
-			}
-			catch (Throwable ex) {
+			}catch (Throwable ex) {
 				this.exception = ex;
-				if (status.isDebug()) {
-					logger.debug("Rolling back on application exception from transaction callback", ex);
-				}
+				if (status.isDebug()) logger.debug("Rolling back on application exception from transaction callback", ex);
 				uowManager.setRollbackOnly();
-			}
-			finally {
+			}finally {
 				if (status.isLocalRollbackOnly()) {
-					if (status.isDebug()) {
-						logger.debug("Transaction callback has explicitly requested rollback");
-					}
+					if (status.isDebug()) logger.debug("Transaction callback has explicitly requested rollback");
 					uowManager.setRollbackOnly();
 				}
 				triggerBeforeCompletion(status);

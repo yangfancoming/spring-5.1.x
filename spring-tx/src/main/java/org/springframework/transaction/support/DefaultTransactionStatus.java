@@ -23,8 +23,6 @@ import org.springframework.util.Assert;
  * implementations, in particular not for mock transaction managers in testing environments.
  * Use the alternative {@link SimpleTransactionStatus} class or a mock for the plain
  * {@link org.springframework.transaction.TransactionStatus} interface instead.
- *
-
  * @since 19.01.2004
  * @see AbstractPlatformTransactionManager
  * @see org.springframework.transaction.SavepointManager
@@ -50,26 +48,17 @@ public class DefaultTransactionStatus extends AbstractTransactionStatus {
 	@Nullable
 	private final Object suspendedResources;
 
-
 	/**
 	 * Create a new {@code DefaultTransactionStatus} instance.
-	 * @param transaction underlying transaction object that can hold state
-	 * for the internal transaction implementation
-	 * @param newTransaction if the transaction is new, otherwise participating
-	 * in an existing transaction
-	 * @param newSynchronization if a new transaction synchronization has been
-	 * opened for the given transaction
+	 * @param transaction underlying transaction object that can hold state for the internal transaction implementation
+	 * @param newTransaction if the transaction is new, otherwise participating in an existing transaction
+	 * @param newSynchronization if a new transaction synchronization has been opened for the given transaction
 	 * @param readOnly whether the transaction is marked as read-only
 	 * @param debug should debug logging be enabled for the handling of this transaction?
-	 * Caching it in here can prevent repeated calls to ask the logging system whether
-	 * debug logging should be enabled.
-	 * @param suspendedResources a holder for resources that have been suspended
-	 * for this transaction, if any
+	 * Caching it in here can prevent repeated calls to ask the logging system whether debug logging should be enabled.
+	 * @param suspendedResources a holder for resources that have been suspended for this transaction, if any
 	 */
-	public DefaultTransactionStatus(
-			@Nullable Object transaction, boolean newTransaction, boolean newSynchronization,
-			boolean readOnly, boolean debug, @Nullable Object suspendedResources) {
-
+	public DefaultTransactionStatus(@Nullable Object transaction, boolean newTransaction, boolean newSynchronization,boolean readOnly, boolean debug, @Nullable Object suspendedResources) {
 		this.transaction = transaction;
 		this.newTransaction = newTransaction;
 		this.newSynchronization = newSynchronization;
@@ -77,7 +66,6 @@ public class DefaultTransactionStatus extends AbstractTransactionStatus {
 		this.debug = debug;
 		this.suspendedResources = suspendedResources;
 	}
-
 
 	/**
 	 * Return the underlying transaction object.
@@ -125,8 +113,7 @@ public class DefaultTransactionStatus extends AbstractTransactionStatus {
 	}
 
 	/**
-	 * Return the holder for resources that have been suspended for this transaction,
-	 * if any.
+	 * Return the holder for resources that have been suspended for this transaction,if any.
 	 */
 	@Nullable
 	public Object getSuspendedResources() {
@@ -147,8 +134,7 @@ public class DefaultTransactionStatus extends AbstractTransactionStatus {
 	 */
 	@Override
 	public boolean isGlobalRollbackOnly() {
-		return ((this.transaction instanceof SmartTransactionObject) &&
-				((SmartTransactionObject) this.transaction).isRollbackOnly());
+		return ((this.transaction instanceof SmartTransactionObject) && ((SmartTransactionObject) this.transaction).isRollbackOnly());
 	}
 
 	/**
@@ -173,8 +159,7 @@ public class DefaultTransactionStatus extends AbstractTransactionStatus {
 	protected SavepointManager getSavepointManager() {
 		Object transaction = this.transaction;
 		if (!(transaction instanceof SavepointManager)) {
-			throw new NestedTransactionNotSupportedException(
-					"Transaction object [" + this.transaction + "] does not support savepoints");
+			throw new NestedTransactionNotSupportedException("Transaction object [" + this.transaction + "] does not support savepoints");
 		}
 		return (SavepointManager) transaction;
 	}
