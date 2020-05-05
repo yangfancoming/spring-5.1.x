@@ -38,8 +38,7 @@ public class NameMatchTransactionAttributeSource implements TransactionAttribute
 
 	/**
 	 * Set a name/attribute map, consisting of method names
-	 * (e.g. "myMethod") and TransactionAttribute instances
-	 * (or Strings to be converted to TransactionAttribute instances).
+	 * (e.g. "myMethod") and TransactionAttribute instances (or Strings to be converted to TransactionAttribute instances).
 	 * @see TransactionAttribute
 	 * @see TransactionAttributeEditor
 	 */
@@ -103,8 +102,7 @@ public class NameMatchTransactionAttributeSource implements TransactionAttribute
 
 	/**
 	 * Return if the given method name matches the mapped name.
-	 * The default implementation checks for "xxx*", "*xxx" and "*xxx*" matches,
-	 * as well as direct equality. Can be overridden in subclasses.
+	 * The default implementation checks for "xxx*", "*xxx" and "*xxx*" matches, as well as direct equality. Can be overridden in subclasses.
 	 * @param methodName the method name of the class
 	 * @param mappedName the name in the descriptor
 	 * @return if the names match
@@ -135,5 +133,4 @@ public class NameMatchTransactionAttributeSource implements TransactionAttribute
 	public String toString() {
 		return getClass().getName() + ": " + this.nameMap;
 	}
-
 }

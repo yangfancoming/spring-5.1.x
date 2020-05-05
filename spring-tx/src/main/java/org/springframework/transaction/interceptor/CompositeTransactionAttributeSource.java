@@ -11,15 +11,12 @@ import org.springframework.util.Assert;
 /**
  * Composite {@link TransactionAttributeSource} implementation that iterates
  * over a given array of {@link TransactionAttributeSource} instances.
- *
-
  * @since 2.0
  */
 @SuppressWarnings("serial")
 public class CompositeTransactionAttributeSource implements TransactionAttributeSource, Serializable {
 
 	private final TransactionAttributeSource[] transactionAttributeSources;
-
 
 	/**
 	 * Create a new CompositeTransactionAttributeSource for the given sources.
@@ -37,7 +34,6 @@ public class CompositeTransactionAttributeSource implements TransactionAttribute
 	public final TransactionAttributeSource[] getTransactionAttributeSources() {
 		return this.transactionAttributeSources;
 	}
-
 
 	@Override
 	@Nullable
