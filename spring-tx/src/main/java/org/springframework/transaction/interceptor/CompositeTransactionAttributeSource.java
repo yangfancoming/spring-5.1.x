@@ -28,8 +28,7 @@ public class CompositeTransactionAttributeSource implements TransactionAttribute
 	}
 
 	/**
-	 * Return the TransactionAttributeSource instances that this
-	 * CompositeTransactionAttributeSource combines.
+	 * Return the TransactionAttributeSource instances that this CompositeTransactionAttributeSource combines.
 	 */
 	public final TransactionAttributeSource[] getTransactionAttributeSources() {
 		return this.transactionAttributeSources;

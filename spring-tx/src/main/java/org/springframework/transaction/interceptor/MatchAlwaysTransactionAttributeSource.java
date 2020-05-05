@@ -15,8 +15,6 @@ import org.springframework.util.ObjectUtils;
  * may be specified, but will otherwise default to PROPAGATION_REQUIRED. This may be
  * used in the cases where you want to use the same transaction attribute with all
  * methods being handled by a transaction interceptor.
- *
- * @author Colin Sampaleanu
  * @since 15.10.2003
  * @see org.springframework.transaction.interceptor.TransactionProxyFactoryBean
  * @see org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator
@@ -26,10 +24,8 @@ public class MatchAlwaysTransactionAttributeSource implements TransactionAttribu
 
 	private TransactionAttribute transactionAttribute = new DefaultTransactionAttribute();
 
-
 	/**
-	 * Allows a transaction attribute to be specified, using the String form, for
-	 * example, "PROPAGATION_REQUIRED".
+	 * Allows a transaction attribute to be specified, using the String form, for example, "PROPAGATION_REQUIRED".
 	 * @param transactionAttribute the String form of the transactionAttribute to use.
 	 * @see org.springframework.transaction.interceptor.TransactionAttributeEditor
 	 */
@@ -37,13 +33,11 @@ public class MatchAlwaysTransactionAttributeSource implements TransactionAttribu
 		this.transactionAttribute = transactionAttribute;
 	}
 
-
 	@Override
 	@Nullable
 	public TransactionAttribute getTransactionAttribute(Method method, @Nullable Class<?> targetClass) {
 		return (ClassUtils.isUserLevelMethod(method) ? this.transactionAttribute : null);
 	}
-
 
 	@Override
 	public boolean equals(Object other) {

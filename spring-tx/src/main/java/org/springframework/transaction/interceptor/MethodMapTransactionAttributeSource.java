@@ -20,17 +20,12 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.PatternMatchUtils;
 
 /**
- * Simple {@link TransactionAttributeSource} implementation that
- * allows attributes to be stored per method in a {@link Map}.
- *
- * @author Rod Johnson
-
+ * Simple {@link TransactionAttributeSource} implementation that allows attributes to be stored per method in a {@link Map}.
  * @since 24.04.2003
  * @see #isMatch
  * @see NameMatchTransactionAttributeSource
  */
-public class MethodMapTransactionAttributeSource
-		implements TransactionAttributeSource, BeanClassLoaderAware, InitializingBean {
+public class MethodMapTransactionAttributeSource implements TransactionAttributeSource, BeanClassLoaderAware, InitializingBean {
 
 	/** Logger available to subclasses. */
 	protected final Log logger = LogFactory.getLog(getClass());
@@ -54,13 +49,9 @@ public class MethodMapTransactionAttributeSource
 
 
 	/**
-	 * Set a name/attribute map, consisting of "FQCN.method" method names
-	 * (e.g. "com.mycompany.mycode.MyClass.myMethod") and
-	 * {@link TransactionAttribute} instances (or Strings to be converted
-	 * to {@code TransactionAttribute} instances).
-	 * Intended for configuration via setter injection, typically within
-	 * a Spring bean factory. Relies on {@link #afterPropertiesSet()}
-	 * being called afterwards.
+	 * Set a name/attribute map, consisting of "FQCN.method" method names (e.g. "com.mycompany.mycode.MyClass.myMethod") and
+	 * {@link TransactionAttribute} instances (or Strings to be converted to {@code TransactionAttribute} instances).
+	 * Intended for configuration via setter injection, typically within a Spring bean factory. Relies on {@link #afterPropertiesSet()} being called afterwards.
 	 * @param methodMap said {@link Map} from method name to attribute value
 	 * @see TransactionAttribute
 	 * @see TransactionAttributeEditor
@@ -74,10 +65,8 @@ public class MethodMapTransactionAttributeSource
 		this.beanClassLoader = beanClassLoader;
 	}
 
-
 	/**
-	 * Eagerly initializes the specified
-	 * {@link #setMethodMap(java.util.Map) "methodMap"}, if any.
+	 * Eagerly initializes the specified {@link #setMethodMap(java.util.Map) "methodMap"}, if any.
 	 * @see #initMethodMap(java.util.Map)
 	 */
 	@Override
@@ -138,8 +127,7 @@ public class MethodMapTransactionAttributeSource
 			}
 		}
 		if (matchingMethods.isEmpty()) {
-			throw new IllegalArgumentException(
-					"Could not find method '" + mappedName + "' on class [" + clazz.getName() + "]");
+			throw new IllegalArgumentException("Could not find method '" + mappedName + "' on class [" + clazz.getName() + "]");
 		}
 
 		// Register all matching methods
@@ -149,16 +137,13 @@ public class MethodMapTransactionAttributeSource
 				// No already registered method name, or more specific
 				// method name specification now -> (re-)register method.
 				if (logger.isDebugEnabled() && regMethodName != null) {
-					logger.debug("Replacing attribute for transactional method [" + method + "]: current name '" +
-							name + "' is more specific than '" + regMethodName + "'");
+					logger.debug("Replacing attribute for transactional method [" + method + "]: current name '" + name + "' is more specific than '" + regMethodName + "'");
 				}
 				this.methodNameMap.put(method, name);
 				addTransactionalMethod(method, attr);
-			}
-			else {
+			}else {
 				if (logger.isDebugEnabled()) {
-					logger.debug("Keeping attribute for transactional method [" + method + "]: current name '" +
-							name + "' is not more specific than '" + regMethodName + "'");
+					logger.debug("Keeping attribute for transactional method [" + method + "]: current name '" + name + "' is not more specific than '" + regMethodName + "'");
 				}
 			}
 		}
@@ -172,16 +157,13 @@ public class MethodMapTransactionAttributeSource
 	public void addTransactionalMethod(Method method, TransactionAttribute attr) {
 		Assert.notNull(method, "Method must not be null");
 		Assert.notNull(attr, "TransactionAttribute must not be null");
-		if (logger.isDebugEnabled()) {
-			logger.debug("Adding transactional method [" + method + "] with attribute [" + attr + "]");
-		}
+		if (logger.isDebugEnabled()) logger.debug("Adding transactional method [" + method + "] with attribute [" + attr + "]");
 		this.transactionAttributeMap.put(method, attr);
 	}
 
 	/**
 	 * Return if the given method name matches the mapped name.
-	 * The default implementation checks for "xxx*", "*xxx" and "*xxx*"
-	 * matches, as well as direct equality.
+	 * The default implementation checks for "xxx*", "*xxx" and "*xxx*" matches, as well as direct equality.
 	 * @param methodName the method name of the class
 	 * @param mappedName the name in the descriptor
 	 * @return if the names match
@@ -191,14 +173,12 @@ public class MethodMapTransactionAttributeSource
 		return PatternMatchUtils.simpleMatch(mappedName, methodName);
 	}
 
-
 	@Override
 	@Nullable
 	public TransactionAttribute getTransactionAttribute(Method method, @Nullable Class<?> targetClass) {
 		if (this.eagerlyInitialized) {
 			return this.transactionAttributeMap.get(method);
-		}
-		else {
+		}else {
 			synchronized (this.transactionAttributeMap) {
 				if (!this.initialized) {
 					initMethodMap(this.methodMap);

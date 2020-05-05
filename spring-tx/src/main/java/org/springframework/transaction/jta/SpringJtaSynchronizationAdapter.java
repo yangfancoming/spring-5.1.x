@@ -17,14 +17,9 @@ import org.springframework.util.Assert;
 
 /**
  * Adapter that implements the JTA {@link javax.transaction.Synchronization}
- * interface delegating to an underlying Spring
- * {@link org.springframework.transaction.support.TransactionSynchronization}.
- *
+ * interface delegating to an underlying Spring {@link org.springframework.transaction.support.TransactionSynchronization}.
  * Useful for synchronizing Spring resource management code with plain
- * JTA / EJB CMT transactions, despite the original code being built for
- * Spring transaction synchronization.
- *
-
+ * JTA / EJB CMT transactions, despite the original code being built for Spring transaction synchronization.
  * @since 2.0
  * @see javax.transaction.Transaction#registerSynchronization
  * @see org.springframework.transaction.support.TransactionSynchronization
@@ -39,7 +34,6 @@ public class SpringJtaSynchronizationAdapter implements Synchronization {
 	private UserTransaction jtaTransaction;
 
 	private boolean beforeCompletionCalled = false;
-
 
 	/**
 	 * Create a new SpringJtaSynchronizationAdapter for the given Spring
@@ -64,9 +58,7 @@ public class SpringJtaSynchronizationAdapter implements Synchronization {
 	 * (can be omitted if the JTA provider itself marks the transaction rollback-only
 	 * in such a scenario, which is required by the JTA specification as of JTA 1.1).
 	 */
-	public SpringJtaSynchronizationAdapter(TransactionSynchronization springSynchronization,
-			@Nullable UserTransaction jtaUserTransaction) {
-
+	public SpringJtaSynchronizationAdapter(TransactionSynchronization springSynchronization,@Nullable UserTransaction jtaUserTransaction) {
 		this(springSynchronization);
 		if (jtaUserTransaction != null && !jtaUserTransaction.getClass().getName().startsWith("weblogic.")) {
 			this.jtaTransaction = jtaUserTransaction;
@@ -86,15 +78,12 @@ public class SpringJtaSynchronizationAdapter implements Synchronization {
 	 * (can be omitted if the JTA provider itself marks the transaction rollback-only
 	 * in such a scenario, which is required by the JTA specification as of JTA 1.1)
 	 */
-	public SpringJtaSynchronizationAdapter(
-			TransactionSynchronization springSynchronization, @Nullable TransactionManager jtaTransactionManager) {
-
+	public SpringJtaSynchronizationAdapter(TransactionSynchronization springSynchronization, @Nullable TransactionManager jtaTransactionManager) {
 		this(springSynchronization);
 		if (jtaTransactionManager != null && !jtaTransactionManager.getClass().getName().startsWith("weblogic.")) {
 			this.jtaTransaction = new UserTransactionAdapter(jtaTransactionManager);
 		}
 	}
-
 
 	/**
 	 * JTA {@code beforeCompletion} callback: just invoked before commit.
@@ -106,12 +95,10 @@ public class SpringJtaSynchronizationAdapter implements Synchronization {
 		try {
 			boolean readOnly = TransactionSynchronizationManager.isCurrentTransactionReadOnly();
 			this.springSynchronization.beforeCommit(readOnly);
-		}
-		catch (RuntimeException | Error ex) {
+		}catch (RuntimeException | Error ex) {
 			setRollbackOnlyIfPossible();
 			throw ex;
-		}
-		finally {
+		}finally {
 			// Process Spring's beforeCompletion early, in order to avoid issues
 			// with strict JTA implementations that issue warnings when doing JDBC
 			// operations after transaction completion (e.g. Connection.getWarnings).
@@ -127,21 +114,14 @@ public class SpringJtaSynchronizationAdapter implements Synchronization {
 		if (this.jtaTransaction != null) {
 			try {
 				this.jtaTransaction.setRollbackOnly();
-			}
-			catch (UnsupportedOperationException ex) {
+			}catch (UnsupportedOperationException ex) {
 				// Probably Hibernate's WebSphereExtendedJTATransactionLookup pseudo JTA stuff...
-				logger.debug("JTA transaction handle does not support setRollbackOnly method - " +
-						"relying on JTA provider to mark the transaction as rollback-only based on " +
-						"the exception thrown from beforeCompletion", ex);
-			}
-			catch (Throwable ex) {
+				logger.debug("JTA transaction handle does not support setRollbackOnly method - relying on JTA provider to mark the transaction as rollback-only based on the exception thrown from beforeCompletion", ex);
+			}catch (Throwable ex) {
 				logger.error("Could not set JTA transaction rollback-only", ex);
 			}
-		}
-		else {
-			logger.debug("No JTA transaction handle available and/or running on WebLogic - " +
-						"relying on JTA provider to mark the transaction as rollback-only based on " +
-						"the exception thrown from beforeCompletion");
+		}else {
+			logger.debug("No JTA transaction handle available and/or running on WebLogic - relying on JTA provider to mark the transaction as rollback-only based on the exception thrown from beforeCompletion");
 			}
 	}
 

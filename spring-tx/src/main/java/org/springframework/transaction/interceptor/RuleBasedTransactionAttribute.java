@@ -17,11 +17,7 @@ import org.springframework.lang.Nullable;
  * should cause transaction rollback by applying a number of rollback rules,
  * both positive and negative. If no rules are relevant to the exception, it
  * behaves like DefaultTransactionAttribute (rolling back on runtime exceptions).
- *
  * {@link TransactionAttributeEditor} creates objects of this class.
- *
- * @author Rod Johnson
-
  * @since 09.04.2003
  * @see TransactionAttributeEditor
  */
@@ -33,7 +29,6 @@ public class RuleBasedTransactionAttribute extends DefaultTransactionAttribute i
 
 	/** Prefix for commit-on-exception rules in description strings. */
 	public static final String PREFIX_COMMIT_RULE = "+";
-
 
 	/** Static for optimal serializability. */
 	private static final Log logger = LogFactory.getLog(RuleBasedTransactionAttribute.class);
@@ -97,8 +92,7 @@ public class RuleBasedTransactionAttribute extends DefaultTransactionAttribute i
 	}
 
 	/**
-	 * Return the list of {@code RollbackRuleAttribute} objects
-	 * (never {@code null}).
+	 * Return the list of {@code RollbackRuleAttribute} objects (never {@code null}).
 	 */
 	public List<RollbackRuleAttribute> getRollbackRules() {
 		if (this.rollbackRules == null) {
@@ -110,16 +104,12 @@ public class RuleBasedTransactionAttribute extends DefaultTransactionAttribute i
 
 	/**
 	 * Winning rule is the shallowest rule (that is, the closest in the
-	 * inheritance hierarchy to the exception). If no rule applies (-1),
-	 * return false.
+	 * inheritance hierarchy to the exception). If no rule applies (-1), return false.
 	 * @see TransactionAttribute#rollbackOn(java.lang.Throwable)
 	 */
 	@Override
 	public boolean rollbackOn(Throwable ex) {
-		if (logger.isTraceEnabled()) {
-			logger.trace("Applying rules to determine whether transaction should rollback on " + ex);
-		}
-
+		if (logger.isTraceEnabled()) logger.trace("Applying rules to determine whether transaction should rollback on " + ex);
 		RollbackRuleAttribute winner = null;
 		int deepest = Integer.MAX_VALUE;
 
@@ -132,17 +122,12 @@ public class RuleBasedTransactionAttribute extends DefaultTransactionAttribute i
 				}
 			}
 		}
-
-		if (logger.isTraceEnabled()) {
-			logger.trace("Winning rollback rule is: " + winner);
-		}
-
+		if (logger.isTraceEnabled()) logger.trace("Winning rollback rule is: " + winner);
 		// User superclass behavior (rollback on unchecked) if no rule matches.
 		if (winner == null) {
 			logger.trace("No relevant rollback rule found: applying default rules");
 			return super.rollbackOn(ex);
 		}
-
 		return !(winner instanceof NoRollbackRuleAttribute);
 	}
 

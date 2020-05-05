@@ -13,10 +13,7 @@ import org.springframework.transaction.support.TransactionSynchronizationUtils;
 /**
  * JTA transaction object, representing a {@link javax.transaction.UserTransaction}.
  * Used as transaction object by Spring's {@link JtaTransactionManager}.
- *
  * Note: This is an SPI class, not intended to be used by applications.
- *
-
  * @since 1.1
  * @see JtaTransactionManager
  * @see javax.transaction.UserTransaction
@@ -26,7 +23,6 @@ public class JtaTransactionObject implements SmartTransactionObject {
 	private final UserTransaction userTransaction;
 
 	boolean resetTransactionTimeout = false;
-
 
 	/**
 	 * Create a new JtaTransactionObject for the given JTA UserTransaction.
@@ -44,7 +40,6 @@ public class JtaTransactionObject implements SmartTransactionObject {
 		return this.userTransaction;
 	}
 
-
 	/**
 	 * This implementation checks the UserTransaction's rollback-only flag.
 	 */
@@ -53,8 +48,7 @@ public class JtaTransactionObject implements SmartTransactionObject {
 		try {
 			int jtaStatus = this.userTransaction.getStatus();
 			return (jtaStatus == Status.STATUS_MARKED_ROLLBACK || jtaStatus == Status.STATUS_ROLLEDBACK);
-		}
-		catch (SystemException ex) {
+		}catch (SystemException ex) {
 			throw new TransactionSystemException("JTA failure on getStatus", ex);
 		}
 	}

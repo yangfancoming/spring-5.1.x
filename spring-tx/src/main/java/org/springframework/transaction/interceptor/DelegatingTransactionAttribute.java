@@ -10,18 +10,13 @@ import org.springframework.transaction.support.DelegatingTransactionDefinition;
 /**
  * {@link TransactionAttribute} implementation that delegates all calls to a given target
  * {@link TransactionAttribute} instance. Abstract because it is meant to be subclassed,
- * with subclasses overriding specific methods that are not supposed to simply delegate
- * to the target instance.
- *
-
+ * with subclasses overriding specific methods that are not supposed to simply delegate to the target instance.
  * @since 1.2
  */
 @SuppressWarnings("serial")
-public abstract class DelegatingTransactionAttribute extends DelegatingTransactionDefinition
-		implements TransactionAttribute, Serializable {
+public abstract class DelegatingTransactionAttribute extends DelegatingTransactionDefinition implements TransactionAttribute, Serializable {
 
 	private final TransactionAttribute targetAttribute;
-
 
 	/**
 	 * Create a DelegatingTransactionAttribute for the given target attribute.
@@ -31,7 +26,6 @@ public abstract class DelegatingTransactionAttribute extends DelegatingTransacti
 		super(targetAttribute);
 		this.targetAttribute = targetAttribute;
 	}
-
 
 	@Override
 	@Nullable

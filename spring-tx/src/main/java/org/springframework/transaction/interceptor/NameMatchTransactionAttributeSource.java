@@ -35,7 +35,6 @@ public class NameMatchTransactionAttributeSource implements TransactionAttribute
 	/** Keys are method names; values are TransactionAttributes. */
 	private Map<String, TransactionAttribute> nameMap = new HashMap<>();
 
-
 	/**
 	 * Set a name/attribute map, consisting of method names
 	 * (e.g. "myMethod") and TransactionAttribute instances (or Strings to be converted to TransactionAttribute instances).
@@ -75,7 +74,6 @@ public class NameMatchTransactionAttributeSource implements TransactionAttribute
 		if (logger.isDebugEnabled()) logger.debug("Adding transactional method [" + methodName + "] with attribute [" + attr + "]");
 		this.nameMap.put(methodName, attr);
 	}
-
 
 	@Override
 	@Nullable

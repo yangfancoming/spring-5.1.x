@@ -19,9 +19,6 @@ import org.springframework.util.StringUtils;
  *
  * A "+" before an exception name substring indicates that transactions should commit
  * even if this exception is thrown; a "-" that they should roll back.
- *
- * @author Rod Johnson
-
  * @since 24.04.2003
  * @see org.springframework.transaction.TransactionDefinition
  * @see org.springframework.core.Constants
@@ -43,36 +40,28 @@ public class TransactionAttributeEditor extends PropertyEditorSupport {
 				String trimmedToken = StringUtils.trimWhitespace(token.trim());
 				// Check whether token contains illegal whitespace within text.
 				if (StringUtils.containsWhitespace(trimmedToken)) {
-					throw new IllegalArgumentException(
-							"Transaction attribute token contains illegal whitespace: [" + trimmedToken + "]");
+					throw new IllegalArgumentException("Transaction attribute token contains illegal whitespace: [" + trimmedToken + "]");
 				}
 				// Check token type.
 				if (trimmedToken.startsWith(RuleBasedTransactionAttribute.PREFIX_PROPAGATION)) {
 					attr.setPropagationBehaviorName(trimmedToken);
-				}
-				else if (trimmedToken.startsWith(RuleBasedTransactionAttribute.PREFIX_ISOLATION)) {
+				}else if (trimmedToken.startsWith(RuleBasedTransactionAttribute.PREFIX_ISOLATION)) {
 					attr.setIsolationLevelName(trimmedToken);
-				}
-				else if (trimmedToken.startsWith(RuleBasedTransactionAttribute.PREFIX_TIMEOUT)) {
+				}else if (trimmedToken.startsWith(RuleBasedTransactionAttribute.PREFIX_TIMEOUT)) {
 					String value = trimmedToken.substring(DefaultTransactionAttribute.PREFIX_TIMEOUT.length());
 					attr.setTimeout(Integer.parseInt(value));
-				}
-				else if (trimmedToken.equals(RuleBasedTransactionAttribute.READ_ONLY_MARKER)) {
+				}else if (trimmedToken.equals(RuleBasedTransactionAttribute.READ_ONLY_MARKER)) {
 					attr.setReadOnly(true);
-				}
-				else if (trimmedToken.startsWith(RuleBasedTransactionAttribute.PREFIX_COMMIT_RULE)) {
+				}else if (trimmedToken.startsWith(RuleBasedTransactionAttribute.PREFIX_COMMIT_RULE)) {
 					attr.getRollbackRules().add(new NoRollbackRuleAttribute(trimmedToken.substring(1)));
-				}
-				else if (trimmedToken.startsWith(RuleBasedTransactionAttribute.PREFIX_ROLLBACK_RULE)) {
+				}else if (trimmedToken.startsWith(RuleBasedTransactionAttribute.PREFIX_ROLLBACK_RULE)) {
 					attr.getRollbackRules().add(new RollbackRuleAttribute(trimmedToken.substring(1)));
-				}
-				else {
+				}else {
 					throw new IllegalArgumentException("Invalid transaction attribute token: [" + trimmedToken + "]");
 				}
 			}
 			setValue(attr);
-		}
-		else {
+		}else {
 			setValue(null);
 		}
 	}

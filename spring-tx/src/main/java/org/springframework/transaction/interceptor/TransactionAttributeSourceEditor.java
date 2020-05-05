@@ -26,9 +26,6 @@ import org.springframework.util.StringUtils;
  * Note: Will register all overloaded methods for a given name.
  * Does not support explicit registration of certain overloaded methods.
  * Supports "xxx*" mappings, e.g. "notify*" for "notify" and "notifyAll".
- *
- * @author Rod Johnson
-
  * @since 26.04.2003
  * @see TransactionAttributeEditor
  */
@@ -42,7 +39,6 @@ public class TransactionAttributeSourceEditor extends PropertyEditorSupport {
 			PropertiesEditor propertiesEditor = new PropertiesEditor();
 			propertiesEditor.setAsText(text);
 			Properties props = (Properties) propertiesEditor.getValue();
-
 			// Now we have properties, process each one individually.
 			TransactionAttributeEditor tae = new TransactionAttributeEditor();
 			Enumeration<?> propNames = props.propertyNames();

@@ -20,26 +20,19 @@ import org.springframework.util.ClassUtils;
  * attributes for methods and implements a fallback policy: 1. specific target
  * method; 2. target class; 3. declaring method; 4. declaring class/interface.
  *
- * Defaults to using the target class's transaction attribute if none is
- * associated with the target method. Any transaction attribute associated with
- * the target method completely overrides a class transaction attribute.
- * If none found on the target class, the interface that the invoked method
- * has been called through (in case of a JDK proxy) will be checked.
+ * Defaults to using the target class's transaction attribute if none is associated with the target method.
+ * Any transaction attribute associated with the target method completely overrides a class transaction attribute.
+ * If none found on the target class, the interface that the invoked method has been called through (in case of a JDK proxy) will be checked.
  *
  * This implementation caches attributes by method after they are first used.
- * If it is ever desirable to allow dynamic changing of transaction attributes
- * (which is very unlikely), caching could be made configurable. Caching is
- * desirable because of the cost of evaluating rollback rules.
- *
- * @author Rod Johnson
-
+ * If it is ever desirable to allow dynamic changing of transaction attributes (which is very unlikely), caching could be made configurable.
+ * Caching is desirable because of the cost of evaluating rollback rules.
  * @since 1.1
  */
 public abstract class AbstractFallbackTransactionAttributeSource implements TransactionAttributeSource {
 
 	/**
-	 * Canonical value held in cache to indicate no transaction attribute was
-	 * found for this method, and we don't need to look again.
+	 * Canonical value held in cache to indicate no transaction attribute was found for this method, and we don't need to look again.
 	 */
 	@SuppressWarnings("serial")
 	private static final TransactionAttribute NULL_TRANSACTION_ATTRIBUTE = new DefaultTransactionAttribute() {
@@ -52,15 +45,13 @@ public abstract class AbstractFallbackTransactionAttributeSource implements Tran
 
 	/**
 	 * Logger available to subclasses.
-	 * As this base class is not marked Serializable, the logger will be recreated
-	 * after serialization - provided that the concrete subclass is Serializable.
+	 * As this base class is not marked Serializable, the logger will be recreated after serialization - provided that the concrete subclass is Serializable.
 	 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	/**
 	 * Cache of TransactionAttributes, keyed by method on a specific target class.
-	 * As this base class is not marked Serializable, the cache will be recreated
-	 * after serialization - provided that the concrete subclass is Serializable.
+	 * As this base class is not marked Serializable, the cache will be recreated after serialization - provided that the concrete subclass is Serializable.
 	 */
 	private final Map<Object, TransactionAttribute> attributeCache = new ConcurrentHashMap<>(1024);
 
@@ -89,29 +80,24 @@ public abstract class AbstractFallbackTransactionAttributeSource implements Tran
 			// or an actual transaction attribute.
 			if (cached == NULL_TRANSACTION_ATTRIBUTE) {
 				return null;
-			}
-			else {
+			}else {
 				return cached;
 			}
-		}
-		else {
+		}else {
 			// We need to work it out. // 解析当前方法的事务属性
 			TransactionAttribute txAttr = computeTransactionAttribute(method, targetClass);
 			// Put it in the cache.
 			if (txAttr == null) {
 				// 如果当前方法上没有事务属性，则缓存一个表示空事务属性的对象
 				this.attributeCache.put(cacheKey, NULL_TRANSACTION_ATTRIBUTE);
-			}
-			else {
+			}else {
 				// 获取方法的签名
 				String methodIdentification = ClassUtils.getQualifiedMethodName(method, targetClass);
 				// 如果生成的事务属性是DefaultTransactionAttribute类型的，则将方法签名设置到其descriptor属性中
 				if (txAttr instanceof DefaultTransactionAttribute) {
 					((DefaultTransactionAttribute) txAttr).setDescriptor(methodIdentification);
 				}
-				if (logger.isTraceEnabled()) {
-					logger.trace("Adding transactional method '" + methodIdentification + "' with attribute: " + txAttr);
-				}
+				if (logger.isTraceEnabled()) logger.trace("Adding transactional method '" + methodIdentification + "' with attribute: " + txAttr);
 				// 缓存当前方法的解析结果
 				this.attributeCache.put(cacheKey, txAttr);
 			}
@@ -145,7 +131,6 @@ public abstract class AbstractFallbackTransactionAttributeSource implements Tran
 		if (allowPublicMethodsOnly() && !Modifier.isPublic(method.getModifiers())) {
 			return null;
 		}
-
 		// The method may be on an interface, but we need attributes from the target class.
 		// If the target class is null, the method will be unchanged.
 		// 获取最为准确的方法，即如果传入的method只是一个接口方法，则会去找其实现类的同一方法进行解析
@@ -157,14 +142,12 @@ public abstract class AbstractFallbackTransactionAttributeSource implements Tran
 		if (txAttr != null) {
 			return txAttr;
 		}
-
 		// Second try is the transaction attribute on the target class.
 		// 解析目标方法所在的类，判断其是否标注有事务属性，如果存在，并且目标方法是用户实现的方法，则直接返回
 		txAttr = findTransactionAttribute(specificMethod.getDeclaringClass());
 		if (txAttr != null && ClassUtils.isUserLevelMethod(method)) {
 			return txAttr;
 		}
-
 		// 如果通过解析到的方法无法找到事务属性，则判断解析得到的方法与传入的目标方法是否为同一个方法，
 		// 如果不是同一个方法，则尝试对传入的方法及其所在的类进行事务属性解析
 		if (specificMethod != method) {
@@ -181,14 +164,12 @@ public abstract class AbstractFallbackTransactionAttributeSource implements Tran
 				return txAttr;
 			}
 		}
-
 		return null;
 	}
 
 
 	/**
-	 * Subclasses need to implement this to return the transaction attribute for the
-	 * given class, if any.
+	 * Subclasses need to implement this to return the transaction attribute for the given class, if any.
 	 * @param clazz the class to retrieve the attribute for
 	 * @return all transaction attribute associated with this class, or {@code null} if none
 	 */
@@ -196,8 +177,7 @@ public abstract class AbstractFallbackTransactionAttributeSource implements Tran
 	protected abstract TransactionAttribute findTransactionAttribute(Class<?> clazz);
 
 	/**
-	 * Subclasses need to implement this to return the transaction attribute for the
-	 * given method, if any.
+	 * Subclasses need to implement this to return the transaction attribute for the given method, if any.
 	 * @param method the method to retrieve the attribute for
 	 * @return all transaction attribute associated with this method, or {@code null} if none
 	 */

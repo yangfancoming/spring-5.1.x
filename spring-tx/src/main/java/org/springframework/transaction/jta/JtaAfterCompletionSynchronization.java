@@ -14,8 +14,6 @@ import org.springframework.transaction.support.TransactionSynchronizationUtils;
  * {@code afterCompletion} callbacks of Spring {@link TransactionSynchronization}
  * objects callbacks after the outer JTA transaction has completed.
  * Applied when participating in an existing (non-Spring) JTA transaction.
- *
-
  * @since 2.0
  * @see TransactionSynchronization#afterCommit
  * @see TransactionSynchronization#afterCompletion
@@ -23,7 +21,6 @@ import org.springframework.transaction.support.TransactionSynchronizationUtils;
 public class JtaAfterCompletionSynchronization implements Synchronization {
 
 	private final List<TransactionSynchronization> synchronizations;
-
 
 	/**
 	 * Create a new JtaAfterCompletionSynchronization for the given synchronization objects.
@@ -45,19 +42,16 @@ public class JtaAfterCompletionSynchronization implements Synchronization {
 			case Status.STATUS_COMMITTED:
 				try {
 					TransactionSynchronizationUtils.invokeAfterCommit(this.synchronizations);
-				}
-				finally {
-					TransactionSynchronizationUtils.invokeAfterCompletion(
-							this.synchronizations, TransactionSynchronization.STATUS_COMMITTED);
+				}finally {
+					TransactionSynchronizationUtils.invokeAfterCompletion(this.synchronizations, TransactionSynchronization.STATUS_COMMITTED);
 				}
 				break;
 			case Status.STATUS_ROLLEDBACK:
-				TransactionSynchronizationUtils.invokeAfterCompletion(
-						this.synchronizations, TransactionSynchronization.STATUS_ROLLED_BACK);
+				TransactionSynchronizationUtils.invokeAfterCompletion(this.synchronizations, TransactionSynchronization.STATUS_ROLLED_BACK);
 				break;
 			default:
-				TransactionSynchronizationUtils.invokeAfterCompletion(
-						this.synchronizations, TransactionSynchronization.STATUS_UNKNOWN);
+				TransactionSynchronizationUtils.invokeAfterCompletion(this.synchronizations, TransactionSynchronization.STATUS_UNKNOWN);
+
 		}
 	}
 }
