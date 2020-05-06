@@ -23,9 +23,7 @@ import org.springframework.util.PatternMatchUtils;
 
 /**
  * A bean definition scanner that detects bean candidates on the classpath,
- * registering corresponding bean definitions with a given registry ({@code BeanFactory}
- * or {@code ApplicationContext}).
- *
+ * registering corresponding bean definitions with a given registry ({@code BeanFactory} or {@code ApplicationContext}).
  * Candidate classes are detected through configurable type filters. The
  * default filters include classes that are annotated with Spring's
  * {@link org.springframework.stereotype.Component @Component},
@@ -56,7 +54,6 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	private ScopeMetadataResolver scopeMetadataResolver = new AnnotationScopeMetadataResolver();
 
 	private boolean includeAnnotationConfig = true;
-
 
 	/**
 	 * Create a new {@code ClassPathBeanDefinitionScanner} for the given bean factory.
@@ -120,6 +117,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	}
 
 	/**
+	 * 最终构造函数
 	 * Create a new {@code ClassPathBeanDefinitionScanner} for the given bean factory and
 	 * using the given {@link Environment} when evaluating bean definition profile metadata.
 	 * @param registry the {@code BeanFactory} to load bean definitions into, in the form
@@ -135,6 +133,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	 * @since 4.3.6
 	 */
 	public ClassPathBeanDefinitionScanner(BeanDefinitionRegistry registry, boolean useDefaultFilters,Environment environment, @Nullable ResourceLoader resourceLoader) {
+		logger.warn("进入 【ClassPathBeanDefinitionScanner】 构造函数 {}");
 		Assert.notNull(registry, "BeanDefinitionRegistry must not be null");
 		this.registry = registry;
 		if (useDefaultFilters) {

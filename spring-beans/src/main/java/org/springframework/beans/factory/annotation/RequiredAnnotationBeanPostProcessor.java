@@ -44,34 +44,26 @@ import org.springframework.util.Assert;
  * Please note that an 'init' method may still need to be implemented (and may
  * still be desirable), because all that this class does is enforcing that a
  * 'required' property has actually been configured with a value. It does
- * <b>not</b> check anything else... In particular, it does not check that a
- * configured value is not {@code null}.
- *
+ * <b>not</b> check anything else... In particular, it does not check that a configured value is not {@code null}.
  * Note: A default RequiredAnnotationBeanPostProcessor will be registered
  * by the "context:annotation-config" and "context:component-scan" XML tags.
  * Remove or turn off the default annotation configuration there if you intend
  * to specify a custom RequiredAnnotationBeanPostProcessor bean definition.
- *
- * @author Rob Harrop
-
  * @since 2.0
  * @see #setRequiredAnnotationType
  * @see Required
  * @deprecated as of 5.1, in favor of using constructor injection for required settings
  * (or a custom {@link org.springframework.beans.factory.InitializingBean} implementation)
+ * 用来处理@Required注解
  */
 @Deprecated
-public class RequiredAnnotationBeanPostProcessor extends InstantiationAwareBeanPostProcessorAdapter
-		implements MergedBeanDefinitionPostProcessor, PriorityOrdered, BeanFactoryAware {
+public class RequiredAnnotationBeanPostProcessor extends InstantiationAwareBeanPostProcessorAdapter implements MergedBeanDefinitionPostProcessor, PriorityOrdered, BeanFactoryAware {
 
 	/**
-	 * Bean definition attribute that may indicate whether a given bean is supposed
-	 * to be skipped when performing this post-processor's required property check.
+	 * Bean definition attribute that may indicate whether a given bean is supposed  to be skipped when performing this post-processor's required property check.
 	 * @see #shouldSkip
 	 */
-	public static final String SKIP_REQUIRED_CHECK_ATTRIBUTE =
-			Conventions.getQualifiedAttributeName(RequiredAnnotationBeanPostProcessor.class, "skipRequiredCheck");
-
+	public static final String SKIP_REQUIRED_CHECK_ATTRIBUTE = Conventions.getQualifiedAttributeName(RequiredAnnotationBeanPostProcessor.class, "skipRequiredCheck");
 
 	private Class<? extends Annotation> requiredAnnotationType = Required.class;
 
@@ -87,13 +79,10 @@ public class RequiredAnnotationBeanPostProcessor extends InstantiationAwareBeanP
 
 
 	/**
-	 * Set the 'required' annotation type, to be used on bean property
-	 * setter methods.
-	 * The default required annotation type is the Spring-provided
-	 * {@link Required} annotation.
+	 * Set the 'required' annotation type, to be used on bean property setter methods.
+	 * The default required annotation type is the Spring-provided {@link Required} annotation.
 	 * This setter property exists so that developers can provide their own
-	 * (non-Spring-specific) annotation type to indicate that a property value
-	 * is required.
+	 * (non-Spring-specific) annotation type to indicate that a property value is required.
 	 */
 	public void setRequiredAnnotationType(Class<? extends Annotation> requiredAnnotationType) {
 		Assert.notNull(requiredAnnotationType, "'requiredAnnotationType' must not be null");
@@ -129,9 +118,7 @@ public class RequiredAnnotationBeanPostProcessor extends InstantiationAwareBeanP
 	}
 
 	@Override
-	public PropertyValues postProcessPropertyValues(
-			PropertyValues pvs, PropertyDescriptor[] pds, Object bean, String beanName) {
-
+	public PropertyValues postProcessPropertyValues(PropertyValues pvs, PropertyDescriptor[] pds, Object bean, String beanName) {
 		if (!this.validatedBeanNames.contains(beanName)) {
 			if (!shouldSkip(this.beanFactory, beanName)) {
 				List<String> invalidProperties = new ArrayList<>();
@@ -174,9 +161,7 @@ public class RequiredAnnotationBeanPostProcessor extends InstantiationAwareBeanP
 
 	/**
 	 * Is the supplied property required to have a value (that is, to be dependency-injected)?
-	 * This implementation looks for the existence of a
-	 * {@link #setRequiredAnnotationType "required" annotation}
-	 * on the supplied {@link PropertyDescriptor property}.
+	 * This implementation looks for the existence of a {@link #setRequiredAnnotationType "required" annotation}  on the supplied {@link PropertyDescriptor property}.
 	 * @param propertyDescriptor the target PropertyDescriptor (never {@code null})
 	 * @return {@code true} if the supplied property has been marked as being required;
 	 * {@code false} if not, or if the supplied property does not have a setter method
@@ -201,8 +186,7 @@ public class RequiredAnnotationBeanPostProcessor extends InstantiationAwareBeanP
 			if (i > 0) {
 				if (i == (size - 1)) {
 					sb.append(" and");
-				}
-				else {
+				}else {
 					sb.append(",");
 				}
 			}

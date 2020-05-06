@@ -642,7 +642,6 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 		}
 	}
 
-
 	/**
 	 * DependencyDescriptor variant with a pre-resolved target bean name.
 	 */

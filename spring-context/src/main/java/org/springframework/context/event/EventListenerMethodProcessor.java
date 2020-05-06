@@ -41,6 +41,8 @@ import org.springframework.util.CollectionUtils;
  * @since 4.2
  * @see EventListenerFactory
  * @see DefaultEventListenerFactory
+ * 提供 @PersistenceContext 的支持
+ * 提供@EventListener 的支持。@EventListener实在spring4.2之后出现的，可以在一个Bean的方法上使用@EventListener注解来自动注册一个ApplicationListener。
  */
 public class EventListenerMethodProcessor implements SmartInitializingSingleton, ApplicationContextAware, BeanFactoryPostProcessor {
 
