@@ -16,7 +16,6 @@ import org.springframework.core.convert.support.DefaultConversionService;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 import org.springframework.format.support.FormattingConversionService;
-import org.springframework.util.StringValueResolver;
 import org.springframework.validation.DataBinder;
 
 import static org.junit.Assert.*;
@@ -28,19 +27,15 @@ public class NumberFormattingTests {
 
 	private DataBinder binder;
 
-
 	@Before
 	public void setUp() {
 		DefaultConversionService.addDefaultConverters(conversionService);
-		conversionService.setEmbeddedValueResolver(new StringValueResolver() {
-			@Override
-			public String resolveStringValue(String strVal) {
-				if ("${pattern}".equals(strVal)) {
-					return "#,##.00";
-				}
-				else {
-					return strVal;
-				}
+		conversionService.setEmbeddedValueResolver(strVal->{
+			if ("${pattern}".equals(strVal)) {
+				return "#,##.00";
+			}
+			else {
+				return strVal;
 			}
 		});
 		conversionService.addFormatterForFieldType(Number.class, new NumberStyleFormatter());

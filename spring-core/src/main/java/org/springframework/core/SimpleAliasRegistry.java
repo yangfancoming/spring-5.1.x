@@ -15,7 +15,7 @@ import org.springframework.util.StringValueResolver;
 /**
  * Simple implementation of the {@link AliasRegistry} interface.Serves as base class for implementations
  * @since 2.5.2
- * AliasRegistry实现类  主要使用 map 作为 alias 的缓存
+ * AliasRegistry 根接口的实现类  主要使用map作为alias的缓存
  */
 public class SimpleAliasRegistry implements AliasRegistry {
 
@@ -25,13 +25,14 @@ public class SimpleAliasRegistry implements AliasRegistry {
 	/** Map from alias to canonical name. 存储bean名称和bean别名的映射关系（key 别名，value 真实名 ）  -modify*/
 	public final Map<String, String> aliasMap = new ConcurrentHashMap<>(16);
 
-	// Return whether alias overriding is allowed. Default is {@code true}.
+	// Return whether alias overriding is allowed. Default is true.
 	protected boolean allowAliasOverriding() {
 		return true;
 	}
 
 	/**
 	 * Determine whether the given name has the given alias registered.
+	 * 根据给定的正名和别名 判断两者之间是否已经注册过
 	 * @param name the name to check
 	 * @param alias the alias to look for
 	 * @since 4.2.1
@@ -41,6 +42,7 @@ public class SimpleAliasRegistry implements AliasRegistry {
 			String registeredName = entry.getValue();
 			if (registeredName.equals(name)) {
 				String registeredAlias = entry.getKey();
+				// 由于别名可以是链式的，因此这里需要记性递归遍历
 				if (registeredAlias.equals(alias) || hasAlias(registeredAlias, alias)) {
 					return true;
 				}
@@ -50,14 +52,14 @@ public class SimpleAliasRegistry implements AliasRegistry {
 	}
 
 	/**
-	 * Transitively retrieve all aliases for the given name.
-	 * @param name the target name to find aliases for
+	 * Transitively retrieve all aliases for the given name.根据给定的正名，获取所有该正名已注册的所有别名
+	 * @param canonicalName the target name to find aliases for
 	 * @param result the resulting aliases list
 	 */
-	private void retrieveAliases(String name, List<String> result) {
+	private void retrieveAliases(String canonicalName, List<String> result) {
 		aliasMap.forEach((alias, registeredName) -> {
-			// 当找到name值和给定值相等是，会把这个alias作为name，再次对散列表进行遍历
-			if (registeredName.equals(name)) {
+			// 当给定的正名与已注册正名相同时，会把其对应的别名作为正名，进行递归遍历
+			if (registeredName.equals(canonicalName)) {
 				result.add(alias);
 				// 这也是在注册时限制注册的数据name和alias不能正好相反且name和alias不能相等的原因，否则回调函数将陷入无限循环中去。
 				retrieveAliases(alias, result);

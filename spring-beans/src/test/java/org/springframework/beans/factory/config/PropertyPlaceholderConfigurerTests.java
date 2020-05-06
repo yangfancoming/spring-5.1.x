@@ -37,25 +37,19 @@ public class PropertyPlaceholderConfigurerTests {
 
 	@Before
 	public void setup() {
-		p1BeanDef = rootBeanDefinition(TestBean.class)
-				.addPropertyValue("name", "${" + P1 + "}")
-				.getBeanDefinition();
-
+		p1BeanDef = rootBeanDefinition(TestBean.class).addPropertyValue("name", "${" + P1 + "}").getBeanDefinition();
 		bf = new DefaultListableBeanFactory();
-
 		ppcProperties = new Properties();
 		ppcProperties.setProperty(P1, P1_LOCAL_PROPS_VAL);
 		System.setProperty(P1, P1_SYSTEM_PROPS_VAL);
 		ppc = new PropertyPlaceholderConfigurer();
 		ppc.setProperties(ppcProperties);
-
 	}
 
 	@After
 	public void cleanup() {
 		System.clearProperty(P1);
 	}
-
 
 	@Test
 	public void localPropertiesViaResource() {
@@ -70,10 +64,7 @@ public class PropertyPlaceholderConfigurerTests {
 	@Test
 	public void resolveFromSystemProperties() {
 		System.setProperty("otherKey", "systemValue");
-		p1BeanDef = rootBeanDefinition(TestBean.class)
-				.addPropertyValue("name", "${" + P1 + "}")
-				.addPropertyValue("sex", "${otherKey}")
-				.getBeanDefinition();
+		p1BeanDef = rootBeanDefinition(TestBean.class).addPropertyValue("name", "${" + P1 + "}").addPropertyValue("sex", "${otherKey}").getBeanDefinition();
 		registerWithGeneratedName(p1BeanDef, bf);
 		ppc.postProcessBeanFactory(bf);
 		TestBean bean = bf.getBean(TestBean.class);
@@ -129,12 +120,7 @@ public class PropertyPlaceholderConfigurerTests {
 		String P2_LOCAL_PROPS_VAL = "p2LocalPropsVal";
 		String P2_SYSTEM_PROPS_VAL = "p2SystemPropsVal";
 		String P2_SYSTEM_ENV_VAL = "p2SystemEnvVal";
-
-		AbstractBeanDefinition p2BeanDef = rootBeanDefinition(TestBean.class)
-				.addPropertyValue("name", "${" + P1 + "}")
-				.addPropertyValue("country", "${" + P2 + "}")
-				.getBeanDefinition();
-
+		AbstractBeanDefinition p2BeanDef = rootBeanDefinition(TestBean.class).addPropertyValue("name", "${" + P1 + "}").addPropertyValue("country", "${" + P2 + "}").getBeanDefinition();
 		bf.registerBeanDefinition("p1Bean", p1BeanDef);
 		bf.registerBeanDefinition("p2Bean", p2BeanDef);
 
@@ -159,7 +145,6 @@ public class PropertyPlaceholderConfigurerTests {
 		TestBean p2Bean = bf.getBean("p2Bean", TestBean.class);
 		assertThat(p2Bean.getName(), equalTo(P1_LOCAL_PROPS_VAL));
 		assertThat(p2Bean.getCountry(), equalTo(P2_SYSTEM_PROPS_VAL));
-
 		System.clearProperty(P2);
 	}
 

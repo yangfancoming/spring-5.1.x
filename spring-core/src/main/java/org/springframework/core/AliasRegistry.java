@@ -31,7 +31,7 @@ public interface AliasRegistry { // 定义了对别名 alias 的简单增删改�
 	boolean isAlias(String name);
 
 	/**
-	 * Return the aliases for the given name, if defined.
+	 * Return the aliases for the given name, if defined. 根据给定的正名，获取所有该正名已注册的所有别名
 	 * @param name the name to check for aliases
 	 * @return the aliases, or an empty array if none
 	 */

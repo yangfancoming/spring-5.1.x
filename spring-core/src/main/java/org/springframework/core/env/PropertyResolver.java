@@ -6,6 +6,7 @@ import org.springframework.lang.Nullable;
 
 /**
  * Interface for resolving properties against any underlying source.
+ * 解析一系列的属性值：例如properties文件,yaml文件,甚至是一些nosql（因为nosql也是k-v形式）。
  * @since 3.1
  * @see Environment
  * @see PropertySourcesPropertyResolver
@@ -13,6 +14,7 @@ import org.springframework.lang.Nullable;
 public interface PropertyResolver {
 
 	//  Return whether the given property key is available for resolution, i.e. if the value for the given key is not {@code null}.
+	// 查看指定的key是否有对应的value   注意：若对应值是null的话 也是返回false
 	boolean containsProperty(String key);
 
 	/**
@@ -36,6 +38,7 @@ public interface PropertyResolver {
 
 	/**
 	 * Return the property value associated with the given key,or {@code null} if the key cannot be resolved.
+	 * 返回指定key对应的value，会解析成指定类型。如果没有对应值则返回null（而不是抛异常~）
 	 * @param key the property name to resolve
 	 * @param targetType the expected type of the property value
 	 * @see #getRequiredProperty(String, Class)
@@ -54,6 +57,7 @@ public interface PropertyResolver {
 
 	/**
 	 * Return the property value associated with the given key (never {@code null}).
+	 * 若不存在就不是返回null了  而是抛出异常~  所以不用担心返回值是null
 	 * @throws IllegalStateException if the key cannot be resolved
 	 * @see #getRequiredProperty(String, Class)
 	 */

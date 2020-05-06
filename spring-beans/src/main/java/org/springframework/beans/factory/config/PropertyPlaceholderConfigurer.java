@@ -145,8 +145,7 @@ public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport 
 	}
 
 	/**
-	 * Resolve the given key as JVM system property, and optionally also as
-	 * system environment variable if no matching system property has been found.
+	 * Resolve the given key as JVM system property, and optionally also as system environment variable if no matching system property has been found.
 	 * @param key the placeholder to resolve as system property key
 	 * @return the system property value, or {@code null} if not found
 	 * @see #setSearchSystemEnvironment
@@ -196,7 +195,6 @@ public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport 
 			return (resolved.equals(nullValue) ? null : resolved);
 		}
 	}
-
 
 	private final class PropertyPlaceholderConfigurerResolver implements PlaceholderResolver {
 
