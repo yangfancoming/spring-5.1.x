@@ -48,7 +48,6 @@ public class ScopedProxyFactoryBean extends ProxyConfig implements FactoryBean<O
 	@Nullable
 	private Object proxy;
 
-
 	/**
 	 * Create a new ScopedProxyFactoryBean instance.
 	 */

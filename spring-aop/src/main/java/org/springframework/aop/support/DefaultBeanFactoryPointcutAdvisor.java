@@ -7,8 +7,7 @@ import org.springframework.lang.Nullable;
 
 /**
  * Concrete BeanFactory-based PointcutAdvisor that allows for any Advice
- * to be configured as reference to an Advice bean in the BeanFactory,
- * as well as the Pointcut to be configured through a bean property.
+ * to be configured as reference to an Advice bean in the BeanFactory, as well as the Pointcut to be configured through a bean property.
  *
  * Specifying the name of an advice bean instead of the advice object itself
  * (if running within a BeanFactory) increases loose coupling at initialization time,

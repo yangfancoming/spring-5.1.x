@@ -14,8 +14,7 @@ import org.springframework.util.ObjectUtils;
 
 /**
  * Pointcut and method matcher for use in simple <b>cflow</b>-style pointcut.
- * Note that evaluating such pointcuts is 10-15 times slower than evaluating
- * normal pointcuts, but they are useful in some cases.
+ * Note that evaluating such pointcuts is 10-15 times slower than evaluating normal pointcuts, but they are useful in some cases.
  */
 @SuppressWarnings("serial")
 public class ControlFlowPointcut implements Pointcut, ClassFilter, MethodMatcher, Serializable {
@@ -36,9 +35,8 @@ public class ControlFlowPointcut implements Pointcut, ClassFilter, MethodMatcher
 	}
 
 	/**
-	 * Construct a new pointcut that matches all calls below the given method
-	 * in the given class. If no method name is given, matches all control flows
-	 * below the given class.
+	 * Construct a new pointcut that matches all calls below the given method in the given class.
+	 * If no method name is given, matches all control flows below the given class.
 	 * @param clazz the clazz
 	 * @param methodName the name of the method (may be {@code null})
 	 */
@@ -73,7 +71,6 @@ public class ControlFlowPointcut implements Pointcut, ClassFilter, MethodMatcher
 	@Override
 	public boolean matches(Method method, Class<?> targetClass, Object... args) {
 		this.evaluations++;
-
 		for (StackTraceElement element : new Throwable().getStackTrace()) {
 			if (element.getClassName().equals(this.clazz.getName()) &&
 					(this.methodName == null || element.getMethodName().equals(this.methodName))) {

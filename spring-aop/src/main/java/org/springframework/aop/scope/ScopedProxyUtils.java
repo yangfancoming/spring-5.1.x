@@ -20,8 +20,7 @@ public abstract class ScopedProxyUtils {
 	private static final String TARGET_NAME_PREFIX = "scopedTarget.";
 
 	/**
-	 * Generate a scoped proxy for the supplied target bean, registering the target
-	 * bean with an internal name and setting 'targetBeanName' on the scoped proxy.
+	 * Generate a scoped proxy for the supplied target bean, registering the target bean with an internal name and setting 'targetBeanName' on the scoped proxy.
 	 * @param definition the original bean definition
 	 * @param registry the bean definition registry
 	 * @param proxyTargetClass whether to create a target class proxy
@@ -31,7 +30,6 @@ public abstract class ScopedProxyUtils {
 		String originalBeanName = definition.getBeanName();
 		BeanDefinition targetDefinition = definition.getBeanDefinition();
 		String targetBeanName = getTargetBeanName(originalBeanName);
-
 		// Create a scoped proxy definition for the original bean name,
 		// "hiding" the target bean in an internal target definition.
 		RootBeanDefinition proxyDefinition = new RootBeanDefinition(ScopedProxyFactoryBean.class);
@@ -39,7 +37,6 @@ public abstract class ScopedProxyUtils {
 		proxyDefinition.setOriginatingBeanDefinition(targetDefinition);
 		proxyDefinition.setSource(definition.getSource());
 		proxyDefinition.setRole(targetDefinition.getRole());
-
 		proxyDefinition.getPropertyValues().add("targetBeanName", targetBeanName);
 		if (proxyTargetClass) {
 			targetDefinition.setAttribute(AutoProxyUtils.PRESERVE_TARGET_CLASS_ATTRIBUTE, Boolean.TRUE);

@@ -34,7 +34,6 @@ public abstract class AbstractRegexpMethodPointcut extends StaticMethodMatcherPo
 	 */
 	private String[] excludedPatterns = new String[0];
 
-
 	/**
 	 * Convenience method when we have only a single pattern.
 	 * Use either this method or {@link #setPatterns}, not both.
@@ -45,8 +44,7 @@ public abstract class AbstractRegexpMethodPointcut extends StaticMethodMatcherPo
 	}
 
 	/**
-	 * Set the regular expressions defining methods to match.
-	 * Matching will be the union of all these; if any match, the pointcut matches.
+	 * Set the regular expressions defining methods to match. Matching will be the union of all these; if any match, the pointcut matches.
 	 * @see #setPattern
 	 */
 	public void setPatterns(String... patterns) {
@@ -98,8 +96,7 @@ public abstract class AbstractRegexpMethodPointcut extends StaticMethodMatcherPo
 
 	/**
 	 * Try to match the regular expression against the fully qualified name
-	 * of the target class as well as against the method's declaring class,
-	 * plus the name of the method.
+	 * of the target class as well as against the method's declaring class,plus the name of the method.
 	 */
 	@Override
 	public boolean matches(Method method, Class<?> targetClass) {
@@ -133,8 +130,7 @@ public abstract class AbstractRegexpMethodPointcut extends StaticMethodMatcherPo
 	/**
 	 * Subclasses must implement this to initialize regexp pointcuts.
 	 * Can be invoked multiple times.
-	 * This method will be invoked from the {@link #setPatterns} method,
-	 * and also on deserialization.
+	 * This method will be invoked from the {@link #setPatterns} method, and also on deserialization.
 	 * @param patterns the patterns to initialize
 	 * @throws IllegalArgumentException in case of an invalid pattern
 	 */
@@ -143,8 +139,7 @@ public abstract class AbstractRegexpMethodPointcut extends StaticMethodMatcherPo
 	/**
 	 * Subclasses must implement this to initialize regexp pointcuts.
 	 * Can be invoked multiple times.
-	 * This method will be invoked from the {@link #setExcludedPatterns} method,
-	 * and also on deserialization.
+	 * This method will be invoked from the {@link #setExcludedPatterns} method,and also on deserialization.
 	 * @param patterns the patterns to initialize
 	 * @throws IllegalArgumentException in case of an invalid pattern
 	 */
@@ -165,7 +160,6 @@ public abstract class AbstractRegexpMethodPointcut extends StaticMethodMatcherPo
 	 * @return {@code true} if there is a match, {@code false} otherwise
 	 */
 	protected abstract boolean matchesExclusion(String pattern, int patternIndex);
-
 
 	@Override
 	public boolean equals(Object other) {

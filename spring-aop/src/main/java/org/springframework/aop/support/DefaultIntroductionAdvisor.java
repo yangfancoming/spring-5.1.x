@@ -32,8 +32,7 @@ public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFil
 
 	/**
 	 * Create a DefaultIntroductionAdvisor for the given advice.
-	 * @param advice the Advice to apply (may implement the
-	 * {@link org.springframework.aop.IntroductionInfo} interface)
+	 * @param advice the Advice to apply (may implement the {@link org.springframework.aop.IntroductionInfo} interface)
 	 * @see #addInterface
 	 */
 	public DefaultIntroductionAdvisor(Advice advice) {
@@ -43,8 +42,7 @@ public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFil
 	/**
 	 * Create a DefaultIntroductionAdvisor for the given advice.
 	 * @param advice the Advice to apply
-	 * @param introductionInfo the IntroductionInfo that describes
-	 * the interface to introduce (may be {@code null})
+	 * @param introductionInfo the IntroductionInfo that describes the interface to introduce (may be {@code null})
 	 */
 	public DefaultIntroductionAdvisor(Advice advice, @Nullable IntroductionInfo introductionInfo) {
 		Assert.notNull(advice, "Advice must not be null");
@@ -70,7 +68,6 @@ public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFil
 		this.advice = advice;
 		addInterface(intf);
 	}
-
 
 	/**
 	 * Add the specified interface to the list of interfaces to introduce.

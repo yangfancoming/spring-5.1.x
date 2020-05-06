@@ -7,8 +7,7 @@ import java.io.Serializable;
 import org.springframework.lang.Nullable;
 
 /**
- * Abstract superclass for expression pointcuts,
- * offering location and expression properties.
+ * Abstract superclass for expression pointcuts,offering location and expression properties.
  * @since 2.0
  * @see #setLocation
  * @see #setExpression
@@ -30,10 +29,8 @@ public abstract class AbstractExpressionPointcut implements ExpressionPointcut, 
 	}
 
 	/**
-	 * Return location information about the pointcut expression
-	 * if available. This is useful in debugging.
-	 * @return location information as a human-readable String,
-	 * or {@code null} if none is available
+	 * Return location information about the pointcut expression  if available. This is useful in debugging.
+	 * @return location information as a human-readable String, or {@code null} if none is available
 	 */
 	@Nullable
 	public String getLocation() {

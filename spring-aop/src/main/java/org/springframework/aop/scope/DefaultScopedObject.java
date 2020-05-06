@@ -10,10 +10,8 @@ import org.springframework.util.Assert;
 /**
  * Default implementation of the {@link ScopedObject} interface.
  *
- * Simply delegates the calls to the underlying
- * {@link ConfigurableBeanFactory bean factory}
- * ({@link ConfigurableBeanFactory#getBean(String)}/
- * {@link ConfigurableBeanFactory#destroyScopedBean(String)}).
+ * Simply delegates the calls to the underlying {@link ConfigurableBeanFactory bean factory}
+ * ({@link ConfigurableBeanFactory#getBean(String)}/ {@link ConfigurableBeanFactory#destroyScopedBean(String)}).
  * @since 2.0
  * @see org.springframework.beans.factory.BeanFactory#getBean
  * @see org.springframework.beans.factory.config.ConfigurableBeanFactory#destroyScopedBean
@@ -37,7 +35,6 @@ public class DefaultScopedObject implements ScopedObject, Serializable {
 		this.targetBeanName = targetBeanName;
 	}
 
-
 	@Override
 	public Object getTargetObject() {
 		return this.beanFactory.getBean(this.targetBeanName);
@@ -47,5 +44,4 @@ public class DefaultScopedObject implements ScopedObject, Serializable {
 	public void removeFromScope() {
 		this.beanFactory.destroyScopedBean(this.targetBeanName);
 	}
-
 }

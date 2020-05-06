@@ -33,12 +33,7 @@ import org.springframework.web.server.session.WebSessionManager;
 
 /**
  * Default adapter of {@link WebHandler} to the {@link HttpHandler} contract.
- *
- * By default creates and configures a {@link DefaultServerWebExchange} and
- * then invokes the target {@code WebHandler}.
- *
- *
- * @author Sebastien Deleuze
+ * By default creates and configures a {@link DefaultServerWebExchange} and then invokes the target {@code WebHandler}.
  * @since 5.0
  */
 public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHandler {
@@ -49,21 +44,16 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	 * <a href="https://github.com/eclipse-ee4j/servlet-api/issues/44">eclipse-ee4j/servlet-api#44</a>.
 	 * To avoid filling logs with unnecessary stack traces, we make an
 	 * effort to identify such network failures on a per-server basis, and then
-	 * log under a separate log category a simple one-line message at DEBUG level
-	 * or a full stack trace only at TRACE level.
+	 * log under a separate log category a simple one-line message at DEBUG level or a full stack trace only at TRACE level.
 	 */
-	private static final String DISCONNECTED_CLIENT_LOG_CATEGORY =
-			"org.springframework.web.server.DisconnectedClient";
+	private static final String DISCONNECTED_CLIENT_LOG_CATEGORY = "org.springframework.web.server.DisconnectedClient";
 
 	 // Similar declaration exists in AbstractSockJsSession..
-	private static final Set<String> DISCONNECTED_CLIENT_EXCEPTIONS = new HashSet<>(
-			Arrays.asList("AbortedException", "ClientAbortException", "EOFException", "EofException"));
-
+	private static final Set<String> DISCONNECTED_CLIENT_EXCEPTIONS = new HashSet<>(Arrays.asList("AbortedException", "ClientAbortException", "EOFException", "EofException"));
 
 	private static final Log logger = LogFactory.getLog(HttpWebHandlerAdapter.class);
 
 	private static final Log lostClientLogger = LogFactory.getLog(DISCONNECTED_CLIENT_LOG_CATEGORY);
-
 
 	private WebSessionManager sessionManager = new DefaultWebSessionManager();
 
@@ -193,19 +183,14 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	}
 
 	/**
-	 * This method must be invoked after all properties have been set to
-	 * complete initialization.
+	 * This method must be invoked after all properties have been set to  complete initialization.
 	 */
 	public void afterPropertiesSet() {
 		if (logger.isDebugEnabled()) {
-			String value = this.enableLoggingRequestDetails ?
-					"shown which may lead to unsafe logging of potentially sensitive data" :
-					"masked to prevent unsafe logging of potentially sensitive data";
-			logger.debug("enableLoggingRequestDetails='" + this.enableLoggingRequestDetails +
-					"': form data and headers will be " + value);
+			String value = this.enableLoggingRequestDetails ? "shown which may lead to unsafe logging of potentially sensitive data" : "masked to prevent unsafe logging of potentially sensitive data";
+			logger.debug("enableLoggingRequestDetails='" + this.enableLoggingRequestDetails + "': form data and headers will be " + value);
 		}
 	}
-
 
 	@Override
 	public Mono<Void> handle(ServerHttpRequest request, ServerHttpResponse response) {
@@ -214,9 +199,7 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 		}
 		ServerWebExchange exchange = createExchange(request, response);
 
-		LogFormatUtils.traceDebug(logger, traceOn ->
-				exchange.getLogPrefix() + formatRequest(exchange.getRequest()) +
-						(traceOn ? ", headers=" + formatHeaders(exchange.getRequest().getHeaders()) : ""));
+		LogFormatUtils.traceDebug(logger, traceOn -> exchange.getLogPrefix() + formatRequest(exchange.getRequest()) + (traceOn ? ", headers=" + formatHeaders(exchange.getRequest().getHeaders()) : ""));
 
 		return getDelegate().handle(exchange)
 				.doOnSuccess(aVoid -> logResponse(exchange))
@@ -225,8 +208,7 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	}
 
 	protected ServerWebExchange createExchange(ServerHttpRequest request, ServerHttpResponse response) {
-		return new DefaultServerWebExchange(request, response, this.sessionManager,
-				getCodecConfigurer(), getLocaleContextResolver(), this.applicationContext);
+		return new DefaultServerWebExchange(request, response, this.sessionManager,getCodecConfigurer(), getLocaleContextResolver(), this.applicationContext);
 	}
 
 	private String formatRequest(ServerHttpRequest request) {
@@ -238,14 +220,12 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	private void logResponse(ServerWebExchange exchange) {
 		LogFormatUtils.traceDebug(logger, traceOn -> {
 			HttpStatus status = exchange.getResponse().getStatusCode();
-			return exchange.getLogPrefix() + "Completed " + (status != null ? status : "200 OK") +
-					(traceOn ? ", headers=" + formatHeaders(exchange.getResponse().getHeaders()) : "");
+			return exchange.getLogPrefix() + "Completed " + (status != null ? status : "200 OK") + (traceOn ? ", headers=" + formatHeaders(exchange.getResponse().getHeaders()) : "");
 		});
 	}
 
 	private String formatHeaders(HttpHeaders responseHeaders) {
-		return this.enableLoggingRequestDetails ?
-				responseHeaders.toString() : responseHeaders.isEmpty() ? "{}" : "{masked}";
+		return this.enableLoggingRequestDetails ? responseHeaders.toString() : responseHeaders.isEmpty() ? "{}" : "{masked}";
 	}
 
 	private Mono<Void> handleUnresolvedError(ServerWebExchange exchange, Throwable ex) {
@@ -256,21 +236,17 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 		if (isDisconnectedClientError(ex)) {
 			if (lostClientLogger.isTraceEnabled()) {
 				lostClientLogger.trace(logPrefix + "Client went away", ex);
-			}
-			else if (lostClientLogger.isDebugEnabled()) {
-				lostClientLogger.debug(logPrefix + "Client went away: " + ex +
-						" (stacktrace at TRACE level for '" + DISCONNECTED_CLIENT_LOG_CATEGORY + "')");
+			}else if (lostClientLogger.isDebugEnabled()) {
+				lostClientLogger.debug(logPrefix + "Client went away: " + ex + " (stacktrace at TRACE level for '" + DISCONNECTED_CLIENT_LOG_CATEGORY + "')");
 			}
 			return Mono.empty();
-		}
-		else if (response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR)) {
+		}else if (response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR)) {
 			logger.error(logPrefix + "500 Server Error for " + formatRequest(request), ex);
 			return Mono.empty();
-		}
-		else {
+		}else {
+
 			// After the response is committed, propagate errors to the server...
-			logger.error(logPrefix + "Error [" + ex + "] for " + formatRequest(request) +
-					", but ServerHttpResponse already committed (" + response.getStatusCode() + ")");
+			logger.error(logPrefix + "Error [" + ex + "] for " + formatRequest(request) + ", but ServerHttpResponse already committed (" + response.getStatusCode() + ")");
 			return Mono.error(ex);
 		}
 	}

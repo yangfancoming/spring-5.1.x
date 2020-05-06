@@ -16,8 +16,6 @@ import org.springframework.util.ClassUtils;
 /**
  * Utility methods for triggering specific {@link TransactionSynchronization}
  * callback methods on all currently registered synchronizations.
- *
-
  * @since 2.0
  * @see TransactionSynchronization
  * @see TransactionSynchronizationManager#getSynchronizations()
@@ -26,9 +24,7 @@ public abstract class TransactionSynchronizationUtils {
 
 	private static final Log logger = LogFactory.getLog(TransactionSynchronizationUtils.class);
 
-	private static final boolean aopAvailable = ClassUtils.isPresent(
-			"org.springframework.aop.scope.ScopedObject", TransactionSynchronizationUtils.class.getClassLoader());
-
+	private static final boolean aopAvailable = ClassUtils.isPresent("org.springframework.aop.scope.ScopedObject", TransactionSynchronizationUtils.class.getClassLoader());
 
 	/**
 	 * Check whether the given resource transaction managers refers to the given
@@ -41,8 +37,7 @@ public abstract class TransactionSynchronizationUtils {
 	}
 
 	/**
-	 * Unwrap the given resource handle if necessary; otherwise return
-	 * the given handle as-is.
+	 * Unwrap the given resource handle if necessary; otherwise return the given handle as-is.
 	 * @see org.springframework.core.InfrastructureProxy#getWrappedObject()
 	 */
 	static Object unwrapResourceIfNecessary(Object resource) {
@@ -91,8 +86,7 @@ public abstract class TransactionSynchronizationUtils {
 		for (TransactionSynchronization synchronization : TransactionSynchronizationManager.getSynchronizations()) {
 			try {
 				synchronization.beforeCompletion();
-			}
-			catch (Throwable tsex) {
+			}catch (Throwable tsex) {
 				logger.error("TransactionSynchronization.beforeCompletion threw exception", tsex);
 			}
 		}
@@ -172,8 +166,7 @@ public abstract class TransactionSynchronizationUtils {
 		public static Object unwrapIfNecessary(Object resource) {
 			if (resource instanceof ScopedObject) {
 				return ((ScopedObject) resource).getTargetObject();
-			}
-			else {
+			}else {
 				return resource;
 			}
 		}

@@ -46,8 +46,7 @@ public class ComposablePointcut implements Pointcut, Serializable {
 	}
 
 	/**
-	 * Create a ComposablePointcut for the given ClassFilter,
-	 * with {@code MethodMatcher.TRUE}.
+	 * Create a ComposablePointcut for the given ClassFilter,with {@code MethodMatcher.TRUE}.
 	 * @param classFilter the ClassFilter to use
 	 */
 	public ComposablePointcut(ClassFilter classFilter) {
@@ -57,8 +56,7 @@ public class ComposablePointcut implements Pointcut, Serializable {
 	}
 
 	/**
-	 * Create a ComposablePointcut for the given MethodMatcher,
-	 * with {@code ClassFilter.TRUE}.
+	 * Create a ComposablePointcut for the given MethodMatcher,with {@code ClassFilter.TRUE}.
 	 * @param methodMatcher the MethodMatcher to use
 	 */
 	public ComposablePointcut(MethodMatcher methodMatcher) {
@@ -167,8 +165,7 @@ public class ComposablePointcut implements Pointcut, Serializable {
 			return false;
 		}
 		ComposablePointcut otherPointcut = (ComposablePointcut) other;
-		return (this.classFilter.equals(otherPointcut.classFilter) &&
-				this.methodMatcher.equals(otherPointcut.methodMatcher));
+		return (this.classFilter.equals(otherPointcut.classFilter) && this.methodMatcher.equals(otherPointcut.methodMatcher));
 	}
 
 	@Override
