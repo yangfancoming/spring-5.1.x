@@ -34,6 +34,7 @@ import org.springframework.web.context.ServletContextAware;
  * In addition to the special beans detected by {@link org.springframework.context.support.AbstractApplicationContext},
  * this class detects a bean of type {@link org.springframework.ui.context.ThemeSource} in the context, under the special bean name "themeSource".
  * @see org.springframework.ui.context.ThemeSource
+ * 一般用于测试，几乎不使用
  */
 public class StaticWebApplicationContext extends StaticApplicationContext implements ConfigurableWebApplicationContext, ThemeSource {
 

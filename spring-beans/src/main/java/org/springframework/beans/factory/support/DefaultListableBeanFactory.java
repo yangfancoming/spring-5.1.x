@@ -147,6 +147,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	// Create a new DefaultListableBeanFactory.
 	public DefaultListableBeanFactory() {
 //		super(); // -modify
+		logger.warn("进入 【DefaultListableBeanFactory】 构造函数 {}");
 	}
 
 	/**
@@ -155,6 +156,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	 */
 	public DefaultListableBeanFactory(@Nullable BeanFactory parentBeanFactory) {
 		super(parentBeanFactory);
+		logger.warn("进入 【DefaultListableBeanFactory】 构造函数 {}");
 	}
 
 	// Specify an id for serialization purposes, allowing this BeanFactory to be deserialized from this id back into the BeanFactory object, if needed.

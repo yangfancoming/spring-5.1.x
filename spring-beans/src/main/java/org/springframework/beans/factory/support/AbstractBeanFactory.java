@@ -150,7 +150,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	private final ThreadLocal<Object> prototypesCurrentlyInCreation = new NamedThreadLocal<>("Prototype beans currently in creation");
 
 	// Create a new AbstractBeanFactory.
-	public AbstractBeanFactory() {}
+	public AbstractBeanFactory() {
+		logger.warn("进入 【AbstractBeanFactory】 构造函数 {}");
+	}
 
 	/**
 	 * Create a new AbstractBeanFactory with the given parent.
@@ -158,6 +160,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * @see #getBean
 	 */
 	public AbstractBeanFactory(@Nullable BeanFactory parentBeanFactory) {
+		logger.warn("进入 【AbstractBeanFactory】 构造函数 {}");
 		this.parentBeanFactory = parentBeanFactory;
 	}
 
@@ -1654,5 +1657,4 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * @throws BeanCreationException if the bean could not be created
 	 */
 	protected abstract Object createBean(String beanName, RootBeanDefinition mbd, @Nullable Object[] args) throws BeanCreationException;
-
 }

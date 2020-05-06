@@ -61,6 +61,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 */
 	public AbstractRefreshableApplicationContext(@Nullable ApplicationContext parent) {
 		super(parent);
+		logger.warn("进入 【AbstractRefreshableApplicationContext】 构造函数 {}");
 	}
 
 	/**
@@ -89,7 +90,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	protected final void refreshBeanFactory() throws BeansException {
 		/**  如果已经存在BeanFactory那么就销毁
 		 如果 ApplicationContext 中已经加载过 BeanFactory 了，销毁所有 Bean，关闭 BeanFactory
-		 注意，应用中 BeanFactory 本来就是可以多个的，这里可不是说应用全局是否有 BeanFactory，而是当前  ApplicationContext 是否有 BeanFactory
+		 注意，应用中 BeanFactory 本来就是可以多个的，这里可不是说应用全局是否有 BeanFactory，而是当前 ApplicationContext 是否有 BeanFactory
 		 */
 		if (hasBeanFactory()) {
 			destroyBeans();
@@ -142,9 +143,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	@Override
 	public final ConfigurableListableBeanFactory getBeanFactory() {
 		synchronized (beanFactoryMonitor) {
-			if (beanFactory == null) {
-				throw new IllegalStateException("BeanFactory not initialized or already closed - call 'refresh' before accessing beans via the ApplicationContext");
-			}
+			if (beanFactory == null) throw new IllegalStateException("BeanFactory not initialized or already closed - call 'refresh' before accessing beans via the ApplicationContext");
 			return beanFactory;
 		}
 	}
@@ -154,8 +153,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 * {@link #getBeanFactory()} serves a strong assertion for an active context anyway.
 	 */
 	@Override
-	protected void assertBeanFactoryActive() {
-	}
+	protected void assertBeanFactoryActive() {}
 
 	/**
 	 * Create an internal bean factory for this context. Called for each {@link #refresh()} attempt.
@@ -189,8 +187,12 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 * 循环引用也很好理解：A 依赖 B，而 B 依赖 A。或 A 依赖 B，B 依赖 C，而 C 依赖 A。
 	 */
 	protected void customizeBeanFactory(DefaultListableBeanFactory beanFactory) {
-		if (allowBeanDefinitionOverriding != null) beanFactory.setAllowBeanDefinitionOverriding(allowBeanDefinitionOverriding);
-		if (allowCircularReferences != null)	   beanFactory.setAllowCircularReferences(allowCircularReferences);
+		if (allowBeanDefinitionOverriding != null) {
+			beanFactory.setAllowBeanDefinitionOverriding(allowBeanDefinitionOverriding);
+		}
+		if (allowCircularReferences != null){
+			beanFactory.setAllowCircularReferences(allowCircularReferences);
+		}
 	}
 
 	/**

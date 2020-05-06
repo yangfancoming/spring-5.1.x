@@ -37,6 +37,7 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 	 */
 	public AbstractRefreshableConfigApplicationContext(@Nullable ApplicationContext parent) {
 		super(parent);
+		logger.warn("进入 【AbstractRefreshableConfigApplicationContext】 构造函数 {}");
 	}
 
 	/**

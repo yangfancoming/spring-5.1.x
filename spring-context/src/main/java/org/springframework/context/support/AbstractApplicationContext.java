@@ -167,6 +167,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 * Create a new AbstractApplicationContext with no parent.
 	 */
 	public AbstractApplicationContext() {
+		logger.warn("进入 【AbstractApplicationContext】 构造函数 {}");
 		resourcePatternResolver = getResourcePatternResolver();
 	}
 
@@ -441,7 +442,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			 *    这步比较关键，这步完成后，xml 配置文件就会解析成一个个 Bean 定义(BeanDefinitio)，注册到 BeanFactory 中， (说到底核心是一个 beanName-> beanDefinition 的 map)
 			 *    当然，这里说的 Bean 还没有初始化，只是配置信息都从xml文件中提取出来了，
 			 *    调用子类实现方法获取（创建或刷新）BeanFacotry容器，对于ClassPathXmlApplicationContext，主要调用了AbstractRefreshableApplicationContext中实现的方法
-			 * 	  初始化BeanFactory，存在则销毁，不存在则创建一个
+			 * 	  初始化BeanFactory，注意，此处是获取新的，销毁旧的，这就是刷新的意义
 			 */
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 			// 设定类加载器，spel解析器，属性编辑解析器等，忽略特定接口的依赖注册（在特定时刻相关Bean再完成注入)，注册一些系统Bean供依赖注入使用。
@@ -476,6 +477,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 				// 注册 BeanPostProcessor 的实现类，注意看和 BeanFactoryPostProcessor 的区别
 				// 此接口两个方法: postProcessBeforeInitialization 和 postProcessAfterInitialization
 				// 两个方法分别在 Bean 初始化之前和初始化之后得到执行。注意，到这里 Bean 还没初始化
+				//实例化和注册beanFactory中扩展了BeanPostProcessor的bean。
+				//例如：
+				//AutowiredAnnotationBeanPostProcessor(处理被@Autowired注解修饰的bean并注入)
+				//RequiredAnnotationBeanPostProcessor(处理被@Required注解修饰的方法)
+				//CommonAnnotationBeanPostProcessor(处理@PreDestroy、@PostConstruct、@Resource等多个注解的作用)等。
 				registerBeanPostProcessors(beanFactory);
 				// Initialize message source for this context.
 				// 初始化国际化信息源   // 初始化信息源，信息源bean可以国际化的读取properties文件

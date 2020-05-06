@@ -123,6 +123,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	// Create a new AbstractAutowireCapableBeanFactory.
 	public AbstractAutowireCapableBeanFactory() {
 		super();
+		logger.warn("进入 【AbstractAutowireCapableBeanFactory】 构造函数 {}");
 		// 忽略指定接口的自动装配功能
 		/**
 		 * 忽略指定接口的自动装配功能：如ClassA引用了ClassB，那么当Spring在获取ClassA的实例时，

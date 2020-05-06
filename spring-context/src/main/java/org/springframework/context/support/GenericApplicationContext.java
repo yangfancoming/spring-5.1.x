@@ -82,6 +82,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	 * @see #refresh
 	 */
 	public GenericApplicationContext() {
+		logger.warn("进入 【GenericApplicationContext】 构造函数 {}");
 		beanFactory = new DefaultListableBeanFactory();
 	}
 
@@ -92,6 +93,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	 * @see #refresh
 	 */
 	public GenericApplicationContext(DefaultListableBeanFactory beanFactory) {
+		logger.warn("进入 【GenericApplicationContext】 构造函数 {}");
 		Assert.notNull(beanFactory, "BeanFactory must not be null");
 		this.beanFactory = beanFactory;
 	}

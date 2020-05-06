@@ -35,6 +35,7 @@ public abstract class AbstractXmlApplicationContext extends AbstractRefreshableC
 	 */
 	public AbstractXmlApplicationContext(@Nullable ApplicationContext parent) {
 		super(parent);
+		logger.warn("进入 【AbstractXmlApplicationContext】 构造函数 {}");
 	}
 
 	// Set whether to use XML validation. Default is {@code true}.
