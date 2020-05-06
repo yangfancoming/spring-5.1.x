@@ -141,27 +141,6 @@ public class SimpleAliasRegistry implements AliasRegistry {
 	//---------------------------------------------------------------------
 	// Implementation of 【AliasRegistry】 interface
 	//---------------------------------------------------------------------
-	@Override
-	public void removeAlias(String alias) {
-		synchronized (aliasMap) {
-			String name = aliasMap.remove(alias);
-			if (name == null) throw new IllegalStateException("No alias '" + alias + "' registered");
-		}
-	}
-
-	@Override
-	public boolean isAlias(String name) {
-		return aliasMap.containsKey(name);
-	}
-
-	@Override
-	public String[] getAliases(String name) {
-		List<String> result = new ArrayList<>();
-		synchronized (aliasMap) {
-			retrieveAliases(name, result);
-		}
-		return StringUtils.toStringArray(result);
-	}
 
 	@Override
 	public void registerAlias(String name, String alias) {
@@ -185,7 +164,6 @@ public class SimpleAliasRegistry implements AliasRegistry {
 					}
 					if (logger.isDebugEnabled()) logger.debug("Overriding alias '" + alias + "' definition for registered name '" + registeredName + "' with new target name '" + name + "'");
 				}
-
 				// 检测别名和正名是否有循环引用注册，有则抛出异常。  eg："李彦伯" --- > "老K"  又 "老K" --- > "李彦伯"  则抛出异常
 				checkForAliasCircle(name, alias);
 				// 注册别名 // 将别名作为key，目标bean名称作为值注册到存储别名的Map中
@@ -194,5 +172,27 @@ public class SimpleAliasRegistry implements AliasRegistry {
 				if (logger.isTraceEnabled()) logger.trace("Alias definition '" + alias + "' registered for name '" + name + "'");
 			}
 		}
+	}
+
+	@Override
+	public void removeAlias(String alias) {
+		synchronized (aliasMap) {
+			String name = aliasMap.remove(alias);
+			if (name == null) throw new IllegalStateException("No alias '" + alias + "' registered");
+		}
+	}
+
+	@Override
+	public boolean isAlias(String name) {
+		return aliasMap.containsKey(name);
+	}
+
+	@Override
+	public String[] getAliases(String name) {
+		List<String> result = new ArrayList<>();
+		synchronized (aliasMap) {
+			retrieveAliases(name, result);
+		}
+		return StringUtils.toStringArray(result);
 	}
 }
