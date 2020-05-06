@@ -68,9 +68,9 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	private String resourcePattern = DEFAULT_RESOURCE_PATTERN;
-
+	// includeFilters中的就是满足过滤规则的
 	private final List<TypeFilter> includeFilters = new LinkedList<>();
-
+	// excludeFilters则是不满足过滤规则的
 	private final List<TypeFilter> excludeFilters = new LinkedList<>();
 
 	@Nullable
@@ -135,14 +135,14 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	 * Add an include type filter to the <i>end</i> of the inclusion list.
 	 */
 	public void addIncludeFilter(TypeFilter includeFilter) {
-		this.includeFilters.add(includeFilter);
+		includeFilters.add(includeFilter);
 	}
 
 	/**
 	 * Add an exclude type filter to the <i>front</i> of the exclusion list.
 	 */
 	public void addExcludeFilter(TypeFilter excludeFilter) {
-		this.excludeFilters.add(0, excludeFilter);
+		excludeFilters.add(0, excludeFilter);
 	}
 
 	/**
@@ -152,8 +152,8 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	 * @see #registerDefaultFilters()
 	 */
 	public void resetFilters(boolean useDefaultFilters) {
-		this.includeFilters.clear();
-		this.excludeFilters.clear();
+		includeFilters.clear();
+		excludeFilters.clear();
 		if (useDefaultFilters) {
 			registerDefaultFilters();
 		}
@@ -169,20 +169,23 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	 */
 	@SuppressWarnings("unchecked")
 	protected void registerDefaultFilters() {
-		this.includeFilters.add(new AnnotationTypeFilter(Component.class));
+		// 这里需要注意，默认情况下都是添加了@Component这个注解的（相当于@Service @Controller @Respository等都会扫描，因为这些注解都属于@Component）  另外@Configuration也属于哦
+		includeFilters.add(new AnnotationTypeFilter(Component.class));
 		ClassLoader cl = ClassPathScanningCandidateComponentProvider.class.getClassLoader();
+		//下面两个 是兼容JSR-250的@ManagedBean和330的@Named注解
 		try {
-			this.includeFilters.add(new AnnotationTypeFilter(((Class<? extends Annotation>) ClassUtils.forName("javax.annotation.ManagedBean", cl)), false));
+			includeFilters.add(new AnnotationTypeFilter(((Class<? extends Annotation>) ClassUtils.forName("javax.annotation.ManagedBean", cl)), false));
 			logger.trace("JSR-250 'javax.annotation.ManagedBean' found and supported for component scanning");
 		}catch (ClassNotFoundException ex) {
 			// JSR-250 1.1 API (as included in Java EE 6) not available - simply skip.
 		}
 		try {
-			this.includeFilters.add(new AnnotationTypeFilter(((Class<? extends Annotation>) ClassUtils.forName("javax.inject.Named", cl)), false));
+			includeFilters.add(new AnnotationTypeFilter(((Class<? extends Annotation>) ClassUtils.forName("javax.inject.Named", cl)), false));
 			logger.trace("JSR-330 'javax.inject.Named' annotation found and supported for component scanning");
 		}catch (ClassNotFoundException ex) {
 			// JSR-330 API not available - simply skip.
 		}
+		// 所以，如果你想Spring连你自定义的注解都扫描，自己实现一个AnnotationTypeFilter就可以啦
 	}
 
 	/**
@@ -198,8 +201,8 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 
 	@Override
 	public final Environment getEnvironment() {
-		if (this.environment == null) this.environment = new StandardEnvironment();
-		return this.environment;
+		if (environment == null) environment = new StandardEnvironment();
+		return environment;
 	}
 
 	/**
@@ -213,16 +216,16 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	/**
 	 * Set the {@link ResourceLoader} to use for resource locations.
 	 * This will typically be a {@link ResourcePatternResolver} implementation.
-	 * Default is a {@code PathMatchingResourcePatternResolver}, also capable of
-	 * resource pattern resolving through the {@code ResourcePatternResolver} interface.
+	 * Default is a {@code PathMatchingResourcePatternResolver}, also capable of resource pattern resolving through the {@code ResourcePatternResolver} interface.
 	 * @see org.springframework.core.io.support.ResourcePatternResolver
 	 * @see org.springframework.core.io.support.PathMatchingResourcePatternResolver
 	 */
 	@Override
 	public void setResourceLoader(@Nullable ResourceLoader resourceLoader) {
-		this.resourcePatternResolver = ResourcePatternUtils.getResourcePatternResolver(resourceLoader);
-		this.metadataReaderFactory = new CachingMetadataReaderFactory(resourceLoader);
-		this.componentsIndex = CandidateComponentsIndexLoader.loadIndex(this.resourcePatternResolver.getClassLoader());
+		resourcePatternResolver = ResourcePatternUtils.getResourcePatternResolver(resourceLoader);
+		metadataReaderFactory = new CachingMetadataReaderFactory(resourceLoader);
+		// Spring5以后才有这句，优化了bean扫描
+		componentsIndex = CandidateComponentsIndexLoader.loadIndex(resourcePatternResolver.getClassLoader());
 	}
 
 	/**
@@ -233,10 +236,10 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	}
 
 	private ResourcePatternResolver getResourcePatternResolver() {
-		if (this.resourcePatternResolver == null) {
-			this.resourcePatternResolver = new PathMatchingResourcePatternResolver();
+		if (resourcePatternResolver == null) {
+			resourcePatternResolver = new PathMatchingResourcePatternResolver();
 		}
-		return this.resourcePatternResolver;
+		return resourcePatternResolver;
 	}
 
 	/**
@@ -252,8 +255,8 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	 * Return the MetadataReaderFactory used by this component provider.
 	 */
 	public final MetadataReaderFactory getMetadataReaderFactory() {
-		if (this.metadataReaderFactory == null) this.metadataReaderFactory = new CachingMetadataReaderFactory();
-		return this.metadataReaderFactory;
+		if (metadataReaderFactory == null) metadataReaderFactory = new CachingMetadataReaderFactory();
+		return metadataReaderFactory;
 	}
 
 	/**
@@ -264,8 +267,8 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	public Set<BeanDefinition> findCandidateComponents(String basePackage) {
 		//componentsIndex对象包含了扫描“META-INF/spring.components”文件后封装起来的需要注册的bean的信息，在这里与来basePackage同时进行处理，
 		//如果“META-INF/spring.components”文件不存在，则componentsIndex为null
-		if (this.componentsIndex != null && indexSupportsIncludeFilters()) {
-			return addCandidateComponentsFromIndex(this.componentsIndex, basePackage);
+		if (componentsIndex != null && indexSupportsIncludeFilters()) {
+			return addCandidateComponentsFromIndex(componentsIndex, basePackage);
 		}else { //只处理basePackage
 			return scanCandidateComponents(basePackage);
 		}
@@ -277,7 +280,7 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	 * @since 5.0
 	 */
 	private boolean indexSupportsIncludeFilters() {
-		for (TypeFilter includeFilter : this.includeFilters) {
+		for (TypeFilter includeFilter : includeFilters) {
 			if (!indexSupportsIncludeFilter(includeFilter)) {
 				return false;
 			}
@@ -326,7 +329,7 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 		Set<BeanDefinition> candidates = new LinkedHashSet<>();
 		try {
 			Set<String> types = new HashSet<>();
-			for (TypeFilter filter : this.includeFilters) {
+			for (TypeFilter filter : includeFilters) {
 				String stereotype = extractStereotype(filter);
 				if (stereotype == null) throw new IllegalArgumentException("Failed to extract stereotype from " + filter);
 				types.addAll(index.getCandidateTypes(basePackage, stereotype));
@@ -364,7 +367,7 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 		Set<BeanDefinition> candidates = new LinkedHashSet<>();
 		try {
 			//获取包路径
-			String packageSearchPath = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX + resolveBasePackage(basePackage) + '/' + this.resourcePattern;
+			String packageSearchPath = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX + resolveBasePackage(basePackage) + '/' + resourcePattern;
 			//将对应的包中的类封装成resources
 			Resource[] resources = getResourcePatternResolver().getResources(packageSearchPath);// classpath*:example/scannable/**/*.class
 			boolean traceEnabled = logger.isTraceEnabled();
@@ -423,12 +426,12 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	 * @return whether the class qualifies as a candidate component
 	 */
 	protected boolean isCandidateComponent(MetadataReader metadataReader) throws IOException {
-		for (TypeFilter tf : this.excludeFilters) {
+		for (TypeFilter tf : excludeFilters) {
 			if (tf.match(metadataReader, getMetadataReaderFactory())) {
 				return false;
 			}
 		}
-		for (TypeFilter tf : this.includeFilters) {
+		for (TypeFilter tf : includeFilters) {
 			if (tf.match(metadataReader, getMetadataReaderFactory())) {
 				return isConditionMatch(metadataReader);
 			}
@@ -442,10 +445,10 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	 * @return whether the class qualifies as a candidate component
 	 */
 	private boolean isConditionMatch(MetadataReader metadataReader) {
-		if (this.conditionEvaluator == null) {
-			this.conditionEvaluator = new ConditionEvaluator(getRegistry(), this.environment, this.resourcePatternResolver);
+		if (conditionEvaluator == null) {
+			conditionEvaluator = new ConditionEvaluator(getRegistry(), environment, resourcePatternResolver);
 		}
-		return !this.conditionEvaluator.shouldSkip(metadataReader.getAnnotationMetadata());
+		return !conditionEvaluator.shouldSkip(metadataReader.getAnnotationMetadata());
 	}
 
 	/**
@@ -464,9 +467,9 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	 * Clear the local metadata cache, if any, removing all cached class metadata.
 	 */
 	public void clearCache() {
-		if (this.metadataReaderFactory instanceof CachingMetadataReaderFactory) {
+		if (metadataReaderFactory instanceof CachingMetadataReaderFactory) {
 			// Clear cache in externally provided MetadataReaderFactory; this is a no-op for a shared cache since it'll be cleared by the ApplicationContext.
-			((CachingMetadataReaderFactory) this.metadataReaderFactory).clearCache();
+			((CachingMetadataReaderFactory) metadataReaderFactory).clearCache();
 		}
 	}
 }

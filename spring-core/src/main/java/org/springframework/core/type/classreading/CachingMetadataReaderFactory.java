@@ -7,6 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
 
+import org.apache.log4j.Logger;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -18,6 +19,8 @@ import org.springframework.lang.Nullable;
  */
 public class CachingMetadataReaderFactory extends SimpleMetadataReaderFactory {
 
+	private static final Logger logger = Logger.getLogger(SimpleMetadataReaderFactory.class);
+
 	/** Default maximum number of entries for a local MetadataReader cache: 256. */
 	public static final int DEFAULT_CACHE_LIMIT = 256;
 
@@ -28,6 +31,7 @@ public class CachingMetadataReaderFactory extends SimpleMetadataReaderFactory {
 	// Create a new CachingMetadataReaderFactory for the default class loader,using a local resource cache.
 	public CachingMetadataReaderFactory() {
 		super();
+		logger.warn("进入 【CachingMetadataReaderFactory】 构造函数 {}");
 		setCacheLimit(DEFAULT_CACHE_LIMIT);
 	}
 
@@ -37,6 +41,7 @@ public class CachingMetadataReaderFactory extends SimpleMetadataReaderFactory {
 	 */
 	public CachingMetadataReaderFactory(@Nullable ClassLoader classLoader) {
 		super(classLoader);
+		logger.warn("进入 【CachingMetadataReaderFactory】 构造函数 {}");
 		setCacheLimit(DEFAULT_CACHE_LIMIT);
 	}
 
@@ -47,6 +52,7 @@ public class CachingMetadataReaderFactory extends SimpleMetadataReaderFactory {
 	 */
 	public CachingMetadataReaderFactory(@Nullable ResourceLoader resourceLoader) {
 		super(resourceLoader);
+		logger.warn("进入 【CachingMetadataReaderFactory】 构造函数 {}");
 		if (resourceLoader instanceof DefaultResourceLoader) {
 			this.metadataReaderCache = ((DefaultResourceLoader) resourceLoader).getResourceCache(MetadataReader.class);
 		}else {

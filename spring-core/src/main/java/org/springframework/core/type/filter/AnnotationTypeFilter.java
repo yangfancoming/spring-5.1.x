@@ -31,10 +31,9 @@ public class AnnotationTypeFilter extends AbstractTypeHierarchyTraversingFilter 
 
 	/**
 	 * Create a new AnnotationTypeFilter for the given annotation type.
-	 * This filter will also match meta-annotations. To disable the
-	 * meta-annotation matching, use the constructor that accepts a
-	 * '{@code considerMetaAnnotations}' argument. The filter will
-	 * not match interfaces.
+	 * This filter will also match meta-annotations.
+	 * To disable the meta-annotation matching, use the constructor that accepts a '{@code considerMetaAnnotations}' argument.
+	 * The filter will not match interfaces.
 	 * @param annotationType the annotation type to match
 	 */
 	public AnnotationTypeFilter(Class<? extends Annotation> annotationType) {
@@ -57,17 +56,14 @@ public class AnnotationTypeFilter extends AbstractTypeHierarchyTraversingFilter 
 	 * @param considerMetaAnnotations whether to also match on meta-annotations
 	 * @param considerInterfaces whether to also match interfaces
 	 */
-	public AnnotationTypeFilter(
-			Class<? extends Annotation> annotationType, boolean considerMetaAnnotations, boolean considerInterfaces) {
-
+	public AnnotationTypeFilter(Class<? extends Annotation> annotationType, boolean considerMetaAnnotations, boolean considerInterfaces) {
 		super(annotationType.isAnnotationPresent(Inherited.class), considerInterfaces);
 		this.annotationType = annotationType;
 		this.considerMetaAnnotations = considerMetaAnnotations;
 	}
 
 	/**
-	 * Return the {@link Annotation} that this instance is using to filter
-	 * candidates.
+	 * Return the {@link Annotation} that this instance is using to filter candidates.
 	 * @since 5.0
 	 */
 	public final Class<? extends Annotation> getAnnotationType() {
@@ -77,8 +73,7 @@ public class AnnotationTypeFilter extends AbstractTypeHierarchyTraversingFilter 
 	@Override
 	protected boolean matchSelf(MetadataReader metadataReader) {
 		AnnotationMetadata metadata = metadataReader.getAnnotationMetadata();
-		return metadata.hasAnnotation(this.annotationType.getName()) ||
-				(this.considerMetaAnnotations && metadata.hasMetaAnnotation(this.annotationType.getName()));
+		return metadata.hasAnnotation(this.annotationType.getName()) || (this.considerMetaAnnotations && metadata.hasMetaAnnotation(this.annotationType.getName()));
 	}
 
 	@Override
@@ -97,8 +92,7 @@ public class AnnotationTypeFilter extends AbstractTypeHierarchyTraversingFilter 
 	protected Boolean hasAnnotation(String typeName) {
 		if (Object.class.getName().equals(typeName)) {
 			return false;
-		}
-		else if (typeName.startsWith("java")) {
+		}else if (typeName.startsWith("java")) {
 			if (!this.annotationType.getName().startsWith("java")) {
 				// Standard Java types do not have non-standard annotations on them ->
 				// skip any load attempt, in particular for Java language interfaces.
@@ -106,10 +100,8 @@ public class AnnotationTypeFilter extends AbstractTypeHierarchyTraversingFilter 
 			}
 			try {
 				Class<?> clazz = ClassUtils.forName(typeName, getClass().getClassLoader());
-				return ((this.considerMetaAnnotations ? AnnotationUtils.getAnnotation(clazz, this.annotationType) :
-						clazz.getAnnotation(this.annotationType)) != null);
-			}
-			catch (Throwable ex) {
+				return ((this.considerMetaAnnotations ? AnnotationUtils.getAnnotation(clazz, this.annotationType) : clazz.getAnnotation(this.annotationType)) != null);
+			}catch (Throwable ex) {
 				// Class not regularly loadable - can't determine a match that way.
 			}
 		}

@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Supplier;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.BeanMetadataAttributeAccessor;
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
@@ -36,6 +37,8 @@ import org.springframework.util.StringUtils;
  */
 @SuppressWarnings("serial")
 public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccessor implements BeanDefinition, Cloneable {
+
+	private static final Logger logger = Logger.getLogger(AbstractBeanDefinition.class);
 
 	/**
 	 * Constant for the default scope name: {@code ""}, equivalent to singleton status unless overridden from a parent bean definition (if applicable).
@@ -252,6 +255,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 	// Create a new AbstractBeanDefinition with the given constructor argument values and property values.
 	protected AbstractBeanDefinition(@Nullable ConstructorArgumentValues cargs, @Nullable MutablePropertyValues pvs) {
+		logger.warn("进入 【AbstractBeanDefinition】 构造函数 {}");
 		this.constructorArgumentValues = cargs;
 		this.propertyValues = pvs;
 	}

@@ -39,6 +39,7 @@ import org.springframework.util.PatternMatchUtils;
  * @see org.springframework.stereotype.Repository
  * @see org.springframework.stereotype.Service
  * @see org.springframework.stereotype.Controller
+ * 是一个扫描指定类路径中注解Bean定义的扫描器，在它初始化的时候，会初始化一些需要被扫描的注解，初始化用于加载包下的资源的Loader。
  */
 public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateComponentProvider {
 
@@ -118,17 +119,14 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 
 	/**
 	 * 最终构造函数
-	 * Create a new {@code ClassPathBeanDefinitionScanner} for the given bean factory and
-	 * using the given {@link Environment} when evaluating bean definition profile metadata.
-	 * @param registry the {@code BeanFactory} to load bean definitions into, in the form
-	 * of a {@code BeanDefinitionRegistry}
+	 * Create a new {@code ClassPathBeanDefinitionScanner} for the given bean factory and using the given {@link Environment} when evaluating bean definition profile metadata.
+	 * @param registry the {@code BeanFactory} to load bean definitions into, in the form of a {@code BeanDefinitionRegistry}
 	 * @param useDefaultFilters whether to include the default filters for the
 	 * {@link org.springframework.stereotype.Component @Component},
 	 * {@link org.springframework.stereotype.Repository @Repository},
 	 * {@link org.springframework.stereotype.Service @Service}, and
 	 * {@link org.springframework.stereotype.Controller @Controller} stereotype annotations
-	 * @param environment the Spring {@link Environment} to use when evaluating bean
-	 * definition profile metadata
+	 * @param environment the Spring {@link Environment} to use when evaluating bean definition profile metadata
 	 * @param resourceLoader the {@link ResourceLoader} to use
 	 * @since 4.3.6
 	 */
@@ -136,10 +134,13 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 		logger.warn("进入 【ClassPathBeanDefinitionScanner】 构造函数 {}");
 		Assert.notNull(registry, "BeanDefinitionRegistry must not be null");
 		this.registry = registry;
+		//useDefaultFilters为true，所以此处一般都会执行，当然我们也可以设置为false，比如@ComponentScan里就可以设置为false，只扫描指定的注解/类等等
 		if (useDefaultFilters) {
 			registerDefaultFilters();
 		}
+		// 设置环境
 		setEnvironment(environment);
+		// 详情如下：  这里resourceLoader传值，还是我们的工厂。否则为null
 		setResourceLoader(resourceLoader);
 	}
 
@@ -149,7 +150,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	 */
 	@Override
 	public final BeanDefinitionRegistry getRegistry() {
-		return this.registry;
+		return registry;
 	}
 
 	/**
@@ -165,7 +166,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	 * @since 4.1
 	 */
 	public BeanDefinitionDefaults getBeanDefinitionDefaults() {
-		return this.beanDefinitionDefaults;
+		return beanDefinitionDefaults;
 	}
 
 	/**
@@ -201,7 +202,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	 * @see #setScopeMetadataResolver
 	 */
 	public void setScopedProxyMode(ScopedProxyMode scopedProxyMode) {
-		this.scopeMetadataResolver = new AnnotationScopeMetadataResolver(scopedProxyMode);
+		scopeMetadataResolver = new AnnotationScopeMetadataResolver(scopedProxyMode);
 	}
 
 	/**
@@ -219,14 +220,14 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	 * @return number of beans registered
 	 */
 	public int scan(String... basePackages) {
-		int beanCountAtScanStart = this.registry.getBeanDefinitionCount();
+		int beanCountAtScanStart = registry.getBeanDefinitionCount();
 		// 包扫描 核心逻辑在 doScan() 方法中实现
 		doScan(basePackages);
 		// Register annotation config processors, if necessary. // 注册注解处理器
-		if (this.includeAnnotationConfig) {
-			AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry);
+		if (includeAnnotationConfig) {
+			AnnotationConfigUtils.registerAnnotationConfigProcessors(registry);
 		}
-		return (this.registry.getBeanDefinitionCount() - beanCountAtScanStart);
+		return (registry.getBeanDefinitionCount() - beanCountAtScanStart);
 	}
 
 	/**
@@ -248,10 +249,10 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 			for (BeanDefinition candidate : candidates) {
 				//调用ScopeMetadataResolver的resolveScopeMetadata为候选bean设置代理的方式ScopedProxyMode，默认是DEFAULT
 				//这里ScopeMetadataResolver跟ScopedProxyMode都可以在ComponentScan中设置，分别是scopeResolver跟scopedProxy
-				ScopeMetadata scopeMetadata = this.scopeMetadataResolver.resolveScopeMetadata(candidate);
+				ScopeMetadata scopeMetadata = scopeMetadataResolver.resolveScopeMetadata(candidate);
 				candidate.setScope(scopeMetadata.getScopeName());
 				//使用BeanNameGenerator为候选bean生产bean的名称，默认使用的是AnnotationBeanNameGenerator。可以通过nameGenerator指定
-				String beanName = this.beanNameGenerator.generateBeanName(candidate, this.registry);
+				String beanName = beanNameGenerator.generateBeanName(candidate, registry);
 				//如果bean是AbstractBeanDefinition类型的，则使用AbstractBeanDefinition的默认属性
 				if (candidate instanceof AbstractBeanDefinition) {
 					postProcessBeanDefinition((AbstractBeanDefinition) candidate, beanName);
@@ -265,10 +266,10 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 					//创建BeanDefinitionHolder对象
 					BeanDefinitionHolder definitionHolder = new BeanDefinitionHolder(candidate, beanName);
 					//将BeanDefinition的属性设置到BeanDefinitionHolder
-					definitionHolder = AnnotationConfigUtils.applyScopedProxyMode(scopeMetadata, definitionHolder, this.registry);
+					definitionHolder = AnnotationConfigUtils.applyScopedProxyMode(scopeMetadata, definitionHolder, registry);
 					beanDefinitions.add(definitionHolder);
 					//注册bean
-					registerBeanDefinition(definitionHolder, this.registry);
+					registerBeanDefinition(definitionHolder, registry);
 				}
 			}
 		}
@@ -282,9 +283,9 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	 * @param beanName the generated bean name for the given bean
 	 */
 	protected void postProcessBeanDefinition(AbstractBeanDefinition beanDefinition, String beanName) {
-		beanDefinition.applyDefaults(this.beanDefinitionDefaults);
-		if (this.autowireCandidatePatterns != null) {
-			beanDefinition.setAutowireCandidate(PatternMatchUtils.simpleMatch(this.autowireCandidatePatterns, beanName));
+		beanDefinition.applyDefaults(beanDefinitionDefaults);
+		if (autowireCandidatePatterns != null) {
+			beanDefinition.setAutowireCandidate(PatternMatchUtils.simpleMatch(autowireCandidatePatterns, beanName));
 		}
 	}
 
@@ -312,10 +313,10 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	 * bean definition has been found for the specified name
 	 */
 	protected boolean checkCandidate(String beanName, BeanDefinition beanDefinition) throws IllegalStateException {
-		if (!this.registry.containsBeanDefinition(beanName)) {
+		if (!registry.containsBeanDefinition(beanName)) {
 			return true;
 		}
-		BeanDefinition existingDef = this.registry.getBeanDefinition(beanName);
+		BeanDefinition existingDef = registry.getBeanDefinition(beanName);
 		BeanDefinition originatingDef = existingDef.getOriginatingBeanDefinition();
 		if (originatingDef != null) {
 			existingDef = originatingDef;

@@ -4,6 +4,7 @@ package org.springframework.context.annotation;
 
 import java.lang.annotation.Annotation;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.core.annotation.AnnotationAttributes;
@@ -17,6 +18,8 @@ import org.springframework.util.Assert;
  */
 public class AnnotationScopeMetadataResolver implements ScopeMetadataResolver {
 
+	private static final Logger logger = Logger.getLogger(AnnotationScopeMetadataResolver.class);
+
 	private final ScopedProxyMode defaultProxyMode;
 
 	protected Class<? extends Annotation> scopeAnnotationType = Scope.class;
@@ -27,6 +30,7 @@ public class AnnotationScopeMetadataResolver implements ScopeMetadataResolver {
 	 * @see ScopedProxyMode#NO
 	 */
 	public AnnotationScopeMetadataResolver() {
+		logger.warn("进入 【AbstractBeanFactory】 构造函数 {}");
 		this.defaultProxyMode = ScopedProxyMode.NO;
 	}
 
@@ -35,6 +39,7 @@ public class AnnotationScopeMetadataResolver implements ScopeMetadataResolver {
 	 * @param defaultProxyMode the default scoped-proxy mode
 	 */
 	public AnnotationScopeMetadataResolver(ScopedProxyMode defaultProxyMode) {
+		logger.warn("进入 【AbstractBeanFactory】 构造函数 {}");
 		Assert.notNull(defaultProxyMode, "'defaultProxyMode' must not be null");
 		this.defaultProxyMode = defaultProxyMode;
 	}
