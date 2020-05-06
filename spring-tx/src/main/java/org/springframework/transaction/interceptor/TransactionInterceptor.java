@@ -84,7 +84,6 @@ public class TransactionInterceptor extends TransactionAspectSupport implements 
 	//---------------------------------------------------------------------
 	// Serialization support
 	//---------------------------------------------------------------------
-
 	private void writeObject(ObjectOutputStream oos) throws IOException {
 		// Rely on default serialization, although this class itself doesn't carry state anyway...
 		oos.defaultWriteObject();

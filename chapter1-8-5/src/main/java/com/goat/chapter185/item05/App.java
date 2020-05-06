@@ -11,7 +11,6 @@ import org.springframework.core.io.ClassPathResource;
  * @ Description: FactoryBean 接口学习
  * @ author  山羊来了
  * @ date 2019/8/17---19:18
- *
  *  *  我们知道，
  *  *  1.实现了FactoryBean的bean会调用它的getObject方法创建bean，
  *  *  2.实现了InitializingBean的bean会在属性填充完成之后调用它的afterPropertiesSet方法

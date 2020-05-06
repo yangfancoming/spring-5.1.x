@@ -25,8 +25,7 @@ import static org.springframework.util.Assert.notNull;
  * life-cycle, including closing, committing or rolling back the session as necessary based on the Spring transaction configuration.
  * The template needs a SqlSessionFactory to create SqlSessions, passed as a constructor argument. It also can be
  * constructed indicating the executor type to be used, if not, the default executor type, defined in the session factory will be used.
- * This template converts MyBatis PersistenceExceptions into unchecked DataAccessExceptions, using, by default, a
- * {@code MyBatisExceptionTranslator}.
+ * This template converts MyBatis PersistenceExceptions into unchecked DataAccessExceptions, using, by default, a {@code MyBatisExceptionTranslator}.
  * Because SqlSessionTemplate is thread safe, a single instance can be shared by all DAOs; there should also be a small
  * memory savings by doing this. This pattern can be used in Spring configuration files as follows:
  * <pre class="code">
@@ -88,115 +87,115 @@ public class SqlSessionTemplate implements SqlSession, DisposableBean {
 	}
 
 	public SqlSessionFactory getSqlSessionFactory() {
-		return this.sqlSessionFactory;
+		return sqlSessionFactory;
 	}
 
 	public ExecutorType getExecutorType() {
-		return this.executorType;
+		return executorType;
 	}
 
 	public PersistenceExceptionTranslator getPersistenceExceptionTranslator() {
-		return this.exceptionTranslator;
+		return exceptionTranslator;
 	}
 
 	@Override
 	public <T> T selectOne(String statement) {
-		return this.sqlSessionProxy.selectOne(statement);
+		return sqlSessionProxy.selectOne(statement);
 	}
 
 	@Override
 	public <T> T selectOne(String statement, Object parameter) {
-		return this.sqlSessionProxy.selectOne(statement, parameter);
+		return sqlSessionProxy.selectOne(statement, parameter);
 	}
 
 	@Override
 	public <K, V> Map<K, V> selectMap(String statement, String mapKey) {
-		return this.sqlSessionProxy.selectMap(statement, mapKey);
+		return sqlSessionProxy.selectMap(statement, mapKey);
 	}
 
 	@Override
 	public <K, V> Map<K, V> selectMap(String statement, Object parameter, String mapKey) {
-		return this.sqlSessionProxy.selectMap(statement, parameter, mapKey);
+		return sqlSessionProxy.selectMap(statement, parameter, mapKey);
 	}
 
 	@Override
 	public <K, V> Map<K, V> selectMap(String statement, Object parameter, String mapKey, RowBounds rowBounds) {
-		return this.sqlSessionProxy.selectMap(statement, parameter, mapKey, rowBounds);
+		return sqlSessionProxy.selectMap(statement, parameter, mapKey, rowBounds);
 	}
 
 	@Override
 	public <T> Cursor<T> selectCursor(String statement) {
-		return this.sqlSessionProxy.selectCursor(statement);
+		return sqlSessionProxy.selectCursor(statement);
 	}
 
 	@Override
 	public <T> Cursor<T> selectCursor(String statement, Object parameter) {
-		return this.sqlSessionProxy.selectCursor(statement, parameter);
+		return sqlSessionProxy.selectCursor(statement, parameter);
 	}
 
 	@Override
 	public <T> Cursor<T> selectCursor(String statement, Object parameter, RowBounds rowBounds) {
-		return this.sqlSessionProxy.selectCursor(statement, parameter, rowBounds);
+		return sqlSessionProxy.selectCursor(statement, parameter, rowBounds);
 	}
 
 	@Override
 	public <E> List<E> selectList(String statement) {
-		return this.sqlSessionProxy.selectList(statement);
+		return sqlSessionProxy.selectList(statement);
 	}
 
 	@Override
 	public <E> List<E> selectList(String statement, Object parameter) {
-		return this.sqlSessionProxy.selectList(statement, parameter);
+		return sqlSessionProxy.selectList(statement, parameter);
 	}
 
 	@Override
 	public <E> List<E> selectList(String statement, Object parameter, RowBounds rowBounds) {
-		return this.sqlSessionProxy.selectList(statement, parameter, rowBounds);
+		return sqlSessionProxy.selectList(statement, parameter, rowBounds);
 	}
 
 	@Override
 	public void select(String statement, ResultHandler handler) {
-		this.sqlSessionProxy.select(statement, handler);
+		sqlSessionProxy.select(statement, handler);
 	}
 
 	@Override
 	public void select(String statement, Object parameter, ResultHandler handler) {
-		this.sqlSessionProxy.select(statement, parameter, handler);
+		sqlSessionProxy.select(statement, parameter, handler);
 	}
 
 	@Override
 	public void select(String statement, Object parameter, RowBounds rowBounds, ResultHandler handler) {
-		this.sqlSessionProxy.select(statement, parameter, rowBounds, handler);
+		sqlSessionProxy.select(statement, parameter, rowBounds, handler);
 	}
 
 	@Override
 	public int insert(String statement) {
-		return this.sqlSessionProxy.insert(statement);
+		return sqlSessionProxy.insert(statement);
 	}
 
 	@Override
 	public int insert(String statement, Object parameter) {
-		return this.sqlSessionProxy.insert(statement, parameter);
+		return sqlSessionProxy.insert(statement, parameter);
 	}
 
 	@Override
 	public int update(String statement) {
-		return this.sqlSessionProxy.update(statement);
+		return sqlSessionProxy.update(statement);
 	}
 
 	@Override
 	public int update(String statement, Object parameter) {
-		return this.sqlSessionProxy.update(statement, parameter);
+		return sqlSessionProxy.update(statement, parameter);
 	}
 
 	@Override
 	public int delete(String statement) {
-		return this.sqlSessionProxy.delete(statement);
+		return sqlSessionProxy.delete(statement);
 	}
 
 	@Override
 	public int delete(String statement, Object parameter) {
-		return this.sqlSessionProxy.delete(statement, parameter);
+		return sqlSessionProxy.delete(statement, parameter);
 	}
 
 	@Override
@@ -231,17 +230,17 @@ public class SqlSessionTemplate implements SqlSession, DisposableBean {
 
 	@Override
 	public void clearCache() {
-		this.sqlSessionProxy.clearCache();
+		sqlSessionProxy.clearCache();
 	}
 
 	@Override
 	public Configuration getConfiguration() {
-		return this.sqlSessionFactory.getConfiguration();
+		return sqlSessionFactory.getConfiguration();
 	}
 
 	@Override
 	public Connection getConnection() {
-		return this.sqlSessionProxy.getConnection();
+		return sqlSessionProxy.getConnection();
 	}
 
 	/**
@@ -249,7 +248,7 @@ public class SqlSessionTemplate implements SqlSession, DisposableBean {
 	 */
 	@Override
 	public List<BatchResult> flushStatements() {
-		return this.sqlSessionProxy.flushStatements();
+		return sqlSessionProxy.flushStatements();
 	}
 
 	/**

@@ -45,8 +45,7 @@ public abstract class ResourceHolderSupport implements ResourceHolder {
 
 	/**
 	 * Reset the rollback-only status for this resource transaction.
-	 * Only really intended to be called after custom rollback steps which
-	 * keep the original resource in action, e.g. in case of a savepoint.
+	 * Only really intended to be called after custom rollback steps which keep the original resource in action, e.g. in case of a savepoint.
 	 * @since 5.0
 	 * @see org.springframework.transaction.SavepointManager#rollbackToSavepoint
 	 */

@@ -28,15 +28,12 @@ import org.springframework.util.ClassUtils;
  *  To overcome this restriction you can set the {@code proxy-target-class}' attribute to '{@code true}',
  * ' which will result in class-based proxies being created.
  * @since 2.0
- *
- *
  */
 class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 
 	/**
-	 * Parses the {@code <tx:annotation-driven/>} tag. Will
-	 * {@link AopNamespaceUtils#registerAutoProxyCreatorIfNecessary register an AutoProxyCreator}
-	 * with the container as necessary.
+	 * Parses the {@code <tx:annotation-driven/>} tag.
+	 * Will {@link AopNamespaceUtils#registerAutoProxyCreatorIfNecessary register an AutoProxyCreator} with the container as necessary.
 	 */
 	@Override
 	@Nullable

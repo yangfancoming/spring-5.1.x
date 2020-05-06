@@ -27,9 +27,6 @@ import org.springframework.util.ClassUtils;
  * {@link javax.ejb.TransactionAttribute} annotation (if present).
  * This class may also serve as base class for a custom TransactionAttributeSource,
  * or get customized through {@link TransactionAnnotationParser} strategies.
- *
- * @author Colin Sampaleanu
-
  * @since 1.2
  * @see Transactional
  * @see TransactionAnnotationParser
@@ -39,8 +36,7 @@ import org.springframework.util.ClassUtils;
  * @see org.springframework.transaction.interceptor.TransactionProxyFactoryBean#setTransactionAttributeSource
  */
 @SuppressWarnings("serial")
-public class AnnotationTransactionAttributeSource extends AbstractFallbackTransactionAttributeSource
-		implements Serializable {
+public class AnnotationTransactionAttributeSource extends AbstractFallbackTransactionAttributeSource implements Serializable {
 
 	private static final boolean jta12Present;
 
@@ -56,7 +52,6 @@ public class AnnotationTransactionAttributeSource extends AbstractFallbackTransa
 
 	private final Set<TransactionAnnotationParser> annotationParsers;
 
-
 	/**
 	 * Create a default AnnotationTransactionAttributeSource, supporting
 	 * public methods that carry the {@code Transactional} annotation
@@ -67,13 +62,9 @@ public class AnnotationTransactionAttributeSource extends AbstractFallbackTransa
 	}
 
 	/**
-	 * Create a custom AnnotationTransactionAttributeSource, supporting
-	 * public methods that carry the {@code Transactional} annotation
-	 * or the EJB3 {@link javax.ejb.TransactionAttribute} annotation.
+	 * Create a custom AnnotationTransactionAttributeSource, supporting public methods that carry the {@code Transactional} annotation or the EJB3 {@link javax.ejb.TransactionAttribute} annotation.
 	 * @param publicMethodsOnly whether to support public methods that carry
-	 * the {@code Transactional} annotation only (typically for use
-	 * with proxy-based AOP), or protected/private methods as well
-	 * (typically used with AspectJ class weaving)
+	 * the {@code Transactional} annotation only (typically for use with proxy-based AOP), or protected/private methods as well (typically used with AspectJ class weaving)
 	 */
 	public AnnotationTransactionAttributeSource(boolean publicMethodsOnly) {
 		this.publicMethodsOnly = publicMethodsOnly;
@@ -86,8 +77,7 @@ public class AnnotationTransactionAttributeSource extends AbstractFallbackTransa
 			if (ejb3Present) {
 				this.annotationParsers.add(new Ejb3TransactionAnnotationParser());
 			}
-		}
-		else {
+		}else {
 			this.annotationParsers = Collections.singleton(new SpringTransactionAnnotationParser());
 		}
 	}
@@ -163,7 +153,6 @@ public class AnnotationTransactionAttributeSource extends AbstractFallbackTransa
 	protected boolean allowPublicMethodsOnly() {
 		return this.publicMethodsOnly;
 	}
-
 
 	@Override
 	public boolean equals(Object other) {

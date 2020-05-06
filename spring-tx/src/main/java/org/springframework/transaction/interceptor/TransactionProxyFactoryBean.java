@@ -128,9 +128,8 @@ public class TransactionProxyFactoryBean extends AbstractSingletonProxyFactoryBe
 	}
 
 	/**
-	 * Set the transaction attribute source which is used to find transaction
-	 * attributes. If specifying a String property value, a PropertyEditor
-	 * will create a MethodMapTransactionAttributeSource from the value.
+	 * Set the transaction attribute source which is used to find transaction attributes.
+	 *  If specifying a String property value, a PropertyEditor  will create a MethodMapTransactionAttributeSource from the value.
 	 * @see #setTransactionAttributes
 	 * @see TransactionInterceptor#setTransactionAttributeSource
 	 * @see TransactionAttributeSourceEditor
@@ -143,8 +142,7 @@ public class TransactionProxyFactoryBean extends AbstractSingletonProxyFactoryBe
 	}
 
 	/**
-	 * Set a pointcut, i.e a bean that can cause conditional invocation
-	 * of the TransactionInterceptor depending on method and attributes passed.
+	 * Set a pointcut, i.e a bean that can cause conditional invocation of the TransactionInterceptor depending on method and attributes passed.
 	 * Note: Additional interceptors are always invoked.
 	 * @see #setPreInterceptors
 	 * @see #setPostInterceptors
@@ -154,8 +152,7 @@ public class TransactionProxyFactoryBean extends AbstractSingletonProxyFactoryBe
 	}
 
 	/**
-	 * This callback is optional: If running in a BeanFactory and no transaction
-	 * manager has been set explicitly, a single matching bean of type
+	 * This callback is optional: If running in a BeanFactory and no transaction manager has been set explicitly, a single matching bean of type
 	 * {@link PlatformTransactionManager} will be fetched from the BeanFactory.
 	 * @see org.springframework.beans.factory.BeanFactory#getBean(Class)
 	 * @see org.springframework.transaction.PlatformTransactionManager

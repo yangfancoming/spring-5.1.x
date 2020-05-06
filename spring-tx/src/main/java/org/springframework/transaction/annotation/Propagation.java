@@ -6,11 +6,7 @@ import org.springframework.transaction.TransactionDefinition;
 
 /**
  * Enumeration that represents transaction propagation behaviors for use
- * with the {@link Transactional} annotation, corresponding to the
- * {@link TransactionDefinition} interface.
- *
- * @author Colin Sampaleanu
-
+ * with the {@link Transactional} annotation, corresponding to the {@link TransactionDefinition} interface.
  * @since 1.2
  */
 public enum Propagation {
@@ -25,8 +21,7 @@ public enum Propagation {
 	/**
 	 * Support a current transaction, execute non-transactionally if none exists.
 	 * Analogous to EJB transaction attribute of the same name.
-	 * Note: For transaction managers with transaction synchronization,
-	 * {@code SUPPORTS} is slightly different from no transaction at all,
+	 * Note: For transaction managers with transaction synchronization, {@code SUPPORTS} is slightly different from no transaction at all,
 	 * as it defines a transaction scope that synchronization will apply for.
 	 * As a consequence, the same resources (JDBC Connection, Hibernate Session, etc)
 	 * will be shared for the entire specified scope. Note that this depends on
@@ -82,9 +77,7 @@ public enum Propagation {
 	 */
 	NESTED(TransactionDefinition.PROPAGATION_NESTED);
 
-
 	private final int value;
-
 
 	Propagation(int value) {
 		this.value = value;
@@ -93,5 +86,4 @@ public enum Propagation {
 	public int value() {
 		return this.value;
 	}
-
 }

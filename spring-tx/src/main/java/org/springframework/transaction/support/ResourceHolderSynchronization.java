@@ -3,23 +3,18 @@
 package org.springframework.transaction.support;
 
 /**
- * {@link TransactionSynchronization} implementation that manages a
- * {@link ResourceHolder} bound through {@link TransactionSynchronizationManager}.
- *
-
+ * {@link TransactionSynchronization} implementation that manages a {@link ResourceHolder} bound through {@link TransactionSynchronizationManager}.
  * @since 2.5.5
  * @param <H> the resource holder type
  * @param <K> the resource key type
  */
-public abstract class ResourceHolderSynchronization<H extends ResourceHolder, K>
-		implements TransactionSynchronization {
+public abstract class ResourceHolderSynchronization<H extends ResourceHolder, K> implements TransactionSynchronization {
 
 	private final H resourceHolder;
 
 	private final K resourceKey;
 
 	private volatile boolean holderActive = true;
-
 
 	/**
 	 * Create a new ResourceHolderSynchronization for the given holder.
@@ -31,7 +26,6 @@ public abstract class ResourceHolderSynchronization<H extends ResourceHolder, K>
 		this.resourceHolder = resourceHolder;
 		this.resourceKey = resourceKey;
 	}
-
 
 	@Override
 	public void suspend() {
@@ -77,7 +71,7 @@ public abstract class ResourceHolderSynchronization<H extends ResourceHolder, K>
 	@Override
 	public void afterCompletion(int status) {
 		if (shouldUnbindAtCompletion()) {
-			boolean releaseNecessary = false;
+			boolean releaseNecessary;
 			if (this.holderActive) {
 				// The thread-bound resource holder might not be available anymore,
 				// since afterCompletion might get called from a different thread.

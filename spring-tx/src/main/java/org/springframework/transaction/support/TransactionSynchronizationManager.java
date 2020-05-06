@@ -47,10 +47,7 @@ import org.springframework.util.Assert;
  * doesn't support transaction synchronization.
  *
  * Synchronization is for example used to always return the same resources
- * within a JTA transaction, e.g. a JDBC Connection or a Hibernate Session for
- * any given DataSource or SessionFactory, respectively.
- *
-
+ * within a JTA transaction, e.g. a JDBC Connection or a Hibernate Session for any given DataSource or SessionFactory, respectively.
  * @since 02.06.2003
  * @see #isSynchronizationActive
  * @see #registerSynchronization
@@ -76,17 +73,13 @@ public abstract class TransactionSynchronizationManager {
 
 	private static final ThreadLocal<Boolean> actualTransactionActive = new NamedThreadLocal<>("Actual transaction active");
 
-
 	//-------------------------------------------------------------------------
 	// Management of transaction-associated resource handles
 	//-------------------------------------------------------------------------
-
 	/**
 	 * Return all resources that are bound to the current thread.
-	 * Mainly for debugging purposes. Resource managers should always invoke
-	 * {@code hasResource} for a specific resource key that they are interested in.
-	 * @return a Map with resource keys (usually the resource factory) and resource
-	 * values (usually the active resource object), or an empty Map if there are
+	 * Mainly for debugging purposes. Resource managers should always invoke {@code hasResource} for a specific resource key that they are interested in.
+	 * @return a Map with resource keys (usually the resource factory) and resource values (usually the active resource object), or an empty Map if there are
 	 * currently no resources bound
 	 * @see #hasResource
 	 */
@@ -110,8 +103,7 @@ public abstract class TransactionSynchronizationManager {
 	/**
 	 * Retrieve a resource for the given key that is bound to the current thread.
 	 * @param key the key to check (usually the resource factory)
-	 * @return a value bound to the current thread (usually the active
-	 * resource object), or {@code null} if none
+	 * @return a value bound to the current thread (usually the active resource object), or {@code null} if none
 	 * @see ResourceTransactionManager#getResourceFactory()
 	 */
 	@Nullable
@@ -212,7 +204,6 @@ public abstract class TransactionSynchronizationManager {
 		return value;
 	}
 
-
 	//-------------------------------------------------------------------------
 	// Management of transaction synchronizations
 	//-------------------------------------------------------------------------
@@ -251,9 +242,7 @@ public abstract class TransactionSynchronizationManager {
 	public static void registerSynchronization(TransactionSynchronization synchronization) throws IllegalStateException {
 		Assert.notNull(synchronization, "TransactionSynchronization must not be null");
 		Set<TransactionSynchronization> synchs = synchronizations.get();
-		if (synchs == null) {
-			throw new IllegalStateException("Transaction synchronization is not active");
-		}
+		if (synchs == null) throw new IllegalStateException("Transaction synchronization is not active");
 		synchs.add(synchronization);
 	}
 
@@ -320,8 +309,7 @@ public abstract class TransactionSynchronizationManager {
 	/**
 	 * Expose a read-only flag for the current transaction.
 	 * Called by the transaction manager on transaction begin and on cleanup.
-	 * @param readOnly {@code true} to mark the current transaction
-	 * as read-only; {@code false} to reset such a read-only marker
+	 * @param readOnly {@code true} to mark the current transaction as read-only; {@code false} to reset such a read-only marker
 	 * @see org.springframework.transaction.TransactionDefinition#isReadOnly()
 	 */
 	public static void setCurrentTransactionReadOnly(boolean readOnly) {
@@ -330,13 +318,10 @@ public abstract class TransactionSynchronizationManager {
 
 	/**
 	 * Return whether the current transaction is marked as read-only.
-	 * To be called by resource management code when preparing a newly
-	 * created resource (for example, a Hibernate Session).
-	 * Note that transaction synchronizations receive the read-only flag
-	 * as argument for the {@code beforeCommit} callback, to be able
+	 * To be called by resource management code when preparing a newly created resource (for example, a Hibernate Session).
+	 * Note that transaction synchronizations receive the read-only flag  as argument for the {@code beforeCommit} callback, to be able
 	 * to suppress change detection on commit. The present method is meant
-	 * to be used for earlier read-only checks, for example to set the
-	 * flush mode of a Hibernate Session to "FlushMode.NEVER" upfront.
+	 * to be used for earlier read-only checks, for example to set the flush mode of a Hibernate Session to "FlushMode.NEVER" upfront.
 	 * @see org.springframework.transaction.TransactionDefinition#isReadOnly()
 	 * @see TransactionSynchronization#beforeCommit(boolean)
 	 */
@@ -347,8 +332,7 @@ public abstract class TransactionSynchronizationManager {
 	/**
 	 * Expose an isolation level for the current transaction.
 	 * Called by the transaction manager on transaction begin and on cleanup.
-	 * @param isolationLevel the isolation level to expose, according to the
-	 * JDBC Connection constants (equivalent to the corresponding Spring
+	 * @param isolationLevel the isolation level to expose, according to the  JDBC Connection constants (equivalent to the corresponding Spring
 	 * TransactionDefinition constants), or {@code null} to reset it
 	 * @see java.sql.Connection#TRANSACTION_READ_UNCOMMITTED
 	 * @see java.sql.Connection#TRANSACTION_READ_COMMITTED
@@ -369,8 +353,7 @@ public abstract class TransactionSynchronizationManager {
 	 * To be called by resource management code when preparing a newly
 	 * created resource (for example, a JDBC Connection).
 	 * @return the currently exposed isolation level, according to the
-	 * JDBC Connection constants (equivalent to the corresponding Spring
-	 * TransactionDefinition constants), or {@code null} if none
+	 * JDBC Connection constants (equivalent to the corresponding Spring TransactionDefinition constants), or {@code null} if none
 	 * @see java.sql.Connection#TRANSACTION_READ_UNCOMMITTED
 	 * @see java.sql.Connection#TRANSACTION_READ_COMMITTED
 	 * @see java.sql.Connection#TRANSACTION_REPEATABLE_READ

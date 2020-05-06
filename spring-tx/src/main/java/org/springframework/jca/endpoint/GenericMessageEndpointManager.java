@@ -124,8 +124,6 @@ import org.springframework.util.Assert;
  *     &lt;/bean&gt;
  *   &lt;/property&gt;
  * &lt;/bean&gt;</pre>
- *
-
  * @since 2.5
  * @see javax.resource.spi.ResourceAdapter#endpointActivation
  * @see javax.resource.spi.ResourceAdapter#endpointDeactivation
@@ -151,7 +149,6 @@ public class GenericMessageEndpointManager implements SmartLifecycle, Initializi
 
 	private final Object lifecycleMonitor = new Object();
 
-
 	/**
 	 * Set the JCA ResourceAdapter to manage endpoints for.
 	 */
@@ -168,10 +165,8 @@ public class GenericMessageEndpointManager implements SmartLifecycle, Initializi
 	}
 
 	/**
-	 * Set the JCA MessageEndpointFactory to activate, pointing to a
-	 * MessageListener object that the endpoints will delegate to.
-	 * A MessageEndpointFactory instance may be shared across multiple
-	 * endpoints (i.e. multiple GenericMessageEndpointManager instances),
+	 * Set the JCA MessageEndpointFactory to activate, pointing to a  MessageListener object that the endpoints will delegate to.
+	 * A MessageEndpointFactory instance may be shared across multiple endpoints (i.e. multiple GenericMessageEndpointManager instances),
 	 * with different {@link #setActivationSpec ActivationSpec} objects applied.
 	 * @see GenericMessageEndpointFactory#setMessageListener
 	 */
@@ -189,8 +184,7 @@ public class GenericMessageEndpointManager implements SmartLifecycle, Initializi
 
 	/**
 	 * Set the JCA ActivationSpec to use for activating the endpoint.
-	 * Note that this ActivationSpec instance should not be shared
-	 * across multiple ResourceAdapter instances.
+	 * Note that this ActivationSpec instance should not be shared across multiple ResourceAdapter instances.
 	 */
 	public void setActivationSpec(@Nullable ActivationSpec activationSpec) {
 		this.activationSpec = activationSpec;
@@ -243,8 +237,7 @@ public class GenericMessageEndpointManager implements SmartLifecycle, Initializi
 	}
 
 	/**
-	 * Prepares the message endpoint, and automatically activates it
-	 * if the "autoStartup" flag is set to "true".
+	 * Prepares the message endpoint, and automatically activates it if the "autoStartup" flag is set to "true".
 	 */
 	@Override
 	public void afterPropertiesSet() throws ResourceException {
@@ -258,13 +251,10 @@ public class GenericMessageEndpointManager implements SmartLifecycle, Initializi
 		if (activationSpec == null) {
 			throw new IllegalArgumentException("Property 'activationSpec' is required");
 		}
-
 		if (activationSpec.getResourceAdapter() == null) {
 			activationSpec.setResourceAdapter(getResourceAdapter());
-		}
-		else if (activationSpec.getResourceAdapter() != getResourceAdapter()) {
-			throw new IllegalArgumentException("ActivationSpec [" + activationSpec +
-					"] is associated with a different ResourceAdapter: " + activationSpec.getResourceAdapter());
+		}else if (activationSpec.getResourceAdapter() != getResourceAdapter()) {
+			throw new IllegalArgumentException("ActivationSpec [" + activationSpec + "] is associated with a different ResourceAdapter: " + activationSpec.getResourceAdapter());
 		}
 	}
 
@@ -279,8 +269,7 @@ public class GenericMessageEndpointManager implements SmartLifecycle, Initializi
 				Assert.state(resourceAdapter != null, "No ResourceAdapter set");
 				try {
 					resourceAdapter.endpointActivation(getMessageEndpointFactory(), getActivationSpec());
-				}
-				catch (ResourceException ex) {
+				}catch (ResourceException ex) {
 					throw new IllegalStateException("Could not activate message endpoint", ex);
 				}
 				this.running = true;

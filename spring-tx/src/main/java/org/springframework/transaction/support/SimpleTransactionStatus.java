@@ -13,15 +13,12 @@ package org.springframework.transaction.support;
  * manager implementations and as a static mock for testing transactional
  * code (either as part of a mock {@code PlatformTransactionManager} or
  * as argument passed into a {@link TransactionCallback} to be tested).
- *
-
  * @since 1.2.3
  * @see TransactionCallback#doInTransaction
  */
 public class SimpleTransactionStatus extends AbstractTransactionStatus {
 
 	private final boolean newTransaction;
-
 
 	/**
 	 * Create a new {@code SimpleTransactionStatus} instance,

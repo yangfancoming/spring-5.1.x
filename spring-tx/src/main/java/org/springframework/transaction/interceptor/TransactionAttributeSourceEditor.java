@@ -11,12 +11,8 @@ import org.springframework.util.StringUtils;
 
 /**
  * Property editor that converts a String into a {@link TransactionAttributeSource}.
- * The transaction attribute string must be parseable by the
- * {@link TransactionAttributeEditor} in this package.
- *
- * Strings are in property syntax, with the form:<br>
- * {@code FQCN.methodName=&lt;transaction attribute string&gt;}
- *
+ * The transaction attribute string must be parseable by the {@link TransactionAttributeEditor} in this package.
+ * Strings are in property syntax, with the form:<br> {@code FQCN.methodName=&lt;transaction attribute string&gt;}
  * For example:<br>
  * {@code com.mycompany.mycode.MyClass.myMethod=PROPAGATION_MANDATORY,ISOLATION_DEFAULT}
  *

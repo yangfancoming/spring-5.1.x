@@ -44,10 +44,7 @@ import org.springframework.lang.Nullable;
  * Alternatively, simply use the native local transaction facilities of the
  * exposed API (e.g. CCI local transactions), or use a corresponding
  * implementation of Spring's PlatformTransactionManager SPI
- * (e.g. {@link org.springframework.jca.cci.connection.CciLocalTransactionManager})
- * to drive local transactions.
- *
-
+ * (e.g. {@link org.springframework.jca.cci.connection.CciLocalTransactionManager}) to drive local transactions.
  * @since 1.2
  * @see #setManagedConnectionFactory
  * @see #setConnectionManager
@@ -66,18 +63,13 @@ public class LocalConnectionFactoryBean implements FactoryBean<Object>, Initiali
 	@Nullable
 	private Object connectionFactory;
 
-
 	/**
-	 * Set the JCA ManagerConnectionFactory that should be used to create
-	 * the desired connection factory.
-	 * The ManagerConnectionFactory will usually be set up as separate bean
-	 * (potentially as inner bean), populated with JavaBean properties:
+	 * Set the JCA ManagerConnectionFactory that should be used to create the desired connection factory.
+	 * The ManagerConnectionFactory will usually be set up as separate bean (potentially as inner bean), populated with JavaBean properties:
 	 * a ManagerConnectionFactory is encouraged to follow the JavaBean pattern
-	 * by the JCA specification, analogous to a JDBC DataSource and a JPA
-	 * EntityManagerFactory.
+	 * by the JCA specification, analogous to a JDBC DataSource and a JPA EntityManagerFactory.
 	 * Note that the ManagerConnectionFactory implementation might expect
-	 * a reference to its JCA 1.7 ResourceAdapter, expressed through the
-	 * {@link javax.resource.spi.ResourceAdapterAssociation} interface.
+	 * a reference to its JCA 1.7 ResourceAdapter, expressed through the {@link javax.resource.spi.ResourceAdapterAssociation} interface.
 	 * Simply inject the corresponding ResourceAdapter instance into its
 	 * "resourceAdapter" bean property in this case, before passing the
 	 * ManagerConnectionFactory into this LocalConnectionFactoryBean.
@@ -106,12 +98,10 @@ public class LocalConnectionFactoryBean implements FactoryBean<Object>, Initiali
 		}
 		if (this.connectionManager != null) {
 			this.connectionFactory = this.managedConnectionFactory.createConnectionFactory(this.connectionManager);
-		}
-		else {
+		}else {
 			this.connectionFactory = this.managedConnectionFactory.createConnectionFactory();
 		}
 	}
-
 
 	@Override
 	@Nullable

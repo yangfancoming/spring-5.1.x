@@ -38,25 +38,20 @@ import org.springframework.util.Assert;
  * always be configured as bean in the application context: in the first case given
  * to the service directly, in the second case given to the prepared template.
  *
- * Supports setting the propagation behavior and the isolation level by name,
- * for convenient configuration in context definitions.
- *
-
+ * Supports setting the propagation behavior and the isolation level by name,for convenient configuration in context definitions.
  * @since 17.03.2003
  * @see #execute
  * @see #setTransactionManager
  * @see org.springframework.transaction.PlatformTransactionManager
  */
 @SuppressWarnings("serial")
-public class TransactionTemplate extends DefaultTransactionDefinition
-		implements TransactionOperations, InitializingBean {
+public class TransactionTemplate extends DefaultTransactionDefinition implements TransactionOperations, InitializingBean {
 
 	/** Logger available to subclasses. */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	@Nullable
 	private PlatformTransactionManager transactionManager;
-
 
 	/**
 	 * Construct a new TransactionTemplate for bean usage.
@@ -87,7 +82,6 @@ public class TransactionTemplate extends DefaultTransactionDefinition
 		this.transactionManager = transactionManager;
 	}
 
-
 	/**
 	 * Set the transaction management strategy to be used.
 	 */
@@ -110,27 +104,22 @@ public class TransactionTemplate extends DefaultTransactionDefinition
 		}
 	}
 
-
 	@Override
 	@Nullable
 	public <T> T execute(TransactionCallback<T> action) throws TransactionException {
 		Assert.state(this.transactionManager != null, "No PlatformTransactionManager set");
-
 		if (this.transactionManager instanceof CallbackPreferringPlatformTransactionManager) {
 			return ((CallbackPreferringPlatformTransactionManager) this.transactionManager).execute(this, action);
-		}
-		else {
+		}else {
 			TransactionStatus status = this.transactionManager.getTransaction(this);
 			T result;
 			try {
 				result = action.doInTransaction(status);
-			}
-			catch (RuntimeException | Error ex) {
+			}catch (RuntimeException | Error ex) {
 				// Transactional code threw application exception -> rollback
 				rollbackOnException(status, ex);
 				throw ex;
-			}
-			catch (Throwable ex) {
+			}catch (Throwable ex) {
 				// Transactional code threw unexpected exception -> rollback
 				rollbackOnException(status, ex);
 				throw new UndeclaredThrowableException(ex, "TransactionCallback threw undeclared checked exception");
@@ -148,27 +137,22 @@ public class TransactionTemplate extends DefaultTransactionDefinition
 	 */
 	private void rollbackOnException(TransactionStatus status, Throwable ex) throws TransactionException {
 		Assert.state(this.transactionManager != null, "No PlatformTransactionManager set");
-
 		logger.debug("Initiating transaction rollback on application exception", ex);
 		try {
 			this.transactionManager.rollback(status);
-		}
-		catch (TransactionSystemException ex2) {
+		}catch (TransactionSystemException ex2) {
 			logger.error("Application exception overridden by rollback exception", ex);
 			ex2.initApplicationException(ex);
 			throw ex2;
-		}
-		catch (RuntimeException | Error ex2) {
+		}catch (RuntimeException | Error ex2) {
 			logger.error("Application exception overridden by rollback exception", ex);
 			throw ex2;
 		}
 	}
 
-
 	@Override
 	public boolean equals(Object other) {
-		return (this == other || (super.equals(other) && (!(other instanceof TransactionTemplate) ||
-				getTransactionManager() == ((TransactionTemplate) other).getTransactionManager())));
+		return (this == other || (super.equals(other) && (!(other instanceof TransactionTemplate) || getTransactionManager() == ((TransactionTemplate) other).getTransactionManager())));
 	}
 
 }

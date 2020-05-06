@@ -8,8 +8,6 @@ import org.springframework.util.Assert;
 
 /**
  * Simple Work adapter that delegates to a given Runnable.
- *
-
  * @since 2.0.3
  * @see javax.resource.spi.work.Work
  * @see Runnable
@@ -17,7 +15,6 @@ import org.springframework.util.Assert;
 public class DelegatingWork implements Work {
 
 	private final Runnable delegate;
-
 
 	/**
 	 * Create a new DelegatingWork.

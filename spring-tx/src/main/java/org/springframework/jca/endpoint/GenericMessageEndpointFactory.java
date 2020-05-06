@@ -29,10 +29,7 @@ import org.springframework.util.ReflectionUtils;
  *
  * Typically used with Spring's {@link GenericMessageEndpointManager},
  * but not tied to it. As a consequence, this endpoint factory could
- * also be used with programmatic endpoint management on a native
- * {@link javax.resource.spi.ResourceAdapter} instance.
- *
-
+ * also be used with programmatic endpoint management on a native {@link javax.resource.spi.ResourceAdapter} instance.
  * @since 2.5
  * @see #setMessageListener
  * @see #setTransactionManager
@@ -43,10 +40,8 @@ public class GenericMessageEndpointFactory extends AbstractMessageEndpointFactor
 	@Nullable
 	private Object messageListener;
 
-
 	/**
-	 * Specify the message listener object that the endpoint should expose
-	 * (e.g. a {@link javax.jms.MessageListener} objects or
+	 * Specify the message listener object that the endpoint should expose (e.g. a {@link javax.jms.MessageListener} objects or
 	 * {@link javax.resource.cci.MessageListener} implementation).
 	 */
 	public void setMessageListener(Object messageListener) {
@@ -63,9 +58,7 @@ public class GenericMessageEndpointFactory extends AbstractMessageEndpointFactor
 	}
 
 	/**
-	 * Wrap each concrete endpoint instance with an AOP proxy,
-	 * exposing the message listener's interfaces as well as the
-	 * endpoint SPI through an AOP introduction.
+	 * Wrap each concrete endpoint instance with an AOP proxy, exposing the message listener's interfaces as well as the endpoint SPI through an AOP introduction.
 	 */
 	@Override
 	public MessageEndpoint createEndpoint(XAResource xaResource) throws UnavailableException {
@@ -87,8 +80,7 @@ public class GenericMessageEndpointFactory extends AbstractMessageEndpointFactor
 
 
 	/**
-	 * Private inner class that implements the concrete generic message endpoint,
-	 * as an AOP Alliance MethodInterceptor that will be invoked by a proxy.
+	 * Private inner class that implements the concrete generic message endpoint,as an AOP Alliance MethodInterceptor that will be invoked by a proxy.
 	 */
 	private class GenericMessageEndpoint extends AbstractMessageEndpoint implements MethodInterceptor {
 
@@ -99,28 +91,22 @@ public class GenericMessageEndpointFactory extends AbstractMessageEndpointFactor
 			if (applyDeliveryCalls) {
 				try {
 					beforeDelivery(null);
-				}
-				catch (ResourceException ex) {
+				}catch (ResourceException ex) {
 					throw adaptExceptionIfNecessary(methodInvocation, ex);
 				}
 			}
 			try {
 				return methodInvocation.proceed();
-			}
-			catch (Throwable ex) {
+			}catch (Throwable ex) {
 				endpointEx = ex;
 				onEndpointException(ex);
 				throw ex;
-			}
-			finally {
+			}finally {
 				if (applyDeliveryCalls) {
 					try {
 						afterDelivery();
-					}
-					catch (ResourceException ex) {
-						if (endpointEx == null) {
-							throw adaptExceptionIfNecessary(methodInvocation, ex);
-						}
+					}catch (ResourceException ex) {
+						if (endpointEx == null) throw adaptExceptionIfNecessary(methodInvocation, ex);
 					}
 				}
 			}
@@ -129,8 +115,7 @@ public class GenericMessageEndpointFactory extends AbstractMessageEndpointFactor
 		private Exception adaptExceptionIfNecessary(MethodInvocation methodInvocation, ResourceException ex) {
 			if (ReflectionUtils.declaresException(methodInvocation.getMethod(), ex.getClass())) {
 				return ex;
-			}
-			else {
+			}else {
 				return new InternalResourceException(ex);
 			}
 		}
@@ -141,14 +126,10 @@ public class GenericMessageEndpointFactory extends AbstractMessageEndpointFactor
 		}
 	}
 
-
 	/**
-	 * Internal exception thrown when a ResourceException has been encountered
-	 * during the endpoint invocation.
-	 * Will only be used if the ResourceAdapter does not invoke the
-	 * endpoint's {@code beforeDelivery} and {@code afterDelivery}
-	 * directly, leaving it up to the concrete endpoint to apply those -
-	 * and to handle any ResourceExceptions thrown from them.
+	 * Internal exception thrown when a ResourceException has been encountered during the endpoint invocation.
+	 * Will only be used if the ResourceAdapter does not invoke the endpoint's {@code beforeDelivery} and {@code afterDelivery}
+	 * directly, leaving it up to the concrete endpoint to apply those -  and to handle any ResourceExceptions thrown from them.
 	 */
 	@SuppressWarnings("serial")
 	public static class InternalResourceException extends RuntimeException {

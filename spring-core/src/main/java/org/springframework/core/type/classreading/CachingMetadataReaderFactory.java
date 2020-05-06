@@ -13,8 +13,7 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.lang.Nullable;
 
 /**
- * Caching implementation of the {@link MetadataReaderFactory} interface,
- * caching a {@link MetadataReader} instance per Spring {@link Resource} handle (i.e. per ".class" file).
+ * Caching implementation of the {@link MetadataReaderFactory} interface,caching a {@link MetadataReader} instance per Spring {@link Resource} handle (i.e. per ".class" file).
  * @since 2.5
  */
 public class CachingMetadataReaderFactory extends SimpleMetadataReaderFactory {

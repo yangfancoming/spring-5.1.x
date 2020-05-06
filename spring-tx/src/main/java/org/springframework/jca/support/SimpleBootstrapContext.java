@@ -14,13 +14,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Simple implementation of the JCA 1.7 {@link javax.resource.spi.BootstrapContext}
- * interface, used for bootstrapping a JCA ResourceAdapter in a local environment.
- *
- * Delegates to the given WorkManager and XATerminator, if any. Creates simple
- * local instances of {@code java.util.Timer}.
- *
-
+ * Simple implementation of the JCA 1.7 {@link javax.resource.spi.BootstrapContext} interface, used for bootstrapping a JCA ResourceAdapter in a local environment.
+ * Delegates to the given WorkManager and XATerminator, if any. Creates simple local instances of {@code java.util.Timer}.
  * @since 2.0.3
  * @see javax.resource.spi.ResourceAdapter#start(javax.resource.spi.BootstrapContext)
  * @see ResourceAdapterFactoryBean
@@ -36,10 +31,8 @@ public class SimpleBootstrapContext implements BootstrapContext {
 	@Nullable
 	private TransactionSynchronizationRegistry transactionSynchronizationRegistry;
 
-
 	/**
-	 * Create a new SimpleBootstrapContext for the given WorkManager,
-	 * with no XATerminator available.
+	 * Create a new SimpleBootstrapContext for the given WorkManager,with no XATerminator available.
 	 * @param workManager the JCA WorkManager to use (may be {@code null})
 	 */
 	public SimpleBootstrapContext(@Nullable WorkManager workManager) {
@@ -57,22 +50,17 @@ public class SimpleBootstrapContext implements BootstrapContext {
 	}
 
 	/**
-	 * Create a new SimpleBootstrapContext for the given WorkManager, XATerminator
-	 * and TransactionSynchronizationRegistry.
+	 * Create a new SimpleBootstrapContext for the given WorkManager, XATerminator  and TransactionSynchronizationRegistry.
 	 * @param workManager the JCA WorkManager to use (may be {@code null})
 	 * @param xaTerminator the JCA XATerminator to use (may be {@code null})
-	 * @param transactionSynchronizationRegistry the TransactionSynchronizationRegistry
-	 * to use (may be {@code null})
+	 * @param transactionSynchronizationRegistry the TransactionSynchronizationRegistry to use (may be {@code null})
 	 * @since 5.0
 	 */
-	public SimpleBootstrapContext(@Nullable WorkManager workManager, @Nullable XATerminator xaTerminator,
-			@Nullable TransactionSynchronizationRegistry transactionSynchronizationRegistry) {
-
+	public SimpleBootstrapContext(@Nullable WorkManager workManager, @Nullable XATerminator xaTerminator,@Nullable TransactionSynchronizationRegistry transactionSynchronizationRegistry) {
 		this.workManager = workManager;
 		this.xaTerminator = xaTerminator;
 		this.transactionSynchronizationRegistry = transactionSynchronizationRegistry;
 	}
-
 
 	@Override
 	public WorkManager getWorkManager() {
@@ -101,5 +89,4 @@ public class SimpleBootstrapContext implements BootstrapContext {
 	public TransactionSynchronizationRegistry getTransactionSynchronizationRegistry() {
 		return this.transactionSynchronizationRegistry;
 	}
-
 }

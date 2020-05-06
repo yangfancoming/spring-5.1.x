@@ -21,8 +21,6 @@ import org.springframework.util.CollectionUtils;
 /**
  * Abstract base {@code @Configuration} class providing common structure for enabling
  * Spring's annotation-driven transaction management capability.
-
- * @author Stephane Nicoll
  * @since 3.1
  * @see EnableTransactionManagement
  */
@@ -41,11 +39,9 @@ public abstract class AbstractTransactionManagementConfiguration implements Impo
 
 	@Override
 	public void setImportMetadata(AnnotationMetadata importMetadata) {
-		this.enableTx = AnnotationAttributes.fromMap(
-				importMetadata.getAnnotationAttributes(EnableTransactionManagement.class.getName(), false));
+		this.enableTx = AnnotationAttributes.fromMap(importMetadata.getAnnotationAttributes(EnableTransactionManagement.class.getName(), false));
 		if (this.enableTx == null) {
-			throw new IllegalArgumentException(
-					"@EnableTransactionManagement is not present on importing class " + importMetadata.getClassName());
+			throw new IllegalArgumentException("@EnableTransactionManagement is not present on importing class " + importMetadata.getClassName());
 		}
 	}
 
@@ -67,5 +63,4 @@ public abstract class AbstractTransactionManagementConfiguration implements Impo
 	public static TransactionalEventListenerFactory transactionalEventListenerFactory() {
 		return new TransactionalEventListenerFactory();
 	}
-
 }

@@ -16,8 +16,7 @@ import org.springframework.util.Assert;
  * needs internally, including a generic transaction object determined by the
  * concrete transaction manager implementation.
  *
- * Supports delegating savepoint-related methods to a transaction object
- * that implements the {@link SavepointManager} interface.
+ * Supports delegating savepoint-related methods to a transaction object that implements the {@link SavepointManager} interface.
  *
  * <b>NOTE:</b> This is <i>not</i> intended for use with other PlatformTransactionManager
  * implementations, in particular not for mock transaction managers in testing environments.
@@ -124,7 +123,6 @@ public class DefaultTransactionStatus extends AbstractTransactionStatus {
 	//---------------------------------------------------------------------
 	// Enable functionality through underlying transaction object
 	//---------------------------------------------------------------------
-
 	/**
 	 * Determine the rollback-only flag via checking the transaction object, provided
 	 * that the latter implements the {@link SmartTransactionObject} interface.

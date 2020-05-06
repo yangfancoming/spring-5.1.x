@@ -174,8 +174,7 @@ public interface TransactionDefinition {
 	 * and further prohibits the situation where one transaction reads all rows that
 	 * satisfy a {@code WHERE} condition, a second transaction inserts a row
 	 * that satisfies that {@code WHERE} condition, and the first transaction
-	 * re-reads for the same condition, retrieving the additional "phantom" row
-	 * in the second read.
+	 * re-reads for the same condition, retrieving the additional "phantom" row in the second read.
 	 * @see java.sql.Connection#TRANSACTION_SERIALIZABLE
 	 */
 	int ISOLATION_SERIALIZABLE = Connection.TRANSACTION_SERIALIZABLE;

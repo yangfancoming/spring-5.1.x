@@ -12,10 +12,7 @@ import org.springframework.transaction.interceptor.DefaultTransactionAttribute;
 import org.springframework.transaction.interceptor.TransactionAttribute;
 
 /**
- * Strategy implementation for parsing EJB3's {@link javax.ejb.TransactionAttribute}
- * annotation.
- *
-
+ * Strategy implementation for parsing EJB3's {@link javax.ejb.TransactionAttribute} annotation.
  * @since 2.5
  */
 @SuppressWarnings("serial")
@@ -37,7 +34,6 @@ public class Ejb3TransactionAnnotationParser implements TransactionAnnotationPar
 		return new Ejb3TransactionAttribute(ann.value());
 	}
 
-
 	@Override
 	public boolean equals(Object other) {
 		return (this == other || other instanceof Ejb3TransactionAnnotationParser);
@@ -47,7 +43,6 @@ public class Ejb3TransactionAnnotationParser implements TransactionAnnotationPar
 	public int hashCode() {
 		return Ejb3TransactionAnnotationParser.class.hashCode();
 	}
-
 
 	/**
 	 * EJB3-specific TransactionAttribute, implementing EJB3's rollback rules

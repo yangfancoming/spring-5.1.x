@@ -25,8 +25,6 @@ import org.springframework.lang.Nullable;
  * This is essentially an adapter for bean-style bootstrapping of a
  * JCA ResourceAdapter, allowing the BootstrapContext or its elements
  * (such as the JCA WorkManager) to be specified through bean properties.
- *
-
  * @since 2.0.3
  * @see #setResourceAdapter
  * @see #setBootstrapContext
@@ -48,12 +46,9 @@ public class ResourceAdapterFactoryBean implements FactoryBean<ResourceAdapter>,
 	@Nullable
 	private XATerminator xaTerminator;
 
-
 	/**
-	 * Specify the target JCA ResourceAdapter as class, to be instantiated
-	 * with its default configuration.
-	 * Alternatively, specify a pre-configured ResourceAdapter instance
-	 * through the "resourceAdapter" property.
+	 * Specify the target JCA ResourceAdapter as class, to be instantiated with its default configuration.
+	 * Alternatively, specify a pre-configured ResourceAdapter instance through the "resourceAdapter" property.
 	 * @see #setResourceAdapter
 	 */
 	public void setResourceAdapterClass(Class<? extends ResourceAdapter> resourceAdapterClass) {
@@ -72,8 +67,7 @@ public class ResourceAdapterFactoryBean implements FactoryBean<ResourceAdapter>,
 
 	/**
 	 * Specify the JCA BootstrapContext to use for starting the ResourceAdapter.
-	 * Alternatively, you can specify the individual parts (such as the
-	 * JCA WorkManager) as individual references.
+	 * Alternatively, you can specify the individual parts (such as the  JCA WorkManager) as individual references.
 	 * @see #setWorkManager
 	 * @see #setXaTerminator
 	 */
@@ -129,7 +123,6 @@ public class ResourceAdapterFactoryBean implements FactoryBean<ResourceAdapter>,
 	public boolean isSingleton() {
 		return true;
 	}
-
 
 	/**
 	 * Stops the ResourceAdapter.

@@ -31,8 +31,7 @@ public class SpringTransactionAnnotationParser implements TransactionAnnotationP
 		if (attributes != null) {
 			// 如果目标方法上存在@Transactional注解，则获取注解值，并且封装为TransactionAttribute返回
 			return parseTransactionAnnotation(attributes);
-		}
-		else {
+		}else {
 			return null;
 		}
 	}
@@ -56,13 +55,11 @@ public class SpringTransactionAnnotationParser implements TransactionAnnotationP
 		rbta.setReadOnly(attributes.getBoolean("readOnly"));
 		// 获取注解上的value属性值
 		rbta.setQualifier(attributes.getString("value"));
-
 		List<RollbackRuleAttribute> rollbackRules = new ArrayList<>();
 		// 获取注解上的rollbackFor属性列表
 		for (Class<?> rbRule : attributes.getClassArray("rollbackFor")) {
 			rollbackRules.add(new RollbackRuleAttribute(rbRule));
 		}
-
 		// 获取注解上的rollbackForClassName属性列表
 		for (String rbRule : attributes.getStringArray("rollbackForClassName")) {
 			rollbackRules.add(new RollbackRuleAttribute(rbRule));
@@ -79,7 +76,6 @@ public class SpringTransactionAnnotationParser implements TransactionAnnotationP
 		return rbta;
 	}
 
-
 	@Override
 	public boolean equals(Object other) {
 		return (this == other || other instanceof SpringTransactionAnnotationParser);
@@ -89,5 +85,4 @@ public class SpringTransactionAnnotationParser implements TransactionAnnotationP
 	public int hashCode() {
 		return SpringTransactionAnnotationParser.class.hashCode();
 	}
-
 }

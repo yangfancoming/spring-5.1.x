@@ -14,8 +14,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * Utility methods for triggering specific {@link TransactionSynchronization}
- * callback methods on all currently registered synchronizations.
+ * Utility methods for triggering specific {@link TransactionSynchronization} callback methods on all currently registered synchronizations.
  * @since 2.0
  * @see TransactionSynchronization
  * @see TransactionSynchronizationManager#getSynchronizations()
@@ -142,15 +141,12 @@ public abstract class TransactionSynchronizationUtils {
 	 * @see TransactionSynchronization#STATUS_ROLLED_BACK
 	 * @see TransactionSynchronization#STATUS_UNKNOWN
 	 */
-	public static void invokeAfterCompletion(@Nullable List<TransactionSynchronization> synchronizations,
-			int completionStatus) {
-
+	public static void invokeAfterCompletion(@Nullable List<TransactionSynchronization> synchronizations,int completionStatus) {
 		if (synchronizations != null) {
 			for (TransactionSynchronization synchronization : synchronizations) {
 				try {
 					synchronization.afterCompletion(completionStatus);
-				}
-				catch (Throwable tsex) {
+				}catch (Throwable tsex) {
 					logger.error("TransactionSynchronization.afterCompletion threw exception", tsex);
 				}
 			}

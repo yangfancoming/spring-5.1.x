@@ -6,14 +6,9 @@ import java.io.Flushable;
 
 /**
  * Interface to be implemented by transaction objects that are able to
- * return an internal rollback-only marker, typically from a another
- * transaction that has participated and marked it as rollback-only.
- *
+ * return an internal rollback-only marker, typically from a another transaction that has participated and marked it as rollback-only.
  * Autodetected by DefaultTransactionStatus, to always return a
- * current rollbackOnly flag even if not resulting from the current
- * TransactionStatus.
- *
-
+ * current rollbackOnly flag even if not resulting from the current TransactionStatus.
  * @since 1.1
  * @see DefaultTransactionStatus#isRollbackOnly
  */

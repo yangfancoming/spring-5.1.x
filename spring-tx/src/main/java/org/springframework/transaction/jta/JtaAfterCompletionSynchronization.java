@@ -11,8 +11,7 @@ import org.springframework.transaction.support.TransactionSynchronizationUtils;
 
 /**
  * Adapter for a JTA Synchronization, invoking the {@code afterCommit} /
- * {@code afterCompletion} callbacks of Spring {@link TransactionSynchronization}
- * objects callbacks after the outer JTA transaction has completed.
+ * {@code afterCompletion} callbacks of Spring {@link TransactionSynchronization} objects callbacks after the outer JTA transaction has completed.
  * Applied when participating in an existing (non-Spring) JTA transaction.
  * @since 2.0
  * @see TransactionSynchronization#afterCommit
@@ -30,7 +29,6 @@ public class JtaAfterCompletionSynchronization implements Synchronization {
 	public JtaAfterCompletionSynchronization(List<TransactionSynchronization> synchronizations) {
 		this.synchronizations = synchronizations;
 	}
-
 
 	@Override
 	public void beforeCompletion() {

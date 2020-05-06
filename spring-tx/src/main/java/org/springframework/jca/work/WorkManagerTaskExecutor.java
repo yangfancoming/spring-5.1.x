@@ -30,31 +30,23 @@ import org.springframework.util.concurrent.ListenableFutureTask;
 
 /**
  * {@link org.springframework.core.task.TaskExecutor} implementation
- * that delegates to a JCA 1.7 WorkManager, implementing the
- * {@link javax.resource.spi.work.WorkManager} interface.
+ * that delegates to a JCA 1.7 WorkManager, implementing the {@link javax.resource.spi.work.WorkManager} interface.
  *
  * This is mainly intended for use within a JCA ResourceAdapter implementation,
- * but may also be used in a standalone environment, delegating to a locally
- * embedded WorkManager implementation (such as Geronimo's).
+ * but may also be used in a standalone environment, delegating to a locally embedded WorkManager implementation (such as Geronimo's).
  *
  * Also implements the JCA 1.7 WorkManager interface itself, delegating all
  * calls to the target WorkManager. Hence, a caller can choose whether it wants
- * to talk to this executor through the Spring TaskExecutor interface or the
- * WorkManager interface.
+ * to talk to this executor through the Spring TaskExecutor interface or the WorkManager interface.
  *
  * This adapter is also capable of obtaining a JCA WorkManager from JNDI.
- * This is for example appropriate on the Geronimo application server, where
- * WorkManager GBeans (e.g. Geronimo's default "DefaultWorkManager" GBean)
- * can be linked into the Java EE environment through "gbean-ref" entries
- * in the {@code geronimo-web.xml} deployment descriptor.
- *
-
+ * This is for example appropriate on the Geronimo application server, where  WorkManager GBeans (e.g. Geronimo's default "DefaultWorkManager" GBean)
+ * can be linked into the Java EE environment through "gbean-ref" entries in the {@code geronimo-web.xml} deployment descriptor.
  * @since 2.0.3
  * @see #setWorkManager
  * @see javax.resource.spi.work.WorkManager#scheduleWork
  */
-public class WorkManagerTaskExecutor extends JndiLocatorSupport
-		implements AsyncListenableTaskExecutor, SchedulingTaskExecutor, WorkManager, BootstrapContextAware, InitializingBean {
+public class WorkManagerTaskExecutor extends JndiLocatorSupport implements AsyncListenableTaskExecutor, SchedulingTaskExecutor, WorkManager, BootstrapContextAware, InitializingBean {
 
 	@Nullable
 	private WorkManager workManager;
@@ -99,9 +91,7 @@ public class WorkManagerTaskExecutor extends JndiLocatorSupport
 
 	/**
 	 * Set the JNDI name of the JCA WorkManager.
-	 * This can either be a fully qualified JNDI name,
-	 * or the JNDI name relative to the current environment
-	 * naming context if "resourceRef" is set to "true".
+	 * This can either be a fully qualified JNDI name, or the JNDI name relative to the current environment naming context if "resourceRef" is set to "true".
 	 * @see #setWorkManager
 	 * @see #setResourceRef
 	 */
@@ -110,8 +100,7 @@ public class WorkManagerTaskExecutor extends JndiLocatorSupport
 	}
 
 	/**
-	 * Specify the JCA BootstrapContext that contains the
-	 * WorkManager to delegate to.
+	 * Specify the JCA BootstrapContext that contains the WorkManager to delegate to.
 	 */
 	@Override
 	public void setBootstrapContext(BootstrapContext bootstrapContext) {
@@ -120,10 +109,8 @@ public class WorkManagerTaskExecutor extends JndiLocatorSupport
 	}
 
 	/**
-	 * Set whether to let {@link #execute} block until the work
-	 * has been actually started.
-	 * Uses the JCA {@code startWork} operation underneath,
-	 * instead of the default {@code scheduleWork}.
+	 * Set whether to let {@link #execute} block until the work has been actually started.
+	 * Uses the JCA {@code startWork} operation underneath,instead of the default {@code scheduleWork}.
 	 * @see javax.resource.spi.work.WorkManager#startWork
 	 * @see javax.resource.spi.work.WorkManager#scheduleWork
 	 */
@@ -132,10 +119,8 @@ public class WorkManagerTaskExecutor extends JndiLocatorSupport
 	}
 
 	/**
-	 * Set whether to let {@link #execute} block until the work
-	 * has been completed.
-	 * Uses the JCA {@code doWork} operation underneath,
-	 * instead of the default {@code scheduleWork}.
+	 * Set whether to let {@link #execute} block until the work has been completed.
+	 * Uses the JCA {@code doWork} operation underneath,instead of the default {@code scheduleWork}.
 	 * @see javax.resource.spi.work.WorkManager#doWork
 	 * @see javax.resource.spi.work.WorkManager#scheduleWork
 	 */
@@ -153,13 +138,10 @@ public class WorkManagerTaskExecutor extends JndiLocatorSupport
 	}
 
 	/**
-	 * Specify a custom {@link TaskDecorator} to be applied to any {@link Runnable}
-	 * about to be executed.
-	 * Note that such a decorator is not necessarily being applied to the
-	 * user-supplied {@code Runnable}/{@code Callable} but rather to the actual
+	 * Specify a custom {@link TaskDecorator} to be applied to any {@link Runnable} about to be executed.
+	 * Note that such a decorator is not necessarily being applied to the  user-supplied {@code Runnable}/{@code Callable} but rather to the actual
 	 * execution callback (which may be a wrapper around the user-supplied task).
-	 * The primary use case is to set some execution context around the task's
-	 * invocation, or to provide some monitoring/statistics for task execution.
+	 * The primary use case is to set some execution context around the task's invocation, or to provide some monitoring/statistics for task execution.
 	 * @since 4.3
 	 */
 	public void setTaskDecorator(TaskDecorator taskDecorator) {
@@ -193,7 +175,6 @@ public class WorkManagerTaskExecutor extends JndiLocatorSupport
 		return this.workManager;
 	}
 
-
 	//-------------------------------------------------------------------------
 	// Implementation of the Spring SchedulingTaskExecutor interface
 	//-------------------------------------------------------------------------
@@ -210,37 +191,29 @@ public class WorkManagerTaskExecutor extends JndiLocatorSupport
 			if (this.blockUntilCompleted) {
 				if (startTimeout != TIMEOUT_INDEFINITE || this.workListener != null) {
 					obtainWorkManager().doWork(work, startTimeout, null, this.workListener);
-				}
-				else {
+				}else {
 					obtainWorkManager().doWork(work);
 				}
-			}
-			else if (this.blockUntilStarted) {
+			}else if (this.blockUntilStarted) {
 				if (startTimeout != TIMEOUT_INDEFINITE || this.workListener != null) {
 					obtainWorkManager().startWork(work, startTimeout, null, this.workListener);
-				}
-				else {
+				}else {
 					obtainWorkManager().startWork(work);
 				}
-			}
-			else {
+			}else {
 				if (startTimeout != TIMEOUT_INDEFINITE || this.workListener != null) {
 					obtainWorkManager().scheduleWork(work, startTimeout, null, this.workListener);
-				}
-				else {
+				}else {
 					obtainWorkManager().scheduleWork(work);
 				}
 			}
-		}
-		catch (WorkRejectedException ex) {
+		}catch (WorkRejectedException ex) {
 			if (WorkException.START_TIMED_OUT.equals(ex.getErrorCode())) {
 				throw new TaskTimeoutException("JCA WorkManager rejected task because of timeout: " + task, ex);
-			}
-			else {
+			}else {
 				throw new TaskRejectedException("JCA WorkManager rejected task: " + task, ex);
 			}
-		}
-		catch (WorkException ex) {
+		}catch (WorkException ex) {
 			throw new SchedulingException("Could not schedule task on JCA WorkManager", ex);
 		}
 	}
@@ -284,9 +257,7 @@ public class WorkManagerTaskExecutor extends JndiLocatorSupport
 	}
 
 	@Override
-	public void doWork(Work work, long delay, ExecutionContext executionContext, WorkListener workListener)
-			throws WorkException {
-
+	public void doWork(Work work, long delay, ExecutionContext executionContext, WorkListener workListener) throws WorkException {
 		obtainWorkManager().doWork(work, delay, executionContext, workListener);
 	}
 
@@ -296,9 +267,7 @@ public class WorkManagerTaskExecutor extends JndiLocatorSupport
 	}
 
 	@Override
-	public long startWork(Work work, long delay, ExecutionContext executionContext, WorkListener workListener)
-			throws WorkException {
-
+	public long startWork(Work work, long delay, ExecutionContext executionContext, WorkListener workListener) throws WorkException {
 		return obtainWorkManager().startWork(work, delay, executionContext, workListener);
 	}
 
@@ -308,9 +277,7 @@ public class WorkManagerTaskExecutor extends JndiLocatorSupport
 	}
 
 	@Override
-	public void scheduleWork(Work work, long delay, ExecutionContext executionContext, WorkListener workListener)
-			throws WorkException {
-
+	public void scheduleWork(Work work, long delay, ExecutionContext executionContext, WorkListener workListener) throws WorkException {
 		obtainWorkManager().scheduleWork(work, delay, executionContext, workListener);
 	}
 

@@ -6,15 +6,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.transaction.TransactionStatus;
 
 /**
- * Callback interface for transactional code. Used with {@link TransactionTemplate}'s
- * {@code execute} method, often as anonymous class within a method implementation.
+ * Callback interface for transactional code. Used with {@link TransactionTemplate}'s {@code execute} method, often as anonymous class within a method implementation.
  *
  * Typically used to assemble various calls to transaction-unaware data access
  * services into a higher-level service method with transaction demarcation. As an
  * alternative, consider the use of declarative transaction demarcation (e.g. through
  * Spring's {@link org.springframework.transaction.annotation.Transactional} annotation).
- *
-
  * @since 17.03.2003
  * @see TransactionTemplate
  * @see CallbackPreferringPlatformTransactionManager
@@ -26,8 +23,7 @@ public interface TransactionCallback<T> {
 	/**
 	 * Gets called by {@link TransactionTemplate#execute} within a transactional context.
 	 * Does not need to care about transactions itself, although it can retrieve and
-	 * influence the status of the current transaction via the given status object,
-	 * e.g. setting rollback-only.
+	 * influence the status of the current transaction via the given status object, e.g. setting rollback-only.
 	 * Allows for returning a result object created within the transaction, i.e. a
 	 * domain object or a collection of domain objects. A RuntimeException thrown by the
 	 * callback is treated as application exception that enforces a rollback. Any such

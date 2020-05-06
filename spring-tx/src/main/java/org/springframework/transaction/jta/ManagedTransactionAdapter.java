@@ -15,8 +15,7 @@ import org.springframework.util.Assert;
 
 /**
  * Adapter for a managed JTA Transaction handle, taking a JTA
- * {@link javax.transaction.TransactionManager} reference and creating
- * a JTA {@link javax.transaction.Transaction} handle for it.
+ * {@link javax.transaction.TransactionManager} reference and creating a JTA {@link javax.transaction.Transaction} handle for it.
  * @since 3.0.2
  */
 public class ManagedTransactionAdapter implements Transaction {
@@ -36,43 +35,43 @@ public class ManagedTransactionAdapter implements Transaction {
 	 * Return the JTA TransactionManager that this adapter delegates to.
 	 */
 	public final TransactionManager getTransactionManager() {
-		return this.transactionManager;
+		return transactionManager;
 	}
 
 
 	@Override
 	public void commit() throws RollbackException, HeuristicMixedException, HeuristicRollbackException,SecurityException, SystemException {
-		this.transactionManager.commit();
+		transactionManager.commit();
 	}
 
 	@Override
 	public void rollback() throws SystemException {
-		this.transactionManager.rollback();
+		transactionManager.rollback();
 	}
 
 	@Override
 	public void setRollbackOnly() throws SystemException {
-		this.transactionManager.setRollbackOnly();
+		transactionManager.setRollbackOnly();
 	}
 
 	@Override
 	public int getStatus() throws SystemException {
-		return this.transactionManager.getStatus();
+		return transactionManager.getStatus();
 	}
 
 	@Override
 	public boolean enlistResource(XAResource xaRes) throws RollbackException, SystemException {
-		return this.transactionManager.getTransaction().enlistResource(xaRes);
+		return transactionManager.getTransaction().enlistResource(xaRes);
 	}
 
 	@Override
 	public boolean delistResource(XAResource xaRes, int flag) throws SystemException {
-		return this.transactionManager.getTransaction().delistResource(xaRes, flag);
+		return transactionManager.getTransaction().delistResource(xaRes, flag);
 	}
 
 	@Override
 	public void registerSynchronization(Synchronization sync) throws RollbackException, SystemException {
-		this.transactionManager.getTransaction().registerSynchronization(sync);
+		transactionManager.getTransaction().registerSynchronization(sync);
 	}
 
 }

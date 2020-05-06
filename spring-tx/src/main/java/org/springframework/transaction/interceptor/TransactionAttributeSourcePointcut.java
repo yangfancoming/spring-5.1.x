@@ -55,7 +55,6 @@ abstract class TransactionAttributeSourcePointcut extends StaticMethodMatcherPoi
 		return getClass().getName() + ": " + getTransactionAttributeSource();
 	}
 
-
 	/**
 	 * Obtain the underlying TransactionAttributeSource (may be {@code null}).
 	 * To be implemented by subclasses.

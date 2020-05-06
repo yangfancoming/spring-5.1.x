@@ -22,13 +22,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.xml.DomUtils;
 
 /**
- * {@link org.springframework.beans.factory.xml.BeanDefinitionParser
- * BeanDefinitionParser} for the {@code <tx:advice/>} tag.
- *
- * @author Rob Harrop
-
- * @author Adrian Colyer
-
+ * {@link org.springframework.beans.factory.xml.BeanDefinitionParser BeanDefinitionParser} for the {@code <tx:advice/>} tag.
  * @since 2.0
  */
 class TxAdviceBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
@@ -51,7 +45,6 @@ class TxAdviceBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
 
 	private static final String NO_ROLLBACK_FOR_ATTRIBUTE = "no-rollback-for";
 
-
 	@Override
 	protected Class<?> getBeanClass(Element element) {
 		return TransactionInterceptor.class;
@@ -63,28 +56,22 @@ class TxAdviceBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
 
 		List<Element> txAttributes = DomUtils.getChildElementsByTagName(element, ATTRIBUTES_ELEMENT);
 		if (txAttributes.size() > 1) {
-			parserContext.getReaderContext().error(
-					"Element <attributes> is allowed at most once inside element <advice>", element);
-		}
-		else if (txAttributes.size() == 1) {
+			parserContext.getReaderContext().error("Element <attributes> is allowed at most once inside element <advice>", element);
+		}else if (txAttributes.size() == 1) {
 			// Using attributes source.
 			Element attributeSourceElement = txAttributes.get(0);
 			RootBeanDefinition attributeSourceDefinition = parseAttributeSource(attributeSourceElement, parserContext);
 			builder.addPropertyValue("transactionAttributeSource", attributeSourceDefinition);
-		}
-		else {
+		}else {
 			// Assume annotations source.
-			builder.addPropertyValue("transactionAttributeSource",
-					new RootBeanDefinition("org.springframework.transaction.annotation.AnnotationTransactionAttributeSource"));
+			builder.addPropertyValue("transactionAttributeSource",new RootBeanDefinition("org.springframework.transaction.annotation.AnnotationTransactionAttributeSource"));
 		}
 	}
 
 	private RootBeanDefinition parseAttributeSource(Element attrEle, ParserContext parserContext) {
 		List<Element> methods = DomUtils.getChildElementsByTagName(attrEle, METHOD_ELEMENT);
-		ManagedMap<TypedStringValue, RuleBasedTransactionAttribute> transactionAttributeMap =
-				new ManagedMap<>(methods.size());
+		ManagedMap<TypedStringValue, RuleBasedTransactionAttribute> transactionAttributeMap = new ManagedMap<>(methods.size());
 		transactionAttributeMap.setSource(parserContext.extractSource(attrEle));
-
 		for (Element methodEle : methods) {
 			String name = methodEle.getAttribute(METHOD_NAME_ATTRIBUTE);
 			TypedStringValue nameHolder = new TypedStringValue(name);
@@ -104,8 +91,7 @@ class TxAdviceBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
 			if (StringUtils.hasText(timeout)) {
 				try {
 					attribute.setTimeout(Integer.parseInt(timeout));
-				}
-				catch (NumberFormatException ex) {
+				}catch (NumberFormatException ex) {
 					parserContext.getReaderContext().error("Timeout must be an integer value: [" + timeout + "]", methodEle);
 				}
 			}
@@ -123,10 +109,8 @@ class TxAdviceBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
 				addNoRollbackRuleAttributesTo(rollbackRules,noRollbackForValue);
 			}
 			attribute.setRollbackRules(rollbackRules);
-
 			transactionAttributeMap.put(nameHolder, attribute);
 		}
-
 		RootBeanDefinition attributeSourceDefinition = new RootBeanDefinition(NameMatchTransactionAttributeSource.class);
 		attributeSourceDefinition.setSource(parserContext.extractSource(attrEle));
 		attributeSourceDefinition.getPropertyValues().add("nameMap", transactionAttributeMap);

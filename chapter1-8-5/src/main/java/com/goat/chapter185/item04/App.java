@@ -9,6 +9,10 @@ import org.springframework.core.env.StandardEnvironment;
 
 import static org.springframework.core.env.AbstractEnvironment.DEFAULT_PROFILES_PROPERTY_NAME;
 
+
+/**
+ * spring.profiles 配置
+*/
 public class App {
 
 	private final ConfigurableEnvironment environment = new StandardEnvironment();

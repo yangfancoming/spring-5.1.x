@@ -20,15 +20,11 @@ import org.springframework.util.ClassUtils;
  */
 public class JtaTransactionManagerFactoryBean implements FactoryBean<JtaTransactionManager> {
 
-	private static final String WEBLOGIC_JTA_TRANSACTION_MANAGER_CLASS_NAME =
-			"org.springframework.transaction.jta.WebLogicJtaTransactionManager";
+	private static final String WEBLOGIC_JTA_TRANSACTION_MANAGER_CLASS_NAME = "org.springframework.transaction.jta.WebLogicJtaTransactionManager";
 
-	private static final String WEBSPHERE_TRANSACTION_MANAGER_CLASS_NAME =
-			"org.springframework.transaction.jta.WebSphereUowTransactionManager";
+	private static final String WEBSPHERE_TRANSACTION_MANAGER_CLASS_NAME = "org.springframework.transaction.jta.WebSphereUowTransactionManager";
 
-	private static final String JTA_TRANSACTION_MANAGER_CLASS_NAME =
-			"org.springframework.transaction.jta.JtaTransactionManager";
-
+	private static final String JTA_TRANSACTION_MANAGER_CLASS_NAME = "org.springframework.transaction.jta.JtaTransactionManager";
 
 	private static final boolean weblogicPresent;
 
@@ -40,24 +36,19 @@ public class JtaTransactionManagerFactoryBean implements FactoryBean<JtaTransact
 		webspherePresent = ClassUtils.isPresent("com.ibm.wsspi.uow.UOWManager", classLoader);
 	}
 
-
 	@Nullable
 	private final JtaTransactionManager transactionManager;
-
 
 	@SuppressWarnings("unchecked")
 	public JtaTransactionManagerFactoryBean() {
 		String className = resolveJtaTransactionManagerClassName();
 		try {
-			Class<? extends JtaTransactionManager> clazz = (Class<? extends JtaTransactionManager>)
-					ClassUtils.forName(className, JtaTransactionManagerFactoryBean.class.getClassLoader());
+			Class<? extends JtaTransactionManager> clazz = (Class<? extends JtaTransactionManager>) ClassUtils.forName(className, JtaTransactionManagerFactoryBean.class.getClassLoader());
 			this.transactionManager = BeanUtils.instantiateClass(clazz);
-		}
-		catch (ClassNotFoundException ex) {
+		}catch (ClassNotFoundException ex) {
 			throw new IllegalStateException("Failed to load JtaTransactionManager class: " + className, ex);
 		}
 	}
-
 
 	@Override
 	@Nullable
@@ -75,15 +66,12 @@ public class JtaTransactionManagerFactoryBean implements FactoryBean<JtaTransact
 		return true;
 	}
 
-
 	static String resolveJtaTransactionManagerClassName() {
 		if (weblogicPresent) {
 			return WEBLOGIC_JTA_TRANSACTION_MANAGER_CLASS_NAME;
-		}
-		else if (webspherePresent) {
+		}else if (webspherePresent) {
 			return WEBSPHERE_TRANSACTION_MANAGER_CLASS_NAME;
-		}
-		else {
+		}else {
 			return JTA_TRANSACTION_MANAGER_CLASS_NAME;
 		}
 	}

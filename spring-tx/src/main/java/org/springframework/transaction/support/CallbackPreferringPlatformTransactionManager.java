@@ -11,14 +11,11 @@ import org.springframework.transaction.TransactionException;
  * Extension of the {@link org.springframework.transaction.PlatformTransactionManager}
  * interface, exposing a method for executing a given callback within a transaction.
  *
- * Implementors of this interface automatically express a preference for
- * callbacks over programmatic {@code getTransaction}, {@code commit}
- * and {@code rollback} calls. Calling code may check whether a given
- * transaction manager implements this interface to choose to prepare a
- * callback instead of explicit transaction demarcation control.
+ * Implementors of this interface automatically express a preference for callbacks over programmatic {@code getTransaction},
+ * {@code commit} and {@code rollback} calls. Calling code may check whether a given
+ * transaction manager implements this interface to choose to prepare a callback instead of explicit transaction demarcation control.
  *
- * Spring's {@link TransactionTemplate} and
- * {@link org.springframework.transaction.interceptor.TransactionInterceptor}
+ * Spring's {@link TransactionTemplate} and {@link org.springframework.transaction.interceptor.TransactionInterceptor}
  * detect and use this PlatformTransactionManager variant automatically.
  * @since 2.0
  * @see TransactionTemplate

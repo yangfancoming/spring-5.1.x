@@ -12,11 +12,8 @@ import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.util.Assert;
 
 /**
- * {@link org.springframework.context.ApplicationContext} implementation
- * for a JCA ResourceAdapter. Needs to be initialized with the JCA
- * {@link javax.resource.spi.BootstrapContext}, passing it on to
- * Spring-managed beans that implement {@link BootstrapContextAware}.
-
+ * {@link org.springframework.context.ApplicationContext} implementation for a JCA ResourceAdapter.
+ * Needs to be initialized with the JCA {@link javax.resource.spi.BootstrapContext}, passing it on to Spring-managed beans that implement {@link BootstrapContextAware}.
  * @since 2.5
  * @see SpringContextResourceAdapter
  * @see BootstrapContextAware
@@ -25,17 +22,14 @@ public class ResourceAdapterApplicationContext extends GenericApplicationContext
 
 	private final BootstrapContext bootstrapContext;
 
-
 	/**
 	 * Create a new ResourceAdapterApplicationContext for the given BootstrapContext.
-	 * @param bootstrapContext the JCA BootstrapContext that the ResourceAdapter
-	 * has been started with
+	 * @param bootstrapContext the JCA BootstrapContext that the ResourceAdapter has been started with
 	 */
 	public ResourceAdapterApplicationContext(BootstrapContext bootstrapContext) {
 		Assert.notNull(bootstrapContext, "BootstrapContext must not be null");
 		this.bootstrapContext = bootstrapContext;
 	}
-
 
 	@Override
 	protected void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {

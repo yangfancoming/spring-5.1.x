@@ -42,8 +42,7 @@ import org.springframework.util.StringUtils;
  * implementation will perform the actual transaction management, and a
  * {@code TransactionAttributeSource} is used for determining transaction definitions.
  *
- * A transaction aspect is serializable if its {@code PlatformTransactionManager}
- * and {@code TransactionAttributeSource} are serializable.
+ * A transaction aspect is serializable if its {@code PlatformTransactionManager} and {@code TransactionAttributeSource} are serializable.
  * @since 1.1
  * @see #setTransactionManager
  * @see #setTransactionAttributes
@@ -62,8 +61,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	/**
 	 * Holder to support the {@code currentTransactionStatus()} method,
 	 * and to support communication between different cooperating advices
-	 * (e.g. before and after advice) if the aspect involves more than a
-	 * single method (as will be the case for around advice).
+	 * (e.g. before and after advice) if the aspect involves more than a single method (as will be the case for around advice).
 	 */
 	private static final ThreadLocal<TransactionInfo> transactionInfoHolder = new NamedThreadLocal<>("Current aspect-driven transaction");
 
@@ -416,11 +414,9 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 
 	/**
 	 * Create a transaction if necessary based on the given TransactionAttribute.
-	 * Allows callers to perform custom TransactionAttribute lookups through
-	 * the TransactionAttributeSource.
+	 * Allows callers to perform custom TransactionAttribute lookups through the TransactionAttributeSource.
 	 * @param txAttr the TransactionAttribute (may be {@code null})
-	 * @param joinpointIdentification the fully qualified method name
-	 * (used for monitoring and logging purposes)
+	 * @param joinpointIdentification the fully qualified method name  (used for monitoring and logging purposes)
 	 * @return a TransactionInfo object, whether or not a transaction was created.
 	 * The {@code hasTransaction()} method on TransactionInfo can be used to
 	 * tell if there was a transaction created.
@@ -632,7 +628,6 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 		}
 	}
 
-
 	/**
 	 * Simple callback interface for proceeding with the target invocation.
 	 * Concrete interceptors/aspects adapt this to their invocation mechanism.
@@ -642,7 +637,6 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 		Object proceedWithInvocation() throws Throwable;
 	}
 
-
 	/**
 	 * Internal holder class for a Throwable in a callback transaction model.
 	 */
@@ -650,7 +644,6 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 		@Nullable
 		public Throwable throwable;
 	}
-
 
 	/**
 	 * Internal holder class for a Throwable, used as a RuntimeException to be thrown from a TransactionCallback (and subsequently unwrapped again).

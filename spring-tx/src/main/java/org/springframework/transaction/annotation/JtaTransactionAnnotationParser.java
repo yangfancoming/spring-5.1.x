@@ -18,8 +18,6 @@ import org.springframework.transaction.interceptor.TransactionAttribute;
 
 /**
  * Strategy implementation for parsing JTA 1.2's {@link javax.transaction.Transactional} annotation.
- *
-
  * @since 4.0
  */
 @SuppressWarnings("serial")
@@ -28,12 +26,10 @@ public class JtaTransactionAnnotationParser implements TransactionAnnotationPars
 	@Override
 	@Nullable
 	public TransactionAttribute parseTransactionAnnotation(AnnotatedElement element) {
-		AnnotationAttributes attributes = AnnotatedElementUtils.getMergedAnnotationAttributes(
-				element, javax.transaction.Transactional.class);
+		AnnotationAttributes attributes = AnnotatedElementUtils.getMergedAnnotationAttributes(element, javax.transaction.Transactional.class);
 		if (attributes != null) {
 			return parseTransactionAnnotation(attributes);
-		}
-		else {
+		}else {
 			return null;
 		}
 	}
@@ -44,10 +40,7 @@ public class JtaTransactionAnnotationParser implements TransactionAnnotationPars
 
 	protected TransactionAttribute parseTransactionAnnotation(AnnotationAttributes attributes) {
 		RuleBasedTransactionAttribute rbta = new RuleBasedTransactionAttribute();
-
-		rbta.setPropagationBehaviorName(
-				RuleBasedTransactionAttribute.PREFIX_PROPAGATION + attributes.getEnum("value").toString());
-
+		rbta.setPropagationBehaviorName(RuleBasedTransactionAttribute.PREFIX_PROPAGATION + attributes.getEnum("value").toString());
 		List<RollbackRuleAttribute> rollbackRules = new ArrayList<>();
 		for (Class<?> rbRule : attributes.getClassArray("rollbackOn")) {
 			rollbackRules.add(new RollbackRuleAttribute(rbRule));
@@ -56,7 +49,6 @@ public class JtaTransactionAnnotationParser implements TransactionAnnotationPars
 			rollbackRules.add(new NoRollbackRuleAttribute(rbRule));
 		}
 		rbta.setRollbackRules(rollbackRules);
-
 		return rbta;
 	}
 

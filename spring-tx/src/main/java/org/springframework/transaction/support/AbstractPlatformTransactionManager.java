@@ -120,10 +120,9 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 	}
 
 	/**
-	 * Set when this transaction manager should activate the thread-bound
-	 * transaction synchronization support. Default is "always".
-	 * Note that transaction synchronization isn't supported for
-	 * multiple concurrent transactions by different transaction managers.
+	 * Set when this transaction manager should activate the thread-bound  transaction synchronization support.
+	 * Default is "always".
+	 * Note that transaction synchronization isn't supported for multiple concurrent transactions by different transaction managers.
 	 * Only one transaction manager is allowed to activate it at any time.
 	 * @see #SYNCHRONIZATION_ALWAYS
 	 * @see #SYNCHRONIZATION_ON_ACTUAL_TRANSACTION
@@ -136,18 +135,15 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 	}
 
 	/**
-	 * Return if this transaction manager should activate the thread-bound
-	 * transaction synchronization support.
+	 * Return if this transaction manager should activate the thread-bound transaction synchronization support.
 	 */
 	public final int getTransactionSynchronization() {
 		return this.transactionSynchronization;
 	}
 
 	/**
-	 * Specify the default timeout that this transaction manager should apply
-	 * if there is no timeout specified at the transaction level, in seconds.
-	 * Default is the underlying transaction infrastructure's default timeout,
-	 * e.g. typically 30 seconds in case of a JTA provider, indicated by the
+	 * Specify the default timeout that this transaction manager should apply if there is no timeout specified at the transaction level, in seconds.
+	 * Default is the underlying transaction infrastructure's default timeout,e.g. typically 30 seconds in case of a JTA provider, indicated by the
 	 * {@code TransactionDefinition.TIMEOUT_DEFAULT} value.
 	 * @see org.springframework.transaction.TransactionDefinition#TIMEOUT_DEFAULT
 	 */

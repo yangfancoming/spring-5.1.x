@@ -6,15 +6,9 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface implemented by Spring integrations with data access technologies
- * that throw runtime exceptions, such as JPA and Hibernate.
- *
+ * Interface implemented by Spring integrations with data access technologies that throw runtime exceptions, such as JPA and Hibernate.
  * This allows consistent usage of combined exception translation functionality,
- * without forcing a single translator to understand every single possible type
- * of exception.
- *
- * @author Rod Johnson
-
+ * without forcing a single translator to understand every single possible type of exception.
  * @since 2.0
  */
 @FunctionalInterface
@@ -25,20 +19,15 @@ public interface PersistenceExceptionTranslator {
 	 * corresponding exception from Spring's generic
 	 * {@link org.springframework.dao.DataAccessException} hierarchy, if possible.
 	 * Do not translate exceptions that are not understood by this translator:
-	 * for example, if coming from another persistence framework, or resulting
-	 * from user code or otherwise unrelated to persistence.
-	 * Of particular importance is the correct translation to
-	 * DataIntegrityViolationException, for example on constraint violation.
-	 * Implementations may use Spring JDBC's sophisticated exception translation
-	 * to provide further information in the event of SQLException as a root cause.
+	 * for example, if coming from another persistence framework, or resulting from user code or otherwise unrelated to persistence.
+	 * Of particular importance is the correct translation to  DataIntegrityViolationException, for example on constraint violation.
+	 * Implementations may use Spring JDBC's sophisticated exception translation to provide further information in the event of SQLException as a root cause.
 	 * @param ex a RuntimeException to translate
 	 * @return the corresponding DataAccessException (or {@code null} if the
-	 * exception could not be translated, as in this case it may result from
-	 * user code rather than from an actual persistence problem)
+	 * exception could not be translated, as in this case it may result from user code rather than from an actual persistence problem)
 	 * @see org.springframework.dao.DataIntegrityViolationException
 	 * @see org.springframework.jdbc.support.SQLExceptionTranslator
 	 */
 	@Nullable
 	DataAccessException translateExceptionIfPossible(RuntimeException ex);
-
 }

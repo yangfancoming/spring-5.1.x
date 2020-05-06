@@ -112,9 +112,8 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager im
 	public static final String DEFAULT_USER_TRANSACTION_NAME = "java:comp/UserTransaction";
 
 	/**
-	 * Fallback JNDI locations for the JTA TransactionManager. Applied if
-	 * the JTA UserTransaction does not implement the JTA TransactionManager
-	 * interface, provided that the "autodetectTransactionManager" flag is "true".
+	 * Fallback JNDI locations for the JTA TransactionManager.
+	 * Applied if the JTA UserTransaction does not implement the JTA TransactionManager interface, provided that the "autodetectTransactionManager" flag is "true".
 	 * @see #setTransactionManagerName
 	 * @see #setAutodetectTransactionManager
 	 */
