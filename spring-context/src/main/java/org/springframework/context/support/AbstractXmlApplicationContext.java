@@ -27,6 +27,7 @@ public abstract class AbstractXmlApplicationContext extends AbstractRefreshableC
 
 	//  Create a new AbstractXmlApplicationContext with no parent.
 	public AbstractXmlApplicationContext() {
+		logger.warn("进入 【AbstractXmlApplicationContext】 构造函数 {}");
 	}
 
 	/**

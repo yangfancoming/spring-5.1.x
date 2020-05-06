@@ -15,8 +15,7 @@ import org.springframework.lang.Nullable;
  * {@code AnnotationAwareOrderComparator} is an extension of
  * {@link OrderComparator} that supports Spring's
  * {@link org.springframework.core.Ordered} interface as well as the
- * {@link Order @Order} and {@link javax.annotation.Priority @Priority}
- * annotations, with an order value provided by an {@code Ordered}
+ * {@link Order @Order} and {@link javax.annotation.Priority @Priority} annotations, with an order value provided by an {@code Ordered}
  * instance overriding a statically defined annotation value (if any).
  * Consult the Javadoc for {@link OrderComparator} for details on the sort semantics for non-ordered objects.
  * @since 2.0.1
@@ -32,8 +31,7 @@ public class AnnotationAwareOrderComparator extends OrderComparator {
 	public static final AnnotationAwareOrderComparator INSTANCE = new AnnotationAwareOrderComparator();
 
 	/**
-	 * This implementation checks for {@link Order @Order} or
-	 * {@link javax.annotation.Priority @Priority} on various kinds of
+	 * This implementation checks for {@link Order @Order} or {@link javax.annotation.Priority @Priority} on various kinds of
 	 * elements, in addition to the {@link org.springframework.core.Ordered} check in the superclass.
 	 */
 	@Override
@@ -67,10 +65,8 @@ public class AnnotationAwareOrderComparator extends OrderComparator {
 	}
 
 	/**
-	 * This implementation retrieves an @{@link javax.annotation.Priority}
-	 * value, allowing for additional semantics over the regular @{@link Order}
-	 * annotation: typically, selecting one object over another in case of
-	 * multiple matches but only one object to be returned.
+	 * This implementation retrieves an @{@link javax.annotation.Priority} value, allowing for additional semantics over the regular @{@link Order}
+	 * annotation: typically, selecting one object over another in case of  multiple matches but only one object to be returned.
 	 */
 	@Override
 	@Nullable
@@ -85,7 +81,6 @@ public class AnnotationAwareOrderComparator extends OrderComparator {
 		return priority;
 	}
 
-
 	/**
 	 * Sort the given List with a default AnnotationAwareOrderComparator.
 	 * Optimized to skip sorting for lists with size 0 or 1,in order to avoid unnecessary array extraction.
@@ -98,8 +93,7 @@ public class AnnotationAwareOrderComparator extends OrderComparator {
 
 	/**
 	 * Sort the given array with a default AnnotationAwareOrderComparator.
-	 * Optimized to skip sorting for lists with size 0 or 1,
-	 * in order to avoid unnecessary array extraction.
+	 * Optimized to skip sorting for lists with size 0 or 1,in order to avoid unnecessary array extraction.
 	 * @param array the array to sort
 	 * @see java.util.Arrays#sort(Object[], java.util.Comparator)
 	 */
@@ -110,8 +104,7 @@ public class AnnotationAwareOrderComparator extends OrderComparator {
 	/**
 	 * Sort the given array or List with a default AnnotationAwareOrderComparator,
 	 * if necessary. Simply skips sorting when given any other value.
-	 * Optimized to skip sorting for lists with size 0 or 1,
-	 * in order to avoid unnecessary array extraction.
+	 * Optimized to skip sorting for lists with size 0 or 1,in order to avoid unnecessary array extraction.
 	 * @param value the array or List to sort
 	 * @see java.util.Arrays#sort(Object[], java.util.Comparator)
 	 */
@@ -122,5 +115,4 @@ public class AnnotationAwareOrderComparator extends OrderComparator {
 			sort((List<?>) value);
 		}
 	}
-
 }

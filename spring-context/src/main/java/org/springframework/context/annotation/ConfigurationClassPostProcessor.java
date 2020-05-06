@@ -52,11 +52,11 @@ import org.springframework.util.ClassUtils;
 import static org.springframework.context.annotation.AnnotationConfigUtils.CONFIGURATION_BEAN_NAME_GENERATOR;
 
 /**
+ * 用来处理@Configuration，@Import，@ImportResource和类内部的@Bean
  * {@link BeanFactoryPostProcessor} used for bootstrapping processing of {@link Configuration @Configuration} classes.
  * Registered by default when using {@code <context:annotation-config/>} or
  * {@code <context:component-scan/>}. Otherwise, may be declared manually as with any other BeanFactoryPostProcessor.
- * This post processor is priority-ordered as it is important that any
- * {@link Bean} methods declared in {@code @Configuration} classes have
+ * This post processor is priority-ordered as it is important that any {@link Bean} methods declared in {@code @Configuration} classes have
  * their corresponding bean definitions registered before any other {@link BeanFactoryPostProcessor} executes.
  * @since 3.0
  */
@@ -104,7 +104,6 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 		}
 	};
 
-
 	@Override
 	public int getOrder() {
 		return Ordered.LOWEST_PRECEDENCE;  // within PriorityOrdered
@@ -128,8 +127,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 
 	/**
 	 * Set the {@link MetadataReaderFactory} to use.
-	 * Default is a {@link CachingMetadataReaderFactory} for the specified
-	 * {@linkplain #setBeanClassLoader bean class loader}.
+	 * Default is a {@link CachingMetadataReaderFactory} for the specified {@linkplain #setBeanClassLoader bean class loader}.
 	 */
 	public void setMetadataReaderFactory(MetadataReaderFactory metadataReaderFactory) {
 		Assert.notNull(metadataReaderFactory, "MetadataReaderFactory must not be null");
@@ -211,6 +209,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 
 	/**
 	 * Build and validate a configuration model based on the registry of {@link Configuration} classes.
+	 * 方法内部处理@Configuration，@Import，@ImportResource和类内部的@Bean
 	 */
 	public void processConfigBeanDefinitions(BeanDefinitionRegistry registry) {
 		List<BeanDefinitionHolder> configCandidates = new ArrayList<>();
@@ -371,5 +370,4 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 			return bean;
 		}
 	}
-
 }

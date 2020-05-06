@@ -5,6 +5,8 @@ package org.springframework.context.annotation;
 import java.lang.annotation.Annotation;
 import java.util.function.Supplier;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.AnnotatedGenericBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionCustomizer;
@@ -27,6 +29,12 @@ import org.springframework.util.Assert;
  * @see AnnotationConfigApplicationContext#register
  */
 public class AnnotatedBeanDefinitionReader {
+
+	// log4j 日志方式
+//	private static final Logger logger = Logger.getLogger(AnnotatedBeanDefinitionReader.class);
+
+	// spring内置日志方式
+	protected final Log logger = LogFactory.getLog(getClass());
 
 	private final BeanDefinitionRegistry registry;
 
@@ -55,6 +63,7 @@ public class AnnotatedBeanDefinitionReader {
 	 * @since 3.1
 	 */
 	public AnnotatedBeanDefinitionReader(BeanDefinitionRegistry registry, Environment environment) {
+		logger.warn("进入 【AnnotatedBeanDefinitionReader】 构造函数 {}");
 		Assert.notNull(registry, "BeanDefinitionRegistry must not be null");
 		Assert.notNull(environment, "Environment must not be null");
 		this.registry = registry;
@@ -167,13 +176,22 @@ public class AnnotatedBeanDefinitionReader {
 	 * @since 5.0
 	 */
 	<T> void doRegisterBean(Class<T> annotatedClass, @Nullable Supplier<T> instanceSupplier, @Nullable String name,@Nullable Class<? extends Annotation>[] qualifiers, BeanDefinitionCustomizer... definitionCustomizers) {
+		// 先把此实体类型转换为一个BeanDefinition
 		AnnotatedGenericBeanDefinition abd = new AnnotatedGenericBeanDefinition(annotatedClass);
+		/**
+		 * abd.getMetadata() 元数据包括注解信息、是否内部类、类Class基本信息等等, 此处由conditionEvaluator#shouldSkip去过滤，此Class是否是配置类。
+		 *  大体逻辑为：必须有@Configuration修饰。然后解析一些Condition注解，看是否排除~
+		*/
 		if (conditionEvaluator.shouldSkip(abd.getMetadata())) return;
 		abd.setInstanceSupplier(instanceSupplier);
+		// 解析Scope
 		ScopeMetadata scopeMetadata = scopeMetadataResolver.resolveScopeMetadata(abd);
 		abd.setScope(scopeMetadata.getScopeName());
+		// 得到Bean的名称 一般为首字母小写（此处为AnnotationBeanNameGenerator）
 		String beanName = (name != null ? name : beanNameGenerator.generateBeanName(abd, registry));
+		// 设定一些注解默认值，如lazy、Primary等等
 		AnnotationConfigUtils.processCommonDefinitionAnnotations(abd);
+		// 解析qualifiers，若有此注解  则primary都成为true了
 		if (qualifiers != null) {
 			for (Class<? extends Annotation> qualifier : qualifiers) {
 				if (Primary.class == qualifier) {
@@ -185,9 +203,11 @@ public class AnnotatedBeanDefinitionReader {
 				}
 			}
 		}
+		// 自定义定制信息(一般都不需要)
 		for (BeanDefinitionCustomizer customizer : definitionCustomizers) {
 			customizer.customize(abd);
 		}
+		// 下面位解析Scope是否需要代理，最后把这个Bean注册进去
 		BeanDefinitionHolder definitionHolder = new BeanDefinitionHolder(abd, beanName);
 		definitionHolder = AnnotationConfigUtils.applyScopedProxyMode(scopeMetadata, definitionHolder, registry);
 		BeanDefinitionReaderUtils.registerBeanDefinition(definitionHolder, registry);

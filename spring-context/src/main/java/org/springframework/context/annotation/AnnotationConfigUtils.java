@@ -38,9 +38,8 @@ import org.springframework.util.ClassUtils;
  * @see org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor
  */
 public abstract class AnnotationConfigUtils {
-	/**
-	 * The bean name of the internally managed Configuration annotation processor.
-	 */
+
+	// The bean name of the internally managed Configuration annotation processor.
 	public static final String CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME = "org.springframework.context.annotation.internalConfigurationAnnotationProcessor";
 
 	/**
@@ -52,9 +51,7 @@ public abstract class AnnotationConfigUtils {
 	 */
 	public static final String CONFIGURATION_BEAN_NAME_GENERATOR = "org.springframework.context.annotation.internalConfigurationBeanNameGenerator";
 
-	/**
-	 * The bean name of the internally managed Autowired annotation processor.
-	 */
+	//  The bean name of the internally managed Autowired annotation processor.
 	public static final String AUTOWIRED_ANNOTATION_PROCESSOR_BEAN_NAME = "org.springframework.context.annotation.internalAutowiredAnnotationProcessor";
 
 	/**
@@ -64,28 +61,19 @@ public abstract class AnnotationConfigUtils {
 	@Deprecated
 	public static final String REQUIRED_ANNOTATION_PROCESSOR_BEAN_NAME = "org.springframework.context.annotation.internalRequiredAnnotationProcessor";
 
-	/**
-	 * The bean name of the internally managed JSR-250 annotation processor.
-	 */
+	// The bean name of the internally managed JSR-250 annotation processor.
 	public static final String COMMON_ANNOTATION_PROCESSOR_BEAN_NAME = "org.springframework.context.annotation.internalCommonAnnotationProcessor";
 
-	/**
-	 * The bean name of the internally managed JPA annotation processor.
-	 */
+	// The bean name of the internally managed JPA annotation processor.
 	public static final String PERSISTENCE_ANNOTATION_PROCESSOR_BEAN_NAME = "org.springframework.context.annotation.internalPersistenceAnnotationProcessor";
 
 	private static final String PERSISTENCE_ANNOTATION_PROCESSOR_CLASS_NAME = "org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor";
 
-	/**
-	 * The bean name of the internally managed @EventListener annotation processor.
-	 */
+	// The bean name of the internally managed @EventListener annotation processor.
 	public static final String EVENT_LISTENER_PROCESSOR_BEAN_NAME = "org.springframework.context.event.internalEventListenerProcessor";
 
-	/**
-	 * The bean name of the internally managed EventListenerFactory.
-	 */
+	// The bean name of the internally managed EventListenerFactory.
 	public static final String EVENT_LISTENER_FACTORY_BEAN_NAME = "org.springframework.context.event.internalEventListenerFactory";
-
 
 	private static final boolean jsr250Present;
 
@@ -96,7 +84,6 @@ public abstract class AnnotationConfigUtils {
 		jsr250Present = ClassUtils.isPresent("javax.annotation.Resource", classLoader);
 		jpaPresent = ClassUtils.isPresent("javax.persistence.EntityManagerFactory", classLoader) && ClassUtils.isPresent(PERSISTENCE_ANNOTATION_PROCESSOR_CLASS_NAME, classLoader);
 	}
-
 
 	/**
 	 * Register all relevant annotation post processors in the given registry.
@@ -115,56 +102,58 @@ public abstract class AnnotationConfigUtils {
 	 * @return a Set of BeanDefinitionHolders, containing all bean definitions that have actually been registered by this call
 	 */
 	public static Set<BeanDefinitionHolder> registerAnnotationConfigProcessors(BeanDefinitionRegistry registry, @Nullable Object source) {
+		// 把我们的beanFactory从registry里解析出来
 		DefaultListableBeanFactory beanFactory = unwrapDefaultListableBeanFactory(registry);
 		if (beanFactory != null) {
 			if (!(beanFactory.getDependencyComparator() instanceof AnnotationAwareOrderComparator)) {
 				beanFactory.setDependencyComparator(AnnotationAwareOrderComparator.INSTANCE);
 			}
+			// 相当于如果没有这个AutowireCandidateResolver，就给设置一份ContextAnnotationAutowireCandidateResolver
 			if (!(beanFactory.getAutowireCandidateResolver() instanceof ContextAnnotationAutowireCandidateResolver)) {
 				beanFactory.setAutowireCandidateResolver(new ContextAnnotationAutowireCandidateResolver());
 			}
 		}
-
+		//这里初始长度放4  是因为大多数情况下，我们只会注册4个BeanPostProcessor 如下(不多说了)
+		// BeanDefinitionHolder解释：持有name和aliases,为注册做准备
+		// Spring 4.2之后这个改成6我觉得更准确点
 		Set<BeanDefinitionHolder> beanDefs = new LinkedHashSet<>(8);
-
 		if (!registry.containsBeanDefinition(CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME)) {
 			RootBeanDefinition def = new RootBeanDefinition(ConfigurationClassPostProcessor.class);
 			def.setSource(source);
 			beanDefs.add(registerPostProcessor(registry, def, CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME));
 		}
-
 		if (!registry.containsBeanDefinition(AUTOWIRED_ANNOTATION_PROCESSOR_BEAN_NAME)) {
 			RootBeanDefinition def = new RootBeanDefinition(AutowiredAnnotationBeanPostProcessor.class);
 			def.setSource(source);
 			beanDefs.add(registerPostProcessor(registry, def, AUTOWIRED_ANNOTATION_PROCESSOR_BEAN_NAME));
 		}
-
+		// 支持JSR-250的一些注解：@Resource、@PostConstruct、@PreDestroy等
 		// Check for JSR-250 support, and if present add the CommonAnnotationBeanPostProcessor.
 		if (jsr250Present && !registry.containsBeanDefinition(COMMON_ANNOTATION_PROCESSOR_BEAN_NAME)) {
 			RootBeanDefinition def = new RootBeanDefinition(CommonAnnotationBeanPostProcessor.class);
 			def.setSource(source);
 			beanDefs.add(registerPostProcessor(registry, def, COMMON_ANNOTATION_PROCESSOR_BEAN_NAME));
 		}
-
+		// 若导入了对JPA的支持，那就注册JPA相关注解的处理器
 		// Check for JPA support, and if present add the PersistenceAnnotationBeanPostProcessor.
 		if (jpaPresent && !registry.containsBeanDefinition(PERSISTENCE_ANNOTATION_PROCESSOR_BEAN_NAME)) {
 			RootBeanDefinition def = new RootBeanDefinition();
 			try {
 				def.setBeanClass(ClassUtils.forName(PERSISTENCE_ANNOTATION_PROCESSOR_CLASS_NAME,AnnotationConfigUtils.class.getClassLoader()));
-			}
-			catch (ClassNotFoundException ex) {
+			}catch (ClassNotFoundException ex) {
 				throw new IllegalStateException("Cannot load optional framework class: " + PERSISTENCE_ANNOTATION_PROCESSOR_CLASS_NAME, ex);
 			}
 			def.setSource(source);
 			beanDefs.add(registerPostProcessor(registry, def, PERSISTENCE_ANNOTATION_PROCESSOR_BEAN_NAME));
 		}
-
+		// 下面两个类，是Spring4.2之后加入进来的，为了更好的使用Spring的事件而提供支持
+		// 支持了@EventListener注解，我们可以通过此注解更方便的监听事件了（Spring4.2之后）
+		// 具体这个Processor和ListenerFactory怎么起作用的，且听事件专题分解
 		if (!registry.containsBeanDefinition(EVENT_LISTENER_PROCESSOR_BEAN_NAME)) {
 			RootBeanDefinition def = new RootBeanDefinition(EventListenerMethodProcessor.class);
 			def.setSource(source);
 			beanDefs.add(registerPostProcessor(registry, def, EVENT_LISTENER_PROCESSOR_BEAN_NAME));
 		}
-
 		if (!registry.containsBeanDefinition(EVENT_LISTENER_FACTORY_BEAN_NAME)) {
 			RootBeanDefinition def = new RootBeanDefinition(DefaultEventListenerFactory.class);
 			def.setSource(source);
@@ -183,11 +172,9 @@ public abstract class AnnotationConfigUtils {
 	private static DefaultListableBeanFactory unwrapDefaultListableBeanFactory(BeanDefinitionRegistry registry) {
 		if (registry instanceof DefaultListableBeanFactory) {
 			return (DefaultListableBeanFactory) registry;
-		}
-		else if (registry instanceof GenericApplicationContext) {
+		}else if (registry instanceof GenericApplicationContext) {
 			return ((GenericApplicationContext) registry).getDefaultListableBeanFactory();
-		}
-		else {
+		}else {
 			return null;
 		}
 	}
@@ -247,10 +234,8 @@ public abstract class AnnotationConfigUtils {
 	@SuppressWarnings("unchecked")
 	static Set<AnnotationAttributes> attributesForRepeatable(AnnotationMetadata metadata, String containerClassName, String annotationClassName) {
 		Set<AnnotationAttributes> result = new LinkedHashSet<>();
-
 		// Direct annotation present?
 		addAttributesIfNotNull(result, metadata.getAnnotationAttributes(annotationClassName, false));
-
 		// Container annotation present?
 		Map<String, Object> container = metadata.getAnnotationAttributes(containerClassName, false);
 		if (container != null && container.containsKey("value")) {
@@ -258,7 +243,6 @@ public abstract class AnnotationConfigUtils {
 				addAttributesIfNotNull(result, containedAttributes);
 			}
 		}
-
 		// Return merged result
 		return Collections.unmodifiableSet(result);
 	}
@@ -268,5 +252,4 @@ public abstract class AnnotationConfigUtils {
 			result.add(AnnotationAttributes.fromMap(attributes));
 		}
 	}
-
 }

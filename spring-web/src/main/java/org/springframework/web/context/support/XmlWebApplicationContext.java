@@ -10,30 +10,22 @@ import org.springframework.beans.factory.xml.ResourceEntityResolver;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 
 /**
- * {@link org.springframework.web.context.WebApplicationContext} implementation
- * which takes its configuration from XML documents, understood by an
- * {@link org.springframework.beans.factory.xml.XmlBeanDefinitionReader}.
- * This is essentially the equivalent of
- * {@link org.springframework.context.support.GenericXmlApplicationContext}  for a web environment.
+ * {@link org.springframework.web.context.WebApplicationContext} implementation which takes its configuration from XML documents,
+ * understood by an  {@link org.springframework.beans.factory.xml.XmlBeanDefinitionReader}.
+ * This is essentially the equivalent of {@link org.springframework.context.support.GenericXmlApplicationContext}  for a web environment.
  *
  * By default, the configuration will be taken from "/WEB-INF/applicationContext.xml"
- * for the root context, and "/WEB-INF/test-servlet.xml" for a context with the namespace
- * "test-servlet" (like for a DispatcherServlet instance with the servlet-name "test").
+ * for the root context, and "/WEB-INF/test-servlet.xml" for a context with the namespace "test-servlet" (like for a DispatcherServlet instance with the servlet-name "test").
  *
  * The config location defaults can be overridden via the "contextConfigLocation"
- * context-param of {@link org.springframework.web.context.ContextLoader} and servlet
- * init-param of {@link org.springframework.web.servlet.FrameworkServlet}. Config locations
- * can either denote concrete files like "/WEB-INF/context.xml" or Ant-style patterns
- * like "/WEB-INF/*-context.xml" (see {@link org.springframework.util.PathMatcher} javadoc for pattern details).
+ * context-param of {@link org.springframework.web.context.ContextLoader} and servlet init-param of {@link org.springframework.web.servlet.FrameworkServlet}.
+ * Config locations can either denote concrete files like "/WEB-INF/context.xml" or Ant-style patterns  like "/WEB-INF/*-context.xml" (see {@link org.springframework.util.PathMatcher} javadoc for pattern details).
  *
- * Note: In case of multiple config locations, later bean definitions will
- * override ones defined in earlier loaded files. This can be leveraged to
- * deliberately override certain bean definitions via an extra XML file.
+ * Note: In case of multiple config locations, later bean definitions will override ones defined in earlier loaded files.
+ * This can be leveraged to  deliberately override certain bean definitions via an extra XML file.
  *
- * <b>For a WebApplicationContext that reads in a different bean definition format,
- * create an analogous subclass of {@link AbstractRefreshableWebApplicationContext}.</b>
- * Such a context implementation can be specified as "contextClass" context-param
- * for ContextLoader or "contextClass" init-param for FrameworkServlet.
+ * <b>For a WebApplicationContext that reads in a different bean definition format,create an analogous subclass of {@link AbstractRefreshableWebApplicationContext}.</b>
+ * Such a context implementation can be specified as "contextClass" context-param for ContextLoader or "contextClass" init-param for FrameworkServlet.
  * @see #setNamespace
  * @see #setConfigLocations
  * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader
@@ -105,8 +97,7 @@ public class XmlWebApplicationContext extends AbstractRefreshableWebApplicationC
 	}
 
 	/**
-	 * The default location for the root context is "/WEB-INF/applicationContext.xml",
-	 * and "/WEB-INF/test-servlet.xml" for a context with the namespace "test-servlet" (like for a DispatcherServlet instance with the servlet-name "test").
+	 * The default location for the root context is "/WEB-INF/applicationContext.xml",and "/WEB-INF/test-servlet.xml" for a context with the namespace "test-servlet" (like for a DispatcherServlet instance with the servlet-name "test").
 	 */
 	@Override
 	protected String[] getDefaultConfigLocations() {

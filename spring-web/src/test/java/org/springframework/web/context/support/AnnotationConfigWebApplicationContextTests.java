@@ -13,10 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-/**
 
-
- */
 public class AnnotationConfigWebApplicationContextTests {
 
 	@Test

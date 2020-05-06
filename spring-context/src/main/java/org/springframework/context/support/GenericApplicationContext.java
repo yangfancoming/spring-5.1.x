@@ -265,9 +265,8 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	}
 
 	//---------------------------------------------------------------------
-	// Implementation of BeanDefinitionRegistry
+	// Implementation of 【BeanDefinitionRegistry】 interface
 	//---------------------------------------------------------------------
-
 	@Override
 	public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition) throws BeanDefinitionStoreException {
 		beanFactory.registerBeanDefinition(beanName, beanDefinition);

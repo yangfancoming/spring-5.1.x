@@ -19,16 +19,11 @@ import org.springframework.util.ReflectionUtils;
 /**
  * Default {@link BeanWrapper} implementation that should be sufficient for all typical use cases. Caches introspection results for efficiency.
  *
- * Note: Auto-registers default property editors from the
- * {@code org.springframework.beans.propertyeditors} package, which apply
- * in addition to the JDK's standard PropertyEditors. Applications can call
- * the {@link #registerCustomEditor(Class, java.beans.PropertyEditor)} method
- * to register an editor for a particular instance (i.e. they are not shared across the application). See the base class
- * {@link PropertyEditorRegistrySupport} for details.
- *
- * <b>NOTE: As of Spring 2.5, this is - for almost all purposes - an
- * internal class.</b> It is just public in order to allow for access from
- * other framework packages. For standard application access purposes, use the
+ * Note: Auto-registers default property editors from the {@code org.springframework.beans.propertyeditors} package,
+ * which apply in addition to the JDK's standard PropertyEditors. Applications can call the {@link #registerCustomEditor(Class, java.beans.PropertyEditor)} method
+ * to register an editor for a particular instance (i.e. they are not shared across the application). See the base class  {@link PropertyEditorRegistrySupport} for details.
+ * <b>NOTE: As of Spring 2.5, this is - for almost all purposes - an internal class.</b>
+ * It is just public in order to allow for access from other framework packages. For standard application access purposes, use the
  * {@link PropertyAccessorFactory#forBeanPropertyAccess} factory method instead.
  * @since 15 April 2001
  * @see #registerCustomEditor
@@ -42,8 +37,7 @@ import org.springframework.util.ReflectionUtils;
 public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements BeanWrapper {
 
 	/**
-	 * Cached introspections results for this object, to prevent encountering
-	 * the cost of JavaBeans introspection every time.
+	 * Cached introspections results for this object, to prevent encountering the cost of JavaBeans introspection every time.
 	 */
 	@Nullable
 	private CachedIntrospectionResults cachedIntrospectionResults;

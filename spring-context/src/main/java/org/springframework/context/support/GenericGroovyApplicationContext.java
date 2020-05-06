@@ -18,13 +18,11 @@ import org.springframework.lang.Nullable;
 
 /**
  * An {@link org.springframework.context.ApplicationContext} implementation that extends
- * {@link GenericApplicationContext} and implements {@link GroovyObject} such that beans
- * can be retrieved with the dot de-reference syntax instead of using {@link #getBean}.
+ * {@link GenericApplicationContext} and implements {@link GroovyObject} such that beans can be retrieved with the dot de-reference syntax instead of using {@link #getBean}.
  *
- * Consider this as the equivalent of {@link GenericXmlApplicationContext} for
- * Groovy bean definitions, or even an upgrade thereof since it seamlessly understands
- * XML bean definition files as well. The main difference is that, within a Groovy
- * script, the context can be used with an inline bean definition closure as follows:
+ * Consider this as the equivalent of {@link GenericXmlApplicationContext} for Groovy bean definitions,
+ * or even an upgrade thereof since it seamlessly understands XML bean definition files as well.
+ * The main difference is that, within a Groovy script, the context can be used with an inline bean definition closure as follows:
  *
  * <pre class="code">
  * import org.hibernate.SessionFactory
@@ -94,11 +92,7 @@ import org.springframework.lang.Nullable;
  *
  * <b>This application context also understands XML bean definition files,
  * allowing for seamless mixing and matching with Groovy bean definition files.</b>
- * ".xml" files will be parsed as XML content; all other kinds of resources will
- * be parsed as Groovy scripts.
- *
-
- * @author Jeff Brown
+ * ".xml" files will be parsed as XML content; all other kinds of resources will be parsed as Groovy scripts.
  * @since 4.0
  * @see org.springframework.beans.factory.groovy.GroovyBeanDefinitionReader
  */
@@ -110,17 +104,14 @@ public class GenericGroovyApplicationContext extends GenericApplicationContext i
 
 	private MetaClass metaClass = GroovySystem.getMetaClassRegistry().getMetaClass(getClass());
 
-
 	/**
-	 * Create a new GenericGroovyApplicationContext that needs to be
-	 * {@link #load loaded} and then manually {@link #refresh refreshed}.
+	 * Create a new GenericGroovyApplicationContext that needs to be {@link #load loaded} and then manually {@link #refresh refreshed}.
 	 */
 	public GenericGroovyApplicationContext() {
 	}
 
 	/**
-	 * Create a new GenericGroovyApplicationContext, loading bean definitions
-	 * from the given resources and automatically refreshing the context.
+	 * Create a new GenericGroovyApplicationContext, loading bean definitions from the given resources and automatically refreshing the context.
 	 * @param resources the resources to load from
 	 */
 	public GenericGroovyApplicationContext(Resource... resources) {
@@ -129,8 +120,7 @@ public class GenericGroovyApplicationContext extends GenericApplicationContext i
 	}
 
 	/**
-	 * Create a new GenericGroovyApplicationContext, loading bean definitions
-	 * from the given resource locations and automatically refreshing the context.
+	 * Create a new GenericGroovyApplicationContext, loading bean definitions from the given resource locations and automatically refreshing the context.
 	 * @param resourceLocations the resources to load from
 	 */
 	public GenericGroovyApplicationContext(String... resourceLocations) {
@@ -139,10 +129,8 @@ public class GenericGroovyApplicationContext extends GenericApplicationContext i
 	}
 
 	/**
-	 * Create a new GenericGroovyApplicationContext, loading bean definitions
-	 * from the given resource locations and automatically refreshing the context.
-	 * @param relativeClass class whose package will be used as a prefix when
-	 * loading each specified resource name
+	 * Create a new GenericGroovyApplicationContext, loading bean definitions  from the given resource locations and automatically refreshing the context.
+	 * @param relativeClass class whose package will be used as a prefix when loading each specified resource name
 	 * @param resourceNames relatively-qualified names of resources to load
 	 */
 	public GenericGroovyApplicationContext(Class<?> relativeClass, String... resourceNames) {
@@ -150,16 +138,14 @@ public class GenericGroovyApplicationContext extends GenericApplicationContext i
 		refresh();
 	}
 
-
 	/**
-	 * Exposes the underlying {@link GroovyBeanDefinitionReader} for convenient access
-	 * to the {@code loadBeanDefinition} methods on it as well as the ability
+	 * Exposes the underlying {@link GroovyBeanDefinitionReader} for convenient access to the {@code loadBeanDefinition} methods on it as well as the ability
 	 * to specify an inline Groovy bean definition closure.
 	 * @see GroovyBeanDefinitionReader#loadBeanDefinitions(org.springframework.core.io.Resource...)
 	 * @see GroovyBeanDefinitionReader#loadBeanDefinitions(String...)
 	 */
 	public final GroovyBeanDefinitionReader getReader() {
-		return this.reader;
+		return reader;
 	}
 
 	/**
@@ -169,35 +155,31 @@ public class GenericGroovyApplicationContext extends GenericApplicationContext i
 	@Override
 	public void setEnvironment(ConfigurableEnvironment environment) {
 		super.setEnvironment(environment);
-		this.reader.setEnvironment(getEnvironment());
+		reader.setEnvironment(getEnvironment());
 	}
 
 	/**
 	 * Load bean definitions from the given Groovy scripts or XML files.
-	 * Note that ".xml" files will be parsed as XML content; all other kinds
-	 * of resources will be parsed as Groovy scripts.
+	 * Note that ".xml" files will be parsed as XML content; all other kinds of resources will be parsed as Groovy scripts.
 	 * @param resources one or more resources to load from
 	 */
 	public void load(Resource... resources) {
-		this.reader.loadBeanDefinitions(resources);
+		reader.loadBeanDefinitions(resources);
 	}
 
 	/**
 	 * Load bean definitions from the given Groovy scripts or XML files.
-	 * Note that ".xml" files will be parsed as XML content; all other kinds
-	 * of resources will be parsed as Groovy scripts.
+	 * Note that ".xml" files will be parsed as XML content; all other kinds of resources will be parsed as Groovy scripts.
 	 * @param resourceLocations one or more resource locations to load from
 	 */
 	public void load(String... resourceLocations) {
-		this.reader.loadBeanDefinitions(resourceLocations);
+		reader.loadBeanDefinitions(resourceLocations);
 	}
 
 	/**
 	 * Load bean definitions from the given Groovy scripts or XML files.
-	 * Note that ".xml" files will be parsed as XML content; all other kinds
-	 * of resources will be parsed as Groovy scripts.
-	 * @param relativeClass class whose package will be used as a prefix when
-	 * loading each specified resource name
+	 * Note that ".xml" files will be parsed as XML content; all other kinds  of resources will be parsed as Groovy scripts.
+	 * @param relativeClass class whose package will be used as a prefix when loading each specified resource name
 	 * @param resourceNames relatively-qualified names of resources to load
 	 */
 	public void load(Class<?> relativeClass, String... resourceNames) {
@@ -208,27 +190,24 @@ public class GenericGroovyApplicationContext extends GenericApplicationContext i
 		load(resources);
 	}
 
-
 	// Implementation of the GroovyObject interface
-
 	public void setMetaClass(MetaClass metaClass) {
 		this.metaClass = metaClass;
 	}
 
 	public MetaClass getMetaClass() {
-		return this.metaClass;
+		return metaClass;
 	}
 
 	public Object invokeMethod(String name, Object args) {
-		return this.metaClass.invokeMethod(this, name, args);
+		return metaClass.invokeMethod(this, name, args);
 	}
 
 	public void setProperty(String property, Object newValue) {
 		if (newValue instanceof BeanDefinition) {
 			registerBeanDefinition(property, (BeanDefinition) newValue);
-		}
-		else {
-			this.metaClass.setProperty(this, property, newValue);
+		}else {
+			metaClass.setProperty(this, property, newValue);
 		}
 	}
 
@@ -236,11 +215,9 @@ public class GenericGroovyApplicationContext extends GenericApplicationContext i
 	public Object getProperty(String property) {
 		if (containsBean(property)) {
 			return getBean(property);
-		}
-		else if (this.contextWrapper.isReadableProperty(property)) {
-			return this.contextWrapper.getPropertyValue(property);
+		}else if (contextWrapper.isReadableProperty(property)) {
+			return contextWrapper.getPropertyValue(property);
 		}
 		throw new NoSuchBeanDefinitionException(property);
 	}
-
 }

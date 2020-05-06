@@ -37,11 +37,11 @@ import org.springframework.lang.Nullable;
  */
 public abstract class AbstractRefreshableApplicationContext extends AbstractApplicationContext {
 
-	// 是否允许 BeanDefinition 覆盖
+	// 是否允许 BeanDefinition 覆盖 ，是指是否允对一个名字相同但definition不同进行重新注册，默认是true。
 	@Nullable
 	private Boolean allowBeanDefinitionOverriding;
 
-	// 否允许循环引用
+	// 否允许循环引用，是指是否允许Bean之间循环引用，默认是true.
 	@Nullable
 	private Boolean allowCircularReferences;
 
@@ -88,7 +88,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 */
 	@Override
 	protected final void refreshBeanFactory() throws BeansException {
-		/**  如果已经存在BeanFactory那么就销毁
+		/**  如果已经存在BeanFactory那么就销毁，避免重复加载BeanFactory
 		 如果 ApplicationContext 中已经加载过 BeanFactory 了，销毁所有 Bean，关闭 BeanFactory
 		 注意，应用中 BeanFactory 本来就是可以多个的，这里可不是说应用全局是否有 BeanFactory，而是当前 ApplicationContext 是否有 BeanFactory
 		 */
@@ -104,6 +104,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			// 设置 BeanFactory 的两个配置属性：是否允许 Bean 覆盖、是否允许循环引用
 			customizeBeanFactory(beanFactory);
 			// 这步就关键了，加载xml文件信息 ，载入BeanDefinations， 加载Bean到BeanFactory中，给BeanFactory工厂提供创建bean的原材料！
+			// 它属于模版方法，由子类去实现加载的方式
 			loadBeanDefinitions(beanFactory);
 			synchronized (this.beanFactoryMonitor) {
 				this.beanFactory = beanFactory;
@@ -204,5 +205,4 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader
 	 */
 	protected abstract void loadBeanDefinitions(DefaultListableBeanFactory beanFactory) throws BeansException, IOException;
-
 }

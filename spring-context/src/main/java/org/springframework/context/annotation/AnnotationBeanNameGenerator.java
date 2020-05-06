@@ -23,7 +23,6 @@ import org.springframework.util.StringUtils;
  * {@link org.springframework.stereotype.Component @Component} as a meta-annotation. For example, Spring's stereotype annotations (such as
  * {@link org.springframework.stereotype.Repository @Repository}) are themselves annotated with
  * {@link org.springframework.stereotype.Component @Component}.
- *
  * Also supports Java EE 6's {@link javax.annotation.ManagedBean} and  JSR-330's {@link javax.inject.Named} annotations,
  * if available. Note that Spring component annotations always override such standard annotations.
  * If the annotation's value doesn't indicate a bean name,
@@ -76,8 +75,7 @@ public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 	 * @return whether the annotation qualifies as a stereotype with component name
 	 */
 	protected boolean isStereotypeWithNameValue(String annotationType,Set<String> metaAnnotationTypes, @Nullable Map<String, Object> attributes) {
-		boolean isStereotype = annotationType.equals(COMPONENT_ANNOTATION_CLASSNAME) ||
-				metaAnnotationTypes.contains(COMPONENT_ANNOTATION_CLASSNAME) ||
+		boolean isStereotype = annotationType.equals(COMPONENT_ANNOTATION_CLASSNAME) || metaAnnotationTypes.contains(COMPONENT_ANNOTATION_CLASSNAME) ||
 				annotationType.equals("javax.annotation.ManagedBean") || annotationType.equals("javax.inject.Named");
 		return (isStereotype && attributes != null && attributes.containsKey("value"));
 	}

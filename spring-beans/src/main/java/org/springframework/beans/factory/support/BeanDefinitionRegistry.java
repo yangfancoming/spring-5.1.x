@@ -14,8 +14,8 @@ import org.springframework.core.AliasRegistry;
  * This is the only interface in Spring's bean factory packages that encapsulates <i>registration</i> of bean definitions.
  * The standard BeanFactory interfaces only cover access to a <i>fully configured factory instance</i>.
  *
- * Spring's bean definition readers expect to work on an implementation of this
- * interface. Known implementors within the Spring core are DefaultListableBeanFactory and GenericApplicationContext.
+ * Spring's bean definition readers expect to work on an implementation of this interface.
+ * Known implementors within the Spring core are DefaultListableBeanFactory and GenericApplicationContext.
  * @since 26.11.2003
  * @see org.springframework.beans.factory.config.BeanDefinition
  * @see AbstractBeanDefinition
@@ -82,8 +82,7 @@ public interface BeanDefinitionRegistry extends AliasRegistry {
 	int getBeanDefinitionCount();
 
 	/**
-	 * Determine whether the given bean name is already in use within this registry,
-	 * i.e. whether there is a local bean or alias registered under this name.
+	 * Determine whether the given bean name is already in use within this registry,i.e. whether there is a local bean or alias registered under this name.
 	 * @param beanName the name to check
 	 * @return whether the given bean name is already in use
 	 * 指定Bean名是否被注册过。

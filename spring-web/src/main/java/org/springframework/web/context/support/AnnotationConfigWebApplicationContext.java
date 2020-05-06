@@ -77,10 +77,8 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 
 	private final Set<String> basePackages = new LinkedHashSet<>();
 
-
 	/**
-	 * Set a custom {@link BeanNameGenerator} for use with {@link AnnotatedBeanDefinitionReader}
-	 * and/or {@link ClassPathBeanDefinitionScanner}.
+	 * Set a custom {@link BeanNameGenerator} for use with {@link AnnotatedBeanDefinitionReader} and/or {@link ClassPathBeanDefinitionScanner}.
 	 * Default is {@link org.springframework.context.annotation.AnnotationBeanNameGenerator}.
 	 * @see AnnotatedBeanDefinitionReader#setBeanNameGenerator
 	 * @see ClassPathBeanDefinitionScanner#setBeanNameGenerator
@@ -90,8 +88,7 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 	}
 
 	/**
-	 * Return the custom {@link BeanNameGenerator} for use with {@link AnnotatedBeanDefinitionReader}
-	 * and/or {@link ClassPathBeanDefinitionScanner}, if any.
+	 * Return the custom {@link BeanNameGenerator} for use with {@link AnnotatedBeanDefinitionReader}  and/or {@link ClassPathBeanDefinitionScanner}, if any.
 	 */
 	@Nullable
 	protected BeanNameGenerator getBeanNameGenerator() {
@@ -99,8 +96,7 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 	}
 
 	/**
-	 * Set a custom {@link ScopeMetadataResolver} for use with {@link AnnotatedBeanDefinitionReader}
-	 * and/or {@link ClassPathBeanDefinitionScanner}.
+	 * Set a custom {@link ScopeMetadataResolver} for use with {@link AnnotatedBeanDefinitionReader} and/or {@link ClassPathBeanDefinitionScanner}.
 	 * Default is an {@link org.springframework.context.annotation.AnnotationScopeMetadataResolver}.
 	 * @see AnnotatedBeanDefinitionReader#setScopeMetadataResolver
 	 * @see ClassPathBeanDefinitionScanner#setScopeMetadataResolver
@@ -110,20 +106,17 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 	}
 
 	/**
-	 * Return the custom {@link ScopeMetadataResolver} for use with {@link AnnotatedBeanDefinitionReader}
-	 * and/or {@link ClassPathBeanDefinitionScanner}, if any.
+	 * Return the custom {@link ScopeMetadataResolver} for use with {@link AnnotatedBeanDefinitionReader}  and/or {@link ClassPathBeanDefinitionScanner}, if any.
 	 */
 	@Nullable
 	protected ScopeMetadataResolver getScopeMetadataResolver() {
 		return this.scopeMetadataResolver;
 	}
 
-
 	/**
 	 * Register one or more annotated classes to be processed.
 	 * Note that {@link #refresh()} must be called in order for the context  to fully process the new classes.
-	 * @param annotatedClasses one or more annotated classes,
-	 * e.g. {@link org.springframework.context.annotation.Configuration @Configuration} classes
+	 * @param annotatedClasses one or more annotated classes, e.g. {@link org.springframework.context.annotation.Configuration @Configuration} classes
 	 * @see #scan(String...)
 	 * @see #loadBeanDefinitions(DefaultListableBeanFactory)
 	 * @see #setConfigLocation(String)
@@ -153,8 +146,7 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 	 * any classes specified by {@link #register(Class...)} and scan any packages  specified by {@link #scan(String...)}.
 	 * For any values specified by {@link #setConfigLocation(String)} or {@link #setConfigLocations(String[])},
 	 * attempt first to load each location as a class, registering a {@code BeanDefinition} if class loading is successful,
-	 * and if class loading fails (i.e. a {@code ClassNotFoundException} is raised),
-	 * assume the value is a package and attempt to scan it for annotated classes.
+	 * and if class loading fails (i.e. a {@code ClassNotFoundException} is raised),assume the value is a package and attempt to scan it for annotated classes.
 	 * Enables the default set of annotation configuration post processors, such that {@code @Autowired}, {@code @Required}, and associated annotations can be used.
 	 * Configuration class bean definitions are registered with generated bean  definition names unless the {@code value} attribute is provided to the stereotype annotation.
 	 * @param beanFactory the bean factory to load bean definitions into
@@ -167,32 +159,37 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 	 */
 	@Override
 	protected void loadBeanDefinitions(DefaultListableBeanFactory beanFactory) {
+		// 初始化这个脚手架 其实就是直接new出实例。具体做的工作，下面有相关博文链接
 		AnnotatedBeanDefinitionReader reader = getAnnotatedBeanDefinitionReader(beanFactory);
 		ClassPathBeanDefinitionScanner scanner = getClassPathBeanDefinitionScanner(beanFactory);
-
+		// 生成Bean的名称的生成器，如果自己没有setBeanNameGenerator（可以自定义）,这里目前为null
 		BeanNameGenerator beanNameGenerator = getBeanNameGenerator();
 		if (beanNameGenerator != null) {
 			reader.setBeanNameGenerator(beanNameGenerator);
 			scanner.setBeanNameGenerator(beanNameGenerator);
+			// 若我们注册了beanName生成器，那么就会注册进容器里面
 			beanFactory.registerSingleton(AnnotationConfigUtils.CONFIGURATION_BEAN_NAME_GENERATOR, beanNameGenerator);
 		}
-
+		// 这是给reader和scanner注册scope的解析器  此处为null
 		ScopeMetadataResolver scopeMetadataResolver = getScopeMetadataResolver();
 		if (scopeMetadataResolver != null) {
 			reader.setScopeMetadataResolver(scopeMetadataResolver);
 			scanner.setScopeMetadataResolver(scopeMetadataResolver);
 		}
-
-		if (!this.annotatedClasses.isEmpty()) {
-			if (logger.isDebugEnabled()) logger.debug("Registering annotated classes: [" + StringUtils.collectionToCommaDelimitedString(this.annotatedClasses) + "]");
-			reader.register(ClassUtils.toClassArray(this.annotatedClasses));
+		// 此处注意了：annotatedClasses和basePackages一般是选其一（当然看到此处，他们是可以并存的）
+		// 我们可以自己指定annotatedClasses 配置文件,同时也可以交给下面扫描
+		if (!annotatedClasses.isEmpty()) {
+			if (logger.isDebugEnabled()) logger.debug("Registering annotated classes: [" + StringUtils.collectionToCommaDelimitedString(annotatedClasses) + "]");
+			// 若是指明的Bean，就交给reader去处理，至于怎么处理，见上篇博文的doRegisterBean去怎么解析每一个Config Bean的
+			reader.register(ClassUtils.toClassArray(annotatedClasses));
 		}
-
-		if (!this.basePackages.isEmpty()) {
-			if (logger.isDebugEnabled()) logger.debug("Scanning base packages: [" + StringUtils.collectionToCommaDelimitedString(this.basePackages) + "]");
-			scanner.scan(StringUtils.toStringArray(this.basePackages));
+		// 也可以是包扫描的方式，扫描配置文件的Bean
+		if (!basePackages.isEmpty()) {
+			if (logger.isDebugEnabled()) logger.debug("Scanning base packages: [" + StringUtils.collectionToCommaDelimitedString(basePackages) + "]");
+			// 这里重要了，scan方法具体做了什么事，上篇博文也有详细的介绍，请参阅
+			scanner.scan(StringUtils.toStringArray(basePackages));
 		}
-
+		// 此处的意思是，也可以以全类名的形式注册。比如可以调用setConfigLocations设置（这在xml配置中使用较多）  可以是全类名，也可以是包路径
 		String[] configLocations = getConfigLocations();
 		if (configLocations != null) {
 			for (String configLocation : configLocations) {
@@ -210,7 +207,6 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 			}
 		}
 	}
-
 
 	/**
 	 * Build an {@link AnnotatedBeanDefinitionReader} for the given bean factory.
@@ -237,5 +233,4 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 	protected ClassPathBeanDefinitionScanner getClassPathBeanDefinitionScanner(DefaultListableBeanFactory beanFactory) {
 		return new ClassPathBeanDefinitionScanner(beanFactory, true, getEnvironment());
 	}
-
 }

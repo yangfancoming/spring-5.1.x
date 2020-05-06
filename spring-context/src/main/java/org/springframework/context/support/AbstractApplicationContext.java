@@ -534,6 +534,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 * Prepare this context for refreshing, setting its startup date and active flag as well as performing any initialization of property sources.
 	 */
 	protected void prepareRefresh() {
+		logger.warn("进入 【prepareRefresh】 方法");
 		// Switch to active. 记录启动时间 将 active 属性设置为 true，closed 属性设置为 false，它们都是 AtomicBoolean 类型
 		startupDate = System.currentTimeMillis();
 		closed.set(false); // 设置容器非关闭状态
@@ -584,6 +585,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 * 该方法为BeanFactory准备创建Bean的原材料，即BeanDefinition，准备好之后放到一个ConcurrentHashMap里面，key为beanName，value为BeanDefinition
 	 */
 	protected ConfigurableListableBeanFactory obtainFreshBeanFactory() {
+		logger.warn("进入 【obtainFreshBeanFactory】 函数");
 		// 初始化BeanFactory并加载xml文件信息  // 关闭旧的 BeanFactory (如果有)，创建新的 BeanFactory，加载 Bean 定义、注册 Bean 等等
 		refreshBeanFactory();
 		// 返回刚刚创建的 BeanFactory
@@ -596,6 +598,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 * @param beanFactory the BeanFactory to configure
 	 */
 	protected void prepareBeanFactory(ConfigurableListableBeanFactory beanFactory) {
+		logger.warn("进入 【prepareBeanFactory】 方法");
 		// Tell the internal bean factory to use the context's class loader etc.
 		// 给beanFactory设置类加载器
 		beanFactory.setBeanClassLoader(getClassLoader());
@@ -1152,6 +1155,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	/**
 	 * Return the internal bean factory of the parent context if it implements ConfigurableApplicationContext; else, return the parent context itself.
 	 * @see org.springframework.context.ConfigurableApplicationContext#getBeanFactory
+	 * 找到父的，若存在就返回 若存在父容器就存在父的BeanFactory
 	 */
 	@Nullable
 	protected BeanFactory getInternalParentBeanFactory() {

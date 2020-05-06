@@ -95,6 +95,7 @@ import org.springframework.util.StringUtils;
  * @see #setAutowiredAnnotationType
  * @see Autowired
  * @see Value
+ * 用来处理@Autowired注解和@Value注解的
  */
 public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBeanPostProcessorAdapter implements MergedBeanDefinitionPostProcessor, PriorityOrdered, BeanFactoryAware {
 
@@ -119,8 +120,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 
 
 	/**
-	 * Create a new AutowiredAnnotationBeanPostProcessor
-	 * for Spring's standard {@link Autowired} annotation.
+	 * Create a new AutowiredAnnotationBeanPostProcessor  for Spring's standard {@link Autowired} annotation.
 	 * Also supports JSR-330's {@link javax.inject.Inject} annotation, if available.
 	 */
 	@SuppressWarnings("unchecked")
@@ -128,24 +128,19 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 		this.autowiredAnnotationTypes.add(Autowired.class);
 		this.autowiredAnnotationTypes.add(Value.class);
 		try {
-			this.autowiredAnnotationTypes.add((Class<? extends Annotation>)
-					ClassUtils.forName("javax.inject.Inject", AutowiredAnnotationBeanPostProcessor.class.getClassLoader()));
+			this.autowiredAnnotationTypes.add((Class<? extends Annotation>) ClassUtils.forName("javax.inject.Inject", AutowiredAnnotationBeanPostProcessor.class.getClassLoader()));
 			logger.trace("JSR-330 'javax.inject.Inject' annotation found and supported for autowiring");
-		}
-		catch (ClassNotFoundException ex) {
+		}catch (ClassNotFoundException ex) {
 			// JSR-330 API not available - simply skip.
 		}
 	}
 
 
 	/**
-	 * Set the 'autowired' annotation type, to be used on constructors, fields,
-	 * setter methods and arbitrary config methods.
-	 * The default autowired annotation type is the Spring-provided {@link Autowired}
-	 * annotation, as well as {@link Value}.
+	 * Set the 'autowired' annotation type, to be used on constructors, fields,setter methods and arbitrary config methods.
+	 * The default autowired annotation type is the Spring-provided {@link Autowired} annotation, as well as {@link Value}.
 	 * This setter property exists so that developers can provide their own
-	 * (non-Spring-specific) annotation type to indicate that a member is supposed
-	 * to be autowired.
+	 * (non-Spring-specific) annotation type to indicate that a member is supposed to be autowired.
 	 */
 	public void setAutowiredAnnotationType(Class<? extends Annotation> autowiredAnnotationType) {
 		Assert.notNull(autowiredAnnotationType, "'autowiredAnnotationType' must not be null");
@@ -154,13 +149,9 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 	}
 
 	/**
-	 * Set the 'autowired' annotation types, to be used on constructors, fields,
-	 * setter methods and arbitrary config methods.
-	 * The default autowired annotation type is the Spring-provided {@link Autowired}
-	 * annotation, as well as {@link Value}.
-	 * This setter property exists so that developers can provide their own
-	 * (non-Spring-specific) annotation types to indicate that a member is supposed
-	 * to be autowired.
+	 * Set the 'autowired' annotation types, to be used on constructors, fields,setter methods and arbitrary config methods.
+	 * The default autowired annotation type is the Spring-provided {@link Autowired} annotation, as well as {@link Value}.
+	 * This setter property exists so that developers can provide their own (non-Spring-specific) annotation types to indicate that a member is supposed to be autowired.
 	 */
 	public void setAutowiredAnnotationTypes(Set<Class<? extends Annotation>> autowiredAnnotationTypes) {
 		Assert.notEmpty(autowiredAnnotationTypes, "'autowiredAnnotationTypes' must not be empty");
@@ -178,8 +169,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 
 	/**
 	 * Set the boolean value that marks a dependency as required
-	 * For example if using 'required=true' (the default), this value should be
-	 * {@code true}; but if using 'optional=false', this value should be {@code false}.
+	 * For example if using 'required=true' (the default), this value should be {@code true}; but if using 'optional=false', this value should be {@code false}.
 	 * @see #setRequiredParameterName(String)
 	 */
 	public void setRequiredParameterValue(boolean requiredParameterValue) {
@@ -218,9 +208,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 
 	@Override
 	@Nullable
-	public Constructor<?>[] determineCandidateConstructors(Class<?> beanClass, final String beanName)
-			throws BeanCreationException {
-
+	public Constructor<?>[] determineCandidateConstructors(Class<?> beanClass, final String beanName) throws BeanCreationException {
 		// Let's check for lookup methods here..
 		if (!this.lookupMethodsChecked.contains(beanName)) {
 			try {
@@ -232,14 +220,12 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 						try {
 							RootBeanDefinition mbd = (RootBeanDefinition) this.beanFactory.getMergedBeanDefinition(beanName);
 							mbd.getMethodOverrides().addOverride(override);
-						}
-						catch (NoSuchBeanDefinitionException ex) {
+						}catch (NoSuchBeanDefinitionException ex) {
 							throw new BeanCreationException(beanName,"Cannot apply @Lookup to beans without corresponding bean definition");
 						}
 					}
 				});
-			}
-			catch (IllegalStateException ex) {
+			}catch (IllegalStateException ex) {
 				throw new BeanCreationException(beanName, "Lookup method resolution failed", ex);
 			}
 			this.lookupMethodsChecked.add(beanName);
@@ -255,11 +241,8 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 					Constructor<?>[] rawCandidates;
 					try {
 						rawCandidates = beanClass.getDeclaredConstructors();
-					}
-					catch (Throwable ex) {
-						throw new BeanCreationException(beanName,
-								"Resolution of declared constructors on bean Class [" + beanClass.getName() +
-								"] from ClassLoader [" + beanClass.getClassLoader() + "] failed", ex);
+					}catch (Throwable ex) {
+						throw new BeanCreationException(beanName,"Resolution of declared constructors on bean Class [" + beanClass.getName() + "] from ClassLoader [" + beanClass.getClassLoader() + "] failed", ex);
 					}
 					List<Constructor<?>> candidates = new ArrayList<>(rawCandidates.length);
 					Constructor<?> requiredConstructor = null;
@@ -269,8 +252,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 					for (Constructor<?> candidate : rawCandidates) {
 						if (!candidate.isSynthetic()) {
 							nonSyntheticConstructors++;
-						}
-						else if (primaryConstructor != null) {
+						}else if (primaryConstructor != null) {
 							continue;
 						}
 						AnnotationAttributes ann = findAutowiredAnnotation(candidate);
@@ -280,8 +262,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 								try {
 									Constructor<?> superCtor = userClass.getDeclaredConstructor(candidate.getParameterTypes());
 									ann = findAutowiredAnnotation(superCtor);
-								}
-								catch (NoSuchMethodException ex) {
+								}catch (NoSuchMethodException ex) {
 									// Simply proceed, no equivalent superclass constructor found...
 								}
 							}
@@ -298,8 +279,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 								requiredConstructor = candidate;
 							}
 							candidates.add(candidate);
-						}
-						else if (candidate.getParameterCount() == 0) {
+						}else if (candidate.getParameterCount() == 0) {
 							defaultConstructor = candidate;
 						}
 					}
@@ -311,23 +291,17 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 							}
 							else if (candidates.size() == 1 && logger.isInfoEnabled()) {
 								logger.info("Inconsistent constructor declaration on bean with name '" + beanName +
-										"': single autowire-marked constructor flagged as optional - " +
-										"this constructor is effectively required since there is no " +
-										"default constructor to fall back to: " + candidates.get(0));
+										"': single autowire-marked constructor flagged as optional - this constructor is effectively required since there is no default constructor to fall back to: " + candidates.get(0));
 							}
 						}
 						candidateConstructors = candidates.toArray(new Constructor<?>[0]);
-					}
-					else if (rawCandidates.length == 1 && rawCandidates[0].getParameterCount() > 0) {
+					}else if (rawCandidates.length == 1 && rawCandidates[0].getParameterCount() > 0) {
 						candidateConstructors = new Constructor<?>[] {rawCandidates[0]};
-					}
-					else if (nonSyntheticConstructors == 2 && primaryConstructor != null && defaultConstructor != null && !primaryConstructor.equals(defaultConstructor)) {
+					}else if (nonSyntheticConstructors == 2 && primaryConstructor != null && defaultConstructor != null && !primaryConstructor.equals(defaultConstructor)) {
 						candidateConstructors = new Constructor<?>[] {primaryConstructor, defaultConstructor};
-					}
-					else if (nonSyntheticConstructors == 1 && primaryConstructor != null) {
+					}else if (nonSyntheticConstructors == 1 && primaryConstructor != null) {
 						candidateConstructors = new Constructor<?>[] {primaryConstructor};
-					}
-					else {
+					}else {
 						candidateConstructors = new Constructor<?>[0];
 					}
 					this.candidateConstructorsCache.put(beanClass, candidateConstructors);
@@ -342,11 +316,9 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 		InjectionMetadata metadata = findAutowiringMetadata(beanName, bean.getClass(), pvs);
 		try {
 			metadata.inject(bean, beanName, pvs);
-		}
-		catch (BeanCreationException ex) {
+		}catch (BeanCreationException ex) {
 			throw ex;
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			throw new BeanCreationException(beanName, "Injection of autowired dependencies failed", ex);
 		}
 		return pvs;
@@ -369,11 +341,9 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 		InjectionMetadata metadata = findAutowiringMetadata(clazz.getName(), clazz, null);
 		try {
 			metadata.inject(bean, null, null);
-		}
-		catch (BeanCreationException ex) {
+		}catch (BeanCreationException ex) {
 			throw ex;
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			throw new BeanCreationException("Injection of autowired dependencies failed for class [" + clazz + "]", ex);
 		}
 	}
@@ -404,14 +374,11 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 		Class<?> targetClass = clazz;
 		do {
 			final List<InjectionMetadata.InjectedElement> currElements = new ArrayList<>();
-
 			ReflectionUtils.doWithLocalFields(targetClass, field -> {
 				AnnotationAttributes ann = findAutowiredAnnotation(field);
 				if (ann != null) {
 					if (Modifier.isStatic(field.getModifiers())) {
-						if (logger.isInfoEnabled()) {
-							logger.info("Autowired annotation is not supported on static fields: " + field);
-						}
+						if (logger.isInfoEnabled()) logger.info("Autowired annotation is not supported on static fields: " + field);
 						return;
 					}
 					boolean required = determineRequiredStatus(ann);
@@ -427,23 +394,17 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 				AnnotationAttributes ann = findAutowiredAnnotation(bridgedMethod);
 				if (ann != null && method.equals(ClassUtils.getMostSpecificMethod(method, clazz))) {
 					if (Modifier.isStatic(method.getModifiers())) {
-						if (logger.isInfoEnabled()) {
-							logger.info("Autowired annotation is not supported on static methods: " + method);
-						}
+						if (logger.isInfoEnabled()) logger.info("Autowired annotation is not supported on static methods: " + method);
 						return;
 					}
 					if (method.getParameterCount() == 0) {
-						if (logger.isInfoEnabled()) {
-							logger.info("Autowired annotation should only be used on methods with parameters: " +
-									method);
-						}
+						if (logger.isInfoEnabled()) logger.info("Autowired annotation should only be used on methods with parameters: " +method);
 					}
 					boolean required = determineRequiredStatus(ann);
 					PropertyDescriptor pd = BeanUtils.findPropertyForMethod(bridgedMethod, clazz);
 					currElements.add(new AutowiredMethodElement(method, required, pd));
 				}
 			});
-
 			elements.addAll(0, currElements);
 			targetClass = targetClass.getSuperclass();
 		}
@@ -514,8 +475,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 			DependencyDescriptor descriptor = (DependencyDescriptor) cachedArgument;
 			Assert.state(this.beanFactory != null, "No BeanFactory available");
 			return this.beanFactory.resolveDependency(descriptor, beanName, null, null);
-		}
-		else {
+		}else {
 			return cachedArgument;
 		}
 	}
@@ -553,8 +513,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 				TypeConverter typeConverter = beanFactory.getTypeConverter();
 				try {
 					value = beanFactory.resolveDependency(desc, beanName, autowiredBeanNames, typeConverter);
-				}
-				catch (BeansException ex) {
+				}catch (BeansException ex) {
 					throw new UnsatisfiedDependencyException(null, beanName, new InjectionPoint(field), ex);
 				}
 				synchronized (this) {
@@ -568,8 +527,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 									this.cachedFieldValue = new ShortcutDependencyDescriptor(desc, autowiredBeanName, field.getType());
 								}
 							}
-						}
-						else {
+						}else {
 							this.cachedFieldValue = null;
 						}
 						this.cached = true;
@@ -631,8 +589,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 							break;
 						}
 						arguments[i] = arg;
-					}
-					catch (BeansException ex) {
+					}catch (BeansException ex) {
 						throw new UnsatisfiedDependencyException(null, beanName, new InjectionPoint(methodParam), ex);
 					}
 				}
@@ -654,8 +611,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 								}
 							}
 							this.cachedMethodArguments = cachedMethodArguments;
-						}
-						else {
+						}else {
 							this.cachedMethodArguments = null;
 						}
 						this.cached = true;
@@ -666,8 +622,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 				try {
 					ReflectionUtils.makeAccessible(method);
 					method.invoke(bean, arguments);
-				}
-				catch (InvocationTargetException ex) {
+				}catch (InvocationTargetException ex) {
 					throw ex.getTargetException();
 				}
 			}
@@ -709,5 +664,4 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 			return beanFactory.getBean(this.shortcut, this.requiredType);
 		}
 	}
-
 }

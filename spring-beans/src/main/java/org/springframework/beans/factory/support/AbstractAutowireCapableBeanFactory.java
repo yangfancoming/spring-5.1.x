@@ -126,9 +126,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		logger.warn("进入 【AbstractAutowireCapableBeanFactory】 构造函数 {}");
 		// 忽略指定接口的自动装配功能
 		/**
-		 * 忽略指定接口的自动装配功能：如ClassA引用了ClassB，那么当Spring在获取ClassA的实例时，
-		 * 如果发现ClassB还没有被初始化，那么Spring会自动初始化ClassB。
+		 * 忽略指定接口的自动装配功能：如ClassA引用了ClassB，那么当Spring在获取ClassA的实例时，如果发现ClassB还没有被初始化，那么Spring会自动初始化ClassB。
 		 * 但是如果ClassB实现了BeanNameAware接口的话，则Spring不会自动初始化ClassB，这就是忽略指定接口的自动装配
+		 * （这里面注意：@Autowired和它的关系，其实是有坑的，后续会专门讲解这个坑）
 		*/
 		ignoreDependencyInterface(BeanNameAware.class);
 		ignoreDependencyInterface(BeanFactoryAware.class);

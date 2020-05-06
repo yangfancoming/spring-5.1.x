@@ -66,5 +66,4 @@ public class SimpleBeanDefinitionRegistry extends SimpleAliasRegistry implements
 	public boolean isBeanNameInUse(String beanName) {
 		return isAlias(beanName) || containsBeanDefinition(beanName);
 	}
-
 }
