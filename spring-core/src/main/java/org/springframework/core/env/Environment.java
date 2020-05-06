@@ -33,6 +33,8 @@ package org.springframework.core.env;
  * @see org.springframework.context.ConfigurableApplicationContext#getEnvironment
  * @see org.springframework.context.ConfigurableApplicationContext#setEnvironment
  * @see org.springframework.context.support.AbstractApplicationContext#createEnvironment
+ * 这个接口代表了当前应用正在运行的环境，为应用的两个重要方面建立抽象模型 【profiles】和【properties】。
+ * 关于属性访问的方法通过父接口PropertyResolver暴露给客户端使用，本接口主要是扩展出访问【profiles】相关的接口。
  */
 public interface Environment extends PropertyResolver {
 
@@ -46,6 +48,7 @@ public interface Environment extends PropertyResolver {
 	 * @see #getDefaultProfiles
 	 * @see ConfigurableEnvironment#setActiveProfiles
 	 * @see AbstractEnvironment#ACTIVE_PROFILES_PROPERTY_NAME
+	 * 就算被激活  也是支持同时激活多个profiles的~，设置的key是：spring.profiles.active
 	 */
 	String[] getActiveProfiles();
 
@@ -54,6 +57,7 @@ public interface Environment extends PropertyResolver {
 	 * @see #getActiveProfiles
 	 * @see ConfigurableEnvironment#setDefaultProfiles
 	 * @see AbstractEnvironment#DEFAULT_PROFILES_PROPERTY_NAME
+	 * 默认的也可以有多个  key为：spring.profiles.default
 	 */
 	String[] getDefaultProfiles();
 
@@ -67,13 +71,14 @@ public interface Environment extends PropertyResolver {
 	 * @see #getDefaultProfiles
 	 * @see #acceptsProfiles(Profiles)
 	 * @deprecated as of 5.1 in favor of {@link #acceptsProfiles(Profiles)}
+	 * 看看传入的profiles是否是激活的~~~~  支持!表示不激活
 	 */
 	@Deprecated
 	boolean acceptsProfiles(String... profiles);
 
 	/**
+	 * Spring5.1后提供的  用于替代上面方法   Profiles是Spring5.1才有的一个函数式接口~
 	 * Return whether the {@linkplain #getActiveProfiles() active profiles} match the given {@link Profiles} predicate.
 	 */
 	boolean acceptsProfiles(Profiles profiles);
-
 }

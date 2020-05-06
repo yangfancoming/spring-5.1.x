@@ -155,5 +155,4 @@ public class MutablePropertySources implements PropertySources {
 		if (index == -1) throw new IllegalArgumentException("PropertySource named '" + name + "' does not exist");
 		return index;
 	}
-
 }

@@ -20,6 +20,7 @@ import org.springframework.util.SystemPropertyUtils;
 /**
  * Abstract base class for resolving properties against any underlying source.
  * 用于针对任何基础源解析属性的抽象基类
+ * 它是对ConfigurablePropertyResolver的一个抽象实现，实现了了所有的接口方法，并且只提供一个抽象方法给子类去实现~~~
  * @since 3.1
  */
 public abstract class AbstractPropertyResolver implements ConfigurablePropertyResolver {
@@ -57,7 +58,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 			synchronized (this) {
 				cs = conversionService;
 				if (cs == null) {
-					cs = new DefaultConversionService();
+					cs = new DefaultConversionService(); // 默认值使用的DefaultConversionService
 					conversionService = cs;
 				}
 			}
@@ -208,6 +209,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 		return new PropertyPlaceholderHelper(placeholderPrefix, placeholderSuffix,valueSeparator, ignoreUnresolvablePlaceholders);
 	}
 
+	// 此处：最终都是委托给PropertyPlaceholderHelper去做  而getPropertyAsRawString是抽象方法  根据key返回一个字符串即可~
 	private String doResolvePlaceholders(String text, PropertyPlaceholderHelper helper) {
 		return helper.replacePlaceholders(text, this::getPropertyAsRawString);
 	}
@@ -218,6 +220,8 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 	 * @param targetType the specified target type for property retrieval
 	 * @return the converted value, or the original value if no conversion is necessary
 	 * @since 4.3.5
+	 * 抽象类提供这个类型转换的方法~ 需要类型转换的会调用它
+	 * 显然它是委托给了ConversionService，而这个类在前面文章已经都重点分析过了~
 	 */
 	@SuppressWarnings("unchecked")
 	@Nullable

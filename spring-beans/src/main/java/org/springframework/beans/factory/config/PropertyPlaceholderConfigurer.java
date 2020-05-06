@@ -14,19 +14,13 @@ import org.springframework.util.PropertyPlaceholderHelper.PlaceholderResolver;
 import org.springframework.util.StringValueResolver;
 
 /**
- * {@link PlaceholderConfigurerSupport} subclass that resolves ${...} placeholders against
- * {@link #setLocation local} {@link #setProperties properties} and/or system properties and environment variables.
- * As of Spring 3.1, {@link org.springframework.context.support.PropertySourcesPlaceholderConfigurer
- * PropertySourcesPlaceholderConfigurer} should be used preferentially over this implementation; it is
- * more flexible through taking advantage of the {@link org.springframework.core.env.Environment} and
- * {@link org.springframework.core.env.PropertySource} mechanisms also made available in Spring 3.1.
+ * {@link PlaceholderConfigurerSupport} subclass that resolves ${...} placeholders against {@link #setLocation local} {@link #setProperties properties} and/or system properties and environment variables.
+ * As of Spring 3.1, {@link org.springframework.context.support.PropertySourcesPlaceholderConfigurer  PropertySourcesPlaceholderConfigurer} should be used preferentially over this implementation;
+ * it is more flexible through taking advantage of the {@link org.springframework.core.env.Environment} and {@link org.springframework.core.env.PropertySource} mechanisms also made available in Spring 3.1.
  * {@link PropertyPlaceholderConfigurer} is still appropriate for use when:
- * <li>the {@code spring-context} module is not available (i.e., one is using Spring's
- * {@code BeanFactory} API as opposed to {@code ApplicationContext}).
- * <li>existing configuration makes use of the {@link #setSystemPropertiesMode(int) "systemPropertiesMode"}
- * and/or {@link #setSystemPropertiesModeName(String) "systemPropertiesModeName"} properties.
- * Users are encouraged to move away from using these settings, and rather configure property
- * source search order through the container's {@code Environment}; however, exact preservation
+ * <li>the {@code spring-context} module is not available (i.e., one is using Spring's {@code BeanFactory} API as opposed to {@code ApplicationContext}).
+ * <li>existing configuration makes use of the {@link #setSystemPropertiesMode(int) "systemPropertiesMode"} and/or {@link #setSystemPropertiesModeName(String) "systemPropertiesModeName"} properties.
+ * Users are encouraged to move away from using these settings, and rather configure property source search order through the container's {@code Environment}; however, exact preservation
  * of functionality may be maintained by continuing to use {@code PropertyPlaceholderConfigurer}.
  * @since 02.10.2003
  * @see #setSystemPropertiesModeName
@@ -70,10 +64,8 @@ public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport 
 	/**
 	 * Set how to check system properties: as fallback, as override, or never.
 	 * For example, will resolve ${user.dir} to the "user.dir" system property.
-	 * The default is "fallback": If not being able to resolve a placeholder
-	 * with the specified properties, a system property will be tried.
-	 * "override" will check for a system property first, before trying the
-	 * specified properties. "never" will not check system properties at all.
+	 * The default is "fallback": If not being able to resolve a placeholder with the specified properties, a system property will be tried.
+	 * "override" will check for a system property first, before trying the specified properties. "never" will not check system properties at all.
 	 * @see #SYSTEM_PROPERTIES_MODE_NEVER
 	 * @see #SYSTEM_PROPERTIES_MODE_FALLBACK
 	 * @see #SYSTEM_PROPERTIES_MODE_OVERRIDE
@@ -84,12 +76,10 @@ public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport 
 	}
 
 	/**
-	 * Set whether to search for a matching system environment variable
-	 * if no matching system property has been found. Only applied when
+	 * Set whether to search for a matching system environment variable if no matching system property has been found. Only applied when
 	 * "systemPropertyMode" is active (i.e. "fallback" or "override"), right after checking JVM system properties.
-	 * Default is "true". Switch this setting off to never resolve placeholders
-	 * against system environment variables. Note that it is generally recommended
-	 * to pass external values in as JVM system properties: This can easily be
+	 * Default is "true". Switch this setting off to never resolve placeholders against system environment variables.
+	 * Note that it is generally recommended to pass external values in as JVM system properties: This can easily be
 	 * achieved in a startup script, even for existing environment variables.
 	 * @see #setSystemPropertiesMode
 	 * @see System#getProperty(String)
@@ -101,8 +91,7 @@ public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport 
 
 	/**
 	 * Resolve the given placeholder using the given properties, performing a system properties check according to the given mode.
-	 * The default implementation delegates to {@code resolvePlaceholder
-	 * (placeholder, props)} before/after the system properties check.
+	 * The default implementation delegates to {@code resolvePlaceholder (placeholder, props)} before/after the system properties check.
 	 * Subclasses can override this for custom resolution strategies,including customized points for the system properties check.
 	 * @param placeholder the placeholder to resolve
 	 * @param props the merged properties of this configurer

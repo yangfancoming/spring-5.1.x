@@ -13,40 +13,35 @@ public class PropertyPlaceholderHelperTests {
 
 	private final PropertyPlaceholderHelper helper = new PropertyPlaceholderHelper("${", "}");
 
+	Properties props = new Properties();
+
 	// 测试单属性 Properties
 	@Test
 	public void testWithProperties() {
-		String text = "foo=${foo}";
-		Properties props = new Properties();
 		props.setProperty("foo", "bar");
-		assertEquals("foo=bar", helper.replacePlaceholders(text, props));
+		assertEquals("foo=bar", helper.replacePlaceholders("foo=${foo}", props));
 	}
 
 	// 测试多属性 Properties  不会嵌套关联 eg： foo只会映射成bar 不会映射成baz
 	@Test
 	public void testWithMultipleProperties() {
-		String text = "foo=${foo},bar=${bar}";
-		Properties props = new Properties();
 		props.setProperty("foo", "bar");
 		props.setProperty("bar", "baz");
-		assertEquals("foo=bar,bar=baz", helper.replacePlaceholders(text, props));
+		assertEquals("foo=bar,bar=baz", helper.replacePlaceholders("foo=${foo},bar=${bar}", props));
 	}
 
 	// 测试递归属性 Properties  递归关联
 	@Test
 	public void testRecurseInProperty() {
-		String text = "foo=${bar}";
-		Properties props = new Properties();
 		props.setProperty("bar", "${baz}");
 		props.setProperty("baz", "bar");
-		assertEquals("foo=bar", helper.replacePlaceholders(text, props));
+		assertEquals("foo=bar", helper.replacePlaceholders("foo=${bar}", props));
 	}
 
 	// 测试递归属性 Placeholder
 	@Test
 	public void testRecurseInPlaceholder() {
 		String text = "foo=${b${inner}}";
-		Properties props = new Properties();
 		props.setProperty("bar", "goat");
 		props.setProperty("inner", "ar");
 		assertEquals("foo=goat", helper.replacePlaceholders(text, props));
@@ -63,7 +58,6 @@ public class PropertyPlaceholderHelperTests {
 	@Test(expected = IllegalArgumentException.class)
 	public void testUnresolvedPlaceholderAsError() {
 		String text = "foo=${foo},bar=${bar}";
-		Properties props = new Properties();
 		props.setProperty("foo", "bar");
 		// 测试  Properties中未能匹配到的占位符  将被忽略
 		assertEquals("foo=bar,bar=${bar}", helper.replacePlaceholders(text, props));
@@ -99,7 +93,6 @@ public class PropertyPlaceholderHelperTests {
 	public void test1() {
 		PropertyPlaceholderHelper test = new PropertyPlaceholderHelper("*", "*", null, false);
 		String text = "foo=*foo*";
-		Properties props = new Properties();
 		props.setProperty("foo", "bar");
 		assertEquals("foo=bar", test.replacePlaceholders(text, props));
 	}
@@ -108,7 +101,6 @@ public class PropertyPlaceholderHelperTests {
 	public void test2() {
 		PropertyPlaceholderHelper test = new PropertyPlaceholderHelper("[", "]", null, false);
 		String text = "foo=[foo]";
-		Properties props = new Properties();
 		props.setProperty("foo", "bar");
 		assertEquals("foo=bar", test.replacePlaceholders(text, props));
 	}

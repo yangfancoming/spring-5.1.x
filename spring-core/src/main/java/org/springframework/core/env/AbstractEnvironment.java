@@ -76,13 +76,14 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	 * @see ConfigurableEnvironment#setActiveProfiles
 	 * @see AbstractEnvironment#DEFAULT_PROFILES_PROPERTY_NAME
 	 * @see AbstractEnvironment#ACTIVE_PROFILES_PROPERTY_NAME
+	 * 保留的默认的profile值   protected final属性，证明子类可以访问
 	 */
 	protected static final String RESERVED_DEFAULT_PROFILE_NAME = "default";
 
 	private final Set<String> activeProfiles = new LinkedHashSet<>();
-
+	// 显然这个里面的值 就是default这个profile了~~~~
 	private final Set<String> defaultProfiles = new LinkedHashSet<>(getReservedDefaultProfiles());
-
+	// 这个很关键，直接new了一个 MutablePropertySources来管理属性源们，并且是用的 PropertySourcesPropertyResolver 来处理里面可能的占位符~~~~~
 	private final MutablePropertySources propertySources = new MutablePropertySources();
 
 	private final ConfigurablePropertyResolver propertyResolver = new PropertySourcesPropertyResolver(propertySources);
@@ -91,6 +92,8 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	 * Create a new {@code Environment} instance, calling back to {@link #customizePropertySources(MutablePropertySources)} during construction to
 	 * allow subclasses to contribute or manipulate {@link PropertySource} instances as appropriate.
 	 * @see #customizePropertySources(MutablePropertySources)
+	 * 唯一构造方法  customizePropertySources 是空方法，交由子类去实现，对属性源进行定制~
+	 * 	Spring对属性配置分出这么多曾经，在SpringBoot中有着极其重要的意义~~~~
 	 */
 	public AbstractEnvironment() {
 		customizePropertySources(propertySources);
@@ -164,6 +167,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	 * @see MutablePropertySources
 	 * @see PropertySourcesPropertyResolver
 	 * @see org.springframework.context.ApplicationContextInitializer
+	 * 该方法，StandardEnvironment实现类是有复写的~
 	 */
 	protected void customizePropertySources(MutablePropertySources propertySources) {
 	}
@@ -173,6 +177,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	 * Subclasses may override in order to customize the set of reserved names.
 	 * @see #RESERVED_DEFAULT_PROFILE_NAME
 	 * @see #doGetDefaultProfiles()
+	 * 若你想改变默认default这个值，可以复写此方法~~~~
 	 */
 	protected Set<String> getReservedDefaultProfiles() {
 		return Collections.singleton(RESERVED_DEFAULT_PROFILE_NAME);
@@ -187,7 +192,9 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	protected Set<String> doGetActiveProfiles() {
 		synchronized (activeProfiles) {
 			if (activeProfiles.isEmpty()) {
+				// 若目前是empty的，那就去获取：spring.profiles.active
 				String profiles = getProperty(ACTIVE_PROFILES_PROPERTY_NAME);
+				// 支持,分隔表示多个~~~且空格啥的都无所谓
 				if (StringUtils.hasText(profiles)) {
 					setActiveProfiles(StringUtils.commaDelimitedListToStringArray(StringUtils.trimAllWhitespace(profiles)));
 				}
@@ -221,6 +228,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	 * Return whether the given profile is active, or if active profiles are empty
 	 * whether the profile should be active by default.
 	 * @throws IllegalArgumentException per {@link #validateProfile(String)}
+	 * 简答的说要么active包含，要门是default  这个profile就被认为是激活的
 	 */
 	protected boolean isProfileActive(String profile) {
 		validateProfile(profile);
@@ -274,8 +282,9 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 		Assert.notNull(profiles, "Profile array must not be null");
 		if (logger.isDebugEnabled()) logger.debug("Activating profiles " + Arrays.asList(profiles));
 		synchronized (activeProfiles) {
-			activeProfiles.clear();
+			activeProfiles.clear(); // 因为是set方法  所以情况已存在的吧
 			for (String profile : profiles) {
+				// 简单的valid，不为空且不以!打头~~~~~~~~
 				validateProfile(profile);
 				activeProfiles.add(profile);
 			}
@@ -317,11 +326,14 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 		}
 	}
 
+	// default profiles逻辑类似，也是不能以!打头~
 	@Override
 	@Deprecated
 	public boolean acceptsProfiles(String... profiles) {
 		Assert.notEmpty(profiles, "Must specify at least one profile");
 		for (String profile : profiles) {
+			// 此处：如果该profile以!开头，那就截断出来  把后半段拿出来看看   它是否在active行列里~~~
+			// 此处稍微注意：若!表示一个相反的逻辑~~~~~请注意比如!dev表示若dev是active的，我反倒是不生效的
 			if (StringUtils.hasLength(profile) && profile.charAt(0) == '!') {
 				if (!isProfileActive(profile.substring(1))) {
 					return true;
@@ -333,6 +345,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 		return false;
 	}
 
+	// 采用函数式接口处理  就非常的优雅了~
 	@Override
 	public boolean acceptsProfiles(Profiles profiles) {
 		Assert.notNull(profiles, "Profiles must not be null");
@@ -368,6 +381,8 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	@Override
 	@SuppressWarnings({"rawtypes", "unchecked"})
 	public Map<String, Object> getSystemEnvironment() {
+		// 这个判断为：return SpringProperties.getFlag(IGNORE_GETENV_PROPERTY_NAME);
+		// 所以我们是可以通过在`spring.properties`这个配置文件里spring.getenv.ignore=false关掉不暴露环境变量的~~~
 		if (suppressGetenvAccess()) {
 			return Collections.emptyMap();
 		}
@@ -388,14 +403,17 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 			};
 		}
 	}
-
+	// Append the given parent environment's active profiles, default profiles and property sources to this (child) environment's respective collections of each.
+	// 把父环境的属性合并进来~~~~
+	// 在调用ApplicationContext.setParent 方法时，会把父容器的环境合并进来  以保证父容器的属性对子容器都是可见的
 	@Override
 	public void merge(ConfigurableEnvironment parent) {
 		for (PropertySource<?> ps : parent.getPropertySources()) {
 			if (!propertySources.contains(ps.getName())) {
-				propertySources.addLast(ps);
+				propertySources.addLast(ps); // 父容器的属性都放在最末尾~~~~
 			}
 		}
+		// 合并active
 		String[] parentActiveProfiles = parent.getActiveProfiles();
 		if (!ObjectUtils.isEmpty(parentActiveProfiles)) {
 			synchronized (activeProfiles) {
@@ -404,6 +422,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 				}
 			}
 		}
+		// 合并default
 		String[] parentDefaultProfiles = parent.getDefaultProfiles();
 		if (!ObjectUtils.isEmpty(parentDefaultProfiles)) {
 			synchronized (defaultProfiles) {

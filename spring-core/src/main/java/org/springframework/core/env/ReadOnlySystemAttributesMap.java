@@ -88,5 +88,4 @@ abstract class ReadOnlySystemAttributesMap implements Map<String, String> {
 	public Set<Entry<String, String>> entrySet() {
 		return Collections.emptySet();
 	}
-
 }

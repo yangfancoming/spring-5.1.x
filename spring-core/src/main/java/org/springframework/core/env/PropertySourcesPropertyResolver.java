@@ -10,15 +10,18 @@ import org.springframework.lang.Nullable;
  * @see PropertySource
  * @see PropertySources
  * @see AbstractEnvironment
+ * 从上面知道AbstractPropertyResolver封装了解析占位符的具体实现。PropertySourcesPropertyResolver作为它的子类它只需要提供数据源，所以它主要是负责提供数据源。
+ *  PropertySource：就是我们所说的数据源，它是Spring一个非常重要的概念，比如可以来自Map，来自命令行、来自自定义等等~~~
  */
 public class PropertySourcesPropertyResolver extends AbstractPropertyResolver {
 
 	@Nullable
-	private final PropertySources propertySources;
+	private final PropertySources propertySources;// 数据源们~
 
 	/**
 	 * Create a new resolver against the given property sources.
 	 * @param propertySources the set of {@link PropertySource} objects to use
+	 * 唯一构造函数：必须指定数据源~
 	 */
 	public PropertySourcesPropertyResolver(@Nullable PropertySources propertySources) {
 		this.propertySources = propertySources;
@@ -60,6 +63,8 @@ public class PropertySourcesPropertyResolver extends AbstractPropertyResolver {
 		return getProperty(key, targetValueType, true);
 	}
 
+	// 最终依赖的都是 propertySource.getProperty(key);
+	// 方法拿到如果是字符串的话 就继续交给 value = resolveNestedPlaceholders((String) value);处理
 	@Nullable
 	protected <T> T getProperty(String key, Class<T> targetValueType, boolean resolveNestedPlaceholders) {
 		if (this.propertySources != null) {

@@ -28,6 +28,7 @@ public class PropertyPlaceholderHelper {
 		wellKnownSimplePrefixes.put("]", "[");
 		wellKnownSimplePrefixes.put(")", "(");
 	}
+
 	// 占位符前缀
 	private final String placeholderPrefix;
 	// 占位符后缀
@@ -78,6 +79,7 @@ public class PropertyPlaceholderHelper {
 	 * @param value the value containing the placeholders to be replaced  eg:  "foo=${foo}"
 	 * @param properties the Properties to use for replacement  eg: props.setProperty("foo", "bar");
 	 * @return the supplied value with placeholders replaced inline   eg: "foo=bar"
+	 * 从properties里取值  若你有就直接从Properties里取值了~~~
 	 */
 	public String replacePlaceholders(String value, final Properties properties) {
 		Assert.notNull(properties, "'properties' must not be null");
@@ -189,5 +191,4 @@ public class PropertyPlaceholderHelper {
 		@Nullable
 		String resolvePlaceholder(String placeholderName);
 	}
-
 }

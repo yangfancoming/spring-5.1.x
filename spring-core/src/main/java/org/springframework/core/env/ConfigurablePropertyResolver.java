@@ -21,6 +21,7 @@ public interface ConfigurablePropertyResolver extends PropertyResolver {
 	 * @see org.springframework.core.convert.converter.ConverterRegistry#addConverter
 	 * 返回在解析属性时使用的ConfigurableConversionService。此方法的返回值可被用户定制化set
 	 * 例如可以移除或者添加Converter  cs.addConverter(new FooConverter());等等
+	 * 默认值使用的DefaultConversionService
 	 */
 	ConfigurableConversionService getConversionService();
 

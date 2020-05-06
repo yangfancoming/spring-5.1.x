@@ -6,9 +6,8 @@ import java.util.Map;
 
 /**
  * Configuration interface to be implemented by most if not all {@link Environment} types.
- * Provides facilities for setting active and default profiles and manipulating underlying
- * property sources. Allows clients to set and validate required properties, customize the
- * conversion service and more through the {@link ConfigurablePropertyResolver} superinterface.
+ * Provides facilities for setting active and default profiles and manipulating underlying property sources.
+ * Allows clients to set and validate required properties, customize the conversion service and more through the {@link ConfigurablePropertyResolver} superinterface.
  *
  * <h2>Manipulating property sources</h2>
  * Property sources may be removed, reordered, or replaced; and additional
@@ -40,15 +39,15 @@ import java.util.Map;
  * @since 3.1
  * @see StandardEnvironment
  * @see org.springframework.context.ConfigurableApplicationContext#getEnvironment
+ * 扩展出了修改和配置profiles的一系列方法，包括用户自定义的和系统相关的属性。所有的环境实现类也都是它的实现~
  */
 public interface ConfigurableEnvironment extends Environment, ConfigurablePropertyResolver {
 
 	/**
 	 * Specify the set of profiles active for this {@code Environment}.
 	 * Profiles are evaluated during container bootstrap to determine whether bean definitions should be registered with the container.
-	 * Any existing active profiles will be replaced with the given arguments; call
-	 * with zero arguments to clear the current set of active profiles. Use
-	 * {@link #addActiveProfile} to add a profile while preserving the existing set.
+	 * Any existing active profiles will be replaced with the given arguments; call with zero arguments to clear the current set of active profiles.
+	 * Use {@link #addActiveProfile} to add a profile while preserving the existing set.
 	 * @throws IllegalArgumentException if any profile is null, empty or whitespace-only
 	 * @see #addActiveProfile
 	 * @see #setDefaultProfiles
@@ -65,8 +64,7 @@ public interface ConfigurableEnvironment extends Environment, ConfigurableProper
 	void addActiveProfile(String profile);
 
 	/**
-	 * Specify the set of profiles to be made active by default if no other profiles
-	 * are explicitly made active through {@link #setActiveProfiles}.
+	 * Specify the set of profiles to be made active by default if no other profiles  are explicitly made active through {@link #setActiveProfiles}.
 	 * @throws IllegalArgumentException if any profile is null, empty or whitespace-only
 	 * @see AbstractEnvironment#DEFAULT_PROFILES_PROPERTY_NAME
 	 */
@@ -74,68 +72,53 @@ public interface ConfigurableEnvironment extends Environment, ConfigurableProper
 
 	/**
 	 * Return the {@link PropertySources} for this {@code Environment} in mutable form,
-	 * allowing for manipulation of the set of {@link PropertySource} objects that should
-	 * be searched when resolving properties against this {@code Environment} object.
+	 * allowing for manipulation of the set of {@link PropertySource} objects that should be searched when resolving properties against this {@code Environment} object.
 	 * The various {@link MutablePropertySources} methods such as
 	 * {@link MutablePropertySources#addFirst addFirst},
 	 * {@link MutablePropertySources#addLast addLast},
 	 * {@link MutablePropertySources#addBefore addBefore} and
-	 * {@link MutablePropertySources#addAfter addAfter} allow for fine-grained control
-	 * over property source ordering. This is useful, for example, in ensuring that
-	 * certain user-defined property sources have search precedence over default property
-	 * sources such as the set of system properties or the set of system environment
-	 * variables.
+	 * {@link MutablePropertySources#addAfter addAfter} allow for fine-grained control over property source ordering.
+	 * This is useful, for example, in ensuring that  certain user-defined property sources have search precedence over default property
+	 * sources such as the set of system properties or the set of system environment variables.
 	 * @see AbstractEnvironment#customizePropertySources
+	 * 获取到所有的属性源~  MutablePropertySources表示可变的属性源们~~~ 它是一个聚合的  持有List<PropertySource<?>>
+	 * 这样获取出来后，我们可以add或者remove我们自己自定义的属性源了~
 	 */
 	MutablePropertySources getPropertySources();
 
 	/**
-	 * Return the value of {@link System#getProperties()} if allowed by the current
-	 * {@link SecurityManager}, otherwise return a map implementation that will attempt
-	 * to access individual keys using calls to {@link System#getProperty(String)}.
-	 * Note that most {@code Environment} implementations will include this system
-	 * properties map as a default {@link PropertySource} to be searched. Therefore, it is
-	 * recommended that this method not be used directly unless bypassing other property
-	 * sources is expressly intended.
-	 * Calls to {@link Map#get(Object)} on the Map returned will never throw
-	 * {@link IllegalAccessException}; in cases where the SecurityManager forbids access
-	 * to a property, {@code null} will be returned and an INFO-level log message will be
-	 * issued noting the exception.
+	 * Return the value of {@link System#getProperties()} if allowed by the current {@link SecurityManager},
+	 * otherwise return a map implementation that will attempt to access individual keys using calls to {@link System#getProperty(String)}.
+	 * Note that most {@code Environment} implementations will include this system properties map as a default {@link PropertySource} to be searched.
+	 * Therefore, it is recommended that this method not be used directly unless bypassing other property sources is expressly intended.
+	 * Calls to {@link Map#get(Object)} on the Map returned will never throw {@link IllegalAccessException}; in cases where the SecurityManager forbids access
+	 * to a property, {@code null} will be returned and an INFO-level log message will be issued noting the exception.
 	 */
 	Map<String, Object> getSystemProperties();
 
 	/**
-	 * Return the value of {@link System#getenv()} if allowed by the current
-	 * {@link SecurityManager}, otherwise return a map implementation that will attempt
-	 * to access individual keys using calls to {@link System#getenv(String)}.
-	 * Note that most {@link Environment} implementations will include this system
-	 * environment map as a default {@link PropertySource} to be searched. Therefore, it
-	 * is recommended that this method not be used directly unless bypassing other
-	 * property sources is expressly intended.
-	 * Calls to {@link Map#get(Object)} on the Map returned will never throw
-	 * {@link IllegalAccessException}; in cases where the SecurityManager forbids access
-	 * to a property, {@code null} will be returned and an INFO-level log message will be
-	 * issued noting the exception.
+	 * Return the value of {@link System#getenv()} if allowed by the current {@link SecurityManager},
+	 * otherwise return a map implementation that will attempt to access individual keys using calls to {@link System#getenv(String)}.
+	 * Note that most {@link Environment} implementations will include this system environment map as a default {@link PropertySource} to be searched.
+	 * Therefore, it is recommended that this method not be used directly unless bypassing other property sources is expressly intended.
+	 * Calls to {@link Map#get(Object)} on the Map returned will never throw {@link IllegalAccessException}; in cases where the SecurityManager forbids access
+	 * to a property, {@code null} will be returned and an INFO-level log message will be issued noting the exception.
 	 */
 	Map<String, Object> getSystemEnvironment();
 
 	/**
-	 * Append the given parent environment's active profiles, default profiles and
-	 * property sources to this (child) environment's respective collections of each.
-	 * For any identically-named {@code PropertySource} instance existing in both
-	 * parent and child, the child instance is to be preserved and the parent instance
-	 * discarded. This has the effect of allowing overriding of property sources by the
-	 * child as well as avoiding redundant searches through common property source types,
+	 * Append the given parent environment's active profiles, default profiles and property sources to this (child) environment's respective collections of each.
+	 * For any identically-named {@code PropertySource} instance existing in both parent and child, the child instance is to be preserved and the parent instance discarded.
+	 * This has the effect of allowing overriding of property sources by the child as well as avoiding redundant searches through common property source types,
 	 * e.g. system environment and system properties.
-	 * Active and default profile names are also filtered for duplicates, to avoid
-	 * confusion and redundant storage.
-	 * The parent environment remains unmodified in any case. Note that any changes to
-	 * the parent environment occurring after the call to {@code merge} will not be
-	 * reflected in the child. Therefore, care should be taken to configure parent
-	 * property sources and profile information prior to calling {@code merge}.
+	 * Active and default profile names are also filtered for duplicates, to avoid confusion and redundant storage.
+	 * The parent environment remains unmodified in any case.
+	 * Note that any changes to the parent environment occurring after the call to {@code merge} will not be reflected in the child.
+	 * Therefore, care should be taken to configure parent property sources and profile information prior to calling {@code merge}.
 	 * @param parent the environment to merge with
 	 * @since 3.1.2
 	 * @see org.springframework.context.support.AbstractApplicationContext#setParent
+	 * 合并两个环境配置信息~  此方法唯一实现在AbstractEnvironment上
 	 */
 	void merge(ConfigurableEnvironment parent);
 }
