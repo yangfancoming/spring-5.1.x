@@ -7,12 +7,8 @@ import org.springframework.core.ResolvableType;
 import org.springframework.lang.Nullable;
 
 /**
- * Exception thrown when a {@code BeanFactory} is asked for a bean instance for which it
- * cannot find a definition. This may point to a non-existing bean, a non-unique bean,
- * or a manually registered singleton instance without an associated bean definition.
- *
- * @author Rod Johnson
-
+ * Exception thrown when a {@code BeanFactory} is asked for a bean instance for which it cannot find a definition.
+ * This may point to a non-existing bean, a non-unique bean, or a manually registered singleton instance without an associated bean definition.
  * @author Stephane Nicoll
  * @see BeanFactory#getBean(String)
  * @see BeanFactory#getBean(Class)
@@ -88,7 +84,6 @@ public class NoSuchBeanDefinitionException extends BeansException {
 		this.resolvableType = type;
 	}
 
-
 	/**
 	 * Return the name of the missing bean, if it was a lookup <em>by name</em> that failed.
 	 */
@@ -98,8 +93,7 @@ public class NoSuchBeanDefinitionException extends BeansException {
 	}
 
 	/**
-	 * Return the required type of the missing bean, if it was a lookup <em>by type</em>
-	 * that failed.
+	 * Return the required type of the missing bean, if it was a lookup <em>by type</em> that failed.
 	 */
 	@Nullable
 	public Class<?> getBeanType() {
@@ -107,8 +101,7 @@ public class NoSuchBeanDefinitionException extends BeansException {
 	}
 
 	/**
-	 * Return the required {@link ResolvableType} of the missing bean, if it was a lookup
-	 * <em>by type</em> that failed.
+	 * Return the required {@link ResolvableType} of the missing bean, if it was a lookup  <em>by type</em> that failed.
 	 * @since 4.3.4
 	 */
 	@Nullable

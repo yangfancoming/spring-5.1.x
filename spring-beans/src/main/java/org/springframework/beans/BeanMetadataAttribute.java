@@ -70,9 +70,7 @@ public class BeanMetadataAttribute implements BeanMetadataElement {
 			return false;
 		}
 		BeanMetadataAttribute otherMa = (BeanMetadataAttribute) other;
-		return (this.name.equals(otherMa.name) &&
-				ObjectUtils.nullSafeEquals(this.value, otherMa.value) &&
-				ObjectUtils.nullSafeEquals(this.source, otherMa.source));
+		return (this.name.equals(otherMa.name) && ObjectUtils.nullSafeEquals(this.value, otherMa.value) && ObjectUtils.nullSafeEquals(this.source, otherMa.source));
 	}
 
 	@Override
@@ -84,5 +82,4 @@ public class BeanMetadataAttribute implements BeanMetadataElement {
 	public String toString() {
 		return "metadata attribute '" + this.name + "'";
 	}
-
 }

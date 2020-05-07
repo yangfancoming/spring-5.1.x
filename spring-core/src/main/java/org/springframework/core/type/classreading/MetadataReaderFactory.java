@@ -9,8 +9,6 @@ import org.springframework.core.io.Resource;
 /**
  * Factory interface for {@link MetadataReader} instances.
  * Allows for caching a MetadataReader per original resource.
- *
-
  * @since 2.5
  * @see SimpleMetadataReaderFactory
  * @see CachingMetadataReaderFactory

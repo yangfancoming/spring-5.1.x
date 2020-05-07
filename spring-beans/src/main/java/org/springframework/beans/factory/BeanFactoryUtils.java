@@ -317,24 +317,21 @@ public abstract class BeanFactoryUtils {
 	}
 
 	/**
-	 * Return a single bean of the given type or subtypes, also picking up beans
-	 * defined in ancestor bean factories if the current bean factory is a
-	 * HierarchicalBeanFactory. Useful convenience method when we expect a  single bean and don't care about the bean name.
+	 * Return a single bean of the given type or subtypes, also picking up beans  defined in ancestor bean factories if the current bean factory is a HierarchicalBeanFactory.
+	 * Useful convenience method when we expect a  single bean and don't care about the bean name.
 	 * Does consider objects created by FactoryBeans if the "allowEagerInit" flag is set, which means that FactoryBeans will get initialized.
 	 * If the object created by the FactoryBean doesn't match, the raw FactoryBean itself will be matched against the type.
 	 * If "allowEagerInit" is not set, only raw FactoryBeans will be checked (which doesn't require initialization of each FactoryBean).
 	 * <b>Note: Beans of the same name will take precedence at the 'lowest' factory level,
 	 * i.e. such beans will be returned from the lowest factory that they are being found in,
-	 * hiding corresponding beans in ancestor factories.</b> This feature allows for
-	 * 'replacing' beans by explicitly choosing the same bean name in a child factory;
+	 * hiding corresponding beans in ancestor factories.</b> This feature allows for 'replacing' beans by explicitly choosing the same bean name in a child factory;
 	 * the bean in the ancestor factory won't be visible then, not even for by-type lookups.
 	 * @param lbf the bean factory
 	 * @param type type of bean to match
 	 * @param includeNonSingletons whether to include prototype or scoped beans too  or just singletons (also applies to FactoryBeans)
 	 * @param allowEagerInit whether to initialize <i>lazy-init singletons</i> and
-	 * <i>objects created by FactoryBeans</i> (or by factory methods with a
-	 * "factory-bean" reference) for the type check. Note that FactoryBeans need to be
-	 * eagerly initialized to determine their type: So be aware that passing in "true" for this flag will initialize FactoryBeans and "factory-bean" references.
+	 * <i>objects created by FactoryBeans</i> (or by factory methods with a "factory-bean" reference) for the type check.
+	 * Note that FactoryBeans need to be eagerly initialized to determine their type: So be aware that passing in "true" for this flag will initialize FactoryBeans and "factory-bean" references.
 	 * @return the matching bean instance
 	 * @throws NoSuchBeanDefinitionException if no bean of the given type was found
 	 * @throws NoUniqueBeanDefinitionException if more than one bean of the given type was found

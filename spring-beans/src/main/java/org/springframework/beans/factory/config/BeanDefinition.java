@@ -64,7 +64,6 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 */
 	int ROLE_INFRASTRUCTURE = 2;
 
-
 	// Modifiable attributes
 
 	// Set the name of the parent definition of this bean definition, if any. 一句话就是：继承父 Bean 的配置信息而已

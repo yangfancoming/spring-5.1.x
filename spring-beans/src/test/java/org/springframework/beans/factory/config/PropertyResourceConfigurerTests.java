@@ -409,21 +409,16 @@ public class PropertyResourceConfigurerTests {
 
 	@Test
 	public void testPropertyPlaceholderConfigurerWithSystemPropertyFallback() {
-		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class)
-				.addPropertyValue("country", "${os.name}").getBeanDefinition());
-
+		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class).addPropertyValue("country", "${os.name}").getBeanDefinition());
 		PropertyPlaceholderConfigurer ppc = new PropertyPlaceholderConfigurer();
 		ppc.postProcessBeanFactory(factory);
-
 		TestBean tb = (TestBean) factory.getBean("tb");
 		assertEquals(System.getProperty("os.name"), tb.getCountry());
 	}
 
 	@Test
 	public void testPropertyPlaceholderConfigurerWithSystemPropertyNotUsed() {
-		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class)
-				.addPropertyValue("country", "${os.name}").getBeanDefinition());
-
+		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class).addPropertyValue("country", "${os.name}").getBeanDefinition());
 		PropertyPlaceholderConfigurer ppc = new PropertyPlaceholderConfigurer();
 		Properties props = new Properties();
 		props.setProperty("os.name", "myos");
@@ -436,9 +431,7 @@ public class PropertyResourceConfigurerTests {
 
 	@Test
 	public void testPropertyPlaceholderConfigurerWithOverridingSystemProperty() {
-		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class)
-				.addPropertyValue("country", "${os.name}").getBeanDefinition());
-
+		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class).addPropertyValue("country", "${os.name}").getBeanDefinition());
 		PropertyPlaceholderConfigurer ppc = new PropertyPlaceholderConfigurer();
 		Properties props = new Properties();
 		props.put("os.name", "myos");

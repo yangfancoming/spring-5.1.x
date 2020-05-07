@@ -39,8 +39,7 @@ import org.springframework.util.xml.XmlValidationModeDetector;
 /**
  * Bean definition reader for XML bean definitions.
  * Delegates the actual XML document reading to an implementation of the {@link BeanDefinitionDocumentReader} interface.
- * Typically applied to a
- * {@link org.springframework.beans.factory.support.DefaultListableBeanFactory} or a {@link org.springframework.context.support.GenericApplicationContext}.
+ * Typically applied to a {@link org.springframework.beans.factory.support.DefaultListableBeanFactory} or a {@link org.springframework.context.support.GenericApplicationContext}.
  * This class loads a DOM document and applies the BeanDefinitionDocumentReader to it.
  * The document reader will register each bean definition with the given bean factory,talking to the latter's implementation of the
  * {@link org.springframework.beans.factory.support.BeanDefinitionRegistry} interface.

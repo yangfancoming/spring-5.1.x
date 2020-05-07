@@ -986,13 +986,10 @@ public abstract class StringUtils {
 
 	/**
 	 * Take a String that is a delimited list and convert it into a String array.
-	 * A single {@code delimiter} may consist of more than one character,
-	 * but it will still be considered as a single delimiter string, rather
-	 * than as bunch of potential delimiter characters, in contrast to
-	 * {@link #tokenizeToStringArray}.
+	 * A single {@code delimiter} may consist of more than one character, but it will still be considered as a single delimiter string,
+	 * rather than as bunch of potential delimiter characters, in contrast to {@link #tokenizeToStringArray}.
 	 * @param str the input String (potentially {@code null} or empty)
-	 * @param delimiter the delimiter between elements (this is a single delimiter,
-	 * rather than a bunch individual delimiter characters)
+	 * @param delimiter the delimiter between elements (this is a single delimiter, rather than a bunch individual delimiter characters)
 	 * @return an array of the tokens in the list
 	 * @see #tokenizeToStringArray
 	 */
@@ -1003,15 +1000,11 @@ public abstract class StringUtils {
 	/**
 	 * 分割字符串，会把delimiter作为整体分隔符，增加一个要从分割字符串中删除的字符；
 	 * Take a String that is a delimited list and convert it into a String array.
-	 * A single {@code delimiter} may consist of more than one character,
-	 * but it will still be considered as a single delimiter string, rather
-	 * than as bunch of potential delimiter characters, in contrast to
-	 * {@link #tokenizeToStringArray}.
+	 * A single {@code delimiter} may consist of more than one character,but it will still be considered as a single delimiter string,
+	 * rather than as bunch of potential delimiter characters, in contrast to {@link #tokenizeToStringArray}.
 	 * @param str the input String (potentially {@code null} or empty)
-	 * @param delimiter the delimiter between elements (this is a single delimiter,
-	 * rather than a bunch individual delimiter characters)
-	 * @param charsToDelete a set of characters to delete; useful for deleting unwanted
-	 * line breaks: e.g. "\r\n\f" will delete all new lines and line feeds in a String
+	 * @param delimiter the delimiter between elements (this is a single delimiter, rather than a bunch individual delimiter characters)
+	 * @param charsToDelete a set of characters to delete; useful for deleting unwanted line breaks: e.g. "\r\n\f" will delete all new lines and line feeds in a String
 	 * @return an array of the tokens in the list
 	 * @see #tokenizeToStringArray
 	 */

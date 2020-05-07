@@ -16,11 +16,10 @@ public class BeanNameGenerationTests {
 
 	private DefaultListableBeanFactory beanFactory;
 
-
 	@Before
 	public void setUp() {
-		this.beanFactory = new DefaultListableBeanFactory();
-		XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(this.beanFactory);
+		beanFactory = new DefaultListableBeanFactory();
+		XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
 		reader.setValidationMode(XmlBeanDefinitionReader.VALIDATION_NONE);
 		reader.loadBeanDefinitions(new ClassPathResource("beanNameGeneration.xml", getClass()));
 	}

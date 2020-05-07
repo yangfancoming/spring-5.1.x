@@ -15,8 +15,7 @@ import org.springframework.lang.Nullable;
 public interface PersistenceExceptionTranslator {
 
 	/**
-	 * Translate the given runtime exception thrown by a persistence framework to a
-	 * corresponding exception from Spring's generic
+	 * Translate the given runtime exception thrown by a persistence framework to a corresponding exception from Spring's generic
 	 * {@link org.springframework.dao.DataAccessException} hierarchy, if possible.
 	 * Do not translate exceptions that are not understood by this translator:
 	 * for example, if coming from another persistence framework, or resulting from user code or otherwise unrelated to persistence.

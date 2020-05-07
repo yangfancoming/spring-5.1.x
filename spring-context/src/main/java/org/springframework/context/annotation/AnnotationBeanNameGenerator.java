@@ -23,11 +23,10 @@ import org.springframework.util.StringUtils;
  * {@link org.springframework.stereotype.Component @Component} as a meta-annotation. For example, Spring's stereotype annotations (such as
  * {@link org.springframework.stereotype.Repository @Repository}) are themselves annotated with
  * {@link org.springframework.stereotype.Component @Component}.
- * Also supports Java EE 6's {@link javax.annotation.ManagedBean} and  JSR-330's {@link javax.inject.Named} annotations,
- * if available. Note that Spring component annotations always override such standard annotations.
- * If the annotation's value doesn't indicate a bean name,
- * an appropriate name will be built based on the short name of the class (with the first letter lower-cased). For example:
- * <pre class="code">com.xyz.FooServiceImpl -&gt; fooServiceImpl</pre>
+ * Also supports Java EE 6's {@link javax.annotation.ManagedBean} and  JSR-330's {@link javax.inject.Named} annotations,if available.
+ * Note that Spring component annotations always override such standard annotations.
+ * If the annotation's value doesn't indicate a bean name,an appropriate name will be built based on the short name of the class (with the first letter lower-cased).
+ * For example:  <pre class="code">com.xyz.FooServiceImpl -&gt; fooServiceImpl</pre>
  * @since 2.5
  * @see org.springframework.stereotype.Component#value()
  * @see org.springframework.stereotype.Repository#value()

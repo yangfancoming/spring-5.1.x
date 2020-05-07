@@ -9,9 +9,9 @@ import org.springframework.transaction.support.ResourceHolderSupport;
 import static org.springframework.util.Assert.notNull;
 
 /**
- * Used to keep current {@code SqlSession} in {@code TransactionSynchronizationManager}. The {@code SqlSessionFactory}
- * that created that {@code SqlSession} is used as a key. {@code ExecutorType} is also kept to be able to check if the
- * user is trying to change it during a TX (that is not allowed) and throw a Exception in that case.
+ * Used to keep current {@code SqlSession} in {@code TransactionSynchronizationManager}.
+ * The {@code SqlSessionFactory} that created that {@code SqlSession} is used as a key.
+ * {@code ExecutorType} is also kept to be able to check if the user is trying to change it during a TX (that is not allowed) and throw a Exception in that case.
  */
 public final class SqlSessionHolder extends ResourceHolderSupport {
 

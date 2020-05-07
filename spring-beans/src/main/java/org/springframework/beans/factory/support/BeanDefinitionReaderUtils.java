@@ -2,6 +2,7 @@
 
 package org.springframework.beans.factory.support;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.BeanDefinitionStoreException;
 import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -18,6 +19,8 @@ import org.springframework.util.StringUtils;
  * @see org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader
  */
 public abstract class BeanDefinitionReaderUtils {
+
+	private static final Logger logger = Logger.getLogger(BeanDefinitionReaderUtils.class);
 
 	// Separator for generated bean names. If a class name or parent name is not unique, "#1", "#2" etc will be appended, until the name becomes unique.
 	public static final String GENERATED_BEAN_NAME_SEPARATOR = BeanFactoryUtils.GENERATED_BEAN_NAME_SEPARATOR;
@@ -64,18 +67,26 @@ public abstract class BeanDefinitionReaderUtils {
 	 * @throws BeanDefinitionStoreException if no unique name can be generated for the given bean definition
 	 * 假如是innerBean（比如Spring AOP产生的Bean），使用【类全路径+#+对象HashCode的16进制】的格式来命名Bean
 	 * 假如不是innerBean，使用【类全路径+#+数字】的格式来命名Bean，其中数字指的是，同一个Bean出现1次，只要该Bean没有id，就从0开始依次向上累加，比如a.b.c#0、a.b.c#1、a.b.c#2
+	 *
+	 * 　重新整理下流程：生成流程分为前后两部分，前面生成的叫前缀，后面生成的叫后缀。
+	 * 　　　　1，读取待生成name实例的类名称，未必是运行时的实际类型。
+	 * 　　　　2，如果类型为空，则判断是否存在parent bean，如果存在，读取parent bean的name+"$child"。
+	 * 　　　　3，如果parent bean 为空，那么判断是否存在factory bean ，如存在，factory bean name + "$created".前缀生成完毕。
+	 * 　　　　4，如果前缀为空，直接抛出异常，没有可以定义这个bean的任何依据。
+	 * 　　　　5，前缀存在，判断是否为内部bean（innerBean，此处默认为false），如果是，最终为前缀+分隔符+十六进制的hashcode码、
+	 * 　　　　6，如果是顶级bean（top-level bean ），则判断前缀+数字的bean是否已存在，循环查询，知道查询到没有使用的id为止。处理完成。
 	 */
 	public static String generateBeanName(BeanDefinition definition, BeanDefinitionRegistry registry, boolean isInnerBean) throws BeanDefinitionStoreException {
-		// 1、获取bean的className
+
+		// 1、获取bean的className，generatedBeanName定义为类前缀， 读取bean的className,不一定是运行时的实际类型。
 		String generatedBeanName = definition.getBeanClassName();
-		// 2、如果generatedBeanName为null，
-		// 则判断其是否有parent属性或者factory-bean并生成generatedBeanName
+		// 2、如果generatedBeanName为null，  // 如果类名称为空，那读取bean的parent bean name
 		if (generatedBeanName == null) {
 			// parent属性不为空
 			if (definition.getParentName() != null) {
 				generatedBeanName = definition.getParentName() + "$child";
 			}else if (definition.getFactoryBeanName() != null) {
-			// factory-bean属性不为空
+			//否则，读取生成该bean的factoryBean name名称做前缀。 factory-bean属性不为空
 				generatedBeanName = definition.getFactoryBeanName() + "$created";
 			}
 		}
@@ -85,13 +96,15 @@ public abstract class BeanDefinitionReaderUtils {
 		}
 		// 4、判断是否内部bean，并根据生成的generatedBeanName，拼接最终的beanName返回
 		String id = generatedBeanName; // shit
-		if (isInnerBean) {
+		if (isInnerBean) {   //当为内部bean时，调用系统底层的object唯一标识码生成
 			// Inner bean: generate identity hashcode suffix.
 			id = generatedBeanName + GENERATED_BEAN_NAME_SEPARATOR + ObjectUtils.getIdentityHexString(definition);
-		}else {
+		}else { //否则即为顶级bean，生成策略是前缀+循环数字，直到找到对应自增id
 			// Top-level bean: use plain class name with unique suffix if necessary.
+			logger.warn("【生成顶级bean名称】： " + generatedBeanName);
 			return uniqueBeanName(generatedBeanName, registry);
 		}
+		logger.warn("【生成内部bean名称】： " + generatedBeanName);
 		return id;
 	}
 
