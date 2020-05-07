@@ -17,10 +17,6 @@ import org.springframework.core.annotation.AliasFor;
  *
  * This annotation may be used as a <em>meta-annotation</em> to create custom
  * <em>composed annotations</em> with attribute overrides.
- *
- * @author Costin Leau
- * @author Stephane Nicoll
- * @author Sam Brannen
  * @since 3.1
  * @see CacheConfig
  */

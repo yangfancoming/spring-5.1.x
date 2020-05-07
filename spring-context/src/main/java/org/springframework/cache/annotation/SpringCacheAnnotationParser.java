@@ -20,15 +20,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Strategy implementation for parsing Spring's {@link Caching}, {@link Cacheable},
- * {@link CacheEvict}, and {@link CachePut} annotations.
- *
- * @author Costin Leau
-
-
- * @author Phillip Webb
- * @author Stephane Nicoll
- * @author Sam Brannen
+ * Strategy implementation for parsing Spring's {@link Caching}, {@link Cacheable},{@link CacheEvict}, and {@link CachePut} annotations.
  * @since 3.1
  */
 @SuppressWarnings("serial")
@@ -42,7 +34,6 @@ public class SpringCacheAnnotationParser implements CacheAnnotationParser, Seria
 		CACHE_OPERATION_ANNOTATIONS.add(CachePut.class);
 		CACHE_OPERATION_ANNOTATIONS.add(Caching.class);
 	}
-
 
 	@Override
 	@Nullable
@@ -83,20 +74,14 @@ public class SpringCacheAnnotationParser implements CacheAnnotationParser, Seria
 		}
 
 		final Collection<CacheOperation> ops = new ArrayList<>(1);
-		anns.stream().filter(ann -> ann instanceof Cacheable).forEach(
-				ann -> ops.add(parseCacheableAnnotation(ae, cachingConfig, (Cacheable) ann)));
-		anns.stream().filter(ann -> ann instanceof CacheEvict).forEach(
-				ann -> ops.add(parseEvictAnnotation(ae, cachingConfig, (CacheEvict) ann)));
-		anns.stream().filter(ann -> ann instanceof CachePut).forEach(
-				ann -> ops.add(parsePutAnnotation(ae, cachingConfig, (CachePut) ann)));
-		anns.stream().filter(ann -> ann instanceof Caching).forEach(
-				ann -> parseCachingAnnotation(ae, cachingConfig, (Caching) ann, ops));
+		anns.stream().filter(ann -> ann instanceof Cacheable).forEach(ann -> ops.add(parseCacheableAnnotation(ae, cachingConfig, (Cacheable) ann)));
+		anns.stream().filter(ann -> ann instanceof CacheEvict).forEach(ann -> ops.add(parseEvictAnnotation(ae, cachingConfig, (CacheEvict) ann)));
+		anns.stream().filter(ann -> ann instanceof CachePut).forEach(ann -> ops.add(parsePutAnnotation(ae, cachingConfig, (CachePut) ann)));
+		anns.stream().filter(ann -> ann instanceof Caching).forEach(ann -> parseCachingAnnotation(ae, cachingConfig, (Caching) ann, ops));
 		return ops;
 	}
 
-	private CacheableOperation parseCacheableAnnotation(
-			AnnotatedElement ae, DefaultCacheConfig defaultConfig, Cacheable cacheable) {
-
+	private CacheableOperation parseCacheableAnnotation(AnnotatedElement ae, DefaultCacheConfig defaultConfig, Cacheable cacheable) {
 		CacheableOperation.Builder builder = new CacheableOperation.Builder();
 
 		builder.setName(ae.toString());
@@ -159,9 +144,7 @@ public class SpringCacheAnnotationParser implements CacheAnnotationParser, Seria
 		return op;
 	}
 
-	private void parseCachingAnnotation(
-			AnnotatedElement ae, DefaultCacheConfig defaultConfig, Caching caching, Collection<CacheOperation> ops) {
-
+	private void parseCachingAnnotation(AnnotatedElement ae, DefaultCacheConfig defaultConfig, Caching caching, Collection<CacheOperation> ops) {
 		Cacheable[] cacheables = caching.cacheable();
 		for (Cacheable cacheable : cacheables) {
 			ops.add(parseCacheableAnnotation(ae, defaultConfig, cacheable));
@@ -194,10 +177,9 @@ public class SpringCacheAnnotationParser implements CacheAnnotationParser, Seria
 		}
 		if (StringUtils.hasText(operation.getCacheManager()) && StringUtils.hasText(operation.getCacheResolver())) {
 			throw new IllegalStateException("Invalid cache annotation configuration on '" +
-					ae.toString() + "'. Both 'cacheManager' and 'cacheResolver' attributes have been set. " +
-					"These attributes are mutually exclusive: the cache manager is used to configure a" +
-					"default cache resolver if none is set. If a cache resolver is set, the cache manager" +
-					"won't be used.");
+					ae.toString() + "'. Both 'cacheManager' and 'cacheResolver' attributes have been set. These attributes are mutually exclusive: the cache manager is used to configure a" +
+					"default cache resolver if none is set. If a cache resolver is set, the cache manager won't be used.");
+
 		}
 	}
 

@@ -13,14 +13,11 @@ import org.springframework.lang.Nullable;
  * Transparently replaces given {@code null} user values with an internal
  * {@link NullValue#INSTANCE}, if configured to support {@code null} values
  * (as indicated by {@link #isAllowNullValues()}.
- *
-
  * @since 4.2.2
  */
 public abstract class AbstractValueAdaptingCache implements Cache {
 
 	private final boolean allowNullValues;
-
 
 	/**
 	 * Create an {@code AbstractValueAdaptingCache} with the given setting.
@@ -29,7 +26,6 @@ public abstract class AbstractValueAdaptingCache implements Cache {
 	protected AbstractValueAdaptingCache(boolean allowNullValues) {
 		this.allowNullValues = allowNullValues;
 	}
-
 
 	/**
 	 * Return whether {@code null} values are allowed in this cache.
@@ -51,8 +47,7 @@ public abstract class AbstractValueAdaptingCache implements Cache {
 	public <T> T get(Object key, @Nullable Class<T> type) {
 		Object value = fromStoreValue(lookup(key));
 		if (value != null && type != null && !type.isInstance(value)) {
-			throw new IllegalStateException(
-					"Cached value is not of required type [" + type.getName() + "]: " + value);
+			throw new IllegalStateException("Cached value is not of required type [" + type.getName() + "]: " + value);
 		}
 		return (T) value;
 	}
@@ -64,7 +59,6 @@ public abstract class AbstractValueAdaptingCache implements Cache {
 	 */
 	@Nullable
 	protected abstract Object lookup(Object key);
-
 
 	/**
 	 * Convert the given value from the internal store to a user value
@@ -91,8 +85,7 @@ public abstract class AbstractValueAdaptingCache implements Cache {
 			if (this.allowNullValues) {
 				return NullValue.INSTANCE;
 			}
-			throw new IllegalArgumentException(
-					"Cache '" + getName() + "' is configured to not allow null values but null was provided");
+			throw new IllegalArgumentException("Cache '" + getName() + "' is configured to not allow null values but null was provided");
 		}
 		return userValue;
 	}
@@ -108,6 +101,5 @@ public abstract class AbstractValueAdaptingCache implements Cache {
 	protected Cache.ValueWrapper toValueWrapper(@Nullable Object storeValue) {
 		return (storeValue != null ? new SimpleValueWrapper(fromStoreValue(storeValue)) : null);
 	}
-
 
 }

@@ -16,10 +16,7 @@ import org.springframework.lang.Nullable;
  * stub implementation of all interface methods.
  *
  * See @{@link EnableCaching} for general examples and context; see
- * {@link #cacheManager()}, {@link #cacheResolver()} and {@link #keyGenerator()}
- * for detailed instructions.
-
- * @author Stephane Nicoll
+ * {@link #cacheManager()}, {@link #cacheResolver()} and {@link #keyGenerator()} for detailed instructions.
  * @since 3.1
  * @see EnableCaching
  * @see CachingConfigurerSupport

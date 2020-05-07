@@ -13,27 +13,19 @@ import org.springframework.util.StringUtils;
 
 /**
  * Selects which implementation of {@link AbstractCachingConfiguration} should
- * be used based on the value of {@link EnableCaching#mode} on the importing
- * {@code @Configuration} class.
- *
+ * be used based on the value of {@link EnableCaching#mode} on the importing {@code @Configuration} class.
  * Detects the presence of JSR-107 and enables JCache support accordingly.
-
- * @author Stephane Nicoll
  * @since 3.1
  * @see EnableCaching
  * @see ProxyCachingConfiguration
  */
 public class CachingConfigurationSelector extends AdviceModeImportSelector<EnableCaching> {
 
-	private static final String PROXY_JCACHE_CONFIGURATION_CLASS =
-			"org.springframework.cache.jcache.config.ProxyJCacheConfiguration";
+	private static final String PROXY_JCACHE_CONFIGURATION_CLASS = "org.springframework.cache.jcache.config.ProxyJCacheConfiguration";
 
-	private static final String CACHE_ASPECT_CONFIGURATION_CLASS_NAME =
-			"org.springframework.cache.aspectj.AspectJCachingConfiguration";
+	private static final String CACHE_ASPECT_CONFIGURATION_CLASS_NAME = "org.springframework.cache.aspectj.AspectJCachingConfiguration";
 
-	private static final String JCACHE_ASPECT_CONFIGURATION_CLASS_NAME =
-			"org.springframework.cache.aspectj.AspectJJCacheConfiguration";
-
+	private static final String JCACHE_ASPECT_CONFIGURATION_CLASS_NAME = "org.springframework.cache.aspectj.AspectJJCacheConfiguration";
 
 	private static final boolean jsr107Present;
 
@@ -44,7 +36,6 @@ public class CachingConfigurationSelector extends AdviceModeImportSelector<Enabl
 		jsr107Present = ClassUtils.isPresent("javax.cache.Cache", classLoader);
 		jcacheImplPresent = ClassUtils.isPresent(PROXY_JCACHE_CONFIGURATION_CLASS, classLoader);
 	}
-
 
 	/**
 	 * Returns {@link ProxyCachingConfiguration} or {@code AspectJCachingConfiguration}

@@ -136,5 +136,4 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 			refresh();
 		}
 	}
-
 }

@@ -69,17 +69,13 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
 	 * Alternatively, the internal BeanFactory exposed by the {@link ConfigurableApplicationContext} interface offers access to the {@link AutowireCapableBeanFactory} interface too.
 	 * The present method mainly serves as a convenient, specific facility on the ApplicationContext interface.
 	 * <b>NOTE: As of 4.2, this method will consistently throw IllegalStateException after the application context has been closed.</b>
-	 * In current Spring Framework versions, only refreshable application contexts behave that way;
-	 * as of 4.2, all application context implementations will be required to comply.
+	 * In current Spring Framework versions, only refreshable application contexts behave that way;as of 4.2, all application context implementations will be required to comply.
 	 * @return the AutowireCapableBeanFactory for this context
-	 * @throws IllegalStateException if the context does not support the
-	 * {@link AutowireCapableBeanFactory} interface, or does not hold an
-	 * autowire-capable bean factory yet (e.g. if {@code refresh()} has
-	 * never been called), or if the context has been closed already
+	 * @throws IllegalStateException if the context does not support the {@link AutowireCapableBeanFactory} interface, or does not hold an
+	 * autowire-capable bean factory yet (e.g. if {@code refresh()} has never been called), or if the context has been closed already
 	 * @see ConfigurableApplicationContext#refresh()
 	 * @see ConfigurableApplicationContext#getBeanFactory()
 	 * ApplicationContext 与 AutowireCapableBeanFactory 组合模式
 	 */
 	AutowireCapableBeanFactory getAutowireCapableBeanFactory() throws IllegalStateException;
-
 }

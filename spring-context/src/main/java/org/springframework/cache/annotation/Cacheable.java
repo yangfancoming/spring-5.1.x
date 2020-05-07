@@ -30,11 +30,6 @@ import org.springframework.core.annotation.AliasFor;
  *
  * This annotation may be used as a <em>meta-annotation</em> to create custom
  * <em>composed annotations</em> with attribute overrides.
- *
- * @author Costin Leau
- * @author Phillip Webb
- * @author Stephane Nicoll
- * @author Sam Brannen
  * @since 3.1
  * @see CacheConfig
  */
@@ -129,8 +124,7 @@ public @interface Cacheable {
 	 * Unlike {@link #condition}, this expression is evaluated after the method
 	 * has been called and can therefore refer to the {@code result}.
 	 * Default is {@code ""}, meaning that caching is never vetoed.
-	 * The SpEL expression evaluates against a dedicated context that provides the
-	 * following meta-data:
+	 * The SpEL expression evaluates against a dedicated context that provides the  following meta-data:
 	 * <ul>
 	 * <li>{@code #result} for a reference to the result of the method invocation. For
 	 * supported wrappers such as {@code Optional}, {@code #result} refers to the actual
@@ -150,8 +144,7 @@ public @interface Cacheable {
 
 	/**
 	 * Synchronize the invocation of the underlying method if several threads are
-	 * attempting to load a value for the same key. The synchronization leads to
-	 * a couple of limitations:
+	 * attempting to load a value for the same key. The synchronization leads to a couple of limitations:
 	 * <ol>
 	 * <li>{@link #unless()} is not supported</li>
 	 * <li>Only one cache may be specified</li>

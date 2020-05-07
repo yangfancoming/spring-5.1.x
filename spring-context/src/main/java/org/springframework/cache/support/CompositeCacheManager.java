@@ -30,9 +30,6 @@ import org.springframework.lang.Nullable;
  * However, most {@link CacheManager} implementations fall back to lazy creation
  * of named caches once requested; check out the specific configuration details
  * for a 'static' mode with fixed cache names, if available.
- *
- * @author Costin Leau
-
  * @since 3.1
  * @see #setFallbackToNoOpCache
  * @see org.springframework.cache.concurrent.ConcurrentMapCacheManager#setCacheNames
@@ -42,7 +39,6 @@ public class CompositeCacheManager implements CacheManager, InitializingBean {
 	private final List<CacheManager> cacheManagers = new ArrayList<>();
 
 	private boolean fallbackToNoOpCache = false;
-
 
 	/**
 	 * Construct an empty CompositeCacheManager, with delegate CacheManagers to
@@ -104,5 +100,4 @@ public class CompositeCacheManager implements CacheManager, InitializingBean {
 		}
 		return Collections.unmodifiableSet(names);
 	}
-
 }

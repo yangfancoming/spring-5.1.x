@@ -13,9 +13,6 @@ import org.springframework.lang.Nullable;
  * {@link AnnotationCacheOperationSource} delegates to such parsers
  * for supporting specific annotation types such as Spring's own
  * {@link Cacheable}, {@link CachePut} and{@link CacheEvict}.
- *
- * @author Costin Leau
- * @author Stephane Nicoll
  * @since 3.1
  * @see AnnotationCacheOperationSource
  * @see SpringCacheAnnotationParser

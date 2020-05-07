@@ -8,14 +8,9 @@ import org.springframework.lang.Nullable;
 
 /**
  * Interface that defines common cache operations.
- *
  * <b>Note:</b> Due to the generic use of caching, it is recommended that
  * implementations allow storage of <tt>null</tt> values (for example to
  * cache methods that return {@code null}).
- *
- * @author Costin Leau
-
- * @author Stephane Nicoll
  * @since 3.1
  */
 public interface Cache {
@@ -133,7 +128,6 @@ public interface Cache {
 	 */
 	void clear();
 
-
 	/**
 	 * A (wrapper) object representing a cache value.
 	 */
@@ -169,5 +163,4 @@ public interface Cache {
 			return this.key;
 		}
 	}
-
 }

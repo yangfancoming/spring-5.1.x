@@ -17,10 +17,6 @@ import org.springframework.lang.Nullable;
 /**
  * Abstract base class implementing the common {@link CacheManager} methods.
  * Useful for 'static' environments where the backing caches do not change.
- *
- * @author Costin Leau
-
- * @author Stephane Nicoll
  * @since 3.1
  */
 public abstract class AbstractCacheManager implements CacheManager, InitializingBean {
@@ -28,7 +24,6 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 	private final ConcurrentMap<String, Cache> cacheMap = new ConcurrentHashMap<>(16);
 
 	private volatile Set<String> cacheNames = Collections.emptySet();
-
 
 	// Early cache initialization on startup
 
@@ -76,8 +71,7 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 		Cache cache = this.cacheMap.get(name);
 		if (cache != null) {
 			return cache;
-		}
-		else {
+		}else {
 			// Fully synchronize now for missing cache creation...
 			synchronized (this.cacheMap) {
 				cache = this.cacheMap.get(name);
@@ -148,7 +142,6 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 
 
 	// Overridable template methods for cache initialization
-
 	/**
 	 * Decorate the given Cache object if necessary.
 	 * @param cache the Cache object to be added to this CacheManager
@@ -164,11 +157,9 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 	 * such cache does not exist or could not be created on the fly.
 	 * Some caches may be created at runtime if the native provider supports
 	 * it. If a lookup by name does not yield any result, a subclass gets a chance
-	 * to register such a cache at runtime. The returned cache will be automatically
-	 * added to this instance.
+	 * to register such a cache at runtime. The returned cache will be automatically added to this instance.
 	 * @param name the name of the cache to retrieve
-	 * @return the missing cache or {@code null} if no such cache exists or could be
-	 * created
+	 * @return the missing cache or {@code null} if no such cache exists or could be created
 	 * @since 4.1
 	 * @see #getCache(String)
 	 */
@@ -176,5 +167,4 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 	protected Cache getMissingCache(String name) {
 		return null;
 	}
-
 }

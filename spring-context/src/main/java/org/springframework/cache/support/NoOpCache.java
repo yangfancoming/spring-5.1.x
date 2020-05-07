@@ -12,15 +12,11 @@ import org.springframework.util.Assert;
  * A no operation {@link Cache} implementation suitable for disabling caching.
  *
  * Will simply accept any items into the cache not actually storing them.
- *
- * @author Costin Leau
- * @author Stephane Nicoll
  * @since 4.3.4
  */
 public class NoOpCache implements Cache {
 
 	private final String name;
-
 
 	/**
 	 * Create a {@link NoOpCache} instance with the specified name.
@@ -30,7 +26,6 @@ public class NoOpCache implements Cache {
 		Assert.notNull(name, "Cache name must not be null");
 		this.name = name;
 	}
-
 
 	@Override
 	public String getName() {
@@ -59,8 +54,7 @@ public class NoOpCache implements Cache {
 	public <T> T get(Object key, Callable<T> valueLoader) {
 		try {
 			return valueLoader.call();
-		}
-		catch (Exception ex) {
+		}catch (Exception ex) {
 			throw new ValueRetrievalException(key, valueLoader, ex);
 		}
 	}
