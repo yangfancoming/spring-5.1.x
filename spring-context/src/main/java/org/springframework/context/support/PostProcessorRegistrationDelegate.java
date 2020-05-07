@@ -54,7 +54,8 @@ final class PostProcessorRegistrationDelegate {
 			// Separate between BeanDefinitionRegistryPostProcessors that implement  PriorityOrdered, Ordered, and the rest.
 			List<BeanDefinitionRegistryPostProcessor> currentRegistryProcessors = new ArrayList<>();
 			// First, invoke the BeanDefinitionRegistryPostProcessors that implement PriorityOrdered.
-			// 首先要看 优先级排序  因为要先执行实现了 PriorityOrdered 接口的BeanDefinitionRegistryPostProcessor
+			// 首先要看 优先级排序  因为要先执行实现了 PriorityOrdered 接口的 BeanDefinitionRegistryPostProcessor
+			// 查出所有实现了BeanDefinitionRegistryPostProcessor接口的bean名称
 			String[] postProcessorNames = beanFactory.getBeanNamesForType(BeanDefinitionRegistryPostProcessor.class, true, false);
 			for (String ppName : postProcessorNames) {
 				if (beanFactory.isTypeMatch(ppName, PriorityOrdered.class)) {
@@ -87,10 +88,13 @@ final class PostProcessorRegistrationDelegate {
 			boolean reiterate = true;
 			while (reiterate) {
 				reiterate = false;
+				//前面的逻辑中，已经对实现了PriorityOrdered和Ordered的bean都处理过了，因此通过processedBeans过滤，processedBeans中没有的才会在此处理
 				postProcessorNames = beanFactory.getBeanNamesForType(BeanDefinitionRegistryPostProcessor.class, true, false);
 				for (String ppName : postProcessorNames) {
 					if (!processedBeans.contains(ppName)) {
+						//根据名称和类型获取bean  //把已经调用过postProcessBeanDefinitionRegistry方法的bean全部放在registryPostProcessors中
 						currentRegistryProcessors.add(beanFactory.getBean(ppName, BeanDefinitionRegistryPostProcessor.class));
+						//把已经调用过postProcessBeanDefinitionRegistry方法的bean的名称全部放在processedBeans中
 						processedBeans.add(ppName);
 						reiterate = true;
 					}
@@ -119,11 +123,9 @@ final class PostProcessorRegistrationDelegate {
 		for (String ppName : postProcessorNames) {
 			if (processedBeans.contains(ppName)) {
 				// skip - already processed in first phase above
-			}
-			else if (beanFactory.isTypeMatch(ppName, PriorityOrdered.class)) {
+			}else if (beanFactory.isTypeMatch(ppName, PriorityOrdered.class)) {
 				priorityOrderedPostProcessors.add(beanFactory.getBean(ppName, BeanFactoryPostProcessor.class));
-			}
-			else if (beanFactory.isTypeMatch(ppName, Ordered.class)) {
+			}else if (beanFactory.isTypeMatch(ppName, Ordered.class)) {
 				orderedPostProcessorNames.add(ppName);
 			}else {
 				nonOrderedPostProcessorNames.add(ppName);

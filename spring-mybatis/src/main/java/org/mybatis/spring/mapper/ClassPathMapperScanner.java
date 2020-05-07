@@ -145,22 +145,6 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 		});
 	}
 
-	/**
-	 * Calls the parent search that will search and register all the candidates. Then the registered objects are post
-	 * processed to set them as MapperFactoryBeans
-	 */
-	@Override
-	public Set<BeanDefinitionHolder> doScan(String... basePackages) {
-		Set<BeanDefinitionHolder> beanDefinitions = super.doScan(basePackages);
-		if (beanDefinitions.isEmpty()) {
-			LOGGER.warn(() -> "No MyBatis mapper was found in '" + Arrays.toString(basePackages)  + "' package. Please check your configuration.");
-		} else {
-			processBeanDefinitions(beanDefinitions);
-		}
-
-		return beanDefinitions;
-	}
-
 	private void processBeanDefinitions(Set<BeanDefinitionHolder> beanDefinitions) {
 		GenericBeanDefinition definition;
 		for (BeanDefinitionHolder holder : beanDefinitions) {
@@ -174,6 +158,7 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 			// 构造MapperFactoryBean的属性，将sqlSessionFactory、sqlSessionTemplate
 			// 等信息填充到BeanDefinition中
 			// 修改自动注入方式
+			// 其实是通过更改注册容器中bean的beanClass属性为MapperFactoryBean（工厂bean）生成实例的。容易中注册的bean其实是工厂bean，spring中的工厂bean获得实例是调用工厂方法获得。
 			definition.setBeanClass(this.mapperFactoryBeanClass);
 			definition.getPropertyValues().add("addToConfig", this.addToConfig);
 			boolean explicitFactoryUsed = false;
@@ -206,9 +191,32 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 		}
 	}
 
+	//---------------------------------------------------------------------
+	// Implementation of 【ClassPathScanningCandidateComponentProvider】 class
+	//---------------------------------------------------------------------
 	@Override
 	protected boolean isCandidateComponent(AnnotatedBeanDefinition beanDefinition) {
 		return beanDefinition.getMetadata().isInterface() && beanDefinition.getMetadata().isIndependent();
+	}
+
+	//---------------------------------------------------------------------
+	// Implementation of 【ClassPathBeanDefinitionScanner】 class
+	//---------------------------------------------------------------------
+
+	/**
+	 * Calls the parent search that will search and register all the candidates. Then the registered objects are post
+	 * processed to set them as MapperFactoryBeans
+	 */
+	@Override
+	public Set<BeanDefinitionHolder> doScan(String... basePackages) {
+		Set<BeanDefinitionHolder> beanDefinitions = super.doScan(basePackages);
+		if (beanDefinitions.isEmpty()) {
+			LOGGER.warn(() -> "No MyBatis mapper was found in '" + Arrays.toString(basePackages)  + "' package. Please check your configuration.");
+		} else {
+			processBeanDefinitions(beanDefinitions);
+		}
+
+		return beanDefinitions;
 	}
 
 	@Override
@@ -220,5 +228,4 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 			return false;
 		}
 	}
-
 }

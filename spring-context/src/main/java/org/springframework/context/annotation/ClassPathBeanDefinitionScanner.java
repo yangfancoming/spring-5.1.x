@@ -22,17 +22,13 @@ import org.springframework.util.Assert;
 import org.springframework.util.PatternMatchUtils;
 
 /**
- * A bean definition scanner that detects bean candidates on the classpath,
- * registering corresponding bean definitions with a given registry ({@code BeanFactory} or {@code ApplicationContext}).
- * Candidate classes are detected through configurable type filters. The
- * default filters include classes that are annotated with Spring's
+ * A bean definition scanner that detects bean candidates on the classpath,registering corresponding bean definitions with a given registry ({@code BeanFactory} or {@code ApplicationContext}).
+ * Candidate classes are detected through configurable type filters. The default filters include classes that are annotated with Spring's
  * {@link org.springframework.stereotype.Component @Component},
  * {@link org.springframework.stereotype.Repository @Repository},
  * {@link org.springframework.stereotype.Service @Service}, or
  * {@link org.springframework.stereotype.Controller @Controller} stereotype.
- *
- * Also supports Java EE 6's {@link javax.annotation.ManagedBean} and
- * JSR-330's {@link javax.inject.Named} annotations, if available.
+ * Also supports Java EE 6's {@link javax.annotation.ManagedBean} and JSR-330's {@link javax.inject.Named} annotations, if available.
  * @since 2.5
  * @see AnnotationConfigApplicationContext#scan
  * @see org.springframework.stereotype.Component
@@ -40,6 +36,7 @@ import org.springframework.util.PatternMatchUtils;
  * @see org.springframework.stereotype.Service
  * @see org.springframework.stereotype.Controller
  * 是一个扫描指定类路径中注解Bean定义的扫描器，在它初始化的时候，会初始化一些需要被扫描的注解，初始化用于加载包下的资源的Loader。
+ * @see AnnotatedBeanDefinitionReader
  */
 public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateComponentProvider {
 
@@ -66,20 +63,14 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 
 	/**
 	 * Create a new {@code ClassPathBeanDefinitionScanner} for the given bean factory.
-	 * If the passed-in bean factory does not only implement the
-	 * {@code BeanDefinitionRegistry} interface but also the {@code ResourceLoader}
-	 * interface, it will be used as default {@code ResourceLoader} as well. This will
-	 * usually be the case for {@link org.springframework.context.ApplicationContext} implementations.
-	 *
-	 * If given a plain {@code BeanDefinitionRegistry}, the default {@code ResourceLoader}
-	 * will be a {@link org.springframework.core.io.support.PathMatchingResourcePatternResolver}.
-	 * If the passed-in bean factory also implements {@link EnvironmentCapable} its
-	 * environment will be used by this reader.  Otherwise, the reader will initialize and
-	 * use a {@link org.springframework.core.env.StandardEnvironment}. All
-	 * {@code ApplicationContext} implementations are {@code EnvironmentCapable}, while
-	 * normal {@code BeanFactory} implementations are not.
-	 * @param registry the {@code BeanFactory} to load bean definitions into, in the form
-	 * of a {@code BeanDefinitionRegistry}
+	 * If the passed-in bean factory does not only implement the {@code BeanDefinitionRegistry} interface but also the {@code ResourceLoader} interface,
+	 * it will be used as default {@code ResourceLoader} as well.
+	 * This will usually be the case for {@link org.springframework.context.ApplicationContext} implementations.
+	 * If given a plain {@code BeanDefinitionRegistry}, the default {@code ResourceLoader} will be a {@link org.springframework.core.io.support.PathMatchingResourcePatternResolver}.
+	 * If the passed-in bean factory also implements {@link EnvironmentCapable} its environment will be used by this reader.
+	 * Otherwise, the reader will initialize and  use a {@link org.springframework.core.env.StandardEnvironment}.
+	 * All {@code ApplicationContext} implementations are {@code EnvironmentCapable}, while normal {@code BeanFactory} implementations are not.
+	 * @param registry the {@code BeanFactory} to load bean definitions into, in the form of a {@code BeanDefinitionRegistry}
 	 * @param useDefaultFilters whether to include the default filters for the
 	 * {@link org.springframework.stereotype.Component @Component},
 	 * {@link org.springframework.stereotype.Repository @Repository},
@@ -143,7 +134,6 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 		// 详情如下：  这里resourceLoader传值，还是我们的工厂。否则为null
 		setResourceLoader(resourceLoader);
 	}
-
 
 	/**
 	 * Return the BeanDefinitionRegistry that this scanner operates on.
