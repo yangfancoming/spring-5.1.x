@@ -240,10 +240,12 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 		Assert.notEmpty(basePackages, "At least one base package must be specified");
 		// 调用父类的doScan()方法，遍历basePackages中指定的所有包，扫描每个包下的Java文件并进行解析。
 		// 使用之前注册的过滤器进行过滤，得到符合条件的BeanDefinitionHolder对象
+		// 装载扫描到的Bean
 		Set<BeanDefinitionHolder> beanDefinitions = new LinkedHashSet<>();
 		//循环需要扫描的包basePackage
 		for (String basePackage : basePackages) {
 			//寻找合适的候选bean，并封装成BeanDefinition
+			// 这个是重点，会把该包下面所有的Bean都扫描进去。Spring5和一下的处理方式不一样哦~
 			Set<BeanDefinition> candidates = findCandidateComponents(basePackage);
 			//处理寻找到的候选bean
 			for (BeanDefinition candidate : candidates) {
