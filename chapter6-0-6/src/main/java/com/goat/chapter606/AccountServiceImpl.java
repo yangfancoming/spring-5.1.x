@@ -20,7 +20,6 @@ public class AccountServiceImpl implements AccountService {
 		System.out.println("==开始执行sql");
 		jdbcTemplate.update(insert_sql);
 		System.out.println("==结束执行sql");
-
 		System.out.println("==准备抛出异常");
 		throw new RuntimeException("==手动抛出一个异常");
 	}

@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.apache.log4j.Logger;
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
@@ -30,6 +31,8 @@ import org.springframework.util.StringUtils;
  */
 public class DefaultResourceLoader implements ResourceLoader {
 
+	private static final Logger logger = Logger.getLogger(DefaultResourceLoader.class);
+
 	@Nullable
 	private ClassLoader classLoader;
 
@@ -44,6 +47,7 @@ public class DefaultResourceLoader implements ResourceLoader {
 	 * @see java.lang.Thread#getContextClassLoader()
 	 */
 	public DefaultResourceLoader() {
+		logger.warn("进入 【DefaultResourceLoader】 构造函数 {}");
 		classLoader = ClassUtils.getDefaultClassLoader();
 	}
 
@@ -53,6 +57,7 @@ public class DefaultResourceLoader implements ResourceLoader {
 	 * for using the thread context class loader at the time of actual resource access
 	 */
 	public DefaultResourceLoader(@Nullable ClassLoader classLoader) {
+		logger.warn("进入 【DefaultResourceLoader】 构造函数 {}");
 		this.classLoader = classLoader;
 	}
 

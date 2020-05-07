@@ -575,7 +575,6 @@ class ConfigurationClassParser {
 		return new SourceClass(metadataReaderFactory.getMetadataReader(className));
 	}
 
-
 	@SuppressWarnings("serial")
 	private static class ImportStack extends ArrayDeque<ConfigurationClass> implements ImportRegistry {
 
@@ -920,14 +919,17 @@ class ConfigurationClassParser {
 			}
 			return asSourceClass(className);
 		}
+
 		@Override
 		public boolean equals(Object other) {
 			return (this == other || (other instanceof SourceClass && metadata.getClassName().equals(((SourceClass) other).metadata.getClassName())));
 		}
+
 		@Override
 		public int hashCode() {
 			return metadata.getClassName().hashCode();
 		}
+
 		@Override
 		public String toString() {
 			return metadata.getClassName();

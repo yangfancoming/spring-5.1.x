@@ -69,8 +69,7 @@ import org.springframework.util.StringUtils;
  * the resolver follows a more complex but defined procedure to try to resolve
  * the wildcard. It produces a {@code Resource} for the path up to the last
  * non-wildcard segment and obtains a {@code URL} from it. If this URL is
- * not a "{@code jar:}" URL or container-specific variant (e.g.
- * "{@code zip:}" in WebLogic, "{@code wsjar}" in WebSphere", etc.),
+ * not a "{@code jar:}" URL or container-specific variant (e.g."{@code zip:}" in WebLogic, "{@code wsjar}" in WebSphere", etc.),
  * then a {@code java.io.File} is obtained from it, and used to resolve the
  * wildcard by walking the filesystem. In the case of a jar URL, the resolver
  * either gets a {@code java.net.JarURLConnection} from it, or manually parses
@@ -143,7 +142,6 @@ import org.springframework.util.StringUtils;
  * exists in multiple classloader locations, the actual end resource may not be
  * underneath. Therefore, preferably, use "{@code classpath*:}" with the same
  * Ant-style pattern in such a case, which will search <i>all</i> class path locations that contain the root package.
-
  * @since 1.0.2
  * @see #CLASSPATH_ALL_URL_PREFIX
  * @see org.springframework.util.AntPathMatcher
@@ -179,6 +177,7 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 	 * 第一种构造函数： 用DefaultResourceLoader设置resourceLoader
 	 */
 	public PathMatchingResourcePatternResolver() {
+		logger.warn("进入 【PathMatchingResourcePatternResolver】 构造函数 {}");
 		this.resourceLoader = new DefaultResourceLoader();
 	}
 
@@ -189,6 +188,7 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 	 * @param resourceLoader the ResourceLoader to load root directories and actual resources with
 	 */
 	public PathMatchingResourcePatternResolver(ResourceLoader resourceLoader) {
+		logger.warn("进入 【PathMatchingResourcePatternResolver】 构造函数 {}");
 		Assert.notNull(resourceLoader, "ResourceLoader must not be null");
 		this.resourceLoader = resourceLoader;
 	}
@@ -202,6 +202,7 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 	 * @see org.springframework.core.io.DefaultResourceLoader
 	 */
 	public PathMatchingResourcePatternResolver(@Nullable ClassLoader classLoader) {
+		logger.warn("进入 【PathMatchingResourcePatternResolver】 构造函数 {}");
 		this.resourceLoader = new DefaultResourceLoader(classLoader);
 	}
 
