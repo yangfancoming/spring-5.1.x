@@ -44,8 +44,8 @@ public class StaticApplicationContext extends GenericApplicationContext {
 	public StaticApplicationContext(@Nullable ApplicationContext parent) throws BeansException {
 		super(parent);
 		// Initialize and register a StaticMessageSource.
-		this.staticMessageSource = new StaticMessageSource();
-		getBeanFactory().registerSingleton(MESSAGE_SOURCE_BEAN_NAME, this.staticMessageSource);
+		staticMessageSource = new StaticMessageSource();
+		getBeanFactory().registerSingleton(MESSAGE_SOURCE_BEAN_NAME, staticMessageSource);
 	}
 
 	// Overridden to turn it into a no-op, to be more lenient towards test cases.
@@ -58,7 +58,7 @@ public class StaticApplicationContext extends GenericApplicationContext {
 	 * @see #addMessage
 	 */
 	public final StaticMessageSource getStaticMessageSource() {
-		return this.staticMessageSource;
+		return staticMessageSource;
 	}
 
 	/**
@@ -119,5 +119,4 @@ public class StaticApplicationContext extends GenericApplicationContext {
 	public void addMessage(String code, Locale locale, String defaultMessage) {
 		getStaticMessageSource().addMessage(code, locale, defaultMessage);
 	}
-
 }

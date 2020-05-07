@@ -394,25 +394,22 @@ import org.springframework.stereotype.Component;
  * @see org.springframework.core.env.Environment
  * @see org.springframework.test.context.ContextConfiguration
  */
-@Target(ElementType.TYPE)
+@Target(ElementType.TYPE)// 它只能标注在类上
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Component
+@Component // 它也是个Spring的组件，会被扫描
 public @interface Configuration {
 
 	/**
 	 * Explicitly specify the name of the Spring bean definition associated with the
-	 * {@code @Configuration} class. If left unspecified (the common case), a bean
-	 * name will be automatically generated.
-	 * The custom name applies only if the {@code @Configuration} class is picked
-	 * up via component scanning or supplied directly to an
+	 * {@code @Configuration} class. If left unspecified (the common case), a bean name will be automatically generated.
+	 * The custom name applies only if the {@code @Configuration} class is picked up via component scanning or supplied directly to an
 	 * {@link AnnotationConfigApplicationContext}. If the {@code @Configuration} class
-	 * is registered as a traditional XML bean definition, the name/id of the bean
-	 * element will take precedence.
+	 * is registered as a traditional XML bean definition, the name/id of the bean element will take precedence.
 	 * @return the explicit component name, if any (or empty String otherwise)
 	 * @see AnnotationBeanNameGenerator
 	 */
 	@AliasFor(annotation = Component.class)
-	String value() default "";
+	String value() default ""; //也可以自定义Bean的名称
 
 }

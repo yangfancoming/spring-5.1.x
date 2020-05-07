@@ -19,8 +19,7 @@ import org.springframework.util.ClassUtils;
 /**
  * Basic {@link AutowireCandidateResolver} that performs a full generic type
  * match with the candidate's type if the dependency is declared as a generic type (e.g. Repository&lt;Customer&gt;).
- * This is the base class for
- * {@link org.springframework.beans.factory.annotation.QualifierAnnotationAutowireCandidateResolver},
+ * This is the base class for {@link org.springframework.beans.factory.annotation.QualifierAnnotationAutowireCandidateResolver},
  * providing an implementation all non-annotation-based resolution steps at this level.
  * @since 4.0
  */

@@ -12,12 +12,9 @@ import org.springframework.lang.Nullable;
 /**
  * Adapter that implements all methods on {@link SmartInstantiationAwareBeanPostProcessor}
  * as no-ops, which will not change normal processing of each bean instantiated
- * by the container. Subclasses may override merely those methods that they are
- * actually interested in.
- *
- * Note that this base class is only recommendable if you actually require
- * {@link InstantiationAwareBeanPostProcessor} functionality. If all you need
- * is plain {@link BeanPostProcessor} functionality, prefer a straight implementation of that (simpler) interface.
+ * by the container. Subclasses may override merely those methods that they are actually interested in.
+ * Note that this base class is only recommendable if you actually require {@link InstantiationAwareBeanPostProcessor} functionality.
+ * If all you need is plain {@link BeanPostProcessor} functionality, prefer a straight implementation of that (simpler) interface.
  * @since 2.0
  */
 public abstract class InstantiationAwareBeanPostProcessorAdapter implements SmartInstantiationAwareBeanPostProcessor {
@@ -70,5 +67,4 @@ public abstract class InstantiationAwareBeanPostProcessorAdapter implements Smar
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
 		return bean;
 	}
-
 }

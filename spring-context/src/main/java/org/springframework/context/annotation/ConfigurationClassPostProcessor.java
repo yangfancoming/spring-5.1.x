@@ -52,13 +52,13 @@ import org.springframework.util.ClassUtils;
 import static org.springframework.context.annotation.AnnotationConfigUtils.CONFIGURATION_BEAN_NAME_GENERATOR;
 
 /**
- * 用来处理@Configuration，@Import，@ImportResource和类内部的@Bean
  * {@link BeanFactoryPostProcessor} used for bootstrapping processing of {@link Configuration @Configuration} classes.
  * Registered by default when using {@code <context:annotation-config/>} or
  * {@code <context:component-scan/>}. Otherwise, may be declared manually as with any other BeanFactoryPostProcessor.
  * This post processor is priority-ordered as it is important that any {@link Bean} methods declared in {@code @Configuration} classes have
  * their corresponding bean definitions registered before any other {@link BeanFactoryPostProcessor} executes.
  * @since 3.0
+ * 用来处理@Configuration，@Import，@ImportResource和类内部的@Bean
  */
 public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPostProcessor, PriorityOrdered, ResourceLoaderAware, BeanClassLoaderAware, EnvironmentAware {
 
@@ -316,7 +316,6 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 			// nothing to enhance -> return immediately
 			return;
 		}
-
 		ConfigurationClassEnhancer enhancer = new ConfigurationClassEnhancer();
 		for (Map.Entry<String, AbstractBeanDefinition> entry : configBeanDefs.entrySet()) {
 			AbstractBeanDefinition beanDef = entry.getValue();

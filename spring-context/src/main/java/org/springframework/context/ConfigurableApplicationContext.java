@@ -85,19 +85,16 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	ConfigurableEnvironment getEnvironment();
 
 	/**
-	 * Add a new BeanFactoryPostProcessor that will get applied to the internal
-	 * bean factory of this application context on refresh, before any of the
-	 * bean definitions get evaluated. To be invoked during context configuration.
+	 * Add a new BeanFactoryPostProcessor that will get applied to the internal bean factory of this application context on refresh,
+	 * before any of the bean definitions get evaluated. To be invoked during context configuration.
 	 * @param postProcessor the factory processor to register
 	 */
 	void addBeanFactoryPostProcessor(BeanFactoryPostProcessor postProcessor);
 
 	/**
-	 * Add a new ApplicationListener that will be notified on context events
-	 * such as context refresh and context shutdown.
-	 * Note that any ApplicationListener registered here will be applied
-	 * on refresh if the context is not active yet, or on the fly with the
-	 * current event multicaster in case of a context that is already active.
+	 * Add a new ApplicationListener that will be notified on context events such as context refresh and context shutdown.
+	 * Note that any ApplicationListener registered here will be applied on refresh if the context is not active yet,
+	 * or on the fly with the current event multicaster in case of a context that is already active.
 	 * @param listener the ApplicationListener to register
 	 * @see org.springframework.context.event.ContextRefreshedEvent
 	 * @see org.springframework.context.event.ContextClosedEvent
@@ -107,8 +104,7 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	/**
 	 * Register the given protocol resolver with this application context,
 	 * allowing for additional resource protocols to be handled.
-	 * Any such resolver will be invoked ahead of this context's standard
-	 * resolution rules. It may therefore also override any default rules.
+	 * Any such resolver will be invoked ahead of this context's standard resolution rules. It may therefore also override any default rules.
 	 * @since 4.3
 	 */
 	void addProtocolResolver(ProtocolResolver resolver);
@@ -156,8 +152,7 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	 * Generally, this internal factory will only be accessible while the context is active, that is, in-between {@link #refresh()} and {@link #close()}.
 	 * The {@link #isActive()} flag can be used to check whether the context is in an appropriate state.
 	 * @return the underlying bean factory
-	 * @throws IllegalStateException if the context does not hold an internal
-	 * bean factory (usually if {@link #refresh()} hasn't been called yet or if {@link #close()} has already been called)
+	 * @throws IllegalStateException if the context does not hold an internal bean factory (usually if {@link #refresh()} hasn't been called yet or if {@link #close()} has already been called)
 	 * @see #isActive()
 	 * @see #refresh()
 	 * @see #close()

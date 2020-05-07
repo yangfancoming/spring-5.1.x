@@ -49,18 +49,12 @@ import org.springframework.tests.sample.beans.ITestBean;
 import org.springframework.tests.sample.beans.TestBean;
 import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
-
 import static org.junit.Assert.*;
 
-/**
 
-
- * @author Sam Brannen
- */
 public class ConfigurationClassPostProcessorTests {
 
 	private final DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
-
 
 	@Before
 	public void setup() {
@@ -69,15 +63,11 @@ public class ConfigurationClassPostProcessorTests {
 		this.beanFactory.setAutowireCandidateResolver(acr);
 	}
 
-
 	/**
-	 * Enhanced {@link Configuration} classes are only necessary for respecting
-	 * certain bean semantics, like singleton-scoping, scoped proxies, etc.
-	 * Technically, {@link ConfigurationClassPostProcessor} could fail to enhance the
-	 * registered Configuration classes and many use cases would still work.
+	 * Enhanced {@link Configuration} classes are only necessary for respecting certain bean semantics, like singleton-scoping, scoped proxies, etc.
+	 * Technically, {@link ConfigurationClassPostProcessor} could fail to enhance the registered Configuration classes and many use cases would still work.
 	 * Certain cases, however, like inter-bean singleton references would not.
-	 * We test for such a case below, and in doing so prove that enhancement is
-	 * working.
+	 * We test for such a case below, and in doing so prove that enhancement is working.
 	 */
 	@Test
 	public void enhancementIsPresentBecauseSingletonSemanticsAreRespected() {
@@ -101,8 +91,7 @@ public class ConfigurationClassPostProcessorTests {
 	}
 
 	/**
-	 * Tests the fix for SPR-5655, a special workaround that prefers reflection
-	 * over ASM if a bean class is already loaded.
+	 * Tests the fix for SPR-5655, a special workaround that prefers reflection over ASM if a bean class is already loaded.
 	 */
 	@Test
 	public void alreadyLoadedConfigurationClasses() {
@@ -115,8 +104,7 @@ public class ConfigurationClassPostProcessorTests {
 	}
 
 	/**
-	 * Tests whether a bean definition without a specified bean class is handled
-	 * correctly.
+	 * Tests whether a bean definition without a specified bean class is handled correctly.
 	 */
 	@Test
 	public void postProcessorIntrospectsInheritedDefinitionsCorrectly() {
@@ -144,29 +132,25 @@ public class ConfigurationClassPostProcessorTests {
 
 	@Test
 	public void postProcessorWorksWithComposedConfigurationWithAttributeOverrideForBasePackageUsingReflection() {
-		RootBeanDefinition beanDefinition = new RootBeanDefinition(
-				ComposedConfigurationWithAttributeOverrideForBasePackage.class);
+		RootBeanDefinition beanDefinition = new RootBeanDefinition(ComposedConfigurationWithAttributeOverrideForBasePackage.class);
 		assertSupportForComposedAnnotation(beanDefinition);
 	}
 
 	@Test
 	public void postProcessorWorksWithComposedConfigurationWithAttributeOverrideForBasePackageUsingAsm() {
-		RootBeanDefinition beanDefinition = new RootBeanDefinition(
-				ComposedConfigurationWithAttributeOverrideForBasePackage.class.getName());
+		RootBeanDefinition beanDefinition = new RootBeanDefinition(ComposedConfigurationWithAttributeOverrideForBasePackage.class.getName());
 		assertSupportForComposedAnnotation(beanDefinition);
 	}
 
 	@Test
 	public void postProcessorWorksWithComposedConfigurationWithAttributeOverrideForExcludeFilterUsingReflection() {
-		RootBeanDefinition beanDefinition = new RootBeanDefinition(
-				ComposedConfigurationWithAttributeOverrideForExcludeFilter.class);
+		RootBeanDefinition beanDefinition = new RootBeanDefinition(ComposedConfigurationWithAttributeOverrideForExcludeFilter.class);
 		assertSupportForComposedAnnotationWithExclude(beanDefinition);
 	}
 
 	@Test
 	public void postProcessorWorksWithComposedConfigurationWithAttributeOverrideForExcludeFilterUsingAsm() {
-		RootBeanDefinition beanDefinition = new RootBeanDefinition(
-				ComposedConfigurationWithAttributeOverrideForExcludeFilter.class.getName());
+		RootBeanDefinition beanDefinition = new RootBeanDefinition(ComposedConfigurationWithAttributeOverrideForExcludeFilter.class.getName());
 		assertSupportForComposedAnnotationWithExclude(beanDefinition);
 	}
 
@@ -179,29 +163,25 @@ public class ConfigurationClassPostProcessorTests {
 
 	@Test
 	public void postProcessorWorksWithExtendedConfigurationWithAttributeOverrideForExcludesFilterUsingAsm() {
-		RootBeanDefinition beanDefinition = new RootBeanDefinition(
-				ExtendedConfigurationWithAttributeOverrideForExcludeFilter.class.getName());
+		RootBeanDefinition beanDefinition = new RootBeanDefinition(ExtendedConfigurationWithAttributeOverrideForExcludeFilter.class.getName());
 		assertSupportForComposedAnnotationWithExclude(beanDefinition);
 	}
 
 	@Test
 	public void postProcessorWorksWithComposedComposedConfigurationWithAttributeOverridesUsingReflection() {
-		RootBeanDefinition beanDefinition = new RootBeanDefinition(
-				ComposedComposedConfigurationWithAttributeOverridesClass.class);
+		RootBeanDefinition beanDefinition = new RootBeanDefinition(ComposedComposedConfigurationWithAttributeOverridesClass.class);
 		assertSupportForComposedAnnotation(beanDefinition);
 	}
 
 	@Test
 	public void postProcessorWorksWithComposedComposedConfigurationWithAttributeOverridesUsingAsm() {
-		RootBeanDefinition beanDefinition = new RootBeanDefinition(
-				ComposedComposedConfigurationWithAttributeOverridesClass.class.getName());
+		RootBeanDefinition beanDefinition = new RootBeanDefinition(ComposedComposedConfigurationWithAttributeOverridesClass.class.getName());
 		assertSupportForComposedAnnotation(beanDefinition);
 	}
 
 	@Test
 	public void postProcessorWorksWithMetaComponentScanConfigurationWithAttributeOverridesUsingReflection() {
-		RootBeanDefinition beanDefinition = new RootBeanDefinition(
-				MetaComponentScanConfigurationWithAttributeOverridesClass.class);
+		RootBeanDefinition beanDefinition = new RootBeanDefinition(MetaComponentScanConfigurationWithAttributeOverridesClass.class);
 		assertSupportForComposedAnnotation(beanDefinition);
 	}
 

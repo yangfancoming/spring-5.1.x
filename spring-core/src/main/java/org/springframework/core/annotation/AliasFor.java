@@ -10,9 +10,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * {@code @AliasFor} is an annotation that is used to declare aliases for
- * annotation attributes.
- *
+ * {@code @AliasFor} is an annotation that is used to declare aliases for annotation attributes.
  * <h3>Usage Scenarios</h3>
  * <ul>
  * <li><strong>Explicit aliases within an annotation</strong>: within a single
@@ -159,8 +157,6 @@ import java.lang.annotation.Target;
  * have been updated to use {@code @AliasFor} to configure their internal
  * attribute aliases. Consult the Javadoc for individual annotations as well
  * as the reference manual for details.
- *
- * @author Sam Brannen
  * @since 4.2
  * @see AnnotatedElementUtils
  * @see AnnotationUtils
@@ -194,5 +190,4 @@ public @interface AliasFor {
 	 * declared in the same annotation as <em>this</em> attribute.
 	 */
 	Class<? extends Annotation> annotation() default Annotation.class;
-
 }

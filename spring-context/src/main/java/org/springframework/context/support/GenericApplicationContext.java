@@ -28,8 +28,7 @@ import org.springframework.util.Assert;
 /**
  * Generic ApplicationContext implementation that holds a single internal {@link org.springframework.beans.factory.support.DefaultListableBeanFactory}
  * instance and does not assume a specific bean definition format.
- * Implements  the {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}
- * interface in order to allow for applying any bean definition readers to it.
+ * Implements  the {@link org.springframework.beans.factory.support.BeanDefinitionRegistry} interface in order to allow for applying any bean definition readers to it.
  *
  * Typical usage is to register a variety of bean definitions via the {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}
  * interface and then call {@link #refresh()} to initialize those beans

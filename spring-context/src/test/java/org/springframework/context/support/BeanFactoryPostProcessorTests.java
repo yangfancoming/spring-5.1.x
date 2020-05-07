@@ -25,21 +25,16 @@ import org.springframework.util.Assert;
 import static org.junit.Assert.*;
 
 /**
- * Tests the interaction between {@link ApplicationContext} implementations and
- * any registered {@link BeanFactoryPostProcessor} implementations.  Specifically
- * {@link StaticApplicationContext} is used for the tests, but what's represented
- * here is any {@link AbstractApplicationContext} implementation.
- *
- * @author Colin Sampaleanu
-
-
+ * Tests the interaction between {@link ApplicationContext} implementations and any registered {@link BeanFactoryPostProcessor} implementations.
+ * Specifically  {@link StaticApplicationContext} is used for the tests, but what's represented  here is any {@link AbstractApplicationContext} implementation.
  * @since 02.10.2003
  */
 public class BeanFactoryPostProcessorTests {
 
+	StaticApplicationContext ac = new StaticApplicationContext();
+
 	@Test
 	public void testRegisteredBeanFactoryPostProcessor() {
-		StaticApplicationContext ac = new StaticApplicationContext();
 		ac.registerSingleton("tb1", TestBean.class);
 		ac.registerSingleton("tb2", TestBean.class);
 		TestBeanFactoryPostProcessor bfpp = new TestBeanFactoryPostProcessor();
@@ -51,7 +46,6 @@ public class BeanFactoryPostProcessorTests {
 
 	@Test
 	public void testDefinedBeanFactoryPostProcessor() {
-		StaticApplicationContext ac = new StaticApplicationContext();
 		ac.registerSingleton("tb1", TestBean.class);
 		ac.registerSingleton("tb2", TestBean.class);
 		ac.registerSingleton("bfpp", TestBeanFactoryPostProcessor.class);
@@ -62,7 +56,6 @@ public class BeanFactoryPostProcessorTests {
 
 	@Test
 	public void testMultipleDefinedBeanFactoryPostProcessors() {
-		StaticApplicationContext ac = new StaticApplicationContext();
 		ac.registerSingleton("tb1", TestBean.class);
 		ac.registerSingleton("tb2", TestBean.class);
 		MutablePropertyValues pvs1 = new MutablePropertyValues();
@@ -104,7 +97,6 @@ public class BeanFactoryPostProcessorTests {
 
 	@Test
 	public void testBeanDefinitionRegistryPostProcessorRegisteringAnother() {
-		StaticApplicationContext ac = new StaticApplicationContext();
 		ac.registerSingleton("tb1", TestBean.class);
 		ac.registerSingleton("tb2", TestBean.class);
 		ac.registerBeanDefinition("bdrpp2", new RootBeanDefinition(OuterBeanDefinitionRegistryPostProcessor.class));
@@ -115,7 +107,6 @@ public class BeanFactoryPostProcessorTests {
 
 	@Test
 	public void testPrioritizedBeanDefinitionRegistryPostProcessorRegisteringAnother() {
-		StaticApplicationContext ac = new StaticApplicationContext();
 		ac.registerSingleton("tb1", TestBean.class);
 		ac.registerSingleton("tb2", TestBean.class);
 		ac.registerBeanDefinition("bdrpp2", new RootBeanDefinition(PrioritizedOuterBeanDefinitionRegistryPostProcessor.class));
@@ -126,7 +117,6 @@ public class BeanFactoryPostProcessorTests {
 
 	@Test
 	public void testBeanFactoryPostProcessorAsApplicationListener() {
-		StaticApplicationContext ac = new StaticApplicationContext();
 		ac.registerBeanDefinition("bfpp", new RootBeanDefinition(ListeningBeanFactoryPostProcessor.class));
 		ac.refresh();
 		assertTrue(ac.getBean(ListeningBeanFactoryPostProcessor.class).received instanceof ContextRefreshedEvent);
@@ -134,7 +124,6 @@ public class BeanFactoryPostProcessorTests {
 
 	@Test
 	public void testBeanFactoryPostProcessorWithInnerBeanAsApplicationListener() {
-		StaticApplicationContext ac = new StaticApplicationContext();
 		RootBeanDefinition rbd = new RootBeanDefinition(NestingBeanFactoryPostProcessor.class);
 		rbd.getPropertyValues().add("listeningBean", new RootBeanDefinition(ListeningBean.class));
 		ac.registerBeanDefinition("bfpp", rbd);
@@ -218,7 +207,6 @@ public class BeanFactoryPostProcessorTests {
 		}
 	}
 
-
 	public static class ListeningBeanFactoryPostProcessor implements BeanFactoryPostProcessor, ApplicationListener {
 
 		public ApplicationEvent received;
@@ -234,7 +222,6 @@ public class BeanFactoryPostProcessorTests {
 		}
 	}
 
-
 	public static class ListeningBean implements ApplicationListener {
 
 		public ApplicationEvent received;
@@ -245,7 +232,6 @@ public class BeanFactoryPostProcessorTests {
 			this.received = event;
 		}
 	}
-
 
 	public static class NestingBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 
