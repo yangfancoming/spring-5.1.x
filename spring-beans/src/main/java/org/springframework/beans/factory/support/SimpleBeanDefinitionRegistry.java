@@ -30,6 +30,7 @@ public class SimpleBeanDefinitionRegistry extends SimpleAliasRegistry implements
 	public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition) throws BeanDefinitionStoreException {
 		Assert.hasText(beanName, "'beanName' must not be empty");
 		Assert.notNull(beanDefinition, "BeanDefinition must not be null");
+		logger.warn("【IOC容器中 添加BeanDefinition 内存态】 beanName： " + beanName);
 		beanDefinitionMap.put(beanName, beanDefinition);
 	}
 

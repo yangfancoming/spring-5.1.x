@@ -14,14 +14,11 @@ import org.springframework.core.io.support.PropertiesLoaderSupport;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Allows for configuration of individual bean property values from a property resource,
- * i.e. a properties file. Useful for custom config files targeted at system
- * administrators that override bean properties configured in the application context.
+ * Allows for configuration of individual bean property values from a property resource,i.e. a properties file.
+ * Useful for custom config files targeted at system administrators that override bean properties configured in the application context.
  * Two concrete implementations are provided in the distribution:
- * <li>{@link PropertyOverrideConfigurer} for "beanName.property=value" style overriding
- * (<i>pushing</i> values from a properties file into bean definitions)
- * <li>{@link PropertyPlaceholderConfigurer} for replacing "${...}" placeholders
- * (<i>pulling</i> values from a properties file into bean definitions)
+ * <li>{@link PropertyOverrideConfigurer} for "beanName.property=value" style overriding (<i>pushing</i> values from a properties file into bean definitions)
+ * <li>{@link PropertyPlaceholderConfigurer} for replacing "${...}" placeholders (<i>pulling</i> values from a properties file into bean definitions)
  * Property values can be converted after reading them in, through overriding the {@link #convertPropertyValue} method.
  * For example, encrypted values can be detected and decrypted accordingly before processing them.
  * @since 02.10.2003
@@ -46,8 +43,7 @@ public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport
 	}
 
 	/**
-	 * {@linkplain #mergeProperties Merge}, {@linkplain #convertProperties convert} and
-	 * {@linkplain #processProperties process} properties against the given bean factory.
+	 * {@linkplain #mergeProperties Merge}, {@linkplain #convertProperties convert} and {@linkplain #processProperties process} properties against the given bean factory.
 	 * @throws BeanInitializationException if any properties cannot be loaded
 	 */
 	@Override
@@ -64,8 +60,8 @@ public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport
 	}
 
 	/**
-	 * Convert the given merged properties, converting property values
-	 * if necessary. The result will then be processed.
+	 * Convert the given merged properties, converting property values if necessary.
+	 * The result will then be processed.
 	 * The default implementation will invoke {@link #convertPropertyValue} for each property value, replacing the original with the converted value.
 	 * @param props the Properties to convert
 	 * @see #processProperties

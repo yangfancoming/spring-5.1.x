@@ -35,19 +35,15 @@ public class BeanFactoryPostProcessorTests {
 
 	@Test
 	public void testRegisteredBeanFactoryPostProcessor() {
-		ac.registerSingleton("tb1", TestBean.class);
-		ac.registerSingleton("tb2", TestBean.class);
 		TestBeanFactoryPostProcessor bfpp = new TestBeanFactoryPostProcessor();
 		ac.addBeanFactoryPostProcessor(bfpp);
-		assertFalse(bfpp.wasCalled);
-		ac.refresh();
-		assertTrue(bfpp.wasCalled);
+		assertFalse(bfpp.wasCalled); // 容器刷新前 默认值为 false
+		ac.refresh(); // 容器刷新
+		assertTrue(bfpp.wasCalled); // 容器刷新后 默认值被更改为 true
 	}
 
 	@Test
 	public void testDefinedBeanFactoryPostProcessor() {
-		ac.registerSingleton("tb1", TestBean.class);
-		ac.registerSingleton("tb2", TestBean.class);
 		ac.registerSingleton("bfpp", TestBeanFactoryPostProcessor.class);
 		ac.refresh();
 		TestBeanFactoryPostProcessor bfpp = (TestBeanFactoryPostProcessor) ac.getBean("bfpp");
@@ -56,14 +52,14 @@ public class BeanFactoryPostProcessorTests {
 
 	@Test
 	public void testMultipleDefinedBeanFactoryPostProcessors() {
-		ac.registerSingleton("tb1", TestBean.class);
-		ac.registerSingleton("tb2", TestBean.class);
 		MutablePropertyValues pvs1 = new MutablePropertyValues();
 		pvs1.add("initValue", "${key}");
 		ac.registerSingleton("bfpp1", TestBeanFactoryPostProcessor.class, pvs1);
+
 		MutablePropertyValues pvs2 = new MutablePropertyValues();
 		pvs2.add("properties", "key=value");
 		ac.registerSingleton("bfpp2", PropertyPlaceholderConfigurer.class, pvs2);
+
 		ac.refresh();
 		TestBeanFactoryPostProcessor bfpp = (TestBeanFactoryPostProcessor) ac.getBean("bfpp1");
 		assertEquals("value", bfpp.initValue);
@@ -82,7 +78,6 @@ public class BeanFactoryPostProcessorTests {
 
 	@Test
 	public void testBeanDefinitionRegistryPostProcessor() {
-		StaticApplicationContext ac = new StaticApplicationContext();
 		ac.registerSingleton("tb1", TestBean.class);
 		ac.registerSingleton("tb2", TestBean.class);
 		ac.addBeanFactoryPostProcessor(new PrioritizedBeanDefinitionRegistryPostProcessor());
@@ -133,15 +128,11 @@ public class BeanFactoryPostProcessorTests {
 
 
 	public static class TestBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
-
 		public String initValue;
-
 		public void setInitValue(String initValue) {
 			this.initValue = initValue;
 		}
-
 		public boolean wasCalled = false;
-
 		@Override
 		public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) {
 			wasCalled = true;
@@ -183,7 +174,6 @@ public class BeanFactoryPostProcessorTests {
 		}
 	}
 
-
 	public static class OuterBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegistryPostProcessor {
 
 		@Override
@@ -198,9 +188,7 @@ public class BeanFactoryPostProcessorTests {
 	}
 
 
-	public static class PrioritizedOuterBeanDefinitionRegistryPostProcessor extends OuterBeanDefinitionRegistryPostProcessor
-			implements PriorityOrdered {
-
+	public static class PrioritizedOuterBeanDefinitionRegistryPostProcessor extends OuterBeanDefinitionRegistryPostProcessor implements PriorityOrdered {
 		@Override
 		public int getOrder() {
 			return HIGHEST_PRECEDENCE;

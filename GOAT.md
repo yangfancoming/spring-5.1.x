@@ -75,7 +75,7 @@
             <property name="jobFactory" ref="jobFactory"></property>
     </bean>
     
-    形态二：内存态，此时Bean被加载到内存中，但还处在BeanDefinition这种定义状态，这种状态实际上是bean创建的模板。  内存态的bean 好比是设计图纸  根据设计图纸 来创建  纯静态的bean 
+    形态二：内存态，此时Bean被加载到内存中，但还处在 BeanDefinition 这种定义状态，这种状态实际上是bean创建的模板。  内存态的bean 好比是设计图纸  根据设计图纸 来创建  纯静态的bean 
     
     形态三：纯净态，此时的Bean只是被Bean工厂创建成了对象，但是并没有给bean的每个属性赋值，此时各属性还处于0 null false等这种初始状态，想想无参构造函数创建的对象。
     

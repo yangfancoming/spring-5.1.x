@@ -17,8 +17,7 @@ import org.springframework.util.DefaultPropertiesPersister;
 import org.springframework.util.PropertiesPersister;
 
 /**
- * Base class for JavaBean-style components that need to load properties
- * from one or more resources. Supports local properties as well, with configurable overriding.
+ * Base class for JavaBean-style components that need to load properties from one or more resources. Supports local properties as well, with configurable overriding.
  * @since 1.2.2
  */
 public abstract class PropertiesLoaderSupport {

@@ -10,13 +10,17 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Programmatic means of constructing
- * {@link org.springframework.beans.factory.config.BeanDefinition BeanDefinitions}
- * using the builder pattern. Intended primarily for use when implementing Spring 2.0
- * {@link org.springframework.beans.factory.xml.NamespaceHandler NamespaceHandlers}.
+ * Programmatic means of constructing {@link org.springframework.beans.factory.config.BeanDefinition BeanDefinitions} using the builder pattern.
+ * Intended primarily for use when implementing Spring 2.0 {@link org.springframework.beans.factory.xml.NamespaceHandler NamespaceHandlers}.
  * @since 2.0
  */
 public final class BeanDefinitionBuilder {
+
+	// The {@code BeanDefinition} instance we are creating.
+	private final AbstractBeanDefinition beanDefinition;
+
+	// Our current position with respect to constructor args.
+	private int constructorArgIndex;
 
 	/**
 	 * Create a new {@code BeanDefinitionBuilder} used to construct a {@link GenericBeanDefinition}.
@@ -106,21 +110,7 @@ public final class BeanDefinitionBuilder {
 		return new BeanDefinitionBuilder(new ChildBeanDefinition(parentName));
 	}
 
-
-	/**
-	 * The {@code BeanDefinition} instance we are creating.
-	 */
-	private final AbstractBeanDefinition beanDefinition;
-
-	/**
-	 * Our current position with respect to constructor args.
-	 */
-	private int constructorArgIndex;
-
-
-	/**
-	 * Enforce the use of factory methods.
-	 */
+	// Enforce the use of factory methods.
 	private BeanDefinitionBuilder(AbstractBeanDefinition beanDefinition) {
 		this.beanDefinition = beanDefinition;
 	}
@@ -133,35 +123,26 @@ public final class BeanDefinitionBuilder {
 		return this.beanDefinition;
 	}
 
-	/**
-	 * Validate and return the created BeanDefinition object.
-	 */
+	// Validate and return the created BeanDefinition object.
 	public AbstractBeanDefinition getBeanDefinition() {
 		this.beanDefinition.validate();
 		return this.beanDefinition;
 	}
 
-
-	/**
-	 * Set the name of the parent definition of this bean definition.
-	 */
+	// Set the name of the parent definition of this bean definition.
 	public BeanDefinitionBuilder setParentName(String parentName) {
 		this.beanDefinition.setParentName(parentName);
 		return this;
 	}
 
-	/**
-	 * Set the name of a static factory method to use for this definition,
-	 * to be called on this bean's class.
-	 */
+	// Set the name of a static factory method to use for this definition,to be called on this bean's class.
 	public BeanDefinitionBuilder setFactoryMethod(String factoryMethod) {
 		this.beanDefinition.setFactoryMethodName(factoryMethod);
 		return this;
 	}
 
 	/**
-	 * Set the name of a non-static factory method to use for this definition,
-	 * including the bean name of the factory instance to call the method on.
+	 * Set the name of a non-static factory method to use for this definition, including the bean name of the factory instance to call the method on.
 	 * @param factoryMethod the name of the factory method
 	 * @param factoryBean the name of the bean to call the specified factory method on
 	 * @since 4.3.6
@@ -172,13 +153,9 @@ public final class BeanDefinitionBuilder {
 		return this;
 	}
 
-	/**
-	 * Add an indexed constructor arg value. The current index is tracked internally
-	 * and all additions are at the present point.
-	 */
+	// Add an indexed constructor arg value. The current index is tracked internally and all additions are at the present point.
 	public BeanDefinitionBuilder addConstructorArgValue(@Nullable Object value) {
-		this.beanDefinition.getConstructorArgumentValues().addIndexedArgumentValue(
-				this.constructorArgIndex++, value);
+		this.beanDefinition.getConstructorArgumentValues().addIndexedArgumentValue(this.constructorArgIndex++, value);
 		return this;
 	}
 
@@ -187,14 +164,11 @@ public final class BeanDefinitionBuilder {
 	 * @see #addConstructorArgValue(Object)
 	 */
 	public BeanDefinitionBuilder addConstructorArgReference(String beanName) {
-		this.beanDefinition.getConstructorArgumentValues().addIndexedArgumentValue(
-				this.constructorArgIndex++, new RuntimeBeanReference(beanName));
+		this.beanDefinition.getConstructorArgumentValues().addIndexedArgumentValue(this.constructorArgIndex++, new RuntimeBeanReference(beanName));
 		return this;
 	}
 
-	/**
-	 * Add the supplied property value under the given property name.
-	 */
+	// Add the supplied property value under the given property name.
 	public BeanDefinitionBuilder addPropertyValue(String name, @Nullable Object value) {
 		this.beanDefinition.getPropertyValues().add(name, value);
 		return this;
@@ -210,17 +184,13 @@ public final class BeanDefinitionBuilder {
 		return this;
 	}
 
-	/**
-	 * Set the init method for this definition.
-	 */
+	// Set the init method for this definition.
 	public BeanDefinitionBuilder setInitMethodName(@Nullable String methodName) {
 		this.beanDefinition.setInitMethodName(methodName);
 		return this;
 	}
 
-	/**
-	 * Set the destroy method for this definition.
-	 */
+	// Set the destroy method for this definition.
 	public BeanDefinitionBuilder setDestroyMethodName(@Nullable String methodName) {
 		this.beanDefinition.setDestroyMethodName(methodName);
 		return this;
@@ -237,42 +207,31 @@ public final class BeanDefinitionBuilder {
 		return this;
 	}
 
-	/**
-	 * Set whether or not this definition is abstract.
-	 */
+	// Set whether or not this definition is abstract.
 	public BeanDefinitionBuilder setAbstract(boolean flag) {
 		this.beanDefinition.setAbstract(flag);
 		return this;
 	}
 
-	/**
-	 * Set whether beans for this definition should be lazily initialized or not.
-	 */
+	// Set whether beans for this definition should be lazily initialized or not.
 	public BeanDefinitionBuilder setLazyInit(boolean lazy) {
 		this.beanDefinition.setLazyInit(lazy);
 		return this;
 	}
 
-	/**
-	 * Set the autowire mode for this definition.
-	 */
+	//  Set the autowire mode for this definition.
 	public BeanDefinitionBuilder setAutowireMode(int autowireMode) {
 		this.beanDefinition.setAutowireMode(autowireMode);
 		return this;
 	}
 
-	/**
-	 * Set the dependency check mode for this definition.
-	 */
+	//  Set the dependency check mode for this definition.
 	public BeanDefinitionBuilder setDependencyCheck(int dependencyCheck) {
 		this.beanDefinition.setDependencyCheck(dependencyCheck);
 		return this;
 	}
 
-	/**
-	 * Append the specified bean name to the list of beans that this definition
-	 * depends on.
-	 */
+	// Append the specified bean name to the list of beans that this definition depends on.
 	public BeanDefinitionBuilder addDependsOn(String beanName) {
 		if (this.beanDefinition.getDependsOn() == null) {
 			this.beanDefinition.setDependsOn(beanName);
@@ -284,9 +243,7 @@ public final class BeanDefinitionBuilder {
 		return this;
 	}
 
-	/**
-	 * Set the role of this definition.
-	 */
+	// Set the role of this definition.
 	public BeanDefinitionBuilder setRole(int role) {
 		this.beanDefinition.setRole(role);
 		return this;

@@ -53,7 +53,6 @@ public class PropertyResourceConfigurerTests {
 
 	private final DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 
-
 	@Test
 	public void testPropertyOverrideConfigurer() {
 		BeanDefinition def1 = BeanDefinitionBuilder.genericBeanDefinition(TestBean.class).getBeanDefinition();
@@ -99,8 +98,7 @@ public class PropertyResourceConfigurerTests {
 		BeanDefinition def = BeanDefinitionBuilder.genericBeanDefinition(IndexedTestBean.class).getBeanDefinition();
 		factory.registerBeanDefinition("tb", def);
 
-		PropertyOverrideConfigurer poc;
-		poc = new PropertyOverrideConfigurer();
+		PropertyOverrideConfigurer poc = new PropertyOverrideConfigurer();
 		Properties props = new Properties();
 		props.setProperty("tb.array[0].age", "99");
 		props.setProperty("tb.list[1].name", "test");
@@ -468,16 +466,12 @@ public class PropertyResourceConfigurerTests {
 
 	@Test
 	public void testPropertyPlaceholderConfigurerWithUnresolvablePlaceholder() {
-		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class)
-				.addPropertyValue("name", "${ref}").getBeanDefinition());
-
+		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class).addPropertyValue("name", "${ref}").getBeanDefinition());
 		PropertyPlaceholderConfigurer ppc = new PropertyPlaceholderConfigurer();
-
 		try {
 			ppc.postProcessBeanFactory(factory);
 			fail("Should have thrown BeanDefinitionStoreException");
-		}
-		catch (BeanDefinitionStoreException ex) {
+		}catch (BeanDefinitionStoreException ex) {
 			// expected
 			assertTrue(ex.getMessage().contains("ref"));
 		}
@@ -485,35 +479,27 @@ public class PropertyResourceConfigurerTests {
 
 	@Test
 	public void testPropertyPlaceholderConfigurerWithIgnoreUnresolvablePlaceholder() {
-		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class)
-				.addPropertyValue("name", "${ref}").getBeanDefinition());
-
+		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class).addPropertyValue("name", "${ref}").getBeanDefinition());
 		PropertyPlaceholderConfigurer ppc = new PropertyPlaceholderConfigurer();
 		ppc.setIgnoreUnresolvablePlaceholders(true);
 		ppc.postProcessBeanFactory(factory);
-
 		TestBean tb = (TestBean) factory.getBean("tb");
 		assertEquals("${ref}", tb.getName());
 	}
 
 	@Test
 	public void testPropertyPlaceholderConfigurerWithEmptyStringAsNull() {
-		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class)
-				.addPropertyValue("name", "").getBeanDefinition());
-
+		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class).addPropertyValue("name", "").getBeanDefinition());
 		PropertyPlaceholderConfigurer ppc = new PropertyPlaceholderConfigurer();
 		ppc.setNullValue("");
 		ppc.postProcessBeanFactory(factory);
-
 		TestBean tb = (TestBean) factory.getBean("tb");
 		assertNull(tb.getName());
 	}
 
 	@Test
 	public void testPropertyPlaceholderConfigurerWithEmptyStringInPlaceholderAsNull() {
-		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class)
-				.addPropertyValue("name", "${ref}").getBeanDefinition());
-
+		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class).addPropertyValue("name", "${ref}").getBeanDefinition());
 		PropertyPlaceholderConfigurer ppc = new PropertyPlaceholderConfigurer();
 		ppc.setNullValue("");
 		Properties props = new Properties();
@@ -527,9 +513,7 @@ public class PropertyResourceConfigurerTests {
 
 	@Test
 	public void testPropertyPlaceholderConfigurerWithNestedPlaceholderInKey() {
-		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class)
-				.addPropertyValue("name", "${my${key}key}").getBeanDefinition());
-
+		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class).addPropertyValue("name", "${my${key}key}").getBeanDefinition());
 		PropertyPlaceholderConfigurer ppc = new PropertyPlaceholderConfigurer();
 		Properties props = new Properties();
 		props.put("key", "new");
@@ -586,21 +570,17 @@ public class PropertyResourceConfigurerTests {
 		props.setProperty("var", "${m}");
 		props.setProperty("m", "${var}");
 		ppc.setProperties(props);
-
 		try {
 			ppc.postProcessBeanFactory(factory);
 			fail("Should have thrown BeanDefinitionStoreException");
-		}
-		catch (BeanDefinitionStoreException ex) {
+		}catch (BeanDefinitionStoreException ex) {
 			// expected
 		}
 	}
 
 	@Test
 	public void testPropertyPlaceholderConfigurerWithDefaultProperties() {
-		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class)
-				.addPropertyValue("touchy", "${test}").getBeanDefinition());
-
+		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class).addPropertyValue("touchy", "${test}").getBeanDefinition());
 		PropertyPlaceholderConfigurer ppc = new PropertyPlaceholderConfigurer();
 		Properties props = new Properties();
 		props.put("test", "mytest");
@@ -613,21 +593,16 @@ public class PropertyResourceConfigurerTests {
 
 	@Test
 	public void testPropertyPlaceholderConfigurerWithInlineDefault() {
-		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class)
-				.addPropertyValue("touchy", "${test:mytest}").getBeanDefinition());
-
+		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class).addPropertyValue("touchy", "${test:mytest}").getBeanDefinition());
 		PropertyPlaceholderConfigurer ppc = new PropertyPlaceholderConfigurer();
 		ppc.postProcessBeanFactory(factory);
-
 		TestBean tb = (TestBean) factory.getBean("tb");
 		assertEquals("mytest", tb.getTouchy());
 	}
 
 	@Test
 	public void testPropertyPlaceholderConfigurerWithAliases() {
-		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class)
-				.addPropertyValue("touchy", "${test}").getBeanDefinition());
-
+		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class).addPropertyValue("touchy", "${test}").getBeanDefinition());
 		factory.registerAlias("tb", "${myAlias}");
 		factory.registerAlias("${myTarget}", "alias2");
 
@@ -746,9 +721,7 @@ public class PropertyResourceConfigurerTests {
 		}
 	}
 
-
 	private static class ConvertingOverrideConfigurer extends PropertyOverrideConfigurer {
-
 		@Override
 		protected String convertPropertyValue(String originalValue) {
 			return "X" + originalValue;
@@ -778,8 +751,7 @@ public class PropertyResourceConfigurerTests {
 
 
 	/**
-	 * Mock implementation of {@link Preferences} that behaves the same regardless of the
-	 * underlying operating system and will never throw security exceptions.
+	 * Mock implementation of {@link Preferences} that behaves the same regardless of the underlying operating system and will never throw security exceptions.
 	 */
 	public static class MockPreferences extends AbstractPreferences {
 
@@ -842,5 +814,4 @@ public class PropertyResourceConfigurerTests {
 		protected void flushSpi() throws BackingStoreException {
 		}
 	}
-
 }
