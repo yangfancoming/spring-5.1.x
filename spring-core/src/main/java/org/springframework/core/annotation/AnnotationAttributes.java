@@ -13,12 +13,9 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link LinkedHashMap} subclass representing annotation attribute
- * <em>key-value</em> pairs as read by {@link AnnotationUtils},
- * {@link AnnotatedElementUtils}, and Spring's reflection- and ASM-based
- * {@link org.springframework.core.type.AnnotationMetadata} implementations.
- * Provides 'pseudo-reification' to avoid noisy Map generics in the calling
- * code as well as convenience methods for looking up annotation attributes in a type-safe fashion.
+ * {@link LinkedHashMap} subclass representing annotation attribute <em>key-value</em> pairs as read by {@link AnnotationUtils},
+ * {@link AnnotatedElementUtils}, and Spring's reflection- and ASM-based {@link org.springframework.core.type.AnnotationMetadata} implementations.
+ * Provides 'pseudo-reification' to avoid noisy Map generics in the calling code as well as convenience methods for looking up annotation attributes in a type-safe fashion.
  * @since 3.1.1
  * @see AnnotationUtils#getAnnotationAttributes
  * @see AnnotatedElementUtils
@@ -28,6 +25,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 
 	private static final String UNKNOWN = "unknown";
 
+	// 持有对应注解的类型的引用
 	@Nullable
 	private final Class<? extends Annotation> annotationType;
 
@@ -80,8 +78,8 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Create a new, empty {@link AnnotationAttributes} instance for the
-	 * specified {@code annotationType}.
+	 * 把一个注解类型Class，直接包装成 AnnotationAttributes
+	 * Create a new, empty {@link AnnotationAttributes} instance for the specified {@code annotationType}.
 	 * @param annotationType the type of annotation represented by this
 	 * {@code AnnotationAttributes} instance; never {@code null}
 	 * @since 4.2
@@ -221,8 +219,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	 * {@link #getAnnotation(String, Class)} instead.
 	 * @param attributeName the name of the attribute to get; never {@code null} or empty
 	 * @return the {@code AnnotationAttributes}
-	 * @throws IllegalArgumentException if the attribute does not exist or
-	 * if it is not of the expected type
+	 * @throws IllegalArgumentException if the attribute does not exist or if it is not of the expected type
 	 */
 	public AnnotationAttributes getAnnotation(String attributeName) {
 		return getRequiredAttribute(attributeName, AnnotationAttributes.class);
@@ -241,18 +238,13 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Get the array of {@link AnnotationAttributes} stored under the specified
-	 * {@code attributeName}.
-	 * If the value stored under the specified {@code attributeName} is
-	 * an instance of {@code AnnotationAttributes}, it will be wrapped in
-	 * a single-element array before returning it.
-	 * Note: if you expect an actual array of annotations, invoke
-	 * {@link #getAnnotationArray(String, Class)} instead.
-	 * @param attributeName the name of the attribute to get;
-	 * never {@code null} or empty
+	 * Get the array of {@link AnnotationAttributes} stored under the specified {@code attributeName}.
+	 * If the value stored under the specified {@code attributeName} is  an instance of {@code AnnotationAttributes},
+	 * it will be wrapped in a single-element array before returning it.
+	 * Note: if you expect an actual array of annotations, invoke {@link #getAnnotationArray(String, Class)} instead.
+	 * @param attributeName the name of the attribute to get; never {@code null} or empty
 	 * @return the array of {@code AnnotationAttributes}
-	 * @throws IllegalArgumentException if the attribute does not exist or
-	 * if it is not of the expected type
+	 * @throws IllegalArgumentException if the attribute does not exist or if it is not of the expected type
 	 */
 	public AnnotationAttributes[] getAnnotationArray(String attributeName) {
 		return getRequiredAttribute(attributeName, AnnotationAttributes[].class);
@@ -260,8 +252,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 
 	/**
 	 * Get the array of type {@code annotationType} stored under the specified {@code attributeName}.
-	 * If the value stored under the specified {@code attributeName} is
-	 * an {@code Annotation}, it will be wrapped in a single-element array before returning it.
+	 * If the value stored under the specified {@code attributeName} is an {@code Annotation}, it will be wrapped in a single-element array before returning it.
 	 * @param attributeName the name of the attribute to get; never {@code null} or empty
 	 * @param annotationType the expected annotation type; never {@code null}
 	 * @return the annotation array
@@ -275,12 +266,9 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Get the value stored under the specified {@code attributeName},
-	 * ensuring that the value is of the {@code expectedType}.
-	 * If the {@code expectedType} is an array and the value stored
-	 * under the specified {@code attributeName} is a single element of the
-	 * component type of the expected array type, the single element will be
-	 * wrapped in a single-element array of the appropriate type before returning it.
+	 * Get the value stored under the specified {@code attributeName}, ensuring that the value is of the {@code expectedType}.
+	 * If the {@code expectedType} is an array and the value stored  under the specified {@code attributeName} is a single element of the
+	 * component type of the expected array type, the single element will be wrapped in a single-element array of the appropriate type before returning it.
 	 * @param attributeName the name of the attribute to get; never {@code null} or empty
 	 * @param expectedType the expected type; never {@code null}
 	 * @return the value
@@ -313,9 +301,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 
 	private void assertAttributeType(String attributeName, Object attributeValue, Class<?> expectedType) {
 		if (!expectedType.isInstance(attributeValue)) {
-			throw new IllegalArgumentException(String.format("Attribute '%s' is of type %s, but %s was expected in attributes for annotation [%s]",
-					attributeName, attributeValue.getClass().getSimpleName(), expectedType.getSimpleName(),this.displayName));
-
+			throw new IllegalArgumentException(String.format("Attribute '%s' is of type %s, but %s was expected in attributes for annotation [%s]",attributeName, attributeValue.getClass().getSimpleName(), expectedType.getSimpleName(),this.displayName));
 		}
 	}
 
@@ -362,19 +348,17 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 
 	/**
 	 * Return an {@link AnnotationAttributes} instance based on the given map.
-	 * If the map is already an {@code AnnotationAttributes} instance, it
-	 * will be cast and returned immediately without creating a new instance.
-	 * Otherwise a new instance will be created by passing the supplied map
-	 * to the {@link #AnnotationAttributes(Map)} constructor.
+	 * If the map is already an {@code AnnotationAttributes} instance, it will be cast and returned immediately without creating a new instance.
+	 * Otherwise a new instance will be created by passing the supplied map to the {@link #AnnotationAttributes(Map)} constructor.
 	 * @param map original source of annotation attribute <em>key-value</em> pairs
 	 */
 	@Nullable
 	public static AnnotationAttributes fromMap(@Nullable Map<String, Object> map) {
 		if (map == null) return null;
+		// 大部分情况在这里就return了，否则继续下面，就是 this.annotationType = null;this.displayName = UNKNOWN; 那就是普通的Map里
 		if (map instanceof AnnotationAttributes) {
 			return (AnnotationAttributes) map;
 		}
 		return new AnnotationAttributes(map);
 	}
-
 }

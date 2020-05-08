@@ -161,9 +161,8 @@ public class ClassUtilsTests {
 	// 测试 获取简单类名( 非全限定类名)
 	@Test
 	public void testGetShortName() {
-		Class<? extends ClassUtilsTests> aClass = getClass();
-		String className = ClassUtils.getShortName(aClass);
-		assertEquals(errorClassName, "ClassUtilsTests", className);
+		Class<? extends ClassUtilsTests> aClass = getClass(); // org.springframework.util.ClassUtilsTests
+		assertEquals(errorClassName, "ClassUtilsTests", ClassUtils.getShortName(aClass));
 	}
 
 	// 测试 获取对象数组的 简单类名
@@ -202,7 +201,7 @@ public class ClassUtilsTests {
 	}
 
 	@Test
-	public void testGetShortNameAsProperty() {
+	public void testGetShortNameAsProperty() { // org.springframework.util.ClassUtilsTests
 		assertEquals(errorClassName, "classUtilsTests", ClassUtils.getShortNameAsProperty(this.getClass()));
 		assertEquals(errorClassName, "ClassUtilsTests", ClassUtils.getShortName(getClass()));
 	}

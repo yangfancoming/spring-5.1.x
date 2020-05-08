@@ -106,6 +106,7 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 			throw new IllegalStateException("Failed to introspect annotated methods on " + getIntrospectedClass(), ex);
 		}
 	}
+
 	//---------------------------------------------------------------------
 	// Implementation of 【Cache】 interface
 	//---------------------------------------------------------------------
@@ -122,6 +123,7 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 	@Override
 	@Nullable
 	public Map<String, Object> getAnnotationAttributes(String annotationName, boolean classValuesAsString) {
+		// 判断源类上的注解个数，如果没有注解，则直接返回null。
 		return (annotations.length > 0 ? AnnotatedElementUtils.getMergedAnnotationAttributes(getIntrospectedClass(), annotationName, classValuesAsString, nestedAnnotationsAsMap) : null);
 	}
 
@@ -136,5 +138,4 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 	public MultiValueMap<String, Object> getAllAnnotationAttributes(String annotationName, boolean classValuesAsString) {
 		return (annotations.length > 0 ? AnnotatedElementUtils.getAllAnnotationAttributes(getIntrospectedClass(), annotationName, classValuesAsString, nestedAnnotationsAsMap) : null);
 	}
-
 }

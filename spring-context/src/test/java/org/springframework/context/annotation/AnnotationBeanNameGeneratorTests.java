@@ -46,13 +46,14 @@ public class AnnotationBeanNameGeneratorTests {
 		assertEquals("thoreau1", beanName);
 	}
 
+	// 测试 AnnotationBeanNameGenerator 类的 generateBeanName 方法的 buildDefaultBeanName 分支
 	@Test
 	public void generateBeanNameWithNamedComponentWhereTheNameIsBlank() {
 		AnnotatedBeanDefinition bd = new AnnotatedGenericBeanDefinition(ComponentWithBlankName.class);
 		String beanName = beanNameGenerator.generateBeanName(bd, null);
 		assertNotNull("The generated beanName must *never* be null.", beanName);
 		assertTrue("The generated beanName must *never* be blank.", StringUtils.hasText(beanName));
-		String expectedGeneratedBeanName = beanNameGenerator.buildDefaultBeanName(bd);
+		String expectedGeneratedBeanName = beanNameGenerator.buildDefaultBeanName(bd);// annotationBeanNameGeneratorTests.ComponentWithBlankName
 		assertEquals(expectedGeneratedBeanName, beanName);
 	}
 
@@ -62,10 +63,11 @@ public class AnnotationBeanNameGeneratorTests {
 		String beanName = beanNameGenerator.generateBeanName(bd, null);
 		assertNotNull("The generated beanName must *never* be null.", beanName);
 		assertTrue("The generated beanName must *never* be blank.", StringUtils.hasText(beanName));
-		String expectedGeneratedBeanName = beanNameGenerator.buildDefaultBeanName(bd);
+		String expectedGeneratedBeanName = beanNameGenerator.buildDefaultBeanName(bd);// annotationBeanNameGeneratorTests.AnonymousComponent
 		assertEquals(expectedGeneratedBeanName, beanName);
 	}
 
+	// 测试 @Service("henry") 注解生成的bean名称
 	@Test
 	public void generateBeanNameFromMetaComponentWithStringValue() {
 		AnnotatedBeanDefinition bd = new AnnotatedGenericBeanDefinition(ComponentFromStringMeta.class);
@@ -73,6 +75,7 @@ public class AnnotationBeanNameGeneratorTests {
 		assertEquals("henry", beanName);
 	}
 
+	// 测试 @NonStringMetaComponent(123) 注解 生成的bean名称
 	@Test
 	public void generateBeanNameFromMetaComponentWithNonStringValue() {
 		AnnotatedBeanDefinition bd = new AnnotatedGenericBeanDefinition(ComponentFromNonStringMeta.class);

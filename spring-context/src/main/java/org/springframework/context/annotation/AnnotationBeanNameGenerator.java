@@ -57,23 +57,29 @@ public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 	}
 
 	/**
+	 * 根据类的注解中的value属性生成一个bean name
 	 * Derive a bean name from one of the annotations on the class.
 	 * @param annotatedDef the annotation-aware bean definition
 	 * @return the bean name, or {@code null} if none is found
 	 */
 	@Nullable
 	protected String determineBeanNameFromAnnotation(AnnotatedBeanDefinition annotatedDef) {
+		// AnnotatedGenericBeanDefinition 构造时初始化的参数 （StandardAnnotationMetadata）
 		AnnotationMetadata amd = annotatedDef.getMetadata();
 		String beanName = null;
-		// 获取该类上的所有注解
+		// 获取该类上的所有注解的名称
 		Set<String> types = amd.getAnnotationTypes();
 		for (String type : types) {
+			// 获取该注解对应的属性
 			AnnotationAttributes attributes = AnnotationConfigUtils.attributesFor(amd, type);
+			// 判断注解类型是否包含value属性
 			if (attributes != null && isStereotypeWithNameValue(type, amd.getMetaAnnotationTypes(type), attributes)) {
 				Object value = attributes.get("value");
+				// 只有注解中的value属性 是字符串时，才会解析 eg： @Service("goat") 。   若是数字则直接跳过 eg： @Service(123)
 				if (value instanceof String) {
 					String strVal = (String) value;
 					if (StringUtils.hasLength(strVal)) {
+						// 不多于1个注解配置了value属性且非空，比如无法在一个类上面同时使用Component和Sevice注解同时配置beanName值
 						if (beanName != null && !strVal.equals(beanName)) {
 							throw new IllegalStateException("Stereotype annotations suggest inconsistent component names: '" + beanName + "' versus '" + strVal + "'");
 						}

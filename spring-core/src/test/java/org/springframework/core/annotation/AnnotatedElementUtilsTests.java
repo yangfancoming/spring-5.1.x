@@ -212,24 +212,23 @@ public class AnnotatedElementUtilsTests {
 
 	@Test
 	public void getAllAnnotationAttributesOnLangType() {
-		MultiValueMap<String, Object> attributes = getAllAnnotationAttributes(
-				NonNullApi.class, Nonnull.class.getName());
+		MultiValueMap<String, Object> attributes = getAllAnnotationAttributes(NonNullApi.class, Nonnull.class.getName());
 		assertNotNull(attributes);
 		assertEquals(asList(When.ALWAYS), attributes.get("when"));
 	}
 
 	@Test
 	public void getAllAnnotationAttributesOnJavaxType() {
-		MultiValueMap<String, Object> attributes = getAllAnnotationAttributes(
-				ParametersAreNonnullByDefault.class, Nonnull.class.getName());
+		MultiValueMap<String, Object> attributes = getAllAnnotationAttributes(ParametersAreNonnullByDefault.class, Nonnull.class.getName());
 		assertNotNull(attributes);
 		assertEquals(asList(When.ALWAYS), attributes.get("when"));
 	}
 
+	// 测试本地注解的合并属性
 	@Test
 	public void getMergedAnnotationAttributesOnClassWithLocalAnnotation() {
 		Class<?> element = TxConfig.class;
-		String name = TX_NAME;
+		String name = TX_NAME;// org.springframework.core.annotation.AnnotatedElementUtilsTests$Transactional
 		AnnotationAttributes attributes = getMergedAnnotationAttributes(element, name);
 		assertNotNull("Annotation attributes for @Transactional on TxConfig", attributes);
 		assertEquals("value for TxConfig.", "TxConfig", attributes.getString("value"));
@@ -237,10 +236,11 @@ public class AnnotatedElementUtilsTests {
 		assertTrue(isAnnotated(element, name));
 	}
 
+	// 测试 继承父类注解的合并属性
 	@Test
 	public void getMergedAnnotationAttributesOnClassWithLocalAnnotationThatShadowsAnnotationFromSuperclass() {
 		Class<?> element = DerivedTxConfig.class;
-		String name = TX_NAME;
+		String name = TX_NAME;// org.springframework.core.annotation.AnnotatedElementUtilsTests$Transactional
 		AnnotationAttributes attributes = getMergedAnnotationAttributes(element, name);
 		assertNotNull("Annotation attributes for @Transactional on DerivedTxConfig", attributes);
 		assertEquals("value for DerivedTxConfig.", "DerivedTxConfig", attributes.getString("value"));
@@ -783,24 +783,20 @@ public class AnnotatedElementUtilsTests {
 	@MetaCycle3
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.ANNOTATION_TYPE)
-	@interface MetaCycle1 {
-	}
+	@interface MetaCycle1 {}
 
 	@MetaCycle1
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.ANNOTATION_TYPE)
-	@interface MetaCycle2 {
-	}
+	@interface MetaCycle2 {}
 
 	@MetaCycle2
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.TYPE)
-	@interface MetaCycle3 {
-	}
+	@interface MetaCycle3 {}
 
 	@MetaCycle3
-	static class MetaCycleAnnotatedClass {
-	}
+	static class MetaCycleAnnotatedClass {}
 
 	// -------------------------------------------------------------------------
 
@@ -1041,7 +1037,6 @@ public class AnnotatedElementUtilsTests {
 	@TestPropSource(locations = "test.properties")
 	@Retention(RetentionPolicy.RUNTIME)
 	@interface AliasedComposedContextConfigAndTestPropSource {
-
 		@AliasFor(annotation = ContextConfig.class, attribute = "locations")
 		String[] xmlConfigFiles() default "default.xml";
 	}
@@ -1110,62 +1105,48 @@ public class AnnotatedElementUtilsTests {
 
 	// -------------------------------------------------------------------------
 
-	static class NonAnnotatedClass {
-	}
+	static class NonAnnotatedClass {}
 
 	@TransactionalComponent
-	static class TransactionalComponentClass {
-	}
+	static class TransactionalComponentClass {}
 
-	static class SubTransactionalComponentClass extends TransactionalComponentClass {
-	}
+
+	static class SubTransactionalComponentClass extends TransactionalComponentClass {}
 
 	@ComposedTransactionalComponent
-	static class ComposedTransactionalComponentClass {
-	}
+	static class ComposedTransactionalComponentClass {}
 
 	@AliasedTransactionalComponent
-	static class AliasedTransactionalComponentClass {
-	}
+	static class AliasedTransactionalComponentClass {}
 
 	@Transactional
-	static class ClassWithInheritedAnnotation {
-	}
+	static class ClassWithInheritedAnnotation {}
 
 	@Composed
-	static class SubClassWithInheritedAnnotation extends ClassWithInheritedAnnotation {
-	}
+	static class SubClassWithInheritedAnnotation extends ClassWithInheritedAnnotation {}
 
-	static class SubSubClassWithInheritedAnnotation extends SubClassWithInheritedAnnotation {
-	}
+	static class SubSubClassWithInheritedAnnotation extends SubClassWithInheritedAnnotation {}
 
 	@InheritedComposed
-	static class ClassWithInheritedComposedAnnotation {
-	}
+	static class ClassWithInheritedComposedAnnotation {}
 
 	@Composed
-	static class SubClassWithInheritedComposedAnnotation extends ClassWithInheritedComposedAnnotation {
-	}
+	static class SubClassWithInheritedComposedAnnotation extends ClassWithInheritedComposedAnnotation {}
 
-	static class SubSubClassWithInheritedComposedAnnotation extends SubClassWithInheritedComposedAnnotation {
-	}
+	static class SubSubClassWithInheritedComposedAnnotation extends SubClassWithInheritedComposedAnnotation {}
 
 	@MetaAndLocalTxConfig
-	static class MetaAndLocalTxConfigClass {
-	}
+	static class MetaAndLocalTxConfigClass {}
 
 	@Transactional("TxConfig")
-	static class TxConfig {
-	}
+	static class TxConfig {}
 
 	@Transactional("DerivedTxConfig")
-	static class DerivedTxConfig extends TxConfig {
-	}
+	static class DerivedTxConfig extends TxConfig {}
 
 	@TxInheritedComposed
 	@TxComposed
-	static class TxFromMultipleComposedAnnotations {
-	}
+	static class TxFromMultipleComposedAnnotations {}
 
 	@Transactional
 	static interface InterfaceWithInheritedAnnotation {
@@ -1200,7 +1181,6 @@ public class AnnotatedElementUtilsTests {
 	}
 
 	public interface GenericParameter<T> {
-
 		T getFor(Class<T> cls);
 	}
 
@@ -1219,122 +1199,93 @@ public class AnnotatedElementUtilsTests {
 	}
 
 	@Transactional
-	public interface InheritedAnnotationInterface {
-	}
+	public interface InheritedAnnotationInterface {}
 
-	public interface SubInheritedAnnotationInterface extends InheritedAnnotationInterface {
-	}
+	public interface SubInheritedAnnotationInterface extends InheritedAnnotationInterface {}
 
-	public interface SubSubInheritedAnnotationInterface extends SubInheritedAnnotationInterface {
-	}
+
+	public interface SubSubInheritedAnnotationInterface extends SubInheritedAnnotationInterface {}
 
 	@Order
-	public interface NonInheritedAnnotationInterface {
-	}
+	public interface NonInheritedAnnotationInterface {}
 
-	public interface SubNonInheritedAnnotationInterface extends NonInheritedAnnotationInterface {
-	}
+	public interface SubNonInheritedAnnotationInterface extends NonInheritedAnnotationInterface {}
 
-	public interface SubSubNonInheritedAnnotationInterface extends SubNonInheritedAnnotationInterface {
-	}
+	public interface SubSubNonInheritedAnnotationInterface extends SubNonInheritedAnnotationInterface {}
 
 	@ConventionBasedComposedContextConfig(locations = "explicitDeclaration")
-	static class ConventionBasedComposedContextConfigClass {
-	}
+	static class ConventionBasedComposedContextConfigClass {}
 
 	@InvalidConventionBasedComposedContextConfig(locations = "requiredLocationsDeclaration")
-	static class InvalidConventionBasedComposedContextConfigClass {
-	}
+	static class InvalidConventionBasedComposedContextConfigClass {}
 
 	@HalfConventionBasedAndHalfAliasedComposedContextConfig(xmlConfigFiles = "explicitDeclaration")
-	static class HalfConventionBasedAndHalfAliasedComposedContextConfigClassV1 {
-	}
+	static class HalfConventionBasedAndHalfAliasedComposedContextConfigClassV1 {}
 
 	@HalfConventionBasedAndHalfAliasedComposedContextConfig(locations = "explicitDeclaration")
-	static class HalfConventionBasedAndHalfAliasedComposedContextConfigClassV2 {
-	}
+	static class HalfConventionBasedAndHalfAliasedComposedContextConfigClassV2 {}
 
 	@AliasedComposedContextConfig(xmlConfigFiles = "test.xml")
-	static class AliasedComposedContextConfigClass {
-	}
+	static class AliasedComposedContextConfigClass {}
 
 	@AliasedValueComposedContextConfig(locations = "test.xml")
-	static class AliasedValueComposedContextConfigClass {
-	}
+	static class AliasedValueComposedContextConfigClass {}
 
 	@ImplicitAliasesContextConfig("foo.xml")
-	static class ImplicitAliasesContextConfigClass1 {
-	}
+	static class ImplicitAliasesContextConfigClass1 {}
 
 	@ImplicitAliasesContextConfig(locations = "bar.xml")
-	static class ImplicitAliasesContextConfigClass2 {
-	}
+	static class ImplicitAliasesContextConfigClass2 {}
 
 	@ImplicitAliasesContextConfig(xmlFiles = "baz.xml")
-	static class ImplicitAliasesContextConfigClass3 {
-	}
+	static class ImplicitAliasesContextConfigClass3 {}
 
 	@TransitiveImplicitAliasesContextConfig(groovy = "test.groovy")
-	static class TransitiveImplicitAliasesContextConfigClass {
-	}
+	static class TransitiveImplicitAliasesContextConfigClass {}
 
 	@SingleLocationTransitiveImplicitAliasesContextConfig(groovy = "test.groovy")
-	static class SingleLocationTransitiveImplicitAliasesContextConfigClass {
-	}
+	static class SingleLocationTransitiveImplicitAliasesContextConfigClass {}
 
 	@TransitiveImplicitAliasesWithSkippedLevelContextConfig(xml = "test.xml")
-	static class TransitiveImplicitAliasesWithSkippedLevelContextConfigClass {
-	}
+	static class TransitiveImplicitAliasesWithSkippedLevelContextConfigClass {}
 
 	@SingleLocationTransitiveImplicitAliasesWithSkippedLevelContextConfig(xml = "test.xml")
-	static class SingleLocationTransitiveImplicitAliasesWithSkippedLevelContextConfigClass {
-	}
+	static class SingleLocationTransitiveImplicitAliasesWithSkippedLevelContextConfigClass {}
 
 	@ComposedImplicitAliasesContextConfig
-	static class ComposedImplicitAliasesContextConfigClass {
-	}
+	static class ComposedImplicitAliasesContextConfigClass {}
 
 	@ShadowedAliasComposedContextConfig(xmlConfigFiles = "test.xml")
-	static class ShadowedAliasComposedContextConfigClass {
-	}
+	static class ShadowedAliasComposedContextConfigClass {}
 
 	@AliasedComposedContextConfigAndTestPropSource(xmlConfigFiles = "test.xml")
-	static class AliasedComposedContextConfigAndTestPropSourceClass {
-	}
+	static class AliasedComposedContextConfigAndTestPropSourceClass {}
 
 	@ComponentScan(value = "com.example.app.test", basePackages = "com.example.app.test")
-	static class ComponentScanWithBasePackagesAndValueAliasClass {
-	}
+	static class ComponentScanWithBasePackagesAndValueAliasClass {}
 
 	@TestComponentScan(packages = "com.example.app.test")
-	static class TestComponentScanClass {
-	}
+	static class TestComponentScanClass {}
 
 	@ConventionBasedSinglePackageComponentScan(basePackages = "com.example.app.test")
-	static class ConventionBasedSinglePackageComponentScanClass {
-	}
+	static class ConventionBasedSinglePackageComponentScanClass {}
 
 	@AliasForBasedSinglePackageComponentScan(pkg = "com.example.app.test")
-	static class AliasForBasedSinglePackageComponentScanClass {
-	}
+	static class AliasForBasedSinglePackageComponentScanClass {}
 
 	@SpringAppConfig(Number.class)
-	static class SpringAppConfigClass {
-	}
+	static class SpringAppConfigClass {}
 
 	@Resource(name = "x")
 	@ParametersAreNonnullByDefault
-	static class ResourceHolder {
-	}
+	static class ResourceHolder {}
 
 	interface TransactionalService {
-
 		@Transactional
 		void doIt();
 	}
 
 	class TransactionalServiceImpl implements TransactionalService {
-
 		@Override
 		public void doIt() {
 		}

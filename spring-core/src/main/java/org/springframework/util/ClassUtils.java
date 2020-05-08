@@ -843,9 +843,10 @@ public abstract class ClassUtils {
 	}
 
 	/**
+	 * 得到一个全限定类名的简写，可以处理简单类型和内部类的情况
 	 * Get the class name without the qualified package name.
-	 * @param className the className to get the short name for
-	 * @return the class name of the class without the package name
+	 * @param className the className to get the short name for  	 输入："org.springframework.util.ClassUtilsTests"
+	 * @return the class name of the class without the package name  结果： "ClassUtilsTests"
 	 * @throws IllegalArgumentException if the className is empty
 	 */
 	public static String getShortName(String className) {
@@ -870,10 +871,9 @@ public abstract class ClassUtils {
 
 	/**
 	 * 得到一个类的简写，并按照属性的方式来命名；
-	 * Return the short string name of a Java class in uncapitalized JavaBeans property format.
-	 * Strips the outer class name in case of an inner class.
-	 * @param clazz the class
-	 * @return the short name rendered in a standard JavaBeans property format
+	 * Return the short string name of a Java class in uncapitalized JavaBeans property format.Strips the outer class name in case of an inner class.
+	 * @param clazz the class  输入： " org.springframework.util.ClassUtilsTests"
+	 * @return the short name rendered in a standard JavaBeans property format   结果："ClassUtilsTests"
 	 * @see java.beans.Introspector#decapitalize(String)
 	 */
 	public static String getShortNameAsProperty(Class<?> clazz) {
