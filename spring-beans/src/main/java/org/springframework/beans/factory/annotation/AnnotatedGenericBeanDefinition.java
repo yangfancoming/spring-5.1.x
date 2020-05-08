@@ -2,6 +2,7 @@
 
 package org.springframework.beans.factory.annotation;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.core.type.MethodMetadata;
@@ -12,9 +13,8 @@ import org.springframework.util.Assert;
 /**
  * Extension of the {@link org.springframework.beans.factory.support.GenericBeanDefinition} class,
  * adding support for annotation metadata exposed through the {@link AnnotatedBeanDefinition} interface.
- * This GenericBeanDefinition variant is mainly useful for testing code that expects
- * to operate on an AnnotatedBeanDefinition, for example strategy implementations
- * in Spring's component scanning support (where the default definition class is
+ * This GenericBeanDefinition variant is mainly useful for testing code that expects to operate on an AnnotatedBeanDefinition,
+ * for example strategy implementations in Spring's component scanning support (where the default definition class is
  * {@link org.springframework.context.annotation.ScannedGenericBeanDefinition},which also implements the AnnotatedBeanDefinition interface).
  * @since 2.5
  * @see AnnotatedBeanDefinition#getMetadata()
@@ -23,6 +23,8 @@ import org.springframework.util.Assert;
  */
 @SuppressWarnings("serial")
 public class AnnotatedGenericBeanDefinition extends GenericBeanDefinition implements AnnotatedBeanDefinition {
+
+	private static final Logger logger = Logger.getLogger(AnnotatedGenericBeanDefinition.class);
 
 	private final AnnotationMetadata metadata;
 
@@ -34,6 +36,7 @@ public class AnnotatedGenericBeanDefinition extends GenericBeanDefinition implem
 	 * @param beanClass the loaded bean class
 	 */
 	public AnnotatedGenericBeanDefinition(Class<?> beanClass) {
+		logger.warn("进入 【AnnotatedGenericBeanDefinition】 构造函数 {}");
 		setBeanClass(beanClass);
 		this.metadata = new StandardAnnotationMetadata(beanClass, true);
 	}
@@ -49,6 +52,7 @@ public class AnnotatedGenericBeanDefinition extends GenericBeanDefinition implem
 	 * @since 3.1.1
 	 */
 	public AnnotatedGenericBeanDefinition(AnnotationMetadata metadata) {
+		logger.warn("进入 【AnnotatedGenericBeanDefinition】 构造函数 {}");
 		Assert.notNull(metadata, "AnnotationMetadata must not be null");
 		if (metadata instanceof StandardAnnotationMetadata) {
 			setBeanClass(((StandardAnnotationMetadata) metadata).getIntrospectedClass());

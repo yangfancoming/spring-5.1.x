@@ -286,7 +286,6 @@ public class MapperScannerConfigurer implements BeanDefinitionRegistryPostProces
 	 */
 	private void processPropertyPlaceHolders() {
 		Map<String, PropertyResourceConfigurer> prcs = applicationContext.getBeansOfType(PropertyResourceConfigurer.class);
-
 		if (!prcs.isEmpty() && applicationContext instanceof ConfigurableApplicationContext) {
 			BeanDefinition mapperScannerBean = ((ConfigurableApplicationContext) applicationContext).getBeanFactory().getBeanDefinition(beanName);
 			// PropertyResourceConfigurer does not expose any methods to explicitly perform

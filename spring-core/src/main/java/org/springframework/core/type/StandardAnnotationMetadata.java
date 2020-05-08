@@ -9,6 +9,7 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.lang.Nullable;
 import org.springframework.util.MultiValueMap;
@@ -18,6 +19,8 @@ import org.springframework.util.MultiValueMap;
  * @since 2.5
  */
 public class StandardAnnotationMetadata extends StandardClassMetadata implements AnnotationMetadata {
+
+	private static final Logger logger = Logger.getLogger(StandardAnnotationMetadata.class);
 
 	// 持有对本类上的所有注解对象
 	private final Annotation[] annotations;
@@ -44,6 +47,7 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 	 */
 	public StandardAnnotationMetadata(Class<?> introspectedClass, boolean nestedAnnotationsAsMap) {
 		super(introspectedClass);
+		logger.warn("进入 【StandardAnnotationMetadata】 构造函数 {}");
 		this.annotations = introspectedClass.getAnnotations();
 		this.nestedAnnotationsAsMap = nestedAnnotationsAsMap;
 	}

@@ -12,12 +12,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Extension of the {@link org.springframework.beans.factory.support.GenericBeanDefinition}
- * class, based on an ASM ClassReader, with support for annotation metadata exposed  through the {@link AnnotatedBeanDefinition} interface.
+ * Extension of the {@link org.springframework.beans.factory.support.GenericBeanDefinition} class, based on an ASM ClassReader,
+ * with support for annotation metadata exposed  through the {@link AnnotatedBeanDefinition} interface.
  * This class does <i>not</i> load the bean {@code Class} early.
- * It rather retrieves all relevant metadata from the ".class" file itself,
- * parsed with the ASM ClassReader. It is functionally equivalent to
- * {@link AnnotatedGenericBeanDefinition#AnnotatedGenericBeanDefinition(AnnotationMetadata)}
+ * It rather retrieves all relevant metadata from the ".class" file itself,parsed with the ASM ClassReader.
+ * It is functionally equivalent to  {@link AnnotatedGenericBeanDefinition#AnnotatedGenericBeanDefinition(AnnotationMetadata)}
  * but distinguishes by type beans that have been <em>scanned</em> vs those that have been otherwise registered or detected by other means.
  * @since 2.5
  * @see #getMetadata()
@@ -40,7 +39,6 @@ public class ScannedGenericBeanDefinition extends GenericBeanDefinition implemen
 		setBeanClassName(metadata.getClassName());
 	}
 
-
 	@Override
 	public final AnnotationMetadata getMetadata() {
 		return metadata;
@@ -51,5 +49,4 @@ public class ScannedGenericBeanDefinition extends GenericBeanDefinition implemen
 	public MethodMetadata getFactoryMethodMetadata() {
 		return null;
 	}
-
 }

@@ -38,6 +38,24 @@ public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 
 	private static final String COMPONENT_ANNOTATION_CLASSNAME = "org.springframework.stereotype.Component";
 
+
+	//---------------------------------------------------------------------------------------------------------------------
+	// Implementation of 【BeanNameGenerator】 interface 唯一核心方法 本类中的其他方式都是为该方法服务的！
+	//---------------------------------------------------------------------------------------------------------------------
+	@Override
+	public String generateBeanName(BeanDefinition definition, BeanDefinitionRegistry registry) {
+		// 若是 AnnotatedBeanDefinition 子类，则使用注释模式生成策略
+		if (definition instanceof AnnotatedBeanDefinition) {
+			String beanName = determineBeanNameFromAnnotation((AnnotatedBeanDefinition) definition);
+			if (StringUtils.hasText(beanName)) {
+				// Explicit bean name found.
+				return beanName;
+			}
+		}
+		// 如果不是注解模式则使用xml模式生成名称策略。  Fallback: generate a unique default bean name.
+		return buildDefaultBeanName(definition, registry);
+	}
+
 	/**
 	 * Derive a bean name from one of the annotations on the class.
 	 * @param annotatedDef the annotation-aware bean definition
@@ -46,8 +64,9 @@ public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 	@Nullable
 	protected String determineBeanNameFromAnnotation(AnnotatedBeanDefinition annotatedDef) {
 		AnnotationMetadata amd = annotatedDef.getMetadata();
-		Set<String> types = amd.getAnnotationTypes();
 		String beanName = null;
+		// 获取该类上的所有注解
+		Set<String> types = amd.getAnnotationTypes();
 		for (String type : types) {
 			AnnotationAttributes attributes = AnnotationConfigUtils.attributesFor(amd, type);
 			if (attributes != null && isStereotypeWithNameValue(type, amd.getMetaAnnotationTypes(type), attributes)) {
@@ -103,21 +122,5 @@ public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 		Assert.state(beanClassName != null, "No bean class name set");
 		String shortClassName = ClassUtils.getShortName(beanClassName);
 		return Introspector.decapitalize(shortClassName);
-	}
-
-	//---------------------------------------------------------------------
-	// Implementation of 【BeanNameGenerator】 interface
-	//---------------------------------------------------------------------
-	@Override
-	public String generateBeanName(BeanDefinition definition, BeanDefinitionRegistry registry) {
-		if (definition instanceof AnnotatedBeanDefinition) {
-			String beanName = determineBeanNameFromAnnotation((AnnotatedBeanDefinition) definition);
-			if (StringUtils.hasText(beanName)) {
-				// Explicit bean name found.
-				return beanName;
-			}
-		}
-		// Fallback: generate a unique default bean name.
-		return buildDefaultBeanName(definition, registry);
 	}
 }

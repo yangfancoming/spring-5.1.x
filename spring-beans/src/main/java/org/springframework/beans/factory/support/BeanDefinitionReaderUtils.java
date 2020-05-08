@@ -77,7 +77,6 @@ public abstract class BeanDefinitionReaderUtils {
 	 * 　　　　6，如果是顶级bean（top-level bean ），则判断前缀+数字的bean是否已存在，循环查询，知道查询到没有使用的id为止。处理完成。
 	 */
 	public static String generateBeanName(BeanDefinition definition, BeanDefinitionRegistry registry, boolean isInnerBean) throws BeanDefinitionStoreException {
-
 		// 1、获取bean的className，generatedBeanName定义为类前缀， 读取bean的className,不一定是运行时的实际类型。
 		String generatedBeanName = definition.getBeanClassName();
 		// 2、如果generatedBeanName为null，  // 如果类名称为空，那读取bean的parent bean name

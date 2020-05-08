@@ -5,6 +5,7 @@ package org.springframework.core.type;
 import java.lang.reflect.Modifier;
 import java.util.LinkedHashSet;
 
+import org.apache.log4j.Logger;
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
@@ -15,6 +16,8 @@ import org.springframework.util.StringUtils;
  */
 public class StandardClassMetadata implements ClassMetadata {
 
+	private static final Logger logger = Logger.getLogger(StandardClassMetadata.class);
+
 	private final Class<?> introspectedClass;
 
 	/**
@@ -22,6 +25,7 @@ public class StandardClassMetadata implements ClassMetadata {
 	 * @param introspectedClass the Class to introspect
 	 */
 	public StandardClassMetadata(Class<?> introspectedClass) {
+		logger.warn("进入 【StandardClassMetadata】 构造函数 {}");
 		Assert.notNull(introspectedClass, "Class must not be null");
 		this.introspectedClass = introspectedClass;
 	}
