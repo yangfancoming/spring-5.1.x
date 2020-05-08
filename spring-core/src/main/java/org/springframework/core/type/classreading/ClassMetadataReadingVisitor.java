@@ -18,15 +18,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * ASM class visitor which looks only for the class name and implemented types,
- * exposing them through the {@link org.springframework.core.type.ClassMetadata}
- * interface.
- *
- * @author Rod Johnson
- * @author Costin Leau
- * @author Mark Fisher
- * @author Ramnivas Laddad
-
+ * ASM class visitor which looks only for the class name and implemented types,exposing them through the {@link org.springframework.core.type.ClassMetadata} interface.
  * @since 2.5
  */
 class ClassMetadataReadingVisitor extends ClassVisitor implements ClassMetadata {
@@ -53,16 +45,12 @@ class ClassMetadataReadingVisitor extends ClassVisitor implements ClassMetadata 
 
 	private Set<String> memberClassNames = new LinkedHashSet<>(4);
 
-
 	public ClassMetadataReadingVisitor() {
 		super(SpringAsmInfo.ASM_VERSION);
 	}
 
-
 	@Override
-	public void visit(
-			int version, int access, String name, String signature, @Nullable String supername, String[] interfaces) {
-
+	public void visit(int version, int access, String name, String signature, @Nullable String supername, String[] interfaces) {
 		this.className = ClassUtils.convertResourcePathToClassName(name);
 		this.isInterface = ((access & Opcodes.ACC_INTERFACE) != 0);
 		this.isAnnotation = ((access & Opcodes.ACC_ANNOTATION) != 0);
@@ -90,8 +78,7 @@ class ClassMetadataReadingVisitor extends ClassVisitor implements ClassMetadata 
 			if (this.className.equals(fqName)) {
 				this.enclosingClassName = fqOuterName;
 				this.independentInnerClass = ((access & Opcodes.ACC_STATIC) != 0);
-			}
-			else if (this.className.equals(fqOuterName)) {
+			}else if (this.className.equals(fqOuterName)) {
 				this.memberClassNames.add(fqName);
 			}
 		}
@@ -216,7 +203,6 @@ class ClassMetadataReadingVisitor extends ClassVisitor implements ClassMetadata 
 		}
 	}
 
-
 	private static class EmptyMethodVisitor extends MethodVisitor {
 
 		public EmptyMethodVisitor() {
@@ -224,12 +210,10 @@ class ClassMetadataReadingVisitor extends ClassVisitor implements ClassMetadata 
 		}
 	}
 
-
 	private static class EmptyFieldVisitor extends FieldVisitor {
 
 		public EmptyFieldVisitor() {
 			super(SpringAsmInfo.ASM_VERSION);
 		}
 	}
-
 }

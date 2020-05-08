@@ -23,5 +23,4 @@ final class ScopedProxyCreator {
 	public static String getTargetBeanName(String originalBeanName) {
 		return ScopedProxyUtils.getTargetBeanName(originalBeanName);
 	}
-
 }

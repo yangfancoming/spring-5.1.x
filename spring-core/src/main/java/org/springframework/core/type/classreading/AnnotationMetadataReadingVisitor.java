@@ -24,9 +24,7 @@ import org.springframework.util.MultiValueMap;
 
 /**
  * ASM class visitor which looks for the class name and implemented types as
- * well as for the annotations defined on the class, exposing them through
- * the {@link org.springframework.core.type.AnnotationMetadata} interface.
- *
+ * well as for the annotations defined on the class, exposing them through the {@link org.springframework.core.type.AnnotationMetadata} interface.
  * @since 2.5
  */
 public class AnnotationMetadataReadingVisitor extends ClassMetadataReadingVisitor implements AnnotationMetadata {
@@ -39,19 +37,16 @@ public class AnnotationMetadataReadingVisitor extends ClassMetadataReadingVisito
 	protected final Map<String, Set<String>> metaAnnotationMap = new LinkedHashMap<>(4);
 
 	/**
-	 * Declared as a {@link LinkedMultiValueMap} instead of a {@link MultiValueMap}
-	 * to ensure that the hierarchical ordering of the entries is preserved.
+	 * Declared as a {@link LinkedMultiValueMap} instead of a {@link MultiValueMap}  to ensure that the hierarchical ordering of the entries is preserved.
 	 * @see AnnotationReadingVisitorUtils#getMergedAnnotationAttributes
 	 */
 	protected final LinkedMultiValueMap<String, AnnotationAttributes> attributesMap = new LinkedMultiValueMap<>(4);
 
 	protected final Set<MethodMetadata> methodMetadataSet = new LinkedHashSet<>(4);
 
-
 	public AnnotationMetadataReadingVisitor(@Nullable ClassLoader classLoader) {
 		this.classLoader = classLoader;
 	}
-
 
 	@Override
 	public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
@@ -60,16 +55,14 @@ public class AnnotationMetadataReadingVisitor extends ClassMetadataReadingVisito
 		if ((access & Opcodes.ACC_BRIDGE) != 0) {
 			return super.visitMethod(access, name, desc, signature, exceptions);
 		}
-		return new MethodMetadataReadingVisitor(name, access, getClassName(),
-				Type.getReturnType(desc).getClassName(), this.classLoader, this.methodMetadataSet);
+		return new MethodMetadataReadingVisitor(name, access, getClassName(),Type.getReturnType(desc).getClassName(), this.classLoader, this.methodMetadataSet);
 	}
 
 	@Override
 	public AnnotationVisitor visitAnnotation(String desc, boolean visible) {
 		String className = Type.getType(desc).getClassName();
 		this.annotationSet.add(className);
-		return new AnnotationAttributesReadingVisitor(
-				className, this.attributesMap, this.metaAnnotationMap, this.classLoader);
+		return new AnnotationAttributesReadingVisitor(className, this.attributesMap, this.metaAnnotationMap, this.classLoader);
 	}
 
 
@@ -115,13 +108,9 @@ public class AnnotationMetadataReadingVisitor extends ClassMetadataReadingVisito
 	@Override
 	@Nullable
 	public AnnotationAttributes getAnnotationAttributes(String annotationName, boolean classValuesAsString) {
-		AnnotationAttributes raw = AnnotationReadingVisitorUtils.getMergedAnnotationAttributes(
-				this.attributesMap, this.metaAnnotationMap, annotationName);
-		if (raw == null) {
-			return null;
-		}
-		return AnnotationReadingVisitorUtils.convertClassValues(
-				"class '" + getClassName() + "'", this.classLoader, raw, classValuesAsString);
+		AnnotationAttributes raw = AnnotationReadingVisitorUtils.getMergedAnnotationAttributes(this.attributesMap, this.metaAnnotationMap, annotationName);
+		if (raw == null) return null;
+		return AnnotationReadingVisitorUtils.convertClassValues("class '" + getClassName() + "'", this.classLoader, raw, classValuesAsString);
 	}
 
 	@Override
@@ -135,12 +124,9 @@ public class AnnotationMetadataReadingVisitor extends ClassMetadataReadingVisito
 	public MultiValueMap<String, Object> getAllAnnotationAttributes(String annotationName, boolean classValuesAsString) {
 		MultiValueMap<String, Object> allAttributes = new LinkedMultiValueMap<>();
 		List<AnnotationAttributes> attributes = this.attributesMap.get(annotationName);
-		if (attributes == null) {
-			return null;
-		}
+		if (attributes == null) return null;
 		for (AnnotationAttributes raw : attributes) {
-			for (Map.Entry<String, Object> entry : AnnotationReadingVisitorUtils.convertClassValues(
-					"class '" + getClassName() + "'", this.classLoader, raw, classValuesAsString).entrySet()) {
+			for (Map.Entry<String, Object> entry : AnnotationReadingVisitorUtils.convertClassValues("class '" + getClassName() + "'", this.classLoader, raw, classValuesAsString).entrySet()) {
 				allAttributes.add(entry.getKey(), entry.getValue());
 			}
 		}
@@ -167,5 +153,4 @@ public class AnnotationMetadataReadingVisitor extends ClassMetadataReadingVisito
 		}
 		return annotatedMethods;
 	}
-
 }

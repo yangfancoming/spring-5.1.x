@@ -17,7 +17,7 @@ public interface AnnotationMetadata extends ClassMetadata, AnnotatedTypeMetadata
 	/**
 	 * Get the fully qualified class names of all annotation types that are <em>present</em> on the underlying class.
 	 * @return the annotation type names
-	 * 拿到Class上标注的所有注解，依赖于Class#getAnnotations  eg：example.scannable.CustomStereotype
+	 * 拿到Class上标注的所有注解名称，依赖于Class#getAnnotations  eg: 类上有@Component注解  获取的值为：org.springframework.stereotype.Component
 	 */
 	Set<String> getAnnotationTypes();
 

@@ -4,10 +4,7 @@ package org.springframework.core.type;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import org.apache.log4j.Logger;
 import org.springframework.core.annotation.AnnotatedElementUtils;
@@ -22,7 +19,7 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 
 	private static final Logger logger = Logger.getLogger(StandardAnnotationMetadata.class);
 
-	// 持有对本类上的所有注解对象
+	// 持有对本类上的所有注解对象，其父类(StandardClassMetadata)持有 元类对象
 	private final Annotation[] annotations;
 
 	private final boolean nestedAnnotationsAsMap;
@@ -37,12 +34,11 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 	}
 
 	/**
-	 * Create a new {@link StandardAnnotationMetadata} wrapper for the given Class,
-	 * providing the option to return any nested annotations or annotation arrays in the
-	 * form of {@link org.springframework.core.annotation.AnnotationAttributes} instead of actual {@link Annotation} instances.
+	 * Create a new {@link StandardAnnotationMetadata} wrapper for the given Class,providing the option to return any nested annotations or
+	 * annotation arrays in the form of {@link org.springframework.core.annotation.AnnotationAttributes} instead of actual {@link Annotation} instances.
 	 * @param introspectedClass the Class to introspect
-	 * @param nestedAnnotationsAsMap return nested annotations and annotation arrays as {@link org.springframework.core.annotation.AnnotationAttributes} for compatibility
-	 * with ASM-based {@link AnnotationMetadata} implementations
+	 * @param nestedAnnotationsAsMap return nested annotations and annotation arrays as {@link org.springframework.core.annotation.AnnotationAttributes}
+	 * for compatibility with ASM-based {@link AnnotationMetadata} implementations
 	 * @since 3.1.1
 	 */
 	public StandardAnnotationMetadata(Class<?> introspectedClass, boolean nestedAnnotationsAsMap) {
@@ -52,13 +48,13 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 		this.nestedAnnotationsAsMap = nestedAnnotationsAsMap;
 	}
 
+	//---------------------------------------------------------------------
+	// Implementation of 【AnnotationMetadata】 interface
+	//---------------------------------------------------------------------
 	@Override
 	public Set<String> getAnnotationTypes() {
 		Set<String> types = new LinkedHashSet<>();
-		for (Annotation ann : annotations) {
-			// example.scannable.CustomStereotype
-			types.add(ann.annotationType().getName());
-		}
+		Arrays.stream(annotations).forEach(annotation->types.add(annotation.annotationType().getName()));// -modify
 		return types;
 	}
 
@@ -78,35 +74,6 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 	@Override
 	public boolean hasMetaAnnotation(String annotationName) {
 		return (annotations.length > 0 && AnnotatedElementUtils.hasMetaAnnotationTypes(getIntrospectedClass(), annotationName));
-	}
-
-	@Override
-	public boolean isAnnotated(String annotationName) {
-		return (annotations.length > 0 && AnnotatedElementUtils.isAnnotated(getIntrospectedClass(), annotationName));
-	}
-
-	@Override
-	public Map<String, Object> getAnnotationAttributes(String annotationName) {
-		return getAnnotationAttributes(annotationName, false);
-	}
-
-	@Override
-	@Nullable
-	public Map<String, Object> getAnnotationAttributes(String annotationName, boolean classValuesAsString) {
-		return (annotations.length > 0 ? AnnotatedElementUtils.getMergedAnnotationAttributes(getIntrospectedClass(), annotationName, classValuesAsString, nestedAnnotationsAsMap) : null);
-
-	}
-
-	@Override
-	@Nullable
-	public MultiValueMap<String, Object> getAllAnnotationAttributes(String annotationName) {
-		return getAllAnnotationAttributes(annotationName, false);
-	}
-
-	@Override
-	@Nullable
-	public MultiValueMap<String, Object> getAllAnnotationAttributes(String annotationName, boolean classValuesAsString) {
-		return (annotations.length > 0 ? AnnotatedElementUtils.getAllAnnotationAttributes(getIntrospectedClass(), annotationName, classValuesAsString, nestedAnnotationsAsMap) : null);
 	}
 
 	@Override
@@ -138,6 +105,36 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 		}catch (Throwable ex) {
 			throw new IllegalStateException("Failed to introspect annotated methods on " + getIntrospectedClass(), ex);
 		}
+	}
+	//---------------------------------------------------------------------
+	// Implementation of 【Cache】 interface
+	//---------------------------------------------------------------------
+	@Override
+	public boolean isAnnotated(String annotationName) {
+		return (annotations.length > 0 && AnnotatedElementUtils.isAnnotated(getIntrospectedClass(), annotationName));
+	}
+
+	@Override
+	public Map<String, Object> getAnnotationAttributes(String annotationName) {
+		return getAnnotationAttributes(annotationName, false);
+	}
+
+	@Override
+	@Nullable
+	public Map<String, Object> getAnnotationAttributes(String annotationName, boolean classValuesAsString) {
+		return (annotations.length > 0 ? AnnotatedElementUtils.getMergedAnnotationAttributes(getIntrospectedClass(), annotationName, classValuesAsString, nestedAnnotationsAsMap) : null);
+	}
+
+	@Override
+	@Nullable
+	public MultiValueMap<String, Object> getAllAnnotationAttributes(String annotationName) {
+		return getAllAnnotationAttributes(annotationName, false);
+	}
+
+	@Override
+	@Nullable
+	public MultiValueMap<String, Object> getAllAnnotationAttributes(String annotationName, boolean classValuesAsString) {
+		return (annotations.length > 0 ? AnnotatedElementUtils.getAllAnnotationAttributes(getIntrospectedClass(), annotationName, classValuesAsString, nestedAnnotationsAsMap) : null);
 	}
 
 }

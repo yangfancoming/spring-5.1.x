@@ -4,7 +4,6 @@ package org.springframework.core.type;
 
 import java.lang.reflect.Modifier;
 import java.util.LinkedHashSet;
-
 import org.apache.log4j.Logger;
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
@@ -36,7 +35,6 @@ public class StandardClassMetadata implements ClassMetadata {
 	public final Class<?> getIntrospectedClass() {
 		return introspectedClass;
 	}
-
 
 	@Override
 	public String getClassName() {
@@ -70,9 +68,7 @@ public class StandardClassMetadata implements ClassMetadata {
 
 	@Override
 	public boolean isIndependent() {
-		return (!hasEnclosingClass() ||
-				(introspectedClass.getDeclaringClass() != null &&
-						Modifier.isStatic(introspectedClass.getModifiers())));
+		return (!hasEnclosingClass() || (introspectedClass.getDeclaringClass() != null && Modifier.isStatic(introspectedClass.getModifiers())));
 	}
 
 	@Override
@@ -117,5 +113,4 @@ public class StandardClassMetadata implements ClassMetadata {
 		}
 		return StringUtils.toStringArray(memberClassNames);
 	}
-
 }

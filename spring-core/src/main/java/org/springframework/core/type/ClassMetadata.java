@@ -35,8 +35,8 @@ public interface ClassMetadata {
 	boolean isAbstract();
 
 	/**
-	 * Return whether the underlying class represents a concrete class, 返回基础类是否表示具体类，
-	 * i.e. neither an interface nor an abstract class.
+	 * Return whether the underlying class represents a concrete class, i.e. neither an interface nor an abstract class.
+	 *  返回基础类是否表示具体类，
 	 */
 	boolean isConcrete();
 
@@ -46,25 +46,19 @@ public interface ClassMetadata {
 	boolean isFinal();
 
 	/**
-	 * Determine whether the underlying class is independent, i.e. whether
-	 * it is a top-level class or a nested class (static inner class) that
-	 * can be constructed independently from an enclosing class.
+	 * Determine whether the underlying class is independent, i.e. whether it is a top-level class or a nested class (static inner class) that can be constructed independently from an enclosing class.
 	 *  是否是独立的(能够创建对象的)  比如是Class、或者内部类、静态内部类
 	 */
 	boolean isIndependent();
 
 	/**
-	 * Return whether the underlying class is declared within an enclosing
-	 * class (i.e. the underlying class is an inner/nested class or a
-	 * local class within a method).
-	 * If this method returns {@code false}, then the underlying
-	 * class is a top-level class.
+	 * Return whether the underlying class is declared within an enclosing class (i.e. the underlying class is an inner/nested class or a local class within a method).
+	 * If this method returns {@code false}, then the underlying class is a top-level class.
 	 */
 	boolean hasEnclosingClass();
 
 	/**
-	 * Return the name of the enclosing class of the underlying class,
-	 * or {@code null} if the underlying class is a top-level class.
+	 * Return the name of the enclosing class of the underlying class, or {@code null} if the underlying class is a top-level class.
 	 */
 	@Nullable
 	String getEnclosingClassName();
@@ -75,8 +69,7 @@ public interface ClassMetadata {
 	boolean hasSuperClass();
 
 	/**
-	 * Return the name of the super class of the underlying class,
-	 * or {@code null} if there is no super class defined.
+	 * Return the name of the super class of the underlying class,or {@code null} if there is no super class defined.
 	 */
 	@Nullable
 	String getSuperClassName();
@@ -89,8 +82,8 @@ public interface ClassMetadata {
 
 	/**
 	 * Return the names of all classes declared as members of the class represented by this ClassMetadata object.
-	 * This includes public, protected, default (package)
-	 * access, and private classes and interfaces declared by the class, but excludes inherited classes and interfaces.
+	 * This includes public, protected, default (package) access,
+	 * and private classes and interfaces declared by the class, but excludes inherited classes and interfaces.
 	 * An empty array is returned if no member classes or interfaces exist.
 	 * @since 3.1
 	 * 基于：Class#getDeclaredClasses  返回类中定义的公共、私有、保护的内部类
