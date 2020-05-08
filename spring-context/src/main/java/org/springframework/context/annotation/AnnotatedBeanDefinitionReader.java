@@ -176,7 +176,7 @@ public class AnnotatedBeanDefinitionReader {
 	 * @since 5.0
 	 */
 	<T> void doRegisterBean(Class<T> annotatedClass, @Nullable Supplier<T> instanceSupplier, @Nullable String name,@Nullable Class<? extends Annotation>[] qualifiers, BeanDefinitionCustomizer... definitionCustomizers) {
-		// 先把此实体类型转换为一个BeanDefinition
+		// 先将此注解配置类 转换为一个BeanDefinition
 		AnnotatedGenericBeanDefinition abd = new AnnotatedGenericBeanDefinition(annotatedClass);
 		/**
 		 * abd.getMetadata() 元数据包括注解信息、是否内部类、类Class基本信息等等, 此处由conditionEvaluator#shouldSkip去过滤，此Class是否是配置类。

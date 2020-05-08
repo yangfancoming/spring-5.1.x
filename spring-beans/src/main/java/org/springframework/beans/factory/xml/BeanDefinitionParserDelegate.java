@@ -300,6 +300,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
+	 *  以下方法实际上就是解析bean元素，创建beanDefinition,然后将beanDefinition，beanName,aliases创建为BeanDefinitionHolder
 	 *  填充各种默认的属性，最终解析xml成BeanDefinition
 	 * Parses the supplied {@code <bean>} element. May return {@code null} if there were errors during parse. Errors are reported to the
 	 * {@link org.springframework.beans.factory.parsing.ProblemReporter}.

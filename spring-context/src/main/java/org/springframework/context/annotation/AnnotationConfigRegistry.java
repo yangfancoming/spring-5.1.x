@@ -20,5 +20,4 @@ public interface AnnotationConfigRegistry {
 	 * @param basePackages the packages to check for annotated classes
 	 */
 	void scan(String... basePackages);
-
 }
