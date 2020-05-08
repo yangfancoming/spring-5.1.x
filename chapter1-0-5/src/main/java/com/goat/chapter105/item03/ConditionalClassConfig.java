@@ -25,5 +25,4 @@ public class ConditionalClassConfig {
 	public Person foo(){
 		return new Person("foo", 48);
 	}
-
 }

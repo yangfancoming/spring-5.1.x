@@ -16,5 +16,4 @@ public class ConditionWindows implements Condition {
     public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
         return context.getEnvironment().getProperty("os.name").contains("Windows");
     }
-
 }

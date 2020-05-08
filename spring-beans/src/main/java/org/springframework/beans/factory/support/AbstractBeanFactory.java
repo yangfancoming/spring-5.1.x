@@ -355,7 +355,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	}
 
 	//---------------------------------------------------------------------
-	// Implementation of HierarchicalBeanFactory interface
+	// Implementation of 【HierarchicalBeanFactory】 interface
 	//---------------------------------------------------------------------
 	@Override
 	@Nullable
@@ -371,7 +371,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 
 	//---------------------------------------------------------------------
-	// Implementation of ConfigurableBeanFactory interface
+	// Implementation of 【ConfigurableBeanFactory】 interface
 	//---------------------------------------------------------------------
 	@Override
 	public void setParentBeanFactory(@Nullable BeanFactory parentBeanFactory) {
@@ -1411,8 +1411,11 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		}
 	}
 
+	//---------------------------------------------------------------------
+	// Implementation of 【BeanFactory】 class
+	//---------------------------------------------------------------------
 	@Override
-	public String[] getAliases(String name) {
+	public String[] getAliases(String name) { // 此处调用的是 实现BeanFactory接口的getAliases()
 		String beanName = transformedBeanName(name);
 		List<String> aliases = new ArrayList<>();
 		boolean factoryPrefix = name.startsWith(FACTORY_BEAN_PREFIX);
@@ -1423,6 +1426,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		if (!fullBeanName.equals(name)) {
 			aliases.add(fullBeanName);
 		}
+		// 此处调用的是父类 SimpleAliasRegistry#getAliases()  必须要 super 关键字显示指定。 否则，递归调用自己
 		String[] retrievedAliases = super.getAliases(beanName);
 		for (String retrievedAlias : retrievedAliases) {
 			String alias = (factoryPrefix ? FACTORY_BEAN_PREFIX : "") + retrievedAlias;
@@ -1433,12 +1437,15 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		if (!containsSingleton(beanName) && !containsBeanDefinition(beanName)) {
 			BeanFactory parentBeanFactory = getParentBeanFactory();
 			if (parentBeanFactory != null) {
-				aliases.addAll(Arrays.asList(parentBeanFactory.getAliases(fullBeanName)));
+				aliases.addAll(Arrays.asList(parentBeanFactory.getAliases(fullBeanName)));// 此处调用的是 实现BeanFactory接口的getAliases()
 			}
 		}
 		return StringUtils.toStringArray(aliases);
 	}
 
+	//---------------------------------------------------------------------
+	// Implementation of 【BeanFactory】 interface
+	//---------------------------------------------------------------------
 	@Override
 	public boolean containsBean(String name) {
 		String beanName = transformedBeanName(name);
@@ -1484,6 +1491,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			return false;
 		}
 	}
+
 
 	@Override
 	public boolean isPrototype(String name) throws NoSuchBeanDefinitionException {

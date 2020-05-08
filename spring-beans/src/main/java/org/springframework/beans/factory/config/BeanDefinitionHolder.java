@@ -24,7 +24,6 @@ import org.springframework.util.StringUtils;
  * @see org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader#processBeanDefinition
  * 使用示例2   注解配置类方式 启动，注解bean定义
  * @see org.springframework.context.annotation.AnnotatedBeanDefinitionReader#doRegisterBean
-
  */
 public class BeanDefinitionHolder implements BeanMetadataElement {
 

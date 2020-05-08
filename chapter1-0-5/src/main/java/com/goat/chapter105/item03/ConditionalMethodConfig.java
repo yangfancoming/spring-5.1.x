@@ -12,7 +12,6 @@ import org.springframework.context.annotation.*;
 @Configuration // 该注解就相当于传统的xml文件
 public class ConditionalMethodConfig {
 
-
 	/**
 	 * @Conditional({Condition}) ： 按照一定的条件进行判断，满足条件给容器中注册bean
 	 * 如果系统是windows，给容器中注册("bill")
@@ -29,5 +28,4 @@ public class ConditionalMethodConfig {
 	public Person linus(){
 		return new Person("linus", 48);
 	}
-
 }

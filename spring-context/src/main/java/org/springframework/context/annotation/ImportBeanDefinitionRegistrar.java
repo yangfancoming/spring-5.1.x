@@ -7,29 +7,21 @@ import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProce
 import org.springframework.core.type.AnnotationMetadata;
 
 /**
- * Interface to be implemented by types that register additional bean definitions when
- * processing @{@link Configuration} classes. Useful when operating at the bean definition
- * level (as opposed to {@code @Bean} method/instance level) is desired or necessary.
- *
- * Along with {@code @Configuration} and {@link ImportSelector}, classes of this type
- * may be provided to the @{@link Import} annotation (or may also be returned from an
- * {@code ImportSelector}).
- *
- * An {@link ImportBeanDefinitionRegistrar} may implement any of the following
- * {@link org.springframework.beans.factory.Aware Aware} interfaces, and their respective
- * methods will be called prior to {@link #registerBeanDefinitions}:
- * <ul>
+ * Interface to be implemented by types that register additional bean definitions when processing @{@link Configuration} classes.
+ * Useful when operating at the bean definition level (as opposed to {@code @Bean} method/instance level) is desired or necessary.
+ * Along with {@code @Configuration} and {@link ImportSelector}, classes of this type may be provided to the @{@link Import} annotation (or may also be returned from an {@code ImportSelector}).
+ * An {@link ImportBeanDefinitionRegistrar} may implement any of the following  {@link org.springframework.beans.factory.Aware Aware} interfaces,
+ * and their respective methods will be called prior to {@link #registerBeanDefinitions}:
  * <li>{@link org.springframework.context.EnvironmentAware EnvironmentAware}</li>
  * <li>{@link org.springframework.beans.factory.BeanFactoryAware BeanFactoryAware}
  * <li>{@link org.springframework.beans.factory.BeanClassLoaderAware BeanClassLoaderAware}
  * <li>{@link org.springframework.context.ResourceLoaderAware ResourceLoaderAware}
- * </ul>
- *
  * See implementations and associated unit tests for usage examples.
  * @since 3.1
  * @see Import
  * @see ImportSelector
  * @see Configuration
+ * ImportBeanDefinitionRegistrar 接口实现类，只能通过其他类@Import的方式来加载，通常是启动类或配置类。
  */
 public interface ImportBeanDefinitionRegistrar {
 

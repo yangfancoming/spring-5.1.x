@@ -50,7 +50,6 @@ public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar, Re
   }
 
   void registerBeanDefinitions(AnnotationAttributes annoAttrs, BeanDefinitionRegistry registry, String beanName) {
-
     BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(MapperScannerConfigurer.class);
     builder.addPropertyValue("processPropertyPlaceHolders", true);
 
