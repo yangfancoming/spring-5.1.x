@@ -88,5 +88,4 @@ public interface BeanDefinitionRegistry extends AliasRegistry {
 	 * 指定Bean名是否被注册过。
 	 */
 	boolean isBeanNameInUse(String beanName);
-
 }

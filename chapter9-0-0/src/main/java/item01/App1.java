@@ -6,10 +6,10 @@ import java.util.Arrays;
 
 
 /**
- * 测试 一个类  继承类A 实现接口B  其中A 和B中 有同样的方法，C类同时继承和实现后
+ * 测试一个类  继承类A 实现接口B  其中A 和B中 有同样的方法，C类同时继承和实现后
  * 该如何调用
 */
-public class App {
+public class App1 {
 
 	AbstractBeanFactory abstractBeanFactory = new AbstractBeanFactory();
 
@@ -26,4 +26,5 @@ public class App {
 		String[] aliases = abstractBeanFactory.test("111");
 		Arrays.stream(aliases).forEach(x->System.out.println(x));
 	}
+
 }

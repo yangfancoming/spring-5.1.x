@@ -1072,7 +1072,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	}
 
 	//---------------------------------------------------------------------
-	// Implementation of ListableBeanFactory interface
+	// Implementation of 【ListableBeanFactory】 interface
 	//---------------------------------------------------------------------
 	@Override
 	public boolean containsBeanDefinition(String beanName) {

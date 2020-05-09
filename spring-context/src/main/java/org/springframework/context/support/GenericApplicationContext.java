@@ -214,7 +214,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	}
 
 	//---------------------------------------------------------------------
-	// Implementations of AbstractApplicationContext's template methods
+	// Implementations of 【AbstractApplicationContext's】 template methods
 	//---------------------------------------------------------------------
 	/**
 	 * Do nothing: We hold a single internal BeanFactory and rely on callers to register beans through our public methods (or the BeanFactory's).
@@ -286,6 +286,9 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 		return beanFactory.isBeanNameInUse(beanName);
 	}
 
+	//---------------------------------------------------------------------
+	// Implementation of 【AliasRegistry】 interface
+	//---------------------------------------------------------------------
 	@Override
 	public void registerAlias(String beanName, String alias) {
 		beanFactory.registerAlias(beanName, alias);

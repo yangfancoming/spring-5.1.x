@@ -357,7 +357,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	}
 
 	//---------------------------------------------------------------------
-	// Implementation of ListableBeanFactory interface
+	// Implementation of 【ListableBeanFactory】 interface
 	//---------------------------------------------------------------------
 	@Override
 	public boolean containsBeanDefinition(String beanName) {
