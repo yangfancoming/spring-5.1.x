@@ -312,11 +312,9 @@ public abstract class ClassUtils {
 
 	/**
 	 * 判断类是否是可以缓存的，原理很简单，就是判断该类型是否在指定classloader或者其parent classloader中；
-	 * Check whether the given class is cache-safe in the given context,
-	 * i.e. whether it is loaded by the given ClassLoader or a parent of it.
+	 * Check whether the given class is cache-safe in the given context,i.e. whether it is loaded by the given ClassLoader or a parent of it.
 	 * @param clazz the class to analyze
-	 * @param classLoader the ClassLoader to potentially cache metadata in
-	 * (may be {@code null} which indicates the system class loader)
+	 * @param classLoader the ClassLoader to potentially cache metadata in (may be {@code null} which indicates the system class loader)
 	 */
 	public static boolean isCacheSafe(Class<?> clazz, @Nullable ClassLoader classLoader) {
 		Assert.notNull(clazz, "Class must not be null");

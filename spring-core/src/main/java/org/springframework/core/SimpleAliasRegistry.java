@@ -143,7 +143,6 @@ public class SimpleAliasRegistry implements AliasRegistry {
 	//---------------------------------------------------------------------
 	// Implementation of 【AliasRegistry】 interface
 	//---------------------------------------------------------------------
-
 	@Override
 	public void registerAlias(String name, String alias) {
 		Assert.hasText(name, "'name' must not be empty");

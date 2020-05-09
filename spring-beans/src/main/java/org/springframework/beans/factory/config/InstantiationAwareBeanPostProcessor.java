@@ -9,37 +9,21 @@ import org.springframework.beans.PropertyValues;
 import org.springframework.lang.Nullable;
 
 /**
- * Subinterface of {@link BeanPostProcessor} that adds a before-instantiation callback,
- * and a callback after instantiation but before explicit properties are set or
- * autowiring occurs.
- *
- * Typically used to suppress default instantiation for specific target beans,
- * for example to create proxies with special TargetSources (pooling targets,
- * lazily initializing targets, etc), or to implement additional injection strategies
- * such as field injection.
- *
- * <b>NOTE:</b> This interface is a special purpose interface, mainly for
- * internal use within the framework. It is recommended to implement the plain
- * {@link BeanPostProcessor} interface as far as possible, or to derive from
- * {@link InstantiationAwareBeanPostProcessorAdapter} in order to be shielded
- * from extensions to this interface.
-
+ * Subinterface of {@link BeanPostProcessor} that adds a before-instantiation callback,and a callback after instantiation but before explicit properties are set or autowiring occurs.
+ * Typically used to suppress default instantiation for specific target beans,for example to create proxies with special TargetSources (pooling targets,lazily initializing targets, etc),
+ * or to implement additional injection strategies such as field injection.
+ * <b>NOTE:</b> This interface is a special purpose interface, mainly for internal use within the framework.
+ * It is recommended to implement the plain {@link BeanPostProcessor} interface as far as possible,
+ * or to derive from {@link InstantiationAwareBeanPostProcessorAdapter} in order to be shielded from extensions to this interface.
  * @since 1.2
  * @see org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator#setCustomTargetSourceCreators
  * @see org.springframework.aop.framework.autoproxy.target.LazyInitTargetSourceCreator
  *
- *
  * InstantiationAwareBeanPostProcessor代表了Spring的另外一段生命周期：实例化。
- *
  * 先区别一下Spring Bean的实例化和初始化两个阶段的主要作用：
- *
  * 1、实例化—-实例化的过程是一个创建Bean的过程，即调用Bean的构造函数，单例的Bean放入单例池中
- *
  * 2、初始化—-初始化的过程是一个赋值的过程，即调用Bean的setter，设置Bean的属性
- *
  * 之前的BeanPostProcessor作用于过程（2）前后，现在的InstantiationAwareBeanPostProcessor则作用于过程（1）前后；
-
- *
  */
 public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
 

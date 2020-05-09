@@ -30,16 +30,14 @@ import org.springframework.tests.sample.beans.TestBean;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
-/**
 
- * @author Alef Arendsen
- * @author Rob Harrop
- * @author Dave Syer
- * @author Mark Fisher
- * @author Sam Brannen
- * @since 20.02.2004
- */
 public class QuartzSupportTests {
+
+
+	@Test
+	public void test(){
+
+	}
 
 	@Test
 	public void schedulerFactoryBeanWithApplicationContext() throws Exception {

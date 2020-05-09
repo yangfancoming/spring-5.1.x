@@ -145,8 +145,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	}
 
 	/**
-	 * Switch the target object, replacing the cached introspection results only
-	 * if the class of the new object is different to that of the replaced object.
+	 * Switch the target object, replacing the cached introspection results only if the class of the new object is different to that of the replaced object.
 	 * @param object the new target object
 	 */
 	public void setWrappedInstance(Object object) {
@@ -154,8 +153,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	}
 
 	/**
-	 * Switch the target object, replacing the cached introspection results only
-	 * if the class of the new object is different to that of the replaced object.
+	 * Switch the target object, replacing the cached introspection results only if the class of the new object is different to that of the replaced object.
 	 * @param object the new target object
 	 * @param nestedPath the nested path of the object
 	 * @param rootObject the root object at the top of the path
@@ -340,8 +338,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 				getterTokens.canonicalName = tokens.canonicalName.substring(0, lastKeyIndex);
 				propValue = setDefaultValue(getterTokens);
 			}else {
-				throw new NullValueInNestedPathException(getRootClass(), this.nestedPath + tokens.canonicalName,
-						"Cannot access indexed value in property referenced in indexed property path '" + tokens.canonicalName + "': returned null");
+				throw new NullValueInNestedPathException(getRootClass(), this.nestedPath + tokens.canonicalName,"Cannot access indexed value in property referenced in indexed property path '" + tokens.canonicalName + "': returned null");
 			}
 		}
 		return propValue;
@@ -359,7 +356,6 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 				throw createNotWritablePropertyException(tokens.canonicalName);
 			}
 		}
-
 		Object oldValue = null;
 		try {
 			Object originalValue = pv.getValue();
@@ -553,8 +549,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 						Set<Object> set = (Set<Object>) value;
 						int index = Integer.parseInt(key);
 						if (index < 0 || index >= set.size()) {
-							throw new InvalidPropertyException(getRootClass(), this.nestedPath + propertyName,
-									"Cannot get element with index " + index + " from Set of size " +set.size() + ", accessed using property path '" + propertyName + "'");
+							throw new InvalidPropertyException(getRootClass(), this.nestedPath + propertyName,"Cannot get element with index " + index + " from Set of size " +set.size() + ", accessed using property path '" + propertyName + "'");
 						}
 						Iterator<Object> it = set.iterator();
 						for (int j = 0; it.hasNext(); j++) {
@@ -573,8 +568,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 						Object convertedMapKey = convertIfNecessary(null, null, key, mapKeyType, typeDescriptor);
 						value = map.get(convertedMapKey);
 					}else {
-						throw new InvalidPropertyException(getRootClass(), this.nestedPath + propertyName,
-								"Property referenced in indexed property path '" + propertyName +"' is neither an array nor a List nor a Set nor a Map; returned value was [" + value + "]");
+						throw new InvalidPropertyException(getRootClass(), this.nestedPath + propertyName,"Property referenced in indexed property path '" + propertyName +"' is neither an array nor a List nor a Set nor a Map; returned value was [" + value + "]");
 					}
 					indexedPropertyName.append(PROPERTY_KEY_PREFIX).append(key).append(PROPERTY_KEY_SUFFIX);
 				}
@@ -697,8 +691,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	/**
 	 * Retrieve a Property accessor for the given nested property.
 	 * Create a new one if not found in the cache.
-	 * Note: Caching nested PropertyAccessors is necessary now,
-	 * to keep registered custom editors for nested properties.
+	 * Note: Caching nested PropertyAccessors is necessary now,to keep registered custom editors for nested properties.
 	 * @param nestedProperty property to create the PropertyAccessor for
 	 * @return the PropertyAccessor instance, either cached or newly created
 	 */
@@ -881,5 +874,4 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 		@Nullable
 		public String[] keys;
 	}
-
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="jobFactory" class="org.springframework.test.JobFactory"/>
+
+	<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobFactory" ref="jobFactory"></property>
+		<property name="schedulerName" value="scheduler"></property>
+		<property name="configLocation"  value="classpath:org/springframework/scheduling/quartz/quartz.properties"></property>
+	</bean>
+
+</beans>

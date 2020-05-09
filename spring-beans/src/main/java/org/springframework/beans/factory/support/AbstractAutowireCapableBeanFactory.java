@@ -229,9 +229,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 	}
 
-	//-------------------------------------------------------------------------
-	// Typical methods for creating and populating external bean instances
-	//-------------------------------------------------------------------------
+	//------------------------------------------------------------------------------------------------------------------------------------------
+	// Implementation of 【AutowireCapableBeanFactory】 interface ，  Typical methods for creating and populating external bean instances
+	//------------------------------------------------------------------------------------------------------------------------------------------
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> T createBean(Class<T> beanClass) throws BeansException {
@@ -250,6 +250,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		bd.allowCaching = ClassUtils.isCacheSafe(bd.getBeanClass(), getBeanClassLoader());
 		BeanWrapper bw = new BeanWrapperImpl(existingBean);
 		initBeanWrapper(bw);
+		// 前面都是铺垫，重点在这里
 		populateBean(bd.getBeanClass().getName(), bd, bw);
 	}
 
@@ -274,7 +275,6 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		populateBean(beanName, bd, bw);
 		return initializeBean(beanName, existingBean, bd);
 	}
-
 
 	//-------------------------------------------------------------------------
 	// Specialized methods for fine-grained control over the bean lifecycle
@@ -386,7 +386,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	}
 
 	//---------------------------------------------------------------------
-	// Implementation of relevant AbstractBeanFactory template methods
+	// Implementation of relevant 【AbstractBeanFactory】 template methods
 	//---------------------------------------------------------------------
 	/**
 	 * Central method of this class: creates a bean instance, populates the bean instance, applies post-processors, etc.
@@ -1210,21 +1210,17 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			if (mbd.hasPropertyValues()) {
 				throw new BeanCreationException(mbd.getResourceDescription(), beanName, "Cannot apply property values to null instance");
 			}else {
-				// Skip property population phase for null instance.
-				return;
+				return;// Skip property population phase for null instance.
 			}
 		}
-		// Give any InstantiationAwareBeanPostProcessors the opportunity to modify the
-		// state of the bean before properties are set. This can be used, for example, to support styles of field injection.
+		// Give any InstantiationAwareBeanPostProcessors the opportunity to modify the state of the bean before properties are set. This can be used, for example, to support styles of field injection.
 		boolean continueWithPropertyPopulation = true;
 		/*
 		 * 在属性被填充前，给 InstantiationAwareBeanPostProcessor 类型的后置处理器一个修改bean 状态的机会。
 		 * 关于这段后置引用，官方的解释是：让用户可以自定义属性注入。
-		 * 比如用户实现一个 InstantiationAwareBeanPostProcessor 类型的后置处理器，并通过
-		 * postProcessAfterInstantiation 方法向 bean 的成员变量注入自定义的信息。
+		 * 比如用户实现一个 InstantiationAwareBeanPostProcessor 类型的后置处理器，并通过 postProcessAfterInstantiation 方法向 bean 的成员变量注入自定义的信息。
 		 * 当然，如果无特殊需求，直接使用配置中的信息注入即可。
-		 * 另外，Spring 并不建议大家直接实现InstantiationAwareBeanPostProcessor 接口，如果想实现这种类型的后置处理器，
-		 * 更建议通过继承 InstantiationAwareBeanPostProcessorAdapter 抽象类实现自定义后置处理器。
+		 * 另外，Spring 并不建议大家直接实现InstantiationAwareBeanPostProcessor 接口，如果想实现这种类型的后置处理器，更建议通过继承 InstantiationAwareBeanPostProcessorAdapter 抽象类实现自定义后置处理器。
 		 */
 		if (!mbd.isSynthetic() && hasInstantiationAwareBeanPostProcessors()) {
 			for (BeanPostProcessor bp : getBeanPostProcessors()) {
@@ -1237,10 +1233,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				}
 			}
 		}
-		/*
-		 * 如果上面设置 continueWithPropertyPopulation = false，表明用户可能已经自己填充了
-		 * bean 的属性，不需要 Spring 帮忙填充了。此时直接返回即可
-		 */
+		// 如果上面设置 continueWithPropertyPopulation = false，表明用户可能已经自己填充了bean的属性，不需要Spring帮忙填充了。此时直接返回即可
 		if (!continueWithPropertyPopulation) return;
 		PropertyValues pvs = (mbd.hasPropertyValues() ? mbd.getPropertyValues() : null);
 		// 根据名称或类型注入依赖
@@ -1267,6 +1260,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			for (BeanPostProcessor bp : getBeanPostProcessors()) {
 				if (bp instanceof InstantiationAwareBeanPostProcessor) {
 					InstantiationAwareBeanPostProcessor ibp = (InstantiationAwareBeanPostProcessor) bp;
+					// 依赖的bean注入在这里实现
 					PropertyValues pvsToUse = ibp.postProcessProperties(pvs, bw.getWrappedInstance(), beanName);
 					if (pvsToUse == null) {
 						if (filteredPds == null)  filteredPds = filterPropertyDescriptorsForDependencyCheck(bw, mbd.allowCaching);
@@ -1769,6 +1763,32 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	}
 
 	/**
+	 * Expose the logger to collaborating delegates.
+	 * @since 5.0.7
+	 */
+	Log getLogger() {
+		return logger;
+	}
+
+	/**
+	 * Special DependencyDescriptor variant for Spring's good old autowire="byType" mode.
+	 * Always optional; never considering the parameter name for choosing a primary candidate.
+	 */
+	@SuppressWarnings("serial")
+	private static class AutowireByTypeDependencyDescriptor extends DependencyDescriptor {
+		public AutowireByTypeDependencyDescriptor(MethodParameter methodParameter, boolean eager) {
+			super(methodParameter, false, eager);
+		}
+		@Override
+		public String getDependencyName() {
+			return null;
+		}
+	}
+
+	//---------------------------------------------------------------------
+	// Implementation of 【FactoryBeanRegistrySupport】 class
+	//---------------------------------------------------------------------
+	/**
 	 * Applies the {@code postProcessAfterInitialization} callback of all registered BeanPostProcessors,
 	 * giving them a chance to post-process the object obtained from FactoryBeans (for example, to auto-proxy them).
 	 * @see #applyBeanPostProcessorsAfterInitialization
@@ -1793,29 +1813,6 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		synchronized (getSingletonMutex()) {
 			super.clearSingletonCache();
 			factoryBeanInstanceCache.clear();
-		}
-	}
-
-	/**
-	 * Expose the logger to collaborating delegates.
-	 * @since 5.0.7
-	 */
-	Log getLogger() {
-		return logger;
-	}
-
-	/**
-	 * Special DependencyDescriptor variant for Spring's good old autowire="byType" mode.
-	 * Always optional; never considering the parameter name for choosing a primary candidate.
-	 */
-	@SuppressWarnings("serial")
-	private static class AutowireByTypeDependencyDescriptor extends DependencyDescriptor {
-		public AutowireByTypeDependencyDescriptor(MethodParameter methodParameter, boolean eager) {
-			super(methodParameter, false, eager);
-		}
-		@Override
-		public String getDependencyName() {
-			return null;
 		}
 	}
 }
