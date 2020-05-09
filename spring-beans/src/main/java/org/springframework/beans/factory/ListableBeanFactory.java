@@ -60,8 +60,7 @@ public interface ListableBeanFactory extends BeanFactory {
 
 	/**
 	 * Check if this bean factory contains a bean definition with the given name.
-	 * Does not consider any hierarchy this factory may participate in,
-	 * and ignores any singleton beans that have been registered by other means than bean definitions.
+	 * Does not consider any hierarchy this factory may participate in,and ignores any singleton beans that have been registered by other means than bean definitions.
 	 * @param beanName the name of the bean to look for
 	 * @return if this bean factory contains a bean definition with the given name
 	 * @see #containsBean
@@ -79,11 +78,9 @@ public interface ListableBeanFactory extends BeanFactory {
 
 	/**
 	 * Return the names of all beans defined in this factory.
-	 * Does not consider any hierarchy this factory may participate in,
-	 * and ignores any singleton beans that have been registered by
-	 * other means than bean definitions.
-	 * @return the names of all beans defined in this factory,
-	 * or an empty array if none defined
+	 * Does not consider any hierarchy this factory may participate in,and ignores any singleton beans that have been registered by other means than bean definitions.
+	 * @return the names of all beans defined in this factory,or an empty array if none defined
+	 *
 	 */
 	String[] getBeanDefinitionNames();  // 获取工厂中定义的所有bean 的name  一样不考虑父factory和其他factory注册的单例bean
 

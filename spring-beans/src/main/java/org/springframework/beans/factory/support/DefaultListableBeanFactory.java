@@ -583,7 +583,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
 
 	//---------------------------------------------------------------------
-	// Implementation of ConfigurableListableBeanFactory interface
+	// Implementation of 【ConfigurableListableBeanFactory】 interface
 	//---------------------------------------------------------------------
 	@Override
 	public void registerResolvableDependency(Class<?> dependencyType, @Nullable Object autowiredValue) {
@@ -599,6 +599,25 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	@Override
 	public boolean isAutowireCandidate(String beanName, DependencyDescriptor descriptor) throws NoSuchBeanDefinitionException {
 		return isAutowireCandidate(beanName, descriptor, getAutowireCandidateResolver());
+	}
+
+	@Override
+	public Iterator<String> getBeanNamesIterator() {
+		CompositeIterator<String> iterator = new CompositeIterator<>();
+		iterator.add(beanDefinitionNames.iterator());
+		iterator.add(manualSingletonNames.iterator());
+		return iterator;
+	}
+
+	@Override
+	public void freezeConfiguration() {
+		configurationFrozen = true;
+		frozenBeanDefinitionNames = StringUtils.toStringArray(beanDefinitionNames);
+	}
+
+	@Override
+	public boolean isConfigurationFrozen() {
+		return configurationFrozen;
 	}
 
 	/**
@@ -652,40 +671,6 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			throw new NoSuchBeanDefinitionException(beanName);
 		}
 		return bd;
-	}
-
-	@Override
-	public Iterator<String> getBeanNamesIterator() {
-		CompositeIterator<String> iterator = new CompositeIterator<>();
-		iterator.add(beanDefinitionNames.iterator());
-		iterator.add(manualSingletonNames.iterator());
-		return iterator;
-	}
-
-	@Override
-	public void clearMetadataCache() {
-		super.clearMetadataCache();
-		clearByTypeCache();
-	}
-
-	@Override
-	public void freezeConfiguration() {
-		configurationFrozen = true;
-		frozenBeanDefinitionNames = StringUtils.toStringArray(beanDefinitionNames);
-	}
-
-	@Override
-	public boolean isConfigurationFrozen() {
-		return configurationFrozen;
-	}
-
-	/**
-	 * Considers all beans as eligible for metadata caching if the factory's configuration has been marked as frozen.
-	 * @see #freezeConfiguration()
-	 */
-	@Override
-	protected boolean isBeanEligibleForMetadataCaching(String beanName) {
-		return (configurationFrozen || super.isBeanEligibleForMetadataCaching(beanName));
 	}
 
 	@Override
@@ -749,7 +734,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	}
 
 	//---------------------------------------------------------------------
-	// Implementation of BeanDefinitionRegistry interface
+	// Implementation of 【BeanDefinitionRegistry】 interface
 	//---------------------------------------------------------------------
 	@Override
 	public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition) throws BeanDefinitionStoreException {
@@ -880,6 +865,24 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		}
 	}
 
+	//---------------------------------------------------------------------
+	// Implementation of 【AbstractBeanFactory】 class
+	//---------------------------------------------------------------------
+	@Override
+	public void clearMetadataCache() {
+		super.clearMetadataCache();
+		clearByTypeCache();
+	}
+
+	/**
+	 * Considers all beans as eligible for metadata caching if the factory's configuration has been marked as frozen.
+	 * @see #freezeConfiguration()
+	 */
+	@Override
+	protected boolean isBeanEligibleForMetadataCaching(String beanName) {
+		return (configurationFrozen || super.isBeanEligibleForMetadataCaching(beanName));
+	}
+
 	//  Only allows alias overriding if bean definition overriding is allowed.
 	@Override
 	protected boolean allowAliasOverriding() {
@@ -941,7 +944,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	}
 
 	//---------------------------------------------------------------------
-	// Dependency resolution functionality
+	// Dependency resolution functionality  【AutowireCapableBeanFactory】
 	//---------------------------------------------------------------------
 	@Override
 	public <T> NamedBeanHolder<T> resolveNamedBean(Class<T> requiredType) throws BeansException {
@@ -1024,7 +1027,6 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	@Override
 	@Nullable
 	public Object resolveDependency(DependencyDescriptor descriptor, @Nullable String requestingBeanName,@Nullable Set<String> autowiredBeanNames, @Nullable TypeConverter typeConverter) throws BeansException {
-
 		descriptor.initParameterNameDiscovery(getParameterNameDiscoverer());
 		if (Optional.class == descriptor.getDependencyType()) {
 			return createOptionalDependency(descriptor, requestingBeanName);
@@ -1464,16 +1466,14 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	 * i.e. whether the candidate points back to the original bean or to a factory method on the original bean.
 	 */
 	private boolean isSelfReference(@Nullable String beanName, @Nullable String candidateName) {
-		return (beanName != null && candidateName != null &&
-				(beanName.equals(candidateName) || (containsBeanDefinition(candidateName) &&
+		return (beanName != null && candidateName != null && (beanName.equals(candidateName) || (containsBeanDefinition(candidateName) &&
 						beanName.equals(getMergedLocalBeanDefinition(candidateName).getFactoryBeanName()))));
 	}
 
 	//  Raise a NoSuchBeanDefinitionException or BeanNotOfRequiredTypeException  for an unresolvable dependency.
 	private void raiseNoMatchingBeanFound(Class<?> type, ResolvableType resolvableType, DependencyDescriptor descriptor) throws BeansException {
 		checkBeanNotOfRequiredType(type, descriptor);
-		throw new NoSuchBeanDefinitionException(resolvableType,"expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: "
-				+ ObjectUtils.nullSafeToString(descriptor.getAnnotations()));
+		throw new NoSuchBeanDefinitionException(resolvableType,"expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: "+ ObjectUtils.nullSafeToString(descriptor.getAnnotations()));
 	}
 
 	/**

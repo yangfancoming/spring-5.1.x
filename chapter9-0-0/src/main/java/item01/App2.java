@@ -34,5 +34,4 @@ public class App2 {
 		String[] aliases = abstractBeanFactory.getAliases("111");
 		Arrays.stream(aliases).forEach(x->System.out.println(x));
 	}
-
 }

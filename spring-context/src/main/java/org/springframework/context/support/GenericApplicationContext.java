@@ -121,16 +121,6 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	}
 
 	/**
-	 * Set the parent of this application context, also setting the parent of the internal BeanFactory accordingly.
-	 * @see org.springframework.beans.factory.config.ConfigurableBeanFactory#setParentBeanFactory
-	 */
-	@Override
-	public void setParent(@Nullable ApplicationContext parent) {
-		super.setParent(parent);
-		beanFactory.setParentBeanFactory(getInternalParentBeanFactory());
-	}
-
-	/**
 	 * Set whether it should be allowed to override bean definitions by registering
 	 * a different definition with the same name, automatically replacing the former.
 	 * If not, an exception will be thrown. Default is "true".
@@ -169,6 +159,16 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 		this.resourceLoader = resourceLoader;
 	}
 
+	/**
+	 * Return the underlying bean factory of this context, available for registering bean definitions
+	 * <b>NOTE:</b> You need to call {@link #refresh()} to initialize the
+	 * bean factory and its contained beans with application context semantics (autodetecting BeanFactoryPostProcessors, etc).
+	 * @return the internal bean factory (as DefaultListableBeanFactory)
+	 */
+	public final DefaultListableBeanFactory getDefaultListableBeanFactory() {
+		return beanFactory;
+	}
+
 	//---------------------------------------------------------------------
 	// ResourceLoader / ResourcePatternResolver override if necessary
 	//---------------------------------------------------------------------
@@ -183,19 +183,6 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 			return resourceLoader.getResource(location);
 		}
 		return super.getResource(location);
-	}
-
-	/**
-	 * This implementation delegates to this context's ResourceLoader if it implements the ResourcePatternResolver interface,
-	 * falling back to the default superclass behavior else.
-	 * @see #setResourceLoader
-	 */
-	@Override
-	public Resource[] getResources(String locationPattern) throws IOException {
-		if (resourceLoader instanceof ResourcePatternResolver) {
-			return ((ResourcePatternResolver) resourceLoader).getResources(locationPattern);
-		}
-		return super.getResources(locationPattern);
 	}
 
 	@Override
@@ -248,13 +235,26 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	}
 
 	/**
-	 * Return the underlying bean factory of this context, available for registering bean definitions
-	 * <b>NOTE:</b> You need to call {@link #refresh()} to initialize the
-	 * bean factory and its contained beans with application context semantics (autodetecting BeanFactoryPostProcessors, etc).
-	 * @return the internal bean factory (as DefaultListableBeanFactory)
+	 * Set the parent of this application context, also setting the parent of the internal BeanFactory accordingly.
+	 * @see org.springframework.beans.factory.config.ConfigurableBeanFactory#setParentBeanFactory
 	 */
-	public final DefaultListableBeanFactory getDefaultListableBeanFactory() {
-		return beanFactory;
+	@Override
+	public void setParent(@Nullable ApplicationContext parent) {
+		super.setParent(parent);
+		beanFactory.setParentBeanFactory(getInternalParentBeanFactory());
+	}
+
+	/**
+	 * This implementation delegates to this context's ResourceLoader if it implements the ResourcePatternResolver interface,
+	 * falling back to the default superclass behavior else.
+	 * @see #setResourceLoader
+	 */
+	@Override
+	public Resource[] getResources(String locationPattern) throws IOException {
+		if (resourceLoader instanceof ResourcePatternResolver) {
+			return ((ResourcePatternResolver) resourceLoader).getResources(locationPattern);
+		}
+		return super.getResources(locationPattern);
 	}
 
 	@Override
@@ -264,7 +264,26 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	}
 
 	//---------------------------------------------------------------------
-	// Implementation of 【BeanDefinitionRegistry】 interface
+	// Implementation of 【AliasRegistry】 interface  还有一个 getAliases 方法 与 BeanFactory接口重合
+	//---------------------------------------------------------------------
+	@Override
+	public void registerAlias(String beanName, String alias) {
+		beanFactory.registerAlias(beanName, alias);
+	}
+
+	@Override
+	public void removeAlias(String alias) {
+		beanFactory.removeAlias(alias);
+	}
+
+	@Override
+	public boolean isAlias(String beanName) {
+		return beanFactory.isAlias(beanName);
+	}
+
+	//---------------------------------------------------------------------
+	// Implementation of 【BeanDefinitionRegistry】 interface 其中下面三个方法与 ListableBeanFactory接口重合
+	// containsBeanDefinition()、getBeanDefinitionNames()、 getBeanDefinitionCount()
 	//---------------------------------------------------------------------
 	@Override
 	public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition) throws BeanDefinitionStoreException {
@@ -284,24 +303,6 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	@Override
 	public boolean isBeanNameInUse(String beanName) {
 		return beanFactory.isBeanNameInUse(beanName);
-	}
-
-	//---------------------------------------------------------------------
-	// Implementation of 【AliasRegistry】 interface
-	//---------------------------------------------------------------------
-	@Override
-	public void registerAlias(String beanName, String alias) {
-		beanFactory.registerAlias(beanName, alias);
-	}
-
-	@Override
-	public void removeAlias(String alias) {
-		beanFactory.removeAlias(alias);
-	}
-
-	@Override
-	public boolean isAlias(String beanName) {
-		return beanFactory.isAlias(beanName);
 	}
 
 	//---------------------------------------------------------------------
