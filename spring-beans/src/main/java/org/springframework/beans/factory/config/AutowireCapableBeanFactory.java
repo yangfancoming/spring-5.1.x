@@ -30,6 +30,8 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.beans.factory.config.ConfigurableListableBeanFactory
  * @see org.springframework.context.ApplicationContext#getAutowireCapableBeanFactory()
  *
+ * 扩展了BeanFactory接口,并提供了自动装配能力
+ *
  * AutowireCapableBeanFactory这个接口一般在applicationContext的内部是较少使用的，它的功能主要是为了装配applicationContext管理之外的Bean。
  * 所以，常用于第三方框架的集成，比如：mybatis，quartz等
  *
