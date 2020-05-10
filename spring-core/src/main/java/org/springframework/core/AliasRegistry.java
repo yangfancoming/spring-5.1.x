@@ -13,6 +13,9 @@ public interface AliasRegistry { // 定义了对别名 alias 的简单增删改�
 	 * @param name the canonical name
 	 * @param alias the alias to be registered
 	 * @throws IllegalStateException if the alias is already in use and may not be overridden
+	 *  别名注册，需要说明两点：
+	 * 1、需要避免循环别名和正名之间循环引用的问题。比如a->b   b->c   c->a这就循环引用了，是需要避免的，否则后续解析别名时会出现死循环
+	 * 2、不能出现并发问题，若是并发注册，可能会出现如下情况。  a -> b   b->a (其实也是一种循环引用嘛)
 	 */
 	void registerAlias(String name, String alias);
 
@@ -31,7 +34,7 @@ public interface AliasRegistry { // 定义了对别名 alias 的简单增删改�
 	boolean isAlias(String name);
 
 	/**
-	 * Return the aliases for the given name, if defined. 根据给定的正名，获取所有该正名已注册的所有别名
+	 * Return the aliases for the given name, if defined. 根据给定的正名，获取该正名，所有已注册的所有别名
 	 * @param name the name to check for aliases
 	 * @return the aliases, or an empty array if none
 	 */

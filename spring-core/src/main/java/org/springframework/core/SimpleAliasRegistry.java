@@ -147,6 +147,9 @@ public class SimpleAliasRegistry implements AliasRegistry {
 	public void registerAlias(String name, String alias) {
 		Assert.hasText(name, "'name' must not be empty");
 		Assert.hasText(alias, "'alias' must not be empty");
+		// 此处注意：很多人疑问的地方，既然aliasMap已经使用了ConcurrentHashMap，为何此处还要加锁呢？有必要吗？
+		// 答：非常有必要的。因为ConcurrentHashMap只能保证单个put、remove方法的原子性。而不能保证多个操作同时的原子性。比如我一边添加、一边删除  显然这是不被允许的
+		// doit ？该怎么理解这句话呢？？？
 		synchronized (aliasMap) {
 			// 如果真实的beanName和要注册的别名相同，则直接删除，因为真实的名字和别名相同没有意义
 			if (alias.equals(name)) {
@@ -159,7 +162,7 @@ public class SimpleAliasRegistry implements AliasRegistry {
 				if (registeredName != null) {
 					// An existing alias - no need to re-register  如果正名已经在缓存中存在，并且缓存中的正名和传入的正名相同,则直接返回,没有必要再注册一次
 					if (registeredName.equals(name)) return;
-					// 如果别名不允许覆盖，则抛出异常  //缓存中存在别名,且不允许覆盖,抛出异常
+					// 缓存中存在别名,且不允许覆盖,抛出异常
 					if (!allowAliasOverriding()) {
 						throw new IllegalStateException("Cannot define alias '" + alias + "' for name '" + name + "': It is already registered for name '" + registeredName + "'.");
 					}

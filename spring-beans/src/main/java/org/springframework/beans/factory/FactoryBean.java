@@ -32,6 +32,9 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.beans.factory.BeanFactory
  * @see org.springframework.aop.framework.ProxyFactoryBean
  * @see org.springframework.jndi.JndiObjectFactoryBean
+ *
+ * 第三方框架要继承进Spring，往往就是通过实现FactoryBean来集成的。
+ * 比如MyBatis的SqlSessionFactoryBean、RedisRepositoryFactoryBean、EhCacheManagerFactoryBean等等
  */
 public interface FactoryBean<T> {
 
