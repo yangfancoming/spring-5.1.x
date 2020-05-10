@@ -30,6 +30,9 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.beans.factory.config.ConfigurableListableBeanFactory
  * @see org.springframework.context.ApplicationContext#getAutowireCapableBeanFactory()
  *
+ * AutowireCapableBeanFactory这个接口一般在applicationContext的内部是较少使用的，它的功能主要是为了装配applicationContext管理之外的Bean。
+ * 所以，常用于第三方框架的集成，比如：mybatis，quartz等
+ *
  * 从宏观上看，AutowireCapableBeanFactory提供了如下能力：
  * 1、为已经实例化的对象装配属性，这些属性对象都是Spring管理的；
  * 2、实例化一个类型，并自动装配，这些属性对象都是Spring管理的，实例化的类不被Spring管理。所以这个接口提供功能就是自动装配
@@ -40,7 +43,7 @@ import org.springframework.lang.Nullable;
  * 对于想要拥有自动装配能力，并且想把这种能力暴露给外部应用的BeanFactory类需要实现此接口。
  * 正常情况下，不要使用此接口，应该更倾向于使用BeanFactory或者ListableBeanFactory接口。
  * 此接口主要是针对框架之外，没有向Spring托管Bean的应用。通过暴露此功能，Spring框架之外的程序，具有自动装配等Spring的功能。
- * 需要注意的是，ApplicationContext接口并没有实现此接口，因为应用代码很少用到此功能，如果确实需要的话，可以调用ApplicationContext的getAutowireCapableBeanFactory方法，来获取此接口的实例。
+ * 需要注意的是，ApplicationContext接口并没有实现此接口，因为应用代码很少用到此功能，如果确实需要的话，可以调用 ApplicationContext 的getAutowireCapableBeanFactory方法，来获取此接口的实例。
  * 如果一个类实现了此接口，那么很大程度上它还需要实现BeanFactoryAware接口。它可以在应用上下文中返回BeanFactory。
  */
 public interface AutowireCapableBeanFactory extends BeanFactory {
@@ -117,6 +120,8 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	 * 执行此Bean所有的关于Bean生命周期的接口方法如BeanPostProcessor
 	 * 此方法用于创建一个新实例，它会处理各种带有注解的域和方法，并且会调用所有Bean初始化时所需要调用的回调函数
 	 * 此方法并不意味着by-name或者by-type方式的自动装配，如果需要使用这写功能，可以使用其重载方法
+	 * 注意这个CreateBean和下面的CrateBean的不同，也就是说它只管给你创建Bean，但是不管给你根据Name或者Type进行注入哦
+	 * 	当然，你可以显示在对应属性上指定@Autowired注解，让他也可以达到相同的效果
 	 */
 	<T> T createBean(Class<T> beanClass) throws BeansException;
 

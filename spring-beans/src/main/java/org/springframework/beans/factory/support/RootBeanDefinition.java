@@ -367,5 +367,4 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 	public String toString() {
 		return "Root bean: " + super.toString();
 	}
-
 }

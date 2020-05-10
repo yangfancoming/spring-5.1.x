@@ -31,13 +31,11 @@ import org.springframework.util.Assert;
  * Implements  the {@link org.springframework.beans.factory.support.BeanDefinitionRegistry} interface in order to allow for applying any bean definition readers to it.
  *
  * Typical usage is to register a variety of bean definitions via the {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}
- * interface and then call {@link #refresh()} to initialize those beans
- * with application context semantics (handling {@link org.springframework.context.ApplicationContextAware},
+ * interface and then call {@link #refresh()} to initialize those beans with application context semantics (handling {@link org.springframework.context.ApplicationContextAware},
  * auto-detecting {@link org.springframework.beans.factory.config.BeanFactoryPostProcessor BeanFactoryPostProcessors}, etc).
  *
  * In contrast to other ApplicationContext implementations that create a new internal BeanFactory instance for each refresh,
- * the internal BeanFactory of this context is available right from the start, to be able to register bean
- * definitions on it. {@link #refresh()} may only be called once.
+ * the internal BeanFactory of this context is available right from the start, to be able to register bean definitions on it. {@link #refresh()} may only be called once.
  *
  * Usage example:
  * <pre class="code">
@@ -52,12 +50,10 @@ import org.springframework.util.Assert;
  *
  * For the typical case of XML bean definitions, simply use  {@link ClassPathXmlApplicationContext} or {@link FileSystemXmlApplicationContext},
  * which are easier to set up - but less flexible, since you can just use standard  resource locations for XML bean definitions,
- * rather than mixing arbitrary bean definition formats. The equivalent in a web environment is
- * {@link org.springframework.web.context.support.XmlWebApplicationContext}.
+ * rather than mixing arbitrary bean definition formats. The equivalent in a web environment is {@link org.springframework.web.context.support.XmlWebApplicationContext}.
  *
  * For custom application context implementations that are supposed to read  special bean definition formats in a refreshable manner,
  * consider deriving  from the {@link AbstractRefreshableApplicationContext} base class.
- *
  * @since 1.1.2
  * @see #registerBeanDefinition
  * @see #refresh()
@@ -121,8 +117,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	}
 
 	/**
-	 * Set whether it should be allowed to override bean definitions by registering
-	 * a different definition with the same name, automatically replacing the former.
+	 * Set whether it should be allowed to override bean definitions by registering a different definition with the same name, automatically replacing the former.
 	 * If not, an exception will be thrown. Default is "true".
 	 * @since 3.0
 	 * @see org.springframework.beans.factory.support.DefaultListableBeanFactory#setAllowBeanDefinitionOverriding
@@ -160,8 +155,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	}
 
 	/**
-	 * Return the underlying bean factory of this context, available for registering bean definitions
-	 * <b>NOTE:</b> You need to call {@link #refresh()} to initialize the
+	 * Return the underlying bean factory of this context, available for registering bean definitions <b>NOTE:</b> You need to call {@link #refresh()} to initialize the
 	 * bean factory and its contained beans with application context semantics (autodetecting BeanFactoryPostProcessors, etc).
 	 * @return the internal bean factory (as DefaultListableBeanFactory)
 	 */
@@ -245,8 +239,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	}
 
 	/**
-	 * This implementation delegates to this context's ResourceLoader if it implements the ResourcePatternResolver interface,
-	 * falling back to the default superclass behavior else.
+	 * This implementation delegates to this context's ResourceLoader if it implements the ResourcePatternResolver interface,falling back to the default superclass behavior else.
 	 * @see #setResourceLoader
 	 */
 	@Override
@@ -311,8 +304,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	/**
 	 * Register a bean from the given bean class, optionally customizing its bean definition metadata (typically declared as a lambda expression).
 	 * @param beanClass the class of the bean (resolving a public constructor to be autowired, possibly simply the default constructor)
-	 * @param customizers one or more callbacks for customizing the factory's
-	 * {@link BeanDefinition}, e.g. setting a lazy-init or primary flag
+	 * @param customizers one or more callbacks for customizing the factory's {@link BeanDefinition}, e.g. setting a lazy-init or primary flag
 	 * @since 5.0
 	 * @see #registerBean(String, Class, Supplier, BeanDefinitionCustomizer...)
 	 */
@@ -324,8 +316,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	 * Register a bean from the given bean class, optionally customizing its bean definition metadata (typically declared as a lambda expression).
 	 * @param beanName the name of the bean (may be {@code null})
 	 * @param beanClass the class of the bean (resolving a public constructor to be autowired, possibly simply the default constructor)
-	 * @param customizers one or more callbacks for customizing the factory's
-	 * {@link BeanDefinition}, e.g. setting a lazy-init or primary flag
+	 * @param customizers one or more callbacks for customizing the factory's {@link BeanDefinition}, e.g. setting a lazy-init or primary flag
 	 * @since 5.0
 	 * @see #registerBean(String, Class, Supplier, BeanDefinitionCustomizer...)
 	 */
@@ -338,8 +329,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	 * optionally customizing its bean definition metadata (again typically declared as a lambda expression).
 	 * @param beanClass the class of the bean
 	 * @param supplier a callback for creating an instance of the bean
-	 * @param customizers one or more callbacks for customizing the factory's
-	 * {@link BeanDefinition}, e.g. setting a lazy-init or primary flag
+	 * @param customizers one or more callbacks for customizing the factory's {@link BeanDefinition}, e.g. setting a lazy-init or primary flag
 	 * @since 5.0
 	 * @see #registerBean(String, Class, Supplier, BeanDefinitionCustomizer...)
 	 */
@@ -368,7 +358,6 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 		String nameToUse = (beanName != null ? beanName : beanClass.getName());
 		registerBeanDefinition(nameToUse, beanDefinition);
 	}
-
 
 	/**
 	 * {@link RootBeanDefinition} marker subclass for {@code #registerBean} based  registrations with flexible autowiring for public constructors.
@@ -404,5 +393,4 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 			return new ClassDerivedBeanDefinition(this);
 		}
 	}
-
 }
