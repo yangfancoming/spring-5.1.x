@@ -174,7 +174,6 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	 * @see #AUTOWIRE_BY_TYPE
 	 * @see #AUTOWIRE_CONSTRUCTOR
 	 *  创建一个指定class的实例，通过参数可以指定其自动装配模式（by-name or by-type）.会执行所有注册在此class上用以初始化bean的方法，如BeanPostProcessors等
-	 *
 	 */
 	Object createBean(Class<?> beanClass, int autowireMode, boolean dependencyCheck) throws BeansException;
 
