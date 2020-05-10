@@ -28,3 +28,19 @@
                 他们隐藏了实例化一些复杂的细节，给上层应用带来了便利。从Spring3.0开始，FactoryBean开始支持泛型。
                 
         BeanFactory 接口：IoC容器的顶级接口，是IoC容器的最基础实现，也是访问Spring容器的根接口，负责对bean的创建，访问等工作。
+        
+# item07  InstantiationStrategy  接口
+     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        

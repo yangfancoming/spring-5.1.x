@@ -249,5 +249,4 @@ public class CglibSubclassingInstantiationStrategy extends SimpleInstantiationSt
 			return mr.reimplement(obj, method, args);
 		}
 	}
-
 }
