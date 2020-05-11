@@ -96,7 +96,6 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		return getReaderContext().extractSource(ele);
 	}
 
-
 	/**
 	 * Register each bean definition within the given root {@code <beans/>} element.
 	 * 	 我们看名字就知道，BeanDefinitionParserDelegate 必定是一个重要的类，它负责解析 Bean 定义，

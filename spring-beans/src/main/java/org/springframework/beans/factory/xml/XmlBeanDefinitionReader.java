@@ -128,8 +128,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	/**
 	 * Set the validation mode to use. Defaults to {@link #VALIDATION_AUTO}.
 	 * Note that this only activates or deactivates validation itself.
-	 * If you are switching validation off for schema files, you might need to
-	 * activate schema namespace support explicitly: see {@link #setNamespaceAware}.
+	 * If you are switching validation off for schema files, you might need to  activate schema namespace support explicitly: see {@link #setNamespaceAware}.
 	 */
 	public void setValidationMode(int validationMode) {
 		this.validationMode = validationMode;
@@ -141,11 +140,9 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	}
 
 	/**
-	 * Set whether or not the XML parser should be XML namespace aware.
-	 * Default is "false".
+	 * Set whether or not the XML parser should be XML namespace aware. Default is "false".
 	 * This is typically not needed when schema validation is active.
-	 * However, without validation, this has to be switched to "true"
-	 * in order to properly process schema namespaces.
+	 * However, without validation, this has to be switched to "true" in order to properly process schema namespaces.
 	 */
 	public void setNamespaceAware(boolean namespaceAware) {
 		this.namespaceAware = namespaceAware;
@@ -158,9 +155,8 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 	/**
 	 * Specify which {@link org.springframework.beans.factory.parsing.ProblemReporter} to use.
-	 * The default implementation is {@link org.springframework.beans.factory.parsing.FailFastProblemReporter}
-	 * which exhibits fail fast behaviour. External tools can provide an alternative implementation
-	 * that collates errors and warnings for display in the tool UI.
+	 * The default implementation is {@link org.springframework.beans.factory.parsing.FailFastProblemReporter} which exhibits fail fast behaviour.
+	 * External tools can provide an alternative implementation  that collates errors and warnings for display in the tool UI.
 	 */
 	public void setProblemReporter(@Nullable ProblemReporter problemReporter) {
 		this.problemReporter = (problemReporter != null ? problemReporter : new FailFastProblemReporter());
@@ -178,9 +174,8 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 	/**
 	 * Specify the {@link SourceExtractor} to use.
-	 * The default implementation is {@link NullSourceExtractor} which simply returns {@code null}
-	 * as the source object. This means that - during normal runtime execution -
-	 * no additional source metadata is attached to the bean configuration metadata.
+	 * The default implementation is {@link NullSourceExtractor} which simply returns {@code null} as the source object.
+	 * This means that - during normal runtime execution - no additional source metadata is attached to the bean configuration metadata.
 	 */
 	public void setSourceExtractor(@Nullable SourceExtractor sourceExtractor) {
 		this.sourceExtractor = (sourceExtractor != null ? sourceExtractor : new NullSourceExtractor());
@@ -188,8 +183,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 	/**
 	 * Specify the {@link NamespaceHandlerResolver} to use.
-	 * If none is specified, a default instance will be created through
-	 * {@link #createDefaultNamespaceHandlerResolver()}.
+	 * If none is specified, a default instance will be created through {@link #createDefaultNamespaceHandlerResolver()}.
 	 */
 	public void setNamespaceHandlerResolver(@Nullable NamespaceHandlerResolver namespaceHandlerResolver) {
 		this.namespaceHandlerResolver = namespaceHandlerResolver;
@@ -197,17 +191,15 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 	/**
 	 * Specify the {@link DocumentLoader} to use.
-	 * The default implementation is {@link DefaultDocumentLoader}
-	 * which loads {@link Document} instances using JAXP.
+	 * The default implementation is {@link DefaultDocumentLoader} which loads {@link Document} instances using JAXP.
 	 */
 	public void setDocumentLoader(@Nullable DocumentLoader documentLoader) {
 		this.documentLoader = (documentLoader != null ? documentLoader : new DefaultDocumentLoader());
 	}
 
 	/**
-	 * Set a SAX entity resolver to be used for parsing.
-	 * By default, {@link ResourceEntityResolver} will be used. Can be overridden
-	 * for custom entity resolution, for example relative to some specific base path.
+	 * Set a SAX entity resolver to be used for parsing.By default, {@link ResourceEntityResolver} will be used.
+	 * Can be overridden  for custom entity resolution, for example relative to some specific base path.
 	 */
 	public void setEntityResolver(@Nullable EntityResolver entityResolver) {
 		this.entityResolver = entityResolver;
@@ -228,11 +220,9 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	}
 
 	/**
-	 * Set an implementation of the {@code org.xml.sax.ErrorHandler}
-	 * interface for custom handling of XML parsing errors and warnings.
+	 * Set an implementation of the {@code org.xml.sax.ErrorHandler} interface for custom handling of XML parsing errors and warnings.
 	 * If not set, a default SimpleSaxErrorHandler is used that simply
-	 * logs warnings using the logger instance of the view class,
-	 * and rethrows errors to discontinue the XML transformation.
+	 * logs warnings using the logger instance of the view class,and rethrows errors to discontinue the XML transformation.
 	 * @see SimpleSaxErrorHandler
 	 */
 	public void setErrorHandler(ErrorHandler errorHandler) {
@@ -311,8 +301,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	/**
 	 * Load bean definitions from the specified XML file.
 	 * @param inputSource the SAX InputSource to read from
-	 * @param resourceDescription a description of the resource
-	 * (can be {@code null} or empty)
+	 * @param resourceDescription a description of the resource (can be {@code null} or empty)
 	 * @return the number of bean definitions found
 	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
 	 */

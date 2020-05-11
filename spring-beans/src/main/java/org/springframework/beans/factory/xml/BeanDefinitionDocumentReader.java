@@ -21,6 +21,4 @@ public interface BeanDefinitionDocumentReader {
 	 * @throws BeanDefinitionStoreException in case of parsing errors
 	 */
 	void registerBeanDefinitions(Document doc, XmlReaderContext readerContext) throws BeanDefinitionStoreException;
-
-
 }

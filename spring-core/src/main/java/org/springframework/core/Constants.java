@@ -14,17 +14,11 @@ import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * This class can be used to parse other classes containing constant definitions
- * in public static final members. The {@code asXXXX} methods of this class
- * allow these constant values to be accessed via their string names.
- *
+ * This class can be used to parse other classes containing constant definitions in public static final members.
+ * The {@code asXXXX} methods of this class allow these constant values to be accessed via their string names.
  * Consider class Foo containing {@code public final static int CONSTANT1 = 66;}
- * An instance of this class wrapping {@code Foo.class} will return the constant value
- * of 66 from its {@code asNumber} method given the argument {@code "CONSTANT1"}.
- *
- * This class is ideal for use in PropertyEditors, enabling them to
- * recognize the same names as the constants themselves, and freeing them
- * from maintaining their own mapping.
+ * An instance of this class wrapping {@code Foo.class} will return the constant value  of 66 from its {@code asNumber} method given the argument {@code "CONSTANT1"}.
+ * This class is ideal for use in PropertyEditors, enabling them to recognize the same names as the constants themselves, and freeing them from maintaining their own mapping.
  * @since 16.03.2003
  */
 public class Constants {
@@ -108,8 +102,7 @@ public class Constants {
 	}
 
 	/**
-	 * Parse the given String (upper or lower case accepted) and return
-	 * the appropriate value if it's the name of a constant field in the class that we're analysing.
+	 * Parse the given String (upper or lower case accepted) and return  the appropriate value if it's the name of a constant field in the class that we're analysing.
 	 * @param code the name of the field (never {@code null})
 	 * @return the Object value
 	 * @throws ConstantException if there's no such field
@@ -127,9 +120,8 @@ public class Constants {
 
 	/**
 	 * Return all names of the given group of constants.
-	 * Note that this method assumes that constants are named in accordance with the standard Java convention for constant
-	 * values (i.e. all uppercase). The supplied {@code namePrefix} will be uppercased (in a locale-insensitive fashion) prior to
-	 * the main logic of this method kicking in.
+	 * Note that this method assumes that constants are named in accordance with the standard Java convention for constant values (i.e. all uppercase).
+	 * The supplied {@code namePrefix} will be uppercased (in a locale-insensitive fashion) prior to the main logic of this method kicking in.
 	 * @param namePrefix prefix of the constant names to search (may be {@code null})
 	 * @return the set of constant names
 	 */
@@ -156,11 +148,9 @@ public class Constants {
 
 	/**
 	 * Return all names of the given group of constants.
-	 * Note that this method assumes that constants are named
-	 * in accordance with the standard Java convention for constant
+	 * Note that this method assumes that constants are named in accordance with the standard Java convention for constant
 	 * values (i.e. all uppercase). The supplied {@code nameSuffix}
-	 * will be uppercased (in a locale-insensitive fashion) prior to
-	 * the main logic of this method kicking in.
+	 * will be uppercased (in a locale-insensitive fashion) prior to the main logic of this method kicking in.
 	 * @param nameSuffix suffix of the constant names to search (may be {@code null})
 	 * @return the set of constant names
 	 */
@@ -174,7 +164,6 @@ public class Constants {
 		}
 		return names;
 	}
-
 
 	/**
 	 * Return all values of the given group of constants.
@@ -208,11 +197,8 @@ public class Constants {
 
 	/**
 	 * Return all values of the given group of constants.
-	 * Note that this method assumes that constants are named
-	 * in accordance with the standard Java convention for constant
-	 * values (i.e. all uppercase). The supplied {@code nameSuffix}
-	 * will be uppercased (in a locale-insensitive fashion) prior to
-	 * the main logic of this method kicking in.
+	 * Note that this method assumes that constants are named  in accordance with the standard Java convention for constant values (i.e. all uppercase).
+	 * The supplied {@code nameSuffix} will be uppercased (in a locale-insensitive fashion) prior to the main logic of this method kicking in.
 	 * @param nameSuffix suffix of the constant names to search (may be {@code null})
 	 * @return the set of values
 	 */
@@ -246,8 +232,7 @@ public class Constants {
 	}
 
 	/**
-	 * Look up the given value within the group of constants for
-	 * the given bean property name. Will return the first match.
+	 * Look up the given value within the group of constants for the given bean property name. Will return the first match.
 	 * @param value constant value to look up
 	 * @param propertyName the name of the bean property
 	 * @return the name of the constant field
@@ -330,5 +315,4 @@ public class Constants {
 			super("No '" + namePrefix + "' field with value '" + value + "' found in class [" + className + "]");
 		}
 	}
-
 }
