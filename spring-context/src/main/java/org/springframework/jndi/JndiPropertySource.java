@@ -27,6 +27,8 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.context.ApplicationContextInitializer
  * @see org.springframework.web.WebApplicationInitializer
  * @see org.springframework.web.context.support.StandardServletEnvironment
+ * JNDI：Java Naming and Directory Interface Java命名和目录接口。
+ * 题外话：我认为它是IoC的鼻祖，在Tomcat中有大量的应用，Spring或许都是抄它的~
  */
 public class JndiPropertySource extends PropertySource<JndiLocatorDelegate> {
 
@@ -69,5 +71,4 @@ public class JndiPropertySource extends PropertySource<JndiLocatorDelegate> {
 			return null;
 		}
 	}
-
 }

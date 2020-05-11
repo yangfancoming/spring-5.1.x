@@ -61,5 +61,4 @@ public interface AnnotationMetadata extends ClassMetadata, AnnotatedTypeMetadata
 	 * The return value will be an empty set if no methods match the annotation type.
 	 */
 	Set<MethodMetadata> getAnnotatedMethods(String annotationName);
-
 }

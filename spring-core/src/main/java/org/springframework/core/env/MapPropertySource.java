@@ -40,5 +40,4 @@ public class MapPropertySource extends EnumerablePropertySource<Map<String, Obje
 	public String[] getPropertyNames() {
 		return StringUtils.toStringArray(this.source.keySet());
 	}
-
 }

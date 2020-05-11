@@ -201,16 +201,14 @@ public abstract class CommandLinePropertySource<T> extends EnumerablePropertySou
 	private String nonOptionArgsPropertyName = DEFAULT_NON_OPTION_ARGS_PROPERTY_NAME;
 
 	/**
-	 * Create a new {@code CommandLinePropertySource} having the default name
-	 * {@value #COMMAND_LINE_PROPERTY_SOURCE_NAME} and backed by the given source object.
+	 * Create a new {@code CommandLinePropertySource} having the default name {@value #COMMAND_LINE_PROPERTY_SOURCE_NAME} and backed by the given source object.
 	 */
 	public CommandLinePropertySource(T source) {
 		super(COMMAND_LINE_PROPERTY_SOURCE_NAME, source);
 	}
 
 	/**
-	 * Create a new {@link CommandLinePropertySource} having the given name
-	 * and backed by the given source object.
+	 * Create a new {@link CommandLinePropertySource} having the given name and backed by the given source object.
 	 */
 	public CommandLinePropertySource(String name, T source) {
 		super(name, source);
@@ -225,10 +223,8 @@ public abstract class CommandLinePropertySource<T> extends EnumerablePropertySou
 	}
 
 	/**
-	 * This implementation first checks to see if the name specified is the special
-	 * {@linkplain #setNonOptionArgsPropertyName(String) "non-option arguments" property},
-	 * and if so delegates to the abstract {@link #getNonOptionArgs()} method
-	 * checking to see whether it returns an empty collection. Otherwise delegates to and
+	 * This implementation first checks to see if the name specified is the special {@linkplain #setNonOptionArgsPropertyName(String) "non-option arguments" property},
+	 * and if so delegates to the abstract {@link #getNonOptionArgs()} method checking to see whether it returns an empty collection. Otherwise delegates to and
 	 * returns the value of the abstract {@link #containsOption(String)} method.
 	 */
 	@Override
@@ -240,13 +236,11 @@ public abstract class CommandLinePropertySource<T> extends EnumerablePropertySou
 	}
 
 	/**
-	 * This implementation first checks to see if the name specified is the special
-	 * {@linkplain #setNonOptionArgsPropertyName(String) "non-option arguments" property},
-	 * and if so delegates to the abstract {@link #getNonOptionArgs()} method. If so
-	 * and the collection of non-option arguments is empty, this method returns {@code
-	 * null}. If not empty, it returns a comma-separated String of all non-option
-	 * arguments. Otherwise delegates to and returns the result of the abstract {@link
-	 * #getOptionValues(String)} method.
+	 * This implementation first checks to see if the name specified is the special {@linkplain #setNonOptionArgsPropertyName(String) "non-option arguments" property},
+	 * and if so delegates to the abstract {@link #getNonOptionArgs()} method.
+	 * If so  and the collection of non-option arguments is empty, this method returns {@code null}.
+	 * If not empty, it returns a comma-separated String of all non-option arguments.
+	 * Otherwise delegates to and returns the result of the abstract {@link #getOptionValues(String)} method.
 	 */
 	@Override
 	@Nullable
@@ -267,22 +261,16 @@ public abstract class CommandLinePropertySource<T> extends EnumerablePropertySou
 		}
 	}
 
-
 	/**
-	 * Return whether the set of option arguments parsed from the command line contains
-	 * an option with the given name.
+	 * Return whether the set of option arguments parsed from the command line contains an option with the given name.
 	 */
 	protected abstract boolean containsOption(String name);
 
 	/**
 	 * Return the collection of values associated with the command line option having the given name.
-	 * <li>if the option is present and has no argument (e.g.: "--foo"), return an empty
-	 * collection ({@code []})</li>
-	 * <li>if the option is present and has a single value (e.g. "--foo=bar"), return a
-	 * collection having one element ({@code ["bar"]})</li>
-	 * <li>if the option is present and the underlying command line parsing library
-	 * supports multiple arguments (e.g. "--foo=bar --foo=baz"), return a collection
-	 * having elements for each value ({@code ["bar", "baz"]})</li>
+	 * <li>if the option is present and has no argument (e.g.: "--foo"), return an empty collection ({@code []})</li>
+	 * <li>if the option is present and has a single value (e.g. "--foo=bar"), return a collection having one element ({@code ["bar"]})</li>
+	 * <li>if the option is present and the underlying command line parsing library  supports multiple arguments (e.g. "--foo=bar --foo=baz"), return a collection  having elements for each value ({@code ["bar", "baz"]})</li>
 	 * <li>if the option is not present, return {@code null}</li>
 	 */
 	@Nullable
@@ -292,5 +280,4 @@ public abstract class CommandLinePropertySource<T> extends EnumerablePropertySou
 	 * Return the collection of non-option arguments parsed from the command line. Never {@code null}.
 	 */
 	protected abstract List<String> getNonOptionArgs();
-
 }

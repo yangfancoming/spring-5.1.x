@@ -29,5 +29,4 @@ public class PropertiesPropertySource extends MapPropertySource {
 			return super.getPropertyNames();
 		}
 	}
-
 }

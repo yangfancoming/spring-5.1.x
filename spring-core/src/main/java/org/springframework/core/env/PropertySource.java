@@ -15,8 +15,7 @@ import org.springframework.util.ObjectUtils;
  * Examples include {@link java.util.Properties} objects, {@link java.util.Map} objects, {@code ServletContext} and {@code ServletConfig} objects (for access to init parameters).
  * Explore the {@code PropertySource} type hierarchy to see provided implementations.
  * {@code PropertySource} objects are not typically used in isolation, but rather through a {@link PropertySources} object,
- * which aggregates property sources and in  conjunction with a {@link PropertyResolver} implementation that can perform
- * precedence-based searches across the set of {@code PropertySources}.
+ * which aggregates property sources and in conjunction with a {@link PropertyResolver} implementation that can perform precedence-based searches across the set of {@code PropertySources}.
  * {@code PropertySource} identity is determined not based on the content of encapsulated properties, but rather based on the {@link #getName() name} of the {@code PropertySource} alone.
  * This is useful for manipulating {@code PropertySource} objects when in collection contexts.
  * See operations in {@link MutablePropertySources} as well as the {@link #named(String)} and {@link #toString()} methods for details.
@@ -34,6 +33,7 @@ public abstract class PropertySource<T> {
 
 	protected final Log logger = LogFactory.getLog(getClass());
 
+	// 该属性源的名字
 	protected final String name;
 
 	protected final T source;
@@ -49,6 +49,7 @@ public abstract class PropertySource<T> {
 	/**
 	 * Create a new {@code PropertySource} with the given name and with a new {@code Object} instance as the underlying source.
 	 * Often useful in testing scenarios when creating anonymous implementations that never query an actual source but rather return hard-coded values.
+	 * 若没有指定source 默认就是object  而不是null
 	 */
 	@SuppressWarnings("unchecked")
 	public PropertySource(String name) {
@@ -68,8 +69,9 @@ public abstract class PropertySource<T> {
 	/**
 	 * Return whether this {@code PropertySource} contains the given name.
 	 * This implementation simply checks for a {@code null} return value from {@link #getProperty(String)}.
-	 * Subclasses may wish to implement  a more efficient algorithm if possible.
+	 * Subclasses may wish to implement a more efficient algorithm if possible.
 	 * @param name the property name to find
+	 *  小细节：若对应的key存在但是值为null，此处也是返回false的  表示不包含~
 	 */
 	public boolean containsProperty(String name) {
 		return (getProperty(name) != null);
@@ -79,16 +81,19 @@ public abstract class PropertySource<T> {
 	 * Return the value associated with the given name, or {@code null} if not found.
 	 * @param name the property to find
 	 * @see PropertyResolver#getRequiredProperty(String)
+	 * 抽象方法  子类去实现~~~
+	 *
 	 */
 	@Nullable
 	public abstract Object getProperty(String name);
 
-
+	//  该类重写了equals()和hashCode()方法，所以对于List的remove、indexOf方法都是有影响的~~~后续会看到
 	/**
 	 * This {@code PropertySource} object is equal to the given object if:
 	 * <li>they are the same instance
 	 * <li>the {@code name} properties for both objects are equal
 	 * No properties other than {@code name} are evaluated.
+	 * 此处特别特别注意重写的这两个方法，我们发现它只和name有关，只要name相等  就代表着是同一个对象~~~~ 这点特别重要~
 	 */
 	@Override
 	public boolean equals(Object other) {
@@ -131,6 +136,7 @@ public abstract class PropertySource<T> {
 	 * The returned {@code PropertySource} will throw {@code UnsupportedOperationException}
 	 * if any methods other than {@code equals(Object)}, {@code hashCode()}, and {@code toString()} are called.
 	 * @param name the name of the comparison {@code PropertySource} to be created and returned.
+	 * 静态方法：根据name就创建一个属性源~  ComparisonPropertySource是StubPropertySource的子类~
 	 */
 	public static PropertySource<?> named(String name) {
 		return new ComparisonPropertySource(name);
@@ -184,5 +190,4 @@ public abstract class PropertySource<T> {
 			throw new UnsupportedOperationException(USAGE_ERROR);
 		}
 	}
-
 }

@@ -104,5 +104,4 @@ public class SimpleCommandLinePropertySource extends CommandLinePropertySource<C
 	protected List<String> getNonOptionArgs() {
 		return this.source.getNonOptionArgs();
 	}
-
 }
