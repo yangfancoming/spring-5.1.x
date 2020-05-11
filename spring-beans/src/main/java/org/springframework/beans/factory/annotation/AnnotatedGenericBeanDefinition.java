@@ -20,6 +20,7 @@ import org.springframework.util.Assert;
  * @see AnnotatedBeanDefinition#getMetadata()
  * @see org.springframework.core.type.StandardAnnotationMetadata
  * 带注解的通用bean定义
+ * AnnotatedGenericBeanDefinition只能用于已经被注册或被扫描到的类（否则你手动new一个，它就不在容器里了，那就脱离管理了）
  */
 @SuppressWarnings("serial")
 public class AnnotatedGenericBeanDefinition extends GenericBeanDefinition implements AnnotatedBeanDefinition {

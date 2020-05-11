@@ -40,6 +40,9 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 	private static final Logger logger = Logger.getLogger(AbstractBeanDefinition.class);
 
+	//=====================定义众多常量。这一些常量会直接影响到spring实例化Bean时的策略
+	// 个人觉得这些常量的定义不是必须的，在代码里判断即可。Spring定义这些常量的原因很简单，便于维护，让读代码的人知道每个值的意义(所以以后我们在书写代码时，也可以这么来搞)
+
 	/**
 	 * Constant for the default scope name: {@code ""}, equivalent to singleton status unless overridden from a parent bean definition (if applicable).
 	 * 默认作用域名称的常量：等于singleton状态，除非从父bean定义中重写（如果适用）。
@@ -82,29 +85,28 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	@Deprecated
 	public static final int AUTOWIRE_AUTODETECT = AutowireCapableBeanFactory.AUTOWIRE_AUTODETECT;
 
+	// 检查依赖是否合法，在本类中，默认不进行依赖检查
 	/**
-	 * Constant that indicates no dependency check at all.
+	 * Constant that indicates no dependency check at all.  // 不进行检查
 	 * @see #setDependencyCheck
 	 */
 	public static final int DEPENDENCY_CHECK_NONE = 0;
 
 	/**
-	 * Constant that indicates dependency checking for object references.
+	 * Constant that indicates dependency checking for object references. //如果依赖类型为对象引用，则需要检查
 	 * @see #setDependencyCheck
 	 */
 	public static final int DEPENDENCY_CHECK_OBJECTS = 1;
 
 	/**
-	 * Constant that indicates dependency checking for "simple" properties.
-	 * 对简单属性的依赖进行检查
+	 * Constant that indicates dependency checking for "simple" properties. //对简单属性的依赖进行检查
 	 * @see #setDependencyCheck
 	 * @see org.springframework.beans.BeanUtils#isSimpleProperty
 	 */
 	public static final int DEPENDENCY_CHECK_SIMPLE = 2;
 
 	/**
-	 * Constant that indicates dependency checking for all properties (object references as well as "simple" properties).
-	 * 对所有属性的依赖进行检查
+	 * Constant that indicates dependency checking for all properties (object references as well as "simple" properties).对所有属性的依赖进行检查
 	 * @see #setDependencyCheck
 	 */
 	public static final int DEPENDENCY_CHECK_ALL = 3;
@@ -118,6 +120,10 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	 * 目前来说，推断的销毁方法的名字一般为close或是shutdown ( 即未指定Bean的销毁方法，但是内部定义了名为close或是shutdown的方法，则容器推断其为销毁方法)
 	 */
 	public static final String INFER_METHOD = "(inferred)";
+
+	//---------------------------------------------------------------------
+	// 以下属性：基本囊括了Bean实例化需要的所有信息
+	//---------------------------------------------------------------------
 
 	/** Bean的class对象或是类的全限定名 */
 	@Nullable
@@ -137,7 +143,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	/** 自动注入模式，对应bean属性autowire */
 	private int autowireMode = AUTOWIRE_NO;
 
-	/** 依赖检查，Spring 3.0后弃用这个属性 */
+	/** 依赖检查，Spring 3.0后弃用这个属性  默认不进行检查*/
 	private int dependencyCheck = DEPENDENCY_CHECK_NONE;
 
 	/**
@@ -158,19 +164,29 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	  */
 	private boolean primary = false;
 
-	/**  用于记录Qualifier，对应子元素qualifier */
 	/**  这个不是很清楚，查看了这个类的定义，AutowireCandidateQualifier用于解析自动装配的候选者 */
+	/**
+	 * 用于记录Qualifier，对应子元素qualifier=======这个字段有必要解释一下
+	 *  唯一向这个字段放值的方法为本类的：public void addQualifier(AutowireCandidateQualifier qualifier)    copyQualifiersFrom这个不算，那属于拷贝
+	 *  调用处：AnnotatedBeanDefinitionReader#doRegisterBean  但是Spring所有调用处，qualifiers字段传的都是null~~~~~~~~~尴尬
+	 *  通过我多方跟踪发现，此处这个字段目前【永远】不会被赋值（除非我们手动调用对应方法为其赋值）   但是有可能我才疏学浅，若有知道的  请告知，非常非常感谢  我考虑到它可能是预留字段~~~~
+	 *  我起初以为这样可以赋值：
+	 * @Qualifier("aaa")
+	 * @Service
+	 * public class HelloServiceImpl   没想到，也是不好使的，Bean定义里面也不会有值
+	 *  因此对应的方法getQualifier和getQualifiers 目前应该基本上都返回null或者[]
+	*/
 	private final Map<String, AutowireCandidateQualifier> qualifiers = new LinkedHashMap<>();
 
 	/**
 	 * 用于初始化Bean的回调函数，一旦指定，这个方法会覆盖工厂方法以及构造函数中的元数据
-	 *  我理解为通过这个函数的逻辑初始化Bean，而不是构造函数或是工厂方法
+	 *  我理解为通过这个函数的逻辑初始化Bean，而不是构造函数或是工厂方法（相当于自己去实例化，而不是交给Bean工厂）
 	*/
 	@Nullable
 	private Supplier<?> instanceSupplier;
 
 	/**  允许访问非公开的构造器和方法，程序设置 */
-	/**  是否允许访问非public方法和属性，应用于构造函数、工厂方法、init、destroy方法的解析，具体作用是什么我也不是很清楚 */
+	/**  是否允许访问非public方法和属性，应用于构造函数、工厂方法、init、destroy方法的解析， 默认是true，表示啥都可以访问 */
 	private boolean nonPublicAccessAllowed = true;
 
 	/**  指定解析构造函数的模式，是宽松还是严格（什么是宽松、什么是严格，我没有找到解释）
@@ -190,7 +206,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	 * 对应bean属性factory-bean，用法：
 	 * <bean id = "instanceFactoryBean" class = "example.chapter3.InstanceFactoryBean" />
 	 * <bean id = "currentTime" factory-bean = "instanceFactoryBean" factory-method = "createTime" />
-	 * 工厂类名（注意是String类型，不是Class类型）
+	 * 工厂类名（注意是String类型，不是Class类型）对应bean属性factory-method
 	 */
 	@Nullable
 	private String factoryBeanName;
