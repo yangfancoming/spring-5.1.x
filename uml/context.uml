@@ -127,8 +127,8 @@
     <node x="3393.9034887566154" y="485.0">org.springframework.beans.factory.config.PropertyResourceConfigurer</node>
     <node x="6511.109441137568" y="208.0">org.springframework.beans.factory.support.StaticListableBeanFactory</node>
     <node x="4012.779877645502" y="724.0">org.springframework.context.support.AbstractRefreshableConfigApplicationContext</node>
-    <node x="7407.942774470901" y="0.0">org.springframework.core.AliasRegistry</node>
     <node x="4997.017774470901" y="485.0">org.springframework.beans.factory.config.BeanPostProcessor</node>
+    <node x="7407.942774470901" y="0.0">org.springframework.core.AliasRegistry</node>
     <node x="1457.7857142857142" y="1085.0">org.springframework.core.AttributeAccessorSupport</node>
     <node x="2841.6150793650795" y="1085.0">org.springframework.core.env.Environment</node>
     <node x="4876.779877645502" y="724.0">org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor</node>
@@ -1498,10 +1498,8 @@
       <point x="17.75" y="14.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="713.5" y="406.5" />
-  <SelectedNodes>
-    <node>org.springframework.core.SimpleAliasRegistry</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic Group" zoom="1.0" x="713.5" y="759.5" />
+  <SelectedNodes />
   <Categories />
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>

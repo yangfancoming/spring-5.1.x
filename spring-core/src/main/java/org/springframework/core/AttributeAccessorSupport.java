@@ -10,9 +10,10 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * Support class for {@link AttributeAccessor AttributeAccessors}, providing  a base implementation of all methods. 
+ * Support class for {@link AttributeAccessor AttributeAccessors}, providing a base implementation of all methods.
  * To be extended by subclasses.{@link Serializable} if subclasses and all attribute values are {@link Serializable}.
  * @since 2.0
+ * AttributeAccessorSupport 是AttributeAccessor唯一抽象实现，内部基于LinkedHashMap实现了所有的接口，供其他子类继承使用  主要针对属性CRUD操作
  */
 @SuppressWarnings("serial")
 public abstract class AttributeAccessorSupport implements AttributeAccessor, Serializable {

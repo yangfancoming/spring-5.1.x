@@ -6,7 +6,9 @@ import org.springframework.lang.Nullable;
 
 /**
  * Interface defining a generic contract for attaching and accessing metadata to/from arbitrary objects.
- * 接口定义用于附加和访问任意对象元数据的通用约定。
+ * 用于附加和访问任意对象元数据的通用约定。
+ * 接口都比较简单  就是定义了对对象属性的一些访问方法
+ * 说明它可以持有Bean元数据元素，作用是可以持有XML文件的一个bean标签对应的Object（或者@Configuration元配置对象）
  * @since 2.0
  */
 public interface AttributeAccessor {
@@ -44,5 +46,4 @@ public interface AttributeAccessor {
 
 	/**  Return the names of all attributes. */
 	String[] attributeNames();
-
 }

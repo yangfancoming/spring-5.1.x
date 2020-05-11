@@ -58,7 +58,7 @@ import static org.springframework.context.annotation.AnnotationConfigUtils.CONFI
  * This post processor is priority-ordered as it is important that any {@link Bean} methods declared in {@code @Configuration} classes have
  * their corresponding bean definitions registered before any other {@link BeanFactoryPostProcessor} executes.
  * @since 3.0
- * 用来处理@Configuration，@Import，@ImportResource和类内部的@Bean
+ * 用来处理@Configuration，@Import，@ImportResource和类内部的@Bean 注解
  */
 public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPostProcessor, PriorityOrdered, ResourceLoaderAware, BeanClassLoaderAware, EnvironmentAware {
 

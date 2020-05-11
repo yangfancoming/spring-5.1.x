@@ -758,9 +758,8 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			// 如果已经注册过该bean，且设置为不允许覆盖，则抛出异常
 			if (!isAllowBeanDefinitionOverriding()) {
 				throw new BeanDefinitionOverrideException(beanName, beanDefinition, existingDefinition);
-			}
+			}else if (existingDefinition.getRole() < beanDefinition.getRole()) {
 			// 使用新的BeanDefinition覆盖已经加载的BeanDefinition，if else中只有日志打印，无实质代码，删除为了阅读方便
-			else if (existingDefinition.getRole() < beanDefinition.getRole()) {
 				// e.g. was ROLE_APPLICATION, now overriding with ROLE_SUPPORT or ROLE_INFRASTRUCTURE
 				if (logger.isInfoEnabled()) logger.info("Overriding user-defined bean definition for bean '" + beanName + "' with a framework-generated bean definition: replacing [" + existingDefinition + "] with [" + beanDefinition + "]");
 			}else if (!beanDefinition.equals(existingDefinition)) {

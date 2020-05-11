@@ -199,5 +199,4 @@ public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport 
 			return PropertyPlaceholderConfigurer.this.resolvePlaceholder(placeholderName,this.props, systemPropertiesMode);
 		}
 	}
-
 }
