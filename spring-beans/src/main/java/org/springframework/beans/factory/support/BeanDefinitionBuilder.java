@@ -13,6 +13,7 @@ import org.springframework.util.ObjectUtils;
  * Programmatic means of constructing {@link org.springframework.beans.factory.config.BeanDefinition BeanDefinitions} using the builder pattern.
  * Intended primarily for use when implementing Spring 2.0 {@link org.springframework.beans.factory.xml.NamespaceHandler NamespaceHandlers}.
  * @since 2.0
+ * 快速创建一个Bean定义，使用它的好处是，可以进行方法的连缀。 没有特殊指明，创建的都是GenericBeanDefinition
  */
 public final class BeanDefinitionBuilder {
 
@@ -196,7 +197,6 @@ public final class BeanDefinitionBuilder {
 		return this;
 	}
 
-
 	/**
 	 * Set the scope of this definition.
 	 * @see org.springframework.beans.factory.config.BeanDefinition#SCOPE_SINGLETON
@@ -235,8 +235,7 @@ public final class BeanDefinitionBuilder {
 	public BeanDefinitionBuilder addDependsOn(String beanName) {
 		if (this.beanDefinition.getDependsOn() == null) {
 			this.beanDefinition.setDependsOn(beanName);
-		}
-		else {
+		}else {
 			String[] added = ObjectUtils.addObjectToArray(this.beanDefinition.getDependsOn(), beanName);
 			this.beanDefinition.setDependsOn(added);
 		}
@@ -259,5 +258,4 @@ public final class BeanDefinitionBuilder {
 		}
 		return this;
 	}
-
 }

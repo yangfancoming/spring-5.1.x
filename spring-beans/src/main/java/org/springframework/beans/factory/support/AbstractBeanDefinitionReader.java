@@ -41,7 +41,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 	private ClassLoader beanClassLoader;
 
 	private Environment environment;
-
+	// 默认的名字生成器（类名首字母小写）
 	private BeanNameGenerator beanNameGenerator = new DefaultBeanNameGenerator();
 
 	/**
@@ -68,6 +68,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 			resourceLoader = new PathMatchingResourcePatternResolver();
 		}
 		// Inherit Environment if possible   2、如果环境可继承则继承registry的环境,否则重新创建环境
+		// 如果注册器里有环境变量，就用它的 否则new一个标准的~~~~  它下面也提供了set方法可以设置
 		if (this.registry instanceof EnvironmentCapable) {
 			environment = ((EnvironmentCapable) this.registry).getEnvironment();
 		}else {

@@ -21,6 +21,7 @@ public interface BeanDefinitionReader {
 	/**
 	 * Return the bean factory to register the bean definitions with.
 	 * The factory is exposed through the BeanDefinitionRegistry interface,encapsulating the methods that are relevant for bean definition handling.
+	 * // 得到Bean定义的register
 	 */
 	BeanDefinitionRegistry getRegistry();
 
@@ -52,10 +53,14 @@ public interface BeanDefinitionReader {
 	ClassLoader getBeanClassLoader();
 
 	/**
-	 * Return the BeanNameGenerator to use for anonymous beans (without explicit bean name specified).
+	 * Return the BeanNameGenerator to use for anonymous beans (without explicit bean name specified).// 生成Bean名称的名字生成器（若没有指定名称的话，会调用它生成）
 	 */
 	BeanNameGenerator getBeanNameGenerator();
 
+
+	//---------------------------------------------------------------------
+	//  核心方法，loadbean定义进来，然后注册到上面的register 里面去
+	//---------------------------------------------------------------------
 	/**
 	 * Load bean definitions from the specified resource.
 	 * @param resource the resource descriptor

@@ -16,6 +16,26 @@ import static org.junit.Assert.assertTrue;
 
 public class BeanDefinitionBuilderTests {
 
+	class Child{
+
+	}
+
+	@Test
+	public void tst() {
+		AbstractBeanDefinition beanDefinition = BeanDefinitionBuilder.genericBeanDefinition(Child.class)
+				.setRole(BeanDefinition.ROLE_APPLICATION)
+				.setScope(BeanDefinition.SCOPE_SINGLETON)
+				.addPropertyValue("name", "fsx")
+				.setLazyInit(false)
+				//Spring5.0后提供的，可以自己书写函数，在里面做任意事情
+				//bdf是个AbstractBeanDefinition
+				.applyCustomizers((bdf) -> {
+					AbstractBeanDefinition abdf = (AbstractBeanDefinition) bdf;
+					abdf.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_NO);
+				}).getRawBeanDefinition();
+		System.out.println(beanDefinition);
+	}
+
 	@Test
 	public void beanClassWithSimpleProperty() {
 		String[] dependsOn = new String[] { "A", "B", "C" };
