@@ -41,10 +41,8 @@ public class ProxyCreatorSupport extends AdvisedSupport {
 
 
 	/**
-	 * Customize the AopProxyFactory, allowing different strategies
-	 * to be dropped in without changing the core framework.
-	 * Default is {@link DefaultAopProxyFactory}, using dynamic JDK
-	 * proxies or CGLIB proxies based on the requirements.
+	 * Customize the AopProxyFactory, allowing different strategies to be dropped in without changing the core framework.
+	 * Default is {@link DefaultAopProxyFactory}, using dynamic JDK proxies or CGLIB proxies based on the requirements.
 	 */
 	public void setAopProxyFactory(AopProxyFactory aopProxyFactory) {
 		Assert.notNull(aopProxyFactory, "AopProxyFactory must not be null");
@@ -77,8 +75,7 @@ public class ProxyCreatorSupport extends AdvisedSupport {
 	}
 
 	/**
-	 * Subclasses should call this to get a new AOP proxy. They should <b>not</b>
-	 * create an AOP proxy with {@code this} as an argument.
+	 * Subclasses should call this to get a new AOP proxy. They should <b>not</b> create an AOP proxy with {@code this} as an argument.
 	 */
 	protected final synchronized AopProxy createAopProxy() {
 		if (!this.active) {

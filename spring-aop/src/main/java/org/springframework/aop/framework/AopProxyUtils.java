@@ -20,8 +20,7 @@ import org.springframework.util.ObjectUtils;
 /**
  * Utility methods for AOP proxy factories.
  * Mainly for internal use within the AOP framework.
- * See {@link org.springframework.aop.support.AopUtils} for a collection of
- * generic AOP utility methods which do not depend on AOP framework internals.
+ * See {@link org.springframework.aop.support.AopUtils} for a collection of generic AOP utility methods which do not depend on AOP framework internals.
  * @see org.springframework.aop.support.AopUtils
  */
 public abstract class AopProxyUtils {
@@ -52,8 +51,7 @@ public abstract class AopProxyUtils {
 	/**
 	 * 获取一个代理对象的最终对象类型
 	 * 这里面涉及到了很多SpringAOP中的接口，比如 TargetClassAware，Advised，TargetSource，SingletonTargetSource等
-	 * Determine the ultimate target class of the given bean instance,
-	 * traversing  not only a top-level proxy but any number of nested proxies as well ;
+	 * Determine the ultimate target class of the given bean instance,traversing  not only a top-level proxy but any number of nested proxies as well ;
 	 * as long as possible without side effects, that is, just for singleton targets.
 	 * @param candidate the instance to check (might be an AOP proxy)
 	 * @return the ultimate target class (or the plain class of the given object as fallback; never {@code null})
@@ -82,8 +80,7 @@ public abstract class AopProxyUtils {
 	 * 判断一个advised真正需要代理的目标接口列表。
 	 * 比如在spring使用JDK proxy做代理的时候，这个方法返回的类型列表就是真正需要交给Proxy.newProxyInstance方法的接口列表
 	 * Determine the complete set of interfaces to proxy for the given AOP configuration.
-	 * This will always add the {@link Advised} interface unless the AdvisedSupport's
-	 * {@link AdvisedSupport#setOpaque "opaque"} flag is on.
+	 * This will always add the {@link Advised} interface unless the AdvisedSupport's {@link AdvisedSupport#setOpaque "opaque"} flag is on.
 	 * Always adds the {@link org.springframework.aop.SpringProxy} marker interface.
 	 * @param advised the proxy config
 	 * @return the complete set of interfaces to proxy
@@ -97,9 +94,7 @@ public abstract class AopProxyUtils {
 	/**
 	 * 判断一个advised真正需要代理的目标接口列表。
 	 * Determine the complete set of interfaces to proxy for the given AOP configuration.
-	 * This will always add the {@link Advised} interface unless the AdvisedSupport's
-	 * {@link AdvisedSupport#setOpaque "opaque"} flag is on. Always adds the
-	 * {@link org.springframework.aop.SpringProxy} marker interface.
+	 * This will always add the {@link Advised} interface unless the AdvisedSupport's {@link AdvisedSupport#setOpaque "opaque"} flag is on. Always adds the {@link org.springframework.aop.SpringProxy} marker interface.
 	 * @param advised the proxy config
 	 * @param decoratingProxy whether to expose the {@link DecoratingProxy} interface
 	 * @return the complete set of interfaces to proxy
@@ -129,7 +124,6 @@ public abstract class AopProxyUtils {
 		if (addSpringProxy) nonUserIfcCount++;
 		if (addAdvised) nonUserIfcCount++;
 		if (addDecoratingProxy) nonUserIfcCount++;
-
 		Class<?>[] proxiedInterfaces = new Class<?>[specifiedInterfaces.length + nonUserIfcCount];
 		System.arraycopy(specifiedInterfaces, 0, proxiedInterfaces, 0, specifiedInterfaces.length);
 		int index = specifiedInterfaces.length;
@@ -163,7 +157,6 @@ public abstract class AopProxyUtils {
 		//如果是代理，可能实现了Advised；
 		if (proxy instanceof Advised) nonUserIfcCount++;
 		if (proxy instanceof DecoratingProxy) nonUserIfcCount++;
-
 		Class<?>[] userInterfaces = new Class<?>[proxyInterfaces.length - nonUserIfcCount];
 		//拷贝proxyInterfaces中从第0位~第proxyInterfaces.length - nonUserIfcCount个 去掉尾巴上的nonUserIfcCount个；
 		System.arraycopy(proxyInterfaces, 0, userInterfaces, 0, userInterfaces.length);
@@ -174,8 +167,7 @@ public abstract class AopProxyUtils {
 	/**
 	 * 判断两个（即将）代理出来的对象是否相同；
 	 * Check equality of the proxies behind the given AdvisedSupport objects.
-	 * Not the same as equality of the AdvisedSupport objects:
-	 * rather, equality of interfaces, advisors and target sources.
+	 * Not the same as equality of the AdvisedSupport objects: rather, equality of interfaces, advisors and target sources.
 	 */
 	public static boolean equalsInProxy(AdvisedSupport a, AdvisedSupport b) {
 		return (a == b || (equalsProxiedInterfaces(a, b) && equalsAdvisors(a, b) && a.getTargetSource().equals(b.getTargetSource())));
@@ -199,8 +191,7 @@ public abstract class AopProxyUtils {
 
 	/**
 	 * Adapt the given arguments to the target signature in the given method,
-	 * if necessary: in particular, if a given vararg argument array does not
-	 * match the array type of the declared vararg parameter in the method.
+	 * if necessary: in particular, if a given vararg argument array does not match the array type of the declared vararg parameter in the method.
 	 * @param method the target method
 	 * @param arguments the given arguments
 	 * @return a cloned argument array, or the original if no adaptation is needed
@@ -232,5 +223,4 @@ public abstract class AopProxyUtils {
 		}
 		return arguments;
 	}
-
 }

@@ -86,7 +86,6 @@ public class AopProxyUtilsTests {
 		 */
 		System.out.println(StringUtils.collectionToDelimitedString(ClassUtils.getAllInterfacesAsSet(helloService), "\r\n"));
 		System.out.println("-----------------");
-
 		/**
 		 * 该方法用于获取一个代理对象中的用户定义的接口，即Advised接口体系之外的其他接口；
 		 * interface com.goat.chapter400.annotation.service.HelloService

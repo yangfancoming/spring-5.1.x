@@ -19,5 +19,4 @@ class InterceptorAndDynamicMethodMatcher {
 		this.interceptor = interceptor;
 		this.methodMatcher = methodMatcher;
 	}
-
 }

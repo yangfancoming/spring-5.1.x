@@ -37,36 +37,33 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
- * {@link org.springframework.beans.factory.FactoryBean} implementation that builds an
- * AOP proxy based on beans in Spring {@link org.springframework.beans.factory.BeanFactory}.
+ * {@link org.springframework.beans.factory.FactoryBean} implementation that builds an AOP proxy based on beans in Spring {@link org.springframework.beans.factory.BeanFactory}.
  *
- * {@link org.aopalliance.intercept.MethodInterceptor MethodInterceptors} and
- * {@link org.springframework.aop.Advisor Advisors} are identified by a list of bean
+ * {@link org.aopalliance.intercept.MethodInterceptor MethodInterceptors} and {@link org.springframework.aop.Advisor Advisors} are identified by a list of bean
  * names in the current bean factory, specified through the "interceptorNames" property.
- * The last entry in the list can be the name of a target bean or a
- * {@link org.springframework.aop.TargetSource}; however, it is normally preferable
- * to use the "targetName"/"target"/"targetSource" properties instead.
+ * The last entry in the list can be the name of a target bean or a {@link org.springframework.aop.TargetSource};
+ * however, it is normally preferable to use the "targetName"/"target"/"targetSource" properties instead.
  *
- * Global interceptors and advisors can be added at the factory level. The specified
- * ones are expanded in an interceptor list where an "xxx*" entry is included in the
+ * Global interceptors and advisors can be added at the factory level.
+ * The specified ones are expanded in an interceptor list where an "xxx*" entry is included in the
+ *
  * list, matching the given prefix with the bean names (e.g. "global*" would match
- * both "globalBean1" and "globalBean2", "*" all defined interceptors). The matching
- * interceptors get applied according to their returned order value, if they implement
- * the {@link org.springframework.core.Ordered} interface.
+ * both "globalBean1" and "globalBean2", "*" all defined interceptors).
+ * The matching interceptors get applied according to their returned order value,
+ * if they implement the {@link org.springframework.core.Ordered} interface.
  *
- * Creates a JDK proxy when proxy interfaces are given, and a CGLIB proxy for the
- * actual target class if not. Note that the latter will only work if the target class
- * does not have final methods, as a dynamic subclass will be created at runtime.
+ * Creates a JDK proxy when proxy interfaces are given, and a CGLIB proxy for the actual target class if not.
+ * Note that the latter will only work if the target class  does not have final methods, as a dynamic subclass will be created at runtime.
  *
- * It's possible to cast a proxy obtained from this factory to {@link Advised},
- * or to obtain the ProxyFactoryBean reference and programmatically manipulate it.
- * This won't work for existing prototype references, which are independent. However,
- * it will work for prototypes subsequently obtained from the factory. Changes to
- * interception will work immediately on singletons (including existing references).
- * However, to change interfaces or target it's necessary to obtain a new instance
- * from the factory. This means that singleton instances obtained from the factory
- * do not have the same object identity. However, they do have the same interceptors
- * and target, and changing any reference will change all objects.
+ * It's possible to cast a proxy obtained from this factory to {@link Advised}, or to obtain the ProxyFactoryBean reference and programmatically manipulate it.
+ *
+ * This won't work for existing prototype references, which are independent. However, it will work for prototypes subsequently obtained from the factory.
+ * Changes to  interception will work immediately on singletons (including existing references).
+ *
+ * However, to change interfaces or target it's necessary to obtain a new instance from the factory.
+ * This means that singleton instances obtained from the factory do not have the same object identity.
+ * However, they do have the same interceptors  and target, and changing any reference will change all objects.
+ *
  * @see #setInterceptorNames
  * @see #setProxyInterfaces
  * @see org.aopalliance.intercept.MethodInterceptor
@@ -112,12 +109,9 @@ public class ProxyFactoryBean extends ProxyCreatorSupport implements FactoryBean
 	@Nullable
 	private Object singletonInstance;
 
-
 	/**
-	 * Set the names of the interfaces we're proxying. If no interface
-	 * is given, a CGLIB for the actual class will be created.
-	 * This is essentially equivalent to the "setInterfaces" method,
-	 * but mirrors TransactionProxyFactoryBean's "setProxyInterfaces".
+	 * Set the names of the interfaces we're proxying. If no interface is given, a CGLIB for the actual class will be created.
+	 * This is essentially equivalent to the "setInterfaces" method,but mirrors TransactionProxyFactoryBean's "setProxyInterfaces".
 	 * @see #setInterfaces
 	 * @see AbstractSingletonProxyFactoryBean#setProxyInterfaces
 	 */
@@ -128,12 +122,10 @@ public class ProxyFactoryBean extends ProxyCreatorSupport implements FactoryBean
 	/**
 	 * Set the list of Advice/Advisor bean names. This must always be set to use this factory bean in a bean factory.
 	 * The referenced beans should be of type Interceptor, Advisor or Advice The last entry in the list can be the name of any bean in the factory.
-	 * If it's neither an Advice nor an Advisor, a new SingletonTargetSource
-	 * is added to wrap it. Such a target bean cannot be used if the "target"
-	 * or "targetSource" or "targetName" property is set, in which case the
+	 * If it's neither an Advice nor an Advisor, a new SingletonTargetSource is added to wrap it.
+	 * Such a target bean cannot be used if the "target"  or "targetSource" or "targetName" property is set, in which case the
 	 * "interceptorNames" array must contain only Advice/Advisor bean names.
-	 * <b>NOTE: Specifying a target bean as final name in the "interceptorNames"
-	 * list is deprecated and will be removed in a future Spring version.</b>
+	 * <b>NOTE: Specifying a target bean as final name in the "interceptorNames" list is deprecated and will be removed in a future Spring version.</b>
 	 * Use the {@link #setTargetName "targetName"} property instead.
 	 * @see org.aopalliance.intercept.MethodInterceptor
 	 * @see org.springframework.aop.Advisor
@@ -584,5 +576,4 @@ public class ProxyFactoryBean extends ProxyCreatorSupport implements FactoryBean
 			return this.message;
 		}
 	}
-
 }

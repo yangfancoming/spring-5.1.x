@@ -14,8 +14,7 @@ import org.springframework.objenesis.SpringObjenesis;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Objenesis-based extension of {@link CglibAopProxy} to create proxy instances
- * without invoking the constructor of the class. Used by default as of Spring 4.
+ * Objenesis-based extension of {@link CglibAopProxy} to create proxy instances without invoking the constructor of the class. Used by default as of Spring 4.
  * @since 4.0
  */
 @SuppressWarnings("serial")
@@ -32,7 +31,6 @@ class ObjenesisCglibAopProxy extends CglibAopProxy {
 	public ObjenesisCglibAopProxy(AdvisedSupport config) {
 		super(config);
 	}
-
 
 	@Override
 	protected Object createProxyClassAndInstance(Enhancer enhancer, Callback[] callbacks) {
@@ -55,9 +53,7 @@ class ObjenesisCglibAopProxy extends CglibAopProxy {
 				throw new AopConfigException("Unable to instantiate proxy using Objenesis, and regular proxy instantiation via default constructor fails as well", ex);
 			}
 		}
-
 		((Factory) proxyInstance).setCallbacks(callbacks);
 		return proxyInstance;
 	}
-
 }

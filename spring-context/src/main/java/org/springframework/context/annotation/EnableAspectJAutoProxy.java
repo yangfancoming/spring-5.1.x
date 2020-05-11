@@ -96,7 +96,6 @@ import java.lang.annotation.Target;
  * This feature requires the presence of {@code aspectjweaver} on the classpath.
  * 此功能要求类路径上存在AspectJWeaver
  * While that dependency is optional for {@code spring-aop} in general, it is required for {@code @EnableAspectJAutoProxy} and its underlying facilities.
-
  * @since 3.1
  * @see org.aspectj.lang.annotation.Aspect
  */
@@ -121,5 +120,4 @@ public @interface EnableAspectJAutoProxy {
 	 *  通过aop框架暴露该代理对象，aopContext能够访问。为了解决类内部方法之间调用时无法增强的问题
 	 */
 	boolean exposeProxy() default false;
-
 }
