@@ -4,8 +4,6 @@ package org.springframework.expression.spel.standard;
 
 /**
  * Token Kinds.
- *
- * @author Andy Clement
  * @since 3.0
  */
 enum TokenKind {
@@ -108,11 +106,9 @@ enum TokenKind {
 
 	DEC("--");
 
-
 	final char[] tokenChars;
 
 	private final boolean hasPayload;  // is there more to this token than simply the kind
-
 
 	private TokenKind(String tokenString) {
 		this.tokenChars = tokenString.toCharArray();
@@ -122,7 +118,6 @@ enum TokenKind {
 	private TokenKind() {
 		this("");
 	}
-
 
 	@Override
 	public String toString() {
@@ -136,5 +131,4 @@ enum TokenKind {
 	public int getLength() {
 		return this.tokenChars.length;
 	}
-
 }

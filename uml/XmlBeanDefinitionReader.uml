@@ -5,35 +5,35 @@
   <nodes>
     <node x="0.0" y="311.0">org.springframework.beans.factory.xml.DefaultDocumentLoader</node>
     <node x="21.0" y="232.0">org.springframework.beans.factory.xml.DocumentLoader</node>
-    <node x="81.0" y="158.0">org.springframework.beans.factory.xml.XmlBeanDefinitionReader</node>
-    <node x="0.0" y="0.0">org.springframework.beans.factory.support.BeanDefinitionReader</node>
-    <node x="186.0" y="0.0">org.springframework.core.env.EnvironmentCapable</node>
-    <node x="66.0" y="79.0">org.springframework.beans.factory.support.AbstractBeanDefinitionReader</node>
+    <node x="75.0" y="158.0">org.springframework.beans.factory.xml.XmlBeanDefinitionReader</node>
+    <node x="174.0" y="0.0">org.springframework.beans.factory.support.BeanDefinitionReader</node>
+    <node x="0.0" y="0.0">org.springframework.core.env.EnvironmentCapable</node>
+    <node x="60.0" y="79.0">org.springframework.beans.factory.support.AbstractBeanDefinitionReader</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="org.springframework.beans.factory.xml.DefaultDocumentLoader" target="org.springframework.beans.factory.xml.DocumentLoader">
-      <point x="0.0" y="-14.5" />
-      <point x="0.0" y="14.5" />
-    </edge>
     <edge source="org.springframework.beans.factory.xml.XmlBeanDefinitionReader" target="org.springframework.beans.factory.support.AbstractBeanDefinitionReader">
       <point x="0.0" y="-14.5" />
       <point x="0.0" y="14.5" />
     </edge>
+    <edge source="org.springframework.beans.factory.xml.DefaultDocumentLoader" target="org.springframework.beans.factory.xml.DocumentLoader">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
     <edge source="org.springframework.beans.factory.support.AbstractBeanDefinitionReader" target="org.springframework.beans.factory.support.BeanDefinitionReader">
-      <point x="-53.5" y="-14.5" />
-      <point x="119.5" y="54.0" />
-      <point x="83.0" y="54.0" />
+      <point x="53.5" y="-14.5" />
+      <point x="220.5" y="54.0" />
+      <point x="257.0" y="54.0" />
       <point x="0.0" y="14.5" />
     </edge>
     <edge source="org.springframework.beans.factory.support.AbstractBeanDefinitionReader" target="org.springframework.core.env.EnvironmentCapable">
-      <point x="53.5" y="-14.5" />
-      <point x="226.5" y="54.0" />
-      <point x="263.0" y="54.0" />
+      <point x="-53.5" y="-14.5" />
+      <point x="113.5" y="54.0" />
+      <point x="77.0" y="54.0" />
       <point x="0.0" y="14.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="181.0" y="95.0" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="733.5" y="426.5" />
   <SelectedNodes>
     <node>org.springframework.beans.factory.support.BeanDefinitionReader</node>
   </SelectedNodes>

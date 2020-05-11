@@ -25,16 +25,10 @@ import org.springframework.util.Assert;
 
 /**
  * A powerful and highly configurable {@link EvaluationContext} implementation.
- * This context uses standard implementations of all applicable strategies,
- * based on reflection to resolve properties, methods and fields.
+ * This context uses standard implementations of all applicable strategies,based on reflection to resolve properties, methods and fields.
  *
- * For a simpler builder-style context variant for data-binding purposes,
- * consider using {@link SimpleEvaluationContext} instead which allows for
+ * For a simpler builder-style context variant for data-binding purposes, consider using {@link SimpleEvaluationContext} instead which allows for
  * opting into several SpEL features as needed by specific evaluation cases.
- *
- * @author Andy Clement
-
- * @author Sam Brannen
  * @since 3.0
  * @see SimpleEvaluationContext
  * @see ReflectivePropertyAccessor

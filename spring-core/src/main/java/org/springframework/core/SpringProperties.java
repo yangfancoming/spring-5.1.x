@@ -14,14 +14,10 @@ import org.springframework.lang.Nullable;
 
 /**
  * Static holder for local Spring properties, i.e. defined at the Spring library level.
- * Reads a {@code spring.properties} file from the root of the Spring library classpath,
- * and also allows for programmatically setting properties through {@link #setProperty}.
- * When checking a property, local entries are being checked first, then falling back
- * to JVM-level system properties through a {@link System#getProperty} check.
- *
- * This is an alternative way to set Spring-related system properties such as
- * "spring.getenv.ignore" and "spring.beaninfo.ignore", in particular for scenarios
- * where JVM system properties are locked on the target platform (e.g. WebSphere).
+ * Reads a {@code spring.properties} file from the root of the Spring library classpath, and also allows for programmatically setting properties through {@link #setProperty}.
+ * When checking a property, local entries are being checked first, then falling back to JVM-level system properties through a {@link System#getProperty} check.
+ * This is an alternative way to set Spring-related system properties such as "spring.getenv.ignore" and "spring.beaninfo.ignore",
+ * in particular for scenarios  where JVM system properties are locked on the target platform (e.g. WebSphere).
  * See {@link #setFlag} for a convenient way to locally set such flags to "true".
  * @since 3.2.7
  * @see org.springframework.core.env.AbstractEnvironment#IGNORE_GETENV_PROPERTY_NAME
@@ -37,6 +33,7 @@ public final class SpringProperties {
 
 	private static final Properties localProperties = new Properties();
 
+	// 将类路径下的 spring.properties 配置文件信息 保存到 localProperties 对象中
 	static {
 		try {
 			ClassLoader cl = SpringProperties.class.getClassLoader();
@@ -55,8 +52,7 @@ public final class SpringProperties {
 		}
 	}
 
-	private SpringProperties() {
-	}
+	private SpringProperties() {}
 
 	/**
 	 * Programmatically set a local property, overriding an entry in the {@code spring.properties} file (if any).
@@ -105,5 +101,4 @@ public final class SpringProperties {
 	public static boolean getFlag(String key) {
 		return Boolean.parseBoolean(getProperty(key));
 	}
-
 }

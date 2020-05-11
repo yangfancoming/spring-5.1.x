@@ -14,12 +14,14 @@ import org.springframework.expression.ParserContext;
 import org.springframework.lang.Nullable;
 
 /**
- * An expression parser that understands templates. It can be subclassed by expression
- * parsers that do not offer first class support for templating.
+ * An expression parser that understands templates. It can be subclassed by expression parsers that do not offer first class support for templating.
  * @since 3.0
  */
 public abstract class TemplateAwareExpressionParser implements ExpressionParser {
 
+	//---------------------------------------------------------------------
+	// Implementation of 【ExpressionParser】 interface
+	//---------------------------------------------------------------------
 	@Override
 	public Expression parseExpression(String expressionString) throws ParseException {
 		return parseExpression(expressionString, null);
@@ -27,18 +29,20 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 
 	@Override
 	public Expression parseExpression(String expressionString, @Nullable ParserContext context) throws ParseException {
+		// 若指定了上下文，并且是模版 就走parseTemplate
 		if (context != null && context.isTemplate()) {
 			return parseTemplate(expressionString, context);
 		}else {
+			// 抽象方法 子类去实现~~~
 			return doParseExpression(expressionString, context);
 		}
 	}
 
-
 	private Expression parseTemplate(String expressionString, ParserContext context) throws ParseException {
-		if (expressionString.isEmpty()) {
+		if (expressionString.isEmpty()) { // 若解析字符串是空串~~~~~
 			return new LiteralExpression("");
 		}
+		// 若只有一个模版表达式，直接返回。否则会返回一个CompositeStringExpression，聚合起来的表达式~
 		Expression[] expressions = parseExpressions(expressionString, context);
 		if (expressions.length == 1) {
 			return expressions[0];
@@ -48,19 +52,15 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 	}
 
 	/**
-	 * Helper that parses given expression string using the configured parser. The
-	 * expression string can contain any number of expressions all contained in "${...}"
-	 * markers. For instance: "foo${expr0}bar${expr1}". The static pieces of text will
-	 * also be returned as Expressions that just return that static piece of text. As a
-	 * result, evaluating all returned expressions and concatenating the results produces
-	 * the complete evaluated string. Unwrapping is only done of the outermost delimiters
-	 * found, so the string 'hello ${foo${abc}}' would break into the pieces 'hello ' and
-	 * 'foo${abc}'. This means that expression languages that used ${..} as part of their
-	 * functionality are supported without any problem. The parsing is aware of the
-	 * structure of an embedded expression. It assumes that parentheses '(', square
-	 * brackets '[' and curly brackets '}' must be in pairs within the expression unless
-	 * they are within a string literal and a string literal starts and terminates with a
-	 * single quote '.
+	 * Helper that parses given expression string using the configured parser.
+	 * The expression string can contain any number of expressions all contained in "${...}" markers.
+	 * For instance: "foo${expr0}bar${expr1}". The static pieces of text will also be returned as Expressions that just return that static piece of text.
+	 * As a result, evaluating all returned expressions and concatenating the results produces the complete evaluated string.
+	 * Unwrapping is only done of the outermost delimiters  found, so the string 'hello ${foo${abc}}' would break into the pieces 'hello ' and 'foo${abc}'.
+	 * This means that expression languages that used ${..} as part of their functionality are supported without any problem.
+	 * The parsing is aware of the structure of an embedded expression.
+	 * It assumes that parentheses '(', square brackets '[' and curly brackets '}' must be in pairs within the expression unless
+	 * they are within a string literal and a string literal starts and terminates with a single quote '.
 	 * @param expressionString the expression string
 	 * @return the parsed expressions
 	 * @throws ParseException when the expressions cannot be parsed
@@ -70,7 +70,6 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 		String prefix = context.getExpressionPrefix();
 		String suffix = context.getExpressionSuffix();
 		int startIdx = 0;
-
 		while (startIdx < expressionString.length()) {
 			int prefixIndex = expressionString.indexOf(prefix, startIdx);
 			if (prefixIndex >= startIdx) {
@@ -103,8 +102,7 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 	}
 
 	/**
-	 * Return true if the specified suffix can be found at the supplied position in the
-	 * supplied expression string.
+	 * Return true if the specified suffix can be found at the supplied position in the supplied expression string.
 	 * @param expressionString the expression string which may contain the suffix
 	 * @param pos the start position at which to check for the suffix
 	 * @param suffix the suffix string
@@ -131,8 +129,7 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 	 * @return the position of the correct matching nextSuffix or -1 if none can be found
 	 */
 	private int skipToCorrectEndSuffix(String suffix, String expressionString, int afterPrefixIndex) throws ParseException {
-		// Chew on the expression text - relying on the rules:
-		// brackets must be in pairs: () [] {}
+		// Chew on the expression text - relying on the rules:  brackets must be in pairs: () [] {}
 		// string literals are "..." or '...' and these may contain unmatched brackets
 		int pos = afterPrefixIndex;
 		int maxlen = expressionString.length();
@@ -209,7 +206,6 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 			this.bracket = bracket;
 			this.pos = pos;
 		}
-
 		boolean compatibleWithCloseBracket(char closeBracket) {
 			if (this.bracket == '{') {
 				return closeBracket == '}';
@@ -218,7 +214,6 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 			}
 			return closeBracket == ')';
 		}
-
 		static char theOpenBracketFor(char closeBracket) {
 			if (closeBracket == '}') {
 				return '{';
@@ -227,7 +222,6 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 			}
 			return '(';
 		}
-
 		static char theCloseBracketFor(char openBracket) {
 			if (openBracket == '{') {
 				return '}';
@@ -237,5 +231,4 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 			return ')';
 		}
 	}
-
 }

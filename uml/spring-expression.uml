@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.beans.factory.xml.XmlBeanDefinitionReader</OriginalElement>
+  <nodes>
+    <node x="39.0" y="0.0">org.springframework.expression.ExpressionParser</node>
+    <node x="0.0" y="464.0">org.springframework.expression.common.CompositeStringExpression</node>
+    <node x="0.0" y="79.0">org.springframework.expression.common.TemplateAwareExpressionParser</node>
+    <node x="241.0" y="385.0">org.springframework.expression.spel.standard.Tokenizer</node>
+    <node x="192.0" y="311.0">org.springframework.expression.spel.SpelDocumentationTests.TemplatedParserContext</node>
+    <node x="121.5" y="232.0">org.springframework.expression.ParserContext</node>
+    <node x="45.0" y="385.0">org.springframework.expression.Expression</node>
+    <node x="27.0" y="158.0">org.springframework.expression.spel.standard.SpelExpressionParser</node>
+    <node x="0.0" y="311.0">org.springframework.expression.common.TemplateParserContext</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.expression.common.TemplateAwareExpressionParser" target="org.springframework.expression.ExpressionParser">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.expression.spel.standard.SpelExpressionParser" target="org.springframework.expression.common.TemplateAwareExpressionParser">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.expression.common.CompositeStringExpression" target="org.springframework.expression.Expression">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.expression.common.TemplateParserContext" target="org.springframework.expression.ParserContext">
+      <point x="0.0" y="-14.5" />
+      <point x="86.0" y="286.0" />
+      <point x="152.5" y="286.0" />
+      <point x="-31.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.expression.spel.SpelDocumentationTests.TemplatedParserContext" target="org.springframework.expression.ParserContext">
+      <point x="0.0" y="-14.5" />
+      <point x="281.0" y="286.0" />
+      <point x="214.5" y="286.0" />
+      <point x="31.0" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="-383.5" y="-92.5" />
+  <SelectedNodes>
+    <node>org.springframework.expression.ParserContext</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
