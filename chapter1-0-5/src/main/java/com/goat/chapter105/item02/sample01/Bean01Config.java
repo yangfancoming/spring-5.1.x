@@ -2,6 +2,7 @@ package com.goat.chapter105.item02.sample01;
 
 import com.goat.chapter105.model.Person;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * Created by Administrator on 2020/3/30.
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.Bean;
  * @ author  山羊来了
  * @ date 2020/3/30---15:44
  */
+@Configuration
 public class Bean01Config {
 
 	@Bean

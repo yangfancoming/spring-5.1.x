@@ -37,6 +37,7 @@
         BeanFactory 接口：IoC容器的顶级接口，是IoC容器的最基础实现，也是访问Spring容器的根接口，负责对bean的创建，访问等工作。
         
         
+# item06  AutowireCapableBeanFactory  接口
 # item07  InstantiationStrategy  接口
      
         

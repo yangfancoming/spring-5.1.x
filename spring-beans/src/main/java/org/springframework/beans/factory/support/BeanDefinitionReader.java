@@ -27,16 +27,11 @@ public interface BeanDefinitionReader {
 
 	/**
 	 * Return the resource loader to use for resource locations.
-	 * Can be checked for the <b>ResourcePatternResolver</b> interface and cast
-	 * accordingly, for loading multiple resources for a given resource pattern.
+	 * Can be checked for the <b>ResourcePatternResolver</b> interface and cast accordingly, for loading multiple resources for a given resource pattern.
 	 * A {@code null} return value suggests that absolute resource loading  is not available for this bean definition reader.
-	 * This is mainly meant to be used for importing further resources
-	 * from within a bean definition resource, for example via the "import"
-	 * tag in XML bean definitions. It is recommended, however, to apply
-	 * such imports relative to the defining resource; only explicit full
-	 * resource locations will trigger absolute resource loading.
-	 * There is also a {@code loadBeanDefinitions(String)} method available,
-	 * for loading bean definitions from a resource location (or location pattern).
+	 * This is mainly meant to be used for importing further resources from within a bean definition resource, for example via the "import" tag in XML bean definitions.
+	 * It is recommended, however, to apply such imports relative to the defining resource; only explicit full resource locations will trigger absolute resource loading.
+	 * There is also a {@code loadBeanDefinitions(String)} method available,for loading bean definitions from a resource location (or location pattern).
 	 * This is a convenience to avoid explicit ResourceLoader handling.
 	 * @see #loadBeanDefinitions(String)
 	 * @see org.springframework.core.io.support.ResourcePatternResolver

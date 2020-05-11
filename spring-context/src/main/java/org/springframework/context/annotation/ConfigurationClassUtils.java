@@ -98,6 +98,7 @@ abstract class ConfigurationClassUtils {
 	 * Check the given metadata for a configuration class candidate (or nested component class declared within a configuration/component class).
 	 * @param metadata the metadata of the annotated class
 	 * @return {@code true} if the given class is to be registered as a reflection-detected bean definition; {@code false} otherwise
+	 * // 不管是Full模式还是Lite模式，都被认为是候选的配置类  是上面两个方法的结合
 	 */
 	public static boolean isConfigurationCandidate(AnnotationMetadata metadata) {
 		return (isFullConfigurationCandidate(metadata) || isLiteConfigurationCandidate(metadata));
@@ -107,6 +108,9 @@ abstract class ConfigurationClassUtils {
 	 * Check the given metadata for a full configuration class candidate  (i.e. a class annotated with {@code @Configuration}).
 	 * @param metadata the metadata of the annotated class
 	 * @return {@code true} if the given class is to be processed as a full  configuration class, including cross-method call interception
+	 * 只要这个类标注了：@Configuration注解就行  哪怕是接口、抽象类都木有问题
+	 * 1.如果类上有@Configuration注解说明是一个完全（Full）的配置类
+	 * 2.如果如果类上面有@Component，@ComponentScan，@Import，@ImportResource这些注解，那么就是一个简化配置类。如果不是上面两种情况，那么有@Bean注解修饰的方法也是简化配置类
 	 */
 	public static boolean isFullConfigurationCandidate(AnnotationMetadata metadata) {
 		return metadata.isAnnotated(Configuration.class.getName());
@@ -117,19 +121,24 @@ abstract class ConfigurationClassUtils {
 	 * {@code @Import} declarations or {@code @Bean methods}).
 	 * @param metadata the metadata of the annotated class
 	 * @return {@code true} if the given class is to be processed as a lite configuration class, just registering it and scanning it for {@code @Bean} methods
+	 *
+	// 判断是Lite模式：（首先肯定没有@Configuration注解）
+	// 1、不能是接口
+	// 2、但凡只有标注了一个下面注解，都算lite模式：@Component @ComponentScan @Import @ImportResource
+	// 3、只有存在有一个方法标注了@Bean注解，那就是lite模式
 	 */
 	public static boolean isLiteConfigurationCandidate(AnnotationMetadata metadata) {
-		// Do not consider an interface or an annotation...
+		// Do not consider an interface or an annotation... // 不能是接口
 		if (metadata.isInterface()) {
 			return false;
 		}
-		// Any of the typical annotations found?
+		// Any of the typical annotations found? // 但凡只有标注了一个下面注解，都算lite模式：@Component @ComponentScan @Import @ImportResource
 		for (String indicator : candidateIndicators) {
 			if (metadata.isAnnotated(indicator)) {
 				return true;
 			}
 		}
-		// Finally, let's look for @Bean methods...
+		// Finally, let's look for @Bean methods... // 只有存在有一个方法标注了@Bean注解，那就是lite模式
 		try {
 			return metadata.hasAnnotatedMethods(Bean.class.getName());
 		}catch (Throwable ex) {
@@ -141,8 +150,9 @@ abstract class ConfigurationClassUtils {
 	}
 
 	/**
-	 * Determine whether the given bean definition indicates a full {@code @Configuration}
-	 * class, through checking {@link #checkConfigurationClassCandidate}'s metadata marker.
+	 * Determine whether the given bean definition indicates a full {@code @Configuration} class, through checking {@link #checkConfigurationClassCandidate}'s metadata marker.
+	 * // 下面两个方法是直接判断Bean定义信息，是否是配置类，至于Bean定义里这个属性啥时候放进去的，请参考
+	 * 	//ConfigurationClassUtils.checkConfigurationClassCandidate(beanDef, this.metadataReaderFactory)方法，它会对每个Bean定义信息进行检测（毕竟刚开始Bean定义信息是非常少的，所以速度也很快）
 	 */
 	public static boolean isFullConfigurationClass(BeanDefinition beanDef) {
 		return CONFIGURATION_CLASS_FULL.equals(beanDef.getAttribute(CONFIGURATION_CLASS_ATTRIBUTE));

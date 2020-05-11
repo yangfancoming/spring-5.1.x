@@ -9,9 +9,11 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 /**
  * Created by Administrator on 2020/3/17.
- * @ Description:  学习@bean 注解
+ * @ Description:  学习@Configuration 和 @bean 注解
  * @ author  山羊来了
  * @ date 2020/3/17---13:24
+ *
+ * 源码搜索串： “这是重点：真正解析@Configuration类的，其实是ConfigurationClassParser 这个解析器来做的”
  */
 public class App01 extends BaseTest {
 
