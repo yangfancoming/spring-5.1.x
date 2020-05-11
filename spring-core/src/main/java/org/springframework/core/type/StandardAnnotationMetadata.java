@@ -108,7 +108,7 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 	}
 
 	//---------------------------------------------------------------------
-	// Implementation of 【Cache】 interface
+	// Implementation of 【AnnotatedTypeMetadata】 interface
 	//---------------------------------------------------------------------
 	@Override
 	public boolean isAnnotated(String annotationName) {

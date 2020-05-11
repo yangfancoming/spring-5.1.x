@@ -24,8 +24,7 @@ public interface AnnotatedTypeMetadata {
 	boolean isAnnotated(String annotationName);
 
 	/**
-	 * Retrieve the attributes of the annotation of the given type, if any (i.e. if
-	 * defined on the underlying element, as direct annotation or meta-annotation),
+	 * Retrieve the attributes of the annotation of the given type, if any (i.e. if defined on the underlying element, as direct annotation or meta-annotation),
 	 * also taking attribute overrides on composed annotations into account.
 	 * @param annotationName the fully qualified class name of the annotation type to look for
 	 * @return a Map of attributes, with the attribute name as key (e.g. "value") and the defined attribute value as Map value. This return value will be
@@ -47,8 +46,7 @@ public interface AnnotatedTypeMetadata {
 	Map<String, Object> getAnnotationAttributes(String annotationName, boolean classValuesAsString);
 
 	/**
-	 * Retrieve all attributes of all annotations of the given type, if any (i.e. if
-	 * defined on the underlying element, as direct annotation or meta-annotation).
+	 * Retrieve all attributes of all annotations of the given type, if any (i.e. if defined on the underlying element, as direct annotation or meta-annotation).
 	 * Note that this variant does <i>not</i> take attribute overrides into account.
 	 * @param annotationName the fully qualified class name of the annotation type to look for
 	 * @return a MultiMap of attributes, with the attribute name as key (e.g. "value") and a list of the defined attribute values as Map value.
@@ -59,14 +57,12 @@ public interface AnnotatedTypeMetadata {
 	MultiValueMap<String, Object> getAllAnnotationAttributes(String annotationName);
 
 	/**
-	 * Retrieve all attributes of all annotations of the given type, if any (i.e. if
-	 * defined on the underlying element, as direct annotation or meta-annotation).
+	 * Retrieve all attributes of all annotations of the given type, if any (i.e. if defined on the underlying element, as direct annotation or meta-annotation).
 	 * Note that this variant does <i>not</i> take attribute overrides into account.
 	 * @param annotationName the fully qualified class name of the annotation type to look for
 	 * @param classValuesAsString  whether to convert class references to String
 	 * @return a MultiMap of attributes, with the attribute name as key (e.g. "value") and a list of the defined attribute values as Map value.
 	 * This return value will  be {@code null} if no matching annotation is defined.
-	 *
 	 * @see #getAllAnnotationAttributes(String)
 	 */
 	@Nullable

@@ -36,7 +36,7 @@ public interface ClassMetadata {
 
 	/**
 	 * Return whether the underlying class represents a concrete class, i.e. neither an interface nor an abstract class.
-	 *  返回基础类是否表示具体类，
+	 *  返回基础类是否表示具体类， // 是否允许创建  不是接口且不是抽象类  这里就返回true了
 	 */
 	boolean isConcrete();
 
@@ -53,7 +53,7 @@ public interface ClassMetadata {
 
 	/**
 	 * Return whether the underlying class is declared within an enclosing class (i.e. the underlying class is an inner/nested class or a local class within a method).
-	 * If this method returns {@code false}, then the underlying class is a top-level class.
+	 * If this method returns {@code false}, then the underlying class is a top-level class. // 是否有内部类之类的东东
 	 */
 	boolean hasEnclosingClass();
 

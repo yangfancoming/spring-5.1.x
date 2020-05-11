@@ -11,6 +11,7 @@ import java.util.Set;
  * @see StandardAnnotationMetadata
  * @see org.springframework.core.type.classreading.MetadataReader#getAnnotationMetadata()
  * @see AnnotatedTypeMetadata
+ * 对Class相关的多个注解进行获取和判断
  */
 public interface AnnotationMetadata extends ClassMetadata, AnnotatedTypeMetadata {
 

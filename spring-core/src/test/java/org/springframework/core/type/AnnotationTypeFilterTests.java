@@ -135,5 +135,4 @@ public class AnnotationTypeFilterTests {
 	@SuppressWarnings("unused")
 	private static class SomeNonCandidateClass {
 	}
-
 }

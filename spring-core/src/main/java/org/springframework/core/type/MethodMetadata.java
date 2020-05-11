@@ -3,8 +3,7 @@
 package org.springframework.core.type;
 
 /**
- * Interface that defines abstract access to the annotations of a specific
- * class, in a form that does not require that class to be loaded yet.
+ * Interface that defines abstract access to the annotations of a specific class, in a form that does not require that class to be loaded yet.
  * @since 3.0
  * @see StandardMethodMetadata
  * @see AnnotationMetadata#getAnnotatedMethods
@@ -30,9 +29,7 @@ public interface MethodMetadata extends AnnotatedTypeMetadata {
 	String getReturnTypeName();
 
 	/**
-	 * Return whether the underlying method is effectively abstract:
-	 * i.e. marked as abstract on a class or declared as a regular,
-	 * non-default method in an interface.
+	 * Return whether the underlying method is effectively abstract:i.e. marked as abstract on a class or declared as a regular, non-default method in an interface.
 	 * @since 4.2
 	 *  是否是抽象方法
 	 */
@@ -56,5 +53,4 @@ public interface MethodMetadata extends AnnotatedTypeMetadata {
 	 * 是否可以被复写（不是静态、不是final、不是private的  就表示可以被复写）
 	 */
 	boolean isOverridable();
-
 }

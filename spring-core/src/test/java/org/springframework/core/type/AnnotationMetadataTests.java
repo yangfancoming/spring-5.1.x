@@ -27,8 +27,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 /**
- * Unit tests demonstrating that the reflection-based {@link StandardAnnotationMetadata}
- * and ASM-based {@code AnnotationMetadataReadingVisitor} produce identical output.
+ * Unit tests demonstrating that the reflection-based {@link StandardAnnotationMetadata} and ASM-based {@code AnnotationMetadataReadingVisitor} produce identical output.
  */
 public class AnnotationMetadataTests {
 
@@ -423,17 +422,16 @@ public class AnnotationMetadataTests {
 	@Target(ElementType.TYPE)
 	@Retention(RetentionPolicy.RUNTIME)
 	public @interface EnumSubclasses {
-
 		SubclassEnum[] value();
 	}
 
 	// SPR-10914
 	public enum SubclassEnum {
+		/* Do not delete! This subclassing is intentional. */
 		FOO {
-		/* Do not delete! This subclassing is intentional. */
 		},
-		BAR {
 		/* Do not delete! This subclassing is intentional. */
+		BAR {
 		}
 	}
 

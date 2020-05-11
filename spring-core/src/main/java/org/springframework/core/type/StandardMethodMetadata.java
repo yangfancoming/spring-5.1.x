@@ -48,6 +48,9 @@ public class StandardMethodMetadata implements MethodMetadata {
 		return introspectedMethod;
 	}
 
+	//---------------------------------------------------------------------
+	// Implementation of 【MethodMetadata】 interface
+	//---------------------------------------------------------------------
 	@Override
 	public String getMethodName() {
 		return introspectedMethod.getName();
@@ -83,6 +86,10 @@ public class StandardMethodMetadata implements MethodMetadata {
 		return (!isStatic() && !isFinal() && !Modifier.isPrivate(introspectedMethod.getModifiers()));
 	}
 
+
+	//---------------------------------------------------------------------
+	// Implementation of 【AnnotatedTypeMetadata】 interface
+	//---------------------------------------------------------------------
 	@Override
 	public boolean isAnnotated(String annotationName) {
 		return AnnotatedElementUtils.isAnnotated(introspectedMethod, annotationName);
