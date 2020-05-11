@@ -27,11 +27,9 @@ public class AopProxyUtilsTests {
 	@Test
 	public void testUltimateTargetClass() {
 		ApplicationContext context = new AnnotationConfigApplicationContext(AopProxyUtilsTests.class);
-
 		HelloService helloService = context.getBean(HelloService.class);
 		helloService.sayHiService1("123");
 		Assert.assertEquals(HelloServiceImpl.class,AopProxyUtils.ultimateTargetClass(helloService));
-
 		BarService	barService = (BarService) context.getBean("barService");
 		barService.test();
 		Assert.assertEquals(BarService.class,AopProxyUtils.ultimateTargetClass(barService));
@@ -95,8 +93,5 @@ public class AopProxyUtilsTests {
 		 * interface com.goat.chapter400.annotation.service.IAddition
 		 */
 		System.out.println(StringUtils.arrayToDelimitedString(AopProxyUtils.proxiedUserInterfaces(helloService), "\r\n"));
-
-
 	}
-
 }

@@ -18,7 +18,6 @@ class AspectJAutoProxyRegistrar implements ImportBeanDefinitionRegistrar {
 
 	/**
 	 * Register, escalate, and configure the AspectJ auto proxy creator based on the value of the @{@link EnableAspectJAutoProxy#proxyTargetClass()} attribute on the importing {@code @Configuration} class.
-	 *
 	 */
 	@Override
 	public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {

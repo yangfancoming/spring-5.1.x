@@ -136,5 +136,4 @@ public abstract class AopConfigUtils {
 		}
 		throw new IllegalArgumentException("Class name [" + className + "] is not a known auto-proxy creator class");
 	}
-
 }
