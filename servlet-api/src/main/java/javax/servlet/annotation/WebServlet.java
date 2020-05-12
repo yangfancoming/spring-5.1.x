@@ -4,13 +4,9 @@ import java.lang.annotation.*;
 
 /**
  * Annotation used to declare a servlet.
- *
  * This annotation is processed by the container at deployment time,
- * and the corresponding servlet made available at the specified URL
- * patterns.
- * 
+ * and the corresponding servlet made available at the specified URL patterns.
  * @see javax.servlet.Servlet
- *
  * @since Servlet 3.0
  */
 @Target({ElementType.TYPE})

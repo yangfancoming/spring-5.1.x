@@ -32,7 +32,6 @@ public class TestServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws  IOException {
-		
 		// 注意这儿的代码，跟下面讲的ServletContextListener有关联，如要运行该段代码，请完整复制整篇内容
 		ServletContext servletContext = getServletContext();
 		// doit 为啥 不加 MyServletContextListener 类 这里就会报错 空异常？

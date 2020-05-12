@@ -15,29 +15,16 @@ import org.springframework.web.util.WebUtils;
 
 /**
  * Wrapper for a JSP or other resource within the same web application.
- * Exposes model objects as request attributes and forwards the request to
- * the specified resource URL using a {@link javax.servlet.RequestDispatcher}.
- *
- * A URL for this view is supposed to specify a resource within the web
- * application, suitable for RequestDispatcher's {@code forward} or
- * {@code include} method.
- *
- * If operating within an already included request or within a response that
- * has already been committed, this view will fall back to an include instead of
- * a forward. This can be enforced by calling {@code response.flushBuffer()}
- * (which will commit the response) before rendering the view.
- *
- * Typical usage with {@link InternalResourceViewResolver} looks as follows,
- * from the perspective of the DispatcherServlet context definition:
- *
+ * Exposes model objects as request attributes and forwards the request to the specified resource URL using a {@link javax.servlet.RequestDispatcher}.
+ * A URL for this view is supposed to specify a resource within the web application, suitable for RequestDispatcher's {@code forward} or {@code include} method.
+ * If operating within an already included request or within a response that  has already been committed, this view will fall back to an include instead of a forward.
+ * This can be enforced by calling {@code response.flushBuffer()} (which will commit the response) before rendering the view.
+ * Typical usage with {@link InternalResourceViewResolver} looks as follows,from the perspective of the DispatcherServlet context definition:
  * <pre class="code">&lt;bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt;
  *   &lt;property name="prefix" value="/WEB-INF/jsp/"/&gt;
  *   &lt;property name="suffix" value=".jsp"/&gt;
  * &lt;/bean&gt;</pre>
- *
- * Every view name returned from a handler will be translated to a JSP
- * resource (for example: "myView" -> "/WEB-INF/jsp/myView.jsp"), using this view class by default.
-
+ * Every view name returned from a handler will be translated to a JSP resource (for example: "myView" -> "/WEB-INF/jsp/myView.jsp"), using this view class by default.
  * @see javax.servlet.RequestDispatcher#forward
  * @see javax.servlet.RequestDispatcher#include
  * @see javax.servlet.ServletResponse#flushBuffer
@@ -77,11 +64,9 @@ public class InternalResourceView extends AbstractUrlBasedView {
 		this.alwaysInclude = alwaysInclude;
 	}
 
-
 	/**
 	 * Specify whether to always include the view rather than forward to it.
-	 * Default is "false". Switch this flag on to enforce the use of a
-	 * Servlet include, even if a forward would be possible.
+	 * Default is "false". Switch this flag on to enforce the use of a Servlet include, even if a forward would be possible.
 	 * @see javax.servlet.RequestDispatcher#forward
 	 * @see javax.servlet.RequestDispatcher#include
 	 * @see #useInclude(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
@@ -92,8 +77,7 @@ public class InternalResourceView extends AbstractUrlBasedView {
 
 	/**
 	 * Set whether to explicitly prevent dispatching back to the current handler path.
-	 * Default is "false". Switch this to "true" for convention-based
-	 * views where a dispatch back to the current handler path is a definitive error.
+	 * Default is "false". Switch this to "true" for convention-based views where a dispatch back to the current handler path is a definitive error.
 	 */
 	public void setPreventDispatchLoop(boolean preventDispatchLoop) {
 		this.preventDispatchLoop = preventDispatchLoop;
@@ -108,8 +92,7 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Render the internal resource given the specified model.
-	 * This includes setting the model as request attributes.
+	 * Render the internal resource given the specified model.This includes setting the model as request attributes.
 	 */
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -147,8 +130,7 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Expose helpers unique to each rendering operation. This is necessary so that
-	 * different rendering operations can't overwrite each other's contexts etc.
+	 * Expose helpers unique to each rendering operation. This is necessary so that different rendering operations can't overwrite each other's contexts etc.
 	 * Called by {@link #renderMergedOutputModel(Map, HttpServletRequest, HttpServletResponse)}.
 	 * The default implementation is empty. This method can be overridden to add custom helpers as request attributes.
 	 * @param request current HTTP request
@@ -160,11 +142,9 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Prepare for rendering, and determine the request dispatcher path
-	 * to forward to (or to include).
+	 * Prepare for rendering, and determine the request dispatcher path to forward to (or to include).
 	 * This implementation simply returns the configured URL.
-	 * Subclasses can override this to determine a resource to render,
-	 * typically interpreting the URL in a different manner.
+	 * Subclasses can override this to determine a resource to render,typically interpreting the URL in a different manner.
 	 * @param request current HTTP request
 	 * @param response current HTTP response
 	 * @return the request dispatcher path to use
@@ -174,12 +154,10 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	protected String prepareForRendering(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String path = getUrl();
 		Assert.state(path != null, "'url' not set");
-
 		if (this.preventDispatchLoop) {
 			String uri = request.getRequestURI();
 			if (path.startsWith("/") ? uri.equals(path) : uri.equals(StringUtils.applyRelativePath(uri, path))) {
-				throw new ServletException("Circular view path [" + path + "]: would dispatch back " +
-						"to the current handler URL [" + uri + "] again. Check your ViewResolver setup! (Hint: This may be the result of an unspecified view, due to default view name generation.)");
+				throw new ServletException("Circular view path [" + path + "]: would dispatch back to the current handler URL [" + uri + "] again. Check your ViewResolver setup! (Hint: This may be the result of an unspecified view, due to default view name generation.)");
 			}
 		}
 		return path;
@@ -199,8 +177,7 @@ public class InternalResourceView extends AbstractUrlBasedView {
 
 	/**
 	 * Determine whether to use RequestDispatcher's {@code include} or {@code forward} method.
-	 * Performs a check whether an include URI attribute is found in the request,
-	 * indicating an include request, and whether the response has already been committed.
+	 * Performs a check whether an include URI attribute is found in the request, indicating an include request, and whether the response has already been committed.
 	 * In both cases, an include will be performed, as a forward is not possible anymore.
 	 * @param request current HTTP request
 	 * @param response current HTTP response
@@ -213,5 +190,4 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	protected boolean useInclude(HttpServletRequest request, HttpServletResponse response) {
 		return (this.alwaysInclude || WebUtils.isIncludeRequest(request) || response.isCommitted());
 	}
-
 }

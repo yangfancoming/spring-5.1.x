@@ -13,16 +13,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.WebApplicationInitializer;
 
 /**
- * Convenient base class for {@link WebApplicationInitializer} implementations
- * that register a {@link ContextLoaderListener} in the servlet context.
- *
+ * Convenient base class for {@link WebApplicationInitializer} implementations that register a {@link ContextLoaderListener} in the servlet context.
  * The only method required to be implemented by subclasses is
- * {@link #createRootApplicationContext()}, which gets invoked from
- * {@link #registerContextLoaderListener(ServletContext)}.
- *
- * @author Arjen Poutsma
-
-
+ * {@link #createRootApplicationContext()}, which gets invoked from {@link #registerContextLoaderListener(ServletContext)}.
  * @since 3.2
  */
 public abstract class AbstractContextLoaderInitializer implements WebApplicationInitializer {
@@ -30,16 +23,14 @@ public abstract class AbstractContextLoaderInitializer implements WebApplication
 	/** Logger available to subclasses. */
 	protected final Log logger = LogFactory.getLog(getClass());
 
-
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		registerContextLoaderListener(servletContext);
 	}
 
 	/**
-	 * Register a {@link ContextLoaderListener} against the given servlet context. The
-	 * {@code ContextLoaderListener} is initialized with the application context returned
-	 * from the {@link #createRootApplicationContext()} template method.
+	 * Register a {@link ContextLoaderListener} against the given servlet context.
+	 * The {@code ContextLoaderListener} is initialized with the application context returned from the {@link #createRootApplicationContext()} template method.
 	 * @param servletContext the servlet context to register the listener against
 	 */
 	protected void registerContextLoaderListener(ServletContext servletContext) {
@@ -48,30 +39,24 @@ public abstract class AbstractContextLoaderInitializer implements WebApplication
 			ContextLoaderListener listener = new ContextLoaderListener(rootAppContext);
 			listener.setContextInitializers(getRootApplicationContextInitializers());
 			servletContext.addListener(listener);
-		}
-		else {
-			logger.debug("No ContextLoaderListener registered, as " +
-					"createRootApplicationContext() did not return an application context");
+		}else {
+			logger.debug("No ContextLoaderListener registered, as createRootApplicationContext() did not return an application context");
 		}
 	}
 
 	/**
-	 * Create the "<strong>root</strong>" application context to be provided to the
-	 * {@code ContextLoaderListener}.
-	 * The returned context is delegated to
-	 * {@link ContextLoaderListener#ContextLoaderListener(WebApplicationContext)} and will
-	 * be established as the parent context for any {@code DispatcherServlet} application
-	 * contexts. As such, it typically contains middle-tier services, data sources, etc.
-	 * @return the root application context, or {@code null} if a root context is not
-	 * desired
+	 * Create the "<strong>root</strong>" application context to be provided to the {@code ContextLoaderListener}.
+	 * The returned context is delegated to  {@link ContextLoaderListener#ContextLoaderListener(WebApplicationContext)} and will
+	 * be established as the parent context for any {@code DispatcherServlet} application contexts.
+	 * As such, it typically contains middle-tier services, data sources, etc.
+	 * @return the root application context, or {@code null} if a root context is not desired
 	 * @see org.springframework.web.servlet.support.AbstractDispatcherServletInitializer
 	 */
 	@Nullable
 	protected abstract WebApplicationContext createRootApplicationContext();
 
 	/**
-	 * Specify application context initializers to be applied to the root application
-	 * context that the {@code ContextLoaderListener} is being created with.
+	 * Specify application context initializers to be applied to the root application context that the {@code ContextLoaderListener} is being created with.
 	 * @since 4.2
 	 * @see #createRootApplicationContext()
 	 * @see ContextLoaderListener#setContextInitializers
@@ -80,5 +65,4 @@ public abstract class AbstractContextLoaderInitializer implements WebApplication
 	protected ApplicationContextInitializer<?>[] getRootApplicationContextInitializers() {
 		return null;
 	}
-
 }
