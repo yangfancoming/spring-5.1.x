@@ -57,45 +57,35 @@ import org.springframework.util.StringUtils;
  * Such members to be injected are detected through a Java 5 annotation: by default,
  * Spring's {@link Autowired @Autowired} and {@link Value @Value} annotations.
  *
- * Also supports JSR-330's {@link javax.inject.Inject @Inject} annotation,
- * if available, as a direct alternative to Spring's own {@code @Autowired}.
+ * Also supports JSR-330's {@link javax.inject.Inject @Inject} annotation,if available, as a direct alternative to Spring's own {@code @Autowired}.
  *
- * Only one constructor (at max) of any given bean class may declare this annotation
- * with the 'required' parameter set to {@code true}, indicating <i>the</i> constructor
- * to autowire when used as a Spring bean. If multiple <i>non-required</i> constructors
- * declare the annotation, they will be considered as candidates for autowiring.
- * The constructor with the greatest number of dependencies that can be satisfied by
- * matching beans in the Spring container will be chosen. If none of the candidates
- * can be satisfied, then a primary/default constructor (if present) will be used.
- * If a class only declares a single constructor to begin with, it will always be used,
- * even if not annotated. An annotated constructor does not have to be public.
+ * Only one constructor (at max) of any given bean class may declare this annotation with the 'required' parameter set to {@code true},
+ * indicating <i>the</i> constructor to autowire when used as a Spring bean.
+ * If multiple <i>non-required</i> constructors declare the annotation, they will be considered as candidates for autowiring.
  *
- * Fields are injected right after construction of a bean, before any
- * config methods are invoked. Such a config field does not have to be public.
+ * The constructor with the greatest number of dependencies that can be satisfied by matching beans in the Spring container will be chosen.
+ * If none of the candidates can be satisfied, then a primary/default constructor (if present) will be used.
+ * If a class only declares a single constructor to begin with, it will always be used, even if not annotated. An annotated constructor does not have to be public.
  *
- * Config methods may have an arbitrary name and any number of arguments; each of
- * those arguments will be autowired with a matching bean in the Spring container.
- * Bean property setter methods are effectively just a special case of such a
- * general config method. Config methods do not have to be public.
+ * Fields are injected right after construction of a bean, before any config methods are invoked. Such a config field does not have to be public.
  *
- * Note: A default AutowiredAnnotationBeanPostProcessor will be registered
- * by the "context:annotation-config" and "context:component-scan" XML tags.
- * Remove or turn off the default annotation configuration there if you intend
- * to specify a custom AutowiredAnnotationBeanPostProcessor bean definition.
- * <b>NOTE:</b> Annotation injection will be performed <i>before</i> XML injection;
- * thus the latter configuration will override the former for properties wired through
- * both approaches.
+ * Config methods may have an arbitrary name and any number of arguments; each of those arguments will be autowired with a matching bean in the Spring container.
+ * Bean property setter methods are effectively just a special case of such a general config method. Config methods do not have to be public.
+ * Note: A default AutowiredAnnotationBeanPostProcessor will be registered by the "context:annotation-config" and "context:component-scan" XML tags.
  *
- * In addition to regular injection points as discussed above, this post-processor
- * also handles Spring's {@link Lookup @Lookup} annotation which identifies lookup
- * methods to be replaced by the container at runtime. This is essentially a type-safe
- * version of {@code getBean(Class, args)} and {@code getBean(String, args)},
- * See {@link Lookup @Lookup's javadoc} for details.
+ * Remove or turn off the default annotation configuration there if you intend to specify a custom AutowiredAnnotationBeanPostProcessor bean definition.
+ * <b>NOTE:</b> Annotation injection will be performed <i>before</i> XML injection; thus the latter configuration will override the former for properties wired through both approaches.
+ *
+ * In addition to regular injection points as discussed above, this post-processor also handles Spring's {@link Lookup @Lookup} annotation which identifies lookup methods to be replaced by the container at runtime.
+ * This is essentially a type-safe version of {@code getBean(Class, args)} and {@code getBean(String, args)},See {@link Lookup @Lookup's javadoc} for details.
  * @since 2.5
  * @see #setAutowiredAnnotationType
  * @see Autowired
  * @see Value
  * 用来处理@Autowired注解和@Value注解的
+ * AutowiredAnnotationBeanPostProcessor实现了BeanPostProcessor接口，
+ * 当 Spring 容器启动时，AutowiredAnnotationBeanPostProcessor 将扫描 Spring 容器中所有 Bean，
+ * 当发现 Bean 中拥有@Autowired 注解时就找到和其匹配（默认按类型匹配）的 Bean，并注入到对应的地方中去。
  */
 public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBeanPostProcessorAdapter implements MergedBeanDefinitionPostProcessor, PriorityOrdered, BeanFactoryAware {
 
@@ -118,7 +108,6 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 
 	private final Map<String, InjectionMetadata> injectionMetadataCache = new ConcurrentHashMap<>(256);
 
-
 	/**
 	 * Create a new AutowiredAnnotationBeanPostProcessor  for Spring's standard {@link Autowired} annotation.
 	 * Also supports JSR-330's {@link javax.inject.Inject} annotation, if available.
@@ -135,12 +124,10 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 		}
 	}
 
-
 	/**
 	 * Set the 'autowired' annotation type, to be used on constructors, fields,setter methods and arbitrary config methods.
 	 * The default autowired annotation type is the Spring-provided {@link Autowired} annotation, as well as {@link Value}.
-	 * This setter property exists so that developers can provide their own
-	 * (non-Spring-specific) annotation type to indicate that a member is supposed to be autowired.
+	 * This setter property exists so that developers can provide their own (non-Spring-specific) annotation type to indicate that a member is supposed to be autowired.
 	 */
 	public void setAutowiredAnnotationType(Class<? extends Annotation> autowiredAnnotationType) {
 		Assert.notNull(autowiredAnnotationType, "'autowiredAnnotationType' must not be null");
@@ -192,7 +179,6 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 		}
 		this.beanFactory = (ConfigurableListableBeanFactory) beanFactory;
 	}
-
 
 	@Override
 	public void postProcessMergedBeanDefinition(RootBeanDefinition beanDefinition, Class<?> beanType, String beanName) {
@@ -427,9 +413,8 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 
 	/**
 	 * Determine if the annotated field or method requires its dependency.
-	 * A 'required' dependency means that autowiring should fail when no beans
-	 * are found. Otherwise, the autowiring process will simply bypass the field
-	 * or method when no beans are found.
+	 * A 'required' dependency means that autowiring should fail when no beans are found. Otherwise,
+	 * the autowiring process will simply bypass the field or method when no beans are found.
 	 * @param ann the Autowired annotation
 	 * @return whether the annotation indicates that a dependency is required
 	 */
@@ -504,8 +489,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 			Object value;
 			if (this.cached) {
 				value = resolvedCachedArgument(beanName, this.cachedFieldValue);
-			}
-			else {
+			}else {
 				DependencyDescriptor desc = new DependencyDescriptor(field, this.required);
 				desc.setContainingClass(bean.getClass());
 				Set<String> autowiredBeanNames = new LinkedHashSet<>(1);
@@ -540,7 +524,6 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 			}
 		}
 	}
-
 
 	/**
 	 * Class representing injection information about an annotated method.
@@ -603,10 +586,8 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 								Iterator<String> it = autowiredBeans.iterator();
 								for (int i = 0; i < paramTypes.length; i++) {
 									String autowiredBeanName = it.next();
-									if (beanFactory.containsBean(autowiredBeanName) &&
-											beanFactory.isTypeMatch(autowiredBeanName, paramTypes[i])) {
-										cachedMethodArguments[i] = new ShortcutDependencyDescriptor(
-												descriptors[i], autowiredBeanName, paramTypes[i]);
+									if (beanFactory.containsBean(autowiredBeanName) && beanFactory.isTypeMatch(autowiredBeanName, paramTypes[i])) {
+										cachedMethodArguments[i] = new ShortcutDependencyDescriptor(descriptors[i], autowiredBeanName, paramTypes[i]);
 									}
 								}
 							}

@@ -207,7 +207,6 @@ class ConstructorResolver {
 				if (paramTypes.length < minNrOfArgs) {
 					continue;
 				}
-
 				ArgumentsHolder argsHolder;
 				if (resolvedValues != null) {
 					try {

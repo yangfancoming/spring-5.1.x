@@ -9,8 +9,8 @@ import org.springframework.lang.Nullable;
  *
  * This class is {@code abstract} to force the programmer to extend
  * the class. {@code getMessage} will include nested exception
- * information; {@code printStackTrace} and other like methods will
- * delegate to the wrapped exception, if any.
+ * information; {@code printStackTrace} and other like methods will delegate to the wrapped exception, if any.
+ *
  *
  * The similarity between this class and the {@link NestedCheckedException}
  * class is unavoidable, as Java forces these two classes to have different
