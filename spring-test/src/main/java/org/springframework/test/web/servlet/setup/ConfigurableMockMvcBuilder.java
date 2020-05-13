@@ -85,8 +85,7 @@ public interface ConfigurableMockMvcBuilder<B extends ConfigurableMockMvcBuilder
 	<T extends B> T alwaysDo(ResultHandler resultHandler);
 
 	/**
-	 * Whether to enable the DispatcherServlet property
-	 * {@link org.springframework.web.servlet.DispatcherServlet#setDispatchOptionsRequest
+	 * Whether to enable the DispatcherServlet property {@link org.springframework.web.servlet.DispatcherServlet#setDispatchOptionsRequest
 	 * dispatchOptionsRequest} which allows processing of HTTP OPTIONS requests.
 	 */
 	<T extends B> T dispatchOptions(boolean dispatchOptions);

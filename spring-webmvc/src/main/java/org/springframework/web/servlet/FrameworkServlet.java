@@ -130,8 +130,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 
 	/**
 	 * Suffix for WebApplicationContext namespaces. If a servlet of this class is
-	 * given the name "test" in a context, the namespace used by the servlet will
-	 * resolve to "test-servlet".
+	 * given the name "test" in a context, the namespace used by the servlet will resolve to "test-servlet".
 	 */
 	public static final String DEFAULT_NAMESPACE_SUFFIX = "-servlet";
 
@@ -295,12 +294,9 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	}
 
 	/**
-	 * Set a custom context class. This class must be of type
-	 * {@link org.springframework.web.context.WebApplicationContext}.
+	 * Set a custom context class. This class must be of type {@link org.springframework.web.context.WebApplicationContext}.
 	 * When using the default FrameworkServlet implementation,
-	 * the context class must also implement the
-	 * {@link org.springframework.web.context.ConfigurableWebApplicationContext}
-	 * interface.
+	 * the context class must also implement the {@link org.springframework.web.context.ConfigurableWebApplicationContext} interface.
 	 * @see #createWebApplicationContext
 	 */
 	public void setContextClass(Class<?> contextClass) {
@@ -315,8 +311,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	}
 
 	/**
-	 * Specify a custom WebApplicationContext id,
-	 * to be used as serialization id for the underlying BeanFactory.
+	 * Specify a custom WebApplicationContext id,to be used as serialization id for the underlying BeanFactory.
 	 */
 	public void setContextId(@Nullable String contextId) {
 		this.contextId = contextId;
@@ -331,8 +326,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	}
 
 	/**
-	 * Set a custom namespace for this servlet,
-	 * to be used for building a default context config location.
+	 * Set a custom namespace for this servlet,to be used for building a default context config location.
 	 */
 	public void setNamespace(String namespace) {
 		this.namespace = namespace;
@@ -519,8 +513,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 			this.webApplicationContext = initWebApplicationContext();
 			// 这里initFrameworkServlet()方法是一个空方法，供给用户对当前servlet对应的Spring容器进行自定义的处理
 			initFrameworkServlet();
-		}
-		catch (ServletException | RuntimeException ex) {
+		}catch (ServletException | RuntimeException ex) {
 			logger.error("Context initialization failed", ex);
 			throw ex;
 		}
@@ -930,8 +923,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 
 	/**
 	 * Delegate OPTIONS requests to {@link #processRequest}, if desired.
-	 * Applies HttpServlet's standard OPTIONS processing otherwise,
-	 * and also if there is still no 'Allow' header set after dispatching.
+	 * Applies HttpServlet's standard OPTIONS processing otherwise,and also if there is still no 'Allow' header set after dispatching.
 	 * @see #doService
 	 */
 	@Override
@@ -1029,8 +1021,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	}
 
 	/**
-	 * Build a LocaleContext for the given request, exposing the request's
-	 * primary locale as current locale.
+	 * Build a LocaleContext for the given request, exposing the request's primary locale as current locale.
 	 * @param request current HTTP request
 	 * @return the corresponding LocaleContext, or {@code null} if none to bind
 	 * @see LocaleContextHolder#setLocaleContext
@@ -1041,14 +1032,12 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	}
 
 	/**
-	 * Build ServletRequestAttributes for the given request (potentially also
-	 * holding a reference to the response), taking pre-bound attributes
-	 * (and their type) into consideration.
+	 * Build ServletRequestAttributes for the given request (potentially also holding a reference to the response),
+	 * taking pre-bound attributes (and their type) into consideration.
 	 * @param request current HTTP request
 	 * @param response current HTTP response
 	 * @param previousAttributes pre-bound RequestAttributes instance, if any
-	 * @return the ServletRequestAttributes to bind, or {@code null} to preserve
-	 * the previously bound instance (or not binding any, if none bound before)
+	 * @return the ServletRequestAttributes to bind, or {@code null} to preserve the previously bound instance (or not binding any, if none bound before)
 	 * @see RequestContextHolder#setRequestAttributes
 	 */
 	@Nullable
@@ -1144,12 +1133,9 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	}
 
 	/**
-	 * Subclasses must implement this method to do the work of request handling,
-	 * receiving a centralized callback for GET, POST, PUT and DELETE.
-	 * The contract is essentially the same as that for the commonly overridden
-	 * {@code doGet} or {@code doPost} methods of HttpServlet.
-	 * This class intercepts calls to ensure that exception handling and
-	 * event publication takes place.
+	 * Subclasses must implement this method to do the work of request handling, receiving a centralized callback for GET, POST, PUT and DELETE.
+	 * The contract is essentially the same as that for the commonly overridden {@code doGet} or {@code doPost} methods of HttpServlet.
+	 * This class intercepts calls to ensure that exception handling and event publication takes place.
 	 * @param request current HTTP request
 	 * @param response current HTTP response
 	 * @throws Exception in case of any kind of processing failure

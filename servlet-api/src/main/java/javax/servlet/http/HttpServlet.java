@@ -411,12 +411,8 @@ public abstract class HttpServlet extends GenericServlet {
     
     
     /**
-     * Called by the server (via the <code>service</code> method)
-     * to allow a servlet to handle a TRACE request.
-     *
-     * A TRACE returns the headers sent with the TRACE
-     * request to the client, so that they can be used in
-     * debugging. There's no need to override this method. 
+     * Called by the server (via the <code>service</code> method)  to allow a servlet to handle a TRACE request.
+     * A TRACE returns the headers sent with the TRACE request to the client, so that they can be used in debugging. There's no need to override this method.
      * @param req   the {@link HttpServletRequest} object that contains the request the client made of the servlet
      * @param resp  the {@link HttpServletResponse} object that contains the response the servlet returns  to the client
      * @throws IOException   if an input or output error occurs while the servlet is handling the TRACE request
@@ -516,8 +512,7 @@ public abstract class HttpServlet extends GenericServlet {
      * @param req   the {@link HttpServletRequest} object that contains the request the client made of  the servlet
      * @param res   the {@link HttpServletResponse} object that contains the response the servlet returns to the client
      * @throws IOException   if an input or output error occurs while the servlet is handling the  HTTP request
-     * @throws ServletException  if the HTTP request cannot be handled or if either parameter is not
-     *                           an instance of its respective {@link HttpServletRequest}  or {@link HttpServletResponse} counterparts.
+     * @throws ServletException  if the HTTP request cannot be handled or if either parameter is not an instance of its respective {@link HttpServletRequest}  or {@link HttpServletResponse} counterparts.
      * @see javax.servlet.Servlet#service
      */
     @Override
