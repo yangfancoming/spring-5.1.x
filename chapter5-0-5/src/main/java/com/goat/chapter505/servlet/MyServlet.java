@@ -1,5 +1,7 @@
 package com.goat.chapter505.servlet;
 
+import com.goat.chapter505.listener.MyServletContextListener;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
@@ -31,6 +33,10 @@ public class MyServlet extends HttpServlet {
 		}
 	}
 
+	/**
+	 * 由于再MyServletContextListener中进行了set 所以这里可以进行get
+	 * @see MyServletContextListener#contextInitialized(javax.servlet.ServletContextEvent)
+	*/
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws  IOException {
 		ServletContext servletContext = getServletContext();

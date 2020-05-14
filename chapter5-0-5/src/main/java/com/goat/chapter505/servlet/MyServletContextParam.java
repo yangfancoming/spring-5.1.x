@@ -33,7 +33,7 @@ public class MyServletContextParam extends HttpServlet {
 			System.out.println("name：" + name + "value：" + value);
 		}
 
-		//获取 ServletContext 对象
+		// 获取 ServletContext 对象
 		ServletContext servletContext = servletConfig.getServletContext();
 
 		// 对应 MyServletContextListener 中set进去的值

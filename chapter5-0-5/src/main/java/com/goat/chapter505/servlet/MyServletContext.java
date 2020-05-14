@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by Administrator on 2020/5/14.
- * @ Description: 测试  ServletContext 的获取方式
+ * @ Description: 测试  ServletContext 的三种获取方式
  * @ author  山羊来了
  * @ date 2020/5/14---16:53
  */
