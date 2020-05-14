@@ -5,16 +5,16 @@
 
 	<!-- 真正的加载顺序为：context-param -> listener -> filter -> servlet	-->
 
-	<display-name>定义了WEB应用的名字</display-name>
-	<description>声明WEB应用的描述信息</description>
+	<display-name>web-app display-name</display-name>
+	<description>web-app-description</description>
 
-	<!-- 声明应用范围内的初始化参数 -->
-	<context-param><!-- 配置当前 WEB 应用的初始化参数 (任何servlet都可以访问的全局变量)-->
+	<!-- 声明全局应用范围内的初始化参数 (任何servlet都可以访问的全局变量)-->
+	<context-param>
 		<param-name>encoding</param-name>
 		<param-value>utf-8</param-value>
 	</context-param>
 
-	<context-param><!-- 配置当前 WEB 应用的初始化参数 (任何servlet都可以访问的全局变量)-->
+	<context-param>
 		<param-name>driver2</param-name>
 		<param-value>context-param-driver2</param-value>
 	</context-param>
@@ -37,11 +37,42 @@
 	<!-- Servlet 配置  Servlet程序若想被外界访问，就必须将自己映射到一个url地址上(url-pattern)-->
 	<servlet>
 		<servlet-name>myServlet</servlet-name>
-		<servlet-class>com.goat.chapter505.MyServlet</servlet-class>
+		<servlet-class>com.goat.chapter505.servlet.MyServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping> <!--sos url区分大小写！！！http://localhost:8080/servlet/Servlet2 即可断下-->
+		<servlet-name>myServlet</servlet-name>
+		<url-pattern>/servlet1</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>myServletContextParam</servlet-name>
+		<servlet-class>com.goat.chapter505.servlet.MyServletContextParam</servlet-class>
+		<!--配置servlet初始化 参数  (仅属于该servlet的局部变量)-->
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>GBK</param-value>
+		</init-param>
+		<init-param>
+			<param-name>author</param-name>
+			<param-value>Goat</param-value>
+		</init-param>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>myServlet</servlet-name>
-		<url-pattern>/myServlet</url-pattern>
+		<servlet-name>myServletContextParam</servlet-name>
+		<url-pattern>/servlet2</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>myServletContext</servlet-name>
+		<servlet-class>com.goat.chapter505.servlet.MyServletContext</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>myServletContext</servlet-name>
+		<url-pattern>/servlet3</url-pattern>
 	</servlet-mapping>
 
 

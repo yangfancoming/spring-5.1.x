@@ -27,3 +27,15 @@
     Servlet 容器在调用 service() 方法之前加载 Servlet。
     然后 Servlet 容器处理由多个线程产生的多个请求，每个线程执行一个单一的 Servlet 实例的 service() 方法。
     
+
+
+#  req res  HttpSession ServletConfig ServletContext 的作用域和生命周期 
+     HttpServletRequest,HttpServletResponse:这两个属性的作用范围最小。
+     时间上：只是本身请求和应答完成就失效，当然转发是把当前的request对象取出来传给另一个资源，其实本身的request对象还是只生存到本次请求结束，response也同样。
+     空间上：只能发送请求的客户端有效。
+    
+     HttpSession:一次连结到客户端关闭，时间作用范围比上面两个大，空间任用范围相同。
+    
+     ServletConfig:从一个servlet被实例化后，对任何客户端在任何时候访问有效，但仅对本servlet有效，一个servlet的ServletConfig对象不能被另一个servlet访问。
+    
+     ServletContext:对任何servlet，任何人在任何时间都有效，这才是真正全局的对象。

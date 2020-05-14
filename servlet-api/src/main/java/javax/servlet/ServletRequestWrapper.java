@@ -14,9 +14,7 @@ import java.util.Map;
  * can be subclassed by developers wishing to adapt the request to a Servlet.
  * This class implements the Wrapper or Decorator pattern. Methods default to
  * calling through to the wrapped request object.
- *
  * @see javax.servlet.ServletRequest
- *
  * @since Servlet 2.3
  */
 

@@ -91,8 +91,7 @@ public abstract class AbstractMultipartHttpServletRequest extends HttpServletReq
 
 	/**
 	 * Determine whether the underlying multipart request has been resolved.
-	 * @return {@code true} when eagerly initialized or lazily triggered,
-	 * {@code false} in case of a lazy-resolution request that got aborted
+	 * @return {@code true} when eagerly initialized or lazily triggered,{@code false} in case of a lazy-resolution request that got aborted
 	 * before any parameters or multipart files have been accessed
 	 * @since 4.3.15
 	 * @see #getMultipartFiles()
@@ -111,8 +110,7 @@ public abstract class AbstractMultipartHttpServletRequest extends HttpServletReq
 	}
 
 	/**
-	 * Obtain the MultipartFile Map for retrieval,
-	 * lazily initializing it if necessary.
+	 * Obtain the MultipartFile Map for retrieval,lazily initializing it if necessary.
 	 * @see #initializeMultipart()
 	 */
 	protected MultiValueMap<String, MultipartFile> getMultipartFiles() {
@@ -129,5 +127,4 @@ public abstract class AbstractMultipartHttpServletRequest extends HttpServletReq
 	protected void initializeMultipart() {
 		throw new IllegalStateException("Multipart request not initialized");
 	}
-
 }

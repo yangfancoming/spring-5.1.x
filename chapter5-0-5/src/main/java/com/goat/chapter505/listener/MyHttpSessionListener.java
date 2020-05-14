@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSessionListener;
 /**
  * Created by Administrator on 2020/5/14.
  *
- * @ Description: HttpSessionListener 用来监听HttpSession对象创建和销毁的监听器
+ * @ Description: HttpSessionListener 用来监听HttpSession对象创建和销毁的监听器，浏览器的每次请求都会触发 初始化和销毁方法
  * @ author  山羊来了
  * @ date 2020/5/14---14:52
  */

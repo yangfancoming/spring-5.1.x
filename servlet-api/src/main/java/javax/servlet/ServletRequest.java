@@ -19,9 +19,6 @@ import java.util.Map;
  * Interfaces that extend <code>ServletRequest</code> can provide
  * additional protocol-specific data (for example, HTTP data is
  * provided by {@link javax.servlet.http.HttpServletRequest}.
- * 
- * @author Various
- *
  * @see javax.servlet.http.HttpServletRequest
  *
  */
@@ -453,125 +450,85 @@ public interface ServletRequest {
     public String getLocalAddr();
 
     /**
-     * Returns the Internet Protocol (IP) port number of the interface
-     * on which the request was received.
-     *
+     * Returns the Internet Protocol (IP) port number of the interface on which the request was received.
      * @return an integer specifying the port number
-     *
      * @since Servlet 2.4
      */
     public int getLocalPort();
 
     /**
-     * Gets the servlet context to which this ServletRequest was last
-     * dispatched.
-     *
-     * @return the servlet context to which this ServletRequest was last
-     * dispatched
-     *
+     * Gets the servlet context to which this ServletRequest was last dispatched.
+     * @return the servlet context to which this ServletRequest was last dispatched
      * @since Servlet 3.0
      */
     public ServletContext getServletContext();
 
     /**
-     * Puts this request into asynchronous mode, and initializes its
-     * {@link AsyncContext} with the original (unwrapped) ServletRequest
-     * and ServletResponse objects.
+     * Puts this request into asynchronous mode, and initializes its {@link AsyncContext} with the original (unwrapped) ServletRequest and ServletResponse objects.
+     * Calling this method will cause committal of the associated response to be delayed until {@link AsyncContext#complete} is
+     * called on the returned {@link AsyncContext}, or the asynchronous operation has timed out.
      *
-     * Calling this method will cause committal of the associated
-     * response to be delayed until {@link AsyncContext#complete} is
-     * called on the returned {@link AsyncContext}, or the asynchronous
-     * operation has timed out.
+     * Calling {@link AsyncContext#hasOriginalRequestAndResponse()} on the returned AsyncContext will return <code>true</code>.
+     * Any filters invoked in the <i>outbound</i> direction after this request was put
+     * into asynchronous mode may use this as an indication that any request and/or response wrappers that they added during their <i>inbound</i>
+     * invocation need not stay around for the duration of the asynchronous operation, and therefore any of their associated resources may be released.
      *
-     * Calling {@link AsyncContext#hasOriginalRequestAndResponse()} on
-     * the returned AsyncContext will return <code>true</code>. Any filters
-     * invoked in the <i>outbound</i> direction after this request was put
-     * into asynchronous mode may use this as an indication that any request
-     * and/or response wrappers that they added during their <i>inbound</i>
-     * invocation need not stay around for the duration of the asynchronous
-     * operation, and therefore any of their associated resources may be
-     * released.
+     * This method clears the list of {@link AsyncListener} instances (if any) that were registered with the AsyncContext returned by the
+     * previous call to one of the startAsync methods, after calling each AsyncListener at its {@link AsyncListener#onStartAsync onStartAsync} method.
      *
-     * This method clears the list of {@link AsyncListener} instances
-     * (if any) that were registered with the AsyncContext returned by the
-     * previous call to one of the startAsync methods, after calling each
-     * AsyncListener at its {@link AsyncListener#onStartAsync onStartAsync}
-     * method.
-     *
-     * Subsequent invocations of this method, or its overloaded
-     * variant, will return the same AsyncContext instance, reinitialized
-     * as appropriate.
-     *
+     * Subsequent invocations of this method, or its overloaded variant, will return the same AsyncContext instance, reinitialized as appropriate.
      * @return the (re)initialized AsyncContext
-     * 
      * @throws IllegalStateException if this request is within the scope of
      * a filter or servlet that does not support asynchronous operations
      * (that is, {@link #isAsyncSupported} returns false),
      * or if this method is called again without any asynchronous dispatch
-     * (resulting from one of the {@link AsyncContext#dispatch} methods),
-     * is called outside the scope of any such dispatch, or is called again
-     * within the scope of the same dispatch, or if the response has
-     * already been closed
-     *
+     * (resulting from one of the {@link AsyncContext#dispatch} methods),is called outside the scope of any such dispatch, or is called again
+     * within the scope of the same dispatch, or if the response has already been closed
      * @see AsyncContext#dispatch()
      * @since Servlet 3.0
      */
     public AsyncContext startAsync() throws IllegalStateException;
  
     /**
-     * Puts this request into asynchronous mode, and initializes its
-     * {@link AsyncContext} with the given request and response objects.
-     *
-     * The ServletRequest and ServletResponse arguments must be
-     * the same instances, or instances of {@link ServletRequestWrapper} and
+     * Puts this request into asynchronous mode, and initializes its {@link AsyncContext} with the given request and response objects.
+     * The ServletRequest and ServletResponse arguments must be the same instances, or instances of {@link ServletRequestWrapper} and
      * {@link ServletResponseWrapper} that wrap them, that were passed to the
      * {@link Servlet#service service} method of the Servlet or the
-     * {@link Filter#doFilter doFilter} method of the Filter, respectively,
-     * in whose scope this method is being called.
+     * {@link Filter#doFilter doFilter} method of the Filter, respectively, in whose scope this method is being called.
      *
      * Calling this method will cause committal of the associated
      * response to be delayed until {@link AsyncContext#complete} is
-     * called on the returned {@link AsyncContext}, or the asynchronous
-     * operation has timed out.
+     * called on the returned {@link AsyncContext}, or the asynchronous operation has timed out.
      *
-     * Calling {@link AsyncContext#hasOriginalRequestAndResponse()} on
-     * the returned AsyncContext will return <code>false</code>,
+     * Calling {@link AsyncContext#hasOriginalRequestAndResponse()} on the returned AsyncContext will return <code>false</code>,
      * unless the passed in ServletRequest and ServletResponse arguments
      * are the original ones or do not carry any application-provided wrappers.
      * Any filters invoked in the <i>outbound</i> direction after this
      * request was put into asynchronous mode may use this as an indication
      * that some of the request and/or response wrappers that they added
      * during their <i>inbound</i> invocation may need to stay in place for
-     * the duration of the asynchronous operation, and their associated
-     * resources may not be released.
+     * the duration of the asynchronous operation, and their associated resources may not be released.
      * A ServletRequestWrapper applied during the <i>inbound</i>
      * invocation of a filter may be released by the <i>outbound</i>
      * invocation of the filter only if the given <code>servletRequest</code>,
      * which is used to initialize the AsyncContext and will be returned by
      * a call to {@link AsyncContext#getRequest()}, does not contain said
-     * ServletRequestWrapper. The same holds true for ServletResponseWrapper
-     * instances. 
+     * ServletRequestWrapper. The same holds true for ServletResponseWrapper instances.
      *
      * This method clears the list of {@link AsyncListener} instances
      * (if any) that were registered with the AsyncContext returned by the
      * previous call to one of the startAsync methods, after calling each
-     * AsyncListener at its {@link AsyncListener#onStartAsync onStartAsync}
-     * method.
+     * AsyncListener at its {@link AsyncListener#onStartAsync onStartAsync} method.
      *
      * Subsequent invocations of this method, or its zero-argument
      * variant, will return the same AsyncContext instance, reinitialized
      * as appropriate. If a call to this method is followed by a call to its
      * zero-argument variant, the specified (and possibly wrapped) request
-     * and response objects will remain <i>locked in</i> on the returned
-     * AsyncContext.
+     * and response objects will remain <i>locked in</i> on the returned AsyncContext.
      *
-     * @param servletRequest the ServletRequest used to initialize the
-     * AsyncContext
-     * @param servletResponse the ServletResponse used to initialize the
-     * AsyncContext
-     *
+     * @param servletRequest the ServletRequest used to initialize the AsyncContext
+     * @param servletResponse the ServletResponse used to initialize the AsyncContext
      * @return the (re)initialized AsyncContext
-     * 
      * @throws IllegalStateException if this request is within the scope of
      * a filter or servlet that does not support asynchronous operations
      * (that is, {@link #isAsyncSupported} returns false),
@@ -583,57 +540,33 @@ public interface ServletRequest {
      *
      * @since Servlet 3.0
      */
-    public AsyncContext startAsync(ServletRequest servletRequest, ServletResponse servletResponse)
-            throws IllegalStateException;
-   
+    public AsyncContext startAsync(ServletRequest servletRequest, ServletResponse servletResponse)  throws IllegalStateException;
+
     /**
      * Checks if this request has been put into asynchronous mode.
-     *
-     * A ServletRequest is put into asynchronous mode by calling
-     * {@link #startAsync} or
-     * {@link #startAsync(ServletRequest, ServletResponse)} on it.
-     * 
+     * A ServletRequest is put into asynchronous mode by calling {@link #startAsync} or {@link #startAsync(ServletRequest, ServletResponse)} on it.
      * This method returns <tt>false</tt> if this request was
      * put into asynchronous mode, but has since been dispatched using
-     * one of the {@link AsyncContext#dispatch} methods or released
-     * from asynchronous mode via a call to {@link AsyncContext#complete}.
-     *
-     * @return true if this request has been put into asynchronous mode,
-     * false otherwise
-     *
+     * one of the {@link AsyncContext#dispatch} methods or released  from asynchronous mode via a call to {@link AsyncContext#complete}.
+     * @return true if this request has been put into asynchronous mode, false otherwise
      * @since Servlet 3.0
      */
     public boolean isAsyncStarted();
 
     /**
      * Checks if this request supports asynchronous operation.
-     *
      * Asynchronous operation is disabled for this request if this request
      * is within the scope of a filter or servlet that has not been annotated
-     * or flagged in the deployment descriptor as being able to support
-     * asynchronous handling.
-     *
-     * @return true if this request supports asynchronous operation, false
-     * otherwise
-     *
+     * or flagged in the deployment descriptor as being able to support asynchronous handling.
+     * @return true if this request supports asynchronous operation, false otherwise
      * @since Servlet 3.0
      */
     public boolean isAsyncSupported();
 
     /**
-     * Gets the AsyncContext that was created or reinitialized by the
-     * most recent invocation of {@link #startAsync} or
-     * {@link #startAsync(ServletRequest, ServletResponse)} on this request.
-     *
-     * @return the AsyncContext that was created or reinitialized by the
-     * most recent invocation of {@link #startAsync} or
-     * {@link #startAsync(ServletRequest, ServletResponse)} on
-     * this request 
-     *
-     * @throws IllegalStateException if this request has not been put 
-     * into asynchronous mode, i.e., if neither {@link #startAsync} nor
-     * {@link #startAsync(ServletRequest, ServletResponse)} has been called
-     *
+     * Gets the AsyncContext that was created or reinitialized by the most recent invocation of {@link #startAsync} or {@link #startAsync(ServletRequest, ServletResponse)} on this request.
+     * @return the AsyncContext that was created or reinitialized by the most recent invocation of {@link #startAsync} or {@link #startAsync(ServletRequest, ServletResponse)} on this request
+     * @throws IllegalStateException if this request has not been put  into asynchronous mode, i.e., if neither {@link #startAsync} nor {@link #startAsync(ServletRequest, ServletResponse)} has been called
      * @since Servlet 3.0
      */
     public AsyncContext getAsyncContext();
@@ -643,13 +576,11 @@ public interface ServletRequest {
      *
      * The dispatcher type of a request is used by the container
      * to select the filters that need to be applied to the request:
-     * Only filters with matching dispatcher type and url patterns will
-     * be applied.
-     * 
+     * Only filters with matching dispatcher type and url patterns will be applied.
+     *
      * Allowing a filter that has been configured for multiple
      * dispatcher types to query a request for its dispatcher type
-     * allows the filter to process the request differently depending on
-     * its dispatcher type.
+     * allows the filter to process the request differently depending on its dispatcher type.
      *
      * The initial dispatcher type of a request is defined as
      * <code>DispatcherType.REQUEST</code>. The dispatcher type of a request
@@ -662,14 +593,10 @@ public interface ServletRequest {
      * <code>DispatcherType.ASYNC</code>. Finally, the dispatcher type of a
      * request dispatched to an error page by the container's error handling
      * mechanism is given as <code>DispatcherType.ERROR</code>.
-     *
      * @return the dispatcher type of this request
-     * 
      * @see DispatcherType
-     *
      * @since Servlet 3.0
      */
     public DispatcherType getDispatcherType();
-
 }
 

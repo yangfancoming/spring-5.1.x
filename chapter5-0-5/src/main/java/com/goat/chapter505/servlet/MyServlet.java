@@ -1,4 +1,4 @@
-package com.goat.chapter505;
+package com.goat.chapter505.servlet;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 
 /**
  * Created by 64274 on 2019/8/19.
@@ -24,17 +25,16 @@ public class MyServlet extends HttpServlet {
 		message = "Hello World";
 		System.out.println("==TestServlet init");
 		ServletConfig servletConfig = getServletConfig();
-		System.out.println(servletConfig);
-		String servletInfo = getServletInfo();
-		System.out.println(servletInfo);
-		ServletContext servletContext = getServletContext();
-		System.out.println(servletContext);
+		// 对应全局 <context-param>  参数
+		Enumeration<String> initParameterNames = servletConfig.getServletContext().getInitParameterNames();
+		while(initParameterNames.hasMoreElements()){
+			System.out.println(initParameterNames.nextElement());
+		}
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws  IOException {
 		ServletContext servletContext = getServletContext();
-		// doit 为啥 不加 MyServletContextListener 类 这里就会报错 空异常？
 		String name = servletContext.getAttribute("name").toString();
 		String age = servletContext.getAttribute("age").toString();
 		// 设置响应内容类型
@@ -46,9 +46,7 @@ public class MyServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws  IOException {
-		// 设置响应内容类型
 		resp.setContentType("text/html");
-		// 实际的逻辑是在这里
 		PrintWriter out = resp.getWriter();
 		out.println("<h1>" + message + "</h1>");
 	}

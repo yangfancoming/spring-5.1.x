@@ -13,24 +13,17 @@ import java.util.Set;
 
 /**
  * Defines a set of methods that a servlet uses to communicate with its
- * servlet container, for example, to get the MIME type of a file,
- * dispatch requests, or write to a log file.
+ * servlet container, for example, to get the MIME type of a file,dispatch requests, or write to a log file.
  *
  * There is one context per "web application" per Java Virtual Machine.  (A
  * "web application" is a collection of servlets and content installed under a
- * specific subset of the server's URL namespace such as <code>/catalog</code>
- * and possibly installed via a <code>.war</code> file.)
+ * specific subset of the server's URL namespace such as <code>/catalog</code> and possibly installed via a <code>.war</code> file.)
  *
- * In the case of a web
- * application marked "distributed" in its deployment descriptor, there will
+ * In the case of a web application marked "distributed" in its deployment descriptor, there will
  * be one context instance for each virtual machine.  In this situation, the
- * context cannot be used as a location to share global information (because
- * the information won't be truly global).  Use an external resource like
- * a database instead.
- *
- * The <code>ServletContext</code> object is contained within
- * the {@link ServletConfig} object, which the Web server provides the
- * servlet when the servlet is initialized.
+ * context cannot be used as a location to share global information (because the information won't be truly global).
+ *  Use an external resource like a database instead.
+ * The <code>ServletContext</code> object is contained within the {@link ServletConfig} object, which the Web server provides the servlet when the servlet is initialized.
  * @see 	Servlet#getServletConfig
  * @see 	ServletConfig#getServletContext
  */
@@ -38,12 +31,10 @@ import java.util.Set;
 public interface ServletContext {
 
     /**
-     * The name of the <tt>ServletContext</tt> attribute which stores
-     * the private temporary directory (of type <tt>java.io.File</tt>)
+     * The name of the <tt>ServletContext</tt> attribute which stores the private temporary directory (of type <tt>java.io.File</tt>)
      * provided by the servlet container for the <tt>ServletContext</tt>
      */
     public static final String TEMPDIR = "javax.servlet.context.tempdir";
-
 
     /**
      * The name of the <code>ServletContext</code> attribute whose value
@@ -54,9 +45,7 @@ public interface ServletContext {
      * <code>&lt;others/&gt;</code> is being used), or null if no
      * absolute or relative ordering has been specified
      */
-    public static final String ORDERED_LIBS =
-        "javax.servlet.context.orderedLibs";
-
+    public static final String ORDERED_LIBS =  "javax.servlet.context.orderedLibs";
 
     /**
      * Returns the context path of the web application.
@@ -66,48 +55,28 @@ public interface ServletContext {
      * first in a request URI. If this context is the "root" context
      * rooted at the base of the Web server's URL name space, this path
      * will be an empty string. Otherwise, if the context is not rooted at
-     * the root of the server's name space, the path starts with a /
-     * character but does not end with a / character.
+     * the root of the server's name space, the path starts with a / character but does not end with a / character.
      *
      * It is possible that a servlet container may match a context by
-     * more than one context path. In such cases the
-     * {@link javax.servlet.http.HttpServletRequest#getContextPath()}
-     * will return the actual context path used by the request and it may
-     * differ from the path returned by this method.
-     * The context path returned by this method should be considered as the
-     * prime or preferred context path of the application.
-     *
-     * @return The context path of the web application, or "" for the
-     * root context
-     *
+     * more than one context path. In such cases the {@link javax.servlet.http.HttpServletRequest#getContextPath()}
+     * will return the actual context path used by the request and it may differ from the path returned by this method.
+     * The context path returned by this method should be considered as the prime or preferred context path of the application.
+     * @return The context path of the web application, or "" for the root context
      * @see javax.servlet.http.HttpServletRequest#getContextPath()
-     *
      * @since Servlet 2.5
      */
     public String getContextPath();
 
 
     /**
-     * Returns a <code>ServletContext</code> object that
-     * corresponds to a specified URL on the server.
-     *
-     * This method allows servlets to gain
-     * access to the context for various parts of the server, and as
+     * Returns a <code>ServletContext</code> object that corresponds to a specified URL on the server.
+     * This method allows servlets to gain access to the context for various parts of the server, and as
      * needed obtain {@link RequestDispatcher} objects from the context.
      * The given path must be begin with <tt>/</tt>, is interpreted relative
-     * to the server's document root and is matched against the context
-     * roots of other web applications hosted on this container.
-     *
-     * In a security conscious environment, the servlet container may
-     * return <code>null</code> for a given URL.
-     *
-     * @param uripath 	a <code>String</code> specifying the context path of
-     *			another web application in the container.
-     * @return		the <code>ServletContext</code> object that
-     *			corresponds to the named URL, or null if either
-			none exists or the container wishes to restrict
-     * 			this access.
-     *
+     * to the server's document root and is matched against the context roots of other web applications hosted on this container.
+     * In a security conscious environment, the servlet container may return <code>null</code> for a given URL.
+     * @param uripath 	a <code>String</code> specifying the context path of another web application in the container.
+     * @return		the <code>ServletContext</code> object that corresponds to the named URL, or null if either none exists or the container wishes to restrict this access.
      * @see        RequestDispatcher
      */
     public ServletContext getContext(String uripath);
@@ -117,7 +86,6 @@ public interface ServletContext {
      * Returns the major version of the Servlet API that this
      * servlet container supports. All implementations that comply
      * with Version 4.0 must have this method return the integer 4.
-     *
      * @return 4
      */
     public int getMajorVersion();
@@ -127,41 +95,31 @@ public interface ServletContext {
      * Returns the minor version of the Servlet API that this
      * servlet container supports. All implementations that comply
      * with Version 4.0 must have this method return the integer 0.
-     *
      * @return 0
      */
     public int getMinorVersion();
 
 
     /**
-     * Gets the major version of the Servlet specification that the
-     * application represented by this ServletContext is based on.
-     *
+     * Gets the major version of the Servlet specification that the application represented by this ServletContext is based on.
      * The value returned may be different from {@link #getMajorVersion},
-     * which returns the major version of the Servlet specification
-     * supported by the Servlet container.
+     * which returns the major version of the Servlet specification supported by the Servlet container.
      *
-     * @return the major version of the Servlet specification that the
-     * application represented by this ServletContext is based on
+     * @return the major version of the Servlet specification that the application represented by this ServletContext is based on
      *
      * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
-     *
+     * passed to the {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with {@link javax.servlet.annotation.WebListener}
      * @since Servlet 3.0
      */
     public int getEffectiveMajorVersion();
 
 
     /**
-     * Gets the minor version of the Servlet specification that the
-     * application represented by this ServletContext is based on.
+     * Gets the minor version of the Servlet specification that the application represented by this ServletContext is based on.
      *
      * The value returned may be different from {@link #getMinorVersion},
-     * which returns the minor version of the Servlet specification
-     * supported by the Servlet container.
+     * which returns the minor version of the Servlet specification supported by the Servlet container.
      *
      * @return the minor version of the Servlet specification that the
      * application represented by this ServletContext is based on
@@ -606,50 +564,26 @@ public interface ServletContext {
 
 
     /**
-     * Returns the servlet container attribute with the given name, or
-     * <code>null</code> if there is no attribute by that name.
+     * Returns the servlet container attribute with the given name, or <code>null</code> if there is no attribute by that name.
      *
-     * An attribute allows a servlet container to give the
-     * servlet additional information not
-     * already provided by this interface. See your
-     * server documentation for information about its attributes.
-     * A list of supported attributes can be retrieved using
-     * <code>getAttributeNames</code>.
-     *
-     * The attribute is returned as a <code>java.lang.Object</code>
-     * or some subclass.
-     *
+     * An attribute allows a servlet container to give the  servlet additional information not already provided by this interface.
+     * See your server documentation for information about its attributes.
+     * A list of supported attributes can be retrieved using <code>getAttributeNames</code>.
+     * The attribute is returned as a <code>java.lang.Object</code> or some subclass.
      * Attribute names should follow the same convention as package
-     * names. The Java Servlet API specification reserves names
-     * matching <code>java.*</code>, <code>javax.*</code>,
-     * and <code>sun.*</code>.
-     *
-     * @param name 	a <code>String</code> specifying the name
-     *			of the attribute
-     *
-     * @return an <code>Object</code> containing the value of the
-     *			attribute, or <code>null</code> if no attribute
-     *			exists matching the given name.
-     *
+     * names. The Java Servlet API specification reserves names matching <code>java.*</code>, <code>javax.*</code>,and <code>sun.*</code>.
+     * @param name 	a <code>String</code> specifying the name of the attribute
+     * @return an <code>Object</code> containing the value of the attribute, or <code>null</code> if no attribute exists matching the given name.
      * @see 		ServletContext#getAttributeNames
-     *
-     * @throws NullPointerException if the argument {@code name} is
-     * {@code null}
-     *
+     * @throws NullPointerException if the argument {@code name} is {@code null}
      */
     public Object getAttribute(String name);
 
 
     /**
-     * Returns an <code>Enumeration</code> containing the
-     * attribute names available within this ServletContext.
-     *
-     * Use the {@link #getAttribute} method with an attribute name
-     * to get the value of an attribute.
-     *
-     * @return 		an <code>Enumeration</code> of attribute
-     *			names
-     *
+     * Returns an <code>Enumeration</code> containing the attribute names available within this ServletContext.
+     * Use the {@link #getAttribute} method with an attribute name to get the value of an attribute.
+     * @return 		an <code>Enumeration</code> of attribute names
      * @see		#getAttribute
      */
     public Enumeration<String> getAttributeNames();
@@ -659,12 +593,8 @@ public interface ServletContext {
      * Binds an object to a given attribute name in this ServletContext. If
      * the name specified is already used for an attribute, this
      * method will replace the attribute with the new to the new attribute.
-     * If listeners are configured on the <code>ServletContext</code> the
-     * container notifies them accordingly.
-     *
-     * If a null value is passed, the effect is the same as calling
-     * <code>removeAttribute()</code>.
-     *
+     * If listeners are configured on the <code>ServletContext</code> the  container notifies them accordingly.
+     * If a null value is passed, the effect is the same as calling <code>removeAttribute()</code>.
      * Attribute names should follow the same convention as package
      * names. The Java Servlet API specification reserves names
      * matching <code>java.*</code>, <code>javax.*</code>, and
@@ -1648,9 +1578,7 @@ public interface ServletContext {
      * Gets the request character encoding that are supported by default for
      * this <tt>ServletContext</tt>. This method returns null if no request
      * encoding character encoding has been specified in deployment descriptor
-     * or container specific configuration (for all web applications in the
-     * container).
-     *
+     * or container specific configuration (for all web applications in the container).
      * @return the request character encoding that are supported by default for
      * this <tt>ServletContext</tt>
      *
@@ -1667,18 +1595,13 @@ public interface ServletContext {
 
     /**
      * Sets the request character encoding for this ServletContext.
-     *
      * @param encoding request character encoding
-     *
-     * @throws IllegalStateException if this ServletContext has already
-     * been initialized
-     *
+     * @throws IllegalStateException if this ServletContext has already been initialized
      * @throws UnsupportedOperationException if this ServletContext was
      * passed to the {@link ServletContextListener#contextInitialized} method
      * of a {@link ServletContextListener} that was neither declared in
      * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
      * with {@link javax.servlet.annotation.WebListener}
-     *
      * @since Servlet 4.0
      */
     public void setRequestCharacterEncoding(String encoding);
@@ -1688,18 +1611,13 @@ public interface ServletContext {
      * Gets the response character encoding that are supported by default for
      * this <tt>ServletContext</tt>. This method returns null if no response
      * encoding character encoding has been specified in deployment descriptor
-     * or container specific configuration (for all web applications in the
-     * container).
-     *
-     * @return the request character encoding that are supported by default for
-     * this <tt>ServletContext</tt>
-     *
+     * or container specific configuration (for all web applications in the container).
+     * @return the request character encoding that are supported by default for this <tt>ServletContext</tt>
      * @throws UnsupportedOperationException if this ServletContext was
      * passed to the {@link ServletContextListener#contextInitialized} method
      * of a {@link ServletContextListener} that was neither declared in
      * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
      * with {@link javax.servlet.annotation.WebListener}
-     *
      * @since Servlet 4.0
      */
     public String getResponseCharacterEncoding();
@@ -1707,12 +1625,8 @@ public interface ServletContext {
 
     /**
      * Sets the response character encoding for this ServletContext.
-     *
      * @param encoding response character encoding
-     *
-     * @throws IllegalStateException if this ServletContext has already
-     * been initialized
-     *
+     * @throws IllegalStateException if this ServletContext has already been initialized
      * @throws UnsupportedOperationException if this ServletContext was
      * passed to the {@link ServletContextListener#contextInitialized} method
      * of a {@link ServletContextListener} that was neither declared in
