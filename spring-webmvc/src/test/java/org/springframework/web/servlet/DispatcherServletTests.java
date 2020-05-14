@@ -66,11 +66,9 @@ public class DispatcherServletTests {
 		complexConfig.addInitParameter("publishContext", "false");
 		complexConfig.addInitParameter("class", "notWritable");
 		complexConfig.addInitParameter("unknownParam", "someValue");
-
 		simpleDispatcherServlet = new DispatcherServlet();
 		simpleDispatcherServlet.setContextClass(SimpleWebApplicationContext.class);
 		simpleDispatcherServlet.init(servletConfig);
-
 		complexDispatcherServlet = new DispatcherServlet();
 		complexDispatcherServlet.setContextClass(ComplexWebApplicationContext.class);
 		complexDispatcherServlet.setNamespace("test");
@@ -830,7 +828,6 @@ public class DispatcherServletTests {
 			applicationContext.getServletContext().setAttribute("initialized", "true");
 		}
 	}
-
 
 	private static class OtherWebContextInitializer implements ApplicationContextInitializer<ConfigurableWebApplicationContext> {
 		@Override

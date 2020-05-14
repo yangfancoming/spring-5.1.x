@@ -248,23 +248,16 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * of {@link ConfigurableWebApplicationContext} and (b) has <strong>not</strong>
 	 * already been refreshed (the recommended approach), then the following will occur:
 	 * <ul>
-	 * <li>If the given context does not already have a {@linkplain
-	 * ConfigurableApplicationContext#setParent parent}, the root application context
-	 * will be set as the parent.</li>
-	 * <li>If the given context has not already been assigned an {@linkplain
-	 * ConfigurableApplicationContext#setId id}, one will be assigned to it</li>
-	 * <li>{@code ServletContext} and {@code ServletConfig} objects will be delegated to
-	 * the application context</li>
+	 * <li>If the given context does not already have a {@linkplain ConfigurableApplicationContext#setParent parent}, the root application context will be set as the parent.</li>
+	 * <li>If the given context has not already been assigned an {@linkplain ConfigurableApplicationContext#setId id}, one will be assigned to it</li>
+	 * <li>{@code ServletContext} and {@code ServletConfig} objects will be delegated to the application context</li>
 	 * <li>{@link #postProcessWebApplicationContext} will be called</li>
 	 * <li>Any {@link ApplicationContextInitializer ApplicationContextInitializers} specified through the
-	 * "contextInitializerClasses" init-param or through the {@link
-	 * #setContextInitializers} property will be applied.</li>
+	 * "contextInitializerClasses" init-param or through the {@link #setContextInitializers} property will be applied.</li>
 	 * <li>{@link ConfigurableApplicationContext#refresh refresh()} will be called</li>
 	 * </ul>
-	 * If the context has already been refreshed or does not implement
-	 * {@code ConfigurableWebApplicationContext}, none of the above will occur under the
-	 * assumption that the user has performed these actions (or not) per his or her
-	 * specific needs.
+	 * If the context has already been refreshed or does not implement  {@code ConfigurableWebApplicationContext}, none of the above will occur under the
+	 * assumption that the user has performed these actions (or not) per his or her specific needs.
 	 * See {@link org.springframework.web.WebApplicationInitializer} for usage examples.
 	 * @param webApplicationContext the context to use
 	 * @see #initWebApplicationContext
@@ -275,18 +268,15 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 		this.webApplicationContext = webApplicationContext;
 	}
 
-
 	/**
-	 * Set the name of the ServletContext attribute which should be used to retrieve the
-	 * {@link WebApplicationContext} that this servlet is supposed to use.
+	 * Set the name of the ServletContext attribute which should be used to retrieve the {@link WebApplicationContext} that this servlet is supposed to use.
 	 */
 	public void setContextAttribute(@Nullable String contextAttribute) {
 		this.contextAttribute = contextAttribute;
 	}
 
 	/**
-	 * Return the name of the ServletContext attribute which should be used to retrieve the
-	 * {@link WebApplicationContext} that this servlet is supposed to use.
+	 * Return the name of the ServletContext attribute which should be used to retrieve the {@link WebApplicationContext} that this servlet is supposed to use.
 	 */
 	@Nullable
 	public String getContextAttribute() {

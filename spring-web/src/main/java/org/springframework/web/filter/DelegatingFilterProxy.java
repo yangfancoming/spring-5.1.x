@@ -44,15 +44,8 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
  * methods, usually in conjunction with Spring 3.1's
  * {@link org.springframework.web.WebApplicationInitializer} SPI. These constructors allow
  * for providing the delegate Filter bean directly, or providing the application context
- * and bean name to fetch, avoiding the need to look up the application context from the
- * ServletContext.
- *
- * This class was originally inspired by Spring Security's {@code FilterToBeanProxy}
- * class, written by Ben Alex.
- *
-
- * @author Sam Brannen
-
+ * and bean name to fetch, avoiding the need to look up the application context from the ServletContext.
+ * This class was originally inspired by Spring Security's {@code FilterToBeanProxy} class, written by Ben Alex.
  * @since 1.2
  * @see #setTargetBeanName
  * @see #setTargetFilterLifecycle
@@ -85,8 +78,7 @@ public class DelegatingFilterProxy extends GenericFilterBean {
 
 
 	/**
-	 * Create a new {@code DelegatingFilterProxy}. For traditional (pre-Servlet 3.0) use
-	 * in {@code web.xml}.
+	 * Create a new {@code DelegatingFilterProxy}. For traditional (pre-Servlet 3.0) use in {@code web.xml}.
 	 * @see #setTargetBeanName(String)
 	 */
 	public DelegatingFilterProxy() {
@@ -96,10 +88,8 @@ public class DelegatingFilterProxy extends GenericFilterBean {
 	 * Create a new {@code DelegatingFilterProxy} with the given {@link Filter} delegate.
 	 * Bypasses entirely the need for interacting with a Spring application context,
 	 * specifying the {@linkplain #setTargetBeanName target bean name}, etc.
-	 * For use in Servlet 3.0+ environments where instance-based registration of
-	 * filters is supported.
-	 * @param delegate the {@code Filter} instance that this proxy will delegate to and
-	 * manage the lifecycle for (must not be {@code null}).
+	 * For use in Servlet 3.0+ environments where instance-based registration of filters is supported.
+	 * @param delegate the {@code Filter} instance that this proxy will delegate to and  manage the lifecycle for (must not be {@code null}).
 	 * @see #doFilter(ServletRequest, ServletResponse, FilterChain)
 	 * @see #invokeDelegate(Filter, ServletRequest, ServletResponse, FilterChain)
 	 * @see #destroy()
@@ -297,8 +287,7 @@ public class DelegatingFilterProxy extends GenericFilterBean {
 		String attrName = getContextAttribute();
 		if (attrName != null) {
 			return WebApplicationContextUtils.getWebApplicationContext(getServletContext(), attrName);
-		}
-		else {
+		}else {
 			return WebApplicationContextUtils.findWebApplicationContext(getServletContext());
 		}
 	}
@@ -336,10 +325,7 @@ public class DelegatingFilterProxy extends GenericFilterBean {
 	 * @throws ServletException if thrown by the Filter
 	 * @throws IOException if thrown by the Filter
 	 */
-	protected void invokeDelegate(
-			Filter delegate, ServletRequest request, ServletResponse response, FilterChain filterChain)
-			throws ServletException, IOException {
-
+	protected void invokeDelegate(Filter delegate, ServletRequest request, ServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 		delegate.doFilter(request, response, filterChain);
 	}
 

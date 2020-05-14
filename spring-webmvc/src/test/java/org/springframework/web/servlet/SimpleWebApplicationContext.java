@@ -33,31 +33,23 @@ public class SimpleWebApplicationContext extends StaticWebApplicationContext {
 	@Override
 	public void refresh() throws BeansException {
 		registerSingleton("/locale.do", LocaleChecker.class);
-
 		addMessage("test", Locale.ENGLISH, "test message");
 		addMessage("test", Locale.CANADA, "Canadian & test message");
 		addMessage("testArgs", Locale.ENGLISH, "test {0} message {1}");
 		addMessage("testArgsFormat", Locale.ENGLISH, "test {0} message {1,number,#.##} X");
-
 		registerSingleton(UiApplicationContextUtils.THEME_SOURCE_BEAN_NAME, DummyThemeSource.class);
-
 		registerSingleton("handlerMapping", BeanNameUrlHandlerMapping.class);
 		registerSingleton("viewResolver", InternalResourceViewResolver.class);
-
 		MutablePropertyValues pvs = new MutablePropertyValues();
 		pvs.add("location", "org/springframework/web/context/WEB-INF/sessionContext.xml");
 		registerSingleton("viewResolver2", XmlViewResolver.class, pvs);
-
 		super.refresh();
 	}
-
 
 	public static class LocaleChecker implements Controller, LastModified {
 
 		@Override
-		public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
-				throws ServletException, IOException {
-
+		public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			if (!(RequestContextUtils.findWebApplicationContext(request) instanceof SimpleWebApplicationContext)) {
 				throw new ServletException("Incorrect WebApplicationContext");
 			}
@@ -69,7 +61,6 @@ public class SimpleWebApplicationContext extends StaticWebApplicationContext {
 			}
 			return null;
 		}
-
 		@Override
 		public long getLastModified(HttpServletRequest request) {
 			return 1427846400000L;
@@ -91,8 +82,7 @@ public class SimpleWebApplicationContext extends StaticWebApplicationContext {
 		public Theme getTheme(String themeName) {
 			if (AbstractThemeResolver.ORIGINAL_DEFAULT_THEME_NAME.equals(themeName)) {
 				return new SimpleTheme(AbstractThemeResolver.ORIGINAL_DEFAULT_THEME_NAME, this.messageSource);
-			}
-			else {
+			}else {
 				return null;
 			}
 		}
