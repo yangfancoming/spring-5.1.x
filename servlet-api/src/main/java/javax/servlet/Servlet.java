@@ -9,7 +9,6 @@ import java.io.IOException;
  * Servlets receive and respond to requests from Web clients, usually across HTTP, the HyperText Transfer Protocol.
  * To implement this interface, you can write a generic servlet that extends
  * <code>javax.servlet.GenericServlet</code> or an HTTP servlet that extends <code>javax.servlet.http.HttpServlet</code>.
- *
  * This interface defines methods to initialize a servlet,to service requests, and to remove a servlet from the server.
  * These are known as life-cycle methods and are called in the following sequence:
  * <li>The servlet is constructed, then initialized with the <code>init</code> method.

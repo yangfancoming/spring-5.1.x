@@ -1,5 +1,6 @@
 package com.goat.chapter505;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,25 +15,24 @@ import java.io.PrintWriter;
  * @ author  山羊来了
  * @ date 2019/8/19---16:30
  */
-public class TestServlet extends HttpServlet {
+public class MyServlet extends HttpServlet {
 
 	private String message;
 
 	@Override
 	public void init(){
-		// 执行必需的初始化
 		message = "Hello World";
 		System.out.println("==TestServlet init");
-	}
-
-	@Override
-	public void destroy() {
-		System.out.println("==TestServlet destroy");
+		ServletConfig servletConfig = getServletConfig();
+		System.out.println(servletConfig);
+		String servletInfo = getServletInfo();
+		System.out.println(servletInfo);
+		ServletContext servletContext = getServletContext();
+		System.out.println(servletContext);
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws  IOException {
-		// 注意这儿的代码，跟下面讲的ServletContextListener有关联，如要运行该段代码，请完整复制整篇内容
 		ServletContext servletContext = getServletContext();
 		// doit 为啥 不加 MyServletContextListener 类 这里就会报错 空异常？
 		String name = servletContext.getAttribute("name").toString();
@@ -51,5 +51,10 @@ public class TestServlet extends HttpServlet {
 		// 实际的逻辑是在这里
 		PrintWriter out = resp.getWriter();
 		out.println("<h1>" + message + "</h1>");
+	}
+
+	@Override
+	public void destroy() {
+		System.out.println("==TestServlet destroy");
 	}
 }

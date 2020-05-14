@@ -3,9 +3,7 @@
 package javax.servlet.http;
 
 /**
- * This is the class representing event notifications for changes to
- * sessions within a web application.
- *
+ * This is the class representing event notifications for changes to sessions within a web application.
  * @since Servlet 2.3
  */
 public class HttpSessionEvent extends java.util.EventObject {

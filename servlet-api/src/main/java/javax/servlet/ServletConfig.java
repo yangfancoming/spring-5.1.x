@@ -38,5 +38,4 @@ import java.util.Enumeration;
      * @return an <code>Enumeration</code> of <code>String</code>  objects containing the names of the servlet's  initialization parameters
      */
     public Enumeration<String> getInitParameterNames();
-
 }

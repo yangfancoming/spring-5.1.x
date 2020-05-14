@@ -10,9 +10,7 @@ import java.util.ResourceBundle;
  *通用的的servlet
  * Defines a generic, protocol-independent servlet. To write an HTTP servlet for use on the Web, extend {@link javax.servlet.http.HttpServlet} instead.
  * <code>GenericServlet</code> implements the <code>Servlet</code> and <code>ServletConfig</code> interfaces.
- * <code>GenericServlet</code> may be directly extended by a servlet,
- * although it's more common to extend  a protocol-specific subclass such as <code>HttpServlet</code>.
- *
+ * <code>GenericServlet</code> may be directly extended by a servlet,although it's more common to extend  a protocol-specific subclass such as <code>HttpServlet</code>.
  * <code>GenericServlet</code> makes writing servlets easier.
  * It provides simple versions of the lifecycle methods <code>init</code> and <code>destroy</code> and of the methods
  * in the <code>ServletConfig</code> interface. <code>GenericServlet</code>
@@ -26,12 +24,10 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
     private transient ServletConfig config;
 
     /**
-     *
      * Does nothing. All of the servlet initialization is done by one of the <code>init</code> methods.
      */
     public GenericServlet() { }
-    
-    
+
     /**
      * Called by the servlet container to indicate to a servlet that the
      * servlet is being taken out of service.  See {@link Servlet#destroy}.
@@ -43,8 +39,7 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
     /**
      * Returns a <code>String</code> containing the value of the named
      * initialization parameter, or <code>null</code> if the parameter does  not exist.  See {@link ServletConfig#getInitParameter}.
-     * This method is supplied for convenience. It gets the
-     * value of the named parameter from the servlet's 
+     * This method is supplied for convenience. It gets the value of the named parameter from the servlet's
      * <code>ServletConfig</code> object.
      * @param name 		a <code>String</code> specifying the name  of the initialization parameter
      * @return String 		a <code>String</code> containing the value of the initialization parameter
@@ -52,17 +47,12 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
     @Override
 	public String getInitParameter(String name) {
         ServletConfig sc = getServletConfig();
-        if (sc == null) {
-            throw new IllegalStateException(
-                lStrings.getString("err.servlet_config_not_initialized"));
-        }
+        if (sc == null) throw new IllegalStateException(lStrings.getString("err.servlet_config_not_initialized"));
         return sc.getInitParameter(name);
     }
-    
-    
+
    /**
-    * Returns the names of the servlet's initialization parameters 
-    * as an <code>Enumeration</code> of <code>String</code> objects,
+    * Returns the names of the servlet's initialization parameters  as an <code>Enumeration</code> of <code>String</code> objects,
 	* or an empty <code>Enumeration</code> if the servlet has no initialization parameters.
     *  See {@link ServletConfig#getInitParameterNames}.
     * This method is supplied for convenience. It gets the parameter names from the servlet's <code>ServletConfig</code> object.
@@ -75,7 +65,6 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
         return sc.getInitParameterNames();
     }   
      
-
     /**
      * Returns this servlet's {@link ServletConfig} object.
      * @return ServletConfig 	the <code>ServletConfig</code> object that initialized this servlet
@@ -86,10 +75,8 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
 	}
  
     /**
-     * Returns a reference to the {@link ServletContext} in which this servlet
-     * is running.  See {@link ServletConfig#getServletContext}.
-     * This method is supplied for convenience. It gets the
-     * context from the servlet's <code>ServletConfig</code> object.
+     * Returns a reference to the {@link ServletContext} in which this servlet is running.  See {@link ServletConfig#getServletContext}.
+     * This method is supplied for convenience. It gets the context from the servlet's <code>ServletConfig</code> object.
      * @return ServletContext 	the <code>ServletContext</code> object passed to this servlet by the <code>init</code> method
      */
     @Override
@@ -102,7 +89,7 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
     /**
      * Returns information about the servlet, such as   author, version, and copyright.
      * By default, this method returns an empty string.  Override this method to have it return a meaningful value.
-     *See {@link Servlet#getServletInfo}.
+     * See {@link Servlet#getServletInfo}.
      * @return String 		information about this servlet, by default an empty string
      */
     @Override
@@ -112,10 +99,8 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
 
     /**
      * Called by the servlet container to indicate to a servlet that the  servlet is being placed into service.  See {@link Servlet#init}.
-     * This implementation stores the {@link ServletConfig}
-     * object it receives from the servlet container for later use.
-     * When overriding this form of the method, call 
-     * <code>super.init(config)</code>.
+     * This implementation stores the {@link ServletConfig} object it receives from the servlet container for later use.
+     * When overriding this form of the method, call  <code>super.init(config)</code>.
      * @param config 	the <code>ServletConfig</code> object that contains configuration information for this servlet
      * @exception ServletException    if an exception occurs that interrupts the servlet's normal operation
      * @see UnavailableException
@@ -132,19 +117,14 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
      * The <code>ServletConfig</code> object can still be retrieved via {@link #getServletConfig}.
      * @exception ServletException    if an exception occurs that interrupts the servlet's normal operation
      */
-    public void init() throws ServletException {
-    }
-    
-
+    public void init() throws ServletException { }
     /**
-     * Writes the specified message to a servlet log file, prepended by the
-     * servlet's name.  See {@link ServletContext#log(String)}.
+     * Writes the specified message to a servlet log file, prepended by the servlet's name.  See {@link ServletContext#log(String)}.
      * @param msg 	a <code>String</code> specifying the message to be written to the log file
      */
     public void log(String msg) {
 	getServletContext().log(getServletName() + ": "+ msg);
     }
-   
    
     /**
      * Writes an explanatory message and a stack trace for a given <code>Throwable</code> exception to the servlet log file, prepended by the servlet's name.

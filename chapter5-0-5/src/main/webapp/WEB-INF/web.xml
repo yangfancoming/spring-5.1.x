@@ -3,18 +3,46 @@
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
+	<!-- 真正的加载顺序为：context-param -> listener -> filter -> servlet	-->
+
+	<display-name>定义了WEB应用的名字</display-name>
+	<description>声明WEB应用的描述信息</description>
+
+	<!-- 声明应用范围内的初始化参数 -->
+	<context-param><!-- 配置当前 WEB 应用的初始化参数 (任何servlet都可以访问的全局变量)-->
+		<param-name>encoding</param-name>
+		<param-value>utf-8</param-value>
+	</context-param>
+
+	<context-param><!-- 配置当前 WEB 应用的初始化参数 (任何servlet都可以访问的全局变量)-->
+		<param-name>driver2</param-name>
+		<param-value>context-param-driver2</param-value>
+	</context-param>
+
+
+	<!-- Servlet 监听器配置  实际调用顺序 ServletContextListener -> ServletRequestListener -> HttpSessionListener-->
+	<listener>
+		<listener-class>com.goat.chapter505.listener.MyHttpSessionListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>com.goat.chapter505.listener.MyServletRequestListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>com.goat.chapter505.listener.MyServletContextListener</listener-class>
+	</listener>
+
+
+	<!-- Servlet 配置  Servlet程序若想被外界访问，就必须将自己映射到一个url地址上(url-pattern)-->
 	<servlet>
 		<servlet-name>myServlet</servlet-name>
-		<servlet-class>com.goat.chapter505.TestServlet</servlet-class>
+		<servlet-class>com.goat.chapter505.MyServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>myServlet</servlet-name>
 		<url-pattern>/myServlet</url-pattern>
 	</servlet-mapping>
 
-
-	<listener>
-		<listener-class>com.goat.chapter505.MyServletContextListener</listener-class>
-	</listener>
 
 </web-app>
