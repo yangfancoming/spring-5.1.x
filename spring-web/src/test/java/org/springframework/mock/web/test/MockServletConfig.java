@@ -57,6 +57,10 @@ public class MockServletConfig implements ServletConfig {
 		this.servletName = servletName;
 	}
 
+	public void addInitParameter(String name, String value) {
+		Assert.notNull(name, "Parameter name must not be null");
+		this.initParameters.put(name, value);
+	}
 
 	@Override
 	public String getServletName() {
@@ -66,11 +70,6 @@ public class MockServletConfig implements ServletConfig {
 	@Override
 	public ServletContext getServletContext() {
 		return this.servletContext;
-	}
-
-	public void addInitParameter(String name, String value) {
-		Assert.notNull(name, "Parameter name must not be null");
-		this.initParameters.put(name, value);
 	}
 
 	@Override
@@ -83,5 +82,4 @@ public class MockServletConfig implements ServletConfig {
 	public Enumeration<String> getInitParameterNames() {
 		return Collections.enumeration(this.initParameters.keySet());
 	}
-
 }

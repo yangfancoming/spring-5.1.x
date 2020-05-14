@@ -6,16 +6,11 @@ import java.io.IOException;
 
 /**
  * Defines an object that receives requests from the client
- * and sends them to any resource (such as a servlet, 
- * HTML file, or JSP file) on the server. The servlet
+ * and sends them to any resource (such as a servlet,   HTML file, or JSP file) on the server. The servlet
  * container creates the <code>RequestDispatcher</code> object,
- * which is used as a wrapper around a server resource located
- * at a particular path or given by a particular name.
- *
+ * which is used as a wrapper around a server resource located at a particular path or given by a particular name.
  * This interface is intended to wrap servlets,
- * but a servlet container can create <code>RequestDispatcher</code>
- * objects to wrap any type of resource.
- *
+ * but a servlet container can create <code>RequestDispatcher</code> objects to wrap any type of resource.
  * @see ServletContext#getRequestDispatcher(String)
  * @see ServletContext#getNamedDispatcher(String)
  * @see ServletRequest#getRequestDispatcher(String)
@@ -24,46 +19,38 @@ import java.io.IOException;
 public interface RequestDispatcher {
 
     /**
-     * The name of the request attribute under which the original
-     * request URI is made available to the target of a 
-     * {@link #forward(ServletRequest,ServletResponse) forward}
+     * The name of the request attribute under which the original request URI is made available to the target of a  {@link #forward(ServletRequest,ServletResponse) forward}
      */
     static final String FORWARD_REQUEST_URI = "javax.servlet.forward.request_uri";
 
     /**
-     * The name of the request attribute under which the original
-     * context path is made available to the target of a 
+     * The name of the request attribute under which the original context path is made available to the target of a
      * {@link #forward(ServletRequest,ServletResponse) forward}
      */
     static final String FORWARD_CONTEXT_PATH = "javax.servlet.forward.context_path";
 
     /**
      * The name of the request attribute under which the original
-     * {@link javax.servlet.http.HttpServletMapping} is made available
-     * to the target of a 
+     * {@link javax.servlet.http.HttpServletMapping} is made available to the target of a
      * {@link #forward(ServletRequest,ServletResponse) forward}
-     * 
      * @since 4.0
      */
     static final String FORWARD_MAPPING = "javax.servlet.forward.mapping";
 
     /**
-     * The name of the request attribute under which the original
-     * path info is made available to the target of a 
+     * The name of the request attribute under which the original path info is made available to the target of a
      * {@link #forward(ServletRequest,ServletResponse) forward}
      */
     static final String FORWARD_PATH_INFO = "javax.servlet.forward.path_info";
 
     /**
-     * The name of the request attribute under which the original
-     * servlet path is made available to the target of a 
+     * The name of the request attribute under which the original servlet path is made available to the target of a
      * {@link #forward(ServletRequest,ServletResponse) forward}
      */
     static final String FORWARD_SERVLET_PATH = "javax.servlet.forward.servlet_path";
 
     /**
-     * The name of the request attribute under which the original
-     * query string is made available to the target of a 
+     * The name of the request attribute under which the original query string is made available to the target of a
      * {@link #forward(ServletRequest,ServletResponse) forward}
      */
     static final String FORWARD_QUERY_STRING = "javax.servlet.forward.query_string";

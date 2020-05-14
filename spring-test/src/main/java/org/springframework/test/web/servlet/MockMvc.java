@@ -44,10 +44,6 @@ import org.springframework.web.servlet.DispatcherServlet;
  *     .andExpect(content().mimeType("text/html"))
  *     .andExpect(forwardedUrl("/WEB-INF/layouts/main.jsp"));
  * </pre>
- *
- *
- * @author Rob Winch
- * @author Sam Brannen
  * @since 3.2
  */
 public final class MockMvc {

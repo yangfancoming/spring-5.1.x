@@ -23,7 +23,6 @@ public class MockRequestDispatcher implements RequestDispatcher {
 
 	private final String resource;
 
-
 	/**
 	 * Create a new MockRequestDispatcher for the given resource.
 	 * @param resource the server resource to dispatch to, located at a

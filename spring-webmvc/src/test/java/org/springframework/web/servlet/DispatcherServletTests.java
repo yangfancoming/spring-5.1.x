@@ -62,13 +62,15 @@ public class DispatcherServletTests {
 
 	@Before
 	public void setUp() throws ServletException {
+		// 简单servlet
+		simpleDispatcherServlet = new DispatcherServlet();
+		simpleDispatcherServlet.setContextClass(SimpleWebApplicationContext.class);
+		simpleDispatcherServlet.init(servletConfig);
+		// 复制servlet
 		MockServletConfig complexConfig = new MockServletConfig(getServletContext(), "complex");
 		complexConfig.addInitParameter("publishContext", "false");
 		complexConfig.addInitParameter("class", "notWritable");
 		complexConfig.addInitParameter("unknownParam", "someValue");
-		simpleDispatcherServlet = new DispatcherServlet();
-		simpleDispatcherServlet.setContextClass(SimpleWebApplicationContext.class);
-		simpleDispatcherServlet.init(servletConfig);
 		complexDispatcherServlet = new DispatcherServlet();
 		complexDispatcherServlet.setContextClass(ComplexWebApplicationContext.class);
 		complexDispatcherServlet.setNamespace("test");
@@ -165,7 +167,6 @@ public class DispatcherServletTests {
 		request.addUserRole("role1");
 		MockHttpServletResponse response = new MockHttpServletResponse();
 		complexDispatcherServlet.service(request, response);
-
 		assertTrue("Not forwarded", response.getForwardedUrl() == null);
 		assertTrue(request.getAttribute("test1") != null);
 		assertTrue(request.getAttribute("test1x") == null);

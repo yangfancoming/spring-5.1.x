@@ -59,7 +59,6 @@ final class TestDispatcherServlet extends DispatcherServlet {
 						"Outer request wrapper " + request.getClass().getName() + " has an AsyncContext,but it is not a MockAsyncContext, while the nested " +
 								mockRequest.getClass().getName() + " does not have an AsyncContext at all.");
 			}
-
 			CountDownLatch dispatchLatch = new CountDownLatch(1);
 			asyncContext.addDispatchHandler(dispatchLatch::countDown);
 			getMvcResult(request).setAsyncDispatchLatch(dispatchLatch);
@@ -117,5 +116,4 @@ final class TestDispatcherServlet extends DispatcherServlet {
 		mvcResult.setModelAndView(mav);
 		return mav;
 	}
-
 }

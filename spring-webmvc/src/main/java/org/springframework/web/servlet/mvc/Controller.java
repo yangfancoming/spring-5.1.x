@@ -12,8 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
  * Base Controller interface, representing a component that receives
  * {@code HttpServletRequest} and {@code HttpServletResponse}
  * instances just like a {@code HttpServlet} but is able to
- * participate in an MVC workflow. Controllers are comparable to the
- * notion of a Struts {@code Action}.
+ * participate in an MVC workflow. Controllers are comparable to the notion of a Struts {@code Action}.
  *
  * Any implementation of the Controller interface should be a
  * <i>reusable, thread-safe</i> class, capable of handling multiple
@@ -74,11 +73,8 @@ import org.springframework.web.servlet.ModelAndView;
  * In general, it is recommended to keep the dependencies as minimal as possible:
  * for example, if all you need is resource loading, implement ResourceLoaderAware only.
  * Alternatively, derive from the WebApplicationObjectSupport base class, which gives
- * you all those references through convenient accessors but requires an
- * ApplicationContext reference on initialization.
- *
+ * you all those references through convenient accessors but requires an ApplicationContext reference on initialization.
  * Controllers can optionally implement the {@link LastModified} interface.
-
  * @see LastModified
  * @see SimpleControllerHandlerAdapter
  * @see AbstractController
@@ -103,5 +99,4 @@ public interface Controller {
 	 */
 	@Nullable
 	ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception;
-
 }

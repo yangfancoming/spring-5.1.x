@@ -100,11 +100,9 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
     }
 
     /**
-     * Returns information about the servlet, such as 
-     * author, version, and copyright. 
-     * By default, this method returns an empty string.  Override this method
-     * to have it return a meaningful value.  See {@link
-     * Servlet#getServletInfo}.
+     * Returns information about the servlet, such as   author, version, and copyright.
+     * By default, this method returns an empty string.  Override this method to have it return a meaningful value.
+     *See {@link Servlet#getServletInfo}.
      * @return String 		information about this servlet, by default an empty string
      */
     @Override
@@ -112,20 +110,15 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
 	return "";
     }
 
-
     /**
-     * Called by the servlet container to indicate to a servlet that the
-     * servlet is being placed into service.  See {@link Servlet#init}.
-     *
+     * Called by the servlet container to indicate to a servlet that the  servlet is being placed into service.  See {@link Servlet#init}.
      * This implementation stores the {@link ServletConfig}
      * object it receives from the servlet container for later use.
      * When overriding this form of the method, call 
      * <code>super.init(config)</code>.
-     * @param config 			the <code>ServletConfig</code> object
-     *					that contains configuration
-     *					information for this servlet
+     * @param config 	the <code>ServletConfig</code> object that contains configuration information for this servlet
      * @exception ServletException    if an exception occurs that interrupts the servlet's normal operation
-     * @see 				UnavailableException
+     * @see UnavailableException
      */
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -133,12 +126,9 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
 		this.init();
 	}
 
-
     /**
      * A convenience method which can be overridden so that there's no need to call <code>super.init(config)</code>.
-     * Instead of overriding {@link #init(ServletConfig)}, simply override
-     * this method and it will be called by
-     * <code>GenericServlet.init(ServletConfig config)</code>.
+     * Instead of overriding {@link #init(ServletConfig)}, simply override  this method and it will be called by <code>GenericServlet.init(ServletConfig config)</code>.
      * The <code>ServletConfig</code> object can still be retrieved via {@link #getServletConfig}.
      * @exception ServletException    if an exception occurs that interrupts the servlet's normal operation
      */
@@ -157,12 +147,10 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
    
    
     /**
-     * Writes an explanatory message and a stack trace
-     * for a given <code>Throwable</code> exception
-     * to the servlet log file, prepended by the servlet's name.
+     * Writes an explanatory message and a stack trace for a given <code>Throwable</code> exception to the servlet log file, prepended by the servlet's name.
      * See {@link ServletContext#log(String, Throwable)}.
-     * @param message 		a <code>String</code> that describes the error or exception
-     * @param t			the <code>java.lang.Throwable</code> error or exception
+     * @param message a <code>String</code> that describes the error or exception
+     * @param t	 the <code>java.lang.Throwable</code> error or exception
      */
     public void log(String message, Throwable t) {
 	getServletContext().log(getServletName() + ": " + message, t);
@@ -171,8 +159,7 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
     
     /**
      * Called by the servlet container to allow the servlet to respond to a request.  See {@link Servlet#service}.
-     * This method is declared abstract so subclasses, such as
-     * <code>HttpServlet</code>, must override it.
+     * This method is declared abstract so subclasses, such as <code>HttpServlet</code>, must override it.
      * @param req 	the <code>ServletRequest</code> object that contains the client's request
      * @param res 	the <code>ServletResponse</code> object that will contain the servlet's response
      * @exception ServletException    if an exception occurs that interferes with the servlet's normal operation occurred
@@ -184,7 +171,7 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
     /**
      * Returns the name of this servlet instance.
      * See {@link ServletConfig#getServletName}.
-     * @return          the name of this servlet instance
+     * @return   the name of this servlet instance
      */
     @Override
 	public String getServletName() {
