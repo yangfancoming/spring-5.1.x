@@ -17,16 +17,10 @@ import org.springframework.util.Assert;
 import org.springframework.web.WebApplicationInitializer;
 
 /**
- * Base class for a {@link org.springframework.web.WebApplicationInitializer}
- * that installs a Spring Reactive Web Application on a Servlet container.
- *
- * Spring configuration is loaded and given to
- * {@link WebHttpHandlerBuilder#applicationContext WebHttpHandlerBuilder}
+ * Base class for a {@link org.springframework.web.WebApplicationInitializer} that installs a Spring Reactive Web Application on a Servlet container.
+ * Spring configuration is loaded and given to {@link WebHttpHandlerBuilder#applicationContext WebHttpHandlerBuilder}
  * which scans the context looking for specific beans and creates a reactive
- * {@link HttpHandler}. The resulting handler is installed as a Servlet through
- * the {@link ServletHttpHandlerAdapter}.
- *
- *
+ * {@link HttpHandler}. The resulting handler is installed as a Servlet through the {@link ServletHttpHandlerAdapter}.
  * @since 5.0.2
  */
 public abstract class AbstractReactiveWebInitializer implements WebApplicationInitializer {
@@ -53,10 +47,8 @@ public abstract class AbstractReactiveWebInitializer implements WebApplicationIn
 
 		ServletRegistration.Dynamic registration = servletContext.addServlet(servletName, servlet);
 		if (registration == null) {
-			throw new IllegalStateException("Failed to register servlet with name '" + servletName + "'. " +
-					"Check if there is another servlet registered under the same name.");
+			throw new IllegalStateException("Failed to register servlet with name '" + servletName + "'. " + "Check if there is another servlet registered under the same name.");
 		}
-
 		registration.setLoadOnStartup(1);
 		registration.addMapping(getServletMapping());
 		registration.setAsyncSupported(true);
@@ -83,10 +75,8 @@ public abstract class AbstractReactiveWebInitializer implements WebApplicationIn
 	}
 
 	/**
-	 * Specify {@link org.springframework.context.annotation.Configuration @Configuration}
-	 * and/or {@link org.springframework.stereotype.Component @Component}
-	 * classes that make up the application configuration. The config classes
-	 * are given to {@linkplain #createApplicationContext()}.
+	 * Specify {@link org.springframework.context.annotation.Configuration @Configuration} and/or {@link org.springframework.stereotype.Component @Component}
+	 * classes that make up the application configuration. The config classes are given to {@linkplain #createApplicationContext()}.
 	 */
 	protected abstract Class<?>[] getConfigClasses();
 
@@ -103,11 +93,9 @@ public abstract class AbstractReactiveWebInitializer implements WebApplicationIn
 	}
 
 	/**
-	 * Register a {@link ServletContextListener} that closes the given
-	 * application context when the servlet context is destroyed.
+	 * Register a {@link ServletContextListener} that closes the given application context when the servlet context is destroyed.
 	 * @param servletContext the servlet context to listen to
-	 * @param applicationContext the application context that is to be
-	 * closed when {@code servletContext} is destroyed
+	 * @param applicationContext the application context that is to be closed when {@code servletContext} is destroyed
 	 */
 	protected void registerCloseListener(ServletContext servletContext, ApplicationContext applicationContext) {
 		if (applicationContext instanceof ConfigurableApplicationContext) {
@@ -118,8 +106,7 @@ public abstract class AbstractReactiveWebInitializer implements WebApplicationIn
 	}
 
 	/**
-	 * Return the Servlet mapping to use. Only the default Servlet mapping '/'
-	 * and path-based Servlet mappings such as '/api/*' are supported.
+	 * Return the Servlet mapping to use. Only the default Servlet mapping '/' and path-based Servlet mappings such as '/api/*' are supported.
 	 * By default this is set to '/'.
 	 */
 	protected String getServletMapping() {
@@ -144,5 +131,4 @@ public abstract class AbstractReactiveWebInitializer implements WebApplicationIn
 			this.applicationContext.close();
 		}
 	}
-
 }

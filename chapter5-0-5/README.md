@@ -39,3 +39,23 @@
      ServletConfig:从一个servlet被实例化后，对任何客户端在任何时候访问有效，但仅对本servlet有效，一个servlet的ServletConfig对象不能被另一个servlet访问。
     
      ServletContext:对任何servlet，任何人在任何时间都有效，这才是真正全局的对象。
+     
+# <url-pattern>/*</url-pattern>  映射规则
+
+    对于如下的一些映射关系：
+    　　Servlet1 映射到 /abc/* 
+    　　Servlet2 映射到 /* 
+    　　Servlet3 映射到 /abc 
+    　　Servlet4 映射到 *.do 
+    问题：
+    　　当请求URL为“/abc/a.html”，“/abc/*”和“/*”都匹配，哪个servlet响应
+        　　Servlet引擎将调用Servlet1。
+    　　当请求URL为“/abc”时，“/abc/*”和“/abc”都匹配，哪个servlet响应
+        　　Servlet引擎将调用Servlet3。
+    　　当请求URL为“/abc/a.do”时，“/abc/*”和“*.do”都匹配，哪个servlet响应
+        　　Servlet引擎将调用Servlet1。
+    　　当请求URL为“/a.do”时，“/*”和“*.do”都匹配，哪个servlet响应
+        　　Servlet引擎将调用Servlet2。
+    　　当请求URL为“/xxx/yyy/a.do”时，“/*”和“*.do”都匹配，哪个servlet响应
+        　　Servlet引擎将调用Servlet2。
+    　　匹配的原则就是"谁长得更像就找谁"

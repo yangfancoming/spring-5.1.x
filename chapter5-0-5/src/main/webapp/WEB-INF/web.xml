@@ -40,9 +40,15 @@
 		<servlet-class>com.goat.chapter505.servlet.MyServlet</servlet-class>
 	</servlet>
 
-	<servlet-mapping> <!--sos url区分大小写！！！http://localhost:8080/servlet/Servlet2 即可断下-->
+	<servlet-mapping> <!--sos url区分大小写！！！http://localhost:8505/servlet1 即可断下-->
 		<servlet-name>myServlet</servlet-name>
 		<url-pattern>/servlet1</url-pattern>
+	</servlet-mapping>
+
+	<!-- 同一个Servlet可以被映射到多个URL上-->
+	<servlet-mapping>
+		<servlet-name>myServlet</servlet-name>
+		<url-pattern>/test</url-pattern>
 	</servlet-mapping>
 
 

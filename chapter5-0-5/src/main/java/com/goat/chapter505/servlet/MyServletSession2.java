@@ -24,5 +24,4 @@ public class MyServletSession2 extends HttpServlet {
 		resp.getWriter().println(sessionid);
 		httpSession.invalidate();// 手动强制session 失效！ 该方法通常用在 用户安全退出函数中
 	}
-
 }
