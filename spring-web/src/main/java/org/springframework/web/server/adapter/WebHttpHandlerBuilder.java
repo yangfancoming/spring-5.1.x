@@ -30,18 +30,11 @@ import org.springframework.web.server.session.WebSessionManager;
  * This builder has two purposes:
  *
  * One is to assemble a processing chain that consists of a target {@link WebHandler},
- * then decorated with a set of {@link WebFilter WebFilters}, then further decorated with
- * a set of {@link WebExceptionHandler WebExceptionHandlers}.
+ * then decorated with a set of {@link WebFilter WebFilters}, then further decorated with a set of {@link WebExceptionHandler WebExceptionHandlers}.
  *
- * The second purpose is to adapt the resulting processing chain to an {@link HttpHandler}:
- * the lowest-level reactive HTTP handling abstraction which can then be used with any of the
- * supported runtimes. The adaptation is done with the help of {@link HttpWebHandlerAdapter}.
- *
- * The processing chain can be assembled manually via builder methods, or detected from
- * a Spring {@link ApplicationContext} via {@link #applicationContext}, or a mix of both.
- *
- *
- * @author Sebastien Deleuze
+ * The second purpose is to adapt the resulting processing chain to an {@link HttpHandler}:the lowest-level reactive HTTP handling abstraction which can then be used with any of the supported runtimes.
+ * The adaptation is done with the help of {@link HttpWebHandlerAdapter}.
+ * The processing chain can be assembled manually via builder methods, or detected from a Spring {@link ApplicationContext} via {@link #applicationContext}, or a mix of both.
  * @since 5.0
  * @see HttpWebHandlerAdapter
  */
@@ -61,7 +54,6 @@ public final class WebHttpHandlerBuilder {
 
 	/** Well-known name for the ForwardedHeaderTransformer in the bean factory. */
 	public static final String FORWARDED_HEADER_TRANSFORMER_BEAN_NAME = "forwardedHeaderTransformer";
-
 
 	private final WebHandler webHandler;
 
@@ -83,7 +75,6 @@ public final class WebHttpHandlerBuilder {
 
 	@Nullable
 	private ForwardedHeaderTransformer forwardedHeaderTransformer;
-
 
 	/**
 	 * Private constructor to use when initialized from an ApplicationContext.
@@ -108,7 +99,6 @@ public final class WebHttpHandlerBuilder {
 		this.forwardedHeaderTransformer = other.forwardedHeaderTransformer;
 	}
 
-
 	/**
 	 * Static factory method to create a new builder instance.
 	 * @param webHandler the target handler for the request
@@ -119,29 +109,21 @@ public final class WebHttpHandlerBuilder {
 	}
 
 	/**
-	 * Static factory method to create a new builder instance by detecting beans
-	 * in an {@link ApplicationContext}. The following are detected:
+	 * Static factory method to create a new builder instance by detecting beans in an {@link ApplicationContext}. The following are detected:
 	 * <ul>
-	 * <li>{@link WebHandler} [1] -- looked up by the name
-	 * {@link #WEB_HANDLER_BEAN_NAME}.
+	 * <li>{@link WebHandler} [1] -- looked up by the name {@link #WEB_HANDLER_BEAN_NAME}.
 	 * <li>{@link WebFilter} [0..N] -- detected by type and ordered,
 	 * see {@link AnnotationAwareOrderComparator}.
-	 * <li>{@link WebExceptionHandler} [0..N] -- detected by type and
-	 * ordered.
-	 * <li>{@link WebSessionManager} [0..1] -- looked up by the name
-	 * {@link #WEB_SESSION_MANAGER_BEAN_NAME}.
-	 * <li>{@link ServerCodecConfigurer} [0..1] -- looked up by the name
-	 * {@link #SERVER_CODEC_CONFIGURER_BEAN_NAME}.
-	 * <li>{@link LocaleContextResolver} [0..1] -- looked up by the name
-	 * {@link #LOCALE_CONTEXT_RESOLVER_BEAN_NAME}.
+	 * <li>{@link WebExceptionHandler} [0..N] -- detected by type and ordered.
+	 * <li>{@link WebSessionManager} [0..1] -- looked up by the name {@link #WEB_SESSION_MANAGER_BEAN_NAME}.
+	 * <li>{@link ServerCodecConfigurer} [0..1] -- looked up by the name {@link #SERVER_CODEC_CONFIGURER_BEAN_NAME}.
+	 * <li>{@link LocaleContextResolver} [0..1] -- looked up by the name {@link #LOCALE_CONTEXT_RESOLVER_BEAN_NAME}.
 	 * </ul>
 	 * @param context the application context to use for the lookup
 	 * @return the prepared builder
 	 */
 	public static WebHttpHandlerBuilder applicationContext(ApplicationContext context) {
-		WebHttpHandlerBuilder builder = new WebHttpHandlerBuilder(
-				context.getBean(WEB_HANDLER_BEAN_NAME, WebHandler.class), context);
-
+		WebHttpHandlerBuilder builder = new WebHttpHandlerBuilder(context.getBean(WEB_HANDLER_BEAN_NAME, WebHandler.class), context);
 		List<WebFilter> webFilters = context
 				.getBeanProvider(WebFilter.class)
 				.orderedStream()
@@ -152,47 +134,31 @@ public final class WebHttpHandlerBuilder {
 				.orderedStream()
 				.collect(Collectors.toList());
 		builder.exceptionHandlers(handlers -> handlers.addAll(exceptionHandlers));
-
 		try {
-			builder.sessionManager(
-					context.getBean(WEB_SESSION_MANAGER_BEAN_NAME, WebSessionManager.class));
-		}
-		catch (NoSuchBeanDefinitionException ex) {
+			builder.sessionManager(context.getBean(WEB_SESSION_MANAGER_BEAN_NAME, WebSessionManager.class));
+		}catch (NoSuchBeanDefinitionException ex) {
 			// Fall back on default
 		}
-
 		try {
-			builder.codecConfigurer(
-					context.getBean(SERVER_CODEC_CONFIGURER_BEAN_NAME, ServerCodecConfigurer.class));
-		}
-		catch (NoSuchBeanDefinitionException ex) {
+			builder.codecConfigurer(context.getBean(SERVER_CODEC_CONFIGURER_BEAN_NAME, ServerCodecConfigurer.class));
+		}catch (NoSuchBeanDefinitionException ex) {
 			// Fall back on default
 		}
-
 		try {
-			builder.localeContextResolver(
-					context.getBean(LOCALE_CONTEXT_RESOLVER_BEAN_NAME, LocaleContextResolver.class));
-		}
-		catch (NoSuchBeanDefinitionException ex) {
+			builder.localeContextResolver(context.getBean(LOCALE_CONTEXT_RESOLVER_BEAN_NAME, LocaleContextResolver.class));
+		}catch (NoSuchBeanDefinitionException ex) {
 			// Fall back on default
 		}
-
 		try {
-			builder.localeContextResolver(
-					context.getBean(LOCALE_CONTEXT_RESOLVER_BEAN_NAME, LocaleContextResolver.class));
-		}
-		catch (NoSuchBeanDefinitionException ex) {
+			builder.localeContextResolver(context.getBean(LOCALE_CONTEXT_RESOLVER_BEAN_NAME, LocaleContextResolver.class));
+		}catch (NoSuchBeanDefinitionException ex) {
 			// Fall back on default
 		}
-
 		try {
-			builder.forwardedHeaderTransformer(
-					context.getBean(FORWARDED_HEADER_TRANSFORMER_BEAN_NAME, ForwardedHeaderTransformer.class));
-		}
-		catch (NoSuchBeanDefinitionException ex) {
+			builder.forwardedHeaderTransformer(context.getBean(FORWARDED_HEADER_TRANSFORMER_BEAN_NAME, ForwardedHeaderTransformer.class));
+		}catch (NoSuchBeanDefinitionException ex) {
 			// Fall back on default
 		}
-
 		return builder;
 	}
 
@@ -233,7 +199,6 @@ public final class WebHttpHandlerBuilder {
 				})
 				.filter(filter -> !(filter instanceof ForwardedHeaderTransformer))
 				.collect(Collectors.toList());
-
 		this.filters.clear();
 		this.filters.addAll(filtersToUse);
 	}
@@ -259,8 +224,7 @@ public final class WebHttpHandlerBuilder {
 	}
 
 	/**
-	 * Configure the {@link WebSessionManager} to set on the
-	 * {@link ServerWebExchange WebServerExchange}.
+	 * Configure the {@link WebSessionManager} to set on the {@link ServerWebExchange WebServerExchange}.
 	 * By default {@link DefaultWebSessionManager} is used.
 	 * @param manager the session manager
 	 * @see HttpWebHandlerAdapter#setSessionManager(WebSessionManager)
@@ -271,8 +235,7 @@ public final class WebHttpHandlerBuilder {
 	}
 
 	/**
-	 * Whether a {@code WebSessionManager} is configured or not, either detected from an
-	 * {@code ApplicationContext} or explicitly configured via {@link #sessionManager}.
+	 * Whether a {@code WebSessionManager} is configured or not, either detected from an {@code ApplicationContext} or explicitly configured via {@link #sessionManager}.
 	 * @since 5.0.9
 	 */
 	public boolean hasSessionManager() {
@@ -299,8 +262,7 @@ public final class WebHttpHandlerBuilder {
 	}
 
 	/**
-	 * Configure the {@link LocaleContextResolver} to set on the
-	 * {@link ServerWebExchange WebServerExchange}.
+	 * Configure the {@link LocaleContextResolver} to set on the {@link ServerWebExchange WebServerExchange}.
 	 * @param localeContextResolver the locale context resolver
 	 */
 	public WebHttpHandlerBuilder localeContextResolver(LocaleContextResolver localeContextResolver) {
@@ -318,8 +280,7 @@ public final class WebHttpHandlerBuilder {
 	}
 
 	/**
-	 * Configure the {@link ForwardedHeaderTransformer} for extracting and/or
-	 * removing forwarded headers.
+	 * Configure the {@link ForwardedHeaderTransformer} for extracting and/or removing forwarded headers.
 	 * @param transformer the transformer
 	 * @since 5.1
 	 */
@@ -330,14 +291,12 @@ public final class WebHttpHandlerBuilder {
 
 	/**
 	 * Whether a {@code ForwardedHeaderTransformer} is configured or not, either
-	 * detected from an {@code ApplicationContext} or explicitly configured via
-	 * {@link #forwardedHeaderTransformer(ForwardedHeaderTransformer)}.
+	 * detected from an {@code ApplicationContext} or explicitly configured via {@link #forwardedHeaderTransformer(ForwardedHeaderTransformer)}.
 	 * @since 5.1
 	 */
 	public boolean hasForwardedHeaderTransformer() {
 		return (this.forwardedHeaderTransformer != null);
 	}
-
 
 	/**
 	 * Build the {@link HttpHandler}.
@@ -346,7 +305,6 @@ public final class WebHttpHandlerBuilder {
 
 		WebHandler decorated = new FilteringWebHandler(this.webHandler, this.filters);
 		decorated = new ExceptionHandlingWebHandler(decorated,  this.exceptionHandlers);
-
 		HttpWebHandlerAdapter adapted = new HttpWebHandlerAdapter(decorated);
 		if (this.sessionManager != null) {
 			adapted.setSessionManager(this.sessionManager);
@@ -364,7 +322,6 @@ public final class WebHttpHandlerBuilder {
 			adapted.setApplicationContext(this.applicationContext);
 		}
 		adapted.afterPropertiesSet();
-
 		return adapted;
 	}
 
@@ -376,5 +333,4 @@ public final class WebHttpHandlerBuilder {
 	public WebHttpHandlerBuilder clone() {
 		return new WebHttpHandlerBuilder(this);
 	}
-
 }

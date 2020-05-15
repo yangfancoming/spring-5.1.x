@@ -95,10 +95,8 @@ public class SpringServletContainerInitializer implements ServletContainerInitia
 		List<WebApplicationInitializer> initializers = new LinkedList<>();
 		if (webAppInitializerClasses != null) {
 			for (Class<?> waiClass : webAppInitializerClasses) {
-				// Be defensive: Some servlet containers provide us with invalid classes,
-				// no matter what @HandlesTypes says...
-				if (!waiClass.isInterface() && !Modifier.isAbstract(waiClass.getModifiers()) &&
-						WebApplicationInitializer.class.isAssignableFrom(waiClass)) {
+				// Be defensive: Some servlet containers provide us with invalid classes, no matter what @HandlesTypes says...
+				if (!waiClass.isInterface() && !Modifier.isAbstract(waiClass.getModifiers()) && WebApplicationInitializer.class.isAssignableFrom(waiClass)) {
 					try {
 						initializers.add((WebApplicationInitializer)ReflectionUtils.accessibleConstructor(waiClass).newInstance());
 					}catch (Throwable ex) {

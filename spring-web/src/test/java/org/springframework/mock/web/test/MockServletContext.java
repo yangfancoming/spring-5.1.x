@@ -674,5 +674,4 @@ public class MockServletContext implements ServletContext {
 	public String getVirtualServerName() {
 		throw new UnsupportedOperationException();
 	}
-
 }

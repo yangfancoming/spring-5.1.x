@@ -32,11 +32,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Adapt {@link HttpHandler} to an {@link HttpServlet} using Servlet Async support
- * and Servlet 3.1 non-blocking I/O.
- *
- * @author Arjen Poutsma
- *
+ * Adapt {@link HttpHandler} to an {@link HttpServlet} using Servlet Async support and Servlet 3.1 non-blocking I/O.
  * @since 5.0
  * @see org.springframework.web.server.adapter.AbstractReactiveWebInitializer
  */
@@ -48,7 +44,6 @@ public class ServletHttpHandlerAdapter implements Servlet {
 	private static final int DEFAULT_BUFFER_SIZE = 8192;
 
 	private static final String WRITE_ERROR_ATTRIBUTE_NAME = ServletHttpHandlerAdapter.class.getName() + ".ERROR";
-
 
 	private final HttpHandler httpHandler;
 
@@ -64,7 +59,6 @@ public class ServletHttpHandlerAdapter implements Servlet {
 		Assert.notNull(httpHandler, "HttpHandler must not be null");
 		this.httpHandler = httpHandler;
 	}
-
 
 	/**
 	 * Set the size of the input buffer used for reading in bytes.
@@ -83,10 +77,8 @@ public class ServletHttpHandlerAdapter implements Servlet {
 	}
 
 	/**
-	 * Return the Servlet path under which the Servlet is deployed by checking
-	 * the Servlet registration from {@link #init(ServletConfig)}.
-	 * @return the path, or an empty string if the Servlet is deployed without
-	 * a prefix (i.e. "/" or "/*"), or {@code null} if this method is invoked
+	 * Return the Servlet path under which the Servlet is deployed by checking the Servlet registration from {@link #init(ServletConfig)}.
+	 * @return the path, or an empty string if the Servlet is deployed without a prefix (i.e. "/" or "/*"), or {@code null} if this method is invoked
 	 * before the {@link #init(ServletConfig)} Servlet container callback.
 	 */
 	@Nullable
@@ -114,9 +106,7 @@ public class ServletHttpHandlerAdapter implements Servlet {
 	private String getServletPath(ServletConfig config) {
 		String name = config.getServletName();
 		ServletRegistration registration = config.getServletContext().getServletRegistration(name);
-		if (registration == null) {
-			throw new IllegalStateException("ServletRegistration not found for Servlet '" + name + "'");
-		}
+		if (registration == null) throw new IllegalStateException("ServletRegistration not found for Servlet '" + name + "'");
 
 		Collection<String> mappings = registration.getMappings();
 		if (mappings.size() == 1) {
@@ -126,17 +116,12 @@ public class ServletHttpHandlerAdapter implements Servlet {
 			}
 			if (mapping.endsWith("/*")) {
 				String path = mapping.substring(0, mapping.length() - 2);
-				if (!path.isEmpty() && logger.isDebugEnabled()) {
-					logger.debug("Found servlet mapping prefix '" + path + "' for '" + name + "'");
-				}
+				if (!path.isEmpty() && logger.isDebugEnabled()) logger.debug("Found servlet mapping prefix '" + path + "' for '" + name + "'");
 				return path;
 			}
 		}
-
-		throw new IllegalArgumentException("Expected a single Servlet mapping: " +
-				"either the default Servlet mapping (i.e. '/'), " +
-				"or a path based mapping (e.g. '/*', '/foo/*'). " +
-				"Actual mappings: " + mappings + " for Servlet '" + name + "'");
+		throw new IllegalArgumentException("Expected a single Servlet mapping: either the default Servlet mapping (i.e. '/'), " +
+				"or a path based mapping (e.g. '/*', '/foo/*'). Actual mappings: " + mappings + " for Servlet '" + name + "'");
 	}
 
 
@@ -151,15 +136,11 @@ public class ServletHttpHandlerAdapter implements Servlet {
 		// Start async before Read/WriteListener registration
 		AsyncContext asyncContext = request.startAsync();
 		asyncContext.setTimeout(-1);
-
 		ServletServerHttpRequest httpRequest;
 		try {
 			httpRequest = createRequest(((HttpServletRequest) request), asyncContext);
-		}
-		catch (URISyntaxException ex) {
-			if (logger.isDebugEnabled()) {
-				logger.debug("Failed to get request  URL: " + ex.getMessage());
-			}
+		}catch (URISyntaxException ex) {
+			if (logger.isDebugEnabled()) logger.debug("Failed to get request  URL: " + ex.getMessage());
 			((HttpServletResponse) response).setStatus(400);
 			asyncContext.complete();
 			return;
@@ -178,17 +159,12 @@ public class ServletHttpHandlerAdapter implements Servlet {
 		this.httpHandler.handle(httpRequest, httpResponse).subscribe(subscriber);
 	}
 
-	protected ServletServerHttpRequest createRequest(HttpServletRequest request, AsyncContext context)
-			throws IOException, URISyntaxException {
-
+	protected ServletServerHttpRequest createRequest(HttpServletRequest request, AsyncContext context) throws IOException, URISyntaxException {
 		Assert.notNull(this.servletPath, "Servlet path is not initialized");
-		return new ServletServerHttpRequest(
-				request, context, this.servletPath, getDataBufferFactory(), getBufferSize());
+		return new ServletServerHttpRequest(request, context, this.servletPath, getDataBufferFactory(), getBufferSize());
 	}
 
-	protected ServletServerHttpResponse createResponse(HttpServletResponse response,
-			AsyncContext context, ServletServerHttpRequest request) throws IOException {
-
+	protected ServletServerHttpResponse createResponse(HttpServletResponse response,AsyncContext context, ServletServerHttpRequest request) throws IOException {
 		return new ServletServerHttpResponse(response, context, getDataBufferFactory(), getBufferSize(), request);
 	}
 
@@ -207,18 +183,15 @@ public class ServletHttpHandlerAdapter implements Servlet {
 	public void destroy() {
 	}
 
-
 	/**
-	 * We cannot combine ERROR_LISTENER and HandlerResultSubscriber due to:
-	 * https://issues.jboss.org/browse/WFLY-8515.
+	 * We cannot combine ERROR_LISTENER and HandlerResultSubscriber due to:  https://issues.jboss.org/browse/WFLY-8515.
 	 */
 	private static void runIfAsyncNotComplete(AsyncContext asyncContext, AtomicBoolean isCompleted, Runnable task) {
 		try {
 			if (asyncContext.getRequest().isAsyncStarted() && isCompleted.compareAndSet(false, true)) {
 				task.run();
 			}
-		}
-		catch (IllegalStateException ex) {
+		}catch (IllegalStateException ex) {
 			// Ignore: AsyncContext recycled and should not be used
 			// e.g. TIMEOUT_LISTENER (above) may have completed the AsyncContext
 		}
@@ -262,7 +235,6 @@ public class ServletHttpHandlerAdapter implements Servlet {
 		}
 	}
 
-
 	private class HandlerResultSubscriber implements Subscriber<Void> {
 
 		private final AsyncContext asyncContext;
@@ -271,9 +243,7 @@ public class ServletHttpHandlerAdapter implements Servlet {
 
 		private final String logPrefix;
 
-		public HandlerResultSubscriber(
-				AsyncContext asyncContext, AtomicBoolean isCompleted, ServletServerHttpRequest httpRequest) {
-
+		public HandlerResultSubscriber(AsyncContext asyncContext, AtomicBoolean isCompleted, ServletServerHttpRequest httpRequest) {
 			this.asyncContext = asyncContext;
 			this.isCompleted = isCompleted;
 			this.logPrefix = httpRequest.getLogPrefix();
@@ -297,14 +267,12 @@ public class ServletHttpHandlerAdapter implements Servlet {
 					logger.trace(this.logPrefix + "Dispatch to container, to raise the error on servlet thread");
 					this.asyncContext.getRequest().setAttribute(WRITE_ERROR_ATTRIBUTE_NAME, ex);
 					this.asyncContext.dispatch();
-				}
-				else {
+				}else {
 					try {
 						logger.trace(this.logPrefix + "Setting ServletResponse status to 500 Server Error");
 						this.asyncContext.getResponse().resetBuffer();
 						((HttpServletResponse) this.asyncContext.getResponse()).setStatus(500);
-					}
-					finally {
+					}finally {
 						this.asyncContext.complete();
 					}
 				}
@@ -317,5 +285,4 @@ public class ServletHttpHandlerAdapter implements Servlet {
 			runIfAsyncNotComplete(this.asyncContext, this.isCompleted, this.asyncContext::complete);
 		}
 	}
-
 }

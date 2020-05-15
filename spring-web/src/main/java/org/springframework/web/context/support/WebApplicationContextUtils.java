@@ -136,8 +136,7 @@ public abstract class WebApplicationContextUtils {
 	}
 
 	/**
-	 * Register web-specific scopes ("request", "session", "globalSession", "application")
-	 * with the given BeanFactory, as used by the WebApplicationContext.
+	 * Register web-specific scopes ("request", "session", "globalSession", "application") with the given BeanFactory, as used by the WebApplicationContext.
 	 * @param beanFactory the BeanFactory to configure
 	 * @param sc the ServletContext that we're running within
 	 */
@@ -170,8 +169,7 @@ public abstract class WebApplicationContextUtils {
 	}
 
 	/**
-	 * Register web-specific environment beans ("contextParameters", "contextAttributes")
-	 * with the given BeanFactory, as used by the WebApplicationContext.
+	 * Register web-specific environment beans ("contextParameters", "contextAttributes") with the given BeanFactory, as used by the WebApplicationContext.
 	 * @param bf the BeanFactory to configure
 	 * @param servletContext the ServletContext that we're running within
 	 * @param servletConfig the ServletConfig
@@ -217,8 +215,7 @@ public abstract class WebApplicationContextUtils {
 
 	/**
 	 * Convenient variant of {@link #initServletPropertySources(MutablePropertySources,
-	 * ServletContext, ServletConfig)} that always provides {@code null} for the
-	 * {@link ServletConfig} parameter.
+	 * ServletContext, ServletConfig)} that always provides {@code null} for the {@link ServletConfig} parameter.
 	 * @see #initServletPropertySources(MutablePropertySources, ServletContext, ServletConfig)
 	 */
 	public static void initServletPropertySources(MutablePropertySources propertySources, ServletContext servletContext) {
@@ -299,12 +296,10 @@ public abstract class WebApplicationContextUtils {
 	// Factory that exposes the current session object on demand.
 	@SuppressWarnings("serial")
 	private static class SessionObjectFactory implements ObjectFactory<HttpSession>, Serializable {
-
 		@Override
 		public HttpSession getObject() {
 			return currentRequestAttributes().getRequest().getSession();
 		}
-
 		@Override
 		public String toString() {
 			return "Current HttpSession";
@@ -314,13 +309,11 @@ public abstract class WebApplicationContextUtils {
 	//  Factory that exposes the current WebRequest object on demand.
 	@SuppressWarnings("serial")
 	private static class WebRequestObjectFactory implements ObjectFactory<WebRequest>, Serializable {
-
 		@Override
 		public WebRequest getObject() {
 			ServletRequestAttributes requestAttr = currentRequestAttributes();
 			return new ServletWebRequest(requestAttr.getRequest(), requestAttr.getResponse());
 		}
-
 		@Override
 		public String toString() {
 			return "Current ServletWebRequest";

@@ -19,8 +19,8 @@ import org.springframework.web.WebApplicationInitializer;
 /**
  * Base class for a {@link org.springframework.web.WebApplicationInitializer} that installs a Spring Reactive Web Application on a Servlet container.
  * Spring configuration is loaded and given to {@link WebHttpHandlerBuilder#applicationContext WebHttpHandlerBuilder}
- * which scans the context looking for specific beans and creates a reactive
- * {@link HttpHandler}. The resulting handler is installed as a Servlet through the {@link ServletHttpHandlerAdapter}.
+ * which scans the context looking for specific beans and creates a reactive {@link HttpHandler}.
+ * The resulting handler is installed as a Servlet through the {@link ServletHttpHandlerAdapter}.
  * @since 5.0.2
  */
 public abstract class AbstractReactiveWebInitializer implements WebApplicationInitializer {
@@ -29,7 +29,6 @@ public abstract class AbstractReactiveWebInitializer implements WebApplicationIn
 	 * The default servlet name to use. See {@link #getServletName}.
 	 */
 	public static final String DEFAULT_SERVLET_NAME = "http-handler-adapter";
-
 
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
@@ -63,8 +62,7 @@ public abstract class AbstractReactiveWebInitializer implements WebApplicationIn
 	}
 
 	/**
-	 * Return the Spring configuration that contains application beans including
-	 * the ones detected by {@link WebHttpHandlerBuilder#applicationContext}.
+	 * Return the Spring configuration that contains application beans including the ones detected by {@link WebHttpHandlerBuilder#applicationContext}.
 	 */
 	protected ApplicationContext createApplicationContext() {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
@@ -112,7 +110,6 @@ public abstract class AbstractReactiveWebInitializer implements WebApplicationIn
 	protected String getServletMapping() {
 		return "/";
 	}
-
 
 	private static class ServletContextDestroyedListener implements ServletContextListener {
 
