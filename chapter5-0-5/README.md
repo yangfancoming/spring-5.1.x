@@ -59,3 +59,7 @@
     　　当请求URL为“/xxx/yyy/a.do”时，“/*”和“*.do”都匹配，哪个servlet响应
         　　Servlet引擎将调用Servlet2。
     　　匹配的原则就是"谁长得更像就找谁"
+    
+    
+    缺省Servlet
+    　　如果某个Servlet的映射路径仅仅为一个正斜杠（/），那么这个Servlet就成为当前Web应用程序的缺省Servlet。

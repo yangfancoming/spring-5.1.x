@@ -3,33 +3,36 @@
   <ID>JAVA</ID>
   <OriginalElement>org.springframework.core.io.Resource</OriginalElement>
   <nodes>
-    <node x="0.0" y="79.0">javax.servlet.ServletRequestListener</node>
-    <node x="216.0" y="0.0">java.util.EventListener</node>
-    <node x="198.0" y="79.0">javax.servlet.http.HttpSessionListener</node>
+    <node x="198.0" y="79.0">javax.servlet.ServletRequestListener</node>
+    <node x="225.0" y="0.0">java.util.EventListener</node>
+    <node x="396.0" y="79.0">javax.servlet.http.HttpSessionListener</node>
     <node x="0.0" y="153.0">javax.servlet.Servlet</node>
-    <node x="378.0" y="79.0">javax.servlet.ServletContextListener</node>
+    <node x="133.0" y="153.0">javax.servlet.Filter</node>
+    <node x="0.0" y="79.0">javax.servlet.ServletContextListener</node>
   </nodes>
   <notes />
   <edges>
     <edge source="javax.servlet.http.HttpSessionListener" target="java.util.EventListener">
       <point x="0.0" y="-14.5" />
-      <point x="0.0" y="14.5" />
+      <point x="476.0" y="54.0" />
+      <point x="328.33333333333337" y="54.0" />
+      <point x="41.33333333333337" y="14.5" />
     </edge>
     <edge source="javax.servlet.ServletContextListener" target="java.util.EventListener">
       <point x="0.0" y="-14.5" />
-      <point x="467.0" y="54.0" />
-      <point x="319.33333333333337" y="54.0" />
-      <point x="41.33333333333337" y="14.5" />
+      <point x="89.0" y="54.0" />
+      <point x="245.66666666666666" y="54.0" />
+      <point x="-41.33333333333334" y="14.5" />
     </edge>
     <edge source="javax.servlet.ServletRequestListener" target="java.util.EventListener">
       <point x="0.0" y="-14.5" />
-      <point x="89.0" y="54.0" />
-      <point x="236.66666666666666" y="54.0" />
-      <point x="-41.33333333333334" y="14.5" />
+      <point x="0.0" y="14.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="510.0" y="28.5" />
-  <SelectedNodes />
+  <settings layout="Hierarchic Group" zoom="1.0" x="510.0" y="29.0" />
+  <SelectedNodes>
+    <node>javax.servlet.Filter</node>
+  </SelectedNodes>
   <Categories />
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>

@@ -15,13 +15,11 @@ import java.util.Set;
  * Defines a set of methods that a servlet uses to communicate with its
  * servlet container, for example, to get the MIME type of a file,dispatch requests, or write to a log file.
  *
- * There is one context per "web application" per Java Virtual Machine.  (A
- * "web application" is a collection of servlets and content installed under a
+ * There is one context per "web application" per Java Virtual Machine.  (A "web application" is a collection of servlets and content installed under a
  * specific subset of the server's URL namespace such as <code>/catalog</code> and possibly installed via a <code>.war</code> file.)
  *
- * In the case of a web application marked "distributed" in its deployment descriptor, there will
- * be one context instance for each virtual machine.  In this situation, the
- * context cannot be used as a location to share global information (because the information won't be truly global).
+ * In the case of a web application marked "distributed" in its deployment descriptor, there will be one context instance for each virtual machine.
+ * In this situation, the context cannot be used as a location to share global information (because the information won't be truly global).
  *  Use an external resource like a database instead.
  * The <code>ServletContext</code> object is contained within the {@link ServletConfig} object, which the Web server provides the servlet when the servlet is initialized.
  * @see 	Servlet#getServletConfig
@@ -49,7 +47,6 @@ public interface ServletContext {
 
     /**
      * Returns the context path of the web application.
-     *
      * The context path is the portion of the request URI that is used
      * to select the context of the request. The context path always comes
      * first in a request URI. If this context is the "root" context
@@ -90,11 +87,8 @@ public interface ServletContext {
      */
     public int getMajorVersion();
 
-
     /**
-     * Returns the minor version of the Servlet API that this
-     * servlet container supports. All implementations that comply
-     * with Version 4.0 must have this method return the integer 0.
+     * Returns the minor version of the Servlet API that this servlet container supports. All implementations that comply with Version 4.0 must have this method return the integer 0.
      * @return 0
      */
     public int getMinorVersion();
@@ -121,15 +115,12 @@ public interface ServletContext {
      * The value returned may be different from {@link #getMinorVersion},
      * which returns the minor version of the Servlet specification supported by the Servlet container.
      *
-     * @return the minor version of the Servlet specification that the
-     * application represented by this ServletContext is based on
-     *
+     * @return the minor version of the Servlet specification that the application represented by this ServletContext is based on
      * @throws UnsupportedOperationException if this ServletContext was
      * passed to the {@link ServletContextListener#contextInitialized} method
      * of a {@link ServletContextListener} that was neither declared in
      * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
      * with {@link javax.servlet.annotation.WebListener}
-     *
      * @since Servlet 3.0
      */
     public int getEffectiveMinorVersion();
@@ -476,9 +467,7 @@ public interface ServletContext {
 
 
     /**
-     * Returns the name and version of the servlet container on which
-     * the servlet is running.
-     *
+     * Returns the name and version of the servlet container on which the servlet is running.
      * The form of the returned string is
      * <i>servername</i>/<i>versionnumber</i>.
      * For example, the JavaServer Web Development Kit may return the string
@@ -487,8 +476,6 @@ public interface ServletContext {
      * The servlet container may return other optional information
      * after the primary string in parentheses, for example,
      * <code>JavaServer Web Dev Kit/1.0 (JDK 1.1.6; Windows NT 4.0 x86)</code>.
-     *
-     *
      * @return 		a <code>String</code> containing at least the
      *			servlet container name and version number
      */
@@ -502,9 +489,7 @@ public interface ServletContext {
      *
      * This method can make available configuration information useful
      * to an entire web application.  For example, it can provide a
-     * webmaster's email address or the name of a system that holds
-     * critical data.
-     *
+     * webmaster's email address or the name of a system that holds critical data.
      * @param	name	a <code>String</code> containing the name of the
      *                  parameter whose value is requested
      *
@@ -814,14 +799,11 @@ public interface ServletContext {
      * Instantiates the given Servlet class.
      *
      * The returned Servlet instance may be further customized before it
-     * is registered with this ServletContext via a call to
-     * {@link #addServlet(String,Servlet)}.
+     * is registered with this ServletContext via a call to {@link #addServlet(String,Servlet)}.
      *
-     * The given Servlet class must define a zero argument constructor,
-     * which is used to instantiate it.
+     * The given Servlet class must define a zero argument constructor, which is used to instantiate it.
      *
-     * This method introspects the given <tt>clazz</tt> for
-     * the following annotations:
+     * This method introspects the given <tt>clazz</tt> for the following annotations:
      * {@link javax.servlet.annotation.ServletSecurity},
      * {@link javax.servlet.annotation.MultipartConfig},
      * <tt>javax.annotation.security.RunAs</tt>, and
@@ -1048,8 +1030,7 @@ public interface ServletContext {
      *
      * @return the new Filter instance
      *
-     * @throws ServletException if the given <tt>clazz</tt> fails to be
-     * instantiated
+     * @throws ServletException if the given <tt>clazz</tt> fails to be instantiated
      *
      * @throws UnsupportedOperationException if this ServletContext was
      * passed to the {@link ServletContextListener#contextInitialized} method
@@ -1064,20 +1045,14 @@ public interface ServletContext {
 
 
     /**
-     * Gets the FilterRegistration corresponding to the filter with the
-     * given <tt>filterName</tt>.
-     *
+     * Gets the FilterRegistration corresponding to the filter with the given <tt>filterName</tt>.
      * @param filterName the name of a filter
      * @return the (complete or preliminary) FilterRegistration for the
-     * filter with the given <tt>filterName</tt>, or null if no
-     * FilterRegistration exists under that name
-     *
+     * filter with the given <tt>filterName</tt>, or null if no FilterRegistration exists under that name
      * @throws UnsupportedOperationException if this ServletContext was
      * passed to the {@link ServletContextListener#contextInitialized} method
      * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
-     *
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with {@link javax.servlet.annotation.WebListener}
      * @since Servlet 3.0
      */
     public FilterRegistration getFilterRegistration(String filterName);
@@ -1085,50 +1060,37 @@ public interface ServletContext {
 
     /**
      * Gets a (possibly empty) Map of the FilterRegistration
-     * objects (keyed by filter name) corresponding to all filters
-     * registered with this ServletContext.
+     * objects (keyed by filter name) corresponding to all filters registered with this ServletContext.
      *
      * The returned Map includes the FilterRegistration objects
      * corresponding to all declared and annotated filters, as well as the
-     * FilterRegistration objects corresponding to all filters that have
-     * been added via one of the <tt>addFilter</tt> methods.
+     * FilterRegistration objects corresponding to all filters that have been added via one of the <tt>addFilter</tt> methods.
      *
-     * Any changes to the returned Map must not affect this
-     * ServletContext.
+     * Any changes to the returned Map must not affect this ServletContext.
      *
      * @return Map of the (complete and preliminary) FilterRegistration
-     * objects corresponding to all filters currently registered with this
-     * ServletContext
+     * objects corresponding to all filters currently registered with this ServletContext
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
+     * @throws UnsupportedOperationException if this ServletContext was passed to the {@link ServletContextListener#contextInitialized} method
      * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
-     *
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with {@link javax.servlet.annotation.WebListener}
      * @since Servlet 3.0
      */
     public Map<String, ? extends FilterRegistration> getFilterRegistrations();
 
 
     /**
-     * Gets the {@link SessionCookieConfig} object through which various
-     * properties of the session tracking cookies created on behalf of this
+     * Gets the {@link SessionCookieConfig} object through which various properties of the session tracking cookies created on behalf of this
      * <tt>ServletContext</tt> may be configured.
      *
-     * Repeated invocations of this method will return the same
-     * <tt>SessionCookieConfig</tt> instance.
+     * Repeated invocations of this method will return the same <tt>SessionCookieConfig</tt> instance.
      *
      * @return the <tt>SessionCookieConfig</tt> object through which
-     * various properties of the session tracking cookies created on
-     * behalf of this <tt>ServletContext</tt> may be configured
+     * various properties of the session tracking cookies created on behalf of this <tt>ServletContext</tt> may be configured
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
+     * @throws UnsupportedOperationException if this ServletContext was passed to the {@link ServletContextListener#contextInitialized} method
      * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
-     *
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with {@link javax.servlet.annotation.WebListener}
      * @since Servlet 3.0
      */
     public SessionCookieConfig getSessionCookieConfig();
@@ -1139,21 +1101,15 @@ public interface ServletContext {
      * <tt>ServletContext</tt>.
      *
      * The given <tt>sessionTrackingModes</tt> replaces any
-     * session tracking modes set by a previous invocation of this
-     * method on this <tt>ServletContext</tt>.
+     * session tracking modes set by a previous invocation of this method on this <tt>ServletContext</tt>.
      *
-     * @param sessionTrackingModes the set of session tracking modes to
-     * become effective for this <tt>ServletContext</tt>
-     *
-     * @throws IllegalStateException if this ServletContext has already
-     * been initialized
+     * @param sessionTrackingModes the set of session tracking modes to become effective for this <tt>ServletContext</tt>
+     * @throws IllegalStateException if this ServletContext has already been initialized
      *
      * @throws UnsupportedOperationException if this ServletContext was
      * passed to the {@link ServletContextListener#contextInitialized} method
      * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
-     *
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with {@link javax.servlet.annotation.WebListener}
      * @throws IllegalArgumentException if <tt>sessionTrackingModes</tt>
      * specifies a combination of <tt>SessionTrackingMode.SSL</tt> with a
      * session tracking mode other than <tt>SessionTrackingMode.SSL</tt>,
@@ -1200,13 +1156,11 @@ public interface ServletContext {
      *
      * @return set of the session tracking modes in effect for this
      * <tt>ServletContext</tt>
-     *
      * @throws UnsupportedOperationException if this ServletContext was
      * passed to the {@link ServletContextListener#contextInitialized} method
      * of a {@link ServletContextListener} that was neither declared in
      * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
      * with {@link javax.servlet.annotation.WebListener}
-     *
      * @since Servlet 3.0
      */
     public Set<SessionTrackingMode> getEffectiveSessionTrackingModes();
@@ -1214,7 +1168,6 @@ public interface ServletContext {
 
     /**
      * Adds the listener with the given class name to this ServletContext.
-     *
      * The class with the given name will be loaded using the
      * classloader associated with the application represented by this
      * ServletContext, and must implement one or more of the following
@@ -1305,10 +1258,7 @@ public interface ServletContext {
      * an instance of any of the above interfaces, or if it is an instance
      * of {@link ServletContextListener} and this ServletContext was not
      * passed to {@link ServletContainerInitializer#onStartup}
-     *
-     * @throws IllegalStateException if this ServletContext has already
-     * been initialized
-     *
+     * @throws IllegalStateException if this ServletContext has already been initialized
      * @throws UnsupportedOperationException if this ServletContext was
      * passed to the {@link ServletContextListener#contextInitialized} method
      * of a {@link ServletContextListener} that was neither declared in

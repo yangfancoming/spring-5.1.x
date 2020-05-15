@@ -4,7 +4,6 @@ import java.lang.annotation.*;
 
 /**
  * This annotation is used to declare a WebListener.
- *
  * Any class annotated with WebListener must implement one or more of
  * the {@link javax.servlet.ServletContextListener}, 
  * {@link javax.servlet.ServletContextAttributeListener},
@@ -22,7 +21,6 @@ import java.lang.annotation.*;
 public @interface WebListener {
     /**
      * Description of the listener
-     *
      * @return description of the listener
      */
     String value() default "";
