@@ -420,7 +420,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	}
 
 	/**
-	 *  ApplicationContext 建立起来以后，其实我们是可以通过调用 refresh() 这个方法重建的，refresh() 会将原来的 ApplicationContext 销毁，然后再重新执行一次初始化操作。
+	 * 【Spring IOC 容器就此开始！】
+	 * ApplicationContext 建立起来以后，其实我们是可以通过调用 refresh() 这个方法重建的，refresh() 会将原来的 ApplicationContext 销毁，然后再重新执行一次初始化操作。
 	*/
 	@Override
 	public void refresh() throws BeansException, IllegalStateException {

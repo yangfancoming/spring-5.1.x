@@ -26,5 +26,4 @@ public interface ApplicationContextInitializer<C extends ConfigurableApplication
 	 * @param applicationContext the application to configure
 	 */
 	void initialize(C applicationContext);
-
 }

@@ -32,9 +32,8 @@ public class ContextLoaderListener extends ContextLoader implements ServletConte
 	public ContextLoaderListener() {}
 
 	/**
-	 * Create a new {@code ContextLoaderListener} with the given application context. This
-	 * constructor is useful in Servlet 3.0+ environments where instance-based
-	 * registration of listeners is possible through the {@link javax.servlet.ServletContext#addListener} API.
+	 * Create a new {@code ContextLoaderListener} with the given application context.
+	 * This constructor is useful in Servlet 3.0+ environments where instance-based registration of listeners is possible through the {@link javax.servlet.ServletContext#addListener} API.
 	 * The context may or may not yet be {@linkplain org.springframework.context.ConfigurableApplicationContext#refresh() refreshed}.
 	 * If it
 	 * (a) is an implementation of {@link ConfigurableWebApplicationContext} and

@@ -29,7 +29,6 @@ public class ServletWebRequestTests {
 
 	private ServletWebRequest request;
 
-
 	@Before
 	public void setup() {
 		servletRequest = new MockHttpServletRequest();

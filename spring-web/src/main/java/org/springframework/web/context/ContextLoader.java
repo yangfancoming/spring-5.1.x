@@ -195,8 +195,7 @@ public class ContextLoader {
 		try {
 			// Store context in local instance variable, to guarantee that it is available on ServletContext shutdown.
 			if (this.context == null) {
-				// 通过servlet配置创建一个WebApplicationContext对象
-				// 1.创建 WebApplicationContext
+				// 通过servlet配置创建一个WebApplicationContext对象 默认为 XmlWebApplicationContext
 				this.context = createWebApplicationContext(servletContext);
 			}
 			// 这里在createWebApplicationContext()方法中会保证创建的WebApplicationContext本质上是ConfigurableWebApplicationContext类型的，因而这里进行类型判断的时候是能够进入if分支的
@@ -253,21 +252,18 @@ public class ContextLoader {
 	 * 为当前类加载器实例化根WebApplicationContext,可以是默认上下文加载类或者自定义上下文加载类
 	 */
 	protected WebApplicationContext createWebApplicationContext(ServletContext sc) {
-		// 判断创建什么类型的容器，默认类型为 XmlWebApplicationContext
-		// 读取配置文件中配置的实现了WebApplicationContext接口的类
-		// 1.确定实例化WebApplicationContext所需的类
+		// 读取配置文件创建web容器，默认类型为 XmlWebApplicationContext
 		Class<?> contextClass = determineContextClass(sc);
 		// 判断读取到的类是否实现了ConfigurableWebApplicationContext接口，如果没实现则抛出异常
 		if (!ConfigurableWebApplicationContext.class.isAssignableFrom(contextClass)) {
 			throw new ApplicationContextException("Custom context class [" + contextClass.getName() + "] is not of type [" + ConfigurableWebApplicationContext.class.getName() + "]");
 		}
-		// 通过反射实例化WebApplicationContext对象
-		// 2.实例化得到的WebApplicationContext类
+		// 通过反射实例化 WebApplicationContext接口实现类
 		return (ConfigurableWebApplicationContext) BeanUtils.instantiateClass(contextClass);
 	}
 
 	/**
-	 *  返回WebApplicationContext（web应用上线文环境）接口的实现类的全限定名称，如果没有自定义，则默认返回XmlWebApplicationContext类
+	 *  根据配置文件情况 来决定WebApplicationContext接口的实现类的全限定名称，如果没有自定义，则默认返回XmlWebApplicationContext类
 	 * Return the WebApplicationContext implementation class to use, either the default XmlWebApplicationContext or a custom context class if specified.
 	 * @param servletContext current servlet context
 	 * @return the WebApplicationContext implementation class to use
@@ -312,20 +308,21 @@ public class ContextLoader {
 			// The application context id is still set to its original default value  -> assign a more useful id based on available information
 			String idParam = sc.getInitParameter(CONTEXT_ID_PARAM);
 			if (idParam != null) {
-				// 设置容器 id
+				// 设置容器 id  // 如果idParam已存在，wac id还是设置为原始值idParam
 				wac.setId(idParam);
 			}else {
-				// 用户未配置 contextId，则设置一个默认的容器 id
+				// 用户未配置 contextId，则设置一个默认的容器 id   // 根据可用信息分配一个更有用的ID
 				// Generate default id...
 				wac.setId(ConfigurableWebApplicationContext.APPLICATION_CONTEXT_ID_PREFIX + ObjectUtils.getDisplayString(sc.getContextPath()));
 			}
 		}
 		// 获取web.xml中配置的contextConfigLocation属性值，这里也就是我们前面配置的
 		// applicationContext.xml，在后面调用refresh()方法时会根据xml文件中的配置
-		// 初始化Spring的各个组件
+		// 初始化Spring的各个组件 // 将web容器上下文对象记录在Spring上下文中
 		wac.setServletContext(sc);
-		// 获取 contextConfigLocation 配置
+		// 获取 contextConfigLocation 配置  // 返回自定义Spring配置文件路径：如/WEB-INF/spring/applicationContext.xml
 		String configLocationParam = sc.getInitParameter(CONFIG_LOCATION_PARAM);
+		// 记录配置xml，可能有多个
 		if (configLocationParam != null) wac.setConfigLocation(configLocationParam);
 		// The wac environment's #initPropertySources will be called in any case when the context is refreshed;
 		// do it eagerly here to ensure servlet property sources are in place for use in any post-processing or initialization that occurs below prior to #refresh
@@ -338,7 +335,6 @@ public class ContextLoader {
 		// 对WebApplicationContext进行自定义
 		customizeContext(sc, wac);
 		// 这里refresh()方法用于读取上面声明的配置文件，并且初始化Spring的各个组件
-		// 刷新容器
 		wac.refresh();
 	}
 

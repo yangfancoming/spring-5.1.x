@@ -206,21 +206,18 @@ public abstract class ClassUtils {
 			Class<?> elementClass = forName(elementClassName, classLoader);
 			return Array.newInstance(elementClass, 0).getClass();
 		}
-
 		// "[Ljava.lang.String;" style arrays
 		if (name.startsWith(NON_PRIMITIVE_ARRAY_PREFIX) && name.endsWith(";")) {
 			String elementName = name.substring(NON_PRIMITIVE_ARRAY_PREFIX.length(), name.length() - 1);
 			Class<?> elementClass = forName(elementName, classLoader);
 			return Array.newInstance(elementClass, 0).getClass();
 		}
-
 		// "[[I" or "[[Ljava.lang.String;" style arrays
 		if (name.startsWith(INTERNAL_ARRAY_PREFIX)) {
 			String elementName = name.substring(INTERNAL_ARRAY_PREFIX.length());
 			Class<?> elementClass = forName(elementName, classLoader);
 			return Array.newInstance(elementClass, 0).getClass();
 		}
-
 		ClassLoader clToUse = classLoader;
 		if (clToUse == null) {
 			clToUse = getDefaultClassLoader();
