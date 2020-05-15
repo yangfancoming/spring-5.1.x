@@ -18,11 +18,7 @@ import org.springframework.web.util.WebUtils;
 
 /**
  * Servlet-based implementation of the {@link RequestAttributes} interface.
- *
- * Accesses objects from servlet request and HTTP session scope,
- * with no distinction between "session" and "global session".
- *
-
+ * Accesses objects from servlet request and HTTP session scope,with no distinction between "session" and "global session".
  * @since 2.0
  * @see javax.servlet.ServletRequest#getAttribute
  * @see javax.servlet.http.HttpSession#getAttribute
@@ -33,8 +29,7 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 	 * Constant identifying the {@link String} prefixed to the name of a
 	 * destruction callback when it is stored in a {@link HttpSession}.
 	 */
-	public static final String DESTRUCTION_CALLBACK_NAME_PREFIX =
-			ServletRequestAttributes.class.getName() + ".DESTRUCTION_CALLBACK.";
+	public static final String DESTRUCTION_CALLBACK_NAME_PREFIX = ServletRequestAttributes.class.getName() + ".DESTRUCTION_CALLBACK.";
 
 	protected static final Set<Class<?>> immutableValueTypes = new HashSet<>(16);
 
@@ -45,7 +40,6 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 		immutableValueTypes.add(String.class);
 	}
 
-
 	private final HttpServletRequest request;
 
 	@Nullable
@@ -55,7 +49,6 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 	private volatile HttpSession session;
 
 	private final Map<String, Object> sessionAttributesToUpdate = new ConcurrentHashMap<>(1);
-
 
 	/**
 	 * Create a new ServletRequestAttributes instance for the given request.
@@ -108,10 +101,8 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 			HttpSession session = this.session;
 			if (session == null) {
 				if (allowCreate) {
-					throw new IllegalStateException(
-							"No session found and request already completed - cannot create new session!");
-				}
-				else {
+					throw new IllegalStateException("No session found and request already completed - cannot create new session!");
+				}else {
 					session = this.request.getSession(false);
 					this.session = session;
 				}
@@ -126,17 +117,14 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 		return session;
 	}
 
-
 	@Override
 	public Object getAttribute(String name, int scope) {
 		if (scope == SCOPE_REQUEST) {
 			if (!isRequestActive()) {
-				throw new IllegalStateException(
-						"Cannot ask for request attribute - request is not active anymore!");
+				throw new IllegalStateException("Cannot ask for request attribute - request is not active anymore!");
 			}
 			return this.request.getAttribute(name);
-		}
-		else {
+		}else {
 			HttpSession session = getSession(false);
 			if (session != null) {
 				try {
@@ -145,8 +133,7 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 						this.sessionAttributesToUpdate.put(name, value);
 					}
 					return value;
-				}
-				catch (IllegalStateException ex) {
+				}catch (IllegalStateException ex) {
 					// Session invalidated - shouldn't usually happen.
 				}
 			}
@@ -158,12 +145,10 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 	public void setAttribute(String name, Object value, int scope) {
 		if (scope == SCOPE_REQUEST) {
 			if (!isRequestActive()) {
-				throw new IllegalStateException(
-						"Cannot set request attribute - request is not active anymore!");
+				throw new IllegalStateException("Cannot set request attribute - request is not active anymore!");
 			}
 			this.request.setAttribute(name, value);
-		}
-		else {
+		}else {
 			HttpSession session = obtainSession();
 			this.sessionAttributesToUpdate.remove(name);
 			session.setAttribute(name, value);
@@ -177,16 +162,14 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 				removeRequestDestructionCallback(name);
 				this.request.removeAttribute(name);
 			}
-		}
-		else {
+		}else {
 			HttpSession session = getSession(false);
 			if (session != null) {
 				this.sessionAttributesToUpdate.remove(name);
 				try {
 					session.removeAttribute(DESTRUCTION_CALLBACK_NAME_PREFIX + name);
 					session.removeAttribute(name);
-				}
-				catch (IllegalStateException ex) {
+				}catch (IllegalStateException ex) {
 					// Session invalidated - shouldn't usually happen.
 				}
 			}
@@ -197,18 +180,15 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 	public String[] getAttributeNames(int scope) {
 		if (scope == SCOPE_REQUEST) {
 			if (!isRequestActive()) {
-				throw new IllegalStateException(
-						"Cannot ask for request attributes - request is not active anymore!");
+				throw new IllegalStateException("Cannot ask for request attributes - request is not active anymore!");
 			}
 			return StringUtils.toStringArray(this.request.getAttributeNames());
-		}
-		else {
+		}else {
 			HttpSession session = getSession(false);
 			if (session != null) {
 				try {
 					return StringUtils.toStringArray(session.getAttributeNames());
-				}
-				catch (IllegalStateException ex) {
+				}catch (IllegalStateException ex) {
 					// Session invalidated - shouldn't usually happen.
 				}
 			}
@@ -220,8 +200,7 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 	public void registerDestructionCallback(String name, Runnable callback, int scope) {
 		if (scope == SCOPE_REQUEST) {
 			registerRequestDestructionCallback(name, callback);
-		}
-		else {
+		}else {
 			registerSessionDestructionCallback(name, callback);
 		}
 	}
@@ -230,11 +209,9 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 	public Object resolveReference(String key) {
 		if (REFERENCE_REQUEST.equals(key)) {
 			return this.request;
-		}
-		else if (REFERENCE_SESSION.equals(key)) {
+		}else if (REFERENCE_SESSION.equals(key)) {
 			return getSession(true);
-		}
-		else {
+		}else {
 			return null;
 		}
 	}
@@ -251,8 +228,7 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 
 
 	/**
-	 * Update all accessed session attributes through {@code session.setAttribute}
-	 * calls, explicitly indicating to the container that they might have been modified.
+	 * Update all accessed session attributes through {@code session.setAttribute}  calls, explicitly indicating to the container that they might have been modified.
 	 */
 	@Override
 	protected void updateAccessedSessionAttributes() {
@@ -269,8 +245,7 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 							session.setAttribute(name, newValue);
 						}
 					}
-				}
-				catch (IllegalStateException ex) {
+				}catch (IllegalStateException ex) {
 					// Session invalidated - shouldn't usually happen.
 				}
 			}
@@ -280,14 +255,11 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 
 	/**
 	 * Determine whether the given value is to be considered as an immutable session
-	 * attribute, that is, doesn't have to be re-set via {@code session.setAttribute}
-	 * since its value cannot meaningfully change internally.
-	 * The default implementation returns {@code true} for {@code String},
-	 * {@code Character}, {@code Boolean} and standard {@code Number} values.
+	 * attribute, that is, doesn't have to be re-set via {@code session.setAttribute} since its value cannot meaningfully change internally.
+	 * The default implementation returns {@code true} for {@code String},{@code Character}, {@code Boolean} and standard {@code Number} values.
 	 * @param name the name of the attribute
 	 * @param value the corresponding value to check
-	 * @return {@code true} if the value is to be considered as immutable for the
-	 * purposes of session attribute management; {@code false} otherwise
+	 * @return {@code true} if the value is to be considered as immutable for the purposes of session attribute management; {@code false} otherwise
 	 * @see #updateAccessedSessionAttributes()
 	 */
 	protected boolean isImmutableSessionAttribute(String name, @Nullable Object value) {
@@ -296,21 +268,17 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 
 	/**
 	 * Register the given callback as to be executed after session termination.
-	 * Note: The callback object should be serializable in order to survive
-	 * web app restarts.
+	 * Note: The callback object should be serializable in order to survive web app restarts.
 	 * @param name the name of the attribute to register the callback for
 	 * @param callback the callback to be executed for destruction
 	 */
 	protected void registerSessionDestructionCallback(String name, Runnable callback) {
 		HttpSession session = obtainSession();
-		session.setAttribute(DESTRUCTION_CALLBACK_NAME_PREFIX + name,
-				new DestructionCallbackBindingListener(callback));
+		session.setAttribute(DESTRUCTION_CALLBACK_NAME_PREFIX + name, new DestructionCallbackBindingListener(callback));
 	}
-
 
 	@Override
 	public String toString() {
 		return this.request.toString();
 	}
-
 }

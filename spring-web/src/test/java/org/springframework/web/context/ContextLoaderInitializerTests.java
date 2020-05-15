@@ -6,11 +6,11 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletException;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
 import org.springframework.mock.web.test.MockServletContext;
 import org.springframework.web.context.support.StaticWebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Test case for {@link AbstractContextLoaderInitializer}.
@@ -41,11 +41,19 @@ public class ContextLoaderInitializerTests {
 		initializer.onStartup(servletContext);
 		assertTrue(eventListener instanceof ContextLoaderListener);
 		ContextLoaderListener cll = (ContextLoaderListener) eventListener;
+		/**
+		 *  模拟Tomcat调用 web.xml 监听器
+		 * 	<listener>
+		 * 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+		 * 	</listener>
+		*/
 		cll.contextInitialized(new ServletContextEvent(servletContext));
-
-		WebApplicationContext applicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
-		assertTrue(applicationContext.containsBean(BEAN_NAME));
-		assertTrue(applicationContext.getBean(BEAN_NAME) instanceof MyBean);
+		// 通过 ServletContext 创建web容器
+		WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
+		ApplicationContext applicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
+		assertTrue(webApplicationContext == applicationContext);
+		assertTrue(webApplicationContext.containsBean(BEAN_NAME));
+		assertTrue(webApplicationContext.getBean(BEAN_NAME) instanceof MyBean);
 	}
 
 	private class MyMockServletContext extends MockServletContext {

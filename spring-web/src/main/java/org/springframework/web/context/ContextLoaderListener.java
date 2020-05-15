@@ -8,10 +8,8 @@ import javax.servlet.ServletContextListener;
 /**
  * Bootstrap listener to start up and shut down Spring's root {@link WebApplicationContext}.
  * Simply delegates to {@link ContextLoader} as well as to {@link ContextCleanupListener}.
- *
  * As of Spring 3.1, {@code ContextLoaderListener} supports injecting the root web
- * application context via the {@link #ContextLoaderListener(WebApplicationContext)}
- * constructor, allowing for programmatic configuration in Servlet 3.0+ environments.
+ * application context via the {@link #ContextLoaderListener(WebApplicationContext)} constructor, allowing for programmatic configuration in Servlet 3.0+ environments.
  * See {@link org.springframework.web.WebApplicationInitializer} for usage examples.
  * @since 17.02.2003
  * @see #setContextInitializers
@@ -21,20 +19,17 @@ public class ContextLoaderListener extends ContextLoader implements ServletConte
 
 	/**
 	 * Create a new {@code ContextLoaderListener} that will create a web application
-	 * context based on the "contextClass" and "contextConfigLocation" servlet
-	 * context-params. See {@link ContextLoader} superclass documentation for details on default values for each.
-	 * This constructor is typically used when declaring {@code ContextLoaderListener}
-	 * as a {@code <listener>} within {@code web.xml}, where a no-arg constructor is required.
-	 * The created application context will be registered into the ServletContext under
-	 * the attribute name {@link WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE}
+	 * context based on the "contextClass" and "contextConfigLocation" servlet context-params.
+	 * See {@link ContextLoader} superclass documentation for details on default values for each.
+	 * This constructor is typically used when declaring {@code ContextLoaderListener} as a {@code <listener>} within {@code web.xml}, where a no-arg constructor is required.
+	 * The created application context will be registered into the ServletContext under the attribute name {@link WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE}
 	 * and the Spring application context will be closed when the {@link #contextDestroyed} lifecycle method is invoked on this listener.
 	 * @see ContextLoader
 	 * @see #ContextLoaderListener(WebApplicationContext)
 	 * @see #contextInitialized(ServletContextEvent)
 	 * @see #contextDestroyed(ServletContextEvent)
 	 */
-	public ContextLoaderListener() {
-	}
+	public ContextLoaderListener() {}
 
 	/**
 	 * Create a new {@code ContextLoaderListener} with the given application context. This
@@ -55,9 +50,8 @@ public class ContextLoaderListener extends ContextLoader implements ServletConte
 	 * If the context has already been refreshed or does not implement {@code ConfigurableWebApplicationContext}, none of the above will occur under the
 	 * assumption that the user has performed these actions (or not) per his or her specific needs.
 	 * See {@link org.springframework.web.WebApplicationInitializer} for usage examples.
-	 * In any case, the given application context will be registered into the
-	 * ServletContext under the attribute name {@link WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE} and the Spring
-	 * application context will be closed when the {@link #contextDestroyed} lifecycle method is invoked on this listener.
+	 * In any case, the given application context will be registered into the ServletContext under the attribute name {@link WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE}
+	 * and the Spring application context will be closed when the {@link #contextDestroyed} lifecycle method is invoked on this listener.
 	 * @param context the application context to manage
 	 * @see #contextInitialized(ServletContextEvent)
 	 * @see #contextDestroyed(ServletContextEvent)
@@ -70,8 +64,7 @@ public class ContextLoaderListener extends ContextLoader implements ServletConte
 	// Implementation of 【ServletContextListener】 interface
 	//---------------------------------------------------------------------
 	/**
-	 * Initialize the root web application context.
-	 * 初始化Spring容器
+	 * Initialize the root web application context.初始化Spring容器
 	 */
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
@@ -79,8 +72,7 @@ public class ContextLoaderListener extends ContextLoader implements ServletConte
 	}
 
 	/**
-	 * Close the root web application context.
-	 * 销毁Spring容器
+	 * Close the root web application context.销毁Spring容器
 	 */
 	@Override
 	public void contextDestroyed(ServletContextEvent event) {

@@ -10,19 +10,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * Holder class to expose the web request in the form of a thread-bound
- * {@link RequestAttributes} object. The request will be inherited
- * by any child threads spawned by the current thread if the
- * {@code inheritable} flag is set to {@code true}.
- *
+ * Holder class to expose the web request in the form of a thread-bound {@link RequestAttributes} object.
+ * The request will be inherited by any child threads spawned by the current thread if the{@code inheritable} flag is set to {@code true}.
  * Use {@link RequestContextListener} or
- * {@link org.springframework.web.filter.RequestContextFilter} to expose
- * the current web request. Note that
- * {@link org.springframework.web.servlet.DispatcherServlet}
- * already exposes the current request by default.
- *
-
- * @author Rod Johnson
+ * {@link org.springframework.web.filter.RequestContextFilter} to expose the current web request. Note that
+ * {@link org.springframework.web.servlet.DispatcherServlet} already exposes the current request by default.
  * @since 2.0
  * @see RequestContextListener
  * @see org.springframework.web.filter.RequestContextFilter
@@ -30,15 +22,11 @@ import org.springframework.util.ClassUtils;
  */
 public abstract class RequestContextHolder  {
 
-	private static final boolean jsfPresent =
-			ClassUtils.isPresent("javax.faces.context.FacesContext", RequestContextHolder.class.getClassLoader());
+	private static final boolean jsfPresent = ClassUtils.isPresent("javax.faces.context.FacesContext", RequestContextHolder.class.getClassLoader());
 
-	private static final ThreadLocal<RequestAttributes> requestAttributesHolder =
-			new NamedThreadLocal<>("Request attributes");
+	private static final ThreadLocal<RequestAttributes> requestAttributesHolder = new NamedThreadLocal<>("Request attributes");
 
-	private static final ThreadLocal<RequestAttributes> inheritableRequestAttributesHolder =
-			new NamedInheritableThreadLocal<>("Request context");
-
+	private static final ThreadLocal<RequestAttributes> inheritableRequestAttributesHolder = new NamedInheritableThreadLocal<>("Request context");
 
 	/**
 	 * Reset the RequestAttributes for the current thread.
@@ -49,8 +37,7 @@ public abstract class RequestContextHolder  {
 	}
 
 	/**
-	 * Bind the given RequestAttributes to the current thread,
-	 * <i>not</i> exposing it as inheritable for child threads.
+	 * Bind the given RequestAttributes to the current thread,<i>not</i> exposing it as inheritable for child threads.
 	 * @param attributes the RequestAttributes to expose
 	 * @see #setRequestAttributes(RequestAttributes, boolean)
 	 */
@@ -60,21 +47,17 @@ public abstract class RequestContextHolder  {
 
 	/**
 	 * Bind the given RequestAttributes to the current thread.
-	 * @param attributes the RequestAttributes to expose,
-	 * or {@code null} to reset the thread-bound context
-	 * @param inheritable whether to expose the RequestAttributes as inheritable
-	 * for child threads (using an {@link InheritableThreadLocal})
+	 * @param attributes the RequestAttributes to expose,or {@code null} to reset the thread-bound context
+	 * @param inheritable whether to expose the RequestAttributes as inheritable  for child threads (using an {@link InheritableThreadLocal})
 	 */
 	public static void setRequestAttributes(@Nullable RequestAttributes attributes, boolean inheritable) {
 		if (attributes == null) {
 			resetRequestAttributes();
-		}
-		else {
+		}else {
 			if (inheritable) {
 				inheritableRequestAttributesHolder.set(attributes);
 				requestAttributesHolder.remove();
-			}
-			else {
+			}else {
 				requestAttributesHolder.set(attributes);
 				inheritableRequestAttributesHolder.remove();
 			}
@@ -83,8 +66,7 @@ public abstract class RequestContextHolder  {
 
 	/**
 	 * Return the RequestAttributes currently bound to the thread.
-	 * @return the RequestAttributes currently bound to the thread,
-	 * or {@code null} if none bound
+	 * @return the RequestAttributes currently bound to the thread, or {@code null} if none bound
 	 */
 	@Nullable
 	public static RequestAttributes getRequestAttributes() {
@@ -100,8 +82,7 @@ public abstract class RequestContextHolder  {
 	 * Exposes the previously bound RequestAttributes instance, if any.
 	 * Falls back to the current JSF FacesContext, if any.
 	 * @return the RequestAttributes currently bound to the thread
-	 * @throws IllegalStateException if no RequestAttributes object
-	 * is bound to the current thread
+	 * @throws IllegalStateException if no RequestAttributes object is bound to the current thread
 	 * @see #setRequestAttributes
 	 * @see ServletRequestAttributes
 	 * @see FacesRequestAttributes
@@ -114,23 +95,18 @@ public abstract class RequestContextHolder  {
 				attributes = FacesRequestAttributesFactory.getFacesRequestAttributes();
 			}
 			if (attributes == null) {
-				throw new IllegalStateException("No thread-bound request found: " +
-						"Are you referring to request attributes outside of an actual web request, " +
-						"or processing a request outside of the originally receiving thread? " +
-						"If you are actually operating within a web request and still receive this message, " +
-						"your code is probably running outside of DispatcherServlet: " +
-						"In this case, use RequestContextListener or RequestContextFilter to expose the current request.");
+				throw new IllegalStateException("No thread-bound request found: Are you referring to request attributes outside of an actual web request, " +
+						"or processing a request outside of the originally receiving thread? If you are actually operating within a web request and still receive this message, " +
+						"your code is probably running outside of DispatcherServlet: In this case, use RequestContextListener or RequestContextFilter to expose the current request.");
 			}
 		}
 		return attributes;
 	}
 
-
 	/**
 	 * Inner class to avoid hard-coded JSF dependency.
  	 */
 	private static class FacesRequestAttributesFactory {
-
 		@Nullable
 		public static RequestAttributes getFacesRequestAttributes() {
 			FacesContext facesContext = FacesContext.getCurrentInstance();

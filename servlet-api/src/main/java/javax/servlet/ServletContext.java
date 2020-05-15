@@ -1226,55 +1226,35 @@ public interface ServletContext {
 
     /**
      * Adds the given listener to this ServletContext.
-     *
-     * The given listener must be an instance of one or more of the
-     * following interfaces:
-     * <ul>
+     * The given listener must be an instance of one or more of the following interfaces:
      * <li>{@link ServletContextAttributeListener}
      * <li>{@link ServletRequestListener}
      * <li>{@link ServletRequestAttributeListener}
      * <li>{@link javax.servlet.http.HttpSessionAttributeListener}
      * <li>{@link javax.servlet.http.HttpSessionIdListener}
      * <li>{@link javax.servlet.http.HttpSessionListener}
-     * </ul>
      *
-     * If this ServletContext was passed to
-     * {@link ServletContainerInitializer#onStartup}, then the given
-     * listener may also be an instance of {@link ServletContextListener},
-     * in addition to the interfaces listed above.
-     *
+     * If this ServletContext was passed to {@link ServletContainerInitializer#onStartup},
+     * then the given listener may also be an instance of {@link ServletContextListener}, in addition to the interfaces listed above.
      * If the given listener is an instance of a listener interface whose
-     * invocation order corresponds to the declaration order (i.e., if it
-     * is an instance of {@link ServletRequestListener},
-     * {@link ServletContextListener}, or
-     * {@link javax.servlet.http.HttpSessionListener}),
-     * then the listener will be added to the end of the ordered list of
-     * listeners of that interface.
-     *
+     * invocation order corresponds to the declaration order (i.e., if it is an instance of {@link ServletRequestListener},{@link ServletContextListener},
+     *  or {@link javax.servlet.http.HttpSessionListener}),then the listener will be added to the end of the ordered list of listeners of that interface.
      * @param <T> the class of the EventListener to add
      * @param t the listener to be added
      *
-     * @throws IllegalArgumentException if the given listener is not
-     * an instance of any of the above interfaces, or if it is an instance
-     * of {@link ServletContextListener} and this ServletContext was not
-     * passed to {@link ServletContainerInitializer#onStartup}
+     * @throws IllegalArgumentException if the given listener is not  an instance of any of the above interfaces,
+     * or if it is an instance of {@link ServletContextListener} and this ServletContext was not passed to {@link ServletContainerInitializer#onStartup}
      * @throws IllegalStateException if this ServletContext has already been initialized
      * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
-     *
+     * passed to the {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated  with {@link javax.servlet.annotation.WebListener}
      * @since Servlet 3.0
      */
     public <T extends EventListener> void addListener(T t);
 
-
     /**
      * Adds a listener of the given class type to this ServletContext.
-     *
-     * The given <tt>listenerClass</tt> must implement one or more of the
-     * following interfaces:
+     * The given <tt>listenerClass</tt> must implement one or more of the following interfaces:
      * <ul>
      * <li>{@link ServletContextAttributeListener}
      * <li>{@link ServletRequestListener}

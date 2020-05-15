@@ -9,9 +9,7 @@ import org.springframework.lang.Nullable;
  * Supports access to request-scoped attributes as well as to session-scoped
  * attributes, with the optional notion of a "global session".
  *
- * Can be implemented for any kind of request/session mechanism,
- * in particular for servlet requests.
- *
+ * Can be implemented for any kind of request/session mechanism,in particular for servlet requests.
 
  * @since 2.0
  * @see ServletRequestAttributes

@@ -5,8 +5,7 @@ package org.springframework.core;
 import org.springframework.util.Assert;
 
 /**
- * {@link InheritableThreadLocal} subclass that exposes a specified name
- * as {@link #toString()} result (allowing for introspection).
+ * {@link InheritableThreadLocal} subclass that exposes a specified name as {@link #toString()} result (allowing for introspection).
  * @since 2.5.2
  * @param <T> the value type
  * @see NamedThreadLocal
@@ -28,5 +27,4 @@ public class NamedInheritableThreadLocal<T> extends InheritableThreadLocal<T> {
 	public String toString() {
 		return this.name;
 	}
-
 }

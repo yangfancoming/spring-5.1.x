@@ -35,15 +35,20 @@ import org.springframework.web.context.request.WebRequest;
 /**
  * Convenience methods for retrieving the root {@link WebApplicationContext} for  a given {@link ServletContext}.
  * This is useful for programmatically accessing a Spring application context from within custom web views or MVC actions.
- * Note that there are more convenient ways of accessing the root context for many web frameworks,
- * either part of Spring or available as an external library.
+ * Note that there are more convenient ways of accessing the root context for many web frameworks,either part of Spring or available as an external library.
  * This helper class is just the most generic way to access the root context.
-
  * @see org.springframework.web.context.ContextLoader
  * @see org.springframework.web.servlet.FrameworkServlet
  * @see org.springframework.web.servlet.DispatcherServlet
  * @see org.springframework.web.jsf.FacesContextUtils
  * @see org.springframework.web.jsf.el.SpringBeanFacesELResolver
+ *
+ * 是访问一个ServletContext的根WebApplicationContext的便捷方法类。该工具类提供了如下工具方法 :
+ * 在web容器启动过程中注册web相关作用域bean : request,session , globalSession , application
+ * 在web容器启动过程中注册相应类型的工厂bean，开发人员依赖注入相应的bean时能访问到正确的请求/响应/会话对象 : ServletRequest,ServletResponse,HttpSession,WebRequest
+ * 在web容器启动过程中注册web相关环境bean : contextParameters , contextAttributes
+ * 在web容器启动过程中初始化servlet propertySources
+ * 在客户化web视图(custom web view)或者MVC action中，使用该工具类可以很方便地在程序中访问Spring应用上下文(application context)。
  */
 public abstract class WebApplicationContextUtils {
 
@@ -64,10 +69,8 @@ public abstract class WebApplicationContextUtils {
 	}
 
 	/**
-	 * Find the root {@code WebApplicationContext} for this web app, typically
-	 * loaded via {@link org.springframework.web.context.ContextLoaderListener}.
-	 * Will rethrow an exception that happened on root context startup,
-	 * to differentiate between a failed context startup and no context at all.
+	 * Find the root {@code WebApplicationContext} for this web app, typically loaded via {@link org.springframework.web.context.ContextLoaderListener}.
+	 * Will rethrow an exception that happened on root context startup,to differentiate between a failed context startup and no context at all.
 	 * @param sc the ServletContext to find the web application context for
 	 * @return the root WebApplicationContext for this web app, or {@code null} if none
 	 * @see org.springframework.web.context.WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE
@@ -109,8 +112,11 @@ public abstract class WebApplicationContextUtils {
 	 */
 	@Nullable
 	public static WebApplicationContext findWebApplicationContext(ServletContext sc) {
+		// 尝试获取根web应用上下文，如果找得到则返回根web应用上下文
 		WebApplicationContext wac = getWebApplicationContext(sc);
 		if (wac == null) {
+			// 如果没有找到根web应用上下文，尝试从ServletContext的属性中查找唯一的一个WebApplicationContext
+			// 并返回，如果找到的WebApplicationContext不唯一，则抛出异常声明该情况
 			Enumeration<String> attrNames = sc.getAttributeNames();
 			while (attrNames.hasMoreElements()) {
 				String attrName = attrNames.nextElement();
@@ -141,6 +147,7 @@ public abstract class WebApplicationContextUtils {
 	 * @param sc the ServletContext that we're running within
 	 */
 	public static void registerWebApplicationScopes(ConfigurableListableBeanFactory beanFactory,@Nullable ServletContext sc) {
+		// 注册web相关作用域bean
 		beanFactory.registerScope(WebApplicationContext.SCOPE_REQUEST, new RequestScope());
 		beanFactory.registerScope(WebApplicationContext.SCOPE_SESSION, new SessionScope());
 		if (sc != null) {
@@ -149,9 +156,13 @@ public abstract class WebApplicationContextUtils {
 			// Register as ServletContext attribute, for ContextCleanupListener to detect it.
 			sc.setAttribute(ServletContextScope.class.getName(), appScope);
 		}
+		// 注册ServletRequest的工厂bean，当开发人员依赖注入ServletRequest对象时，注入的bean其实是这里的 RequestObjectFactory工厂bean
 		beanFactory.registerResolvableDependency(ServletRequest.class, new RequestObjectFactory());
+		// 注册ServletResponse的工厂bean，当开发人员依赖注入ServletResponse对象时，注入的bean其实是这里的 ResponseObjectFactory工厂bean
 		beanFactory.registerResolvableDependency(ServletResponse.class, new ResponseObjectFactory());
+		// 注册HttpSession的工厂bean，当开发人员依赖注入 HttpSession 对象时，注入的bean其实是这里的 SessionObjectFactory工厂bean
 		beanFactory.registerResolvableDependency(HttpSession.class, new SessionObjectFactory());
+		// 注册WebRequest的工厂bean，当开发人员依赖注入WebRequest对象时，注入的bean其实是这里的 WebRequestObjectFactory工厂bean
 		beanFactory.registerResolvableDependency(WebRequest.class, new WebRequestObjectFactory());
 		if (jsfPresent) {
 			FacesDependencyRegistrar.registerFacesDependencies(beanFactory);
@@ -248,6 +259,10 @@ public abstract class WebApplicationContextUtils {
 	}
 
 	/**
+	 * 获取当前RequestAttributes实例，返回类型为ServletRequestAttributes，
+	 * 该方法使用RequestContextHolder获取和当前请求处理线程绑定的ServletRequestAttributes对象，
+	 * 进而可以获取其中的HttpServletRequest/HttpServletResponse对象
+	 * 该类定义该方法的目的是给该类的以下四个私有嵌套静态类使用 :
 	 * Return the current RequestAttributes instance as ServletRequestAttributes.
 	 * @see RequestContextHolder#currentRequestAttributes()
 	 */
@@ -259,9 +274,14 @@ public abstract class WebApplicationContextUtils {
 		return (ServletRequestAttributes) requestAttr;
 	}
 
-
 	/**
 	 * Factory that exposes the current request object on demand.
+	 * 	 在下面的代码中，该类定义了四个私有嵌套静态类 :
+	 * 	 RequestObjectFactory,ResponseObjectFactory,SessionObjectFactory,WebRequestObjectFactory
+	 * 	 这四个静态类是四个工厂类，分别用于生成ServletRequest,ServletResponse,HttpSession,WebRequest对象,
+	 * 	 当开发人员使用@Autowired分别注入了以上四种类型的bean时，返回的其实是下面四个工厂类的对象，这四个工厂类对象
+	 * 	 均使用了上面定义的currentRequestAttributes()方法，能从当前请求处理线程中获取正确的ServletRequestAttributes 对象，
+	 * 	 进而获取正确的ServletRequest,ServletResponse,HttpSession,WebRequest对象
 	 */
 	@SuppressWarnings("serial")
 	private static class RequestObjectFactory implements ObjectFactory<ServletRequest>, Serializable {
@@ -280,7 +300,6 @@ public abstract class WebApplicationContextUtils {
 	 */
 	@SuppressWarnings("serial")
 	private static class ResponseObjectFactory implements ObjectFactory<ServletResponse>, Serializable {
-
 		@Override
 		public ServletResponse getObject() {
 			ServletResponse response = currentRequestAttributes().getResponse();

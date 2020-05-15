@@ -22,12 +22,9 @@ import org.springframework.web.util.WebUtils;
  * <b>NOTE:</b> In contrast to {@link ServletRequestAttributes}, this variant does
  * <i>not</i> support destruction callbacks for scoped attributes, neither for the
  * request scope nor for the session scope. If you rely on such implicit destruction
- * callbacks, consider defining a Spring {@link RequestContextListener} in your
- * {@code web.xml}.
+ * callbacks, consider defining a Spring {@link RequestContextListener} in your {@code web.xml}.
  *
  * Requires JSF 2.0 or higher, as of Spring 4.0.
- *
-
  * @since 2.5.2
  * @see javax.faces.context.FacesContext#getExternalContext()
  * @see javax.faces.context.ExternalContext#getRequestMap()

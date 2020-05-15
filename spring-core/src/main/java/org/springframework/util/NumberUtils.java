@@ -15,8 +15,7 @@ import org.springframework.lang.Nullable;
 
 /**
  * Miscellaneous utility methods for number conversion and parsing.
- * Mainly for internal use within the framework; consider Apache's
- * Commons Lang for a more comprehensive suite of number utilities.
+ * Mainly for internal use within the framework; consider Apache's Commons Lang for a more comprehensive suite of number utilities.
  * @since 1.1.2
  */
 public abstract class NumberUtils {
@@ -49,16 +48,7 @@ public abstract class NumberUtils {
 	 * @param number the number to convert
 	 * @param targetClass the target class to convert to
 	 * @return the converted number
-	 * @throws IllegalArgumentException if the target class is not supported
-	 * (i.e. not a standard Number subclass as included in the JDK)
-	 * @see java.lang.Byte
-	 * @see java.lang.Short
-	 * @see java.lang.Integer
-	 * @see java.lang.Long
-	 * @see java.math.BigInteger
-	 * @see java.lang.Float
-	 * @see java.lang.Double
-	 * @see java.math.BigDecimal
+	 * @throws IllegalArgumentException if the target class is not supported (i.e. not a standard Number subclass as included in the JDK)
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T extends Number> T convertNumberToTargetClass(Number number, Class<T> targetClass) throws IllegalArgumentException {
@@ -111,8 +101,7 @@ public abstract class NumberUtils {
 	}
 
 	/**
-	 * Check for a {@code BigInteger}/{@code BigDecimal} long overflow
-	 * before returning the given number as a long value.
+	 * Check for a {@code BigInteger}/{@code BigDecimal} long overflow before returning the given number as a long value.
 	 * @param number the number to convert
 	 * @param targetClass the target class to convert to
 	 * @return the long value, if convertible without overflow
@@ -145,16 +134,13 @@ public abstract class NumberUtils {
 	}
 
 	/**
-	 * Parse the given {@code text} into a {@link Number} instance of the given
-	 * target class, using the corresponding {@code decode} / {@code valueOf} method.
-	 * Trims all whitespace (leading, trailing, and in between characters) from
-	 * the input {@code String} before attempting to parse the number.
+	 * Parse the given {@code text} into a {@link Number} instance of the given target class, using the corresponding {@code decode} / {@code valueOf} method.
+	 * Trims all whitespace (leading, trailing, and in between characters) from the input {@code String} before attempting to parse the number.
 	 * Supports numbers in hex format (with leading "0x", "0X", or "#") as well.
 	 * @param text the text to convert
 	 * @param targetClass the target class to parse into
 	 * @return the parsed number
-	 * @throws IllegalArgumentException if the target class is not supported
-	 * (i.e. not a standard Number subclass as included in the JDK)
+	 * @throws IllegalArgumentException if the target class is not supported (i.e. not a standard Number subclass as included in the JDK)
 	 * @see Byte#decode
 	 * @see Short#decode
 	 * @see Integer#decode
@@ -192,16 +178,13 @@ public abstract class NumberUtils {
 	}
 
 	/**
-	 * Parse the given {@code text} into a {@link Number} instance of the
-	 * given target class, using the supplied {@link NumberFormat}.
+	 * Parse the given {@code text} into a {@link Number} instance of the given target class, using the supplied {@link NumberFormat}.
 	 * Trims the input {@code String} before attempting to parse the number.
 	 * @param text the text to convert
 	 * @param targetClass the target class to parse into
-	 * @param numberFormat the {@code NumberFormat} to use for parsing (if
-	 * {@code null}, this method falls back to {@link #parseNumber(String, Class)})
+	 * @param numberFormat the {@code NumberFormat} to use for parsing (if {@code null}, this method falls back to {@link #parseNumber(String, Class)})
 	 * @return the parsed number
-	 * @throws IllegalArgumentException if the target class is not supported
-	 * (i.e. not a standard Number subclass as included in the JDK)
+	 * @throws IllegalArgumentException if the target class is not supported (i.e. not a standard Number subclass as included in the JDK)
 	 * @see java.text.NumberFormat#parse
 	 * @see #convertNumberToTargetClass
 	 * @see #parseNumber(String, Class)
@@ -236,8 +219,7 @@ public abstract class NumberUtils {
 
 	/**
 	 * Determine whether the given {@code value} String indicates a hex number,
-	 * i.e. needs to be passed into {@code Integer.decode} instead of
-	 * {@code Integer.valueOf}, etc.
+	 * i.e. needs to be passed into {@code Integer.decode} instead of {@code Integer.valueOf}, etc.
 	 */
 	private static boolean isHexNumber(String value) {
 		int index = (value.startsWith("-") ? 1 : 0);
@@ -245,37 +227,30 @@ public abstract class NumberUtils {
 	}
 
 	/**
-	 * Decode a {@link java.math.BigInteger} from the supplied {@link String} value.
-	 * Supports decimal, hex, and octal notation.
+	 * Decode a {@link java.math.BigInteger} from the supplied {@link String} value.Supports decimal, hex, and octal notation.
 	 * @see BigInteger#BigInteger(String, int)
 	 */
 	private static BigInteger decodeBigInteger(String value) {
 		int radix = 10;
 		int index = 0;
 		boolean negative = false;
-
 		// Handle minus sign, if present.
 		if (value.startsWith("-")) {
 			negative = true;
 			index++;
 		}
-
 		// Handle radix specifier, if present.
 		if (value.startsWith("0x", index) || value.startsWith("0X", index)) {
 			index += 2;
 			radix = 16;
-		}
-		else if (value.startsWith("#", index)) {
+		}else if (value.startsWith("#", index)) {
 			index++;
 			radix = 16;
-		}
-		else if (value.startsWith("0", index) && value.length() > 1 + index) {
+		}else if (value.startsWith("0", index) && value.length() > 1 + index) {
 			index++;
 			radix = 8;
 		}
-
 		BigInteger result = new BigInteger(value.substring(index), radix);
 		return (negative ? result.negate() : result);
 	}
-
 }
