@@ -187,5 +187,4 @@ public abstract class AbstractRefreshableWebApplicationContext extends AbstractR
 		Assert.state(this.themeSource != null, "No ThemeSource available");
 		return this.themeSource.getTheme(themeName);
 	}
-
 }

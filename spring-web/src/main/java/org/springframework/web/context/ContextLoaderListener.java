@@ -66,7 +66,9 @@ public class ContextLoaderListener extends ContextLoader implements ServletConte
 		super(context);
 	}
 
-
+	//---------------------------------------------------------------------
+	// Implementation of 【ServletContextListener】 interface
+	//---------------------------------------------------------------------
 	/**
 	 * Initialize the root web application context.
 	 * 初始化Spring容器
@@ -76,15 +78,13 @@ public class ContextLoaderListener extends ContextLoader implements ServletConte
 		initWebApplicationContext(event.getServletContext());
 	}
 
-
 	/**
 	 * Close the root web application context.
-	 * // 销毁Spring容器
+	 * 销毁Spring容器
 	 */
 	@Override
 	public void contextDestroyed(ServletContextEvent event) {
 		closeWebApplicationContext(event.getServletContext());
 		ContextCleanupListener.cleanupAttributes(event.getServletContext());
 	}
-
 }

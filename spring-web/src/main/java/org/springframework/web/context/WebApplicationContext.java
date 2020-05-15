@@ -11,17 +11,14 @@ import org.springframework.lang.Nullable;
  * Interface to provide configuration for a web application. This is read-only while
  * the application is running, but may be reloaded if the implementation supports this.
  *
- * This interface adds a {@code getServletContext()} method to the generic
- * ApplicationContext interface, and defines a well-known application attribute name
- * that the root context must be bound to in the bootstrap process.
+ * This interface adds a {@code getServletContext()} method to the generic ApplicationContext interface,
+ * and defines a well-known application attribute name that the root context must be bound to in the bootstrap process.
  *
  * Like generic application contexts, web application contexts are hierarchical.
- * There is a single root context per application, while each servlet in the application
- * (including a dispatcher servlet in the MVC framework) has its own child context.
+ * There is a single root context per application, while each servlet in the application (including a dispatcher servlet in the MVC framework) has its own child context.
  *
  * In addition to standard application context lifecycle capabilities,
- * WebApplicationContext implementations need to detect {@link ServletContextAware}
- * beans and invoke the {@code setServletContext} method accordingly.
+ * WebApplicationContext implementations need to detect {@link ServletContextAware} beans and invoke the {@code setServletContext} method accordingly.
  * @since January 19, 2001
  * @see ServletContextAware#setServletContext
  */
@@ -29,9 +26,8 @@ public interface WebApplicationContext extends ApplicationContext {
 
 	/**
 	 * Context attribute to bind root WebApplicationContext to on successful startup.
-	 * Note: If the startup of the root context fails, this attribute can contain
-	 * an exception or error as value. Use WebApplicationContextUtils for convenient
-	 * lookup of the root WebApplicationContext.
+	 * Note: If the startup of the root context fails, this attribute can contain an exception or error as value.
+	 * Use WebApplicationContextUtils for convenient lookup of the root WebApplicationContext.
 	 * @see org.springframework.web.context.support.WebApplicationContextUtils#getWebApplicationContext
 	 * @see org.springframework.web.context.support.WebApplicationContextUtils#getRequiredWebApplicationContext
 	 */
@@ -79,11 +75,9 @@ public interface WebApplicationContext extends ApplicationContext {
 	 */
 	String CONTEXT_ATTRIBUTES_BEAN_NAME = "contextAttributes";
 
-
 	/**
 	 * Return the standard Servlet API ServletContext for this application.
 	 */
 	@Nullable
 	ServletContext getServletContext();
-
 }

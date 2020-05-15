@@ -22,6 +22,8 @@ public interface ServletContextListener extends EventListener {
      * 在初始化Web应用程序中的任何过滤器或servlet之前，将通知所有servletContextListener上下文初始化。
      * @param sce the ServletContextEvent containing the ServletContext that is being initialized
      * @implSpec The default implementation takes no action.
+	 * contextInitialized方法的入参 是监听的ServletContextEvent事件，也就是Tomcat启动加载完web.xml会产生的事件，
+	 * ServletContextEvent持有了从web.xml加载的初始化配置的ServletContext上下文。
      */
     default public void contextInitialized(ServletContextEvent sce) {}
 
