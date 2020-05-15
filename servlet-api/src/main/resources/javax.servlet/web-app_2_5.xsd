@@ -955,31 +955,19 @@
 	<xsd:complexType name="session-configType">
 		<xsd:annotation>
 			<xsd:documentation>
-
-				The session-configType defines the session parameters
-				for this web application.
-
+				The session-configType defines the session parameters for this web application.
 				Used in: web-app
-
 			</xsd:documentation>
 		</xsd:annotation>
 
 		<xsd:sequence>
-			<xsd:element name="session-timeout"
-						 type="javaee:xsdIntegerType"
-						 minOccurs="0">
+			<xsd:element name="session-timeout" type="javaee:xsdIntegerType"  minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation>
-
-						The session-timeout element defines the default
-						session timeout interval for all sessions created
-						in this web application. The specified timeout
-						must be expressed in a whole number of minutes.
-						If the timeout is 0 or less, the container ensures
-						the default behaviour of sessions is never to time
-						out. If this element is not specified, the container
-						must set its default timeout period.
-
+						The session-timeout element defines the default session timeout interval for all sessions created in this web application.
+						The specified timeout must be expressed in a whole number of minutes.
+						If the timeout is 0 or less, the container ensures the default behaviour of sessions is never to time out.
+						If this element is not specified, the container must set its default timeout period.
 					</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
@@ -1088,52 +1076,30 @@
 
 		<xsd:choice minOccurs="0" maxOccurs="unbounded">
 			<xsd:group ref="javaee:descriptionGroup"/>
-			<xsd:element name="distributable"
-						 type="javaee:emptyType"/>
-			<xsd:element name="context-param"
-						 type="javaee:param-valueType">
-
+			<xsd:element name="distributable" type="javaee:emptyType"/>
+			<xsd:element name="context-param" type="javaee:param-valueType">
 				<xsd:annotation>
 					<xsd:documentation>
-
-						The context-param element contains the declaration
-						of a web application's servlet context
-						initialization parameters.
-
+						The context-param element contains the declaration of a web application's servlet context initialization parameters.
 					</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-
-			<xsd:element name="filter"
-						 type="javaee:filterType"/>
-			<xsd:element name="filter-mapping"
-						 type="javaee:filter-mappingType"/>
-			<xsd:element name="listener"
-						 type="javaee:listenerType"/>
+			<xsd:element name="filter" type="javaee:filterType"/>
+			<xsd:element name="filter-mapping"  type="javaee:filter-mappingType"/>
+			<xsd:element name="listener" type="javaee:listenerType"/>
 			<xsd:element name="servlet" type="javaee:servletType"/>
-			<xsd:element name="servlet-mapping"
-						 type="javaee:servlet-mappingType"/>
-			<xsd:element name="session-config"
-						 type="javaee:session-configType"/>
-			<xsd:element name="mime-mapping"
-						 type="javaee:mime-mappingType"/>
-			<xsd:element name="welcome-file-list"
-						 type="javaee:welcome-file-listType"/>
-			<xsd:element name="error-page"
-						 type="javaee:error-pageType"/>
-			<xsd:element name="jsp-config"
-						 type="javaee:jsp-configType"/>
-			<xsd:element name="security-constraint"
-						 type="javaee:security-constraintType"/>
-			<xsd:element name="login-config"
-						 type="javaee:login-configType"/>
-			<xsd:element name="security-role"
-						 type="javaee:security-roleType"/>
+			<xsd:element name="servlet-mapping" type="javaee:servlet-mappingType"/>
+			<xsd:element name="session-config" type="javaee:session-configType"/>
+			<xsd:element name="mime-mapping" type="javaee:mime-mappingType"/>
+			<xsd:element name="welcome-file-list" type="javaee:welcome-file-listType"/>
+			<xsd:element name="error-page" type="javaee:error-pageType"/>
+			<xsd:element name="jsp-config" type="javaee:jsp-configType"/>
+			<xsd:element name="security-constraint"  type="javaee:security-constraintType"/>
+			<xsd:element name="login-config" type="javaee:login-configType"/>
+			<xsd:element name="security-role" type="javaee:security-roleType"/>
 			<xsd:group ref="javaee:jndiEnvironmentRefsGroup"/>
-			<xsd:element name="message-destination"
-						 type="javaee:message-destinationType"/>
-			<xsd:element name="locale-encoding-mapping-list"
-						 type="javaee:locale-encoding-mapping-listType"/>
+			<xsd:element name="message-destination" type="javaee:message-destinationType"/>
+			<xsd:element name="locale-encoding-mapping-list" type="javaee:locale-encoding-mapping-listType"/>
 		</xsd:choice>
 
 		<xsd:attribute name="version"

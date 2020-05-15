@@ -82,6 +82,7 @@
 	</servlet-mapping>
 
 
+	<!-- session 学习 -->
 	<servlet>
 		<servlet-name>Session_1</servlet-name>
 		<servlet-class>com.goat.chapter505.servlet.MyServletSession1</servlet-class>
