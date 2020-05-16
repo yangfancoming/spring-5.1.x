@@ -182,5 +182,4 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 	protected Resource[] getConfigResources() {
 		return configResources;
 	}
-
 }

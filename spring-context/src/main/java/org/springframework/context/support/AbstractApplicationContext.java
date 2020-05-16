@@ -444,6 +444,16 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			 *    当然，这里说的 Bean 还没有初始化，只是配置信息都从xml文件中提取出来了，
 			 *    调用子类实现方法获取（创建或刷新）BeanFacotry容器，对于ClassPathXmlApplicationContext，主要调用了AbstractRefreshableApplicationContext中实现的方法
 			 * 	  初始化BeanFactory，注意，此处是获取新的，销毁旧的，这就是刷新的意义
+			 *
+			 * 	一、创建BeanFactor对象
+			 * 	二、传统标签解析： bean、import等
+			 * 	自定义标签解析： <context: component-scan>
+			 * 	自定义标签解析流程：
+			 * 		1. 根据当前解析标签的头信息找到对应的 namespaceUri
+			 * 		2.加载spring所有jar中的spring.handlers文件。并建立映射关系
+			 * 		3.根据namespaceUri 从映射关系中找到对应的实现了 NamespaceHandler接口的实现类
+			 * 		4.根据namespaceUri找到对应的解析类，然后调用paser方法完成标签的解析工作
+			 * 	二、解析出的xml标签封装成BeanDefinition对象 存储到Map中
 			 */
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 			// 设定类加载器，spel解析器，属性编辑解析器等，忽略特定接口的依赖注册（在特定时刻相关Bean再完成注入)，注册一些系统Bean供依赖注入使用。
@@ -494,7 +504,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 				// Initialize other special beans in specific context subclasses.
 				// 模版方法供子类实现，用于初始化一些特殊Bean配置等
 				// 模板方法模式，埋了一个钩子，那些想要实现特殊实例化bean的类可以重写这个方法以实现自己的定制化初始化方案
-				// 子类重写这个方法后 在容器刷新的时候会被调用
+				// 主要用途：不同的子类实现，执行到这里时，出现不同的执行逻辑
 				onRefresh();
 				// Check for listener beans and register them.  注册事件监听器，监听器需要实现 ApplicationListener 接口。这也不是我们的重点，过
 				// 注册实现了ApplicationListener接口的事件监听器，用于后续广播器广播事件
