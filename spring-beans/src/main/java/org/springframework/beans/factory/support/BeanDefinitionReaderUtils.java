@@ -157,5 +157,4 @@ public abstract class BeanDefinitionReaderUtils {
 		registry.registerBeanDefinition(generatedName, definition);
 		return generatedName;
 	}
-
 }

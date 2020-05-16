@@ -1,6 +1,9 @@
 package com.goat.chapter185.item01;
 
 import com.goat.chapter185.common.Dog;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -15,6 +18,8 @@ public class App {
 
 	ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean1.xml");
 
+	protected final Log logger = LogFactory.getLog(getClass());
+
 	/**
 	 * 测试BeanFactoryPostProcessor
 	 * BeanFactoryPostProcessor第0次被调动
@@ -25,8 +30,8 @@ public class App {
 	*/
 	@Test
 	public void test2() {
+		logger.warn("11111111111111");
 		Dog dog = applicationContext.getBean("dog", Dog.class);
 		dog.sayHello();
 	}
-
 }
