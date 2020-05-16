@@ -14,6 +14,8 @@ import javax.servlet.ServletContextListener;
  * @since 17.02.2003
  * @see #setContextInitializers
  * @see org.springframework.web.WebApplicationInitializer
+ * Spring根应用上下文的启动和关闭监听器，将这些功能简单地委托为ContxtLoader进行处理。
+ * 如果使用Log4jConfigListener则这个监听器应当在Log4jConfigListener之后注册
  */
 public class ContextLoaderListener extends ContextLoader implements ServletContextListener {
 

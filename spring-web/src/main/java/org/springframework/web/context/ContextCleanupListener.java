@@ -16,10 +16,7 @@ import org.springframework.beans.factory.DisposableBean;
  * Web application listener that cleans up remaining disposable attributes
  * in the ServletContext, i.e. attributes which implement {@link DisposableBean}
  * and haven't been removed before. This is typically used for destroying objects
- * in "application" scope, for which the lifecycle implies destruction at the
- * very end of the web application's shutdown phase.
- *
-
+ * in "application" scope, for which the lifecycle implies destruction at the very end of the web application's shutdown phase.
  * @since 3.0
  * @see org.springframework.web.context.support.ServletContextScope
  * @see ContextLoaderListener
@@ -38,10 +35,8 @@ public class ContextCleanupListener implements ServletContextListener {
 		cleanupAttributes(event.getServletContext());
 	}
 
-
 	/**
-	 * Find all Spring-internal ServletContext attributes which implement
-	 * {@link DisposableBean} and invoke the destroy method on them.
+	 * Find all Spring-internal ServletContext attributes which implement {@link DisposableBean} and invoke the destroy method on them.
 	 * @param servletContext the ServletContext to check
 	 * @see DisposableBean#destroy()
 	 */
@@ -54,12 +49,8 @@ public class ContextCleanupListener implements ServletContextListener {
 				if (attrValue instanceof DisposableBean) {
 					try {
 						((DisposableBean) attrValue).destroy();
-					}
-					catch (Throwable ex) {
-						if (logger.isWarnEnabled()) {
-							logger.warn("Invocation of destroy method failed on ServletContext " +
-									"attribute with name '" + attrName + "'", ex);
-						}
+					}catch (Throwable ex) {
+						if (logger.isWarnEnabled()) logger.warn("Invocation of destroy method failed on ServletContext attribute with name '" + attrName + "'", ex);
 					}
 				}
 			}

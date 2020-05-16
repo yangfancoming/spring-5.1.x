@@ -208,9 +208,10 @@ public class ContextLoader {
 					// 如果当前WebApplicationContext没有父ApplicationContext，则通过loadParentContext()方法加载一个，该方法实际上是一个空方法，
 					// 这里提供出来只是为了方便用户进行容器属性的自定义，因为父容器的内容会继承到子容器中
 					if (cwac.getParent() == null) {
-						//  加载父 ApplicationContext，一般情况下，业务容器不会有父容器，除非进行配置
+						//  加载父上下文 ApplicationContext，一般情况下，业务容器不会有父容器，除非进行配置
 						// The context instance was injected without an explicit parent -> determine parent for root web application context, if any.
 						ApplicationContext parent = loadParentContext(servletContext);
+						// 设置父容器上下文
 						cwac.setParent(parent);
 					}
 					// 对WebApplicationContext进行配置，并且调用其refresh()方法初始化配置文件中配置的Spring的各个组件
@@ -350,6 +351,7 @@ public class ContextLoader {
 	 */
 	protected void customizeContext(ServletContext sc, ConfigurableWebApplicationContext wac) {
 		List<Class<ApplicationContextInitializer<ConfigurableApplicationContext>>> initializerClasses = determineContextInitializerClasses(sc);
+		// 遍历应用所有ApplicationContextInitializer
 		for (Class<ApplicationContextInitializer<ConfigurableApplicationContext>> initializerClass : initializerClasses) {
 			Class<?> initializerContextClass = GenericTypeResolver.resolveTypeArgument(initializerClass, ApplicationContextInitializer.class);
 			if (initializerContextClass != null && !initializerContextClass.isInstance(wac)) {
@@ -359,7 +361,9 @@ public class ContextLoader {
 			}
 			this.contextInitializers.add(BeanUtils.instantiateClass(initializerClass));
 		}
+		//排序
 		AnnotationAwareOrderComparator.sort(this.contextInitializers);
+		// 执行所有初始化
 		for (ApplicationContextInitializer<ConfigurableApplicationContext> initializer : this.contextInitializers) {
 			initializer.initialize(wac);
 		}

@@ -24,10 +24,8 @@ import org.springframework.util.PatternMatchUtils;
 /**
  * A bean definition scanner that detects bean candidates on the classpath,registering corresponding bean definitions with a given registry ({@code BeanFactory} or {@code ApplicationContext}).
  * Candidate classes are detected through configurable type filters. The default filters include classes that are annotated with Spring's
- * {@link org.springframework.stereotype.Component @Component},
- * {@link org.springframework.stereotype.Repository @Repository},
- * {@link org.springframework.stereotype.Service @Service}, or
- * {@link org.springframework.stereotype.Controller @Controller} stereotype.
+ * {@link org.springframework.stereotype.Component @Component},{@link org.springframework.stereotype.Repository @Repository},
+ * {@link org.springframework.stereotype.Service @Service}, or {@link org.springframework.stereotype.Controller @Controller} stereotype.
  * Also supports Java EE 6's {@link javax.annotation.ManagedBean} and JSR-330's {@link javax.inject.Named} annotations, if available.
  * @since 2.5
  * @see AnnotationConfigApplicationContext#scan
@@ -84,16 +82,12 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	}
 
 	/**
-	 * Create a new {@code ClassPathBeanDefinitionScanner} for the given bean factory and
-	 * using the given {@link Environment} when evaluating bean definition profile metadata.
-	 * If the passed-in bean factory does not only implement the {@code
-	 * BeanDefinitionRegistry} interface but also the {@link ResourceLoader} interface, it
-	 * will be used as default {@code ResourceLoader} as well. This will usually be the
+	 * Create a new {@code ClassPathBeanDefinitionScanner} for the given bean factory and  using the given {@link Environment} when evaluating bean definition profile metadata.
+	 * If the passed-in bean factory does not only implement the {@code  BeanDefinitionRegistry} interface but also the {@link ResourceLoader} interface,
+	 * it will be used as default {@code ResourceLoader} as well. This will usually be the
 	 * case for {@link org.springframework.context.ApplicationContext} implementations.
-	 * If given a plain {@code BeanDefinitionRegistry}, the default {@code ResourceLoader}
-	 * will be a {@link org.springframework.core.io.support.PathMatchingResourcePatternResolver}.
-	 * @param registry the {@code BeanFactory} to load bean definitions into, in the form
-	 * of a {@code BeanDefinitionRegistry}
+	 * If given a plain {@code BeanDefinitionRegistry}, the default {@code ResourceLoader}  will be a {@link org.springframework.core.io.support.PathMatchingResourcePatternResolver}.
+	 * @param registry the {@code BeanFactory} to load bean definitions into, in the form of a {@code BeanDefinitionRegistry}
 	 * @param useDefaultFilters whether to include the default filters for the
 	 * {@link org.springframework.stereotype.Component @Component},
 	 * {@link org.springframework.stereotype.Repository @Repository},
@@ -295,8 +289,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 
 	/**
 	 * Register the specified bean with the given registry.
-	 * Can be overridden in subclasses, e.g. to adapt the registration
-	 * process or to register further bean definitions for each scanned bean.
+	 * Can be overridden in subclasses, e.g. to adapt the registration process or to register further bean definitions for each scanned bean.
 	 * @param definitionHolder the bean definition plus bean name for the bean
 	 * @param registry the BeanDefinitionRegistry to register the bean with
 	 */
@@ -304,17 +297,13 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 		BeanDefinitionReaderUtils.registerBeanDefinition(definitionHolder, registry);
 	}
 
-
 	/**
-	 * Check the given candidate's bean name, determining whether the corresponding
-	 * bean definition needs to be registered or conflicts with an existing definition.
+	 * Check the given candidate's bean name, determining whether the corresponding bean definition needs to be registered or conflicts with an existing definition.
 	 * @param beanName the suggested name for the bean
 	 * @param beanDefinition the corresponding bean definition
-	 * @return {@code true} if the bean can be registered as-is;
-	 * {@code false} if it should be skipped because there is an
+	 * @return {@code true} if the bean can be registered as-is;  {@code false} if it should be skipped because there is an
 	 * existing, compatible bean definition for the specified name
-	 * @throws ConflictingBeanDefinitionException if an existing, incompatible
-	 * bean definition has been found for the specified name
+	 * @throws ConflictingBeanDefinitionException if an existing, incompatible bean definition has been found for the specified name
 	 */
 	protected boolean checkCandidate(String beanName, BeanDefinition beanDefinition) throws IllegalStateException {
 		if (!registry.containsBeanDefinition(beanName)) {
@@ -334,15 +323,11 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	}
 
 	/**
-	 * Determine whether the given new bean definition is compatible with
-	 * the given existing bean definition.
-	 * The default implementation considers them as compatible when the existing
-	 * bean definition comes from the same source or from a non-scanning source.
+	 * Determine whether the given new bean definition is compatible with the given existing bean definition.
+	 * The default implementation considers them as compatible when the existing bean definition comes from the same source or from a non-scanning source.
 	 * @param newDefinition the new bean definition, originated from scanning
-	 * @param existingDefinition the existing bean definition, potentially an
-	 * explicitly defined one or a previously generated one from scanning
-	 * @return whether the definitions are considered as compatible, with the
-	 * new definition to be skipped in favor of the existing definition
+	 * @param existingDefinition the existing bean definition, potentially an explicitly defined one or a previously generated one from scanning
+	 * @return whether the definitions are considered as compatible, with the new definition to be skipped in favor of the existing definition
 	 */
 	protected boolean isCompatible(BeanDefinition newDefinition, BeanDefinition existingDefinition) {
 		return (!(existingDefinition instanceof ScannedGenericBeanDefinition) ||  // explicitly registered overriding bean
@@ -350,10 +335,8 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 				newDefinition.equals(existingDefinition));  // scanned equivalent class twice
 	}
 
-
 	/**
-	 * Get the Environment from the given registry if possible, otherwise return a new
-	 * StandardEnvironment.
+	 * Get the Environment from the given registry if possible, otherwise return a new StandardEnvironment.
 	 */
 	private static Environment getOrCreateEnvironment(BeanDefinitionRegistry registry) {
 		Assert.notNull(registry, "BeanDefinitionRegistry must not be null");
@@ -362,5 +345,4 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 		}
 		return new StandardEnvironment();
 	}
-
 }
