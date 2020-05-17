@@ -147,5 +147,4 @@ public class ReaderContext {
 	public Object extractSource(Object sourceCandidate) {
 		return sourceExtractor.extractSource(sourceCandidate, resource);
 	}
-
 }

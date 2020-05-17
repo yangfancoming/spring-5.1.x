@@ -192,7 +192,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	 * 在对xml节点的读取的时候，其分为了四种情形：
 	 * ① 解析<import> 	   标签 所指定的xml文件信息；
 	 * ② 解析 <alias>	   标签 信息；
-	 * ③ 解析 <bean> 	   标签 信息；
+	 * ③ 解析 <bean> 	   标签 信息；  重要！
 	 * ④ 解析 嵌套 <bean> 标签 信息
 	*/
 	private void parseDefaultElement(Element ele, BeanDefinitionParserDelegate delegate) {
@@ -301,6 +301,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		// 解析 bean的各种属性 // 对基本的bean标签属性进行解析
 		// 对bean标签的默认属性和子标签进行处理，将其封装为一个BeanDefinition对象，并放入BeanDefinitionHolder中
 		// 1、将解析的节点信息封装至BeanDefinitionHolder对象  BeanDefinitionHolder-->封装了BeanDefinition,beanName以及aliases
+		// 该行代码有： 装饰者模式 + SPI 设计思想
 		BeanDefinitionHolder bdHolder = delegate.parseBeanDefinitionElement(ele);
 		if (bdHolder != null) {
 			// 2、装饰BeanDefinition

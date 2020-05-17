@@ -139,6 +139,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 		if (resourceLoader instanceof ResourcePatternResolver) {
 			// Resource pattern matching available.
 			try {
+				// 把字符串类型的xml文件路径，例如：classpath*:user/**/*-context.xml,转换resources对象
 				Resource[] resources = ((ResourcePatternResolver) resourceLoader).getResources(location);
 				// 这里重点解析xml
 				int count = loadBeanDefinitions(resources);
@@ -195,6 +196,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 		int count = 0;
 		// 注意这里是个 for 循环，也就是每个文件是一个 resource
 		for (Resource resource : resources) {
+			// 模板方法设计模式
 			count += loadBeanDefinitions(resource);
 		}
 		return count;
