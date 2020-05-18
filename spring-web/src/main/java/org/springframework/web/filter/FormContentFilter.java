@@ -33,10 +33,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * {@code Filter} that parses form data for HTTP PUT, PATCH, and DELETE requests
- * and exposes it as Servlet request parameters. By default the Servlet spec
- * only requires this for HTTP POST.
- *
- *
+ * and exposes it as Servlet request parameters. By default the Servlet spec only requires this for HTTP POST.
  * @since 5.1
  */
 public class FormContentFilter extends OncePerRequestFilter {
@@ -44,7 +41,6 @@ public class FormContentFilter extends OncePerRequestFilter {
 	private static final List<String> HTTP_METHODS = Arrays.asList("PUT", "PATCH", "DELETE");
 
 	private FormHttpMessageConverter formConverter = new AllEncompassingFormHttpMessageConverter();
-
 
 	/**
 	 * Set the converter to use for parsing form content.
@@ -57,24 +53,19 @@ public class FormContentFilter extends OncePerRequestFilter {
 
 	/**
 	 * The default character set to use for reading form data.
-	 * This is a shortcut for:<br>
-	 * {@code getFormConverter.setCharset(charset)}.
+	 * This is a shortcut for:<br> {@code getFormConverter.setCharset(charset)}.
 	 */
 	public void setCharset(Charset charset) {
 		this.formConverter.setCharset(charset);
 	}
 
-
 	@Override
-	protected void doFilterInternal(
-			HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-			throws ServletException, IOException {
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
 		MultiValueMap<String, String> params = parseIfNecessary(request);
 		if (!CollectionUtils.isEmpty(params)) {
 			filterChain.doFilter(new FormContentRequestWrapper(request, params), response);
-		}
-		else {
+		}else {
 			filterChain.doFilter(request, response);
 		}
 	}
@@ -101,8 +92,7 @@ public class FormContentFilter extends OncePerRequestFilter {
 		try {
 			MediaType mediaType = MediaType.parseMediaType(request.getContentType());
 			return MediaType.APPLICATION_FORM_URLENCODED.includes(mediaType);
-		}
-		catch (IllegalArgumentException ex) {
+		}catch (IllegalArgumentException ex) {
 			return false;
 		}
 	}
@@ -163,5 +153,4 @@ public class FormContentFilter extends OncePerRequestFilter {
 			}
 		}
 	}
-
 }

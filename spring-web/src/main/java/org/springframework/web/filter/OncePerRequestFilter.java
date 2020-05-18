@@ -46,9 +46,6 @@ import org.springframework.web.util.WebUtils;
  * The {@link #getAlreadyFilteredAttributeName} method determines how to
  * identify that a request is already filtered. The default implementation is
  * based on the configured name of the concrete filter instance.
- *
-
- *
  * @since 06.12.2003
  */
 public abstract class OncePerRequestFilter extends GenericFilterBean {
@@ -60,19 +57,15 @@ public abstract class OncePerRequestFilter extends GenericFilterBean {
 	 */
 	public static final String ALREADY_FILTERED_SUFFIX = ".FILTERED";
 
-
 	/**
 	 * This {@code doFilter} implementation stores a request attribute for
-	 * "already filtered", proceeding without filtering again if the
-	 * attribute is already there.
+	 * "already filtered", proceeding without filtering again if the attribute is already there.
 	 * @see #getAlreadyFilteredAttributeName
 	 * @see #shouldNotFilter
 	 * @see #doFilterInternal
 	 */
 	@Override
-	public final void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
-			throws ServletException, IOException {
-
+	public final void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 		if (!(request instanceof HttpServletRequest) || !(response instanceof HttpServletResponse)) {
 			throw new ServletException("OncePerRequestFilter just supports HTTP requests");
 		}
@@ -87,14 +80,12 @@ public abstract class OncePerRequestFilter extends GenericFilterBean {
 
 			// Proceed without invoking this filter...
 			filterChain.doFilter(request, response);
-		}
-		else {
+		}else {
 			// Do invoke this filter...
 			request.setAttribute(alreadyFilteredAttributeName, Boolean.TRUE);
 			try {
 				doFilterInternal(httpRequest, httpResponse, filterChain);
-			}
-			finally {
+			}finally {
 				// Remove the "already filtered" request attribute for this request.
 				request.removeAttribute(alreadyFilteredAttributeName);
 			}
@@ -154,17 +145,11 @@ public abstract class OncePerRequestFilter extends GenericFilterBean {
 	}
 
 	private String updateForErrorDispatch(String alreadyFilteredAttributeName, ServletRequest request) {
-
 		// Jetty does ERROR dispatch within sendError, so request attribute is still present
 		// Use a separate attribute for ERROR dispatches
-
-		if (DispatcherType.ERROR.equals(request.getDispatcherType()) && !shouldNotFilterErrorDispatch() &&
-				request.getAttribute(alreadyFilteredAttributeName) != null) {
-
+		if (DispatcherType.ERROR.equals(request.getDispatcherType()) && !shouldNotFilterErrorDispatch() && request.getAttribute(alreadyFilteredAttributeName) != null) {
 			return alreadyFilteredAttributeName + ".ERROR";
 		}
-
-
 		return alreadyFilteredAttributeName;
 	}
 
@@ -212,7 +197,6 @@ public abstract class OncePerRequestFilter extends GenericFilterBean {
 		return true;
 	}
 
-
 	/**
 	 * Same contract as for {@code doFilter}, but guaranteed to be
 	 * just invoked once per request within a single request thread.
@@ -220,8 +204,5 @@ public abstract class OncePerRequestFilter extends GenericFilterBean {
 	 * Provides HttpServletRequest and HttpServletResponse arguments instead of the
 	 * default ServletRequest and ServletResponse ones.
 	 */
-	protected abstract void doFilterInternal(
-			HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-			throws ServletException, IOException;
-
+	protected abstract void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException;
 }

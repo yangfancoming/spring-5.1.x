@@ -414,10 +414,12 @@ public class BeanDefinitionParserDelegate {
 			parent = ele.getAttribute(PARENT_ATTRIBUTE);
 		}
 		try {
-			// 3、创建 AbstractBeanDefinition 对象，底层是 GenericBeanDefinition // 创建一个BeanDefinition的对象
+			// 3、创建 AbstractBeanDefinition 对象，底层是 GenericBeanDefinition
 			AbstractBeanDefinition bd = createBeanDefinition(className, parent);
-			// 解析所有属性 // 转换基本的bean属性的值
-			// 4、解析<bean>标签中的所有属性  例如：singleton、 lazy-init、 autowire 、depends-on、  primary、 init-method、 destroy-method、 factory-method、 factory-bean、
+			/**
+			 * 	4、解析<bean>标签中的所有属性,	并将解析出来的属性  设置到 AbstractBeanDefinition 中去。
+			 * 	例如：singleton、 lazy-init、 autowire 、depends-on、  primary、 init-method、 destroy-method、 factory-method、 factory-bean、
+			*/
 			parseBeanDefinitionAttributes(ele, beanName, containingBean, bd);
 			bd.setDescription(DomUtils.getChildElementValueByTagName(ele, DESCRIPTION_ELEMENT));
 			// 5、解析meta标签  <meta> // 转换并封装元节点标签
@@ -469,11 +471,11 @@ public class BeanDefinitionParserDelegate {
 			// 未明确指定bean的作用域,且当前被解析bean是内部bean的话，则默认使用outer bean的的作用域作为当前bean的作用域
 			// 例如:下面的配置，解析到inner属性时，inner未指定作用域，则使用outer的作用域，也就是prototype
 			/**
-			 <bean id="outer" class="com.lyc.cn.v2.day01.inner.Outer" scope="prototype">
-				 <property name="inner">
-					 <bean id="inner" class="com.lyc.cn.v2.day01.inner.Inner"/>
-				 </property>
-			 </bean>
+			 * 	 <bean id="outer" class="com.lyc.cn.v2.day01.inner.Outer" scope="prototype">
+			 * 		<property name="inner">
+			 * 			<bean id="inner" class="com.lyc.cn.v2.day01.inner.Inner"/>
+			 * 		</property>
+			 * 	  </bean>
 			 **/
 			bd.setScope(containingBean.getScope());
 		}

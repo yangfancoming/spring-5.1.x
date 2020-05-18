@@ -21,15 +21,11 @@ import org.springframework.util.Assert;
  *
  * <strong>Note:</strong> While relative redirects are recommended in the
  * RFC, under some configurations with reverse proxies they may not work.
- *
- * @author Rob Winch
- *
  * @since 4.3.10
  */
 public class RelativeRedirectFilter extends OncePerRequestFilter {
 
 	private HttpStatus redirectStatus = HttpStatus.SEE_OTHER;
-
 
 	/**
 	 * Set the default HTTP Status to use for redirects.
@@ -51,11 +47,8 @@ public class RelativeRedirectFilter extends OncePerRequestFilter {
 
 
 	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-			FilterChain filterChain) throws ServletException, IOException {
-
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,FilterChain filterChain) throws ServletException, IOException {
 		response = RelativeRedirectResponseWrapper.wrapIfNecessary(response, this.redirectStatus);
 		filterChain.doFilter(request, response);
 	}
-
 }
