@@ -31,29 +31,20 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.HandlerMapping;
 
 /**
- * Helper class to get information from the {@code HandlerMapping} that would
- * serve a specific request.
- *
+ * Helper class to get information from the {@code HandlerMapping} that would serve a specific request.
  * Provides the following methods:
  * <ul>
- * <li>{@link #getMatchableHandlerMapping} ; obtain a {@code HandlerMapping}
- * to check request-matching criteria against.
- * <li>{@link #getCorsConfiguration} ; obtain the CORS configuration for the
- * request.
- * </ul>
- *
- *
+ * <li>{@link #getMatchableHandlerMapping} ; obtain a {@code HandlerMapping} to check request-matching criteria against.
+ * <li>{@link #getCorsConfiguration} ; obtain the CORS configuration for the request.
  * @since 4.3.1
  */
-public class HandlerMappingIntrospector
-		implements CorsConfigurationSource, ApplicationContextAware, InitializingBean {
+public class HandlerMappingIntrospector implements CorsConfigurationSource, ApplicationContextAware, InitializingBean {
 
 	@Nullable
 	private ApplicationContext applicationContext;
 
 	@Nullable
 	private List<HandlerMapping> handlerMappings;
-
 
 	/**
 	 * Constructor for use with {@link ApplicationContextAware}.
@@ -72,14 +63,12 @@ public class HandlerMappingIntrospector
 		this.handlerMappings = initHandlerMappings(context);
 	}
 
-
 	/**
 	 * Return the configured HandlerMapping's.
 	 */
 	public List<HandlerMapping> getHandlerMappings() {
 		return (this.handlerMappings != null ? this.handlerMappings : Collections.emptyList());
 	}
-
 
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) {
@@ -94,13 +83,10 @@ public class HandlerMappingIntrospector
 		}
 	}
 
-
 	/**
 	 * Find the {@link HandlerMapping} that would handle the given request and
-	 * return it as a {@link MatchableHandlerMapping} that can be used to test
-	 * request-matching criteria.
-	 * If the matching HandlerMapping is not an instance of
-	 * {@link MatchableHandlerMapping}, an IllegalStateException is raised.
+	 * return it as a {@link MatchableHandlerMapping} that can be used to test request-matching criteria.
+	 * If the matching HandlerMapping is not an instance of {@link MatchableHandlerMapping}, an IllegalStateException is raised.
 	 * @param request the current request
 	 * @return the resolved matcher, or {@code null}
 	 * @throws Exception if any of the HandlerMapping's raise an exception
@@ -131,8 +117,7 @@ public class HandlerMappingIntrospector
 			HandlerExecutionChain handler = null;
 			try {
 				handler = handlerMapping.getHandler(wrapper);
-			}
-			catch (Exception ex) {
+			}catch (Exception ex) {
 				// Ignore
 			}
 			if (handler == null) {
@@ -152,10 +137,8 @@ public class HandlerMappingIntrospector
 		return null;
 	}
 
-
 	private static List<HandlerMapping> initHandlerMappings(ApplicationContext applicationContext) {
-		Map<String, HandlerMapping> beans = BeanFactoryUtils.beansOfTypeIncludingAncestors(
-				applicationContext, HandlerMapping.class, true, false);
+		Map<String, HandlerMapping> beans = BeanFactoryUtils.beansOfTypeIncludingAncestors(applicationContext, HandlerMapping.class, true, false);
 		if (!beans.isEmpty()) {
 			List<HandlerMapping> mappings = new ArrayList<>(beans.values());
 			AnnotationAwareOrderComparator.sort(mappings);
@@ -170,11 +153,9 @@ public class HandlerMappingIntrospector
 		try {
 			Resource resource = new ClassPathResource(path, DispatcherServlet.class);
 			props = PropertiesLoaderUtils.loadProperties(resource);
-		}
-		catch (IOException ex) {
+		}catch (IOException ex) {
 			throw new IllegalStateException("Could not load '" + path + "': " + ex.getMessage());
 		}
-
 		String value = props.getProperty(HandlerMapping.class.getName());
 		String[] names = StringUtils.commaDelimitedListToStringArray(value);
 		List<HandlerMapping> result = new ArrayList<>(names.length);
@@ -183,8 +164,7 @@ public class HandlerMappingIntrospector
 				Class<?> clazz = ClassUtils.forName(name, DispatcherServlet.class.getClassLoader());
 				Object mapping = applicationContext.getAutowireCapableBeanFactory().createBean(clazz);
 				result.add((HandlerMapping) mapping);
-			}
-			catch (ClassNotFoundException ex) {
+			}catch (ClassNotFoundException ex) {
 				throw new IllegalStateException("Could not find default HandlerMapping [" + name + "]");
 			}
 		}
@@ -206,5 +186,4 @@ public class HandlerMappingIntrospector
 			// Ignore attribute change...
 		}
 	}
-
 }

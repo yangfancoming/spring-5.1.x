@@ -26,8 +26,6 @@ import org.springframework.util.Assert;
  * Note that despite {@code @JsonView} allowing for more than one class to
  * be specified, the use for a request body advice is only supported with
  * exactly one class argument. Consider the use of a composite interface.
- *
- * @author Sebastien Deleuze
  * @since 4.2
  * @see com.fasterxml.jackson.annotation.JsonView
  * @see com.fasterxml.jackson.databind.ObjectMapper#readerWithView(Class)
@@ -35,26 +33,18 @@ import org.springframework.util.Assert;
 public class JsonViewRequestBodyAdvice extends RequestBodyAdviceAdapter {
 
 	@Override
-	public boolean supports(MethodParameter methodParameter, Type targetType,
-			Class<? extends HttpMessageConverter<?>> converterType) {
-
-		return (AbstractJackson2HttpMessageConverter.class.isAssignableFrom(converterType) &&
-				methodParameter.getParameterAnnotation(JsonView.class) != null);
+	public boolean supports(MethodParameter methodParameter, Type targetType,Class<? extends HttpMessageConverter<?>> converterType) {
+		return (AbstractJackson2HttpMessageConverter.class.isAssignableFrom(converterType) && methodParameter.getParameterAnnotation(JsonView.class) != null);
 	}
 
 	@Override
-	public HttpInputMessage beforeBodyRead(HttpInputMessage inputMessage, MethodParameter methodParameter,
-			Type targetType, Class<? extends HttpMessageConverter<?>> selectedConverterType) throws IOException {
-
+	public HttpInputMessage beforeBodyRead(HttpInputMessage inputMessage, MethodParameter methodParameter,Type targetType, Class<? extends HttpMessageConverter<?>> selectedConverterType) throws IOException {
 		JsonView ann = methodParameter.getParameterAnnotation(JsonView.class);
 		Assert.state(ann != null, "No JsonView annotation");
-
 		Class<?>[] classes = ann.value();
 		if (classes.length != 1) {
-			throw new IllegalArgumentException(
-					"@JsonView only supported for request body advice with exactly 1 class argument: " + methodParameter);
+			throw new IllegalArgumentException("@JsonView only supported for request body advice with exactly 1 class argument: " + methodParameter);
 		}
-
 		return new MappingJacksonInputMessage(inputMessage.getBody(), inputMessage.getHeaders(), classes[0]);
 	}
 

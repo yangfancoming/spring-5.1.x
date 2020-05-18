@@ -21,14 +21,11 @@ import org.springframework.util.ObjectUtils;
  * they are expected to (a) contain the same number of conditions and (b) that
  * conditions in the respective index are of the same type. It is acceptable to
  * provide {@code null} conditions or no conditions at all to the constructor.
- *
- *
  * @since 3.2
  */
 public class CompositeRequestCondition extends AbstractRequestCondition<CompositeRequestCondition> {
 
 	private final RequestConditionHolder[] requestConditions;
-
 
 	/**
 	 * Create an instance with 0 or more {@code RequestCondition} types. It is
@@ -117,10 +114,9 @@ public class CompositeRequestCondition extends AbstractRequestCondition<Composit
 	}
 
 	private void assertNumberOfConditions(CompositeRequestCondition other) {
-		Assert.isTrue(getLength() == other.getLength(),
-				"Cannot combine CompositeRequestConditions with a different number of conditions. " +
-				ObjectUtils.nullSafeToString(this.requestConditions) + " and  " +
-				ObjectUtils.nullSafeToString(other.requestConditions));
+		Assert.isTrue(getLength() == other.getLength(),"Cannot combine CompositeRequestConditions with a different number of conditions. " +
+				ObjectUtils.nullSafeToString(this.requestConditions) + " and  " + ObjectUtils.nullSafeToString(other.requestConditions));
+
 	}
 
 	/**
@@ -152,14 +148,11 @@ public class CompositeRequestCondition extends AbstractRequestCondition<Composit
 	public int compareTo(CompositeRequestCondition other, HttpServletRequest request) {
 		if (isEmpty() && other.isEmpty()) {
 			return 0;
-		}
-		else if (isEmpty()) {
+		}else if (isEmpty()) {
 			return 1;
-		}
-		else if (other.isEmpty()) {
+		}else if (other.isEmpty()) {
 			return -1;
-		}
-		else {
+		}else {
 			assertNumberOfConditions(other);
 			for (int i = 0; i < getLength(); i++) {
 				int result = this.requestConditions[i].compareTo(other.requestConditions[i], request);

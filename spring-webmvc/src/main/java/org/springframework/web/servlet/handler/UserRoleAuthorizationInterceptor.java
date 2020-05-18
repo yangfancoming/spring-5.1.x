@@ -12,8 +12,6 @@ import org.springframework.lang.Nullable;
 /**
  * Interceptor that checks the authorization of the current user via the
  * user's roles, as evaluated by HttpServletRequest's isUserInRole method.
- *
-
  * @since 20.06.2003
  * @see javax.servlet.http.HttpServletRequest#isUserInRole
  */
@@ -21,7 +19,6 @@ public class UserRoleAuthorizationInterceptor extends HandlerInterceptorAdapter 
 
 	@Nullable
 	private String[] authorizedRoles;
-
 
 	/**
 	 * Set the roles that this interceptor should treat as authorized.
@@ -33,9 +30,7 @@ public class UserRoleAuthorizationInterceptor extends HandlerInterceptorAdapter 
 
 
 	@Override
-	public final boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws ServletException, IOException {
-
+	public final boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException, IOException {
 		if (this.authorizedRoles != null) {
 			for (String role : this.authorizedRoles) {
 				if (request.isUserInRole(role)) {
@@ -58,9 +53,7 @@ public class UserRoleAuthorizationInterceptor extends HandlerInterceptorAdapter 
 	 * @throws javax.servlet.ServletException if there is an internal error
 	 * @throws java.io.IOException in case of an I/O error when writing the response
 	 */
-	protected void handleNotAuthorized(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws ServletException, IOException {
-
+	protected void handleNotAuthorized(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException, IOException {
 		response.sendError(HttpServletResponse.SC_FORBIDDEN);
 	}
 

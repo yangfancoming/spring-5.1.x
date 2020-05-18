@@ -13,8 +13,6 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 
 /**
  * Handles return values of type {@link WebAsyncTask}.
- *
- *
  * @since 3.2
  */
 public class AsyncTaskMethodReturnValueHandler implements HandlerMethodReturnValueHandler {
@@ -22,11 +20,9 @@ public class AsyncTaskMethodReturnValueHandler implements HandlerMethodReturnVal
 	@Nullable
 	private final BeanFactory beanFactory;
 
-
 	public AsyncTaskMethodReturnValueHandler(@Nullable BeanFactory beanFactory) {
 		this.beanFactory = beanFactory;
 	}
-
 
 	@Override
 	public boolean supportsReturnType(MethodParameter returnType) {
@@ -34,8 +30,7 @@ public class AsyncTaskMethodReturnValueHandler implements HandlerMethodReturnVal
 	}
 
 	@Override
-	public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,
-			ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {
+	public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {
 
 		if (returnValue == null) {
 			mavContainer.setRequestHandled(true);
@@ -48,5 +43,4 @@ public class AsyncTaskMethodReturnValueHandler implements HandlerMethodReturnVal
 		}
 		WebAsyncUtils.getAsyncManager(webRequest).startCallableProcessing(webAsyncTask, mavContainer);
 	}
-
 }

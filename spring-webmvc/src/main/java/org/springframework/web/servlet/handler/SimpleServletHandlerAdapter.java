@@ -28,10 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
  *
  * <b>Alternatively, consider wrapping a Servlet with Spring's
  * ServletWrappingController.</b> This is particularly appropriate for
- * existing Servlet classes, allowing to specify Servlet initialization
- * parameters etc.
- *
-
+ * existing Servlet classes, allowing to specify Servlet initialization parameters etc.
  * @since 1.1.5
  * @see javax.servlet.Servlet
  * @see javax.servlet.http.HttpServlet
@@ -47,9 +44,7 @@ public class SimpleServletHandlerAdapter implements HandlerAdapter {
 
 	@Override
 	@Nullable
-	public ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
-
+	public ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		((Servlet) handler).service(request, response);
 		return null;
 	}
@@ -58,5 +53,4 @@ public class SimpleServletHandlerAdapter implements HandlerAdapter {
 	public long getLastModified(HttpServletRequest request, Object handler) {
 		return -1;
 	}
-
 }

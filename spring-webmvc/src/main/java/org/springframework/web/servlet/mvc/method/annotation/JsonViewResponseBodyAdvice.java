@@ -24,8 +24,6 @@ import org.springframework.util.Assert;
  * Note that despite {@code @JsonView} allowing for more than one class to
  * be specified, the use for a response body advice is only supported with
  * exactly one class argument. Consider the use of a composite interface.
- *
- *
  * @since 4.1
  * @see com.fasterxml.jackson.annotation.JsonView
  * @see com.fasterxml.jackson.databind.ObjectMapper#writerWithView(Class)
@@ -38,18 +36,13 @@ public class JsonViewResponseBodyAdvice extends AbstractMappingJacksonResponseBo
 	}
 
 	@Override
-	protected void beforeBodyWriteInternal(MappingJacksonValue bodyContainer, MediaType contentType,
-			MethodParameter returnType, ServerHttpRequest request, ServerHttpResponse response) {
-
+	protected void beforeBodyWriteInternal(MappingJacksonValue bodyContainer, MediaType contentType,MethodParameter returnType, ServerHttpRequest request, ServerHttpResponse response) {
 		JsonView ann = returnType.getMethodAnnotation(JsonView.class);
 		Assert.state(ann != null, "No JsonView annotation");
-
 		Class<?>[] classes = ann.value();
 		if (classes.length != 1) {
-			throw new IllegalArgumentException(
-					"@JsonView only supported for response body advice with exactly 1 class argument: " + returnType);
+			throw new IllegalArgumentException("@JsonView only supported for response body advice with exactly 1 class argument: " + returnType);
 		}
-
 		bodyContainer.setSerializationView(classes[0]);
 	}
 

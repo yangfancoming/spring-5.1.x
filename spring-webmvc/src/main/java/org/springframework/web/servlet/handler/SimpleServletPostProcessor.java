@@ -43,15 +43,12 @@ import org.springframework.web.context.ServletContextAware;
  * {@link org.springframework.web.servlet.mvc.ServletWrappingController}.</b>
  * This is particularly appropriate for existing Servlet classes,
  * allowing to specify Servlet initialization parameters etc.
- *
-
  * @since 1.1.5
  * @see javax.servlet.Servlet#init(javax.servlet.ServletConfig)
  * @see javax.servlet.Servlet#destroy()
  * @see SimpleServletHandlerAdapter
  */
-public class SimpleServletPostProcessor implements
-		DestructionAwareBeanPostProcessor, ServletContextAware, ServletConfigAware {
+public class SimpleServletPostProcessor implements DestructionAwareBeanPostProcessor, ServletContextAware, ServletConfigAware {
 
 	private boolean useSharedServletConfig = true;
 
@@ -61,10 +58,8 @@ public class SimpleServletPostProcessor implements
 	@Nullable
 	private ServletConfig servletConfig;
 
-
 	/**
-	 * Set whether to use the shared ServletConfig object passed in
-	 * through {@code setServletConfig}, if available.
+	 * Set whether to use the shared ServletConfig object passed in through {@code setServletConfig}, if available.
 	 * Default is "true". Turn this setting to "false" to pass in
 	 * a mock ServletConfig object with the bean name as servlet name,
 	 * holding the current ServletContext.
@@ -158,5 +153,4 @@ public class SimpleServletPostProcessor implements
 			return Collections.enumeration(Collections.emptySet());
 		}
 	}
-
 }

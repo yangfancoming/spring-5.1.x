@@ -25,8 +25,7 @@ import org.springframework.web.servlet.HandlerExecutionChain;
  *
  * Supports direct matches, e.g. a registered "/test" matches "/test", and various Ant-style pattern matches,
  * e.g. a registered "/t*" pattern matches both "/test" and "/team", "/test/*" matches all paths in the "/test" directory,
- * "/test/**" matches all paths below "/test". For details, see the
- * {@link org.springframework.util.AntPathMatcher AntPathMatcher} javadoc.
+ * "/test/**" matches all paths below "/test". For details, see the {@link org.springframework.util.AntPathMatcher AntPathMatcher} javadoc.
  * Will search all path patterns to find the most exact match for the
  * current request path. The most exact match is defined as the longest path pattern that matches the current request path.
  * @since 16.04.2003
@@ -75,14 +74,11 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	}
 
 	/**
-	 * Set whether to lazily initialize handlers. Only applicable to
-	 * singleton handlers, as prototypes are always lazily initialized.
-	 * Default is "false", as eager initialization allows for more efficiency
-	 * through referencing the controller objects directly.
+	 * Set whether to lazily initialize handlers. Only applicable to singleton handlers, as prototypes are always lazily initialized.
+	 * Default is "false", as eager initialization allows for more efficiency through referencing the controller objects directly.
 	 * If you want to allow your controllers to be lazily initialized,
 	 * make them "lazy-init" and set this flag to true. Just making them
-	 * "lazy-init" will not work, as they are initialized through the
-	 * references from the handler mapping in this case.
+	 * "lazy-init" will not work, as they are initialized through the references from the handler mapping in this case.
 	 */
 	public void setLazyInitHandlers(boolean lazyInitHandlers) {
 		this.lazyInitHandlers = lazyInitHandlers;
@@ -378,5 +374,4 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 			return true;
 		}
 	}
-
 }

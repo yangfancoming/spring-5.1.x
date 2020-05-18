@@ -76,58 +76,37 @@ import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolv
  * {@code <annotation-driven/>} MVC namespace element.
  *
  * This class registers the following {@link HandlerMapping HandlerMappings}:</p>
- * <ul>
- * <li>{@link RequestMappingHandlerMapping}
- * ordered at 0 for mapping requests to annotated controller methods.
- * <li>{@link BeanNameUrlHandlerMapping}
- * ordered at 2 to map URL paths to controller bean names.
- * </ul>
+ * <li>{@link RequestMappingHandlerMapping} ordered at 0 for mapping requests to annotated controller methods.
+ * <li>{@link BeanNameUrlHandlerMapping} ordered at 2 to map URL paths to controller bean names.
  *
  * <strong>Note:</strong> Additional HandlerMappings may be registered
- * as a result of using the {@code <view-controller>} or the
- * {@code <resources>} MVC namespace elements.
+ * as a result of using the {@code <view-controller>} or the {@code <resources>} MVC namespace elements.
  *
  * This class registers the following {@link HandlerAdapter HandlerAdapters}:
- * <ul>
  * <li>{@link RequestMappingHandlerAdapter}
  * for processing requests with annotated controller methods.
  * <li>{@link HttpRequestHandlerAdapter}
  * for processing requests with {@link HttpRequestHandler HttpRequestHandlers}.
  * <li>{@link SimpleControllerHandlerAdapter}
  * for processing requests with interface-based {@link Controller Controllers}.
- * </ul>
  *
  * This class registers the following {@link HandlerExceptionResolver HandlerExceptionResolvers}:
- * <ul>
- * <li>{@link ExceptionHandlerExceptionResolver} for handling exceptions through
- * {@link org.springframework.web.bind.annotation.ExceptionHandler} methods.
- * <li>{@link ResponseStatusExceptionResolver} for exceptions annotated
- * with {@link org.springframework.web.bind.annotation.ResponseStatus}.
- * <li>{@link DefaultHandlerExceptionResolver} for resolving known Spring
- * exception types
- * </ul>
+ * <li>{@link ExceptionHandlerExceptionResolver} for handling exceptions through {@link org.springframework.web.bind.annotation.ExceptionHandler} methods.
+ * <li>{@link ResponseStatusExceptionResolver} for exceptions annotated with {@link org.springframework.web.bind.annotation.ResponseStatus}.
+ * <li>{@link DefaultHandlerExceptionResolver} for resolving known Spring exception types
  *
- * This class registers an {@link org.springframework.util.AntPathMatcher}
- * and a {@link org.springframework.web.util.UrlPathHelper} to be used by:
- * <ul>
+ * This class registers an {@link org.springframework.util.AntPathMatcher} and a {@link org.springframework.web.util.UrlPathHelper} to be used by:
  * <li>the {@link RequestMappingHandlerMapping},
  * <li>the {@link HandlerMapping} for ViewControllers
  * <li>and the {@link HandlerMapping} for serving resources
- * </ul>
- * Note that those beans can be configured by using the {@code path-matching}
- * MVC namespace element.
- *
- * Both the {@link RequestMappingHandlerAdapter} and the
- * {@link ExceptionHandlerExceptionResolver} are configured with instances of
- * the following by default:
- * <ul>
+ * Note that those beans can be configured by using the {@code path-matching} MVC namespace element.
+ * Both the {@link RequestMappingHandlerAdapter} and the {@link ExceptionHandlerExceptionResolver} are configured with instances of the following by default:
  * <li>A {@link ContentNegotiationManager}
  * <li>A {@link DefaultFormattingConversionService}
  * <li>A {@link org.springframework.validation.beanvalidation.LocalValidatorFactoryBean}
  * if a JSR-303 implementation is available on the classpath
  * <li>A range of {@link HttpMessageConverter HttpMessageConverters} depending on which third-party
  * libraries are available on the classpath.
- * </ul>
  * @since 3.0
  */
 class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
@@ -171,33 +150,25 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 	public BeanDefinition parse(Element element, ParserContext context) {
 		Object source = context.extractSource(element);
 		XmlReaderContext readerContext = context.getReaderContext();
-
 		CompositeComponentDefinition compDefinition = new CompositeComponentDefinition(element.getTagName(), source);
 		context.pushContainingComponent(compDefinition);
-
 		RuntimeBeanReference contentNegotiationManager = getContentNegotiationManager(element, source, context);
-
 		RootBeanDefinition handlerMappingDef = new RootBeanDefinition(RequestMappingHandlerMapping.class);
 		handlerMappingDef.setSource(source);
 		handlerMappingDef.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
 		handlerMappingDef.getPropertyValues().add("order", 0);
 		handlerMappingDef.getPropertyValues().add("contentNegotiationManager", contentNegotiationManager);
-
 		if (element.hasAttribute("enable-matrix-variables")) {
 			Boolean enableMatrixVariables = Boolean.valueOf(element.getAttribute("enable-matrix-variables"));
 			handlerMappingDef.getPropertyValues().add("removeSemicolonContent", !enableMatrixVariables);
 		}
-
 		configurePathMatchingProperties(handlerMappingDef, element, context);
 		readerContext.getRegistry().registerBeanDefinition(HANDLER_MAPPING_BEAN_NAME, handlerMappingDef);
-
 		RuntimeBeanReference corsRef = MvcNamespaceUtils.registerCorsConfigurations(null, context, source);
 		handlerMappingDef.getPropertyValues().add("corsConfigurations", corsRef);
-
 		RuntimeBeanReference conversionService = getConversionService(element, source, context);
 		RuntimeBeanReference validator = getValidator(element, source, context);
 		RuntimeBeanReference messageCodesResolver = getMessageCodesResolver(element);
-
 		RootBeanDefinition bindingDef = new RootBeanDefinition(ConfigurableWebBindingInitializer.class);
 		bindingDef.setSource(source);
 		bindingDef.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
@@ -652,5 +623,4 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 			return true;
 		}
 	}
-
 }

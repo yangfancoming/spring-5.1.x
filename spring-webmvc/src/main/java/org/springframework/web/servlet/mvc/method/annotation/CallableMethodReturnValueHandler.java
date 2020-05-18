@@ -13,8 +13,6 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 
 /**
  * Handles return values of type {@link Callable}.
- *
- *
  * @since 3.2
  */
 public class CallableMethodReturnValueHandler implements HandlerMethodReturnValueHandler {
@@ -25,16 +23,12 @@ public class CallableMethodReturnValueHandler implements HandlerMethodReturnValu
 	}
 
 	@Override
-	public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,
-			ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {
-
+	public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {
 		if (returnValue == null) {
 			mavContainer.setRequestHandled(true);
 			return;
 		}
-
 		Callable<?> callable = (Callable<?>) returnValue;
 		WebAsyncUtils.getAsyncManager(webRequest).startCallableProcessing(callable, mavContainer);
 	}
-
 }

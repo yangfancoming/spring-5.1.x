@@ -15,8 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * Adapter that implements the Servlet HandlerInterceptor interface
  * and wraps an underlying WebRequestInterceptor.
- *
-
  * @since 2.0
  * @see org.springframework.web.context.request.WebRequestInterceptor
  * @see org.springframework.web.servlet.HandlerInterceptor
@@ -24,7 +22,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class WebRequestHandlerInterceptorAdapter implements AsyncHandlerInterceptor {
 
 	private final WebRequestInterceptor requestInterceptor;
-
 
 	/**
 	 * Create a new WebRequestHandlerInterceptorAdapter for the given WebRequestInterceptor.
@@ -35,27 +32,19 @@ public class WebRequestHandlerInterceptorAdapter implements AsyncHandlerIntercep
 		this.requestInterceptor = requestInterceptor;
 	}
 
-
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
-
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		this.requestInterceptor.preHandle(new DispatcherServletWebRequest(request, response));
 		return true;
 	}
 
 	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			@Nullable ModelAndView modelAndView) throws Exception {
-
-		this.requestInterceptor.postHandle(new DispatcherServletWebRequest(request, response),
-				(modelAndView != null && !modelAndView.wasCleared() ? modelAndView.getModelMap() : null));
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,@Nullable ModelAndView modelAndView) throws Exception {
+		this.requestInterceptor.postHandle(new DispatcherServletWebRequest(request, response),(modelAndView != null && !modelAndView.wasCleared() ? modelAndView.getModelMap() : null));
 	}
 
 	@Override
-	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,
-			@Nullable Exception ex) throws Exception {
-
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,@Nullable Exception ex) throws Exception {
 		this.requestInterceptor.afterCompletion(new DispatcherServletWebRequest(request, response), ex);
 	}
 

@@ -16,15 +16,11 @@ import org.springframework.web.util.WebUtils;
 /**
  * A logical conjunction (' && ') request condition that matches a request against
  * a set parameter expressions with syntax defined in {@link RequestMapping#params()}.
- *
- * @author Arjen Poutsma
- *
  * @since 3.1
  */
 public final class ParamsRequestCondition extends AbstractRequestCondition<ParamsRequestCondition> {
 
 	private final Set<ParamExpression> expressions;
-
 
 	/**
 	 * Create a new instance from the given param expressions.
@@ -39,7 +35,6 @@ public final class ParamsRequestCondition extends AbstractRequestCondition<Param
 		this.expressions = Collections.unmodifiableSet(new LinkedHashSet<>(conditions));
 	}
 
-
 	private static Collection<ParamExpression> parseExpressions(String... params) {
 		Set<ParamExpression> expressions = new LinkedHashSet<>();
 		for (String param : params) {
@@ -47,7 +42,6 @@ public final class ParamsRequestCondition extends AbstractRequestCondition<Param
 		}
 		return expressions;
 	}
-
 
 	/**
 	 * Return the contained request parameter expressions.
@@ -78,8 +72,7 @@ public final class ParamsRequestCondition extends AbstractRequestCondition<Param
 	}
 
 	/**
-	 * Returns "this" instance if the request matches all param expressions;
-	 * or {@code null} otherwise.
+	 * Returns "this" instance if the request matches all param expressions;or {@code null} otherwise.
 	 */
 	@Override
 	@Nullable

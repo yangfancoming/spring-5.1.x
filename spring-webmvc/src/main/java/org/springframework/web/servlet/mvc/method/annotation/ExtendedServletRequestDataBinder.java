@@ -11,10 +11,7 @@ import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.servlet.HandlerMapping;
 
 /**
- * Subclass of {@link ServletRequestDataBinder} that adds URI template variables
- * to the values used for data binding.
- *
- *
+ * Subclass of {@link ServletRequestDataBinder} that adds URI template variables to the values used for data binding.
  * @since 3.1
  */
 public class ExtendedServletRequestDataBinder extends ServletRequestDataBinder {
@@ -52,12 +49,8 @@ public class ExtendedServletRequestDataBinder extends ServletRequestDataBinder {
 		if (uriVars != null) {
 			uriVars.forEach((name, value) -> {
 				if (mpvs.contains(name)) {
-					if (logger.isWarnEnabled()) {
-						logger.warn("Skipping URI variable '" + name +
-								"' because request contains bind value with same name.");
-					}
-				}
-				else {
+					if (logger.isWarnEnabled()) logger.warn("Skipping URI variable '" + name + "' because request contains bind value with same name.");
+				}else {
 					mpvs.addPropertyValue(name, value);
 				}
 			});

@@ -97,5 +97,4 @@ public abstract class AbstractHandlerMethodAdapter extends WebContentGenerator i
 	 * @return the lastModified value for the given handler
 	 */
 	protected abstract long getLastModifiedInternal(HttpServletRequest request, HandlerMethod handlerMethod);
-
 }

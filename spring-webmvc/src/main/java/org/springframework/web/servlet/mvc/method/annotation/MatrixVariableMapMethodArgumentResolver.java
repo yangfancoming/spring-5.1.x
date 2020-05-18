@@ -31,8 +31,6 @@ import org.springframework.web.servlet.HandlerMapping;
  *
  * When a name is specified, an argument of type Map is considered to be a single attribute
  * with a Map value, and is resolved by {@link MatrixVariableMethodArgumentResolver} instead.
- *
- *
  * @since 3.2
  */
 public class MatrixVariableMapMethodArgumentResolver implements HandlerMethodArgumentResolver {
@@ -40,24 +38,17 @@ public class MatrixVariableMapMethodArgumentResolver implements HandlerMethodArg
 	@Override
 	public boolean supportsParameter(MethodParameter parameter) {
 		MatrixVariable matrixVariable = parameter.getParameterAnnotation(MatrixVariable.class);
-		return (matrixVariable != null && Map.class.isAssignableFrom(parameter.getParameterType()) &&
-				!StringUtils.hasText(matrixVariable.name()));
+		return (matrixVariable != null && Map.class.isAssignableFrom(parameter.getParameterType()) && !StringUtils.hasText(matrixVariable.name()));
 	}
 
 	@Override
 	@Nullable
-	public Object resolveArgument(MethodParameter parameter, @Nullable ModelAndViewContainer mavContainer,
-			NativeWebRequest request, @Nullable WebDataBinderFactory binderFactory) throws Exception {
-
+	public Object resolveArgument(MethodParameter parameter, @Nullable ModelAndViewContainer mavContainer,NativeWebRequest request, @Nullable WebDataBinderFactory binderFactory) throws Exception {
 		@SuppressWarnings("unchecked")
-		Map<String, MultiValueMap<String, String>> matrixVariables =
-				(Map<String, MultiValueMap<String, String>>) request.getAttribute(
-						HandlerMapping.MATRIX_VARIABLES_ATTRIBUTE, RequestAttributes.SCOPE_REQUEST);
-
+		Map<String, MultiValueMap<String, String>> matrixVariables = (Map<String, MultiValueMap<String, String>>) request.getAttribute(HandlerMapping.MATRIX_VARIABLES_ATTRIBUTE, RequestAttributes.SCOPE_REQUEST);
 		if (CollectionUtils.isEmpty(matrixVariables)) {
 			return Collections.emptyMap();
 		}
-
 		MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
 		MatrixVariable ann = parameter.getParameterAnnotation(MatrixVariable.class);
 		Assert.state(ann != null, "No MatrixVariable annotation");
@@ -69,8 +60,7 @@ public class MatrixVariableMapMethodArgumentResolver implements HandlerMethodArg
 				return Collections.emptyMap();
 			}
 			map.putAll(mapForPathVariable);
-		}
-		else {
+		}else {
 			for (MultiValueMap<String, String> vars : matrixVariables.values()) {
 				vars.forEach((name, values) -> {
 					for (String value : values) {
@@ -79,7 +69,6 @@ public class MatrixVariableMapMethodArgumentResolver implements HandlerMethodArg
 				});
 			}
 		}
-
 		return (isSingleValueMap(parameter) ? map.toSingleValueMap() : map);
 	}
 
@@ -92,5 +81,4 @@ public class MatrixVariableMapMethodArgumentResolver implements HandlerMethodArg
 		}
 		return false;
 	}
-
 }

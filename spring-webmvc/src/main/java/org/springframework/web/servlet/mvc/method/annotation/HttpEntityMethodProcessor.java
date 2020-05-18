@@ -47,10 +47,6 @@ import org.springframework.web.servlet.support.RequestContextUtils;
  * handler should be configured ahead of handlers that support any return
  * value type annotated with {@code @ModelAttribute} or {@code @ResponseBody}
  * to ensure they don't take over.
- *
- * @author Arjen Poutsma
- *
- * @author Brian Clozel
  * @since 3.1
  */
 public class HttpEntityMethodProcessor extends AbstractMessageConverterMethodProcessor {
@@ -71,9 +67,7 @@ public class HttpEntityMethodProcessor extends AbstractMessageConverterMethodPro
 	 * Suitable for resolving {@code HttpEntity} and handling {@code ResponseEntity}
 	 * without {@code Request~} or {@code ResponseBodyAdvice}.
 	 */
-	public HttpEntityMethodProcessor(List<HttpMessageConverter<?>> converters,
-			ContentNegotiationManager manager) {
-
+	public HttpEntityMethodProcessor(List<HttpMessageConverter<?>> converters,ContentNegotiationManager manager) {
 		super(converters, manager);
 	}
 
@@ -83,9 +77,7 @@ public class HttpEntityMethodProcessor extends AbstractMessageConverterMethodPro
 	 * {@code ContentNegotiationManager}.
 	 * @since 4.2
 	 */
-	public HttpEntityMethodProcessor(List<HttpMessageConverter<?>> converters,
-			List<Object> requestResponseBodyAdvice) {
-
+	public HttpEntityMethodProcessor(List<HttpMessageConverter<?>> converters,List<Object> requestResponseBodyAdvice) {
 		super(converters, null, requestResponseBodyAdvice);
 	}
 
@@ -93,44 +85,33 @@ public class HttpEntityMethodProcessor extends AbstractMessageConverterMethodPro
 	 * Complete constructor for resolving {@code HttpEntity} and handling
 	 * {@code ResponseEntity}.
 	 */
-	public HttpEntityMethodProcessor(List<HttpMessageConverter<?>> converters,
-			@Nullable ContentNegotiationManager manager, List<Object> requestResponseBodyAdvice) {
-
+	public HttpEntityMethodProcessor(List<HttpMessageConverter<?>> converters,@Nullable ContentNegotiationManager manager, List<Object> requestResponseBodyAdvice) {
 		super(converters, manager, requestResponseBodyAdvice);
 	}
 
 
 	@Override
 	public boolean supportsParameter(MethodParameter parameter) {
-		return (HttpEntity.class == parameter.getParameterType() ||
-				RequestEntity.class == parameter.getParameterType());
+		return (HttpEntity.class == parameter.getParameterType() || RequestEntity.class == parameter.getParameterType());
 	}
 
 	@Override
 	public boolean supportsReturnType(MethodParameter returnType) {
-		return (HttpEntity.class.isAssignableFrom(returnType.getParameterType()) &&
-				!RequestEntity.class.isAssignableFrom(returnType.getParameterType()));
+		return (HttpEntity.class.isAssignableFrom(returnType.getParameterType()) && !RequestEntity.class.isAssignableFrom(returnType.getParameterType()));
 	}
 
 	@Override
 	@Nullable
-	public Object resolveArgument(MethodParameter parameter, @Nullable ModelAndViewContainer mavContainer,
-			NativeWebRequest webRequest, @Nullable WebDataBinderFactory binderFactory)
-			throws IOException, HttpMediaTypeNotSupportedException {
-
+	public Object resolveArgument(MethodParameter parameter, @Nullable ModelAndViewContainer mavContainer,NativeWebRequest webRequest, @Nullable WebDataBinderFactory binderFactory) throws IOException, HttpMediaTypeNotSupportedException {
 		ServletServerHttpRequest inputMessage = createInputMessage(webRequest);
 		Type paramType = getHttpEntityType(parameter);
 		if (paramType == null) {
-			throw new IllegalArgumentException("HttpEntity parameter '" + parameter.getParameterName() +
-					"' in method " + parameter.getMethod() + " is not parameterized");
+			throw new IllegalArgumentException("HttpEntity parameter '" + parameter.getParameterName() + "' in method " + parameter.getMethod() + " is not parameterized");
 		}
-
 		Object body = readWithMessageConverters(webRequest, parameter, paramType);
 		if (RequestEntity.class == parameter.getParameterType()) {
-			return new RequestEntity<>(body, inputMessage.getHeaders(),
-					inputMessage.getMethod(), inputMessage.getURI());
-		}
-		else {
+			return new RequestEntity<>(body, inputMessage.getHeaders(),inputMessage.getMethod(), inputMessage.getURI());
+		}else {
 			return new HttpEntity<>(body, inputMessage.getHeaders());
 		}
 	}
@@ -142,34 +123,26 @@ public class HttpEntityMethodProcessor extends AbstractMessageConverterMethodPro
 		if (parameterType instanceof ParameterizedType) {
 			ParameterizedType type = (ParameterizedType) parameterType;
 			if (type.getActualTypeArguments().length != 1) {
-				throw new IllegalArgumentException("Expected single generic parameter on '" +
-						parameter.getParameterName() + "' in method " + parameter.getMethod());
+				throw new IllegalArgumentException("Expected single generic parameter on '" + parameter.getParameterName() + "' in method " + parameter.getMethod());
 			}
 			return type.getActualTypeArguments()[0];
-		}
-		else if (parameterType instanceof Class) {
+		}else if (parameterType instanceof Class) {
 			return Object.class;
-		}
-		else {
+		}else {
 			return null;
 		}
 	}
 
 	@Override
-	public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,
-			ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {
-
+	public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {
 		mavContainer.setRequestHandled(true);
 		if (returnValue == null) {
 			return;
 		}
-
 		ServletServerHttpRequest inputMessage = createInputMessage(webRequest);
 		ServletServerHttpResponse outputMessage = createOutputMessage(webRequest);
-
 		Assert.isInstanceOf(HttpEntity.class, returnValue);
 		HttpEntity<?> responseEntity = (HttpEntity<?>) returnValue;
-
 		HttpHeaders outputHeaders = outputMessage.getHeaders();
 		HttpHeaders entityHeaders = responseEntity.getHeaders();
 		if (!entityHeaders.isEmpty()) {
@@ -179,8 +152,7 @@ public class HttpEntityMethodProcessor extends AbstractMessageConverterMethodPro
 					if (!values.isEmpty()) {
 						outputHeaders.setVary(values);
 					}
-				}
-				else {
+				}else {
 					outputHeaders.put(key, value);
 				}
 			});
@@ -190,26 +162,22 @@ public class HttpEntityMethodProcessor extends AbstractMessageConverterMethodPro
 			int returnStatus = ((ResponseEntity<?>) responseEntity).getStatusCodeValue();
 			outputMessage.getServletResponse().setStatus(returnStatus);
 			if (returnStatus == 200) {
-				if (SAFE_METHODS.contains(inputMessage.getMethod())
-						&& isResourceNotModified(inputMessage, outputMessage)) {
+				if (SAFE_METHODS.contains(inputMessage.getMethod()) && isResourceNotModified(inputMessage, outputMessage)) {
 					// Ensure headers are flushed, no body should be written.
 					outputMessage.flush();
 					ShallowEtagHeaderFilter.disableContentCaching(inputMessage.getServletRequest());
 					// Skip call to converters, as they may update the body.
 					return;
 				}
-			}
-			else if (returnStatus / 100 == 3) {
+			}else if (returnStatus / 100 == 3) {
 				String location = outputHeaders.getFirst("location");
 				if (location != null) {
 					saveFlashAttributes(mavContainer, webRequest, location);
 				}
 			}
 		}
-
 		// Try even with null body. ResponseBodyAdvice could get involved.
 		writeWithMessageConverters(responseEntity.getBody(), returnType, inputMessage, outputMessage);
-
 		// Ensure headers are flushed even if no body was written.
 		outputMessage.flush();
 	}
@@ -237,8 +205,7 @@ public class HttpEntityMethodProcessor extends AbstractMessageConverterMethodPro
 	}
 
 	private boolean isResourceNotModified(ServletServerHttpRequest request, ServletServerHttpResponse response) {
-		ServletWebRequest servletWebRequest =
-				new ServletWebRequest(request.getServletRequest(), response.getServletResponse());
+		ServletWebRequest servletWebRequest = new ServletWebRequest(request.getServletRequest(), response.getServletResponse());
 		HttpHeaders responseHeaders = response.getHeaders();
 		String etag = responseHeaders.getETag();
 		long lastModifiedTimestamp = responseHeaders.getLastModified();
@@ -246,7 +213,6 @@ public class HttpEntityMethodProcessor extends AbstractMessageConverterMethodPro
 			responseHeaders.remove(HttpHeaders.ETAG);
 			responseHeaders.remove(HttpHeaders.LAST_MODIFIED);
 		}
-
 		return servletWebRequest.checkNotModified(etag, lastModifiedTimestamp);
 	}
 
@@ -272,8 +238,7 @@ public class HttpEntityMethodProcessor extends AbstractMessageConverterMethodPro
 	protected Class<?> getReturnValueType(@Nullable Object returnValue, MethodParameter returnType) {
 		if (returnValue != null) {
 			return returnValue.getClass();
-		}
-		else {
+		}else {
 			Type type = getHttpEntityType(returnType);
 			type = (type != null ? type : Object.class);
 			return ResolvableType.forMethodParameter(returnType, type).toClass();

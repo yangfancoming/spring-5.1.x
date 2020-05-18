@@ -14,8 +14,6 @@ import org.springframework.web.servlet.support.RequestContextUtils;
  * {@link org.springframework.web.servlet.DispatcherServlet}'s
  * request context, such as the Locale determined by the configured
  * {@link org.springframework.web.servlet.LocaleResolver}.
- *
-
  * @since 2.0
  * @see #getLocale()
  * @see org.springframework.web.servlet.LocaleResolver

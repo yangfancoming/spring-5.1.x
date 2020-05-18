@@ -35,8 +35,6 @@ import org.springframework.web.servlet.mvc.annotation.ModelAndViewResolver;
  * handlers have been given a chance. It is recommended to re-implement
  * a {@code ModelAndViewResolver} as {@code HandlerMethodReturnValueHandler},
  * which also provides better access to the return type and method information.
- *
- *
  * @since 3.1
  */
 public class ModelAndViewResolverMethodReturnValueHandler implements HandlerMethodReturnValueHandler {
@@ -46,14 +44,12 @@ public class ModelAndViewResolverMethodReturnValueHandler implements HandlerMeth
 
 	private final ModelAttributeMethodProcessor modelAttributeProcessor = new ModelAttributeMethodProcessor(true);
 
-
 	/**
 	 * Create a new instance.
 	 */
 	public ModelAndViewResolverMethodReturnValueHandler(@Nullable List<ModelAndViewResolver> mavResolvers) {
 		this.mavResolvers = mavResolvers;
 	}
-
 
 	/**
 	 * Always returns {@code true}. See class-level note.
@@ -64,9 +60,7 @@ public class ModelAndViewResolverMethodReturnValueHandler implements HandlerMeth
 	}
 
 	@Override
-	public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,
-			ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {
-
+	public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {
 		if (this.mavResolvers != null) {
 			for (ModelAndViewResolver mavResolver : this.mavResolvers) {
 				Class<?> handlerType = returnType.getContainingClass();
@@ -88,10 +82,8 @@ public class ModelAndViewResolverMethodReturnValueHandler implements HandlerMeth
 		// No suitable ModelAndViewResolver...
 		if (this.modelAttributeProcessor.supportsReturnType(returnType)) {
 			this.modelAttributeProcessor.handleReturnValue(returnValue, returnType, mavContainer, webRequest);
-		}
-		else {
-			throw new UnsupportedOperationException("Unexpected return type: " +
-					returnType.getParameterType().getName() + " in method: " + returnType.getMethod());
+		}else {
+			throw new UnsupportedOperationException("Unexpected return type: " + returnType.getParameterType().getName() + " in method: " + returnType.getMethod());
 		}
 	}
 

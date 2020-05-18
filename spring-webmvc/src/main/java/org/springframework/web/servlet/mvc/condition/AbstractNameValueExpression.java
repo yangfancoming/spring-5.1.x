@@ -11,9 +11,6 @@ import org.springframework.util.ObjectUtils;
  * Supports "name=value" style expressions as described in:
  * {@link org.springframework.web.bind.annotation.RequestMapping#params()} and
  * {@link org.springframework.web.bind.annotation.RequestMapping#headers()}.
- *
- *
- * @author Arjen Poutsma
  * @since 3.1
  * @param <T> the value type
  */

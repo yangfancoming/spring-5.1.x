@@ -15,8 +15,6 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 
 /**
  * Handles {@link HttpHeaders} return values.
- *
- * @author Stephane Nicoll
  * @since 4.0.1
  */
 public class HttpHeadersReturnValueHandler implements HandlerMethodReturnValueHandler {
@@ -28,14 +26,10 @@ public class HttpHeadersReturnValueHandler implements HandlerMethodReturnValueHa
 
 	@Override
 	@SuppressWarnings("resource")
-	public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,
-			ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {
-
+	public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {
 		mavContainer.setRequestHandled(true);
-
 		Assert.state(returnValue instanceof HttpHeaders, "HttpHeaders expected");
 		HttpHeaders headers = (HttpHeaders) returnValue;
-
 		if (!headers.isEmpty()) {
 			HttpServletResponse servletResponse = webRequest.getNativeResponse(HttpServletResponse.class);
 			Assert.state(servletResponse != null, "No HttpServletResponse");

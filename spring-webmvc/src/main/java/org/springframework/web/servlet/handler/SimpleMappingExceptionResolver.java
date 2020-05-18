@@ -21,10 +21,6 @@ import org.springframework.web.util.WebUtils;
  *
  * Error views are analogous to error page JSPs, but can be used with any kind of
  * exception including any checked one, with fine-granular mappings for specific handlers.
- *
-
- * @author Arjen Poutsma
- *
  * @since 22.11.2003
  * @see org.springframework.web.servlet.DispatcherServlet
  */
@@ -32,7 +28,6 @@ public class SimpleMappingExceptionResolver extends AbstractHandlerExceptionReso
 
 	/** The default name of the exception attribute: "exception". */
 	public static final String DEFAULT_EXCEPTION_ATTRIBUTE = "exception";
-
 
 	@Nullable
 	private Properties exceptionMappings;
@@ -50,7 +45,6 @@ public class SimpleMappingExceptionResolver extends AbstractHandlerExceptionReso
 
 	@Nullable
 	private String exceptionAttribute = DEFAULT_EXCEPTION_ATTRIBUTE;
-
 
 	/**
 	 * Set the mappings between exception class names and error view names.
@@ -149,7 +143,6 @@ public class SimpleMappingExceptionResolver extends AbstractHandlerExceptionReso
 		this.exceptionAttribute = exceptionAttribute;
 	}
 
-
 	/**
 	 * Actually resolve the given exception that got thrown during on handler execution,
 	 * returning a ModelAndView that represents a specific error page if appropriate.
@@ -167,9 +160,7 @@ public class SimpleMappingExceptionResolver extends AbstractHandlerExceptionReso
 	 */
 	@Override
 	@Nullable
-	protected ModelAndView doResolveException(
-			HttpServletRequest request, HttpServletResponse response, @Nullable Object handler, Exception ex) {
-
+	protected ModelAndView doResolveException(HttpServletRequest request, HttpServletResponse response, @Nullable Object handler, Exception ex) {
 		// Expose ModelAndView for chosen error view.
 		String viewName = determineViewName(ex, request);
 		if (viewName != null) {
@@ -180,8 +171,7 @@ public class SimpleMappingExceptionResolver extends AbstractHandlerExceptionReso
 				applyStatusCodeIfPossible(request, response, statusCode);
 			}
 			return getModelAndView(viewName, ex, request);
-		}
-		else {
+		}else {
 			return null;
 		}
 	}
@@ -234,8 +224,7 @@ public class SimpleMappingExceptionResolver extends AbstractHandlerExceptionReso
 		for (Enumeration<?> names = exceptionMappings.propertyNames(); names.hasMoreElements();) {
 			String exceptionMapping = (String) names.nextElement();
 			int depth = getDepth(exceptionMapping, ex);
-			if (depth >= 0 && (depth < deepest || (depth == deepest &&
-					dominantMapping != null && exceptionMapping.length() > dominantMapping.length()))) {
+			if (depth >= 0 && (depth < deepest || (depth == deepest && dominantMapping != null && exceptionMapping.length() > dominantMapping.length()))) {
 				deepest = depth;
 				dominantMapping = exceptionMapping;
 				viewName = exceptionMappings.getProperty(exceptionMapping);
@@ -276,8 +265,7 @@ public class SimpleMappingExceptionResolver extends AbstractHandlerExceptionReso
 	 * Override this in a custom subclass to customize this behavior.
 	 * @param request current HTTP request
 	 * @param viewName the name of the error view
-	 * @return the HTTP status code to use, or {@code null} for the servlet container's default
-	 * (200 in case of a standard error view)
+	 * @return the HTTP status code to use, or {@code null} for the servlet container's default (200 in case of a standard error view)
 	 * @see #setDefaultStatusCode
 	 * @see #applyStatusCodeIfPossible
 	 */
@@ -337,5 +325,4 @@ public class SimpleMappingExceptionResolver extends AbstractHandlerExceptionReso
 		}
 		return mv;
 	}
-
 }

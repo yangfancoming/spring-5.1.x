@@ -15,9 +15,6 @@ import org.springframework.lang.Nullable;
  * A convenient base class for {@code ResponseBodyAdvice} implementations
  * that customize the response before JSON serialization with
  * {@link AbstractJackson2HttpMessageConverter}'s concrete subclasses.
- *
- *
- * @author Sebastien Deleuze
  * @since 4.1
  */
 public abstract class AbstractMappingJacksonResponseBodyAdvice implements ResponseBodyAdvice<Object> {
@@ -29,9 +26,7 @@ public abstract class AbstractMappingJacksonResponseBodyAdvice implements Respon
 
 	@Override
 	@Nullable
-	public final Object beforeBodyWrite(@Nullable Object body, MethodParameter returnType,
-			MediaType contentType, Class<? extends HttpMessageConverter<?>> converterType,
-			ServerHttpRequest request, ServerHttpResponse response) {
+	public final Object beforeBodyWrite(@Nullable Object body, MethodParameter returnType,MediaType contentType, Class<? extends HttpMessageConverter<?>> converterType,ServerHttpRequest request, ServerHttpResponse response) {
 
 		if (body == null) {
 			return null;
@@ -52,7 +47,5 @@ public abstract class AbstractMappingJacksonResponseBodyAdvice implements Respon
 	/**
 	 * Invoked only if the converter type is {@code MappingJackson2HttpMessageConverter}.
 	 */
-	protected abstract void beforeBodyWriteInternal(MappingJacksonValue bodyContainer, MediaType contentType,
-			MethodParameter returnType, ServerHttpRequest request, ServerHttpResponse response);
-
+	protected abstract void beforeBodyWriteInternal(MappingJacksonValue bodyContainer, MediaType contentType,MethodParameter returnType, ServerHttpRequest request, ServerHttpResponse response);
 }

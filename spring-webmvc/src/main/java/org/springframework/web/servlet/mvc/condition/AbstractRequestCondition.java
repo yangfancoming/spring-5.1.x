@@ -17,8 +17,7 @@ import org.springframework.lang.Nullable;
 public abstract class AbstractRequestCondition<T extends AbstractRequestCondition<T>> implements RequestCondition<T> {
 
 	/**
-	 * Indicates whether this condition is empty, i.e. whether or not it
-	 * contains any discrete items.
+	 * Indicates whether this condition is empty, i.e. whether or not it contains any discrete items.
 	 * @return {@code true} if empty; {@code false} otherwise
 	 */
 	public boolean isEmpty() {

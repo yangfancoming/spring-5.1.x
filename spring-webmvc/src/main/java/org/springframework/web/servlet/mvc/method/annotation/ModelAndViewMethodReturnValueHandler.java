@@ -13,26 +13,18 @@ import org.springframework.web.servlet.SmartView;
 import org.springframework.web.servlet.View;
 
 /**
- * Handles return values of type {@link ModelAndView} copying view and model
- * information to the {@link ModelAndViewContainer}.
- *
+ * Handles return values of type {@link ModelAndView} copying view and model information to the {@link ModelAndViewContainer}.
  * If the return value is {@code null}, the
- * {@link ModelAndViewContainer#setRequestHandled(boolean)} flag is set to
- * {@code true} to indicate the request was handled directly.
- *
+ * {@link ModelAndViewContainer#setRequestHandled(boolean)} flag is set to {@code true} to indicate the request was handled directly.
  * A {@link ModelAndView} return type has a set purpose. Therefore this
  * handler should be configured ahead of handlers that support any return
- * value type annotated with {@code @ModelAttribute} or {@code @ResponseBody}
- * to ensure they don't take over.
- *
- *
+ * value type annotated with {@code @ModelAttribute} or {@code @ResponseBody} to ensure they don't take over.
  * @since 3.1
  */
 public class ModelAndViewMethodReturnValueHandler implements HandlerMethodReturnValueHandler {
 
 	@Nullable
 	private String[] redirectPatterns;
-
 
 	/**
 	 * Configure one more simple patterns (as described in {@link PatternMatchUtils#simpleMatch})
@@ -61,14 +53,11 @@ public class ModelAndViewMethodReturnValueHandler implements HandlerMethodReturn
 	}
 
 	@Override
-	public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,
-			ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {
-
+	public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {
 		if (returnValue == null) {
 			mavContainer.setRequestHandled(true);
 			return;
 		}
-
 		ModelAndView mav = (ModelAndView) returnValue;
 		if (mav.isReference()) {
 			String viewName = mav.getViewName();
@@ -76,8 +65,7 @@ public class ModelAndViewMethodReturnValueHandler implements HandlerMethodReturn
 			if (viewName != null && isRedirectViewName(viewName)) {
 				mavContainer.setRedirectModelScenario(true);
 			}
-		}
-		else {
+		}else {
 			View view = mav.getView();
 			mavContainer.setView(view);
 			if (view instanceof SmartView && ((SmartView) view).isRedirectView()) {
