@@ -35,5 +35,4 @@ public interface BeanInfoFactory {
 	 */
 	@Nullable
 	BeanInfo getBeanInfo(Class<?> beanClass) throws IntrospectionException;
-
 }

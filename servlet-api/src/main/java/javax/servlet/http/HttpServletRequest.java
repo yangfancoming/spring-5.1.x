@@ -14,10 +14,8 @@ import java.util.Map;
 /**
  *
  * Extends the {@link javax.servlet.ServletRequest} interface to provide request information for HTTP servlets.
- *
  * The servlet container creates an <code>HttpServletRequest</code>
- * object and passes it as an argument to the servlet's service
- * methods (<code>doGet</code>, <code>doPost</code>, etc).
+ * object and passes it as an argument to the servlet's service methods (<code>doGet</code>, <code>doPost</code>, etc).
  */
 
 public interface HttpServletRequest extends ServletRequest {
@@ -62,12 +60,9 @@ public interface HttpServletRequest extends ServletRequest {
     public String getAuthType();
 
     /**
-     * Returns an array containing all of the <code>Cookie</code>
-     * objects the client sent with this request.
+     * Returns an array containing all of the <code>Cookie</code> objects the client sent with this request.
      * This method returns <code>null</code> if no cookies were sent.
-     *
-     * @return		an array of all the <code>Cookies</code>
-     *			included with this request, or <code>null</code>
+     * @return		an array of all the <code>Cookies</code> included with this request, or <code>null</code>
      *			if the request has no cookies
      */
     public Cookie[] getCookies();
@@ -592,13 +587,10 @@ public interface HttpServletRequest extends ServletRequest {
     public boolean isRequestedSessionIdValid();
 
     /**
-     * Checks whether the requested session ID was conveyed to the
-     * server as an HTTP cookie.</p>
-     *
+     * Checks whether the requested session ID was conveyed to the server as an HTTP cookie.</p>
      * @return			<code>true</code> if the session ID
      *				was conveyed to the server an an HTTP
      *				cookie; otherwise, <code>false</code>
-     *
      * @see         #getSession
      */
     public boolean isRequestedSessionIdFromCookie();
@@ -695,7 +687,6 @@ public interface HttpServletRequest extends ServletRequest {
      *                                      to the call to login), or if
      *                                      validation of the provided
      *                                      username and password fails.
-     *
      * @since Servlet 3.0
      */
     public void login(String username, String password) throws ServletException;
@@ -727,26 +718,19 @@ public interface HttpServletRequest extends ServletRequest {
      * @throws IllegalStateException if the request body is larger than
      * <code>maxRequestSize</code>, or any <code>Part</code> in the
      * request is larger than <code>maxFileSize</code>, or there is no
-     * <code>@MultipartConfig</code> or <code>multipart-config</code> in
-     * deployment descriptors
-     *
+     * <code>@MultipartConfig</code> or <code>multipart-config</code> in deployment descriptors
      * @see javax.servlet.annotation.MultipartConfig#maxFileSize
      * @see javax.servlet.annotation.MultipartConfig#maxRequestSize
-     *
      * @since Servlet 3.0
      */
     public Collection<Part> getParts() throws IOException, ServletException;
 
     /**
      * Gets the {@link Part} with the given name.
-     *
      * @param name the name of the requested <code>Part</code>
-     *
      * @return The <code>Part</code> with the given name, or
      * <code>null</code> if this request is of type
-     * <code>multipart/form-data</code>, but does not
-     * contain the requested <code>Part</code>
-     *
+     * <code>multipart/form-data</code>, but does not contain the requested <code>Part</code>
      * @throws IOException if an I/O error occurred during the retrieval
      * of the requested <code>Part</code>
      * @throws ServletException if this request is not of type
@@ -754,19 +738,15 @@ public interface HttpServletRequest extends ServletRequest {
      * @throws IllegalStateException if the request body is larger than
      * <code>maxRequestSize</code>, or any <code>Part</code> in the
      * request is larger than <code>maxFileSize</code>, or there is no
-     * <code>@MultipartConfig</code> or <code>multipart-config</code> in
-     * deployment descriptors
-     *
+     * <code>@MultipartConfig</code> or <code>multipart-config</code> in deployment descriptors
      * @see javax.servlet.annotation.MultipartConfig#maxFileSize
      * @see javax.servlet.annotation.MultipartConfig#maxRequestSize
-     *
      * @since Servlet 3.0
      */
     public Part getPart(String name) throws IOException, ServletException;
 
     /**
-     * Creates an instance of <code>HttpUpgradeHandler</code> for a given
-     * class and uses it for the http protocol upgrade processing.
+     * Creates an instance of <code>HttpUpgradeHandler</code> for a given class and uses it for the http protocol upgrade processing.
      * @param <T> The {@code Class}, which extends {@link
      * HttpUpgradeHandler}, of the {@code handlerClass}.
      * @param handlerClass The <code>HttpUpgradeHandler</code> class used for the upgrade.
@@ -782,8 +762,7 @@ public interface HttpServletRequest extends ServletRequest {
     /**
      * Get the request trailer fields.
      * The returned map is not backed by the {@code HttpServletRequest} object,
-     * so changes in the returned map are not reflected in the
-     * {@code HttpServletRequest} object, and vice-versa.</p>
+     * so changes in the returned map are not reflected in the {@code HttpServletRequest} object, and vice-versa.</p>
      * {@link #isTrailerFieldsReady()} should be called first to determine
      * if it is safe to call this method without causing an exception.</p>
      * @implSpec
@@ -792,7 +771,6 @@ public interface HttpServletRequest extends ServletRequest {
      * regardless of the case they had at the protocol level. If there are no
      * trailer fields, yet {@link #isTrailerFieldsReady} is returning true,the empty map is returned.
      * @throws IllegalStateException if {@link #isTrailerFieldsReady()} is false
-     *
      * @since Servlet 4.0
      */
     default public Map<String, String> getTrailerFields() {
@@ -801,10 +779,9 @@ public interface HttpServletRequest extends ServletRequest {
 
     /**
      * Return a boolean indicating whether trailer fields are ready to read using {@link #getTrailerFields}.
-     * This methods returns true immediately if it is known that there is no
-     * trailer in the request, for instance, the underlying protocol (such
-     * as HTTP 1.0) does not supports the trailer fields, or the request is
-     * not in chunked encoding in HTTP 1.1.
+     * This methods returns true immediately if it is known that there is no trailer in the request,
+     * for instance, the underlying protocol (such
+     * as HTTP 1.0) does not supports the trailer fields, or the request is not in chunked encoding in HTTP 1.1.
      * And the method also returns true if both of the following conditions are satisfied:
      * <ol type="a">
      *   <li> the application has read all the request data and an EOF

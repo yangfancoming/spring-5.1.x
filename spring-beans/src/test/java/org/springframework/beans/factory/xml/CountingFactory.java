@@ -10,7 +10,6 @@ public class CountingFactory implements FactoryBean {
 
 	private static int factoryBeanInstanceCount = 0;
 
-
 	/**
 	 * Clear static state.
 	 */
@@ -22,7 +21,6 @@ public class CountingFactory implements FactoryBean {
 		return factoryBeanInstanceCount;
 	}
 
-
 	public CountingFactory() {
 		factoryBeanInstanceCount++;
 	}
@@ -32,7 +30,6 @@ public class CountingFactory implements FactoryBean {
 			throw new IllegalStateException("TestBean needs to have spouse");
 		}
 	}
-
 
 	@Override
 	public Object getObject() {
@@ -48,5 +45,4 @@ public class CountingFactory implements FactoryBean {
 	public boolean isSingleton() {
 		return true;
 	}
-
 }

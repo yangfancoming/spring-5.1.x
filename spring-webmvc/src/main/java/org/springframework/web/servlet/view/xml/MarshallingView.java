@@ -17,13 +17,10 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.AbstractView;
 
 /**
- * Spring-MVC {@link View} that allows for response context to be rendered as the result
- * of marshalling by a {@link Marshaller}.
- *
+ * Spring-MVC {@link View} that allows for response context to be rendered as the result of marshalling by a {@link Marshaller}.
  * The Object to be marshalled is supplied as a parameter in the model and then
  * {@linkplain #locateToBeMarshalled(Map) detected} during response rendering. Users can
- * either specify a specific entry in the model via the {@link #setModelKey(String) sourceKey}
- * property or have Spring locate the Source object.
+ * either specify a specific entry in the model via the {@link #setModelKey(String) sourceKey} property or have Spring locate the Source object.
  * @since 3.0
  */
 public class MarshallingView extends AbstractView {
@@ -56,7 +53,6 @@ public class MarshallingView extends AbstractView {
 		Assert.notNull(marshaller, "Marshaller must not be null");
 		this.marshaller = marshaller;
 	}
-
 
 	/**
 	 * Set the {@link Marshaller} to be used by this view.
@@ -122,8 +118,7 @@ public class MarshallingView extends AbstractView {
 	}
 
 	/**
-	 * Check whether the given value from the current view's model is eligible
-	 * for marshalling through the configured {@link Marshaller}.
+	 * Check whether the given value from the current view's model is eligible for marshalling through the configured {@link Marshaller}.
 	 * The default implementation calls {@link Marshaller#supports(Class)},
 	 * unwrapping a given {@link JAXBElement} first if applicable.
 	 * @param modelKey the value's key in the model (never {@code null})

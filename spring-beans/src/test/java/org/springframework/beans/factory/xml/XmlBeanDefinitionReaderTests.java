@@ -118,5 +118,4 @@ public class XmlBeanDefinitionReaderTests {
 		TestBean bean = (TestBean) factory.getBean("testBean");
 		assertNotNull(bean);
 	}
-
 }

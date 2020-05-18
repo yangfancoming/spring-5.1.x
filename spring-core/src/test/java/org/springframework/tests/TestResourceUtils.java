@@ -18,5 +18,4 @@ public abstract class TestResourceUtils {
 	public static ClassPathResource qualifiedResource(Class<?> clazz, String resourceSuffix) {
 		return new ClassPathResource(String.format("%s-%s", clazz.getSimpleName(), resourceSuffix), clazz);
 	}
-
 }

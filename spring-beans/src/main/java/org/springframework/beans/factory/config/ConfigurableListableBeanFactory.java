@@ -136,5 +136,4 @@ public interface ConfigurableListableBeanFactory extends ListableBeanFactory, Au
 	 * @see #destroySingletons()
 	 */
 	void preInstantiateSingletons() throws BeansException;
-
 }

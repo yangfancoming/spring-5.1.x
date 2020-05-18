@@ -36,7 +36,6 @@ public abstract class AbstractMultipartHttpServletRequest extends HttpServletReq
 		super(request);
 	}
 
-
 	@Override
 	public HttpServletRequest getRequest() {
 		return (HttpServletRequest) super.getRequest();
@@ -99,7 +98,6 @@ public abstract class AbstractMultipartHttpServletRequest extends HttpServletReq
 	public boolean isResolved() {
 		return (this.multipartFiles != null);
 	}
-
 
 	/**
 	 * Set a Map with parameter names as keys and list of MultipartFile objects as values.

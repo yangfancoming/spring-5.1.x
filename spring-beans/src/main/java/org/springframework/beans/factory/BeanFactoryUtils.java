@@ -427,5 +427,4 @@ public abstract class BeanFactoryUtils {
 			throw new NoSuchBeanDefinitionException(type);
 		}
 	}
-
 }

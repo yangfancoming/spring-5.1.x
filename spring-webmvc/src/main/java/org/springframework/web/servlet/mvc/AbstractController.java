@@ -13,9 +13,7 @@ import org.springframework.web.servlet.support.WebContentGenerator;
 import org.springframework.web.util.WebUtils;
 
 /**
- * Convenient superclass for controller implementations, using the Template Method
- * design pattern.
- *
+ * Convenient superclass for controller implementations, using the Template Method  design pattern.
  * <b>Workflow
  * (<a href="Controller.html#workflow">and that defined by interface</a>):</b><br>
  * <ol>
@@ -139,13 +137,11 @@ public abstract class AbstractController extends WebContentGenerator implements 
 			response.setHeader("Allow", getAllowHeader());
 			return null;
 		}
-
 		// Delegate to WebContentGenerator for checking and preparing.
 		// 检查是否支持请求方法以及必须的session
 		checkRequest(request);
 		// 根据设置准备response
 		prepareResponse(response);
-
 		// Execute handleRequestInternal in synchronized block if required.
 		// 如果必要顺序执行handleRequestInternal方法
 		if (this.synchronizeOnSession) {
@@ -168,5 +164,4 @@ public abstract class AbstractController extends WebContentGenerator implements 
 	 */
 	@Nullable
 	protected abstract ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception;
-
 }

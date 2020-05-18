@@ -1,14 +1,11 @@
 
 
 package org.springframework.beans.factory.xml;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-
 import static org.junit.Assert.*;
 
 
@@ -16,13 +13,11 @@ public class DefaultLifecycleMethodsTests {
 
 	private final DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
 
-
 	@Before
 	public void setup() {
 		Resource resource = new ClassPathResource("defaultLifecycleMethods.xml", getClass());
 		new XmlBeanDefinitionReader(this.beanFactory).loadBeanDefinitions(resource);
 	}
-
 
 	@Test
 	public void lifecycleMethodsInvoked() {
@@ -127,5 +122,4 @@ public class DefaultLifecycleMethodsTests {
 			return customDestroyCalled;
 		}
 	}
-
 }

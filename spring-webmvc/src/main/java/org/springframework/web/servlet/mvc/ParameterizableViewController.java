@@ -135,16 +135,12 @@ public class ParameterizableViewController extends AbstractController {
 	 * @see #getViewName()
 	 */
 	@Override
-	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-
+	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName();
-
 		if (getStatusCode() != null) {
 			if (getStatusCode().is3xxRedirection()) {
 				request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, getStatusCode());
-			}
-			else {
+			}else {
 				response.setStatus(getStatusCode().value());
 				if (getStatusCode().equals(HttpStatus.NO_CONTENT) && viewName == null) {
 					return null;

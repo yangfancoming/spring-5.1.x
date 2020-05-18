@@ -253,8 +253,7 @@ public abstract class AbstractBeanFactoryTests {
 		try {
 			cbf.getBean(alias);
 			fail("Shouldn't permit factory get on normal bean");
-		}
-		catch (NoSuchBeanDefinitionException ex) {
+		}catch (NoSuchBeanDefinitionException ex) {
 			// Ok
 			assertTrue(alias.equals(ex.getBeanName()));
 		}

@@ -46,10 +46,10 @@ public class BeanFactoryUtilsTests {
 		DefaultListableBeanFactory grandParent = new DefaultListableBeanFactory();
 		new XmlBeanDefinitionReader(grandParent).loadBeanDefinitions(ROOT_CONTEXT);
 
-		DefaultListableBeanFactory parent 	   = new DefaultListableBeanFactory(grandParent);
+		DefaultListableBeanFactory parent = new DefaultListableBeanFactory(grandParent);
 		new XmlBeanDefinitionReader(parent).loadBeanDefinitions(MIDDLE_CONTEXT);
 
-		DefaultListableBeanFactory child 	   = new DefaultListableBeanFactory(parent);
+		DefaultListableBeanFactory child  = new DefaultListableBeanFactory(parent);
 		new XmlBeanDefinitionReader(child).loadBeanDefinitions(LEAF_CONTEXT);
 
 		dependentBeansFactory = new DefaultListableBeanFactory();
@@ -97,8 +97,7 @@ public class BeanFactoryUtilsTests {
 
 	@Test
 	public void testGetBeanNamesForTypeWithOverride() {
-		List<String> names = Arrays.asList(
-				BeanFactoryUtils.beanNamesForTypeIncludingAncestors(listableBeanFactory, ITestBean.class));
+		List<String> names = Arrays.asList(BeanFactoryUtils.beanNamesForTypeIncludingAncestors(listableBeanFactory, ITestBean.class));
 		// includes 2 TestBeans from FactoryBeans (DummyFactory definitions)
 		assertEquals(4, names.size());
 		assertTrue(names.contains("test"));
@@ -161,8 +160,7 @@ public class BeanFactoryUtilsTests {
 		listableBeanFactory.registerSingleton("t3", t3);
 		listableBeanFactory.registerSingleton("t4", t4);
 
-		Map<String, ?> beans =
-				BeanFactoryUtils.beansOfTypeIncludingAncestors(listableBeanFactory, ITestBean.class, true, false);
+		Map<String, ?> beans = BeanFactoryUtils.beansOfTypeIncludingAncestors(listableBeanFactory, ITestBean.class, true, false);
 		assertEquals(6, beans.size());
 		assertEquals(test3, beans.get("test3"));
 		assertEquals(test, beans.get("test"));

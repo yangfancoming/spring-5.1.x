@@ -62,14 +62,12 @@ public abstract class AbstractPropertyAccessorTests {
 
 	protected abstract AbstractPropertyAccessor createAccessor(Object target);
 
-
 	@Test
 	public void createWithNullTarget() {
 		try {
 			createAccessor(null);
 			fail("Must throw an exception when constructed with null object");
-		}
-		catch (IllegalArgumentException ex) {
+		}catch (IllegalArgumentException ex) {
 			// expected
 		}
 	}
