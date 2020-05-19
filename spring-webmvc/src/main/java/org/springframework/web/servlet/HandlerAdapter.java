@@ -17,11 +17,9 @@ import org.springframework.lang.Nullable;
  *
  * Note that a handler can be of type {@code Object}. This is to enable
  * handlers from other frameworks to be integrated with this framework without
- * custom coding, as well as to allow for annotation-driven handler objects that
- * do not obey any specific Java interface.
+ * custom coding, as well as to allow for annotation-driven handler objects that do not obey any specific Java interface.
  *
- * This interface is not intended for application developers. It is available
- * to handlers who want to develop their own web workflow.
+ * This interface is not intended for application developers. It is available to handlers who want to develop their own web workflow.
  *
  * Note: {@code HandlerAdapter} implementors may implement the {@link
  * org.springframework.core.Ordered} interface to be able to specify a sorting
@@ -56,8 +54,7 @@ public interface HandlerAdapter {
 	 * @param request current HTTP request
 	 * @param response current HTTP response
 	 * @param handler handler to use. This object must have previously been passed
-	 * to the {@code supports} method of this interface, which must have
-	 * returned {@code true}.
+	 * to the {@code supports} method of this interface, which must have returned {@code true}.
 	 * @throws Exception in case of errors
 	 * @return a ModelAndView object with the name of the view and the required
 	 * model data, or {@code null} if the request has been handled directly
@@ -79,5 +76,4 @@ public interface HandlerAdapter {
 	 *    从而判断是否可以直接使用之前缓存的结果
 	 */
 	long getLastModified(HttpServletRequest request, Object handler);
-
 }

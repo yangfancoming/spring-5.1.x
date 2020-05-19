@@ -145,5 +145,4 @@ public final class MappedInterceptor implements HandlerInterceptor {
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,@Nullable Exception ex) throws Exception {
 		this.interceptor.afterCompletion(request, response, handler, ex);
 	}
-
 }

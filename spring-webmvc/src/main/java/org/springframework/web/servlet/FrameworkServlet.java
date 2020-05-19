@@ -152,7 +152,6 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 */
 	private static final String INIT_PARAM_DELIMITERS = ",; \t\n";
 
-
 	/** ServletContext attribute to find the WebApplicationContext in. */
 	@Nullable
 	private String contextAttribute;
@@ -232,28 +231,24 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	}
 
 	/**
-	 * Create a new {@code FrameworkServlet} with the given web application context. This
-	 * constructor is useful in Servlet 3.0+ environments where instance-based registration
+	 * Create a new {@code FrameworkServlet} with the given web application context.
+	 * This constructor is useful in Servlet 3.0+ environments where instance-based registration
 	 * of servlets is possible through the {@link ServletContext#addServlet} API.
-	 * Using this constructor indicates that the following properties / init-params
-	 * will be ignored:
+	 * Using this constructor indicates that the following properties / init-params will be ignored:
 	 * <ul>
 	 * <li>{@link #setContextClass(Class)} / 'contextClass'</li>
 	 * <li>{@link #setContextConfigLocation(String)} / 'contextConfigLocation'</li>
 	 * <li>{@link #setContextAttribute(String)} / 'contextAttribute'</li>
 	 * <li>{@link #setNamespace(String)} / 'namespace'</li>
 	 * </ul>
-	 * The given web application context may or may not yet be {@linkplain
-	 * ConfigurableApplicationContext#refresh() refreshed}. If it (a) is an implementation
-	 * of {@link ConfigurableWebApplicationContext} and (b) has <strong>not</strong>
-	 * already been refreshed (the recommended approach), then the following will occur:
+	 * The given web application context may or may not yet be {@linkplain ConfigurableApplicationContext#refresh() refreshed}. If it (a) is an implementation
+	 * of {@link ConfigurableWebApplicationContext} and (b) has <strong>not</strong> already been refreshed (the recommended approach), then the following will occur:
 	 * <ul>
 	 * <li>If the given context does not already have a {@linkplain ConfigurableApplicationContext#setParent parent}, the root application context will be set as the parent.</li>
 	 * <li>If the given context has not already been assigned an {@linkplain ConfigurableApplicationContext#setId id}, one will be assigned to it</li>
 	 * <li>{@code ServletContext} and {@code ServletConfig} objects will be delegated to the application context</li>
 	 * <li>{@link #postProcessWebApplicationContext} will be called</li>
-	 * <li>Any {@link ApplicationContextInitializer ApplicationContextInitializers} specified through the
-	 * "contextInitializerClasses" init-param or through the {@link #setContextInitializers} property will be applied.</li>
+	 * <li>Any {@link ApplicationContextInitializer ApplicationContextInitializers} specified through the "contextInitializerClasses" init-param or through the {@link #setContextInitializers} property will be applied.</li>
 	 * <li>{@link ConfigurableApplicationContext#refresh refresh()} will be called</li>
 	 * </ul>
 	 * If the context has already been refreshed or does not implement  {@code ConfigurableWebApplicationContext}, none of the above will occur under the
@@ -409,37 +404,28 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	}
 
 	/**
-	 * Set whether this servlet should dispatch an HTTP OPTIONS request to
-	 * the {@link #doService} method.
+	 * Set whether this servlet should dispatch an HTTP OPTIONS request to the {@link #doService} method.
 	 * Default in the {@code FrameworkServlet} is "false", applying
-	 * {@link javax.servlet.http.HttpServlet}'s default behavior (i.e.enumerating
-	 * all standard HTTP request methods as a response to the OPTIONS request).
-	 * Note however that as of 4.3 the {@code DispatcherServlet} sets this
-	 * property to "true" by default due to its built-in support for OPTIONS.
-	 * Turn this flag on if you prefer OPTIONS requests to go through the
-	 * regular dispatching chain, just like other HTTP requests. This usually
-	 * means that your controllers will receive those requests; make sure
+	 * {@link javax.servlet.http.HttpServlet}'s default behavior (i.e.enumerating all standard HTTP request methods as a response to the OPTIONS request).
+	 * Note however that as of 4.3 the {@code DispatcherServlet} sets this  property to "true" by default due to its built-in support for OPTIONS.
+	 * Turn this flag on if you prefer OPTIONS requests to go through the  regular dispatching chain, just like other HTTP requests.
+	 * This usually means that your controllers will receive those requests; make sure
 	 * that those endpoints are actually able to handle an OPTIONS request.
 	 * Note that HttpServlet's default OPTIONS processing will be applied
-	 * in any case if your controllers happen to not set the 'Allow' header
-	 * (as required for an OPTIONS response).
+	 * in any case if your controllers happen to not set the 'Allow' header (as required for an OPTIONS response).
 	 */
 	public void setDispatchOptionsRequest(boolean dispatchOptionsRequest) {
 		this.dispatchOptionsRequest = dispatchOptionsRequest;
 	}
 
 	/**
-	 * Set whether this servlet should dispatch an HTTP TRACE request to
-	 * the {@link #doService} method.
-	 * Default is "false", applying {@link javax.servlet.http.HttpServlet}'s
-	 * default behavior (i.e. reflecting the message received back to the client).
-	 * Turn this flag on if you prefer TRACE requests to go through the
-	 * regular dispatching chain, just like other HTTP requests. This usually
-	 * means that your controllers will receive those requests; make sure
+	 * Set whether this servlet should dispatch an HTTP TRACE request to the {@link #doService} method.
+	 * Default is "false", applying {@link javax.servlet.http.HttpServlet}'s  default behavior (i.e. reflecting the message received back to the client).
+	 * Turn this flag on if you prefer TRACE requests to go through the regular dispatching chain, just like other HTTP requests.
+	 * This usually means that your controllers will receive those requests; make sure
 	 * that those endpoints are actually able to handle a TRACE request.
 	 * Note that HttpServlet's default TRACE processing will be applied
-	 * in any case if your controllers happen to not generate a response
-	 * of content type 'message/http' (as required for a TRACE response).
+	 * in any case if your controllers happen to not generate a response of content type 'message/http' (as required for a TRACE response).
 	 */
 	public void setDispatchTraceRequest(boolean dispatchTraceRequest) {
 		this.dispatchTraceRequest = dispatchTraceRequest;
@@ -466,10 +452,9 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	}
 
 	/**
-	 * Called by Spring via {@link ApplicationContextAware} to inject the current
-	 * application context. This method allows FrameworkServlets to be registered as
-	 * Spring beans inside an existing {@link WebApplicationContext} rather than
-	 * {@link #findWebApplicationContext() finding} a
+	 * Called by Spring via {@link ApplicationContextAware} to inject the current application context.
+	 * This method allows FrameworkServlets to be registered as
+	 * Spring beans inside an existing {@link WebApplicationContext} rather than {@link #findWebApplicationContext() finding} a
 	 * {@link org.springframework.web.context.ContextLoaderListener bootstrapped} context.
 	 * Primarily added to support use in embedded servlet containers.
 	 * @since 4.0
@@ -481,7 +466,6 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 			this.webApplicationContextInjected = true;
 		}
 	}
-
 
 	/**
 	 * Overridden method of {@link HttpServletBean}, invoked after any bean properties have been set.
@@ -609,7 +593,6 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 			String attrName = getServletContextAttributeName();
 			getServletContext().setAttribute(attrName, wac);
 		}
-
 		return wac;
 	}
 
@@ -925,7 +908,6 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 				return;
 			}
 		}
-
 		// Use response wrapper in order to always add PATCH to the allowed methods
 		super.doOptions(request, new HttpServletResponseWrapper(response) {
 			@Override
@@ -1168,5 +1150,4 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 			}
 		}
 	}
-
 }

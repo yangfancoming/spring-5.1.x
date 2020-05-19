@@ -79,5 +79,4 @@ public interface View {
 	 *  // 通过用户提供的模型数据与视图信息渲染视图
 	 */
 	void render(@Nullable Map<String, ?> model, HttpServletRequest request, HttpServletResponse response) throws Exception;
-
 }

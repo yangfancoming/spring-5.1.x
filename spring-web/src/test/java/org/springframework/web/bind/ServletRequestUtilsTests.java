@@ -12,8 +12,6 @@ import org.springframework.util.StopWatch;
 import static org.junit.Assert.*;
 
 /**
-
-
  * @since 06.08.2003
  */
 public class ServletRequestUtilsTests {

@@ -15,8 +15,6 @@ import static org.junit.Assert.*;
 
 /**
  * A test fixture with a test sub-class of AbstractMappingContentNegotiationStrategy.
- *
- *
  * @since 3.2
  */
 public class MappingContentNegotiationStrategyTests {

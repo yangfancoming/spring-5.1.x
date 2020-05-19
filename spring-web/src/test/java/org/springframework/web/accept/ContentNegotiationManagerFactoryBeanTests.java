@@ -23,8 +23,6 @@ import static org.junit.Assert.*;
 
 /**
  * Test fixture for {@link ContentNegotiationManagerFactoryBean} tests.
- *
- *
  */
 public class ContentNegotiationManagerFactoryBeanTests {
 
@@ -33,7 +31,6 @@ public class ContentNegotiationManagerFactoryBeanTests {
 	private NativeWebRequest webRequest;
 
 	private MockHttpServletRequest servletRequest;
-
 
 	@Before
 	public void setup() {
@@ -46,7 +43,6 @@ public class ContentNegotiationManagerFactoryBeanTests {
 		this.factoryBean = new ContentNegotiationManagerFactoryBean();
 		this.factoryBean.setServletContext(this.servletRequest.getServletContext());
 	}
-
 
 	@Test
 	public void defaultSettings() throws Exception {

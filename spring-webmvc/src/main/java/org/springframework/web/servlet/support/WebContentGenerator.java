@@ -277,10 +277,8 @@ public abstract class WebContentGenerator extends WebApplicationObjectSupport {
 
 	/**
 	 * Set whether to use the HTTP 1.1 cache-control header. Default is "true".
-	 * Note: Cache headers will only get applied if caching is enabled
-	 * (or explicitly prevented) for the current request.
-	 * @deprecated as of 4.2, since going forward, the HTTP 1.1 cache-control
-	 * header will be required, with the HTTP 1.0 headers disappearing
+	 * Note: Cache headers will only get applied if caching is enabled (or explicitly prevented) for the current request.
+	 * @deprecated as of 4.2, since going forward, the HTTP 1.1 cache-control  header will be required, with the HTTP 1.0 headers disappearing
 	 */
 	@Deprecated
 	public final void setUseCacheControlHeader(boolean useCacheControlHeader) {

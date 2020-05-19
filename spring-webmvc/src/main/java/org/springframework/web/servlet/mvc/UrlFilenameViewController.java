@@ -11,25 +11,16 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerMapping;
 
 /**
- * Simple {@code Controller} implementation that transforms the virtual
- * path of a URL into a view name and returns that view.
+ * Simple {@code Controller} implementation that transforms the virtual path of a URL into a view name and returns that view.
  *
- * Can optionally prepend a {@link #setPrefix prefix} and/or append a
- * {@link #setSuffix suffix} to build the viewname from the URL filename.
+ * Can optionally prepend a {@link #setPrefix prefix} and/or append a {@link #setSuffix suffix} to build the viewname from the URL filename.
  *
  * Find some examples below:
- * <ol>
  * <li>{@code "/index" -> "index"}</li>
  * <li>{@code "/index.html" -> "index"}</li>
  * <li>{@code "/index.html"} + prefix {@code "pre_"} and suffix {@code "_suf" -> "pre_index_suf"}</li>
  * <li>{@code "/products/view.html" -> "products/view"}</li>
- * </ol>
- *
  * Thanks to David Barri for suggesting prefix/suffix support!
- *
- * @author Alef Arendsen
-
- * @author Rob Harrop
  * @see #setPrefix
  * @see #setSuffix
  */
@@ -42,10 +33,8 @@ public class UrlFilenameViewController extends AbstractUrlViewController {
 	/** Request URL path String to view name String. */
 	private final Map<String, String> viewNameCache = new ConcurrentHashMap<>(256);
 
-
 	/**
-	 * Set the prefix to prepend to the request URL filename
-	 * to build a view name.
+	 * Set the prefix to prepend to the request URL filename  to build a view name.
 	 */
 	public void setPrefix(@Nullable String prefix) {
 		this.prefix = (prefix != null ? prefix : "");
@@ -59,8 +48,7 @@ public class UrlFilenameViewController extends AbstractUrlViewController {
 	}
 
 	/**
-	 * Set the suffix to append to the request URL filename
-	 * to build a view name.
+	 * Set the suffix to append to the request URL filename to build a view name.
 	 */
 	public void setSuffix(@Nullable String suffix) {
 		this.suffix = (suffix != null ? suffix : "");
@@ -73,10 +61,8 @@ public class UrlFilenameViewController extends AbstractUrlViewController {
 		return this.suffix;
 	}
 
-
 	/**
-	 * Returns view name based on the URL filename,
-	 * with prefix/suffix applied when appropriate.
+	 * Returns view name based on the URL filename,with prefix/suffix applied when appropriate.
 	 * @see #extractViewNameFromUrlPath
 	 * @see #setPrefix
 	 * @see #setSuffix
@@ -88,8 +74,7 @@ public class UrlFilenameViewController extends AbstractUrlViewController {
 	}
 
 	/**
-	 * Extract a URL path from the given request,
-	 * suitable for view name extraction.
+	 * Extract a URL path from the given request,suitable for view name extraction.
 	 * @param request current HTTP request
 	 * @return the URL to use for view name extraction
 	 */
@@ -102,8 +87,7 @@ public class UrlFilenameViewController extends AbstractUrlViewController {
 	}
 
 	/**
-	 * Returns view name based on the URL filename,
-	 * with prefix/suffix applied when appropriate.
+	 * Returns view name based on the URL filename,with prefix/suffix applied when appropriate.
 	 * @param uri the request URI; for example {@code "/index.html"}
 	 * @return the extracted URI filename; for example {@code "index"}
 	 * @see #extractViewNameFromUrlPath
@@ -132,11 +116,9 @@ public class UrlFilenameViewController extends AbstractUrlViewController {
 	}
 
 	/**
-	 * Build the full view name based on the given view name
-	 * as indicated by the URL path.
+	 * Build the full view name based on the given view name as indicated by the URL path.
 	 * The default implementation simply applies prefix and suffix.
-	 * This can be overridden, for example, to manipulate upper case
-	 * / lower case, etc.
+	 * This can be overridden, for example, to manipulate upper case / lower case, etc.
 	 * @param viewName the original view name, as indicated by the URL path
 	 * @return the full view name to use
 	 * @see #getPrefix()
@@ -145,5 +127,4 @@ public class UrlFilenameViewController extends AbstractUrlViewController {
 	protected String postProcessViewName(String viewName) {
 		return getPrefix() + viewName + getSuffix();
 	}
-
 }

@@ -30,11 +30,10 @@ import org.springframework.web.servlet.support.RequestContext;
 /**
  * Abstract base class for {@link org.springframework.web.servlet.View}
  * implementations. Subclasses should be JavaBeans, to allow for convenient configuration as Spring-managed bean instances.
- * Provides support for static attributes, to be made available to the view,
- * with a variety of ways to specify them. Static attributes will be merged
+ * Provides support for static attributes, to be made available to the view, with a variety of ways to specify them. Static attributes will be merged
  * with the given dynamic attributes (the model that the controller returned) for each render operation.
- * Extends {@link WebApplicationObjectSupport}, which will be helpful to
- * some views. Subclasses just need to implement the actual rendering.
+ * Extends {@link WebApplicationObjectSupport}, which will be helpful to some views.
+ * Subclasses just need to implement the actual rendering.
  * @see #setAttributes
  * @see #setAttributesMap
  * @see #renderMergedOutputModel
@@ -217,8 +216,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	 * Spring beans in the request attribute namespace.
 	 * <b>NOTE:</b> Context beans will override any custom request or session
 	 * attributes of the same name that have been manually added. However, model
-	 * attributes (as explicitly exposed to this view) of the same name will
-	 * always override context beans.
+	 * attributes (as explicitly exposed to this view) of the same name will always override context beans
 	 * @see #getRequestToExpose
 	 */
 	public void setExposeContextBeansAsAttributes(boolean exposeContextBeansAsAttributes) {
@@ -227,11 +225,9 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 
 	/**
 	 * Specify the names of beans in the context which are supposed to be exposed.
-	 * If this is non-null, only the specified beans are eligible for exposure as
-	 * attributes.
+	 * If this is non-null, only the specified beans are eligible for exposure as attributes.
 	 * If you'd like to expose all Spring beans in the application context, switch
-	 * the {@link #setExposeContextBeansAsAttributes "exposeContextBeansAsAttributes"}
-	 * flag on but do not list specific bean names for this property.
+	 * the {@link #setExposeContextBeansAsAttributes "exposeContextBeansAsAttributes"}  flag on but do not list specific bean names for this property.
 	 */
 	public void setExposedContextBeanNames(String... exposedContextBeanNames) {
 		this.exposedContextBeanNames = new HashSet<>(Arrays.asList(exposedContextBeanNames));
@@ -254,16 +250,14 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 
 
 	/**
-	 * Prepares the view given the specified model, merging it with static
-	 * attributes and a RequestContext attribute, if necessary.
+	 * Prepares the view given the specified model, merging it with static  attributes and a RequestContext attribute, if necessary.
 	 * Delegates to renderMergedOutputModel for the actual rendering.
 	 * @see #renderMergedOutputModel
 	 */
 	@Override
 	public void render(@Nullable Map<String, ?> model, HttpServletRequest request,HttpServletResponse response) throws Exception {
 		if (logger.isDebugEnabled()) {
-			logger.debug("View " + formatViewName() + ", model " + (model != null ? model : Collections.emptyMap()) +
-					(this.staticAttributes.isEmpty() ? "" : ", static attributes " + this.staticAttributes));
+			logger.debug("View " + formatViewName() + ", model " + (model != null ? model : Collections.emptyMap()) + (this.staticAttributes.isEmpty() ? "" : ", static attributes " + this.staticAttributes));
 		}
 		// 这里主要是将request中pathVariable，staticAttribute与用户返回的model属性
 		// 合并为一个Map对象，以供给后面对视图的渲染使用
@@ -304,8 +298,8 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 
 	/**
 	 * Create a RequestContext to expose under the specified attribute name.
-	 * The default implementation creates a standard RequestContext instance for the
-	 * given request and model. Can be overridden in subclasses for custom instances.
+	 * The default implementation creates a standard RequestContext instance for the  given request and model.
+	 * Can be overridden in subclasses for custom instances.
 	 * @param request current HTTP request
 	 * @param model combined output Map (never {@code null}),with dynamic values taking precedence over static attributes
 	 * @return the RequestContext instance
@@ -330,12 +324,10 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	}
 
 	/**
-	 * Return whether this view generates download content
-	 * (typically binary content like PDF or Excel files).
+	 * Return whether this view generates download content (typically binary content like PDF or Excel files).
 	 * The default implementation returns {@code false}. Subclasses are
 	 * encouraged to return {@code true} here if they know that they are
-	 * generating download content that requires temporary caching on the
-	 * client side, typically via the response OutputStream.
+	 * generating download content that requires temporary caching on the client side, typically via the response OutputStream.
 	 * @see #prepareResponse
 	 * @see javax.servlet.http.HttpServletResponse#getOutputStream()
 	 */
@@ -414,8 +406,7 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	}
 
 	/**
-	 * Set the content type of the response to the configured
-	 * {@link #setContentType(String) content type} unless the
+	 * Set the content type of the response to the configured {@link #setContentType(String) content type} unless the
 	 * {@link View#SELECTED_CONTENT_TYPE} request attribute is present and set to a concrete media type.
 	 */
 	protected void setResponseContentType(HttpServletRequest request, HttpServletResponse response) {
@@ -435,5 +426,4 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	protected String formatViewName() {
 		return (getBeanName() != null ? "name '" + getBeanName() + "'" : "[" + getClass().getSimpleName() + "]");
 	}
-
 }

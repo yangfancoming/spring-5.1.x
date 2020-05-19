@@ -45,8 +45,7 @@ public class HandlerExecutionChain {
 	/**
 	 * Create a new HandlerExecutionChain.
 	 * @param handler the handler object to execute
-	 * @param interceptors the array of interceptors to apply
-	 * (in the given order) before the handler itself executes
+	 * @param interceptors the array of interceptors to apply (in the given order) before the handler itself executes
 	 */
 	public HandlerExecutionChain(Object handler, @Nullable HandlerInterceptor... interceptors) {
 		if (handler instanceof HandlerExecutionChain) {
@@ -174,7 +173,6 @@ public class HandlerExecutionChain {
 		}
 	}
 
-
 	/**
 	 * Delegates to the handler and interceptors' {@code toString()}.
 	 */
@@ -192,5 +190,4 @@ public class HandlerExecutionChain {
 		}
 		return sb.append(" interceptors").toString();
 	}
-
 }

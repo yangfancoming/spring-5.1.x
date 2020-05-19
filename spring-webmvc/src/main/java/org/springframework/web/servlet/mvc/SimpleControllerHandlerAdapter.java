@@ -13,11 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
  * Adapter to use the plain {@link Controller} workflow interface with
  * the generic {@link org.springframework.web.servlet.DispatcherServlet}.
  * Supports handlers that implement the {@link LastModified} interface.
- *
  * This is an SPI class, not used directly by application code.
- *
- * @author Rod Johnson
-
  * @see org.springframework.web.servlet.DispatcherServlet
  * @see Controller
  * @see LastModified
@@ -32,9 +28,7 @@ public class SimpleControllerHandlerAdapter implements HandlerAdapter {
 
 	@Override
 	@Nullable
-	public ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
-
+	public ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		return ((Controller) handler).handleRequest(request, response);
 	}
 
@@ -45,5 +39,4 @@ public class SimpleControllerHandlerAdapter implements HandlerAdapter {
 		}
 		return -1L;
 	}
-
 }

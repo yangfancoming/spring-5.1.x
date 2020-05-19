@@ -17,17 +17,13 @@ import org.springframework.web.util.WebUtils;
  * <b>Workflow
  * (<a href="Controller.html#workflow">and that defined by interface</a>):</b><br>
  * <ol>
- * <li>{@link #handleRequest(HttpServletRequest, HttpServletResponse) handleRequest()}
- * will be called by the DispatcherServlet</li>
- * <li>Inspection of supported methods (ServletException if request method
- * is not support)</li>
+ * <li>{@link #handleRequest(HttpServletRequest, HttpServletResponse) handleRequest()} will be called by the DispatcherServlet</li>
+ * <li>Inspection of supported methods (ServletException if request method is not support)</li>
  * <li>If session is required, try to get it (ServletException if not found)</li>
  * <li>Set caching headers if needed according to the cacheSeconds property</li>
- * <li>Call abstract method
- * {@link #handleRequestInternal(HttpServletRequest, HttpServletResponse) handleRequestInternal()}
+ * <li>Call abstract method {@link #handleRequestInternal(HttpServletRequest, HttpServletResponse) handleRequestInternal()}
  * (optionally synchronizing around the call on the HttpSession),
- * which should be implemented by extending classes to provide actual
- * functionality to return {@link org.springframework.web.servlet.ModelAndView ModelAndView} objects.</li>
+ * which should be implemented by extending classes to provide actual functionality to return {@link org.springframework.web.servlet.ModelAndView ModelAndView} objects.</li>
  * </ol>
  *
  * <b><a name="config">Exposed configuration properties</a>
@@ -98,22 +94,16 @@ public abstract class AbstractController extends WebContentGenerator implements 
 		super(restrictDefaultSupportedMethods);
 	}
 
-
 	/**
-	 * Set if controller execution should be synchronized on the session,
-	 * to serialize parallel invocations from the same client.
+	 * Set if controller execution should be synchronized on the session,to serialize parallel invocations from the same client.
 	 * More specifically, the execution of the {@code handleRequestInternal}
 	 * method will get synchronized if this flag is "true". The best available
-	 * session mutex will be used for the synchronization; ideally, this will
-	 * be a mutex exposed by HttpSessionMutexListener.
-	 * The session mutex is guaranteed to be the same object during
-	 * the entire lifetime of the session, available under the key defined
-	 * by the {@code SESSION_MUTEX_ATTRIBUTE} constant. It serves as a
-	 * safe reference to synchronize on for locking on the current session.
-	 * In many cases, the HttpSession reference itself is a safe mutex
-	 * as well, since it will always be the same object reference for the
-	 * same active logical session. However, this is not guaranteed across
-	 * different servlet containers; the only 100% safe way is a session mutex.
+	 * session mutex will be used for the synchronization; ideally, this will be a mutex exposed by HttpSessionMutexListener.
+	 * The session mutex is guaranteed to be the same object during the entire lifetime of the session,
+	 * available under the key defined by the {@code SESSION_MUTEX_ATTRIBUTE} constant.
+	 * It serves as a safe reference to synchronize on for locking on the current session.
+	 * In many cases, the HttpSession reference itself is a safe mutex as well, since it will always be the same object reference for the same active logical session.
+	 * However, this is not guaranteed across different servlet containers; the only 100% safe way is a session mutex.
 	 * @see AbstractController#handleRequestInternal
 	 * @see org.springframework.web.util.HttpSessionMutexListener
 	 * @see org.springframework.web.util.WebUtils#getSessionMutex(javax.servlet.http.HttpSession)
@@ -128,7 +118,6 @@ public abstract class AbstractController extends WebContentGenerator implements 
 	public final boolean isSynchronizeOnSession() {
 		return this.synchronizeOnSession;
 	}
-
 
 	@Override
 	@Nullable
