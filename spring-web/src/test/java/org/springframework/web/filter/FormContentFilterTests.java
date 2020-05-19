@@ -19,8 +19,6 @@ import static org.junit.Assert.*;
 
 /**
  * Test fixture for {@link FormContentFilter}.
- *
- *
  */
 public class FormContentFilterTests {
 
@@ -41,7 +39,6 @@ public class FormContentFilterTests {
 		this.filterChain = new MockFilterChain();
 	}
 
-
 	@Test
 	public void wrapPutPatchAndDeleteOnly() throws Exception {
 		for (HttpMethod method : HttpMethod.values()) {
@@ -52,8 +49,7 @@ public class FormContentFilterTests {
 			this.filter.doFilter(request, this.response, this.filterChain);
 			if (method == HttpMethod.PUT || method == HttpMethod.PATCH || method == HttpMethod.DELETE) {
 				assertNotSame(request, this.filterChain.getRequest());
-			}
-			else {
+			}else {
 				assertSame(request, this.filterChain.getRequest());
 			}
 		}

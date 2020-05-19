@@ -41,27 +41,18 @@ import org.springframework.util.StringUtils;
  * A data structure representing HTTP request or response headers, mapping String header names
  * to a list of String values, also offering accessors for common application-level data types.
  *
- * In addition to the regular methods defined by {@link Map}, this class offers many common
- * convenience methods, for example:
+ * In addition to the regular methods defined by {@link Map}, this class offers many common convenience methods, for example:
  * <ul>
  * <li>{@link #getFirst(String)} returns the first value associated with a given header name</li>
  * <li>{@link #add(String, String)} adds a header value to the list of values for a header name</li>
  * <li>{@link #set(String, String)} sets the header value to a single string value</li>
  * </ul>
- *
  * Note that {@code HttpHeaders} generally treats header names in a case-insensitive manner.
- *
- * @author Arjen Poutsma
- * @author Sebastien Deleuze
- * @author Brian Clozel
-
- * @author Josh Long
  * @since 3.0
  */
 public class HttpHeaders implements MultiValueMap<String, String>, Serializable {
 
 	private static final long serialVersionUID = -8578554704772377436L;
-
 
 	/**
 	 * The HTTP {@code Accept} header field name.
@@ -448,20 +439,15 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 		Assert.notNull(languages, "LanguageRange List must not be null");
 		DecimalFormat decimal = new DecimalFormat("0.0", DECIMAL_FORMAT_SYMBOLS);
 		List<String> values = languages.stream()
-				.map(range ->
-						range.getWeight() == Locale.LanguageRange.MAX_WEIGHT ?
-								range.getRange() :
-								range.getRange() + ";q=" + decimal.format(range.getWeight()))
+				.map(range -> range.getWeight() == Locale.LanguageRange.MAX_WEIGHT ? range.getRange() : range.getRange() + ";q=" + decimal.format(range.getWeight()))
 				.collect(Collectors.toList());
 		set(ACCEPT_LANGUAGE, toCommaDelimitedString(values));
 	}
 
 	/**
 	 * Return the language ranges from the {@literal "Accept-Language"} header.
-	 * If you only need sorted, preferred locales only use
-	 * {@link #getAcceptLanguageAsLocales()} or if you need to filter based on
-	 * a list of supported locales you can pass the returned list to
-	 * {@link Locale#filter(List, Collection)}.
+	 * If you only need sorted, preferred locales only use {@link #getAcceptLanguageAsLocales()} or if you need to filter based on
+	 * a list of supported locales you can pass the returned list to  {@link Locale#filter(List, Collection)}.
 	 * @throws IllegalArgumentException if the value cannot be converted to a language range
 	 * @since 5.0
 	 */
@@ -475,14 +461,11 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	 * @since 5.0
 	 */
 	public void setAcceptLanguageAsLocales(List<Locale> locales) {
-		setAcceptLanguage(locales.stream()
-				.map(locale -> new Locale.LanguageRange(locale.toLanguageTag()))
-				.collect(Collectors.toList()));
+		setAcceptLanguage(locales.stream().map(locale -> new Locale.LanguageRange(locale.toLanguageTag())).collect(Collectors.toList()));
 	}
 
 	/**
-	 * A variant of {@link #getAcceptLanguage()} that converts each
-	 * {@link java.util.Locale.LanguageRange} to a {@link Locale}.
+	 * A variant of {@link #getAcceptLanguage()} that converts each {@link java.util.Locale.LanguageRange} to a {@link Locale}.
 	 * @return the locales or an empty list
 	 * @throws IllegalArgumentException if the value cannot be converted to a locale
 	 * @since 5.0
@@ -642,8 +625,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	}
 
 	/**
-	 * Return the list of acceptable {@linkplain Charset charsets},
-	 * as specified by the {@code Accept-Charset} header.
+	 * Return the list of acceptable {@linkplain Charset charsets},as specified by the {@code Accept-Charset} header.
 	 */
 	public List<Charset> getAcceptCharset() {
 		String value = getFirst(ACCEPT_CHARSET);
@@ -655,8 +637,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 				String charsetName;
 				if (paramIdx == -1) {
 					charsetName = token;
-				}
-				else {
+				}else {
 					charsetName = token.substring(0, paramIdx);
 				}
 				if (!charsetName.equals("*")) {
@@ -664,23 +645,20 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 				}
 			}
 			return result;
-		}
-		else {
+		}else {
 			return Collections.emptyList();
 		}
 	}
 
 	/**
-	 * Set the set of allowed {@link HttpMethod HTTP methods},
-	 * as specified by the {@code Allow} header.
+	 * Set the set of allowed {@link HttpMethod HTTP methods},as specified by the {@code Allow} header.
 	 */
 	public void setAllow(Set<HttpMethod> allowedMethods) {
 		set(ALLOW, StringUtils.collectionToCommaDelimitedString(allowedMethods));
 	}
 
 	/**
-	 * Return the set of allowed {@link HttpMethod HTTP methods},
-	 * as specified by the {@code Allow} header.
+	 * Return the set of allowed {@link HttpMethod HTTP methods},as specified by the {@code Allow} header.
 	 * Returns an empty set when the allowed methods are unspecified.
 	 */
 	public Set<HttpMethod> getAllow() {
@@ -695,21 +673,17 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 				}
 			}
 			return EnumSet.copyOf(result);
-		}
-		else {
+		}else {
 			return EnumSet.noneOf(HttpMethod.class);
 		}
 	}
 
 	/**
-	 * Set the value of the {@linkplain #AUTHORIZATION Authorization} header to
-	 * Basic Authentication based on the given username and password.
-	 * Note that this method only supports characters in the
-	 * {@link StandardCharsets#ISO_8859_1 ISO-8859-1} character set.
+	 * Set the value of the {@linkplain #AUTHORIZATION Authorization} header to Basic Authentication based on the given username and password.
+	 * Note that this method only supports characters in the {@link StandardCharsets#ISO_8859_1 ISO-8859-1} character set.
 	 * @param username the username
 	 * @param password the password
-	 * @throws IllegalArgumentException if either {@code user} or
-	 * {@code password} contain characters that cannot be encoded to ISO-8859-1
+	 * @throws IllegalArgumentException if either {@code user} or  {@code password} contain characters that cannot be encoded to ISO-8859-1
 	 * @since 5.1
 	 * @see #setBasicAuth(String, String, Charset)
 	 * @see <a href="https://tools.ietf.org/html/rfc7617">RFC 7617</a>
@@ -723,10 +697,8 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 	 * Basic Authentication based on the given username and password.
 	 * @param username the username
 	 * @param password the password
-	 * @param charset the charset to use to convert the credentials into an octet
-	 * sequence. Defaults to {@linkplain StandardCharsets#ISO_8859_1 ISO-8859-1}.
-	 * @throws IllegalArgumentException if {@code username} or {@code password}
-	 * contains characters that cannot be encoded to the given charset
+	 * @param charset the charset to use to convert the credentials into an octet  sequence. Defaults to {@linkplain StandardCharsets#ISO_8859_1 ISO-8859-1}.
+	 * @throws IllegalArgumentException if {@code username} or {@code password} contains characters that cannot be encoded to the given charset
 	 * @since 5.1
 	 * @see <a href="https://tools.ietf.org/html/rfc7617">RFC 7617</a>
 	 */
@@ -739,8 +711,7 @@ public class HttpHeaders implements MultiValueMap<String, String>, Serializable 
 
 		CharsetEncoder encoder = charset.newEncoder();
 		if (!encoder.canEncode(username) || !encoder.canEncode(password)) {
-			throw new IllegalArgumentException(
-					"Username or password contains characters that cannot be encoded to " + charset.displayName());
+			throw new IllegalArgumentException("Username or password contains characters that cannot be encoded to " + charset.displayName());
 		}
 
 		String credentialsString = username + ":" + password;

@@ -104,8 +104,6 @@ import static java.util.stream.Collectors.*;
  * <pre>
  * ResolvableMethod.on(TestController.class).mockCall(o -> o.handle(null)).method();
  * </pre>
- *
- *
  * @since 5.0
  */
 public class ResolvableMethod {
@@ -119,15 +117,12 @@ public class ResolvableMethod {
 	// Matches ValueConstants.DEFAULT_NONE (spring-web and spring-messaging)
 	private static final String DEFAULT_VALUE_NONE = "\n\t\t\n\t\t\n\uE000\uE001\uE002\n\t\t\t\t\n";
 
-
 	private final Method method;
-
 
 	private ResolvableMethod(Method method) {
 		Assert.notNull(method, "'method' is required");
 		this.method = method;
 	}
-
 
 	/**
 	 * Return the resolved method.
@@ -254,12 +249,10 @@ public class ResolvableMethod {
 
 		private final List<Predicate<Method>> filters = new ArrayList<>(4);
 
-
 		private Builder(Class<?> objectClass) {
 			Assert.notNull(objectClass, "Class must not be null");
 			this.objectClass = objectClass;
 		}
-
 
 		private void addFilter(String message, Predicate<Method> filter) {
 			this.filters.add(new LabeledPredicate<>(message, filter));

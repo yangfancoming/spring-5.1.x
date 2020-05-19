@@ -21,15 +21,11 @@ import org.springframework.web.bind.annotation.ValueConstants;
 
 /**
  * Predicates for {@code @MVC} annotations.
- *
- *
  * @since 5.0
- *
  * @see ResolvableMethod#annot(Predicate[])
  * @see ResolvableMethod.Builder#annot(Predicate[])
  */
 public class MvcAnnotationPredicates {
-
 
 	// Method parameter predicates
 

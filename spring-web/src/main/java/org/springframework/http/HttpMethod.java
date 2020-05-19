@@ -13,23 +13,15 @@ import org.springframework.lang.Nullable;
  * @since 3.0
  */
 public enum HttpMethod {
+
 	GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE;
+
 	private static final Map<String, HttpMethod> mappings = new HashMap<>(16);
+
 	static {
 		for (HttpMethod httpMethod : values()) {
 			mappings.put(httpMethod.name(), httpMethod);
 		}
-	}
-
-	/**
-	 * Resolve the given method value to an {@code HttpMethod}.
-	 * @param method the method value as a String
-	 * @return the corresponding {@code HttpMethod}, or {@code null} if not found
-	 * @since 4.2.4
-	 */
-	@Nullable
-	public static HttpMethod resolve(@Nullable String method) {
-		return (method != null ? mappings.get(method) : null);
 	}
 
 	/**
@@ -42,4 +34,14 @@ public enum HttpMethod {
 		return (this == resolve(method));
 	}
 
+	/**
+	 * Resolve the given method value to an {@code HttpMethod}.
+	 * @param method the method value as a String
+	 * @return the corresponding {@code HttpMethod}, or {@code null} if not found
+	 * @since 4.2.4
+	 */
+	@Nullable
+	public static HttpMethod resolve(@Nullable String method) {
+		return (method != null ? mappings.get(method) : null);
+	}
 }
