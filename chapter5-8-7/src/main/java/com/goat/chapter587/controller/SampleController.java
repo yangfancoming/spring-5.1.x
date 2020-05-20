@@ -17,7 +17,6 @@ public class SampleController {
 	/**
 	 * 测试url：   http://localhost:8587/getSessionLocale?locale=en_US
 	 * 变更参数locale的值  http://localhost:8587/getSessionLocale?locale=zh_CN
-	 *
 	 */
 	@GetMapping(value = "/getSessionLocale", produces = "text/html;charset=UTF-8")
 	public String sessionLocaleResolver(HttpServletRequest request) {

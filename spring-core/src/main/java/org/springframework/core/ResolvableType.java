@@ -31,13 +31,11 @@ import org.springframework.util.StringUtils;
  * Encapsulates a Java {@link java.lang.reflect.Type}, providing access to
  * {@link #getSuperType() supertypes}, {@link #getInterfaces() interfaces}, and
  * {@link #getGeneric(int...) generic parameters} along with the ability to ultimately
- * {@link #resolve() resolve} to a {@link java.lang.Class}.
- * {@code ResolvableTypes} may be obtained from {@link #forField(Field) fields},
+ * {@link #resolve() resolve} to a {@link java.lang.Class}.{@code ResolvableTypes} may be obtained from {@link #forField(Field) fields},
  * {@link #forMethodParameter(Method, int) method parameters},
  * {@link #forMethodReturnType(Method) method returns} or
  * {@link #forClass(Class) classes}. Most methods on this class will themselves return
- * {@link ResolvableType ResolvableTypes}, allowing easy navigation. For example:
- * private HashMap&lt;Integer, List&lt;String&gt;&gt; myMap;
+ * {@link ResolvableType ResolvableTypes}, allowing easy navigation. For example:private HashMap&lt;Integer, List&lt;String&gt;&gt; myMap;
  *
  * public void example() {
  *     ResolvableType t = ResolvableType.forField(getClass().getDeclaredField("myMap"));
@@ -366,9 +364,9 @@ public class ResolvableType implements Serializable {
 	}
 
 	/**
-	 * Return this type as a {@link ResolvableType} of the specified class. Searches
-	 * {@link #getSuperType() supertype} and {@link #getInterfaces() interface}
-	 * hierarchies to find a match, returning {@link #NONE} if this type does not implement or extend the specified class.
+	 * Return this type as a {@link ResolvableType} of the specified class.
+	 * Searches {@link #getSuperType() supertype} and {@link #getInterfaces() interface}  hierarchies to find a match,
+	 * returning {@link #NONE} if this type does not implement or extend the specified class.
 	 * @param type the required type (typically narrowed)
 	 * @return a {@link ResolvableType} representing this object as the specified type, or {@link #NONE} if not resolvable as that type
 	 * @see #asCollection()
@@ -571,8 +569,7 @@ public class ResolvableType implements Serializable {
 	 * {@code Map<Integer, List<String>>}, {@code getGeneric(0)} will access the
 	 * {@code Integer}. Nested generics can be accessed by specifying multiple indexes;
 	 * for example {@code getGeneric(1, 0)} will access the {@code String} from the
-	 * nested {@code List}. For convenience, if no indexes are specified the first
-	 * generic is returned.
+	 * nested {@code List}. For convenience, if no indexes are specified the first generic is returned.
 	 * If no generic is available at the specified indexes {@link #NONE} is returned.
 	 * @param indexes the indexes that refer to the generic parameter
 	 * (may be omitted to return the first generic)
@@ -1521,5 +1518,4 @@ public class ResolvableType implements Serializable {
 			return INSTANCE;
 		}
 	}
-
 }
