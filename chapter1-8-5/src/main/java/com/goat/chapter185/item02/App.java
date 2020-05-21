@@ -26,5 +26,4 @@ public class App {
 		Dog dog = applicationContext.getBean("dog", Dog.class);
 		dog.sayHello();
 	}
-
 }
