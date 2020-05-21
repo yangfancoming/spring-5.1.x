@@ -16,6 +16,7 @@ import org.springframework.util.ResourceUtils;
  * @see org.springframework.context.ApplicationContext
  * @see org.springframework.context.ResourceLoaderAware
  * 定义资源加载器，主要应用于根据给定的资源文件地址返回对应的Resource
+ * ResourceLoader接口就是通过getresource方法来new各种resource对象
  */
 public interface ResourceLoader {
 

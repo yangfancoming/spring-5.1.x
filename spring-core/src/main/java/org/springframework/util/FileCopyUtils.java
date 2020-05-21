@@ -74,7 +74,6 @@ public abstract class FileCopyUtils {
 	//---------------------------------------------------------------------
 	// Copy methods for java.io.InputStream / java.io.OutputStream
 	//---------------------------------------------------------------------
-
 	/**
 	 * Copy the contents of the given InputStream to the given OutputStream. Closes both streams when done.
 	 * @param in the stream to copy from
@@ -96,8 +95,7 @@ public abstract class FileCopyUtils {
 	}
 
 	/**
-	 * Copy the contents of the given byte array to the given OutputStream.
-	 * Closes the stream when done.
+	 * Copy the contents of the given byte array to the given OutputStream.Closes the stream when done.
 	 * @param in the byte array to copy from
 	 * @param out the OutputStream to copy to
 	 * @throws IOException in case of I/O errors
@@ -129,10 +127,8 @@ public abstract class FileCopyUtils {
 	//---------------------------------------------------------------------
 	// Copy methods for java.io.Reader / java.io.Writer
 	//---------------------------------------------------------------------
-
 	/**
-	 * Copy the contents of the given Reader to the given Writer.
-	 * Closes both when done.
+	 * Copy the contents of the given Reader to the given Writer.Closes both when done.
 	 * @param in the Reader to copy from
 	 * @param out the Writer to copy to
 	 * @return the number of characters copied
@@ -160,8 +156,7 @@ public abstract class FileCopyUtils {
 	}
 
 	/**
-	 * Copy the contents of the given String to the given output Writer.
-	 * Closes the writer when done.
+	 * Copy the contents of the given String to the given output Writer. Closes the writer when done.
 	 * @param in the String to copy from
 	 * @param out the Writer to copy to
 	 * @throws IOException in case of I/O errors
@@ -178,8 +173,7 @@ public abstract class FileCopyUtils {
 	}
 
 	/**
-	 * Copy the contents of the given Reader into a String.
-	 * Closes the reader when done.
+	 * Copy the contents of the given Reader into a String. Closes the reader when done.
 	 * @param in the reader to copy from (may be {@code null} or empty)
 	 * @return the String that has been copied to (possibly empty)
 	 * @throws IOException in case of I/O errors
@@ -190,5 +184,4 @@ public abstract class FileCopyUtils {
 		copy(in, out);
 		return out.toString();
 	}
-
 }

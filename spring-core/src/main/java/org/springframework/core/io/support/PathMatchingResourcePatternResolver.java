@@ -243,9 +243,9 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 		return getResourceLoader().getResource(location);
 	}
 
-	//---------------------------------------------------------------------
+	//------------------------------------------------------------------------------
 	// Implementation of 【ResourcePatternResolver】 interface   核心重构方法！！！
-	//---------------------------------------------------------------------
+	//------------------------------------------------------------------------------
 	// classpath*:example/scannable/
 	@Override
 	public Resource[] getResources(String locationPattern) throws IOException {
@@ -448,8 +448,7 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 
 	/**
 	 * Determine the root directory for the given location.
-	 * Used for determining the starting point for file matching,
-	 * resolving the root directory location to a {@code java.io.File}
+	 * Used for determining the starting point for file matching, resolving the root directory location to a {@code java.io.File}
 	 * and passing it into {@code retrieveMatchingFiles}, with the remainder of the location as pattern.
 	 * Will return "/WEB-INF/" for the pattern "/WEB-INF/*.xml",for example.
 	 * @param location the location to check
@@ -485,8 +484,7 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 	 * By default, the URL protocols "jar", "zip", "vfszip and "wsjar"
 	 * will be treated as jar resources. This template method allows for
 	 * detecting further kinds of jar-like resources, e.g. through {@code instanceof} checks on the resource handle type.
-	 * @param resource the resource handle to check
-	 * (usually the root directory to start path matching from)
+	 * @param resource the resource handle to check (usually the root directory to start path matching from)
 	 * @see #doFindPathMatchingJarResources
 	 * @see org.springframework.util.ResourceUtils#isJarURL
 	 */
@@ -550,8 +548,7 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 		try {
 			if (logger.isTraceEnabled()) logger.trace("Looking for matching resources in jar file [" + jarFileUrl + "]");
 			if (!"".equals(rootEntryPath) && !rootEntryPath.endsWith("/")) {
-				// Root entry path must end with slash to allow for proper matching.
-				// The Sun JRE does not return a slash here, but BEA JRockit does.
+				// Root entry path must end with slash to allow for proper matching.The Sun JRE does not return a slash here, but BEA JRockit does.
 				rootEntryPath = rootEntryPath + "/";
 			}
 			Set<Resource> result = new LinkedHashSet<>(8);

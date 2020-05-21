@@ -17,10 +17,9 @@ import java.nio.charset.Charset;
 import org.springframework.lang.Nullable;
 
 /**
- * Simple utility methods for dealing with streams. The copy methods of this class are
- * similar to those defined in {@link FileCopyUtils} except that all affected streams are
- * left open when done. All copy methods use a block size of 4096 bytes.
- * Mainly for use within the framework, but also useful for application code.
+ * Simple utility methods for dealing with streams.
+ * The copy methods of this class are similar to those defined in {@link FileCopyUtils} except that all affected streams are left open when done.
+ * All copy methods use a block size of 4096 bytes.Mainly for use within the framework, but also useful for application code.
  * @since 3.2.2
  * @see FileCopyUtils
  */
@@ -34,36 +33,30 @@ public abstract class StreamUtils {
 	private static final byte[] EMPTY_CONTENT = new byte[0];
 
 	/**
-	 * Copy the contents of the given InputStream into a new byte array.
-	 * Leaves the stream open when done.
+	 * Copy the contents of the given InputStream into a new byte array. Leaves the stream open when done.
 	 * @param in the stream to copy from (may be {@code null} or empty)
 	 * @return the new byte array that has been copied to (possibly empty)
 	 * @throws IOException in case of I/O errors
 	 */
 	public static byte[] copyToByteArray(@Nullable InputStream in) throws IOException {
-		if (in == null) {
-			return new byte[0];
-		}
+		if (in == null) return new byte[0];
 		ByteArrayOutputStream out = new ByteArrayOutputStream(BUFFER_SIZE);
 		copy(in, out);
 		return out.toByteArray();
 	}
 
 	/**
-	 * Copy the contents of the given InputStream into a String.
-	 * Leaves the stream open when done.
+	 * Copy the contents of the given InputStream into a String. Leaves the stream open when done.
 	 * @param in the InputStream to copy from (may be {@code null} or empty)
 	 * @return the String that has been copied to (possibly empty)
 	 * @throws IOException in case of I/O errors
 	 */
 	public static String copyToString(@Nullable InputStream in, Charset charset) throws IOException {
-		if (in == null) {
-			return "";
-		}
+		if (in == null) return "";
 		StringBuilder out = new StringBuilder();
 		InputStreamReader reader = new InputStreamReader(in, charset);
 		char[] buffer = new char[BUFFER_SIZE];
-		int bytesRead = -1;
+		int bytesRead;
 		while ((bytesRead = reader.read(buffer)) != -1) {
 			out.append(buffer, 0, bytesRead);
 		}
@@ -71,8 +64,7 @@ public abstract class StreamUtils {
 	}
 
 	/**
-	 * Copy the contents of the given byte array to the given OutputStream.
-	 * Leaves the stream open when done.
+	 * Copy the contents of the given byte array to the given OutputStream. Leaves the stream open when done.
 	 * @param in the byte array to copy from
 	 * @param out the OutputStream to copy to
 	 * @throws IOException in case of I/O errors
@@ -84,8 +76,7 @@ public abstract class StreamUtils {
 	}
 
 	/**
-	 * Copy the contents of the given String to the given output OutputStream.
-	 * Leaves the stream open when done.
+	 * Copy the contents of the given String to the given output OutputStream.  Leaves the stream open when done.
 	 * @param in the String to copy from
 	 * @param charset the Charset
 	 * @param out the OutputStream to copy to
@@ -124,8 +115,7 @@ public abstract class StreamUtils {
 
 	/**
 	 * Copy a range of content of the given InputStream to the given OutputStream.
-	 * If the specified range exceeds the length of the InputStream, this copies
-	 * up to the end of the stream and returns the actual number of copied bytes.
+	 * If the specified range exceeds the length of the InputStream, this copies up to the end of the stream and returns the actual number of copied bytes.
 	 * Leaves both streams open when done.
 	 * @param in the InputStream to copy from
 	 * @param out the OutputStream to copy to
@@ -160,8 +150,7 @@ public abstract class StreamUtils {
 	}
 
 	/**
-	 * Drain the remaining content of the given InputStream.
-	 * Leaves the InputStream open when done.
+	 * Drain the remaining content of the given InputStream.Leaves the InputStream open when done.
 	 * @param in the InputStream to drain
 	 * @return the number of bytes read
 	 * @throws IOException in case of I/O errors
@@ -188,8 +177,7 @@ public abstract class StreamUtils {
 	}
 
 	/**
-	 * Return a variant of the given {@link InputStream} where calling
-	 * {@link InputStream#close() close()} has no effect.
+	 * Return a variant of the given {@link InputStream} where calling {@link InputStream#close() close()} has no effect.
 	 * @param in the InputStream to decorate
 	 * @return a version of the InputStream that ignores calls to close
 	 */
@@ -199,8 +187,7 @@ public abstract class StreamUtils {
 	}
 
 	/**
-	 * Return a variant of the given {@link OutputStream} where calling
-	 * {@link OutputStream#close() close()} has no effect.
+	 * Return a variant of the given {@link OutputStream} where calling {@link OutputStream#close() close()} has no effect.
 	 * @param out the OutputStream to decorate
 	 * @return a version of the OutputStream that ignores calls to close
 	 */
@@ -208,7 +195,6 @@ public abstract class StreamUtils {
 		Assert.notNull(out, "No OutputStream specified");
 		return new NonClosingOutputStream(out);
 	}
-
 
 	private static class NonClosingInputStream extends FilterInputStream {
 		public NonClosingInputStream(InputStream in) {
@@ -218,7 +204,6 @@ public abstract class StreamUtils {
 		public void close() throws IOException {
 		}
 	}
-
 
 	private static class NonClosingOutputStream extends FilterOutputStream {
 		public NonClosingOutputStream(OutputStream out) {
@@ -233,5 +218,4 @@ public abstract class StreamUtils {
 		public void close() throws IOException {
 		}
 	}
-
 }

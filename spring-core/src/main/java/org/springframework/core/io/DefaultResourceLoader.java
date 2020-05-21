@@ -155,8 +155,8 @@ public class DefaultResourceLoader implements ResourceLoader {
 
 	/**
 	 * 默认查找方式主要分为三种
-	 * 1.匹配开头斜杠和异常： getResourceByPath   例如：/WEB-INF/classes/smart-context.xml
-	 * 2.匹配classpath: 格式：ClassPathResource   classpath:前缀开头的表达式，例如: classpath:smart-context.xml
+	 * 1.匹配开头斜杠和异常： 使用getResourceByPath   例如：/WEB-INF/classes/smart-context.xml
+	 * 2.匹配classpath: 格式：使用ClassPathResource   classpath:前缀开头的表达式，例如: classpath:smart-context.xml (注意classpath下的文件不能以/开头)
 	 * 3.匹配 非“/”开头的表达：尝试用FileUrlResource或者UrlResource获取  ，例如：WEB-INF/classes/smart-context.xml
 	 * 4.url协议，例如：file:/D:/ALANWANG-AIA/Horse-workspace/chapter3/target/classes/smart-context.xml
 	 *

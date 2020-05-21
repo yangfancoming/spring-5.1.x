@@ -29,6 +29,8 @@ import org.springframework.lang.Nullable;
  * @see ClassPathResource
  * @see ByteArrayResource
  * @see InputStreamResource
+ * Resource是包装资源的对象，该接口继承inputstreamSource接口是为继承getinputstream方法，打开一个输入流，
+ * Resource对象可以是ClassPathResource、FileSystemResource、UrlResource等
  */
 public interface Resource extends InputStreamSource {
 

@@ -1,10 +1,18 @@
 package org.springframework.core.io;
 
+import org.apache.logging.log4j.core.util.IOUtils;
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.util.DigestUtils;
+import org.springframework.util.StreamUtils;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
 
 
-/**
+/** file:/D:/ALANWANG-AIA/Horse-workspace/chapter3/target/classes/smart-context.xml
  * Created by Administrator on 2020/4/28.
  * @ Description: TODO
  * @ author  山羊来了
@@ -16,7 +24,7 @@ public class DefaultResourceLoaderTest {
 
 	@Test
 	public void test0() throws Exception{
-		// 方式一：使用spring默认方式
+		// 方式一：使用spring默认方式 (注意classpath下的文件不能以/开头)
 		Resource resource = bf.getResource("classpath:log4j2-test.xml");
 		Assert.assertEquals("file:/E:/Code/Spring/GitHub2/spring-framework-5.1.x/spring-core/out/test/resources/log4j2-test.xml",resource.getURI().toURL().toString());
 	}
@@ -62,6 +70,7 @@ public class DefaultResourceLoaderTest {
 	}
 
 	/**
+	 * 测试读取磁盘路径的文件
 	 * 步骤四，如果以上的三个步骤都加载失败，则尝试使用url的方式来加载，因此咱们也可以在web.xml做如下配置：
 	 *  <context-param>
 	 *  <param-name>contextConfigLocation</param-name>
@@ -69,8 +78,13 @@ public class DefaultResourceLoaderTest {
 	 *  </context-param>
 	 */
 	@Test
-	public void test4(){
+	public void test4() throws Exception{
 		//  Loading XML bean definitions from URL [file:/D:/ALANWANG-AIA/Horse-workspace/chapter3/target/classes/smart-context.xml]
+		Resource resource = new DefaultResourceLoader().getResource("file:/E:/Code/Spring/GitHub2/spring-framework-5.1.x/spring-core/out/test/resources/log4j2-test.xml");
+		InputStream inputStream = resource.getInputStream();
+		Charset charset = Charset.defaultCharset();
+		String actual = StreamUtils.copyToString(inputStream, charset);
+		System.out.println(actual);
 	}
 
 	/**
@@ -84,6 +98,19 @@ public class DefaultResourceLoaderTest {
 	public void test5(){
 		//  XmlBeanDefinitionReader - Loading XML bean definitions from ServletContext resource [/WEB-INF/classes/smart-context.xml]
 	}
+
+	/**
+	 * 测试读取远程文件
+	 */
+	@Test
+	public void test03() throws IOException {
+		Resource resource = new DefaultResourceLoader().getResource("http://fex.baidu.com/ueditor/");
+		InputStream inputStream = resource.getInputStream();
+		Charset charset = Charset.defaultCharset();
+		String actual = StreamUtils.copyToString(inputStream, charset);
+		System.out.println(actual);
+	}
+
 
 	/**
 	 * 总结：

@@ -50,5 +50,4 @@ public interface ResourcePatternResolver extends ResourceLoader {
 	 * 将给定的位置模式解析为Resource对象。
 	 */
 	Resource[] getResources(String locationPattern) throws IOException;
-
 }
