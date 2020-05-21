@@ -12,17 +12,24 @@ import org.junit.Test;
  */
 public class DefaultResourceLoaderTest {
 
-	// 步骤1，先用扩展协议解析器解析资源地址并返回。举个例子，咱们可以自定义资源解析器来完成带前缀“classpath:”的解析：
+	DefaultResourceLoader bf = new DefaultResourceLoader();
+
 	@Test
-	public void test1(){
-		DefaultResourceLoader bf = new DefaultResourceLoader();
-		bf.getProtocolResolvers().add(new MyProtocolResolver());
-		try {
-			Resource resource = bf.getResource("classpath:log4j2-test.xml");
-			Assert.assertEquals("file:/E:/Code/Spring/GitHub2/spring-framework-5.1.x/spring-core/out/test/resources/log4j2-test.xml",resource.getURI().toURL().toString());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void test0() throws Exception{
+		// 方式一：使用spring默认方式
+		Resource resource = bf.getResource("classpath:log4j2-test.xml");
+		Assert.assertEquals("file:/E:/Code/Spring/GitHub2/spring-framework-5.1.x/spring-core/out/test/resources/log4j2-test.xml",resource.getURI().toURL().toString());
+	}
+
+	/**
+	 *  步骤一，先用扩展协议解析器解析资源地址并返回。举个例子，咱们可以自定义资源解析器来完成带前缀“classpath:”的解析：
+	*/
+	@Test
+	public void test1() throws Exception{
+		// 方式二： 使用自定义解析器方式
+		bf.addProtocolResolver(new MyProtocolResolver()); // 关键点
+		Resource resource = bf.getResource("classpath:log4j2-test.xml");
+		Assert.assertEquals("file:/E:/Code/Spring/GitHub2/spring-framework-5.1.x/spring-core/out/test/resources/log4j2-test.xml",resource.getURI().toURL().toString());
 	}
 
 	/**

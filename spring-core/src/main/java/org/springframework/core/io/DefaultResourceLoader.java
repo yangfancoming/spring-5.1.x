@@ -29,6 +29,10 @@ import java.util.concurrent.ConcurrentHashMap;
  * DefaultResourceLoader功能：
  * 1.增加基于protocolResolvers的拦截增强
  * 2.基于ClassPathResource 、FileUrlResource、UrlResource解析，优先级从左到右
+ *
+ * 通过ResourceEditor来使用，作为一个基础类来服务于 org.springframework.context.support.AbstractApplicationContext
+ *  如果location 的值是一个 URL，将返回一个UrlResource资源；
+ *  如果location 的值非URL路径或是一个"classpath:"相对URL，则返回一个ClassPathResource.
  */
 public class DefaultResourceLoader implements ResourceLoader {
 
@@ -39,13 +43,14 @@ public class DefaultResourceLoader implements ResourceLoader {
 
 	// 为开发者提供了自定义扩展接口ProtocolResolver，开发者可实现该接口定制个性化资源表达式
 	private final Set<ProtocolResolver> protocolResolvers = new LinkedHashSet<>(4);
-
+	/** 用于资源缓存的Map的映射集 */
 	private final Map<Class<?>, Map<Resource, ?>> resourceCaches = new ConcurrentHashMap<>(4);
 
 	/**
 	 * Create a new DefaultResourceLoader.
 	 * ClassLoader access will happen using the thread context class loader at the time of this ResourceLoader's initialization.
 	 * @see java.lang.Thread#getContextClassLoader()
+	 * 底层实现是按以下递进获取，有则返回：当前线程的类加载、ClassUtils.class 的加载器、系统类加载
 	 */
 	public DefaultResourceLoader() {
 		logger.warn("进入 【DefaultResourceLoader】 构造函数 1");
@@ -130,8 +135,7 @@ public class DefaultResourceLoader implements ResourceLoader {
 	 */
 	protected static class ClassPathContextResource extends ClassPathResource implements ContextResource {
 		public ClassPathContextResource(String path, @Nullable ClassLoader classLoader) {
-			// 基于父类构造
-			super(path, classLoader);
+			super(path, classLoader);// 基于父类构造
 		}
 		@Override
 		public String getPathWithinContext() {
@@ -151,22 +155,27 @@ public class DefaultResourceLoader implements ResourceLoader {
 
 	/**
 	 * 默认查找方式主要分为三种
-	 * 1.匹配开头斜杠和异常。getResourceByPath   例如：/WEB-INF/classes/smart-context.xml
-	 * 2.匹配格式classpath:。ClassPathResource   classpath:前缀开头的表达式，例如: classpath:smart-context.xml
-	 * 3.尝试用FileUrlResource或者UrlResource获取   非“/”开头的表达，例如：WEB-INF/classes/smart-context.xml
+	 * 1.匹配开头斜杠和异常： getResourceByPath   例如：/WEB-INF/classes/smart-context.xml
+	 * 2.匹配classpath: 格式：ClassPathResource   classpath:前缀开头的表达式，例如: classpath:smart-context.xml
+	 * 3.匹配 非“/”开头的表达：尝试用FileUrlResource或者UrlResource获取  ，例如：WEB-INF/classes/smart-context.xml
 	 * 4.url协议，例如：file:/D:/ALANWANG-AIA/Horse-workspace/chapter3/target/classes/smart-context.xml
+	 *
+	 * 默认情况下，DefaultResourceLoader类中的protocolResolvers成员变量是一个空的Set，
+	 * 即默认情况下是没有 ProtocolResolver 可以去解析的，只能走ClassPath和URL两种方式获得Resource
+	 * 若想使用 ProtocolResolver 自定义方式解析，需要自己写实现类重写接口的resolve()方法。并通过addProtocolResolver()初始化
 	*/
 	@Override
 	public Resource getResource(String location) {
 		Assert.notNull(location, "Location must not be null");
 		/**
-		 * 【1】 步骤1，先用扩展协议解析器解析资源地址并返回
+		 * 【1】 步骤1，先用扩展协议解析器解析资源地址，如果解析成功则直接返回，无需再使用默认方式进行解析。
 		 *  @see org.springframework.core.io.DefaultResourceLoaderTest#test()
 		*/
 		for (ProtocolResolver protocolResolver : protocolResolvers) {
 			Resource resource = protocolResolver.resolve(location, this);
 			if (resource != null) return resource;
 		}
+		// 程序能够运行到这里，说明用户没有配置自定义解析器，使用默认方式进行解析
 		if (location.startsWith("/")) { // 【2】
 			return getResourceByPath(location);
 		}else if (location.startsWith(CLASSPATH_URL_PREFIX)) { // 【3】
@@ -184,6 +193,7 @@ public class DefaultResourceLoader implements ResourceLoader {
 	}
 
 	/**
+	 * 返回用于加载类资源的类加载器。 如果为null，则通过ClassUtils.getDefaultClassLoader()重新获取。
 	 * Return the ClassLoader to load class path resources with.
 	 * Will get passed to ClassPathResource's constructor for all ClassPathResource objects created by this resource loader.
 	 * @see ClassPathResource
