@@ -2,7 +2,8 @@
 
 package org.springframework.beans.factory.config;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeanMetadataElement;
 import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.lang.Nullable;
@@ -27,7 +28,7 @@ import org.springframework.util.StringUtils;
  */
 public class BeanDefinitionHolder implements BeanMetadataElement {
 
-	private static final Logger logger = Logger.getLogger(BeanDefinitionHolder.class);
+	protected final Log logger = LogFactory.getLog(getClass());
 
 	// 持有bean定义
 	private final BeanDefinition beanDefinition;

@@ -71,23 +71,20 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class AbstractApplicationContext extends DefaultResourceLoader implements ConfigurableApplicationContext {
 
 	/**
-	 * Name of the MessageSource bean in the factory.
-	 * If none is supplied, message resolution is delegated to the parent.
+	 * Name of the MessageSource bean in the factory.If none is supplied, message resolution is delegated to the parent.
 	 * @see MessageSource
 	 */
 	public static final String MESSAGE_SOURCE_BEAN_NAME = "messageSource";
 
 	/**
-	 * Name of the LifecycleProcessor bean in the factory.
-	 * If none is supplied, a DefaultLifecycleProcessor is used.
+	 * Name of the LifecycleProcessor bean in the factory.If none is supplied, a DefaultLifecycleProcessor is used.
 	 * @see org.springframework.context.LifecycleProcessor
 	 * @see org.springframework.context.support.DefaultLifecycleProcessor
 	 */
 	public static final String LIFECYCLE_PROCESSOR_BEAN_NAME = "lifecycleProcessor";
 
 	/**
-	 * Name of the ApplicationEventMulticaster bean in the factory.
-	 * If none is supplied, a default SimpleApplicationEventMulticaster is used.
+	 * Name of the ApplicationEventMulticaster bean in the factory.If none is supplied, a default SimpleApplicationEventMulticaster is used.
 	 * @see org.springframework.context.event.ApplicationEventMulticaster
 	 * @see org.springframework.context.event.SimpleApplicationEventMulticaster
 	 */
@@ -183,7 +180,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	//---------------------------------------------------------------------
 	// Implementation of ApplicationContext interface
 	//---------------------------------------------------------------------
-
 	@Override
 	public String getId() {
 		return id;
@@ -196,8 +192,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 	/**
 	 * Set a friendly name for this context.
-	 * Typically done during initialization of concrete context implementations.
-	 * Default is the object id of the context instance.
+	 * Typically done during initialization of concrete context implementations.Default is the object id of the context instance.
 	 */
 	public void setDisplayName(String displayName) {
 		Assert.hasLength(displayName, "Display name must not be empty");
@@ -223,8 +218,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	}
 
 	/**
-	 * Set the {@code Environment} for this application context.
-	 * Default value is determined by {@link #createEnvironment()}.
+	 * Set the {@code Environment} for this application context.Default value is determined by {@link #createEnvironment()}.
 	 * Replacing the default with this method is one option but configuration through {@link #getEnvironment()} should also be considered.
 	 * In either case, such modifications should be performed <em>before</em> {@link #refresh()}.
 	 * @see org.springframework.context.support.AbstractApplicationContext#createEnvironment
@@ -307,14 +301,12 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 				eventType = ((PayloadApplicationEvent<?>) applicationEvent).getResolvableType();
 			}
 		}
-
 		// Multicast right now if possible - or lazily once the multicaster is initialized
 		if (earlyApplicationEvents != null) {
 			earlyApplicationEvents.add(applicationEvent);
 		}else {
 			getApplicationEventMulticaster().multicastEvent(applicationEvent, eventType);
 		}
-
 		// Publish event via parent context as well...
 		if (parent != null) {
 			if (parent instanceof AbstractApplicationContext) {
@@ -956,8 +948,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 	/**
 	 * Template method for destroying all beans that this context manages.
-	 * The default implementation destroy all cached singletons in this context,
-	 * invoking {@code DisposableBean.destroy()} and/or the specified "destroy-method".
+	 * The default implementation destroy all cached singletons in this context,invoking {@code DisposableBean.destroy()} and/or the specified "destroy-method".
 	 * Can be overridden to add context-specific bean destruction steps right before or right after standard singleton destruction, while the context's BeanFactory is still active.
 	 * @see #getBeanFactory()
 	 * @see org.springframework.beans.factory.config.ConfigurableBeanFactory#destroySingletons()
@@ -1285,5 +1276,4 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		}
 		return sb.toString();
 	}
-
 }

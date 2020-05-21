@@ -2,10 +2,10 @@
 
 package org.springframework.context.support;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotatedBeanDefinitionReader;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.lang.Nullable;
@@ -31,7 +31,7 @@ import org.springframework.util.Assert;
  */
 public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContext {
 
-	private static final Logger logger = Logger.getLogger(ClassPathXmlApplicationContext.class);
+	protected final Log logger = LogFactory.getLog(getClass());
 
 	// 配置文件数组
 	@Nullable
