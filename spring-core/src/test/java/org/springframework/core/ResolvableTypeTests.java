@@ -83,7 +83,7 @@ public class ResolvableTypeTests {
 	@Test
 	public void forClass() {
 		ResolvableType type = ResolvableType.forClass(ExtendsList.class);
-		assertThat(type.getType(), equalTo((Type) ExtendsList.class));
+		assertThat(type.getType(), equalTo(ExtendsList.class));
 		assertThat(type.getRawClass(), equalTo(ExtendsList.class));
 		assertTrue(type.isAssignableFrom(ExtendsList.class));
 		assertFalse(type.isAssignableFrom(ArrayList.class));
@@ -92,7 +92,7 @@ public class ResolvableTypeTests {
 	@Test
 	public void forClassWithNull() {
 		ResolvableType type = ResolvableType.forClass(null);
-		assertThat(type.getType(), equalTo((Type) Object.class));
+		assertThat(type.getType(), equalTo(Object.class));
 		assertThat(type.getRawClass(), equalTo(Object.class));
 		assertTrue(type.isAssignableFrom(Object.class));
 		assertTrue(type.isAssignableFrom(String.class));
@@ -101,7 +101,7 @@ public class ResolvableTypeTests {
 	@Test
 	public void forRawClass() {
 		ResolvableType type = ResolvableType.forRawClass(ExtendsList.class);
-		assertThat(type.getType(), equalTo((Type) ExtendsList.class));
+		assertThat(type.getType(), equalTo(ExtendsList.class));
 		assertThat(type.getRawClass(), equalTo(ExtendsList.class));
 		assertTrue(type.isAssignableFrom(ExtendsList.class));
 		assertFalse(type.isAssignableFrom(ArrayList.class));
@@ -1400,7 +1400,6 @@ public class ResolvableTypeTests {
 	static class TypedFields extends Fields<String> {
 	}
 
-
 	interface Methods<T> {
 
 		List<CharSequence> charSequenceReturn();
@@ -1421,7 +1420,6 @@ public class ResolvableTypeTests {
 
 		List<String> list2();
 	}
-
 
 	static class AssignmentBase<O, C, S> {
 
