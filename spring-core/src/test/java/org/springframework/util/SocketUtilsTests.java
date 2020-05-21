@@ -221,5 +221,4 @@ public class SocketUtilsTests {
 			assertPortInRange(port, minPort, maxPort);
 		}
 	}
-
 }

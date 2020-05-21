@@ -34,7 +34,6 @@ public class XmlListableBeanFactoryTests extends AbstractListableBeanFactoryTest
 
 	private DefaultListableBeanFactory factory;
 
-
 	@Before
 	public void setup() {
 		parent = new DefaultListableBeanFactory();
@@ -238,5 +237,4 @@ public class XmlListableBeanFactoryTests extends AbstractListableBeanFactoryTest
 		TestBean bean = (TestBean) getBeanFactory().getBean("commentsInValue");
 		assertEquals("Failed to handle comments and CDATA properly", "this is a <!--comment-->", bean.getName());
 	}
-
 }

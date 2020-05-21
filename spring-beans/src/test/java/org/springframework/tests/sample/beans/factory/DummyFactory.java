@@ -116,8 +116,7 @@ public class DummyFactory implements FactoryBean<Object>, BeanNameAware, BeanFac
 	}
 
 	/**
-	 * Was this initialized by invocation of the
-	 * afterPropertiesSet() method from the InitializingBean interface?
+	 * Was this initialized by invocation of the afterPropertiesSet() method from the InitializingBean interface?
 	 */
 	public boolean wasInitialized() {
 		return initialized;
@@ -129,16 +128,14 @@ public class DummyFactory implements FactoryBean<Object>, BeanNameAware, BeanFac
 
 
 	/**
-	 * Return the managed object, supporting both singleton
-	 * and prototype mode.
+	 * Return the managed object, supporting both singleton and prototype mode.
 	 * @see FactoryBean#getObject()
 	 */
 	@Override
 	public Object getObject() throws BeansException {
 		if (isSingleton()) {
 			return this.testBean;
-		}
-		else {
+		}else {
 			TestBean prototype = new TestBean("prototype created at " + System.currentTimeMillis(), 11);
 			if (this.beanFactory != null) {
 				this.beanFactory.applyBeanPostProcessorsBeforeInitialization(prototype, this.beanName);
@@ -153,12 +150,10 @@ public class DummyFactory implements FactoryBean<Object>, BeanNameAware, BeanFac
 		return TestBean.class;
 	}
 
-
 	@Override
 	public void destroy() {
 		if (this.testBean != null) {
 			this.testBean.setName(null);
 		}
 	}
-
 }

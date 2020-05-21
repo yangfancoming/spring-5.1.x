@@ -9,31 +9,25 @@
 	Spring XML Beans Schema, version 4.3
 	Authors: Juergen Hoeller, Rob Harrop, Mark Fisher, Chris Beams
 
-	This defines a simple and consistent way of creating a namespace
-	of JavaBeans objects, managed by a Spring BeanFactory, read by
+	This defines a simple and consistent way of creating a namespace of JavaBeans objects, managed by a Spring BeanFactory, read by
 	XmlBeanDefinitionReader (with DefaultBeanDefinitionDocumentReader).
 
-	This document type is used by most Spring functionality, including
-	web application contexts, which are based on bean factories.
+	This document type is used by most Spring functionality, including web application contexts, which are based on bean factories.
 
 	Each "bean" element in this document defines a JavaBean.
-	Typically the bean class is specified, along with JavaBean properties
-	and/or constructor arguments.
+	Typically the bean class is specified, along with JavaBean properties and/or constructor arguments.
 
-	A bean instance can be a "singleton" (shared instance) or a "prototype"
-	(independent instance). Further scopes can be provided by extended
-	bean factories, for example in a web environment.
+	A bean instance can be a "singleton" (shared instance) or a "prototype" (independent instance).
+	Further scopes can be provided by extended bean factories, for example in a web environment.
 
 	References among beans are supported, that is, setting a JavaBean property
-	or a constructor argument to refer to another bean in the same factory
-	(or an ancestor factory).
+	or a constructor argument to refer to another bean in the same factory (or an ancestor factory).
+
 
 	As alternative to bean references, "inner bean definitions" can be used.
-	Such inner beans do not have an independent lifecycle; they are typically
-	anonymous nested objects that share the scope of their containing com.goat.chapter115.bean.
+	Such inner beans do not have an independent lifecycle; they are typically anonymous nested objects that share the scope of their containing com.goat.chapter115.bean.
 
-	There is also support for lists, sets, maps, and java.util.Properties
-	as bean property types or constructor argument types.
+	There is also support for lists, sets, maps, and java.util.Properties as bean property types or constructor argument types.
 		]]></xsd:documentation>
 	</xsd:annotation>
 
@@ -54,10 +48,9 @@
 		<xsd:annotation>
 			<xsd:documentation><![CDATA[
 	Container for <bean> and other elements, typically the root element in the document.
-	Allows the definition of default values for all nested bean definitions. May itself
-	be nested for the purpose of defining a subset of beans with certain default values or
-	to be registered only when certain profile(s) are active. Any such nested <beans> element
-	must be declared as the last element in the document.
+	Allows the definition of default values for all nested bean definitions.
+	May itself be nested for the purpose of defining a subset of beans with certain default values or to be registered only when certain profile(s) are active.
+	Any such nested <beans> element must be declared as the last element in the document.
 			]]></xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
@@ -74,20 +67,16 @@
 			<xsd:attribute name="profile" use="optional" type="xsd:string">
 				<xsd:annotation>
 					<xsd:documentation><![CDATA[
-	The set of profiles for which this <beans> element should be parsed. Multiple profiles
-	can be separated by spaces, commas, or semi-colons.
+	The set of profiles for which this <beans> element should be parsed. Multiple profiles can be separated by spaces, commas, or semi-colons.
 
-	If one or more of the specified profiles are active at time of parsing, the <beans>
-	element will be parsed, and all of its <bean> elements registered, &lt;import&gt;
-	elements followed, etc.  If none of the specified profiles are active at time of
-	parsing, then the entire element and its contents will be ignored.
+	If one or more of the specified profiles are active at time of parsing, the <beans> element will be parsed, and all of its <bean> elements registered, &lt;import&gt;
+	elements followed, etc.  If none of the specified profiles are active at time of parsing, then the entire element and its contents will be ignored.
 
 	If a profile is prefixed with the NOT operator '!', e.g.
 
 		<beans profile="p1,!p2">
 
-	indicates that the <beans> element should be parsed if profile "p1" is active or
-	if profile "p2" is not active.
+	indicates that the <beans> element should be parsed if profile "p1" is active or if profile "p2" is not active.
 
 	Profiles are activated in one of two ways:
 		Programmatic:
@@ -104,30 +93,24 @@
 			<xsd:attribute name="default-lazy-init" default="default" type="defaultable-boolean">
 				<xsd:annotation>
 					<xsd:documentation><![CDATA[
-	The default 'lazy-init' value; see the documentation for the
-	'lazy-init' attribute of the 'bean' element. The default is "default",
-	indicating inheritance from outer 'beans' sections in case of nesting,
-	otherwise falling back to "false".
+	The default 'lazy-init' value; see the documentation for the 'lazy-init' attribute of the 'bean' element. The default is "default",
+	indicating inheritance from outer 'beans' sections in case of nesting, otherwise falling back to "false".
 					]]></xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
 			<xsd:attribute name="default-merge" default="default" type="defaultable-boolean">
 				<xsd:annotation>
 					<xsd:documentation><![CDATA[
-	The default 'merge' value; see the documentation for the 'merge'
-	attribute of the various collection elements. The default is "default",
-	indicating inheritance from outer 'beans' sections in case of nesting,
-	otherwise falling back to "false".
+	The default 'merge' value; see the documentation for the 'merge' attribute of the various collection elements. The default is "default",
+	indicating inheritance from outer 'beans' sections in case of nesting,otherwise falling back to "false".
 					]]></xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
 			<xsd:attribute name="default-autowire" default="default">
 				<xsd:annotation>
 					<xsd:documentation><![CDATA[
-	The default 'autowire' value; see the documentation for the
-	'autowire' attribute of the 'bean' element. The default is "default",
-	indicating inheritance from outer 'beans' sections in case of nesting,
-	otherwise falling back to "no" (i.e. no externally driven autowiring).
+	The default 'autowire' value; see the documentation for the 'autowire' attribute of the 'bean' element. The default is "default",
+	indicating inheritance from outer 'beans' sections in case of nesting,otherwise falling back to "no" (i.e. no externally driven autowiring).
 					]]></xsd:documentation>
 				</xsd:annotation>
 				<xsd:simpleType>
@@ -146,8 +129,7 @@
 	A default bean name pattern for identifying autowire candidates:
 	e.g. "*Service", "data*", "*Service*", "data*Service".
 	Also accepts a comma-separated list of patterns: e.g. "*Service,*Dao".
-	See the documentation for the 'autowire-candidate' attribute of the
-	'bean' element for the semantic details of autowire candidate beans.
+	See the documentation for the 'autowire-candidate' attribute of the 'bean' element for the semantic details of autowire candidate beans.
 					]]></xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
@@ -236,16 +218,14 @@
 			<xsd:annotation>
 				<xsd:documentation><![CDATA[
 	Can be used to create one or more aliases illegal in an (XML) id.
-	Multiple aliases can be separated by any number of spaces, commas,
-	or semi-colons (or indeed any mixture of the three).
+	Multiple aliases can be separated by any number of spaces, commas,or semi-colons (or indeed any mixture of the three).
 				]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 		<xsd:attribute name="class" type="xsd:string">
 			<xsd:annotation>
 				<xsd:documentation source="java:java.lang.Class"><![CDATA[
-	The fully qualified name of the bean's class, except if it serves only
-	as a parent definition for child bean definitions.
+	The fully qualified name of the bean's class, except if it serves only as a parent definition for child bean definitions.
 				]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
@@ -256,17 +236,14 @@
 
 	Will use the bean class of the parent if none is specified, but can
 	also override it. In the latter case, the child bean class must be
-	compatible with the parent, i.e. accept the parent's property values
-	and constructor argument values, if any.
+	compatible with the parent, i.e. accept the parent's property values and constructor argument values, if any.
 
-	A child bean definition will inherit constructor argument values,
-	property values and method overrides from the parent, with the option
-	to add new values. If init method, destroy method, factory bean and/or
-	factory method are specified, they will override the corresponding
-	parent settings.
+	 A child bean definition will inherit constructor argument values, property values and method overrides from the parent,
+	 with the option to add new values. If init method, destroy method,
+	 factory bean and/or factory method are specified, they will override the corresponding parent settings.
 
-	The remaining settings will always be taken from the child definition:
-	depends on, autowire mode, scope, lazy init.
+
+	The remaining settings will always be taken from the child definition:depends on, autowire mode, scope, lazy init.
 				]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
@@ -562,16 +539,14 @@
 				<xsd:annotation>
 					<xsd:documentation><![CDATA[
 	The exact index of the argument in the constructor argument list.
-	Only needed to avoid ambiguities, e.g. in case of 2 arguments of
-	the exact same type.
+	Only needed to avoid ambiguities, e.g. in case of 2 arguments of the exact same type.
 					]]></xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
 			<xsd:attribute name="type" type="xsd:string">
 				<xsd:annotation>
 					<xsd:documentation><![CDATA[
-	The exact type of the constructor argument. Only needed to avoid
-	ambiguities, e.g. in case of 2 single argument constructors
+	The exact type of the constructor argument. Only needed to avoid ambiguities, e.g. in case of 2 single argument constructors
 	that can both be converted from a String.
 					]]></xsd:documentation>
 				</xsd:annotation>
@@ -603,9 +578,8 @@
 		<xsd:annotation>
 			<xsd:documentation><![CDATA[
 	Bean definitions can have zero or more properties.
-	Property elements correspond to JavaBean setter methods exposed
-	by the bean classes. Spring supports primitives, references to other
-	beans in the same or related factories, lists, maps and properties.
+	Property elements correspond to JavaBean setter methods exposed by the bean classes.
+	Spring supports primitives, references to other beans in the same or related factories, lists, maps and properties.
 			]]></xsd:documentation>
 		</xsd:annotation>
 	</xsd:element>
@@ -613,8 +587,7 @@
 	<xsd:element name="qualifier">
 		<xsd:annotation>
 			<xsd:documentation><![CDATA[
-	Bean definitions can provide qualifiers to match against annotations
-	on a field or parameter for fine-grained autowire candidate resolution.
+	Bean definitions can provide qualifiers to match against annotations on a field or parameter for fine-grained autowire candidate resolution.
 			]]></xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
@@ -639,12 +612,10 @@
 	<xsd:element name="lookup-method">
 		<xsd:annotation>
 			<xsd:documentation><![CDATA[
-	A lookup method causes the IoC container to override the given method
-	and return the bean with the name given in the bean attribute. This is
-	a form of Method Injection. It is particularly useful as an alternative
-	to implementing the BeanFactoryAware interface, in order to be able to
-	make getBean() calls for non-singleton instances at runtime. In this
-	case, Method Injection is a less invasive alternative.
+	A lookup method causes the IoC container to override the given method and return the bean with the name given in the bean attribute.
+	This is a form of Method Injection.
+	It is particularly useful as an alternative to implementing the BeanFactoryAware interface, in order to be able to
+	make getBean() calls for non-singleton instances at runtime. In this case, Method Injection is a less invasive alternative.
 			]]></xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
@@ -653,11 +624,9 @@
 					<xsd:attribute name="name" type="xsd:string">
 						<xsd:annotation>
 							<xsd:documentation><![CDATA[
-	The name of the lookup method. This method may have arguments which
-	will be passed on to the target constructor or factory method. Note
-	that for backwards compatibility reasons, in a scenario with overloaded
-	non-abstract methods of the given name, only the no-arg variant of a
-	method will be turned into a container-driven lookup method.
+	The name of the lookup method. This method may have arguments which will be passed on to the target constructor or factory method.
+	Note that for backwards compatibility reasons, in a scenario with overloaded
+	non-abstract methods of the given name, only the no-arg variant of a method will be turned into a container-driven lookup method.
 	Consider using the @Lookup annotation for more specific demarcation.
 							]]></xsd:documentation>
 						</xsd:annotation>
@@ -665,11 +634,9 @@
 					<xsd:attribute name="bean" type="xsd:string">
 						<xsd:annotation>
 							<xsd:documentation><![CDATA[
-	The name of the bean in the current or ancestor factories that
-	the lookup method should resolve to. Usually this bean will be a
-	prototype, in which case the lookup method will return a distinct
-	instance on every invocation. If not specified, the lookup method's
-	return type will be used for a type-based lookup.
+	The name of the bean in the current or ancestor factories that the lookup method should resolve to.
+	Usually this bean will be a prototype, in which case the lookup method will return a distinct
+	instance on every invocation. If not specified, the lookup method's return type will be used for a type-based lookup.
 							]]></xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
@@ -722,13 +689,11 @@
 				<xsd:annotation>
 					<xsd:documentation><![CDATA[
 	Specification of the type of an overloaded method argument as a String.
-	For convenience, this may be a substring of the FQN. E.g. all the
-	following would match "java.lang.String":
+	For convenience, this may be a substring of the FQN. E.g. all the following would match "java.lang.String":
 	- java.lang.String
 	- String
 	- Str
-	As the number of arguments will be checked also, this convenience
-	can often be used to save typing.
+	As the number of arguments will be checked also, this convenience can often be used to save typing.
 					]]></xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
@@ -760,11 +725,9 @@
 	<xsd:element name="idref">
 		<xsd:annotation>
 			<xsd:documentation><![CDATA[
-	The id of another bean in this factory or an external factory
-	(parent or included factory).
+	The id of another bean in this factory or an external factory (parent or included factory).
 	While a regular 'value' element could instead be used for the
-	same effect, using idref indicates that the Spring container
-	should check that the value actually corresponds to a bean id.
+	same effect, using idref indicates that the Spring container should check that the value actually corresponds to a bean id.
 			]]></xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
@@ -784,14 +747,9 @@
 		<xsd:annotation>
 			<xsd:documentation><![CDATA[
 	Contains a string representation of a property value.
-	The property may be a string, or may be converted to the required
-	type using the JavaBeans PropertyEditor machinery. This makes it
-	possible for application developers to write custom PropertyEditor
-	implementations that can convert strings to arbitrary target objects.
-
-	Note that this is recommended for simple objects only. Configure
-	more complex objects by populating JavaBean properties with
-	references to other beans.
+	The property may be a string, or may be converted to the required type using the JavaBeans PropertyEditor machinery.
+	This makes it possible for application developers to write custom PropertyEditor implementations that can convert strings to arbitrary target objects.
+	Note that this is recommended for simple objects only. Configure more complex objects by populating JavaBean properties with references to other beans.
 			]]></xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType mixed="true">
@@ -800,8 +758,7 @@
 				<xsd:annotation>
 					<xsd:documentation><![CDATA[
 	The exact type that the value should be converted to. Only needed
-	if the type of the target property or constructor argument is
-	too generic: for example, in case of a collection element.
+	if the type of the target property or constructor argument is too generic: for example, in case of a collection element.
 					]]></xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>

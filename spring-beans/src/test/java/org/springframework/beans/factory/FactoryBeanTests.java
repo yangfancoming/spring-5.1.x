@@ -138,10 +138,8 @@ public class FactoryBeanTests {
 		}
 	}
 
-
 	public static class Gamma {
 	}
-
 
 	@Component
 	public static class BetaFactoryBean implements FactoryBean<Object> {
@@ -171,10 +169,8 @@ public class FactoryBeanTests {
 		}
 	}
 
-
 	public abstract static class AbstractFactoryBean implements FactoryBean<Object> {
 	}
-
 
 	public static class PassThroughFactoryBean<T> implements FactoryBean<T>, BeanFactoryAware {
 
@@ -218,7 +214,6 @@ public class FactoryBeanTests {
 		}
 	}
 
-
 	public static class CountingPostProcessor implements BeanPostProcessor {
 
 		private final Map<String, AtomicInteger> count = new HashMap<>();
@@ -246,8 +241,7 @@ public class FactoryBeanTests {
 			AtomicInteger c = count.get(beanName);
 			if (c != null) {
 				return c.intValue();
-			}
-			else {
+			}else {
 				return 0;
 			}
 		}
@@ -280,5 +274,4 @@ public class FactoryBeanTests {
 			this.impl1 = impl1;
 		}
 	}
-
 }

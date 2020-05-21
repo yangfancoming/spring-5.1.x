@@ -8,9 +8,6 @@ import org.xml.sax.InputSource;
 
 /**
  * Unit tests for the {@link DelegatingEntityResolver} class.
- *
- * @author Rick Evans
-
  */
 public class DelegatingEntityResolverTests {
 
@@ -29,12 +26,10 @@ public class DelegatingEntityResolverTests {
 		new DelegatingEntityResolver(null, null);
 	}
 
-
 	private static final class NoOpEntityResolver implements EntityResolver {
 		@Override
 		public InputSource resolveEntity(String publicId, String systemId) {
 			return null;
 		}
 	}
-
 }

@@ -294,5 +294,4 @@ public class BeanFactoryUtilsTests {
 		String[] deps = dependentBeansFactory.getDependentBeans("int");
 		assertTrue(Arrays.equals(new String[] { "buffer" }, deps));
 	}
-
 }

@@ -680,7 +680,6 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		// While this may not be part of the regular factory bootstrap, it does otherwise work fine.
 		// 获取容器内加载的所有 bean的名称
 		List<String> beanNames = new ArrayList<>(beanDefinitionNames);
-
 		// Trigger initialization of all non-lazy singleton beans... 遍历初始化所有非懒加载单例Bean
 		for (String beanName : beanNames) {
 			/**

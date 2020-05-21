@@ -104,32 +104,40 @@ public class DefaultListableBeanFactoryTests {
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
 
+	// 测试 preInstantiateSingletons 方法
 	@Test
 	public void testUnreferencedSingletonWasInstantiated() {
 		KnowsIfInstantiated.clearInstantiationRecord();
 		Properties p = new Properties();
+		// 没实例化
 		assertFalse(KnowsIfInstantiated.wasInstantiated());
 		String name = KnowsIfInstantiated.class.getName();// org.springframework.beans.factory.DefaultListableBeanFactoryTests$KnowsIfInstantiated
 		p.setProperty("x1.(class)", name);
 		(new PropertiesBeanDefinitionReader(lbf)).registerBeanDefinitions(p);
+		// 还没实例化
 		assertFalse(KnowsIfInstantiated.wasInstantiated());
 		lbf.preInstantiateSingletons();
+		// 已经实例化
 		assertTrue(KnowsIfInstantiated.wasInstantiated());
 	}
 
+	// 测试懒加载情况下  bean的实例化时机
 	@Test
 	public void testLazyInitialization() {
 		KnowsIfInstantiated.clearInstantiationRecord();
 		Properties p = new Properties();
 		p.setProperty("x1.(class)", KnowsIfInstantiated.class.getName());
 		p.setProperty("x1.(lazy-init)", "true");
+		// 没实例化
 		assertTrue("singleton not instantiated", !KnowsIfInstantiated.wasInstantiated());
 		(new PropertiesBeanDefinitionReader(lbf)).registerBeanDefinitions(p);
+		// 还没实例化
 		assertTrue("singleton not instantiated", !KnowsIfInstantiated.wasInstantiated());
 		lbf.preInstantiateSingletons();
-
+		// 还没实例化
 		assertTrue("singleton not instantiated", !KnowsIfInstantiated.wasInstantiated());
-		lbf.getBean("x1"); // 调用 getBean()时  实例化 KnowsIfInstantiated类
+		lbf.getBean("x1");
+		// 调用 getBean()时  实例化 KnowsIfInstantiated类
 		assertTrue("singleton was instantiated", KnowsIfInstantiated.wasInstantiated());
 	}
 

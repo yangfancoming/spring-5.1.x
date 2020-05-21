@@ -38,12 +38,10 @@ public class XmlBeanCollectionTests {
 
 	private final DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
 
-
 	@Before
 	public void loadBeans() {
 		new XmlBeanDefinitionReader(this.beanFactory).loadBeanDefinitions(new ClassPathResource("collections.xml", getClass()));
 	}
-
 
 	@Test
 	public void testCollectionFactoryDefaults() throws Exception {
@@ -94,7 +92,6 @@ public class XmlBeanCollectionTests {
 		TestBean jen = (TestBean) this.beanFactory.getBean("jenny");
 		TestBean dave = (TestBean) this.beanFactory.getBean("david");
 		TestBean rod = (TestBean) this.beanFactory.getBean("rod");
-
 		// Must be a list to support ordering
 		// Our bean doesn't modify the collection:
 		// of course it could be a different copy in a real object.
@@ -114,8 +111,7 @@ public class XmlBeanCollectionTests {
 
 		Object[] friends = rod.getFriends().toArray();
 		assertTrue(friends.length == 2);
-		assertTrue("First friend must be jen, not " + friends[0],
-				friends[0].toString().equals(jen.toString()));
+		assertTrue("First friend must be jen, not " + friends[0],friends[0].toString().equals(jen.toString()));
 		assertTrue("Jen not same instance", friends[0] != jen);
 		assertTrue(friends[1].toString().equals(dave.toString()));
 		assertTrue("Dave not same instance", friends[1] != dave);
@@ -124,8 +120,7 @@ public class XmlBeanCollectionTests {
 		TestBean rod2 = (TestBean) this.beanFactory.getBean("pRod");
 		Object[] friends2 = rod2.getFriends().toArray();
 		assertTrue(friends2.length == 2);
-		assertTrue("First friend must be jen, not " + friends2[0],
-				friends2[0].toString().equals(jen.toString()));
+		assertTrue("First friend must be jen, not " + friends2[0],friends2[0].toString().equals(jen.toString()));
 		assertTrue("Jen not same instance", friends2[0] != friends[0]);
 		assertTrue(friends2[1].toString().equals(dave.toString()));
 		assertTrue("Dave not same instance", friends2[1] != friends[1]);
@@ -142,8 +137,7 @@ public class XmlBeanCollectionTests {
 	@Test
 	public void testBuildCollectionFromMixtureOfReferencesAndValues()  {
 		MixedCollectionBean jumble = (MixedCollectionBean) this.beanFactory.getBean("jumble");
-		assertTrue("Expected 5 elements, not " + jumble.getJumble().size(),
-				jumble.getJumble().size() == 5);
+		assertTrue("Expected 5 elements, not " + jumble.getJumble().size(),jumble.getJumble().size() == 5);
 		List l = (List) jumble.getJumble();
 		assertTrue(l.get(0).equals(this.beanFactory.getBean("david")));
 		assertTrue(l.get(1).equals("literal"));
@@ -159,8 +153,7 @@ public class XmlBeanCollectionTests {
 		try {
 			this.beanFactory.getBean("jumble2");
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		}catch (BeanCreationException ex) {
 			assertTrue(ex.getCause() instanceof BeanDefinitionStoreException);
 			assertTrue(ex.getCause().getMessage().contains("rod2"));
 		}
@@ -231,8 +224,7 @@ public class XmlBeanCollectionTests {
 		assertNotNull(m);
 		assertTrue(m.size() == 2);
 		assertTrue(m.get("fo").equals("bar"));
-		assertTrue("Map element 'jenny' should be equal to jenny bean, not " + m.get("jen"),
-				m.get("jen").equals(jenny));
+		assertTrue("Map element 'jenny' should be equal to jenny bean, not " + m.get("jen"),m.get("jen").equals(jenny));
 
 		// Check nested list in list
 		l = (List) l.get(2);
@@ -246,8 +238,7 @@ public class XmlBeanCollectionTests {
 		assertNotNull(m);
 		assertTrue(m.size() == 2);
 		assertTrue(m.get("foo").equals("bar"));
-		assertTrue("Map element 'jenny' should be equal to jenny bean, not " + m.get("jenny"),
-				m.get("jenny").equals(jenny));
+		assertTrue("Map element 'jenny' should be equal to jenny bean, not " + m.get("jenny"),m.get("jenny").equals(jenny));
 	}
 
 	@Test
@@ -423,7 +414,6 @@ public class XmlBeanCollectionTests {
 		assertTrue(set.contains("TWO"));
 	}
 
-
 	public static class MapAndSet {
 
 		private Object obj;
@@ -440,5 +430,4 @@ public class XmlBeanCollectionTests {
 			return obj;
 		}
 	}
-
 }
