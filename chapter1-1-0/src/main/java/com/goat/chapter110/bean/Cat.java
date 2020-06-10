@@ -11,21 +11,20 @@ public class Cat implements InitializingBean, DisposableBean {
         System.out.println("Cat...constructor...");
     }
 
-    /**
-     * Invoked by a BeanFactory after it has set all bean properties
-     */
+	//---------------------------------------------------------------------
+	// Implementation of 【InitializingBean】 interface   Invoked by a BeanFactory after it has set all bean properties
+	//---------------------------------------------------------------------
     @Override
     public void afterPropertiesSet() {
         System.out.println("Cat...afterPropertiesSet...");
     }
 
-    /**
-     * Invoked by a BeanFactory on destruction of a singleton.
-     */
+	//---------------------------------------------------------------------
+	// Implementation of 【DisposableBean】 interface    Invoked by a BeanFactory on destruction of a singleton.
+	//---------------------------------------------------------------------
     @Override
     public void destroy() {
         System.out.println("Cat...destroy...");
     }
-
 }
 

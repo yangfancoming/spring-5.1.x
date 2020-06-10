@@ -45,5 +45,4 @@ public class BeanLifeCycle {
 	public Car car() {
 		return new Car();
 	}
-
 }

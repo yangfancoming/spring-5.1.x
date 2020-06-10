@@ -15,8 +15,8 @@ public class App {
 	@Test
 	public void test1(){
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext("com.goat.chapter110.scan");
-//		User user = ctx.getBean(User.class);
+		User user = ctx.getBean(User.class);
 //		User user = (User) ctx.getBean("user");
-//		user.say("123");
+		user.say("123");
 	}
 }

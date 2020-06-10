@@ -27,5 +27,4 @@ public interface DisposableBean {
 	 * but not rethrown to allow other beans to release their resources as well.
 	 */
 	void destroy() throws Exception;
-
 }

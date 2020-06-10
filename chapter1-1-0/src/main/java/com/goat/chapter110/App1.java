@@ -32,5 +32,4 @@ public class App1 {
 		ctx.getBean("car");
 		ctx.close(); // 多实例Bean 关闭容器后 不会调用我们自定义的销毁方法
 	}
-
 }

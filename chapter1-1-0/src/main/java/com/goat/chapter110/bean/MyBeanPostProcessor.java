@@ -32,6 +32,5 @@ public class MyBeanPostProcessor implements BeanPostProcessor {
         System.out.println("MyBeanPostProcessor  After... " + beanName + " => " + bean);
         return bean;
     }
-
 }
 
