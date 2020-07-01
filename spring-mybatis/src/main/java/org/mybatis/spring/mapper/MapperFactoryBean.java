@@ -28,7 +28,6 @@ import static org.springframework.util.Assert.notNull;
  *   </bean>
  * }
  * </pre>
- *
  * Note that this factory can only inject <em>interfaces</em>, not concrete classes.
  * @see SqlSessionTemplate
  */

@@ -11,11 +11,8 @@ import java.lang.annotation.*;
 /**
  * Use this annotation to register MyBatis mapper interfaces when using Java Config. It performs when same work as
  * {@link MapperScannerConfigurer} via {@link MapperScannerRegistrar}.
- *
- *
  * Configuration example:
- * </p>
- * 
+ *
  * &#064;Configuration
  * &#064;MapperScan("org.mybatis.spring.sample.mapper")
  * public class AppConfig {
@@ -121,5 +118,4 @@ public @interface MapperScan {
    * @since 2.0.2
    */
   String lazyInitialization() default "";
-
 }

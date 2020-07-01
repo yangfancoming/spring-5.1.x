@@ -169,7 +169,6 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 				definition.getPropertyValues().add("sqlSessionFactory", this.sqlSessionFactory);
 				explicitFactoryUsed = true;
 			}
-
 			if (StringUtils.hasText(this.sqlSessionTemplateBeanName)) {
 				if (explicitFactoryUsed) {
 					LOGGER.warn(() -> "Cannot use both: sqlSessionTemplate and sqlSessionFactory together. sqlSessionFactory is ignored.");
@@ -202,7 +201,6 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 	//---------------------------------------------------------------------
 	// Implementation of 【ClassPathBeanDefinitionScanner】 class
 	//---------------------------------------------------------------------
-
 	/**
 	 * Calls the parent search that will search and register all the candidates. Then the registered objects are post
 	 * processed to set them as MapperFactoryBeans
@@ -215,7 +213,6 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 		} else {
 			processBeanDefinitions(beanDefinitions);
 		}
-
 		return beanDefinitions;
 	}
 

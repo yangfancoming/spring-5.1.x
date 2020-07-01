@@ -24,7 +24,6 @@ import java.lang.annotation.Annotation;
  * @see ClassPathMapperScanner
  * @see MapperScannerConfigurer
  */
-
 public class MapperScannerBeanDefinitionParser extends AbstractBeanDefinitionParser {
 
   private static final String ATTRIBUTE_BASE_PACKAGE = "base-package";
@@ -42,9 +41,7 @@ public class MapperScannerBeanDefinitionParser extends AbstractBeanDefinitionPar
   @Override
   protected AbstractBeanDefinition parseInternal(Element element, ParserContext parserContext) {
     BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(MapperScannerConfigurer.class);
-
     ClassLoader classLoader = ClassUtils.getDefaultClassLoader();
-
     builder.addPropertyValue("processPropertyPlaceHolders", true);
     try {
       String annotationClassName = element.getAttribute(ATTRIBUTE_ANNOTATION);
@@ -90,5 +87,4 @@ public class MapperScannerBeanDefinitionParser extends AbstractBeanDefinitionPar
   protected boolean shouldGenerateIdAsFallback() {
     return true;
   }
-
 }
