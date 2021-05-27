@@ -46,15 +46,11 @@ import static org.mockito.Mockito.*;
 
 /**
  * Tests for {@link ImportSelector} and {@link DeferredImportSelector}.
- *
- * @author Phillip Webb
- * @author Stephane Nicoll
  */
 @SuppressWarnings("resource")
 public class ImportSelectorTests {
 
 	static Map<Class<?>, String> importFrom = new HashMap<>();
-
 
 	@Before
 	public void cleanup() {
@@ -62,7 +58,6 @@ public class ImportSelectorTests {
 		SampleImportSelector.cleanup();
 		TestImportGroup.cleanup();
 	}
-
 
 	@Test
 	public void importSelectors() {
@@ -144,8 +139,8 @@ public class ImportSelectorTests {
  		assertThat(TestImportGroup.imports.size(), equalTo(2));
 		assertThat(TestImportGroup.allImports(), hasEntry(
 				is(ParentConfiguration1.class.getName()),
-				IsIterableContainingInOrder.contains(DeferredImportSelector1.class.getName(),
-						ChildConfiguration1.class.getName())));
+				IsIterableContainingInOrder.contains(DeferredImportSelector1.class.getName(),ChildConfiguration1.class.getName())));
+
 		assertThat(TestImportGroup.allImports(), hasEntry(
 				is(ChildConfiguration1.class.getName()),
 				IsIterableContainingInOrder.contains(DeferredImportedSelector3.class.getName())));
@@ -187,9 +182,7 @@ public class ImportSelectorTests {
 	}
 
 
-	private static class SampleImportSelector implements ImportSelector,
-			BeanClassLoaderAware, ResourceLoaderAware, BeanFactoryAware, EnvironmentAware {
-
+	private static class SampleImportSelector implements ImportSelector,BeanClassLoaderAware, ResourceLoaderAware, BeanFactoryAware, EnvironmentAware {
 		static ClassLoader classLoader;
 		static ResourceLoader resourceLoader;
 		static BeanFactory beanFactory;
@@ -234,17 +227,14 @@ public class ImportSelectorTests {
 	static class Config {
 	}
 
-
 	@Target(ElementType.TYPE)
 	@Retention(RetentionPolicy.RUNTIME)
-	@Import({DeferredImportSelector1.class, DeferredImportSelector2.class,
-			ImportSelector1.class, ImportSelector2.class})
+	@Import({DeferredImportSelector1.class, DeferredImportSelector2.class,ImportSelector1.class, ImportSelector2.class})
 	public @interface Sample {
 	}
 
 
 	public static class ImportSelector1 implements ImportSelector {
-
 		@Override
 		public String[] selectImports(AnnotationMetadata importingClassMetadata) {
 			ImportSelectorTests.importFrom.put(getClass(), importingClassMetadata.getClassName());
@@ -254,7 +244,6 @@ public class ImportSelectorTests {
 
 
 	public static class ImportSelector2 implements ImportSelector {
-
 		@Override
 		public String[] selectImports(AnnotationMetadata importingClassMetadata) {
 			ImportSelectorTests.importFrom.put(getClass(), importingClassMetadata.getClassName());
@@ -264,13 +253,11 @@ public class ImportSelectorTests {
 
 
 	public static class DeferredImportSelector1 implements DeferredImportSelector, Ordered {
-
 		@Override
 		public String[] selectImports(AnnotationMetadata importingClassMetadata) {
 			ImportSelectorTests.importFrom.put(getClass(), importingClassMetadata.getClassName());
 			return new String[] { DeferredImportedSelector1.class.getName() };
 		}
-
 		@Override
 		public int getOrder() {
 			return Ordered.LOWEST_PRECEDENCE;
@@ -280,7 +267,6 @@ public class ImportSelectorTests {
 
 	@Order(Ordered.HIGHEST_PRECEDENCE)
 	public static class DeferredImportSelector2 implements DeferredImportSelector {
-
 		@Override
 		public String[] selectImports(AnnotationMetadata importingClassMetadata) {
 			ImportSelectorTests.importFrom.put(getClass(), importingClassMetadata.getClassName());
@@ -291,7 +277,6 @@ public class ImportSelectorTests {
 
 	@Configuration
 	public static class ImportedSelector1 {
-
 		@Bean
 		public String a() {
 			return "a";
@@ -301,7 +286,6 @@ public class ImportSelectorTests {
 
 	@Configuration
 	public static class ImportedSelector2 {
-
 		@Bean
 		public String b() {
 			return "b";
@@ -311,7 +295,6 @@ public class ImportSelectorTests {
 
 	@Configuration
 	public static class DeferredImportedSelector1 {
-
 		@Bean
 		public String c() {
 			return "c";
@@ -321,7 +304,6 @@ public class ImportSelectorTests {
 
 	@Configuration
 	public static class DeferredImportedSelector2 {
-
 		@Bean
 		public String d() {
 			return "d";
@@ -330,13 +312,11 @@ public class ImportSelectorTests {
 
 	@Configuration
 	public static class DeferredImportedSelector3 {
-
 		@Bean
 		public String e() {
 			return "e";
 		}
 	}
-
 
 	@Configuration
 	@Import(IndirectImportSelector.class)
@@ -345,24 +325,20 @@ public class ImportSelectorTests {
 
 
 	public static class IndirectImportSelector implements ImportSelector {
-
 		@Override
 		public String[] selectImports(AnnotationMetadata importingClassMetadata) {
 			return new String[] {IndirectImport.class.getName()};
 		}
 	}
 
-
 	@Sample
 	public static class IndirectImport {
 	}
-
 
 	@GroupedSample
 	@Configuration
 	static class GroupedConfig {
 	}
-
 
 	@Target(ElementType.TYPE)
 	@Retention(RetentionPolicy.RUNTIME)
@@ -380,9 +356,7 @@ public class ImportSelectorTests {
 	static class GroupedConfig2 {
 	}
 
-
 	public static class GroupedDeferredImportSelector1 extends DeferredImportSelector1 {
-
 		@Nullable
 		@Override
 		public Class<? extends Group> getImportGroup() {
@@ -391,7 +365,6 @@ public class ImportSelectorTests {
 	}
 
 	public static class GroupedDeferredImportSelector2 extends DeferredImportSelector2 {
-
 		@Nullable
 		@Override
 		public Class<? extends Group> getImportGroup() {
@@ -404,7 +377,6 @@ public class ImportSelectorTests {
 	@Import({ImportSelector1.class, ParentDeferredImportSelector1.class})
 	public static class ParentConfiguration1 {
 	}
-
 
 	public static class ParentDeferredImportSelector1 implements DeferredImportSelector {
 
@@ -419,7 +391,6 @@ public class ImportSelectorTests {
 		public Class<? extends DeferredImportSelector.Group> getImportGroup() {
 			return TestImportGroup.class;
 		}
-
 	}
 
 	@Configuration
@@ -440,7 +411,6 @@ public class ImportSelectorTests {
 		public Class<? extends DeferredImportSelector.Group> getImportGroup() {
 			return TestImportGroup.class;
 		}
-
 	}
 
 	@Configuration
@@ -485,13 +455,10 @@ public class ImportSelectorTests {
 		public Class<? extends DeferredImportSelector.Group> getImportGroup() {
 			return TestImportGroup.class;
 		}
-
 	}
 
 
-	public static class TestImportGroup implements DeferredImportSelector.Group,
-			BeanClassLoaderAware, ResourceLoaderAware, BeanFactoryAware, EnvironmentAware {
-
+	public static class TestImportGroup implements DeferredImportSelector.Group,BeanClassLoaderAware, ResourceLoaderAware, BeanFactoryAware, EnvironmentAware {
 		static ClassLoader classLoader;
 		static ResourceLoader resourceLoader;
 		static BeanFactory beanFactory;
@@ -514,11 +481,9 @@ public class ImportSelectorTests {
 		}
 
 		static Map<String, List<String>> allImports() {
-			return TestImportGroup.imports.entrySet()
-					.stream()
-					.collect(Collectors.toMap((entry) -> entry.getKey().getClassName(),
-							Map.Entry::getValue));
+			return TestImportGroup.imports.entrySet().stream().collect(Collectors.toMap((entry) -> entry.getKey().getClassName(),Map.Entry::getValue));
 		}
+
 		private final List<Entry> instanceImports = new ArrayList<>();
 
 		@Override
@@ -526,8 +491,7 @@ public class ImportSelectorTests {
 			for (String importClassName : selector.selectImports(metadata)) {
 				this.instanceImports.add(new Entry(metadata, importClassName));
 			}
-			TestImportGroup.imports.addAll(metadata,
-					Arrays.asList(selector.selectImports(metadata)));
+			TestImportGroup.imports.addAll(metadata,Arrays.asList(selector.selectImports(metadata)));
 		}
 
 		@Override

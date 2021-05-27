@@ -55,7 +55,7 @@
     chapter6-5-1  spring 整合 mybatis 入门demo  注解版 无局部xml
     
     chapter7-0-0  spring web MVC 高级
-    chapter8-0-0  spring web flow
+    chapter8-0-0  mockito 学习
     chapter9-0-0  temp 随意使用的测试 项目
 
 
