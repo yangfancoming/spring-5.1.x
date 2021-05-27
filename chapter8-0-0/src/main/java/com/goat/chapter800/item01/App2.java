@@ -110,7 +110,5 @@ public class App2 {
 		//Any consecutive call: prints "foo" as well (last stubbing wins).
 		// 后续调用 : 也是输出"foo"
 		System.out.println(mock.someMethod("some arg"));
-
-
 	}
 }
