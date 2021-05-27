@@ -23,11 +23,7 @@ import org.springframework.util.ClassUtils;
 
 /**
  * Represents a user-defined {@link Configuration @Configuration} class.
- * Includes a set of {@link Bean} methods, including all such methods
- * defined in the ancestry of the class, in a 'flattened-out' manner.
-
-
- * @author Phillip Webb
+ * Includes a set of {@link Bean} methods, including all such methods defined in the ancestry of the class, in a 'flattened-out' manner.
  * @since 3.0
  * @see BeanMethod
  * @see ConfigurationClassParser
@@ -45,11 +41,9 @@ final class ConfigurationClass {
 
 	private final Set<BeanMethod> beanMethods = new LinkedHashSet<>();
 
-	private final Map<String, Class<? extends BeanDefinitionReader>> importedResources =
-			new LinkedHashMap<>();
+	private final Map<String, Class<? extends BeanDefinitionReader>> importedResources = new LinkedHashMap<>();
 
-	private final Map<ImportBeanDefinitionRegistrar, AnnotationMetadata> importBeanDefinitionRegistrars =
-			new LinkedHashMap<>();
+	private final Map<ImportBeanDefinitionRegistrar, AnnotationMetadata> importBeanDefinitionRegistrars = new LinkedHashMap<>();
 
 	final Set<String> skippedBeanMethods = new HashSet<>();
 

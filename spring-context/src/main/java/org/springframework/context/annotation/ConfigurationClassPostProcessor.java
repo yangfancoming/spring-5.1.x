@@ -263,10 +263,11 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 		// 装载已经处理过的配置类，最大长度为：configCandidates.size()
 		Set<ConfigurationClass> alreadyParsed = new HashSet<>(configCandidates.size());
 		do {
-			// 核心方法：具体详解如下
+			// 核心方法：解析主配置类 包括处理配置类中的@Import注解
 			parser.parse(candidates);
 			// 校验 配置类不能使final的，因为需要使用CGLIB生成代理对象，见postProcessBeanFactory方法
 			parser.validate();
+			// 获取已经解析后的用户定义的配置类中的各种bean
 			Set<ConfigurationClass> configClasses = new LinkedHashSet<>(parser.getConfigurationClasses());
 			configClasses.removeAll(alreadyParsed);
 			// Read the model and create bean definitions based on its content

@@ -18,11 +18,27 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * 		1）、默认获取到的是工厂bean调用getObject创建的对象
  * 		2）、要获取工厂Bean本身，我们需要给id前面加一个&
  * 			&colorFactoryBean
+ *
+ * 源码位置：
+ * doProcessConfigurationClass:252, ConfigurationClassParser (org.springframework.context.annotation)
+ * processConfigurationClass:197, ConfigurationClassParser (org.springframework.context.annotation)
+ * parse:158, ConfigurationClassParser (org.springframework.context.annotation)
+ * parse:132, ConfigurationClassParser (org.springframework.context.annotation)
+ * processConfigBeanDefinitions:267, ConfigurationClassPostProcessor (org.springframework.context.annotation)
+ * postProcessBeanDefinitionRegistry:195, ConfigurationClassPostProcessor (org.springframework.context.annotation)
+ * lambda$invokeBeanDefinitionRegistryPostProcessors$26:223, PostProcessorRegistrationDelegate (org.springframework.context.support)
+ * invokeBeanDefinitionRegistryPostProcessors:223, PostProcessorRegistrationDelegate (org.springframework.context.support)
+ * invokeBeanFactoryPostProcessors:69, PostProcessorRegistrationDelegate (org.springframework.context.support)
+ * invokeBeanFactoryPostProcessors:661, AbstractApplicationContext (org.springframework.context.support)
+ * refresh:473, AbstractApplicationContext (org.springframework.context.support)
+ * <init>:63, AnnotationConfigApplicationContext (org.springframework.context.annotation)
+ * ImportConfig:32, App (com.goat.chapter105.item04)
  */
 public class App extends BaseTest {
 
 	/**
-	 * @Import 导入组件，id 默认是组件的全类名
+	 * 源码位置 ConfigurationClassParser#processImports()
+	 * @Import 导入简单类，id 默认是组件的全类名
 	 * ***---***	 importConfig
 	 * ***---***	 com.goat.chapter105.model.Blue
 	 * ***---***	 com.goat.chapter105.model.Red
@@ -30,6 +46,13 @@ public class App extends BaseTest {
 	@Test
 	public void ImportConfig(){
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ImportConfig.class);
+		look(ac);
+	}
+
+	// @Import 导入配置类  相当于xml中的 <import> 标签
+	@Test
+	public void test(){
+		ApplicationContext ac = new AnnotationConfigApplicationContext(ImportConfig2.class);
 		look(ac);
 	}
 
@@ -51,10 +74,5 @@ public class App extends BaseTest {
 		look(ac);
 	}
 
-	// @Import 导入另一个配置类  相当于xml中的 <import> 标签
-	@Test
-	public void test(){
-		ApplicationContext ac = new AnnotationConfigApplicationContext(ImportConfig2.class);
-		look(ac);
-	}
+
 }

@@ -196,6 +196,7 @@ class ConfigurationClassParser {
 		do {
 			sourceClass = doProcessConfigurationClass(configClass, sourceClass);
 		}while (sourceClass != null);
+		logger.warn("【@Import注解 在configurationClasses中注册】 beanName： " + configClass.getResource().getDescription());
 		configurationClasses.put(configClass, configClass);
 	}
 
@@ -207,7 +208,6 @@ class ConfigurationClassParser {
 	 * @param configClass the configuration class being build
 	 * @param sourceClass a source class
 	 * @return the superclass, or {@code null} if none found or previously processed
-	 *
 	 * 1.如果包含@ComponentScans或者@ComponentScan类型的注解则获取对应的注解中的信息包装成AnnotationAttributes对象集合。
 	 * 2.检查步骤1中集合是否为空，为空则跳过下面的步骤。不为空则继续检查，贴有@ComponentScans或者@ComponentScan注解的bean上面是否贴有@Conditional类中注解，又的话则进行匹配判断检查是否匹配来决定是否进入下一个步骤。@Conditional注解的解析
 	 * 3.循环对上面的集合进行处理，调用ComponentScanAnnotationParser的解析方法，获取扫描结果，然后对结果集进行解析。分析是否是候选bean，是的则进行注册。
@@ -441,6 +441,7 @@ class ConfigurationClassParser {
 	 * @param imports the imports collected so far
 	 * @param visited used to track visited classes to prevent infinite recursion
 	 * @throws IOException if there is any problem reading metadata from the named class
+	 * 因为递归一直走，会把所有最底层有import注解的类收集到imports中。完成@Import注解中类的收集。
 	 */
 	private void collectImports(SourceClass sourceClass, Set<SourceClass> imports, Set<SourceClass> visited) throws IOException {
 		if (visited.add(sourceClass)) {
@@ -450,6 +451,7 @@ class ConfigurationClassParser {
 					collectImports(annotation, imports, visited);
 				}
 			}
+			// 获取 @Import({Blue.class, Red.class}) 注解中的values数组  com.goat.chapter105.model.Blue,com.goat.chapter105.model.Red
 			imports.addAll(sourceClass.getAnnotationAttributes(Import.class.getName(), "value"));
 		}
 	}
@@ -476,8 +478,7 @@ class ConfigurationClassParser {
 							Collection<SourceClass> importSourceClasses = asSourceClasses(importClassNames);
 							processImports(configClass, currentSourceClass, importSourceClasses, false);
 						}
-					}
-					else if (candidate.isAssignable(ImportBeanDefinitionRegistrar.class)) {
+					}else if (candidate.isAssignable(ImportBeanDefinitionRegistrar.class)) {
 						// Candidate class is an ImportBeanDefinitionRegistrar ->
 						// delegate to it to register additional bean definitions
 						Class<?> candidateClass = candidate.loadClass();
@@ -485,8 +486,7 @@ class ConfigurationClassParser {
 						ParserStrategyUtils.invokeAwareMethods(registrar, environment, resourceLoader, registry);
 						configClass.addImportBeanDefinitionRegistrar(registrar, currentSourceClass.getMetadata());
 					}else {
-						// Candidate class not an ImportSelector or ImportBeanDefinitionRegistrar ->
-						// process it as an @Configuration class
+						// Candidate class not an ImportSelector or ImportBeanDefinitionRegistrar ->  process it as an @Configuration class
 						importStack.registerImport(currentSourceClass.getMetadata(), candidate.getMetadata().getClassName());
 						processConfigurationClass(candidate.asConfigClass(configClass));
 					}
