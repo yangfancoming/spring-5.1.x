@@ -75,6 +75,10 @@
       <point x="871.2040229885058" y="133.0" />
       <point x="37.33333333333337" y="14.5" />
     </edge>
+    <edge source="org.springframework.beans.factory.config.ConfigurableBeanFactory" target="org.springframework.beans.factory.config.SingletonBeanRegistry">
+      <point x="-46.0" y="-14.5" />
+      <point x="43.0" y="14.5" />
+    </edge>
     <edge source="org.springframework.beans.factory.config.ConfigurableListableBeanFactory" target="org.springframework.beans.factory.config.ConfigurableBeanFactory">
       <point x="0.0" y="-14.5" />
       <point x="755.1206896551723" y="370.0" />
@@ -82,10 +86,6 @@
       <point x="750.7557471264369" y="286.0" />
       <point x="662.0977011494253" y="286.0" />
       <point x="46.0" y="14.5" />
-    </edge>
-    <edge source="org.springframework.beans.factory.config.ConfigurableBeanFactory" target="org.springframework.beans.factory.config.SingletonBeanRegistry">
-      <point x="-46.0" y="-14.5" />
-      <point x="43.0" y="14.5" />
     </edge>
     <edge source="org.springframework.beans.factory.support.BeanDefinitionRegistry" target="org.springframework.core.AliasRegistry">
       <point x="0.0" y="-14.5" />
@@ -129,17 +129,17 @@
       <point x="984.0977011494253" y="370.0" />
       <point x="40.0" y="14.5" />
     </edge>
-    <edge source="org.springframework.beans.factory.support.AbstractBeanFactory" target="org.springframework.beans.factory.config.ConfigurableBeanFactory">
-      <point x="40.0" y="-14.5" />
-      <point x="436.75574712643686" y="296.0" />
-      <point x="570.0977011494253" y="296.0" />
-      <point x="-46.0" y="14.5" />
-    </edge>
     <edge source="org.springframework.beans.factory.support.DefaultListableBeanFactory" target="org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory">
       <point x="0.0" y="-14.5" />
       <point x="449.09770114942535" y="449.0" />
       <point x="459.25574712643686" y="449.0" />
       <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.springframework.beans.factory.support.AbstractBeanFactory" target="org.springframework.beans.factory.config.ConfigurableBeanFactory">
+      <point x="40.0" y="-14.5" />
+      <point x="436.75574712643686" y="296.0" />
+      <point x="570.0977011494253" y="296.0" />
+      <point x="-46.0" y="14.5" />
     </edge>
     <edge source="org.springframework.beans.factory.config.ConfigurableBeanFactory" target="org.springframework.beans.factory.HierarchicalBeanFactory">
       <point x="46.0" y="-14.5" />
@@ -147,18 +147,18 @@
       <point x="783.2126436781609" y="212.0" />
       <point x="-46.0" y="14.5" />
     </edge>
-    <edge source="org.springframework.beans.factory.xml.XmlBeanFactory" target="org.springframework.beans.factory.support.DefaultListableBeanFactory">
-      <point x="0.0" y="-14.5" />
-      <point x="0.0" y="14.5" />
-    </edge>
     <edge source="org.springframework.beans.factory.support.DefaultListableBeanFactory" target="org.springframework.beans.factory.support.BeanDefinitionRegistry">
       <point x="-67.33333333333331" y="-14.5" />
       <point x="381.764367816092" y="449.0" />
       <point x="89.0" y="449.0" />
       <point x="0.0" y="14.5" />
     </edge>
+    <edge source="org.springframework.beans.factory.xml.XmlBeanFactory" target="org.springframework.beans.factory.support.DefaultListableBeanFactory">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="713.0" y="426.5" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="543.5" y="291.0" />
   <SelectedNodes />
   <Categories />
   <SCOPE>All</SCOPE>

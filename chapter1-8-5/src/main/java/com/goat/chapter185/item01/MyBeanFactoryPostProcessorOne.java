@@ -12,12 +12,21 @@ import org.springframework.core.Ordered;
  * @ Description: TODO
  * @ author  山羊来了
  * @ date 2019/8/17---20:39
+ *
+ * postProcessBeanFactory:23, MyBeanFactoryPostProcessorOne (com.goat.chapter185.item01)
+ * lambda$invokeBeanFactoryPostProcessors$27:228, PostProcessorRegistrationDelegate (org.springframework.context.support)
+ * invokeBeanFactoryPostProcessors:228, PostProcessorRegistrationDelegate (org.springframework.context.support)
+ * invokeBeanFactoryPostProcessors:143, PostProcessorRegistrationDelegate (org.springframework.context.support)
+ * invokeBeanFactoryPostProcessors:661, AbstractApplicationContext (org.springframework.context.support)
+ * refresh:473, AbstractApplicationContext (org.springframework.context.support)
+ * <init>:123, ClassPathXmlApplicationContext (org.springframework.context.support)
+ * <init>:67, ClassPathXmlApplicationContext (org.springframework.context.support)
+ * <init>:19, App (com.goat.chapter185.item01)
  */
 public class MyBeanFactoryPostProcessorOne implements BeanFactoryPostProcessor, Ordered {
 
 	/**
-	 * 修改dog的name属性值
-	 * 修改dog的作用域
+	 * 修改dog的name属性值及作用域
 	 */
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
