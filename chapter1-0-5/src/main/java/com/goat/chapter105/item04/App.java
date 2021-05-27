@@ -45,7 +45,7 @@ public class App extends BaseTest {
 	*/
 	@Test
 	public void ImportConfig(){
-		ApplicationContext ac = new AnnotationConfigApplicationContext(ImportConfig.class);
+		ApplicationContext ac = new AnnotationConfigApplicationContext(ImportConfig1.class);
 		look(ac);
 	}
 
@@ -73,6 +73,4 @@ public class App extends BaseTest {
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ImportBeanDefinitionRegistrarConfig.class);
 		look(ac);
 	}
-
-
 }

@@ -12,6 +12,6 @@ import org.springframework.context.annotation.Import;
  * @ date 2020/3/17---16:53
  */
 @Import({Blue.class, Red.class})
-public class ImportConfig {
+public class ImportConfig1 {
 
 }

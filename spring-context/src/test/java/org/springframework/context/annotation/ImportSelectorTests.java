@@ -233,7 +233,6 @@ public class ImportSelectorTests {
 	public @interface Sample {
 	}
 
-
 	public static class ImportSelector1 implements ImportSelector {
 		@Override
 		public String[] selectImports(AnnotationMetadata importingClassMetadata) {
