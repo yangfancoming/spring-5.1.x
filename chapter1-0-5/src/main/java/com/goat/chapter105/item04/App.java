@@ -7,7 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 
 /**
- * 给容器中注册组件；
+ * 给容器中注册组件的四大方式
  * 1）、包扫描 + 组件标注注解（@Controller/@Service/@Repository/@Component）[自己写的类]
  * 2）、@Bean[导入的第三方包里面的组件]
  * 3）、@Import[快速给容器中导入一个组件]
