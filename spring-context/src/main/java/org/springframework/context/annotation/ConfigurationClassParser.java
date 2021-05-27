@@ -466,6 +466,8 @@ class ConfigurationClassParser {
 			importStack.push(configClass);
 			try {
 				for (SourceClass candidate : importCandidates) {
+					// 这里分别对应 @Import注解 使用的三种方式
+					// 方式一  @Import(MyImportSelector.class) 导入的类实现了 ImportSelector 接口
 					if (candidate.isAssignable(ImportSelector.class)) {
 						// Candidate class is an ImportSelector -> delegate to it to determine imports
 						Class<?> candidateClass = candidate.loadClass();
@@ -479,13 +481,14 @@ class ConfigurationClassParser {
 							processImports(configClass, currentSourceClass, importSourceClasses, false);
 						}
 					}else if (candidate.isAssignable(ImportBeanDefinitionRegistrar.class)) {
-						// Candidate class is an ImportBeanDefinitionRegistrar ->
-						// delegate to it to register additional bean definitions
+						// 方式二  @Import(MyImportSelector.class) 导入的类实现了 ImportBeanDefinitionRegistrar 接口
+						// Candidate class is an ImportBeanDefinitionRegistrar -> delegate to it to register additional bean definitions
 						Class<?> candidateClass = candidate.loadClass();
 						ImportBeanDefinitionRegistrar registrar = BeanUtils.instantiateClass(candidateClass, ImportBeanDefinitionRegistrar.class);
 						ParserStrategyUtils.invokeAwareMethods(registrar, environment, resourceLoader, registry);
 						configClass.addImportBeanDefinitionRegistrar(registrar, currentSourceClass.getMetadata());
 					}else {
+						// 	方式三  直接导入指定类对象 @Import({Blue.class, Red.class})
 						// Candidate class not an ImportSelector or ImportBeanDefinitionRegistrar ->  process it as an @Configuration class
 						importStack.registerImport(currentSourceClass.getMetadata(), candidate.getMetadata().getClassName());
 						processConfigurationClass(candidate.asConfigClass(configClass));
