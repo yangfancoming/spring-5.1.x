@@ -248,7 +248,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		if (logger.isTraceEnabled()) logger.trace("Loading XML bean definitions from " + encodedResource);
 		/**
 		 *  获得正在加载的资源文件
-		 * 	1、使用ThreadLocal防止资源文件循环加载  //通过属性来记录已经加载的资源
+		 * 	1、使用ThreadLocal防止资源文件循环加载  //通过属性来记录已经加载过的资源
 		 * 	线程安全 ，但这里 currentResources应该本来就是线程安全的，所以推测不是为了线程安全
 		 * 	应该是为了线程能使用同一个 currentResources  ，从这里可以看出作者对 ThreadLocal 的理解深刻
 		*/

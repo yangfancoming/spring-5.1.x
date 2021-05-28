@@ -83,7 +83,7 @@
     接口一：Resource接口，能把xml等文件读取到内存中，并能够获取到xml文件的详细信息。
     接口二：Document接口，用于xml文件解析到内存，类似于js里的dom解析。
     接口三：BeanDefinitionReader接口，用于解析xml和加载Bean成为BeanDefinition
-    接口四：BeanDefinition接口，bean的抽象定义，如是否单例，是否是懒加载，有哪些重要属性等等。
+    接口四：BeanDefinition 接口，bean的抽象定义，如是否单例，是否是懒加载，有哪些重要属性等等。
     接口五：BeanFactory，Spring里面的重要模式-工厂模式，用于创建真正意义上的bean类。
     接口六：ApplicationContext，应用程序上下文，我一般都把上下文理解成容器，这个容器就是bean真正运行的容器，spring机器也由此启动。
     

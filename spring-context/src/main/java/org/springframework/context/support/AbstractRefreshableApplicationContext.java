@@ -104,7 +104,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			// 设置 BeanFactory 的两个配置属性：是否允许 Bean 覆盖、是否允许循环引用
 			customizeBeanFactory(beanFactory);
 			// 这步就关键了，加载xml文件信息 ，载入BeanDefinations， 加载Bean到BeanFactory中，给BeanFactory工厂提供创建bean的原材料！
-			// 它属于模版方法，由子类去实现加载的方式
+			// 它属于模版方法，由子类去实现加载的方式。  AbstractXmlApplicationContext
 			loadBeanDefinitions(beanFactory);
 			synchronized (this.beanFactoryMonitor) {
 				this.beanFactory = beanFactory;

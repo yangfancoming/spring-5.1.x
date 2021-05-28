@@ -115,7 +115,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		BeanDefinitionParserDelegate parent = delegate;
 		delegate = createDelegate(getReaderContext(), root, parent);
 		// 2、解析并验证profile节点，如果配置了profile属性，则验证当前环境是否激活了对应的profile节点，
-		// 用于多开发环境配置，该方式在开发中已不多见。
+		// 用于多开发环境配置，该方式在开发中已不多见。 再springboot中很为常见
 		// 例如：System.setProperty("spring.profiles.active", "dev");
 		// 在解析之前，如果命名空间是以 http://www.springframework.org/schema/beans 开头，将会检查 profile 属性
 		if (delegate.isDefaultNamespace(root)) {
@@ -170,11 +170,11 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 				Node node = nl.item(i);
 				if (node instanceof Element) {
 					Element ele = (Element) node;
-					if (delegate.isDefaultNamespace(ele)) { // 默认命名空间
-						// 当前标签使用的是默认的命名空间，如bean标签，则按照默认命名空间的逻辑对其进行处理
+					if (delegate.isDefaultNamespace(ele)) { // 解析 属于默认命名空间的标签
+						// 判断当前标签使用的是默认的命名空间，如bean标签，则按照默认命名空间的逻辑对其进行处理
 						// 代表解析的节点是 default namespace 下面的几个元素  <import />、<alias />、<bean />、<beans />
 						parseDefaultElement(ele, delegate); // 解析默认的节点
-					}else { // 自定义命名空间
+					}else { // 解析 属于自定义命名空间的标签
 						// 解析其他 namespace 的元素  <mvc />、<task />、<context />、<aop />、<tx:annotation-driven />
 						// 判断当前标签使用的命名空间是自定义的命名空间，如这里 springtag:user 所使用的就是自定义的命名空间，那么就按照定义命名空间逻辑进行处理
 						delegate.parseCustomElement(ele);// 解析自定义节点
@@ -208,6 +208,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	}
 
 	// Parse an "import" element and load the bean definitions from the given resource into the bean factory.
+	// 解析 <import> 标签
 	protected void importBeanDefinitionResource(Element ele) {
 		String location = ele.getAttribute(RESOURCE_ATTRIBUTE);
 		if (!StringUtils.hasText(location)) {

@@ -42,6 +42,7 @@ public class PluggableSchemaResolver implements EntityResolver {
 	@Nullable
 	private final ClassLoader classLoader;
 
+	// 本地sxd约束文件存放位置，这也就解释了，为什么再断网的情况下本地项目也能运行
 	private final String schemaMappingsLocation;
 
 	/** Stores the mapping of schema URL -> local schema path. */

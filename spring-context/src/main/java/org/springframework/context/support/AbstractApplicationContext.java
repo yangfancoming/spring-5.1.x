@@ -425,14 +425,13 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		*/
 		synchronized (startupShutdownMonitor) {
 			/**
-			 *  Prepare this context for refreshing. 准备工作，记录下容器的启动时间、标记“已启动”状态、处理配置文件中的占位符
+			 *  Prepare this context for refreshing. 准备工作，记录下容器的启动时间、标记“已启动”状态、处理配置文件中的占位符,初始化和验证一些预定义的属性（有的话）
 			 *  供子类拓展，添加创建前必需属性，校验如果必需属性不存在则抛出MissingRequiredPropertiesException
-			 *  预初始化，设置容器的启动时间、激活标志，初始化和验证一些预定义的属性（有的话）
 			 */
 			prepareRefresh();
 			/**
 			 * Tell the subclass to refresh the internal bean factory.
-			 *    这步比较关键，这步完成后，xml 配置文件就会解析成一个个 Bean 定义(BeanDefinitio)，注册到 BeanFactory 中， (说到底核心是一个 beanName-> beanDefinition 的 map)
+			 *    这步比较关键，这步完成后，xml 配置文件就会解析成一个个 Bean 定义(BeanDefinition)，注册到 BeanFactory 中， (说到底核心是一个 beanName-> beanDefinition 的 map)
 			 *    当然，这里说的 Bean 还没有初始化，只是配置信息都从xml文件中提取出来了，
 			 *    调用子类实现方法获取（创建或刷新）BeanFacotry容器，对于ClassPathXmlApplicationContext，主要调用了AbstractRefreshableApplicationContext中实现的方法
 			 * 	  初始化BeanFactory，注意，此处是获取新的，销毁旧的，这就是刷新的意义
@@ -441,9 +440,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			 * 	二、传统标签解析： bean、import等
 			 * 	自定义标签解析： <context: component-scan>
 			 * 	自定义标签解析流程：
-			 * 		1. 根据当前解析标签的头信息找到对应的 namespaceUri
+			 * 		1.根据当前解析标签的头信息找到对应的 namespaceUri
 			 * 		2.加载spring所有jar中的spring.handlers文件。并建立映射关系
-			 * 		3.根据namespaceUri 从映射关系中找到对应的实现了 NamespaceHandler接口的实现类
+			 * 		3.根据namespaceUri 从映射关系中找到对应的实现了 NamespaceHandler 接口的实现类
 			 * 		4.根据namespaceUri找到对应的解析类，然后调用paser方法完成标签的解析工作
 			 * 	二、解析出的xml标签封装成BeanDefinition对象 存储到Map中
 			 */
