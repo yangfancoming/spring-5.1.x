@@ -766,7 +766,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			}else {
 				if (logger.isTraceEnabled()) logger.trace("Overriding bean definition for bean '" + beanName + "' with an equivalent definition: replacing [" + existingDefinition + "] with [" + beanDefinition + "]");
 			}
-			logger.warn("【IOC容器中 添加BeanDefinition 内存态】 beanName： " + beanName);
+			logger.warn("【IOC容器 添加BeanDefinition 内存态 --- 覆盖方式】 beanName： " + beanName);
 			beanDefinitionMap.put(beanName, beanDefinition);
 		}else {
 		// 3、缓存中无对应的BeanDefinition，则直接注册
@@ -776,7 +776,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				// Cannot modify startup-time collection elements anymore (for stable iteration)  // 无法再修改启动时集合元素（用于稳定迭代）
 				synchronized (beanDefinitionMap) {
 					// 这一步是真正注册bean  状态： 由 概念态--->内存态
-					logger.warn("【IOC容器中 添加BeanDefinition 内存态】 beanName： " + beanName);
+					logger.warn("【IOC容器中 添加BeanDefinition 内存态 --- 新建方式(已创建)】 beanName： " + beanName);
 					beanDefinitionMap.put(beanName, beanDefinition);
 					// 更新 beanDefinitionNames 这个集合
 					// 创建List<String>并将缓存的beanDefinitionNames和新解析的beanName加入集合
@@ -791,7 +791,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				// 将beanDefinition信息维护至缓存
 				// beanDefinitionMap-->(key->beanName,value->beanDefinition)
 				// Still in startup registration phase
-				logger.warn("【IOC容器中 添加BeanDefinition 内存态】 beanName： " + beanName);
+				logger.warn("【IOC容器中 添加BeanDefinition 内存态  --- 新建方式(未创建)】 beanName： " + beanName);
 				beanDefinitionMap.put(beanName, beanDefinition);
 				// beanDefinitionNames-->维护了beanName集合
 				beanDefinitionNames.add(beanName);
