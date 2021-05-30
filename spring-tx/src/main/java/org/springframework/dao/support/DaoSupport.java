@@ -10,11 +10,8 @@ import org.springframework.beans.factory.InitializingBean;
 
 /**
  * Generic base class for DAOs, defining template methods for DAO initialization.
- *
  * Extended by Spring's specific DAO support classes, such as:
  * JdbcDaoSupport, JdoDaoSupport, etc.
- *
-
  * @since 1.2.2
  * @see org.springframework.jdbc.core.support.JdbcDaoSupport
  */

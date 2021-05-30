@@ -10,7 +10,6 @@
 
 	<context:property-placeholder location="classpath:dbconfig.properties"/>
 
-	<!-- mybatis 转交给 spring 来管理-->
 
 	<!-- 数据源配置 阿里巴巴连接池-->
 	<bean id="myDataSource" class="com.alibaba.druid.pool.DruidDataSource">
@@ -19,6 +18,10 @@
 		<property name="username" value="${jdbc.username}"/>
 		<property name="password" value="${jdbc.password}"/>
 	</bean>
+
+
+
+	<!-- mybatis 转交给 spring 来管理-->
 
 	<!-- SqlSessionFactoryBean -->
 	<bean id="mySqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

@@ -39,7 +39,7 @@ import org.springframework.lang.Nullable;
 public interface FactoryBean<T> {
 
 	/**
-	 * 返回的对象实例
+	 * 返回的对象实例 //从工厂中获取bean【这个方法是FactoryBean的核心】
 	 * Return an instance (possibly shared or independent) of the object managed by this factory.
 	 * As with a {@link BeanFactory}, this allows support for both the Singleton and Prototype design pattern.
 	 * If this FactoryBean is not fully initialized yet at the time of the call (for example because it is involved in a circular reference),
@@ -56,7 +56,7 @@ public interface FactoryBean<T> {
 	T getObject() throws Exception;
 
 	/**
-	 * 返回Bean的类型
+	 * 返回Bean的类型 //获取Bean工厂创建的对象的类型【注意这个方法主要作用是：该方法返回的类型是在ioc容器中getbean所匹配的类型】
 	 * Return the type of object that this FactoryBean creates,or {@code null} if not known in advance.
 	 * This allows one to check for specific types of beans without  instantiating objects, for example on autowiring.
 	 * In the case of implementations that are creating a singleton object,

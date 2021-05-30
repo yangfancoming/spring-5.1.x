@@ -13,7 +13,7 @@ public class ColorFactoryBean implements FactoryBean<Red> {
 
 	// 返回的对象就会被添加到spring容器中
 	@Override
-	public Red getObject() throws Exception {
+	public Red getObject() {
 		System.out.println("ColorFactoryBean......getObject方法");
 		return new Red();
 	}
