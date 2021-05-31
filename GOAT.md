@@ -2,7 +2,7 @@
     chapter1-0-0  spring log4j 日志
     chapter1-0-1  为什么需要 spring  ioc di 这种思想  即 Spring IOC 应运而生
     chapter1-0-3  Spring 资源/配置 文件读取 
-    chapter1-0-5  spring 注解学习 @Autowire
+    chapter1-0-5  spring 注解学习 @Autowire @Import  @bean   @Configuration  @Scope   @ComponentScan 
     chapter1-1-0  spring Bean的生命周期 注解 方式
     chapter1-1-5  spring Bean的生命周期 xml  方式    ？生命周期回调 ？
     chapter1-2-0  spring 自定义标签/ 自定义命名空间  Spring解析xml默认命名空间

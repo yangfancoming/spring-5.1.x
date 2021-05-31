@@ -16,6 +16,12 @@ import javax.sql.DataSource;
  */
 @Configuration
 @MapperScan("com.goat.chapter651.dao") // 生成代理对象 交给spring的IOC容器管理
+/**
+ *  @MapperScan("com.goat.chapter651.dao")  等价于下面的xml配置
+ * 	<bean id="mapperScan" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+ * 		<property name="basePackage" value="com.goat.chapter650.dao" />
+ * 	</bean>
+*/
 @ComponentScan("com.goat.chapter651")
 public class AppConfig {
 

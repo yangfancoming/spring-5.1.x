@@ -38,10 +38,7 @@ public class App extends BaseTest {
 
 	/**
 	 * 源码位置 ConfigurationClassParser#processImports()
-	 * @Import 导入简单类，id 默认是组件的全类名
-	 * ***---***	 importConfig
-	 * ***---***	 com.goat.chapter105.model.Blue
-	 * ***---***	 com.goat.chapter105.model.Red
+	 * @Import 导入简单类，id 默认是组件的全类名   @Import({Blue.class, Red.class})
 	*/
 	@Test
 	public void ImportConfig(){
@@ -49,7 +46,10 @@ public class App extends BaseTest {
 		look(ac);
 	}
 
-	// @Import 导入配置类  相当于xml中的 <import> 标签
+	/**
+	 * 源码位置 ConfigurationClassParser#processImports()
+	 * @Import 导入配置类，相当于xml中的 <import> 标签
+	 */
 	@Test
 	public void test(){
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ImportConfig2.class);
@@ -58,9 +58,6 @@ public class App extends BaseTest {
 
 	/**
 	 * ImportSelector 导入组件，id 默认是组件的全类名
-	 * ***---***	 importConfig
-	 * ***---***	 com.goat.chapter105.model.Blue
-	 * ***---***	 com.goat.chapter105.model.Red
 	 */
 	@Test
 	public void ImportSelectorConfig(){
@@ -68,6 +65,9 @@ public class App extends BaseTest {
 		look(ac);
 	}
 
+	/**
+	 * ImportBeanDefinitionRegistrar 导入组件
+	*/
 	@Test
 	public void ImportBeanDefinitionRegistrarConfig(){
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ImportBeanDefinitionRegistrarConfig.class);

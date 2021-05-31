@@ -23,8 +23,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * A {@link ImportBeanDefinitionRegistrar} to allow annotation configuration of MyBatis mapper scanning. Using
- * an @Enable annotation allows beans to be registered via @Component configuration, whereas implementing
+ * A {@link ImportBeanDefinitionRegistrar} to allow annotation configuration of MyBatis mapper scanning.
+ * Using  an @Enable annotation allows beans to be registered via @Component configuration, whereas implementing
  * {@code BeanDefinitionRegistryPostProcessor} will work for XML configuration.
  * @see MapperFactoryBean
  * @see ClassPathMapperScanner
@@ -85,11 +85,8 @@ public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar, Re
 
     List<String> basePackages = new ArrayList<>();
     basePackages.addAll( Arrays.stream(annoAttrs.getStringArray("value")).filter(StringUtils::hasText).collect(Collectors.toList()));
-
     basePackages.addAll(Arrays.stream(annoAttrs.getStringArray("basePackages")).filter(StringUtils::hasText).collect(Collectors.toList()));
-
     basePackages.addAll(Arrays.stream(annoAttrs.getClassArray("basePackageClasses")).map(ClassUtils::getPackageName).collect(Collectors.toList()));
-
     String lazyInitialization = annoAttrs.getString("lazyInitialization");
     if (StringUtils.hasText(lazyInitialization)) {
       builder.addPropertyValue("lazyInitialization", lazyInitialization);
