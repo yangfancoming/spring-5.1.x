@@ -678,7 +678,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		if (logger.isTraceEnabled()) logger.trace("Pre-instantiating singletons in " + this);
 		// Iterate over a copy to allow for init methods which in turn register new bean definitions.
 		// While this may not be part of the regular factory bootstrap, it does otherwise work fine.
-		// 获取容器内加载的所有 bean的名称
+		// 获取容器内加载的所有 bean的名称 // 遍历所有beanName，对所有的non-lazy且singletonbean进行创建,已经创建的不会再次执行。
 		List<String> beanNames = new ArrayList<>(beanDefinitionNames);
 		// Trigger initialization of all non-lazy singleton beans... 遍历初始化所有非懒加载单例Bean
 		for (String beanName : beanNames) {
@@ -688,14 +688,16 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			 而Spring上下文包括实例化所有Bean用的AbstractBeanDefinition是RootBeanDefinition
 			 这时候就使用getMergedLocalBeanDefinition方法做了一次转化，将非RootBeanDefinition转换为RootBeanDefinition以供后续操作。
 			 注意如果当前BeanDefinition存在父BeanDefinition，会基于父BeanDefinition生成一个RootBeanDefinition,然后再将调用OverrideFrom子BeanDefinition的相关属性覆写进去。
+			 // 该方法的merge是指如果bean类继承有父类，那么就将它所有的父类的bd融合成一个RootBeanDefinition返回
 			 */
 			RootBeanDefinition bd = getMergedLocalBeanDefinition(beanName); // 拿到bean的定义信息
-			// 不是抽象类、是单例的且不是懒加载的
+			// 不是抽象类、是单例的且不是懒加载的 //bean不是抽象的，没有@Lazy注解，并且还是单例的
 			if (!bd.isAbstract() && bd.isSingleton() && !bd.isLazyInit()) {
 				/**
 				 *  处理 FactoryBean
 				 判断当前Bean是否是工厂bean (是否实现了FactoryBean接口)，如果实现了，判断是否要立即初始化
 				 判断是否需要立即初始化，则根据Bean是否实现了SmartFactoryBean并且重写的内部方法isEagerInit 返回true
+				 //如果是FactoryBean，前面文章有提到过，FactoryBean的名字命名规则是：& + 普通beanName，获取到正确的名称后才能做getBean(beanName)这一步
 				 */
 				if (isFactoryBean(beanName)) {
 					Object bean = getBean(FACTORY_BEAN_PREFIX + beanName);
@@ -719,6 +721,8 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		}
 		// 如果bean实现了 SmartInitializingSingleton 接口的，那么在这里得到回调
 		// Trigger post-initialization callback for all applicable beans...
+		// 完成所有bean的创建过程后，执行实现了SmartInitializingSingleton接口bean的afterSingletonsInstantiated回调方法。
+		// org.springframework.boot.autoconfigure.condition.BeanTypeRegistry会清空bdmap
 		for (String beanName : beanNames) {
 			Object singletonInstance = getSingleton(beanName);
 			if (singletonInstance instanceof SmartInitializingSingleton) {

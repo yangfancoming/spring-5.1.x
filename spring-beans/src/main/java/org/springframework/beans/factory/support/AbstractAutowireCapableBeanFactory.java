@@ -406,7 +406,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		RootBeanDefinition mbdToUse = mbd;
 		// Make sure bean class is actually resolved at this point, and clone the bean definition in case of a dynamically resolved Class which cannot be stored in the shared merged bean definition.
 		// 确保对应BeanClass完成解析，具体表现是进行了ClassLoder.loadClass或Class.forName完成了类加载
-		// 解析 bean 的类型
+		// 解析 bean 的类型  // 从bd中解析出bean的Class
 		Class<?> resolvedClass = resolveBeanClass(mbd, beanName);
 		if (resolvedClass != null && !mbd.hasBeanClass() && mbd.getBeanClassName() != null) {
 			mbdToUse = new RootBeanDefinition(mbd);
@@ -427,9 +427,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			// Give BeanPostProcessors a chance to return a proxy instead of the target bean instance.
 			/**
 			 供特定后置处理器拓展，如果直接生成了一个Bean，就直接返回不走正常创建流程。
-			 具体逻辑是判断当前Spring容器是否注册了实现了InstantiationAwareBeanPostProcessor接口的后置处理器
-			 如果有，则依次调用其中的applyBeanPostProcessorsBeforeInstantiation方法，如果中间任意一个方法返回不为null,直接结束调用。
-			 然后依次所有注册的BeanPostProcessor的postProcessAfterInitialization方法（同样如果任意一次返回不为null,即终止调用。
+			 具体逻辑是判断当前Spring容器是否注册了实现了InstantiationAwareBeanPostProcessor 接口的后置处理器
+			 如果有，则依次调用其中的 applyBeanPostProcessorsBeforeInstantiation 方法，如果中间任意一个方法返回不为null,直接结束调用。
+			 然后依次所有注册的 BeanPostProcessor 的 postProcessAfterInitialization 方法（同样如果任意一次返回不为null,即终止调用。
 			 */
 			// 在 bean 初始化前应用后置处理，如果后置处理返回的 bean 不为空，则直接返回
 			// 若BeanPostProcessors 产生了一个代理对象，就不需要我去创建了，就不继续往下走了（AOP都走这里）
@@ -465,6 +465,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * @see #instantiateUsingFactoryMethod
 	 * @see #autowireConstructor
 	 * 最重要的三个步骤为doCreateBean里面的：createBeanInstance、populateBean、initializeBean，都在AbstractAutowireCapableBeanFactory这里
+	 * doCreateBean是bean创建的核心方法。
+	 * 它大体上可以分成两个步骤：1.bean实例化；2.bean初始化。
+	 * bean实例化是调用 createBeanInstance 方法，最终通过反射创建出对象。
+	 * bean的初始化是通过 populateBean(beanName, mbd, instanceWrapper)和initializeBean(beanName, exposedObject, mbd)实现的。
 	 */
 	protected Object doCreateBean(final String beanName, final RootBeanDefinition mbd, final @Nullable Object[] args) throws BeanCreationException {
 		// BeanWrapper 是一个基础接口，由接口名可看出这个接口的实现类用于包裹 bean 实例。 通过 BeanWrapper 的实现类可以方便的设置/获取 bean 实例的属性
@@ -496,6 +500,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// Allow post-processors to modify the merged bean definition.
 		// 获取所有的后置处理器，如果后置处理器实现了MergedBeanDefinitionPostProcessor接口，则一次调用其postProcessMergedBeanDefinition方法
 		// 这里又遇到后置处理了，此处的后置处理是用于处理已“合并的 BeanDefinition”。关于这种后置处理器具体的实现细节就不深入理解了，大家有兴趣可以自己去看
+		// 调用实现了MergedBeanDefinitionPostProcessor的bean后置处理器的postProcessMergedBeanDefinition方法。
 		synchronized (mbd.postProcessingLock) {
 			if (!mbd.postProcessed) {
 				try {
@@ -968,10 +973,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			if (!mbd.isSynthetic() && hasInstantiationAwareBeanPostProcessors()) {
 				Class<?> targetType = determineTargetType(beanName, mbd);
 				if (targetType != null) {
-					// 应用前置处理
+					// 应用前置处理  // 调用before方法实现用户自定义的bean实例化方法
 					bean = applyBeanPostProcessorsBeforeInstantiation(targetType, beanName);
 					if (bean != null) {
-						// 应用后置处理
+						// 应用后置处理 // 调用after方法实现用户自定义的依赖注入和自动装配方法
 						bean = applyBeanPostProcessorsAfterInitialization(bean, beanName);
 					}
 				}
@@ -1033,6 +1038,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			return obtainFromSupplier(instanceSupplier, beanName);
 		}
 		// 通过工厂方法创建 支持工厂方法方式创建Bean
+		// 旧版本的Spring可以通过xml配置 <bean id='A' class='xxx' factory-method='getA'>从而获得静态的工厂方法获得bean A。
+		// 另外@Bean注解的方法也走这里
 		if (mbd.getFactoryMethodName() != null) {
 			return instantiateUsingFactoryMethod(beanName, mbd, args);
 		}
@@ -1044,6 +1051,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// Shortcut when re-creating the same bean...
 		// 一个类可能有多个构造器，所以Spring得根据参数个数、类型确定需要调用的构造器
 		// 在使用构造器创建实例后，Spring会将解析过后确定下来的构造器或工厂方法保存在缓存中，避免再次创建相同bean时再次解析
+		// 如果之前已经解析过，就不用再去解析一遍了。RootBeanDefinition.resolvedConstructorOrFactoryMethod专门用来缓存构造函数，constructorArgumentsResolved用来存放构造是有参还是无参。
+		// 有参走autowireConstructor，无参走instantiateBean
+
 		boolean resolved = false;
 		boolean autowireNecessary = false;
 		if (args == null) {
@@ -1072,6 +1082,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// 这里需要注意了，因为我们的Child的属性HelloService里并没有书写@Autowired属性，所以这里最终的返回结果是null================这个需要注意Spring的处理(空构造就不用交给autowireConstructor处理了，自己直接new吧)
 		// 需要注意的是：若我们自己写了一个构造    public Child(HelloService helloService) {  this.helloService = helloService; } 那么它就会拿到，然后走下面让Spring执行构造器的注入的
 		// 旁白：如果你只有空构造，那就直接instantiateBean，否则会自动去走Spring的构造器注入的逻辑
+		// 检查所有的SmartInstantiationAwareBeanPostProcessor，为指定bean确定一个构造函数。
+		// 实际上就是org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor#determineCandidateConstructors来负责。
+		// 如果找到了构造函数，或者该bean是通过“AUTOWIRE_CONSTRUCTOR”按构造器自动装配，或者如果此bean定义了构造函数参数值，或者传入的构造参数不为空。
 		Constructor<?>[] ctors = determineConstructorsFromBeanPostProcessors(beanClass, beanName);
 		/*
 		 * 下面的条件分支条件用于判断使用什么方式构造 bean 实例，
@@ -1085,10 +1098,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		 * 上面4个条件，只要有一个为 true，就会通过构造方法自动注入的方式构造 bean 实例
 		 */
 		if (ctors != null || mbd.getResolvedAutowireMode() == AUTOWIRE_CONSTRUCTOR || mbd.hasConstructorArgumentValues() || !ObjectUtils.isEmpty(args)) {
-			// 通过“构造方法自动注入”的方式构造 bean 对象
+			// 通过“构造方法自动注入”的方式构造 bean 对象 // 走有参构造函数
 			return autowireConstructor(beanName, mbd, ctors, args);
 		}
-		// Preferred constructors for default construction? 默认构造的首选构造函数？
+		// Preferred constructors for default construction? 默认构造的首选构造函数？ // 确定用于默认构造的首选构造函数(如果有)。如果需要，构造函数参数将自动连接。
 		ctors = mbd.getPreferredConstructors();
 		if (ctors != null) {
 			return autowireConstructor(beanName, mbd, ctors, null);
@@ -1097,6 +1110,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// 通过“默认构造方法”的方式构造 bean 对象
 		// 所以我们当前的Child，只有空构造器，所以就只能走这里啦
 		// 这个方法的逻辑比较简单，我就不贴了。主要是用InstantiationStrategy策略器进行实例化，至于它是什么东东？文末的时候我会解释的
+		// 走默认构造函数实例化bean
 		return instantiateBean(beanName, mbd);
 	}
 

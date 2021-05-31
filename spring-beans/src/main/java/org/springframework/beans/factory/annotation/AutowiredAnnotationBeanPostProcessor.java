@@ -195,7 +195,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 	@Override
 	@Nullable
 	public Constructor<?>[] determineCandidateConstructors(Class<?> beanClass, final String beanName) throws BeanCreationException {
-		// Let's check for lookup methods here..
+		// Let's check for lookup methods here..  // 在beanClass及其继承的父类中寻找@Lookup注解方法。
 		if (!this.lookupMethodsChecked.contains(beanName)) {
 			try {
 				ReflectionUtils.doWithMethods(beanClass, method -> {
@@ -214,9 +214,10 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 			}catch (IllegalStateException ex) {
 				throw new BeanCreationException(beanName, "Lookup method resolution failed", ex);
 			}
+			// 记录已经检查过的beanName，避免重复检查。
 			this.lookupMethodsChecked.add(beanName);
 		}
-
+		// 双重检查老套路，先查看缓存中是否存在之前已经找到的构造函数。
 		// Quick check on the concurrent map first, with minimal locking.
 		Constructor<?>[] candidateConstructors = this.candidateConstructorsCache.get(beanClass);
 		if (candidateConstructors == null) {
@@ -224,6 +225,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 			synchronized (this.candidateConstructorsCache) {
 				candidateConstructors = this.candidateConstructorsCache.get(beanClass);
 				if (candidateConstructors == null) {
+					// 首先通过beanClass.getDeclaredConstructors()获得所有的构造函数到rawCandidates数组
 					Constructor<?>[] rawCandidates;
 					try {
 						rawCandidates = beanClass.getDeclaredConstructors();
@@ -233,16 +235,20 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 					List<Constructor<?>> candidates = new ArrayList<>(rawCandidates.length);
 					Constructor<?> requiredConstructor = null;
 					Constructor<?> defaultConstructor = null;
+					// 针对Kotlin语言的的，不用管。 Java语言没主构造函数一说。
 					Constructor<?> primaryConstructor = BeanUtils.findPrimaryConstructor(beanClass);
 					int nonSyntheticConstructors = 0;
 					for (Constructor<?> candidate : rawCandidates) {
+						// 下面的if判断语句可以简单理解成该构造方法并不是由内部类提供的。
 						if (!candidate.isSynthetic()) {
 							nonSyntheticConstructors++;
 						}else if (primaryConstructor != null) {
 							continue;
 						}
+						// 看看这个候选的构造函数是不是加上了@Autowired 或者 @Value注解，一般情况下都是null。
 						AnnotationAttributes ann = findAutowiredAnnotation(candidate);
 						if (ann == null) {
+							//还有userClass不等于传入的beanClass的情况？这里看不懂。不过不影响后续的分析，因为还从未进入过该if分支。
 							Class<?> userClass = ClassUtils.getUserClass(beanClass);
 							if (userClass != beanClass) {
 								try {
@@ -253,6 +259,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 								}
 							}
 						}
+						// 如果构造函数上有注解，则加到candidates中。
 						if (ann != null) {
 							if (requiredConstructor != null) {
 								throw new BeanCreationException(beanName,"Invalid autowire-marked constructor: " + candidate + ". Found constructor with 'required' Autowired annotation already: " + requiredConstructor);
@@ -264,8 +271,9 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 								}
 								requiredConstructor = candidate;
 							}
+							// candidates唯一可以添加的地方。也就是正在被解析的构造函数上有注解。
 							candidates.add(candidate);
-						}else if (candidate.getParameterCount() == 0) {
+						}else if (candidate.getParameterCount() == 0) { // 没有入参的构造函数就是默认构造函数
 							defaultConstructor = candidate;
 						}
 					}
@@ -281,16 +289,17 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 							}
 						}
 						candidateConstructors = candidates.toArray(new Constructor<?>[0]);
-					}else if (rawCandidates.length == 1 && rawCandidates[0].getParameterCount() > 0) {
+					}else if (rawCandidates.length == 1 && rawCandidates[0].getParameterCount() > 0) { // 如果Class的构造方法只有一个，并且构造方法的入参还不为0。 将其作为候选结果。
 						candidateConstructors = new Constructor<?>[] {rawCandidates[0]};
 					}else if (nonSyntheticConstructors == 2 && primaryConstructor != null && defaultConstructor != null && !primaryConstructor.equals(defaultConstructor)) {
+						// 如果如果Class的构造方法有且只有2个，并且拥有primaryConstructor构造函数。与Kotlin相关，略过。
 						candidateConstructors = new Constructor<?>[] {primaryConstructor, defaultConstructor};
-					}else if (nonSyntheticConstructors == 1 && primaryConstructor != null) {
+					}else if (nonSyntheticConstructors == 1 && primaryConstructor != null) { // 与Kotlin相关，略过
 						candidateConstructors = new Constructor<?>[] {primaryConstructor};
-					}else {
+					}else { //如果上述条件都不满足，则创建一个Constructor对象，该对象的初始值是0，仅仅起到一个占位作用。
 						candidateConstructors = new Constructor<?>[0];
 					}
-					this.candidateConstructorsCache.put(beanClass, candidateConstructors);
+					this.candidateConstructorsCache.put(beanClass, candidateConstructors);  // 缓存构造方法
 				}
 			}
 		}

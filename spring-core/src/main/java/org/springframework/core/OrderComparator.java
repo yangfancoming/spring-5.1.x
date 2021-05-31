@@ -10,18 +10,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
- * {@link Comparator} implementation for {@link Ordered} objects, sorting
- * by order value ascending, respectively by priority descending.
- *
+ * {@link Comparator} implementation for {@link Ordered} objects, sorting by order value ascending, respectively by priority descending.
  * <h3>Same Order Objects</h3>
- * Objects that have the same order value will be sorted with arbitrary
- * ordering with respect to other objects with the same order value.
- *
+ * Objects that have the same order value will be sorted with arbitrary ordering with respect to other objects with the same order value.
  * <h3>Non-ordered Objects</h3>
- * Any object that does not provide its own order value is implicitly
- * assigned a value of {@link Ordered#LOWEST_PRECEDENCE}, thus ending up
- * at the end of a sorted collection in arbitrary order with respect to other objects with the same order value.
-
+ * Any object that does not provide its own order value is implicitly assigned a value of {@link Ordered#LOWEST_PRECEDENCE},
+ * thus ending up  at the end of a sorted collection in arbitrary order with respect to other objects with the same order value.
  * @since 07.04.2003
  * @see Ordered
  * @see org.springframework.core.annotation.AnnotationAwareOrderComparator
