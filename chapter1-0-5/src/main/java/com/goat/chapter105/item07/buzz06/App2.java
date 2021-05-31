@@ -12,7 +12,6 @@ public class App2 extends BaseTest {
 
 	/**
 	 *  4）、自定义组件想要使用Spring容器底层的一些组件（ApplicationContext，BeanFactory，xxx）；
-	 *
 	 */
 	@Test
 	public void getBean3(){

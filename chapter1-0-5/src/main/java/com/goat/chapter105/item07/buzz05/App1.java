@@ -17,7 +17,6 @@ public class App1 extends BaseTest {
 	/**
 	 * @Autowired  注解标注的位置：
 	 * 1.在 setter 方法上使用
-	 *
 	*/
 	@Test
 	public void getBean1(){

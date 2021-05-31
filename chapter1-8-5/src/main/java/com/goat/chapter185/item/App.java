@@ -32,12 +32,13 @@ public class App {
 		/**
 		 * 1.Person对象中有@Autowire注解时dog对象会被自动注入
 		 * 2.当去掉Person对象中的@Autowire注解时  dog对象为null
-		 * 3.当去掉Person对象中的@Autowire注解时  设置为AUTOWIRE_BY_NAME时 dog对象会被自动注入
+		 * 3.当去掉Person对象中的@Autowire注解时  设置为 AUTOWIRE_BY_NAME 时 dog对象会被自动注入
+		 * 因为AUTOWIRE_BY_NAME 是根据set方法来注入的
+		 * @see Person#setDog(com.goat.chapter185.item.Dog)
 		 * @see Person
 		 * @see MyBeanFactoryPostProcessor#postProcessBeanFactory(org.springframework.beans.factory.config.ConfigurableListableBeanFactory)
 		*/
 		System.out.println(person.getDog());
-
 	}
 
 }
