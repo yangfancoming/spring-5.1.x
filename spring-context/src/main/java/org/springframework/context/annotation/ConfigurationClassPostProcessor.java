@@ -180,7 +180,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	// Derive further bean definitions from the configuration classes in the registry.
 	@Override
 	public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) {
-		//根据BeanDefinitionRegistry,生成registryId 是全局唯一的。
+		// 根据BeanDefinitionRegistry,生成registryId 是全局唯一的。
 		int registryId = System.identityHashCode(registry);
 		// 判断，如果这个registryId 已经被执行过了，就不能够再执行了，否则抛出异常
 		if (registriesPostProcessed.contains(registryId)) {
@@ -191,7 +191,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 		}
 		// 已经执行过的registry  防止重复执行
 		registriesPostProcessed.add(registryId);
-		// 调用processConfigBeanDefinitions 进行Bean定义的加载.代码如下
+		// 调用processConfigBeanDefinitions 进行Bean定义的加载
 		processConfigBeanDefinitions(registry);
 	}
 
@@ -238,7 +238,6 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 			int i2 = ConfigurationClassUtils.getOrder(bd2.getBeanDefinition());
 			return Integer.compare(i1, i2);
 		});
-
 		// Detect any custom bean name generation strategy supplied through the enclosing application context
 		// 此处registry是DefaultListableBeanFactory 这里会进去
 		// 尝试着给Bean扫描方式，以及import方法的BeanNameGenerator赋值(若我们都没指定，那就是默认的AnnotationBeanNameGenerator：扫描为首字母小写，import为全类名)

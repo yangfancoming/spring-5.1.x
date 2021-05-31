@@ -189,7 +189,6 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * 	typeCheckOnly=false： 如果为false，会将Bean标志为已创建,记录在alreadyCreated变量中。
 	 * 	真正实现向IOC容器获取Bean的功能，也是触发依赖注入功能的地方
 	 */
-
 	@SuppressWarnings("unchecked")
 	protected <T> T doGetBean(final String name, @Nullable final Class<T> requiredType,@Nullable final Object[] args, boolean typeCheckOnly) throws BeansException {
 		// 1、转换bean的名称,可能是工厂bean（需要去掉&前缀）,也可能是bean的别（优先使用别名）

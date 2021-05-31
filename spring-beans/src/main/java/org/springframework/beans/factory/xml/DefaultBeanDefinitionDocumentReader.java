@@ -241,14 +241,14 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 				int importCount;
 				// 判断是否为相对路径
 				Resource relativeResource = getReaderContext().getResource().createRelative(location);
-				// 如果是相对路径，则调用loadBeanDefinitions()方法加载该文件中的bean信息
+				// 如果是相对路径，则递归调用loadBeanDefinitions()方法加载该文件中的bean信息
 				if (relativeResource.exists()) {
 					importCount = getReaderContext().getReader().loadBeanDefinitions(relativeResource);
 					actualResources.add(relativeResource);
 				}else {
 					// 如果相对路径，也不是绝对路径，则将该路径当做一个外部url进行请求读取
 					String baseLocation = getReaderContext().getResource().getURL().toString();
-					// 继续调用loadBeanDefinitions()方法读取下载得到的xml文件信息
+					// 继续递归调用loadBeanDefinitions()方法读取下载得到的xml文件信息
 					importCount = getReaderContext().getReader().loadBeanDefinitions(StringUtils.applyRelativePath(baseLocation, location), actualResources);
 				}
 				if (logger.isTraceEnabled()) logger.trace("Imported " + importCount + " bean definitions from relative location [" + location + "]");
