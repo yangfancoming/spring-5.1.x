@@ -12,7 +12,6 @@ import org.springframework.core.Ordered;
  * @ Description: TODO
  * @ author  山羊来了
  * @ date 2019/8/17---20:39
- *
  * postProcessBeanFactory:23, MyBeanFactoryPostProcessorOne (com.goat.chapter185.item01)
  * lambda$invokeBeanFactoryPostProcessors$27:228, PostProcessorRegistrationDelegate (org.springframework.context.support)
  * invokeBeanFactoryPostProcessors:228, PostProcessorRegistrationDelegate (org.springframework.context.support)

@@ -12,10 +12,15 @@
 	</bean>
 
 
+	<bean id="person" class="com.goat.chapter185.common.Person"/>
+
+
 	<!-- ===== beanFactoryPostProcessor 配置  =====-->
+	<bean id="myBeanFactoryPostProcessor" class="com.goat.chapter185.item.MyBeanFactoryPostProcessor"/>
 	<!--注册第一个后置工厂处理器-->
 	<bean id="myBeanFactoryPostProcessorOne" class="com.goat.chapter185.item01.MyBeanFactoryPostProcessorOne"/>
 	<!--注册第二个后置工厂处理器-->
 	<bean id="myBeanFactoryPostProcessorTwo" class="com.goat.chapter185.item01.MyBeanFactoryPostProcessorTwo"/>
+
 
 </beans>
