@@ -348,6 +348,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 				// Set enhanced subclass of the user-specified bean class
 				Class<?> configClass = beanDef.resolveBeanClass(beanClassLoader);
 				if (configClass != null) {
+					// 对当前类进行cglib动态代理
 					Class<?> enhancedClass = enhancer.enhance(configClass, beanClassLoader);
 					if (configClass != enhancedClass) {
 						if (logger.isTraceEnabled()) {

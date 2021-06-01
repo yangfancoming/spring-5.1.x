@@ -307,9 +307,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					// 如果 bean 是 FactoryBean 类型，则调用工厂方法获取真正的 bean 实例。否则直接返回 bean 实例
 					// 从容器中获取刚刚创建好的bean
 					bean = getObjectForBeanInstance(sharedInstance, name, beanName, mbd);
-				}
+				}else if (mbd.isPrototype()) { // 原型对象的bean创建
 				// 创建 prototype 类型的 bean 实例  // 创建原型模式bean
-				else if (mbd.isPrototype()) { // 原型对象的bean创建
 					// It's a prototype -> create a new instance.
 					Object prototypeInstance;
 					try {

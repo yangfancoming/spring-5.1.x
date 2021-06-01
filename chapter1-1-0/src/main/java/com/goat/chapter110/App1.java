@@ -5,9 +5,9 @@ import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 
-/**  测试一： 自定义Bean的初始化和销毁方法
+/**
+ * 测试一： 自定义Bean的初始化和销毁方法
  * 通过 @Bean 指定 init-method 和 destroy-method
- * doit 为啥  BeanLifeCycle2.class 类中 去掉@Configuration注解也是可以的呢？？？
  */
 public class App1 {
 

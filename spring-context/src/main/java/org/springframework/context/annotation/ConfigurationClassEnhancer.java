@@ -299,8 +299,7 @@ class ConfigurationClassEnhancer {
 					beanName = scopedBeanName;
 				}
 			}
-			// To handle the case of an inter-bean method reference, we must explicitly check the
-			// container for already cached instances.
+			// To handle the case of an inter-bean method reference, we must explicitly check the container for already cached instances.
 			// First, check to see if the requested bean is a FactoryBean. If so, create a subclass
 			// proxy that intercepts calls to getObject() and returns any cached bean instance.
 			// This ensures that the semantics of calling a FactoryBean from within @Bean methods

@@ -390,9 +390,9 @@ class ConstructorResolver {
 	}
 
 	/**
-	 * Instantiate the bean using a named factory method. The method may be static, if the
-	 * bean definition parameter specifies a class, rather than a "factory-bean", or
-	 * an instance variable on a factory object itself configured using Dependency Injection.
+	 * Instantiate the bean using a named factory method.
+	 * The method may be static, if the bean definition parameter specifies a class, rather than a "factory-bean",
+	 *  or an instance variable on a factory object itself configured using Dependency Injection.
 	 * Implementation requires iterating over the static or instance methods with the
 	 * name specified in the RootBeanDefinition (the method may be overloaded) and trying
 	 * to match with the parameters. We don't have the types attached to constructor args,

@@ -20,7 +20,6 @@
     然而，如果一个singleton的bean想要在运行时，在每次注入时都能有一个新的prototype的bean生成并注入，这是不行的。
     因为依赖注入在初始化的时候只会注入一次。如果想要在运行时多次注入新的prototype的bean
     
-    
     1.4 request、session、application、websocket作用域
     request、session、application、websocket作用域只有在web环境下才有用。
 
