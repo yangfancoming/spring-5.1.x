@@ -36,7 +36,6 @@ import org.springframework.cglib.core.ProcessSwitchCallback;
 import org.springframework.cglib.core.ReflectUtils;
 import org.springframework.cglib.core.RejectModifierPredicate;
 import org.springframework.cglib.core.Signature;
-import org.springframework.cglib.core.Transformer;
 import org.springframework.cglib.core.TypeUtils;
 import org.springframework.cglib.core.VisibilityPredicate;
 import org.springframework.cglib.core.WeakCacheKey;

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * @ author  山羊来了
  * @ date 2020/5/6---21:03
  */
-//@Component
+@Component
 public class User {
 
 	public void say(String str){

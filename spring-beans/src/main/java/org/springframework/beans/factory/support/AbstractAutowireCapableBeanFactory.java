@@ -1038,7 +1038,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			return obtainFromSupplier(instanceSupplier, beanName);
 		}
 		// 通过工厂方法创建 支持工厂方法方式创建Bean
-		// 旧版本的Spring可以通过xml配置 <bean id='A' class='xxx' factory-method='getA'>从而获得静态的工厂方法获得bean A。
+		// 旧版本的Spring可以通过xml配置 <bean id='A' class='xxx' factory-method='getA'>从而获得静态的工厂方法获得bean A
 		// 另外@Bean注解的方法也走这里
 		if (mbd.getFactoryMethodName() != null) {
 			return instantiateUsingFactoryMethod(beanName, mbd, args);

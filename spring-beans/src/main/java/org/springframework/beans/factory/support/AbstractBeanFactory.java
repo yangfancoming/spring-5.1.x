@@ -534,6 +534,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			hasDestructionAwareBeanPostProcessors = true;
 		}
 		// Add to end of list
+		logger.warn("【IOC容器 添加 beanPostProcessors  --- 】 实现类： " + beanPostProcessor);
 		beanPostProcessors.add(beanPostProcessor);
 	}
 
