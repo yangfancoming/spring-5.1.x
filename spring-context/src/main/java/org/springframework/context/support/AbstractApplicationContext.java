@@ -588,7 +588,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	 */
 	protected ConfigurableListableBeanFactory obtainFreshBeanFactory() {
 		logger.warn("进入 【obtainFreshBeanFactory】 函数");
-		// 初始化BeanFactory并加载xml文件信息  // 关闭旧的 BeanFactory (如果有)，创建新的 BeanFactory，加载 Bean 定义、注册 Bean 等等
+		// 重点方法！ 初始化BeanFactory并加载xml文件信息  // 关闭旧的 BeanFactory (如果有)，创建新的 BeanFactory，加载 Bean 定义、注册 Bean 等等
 		refreshBeanFactory();
 		// 返回刚刚创建的 BeanFactory
 		return getBeanFactory();

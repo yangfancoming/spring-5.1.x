@@ -36,12 +36,18 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 public class App extends BaseTest {
 
+	@Test
+	public void ImportConfig(){
+		ApplicationContext ac = new AnnotationConfigApplicationContext(ImportConfig.class);
+		look(ac);
+	}
+
 	/**
 	 * 源码位置 ConfigurationClassParser#processImports()
 	 * @Import 导入简单类，id 默认是组件的全类名   @Import({Blue.class, Red.class})
 	*/
 	@Test
-	public void ImportConfig(){
+	public void ImportConfig1(){
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ImportConfig1.class);
 		look(ac);
 	}

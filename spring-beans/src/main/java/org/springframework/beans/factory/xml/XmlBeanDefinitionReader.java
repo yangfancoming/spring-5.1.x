@@ -400,7 +400,8 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	}
 
 	/**
-	 * Register the bean definitions contained in the given DOM document. Called by {@code loadBeanDefinitions}.
+	 * Register the bean definitions contained in the given DOM document.
+	 * Called by {@code loadBeanDefinitions}.
 	 * Creates a new instance of the parser class and invokes {@code registerBeanDefinitions} on it.
 	 * @param doc the DOM document
 	 * @param resource the resource descriptor (for context information)

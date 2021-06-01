@@ -37,7 +37,7 @@
 # 2.Bean的生命周期
     IoC容器启动
     实例化bean
-    如果Bean实现了BeanNameAware接口，则调用setBeanName(String name)返回beanName，该方法不是设置beanName，而只是让Bean获取自己在BeanFactory配置中的名字
+    如果Bean实现了 BeanNameAware 接口，则调用setBeanName(String name)返回beanName，该方法不是设置beanName，而只是让Bean获取自己在BeanFactory配置中的名字
     如果Bean实现BeanFactoryAware接口，会回调该接口的setBeanFactory(BeanFactory beanFactory)方法，传入该Bean的BeanFactory，这样该Bean就获得了自己所在的BeanFactory
     如果Bean实现了ApplicationContextAware接口，则调用该接口的setApplicationContext(ApplicationContext  applicationContext)方法，设置applicationContext
     如果有Bean实现了BeanPostProcessor接口，则调用该接口的postProcessBeforeInitialzation(Object bean，String beanName)方法，将此BeanPostProcessor应用于给定的新bean实例
