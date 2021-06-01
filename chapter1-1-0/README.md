@@ -38,14 +38,14 @@
     IoC容器启动
     实例化bean
     如果Bean实现了 BeanNameAware 接口，则调用setBeanName(String name)返回beanName，该方法不是设置beanName，而只是让Bean获取自己在BeanFactory配置中的名字
-    如果Bean实现BeanFactoryAware接口，会回调该接口的setBeanFactory(BeanFactory beanFactory)方法，传入该Bean的BeanFactory，这样该Bean就获得了自己所在的BeanFactory
-    如果Bean实现了ApplicationContextAware接口，则调用该接口的setApplicationContext(ApplicationContext  applicationContext)方法，设置applicationContext
-    如果有Bean实现了BeanPostProcessor接口，则调用该接口的postProcessBeforeInitialzation(Object bean，String beanName)方法，将此BeanPostProcessor应用于给定的新bean实例
-    如果Bean实现了InitializingBean接口，则会回调该接口的afterPropertiesSet()方法
-    如果Bean配置了init-method方法，则会执行init-method配置的方法
-    如果Bean实现了BeanPostProcessor接口，则会回调该接口的postProcessAfterInitialization(Object bean，String beanName)方法
+    如果Bean实现 BeanFactoryAware 接口，会回调该接口的setBeanFactory(BeanFactory beanFactory)方法，传入该Bean的BeanFactory，这样该Bean就获得了自己所在的BeanFactory
+    如果Bean实现了 ApplicationContextAware 接口，则调用该接口的setApplicationContext(ApplicationContext  applicationContext)方法，设置applicationContext
+    如果有Bean实现了 BeanPostProcessor 接口，则调用该接口的postProcessBeforeInitialzation(Object bean，String beanName)方法，将此BeanPostProcessor应用于给定的新bean实例
+    如果Bean实现了 InitializingBean 接口，则会回调该接口的afterPropertiesSet()方法
+    如果Bean配置了 init-method 方法，则会执行init-method配置的方法
+    如果Bean实现了 BeanPostProcessor 接口，则会回调该接口的postProcessAfterInitialization(Object bean，String beanName)方法
     到此为止，spring中的bean已经可以使用了，这里又涉及到了bean的作用域问题，对于singleton类型的bean，Spring会将其缓存;对于prototype类型的bean，不缓存，每次都创建新的bean的实例
-    容器关，如果Bean实现了DisposableBean接口，则会回调该接口的destroy()方法销毁bean，
-    如果用户配置了定destroy-method，则调用自定义方法销毁bean
+    容器关，如果Bean实现了 DisposableBean 接口，则会回调该接口的destroy()方法销毁bean，
+    如果用户配置了定 destroy-method ，则调用自定义方法销毁bean
     
 

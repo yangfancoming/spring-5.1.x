@@ -14,11 +14,7 @@ import org.springframework.stereotype.Component;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Ramnivas Laddad
 
- * @author Oliver Gierke
- */
 public class AnnotationTypeFilterTests {
 
 	@Test

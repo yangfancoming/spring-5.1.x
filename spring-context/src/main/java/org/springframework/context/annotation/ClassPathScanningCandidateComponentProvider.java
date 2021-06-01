@@ -161,15 +161,14 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 
 	/**
 	 * Register the default filter for {@link Component @Component}.
-	 * This will implicitly register all annotations that have the
-	 * {@link Component @Component} meta-annotation including the
-	 * {@link Repository @Repository}, {@link Service @Service}, and
-	 * {@link Controller @Controller} stereotype annotations.
+	 * This will implicitly register all annotations that have the {@link Component @Component} meta-annotation
+	 * including the {@link Repository @Repository}, {@link Service @Service}, and {@link Controller @Controller} stereotype annotations.
 	 * Also supports Java EE 6's {@link javax.annotation.ManagedBean} and  JSR-330's {@link javax.inject.Named} annotations, if available.
 	 */
 	@SuppressWarnings("unchecked")
 	protected void registerDefaultFilters() {
 		// 这里需要注意，默认情况下都是添加了@Component这个注解的（相当于@Service @Controller @Respository等都会扫描，因为这些注解都属于@Component）  另外@Configuration也属于哦
+		logger.warn("【 设置默认注解扫描类型】 @Component ");
 		includeFilters.add(new AnnotationTypeFilter(Component.class));
 		ClassLoader cl = ClassPathScanningCandidateComponentProvider.class.getClassLoader();
 		//下面两个 是兼容JSR-250的@ManagedBean和330的@Named注解
@@ -391,10 +390,10 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 				//需要时可读的 //文件必须可读 否则直接返回空了
 				if (resource.isReadable()) {
 					try {
-						//获取封装了resource的MetadataReader
-						//读取类的 注解信息 和 类信息 ，两大信息储存到  MetadataReader
+						// 获取封装了resource的MetadataReader
+						// 读取类的 注解信息 和 类信息 ，两大信息储存到  MetadataReader
 						MetadataReader metadataReader = getMetadataReaderFactory().getMetadataReader(resource);
-						//检查metadataReader中的对象的className是否符合指定的excludeFilters跟includeFilters的筛选
+						//检查metadataReader中的对象的className是否符合指定的excludeFilters和includeFilters的筛选
 						// 根据TypeFilter过滤排除组件。因为AppConfig没有标准@Component或者子注解，所以肯定不属于候选组件  返回false
 						// 注意：这里一般(默认处理的情况下)标注了默认注解的才会true，什么叫默认注解呢？就是@Component或者派生注解。还有javax....的，这里省略啦
 						if (isCandidateComponent(metadataReader)) {

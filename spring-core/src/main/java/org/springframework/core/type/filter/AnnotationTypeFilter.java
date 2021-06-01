@@ -12,14 +12,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * A simple filter which matches classes with a given annotation,
- * checking inherited annotations as well.
- *
+ * A simple filter which matches classes with a given annotation, checking inherited annotations as well.
  * The matching logic mirrors that of {@link java.lang.Class#isAnnotationPresent(Class)}.
- *
- * @author Mark Fisher
- * @author Ramnivas Laddad
-
  * @since 2.5
  */
 public class AnnotationTypeFilter extends AbstractTypeHierarchyTraversingFilter {
@@ -27,7 +21,6 @@ public class AnnotationTypeFilter extends AbstractTypeHierarchyTraversingFilter 
 	private final Class<? extends Annotation> annotationType;
 
 	private final boolean considerMetaAnnotations;
-
 
 	/**
 	 * Create a new AnnotationTypeFilter for the given annotation type.
@@ -72,6 +65,7 @@ public class AnnotationTypeFilter extends AbstractTypeHierarchyTraversingFilter 
 
 	@Override
 	protected boolean matchSelf(MetadataReader metadataReader) {
+		// 获取当前类注解信息(当前类指componentScan指定扫描的类)  实现类为 AnnotationMetadataReadingVisitor
 		AnnotationMetadata metadata = metadataReader.getAnnotationMetadata();
 		return metadata.hasAnnotation(this.annotationType.getName()) || (this.considerMetaAnnotations && metadata.hasMetaAnnotation(this.annotationType.getName()));
 	}

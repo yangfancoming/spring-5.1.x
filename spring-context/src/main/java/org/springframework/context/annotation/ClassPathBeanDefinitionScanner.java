@@ -226,7 +226,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 		// 使用之前注册的过滤器进行过滤，得到符合条件的BeanDefinitionHolder对象
 		// 装载扫描到的Bean
 		Set<BeanDefinitionHolder> beanDefinitions = new LinkedHashSet<>();
-		//循环需要扫描的包basePackage
+		// 循环需要扫描的包basePackage
 		for (String basePackage : basePackages) {
 			//寻找合适的候选bean，并封装成BeanDefinition
 			// 这个是重点，会把该包下面所有的Bean都扫描进去。Spring5和一下的处理方式不一样哦~

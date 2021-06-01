@@ -170,8 +170,7 @@ public abstract class AnnotatedElementUtils {
 	}
 
 	/**
-	 * Determine if the supplied {@link AnnotatedElement} is annotated with a
-	 * <em>composed annotation</em> that is meta-annotated with an annotation of the specified {@code annotationName}.
+	 * Determine if the supplied {@link AnnotatedElement} is annotated with a  <em>composed annotation</em> that is meta-annotated with an annotation of the specified {@code annotationName}.
 	 * This method follows <em>get semantics</em> as described in the {@linkplain AnnotatedElementUtils class-level javadoc}.
 	 * @param element the annotated element
 	 * @param annotationName the fully qualified class name of the meta-annotation type to find

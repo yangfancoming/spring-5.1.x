@@ -64,7 +64,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	}
 
 	/**
-	 * Create a new AnnotationConfigApplicationContext, scanning for bean definitions  in the given packages and automatically refreshing the context.
+	 * Create a new AnnotationConfigApplicationContext, scanning for bean definitions in the given packages and automatically refreshing the context.
 	 * @param basePackages the packages to check for annotated classes
 	 */
 	public AnnotationConfigApplicationContext(String... basePackages) {

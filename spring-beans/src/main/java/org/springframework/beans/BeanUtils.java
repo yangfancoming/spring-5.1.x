@@ -132,7 +132,14 @@ public abstract class BeanUtils {
 			// 设置构造方法为可访问
 			ReflectionUtils.makeAccessible(ctor);
 			// 通过反射创建 bean 实例，这里的 args 是一个没有元素的空数组
-			return (KotlinDetector.isKotlinReflectPresent() && KotlinDetector.isKotlinType(ctor.getDeclaringClass()) ? KotlinDelegate.instantiateClass(ctor, args) : ctor.newInstance(args));
+			T t; // modify
+			if (KotlinDetector.isKotlinReflectPresent() && KotlinDetector.isKotlinType(ctor.getDeclaringClass())){
+				t =  KotlinDelegate.instantiateClass(ctor, args);
+			}else {
+				t =  ctor.newInstance(args);
+			}
+			logger.warn("【 IOC容器 bean实例化 】 beanName： " + t);
+			return t;
 		} catch (InstantiationException ex) {
 			throw new BeanInstantiationException(ctor, "Is it an abstract class?", ex);
 		} catch (IllegalAccessException ex) {
