@@ -53,7 +53,7 @@ public abstract class AbstractApplicationContextTests extends AbstractListableBe
 	protected abstract ConfigurableApplicationContext createContext() throws Exception;
 
 	@Test
-	public void contextAwareSingletonWasCalledBack() throws Exception {
+	public void contextAwareSingletonWasCalledBack() {
 		ACATester aca = (ACATester) applicationContext.getBean("aca");
 		assertTrue("has had context set", aca.getApplicationContext() == applicationContext);
 		Object aca2 = applicationContext.getBean("aca");

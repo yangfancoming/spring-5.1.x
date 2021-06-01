@@ -17,6 +17,12 @@ public class Dog {
 
 	/** 默认构造函数 **/
 	public Dog() {
+		System.out.println("默认构造函数");
+	}
+
+	public Dog(String name) {
+		this.name = name;
+		System.out.println("单参构造函数");
 	}
 
 	/**
@@ -27,6 +33,7 @@ public class Dog {
 	public Dog(String name, int age) {
 		this.name = name;
 		this.age = age;
+		System.out.println("双参构造函数");
 	}
 
 	public void sayHello() {

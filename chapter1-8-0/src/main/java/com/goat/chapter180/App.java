@@ -26,7 +26,6 @@ public class App {
 	@Test
 	public void test1() {
 		// 默认构造器
-		System.out.println("默认构造器");
 		Dog dog1 = xmlBeanFactory.getBean("dog1", Dog.class);
 		dog1.sayHello();
 	}
@@ -34,7 +33,6 @@ public class App {
 	@Test
 	public void test2() {
 		// 指定构造器
-		System.out.println("有参构造器");
 		Dog dog2 = xmlBeanFactory.getBean("dog2", Dog.class);
 		dog2.sayHello();
 	}
@@ -42,7 +40,6 @@ public class App {
 	@Test
 	public void test3() {
 		// 静态工厂
-		System.out.println("静态工厂");
 		Dog dog3 = xmlBeanFactory.getBean("dog3", Dog.class);
 		dog3.sayHello();
 	}
@@ -50,7 +47,6 @@ public class App {
 	@Test
 	public void test4() {
 		// 实例工厂
-		System.out.println("实例工厂");
 		Dog dog4 = xmlBeanFactory.getBean("dog4", Dog.class);
 		dog4.sayHello();
 	}

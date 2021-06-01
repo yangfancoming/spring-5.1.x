@@ -27,12 +27,10 @@
 	</bean>
 
 
-
 	<!-- 静态工厂方法实例化 -->
 	<bean id="dog3" class="com.goat.chapter180.DogStaticFactory" factory-method="newInstance">
 		<!-- 指定构造器参数 index对应构造器中参数的位置 -->
 		<constructor-arg index="0" value="小明"/>
-		<constructor-arg index="1" value="3"/>
 	</bean>
 </beans>
 

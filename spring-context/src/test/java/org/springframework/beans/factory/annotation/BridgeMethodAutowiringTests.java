@@ -4,9 +4,7 @@ package org.springframework.beans.factory.annotation;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import org.junit.Test;
-
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 

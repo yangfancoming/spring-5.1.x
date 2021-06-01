@@ -10,6 +10,7 @@ package com.goat.chapter180;
 
 public class DogFactory {
 
+	// 普通函数
 	public Dog newInstance(String name, int age) {
 		return new Dog(name, age);
 	}

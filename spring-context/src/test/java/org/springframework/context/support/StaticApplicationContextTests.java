@@ -19,15 +19,13 @@ import org.springframework.tests.sample.beans.TestBean;
 
 /**
  * Tests for static application context.
- *
- * @author Rod Johnson
  */
 public class StaticApplicationContextTests extends AbstractApplicationContextTests {
 
 	protected StaticApplicationContext sac;
 
 	@Override
-	protected ConfigurableApplicationContext createContext() throws Exception {
+	protected ConfigurableApplicationContext createContext() {
 		StaticApplicationContext parent = new StaticApplicationContext();
 		Map<String, String> m = new HashMap<>();
 		m.put("name", "Roderick");
