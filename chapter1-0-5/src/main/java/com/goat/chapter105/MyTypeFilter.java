@@ -5,8 +5,6 @@ import org.springframework.core.type.classreading.MetadataReader;
 import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.core.type.filter.TypeFilter;
 
-import java.io.IOException;
-
 /**
  * Created by Administrator on 2020/3/17.
  * @ Description: TODO
@@ -20,7 +18,7 @@ public class MyTypeFilter implements TypeFilter {
 	 * metadataReaderFactory:可以获取到其他任何类信息的
 	 */
 	@Override
-	public boolean match(MetadataReader metadataReader, MetadataReaderFactory metadataReaderFactory) throws IOException {
+	public boolean match(MetadataReader metadataReader, MetadataReaderFactory metadataReaderFactory) {
 		//获取当前类注解的信息
 		System.out.println(metadataReader.getAnnotationMetadata());
 		//获取当前类资源（类的路径）

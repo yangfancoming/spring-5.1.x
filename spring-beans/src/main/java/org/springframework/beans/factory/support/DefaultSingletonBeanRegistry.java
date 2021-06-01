@@ -136,6 +136,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		synchronized (singletonObjects) {
 			// 将动态代理后的bean 或是正常的非代理的单例bena 存入map缓存中  全局唯一入口
 			singletonObjects.put(beanName, singletonObject);
+			logger.warn("【IOC容器 添加 singletonObjects 单例缓冲池 全局唯一入口！ 】 beanName： " + beanName);
 			// 该单例对象已经注册成功，则需要从工厂集合中移除，后面不需要再次注册
 			// beanName已被注册存放在singletonObjects缓存，那么singletonFactories不应该再持有名称为beanName的工厂
 			singletonFactories.remove(beanName);
