@@ -20,8 +20,6 @@ import static org.junit.Assert.*;
 
 /**
  * System tests for {@link Import} annotation support.
-
-
  */
 public class ImportTests {
 
@@ -42,7 +40,6 @@ public class ImportTests {
 		for (Class<?> clazz : classes) {
 			beanFactory.getBean(clazz);
 		}
-
 	}
 
 	@Test
@@ -104,7 +101,6 @@ public class ImportTests {
 	}
 
 	// ------------------------------------------------------------------------
-
 	@Test
 	public void testImportAnnotationWithTwoLevelRecursion() {
 		int configClasses = 2;

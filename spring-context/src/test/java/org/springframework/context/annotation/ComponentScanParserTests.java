@@ -22,12 +22,7 @@ import org.springframework.core.type.filter.TypeFilter;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-/**
- * @author Mark Fisher
 
-
- * @author Sam Brannen
- */
 public class ComponentScanParserTests {
 
 	private ClassPathXmlApplicationContext loadContext(String path) {

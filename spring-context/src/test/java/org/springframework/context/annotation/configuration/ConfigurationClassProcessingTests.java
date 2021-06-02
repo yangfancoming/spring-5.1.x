@@ -51,26 +51,20 @@ import static org.junit.Assert.*;
 /**
  * Miscellaneous system tests covering {@link Bean} naming, aliases, scoping and
  * error handling within {@link Configuration} class definitions.
-
-
- * @author Sam Brannen
  */
 public class ConfigurationClassProcessingTests {
 
 	@Rule
 	public final ExpectedException exception = ExpectedException.none();
 
-
 	@Test
 	public void customBeanNameIsRespectedWhenConfiguredViaNameAttribute() {
-		customBeanNameIsRespected(ConfigWithBeanWithCustomName.class,
-				() -> ConfigWithBeanWithCustomName.testBean, "customName");
+		customBeanNameIsRespected(ConfigWithBeanWithCustomName.class,() -> ConfigWithBeanWithCustomName.testBean, "customName");
 	}
 
 	@Test
 	public void customBeanNameIsRespectedWhenConfiguredViaValueAttribute() {
-		customBeanNameIsRespected(ConfigWithBeanWithCustomNameConfiguredViaValueAttribute.class,
-				() -> ConfigWithBeanWithCustomNameConfiguredViaValueAttribute.testBean, "enigma");
+		customBeanNameIsRespected(ConfigWithBeanWithCustomNameConfiguredViaValueAttribute.class,() -> ConfigWithBeanWithCustomNameConfiguredViaValueAttribute.testBean, "enigma");
 	}
 
 	private void customBeanNameIsRespected(Class<?> testClass, Supplier<TestBean> testBeanSupplier, String beanName) {

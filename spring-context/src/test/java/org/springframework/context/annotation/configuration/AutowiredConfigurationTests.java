@@ -137,15 +137,13 @@ public class AutowiredConfigurationTests {
 
 	@Test
 	public void testValueInjectionWithProviderConstructorArguments() {
-		AnnotationConfigApplicationContext context =
-				new AnnotationConfigApplicationContext(ValueConfigWithProviderConstructorArguments.class);
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ValueConfigWithProviderConstructorArguments.class);
 		doTestValueInjection(context);
 	}
 
 	@Test
 	public void testValueInjectionWithProviderMethodArguments() {
-		AnnotationConfigApplicationContext context =
-				new AnnotationConfigApplicationContext(ValueConfigWithProviderMethodArguments.class);
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ValueConfigWithProviderMethodArguments.class);
 		doTestValueInjection(context);
 	}
 

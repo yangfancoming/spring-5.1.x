@@ -14,14 +14,11 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
-/**
- * @author Phillip Webb
 
- */
 public class BeanMethodMetadataTests {
 
 	@Test
-	public void providesBeanMethodBeanDefinition() throws Exception {
+	public void providesBeanMethodBeanDefinition() {
 		AnnotationConfigApplicationContext context= new AnnotationConfigApplicationContext(Conf.class);
 		BeanDefinition beanDefinition = context.getBeanDefinition("myBean");
 		assertThat("should provide AnnotatedBeanDefinition", beanDefinition, instanceOf(AnnotatedBeanDefinition.class));
@@ -49,7 +46,6 @@ public class BeanMethodMetadataTests {
 
 	@Retention(RetentionPolicy.RUNTIME)
 	public static @interface MyAnnotation {
-
 		String value();
 	}
 

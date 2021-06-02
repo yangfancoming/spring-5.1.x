@@ -33,8 +33,6 @@ import static org.junit.Assert.*;
  * Currently it is assumed that the user is bootstrapping Configuration class processing via XML (using
  * annotation-config or component-scan), and thus will also use {@code <aop:aspectj-autoproxy/>} to enable
  * processing of the Aspect annotation.
-
-
  */
 public class ConfigurationClassAspectIntegrationTests {
 
@@ -50,8 +48,7 @@ public class ConfigurationClassAspectIntegrationTests {
 
 	private void assertAdviceWasApplied(Class<?> configClass) {
 		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
-		new XmlBeanDefinitionReader(factory).loadBeanDefinitions(
-				new ClassPathResource("aspectj-autoproxy-config.xml", ConfigurationClassAspectIntegrationTests.class));
+		new XmlBeanDefinitionReader(factory).loadBeanDefinitions(new ClassPathResource("aspectj-autoproxy-config.xml", ConfigurationClassAspectIntegrationTests.class));
 		GenericApplicationContext ctx = new GenericApplicationContext(factory);
 		ctx.addBeanFactoryPostProcessor(new ConfigurationClassPostProcessor());
 		ctx.registerBeanDefinition("config", new RootBeanDefinition(configClass));
@@ -67,7 +64,6 @@ public class ConfigurationClassAspectIntegrationTests {
 	public void withInnerClassAndLambdaExpression() {
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(Application.class, CountingAspect.class);
 		ctx.getBeansOfType(Runnable.class).forEach((k, v) -> v.run());
-
 		// TODO: returns just 1 as of AspectJ 1.9 beta 3, not detecting the applicable lambda expression anymore
 		// assertEquals(2, ctx.getBean(CountingAspect.class).count);
 	}
@@ -76,12 +72,10 @@ public class ConfigurationClassAspectIntegrationTests {
 	@Aspect
 	@Configuration
 	static class AspectConfig {
-
 		@Bean
 		public TestBean testBean() {
 			return new TestBean("name");
 		}
-
 		@Before("execution(* org.springframework.tests.sample.beans.TestBean.absquatulate(..)) && target(testBean)")
 		public void touchBean(TestBean testBean) {
 			testBean.setName("advisedName");
@@ -91,12 +85,10 @@ public class ConfigurationClassAspectIntegrationTests {
 
 	@Configuration
 	static class ConfigurationWithAspect {
-
 		@Bean
 		public TestBean testBean() {
 			return new TestBean("name");
 		}
-
 		@Bean
 		public NameChangingAspect nameChangingAspect() {
 			return new NameChangingAspect();
@@ -106,13 +98,11 @@ public class ConfigurationClassAspectIntegrationTests {
 
 	@Aspect
 	static class NameChangingAspect {
-
 		@Before("execution(* org.springframework.tests.sample.beans.TestBean.absquatulate(..)) && target(testBean)")
 		public void touchBean(TestBean testBean) {
 			testBean.setName("advisedName");
 		}
 	}
-
 
 
 	@Configuration

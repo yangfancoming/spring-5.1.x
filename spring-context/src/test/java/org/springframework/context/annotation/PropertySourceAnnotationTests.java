@@ -31,15 +31,12 @@ import static org.junit.Assert.*;
 
 /**
  * Tests the processing of @PropertySource annotations on @Configuration classes.
-
- * @author Phillip Webb
  * @since 3.1
  */
 public class PropertySourceAnnotationTests {
 
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
-
 
 	@Test
 	public void withExplicitName() {
@@ -267,9 +264,7 @@ public class PropertySourceAnnotationTests {
 	@Configuration
 	@PropertySource(value="classpath:${unresolvable:org/springframework/context/annotation}/p1.properties")
 	static class ConfigWithUnresolvablePlaceholderAndDefault {
-
 		@Inject Environment env;
-
 		@Bean
 		public TestBean testBean() {
 			return new TestBean(env.getProperty("testbean.name"));

@@ -17,28 +17,27 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 /**
- * Unit tests ensuring that configuration class bean names as expressed via @Configuration
- * or @Component 'value' attributes are indeed respected, and that customization of bean
- * naming through a BeanNameGenerator strategy works as expected.
-
+ * Unit tests ensuring that configuration class bean names as expressed via @Configuration or @Component 'value' attributes are indeed respected,
+ * and that customization of bean naming through a BeanNameGenerator strategy works as expected.
  * @since 3.1.1
  */
 public class ConfigurationBeanNameTests {
 
+	AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+
 	@Test
 	public void registerOuterConfig() {
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
 		ctx.register(A.class);
 		ctx.refresh();
 		assertThat(ctx.containsBean("outer"), is(true));
 		assertThat(ctx.containsBean("imported"), is(true));
 		assertThat(ctx.containsBean("nested"), is(true));
 		assertThat(ctx.containsBean("nestedBean"), is(true));
+		assertThat(ctx.containsBean("s"), is(true));
 	}
 
 	@Test
 	public void registerNestedConfig() {
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
 		ctx.register(A.B.class);
 		ctx.refresh();
 		assertThat(ctx.containsBean("outer"), is(false));
@@ -49,11 +48,9 @@ public class ConfigurationBeanNameTests {
 
 	@Test
 	public void registerOuterConfig_withBeanNameGenerator() {
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
 		ctx.setBeanNameGenerator(new AnnotationBeanNameGenerator() {
 			@Override
-			public String generateBeanName(
-					BeanDefinition definition, BeanDefinitionRegistry registry) {
+			public String generateBeanName(BeanDefinition definition, BeanDefinitionRegistry registry) {
 				return "custom-" + super.generateBeanName(definition, registry);
 			}
 		});
@@ -66,16 +63,18 @@ public class ConfigurationBeanNameTests {
 	}
 
 	@Configuration("outer")
-	@Import(C.class)
+	@Import( C.class)
 	static class A {
 		@Component("nested")
 		static class B {
-			@Bean public String nestedBean() { return ""; }
+			@Bean
+			public String nestedBean() { return ""; }
 		}
 	}
 
 	@Configuration("imported")
 	static class C {
-		@Bean public String s() { return "s"; }
+		@Bean
+		public String s() { return "s"; }
 	}
 }

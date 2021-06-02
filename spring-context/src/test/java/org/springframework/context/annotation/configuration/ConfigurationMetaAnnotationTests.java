@@ -17,7 +17,6 @@ import static org.junit.Assert.*;
 
 /**
  * Ensures that @Configuration is supported properly as a meta-annotation.
-
  */
 public class ConfigurationMetaAnnotationTests {
 
@@ -41,7 +40,6 @@ public class ConfigurationMetaAnnotationTests {
 			a.setSpouse(b());
 			return a;
 		}
-
 		@Bean
 		public TestBean b() {
 			return new TestBean();

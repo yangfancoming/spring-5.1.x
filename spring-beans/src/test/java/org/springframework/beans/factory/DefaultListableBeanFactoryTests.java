@@ -2,31 +2,6 @@
 
 package org.springframework.beans.factory;
 
-import java.io.Closeable;
-import java.io.Serializable;
-import java.lang.reflect.Field;
-import java.net.MalformedURLException;
-import java.security.AccessControlContext;
-import java.security.AccessController;
-import java.security.Principal;
-import java.security.PrivilegedAction;
-import java.text.NumberFormat;
-import java.text.ParseException;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Properties;
-import java.util.Set;
-import java.util.concurrent.Callable;
-import java.util.stream.Collectors;
-import javax.annotation.Priority;
-import javax.security.auth.Subject;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Ignore;
@@ -34,35 +9,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.ArgumentMatchers;
-
-import org.springframework.beans.BeansException;
-import org.springframework.beans.MutablePropertyValues;
-import org.springframework.beans.NotWritablePropertyException;
-import org.springframework.beans.PropertyEditorRegistrar;
-import org.springframework.beans.PropertyEditorRegistry;
-import org.springframework.beans.PropertyValue;
-import org.springframework.beans.TypeConverter;
-import org.springframework.beans.TypeMismatchException;
-import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
-import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.beans.factory.config.BeanExpressionContext;
-import org.springframework.beans.factory.config.BeanExpressionResolver;
-import org.springframework.beans.factory.config.BeanPostProcessor;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.beans.factory.config.ConstructorArgumentValues;
-import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter;
-import org.springframework.beans.factory.config.PropertiesFactoryBean;
-import org.springframework.beans.factory.config.RuntimeBeanReference;
-import org.springframework.beans.factory.config.TypedStringValue;
-import org.springframework.beans.factory.support.AbstractBeanDefinition;
-import org.springframework.beans.factory.support.AbstractBeanFactory;
-import org.springframework.beans.factory.support.BeanDefinitionBuilder;
-import org.springframework.beans.factory.support.BeanDefinitionOverrideException;
-import org.springframework.beans.factory.support.ChildBeanDefinition;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
-import org.springframework.beans.factory.support.ManagedList;
-import org.springframework.beans.factory.support.PropertiesBeanDefinitionReader;
-import org.springframework.beans.factory.support.RootBeanDefinition;
+import org.springframework.beans.*;
+import org.springframework.beans.factory.config.*;
+import org.springframework.beans.factory.support.*;
 import org.springframework.beans.factory.xml.ConstructorDependenciesBean;
 import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.core.MethodParameter;
@@ -76,19 +25,30 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.lang.Nullable;
 import org.springframework.tests.Assume;
 import org.springframework.tests.TestGroup;
-import org.springframework.tests.sample.beans.DependenciesBean;
-import org.springframework.tests.sample.beans.DerivedTestBean;
-import org.springframework.tests.sample.beans.ITestBean;
-import org.springframework.tests.sample.beans.LifecycleBean;
-import org.springframework.tests.sample.beans.NestedTestBean;
-import org.springframework.tests.sample.beans.SideEffectBean;
-import org.springframework.tests.sample.beans.TestBean;
+import org.springframework.tests.sample.beans.*;
 import org.springframework.tests.sample.beans.factory.DummyFactory;
 import org.springframework.util.SerializationTestUtils;
 import org.springframework.util.StopWatch;
 import org.springframework.util.StringValueResolver;
 
-import static org.hamcrest.Matchers.*;
+import javax.annotation.Priority;
+import javax.security.auth.Subject;
+import java.io.Closeable;
+import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.net.MalformedURLException;
+import java.security.AccessControlContext;
+import java.security.AccessController;
+import java.security.Principal;
+import java.security.PrivilegedAction;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.*;
+import java.util.concurrent.Callable;
+import java.util.stream.Collectors;
+
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
@@ -103,6 +63,15 @@ public class DefaultListableBeanFactoryTests {
 
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
+
+
+	@Test
+	public void test() {
+		System.out.println(KnowsIfInstantiated.wasInstantiated());
+		System.out.println(KnowsIfInstantiated.instantiated);
+		KnowsIfInstantiated knowsIfInstantiated = new KnowsIfInstantiated();
+		System.out.println(knowsIfInstantiated);
+	}
 
 	// 测试 preInstantiateSingletons 方法
 	@Test
@@ -141,6 +110,7 @@ public class DefaultListableBeanFactoryTests {
 		assertTrue("singleton was instantiated", KnowsIfInstantiated.wasInstantiated());
 	}
 
+	//  测试 FactoryBean
 	@Test
 	public void testFactoryBeanDidNotCreatePrototype() {
 		Properties p = new Properties();
@@ -464,6 +434,7 @@ public class DefaultListableBeanFactoryTests {
 		assertTrue("No beans defined after no arg constructor", lbf.getBeanDefinitionCount() == 0);
 	}
 
+	// 测试 使用空属性的Properties对象进行bean注册 是无效的注册
 	@Test
 	public void testEmptyPropertiesPopulation() {
 		Properties p = new Properties();
@@ -471,6 +442,7 @@ public class DefaultListableBeanFactoryTests {
 		assertTrue("No beans defined after ignorable invalid", lbf.getBeanDefinitionCount() == 0);
 	}
 
+	// 测试 使用无效属性的Properties对象进行bean注册  也是将被忽略的
 	@Test
 	public void testHarmlessIgnorableRubbish() {
 		Properties p = new Properties();
@@ -486,6 +458,7 @@ public class DefaultListableBeanFactoryTests {
 		p.setProperty("test.(class)", TestBean.class.getName());
 		p.setProperty("test.name", "Tony");
 		p.setProperty("test.age", "48");
+		// 测试 使用null作为前缀 进行bean注册
 		int count = (new PropertiesBeanDefinitionReader(lbf)).registerBeanDefinitions(p);
 		assertTrue("1 beans registered, not " + count, count == 1);
 		testSingleTestBean(lbf);
@@ -498,6 +471,7 @@ public class DefaultListableBeanFactoryTests {
 		p.setProperty(PREFIX + "test.(class)", TestBean.class.getName());
 		p.setProperty(PREFIX + "test.name", "Tony");
 		p.setProperty(PREFIX + "test.age", "0x30");
+		// 测试 使用非空作为前缀 进行bean注册
 		int count = (new PropertiesBeanDefinitionReader(lbf)).registerBeanDefinitions(p, PREFIX);
 		assertTrue("1 beans registered, not " + count, count == 1);
 		testSingleTestBean(lbf);
@@ -507,13 +481,14 @@ public class DefaultListableBeanFactoryTests {
 	public void testSimpleReference() {
 		String PREFIX = "beans.";
 		Properties p = new Properties();
-
+		// rod (凯瑞的配偶)
 		p.setProperty(PREFIX + "rod.(class)", TestBean.class.getName());
 		p.setProperty(PREFIX + "rod.name", "Rod");
-
+		// 凯瑞
 		p.setProperty(PREFIX + "kerry.(class)", TestBean.class.getName());
 		p.setProperty(PREFIX + "kerry.name", "Kerry");
 		p.setProperty(PREFIX + "kerry.age", "35");
+		// 测试 简单引用
 		p.setProperty(PREFIX + "kerry.spouse(ref)", "rod");
 
 		int count = (new PropertiesBeanDefinitionReader(lbf)).registerBeanDefinitions(p, PREFIX);
@@ -529,8 +504,8 @@ public class DefaultListableBeanFactoryTests {
 	@Test
 	public void testPropertiesWithDotsInKey() {
 		Properties p = new Properties();
-
 		p.setProperty("tb.(class)", TestBean.class.getName());
+		// 测试  给bean对象中的map属性赋值
 		p.setProperty("tb.someMap[my.key]", "my.value");
 
 		int count = (new PropertiesBeanDefinitionReader(lbf)).registerBeanDefinitions(p);
@@ -545,20 +520,18 @@ public class DefaultListableBeanFactoryTests {
 	public void testUnresolvedReference() {
 		String PREFIX = "beans.";
 		Properties p = new Properties();
-
 		try {
 			p.setProperty(PREFIX + "kerry.(class)", TestBean.class.getName());
 			p.setProperty(PREFIX + "kerry.name", "Kerry");
 			p.setProperty(PREFIX + "kerry.age", "35");
 			p.setProperty(PREFIX + "kerry.spouse(ref)", "rod");
-
 			(new PropertiesBeanDefinitionReader(lbf)).registerBeanDefinitions(p, PREFIX);
-
+			// 触发异常 因为kerry对象中需要rod的引用，但是rod并没有被注册到容器中
 			lbf.getBean("kerry");
 			fail("Unresolved reference should have been detected");
-		}
-		catch (BeansException ex) {
+		}catch (BeansException ex) {
 			// cool
+			System.out.println(ex);
 		}
 	}
 
@@ -643,8 +616,7 @@ public class DefaultListableBeanFactoryTests {
 		try {
 			lbf.getBean("kerry");
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		}catch (BeanCreationException ex) {
 			// expected
 			assertTrue(ex.contains(BeanCurrentlyInCreationException.class));
 		}
@@ -713,8 +685,7 @@ public class DefaultListableBeanFactoryTests {
 		assertEquals(EXPECTED_NAME, child.getName());
 		assertEquals(EXPECTED_AGE, child.getAge());
 
-		assertEquals("Use cached merged bean definition",
-				factory.getMergedBeanDefinition("child"), factory.getMergedBeanDefinition("child"));
+		assertEquals("Use cached merged bean definition",factory.getMergedBeanDefinition("child"), factory.getMergedBeanDefinition("child"));
 	}
 
 	@Test
@@ -749,6 +720,7 @@ public class DefaultListableBeanFactoryTests {
 	private void testSingleTestBean(ListableBeanFactory lbf) {
 		assertTrue("1 beans defined", lbf.getBeanDefinitionCount() == 1);
 		String[] names = lbf.getBeanDefinitionNames();
+		// 测试 lbf.getBeanDefinitionNames() 每次都会new一个新的数组出来
 		assertTrue(names != lbf.getBeanDefinitionNames());
 		assertTrue("Array length == 1", names.length == 1);
 		assertTrue("0th element == test", names[0].equals("test"));
@@ -762,23 +734,18 @@ public class DefaultListableBeanFactoryTests {
 	public void testAliasCircle() {
 		lbf.registerAlias("test", "test2");
 		lbf.registerAlias("test2", "test3");
-
 		try {
 			lbf.registerAlias("test3", "test2");
 			fail("Should have thrown IllegalStateException");
-		}
-		catch (IllegalStateException ex) {
+		}catch (IllegalStateException ex) {
 			// expected
 		}
-
 		try {
 			lbf.registerAlias("test3", "test");
 			fail("Should have thrown IllegalStateException");
-		}
-		catch (IllegalStateException ex) {
+		}catch (IllegalStateException ex) {
 			// expected
 		}
-
 		lbf.registerAlias("test", "test3");
 	}
 
@@ -815,8 +782,7 @@ public class DefaultListableBeanFactoryTests {
 		try {
 			lbf.registerBeanDefinition("test", newDef);
 			fail("Should have thrown BeanDefinitionOverrideException");
-		}
-		catch (BeanDefinitionOverrideException ex) {
+		}catch (BeanDefinitionOverrideException ex) {
 			assertEquals("test", ex.getBeanName());
 			assertSame(newDef, ex.getBeanDefinition());
 			assertSame(oldDef, ex.getExistingDefinition());
@@ -1059,8 +1025,7 @@ public class DefaultListableBeanFactoryTests {
 		try {
 			lbf.registerSingleton("singletonObject", singletonObject);
 			fail("Should have thrown IllegalStateException");
-		}
-		catch (IllegalStateException ex) {
+		}catch (IllegalStateException ex) {
 			// expected
 		}
 	}
@@ -1071,6 +1036,7 @@ public class DefaultListableBeanFactoryTests {
 		bd1.setScope(RootBeanDefinition.SCOPE_PROTOTYPE);
 		lbf.registerBeanDefinition("testBean", bd1);
 		assertTrue(lbf.getBean("testBean") instanceof TestBean);
+
 		RootBeanDefinition bd2 = new RootBeanDefinition(NestedTestBean.class);
 		bd2.setScope(RootBeanDefinition.SCOPE_PROTOTYPE);
 		lbf.registerBeanDefinition("testBean", bd2);
@@ -1160,10 +1126,8 @@ public class DefaultListableBeanFactoryTests {
 	@Test
 	public void testExpressionInStringArray() {
 		BeanExpressionResolver beanExpressionResolver = mock(BeanExpressionResolver.class);
-		when(beanExpressionResolver.evaluate(eq("#{foo}"), ArgumentMatchers.any(BeanExpressionContext.class)))
-				.thenReturn("classpath:/org/springframework/beans/factory/xml/util.properties");
+		when(beanExpressionResolver.evaluate(eq("#{foo}"), ArgumentMatchers.any(BeanExpressionContext.class))).thenReturn("classpath:/org/springframework/beans/factory/xml/util.properties");
 		lbf.setBeanExpressionResolver(beanExpressionResolver);
-
 		RootBeanDefinition rbd = new RootBeanDefinition(PropertiesFactoryBean.class);
 		MutablePropertyValues pvs = new MutablePropertyValues();
 		pvs.add("locations", new String[]{"#{foo}"});
@@ -1173,6 +1137,7 @@ public class DefaultListableBeanFactoryTests {
 		assertEquals("bar", properties.getProperty("foo"));
 	}
 
+	// 测试  自动注入（无其他依赖）
 	@Test
 	public void testAutowireWithNoDependencies() {
 		RootBeanDefinition bd = new RootBeanDefinition(TestBean.class);
@@ -1223,8 +1188,7 @@ public class DefaultListableBeanFactoryTests {
 		try {
 			lbf.autowire(ConstructorDependency.class, AutowireCapableBeanFactory.AUTOWIRE_CONSTRUCTOR, false);
 			fail("Should have thrown UnsatisfiedDependencyException");
-		}
-		catch (UnsatisfiedDependencyException ex) {
+		}catch (UnsatisfiedDependencyException ex) {
 			// expected
 			assertTrue(ex.getMessage().contains("rod"));
 			assertTrue(ex.getMessage().contains("rod2"));
@@ -1242,8 +1206,7 @@ public class DefaultListableBeanFactoryTests {
 		try {
 			lbf.autowire(UnsatisfiedConstructorDependency.class, AutowireCapableBeanFactory.AUTOWIRE_CONSTRUCTOR, true);
 			fail("Should have unsatisfied constructor dependency on SideEffectBean");
-		}
-		catch (UnsatisfiedDependencyException ex) {
+		}catch (UnsatisfiedDependencyException ex) {
 			// expected
 		}
 	}
@@ -1252,8 +1215,7 @@ public class DefaultListableBeanFactoryTests {
 	public void testAutowireConstructor() {
 		RootBeanDefinition bd = new RootBeanDefinition(TestBean.class);
 		lbf.registerBeanDefinition("spouse", bd);
-		ConstructorDependenciesBean bean = (ConstructorDependenciesBean)
-				lbf.autowire(ConstructorDependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_CONSTRUCTOR, true);
+		ConstructorDependenciesBean bean = (ConstructorDependenciesBean)lbf.autowire(ConstructorDependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_CONSTRUCTOR, true);
 		Object spouse = lbf.getBean("spouse");
 		assertTrue(bean.getSpouse1() == spouse);
 		assertTrue(BeanFactoryUtils.beanOfType(lbf, TestBean.class) == spouse);
@@ -1263,8 +1225,8 @@ public class DefaultListableBeanFactoryTests {
 	public void testAutowireBeanByName() {
 		RootBeanDefinition bd = new RootBeanDefinition(TestBean.class);
 		lbf.registerBeanDefinition("spouse", bd);
-		DependenciesBean bean = (DependenciesBean)
-				lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_NAME, true);
+
+		DependenciesBean bean = (DependenciesBean)lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_NAME, true);
 		TestBean spouse = (TestBean) lbf.getBean("spouse");
 		assertEquals(spouse, bean.getSpouse());
 		assertTrue(BeanFactoryUtils.beanOfType(lbf, TestBean.class) == spouse);
@@ -1277,8 +1239,8 @@ public class DefaultListableBeanFactoryTests {
 		try {
 			lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_NAME, true);
 			fail("Should have thrown UnsatisfiedDependencyException");
-		}
-		catch (UnsatisfiedDependencyException ex) {
+		}catch (UnsatisfiedDependencyException ex) {
+			System.out.println(ex);
 			// expected
 		}
 	}
@@ -1931,9 +1893,7 @@ public class DefaultListableBeanFactoryTests {
 		bd2.setPrimary(true);
 		lbf.registerBeanDefinition("test", bd);
 		lbf.registerBeanDefinition("spouse", bd2);
-
-		DependenciesBean bean = (DependenciesBean)
-				lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, true);
+		DependenciesBean bean = (DependenciesBean)lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, true);
 		assertThat(bean.getSpouse(), equalTo(lbf.getBean("spouse")));
 	}
 
@@ -2825,9 +2785,7 @@ public class DefaultListableBeanFactoryTests {
 
 	static class B { }
 
-
 	public static class NoDependencies {
-
 		private NoDependencies() {
 		}
 	}
@@ -2874,7 +2832,6 @@ public class DefaultListableBeanFactoryTests {
 			return Objects.hash(spouse, spouseAge, beanName);
 		}
 	}
-
 
 	public static class UnsatisfiedConstructorDependency {
 
@@ -3002,14 +2959,11 @@ public class DefaultListableBeanFactoryTests {
 	}
 
 
-	public static abstract class RepositoryFactoryBeanSupport<T extends Repository<S, ID>, S, ID extends Serializable>
-			implements RepositoryFactoryInformation<S, ID>, FactoryBean<T> {
+	public static abstract class RepositoryFactoryBeanSupport<T extends Repository<S, ID>, S, ID extends Serializable> implements RepositoryFactoryInformation<S, ID>, FactoryBean<T> {
 	}
 
 
-	public static class FactoryBeanThatShouldntBeCalled<T extends Repository<S, ID>, S, ID extends Serializable>
-			extends RepositoryFactoryBeanSupport<T, S, ID> implements Runnable, Callable<T> {
-
+	public static class FactoryBeanThatShouldntBeCalled<T extends Repository<S, ID>, S, ID extends Serializable> extends RepositoryFactoryBeanSupport<T, S, ID> implements Runnable, Callable<T> {
 		@Override
 		public T getObject() {
 			throw new IllegalStateException();
@@ -3306,5 +3260,4 @@ public class DefaultListableBeanFactoryTests {
 			return nonPublicEnum;
 		}
 	}
-
 }

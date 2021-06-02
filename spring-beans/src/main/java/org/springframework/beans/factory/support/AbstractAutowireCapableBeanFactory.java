@@ -1485,9 +1485,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	}
 
 	/**
-	 * Perform a dependency check that all properties exposed have been set,
-	 * if desired. Dependency checks can be objects (collaborating beans),
-	 * simple (primitives and String), or all (both).
+	 * Perform a dependency check that all properties exposed have been set,if desired.
+	 * Dependency checks can be objects (collaborating beans),simple (primitives and String), or all (both).
 	 * @param beanName the name of the bean
 	 * @param mbd the merged bean definition the bean was created with
 	 * @param pds the relevant property descriptors for the target bean
@@ -1555,7 +1554,6 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				Object originalValue = pv.getValue();
 				/*
 				 * 解析属性值。举例说明，先看下面的配置：
-				 *
 				 *   <bean id="macbook" class="MacBookPro">
 				 *       <property name="manufacturer" value="Apple"/>
 				 *       <property name="width" value="280"/>

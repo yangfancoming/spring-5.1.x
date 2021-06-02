@@ -27,12 +27,7 @@ import static org.springframework.context.annotation.ScopedProxyMode.INTERFACES;
 import static org.springframework.context.annotation.ScopedProxyMode.NO;
 import static org.springframework.context.annotation.ScopedProxyMode.TARGET_CLASS;
 
-/**
- * @author Mark Fisher
 
-
- * @author Sam Brannen
- */
 public class ClassPathBeanDefinitionScannerScopeIntegrationTests {
 
 	private static final String DEFAULT_NAME = "default";
