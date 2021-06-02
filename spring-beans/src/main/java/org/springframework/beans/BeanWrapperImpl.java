@@ -10,6 +10,8 @@ import java.security.PrivilegedAction;
 import java.security.PrivilegedActionException;
 import java.security.PrivilegedExceptionAction;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.core.ResolvableType;
 import org.springframework.core.convert.Property;
 import org.springframework.core.convert.TypeDescriptor;
@@ -35,6 +37,8 @@ import org.springframework.util.ReflectionUtils;
  * @see PropertyEditorRegistrySupport
  */
 public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements BeanWrapper {
+
+	protected final Log logger = LogFactory.getLog(getClass());
 
 	/**
 	 * Cached introspections results for this object, to prevent encountering the cost of JavaBeans introspection every time.
@@ -289,7 +293,9 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 			}else {
 				ReflectionUtils.makeAccessible(writeMethod);
 				// 调用 setter 方法，getWrappedInstance() 返回的是 bean 对象
-				writeMethod.invoke(getWrappedInstance(), value);
+				Object wrappedInstance = getWrappedInstance();
+				logger.warn("【IOC容器 给 " + wrappedInstance + " 对象注入值：】 value： " + value);
+				writeMethod.invoke(wrappedInstance, value);
 			}
 		}
 	}

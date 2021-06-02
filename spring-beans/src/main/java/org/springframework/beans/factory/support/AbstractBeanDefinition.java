@@ -495,7 +495,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 				// 一旦发现有 无参构造函数 则使用 按类型注入
 				if (constructor.getParameterCount() == 0) return AUTOWIRE_BY_TYPE;
 			}
-			// 如果当前类中没有无参构造函数，则使用构造函数注入
+			// 如果当前类中没有无参构造函数，则 使用指定有参构造函数注入
 			return AUTOWIRE_CONSTRUCTOR;
 		}else {
 			return autowireMode;

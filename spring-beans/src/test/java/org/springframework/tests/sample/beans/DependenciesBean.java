@@ -19,7 +19,6 @@ public class DependenciesBean implements BeanFactoryAware {
 
 	private BeanFactory beanFactory;
 
-
 	public void setAge(int age) {
 		this.age = age;
 	}

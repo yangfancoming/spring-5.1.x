@@ -183,7 +183,7 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	 * Instantiate a new bean instance of the given class with the specified autowire strategy. All constants defined in this interface are supported here.
 	 * Can also be invoked with {@code AUTOWIRE_NO} in order to just apply before-instantiation callbacks (e.g. for annotation-driven injection).
 	 * Does <i>not</i> apply standard {@link BeanPostProcessor BeanPostProcessors} callbacks or perform any further initialization of the bean.
-	 * This interface  offers distinct, fine-grained operations for those purposes, for example {@link #initializeBean}.
+	 * This interface offers distinct, fine-grained operations for those purposes, for example {@link #initializeBean}.
 	 * However, {@link InstantiationAwareBeanPostProcessor} callbacks are applied, if applicable to the construction of the instance.
 	 * @param beanClass the class of the bean to instantiate
 	 * @param autowireMode by name or type, using the constants in this interface

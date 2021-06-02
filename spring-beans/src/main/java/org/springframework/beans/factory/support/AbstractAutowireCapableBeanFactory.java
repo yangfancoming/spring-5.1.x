@@ -297,9 +297,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// Use non-singleton bean definition, to avoid registering bean as dependent bean.
 		final RootBeanDefinition bd = new RootBeanDefinition(beanClass, autowireMode, dependencyCheck);
 		bd.setScope(BeanDefinition.SCOPE_PROTOTYPE);
+		// 使用指定有参构造函数注入
 		if (bd.getResolvedAutowireMode() == AUTOWIRE_CONSTRUCTOR) {
 			return autowireConstructor(beanClass.getName(), bd, null, null).getWrappedInstance();
-		}else {
+		}else {  // 使用无参构造函数注入
 			Object bean;
 			final BeanFactory parent = this;
 			if (System.getSecurityManager() != null) {
@@ -1294,8 +1295,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				// 它的步骤相对简单：显示BeanUtils.getWriteMethodParameter(pd)拿到set方法（所以，这里需要注意，若没有set方法，这里是注入不进去的，这个没@Autowired强大）
 				// 然后去解析去容器里面找对应的依赖，也是resolveDependency方法（最终由DefaultListableBeanFactory去实现的）
 				// 这里需要注意：注入的时候isSimpleProperty不会被注入的（包括基本数据类型、Integer、Long。。。
-				//甚至还包括Enum、CharSequence(显然就包含了Spring)、Number、Date、URI、URL、Locale、Class等等）
-				// 但是，但是，但是标注@Autowired是能够注入的哦，哪怕是String、Integer等等
+				// 甚至还包括Enum、CharSequence(显然就包含了Spring)、Number、Date、URI、URL、Locale、Class等等）
+				// 但是标注@Autowired是能够注入的哦，哪怕是String、Integer等等
 				// 标注了@Autowired，没有找到反倒为报错 No qualifying bean of type 'java.lang.String' 。。。注意这些区别
 				autowireByType(beanName, mbd, bw, newPvs);
 			}
@@ -1399,7 +1400,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 					boolean eager = !PriorityOrdered.class.isInstance(bw.getWrappedInstance());
 					// 创建依赖描述对象
 					DependencyDescriptor desc = new AutowireByTypeDependencyDescriptor(methodParam, eager);
-					// 下面的方法用于解析依赖。过程比较复杂，先把这里看成一个黑盒，我们只要知道这  个方法可以帮我们解析出合适的依赖即可。
+					// 下面的方法用于解析依赖。过程比较复杂，先把这里看成一个黑盒，我们只要知道这个方法可以帮我们解析出合适的依赖即可。
 					Object autowiredArgument = resolveDependency(desc, beanName, autowiredBeanNames, converter);
 					if (autowiredArgument != null) {
 						// 将解析出的 bean 存入到属性值列表（pvs）中

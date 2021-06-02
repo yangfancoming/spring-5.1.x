@@ -1143,7 +1143,7 @@ public class DefaultListableBeanFactoryTests {
 		RootBeanDefinition bd = new RootBeanDefinition(TestBean.class);
 		lbf.registerBeanDefinition("rod", bd);
 		assertEquals(1, lbf.getBeanDefinitionCount());
-		Object registered = lbf.autowire(NoDependencies.class, AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, false);
+		NoDependencies registered = (NoDependencies) lbf.autowire(NoDependencies.class, AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, false);
 		assertEquals(1, lbf.getBeanDefinitionCount());
 		assertTrue(registered instanceof NoDependencies);
 	}
@@ -1151,15 +1151,15 @@ public class DefaultListableBeanFactoryTests {
 	@Test
 	public void testAutowireWithSatisfiedJavaBeanDependency() {
 		MutablePropertyValues pvs = new MutablePropertyValues();
-		pvs.add("name", "Rod");
+		pvs.add("name", "Rod11111");
 		RootBeanDefinition bd = new RootBeanDefinition(TestBean.class);
+		// 给TestBean对象中的name属性 赋值"Rod11111" // "name" 对应TestBean中的name属性名称, "Rod"对应name属性的值
 		bd.setPropertyValues(pvs);
 		lbf.registerBeanDefinition("rod", bd);
 		assertEquals(1, lbf.getBeanDefinitionCount());
-		// Depends on age, name and spouse (TestBean)
-		Object registered = lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, true);
+		// Depends on age, name and spouse (TestBean) //  初始化DependenciesBean时，将它依赖的TestBean对象注入进去
+		DependenciesBean kerry = (DependenciesBean) lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, true);
 		assertEquals(1, lbf.getBeanDefinitionCount());
-		DependenciesBean kerry = (DependenciesBean) registered;
 		TestBean rod = (TestBean) lbf.getBean("rod");
 		assertSame(rod, kerry.getSpouse());
 	}
