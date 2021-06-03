@@ -130,7 +130,7 @@ class ConstructorResolver {
 					throw new BeanCreationException(mbd.getResourceDescription(), beanName,"Resolution of declared constructors on bean Class [" + beanClass.getName() + "] from ClassLoader [" + beanClass.getClassLoader() + "] failed", ex);
 				}
 			}
-
+			// 如果只有一个构造函数，并且程序中没有显示传递构造函数explicitArgs参数，并且对应bean属性constructor-arg也为空
 			if (candidates.length == 1 && explicitArgs == null && !mbd.hasConstructorArgumentValues()) {
 				Constructor<?> uniqueCandidate = candidates[0];
 				if (uniqueCandidate.getParameterCount() == 0) {

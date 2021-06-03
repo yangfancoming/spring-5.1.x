@@ -89,40 +89,49 @@ public class TestBean implements BeanNameAware, BeanFactoryAware, ITestBean, IOt
 
 
 	public TestBean() {
+		System.out.println("TestBean 的无参构造函数 执行");
 	}
 
 	public TestBean(String name) {
 		this.name = name;
+		System.out.println("TestBean 的单参 name 构造函数 执行");
 	}
 
 	public TestBean(ITestBean spouse) {
 		this.spouse = spouse;
+		System.out.println("TestBean 的单参 spouse 构造函数 执行");
 	}
 
 	public TestBean(String name, int age) {
 		this.name = name;
 		this.age = age;
+		System.out.println("TestBean 的双参 name和age 构造函数 执行");
 	}
 
 	public TestBean(ITestBean spouse, Properties someProperties) {
 		this.spouse = spouse;
 		this.someProperties = someProperties;
+		System.out.println("TestBean 的双参 spouse 和 someProperties 构造函数 执行");
 	}
 
 	public TestBean(List<?> someList) {
 		this.someList = someList;
+		System.out.println("TestBean 的单参 someList 构造函数 执行");
 	}
 
 	public TestBean(Set<?> someSet) {
 		this.someSet = someSet;
+		System.out.println("TestBean 的单参 someSet 构造函数 执行");
 	}
 
 	public TestBean(Map<?, ?> someMap) {
 		this.someMap = someMap;
+		System.out.println("TestBean 的单参 someMap 构造函数 执行");
 	}
 
 	public TestBean(Properties someProperties) {
 		this.someProperties = someProperties;
+		System.out.println("TestBean 的单参 someProperties 构造函数 执行");
 	}
 
 

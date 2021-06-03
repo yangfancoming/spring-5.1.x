@@ -19,6 +19,10 @@ public class DependenciesBean implements BeanFactoryAware {
 
 	private BeanFactory beanFactory;
 
+	public DependenciesBean() {
+		System.out.println("DependenciesBean 无参构造函数执行");
+	}
+
 	public void setAge(int age) {
 		this.age = age;
 	}

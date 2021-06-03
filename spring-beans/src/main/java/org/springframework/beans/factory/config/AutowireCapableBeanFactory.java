@@ -44,7 +44,10 @@ import org.springframework.lang.Nullable;
  *
  * 对于想要拥有自动装配能力，并且想把这种能力暴露给外部应用的BeanFactory类需要实现此接口。
  * 正常情况下，不要使用此接口，应该更倾向于使用BeanFactory或者ListableBeanFactory接口。
- * 此接口主要是针对框架之外，没有向Spring托管Bean的应用。通过暴露此功能，Spring框架之外的程序，具有自动装配等Spring的功能。
+ *
+ * sos 此接口主要是针对框架之外，没有向Spring托管Bean的应用（即操作的Bean不再Spring的容器中）。
+ * 通过暴露此功能，Spring框架之外的程序，具有自动装配等Spring的功能。
+ *
  * 需要注意的是，ApplicationContext接口并没有实现此接口，因为应用代码很少用到此功能，如果确实需要的话，可以调用 ApplicationContext 的getAutowireCapableBeanFactory方法，来获取此接口的实例。
  * 如果一个类实现了此接口，那么很大程度上它还需要实现BeanFactoryAware接口。它可以在应用上下文中返回BeanFactory。
  */

@@ -35,6 +35,7 @@ import javax.annotation.Priority;
 import javax.security.auth.Subject;
 import java.io.Closeable;
 import java.io.Serializable;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.net.MalformedURLException;
 import java.security.AccessControlContext;
@@ -54,6 +55,7 @@ import static org.mockito.BDDMockito.*;
 
 /**
  * Tests properties population and autowire behavior.
+
  */
 public class DefaultListableBeanFactoryTests {
 
@@ -64,13 +66,49 @@ public class DefaultListableBeanFactoryTests {
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
 
+	public class Goat {
 
+		private String name;
+		private Integer age;
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public Integer getAge() {
+			return age;
+		}
+
+		public void setAge(Integer age) {
+			this.age = age;
+		}
+
+		public void say(){
+			System.out.println("goat says hello!");
+		}
+	}
+
+	/**
+	 * 为什么spring源码的测试用例中  都使用的是静态类？？？
+	 * 非静态内部类并没有无参数的构造器，表面上调用Goat的无参数的构造器创建实例，实际上JVM会将this（代表当前默认的DefaultListableBeanFactoryTests对象）作为实参传入Goat构造器。
+	 * 这符合非静态内部类的规则：非静态内部类必须寄生在外部类的实例中，没有外部类的对象，就不能产生非静态内部类的对象。因此，非静态内部类不可能有无参数构造器。
+	 * 当程序通过反射指定调用Inner类无参数的构造器创建对象，导致异常。
+	*/
 	@Test
-	public void test() {
-		System.out.println(KnowsIfInstantiated.wasInstantiated());
-		System.out.println(KnowsIfInstantiated.instantiated);
-		KnowsIfInstantiated knowsIfInstantiated = new KnowsIfInstantiated();
-		System.out.println(knowsIfInstantiated);
+	public void test() throws IllegalAccessException, InstantiationException {
+		Goat goat = new Goat();
+		// 发现直接创建的内部类对象完全正常，但是通过反射创建的内部类对象抛出了异常。
+		goat.say();
+		Constructor<?>[] declaredConstructors = Goat.class.getDeclaredConstructors();
+		// 表面上看似可以拿到Goat的无参数的构造器
+		assertNotNull(declaredConstructors);
+		// 但是一旦反射创建的时候就抛出异常
+		Goat goat1 = Goat.class.newInstance();
+		goat1.say();
 	}
 
 	// 测试 preInstantiateSingletons 方法
@@ -1137,17 +1175,23 @@ public class DefaultListableBeanFactoryTests {
 		assertEquals("bar", properties.getProperty("foo"));
 	}
 
-	// 测试  自动注入（无其他依赖）
+	// 测试  自动注入（无其他依赖）  按类型注入
 	@Test
 	public void testAutowireWithNoDependencies() {
 		RootBeanDefinition bd = new RootBeanDefinition(TestBean.class);
 		lbf.registerBeanDefinition("rod", bd);
 		assertEquals(1, lbf.getBeanDefinitionCount());
 		NoDependencies registered = (NoDependencies) lbf.autowire(NoDependencies.class, AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, false);
+		// 这里解释下为什么容器中只有一个bean定义，因为TestBean是通过registerBeanDefinition注册进去的，而NoDependencies是通过autowire接口注入的
+		// 并没有通过registerBeanDefinition向容器中进行注册。 autowire接口操作的bean一般都是spring容器之外的bean。
 		assertEquals(1, lbf.getBeanDefinitionCount());
 		assertTrue(registered instanceof NoDependencies);
+		TestBean rod = (TestBean) lbf.getBean("rod");
+		System.out.println(rod);
+
 	}
 
+	// 测试 自动注入 匹配的javaBean依赖   按类型注入
 	@Test
 	public void testAutowireWithSatisfiedJavaBeanDependency() {
 		MutablePropertyValues pvs = new MutablePropertyValues();
@@ -1164,18 +1208,19 @@ public class DefaultListableBeanFactoryTests {
 		assertSame(rod, kerry.getSpouse());
 	}
 
+	// 测试自动注入 匹配的构造函数依赖  按构造函数注入
 	@Test
 	public void testAutowireWithSatisfiedConstructorDependency() {
 		MutablePropertyValues pvs = new MutablePropertyValues();
-		pvs.add("name", "Rod");
+		pvs.add("name", "Rod222");
 		RootBeanDefinition bd = new RootBeanDefinition(TestBean.class);
 		bd.setPropertyValues(pvs);
 		lbf.registerBeanDefinition("rod", bd);
 		assertEquals(1, lbf.getBeanDefinitionCount());
-		Object registered = lbf.autowire(ConstructorDependency.class, AutowireCapableBeanFactory.AUTOWIRE_CONSTRUCTOR, false);
+		ConstructorDependency kerry = (ConstructorDependency) lbf.autowire(ConstructorDependency.class, AutowireCapableBeanFactory.AUTOWIRE_CONSTRUCTOR, false);
 		assertEquals(1, lbf.getBeanDefinitionCount());
-		ConstructorDependency kerry = (ConstructorDependency) registered;
 		TestBean rod = (TestBean) lbf.getBean("rod");
+		System.out.println(lbf.getBeanDefinitionNames());
 		assertSame(rod, kerry.spouse);
 	}
 
@@ -1221,34 +1266,38 @@ public class DefaultListableBeanFactoryTests {
 		assertTrue(BeanFactoryUtils.beanOfType(lbf, TestBean.class) == spouse);
 	}
 
+	// 测试  按名称注入
 	@Test
 	public void testAutowireBeanByName() {
 		RootBeanDefinition bd = new RootBeanDefinition(TestBean.class);
+		// 将bean名称为spouse的对象放入容器  (这里注册的bean名称"spouse"，必须要与DependenciesBean对象的属性名称相同才能实现AUTOWIRE_BY_NAME注入，否则抛出异常)
 		lbf.registerBeanDefinition("spouse", bd);
-
+		// 从容器中取出刚放入的spouse对象，并赋值给容器外部对象（DependenciesBean）的spouse属性
 		DependenciesBean bean = (DependenciesBean)lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_NAME, true);
 		TestBean spouse = (TestBean) lbf.getBean("spouse");
 		assertEquals(spouse, bean.getSpouse());
 		assertTrue(BeanFactoryUtils.beanOfType(lbf, TestBean.class) == spouse);
 	}
 
+	// 测试 按名称注入时，在容器中的bean名称与待注入对象的属性名称不相同，导致注入失败抛出异常的情况
 	@Test
 	public void testAutowireBeanByNameWithDependencyCheck() {
 		RootBeanDefinition bd = new RootBeanDefinition(TestBean.class);
-		lbf.registerBeanDefinition("spous", bd);
+		lbf.registerBeanDefinition("spous", bd);// 容器中bean的名称为"spous"，而待注入的DependenciesBean对象的属性名为"spouse"
 		try {
 			lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_NAME, true);
 			fail("Should have thrown UnsatisfiedDependencyException");
 		}catch (UnsatisfiedDependencyException ex) {
-			System.out.println(ex);
-			// expected
+			System.out.println(ex);// expected
 		}
 	}
 
+	// 测试 按名称注入时，在容器中的bean名称与待注入对象的属性名称不相同，由于不进行依赖检测，所以不会抛出异常的情况
 	@Test
 	public void testAutowireBeanByNameWithNoDependencyCheck() {
 		RootBeanDefinition bd = new RootBeanDefinition(TestBean.class);
 		lbf.registerBeanDefinition("spous", bd);
+		// 不进行依赖检测
 		DependenciesBean bean = (DependenciesBean)lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_NAME, false);
 		assertNull(bean.getSpouse());
 	}
@@ -1861,9 +1910,7 @@ public class DefaultListableBeanFactoryTests {
 		RootBeanDefinition bd2 = new RootBeanDefinition(LowPriorityTestBean.class);
 		lbf.registerBeanDefinition("test", bd);
 		lbf.registerBeanDefinition("spouse", bd2);
-
-		DependenciesBean bean = (DependenciesBean)
-				lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, true);
+		DependenciesBean bean = (DependenciesBean)lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, true);
 		assertThat(bean.getSpouse(), equalTo(lbf.getBean("test")));
 	}
 
@@ -2787,6 +2834,7 @@ public class DefaultListableBeanFactoryTests {
 
 	public static class NoDependencies {
 		private NoDependencies() {
+			System.out.println("NoDependencies 无参构造函数 执行");
 		}
 	}
 
@@ -2801,10 +2849,12 @@ public class DefaultListableBeanFactoryTests {
 
 		public ConstructorDependency(TestBean spouse) {
 			this.spouse = spouse;
+			System.out.println("ConstructorDependency 单参 spouse 构造函数 执行");
 		}
 
 		public ConstructorDependency(int spouseAge) {
 			this.spouseAge = spouseAge;
+			System.out.println("ConstructorDependency 单参 spouseAge 构造函数 执行");
 		}
 
 		@SuppressWarnings("unused")

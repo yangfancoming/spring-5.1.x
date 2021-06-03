@@ -138,7 +138,7 @@ public abstract class BeanUtils {
 			}else {
 				t =  ctor.newInstance(args);
 			}
-			logger.warn("【 IOC容器 bean实例化 】 beanName： " + t);
+			logger.warn("【 IOC容器 bean实例化 】 beanName： " + ctor.getName());
 			return t;
 		} catch (InstantiationException ex) {
 			throw new BeanInstantiationException(ctor, "Is it an abstract class?", ex);

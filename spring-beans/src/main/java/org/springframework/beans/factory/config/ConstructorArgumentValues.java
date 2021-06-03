@@ -159,8 +159,7 @@ public class ConstructorArgumentValues {
 
 	/**
 	 * Add a generic argument value to be matched by type.
-	 * Note: A single generic argument value will just be used once,
-	 * rather than matched multiple times.
+	 * Note: A single generic argument value will just be used once,rather than matched multiple times.
 	 * @param value the argument value
 	 */
 	public void addGenericArgumentValue(Object value) {
