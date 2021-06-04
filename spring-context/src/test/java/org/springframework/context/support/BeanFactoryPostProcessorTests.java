@@ -33,20 +33,24 @@ public class BeanFactoryPostProcessorTests {
 
 	StaticApplicationContext ac = new StaticApplicationContext();
 
+	// 测试 使用向容器中注册 后置处理器的方式，调用接口实现方法
 	@Test
 	public void testRegisteredBeanFactoryPostProcessor() {
 		TestBeanFactoryPostProcessor bfpp = new TestBeanFactoryPostProcessor();
+		// 在容器中注册 BeanFactoryPostProcessor 后置处理器
 		ac.addBeanFactoryPostProcessor(bfpp);
-		assertFalse(bfpp.wasCalled); // 容器刷新前 默认值为 false
-		ac.refresh(); // 容器刷新
-		assertTrue(bfpp.wasCalled); // 容器刷新后 默认值被更改为 true
+		assertFalse(bfpp.wasCalled); // 容器刷新前 不会调用
+		ac.refresh(); // 容器刷新会调用 BeanFactoryPostProcessor 接口的实现方法
+		assertTrue(bfpp.wasCalled); // 容器刷新后调用了 BeanFactoryPostProcessor接口的实现方法
 	}
 
+	// 测试 使用向容器中注册bean定义的方式， 使用后置处理器的方式，调用接口实现方法
 	@Test
 	public void testDefinedBeanFactoryPostProcessor() {
 		ac.registerSingleton("bfpp", TestBeanFactoryPostProcessor.class);
-		ac.refresh();
 		TestBeanFactoryPostProcessor bfpp = (TestBeanFactoryPostProcessor) ac.getBean("bfpp");
+		assertFalse(bfpp.wasCalled); // 容器刷新前 不会调用
+		ac.refresh();
 		assertTrue(bfpp.wasCalled);
 	}
 
@@ -66,6 +70,7 @@ public class BeanFactoryPostProcessorTests {
 		assertTrue(bfpp.wasCalled);
 	}
 
+	// 测试 BeanFactoryPostProcessor 接口
 	@Test
 	public void testBeanFactoryPostProcessorNotExecutedByBeanFactory() {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
@@ -76,16 +81,19 @@ public class BeanFactoryPostProcessorTests {
 		assertFalse(bfpp.wasCalled);
 	}
 
+
+	// 测试 BeanDefinitionRegistryPostProcessor 接口
 	@Test
 	public void testBeanDefinitionRegistryPostProcessor() {
-		ac.registerSingleton("tb1", TestBean.class);
-		ac.registerSingleton("tb2", TestBean.class);
-		ac.addBeanFactoryPostProcessor(new PrioritizedBeanDefinitionRegistryPostProcessor());
-		TestBeanDefinitionRegistryPostProcessor bdrpp = new TestBeanDefinitionRegistryPostProcessor();
-		ac.addBeanFactoryPostProcessor(bdrpp);
-		assertFalse(bdrpp.wasCalled);
+		PrioritizedBeanDefinitionRegistryPostProcessor bfpp1 = new PrioritizedBeanDefinitionRegistryPostProcessor();
+		ac.addBeanFactoryPostProcessor(bfpp1);
+		TestBeanDefinitionRegistryPostProcessor bfpp2 = new TestBeanDefinitionRegistryPostProcessor();
+		ac.addBeanFactoryPostProcessor(bfpp2);
+		assertFalse(bfpp2.wasCalled);
 		ac.refresh();
-		assertTrue(bdrpp.wasCalled);
+		// 测试 BeanDefinitionRegistryPostProcessor 接口被调用
+		assertTrue(bfpp2.wasCalled);
+		// 测试 BeanFactoryPostProcessor 接口被调用
 		assertTrue(ac.getBean("bfpp1", TestBeanFactoryPostProcessor.class).wasCalled);
 		assertTrue(ac.getBean("bfpp2", TestBeanFactoryPostProcessor.class).wasCalled);
 	}
@@ -128,11 +136,15 @@ public class BeanFactoryPostProcessorTests {
 
 
 	public static class TestBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
+
 		public String initValue;
+
+		public boolean wasCalled = false;
+
 		public void setInitValue(String initValue) {
 			this.initValue = initValue;
 		}
-		public boolean wasCalled = false;
+
 		@Override
 		public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) {
 			wasCalled = true;
@@ -173,6 +185,7 @@ public class BeanFactoryPostProcessorTests {
 			this.wasCalled = true;
 		}
 	}
+
 
 	public static class OuterBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegistryPostProcessor {
 

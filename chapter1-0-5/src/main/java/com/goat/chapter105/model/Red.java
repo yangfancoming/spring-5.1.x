@@ -7,4 +7,8 @@ package com.goat.chapter105.model;
  * @ author  山羊来了
  * @ date 2020/3/17---16:58
  */
-public class Red {}
+public class Red {
+	public Red() {
+		System.out.println("Red 无参构造函数 执行");
+	}
+}

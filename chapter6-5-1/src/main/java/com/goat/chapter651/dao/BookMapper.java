@@ -15,5 +15,5 @@ import java.util.Map;
 public interface BookMapper {
 
 	@Select("select * from book")
-	public List<Map> queryAll();
+	List<Map> queryAll();
 }

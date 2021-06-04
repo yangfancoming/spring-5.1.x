@@ -13,6 +13,10 @@ import org.springframework.core.type.AnnotationMetadata;
  */
 public class MyImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar {
 
+	public MyImportBeanDefinitionRegistrar() {
+		System.out.println("MyImportBeanDefinitionRegistrar 无参构造函数 执行");
+	}
+
 	@Override
 	public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
 		boolean blue = registry.containsBeanDefinition("com.goat.chapter105.model.Blue".trim());

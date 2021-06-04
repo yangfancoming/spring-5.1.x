@@ -142,7 +142,6 @@ public class MapperScannerConfigurer implements BeanDefinitionRegistryPostProces
 	 * The scanner will register all interfaces in the base package that also have the specified interface class as a parent.
 	 * Note this can be combined with annotationClass.
 	 * @param superClass parent class
-	 *
 	 */
 	public void setMarkerInterface(Class<?> superClass) {
 		this.markerInterface = superClass;

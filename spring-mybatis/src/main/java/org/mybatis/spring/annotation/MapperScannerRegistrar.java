@@ -93,6 +93,7 @@ public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar, Re
     }
 
     builder.addPropertyValue("basePackage", StringUtils.collectionToCommaDelimitedString(basePackages));
+    // 将 MapperScannerConfigurer 对象注入到容器中
     registry.registerBeanDefinition(beanName, builder.getBeanDefinition());
   }
 
