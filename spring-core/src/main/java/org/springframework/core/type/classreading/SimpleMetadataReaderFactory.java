@@ -49,7 +49,6 @@ public class SimpleMetadataReaderFactory implements MetadataReaderFactory {
 		return this.resourceLoader;
 	}
 
-
 	@Override
 	public MetadataReader getMetadataReader(String className) throws IOException {
 		try {
@@ -76,5 +75,4 @@ public class SimpleMetadataReaderFactory implements MetadataReaderFactory {
 	public MetadataReader getMetadataReader(Resource resource) throws IOException {
 		return new SimpleMetadataReader(resource, this.resourceLoader.getClassLoader());
 	}
-
 }

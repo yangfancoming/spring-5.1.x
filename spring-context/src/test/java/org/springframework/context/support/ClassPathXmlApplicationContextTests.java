@@ -106,8 +106,7 @@ public class ClassPathXmlApplicationContextTests {
 
 	@Test
 	public void testAliasWithPlaceholder() {
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(
-				FQ_CONTEXT_B, FQ_ALIASED_CONTEXT_C, FQ_CONTEXT_A);
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(FQ_CONTEXT_B, FQ_ALIASED_CONTEXT_C, FQ_CONTEXT_A);
 		assertTrue(ctx.containsBean("service"));
 		assertTrue(ctx.containsBean("logicOne"));
 		assertTrue(ctx.containsBean("logicTwo"));
@@ -116,13 +115,11 @@ public class ClassPathXmlApplicationContextTests {
 
 	@Test
 	public void testContextWithInvalidValueType() throws IOException {
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
-				new String[] {INVALID_VALUE_TYPE_CONTEXT}, false);
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {INVALID_VALUE_TYPE_CONTEXT}, false);
 		try {
 			context.refresh();
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		}catch (BeanCreationException ex) {
 			assertTrue(ex.contains(TypeMismatchException.class));
 			assertTrue(ex.toString().contains("someMessageSource"));
 			assertTrue(ex.toString().contains("useCodeAsDefaultMessage"));

@@ -888,8 +888,7 @@ public abstract class AnnotationUtils {
 	 * However, the {@code Map} signature has been preserved for binary compatibility.
 	 * @param annotation the annotation to retrieve the attributes for
 	 * @param classValuesAsString whether to convert Class references into Strings (for
-	 * compatibility with {@link org.springframework.core.type.AnnotationMetadata})
-	 * or to preserve them as Class references
+	 * compatibility with {@link org.springframework.core.type.AnnotationMetadata}) or to preserve them as Class references
 	 * @return the Map of annotation attributes, with attribute names as keys and
 	 * corresponding attribute values as values (never {@code null})
 	 * @see #getAnnotationAttributes(Annotation, boolean, boolean)
@@ -904,8 +903,7 @@ public abstract class AnnotationUtils {
 	 * the reflection-based {@link org.springframework.core.type.StandardAnnotationMetadata}.
 	 * @param annotation the annotation to retrieve the attributes for
 	 * @param classValuesAsString whether to convert Class references into Strings (for
-	 * compatibility with {@link org.springframework.core.type.AnnotationMetadata})
-	 * or to preserve them as Class references
+	 * compatibility with {@link org.springframework.core.type.AnnotationMetadata}) or to preserve them as Class references
 	 * @param nestedAnnotationsAsMap whether to convert nested annotations into
 	 * {@link AnnotationAttributes} maps (for compatibility with
 	 * {@link org.springframework.core.type.AnnotationMetadata}) or to preserve them as

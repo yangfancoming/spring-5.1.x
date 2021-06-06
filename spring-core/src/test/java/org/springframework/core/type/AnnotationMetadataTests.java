@@ -22,6 +22,7 @@ import org.springframework.core.type.classreading.MetadataReader;
 import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.core.type.classreading.SimpleMetadataReaderFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.util.MultiValueMap;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -174,8 +175,7 @@ public class AnnotationMetadataTests {
 	}
 
 	private void assertMetaAnnotationOverrides(AnnotationMetadata metadata) {
-		AnnotationAttributes attributes = (AnnotationAttributes) metadata.getAnnotationAttributes(
-				TestComponentScan.class.getName(), false);
+		AnnotationAttributes attributes = (AnnotationAttributes) metadata.getAnnotationAttributes(TestComponentScan.class.getName(), false);
 		String[] basePackages = attributes.getStringArray("basePackages");
 		assertThat("length of basePackages[]", basePackages.length, is(1));
 		assertThat("basePackages[0]", basePackages[0], is("org.example.componentscan"));
@@ -215,33 +215,35 @@ public class AnnotationMetadataTests {
 
 
 	private void assertMultipleAnnotationsWithIdenticalAttributeNames(AnnotationMetadata metadata) {
-		AnnotationAttributes attributes1 = (AnnotationAttributes) metadata.getAnnotationAttributes(
-				NamedAnnotation1.class.getName(), false);
+		AnnotationAttributes attributes1 = (AnnotationAttributes) metadata.getAnnotationAttributes(NamedAnnotation1.class.getName(), false);
 		String name1 = attributes1.getString("name");
 		assertThat("name of NamedAnnotation1", name1, is("name 1"));
 
-		AnnotationAttributes attributes2 = (AnnotationAttributes) metadata.getAnnotationAttributes(
-				NamedAnnotation2.class.getName(), false);
+		AnnotationAttributes attributes2 = (AnnotationAttributes) metadata.getAnnotationAttributes(NamedAnnotation2.class.getName(), false);
 		String name2 = attributes2.getString("name");
 		assertThat("name of NamedAnnotation2", name2, is("name 2"));
 
-		AnnotationAttributes attributes3 = (AnnotationAttributes) metadata.getAnnotationAttributes(
-				NamedAnnotation3.class.getName(), false);
+		AnnotationAttributes attributes3 = (AnnotationAttributes) metadata.getAnnotationAttributes(NamedAnnotation3.class.getName(), false);
 		String name3 = attributes3.getString("name");
 		assertThat("name of NamedAnnotation3", name3, is("name 3"));
 	}
 
 	private void doTestAnnotationInfo(AnnotationMetadata metadata) {
+		// ClassMetadata 接口中的方法，都是获取关于指定类的 类本身的相关信息！
 		assertThat(metadata.getClassName(), is(AnnotatedComponent.class.getName()));
+		System.out.println(metadata.getClassName());
 		assertThat(metadata.isInterface(), is(false));
 		assertThat(metadata.isAnnotation(), is(false));
 		assertThat(metadata.isAbstract(), is(false));
 		assertThat(metadata.isConcrete(), is(true));
 		assertThat(metadata.hasSuperClass(), is(true));
 		assertThat(metadata.getSuperClassName(), is(Object.class.getName()));
+		System.out.println(metadata.getSuperClassName());
 		assertThat(metadata.getInterfaceNames().length, is(1));
 		assertThat(metadata.getInterfaceNames()[0], is(Serializable.class.getName()));
-
+		System.out.println(metadata.getInterfaceNames()[0]);
+		// AnnotationMetadata 接口中的方法，都是获取关于指定类上的注解相关信息！
+		assertThat(metadata.hasAnnotation(SuppressWarnings.class.getName()), is(false)); // 该注解 SuppressWarnings 将再编译期间被丢弃掉，所以获取不到该注解
 		assertThat(metadata.hasAnnotation(Component.class.getName()), is(true));
 		assertThat(metadata.hasAnnotation(Scope.class.getName()), is(true));
 		assertThat(metadata.hasAnnotation(SpecialAttr.class.getName()), is(true));
@@ -250,6 +252,7 @@ public class AnnotationMetadataTests {
 		assertThat(metadata.getAnnotationTypes().contains(Scope.class.getName()), is(true));
 		assertThat(metadata.getAnnotationTypes().contains(SpecialAttr.class.getName()), is(true));
 
+		// AnnotatedTypeMetadata 接口中的方法，都是获取指定注解类的相关信息
 		AnnotationAttributes compAttrs = (AnnotationAttributes) metadata.getAnnotationAttributes(Component.class.getName());
 		assertThat(compAttrs.size(), is(1));
 		assertThat(compAttrs.getString("value"), is("myName"));
@@ -259,13 +262,23 @@ public class AnnotationMetadataTests {
 
 		Set<MethodMetadata> methods = metadata.getAnnotatedMethods(DirectAnnotation.class.getName());
 		MethodMetadata method = methods.iterator().next();
-		assertEquals("direct", method.getAnnotationAttributes(DirectAnnotation.class.getName()).get("value"));
-		assertEquals("direct", method.getAnnotationAttributes(DirectAnnotation.class.getName()).get("myValue"));
-		List<Object> allMeta = method.getAllAnnotationAttributes(DirectAnnotation.class.getName()).get("value");
-		assertThat(new HashSet<>(allMeta), is(equalTo(new HashSet<Object>(Arrays.asList("direct", "meta")))));
+		assertEquals("direct111", method.getAnnotationAttributes(DirectAnnotation.class.getName()).get("value"));
+		assertEquals("direct111", method.getAnnotationAttributes(DirectAnnotation.class.getName()).get("myValue"));
+		/**
+		 * 获取metaTest()方法上的所有@DirectAnnotation注解信息
+		 * 1. @DirectAnnotation("direct111")
+		 * 2. @MetaMetaAnnotation 下的 @MetaAnnotation 还有个 @DirectAnnotation("meta")
+		*/
+		MultiValueMap<String, Object> allAnnotationAttributes = method.getAllAnnotationAttributes(DirectAnnotation.class.getName());
+		List<Object> allMeta = allAnnotationAttributes.get("value");
+		// 因此，此处为 "direct111", "meta"
+		assertThat(new HashSet<>(allMeta), is(equalTo(new HashSet<Object>(Arrays.asList("direct111", "meta")))));
+
+
 		allMeta = method.getAllAnnotationAttributes(DirectAnnotation.class.getName()).get("additional");
 		assertThat(new HashSet<>(allMeta), is(equalTo(new HashSet<Object>(Arrays.asList("direct")))));
 
+		// @MetaMetaAnnotation 下的 @MetaAnnotation 下的 @IsAnnotatedAnnotation
 		assertTrue(metadata.isAnnotated(IsAnnotatedAnnotation.class.getName()));
 
 		{ // perform tests with classValuesAsString = false (the default)
@@ -453,9 +466,9 @@ public class AnnotationMetadataTests {
 		public void doSleep() {
 		}
 
-		@DirectAnnotation("direct")
+		@DirectAnnotation("direct111")
 		@MetaMetaAnnotation
-		public void meta() {
+		public void metaTest() {
 		}
 	}
 

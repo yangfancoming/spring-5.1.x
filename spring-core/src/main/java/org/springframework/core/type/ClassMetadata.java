@@ -10,6 +10,7 @@ import org.springframework.lang.Nullable;
  * @see StandardClassMetadata
  * @see org.springframework.core.type.classreading.MetadataReader#getClassMetadata()
  * @see AnnotationMetadata
+ * 此接口的所有方法，基本上都跟 Class 有关。
  */
 public interface ClassMetadata {
 
@@ -36,7 +37,7 @@ public interface ClassMetadata {
 
 	/**
 	 * Return whether the underlying class represents a concrete class, i.e. neither an interface nor an abstract class.
-	 *  返回基础类是否表示具体类， // 是否允许创建  不是接口且不是抽象类  这里就返回true了
+	 *  返回基础类是否表示具体类， // 是否允许创建  不是接口也不是抽象类  这里就返回true了
 	 */
 	boolean isConcrete();
 

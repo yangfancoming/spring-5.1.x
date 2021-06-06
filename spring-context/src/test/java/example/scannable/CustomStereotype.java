@@ -15,5 +15,5 @@ import org.springframework.stereotype.Service;
 @Service
 @Scope("prototype")
 public @interface CustomStereotype {
-	String value() default "thoreau1";
+	String value() default "thoreau";
 }

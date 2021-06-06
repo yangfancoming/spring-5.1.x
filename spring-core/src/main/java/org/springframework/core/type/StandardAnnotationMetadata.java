@@ -6,7 +6,8 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.*;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.lang.Nullable;
 import org.springframework.util.MultiValueMap;
@@ -17,7 +18,7 @@ import org.springframework.util.MultiValueMap;
  */
 public class StandardAnnotationMetadata extends StandardClassMetadata implements AnnotationMetadata {
 
-	private static final Logger logger = Logger.getLogger(StandardAnnotationMetadata.class);
+	protected final Log logger = LogFactory.getLog(getClass());
 
 	// 持有对本类上的所有注解对象，其父类(StandardClassMetadata)持有 元类对象
 	private final Annotation[] annotations;
@@ -123,7 +124,7 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 	@Override
 	@Nullable
 	public Map<String, Object> getAnnotationAttributes(String annotationName, boolean classValuesAsString) {
-		// 判断源类上的注解个数，如果没有注解，则直接返回null。
+		//  判断源类上的注解个数，如果没有注解，则直接返回null。
 		return (annotations.length > 0 ? AnnotatedElementUtils.getMergedAnnotationAttributes(getIntrospectedClass(), annotationName, classValuesAsString, nestedAnnotationsAsMap) : null);
 	}
 
