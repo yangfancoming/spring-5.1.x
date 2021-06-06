@@ -11,8 +11,9 @@ import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
  * @since 3.0.1
  * @see org.springframework.context.annotation.ConfigurationClassPostProcessor
  * 用于在创建bean之前增加或改变BeanDefinition
- * BeanDefinitionRegistryPostProcessor 与 BeanFactoryPostProcessor 的区别：
- * BeanDefinitionRegistryPostProcessor 侧重于注册信息，BeanFactoryPostProcessor 侧重于修改BeanDefinition对象的信息，也可以直接注册bean对象。
+ * BeanDefinitionRegistryPostProcessor 与 BeanFactoryPostProcessor 的区别： 看2个接口方法的参数便知：
+ * BeanDefinitionRegistryPostProcessor 更侧重于在BeanFactoryPostProcessor执行之前，处理bean定义的注册信息，
+ * BeanFactoryPostProcessor 更侧重于修改Bean工厂的信息，也可以直接注册bean对象。
  */
 public interface BeanDefinitionRegistryPostProcessor extends BeanFactoryPostProcessor {
 
@@ -24,5 +25,4 @@ public interface BeanDefinitionRegistryPostProcessor extends BeanFactoryPostProc
 	 * @throws org.springframework.beans.BeansException in case of errors
 	 */
 	void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException;
-
 }

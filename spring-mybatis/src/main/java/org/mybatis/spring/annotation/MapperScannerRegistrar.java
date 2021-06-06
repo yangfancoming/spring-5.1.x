@@ -8,10 +8,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanNameGenerator;
-import org.springframework.context.ResourceLoaderAware;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import org.springframework.core.annotation.AnnotationAttributes;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
@@ -30,29 +28,24 @@ import java.util.stream.Collectors;
  * @see ClassPathMapperScanner
  * @since 1.2.0
  */
-public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar, ResourceLoaderAware {
-
-  /**
-   * @deprecated Since 2.0.2, this method not used never.
-   */
-  @Override
-  @Deprecated
-  public void setResourceLoader(ResourceLoader resourceLoader) {
-    // NOP
-  }
+public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar {
 
   @Override
   public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
+  	// 拿到 @MapperScan 注解上配置的所有属性值
     AnnotationAttributes mapperScanAttrs = AnnotationAttributes.fromMap(importingClassMetadata.getAnnotationAttributes(MapperScan.class.getName()));
     if (mapperScanAttrs != null) {
+    	// 准备注册MapperScannerConfigurer的bean定义到容器
       registerBeanDefinitions(mapperScanAttrs, registry, generateBaseBeanName(importingClassMetadata, 0));
     }
   }
 
   void registerBeanDefinitions(AnnotationAttributes annoAttrs, BeanDefinitionRegistry registry, String beanName) {
+  	// 生成 MapperScannerConfigurer 的bean定义
     BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(MapperScannerConfigurer.class);
     builder.addPropertyValue("processPropertyPlaceHolders", true);
 
+    //  为 MapperScannerConfigurer的bean定义所有属性挨个赋值(都是@MapperScan注解对应的属性)
     Class<? extends Annotation> annotationClass = annoAttrs.getClass("annotationClass");
     if (!Annotation.class.equals(annotationClass)) {
       builder.addPropertyValue("annotationClass", annotationClass);
@@ -93,7 +86,11 @@ public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar, Re
     }
 
     builder.addPropertyValue("basePackage", StringUtils.collectionToCommaDelimitedString(basePackages));
-    // 将 MapperScannerConfigurer 对象注入到容器中
+    /**
+	 *  经过以上的属性赋值后，将 MapperScannerConfigurer 对象注入到容器中
+	 * 	由于 MapperScannerConfigurer 实现了 BeanDefinitionRegistryPostProcessor 接口，
+	 * 	容器还会调用其 postProcessBeanDefinitionRegistry 方法
+    */
     registry.registerBeanDefinition(beanName, builder.getBeanDefinition());
   }
 

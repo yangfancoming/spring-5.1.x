@@ -325,6 +325,7 @@ class ConfigurationClassEnhancer {
 									"these container lifecycle issues; see @Bean javadoc for complete details.",
 							beanMethod.getDeclaringClass().getSimpleName(), beanMethod.getName()));
 				}
+				logger.warn("【IOC容器  创建cglib动态代理 --- 】 beanName： " + enhancedConfigInstance.getClass());
 				return cglibMethodProxy.invokeSuper(enhancedConfigInstance, beanMethodArgs);
 			}
 			return resolveBeanReference(beanMethod, beanMethodArgs, beanFactory, beanName);

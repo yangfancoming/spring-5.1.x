@@ -220,7 +220,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	 * @param basePackages the packages to check for annotated classes
 	 * @return set of beans registered if any for tooling registration purposes (never {@code null})
 	 */
-	protected Set<BeanDefinitionHolder> doScan(String... basePackages) {
+	public Set<BeanDefinitionHolder> doScan(String... basePackages) {
 		Assert.notEmpty(basePackages, "At least one base package must be specified");
 		// 调用父类的doScan()方法，遍历basePackages中指定的所有包，扫描每个包下的Java文件并进行解析。
 		// 使用之前注册的过滤器进行过滤，得到符合条件的BeanDefinitionHolder对象
