@@ -370,7 +370,7 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 		try {
 			//获取包路径
 			// 1.根据指定包名 生成包搜索路径
-			//通过观察resolveBasePackage()方法的实现, 我们可以在设置basePackage时, 使用形如${}的占位符, Spring会在这里进行替换 只要在Enviroment里面就行
+			// 通过观察 resolveBasePackage()方法的实现, 我们可以在设置basePackage时, 使用形如${}的占位符, Spring会在这里进行替换 只要在Enviroment里面就行
 			// 本次值为：classpath*:com/fsx/config/**/*.class
 			String packageSearchPath = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX + resolveBasePackage(basePackage) + '/' + resourcePattern;
 			//将对应的包中的类封装成resources
@@ -387,18 +387,18 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 			// 接下来的这个for循环：就是把一个个的resource组装成
 			for (Resource resource : resources) {
 				if (traceEnabled) logger.trace("Scanning " + resource);
-				//需要时可读的 //文件必须可读 否则直接返回空了
+				// 需要时可读的 //文件必须可读 否则直接返回空了
 				if (resource.isReadable()) {
 					try {
 						// 获取封装了resource的MetadataReader
 						// 读取类的 注解信息 和 类信息 ，两大信息储存到  MetadataReader
 						MetadataReader metadataReader = getMetadataReaderFactory().getMetadataReader(resource);
-						//检查metadataReader中的对象的className是否符合指定的excludeFilters和includeFilters的筛选
+						// 检查metadataReader中的对象的className是否符合指定的excludeFilters和includeFilters的筛选
 						// 根据TypeFilter过滤排除组件。因为AppConfig没有标准@Component或者子注解，所以肯定不属于候选组件  返回false
 						// 注意：这里一般(默认处理的情况下)标注了默认注解的才会true，什么叫默认注解呢？就是@Component或者派生注解。还有javax....的，这里省略啦
 						if (isCandidateComponent(metadataReader)) {
-							//创建一个ScannedGenericBeanDefinition对象
-							//把符合条件的 类转换成 BeanDefinition
+							// 创建一个ScannedGenericBeanDefinition对象
+							// 把符合条件的 类转换成 BeanDefinition
 							ScannedGenericBeanDefinition sbd = new ScannedGenericBeanDefinition(metadataReader);
 							sbd.setResource(resource);
 							sbd.setSource(resource);

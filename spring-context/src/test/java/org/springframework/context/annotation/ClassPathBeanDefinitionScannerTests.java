@@ -14,6 +14,7 @@ import org.springframework.beans.BeanInstantiationException;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.config.BeanDefinitionHolder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.beans.factory.support.StaticListableBeanFactory;
@@ -25,12 +26,31 @@ import org.springframework.core.type.filter.AssignableTypeFilter;
 import org.springframework.stereotype.Component;
 import org.springframework.tests.sample.beans.TestBean;
 
+import java.util.Set;
+
 import static org.junit.Assert.*;
 
 
 public class ClassPathBeanDefinitionScannerTests {
 
 	private static final String BASE_PACKAGE = "example.scannable";
+
+	/**
+	 * thoreau
+	 * fooServiceImpl
+	 * myNamedComponent
+	 * myNamedDao
+	 * serviceInvocationCounter
+	 * stubFooDao
+	 * barComponent
+	*/
+	@Test
+	public void testDoScan() {
+		GenericApplicationContext context = new GenericApplicationContext();
+		ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(context);
+		Set<BeanDefinitionHolder> beanDefinitionHolders = scanner.doScan(BASE_PACKAGE);
+		System.out.println(beanDefinitionHolders);
+	}
 
 	@Test
 	public void testSimpleScanWithDefaultFiltersAndPostProcessors() {

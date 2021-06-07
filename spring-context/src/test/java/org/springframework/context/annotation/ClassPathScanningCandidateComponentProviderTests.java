@@ -50,17 +50,16 @@ public class ClassPathScanningCandidateComponentProviderTests {
 	private static final String TEST_DEFAULT_PROFILE_NAME = "testDefault";
 	private static final ClassLoader TEST_BASE_CLASSLOADER = CandidateComponentsTestClassLoader.index(ClassPathScanningCandidateComponentProviderTests.class.getClassLoader(),new ClassPathResource("spring.components", NamedComponent.class));
 
+	ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(true);
 
 	@Test
 	public void defaultsWithScan() {
-		ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(true);
 		provider.setResourceLoader(new DefaultResourceLoader(CandidateComponentsTestClassLoader.disableIndex(getClass().getClassLoader())));
 		testDefault(provider, ScannedGenericBeanDefinition.class);
 	}
 
 	@Test
 	public void defaultsWithIndex() {
-		ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(true);
 		provider.setResourceLoader(new DefaultResourceLoader(TEST_BASE_CLASSLOADER));
 		testDefault(provider, AnnotatedGenericBeanDefinition.class);
 	}
@@ -80,14 +79,12 @@ public class ClassPathScanningCandidateComponentProviderTests {
 
 	@Test
 	public void antStylePackageWithScan() {
-		ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(true);
 		provider.setResourceLoader(new DefaultResourceLoader(CandidateComponentsTestClassLoader.disableIndex(getClass().getClassLoader())));
 		testAntStyle(provider, ScannedGenericBeanDefinition.class);
 	}
 
 	@Test
 	public void antStylePackageWithIndex() {
-		ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(true);
 		provider.setResourceLoader(new DefaultResourceLoader(TEST_BASE_CLASSLOADER));
 		testAntStyle(provider, AnnotatedGenericBeanDefinition.class);
 	}
@@ -101,7 +98,6 @@ public class ClassPathScanningCandidateComponentProviderTests {
 
 	@Test
 	public void bogusPackageWithScan() {
-		ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(true);
 		provider.setResourceLoader(new DefaultResourceLoader(CandidateComponentsTestClassLoader.disableIndex(getClass().getClassLoader())));
 		Set<BeanDefinition> candidates = provider.findCandidateComponents("bogus");
 		assertEquals(0, candidates.size());
@@ -109,7 +105,6 @@ public class ClassPathScanningCandidateComponentProviderTests {
 
 	@Test
 	public void bogusPackageWithIndex() {
-		ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(true);
 		provider.setResourceLoader(new DefaultResourceLoader(TEST_BASE_CLASSLOADER));
 		Set<BeanDefinition> candidates = provider.findCandidateComponents("bogus");
 		assertEquals(0, candidates.size());
@@ -128,8 +123,7 @@ public class ClassPathScanningCandidateComponentProviderTests {
 	@Test
 	public void customAnnotationTypeIncludeFilterWithScan() {
 		ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(false);
-		provider.setResourceLoader(new DefaultResourceLoader(
-				CandidateComponentsTestClassLoader.disableIndex(getClass().getClassLoader())));
+		provider.setResourceLoader(new DefaultResourceLoader(CandidateComponentsTestClassLoader.disableIndex(getClass().getClassLoader())));
 		testCustomAnnotationTypeIncludeFilter(provider, ScannedGenericBeanDefinition.class);
 	}
 
@@ -221,7 +215,6 @@ public class ClassPathScanningCandidateComponentProviderTests {
 
 	@Test
 	public void excludeFilterWithScan() {
-		ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(true);
 		provider.setResourceLoader(new DefaultResourceLoader(CandidateComponentsTestClassLoader.disableIndex(getClass().getClassLoader())));
 		provider.addExcludeFilter(new RegexPatternTypeFilter(Pattern.compile(TEST_BASE_PACKAGE + ".*Named.*")));
 		testExclude(provider, ScannedGenericBeanDefinition.class);
@@ -229,7 +222,6 @@ public class ClassPathScanningCandidateComponentProviderTests {
 
 	@Test
 	public void excludeFilterWithIndex() {
-		ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(true);
 		provider.setResourceLoader(new DefaultResourceLoader(TEST_BASE_CLASSLOADER));
 		provider.addExcludeFilter(new RegexPatternTypeFilter(Pattern.compile(TEST_BASE_PACKAGE + ".*Named.*")));
 		testExclude(provider, AnnotatedGenericBeanDefinition.class);
@@ -325,14 +317,13 @@ public class ClassPathScanningCandidateComponentProviderTests {
 
 	@Test
 	public void testWithNullEnvironment() {
-		ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(true);
+	
 		Set<BeanDefinition> candidates = provider.findCandidateComponents(TEST_PROFILE_PACKAGE);
 		assertThat(containsBeanClass(candidates, ProfileAnnotatedComponent.class), is(false));
 	}
 
 	@Test
 	public void testWithInactiveProfile() {
-		ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(true);
 		ConfigurableEnvironment env = new StandardEnvironment();
 		env.setActiveProfiles("other");
 		provider.setEnvironment(env);
@@ -342,7 +333,6 @@ public class ClassPathScanningCandidateComponentProviderTests {
 
 	@Test
 	public void testWithActiveProfile() {
-		ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(true);
 		ConfigurableEnvironment env = new StandardEnvironment();
 		env.setActiveProfiles(ProfileAnnotatedComponent.PROFILE_NAME);
 		provider.setEnvironment(env);
