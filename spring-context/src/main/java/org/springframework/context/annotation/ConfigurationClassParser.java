@@ -78,6 +78,12 @@ import org.springframework.util.StringUtils;
  * This ASM-based implementation avoids reflection and eager class loading in order to interoperate effectively with lazy class loading in a Spring ApplicationContext.
  * @since 3.0
  * @see ConfigurationClassBeanDefinitionReader
+ * 这个工具类自身的逻辑并不注册bean定义，它的主要任务是发现@Configuration注解的所有配置类并将这些配置类交给调用者(调用者会通过其他方式注册其中的bean定义)，
+ * 而对于非@Configuration注解的其他bean定义，比如@Component注解的bean定义，
+ * 该工具类使用另外一个工具ComponentScanAnnotationParser扫描和注册它们。
+ *
+ * 一般情况下一个@Configuration注解的类只会产生一个ConfigurationClass对象，但是因为@Configuration注解的类可能会使用注解@Import引入其他配置类，
+ * 也可能内部嵌套定义配置类，所以总的来看，ConfigurationClassParser分析一个@Configuration注解的类，可能产生任意多个ConfigurationClass对象。
  */
 class ConfigurationClassParser {
 
@@ -180,6 +186,7 @@ class ConfigurationClassParser {
 		if (existingClass != null) {
 			if (configClass.isImported()) {
 				if (existingClass.isImported()) {
+					//如果要处理的配置类configClass在已经分析处理的配置类记录中已存在，合并二者的importedBy属性
 					existingClass.mergeImportedBy(configClass);
 				}
 				// Otherwise ignore new imported config class; existing non-imported class overrides it.
@@ -192,11 +199,16 @@ class ConfigurationClassParser {
 			}
 		}
 		// Recursively process the configuration class and its superclass hierarchy.
+		// 从当前配置类configClass开始向上沿着类继承结构逐层执行doProcessConfigurationClass,直到遇到的父类是由Java提供的类结束循环
 		SourceClass sourceClass = asSourceClass(configClass);
 		do {
+			// 循环处理配置类configClass直到sourceClass变为null
+			// doProcessConfigurationClass的返回值是其参数configClass的父类，
+			// 如果该父类是由Java提供的类或者已经处理过，返回null
 			sourceClass = doProcessConfigurationClass(configClass, sourceClass);
 		}while (sourceClass != null);
-		logger.warn("【@Import注解 在configurationClasses中注册】 beanName： " + configClass.getResource().getDescription());
+		logger.warn("【 @"+configClass.getMetadata().getAnnotationTypes()+"注解 在configurationClasses中注册】 beanName： " + configClass.getResource().getDescription());
+		// 需要被处理的配置类configClass已经被分析处理，将它记录到已处理配置类记录
 		configurationClasses.put(configClass, configClass);
 	}
 
@@ -219,7 +231,7 @@ class ConfigurationClassParser {
 			// Recursively process any member (nested) classes first // 处理子类的注解
 			processMemberClasses(configClass, sourceClass);
 		}
-		// Process any @PropertySource annotations
+		// Process any 【@PropertySource】 annotations
 		Set<AnnotationAttributes> annotationAttributes = AnnotationConfigUtils.attributesForRepeatable(sourceClass.getMetadata(), PropertySources.class, org.springframework.context.annotation.PropertySource.class);
 		for (AnnotationAttributes propertySource :annotationAttributes ) {
 			if (environment instanceof ConfigurableEnvironment) {
@@ -228,15 +240,14 @@ class ConfigurationClassParser {
 				logger.info("Ignoring @PropertySource annotation on [" + sourceClass.getMetadata().getClassName() + "]. Reason: Environment must implement ConfigurableEnvironment");
 			}
 		}
-
-		// Process any @ComponentScan annotations  // @ComponentScans 注解是对@ComponentScan注解的包装，一个@ComponentScans可以包含多个@ComponentScan
+		// Process any 【@ComponentScan】 annotations  // @ComponentScans 注解是对@ComponentScan注解的包装，一个@ComponentScans可以包含多个@ComponentScan
 		Set<AnnotationAttributes> componentScans = AnnotationConfigUtils.attributesForRepeatable(sourceClass.getMetadata(), ComponentScans.class, ComponentScan.class);
 		// 如果解析注解后存在扫描相关的注解，并且贴有当前注解的bean不需要跳过注册（贴有@condition注解）
 		if (!componentScans.isEmpty() && !conditionEvaluator.shouldSkip(sourceClass.getMetadata(), ConfigurationPhase.REGISTER_BEAN)) {
 			// 对 对应的注解信息进行循环处理
 			for (AnnotationAttributes componentScan : componentScans) {
 				// The config class is annotated with @ComponentScan -> perform the scan immediately //ComponentScanAnnotationParser进行解析
-				// 这步是注册@ComponentScan注解basePackages属性的所有bean定义
+				// 这步是注册@ComponentScan注解basePackages属性的所有bean定义并进行注册！ （排除主配置类、接口、抽象类）
 				Set<BeanDefinitionHolder> scannedBeanDefinitions = componentScanParser.parse(componentScan, sourceClass.getMetadata().getClassName());
 				// Check the set of scanned definitions for any further config classes and parse recursively if needed
 				// 处理扫描到的并封装成BeanDefinitionHolder对象的bean
@@ -251,9 +262,9 @@ class ConfigurationClassParser {
 				}
 			}
 		}
-		// Process any @Import annotations
+		// Process any 【@Import】 annotations
 		processImports(configClass, sourceClass, getImports(sourceClass), true);
-		// Process any @ImportResource annotations
+		// Process any 【@ImportResource】 annotations
 		AnnotationAttributes importResource = AnnotationConfigUtils.attributesFor(sourceClass.getMetadata(), ImportResource.class);
 		if (importResource != null) {
 			String[] resources = importResource.getStringArray("locations");
@@ -263,7 +274,8 @@ class ConfigurationClassParser {
 				configClass.addImportedResource(resolvedResource, readerClass);
 			}
 		}
-		// Process individual @Bean methods
+		// Process individual 【@Bean】 methods
+		// 这里是处理 @Configuration 主配置类中的 @Bean 方法！
 		Set<MethodMetadata> beanMethods = retrieveBeanMethodMetadata(sourceClass);
 		for (MethodMetadata methodMetadata : beanMethods) {
 			configClass.addBeanMethod(new BeanMethod(methodMetadata, configClass));
