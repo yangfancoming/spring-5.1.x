@@ -201,7 +201,7 @@ class ConfigurationClassParser {
 	}
 
 	/**
-	 * 该方法是处理Configuration以及@Bean类型注解的bean上的标签信息的方法。
+	 * 该方法是处理 @Component、@PropertySources、@ComponentScan、@Import、 @ImportResource、@Bean 注解的类上的标签信息的方法。
 	 * 在这里面会处理@Component，@PropertySources，@ComponentScans，@ComponentScan，@Import，@ImportResource以及@Bean注解
 	 * Apply processing and build a complete {@link ConfigurationClass} by reading the annotations, members and methods from the source class.
 	 * This method can be called multiple times as relevant sources are discovered.
@@ -214,8 +214,9 @@ class ConfigurationClassParser {
 	 */
 	@Nullable
 	protected final SourceClass doProcessConfigurationClass(ConfigurationClass configClass, SourceClass sourceClass) throws IOException {
+		// 判断指定类上是否有@Component注解（会判断嵌套类上注解） @Configuration、@Service、@Controller、@Repository
 		if (configClass.getMetadata().isAnnotated(Component.class.getName())) {
-			// Recursively process any member (nested) classes first
+			// Recursively process any member (nested) classes first // 处理子类的注解
 			processMemberClasses(configClass, sourceClass);
 		}
 		// Process any @PropertySource annotations
@@ -228,13 +229,14 @@ class ConfigurationClassParser {
 			}
 		}
 
-		// Process any @ComponentScan annotations  // @ComponentScans注解是对@ComponentScan注解的包装，一个@ComponentScans可以包含多个@ComponentScan
+		// Process any @ComponentScan annotations  // @ComponentScans 注解是对@ComponentScan注解的包装，一个@ComponentScans可以包含多个@ComponentScan
 		Set<AnnotationAttributes> componentScans = AnnotationConfigUtils.attributesForRepeatable(sourceClass.getMetadata(), ComponentScans.class, ComponentScan.class);
 		// 如果解析注解后存在扫描相关的注解，并且贴有当前注解的bean不需要跳过注册（贴有@condition注解）
 		if (!componentScans.isEmpty() && !conditionEvaluator.shouldSkip(sourceClass.getMetadata(), ConfigurationPhase.REGISTER_BEAN)) {
 			// 对 对应的注解信息进行循环处理
 			for (AnnotationAttributes componentScan : componentScans) {
 				// The config class is annotated with @ComponentScan -> perform the scan immediately //ComponentScanAnnotationParser进行解析
+				// 这步是注册@ComponentScan注解basePackages属性的所有bean定义
 				Set<BeanDefinitionHolder> scannedBeanDefinitions = componentScanParser.parse(componentScan, sourceClass.getMetadata().getClassName());
 				// Check the set of scanned definitions for any further config classes and parse recursively if needed
 				// 处理扫描到的并封装成BeanDefinitionHolder对象的bean
@@ -457,9 +459,7 @@ class ConfigurationClassParser {
 	}
 
 	private void processImports(ConfigurationClass configClass, SourceClass currentSourceClass,Collection<SourceClass> importCandidates, boolean checkForCircularImports) {
-		if (importCandidates.isEmpty()) {
-			return;
-		}
+		if (importCandidates.isEmpty()) return;
 		if (checkForCircularImports && isChainedImportOnStack(configClass)) {
 			problemReporter.error(new CircularImportProblem(configClass, importStack));
 		}else {

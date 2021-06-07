@@ -76,40 +76,45 @@ class ComponentScanAnnotationParser {
 				scanner.addIncludeFilter(typeFilter);
 			}
 		}
-		//添加指定解析时候的去除过滤器
+		// 添加指定解析时候的去除过滤器
 		for (AnnotationAttributes filter : componentScan.getAnnotationArray("excludeFilters")) {
 			for (TypeFilter typeFilter : typeFiltersFor(filter)) {
 				scanner.addExcludeFilter(typeFilter);
 			}
 		}
-		//设置是否懒加载，默认为true
+		// 设置是否懒加载，默认为true
 		boolean lazyInit = componentScan.getBoolean("lazyInit");
 		if (lazyInit) {
 			scanner.getBeanDefinitionDefaults().setLazyInit(true);
 		}
-		//设置扫描的包路径
+		// 设置扫描的包路径
 		Set<String> basePackages = new LinkedHashSet<>();
 		String[] basePackagesArray = componentScan.getStringArray("basePackages");
 		for (String pkg : basePackagesArray) {
 			String[] tokenized = StringUtils.tokenizeToStringArray(this.environment.resolvePlaceholders(pkg),ConfigurableApplicationContext.CONFIG_LOCATION_DELIMITERS);
 			Collections.addAll(basePackages, tokenized);
 		}
-		//根据设置的basePackageClasses属性获取对应的报名，然后放到basePackages中
+		// 根据设置的basePackageClasses属性获取对应的报名，然后放到basePackages中
 		for (Class<?> clazz : componentScan.getClassArray("basePackageClasses")) {
 			basePackages.add(ClassUtils.getPackageName(clazz));
 		}
-		//如果没有指定扫描包即basePackages是空的，则用传进来的贴有ComponentScan或者ComponentScans注解的类的包路径作为扫描包
+		// 如果没有指定扫描包即basePackages是空的，则用传进来的贴有ComponentScan或者ComponentScans注解的类的包路径作为扫描包
 		if (basePackages.isEmpty()) {
 			basePackages.add(ClassUtils.getPackageName(declaringClass));
 		}
-		//添加AbstractTypeHierarchyTraversingFilter用来排除自己扫描到自己的情况，这样后面解析的会造成死循环。
 		scanner.addExcludeFilter(new AbstractTypeHierarchyTraversingFilter(false, false) {
+			/**
+			 * 添加AbstractTypeHierarchyTraversingFilter用来排除自己扫描到自己的情况，这样后面解析的会造成死循环。
+			 * 此处代码的代用者是这里。。。
+			 * @see AbstractTypeHierarchyTraversingFilter#match(org.springframework.core.type.classreading.MetadataReader, org.springframework.core.type.classreading.MetadataReaderFactory)
+			 * if (matchClassName(metadata.getClassName())) 这行代码调用的
+			*/
 			@Override
 			protected boolean matchClassName(String className) {
 				return declaringClass.equals(className);
 			}
 		});
-		//属性获取完毕之后进行解析
+		// 属性获取完毕之后进行解析
 		return scanner.doScan(StringUtils.toStringArray(basePackages));
 	}
 

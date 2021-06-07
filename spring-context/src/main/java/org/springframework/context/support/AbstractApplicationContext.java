@@ -436,7 +436,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			 *    调用子类实现方法获取（创建或刷新）BeanFacotry容器，对于ClassPathXmlApplicationContext，主要调用了AbstractRefreshableApplicationContext中实现的方法
 			 * 	  初始化BeanFactory，注意，此处是获取新的，销毁旧的，这就是刷新的意义
 			 *
-			 * 	一、创建BeanFactor对象
+			 * 	一、创建BeanFactor对象  只对xml配置有效，注解配置方式该方法直接跳过了。
 			 * 	二、传统标签解析： bean、import等
 			 * 	自定义标签解析： <context: component-scan>
 			 * 	自定义标签解析流程：
@@ -447,8 +447,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 			 * 	二、解析出的xml标签封装成BeanDefinition对象 存储到Map中
 			 */
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
-			// 设定类加载器，spel解析器，属性编辑解析器等，忽略特定接口的依赖注册（在特定时刻相关Bean再完成注入)，注册一些系统Bean供依赖注入使用。
-			//  对即将在IOC容器里使用的BeanFactory做一些配置，比如设置类加载器，设置回调方法等
+			// 设定类加载器，spel解析器，属性编辑解析器等，忽略特定接口的依赖注册（在特定时刻相关Bean再完成注入)，注册一些系统Bean供依赖注入使用，设置回调方法等。
 			// Prepare the bean factory for use in this context.
 			// 就是 上一步 obtainFreshBeanFactory() 创建好beanFactory后 再对其进行初始化设置
 			prepareBeanFactory(beanFactory);

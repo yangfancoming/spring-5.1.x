@@ -68,9 +68,9 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	private String resourcePattern = DEFAULT_RESOURCE_PATTERN;
-	// includeFilters中的就是满足过滤规则的
+	// includeFilters中的就是满足过滤规则的  过滤后的类被认为是候选组件
 	private final List<TypeFilter> includeFilters = new LinkedList<>();
-	// excludeFilters则是不满足过滤规则的
+	// excludeFilters则是不满足过滤规则的  排除在候选组件之外
 	private final List<TypeFilter> excludeFilters = new LinkedList<>();
 
 	@Nullable
@@ -259,6 +259,7 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	}
 
 	/**
+	 * 扫描指定的包路径，获取相应的BeanDefinition。扫描后的类可以通过过滤器进行排除。
 	 * Scan the class path for candidate components.
 	 * @param basePackage the package to check for annotated classes
 	 * @return a corresponding Set of autodetected bean definitions
@@ -359,7 +360,7 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	}
 
 	/**
-	 * @Title：
+	 * @Title：扫描指定路径下的所有候选组件 @Component 系列注解 （通常要排除主配置类，以免进入死循环）
 	 * @author fan.yang
 	 * @date 2019年11月28日14:46:38
 	 * @param basePackage  example.scannable
@@ -381,7 +382,6 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 			// 注意：这里会拿到类路径下（不包含jar包内的）的所有的.class文件 可能有上百个，然后后面再交给后面进行筛选~~~~~~~~~~~~~~~~（这个方法，其实我们也可以使用）
 			// 当然和getResourcePatternResolver和这个模版有关
 			Resource[] resources = getResourcePatternResolver().getResources(packageSearchPath);// classpath*:example/scannable/**/*.class
-			// 记录日志（下面我把打印日志地方都删除）
 			boolean traceEnabled = logger.isTraceEnabled();
 			boolean debugEnabled = logger.isDebugEnabled();
 			// 接下来的这个for循环：就是把一个个的resource组装成
@@ -440,16 +440,28 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	}
 
 	/**
+	 * 判断通过filter筛选后的class是否是候选组件，默认实现是一个具体类。这是一个 protected 的方法，可以通过子类重写它。
+	 * 有些框架只需要扫描接口，并注册FactoryBean到bd，然后通过动态代理实现该接口得到目标bean，比如feign。
 	 * Determine whether the given class does not match any exclude filter and does match at least one include filter.
 	 * @param metadataReader the ASM ClassReader for the class
 	 * @return whether the class qualifies as a candidate component
 	 */
 	protected boolean isCandidateComponent(MetadataReader metadataReader) throws IOException {
+		// this.excludeFilters除非用户显式配置, 否则默认为空
 		for (TypeFilter tf : excludeFilters) {
 			if (tf.match(metadataReader, getMetadataReaderFactory())) {
 				return false;
 			}
 		}
+		// 这里就需要注意一下了
+		// 我在前面没有进行讲解的configureScanner方法里有这么一个细节,
+		//   <context:component-scan/> 的"use-default-filters"的属性值默认是true . 这一点可以在configureScanner方法中进行验证
+		//  于是我们追踪对useDefaultFilters字段的调用来到ClassPathBeanDefinitionScanner的基类 ClassPathScanningCandidateComponentProvider 中就会发现
+		//   useDefaultFilters字段为true时, 会默认注册如下几个AnnotationTypeFilter到includeFilters字段中:
+		//      1. new AnnotationTypeFilter(Component.class)
+		//      2. new AnnotationTypeFilter(((Class<? extends Annotation>) ClassUtils.forName("javax.annotation.ManagedBean", cl)), false)
+		//      3. new AnnotationTypeFilter(((Class<? extends Annotation>) ClassUtils.forName("javax.inject.Named", cl)), false)
+		//   @Repository、 @Controller、 @Service、@Configuration都被@Component注解所修饰
 		for (TypeFilter tf : includeFilters) {
 			if (tf.match(metadataReader, getMetadataReaderFactory())) {
 				return isConditionMatch(metadataReader);
