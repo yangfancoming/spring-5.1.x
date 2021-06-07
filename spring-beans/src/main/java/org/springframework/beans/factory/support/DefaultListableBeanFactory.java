@@ -795,9 +795,10 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				// 将beanDefinition信息维护至缓存
 				// beanDefinitionMap-->(key->beanName,value->beanDefinition)
 				// Still in startup registration phase
-				logger.warn("【IOC容器中 添加BeanDefinition 内存态  --- 新建方式(未创建)】 beanName： " + beanName);
+				logger.warn("【IOC容器中 添加BeanDefinition 内存态 beanDefinitionMap   --- 新建方式(未创建)】 beanName： " + beanName);
 				beanDefinitionMap.put(beanName, beanDefinition);
 				// beanDefinitionNames-->维护了beanName集合
+				logger.warn("【IOC容器中 添加BeanDefinition 内存态 beanDefinitionNames ---  beanName： " + beanName);
 				beanDefinitionNames.add(beanName);
 				// manualSingletonNames缓存了手动注册的单例bean，所以需要调用一下remove方法，防止beanName重复
 				// 例如：xmlBeanFactory.registerSingleton("myDog", new Dog());

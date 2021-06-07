@@ -35,7 +35,7 @@ public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar {
   	// 拿到 @MapperScan 注解上配置的所有属性值
     AnnotationAttributes mapperScanAttrs = AnnotationAttributes.fromMap(importingClassMetadata.getAnnotationAttributes(MapperScan.class.getName()));
     if (mapperScanAttrs != null) {
-    	// 准备注册MapperScannerConfigurer的bean定义到容器
+    	// 准备向容器中注册 MapperScannerConfigurer 的bean定义
       registerBeanDefinitions(mapperScanAttrs, registry, generateBaseBeanName(importingClassMetadata, 0));
     }
   }
@@ -84,7 +84,6 @@ public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar {
     if (StringUtils.hasText(lazyInitialization)) {
       builder.addPropertyValue("lazyInitialization", lazyInitialization);
     }
-
     builder.addPropertyValue("basePackage", StringUtils.collectionToCommaDelimitedString(basePackages));
     /**
 	 *  经过以上的属性赋值后，将 MapperScannerConfigurer 对象注入到容器中

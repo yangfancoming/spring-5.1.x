@@ -184,7 +184,7 @@ public class AnnotatedBeanDefinitionReader {
 		*/
 		if (conditionEvaluator.shouldSkip(abd.getMetadata())) return;
 		abd.setInstanceSupplier(instanceSupplier);
-		// 解析Scope
+		// 解析Scope 默认单例singleton
 		ScopeMetadata scopeMetadata = scopeMetadataResolver.resolveScopeMetadata(abd);
 		abd.setScope(scopeMetadata.getScopeName());
 		// 得到Bean的名称 一般为首字母小写（此处为AnnotationBeanNameGenerator）
@@ -209,6 +209,7 @@ public class AnnotatedBeanDefinitionReader {
 		}
 		// 下面位解析Scope是否需要代理，最后把这个Bean注册进去
 		BeanDefinitionHolder definitionHolder = new BeanDefinitionHolder(abd, beanName);
+		// 根据注解Bean定义类中配置的作用域@Scope注解的值，为Bean定义应用相应的代理模式，主要是在Spring面向切面编程(AOP)中使用
 		definitionHolder = AnnotationConfigUtils.applyScopedProxyMode(scopeMetadata, definitionHolder, registry);
 		BeanDefinitionReaderUtils.registerBeanDefinition(definitionHolder, registry);
 	}

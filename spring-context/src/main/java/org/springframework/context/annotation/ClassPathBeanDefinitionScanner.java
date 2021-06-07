@@ -256,10 +256,10 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 				// 检查是不是候选bean，就是检查是否已经存在了
 				// 检查这个Bean  比如如果dao包（一般配置的basePakage是这个）下的类是符合mybaits要求的则向spring IOC容器中注册它的BeanDefinition  所以这步检查第三方Bean的时候有必要检查一下
 				if (checkCandidate(beanName, candidate)) {
-					//创建BeanDefinitionHolder对象
+					// 创建BeanDefinitionHolder对象
 					BeanDefinitionHolder definitionHolder = new BeanDefinitionHolder(candidate, beanName);
-					//将BeanDefinition的属性设置到BeanDefinitionHolder
-					//AnnotationConfigUtils类的applyScopedProxyMode方法根据注解Bean定义类中配置的作用域@Scope注解的值，为Bean定义应用相应的代理模式，主要是在Spring面向切面编程(AOP)中使用
+					// 将BeanDefinition的属性设置到BeanDefinitionHolder
+					// AnnotationConfigUtils类的applyScopedProxyMode方法根据注解Bean定义类中配置的作用域@Scope注解的值，为Bean定义应用相应的代理模式，主要是在Spring面向切面编程(AOP)中使用
 					definitionHolder = AnnotationConfigUtils.applyScopedProxyMode(scopeMetadata, definitionHolder, registry);
 					beanDefinitions.add(definitionHolder);
 					//注册bean

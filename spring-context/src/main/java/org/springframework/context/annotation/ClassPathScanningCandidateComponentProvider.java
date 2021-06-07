@@ -368,12 +368,12 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	private Set<BeanDefinition> scanCandidateComponents(String basePackage) {
 		Set<BeanDefinition> candidates = new LinkedHashSet<>();
 		try {
-			//获取包路径
+			// 获取包路径
 			// 1.根据指定包名 生成包搜索路径
 			// 通过观察 resolveBasePackage()方法的实现, 我们可以在设置basePackage时, 使用形如${}的占位符, Spring会在这里进行替换 只要在Enviroment里面就行
 			// 本次值为：classpath*:com/fsx/config/**/*.class
 			String packageSearchPath = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX + resolveBasePackage(basePackage) + '/' + resourcePattern;
-			//将对应的包中的类封装成resources
+			// 将对应的包中的类封装成resources
 			//2. 资源加载器 加载搜索路径下的 所有class 转换为 Resource[]
 			// 拿着上面的路径，就可以getResources获取出所有的.class类，这个很强大~~~
 			// 真正干事的为：PathMatchingResourcePatternResolver#getResources方法
@@ -387,7 +387,7 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 			// 接下来的这个for循环：就是把一个个的resource组装成
 			for (Resource resource : resources) {
 				if (traceEnabled) logger.trace("Scanning " + resource);
-				// 需要时可读的 //文件必须可读 否则直接返回空了
+				// 需要时可读的 // 文件必须可读 否则直接返回空了
 				if (resource.isReadable()) {
 					try {
 						// 获取封装了resource的MetadataReader
