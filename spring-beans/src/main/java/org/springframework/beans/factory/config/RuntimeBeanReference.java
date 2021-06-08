@@ -6,8 +6,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Immutable placeholder class used for a property value object when it's
- * a reference to another bean in the factory, to be resolved at runtime.
+ * Immutable placeholder class used for a property value object when it's a reference to another bean in the factory, to be resolved at runtime.
  * @see BeanDefinition#getPropertyValues()
  * @see org.springframework.beans.factory.BeanFactory#getBean(String)
  */
@@ -29,8 +28,7 @@ public class RuntimeBeanReference implements BeanReference {
 	}
 
 	/**
-	 * Create a new RuntimeBeanReference to the given bean name,
-	 * with the option to mark it as reference to a bean in the parent factory.
+	 * Create a new RuntimeBeanReference to the given bean name, with the option to mark it as reference to a bean in the parent factory.
 	 * @param beanName name of the target bean
 	 * @param toParent whether this is an explicit reference to a bean in the
 	 * parent factory
@@ -40,7 +38,6 @@ public class RuntimeBeanReference implements BeanReference {
 		this.beanName = beanName;
 		this.toParent = toParent;
 	}
-
 
 	@Override
 	public String getBeanName() {
@@ -90,5 +87,4 @@ public class RuntimeBeanReference implements BeanReference {
 	public String toString() {
 		return '<' + getBeanName() + '>';
 	}
-
 }

@@ -57,6 +57,7 @@ import org.springframework.core.io.support.ResourcePropertySource;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.core.type.MethodMetadata;
 import org.springframework.core.type.StandardAnnotationMetadata;
+import org.springframework.core.type.StandardMethodMetadata;
 import org.springframework.core.type.classreading.MetadataReader;
 import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.core.type.filter.AssignableTypeFilter;
@@ -248,6 +249,7 @@ class ConfigurationClassParser {
 			for (AnnotationAttributes componentScan : componentScans) {
 				// The config class is annotated with @ComponentScan -> perform the scan immediately //ComponentScanAnnotationParser进行解析
 				// 这步是注册@ComponentScan注解basePackages属性的所有bean定义并进行注册！ （排除主配置类、接口、抽象类）
+				logger.warn("【IOC容器 处理 @ComponentScan 注解  --- 】 value属性： " + ((String[])componentScan.get("value"))[0]);
 				Set<BeanDefinitionHolder> scannedBeanDefinitions = componentScanParser.parse(componentScan, sourceClass.getMetadata().getClassName());
 				// Check the set of scanned definitions for any further config classes and parse recursively if needed
 				// 处理扫描到的并封装成BeanDefinitionHolder对象的bean
@@ -278,6 +280,7 @@ class ConfigurationClassParser {
 		// 这里是处理 @Configuration 主配置类中的 @Bean 方法！
 		Set<MethodMetadata> beanMethods = retrieveBeanMethodMetadata(sourceClass);
 		for (MethodMetadata methodMetadata : beanMethods) {
+			logger.warn("【IOC容器 处理 @Configuration 注解主配置类 【" + configClass.getBeanName() + "】 中的 @Bean 方法  --- 】 beanName： " + ((StandardMethodMetadata) methodMetadata).getIntrospectedMethod().getName());
 			configClass.addBeanMethod(new BeanMethod(methodMetadata, configClass));
 		}
 		// Process default methods on interfaces
@@ -483,6 +486,7 @@ class ConfigurationClassParser {
 					if (candidate.isAssignable(ImportSelector.class)) {
 						// Candidate class is an ImportSelector -> delegate to it to determine imports
 						Class<?> candidateClass = candidate.loadClass();
+						logger.warn("【IOC容器 处理 @Import 注解  --- ImportSelector 接口方式 】 beanName： " + candidateClass.getName());
 						ImportSelector selector = BeanUtils.instantiateClass(candidateClass, ImportSelector.class);
 						ParserStrategyUtils.invokeAwareMethods(selector, environment, resourceLoader, registry);
 						if (selector instanceof DeferredImportSelector) {
@@ -496,12 +500,14 @@ class ConfigurationClassParser {
 						// 方式二  @Import(MyImportSelector.class) 导入的类实现了 ImportBeanDefinitionRegistrar 接口
 						// Candidate class is an ImportBeanDefinitionRegistrar -> delegate to it to register additional bean definitions
 						Class<?> candidateClass = candidate.loadClass();
+						logger.warn("【IOC容器 处理 @Import 注解  --- ImportBeanDefinitionRegistrar 接口方式 】 beanName： " + candidateClass.getName());
 						ImportBeanDefinitionRegistrar registrar = BeanUtils.instantiateClass(candidateClass, ImportBeanDefinitionRegistrar.class);
 						ParserStrategyUtils.invokeAwareMethods(registrar, environment, resourceLoader, registry);
 						configClass.addImportBeanDefinitionRegistrar(registrar, currentSourceClass.getMetadata());
 					}else {
 						// 	方式三  直接导入指定类对象 @Import({Blue.class, Red.class})
 						// Candidate class not an ImportSelector or ImportBeanDefinitionRegistrar ->  process it as an @Configuration class
+						logger.warn("【IOC容器 处理 @Import 注解  --- 直接导入方式 】 beanName： " + candidate.getMetadata().getClassName());
 						importStack.registerImport(currentSourceClass.getMetadata(), candidate.getMetadata().getClassName());
 						processConfigurationClass(candidate.asConfigClass(configClass));
 					}

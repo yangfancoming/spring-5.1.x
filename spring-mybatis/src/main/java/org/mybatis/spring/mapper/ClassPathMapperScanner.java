@@ -116,23 +116,30 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 	public void registerFilters() {
 		boolean acceptAllInterfaces = true;
 		// 如果指定了annotationClass配置，则添加注解类型过滤器，使用给定的注解和/或标记接口
+		// 2. 这里的annotationClass是前面注册MapperScannerConfigurer时传递进来的自定义注解属性
 		// if specified, use the given annotation and / or marker interface
 		if (this.annotationClass != null) {
+			// 2.1 这里添加IncludeFilter表示，要添加一个允许的扫描注解，只要标注了该注解就会被ClassLoader扫描到
 			addIncludeFilter(new AnnotationTypeFilter(this.annotationClass));
 			acceptAllInterfaces = false;
 		}
+
+		// 3. 这里的annotationClass是前面注册MapperScannerConfigurer时传递进来的自定义接口Class
 		// 如果指定了markerInterface配置，则添加可分配给定类型的过滤器，重写AssignableTypeFilter忽略实际标记接口上的匹配
 		// override AssignableTypeFilter to ignore matches on the actual marker interface
 		if (this.markerInterface != null) {
+			//3.1 扫描自定义的接口类型，并且
 			addIncludeFilter(new AssignableTypeFilter(this.markerInterface) {
 				@Override
 				protected boolean matchClassName(String className) {
+					// 不能实现类Class，只能是抽象接口或者抽象类
 					return false;
 				}
 			});
 			acceptAllInterfaces = false;
 		}
 		// 如果上面两个没有配置，则添加接受所有接口的过滤器
+		// 4. 如果没有自定义注解或者自定义接口扫描，那么添加一个TypeFilter默认全部扫描所有
 		if (acceptAllInterfaces) {
 			// default include filter that accepts all classes
 			addIncludeFilter((metadataReader, metadataReaderFactory) -> true);
@@ -154,11 +161,11 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 			// the mapper interface is the original class of the bean  but, the actual class of the bean is MapperFactoryBean
 			// mapper的接口是bean的原始类，但是，实际的bean类是MapperFactoryBean
 			definition.getConstructorArgumentValues().addGenericArgumentValue(beanClassName); // issue #59
-			// 偷天换日// 将BeanDefinition中记录的Bean类型修改为MapperFactoryBean
-			// 构造MapperFactoryBean的属性，将sqlSessionFactory、sqlSessionTemplate
-			// 等信息填充到BeanDefinition中
-			// 修改自动注入方式
-			// 其实是通过更改注册容器中bean的beanClass属性为MapperFactoryBean（工厂bean）生成实例的。容易中注册的bean其实是工厂bean，spring中的工厂bean获得实例是调用工厂方法获得。
+			// 偷天换日 // 将BeanDefinition中记录的Bean类型修改为MapperFactoryBean
+			// sos 原来的beanDefinitionMap里面key是"bookMapper" value是 BookMapper.class 接口类，这里给改成了  key是"bookMapper" value却是 MapperFactoryBean.class 工厂类
+			// 构造MapperFactoryBean的属性，将sqlSessionFactory、sqlSessionTemplate等信息填充到BeanDefinition中
+			// 其实是通过更改注册容器中bean的beanClass属性为MapperFactoryBean（工厂bean）生成实例的。
+			// 容器中注册的bean其实是工厂bean，spring中的工厂bean获得实例是调用工厂方法获得。
 			definition.setBeanClass(this.mapperFactoryBeanClass);
 			definition.getPropertyValues().add("addToConfig", this.addToConfig);
 			boolean explicitFactoryUsed = false;
@@ -199,7 +206,7 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 	}
 
 	//---------------------------------------------------------------------
-	// Implementation of 【ClassPathBeanDefinitionScanner】 class
+	// 重写 of 【ClassPathBeanDefinitionScanner】 的doScan方法
 	//---------------------------------------------------------------------
 	/**
 	 * Calls the parent search that will search and register all the candidates. Then the registered objects are post
@@ -211,6 +218,7 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 		if (beanDefinitions.isEmpty()) {
 			LOGGER.warn(() -> "No MyBatis mapper was found in '" + Arrays.toString(basePackages)  + "' package. Please check your configuration.");
 		} else {
+			// 准备偷天换日
 			processBeanDefinitions(beanDefinitions);
 		}
 		return beanDefinitions;

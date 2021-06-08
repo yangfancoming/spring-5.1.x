@@ -47,7 +47,6 @@ final class ConfigurationClass {
 
 	final Set<String> skippedBeanMethods = new HashSet<>();
 
-
 	/**
 	 * Create a new {@link ConfigurationClass} with the given name.
 	 * @param metadataReader reader used to parse the underlying {@link Class}
@@ -204,8 +203,7 @@ final class ConfigurationClass {
 
 	@Override
 	public boolean equals(Object other) {
-		return (this == other || (other instanceof ConfigurationClass &&
-				getMetadata().getClassName().equals(((ConfigurationClass) other).getMetadata().getClassName())));
+		return (this == other || (other instanceof ConfigurationClass && getMetadata().getClassName().equals(((ConfigurationClass) other).getMetadata().getClassName())));
 	}
 
 	@Override
@@ -225,8 +223,7 @@ final class ConfigurationClass {
 	private class FinalConfigurationProblem extends Problem {
 
 		public FinalConfigurationProblem() {
-			super(String.format("@Configuration class '%s' may not be final. Remove the final modifier to continue.",
-					getSimpleName()), new Location(getResource(), getMetadata()));
+			super(String.format("@Configuration class '%s' may not be final. Remove the final modifier to continue.",getSimpleName()), new Location(getResource(), getMetadata()));
 		}
 	}
 

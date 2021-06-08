@@ -228,7 +228,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 		Set<BeanDefinitionHolder> beanDefinitions = new LinkedHashSet<>();
 		// 循环需要扫描的包basePackage
 		for (String basePackage : basePackages) {
-			//寻找合适的候选bean，并封装成BeanDefinition
+			// 寻找合适的候选bean，并封装成BeanDefinition
 			// 这个是重点，会把该包下面所有的Bean都扫描进去。Spring5和一下的处理方式不一样哦~
 			Set<BeanDefinition> candidates = findCandidateComponents(basePackage);
 			//处理寻找到的候选bean
@@ -263,7 +263,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 					definitionHolder = AnnotationConfigUtils.applyScopedProxyMode(scopeMetadata, definitionHolder, registry);
 					beanDefinitions.add(definitionHolder);
 					//注册bean
-					// 注意 注意 注意：这里已经吧Bean注册进去工厂了，所有doScan()方法不接收返回值，也是没有任何问题的。。。。
+					// 注意 注意 注意：这里已经把Bean注册进去工厂了，所有doScan()方法不接收返回值，也是没有任何问题的。。。。
 					registerBeanDefinition(definitionHolder, registry);
 				}
 			}

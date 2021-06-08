@@ -487,7 +487,6 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 		TransactionFactory transactionFactory = this.transactionFactory == null ? new SpringManagedTransactionFactory() : this.transactionFactory;
 		// 为Configuration设置环境
 		targetConfiguration.setEnvironment(new Environment(environment,transactionFactory,dataSource));
-
 		if (mapperLocations != null) {
 			if (mapperLocations.length == 0) {
 				LOGGER.warn(() -> "Property 'mapperLocations' was specified but matching resources are not found.");

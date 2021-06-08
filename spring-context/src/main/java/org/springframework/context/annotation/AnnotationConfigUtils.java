@@ -110,7 +110,7 @@ public abstract class AnnotationConfigUtils {
 				beanFactory.setAutowireCandidateResolver(new ContextAnnotationAutowireCandidateResolver());
 			}
 		}
-		//这里初始长度放4  是因为大多数情况下，我们只会注册4个BeanPostProcessor 如下(不多说了)
+		// 这里初始长度放4  是因为大多数情况下，我们只会注册4个BeanPostProcessor 如下(不多说了)
 		// BeanDefinitionHolder解释：持有name和aliases,为注册做准备
 		// Spring 4.2之后这个改成6我觉得更准确点
 		Set<BeanDefinitionHolder> beanDefs = new LinkedHashSet<>(8);

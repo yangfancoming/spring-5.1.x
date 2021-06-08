@@ -167,8 +167,8 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	}
 
 	/**
-	 *  * 返回在给定名称下注册的(原始)单例对象。
-	 *  * 检查已经实例化的单例，并允许对当前创建的单例的早期引用(解决循环引用)。
+	 *  返回在给定名称下注册的(原始)单例对象。
+	 *  检查已经实例化的单例，并允许对当前创建的单例的早期引用(解决循环引用)。
 	 * Return the (raw) singleton object registered under the given name.
 	 * Checks already instantiated singletons and also allows for an early  reference to a currently created singleton (resolving a circular reference).
 	 * @param beanName the name of the bean to look for

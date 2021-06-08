@@ -390,15 +390,18 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 				// 需要时可读的 // 文件必须可读 否则直接返回空了
 				if (resource.isReadable()) {
 					try {
-						// 获取封装了resource的MetadataReader
+						// 获取封装了resource的MetadataReader //3. 使用ASM进行元信息读取
 						// 读取类的 注解信息 和 类信息 ，两大信息储存到  MetadataReader
 						MetadataReader metadataReader = getMetadataReaderFactory().getMetadataReader(resource);
 						// 检查metadataReader中的对象的className是否符合指定的excludeFilters和includeFilters的筛选
 						// 根据TypeFilter过滤排除组件。因为AppConfig没有标准@Component或者子注解，所以肯定不属于候选组件  返回false
 						// 注意：这里一般(默认处理的情况下)标注了默认注解的才会true，什么叫默认注解呢？就是@Component或者派生注解。还有javax....的，这里省略啦
+						//4. 这里很关键里面会进行IncludeFilter和ExcludeFilter的判断，也是能自定义扩展组件扫描的核心方法
 						if (isCandidateComponent(metadataReader)) {
 							// 创建一个ScannedGenericBeanDefinition对象
 							// 把符合条件的 类转换成 BeanDefinition
+							// 5. 拼装成BeanDefinition，后面会给BeanDefinition设置beanClass为MapperFactoryBean代理对象
+							//6. 最后注册到IOC容器中，此时我们已经可以使用Mybatis的Mapper来完成依赖注入和依赖查找了
 							ScannedGenericBeanDefinition sbd = new ScannedGenericBeanDefinition(metadataReader);
 							sbd.setResource(resource);
 							sbd.setSource(resource);
@@ -462,6 +465,10 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 		//      2. new AnnotationTypeFilter(((Class<? extends Annotation>) ClassUtils.forName("javax.annotation.ManagedBean", cl)), false)
 		//      3. new AnnotationTypeFilter(((Class<? extends Annotation>) ClassUtils.forName("javax.inject.Named", cl)), false)
 		//   @Repository、 @Controller、 @Service、@Configuration都被@Component注解所修饰
+
+		//遍历所有的IncludeFilter，若匹配则进行Conditional条件注解判断，这里includeFilters中就包括了之前
+		//ClassPathMapperScanner#registerFilters()方法中注册的includeFilters。这也是为什么我们配置了
+		// @MapperScan(basePakages="xxxx")就能扫描到xxx包下的所有类到ioc容器中的所有原理
 		for (TypeFilter tf : includeFilters) {
 			if (tf.match(metadataReader, getMetadataReaderFactory())) {
 				return isConditionMatch(metadataReader);

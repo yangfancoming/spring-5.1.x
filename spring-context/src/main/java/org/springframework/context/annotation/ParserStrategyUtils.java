@@ -21,8 +21,7 @@ import org.springframework.core.io.ResourceLoader;
 abstract class ParserStrategyUtils {
 
 	/**
-	 * Invoke {@link BeanClassLoaderAware}, {@link BeanFactoryAware},{@link EnvironmentAware},
-	 * and {@link ResourceLoaderAware} contracts if implemented by the given object.
+	 * Invoke {@link BeanClassLoaderAware}, {@link BeanFactoryAware},{@link EnvironmentAware},and {@link ResourceLoaderAware} contracts if implemented by the given object.
 	 */
 	public static void invokeAwareMethods(Object parserStrategyBean, Environment environment,ResourceLoader resourceLoader, BeanDefinitionRegistry registry) {
 		if (parserStrategyBean instanceof Aware) {

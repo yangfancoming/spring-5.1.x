@@ -942,6 +942,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				// Cache the merged bean definition for the time being (it might still get re-merged later on in order to pick up metadata changes)
 				if (containingBd == null && isCacheBeanMetadata()) {
 					// 缓存合并后的 BeanDefinition
+					logger.warn("【IOC容器 合并 mergedBeanDefinitions 内存态 --- 】 beanName： " + beanName);
 					mergedBeanDefinitions.put(beanName, mbd);
 				}
 			}
