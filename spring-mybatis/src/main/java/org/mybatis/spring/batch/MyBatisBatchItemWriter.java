@@ -100,7 +100,7 @@ public class MyBatisBatchItemWriter<T> implements ItemWriter<T>, InitializingBea
 	@Override
 	public void write(final List<? extends T> items) {
 		if (items.isEmpty()) return; // -modify
-		LOGGER.debug(() -> "Executing batch with " + items.size() + " items.");
+		LOGGER.warn(() -> "Executing batch with " + items.size() + " items.");
 		for (T item : items) {
 			sqlSessionTemplate.update(statementId, itemToParameterConverter.convert(item));
 		}

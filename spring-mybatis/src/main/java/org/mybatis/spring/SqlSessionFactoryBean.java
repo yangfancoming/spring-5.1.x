@@ -403,7 +403,7 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 			xmlConfigBuilder = new XMLConfigBuilder(configLocation.getInputStream(), null, configurationProperties);
 			targetConfiguration = xmlConfigBuilder.getConfiguration();
 		} else { // 如果 configuration 为null 并且又没有指定全局xml配置文件路径的情况下，使用mybatis的默认配置
-			LOGGER.debug( () -> "Property 'configuration' or 'configLocation' not specified, using default MyBatis Configuration");
+			LOGGER.warn( () -> "Property 'configuration' or 'configLocation' not specified, using default MyBatis Configuration");
 			targetConfiguration = new Configuration();
 			Optional.ofNullable(configurationProperties).ifPresent(targetConfiguration::setVariables);
 		}
@@ -431,14 +431,14 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 		if (!isEmpty(typeAliases)) {
 			Stream.of(typeAliases).forEach(typeAlias -> {
 				targetConfiguration.getTypeAliasRegistry().registerAlias(typeAlias);
-				LOGGER.debug(() -> "Registered type alias: '" + typeAlias + "'");
+				LOGGER.warn(() -> "Registered type alias: '" + typeAlias + "'");
 			});
 		}
 
 		if (!isEmpty(plugins)) {
 			Stream.of(plugins).forEach(plugin -> {
 				targetConfiguration.addInterceptor(plugin);
-				LOGGER.debug(() -> "Registered plugin: '" + plugin + "'");
+				LOGGER.warn(() -> "Registered plugin: '" + plugin + "'");
 			});
 		}
 
@@ -452,14 +452,14 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 		if (!isEmpty(typeHandlers)) {
 			Stream.of(typeHandlers).forEach(typeHandler -> {
 				targetConfiguration.getTypeHandlerRegistry().register(typeHandler);
-				LOGGER.debug(() -> "Registered type handler: '" + typeHandler + "'");
+				LOGGER.warn(() -> "Registered type handler: '" + typeHandler + "'");
 			});
 		}
 
 		if (!isEmpty(scriptingLanguageDrivers)) {
 			Stream.of(scriptingLanguageDrivers).forEach(languageDriver -> {
 				targetConfiguration.getLanguageRegistry().register(languageDriver);
-				LOGGER.debug(() -> "Registered scripting language driver: '" + languageDriver + "'");
+				LOGGER.warn(() -> "Registered scripting language driver: '" + languageDriver + "'");
 			});
 		}
 		Optional.ofNullable(defaultScriptingLanguageDriver) .ifPresent(targetConfiguration::setDefaultScriptingLanguage);
@@ -476,7 +476,7 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 		if (xmlConfigBuilder != null) {
 			try {
 				xmlConfigBuilder.parse(); // 如果配置了configLocation，则解析配置文件
-				LOGGER.debug(() -> "Parsed configuration file: '" + configLocation + "'");
+				LOGGER.warn(() -> "Parsed configuration file: '" + configLocation + "'");
 			} catch (Exception ex) {
 				throw new NestedIOException("Failed to parse config resource: " + configLocation, ex);
 			} finally {
@@ -503,11 +503,11 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 					} finally {
 						ErrorContext.instance().reset();
 					}
-					LOGGER.debug(() -> "Parsed mapper file: '" + mapperLocation + "'");
+					LOGGER.warn(() -> "Parsed mapper file: '" + mapperLocation + "'");
 				}
 			}
 		} else {
-			LOGGER.debug(() -> "Property 'mapperLocations' was not specified.");
+			LOGGER.warn(() -> "Property 'mapperLocations' was not specified.");
 		}
 		// 最终 调用SqlSessionFactoryBuilder.build()方法，创建SqlSessionFactory对象并返回
 		return sqlSessionFactoryBuilder.build(targetConfiguration);

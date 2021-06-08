@@ -1,6 +1,9 @@
 
 package org.mybatis.spring.annotation;
 
+import org.mybatis.logging.Logger;
+import org.mybatis.logging.LoggerFactory;
+import org.mybatis.spring.batch.MyBatisBatchItemWriter;
 import org.mybatis.spring.mapper.ClassPathMapperScanner;
 import org.mybatis.spring.mapper.MapperFactoryBean;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
@@ -30,12 +33,15 @@ import java.util.stream.Collectors;
  */
 public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(MapperScannerRegistrar.class);
+
   @Override
   public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
   	// 拿到 @MapperScan 注解上配置的所有属性值
     AnnotationAttributes mapperScanAttrs = AnnotationAttributes.fromMap(importingClassMetadata.getAnnotationAttributes(MapperScan.class.getName()));
     if (mapperScanAttrs != null) {
     	// 准备向容器中注册 MapperScannerConfigurer 的bean定义
+		LOGGER.warn(() -> "【mybatis 处理 @MapperScan 注解  ---   】 value属性值： " + ((String[]) mapperScanAttrs.get("value"))[0]);
       registerBeanDefinitions(mapperScanAttrs, registry, generateBaseBeanName(importingClassMetadata, 0));
     }
   }

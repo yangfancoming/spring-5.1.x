@@ -53,13 +53,13 @@ public class SpringManagedTransaction implements Transaction {
     connection = DataSourceUtils.getConnection(dataSource);// 获取spring数据库连接
     autoCommit = connection.getAutoCommit();
     isConnectionTransactional = DataSourceUtils.isConnectionTransactional(connection, dataSource);
-    LOGGER.debug(() -> "JDBC Connection [" + connection + "] will" + (isConnectionTransactional ? " " : " not ") + "be managed by Spring");
+    LOGGER.warn(() -> "JDBC Connection [" + connection + "] will" + (isConnectionTransactional ? " " : " not ") + "be managed by Spring");
   }
 
   @Override
   public void commit() throws SQLException {
     if (connection != null && !isConnectionTransactional && !autoCommit) {
-      LOGGER.debug(() -> "Committing JDBC Connection [" + connection + "]");
+      LOGGER.warn(() -> "Committing JDBC Connection [" + connection + "]");
       connection.commit();
     }
   }
@@ -67,7 +67,7 @@ public class SpringManagedTransaction implements Transaction {
   @Override
   public void rollback() throws SQLException {
     if (connection != null && !isConnectionTransactional && !autoCommit) {
-      LOGGER.debug(() -> "Rolling back JDBC Connection [" + connection + "]");
+      LOGGER.warn(() -> "Rolling back JDBC Connection [" + connection + "]");
       connection.rollback();
     }
   }

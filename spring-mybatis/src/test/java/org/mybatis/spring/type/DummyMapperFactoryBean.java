@@ -29,7 +29,7 @@ public class DummyMapperFactoryBean<T> extends MapperFactoryBean<T> {
     super.checkDaoConfig();
     // make something more
     if (isAddToConfig()) {
-      LOGGER.debug(() -> "register mapper for interface : " + getMapperInterface());
+      LOGGER.warn(() -> "register mapper for interface : " + getMapperInterface());
     }
   }
 

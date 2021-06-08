@@ -141,7 +141,11 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 		// 如果上面两个没有配置，则添加接受所有接口的过滤器
 		// 4. 如果没有自定义注解或者自定义接口扫描，那么添加一个TypeFilter默认全部扫描所有
 		if (acceptAllInterfaces) {
-			// default include filter that accepts all classes
+			/**
+			 * default include filter that accepts all classes
+			 * sos 这里就使得 BookMapper 接口类再没有任何【组件系列】注解标注的情况下，也能够被spring扫描并注册bean定义。
+			 * @see com.goat.chapter651.dao.BookMapper
+			*/
 			addIncludeFilter((metadataReader, metadataReaderFactory) -> true);
 		}
 		// 添加过滤掉package-info.java的过滤器
@@ -157,7 +161,7 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 		for (BeanDefinitionHolder holder : beanDefinitions) {
 			definition = (GenericBeanDefinition) holder.getBeanDefinition();
 			String beanClassName = definition.getBeanClassName();
-			LOGGER.debug(() -> "Creating MapperFactoryBean with name '" + holder.getBeanName() + "' and '" + beanClassName + "' mapperInterface");
+			LOGGER.warn(() -> "Creating MapperFactoryBean with name '" + holder.getBeanName() + "' and '" + beanClassName + "' mapperInterface");
 			// the mapper interface is the original class of the bean  but, the actual class of the bean is MapperFactoryBean
 			// mapper的接口是bean的原始类，但是，实际的bean类是MapperFactoryBean
 			definition.getConstructorArgumentValues().addGenericArgumentValue(beanClassName); // issue #59
@@ -190,7 +194,7 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 				explicitFactoryUsed = true;
 			}
 			if (!explicitFactoryUsed) {
-				LOGGER.debug(() -> "Enabling autowire by type for MapperFactoryBean with name '" + holder.getBeanName() + "'.");
+				LOGGER.warn(() -> "Enabling autowire by type for MapperFactoryBean with name '" + holder.getBeanName() + "'.");
 				definition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
 			}
 			definition.setLazyInit(lazyInitialization);
