@@ -158,10 +158,11 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 
 	private void processBeanDefinitions(Set<BeanDefinitionHolder> beanDefinitions) {
 		GenericBeanDefinition definition;
+		// 将扫描到的所有dao层mapper接口，循环全部更改其bean定义，替换成 MapperFactoryBean
 		for (BeanDefinitionHolder holder : beanDefinitions) {
 			definition = (GenericBeanDefinition) holder.getBeanDefinition();
 			String beanClassName = definition.getBeanClassName();
-			LOGGER.warn(() -> "Creating MapperFactoryBean with name '" + holder.getBeanName() + "' and '" + beanClassName + "' mapperInterface");
+			LOGGER.warn(() -> "【mybatis】 Creating MapperFactoryBean with name '" + holder.getBeanName() + "' and '" + beanClassName + "' mapperInterface");
 			// the mapper interface is the original class of the bean  but, the actual class of the bean is MapperFactoryBean
 			// mapper的接口是bean的原始类，但是，实际的bean类是MapperFactoryBean
 			definition.getConstructorArgumentValues().addGenericArgumentValue(beanClassName); // issue #59
@@ -170,6 +171,7 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 			// 构造MapperFactoryBean的属性，将sqlSessionFactory、sqlSessionTemplate等信息填充到BeanDefinition中
 			// 其实是通过更改注册容器中bean的beanClass属性为MapperFactoryBean（工厂bean）生成实例的。
 			// 容器中注册的bean其实是工厂bean，spring中的工厂bean获得实例是调用工厂方法获得。
+			// 此时的 definition 就是beanDefinitionMap中对应的definition！
 			definition.setBeanClass(this.mapperFactoryBeanClass);
 			definition.getPropertyValues().add("addToConfig", this.addToConfig);
 			boolean explicitFactoryUsed = false;
@@ -218,6 +220,7 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 	 */
 	@Override
 	public Set<BeanDefinitionHolder> doScan(String... basePackages) {
+		LOGGER.warn(() -> "【mybatis】 使用父类doSan() 扫描并注册bean定义，basePackages：" + Arrays.toString(basePackages));
 		Set<BeanDefinitionHolder> beanDefinitions = super.doScan(basePackages);
 		if (beanDefinitions.isEmpty()) {
 			LOGGER.warn(() -> "No MyBatis mapper was found in '" + Arrays.toString(basePackages)  + "' package. Please check your configuration.");

@@ -39,9 +39,11 @@ public class MapperFactoryBean<T> extends SqlSessionDaoSupport implements Factor
 
 	public MapperFactoryBean() {
 		// intentionally empty
+		logger.warn("【mybatis】 MapperFactoryBean 无参构造函数 执行");
 	}
 
 	public MapperFactoryBean(Class<T> mapperInterface) {
+		logger.warn("【mybatis】 MapperFactoryBean 单参构造函数 执行");
 		this.mapperInterface = mapperInterface;
 	}
 

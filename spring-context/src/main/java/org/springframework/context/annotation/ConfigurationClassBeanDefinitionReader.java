@@ -100,7 +100,6 @@ class ConfigurationClassBeanDefinitionReader {
 			importRegistry.removeImportingClass(configClass.getMetadata().getClassName());
 			return;
 		}
-
 		if (configClass.isImported()) {
 			registerBeanDefinitionForImportedConfigurationClass(configClass);
 		}
@@ -131,6 +130,7 @@ class ConfigurationClassBeanDefinitionReader {
 
 	/**
 	 * Read the given {@link BeanMethod}, registering bean definitions with the BeanDefinitionRegistry based on its contents.
+	 * 处理@configuration主配置类中的 @Bean 方法，将它们注册到容器中。
 	 */
 	@SuppressWarnings("deprecation")  // for RequiredAnnotationBeanPostProcessor.SKIP_REQUIRED_CHECK_ATTRIBUTE
 	private void loadBeanDefinitionsForBeanMethod(BeanMethod beanMethod) {

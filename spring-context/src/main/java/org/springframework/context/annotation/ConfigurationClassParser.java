@@ -281,6 +281,10 @@ class ConfigurationClassParser {
 		Set<MethodMetadata> beanMethods = retrieveBeanMethodMetadata(sourceClass);
 		for (MethodMetadata methodMetadata : beanMethods) {
 			logger.warn("【IOC容器 处理 @Configuration 注解主配置类 【" + configClass.getBeanName() + "】 中的 @Bean 方法  --- 】 beanName： " + ((StandardMethodMetadata) methodMetadata).getIntrospectedMethod().getName());
+			/**
+			 * 再此处进行添加，再后面进行处理
+			 * @see ConfigurationClassBeanDefinitionReader#loadBeanDefinitionsForBeanMethod(org.springframework.context.annotation.BeanMethod)
+			*/
 			configClass.addBeanMethod(new BeanMethod(methodMetadata, configClass));
 		}
 		// Process default methods on interfaces
