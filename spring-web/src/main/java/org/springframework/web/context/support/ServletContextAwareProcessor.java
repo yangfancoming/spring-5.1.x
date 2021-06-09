@@ -93,5 +93,4 @@ public class ServletContextAwareProcessor implements BeanPostProcessor {
 	public Object postProcessAfterInitialization(Object bean, String beanName) {
 		return bean;
 	}
-
 }

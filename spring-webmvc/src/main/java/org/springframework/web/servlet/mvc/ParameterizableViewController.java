@@ -13,14 +13,8 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 /**
- * Trivial controller that always returns a pre-configured view and optionally
- * sets the response status code. The view and status can be configured using
- * the provided configuration properties.
- *
- * @author Rod Johnson
-
- * @author Keith Donald
- *
+ * Trivial controller that always returns a pre-configured view and optionally sets the response status code.
+ * The view and status can be configured using the provided configuration properties.
  */
 public class ParameterizableViewController extends AbstractController {
 

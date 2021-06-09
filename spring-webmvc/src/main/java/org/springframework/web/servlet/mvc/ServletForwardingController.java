@@ -65,8 +65,6 @@ import org.springframework.web.util.WebUtils;
  * &lt;bean id="myServletForwardingController" class="org.springframework.web.servlet.mvc.ServletForwardingController"&gt;
  *   &lt;property name="servletName"&gt;&lt;value&gt;myServlet&lt;/value&gt;&lt;/property&gt;
  * &lt;/bean&gt;</pre>
- *
-
  * @since 1.1.1
  * @see ServletWrappingController
  * @see org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor
@@ -80,11 +78,9 @@ public class ServletForwardingController extends AbstractController implements B
 	@Nullable
 	private String beanName;
 
-
 	public ServletForwardingController() {
 		super(false);
 	}
-
 
 	/**
 	 * Set the name of the servlet to forward to,
@@ -105,29 +101,23 @@ public class ServletForwardingController extends AbstractController implements B
 
 
 	@Override
-	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-
+	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ServletContext servletContext = getServletContext();
 		Assert.state(servletContext != null, "No ServletContext");
 		RequestDispatcher rd = servletContext.getNamedDispatcher(this.servletName);
 		if (rd == null) {
 			throw new ServletException("No servlet with name '" + this.servletName + "' defined in web.xml");
 		}
-
 		// If already included, include again, else forward.
 		if (useInclude(request, response)) {
 			rd.include(request, response);
 			if (logger.isTraceEnabled()) {
-				logger.trace("Included servlet [" + this.servletName +
-						"] in ServletForwardingController '" + this.beanName + "'");
+				logger.trace("Included servlet [" + this.servletName + "] in ServletForwardingController '" + this.beanName + "'");
 			}
-		}
-		else {
+		}else {
 			rd.forward(request, response);
 			if (logger.isTraceEnabled()) {
-				logger.trace("Forwarded to servlet [" + this.servletName +
-						"] in ServletForwardingController '" + this.beanName + "'");
+				logger.trace("Forwarded to servlet [" + this.servletName + "] in ServletForwardingController '" + this.beanName + "'");
 			}
 		}
 
@@ -135,8 +125,7 @@ public class ServletForwardingController extends AbstractController implements B
 	}
 
 	/**
-	 * Determine whether to use RequestDispatcher's {@code include} or
-	 * {@code forward} method.
+	 * Determine whether to use RequestDispatcher's {@code include} or {@code forward} method.
 	 * Performs a check whether an include URI attribute is found in the request,
 	 * indicating an include request, and whether the response has already been committed.
 	 * In both cases, an include will be performed, as a forward is not possible anymore.
@@ -151,5 +140,4 @@ public class ServletForwardingController extends AbstractController implements B
 	protected boolean useInclude(HttpServletRequest request, HttpServletResponse response) {
 		return (WebUtils.isIncludeRequest(request) || response.isCommitted());
 	}
-
 }

@@ -11,11 +11,7 @@ import org.springframework.lang.Nullable;
 
 /**
  * Generic interface for a web request. Mainly intended for generic web
- * request interceptors, giving them access to general request metadata,
- * not for actual handling of the request.
- *
-
- * @author Brian Clozel
+ * request interceptors, giving them access to general request metadata, not for actual handling of the request.
  * @since 2.0
  * @see WebRequestInterceptor
  */
@@ -230,5 +226,4 @@ public interface WebRequest extends RequestAttributes {
 	 * @return the requested description as String
 	 */
 	String getDescription(boolean includeClientInfo);
-
 }

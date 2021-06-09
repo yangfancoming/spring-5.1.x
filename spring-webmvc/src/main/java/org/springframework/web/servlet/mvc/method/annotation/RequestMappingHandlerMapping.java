@@ -144,7 +144,6 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 		this.config.setTrailingSlashMatch(this.useTrailingSlashMatch);
 		this.config.setRegisteredSuffixPatternMatch(this.useRegisteredSuffixPatternMatch);
 		this.config.setContentNegotiationManager(getContentNegotiationManager());
-
 		super.afterPropertiesSet();
 	}
 
@@ -303,8 +302,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	protected String[] resolveEmbeddedValuesInPatterns(String[] patterns) {
 		if (this.embeddedValueResolver == null) {
 			return patterns;
-		}
-		else {
+		}else {
 			String[] resolvedPatterns = new String[patterns.length];
 			for (int i = 0; i < patterns.length; i++) {
 				resolvedPatterns[i] = this.embeddedValueResolver.resolveStringValue(patterns[i]);
@@ -331,15 +329,12 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 		Class<?> beanType = handlerMethod.getBeanType();
 		CrossOrigin typeAnnotation = AnnotatedElementUtils.findMergedAnnotation(beanType, CrossOrigin.class);
 		CrossOrigin methodAnnotation = AnnotatedElementUtils.findMergedAnnotation(method, CrossOrigin.class);
-
 		if (typeAnnotation == null && methodAnnotation == null) {
 			return null;
 		}
-
 		CorsConfiguration config = new CorsConfiguration();
 		updateCorsConfig(config, typeAnnotation);
 		updateCorsConfig(config, methodAnnotation);
-
 		if (CollectionUtils.isEmpty(config.getAllowedMethods())) {
 			for (RequestMethod allowedMethod : mappingInfo.getMethodsCondition().getMethods()) {
 				config.addAllowedMethod(allowedMethod.name());
@@ -368,13 +363,10 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 		String allowCredentials = resolveCorsAnnotationValue(annotation.allowCredentials());
 		if ("true".equalsIgnoreCase(allowCredentials)) {
 			config.setAllowCredentials(true);
-		}
-		else if ("false".equalsIgnoreCase(allowCredentials)) {
+		}else if ("false".equalsIgnoreCase(allowCredentials)) {
 			config.setAllowCredentials(false);
-		}
-		else if (!allowCredentials.isEmpty()) {
-			throw new IllegalStateException("@CrossOrigin's allowCredentials value must be \"true\", \"false\", " +
-					"or an empty string (\"\"): current value is [" + allowCredentials + "]");
+		}else if (!allowCredentials.isEmpty()) {
+			throw new IllegalStateException("@CrossOrigin's allowCredentials value must be \"true\", \"false\",or an empty string (\"\"): current value is [" + allowCredentials + "]");
 		}
 
 		if (annotation.maxAge() >= 0 && config.getMaxAge() == null) {
@@ -386,8 +378,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 		if (this.embeddedValueResolver != null) {
 			String resolved = this.embeddedValueResolver.resolveStringValue(value);
 			return (resolved != null ? resolved : "");
-		}
-		else {
+		}else {
 			return value;
 		}
 	}

@@ -214,14 +214,11 @@ public class MvcNamespaceTests {
 		assertEquals(LocalDate.parse("2009-10-31").toDate(), handler.date);
 		assertEquals(Double.valueOf(0.9999), handler.percent);
 
-		CompositeUriComponentsContributor uriComponentsContributor = this.appContext.getBean(
-				MvcUriComponentsBuilder.MVC_URI_COMPONENTS_CONTRIBUTOR_BEAN_NAME,
-				CompositeUriComponentsContributor.class);
+		CompositeUriComponentsContributor uriComponentsContributor = this.appContext.getBean(MvcUriComponentsBuilder.MVC_URI_COMPONENTS_CONTRIBUTOR_BEAN_NAME,CompositeUriComponentsContributor.class);
 
 		assertNotNull(uriComponentsContributor);
 
-		String name = "mvcHandlerMappingIntrospector";
-		HandlerMappingIntrospector introspector = this.appContext.getBean(name, HandlerMappingIntrospector.class);
+		HandlerMappingIntrospector introspector = this.appContext.getBean("mvcHandlerMappingIntrospector", HandlerMappingIntrospector.class);
 		assertNotNull(introspector);
 		assertEquals(2, introspector.getHandlerMappings().size());
 		assertSame(mapping, introspector.getHandlerMappings().get(0));

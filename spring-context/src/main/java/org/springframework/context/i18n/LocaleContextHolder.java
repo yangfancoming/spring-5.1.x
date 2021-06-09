@@ -12,17 +12,12 @@ import org.springframework.lang.Nullable;
 /**
  * Simple holder class that associates a LocaleContext instance
  * with the current thread. The LocaleContext will be inherited
- * by any child threads spawned by the current thread if the
- * {@code inheritable} flag is set to {@code true}.
+ * by any child threads spawned by the current thread if the {@code inheritable} flag is set to {@code true}.
  *
  * Used as a central holder for the current Locale in Spring,
  * wherever necessary: for example, in MessageSourceAccessor.
  * DispatcherServlet automatically exposes its current Locale here.
- * Other applications can expose theirs too, to make classes like
- * MessageSourceAccessor automatically use that Locale.
- *
-
- * @author Nicholas Williams
+ * Other applications can expose theirs too, to make classes like MessageSourceAccessor automatically use that Locale.
  * @since 1.2
  * @see LocaleContext
  * @see org.springframework.context.support.MessageSourceAccessor
@@ -30,11 +25,9 @@ import org.springframework.lang.Nullable;
  */
 public final class LocaleContextHolder {
 
-	private static final ThreadLocal<LocaleContext> localeContextHolder =
-			new NamedThreadLocal<>("LocaleContext");
+	private static final ThreadLocal<LocaleContext> localeContextHolder = new NamedThreadLocal<>("LocaleContext");
 
-	private static final ThreadLocal<LocaleContext> inheritableLocaleContextHolder =
-			new NamedInheritableThreadLocal<>("LocaleContext");
+	private static final ThreadLocal<LocaleContext> inheritableLocaleContextHolder = new NamedInheritableThreadLocal<>("LocaleContext");
 
 	// Shared default locale at the framework level
 	@Nullable
@@ -44,10 +37,8 @@ public final class LocaleContextHolder {
 	@Nullable
 	private static TimeZone defaultTimeZone;
 
-
 	private LocaleContextHolder() {
 	}
-
 
 	/**
 	 * Reset the LocaleContext for the current thread.
@@ -60,10 +51,8 @@ public final class LocaleContextHolder {
 	/**
 	 * Associate the given LocaleContext with the current thread,
 	 * <i>not</i> exposing it as inheritable for child threads.
-	 * The given LocaleContext may be a {@link TimeZoneAwareLocaleContext},
-	 * containing a locale with associated time zone information.
-	 * @param localeContext the current LocaleContext,
-	 * or {@code null} to reset the thread-bound context
+	 * The given LocaleContext may be a {@link TimeZoneAwareLocaleContext},containing a locale with associated time zone information.
+	 * @param localeContext the current LocaleContext,or {@code null} to reset the thread-bound context
 	 * @see SimpleLocaleContext
 	 * @see SimpleTimeZoneAwareLocaleContext
 	 */
@@ -73,12 +62,9 @@ public final class LocaleContextHolder {
 
 	/**
 	 * Associate the given LocaleContext with the current thread.
-	 * The given LocaleContext may be a {@link TimeZoneAwareLocaleContext},
-	 * containing a locale with associated time zone information.
-	 * @param localeContext the current LocaleContext,
-	 * or {@code null} to reset the thread-bound context
-	 * @param inheritable whether to expose the LocaleContext as inheritable
-	 * for child threads (using an {@link InheritableThreadLocal})
+	 * The given LocaleContext may be a {@link TimeZoneAwareLocaleContext},containing a locale with associated time zone information.
+	 * @param localeContext the current LocaleContext,or {@code null} to reset the thread-bound context
+	 * @param inheritable whether to expose the LocaleContext as inheritable for child threads (using an {@link InheritableThreadLocal})
 	 * @see SimpleLocaleContext
 	 * @see SimpleTimeZoneAwareLocaleContext
 	 */
@@ -126,42 +112,32 @@ public final class LocaleContextHolder {
 	}
 
 	/**
-	 * Associate the given Locale with the current thread,
-	 * preserving any TimeZone that may have been set already.
+	 * Associate the given Locale with the current thread, preserving any TimeZone that may have been set already.
 	 * Will implicitly create a LocaleContext for the given Locale.
-	 * @param locale the current Locale, or {@code null} to reset
-	 * the locale part of thread-bound context
-	 * @param inheritable whether to expose the LocaleContext as inheritable
-	 * for child threads (using an {@link InheritableThreadLocal})
+	 * @param locale the current Locale, or {@code null} to reset the locale part of thread-bound context
+	 * @param inheritable whether to expose the LocaleContext as inheritable for child threads (using an {@link InheritableThreadLocal})
 	 * @see #setTimeZone(TimeZone, boolean)
 	 * @see SimpleLocaleContext#SimpleLocaleContext(Locale)
 	 */
 	public static void setLocale(@Nullable Locale locale, boolean inheritable) {
 		LocaleContext localeContext = getLocaleContext();
-		TimeZone timeZone = (localeContext instanceof TimeZoneAwareLocaleContext ?
-				((TimeZoneAwareLocaleContext) localeContext).getTimeZone() : null);
+		TimeZone timeZone = (localeContext instanceof TimeZoneAwareLocaleContext ? ((TimeZoneAwareLocaleContext) localeContext).getTimeZone() : null);
 		if (timeZone != null) {
 			localeContext = new SimpleTimeZoneAwareLocaleContext(locale, timeZone);
-		}
-		else if (locale != null) {
+		}else if (locale != null) {
 			localeContext = new SimpleLocaleContext(locale);
-		}
-		else {
+		}else {
 			localeContext = null;
 		}
 		setLocaleContext(localeContext, inheritable);
 	}
 
 	/**
-	 * Set a shared default locale at the framework level,
-	 * as an alternative to the JVM-wide default locale.
-	 * <b>NOTE:</b> This can be useful to set an application-level
-	 * default locale which differs from the JVM-wide default locale.
-	 * However, this requires each such application to operate against
-	 * locally deployed Spring Framework jars. Do not deploy Spring
-	 * as a shared library at the server level in such a scenario!
-	 * @param locale the default locale (or {@code null} for none,
-	 * letting lookups fall back to {@link Locale#getDefault()})
+	 * Set a shared default locale at the framework level,as an alternative to the JVM-wide default locale.
+	 * <b>NOTE:</b> This can be useful to set an application-level default locale which differs from the JVM-wide default locale.
+	 * However, this requires each such application to operate against locally deployed Spring Framework jars.
+	 * Do not deploy Spring as a shared library at the server level in such a scenario!
+	 * @param locale the default locale (or {@code null} for none,letting lookups fall back to {@link Locale#getDefault()})
 	 * @since 4.3.5
 	 * @see #getLocale()
 	 * @see Locale#getDefault()

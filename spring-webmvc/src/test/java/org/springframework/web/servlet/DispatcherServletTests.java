@@ -62,7 +62,7 @@ public class DispatcherServletTests {
 		simpleDispatcherServlet = new DispatcherServlet();
 		simpleDispatcherServlet.setContextClass(SimpleWebApplicationContext.class);
 		simpleDispatcherServlet.init(servletConfig);
-		// 复制servlet
+		// 复杂servlet
 		MockServletConfig complexConfig = new MockServletConfig(getServletContext(), "complex");
 		complexConfig.addInitParameter("publishContext", "false");
 		complexConfig.addInitParameter("class", "notWritable");
