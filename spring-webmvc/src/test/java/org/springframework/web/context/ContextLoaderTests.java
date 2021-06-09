@@ -192,8 +192,7 @@ public class ContextLoaderTests {
 		try {
 			listener.contextInitialized(new ServletContextEvent(sc));
 			fail("expected exception");
-		}
-		catch (ApplicationContextException ex) {
+		}catch (ApplicationContextException ex) {
 			assertTrue(ex.getMessage().contains("not assignable"));
 		}
 	}
@@ -227,32 +226,29 @@ public class ContextLoaderTests {
 	}
 
 	@Test
-	public void testContextLoaderWithInvalidContext() throws Exception {
+	public void testContextLoaderWithInvalidContext() {
 		MockServletContext sc = new MockServletContext("");
-		sc.addInitParameter(ContextLoader.CONTEXT_CLASS_PARAM,
-				"org.springframework.web.context.support.InvalidWebApplicationContext");
+		sc.addInitParameter(ContextLoader.CONTEXT_CLASS_PARAM,"org.springframework.web.context.support.InvalidWebApplicationContext");
 		ServletContextListener listener = new ContextLoaderListener();
 		ServletContextEvent event = new ServletContextEvent(sc);
 		try {
 			listener.contextInitialized(event);
 			fail("Should have thrown ApplicationContextException");
-		}
-		catch (ApplicationContextException ex) {
+		}catch (ApplicationContextException ex) {
 			// expected
 			assertTrue(ex.getCause() instanceof ClassNotFoundException);
 		}
 	}
 
 	@Test
-	public void testContextLoaderWithDefaultLocation() throws Exception {
+	public void testContextLoaderWithDefaultLocation() {
 		MockServletContext sc = new MockServletContext("");
 		ServletContextListener listener = new ContextLoaderListener();
 		ServletContextEvent event = new ServletContextEvent(sc);
 		try {
 			listener.contextInitialized(event);
 			fail("Should have thrown BeanDefinitionStoreException");
-		}
-		catch (BeanDefinitionStoreException ex) {
+		}catch (BeanDefinitionStoreException ex) {
 			// expected
 			assertTrue(ex.getCause() instanceof IOException);
 			assertTrue(ex.getCause().getMessage().contains("/WEB-INF/applicationContext.xml"));
@@ -266,8 +262,7 @@ public class ContextLoaderTests {
 		try {
 			servlet.init(new MockServletConfig(new MockServletContext(""), "test"));
 			fail("Should have thrown BeanDefinitionStoreException");
-		}
-		catch (BeanDefinitionStoreException ex) {
+		}catch (BeanDefinitionStoreException ex) {
 			// expected
 			assertTrue(ex.getCause() instanceof IOException);
 			assertTrue(ex.getCause().getMessage().contains("/WEB-INF/test-servlet.xml"));
@@ -277,8 +272,7 @@ public class ContextLoaderTests {
 	@Test
 	public void testFrameworkServletWithCustomLocation() throws Exception {
 		DispatcherServlet servlet = new DispatcherServlet();
-		servlet.setContextConfigLocation("/org/springframework/web/context/WEB-INF/testNamespace.xml "
-				+ "/org/springframework/web/context/WEB-INF/context-addition.xml");
+		servlet.setContextConfigLocation("/org/springframework/web/context/WEB-INF/testNamespace.xml "+ "/org/springframework/web/context/WEB-INF/context-addition.xml");
 		servlet.init(new MockServletConfig(new MockServletContext(""), "test"));
 		assertTrue(servlet.getWebApplicationContext().containsBean("kerry"));
 		assertTrue(servlet.getWebApplicationContext().containsBean("kerryX"));
@@ -286,7 +280,7 @@ public class ContextLoaderTests {
 
 	@Test
 	@SuppressWarnings("resource")
-	public void testClassPathXmlApplicationContext() throws IOException {
+	public void testClassPathXmlApplicationContext() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("/org/springframework/web/context/WEB-INF/applicationContext.xml");
 		assertTrue("Has father", context.containsBean("father"));
 		assertTrue("Has rod", context.containsBean("rod"));
@@ -302,7 +296,7 @@ public class ContextLoaderTests {
 
 	@Test(expected = BeanCreationException.class)
 	@SuppressWarnings("resource")
-	public void testSingletonDestructionOnStartupFailure() throws IOException {
+	public void testSingletonDestructionOnStartupFailure() {
 		new ClassPathXmlApplicationContext(new String[] {
 			"/org/springframework/web/context/WEB-INF/applicationContext.xml",
 			"/org/springframework/web/context/WEB-INF/fail.xml" }) {
@@ -311,8 +305,7 @@ public class ContextLoaderTests {
 			public void refresh() throws BeansException {
 				try {
 					super.refresh();
-				}
-				catch (BeanCreationException ex) {
+				}catch (BeanCreationException ex) {
 					DefaultListableBeanFactory factory = (DefaultListableBeanFactory) getBeanFactory();
 					assertEquals(0, factory.getSingletonCount());
 					throw ex;
@@ -323,7 +316,6 @@ public class ContextLoaderTests {
 
 
 	private static class TestContextInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
-
 		@Override
 		public void initialize(ConfigurableApplicationContext applicationContext) {
 			ConfigurableEnvironment environment = applicationContext.getEnvironment();
@@ -336,10 +328,7 @@ public class ContextLoaderTests {
 		}
 	}
 
-
-	private static class TestWebContextInitializer implements
-			ApplicationContextInitializer<ConfigurableWebApplicationContext> {
-
+	private static class TestWebContextInitializer implements ApplicationContextInitializer<ConfigurableWebApplicationContext> {
 		@Override
 		public void initialize(ConfigurableWebApplicationContext applicationContext) {
 			ServletContext ctx = applicationContext.getServletContext(); // type-safe access to servlet-specific methods
@@ -347,10 +336,7 @@ public class ContextLoaderTests {
 		}
 	}
 
-
-	private static class EnvApplicationContextInitializer
-			implements ApplicationContextInitializer<ConfigurableWebApplicationContext> {
-
+	private static class EnvApplicationContextInitializer implements ApplicationContextInitializer<ConfigurableWebApplicationContext> {
 		@Override
 		public void initialize(ConfigurableWebApplicationContext applicationContext) {
 			// test that ApplicationContextInitializers can access ServletContext properties
@@ -360,15 +346,12 @@ public class ContextLoaderTests {
 		}
 	}
 
-
 	private static interface UnknownApplicationContext extends ConfigurableApplicationContext {
-
 		void unheardOf();
 	}
 
 
 	private static class UnknownContextInitializer implements ApplicationContextInitializer<UnknownApplicationContext> {
-
 		@Override
 		public void initialize(UnknownApplicationContext applicationContext) {
 			applicationContext.unheardOf();

@@ -17,10 +17,8 @@ public class MyServletContainerInitializer implements ServletContainerInitialize
 
 	/**
 	 * 应用启动的时候，会运行onStartup方法；
-	 * <p>
 	 * Set<Class<?>> c：感兴趣的类型的所有子类型；
 	 * ServletContext ctx:代表当前Web应用的ServletContext；一个Web应用一个ServletContext；
-	 * <p>
 	 */
 	@Override
 	public void onStartup(Set<Class<?>> c, ServletContext ctx) throws ServletException {

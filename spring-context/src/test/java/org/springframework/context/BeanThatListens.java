@@ -6,16 +6,12 @@ import java.util.Map;
 
 /**
  * A stub {@link ApplicationListener}.
- *
- * @author Thomas Risberg
-
  */
 public class BeanThatListens implements ApplicationListener<ApplicationEvent> {
 
 	private BeanThatBroadcasts beanThatBroadcasts;
 
 	private int eventCount;
-
 
 	public BeanThatListens() {
 	}

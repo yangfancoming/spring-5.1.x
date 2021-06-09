@@ -50,7 +50,7 @@ public class ContextLoaderInitializerTests {
 		cll.contextInitialized(new ServletContextEvent(servletContext));
 		// 通过 ServletContext 创建web容器
 		WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
-		ApplicationContext applicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
+		ApplicationContext applicationContext =       WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
 		assertTrue(webApplicationContext == applicationContext);
 		assertTrue(webApplicationContext.containsBean(BEAN_NAME));
 		assertTrue(webApplicationContext.getBean(BEAN_NAME) instanceof MyBean);

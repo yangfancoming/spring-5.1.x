@@ -15,7 +15,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link StandardServletEnvironment}.
-
  * @since 3.1
  */
 public class StandardServletEnvironmentTests {
@@ -23,7 +22,6 @@ public class StandardServletEnvironmentTests {
 	@Test
 	public void propertySourceOrder() throws Exception {
 		SimpleNamingContextBuilder.emptyActivatedContextBuilder();
-
 		ConfigurableEnvironment env = new StandardServletEnvironment();
 		MutablePropertySources sources = env.getPropertySources();
 		assertThat(sources.precedenceOf(PropertySource.named(StandardServletEnvironment.SERVLET_CONFIG_PROPERTY_SOURCE_NAME)), equalTo(0));

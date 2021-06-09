@@ -25,17 +25,10 @@ import org.springframework.web.context.ContextLoader;
  * {@link org.springframework.context.annotation.Configuration @Configuration}-annotated
  * classes, but also plain {@link org.springframework.stereotype.Component @Component}
  * classes and JSR-330 compliant classes using {@code javax.inject} annotations. Allows
- * for registering classes one by one (specifying class names as config location) as well
- * as for classpath scanning (specifying base packages as config location).
- *
- * This is essentially the equivalent of
- * {@link org.springframework.context.annotation.AnnotationConfigApplicationContext
- * AnnotationConfigApplicationContext} for a web environment.
- *
- * To make use of this application context, the
- * {@linkplain ContextLoader#CONTEXT_CLASS_PARAM "contextClass"} context-param for
- * ContextLoader and/or "contextClass" init-param for FrameworkServlet must be set to
- * the fully-qualified name of this class.
+ * for registering classes one by one (specifying class names as config location) as well as for classpath scanning (specifying base packages as config location).
+ * This is essentially the equivalent of {@link org.springframework.context.annotation.AnnotationConfigApplicationContext AnnotationConfigApplicationContext} for a web environment.
+ * To make use of this application context, the {@linkplain ContextLoader#CONTEXT_CLASS_PARAM "contextClass"} context-param for
+ * ContextLoader and/or "contextClass" init-param for FrameworkServlet must be set to the fully-qualified name of this class.
  *
  * As of Spring 3.1, this class may also be directly instantiated and injected into
  * Spring's {@code DispatcherServlet} or {@code ContextLoaderListener} when using the
@@ -47,16 +40,13 @@ import org.springframework.web.context.ContextLoader;
  * {@linkplain ContextLoader#CONFIG_LOCATION_PARAM "contextConfigLocation"}
  * context-param for {@link ContextLoader} and/or "contextConfigLocation" init-param for
  * FrameworkServlet.  The param-value may contain both fully-qualified
- * class names and base packages to scan for components. See {@link #loadBeanDefinitions}
- * for exact details on how these locations are processed.
+ * class names and base packages to scan for components. See {@link #loadBeanDefinitions} for exact details on how these locations are processed.
  *
  * As an alternative to setting the "contextConfigLocation" parameter, users may
- * implement an {@link org.springframework.context.ApplicationContextInitializer
- * ApplicationContextInitializer} and set the
+ * implement an {@link org.springframework.context.ApplicationContextInitializer ApplicationContextInitializer} and set the
  * {@linkplain ContextLoader#CONTEXT_INITIALIZER_CLASSES_PARAM "contextInitializerClasses"}
  * context-param / init-param. In such cases, users should favor the {@link #refresh()}
- * and {@link #scan(String...)} methods over the {@link #setConfigLocation(String)}
- * method, which is primarily for use by {@code ContextLoader}.
+ * and {@link #scan(String...)} methods over the {@link #setConfigLocation(String)} method, which is primarily for use by {@code ContextLoader}.
  *
  * Note: In case of multiple {@code @Configuration} classes, later {@code @Bean}
  * definitions will override ones defined in earlier loaded files. This can be leveraged

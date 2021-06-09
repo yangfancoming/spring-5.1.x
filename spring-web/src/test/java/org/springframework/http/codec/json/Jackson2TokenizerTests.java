@@ -26,11 +26,7 @@ import org.springframework.core.io.buffer.DataBuffer;
 import static java.util.Arrays.*;
 import static java.util.Collections.*;
 
-/**
- * @author Arjen Poutsma
- *
 
- */
 public class Jackson2TokenizerTests extends AbstractLeakCheckingTestCase {
 
 	private JsonFactory jsonFactory;

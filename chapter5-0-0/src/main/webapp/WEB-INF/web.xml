@@ -14,11 +14,11 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
       <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
     </init-param>
 
-    <init-param>
-      <param-name>contextConfigLocation</param-name>
-		<!--这里千万别忘了配置 进过一次坑。。。-->
-      <param-value>com.goat.chapter510.config</param-value>
-    </init-param>
+<!--    <init-param>-->
+<!--      <param-name>contextConfigLocation</param-name>-->
+<!--		&lt;!&ndash;这里千万别忘了配置 进过一次坑。。。&ndash;&gt;-->
+<!--      <param-value>com.goat.chapter510.config</param-value>-->
+<!--    </init-param>-->
   </servlet>
 
   <servlet-mapping>
