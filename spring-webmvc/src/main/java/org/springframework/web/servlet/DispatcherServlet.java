@@ -994,7 +994,6 @@ public class DispatcherServlet extends FrameworkServlet {
 				// ② 获取适配器
 				// 获取可执行处理器逻辑的适配器 HandlerAdapter
 				HandlerAdapter ha = getHandlerAdapter(mappedHandler.getHandler());
-
 				// Process last-modified header, if supported by the handler.
 				//判断自上次请求后是否有修改，没有修改直接返回响应
 				// 处理 last-modified 消息头

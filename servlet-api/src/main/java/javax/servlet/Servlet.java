@@ -23,6 +23,8 @@ public interface Servlet {
 
     /**
 	 * 由servlet容器调用
+	 * 和生命周期有关的方法，Servlet容器在加载Servlet类的时候会调用init方法，可能会在init方法里初始化一些资源。
+	 * 比如Springmvc中的 HttpServletBean ,在init方法中创建了自己的spring容器。
      * Called by the servlet container to indicate to a servlet that the servlet is being placed into service.
      * The servlet container calls the <code>init</code> method exactly once after instantiating the servlet.
      * The <code>init</code> method must complete successfully before the servlet can receive any requests.
