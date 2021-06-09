@@ -41,10 +41,7 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.lang.reflect.Modifier;
 import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Properties;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Stream;
 
 import static org.springframework.util.Assert.notNull;
@@ -379,6 +376,7 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 		notNull(sqlSessionFactoryBuilder, "Property 'sqlSessionFactoryBuilder' is required");
 		state((configuration == null && configLocation == null) || !(configuration != null && configLocation != null),"Property 'configuration' and 'configLocation' can not specified with together");
 		sqlSessionFactory = buildSqlSessionFactory();
+		LOGGER.warn(() -> "【mybatis】 构建 SqlSessionFactory 完毕 ： " + sqlSessionFactory);
 	}
 
 	/**

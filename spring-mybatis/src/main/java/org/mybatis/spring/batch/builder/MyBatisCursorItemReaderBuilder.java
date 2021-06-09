@@ -9,7 +9,6 @@ import java.util.Optional;
 
 /**
  * A builder for the {@link MyBatisCursorItemReader}.
- * @author Kazuki Shimizu
  * @since 2.0.0
  * @see MyBatisCursorItemReader
  */

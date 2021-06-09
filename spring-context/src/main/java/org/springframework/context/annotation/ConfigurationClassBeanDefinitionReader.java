@@ -134,8 +134,10 @@ class ConfigurationClassBeanDefinitionReader {
 	 */
 	@SuppressWarnings("deprecation")  // for RequiredAnnotationBeanPostProcessor.SKIP_REQUIRED_CHECK_ATTRIBUTE
 	private void loadBeanDefinitionsForBeanMethod(BeanMethod beanMethod) {
+		// 获取主配置类 AppConfig
 		ConfigurationClass configClass = beanMethod.getConfigurationClass();
 		MethodMetadata metadata = beanMethod.getMetadata();
+		// @Bean注解标注的方法名称 sqlSessionFactory、datasource
 		String methodName = metadata.getMethodName();
 		// Do we need to mark the bean as skipped by its condition?
 		if (conditionEvaluator.shouldSkip(metadata, ConfigurationPhase.REGISTER_BEAN)) {

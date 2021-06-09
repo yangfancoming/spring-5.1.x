@@ -5,6 +5,8 @@ import org.apache.ibatis.cursor.Cursor;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.executor.BatchResult;
 import org.apache.ibatis.session.*;
+import org.mybatis.logging.Logger;
+import org.mybatis.logging.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.dao.support.PersistenceExceptionTranslator;
 
@@ -39,6 +41,8 @@ import static org.springframework.util.Assert.notNull;
  * @see MyBatisExceptionTranslator
  */
 public class SqlSessionTemplate implements SqlSession, DisposableBean {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(SqlSessionTemplate.class);
 
 	private final SqlSessionFactory sqlSessionFactory;
 
@@ -84,6 +88,7 @@ public class SqlSessionTemplate implements SqlSession, DisposableBean {
 		this.exceptionTranslator = exceptionTranslator;
 		// 创建sqlSession代理
 		this.sqlSessionProxy = (SqlSession) newProxyInstance(SqlSessionFactory.class.getClassLoader(), new Class[] { SqlSession.class }, new SqlSessionInterceptor());
+		LOGGER.warn(() -> "【mybatis】 构建 SqlSessionTemplate 完毕 ： " + sqlSessionProxy);
 	}
 
 	public SqlSessionFactory getSqlSessionFactory() {

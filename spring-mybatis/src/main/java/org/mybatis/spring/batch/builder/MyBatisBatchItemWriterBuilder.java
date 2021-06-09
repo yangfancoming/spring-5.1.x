@@ -10,7 +10,6 @@ import java.util.Optional;
 
 /**
  * A builder for the {@link MyBatisBatchItemWriter}.
- * @author Kazuki Shimizu
  * @since 2.0.0
  * @see MyBatisBatchItemWriter
  */

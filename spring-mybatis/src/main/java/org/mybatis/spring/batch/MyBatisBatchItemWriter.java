@@ -20,14 +20,12 @@ import static org.springframework.util.Assert.isTrue;
 import static org.springframework.util.Assert.notNull;
 
 /**
- * {@code ItemWriter} that uses the batching features from {@code SqlSessionTemplate} to execute a batch of statements
- * for all items provided.
+ * {@code ItemWriter} that uses the batching features from {@code SqlSessionTemplate} to execute a batch of statements for all items provided.
  * Provided to facilitate the migration from Spring-Batch iBATIS 2 writers to MyBatis 3.
  * The user must provide a MyBatis statement id that points to the SQL statement defined in the MyBatis.
- * It is expected that {@link #write(List)} is called inside a transaction. If it is not each statement call will be
- * autocommitted and flushStatements will return no results.
+ * It is expected that {@link #write(List)} is called inside a transaction.
+ * If it is not each statement call will be autocommitted and flushStatements will return no results.
  * The writer is thread safe after its properties are set (normal singleton behavior), so it can be used to write in multiple concurrent transactions.
- * @author Eduardo Macarron
  * @since 1.1.0
  */
 public class MyBatisBatchItemWriter<T> implements ItemWriter<T>, InitializingBean {
