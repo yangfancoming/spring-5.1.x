@@ -9,10 +9,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
- * An interceptor that exposes the {@link ResourceUrlProvider} instance it
- * is configured with as a request attribute.
- *
- *
+ * An interceptor that exposes the {@link ResourceUrlProvider} instance it is configured with as a request attribute.
  * @since 4.1
  */
 public class ResourceUrlProviderExposingInterceptor extends HandlerInterceptorAdapter {
@@ -24,16 +21,13 @@ public class ResourceUrlProviderExposingInterceptor extends HandlerInterceptorAd
 
 	private final ResourceUrlProvider resourceUrlProvider;
 
-
 	public ResourceUrlProviderExposingInterceptor(ResourceUrlProvider resourceUrlProvider) {
 		Assert.notNull(resourceUrlProvider, "ResourceUrlProvider is required");
 		this.resourceUrlProvider = resourceUrlProvider;
 	}
 
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
-
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		request.setAttribute(RESOURCE_URL_PROVIDER_ATTR, this.resourceUrlProvider);
 		return true;
 	}

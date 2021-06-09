@@ -41,5 +41,4 @@ public class BeanNameUrlHandlerMapping extends AbstractDetectingUrlHandlerMappin
 		}
 		return StringUtils.toStringArray(urls);
 	}
-
 }

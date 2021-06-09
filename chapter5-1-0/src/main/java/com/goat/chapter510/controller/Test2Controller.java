@@ -5,12 +5,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class SampleController {
+public class Test2Controller {
 
-	/** 测试url：  http://localhost:8510/home */
-	@RequestMapping("/home")
-	public String loadHomePage(Model m) {
+	/** 测试url：  http://localhost:8510/test2 */
+	@RequestMapping("/test2")
+	public String test1(Model m) {
 		m.addAttribute("name", "CodeTutr");
+		System.out.println(2);
 		return "home";
 	}
 }

@@ -812,7 +812,6 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter i
 	 */
 	@Nullable
 	protected ModelAndView invokeHandlerMethod(HttpServletRequest request,HttpServletResponse response, HandlerMethod handlerMethod) throws Exception {
-
 		ServletWebRequest webRequest = new ServletWebRequest(request, response);
 		try {
 			// 获取容器中全局配置的InitBinder和当前HandlerMethod所对应的Controller中 配置的InitBinder，用于进行参数的绑定
@@ -869,6 +868,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter i
 				invocableMethod = invocableMethod.wrapConcurrentResult(result);
 			}
 			// 对请求参数进行处理，调用目标HandlerMethod，并且将返回值封装为一个ModelAndView对象
+			// 调用目标controller
 			invocableMethod.invokeAndHandle(webRequest, mavContainer);
 			if (asyncManager.isConcurrentHandlingStarted()) {
 				return null;

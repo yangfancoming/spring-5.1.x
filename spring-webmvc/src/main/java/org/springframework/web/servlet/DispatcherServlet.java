@@ -808,6 +808,7 @@ public class DispatcherServlet extends FrameworkServlet {
 			List<T> strategies = new ArrayList<>(classNames.length);
 			for (String className : classNames) {
 				try {
+					logger.warn("【spring-webmvc init create default bean from  DispatcherServlet.properties file 】 className： " + className);
 					Class<?> clazz = ClassUtils.forName(className, DispatcherServlet.class.getClassLoader());
 					Object strategy = createDefaultStrategy(context, clazz);
 					strategies.add((T) strategy);
@@ -1045,11 +1046,9 @@ public class DispatcherServlet extends FrameworkServlet {
 				// 在请求处理完成之后，依次调用拦截器的postHandle()方法，对请求进行后置处理
 				// 执行拦截器 preHandle 方法
 				mappedHandler.applyPostHandle(processedRequest, response, mv);
-			}
-			catch (Exception ex) {
+			}catch (Exception ex) {
 				dispatchException = ex;
-			}
-			catch (Throwable err) {
+			}catch (Throwable err) {
 				// As of 4.3, we're processing Errors thrown from handler methods as well,
 				// making them available for @ExceptionHandler methods and other scenarios.
 				// 将处理请求过程中产生的异常封装到dispatchException中
@@ -1100,15 +1099,11 @@ public class DispatcherServlet extends FrameworkServlet {
 	}
 
 	/**
-	 * Handle the result of handler selection and handler invocation, which is
-	 * either a ModelAndView or an Exception to be resolved to a ModelAndView.
+	 * Handle the result of handler selection and handler invocation, which is either a ModelAndView or an Exception to be resolved to a ModelAndView.
 	 */
-	private void processDispatchResult(HttpServletRequest request, HttpServletResponse response,
-			@Nullable HandlerExecutionChain mappedHandler, @Nullable ModelAndView mv,
-			@Nullable Exception exception) throws Exception {
+	private void processDispatchResult(HttpServletRequest request, HttpServletResponse response,@Nullable HandlerExecutionChain mappedHandler, @Nullable ModelAndView mv,@Nullable Exception exception) throws Exception {
 		// 用于标记当前生成view是否是异常处理之后生成的view
 		boolean errorView = false;
-
 		if (exception != null) {
 			// 如果当前的异常是ModelAndViewDefiningException类型，则说明是ModelAndView的定义
 			// 异常，那么就会调用其getModelAndView()方法生成一个新的view
@@ -1149,8 +1144,7 @@ public class DispatcherServlet extends FrameworkServlet {
 
 	/**
 	 * Build a LocaleContext for the given request, exposing the request's primary locale as current locale.
-	 * The default implementation uses the dispatcher's LocaleResolver to obtain the current locale,
-	 * which might change during a request.
+	 * The default implementation uses the dispatcher's LocaleResolver to obtain the current locale,which might change during a request.
 	 * @param request current HTTP request
 	 * @return the corresponding LocaleContext
 	 */
@@ -1224,21 +1218,22 @@ public class DispatcherServlet extends FrameworkServlet {
 	}
 
 	/**
-	 * Return the HandlerExecutionChain for this request.
-	 * Tries all handler mappings in order.
+	 * Return the HandlerExecutionChain for this request. Tries all handler mappings in order.
 	 * @param request current HTTP request
 	 * @return the HandlerExecutionChain, or {@code null} if no handler could be found
-	 *  handlerMappings 集合 有两个   requestMappingHandlerMapping  和 beanNameHandlerMapping
-	 *  因为不同方式注册的 controller 需要使用不同的 HandlerMapping 获取 所以这里需要遍历  handlerMappings 进行获取 controller 执行链
-	 *  eg @component + implement Controller  或  直接 @Controller 方式
 	 */
 	@Nullable
 	protected HandlerExecutionChain getHandler(HttpServletRequest request) throws Exception {
 		if (handlerMappings != null) {
-			// 遍历当前容器中所有的HandlerMapping对象，调用其getHandler()方法，如果其能够根据当前request获取一个handler，那么就直接返回。
+			/**
+			 * 遍历当前容器中所有的HandlerMapping对象，调用其getHandler()方法，如果其能够根据当前request获取一个handler，那么就直接返回。
+			 *  handlerMappings 集合 有两个   requestMappingHandlerMapping  和 beanNameHandlerMapping
+			 *  以 @Controller 方式注册的controller 会存放在 requestMappingHandlerMapping 集合里
+			 *  以 @component + implement Controller 方式注册的controller 会存放在 beanNameHandlerMapping 集合里
+			*/
 			for (HandlerMapping mapping : handlerMappings) {
 				HandlerExecutionChain handler = mapping.getHandler(request);
-				if (handler != null) { // com.goat.spring.web.demo.controller.SampleController.loadHomePage(org.springframework.ui.Model)
+				if (handler != null) {
 					return handler;
 				}
 			}
@@ -1286,8 +1281,7 @@ public class DispatcherServlet extends FrameworkServlet {
 	 * Determine an error ModelAndView via the registered HandlerExceptionResolvers.
 	 * @param request current HTTP request
 	 * @param response current HTTP response
-	 * @param handler the executed handler, or {@code null} if none chosen at the time of the exception
-	 * (for example, if multipart resolution failed)
+	 * @param handler the executed handler, or {@code null} if none chosen at the time of the exception (for example, if multipart resolution failed)
 	 * @param ex the exception that got thrown during handler execution
 	 * @return a corresponding ModelAndView to forward to
 	 * @throws Exception if no error ModelAndView found
@@ -1389,15 +1383,13 @@ public class DispatcherServlet extends FrameworkServlet {
 	/**
 	 * Resolve the given view name into a View object (to be rendered).
 	 * The default implementations asks all ViewResolvers of this dispatcher.
-	 * Can be overridden for custom resolution strategies, potentially based on
-	 * specific model attributes or request parameters.
+	 * Can be overridden for custom resolution strategies, potentially based on specific model attributes or request parameters.
 	 * @param viewName the name of the view to resolve
 	 * @param model the model to be passed to the view
 	 * @param locale the current locale
 	 * @param request current HTTP servlet request
 	 * @return the View object, or {@code null} if none found
-	 * @throws Exception if the view cannot be resolved
-	 * (typically in case of problems creating an actual View object)
+	 * @throws Exception if the view cannot be resolved (typically in case of problems creating an actual View object)
 	 * @see ViewResolver#resolveViewName
 	 */
 	@Nullable
@@ -1427,8 +1419,7 @@ public class DispatcherServlet extends FrameworkServlet {
 	 */
 	@SuppressWarnings("unchecked")
 	private void restoreAttributesAfterInclude(HttpServletRequest request, Map<?, ?> attributesSnapshot) {
-		// Need to copy into separate Collection here, to avoid side effects
-		// on the Enumeration when removing attributes.
+		// Need to copy into separate Collection here, to avoid side effects on the Enumeration when removing attributes.
 		Set<String> attrsToCheck = new HashSet<>();
 		Enumeration<?> attrNames = request.getAttributeNames();
 		while (attrNames.hasMoreElements()) {
@@ -1439,8 +1430,7 @@ public class DispatcherServlet extends FrameworkServlet {
 		}
 		// Add attributes that may have been removed
 		attrsToCheck.addAll((Set<String>) attributesSnapshot.keySet());
-		// Iterate over the attributes to check, restoring the original value
-		// or removing the attribute, respectively, if appropriate.
+		// Iterate over the attributes to check, restoring the original value or removing the attribute, respectively, if appropriate.
 		for (String attrName : attrsToCheck) {
 			Object attrValue = attributesSnapshot.get(attrName);
 			if (attrValue == null) {
@@ -1458,5 +1448,4 @@ public class DispatcherServlet extends FrameworkServlet {
 		}
 		return uri;
 	}
-
 }

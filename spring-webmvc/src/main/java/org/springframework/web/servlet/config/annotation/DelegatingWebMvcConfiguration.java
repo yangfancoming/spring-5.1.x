@@ -125,5 +125,4 @@ public class DelegatingWebMvcConfiguration extends WebMvcConfigurationSupport {
 	protected MessageCodesResolver getMessageCodesResolver() {
 		return this.configurers.getMessageCodesResolver();
 	}
-
 }

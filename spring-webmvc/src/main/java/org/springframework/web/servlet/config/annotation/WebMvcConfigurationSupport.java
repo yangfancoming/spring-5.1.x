@@ -409,8 +409,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	}
 
 	/**
-	 * Return a {@link BeanNameUrlHandlerMapping} ordered at 2 to map URL
-	 * paths to controller bean names.
+	 * Return a {@link BeanNameUrlHandlerMapping} ordered at 2 to map URL paths to controller bean names.
 	 */
 	@Bean
 	public BeanNameUrlHandlerMapping beanNameHandlerMapping() {
@@ -423,19 +422,15 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 
 	/**
 	 * Return a handler mapping ordered at Integer.MAX_VALUE-1 with mapped
-	 * resource handlers. To configure resource handling, override
-	 * {@link #addResourceHandlers}.
+	 * resource handlers. To configure resource handling, override {@link #addResourceHandlers}.
 	 */
 	@Bean
 	@Nullable
 	public HandlerMapping resourceHandlerMapping() {
 		Assert.state(this.applicationContext != null, "No ApplicationContext set");
 		Assert.state(this.servletContext != null, "No ServletContext set");
-
-		ResourceHandlerRegistry registry = new ResourceHandlerRegistry(this.applicationContext,
-				this.servletContext, mvcContentNegotiationManager(), mvcUrlPathHelper());
+		ResourceHandlerRegistry registry = new ResourceHandlerRegistry(this.applicationContext,this.servletContext, mvcContentNegotiationManager(), mvcUrlPathHelper());
 		addResourceHandlers(registry);
-
 		AbstractHandlerMapping handlerMapping = registry.getHandlerMapping();
 		if (handlerMapping == null) {
 			return null;
@@ -510,12 +505,10 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		adapter.setWebBindingInitializer(getConfigurableWebBindingInitializer());
 		adapter.setCustomArgumentResolvers(getArgumentResolvers());
 		adapter.setCustomReturnValueHandlers(getReturnValueHandlers());
-
 		if (jackson2Present) {
 			adapter.setRequestBodyAdvice(Collections.singletonList(new JsonViewRequestBodyAdvice()));
 			adapter.setResponseBodyAdvice(Collections.singletonList(new JsonViewResponseBodyAdvice()));
 		}
-
 		AsyncSupportConfigurer configurer = new AsyncSupportConfigurer();
 		configureAsyncSupport(configurer);
 		if (configurer.getTaskExecutor() != null) {
@@ -526,7 +519,6 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		}
 		adapter.setCallableInterceptors(configurer.getCallableInterceptors());
 		adapter.setDeferredResultInterceptors(configurer.getDeferredResultInterceptors());
-
 		return adapter;
 	}
 
@@ -605,13 +597,11 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 				try {
 					String className = "org.springframework.validation.beanvalidation.OptionalValidatorFactoryBean";
 					clazz = ClassUtils.forName(className, WebMvcConfigurationSupport.class.getClassLoader());
-				}
-				catch (ClassNotFoundException | LinkageError ex) {
+				}catch (ClassNotFoundException | LinkageError ex) {
 					throw new BeanInitializationException("Failed to resolve default validator class", ex);
 				}
 				validator = (Validator) BeanUtils.instantiateClass(clazz);
-			}
-			else {
+			}else {
 				validator = new NoOpValidator();
 			}
 		}
@@ -734,8 +724,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		messageConverters.add(new ResourceRegionHttpMessageConverter());
 		try {
 			messageConverters.add(new SourceHttpMessageConverter<>());
-		}
-		catch (Throwable ex) {
+		}catch (Throwable ex) {
 			// Ignore when no TransformerFactory implementation is available...
 		}
 		messageConverters.add(new AllEncompassingFormHttpMessageConverter());
@@ -751,8 +740,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 				builder.applicationContext(this.applicationContext);
 			}
 			messageConverters.add(new MappingJackson2XmlHttpMessageConverter(builder.build()));
-		}
-		else if (jaxb2Present) {
+		}else if (jaxb2Present) {
 			messageConverters.add(new Jaxb2RootElementHttpMessageConverter());
 		}
 
@@ -762,14 +750,11 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 				builder.applicationContext(this.applicationContext);
 			}
 			messageConverters.add(new MappingJackson2HttpMessageConverter(builder.build()));
-		}
-		else if (gsonPresent) {
+		} else if (gsonPresent) {
 			messageConverters.add(new GsonHttpMessageConverter());
-		}
-		else if (jsonbPresent) {
+		} else if (jsonbPresent) {
 			messageConverters.add(new JsonbHttpMessageConverter());
 		}
-
 		if (jackson2SmilePresent) {
 			Jackson2ObjectMapperBuilder builder = Jackson2ObjectMapperBuilder.smile();
 			if (this.applicationContext != null) {
@@ -793,8 +778,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	 */
 	@Bean
 	public CompositeUriComponentsContributor mvcUriComponentsContributor() {
-		return new CompositeUriComponentsContributor(
-				requestMappingHandlerAdapter().getArgumentResolvers(), mvcConversionService());
+		return new CompositeUriComponentsContributor(requestMappingHandlerAdapter().getArgumentResolvers(), mvcConversionService());
 	}
 
 	/**
@@ -838,8 +822,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	}
 
 	/**
-	 * Override this method to configure the list of
-	 * {@link HandlerExceptionResolver HandlerExceptionResolvers} to use.
+	 * Override this method to configure the list of {@link HandlerExceptionResolver HandlerExceptionResolvers} to use.
 	 * Adding resolvers to the list turns off the default resolvers that would otherwise
 	 * be registered by default. Also see {@link #addDefaultHandlerExceptionResolvers}
 	 * that can be used to add the default exception resolvers.
@@ -851,8 +834,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	/**
 	 * Override this method to extend or modify the list of
 	 * {@link HandlerExceptionResolver HandlerExceptionResolvers} after it has been configured.
-	 * This may be useful for example to allow default resolvers to be registered
-	 * and then insert a custom one through this method.
+	 * This may be useful for example to allow default resolvers to be registered and then insert a custom one through this method.
 	 * @param exceptionResolvers the list of configured resolvers to extend.
 	 * @since 4.3
 	 */
@@ -860,16 +842,13 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	}
 
 	/**
-	 * A method available to subclasses for adding default
-	 * {@link HandlerExceptionResolver HandlerExceptionResolvers}.
+	 * A method available to subclasses for adding default {@link HandlerExceptionResolver HandlerExceptionResolvers}.
 	 * Adds the following exception resolvers:
-	 * <ul>
 	 * <li>{@link ExceptionHandlerExceptionResolver} for handling exceptions through
 	 * {@link org.springframework.web.bind.annotation.ExceptionHandler} methods.
 	 * <li>{@link ResponseStatusExceptionResolver} for exceptions annotated with
 	 * {@link org.springframework.web.bind.annotation.ResponseStatus}.
 	 * <li>{@link DefaultHandlerExceptionResolver} for resolving known Spring exception types
-	 * </ul>
 	 */
 	protected final void addDefaultHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
 		ExceptionHandlerExceptionResolver exceptionHandlerResolver = createExceptionHandlerExceptionResolver();
@@ -878,19 +857,16 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		exceptionHandlerResolver.setCustomArgumentResolvers(getArgumentResolvers());
 		exceptionHandlerResolver.setCustomReturnValueHandlers(getReturnValueHandlers());
 		if (jackson2Present) {
-			exceptionHandlerResolver.setResponseBodyAdvice(
-					Collections.singletonList(new JsonViewResponseBodyAdvice()));
+			exceptionHandlerResolver.setResponseBodyAdvice(Collections.singletonList(new JsonViewResponseBodyAdvice()));
 		}
 		if (this.applicationContext != null) {
 			exceptionHandlerResolver.setApplicationContext(this.applicationContext);
 		}
 		exceptionHandlerResolver.afterPropertiesSet();
 		exceptionResolvers.add(exceptionHandlerResolver);
-
 		ResponseStatusExceptionResolver responseStatusResolver = new ResponseStatusExceptionResolver();
 		responseStatusResolver.setMessageSource(this.applicationContext);
 		exceptionResolvers.add(responseStatusResolver);
-
 		exceptionResolvers.add(new DefaultHandlerExceptionResolver());
 	}
 
@@ -904,12 +880,10 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	}
 
 	/**
-	 * Register a {@link ViewResolverComposite} that contains a chain of view resolvers
-	 * to use for view resolution.
+	 * Register a {@link ViewResolverComposite} that contains a chain of view resolvers to use for view resolution.
 	 * By default this resolver is ordered at 0 unless content negotiation view
 	 * resolution is used in which case the order is raised to
-	 * {@link org.springframework.core.Ordered#HIGHEST_PRECEDENCE
-	 * Ordered.HIGHEST_PRECEDENCE}.
+	 * {@link org.springframework.core.Ordered#HIGHEST_PRECEDENCE Ordered.HIGHEST_PRECEDENCE}.
 	 * If no other resolvers are configured,
 	 * {@link ViewResolverComposite#resolveViewName(String, Locale)} returns null in order
 	 * to allow other potential {@link ViewResolver} beans to resolve views.
@@ -917,18 +891,14 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	 */
 	@Bean
 	public ViewResolver mvcViewResolver() {
-		ViewResolverRegistry registry = new ViewResolverRegistry(
-				mvcContentNegotiationManager(), this.applicationContext);
+		ViewResolverRegistry registry = new ViewResolverRegistry(mvcContentNegotiationManager(), this.applicationContext);
 		configureViewResolvers(registry);
-
 		if (registry.getViewResolvers().isEmpty() && this.applicationContext != null) {
-			String[] names = BeanFactoryUtils.beanNamesForTypeIncludingAncestors(
-					this.applicationContext, ViewResolver.class, true, false);
+			String[] names = BeanFactoryUtils.beanNamesForTypeIncludingAncestors(this.applicationContext, ViewResolver.class, true, false);
 			if (names.length == 1) {
 				registry.getViewResolvers().add(new InternalResourceViewResolver());
 			}
 		}
-
 		ViewResolverComposite composite = new ViewResolverComposite();
 		composite.setOrder(registry.getOrder());
 		composite.setViewResolvers(registry.getViewResolvers());
@@ -976,14 +946,11 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		return new HandlerMappingIntrospector();
 	}
 
-
 	private static final class NoOpValidator implements Validator {
-
 		@Override
 		public boolean supports(Class<?> clazz) {
 			return false;
 		}
-
 		@Override
 		public void validate(@Nullable Object target, Errors errors) {
 		}

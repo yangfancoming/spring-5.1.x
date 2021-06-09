@@ -34,8 +34,8 @@ import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.util.UrlPathHelper;
 
 /**
- * Abstract base class for {@link org.springframework.web.servlet.HandlerMapping}
- * implementations. Supports ordering, a default handler, handler interceptors,including handler interceptors mapped by path patterns.
+ * Abstract base class for {@link org.springframework.web.servlet.HandlerMapping} implementations.
+ * Supports ordering, a default handler, handler interceptors,including handler interceptors mapped by path patterns.
  * Note: This base class does <i>not</i> support exposure of the {@link #PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE}.
  * Support for this attribute is up to concrete subclasses, typically based on request URL mappings.
  * @since 07.04.2003

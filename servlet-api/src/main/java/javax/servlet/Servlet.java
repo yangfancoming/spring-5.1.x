@@ -39,6 +39,7 @@ public interface Servlet {
 
 	/**
 	 * 由servlet容器调用
+	 * init()方法仅在服务器装载Servlet时才由服务器执行一次，而每次客户向服务器发请求时，服务器就会调用Service()方法。
 	 * Called by the servlet container to allow the servlet to respond to  a request.
 	 * This method is only called after the servlet's <code>init()</code> method has completed successfully.
 	 * The status code of the response always should be set for a servlet that throws or sends an error.
