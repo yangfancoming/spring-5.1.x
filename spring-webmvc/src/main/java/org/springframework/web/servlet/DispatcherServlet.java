@@ -1021,7 +1021,6 @@ public class DispatcherServlet extends FrameworkServlet {
 				if (!mappedHandler.applyPreHandle(processedRequest, response)) {
 					return;
 				}
-
 				/**
 				 // Actually invoke the handler.实际调用处理程序  调用我的 controller
 				 // 执行HandlerAdapter对象的handler方法，返回ModelAndView

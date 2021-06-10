@@ -111,9 +111,7 @@ public final class ModelFactory {
 	 * Invoke model attribute methods to populate the model.
 	 * Attributes are added only if not already present in the model.
 	 */
-	private void invokeModelAttributeMethods(NativeWebRequest request, ModelAndViewContainer container)
-			throws Exception {
-
+	private void invokeModelAttributeMethods(NativeWebRequest request, ModelAndViewContainer container) throws Exception {
 		while (!this.modelMethods.isEmpty()) {
 			InvocableHandlerMethod modelMethod = getNextModelMethod(container).getHandlerMethod();
 			ModelAttribute ann = modelMethod.getMethodAnnotation(ModelAttribute.class);

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd" default-autowire="byName">
+	   xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd"
+	   default-autowire="byName">
 
 	<!--<bean id="whatService" class="com.goat.chapter115.service.WhatServiceImpl"/>-->
 
@@ -23,7 +24,14 @@
         resolver.setSuffix(".jsp");
         return resolver;
         }
-
 	-->
 
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/sample/**" />
+			<mvc:mapping path="/view/**" />
+			<bean class="com.goat.chapter515.interceptor.MyInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>

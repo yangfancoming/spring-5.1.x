@@ -80,8 +80,7 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Return the default handler for this handler mapping,
-	 * or {@code null} if none.
+	 * Return the default handler for this handler mapping,or {@code null} if none.
 	 */
 	@Nullable
 	public Object getDefaultHandler() {
@@ -124,8 +123,7 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	/**
 	 * Set the UrlPathHelper to use for resolution of lookup paths.
 	 * Use this to override the default UrlPathHelper with a custom subclass,
-	 * or to share common UrlPathHelper settings across multiple HandlerMappings
-	 * and MethodNameResolvers.
+	 * or to share common UrlPathHelper settings across multiple HandlerMappings and MethodNameResolvers.
 	 */
 	public void setUrlPathHelper(UrlPathHelper urlPathHelper) {
 		Assert.notNull(urlPathHelper, "UrlPathHelper must not be null");
@@ -143,8 +141,7 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Set the PathMatcher implementation to use for matching URL paths
-	 * against registered URL patterns. Default is AntPathMatcher.
+	 * Set the PathMatcher implementation to use for matching URL paths against registered URL patterns. Default is AntPathMatcher.
 	 * @see org.springframework.util.AntPathMatcher
 	 */
 	public void setPathMatcher(PathMatcher pathMatcher) {
@@ -156,8 +153,7 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Return the PathMatcher implementation to use for matching URL paths
-	 * against registered URL patterns.
+	 * Return the PathMatcher implementation to use for matching URL paths against registered URL patterns.
 	 */
 	public PathMatcher getPathMatcher() {
 		return this.pathMatcher;
@@ -539,5 +535,4 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 			return this.config;
 		}
 	}
-
 }
