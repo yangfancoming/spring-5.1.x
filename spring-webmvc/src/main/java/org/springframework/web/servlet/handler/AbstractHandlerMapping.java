@@ -316,9 +316,8 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 
 	/**
 	 * Adapt the given interceptor object to the {@link HandlerInterceptor} interface.
-	 * By default, the supported interceptor types are {@link HandlerInterceptor}
-	 * and {@link WebRequestInterceptor}. Each given {@link WebRequestInterceptor}
-	 * will be wrapped in a {@link WebRequestHandlerInterceptorAdapter}.
+	 * By default, the supported interceptor types are {@link HandlerInterceptor} and {@link WebRequestInterceptor}.
+	 * Each given {@link WebRequestInterceptor} will be wrapped in a {@link WebRequestHandlerInterceptorAdapter}.
 	 * Can be overridden in subclasses.
 	 * @param interceptor the specified interceptor object
 	 * @return the interceptor wrapped as HandlerInterceptor
@@ -519,7 +518,6 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 			return this.config;
 		}
 	}
-
 
 	private class CorsInterceptor extends HandlerInterceptorAdapter implements CorsConfigurationSource {
 

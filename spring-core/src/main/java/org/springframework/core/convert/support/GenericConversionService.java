@@ -36,8 +36,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * Base {@link ConversionService} implementation suitable for use in most environments.
- * Indirectly implements {@link ConverterRegistry} as registration API through the
- * {@link ConfigurableConversionService} interface.
+ * Indirectly implements {@link ConverterRegistry} as registration API through the {@link ConfigurableConversionService} interface.
  * @since 3.0
  */
 public class GenericConversionService implements ConfigurableConversionService {
@@ -48,8 +47,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 	private static final GenericConverter NO_OP_CONVERTER = new NoOpConverter("NO_OP");
 
 	/**
-	 * Used as a cache entry when no converter is available.
-	 * This converter is never returned.
+	 * Used as a cache entry when no converter is available. This converter is never returned.
 	 */
 	private static final GenericConverter NO_MATCH = new NoOpConverter("NO_MATCH");
 
@@ -57,9 +55,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 
 	private final Map<ConverterCacheKey, GenericConverter> converterCache = new ConcurrentReferenceHashMap<>(64);
 
-
 	// ConverterRegistry implementation
-
 	@Override
 	public void addConverter(Converter<?, ?> converter) {
 		ResolvableType[] typeInfo = getRequiredTypeInfo(converter.getClass(), Converter.class);
@@ -101,9 +97,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 		invalidateCache();
 	}
 
-
 	// ConversionService implementation
-
 	@Override
 	public boolean canConvert(@Nullable Class<?> sourceType, Class<?> targetType) {
 		Assert.notNull(targetType, "Target type to convert to cannot be null");
@@ -124,8 +118,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 	 * Return whether conversion between the source type and the target type can be bypassed.
 	 * More precisely, this method will return true if objects of sourceType can be
 	 * converted to the target type by returning the source object unchanged.
-	 * @param sourceType context about the source type to convert from
-	 * (may be {@code null} if source is {@code null})
+	 * @param sourceType context about the source type to convert from (may be {@code null} if source is {@code null})
 	 * @param targetType context about the target type to convert to (required)
 	 * @return {@code true} if conversion can be bypassed; {@code false} otherwise
 	 * @throws IllegalArgumentException if targetType is {@code null}
@@ -157,8 +150,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 			return handleResult(null, targetType, convertNullSource(null, targetType));
 		}
 		if (source != null && !sourceType.getObjectType().isInstance(source)) {
-			throw new IllegalArgumentException("Source to convert from must be an instance of [" +
-					sourceType + "]; instead it was a [" + source.getClass().getName() + "]");
+			throw new IllegalArgumentException("Source to convert from must be an instance of [" + sourceType + "]; instead it was a [" + source.getClass().getName() + "]");
 		}
 		GenericConverter converter = getConverter(sourceType, targetType);
 		if (converter != null) {
@@ -172,8 +164,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 	 * Convenience operation for converting a source object to the specified targetType,
 	 * where the target type is a descriptor that provides additional conversion context.
 	 * Simply delegates to {@link #convert(Object, TypeDescriptor, TypeDescriptor)} and
-	 * encapsulates the construction of the source type descriptor using
-	 * {@link TypeDescriptor#forObject(Object)}.
+	 * encapsulates the construction of the source type descriptor using {@link TypeDescriptor#forObject(Object)}.
 	 * @param source the source object
 	 * @param targetType the target type
 	 * @return the converted value
@@ -191,15 +182,11 @@ public class GenericConversionService implements ConfigurableConversionService {
 		return this.converters.toString();
 	}
 
-
 	// Protected template methods
-
 	/**
 	 * Template method to convert a {@code null} source.
-	 * The default implementation returns {@code null} or the Java 8
-	 * {@link java.util.Optional#empty()} instance if the target type is
-	 * {@code java.util.Optional}. Subclasses may override this to return
-	 * custom {@code null} objects for specific target types.
+	 * The default implementation returns {@code null} or the Java 8 {@link java.util.Optional#empty()} instance if the target type is
+	 * {@code java.util.Optional}. Subclasses may override this to return custom {@code null} objects for specific target types.
 	 * @param sourceType the source type to convert from
 	 * @param targetType the target type to convert to
 	 * @return the converted null object
@@ -230,17 +217,14 @@ public class GenericConversionService implements ConfigurableConversionService {
 		if (converter != null) {
 			return (converter != NO_MATCH ? converter : null);
 		}
-
 		converter = this.converters.find(sourceType, targetType);
 		if (converter == null) {
 			converter = getDefaultConverter(sourceType, targetType);
 		}
-
 		if (converter != null) {
 			this.converterCache.put(key, converter);
 			return converter;
 		}
-
 		this.converterCache.put(key, NO_MATCH);
 		return null;
 	}
@@ -258,9 +242,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 		return (sourceType.isAssignableTo(targetType) ? NO_OP_CONVERTER : null);
 	}
 
-
 	// Internal helpers
-
 	@Nullable
 	private ResolvableType[] getRequiredTypeInfo(Class<?> converterClass, Class<?> genericIfc) {
 		ResolvableType resolvableType = ResolvableType.forClass(converterClass).as(genericIfc);
@@ -633,7 +615,6 @@ public class GenericConversionService implements ConfigurableConversionService {
 			return StringUtils.collectionToCommaDelimitedString(this.converters);
 		}
 	}
-
 
 	/**
 	 * Internal converter that performs no operation.

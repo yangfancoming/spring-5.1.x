@@ -259,8 +259,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	}
 
 	/**
-	 * Protected method for plugging in a custom subclass of
-	 * {@link RequestMappingHandlerMapping}.
+	 * Protected method for plugging in a custom subclass of {@link RequestMappingHandlerMapping}.
 	 * @since 4.0
 	 */
 	protected RequestMappingHandlerMapping createRequestMappingHandlerMapping() {
@@ -336,8 +335,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	}
 
 	/**
-	 * Return a {@link ContentNegotiationManager} instance to use to determine
-	 * requested {@linkplain MediaType media types} in a given request.
+	 * Return a {@link ContentNegotiationManager} instance to use to determine requested {@linkplain MediaType media types} in a given request.
 	 */
 	@Bean
 	public ContentNegotiationManager mvcContentNegotiationManager() {
@@ -379,9 +377,8 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	}
 
 	/**
-	 * Return a handler mapping ordered at 1 to map URL paths directly to
-	 * view names. To configure view controllers, override
-	 * {@link #addViewControllers}.
+	 * Return a handler mapping ordered at 1 to map URL paths directly to view names.
+	 * To configure view controllers, override {@link #addViewControllers}.
 	 */
 	@Bean
 	@Nullable
@@ -419,8 +416,8 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	}
 
 	/**
-	 * Return a handler mapping ordered at Integer.MAX_VALUE-1 with mapped
-	 * resource handlers. To configure resource handling, override {@link #addResourceHandlers}.
+	 * Return a handler mapping ordered at Integer.MAX_VALUE-1 with mapped resource handlers.
+	 * To configure resource handling, override {@link #addResourceHandlers}.
 	 */
 	@Bean
 	@Nullable
@@ -486,14 +483,11 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	}
 
 	/**
-	 * Returns a {@link RequestMappingHandlerAdapter} for processing requests
-	 * through annotated controller methods. Consider overriding one of these
-	 * other more fine-grained methods:
-	 * <ul>
+	 * Returns a {@link RequestMappingHandlerAdapter} for processing requests through annotated controller methods.
+	 * Consider overriding one of these other more fine-grained methods:
 	 * <li>{@link #addArgumentResolvers} for adding custom argument resolvers.
 	 * <li>{@link #addReturnValueHandlers} for adding custom return value handlers.
 	 * <li>{@link #configureMessageConverters} for adding custom message converters.
-	 * </ul>
 	 */
 	@Bean
 	public RequestMappingHandlerAdapter requestMappingHandlerAdapter() {
@@ -521,8 +515,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	}
 
 	/**
-	 * Protected method for plugging in a custom subclass of
-	 * {@link RequestMappingHandlerAdapter}.
+	 * Protected method for plugging in a custom subclass of {@link RequestMappingHandlerAdapter}.
 	 * @since 4.3
 	 */
 	protected RequestMappingHandlerAdapter createRequestMappingHandlerAdapter() {

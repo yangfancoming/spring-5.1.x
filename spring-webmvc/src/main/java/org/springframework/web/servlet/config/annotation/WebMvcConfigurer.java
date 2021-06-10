@@ -18,8 +18,7 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
 /**
- * Defines callback methods to customize the Java-based configuration for
- * Spring MVC enabled via {@code @EnableWebMvc}.
+ * Defines callback methods to customize the Java-based configuration for Spring MVC enabled via {@code @EnableWebMvc}.
  * {@code @EnableWebMvc}-annotated configuration classes may implement this interface to be called back and given a chance to customize the default configuration.
  * @since 3.1
  */
