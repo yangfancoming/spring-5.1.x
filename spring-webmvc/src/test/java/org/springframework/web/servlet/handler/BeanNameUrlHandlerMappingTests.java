@@ -11,7 +11,9 @@ import org.springframework.web.context.ConfigurableWebApplicationContext;
 import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.servlet.HandlerExecutionChain;
 import org.springframework.web.servlet.HandlerMapping;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class BeanNameUrlHandlerMappingTests {
 
@@ -19,6 +21,11 @@ public class BeanNameUrlHandlerMappingTests {
 
 	private ConfigurableWebApplicationContext wac;
 
+	/**
+	 * map1.xml 配置文件内容
+	 * 	<bean id="handlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+	 * 	<bean id="godCtrl" name="/ /mypath/welcome.html /mypath/show.html /mypath/bookseats.html /mypath/reservation.html /mypath/payment.html /mypath/confirmation.html /mypath/test*" class="java.lang.Object"/>
+	*/
 	@Before
 	public void setUp() throws Exception {
 		MockServletContext sc = new MockServletContext("");
@@ -28,6 +35,7 @@ public class BeanNameUrlHandlerMappingTests {
 		wac.refresh();
 	}
 
+	// 请求uri 没有对应控制器的情况
 	@Test
 	public void requestsWithoutHandlers() throws Exception {
 		HandlerMapping hm = (HandlerMapping) wac.getBean("handlerMapping");
@@ -175,5 +183,4 @@ public class BeanNameUrlHandlerMappingTests {
 			// expected
 		}
 	}
-
 }

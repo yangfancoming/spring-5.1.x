@@ -11,10 +11,7 @@ import org.springframework.context.MessageSourceAware;
 import org.springframework.core.io.Resource;
 import org.springframework.util.Assert;
 
-/**
- * @author Alef Arendsen
 
- */
 public class Service implements ApplicationContextAware, MessageSourceAware, DisposableBean {
 
 	private ApplicationContext applicationContext;

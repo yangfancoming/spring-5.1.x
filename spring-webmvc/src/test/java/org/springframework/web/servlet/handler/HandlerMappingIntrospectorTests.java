@@ -2,13 +2,7 @@
 
 package org.springframework.web.servlet.handler;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-
 import org.junit.Test;
-
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,21 +19,22 @@ import org.springframework.web.servlet.HandlerExecutionChain;
 import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import static org.junit.Assert.*;
 import static org.springframework.web.servlet.HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE;
 
 /**
  * Unit tests for {@link HandlerMappingIntrospector}.
- *
- *
  * @since 4.3.1
  */
 public class HandlerMappingIntrospectorTests {
 
 	@Test
-	public void detectHandlerMappings() throws Exception {
+	public void detectHandlerMappings()  {
 		StaticWebApplicationContext cxt = new StaticWebApplicationContext();
 		cxt.registerSingleton("hmA", SimpleUrlHandlerMapping.class);
 		cxt.registerSingleton("hmB", SimpleUrlHandlerMapping.class);
@@ -53,7 +48,7 @@ public class HandlerMappingIntrospectorTests {
 	}
 
 	@Test
-	public void detectHandlerMappingsOrdered() throws Exception {
+	public void detectHandlerMappingsOrdered()  {
 		StaticWebApplicationContext cxt = new StaticWebApplicationContext();
 		MutablePropertyValues pvs = new MutablePropertyValues(Collections.singletonMap("order", "3"));
 		cxt.registerSingleton("hmA", SimpleUrlHandlerMapping.class, pvs);
@@ -69,7 +64,7 @@ public class HandlerMappingIntrospectorTests {
 		assertEquals(expected, actual);
 	}
 
-	public void defaultHandlerMappings() throws Exception {
+	public void defaultHandlerMappings()  {
 		StaticWebApplicationContext cxt = new StaticWebApplicationContext();
 		cxt.refresh();
 
@@ -81,8 +76,7 @@ public class HandlerMappingIntrospectorTests {
 
 	@Test
 	public void getMatchable() throws Exception {
-		MutablePropertyValues pvs = new MutablePropertyValues(
-				Collections.singletonMap("urlMap", Collections.singletonMap("/path", new Object())));
+		MutablePropertyValues pvs = new MutablePropertyValues(Collections.singletonMap("urlMap", Collections.singletonMap("/path", new Object())));
 
 		StaticWebApplicationContext cxt = new StaticWebApplicationContext();
 		cxt.registerSingleton("hm", SimpleUrlHandlerMapping.class, pvs);
@@ -106,7 +100,7 @@ public class HandlerMappingIntrospectorTests {
 	}
 
 	@Test
-	public void getCorsConfigurationPreFlight() throws Exception {
+	public void getCorsConfigurationPreFlight()  {
 		AnnotationConfigWebApplicationContext cxt = new AnnotationConfigWebApplicationContext();
 		cxt.register(TestConfig.class);
 		cxt.refresh();
@@ -124,7 +118,7 @@ public class HandlerMappingIntrospectorTests {
 	}
 
 	@Test
-	public void getCorsConfigurationActual() throws Exception {
+	public void getCorsConfigurationActual()  {
 		AnnotationConfigWebApplicationContext cxt = new AnnotationConfigWebApplicationContext();
 		cxt.register(TestConfig.class);
 		cxt.refresh();
@@ -147,9 +141,8 @@ public class HandlerMappingIntrospectorTests {
 
 
 	private static class TestHandlerMapping implements HandlerMapping {
-
 		@Override
-		public HandlerExecutionChain getHandler(HttpServletRequest request) throws Exception {
+		public HandlerExecutionChain getHandler(HttpServletRequest request)  {
 			return new HandlerExecutionChain(new Object());
 		}
 	}
@@ -179,5 +172,4 @@ public class HandlerMappingIntrospectorTests {
 		public void handle() {
 		}
 	}
-
 }

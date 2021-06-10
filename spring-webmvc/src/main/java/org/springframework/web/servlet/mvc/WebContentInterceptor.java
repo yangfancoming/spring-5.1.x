@@ -22,16 +22,11 @@ import org.springframework.web.util.UrlPathHelper;
 
 /**
  * Handler interceptor that checks the request and prepares the response.
- * Checks for supported methods and a required session, and applies the
- * specified {@link org.springframework.http.CacheControl} builder.
+ * Checks for supported methods and a required session, and applies the specified {@link org.springframework.http.CacheControl} builder.
  * See superclass bean properties for configuration options.
  *
- * All the settings supported by this interceptor can also be set on
- * {@link AbstractController}. This interceptor is mainly intended for applying
- * checks and preparations to a set of controllers mapped by a HandlerMapping.
- *
-
- * @author Brian Clozel
+ * All the settings supported by this interceptor can also be set on {@link AbstractController}.
+ * This interceptor is mainly intended for applying checks and preparations to a set of controllers mapped by a HandlerMapping.
  * @since 27.11.2003
  * @see AbstractController
  */
@@ -46,8 +41,7 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 	private Map<String, CacheControl> cacheControlMappings = new HashMap<>();
 
 	public WebContentInterceptor() {
-		// No restriction of HTTP methods by default,
-		// in particular for use with annotated controllers...
+		// No restriction of HTTP methods by default,in particular for use with annotated controllers...
 		super(false);
 	}
 
@@ -143,13 +137,9 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 
 
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws ServletException {
-
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException {
 		checkRequest(request);
-
 		String lookupPath = this.urlPathHelper.getLookupPathForRequest(request);
-
 		CacheControl cacheControl = lookupCacheControl(lookupPath);
 		Integer cacheSeconds = lookupCacheSeconds(lookupPath);
 		if (cacheControl != null) {
@@ -157,20 +147,17 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 				logger.trace("Applying " + cacheControl);
 			}
 			applyCacheControl(response, cacheControl);
-		}
-		else if (cacheSeconds != null) {
+		}else if (cacheSeconds != null) {
 			if (logger.isTraceEnabled()) {
 				logger.trace("Applying cacheSeconds " + cacheSeconds);
 			}
 			applyCacheSeconds(response, cacheSeconds);
-		}
-		else {
+		}else {
 			if (logger.isTraceEnabled()) {
 				logger.trace("Applying default cacheSeconds");
 			}
 			prepareResponse(response);
 		}
-
 		return true;
 	}
 
@@ -224,21 +211,18 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 		return null;
 	}
 
-
 	/**
 	 * This implementation is empty.
 	 */
 	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			@Nullable ModelAndView modelAndView) throws Exception {
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,@Nullable ModelAndView modelAndView) throws Exception {
 	}
 
 	/**
 	 * This implementation is empty.
 	 */
 	@Override
-	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,
-			@Nullable Exception ex) throws Exception {
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,@Nullable Exception ex) throws Exception {
 	}
 
 }

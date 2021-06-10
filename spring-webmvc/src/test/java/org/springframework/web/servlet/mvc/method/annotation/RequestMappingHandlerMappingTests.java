@@ -2,56 +2,40 @@
 
 package org.springframework.web.servlet.mvc.method.annotation;
 
+import org.junit.Test;
+import org.springframework.core.annotation.AliasFor;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.accept.ContentNegotiationManager;
+import org.springframework.web.accept.PathExtensionContentNegotiationStrategy;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.support.StaticWebApplicationContext;
+import org.springframework.web.method.HandlerTypePredicate;
+import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.lang.reflect.Method;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
-import org.junit.Test;
-
-import org.springframework.core.annotation.AliasFor;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.accept.ContentNegotiationManager;
-import org.springframework.web.accept.PathExtensionContentNegotiationStrategy;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.support.StaticWebApplicationContext;
-import org.springframework.web.method.HandlerTypePredicate;
-import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
+import java.util.*;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
 
 /**
  * Tests for {@link RequestMappingHandlerMapping}.
- *
- *
- * @author Sam Brannen
  */
 public class RequestMappingHandlerMappingTests {
 
 	private final StaticWebApplicationContext wac = new StaticWebApplicationContext();
 
 	private final RequestMappingHandlerMapping handlerMapping = new RequestMappingHandlerMapping();
+
 	{
 		this.handlerMapping.setApplicationContext(wac);
 	}
-
 
 	@Test
 	public void useRegisteredSuffixPatternMatch() {
@@ -106,31 +90,24 @@ public class RequestMappingHandlerMappingTests {
 		assertFalse(this.handlerMapping.useSuffixPatternMatch());
 
 		this.handlerMapping.setUseRegisteredSuffixPatternMatch(false);
-		assertFalse("'false' registeredSuffixPatternMatch shouldn't impact suffixPatternMatch",
-				this.handlerMapping.useSuffixPatternMatch());
+		assertFalse("'false' registeredSuffixPatternMatch shouldn't impact suffixPatternMatch",this.handlerMapping.useSuffixPatternMatch());
 
 		this.handlerMapping.setUseRegisteredSuffixPatternMatch(true);
-		assertTrue("'true' registeredSuffixPatternMatch should enable suffixPatternMatch",
-				this.handlerMapping.useSuffixPatternMatch());
+		assertTrue("'true' registeredSuffixPatternMatch should enable suffixPatternMatch",this.handlerMapping.useSuffixPatternMatch());
 	}
 
 	@Test
 	public void resolveEmbeddedValuesInPatterns() {
-		this.handlerMapping.setEmbeddedValueResolver(
-				value -> "/${pattern}/bar".equals(value) ? "/foo/bar" : value
-		);
-
+		this.handlerMapping.setEmbeddedValueResolver(value -> "/${pattern}/bar".equals(value) ? "/foo/bar" : value);
 		String[] patterns = new String[] { "/foo", "/${pattern}/bar" };
 		String[] result = this.handlerMapping.resolveEmbeddedValuesInPatterns(patterns);
-
 		assertArrayEquals(new String[] { "/foo", "/foo/bar" }, result);
 	}
 
 	@Test
 	public void pathPrefix() throws NoSuchMethodException {
 		this.handlerMapping.setEmbeddedValueResolver(value -> "/${prefix}".equals(value) ? "/api" : value);
-		this.handlerMapping.setPathPrefixes(Collections.singletonMap(
-				"/${prefix}", HandlerTypePredicate.forAnnotation(RestController.class)));
+		this.handlerMapping.setPathPrefixes(Collections.singletonMap("/${prefix}", HandlerTypePredicate.forAnnotation(RestController.class)));
 
 		Method method = UserController.class.getMethod("getUser");
 		RequestMappingInfo info = this.handlerMapping.getMappingForMethod(method, UserController.class);
@@ -142,19 +119,14 @@ public class RequestMappingHandlerMappingTests {
 	@Test
 	public void resolveRequestMappingViaComposedAnnotation() throws Exception {
 		RequestMappingInfo info = assertComposedAnnotationMapping("postJson", "/postJson", RequestMethod.POST);
-
-		assertEquals(MediaType.APPLICATION_JSON_VALUE,
-			info.getConsumesCondition().getConsumableMediaTypes().iterator().next().toString());
-		assertEquals(MediaType.APPLICATION_JSON_VALUE,
-			info.getProducesCondition().getProducibleMediaTypes().iterator().next().toString());
+		assertEquals(MediaType.APPLICATION_JSON_VALUE,info.getConsumesCondition().getConsumableMediaTypes().iterator().next().toString());
+		assertEquals(MediaType.APPLICATION_JSON_VALUE,info.getProducesCondition().getProducibleMediaTypes().iterator().next().toString());
 	}
 
 	@Test // SPR-14988
 	public void getMappingOverridesConsumesFromTypeLevelAnnotation() throws Exception {
 		RequestMappingInfo requestMappingInfo = assertComposedAnnotationMapping(RequestMethod.GET);
-
-		assertArrayEquals(new MediaType[]{MediaType.ALL}, new ArrayList<>(
-				requestMappingInfo.getConsumesCondition().getConsumableMediaTypes()).toArray());
+		assertArrayEquals(new MediaType[]{MediaType.ALL}, new ArrayList<>(requestMappingInfo.getConsumesCondition().getConsumableMediaTypes()).toArray());
 	}
 
 	@Test
@@ -185,13 +157,10 @@ public class RequestMappingHandlerMappingTests {
 	private RequestMappingInfo assertComposedAnnotationMapping(RequestMethod requestMethod) throws Exception {
 		String methodName = requestMethod.name().toLowerCase();
 		String path = "/" + methodName;
-
 		return assertComposedAnnotationMapping(methodName, path, requestMethod);
 	}
 
-	private RequestMappingInfo assertComposedAnnotationMapping(String methodName, String path,
-			RequestMethod requestMethod) throws Exception {
-
+	private RequestMappingInfo assertComposedAnnotationMapping(String methodName, String path,RequestMethod requestMethod) throws Exception {
 		Class<?> clazz = ComposedAnnotationController.class;
 		Method method = clazz.getMethod(methodName);
 		RequestMappingInfo info = this.handlerMapping.getMappingForMethod(method, clazz);
@@ -215,43 +184,32 @@ public class RequestMappingHandlerMappingTests {
 	static class ComposedAnnotationController {
 
 		@RequestMapping
-		public void handle() {
-		}
+		public void handle() {}
 
 		@PostJson("/postJson")
-		public void postJson() {
-		}
+		public void postJson() {}
 
 		@GetMapping(value = "/get", consumes = MediaType.ALL_VALUE)
-		public void get() {
-		}
+		public void get() {}
 
 		@PostMapping("/post")
-		public void post() {
-		}
+		public void post() {}
+
 
 		@PutMapping("/put")
-		public void put() {
-		}
+		public void put() {}
 
 		@DeleteMapping("/delete")
-		public void delete() {
-		}
+		public void delete() {}
 
 		@PatchMapping("/patch")
-		public void patch() {
-		}
-
+		public void patch() {}
 	}
 
-
-	@RequestMapping(method = RequestMethod.POST,
-			produces = MediaType.APPLICATION_JSON_VALUE,
-			consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
 	@Target(ElementType.METHOD)
 	@Retention(RetentionPolicy.RUNTIME)
 	@interface PostJson {
-
 		@AliasFor(annotation = RequestMapping.class, attribute = "path")
 		String[] value() default {};
 	}
@@ -260,11 +218,9 @@ public class RequestMappingHandlerMappingTests {
 	@RestController
 	@RequestMapping("/user")
 	static class UserController {
-
 		@GetMapping("/{id}")
 		public Principal getUser() {
 			return mock(Principal.class);
 		}
 	}
-
 }

@@ -2,32 +2,24 @@
 
 package org.springframework.web.servlet.mvc.method;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-
 import org.junit.Test;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.mock.web.test.MockHttpServletRequest;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 import static java.util.Arrays.asList;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.HEAD;
 import static org.springframework.web.servlet.mvc.method.RequestMappingInfo.paths;
 
 /**
  * Test fixture for {@link RequestMappingInfo} tests.
- *
- * @author Arjen Poutsma
- *
  */
 public class RequestMappingInfoTests {
 
@@ -145,8 +137,7 @@ public class RequestMappingInfoTests {
 		RequestMappingInfo oneMethod = paths().methods(GET).build();
 		RequestMappingInfo oneMethodOneParam = paths().methods(GET).params("foo").build();
 
-		Comparator<RequestMappingInfo> comparator =
-				(info, otherInfo) -> info.compareTo(otherInfo, new MockHttpServletRequest());
+		Comparator<RequestMappingInfo> comparator = (info, otherInfo) -> info.compareTo(otherInfo, new MockHttpServletRequest());
 
 		List<RequestMappingInfo> list = asList(noMethods, oneMethod, oneMethodOneParam);
 		Collections.shuffle(list);
@@ -264,5 +255,4 @@ public class RequestMappingInfoTests {
 		match = info.getMatchingCondition(request);
 		assertNull("Pre-flight should match the ACCESS_CONTROL_REQUEST_METHOD", match);
 	}
-
 }

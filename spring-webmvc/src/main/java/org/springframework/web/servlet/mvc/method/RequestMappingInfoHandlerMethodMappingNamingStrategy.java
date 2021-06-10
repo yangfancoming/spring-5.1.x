@@ -7,23 +7,18 @@ import org.springframework.web.servlet.handler.HandlerMethodMappingNamingStrateg
 
 /**
  * A {@link org.springframework.web.servlet.handler.HandlerMethodMappingNamingStrategy
- * HandlerMethodMappingNamingStrategy} for {@code RequestMappingInfo}-based handler
- * method mappings.
+ * HandlerMethodMappingNamingStrategy} for {@code RequestMappingInfo}-based handler  method mappings.
  *
  * If the {@code RequestMappingInfo} name attribute is set, its value is used.
  * Otherwise the name is based on the capital letters of the class name,
  * followed by "#" as a separator, and the method name. For example "TC#getFoo"
  * for a class named TestController with method getFoo.
- *
- *
  * @since 4.1
  */
-public class RequestMappingInfoHandlerMethodMappingNamingStrategy
-		implements HandlerMethodMappingNamingStrategy<RequestMappingInfo> {
+public class RequestMappingInfoHandlerMethodMappingNamingStrategy implements HandlerMethodMappingNamingStrategy<RequestMappingInfo> {
 
 	/** Separator between the type and method-level parts of a HandlerMethod mapping name. */
 	public static final String SEPARATOR = "#";
-
 
 	@Override
 	public String getName(HandlerMethod handlerMethod, RequestMappingInfo mapping) {

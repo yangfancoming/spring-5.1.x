@@ -4,7 +4,6 @@ package org.springframework.web.servlet.handler;
 
 import org.junit.Before;
 import org.junit.Test;
-
 import org.springframework.mock.web.test.MockHttpServletRequest;
 import org.springframework.mock.web.test.MockServletContext;
 import org.springframework.web.context.ConfigurableWebApplicationContext;
@@ -13,12 +12,10 @@ import org.springframework.web.servlet.HandlerExecutionChain;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.HandlerMapping;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-/**
- * @author Alef Arendsen
 
- */
 public class PathMatchingUrlHandlerMappingTests {
 
 	public static final String CONF = "/org/springframework/web/servlet/handler/map3.xml";

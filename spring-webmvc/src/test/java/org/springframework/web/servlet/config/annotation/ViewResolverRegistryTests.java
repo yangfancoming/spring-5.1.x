@@ -2,11 +2,8 @@
 
 package org.springframework.web.servlet.config.annotation;
 
-import java.util.Arrays;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import org.springframework.beans.DirectFieldAccessor;
 import org.springframework.core.Ordered;
 import org.springframework.web.accept.ContentNegotiationManager;
@@ -25,6 +22,8 @@ import org.springframework.web.servlet.view.script.ScriptTemplateViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 import org.springframework.web.servlet.view.xml.MarshallingView;
+
+import java.util.Arrays;
 
 import static org.junit.Assert.*;
 

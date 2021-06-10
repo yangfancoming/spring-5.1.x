@@ -1,20 +1,19 @@
 
 package org.springframework.web.servlet.view.tiles3;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.tiles.request.AbstractRequest;
 import org.apache.tiles.request.Request;
 import org.apache.tiles.request.render.Renderer;
 import org.junit.Before;
 import org.junit.Test;
-
 import org.springframework.mock.web.test.MockHttpServletRequest;
 import org.springframework.mock.web.test.MockHttpServletResponse;
 import org.springframework.mock.web.test.MockServletContext;
 import org.springframework.web.context.support.StaticWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;

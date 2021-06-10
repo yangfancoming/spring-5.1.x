@@ -2,25 +2,21 @@
 
 package org.springframework.web.servlet.handler;
 
-import java.util.Collections;
-import java.util.Properties;
-import javax.servlet.http.HttpServletResponse;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import org.springframework.mock.web.test.MockHttpServletRequest;
 import org.springframework.mock.web.test.MockHttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
-import static org.junit.Assert.*;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Collections;
+import java.util.Properties;
 
-/**
- * @author Seth Ladd
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
- * @author Arjen Poutsma
- */
+
 public class SimpleMappingExceptionResolverTests {
 
 	private SimpleMappingExceptionResolver exceptionResolver;
@@ -262,16 +258,13 @@ public class SimpleMappingExceptionResolverTests {
 		assertEquals("another-some-error", mav.getViewName());
 	}
 
-
 	@SuppressWarnings("serial")
 	private static class SomeOddException extends Exception {
 
 	}
 
-
 	@SuppressWarnings("serial")
 	private static class AnotherOddException extends Exception {
 
 	}
-
 }

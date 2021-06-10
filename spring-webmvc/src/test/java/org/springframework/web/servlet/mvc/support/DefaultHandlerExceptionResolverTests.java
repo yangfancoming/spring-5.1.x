@@ -2,12 +2,8 @@
 
 package org.springframework.web.servlet.mvc.support;
 
-import java.lang.reflect.Method;
-import java.util.Collections;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.core.MethodParameter;
@@ -30,6 +26,9 @@ import org.springframework.web.context.request.async.AsyncRequestTimeoutExceptio
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.NoHandlerFoundException;
+
+import java.lang.reflect.Method;
+import java.util.Collections;
 
 import static org.junit.Assert.*;
 

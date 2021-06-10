@@ -4,7 +4,6 @@ package org.springframework.web.servlet.view.script;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import org.springframework.beans.DirectFieldAccessor;
 
 /**

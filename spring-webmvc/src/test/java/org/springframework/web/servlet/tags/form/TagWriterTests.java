@@ -2,11 +2,11 @@
 
 package org.springframework.web.servlet.tags.form;
 
-import java.io.StringWriter;
-
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.io.StringWriter;
+
+import static org.junit.Assert.assertEquals;
 
 
 public class TagWriterTests {
