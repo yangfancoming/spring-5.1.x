@@ -77,13 +77,7 @@ import static com.fasterxml.jackson.databind.MapperFeature.*;
 import static org.junit.Assert.*;
 
 /**
- * Integration tests for {@link WebMvcConfigurationSupport} (imported via
- * {@link EnableWebMvc @EnableWebMvc}).
- *
- *
-
- * @author Sebastien Deleuze
- * @author Sam Brannen
+ * Integration tests for {@link WebMvcConfigurationSupport} (imported via{@link EnableWebMvc @EnableWebMvc}).
  */
 public class WebMvcConfigurationSupportTests {
 
@@ -375,7 +369,6 @@ public class WebMvcConfigurationSupportTests {
 	@Controller
 	@Scope("prototype")
 	private static class ScopedController {
-
 		@RequestMapping("/scoped")
 		public void handle() {
 		}
@@ -385,7 +378,6 @@ public class WebMvcConfigurationSupportTests {
 	@Controller
 	@Scope(scopeName = "prototype", proxyMode = ScopedProxyMode.TARGET_CLASS)
 	static class ScopedProxyController {
-
 		@RequestMapping("/scopedProxy")
 		public void handle() {
 		}

@@ -199,8 +199,7 @@ public class DispatcherServletTests {
 		request.addUserRole("role1");
 		MockHttpServletResponse response = new MockHttpServletResponse();
 		ComplexWebApplicationContext.MockMultipartResolver multipartResolver =
-				(ComplexWebApplicationContext.MockMultipartResolver) complexDispatcherServlet.getWebApplicationContext()
-						.getBean("multipartResolver");
+				(ComplexWebApplicationContext.MockMultipartResolver) complexDispatcherServlet.getWebApplicationContext().getBean("multipartResolver");
 		MultipartHttpServletRequest multipartRequest = multipartResolver.resolveMultipart(request);
 		complexDispatcherServlet.service(new HttpServletRequestWrapper(multipartRequest), response);
 		multipartResolver.cleanupMultipart(multipartRequest);
@@ -369,8 +368,7 @@ public class DispatcherServletTests {
 		try {
 			complexDispatcherServlet.service(request, response);
 			assertTrue("Not forwarded", response.getForwardedUrl() == null);
-		}
-		catch (ServletException ex) {
+		}catch (ServletException ex) {
 			fail("Should not have thrown ServletException: " + ex.getMessage());
 		}
 	}
@@ -383,8 +381,7 @@ public class DispatcherServletTests {
 		try {
 			complexDispatcherServlet.service(request, response);
 			assertTrue("Correct response", response.getStatus() == HttpServletResponse.SC_FORBIDDEN);
-		}
-		catch (ServletException ex) {
+		}catch (ServletException ex) {
 			fail("Should not have thrown ServletException: " + ex.getMessage());
 		}
 	}
@@ -524,8 +521,7 @@ public class DispatcherServletTests {
 		try {
 			complexDispatcherServlet.service(request, response);
 			fail("Should have thrown ServletException");
-		}
-		catch (ServletException ex) {
+		}catch (ServletException ex) {
 			// expected
 			assertTrue(ex.getMessage().contains("No adapter for handler"));
 		}
@@ -544,8 +540,7 @@ public class DispatcherServletTests {
 		try {
 			complexDispatcherServlet.service(request, response);
 			fail("Should have thrown ServletException");
-		}
-		catch (ServletException ex) {
+		}catch (ServletException ex) {
 			// expected
 			assertTrue(ex.getMessage().contains("failed0"));
 		}
@@ -745,8 +740,7 @@ public class DispatcherServletTests {
 		try {
 			servlet.setEnvironment(new DummyEnvironment());
 			fail("expected IllegalArgumentException for non-configurable Environment");
-		}
-		catch (IllegalArgumentException ex) {
+		}catch (IllegalArgumentException ex) {
 		}
 		class CustomServletEnvironment extends StandardServletEnvironment { }
 		@SuppressWarnings("serial")
@@ -784,8 +778,7 @@ public class DispatcherServletTests {
 	public void contextInitializerClasses() throws Exception {
 		DispatcherServlet servlet = new DispatcherServlet();
 		servlet.setContextClass(SimpleWebApplicationContext.class);
-		servlet.setContextInitializerClasses(
-				TestWebContextInitializer.class.getName() + "," + OtherWebContextInitializer.class.getName());
+		servlet.setContextInitializerClasses(TestWebContextInitializer.class.getName() + "," + OtherWebContextInitializer.class.getName());
 		servlet.init(servletConfig);
 		assertEquals("true", getServletContext().getAttribute("initialized"));
 		assertEquals("true", getServletContext().getAttribute("otherInitialized"));
@@ -832,5 +825,4 @@ public class DispatcherServletTests {
 			applicationContext.getServletContext().setAttribute("otherInitialized", "true");
 		}
 	}
-
 }

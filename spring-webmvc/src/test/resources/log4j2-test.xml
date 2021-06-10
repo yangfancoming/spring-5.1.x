@@ -8,6 +8,9 @@
 	<Loggers>
 		<Logger name="org.springframework.web.servlet" level="trace" />
 		<Logger name="org.springframework.convert" level="trace" />
+		<Logger name="org.springframework.beans" level="trace" />
+		<Logger name="org.springframework.context" level="trace" />
+		<Logger name="org.springframework.core" level="trace" />
 		<Root level="error">
 			<AppenderRef ref="Console" />
 		</Root>

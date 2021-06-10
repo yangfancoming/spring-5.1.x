@@ -111,8 +111,10 @@ public class WebMvcConfigurationSupportExtensionTests {
 		RequestMappingHandlerMapping rmHandlerMapping = this.config.requestMappingHandlerMapping();
 		rmHandlerMapping.setApplicationContext(this.context);
 		rmHandlerMapping.afterPropertiesSet();
+		// UrlPathHelper 和 PathMatcher 验证
 		assertEquals(TestPathHelper.class, rmHandlerMapping.getUrlPathHelper().getClass());
 		assertEquals(TestPathMatcher.class, rmHandlerMapping.getPathMatcher().getClass());
+		// HandlerExecutionChain 相关验证
 		HandlerExecutionChain chain = rmHandlerMapping.getHandler(new MockHttpServletRequest("GET", "/"));
 		assertNotNull(chain);
 		assertNotNull(chain.getInterceptors());
