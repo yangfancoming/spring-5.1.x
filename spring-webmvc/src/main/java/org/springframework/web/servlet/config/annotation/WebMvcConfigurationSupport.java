@@ -389,7 +389,6 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	public HandlerMapping viewControllerHandlerMapping() {
 		ViewControllerRegistry registry = new ViewControllerRegistry(this.applicationContext);
 		addViewControllers(registry);
-
 		AbstractHandlerMapping handlerMapping = registry.buildHandlerMapping();
 		if (handlerMapping == null) {
 			return null;
@@ -871,8 +870,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	}
 
 	/**
-	 * Protected method for plugging in a custom subclass of
-	 * {@link ExceptionHandlerExceptionResolver}.
+	 * Protected method for plugging in a custom subclass of {@link ExceptionHandlerExceptionResolver}.
 	 * @since 4.3
 	 */
 	protected ExceptionHandlerExceptionResolver createExceptionHandlerExceptionResolver() {
@@ -881,11 +879,9 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 
 	/**
 	 * Register a {@link ViewResolverComposite} that contains a chain of view resolvers to use for view resolution.
-	 * By default this resolver is ordered at 0 unless content negotiation view
-	 * resolution is used in which case the order is raised to
+	 * By default this resolver is ordered at 0 unless content negotiation view resolution is used in which case the order is raised to
 	 * {@link org.springframework.core.Ordered#HIGHEST_PRECEDENCE Ordered.HIGHEST_PRECEDENCE}.
-	 * If no other resolvers are configured,
-	 * {@link ViewResolverComposite#resolveViewName(String, Locale)} returns null in order
+	 * If no other resolvers are configured,{@link ViewResolverComposite#resolveViewName(String, Locale)} returns null in order
 	 * to allow other potential {@link ViewResolver} beans to resolve views.
 	 * @since 4.1
 	 */
@@ -955,5 +951,4 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		public void validate(@Nullable Object target, Errors errors) {
 		}
 	}
-
 }

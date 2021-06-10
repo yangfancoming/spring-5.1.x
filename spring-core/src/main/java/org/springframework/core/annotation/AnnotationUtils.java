@@ -1390,14 +1390,12 @@ public abstract class AnnotationUtils {
 
 	/**
 	 * <em>Synthesize</em> an annotation from its default attributes values.
-	 * This method simply delegates to
-	 * {@link #synthesizeAnnotation(Map, Class, AnnotatedElement)},supplying an empty map for the source attribute values and {@code null}
-	 * for the {@link AnnotatedElement}.
+	 * This method simply delegates to {@link #synthesizeAnnotation(Map, Class, AnnotatedElement)},
+	 * supplying an empty map for the source attribute values and {@code null} for the {@link AnnotatedElement}.
 	 * @param annotationType the type of annotation to synthesize
 	 * @return the synthesized annotation
 	 * @throws IllegalArgumentException if a required attribute is missing
-	 * @throws AnnotationConfigurationException if invalid configuration of
-	 * {@code @AliasFor} is detected
+	 * @throws AnnotationConfigurationException if invalid configuration of {@code @AliasFor} is detected
 	 * @since 4.2
 	 * @see #synthesizeAnnotation(Map, Class, AnnotatedElement)
 	 * @see #synthesizeAnnotation(Annotation, AnnotatedElement)

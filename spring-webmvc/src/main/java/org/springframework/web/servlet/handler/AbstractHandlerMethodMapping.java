@@ -182,6 +182,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 	}
 
 	/**
+	 * 获取spring容器中的所有bean名称
 	 * Determine the names of candidate beans in the application context.
 	 * @since 5.1
 	 * @see #setDetectHandlerMethodsInAncestorContexts
@@ -194,10 +195,8 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 	}
 
 	/**
-	 * Determine the type of the specified candidate bean and call
-	 * {@link #detectHandlerMethods} if identified as a handler type.
-	 * This implementation avoids bean creation through checking
-	 * {@link org.springframework.beans.factory.BeanFactory#getType}
+	 * Determine the type of the specified candidate bean and call {@link #detectHandlerMethods} if identified as a handler type.
+	 * This implementation avoids bean creation through checking {@link org.springframework.beans.factory.BeanFactory#getType}
 	 * and calling {@link #detectHandlerMethods} with the bean name.
 	 * @param beanName the name of the candidate bean
 	 * @since 5.1
@@ -437,6 +436,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 
 	// Abstract template methods
 	/**
+	 * 判断指定类上是否标有 @Controller 或 @RequestMapping 注解
 	 * Whether the given type is a handler with handler methods.
 	 * @param beanType the type of the bean being checked
 	 * @return "true" if this a handler type, "false" otherwise.
@@ -444,11 +444,9 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 	protected abstract boolean isHandler(Class<?> beanType);
 
 	/**
-	 * Provide the mapping for a handler method. A method for which no
-	 * mapping can be provided is not a handler method.
+	 * Provide the mapping for a handler method. A method for which no mapping can be provided is not a handler method.
 	 * @param method the method to provide a mapping for
-	 * @param handlerType the handler type, possibly a sub-type of the method's
-	 * declaring class
+	 * @param handlerType the handler type, possibly a sub-type of the method's declaring class
 	 * @return the mapping, or {@code null} if the method is not mapped
 	 */
 	@Nullable
@@ -485,10 +483,13 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 
 		private final Map<T, MappingRegistration<T>> registry = new HashMap<>();
 
+		// mappingLookup:保存着匹配条件（RequestConditon）和HandlerMethod的关系。
 		private final Map<T, HandlerMethod> mappingLookup = new LinkedHashMap<>();
 
+		// urlLookup:保存着url和匹配条件（RequestConditon）的关系，这里的url也可以是pattern模式的，可以使用通配符，这里的map的value可以是对应多个值的，value是一个List类型
 		private final MultiValueMap<String, T> urlLookup = new LinkedMultiValueMap<>();
 
+		// nameLookup是 SpringMVC后面新增的，他直接保存着name和HandlerMethod的关系，一个name对应着多个HandlerMethod
 		private final Map<String, List<HandlerMethod>> nameLookup = new ConcurrentHashMap<>();
 
 		private final Map<HandlerMethod, CorsConfiguration> corsLookup = new ConcurrentHashMap<>();
@@ -546,8 +547,8 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 			try {
 				HandlerMethod handlerMethod = createHandlerMethod(handler, method);
 				assertUniqueMethodMapping(handlerMethod, mapping);
+				logger.warn("【 spring-mvc process mappingLookup  ---  】 url： " + mapping.toString() + "controller's method" + handlerMethod.getBeanType().toString());
 				this.mappingLookup.put(mapping, handlerMethod);
-
 				List<String> directUrls = getDirectUrls(mapping);
 				for (String url : directUrls) {
 					this.urlLookup.add(url, mapping);

@@ -565,13 +565,11 @@ public abstract class AnnotatedElementUtils {
 	}
 
 	/**
-	 * Find the first annotation of the specified {@code annotationType} within
-	 * the annotation hierarchy <em>above</em> the supplied {@code element},
+	 * Find the first annotation of the specified {@code annotationType} within the annotation hierarchy <em>above</em> the supplied {@code element},
 	 * merge that annotation's attributes with <em>matching</em> attributes from
 	 * annotations in lower levels of the annotation hierarchy, and synthesize
 	 * the result back into an annotation of the specified {@code annotationType}.
-	 * {@link AliasFor @AliasFor} semantics are fully supported, both
-	 * within a single annotation and within the annotation hierarchy.
+	 * {@link AliasFor @AliasFor} semantics are fully supported, both within a single annotation and within the annotation hierarchy.
 	 * This method follows <em>find semantics</em> as described in the {@linkplain AnnotatedElementUtils class-level javadoc}.
 	 * @param element the annotated element
 	 * @param annotationType the annotation type to find
@@ -600,16 +598,12 @@ public abstract class AnnotatedElementUtils {
 	 * within the annotation hierarchy <em>above</em> the supplied {@code element};
 	 * and for each annotation found, merge that annotation's attributes with
 	 * <em>matching</em> attributes from annotations in lower levels of the annotation
-	 * hierarchy and synthesize the results back into an annotation of the specified
-	 * {@code annotationType}.
-	 * {@link AliasFor @AliasFor} semantics are fully supported, both within a
-	 * single annotation and within annotation hierarchies.
-	 * This method follows <em>find semantics</em> as described in the
-	 * {@linkplain AnnotatedElementUtils class-level javadoc}.
+	 * hierarchy and synthesize the results back into an annotation of the specified {@code annotationType}.
+	 * {@link AliasFor @AliasFor} semantics are fully supported, both within a single annotation and within annotation hierarchies.
+	 * This method follows <em>find semantics</em> as described in the {@linkplain AnnotatedElementUtils class-level javadoc}.
 	 * @param element the annotated element (never {@code null})
 	 * @param annotationType the annotation type to find (never {@code null})
-	 * @return the set of all merged, synthesized {@code Annotations} found,
-	 * or an empty set if none were found
+	 * @return the set of all merged, synthesized {@code Annotations} found, or an empty set if none were found
 	 * @since 4.3
 	 * @see #findMergedAnnotation(AnnotatedElement, Class)
 	 * @see #getAllMergedAnnotations(AnnotatedElement, Class)
@@ -625,8 +619,7 @@ public abstract class AnnotatedElementUtils {
 	 * within the annotation hierarchy <em>above</em> the supplied {@code element};
 	 * and for each annotation found, merge that annotation's attributes with
 	 * <em>matching</em> attributes from annotations in lower levels of the
-	 * annotation hierarchy and synthesize the results back into an annotation
-	 * of the corresponding {@code annotationType}.
+	 * annotation hierarchy and synthesize the results back into an annotation of the corresponding {@code annotationType}.
 	 * {@link AliasFor @AliasFor} semantics are fully supported, both within a
 	 * single annotation and within annotation hierarchies.
 	 * This method follows <em>find semantics</em> as described in the

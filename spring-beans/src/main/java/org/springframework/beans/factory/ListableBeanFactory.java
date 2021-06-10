@@ -122,6 +122,7 @@ public interface ListableBeanFactory extends BeanFactory {
 	String[] getBeanNamesForType(ResolvableType type);
 
 	/**
+	 * 获取容器中指定类型的所有bean名称。 eg: 如果参数为Object.class则返回容器中所有的bean名称
 	 * Return the names of beans matching the given type (including subclasses),
 	 * judging from either bean definitions or the value of {@code getObjectType} in the case of FactoryBeans.
 	 * <b>NOTE: This method introspects top-level beans only.</b> It does <i>not</i>

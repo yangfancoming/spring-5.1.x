@@ -17,11 +17,7 @@ import org.springframework.util.ReflectionUtils;
  * Defines the algorithm for searching for metadata-associated methods exhaustively
  * including interfaces and parent classes while also dealing with parameterized methods
  * as well as common scenarios encountered with interface and class-based proxies.
- *
  * Typically, but not necessarily, used for finding annotated handler methods.
- *
-
- *
  * @since 4.2.3
  */
 public final class MethodIntrospector {
@@ -29,17 +25,13 @@ public final class MethodIntrospector {
 	private MethodIntrospector() {
 	}
 
-
 	/**
 	 * Select methods on the given target type based on the lookup of associated metadata.
-	 * Callers define methods of interest through the {@link MetadataLookup} parameter,
-	 * allowing to collect the associated metadata into the result map.
+	 * Callers define methods of interest through the {@link MetadataLookup} parameter,allowing to collect the associated metadata into the result map.
 	 * @param targetType the target type to search methods on
 	 * @param metadataLookup a {@link MetadataLookup} callback to inspect methods of interest,
-	 * returning non-null metadata to be associated with a given method if there is a match,
-	 * or {@code null} for no match
-	 * @return the selected methods associated with their metadata (in the order of retrieval),
-	 * or an empty map in case of no match
+	 * returning non-null metadata to be associated with a given method if there is a match,or {@code null} for no match
+	 * @return the selected methods associated with their metadata (in the order of retrieval),or an empty map in case of no match
 	 */
 	public static <T> Map<Method, T> selectMethods(Class<?> targetType, final MetadataLookup<T> metadataLookup) {
 		final Map<Method, T> methodMap = new LinkedHashMap<>();
@@ -54,7 +46,6 @@ public final class MethodIntrospector {
 
 		for (Class<?> currentHandlerType : handlerTypes) {
 			final Class<?> targetClass = (specificHandlerType != null ? specificHandlerType : currentHandlerType);
-
 			ReflectionUtils.doWithMethods(currentHandlerType, method -> {
 				Method specificMethod = ClassUtils.getMostSpecificMethod(method, targetClass);
 				T result = metadataLookup.inspect(specificMethod);
@@ -74,8 +65,7 @@ public final class MethodIntrospector {
 	 * Select methods on the given target type based on a filter.
 	 * Callers define methods of interest through the {@code MethodFilter} parameter.
 	 * @param targetType the target type to search methods on
-	 * @param methodFilter a {@code MethodFilter} to help
-	 * recognize handler methods of interest
+	 * @param methodFilter a {@code MethodFilter} to help recognize handler methods of interest
 	 * @return the selected methods, or an empty set in case of no match
 	 */
 	public static Set<Method> selectMethods(Class<?> targetType, final ReflectionUtils.MethodFilter methodFilter) {
@@ -90,8 +80,7 @@ public final class MethodIntrospector {
 	 * Matches on user-declared interfaces will be preferred since they are likely
 	 * to contain relevant metadata that corresponds to the method on the target class.
 	 * @param method the method to check
-	 * @param targetType the target type to search methods on
-	 * (typically an interface-based JDK proxy)
+	 * @param targetType the target type to search methods on  (typically an interface-based JDK proxy)
 	 * @return a corresponding invocable method on the target type
 	 * @throws IllegalStateException if the given method is not invocable on the given
 	 * target type (typically due to a proxy mismatch)
@@ -106,20 +95,16 @@ public final class MethodIntrospector {
 			for (Class<?> ifc : targetType.getInterfaces()) {
 				try {
 					return ifc.getMethod(methodName, parameterTypes);
-				}
-				catch (NoSuchMethodException ex) {
+				}catch (NoSuchMethodException ex) {
 					// Alright, not on this interface then...
 				}
 			}
 			// A final desperate attempt on the proxy class itself...
 			return targetType.getMethod(methodName, parameterTypes);
-		}
-		catch (NoSuchMethodException ex) {
+		}catch (NoSuchMethodException ex) {
 			throw new IllegalStateException(String.format(
-					"Need to invoke method '%s' declared on target class '%s', " +
-					"but not found in any interface(s) of the exposed proxy type. " +
-					"Either pull the method up to an interface or switch to CGLIB " +
-					"proxies by enforcing proxy-target-class mode in your configuration.",
+					"Need to invoke method '%s' declared on target class '%s', but not found in any interface(s) of the exposed proxy type. " +
+					"Either pull the method up to an interface or switch to CGLIB proxies by enforcing proxy-target-class mode in your configuration.",
 					method.getName(), method.getDeclaringClass().getSimpleName()));
 		}
 	}
@@ -131,15 +116,12 @@ public final class MethodIntrospector {
 	 */
 	@FunctionalInterface
 	public interface MetadataLookup<T> {
-
 		/**
 		 * Perform a lookup on the given method and return associated metadata, if any.
 		 * @param method the method to inspect
-		 * @return non-null metadata to be associated with a method if there is a match,
-		 * or {@code null} for no match
+		 * @return non-null metadata to be associated with a method if there is a match, or {@code null} for no match
 		 */
 		@Nullable
 		T inspect(Method method);
 	}
-
 }

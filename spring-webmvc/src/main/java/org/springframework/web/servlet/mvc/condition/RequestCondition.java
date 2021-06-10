@@ -7,12 +7,12 @@ import org.springframework.lang.Nullable;
 
 /**
  * Contract for request mapping conditions.
- * Request conditions can be combined via {@link #combine(Object)}, matched to
- * a request via {@link #getMatchingCondition(HttpServletRequest)}, and compared
- * to each other via {@link #compareTo(Object, HttpServletRequest)} to determine which is a closer match for a given request.
+ * Request conditions can be combined via {@link #combine(Object)}, matched to a request via {@link #getMatchingCondition(HttpServletRequest)},
+ * and compared to each other via {@link #compareTo(Object, HttpServletRequest)} to determine which is a closer match for a given request.
  * @since 3.1
- * @param <T> the type of objects that this RequestCondition can be combined
- * with and compared to
+ * @param <T> the type of objects that this RequestCondition can be combined with and compared to
+ *  是SpringMVC的映射基础中的请求条件，可以进行combine, compareTo，getMatchingCondition操作。
+ *  这个接口是映射匹配的关键接口，其中getMatchingCondition方法关乎是否能找到合适的映射。
  */
 public interface RequestCondition<T> {
 
@@ -24,14 +24,11 @@ public interface RequestCondition<T> {
 	T combine(T other);
 
 	/**
-	 * Check if the condition matches the request returning a potentially new
-	 * instance created for the current request. For example a condition with
-	 * multiple URL patterns may return a new instance only with those patterns that match the request.
+	 * Check if the condition matches the request returning a potentially new instance created for the current request.
+	 * For example a condition with multiple URL patterns may return a new instance only with those patterns that match the request.
 	 * For CORS pre-flight requests, conditions should match to the would-be,
-	 * actual request (e.g. URL pattern, query parameters, and the HTTP method
-	 * from the "Access-Control-Request-Method" header). If a condition cannot
-	 * be matched to a pre-flight request it should return an instance with
-	 * empty content thus not causing a failure to match.
+	 * actual request (e.g. URL pattern, query parameters, and the HTTP method  from the "Access-Control-Request-Method" header).
+	 * If a condition cannot be matched to a pre-flight request it should return an instance with empty content thus not causing a failure to match.
 	 * @return a condition instance in case of a match or {@code null} otherwise.
 	 */
 	@Nullable
@@ -42,5 +39,4 @@ public interface RequestCondition<T> {
 	 * This method assumes both instances have been obtained via {@link #getMatchingCondition(HttpServletRequest)} to ensure they have content relevant to current request only.
 	 */
 	int compareTo(T other, HttpServletRequest request);
-
 }

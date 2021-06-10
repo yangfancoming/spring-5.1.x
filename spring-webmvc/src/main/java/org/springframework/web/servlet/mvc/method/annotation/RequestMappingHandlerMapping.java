@@ -179,9 +179,9 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 
 
 	/**
+	 * 判断指定类上是否标有 @Controller 或 @RequestMapping 注解
 	 * {@inheritDoc}
-	 * Expects a handler to have either a type-level @{@link Controller}
-	 * annotation or a type-level @{@link RequestMapping} annotation.
+	 * Expects a handler to have either a type-level @{@link Controller} annotation or a type-level @{@link RequestMapping} annotation.
 	 */
 	@Override
 	protected boolean isHandler(Class<?> beanType) {
@@ -189,10 +189,8 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * Uses method and type-level @{@link RequestMapping} annotations to create
-	 * the RequestMappingInfo.
-	 * @return the created RequestMappingInfo, or {@code null} if the method
-	 * does not have a {@code @RequestMapping} annotation.
+	 * Uses method and type-level @{@link RequestMapping} annotations to create the RequestMappingInfo.
+	 * @return the created RequestMappingInfo, or {@code null} if the method does not have a {@code @RequestMapping} annotation.
 	 * @see #getCustomMethodCondition(Method)
 	 * @see #getCustomTypeCondition(Class)
 	 */
@@ -237,8 +235,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	@Nullable
 	private RequestMappingInfo createRequestMappingInfo(AnnotatedElement element) {
 		RequestMapping requestMapping = AnnotatedElementUtils.findMergedAnnotation(element, RequestMapping.class);
-		RequestCondition<?> condition = (element instanceof Class ?
-				getCustomTypeCondition((Class<?>) element) : getCustomMethodCondition((Method) element));
+		RequestCondition<?> condition = (element instanceof Class ? getCustomTypeCondition((Class<?>) element) : getCustomMethodCondition((Method) element));
 		return (requestMapping != null ? createRequestMappingInfo(requestMapping, condition) : null);
 	}
 
@@ -248,8 +245,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	 * same condition type is returned from all calls to this method in order
 	 * to ensure custom request conditions can be combined and compared.
 	 * Consider extending {@link AbstractRequestCondition} for custom
-	 * condition types and using {@link CompositeRequestCondition} to provide
-	 * multiple custom conditions.
+	 * condition types and using {@link CompositeRequestCondition} to provide multiple custom conditions.
 	 * @param handlerType the handler type for which to create the condition
 	 * @return the condition, or {@code null}
 	 */
