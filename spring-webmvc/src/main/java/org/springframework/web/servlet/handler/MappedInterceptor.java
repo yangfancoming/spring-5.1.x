@@ -19,6 +19,12 @@ import org.springframework.web.servlet.ModelAndView;
  * Furthermore, beans of type {@code MappedInterceptor} are automatically detected by {@code AbstractHandlerMethodMapping} (including ancestor ApplicationContext's) which
  * effectively means the interceptor is registered "globally" with all handler mappings.
  * @since 3.0
+ * 包含并委托对HandlerInterceptor的调用，以及拦截器应用的include（和可选的exclude）路径模式.
+ * 还提供匹配逻辑来测试拦截器是否应用于给定的请求路径.
+ *
+ * MappedInterceptor可以直接注册到任何org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.
+ * 此外，AbstractHandlerMethodMapping（包括祖先应用程序上下文）会自动检测到MappedInterceptor类型的Bean，
+ * 	这实际上意味着拦截器是用所有处理程序映射"全局（globally）"注册的.
  */
 public final class MappedInterceptor implements HandlerInterceptor {
 

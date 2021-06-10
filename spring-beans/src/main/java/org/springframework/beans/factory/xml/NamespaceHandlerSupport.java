@@ -51,7 +51,7 @@ public abstract class NamespaceHandlerSupport implements NamespaceHandler {
 		// 获取当前标签使用的parser处理类
 		BeanDefinitionParser parser = findParserForElement(element, parserContext);
 		// 按照定义的parser处理类对当前标签进行处理，这里的处理类即我们定义的AppleBeanDefinitionParser
-		return (parser != null ? parser.parse(element, parserContext) : null);
+		return (parser != null ? parser.parse(element, parserContext) : null); // InterceptorsBeanDefinitionParser
 	}
 
 	/**

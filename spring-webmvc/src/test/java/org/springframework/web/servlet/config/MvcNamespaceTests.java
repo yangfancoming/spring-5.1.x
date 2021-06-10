@@ -183,7 +183,6 @@ public class MvcNamespaceTests {
 		assertEquals(Double.valueOf(0.9999), handler.percent);
 
 		CompositeUriComponentsContributor uriComponentsContributor = this.appContext.getBean(MvcUriComponentsBuilder.MVC_URI_COMPONENTS_CONTRIBUTOR_BEAN_NAME,CompositeUriComponentsContributor.class);
-
 		assertNotNull(uriComponentsContributor);
 
 		HandlerMappingIntrospector introspector = this.appContext.getBean("mvcHandlerMappingIntrospector", HandlerMappingIntrospector.class);
@@ -245,19 +244,17 @@ public class MvcNamespaceTests {
 		assertFalse(handler.recordedValidationError);
 	}
 
+	// 测试拦截器
 	@Test
 	public void testInterceptors() throws Exception {
 		loadBeanDefinitions("mvc-config-interceptors.xml");
-
 		RequestMappingHandlerMapping mapping = appContext.getBean(RequestMappingHandlerMapping.class);
 		assertNotNull(mapping);
 		mapping.setDefaultHandler(handlerMethod);
-
 		MockHttpServletRequest request = new MockHttpServletRequest("GET", "/");
 		request.setRequestURI("/accounts/12345");
 		request.addParameter("locale", "en");
 		request.addParameter("theme", "green");
-
 		HandlerExecutionChain chain = mapping.getHandler(request);
 		assertEquals(4, chain.getInterceptors().length);
 		assertTrue(chain.getInterceptors()[0] instanceof ConversionServiceExposingInterceptor);
@@ -305,11 +302,9 @@ public class MvcNamespaceTests {
 		assertNotNull(urlProvider);
 
 		Map<String, MappedInterceptor> beans = appContext.getBeansOfType(MappedInterceptor.class);
-		List<Class<?>> interceptors = beans.values().stream()
-				.map(mappedInterceptor -> mappedInterceptor.getInterceptor().getClass())
-				.collect(Collectors.toList());
-		assertThat(interceptors, containsInAnyOrder(ConversionServiceExposingInterceptor.class,
-				ResourceUrlProviderExposingInterceptor.class));
+		List<Class<?>> interceptors = beans.values().stream().map(mappedInterceptor -> mappedInterceptor.getInterceptor().getClass()).collect(Collectors.toList());
+
+		assertThat(interceptors, containsInAnyOrder(ConversionServiceExposingInterceptor.class,ResourceUrlProviderExposingInterceptor.class));
 
 		MockHttpServletRequest request = new MockHttpServletRequest();
 		request.setRequestURI("/resources/foo.css");
@@ -336,8 +331,7 @@ public class MvcNamespaceTests {
 		assertEquals(5, mapping.getOrder());
 		assertNotNull(mapping.getUrlMap().get("/resources/**"));
 
-		ResourceHttpRequestHandler handler = appContext.getBean((String) mapping.getUrlMap().get("/resources/**"),
-				ResourceHttpRequestHandler.class);
+		ResourceHttpRequestHandler handler = appContext.getBean((String) mapping.getUrlMap().get("/resources/**"),ResourceHttpRequestHandler.class);
 		assertNotNull(handler);
 		assertEquals(3600, handler.getCacheSeconds());
 	}
@@ -345,14 +339,12 @@ public class MvcNamespaceTests {
 	@Test
 	public void testResourcesWithResolversTransformers()  {
 		loadBeanDefinitions("mvc-config-resources-chain.xml");
-
 		SimpleUrlHandlerMapping mapping = appContext.getBean(SimpleUrlHandlerMapping.class);
 		assertNotNull(mapping);
 		assertNotNull(mapping.getUrlMap().get("/resources/**"));
 		String beanName = (String) mapping.getUrlMap().get("/resources/**");
 		ResourceHttpRequestHandler handler = appContext.getBean(beanName, ResourceHttpRequestHandler.class);
 		assertNotNull(handler);
-
 		assertNotNull(handler.getUrlPathHelper());
 
 		List<ResourceResolver> resolvers = handler.getResourceResolvers();
@@ -367,10 +359,8 @@ public class MvcNamespaceTests {
 		assertEquals("test-resource-cache", cachingResolver.getCache().getName());
 
 		VersionResourceResolver versionResolver = (VersionResourceResolver) resolvers.get(1);
-		assertThat(versionResolver.getStrategyMap().get("/**/*.js"),
-				Matchers.instanceOf(FixedVersionStrategy.class));
-		assertThat(versionResolver.getStrategyMap().get("/**"),
-				Matchers.instanceOf(ContentVersionStrategy.class));
+		assertThat(versionResolver.getStrategyMap().get("/**/*.js"),Matchers.instanceOf(FixedVersionStrategy.class));
+		assertThat(versionResolver.getStrategyMap().get("/**"),Matchers.instanceOf(ContentVersionStrategy.class));
 
 		PathResourceResolver pathResolver = (PathResourceResolver) resolvers.get(3);
 		Map<Resource, Charset> locationCharsets = pathResolver.getLocationCharsets();
@@ -391,17 +381,12 @@ public class MvcNamespaceTests {
 	@Test
 	public void testResourcesWithResolversTransformersCustom()  {
 		loadBeanDefinitions("mvc-config-resources-chain-no-auto.xml");
-
 		SimpleUrlHandlerMapping mapping = appContext.getBean(SimpleUrlHandlerMapping.class);
 		assertNotNull(mapping);
 		assertNotNull(mapping.getUrlMap().get("/resources/**"));
-		ResourceHttpRequestHandler handler = appContext.getBean((String) mapping.getUrlMap().get("/resources/**"),
-				ResourceHttpRequestHandler.class);
+		ResourceHttpRequestHandler handler = appContext.getBean((String) mapping.getUrlMap().get("/resources/**"),ResourceHttpRequestHandler.class);
 		assertNotNull(handler);
-
-		assertThat(handler.getCacheControl().getHeaderValue(),
-				Matchers.equalTo(CacheControl.maxAge(1, TimeUnit.HOURS)
-						.sMaxAge(30, TimeUnit.MINUTES).cachePublic().getHeaderValue()));
+		assertThat(handler.getCacheControl().getHeaderValue(),Matchers.equalTo(CacheControl.maxAge(1, TimeUnit.HOURS).sMaxAge(30, TimeUnit.MINUTES).cachePublic().getHeaderValue()));
 
 		List<ResourceResolver> resolvers = handler.getResourceResolvers();
 		assertThat(resolvers, Matchers.hasSize(3));
@@ -410,10 +395,8 @@ public class MvcNamespaceTests {
 		assertThat(resolvers.get(2), Matchers.instanceOf(PathResourceResolver.class));
 
 		VersionResourceResolver versionResolver = (VersionResourceResolver) resolvers.get(0);
-		assertThat(versionResolver.getStrategyMap().get("/**/*.js"),
-				Matchers.instanceOf(FixedVersionStrategy.class));
-		assertThat(versionResolver.getStrategyMap().get("/**"),
-				Matchers.instanceOf(ContentVersionStrategy.class));
+		assertThat(versionResolver.getStrategyMap().get("/**/*.js"),Matchers.instanceOf(FixedVersionStrategy.class));
+		assertThat(versionResolver.getStrategyMap().get("/**"),Matchers.instanceOf(ContentVersionStrategy.class));
 
 		List<ResourceTransformer> transformers = handler.getResourceTransformers();
 		assertThat(transformers, Matchers.hasSize(2));
@@ -651,8 +634,7 @@ public class MvcNamespaceTests {
 
 		MockHttpServletRequest request = new MockHttpServletRequest("GET", "/foo.xml");
 		NativeWebRequest webRequest = new ServletWebRequest(request);
-		assertEquals(Collections.singletonList(MediaType.valueOf("application/rss+xml")),
-				manager.resolveMediaTypes(webRequest));
+		assertEquals(Collections.singletonList(MediaType.valueOf("application/rss+xml")),manager.resolveMediaTypes(webRequest));
 
 		ViewResolverComposite compositeResolver = this.appContext.getBean(ViewResolverComposite.class);
 		assertNotNull(compositeResolver);
@@ -667,27 +649,20 @@ public class MvcNamespaceTests {
 	@Test
 	public void testAsyncSupportOptions()  {
 		loadBeanDefinitions("mvc-config-async-support.xml");
-
 		RequestMappingHandlerAdapter adapter = appContext.getBean(RequestMappingHandlerAdapter.class);
 		assertNotNull(adapter);
-
 		DirectFieldAccessor fieldAccessor = new DirectFieldAccessor(adapter);
 		assertEquals(ConcurrentTaskExecutor.class, fieldAccessor.getPropertyValue("taskExecutor").getClass());
 		assertEquals(2500L, fieldAccessor.getPropertyValue("asyncRequestTimeout"));
-
-		CallableProcessingInterceptor[] callableInterceptors =
-				(CallableProcessingInterceptor[]) fieldAccessor.getPropertyValue("callableInterceptors");
+		CallableProcessingInterceptor[] callableInterceptors = (CallableProcessingInterceptor[]) fieldAccessor.getPropertyValue("callableInterceptors");
 		assertEquals(1, callableInterceptors.length);
-
-		DeferredResultProcessingInterceptor[] deferredResultInterceptors =
-				(DeferredResultProcessingInterceptor[]) fieldAccessor.getPropertyValue("deferredResultInterceptors");
+		DeferredResultProcessingInterceptor[] deferredResultInterceptors = (DeferredResultProcessingInterceptor[]) fieldAccessor.getPropertyValue("deferredResultInterceptors");
 		assertEquals(1, deferredResultInterceptors.length);
 	}
 
 	@Test
 	public void testViewResolution()  {
 		loadBeanDefinitions("mvc-config-view-resolution.xml");
-
 		ViewResolverComposite compositeResolver = this.appContext.getBean(ViewResolverComposite.class);
 		assertNotNull(compositeResolver);
 		assertEquals("Actual: " + compositeResolver.getViewResolvers(), 8, compositeResolver.getViewResolvers().size());
@@ -730,10 +705,7 @@ public class MvcNamespaceTests {
 
 		TilesConfigurer tilesConfigurer = appContext.getBean(TilesConfigurer.class);
 		assertNotNull(tilesConfigurer);
-		String[] definitions = {
-				"/org/springframework/web/servlet/resource/tiles/tiles1.xml",
-				"/org/springframework/web/servlet/resource/tiles/tiles2.xml"
-		};
+		String[] definitions = {"/org/springframework/web/servlet/resource/tiles/tiles1.xml","/org/springframework/web/servlet/resource/tiles/tiles2.xml"};
 		accessor = new DirectFieldAccessor(tilesConfigurer);
 		assertArrayEquals(definitions, (String[]) accessor.getPropertyValue("definitions"));
 		assertTrue((boolean) accessor.getPropertyValue("checkRefresh"));
@@ -766,7 +738,6 @@ public class MvcNamespaceTests {
 	@Test
 	public void testViewResolutionWithContentNegotiation()  {
 		loadBeanDefinitions("mvc-config-view-resolution-content-negotiation.xml");
-
 		ViewResolverComposite compositeResolver = this.appContext.getBean(ViewResolverComposite.class);
 		assertNotNull(compositeResolver);
 		assertEquals(1, compositeResolver.getViewResolvers().size());
@@ -790,7 +761,6 @@ public class MvcNamespaceTests {
 	@Test
 	public void testViewResolutionWithOrderSet()  {
 		loadBeanDefinitions("mvc-config-view-resolution-custom-order.xml");
-
 		ViewResolverComposite compositeResolver = this.appContext.getBean(ViewResolverComposite.class);
 		assertNotNull(compositeResolver);
 		assertEquals("Actual: " + compositeResolver.getViewResolvers(), 1, compositeResolver.getViewResolvers().size());
@@ -800,7 +770,6 @@ public class MvcNamespaceTests {
 	@Test
 	public void testPathMatchingHandlerMappings()  {
 		loadBeanDefinitions("mvc-config-path-matching-mappings.xml");
-
 		RequestMappingHandlerMapping requestMapping = appContext.getBean(RequestMappingHandlerMapping.class);
 		assertNotNull(requestMapping);
 		assertEquals(TestPathHelper.class, requestMapping.getUrlPathHelper().getClass());
@@ -821,15 +790,13 @@ public class MvcNamespaceTests {
 	@Test
 	public void testCorsMinimal()  {
 		loadBeanDefinitions("mvc-config-cors-minimal.xml");
-
 		String[] beanNames = appContext.getBeanNamesForType(AbstractHandlerMapping.class);
 		assertEquals(2, beanNames.length);
 		for (String beanName : beanNames) {
 			AbstractHandlerMapping handlerMapping = (AbstractHandlerMapping)appContext.getBean(beanName);
 			assertNotNull(handlerMapping);
 			DirectFieldAccessor accessor = new DirectFieldAccessor(handlerMapping);
-			Map<String, CorsConfiguration> configs = ((UrlBasedCorsConfigurationSource) accessor
-					.getPropertyValue("corsConfigurationSource")).getCorsConfigurations();
+			Map<String, CorsConfiguration> configs = ((UrlBasedCorsConfigurationSource) accessor.getPropertyValue("corsConfigurationSource")).getCorsConfigurations();
 			assertNotNull(configs);
 			assertEquals(1, configs.size());
 			CorsConfiguration config = configs.get("/**");
@@ -846,15 +813,13 @@ public class MvcNamespaceTests {
 	@Test
 	public void testCors()  {
 		loadBeanDefinitions("mvc-config-cors.xml");
-
 		String[] beanNames = appContext.getBeanNamesForType(AbstractHandlerMapping.class);
 		assertEquals(2, beanNames.length);
 		for (String beanName : beanNames) {
 			AbstractHandlerMapping handlerMapping = (AbstractHandlerMapping)appContext.getBean(beanName);
 			assertNotNull(handlerMapping);
 			DirectFieldAccessor accessor = new DirectFieldAccessor(handlerMapping);
-			Map<String, CorsConfiguration> configs = ((UrlBasedCorsConfigurationSource) accessor
-					.getPropertyValue("corsConfigurationSource")).getCorsConfigurations();
+			Map<String, CorsConfiguration> configs = ((UrlBasedCorsConfigurationSource) accessor.getPropertyValue("corsConfigurationSource")).getCorsConfigurations();
 			assertNotNull(configs);
 			assertEquals(2, configs.size());
 			CorsConfiguration config = configs.get("/api/**");

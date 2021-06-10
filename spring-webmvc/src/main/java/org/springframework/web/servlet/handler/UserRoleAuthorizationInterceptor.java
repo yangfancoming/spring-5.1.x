@@ -28,7 +28,6 @@ public class UserRoleAuthorizationInterceptor extends HandlerInterceptorAdapter 
 		this.authorizedRoles = authorizedRoles;
 	}
 
-
 	@Override
 	public final boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException, IOException {
 		if (this.authorizedRoles != null) {
@@ -56,5 +55,4 @@ public class UserRoleAuthorizationInterceptor extends HandlerInterceptorAdapter 
 	protected void handleNotAuthorized(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException, IOException {
 		response.sendError(HttpServletResponse.SC_FORBIDDEN);
 	}
-
 }

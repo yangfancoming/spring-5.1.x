@@ -69,6 +69,14 @@ public interface HandlerInterceptor {
 	 * @return {@code true} if the execution chain should proceed with the next interceptor or the handler itself.
 	 * Else, DispatcherServlet assumes that this interceptor has already dealt with the response itself.
 	 * @throws Exception in case of errors
+	 * preHandle是调用Controller之前被调用，当返回false后，会跳过之后的拦截器，并且不会执行所有拦截器的postHandle，并调用返回true的拦截器的afterCompletion方法。
+	 *
+	 * preHandle方法是进行处理器拦截用的，顾名思义，该方法将在Controller处理之前进行调用，
+	 * SpringMVC中的Interceptor拦截器是链式的，可以同时存在多个Interceptor，
+	 * 然后SpringMVC会根据声明的前后顺序一个接一个的执行，
+	 * 而且所有的Interceptor中的preHandle方法都会在Controller方法调用之前调用。
+	 * SpringMVC的这种Interceptor链式结构也是可以进行中断的，
+	 * 这种中断方式是令preHandle的返回值为false，当preHandle的返回值为false的时候整个请求就结束了。
 	 */
 	default boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)throws Exception {
 		return true;
@@ -86,6 +94,16 @@ public interface HandlerInterceptor {
 	 * @param handler handler (or {@link HandlerMethod}) that started asynchronous execution, for type and/or instance examination
 	 * @param modelAndView the {@code ModelAndView} that the handler returned (can also be {@code null})
 	 * @throws Exception in case of errors
+	 * postHandle是调用Controller之后被调用，但是在渲染View页面之前。
+	 *
+	 * 这个方法只会在当前这个Interceptor的preHandle方法返回值为true的时候才会执行。
+	 * postHandle是进行处理器拦截用的，它的执行时间是在处理器进行处理之 后， 也就是在Controller的方法调用之后执行，
+	 * 但是它会在DispatcherServlet进行视图的渲染之前执行，也就是说在这个方法中你可以对ModelAndView进行操作。
+	 * 这个方法的链式结构跟正常访问的方向是相反的，也就是说先声明的Interceptor拦截器该方法反而会后调用，
+	 * 这跟Struts2里面的拦截器的执行过程有点像，
+	 * 只是Struts2里面的intercept方法中要手动的调用ActionInvocation的invoke方法，
+	 * Struts2中调用ActionInvocation的invoke方法就是调用下一个Interceptor或者是调用action，
+	 * 然后要在Interceptor之前调用的内容都写在调用invoke之前，要在Interceptor之后调用的内容都写在调用invoke方法之后。
 	 */
 	default void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,@Nullable ModelAndView modelAndView) throws Exception {
 	}
@@ -104,8 +122,10 @@ public interface HandlerInterceptor {
 	 * @param handler handler (or {@link HandlerMethod}) that started asynchronous execution, for type and/or instance examination
 	 * @param ex exception thrown on handler execution, if any
 	 * @throws Exception in case of errors
+	 * afterCompletion是调用完Controller接口，渲染View页面最后调用。返回true的拦截器都会调用该拦截器的afterCompletion方法，顺序相反。
+	 * 该方法也是需要当前对应的Interceptor的preHandle方法的返回值为true时才会执行。
+	 * 该方法将在整个请求完成之后，也就是DispatcherServlet渲染了视图执行， 这个方法的主要作用是用于清理资源的
 	 */
 	default void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,@Nullable Exception ex) throws Exception {
 	}
-
 }

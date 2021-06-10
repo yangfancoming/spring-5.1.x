@@ -11,8 +11,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 /**
- * Interceptor that allows for changing the current theme on every request,
- * via a configurable request parameter (default parameter name: "theme").
+ * Interceptor that allows for changing the current theme on every request, via a configurable request parameter (default parameter name: "theme").
  * @since 20.06.2003
  * @see org.springframework.web.servlet.ThemeResolver
  */
