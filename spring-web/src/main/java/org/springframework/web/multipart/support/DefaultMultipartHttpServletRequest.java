@@ -16,15 +16,9 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * Default implementation of the
- * {@link org.springframework.web.multipart.MultipartHttpServletRequest}
+ * Default implementation of the {@link org.springframework.web.multipart.MultipartHttpServletRequest}
  * interface. Provides management of pre-generated parameter values.
- *
  * Used by {@link org.springframework.web.multipart.commons.CommonsMultipartResolver}.
- *
- * @author Trevor D. Cook
-
- * @author Arjen Poutsma
  * @since 29.09.2003
  * @see org.springframework.web.multipart.MultipartResolver
  */
@@ -38,17 +32,13 @@ public class DefaultMultipartHttpServletRequest extends AbstractMultipartHttpSer
 	@Nullable
 	private Map<String, String> multipartParameterContentTypes;
 
-
 	/**
 	 * Wrap the given HttpServletRequest in a MultipartHttpServletRequest.
 	 * @param request the servlet request to wrap
 	 * @param mpFiles a map of the multipart files
-	 * @param mpParams a map of the parameters to expose,
-	 * with Strings as keys and String arrays as values
+	 * @param mpParams a map of the parameters to expose,with Strings as keys and String arrays as values
 	 */
-	public DefaultMultipartHttpServletRequest(HttpServletRequest request, MultiValueMap<String, MultipartFile> mpFiles,
-			Map<String, String[]> mpParams, Map<String, String> mpParamContentTypes) {
-
+	public DefaultMultipartHttpServletRequest(HttpServletRequest request, MultiValueMap<String, MultipartFile> mpFiles,Map<String, String[]> mpParams, Map<String, String> mpParamContentTypes) {
 		super(request);
 		setMultipartFiles(mpFiles);
 		setMultipartParameters(mpParams);
@@ -62,7 +52,6 @@ public class DefaultMultipartHttpServletRequest extends AbstractMultipartHttpSer
 	public DefaultMultipartHttpServletRequest(HttpServletRequest request) {
 		super(request);
 	}
-
 
 	@Override
 	@Nullable
@@ -83,8 +72,7 @@ public class DefaultMultipartHttpServletRequest extends AbstractMultipartHttpSer
 		}
 		if (parameterValues == null || getQueryString() == null) {
 			return mpValues;
-		}
-		else {
+		}else {
 			String[] result = new String[mpValues.length + parameterValues.length];
 			System.arraycopy(mpValues, 0, result, 0, mpValues.length);
 			System.arraycopy(parameterValues, 0, result, mpValues.length, parameterValues.length);
@@ -98,7 +86,6 @@ public class DefaultMultipartHttpServletRequest extends AbstractMultipartHttpSer
 		if (multipartParameters.isEmpty()) {
 			return super.getParameterNames();
 		}
-
 		Set<String> paramNames = new LinkedHashSet<>();
 		paramNames.addAll(Collections.list(super.getParameterNames()));
 		paramNames.addAll(multipartParameters.keySet());
@@ -121,8 +108,7 @@ public class DefaultMultipartHttpServletRequest extends AbstractMultipartHttpSer
 		MultipartFile file = getFile(paramOrFileName);
 		if (file != null) {
 			return file.getContentType();
-		}
-		else {
+		}else {
 			return getMultipartParameterContentTypes().get(paramOrFileName);
 		}
 	}
@@ -134,8 +120,7 @@ public class DefaultMultipartHttpServletRequest extends AbstractMultipartHttpSer
 			HttpHeaders headers = new HttpHeaders();
 			headers.add(CONTENT_TYPE, contentType);
 			return headers;
-		}
-		else {
+		}else {
 			return null;
 		}
 	}

@@ -233,7 +233,6 @@ public class AntPathMatcher implements PathMatcher {
 			int patLength = (patIdxTmp - pattIdxStart - 1);
 			int strLength = (pathIdxEnd - pathIdxStart + 1);
 			int foundIdx = -1;
-
 			// doit 好玩  loop
 			strLoop:
 			for (int i = 0; i <= strLength - patLength; i++) {

@@ -24,8 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  * {@link org.springframework.web.servlet.DispatcherServlet}, being able
  * to interact with the dispatcher's advanced mapping and interception
  * facilities. This is the recommended way of exposing an HttpRequestHandler,
- * while keeping the handler implementations free of direct dependencies
- * on a DispatcherServlet environment.
+ * while keeping the handler implementations free of direct dependencies on a DispatcherServlet environment.
  *
  * Typically implemented to generate binary responses directly,
  * with no separate view resource involved. This differentiates it from a
@@ -47,8 +46,6 @@ import javax.servlet.http.HttpServletResponse;
  * HttpRequestHandlers typically only support POST requests to begin with.
  * Alternatively, a handler may implement the "If-Modified-Since" HTTP
  * header processing manually within its {@code handle} method.
- *
-
  * @since 2.0
  * @see org.springframework.web.context.support.HttpRequestHandlerServlet
  * @see org.springframework.web.servlet.DispatcherServlet
@@ -69,7 +66,5 @@ public interface HttpRequestHandler {
 	 * @throws ServletException in case of general errors
 	 * @throws IOException in case of I/O errors
 	 */
-	void handleRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException;
-
+	void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 }

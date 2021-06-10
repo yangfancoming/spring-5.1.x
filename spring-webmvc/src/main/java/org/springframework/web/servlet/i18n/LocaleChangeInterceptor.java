@@ -153,5 +153,4 @@ public class LocaleChangeInterceptor extends HandlerInterceptorAdapter {
 	protected Locale parseLocaleValue(String localeValue) {
 		return StringUtils.parseLocale(localeValue);
 	}
-
 }

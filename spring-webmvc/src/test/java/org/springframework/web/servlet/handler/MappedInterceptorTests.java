@@ -6,8 +6,6 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Comparator;
@@ -22,33 +20,34 @@ import static org.mockito.BDDMockito.*;
  */
 public class MappedInterceptorTests {
 
-	private LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
-
 	private final AntPathMatcher pathMatcher = new AntPathMatcher();
 
+	// 测试 AntPathMatcher 默认匹配 / 路径
 	@Test
 	public void noPatterns() {
-		MappedInterceptor mappedInterceptor = new MappedInterceptor(null, null, interceptor);
+		MappedInterceptor mappedInterceptor = new MappedInterceptor(null, null, mock(HandlerInterceptor.class));
 		assertTrue(mappedInterceptor.matches("/foo", pathMatcher));
 		assertTrue(mappedInterceptor.matches("/any", null));
 	}
 
+	// 测试 includePatterns  包含匹配
 	@Test
 	public void includePattern() {
-		MappedInterceptor mappedInterceptor = new MappedInterceptor(new String[] { "/foo/*" }, interceptor);
+		MappedInterceptor mappedInterceptor = new MappedInterceptor(new String[] { "/foo/*" }, mock(HandlerInterceptor.class));
 		assertTrue(mappedInterceptor.matches("/foo/bar", pathMatcher));
 		assertFalse(mappedInterceptor.matches("/bar/foo", pathMatcher));
 	}
 
 	@Test
 	public void includePatternWithMatrixVariables() {
-		MappedInterceptor mappedInterceptor = new MappedInterceptor(new String[] { "/foo*/*" }, interceptor);
+		MappedInterceptor mappedInterceptor = new MappedInterceptor(new String[] { "/foo*/*" }, mock(HandlerInterceptor.class));
 		assertTrue(mappedInterceptor.matches("/foo;q=1/bar;s=2", pathMatcher));
 	}
 
+	// 测试 excludePatterns  排除匹配
 	@Test
 	public void excludePattern() {
-		MappedInterceptor mappedInterceptor = new MappedInterceptor(null, new String[] { "/admin/**" }, interceptor);
+		MappedInterceptor mappedInterceptor = new MappedInterceptor(null, new String[] { "/admin/**" }, mock(HandlerInterceptor.class));
 		assertTrue(mappedInterceptor.matches("/foo", pathMatcher));
 		assertFalse(mappedInterceptor.matches("/admin/foo", pathMatcher));
 	}
@@ -56,7 +55,7 @@ public class MappedInterceptorTests {
 	// 包含和排除同时存在  排除优先级永远高于包含
 	@Test
 	public void includeAndExcludePatterns() {
-		MappedInterceptor mappedInterceptor = new MappedInterceptor(new String[] { "/**" }, new String[] { "/admin/**" }, interceptor);
+		MappedInterceptor mappedInterceptor = new MappedInterceptor( new String[] { "/**" }, new String[] { "/admin/**" }, mock(HandlerInterceptor.class));
 		assertTrue(mappedInterceptor.matches("/foo", pathMatcher));
 		assertFalse(mappedInterceptor.matches("/admin/foo", pathMatcher));
 	}
@@ -64,7 +63,8 @@ public class MappedInterceptorTests {
 	// 测试 自定义路径匹配器
 	@Test
 	public void customPathMatcher() {
-		MappedInterceptor mappedInterceptor = new MappedInterceptor(new String[] { "/foo/[0-9]*" }, interceptor);
+		MappedInterceptor mappedInterceptor = new MappedInterceptor(new String[] { "/foo/[0-9]*" }, mock(HandlerInterceptor.class));
+		// 设置自定义匹配器
 		mappedInterceptor.setPathMatcher(new TestPathMatcher());
 		assertTrue(mappedInterceptor.matches("/foo/123", pathMatcher));
 		assertFalse(mappedInterceptor.matches("/foo/bar", pathMatcher));

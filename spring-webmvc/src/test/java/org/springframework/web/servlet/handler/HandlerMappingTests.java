@@ -64,7 +64,6 @@ public class HandlerMappingTests {
 		public void handleRequest(HttpServletRequest request, HttpServletResponse response) {
 			response.setStatus(HttpStatus.OK.value());
 		}
-
 	}
 
 }

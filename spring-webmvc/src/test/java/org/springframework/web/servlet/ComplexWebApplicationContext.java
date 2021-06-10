@@ -83,15 +83,12 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 		registerSingleton("myUrlMapping1", SimpleUrlHandlerMapping.class, pvs);
 
 		pvs = new MutablePropertyValues();
-		pvs.add(
-				"mappings", "/form.do=localeHandler\n/unknown.do=unknownHandler\nservlet.do=myServlet");
+		pvs.add("mappings", "/form.do=localeHandler\n/unknown.do=unknownHandler\nservlet.do=myServlet");
 		pvs.add("order", "2");
 		registerSingleton("myUrlMapping2", SimpleUrlHandlerMapping.class, pvs);
 
 		pvs = new MutablePropertyValues();
-		pvs.add(
-				"mappings", "/head.do=headController\n" +
-				"body.do=bodyController\n/noview*=noviewController\n/noview/simple*=noviewController");
+		pvs.add("mappings", "/head.do=headController\n" +"body.do=bodyController\n/noview*=noviewController\n/noview/simple*=noviewController");
 		pvs.add("order", "1");
 		registerSingleton("handlerMapping", SimpleUrlHandlerMapping.class, pvs);
 
@@ -126,9 +123,7 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 
 		pvs = new MutablePropertyValues();
 		pvs.add("order", "1");
-		pvs.add("exceptionMappings",
-				"java.lang.IllegalAccessException=failed2\n" +
-				"ServletRequestBindingException=failed3");
+		pvs.add("exceptionMappings","java.lang.IllegalAccessException=failed2\n" +"ServletRequestBindingException=failed3");
 		pvs.add("defaultErrorView", "failed0");
 		registerSingleton("exceptionResolver1", SimpleMappingExceptionResolver.class, pvs);
 
@@ -272,9 +267,7 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 	public static class MyHandlerInterceptor1 implements HandlerInterceptor {
 
 		@Override
-		public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-				throws ServletException {
-
+		public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException {
 			if (request.getAttribute("test2") != null) {
 				throw new ServletException("Wrong interceptor order");
 			}
@@ -285,10 +278,7 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 		}
 
 		@Override
-		public void postHandle(
-				HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable ModelAndView modelAndView)
-				throws ServletException {
-
+		public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable ModelAndView modelAndView) throws ServletException {
 			if (request.getAttribute("test2x") != null) {
 				throw new ServletException("Wrong interceptor order");
 			}
@@ -299,10 +289,7 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 		}
 
 		@Override
-		public void afterCompletion(
-				HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
-				throws ServletException {
-
+		public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws ServletException {
 			if (request.getAttribute("test2y") != null) {
 				throw new ServletException("Wrong interceptor order");
 			}
@@ -317,9 +304,7 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 	public static class MyHandlerInterceptor2 implements HandlerInterceptor {
 
 		@Override
-		public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-				throws ServletException {
-
+		public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException {
 			if (request.getAttribute("test1x") == null) {
 				throw new ServletException("Wrong interceptor order");
 			}
@@ -333,10 +318,7 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 		}
 
 		@Override
-		public void postHandle(
-				HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable ModelAndView modelAndView)
-				throws ServletException {
-
+		public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable ModelAndView modelAndView) throws ServletException {
 			if (request.getParameter("noView") != null) {
 				modelAndView.clear();
 			}
@@ -350,9 +332,7 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 		}
 
 		@Override
-		public void afterCompletion(
-				HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws ServletException {
-
+		public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws ServletException {
 			if (request.getAttribute("test1y") == null) {
 				throw new ServletException("Wrong interceptor order");
 			}
@@ -365,7 +345,6 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 
 
 	public static class MyWebRequestInterceptor implements WebRequestInterceptor {
-
 		@Override
 		public void preHandle(WebRequest request)  {
 			request.setAttribute("test3", "test3", WebRequest.SCOPE_REQUEST);

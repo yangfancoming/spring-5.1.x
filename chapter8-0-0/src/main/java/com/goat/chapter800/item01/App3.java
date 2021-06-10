@@ -53,7 +53,7 @@ public class App3 {
 
 
 	/**
-	 * 确保交互(interaction)操作不会执行在mock对象上
+	 *
 	*/
 	@Test
 	public void test7(){
@@ -62,7 +62,7 @@ public class App3 {
 
 
 	/**
-	 * 为连续的调用做测试桩 (stub)
+	 *
 	 */
 	@Test
 	public void test10(){

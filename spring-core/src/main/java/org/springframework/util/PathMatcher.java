@@ -25,6 +25,7 @@ public interface PathMatcher {
 	boolean isPattern(String path);
 
 	/**
+	 * 将给定的 请求路径与controller中的定义的路径 就行正则匹配
 	 * Match the given {@code path} against the given {@code pattern}, according to this PathMatcher's matching strategy.
 	 * @param pattern the pattern to match against
 	 * @param path the path String to test
