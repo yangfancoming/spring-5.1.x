@@ -219,8 +219,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 
 
 	/**
-	 * Return a {@link RequestMappingHandlerMapping} ordered at 0 for mapping
-	 * requests to annotated controllers.
+	 * Return a {@link RequestMappingHandlerMapping} ordered at 0 for mapping requests to annotated controllers.
 	 */
 	@Bean
 	public RequestMappingHandlerMapping requestMappingHandlerMapping() {

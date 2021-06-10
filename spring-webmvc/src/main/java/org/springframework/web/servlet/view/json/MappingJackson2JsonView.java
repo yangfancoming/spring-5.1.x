@@ -32,8 +32,7 @@ import org.springframework.web.servlet.View;
 public class MappingJackson2JsonView extends AbstractJackson2View {
 
 	/**
-	 * Default content type: "application/json".
-	 * Overridable through {@link #setContentType}.
+	 * Default content type: "application/json".Overridable through {@link #setContentType}.
 	 */
 	public static final String DEFAULT_CONTENT_TYPE = "application/json";
 
@@ -64,8 +63,7 @@ public class MappingJackson2JsonView extends AbstractJackson2View {
 
 
 	/**
-	 * Specify a custom prefix to use for this view's JSON output.
-	 * Default is none.
+	 * Specify a custom prefix to use for this view's JSON output. Default is none.
 	 * @see #setPrefixJson
 	 */
 	public void setJsonPrefix(String jsonPrefix) {

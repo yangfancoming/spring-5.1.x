@@ -38,7 +38,6 @@ public class UrlPathHelper {
 	@Nullable
 	static volatile Boolean websphereComplianceFlag;
 
-
 	private boolean alwaysUseFullPath = false;
 
 	private boolean urlDecode = true;
@@ -521,5 +520,4 @@ public class UrlPathHelper {
 		// However, if it is not compliant, do remove the improper trailing slash!
 		return !flagToUse;
 	}
-
 }

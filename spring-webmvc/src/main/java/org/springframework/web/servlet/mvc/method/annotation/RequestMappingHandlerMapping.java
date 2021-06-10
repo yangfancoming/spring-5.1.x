@@ -34,9 +34,7 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;
 
 /**
- * Creates {@link RequestMappingInfo} instances from type and method-level
- * {@link RequestMapping @RequestMapping} annotations in {@link Controller @Controller} classes.
- *
+ * Creates {@link RequestMappingInfo} instances from type and method-level  {@link RequestMapping @RequestMapping} annotations in {@link Controller @Controller} classes.
  * 该类的作用有两个：
  * 1.通过request查找对应的HandlerMethod，即当前request具体是由Controller中的哪个方法进行处理；
  * 2.查找当前系统中的Interceptor，将其与HandlerMethod封装为一个HandlerExecutionChain
@@ -64,18 +62,15 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	 * Whether to use suffix pattern match (".*") when matching patterns to
 	 * requests. If enabled a method mapped to "/users" also matches to "/users.*".
 	 * The default value is {@code true}.
-	 * Also see {@link #setUseRegisteredSuffixPatternMatch(boolean)} for
-	 * more fine-grained control over specific suffixes to allow.
+	 * Also see {@link #setUseRegisteredSuffixPatternMatch(boolean)} for more fine-grained control over specific suffixes to allow.
 	 */
 	public void setUseSuffixPatternMatch(boolean useSuffixPatternMatch) {
 		this.useSuffixPatternMatch = useSuffixPatternMatch;
 	}
 
 	/**
-	 * Whether suffix pattern matching should work only against path extensions
-	 * explicitly registered with the {@link ContentNegotiationManager}. This
-	 * is generally recommended to reduce ambiguity and to avoid issues such as
-	 * when a "." appears in the path for other reasons.
+	 * Whether suffix pattern matching should work only against path extensions explicitly registered with the {@link ContentNegotiationManager}.
+	 * This is generally recommended to reduce ambiguity and to avoid issues such as when a "." appears in the path for other reasons.
 	 * By default this is set to "false".
 	 */
 	public void setUseRegisteredSuffixPatternMatch(boolean useRegisteredSuffixPatternMatch) {
@@ -95,10 +90,9 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	/**
 	 * Configure path prefixes to apply to controller methods.
 	 * Prefixes are used to enrich the mappings of every {@code @RequestMapping}
-	 * method whose controller type is matched by the corresponding
-	 * {@code Predicate}. The prefix for the first matching predicate is used.
-	 * Consider using {@link org.springframework.web.method.HandlerTypePredicate
-	 * HandlerTypePredicate} to group controllers.
+	 * method whose controller type is matched by the corresponding {@code Predicate}.
+	 * The prefix for the first matching predicate is used.
+	 * Consider using {@link org.springframework.web.method.HandlerTypePredicate HandlerTypePredicate} to group controllers.
 	 * @param prefixes a map with path prefixes as key
 	 * @since 5.1
 	 */
@@ -227,8 +221,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 
 	/**
 	 * Delegates to {@link #createRequestMappingInfo(RequestMapping, RequestCondition)},
-	 * supplying the appropriate custom {@link RequestCondition} depending on whether
-	 * the supplied {@code annotatedElement} is a class or method.
+	 * supplying the appropriate custom {@link RequestCondition} depending on whether the supplied {@code annotatedElement} is a class or method.
 	 * @see #getCustomTypeCondition(Class)
 	 * @see #getCustomMethodCondition(Method)
 	 */
@@ -242,10 +235,8 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	/**
 	 * Provide a custom type-level request condition.
 	 * The custom {@link RequestCondition} can be of any type so long as the
-	 * same condition type is returned from all calls to this method in order
-	 * to ensure custom request conditions can be combined and compared.
-	 * Consider extending {@link AbstractRequestCondition} for custom
-	 * condition types and using {@link CompositeRequestCondition} to provide multiple custom conditions.
+	 * same condition type is returned from all calls to this method in order to ensure custom request conditions can be combined and compared.
+	 * Consider extending {@link AbstractRequestCondition} for custom condition types and using {@link CompositeRequestCondition} to provide multiple custom conditions.
 	 * @param handlerType the handler type for which to create the condition
 	 * @return the condition, or {@code null}
 	 */
@@ -260,8 +251,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	 * same condition type is returned from all calls to this method in order
 	 * to ensure custom request conditions can be combined and compared.
 	 * Consider extending {@link AbstractRequestCondition} for custom
-	 * condition types and using {@link CompositeRequestCondition} to provide
-	 * multiple custom conditions.
+	 * condition types and using {@link CompositeRequestCondition} to provide multiple custom conditions.
 	 * @param method the handler method for which to create the condition
 	 * @return the condition, or {@code null}
 	 */

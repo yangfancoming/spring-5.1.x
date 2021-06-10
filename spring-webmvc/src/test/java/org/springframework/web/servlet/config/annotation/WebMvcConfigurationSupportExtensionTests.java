@@ -94,7 +94,6 @@ public class WebMvcConfigurationSupportExtensionTests {
 
 	private StaticWebApplicationContext context;
 
-
 	@Before
 	public void setUp() {
 		this.context = new StaticWebApplicationContext();
@@ -173,7 +172,7 @@ public class WebMvcConfigurationSupportExtensionTests {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void requestMappingHandlerAdapter() throws Exception {
+	public void requestMappingHandlerAdapter() {
 		RequestMappingHandlerAdapter adapter = this.config.requestMappingHandlerAdapter();
 
 		// ConversionService
@@ -193,42 +192,33 @@ public class WebMvcConfigurationSupportExtensionTests {
 		DirectFieldAccessor fieldAccessor = new DirectFieldAccessor(adapter);
 
 		// Custom argument resolvers and return value handlers
-		List<HandlerMethodArgumentResolver> argResolvers =
-			(List<HandlerMethodArgumentResolver>) fieldAccessor.getPropertyValue("customArgumentResolvers");
+		List<HandlerMethodArgumentResolver> argResolvers = (List<HandlerMethodArgumentResolver>) fieldAccessor.getPropertyValue("customArgumentResolvers");
 		assertEquals(1, argResolvers.size());
 
-		List<HandlerMethodReturnValueHandler> handlers =
-			(List<HandlerMethodReturnValueHandler>) fieldAccessor.getPropertyValue("customReturnValueHandlers");
+		List<HandlerMethodReturnValueHandler> handlers = (List<HandlerMethodReturnValueHandler>) fieldAccessor.getPropertyValue("customReturnValueHandlers");
 		assertEquals(1, handlers.size());
 
 		// Async support options
 		assertEquals(ConcurrentTaskExecutor.class, fieldAccessor.getPropertyValue("taskExecutor").getClass());
 		assertEquals(2500L, fieldAccessor.getPropertyValue("asyncRequestTimeout"));
 
-		CallableProcessingInterceptor[] callableInterceptors =
-				(CallableProcessingInterceptor[]) fieldAccessor.getPropertyValue("callableInterceptors");
+		CallableProcessingInterceptor[] callableInterceptors = (CallableProcessingInterceptor[]) fieldAccessor.getPropertyValue("callableInterceptors");
 		assertEquals(1, callableInterceptors.length);
 
-		DeferredResultProcessingInterceptor[] deferredResultInterceptors =
-				(DeferredResultProcessingInterceptor[]) fieldAccessor.getPropertyValue("deferredResultInterceptors");
+		DeferredResultProcessingInterceptor[] deferredResultInterceptors = (DeferredResultProcessingInterceptor[]) fieldAccessor.getPropertyValue("deferredResultInterceptors");
 		assertEquals(1, deferredResultInterceptors.length);
 
 		assertEquals(false, fieldAccessor.getPropertyValue("ignoreDefaultModelOnRedirect"));
 	}
 
 	@Test
-	public void webBindingInitializer() throws Exception {
+	public void webBindingInitializer() {
 		RequestMappingHandlerAdapter adapter = this.config.requestMappingHandlerAdapter();
-
-		ConfigurableWebBindingInitializer initializer =
-				(ConfigurableWebBindingInitializer) adapter.getWebBindingInitializer();
-
+		ConfigurableWebBindingInitializer initializer = (ConfigurableWebBindingInitializer) adapter.getWebBindingInitializer();
 		assertNotNull(initializer);
-
 		BeanPropertyBindingResult bindingResult = new BeanPropertyBindingResult(null, "");
 		initializer.getValidator().validate(null, bindingResult);
 		assertEquals("invalid", bindingResult.getAllErrors().get(0).getCode());
-
 		String[] codes = initializer.getMessageCodesResolver().resolveMessageCodes("invalid", null);
 		assertEquals("custom.invalid", codes[0]);
 	}
@@ -246,8 +236,7 @@ public class WebMvcConfigurationSupportExtensionTests {
 		assertEquals(Collections.singletonList(APPLICATION_XML), manager.resolveMediaTypes(webRequest));
 
 		request.setRequestURI("/foo.rss");
-		assertEquals(Collections.singletonList(MediaType.valueOf("application/rss+xml")),
-				manager.resolveMediaTypes(webRequest));
+		assertEquals(Collections.singletonList(MediaType.valueOf("application/rss+xml")),manager.resolveMediaTypes(webRequest));
 
 		request.setRequestURI("/foo.atom");
 		assertEquals(Collections.singletonList(APPLICATION_ATOM_XML), manager.resolveMediaTypes(webRequest));
@@ -267,10 +256,8 @@ public class WebMvcConfigurationSupportExtensionTests {
 	}
 
 	@Test
-	public void exceptionResolvers() throws Exception {
-		List<HandlerExceptionResolver> resolvers = ((HandlerExceptionResolverComposite)
-				this.config.handlerExceptionResolver()).getExceptionResolvers();
-
+	public void exceptionResolvers()  {
+		List<HandlerExceptionResolver> resolvers = ((HandlerExceptionResolverComposite)this.config.handlerExceptionResolver()).getExceptionResolvers();
 		assertEquals(2, resolvers.size());
 		assertEquals(ResponseStatusExceptionResolver.class, resolvers.get(0).getClass());
 		assertEquals(SimpleMappingExceptionResolver.class, resolvers.get(1).getClass());
@@ -278,7 +265,7 @@ public class WebMvcConfigurationSupportExtensionTests {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void viewResolvers() throws Exception {
+	public void viewResolvers()  {
 		ViewResolverComposite viewResolver = (ViewResolverComposite) this.config.mvcViewResolver();
 		assertEquals(Ordered.HIGHEST_PRECEDENCE, viewResolver.getOrder());
 		List<ViewResolver> viewResolvers = viewResolver.getViewResolvers();
@@ -310,12 +297,19 @@ public class WebMvcConfigurationSupportExtensionTests {
 		assertEquals("*", configs.get("/resources/**").getAllowedOrigins().get(0));
 	}
 
-
 	@Controller
 	private static class TestController {
-
 		@RequestMapping("/")
 		public void handle() {
+		}
+	}
+
+	@RestController
+	@RequestMapping("/user")
+	static class UserController {
+		@GetMapping("/{id}")
+		public Principal getUser() {
+			return mock(Principal.class);
 		}
 	}
 
@@ -327,10 +321,9 @@ public class WebMvcConfigurationSupportExtensionTests {
 	 * more advanced configuration needs.
 	 */
 	private class TestWebMvcConfigurationSupport extends WebMvcConfigurationSupport implements WebMvcConfigurer {
-
 		@Override
 		public void addFormatters(FormatterRegistry registry) {
-			registry.addConverter(new Converter<TestBean, String>() {
+			registry.addConverter(new Converter<TestBean, String>() { // doit 为啥这里 简化后 运行第一个测试类会报错？？？
 				@Override
 				public String convert(TestBean source) {
 					return "converted";
@@ -450,16 +443,5 @@ public class WebMvcConfigurationSupportExtensionTests {
 	private class TestPathHelper extends UrlPathHelper {}
 
 	private class TestPathMatcher extends AntPathMatcher {}
-
-
-	@RestController
-	@RequestMapping("/user")
-	static class UserController {
-
-		@GetMapping("/{id}")
-		public Principal getUser() {
-			return mock(Principal.class);
-		}
-	}
 
 }

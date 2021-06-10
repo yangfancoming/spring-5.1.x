@@ -24,8 +24,7 @@ import org.springframework.web.context.ServletContextAware;
  * implementation for testing. Not intended for use in production applications.
  *
  * Implements the {@link org.springframework.web.context.ConfigurableWebApplicationContext}
- * interface to allow for direct replacement of an {@link XmlWebApplicationContext},
- * despite not actually supporting external configuration files.
+ * interface to allow for direct replacement of an {@link XmlWebApplicationContext},despite not actually supporting external configuration files.
  *
  * Interprets resource paths as servlet context resources, i.e. as paths beneath
  * the web application root. Absolute paths, e.g. for files outside the web app root,
