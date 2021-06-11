@@ -264,21 +264,17 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 		ReflectionUtils.makeAccessible(this.method);
 		try {
 			return this.method.invoke(bean, args);
-		}
-		catch (IllegalArgumentException ex) {
+		}catch (IllegalArgumentException ex) {
 			assertTargetBean(this.method, bean, args);
 			throw new IllegalStateException(getInvocationErrorMessage(bean, ex.getMessage(), args), ex);
-		}
-		catch (IllegalAccessException ex) {
+		}catch (IllegalAccessException ex) {
 			throw new IllegalStateException(getInvocationErrorMessage(bean, ex.getMessage(), args), ex);
-		}
-		catch (InvocationTargetException ex) {
+		}catch (InvocationTargetException ex) {
 			// Throw underlying exception
 			Throwable targetException = ex.getTargetException();
 			if (targetException instanceof RuntimeException) {
 				throw (RuntimeException) targetException;
-			}
-			else {
+			}else {
 				String msg = getInvocationErrorMessage(bean, "Failed to invoke event listener method", args);
 				throw new UndeclaredThrowableException(targetException, msg);
 			}

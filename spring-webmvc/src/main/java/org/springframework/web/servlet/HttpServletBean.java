@@ -139,10 +139,7 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 		if (!pvs.isEmpty()) {
 			try {
 				// 使用 BeanWrapper 来构造 DispatcherServlet   // 注册Resource对象对应的PropertyEditor
-				/*
-				 * 为当前对象（比如 DispatcherServlet 对象）创建一个 BeanWrapper，
-				 * 方便读/写对象属性。
-				 */
+				// 为当前对象（比如 DispatcherServlet 对象）创建一个 BeanWrapper，方便读/写对象属性。
 				BeanWrapper bw = PropertyAccessorFactory.forBeanPropertyAccess(this);
 				ResourceLoader resourceLoader = new ServletContextResourceLoader(getServletContext());
 				bw.registerCustomEditor(Resource.class, new ResourceEditor(resourceLoader, getEnvironment()));
@@ -198,8 +195,7 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 		/**
 		 * Create new ServletConfigPropertyValues.
 		 * @param config the ServletConfig we'll use to take PropertyValues from
-		 * @param requiredProperties set of property names we need, where
-		 * we can't accept default values
+		 * @param requiredProperties set of property names we need, where we can't accept default values
 		 * @throws ServletException if any required properties are missing
 		 */
 		public ServletConfigPropertyValues(ServletConfig config, Set<String> requiredProperties) throws ServletException {

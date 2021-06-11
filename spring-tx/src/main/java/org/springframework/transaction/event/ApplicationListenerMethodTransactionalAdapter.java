@@ -46,7 +46,6 @@ class ApplicationListenerMethodTransactionalAdapter extends ApplicationListenerM
 
 	@Override
 	public void onApplicationEvent(ApplicationEvent event) {
-
 		// 如果当前TransactionManager已经配置开启事务事件监听，
 		// 此时才会注册TransactionSynchronization对象
 		if (TransactionSynchronizationManager.isSynchronizationActive()) {

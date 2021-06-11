@@ -16,9 +16,6 @@ import org.springframework.util.ConcurrentReferenceHashMap;
 /**
  * {@link GenericApplicationListener} adapter that determines supported event types
  * through introspecting the generically declared type of the target listener.
- *
-
- * @author Stephane Nicoll
  * @since 3.0
  * @see org.springframework.context.ApplicationListener#onApplicationEvent
  */
@@ -26,12 +23,10 @@ public class GenericApplicationListenerAdapter implements GenericApplicationList
 
 	private static final Map<Class<?>, ResolvableType> eventTypeCache = new ConcurrentReferenceHashMap<>();
 
-
 	private final ApplicationListener<ApplicationEvent> delegate;
 
 	@Nullable
 	private final ResolvableType declaredEventType;
-
 
 	/**
 	 * Create a new GenericApplicationListener for the given delegate.
@@ -44,7 +39,6 @@ public class GenericApplicationListenerAdapter implements GenericApplicationList
 		this.declaredEventType = resolveDeclaredEventType(this.delegate);
 	}
 
-
 	@Override
 	public void onApplicationEvent(ApplicationEvent event) {
 		this.delegate.onApplicationEvent(event);
@@ -56,8 +50,7 @@ public class GenericApplicationListenerAdapter implements GenericApplicationList
 		if (this.delegate instanceof SmartApplicationListener) {
 			Class<? extends ApplicationEvent> eventClass = (Class<? extends ApplicationEvent>) eventType.resolve();
 			return (eventClass != null && ((SmartApplicationListener) this.delegate).supportsEventType(eventClass));
-		}
-		else {
+		}else {
 			return (this.declaredEventType == null || this.declaredEventType.isAssignableFrom(eventType));
 		}
 	}

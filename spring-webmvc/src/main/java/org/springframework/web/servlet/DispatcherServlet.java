@@ -554,9 +554,8 @@ public class DispatcherServlet extends FrameworkServlet {
 		// 指定的排序规则对其进行排序，否则就从Spring中读取名称为handlerMapping的bean，并将其作为指定的bean
 		if (detectAllHandlerMappings) {
 			// Find all HandlerMappings in the ApplicationContext, including ancestor contexts.
-			// 从 SpringMVC 的 IOC 容器及 Spring 的 IOC 容器中查找 HandlerMapping 实例
+			// 从 SpringMVC的IOC容器及Spring的IOC容器中查找 所有的实现了HandlerMapping接口的bean
 			// 在ApplicationContext中找到所有的handlerMapping，包括父上下文。
-			// 从Spring容器中读取所有的实现了HandlerMapping接口的bean
 			Map<String, HandlerMapping> matchingBeans = BeanFactoryUtils.beansOfTypeIncludingAncestors(context, HandlerMapping.class, true, false);
 			if (!matchingBeans.isEmpty()) {
 				handlerMappings = new ArrayList<>(matchingBeans.values());
