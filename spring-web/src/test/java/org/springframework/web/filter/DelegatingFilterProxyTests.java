@@ -23,9 +23,6 @@ import org.springframework.web.context.support.StaticWebApplicationContext;
 import static org.junit.Assert.*;
 
 /**
-
-
- * @author Rob Winch
  * @since 08.05.2005
  */
 public class DelegatingFilterProxyTests {
@@ -393,9 +390,7 @@ public class DelegatingFilterProxyTests {
 		}
 
 		@Override
-		public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
-				throws IOException, ServletException {
-
+		public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
 			request.setAttribute("called", Boolean.TRUE);
 		}
 

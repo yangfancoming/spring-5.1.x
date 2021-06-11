@@ -14,11 +14,7 @@ import org.springframework.util.StreamUtils;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Arjen Poutsma
- * @author Brian Clozel
 
- */
 public class ShallowEtagHeaderFilterTests {
 
 	private final ShallowEtagHeaderFilter filter = new ShallowEtagHeaderFilter();

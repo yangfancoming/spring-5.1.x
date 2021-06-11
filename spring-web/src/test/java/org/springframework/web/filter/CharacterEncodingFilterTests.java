@@ -15,11 +15,7 @@ import org.springframework.web.util.WebUtils;
 
 import static org.mockito.BDDMockito.*;
 
-/**
- * @author Rick Evans
 
- * @author Vedran Pavic
- */
 public class CharacterEncodingFilterTests {
 
 	private static final String FILTER_NAME = "boot";

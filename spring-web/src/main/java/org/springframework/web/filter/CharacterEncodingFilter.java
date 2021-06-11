@@ -38,7 +38,6 @@ public class CharacterEncodingFilter extends OncePerRequestFilter {
 
 	private boolean forceResponseEncoding = false;
 
-
 	/**
 	 * Create a default {@code CharacterEncodingFilter},
 	 * with the encoding to be set via {@link #setEncoding}.
@@ -170,10 +169,7 @@ public class CharacterEncodingFilter extends OncePerRequestFilter {
 
 
 	@Override
-	protected void doFilterInternal(
-			HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-			throws ServletException, IOException {
-
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 		String encoding = getEncoding();
 		if (encoding != null) {
 			if (isForceRequestEncoding() || request.getCharacterEncoding() == null) {

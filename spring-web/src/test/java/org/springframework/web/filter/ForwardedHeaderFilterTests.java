@@ -25,10 +25,6 @@ import static org.mockito.Mockito.*;
 
 /**
  * Unit tests for {@link ForwardedHeaderFilter}.
- *
- *
- * @author Eddú Meléndez
- * @author Rob Winch
  */
 public class ForwardedHeaderFilterTests {
 
@@ -88,7 +84,6 @@ public class ForwardedHeaderFilterTests {
 	public void contextPathWithForwardedPrefixTrailingSlash() throws Exception {
 		this.request.addHeader(X_FORWARDED_PREFIX, "/prefix/");
 		this.request.setContextPath("/mvc-showcase");
-
 		String actual = filterAndGetContextPath();
 		assertEquals("/prefix", actual);
 	}
@@ -498,7 +493,6 @@ public class ForwardedHeaderFilterTests {
 		MockHttpServletResponse response = new MockHttpServletResponse();
 		FilterChain filterChain = new MockFilterChain(mock(HttpServlet.class), this.filter, filter);
 		filterChain.doFilter(request, response);
-
 		return response.getRedirectedUrl();
 	}
 
