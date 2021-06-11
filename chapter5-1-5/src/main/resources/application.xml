@@ -31,7 +31,17 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/sample/**" />
 			<mvc:mapping path="/view/**" />
-			<bean class="com.goat.chapter515.interceptor.MyInterceptor"/>
+			<bean class="com.goat.chapter515.interceptor.MyInterceptor1"/>
+		</mvc:interceptor>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/sample/**" />
+			<mvc:mapping path="/view/**" />
+			<bean class="com.goat.chapter515.interceptor.MyInterceptor2"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
+
+
+
+
 </beans>

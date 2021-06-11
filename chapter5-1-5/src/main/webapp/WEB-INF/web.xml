@@ -22,4 +22,25 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+
+
+	<!-- 自定义过滤器：testFilter1 -->
+	<filter>
+		<filter-name>testFilter1</filter-name>
+		<filter-class>com.goat.chapter515.filter.TestFilter1</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>testFilter1</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- 自定义过滤器：testFilter2 -->
+	<filter>
+		<filter-name>testFilter2</filter-name>
+		<filter-class>com.goat.chapter515.filter.TestFilter2</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>testFilter2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 </web-app>

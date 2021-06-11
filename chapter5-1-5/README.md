@@ -23,3 +23,17 @@
     5.执行 HandlerExecutionChain 中所有拦截器的 preHandler() 方法，然后再利用 HandlerAdapter 执行 Handler ，执行完成得到 ModelAndView，再依次调用拦截器的 postHandler() 方法；
     6.利用 ViewResolver 将 ModelAndView 或是 Exception（可解析成 ModelAndView）解析成 View，然后 View 会调用 render() 方法再根据 ModelAndView 中的数据渲染出页面；
     7.最后再依次调用拦截器的 afterCompletion() 方法，这一次请求就结束了。
+    
+    
+#  过滤器和拦截器的执行顺序
+
+    ############TestFilter1 doFilterInternal executed############
+    ############TestFilter2 doFilterInternal executed############
+    MyInterceptor1 ----------  preHandle
+    MyInterceptor2 ----------  preHandle
+    MyInterceptor2 ----------  postHandle
+    MyInterceptor1 ----------  postHandle
+    MyInterceptor2 ----------  afterCompletion
+    MyInterceptor1 ----------  afterCompletion
+    ############TestFilter2 doFilter after############
+    ############TestFilter1 doFilter after############

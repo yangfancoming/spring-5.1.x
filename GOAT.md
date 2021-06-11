@@ -24,7 +24,7 @@
     chapter5-0-1  spring web 测试demo
     chapter5-0-5  spring Servlet  xml版
     chapter5-1-0  spring web  注解版 
-    chapter5-1-5  spring web  web.xml + xml 配置
+    chapter5-1-5  spring web  web.xml + xml 配置   拦截器和过滤器
     chapter5-1-6  SpringMVC源码阅读环境搭建  
     
     chapter5-2-1  处理器映射器 HandlerMapping  SimpleUrlHandlerMapping
