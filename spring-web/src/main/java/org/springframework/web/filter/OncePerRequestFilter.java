@@ -51,15 +51,13 @@ import org.springframework.web.util.WebUtils;
 public abstract class OncePerRequestFilter extends GenericFilterBean {
 
 	/**
-	 * Suffix that gets appended to the filter name for the
-	 * "already filtered" request attribute.
+	 * Suffix that gets appended to the filter name for the "already filtered" request attribute.
 	 * @see #getAlreadyFilteredAttributeName
 	 */
 	public static final String ALREADY_FILTERED_SUFFIX = ".FILTERED";
 
 	/**
-	 * This {@code doFilter} implementation stores a request attribute for
-	 * "already filtered", proceeding without filtering again if the attribute is already there.
+	 * This {@code doFilter} implementation stores a request attribute for already filtered", proceeding without filtering again if the attribute is already there.
 	 * @see #getAlreadyFilteredAttributeName
 	 * @see #shouldNotFilter
 	 * @see #doFilterInternal
@@ -77,7 +75,6 @@ public abstract class OncePerRequestFilter extends GenericFilterBean {
 		boolean hasAlreadyFilteredAttribute = request.getAttribute(alreadyFilteredAttributeName) != null;
 
 		if (hasAlreadyFilteredAttribute || skipDispatch(httpRequest) || shouldNotFilter(httpRequest)) {
-
 			// Proceed without invoking this filter...
 			filterChain.doFilter(request, response);
 		}else {
@@ -198,11 +195,9 @@ public abstract class OncePerRequestFilter extends GenericFilterBean {
 	}
 
 	/**
-	 * Same contract as for {@code doFilter}, but guaranteed to be
-	 * just invoked once per request within a single request thread.
+	 * Same contract as for {@code doFilter}, but guaranteed to be just invoked once per request within a single request thread.
 	 * See {@link #shouldNotFilterAsyncDispatch()} for details.
-	 * Provides HttpServletRequest and HttpServletResponse arguments instead of the
-	 * default ServletRequest and ServletResponse ones.
+	 * Provides HttpServletRequest and HttpServletResponse arguments instead of the default ServletRequest and ServletResponse ones.
 	 */
 	protected abstract void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException;
 }
