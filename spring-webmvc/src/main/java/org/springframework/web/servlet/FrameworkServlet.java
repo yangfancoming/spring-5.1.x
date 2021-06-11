@@ -378,9 +378,8 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	}
 
 	/**
-	 * Set whether this servlet should publish a ServletRequestHandledEvent at the end
-	 * of each request. Default is "true"; can be turned off for a slight performance
-	 * improvement, provided that no ApplicationListeners rely on such events.
+	 * Set whether this servlet should publish a ServletRequestHandledEvent at the end of each request.
+	 * Default is "true"; can be turned off for a slight performance improvement, provided that no ApplicationListeners rely on such events.
 	 * @see org.springframework.web.context.support.ServletRequestHandledEvent
 	 */
 	public void setPublishEvents(boolean publishEvents) {
@@ -1081,11 +1080,9 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 			// Whether or not we succeeded, publish an event.
 			long processingTime = System.currentTimeMillis() - startTime;
 			this.webApplicationContext.publishEvent(
-					new ServletRequestHandledEvent(this,
-							request.getRequestURI(), request.getRemoteAddr(),
-							request.getMethod(), getServletConfig().getServletName(),
-							WebUtils.getSessionId(request), getUsernameForRequest(request),
-							processingTime, failureCause, response.getStatus()));
+					new ServletRequestHandledEvent(this,request.getRequestURI(), request.getRemoteAddr(),request.getMethod(), getServletConfig().getServletName(),
+							WebUtils.getSessionId(request), getUsernameForRequest(request),processingTime, failureCause, response.getStatus()));
+
 		}
 	}
 

@@ -147,7 +147,6 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 
 
 	public static class HeadController implements Controller {
-
 		@Override
 		public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)  {
 			if ("HEAD".equals(request.getMethod())) {
@@ -473,7 +472,7 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 		@Override
 		public void onApplicationEvent(ApplicationEvent event) {
 			if (event instanceof RequestHandledEvent) {
-				this.counter++;
+				++this.counter;
 			}
 		}
 	}

@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.PropertyValue;
 import org.springframework.context.ApplicationContextInitializer;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.DummyEnvironment;
@@ -101,21 +102,27 @@ public class DispatcherServletTests {
 		assertTrue("correct error code", response.getStatus() == HttpServletResponse.SC_NOT_FOUND);
 	}
 
+	/**
+	 * 测试 RequestHandledEvent 事件分发
+	 * @see FrameworkServlet#publishRequestHandledEvent(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, long, java.lang.Throwable)
+	*/
 	@Test
 	public void requestHandledEvent() throws Exception {
 		MockHttpServletRequest request = new MockHttpServletRequest(getServletContext(), "GET", "/locale.do");
-		MockHttpServletResponse response = new MockHttpServletResponse();
-		complexDispatcherServlet.service(request, response);
+		complexDispatcherServlet.service(request, new MockHttpServletResponse());
 		ComplexWebApplicationContext.TestApplicationListener listener = (ComplexWebApplicationContext.TestApplicationListener) complexDispatcherServlet.getWebApplicationContext().getBean("testListener");
 		assertEquals(1, listener.counter);
 	}
 
+	/**
+	 * 测试 RequestHandledEvent 关闭事件分发
+	 * @see FrameworkServlet#publishRequestHandledEvent(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, long, java.lang.Throwable)
+	 */
 	@Test
 	public void publishEventsOff() throws Exception {
 		complexDispatcherServlet.setPublishEvents(false);
 		MockHttpServletRequest request = new MockHttpServletRequest(getServletContext(), "GET", "/locale.do");
-		MockHttpServletResponse response = new MockHttpServletResponse();
-		complexDispatcherServlet.service(request, response);
+		complexDispatcherServlet.service(request, new MockHttpServletResponse());
 		ComplexWebApplicationContext.TestApplicationListener listener = (ComplexWebApplicationContext.TestApplicationListener) complexDispatcherServlet.getWebApplicationContext().getBean("testListener");
 		assertEquals(0, listener.counter);
 	}

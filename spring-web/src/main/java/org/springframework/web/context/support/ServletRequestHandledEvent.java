@@ -5,8 +5,7 @@ package org.springframework.web.context.support;
 import org.springframework.lang.Nullable;
 
 /**
- * Servlet-specific subclass of RequestHandledEvent,
- * adding servlet-specific context information.
+ * Servlet-specific subclass of RequestHandledEvent, adding servlet-specific context information.
  * @since 2.0
  * @see org.springframework.web.servlet.FrameworkServlet
  * @see org.springframework.context.ApplicationContext#publishEvent
@@ -57,8 +56,7 @@ public class ServletRequestHandledEvent extends RequestHandledEvent {
 	 * @param method the HTTP method of the request (usually GET or POST)
 	 * @param servletName the name of the servlet that handled the request
 	 * @param sessionId the id of the HTTP session, if any
-	 * @param userName the name of the user that was associated with the
-	 * request, if any (usually the UserPrincipal)
+	 * @param userName the name of the user that was associated with the request, if any (usually the UserPrincipal)
 	 * @param processingTimeMillis the processing time of the request in milliseconds
 	 * @param failureCause the cause of failure, if any
 	 */
@@ -153,5 +151,4 @@ public class ServletRequestHandledEvent extends RequestHandledEvent {
 	public String toString() {
 		return "ServletRequestHandledEvent: " + getDescription();
 	}
-
 }

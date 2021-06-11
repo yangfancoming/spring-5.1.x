@@ -1,7 +1,6 @@
 
 
 package org.springframework.context;
-
 import java.util.EventObject;
 
 /**
@@ -30,5 +29,4 @@ public abstract class ApplicationEvent extends EventObject {
 	public final long getTimestamp() {
 		return timestamp;
 	}
-
 }

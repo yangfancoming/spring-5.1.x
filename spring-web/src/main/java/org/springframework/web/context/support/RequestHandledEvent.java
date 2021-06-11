@@ -7,15 +7,8 @@ import org.springframework.lang.Nullable;
 
 /**
  * Event raised when a request is handled within an ApplicationContext.
- *
- * Supported by Spring's own FrameworkServlet (through a specific
- * ServletRequestHandledEvent subclass), but can also be raised by any
- * other web component. Used, for example, by Spring's out-of-the-box
- * PerformanceMonitorListener.
- *
- * @author Rod Johnson
-
- * @since January 17, 2001
+ * Supported by Spring's own FrameworkServlet (through a specific ServletRequestHandledEvent subclass),
+ * but can also be raised by any other web component. Used, for example, by Spring's out-of-the-box PerformanceMonitorListener.
  * @see ServletRequestHandledEvent
  * @see org.springframework.web.servlet.FrameworkServlet
  * @see org.springframework.context.ApplicationContext#publishEvent
@@ -43,13 +36,10 @@ public class RequestHandledEvent extends ApplicationEvent {
 	 * Create a new RequestHandledEvent with session information.
 	 * @param source the component that published the event
 	 * @param sessionId the id of the HTTP session, if any
-	 * @param userName the name of the user that was associated with the
-	 * request, if any (usually the UserPrincipal)
+	 * @param userName the name of the user that was associated with the request, if any (usually the UserPrincipal)
 	 * @param processingTimeMillis the processing time of the request in milliseconds
 	 */
-	public RequestHandledEvent(Object source, @Nullable String sessionId, @Nullable String userName,
-			long processingTimeMillis) {
-
+	public RequestHandledEvent(Object source, @Nullable String sessionId, @Nullable String userName,long processingTimeMillis) {
 		super(source);
 		this.sessionId = sessionId;
 		this.userName = userName;
@@ -60,14 +50,11 @@ public class RequestHandledEvent extends ApplicationEvent {
 	 * Create a new RequestHandledEvent with session information.
 	 * @param source the component that published the event
 	 * @param sessionId the id of the HTTP session, if any
-	 * @param userName the name of the user that was associated with the
-	 * request, if any (usually the UserPrincipal)
+	 * @param userName the name of the user that was associated with the request, if any (usually the UserPrincipal)
 	 * @param processingTimeMillis the processing time of the request in milliseconds
 	 * @param failureCause the cause of failure, if any
 	 */
-	public RequestHandledEvent(Object source, @Nullable String sessionId, @Nullable String userName,
-			long processingTimeMillis, @Nullable Throwable failureCause) {
-
+	public RequestHandledEvent(Object source, @Nullable String sessionId, @Nullable String userName,long processingTimeMillis, @Nullable Throwable failureCause) {
 		this(source, sessionId, userName, processingTimeMillis);
 		this.failureCause = failureCause;
 	}
@@ -89,8 +76,7 @@ public class RequestHandledEvent extends ApplicationEvent {
 	}
 
 	/**
-	 * Return the name of the user that was associated with the request
-	 * (usually the UserPrincipal).
+	 * Return the name of the user that was associated with the request (usually the UserPrincipal).
 	 * @see javax.servlet.http.HttpServletRequest#getUserPrincipal()
 	 */
 	@Nullable
@@ -113,10 +99,8 @@ public class RequestHandledEvent extends ApplicationEvent {
 		return this.failureCause;
 	}
 
-
 	/**
-	 * Return a short description of this event, only involving
-	 * the most important context data.
+	 * Return a short description of this event, only involving the most important context data.
 	 */
 	public String getShortDescription() {
 		StringBuilder sb = new StringBuilder();
@@ -126,8 +110,7 @@ public class RequestHandledEvent extends ApplicationEvent {
 	}
 
 	/**
-	 * Return a full description of this event, involving
-	 * all available context data.
+	 * Return a full description of this event, involving all available context data.
 	 */
 	public String getDescription() {
 		StringBuilder sb = new StringBuilder();
@@ -137,8 +120,7 @@ public class RequestHandledEvent extends ApplicationEvent {
 		sb.append("status=[");
 		if (!wasFailure()) {
 			sb.append("OK");
-		}
-		else {
+		}else {
 			sb.append("failed: ").append(this.failureCause);
 		}
 		sb.append(']');
@@ -149,5 +131,4 @@ public class RequestHandledEvent extends ApplicationEvent {
 	public String toString() {
 		return ("RequestHandledEvent: " + getDescription());
 	}
-
 }
