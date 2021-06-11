@@ -99,6 +99,12 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 
 		pvs = new MutablePropertyValues();
 		pvs.add("order", 0);
+		/**
+		 *  加载 complexviews.properties 文件
+		 * form.(class)=org.springframework.web.servlet.view.InternalResourceView
+		 * form.requestContextAttribute=rc
+		 * form.url=myform.jsp
+		*/
 		pvs.add("basename", "org.springframework.web.servlet.complexviews");
 		registerSingleton("viewResolver", ResourceBundleViewResolver.class, pvs);
 

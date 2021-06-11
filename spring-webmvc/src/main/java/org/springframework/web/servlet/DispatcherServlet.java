@@ -1035,7 +1035,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				// 如果返回的ModelAndView对象中没有指定视图名或视图对象，那么就会根据当前请求的url来生成一个视图名
 				// 如果 controller 未返回 view 名称，这里生成默认的 view 名称
 				applyDefaultViewName(processedRequest, mv);
-				//在controller方法执行后，执行拦截器的相关方法（post） //逆序执行HandlerInterceptor的postHandle方法
+				// 在controller方法执行后，执行拦截器的相关方法（post） //逆序执行HandlerInterceptor的postHandle方法
 				// 在请求处理完成之后，依次调用拦截器的postHandle()方法，对请求进行后置处理
 				// 执行拦截器 preHandle 方法
 				mappedHandler.applyPostHandle(processedRequest, response, mv);
@@ -1047,18 +1047,18 @@ public class DispatcherServlet extends FrameworkServlet {
 				// 将处理请求过程中产生的异常封装到dispatchException中
 				dispatchException = new NestedServletException("Handler dispatch failed", err);
 			}
-			//进行视图解析  //渲染视图填充Model，如果有异常渲染异常页面
+			// 进行视图解析  // 渲染视图填充Model，如果有异常渲染异常页面
 			// 这里主要是请求处理之后生成的视图进行渲染，也包括出现异常之后对异常的处理。
 			// 渲染完之后会依次调用拦截器的afterCompletion()方法来对请求进行最终处理
 			// 解析并渲染视图
 			processDispatchResult(processedRequest, response, mappedHandler, mv, dispatchException);
 		}catch (Exception ex) {
-			//如果有异常按倒序执行所有HandlerInterceptor的afterCompletion方法
+			// 如果有异常按倒序执行所有HandlerInterceptor的afterCompletion方法
 			// 如果在上述过程中任意位置抛出异常，包括渲染视图时抛出异常，那么都会触发拦截器的
 			// afterCompletion()方法的调用
 			triggerAfterCompletion(processedRequest, response, mappedHandler, ex);
 		}catch (Throwable err) {
-			//如果有异常按倒序执行所有HandlerInterceptor的afterCompletion方法
+			// 如果有异常按倒序执行所有HandlerInterceptor的afterCompletion方法
 			triggerAfterCompletion(processedRequest, response, mappedHandler,new NestedServletException("Handler processing failed", err));
 		}finally {
 			// 如果当前异步任务已经开始，则触发异步任务拦截器的afterConcurrentHandlingStarted()方法
@@ -1071,7 +1071,7 @@ public class DispatcherServlet extends FrameworkServlet {
 			}else {
 				// 如果当前是一个文件请求，则清理当前request中的文件数据
 				// Clean up any resources used by a multipart request.
-				//如果请求包含文件类型的数据则进行相关清理工作
+				// 如果请求包含文件类型的数据则进行相关清理工作
 				if (multipartRequestParsed) {
 					cleanupMultipart(processedRequest);
 				}
@@ -1111,7 +1111,6 @@ public class DispatcherServlet extends FrameworkServlet {
 				errorView = (mv != null);
 			}
 		}
-
 		// 如果得到的ModelAndView对象(无论是否为异常处理之后生成的ModelAndView)不为空，并且没有被清理，
 		// 那么就会对其进行渲染，渲染的主要逻辑在render()方法中
 		// Did the handler return a view to render?

@@ -253,5 +253,4 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver impl
 		this.localeCache.clear();
 		this.bundleCache.clear();
 	}
-
 }

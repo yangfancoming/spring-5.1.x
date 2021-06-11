@@ -393,28 +393,24 @@ public interface HttpServletRequest extends ServletRequest {
 
     /**
      * Returns a boolean indicating whether the authenticated user is included
-     * in the specified logical "role".  Roles and role membership can be
-     * defined using deployment descriptors.  If the user has not been
-     * authenticated, the method returns <code>false</code>.
+     * in the specified logical "role".
+	 * Roles and role membership can be defined using deployment descriptors.
+     * If the user has not been authenticated, the method returns <code>false</code>.
      *
      * The role name "*" should never be used as an argument in calling
-     * <code>isUserInRole</code>. Any call to <code>isUserInRole</code> with
-     * "*" must return false.
+     * <code>isUserInRole</code>. Any call to <code>isUserInRole</code> with "*" must return false.
+     *
      * If the role-name of the security-role to be tested is "**", and
      * the application has NOT declared an application security-role with
      * role-name "**", <code>isUserInRole</code> must only return true if
      * the user has been authenticated; that is, only when
      * {@link #getRemoteUser} and {@link #getUserPrincipal} would both return
-     * a non-null value. Otherwise, the container must check
-     * the user for membership in the application role.
+     * a non-null value. Otherwise, the container must check the user for membership in the application role.
      *
-     * @param role		a <code>String</code> specifying the name
-     *				of the role
-     *
+     * @param role		a <code>String</code> specifying the name of the role
      * @return		a <code>boolean</code> indicating whether
      *			the user making this request belongs to a given role;
-     *			<code>false</code> if the user has not been
-     *			authenticated
+     *			<code>false</code> if the user has not been authenticated
      */
     public boolean isUserInRole(String role);
 
@@ -422,11 +418,9 @@ public interface HttpServletRequest extends ServletRequest {
      * Returns a <code>java.security.Principal</code> object containing
      * the name of the current authenticated user. If the user has not been
      * authenticated, the method returns <code>null</code>.
-     *
      * @return		a <code>java.security.Principal</code> containing
      *			the name of the user making this request;
-     *			<code>null</code> if the user has not been
-     *			authenticated
+     *			<code>null</code> if the user has not been authenticated
      */
     public java.security.Principal getUserPrincipal();
 

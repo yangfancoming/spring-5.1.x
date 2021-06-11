@@ -12,10 +12,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.DummyEnvironment;
 import org.springframework.http.HttpHeaders;
-import org.springframework.mock.web.test.MockHttpServletRequest;
-import org.springframework.mock.web.test.MockHttpServletResponse;
-import org.springframework.mock.web.test.MockServletConfig;
-import org.springframework.mock.web.test.MockServletContext;
+import org.springframework.mock.web.test.*;
 import org.springframework.tests.sample.beans.TestBean;
 import org.springframework.web.context.*;
 import org.springframework.web.context.support.StandardServletEnvironment;
@@ -25,6 +22,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping;
+import org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor;
 import org.springframework.web.servlet.mvc.Controller;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.util.WebUtils;
@@ -127,6 +125,11 @@ public class DispatcherServletTests {
 		assertEquals(0, listener.counter);
 	}
 
+	/**
+	 * @see MockRequestDispatcher#forward(javax.servlet.ServletRequest, javax.servlet.ServletResponse)
+	 * @see UserRoleAuthorizationInterceptor#preHandle(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.lang.Object)
+	 * @see org.springframework.mock.web.MockHttpServletRequest#getRequestDispatcher(java.lang.String)
+	*/
 	@Test
 	public void parameterizableViewController() throws Exception {
 		MockHttpServletRequest request = new MockHttpServletRequest(getServletContext(), "GET", "/view.do");

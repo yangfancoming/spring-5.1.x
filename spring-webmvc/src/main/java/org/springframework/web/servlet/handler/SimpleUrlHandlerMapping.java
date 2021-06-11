@@ -114,5 +114,4 @@ public class SimpleUrlHandlerMapping extends AbstractUrlHandlerMapping {
 			}
 		}
 	}
-
 }
