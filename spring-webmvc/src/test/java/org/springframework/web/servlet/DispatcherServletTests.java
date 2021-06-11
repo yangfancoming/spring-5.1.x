@@ -87,6 +87,11 @@ public class DispatcherServletTests {
 		complexDispatcherServlet.destroy();
 	}
 
+	/**
+	 * 测试无效请求 (请求路径未能得到匹配)
+	 * @see DispatcherServlet#doDispatch(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 * @see DispatcherServlet#getHandler(javax.servlet.http.HttpServletRequest)
+	*/
 	@Test
 	public void invalidRequest() throws Exception {
 		MockHttpServletRequest request = new MockHttpServletRequest(getServletContext(), "GET", "/invalid.do");
@@ -179,9 +184,7 @@ public class DispatcherServletTests {
 		request.addPreferredLocale(Locale.CANADA);
 		request.addUserRole("role1");
 		MockHttpServletResponse response = new MockHttpServletResponse();
-		ComplexWebApplicationContext.MockMultipartResolver multipartResolver =
-				(ComplexWebApplicationContext.MockMultipartResolver) complexDispatcherServlet.getWebApplicationContext()
-						.getBean("multipartResolver");
+		ComplexWebApplicationContext.MockMultipartResolver multipartResolver = (ComplexWebApplicationContext.MockMultipartResolver) complexDispatcherServlet.getWebApplicationContext().getBean("multipartResolver");
 		MultipartHttpServletRequest multipartRequest = multipartResolver.resolveMultipart(request);
 		complexDispatcherServlet.service(multipartRequest, response);
 		multipartResolver.cleanupMultipart(multipartRequest);
@@ -195,8 +198,7 @@ public class DispatcherServletTests {
 		request.addPreferredLocale(Locale.CANADA);
 		request.addUserRole("role1");
 		MockHttpServletResponse response = new MockHttpServletResponse();
-		ComplexWebApplicationContext.MockMultipartResolver multipartResolver =
-				(ComplexWebApplicationContext.MockMultipartResolver) complexDispatcherServlet.getWebApplicationContext().getBean("multipartResolver");
+		ComplexWebApplicationContext.MockMultipartResolver multipartResolver = (ComplexWebApplicationContext.MockMultipartResolver) complexDispatcherServlet.getWebApplicationContext().getBean("multipartResolver");
 		MultipartHttpServletRequest multipartRequest = multipartResolver.resolveMultipart(request);
 		complexDispatcherServlet.service(new HttpServletRequestWrapper(multipartRequest), response);
 		multipartResolver.cleanupMultipart(multipartRequest);
@@ -245,8 +247,7 @@ public class DispatcherServletTests {
 			complexDispatcherServlet.service(request, response);
 			assertEquals(200, response.getStatus());
 			assertTrue("forwarded to failed", "failed1.jsp".equals(response.getForwardedUrl()));
-		}
-		catch (ServletException ex) {
+		}catch (ServletException ex) {
 			fail("Should not have thrown ServletException: " + ex.getMessage());
 		}
 	}

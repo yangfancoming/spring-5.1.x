@@ -860,7 +860,6 @@ public class DispatcherServlet extends FrameworkServlet {
 				}
 			}
 		}
-
 		// Make framework objects available to handlers and view objects.
 		// 把环境上下文设置到请求域中
 		// 这里分别将ApplicationContext，LoacleResolver，ThemeResolver和ThemeSource等bean添加到当前request中
@@ -868,8 +867,7 @@ public class DispatcherServlet extends FrameworkServlet {
 		request.setAttribute(LOCALE_RESOLVER_ATTRIBUTE, localeResolver);
 		request.setAttribute(THEME_RESOLVER_ATTRIBUTE, themeResolver);
 		request.setAttribute(THEME_SOURCE_ATTRIBUTE, getThemeSource());
-		// 这里FlashMapManager主要的作用在于当请求如果是重定向的请求，那么可以将一些属性保存在FlashMap
-		// 中，然后通过FlashMapManager进行管理，从而在重定向之后能够获取到重定向之前所保存的请求
+		// 这里FlashMapManager主要的作用在于当请求如果是重定向的请求，那么可以将一些属性保存在FlashMap中，然后通过FlashMapManager进行管理，从而在重定向之后能够获取到重定向之前所保存的请求
 		if (flashMapManager != null) {
 			// 在当前请求中获取FlashMap数据，如果不是重定向之后的请求，那么这里获取到的就是空值
 			FlashMap inputFlashMap = flashMapManager.retrieveAndUpdate(request, response);
@@ -902,12 +900,10 @@ public class DispatcherServlet extends FrameworkServlet {
 			}else {
 				params = (request.getParameterMap().isEmpty() ? "" : "masked");
 			}
-
 			String queryString = request.getQueryString();
 			String queryClause = (StringUtils.hasLength(queryString) ? "?" + queryString : "");
 			String dispatchType = (!request.getDispatcherType().equals(DispatcherType.REQUEST) ? "\"" + request.getDispatcherType().name() + "\" dispatch for " : "");
 			String message = (dispatchType + request.getMethod() + " \"" + getRequestUri(request) + queryClause + "\", parameters={" + params + "}");
-
 			if (traceOn) {
 				List<String> values = Collections.list(request.getHeaderNames());
 				String headers = values.size() > 0 ? "masked" : "";
@@ -938,11 +934,11 @@ public class DispatcherServlet extends FrameworkServlet {
 	 * 处理返回结果
 	 */
 	protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//用户的request请求
+		// 用户的request请求
 		HttpServletRequest processedRequest = request;
-		//注意这里放回的是HandlerExecutionChain对象
+		// 注意这里返回的是HandlerExecutionChain对象
 		HandlerExecutionChain mappedHandler = null;
-		//判断是否解析了文件类型的数据，如果有最终需要清理
+		// 判断是否解析了文件类型的数据，如果有最终需要清理
 		boolean multipartRequestParsed = false;
 		// 获取当前的异步任务管理器
 		WebAsyncManager asyncManager = WebAsyncUtils.getAsyncManager(request);
@@ -962,9 +958,8 @@ public class DispatcherServlet extends FrameworkServlet {
 				multipartRequestParsed = (processedRequest != request);
 
 				// 这里getHandler()方法就是通过遍历当前Spring容器中所有定义的HandlerMapping对象，
-				// 通过调用它们的getHandler()方法，看当前的HandlerMapping能否将当前request映射
-				// 到某个handler，也就是某个Controller方法上，如果能够映射到，则说明该handler能够
-				// 处理当前请求
+				// 通过调用它们的getHandler()方法，看当前的HandlerMapping能否将当前request映射到某个handler，
+				// 也就是某个Controller方法上，如果能够映射到，则说明该handler能够处理当前请求
 
 				// Determine handler for the current request. 确定当前请求的处理程序 返回对应 controller 和 拦截器 // 解析请求，获取HandlerExecutionChain对象
 				//向HandlerMapping请求查找HandlerExecutionChain

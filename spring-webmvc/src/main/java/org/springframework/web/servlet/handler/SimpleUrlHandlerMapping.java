@@ -41,8 +41,8 @@ public class SimpleUrlHandlerMapping extends AbstractUrlHandlerMapping {
 	/**
 	 * Map URL paths to handler bean names.
 	 * This is the typical way of configuring this HandlerMapping.
-	 * Supports direct URL matches and Ant-style pattern matches. For syntax
-	 * details, see the {@link org.springframework.util.AntPathMatcher} javadoc.
+	 * Supports direct URL matches and Ant-style pattern matches.
+	 * For syntax details, see the {@link org.springframework.util.AntPathMatcher} javadoc.
 	 * @param mappings properties with URLs as keys and bean names as values
 	 * @see #setUrlMap
 	 */
@@ -51,10 +51,10 @@ public class SimpleUrlHandlerMapping extends AbstractUrlHandlerMapping {
 	}
 
 	/**
-	 * Set a Map with URL paths as keys and handler beans (or handler bean names)
-	 * as values. Convenient for population with bean references.
-	 * Supports direct URL matches and Ant-style pattern matches. For syntax
-	 * details, see the {@link org.springframework.util.AntPathMatcher} javadoc.
+	 * Set a Map with URL paths as keys and handler beans (or handler bean names) as values.
+	 * Convenient for population with bean references.
+	 * Supports direct URL matches and Ant-style pattern matches.
+	 * For syntax details, see the {@link org.springframework.util.AntPathMatcher} javadoc.
 	 * @param urlMap map with URLs as keys and beans as values
 	 * @see #setMappings
 	 */

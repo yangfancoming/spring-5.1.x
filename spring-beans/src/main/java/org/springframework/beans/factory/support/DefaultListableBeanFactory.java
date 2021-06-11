@@ -795,7 +795,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				// 将beanDefinition信息维护至缓存
 				// beanDefinitionMap-->(key->beanName,value->beanDefinition)
 				// Still in startup registration phase
-				logger.warn("【IOC容器中 添加BeanDefinition 内存态 beanDefinitionMap   --- 新建方式(未创建)】 beanName： " + beanName + "value：" + beanDefinition.getBeanClassName());
+				logger.warn("【IOC容器中 添加BeanDefinition 内存态 beanDefinitionMap   --- 新建方式(未创建)】 beanName： " + beanName + "	value：" + beanDefinition.getBeanClassName());
 				beanDefinitionMap.put(beanName, beanDefinition);
 				// beanDefinitionNames-->维护了beanName集合
 				logger.warn("【IOC容器中 添加BeanDefinition 内存态 beanDefinitionNames ---  beanName： " + beanName);

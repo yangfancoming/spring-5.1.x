@@ -50,8 +50,7 @@ final class TestDispatcherServlet extends DispatcherServlet {
 			MockAsyncContext asyncContext;
 			if (request.getAsyncContext() instanceof MockAsyncContext) {
 				asyncContext = (MockAsyncContext) request.getAsyncContext();
-			}
-			else {
+			}else {
 				MockHttpServletRequest mockRequest = WebUtils.getNativeRequest(request, MockHttpServletRequest.class);
 				Assert.notNull(mockRequest, "Expected MockHttpServletRequest");
 				asyncContext = (MockAsyncContext) mockRequest.getAsyncContext();

@@ -142,7 +142,6 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 
 		addMessage("test", Locale.ENGLISH, "test message");
 		addMessage("test", Locale.CANADA, "Canadian & test message");
-
 		super.refresh();
 	}
 
@@ -160,7 +159,6 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 
 
 	public static class BodyController implements Controller {
-
 		@Override
 		public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
 			response.getOutputStream().write("body".getBytes());
@@ -170,7 +168,6 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 
 
 	public static class NoViewController implements Controller {
-
 		@Override
 		public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)  {
 			return new ModelAndView();
@@ -230,9 +227,7 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 		}
 
 		@Override
-		public ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object delegate)
-				throws ServletException, IllegalAccessException {
-
+		public ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object delegate) throws ServletException, IllegalAccessException {
 			((MyHandler) delegate).doSomething(request);
 			return null;
 		}
@@ -252,8 +247,7 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 		}
 
 		@Override
-		public ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object delegate)
-			throws IOException, ServletException {
+		public ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object delegate) throws IOException, ServletException {
 			throw new ServletException("dummy");
 		}
 
@@ -483,5 +477,4 @@ public class ComplexWebApplicationContext extends StaticWebApplicationContext {
 			}
 		}
 	}
-
 }

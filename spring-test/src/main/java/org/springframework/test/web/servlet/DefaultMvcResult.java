@@ -17,15 +17,11 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 
 /**
  * A simple implementation of {@link MvcResult} with setters.
- *
- *
- * @author Rob Winch
  * @since 3.2
  */
 class DefaultMvcResult implements MvcResult {
 
 	private static final Object RESULT_NONE = new Object();
-
 
 	private final MockHttpServletRequest mockRequest;
 
@@ -48,7 +44,6 @@ class DefaultMvcResult implements MvcResult {
 	@Nullable
 	private CountDownLatch asyncDispatchLatch;
 
-
 	/**
 	 * Create a new instance with the given request and response.
 	 */
@@ -56,7 +51,6 @@ class DefaultMvcResult implements MvcResult {
 		this.mockRequest = request;
 		this.mockResponse = response;
 	}
-
 
 	@Override
 	public MockHttpServletRequest getRequest() {
@@ -129,8 +123,7 @@ class DefaultMvcResult implements MvcResult {
 			timeToWait = requestTimeout == -1 ? Long.MAX_VALUE : requestTimeout;
 		}
 		if (!awaitAsyncDispatch(timeToWait)) {
-			throw new IllegalStateException("Async result for handler [" + this.handler + "]" +
-					" was not set during the specified timeToWait=" + timeToWait);
+			throw new IllegalStateException("Async result for handler [" + this.handler + "]" + " was not set during the specified timeToWait=" + timeToWait);
 		}
 		Object result = this.asyncResult.get();
 		Assert.state(result != RESULT_NONE, () -> "Async result for handler [" + this.handler + "] was not set");
@@ -141,12 +134,10 @@ class DefaultMvcResult implements MvcResult {
 	 * True if the latch count reached 0 within the specified timeout.
 	 */
 	private boolean awaitAsyncDispatch(long timeout) {
-		Assert.state(this.asyncDispatchLatch != null,
-				"The asyncDispatch CountDownLatch was not set by the TestDispatcherServlet.");
+		Assert.state(this.asyncDispatchLatch != null,"The asyncDispatch CountDownLatch was not set by the TestDispatcherServlet.");
 		try {
 			return this.asyncDispatchLatch.await(timeout, TimeUnit.MILLISECONDS);
-		}
-		catch (InterruptedException ex) {
+		}catch (InterruptedException ex) {
 			return false;
 		}
 	}
@@ -154,5 +145,4 @@ class DefaultMvcResult implements MvcResult {
 	void setAsyncDispatchLatch(CountDownLatch asyncDispatchLatch) {
 		this.asyncDispatchLatch = asyncDispatchLatch;
 	}
-
 }

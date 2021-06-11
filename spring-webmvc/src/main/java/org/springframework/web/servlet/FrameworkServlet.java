@@ -545,8 +545,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 						// 将 Spring 的容器设为 SpringMVC 容器的父容器
 						cwac.setParent(rootContext);
 					}
-					// 初始化当前WebApplicationContext
-					// 配置并刷新容器
+					// 初始化当前WebApplicationContext，配置并刷新容器
 					configureAndRefreshWebApplicationContext(cwac);
 				}
 			}
