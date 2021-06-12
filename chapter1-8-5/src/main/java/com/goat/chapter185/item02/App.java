@@ -8,7 +8,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 
 /**
  * Created by 64274 on 2019/8/17.
- * @ Description: TODO
+ * @ Description: doit  多个 BeanPostProcessor 的执行顺序？？？
  * @ author  山羊来了
  * @ date 2019/8/17---20:40
  * @see BeanPostProcessor#postProcessBeforeInitialization(java.lang.Object, java.lang.String)

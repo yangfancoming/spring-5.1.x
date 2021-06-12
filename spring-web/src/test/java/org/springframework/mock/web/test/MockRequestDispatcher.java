@@ -25,8 +25,7 @@ public class MockRequestDispatcher implements RequestDispatcher {
 
 	/**
 	 * Create a new MockRequestDispatcher for the given resource.
-	 * @param resource the server resource to dispatch to, located at a
-	 * particular path or given by a particular name
+	 * @param resource the server resource to dispatch to, located at a particular path or given by a particular name
 	 */
 	public MockRequestDispatcher(String resource) {
 		Assert.notNull(resource, "Resource must not be null");
@@ -56,8 +55,7 @@ public class MockRequestDispatcher implements RequestDispatcher {
 	}
 
 	/**
-	 * Obtain the underlying {@link MockHttpServletResponse}, unwrapping
-	 * {@link HttpServletResponseWrapper} decorators if necessary.
+	 * Obtain the underlying {@link MockHttpServletResponse}, unwrapping {@link HttpServletResponseWrapper} decorators if necessary.
 	 */
 	protected MockHttpServletResponse getMockHttpServletResponse(ServletResponse response) {
 		if (response instanceof MockHttpServletResponse) {
@@ -68,5 +66,4 @@ public class MockRequestDispatcher implements RequestDispatcher {
 		}
 		throw new IllegalArgumentException("MockRequestDispatcher requires MockHttpServletResponse");
 	}
-
 }

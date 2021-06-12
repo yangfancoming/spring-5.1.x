@@ -13,8 +13,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 public class BeanPostProcessorTest implements BeanPostProcessor {
 
 	public BeanPostProcessorTest() {
-		super();
-		System.out.println("这是 BeanPostProcessor 实现类构造器！！");
+		System.out.println("这是 BeanPostProcessorTest 无参构造函数！！");
 	}
 
 	@Override

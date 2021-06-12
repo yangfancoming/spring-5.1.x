@@ -31,16 +31,12 @@ public class MyBeanFactoryPostProcessorOne implements BeanFactoryPostProcessor, 
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
 		System.out.println("BeanFactoryPostProcessor第" + getOrder() + "次被调动");
 		BeanDefinition bd = beanFactory.getBeanDefinition("dog");
-		if (null != bd) {
-			System.out.println("dog属性值:" + bd.getPropertyValues().toString());
-			MutablePropertyValues pv = bd.getPropertyValues();
-			if (pv.contains("name")) {
-				System.out.println("修改dog的name属性值为强强");
-				pv.addPropertyValue("name", "强强");
-			}
-			System.out.println("修改dog的作用域为prototype\n");
-			bd.setScope(BeanDefinition.SCOPE_PROTOTYPE);
-		}
+		System.out.println("dog属性值:" + bd.getPropertyValues().toString());
+		MutablePropertyValues pv = bd.getPropertyValues();
+		System.out.println("修改dog的name属性值为强强");
+		pv.addPropertyValue("name", "强强");
+		System.out.println("修改dog的作用域为prototype\n");
+		bd.setScope(BeanDefinition.SCOPE_PROTOTYPE);
 	}
 
 	@Override

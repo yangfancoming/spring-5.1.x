@@ -39,6 +39,7 @@
         
 # item06  AutowireCapableBeanFactory  接口
 # item07  InstantiationStrategy  接口
+# item08  生命周期比喻
      
         
         
