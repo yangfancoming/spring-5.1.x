@@ -1264,7 +1264,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		 * 另外，Spring 并不建议大家直接实现InstantiationAwareBeanPostProcessor 接口，如果想实现这种类型的后置处理器，更建议通过继承 InstantiationAwareBeanPostProcessorAdapter 抽象类实现自定义后置处理器。
 		 */
 		// 因为已经实例化了，对象已经创建了，所以这里立马执行了InstantiationAwareBeanPostProcessor#postProcessAfterInstantiation方法
-		// 单反只有其中一个返回了false，相当于告诉容器我都处理好了，那么后面的赋值操作就Spring容器就不再处理了
+		// 但凡只有其中一个返回了false，相当于告诉容器我都处理好了，那么后面的赋值操作就Spring容器就不再处理了
 		if (!mbd.isSynthetic() && hasInstantiationAwareBeanPostProcessors()) {
 			for (BeanPostProcessor bp : getBeanPostProcessors()) {
 				if (bp instanceof InstantiationAwareBeanPostProcessor) {
@@ -1306,6 +1306,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			}
 			pvs = newPvs;
 		}
+		// 下面的代码是判断是否需要执行postProcessPropertyValues；改变bean的属性
 		boolean hasInstAwareBpps = hasInstantiationAwareBeanPostProcessors();
 		boolean needsDepCheck = (mbd.getDependencyCheck() != AbstractBeanDefinition.DEPENDENCY_CHECK_NONE);
 		PropertyDescriptor[] filteredPds = null;
@@ -1332,10 +1333,12 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			if (filteredPds == null) filteredPds = filterPropertyDescriptorsForDependencyCheck(bw, mbd.allowCaching);
 			checkDependencies(beanName, mbd, filteredPds, pvs);
 		}
-		//applyPropertyValues和PropertyValues密切相关，在后面相关专题在详细讲解  会回到这里的，持续关注~
+		// applyPropertyValues和PropertyValues密切相关，在后面相关专题在详细讲解  会回到这里的，持续关注~
 		// 作用：Apply the given property values, resolving any runtime references
 		if (pvs != null) {
 			// 应用属性值到 bean 对象中
+			// 这里才是正在讲 属性值  真正的设置的我们的实例对象里面；之前postProcessPropertyValues这个还只是单纯的改变PropertyValues
+			// 最后还是要通过PropertyValues 设置属性到实例对象里面的
 			applyPropertyValues(beanName, mbd, bw, pvs);
 		}
 	}

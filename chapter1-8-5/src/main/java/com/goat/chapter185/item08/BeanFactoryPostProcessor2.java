@@ -22,6 +22,7 @@ public class BeanFactoryPostProcessor2 implements BeanFactoryPostProcessor, Orde
 		BeanDefinition bd = beanFactory.getBeanDefinition("normal baby");
 		MutablePropertyValues pv = bd.getPropertyValues();
 		pv.addPropertyValue("name", "酒酒");
+		pv.addPropertyValue("age", 0);
 		bd.setScope(BeanDefinition.SCOPE_SINGLETON);
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@	BeanFactoryPostProcessor2..."  +  "改名为 酒酒");
 	}
