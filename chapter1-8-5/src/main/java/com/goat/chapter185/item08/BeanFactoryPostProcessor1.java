@@ -24,7 +24,7 @@ public class BeanFactoryPostProcessor1 implements BeanFactoryPostProcessor, Orde
 		pv.addPropertyValue("name", "明明");
 		pv.addPropertyValue("age", 0);
 		bd.setScope(BeanDefinition.SCOPE_SINGLETON);
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@	BeanFactoryPostProcessor1..."  +  "改名为 明明");
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@	BeanFactoryPostProcessor1... normal baby"  +  "改名为 明明");
 	}
 
 	@Override

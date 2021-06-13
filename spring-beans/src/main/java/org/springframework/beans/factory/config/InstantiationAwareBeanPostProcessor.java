@@ -101,6 +101,11 @@ public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
 	}
 
 	/**
+	 * 主要是后缀处理通过注解注入属性的
+	 * InstantiationAwareBeanPostProcessor # postProcessProperties 方法被实现的了也比较多， 这里主要讲两个 ：
+	 * CommonAnnotationBeanPostProcessor ： 主要 注册带有 @Resource 注解的 属性
+	 * AutowiredAnnotationBeanPostProcessor ： 主要解决 带有 @Autowired，@Value，@Lookup，@Inject 注解的属性
+	 *
 	 * postProcessPropertyValues方法对属性值进行修改(这个时候属性值还未被设置，但是我们可以修改原本该设置进去的属性值)。
 	 * 如果postProcessAfterInstantiation方法返回false，该方法可能不会被调用。可以在该方法内对属性值进行修改
 	 *

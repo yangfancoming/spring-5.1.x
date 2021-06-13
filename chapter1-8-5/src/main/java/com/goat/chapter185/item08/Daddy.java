@@ -9,11 +9,30 @@ package com.goat.chapter185.item08;
  */
 public class Daddy {
 
+	private String name;
+	private Integer age;
+
 	public Daddy() {
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@ Daddy 无参构造函数 执行");
 	}
 
 	public void dosomething() {
-		System.out.print("@@@@@@@@@@@@@@@@@@@@@@@ Daddy 执行了dosomething.......\n");
+		System.out.print("@@@@@@@@@@@@@@@@@@@@@@@ Daddy 执行了dosomething.......\n" + name + age);
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
 	}
 }
