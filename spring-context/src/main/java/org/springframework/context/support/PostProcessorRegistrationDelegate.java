@@ -114,6 +114,7 @@ final class PostProcessorRegistrationDelegate {
 
 		// Do not initialize FactoryBeans here: We need to leave all regular beans uninitialized to let the bean factory post-processors apply to them!
 		// 执行完成  BeanDefinitionRegistryPostProcessor 后 再执行 BeanFactoryPostProcessor的方法
+		// 根据：BeanFactoryPostProcessor类型，从所有bean定义中获取类名，因为bean定义已经扫描过了，所以这里能够拿到
 		String[] postProcessorNames = beanFactory.getBeanNamesForType(BeanFactoryPostProcessor.class, true, false);
 		// Separate between BeanFactoryPostProcessors that implement PriorityOrdered, Ordered, and the rest.
 		List<BeanFactoryPostProcessor> priorityOrderedPostProcessors = new ArrayList<>();
@@ -121,13 +122,17 @@ final class PostProcessorRegistrationDelegate {
 		List<String> nonOrderedPostProcessorNames = new ArrayList<>();
 		// 原理和 BeanDefinitionRegistryPostProcessor 一样 都是判断是否实现了PriorityOrdered和Ordered这两个接口
 		for (String ppName : postProcessorNames) {
+			// 如果已经存在了，那么这里没有做任何事情，就不添加进去额
 			if (processedBeans.contains(ppName)) {
-				// skip - already processed in first phase above
+				// skip - already processed in first phase above // 跳过——已经在上面的第一阶段处理
 			}else if (beanFactory.isTypeMatch(ppName, PriorityOrdered.class)) {
+				// 如果存在PriorityOrdered，它的优先级是最高的
 				priorityOrderedPostProcessors.add(beanFactory.getBean(ppName, BeanFactoryPostProcessor.class));
 			}else if (beanFactory.isTypeMatch(ppName, Ordered.class)) {
+				// 如果指定了顺序的
 				orderedPostProcessorNames.add(ppName);
 			}else {
+				// 如果没有指定顺序的
 				nonOrderedPostProcessorNames.add(ppName);
 			}
 		}

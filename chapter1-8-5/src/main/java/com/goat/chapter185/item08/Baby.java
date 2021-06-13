@@ -30,7 +30,7 @@ public class Baby implements BeanNameAware , BeanFactoryAware, ApplicationContex
 	// 实现 BeanNameAware 接口 ，来获取当前bean在容器中的名称
 	@Override
 	public void setBeanName(String name) {
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@ BeanNameAware 接口的setBeanName 拿到beanName"+name);
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@ BeanNameAware 接口的setBeanName 拿到beanName	"+name);
 	}
 
 	// 实现 BeanFactoryAware 接口 ，这里可以拿到 spring 容器！

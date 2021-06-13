@@ -17,4 +17,9 @@ public class Config {
 		return new Baby();
 	}
 
+	@Bean
+	public Daddy daddy(){
+		return new Daddy();
+	}
+
 }

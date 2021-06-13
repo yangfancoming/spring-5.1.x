@@ -359,9 +359,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		for (BeanPostProcessor processor : beanPostProcessors) {
 			// bean 初始化后置处理
 			Object current = processor.postProcessAfterInitialization(result, beanName);
-			if (current == null) {
-				return result;
-			}
+			// 如果返回null；后面的所有 后置处理器的方法就不执行，直接返回(所以执行顺序很重要)
+			if (current == null) return result;
 			result = current;
 		}
 		return result;
@@ -960,6 +959,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	}
 
 	/**
+	 * 有则调用的是InstantiationAwareBeanPostProcessor的postProcessBeforeInstantiation()实例化前置处理方法，
+	 * 也就是在Bean没有生成之前执行。（注意：这里所说的是Bean未生成指的是Bean没有走spring定义创建Bean的流程，也就是doCreateBean()方法。）
+	 * 如果postProcessBeforeInstantiation()返回的对象不为空, 那么对象的生成阶段直接完成了
+	 * 会接着调用postProcessAfterInitialization() 处理这个对象. 如果为空则走流水线doCreateBean()创建对象, 对象初始化.
 	 * Apply before-instantiation post-processors, resolving whether there is a before-instantiation shortcut for the specified bean.
 	 * @param beanName the name of the bean
 	 * @param mbd the bean definition for the bean
@@ -978,6 +981,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 					bean = applyBeanPostProcessorsBeforeInstantiation(targetType, beanName);
 					if (bean != null) {
 						// 应用后置处理 // 调用after方法实现用户自定义的依赖注入和自动装配方法
+						// 直接执行自定义初始化完成后的方法,跳过了其他几个方法
 						bean = applyBeanPostProcessorsAfterInitialization(bean, beanName);
 					}
 				}
@@ -1004,7 +1008,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			// InstantiationAwareBeanPostProcessor 一般在 Spring 框架内部使用，不建议用户直接使用
 			if (bp instanceof InstantiationAwareBeanPostProcessor) {
 				InstantiationAwareBeanPostProcessor ibp = (InstantiationAwareBeanPostProcessor) bp;
-				// bean 初始化前置处理
+				// bean 初始化前置处理 // 只要有一个result不为null；后面的所有 后置处理器的方法就不执行了，直接返回(所以执行顺序很重要)
 				Object result = ibp.postProcessBeforeInstantiation(beanClass, beanName);
 				if (result != null) return result;
 			}
@@ -1693,9 +1697,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		if (mbd == null || !mbd.isSynthetic()) {
 			wrappedBean = applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName);
 		}
-		try { // ① 执行初始化方法  总结的四种方法  参考 MyBeanPostProcessor 对应 @Bean(initMethod = "init", destroyMethod = "destroy") 中的 init 方法
+		try {
 			/*
-			 * 调用初始化方法：
+			 *  ① 调用初始化方法： 总结的四种方法  参考 MyBeanPostProcessor 对应 @Bean(initMethod = "init", destroyMethod = "destroy") 中的 init 方法
 			 * 1. 若 bean 实现了 InitializingBean 接口，则调用 afterPropertiesSet 方法
 			 * 2. 若用户配置了 bean 的 init-method 属性，则调用用户在配置中指定的方法
 			 */

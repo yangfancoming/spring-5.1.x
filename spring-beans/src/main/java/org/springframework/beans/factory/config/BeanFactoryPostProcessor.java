@@ -5,8 +5,20 @@ package org.springframework.beans.factory.config;
 import org.springframework.beans.BeansException;
 
 /**
+ * 允许自定义修改应用程序上下文的bean定义，修改上下文底层bean工厂的bean属性值。
+ * 对于覆盖在应用程序上下文中配置的bean属性的针对系统管理员的自定义配置文件非常有用。
+ * 请参阅{@link PropertyResourceConfigurer}及其具体实现，以了解解决这种配置需求的开箱即用解决方案。
+ * 一个{@code BeanFactoryPostProcessor}可以与bean定义交互并修改bean定义，但从不与bean实例交互。
+ * 这样做可能会导致过早的bean实例化，破坏容器并导致意外的副作用。
+ * 这里说可以与bean的定义进行交互，但是不要和bean的实例进行交互，如果要和bean的实例进行交互，建议使用BeanPostProcessor扩展点
+ *
+ * 排序：
+ * 1、自定检测到的bean会按照ordered和PriorityOrdered进行排序，order数字越大，优先级越低。
+ * 2、对于编程的方式注册的后置处理器，他会按照注册的顺序进行排序,
+ * 如果实现了order接口，也会被忽略：底层是一个list，编程的方式就是add
+
  * Allows for custom modification of an application context's bean definitions,adapting the bean property values of the context's underlying bean factory.
- * Application contexts can auto-detect BeanFactoryPostProcessor beans in  their bean definitions and apply them before any other beans get created.
+ * Application contexts can auto-detect BeanFactoryPostProcessor beans in their bean definitions and apply them before any other beans get created.
  * Useful for custom config files targeted at system administrators that override bean properties configured in the application context.
  * See PropertyResourceConfigurer and its concrete implementations for out-of-the-box solutions that address such configuration needs.
  *
@@ -25,6 +37,11 @@ import org.springframework.beans.BeansException;
 public interface BeanFactoryPostProcessor {
 
 	/**
+	 * 在标准初始化之后修改应用程序上下文的内部bean工厂。
+	 * 所有bean定义都已加载，但还没有实例化bean。这允许覆盖或添加属性，甚至可以在快速初始化bean中。
+	 * 此后置处理器所在的阶段为bean定义获取之后，bean实例化之前，这里可以对其bean工厂进行改造，
+	 * 方法：{@link ConfigurableListableBeanFactory#getBeanDefinition(java.lang.String)}
+	 *
 	 * Modify the application context's internal bean factory after its standard initialization.
 	 * 在应用程序上下文的标准初始化之后修改其内部bean工厂
 	 * All bean definitions will have been loaded, but no beans  will have been instantiated yet.

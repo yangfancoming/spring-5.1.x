@@ -1,17 +1,12 @@
-
-
 package org.springframework.core;
 
 /**
  * {@code Ordered} is an interface that can be implemented by objects that should be <em>orderable</em>, for example in a {@code Collection}.
- *
  * The actual {@link #getOrder() order} can be interpreted as prioritization,
  * with the first object (with the lowest order value) having the highest priority.
- *
  * Note that there is also a <em>priority</em> marker for this interface:
  * {@link PriorityOrdered}. Order values expressed by {@code PriorityOrdered}
  * objects always apply before same order values expressed by <em>plain</em> {@link Ordered} objects.
- *
  * Consult the Javadoc for {@link OrderComparator} for details on the sort semantics for non-ordered objects.
  * @since 07.04.2003
  * @see PriorityOrdered
@@ -43,5 +38,4 @@ public interface Ordered {
 	 * @see #LOWEST_PRECEDENCE
 	 */
 	int getOrder();
-
 }

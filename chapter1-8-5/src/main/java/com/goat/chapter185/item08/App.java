@@ -22,5 +22,8 @@ public class App {
 
 		Baby baby = ac.getBean(Baby.class);
 		baby.hello();
+
+		Daddy daddy = ac.getBean(Daddy.class);
+		daddy.dosomething();
 	}
 }
