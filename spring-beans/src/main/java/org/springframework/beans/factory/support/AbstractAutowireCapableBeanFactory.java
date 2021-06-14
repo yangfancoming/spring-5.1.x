@@ -1042,9 +1042,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			// 通过“工厂方法”的方式构建 bean 对象
 			return obtainFromSupplier(instanceSupplier, beanName);
 		}
-		// 通过工厂方法创建 支持工厂方法方式创建Bean
+		// 通过工厂方法创建Bean ， 另外@Bean注解的方法也走这里
 		// 旧版本的Spring可以通过xml配置 <bean id='A' class='xxx' factory-method='getA'>从而获得静态的工厂方法获得bean A
-		// 另外@Bean注解的方法也走这里
 		if (mbd.getFactoryMethodName() != null) {
 			return instantiateUsingFactoryMethod(beanName, mbd, args);
 		}
@@ -1058,7 +1057,6 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// 在使用构造器创建实例后，Spring会将解析过后确定下来的构造器或工厂方法保存在缓存中，避免再次创建相同bean时再次解析
 		// 如果之前已经解析过，就不用再去解析一遍了。RootBeanDefinition.resolvedConstructorOrFactoryMethod专门用来缓存构造函数，constructorArgumentsResolved用来存放构造是有参还是无参。
 		// 有参走autowireConstructor，无参走instantiateBean
-
 		boolean resolved = false;
 		boolean autowireNecessary = false;
 		if (args == null) {
@@ -1079,12 +1077,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				return instantiateBean(beanName, mbd);
 			}
 		}
-		// 由后置处理器决定返回哪些构造方法，这里不深入分析了
-		// Candidate constructors for autowiring? 候选者 构造函数 提供自动注入功能
-		// Need to determine the constructor...
+		// Candidate constructors for autowiring?    Need to determine the constructor...
 		// 执行BeanPostProcesso#determineCandidateConstructors 自己去决定使用哪个构造器，可能会返回一批构造器哟
-		// 这里我们很熟悉的`AutowiredAnnotationBeanPostProcessor`就实现了这个方法，可以智能去找出一个合适的构造器.
-		// 这里需要注意了，因为我们的Child的属性HelloService里并没有书写@Autowired属性，所以这里最终的返回结果是null================这个需要注意Spring的处理(空构造就不用交给autowireConstructor处理了，自己直接new吧)
+		// 这里需要注意了，因为我们的Child的属性HelloService里并没有书写@Autowired属性，所以这里最终的返回结果是null
 		// 需要注意的是：若我们自己写了一个构造    public Child(HelloService helloService) {  this.helloService = helloService; } 那么它就会拿到，然后走下面让Spring执行构造器的注入的
 		// 旁白：如果你只有空构造，那就直接instantiateBean，否则会自动去走Spring的构造器注入的逻辑
 		// 检查所有的SmartInstantiationAwareBeanPostProcessor，为指定bean确定一个构造函数。
@@ -1099,7 +1094,6 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		 *    条件2：mbd.getResolvedAutowireMode() == RootBeanDefinition.AUTOWIRE_CONSTRUCTOR -> bean 配置中的 autowire 属性是否为 constructor
 		 *    条件3：mbd.hasConstructorArgumentValues()  -> constructorArgumentValues 是否存在元素，即 bean 配置文件中是否配置了 <construct-arg/>
 		 *    条件4：!ObjectUtils.isEmpty(args)-> args 数组是否存在元素，args 是由用户调用getBean(String name, Object... args) 传入的
-		 *
 		 * 上面4个条件，只要有一个为 true，就会通过构造方法自动注入的方式构造 bean 实例
 		 */
 		if (ctors != null || mbd.getResolvedAutowireMode() == AUTOWIRE_CONSTRUCTOR || mbd.hasConstructorArgumentValues() || !ObjectUtils.isEmpty(args)) {
@@ -1112,10 +1106,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			return autowireConstructor(beanName, mbd, ctors, null);
 		}
 		// No special handling: simply use no-arg constructor. 无特殊处理：只需使用no arg构造函数
-		// 通过“默认构造方法”的方式构造 bean 对象
-		// 所以我们当前的Child，只有空构造器，所以就只能走这里啦
-		// 这个方法的逻辑比较简单，我就不贴了。主要是用InstantiationStrategy策略器进行实例化，至于它是什么东东？文末的时候我会解释的
-		// 走默认构造函数实例化bean
+		// 通过“默认构造方法”的方式实例化bean 对象
 		return instantiateBean(beanName, mbd);
 	}
 

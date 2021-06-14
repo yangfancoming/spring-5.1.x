@@ -31,8 +31,7 @@ public interface SmartInstantiationAwareBeanPostProcessor extends InstantiationA
 	}
 
 	/**
-	 * Determine the candidate constructors to use for the given bean.
-	 * The default implementation returns {@code null}.
+	 * Determine the candidate constructors to use for the given bean.The default implementation returns {@code null}.
 	 * @param beanClass the raw class of the bean (never {@code null})
 	 * @param beanName the name of the bean
 	 * @return the candidate constructors, or {@code null} if none specified

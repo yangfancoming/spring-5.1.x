@@ -195,7 +195,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 	@Override
 	@Nullable
 	public Constructor<?>[] determineCandidateConstructors(Class<?> beanClass, final String beanName) throws BeanCreationException {
-		// Let's check for lookup methods here..  // 在beanClass及其继承的父类中寻找@Lookup注解方法。
+		// Let's check for lookup methods here..  // 在beanClass及其继承的父类中寻找@Lookup注解方法。 lookup-method、replaced-method标签相关
 		if (!this.lookupMethodsChecked.contains(beanName)) {
 			try {
 				ReflectionUtils.doWithMethods(beanClass, method -> {
@@ -217,7 +217,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 			// 记录已经检查过的beanName，避免重复检查。
 			this.lookupMethodsChecked.add(beanName);
 		}
-		// 双重检查老套路，先查看缓存中是否存在之前已经找到的构造函数。
+		// 双重检查老套路，先查看缓存中是否存在之前已经找到的构造函数。 解决线程安全问题
 		// Quick check on the concurrent map first, with minimal locking.
 		Constructor<?>[] candidateConstructors = this.candidateConstructorsCache.get(beanClass);
 		if (candidateConstructors == null) {
@@ -225,9 +225,9 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 			synchronized (this.candidateConstructorsCache) {
 				candidateConstructors = this.candidateConstructorsCache.get(beanClass);
 				if (candidateConstructors == null) {
-					// 首先通过beanClass.getDeclaredConstructors()获得所有的构造函数到rawCandidates数组
 					Constructor<?>[] rawCandidates;
 					try {
+						// 首先通过beanClass.getDeclaredConstructors()获得所有的构造函数
 						rawCandidates = beanClass.getDeclaredConstructors();
 					}catch (Throwable ex) {
 						throw new BeanCreationException(beanName,"Resolution of declared constructors on bean Class [" + beanClass.getName() + "] from ClassLoader [" + beanClass.getClassLoader() + "] failed", ex);
@@ -239,7 +239,12 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 					Constructor<?> primaryConstructor = BeanUtils.findPrimaryConstructor(beanClass);
 					int nonSyntheticConstructors = 0;
 					for (Constructor<?> candidate : rawCandidates) {
-						// 下面的if判断语句可以简单理解成该构造方法并不是由内部类提供的。
+						/**
+						 * 如果是由Java编译器引入则返回True
+						 * 如果不是由Java编译器引入则返回False
+						 * 如果一个类存在内部类的情况下，内部类想要访问外部类的私有方法或属性，外部类想要访问内部类的私有方法或者属性时，编译器会自动生成一些方法来达到上述访问目的
+						 * 下面的if判断语句可以简单理解成该构造方法并不是由内部类提供的。
+						*/
 						if (!candidate.isSynthetic()) {
 							nonSyntheticConstructors++;
 						}else if (primaryConstructor != null) {
@@ -248,7 +253,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 						// 看看这个候选的构造函数是不是加上了@Autowired 或者 @Value注解，一般情况下都是null。
 						AnnotationAttributes ann = findAutowiredAnnotation(candidate);
 						if (ann == null) {
-							//还有userClass不等于传入的beanClass的情况？这里看不懂。不过不影响后续的分析，因为还从未进入过该if分支。
+							// 还有userClass不等于传入的beanClass的情况？这里看不懂。不过不影响后续的分析，因为还从未进入过该if分支。
 							Class<?> userClass = ClassUtils.getUserClass(beanClass);
 							if (userClass != beanClass) {
 								try {

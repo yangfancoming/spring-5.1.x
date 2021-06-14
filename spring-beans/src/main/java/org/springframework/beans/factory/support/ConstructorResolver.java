@@ -147,7 +147,6 @@ class ConstructorResolver {
 			// Need to resolve the constructor.
 			boolean autowiring = (chosenCtors != null || mbd.getResolvedAutowireMode() == AutowireCapableBeanFactory.AUTOWIRE_CONSTRUCTOR);
 			ConstructorArgumentValues resolvedValues = null;
-
 			int minNrOfArgs;
 			if (explicitArgs != null) {
 				minNrOfArgs = explicitArgs.length;
@@ -410,7 +409,6 @@ class ConstructorResolver {
 		Object factoryBean;
 		Class<?> factoryClass;
 		boolean isStatic;
-
 		String factoryBeanName = mbd.getFactoryBeanName();
 		if (factoryBeanName != null) {
 			if (factoryBeanName.equals(beanName)) {
@@ -458,7 +456,6 @@ class ConstructorResolver {
 			// Need to determine the factory method...
 			// Try all methods with this name to see if they match the given arguments.
 			factoryClass = ClassUtils.getUserClass(factoryClass);
-
 			Method[] rawCandidates = getCandidateMethods(factoryClass, mbd);
 			List<Method> candidateList = new ArrayList<>();
 			for (Method candidate : rawCandidates) {
@@ -466,7 +463,6 @@ class ConstructorResolver {
 					candidateList.add(candidate);
 				}
 			}
-
 			if (candidateList.size() == 1 && explicitArgs == null && !mbd.hasConstructorArgumentValues()) {
 				Method uniqueCandidate = candidateList.get(0);
 				if (uniqueCandidate.getParameterCount() == 0) {
@@ -483,7 +479,6 @@ class ConstructorResolver {
 
 			Method[] candidates = candidateList.toArray(new Method[0]);
 			AutowireUtils.sortFactoryMethods(candidates);
-
 			ConstructorArgumentValues resolvedValues = null;
 			boolean autowiring = (mbd.getResolvedAutowireMode() == AutowireCapableBeanFactory.AUTOWIRE_CONSTRUCTOR);
 			int minTypeDiffWeight = Integer.MAX_VALUE;
@@ -505,7 +500,6 @@ class ConstructorResolver {
 			}
 
 			LinkedList<UnsatisfiedDependencyException> causes = null;
-
 			for (Method candidate : candidates) {
 				Class<?>[] paramTypes = candidate.getParameterTypes();
 				if (paramTypes.length >= minNrOfArgs) {
@@ -737,8 +731,7 @@ class ConstructorResolver {
 		for (String autowiredBeanName : autowiredBeanNames) {
 			beanFactory.registerDependentBean(autowiredBeanName, beanName);
 			if (logger.isDebugEnabled()) {
-				logger.debug("Autowiring by type from bean name '" + beanName +
-						"' via " + (executable instanceof Constructor ? "constructor" : "factory method") + " to bean named '" + autowiredBeanName + "'");
+				logger.debug("Autowiring by type from bean name '" + beanName + "' via " + (executable instanceof Constructor ? "constructor" : "factory method") + " to bean named '" + autowiredBeanName + "'");
 			}
 		}
 		return args;

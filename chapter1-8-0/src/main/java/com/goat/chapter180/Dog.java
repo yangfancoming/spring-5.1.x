@@ -17,23 +17,24 @@ public class Dog {
 
 	/** 默认构造函数 **/
 	public Dog() {
-		System.out.println("默认构造函数");
+		System.out.println("Dog 默认构造函数");
 	}
 
 	public Dog(String name) {
 		this.name = name;
-		System.out.println("单参构造函数");
+		System.out.println("Dog 单参构造函数");
 	}
 
 	/**
 	 * 构造函数
 	 * @param name 姓名
 	 * @param age  年龄
+	 * 源码位置： ConstructorResolver#autowireConstructor
 	 */
 	public Dog(String name, int age) {
 		this.name = name;
 		this.age = age;
-		System.out.println("双参构造函数");
+		System.out.println("Dog 双参构造函数");
 	}
 
 	public void sayHello() {

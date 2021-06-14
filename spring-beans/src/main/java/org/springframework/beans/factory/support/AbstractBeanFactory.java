@@ -843,13 +843,14 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * @throws NoSuchBeanDefinitionException if there is no bean with the given name
 	 * @throws BeanDefinitionStoreException in case of an invalid bean definition
 	 * 合并父 BeanDefinition 与子 BeanDefinition
+	 * 也就是说BeanFactoryPostProcessor处理器完之后，bean定义可能会有变化，所以我需要重新合并，以保证合并的是最新的。
 	 */
 	protected RootBeanDefinition getMergedLocalBeanDefinition(String beanName) throws BeansException {
 		// Quick check on the concurrent map first, with minimal locking. 首先快速检查并发map，以最小化锁定
 		// 检查缓存中是否存在“已合并的 BeanDefinition”，若有直接返回即可
 		RootBeanDefinition mbd = mergedBeanDefinitions.get(beanName);
 		if (mbd != null) return mbd;
-		// 调用重载方法
+		// 调用重载方法进行bean定义合并
 		return getMergedBeanDefinition(beanName, getBeanDefinition(beanName));
 	}
 
@@ -903,8 +904,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 						 */
 						if (!beanName.equals(parentBeanName)) {
 							/*
-							 * 这里再次调用 getMergedBeanDefinition，只不过参数值变为了parentBeanName，
-							 * 用于合并父 BeanDefinition 和爷爷辈的BeanDefinition。
+							 * 这里再次调用 getMergedBeanDefinition，只不过参数值变为了parentBeanName，用于合并父 BeanDefinition 和爷爷辈的BeanDefinition。
 							 * 如果爷爷辈的 BeanDefinition 仍有父BeanDefinition，则继续合并
 							 */
 							pbd = getMergedBeanDefinition(parentBeanName);
@@ -926,13 +926,11 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					// 用子 BeanDefinition 中的属性覆盖父 BeanDefinition 中的属性
 					mbd.overrideFrom(bd);
 				}
-
 				// Set default singleton scope, if not configured before.
 				// 如果用户未配置 scope 属性，则默认将该属性配置为 singleton
 				if (!StringUtils.hasLength(mbd.getScope())) {
 					mbd.setScope(RootBeanDefinition.SCOPE_SINGLETON);
 				}
-
 				// A bean contained in a non-singleton bean cannot be a singleton itself.
 				// Let's correct this on the fly here, since this might be the result of  parent-child merging for the outer bean, in which case the original inner bean
 				// definition will not have inherited the merged outer bean's singleton status.

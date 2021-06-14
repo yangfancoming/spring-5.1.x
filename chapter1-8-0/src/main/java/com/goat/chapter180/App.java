@@ -6,6 +6,9 @@ import org.junit.Test;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by 64274 on 2019/8/17.
  * @ Description: TODO
@@ -56,5 +59,15 @@ public class App {
 		System.out.println("\n========测试方法结束=======\n");
 	}
 
+
+	@Test
+	public void test111() {
+
+		Map map = new HashMap();
+		map.put(1,"1");
+		map.put(1,"2");
+		System.out.println(map);
+
+	}
 }
 

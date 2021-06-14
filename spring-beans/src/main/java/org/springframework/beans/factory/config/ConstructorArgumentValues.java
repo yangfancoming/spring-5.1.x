@@ -168,8 +168,7 @@ public class ConstructorArgumentValues {
 
 	/**
 	 * Add a generic argument value to be matched by type.
-	 * Note: A single generic argument value will just be used once,
-	 * rather than matched multiple times.
+	 * Note: A single generic argument value will just be used once,rather than matched multiple times.
 	 * @param value the argument value
 	 * @param type the type of the constructor argument
 	 */
@@ -179,8 +178,7 @@ public class ConstructorArgumentValues {
 
 	/**
 	 * Add a generic argument value to be matched by type or name (if available).
-	 * Note: A single generic argument value will just be used once,
-	 * rather than matched multiple times.
+	 * Note: A single generic argument value will just be used once,rather than matched multiple times.
 	 * @param newValue the argument value in the form of a ValueHolder
 	 * Note: Identical ValueHolder instances will only be registered once,
 	 * to allow for merging and re-merging of argument value definitions. Distinct
@@ -239,12 +237,9 @@ public class ConstructorArgumentValues {
 
 	/**
 	 * Look for the next generic argument value that matches the given type,
-	 * ignoring argument values that have already been used in the current
-	 * resolution process.
-	 * @param requiredType the type to match (can be {@code null} to find
-	 * an arbitrary next generic argument value)
-	 * @param requiredName the name to match (can be {@code null} to not
-	 * match argument values by name, or empty String to match any name)
+	 * ignoring argument values that have already been used in the current resolution process.
+	 * @param requiredType the type to match (can be {@code null} to find an arbitrary next generic argument value)
+	 * @param requiredName the name to match (can be {@code null} to not match argument values by name, or empty String to match any name)
 	 * @param usedValueHolders a Set of ValueHolder objects that have already been used
 	 * in the current resolution process and should therefore not be returned again
 	 * @return the ValueHolder for the argument, or {@code null} if none found
@@ -279,8 +274,7 @@ public class ConstructorArgumentValues {
 	}
 
 	/**
-	 * Look for an argument value that either corresponds to the given index
-	 * in the constructor argument list or generically matches by type.
+	 * Look for an argument value that either corresponds to the given index in the constructor argument list or generically matches by type.
 	 * @param index the index in the constructor argument list
 	 * @param requiredType the parameter type to match
 	 * @return the ValueHolder for the argument, or {@code null} if none set
@@ -304,13 +298,10 @@ public class ConstructorArgumentValues {
 	}
 
 	/**
-	 * Look for an argument value that either corresponds to the given index
-	 * in the constructor argument list or generically matches by type.
+	 * Look for an argument value that either corresponds to the given index  in the constructor argument list or generically matches by type.
 	 * @param index the index in the constructor argument list
-	 * @param requiredType the parameter type to match (can be {@code null}
-	 * to find an untyped argument value)
-	 * @param requiredName the parameter name to match (can be {@code null}
-	 * to find an unnamed argument value, or empty String to match any name)
+	 * @param requiredType the parameter type to match (can be {@code null} to find an untyped argument value)
+	 * @param requiredName the parameter name to match (can be {@code null} to find an unnamed argument value, or empty String to match any name)
 	 * @param usedValueHolders a Set of ValueHolder objects that have already
 	 * been used in the current resolution process and should therefore not
 	 * be returned again (allowing to return the next generic argument match
@@ -328,16 +319,14 @@ public class ConstructorArgumentValues {
 	}
 
 	/**
-	 * Return the number of argument values held in this instance,
-	 * counting both indexed and generic argument values.
+	 * Return the number of argument values held in this instance, counting both indexed and generic argument values.
 	 */
 	public int getArgumentCount() {
 		return (this.indexedArgumentValues.size() + this.genericArgumentValues.size());
 	}
 
 	/**
-	 * Return if this holder does not contain any argument values,
-	 * neither indexed ones nor generic ones.
+	 * Return if this holder does not contain any argument values, neither indexed ones nor generic ones.
 	 */
 	public boolean isEmpty() {
 		return (this.indexedArgumentValues.isEmpty() && this.genericArgumentValues.isEmpty());
@@ -549,16 +538,14 @@ public class ConstructorArgumentValues {
 		/**
 		 * Determine whether the hash code of the content of this ValueHolder.
 		 * Note that ValueHolder does not implement {@code hashCode}
-		 * directly, to allow for multiple ValueHolder instances with the
-		 * same content to reside in the same Set.
+		 * directly, to allow for multiple ValueHolder instances with the same content to reside in the same Set.
 		 */
 		private int contentHashCode() {
 			return ObjectUtils.nullSafeHashCode(this.value) * 29 + ObjectUtils.nullSafeHashCode(this.type);
 		}
 
 		/**
-		 * Create a copy of this ValueHolder: that is, an independent
-		 * ValueHolder instance with the same contents.
+		 * Create a copy of this ValueHolder: that is, an independent ValueHolder instance with the same contents.
 		 */
 		public ValueHolder copy() {
 			ValueHolder copy = new ValueHolder(this.value, this.type, this.name);

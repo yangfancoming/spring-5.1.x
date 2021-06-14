@@ -223,7 +223,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	@Nullable
 	private MutablePropertyValues propertyValues;
 
-	/**  方法重写的持有者，记录lookup-method、replaced-method元素 */
+	/**  方法重写的持有者，记录lookup-method、replaced-method 元素 */
 	/**  存储被IOC容器覆盖的方法的相关信息（例如replace-method属性指定的函数） */
 	@Nullable
 	private MethodOverrides methodOverrides;
