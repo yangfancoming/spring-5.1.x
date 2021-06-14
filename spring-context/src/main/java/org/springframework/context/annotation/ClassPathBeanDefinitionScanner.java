@@ -241,6 +241,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 				//使用BeanNameGenerator为候选bean生产bean的名称，默认使用的是AnnotationBeanNameGenerator。可以通过nameGenerator指定
 				// 生成Bean的名称，默认为首字母小写。此处为"rootConfig"
 				String beanName = beanNameGenerator.generateBeanName(candidate, registry);
+				logger.warn("IOC容器中 生成bean名称为：  【" + beanName +"】 ");
 				// 如果bean是AbstractBeanDefinition类型的，则使用AbstractBeanDefinition的默认属性
 				// 此处为扫描的Bean，为 ScannedGenericBeanDefinition，所以肯定为true
 				// 因此进来，执行postProcessBeanDefinition（对Bean定义信息做）   如下详解

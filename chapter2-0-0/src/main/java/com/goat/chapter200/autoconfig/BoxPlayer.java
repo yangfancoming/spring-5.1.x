@@ -16,7 +16,6 @@ public class BoxPlayer implements MediaPlayer {
 	 *  注意：不只用在setter方法上  实际可以用在任意方法上  都可以发挥完全相同的作用
 	 * @Date:   2019/8/7
 	*/
-
 	@Autowired(required = false)
 	public void setCd(@Qualifier("beyond") CompactDisc cd) {
 		this.cd = cd;

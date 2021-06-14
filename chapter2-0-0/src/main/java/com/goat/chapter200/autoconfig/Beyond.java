@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 /**
  *   Beyond 乐队
- *  Spring 默认将类名的第一个字母变为小写 作为该bean的name
 */
 @Component
 public class Beyond implements CompactDisc {

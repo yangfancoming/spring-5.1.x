@@ -6,6 +6,7 @@ import com.goat.chapter200.base.CompactDisc;
 import com.goat.chapter200.base.MediaPlayer;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.support.BeanNameGenerator;
 
 public class App extends BaseTest  {
 
@@ -14,18 +15,19 @@ public class App extends BaseTest  {
 		pre(CDPlayerConfig.class);
 	}
 
-	/**  测试 spring 默认命名组件name */
+	/**
+	 * Spring 生成bean名称规则
+	 * @see BeanNameGenerator#generateBeanName(org.springframework.beans.factory.config.BeanDefinition, org.springframework.beans.factory.support.BeanDefinitionRegistry)
+	*/
 	@Test
 	public void test1(){
-		CompactDisc disc = (CompactDisc)ctx.getBean("beyond");
-		disc.play();
-	}
+		// 测试 默认命名组件name
+		CompactDisc beyond = (CompactDisc)ctx.getBean("beyond");
+		beyond.play();
 
-	/**  测试 显示命名组件name */
-	@Test
-	public void test2(){
-		CompactDisc disc = (CompactDisc)ctx.getBean("bp");
-		disc.play();
+		// 测试 显示命名组件name
+		CompactDisc bp = (CompactDisc)ctx.getBean("bp");
+		bp.play();
 	}
 
 	/**  测试  构造函数注入*/

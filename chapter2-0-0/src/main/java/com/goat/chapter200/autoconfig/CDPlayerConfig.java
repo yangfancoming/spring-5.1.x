@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * @Date:   2018/7/25
  */
 @Configuration
-@ComponentScan( basePackageClasses = App.class ) //  单个基础包扫描 （将指定类所在的包作为基础包） 可以使用类  但是一般都使用接口
+//@ComponentScan( basePackageClasses = {App.class} ) // doit 用这个为啥会报错？？？ 单个基础包扫描 （将指定类所在的包作为基础包） 可以使用类  但是一般都使用接口
+@ComponentScan( "com.goat.chapter200.autoconfig" ) //  单个基础包扫描 （将指定类所在的包作为基础包） 可以使用类  但是一般都使用接口
 public class CDPlayerConfig {
 }

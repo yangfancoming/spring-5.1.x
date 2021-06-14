@@ -1,4 +1,4 @@
-package com.goat.chapter180;
+package com.goat.chapter180.item02;
 
 import org.junit.After;
 import org.junit.Before;
