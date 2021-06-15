@@ -360,6 +360,11 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	 * @throws BeansException if dependency resolution failed for any other reason
 	 * @since 2.5
 	 * @see DependencyDescriptor
+	 * resolveDependency 依赖查找解决了以下场景：
+	 * 1.Optional：JDK8 提供了 API。主要是将依赖设置非强制依赖，即 descriptor.required=false。
+	 * 2.延迟依赖注入支持：ObjectFactory、ObjectProvider、javax.inject.Provider 没有本质的区别。
+	 * 3.另一种延迟注入的支持 - @Lazy 属性。
+	 * 4.根据类型查找依赖 - doResolveDependency。
 	 */
 	@Nullable
 	Object resolveDependency(DependencyDescriptor descriptor, @Nullable String requestingBeanName,@Nullable Set<String> autowiredBeanNames, @Nullable TypeConverter typeConverter) throws BeansException;

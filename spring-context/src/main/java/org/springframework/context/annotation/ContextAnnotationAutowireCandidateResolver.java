@@ -22,12 +22,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Complete implementation of the
- * {@link org.springframework.beans.factory.support.AutowireCandidateResolver} strategy
- * interface, providing support for qualifier annotations as well as for lazy resolution
+ * Complete implementation of the {@link org.springframework.beans.factory.support.AutowireCandidateResolver} strategy interface,
+ * providing support for qualifier annotations as well as for lazy resolution
  * driven by the {@link Lazy} annotation in the {@code context.annotation} package.
- *
-
  * @since 4.0
  */
 public class ContextAnnotationAutowireCandidateResolver extends QualifierAnnotationAutowireCandidateResolver {
@@ -59,8 +56,7 @@ public class ContextAnnotationAutowireCandidateResolver extends QualifierAnnotat
 	}
 
 	protected Object buildLazyResolutionProxy(final DependencyDescriptor descriptor, final @Nullable String beanName) {
-		Assert.state(getBeanFactory() instanceof DefaultListableBeanFactory,
-				"BeanFactory needs to be a DefaultListableBeanFactory");
+		Assert.state(getBeanFactory() instanceof DefaultListableBeanFactory,"BeanFactory needs to be a DefaultListableBeanFactory");
 		final DefaultListableBeanFactory beanFactory = (DefaultListableBeanFactory) getBeanFactory();
 		TargetSource ts = new TargetSource() {
 			@Override
@@ -78,15 +74,12 @@ public class ContextAnnotationAutowireCandidateResolver extends QualifierAnnotat
 					Class<?> type = getTargetClass();
 					if (Map.class == type) {
 						return Collections.emptyMap();
-					}
-					else if (List.class == type) {
+					}else if (List.class == type) {
 						return Collections.emptyList();
-					}
-					else if (Set.class == type || Collection.class == type) {
+					}else if (Set.class == type || Collection.class == type) {
 						return Collections.emptySet();
 					}
-					throw new NoSuchBeanDefinitionException(descriptor.getResolvableType(),
-							"Optional dependency not present for lazy injection point");
+					throw new NoSuchBeanDefinitionException(descriptor.getResolvableType(),"Optional dependency not present for lazy injection point");
 				}
 				return target;
 			}
@@ -102,5 +95,4 @@ public class ContextAnnotationAutowireCandidateResolver extends QualifierAnnotat
 		}
 		return pf.getProxy(beanFactory.getBeanClassLoader());
 	}
-
 }

@@ -9,11 +9,8 @@ import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link org.springframework.beans.factory.FactoryBean} that exposes the
- * 'primary' service for the configured service class, obtained through
- * the JDK 1.6 {@link java.util.ServiceLoader} facility.
- *
-
+ * {@link org.springframework.beans.factory.FactoryBean} that exposes the 'primary' service for the configured service class,
+ * obtained through the JDK 1.6 {@link java.util.ServiceLoader} facility.
  * @since 2.5
  * @see java.util.ServiceLoader
  */
@@ -33,5 +30,4 @@ public class ServiceFactoryBean extends AbstractServiceLoaderBasedFactoryBean im
 	public Class<?> getObjectType() {
 		return getServiceType();
 	}
-
 }

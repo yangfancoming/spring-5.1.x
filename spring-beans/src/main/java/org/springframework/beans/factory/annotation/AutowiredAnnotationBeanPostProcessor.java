@@ -456,7 +456,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 		if (beanName != null) {
 			for (String autowiredBeanName : autowiredBeanNames) {
 				if (this.beanFactory != null && this.beanFactory.containsBean(autowiredBeanName)) {
-					this.beanFactory.registerDependentBean(autowiredBeanName, beanName);
+					this.beanFactory.registerDependentBean(autowiredBeanName, beanName); // 重点方法 DefaultSingletonBeanRegistry
 				}
 				if (logger.isTraceEnabled()) {
 					logger.trace("Autowiring by type from bean name '" + beanName + "' to bean named '" + autowiredBeanName + "'");
@@ -510,6 +510,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 				Assert.state(beanFactory != null, "No BeanFactory available");
 				TypeConverter typeConverter = beanFactory.getTypeConverter();
 				try {
+					// 这里
 					value = beanFactory.resolveDependency(desc, beanName, autowiredBeanNames, typeConverter);
 				}catch (BeansException ex) {
 					throw new UnsatisfiedDependencyException(null, beanName, new InjectionPoint(field), ex);
@@ -518,7 +519,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 					if (!this.cached) {
 						if (value != null || this.required) {
 							this.cachedFieldValue = desc;
-							registerDependentBeans(beanName, autowiredBeanNames);
+							registerDependentBeans(beanName, autowiredBeanNames); // 这里
 							if (autowiredBeanNames.size() == 1) {
 								String autowiredBeanName = autowiredBeanNames.iterator().next();
 								if (beanFactory.containsBean(autowiredBeanName) && 	beanFactory.isTypeMatch(autowiredBeanName, field.getType())) {

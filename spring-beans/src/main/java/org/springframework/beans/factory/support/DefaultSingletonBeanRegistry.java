@@ -177,7 +177,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 * Return the (raw) singleton object registered under the given name.
 	 * Checks already instantiated singletons and also allows for an early  reference to a currently created singleton (resolving a circular reference).
 	 * @param beanName the name of the bean to look for
-	 * @param allowEarlyReference whether early references should be created or not  是否允许从singletonFactories中通过getObject拿到对象 （该参数是为了解决循环引用）
+	 * @param allowEarlyReference whether early references should be created or not  是否允许从singletonFactories中通过getObject拿到对象 （该参数是为了解决循环引用） 默认为true
 	 * @return the registered singleton object, or {@code null} if none found
 	 */
 	@Nullable
@@ -248,8 +248,9 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 				 * 	singletonFactory.getObject() 其实是调用上一层函数的 sharedInstance = getSingleton(beanName, () -> 中的  createBean(beanName, mbd, args) 方法
 				 * 	因为 ObjectFactory 接口中 只有一个方法，所以说可以直接使用匿名方法
 				 * 	 通过 getObject 方法调用 createBean 方法创建 bean 实例
+				 * @see DefaultSingletonBeanRegistry#getSingleton(java.lang.String, org.springframework.beans.factory.ObjectFactory)
 				 */
-				singletonObject = singletonFactory.getObject();
+				singletonObject = singletonFactory.getObject(); // doit   发现依赖B后   创建b时  流程走到这里 需要步入。。。。
 				newSingleton = true;
 			}catch (IllegalStateException ex) {
 				// Has the singleton object implicitly appeared in the meantime ->

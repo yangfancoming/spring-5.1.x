@@ -219,7 +219,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			// 这里如果是普通Bean 的话，直接返回，如果是 FactoryBean 的话，返回它创建的那个实例对象
 			// 从bean工厂获取bean
 			bean = getObjectForBeanInstance(sharedInstance, name, beanName, null);
-		}else { // 如果缓存中没有，尝试从父容器中查找  //走else分支说明之前该bean之前还未创建过
+		}else { // 如果缓存中没有，尝试从父容器中查找
 			// Fail if we're already creating this bean instance: We're assumably within a circular reference.
 			// 原型对象不允许循环创建，如果是原型对象则抛异常 // BeanFactory 不缓存 Prototype 类型的 bean，无法处理该类型 bean 的循环依赖问题
 			// 判断指定的原型模式的bean是否当前正在创建(在当前线程内),如果是->则抛出异常(Spring不会解决原型模式bean的循环依赖)

@@ -92,7 +92,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	@Nullable
 	private ParameterNameDiscoverer parameterNameDiscoverer = new DefaultParameterNameDiscoverer();
 
-	/** Whether to automatically try to resolve circular references between beans. */
+	/** 默认为true  Whether to automatically try to resolve circular references between beans. */
 	private boolean allowCircularReferences = true;
 
 	// Whether to resort to injecting a raw bean instance in case of circular reference,even if the injected bean eventually got wrapped.
@@ -526,8 +526,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			// 添加工厂对象到 singletonFactories 三级缓存中
 			addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, mbd, bean));
 		}
-		// Initialize the bean instance.
-		// 开始对Bean实例进行初始化
+		// Initialize the bean instance.开始对Bean实例进行初始化
 		Object exposedObject = bean;
 		try {
 			// 对bean进行填充，在这里面完成依赖注入的相关内容  完成属性的注入  反射调用 getter setter方法  即由 纯净态---->成熟态
@@ -836,7 +835,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * 获取早期 bean 的引用，如果 bean 中的方法被 AOP 切点所匹配到，此时 AOP 相关逻辑会介入
 	 */
 	protected Object getEarlyBeanReference(String beanName, RootBeanDefinition mbd, Object bean) {
-		Object exposedObject = bean;
+		Object exposedObject = bean; // 这里是回调  来自 addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, mbd, bean));
 		if (!mbd.isSynthetic() && hasInstantiationAwareBeanPostProcessors()) {
 			for (BeanPostProcessor bp : getBeanPostProcessors()) {
 				if (bp instanceof SmartInstantiationAwareBeanPostProcessor) {
@@ -1131,8 +1130,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	}
 
 	/**
-	 * Overridden in order to implicitly register the currently created bean as dependent on further beans getting programmatically retrieved during a
-	 * {@link Supplier} callback.
+	 * Overridden in order to implicitly register the currently created bean as dependent on further beans getting programmatically retrieved during a {@link Supplier} callback.
 	 * @since 5.0
 	 * @see #obtainFromSupplier
 	 */
@@ -1146,8 +1144,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	}
 
 	/**
-	 * Determine candidate constructors to use for the given bean, checking all registered
-	 * {@link SmartInstantiationAwareBeanPostProcessor SmartInstantiationAwareBeanPostProcessors}.
+	 * Determine candidate constructors to use for the given bean, checking all registered {@link SmartInstantiationAwareBeanPostProcessor SmartInstantiationAwareBeanPostProcessors}.
 	 * @param beanClass the raw class of the bean
 	 * @param beanName the name of the bean
 	 * @return the candidate constructors, or {@code null} if none specified
@@ -1197,8 +1194,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	}
 
 	/**
-	 * Instantiate the bean using a named factory method. The method may be static, if the
-	 * mbd parameter specifies a class, rather than a factoryBean, or an instance variable on a factory object itself configured using Dependency Injection.
+	 * Instantiate the bean using a named factory method. The method may be static, if the mbd parameter specifies a class, rather than a factoryBean,
+	 * or an instance variable on a factory object itself configured using Dependency Injection.
 	 * @param beanName the name of the bean
 	 * @param mbd the bean definition for the bean
 	 * @param explicitArgs argument values passed in programmatically via the getBean method,or {@code null} if none (-> use constructor argument values from bean definition)
@@ -1301,7 +1298,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			for (BeanPostProcessor bp : getBeanPostProcessors()) {
 				if (bp instanceof InstantiationAwareBeanPostProcessor) {
 					InstantiationAwareBeanPostProcessor ibp = (InstantiationAwareBeanPostProcessor) bp;
-					// 依赖的bean注入在这里实现
+					// 依赖的bean注入在这里实现  AutowiredAnnotationBeanPostProcessor
 					PropertyValues pvsToUse = ibp.postProcessProperties(pvs, bw.getWrappedInstance(), beanName);
 					if (pvsToUse == null) {
 						if (filteredPds == null)  filteredPds = filterPropertyDescriptorsForDependencyCheck(bw, mbd.allowCaching);

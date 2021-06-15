@@ -43,9 +43,9 @@
       1.3 获取早期对象 getSingleton A，第一次没有A的早期对象。
       1.4 createBean
       1.5 doCreateBean{
-        1.5.1 创建bean实例
-        1.5.2 暴露早期对象，这个时候有A的早期对象了。
-        1.5.3 属性填充，这个时候会发现依赖了bean B，去getBean B，执行完getBeanB之后完成属性填充。
+        1.5.1 创建bean a的实例
+        1.5.2 暴露早期对象，这个时候有A的早期对象了。 添加到三级缓冲池
+        1.5.3 属性填充，这个时候会发现依赖了bean B，去getBean B，doCreateBean B之后完成属性填充，也添加到三级缓冲池。
         1.5.4 初始化bean A
       }
       返回A

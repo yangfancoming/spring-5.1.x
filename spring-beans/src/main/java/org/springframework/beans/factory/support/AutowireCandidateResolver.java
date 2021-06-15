@@ -7,6 +7,7 @@ import org.springframework.beans.factory.config.DependencyDescriptor;
 import org.springframework.lang.Nullable;
 
 /**
+ * 判断 DependencyDescriptor 是否是可注入对象。Spring IoC 容器默认实现为 ContextAnnotationAutowireCandidateResolver。
  * Strategy interface for determining whether a specific bean definition qualifies as an autowire candidate for a specific dependency.
  * @since 2.5
  */
