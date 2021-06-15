@@ -1304,8 +1304,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// 这里又是一种后置处理，用于在 Spring 填充属性到 bean 对象前，对属性的值进行相应的处理，比如可以修改某些属性的值。这时注入到 bean 中的值就不是配置文件中的内容了，而是经过后置处理器修改后的内容
 		if (hasInstAwareBpps) {
 			if (pvs == null) pvs = mbd.getPropertyValues();
-			// 开始执行InstantiationAwareBeanPostProcessor#postProcessPropertyValues
-			// 这里主要施工的又是我们大名鼎鼎的AutowiredAnnotationBeanPostProcessor它了，他会根据所有标注有@Autpwired注解地方，执行注入（非常重要）
+			// 这里主要施工的又是我们大名鼎鼎的 AutowiredAnnotationBeanPostProcessor#postProcessPropertyValues 它了，他会根据所有标注有@Autpwired注解地方，执行注入（非常重要）
 			for (BeanPostProcessor bp : getBeanPostProcessors()) {
 				if (bp instanceof InstantiationAwareBeanPostProcessor) {
 					InstantiationAwareBeanPostProcessor ibp = (InstantiationAwareBeanPostProcessor) bp;

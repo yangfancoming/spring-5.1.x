@@ -263,6 +263,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			try {
 				// 合并beanDefinition,如果指定的bean是一个子bean的话,则遍历其所有的父bean
 				// 根据名字获取合并过的对应的RootBeanDefinition  // 合并父 BeanDefinition 与子 BeanDefinition
+				// 检测当前bean对象 是否有 dependsOn 属性。
 				final RootBeanDefinition mbd = getMergedLocalBeanDefinition(beanName);
 				// 校验合并的beanDefinition,如果验证失败,则抛出异常
 				// 检查mbd是否为抽象的或mbd为单例，但存在args的情况（args只有初始化原型对象才允许存在)

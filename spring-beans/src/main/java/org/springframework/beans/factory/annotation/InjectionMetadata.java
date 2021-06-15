@@ -66,7 +66,7 @@ public class InjectionMetadata {
 		if (!elementsToIterate.isEmpty()) {
 			for (InjectedElement element : elementsToIterate) {
 				if (logger.isTraceEnabled()) logger.trace("Processing injected element of bean '" + beanName + "': " + element);
-				element.inject(target, beanName, pvs);
+				element.inject(target, beanName, pvs); // AutowiredFieldElement
 			}
 		}
 	}

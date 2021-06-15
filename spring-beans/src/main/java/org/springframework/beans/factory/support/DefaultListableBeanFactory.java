@@ -1082,11 +1082,9 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			/*
 			 * 按类型查找候选列表，如果某个类型已经被实例化，则返回相应的实例。
 			 * 比如下面的配置：
-			 *
 			 *   <bean name="mongoDao" class="xyz.coolblog.autowire.MongoDao" primary="true"/>
 			 *   <bean name="service" class="xyz.coolblog.autowire.Service" autowire="byType"/>
 			 *   <bean name="mysqlDao" class="xyz.coolblog.autowire.MySqlDao"/>
-			 *
 			 * MongoDao 和 MySqlDao 均实现自 Dao 接口，Service 对象（不是接口）中有一个 Dao 类型的属性。现在根据类型自动注入 Dao 的实现类。
 			 * 这里有两个候选 bean，一个是mongoDao，另一个是 mysqlDao，其中 mongoDao 在 service 之前实例化，
 			 * mysqlDao 在 service 之后实例化。此时 findAutowireCandidates 方法会返回如下的结果：
@@ -1104,7 +1102,6 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				}
 				return null;
 			}
-
 			String autowiredBeanName;
 			Object instanceCandidate;
 			if (matchingBeans.size() > 1) {
@@ -1115,7 +1112,6 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				 *   <bean name="mysqlDao" class="xyz.coolblog.autowire.MySqlDao"/>
 				 * mongoDao 的配置中存在 primary 属性，所以 mongoDao 会被选为最终的候选项。
 				 * 如果两个 bean 配置都没有 primary 属性，则需要根据优先级选择候选项。
-				 * 优先级这一块的逻辑没细看，不多说了。
 				 */
 				autowiredBeanName = determineAutowireCandidate(matchingBeans, descriptor);
 				if (autowiredBeanName == null) {

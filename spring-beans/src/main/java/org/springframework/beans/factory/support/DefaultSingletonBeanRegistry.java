@@ -42,6 +42,11 @@ import org.springframework.util.StringUtils;
  * @see org.springframework.beans.factory.DisposableBean
  * @see org.springframework.beans.factory.config.ConfigurableBeanFactory
  * 同SimpleAliasRegistry，这里也是用Map来做缓存。但是单例bean的注册要来的复杂，因为bean还涉及到初始化的问题，因此这里有多个缓存用的对象
+ *
+ * 关于 3个缓存池的解释：
+ * singletonFactories：保存对象的BeanName和创建bean的工厂AbstractAutowireCapableBeanFactory(ObjectFactory)，（对象的构造函数是在这一步完成的）
+ * earlySingletonObjects：保存对象BeanName和对象的早期实例（ObjectFactory#getObject得到的对象）（此时对象还没注入属性），此时可以作为对象填充依赖。
+ * singletonObjects：保存BeanName和bean的实例（此时对象已经完成了属性注入）
  */
 public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements SingletonBeanRegistry {
 
@@ -59,7 +64,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 * Cache of early singleton objects: bean name to bean instance.早期的单例对象(对象属性还没有进行赋值)  纯净态
 	 * 存储bean名称和预加载bean实例 映射关系
 	 * 缓存beanName和bean实例 key-->beanName,value-->beanInstance 该缓存主要为了解决bean的循环依赖引用
-	 * 提前曝光的单例对象的cache，存放原始的 bean 对象（尚未填充属性），用于解决循环依赖
+	 * 提前曝光的单例对象的cache，存放原始的 bean 对象（尚未填充属性），主要用于解决 一般清下的循环依赖
 	 */
 	private final Map<String, Object> earlySingletonObjects = new HashMap<>(16);
 
@@ -68,7 +73,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 * Cache of singleton factories: bean name to ObjectFactory. 单例对应的工厂缓存，可以使用工厂来创建单例对象 bean name --> ObjectFactory
 	 * 用于存放bean工厂  bean 工厂所产生的 bean 是还未完成初始化的 bean   如代码所示，bean 工厂所生成的对象最终会被缓存到 earlySingletonObjects 中
 	 * 缓存beanName和beanFactory key-->beanName,value-->beanFactory
-	 * 单例对象工厂的cache，存放 bean 工厂对象，用于解决循环依赖
+	 * 单例对象工厂的cache，存放 bean 工厂对象，主要用于解决  基于AOP代理的循环依赖
 	 */
 	private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
 
@@ -136,7 +141,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		synchronized (singletonObjects) {
 			// 将动态代理后的bean 或是正常的非代理的单例bena 存入map缓存中  全局唯一入口
 			singletonObjects.put(beanName, singletonObject);
-			logger.warn("【IOC容器 添加 singletonObjects 单例缓冲池 全局唯一入口！ 】 beanName： " + beanName);
+			logger.warn("【IOC容器 添加 singletonObjects 一级单例缓冲池 全局唯一入口！ 】 beanName： " + beanName);
 			// 该单例对象已经注册成功，则需要从工厂集合中移除，后面不需要再次注册
 			// beanName已被注册存放在singletonObjects缓存，那么singletonFactories不应该再持有名称为beanName的工厂
 			singletonFactories.remove(beanName);
@@ -160,6 +165,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 			// 判断singletonObjects内名字为beanName是否被占用，若没有，添加对应的ObjectFactory注册
 			if (!singletonObjects.containsKey(beanName)) {
 				singletonFactories.put(beanName, singletonFactory);
+				logger.warn("【IOC容器 添加 singletonFactories 三级单例缓冲池 全局唯一入口！ 】 beanName： " + beanName);
 				earlySingletonObjects.remove(beanName);
 				registeredSingletons.add(beanName);
 			}
@@ -195,8 +201,6 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 				// 如果允许创建早期对象,则通过singletionFactory创建
 				// 如果还是获取不到，且允许singletonFactories（allowEarlyReference=true）通过getObject()获取。 就从三级缓存 singletonFactory.getObject()获取。
 				if (singletonObject == null && allowEarlyReference) {
-					// 获取该bean对应的工厂，通过工厂了创建还bean
-					// 从缓存中获取BeanFactory
 					// getSingleton()从缓存里获取单例对象步骤分析可知，Spring解决循环依赖的诀窍：就在于singletonFactories这个三级缓存。这个Cache里面都是ObjectFactory，它是解决问题的关键。
 					ObjectFactory<?> singletonFactory = singletonFactories.get(beanName);
 					// （如果获取到了就从singletonFactories中移除，并且放进earlySingletonObjects。其实也就是从三级缓存移动（是剪切、不是复制哦~）到了二级缓存）
@@ -205,9 +209,10 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 						// 通过getObject()方法获取bean,注意:通过此方法获取的bean不是被缓存的
 						// 提前曝光 bean 实例，用于解决循环依赖
 						singletonObject = singletonFactory.getObject();
-						// 放入缓存中，如果还有其他 bean 依赖当前 bean，其他 bean 可以直接从 earlySingletonObjects 取结果
+						// 放入e缓存中，如果还有其他 bean 依赖当前 bean，其他 bean 可以直接从 earlySingletonObjects 取结果
 						// 将获取到的singletonObject缓存至earlySingletonObjects
 						earlySingletonObjects.put(beanName, singletonObject);
+						logger.warn("【IOC容器 添加 earlySingletonObjects 二级单例缓冲池 全局唯一入口！ 】 beanName： " + beanName);
 						// 创建成功后，需要从singletonFactories移除bean
 						singletonFactories.remove(beanName);
 					}
@@ -245,6 +250,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 				/**
 				 * 	初始化bean  调用签名定义的内部类进行创建，内部调用了createBean(String beanName, RootBeanDefinition mbd, Object[] args)
 				 * 	singletonFactory.getObject() 其实是调用上一层函数的 sharedInstance = getSingleton(beanName, () -> 中的  createBean(beanName, mbd, args) 方法
+				 * 	因为 ObjectFactory 接口中 只有一个方法，所以说可以直接使用匿名方法
 				 * 	 通过 getObject 方法调用 createBean 方法创建 bean 实例
 				 */
 				singletonObject = singletonFactory.getObject();
