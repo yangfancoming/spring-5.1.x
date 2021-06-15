@@ -793,7 +793,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		// Allow for caching all bean definition metadata, not expecting further changes. 冻结所有的bean定义，即已注册的bean定义将不会被修改或后处理
 		beanFactory.freezeConfiguration();
 		// Instantiate all remaining (non-lazy-init) singletons. 预实例化所有非懒加载单例Bean // 初始化
-		//  // 真正的干货在这！！！ 1.对所有非lazy的bean进行创建；2.执行某些特殊bean创建完成后的回调方法。
+		// 真正的干货在这！！！ 1.对所有非lazy的bean进行创建；2.执行某些特殊bean创建完成后的回调方法。
 		beanFactory.preInstantiateSingletons();
 	}
 

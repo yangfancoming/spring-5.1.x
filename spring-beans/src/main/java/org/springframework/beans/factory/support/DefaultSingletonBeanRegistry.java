@@ -162,7 +162,6 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	protected void addSingletonFactory(String beanName, ObjectFactory<?> singletonFactory) {
 		Assert.notNull(singletonFactory, "Singleton factory must not be null");
 		synchronized (singletonObjects) {
-			// 判断singletonObjects内名字为beanName是否被占用，若没有，添加对应的ObjectFactory注册
 			if (!singletonObjects.containsKey(beanName)) {
 				singletonFactories.put(beanName, singletonFactory);
 				logger.warn("【IOC容器 添加 singletonFactories 三级单例缓冲池 全局唯一入口！ 】 beanName： " + beanName);
@@ -178,7 +177,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 * Return the (raw) singleton object registered under the given name.
 	 * Checks already instantiated singletons and also allows for an early  reference to a currently created singleton (resolving a circular reference).
 	 * @param beanName the name of the bean to look for
-	 * @param allowEarlyReference whether early references should be created or not  该参数是为了解决循环引用
+	 * @param allowEarlyReference whether early references should be created or not  是否允许从singletonFactories中通过getObject拿到对象 （该参数是为了解决循环引用）
 	 * @return the registered singleton object, or {@code null} if none found
 	 */
 	@Nullable
@@ -192,14 +191,11 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		// 如果获取不到或者对象正在创建中（isSingletonCurrentlyInCreation()），那就再从二级缓存earlySingletonObjects中获取。（如果获取到就直接return）
 		if (singletonObject == null && isSingletonCurrentlyInCreation(beanName)) {
 			synchronized (singletonObjects) {
-				// 从earlySingletonObjects获取提前曝光的bean
-				// 如果之前也没有注册过，且 allowEarlyReference = true
 				// 从 earlySingletonObjects 中获取提前曝光的 bean，用于处理循环引用
 				singletonObject = earlySingletonObjects.get(beanName);
 				// 如果 singletonObject = null，且允许提前曝光 bean 实例，则从相应的 ObjectFactory 获取一个原始的（raw）bean（尚未填充属性）
-				// 未能获取到提前曝光的bean且当前的bean允许被创建早期依赖
 				// 如果允许创建早期对象,则通过singletionFactory创建
-				// 如果还是获取不到，且允许singletonFactories（allowEarlyReference=true）通过getObject()获取。 就从三级缓存 singletonFactory.getObject()获取。
+				// 如果还是获取不到，且当前的bean允许被创建早期依赖 singletonFactories（allowEarlyReference=true）通过getObject()获取。 就从三级缓存 singletonFactory.getObject()获取。
 				if (singletonObject == null && allowEarlyReference) {
 					// getSingleton()从缓存里获取单例对象步骤分析可知，Spring解决循环依赖的诀窍：就在于singletonFactories这个三级缓存。这个Cache里面都是ObjectFactory，它是解决问题的关键。
 					ObjectFactory<?> singletonFactory = singletonFactories.get(beanName);
@@ -209,11 +205,11 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 						// 通过getObject()方法获取bean,注意:通过此方法获取的bean不是被缓存的
 						// 提前曝光 bean 实例，用于解决循环依赖
 						singletonObject = singletonFactory.getObject();
-						// 放入e缓存中，如果还有其他 bean 依赖当前 bean，其他 bean 可以直接从 earlySingletonObjects 取结果
-						// 将获取到的singletonObject缓存至earlySingletonObjects
+						// 放入缓存中，如果还有其他 bean 依赖当前 bean，其他 bean 可以直接从 earlySingletonObjects 取结果
+						// 将获取到的singletonObject缓存至earlySingletonObjects二级缓存
 						earlySingletonObjects.put(beanName, singletonObject);
 						logger.warn("【IOC容器 添加 earlySingletonObjects 二级单例缓冲池 全局唯一入口！ 】 beanName： " + beanName);
-						// 创建成功后，需要从singletonFactories移除bean
+						// 创建成功后，需要从singletonFactories三级缓存中移除
 						singletonFactories.remove(beanName);
 					}
 				}
@@ -396,6 +392,9 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	/**
 	 * Return whether the specified singleton bean is currently in creation (within the entire factory).
 	 * 返回指定的singleton bean当前是否正在创建中（在整个工厂内）。
+	 * 创建中 解释：
+	 * isSingletonCurrentlyInCreation 判断对应的单例对象是否在创建中，当单例对象没有被初始化完全
+	 * (例如A定义的构造函数依赖了B对象，得先去创建B对象，或者在populatebean过程中依赖了B对象，得先去创建B对象，此时A处于创建中)
 	 * @param beanName the name of the bean
 	 */
 	public boolean isSingletonCurrentlyInCreation(String beanName) {

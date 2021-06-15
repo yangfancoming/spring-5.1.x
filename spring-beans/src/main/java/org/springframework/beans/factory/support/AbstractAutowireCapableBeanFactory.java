@@ -512,27 +512,20 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			}
 		}
 		// Eagerly cache singletons to be able to resolve circular references even when triggered by lifecycle interfaces like BeanFactoryAware.
-		// 如果满足循环引用缓存条件，先缓存具体对象
-		/*
-		 * earlySingletonExposure 是一个重要的变量，这里要说明一下。
-		 * 该变量用于表示是否提前暴露单例 bean，用于解决循环依赖。
-		 * earlySingletonExposure 由三个条件综合而成，如下：
-		 *   条件1：mbd.isSingleton() - 表示 bean 是否是单例类型
-		 *   条件2：allowCircularReferences - 是否允许循环依赖
-		 *   条件3：isSingletonCurrentlyInCreation(beanName) - 当前 bean 是否处于创建的状态中
-		 * earlySingletonExposure = 条件1 && 条件2 && 条件3
-		 *                        = 单例 && 是否允许循环依赖 && 是否存于创建状态中。
-		 */
+		/**
+		 * 如果满足循环引用缓存条件，先缓存具体对象
+		 * earlySingletonExposure 是一个重要的变量，该变量用于表示是否提前暴露单例 bean，用于解决循环依赖。
+		 * earlySingletonExposure 由三个条件综合而成，如下： 单例 && 是否允许循环依赖 && 是否存于创建状态中。
+		*/
 		boolean earlySingletonExposure = (mbd.isSingleton() && allowCircularReferences && isSingletonCurrentlyInCreation(beanName));
 		if (earlySingletonExposure) {
 			if (logger.isTraceEnabled()) logger.trace("Eagerly caching bean '" + beanName + "' to allow for resolving potential circular references");
 			// 提前暴露一个单例工厂方法，确保其他Bean能引用到此bean
 			// 具体内部会遍历后置处理器，判断是否有SmartInstantiationAwareBeanPostProcessor的实现类，然后调用里面getEarlyBeanReference覆盖当前Bean
 			// 默认不做任何操作返回当前Bean，作为拓展，这里比如可以供AOP来创建代理类
-			// 添加工厂对象到 singletonFactories 缓存中
+			// 添加工厂对象到 singletonFactories 三级缓存中
 			addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, mbd, bean));
 		}
-
 		// Initialize the bean instance.
 		// 开始对Bean实例进行初始化
 		Object exposedObject = bean;
@@ -540,7 +533,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			// 对bean进行填充，在这里面完成依赖注入的相关内容  完成属性的注入  反射调用 getter setter方法  即由 纯净态---->成熟态
 			// @Autowire-  和 循环依赖 均在该方法处理
 			// 向 bean 实例中填充属性，populateBean 方法也是一个很重要的方法，后面会专门写文章分析
-			// 给Bean实例的各个属性进行赋值 比如调用InstantiationAwareBeanPostProcessor#postProcessAfterInstantiation、给属性注入值（并不依赖于@Autowired注解）
+			// 给Bean实例的各个属性进行赋值 比如调用 InstantiationAwareBeanPostProcessor#postProcessAfterInstantiation、给属性注入值（并不依赖于@Autowired注解）
 			// 执行InstantiationAwareBeanPostProcessor#postProcessPropertyValues等等
 			populateBean(beanName, mbd, instanceWrapper);
 			/**

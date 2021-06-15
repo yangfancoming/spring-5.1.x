@@ -19,7 +19,6 @@ public class App {
 	@Test
 	public void test(){
 		ApplicationContext ac = new AnnotationConfigApplicationContext(Config.class);
-		System.out.println(ac);
 		A bean = ac.getBean(A.class);
 		System.out.println(bean);
 	}
