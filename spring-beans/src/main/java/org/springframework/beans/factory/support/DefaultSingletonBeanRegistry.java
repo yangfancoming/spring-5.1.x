@@ -158,6 +158,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 * To be called for eager registration of singletons, e.g. to be able to resolve circular references.
 	 * @param beanName the name of the bean
 	 * @param singletonFactory the factory for the singleton object
+	 * Spring 在 bean 实例化后就会调用 addSingletonFactory 将这个对象提前暴露到容器中，这们就可以通过 getBean(A) 得到这个对象，即使这个对象仍正在创建。用于解决循环依赖。
 	 */
 	protected void addSingletonFactory(String beanName, ObjectFactory<?> singletonFactory) {
 		Assert.notNull(singletonFactory, "Singleton factory must not be null");
@@ -236,6 +237,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 			}
 			if (logger.isDebugEnabled()) logger.debug("Creating shared instance of singleton bean '" + beanName + "'");
 			// 将 beanName 添加到 singletonsCurrentlyInCreation 集合中，用于表明 beanName 对应的 bean 正在创建中
+			// 1. 将这个 bean 添加到 singletonsCurrentlyInCreation 集合中，这样就可以判断 bean 是否存在创建
 			beforeSingletonCreation(beanName);// 创建前置检查，默认实现是记录当前beanName正在注册中
 			boolean newSingleton = false;
 			boolean recordSuppressedExceptions = (suppressedExceptions == null);
@@ -250,6 +252,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 				 * 	 通过 getObject 方法调用 createBean 方法创建 bean 实例
 				 * @see DefaultSingletonBeanRegistry#getSingleton(java.lang.String, org.springframework.beans.factory.ObjectFactory)
 				 */
+				// 2. 初始化 bean，委托给 ObjectFactory 完成
 				singletonObject = singletonFactory.getObject(); // doit   发现依赖B后   创建b时  流程走到这里 需要步入。。。。
 				newSingleton = true;
 			}catch (IllegalStateException ex) {
@@ -268,11 +271,13 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 				if (recordSuppressedExceptions) suppressedExceptions = null;
 				// 4.创建前置检查，主要任务是移除当前beanName正在注册状态的记录，即 singletonsCurrentlyInCreation中标记正在创建的bean从集合中删除
 				// 将 beanName 从 singletonsCurrentlyInCreation 移除
+				// 3. 从 singletonsCurrentlyInCreation 移除该 bean
 				afterSingletonCreation(beanName);
 			}
 			if (newSingleton) {
 				// 5.注册并加入缓存。 真正的注册逻辑，就是把bean的名称和对象放到map中
 				// 将 <beanName, singletonObject> 键值对添加到 singletonObjects 集合中，并从其他集合（比如 earlySingletonObjects）中移除 singletonObject 记录
+				// 4. 创建完成进行注册，这样下次就可以从缓存中直接获取这个对象了
 				addSingleton(beanName, singletonObject);
 			}
 			return singletonObject;
@@ -408,6 +413,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 * @see #isSingletonCurrentlyInCreation
 	 */
 	protected void beforeSingletonCreation(String beanName) {
+		logger.warn("【IOC容器中 更改 singletonsCurrentlyInCreation 标志位  准备进行二级缓存池   ---  beanName： " + beanName);
 		if (!inCreationCheckExclusions.contains(beanName) && !singletonsCurrentlyInCreation.add(beanName)) {
 			throw new BeanCurrentlyInCreationException(beanName);
 		}

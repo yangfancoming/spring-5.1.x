@@ -1030,6 +1030,12 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	}
 
 
+	/**
+	 * descriptor          DependencyDescriptor 这个类实现了对字段、方法参数、构造器参数的进行依赖注入时的统一访问方式，你可以简单的认为是对这三种类型的封装。
+	 * requestingBeanName  外层的 beanName
+	 * autowiredBeanNames  根据类型查找可能有多个，autowiredBeanNames 就是指查找到的 beanName 集合，Spring 支持 Array、Map、Collection 的注入。
+	 * typeConverter       类型转换器，BeanWrapper 自己就是一个转换器。
+	*/
 	@Override
 	@Nullable
 	public Object resolveDependency(DependencyDescriptor descriptor, @Nullable String requestingBeanName,@Nullable Set<String> autowiredBeanNames, @Nullable TypeConverter typeConverter) throws BeansException {
@@ -1056,6 +1062,8 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	}
 
 	/**
+	 *
+	 *
 	 * 在依赖查找之前，想办法快速查找，如缓存 beanName、@Value 等直接获取注入的值，
 	 * 避免通过类型查找，最后才对集合依赖和单一依赖分别进行了处理。
 	 * 实际上，无论是集合依赖还是单一依赖查找都是调用 findAutowireCandidates 方法
@@ -1071,12 +1079,20 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	 *
 	 * 	单个依赖查询是重点！！！
 	*/
+	/**
+	 * descriptor          DependencyDescriptor 这个类实现了对字段、方法参数、构造器参数的进行依赖注入时的统一访问方式，你可以简单的认为是对这三种类型的封装。
+	 * requestingBeanName  外层的 beanName
+	 * autowiredBeanNames  根据类型查找可能有多个，autowiredBeanNames 就是指查找到的 beanName 集合，Spring 支持 Array、Map、Collection 的注入。
+	 * typeConverter       类型转换器，BeanWrapper 自己就是一个转换器。
+	 */
 	@Nullable
 	public Object doResolveDependency(DependencyDescriptor descriptor, @Nullable String beanName, @Nullable Set<String> autowiredBeanNames, @Nullable TypeConverter typeConverter) throws BeansException {
+		// 将当前正在解决的依赖存放到 ThreadLocal 中，作用以后再研究？？？
 		InjectionPoint previousInjectionPoint = ConstructorResolver.setCurrentInjectionPoint(descriptor);
 		try {
 			// 该方法最终调用了 beanFactory.getBean(String, Class)，从容器中获取依赖
 			// 1. 快速查找，根据名称查找。AutowiredAnnotationBeanPostProcessor用到
+			// 1. resolveShortcut 和 getSuggestedValue 都是对依赖解析前的拦截，这也很符全 Spring 的做法
 			Object shortcut = descriptor.resolveShortcut(this);
 			// 如果容器中存在所需依赖，这里进行断路操作，提前结束依赖解析逻辑
 			if (shortcut != null) return shortcut;
@@ -1105,6 +1121,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			}
 			// 解析数组、list、map 等类型的依赖
 			// 3. 集合依赖，如 Array、List、Set、Map。内部查找依赖也是使用findAutowireCandidates
+			// 2. 匹配多个，sine @Spring 4.3。如果 type 是 Array、List、Map 走这里，当然也有可以匹配不到
 			Object multipleBeans = resolveMultipleBeans(descriptor, beanName, autowiredBeanNames, typeConverter);
 			if (multipleBeans != null) {
 				return multipleBeans;
@@ -1126,6 +1143,9 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			 *   2. 遍历上一步得到的名称列表，并判断 bean 名称对应的 bean 是否是合适的候选项，若合适则添加到候选列表中，并在最后返回候选列表
 			 */
 			// 4. 单个依赖查询  重点！！！  查找容器中所有可用依赖：findAutowireCandidates 方法根据类型查找依赖。
+			// 3. 正常流程，只匹配一个，先找到所有可用的 matchingBeans
+			//    如果有多个，则比较优先级确定一个
+			//    如果没有，则根据依赖是否是必需的抛出异常
 			Map<String, Object> matchingBeans = findAutowireCandidates(beanName, type, descriptor);
 			// 4.1 没有查找到依赖，判断descriptor.require
 			if (matchingBeans.isEmpty()) {
@@ -1137,6 +1157,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			String autowiredBeanName;
 			Object instanceCandidate;
 			// 4.2 有多个，如何过滤
+			// 3.1 匹配到多个，则根据优先级选一个。注意集合类型允许为空
 			// 如何有多个依赖怎么处理？其实 Spring 有一套通用的流程，先按 @Primary 查找，再按 @Priority，最后按方法名称或字段名称查找，直到只有一个 bean 为止。相关的匹配规则见 determineAutowireCandidate 方法。
 			if (matchingBeans.size() > 1) {
 				/*
@@ -1148,21 +1169,24 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				 * 如果两个 bean 配置都没有 primary 属性，则需要根据优先级选择候选项。
 				 */
 				// 4.2.1 @Primary -> @Priority -> 方法名称或字段名称匹配
+				// 3.1.1 根据 Primary 属性或 PriorityOrdered 接口指定优先级
 				autowiredBeanName = determineAutowireCandidate(matchingBeans, descriptor);
 				// 4.2.2 根据是否必须，抛出异常。注意这里如果是集合处理，则返回null
 				if (autowiredBeanName == null) {
 					if (isRequired(descriptor) || !indicatesMultipleBeans(type)) {
+						// 3.1.2 如果是必需的或非集合类型，那么就根据 DependencyDescriptor 指定的规则选择一个最优的
 						return descriptor.resolveNotUnique(descriptor.getResolvableType(), matchingBeans);
 					}else {
 						// In case of an optional Collection/Map, silently ignore a non-unique case:
 						// possibly it was meant to be an empty collection of multiple regular beans
 						// (before 4.3 in particular when we didn't even look for collection beans).
+						// 3.1.3 集合类型允许为 null
 						return null;
 					}
 				}
 				// 根据解析出的 autowiredBeanName，获取相应的候选项
 				instanceCandidate = matchingBeans.get(autowiredBeanName);
-			}else {
+			}else {  // 3.2 精确匹配一个
 				// 只有一个候选项，直接取出来即可
 				// We have exactly one match.
 				Map.Entry<String, Object> entry = matchingBeans.entrySet().iterator().next();
@@ -1317,9 +1341,10 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	 *		从这一步，我们可以看到 Spring 依赖注入的另外两个来源：一是 Spring 托管的外部 Bean，二是 Spring BeanDefinition。
 	 */
 	protected Map<String, Object> findAutowireCandidates(@Nullable String beanName, Class<?> requiredType, DependencyDescriptor descriptor) {
+		// 1. 根据类型查找父子容器中所有可用的 beanName，调用 getBeanNamesForType 方法。注意 getBeanNamesForType 方法会过滤别名的情况
 		String[] candidateNames = BeanFactoryUtils.beanNamesForTypeIncludingAncestors(this, requiredType, true, descriptor.isEager());
 		Map<String, Object> result = new LinkedHashMap<>(candidateNames.length);
-		// 1. Spring IoC 内部依赖 resolvableDependencies
+		// 1. Spring IoC 内部依赖 resolvableDependencies  // 2. 先查找缓存中 requiredType 的依赖，ok
 		for (Map.Entry<Class<?>, Object> classObjectEntry : resolvableDependencies.entrySet()) {
 			Class<?> autowiringType = classObjectEntry.getKey();
 			if (autowiringType.isAssignableFrom(requiredType)) {
@@ -1332,7 +1357,9 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			}
 		}
 		// 2. 类型查找：本质上递归调用beanFactory#beanNamesForType。先匹配实例类型，再匹配bd。
+		// 3. 如果是非循环引用并且是合法的，ok
 		for (String candidate : candidateNames) {
+			// 所谓的循环引用是指 candidateName 实例的工厂就是 beanName 或就是本身
 			// 2.1 isSelfReference说明beanName和candidate本质是同一个对象，isAutowireCandidate进一步匹配bd.autowireCandidate、泛型、@@Qualifier等进行过滤
 			if (!isSelfReference(beanName, candidate) && isAutowireCandidate(candidate, descriptor)) {
 				// 2.2 添加到候选对象中
@@ -1341,12 +1368,16 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		}
 
 		// 3. 补偿机制：如果依赖查找无法匹配，怎么办？包含泛型补偿和自身引用补偿两种。
+		// 4. 如果没有找到，有两种解决方案：一是回退操作，如 @Autowire 回退到名称查找，二是非集合类型考虑循环引用
 		if (result.isEmpty()) {
+			// 判断要注入的类型是 Array、Map、Collection
 			boolean multiple = indicatesMultipleBeans(requiredType);
 			// 3.1 fallbackDescriptor: 泛型补偿，实际上是允许注入对象类型的泛型存在无法解析的情况
 			// Consider fallback matches if the first pass failed to find anything...
+			// 4.1 先执行回退操作
 			DependencyDescriptor fallbackDescriptor = descriptor.forFallbackMatch();
 			// 3.2 补偿1：不允许自称依赖，但如果是集合依赖，需要过滤非@Qualifier对象。什么场景？
+			// 4.2 再考虑循环引用，但在集合类型中不允许循环引用自己
 			for (String candidate : candidateNames) {
 				if (!isSelfReference(beanName, candidate) && isAutowireCandidate(candidate, fallbackDescriptor) && (!multiple || getAutowireCandidateResolver().hasQualifier(descriptor))) {
 					addCandidateEntry(result, candidate, descriptor, requiredType);

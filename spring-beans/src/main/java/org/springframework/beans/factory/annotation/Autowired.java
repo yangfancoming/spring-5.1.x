@@ -20,13 +20,11 @@ import java.lang.annotation.Target;
  * If a class only declares a single constructor to begin with, it will always be used,
  * even if not annotated. An annotated constructor does not have to be public.
  *
- * Fields are injected right after construction of a bean, before any config methods
- * are invoked. Such a config field does not have to be public.
+ * Fields are injected right after construction of a bean, before any config methods are invoked.
+ * Such a config field does not have to be public.
  *
- * Config methods may have an arbitrary name and any number of arguments; each of
- * those arguments will be autowired with a matching bean in the Spring container.
- * Bean property setter methods are effectively just a special case of such a general
- * config method. Such config methods do not have to be public.
+ * Config methods may have an arbitrary name and any number of arguments; each of those arguments will be autowired with a matching bean in the Spring container.
+ * Bean property setter methods are effectively just a special case of such a general config method. Such config methods do not have to be public.
  *
  * In the case of a multi-arg constructor or method, the 'required' parameter is
  * applicable to all arguments. Individual parameters may be declared as Java-8-style
@@ -35,21 +33,17 @@ import java.lang.annotation.Target;
  *
  * In case of a {@link java.util.Collection} or {@link java.util.Map} dependency type,
  * the container autowires all beans matching the declared value type. For such purposes,
- * the map keys must be declared as type String which will be resolved to the corresponding
- * bean names. Such a container-provided collection will be ordered, taking into account
- * {@link org.springframework.core.Ordered}/{@link org.springframework.core.annotation.Order}
- * values of the target components, otherwise following their registration order in the
- * container. Alternatively, a single matching target bean may also be a generally typed
- * {@code Collection} or {@code Map} itself, getting injected as such.
+ * the map keys must be declared as type String which will be resolved to the corresponding bean names.
+ * Such a container-provided collection will be ordered, taking into account
+ * {@link org.springframework.core.Ordered}/{@link org.springframework.core.annotation.Order} values of the target components,
+ * otherwise following their registration order in the container.
+ * Alternatively, a single matching target bean may also be a generally typed {@code Collection} or {@code Map} itself, getting injected as such.
  *
- * Note that actual injection is performed through a
- * {@link org.springframework.beans.factory.config.BeanPostProcessor
- * BeanPostProcessor} which in turn means that you <em>cannot</em> use {@code @Autowired} to inject references into
+ * Note that actual injection is performed through a {@link org.springframework.beans.factory.config.BeanPostProcessor BeanPostProcessor}
+ * which in turn means that you <em>cannot</em> use {@code @Autowired} to inject references into
  * {@link org.springframework.beans.factory.config.BeanPostProcessor BeanPostProcessor} or
- * {@link org.springframework.beans.factory.config.BeanFactoryPostProcessor BeanFactoryPostProcessor}
- * types. Please consult the javadoc for the {@link AutowiredAnnotationBeanPostProcessor}
- * class (which, by default, checks for the presence of this annotation).
-
+ * {@link org.springframework.beans.factory.config.BeanFactoryPostProcessor BeanFactoryPostProcessor} types.
+ * Please consult the javadoc for the {@link AutowiredAnnotationBeanPostProcessor} class (which, by default, checks for the presence of this annotation).
  * @since 2.5
  * @see AutowiredAnnotationBeanPostProcessor
  * @see Qualifier
@@ -62,5 +56,4 @@ public @interface Autowired {
 
 	/** Declares whether the annotated dependency is required. */
 	boolean required() default true;
-
 }

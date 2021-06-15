@@ -1260,13 +1260,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// 如果上面设置 continueWithPropertyPopulation = false，表明用户可能已经自己填充了bean的属性，不需要Spring帮忙填充了。此时直接返回即可
 		if (!continueWithPropertyPopulation) return;
 		// 以对象的方式存储健值对,比存储在map会更加灵活
-		// PropertyValues  是用来管理PropertyValue的  一般情况下为null
 		PropertyValues pvs = (mbd.hasPropertyValues() ? mbd.getPropertyValues() : null);
-		// 根据名称或类型注入依赖
-		// 那么接下来，就开始干正事了~~~~
-		// 这里需要注意的是：我们知道上面我们自己传进来的是byType，所以这个的if是能够进来的,最终能够定位autowireByType让它去实现注入功能。
-		// 所以我们的helloService字段要不要@Autowired要不要无所谓(要了也只是重复操作而已，但是我建议显示的指明吧)
-		// 但是被Spring扫描Scan管理的Bean们（或者其余Bean），如果你想要给他字段注入属性值，必须必须使用@Autowired注解，从而交给后置处理器AutowiredAnnotationBeanPostProcessor#postProcessPropertyValues这个方法去处理
+		// Spring扫描后管理的beans，如果你想要给他字段注入属性值，必须必须使用@Autowired 注解，从而交给后置处理器AutowiredAnnotationBeanPostProcessor#postProcessPropertyValues这个方法去处理
+		// 2. 依赖查找。根据 beanName 或 byType 查找可注入的属性值(依赖)。
 		if (mbd.getResolvedAutowireMode() == AUTOWIRE_BY_NAME || mbd.getResolvedAutowireMode() == AUTOWIRE_BY_TYPE) {
 			MutablePropertyValues newPvs = new MutablePropertyValues(pvs);
 			// Add property values based on autowire by name if applicable.
@@ -1309,16 +1305,19 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				}
 			}
 		}
+		// 4. 依赖校验。是否所有的字段已经全部匹配上了，根据需要是否要抛出异常
 		if (needsDepCheck) {
-			if (filteredPds == null) filteredPds = filterPropertyDescriptorsForDependencyCheck(bw, mbd.allowCaching);
+			if (filteredPds == null) {
+				// 过滤不需要进行属性注入的字段，如 String、BeanFactory...
+				filteredPds = filterPropertyDescriptorsForDependencyCheck(bw, mbd.allowCaching);
+			}
 			checkDependencies(beanName, mbd, filteredPds, pvs);
 		}
-		// applyPropertyValues和PropertyValues密切相关，在后面相关专题在详细讲解  会回到这里的，持续关注~
 		// 作用：Apply the given property values, resolving any runtime references
+		// 5. 依赖注入。至些属性已经全部准备好了，可以进行属性注入。
 		if (pvs != null) {
 			// 应用属性值到 bean 对象中
-			// 这里才是正在讲 属性值  真正的设置的我们的实例对象里面；之前postProcessPropertyValues这个还只是单纯的改变PropertyValues
-			// 最后还是要通过PropertyValues 设置属性到实例对象里面的
+			// 这里才是真正的设置到我们的实例对象里面（通过 PropertyValues）；之前postProcessPropertyValues这个还只是单纯的改变 PropertyValues
 			applyPropertyValues(beanName, mbd, bw, pvs);
 		}
 	}
@@ -1329,21 +1328,20 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * @param mbd bean definition to update through autowiring
 	 * @param bw the BeanWrapper from which we can obtain information about the bean
 	 * @param pvs the PropertyValues to register wired objects with
+	 *
+	 * 获取非简单类型属性的名称，且该属性未被配置在配置文件中。这里从反面解释一下什么是"非简单类型"
+	 * 属性，我们先来看看 Spring 认为的"简单类型"属性有哪些，如下：
+	 *   1. CharSequence 接口的实现类，比如 String
+	 *   2. Enum
+	 *   3. Date
+	 *   4. URI/URL
+	 *   5. Number 的继承类，比如 Integer/Long
+	 *   6. byte/short/int... 等基本类型
+	 *   7. Locale
+	 *   8. 以上所有类型的数组形式，比如 String[]、Date[]、int[] 等等
+	 * 除了要求非简单类型的属性外，还要求属性未在配置文件中配置过，也就是 pvs.contains(pd.getName()) = false。
 	 */
 	protected void autowireByName(String beanName, AbstractBeanDefinition mbd, BeanWrapper bw, MutablePropertyValues pvs) {
-		/*
-		 * 获取非简单类型属性的名称，且该属性未被配置在配置文件中。这里从反面解释一下什么是"非简单类型"
-		 * 属性，我们先来看看 Spring 认为的"简单类型"属性有哪些，如下：
-		 *   1. CharSequence 接口的实现类，比如 String
-		 *   2. Enum
-		 *   3. Date
-		 *   4. URI/URL
-		 *   5. Number 的继承类，比如 Integer/Long
-		 *   6. byte/short/int... 等基本类型
-		 *   7. Locale
-		 *   8. 以上所有类型的数组形式，比如 String[]、Date[]、int[] 等等
-		 * 除了要求非简单类型的属性外，还要求属性未在配置文件中配置过，也就是 pvs.contains(pd.getName()) = false。
-		 */
 		String[] propertyNames = unsatisfiedNonSimpleProperties(mbd, bw);
 		for (String propertyName : propertyNames) {
 			// 检测是否存在与 propertyName 相关的 bean 或 BeanDefinition。若存在，则调用 BeanFactory.getBean 方法获取 bean 实例
@@ -1388,6 +1386,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 					// 创建依赖描述对象
 					DependencyDescriptor desc = new AutowireByTypeDependencyDescriptor(methodParam, eager);
 					// 下面的方法用于解析依赖。过程比较复杂，先把这里看成一个黑盒，我们只要知道这个方法可以帮我们解析出合适的依赖即可。
+					// 核心代码就这一句，类型查找委托给了子类的 resolveDependency 完成
 					Object autowiredArgument = resolveDependency(desc, beanName, autowiredBeanNames, converter);
 					if (autowiredArgument != null) {
 						// 将解析出的 bean 存入到属性值列表（pvs）中
