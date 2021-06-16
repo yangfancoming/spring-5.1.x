@@ -14,13 +14,13 @@ import org.springframework.stereotype.Component;
  * @ author  山羊来了
  * @ date 2021/6/16---16:19
  */
-//@Component
+@Component
 public class MyBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegistryPostProcessor {
 	@Override
 	public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
 		GenericBeanDefinition beanDefinition = (GenericBeanDefinition) registry.getBeanDefinition("userService");
 //		beanDefinition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_NAME);
-		beanDefinition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
+//		beanDefinition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
 		registry.registerBeanDefinition("userService",beanDefinition);
 	}
 
