@@ -20,6 +20,7 @@ public class Dog {
 		System.out.println("Dog 默认构造函数");
 	}
 
+	/**  单参造函数 **/
 	public Dog(String name) {
 		this.name = name;
 		System.out.println("Dog 单参构造函数");

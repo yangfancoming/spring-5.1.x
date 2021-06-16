@@ -1,10 +1,14 @@
-#    Spring实例化Bean的三种方式
-    1.构造函数实例化（无参构造函数和有参构造函数）
     
     
 # item02 Spring实例化Bean的三种方式
 
 
-# item03 
+# item03   通过@Configuration +  @Bean 注解的方式
 
+
+
+# 
+    1. 通过注解的方式来创建  （@Compent,@Service 等）
+    2. 通过普通 XML 的方式 
+    3. 通过@Configuration +  @Bean 注解的方式
 
