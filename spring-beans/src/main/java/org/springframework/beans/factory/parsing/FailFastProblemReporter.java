@@ -53,5 +53,4 @@ public class FailFastProblemReporter implements ProblemReporter {
 	public void warning(Problem problem) {
 		logger.warn(problem, problem.getRootCause());
 	}
-
 }

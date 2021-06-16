@@ -465,25 +465,19 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 				// 以上都是对beanFactory的预准备、创建、后置处理工作 ，以下都是 利用创建好的beanFactory来创建各种组件！
 				// Invoke factory processors registered as beans in the context. 调用在上下文中注册为bean的工厂处理器
 				// 调用BeanFacotry的相关后置处理器，如果实现了 Order 或 PriorityOrdered 相关接口，会先进行排序。
-				// 执行上面的事件
-				// 调用 BeanFactoryPostProcessor 各个实现类的 postProcessBeanFactory(factory) 方法
-				// 设置执行 自定义或spring内置的BeanPostProcessor
+				// 调用 自定义或spring内置的BeanPostProcessor 的各个实现类
 				// @MapperScan  @Import  @ImportResource 等注解都在这里处理
 				invokeBeanFactoryPostProcessors(beanFactory);
 				// 以上都是对 bean工厂 的后置处理器 以下开始是 bean 的后置处理器的注册 （并不执行）
 				// Register bean processors that intercept bean creation. 注册bean的后置处理器，用来拦截bean的创建过程
-				// 注册相关 BeanPostProcessor，供Bean生成前后调用。
+				// 注册相关 BeanPostProcessor 实现类，供Bean生成前后调用。
 				// 在创建Bean过程中注册拦截器，这些个拦截器会在bean成为真正的成熟bean（applicationContext管理的bean）之前调用
-				// 调用 bean的后置处理器
 				// classpath 下xml配置文件 和 @ComponentScan("com.goat.chapter110.bean") 注解 就是在这里解析 起作用的
-				// 注册 BeanPostProcessor 的实现类，注意看和 BeanFactoryPostProcessor 的区别
-				// 此接口两个方法: postProcessBeforeInitialization 和 postProcessAfterInitialization
-				// 两个方法分别在 Bean 初始化之前和初始化之后得到执行。注意，到这里 Bean 还没初始化
-				//实例化和注册beanFactory中扩展了BeanPostProcessor的bean。
-				//例如：
-				//AutowiredAnnotationBeanPostProcessor(处理被@Autowired注解修饰的bean并注入)
-				//RequiredAnnotationBeanPostProcessor(处理被@Required注解修饰的方法)
-				//CommonAnnotationBeanPostProcessor(处理@PreDestroy、@PostConstruct、@Resource等多个注解的作用)等。
+				// 实例化和注册beanFactory中扩展了BeanPostProcessor的bean。
+				// 例如：
+				// AutowiredAnnotationBeanPostProcessor(处理被@Autowired注解修饰的bean并注入)
+				// RequiredAnnotationBeanPostProcessor(处理被@Required注解修饰的方法)
+				// CommonAnnotationBeanPostProcessor(处理@PreDestroy、@PostConstruct、@Resource等多个注解的作用)等。
 				registerBeanPostProcessors(beanFactory);
 				// Initialize message source for this context.
 				// 初始化国际化信息源   // 初始化信息源，信息源bean可以国际化的读取properties文件

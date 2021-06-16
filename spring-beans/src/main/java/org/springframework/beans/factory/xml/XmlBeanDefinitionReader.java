@@ -271,8 +271,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 				if (encodedResource.getEncoding() != null) {
 					inputSource.setEncoding(encodedResource.getEncoding());
 				}
-				// 核心部分是这里，往下面看 //这里 真正进入了逻辑核心部分
-				// 这个才是主要的逻辑，spring的源码风格，一般以do开头的才是主要做事的。
+				// 核心部分是这里，真正进入了逻辑核心部分
 				return doLoadBeanDefinitions(inputSource, encodedResource.getResource());
 			}finally {
 				inputStream.close();

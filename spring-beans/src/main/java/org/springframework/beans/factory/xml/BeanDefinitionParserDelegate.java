@@ -300,15 +300,14 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
+	 * 填充各种默认的属性，最终解析xml成BeanDefinition
 	 *  以下方法实际上就是解析bean元素，创建beanDefinition,然后将beanDefinition，beanName,aliases创建为BeanDefinitionHolder
-	 *  填充各种默认的属性，最终解析xml成BeanDefinition
-	 * Parses the supplied {@code <bean>} element. May return {@code null} if there were errors during parse. Errors are reported to the
-	 * {@link org.springframework.beans.factory.parsing.ProblemReporter}.
+	 * Parses the supplied {@code <bean>} element. May return {@code null} if there were errors during parse. Errors are reported to the  {@link org.springframework.beans.factory.parsing.ProblemReporter}.
 	 * 该方法主要工作流程如下：
-	 * 提取元素中的 id name 属性
-	 * 进一步解析其它所有属性并统一封装到 GenericBeanDefinition 类型的实例中
-	 * 检测到 bean 没有指定 beanName 使用默认规则生成 beanName
-	 * 将获取到的信息封装到 BeanDefinitionHolder 的实例中
+	 * 1.提取元素中的 id name 属性
+	 * 2.进一步解析其它所有属性并统一封装到 GenericBeanDefinition 类型的实例中
+	 * 3.检测到 bean 没有指定 beanName 使用默认规则生成 beanName
+	 * 4.最终将获取到的信息封装到 BeanDefinitionHolder 的实例中
 	 */
 	@Nullable
 	public BeanDefinitionHolder parseBeanDefinitionElement(Element ele, @Nullable BeanDefinition containingBean) {
@@ -322,8 +321,7 @@ public class BeanDefinitionParserDelegate {
 			String[] nameArr = StringUtils.tokenizeToStringArray(nameAttr, MULTI_VALUE_ATTRIBUTE_DELIMITERS);
 			aliases.addAll(Arrays.asList(nameArr));
 		}
-		// beanName 的值就是 id 的值 // 以id属性的值作为当前bean的默认名称，如果没有id属性，那么将name属性的第一个值作为当前bean的名称
-		// 如果bean的id为空，但是别名不为空的话，那么默认采用第一个别名作为beanName
+		// 以id属性的值作为当前bean的默认名称，如果没有id属性，但是别名不为空的话，那么默认采用第一个别名作为beanName
 		// 例如：<bean class="com.lyc.cn.v2.day01.Dog" name="myDog1,myDog2"/>，使用myDog1作为beanName
 		String beanName = id;
 		// 如果 beanName 为空，且 alias 不为空，则获取第一个别名作为beanName
@@ -333,11 +331,9 @@ public class BeanDefinitionParserDelegate {
 		}
 		// 如果父 bean 为空，则检查beanName的唯一性
 		// 检查当前bean的名称与已经解析的bean名称是否有相同的，如果有相同的则抛出异常，保证所有不同bean的名称和别名相互之间不相同
-		// 2、containingBean不为空，则检查beanName和别名是否被使用
+		// 2、如果containingBean不为空，则检查beanName和别名是否被使用
 		if (containingBean == null) checkNameUniqueness(beanName, aliases, ele);
-		// 创建 AbstractBeanDefinition 在该方法内部，会解析bean所有的属性和子节点
-		// 对bean标签中的各个属性以及子标签进行解析
-		// 3、解析bean标签，将其转换为BeanDefinition对象
+		// 3、对bean标签中的各个属性以及子标签进行解析，并将其转换为BeanDefinition对象
 		AbstractBeanDefinition beanDefinition = parseBeanDefinitionElement(ele, beanName, containingBean);
 		// 4、如果beanDefinition且未配置bean的id属性，name属性，则为当前bean生成id和别名
 		// 例如：<bean class="com.lyc.cn.v2.day01.Dog"/>，<bean factory-bean="dog4"/>，<bean parent="outer"/>等
@@ -1329,5 +1325,4 @@ public class BeanDefinitionParserDelegate {
 	private boolean isCandidateElement(Node node) {
 		return (node instanceof Element && (isDefaultNamespace(node) || !isDefaultNamespace(node.getParentNode())));
 	}
-
 }

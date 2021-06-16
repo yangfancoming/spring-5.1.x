@@ -9,10 +9,7 @@
     chapter1-8-0  Spring 实例化Bean的三种方式
     chapter1-8-5  Spring 所有重要接口 测试用例 及生命周期（完整版）
     chapter2-0-0  spring Bean的装配 （依赖注入）  四种方式 + 循环依赖
-    chapter2-0-1  spring Bean的装配 xml  方式
-                    <bean> 标签属性示例
-                                1.alias 别名标签
-                                2.autowire 自动装配 
+    chapter2-0-1  spring Bean的装配 xml  方式  解析各种xml标签
                                 
     chapter2-0-2  spring Bean的装配 注解方式    @Configuration 和 @ComponentScan  
      

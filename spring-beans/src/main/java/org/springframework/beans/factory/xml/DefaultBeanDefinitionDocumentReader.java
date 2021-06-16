@@ -110,24 +110,21 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		 * 	Create the new (child) delegate with a reference to the parent for fallback purposes,then ultimately reset this.delegate back to its original (parent) reference.
 		 * 	this behavior emulates a stack of delegates without actually necessitating one.
 		*/
-		//标签beans可能会存在递归的情况, 每次都创建自己的解析器
-		// 1、创建BeanDefinitionParserDelegate对象，用来解析Element元素
+		// 标签beans可能会存在递归的情况, 每次都创建自己的解析器
 		BeanDefinitionParserDelegate parent = delegate;
+		// 1、创建BeanDefinitionParserDelegate对象，用来解析Element元素
 		delegate = createDelegate(getReaderContext(), root, parent);
-		// 2、解析并验证profile节点，如果配置了profile属性，则验证当前环境是否激活了对应的profile节点，
-		// 用于多开发环境配置，该方式在开发中已不多见。 再springboot中很为常见
-		// 例如：System.setProperty("spring.profiles.active", "dev");
-		// 在解析之前，如果命名空间是以 http://www.springframework.org/schema/beans 开头，将会检查 profile 属性
+		// 2、解析并验证profile节点，如果配置了profile属性，则验证当前环境是否激活了对应的profile节点 （如果命名空间是以 http://www.springframework.org/schema/beans 开头，将会检查 profile 属性）
+		// 用于多开发环境配置（ 例如：System.setProperty("spring.profiles.active", "dev");），该方式在开发中已不多见。 再springboot中很为常见
 		if (delegate.isDefaultNamespace(root)) {
-			//获取beans标签的profile属性
+			// 获取beans标签的profile属性
 			// 这块说的是根节点 <beans ... profile="dev" /> 中的 profile 是否是当前环境需要的，
 			// 如果当前环境配置的 profile 不包含此 profile，那就直接 return 了，不对此 <beans /> 解析
-			// 不熟悉 profile 为何物，不熟悉怎么配置 profile 读者的请移步附录区
 			String profileSpec = root.getAttribute(PROFILE_ATTRIBUTE);
 			if (StringUtils.hasText(profileSpec)) {
 				String[] specifiedProfiles = StringUtils.tokenizeToStringArray(profileSpec, BeanDefinitionParserDelegate.MULTI_VALUE_ATTRIBUTE_DELIMITERS);
 				// We cannot use Profiles.of(...) since profile expressions are not supported in XML config. See SPR-12458 for details.
-				//看spring.profiles.active环境变量中是否有该属性，如果没有则不加载下面的标签
+				// 看spring.profiles.active环境变量中是否有该属性，如果没有则不加载下面的标签
 				if (!getReaderContext().getEnvironment().acceptsProfiles(specifiedProfiles)) {
 					if (logger.isDebugEnabled()) {
 						logger.debug("Skipped XML bean definition file due to specified profiles [" + profileSpec + "] not matching: " + getReaderContext().getResource());
@@ -155,15 +152,12 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	 * Parse the elements at the root level in the document: "import", "alias", "bean".
 	 * @param root the DOM root element of the document
 	 *   在 Spring 的配置文件中，有两大类bean的声明，
-	 *                一个是默认的声明如 <bean>，
+	 *                一类是默认的声明，涉及到的就四个标签 <import />、<alias />、<bean /> 和 <beans />，， 其他的属于自定义的
 	 *                一类是自定义的声明如 <tx:annotation-driver>，所以该方法分为两套解析逻辑
-	 *  default namespace 涉及到的就四个标签 <import />、<alias />、<bean /> 和 <beans />， 其他的属于 custom 的
 	 */
 	protected void parseBeanDefinitions(Element root, BeanDefinitionParserDelegate delegate) {
-		// 1、解析默认命名空间
-		// 表示的是默认的节点
+		// 1、解析默认命名空间， 这里根节点为beans节点，该节点的命名空间通过其xmlns属性进行了定义
 		// 判断根节点使用的标签所对应的命名空间是否为Spring提供的默认命名空间，
-		// 这里根节点为beans节点，该节点的命名空间通过其xmlns属性进行了定义
 		if (delegate.isDefaultNamespace(root)) {
 			NodeList nl = root.getChildNodes();
 			for (int i = 0; i < nl.getLength(); i++) {
@@ -171,20 +165,16 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 				if (node instanceof Element) {
 					Element ele = (Element) node;
 					if (delegate.isDefaultNamespace(ele)) { // 解析 属于默认命名空间的标签
-						// 判断当前标签使用的是默认的命名空间，如bean标签，则按照默认命名空间的逻辑对其进行处理
-						// 代表解析的节点是 default namespace 下面的几个元素  <import />、<alias />、<bean />、<beans />
-						parseDefaultElement(ele, delegate); // 解析默认的节点
-					}else { // 解析 属于自定义命名空间的标签
-						// 解析其他 namespace 的元素  <mvc />、<task />、<context />、<aop />、<tx:annotation-driven />
-						// 判断当前标签使用的命名空间是自定义的命名空间，如这里 springtag:user 所使用的就是自定义的命名空间，那么就按照定义命名空间逻辑进行处理
-						delegate.parseCustomElement(ele);// 解析自定义节点
+						parseDefaultElement(ele, delegate);
+					}else {
+						// 解析属于自定义命名空间的标签，如： <mvc />、<task />、<context />、<aop />、<tx:annotation-driven />
+						delegate.parseCustomElement(ele);
 					}
 				}
 			}
 		}else {
-			// 2、解析自定义命名空间
-			// 如果根节点使用的命名空间不是默认的命名空间，则按照自定义的命名空间进行处理
-			delegate.parseCustomElement(root); // 解析自定义节点
+			// 2、解析属于自定义命名空间的标签，如： <mvc />、<task />、<context />、<aop />、<tx:annotation-driven />
+			delegate.parseCustomElement(root);
 		}
 	}
 
@@ -299,18 +289,15 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	*/
 	//  Process the given bean element, parsing the bean definition and registering it with the registry. 解析bean标签将其转换为definition并注册到BeanDefinitionRegistry
 	protected void processBeanDefinition(Element ele, BeanDefinitionParserDelegate delegate) {
-		// 解析 bean的各种属性 // 对基本的bean标签属性进行解析
-		// 对bean标签的默认属性和子标签进行处理，将其封装为一个BeanDefinition对象，并放入BeanDefinitionHolder中
-		// 1、将解析的节点信息封装至BeanDefinitionHolder对象  BeanDefinitionHolder-->封装了BeanDefinition,beanName以及aliases
+		// 对基本的bean标签及其下子标签的各种属性进行解析，将其封装为一个BeanDefinition对象，并放入BeanDefinitionHolder中
 		// 该行代码有： 装饰者模式 + SPI 设计思想
 		BeanDefinitionHolder bdHolder = delegate.parseBeanDefinitionElement(ele);
 		if (bdHolder != null) {
 			// 2、装饰BeanDefinition
-			// 进行自定义属性或自定义子标签的装饰
-			// 如果该bean包含自定义的子标签，则对自定义子标签解析 // 对自定义的属性或者自定义的子节点进行解析，以丰富当前的BeanDefinition
+			// 如果该bean包含自定义的子标签，则对其进行解析和装饰，以丰富当前的BeanDefinition
 			bdHolder = delegate.decorateBeanDefinitionIfRequired(ele, bdHolder);
 			try {
-				// Register the final decorated instance. // 3、执行注册  // 将当前bean注册到BeanDefinitionRegistry中
+				// Register the final decorated instance. // 3、将当前bean的最终装饰后的实例，注册到BeanDefinitionRegistry中
 				BeanDefinitionReaderUtils.registerBeanDefinition(bdHolder, getReaderContext().getRegistry());
 			}catch (BeanDefinitionStoreException ex) {
 				getReaderContext().error("Failed to register bean definition with name '" + bdHolder.getBeanName() + "'", ele, ex);

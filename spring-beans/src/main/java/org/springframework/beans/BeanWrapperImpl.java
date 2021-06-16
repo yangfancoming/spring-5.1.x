@@ -294,7 +294,7 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 				ReflectionUtils.makeAccessible(writeMethod);
 				// 调用 setter 方法，getWrappedInstance() 返回的是 bean 对象
 				Object wrappedInstance = getWrappedInstance();
-				logger.warn("【IOC容器 给 " + wrappedInstance + " 对象注入值：】 value： " + value);
+				logger.warn("【IOC容器 通过 " + writeMethod.getName() + "方法， 给 " + wrappedInstance + " 对象注入值 】 value： " + value);
 				writeMethod.invoke(wrappedInstance, value);
 			}
 		}

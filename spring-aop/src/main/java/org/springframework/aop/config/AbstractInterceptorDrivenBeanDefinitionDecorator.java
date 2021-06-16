@@ -42,15 +42,12 @@ public abstract class AbstractInterceptorDrivenBeanDefinitionDecorator implement
 	@Override
 	public final BeanDefinitionHolder decorate(Node node, BeanDefinitionHolder definitionHolder, ParserContext parserContext) {
 		BeanDefinitionRegistry registry = parserContext.getRegistry();
-
 		// get the root bean name - will be the name of the generated proxy factory bean
 		String existingBeanName = definitionHolder.getBeanName();
 		BeanDefinition targetDefinition = definitionHolder.getBeanDefinition();
 		BeanDefinitionHolder targetHolder = new BeanDefinitionHolder(targetDefinition, existingBeanName + ".TARGET");
-
 		// delegate to subclass for interceptor definition
 		BeanDefinition interceptorDefinition = createInterceptorDefinition(node);
-
 		// generate name and register the interceptor
 		String interceptorName = existingBeanName + '.' + getInterceptorNameSuffix(interceptorDefinition);
 		BeanDefinitionReaderUtils.registerBeanDefinition(new BeanDefinitionHolder(interceptorDefinition, interceptorName), registry);

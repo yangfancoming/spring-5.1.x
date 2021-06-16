@@ -3,8 +3,7 @@
 package org.springframework.beans.factory.parsing;
 
 /**
- * SPI interface allowing tools and other external processes to handle errors
- * and warnings reported during bean definition parsing.
+ * SPI interface allowing tools and other external processes to handle errors and warnings reported during bean definition parsing.
  * @since 2.0
  * @see Problem
  */
@@ -31,5 +30,4 @@ public interface ProblemReporter {
 	 * @param problem the source of the warning (never {@code null})
 	 */
 	void warning(Problem problem);
-
 }
