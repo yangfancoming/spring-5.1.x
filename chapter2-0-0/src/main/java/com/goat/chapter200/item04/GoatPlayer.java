@@ -35,7 +35,6 @@ public class GoatPlayer {
 		 private CompactDisc blackPanther;
 	*/
 
-
 	public void insert(){
 		System.out.println("GoatPlayer insert() -----------");
 		cd.play();

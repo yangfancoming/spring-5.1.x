@@ -2,10 +2,10 @@ package com.goat.chapter200.item04;
 
 
 import org.junit.Test;
+import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import java.util.Arrays;
 
 /**
  * Created by Administrator on 2021/6/16.
@@ -17,12 +17,13 @@ public class App {
 
 	/**
 	 * AUTOWIRE_BY_NAME
+	 * @see AutowireCapableBeanFactory#resolveDependency(org.springframework.beans.factory.config.DependencyDescriptor, java.lang.String, java.util.Set, org.springframework.beans.TypeConverter)
+	 * @see DefaultListableBeanFactory#doResolveDependency(org.springframework.beans.factory.config.DependencyDescriptor, java.lang.String, java.util.Set, org.springframework.beans.TypeConverter)
+	 * @see DefaultListableBeanFactory#findAutowireCandidates(java.lang.String, java.lang.Class, org.springframework.beans.factory.config.DependencyDescriptor)
 	*/
 	@Test
 	public void test(){
 		ApplicationContext ac = new AnnotationConfigApplicationContext(Config.class);
-		String[] str= ac.getBeanDefinitionNames();
-		Arrays.stream(str).forEach(x->System.out.println("***---***	 " + x));
 		GoatPlayer goatPlayer = ac.getBean(GoatPlayer.class);
 		goatPlayer.insert();
 	}
