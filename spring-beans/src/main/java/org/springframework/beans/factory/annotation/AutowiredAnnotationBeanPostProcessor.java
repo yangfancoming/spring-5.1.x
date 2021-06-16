@@ -514,7 +514,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 				Assert.state(beanFactory != null, "No BeanFactory available");
 				TypeConverter typeConverter = beanFactory.getTypeConverter();
 				try {
-					// 这里 DefaultListableBeanFactory
+					// 从spring容器中获取所依赖的bean， 这里 DefaultListableBeanFactory
 					value = beanFactory.resolveDependency(desc, beanName, autowiredBeanNames, typeConverter);
 				}catch (BeansException ex) {
 					throw new UnsatisfiedDependencyException(null, beanName, new InjectionPoint(field), ex);
@@ -537,8 +537,11 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 					}
 				}
 			}
+			// 通过反射完成最终的属性注入工作
 			if (value != null) {
 				ReflectionUtils.makeAccessible(field);
+				// bean为 userService（宿主）
+				// value 为 userDao （待注入对象）
 				field.set(bean, value);
 			}
 		}

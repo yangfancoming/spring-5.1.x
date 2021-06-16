@@ -1297,7 +1297,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			for (BeanPostProcessor bp : getBeanPostProcessors()) {
 				if (bp instanceof InstantiationAwareBeanPostProcessor) {
 					InstantiationAwareBeanPostProcessor ibp = (InstantiationAwareBeanPostProcessor) bp;
-					// sos 依赖的bean注入在这里实现  AutowiredAnnotationBeanPostProcessor
+					// sos 这里解析@Autowire注解  依赖的bean注入在这里实现  AutowiredAnnotationBeanPostProcessor
 					PropertyValues pvsToUse = ibp.postProcessProperties(pvs, bw.getWrappedInstance(), beanName);
 					if (pvsToUse == null) {
 						if (filteredPds == null)  filteredPds = filterPropertyDescriptorsForDependencyCheck(bw, mbd.allowCaching);
@@ -1349,10 +1349,11 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		for (String propertyName : propertyNames) {
 			// 检测是否存在与 propertyName 相关的 bean 或 BeanDefinition。若存在，则调用 BeanFactory.getBean 方法获取 bean 实例
 			if (containsBean(propertyName)) {
-				// 从容器中获取相应的 bean 实例
+				// 从容器中获取相应的 bean 实例，如果没有，则会去创建
 				Object bean = getBean(propertyName);
 				// 将解析出的 bean 存入到属性值列表（pvs）中
 				pvs.add(propertyName, bean);
+				// 这里的注册是为了在销毁的时候用的
 				registerDependentBean(propertyName, beanName);
 				if (logger.isTraceEnabled()) logger.trace("Added autowiring by name from bean name '" + beanName + "' via property '" + propertyName + "' to bean named '" + propertyName + "'");
 			}else {
@@ -1415,6 +1416,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * @param bw the BeanWrapper the bean was created with
 	 * @return an array of bean property names
 	 * @see org.springframework.beans.BeanUtils#isSimpleProperty
+	 * 这个方法会去推断所有需要注入的属性，由于set方法是spring定义的所谓writeMethod，所以能找到userDao
 	 */
 	protected String[] unsatisfiedNonSimpleProperties(AbstractBeanDefinition mbd, BeanWrapper bw) {
 		Set<String> result = new TreeSet<>();
@@ -1609,12 +1611,11 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 						pv.setConvertedValue(convertedValue);
 					}
 					deepCopy.add(pv);
-				}
+				}else if (convertible && originalValue instanceof TypedStringValue && !((TypedStringValue) originalValue).isDynamic() && !(convertedValue instanceof Collection || ObjectUtils.isArray(convertedValue))) {
 				/*
 				 * 如果原始值 originalValue 是 TypedStringValue，且转换后的值
 				 * convertedValue 不是 Collection 或数组类型，则将转换后的值存入到 pv 中。
 				 */
-				else if (convertible && originalValue instanceof TypedStringValue && !((TypedStringValue) originalValue).isDynamic() && !(convertedValue instanceof Collection || ObjectUtils.isArray(convertedValue))) {
 					pv.setConvertedValue(convertedValue);
 					deepCopy.add(pv);
 				}else {

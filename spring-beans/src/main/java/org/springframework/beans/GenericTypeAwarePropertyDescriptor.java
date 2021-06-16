@@ -151,5 +151,4 @@ final class GenericTypeAwarePropertyDescriptor extends PropertyDescriptor {
 		hashCode = 29 * hashCode + ObjectUtils.nullSafeHashCode(getWriteMethod());
 		return hashCode;
 	}
-
 }
