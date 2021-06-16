@@ -23,8 +23,8 @@ import org.springframework.util.ReflectionUtils;
 /**
  * Internal class for managing injection metadata.
  * Not intended for direct use in applications.
- * Used by {@link AutowiredAnnotationBeanPostProcessor},
- * {@link org.springframework.context.annotation.CommonAnnotationBeanPostProcessor} and {@link org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor}.
+ * Used by {@link AutowiredAnnotationBeanPostProcessor},{@link org.springframework.context.annotation.CommonAnnotationBeanPostProcessor} and
+ * {@link org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor}.
  * @since 2.5
  */
 public class InjectionMetadata {
@@ -117,11 +117,9 @@ public class InjectionMetadata {
 		protected final Class<?> getResourceType() {
 			if (this.isField) {
 				return ((Field) this.member).getType();
-			}
-			else if (this.pd != null) {
+			}else if (this.pd != null) {
 				return this.pd.getPropertyType();
-			}
-			else {
+			}else {
 				return ((Method) this.member).getParameterTypes()[0];
 			}
 		}
@@ -144,7 +142,6 @@ public class InjectionMetadata {
 		 * Either this or {@link #getResourceToInject} needs to be overridden.
 		 */
 		protected void inject(Object target, @Nullable String requestingBeanName, @Nullable PropertyValues pvs) throws Throwable {
-
 			if (this.isField) {
 				Field field = (Field) this.member;
 				ReflectionUtils.makeAccessible(field);

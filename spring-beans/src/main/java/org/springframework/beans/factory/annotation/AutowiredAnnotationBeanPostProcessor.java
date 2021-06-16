@@ -111,6 +111,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 	/**
 	 * Create a new AutowiredAnnotationBeanPostProcessor  for Spring's standard {@link Autowired} annotation.
 	 * Also supports JSR-330's {@link javax.inject.Inject} annotation, if available.
+	 * 通过AutowiredAnnotationBeanPostProcessor 构造函数我们知道，自动注入处理的是被 @Autowired 和 @Value 这两个注解标注的属性(Field)或方法(Method)：
 	 */
 	@SuppressWarnings("unchecked")
 	public AutowiredAnnotationBeanPostProcessor() {
@@ -313,6 +314,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 
 	@Override
 	public PropertyValues postProcessProperties(PropertyValues pvs, Object bean, String beanName) {
+		// 根据方法名称知道是获取当前bean的注入元信息
 		InjectionMetadata metadata = findAutowiringMetadata(beanName, bean.getClass(), pvs);
 		try {
 			metadata.inject(bean, beanName, pvs);
@@ -348,12 +350,13 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 		}
 	}
 
-
+	// 根据方法名称知道是获取当前bean的注入元信息
 	private InjectionMetadata findAutowiringMetadata(String beanName, Class<?> clazz, @Nullable PropertyValues pvs) {
 		// Fall back to class name as cache key, for backwards compatibility with custom callers.
 		String cacheKey = (StringUtils.hasLength(beanName) ? beanName : clazz.getName());
 		// Quick check on the concurrent map first, with minimal locking.
 		InjectionMetadata metadata = this.injectionMetadataCache.get(cacheKey);
+		// 先从 injectionMetadataCache 缓存里取，如果取不到值，则调用buildAutowiringMetadata 构建 InjectionMetadata ，构建成功后设置到缓存里。
 		if (InjectionMetadata.needsRefresh(metadata, clazz)) {
 			synchronized (this.injectionMetadataCache) {
 				metadata = this.injectionMetadataCache.get(cacheKey);
@@ -370,6 +373,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 	}
 
 	private InjectionMetadata buildAutowiringMetadata(final Class<?> clazz) {
+		// 用来存储通过反射获取的需要注入的Field和Method元数据，并构建 InjectionMetadata
 		List<InjectionMetadata.InjectedElement> elements = new ArrayList<>();
 		Class<?> targetClass = clazz;
 		do {
