@@ -13,9 +13,6 @@ public class Service {
 
 	private Dao mongoDao;
 
-	// 忽略 getter/setter
-
-
 	public Dao getMysqlDao() {
 		return mysqlDao;
 	}
@@ -36,5 +33,4 @@ public class Service {
 	public String toString() {
 		return "Service{" + "mysqlDao=" + mysqlDao + ", mongoDao=" + mongoDao + '}';
 	}
-
 }
