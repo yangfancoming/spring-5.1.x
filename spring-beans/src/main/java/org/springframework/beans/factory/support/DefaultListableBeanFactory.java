@@ -460,7 +460,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				}
 			}
 		}
-		//这里的Bean是Spring容器创建的特殊的几种类型的Bean 像Environment
+		// 这里的Bean是Spring容器创建的特殊的几种类型的Bean 像Environment
 		// Check manually registered singletons too.
 		for (String beanName : manualSingletonNames) {
 			try {

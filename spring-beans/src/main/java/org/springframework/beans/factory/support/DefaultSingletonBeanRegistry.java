@@ -205,7 +205,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 					if (singletonFactory != null) {
 						// 通过getObject()方法获取bean,注意:通过此方法获取的bean不是被缓存的
 						// 提前曝光 bean 实例，用于解决循环依赖
-						singletonObject = singletonFactory.getObject();
+						singletonObject = singletonFactory.getObject(); // getEarlyBeanReference 获取提前引用
 						// 放入缓存中，如果还有其他 bean 依赖当前 bean，其他 bean 可以直接从 earlySingletonObjects 取结果
 						// 将获取到的singletonObject缓存至earlySingletonObjects二级缓存
 						earlySingletonObjects.put(beanName, singletonObject);

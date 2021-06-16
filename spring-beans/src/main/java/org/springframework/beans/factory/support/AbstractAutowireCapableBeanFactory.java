@@ -832,6 +832,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * @param mbd the merged bean definition for the bean
 	 * @param bean the raw bean instance
 	 * @return the object to expose as bean reference
+	 * @see DefaultSingletonBeanRegistry#getSingleton(java.lang.String, boolean) 中的singletonFactory.getObject() 为调用入口
 	 * 获取早期 bean 的引用，如果 bean 中的方法被 AOP 切点所匹配到，此时 AOP 相关逻辑会介入
 	 */
 	protected Object getEarlyBeanReference(String beanName, RootBeanDefinition mbd, Object bean) {
@@ -840,6 +841,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			for (BeanPostProcessor bp : getBeanPostProcessors()) {
 				if (bp instanceof SmartInstantiationAwareBeanPostProcessor) {
 					SmartInstantiationAwareBeanPostProcessor ibp = (SmartInstantiationAwareBeanPostProcessor) bp;
+					// 实现类是 AbstractAutoProxyCreator  就会去为这个对象创建的代理
+					// 实现类是 InstantiationAwareBeanPostProcessorAdapter  就什么都不做原样返回
 					exposedObject = ibp.getEarlyBeanReference(exposedObject, beanName);
 				}
 			}

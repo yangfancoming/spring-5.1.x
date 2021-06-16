@@ -37,11 +37,8 @@ public class App {
 	 *  发现 a 依赖 b  又开始重新走流程去创建b
 	 * @see AutowiredAnnotationBeanPostProcessor#postProcessProperties(org.springframework.beans.PropertyValues, java.lang.Object, java.lang.String)
 	 * @see DependencyDescriptor#resolveCandidate(java.lang.String, java.lang.Class, org.springframework.beans.factory.BeanFactory)
-	 *  添加a 到 一级单例缓冲池
-	 * @see DefaultSingletonBeanRegistry#addSingleton(java.lang.String, java.lang.Object)  ？？？
-	 * 发 b 依赖 a  又去找a
-	 *
-	 *
+	 *  发现 b 依赖 a  又开始重新走流程去创建a    由于a已经在三级缓存中，通过三级缓存的工厂回调获取到提前暴露的a，并将a添加到二级缓存
+	 *  有了a的早起引用就可以实例化b，实例化b之后，就可以继续去实例化a
 	*/
 	@Test
 	public void test(){
