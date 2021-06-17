@@ -220,23 +220,22 @@ public class BeanFactoryGenericsTests {
 		assertTrue(gb.getIntegerSet().contains(new Integer(5)));
 	}
 
+	// 走 无参构造 函数
 	@Test
 	public void testGenericSetConstructorWithOptionalAutowiring() {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
-
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
 		rbd.setAutowireMode(RootBeanDefinition.AUTOWIRE_CONSTRUCTOR);
 		bf.registerBeanDefinition("genericBean", rbd);
 		GenericBean<?> gb = (GenericBean<?>) bf.getBean("genericBean");
-
 		assertNull(gb.getIntegerSet());
 	}
 
+	// 测试 Set 和 List 集合构造函数 注入  public GenericBean(Set<Integer> integerSet, List<Resource> resourceList)
 	@Test
 	public void testGenericSetListConstructor() throws Exception {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
-
 		Set<String> input = new HashSet<>();
 		input.add("4");
 		input.add("5");
@@ -248,13 +247,13 @@ public class BeanFactoryGenericsTests {
 
 		bf.registerBeanDefinition("genericBean", rbd);
 		GenericBean<?> gb = (GenericBean<?>) bf.getBean("genericBean");
-
 		assertTrue(gb.getIntegerSet().contains(new Integer(4)));
 		assertTrue(gb.getIntegerSet().contains(new Integer(5)));
 		assertEquals(new UrlResource("http://localhost:8080"), gb.getResourceList().get(0));
 		assertEquals(new UrlResource("http://localhost:9090"), gb.getResourceList().get(1));
 	}
 
+	// 构造函数 自动注入  public GenericBean(Set<Integer> integerSet, List<Resource> resourceList)
 	@Test
 	public void testGenericSetListConstructorWithAutowiring() throws Exception {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();

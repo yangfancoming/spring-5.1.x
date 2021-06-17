@@ -72,21 +72,25 @@ public class GenericBean<T> {
 	}
 
 	public GenericBean(Set<Integer> integerSet, List<Resource> resourceList) {
+		System.out.println("GenericBean 双参 integerSet 、 resourceList 构造函数 执行");
 		this.integerSet = integerSet;
 		this.resourceList = resourceList;
 	}
 
 	public GenericBean(HashSet<Integer> integerSet, Map<Short, Integer> shortMap) {
+		System.out.println("GenericBean 双参 integerSet 、 shortMap 构造函数 执行");
 		this.integerSet = integerSet;
 		this.shortMap = shortMap;
 	}
 
 	public GenericBean(Map<Short, Integer> shortMap, Resource resource) {
+		System.out.println("GenericBean 双参 shortMap 、 resource 构造函数 执行");
 		this.shortMap = shortMap;
 		this.resourceList = Collections.singletonList(resource);
 	}
 
 	public GenericBean(Map plainMap, Map<Short, Integer> shortMap) {
+		System.out.println("GenericBean 双参 plainMap 、 shortMap 构造函数 执行");
 		this.plainMap = plainMap;
 		this.shortMap = shortMap;
 	}
