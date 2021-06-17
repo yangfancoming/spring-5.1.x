@@ -12,9 +12,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@code equals()} and {@code hashCode()} in bean definitions.
- *
- * @author Rob Harrop
- * @author Sam Brannen
  */
 @SuppressWarnings("serial")
 public class DefinitionMetadataEqualsHashCodeTests {

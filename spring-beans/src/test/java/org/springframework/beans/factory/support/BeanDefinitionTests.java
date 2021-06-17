@@ -1,12 +1,8 @@
-
-
 package org.springframework.beans.factory.support;
 
 import org.junit.Test;
-
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
 import org.springframework.tests.sample.beans.TestBean;
-
 import static org.junit.Assert.*;
 
 
@@ -29,6 +25,7 @@ public class BeanDefinitionTests {
 		assertTrue(bd.hashCode() == otherBd.hashCode());
 	}
 
+	// 通过断点可以看到 bd 和 otherBd 地址是不同的，只不过是重写了 equals和hashcode方法。
 	@Test
 	public void beanDefinitionEqualityWithPropertyValues() {
 		RootBeanDefinition bd = new RootBeanDefinition(TestBean.class);

@@ -189,7 +189,7 @@ public class AnnotatedBeanDefinitionReader {
 		abd.setScope(scopeMetadata.getScopeName());
 		// 得到Bean的名称 一般为首字母小写（此处为AnnotationBeanNameGenerator）
 		String beanName = (name != null ? name : beanNameGenerator.generateBeanName(abd, registry));
-		// 设定一些注解默认值，如lazy、Primary等等
+		// 设定一些注解默认值，如lazy、Primary、  Lazy、 DependsOn、 Primary 、Role、 Description 等等
 		AnnotationConfigUtils.processCommonDefinitionAnnotations(abd);
 		// 解析qualifiers，若有此注解  则primary都成为true了
 		if (qualifiers != null) {

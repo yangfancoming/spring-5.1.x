@@ -76,5 +76,4 @@ public interface PropertyValues extends Iterable<PropertyValue> {
 	 * Does this holder not contain any PropertyValue objects at all?
 	 */
 	boolean isEmpty();
-
 }

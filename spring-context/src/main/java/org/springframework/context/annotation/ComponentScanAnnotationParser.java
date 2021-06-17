@@ -55,7 +55,7 @@ class ComponentScanAnnotationParser {
 	public Set<BeanDefinitionHolder> parse(AnnotationAttributes componentScan, final String declaringClass) {
 		// 创建一个 ClassPathBeanDefinitionScanner 用来最终的解析，
 		// 检查是否使用默认的过滤器useDefaultFilters，默认的过滤器中会加入，@Component，@Repository，@Controller，@ManagedBean，@Named注解的支持
-		ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(this.registry,componentScan.getBoolean("useDefaultFilters"), this.environment, this.resourceLoader);
+		ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(this.registry, componentScan.getBoolean("useDefaultFilters"), this.environment, this.resourceLoader);
 		// 获取指定的nameGenerator，如果没有指定则用默认的BeanNameGenerator,存在则用指定的
 		Class<? extends BeanNameGenerator> generatorClass = componentScan.getClass("nameGenerator");
 		boolean useInheritedGenerator = (BeanNameGenerator.class == generatorClass);

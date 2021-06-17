@@ -15,5 +15,4 @@ public interface BeanDefinitionCustomizer {
 	 * Customize the given bean definition.
 	 */
 	void customize(BeanDefinition bd);
-
 }

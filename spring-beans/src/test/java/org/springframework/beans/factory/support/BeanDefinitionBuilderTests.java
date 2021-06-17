@@ -27,8 +27,8 @@ public class BeanDefinitionBuilderTests {
 				.setScope(BeanDefinition.SCOPE_SINGLETON)
 				.addPropertyValue("name", "fsx")
 				.setLazyInit(false)
-				//Spring5.0后提供的，可以自己书写函数，在里面做任意事情
-				//bdf是个AbstractBeanDefinition
+				// Spring5.0后提供的，可以自己书写函数，在里面做任意事情
+				// bdf是个AbstractBeanDefinition
 				.applyCustomizers((bdf) -> {
 					AbstractBeanDefinition abdf = (AbstractBeanDefinition) bdf;
 					abdf.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_NO);

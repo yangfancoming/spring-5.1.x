@@ -226,5 +226,4 @@ final class ConfigurationClass {
 			super(String.format("@Configuration class '%s' may not be final. Remove the final modifier to continue.",getSimpleName()), new Location(getResource(), getMetadata()));
 		}
 	}
-
 }

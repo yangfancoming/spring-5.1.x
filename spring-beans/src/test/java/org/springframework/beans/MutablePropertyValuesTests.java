@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
  */
 public class MutablePropertyValuesTests extends AbstractPropertyValuesTests {
 
+	// 测试 MutablePropertyValues 的普通功能有效性
 	@Test
 	public void testValid() {
 		MutablePropertyValues pvs = new MutablePropertyValues();
@@ -24,11 +25,14 @@ public class MutablePropertyValuesTests extends AbstractPropertyValuesTests {
 
 		MutablePropertyValues deepCopy = new MutablePropertyValues(pvs);
 		doTestTony(deepCopy);
+		// deepCopy中 替换0号位置的对象，即 "forname", "Tony" 被替换为 "name", "Gordon"
 		deepCopy.setPropertyValueAt(new PropertyValue("name", "Gordon"), 0);
+		// deepCopy 修改后 不影响 pvs 中的值
 		doTestTony(pvs);
 		assertEquals("Gordon", deepCopy.getPropertyValue("name").getValue());
 	}
 
+	// 测试 添加 和 覆盖 属性
 	@Test
 	public void testAddOrOverride() {
 		MutablePropertyValues pvs = new MutablePropertyValues();
@@ -36,14 +40,18 @@ public class MutablePropertyValuesTests extends AbstractPropertyValuesTests {
 		pvs.addPropertyValue(new PropertyValue("surname", "Blair"));
 		pvs.addPropertyValue(new PropertyValue("age", "50"));
 		doTestTony(pvs);
+		// 测试 添加属性
 		PropertyValue addedPv = new PropertyValue("rod", "Rod");
 		pvs.addPropertyValue(addedPv);
 		assertTrue(pvs.getPropertyValue("rod").equals(addedPv));
+
+		// 测试 覆盖属性  将原来的 "Tony" 覆盖成 "Greg"
 		PropertyValue changedPv = new PropertyValue("forname", "Greg");
 		pvs.addPropertyValue(changedPv);
 		assertTrue(pvs.getPropertyValue("forname").equals(changedPv));
 	}
 
+	// 测试 changesSince 方法   再未更改的情况下
 	@Test
 	public void testChangesOnEquals() {
 		MutablePropertyValues pvs = new MutablePropertyValues();
@@ -55,6 +63,7 @@ public class MutablePropertyValuesTests extends AbstractPropertyValuesTests {
 		assertTrue("changes are empty", changes.getPropertyValues().length == 0);
 	}
 
+	//  测试 changesSince 方法   再有更改的情况下
 	@Test
 	public void testChangeOfOneField() {
 		MutablePropertyValues pvs = new MutablePropertyValues();
@@ -64,9 +73,9 @@ public class MutablePropertyValuesTests extends AbstractPropertyValuesTests {
 
 		MutablePropertyValues pvs2 = new MutablePropertyValues(pvs);
 		PropertyValues changes = pvs2.changesSince(pvs);
-		assertTrue("changes are empty, not of length " + changes.getPropertyValues().length,
-				changes.getPropertyValues().length == 0);
+		assertTrue("changes are empty, not of length " + changes.getPropertyValues().length,changes.getPropertyValues().length == 0);
 
+		// 发生变化  添加了1个属性
 		pvs2.addPropertyValue(new PropertyValue("forname", "Gordon"));
 		changes = pvs2.changesSince(pvs);
 		assertEquals("1 change", 1, changes.getPropertyValues().length);
@@ -76,10 +85,9 @@ public class MutablePropertyValuesTests extends AbstractPropertyValuesTests {
 
 		MutablePropertyValues pvs3 = new MutablePropertyValues(pvs);
 		changes = pvs3.changesSince(pvs);
-		assertTrue("changes are empty, not of length " + changes.getPropertyValues().length,
-				changes.getPropertyValues().length == 0);
+		assertTrue("changes are empty, not of length " + changes.getPropertyValues().length,changes.getPropertyValues().length == 0);
 
-		// add new
+		// add new 	// 发生变化  添加了2个属性
 		pvs3.addPropertyValue(new PropertyValue("foo", "bar"));
 		pvs3.addPropertyValue(new PropertyValue("fi", "fum"));
 		changes = pvs3.changesSince(pvs);
@@ -89,6 +97,7 @@ public class MutablePropertyValuesTests extends AbstractPropertyValuesTests {
 		assertTrue("new value is bar", fn.getValue().equals("bar"));
 	}
 
+	// 测试 迭代功能
 	@Test
 	public void iteratorContainsPropertyValue() {
 		MutablePropertyValues pvs = new MutablePropertyValues();
@@ -106,10 +115,12 @@ public class MutablePropertyValuesTests extends AbstractPropertyValuesTests {
 		}
 		catch (UnsupportedOperationException ex) {
 			// expected
+			System.out.println(ex);
 		}
 		assertFalse(it.hasNext());
 	}
 
+	// 测试 数据为空时   迭代的情况
 	@Test
 	public void iteratorIsEmptyForEmptyValues() {
 		MutablePropertyValues pvs = new MutablePropertyValues();
@@ -117,6 +128,7 @@ public class MutablePropertyValuesTests extends AbstractPropertyValuesTests {
 		assertFalse(it.hasNext());
 	}
 
+	// 测试 MutablePropertyValues 转 stream 后有数据情况下的功能操作
 	@Test
 	public void streamContainsPropertyValue() {
 		MutablePropertyValues pvs = new MutablePropertyValues();
@@ -128,6 +140,7 @@ public class MutablePropertyValuesTests extends AbstractPropertyValuesTests {
 		assertThat(pvs.stream().anyMatch(pv -> "bar".equals(pv.getName()) && "foo".equals(pv.getValue())), is(false));
 	}
 
+	// 测试 MutablePropertyValues 转 stream 后数据为空时的功能操作
 	@Test
 	public void streamIsEmptyForEmptyValues() {
 		MutablePropertyValues pvs = new MutablePropertyValues();

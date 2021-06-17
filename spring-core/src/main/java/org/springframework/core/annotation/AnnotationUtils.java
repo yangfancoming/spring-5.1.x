@@ -549,8 +549,7 @@ public abstract class AnnotationUtils {
 	/**
 	 * Retrieve a potentially cached array of declared annotations for the given element.
 	 * @param element the annotated element to introspect
-	 * @return a potentially cached array of declared annotations
-	 * (only for internal iteration purposes, not for external exposure)
+	 * @return a potentially cached array of declared annotations (only for internal iteration purposes, not for external exposure)
 	 * @since 5.1
 	 */
 	static Annotation[] getDeclaredAnnotations(AnnotatedElement element) {
@@ -565,19 +564,16 @@ public abstract class AnnotationUtils {
 	/**
 	 * Find a single {@link Annotation} of {@code annotationType} on the
 	 * supplied {@link Class}, traversing its interfaces, annotations, and
-	 * superclasses if the annotation is not <em>directly present</em> on
-	 * the given class itself.
+	 * superclasses if the annotation is not <em>directly present</em> on the given class itself.
 	 * This method explicitly handles class-level annotations which are not
-	 * declared as {@link java.lang.annotation.Inherited inherited} <em>as well
-	 * as meta-annotations and annotations on interfaces</em>.
+	 * declared as {@link java.lang.annotation.Inherited inherited} <em>as well as meta-annotations and annotations on interfaces</em>.
 	 * The algorithm operates as follows:
 	 * <li>Search for the annotation on the given class and return it if found.
 	 * <li>Recursively search through all annotations that the given class declares.
 	 * <li>Recursively search through all interfaces that the given class declares.
 	 * <li>Recursively search through the superclass hierarchy of the given class.
 	 * Note: in this context, the term <em>recursively</em> means that the search
-	 * process continues by returning to step #1 with the current interface,
-	 * annotation, or superclass as the class to look for annotations on.
+	 * process continues by returning to step #1 with the current interface, annotation, or superclass as the class to look for annotations on.
 	 * @param clazz the class to look for annotations on
 	 * @param annotationType the type of annotation to look for
 	 * @return the first matching annotation, or {@code null} if not found

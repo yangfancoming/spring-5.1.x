@@ -45,9 +45,6 @@ import org.springframework.tests.sample.beans.TestBean;
 import static org.junit.Assert.*;
 
 /**
-
-
- * @author Sam Brannen
  * @since 20.01.2006
  */
 public class BeanFactoryGenericsTests {
@@ -56,7 +53,6 @@ public class BeanFactoryGenericsTests {
 	public void testGenericSetProperty() {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
-
 		Set<String> input = new HashSet<>();
 		input.add("4");
 		input.add("5");
@@ -1062,5 +1058,4 @@ public class BeanFactoryGenericsTests {
 			return new FloatStore();
 		}
 	}
-
 }

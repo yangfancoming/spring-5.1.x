@@ -171,7 +171,7 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 		logger.warn("【 设置默认注解扫描类型】 @Component ");
 		includeFilters.add(new AnnotationTypeFilter(Component.class));
 		ClassLoader cl = ClassPathScanningCandidateComponentProvider.class.getClassLoader();
-		//下面两个 是兼容JSR-250的@ManagedBean和330的@Named注解
+		//下面两个 是兼容JSR-250的 @ManagedBean 和330的 @Named 注解
 		try {
 			includeFilters.add(new AnnotationTypeFilter(((Class<? extends Annotation>) ClassUtils.forName("javax.annotation.ManagedBean", cl)), false));
 			logger.trace("JSR-250 'javax.annotation.ManagedBean' found and supported for component scanning");

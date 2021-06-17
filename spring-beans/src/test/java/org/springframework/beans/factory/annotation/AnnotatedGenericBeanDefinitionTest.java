@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Set;
 
-import static org.junit.Assert.*;
 
 /**
  * Created by Administrator on 2020/5/11.

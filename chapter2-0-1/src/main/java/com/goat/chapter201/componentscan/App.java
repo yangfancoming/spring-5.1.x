@@ -1,8 +1,11 @@
 package com.goat.chapter201.componentscan;
 
 import org.junit.Test;
+import org.springframework.beans.factory.xml.BeanDefinitionParserDelegate;
+import org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader;
+import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Arrays;
@@ -17,11 +20,12 @@ public class App {
 
 	/**
 	 * 传统标签 <component-scan> 可以扫描到 com.goat.chapter105.common 包下的
-	 * 其中6个类中 2个没有注解 因此只有4个会被加载到spring的容器中
-	 * ***---***	 testController
-	 * ***---***	 testDao
-	 * ***---***	 testFilterDao
-	 * ***---***	 testService
+	 * 其中5个类中 2个没有注解 因此只有3个会被加载到spring的容器中
+	 * @see DefaultBeanDefinitionDocumentReader#parseBeanDefinitions(org.w3c.dom.Element, org.springframework.beans.factory.xml.BeanDefinitionParserDelegate)
+	 * @see BeanDefinitionParserDelegate#parseCustomElement(org.w3c.dom.Element, org.springframework.beans.factory.config.BeanDefinition)
+	 * @see NamespaceHandlerSupport#findParserForElement(org.w3c.dom.Element, org.springframework.beans.factory.xml.ParserContext)
+	 * @see ComponentScanBeanDefinitionParser#parse(org.w3c.dom.Element, org.springframework.beans.factory.xml.ParserContext)
+	 * @see ClassPathBeanDefinitionScanner#doScan(java.lang.String...)
 	 */
 	@Test
 	public void test1(){
@@ -32,6 +36,9 @@ public class App {
 
 	/**
 	 * 注解方式  @ComponentScan("com.goat.chapter201.common")
+	 * @see ConfigurationClassParser#doProcessConfigurationClass(org.springframework.context.annotation.ConfigurationClass, org.springframework.context.annotation.ConfigurationClassParser.SourceClass)
+	 * @see ComponentScanAnnotationParser#parse(org.springframework.core.annotation.AnnotationAttributes, java.lang.String)
+	 * @see ClassPathBeanDefinitionScanner#doScan(java.lang.String...)
 	*/
 	@Test
 	public void test2(){

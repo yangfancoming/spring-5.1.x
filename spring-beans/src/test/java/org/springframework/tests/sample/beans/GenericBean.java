@@ -300,5 +300,4 @@ public class GenericBean<T> {
 	public static GenericBean createInstance(boolean someFlag, Map<Number, Collection<? extends Object>> collectionMap) {
 		return new GenericBean(someFlag, collectionMap);
 	}
-
 }

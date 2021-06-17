@@ -167,5 +167,4 @@ public class AutowireUtilsTests {
 		public void readGenericArrayInputMessage(T[] message) {
 		}
 	}
-
 }

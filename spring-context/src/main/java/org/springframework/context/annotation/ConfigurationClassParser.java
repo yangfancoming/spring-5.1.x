@@ -193,8 +193,7 @@ class ConfigurationClassParser {
 				// Otherwise ignore new imported config class; existing non-imported class overrides it.
 				return;
 			}else {
-				// Explicit bean definition found, probably replacing an import.
-				// Let's remove the old one and go with the new one.
+				// Explicit bean definition found, probably replacing an import.Let's remove the old one and go with the new one.
 				configurationClasses.remove(configClass);
 				knownSuperclasses.values().removeIf(configClass::equals);
 			}
