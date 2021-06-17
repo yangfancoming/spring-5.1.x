@@ -1232,6 +1232,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 */
 	@SuppressWarnings("deprecation")  // for postProcessPropertyValues
 	protected void populateBean(String beanName, RootBeanDefinition mbd, @Nullable BeanWrapper bw) {
+		logger.warn("【IOC容器 进入  populateBean 方法  开始填充bean属性 --- 】 beanName： " + beanName);
 		if (bw == null) {
 			if (mbd.hasPropertyValues()) {
 				throw new BeanCreationException(mbd.getResourceDescription(), beanName, "Cannot apply property values to null instance");
@@ -1272,11 +1273,13 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			// Add property values based on autowire by name if applicable.
 			// 通过属性名称注入依赖
 			if (mbd.getResolvedAutowireMode() == AUTOWIRE_BY_NAME) {
+				logger.warn("【IOC容器 使用 autowireMode 类型为 ByName 进行属性注入  --- 】 beanName： " + beanName);
 				autowireByName(beanName, mbd, bw, newPvs);
 			}
 			// Add property values based on autowire by type if applicable.
 			// 通过属性类型注入依赖 // 按类型自动装配。一般都会走这里，通过类型的匹配，来给属性赋值，实现注入
 			if (mbd.getResolvedAutowireMode() == AUTOWIRE_BY_TYPE) {
+				logger.warn("【IOC容器 使用 autowireMode 类型为 ByType 进行属性注入  --- 】 beanName： " + beanName);
 				// 它的步骤相对简单：显示BeanUtils.getWriteMethodParameter(pd)拿到set方法（所以，这里需要注意，若没有set方法，这里是注入不进去的，这个没@Autowired强大）
 				// 然后去解析去容器里面找对应的依赖，也是resolveDependency方法（最终由DefaultListableBeanFactory去实现的）
 				// 这里需要注意：注入的时候isSimpleProperty不会被注入的（包括基本数据类型、Integer、Long。。。
@@ -1380,9 +1383,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		String[] propertyNames = unsatisfiedNonSimpleProperties(mbd, bw);
 		for (String propertyName : propertyNames) {
 			try {
-				// 如果属性类型为 Object，则忽略，不做解析
 				PropertyDescriptor pd = bw.getPropertyDescriptor(propertyName);
 				// Don't try autowiring by type for type Object: never makes sense,even if it technically is a unsatisfied, non-simple property.
+				// 如果属性类型为 Object，则忽略，不做解析
 				if (Object.class != pd.getPropertyType()) {
 					// 获取 setter 方法（write method）的参数信息，比如参数在参数列表中的 位置，参数类型，以及该参数所归属的方法等信息
 					MethodParameter methodParam = BeanUtils.getWriteMethodParameter(pd);
@@ -1390,8 +1393,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 					boolean eager = !PriorityOrdered.class.isInstance(bw.getWrappedInstance());
 					// 创建依赖描述对象
 					DependencyDescriptor desc = new AutowireByTypeDependencyDescriptor(methodParam, eager);
-					// 下面的方法用于解析依赖。过程比较复杂，先把这里看成一个黑盒，我们只要知道这个方法可以帮我们解析出合适的依赖即可。
-					// 核心代码就这一句，类型查找委托给了子类的 resolveDependency 完成
+					// 核心代码就这一句，用于解析依赖。 解析指定 beanName 的属性所匹配的值，并把解析到的属性名称存储在 autowiredBeanNames 中
 					Object autowiredArgument = resolveDependency(desc, beanName, autowiredBeanNames, converter);
 					if (autowiredArgument != null) {
 						// 将解析出的 bean 存入到属性值列表（pvs）中
@@ -1418,12 +1420,14 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * @return an array of bean property names
 	 * @see org.springframework.beans.BeanUtils#isSimpleProperty
 	 * 这个方法会去推断所有需要注入的属性，由于set方法是spring定义的所谓writeMethod，所以能找到userDao
+	 * 非简单属性：就是类型为对象类型的属性，但是这里并不是将所有的对象类型都都会找到，比如 8 个原始包装类型，String 类型 ，Number类型、Date类型、URL类型、URI类型等都会被忽略
 	 */
 	protected String[] unsatisfiedNonSimpleProperties(AbstractBeanDefinition mbd, BeanWrapper bw) {
 		Set<String> result = new TreeSet<>();
 		PropertyValues pvs = mbd.getPropertyValues();
 		PropertyDescriptor[] pds = bw.getPropertyDescriptors();
 		for (PropertyDescriptor pd : pds) {
+			// 有可写方法、依赖检测中没有被忽略、不是简单属性类型
 			if (pd.getWriteMethod() != null && !isExcludedFromDependencyCheck(pd) && !pvs.contains(pd.getName()) && !BeanUtils.isSimpleProperty(pd.getPropertyType())) {
 				result.add(pd.getName());
 			}
@@ -1597,7 +1601,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				boolean convertible = bw.isWritableProperty(propertyName) && !PropertyAccessorUtils.isNestedOrIndexedProperty(propertyName);
 				// 对于一般的属性，convertible 通常为 true
 				if (convertible) {
-					// 对属性值的类型进行转换，比如将 String 类型的属性值 "123" 转为 Integer 类型的 123
+					// 对属性值的类型进行转换，比如将 String 类型的属性值 "123" 转为 Integer 类型的 123   Resourse 转换为 UrlResource
 					convertedValue = convertForProperty(resolvedValue, propertyName, bw, converter);
 				}
 				// Possibly store converted value in merged bean definition,

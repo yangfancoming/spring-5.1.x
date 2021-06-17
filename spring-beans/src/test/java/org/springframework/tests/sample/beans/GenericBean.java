@@ -63,9 +63,11 @@ public class GenericBean<T> {
 
 
 	public GenericBean() {
+		System.out.println("GenericBean  无参 构造函数 执行");
 	}
 
 	public GenericBean(Set<Integer> integerSet) {
+		System.out.println("GenericBean 单参 integerSet 构造函数 执行");
 		this.integerSet = integerSet;
 	}
 

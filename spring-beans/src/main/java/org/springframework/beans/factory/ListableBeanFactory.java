@@ -146,6 +146,7 @@ public interface ListableBeanFactory extends BeanFactory {
 	String[] getBeanNamesForType(@Nullable Class<?> type);
 
 	/**
+	 * 首先在 beanDefinitionMap 中去查找，再去手动注册bean集合（manualSingletonNames）中去查找，返回匹配到的bean名称
 	 * Return the names of beans matching the given type (including subclasses),
 	 * judging from either bean definitions or the value of {@code getObjectType} in the case of FactoryBeans.
 	 * <b>NOTE: This method introspects top-level beans only.</b> It does <i>not</i>

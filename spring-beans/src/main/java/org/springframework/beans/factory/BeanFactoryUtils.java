@@ -167,6 +167,7 @@ public abstract class BeanFactoryUtils {
 	}
 
 	/**
+	 * 首先在 beanDefinitionMap 中去查找，再去手动注册bean集合（manualSingletonNames）中去查找，返回匹配到的bean名称
 	 * Get all bean names for the given type, including those defined in ancestor factories.
 	 * Will return unique names in case of overridden bean definitions.
 	 * Does consider objects created by FactoryBeans if the "allowEagerInit" flag is set,which means that FactoryBeans will get initialized.
@@ -176,8 +177,7 @@ public abstract class BeanFactoryUtils {
 	 * @param includeNonSingletons whether to include prototype or scoped beans too or just singletons (also applies to FactoryBeans)
 	 * @param allowEagerInit whether to initialize
 	 * <i>lazy-init singletons</i> and
-	 * <i>objects created by FactoryBeans</i>
-	 *  (or by factory methods with a "factory-bean" reference) for the type check.
+	 * <i>objects created by FactoryBeans</i> (or by factory methods with a "factory-bean" reference) for the type check.
 	 * Note that FactoryBeans need to be eagerly initialized to determine their type:
 	 * So be aware that passing in "true"  for this flag will initialize FactoryBeans and "factory-bean" references.
 	 * @param type the type that beans must match
@@ -186,7 +186,7 @@ public abstract class BeanFactoryUtils {
 	 */
 	public static String[] beanNamesForTypeIncludingAncestors(ListableBeanFactory lbf, Class<?> type, boolean includeNonSingletons, boolean allowEagerInit) {
 		Assert.notNull(lbf, "ListableBeanFactory must not be null");
-		String[] result = lbf.getBeanNamesForType(type, includeNonSingletons, allowEagerInit);
+		String[] result = lbf.getBeanNamesForType(type, includeNonSingletons, allowEagerInit); // DefaultListableBeanFactory
 		if (lbf instanceof HierarchicalBeanFactory) {
 			HierarchicalBeanFactory hbf = (HierarchicalBeanFactory) lbf;
 			if (hbf.getParentBeanFactory() instanceof ListableBeanFactory) {

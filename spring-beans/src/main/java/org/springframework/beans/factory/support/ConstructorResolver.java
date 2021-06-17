@@ -91,7 +91,9 @@ class ConstructorResolver {
 		// 创建 BeanWrapperImpl 对象
 		BeanWrapperImpl bw = new BeanWrapperImpl();
 		beanFactory.initBeanWrapper(bw);
+		// 此处为用来实例化的类的构造函数
 		Constructor<?> constructorToUse = null;
+		// 此为构造函数参数配置(包含xml中配置的构造函数参数值)
 		ArgumentsHolder argsHolderToUse = null;
 		Object[] argsToUse = null;
 		// 确定参数值列表（argsToUse）
@@ -124,7 +126,7 @@ class ConstructorResolver {
 			Constructor<?>[] candidates = chosenCtors;
 			if (candidates == null) {
 				Class<?> beanClass = mbd.getBeanClass();
-				try {
+				try { // 通过反射获取所有构造函数列表
 					candidates = (mbd.isNonPublicAccessAllowed() ? beanClass.getDeclaredConstructors() : beanClass.getConstructors());
 				}catch (Throwable ex) {
 					throw new BeanCreationException(mbd.getResourceDescription(), beanName,"Resolution of declared constructors on bean Class [" + beanClass.getName() + "] from ClassLoader [" + beanClass.getClassLoader() + "] failed", ex);
@@ -153,16 +155,17 @@ class ConstructorResolver {
 			}else {
 				ConstructorArgumentValues cargs = mbd.getConstructorArgumentValues();
 				resolvedValues = new ConstructorArgumentValues();
-				/*
-				 * 确定构造方法参数数量，比如下面的配置：
+				/**
+				 * 根据bean定义配置计算构造函数至少有几个参数( 确定构造方法参数数量)
+				 * 原理是先计算bean定义配置中 constructor-arg中的参数总数， 然后再遍历所有带index的constructor-arg，
+				 * 如果有哪个index比参数总数大，那就把minNrOfArgs置为index + 1，因为index是从0开始的。
 				 *     <bean id="persion" class="xyz.coolblog.autowire.Person">
 				 *         <constructor-arg index="0" value="xiaoming"/>
 				 *         <constructor-arg index="1" value="1"/>
 				 *         <constructor-arg index="2" value="man"/>
 				 *     </bean>
-				 * 此时 minNrOfArgs = maxIndex + 1 = 2 + 1 = 3，除了计算 minNrOfArgs，
-				 * 下面的方法还会将 cargs 中的参数数据转存到 resolvedValues 中
-				 */
+				 * 此时 minNrOfArgs = maxIndex + 1 = 2 + 1 = 3，除了计算 minNrOfArgs，下面的方法还会将 cargs 中的参数数据转存到 resolvedValues 中
+				*/
 				minNrOfArgs = resolveConstructorArguments(beanName, mbd, bw, cargs, resolvedValues);
 			}
 			// 按照构造方法的访问权限级别和参数数量进行排序
@@ -201,6 +204,7 @@ class ConstructorResolver {
 				}
 				/*
 				 * 构造方法参数数量低于配置的参数数量，则忽略当前构造方法，并重试。
+				 * 如果参数数量小于bean定义中配置的参数数量，不考虑
 				 * 比如argsToUse = [obj1, obj2, obj3, obj4]，上面的构造方法列表中，构造方法1、2和3显然不是合适选择，忽略之。
 				 */
 				if (paramTypes.length < minNrOfArgs) {
@@ -210,8 +214,7 @@ class ConstructorResolver {
 				if (resolvedValues != null) {
 					try {
 						/*
-						 * 判断否则方法是否有 ConstructorProperties 注解，若有，则取注解中的 值。比如下面的代码：
-						 *
+						 * 判断否则方法是否有 ConstructorProperties 注解，若有，则取注解中的值。比如下面的代码：
 						 *  public class Persion {
 						 *      private String name;
 						 *      private Integer age;
@@ -236,13 +239,11 @@ class ConstructorResolver {
 						}
 						/*
 						 * 创建参数值列表，返回 argsHolder 会包含进行类型转换后的参数值，比如下面的配置:
-						 *
 						 *     <bean id="persion" class="xyz.coolblog.autowire.Person">
 						 *         <constructor-arg name="name" value="xiaoming"/>
 						 *         <constructor-arg name="age" value="1"/>
 						 *         <constructor-arg name="sex" value="man"/>
 						 *     </bean>
-						 *
 						 * Person 的成员变量 age 是 Integer 类型的，但由于在 Spring 配置中只能配成 String 类型，所以这里要进行类型转换。
 						 */
 						argsHolder = createArgumentArray(beanName, mbd, resolvedValues, bw, paramTypes, paramNames,getUserDeclaredConstructor(candidate), autowiring, candidates.length == 1);
@@ -610,7 +611,7 @@ class ConstructorResolver {
 	}
 
 	/**
-	 * Resolve the constructor arguments for this bean into the resolvedValues object.
+	 * Resolve the constructor arguments for this bean into the resolvedValues object. 将此bean的构造函数参数，解析为resolvedValues对象
 	 * This may involve looking up other beans.
 	 * This method is also used for handling invocations of static factory methods.
 	 */

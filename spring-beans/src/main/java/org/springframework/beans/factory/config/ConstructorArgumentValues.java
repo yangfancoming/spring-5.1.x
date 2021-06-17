@@ -498,8 +498,7 @@ public class ConstructorArgumentValues {
 		}
 
 		/**
-		 * Return whether this holder contains a converted value already ({@code true}),
-		 * or whether the value still needs to be converted ({@code false}).
+		 * Return whether this holder contains a converted value already ({@code true}), or whether the value still needs to be converted ({@code false}).
 		 */
 		public synchronized boolean isConverted() {
 			return this.converted;

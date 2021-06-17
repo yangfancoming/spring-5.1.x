@@ -2,6 +2,7 @@
 
 package org.springframework.beans.factory.support;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -24,6 +25,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.PropertyEditorRegistrar;
 import org.springframework.beans.PropertyEditorRegistry;
 import org.springframework.beans.factory.BeanCreationException;
+import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.config.TypedStringValue;
@@ -49,6 +51,7 @@ import static org.junit.Assert.*;
  */
 public class BeanFactoryGenericsTests {
 
+	// 测试 RootBeanDefinition 通过 MutablePropertyValues 对象，给bean的 Set<T> 属性赋值的功能
 	@Test
 	public void testGenericSetProperty() {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
@@ -56,103 +59,113 @@ public class BeanFactoryGenericsTests {
 		Set<String> input = new HashSet<>();
 		input.add("4");
 		input.add("5");
+		// 通过 setIntegerSet 方法 给GenericBean对象的 integerSet 属性注入值
 		rbd.getPropertyValues().add("integerSet", input);
-
 		bf.registerBeanDefinition("genericBean", rbd);
 		GenericBean<?> gb = (GenericBean<?>) bf.getBean("genericBean");
-
 		assertTrue(gb.getIntegerSet().contains(new Integer(4)));
 		assertTrue(gb.getIntegerSet().contains(new Integer(5)));
 	}
 
+	// 测试 RootBeanDefinition 通过 MutablePropertyValues 对象，给bean的 List<T> 属性赋值的功能
 	@Test
 	public void testGenericListProperty() throws Exception {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
-
 		List<String> input = new ArrayList<>();
 		input.add("http://localhost:8080");
 		input.add("http://localhost:9090");
 		rbd.getPropertyValues().add("resourceList", input);
-
 		bf.registerBeanDefinition("genericBean", rbd);
 		GenericBean<?> gb = (GenericBean<?>) bf.getBean("genericBean");
-
 		assertEquals(new UrlResource("http://localhost:8080"), gb.getResourceList().get(0));
 		assertEquals(new UrlResource("http://localhost:9090"), gb.getResourceList().get(1));
 	}
 
+	/**
+	 * 测试 List<T> 属性 的自动注入  private List<Resource> resourceList;
+	 * @see BeanFactoryUtils#beanNamesForTypeIncludingAncestors(org.springframework.beans.factory.ListableBeanFactory, java.lang.Class, boolean, boolean)
+	 * @see DefaultListableBeanFactory#getBeanNamesForType(java.lang.Class, boolean, boolean)
+	 * @see DefaultListableBeanFactory#doGetBeanNamesForType(org.springframework.core.ResolvableType, boolean, boolean)
+	*/
 	@Test
 	public void testGenericListPropertyWithAutowiring() throws Exception {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+		// 手动注册2个单例bean
 		bf.registerSingleton("resource1", new UrlResource("http://localhost:8080"));
 		bf.registerSingleton("resource2", new UrlResource("http://localhost:9090"));
-
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericIntegerBean.class);
-		rbd.setAutowireMode(RootBeanDefinition.AUTOWIRE_BY_TYPE);
+		rbd.setAutowireMode(RootBeanDefinition.AUTOWIRE_BY_TYPE); // AUTOWIRE_BY_NAME AUTOWIRE_BY_TYPE
 		bf.registerBeanDefinition("genericBean", rbd);
+		// 走 getBean doCreateBean populate  initializeBean invokeInitMethod 流程，再populate中 寻找依赖
 		GenericIntegerBean gb = (GenericIntegerBean) bf.getBean("genericBean");
-
 		assertEquals(new UrlResource("http://localhost:8080"), gb.getResourceList().get(0));
 		assertEquals(new UrlResource("http://localhost:9090"), gb.getResourceList().get(1));
 	}
 
+	/**
+	 * @see TypeConverterDelegate#convertIfNecessary(java.lang.String, java.lang.Object, java.lang.Object, java.lang.Class, org.springframework.core.convert.TypeDescriptor)
+	*/
 	@Test
 	public void testGenericListPropertyWithInvalidElementType() {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericIntegerBean.class);
-
 		List<Integer> input = new ArrayList<>();
 		input.add(1);
+		// 通过 setTestBeanList 方法 给GenericBean对象的 testBeanList 属性注入值
 		rbd.getPropertyValues().add("testBeanList", input);
-
 		bf.registerBeanDefinition("genericBean", rbd);
 		try {
+			// 走流程时 报错，因为 List<Integer>  与  List<TestBean> 类型不匹配
 			bf.getBean("genericBean");
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		}catch (BeanCreationException ex) {
+			System.out.println(ex);
 			assertTrue(ex.getMessage().contains("genericBean") && ex.getMessage().contains("testBeanList[0]"));
 			assertTrue(ex.getMessage().contains(TestBean.class.getName()) && ex.getMessage().contains("Integer"));
 		}
 	}
 
+
+	// 没懂 啥意思
 	@Test
 	public void testGenericListPropertyWithOptionalAutowiring() {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
-
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
 		rbd.setAutowireMode(RootBeanDefinition.AUTOWIRE_BY_TYPE);
 		bf.registerBeanDefinition("genericBean", rbd);
 		GenericBean<?> gb = (GenericBean<?>) bf.getBean("genericBean");
-
 		assertNull(gb.getResourceList());
 	}
 
+	/**
+	 * 测试 Map类型 注入
+	 * 将 Map<String, String> 类型 注入到 Map<Short, Integer> shortMap 类型中
+	 * @see DefaultListableBeanFactory#resolveMultipleBeans(org.springframework.beans.factory.config.DependencyDescriptor, java.lang.String, java.util.Set, org.springframework.beans.TypeConverter)
+	*/
 	@Test
 	public void testGenericMapProperty() {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
-
 		Map<String, String> input = new HashMap<>();
 		input.put("4", "5");
 		input.put("6", "7");
 		rbd.getPropertyValues().add("shortMap", input);
-
 		bf.registerBeanDefinition("genericBean", rbd);
 		GenericBean<?> gb = (GenericBean<?>) bf.getBean("genericBean");
-
 		assertEquals(new Integer(5), gb.getShortMap().get(new Short("4")));
 		assertEquals(new Integer(7), gb.getShortMap().get(new Short("6")));
 	}
 
+	/**
+	 * xml 方式
+	 * 测试 private ArrayList<String[]> listOfArrays;  属性的注入
+	*/
 	@Test
 	public void testGenericListOfArraysProperty() {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
-		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(
-				new ClassPathResource("genericBeanTests.xml", getClass()));
+		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(new ClassPathResource("genericBeanTests.xml", getClass()));
 		GenericBean<?> gb = (GenericBean<?>) bf.getBean("listOfArrays");
-
 		assertEquals(1, gb.getListOfArrays().size());
 		String[] array = gb.getListOfArrays().get(0);
 		assertEquals(2, array.length);
@@ -160,35 +173,49 @@ public class BeanFactoryGenericsTests {
 		assertEquals("value2", array[1]);
 	}
 
-
+	/**
+	 * 测试  通过 指定构造函数 注入方式  给GenericBean对象的 integerSet 属性注入值
+	 * @see AbstractAutowireCapableBeanFactory#determineConstructorsFromBeanPostProcessors(java.lang.Class, java.lang.String)
+	 * @see AbstractAutowireCapableBeanFactory#autowireConstructor(java.lang.String, org.springframework.beans.factory.support.RootBeanDefinition, java.lang.reflect.Constructor[], java.lang.Object[])
+	 * @see Constructor#newInstance(java.lang.Object...)
+	 */
 	@Test
 	public void testGenericSetConstructor() {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
-
 		Set<String> input = new HashSet<>();
 		input.add("4");
 		input.add("5");
+		// false
+		System.out.println(rbd.hasConstructorArgumentValues());
+		// 通过 构造函数注入方式
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(input);
-
+		// true
+		System.out.println(rbd.hasConstructorArgumentValues());
 		bf.registerBeanDefinition("genericBean", rbd);
 		GenericBean<?> gb = (GenericBean<?>) bf.getBean("genericBean");
-
 		assertTrue(gb.getIntegerSet().contains(new Integer(4)));
 		assertTrue(gb.getIntegerSet().contains(new Integer(5)));
 	}
 
+
+	/**
+	 * 测试  通过 构造函数 自动注入方式  给GenericBean对象的 integerSet 属性注入值
+	 * @see AbstractAutowireCapableBeanFactory#autowireConstructor(java.lang.String, org.springframework.beans.factory.support.RootBeanDefinition, java.lang.reflect.Constructor[], java.lang.Object[])
+	 *
+	 * 同上面测试用例
+	 * @see BeanFactoryGenericsTests#testGenericListPropertyWithAutowiring()
+	*/
 	@Test
 	public void testGenericSetConstructorWithAutowiring() {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		bf.registerSingleton("integer1", new Integer(4));
 		bf.registerSingleton("integer2", new Integer(5));
-
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
+		// 通过 构造函数 自动注入方式   走 public GenericBean(Set<Integer> integerSet) 单参构造函数
 		rbd.setAutowireMode(RootBeanDefinition.AUTOWIRE_CONSTRUCTOR);
 		bf.registerBeanDefinition("genericBean", rbd);
 		GenericBean<?> gb = (GenericBean<?>) bf.getBean("genericBean");
-
 		assertTrue(gb.getIntegerSet().contains(new Integer(4)));
 		assertTrue(gb.getIntegerSet().contains(new Integer(5)));
 	}
@@ -534,15 +561,12 @@ public class BeanFactoryGenericsTests {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
 		rbd.setFactoryMethodName("createInstance");
-
 		Map<String, String> input = new HashMap<>();
 		input.put("4", "5");
 		input.put("6", "7");
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(input);
-
 		bf.registerBeanDefinition("genericBean", rbd);
 		GenericBean<?> gb = (GenericBean<?>) bf.getBean("genericBean");
-
 		assertEquals("5", gb.getLongMap().get(new Long("4")));
 		assertEquals("7", gb.getLongMap().get(new Long("6")));
 	}
@@ -579,8 +603,7 @@ public class BeanFactoryGenericsTests {
 	@Test
 	public void testGenericListBean() throws Exception {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
-		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(
-				new ClassPathResource("genericBeanTests.xml", getClass()));
+		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(new ClassPathResource("genericBeanTests.xml", getClass()));
 		List<?> list = (List<?>) bf.getBean("list");
 		assertEquals(1, list.size());
 		assertEquals(new URL("http://localhost:8080"), list.get(0));
@@ -589,8 +612,7 @@ public class BeanFactoryGenericsTests {
 	@Test
 	public void testGenericSetBean() throws Exception {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
-		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(
-				new ClassPathResource("genericBeanTests.xml", getClass()));
+		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(new ClassPathResource("genericBeanTests.xml", getClass()));
 		Set<?> set = (Set<?>) bf.getBean("set");
 		assertEquals(1, set.size());
 		assertEquals(new URL("http://localhost:8080"), set.iterator().next());
@@ -599,8 +621,7 @@ public class BeanFactoryGenericsTests {
 	@Test
 	public void testGenericMapBean() throws Exception {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
-		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(
-				new ClassPathResource("genericBeanTests.xml", getClass()));
+		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(new ClassPathResource("genericBeanTests.xml", getClass()));
 		Map<?, ?> map = (Map<?, ?>) bf.getBean("map");
 		assertEquals(1, map.size());
 		assertEquals(new Integer(10), map.keySet().iterator().next());
@@ -610,8 +631,7 @@ public class BeanFactoryGenericsTests {
 	@Test
 	public void testGenericallyTypedIntegerBean() {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
-		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(
-				new ClassPathResource("genericBeanTests.xml", getClass()));
+		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(new ClassPathResource("genericBeanTests.xml", getClass()));
 		GenericIntegerBean gb = (GenericIntegerBean) bf.getBean("integerBean");
 		assertEquals(new Integer(10), gb.getGenericProperty());
 		assertEquals(new Integer(20), gb.getGenericListProperty().get(0));
@@ -621,8 +641,7 @@ public class BeanFactoryGenericsTests {
 	@Test
 	public void testGenericallyTypedSetOfIntegerBean() {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
-		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(
-				new ClassPathResource("genericBeanTests.xml", getClass()));
+		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(new ClassPathResource("genericBeanTests.xml", getClass()));
 		GenericSetOfIntegerBean gb = (GenericSetOfIntegerBean) bf.getBean("setOfIntegerBean");
 		assertEquals(new Integer(10), gb.getGenericProperty().iterator().next());
 		assertEquals(new Integer(20), gb.getGenericListProperty().get(0).iterator().next());
@@ -632,10 +651,8 @@ public class BeanFactoryGenericsTests {
 	@Test
 	public void testSetBean() throws Exception {
 		Assume.group(TestGroup.LONG_RUNNING);
-
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
-		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(
-				new ClassPathResource("genericBeanTests.xml", getClass()));
+		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(new ClassPathResource("genericBeanTests.xml", getClass()));
 		UrlSet us = (UrlSet) bf.getBean("setBean");
 		assertEquals(1, us.size());
 		assertEquals(new URL("https://www.springframework.org"), us.iterator().next());
@@ -722,7 +739,6 @@ public class BeanFactoryGenericsTests {
 	@Test
 	public void parameterizedInstanceFactoryMethodWithWrappedClassName() {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
-
 		RootBeanDefinition rbd = new RootBeanDefinition();
 		rbd.setBeanClassName(Mockito.class.getName());
 		rbd.setFactoryMethodName("mock");
@@ -741,7 +757,6 @@ public class BeanFactoryGenericsTests {
 	@Test
 	public void parameterizedInstanceFactoryMethodWithInvalidClassName() {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
-
 		RootBeanDefinition rbd = new RootBeanDefinition(MocksControl.class);
 		bf.registerBeanDefinition("mocksControl", rbd);
 
@@ -762,7 +777,6 @@ public class BeanFactoryGenericsTests {
 	@Test
 	public void parameterizedInstanceFactoryMethodWithIndexedArgument() {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
-
 		RootBeanDefinition rbd = new RootBeanDefinition(MocksControl.class);
 		bf.registerBeanDefinition("mocksControl", rbd);
 
@@ -809,8 +823,7 @@ public class BeanFactoryGenericsTests {
 
 		bf.registerBeanDefinition("doubleStore", new RootBeanDefinition(NumberStore.class));
 		bf.registerBeanDefinition("floatStore", new RootBeanDefinition(NumberStore.class));
-		bf.registerBeanDefinition("numberBean",
-				new RootBeanDefinition(NumberBean.class, RootBeanDefinition.AUTOWIRE_CONSTRUCTOR, false));
+		bf.registerBeanDefinition("numberBean",new RootBeanDefinition(NumberBean.class, RootBeanDefinition.AUTOWIRE_CONSTRUCTOR, false));
 
 		NumberBean nb = bf.getBean(NumberBean.class);
 		assertSame(bf.getBean("doubleStore"), nb.getDoubleStore());
@@ -838,8 +851,7 @@ public class BeanFactoryGenericsTests {
 		RootBeanDefinition bd2 = new RootBeanDefinition(NumberStoreFactory.class);
 		bd2.setFactoryMethodName("newFloatStore");
 		bf.registerBeanDefinition("store2", bd2);
-		bf.registerBeanDefinition("numberBean",
-				new RootBeanDefinition(NumberBean.class, RootBeanDefinition.AUTOWIRE_CONSTRUCTOR, false));
+		bf.registerBeanDefinition("numberBean",new RootBeanDefinition(NumberBean.class, RootBeanDefinition.AUTOWIRE_CONSTRUCTOR, false));
 
 		NumberBean nb = bf.getBean(NumberBean.class);
 		assertSame(bf.getBean("store1"), nb.getDoubleStore());
@@ -862,15 +874,13 @@ public class BeanFactoryGenericsTests {
 		try {
 			numberStoreProvider.getObject();
 			fail("Should have thrown NoUniqueBeanDefinitionException");
-		}
-		catch (NoUniqueBeanDefinitionException ex) {
+		}catch (NoUniqueBeanDefinitionException ex) {
 			// expected
 		}
 		try {
 			numberStoreProvider.getIfAvailable();
 			fail("Should have thrown NoUniqueBeanDefinitionException");
-		}
-		catch (NoUniqueBeanDefinitionException ex) {
+		}catch (NoUniqueBeanDefinitionException ex) {
 			// expected
 		}
 		assertNull(numberStoreProvider.getIfUnique());
@@ -955,16 +965,13 @@ public class BeanFactoryGenericsTests {
 	public static class NamedUrlList extends LinkedList<URL> {
 	}
 
-
 	@SuppressWarnings("serial")
 	public static class NamedUrlSet extends HashSet<URL> {
 	}
 
-
 	@SuppressWarnings("serial")
 	public static class NamedUrlMap extends HashMap<Integer, URL> {
 	}
-
 
 	public static class CollectionDependentBean {
 
@@ -974,7 +981,6 @@ public class BeanFactoryGenericsTests {
 			assertEquals(1, map.size());
 		}
 	}
-
 
 	@SuppressWarnings("serial")
 	public static class UrlSet extends HashSet<URL> {
@@ -1016,14 +1022,11 @@ public class BeanFactoryGenericsTests {
 	public static class NumberStore<T extends Number> {
 	}
 
-
 	public static class DoubleStore extends NumberStore<Double> {
 	}
 
-
 	public static class FloatStore extends NumberStore<Float> {
 	}
-
 
 	public static class NumberBean {
 

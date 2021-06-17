@@ -419,7 +419,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
 	private String[] doGetBeanNamesForType(ResolvableType type, boolean includeNonSingletons, boolean allowEagerInit) {
 		List<String> result = new ArrayList<>();
-		// 循环所有的beanName 这个是在Spring容器启动解析Bean的时候放入到这个List中的
+		// 1.首先在 beanDefinitionMap 中去查找，再去手动注册bean集合（manualSingletonNames）中去查找
 		// Check all bean definitions.
 		for (String beanName : beanDefinitionNames) {
 			// Only consider bean as eligible if the bean name
@@ -460,8 +460,8 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				}
 			}
 		}
-		// 这里的Bean是Spring容器创建的特殊的几种类型的Bean 像Environment
 		// Check manually registered singletons too.
+		// 2.在手动注册bean集合（manualSingletonNames）中去查找
 		for (String beanName : manualSingletonNames) {
 			try {
 				// In case of FactoryBean, match object created by FactoryBean.
@@ -475,6 +475,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 					beanName = FACTORY_BEAN_PREFIX + beanName;
 				}
 				// Match raw bean instance (might be raw FactoryBean).
+				// 这里实际上就是，用 beanName 去一级单例缓冲池中获取bean，然后拿着该bean与type进行比对 如果是同一个实例类型 则完成匹配，添加到 result结果集中
 				if (isTypeMatch(beanName, type)) {
 					result.add(beanName);
 				}
@@ -933,6 +934,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				action.accept(manualSingletonNames);
 			}
 		}
+		logger.warn("【IOC容器 手动注册单例 manualSingletonNames  --- 】 beanName： " + manualSingletonNames);
 	}
 
 	// Remove any assumptions about by-type mappings.
@@ -1089,9 +1091,9 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			Object shortcut = descriptor.resolveShortcut(this);
 			// 如果容器中存在所需依赖，这里进行断路操作，提前结束依赖解析逻辑
 			if (shortcut != null) return shortcut;
-			// 2. 注入指定值，QualifierAnnotationAutowireCandidateResolver解析@Value会用到
+			// 2. 解析出待注入属性的类型为 type
 			Class<?> type = descriptor.getDependencyType();
-			// 处理 @value 注解
+			// 获取 @value 注解的值
 			Object value = getAutowireCandidateResolver().getSuggestedValue(descriptor);
 			if (value != null) {
 				if (value instanceof String) {
@@ -1112,9 +1114,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 							converter.convertIfNecessary(value, type, descriptor.getMethodParameter()));
 				}
 			}
-			// 解析数组、list、map 等类型的依赖
-			// 3. 集合依赖，如 Array、List、Set、Map。内部查找依赖也是使用findAutowireCandidates
-			// 2. 匹配多个，sine @Spring 4.3。如果 type 是 Array、List、Map 走这里，当然也有可以匹配不到
+			// 2. 集合依赖，sine @Spring 4.3。如果 type 是 Array、List、Set、Map 类型的依赖， 走这里，内部查找依赖也是使用findAutowireCandidates
 			Object multipleBeans = resolveMultipleBeans(descriptor, beanName, autowiredBeanNames, typeConverter);
 			if (multipleBeans != null) {
 				return multipleBeans;
@@ -1224,8 +1224,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				stream = stream.sorted(adaptOrderComparator(matchingBeans));
 			}
 			return stream;
-		}
-		else if (type.isArray()) {
+		}else if (type.isArray()) { // 处理数组类型
 			Class<?> componentType = type.getComponentType();
 			ResolvableType resolvableType = descriptor.getResolvableType();
 			Class<?> resolvedArrayType = resolvableType.resolve(type);
@@ -1247,7 +1246,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				}
 			}
 			return result;
-		}else if (Collection.class.isAssignableFrom(type) && type.isInterface()) {
+		}else if (Collection.class.isAssignableFrom(type) && type.isInterface()) { //  处理集合类型  Set  List
 			Class<?> elementType = descriptor.getResolvableType().asCollection().resolveGeneric();
 			if (elementType == null) return null;
 			Map<String, Object> matchingBeans = findAutowireCandidates(beanName, elementType,new MultiElementDescriptor(descriptor));
@@ -1264,7 +1263,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				}
 			}
 			return result;
-		}else if (Map.class == type) {
+		}else if (Map.class == type) {  //  处理Map类型
 			ResolvableType mapType = descriptor.getResolvableType().asMap();
 			Class<?> keyType = mapType.resolveGeneric(0);
 			if (String.class != keyType) {
@@ -1318,7 +1317,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	 * 最后如果无法查找到依赖对象，会进行一些补偿机制，想方设法获取注入的对象，如泛型补偿，自引用补偿。
 	 * Find bean instances that match the required type. Called during autowiring for the specified bean.
 	 * @param beanName the name of the bean that is about to be wired
-	 * @param requiredType the actual type of bean to look for (may be an array component type or collection element type)
+	 * @param requiredType the actual type of bean to look for (may be an array component type or collection element type) 待寻找的属性类型，例如：org.springframework.core.io.Resource  List<Resource> xxxx
 	 * @param descriptor the descriptor of the dependency to resolve
 	 * @return a Map of candidate names and candidate instances that match the required type (never {@code null})
 	 * @throws BeansException in case of errors

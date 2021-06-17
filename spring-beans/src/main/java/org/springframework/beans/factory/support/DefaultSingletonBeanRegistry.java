@@ -253,7 +253,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 				 * @see DefaultSingletonBeanRegistry#getSingleton(java.lang.String, org.springframework.beans.factory.ObjectFactory)
 				 */
 				// 2. 初始化 bean，委托给 ObjectFactory 完成
-				singletonObject = singletonFactory.getObject(); // doit   发现依赖B后   创建b时  流程走到这里 需要步入。。。。
+				singletonObject = singletonFactory.getObject();
 				newSingleton = true;
 			}catch (IllegalStateException ex) {
 				// Has the singleton object implicitly appeared in the meantime ->
