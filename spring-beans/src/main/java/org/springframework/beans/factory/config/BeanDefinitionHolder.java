@@ -135,7 +135,6 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 	/**
 	 * Expose the bean definition's source object.
 	 * @see BeanDefinition#getSource()
-	 * 获取beanDefinition的源对象，实现了BeanMetadataElement
 	 */
 	@Override
 	@Nullable

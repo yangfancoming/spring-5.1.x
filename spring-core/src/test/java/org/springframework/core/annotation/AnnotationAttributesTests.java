@@ -204,7 +204,6 @@ public class AnnotationAttributesTests {
 	}
 
 	enum Color {
-
 		RED, WHITE, BLUE
 	}
 

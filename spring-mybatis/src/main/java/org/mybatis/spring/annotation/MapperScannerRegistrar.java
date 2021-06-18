@@ -3,7 +3,6 @@ package org.mybatis.spring.annotation;
 
 import org.mybatis.logging.Logger;
 import org.mybatis.logging.LoggerFactory;
-import org.mybatis.spring.batch.MyBatisBatchItemWriter;
 import org.mybatis.spring.mapper.ClassPathMapperScanner;
 import org.mybatis.spring.mapper.MapperFactoryBean;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;

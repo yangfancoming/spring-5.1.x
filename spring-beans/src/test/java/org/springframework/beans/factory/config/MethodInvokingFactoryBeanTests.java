@@ -16,10 +16,6 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link MethodInvokingFactoryBean} and {@link MethodInvokingBean}.
- *
- * @author Colin Sampaleanu
-
-
  * @since 21.11.2003
  */
 public class MethodInvokingFactoryBeanTests {

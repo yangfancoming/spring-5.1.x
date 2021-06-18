@@ -254,5 +254,4 @@ public class StopWatch {
 			return (this.timeMillis / 1000.0);
 		}
 	}
-
 }

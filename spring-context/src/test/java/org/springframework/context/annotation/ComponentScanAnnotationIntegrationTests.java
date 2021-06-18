@@ -54,9 +54,6 @@ import static org.springframework.beans.factory.support.BeanDefinitionBuilder.*;
 
 /**
  * Integration tests for processing ComponentScan-annotated Configuration classes.
-
-
- * @author Sam Brannen
  * @since 3.1
  */
 @SuppressWarnings("resource")
@@ -67,8 +64,7 @@ public class ComponentScanAnnotationIntegrationTests {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
 		ctx.scan(example.scannable._package.class.getPackage().getName());
 		ctx.refresh();
-		assertThat("control scan for example.scannable package failed to register FooServiceImpl bean",
-				ctx.containsBean("fooServiceImpl"), is(true));
+		assertThat("control scan for example.scannable package failed to register FooServiceImpl bean",ctx.containsBean("fooServiceImpl"), is(true));
 	}
 
 	@Test

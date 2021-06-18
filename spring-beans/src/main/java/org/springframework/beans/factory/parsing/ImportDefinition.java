@@ -69,5 +69,4 @@ public class ImportDefinition implements BeanMetadataElement {
 	public final Object getSource() {
 		return this.source;
 	}
-
 }

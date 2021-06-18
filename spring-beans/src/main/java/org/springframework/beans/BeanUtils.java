@@ -152,8 +152,9 @@ public abstract class BeanUtils {
 	}
 
 	/**
-	 * Return the primary constructor of the provided class. For Kotlin classes, this  returns the Java constructor corresponding to the Kotlin primary constructor
-	 * (as defined in the Kotlin specification). Otherwise, in particular for non-Kotlin classes, this simply returns {@code null}.
+	 * Return the primary constructor of the provided class.
+	 * For Kotlin classes, this  returns the Java constructor corresponding to the Kotlin primary constructor (as defined in the Kotlin specification).
+	 * Otherwise, in particular for non-Kotlin classes, this simply returns {@code null}.
 	 * @param clazz the class to check
 	 * @since 5.0
 	 * @see <a href="https://kotlinlang.org/docs/reference/classes.html#constructors">Kotlin docs</a>
