@@ -6,20 +6,16 @@ import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.lang.Nullable;
 
 /**
- * Strategy interface used by a {@link ConfigurableBeanFactory},
- * representing a target scope to hold bean instances in.
+ * Strategy interface used by a {@link ConfigurableBeanFactory}, representing a target scope to hold bean instances in.
  * This allows for extending the BeanFactory's standard scopes
  * {@link ConfigurableBeanFactory#SCOPE_SINGLETON "singleton"} and
  * {@link ConfigurableBeanFactory#SCOPE_PROTOTYPE "prototype"}
- * with custom further scopes, registered for a
- * {@link ConfigurableBeanFactory#registerScope(String, Scope) specific key}.
- *
+ * with custom further scopes, registered for a {@link ConfigurableBeanFactory#registerScope(String, Scope) specific key}.
  * {@link org.springframework.context.ApplicationContext} implementations
  * such as a {@link org.springframework.web.context.WebApplicationContext}
  * may register additional standard scopes specific to their environment,
  * e.g. {@link org.springframework.web.context.WebApplicationContext#SCOPE_REQUEST "request"}
- * and {@link org.springframework.web.context.WebApplicationContext#SCOPE_SESSION "session"},
- * based on this Scope SPI.
+ * and {@link org.springframework.web.context.WebApplicationContext#SCOPE_SESSION "session"},based on this Scope SPI.
  *
  * Even if its primary use is for extended scopes in a web environment,
  * this SPI is completely generic: It provides the ability to get and put

@@ -19,6 +19,7 @@ import static org.springframework.tests.TestResourceUtils.*;
  */
 public class PropertyPathFactoryBeanTests {
 
+	//   PropertyPathFactoryBeanTests-context.xml
 	private static final Resource CONTEXT = qualifiedResource(PropertyPathFactoryBeanTests.class, "context.xml");
 
 	@Test

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.ObjectFactory;
 
 /**
  * Shared test types for this package.
-
  */
 final class TestTypes {}
 

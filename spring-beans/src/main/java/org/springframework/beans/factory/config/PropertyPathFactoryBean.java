@@ -104,8 +104,7 @@ public class PropertyPathFactoryBean implements FactoryBean<Object>, BeanNameAwa
 	/**
 	 * Specify the name of a target bean to apply the property path to.
 	 * Alternatively, specify a target object directly.
-	 * @param targetBeanName the bean name to be looked up in the
-	 * containing bean factory (e.g. "testBean")
+	 * @param targetBeanName the bean name to be looked up in the containing bean factory (e.g. "testBean")
 	 * @see #setTargetObject
 	 */
 	public void setTargetBeanName(String targetBeanName) {
@@ -114,8 +113,7 @@ public class PropertyPathFactoryBean implements FactoryBean<Object>, BeanNameAwa
 
 	/**
 	 * Specify the property path to apply to the target.
-	 * @param propertyPath the property path, potentially nested
-	 * (e.g. "age" or "spouse.age")
+	 * @param propertyPath the property path, potentially nested (e.g. "age" or "spouse.age")
 	 */
 	public void setPropertyPath(String propertyPath) {
 		this.propertyPath = StringUtils.trimAllWhitespace(propertyPath);
@@ -135,8 +133,7 @@ public class PropertyPathFactoryBean implements FactoryBean<Object>, BeanNameAwa
 
 	/**
 	 * The bean name of this PropertyPathFactoryBean will be interpreted
-	 * as "beanName.property" pattern, if neither "targetObject" nor
-	 * "targetBeanName" nor "propertyPath" have been specified.
+	 * as "beanName.property" pattern, if neither "targetObject" nor "targetBeanName" nor "propertyPath" have been specified.
 	 * This allows for concise bean definitions with just an id/name.
 	 */
 	@Override
@@ -212,5 +209,4 @@ public class PropertyPathFactoryBean implements FactoryBean<Object>, BeanNameAwa
 	public boolean isSingleton() {
 		return false;
 	}
-
 }

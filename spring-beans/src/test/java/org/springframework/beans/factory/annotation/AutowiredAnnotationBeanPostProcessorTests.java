@@ -90,8 +90,8 @@ public class AutowiredAnnotationBeanPostProcessorTests {
 		try {
 			bf.getBean("testBean");
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		}catch (BeanCreationException ex) {
+			System.out.println(ex);
 			assertTrue(ex.getRootCause() instanceof IllegalStateException);
 		}
 	}
