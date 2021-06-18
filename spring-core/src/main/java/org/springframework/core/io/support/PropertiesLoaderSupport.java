@@ -110,13 +110,16 @@ public abstract class PropertiesLoaderSupport {
 
 	/**
 	 * Return a merged Properties instance containing both the loaded properties and properties set on this FactoryBean.
+	 * 注意该方法里3个if语句，是有顺序覆盖效果的。
 	 */
 	protected Properties mergeProperties() throws IOException {
 		Properties result = new Properties();
+		//  localOverride 默认为false
 		if (localOverride) {
 			// Load properties from file upfront, to let local properties override.
 			loadProperties(result);
 		}
+		// 通过 localProperties 方式，填充 Properties 属性并返回
 		if (localProperties != null) {
 			for (Properties localProp : localProperties) {
 				CollectionUtils.mergePropertiesIntoMap(localProp, result);

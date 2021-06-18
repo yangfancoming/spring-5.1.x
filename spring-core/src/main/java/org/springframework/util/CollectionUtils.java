@@ -77,9 +77,9 @@ public abstract class CollectionUtils {
 	}
 
 	/**
+	 * 将p1的内容，全部拷贝到p2中
 	 * Merge the given Properties instance into the given Map,copying all properties (key-value pairs) over.
-	 * Uses {@code Properties.propertyNames()} to even catch
-	 * default properties linked into the original Properties instance.
+	 * Uses {@code Properties.propertyNames()} to even catch  default properties linked into the original Properties instance.
 	 * @param props the Properties instance to merge (may be {@code null})
 	 * @param map the target Map to merge the properties into
 	 */
