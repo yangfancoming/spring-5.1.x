@@ -60,5 +60,4 @@ public interface ITestBean extends AgeHolder {
 	int haveBirthday();
 
 	void unreliableFileOperation() throws IOException;
-
 }

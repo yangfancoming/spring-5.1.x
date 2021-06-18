@@ -11,5 +11,4 @@ public interface AgeHolder {
 	int getAge();
 
 	void setAge(int age);
-
 }

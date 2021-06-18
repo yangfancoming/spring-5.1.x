@@ -96,6 +96,10 @@ public class AutowiredAnnotationBeanPostProcessorTests {
 		}
 	}
 
+	/**
+	 * 测试  bean的作用域为原型模式，每次get出来的bean是不同的
+	 * 但是，他们注入的testBean属性 却是相同的，因为testBean是单例的。
+	*/
 	@Test
 	public void testResourceInjection() {
 		RootBeanDefinition bd = new RootBeanDefinition(ResourceInjectionBean.class);
@@ -104,13 +108,14 @@ public class AutowiredAnnotationBeanPostProcessorTests {
 		TestBean tb = new TestBean();
 		bf.registerSingleton("testBean", tb);
 
-		ResourceInjectionBean bean = (ResourceInjectionBean) bf.getBean("annotatedBean");
-		assertSame(tb, bean.getTestBean());
-		assertSame(tb, bean.getTestBean2());
+		ResourceInjectionBean bean1 = (ResourceInjectionBean) bf.getBean("annotatedBean");
+		assertSame(tb, bean1.getTestBean());
+		assertSame(tb, bean1.getTestBean2());
 
-		bean = (ResourceInjectionBean) bf.getBean("annotatedBean");
-		assertSame(tb, bean.getTestBean());
-		assertSame(tb, bean.getTestBean2());
+		ResourceInjectionBean bean2 = (ResourceInjectionBean) bf.getBean("annotatedBean");
+		assertSame(tb, bean2.getTestBean());
+		assertSame(tb, bean2.getTestBean2());
+		assertNotSame(bean1,bean2);
 	}
 
 	@Test
@@ -2204,6 +2209,10 @@ public class AutowiredAnnotationBeanPostProcessorTests {
 
 		private TestBean testBean2;
 
+		public ResourceInjectionBean() {
+			System.out.println(" ResourceInjectionBean 无参构造函数 执行");
+		}
+
 		@Autowired
 		public void setTestBean2(TestBean testBean2) {
 			if (this.testBean2 != null) {
@@ -2227,15 +2236,16 @@ public class AutowiredAnnotationBeanPostProcessorTests {
 		@Autowired
 		public final ITestBean testBean3 = null;
 
-		private T nestedTestBean;
-
 		private ITestBean testBean4;
+
+		private T nestedTestBean;
 
 		protected BeanFactory beanFactory;
 
 		public boolean baseInjected = false;
 
 		public NonPublicResourceInjectionBean() {
+			System.out.println("NonPublicResourceInjectionBean 无参构造函数 执行");
 		}
 
 		@Override
@@ -2278,8 +2288,11 @@ public class AutowiredAnnotationBeanPostProcessorTests {
 	}
 
 
-	public static class TypedExtendedResourceInjectionBean extends NonPublicResourceInjectionBean<NestedTestBean>
-			implements DisposableBean {
+	public static class TypedExtendedResourceInjectionBean extends NonPublicResourceInjectionBean<NestedTestBean> implements DisposableBean {
+
+		public TypedExtendedResourceInjectionBean() {
+			System.out.println("TypedExtendedResourceInjectionBean 无参构造函数 执行");
+		}
 
 		public boolean destroyed = false;
 
