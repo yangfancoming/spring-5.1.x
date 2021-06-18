@@ -69,5 +69,4 @@ public class DefaultPropertiesPersister implements PropertiesPersister {
 	public void storeToXml(Properties props, OutputStream os, String header, String encoding) throws IOException {
 		props.storeToXML(os, header, encoding);
 	}
-
 }

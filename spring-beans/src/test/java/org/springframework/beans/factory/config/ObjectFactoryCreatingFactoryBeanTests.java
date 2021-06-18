@@ -19,22 +19,16 @@ import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 import static org.springframework.tests.TestResourceUtils.*;
 
-/**
- * @author Colin Sampaleanu
 
- * @author Rick Evans
-
- */
 public class ObjectFactoryCreatingFactoryBeanTests {
 
 	private DefaultListableBeanFactory beanFactory;
 
-
 	@Before
 	public void setup() {
 		this.beanFactory = new DefaultListableBeanFactory();
-		new XmlBeanDefinitionReader(this.beanFactory).loadBeanDefinitions(
-				qualifiedResource(ObjectFactoryCreatingFactoryBeanTests.class, "context.xml"));
+		// ObjectFactoryCreatingFactoryBeanTests-context.xml
+		new XmlBeanDefinitionReader(this.beanFactory).loadBeanDefinitions(qualifiedResource(ObjectFactoryCreatingFactoryBeanTests.class, "context.xml"));
 		this.beanFactory.setSerializationId("test");
 	}
 
@@ -43,12 +37,10 @@ public class ObjectFactoryCreatingFactoryBeanTests {
 		this.beanFactory.setSerializationId(null);
 	}
 
-
 	@Test
 	public void testFactoryOperation() {
 		FactoryTestBean testBean = beanFactory.getBean("factoryTestBean", FactoryTestBean.class);
 		ObjectFactory<?> objectFactory = testBean.getObjectFactory();
-
 		Date date1 = (Date) objectFactory.getObject();
 		Date date2 = (Date) objectFactory.getObject();
 		assertTrue(date1 != date2);
@@ -58,9 +50,7 @@ public class ObjectFactoryCreatingFactoryBeanTests {
 	public void testFactorySerialization() throws Exception {
 		FactoryTestBean testBean = beanFactory.getBean("factoryTestBean", FactoryTestBean.class);
 		ObjectFactory<?> objectFactory = testBean.getObjectFactory();
-
 		objectFactory = (ObjectFactory) SerializationTestUtils.serializeAndDeserialize(objectFactory);
-
 		Date date1 = (Date) objectFactory.getObject();
 		Date date2 = (Date) objectFactory.getObject();
 		assertTrue(date1 != date2);
@@ -70,7 +60,6 @@ public class ObjectFactoryCreatingFactoryBeanTests {
 	public void testProviderOperation() {
 		ProviderTestBean testBean = beanFactory.getBean("providerTestBean", ProviderTestBean.class);
 		Provider<?> provider = testBean.getProvider();
-
 		Date date1 = (Date) provider.get();
 		Date date2 = (Date) provider.get();
 		assertTrue(date1 != date2);
@@ -80,9 +69,7 @@ public class ObjectFactoryCreatingFactoryBeanTests {
 	public void testProviderSerialization() throws Exception {
 		ProviderTestBean testBean = beanFactory.getBean("providerTestBean", ProviderTestBean.class);
 		Provider<?> provider = testBean.getProvider();
-
 		provider = (Provider) SerializationTestUtils.serializeAndDeserialize(provider);
-
 		Date date1 = (Date) provider.get();
 		Date date2 = (Date) provider.get();
 		assertTrue(date1 != date2);
@@ -92,10 +79,8 @@ public class ObjectFactoryCreatingFactoryBeanTests {
 	public void testDoesNotComplainWhenTargetBeanNameRefersToSingleton() throws Exception {
 		final String targetBeanName = "singleton";
 		final String expectedSingleton = "Alicia Keys";
-
 		BeanFactory beanFactory = mock(BeanFactory.class);
 		given(beanFactory.getBean(targetBeanName)).willReturn(expectedSingleton);
-
 		ObjectFactoryCreatingFactoryBean factory = new ObjectFactoryCreatingFactoryBean();
 		factory.setTargetBeanName(targetBeanName);
 		factory.setBeanFactory(beanFactory);
@@ -110,8 +95,7 @@ public class ObjectFactoryCreatingFactoryBeanTests {
 		try {
 			new ObjectFactoryCreatingFactoryBean().afterPropertiesSet();
 			fail("Must have thrown an IllegalArgumentException; 'targetBeanName' property not set.");
-		}
-		catch (IllegalArgumentException expected) {}
+		}catch (IllegalArgumentException expected) {}
 	}
 
 	@Test
@@ -121,8 +105,7 @@ public class ObjectFactoryCreatingFactoryBeanTests {
 			factory.setTargetBeanName("");
 			factory.afterPropertiesSet();
 			fail("Must have thrown an IllegalArgumentException; 'targetBeanName' property set to (invalid) empty string.");
-		}
-		catch (IllegalArgumentException expected) {}
+		}catch (IllegalArgumentException expected) {}
 	}
 
 	@Test
@@ -138,10 +121,8 @@ public class ObjectFactoryCreatingFactoryBeanTests {
 
 	@Test
 	public void testEnsureOFBFBReportsThatItActuallyCreatesObjectFactoryInstances() {
-		assertEquals("Must be reporting that it creates ObjectFactory instances (as per class contract).",
-			ObjectFactory.class, new ObjectFactoryCreatingFactoryBean().getObjectType());
+		assertEquals("Must be reporting that it creates ObjectFactory instances (as per class contract).",ObjectFactory.class, new ObjectFactoryCreatingFactoryBean().getObjectType());
 	}
-
 
 	public static class FactoryTestBean {
 
@@ -169,5 +150,4 @@ public class ObjectFactoryCreatingFactoryBeanTests {
 			this.provider = provider;
 		}
 	}
-
 }

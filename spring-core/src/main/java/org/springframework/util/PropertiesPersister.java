@@ -11,10 +11,8 @@ import java.util.Properties;
 
 /**
  * Strategy interface for persisting {@code java.util.Properties},allowing for pluggable parsing strategies.
- * The default implementation is DefaultPropertiesPersister,
- * providing the native parsing of {@code java.util.Properties},
- * but allowing for reading from any Reader and writing to any Writer
- * (which allows to specify an encoding for a properties file).
+ * The default implementation is DefaultPropertiesPersister,providing the native parsing of {@code java.util.Properties},
+ * but allowing for reading from any Reader and writing to any Writer (which allows to specify an encoding for a properties file).
  * @since 10.03.2004
  * @see DefaultPropertiesPersister
  * @see java.util.Properties
@@ -31,8 +29,7 @@ public interface PropertiesPersister {
 	void load(Properties props, InputStream is) throws IOException;
 
 	/**
-	 * Load properties from the given Reader into the given
-	 * Properties object.
+	 * Load properties from the given Reader into the given Properties object.
 	 * @param props the Properties object to load into
 	 * @param reader the Reader to load from
 	 * @throws IOException in case of I/O errors
@@ -40,8 +37,7 @@ public interface PropertiesPersister {
 	void load(Properties props, Reader reader) throws IOException;
 
 	/**
-	 * Write the contents of the given Properties object to the
-	 * given OutputStream.
+	 * Write the contents of the given Properties object to the given OutputStream.
 	 * @param props the Properties object to store
 	 * @param os the OutputStream to write to
 	 * @param header the description of the property list
@@ -51,8 +47,7 @@ public interface PropertiesPersister {
 	void store(Properties props, OutputStream os, String header) throws IOException;
 
 	/**
-	 * Write the contents of the given Properties object to the
-	 * given Writer.
+	 * Write the contents of the given Properties object to the given Writer.
 	 * @param props the Properties object to store
 	 * @param writer the Writer to write to
 	 * @param header the description of the property list
@@ -61,8 +56,7 @@ public interface PropertiesPersister {
 	void store(Properties props, Writer writer, String header) throws IOException;
 
 	/**
-	 * Load properties from the given XML InputStream into the
-	 * given Properties object.
+	 * Load properties from the given XML InputStream into the given Properties object.
 	 * @param props the Properties object to load into
 	 * @param is the InputStream to load from
 	 * @throws IOException in case of I/O errors
@@ -71,8 +65,7 @@ public interface PropertiesPersister {
 	void loadFromXml(Properties props, InputStream is) throws IOException;
 
 	/**
-	 * Write the contents of the given Properties object to the
-	 * given XML OutputStream.
+	 * Write the contents of the given Properties object to the given XML OutputStream.
 	 * @param props the Properties object to store
 	 * @param os the OutputStream to write to
 	 * @param header the description of the property list
@@ -82,8 +75,7 @@ public interface PropertiesPersister {
 	void storeToXml(Properties props, OutputStream os, String header) throws IOException;
 
 	/**
-	 * Write the contents of the given Properties object to the
-	 * given XML OutputStream.
+	 * Write the contents of the given Properties object to the given XML OutputStream.
 	 * @param props the Properties object to store
 	 * @param os the OutputStream to write to
 	 * @param encoding the encoding to use
@@ -92,5 +84,4 @@ public interface PropertiesPersister {
 	 * @see java.util.Properties#storeToXML(java.io.OutputStream, String, String)
 	 */
 	void storeToXml(Properties props, OutputStream os, String header, String encoding) throws IOException;
-
 }

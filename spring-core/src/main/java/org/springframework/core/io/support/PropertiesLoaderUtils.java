@@ -52,6 +52,7 @@ public abstract class PropertiesLoaderUtils {
 	}
 
 	/**
+	 * 从一个编码资源类中加载资源，并填充到指定的Properties对象中
 	 * Actually load properties from the given EncodedResource into the given Properties instance.
 	 * @param props the Properties instance to load into
 	 * @param resource the resource to load from

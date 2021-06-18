@@ -1,13 +1,9 @@
-
-
 package org.springframework.beans.factory.config;
-
 import java.util.Properties;
-
 import org.junit.Test;
-
 import org.springframework.core.io.Resource;
-
+import org.springframework.core.io.support.PropertiesLoaderSupport;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
 import static org.junit.Assert.*;
 import static org.springframework.tests.TestResourceUtils.*;
 
@@ -18,21 +14,31 @@ import static org.springframework.tests.TestResourceUtils.*;
 public class PropertiesFactoryBeanTests {
 
 	private static final Class<?> CLASS = PropertiesFactoryBeanTests.class;
+	// 		PropertiesFactoryBeanTests-test.properties
 	private static final Resource TEST_PROPS = qualifiedResource(CLASS, "test.properties");
+	// 		PropertiesFactoryBeanTests-test.properties.xml
 	private static final Resource TEST_PROPS_XML = qualifiedResource(CLASS, "test.properties.xml");
 
+	PropertiesFactoryBean pfb = new PropertiesFactoryBean();
+	
+	/**
+	 * 测试 properties 文件
+	 * @see PropertiesLoaderSupport#loadProperties(java.util.Properties)
+	 * @see PropertiesLoaderUtils#fillProperties(java.util.Properties, org.springframework.core.io.support.EncodedResource, org.springframework.util.PropertiesPersister)
+	*/
 	@Test
 	public void testWithPropertiesFile() throws Exception {
-		PropertiesFactoryBean pfb = new PropertiesFactoryBean();
 		pfb.setLocation(TEST_PROPS);
 		pfb.afterPropertiesSet();
 		Properties props = pfb.getObject();
 		assertEquals("99", props.getProperty("tb.array[0].age"));
 	}
 
+	/**
+	 * 测试 xml 文件
+	 */
 	@Test
 	public void testWithPropertiesXmlFile() throws Exception {
-		PropertiesFactoryBean pfb = new PropertiesFactoryBean();
 		pfb.setLocation(TEST_PROPS_XML);
 		pfb.afterPropertiesSet();
 		Properties props = pfb.getObject();
@@ -41,7 +47,6 @@ public class PropertiesFactoryBeanTests {
 
 	@Test
 	public void testWithLocalProperties() throws Exception {
-		PropertiesFactoryBean pfb = new PropertiesFactoryBean();
 		Properties localProps = new Properties();
 		localProps.setProperty("key2", "value2");
 		pfb.setProperties(localProps);
@@ -52,7 +57,6 @@ public class PropertiesFactoryBeanTests {
 
 	@Test
 	public void testWithPropertiesFileAndLocalProperties() throws Exception {
-		PropertiesFactoryBean pfb = new PropertiesFactoryBean();
 		pfb.setLocation(TEST_PROPS);
 		Properties localProps = new Properties();
 		localProps.setProperty("key2", "value2");
@@ -66,9 +70,7 @@ public class PropertiesFactoryBeanTests {
 
 	@Test
 	public void testWithPropertiesFileAndMultipleLocalProperties() throws Exception {
-		PropertiesFactoryBean pfb = new PropertiesFactoryBean();
 		pfb.setLocation(TEST_PROPS);
-
 		Properties props1 = new Properties();
 		props1.setProperty("key2", "value2");
 		props1.setProperty("tb.array[0].age", "0");
@@ -95,7 +97,6 @@ public class PropertiesFactoryBeanTests {
 
 	@Test
 	public void testWithPropertiesFileAndLocalPropertiesAndLocalOverride() throws Exception {
-		PropertiesFactoryBean pfb = new PropertiesFactoryBean();
 		pfb.setLocation(TEST_PROPS);
 		Properties localProps = new Properties();
 		localProps.setProperty("key2", "value2");
@@ -108,9 +109,9 @@ public class PropertiesFactoryBeanTests {
 		assertEquals("value2", props.getProperty("key2"));
 	}
 
+	// 测试  原型  （默认为单例）
 	@Test
 	public void testWithPrototype() throws Exception {
-		PropertiesFactoryBean pfb = new PropertiesFactoryBean();
 		pfb.setSingleton(false);
 		pfb.setLocation(TEST_PROPS);
 		Properties localProps = new Properties();
@@ -125,5 +126,4 @@ public class PropertiesFactoryBeanTests {
 		assertEquals("99", newProps.getProperty("tb.array[0].age"));
 		assertEquals("value2", newProps.getProperty("key2"));
 	}
-
 }
