@@ -156,8 +156,7 @@ public class ConfigurationClassPostProcessorTests {
 
 	@Test
 	public void postProcessorWorksWithExtendedConfigurationWithAttributeOverrideForExcludesFilterUsingReflection() {
-		RootBeanDefinition beanDefinition = new RootBeanDefinition(
-				ExtendedConfigurationWithAttributeOverrideForExcludeFilter.class);
+		RootBeanDefinition beanDefinition = new RootBeanDefinition(ExtendedConfigurationWithAttributeOverrideForExcludeFilter.class);
 		assertSupportForComposedAnnotationWithExclude(beanDefinition);
 	}
 
@@ -1490,8 +1489,7 @@ public class ConfigurationClassPostProcessorTests {
 	public static class ComposedConfigurationWithAttributeOverrideForBasePackage {
 	}
 
-	@ComposedConfigurationWithAttributeOverrides(basePackages = "org.springframework.context.annotation.componentscan.simple",
-			excludeFilters = @ComponentScan.Filter(Component.class))
+	@ComposedConfigurationWithAttributeOverrides(basePackages = "org.springframework.context.annotation.componentscan.simple",excludeFilters = @ComponentScan.Filter(Component.class))
 	public static class ComposedConfigurationWithAttributeOverrideForExcludeFilter {
 	}
 
@@ -1499,8 +1497,7 @@ public class ConfigurationClassPostProcessorTests {
 	public static class BaseConfigurationWithEmptyExcludeFilters {
 	}
 
-	@ComponentScan(basePackages = "org.springframework.context.annotation.componentscan.simple",
-			excludeFilters = @ComponentScan.Filter(Component.class))
+	@ComponentScan(basePackages = "org.springframework.context.annotation.componentscan.simple",excludeFilters = @ComponentScan.Filter(Component.class))
 	public static class ExtendedConfigurationWithAttributeOverrideForExcludeFilter extends BaseConfigurationWithEmptyExcludeFilters {
 	}
 

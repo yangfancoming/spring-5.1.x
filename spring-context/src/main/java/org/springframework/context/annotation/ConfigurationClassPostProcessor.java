@@ -53,8 +53,8 @@ import static org.springframework.context.annotation.AnnotationConfigUtils.CONFI
 
 /**
  * {@link BeanFactoryPostProcessor} used for bootstrapping processing of {@link Configuration @Configuration} classes.
- * Registered by default when using {@code <context:annotation-config/>} or
- * {@code <context:component-scan/>}. Otherwise, may be declared manually as with any other BeanFactoryPostProcessor.
+ * Registered by default when using {@code <context:annotation-config/>} or {@code <context:component-scan/>}.
+ * Otherwise, may be declared manually as with any other BeanFactoryPostProcessor.
  * This post processor is priority-ordered as it is important that any {@link Bean} methods declared in {@code @Configuration} classes have
  * their corresponding bean definitions registered before any other {@link BeanFactoryPostProcessor} executes.
  * @since 3.0
