@@ -30,7 +30,7 @@ public interface ImportBeanDefinitionRegistrar {
 	/**
 	 * Register bean definitions as necessary based on the given annotation metadata of the importing {@code @Configuration} class.
 	 * Note that {@link BeanDefinitionRegistryPostProcessor} types may <em>not</em> be registered here, due to lifecycle constraints related to {@code @Configuration} class processing.
-	 * @param importingClassMetadata annotation metadata of the importing class  当前类的注解信息，实现类为 StandardAnnotationMetadata
+	 * @param importingClassMetadata annotation metadata of the importing class  当前类的所依赖的上层注解信息，实现类为 StandardAnnotationMetadata
 	 * @param registry current bean definition registry   BeanDefinition注册中心，实现类为 DefaultListableBeanFactory
 	 * 根据导入@configuration类 给定的注解元数据，按需注册bean定义。 eg: @EnableAspectJAutoProxy 注解
 	 */

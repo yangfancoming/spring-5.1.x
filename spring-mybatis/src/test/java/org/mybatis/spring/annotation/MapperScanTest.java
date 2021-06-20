@@ -12,22 +12,23 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.mapper.ds1.Ds1Mapper;
 import org.mybatis.spring.mapper.AnnotatedMapper;
 import org.mybatis.spring.mapper.MapperInterface;
+import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.mybatis.spring.mapper.MapperSubinterface;
 import org.mybatis.spring.mapper.child.MapperChildInterface;
 import org.mybatis.spring.type.DummyMapperFactoryBean;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.ConstructorArgumentValues;
 import org.springframework.beans.factory.config.RuntimeBeanReference;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -78,6 +79,21 @@ class MapperScanTest {
     applicationContext.getBean("mapperSubinterface");
     applicationContext.getBean("mapperChildInterface");
     applicationContext.getBean("annotatedMapper");
+
+	  String[] str= applicationContext.getBeanDefinitionNames();
+	  Arrays.stream(str).forEach(x->System.out.println("***---***	 " + x));
+
+	  System.out.println(applicationContext.containsBean("mapperScannerRegistrar"));
+	  MapperScannerConfigurer bean = applicationContext.getBean(MapperScannerConfigurer.class);
+	  System.out.println(bean);
+
+	  /**
+	   * @see ConfigurationClass#addImportBeanDefinitionRegistrar(org.springframework.context.annotation.ImportBeanDefinitionRegistrar, org.springframework.core.type.AnnotationMetadata)
+	   * @see BeanUtils#instantiateClass(java.lang.Class, java.lang.Class)
+	  */
+	  // 会报异常 说明 容器中根本就没有 MapperScannerRegistrar 这个bean。 因为它是被通过反射直接创建的 没有bean定义，不再容器中
+	  MapperScannerRegistrar fuck = applicationContext.getBean(MapperScannerRegistrar.class);
+	  System.out.println(fuck);
   }
 
   @Test

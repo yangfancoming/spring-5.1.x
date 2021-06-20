@@ -439,7 +439,7 @@ class ConfigurationClassParser {
 	 * @param imports the imports collected so far
 	 * @param visited used to track visited classes to prevent infinite recursion
 	 * @throws IOException if there is any problem reading metadata from the named class
-	 * 因为递归一直走，会把所有最底层有import注解的类收集到imports中。完成@Import注解中类的收集。
+	 * 因为递归一直走，会把所有 @Import注解 导入的类，收集到imports中。
 	 */
 	private void collectImports(SourceClass sourceClass, Set<SourceClass> imports, Set<SourceClass> visited) throws IOException {
 		if (visited.add(sourceClass)) {
@@ -462,7 +462,12 @@ class ConfigurationClassParser {
 			importStack.push(configClass);
 			try {
 				for (SourceClass candidate : importCandidates) {
-					// 这里分别对应 @Import注解 使用的三种方式
+					/**
+					 * 这里分别对应 @Import注解 使用的三种方式
+					 * sos 其中要注意的是，只有方式三 直接导入指定类对象 @Import({Blue.class, Red.class})  中指定的bean才会被注入到容器中
+					 * 	其他方式一和方式二中  @Import(MyImportSelector.class) @Import(MyImportBeanDefinitionRegistrar.class) 中指定的bean 不会被注入到容器中
+					 * 	因为这两种方式  是实现接口，从而使用自定义的逻辑去注册bean定义，而不是走spring流水线的方式创建bean定义。
+					*/
 					// 方式一  @Import(MyImportSelector.class) 导入的类实现了 ImportSelector 接口
 					if (candidate.isAssignable(ImportSelector.class)) {
 						// Candidate class is an ImportSelector -> delegate to it to determine imports
