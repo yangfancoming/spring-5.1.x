@@ -389,6 +389,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	@Override
 	public void addBeanFactoryPostProcessor(BeanFactoryPostProcessor postProcessor) {
 		Assert.notNull(postProcessor, "BeanFactoryPostProcessor must not be null");
+		logger.warn("【IOC容器 注册 beanFactoryPostProcessors 实现类 --- 】 beanName： " + postProcessor.getClass());
 		beanFactoryPostProcessors.add(postProcessor);
 	}
 

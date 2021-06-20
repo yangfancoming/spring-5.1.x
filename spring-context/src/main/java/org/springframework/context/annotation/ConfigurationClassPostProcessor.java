@@ -220,13 +220,12 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 		String[] candidateNames = registry.getBeanDefinitionNames();// 获取已经注册的bean名称（此处有7个   6个Bean+rootConfig）
 		for (String beanName : candidateNames) {
 			BeanDefinition beanDef = registry.getBeanDefinition(beanName);
-			// 这个判断很有意思~~~ 如果你的beanDef现在就已经确定了是full或者lite，说明你肯定已经被解析过了，，所以再来的话输出个debug即可（其实我觉得输出warn也行~~~）
+			// 这个判断很有意思~~~ 如果你的beanDef现在就已经确定了是full或者lite，说明你肯定已经被解析过了，所以再来的话输出个debug即可（其实我觉得输出warn也行~~~）
 			if (ConfigurationClassUtils.isFullConfigurationClass(beanDef) || ConfigurationClassUtils.isLiteConfigurationClass(beanDef)) {
 				if (logger.isDebugEnabled()) logger.debug("Bean definition has already been processed as a configuration class: " + beanDef);
 			}else if (ConfigurationClassUtils.checkConfigurationClassCandidate(beanDef, metadataReaderFactory)) {
-				// 检查是否是@Configuration的Class,如果是就标记下属性：full 或者lite。beanDef.setAttribute(CONFIGURATION_CLASS_ATTRIBUTE, CONFIGURATION_CLASS_FULL)
+				// 判断当前bean定义是否为配置类,如果是就标记其配置模式：full 或者lite
 				// 加入到configCandidates里保存配置文件类的定义
-				// 显然此处，仅仅只有rootConfig一个类符合条件
 				configCandidates.add(new BeanDefinitionHolder(beanDef, beanName));
 			}
 		}

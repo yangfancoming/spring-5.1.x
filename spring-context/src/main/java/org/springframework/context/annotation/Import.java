@@ -22,6 +22,7 @@ import java.lang.annotation.Target;
  * @see Configuration
  * @see ImportSelector
  * @see ImportResource
+ * 该注解只能用于 @Configuration 或者 其他注解之上 才有效！！！
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

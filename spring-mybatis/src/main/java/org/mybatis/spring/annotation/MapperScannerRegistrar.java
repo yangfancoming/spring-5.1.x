@@ -117,7 +117,6 @@ public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar {
           registerBeanDefinitions(annotations[i], registry, generateBaseBeanName(importingClassMetadata, i));
         }
       }
-
     }
   }
 

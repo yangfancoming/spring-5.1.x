@@ -8,6 +8,8 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.parsing.Location;
 import org.springframework.beans.factory.parsing.Problem;
 import org.springframework.beans.factory.parsing.ProblemReporter;
@@ -29,6 +31,8 @@ import org.springframework.util.ClassUtils;
  * @see ConfigurationClassParser
  */
 final class ConfigurationClass {
+
+	private final Log logger = LogFactory.getLog(getClass());
 
 	private final AnnotationMetadata metadata;
 
@@ -137,8 +141,7 @@ final class ConfigurationClass {
 	}
 
 	/**
-	 * Return whether this configuration class was registered via @{@link Import} or
-	 * automatically registered due to being nested within another configuration class.
+	 * Return whether this configuration class was registered via @{@link Import} or automatically registered due to being nested within another configuration class.
 	 * @since 3.1.1
 	 * @see #getImportedBy()
 	 */
@@ -177,6 +180,7 @@ final class ConfigurationClass {
 	}
 
 	public void addImportBeanDefinitionRegistrar(ImportBeanDefinitionRegistrar registrar, AnnotationMetadata importingClassMetadata) {
+		logger.warn("【 @"+importingClassMetadata.getAnnotationTypes()+" 注解 在 importBeanDefinitionRegistrars 中注册】 beanName： " + registrar.getClass());
 		this.importBeanDefinitionRegistrars.put(registrar, importingClassMetadata);
 	}
 
@@ -195,7 +199,6 @@ final class ConfigurationClass {
 				problemReporter.error(new FinalConfigurationProblem());
 			}
 		}
-
 		for (BeanMethod beanMethod : this.beanMethods) {
 			beanMethod.validate(problemReporter);
 		}

@@ -146,7 +146,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
 	// Create a new DefaultListableBeanFactory.
 	public DefaultListableBeanFactory() {
-		// super(); // 注释掉super(); -modify
+		 super(); // 注释掉super(); -modify
 		logger.warn("进入 【DefaultListableBeanFactory】 构造函数 {}");
 	}
 

@@ -9,8 +9,9 @@ import org.springframework.context.annotation.Import;
 import java.lang.annotation.*;
 
 /**
- * Use this annotation to register MyBatis mapper interfaces when using Java Config. It performs when same work as
- * {@link MapperScannerConfigurer} via {@link MapperScannerRegistrar}.
+ *  mybatis-spring 整合注解
+ * Use this annotation to register MyBatis mapper interfaces when using Java Config.
+ * It performs when same work as  {@link MapperScannerConfigurer} via {@link MapperScannerRegistrar}.
  * Configuration example:
  *
  * &#064;Configuration
@@ -34,7 +35,6 @@ import java.lang.annotation.*;
  *     return sessionFactory.getObject();
  *   }
  * }
- *  mybatis-spring 整合注解
  * @since 1.2.0
  * @see MapperScannerRegistrar
  * @see MapperFactoryBean

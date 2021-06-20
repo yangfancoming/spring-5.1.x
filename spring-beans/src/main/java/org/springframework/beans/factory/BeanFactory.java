@@ -237,8 +237,8 @@ public interface BeanFactory {
 	boolean isPrototype(String name) throws NoSuchBeanDefinitionException;
 
 	/**
-	 * Check whether the bean with the given name matches the specified type.
 	 * 检查具有给定名称的bean是否与指定类型匹配。
+	 * Check whether the bean with the given name matches the specified type.
 	 * More specifically, check whether a {@link #getBean} call for the given name would return an object that is assignable to the specified target type.
 	 * Translates aliases back to the corresponding canonical bean name.
 	 * Will ask the parent factory if the bean cannot be found in this factory instance.
@@ -254,8 +254,7 @@ public interface BeanFactory {
 
 	/**
 	 * Check whether the bean with the given name matches the specified type.
-	 * More specifically, check whether a {@li nk #getBean} call for the given name
-	 * would return an object that is assignable to the specified target type.
+	 * More specifically, check whether a {@li nk #getBean} call for the given name would return an object that is assignable to the specified target type.
 	 * Translates aliases back to the corresponding canonical bean name.
 	 * Will ask the parent factory if the bean cannot be found in this factory instance.
 	 * @param name the name of the bean to query

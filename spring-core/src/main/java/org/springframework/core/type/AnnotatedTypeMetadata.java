@@ -16,11 +16,11 @@ import org.springframework.util.MultiValueMap;
 public interface AnnotatedTypeMetadata {
 
 	/**
+	 * 此元素是否标注有此注解
 	 * Determine whether the underlying element has an annotation or meta-annotation of the given type defined.
 	 * If this method returns {@code true}, then {@link #getAnnotationAttributes} will return a non-null Map.
 	 * @param annotationName the fully qualified class name of the annotation type to look for
 	 * @return whether a matching annotation is defined
-	 *  // 此元素是否标注有此注解~~~~
 	 */
 	boolean isAnnotated(String annotationName);
 

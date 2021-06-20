@@ -164,7 +164,7 @@ class ConfigurationClassParser {
 		if (existingClass != null) {
 			if (configClass.isImported()) {
 				if (existingClass.isImported()) {
-					//如果要处理的配置类configClass在已经分析处理的配置类记录中已存在，合并二者的importedBy属性
+					// 如果要处理的配置类configClass在已经分析处理的配置类记录中已存在，合并二者的importedBy属性
 					existingClass.mergeImportedBy(configClass);
 				}
 				// Otherwise ignore new imported config class; existing non-imported class overrides it.
@@ -420,6 +420,7 @@ class ConfigurationClassParser {
 	}
 
 	/**
+	 * 递归获取当前类中所有的通过 @Import 注解导入的类
 	 * Returns {@code @Import} class, considering all meta-annotations.
 	 */
 	private Set<SourceClass> getImports(SourceClass sourceClass) throws IOException {

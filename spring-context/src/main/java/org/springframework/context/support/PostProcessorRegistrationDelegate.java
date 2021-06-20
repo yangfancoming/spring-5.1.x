@@ -54,9 +54,9 @@ final class PostProcessorRegistrationDelegate {
 			// Separate between BeanDefinitionRegistryPostProcessors that implement  PriorityOrdered, Ordered, and the rest.
 			List<BeanDefinitionRegistryPostProcessor> currentRegistryProcessors = new ArrayList<>();
 			// First, invoke the BeanDefinitionRegistryPostProcessors that implement PriorityOrdered.
-			// 首先要看 优先级排序  因为要先执行实现了 PriorityOrdered 接口的 BeanDefinitionRegistryPostProcessor
-			// 查出所有实现了BeanDefinitionRegistryPostProcessor接口的bean名称
+			// 获取容器中所有实现了 BeanDefinitionRegistryPostProcessor 接口的bean名称
 			String[] postProcessorNames = beanFactory.getBeanNamesForType(BeanDefinitionRegistryPostProcessor.class, true, false);
+			// 如果实现类又同时实现了PriorityOrdered接口，就需要进行优先级排序
 			for (String ppName : postProcessorNames) {
 				if (beanFactory.isTypeMatch(ppName, PriorityOrdered.class)) {
 					currentRegistryProcessors.add(beanFactory.getBean(ppName, BeanDefinitionRegistryPostProcessor.class));
@@ -66,7 +66,7 @@ final class PostProcessorRegistrationDelegate {
 			// 排序
 			sortPostProcessors(currentRegistryProcessors, beanFactory);
 			registryProcessors.addAll(currentRegistryProcessors);
-			invokeBeanDefinitionRegistryPostProcessors(currentRegistryProcessors, registry);
+			invokeBeanDefinitionRegistryPostProcessors(currentRegistryProcessors, registry); // 走这里
 			currentRegistryProcessors.clear();
 			// Next, invoke the BeanDefinitionRegistryPostProcessors that implement Ordered.
 			//  再看  是否实现了 Ordered 接口的 BeanDefinitionRegistryPostProcessor

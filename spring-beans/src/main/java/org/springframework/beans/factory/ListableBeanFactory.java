@@ -146,14 +146,14 @@ public interface ListableBeanFactory extends BeanFactory {
 	String[] getBeanNamesForType(@Nullable Class<?> type);
 
 	/**
+	 * 获取容器中所有实现了 type 接口的bean名称
 	 * 首先在 beanDefinitionMap 中去查找，再去手动注册bean集合（manualSingletonNames）中去查找，返回匹配到的bean名称
 	 * Return the names of beans matching the given type (including subclasses),
 	 * judging from either bean definitions or the value of {@code getObjectType} in the case of FactoryBeans.
 	 * <b>NOTE: This method introspects top-level beans only.</b> It does <i>not</i>
 	 * check nested beans which might match the specified type as well.
-	 * Does consider objects created by FactoryBeans if the "allowEagerInit" flag is set,
-	 * which means that FactoryBeans will get initialized. If the object created by the
-	 * FactoryBean doesn't match, the raw FactoryBean itself will be matched against the type.
+	 * Does consider objects created by FactoryBeans if the "allowEagerInit" flag is set,which means that FactoryBeans will get initialized.
+	 * If the object created by the FactoryBean doesn't match, the raw FactoryBean itself will be matched against the type.
 	 * If "allowEagerInit" is not set, only raw FactoryBeans will be checked (which doesn't require initialization of each FactoryBean).
 	 * Does not consider any hierarchy this factory may participate in.
 	 * Use BeanFactoryUtils' {@code beanNamesForTypeIncludingAncestors} to include beans in ancestor factories too.
