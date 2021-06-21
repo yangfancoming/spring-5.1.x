@@ -20,6 +20,7 @@ import org.springframework.context.ResourceLoaderAware;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.type.AnnotationMetadata;
+import org.springframework.stereotype.Controller;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -39,19 +40,28 @@ public class ImportBeanDefinitionRegistrarTests {
 		assertThat(SampleRegistrar.environment, is(context.getEnvironment()));
 	}
 
-
 	@Sample
 	@Configuration
 	static class Config {
 	}
 
-
 	@Target(ElementType.TYPE)
 	@Retention(RetentionPolicy.RUNTIME)
-	@Import(SampleRegistrar.class)
+	@Import({SampleRegistrar.class})
+	@Test1
 	public @interface Sample {
 	}
 
+	@Target(ElementType.TYPE)
+	@Retention(RetentionPolicy.RUNTIME)
+	@Import({Goat.class})
+	public @interface Test1 {
+
+	}
+
+	@Controller
+	private static class Goat {
+	}
 
 	private static class SampleRegistrar implements ImportBeanDefinitionRegistrar,BeanClassLoaderAware, ResourceLoaderAware, BeanFactoryAware, EnvironmentAware {
 		static ClassLoader classLoader;
@@ -81,8 +91,7 @@ public class ImportBeanDefinitionRegistrarTests {
 
 		@Override
 		public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata,BeanDefinitionRegistry registry) {
-
+			System.out.println("mark registerBeanDefinitions");
 		}
 	}
-
 }

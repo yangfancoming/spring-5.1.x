@@ -420,8 +420,10 @@ class ConfigurationClassParser {
 	}
 
 	/**
-	 * 递归获取当前类中所有的通过 @Import 注解导入的类
+	 * 递归获取 @Configuration配置类中 所有的@Import注解 导入的类，添加到imports集合中
 	 * Returns {@code @Import} class, considering all meta-annotations.
+	 * @return  配置类中递归包含的所有 @Import注解的导入类
+	 * @param  sourceClass 配置类
 	 */
 	private Set<SourceClass> getImports(SourceClass sourceClass) throws IOException {
 		Set<SourceClass> imports = new LinkedHashSet<>();
@@ -431,6 +433,7 @@ class ConfigurationClassParser {
 	}
 
 	/**
+	 * 递归获取所有 @Import注解 导入的类，添加到imports集合中
 	 * Recursively collect all declared {@code @Import} values.
 	 * Unlike most meta-annotations it is valid to have several {@code @Import}s declared with different values;
 	 * the usual process of returning values from the first  meta-annotation on a class is not sufficient.
@@ -439,7 +442,6 @@ class ConfigurationClassParser {
 	 * @param imports the imports collected so far
 	 * @param visited used to track visited classes to prevent infinite recursion
 	 * @throws IOException if there is any problem reading metadata from the named class
-	 * 因为递归一直走，会把所有 @Import注解 导入的类，收集到imports中。
 	 */
 	private void collectImports(SourceClass sourceClass, Set<SourceClass> imports, Set<SourceClass> visited) throws IOException {
 		if (visited.add(sourceClass)) {

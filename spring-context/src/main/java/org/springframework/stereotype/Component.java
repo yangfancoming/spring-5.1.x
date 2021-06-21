@@ -32,5 +32,4 @@ public @interface Component {
 	 * @return the suggested component name, if any (or empty String otherwise)
 	 */
 	String value() default "";
-
 }

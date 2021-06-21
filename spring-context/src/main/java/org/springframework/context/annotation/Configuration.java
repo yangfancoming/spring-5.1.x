@@ -411,5 +411,4 @@ public @interface Configuration {
 	 */
 	@AliasFor(annotation = Component.class)
 	String value() default ""; //也可以自定义Bean的名称
-
 }
