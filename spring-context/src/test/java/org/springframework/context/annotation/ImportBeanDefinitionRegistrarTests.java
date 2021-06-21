@@ -2,13 +2,7 @@
 
 package org.springframework.context.annotation;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
 import org.junit.Test;
-
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.beans.factory.BeanFactory;
@@ -20,10 +14,17 @@ import org.springframework.context.ResourceLoaderAware;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.type.AnnotationMetadata;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 
 /**
  * Integration tests for {@link ImportBeanDefinitionRegistrar}.
@@ -38,8 +39,21 @@ public class ImportBeanDefinitionRegistrarTests {
 		assertThat(SampleRegistrar.classLoader, is(context.getBeanFactory().getBeanClassLoader()));
 		assertThat(SampleRegistrar.resourceLoader, is(notNullValue()));
 		assertThat(SampleRegistrar.environment, is(context.getEnvironment()));
+
+		/**
+		 * 由于 Goat.class 就是一个简单 @Component 会被注册到容器中
+		 * 但 SampleRegistrar.class 实现了 ImportBeanDefinitionRegistrar 接口，不会被注册到容器中
+		 * 如果 去掉实现 ImportBeanDefinitionRegistrar 接口，则可以注册到容器中
+		*/
+		assertNotNull(context.getBean(Goat.class));
+		SampleRegistrar bean = context.getBean(SampleRegistrar.class);
+		System.out.println(bean);
 	}
 
+	/**
+	 * @Configuration 配置类Config 会解析到其上的@Sample注解上的@Import({SampleRegistrar.class}) 注解 和 @Test1 注解
+	 * 而 @Test1 注解又包含了@Import({Goat.class})注解，因此 SampleRegistrar.class 和 Goat.class  都被会扫描到容器中
+	*/
 	@Sample
 	@Configuration
 	static class Config {
@@ -59,7 +73,7 @@ public class ImportBeanDefinitionRegistrarTests {
 
 	}
 
-	@Controller
+	@Component
 	private static class Goat {
 	}
 
