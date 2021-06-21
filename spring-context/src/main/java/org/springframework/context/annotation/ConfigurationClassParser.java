@@ -478,15 +478,18 @@ class ConfigurationClassParser {
 						logger.warn("【IOC容器 处理 @Import 注解  --- ImportSelector 接口方式 】 beanName： " + candidateClass.getName());
 						ImportSelector selector = BeanUtils.instantiateClass(candidateClass, ImportSelector.class);
 						ParserStrategyUtils.invokeAwareMethods(selector, environment, resourceLoader, registry);
+						// 方式二  @Import(MyDeferredImportSelector.class) 导入的类实现了 DeferredImportSelector 接口
 						if (selector instanceof DeferredImportSelector) {
 							deferredImportSelectorHandler.handle(configClass, (DeferredImportSelector) selector);
 						}else {
 							String[] importClassNames = selector.selectImports(currentSourceClass.getMetadata());
+							// 根据实现类返回的待导入容器的bean名称(importClassNames),通过反射创建出实例
 							Collection<SourceClass> importSourceClasses = asSourceClasses(importClassNames);
+							// 递归调用，下次就走到方式四
 							processImports(configClass, currentSourceClass, importSourceClasses, false);
 						}
 					}else if (candidate.isAssignable(ImportBeanDefinitionRegistrar.class)) {
-						// 方式二  @Import(MyImportSelector.class) 导入的类实现了 ImportBeanDefinitionRegistrar 接口
+						// 方式三  @Import(MyImportSelector.class) 导入的类实现了 ImportBeanDefinitionRegistrar 接口
 						// Candidate class is an ImportBeanDefinitionRegistrar -> delegate to it to register additional bean definitions
 						Class<?> candidateClass = candidate.loadClass();
 						logger.warn("【IOC容器 处理 @Import 注解  --- ImportBeanDefinitionRegistrar 接口方式 】 beanName： " + candidateClass.getName());
@@ -494,7 +497,7 @@ class ConfigurationClassParser {
 						ParserStrategyUtils.invokeAwareMethods(registrar, environment, resourceLoader, registry);
 						configClass.addImportBeanDefinitionRegistrar(registrar, currentSourceClass.getMetadata());
 					}else {
-						// 	方式三  直接导入指定类对象 @Import({Blue.class, Red.class})
+						// 	方式四  直接导入指定类对象 @Import({Blue.class, Red.class})
 						// Candidate class not an ImportSelector or ImportBeanDefinitionRegistrar ->  process it as an @Configuration class
 						logger.warn("【IOC容器 处理 @Import 注解  --- 直接导入方式 】 beanName： " + candidate.getMetadata().getClassName());
 						importStack.registerImport(currentSourceClass.getMetadata(), candidate.getMetadata().getClassName());
