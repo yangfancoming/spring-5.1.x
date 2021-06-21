@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Import;
  * @ author  山羊来了
  * @ date 2020/3/17---16:53
  */
-@Import({Blue.class,})
+@Import(Blue.class)
 public class ImportConfig {
 
 }

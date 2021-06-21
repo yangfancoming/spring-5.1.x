@@ -125,6 +125,7 @@ class ConfigurationClassParser {
 				throw new BeanDefinitionStoreException("Failed to parse configuration class [" + bd.getBeanClassName() + "]", ex);
 			}
 		}
+		// 最后再处理DeferredImportSelector的实现类
 		deferredImportSelectorHandler.process();
 	}
 

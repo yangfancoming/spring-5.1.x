@@ -18,21 +18,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * 		1）、默认获取到的是工厂bean调用getObject创建的对象
  * 		2）、要获取工厂Bean本身，我们需要给id前面加一个&
  * 			&colorFactoryBean
- *
- * 源码位置：
- * doProcessConfigurationClass:252, ConfigurationClassParser (org.springframework.context.annotation)
- * processConfigurationClass:197, ConfigurationClassParser (org.springframework.context.annotation)
- * parse:158, ConfigurationClassParser (org.springframework.context.annotation)
- * parse:132, ConfigurationClassParser (org.springframework.context.annotation)
- * processConfigBeanDefinitions:267, ConfigurationClassPostProcessor (org.springframework.context.annotation)
- * postProcessBeanDefinitionRegistry:195, ConfigurationClassPostProcessor (org.springframework.context.annotation)
- * lambda$invokeBeanDefinitionRegistryPostProcessors$26:223, PostProcessorRegistrationDelegate (org.springframework.context.support)
- * invokeBeanDefinitionRegistryPostProcessors:223, PostProcessorRegistrationDelegate (org.springframework.context.support)
- * invokeBeanFactoryPostProcessors:69, PostProcessorRegistrationDelegate (org.springframework.context.support)
- * invokeBeanFactoryPostProcessors:661, AbstractApplicationContext (org.springframework.context.support)
- * refresh:473, AbstractApplicationContext (org.springframework.context.support)
- * <init>:63, AnnotationConfigApplicationContext (org.springframework.context.annotation)
- * ImportConfig:32, App (com.goat.chapter105.item04)
  */
 public class App extends BaseTest {
 
@@ -79,4 +64,16 @@ public class App extends BaseTest {
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ImportBeanDefinitionRegistrarConfig.class);
 		look(ac);
 	}
+
+	/**
+	 * DeferredImportSelector 导入组件
+	 * @see ConfigurationClassParser#processImports(org.springframework.context.annotation.ConfigurationClass, org.springframework.context.annotation.ConfigurationClassParser.SourceClass, java.util.Collection, boolean)
+	 * @see ConfigurationClassParser.DeferredImportSelectorHandler#process()
+	 */
+	@Test
+	public void deferredImportSelectorTest(){
+		ApplicationContext ac = new AnnotationConfigApplicationContext(DeferredImportSelectorConfig.class);
+		look(ac);
+	}
+
 }

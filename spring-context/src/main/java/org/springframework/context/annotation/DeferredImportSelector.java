@@ -1,15 +1,11 @@
-
-
 package org.springframework.context.annotation;
-
 import java.util.Objects;
-
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.lang.Nullable;
 
 /**
- * A variation of {@link ImportSelector} that runs after all {@code @Configuration} beans
- * have been processed. This type of selector can be particularly useful when the selected imports are {@code @Conditional}.
+ * A variation of {@link ImportSelector} that runs after all {@code @Configuration} beans have been processed.
+ * This type of selector can be particularly useful when the selected imports are {@code @Conditional}.
  *
  * Implementations can also extend the {@link org.springframework.core.Ordered} interface or use the {@link org.springframework.core.annotation.Order} annotation to
  * indicate a precedence against other {@link DeferredImportSelector DeferredImportSelectors}.
@@ -60,8 +56,7 @@ public interface DeferredImportSelector extends ImportSelector {
 			}
 
 			/**
-			 * Return the {@link AnnotationMetadata} of the importing
-			 * {@link Configuration} class.
+			 * Return the {@link AnnotationMetadata} of the importing {@link Configuration} class.
 			 */
 			public AnnotationMetadata getMetadata() {
 				return this.metadata;
