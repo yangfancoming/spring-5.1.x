@@ -75,7 +75,7 @@ public final class SpringFactoriesLoader {
 	}
 
 	/**
-	 * 将spring.factories文件内容转换成Map对象返回
+	 * 将spring.factories文件内容转换成List对象返回
 	 * Load the fully qualified class names of factory implementations of the given type from {@value #FACTORIES_RESOURCE_LOCATION}, using the given class loader.
 	 * @param factoryClass the interface or abstract class representing the factory
 	 * @param classLoader the ClassLoader to use for loading resources; can be {@code null} to use the default
