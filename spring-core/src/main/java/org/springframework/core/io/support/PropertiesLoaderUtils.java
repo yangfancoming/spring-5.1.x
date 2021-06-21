@@ -81,7 +81,7 @@ public abstract class PropertiesLoaderUtils {
 	}
 
 	/**
-	 * 从一个资源文件加载Properties (支持 .properties文件 和 .xml文件 )
+	 * 从一个资源文件(支持 .properties和 .xml)加载到Properties对象
 	 * Load properties from the given resource (in ISO-8859-1 encoding).
 	 * @param resource the resource to load from
 	 * @return the populated Properties instance

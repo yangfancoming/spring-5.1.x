@@ -28,11 +28,10 @@ import org.springframework.util.StringUtils;
 /**
  * General purpose factory loading mechanism for internal use within the framework.
  * {@code SpringFactoriesLoader} {@linkplain #loadFactories loads} and instantiates
- * factories of a given type from {@value #FACTORIES_RESOURCE_LOCATION} files which
- * may be present in multiple JAR files in the classpath. The {@code spring.factories}
- * file must be in {@link Properties} format, where the key is the fully qualified
- * name of the interface or abstract class, and the value is a comma-separated list of implementation class names. For example:
- * <pre class="code">example.MyService=example.MyServiceImpl1,example.MyServiceImpl2</pre>
+ * factories of a given type from {@value #FACTORIES_RESOURCE_LOCATION} files which may be present in multiple JAR files in the classpath.
+ * The {@code spring.factories} file must be in {@link Properties} format, where the key is the fully qualified name of the interface or abstract class,
+ * and the value is a comma-separated list of implementation class names.
+ * For example:  example.MyService=example.MyServiceImpl1,example.MyServiceImpl2
  * where {@code example.MyService} is the name of the interface, and {@code MyServiceImpl1} and {@code MyServiceImpl2} are two implementations.
  * @since 3.2
  */
@@ -50,14 +49,15 @@ public final class SpringFactoriesLoader {
 	private SpringFactoriesLoader() {}
 
 	/**
-	 * 本类中的唯一主方法  其他都是辅助方法
+	 * 通过接口类名称作为key，获取spring.factories文件中对应的实现类
 	 * Load and instantiate the factory implementations of the given type from {@value #FACTORIES_RESOURCE_LOCATION}, using the given class loader.
 	 * The returned factories are sorted through {@link AnnotationAwareOrderComparator}.
 	 * If a custom instantiation strategy is required, use {@link #loadFactoryNames} to obtain all registered factory names.
-	 * @param factoryClass the interface or abstract class representing the factory
+	 * @param factoryClass the interface or abstract class representing the factory  Map中的key
 	 * @param classLoader the ClassLoader to use for loading (can be {@code null} to use the default)
 	 * @throws IllegalArgumentException if any factory implementation class cannot  be loaded or if an error occurs while instantiating any factory
 	 * @see #loadFactoryNames
+	 * 本类中的唯一主方法  其他都是辅助方法
 	 */
 	public static <T> List<T> loadFactories(Class<T> factoryClass, @Nullable ClassLoader classLoader) {
 		Assert.notNull(factoryClass, "'factoryClass' must not be null");
@@ -69,11 +69,13 @@ public final class SpringFactoriesLoader {
 		for (String factoryName : factoryNames) {
 			result.add(instantiateFactory(factoryName, factoryClass, classLoaderToUse));
 		}
+		// 一个接口多个实现类且指定了@Order注解的情况下，需要进行排序。
 		AnnotationAwareOrderComparator.sort(result);
 		return result;
 	}
 
 	/**
+	 * 将spring.factories文件内容转换成Map对象返回
 	 * Load the fully qualified class names of factory implementations of the given type from {@value #FACTORIES_RESOURCE_LOCATION}, using the given class loader.
 	 * @param factoryClass the interface or abstract class representing the factory
 	 * @param classLoader the ClassLoader to use for loading resources; can be {@code null} to use the default
@@ -85,13 +87,15 @@ public final class SpringFactoriesLoader {
 		return loadSpringFactories(classLoader).getOrDefault(factoryClassName, Collections.emptyList());
 	}
 
+	/**
+	 * 将spring.factories文件内容转换成Map对象返回
+	*/
 	private static Map<String, List<String>> loadSpringFactories(@Nullable ClassLoader classLoader) {
 		MultiValueMap<String, String> result = cache.get(classLoader);
 		if (result != null) {
 			return result;
 		}
 		try {
-			// 扫描所有jar 类路径下  "META-INF/spring.factories"   -modify
 			Enumeration<URL> urls = (classLoader != null) ? classLoader.getResources(FACTORIES_RESOURCE_LOCATION) : ClassLoader.getSystemResources(FACTORIES_RESOURCE_LOCATION);
 			result = new LinkedMultiValueMap<>();
 			while (urls.hasMoreElements()) {
@@ -112,6 +116,10 @@ public final class SpringFactoriesLoader {
 		}
 	}
 
+	/**
+	 * 通过反射实例化指定类的class
+	 * @param instanceClassName 待实例化的class
+	*/
 	@SuppressWarnings("unchecked")
 	private static <T> T instantiateFactory(String instanceClassName, Class<T> factoryClass, ClassLoader classLoader) {
 		try {
@@ -124,5 +132,4 @@ public final class SpringFactoriesLoader {
 			throw new IllegalArgumentException("Unable to instantiate factory class: " + factoryClass.getName(), ex);
 		}
 	}
-
 }
