@@ -43,7 +43,6 @@ public class MapperScannerConfigurerTest {
     definition.getPropertyValues().add("basePackage", "org.mybatis.spring.mapper");
     applicationContext.registerBeanDefinition("mapperScanner", definition);
     setupSqlSessionFactory("sqlSessionFactory");
-
     // assume support for autowiring fields is added by MapperScannerConfigurer via
     // org.springframework.context.annotation.ClassPathBeanDefinitionScanner.includeAnnotationConfig
   }
@@ -72,11 +71,8 @@ public class MapperScannerConfigurerTest {
   @Test
   void testInterfaceScan() {
     startContext();
-
     SqlSessionFactory sqlSessionFactory = applicationContext.getBean(SqlSessionFactory.class);
-
     assertEquals(5, sqlSessionFactory.getConfiguration().getMapperRegistry().getMappers().size());
-
     // all interfaces with methods should be loaded
     applicationContext.getBean("mapperInterface");
     applicationContext.getBean("mapperSubinterface");
@@ -245,8 +241,7 @@ public class MapperScannerConfigurerTest {
   @Test
   void testScanWithMapperFactoryBeanClass() {
     DummyMapperFactoryBean.clear();
-    applicationContext.getBeanDefinition("mapperScanner").getPropertyValues().add("mapperFactoryBeanClass",
-        DummyMapperFactoryBean.class);
+    applicationContext.getBeanDefinition("mapperScanner").getPropertyValues().add("mapperFactoryBeanClass",DummyMapperFactoryBean.class);
     startContext();
     applicationContext.getBean("mapperInterface");
     applicationContext.getBean("mapperSubinterface");

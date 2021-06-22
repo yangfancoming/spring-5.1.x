@@ -40,7 +40,7 @@ public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar {
     AnnotationAttributes mapperScanAttrs = AnnotationAttributes.fromMap(importingClassMetadata.getAnnotationAttributes(MapperScan.class.getName()));
     if (mapperScanAttrs != null) {
     	// 准备向容器中注册 MapperScannerConfigurer 的bean定义
-		LOGGER.warn(() -> "【mybatis 处理 @MapperScan 注解  ---   】 value属性值： " + ((String[]) mapperScanAttrs.get("value"))[0]);
+		LOGGER.warn(() -> "【mybatis 处理 @MapperScan 注解  ---   】" );
       registerBeanDefinitions(mapperScanAttrs, registry, generateBaseBeanName(importingClassMetadata, 0));
     }
   }
@@ -81,15 +81,18 @@ public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar {
       builder.addPropertyValue("sqlSessionFactoryBeanName", annoAttrs.getString("sqlSessionFactoryRef"));
     }
 
+    // basePackages 以下三种情况，都会转换并存入 basePackage
     List<String> basePackages = new ArrayList<>();
+    // @MapperScan("org.mybatis.spring.mapper")
     basePackages.addAll( Arrays.stream(annoAttrs.getStringArray("value")).filter(StringUtils::hasText).collect(Collectors.toList()));
     basePackages.addAll(Arrays.stream(annoAttrs.getStringArray("basePackages")).filter(StringUtils::hasText).collect(Collectors.toList()));
+    // @MapperScan(basePackageClasses = MapperInterface.class)
     basePackages.addAll(Arrays.stream(annoAttrs.getClassArray("basePackageClasses")).map(ClassUtils::getPackageName).collect(Collectors.toList()));
     String lazyInitialization = annoAttrs.getString("lazyInitialization");
     if (StringUtils.hasText(lazyInitialization)) {
       builder.addPropertyValue("lazyInitialization", lazyInitialization);
     }
-    builder.addPropertyValue("basePackage", StringUtils.collectionToCommaDelimitedString(basePackages));
+    builder.addPropertyValue("basePackage", StringUtils.collectionToCommaDelimitedString(basePackages)); // basePackageClasses 转换并存入 basePackage
     /**
 	 *  经过以上的属性赋值后，将 MapperScannerConfigurer 对象注入到容器中
 	 * 	由于 MapperScannerConfigurer 实现了 BeanDefinitionRegistryPostProcessor 接口，

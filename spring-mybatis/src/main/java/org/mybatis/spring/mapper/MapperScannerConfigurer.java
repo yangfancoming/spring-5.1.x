@@ -272,7 +272,7 @@ public class MapperScannerConfigurer implements BeanDefinitionRegistryPostProces
 		}
 		// 根据上面的配置，生成相应的过滤器。这些过滤器在扫描过程中会过滤掉不符合添加的内容，
 		// 例如，annotationClass字段不为null时，则会添加AnnotationTypeFilter过滤器，
-		// 通过该过滤器 实现只扫描annotationClass注解标识的接口的功能
+		// 通过该过滤器 实现只扫描 annotationClass 注解标识的接口的功能
 		scanner.registerFilters();
 		/* 扫描 */
 		scanner.scan(StringUtils.tokenizeToStringArray(this.basePackage, ConfigurableApplicationContext.CONFIG_LOCATION_DELIMITERS));

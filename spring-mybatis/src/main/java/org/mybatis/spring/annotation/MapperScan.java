@@ -79,6 +79,7 @@ public @interface MapperScan {
    * The scanner will register all interfaces in the base package that also have the specified annotation.
    * Note this can be combined with markerInterface.
    * @return the annotation that the scanner will search for
+   *  所有的java注解类型都继承接口Annotation
    */
   Class<? extends Annotation> annotationClass() default Annotation.class;
 
