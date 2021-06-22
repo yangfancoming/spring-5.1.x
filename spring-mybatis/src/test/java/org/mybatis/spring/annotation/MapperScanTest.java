@@ -10,10 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.mapper.ds1.Ds1Mapper;
-import org.mybatis.spring.mapper.AnnotatedMapper;
-import org.mybatis.spring.mapper.MapperInterface;
-import org.mybatis.spring.mapper.MapperScannerConfigurer;
-import org.mybatis.spring.mapper.MapperSubinterface;
+import org.mybatis.spring.mapper.*;
 import org.mybatis.spring.mapper.child.MapperChildInterface;
 import org.mybatis.spring.type.DummyMapperFactoryBean;
 import org.springframework.beans.BeanUtils;
@@ -123,8 +120,8 @@ class MapperScanTest {
 	}
 
 	/**
-	 *
-	 *
+	 * 测试  @MapperScan(markerInterface = MapperInterface.class) 注解的 markerInterface 属性
+	 * @see ClassPathMapperScanner#registerFilters()
 	*/
 	@Test
 	void testMarkerInterfaceScan() {
@@ -137,6 +134,10 @@ class MapperScanTest {
 		assertBeanNotLoaded("annotatedMapper");
 	}
 
+	/**
+	 * 测试  @MapperScan(markerInterface = MapperInterface.class) 注解的 annotationClass 属性
+	 * @see ClassPathMapperScanner#registerFilters()
+	 */
 	@Test
 	void testAnnotationScan() {
 		applicationContext.register(AppConfigWithAnnotation.class);
@@ -148,6 +149,10 @@ class MapperScanTest {
 		assertBeanNotLoaded("mapperSubinterface");
 	}
 
+	/**
+	 * 测试  @MapperScan(markerInterface = MapperInterface.class) 注解的 annotationClass 属性 和 annotationClass 属性 同时使用
+	 * @see ClassPathMapperScanner#registerFilters()
+	 */
 	@Test
 	void testMarkerInterfaceAndAnnotationScan() {
 		applicationContext.register(AppConfigWithMarkerInterfaceAndAnnotation.class);

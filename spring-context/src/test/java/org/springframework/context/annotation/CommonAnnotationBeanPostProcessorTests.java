@@ -1,5 +1,3 @@
-
-
 package org.springframework.context.annotation;
 
 import java.util.Properties;
@@ -7,9 +5,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
-
 import org.junit.Test;
-
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.BeanFactory;
@@ -29,7 +25,6 @@ import org.springframework.tests.sample.beans.ITestBean;
 import org.springframework.tests.sample.beans.NestedTestBean;
 import org.springframework.tests.sample.beans.TestBean;
 import org.springframework.util.SerializationTestUtils;
-
 import static org.junit.Assert.*;
 
 
@@ -697,10 +692,8 @@ public class CommonAnnotationBeanPostProcessorTests {
 		}
 	}
 
-
 	public static class ExtendedResourceInjectionBean extends NonPublicResourceInjectionBean<ITestBean> {
 	}
-
 
 	public interface InterfaceWithDefaultMethod {
 
@@ -721,16 +714,12 @@ public class CommonAnnotationBeanPostProcessorTests {
 		default void destroyDefault() {
 			increaseCounter();
 		}
-
 		void increaseCounter();
 	}
 
 
-	public static class DefaultMethodResourceInjectionBean extends ResourceInjectionBean
-			implements InterfaceWithDefaultMethod {
-
+	public static class DefaultMethodResourceInjectionBean extends ResourceInjectionBean implements InterfaceWithDefaultMethod {
 		public int counter = 0;
-
 		@Override
 		public void increaseCounter() {
 			counter++;
@@ -801,30 +790,25 @@ public class CommonAnnotationBeanPostProcessorTests {
 
 
 	private static class NamedResourceInjectionBean {
-
 		@Resource(name="testBean9")
 		private INestedTestBean testBean;
 	}
 
 
 	private static class ConvertedResourceInjectionBean {
-
 		@Resource(name="value")
 		private int value;
 	}
 
 
 	private static class LazyResourceFieldInjectionBean {
-
 		@Resource @Lazy
 		private ITestBean testBean;
 	}
 
 
 	private static class LazyResourceMethodInjectionBean {
-
 		private ITestBean testBean;
-
 		@Resource @Lazy
 		public void setTestBean(ITestBean testBean) {
 			this.testBean = testBean;
@@ -842,13 +826,10 @@ public class CommonAnnotationBeanPostProcessorTests {
 		}
 	}
 
-
 	@SuppressWarnings("unused")
 	private static class NullFactory {
-
 		public static Object create() {
 			return null;
 		}
 	}
-
 }

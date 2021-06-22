@@ -1,16 +1,12 @@
-
-
 package org.springframework.context.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-
 import example.profilescan.ProfileAnnotatedComponent;
 import example.scannable.AutowiredQualifierFooService;
 import org.junit.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -18,7 +14,6 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.core.type.classreading.MetadataReader;
 import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.core.type.filter.TypeFilter;
-
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 

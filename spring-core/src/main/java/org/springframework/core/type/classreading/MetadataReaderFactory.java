@@ -30,5 +30,4 @@ public interface MetadataReaderFactory {
 	 * @throws IOException in case of I/O failure
 	 */
 	MetadataReader getMetadataReader(Resource resource) throws IOException;
-
 }

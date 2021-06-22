@@ -35,5 +35,4 @@ public interface MergedBeanDefinitionPostProcessor extends BeanPostProcessor {
 	 */
 	default void resetBeanDefinition(String beanName) {
 	}
-
 }

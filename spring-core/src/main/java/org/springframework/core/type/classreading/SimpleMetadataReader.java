@@ -45,7 +45,6 @@ final class SimpleMetadataReader implements MetadataReader {
 		this.resource = resource;
 	}
 
-
 	@Override
 	public Resource getResource() {
 		return this.resource;

@@ -267,8 +267,6 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	public Set<BeanDefinition> findCandidateComponents(String basePackage) {
 		//componentsIndex对象包含了扫描“META-INF/spring.components”文件后封装起来的需要注册的bean的信息，在这里与来basePackage同时进行处理，
 		//如果“META-INF/spring.components”文件不存在，则componentsIndex为null
-		// 上面说过了CandidateComponentsIndex是Spring5提供的优化扫描的功能
-		// 显然这里编译器我们没有写META-INF/spring.components索引文件，所以此处不会执行Spring5 的扫描方式，所以我暂时不看了（超大型项目才会使用Spring5的方式）
 		if (componentsIndex != null && indexSupportsIncludeFilters()) {
 			return addCandidateComponentsFromIndex(componentsIndex, basePackage);
 		}else { //只处理basePackage
@@ -372,9 +370,8 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 			// 获取包路径
 			// 1.根据指定包名 生成包搜索路径
 			// 通过观察 resolveBasePackage()方法的实现, 我们可以在设置basePackage时, 使用形如${}的占位符, Spring会在这里进行替换 只要在Enviroment里面就行
-			// 本次值为：classpath*:com/fsx/config/**/*.class
+			// 本次值为：classpath*:com/fsx/config/**/*.class 即 扫描所有.class文件 classpath*:com/mydemo/**/*.class
 			String packageSearchPath = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX + resolveBasePackage(basePackage) + '/' + resourcePattern;
-			// 将对应的包中的类封装成resources
 			//2. 资源加载器 加载搜索路径下的 所有class 转换为 Resource[]
 			// 拿着上面的路径，就可以getResources获取出所有的.class类，这个很强大~~~
 			// 真正干事的为：PathMatchingResourcePatternResolver#getResources方法
@@ -396,10 +393,11 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 						// 检查metadataReader中的对象的className是否符合指定的excludeFilters和includeFilters的筛选
 						// 根据TypeFilter过滤排除组件。因为AppConfig没有标准@Component或者子注解，所以肯定不属于候选组件  返回false
 						// 注意：这里一般(默认处理的情况下)标注了默认注解的才会true，什么叫默认注解呢？就是@Component或者派生注解。还有javax....的，这里省略啦
-						//4. 这里很关键里面会进行IncludeFilter和ExcludeFilter的判断，也是能自定义扩展组件扫描的核心方法
+						// 4. 这里很关键里面会进行IncludeFilter和ExcludeFilter的判断，也是能自定义扩展组件扫描的核心方法
+						// 判断该类是否符合@CompoentScan的过滤规则
+						// 过滤匹配排除excludeFilters排除过滤器(可以没有),包含includeFilter中的包含过滤器（至少包含一个）。
 						if (isCandidateComponent(metadataReader)) {
-							// 创建一个ScannedGenericBeanDefinition对象
-							// 把符合条件的 类转换成 BeanDefinition
+							// 把符合条件的 类转换成 ScannedGenericBeanDefinition 对象
 							// 5. 拼装成BeanDefinition，后面会给BeanDefinition设置beanClass为MapperFactoryBean代理对象
 							//6. 最后注册到IOC容器中，此时我们已经可以使用Mybatis的Mapper来完成依赖注入和依赖查找了
 							ScannedGenericBeanDefinition sbd = new ScannedGenericBeanDefinition(metadataReader);
@@ -410,12 +408,14 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 							// 这和上面是个重载方法  个人觉得旨在处理循环引用以及@Lookup上
 							if (isCandidateComponent(sbd)) {
 								if (debugEnabled) logger.debug("Identified candidate component class: " + resource);
-								//加入到候选的bean中
+								// 加入到候选的bean中
 								candidates.add(sbd);
 							}else {
+								// 不合格 不是顶级类、具体类
 								if (debugEnabled) logger.debug("Ignored because not a concrete top-level class: " + resource);
 							}
 						}else {
+							// 不符@CompoentScan过滤规则
 							if (traceEnabled) logger.trace("Ignored because not matching any filter: " + resource);
 						}
 					}catch (Throwable ex) {
