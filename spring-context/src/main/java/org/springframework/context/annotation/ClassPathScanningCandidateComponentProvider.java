@@ -470,10 +470,13 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 		// ClassPathMapperScanner#registerFilters()方法中注册的includeFilters。
 		// 这也是为什么我们配置了 @MapperScan(basePakages="xxxx")就能扫描到xxx包下的所有类到ioc容器中的所有原理
 		for (TypeFilter tf : includeFilters) {
+			//判断当前类的注解是否match规则
 			if (tf.match(metadataReader, getMetadataReaderFactory())) {
+				//是否有@Conditional注解，进行相关处理
 				return isConditionMatch(metadataReader);
 			}
 		}
+		//如果读取的类的注解既不在排除规则，也不在包含规则中，则返回false
 		return false;
 	}
 

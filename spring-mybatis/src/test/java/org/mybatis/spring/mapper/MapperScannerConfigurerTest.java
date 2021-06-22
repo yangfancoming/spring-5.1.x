@@ -34,7 +34,6 @@ public class MapperScannerConfigurerTest {
   @BeforeEach
   public void setupContext() {
     applicationContext = new GenericApplicationContext();
-
     // add the mapper scanner as a bean definition rather than explicitly setting a postProcessor on the context so
     // initialization follows the same code path as reading from an XML config file
     // 将mapper scanner添加为bean定义，而不是在上下文中显式设置后处理器，以便初始化遵循与从xml配置文件读取相同的代码路径

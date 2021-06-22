@@ -65,6 +65,8 @@ class MapperScanTest {
 			// with no methods are loaded
 		} finally {
 			applicationContext.close();
+			String[] str= applicationContext.getBeanDefinitionNames();
+			Arrays.stream(str).forEach(x->System.out.println("***---***	 " + x));
 		}
 	}
 
@@ -106,8 +108,13 @@ class MapperScanTest {
 		applicationContext.getBean("mapperSubinterface");
 		applicationContext.getBean("mapperChildInterface");
 		applicationContext.getBean("annotatedMapper");
+		applicationContext.getBean("annotatedMapperZeroMethods");
 	}
 
+	/**
+	 * 测试  @MapperScan 注解的 nameGenerator 属性
+	 * @see ClassPathMapperScanner#registerFilters()
+	 */
 	@Test
 	void testNameGenerator() {
 		applicationContext.register(AppConfigWithNameGenerator.class);
@@ -115,8 +122,9 @@ class MapperScanTest {
 		// only child inferfaces should be loaded and named with its class name
 		applicationContext.getBean(MapperInterface.class.getName());
 		applicationContext.getBean(MapperSubinterface.class.getName());
-		applicationContext.getBean(MapperChildInterface.class.getName());
-		applicationContext.getBean(AnnotatedMapper.class.getName());
+		applicationContext.getBean(MapperChildInterface.class.getName()); // org.mybatis.spring.mapper.child.MapperChildInterface
+		applicationContext.getBean(AnnotatedMapper.class.getName()); // org.mybatis.spring.mapper.AnnotatedMapper
+		applicationContext.getBean(AnnotatedMapperZeroMethods.class.getName());
 	}
 
 	/**
@@ -127,7 +135,7 @@ class MapperScanTest {
 	void testMarkerInterfaceScan() {
 		applicationContext.register(AppConfigWithMarkerInterface.class);
 		startContext();
-		// only child inferfaces should be loaded
+		// only child inferfaces should be loaded  只会加载 MapperInterface 的子接口
 		applicationContext.getBean("mapperSubinterface");
 		applicationContext.getBean("mapperChildInterface");
 		assertBeanNotLoaded("mapperInterface");
@@ -142,8 +150,9 @@ class MapperScanTest {
 	void testAnnotationScan() {
 		applicationContext.register(AppConfigWithAnnotation.class);
 		startContext();
-		// only annotated mappers should be loaded
+		// only annotated mappers should be loaded  只会加载有 @Component 注解的接口
 		applicationContext.getBean("annotatedMapper");
+		applicationContext.getBean("annotatedMapperZeroMethods");
 		applicationContext.getBean("mapperChildInterface");
 		assertBeanNotLoaded("mapperInterface");
 		assertBeanNotLoaded("mapperSubinterface");

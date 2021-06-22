@@ -427,5 +427,4 @@ class SqlSessionFactoryBeanTest {
 
   private static class MyLanguageDriver2 extends RawLanguageDriver {
   }
-
 }

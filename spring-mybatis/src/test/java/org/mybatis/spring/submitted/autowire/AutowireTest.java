@@ -1,12 +1,7 @@
-
-
 package org.mybatis.spring.submitted.autowire;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import java.util.Arrays;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class AutowireTest {
