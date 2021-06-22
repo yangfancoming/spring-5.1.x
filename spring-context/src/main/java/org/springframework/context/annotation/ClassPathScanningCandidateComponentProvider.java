@@ -450,7 +450,7 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	 * @return whether the class qualifies as a candidate component
 	 */
 	protected boolean isCandidateComponent(MetadataReader metadataReader) throws IOException {
-		// this.excludeFilters除非用户显式配置, 否则默认为空
+		// this.excludeFilters 除非用户显式配置, 否则默认为空
 		for (TypeFilter tf : excludeFilters) {
 			if (tf.match(metadataReader, getMetadataReaderFactory())) {
 				return false;
@@ -466,9 +466,9 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 		//      3. new AnnotationTypeFilter(((Class<? extends Annotation>) ClassUtils.forName("javax.inject.Named", cl)), false)
 		//   @Repository、 @Controller、 @Service、@Configuration都被@Component注解所修饰
 
-		//遍历所有的IncludeFilter，若匹配则进行Conditional条件注解判断，这里includeFilters中就包括了之前
-		//ClassPathMapperScanner#registerFilters()方法中注册的includeFilters。这也是为什么我们配置了
-		// @MapperScan(basePakages="xxxx")就能扫描到xxx包下的所有类到ioc容器中的所有原理
+		// 遍历所有的IncludeFilter，若匹配则进行Conditional条件注解判断，这里includeFilters中就包括了之前
+		// ClassPathMapperScanner#registerFilters()方法中注册的includeFilters。
+		// 这也是为什么我们配置了 @MapperScan(basePakages="xxxx")就能扫描到xxx包下的所有类到ioc容器中的所有原理
 		for (TypeFilter tf : includeFilters) {
 			if (tf.match(metadataReader, getMetadataReaderFactory())) {
 				return isConditionMatch(metadataReader);

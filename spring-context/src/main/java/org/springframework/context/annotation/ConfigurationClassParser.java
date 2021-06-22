@@ -183,6 +183,7 @@ class ConfigurationClassParser {
 			// 循环处理配置类configClass直到sourceClass变为null
 			// doProcessConfigurationClass的返回值是其参数configClass的父类，
 			// 如果该父类是由Java提供的类或者已经处理过，返回null
+			// 递归处理循环中当前类的父类
 			sourceClass = doProcessConfigurationClass(configClass, sourceClass);
 		}while (sourceClass != null);
 		logger.warn("【 @"+configClass.getMetadata().getAnnotationTypes()+"注解 在configurationClasses中注册】 beanName： " + configClass.getResource().getDescription());
@@ -218,7 +219,8 @@ class ConfigurationClassParser {
 				logger.info("Ignoring @PropertySource annotation on [" + sourceClass.getMetadata().getClassName() + "]. Reason: Environment must implement ConfigurableEnvironment");
 			}
 		}
-		// Process any 【@ComponentScan】 annotations  // @ComponentScans 注解是对@ComponentScan注解的包装，一个@ComponentScans可以包含多个@ComponentScan
+		// Process any 【@ComponentScan】 annotations  // @ComponentScans 注解是对@ComponentScan注解的包装，一个@ComponentScans可以包含多个 @ComponentScan
+		// sos @ComponentScan 注解不能扫描jar包
 		Set<AnnotationAttributes> componentScans = AnnotationConfigUtils.attributesForRepeatable(sourceClass.getMetadata(), ComponentScans.class, ComponentScan.class);
 		// 如果解析注解后存在扫描相关的注解，并且贴有当前注解的bean不需要跳过注册（贴有@condition注解）
 		if (!componentScans.isEmpty() && !conditionEvaluator.shouldSkip(sourceClass.getMetadata(), ConfigurationPhase.REGISTER_BEAN)) {
@@ -241,7 +243,7 @@ class ConfigurationClassParser {
 				}
 			}
 		}
-		// Process any 【@Import】 annotations
+		// Process any 【@Import】 annotations  sos @Import 注解 可以扫描jar包中的类
 		processImports(configClass, sourceClass, getImports(sourceClass), true);
 		// Process any 【@ImportResource】 annotations
 		AnnotationAttributes importResource = AnnotationConfigUtils.attributesFor(sourceClass.getMetadata(), ImportResource.class);

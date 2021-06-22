@@ -19,10 +19,8 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 /**
- * Tests that @Import may be used both as a locally declared and meta-declared
- * annotation, that all declarations are processed, and that any local declaration
- * is processed last.
-
+ * Tests that @Import may be used both as a locally declared and meta-declared annotation,
+ * that all declarations are processed, and that any local declaration is processed last.
  * @since 3.1
  */
 @SuppressWarnings("resource")

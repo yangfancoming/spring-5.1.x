@@ -195,8 +195,10 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 				definition.getPropertyValues().add("sqlSessionTemplate", this.sqlSessionTemplate);
 				explicitFactoryUsed = true;
 			}
+			// 如果没有显示的指定SqlSessionFactoryBean，则设置当前bd的属性注入方式为按类型注入，与在属性上加了@Autowired效果一致
 			if (!explicitFactoryUsed) {
 				LOGGER.warn(() -> "Enabling autowire by type for MapperFactoryBean with name '" + holder.getBeanName() + "'.");
+				// 设置属性按类型注入
 				definition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
 			}
 			definition.setLazyInit(lazyInitialization);

@@ -1,8 +1,7 @@
-
-
 package org.springframework.context.annotation;
 
 import org.junit.Test;
+import org.springframework.aop.framework.ProxyFactoryBean;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.beans.factory.BeanFactory;
@@ -39,13 +38,17 @@ public class ImportBeanDefinitionRegistrarTests {
 		assertThat(SampleRegistrar.classLoader, is(context.getBeanFactory().getBeanClassLoader()));
 		assertThat(SampleRegistrar.resourceLoader, is(notNullValue()));
 		assertThat(SampleRegistrar.environment, is(context.getEnvironment()));
-
 		/**
 		 * 由于 Goat.class 就是一个简单 @Component 会被注册到容器中
 		 * 但 SampleRegistrar.class 实现了 ImportBeanDefinitionRegistrar 接口，不会被注册到容器中
 		 * 如果 去掉实现 ImportBeanDefinitionRegistrar 接口，则可以注册到容器中
 		*/
 		assertNotNull(context.getBean(Goat.class));
+		// 证明 @Import 注解使用在 一般类上  也可以实现bean的导入。 不仅仅是局限于使用在  @Configuration  和 注解上
+		assertNotNull(context.getBean(Foo.class));
+		// 证明 @Import 注解 可以导入其他jar中的类，ProxyFactoryBean是 spring-aop中的类  @ComponentScan 是不能扫描jar包的
+		assertNotNull(context.getBean(ProxyFactoryBean.class));
+
 		SampleRegistrar bean = context.getBean(SampleRegistrar.class);
 		System.out.println(bean);
 	}
@@ -74,7 +77,13 @@ public class ImportBeanDefinitionRegistrarTests {
 	}
 
 	@Component
+	@Import(Foo.class) // 证明 @Import 注解也可以使用在 一般类上
 	private static class Goat {
+	}
+
+	@Component
+	@Import(ProxyFactoryBean.class)
+	private static class Foo {
 	}
 
 	private static class SampleRegistrar implements ImportBeanDefinitionRegistrar,BeanClassLoaderAware, ResourceLoaderAware, BeanFactoryAware, EnvironmentAware {

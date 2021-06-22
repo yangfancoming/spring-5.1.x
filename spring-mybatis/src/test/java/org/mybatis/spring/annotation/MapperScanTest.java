@@ -122,6 +122,10 @@ class MapperScanTest {
 		applicationContext.getBean(AnnotatedMapper.class.getName());
 	}
 
+	/**
+	 *
+	 *
+	*/
 	@Test
 	void testMarkerInterfaceScan() {
 		applicationContext.register(AppConfigWithMarkerInterface.class);

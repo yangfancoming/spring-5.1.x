@@ -85,7 +85,7 @@ public interface BeanDefinitionRegistry extends AliasRegistry {
 	 * Determine whether the given bean name is already in use within this registry,i.e. whether there is a local bean or alias registered under this name.
 	 * @param beanName the name to check
 	 * @return whether the given bean name is already in use
-	 * 指定Bean名是否被注册过。
+	 * 指定Bean名是否被占用。
 	 */
 	boolean isBeanNameInUse(String beanName);
 }
