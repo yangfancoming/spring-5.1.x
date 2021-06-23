@@ -26,9 +26,6 @@ import org.springframework.tests.sample.beans.TestBean;
 import static org.junit.Assert.*;
 
 /**
- * @author Rod Johnson
-
- * @author Ramnivas Laddad
  * @since 2.0
  */
 public class MethodInvocationProceedingJoinPointTests {
@@ -38,8 +35,7 @@ public class MethodInvocationProceedingJoinPointTests {
 		try {
 			AbstractAspectJAdvice.currentJoinPoint();
 			fail("Needs to be bound by interceptor action");
-		}
-		catch (IllegalStateException ex) {
+		}catch (IllegalStateException ex) {
 			// expected
 		}
 	}
@@ -49,8 +45,7 @@ public class MethodInvocationProceedingJoinPointTests {
 		try {
 			AbstractAspectJAdvice.currentJoinPoint();
 			fail("Needs to be bound by interceptor action");
-		}
-		catch (IllegalStateException ex) {
+		}catch (IllegalStateException ex) {
 			// expected
 		}
 	}

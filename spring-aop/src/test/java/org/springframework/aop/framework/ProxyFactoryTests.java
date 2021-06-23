@@ -33,10 +33,6 @@ import static org.junit.Assert.*;
 
 /**
  * Also tests AdvisedSupport and ProxyCreatorSupport superclasses.
- *
- * @author Rod Johnson
-
-
  * @since 14.05.2003
  */
 public class ProxyFactoryTests {
