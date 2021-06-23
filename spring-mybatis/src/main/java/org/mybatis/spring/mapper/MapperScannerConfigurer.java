@@ -254,7 +254,9 @@ public class MapperScannerConfigurer implements BeanDefinitionRegistryPostProces
 	@Override
 	public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) {
 		/* 处理properties配置 */
-		if (this.processPropertyPlaceHolders) processPropertyPlaceHolders();
+		if (this.processPropertyPlaceHolders) {
+			processPropertyPlaceHolders();
+		}
 		// 创建ClassPathMapperScanner对象
 		ClassPathMapperScanner scanner = new ClassPathMapperScanner(registry);
 		scanner.setAddToConfig(this.addToConfig);
@@ -278,17 +280,22 @@ public class MapperScannerConfigurer implements BeanDefinitionRegistryPostProces
 		scanner.scan(StringUtils.tokenizeToStringArray(this.basePackage, ConfigurableApplicationContext.CONFIG_LOCATION_DELIMITERS));
 	}
 
-	/*
+	/**
 	 * BeanDefinitionRegistries are called early in application startup, before BeanFactoryPostProcessors. This means that
-	 * PropertyResourceConfigurers will not have been loaded and any property substitution of this class' properties will
-	 * fail. To avoid this, find any PropertyResourceConfigurers defined in the context and run them on this class' bean definition. Then update the values.
-	 */
+	 * PropertyResourceConfigurers will not have been loaded and any property substitution of this class' properties will fail.
+	 * To avoid this, find any PropertyResourceConfigurers defined in the context and run them on this class' bean definition. Then update the values.
+	 *
+	 * 	 BeanDefinitionRegistryPostProcessor （实现类为MapperScannerConfigurer） 会在应用启动的时候调用，
+	 * 	 并且会早于BeanFactoryPostProcessors （实现类为PropertyResourceConfigurer）的调用，
+	 * 	 这就意味着 PropertiesResourceConfigurer 还没有被加载所有对于属性文件的引用将会失效，
+	 * 	 为避免此种情况发生，此方法手动地找出定义的PropertyResourceConfigurers并进行调用，以保证对于属性的引用可以正常工作。
+	*/
 	private void processPropertyPlaceHolders() {
 		Map<String, PropertyResourceConfigurer> prcs = applicationContext.getBeansOfType(PropertyResourceConfigurer.class);
 		if (!prcs.isEmpty() && applicationContext instanceof ConfigurableApplicationContext) {
 			BeanDefinition mapperScannerBean = ((ConfigurableApplicationContext) applicationContext).getBeanFactory().getBeanDefinition(beanName);
-			// PropertyResourceConfigurer does not expose any methods to explicitly perform
-			// property placeholder substitution. Instead, create a BeanFactory that just contains this mapper scanner and post process the factory.
+			// PropertyResourceConfigurer does not expose any methods to explicitly perform property placeholder substitution.
+			// Instead, create a BeanFactory that just contains this mapper scanner and post process the factory.
 			// PropertyResourceConfigurer 不公开任何显式执行属性占位符替换的方法，代替的是创建一个只包含当前mapper扫描器和后处理工厂的BeanFactory
 			DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 			factory.registerBeanDefinition(beanName, mapperScannerBean);

@@ -15,6 +15,12 @@ import org.springframework.lang.Nullable;
  * @see #setParentName
  * @see RootBeanDefinition
  * @see ChildBeanDefinition
+ *
+ * *GenericBeanDefinition是标准bean定义的一站式服务。
+ * *与任何bean定义一样，它允许指定类以及可选的构造函数参数值和属性值。
+ * *此外，可以通过“parentName”属性灵活地配置从父bean定义派生的。
+ * *一般来说，使用这个{@code GenericBeanDefinition}类来注册用户可见的bean定义（后处理器可以对其进行操作，甚至可能重新配置父名称）。
+ * *使用{@code RootBeanDefinition}/{@code ChildBeanDefinition}，其中父/子关系恰好是预先确定的。
  */
 @SuppressWarnings("serial")
 public class GenericBeanDefinition extends AbstractBeanDefinition {

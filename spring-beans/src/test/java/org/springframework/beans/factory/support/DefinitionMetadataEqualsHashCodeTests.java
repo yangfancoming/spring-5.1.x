@@ -21,8 +21,7 @@ public class DefinitionMetadataEqualsHashCodeTests {
 		RootBeanDefinition master = new RootBeanDefinition(TestBean.class);
 		RootBeanDefinition equal = new RootBeanDefinition(TestBean.class);
 		RootBeanDefinition notEqual = new RootBeanDefinition(String.class);
-		RootBeanDefinition subclass = new RootBeanDefinition(TestBean.class) {
-		};
+		RootBeanDefinition subclass = new RootBeanDefinition(TestBean.class) {};
 		setBaseProperties(master);
 		setBaseProperties(equal);
 		setBaseProperties(notEqual);
@@ -60,8 +59,8 @@ public class DefinitionMetadataEqualsHashCodeTests {
 		ChildBeanDefinition master = new ChildBeanDefinition("foo");
 		ChildBeanDefinition equal = new ChildBeanDefinition("foo");
 		ChildBeanDefinition notEqual = new ChildBeanDefinition("bar");
-		ChildBeanDefinition subclass = new ChildBeanDefinition("foo") {
-		};
+		ChildBeanDefinition subclass = new ChildBeanDefinition("foo") {};
+
 		setBaseProperties(master);
 		setBaseProperties(equal);
 		setBaseProperties(notEqual);
@@ -75,8 +74,7 @@ public class DefinitionMetadataEqualsHashCodeTests {
 		RuntimeBeanReference master = new RuntimeBeanReference("name");
 		RuntimeBeanReference equal = new RuntimeBeanReference("name");
 		RuntimeBeanReference notEqual = new RuntimeBeanReference("someOtherName");
-		RuntimeBeanReference subclass = new RuntimeBeanReference("name") {
-		};
+		RuntimeBeanReference subclass = new RuntimeBeanReference("name") {};
 		assertEqualsAndHashCodeContracts(master, equal, notEqual, subclass);
 	}
 

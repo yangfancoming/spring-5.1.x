@@ -16,6 +16,14 @@ import org.springframework.util.ObjectUtils;
  * <b>NOTE:</b> Since Spring 2.5, the preferred way to register bean definitions programmatically is the {@link GenericBeanDefinition} class,
  * which allows to dynamically define parent dependencies through the {@link GenericBeanDefinition#setParentName} method.
  * This effectively supersedes the ChildBeanDefinition class for most use cases.
+ *
+ * *从父级继承设置的Bean的Bean定义。
+ * *子bean定义对父bean定义有固定的依赖关系。
+ * *子bean定义将从父bean继承构造函数参数值、属性值和方法重写，并提供添加新值的选项。
+ * *如果指定了init method、destroy method和/或static factory method，它们将覆盖相应的父设置。
+ * *其余的设置将始终取自子定义：dependens on、autowire mode、dependency check、singleton、lazy init。
+ * *<b>注意：</b>自Spring2.5以来，以编程方式注册bean定义的首选方法是{@link GenericBeanDefinition}类，它允许通过{@link GenericBeanDefinition#setParentName}方法动态定义父依赖项。
+ * *对于大多数用例，这有效地取代了ChildBeanDefinition类。
  * @see GenericBeanDefinition
  * @see RootBeanDefinition
  */

@@ -434,8 +434,8 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 						// In case of FactoryBean, match object created by FactoryBean.  // 是不是FactoryBean的子类
 						boolean isFactoryBean = isFactoryBean(beanName, mbd);
 						BeanDefinitionHolder dbd = mbd.getDecoratedDefinition();
-						//这里我们其他的几个变量的意思都差不多  我们需要重点关注的是isTypeMatch这个方法
-						//如果isTypeMatch这个方法返回true的话，我们会把这个beanName即factoryBeanLearn 放入到result中返回
+						// 这里我们其他的几个变量的意思都差不多  我们需要重点关注的是isTypeMatch这个方法
+						// 如果isTypeMatch这个方法返回true的话，我们会把这个beanName即factoryBeanLearn 放入到result中返回
 						boolean matchFound = (allowEagerInit || !isFactoryBean || (dbd != null && !mbd.isLazyInit()) || containsSingleton(beanName)) &&
 										(includeNonSingletons || (dbd != null ? mbd.isSingleton() : isSingleton(beanName))) && isTypeMatch(beanName, type);
 						if (!matchFound && isFactoryBean) {

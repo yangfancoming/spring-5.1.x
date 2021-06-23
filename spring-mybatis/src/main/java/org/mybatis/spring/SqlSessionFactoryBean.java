@@ -72,6 +72,11 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 	private static final ResourcePatternResolver RESOURCE_PATTERN_RESOLVER = new PathMatchingResourcePatternResolver();
 	private static final MetadataReaderFactory METADATA_READER_FACTORY = new CachingMetadataReaderFactory();
 
+	public SqlSessionFactoryBean() {
+		// intentionally empty
+		LOGGER.warn(() -> "SqlSessionFactoryBean  无参构造函数 执行");
+	}
+
 	// 全局xml配置
 	private Resource configLocation;
 

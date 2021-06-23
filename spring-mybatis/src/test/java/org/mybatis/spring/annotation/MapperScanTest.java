@@ -165,11 +165,13 @@ class MapperScanTest {
 		startContext();
 		// everything should be loaded but the marker interface
 		applicationContext.getBean("annotatedMapper");
+		applicationContext.getBean("annotatedMapperZeroMethods");
 		applicationContext.getBean("mapperSubinterface");
 		applicationContext.getBean("mapperChildInterface");
 		assertBeanNotLoaded("mapperInterface");
 	}
 
+	// 测试 MapperFactoryBean
 	@Test
 	void testCustomMapperFactoryBean() {
 		DummyMapperFactoryBean.clear();

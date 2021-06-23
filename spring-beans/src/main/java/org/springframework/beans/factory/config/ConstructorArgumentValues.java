@@ -44,11 +44,9 @@ public class ConstructorArgumentValues {
 	}
 
 	/**
-	 * Copy all given argument values into this object, using separate holder
-	 * instances to keep the values independent from the original object.
-	 * Note: Identical ValueHolder instances will only be registered once,
-	 * to allow for merging and re-merging of argument value definitions. Distinct
-	 * ValueHolder instances carrying the same content are of course allowed.
+	 * Copy all given argument values into this object, using separate holder instances to keep the values independent from the original object.
+	 * Note: Identical ValueHolder instances will only be registered once,to allow for merging and re-merging of argument value definitions.
+	 * Distinct ValueHolder instances carrying the same content are of course allowed.
 	 */
 	public void addArgumentValues(@Nullable ConstructorArgumentValues other) {
 		if (other != null) {
@@ -90,8 +88,7 @@ public class ConstructorArgumentValues {
 	}
 
 	/**
-	 * Add an argument value for the given index in the constructor argument list,
-	 * merging the new value (typically a collection) with the current value
+	 * Add an argument value for the given index in the constructor argument list, merging the new value (typically a collection) with the current value
 	 * if demanded: see {@link org.springframework.beans.Mergeable}.
 	 * @param key the index in the constructor argument list
 	 * @param newValue the argument value in the form of a ValueHolder
@@ -118,8 +115,7 @@ public class ConstructorArgumentValues {
 	/**
 	 * Get argument value for the given index in the constructor argument list.
 	 * @param index the index in the constructor argument list
-	 * @param requiredType the type to match (can be {@code null} to match
-	 * untyped values only)
+	 * @param requiredType the type to match (can be {@code null} to match untyped values only)
 	 * @return the ValueHolder for the argument, or {@code null} if none set
 	 */
 	@Nullable
@@ -130,10 +126,8 @@ public class ConstructorArgumentValues {
 	/**
 	 * Get argument value for the given index in the constructor argument list.
 	 * @param index the index in the constructor argument list
-	 * @param requiredType the type to match (can be {@code null} to match
-	 * untyped values only)
-	 * @param requiredName the type to match (can be {@code null} to match
-	 * unnamed values only, or empty String to match any name)
+	 * @param requiredType the type to match (can be {@code null} to match untyped values only)
+	 * @param requiredName the type to match (can be {@code null} to match unnamed values only, or empty String to match any name)
 	 * @return the ValueHolder for the argument, or {@code null} if none set
 	 */
 	@Nullable
@@ -192,8 +186,7 @@ public class ConstructorArgumentValues {
 	}
 
 	/**
-	 * Add a generic argument value, merging the new value (typically a collection)
-	 * with the current value if demanded: see {@link org.springframework.beans.Mergeable}.
+	 * Add a generic argument value, merging the new value (typically a collection) with the current value if demanded: see {@link org.springframework.beans.Mergeable}.
 	 * @param newValue the argument value in the form of a ValueHolder
 	 */
 	private void addOrMergeGenericArgumentValue(ValueHolder newValue) {
@@ -236,12 +229,10 @@ public class ConstructorArgumentValues {
 	}
 
 	/**
-	 * Look for the next generic argument value that matches the given type,
-	 * ignoring argument values that have already been used in the current resolution process.
+	 * Look for the next generic argument value that matches the given type, ignoring argument values that have already been used in the current resolution process.
 	 * @param requiredType the type to match (can be {@code null} to find an arbitrary next generic argument value)
 	 * @param requiredName the name to match (can be {@code null} to not match argument values by name, or empty String to match any name)
-	 * @param usedValueHolders a Set of ValueHolder objects that have already been used
-	 * in the current resolution process and should therefore not be returned again
+	 * @param usedValueHolders a Set of ValueHolder objects that have already been used in the current resolution process and should therefore not be returned again
 	 * @return the ValueHolder for the argument, or {@code null} if none found
 	 */
 	@Nullable
@@ -285,8 +276,7 @@ public class ConstructorArgumentValues {
 	}
 
 	/**
-	 * Look for an argument value that either corresponds to the given index
-	 * in the constructor argument list or generically matches by type.
+	 * Look for an argument value that either corresponds to the given index in the constructor argument list or generically matches by type.
 	 * @param index the index in the constructor argument list
 	 * @param requiredType the parameter type to match
 	 * @param requiredName the parameter name to match
@@ -514,8 +504,7 @@ public class ConstructorArgumentValues {
 		}
 
 		/**
-		 * Return the converted value of the constructor argument,
-		 * after processed type conversion.
+		 * Return the converted value of the constructor argument,after processed type conversion.
 		 */
 		@Nullable
 		public synchronized Object getConvertedValue() {
@@ -523,15 +512,12 @@ public class ConstructorArgumentValues {
 		}
 
 		/**
-		 * Determine whether the content of this ValueHolder is equal
-		 * to the content of the given other ValueHolder.
+		 * Determine whether the content of this ValueHolder is equal to the content of the given other ValueHolder.
 		 * Note that ValueHolder does not implement {@code equals}
-		 * directly, to allow for multiple ValueHolder instances with the
-		 * same content to reside in the same Set.
+		 * directly, to allow for multiple ValueHolder instances with the same content to reside in the same Set.
 		 */
 		private boolean contentEquals(ValueHolder other) {
-			return (this == other ||
-					(ObjectUtils.nullSafeEquals(this.value, other.value) && ObjectUtils.nullSafeEquals(this.type, other.type)));
+			return (this == other || (ObjectUtils.nullSafeEquals(this.value, other.value) && ObjectUtils.nullSafeEquals(this.type, other.type)));
 		}
 
 		/**
@@ -552,5 +538,4 @@ public class ConstructorArgumentValues {
 			return copy;
 		}
 	}
-
 }

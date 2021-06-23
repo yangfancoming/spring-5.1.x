@@ -25,18 +25,14 @@ import static org.springframework.util.Assert.notNull;
  * Thread safe, Spring managed, {@code SqlSession} that works with Spring transaction management to ensure that that the
  * actual SqlSession used is the one associated with the current Spring transaction. In addition, it manages the session
  * life-cycle, including closing, committing or rolling back the session as necessary based on the Spring transaction configuration.
- * The template needs a SqlSessionFactory to create SqlSessions, passed as a constructor argument. It also can be
- * constructed indicating the executor type to be used, if not, the default executor type, defined in the session factory will be used.
+ * The template needs a SqlSessionFactory to create SqlSessions, passed as a constructor argument.
+ * It also can be constructed indicating the executor type to be used, if not, the default executor type, defined in the session factory will be used.
  * This template converts MyBatis PersistenceExceptions into unchecked DataAccessExceptions, using, by default, a {@code MyBatisExceptionTranslator}.
- * Because SqlSessionTemplate is thread safe, a single instance can be shared by all DAOs; there should also be a small
- * memory savings by doing this. This pattern can be used in Spring configuration files as follows:
- * <pre class="code">
- * {@code
+ * Because SqlSessionTemplate is thread safe, a single instance can be shared by all DAOs; there should also be a small memory savings by doing this.
+ * This pattern can be used in Spring configuration files as follows:
  * <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
  *   <constructor-arg ref="sqlSessionFactory" />
  * </bean>
- * }
- * </pre>
  * @see SqlSessionFactory
  * @see MyBatisExceptionTranslator
  */

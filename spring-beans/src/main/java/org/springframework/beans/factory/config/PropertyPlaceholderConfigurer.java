@@ -27,6 +27,10 @@ import org.springframework.util.StringValueResolver;
  * @see PlaceholderConfigurerSupport
  * @see PropertyOverrideConfigurer
  * @see org.springframework.context.support.PropertySourcesPlaceholderConfigurer
+ * @see BeanFactoryPostProcessor 的实现类
+ * PropertyPlaceholderConfigurer可以将上下文（配置文 件）中的属性值放在另一个单独的标准java Properties文件中去。
+ * 在XML文件中用${…}替换指定的properties文件中的值。
+ * 这样的话，只需要对properties文件进 行修改，而不用对xml配置文件进行修改。
  */
 public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport {
 

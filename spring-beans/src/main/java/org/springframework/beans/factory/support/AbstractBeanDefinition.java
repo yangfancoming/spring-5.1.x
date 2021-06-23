@@ -31,6 +31,10 @@ import java.util.function.Supplier;
  * AbstractBeanDefinition 实现了 BeanDefinition 接口，在 BeanDefinition 接口中只是定义了<bean>标签对应属性的 setter/getter 方法，
  * 而没有定义对应的属性，而在 AbstractBeanDefinition 类中就定义了对应的各种属性，并重写了接口的 setter/getter 方法
  * XML 配置文件中所有的配置都可以在该类中找到对应的位置。
+ *
+ * *具体的、成熟的{@link BeanDefinition}类的基类，
+ * *分解出{@link GenericBeanDefinition}、{@link RootBeanDefinition}和{@link ChildBeanDefinition}的公共属性。
+ * *autowire常量与{@link org.springframework.beans.factory.config.AutowireCapableBeanFactory}接口中定义的常量匹配。
  */
 @SuppressWarnings("serial")
 public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccessor implements BeanDefinition, Cloneable {
