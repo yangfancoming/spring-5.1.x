@@ -126,7 +126,6 @@ public class BeanFactoryGenericsTests {
 		}
 	}
 
-
 	// 没懂 啥意思
 	@Test
 	public void testGenericListPropertyWithOptionalAutowiring() {
@@ -696,7 +695,6 @@ public class BeanFactoryGenericsTests {
 	@Test
 	public void parameterizedInstanceFactoryMethod() {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
-
 		RootBeanDefinition rbd = new RootBeanDefinition(MocksControl.class);
 		bf.registerBeanDefinition("mocksControl", rbd);
 

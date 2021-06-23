@@ -60,8 +60,7 @@ public class AssignableTypeFilterTests {
 	}
 
 
-	// We must use a standalone set of types to ensure that no one else is loading them
-	// and interfere with ClassloadingAssertions.assertClassNotLoaded()
+	// We must use a standalone set of types to ensure that no one else is loading them  and interfere with ClassloadingAssertions.assertClassNotLoaded()
 	private static class TestNonInheritingClass {
 	}
 

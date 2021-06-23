@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory;
+import org.springframework.beans.factory.xml.BeanDefinitionParserDelegate;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 
@@ -48,6 +49,8 @@ public class App {
 	/**
 	 * 静态工厂
 	 * @see AbstractAutowireCapableBeanFactory#instantiateUsingFactoryMethod(java.lang.String, org.springframework.beans.factory.support.RootBeanDefinition, java.lang.Object[])
+	 * @see BeanDefinitionParserDelegate#FACTORY_METHOD_ATTRIBUTE
+	 * @see BeanDefinitionParserDelegate#parseBeanDefinitionAttributes(org.w3c.dom.Element, java.lang.String, org.springframework.beans.factory.config.BeanDefinition, org.springframework.beans.factory.support.AbstractBeanDefinition)
 	 * 通过静态工厂方法的方式特殊之处在于，包含了这个静态方法的类，不需要被实例化，不需要被Spring管理，Spring的调用逻辑大概是：
 	 * 1.通过<bean>标签中的class属性得到一个Class对象
 	 * 2.通过Class对象获取到对应的方法名称得到Method对象

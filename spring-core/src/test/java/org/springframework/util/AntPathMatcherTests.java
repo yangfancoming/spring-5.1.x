@@ -590,7 +590,6 @@ public class AntPathMatcherTests {
 		pathMatcher.setCachePatterns(true);
 		match();
 		assertTrue(pathMatcher.stringMatcherCache.size() > 20);
-
 		for (int i = 0; i < 65536; i++) {
 			pathMatcher.match("test" + i, "test" + i);
 		}

@@ -776,7 +776,6 @@ public class AutowiredAnnotationBeanPostProcessorTests {
 		RootBeanDefinition tb = new RootBeanDefinition(NullFactoryMethods.class);
 		tb.setFactoryMethodName("createTestBean");
 		bf.registerBeanDefinition("testBean", tb);
-
 		bf.getBean("annotatedBean");
 	}
 
@@ -2185,14 +2184,14 @@ public class AutowiredAnnotationBeanPostProcessorTests {
 
 	public static class ResourceInjectionBean {
 
+		public ResourceInjectionBean() {
+			System.out.println(" ResourceInjectionBean 无参构造函数 执行");
+		}
+
 		@Autowired(required = false)
 		private TestBean testBean;
 
 		private TestBean testBean2;
-
-		public ResourceInjectionBean() {
-			System.out.println(" ResourceInjectionBean 无参构造函数 执行");
-		}
 
 		@Autowired
 		public void setTestBean2(TestBean testBean2) {
@@ -2458,9 +2457,7 @@ public class AutowiredAnnotationBeanPostProcessorTests {
 		}
 
 		@Autowired
-		public ConstructorResourceInjectionBean(@Autowired(required = false) ITestBean testBean4,
-				@Autowired(required = false) NestedTestBean nestedTestBean,
-				ConfigurableListableBeanFactory beanFactory) {
+		public ConstructorResourceInjectionBean(@Autowired(required = false) ITestBean testBean4,@Autowired(required = false) NestedTestBean nestedTestBean,ConfigurableListableBeanFactory beanFactory) {
 			this.testBean4 = testBean4;
 			this.nestedTestBean = nestedTestBean;
 			this.beanFactory = beanFactory;
@@ -2650,8 +2647,7 @@ public class AutowiredAnnotationBeanPostProcessorTests {
 
 		private List<NestedTestBean> nestedTestBeans;
 
-		public SingleConstructorOptionalCollectionBean(ITestBean testBean,
-				@Autowired(required = false) List<NestedTestBean> nestedTestBeans) {
+		public SingleConstructorOptionalCollectionBean(ITestBean testBean,@Autowired(required = false) List<NestedTestBean> nestedTestBeans) {
 			this.testBean = testBean;
 			this.nestedTestBeans = nestedTestBeans;
 		}
@@ -3443,8 +3439,7 @@ public class AutowiredAnnotationBeanPostProcessorTests {
 	}
 
 
-	public static class RepositoryMethodInjectionBeanWithSubstitutedVariables
-			extends RepositoryMethodInjectionBeanWithVariables<String, Integer> {
+	public static class RepositoryMethodInjectionBeanWithSubstitutedVariables extends RepositoryMethodInjectionBeanWithVariables<String, Integer> {
 	}
 
 
@@ -3850,5 +3845,4 @@ public class AutowiredAnnotationBeanPostProcessorTests {
 			return new TestBean();
 		}
 	}
-
 }

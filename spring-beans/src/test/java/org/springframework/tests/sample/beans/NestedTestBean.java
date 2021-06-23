@@ -11,9 +11,11 @@ public class NestedTestBean implements INestedTestBean {
 	private String company = "";
 
 	public NestedTestBean() {
+		System.out.println("NestedTestBean 无参构造函数 执行");
 	}
 
 	public NestedTestBean(String company) {
+		System.out.println("NestedTestBean 单参构造函数 执行");
 		setCompany(company);
 	}
 
@@ -44,5 +46,4 @@ public class NestedTestBean implements INestedTestBean {
 	public String toString() {
 		return "NestedTestBean: " + this.company;
 	}
-
 }
