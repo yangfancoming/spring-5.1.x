@@ -10,18 +10,7 @@ import java.util.regex.Pattern;
 import example.profilescan.DevComponent;
 import example.profilescan.ProfileAnnotatedComponent;
 import example.profilescan.ProfileMetaAnnotatedComponent;
-import example.scannable.AutowiredQualifierFooService;
-import example.scannable.CustomStereotype;
-import example.scannable.DefaultNamedComponent;
-import example.scannable.FooDao;
-import example.scannable.FooService;
-import example.scannable.FooServiceImpl;
-import example.scannable.MessageBean;
-import example.scannable.NamedComponent;
-import example.scannable.NamedStubDao;
-import example.scannable.ScopedProxyTestBean;
-import example.scannable.ServiceInvocationCounter;
-import example.scannable.StubFooDao;
+import example.scannable.*;
 import example.scannable.sub.BarComponent;
 import org.aspectj.lang.annotation.Aspect;
 import org.junit.Test;
@@ -74,6 +63,7 @@ public class ClassPathScanningCandidateComponentProviderTests {
 		assertTrue(containsBeanClass(candidates, NamedStubDao.class));
 		assertTrue(containsBeanClass(candidates, ServiceInvocationCounter.class));
 		assertTrue(containsBeanClass(candidates, BarComponent.class));
+//		assertTrue(containsBeanClass(candidates, CustomAspectStereotype.class));
 		assertEquals(7, candidates.size());
 		assertBeanDefinitionType(candidates, expectedBeanDefinitionType);
 	}
@@ -111,13 +101,21 @@ public class ClassPathScanningCandidateComponentProviderTests {
 		assertEquals(0, candidates.size());
 	}
 
+	/**
+	 * NamedStubDao  ServiceInvocationCounter  FooServiceImpl  NamedComponent  BarComponent  StubFooDao  DefaultNamedComponent
+	 * 由于使用了 用户默认过滤器，所以只扫描包含以下三种注解的bean
+	 * 1.	@Component （@Controller @Service @Respository）
+	 * 2.	@Named
+	 * 3.	@ManagedBean
+	*/
 	@Test
 	public void customFiltersFollowedByResetUseIndex() {
 		ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(false);
 		provider.setResourceLoader(new DefaultResourceLoader(TEST_BASE_CLASSLOADER));
-		provider.addIncludeFilter(new AnnotationTypeFilter(Component.class));
+		provider.addIncludeFilter(new AnnotationTypeFilter(Component.class)); // 这行代码注释掉也可以，因为重置了
 		provider.resetFilters(true);
 		Set<BeanDefinition> candidates = provider.findCandidateComponents(TEST_BASE_PACKAGE);
+		assertEquals(7,candidates.size());
 		assertBeanDefinitionType(candidates, AnnotatedGenericBeanDefinition.class);
 	}
 
@@ -180,7 +178,9 @@ public class ClassPathScanningCandidateComponentProviderTests {
 	}
 
 	private void testCustomSupportedIncludeAndExcludeFilter(ClassPathScanningCandidateComponentProvider provider,Class<? extends BeanDefinition> expectedBeanDefinitionType) {
+		// 包括
 		provider.addIncludeFilter(new AnnotationTypeFilter(Component.class));
+		// 排除
 		provider.addExcludeFilter(new AnnotationTypeFilter(Service.class));
 		provider.addExcludeFilter(new AnnotationTypeFilter(Repository.class));
 		Set<BeanDefinition> candidates = provider.findCandidateComponents(TEST_BASE_PACKAGE);

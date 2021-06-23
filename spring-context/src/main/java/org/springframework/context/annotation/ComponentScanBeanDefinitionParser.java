@@ -188,6 +188,7 @@ public class ComponentScanBeanDefinitionParser implements BeanDefinitionParser {
 			if (!TypeFilter.class.isAssignableFrom(filterClass)) {
 				throw new IllegalArgumentException("Class is not assignable to [" + TypeFilter.class.getName() + "]: " + expression);
 			}
+			// 直接反射实现, 相关类必须有默认构造函数。
 			return (TypeFilter) BeanUtils.instantiateClass(filterClass);
 		}else {
 			throw new IllegalArgumentException("Unsupported filter type: " + filterType);

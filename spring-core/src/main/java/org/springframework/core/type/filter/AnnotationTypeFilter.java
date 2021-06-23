@@ -109,5 +109,4 @@ public class AnnotationTypeFilter extends AbstractTypeHierarchyTraversingFilter 
 		}
 		return null;
 	}
-
 }
