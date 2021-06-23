@@ -411,11 +411,11 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 								// 加入到候选的bean中
 								candidates.add(sbd);
 							}else {
-								// 不合格 不是顶级类、具体类
+								// 不合格，不是顶级类、具体类
 								if (debugEnabled) logger.debug("Ignored because not a concrete top-level class: " + resource);
 							}
 						}else {
-							// 不符@CompoentScan过滤规则
+							// 不合格，不符合@CompoentScan过滤规则
 							if (traceEnabled) logger.trace("Ignored because not matching any filter: " + resource);
 						}
 					}catch (Throwable ex) {

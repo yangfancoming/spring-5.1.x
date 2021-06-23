@@ -81,21 +81,17 @@ class MapperScanTest {
 		applicationContext.getBean("mapperChildInterface");
 		applicationContext.getBean("annotatedMapper");
 
-		String[] str= applicationContext.getBeanDefinitionNames();
-		Arrays.stream(str).forEach(x->System.out.println("***---***	 " + x));
-
 		System.out.println(applicationContext.containsBean("mapperScannerRegistrar"));
 		// 容器中存在该bean
 		MapperScannerConfigurer bean = applicationContext.getBean(MapperScannerConfigurer.class);
 		System.out.println(bean);
 
 		/**
+		 *  会报异常 说明 容器中根本就没有 MapperScannerRegistrar 这个bean。 因为它是被通过反射直接创建的 没有bean定义，不再容器中
 		 * @see ConfigurationClass#addImportBeanDefinitionRegistrar(org.springframework.context.annotation.ImportBeanDefinitionRegistrar, org.springframework.core.type.AnnotationMetadata)
 		 * @see BeanUtils#instantiateClass(java.lang.Class, java.lang.Class)
 		 */
-		// 会报异常 说明 容器中根本就没有 MapperScannerRegistrar 这个bean。 因为它是被通过反射直接创建的 没有bean定义，不再容器中
-		MapperScannerRegistrar fuck = applicationContext.getBean(MapperScannerRegistrar.class);
-		System.out.println(fuck);
+		assertBeanNotLoaded("mapperScannerRegistrar");
 	}
 
 	// 测试接口扫描  使用@MapperScan注解的basePackageClasses方式
@@ -128,7 +124,7 @@ class MapperScanTest {
 	}
 
 	/**
-	 * 测试  @MapperScan(markerInterface = MapperInterface.class) 注解的 markerInterface 属性
+	 * 测试  @MapperScan(annotationClass = Component.class) 注解的 markerInterface 属性
 	 * @see ClassPathMapperScanner#registerFilters()
 	*/
 	@Test
@@ -140,6 +136,7 @@ class MapperScanTest {
 		applicationContext.getBean("mapperChildInterface");
 		assertBeanNotLoaded("mapperInterface");
 		assertBeanNotLoaded("annotatedMapper");
+		assertBeanNotLoaded("annotatedMapperZeroMethods");
 	}
 
 	/**
@@ -159,7 +156,7 @@ class MapperScanTest {
 	}
 
 	/**
-	 * 测试  @MapperScan(markerInterface = MapperInterface.class) 注解的 annotationClass 属性 和 annotationClass 属性 同时使用
+	 * 测试  @MapperScan(markerInterface = MapperInterface.class) 注解的 markerInterface 属性 和 annotationClass 属性 同时使用
 	 * @see ClassPathMapperScanner#registerFilters()
 	 */
 	@Test

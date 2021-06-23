@@ -13,6 +13,7 @@ import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
+import org.springframework.core.type.filter.AbstractTypeHierarchyTraversingFilter;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.core.type.filter.AssignableTypeFilter;
 import org.springframework.util.StringUtils;
@@ -132,7 +133,10 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 			addIncludeFilter(new AssignableTypeFilter(this.markerInterface) {
 				@Override
 				protected boolean matchClassName(String className) {
-					// 不能实现类Class，只能是抽象接口或者抽象类
+					/**
+					 * 不能实现类Class，只能是抽象接口或者抽象类
+					 * @see AbstractTypeHierarchyTraversingFilter#match(org.springframework.core.type.classreading.MetadataReader, org.springframework.core.type.classreading.MetadataReaderFactory)
+					*/
 					return false;
 				}
 			});

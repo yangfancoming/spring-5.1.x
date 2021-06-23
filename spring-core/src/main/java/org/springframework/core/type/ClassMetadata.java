@@ -47,8 +47,8 @@ public interface ClassMetadata {
 	boolean isFinal();
 
 	/**
+	 * 确定基础类是否独立(能够创建对象的)，即它是顶层类还是可以独立于外围类构造的嵌套类(静态内部类)。
 	 * Determine whether the underlying class is independent, i.e. whether it is a top-level class or a nested class (static inner class) that can be constructed independently from an enclosing class.
-	 *  是否是独立的(能够创建对象的)  比如是Class、或者内部类、静态内部类
 	 */
 	boolean isIndependent();
 
@@ -76,8 +76,8 @@ public interface ClassMetadata {
 	String getSuperClassName();
 
 	/**
-	 * Return the names of all interfaces that the underlying class implements, or an empty array if there are none.
 	 * 会把实现的所有接口名称都返回  具体依赖于Class#getSuperclass
+	 * Return the names of all interfaces that the underlying class implements, or an empty array if there are none.
 	 */
 	String[] getInterfaceNames();
 
