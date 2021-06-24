@@ -16,8 +16,12 @@ public class Spr15275Tests {
 	@Test
 	public void testWithFactoryBean() {
 		ApplicationContext context = new AnnotationConfigApplicationContext(ConfigWithFactoryBean.class);
-		assertEquals("x", context.getBean(Bar.class).foo.toString());
-		assertSame(context.getBean(FooInterface.class), context.getBean(Bar.class).foo);
+		Bar bean = context.getBean(Bar.class);
+		String s = bean.foo.toString();
+		assertEquals("x", s);
+
+		FooInterface fooInterface = context.getBean(FooInterface.class);
+		assertSame(fooInterface, bean.foo);
 	}
 
 	@Test
@@ -182,7 +186,7 @@ public class Spr15275Tests {
 		}
 
 		@Bean
-		public Bar bar() throws Exception {
+		public Bar bar() {
 			assertTrue(foo().isSingleton());
 			return new Bar(foo().getObject());
 		}
@@ -212,6 +216,7 @@ public class Spr15275Tests {
 		private final String value;
 
 		public Foo(String value) {
+			System.out.println("Foo 单参构造函数 执行");
 			this.value = value;
 		}
 
@@ -227,6 +232,7 @@ public class Spr15275Tests {
 		public final FooInterface foo;
 
 		public Bar(FooInterface foo) {
+			System.out.println("Bar 单参构造函数 执行");
 			this.foo = foo;
 		}
 	}

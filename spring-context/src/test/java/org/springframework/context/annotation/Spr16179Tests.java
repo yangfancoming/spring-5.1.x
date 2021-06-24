@@ -1,24 +1,15 @@
-
-
 package org.springframework.context.annotation;
-
 import org.junit.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import static org.junit.Assert.*;
 
-/**
 
- * @author Oliver Gierke
- */
+
 public class Spr16179Tests {
 
 	@Test
 	public void repro() {
-		AnnotationConfigApplicationContext bf =
-				new AnnotationConfigApplicationContext(AssemblerConfig.class, AssemblerInjection.class);
-
+		AnnotationConfigApplicationContext bf = new AnnotationConfigApplicationContext(AssemblerConfig.class, AssemblerInjection.class);
 		assertSame(bf.getBean("someAssembler"), bf.getBean(AssemblerInjection.class).assembler0);
 		// assertNull(bf.getBean(AssemblerInjection.class).assembler1);  TODO: accidental match
 		// assertNull(bf.getBean(AssemblerInjection.class).assembler2);
@@ -80,5 +71,4 @@ public class Spr16179Tests {
 	interface SomeType {}
 
 	interface SomeOtherType {}
-
 }

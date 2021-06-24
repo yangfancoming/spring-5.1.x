@@ -3055,11 +3055,6 @@ public class DefaultListableBeanFactoryTests {
 		public Class<?> getObjectType() {
 			return String.class;
 		}
-
-		@Override
-		public boolean isSingleton() {
-			return true;
-		}
 	}
 
 
