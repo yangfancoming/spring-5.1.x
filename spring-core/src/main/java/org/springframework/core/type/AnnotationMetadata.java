@@ -66,12 +66,12 @@ public interface AnnotationMetadata extends ClassMetadata, AnnotatedTypeMetadata
 	boolean hasAnnotatedMethods(String annotationName);
 
 	/**
+	 * 返回当前类中，所有标注了指定注解的方法
 	 * Retrieve the method metadata for all methods that are annotated (or meta-annotated) with the given annotation type.
 	 * For any returned method, {@link MethodMetadata#isAnnotated} will return {@code true} for the given annotation type.
 	 * @param annotationName the fully qualified class name of the annotation type to look for
 	 * @return a set of {@link MethodMetadata} for methods that have a matching annotation.
 	 * The return value will be an empty set if no methods match the annotation type.
-	 *  // 返回所有的标注有指定注解的方法
 	 */
 	Set<MethodMetadata> getAnnotatedMethods(String annotationName);
 }

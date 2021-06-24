@@ -98,7 +98,9 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 			Method[] methods = getIntrospectedClass().getDeclaredMethods();
 			Set<MethodMetadata> annotatedMethods = new LinkedHashSet<>(4);
 			for (Method method : methods) {
+				// 同时满足3个条件： 1.不是桥接方法		 2.方法上至少有一个注解  	3.method方法中包含annotationName注解
 				if (!method.isBridge() && method.getAnnotations().length > 0 && AnnotatedElementUtils.isAnnotated(method, annotationName)) {
+					// 记录满足条件的方法
 					annotatedMethods.add(new StandardMethodMetadata(method, nestedAnnotationsAsMap));
 				}
 			}

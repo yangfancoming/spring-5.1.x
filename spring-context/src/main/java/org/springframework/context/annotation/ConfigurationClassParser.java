@@ -259,7 +259,7 @@ class ConfigurationClassParser {
 		// 这里是处理 @Configuration 主配置类中的 @Bean 方法！
 		Set<MethodMetadata> beanMethods = retrieveBeanMethodMetadata(sourceClass);
 		for (MethodMetadata methodMetadata : beanMethods) {
-			logger.warn("【IOC容器 处理 @Configuration 注解主配置类 【" + configClass.getBeanName() + "】 中的 @Bean 方法  --- 】 " );
+			logger.warn("【IOC容器 记录 @Configuration 主配置类 【" + configClass.getBeanName() + "】 中的 @Bean 方法，准备后续进行处理  --- 】 " );
 			/**
 			 * 再此处进行添加，再后面进行处理
 			 * @see ConfigurationClassBeanDefinitionReader#loadBeanDefinitionsForBeanMethod(org.springframework.context.annotation.BeanMethod)
@@ -325,13 +325,23 @@ class ConfigurationClassParser {
 	// Retrieve the metadata for all <code>@Bean</code> methods.
 	private Set<MethodMetadata> retrieveBeanMethodMetadata(SourceClass sourceClass) {
 		AnnotationMetadata original = sourceClass.getMetadata();
+		// 获取 指定主配置类(sourceClass)中 含有@Bean注解的方法的元信息
 		Set<MethodMetadata> beanMethods = original.getAnnotatedMethods(Bean.class.getName());
+		/**
+		 * 如果含有@Bean注解的方法超过两个，并且是标准注解信息，则Spring会使用ASM技术
+		 * Spring使用了JAVA的反射机制获取的Class，但是反射不能保证方法的声明顺序，也就是它所返回的方法顺序
+		 * 并不一定是代码从上到下编写的顺序，有可能类中的最下面的一个方法在beanMethods集合中是第一个
+		 * Spring为保证方法的声明顺序，使用ASM技术读取作比较
+		 * 注意：这里只有ASM获取的方法比反射获取的方法多或者相等才会比较
+		 */
 		if (beanMethods.size() > 1 && original instanceof StandardAnnotationMetadata) {
 			// Try reading the class file via ASM for deterministic declaration order...
 			// Unfortunately, the JVM's standard reflection returns methods in arbitrary order, even between different runs of the same application on the same JVM.
 			try {
+				// 利用ASM技术返回类的元信息，并获取含有@Bean注解的方法元信息
 				AnnotationMetadata asm = metadataReaderFactory.getMetadataReader(original.getClassName()).getAnnotationMetadata();
 				Set<MethodMetadata> asmMethods = asm.getAnnotatedMethods(Bean.class.getName());
+				// 这里重新创建了一个LinkedHashSet集合保证放入的顺序，遍历ASM方法名与java反射方法名一致，则可以放入集合中并赋值给局部变量用于返回
 				if (asmMethods.size() >= beanMethods.size()) {
 					Set<MethodMetadata> selectedMethods = new LinkedHashSet<>(asmMethods.size());
 					for (MethodMetadata asmMethod : asmMethods) {

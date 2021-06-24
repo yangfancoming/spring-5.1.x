@@ -219,7 +219,6 @@ final class ConfigurationClass {
 		return "ConfigurationClass: beanName '" + this.beanName + "', " + this.resource;
 	}
 
-
 	/**
 	 * Configuration classes must be non-final to accommodate CGLIB subclassing.
 	 */

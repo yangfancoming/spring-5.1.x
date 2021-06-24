@@ -213,12 +213,13 @@ public abstract class AnnotatedElementUtils {
 	}
 
 	/**
-	 * Determine if an annotation of the specified {@code annotationName} is
-	 * <em>present</em> on the supplied {@link AnnotatedElement} or within the annotation hierarchy <em>above</em> the specified element.
+	 * 在指定的方法中查找是否包含指定的注解
+	 * Determine if an annotation of the specified {@code annotationName} is <em>present</em> on the supplied {@link AnnotatedElement}
+	 * or within the annotation hierarchy <em>above</em> the specified element.
 	 * If this method returns {@code true}, then {@link #getMergedAnnotationAttributes} will return a non-null value.
 	 * This method follows <em>get semantics</em> as described in the {@linkplain AnnotatedElementUtils class-level javadoc}.
-	 * @param element the annotated element
-	 * @param annotationName the fully qualified class name of the annotation type to find
+	 * @param element the annotated element   要查找的方法对象
+	 * @param annotationName the fully qualified class name of the annotation type to find   要检测的注解名称（全限定类名）
 	 * @return {@code true} if a matching annotation is present
 	 */
 	public static boolean isAnnotated(AnnotatedElement element, String annotationName) {

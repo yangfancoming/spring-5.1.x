@@ -118,5 +118,4 @@ public class StandardMethodMetadata implements MethodMetadata {
 	public MultiValueMap<String, Object> getAllAnnotationAttributes(String annotationName, boolean classValuesAsString) {
 		return AnnotatedElementUtils.getAllAnnotationAttributes(introspectedMethod,annotationName, classValuesAsString, nestedAnnotationsAsMap);
 	}
-
 }

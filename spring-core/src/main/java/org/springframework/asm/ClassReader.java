@@ -374,21 +374,16 @@ public class ClassReader {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Makes the given visitor visit the JVMS ClassFile structure passed to the constructor of this
-   * {@link ClassReader}.
-   *
+   * Makes the given visitor visit the JVMS ClassFile structure passed to the constructor of this {@link ClassReader}.
    * @param classVisitor the visitor that must visit this class.
-   * @param parsingOptions the options to use to parse this class. One or more of {@link
-   *     #SKIP_CODE}, {@link #SKIP_DEBUG}, {@link #SKIP_FRAMES} or {@link #EXPAND_FRAMES}.
+   * @param parsingOptions the options to use to parse this class. One or more of {@link #SKIP_CODE}, {@link #SKIP_DEBUG}, {@link #SKIP_FRAMES} or {@link #EXPAND_FRAMES}.
    */
   public void accept(final ClassVisitor classVisitor, final int parsingOptions) {
     accept(classVisitor, new Attribute[0], parsingOptions);
   }
 
   /**
-   * Makes the given visitor visit the JVMS ClassFile structure passed to the constructor of this
-   * {@link ClassReader}.
-   *
+   * Makes the given visitor visit the JVMS ClassFile structure passed to the constructor of this {@link ClassReader}.
    * @param classVisitor the visitor that must visit this class.
    * @param attributePrototypes prototypes of the attributes that must be parsed during the visit of
    *     the class. Any attribute whose type is not equal to the type of one the prototypes will not
