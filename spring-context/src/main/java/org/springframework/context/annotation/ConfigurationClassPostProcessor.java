@@ -207,6 +207,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 			// BeanDefinitionRegistryPostProcessor hook apparently not supported... Simply call processConfigurationClasses lazily at this point then.
 			processConfigBeanDefinitions((BeanDefinitionRegistry) beanFactory);
 		}
+		// Spring会对Full Configuration 进行代理，拦截@Bean方法，以确保正确处理@Bean语义。
 		enhanceConfigurationClasses(beanFactory);
 		beanFactory.addBeanPostProcessor(new ImportAwareBeanPostProcessor(beanFactory));
 	}
@@ -218,8 +219,12 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	public void processConfigBeanDefinitions(BeanDefinitionRegistry registry) {
 		List<BeanDefinitionHolder> configCandidates = new ArrayList<>();
 		String[] candidateNames = registry.getBeanDefinitionNames();// 获取已经注册的bean名称（此处有7个   6个Bean+rootConfig）
+		// 迭代现有容器中所有bean
 		for (String beanName : candidateNames) {
 			BeanDefinition beanDef = registry.getBeanDefinition(beanName);
+			// 注意下面这个方法会向BeanDefinition类型的beanDef注入一个名ConfigurationClassUtils.CONFIGURATION_CLASS_ATTRIBUTE为的Attribute
+			// 返回true的条件是该beanDef代表的类被@Configuration或@Component或@Bean修饰
+			// @Configuration注解上有@Component所修饰, @Bean上可没有
 			// 这个判断很有意思~~~ 如果你的beanDef现在就已经确定了是full或者lite，说明你肯定已经被解析过了，所以再来的话输出个debug即可（其实我觉得输出warn也行~~~）
 			if (ConfigurationClassUtils.isFullConfigurationClass(beanDef) || ConfigurationClassUtils.isLiteConfigurationClass(beanDef)) {
 				if (logger.isDebugEnabled()) logger.debug("Bean definition has already been processed as a configuration class: " + beanDef);
@@ -256,6 +261,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 		// Parse each @Configuration class
 		// 这是重点：真正解析@Configuration类的，其实是ConfigurationClassParser 这个解析器来做的
 		// parser 后面用于解析每一个配置类~~~~
+		// 构建一个专门处理@Configuration的类, 注意该类的访问级别也是 package
 		ConfigurationClassParser parser = new ConfigurationClassParser(metadataReaderFactory, problemReporter, environment,resourceLoader, componentScanBeanNameGenerator, registry);
 		Set<BeanDefinitionHolder> candidates = new LinkedHashSet<>(configCandidates);
 		// 装载已经处理过的配置类，最大长度为：configCandidates.size()
@@ -265,6 +271,10 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 			parser.parse(candidates);
 			// 校验 配置类不能使final的，因为需要使用CGLIB生成代理对象，见postProcessBeanFactory方法
 			parser.validate();
+			// --------------------------------------------------------------
+			// 1. 在经过上面的parser.validate();之后, 代表基本解析工作完毕, 并且通过验证
+			// 2. 接下来要做的是提取解析的成果, 进行相应的处理, 例如将解析出来的BeanMethod(代表一个被@Bean标注的方法)集合注册进容器
+			// --------------------------------------------------------------
 			// 获取已经解析后的用户定义的配置类中的各种bean
 			Set<ConfigurationClass> configClasses = new LinkedHashSet<>(parser.getConfigurationClasses());
 			configClasses.removeAll(alreadyParsed);
@@ -275,6 +285,8 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 			}
 			// 此处注意：调用了ConfigurationClassBeanDefinitionReader的loadBeanDefinitionsd的加载配置文件里面的@Bean/@Import们，具体讲解请参见下面
 			// 这个方法是非常重要的，因为它决定了向容器注册Bean定义信息的顺序问题~~~
+			// 1. 处理解析出来的被@Configuration注解的类信息(被@Configuration修饰的类相关的元数据被使用ConfigurationClass来承载)
+			// 2. 例如包括解析ConfigurationClass中的BeanMethod实例集合(每个BeanBeanMethod代表的是被@Bean修饰的方法,也就是一个Bean实例)
 			reader.loadBeanDefinitions(configClasses);
 			alreadyParsed.addAll(configClasses);
 			candidates.clear();
@@ -319,11 +331,14 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	 * any candidates are then enhanced by a {@link ConfigurationClassEnhancer}.
 	 * Candidate status is determined by BeanDefinition attribute metadata.
 	 * @see ConfigurationClassEnhancer
+	 * Spring会对Full Configuration 进行代理，拦截@Bean方法，以确保正确处理@Bean语义。
 	 */
 	public void enhanceConfigurationClasses(ConfigurableListableBeanFactory beanFactory) {
 		Map<String, AbstractBeanDefinition> configBeanDefs = new LinkedHashMap<>();
+		// 获取所有的BeanDefinitionName,之前已经完成了bean的扫描,这里会获取到所有的beanName
 		for (String beanName : beanFactory.getBeanDefinitionNames()) {
 			BeanDefinition beanDef = beanFactory.getBeanDefinition(beanName);
+			// 校验是否为FullConfigurationClass,也就是是否被标记了 @Configuration
 			if (ConfigurationClassUtils.isFullConfigurationClass(beanDef)) {
 				if (!(beanDef instanceof AbstractBeanDefinition)) {
 					throw new BeanDefinitionStoreException("Cannot enhance @Configuration bean definition '" + beanName + "' since it is not stored in an AbstractBeanDefinition subclass");
@@ -331,6 +346,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 					logger.info("Cannot enhance @Configuration bean definition '" + beanName + "' since its singleton instance has been created too early. The typical cause " +
 							"is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.");
 				}
+				// 如果是FullConfigurationClass,则放到变量configBeanDefs中
 				configBeanDefs.put(beanName, (AbstractBeanDefinition) beanDef);
 			}
 		}
@@ -347,12 +363,13 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 				// Set enhanced subclass of the user-specified bean class
 				Class<?> configClass = beanDef.resolveBeanClass(beanClassLoader);
 				if (configClass != null) {
-					// 对当前类进行cglib动态代理
+					// 对当前类进行cglib动态代理 // 对 FullConfigurationClass 进行增强
 					Class<?> enhancedClass = enhancer.enhance(configClass, beanClassLoader);
 					if (configClass != enhancedClass) {
 						if (logger.isTraceEnabled()) {
 							logger.trace(String.format("Replacing bean definition '%s' existing class '%s' with " + "enhanced class '%s'", entry.getKey(), configClass.getName(), enhancedClass.getName()));
 						}
+						// 将BeanClass设置为增强后的类，之后Spring创建该BeanDefinition时就会使用这个增强类来创建。
 						beanDef.setBeanClass(enhancedClass);
 					}
 				}

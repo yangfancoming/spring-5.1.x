@@ -220,6 +220,9 @@ public abstract class AnnotationConfigUtils {
 		return ScopedProxyCreator.createScopedProxy(definition, registry, proxyTargetClass);
 	}
 
+	/**
+	 * 获取指定方法上的，指定注解的所有属性
+	*/
 	@Nullable
 	static AnnotationAttributes attributesFor(AnnotatedTypeMetadata metadata, Class<?> annotationClass) {
 		return attributesFor(metadata, annotationClass.getName());

@@ -223,11 +223,10 @@ public @interface Bean {
 
 	/**
 	 * Are dependencies to be injected via convention-based autowiring by name or type?
-	 * Note that this autowire mode is just about externally driven autowiring based
-	 * on bean property setter methods by convention, analogous to XML bean definitions.
-	 * The default mode does allow for annotation-driven autowiring. "no" refers to
-	 * externally driven autowiring only, not affecting any autowiring demands that the
-	 * bean class itself expresses through annotations.
+	 * Note that this autowire mode is just about externally driven autowiring based on bean property setter methods by convention,
+	 * analogous to XML bean definitions.
+	 * The default mode does allow for annotation-driven autowiring. "no" refers to externally driven autowiring only,
+	 * not affecting any autowiring demands that the bean class itself expresses through annotations.
 	 * @see Autowire#BY_NAME
 	 * @see Autowire#BY_TYPE
 	 * @deprecated as of 5.1, since {@code @Bean} factory method argument resolution and
@@ -238,8 +237,7 @@ public @interface Bean {
 
 	/**
 	 * Is this bean a candidate for getting autowired into some other bean?
-	 * Default is {@code true}; set this to {@code false} for internal delegates
-	 * that are not meant to get in the way of beans of the same type in other places.
+	 * Default is {@code true}; set this to {@code false} for internal delegates that are not meant to get in the way of beans of the same type in other places.
 	 * @since 5.1
 	 */
 	boolean autowireCandidate() default true;

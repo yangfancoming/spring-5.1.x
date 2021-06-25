@@ -70,6 +70,16 @@ import org.springframework.cglib.core.WeakCacheKey;
  * new instances of the same type.
  * For an almost drop-in replacement for
  * <code>java.lang.reflect.Proxy</code>, see the {@link Proxy} class.
+ *
+ * 	这里的Enhancer对象是org.springframework.cglib.proxy.Enhancer，那它和cglib是什么关系呢？
+ * 	Spring重新打包了CGLIB（使用Spring专用补丁;仅供内部使用）
+ * 	这样可避免在应用程序级别或第三方库和框架上与CGLIB的依赖性发生任何潜在冲突
+ * 	https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/cglib/package-summary.html
+ *
+ * 1、实现EnhancedConfiguration接口。这是一个空的标志接口，仅由Spring框架内部使用，并且由所有@ConfigurationCGLIB子类实现，该接口继承了BeanFactoryAware接口。
+ * 2、设置了命名策略
+ * 3、设置生成器创建字节码的策略。BeanFactoryAwareGeneratorStrategy继承了cglib的DefaultGeneratorStrategy，其主要作用是为了让子类引入BeanFactory字段和设置ClassLoader。
+ * 4、设置增强Callback：
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class Enhancer extends AbstractClassGenerator {

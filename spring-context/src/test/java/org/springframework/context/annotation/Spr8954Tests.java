@@ -21,8 +21,6 @@ import static org.junit.Assert.*;
  * {@link AbstractBeanFactory#isFactoryBean(String, RootBeanDefinition)} now ensures
  * that not only the predicted bean type is considered, but also the original bean
  * definition's beanClass.
-
- * @author Oliver Gierke
  */
 @SuppressWarnings("resource")
 public class Spr8954Tests {

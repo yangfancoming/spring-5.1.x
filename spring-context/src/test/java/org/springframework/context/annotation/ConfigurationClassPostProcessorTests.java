@@ -68,6 +68,7 @@ public class ConfigurationClassPostProcessorTests {
 	 * Technically, {@link ConfigurationClassPostProcessor} could fail to enhance the registered Configuration classes and many use cases would still work.
 	 * Certain cases, however, like inter-bean singleton references would not.
 	 * We test for such a case below, and in doing so prove that enhancement is working.
+	 * @Configuration 注解被cglib代理 测试用例
 	 */
 	@Test
 	public void enhancementIsPresentBecauseSingletonSemanticsAreRespected() {
@@ -186,22 +187,19 @@ public class ConfigurationClassPostProcessorTests {
 
 	@Test
 	public void postProcessorWorksWithMetaComponentScanConfigurationWithAttributeOverridesUsingAsm() {
-		RootBeanDefinition beanDefinition = new RootBeanDefinition(
-				MetaComponentScanConfigurationWithAttributeOverridesClass.class.getName());
+		RootBeanDefinition beanDefinition = new RootBeanDefinition(MetaComponentScanConfigurationWithAttributeOverridesClass.class.getName());
 		assertSupportForComposedAnnotation(beanDefinition);
 	}
 
 	@Test
 	public void postProcessorWorksWithMetaComponentScanConfigurationWithAttributeOverridesSubclassUsingReflection() {
-		RootBeanDefinition beanDefinition = new RootBeanDefinition(
-				SubMetaComponentScanConfigurationWithAttributeOverridesClass.class);
+		RootBeanDefinition beanDefinition = new RootBeanDefinition(SubMetaComponentScanConfigurationWithAttributeOverridesClass.class);
 		assertSupportForComposedAnnotation(beanDefinition);
 	}
 
 	@Test
 	public void postProcessorWorksWithMetaComponentScanConfigurationWithAttributeOverridesSubclassUsingAsm() {
-		RootBeanDefinition beanDefinition = new RootBeanDefinition(
-				SubMetaComponentScanConfigurationWithAttributeOverridesClass.class.getName());
+		RootBeanDefinition beanDefinition = new RootBeanDefinition(SubMetaComponentScanConfigurationWithAttributeOverridesClass.class.getName());
 		assertSupportForComposedAnnotation(beanDefinition);
 	}
 
@@ -222,8 +220,7 @@ public class ConfigurationClassPostProcessorTests {
 		try {
 			beanFactory.getBean(SimpleComponent.class);
 			fail("Should have thrown NoSuchBeanDefinitionException");
-		}
-		catch (NoSuchBeanDefinitionException ex) {
+		}catch (NoSuchBeanDefinitionException ex) {
 			// expected
 		}
 	}
@@ -257,8 +254,7 @@ public class ConfigurationClassPostProcessorTests {
 	public void postProcessorDoesNotOverrideRegularBeanDefinitionsEvenWithScopedProxy() {
 		RootBeanDefinition rbd = new RootBeanDefinition(TestBean.class);
 		rbd.setResource(new DescriptiveResource("XML or something"));
-		BeanDefinitionHolder proxied = ScopedProxyUtils.createScopedProxy(
-				new BeanDefinitionHolder(rbd, "bar"), beanFactory, true);
+		BeanDefinitionHolder proxied = ScopedProxyUtils.createScopedProxy(new BeanDefinitionHolder(rbd, "bar"), beanFactory, true);
 		beanFactory.registerBeanDefinition("bar", proxied.getBeanDefinition());
 		beanFactory.registerBeanDefinition("config", new RootBeanDefinition(SingletonBeanConfig.class));
 		ConfigurationClassPostProcessor pp = new ConfigurationClassPostProcessor();
@@ -278,8 +274,7 @@ public class ConfigurationClassPostProcessorTests {
 		try {
 			pp.postProcessBeanFactory(beanFactory);
 			fail("Should have thrown BeanDefinitionStoreException");
-		}
-		catch (BeanDefinitionStoreException ex) {
+		}catch (BeanDefinitionStoreException ex) {
 			assertTrue(ex.getMessage().contains("bar"));
 			assertTrue(ex.getMessage().contains("SingletonBeanConfig"));
 			assertTrue(ex.getMessage().contains(TestBean.class.getName()));
@@ -320,12 +315,10 @@ public class ConfigurationClassPostProcessorTests {
 		beanFactory.registerBeanDefinition("config3", new RootBeanDefinition(SingletonBeanConfig.class));
 		ConfigurationClassPostProcessor pp = new ConfigurationClassPostProcessor();
 		pp.postProcessBeanFactory(beanFactory);
-
 		try {
 			beanFactory.getBean(Bar.class);
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		}catch (BeanCreationException ex) {
 			assertTrue(ex.getMessage().contains("OverridingSingletonBeanConfig.foo"));
 			assertTrue(ex.getMessage().contains(ExtendedFoo.class.getName()));
 			assertTrue(ex.getMessage().contains(Foo.class.getName()));
@@ -889,8 +882,7 @@ public class ConfigurationClassPostProcessorTests {
 		try {
 			beanFactory.preInstantiateSingletons();
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		}catch (BeanCreationException ex) {
 			assertTrue(ex.getMessage().contains("Circular reference"));
 		}
 	}
@@ -900,8 +892,7 @@ public class ConfigurationClassPostProcessorTests {
 		try {
 			new AnnotationConfigApplicationContext(A.class, AStrich.class);
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		}catch (BeanCreationException ex) {
 			assertTrue(ex.getMessage().contains("Circular reference"));
 		}
 	}
@@ -1022,16 +1013,22 @@ public class ConfigurationClassPostProcessorTests {
 
 	// -------------------------------------------------------------------------
 
+	/**
+	 * 若 SingletonBeanConfig 未添加 @Configuration，则该类不会被cglib代理，执行 foo()方法，确实会被执行两次。
+	 * 相反，添加 @Configuration ，SingletonBeanConfig 被cglib代理，第一次执行 foo()被执行时，确实去new了一个对象，但在 bar()中再次调用 foo()，则不会new出对象。
+	*/
 	@Configuration
 	@Order(1)
 	static class SingletonBeanConfig {
 
 		public @Bean Foo foo() {
+			System.out.println("foo() 方法执行");
 			return new Foo();
 		}
 
 		public @Bean Bar bar() {
-			return new Bar(foo());
+			Foo foo = foo();
+			return new Bar(foo);
 		}
 	}
 
@@ -1583,7 +1580,6 @@ public class ConfigurationClassPostProcessorTests {
 	}
 
 	public interface BaseInterface {
-
 		ServiceBean serviceBean();
 	}
 

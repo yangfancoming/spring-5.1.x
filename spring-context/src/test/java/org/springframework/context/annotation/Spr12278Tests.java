@@ -29,15 +29,13 @@ public class Spr12278Tests {
 
 	@Test
 	public void componentSingleConstructor() {
-		this.context = new AnnotationConfigApplicationContext(BaseConfiguration.class,
-				SingleConstructorComponent.class);
+		this.context = new AnnotationConfigApplicationContext(BaseConfiguration.class,SingleConstructorComponent.class);
 		assertThat(this.context.getBean(SingleConstructorComponent.class).autowiredName, is("foo"));
 	}
 
 	@Test
 	public void componentTwoConstructorsNoHint() {
-		this.context = new AnnotationConfigApplicationContext(BaseConfiguration.class,
-				TwoConstructorsComponent.class);
+		this.context = new AnnotationConfigApplicationContext(BaseConfiguration.class,TwoConstructorsComponent.class);
 		assertThat(this.context.getBean(TwoConstructorsComponent.class).name, is("fallback"));
 	}
 
@@ -45,8 +43,7 @@ public class Spr12278Tests {
 	public void componentTwoSpecificConstructorsNoHint() {
 		thrown.expect(BeanCreationException.class);
 		thrown.expectMessage(NoSuchMethodException.class.getName());
-		new AnnotationConfigApplicationContext(BaseConfiguration.class,
-				TwoSpecificConstructorsComponent.class);
+		new AnnotationConfigApplicationContext(BaseConfiguration.class,TwoSpecificConstructorsComponent.class);
 	}
 
 
@@ -95,5 +92,4 @@ public class Spr12278Tests {
 			this(Integer.valueOf(name));
 		}
 	}
-
 }

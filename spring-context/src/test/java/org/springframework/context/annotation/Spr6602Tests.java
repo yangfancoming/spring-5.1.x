@@ -59,10 +59,13 @@ public class Spr6602Tests {
 	public static class FooConfig {
 		@Bean
 		public Foo foo() throws Exception {
-			return new Foo(barFactory().getObject());
+			BarFactory barFactory = barFactory();
+			Bar object = barFactory.getObject();
+			return new Foo(object);
 		}
 		@Bean
 		public BarFactory barFactory() {
+			System.out.println("进入 barFactory()");
 			return new BarFactory();
 		}
 	}

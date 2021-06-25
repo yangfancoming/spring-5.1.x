@@ -99,6 +99,7 @@ abstract class ConfigurationClassUtils {
 	private static final String CONFIGURATION_CLASS_LITE = "lite";
 
 	// 即值：org.springframework.context.annotation.ConfigurationClassPostProcessor.configurationClass作为属性配置类型标记属性的key
+	// spring会根据此属性判断 是否要对主配置类进行cglib代理
 	private static final String CONFIGURATION_CLASS_ATTRIBUTE = Conventions.getQualifiedAttributeName(ConfigurationClassPostProcessor.class, "configurationClass");
 
 	// 即值：org.springframework.context.annotation.ConfigurationClassPostProcessor.order配置属性配置类排序的属性key

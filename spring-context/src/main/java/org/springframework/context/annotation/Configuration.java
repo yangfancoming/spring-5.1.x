@@ -363,8 +363,7 @@ import org.springframework.stereotype.Component;
  *
  * Spring features such as asynchronous method execution, scheduled task execution,
  * annotation driven transaction management, and even Spring MVC can be enabled and
- * configured from {@code @Configuration} classes using their respective "{@code @Enable}"
- * annotations. See
+ * configured from {@code @Configuration} classes using their respective "{@code @Enable}" annotations. See
  * {@link org.springframework.scheduling.annotation.EnableAsync @EnableAsync},
  * {@link org.springframework.scheduling.annotation.EnableScheduling @EnableScheduling},
  * {@link org.springframework.transaction.annotation.EnableTransactionManagement @EnableTransactionManagement},
@@ -379,8 +378,7 @@ import org.springframework.stereotype.Component;
  * <li>Configuration classes must be non-local (i.e. may not be declared within a method).
  * <li>Any nested configuration classes must be declared as {@code static}.
  * <li>{@code @Bean} methods may not in turn create further configuration classes
- * (any such instances will be treated as regular beans, with their configuration
- * annotations remaining undetected).
+ * (any such instances will be treated as regular beans, with their configuration annotations remaining undetected).
  * @since 3.0
  * @see Bean
  * @see Profile

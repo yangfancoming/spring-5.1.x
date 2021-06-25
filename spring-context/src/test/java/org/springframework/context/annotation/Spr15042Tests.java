@@ -41,5 +41,4 @@ public class Spr15042Tests {
 			return new Object();
 		}
 	}
-
 }

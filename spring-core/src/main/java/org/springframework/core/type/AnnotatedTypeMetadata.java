@@ -36,16 +36,14 @@ public interface AnnotatedTypeMetadata {
 	Map<String, Object> getAnnotationAttributes(String annotationName);
 
 	/**
+	 * 获取指定注解的所有属性
 	 * Retrieve the attributes of the annotation of the given type, if any (i.e. if defined on the underlying element,as direct annotation or meta-annotation),
 	 * also taking attribute overrides on composed annotations into account.
-	 * @param annotationName the fully qualified class name of the annotation type to look for
+	 * @param annotationName the fully qualified class name of the annotation type to look for  注解全类名
 	 * @param classValuesAsString whether to convert class references to String class names for exposure as values in the returned Map,
-	 * instead of Class references which might potentially have to be loaded first
+	 * instead of Class references which might potentially have to be loaded first  若是true表示 Class用它的字符串的全类名来表示。这样可以避免Class被提前加载
 	 * @return a Map of attributes, with the attribute name as key (e.g. "value") and the defined attribute value as Map value. This return value will be
 	 * {@code null} if no matching annotation is defined.
-	 * // 取得指定类型注解的所有的属性 - 值（k-v）
-	 *     // annotationName：注解全类名
-	 *     // classValuesAsString：若是true表示 Class用它的字符串的全类名来表示。这样可以避免Class被提前加载
 	 */
 	@Nullable
 	Map<String, Object> getAnnotationAttributes(String annotationName, boolean classValuesAsString);

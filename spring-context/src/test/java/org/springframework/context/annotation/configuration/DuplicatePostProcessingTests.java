@@ -15,10 +15,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 
-/**
- * @author Andy Wilkinson
 
- */
 public class DuplicatePostProcessingTests {
 
 	@Test

@@ -90,8 +90,14 @@ class ConfigurationClassBeanDefinitionReader {
 
 	/**
 	 * Read a particular {@link ConfigurationClass}, registering bean definitions for the class itself and all of its {@link Bean} methods.
+	 * 读取特定配置类，根据配置信息注册bean definitions
 	 */
 	private void loadBeanDefinitionsForConfigurationClass(ConfigurationClass configClass, TrackedConditionEvaluator trackedConditionEvaluator) {
+		/**
+		 * 根据 ConfigurationPhase.REGISTER_BEAN 阶段条件判断配置类是否需要跳过
+		 * 循环判断配置类以及导入配置类的类，使用 ConfigurationPhase.REGISTER_BEAN 阶段条件判断是否需要跳过
+		 * 只要配置类或导入配置类的类需要跳过即返回跳过
+		 */
 		if (trackedConditionEvaluator.shouldSkip(configClass)) {
 			String beanName = configClass.getBeanName();
 			if (StringUtils.hasLength(beanName) && registry.containsBeanDefinition(beanName)) {
@@ -100,16 +106,21 @@ class ConfigurationClassBeanDefinitionReader {
 			importRegistry.removeImportingClass(configClass.getMetadata().getClassName());
 			return;
 		}
+		// 1、如果当前配置类是通过内部类导入 或 @Import导入，将配置类自身注册为beanDefinition
 		if (configClass.isImported()) {
 			registerBeanDefinitionForImportedConfigurationClass(configClass);
 		}
 		// 注册 @Configuration 配置类中的，@Bean注解标注的bean定义
+		// 2、注册配置类所有@Bean方法为beanDefinition
 		for (BeanMethod beanMethod : configClass.getBeanMethods()) {
 			loadBeanDefinitionsForBeanMethod(beanMethod);
 		}
 		// 从指定xml源中的，获取bean定义并进行注册
+		// 3、注册由@ImportedResources来的beanDefinition
+		// 即通过其它类型Resource的BeanDefinitionReader读取BeanDefinition并注册
 		loadBeanDefinitionsFromImportedResources(configClass.getImportedResources());
 		// 从 ImportBean定义登记册中，获取bean定义并进行注册
+		// 4、注册由ImportBeanDefinitionRegistrars来的beanDefinition
 		loadBeanDefinitionsFromRegistrars(configClass.getImportBeanDefinitionRegistrars());
 	}
 
@@ -140,7 +151,7 @@ class ConfigurationClassBeanDefinitionReader {
 		// 获取主配置类 AppConfig
 		ConfigurationClass configClass = beanMethod.getConfigurationClass();
 		MethodMetadata metadata = beanMethod.getMetadata();
-		// @Bean注解标注的方法名称 sqlSessionFactory、datasource
+		// 获取@Bean注解标注的方法名称 sqlSessionFactory、datasource
 		String methodName = metadata.getMethodName();
 		// Do we need to mark the bean as skipped by its condition?
 		if (conditionEvaluator.shouldSkip(metadata, ConfigurationPhase.REGISTER_BEAN)) {
@@ -150,10 +161,12 @@ class ConfigurationClassBeanDefinitionReader {
 		if (configClass.skippedBeanMethods.contains(methodName)) {
 			return;
 		}
+		// 获取 @Bean注解方法上的@Bean注解的所有属性
 		AnnotationAttributes bean = AnnotationConfigUtils.attributesFor(metadata, Bean.class);
 		Assert.state(bean != null, "No @Bean annotation attributes");
 		// Consider name and any aliases
 		List<String> names = new ArrayList<>(Arrays.asList(bean.getStringArray("name")));
+		// sos 如果@Bean注解没有指定bean的名字，默认会用方法的名字命名bean
 		String beanName = (!names.isEmpty() ? names.remove(0) : methodName);
 		// Register aliases even when overridden
 		for (String alias : names) {
@@ -167,6 +180,7 @@ class ConfigurationClassBeanDefinitionReader {
 			}
 			return;
 		}
+		// P1=主配置类  P2=@Bean方法
 		ConfigurationClassBeanDefinition beanDef = new ConfigurationClassBeanDefinition(configClass, metadata);
 		beanDef.setResource(configClass.getResource());
 		beanDef.setSource(sourceExtractor.extractSource(metadata, configClass.getResource()));
@@ -181,28 +195,30 @@ class ConfigurationClassBeanDefinitionReader {
 		}
 		beanDef.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_CONSTRUCTOR);
 		beanDef.setAttribute(org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor.SKIP_REQUIRED_CHECK_ATTRIBUTE, Boolean.TRUE);
+		//  往bean定义中配置 @Lazy @Primary @DependsOn @Role @Description 注解信息
 		AnnotationConfigUtils.processCommonDefinitionAnnotations(beanDef, metadata);
 
+		// 获取 @Bean 注解中的 autowire 属性 （ 默认为Autowire autowire() default Autowire.NO;）
 		Autowire autowire = bean.getEnum("autowire");
 		if (autowire.isAutowire()) {
 			beanDef.setAutowireMode(autowire.value());
 		}
-
+		// 获取 @Bean 注解中的 autowireCandidate 属性 （ 默认为true）
 		boolean autowireCandidate = bean.getBoolean("autowireCandidate");
 		if (!autowireCandidate) {
 			beanDef.setAutowireCandidate(false);
 		}
-
+		// 获取 @Bean 注解中的 autowireCandidate 属性
 		String initMethodName = bean.getString("initMethod");
 		if (StringUtils.hasText(initMethodName)) {
 			beanDef.setInitMethodName(initMethodName);
 		}
-
+		// 获取 @Bean 注解中的 destroyMethod 属性
 		String destroyMethodName = bean.getString("destroyMethod");
 		beanDef.setDestroyMethodName(destroyMethodName);
-
 		// Consider scoping
 		ScopedProxyMode proxyMode = ScopedProxyMode.NO;
+		// 获取 @Bean 注解的方法上 是否标有 @Scope 注解
 		AnnotationAttributes attributes = AnnotationConfigUtils.attributesFor(metadata, Scope.class);
 		if (attributes != null) {
 			beanDef.setScope(attributes.getString("value"));
@@ -305,15 +321,17 @@ class ConfigurationClassBeanDefinitionReader {
 	/**
 	 * {@link RootBeanDefinition} marker subclass used to signify that a bean definition was created from a configuration class as opposed to any other configuration source.
 	 * Used in bean overriding cases where it's necessary to determine whether the bean definition was created externally.
+	 * 在@Configuration注解的类中，使用@Bean注解实例化的Bean，其定义会用ConfigurationClassBeanDefinition存储
 	 * 这个类负责将@Bean注解的方法转换为对应的ConfigurationClassBeanDefinition类（非常的重要）
-	 * 1.如果@Bean注解没有指定bean的名字，默认会用方法的名字命名bean
-	 * 2.@Configuration 注解的类会成为一个工厂类，而所有的@Bean注解的方法会成为工厂方法，通过工厂方法实例化Bean，而不是直接通过构造函数初始化（所以我们方法体里面可以很方便的书写逻辑。。。）
+	 * 1、如果@Bean注解没有指定bean的名字，默认会用方法的名字命名bean
+	 * 2、@Configuration 注解的类会成为一个工厂类，而所有的@Bean注解的方法会成为工厂方法，通过工厂方法实例化Bean，而不是直接通过构造函数初始化（所以我们方法体里面可以很方便的书写逻辑。。。）
+	 * 3、@Bean注解注释的类会使用构造函数自动装配
 	 */
 	@SuppressWarnings("serial")
 	private static class ConfigurationClassBeanDefinition extends RootBeanDefinition implements AnnotatedBeanDefinition {
-
+		// 可以获得注解相关的信息
 		private final AnnotationMetadata annotationMetadata;
-
+		// 可以获得工厂方法相关的信息
 		private final MethodMetadata factoryMethodMetadata;
 
 		public ConfigurationClassBeanDefinition(ConfigurationClass configClass, MethodMetadata beanMethodMetadata) {

@@ -6,14 +6,8 @@ import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 
 /**
  * Enumeration determining autowiring status: that is, whether a bean should
- * have its dependencies automatically injected by the Spring container using
- * setter injection. This is a core concept in Spring DI.
- *
- * Available for use in annotation-based configurations, such as for the
- * AspectJ AnnotationBeanConfigurer aspect.
- *
- * @author Rod Johnson
-
+ * have its dependencies automatically injected by the Spring container using setter injection. This is a core concept in Spring DI.
+ * Available for use in annotation-based configurations, such as for the AspectJ AnnotationBeanConfigurer aspect.
  * @since 2.0
  * @see org.springframework.beans.factory.annotation.Configurable
  * @see org.springframework.beans.factory.config.AutowireCapableBeanFactory
@@ -49,8 +43,7 @@ public enum Autowire {
 
 	/**
 	 * Return whether this represents an actual autowiring value.
-	 * @return whether actual autowiring was specified
-	 * (either BY_NAME or BY_TYPE)
+	 * @return whether actual autowiring was specified (either BY_NAME or BY_TYPE)
 	 */
 	public boolean isAutowire() {
 		return (this == BY_NAME || this == BY_TYPE);

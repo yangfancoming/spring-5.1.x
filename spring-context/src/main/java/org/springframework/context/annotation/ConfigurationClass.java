@@ -29,6 +29,7 @@ import org.springframework.util.ClassUtils;
  * @since 3.0
  * @see BeanMethod
  * @see ConfigurationClassParser
+ * 包括一组@bean方法，包括在类的祖先中以“扁平化”方式定义的所有此类方法。
  */
 final class ConfigurationClass {
 
@@ -43,6 +44,7 @@ final class ConfigurationClass {
 
 	private final Set<ConfigurationClass> importedBy = new LinkedHashSet<>(1);
 
+	// 主配置类中的 @Bean 方法集合
 	private final Set<BeanMethod> beanMethods = new LinkedHashSet<>();
 
 	private final Map<String, Class<? extends BeanDefinitionReader>> importedResources = new LinkedHashMap<>();

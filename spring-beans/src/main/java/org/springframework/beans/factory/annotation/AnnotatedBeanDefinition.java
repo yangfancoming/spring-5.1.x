@@ -30,5 +30,4 @@ public interface AnnotatedBeanDefinition extends BeanDefinition {
 	 */
 	@Nullable
 	MethodMetadata getFactoryMethodMetadata();
-
 }

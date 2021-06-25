@@ -178,8 +178,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 
 	/**
 	 * Get the value stored under the specified {@code attributeName} as an enum.
-	 * @param attributeName the name of the attribute to get;
-	 * never {@code null} or empty
+	 * @param attributeName the name of the attribute to get;  never {@code null} or empty
 	 * @return the value
 	 * @throws IllegalArgumentException if the attribute does not exist or if it is not of the expected type
 	 */

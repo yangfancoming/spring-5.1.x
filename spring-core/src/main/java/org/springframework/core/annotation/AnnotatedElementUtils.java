@@ -485,8 +485,7 @@ public abstract class AnnotatedElementUtils {
 
 	/**
 	 * Determine if an annotation of the specified {@code annotationType}
-	 * is <em>available</em> on the supplied {@link AnnotatedElement} or
-	 * within the annotation hierarchy <em>above</em> the specified element.
+	 * is <em>available</em> on the supplied {@link AnnotatedElement} or within the annotation hierarchy <em>above</em> the specified element.
 	 * If this method returns {@code true}, then {@link #findMergedAnnotationAttributes}  will return a non-null value.
 	 * This method follows <em>find semantics</em> as described in the {@linkplain AnnotatedElementUtils class-level javadoc}.
 	 * @param element the annotated element
