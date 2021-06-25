@@ -200,9 +200,9 @@ public class Enhancer extends AbstractClassGenerator {
 	}
 
 	/**
-	 * Set the class which the generated class will extend. As a convenience,
-	 * if the supplied superclass is actually an interface, <code>setInterfaces</code>
-	 * will be called with the appropriate argument instead.
+	 * Set the class which the generated class will extend.
+	 * As a convenience,if the supplied superclass is actually an interface,
+	 * <code>setInterfaces</code> will be called with the appropriate argument instead.
 	 * A non-interface argument must not be declared as final, and must have an accessible constructor.
 	 * @param superclass class to extend or interface to implement
 	 * @see #setInterfaces(Class[])

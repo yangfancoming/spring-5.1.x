@@ -79,11 +79,14 @@ public class ConfigurationClassPostProcessorTests {
 	/**
 	 * Enhanced {@link Configuration} classes are only necessary for respecting certain bean semantics, like singleton-scoping, scoped proxies, etc.
 	 * Technically, {@link ConfigurationClassPostProcessor} could fail to enhance the registered Configuration classes and many use cases would still work.
-	 * Certain cases, however, like inter-bean singleton references would not.
-	 * We test for such a case below, and in doing so prove that enhancement is working.
+	 * Certain cases, however, like inter-bean singleton references would not. We test for such a case below, and in doing so prove that enhancement is working.
 	 * @Configuration 注解被cglib代理 测试用例
+	 *
+	 * *增强的 Configuration类只有在遵守某些bean语义时才是必需的，比如单例作用域、作用域代理等。
+	 * *从技术上讲，ConfigurationClassPostProcessor 可能无法增强已注册的配置类，许多用例仍然可以工作。
+	 * *然而，某些情况下，比如bean间的单例引用就不会。我们在下面测试这种情况，这样做可以证明增强是有效的。
 	 */
-	@Test
+	@Test // 由于遵守了单例语义，所以出现了增强
 	public void enhancementIsPresentBecauseSingletonSemanticsAreRespected() {
 		beanFactory.registerBeanDefinition("config", new RootBeanDefinition(SingletonBeanConfig.class));
 		ConfigurationClassPostProcessor pp = new ConfigurationClassPostProcessor();
@@ -94,7 +97,7 @@ public class ConfigurationClassPostProcessorTests {
 		assertTrue(Arrays.asList(beanFactory.getDependentBeans("foo")).contains("bar"));
 	}
 
-	@Test
+	@Test // 内部类的配置自省使用点名称语法
 	public void configurationIntrospectionOfInnerClassesWorksWithDotNameSyntax() {
 		beanFactory.registerBeanDefinition("config", new RootBeanDefinition(getClass().getName() + ".SingletonBeanConfig"));
 		ConfigurationClassPostProcessor pp = new ConfigurationClassPostProcessor();
@@ -102,10 +105,12 @@ public class ConfigurationClassPostProcessorTests {
 		Foo foo = beanFactory.getBean("foo", Foo.class);
 		Bar bar = beanFactory.getBean("bar", Bar.class);
 		assertSame(foo, bar.foo);
+		assertTrue(Arrays.asList(beanFactory.getDependentBeans("foo")).contains("bar"));
 	}
 
 	/**
 	 * Tests the fix for SPR-5655, a special workaround that prefers reflection over ASM if a bean class is already loaded.
+	 * 测试SPR-5655的修复，这是一种特殊的解决方法，如果已经加载了bean类，它更喜欢反射而不是ASM。
 	 */
 	@Test
 	public void alreadyLoadedConfigurationClasses() {
@@ -119,6 +124,7 @@ public class ConfigurationClassPostProcessorTests {
 
 	/**
 	 * Tests whether a bean definition without a specified bean class is handled correctly.
+	 * 测试没有指定bean类的bean定义是否正确处理。
 	 */
 	@Test
 	public void postProcessorIntrospectsInheritedDefinitionsCorrectly() {
@@ -300,7 +306,6 @@ public class ConfigurationClassPostProcessorTests {
 		beanFactory.registerBeanDefinition("config2", new RootBeanDefinition(SingletonBeanConfig.class));
 		ConfigurationClassPostProcessor pp = new ConfigurationClassPostProcessor();
 		pp.postProcessBeanFactory(beanFactory);
-
 		Foo foo = beanFactory.getBean(Foo.class);
 		assertTrue(foo instanceof ExtendedFoo);
 		Bar bar = beanFactory.getBean(Bar.class);
@@ -344,7 +349,6 @@ public class ConfigurationClassPostProcessorTests {
 		beanFactory.registerBeanDefinition("config", new RootBeanDefinition(ConfigWithOrderedNestedClasses.class));
 		ConfigurationClassPostProcessor pp = new ConfigurationClassPostProcessor();
 		pp.postProcessBeanFactory(beanFactory);
-
 		Foo foo = beanFactory.getBean(Foo.class);
 		assertTrue(foo instanceof ExtendedFoo);
 		Bar bar = beanFactory.getBean(Bar.class);
@@ -389,15 +393,13 @@ public class ConfigurationClassPostProcessorTests {
 		try {
 			pp.postProcessBeanFactory(bf1); // second invocation for bf1 -- should throw
 			fail("expected exception");
-		}
-		catch (IllegalStateException ex) {
+		}catch (IllegalStateException ex) {
 		}
 		pp.postProcessBeanFactory(bf2); // first invocation for bf2 -- should succeed
 		try {
 			pp.postProcessBeanFactory(bf2); // second invocation for bf2 -- should throw
 			fail("expected exception");
-		}
-		catch (IllegalStateException ex) {
+		}catch (IllegalStateException ex) {
 		}
 	}
 
@@ -1141,19 +1143,14 @@ public class ConfigurationClassPostProcessorTests {
 		}
 	}
 
-	static class Foo {
-	}
+	static class Foo {}
 
-	static class ExtendedFoo extends Foo {
-	}
+	static class ExtendedFoo extends Foo {}
 
-	static class ExtendedAgainFoo extends ExtendedFoo {
-	}
+	static class ExtendedAgainFoo extends ExtendedFoo {}
 
 	static class Bar {
-
 		final Foo foo;
-
 		public Bar(Foo foo) {
 			this.foo = foo;
 		}
@@ -1161,7 +1158,6 @@ public class ConfigurationClassPostProcessorTests {
 
 	@Configuration
 	static class UnloadedConfig {
-
 		public @Bean Foo foo() {
 			return new Foo();
 		}
@@ -1169,7 +1165,6 @@ public class ConfigurationClassPostProcessorTests {
 
 	@Configuration
 	static class LoadedConfig {
-
 		public @Bean Bar bar() {
 			return new Bar(new Foo());
 		}

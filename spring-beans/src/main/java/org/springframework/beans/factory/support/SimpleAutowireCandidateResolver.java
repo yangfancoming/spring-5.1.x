@@ -33,5 +33,4 @@ public class SimpleAutowireCandidateResolver implements AutowireCandidateResolve
 	public Object getLazyResolutionProxyIfNecessary(DependencyDescriptor descriptor, @Nullable String beanName) {
 		return null;
 	}
-
 }

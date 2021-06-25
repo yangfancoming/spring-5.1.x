@@ -1,7 +1,5 @@
 
-
 package org.springframework.context.annotation.componentscan.simple;
-
 import org.springframework.stereotype.Component;
 
 public class ClassWithNestedComponents {
@@ -13,5 +11,4 @@ public class ClassWithNestedComponents {
 	@Component
 	public static class OtherNestedComponent extends ClassWithNestedComponents {
 	}
-
 }

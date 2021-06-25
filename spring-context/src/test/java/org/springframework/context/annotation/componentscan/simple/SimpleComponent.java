@@ -1,5 +1,3 @@
-
-
 package org.springframework.context.annotation.componentscan.simple;
 
 import org.springframework.context.annotation.Bean;
@@ -12,5 +10,4 @@ public class SimpleComponent {
 	public String exampleBean() {
 		return "example";
 	}
-
 }
