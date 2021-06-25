@@ -151,7 +151,7 @@ abstract class ConfigurationClassUtils {
 				return false;
 			}
 		}
-
+		// 设置配置模式 Full / Lite
 		if (isFullConfigurationCandidate(metadata)) {
 			beanDef.setAttribute(CONFIGURATION_CLASS_ATTRIBUTE, CONFIGURATION_CLASS_FULL);
 		}else if (isLiteConfigurationCandidate(metadata)) {

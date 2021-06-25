@@ -222,12 +222,11 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 		// 迭代现有容器中所有bean
 		for (String beanName : candidateNames) {
 			BeanDefinition beanDef = registry.getBeanDefinition(beanName);
-			// 注意下面这个方法会向BeanDefinition类型的beanDef注入一个名ConfigurationClassUtils.CONFIGURATION_CLASS_ATTRIBUTE为的Attribute
 			// 返回true的条件是该beanDef代表的类被@Configuration或@Component或@Bean修饰
-			// @Configuration注解上有@Component所修饰, @Bean上可没有
 			// 这个判断很有意思~~~ 如果你的beanDef现在就已经确定了是full或者lite，说明你肯定已经被解析过了，所以再来的话输出个debug即可（其实我觉得输出warn也行~~~）
 			if (ConfigurationClassUtils.isFullConfigurationClass(beanDef) || ConfigurationClassUtils.isLiteConfigurationClass(beanDef)) {
 				if (logger.isDebugEnabled()) logger.debug("Bean definition has already been processed as a configuration class: " + beanDef);
+				// 注意下面这个方法会向BeanDefinition类型的beanDef注入一个名ConfigurationClassUtils.CONFIGURATION_CLASS_ATTRIBUTE为的Attribute
 			}else if (ConfigurationClassUtils.checkConfigurationClassCandidate(beanDef, metadataReaderFactory)) {
 				// 判断当前bean定义是否为配置类,如果是就标记其配置模式：full 或者lite
 				// 加入到configCandidates里保存配置文件类的定义

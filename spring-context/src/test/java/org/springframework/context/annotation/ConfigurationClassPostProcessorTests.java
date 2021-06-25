@@ -51,7 +51,20 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 import static org.junit.Assert.*;
 
-
+/**
+ * 1、当一个类上面加了注解 @Configuration 时候，初始化ApplicationContext 的时候， invokeBeanDefinitionRegistryPostProcessors 方法解析此类，则从map里面遍历 BeanDefinition ，
+ * 判断当前BeanDefinition 的map里面的属性key -configurationClass 值是full还是lite，刚开始扫描时候为null，则继续解析，判断若果加了@Configuration configurationClass 的值设置为full；
+ * @see ConfigurationClassUtils#checkConfigurationClassCandidate(org.springframework.beans.factory.config.BeanDefinition, org.springframework.core.type.classreading.MetadataReaderFactory)
+ * 2、接下来 调用 invokeBeanFactoryPostPorcessors ,此方法遍历所有的BeanFactoryPostPorcessors（包括自定义的可以修改spring工厂）
+ * 在遍历中会调用到enhanceConfigurationClass ，此方法中获取regist里面的所有类，遍历判断 isfullConfigurationClass 是否为full，若为full，
+ * 存到一个LinkedHashMap 中（configBeanDefs），为lite则不存，若map为null ，则返回之后直接new 对象；若map 不为null，则去完成cglib代理的实现。
+ * @see ConfigurationClassPostProcessor#enhanceConfigurationClasses(org.springframework.beans.factory.config.ConfigurableListableBeanFactory)
+ * 3、cglib代理的实现：调用enhance() ，判断该类是否实现EnhancedConfiguration ，完成代理则会让该类去实现此接口；若没有被代理则去实现代理 enhancer.create()创建代码对象。
+ * @see ConfigurationClassEnhancer.BeanMethodInterceptor#intercept(java.lang.Object, java.lang.reflect.Method, java.lang.Object[], org.springframework.cglib.proxy.MethodProxy)
+ * @see ConfigurationClassEnhancer.BeanMethodInterceptor#isCurrentlyInvokedFactoryMethod(java.lang.reflect.Method)
+ *
+ * 结论： 凡是加了@Configuration注解修饰的类都会被spring代理，目的是为了解决@Bean单例问题
+*/
 public class ConfigurationClassPostProcessorTests {
 
 	private final DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
