@@ -54,6 +54,8 @@ import org.springframework.util.ReflectionUtils;
  */
 class ConfigurationClassEnhancer {
 
+	private static final Log logger = LogFactory.getLog(ConfigurationClassEnhancer.class);
+
 	/**
 	 * The callbacks to use. Note that these callbacks must be stateless.
 	 * BeanMethodInterceptor：负责拦截@Bean方法的调用，以确保正确处理@Bean语义。
@@ -64,8 +66,6 @@ class ConfigurationClassEnhancer {
 	private static final ConditionalCallbackFilter CALLBACK_FILTER = new ConditionalCallbackFilter(CALLBACKS);
 
 	private static final String BEAN_FACTORY_FIELD = "$$beanFactory";
-
-	private static final Log logger = LogFactory.getLog(ConfigurationClassEnhancer.class);
 
 	private static final SpringObjenesis objenesis = new SpringObjenesis();
 
@@ -415,9 +415,7 @@ class ConfigurationClassEnhancer {
 
 		@Override
 		public boolean isMatch(Method candidateMethod) {
-			return (candidateMethod.getDeclaringClass() != Object.class &&
-					!BeanFactoryAwareMethodInterceptor.isSetBeanFactory(candidateMethod) &&
-					BeanAnnotationHelper.isBeanAnnotated(candidateMethod));
+			return (candidateMethod.getDeclaringClass() != Object.class && !BeanFactoryAwareMethodInterceptor.isSetBeanFactory(candidateMethod) && BeanAnnotationHelper.isBeanAnnotated(candidateMethod));
 		}
 
 		private ConfigurableBeanFactory getBeanFactory(Object enhancedConfigInstance) {

@@ -48,4 +48,5 @@ public class App {
         dao.update(); // 对类A的B方法使用一种拦截策略
         dao.select(); // 类A的C方法使用另外一种拦截策略
     }
+
 }

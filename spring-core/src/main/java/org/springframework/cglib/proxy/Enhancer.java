@@ -40,6 +40,8 @@ import org.springframework.cglib.core.TypeUtils;
 import org.springframework.cglib.core.VisibilityPredicate;
 import org.springframework.cglib.core.WeakCacheKey;
 
+import static org.springframework.cglib.proxy.CallbackInfo.determineTypes;
+
 /**
  * Generates dynamic subclasses to enable method interception. This
  * class started as a substitute for the standard Dynamic Proxy support
@@ -297,18 +299,16 @@ public class Enhancer extends AbstractClassGenerator {
 
 	/**
 	 * Set the array of callback types to use.
-	 * This may be used instead of {@link #setCallbacks} when calling
-	 * {@link #createClass}, since it may not be possible to have
-	 * an array of actual callback instances.
-	 * You must use a {@link CallbackFilter} to specify the index into this
-	 * array for each method in the proxied class.
+	 * This may be used instead of {@link #setCallbacks} when calling {@link #createClass},
+	 * since it may not be possible to have an array of actual callback instances.
+	 * You must use a {@link CallbackFilter} to specify the index into this array for each method in the proxied class.
 	 * @param callbackTypes the array of callback types
 	 */
 	public void setCallbackTypes(Class[] callbackTypes) {
 		if (callbackTypes != null && callbackTypes.length == 0) {
 			throw new IllegalArgumentException("Array cannot be empty");
 		}
-		this.callbackTypes = CallbackInfo.determineTypes(callbackTypes);
+		this.callbackTypes = determineTypes(callbackTypes);
 	}
 
 	/**
@@ -361,7 +361,7 @@ public class Enhancer extends AbstractClassGenerator {
 
 	private void preValidate() {
 		if (callbackTypes == null) {
-			callbackTypes = CallbackInfo.determineTypes(callbacks, false);
+			callbackTypes = determineTypes(callbacks, false);
 			validateCallbackTypes = true;
 		}
 		if (filter == null) {
@@ -390,14 +390,14 @@ public class Enhancer extends AbstractClassGenerator {
 			if (callbacks.length != callbackTypes.length) {
 				throw new IllegalStateException("Lengths of callback and callback types array must be the same");
 			}
-			Type[] check = CallbackInfo.determineTypes(callbacks);
+			Type[] check = determineTypes(callbacks);
 			for (int i = 0; i < check.length; i++) {
 				if (!check[i].equals(callbackTypes[i])) {
 					throw new IllegalStateException("Callback " + check[i] + " is not assignable to " + callbackTypes[i]);
 				}
 			}
 		}else if (callbacks != null) {
-			callbackTypes = CallbackInfo.determineTypes(callbacks);
+			callbackTypes = determineTypes(callbacks);
 		}
 		if (interfaces != null) {
 			for (int i = 0; i < interfaces.length; i++) {

@@ -15,9 +15,10 @@ import org.springframework.cglib.proxy.Enhancer;
  */
 public class App {
 
+	Enhancer enhancer = new Enhancer();
+
     @Test
-    public void testCglib() {
-        Enhancer enhancer = new Enhancer();
+    public void testCglib1() {
 		// 设置要被代理的类
         enhancer.setSuperclass(MyDao.class);
 		// 设置回调（MethodInterceptor接口实现类）
@@ -27,4 +28,5 @@ public class App {
         dao.update();
         dao.select();
     }
+
 }
