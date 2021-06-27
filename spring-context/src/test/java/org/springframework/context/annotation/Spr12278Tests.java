@@ -49,7 +49,6 @@ public class Spr12278Tests {
 
 	@Configuration
 	static class BaseConfiguration {
-
 		@Bean
 		public String autowiredName() {
 			return "foo";
@@ -57,14 +56,11 @@ public class Spr12278Tests {
 	}
 
 	private static class SingleConstructorComponent {
-
 		private final String autowiredName;
-
 		// No @Autowired - implicit wiring
 		public SingleConstructorComponent(String autowiredName) {
 			this.autowiredName = autowiredName;
 		}
-
 	}
 
 	private static class TwoConstructorsComponent {

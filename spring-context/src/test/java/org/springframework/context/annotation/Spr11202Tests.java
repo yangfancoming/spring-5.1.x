@@ -41,7 +41,6 @@ public class Spr11202Tests {
 
 
 	protected static class Selector implements ImportSelector {
-
 		@Override
 		public String[] selectImports(AnnotationMetadata importingClassMetadata) {
 			return new String[] {Config.class.getName()};
@@ -51,19 +50,16 @@ public class Spr11202Tests {
 
 	@Configuration
 	protected static class Config {
-
 		@Bean
 		public FooFactoryBean foo() {
 			return new FooFactoryBean();
 		}
-
 		@Bean
 		public String value() throws Exception {
 			String name = foo().getObject().getName();
 			Assert.state(name != null, "Name cannot be null");
 			return name;
 		}
-
 		@Bean
 		@Conditional(NoBarCondition.class)
 		public String bar() throws Exception {
@@ -73,7 +69,6 @@ public class Spr11202Tests {
 
 
 	protected static class NoBarCondition implements Condition {
-
 		@Override
 		public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
 			if (context.getBeanFactory().getBeanNamesForAnnotation(Bar.class).length > 0) {

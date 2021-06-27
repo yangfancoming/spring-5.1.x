@@ -1,15 +1,10 @@
-
-
 package org.springframework.context.annotation;
 
 import java.util.List;
-
 import org.junit.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.Order;
-
 import static org.junit.Assert.*;
 
 

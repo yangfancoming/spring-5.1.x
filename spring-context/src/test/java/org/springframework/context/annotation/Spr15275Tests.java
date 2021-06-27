@@ -19,7 +19,6 @@ public class Spr15275Tests {
 		Bar bean = context.getBean(Bar.class);
 		String s = bean.foo.toString();
 		assertEquals("x", s);
-
 		FooInterface fooInterface = context.getBean(FooInterface.class);
 		assertSame(fooInterface, bean.foo);
 	}
@@ -63,7 +62,6 @@ public class Spr15275Tests {
 
 	@Configuration
 	protected static class ConfigWithFactoryBean {
-
 		@Bean
 		public FactoryBean<Foo> foo() {
 			return new FactoryBean<Foo>() {
