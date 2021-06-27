@@ -16,12 +16,33 @@ import org.junit.Test;
 
 import org.springframework.tests.Assume;
 import org.springframework.tests.TestGroup;
+import org.springframework.tests.sample.objects.goat.GoatBaseInterface;
+import org.springframework.tests.sample.objects.goat.GoatSubInterface;
+import org.springframework.tests.sample.objects.goat.GoatObject;
 import org.springframework.tests.sample.objects.TestObject;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 public class ReflectionUtilsTests {
+
+	/**
+	 * 获取当前类/接口的父级类/接口中的static和default方法，因为接口中只有3中方法：abstract、static、default。
+	 * 只是上一级（父级）查找，不会无限向上递归。
+	*/
+	@Test
+	public void testFindConcreteMethodsOnInterfaces(){
+		// GoatObject 的上级 GoatSubInterface 中，只有一个interfaceDefault具体类
+		List<Method> clazz = ReflectionUtils.findConcreteMethodsOnInterfaces(GoatObject.class);
+		assertEquals("interfaceDefault",clazz.get(0).getName());
+		// GoatSubInterface 的上级 GoatBaseInterface 中，有interfaceDefault 和 interfaceStatic 具体类
+		List<Method> sub = ReflectionUtils.findConcreteMethodsOnInterfaces(GoatSubInterface.class);
+		assertEquals("interfaceDefault",sub.get(0).getName());
+		assertEquals("interfaceStatic",sub.get(1).getName());
+		// GoatBaseInterface 没有上级，返回空
+		List<Method> base = ReflectionUtils.findConcreteMethodsOnInterfaces(GoatBaseInterface.class);
+		assertNull(base);
+	}
 
 	@Test
 	public void findField() {

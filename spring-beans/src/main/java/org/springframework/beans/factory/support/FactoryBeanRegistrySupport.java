@@ -153,8 +153,7 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 					throw pae.getException();
 				}
 			}else {
-				// 调用 我们自定义的 实现 FactoryBean 接口的getObject() 方法的 bean
-				// 调用工厂方法生成 bean 实例
+				// 调用我们自定义的实现 FactoryBean 接口的getObject() 方法生成 bean 实例
 				object = factory.getObject();
 			}
 		}catch (FactoryBeanNotInitializedException ex) {

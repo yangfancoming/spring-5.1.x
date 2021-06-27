@@ -35,14 +35,12 @@ public final class BridgeMethodResolver {
 	 * In such a case, the supplied {@link Method} instance is returned directly to the caller.
 	 * Callers are <strong>not</strong> required to check for bridging before calling this method.
 	 * @param bridgeMethod the method to introspect
-	 * @return the original method (either the bridged method or the passed-in method
-	 * if no more specific one could be found)
+	 * @return the original method (either the bridged method or the passed-in method if no more specific one could be found)
 	 */
 	public static Method findBridgedMethod(Method bridgeMethod) {
 		if (!bridgeMethod.isBridge()) {
 			return bridgeMethod;
 		}
-
 		// Gather all methods with matching name and parameter size.
 		List<Method> candidateMethods = new ArrayList<>();
 		Method[] methods = ReflectionUtils.getAllDeclaredMethods(bridgeMethod.getDeclaringClass());
@@ -157,7 +155,6 @@ public final class BridgeMethodResolver {
 			}
 			superclass = superclass.getSuperclass();
 		}
-
 		Class<?>[] interfaces = ClassUtils.getAllInterfacesForClass(bridgeMethod.getDeclaringClass());
 		return searchInterfaces(interfaces, bridgeMethod);
 	}
@@ -203,5 +200,4 @@ public final class BridgeMethodResolver {
 		if (bridgeMethod == bridgedMethod) return true;
 		return (bridgeMethod.getReturnType().equals(bridgedMethod.getReturnType()) && Arrays.equals(bridgeMethod.getParameterTypes(), bridgedMethod.getParameterTypes()));
 	}
-
 }

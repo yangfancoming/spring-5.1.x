@@ -611,8 +611,7 @@ public abstract class AnnotationUtils {
 
 	/**
 	 * Perform the search algorithm for {@link #findAnnotation(Class, Class)},
-	 * avoiding endless recursion by tracking which annotations have already
-	 * been <em>visited</em>.
+	 * avoiding endless recursion by tracking which annotations have already been <em>visited</em>.
 	 * @param clazz the class to look for annotations on
 	 * @param annotationType the type of annotation to look for
 	 * @param visited the set of annotations that have already been visited

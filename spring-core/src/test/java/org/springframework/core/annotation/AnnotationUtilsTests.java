@@ -31,6 +31,7 @@ import static java.util.Arrays.*;
 import static java.util.stream.Collectors.*;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 import static org.springframework.core.annotation.AnnotationUtils.*;
 
 /**
@@ -52,6 +53,19 @@ public class AnnotationUtilsTests {
 		assertNotNull(m.getAnnotation(Order.class));
 		assertNotNull(getAnnotation(m, Order.class));
 		assertNotNull(findAnnotation(m, Order.class));
+
+		// JDK 反射方式获取注解对象
+		Order jdk = m.getAnnotation(Order.class);
+		System.out.println(jdk.value());
+
+		Order get = getAnnotation(m, Order.class);
+		System.out.println(get.value());
+
+		Order find = findAnnotation(m, Order.class);
+		System.out.println(find.value());
+
+		// 三种方式获取的都是同一个对象
+		assertTrue((jdk == get) && (get == find));
 	}
 
 	// @since 4.2

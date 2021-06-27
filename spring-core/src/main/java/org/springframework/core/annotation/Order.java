@@ -26,11 +26,9 @@ import org.springframework.core.Ordered;
  * can be used as a drop-in replacement for this annotation in ordering scenarios.
  * Note that {@code @Priority} may have additional semantics when a single element
  * has to be picked (see {@link AnnotationAwareOrderComparator#getPriority}).
- * Alternatively, order values may also be determined on a per-instance basis
- * through the {@link Ordered} interface, allowing for configuration-determined
- * instance values instead of hard-coded values attached to a particular class.
- * Consult the javadoc for {@link org.springframework.core.OrderComparator
- * OrderComparator} for details on the sort semantics for non-ordered objects.
+ * Alternatively, order values may also be determined on a per-instance basis through the {@link Ordered} interface,
+ * allowing for configuration-determined instance values instead of hard-coded values attached to a particular class.
+ * Consult the javadoc for {@link org.springframework.core.OrderComparator OrderComparator} for details on the sort semantics for non-ordered objects.
  * @since 2.0
  * @see org.springframework.core.Ordered
  * @see AnnotationAwareOrderComparator

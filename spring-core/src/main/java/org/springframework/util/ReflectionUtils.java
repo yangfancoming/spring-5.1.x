@@ -411,10 +411,8 @@ public abstract class ReflectionUtils {
 	}
 
 	/**
-	 * This variant retrieves {@link Class#getDeclaredMethods()} from a local cache
-	 * in order to avoid the JVM's SecurityManager check and defensive array copying.
-	 * In addition, it also includes Java 8 default methods from locally implemented interfaces,
-	 * since those are effectively to be treated just like declared methods.
+	 * This variant retrieves {@link Class#getDeclaredMethods()} from a local cache in order to avoid the JVM's SecurityManager check and defensive array copying.
+	 * In addition, it also includes Java 8 default methods from locally implemented interfaces,since those are effectively to be treated just like declared methods.
 	 * @param clazz the class to introspect
 	 * @return the cached array of methods
 	 * @throws IllegalStateException if introspection fails
@@ -446,11 +444,18 @@ public abstract class ReflectionUtils {
 		return result;
 	}
 
-	@Nullable
-	private static List<Method> findConcreteMethodsOnInterfaces(Class<?> clazz) {
+	/**
+	 * 获取当前类/接口的父级类/接口中的static和default方法，因为接口中只有3中方法：abstract、static、default。
+	 * 只是上一级（父级）查找，不会无限向上递归。
+	 * @param clazz 待查找的类或接口
+	 * @see org.springframework.util.ReflectionUtilsTests#testFindConcreteMethodsOnInterfaces() 【测试用例】
+	*/
+	@Nullable // - modify  private - > public
+	public static List<Method> findConcreteMethodsOnInterfaces(Class<?> clazz) {
 		List<Method> result = null;
 		for (Class<?> ifc : clazz.getInterfaces()) {
 			for (Method ifcMethod : ifc.getMethods()) {
+				// 当前的方法不是抽象的方法就有默认的实现
 				if (!Modifier.isAbstract(ifcMethod.getModifiers())) {
 					if (result == null) {
 						result = new ArrayList<>();
