@@ -3,6 +3,7 @@
 package org.springframework.util;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.rmi.ConnectException;
@@ -44,6 +45,26 @@ public class ReflectionUtilsTests {
 		assertNull(base);
 	}
 
+	/**
+	 * spring包装后的方法实际上就是： jdk原生获取的方法 +  当前类的父级中的default和static方法再加进去。
+	 * 结果可见：
+	 * clazz 比 jdk 多了一个父类中的 default 方法
+	 * public default java.lang.String org.springframework.tests.sample.objects.goat.GoatSubInterface.interfaceDefault()
+	 */
+	@Test
+	public void testGetDeclaredMethods() {
+		// jdk 原生方法
+		Method[] jdk = GoatObject.class.getDeclaredMethods();
+		assertEquals(3,jdk.length);
+		// spring 包装后的方法
+		Method[] clazz = ReflectionUtils.getDeclaredMethods(GoatObject.class);
+		assertEquals(4,clazz.length);
+	}
+
+	// -------------以上---均为自定义测试用------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+	// -------------以下---均为原生测试用例------------------------------------------------------------------------------------------------------------------------------------------------
 	@Test
 	public void findField() {
 		Field field = ReflectionUtils.findField(TestObjectSubclassWithPublicField.class, "publicField", String.class);

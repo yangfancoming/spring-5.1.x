@@ -8,6 +8,10 @@ package org.springframework.tests.sample.objects.goat;
  */
 public class GoatObject implements GoatSubInterface {
 
+	public String mySelf(){
+		return "self";
+	}
+
 	@Override
 	public String interfaceAbstract() {
 		return "abstract-class";

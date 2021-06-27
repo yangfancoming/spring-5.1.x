@@ -48,8 +48,7 @@ public abstract class ReflectionUtils {
 	private static final Field[] EMPTY_FIELD_ARRAY = new Field[0];
 
 	/**
-	 * Cache for {@link Class#getDeclaredMethods()} plus equivalent default methods
-	 * from Java 8 based interfaces, allowing for fast iteration.
+	 * Cache for {@link Class#getDeclaredMethods()} plus equivalent default methods from Java 8 based interfaces, allowing for fast iteration.
 	 */
 	private static final Map<Class<?>, Method[]> declaredMethodsCache = new ConcurrentReferenceHashMap<>(256);
 
@@ -411,20 +410,26 @@ public abstract class ReflectionUtils {
 	}
 
 	/**
+	 * 获取jdk原生获取的方法集合，再加上当前类的父级中的default和static方法。 （缓存功能）
 	 * This variant retrieves {@link Class#getDeclaredMethods()} from a local cache in order to avoid the JVM's SecurityManager check and defensive array copying.
 	 * In addition, it also includes Java 8 default methods from locally implemented interfaces,since those are effectively to be treated just like declared methods.
 	 * @param clazz the class to introspect
 	 * @return the cached array of methods
 	 * @throws IllegalStateException if introspection fails
 	 * @see Class#getDeclaredMethods()
+	 * 此变体从本地缓存检索{@link Class#getDeclaredMethods（）}，以避免JVM的SecurityManager检查和防御性数组复制。
+	 * 此外，它还包括来自本地实现接口的Java8默认方法，因为这些方法可以像声明的方法一样有效地处理。
 	 */
-	private static Method[] getDeclaredMethods(Class<?> clazz) {
+	// -modify  private -> public
+	public static Method[] getDeclaredMethods(Class<?> clazz) {
 		Assert.notNull(clazz, "Class must not be null");
 		Method[] result = declaredMethodsCache.get(clazz);
 		if (result == null) {
 			try {
+				// 1.jdk原生方法获取的方法集合
 				Method[] declaredMethods = clazz.getDeclaredMethods();
 				List<Method> defaultMethods = findConcreteMethodsOnInterfaces(clazz);
+				// 2.如果获取到 static/default方法，则将其添加到1的集合中
 				if (defaultMethods != null) {
 					result = new Method[declaredMethods.length + defaultMethods.size()];
 					System.arraycopy(declaredMethods, 0, result, 0, declaredMethods.length);
@@ -434,6 +439,7 @@ public abstract class ReflectionUtils {
 						index++;
 					}
 				}else {
+					// 如果没有获取到，则直接返回1的集合。
 					result = declaredMethods;
 				}
 				declaredMethodsCache.put(clazz, (result.length == 0 ? EMPTY_METHOD_ARRAY : result));
