@@ -117,7 +117,7 @@ public class SimpleAliasRegistry implements AliasRegistry {
 
 	/**
 	 * Determine the raw name, resolving aliases to canonical names.
-	 * 根据别名解析出正名。( 链式别名解析到最根源的正名)
+	 * 确定原始名称，将别名解析为规范名称。( 链式别名解析到最根源的正名)
 	 * @param name the user-specified name
 	 * @return the transformed name
 	 * 	registry.registerAlias("李彦伯", "李亮亮");

@@ -16,7 +16,6 @@ import static org.springframework.beans.factory.support.BeanDefinitionBuilder.*;
 /**
  * SPR-5475 exposed the fact that the error message displayed when incorrectly
  * invoking a factory method is not instructive to the user and rather misleading.
-
  */
 public class Spr5475Tests {
 

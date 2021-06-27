@@ -698,16 +698,16 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			if (!bd.isAbstract() && bd.isSingleton() && !bd.isLazyInit()) {
 				/**
 				 *  处理 FactoryBean
-				 判断当前Bean是否是工厂bean (是否实现了FactoryBean接口)，如果实现了，判断是否要立即初始化
-				 判断是否需要立即初始化，则根据Bean是否实现了SmartFactoryBean并且重写的内部方法isEagerInit 返回true
-				 //如果是FactoryBean，前面文章有提到过，FactoryBean的名字命名规则是：& + 普通beanName，获取到正确的名称后才能做getBean(beanName)这一步
+				 *  判断当前Bean是否是工厂bean (是否实现了FactoryBean接口)，如果实现了，判断是否要立即初始化
+				 *  判断是否需要立即初始化，则根据Bean是否实现了SmartFactoryBean并且重写的内部方法isEagerInit 返回true
+				 * 	如果是FactoryBean，前面文章有提到过，FactoryBean的名字命名规则是：& + 普通beanName，获取到正确的名称后才能做getBean(beanName)这一步
 				 */
 				if (isFactoryBean(beanName)) {
+					//在 beanName 前面加上“&” 符号
 					Object bean = getBean(FACTORY_BEAN_PREFIX + beanName);
+					// 判断当前 FactoryBean 是否是 SmartFactoryBean 的实现
 					if (bean instanceof FactoryBean) {
-						//在 beanName 前面加上“&” 符号
 						final FactoryBean<?> factory = (FactoryBean<?>) bean;
-						// 判断当前 FactoryBean 是否是 SmartFactoryBean 的实现
 						boolean isEagerInit;
 						if (System.getSecurityManager() != null && factory instanceof SmartFactoryBean) {
 							isEagerInit = AccessController.doPrivileged((PrivilegedAction<Boolean>)	((SmartFactoryBean<?>) factory)::isEagerInit,getAccessControlContext());

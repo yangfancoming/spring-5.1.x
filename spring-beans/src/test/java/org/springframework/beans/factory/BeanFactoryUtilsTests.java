@@ -40,7 +40,7 @@ public class BeanFactoryUtilsTests {
 
 	private DefaultListableBeanFactory dependentBeansFactory;
 
-	@Before
+//	@Before
 	public void setUp() {
 		// Interesting hierarchical factory to test counts. Slow to read so we cache it.
 		DefaultListableBeanFactory grandParent = new DefaultListableBeanFactory();
@@ -294,4 +294,24 @@ public class BeanFactoryUtilsTests {
 		String[] deps = dependentBeansFactory.getDependentBeans("int");
 		assertTrue(Arrays.equals(new String[] { "buffer" }, deps));
 	}
+
+	/**
+	 * ----------------------自定义测试----------------
+	 * 测试前 请先注释掉 @Before
+	*/
+
+	@Test
+	public void testTransformedBeanName() {
+		// 多个&符的情况下
+		String test1 = "&&&&&&test";
+		// 无&符的情况下
+		String test2 = "test";
+		// 只有前缀& 才会生效
+		String test3 = "test&&";
+		assertEquals("test",  BeanFactoryUtils.transformedBeanName(test1));
+		assertEquals("test",  BeanFactoryUtils.transformedBeanName(test2));
+		assertEquals("test&&",  BeanFactoryUtils.transformedBeanName(test3));
+	}
+
+
 }

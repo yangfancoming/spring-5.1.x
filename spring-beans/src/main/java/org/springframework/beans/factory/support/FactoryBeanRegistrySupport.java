@@ -74,28 +74,33 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 		 *   1. 单例 FactoryBean 生成的 bean 实例也认为是单例类型。需放入缓存中，供后续重复使用
 		 *   2. 非单例 FactoryBean 生成的 bean 实例则不会被放入缓存中，每次都会创建新的实例
 		 */
+		// 为单例模式且 beanName 已经注册了在 Spring容器 中
 		if (factory.isSingleton() && containsSingleton(beanName)) {
 			synchronized (getSingletonMutex()) {
 				// 从缓存中取 bean 实例，避免多次创建 bean 实例
 				Object object = this.factoryBeanObjectCache.get(beanName);
 				if (object == null) {
-					// 使用工厂对象中创建实例
+					// 使用工厂对象中创建实例 // 为空则从 factory bean 中获取对象
 					object = doGetObjectFromFactoryBean(factory, beanName);
 					// Only post-process and store if not put there already during getObject() call above
 					// (e.g. because of circular reference processing triggered by custom getBean calls)
 					Object alreadyThere = this.factoryBeanObjectCache.get(beanName);
 					if (alreadyThere != null) {
+						// 已经存放到 缓存中了、后续的操作就不需要了
 						object = alreadyThere;
 					}else {
-						// shouldPostProcess 等价于上一个方法中的 !synthetic，用于表示是否应用后置处理
+						// shouldPostProcess 等价于上一个方法中的 !synthetic，用于表示是否应用后置处理  // 需要做一些后置处理
 						if (shouldPostProcess) {
-							if (isSingletonCurrentlyInCreation(beanName)) {
+							if (isSingletonCurrentlyInCreation(beanName)) { // 如果这个bean正在创建中、
 								// Temporarily return non-post-processed object, not storing it yet..
 								return object;
 							}
+							// 前置处理 主要是将这个bean 加入到正在创建中的队列 singletonsCurrentlyInCreation
 							beforeSingletonCreation(beanName);
 							try {
 								// 应用后置处理
+								// 对 从 factoryBean 获取的对象进行后处理
+								// 生成对象将暴露给 bean 引用 并回调 beanPostProcessor
 								object = postProcessObjectFromFactoryBean(object, beanName);
 							}catch (Throwable ex) {
 								throw new BeanCreationException(beanName,"Post-processing of FactoryBean's singleton object failed", ex);
@@ -104,6 +109,7 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 							}
 						}
 						// 这里的 beanName 对应于 FactoryBean 的实现类， FactoryBean 的实现类也会被实例化，并被缓存在 singletonObjects 中
+						// 他的 factory bean 已经存在 缓存中了、那么这个 factory bean 产生的bean 应该也要缓存一下
 						if (containsSingleton(beanName)) {
 							// FactoryBean 所创建的实例会被缓存在 factoryBeanObjectCache 中，供后续调用使用
 							this.factoryBeanObjectCache.put(beanName, object);

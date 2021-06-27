@@ -195,9 +195,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 */
 	@SuppressWarnings("unchecked")
 	protected <T> T doGetBean(final String name, @Nullable final Class<T> requiredType,@Nullable final Object[] args, boolean typeCheckOnly) throws BeansException {
-		// 1、转换bean的名称,可能是工厂bean（需要去掉&前缀）,也可能是bean的别（优先使用别名）
+		// 1、转换bean的名称,可能是工厂bean（需要去掉&前缀）,也可能是bean的别名（优先使用别名）
 		// 获取beanName，处理两种情况，一个是前面说的 FactoryBean(前面带 ‘&’)，再一个这个方法是可以根据别名来获取Bean的，所以在这里是要转换成最正统的BeanName
-		// 主要逻辑就是如果是FactoryBean就把&去掉如果是别名就把根据别名获取真实名称后面就不贴代码了
+		// 主要逻辑就是如果是FactoryBean就把&去掉如果是别名就把根据别名获取真实名称
 		// 普通bean直接去beanName， FactoryBean取去掉'&'前缀的beanName
 		final String beanName = transformedBeanName(name);
 		// 最后的返回值
@@ -205,9 +205,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		// Eagerly check singleton cache for manually registered singletons.急切地检查singleton缓存中手动注册的singleton
 		//  2、这里先尝试从缓存中获取，获取不到再走后面的创建流程
 		// 检查是否已初始化
-		// 首先尝试去bean工厂singletonObjects容器中获取bean对象。
+		// 首先尝试去一级缓冲池singletonObjects中获取bean对象。
 		Object sharedInstance = getSingleton(beanName);
-		if (sharedInstance != null && args == null) { // 如果缓存map中有
+		if (sharedInstance != null && args == null) {
 			if (logger.isTraceEnabled()) {
 				if (isSingletonCurrentlyInCreation(beanName)) {
 					logger.trace("Returning eagerly cached instance of singleton bean '" + beanName + "' that is not fully initialized yet - a consequence of a circular reference");
@@ -1230,7 +1230,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			if (beanInstance instanceof NullBean) {
 				return beanInstance;
 			}
-			// 当前bean是factoryBean,但是不是FactoryBean的实例,则抛出异常
+			// 当前bean是factoryBean,但不是FactoryBean的实例,则抛出异常
 			// 因BeanFactoryUtils.isFactoryDereference(name)-->只是从bean名称上进行了判断,我们通过getBean("&myBean")可以人为将一个非factoryBean当做factoryBean
 			// 所以这里必须要判断beanInstance是否为FactoryBean的实例
 			if (!(beanInstance instanceof FactoryBean)) {
@@ -1255,7 +1255,6 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		 *
 		 * 例2:我们通过getBean("myBean"),假设myBean是一个普通的bean,那么它肯定不是FactoryBean的实例,
 		 * 那么该bean跟FactoryBean无任何关系,直接返回其实例即可
-		 *
 		 */
 		if (!(beanInstance instanceof FactoryBean) || BeanFactoryUtils.isFactoryDereference(name)) {
 			return beanInstance;

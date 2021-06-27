@@ -17,4 +17,9 @@ public class FactoryBeanConfig {
 	public ColorFactoryBean test(){
 		return new ColorFactoryBean();
 	}
+
+	@Bean
+	public TestBean testBean(){
+		return new TestBean();
+	}
 }

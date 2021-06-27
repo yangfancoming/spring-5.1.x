@@ -19,7 +19,7 @@ public class SimpleConstructorNamespaceHandlerTests {
 	public void simpleValue()  {
 		DefaultListableBeanFactory beanFactory = createFactory("simpleConstructorNamespaceHandlerTests.xml");
 		String name = "simple";
-		//		beanFactory.getBean("simple1", DummyBean.class);
+//				beanFactory.getBean("simple1", DummyBean.class);
 		DummyBean nameValue = beanFactory.getBean(name, DummyBean.class);
 		assertEquals("simple", nameValue.getValue());
 	}

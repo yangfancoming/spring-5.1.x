@@ -49,17 +49,17 @@ public abstract class BeanFactoryUtils {
 
 	/**
 	 * Return the actual bean name, stripping out the factory dereference prefix (if any, also stripping repeated factory prefixes if found).
-	 * 返回实际的bean名称，除去工厂取消引用前缀（如果有，还除去重复的工厂前缀（如果找到）
-	 * 返回bean的真实名称,去掉FactoryBean引用前缀
+	 * 去掉给定字符串中的 & 前缀。 (有缓存功能)
 	 * @param name the name of the bean
 	 * @return the transformed name
 	 * @see BeanFactory#FACTORY_BEAN_PREFIX
+	 * @see org.springframework.beans.factory.BeanFactoryUtilsTests#testTransformedBeanName()  【测试用例】
 	 */
 	public static String transformedBeanName(String name) {
 		Assert.notNull(name, "'name' must not be null");
+		// name不带&前缀 则直接返回
 		if (!name.startsWith(BeanFactory.FACTORY_BEAN_PREFIX)) return name;
-		// 循环处理 & 字符  比如 name = "&&&&&helloService"，最终会被转成 helloService
-		// beanName前缀为&,循环截取直至所有&被去掉
+		// 循环从左侧截取直至所有&前缀都被去掉，比如 name = "&&&&&test"，最终会被转成 test。
 		return transformedBeanNameCache.computeIfAbsent(name, beanName -> {
 			do {
 				beanName = beanName.substring(BeanFactory.FACTORY_BEAN_PREFIX.length());

@@ -4,6 +4,7 @@ import com.goat.chapter105.BaseTest;
 import com.goat.chapter105.model.Red;
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.beans.factory.support.AbstractBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -19,25 +20,32 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * 		然后给出自己对象的实例化代码即可。 （mybatis-spring 就是这么做的）
  *
  * FactoryBean最为典型的一个应用就是用来创建AOP的代理对象
+ * @see  AbstractBeanFactory#isFactoryBean(java.lang.String)
+ * @see  AbstractBeanFactory#isFactoryBean(java.lang.String, org.springframework.beans.factory.support.RootBeanDefinition)
+ * @see  AbstractBeanFactory#predictBeanType(java.lang.String, org.springframework.beans.factory.support.RootBeanDefinition, java.lang.Class[])
 */
 public class App extends BaseTest {
 
 	ApplicationContext ac = new AnnotationConfigApplicationContext(FactoryBeanConfig.class);
+//	look(ac);
 
 	@Test
-	public void getBean(){
-		look(ac);
+	public void test(){
+		Object test = ac.getBean("testBean");
+		System.out.println(test);
+	}
+
+	@Test
+	public void test1(){
 		// 这里获取的是 ColorFactoryBean 调用 getObject 方法返回的bean  （com.goat.chapter105.model.Red）
 		Object test = ac.getBean("test");
 		Assert.assertTrue(test instanceof Red);
 	}
 
 	@Test
-	public void ImportConfig(){
-		look(ac);
+	public void test2(){
 		// 这里加上 & 前缀后 可以获取到 FactoryBean 本尊
 		Object test = ac.getBean("&test");
 		Assert.assertTrue(test instanceof ColorFactoryBean );
 	}
-
 }
