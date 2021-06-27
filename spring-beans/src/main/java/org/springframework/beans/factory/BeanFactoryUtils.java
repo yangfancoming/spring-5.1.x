@@ -30,6 +30,7 @@ public abstract class BeanFactoryUtils {
 	public static final String GENERATED_BEAN_NAME_SEPARATOR = "#";
 
 	/**
+	 * 缓存所有去掉前缀 & 的bean名称  eg： k-&testBean  v-testBean
 	 * Cache from name with factory bean prefix to stripped name without dereference.
 	 * @since 5.1
 	 * @see BeanFactory#FACTORY_BEAN_PREFIX
@@ -37,8 +38,8 @@ public abstract class BeanFactoryUtils {
 	private static final Map<String, String> transformedBeanNameCache = new ConcurrentHashMap<>();
 
 	/**
+	 * 判断当前字符串上是否以&开头
 	 * Return whether the given name is a factory dereference (beginning with the factory dereference prefix "&").
-	 * 根据给定名称 判断是否为工厂引用类型 并返回
 	 * @param name the name of the bean
 	 * @return whether the given name is a factory dereference
 	 * @see BeanFactory#FACTORY_BEAN_PREFIX
