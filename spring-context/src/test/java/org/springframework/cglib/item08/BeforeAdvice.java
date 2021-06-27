@@ -1,4 +1,4 @@
-//package org.springframework.cglib.item08;
+package org.springframework.cglib.item08;//package org.springframework.cglib.item08;
 //
 //import java.lang.reflect.Method;
 //
