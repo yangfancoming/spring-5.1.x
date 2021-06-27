@@ -1,4 +1,4 @@
-package org.springframework.cglib.item01;
+package org.springframework.cglib.common;
 
 /**
  * Created by 64274 on 2019/4/9.
@@ -7,13 +7,13 @@ package org.springframework.cglib.item01;
  * @ author  山羊来了
  * @ date 2019/4/9---18:10
  */
-public class Dao {
+public class MyDao {
 
     public void update() {
-        System.out.println("UserDao.update()");
+        System.out.println(" 执行 update() 方法");
     }
 
     public void select() {
-        System.out.println("UserDao.select()");
+		System.out.println(" 执行 select() 方法");
     }
 }

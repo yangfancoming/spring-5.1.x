@@ -6,7 +6,6 @@ import java.lang.reflect.Method;
 
 /**
  * Created by 64274 on 2019/4/9.
- *
  * @ Description: TODO
  * @ author  山羊来了
  * @ date 2019/4/9---18:23
@@ -20,5 +19,4 @@ public class DaoFilter implements CallbackFilter {
         }
         return 1;
     }
-
 }
