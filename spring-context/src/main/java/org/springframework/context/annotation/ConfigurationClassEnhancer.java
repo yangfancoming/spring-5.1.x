@@ -94,11 +94,11 @@ class ConfigurationClassEnhancer {
 
 	/**
 	 * Creates a new CGLIB {@link Enhancer} instance.
-	 * 创建一个新的 CGLIB Enhancer 增强器实例,configSuperClass是要增强的配置类
+	 * @param configSuperClass 是要增强的配置类
 	 */
 	private Enhancer newEnhancer(Class<?> configSuperClass, @Nullable ClassLoader classLoader) {
 		Enhancer enhancer = new Enhancer();
-		// 设置被增强类的父类是配置类  // 将配置类设置成父类，cglib基于继承
+		// 设置要被代理的类（主配置类）
 		enhancer.setSuperclass(configSuperClass);
 		// 为增强类增加新的接口EnhancedConfiguration，主要目的是增加接口BeanFactoryAware
 		// 设置需要实现的接口,也就是说,我们的配置类的cglib代理还实现的 EnhancedConfiguration 接口

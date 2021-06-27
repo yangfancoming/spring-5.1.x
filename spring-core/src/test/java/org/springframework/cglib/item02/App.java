@@ -34,7 +34,7 @@ public class App {
         enhancer.setSuperclass(MyDao.class);
         // 设置回调过滤器，其返回值定对应  setCallbacks 数组中的下标。
 		enhancer.setCallbackFilter(new DaoFilter());
-		// 根据 setCallbackFilter 实现类的返回值，来决定执行哪个代理方法。
+		// 根据 setCallbackFilter 实现类的返回值，来决定执行哪个MethodInterceptor实现类的方法。
         enhancer.setCallbacks(new Callback[]{daoLogProxy, daoTimeProxy, NoOp.INSTANCE});
         /**
 		 * 如果想要在构造函数中调用update()方法时，不拦截的话，

@@ -17,9 +17,6 @@ import org.springframework.tests.sample.beans.TestBean;
 import static org.junit.Assert.*;
 
 /**
- * @author Rod Johnson
-
-
  * @since 13.03.2003
  */
 @SuppressWarnings("serial")

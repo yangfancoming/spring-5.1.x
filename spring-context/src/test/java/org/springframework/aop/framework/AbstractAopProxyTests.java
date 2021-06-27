@@ -65,9 +65,6 @@ import org.springframework.util.StopWatch;
 import static org.junit.Assert.*;
 
 /**
- * @author Rod Johnson
-
-
  * @since 13.03.2003
  */
 public abstract class AbstractAopProxyTests {
