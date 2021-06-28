@@ -9,7 +9,7 @@ import org.springframework.core.annotation.Order;
  * @ author  山羊来了
  * @ date 2019/6/30---15:36
  */
-public  class Leaf extends Root {
+public class Leaf extends Root {
 
 	@Order(25)
 	public void annotatedOnLeaf() {
@@ -23,6 +23,8 @@ public  class Leaf extends Root {
 	public void metaMetaAnnotatedOnLeaf() {
 	}
 
+
+	// 实现父类中的方法
 	@Override
 	@Order(1)
 	public void overrideToAnnotate() {
@@ -31,4 +33,5 @@ public  class Leaf extends Root {
 	@Override
 	public void overrideWithoutNewAnnotation() {
 	}
+
 }

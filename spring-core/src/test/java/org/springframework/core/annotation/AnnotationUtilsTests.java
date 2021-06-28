@@ -47,23 +47,17 @@ public class AnnotationUtilsTests {
 		AnnotationUtils.clearCache();
 	}
 
+	// 测试 直接获取 方法上的直接注解。
 	@Test
 	public void findMethodAnnotationOnLeaf() throws Exception {
 		Method m = Leaf.class.getMethod("annotatedOnLeaf");
 		assertNotNull(m.getAnnotation(Order.class));
 		assertNotNull(getAnnotation(m, Order.class));
 		assertNotNull(findAnnotation(m, Order.class));
-
 		// JDK 反射方式获取注解对象
 		Order jdk = m.getAnnotation(Order.class);
-		System.out.println(jdk.value());
-
 		Order get = getAnnotation(m, Order.class);
-		System.out.println(get.value());
-
 		Order find = findAnnotation(m, Order.class);
-		System.out.println(find.value());
-
 		// 三种方式获取的都是同一个对象
 		assertTrue((jdk == get) && (get == find));
 	}
@@ -72,22 +66,27 @@ public class AnnotationUtilsTests {
 	@Test
 	public void findMethodAnnotationWithAnnotationOnMethodInInterface() throws Exception {
 		Method m = Leaf.class.getMethod("fromInterfaceImplementedByRoot");
+		// JDK 原生获取注解方法，无法上递归获取，以为注解不是 @Inherited ？？？ doit
 		assertNull(m.getAnnotation(Order.class)); // @Order is not @Inherited
+		// getAnnotation 获取不到 因为其不检索接口中方法上的注解
 		assertNull(getAnnotation(m, Order.class)); // getAnnotation() does not search on interfaces
+		// findAnnotation 可以获取到，因为其检索接口中方法上的注解
 		assertNotNull(findAnnotation(m, Order.class)); // findAnnotation() does search on interfaces
+		// getAnnotation 获取不到 因为其检索类中方法上的注解
+		Method goatTest = SubLeaf.class.getMethod("goatTest");
+		assertNotNull(getAnnotation(goatTest, Order.class)); //
+		assertNotNull(goatTest.getAnnotation(Order.class)); //
 	}
 
 	// @since 4.2
 	@Test
 	public void findMethodAnnotationWithMetaAnnotationOnLeaf() throws Exception {
 		Method m = Leaf.class.getMethod("metaAnnotatedOnLeaf");
-		assertNull(m.getAnnotation(Order.class));
+		//  getAnnotation 和  findAnnotation 可以再当前方法上的所有注解进行 递归获取
 		assertNotNull(getAnnotation(m, Order.class));
 		assertNotNull(findAnnotation(m, Order.class));
-
-		System.out.println(m.getAnnotation(Order.class));
-		System.out.println(getAnnotation(m, Order.class));
-		System.out.println(findAnnotation(m, Order.class));
+		// 原生 jdk 方法  做不到
+		assertNull(m.getAnnotation(Order.class));
 	}
 
 	// @since 4.2
@@ -1712,7 +1711,6 @@ public class AnnotationUtilsTests {
 	@Retention(RetentionPolicy.RUNTIME)
 	@Inherited
 	@interface MyRepeatableContainer {
-
 		MyRepeatable[] value();
 	}
 
@@ -1720,7 +1718,6 @@ public class AnnotationUtilsTests {
 	@Inherited
 	@Repeatable(MyRepeatableContainer.class)
 	@interface MyRepeatable {
-
 		String value();
 	}
 

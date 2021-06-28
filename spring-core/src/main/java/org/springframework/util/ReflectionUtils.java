@@ -749,7 +749,8 @@ public abstract class ReflectionUtils {
 	 */
 	@SuppressWarnings("deprecation")  // on JDK 9
 	public static void makeAccessible(Field field) {
-		if ((!Modifier.isPublic(field.getModifiers()) || !Modifier.isPublic(field.getDeclaringClass().getModifiers()) || Modifier.isFinal(field.getModifiers())) && !field.isAccessible()) {
+		if ((!Modifier.isPublic(field.getModifiers()) || !Modifier.isPublic(field.getDeclaringClass().getModifiers()) || Modifier.isFinal(field.getModifiers()))
+				&& !field.isAccessible()) {
 			field.setAccessible(true);
 		}
 	}

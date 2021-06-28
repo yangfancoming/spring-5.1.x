@@ -11,5 +11,6 @@ import org.springframework.core.annotation.Order;
  */
 public interface AnnotatedInterface {
 	@Order(0)
+	@Transactional
 	void fromInterfaceImplementedByRoot();
 }

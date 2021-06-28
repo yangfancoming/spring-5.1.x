@@ -17,8 +17,7 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link InvocationHandler} for an {@link Annotation} that Spring has
- * <em>synthesized</em> (i.e., wrapped in a dynamic proxy) with additional functionality.
+ * {@link InvocationHandler} for an {@link Annotation} that Spring has <em>synthesized</em> (i.e., wrapped in a dynamic proxy) with additional functionality.
  * @since 4.2
  * @see Annotation
  * @see AnnotationAttributeExtractor
@@ -218,5 +217,4 @@ class SynthesizedAnnotationInvocationHandler implements InvocationHandler {
 		}
 		return String.valueOf(value);
 	}
-
 }

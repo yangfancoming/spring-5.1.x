@@ -9,7 +9,7 @@ import org.springframework.core.annotation.Order;
  * @ author  山羊来了
  * @ date 2019/6/30---15:30
  */
-public  class Root implements AnnotatedInterface {
+public class Root implements AnnotatedInterface {
 
 	@Order(27)
 	public void annotatedOnRoot() {
@@ -31,5 +31,10 @@ public  class Root implements AnnotatedInterface {
 
 	@Override
 	public void fromInterfaceImplementedByRoot() {
+	}
+
+
+	@Order(99)
+	public void goatTest() {
 	}
 }

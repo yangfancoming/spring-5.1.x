@@ -79,18 +79,21 @@ public class ReflectionUtilsTests {
 	*/
 	@Test
 	public void findField() {
+		// 获取 public 字段
 		Field field = ReflectionUtils.findField(TestObjectSubclassWithPublicField.class, "publicField", String.class);
 		assertNotNull(field);
 		assertEquals("publicField", field.getName());
 		assertEquals(String.class, field.getType());
 		assertTrue("Field should be public.", Modifier.isPublic(field.getModifiers()));
 
+		// 获取 protected 字段
 		field = ReflectionUtils.findField(TestObjectSubclassWithNewField.class, "prot", String.class);
 		assertNotNull(field);
 		assertEquals("prot", field.getName());
 		assertEquals(String.class, field.getType());
 		assertTrue("Field should be protected.", Modifier.isProtected(field.getModifiers()));
 
+		// 获取 private 字段
 		field = ReflectionUtils.findField(TestObjectSubclassWithNewField.class, "name", String.class);
 		assertNotNull(field);
 		assertEquals("name", field.getName());
@@ -106,13 +109,10 @@ public class ReflectionUtilsTests {
 	public void setField() {
 		TestObjectSubclassWithNewField testBean = new TestObjectSubclassWithNewField();
 		Field field = ReflectionUtils.findField(TestObjectSubclassWithNewField.class, "name", String.class);
-
 		ReflectionUtils.makeAccessible(field);
-
 		ReflectionUtils.setField(field, testBean, "FooBar");
 		assertNotNull(testBean.getName());
 		assertEquals("FooBar", testBean.getName());
-
 		ReflectionUtils.setField(field, testBean, null);
 		assertNull(testBean.getName());
 	}
