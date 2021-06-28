@@ -12,6 +12,8 @@ package org.springframework.tests.sample.objects.goat;
  */
 public interface GoatBaseInterface  {
 
+	public static final String field = "baseField";
+
 	public abstract String interfaceAbstract();
 
 	public default String interfaceDefault(){

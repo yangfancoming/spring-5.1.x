@@ -557,12 +557,12 @@ public abstract class ReflectionUtils {
 	}
 
 	/**
-	 * 根据类型，字段名称和字段类型查询一个字段；该方法会遍历的向父类查询字段，查询到的是所有字段
+	 * 根据字段名称或类型(只能二选一)，查询当前类及递归父类中的字段。
 	 * Attempt to find a {@link Field field} on the supplied {@link Class} with the supplied {@code name} and/or {@link Class type}.
 	 * Searches all superclasses up to {@link Object}.
-	 * @param clazz the class to introspect
-	 * @param name the name of the field (may be {@code null} if type is specified)
-	 * @param type the type of the field (may be {@code null} if name is specified)
+	 * @param clazz the class to introspect   待暴露其内部属性的类
+	 * @param name the name of the field (may be {@code null} if type is specified)  字段名称
+	 * @param type the type of the field (may be {@code null} if name is specified)  字段类型
 	 * @return the corresponding Field object, or {@code null} if not found
 	 */
 	@Nullable
@@ -571,7 +571,7 @@ public abstract class ReflectionUtils {
 		Assert.isTrue(name != null || type != null, "Either name or type of the field must be specified");
 		Class<?> searchType = clazz;
 		while (Object.class != searchType && searchType != null) {
-			// 向上查询字段，直到Object类型
+			// 递归向上查询当前类的所有字段，直到Object类型
 			Field[] fields = getDeclaredFields(searchType);
 			for (Field field : fields) {
 				if ((name == null || name.equals(field.getName())) && (type == null || type.equals(field.getType()))) {
@@ -681,13 +681,16 @@ public abstract class ReflectionUtils {
 	}
 
 	/**
+	 * 获取指定类中的所有字段，只获取当前类！（缓存功能）
 	 * This variant retrieves {@link Class#getDeclaredFields()} from a local cache in order to avoid the JVM's SecurityManager check and defensive array copying.
 	 * @param clazz the class to introspect
 	 * @return the cached array of fields
 	 * @throws IllegalStateException if introspection fails
 	 * @see Class#getDeclaredFields()
+	 * @see org.springframework.util.ReflectionUtilsTests#testGetDeclaredFields() 【测试用例】
 	 */
-	private static Field[] getDeclaredFields(Class<?> clazz) {
+	// modify private -> public
+	public static Field[] getDeclaredFields(Class<?> clazz) {
 		Assert.notNull(clazz, "Class must not be null");
 		// 对类型和字段做了缓存，保存到了declaredFieldsCache中
 		Field[] result = declaredFieldsCache.get(clazz);

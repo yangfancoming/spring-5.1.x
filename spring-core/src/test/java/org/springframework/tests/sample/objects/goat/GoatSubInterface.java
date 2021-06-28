@@ -12,6 +12,8 @@ package org.springframework.tests.sample.objects.goat;
  */
 public interface GoatSubInterface extends GoatBaseInterface {
 
+	public static final String field = "subField";
+
 	@Override
 	 String interfaceAbstract();
 

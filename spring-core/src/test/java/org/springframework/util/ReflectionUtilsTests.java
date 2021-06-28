@@ -3,7 +3,6 @@
 package org.springframework.util;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.rmi.ConnectException;
@@ -55,16 +54,28 @@ public class ReflectionUtilsTests {
 	public void testGetDeclaredMethods() {
 		// jdk 原生方法
 		Method[] jdk = GoatObject.class.getDeclaredMethods();
-		assertEquals(3,jdk.length);
+		assertEquals(7,jdk.length);
 		// spring 包装后的方法
 		Method[] clazz = ReflectionUtils.getDeclaredMethods(GoatObject.class);
-		assertEquals(4,clazz.length);
+		assertEquals(8,clazz.length);
 	}
 
+	/**
+	 * 获取指定类中的所有字段，只获取当前类！（缓存功能）
+	*/
+	@Test
+	public void testGetDeclaredFields() {
+		Field[] declaredFields = ReflectionUtils.getDeclaredFields(GoatObject.class);
+		assertEquals(2,declaredFields);
+	}
 	// -------------以上---均为自定义测试用------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 	// -------------以下---均为原生测试用例------------------------------------------------------------------------------------------------------------------------------------------------
+	/**
+	 * @see org.springframework.context.annotation.ConfigurationClassEnhancer.BeanFactoryAwareMethodInterceptor#intercept(java.lang.Object, java.lang.reflect.Method, java.lang.Object[], org.springframework.cglib.proxy.MethodProxy)
+	 * @see ReflectionUtils#findField(java.lang.Class, java.lang.String)
+	*/
 	@Test
 	public void findField() {
 		Field field = ReflectionUtils.findField(TestObjectSubclassWithPublicField.class, "publicField", String.class);
@@ -413,7 +424,6 @@ public class ReflectionUtilsTests {
 	}
 
 	private static class TestObjectSubclassWithPublicField extends TestObject {
-
 		@SuppressWarnings("unused")
 		public String publicField = "foo";
 	}
