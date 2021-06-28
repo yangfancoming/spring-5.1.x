@@ -47,7 +47,7 @@ public class AnnotationUtilsTests {
 		AnnotationUtils.clearCache();
 	}
 
-	// 测试 直接获取 方法上的直接注解。
+	// 测试 直接获取 当前类中的方法上的直接注解。
 	@Test
 	public void findMethodAnnotationOnLeaf() throws Exception {
 		Method m = Leaf.class.getMethod("annotatedOnLeaf");
@@ -56,48 +56,53 @@ public class AnnotationUtilsTests {
 		assertNotNull(findAnnotation(m, Order.class));
 		// JDK 反射方式获取注解对象
 		Order jdk = m.getAnnotation(Order.class);
+		// spring 方式
 		Order get = getAnnotation(m, Order.class);
 		Order find = findAnnotation(m, Order.class);
 		// 三种方式获取的都是同一个对象
 		assertTrue((jdk == get) && (get == find));
 	}
 
-	// @since 4.2
+	// @since 4.2  测试 获取 接口方法中的注解
 	@Test
 	public void findMethodAnnotationWithAnnotationOnMethodInInterface() throws Exception {
 		Method m = Leaf.class.getMethod("fromInterfaceImplementedByRoot");
 		// JDK 原生获取注解方法，无法上递归获取，以为注解不是 @Inherited ？？？ doit
 		assertNull(m.getAnnotation(Order.class)); // @Order is not @Inherited
+		assertNull(m.getAnnotation(Transactional.class)); // @Transactional 有 @Inherited 为啥还是获取不到？ doit
 		// getAnnotation 获取不到 因为其不检索接口中方法上的注解
 		assertNull(getAnnotation(m, Order.class)); // getAnnotation() does not search on interfaces
 		// findAnnotation 可以获取到，因为其检索接口中方法上的注解
 		assertNotNull(findAnnotation(m, Order.class)); // findAnnotation() does search on interfaces
-		// getAnnotation 获取不到 因为其检索类中方法上的注解
+		// getAnnotation 可以获取到 因为其检索类中方法上的注解
 		Method goatTest = SubLeaf.class.getMethod("goatTest");
 		assertNotNull(getAnnotation(goatTest, Order.class)); //
 		assertNotNull(goatTest.getAnnotation(Order.class)); //
 	}
 
-	// @since 4.2
+	// @since 4.2  测试 获取当前类中的方法上的注解中的上一级注解  （非递归）
 	@Test
 	public void findMethodAnnotationWithMetaAnnotationOnLeaf() throws Exception {
 		Method m = Leaf.class.getMethod("metaAnnotatedOnLeaf");
-		//  getAnnotation 和  findAnnotation 可以再当前方法上的所有注解进行 递归获取
+		//  getAnnotation 和  findAnnotation 可以在当前方法上获取所有注解的上一级注解 （非递归）
 		assertNotNull(getAnnotation(m, Order.class));
 		assertNotNull(findAnnotation(m, Order.class));
 		// 原生 jdk 方法  做不到
 		assertNull(m.getAnnotation(Order.class));
 	}
 
-	// @since 4.2
+	// @since 4.2  测试 获取当前类中的方法上的注解中 上递归获取
 	@Test
 	public void findMethodAnnotationWithMetaMetaAnnotationOnLeaf() throws Exception {
 		Method m = Leaf.class.getMethod("metaMetaAnnotatedOnLeaf");
+		// 原生 jdk 方法   和 getAnnotation 做不到
 		assertNull(m.getAnnotation(Component.class));
 		assertNull(getAnnotation(m, Component.class));
+		// findAnnotation 可以在当前方法上获取所有注解的无限上级注解
 		assertNotNull(findAnnotation(m, Component.class));
 	}
 
+	// 测试 获取上一级父类方法中的直接注解
 	@Test
 	public void findMethodAnnotationOnRoot() throws Exception {
 		Method m = Leaf.class.getMethod("annotatedOnRoot");
@@ -106,13 +111,15 @@ public class AnnotationUtilsTests {
 		assertNotNull(findAnnotation(m, Order.class));
 	}
 
-	// @since 4.2
+	// @since 4.2  测试 获取上一级父类中的方法上的注解中的上一级注解  （非递归）
 	@Test
 	public void findMethodAnnotationWithMetaAnnotationOnRoot() throws Exception {
 		Method m = Leaf.class.getMethod("metaAnnotatedOnRoot");
-		assertNull(m.getAnnotation(Order.class));
+		//  getAnnotation 和  findAnnotation 可以在当前方法上获取所有注解的上一级注解 （非递归）
 		assertNotNull(getAnnotation(m, Order.class));
 		assertNotNull(findAnnotation(m, Order.class));
+		// 原生 jdk 方法   做不到， 他只能获取直接注解
+		assertNull(m.getAnnotation(Order.class));
 	}
 
 	@Test
