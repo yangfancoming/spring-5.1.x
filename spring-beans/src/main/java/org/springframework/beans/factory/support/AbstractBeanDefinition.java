@@ -42,7 +42,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	//=====================定义众多常量。这一些常量会直接影响到spring实例化Bean时的策略
-	// 个人觉得这些常量的定义不是必须的，在代码里判断即可。Spring定义这些常量的原因很简单，便于维护，让读代码的人知道每个值的意义(所以以后我们在书写代码时，也可以这么来搞)
+	// 个人觉得这些常量的定义不是必须的，在代码里判断即可。Spring定义这些常量的原因很简单，便于维护，让读代码的人知道每个值的意义
 
 	/**
 	 * Constant for the default scope name: {@code ""}, equivalent to singleton status unless overridden from a parent bean definition (if applicable).
@@ -788,8 +788,8 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
+	 * 只有为 "singleton" 或者 ""  的情况下，该bean才是单例！
 	 * Return whether this a <b>Singleton</b>, with a single shared instance returned from all calls.
-	 * 返回是否为单例 ，从所有调用返回一个共享实例。
 	 * @see #SCOPE_SINGLETON
 	 */
 	@Override

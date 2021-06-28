@@ -900,8 +900,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 						 * 判断父类 beanName 与子类 beanName 名称是否相同。若相同，则父类 bean 一定在父容器中。
 						 * 原因也很简单，容器底层是用 Map 缓存 <beanName, bean> 键值对的。
 						 * 同一个容器下，使用同一个 beanName 映射两个 bean 实例显然是不合适的。
-						 * 有的朋友可能会觉得可以这样存储：<beanName, [bean1, bean2]> ，似乎解决了
-						 * 一对多的问题。但是也有问题，调用 getName(beanName) 时，到底返回哪个 bean 实例好呢？
+						 * 有的朋友可能会觉得可以这样存储：<beanName, [bean1, bean2]> ，似乎解决了一对多的问题。
+						 * 但是也有问题，调用 getName(beanName) 时，到底返回哪个 bean 实例好呢？
 						 */
 						if (!beanName.equals(parentBeanName)) {
 							/*

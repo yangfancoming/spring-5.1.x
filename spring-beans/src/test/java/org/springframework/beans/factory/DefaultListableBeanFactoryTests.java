@@ -545,7 +545,6 @@ public class DefaultListableBeanFactoryTests {
 		p.setProperty("tb.(class)", TestBean.class.getName());
 		// 测试  给bean对象中的map属性赋值
 		p.setProperty("tb.someMap[my.key]", "my.value");
-
 		int count = (new PropertiesBeanDefinitionReader(lbf)).registerBeanDefinitions(p);
 		assertTrue("1 beans registered, not " + count, count == 1);
 		assertEquals(1, lbf.getBeanDefinitionCount());
@@ -748,8 +747,7 @@ public class DefaultListableBeanFactoryTests {
 		(new PropertiesBeanDefinitionReader(lbf)).registerBeanDefinitions(p);
 		try {
 			(new PropertiesBeanDefinitionReader(lbf)).registerBeanDefinitions(p);
-		}
-		catch (BeanDefinitionStoreException ex) {
+		}catch (BeanDefinitionStoreException ex) {
 			assertEquals("kerry", ex.getBeanName());
 			// expected
 		}
@@ -787,12 +785,14 @@ public class DefaultListableBeanFactoryTests {
 		lbf.registerAlias("test", "test3");
 	}
 
+	// 测试 bean定义的覆盖
 	@Test
 	public void testBeanDefinitionOverriding() {
 		lbf.registerBeanDefinition("test", new RootBeanDefinition(TestBean.class));
 		lbf.registerBeanDefinition("test", new RootBeanDefinition(NestedTestBean.class));
 		lbf.registerAlias("otherTest", "test2");
 		lbf.registerAlias("test", "test2");
+		// NestedTestBean 无参构造函数 执行   只执行一次
 		assertTrue(lbf.getBean("test") instanceof NestedTestBean);
 		assertTrue(lbf.getBean("test2") instanceof NestedTestBean);
 	}
@@ -1071,12 +1071,12 @@ public class DefaultListableBeanFactoryTests {
 	@Test
 	public void testReregisterBeanDefinition() {
 		RootBeanDefinition bd1 = new RootBeanDefinition(TestBean.class);
-		bd1.setScope(RootBeanDefinition.SCOPE_PROTOTYPE);
+//		bd1.setScope(RootBeanDefinition.SCOPE_PROTOTYPE); // 可以注释？
 		lbf.registerBeanDefinition("testBean", bd1);
 		assertTrue(lbf.getBean("testBean") instanceof TestBean);
 
 		RootBeanDefinition bd2 = new RootBeanDefinition(NestedTestBean.class);
-		bd2.setScope(RootBeanDefinition.SCOPE_PROTOTYPE);
+//		bd2.setScope(RootBeanDefinition.SCOPE_PROTOTYPE); // 可以注释？
 		lbf.registerBeanDefinition("testBean", bd2);
 		assertTrue(lbf.getBean("testBean") instanceof NestedTestBean);
 	}
@@ -1101,7 +1101,6 @@ public class DefaultListableBeanFactoryTests {
 		rbd.setAutowireMode(RootBeanDefinition.AUTOWIRE_BY_TYPE);
 		lbf.registerBeanDefinition("arrayBean", rbd);
 		ArrayBean ab = (ArrayBean) lbf.getBean("arrayBean");
-
 		assertNull(ab.getResourceArray());
 	}
 
@@ -2655,16 +2654,16 @@ public class DefaultListableBeanFactoryTests {
 
 	@Test
 	public void testScopeInheritanceForChildBeanDefinitions() {
+		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
+		// 父bean
 		RootBeanDefinition parent = new RootBeanDefinition();
 		parent.setScope("bonanza!");
-
+		factory.registerBeanDefinition("parent", parent);
+		// 子bean
 		AbstractBeanDefinition child = new ChildBeanDefinition("parent");
 		child.setBeanClass(TestBean.class);
-
-		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
-		factory.registerBeanDefinition("parent", parent);
 		factory.registerBeanDefinition("child", child);
-
+		// 合并父子bean定义
 		BeanDefinition def = factory.getMergedBeanDefinition("child");
 		assertEquals("Child 'scope' not inherited", "bonanza!", def.getScope());
 	}
@@ -2952,7 +2951,6 @@ public class DefaultListableBeanFactoryTests {
 
 
 	public static abstract class BaseClassWithDestroyMethod {
-
 		public abstract BaseClassWithDestroyMethod close();
 	}
 
@@ -3009,11 +3007,14 @@ public class DefaultListableBeanFactoryTests {
 	}
 
 
-	public static abstract class RepositoryFactoryBeanSupport<T extends Repository<S, ID>, S, ID extends Serializable> implements RepositoryFactoryInformation<S, ID>, FactoryBean<T> {
+	public static abstract class RepositoryFactoryBeanSupport<T extends Repository<S, ID>, S, ID extends Serializable>
+			implements RepositoryFactoryInformation<S, ID>, FactoryBean<T> {
 	}
 
 
-	public static class FactoryBeanThatShouldntBeCalled<T extends Repository<S, ID>, S, ID extends Serializable> extends RepositoryFactoryBeanSupport<T, S, ID> implements Runnable, Callable<T> {
+	public static class FactoryBeanThatShouldntBeCalled<T extends Repository<S, ID>, S, ID extends Serializable>
+			extends RepositoryFactoryBeanSupport<T, S, ID>
+			implements Runnable, Callable<T> {
 		@Override
 		public T getObject() {
 			throw new IllegalStateException();

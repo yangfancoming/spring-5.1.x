@@ -681,14 +681,14 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		if (logger.isTraceEnabled()) logger.trace("Pre-instantiating singletons in " + this);
 		// Iterate over a copy to allow for init methods which in turn register new bean definitions.
 		// While this may not be part of the regular factory bootstrap, it does otherwise work fine.
-		// 获取容器内加载的所有 bean的名称 // 遍历所有beanName，对所有的non-lazy且singletonbean进行创建,已经创建的不会再次执行。
+		// 获取容器内加载的所有 bean的名称 // 遍历所有beanName，对所有的非懒加载且单例的bena进行创建,已经创建的不会再次执行。
 		List<String> beanNames = new ArrayList<>(beanDefinitionNames);
 		// Trigger initialization of all non-lazy singleton beans... 遍历初始化所有非懒加载单例Bean
 		for (String beanName : beanNames) {
 			/**
 			 * 合并父 Bean 中的配置，主意<bean id="" class="" parent="" /> 中的 parent属性
 			 Bean定义公共的抽象类是AbstractBeanDefinition，普通的Bean在Spring加载Bean定义的时候，实例化出来的是GenericBeanDefinition
-			 而Spring上下文包括实例化所有Bean用的AbstractBeanDefinition是RootBeanDefinition
+			 而Spring上下文包括实例化所有Bean，用的是RootBeanDefinition
 			 这时候就使用getMergedLocalBeanDefinition方法做了一次转化，将非RootBeanDefinition转换为RootBeanDefinition以供后续操作。
 			 注意如果当前BeanDefinition存在父BeanDefinition，会基于父BeanDefinition生成一个RootBeanDefinition,然后再将调用OverrideFrom子BeanDefinition的相关属性覆写进去。
 			 // 该方法的merge是指如果bean类继承有父类，那么就将它所有的父类的bd融合成一个RootBeanDefinition返回
@@ -700,10 +700,9 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				 *  处理 FactoryBean
 				 *  判断当前Bean是否是工厂bean (是否实现了FactoryBean接口)，如果实现了，判断是否要立即初始化
 				 *  判断是否需要立即初始化，则根据Bean是否实现了SmartFactoryBean并且重写的内部方法isEagerInit 返回true
-				 * 	如果是FactoryBean，前面文章有提到过，FactoryBean的名字命名规则是：& + 普通beanName，获取到正确的名称后才能做getBean(beanName)这一步
 				 */
 				if (isFactoryBean(beanName)) {
-					//在 beanName 前面加上“&” 符号
+					// 在 beanName 前面加上“&” 符号
 					Object bean = getBean(FACTORY_BEAN_PREFIX + beanName);
 					// 判断当前 FactoryBean 是否是 SmartFactoryBean 的实现
 					if (bean instanceof FactoryBean) {
@@ -758,9 +757,9 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		}
 		// 2、优先尝试从缓存中加载BeanDefinition
 		BeanDefinition existingDefinition = beanDefinitionMap.get(beanName);
-		// 如果已经注册该bean
+		// 如果该bean已经注册
 		if (existingDefinition != null) {
-			// 如果beanName已经存在，且设置为不允许覆盖，则抛出异常
+			// 如果该bean已经注册，且设置为不允许覆盖，则抛出异常
 			if (!isAllowBeanDefinitionOverriding()) {
 				throw new BeanDefinitionOverrideException(beanName, beanDefinition, existingDefinition);
 			}else if (existingDefinition.getRole() < beanDefinition.getRole()) {
