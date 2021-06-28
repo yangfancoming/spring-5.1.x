@@ -419,6 +419,7 @@ public abstract class ReflectionUtils {
 	 * @see Class#getDeclaredMethods()
 	 * 此变体从本地缓存检索{@link Class#getDeclaredMethods（）}，以避免JVM的SecurityManager检查和防御性数组复制。
 	 * 此外，它还包括来自本地实现接口的Java8默认方法，因为这些方法可以像声明的方法一样有效地处理。
+	 * @see org.springframework.util.ReflectionUtilsTests#testGetDeclaredMethods() 【测试用例】
 	 */
 	// -modify  private -> public
 	public static Method[] getDeclaredMethods(Class<?> clazz) {
@@ -543,13 +544,14 @@ public abstract class ReflectionUtils {
 		}
 	}
 
-	// Field handling
 	/**
+	 * 根据字段名称，查询当前类及递归父类中的字段。
 	 * Attempt to find a {@link Field field} on the supplied {@link Class} with the supplied {@code name}.
 	 * Searches all superclasses up to {@link Object}.
 	 * @param clazz the class to introspect
 	 * @param name the name of the field
 	 * @return the corresponding Field object, or {@code null} if not found
+	 * @see org.springframework.util.ReflectionUtilsTests#findField() 【测试用例】
 	 */
 	@Nullable
 	public static Field findField(Class<?> clazz, String name) {
@@ -557,13 +559,14 @@ public abstract class ReflectionUtils {
 	}
 
 	/**
-	 * 根据字段名称或类型(只能二选一)，查询当前类及递归父类中的字段。
+	 * 根据字段名称或类型，查询当前类及递归父类中的字段。
 	 * Attempt to find a {@link Field field} on the supplied {@link Class} with the supplied {@code name} and/or {@link Class type}.
 	 * Searches all superclasses up to {@link Object}.
 	 * @param clazz the class to introspect   待暴露其内部属性的类
 	 * @param name the name of the field (may be {@code null} if type is specified)  字段名称
 	 * @param type the type of the field (may be {@code null} if name is specified)  字段类型
 	 * @return the corresponding Field object, or {@code null} if not found
+	 * @see org.springframework.util.ReflectionUtilsTests#findField() 【测试用例】
 	 */
 	@Nullable
 	public static Field findField(Class<?> clazz, @Nullable String name, @Nullable Class<?> type) {
@@ -571,13 +574,15 @@ public abstract class ReflectionUtils {
 		Assert.isTrue(name != null || type != null, "Either name or type of the field must be specified");
 		Class<?> searchType = clazz;
 		while (Object.class != searchType && searchType != null) {
-			// 递归向上查询当前类的所有字段，直到Object类型
+			// 只获取当前类的所有字段
 			Field[] fields = getDeclaredFields(searchType);
 			for (Field field : fields) {
+				// 这行代码还是很有讲究的，如果name传入null，那么只判断到name == null后面的name.equals不会报空指针异常。
 				if ((name == null || name.equals(field.getName())) && (type == null || type.equals(field.getType()))) {
 					return field;
 				}
 			}
+			// 递归向上查询当前类的所有字段，直到Object类型
 			searchType = searchType.getSuperclass();
 		}
 		return null;

@@ -73,6 +73,7 @@ public class ReflectionUtilsTests {
 
 	// -------------以下---均为原生测试用例------------------------------------------------------------------------------------------------------------------------------------------------
 	/**
+	 * 根据字段名称或类型，查询当前类及递归父类中的字段。 按类型匹配时，只要匹配到一个则直接返回。
 	 * @see org.springframework.context.annotation.ConfigurationClassEnhancer.BeanFactoryAwareMethodInterceptor#intercept(java.lang.Object, java.lang.reflect.Method, java.lang.Object[], org.springframework.cglib.proxy.MethodProxy)
 	 * @see ReflectionUtils#findField(java.lang.Class, java.lang.String)
 	*/
@@ -95,6 +96,10 @@ public class ReflectionUtilsTests {
 		assertEquals("name", field.getName());
 		assertEquals(String.class, field.getType());
 		assertTrue("Field should be private.", Modifier.isPrivate(field.getModifiers()));
+
+		//  按类型匹配时，只要匹配到一个则直接返回。
+		Field temp = ReflectionUtils.findField(TestObjectSubclassWithPublicField.class, null, String.class);
+		System.out.println(temp);
 	}
 
 	@Test
@@ -416,7 +421,6 @@ public class ReflectionUtilsTests {
 	}
 
 	private static class TestObjectSubclass extends TestObject {
-
 		@Override
 		public void absquatulate() {
 			throw new UnsupportedOperationException();
@@ -424,25 +428,22 @@ public class ReflectionUtilsTests {
 	}
 
 	private static class TestObjectSubclassWithPublicField extends TestObject {
+		public String bar = "bar";
 		@SuppressWarnings("unused")
 		public String publicField = "foo";
 	}
 
 	private static class TestObjectSubclassWithNewField extends TestObject {
-
 		private int magic;
-
 		protected String prot = "foo";
 	}
 
 	private static class TestObjectSubclassWithFinalField extends TestObject {
-
 		@SuppressWarnings("unused")
 		private final String foo = "will break naive copy that doesn't exclude statics";
 	}
 
 	private static class A {
-
 		@SuppressWarnings("unused")
 		private void foo(Integer i) throws RemoteException {
 		}
