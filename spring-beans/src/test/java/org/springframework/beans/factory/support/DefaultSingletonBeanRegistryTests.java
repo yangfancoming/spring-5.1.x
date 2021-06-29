@@ -29,27 +29,48 @@ public class DefaultSingletonBeanRegistryTests {
 		System.out.println(singletonMutex.containsKey("2"));
 	}
 
-
 	/**
 	 * 测试 key相同 不能覆盖 而是抛出异常
 	*/
 	@Test(expected = IllegalStateException.class)
-	public void testGetSingletonMutex() {
+	public void testOverridingException() {
 		TestBean tb = new TestBean();
 		beanRegistry.registerSingleton("test1", tb);
 		beanRegistry.registerSingleton("test1", tb);
-		Map<String, Object> singletonMutex = (Map<String, Object>) beanRegistry.getSingletonMutex();
-		System.out.println(singletonMutex);
 	}
 
+	/**
+	 * 测试 getSingletonMutex()
+	 */
 	@Test
-	public void testGetSingleton() {
-		TestBean tb = new TestBean();
-		tb.setName("goat");
+	public void testGetSingletonMutex() {
+		TestBean tb = new TestBean("goat");
+		beanRegistry.registerSingleton("tb", tb);
+		Map<String, Object> singletonObjects = (Map<String, Object>) beanRegistry.getSingletonMutex();
+		assertEquals(1,singletonObjects.size());
+	}
+
+	/**
+	 * 其实 所有的 getSingleton(String beanName); 都是是调用的
+	 * @see DefaultSingletonBeanRegistry#getSingleton(java.lang.String, boolean)    P2 为true
+	*/
+	@Test
+	public void testGetSingleton1() {
+		TestBean tb = new TestBean("goat");
 		beanRegistry.registerSingleton("tb", tb);
 		TestBean testBean = (TestBean) beanRegistry.getSingleton("tb");
 		assertSame("goat",testBean.getName());
 	}
+	/**
+	 * @see DefaultSingletonBeanRegistry#getSingleton(java.lang.String, org.springframework.beans.factory.ObjectFactory)
+	*/
+	@Test
+	public void testGetSingleton2() {
+		TestBean tb2 = (TestBean) beanRegistry.getSingleton("tb2", ()->new TestBean());
+		Map<String, Object> singletonObjects = (Map<String, Object>) beanRegistry.getSingletonMutex();
+		assertEquals(1,singletonObjects.size());
+	}
+
 
 	@Test
 	public void testSingletons() {
@@ -62,12 +83,14 @@ public class DefaultSingletonBeanRegistryTests {
 
 		assertNotSame(tb,tb2);
 
+		// 测试 getSingletonCount
 		assertEquals(2, beanRegistry.getSingletonCount());
+		// 测试 getSingletonNames
 		String[] names = beanRegistry.getSingletonNames();
 		assertEquals(2, names.length);
 		assertEquals("tb", names[0]);
 		assertEquals("tb2", names[1]);
-
+		// 测试 destroySingletons
 		beanRegistry.destroySingletons();
 		assertEquals(0, beanRegistry.getSingletonCount());
 		assertEquals(0, beanRegistry.getSingletonNames().length);
