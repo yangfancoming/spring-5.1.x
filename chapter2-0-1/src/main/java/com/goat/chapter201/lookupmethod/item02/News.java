@@ -1,4 +1,4 @@
-package com.goat.chapter201.lookupmethod;
+package com.goat.chapter201.lookupmethod.item02;
 
 /**
  * Created by 64274 on 2019/8/16.
