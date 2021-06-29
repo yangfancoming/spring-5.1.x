@@ -51,7 +51,7 @@ public class DefaultSingletonBeanRegistryTests {
 	}
 
 	/**
-	 * 其实 所有的 getSingleton(String beanName); 都是是调用的
+	 * 测试 getSingleton 单参  其实 所有的 getSingleton(String beanName); 都是是调用的
 	 * @see DefaultSingletonBeanRegistry#getSingleton(java.lang.String, boolean)    P2 为true
 	*/
 	@Test
@@ -59,28 +59,25 @@ public class DefaultSingletonBeanRegistryTests {
 		TestBean tb = new TestBean("goat");
 		beanRegistry.registerSingleton("tb", tb);
 		TestBean testBean = (TestBean) beanRegistry.getSingleton("tb");
+		assertSame(tb,testBean);
 		assertSame("goat",testBean.getName());
 	}
 	/**
+	 * 测试getSingleton 双参
 	 * @see DefaultSingletonBeanRegistry#getSingleton(java.lang.String, org.springframework.beans.factory.ObjectFactory)
 	*/
 	@Test
 	public void testGetSingleton2() {
-		TestBean tb2 = (TestBean) beanRegistry.getSingleton("tb2", ()->new TestBean());
+		beanRegistry.getSingleton("tb2", ()->new TestBean());
 		Map<String, Object> singletonObjects = (Map<String, Object>) beanRegistry.getSingletonMutex();
 		assertEquals(1,singletonObjects.size());
 	}
-
 
 	@Test
 	public void testSingletons() {
 		TestBean tb = new TestBean();
 		beanRegistry.registerSingleton("tb", tb);
-		assertSame(tb, beanRegistry.getSingleton("tb"));
-
 		TestBean tb2 = (TestBean) beanRegistry.getSingleton("tb2", ()->new TestBean());
-		assertSame(tb2, beanRegistry.getSingleton("tb2"));
-
 		assertNotSame(tb,tb2);
 
 		// 测试 getSingletonCount
