@@ -130,6 +130,7 @@ public class BeanDefinitionTests {
 		assertTrue(holder.hashCode() == otherHolder.hashCode());
 	}
 
+	// 测试 bean定义合并
 	@Test
 	public void beanDefinitionMerging() {
 		RootBeanDefinition bd = new RootBeanDefinition(TestBean.class);
@@ -152,5 +153,4 @@ public class BeanDefinitionTests {
 		assertEquals(new Integer(5), bd.getConstructorArgumentValues().getArgumentValue(1, null).getValue());
 		assertEquals(getClass(), bd.getQualifiedElement());
 	}
-
 }

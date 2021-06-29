@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeanMetadataElement;
 import org.springframework.beans.Mergeable;
 import org.springframework.lang.Nullable;
@@ -22,8 +24,12 @@ import org.springframework.util.ObjectUtils;
  * Supports values for a specific index in the constructor argument list as well as for generic argument matches by type.
  * @since 09.11.2003
  * @see BeanDefinition#getConstructorArgumentValues
+ * 构造函数参数值的持有者，通常作为bean定义的一部分。
+ * 支持构造函数参数列表中特定索引的值，以及按类型匹配的泛型参数的值。
  */
 public class ConstructorArgumentValues {
+
+	private static final Log logger = LogFactory.getLog(ConstructorArgumentValues.class);
 
 	private final Map<Integer, ValueHolder> indexedArgumentValues = new LinkedHashMap<>();
 
@@ -33,6 +39,7 @@ public class ConstructorArgumentValues {
 	 * Create a new empty ConstructorArgumentValues object.
 	 */
 	public ConstructorArgumentValues() {
+		logger.warn("进入 【ConstructorArgumentValues】 无参构造函数 {}");
 	}
 
 	/**
@@ -40,6 +47,7 @@ public class ConstructorArgumentValues {
 	 * @param original the ConstructorArgumentValues to copy
 	 */
 	public ConstructorArgumentValues(ConstructorArgumentValues original) {
+		logger.warn("进入 【ConstructorArgumentValues】 单参构造函数 {}");
 		addArgumentValues(original);
 	}
 

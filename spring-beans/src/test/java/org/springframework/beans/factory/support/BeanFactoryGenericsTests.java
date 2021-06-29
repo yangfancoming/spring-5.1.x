@@ -31,7 +31,9 @@ import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.config.TypedStringValue;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.beans.propertyeditors.CustomNumberEditor;
+import org.springframework.cglib.core.ReflectUtils;
 import org.springframework.core.OverridingClassLoader;
+import org.springframework.core.ParameterNameDiscoverer;
 import org.springframework.core.ResolvableType;
 import org.springframework.core.annotation.AnnotationAwareOrderComparator;
 import org.springframework.core.annotation.Order;
@@ -43,6 +45,7 @@ import org.springframework.tests.sample.beans.GenericBean;
 import org.springframework.tests.sample.beans.GenericIntegerBean;
 import org.springframework.tests.sample.beans.GenericSetOfIntegerBean;
 import org.springframework.tests.sample.beans.TestBean;
+import org.springframework.tests.sample.objects.goat.GoatObject;
 
 import static org.junit.Assert.*;
 
@@ -51,14 +54,13 @@ import static org.junit.Assert.*;
  */
 public class BeanFactoryGenericsTests {
 
+	DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 	// 测试 RootBeanDefinition 通过 MutablePropertyValues 对象，给bean的 Set<T> 属性赋值的功能
 	@Test
 	public void testGenericSetProperty() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
-		Set<String> input = new HashSet<>();
-		input.add("4");
-		input.add("5");
+		Set<String> input = new HashSet<String>(){{add("4");add("5");}};
 		// 通过 setIntegerSet 方法 给GenericBean对象的 integerSet 属性注入值
 		rbd.getPropertyValues().add("integerSet", input);
 		bf.registerBeanDefinition("genericBean", rbd);
@@ -70,7 +72,6 @@ public class BeanFactoryGenericsTests {
 	// 测试 RootBeanDefinition 通过 MutablePropertyValues 对象，给bean的 List<T> 属性赋值的功能
 	@Test
 	public void testGenericListProperty() throws Exception {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
 		List<String> input = new ArrayList<>();
 		input.add("http://localhost:8080");
@@ -90,7 +91,6 @@ public class BeanFactoryGenericsTests {
 	*/
 	@Test
 	public void testGenericListPropertyWithAutowiring() throws Exception {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		// 手动注册2个单例bean
 		bf.registerSingleton("resource1", new UrlResource("http://localhost:8080"));
 		bf.registerSingleton("resource2", new UrlResource("http://localhost:9090"));
@@ -108,7 +108,6 @@ public class BeanFactoryGenericsTests {
 	*/
 	@Test
 	public void testGenericListPropertyWithInvalidElementType() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericIntegerBean.class);
 		List<Integer> input = new ArrayList<>();
 		input.add(1);
@@ -129,7 +128,6 @@ public class BeanFactoryGenericsTests {
 	// 没懂 啥意思
 	@Test
 	public void testGenericListPropertyWithOptionalAutowiring() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
 		rbd.setAutowireMode(RootBeanDefinition.AUTOWIRE_BY_TYPE);
 		bf.registerBeanDefinition("genericBean", rbd);
@@ -144,11 +142,8 @@ public class BeanFactoryGenericsTests {
 	*/
 	@Test
 	public void testGenericMapProperty() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
-		Map<String, String> input = new HashMap<>();
-		input.put("4", "5");
-		input.put("6", "7");
+		Map<String, String> input = new HashMap<String, String>() {{put("4", "5");put("6", "7");}};
 		rbd.getPropertyValues().add("shortMap", input);
 		bf.registerBeanDefinition("genericBean", rbd);
 		GenericBean<?> gb = (GenericBean<?>) bf.getBean("genericBean");
@@ -162,7 +157,6 @@ public class BeanFactoryGenericsTests {
 	*/
 	@Test
 	public void testGenericListOfArraysProperty() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(new ClassPathResource("genericBeanTests.xml", getClass()));
 		GenericBean<?> gb = (GenericBean<?>) bf.getBean("listOfArrays");
 		assertEquals(1, gb.getListOfArrays().size());
@@ -180,23 +174,49 @@ public class BeanFactoryGenericsTests {
 	 */
 	@Test
 	public void testGenericSetConstructor() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
-		Set<String> input = new HashSet<>();
-		input.add("4");
-		input.add("5");
-		// false
-		System.out.println(rbd.hasConstructorArgumentValues());
+		// 默认情况为null
+		assertFalse(rbd.hasConstructorArgumentValues());
+		// 匿名内部类+初始化块
+		Set<String> input = new HashSet<String>(){{add("4");add("5");}};
 		// 通过 构造函数注入方式
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(input);
-		// true
-		System.out.println(rbd.hasConstructorArgumentValues());
+		assertTrue(rbd.hasConstructorArgumentValues());
 		bf.registerBeanDefinition("genericBean", rbd);
+		// getBean 触发构造函数注入
 		GenericBean<?> gb = (GenericBean<?>) bf.getBean("genericBean");
 		assertTrue(gb.getIntegerSet().contains(new Integer(4)));
 		assertTrue(gb.getIntegerSet().contains(new Integer(5)));
 	}
 
+	/**
+	 * 自定义测试用例：从指定构造方法中获取参数名称列表
+	*/
+	@Test
+	public void testParameterNameDiscoverer() {
+		// 参数类型及个数
+		Class[] classes = new Class[]{Set.class};
+		// 从指定类中根据参数个数和类型，获取唯一的构造函数
+		Constructor constructor = ReflectUtils.getConstructor(GenericBean.class,classes);
+		// 最终处理的实现类为： LocalVariableTableParameterNameDiscoverer
+		ParameterNameDiscoverer parameterNameDiscoverer = bf.getParameterNameDiscoverer();
+		assertNotNull(parameterNameDiscoverer);
+		String[] paramNames = parameterNameDiscoverer.getParameterNames(constructor);
+		assertEquals("integerSet",paramNames[0]);
+	}
+
+	/**
+	 * 自定义测试用例： 判断构造方法上是否有 ConstructorProperties 注解，若有，则取注解中的值
+	 */
+	@Test
+	public void testConstructorPropertiesChecker() {
+		Class[] classes = new Class[]{String.class,Integer.class};
+		Constructor constructor = ReflectUtils.getConstructor(GoatObject.class,classes);
+		Class[] parameterTypes = constructor.getParameterTypes();
+		// 判断否则方法是否有 ConstructorProperties 注解，若有，则取注解中的值
+		String[] evaluate = ConstructorResolver.ConstructorPropertiesChecker.evaluate(constructor, parameterTypes.length);
+		System.out.println(evaluate);
+	}
 
 	/**
 	 * 测试  通过 构造函数 自动注入方式  给GenericBean对象的 integerSet 属性注入值
@@ -207,7 +227,6 @@ public class BeanFactoryGenericsTests {
 	*/
 	@Test
 	public void testGenericSetConstructorWithAutowiring() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		bf.registerSingleton("integer1", new Integer(4));
 		bf.registerSingleton("integer2", new Integer(5));
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
@@ -222,7 +241,6 @@ public class BeanFactoryGenericsTests {
 	// 走 无参构造 函数
 	@Test
 	public void testGenericSetConstructorWithOptionalAutowiring() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
 		rbd.setAutowireMode(RootBeanDefinition.AUTOWIRE_CONSTRUCTOR);
 		bf.registerBeanDefinition("genericBean", rbd);
@@ -233,11 +251,8 @@ public class BeanFactoryGenericsTests {
 	// 测试 Set 和 List 集合构造函数 注入  public GenericBean(Set<Integer> integerSet, List<Resource> resourceList)
 	@Test
 	public void testGenericSetListConstructor() throws Exception {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
-		Set<String> input = new HashSet<>();
-		input.add("4");
-		input.add("5");
+		Set<String> input = new HashSet<String>(){{add("4");add("5");}};
 		List<String> input2 = new ArrayList<>();
 		input2.add("http://localhost:8080");
 		input2.add("http://localhost:9090");
@@ -255,7 +270,7 @@ public class BeanFactoryGenericsTests {
 	// 构造函数 自动注入  public GenericBean(Set<Integer> integerSet, List<Resource> resourceList)
 	@Test
 	public void testGenericSetListConstructorWithAutowiring() throws Exception {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		bf.registerSingleton("integer1", new Integer(4));
 		bf.registerSingleton("integer2", new Integer(5));
 		bf.registerSingleton("resource1", new UrlResource("http://localhost:8080"));
@@ -274,7 +289,7 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericSetListConstructorWithOptionalAutowiring() throws Exception {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		bf.registerSingleton("resource1", new UrlResource("http://localhost:8080"));
 		bf.registerSingleton("resource2", new UrlResource("http://localhost:9090"));
 
@@ -289,15 +304,9 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericSetMapConstructor() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
-
-		Set<String> input = new HashSet<>();
-		input.add("4");
-		input.add("5");
-		Map<String, String> input2 = new HashMap<>();
-		input2.put("4", "5");
-		input2.put("6", "7");
+		Set<String> input = new HashSet<String>(){{add("4");add("5");}};
+		Map<String, String> input2 = new HashMap<String, String>() {{put("4", "5");put("6", "7");}};
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(input);
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(input2);
 
@@ -312,12 +321,9 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericMapResourceConstructor() throws Exception {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
-		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
 
-		Map<String, String> input = new HashMap<>();
-		input.put("4", "5");
-		input.put("6", "7");
+		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
+		Map<String, String> input = new HashMap<String, String>() {{put("4", "5");put("6", "7");}};
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(input);
 		rbd.getConstructorArgumentValues().addGenericArgumentValue("http://localhost:8080");
 
@@ -331,15 +337,10 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericMapMapConstructor() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
-		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
 
-		Map<String, String> input = new HashMap<>();
-		input.put("1", "0");
-		input.put("2", "3");
-		Map<String, String> input2 = new HashMap<>();
-		input2.put("4", "5");
-		input2.put("6", "7");
+		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
+		Map<String, String> input = new HashMap<String, String>() {{put("1", "0");put("2", "3");}};
+		Map<String, String> input2 = new HashMap<String, String>() {{put("4", "5");put("6", "7");}};
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(input);
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(input2);
 
@@ -357,12 +358,9 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericMapMapConstructorWithSameRefAndConversion() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
-		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
 
-		Map<String, String> input = new HashMap<>();
-		input.put("1", "0");
-		input.put("2", "3");
+		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
+		Map<String, String> input = new HashMap<String, String>() {{put("1", "0");put("2", "3");}};
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(input);
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(input);
 
@@ -380,7 +378,7 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericMapMapConstructorWithSameRefAndNoConversion() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
 
 		Map<Short, Integer> input = new HashMap<>();
@@ -400,12 +398,9 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericMapWithKeyTypeConstructor() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
-		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
 
-		Map<String, String> input = new HashMap<>();
-		input.put("4", "5");
-		input.put("6", "7");
+		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
+		Map<String, String> input = new HashMap<String, String>() {{put("4", "5");put("6", "7");}};
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(input);
 
 		bf.registerBeanDefinition("genericBean", rbd);
@@ -417,7 +412,7 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericMapWithCollectionValueConstructor() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		bf.addPropertyEditorRegistrar(new PropertyEditorRegistrar() {
 			@Override
 			public void registerCustomEditors(PropertyEditorRegistry registry) {
@@ -446,13 +441,10 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericSetFactoryMethod() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
 		rbd.setFactoryMethodName("createInstance");
 
-		Set<String> input = new HashSet<>();
-		input.add("4");
-		input.add("5");
+		Set<String> input = new HashSet<String>(){{add("4");add("5");}};
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(input);
 
 		bf.registerBeanDefinition("genericBean", rbd);
@@ -464,13 +456,10 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericSetListFactoryMethod() throws Exception {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
 		rbd.setFactoryMethodName("createInstance");
-
-		Set<String> input = new HashSet<>();
-		input.add("4");
-		input.add("5");
+		Set<String> input = new HashSet<String>(){{add("4");add("5");}};
 		List<String> input2 = new ArrayList<>();
 		input2.add("http://localhost:8080");
 		input2.add("http://localhost:9090");
@@ -488,16 +477,12 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericSetMapFactoryMethod() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
 		rbd.setFactoryMethodName("createInstance");
 
-		Set<String> input = new HashSet<>();
-		input.add("4");
-		input.add("5");
-		Map<String, String> input2 = new HashMap<>();
-		input2.put("4", "5");
-		input2.put("6", "7");
+		Set<String> input = new HashSet<String>(){{add("4");add("5");}};
+		Map<String, String> input2 = new HashMap<String, String>() {{put("4", "5");put("6", "7");}};
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(input);
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(input2);
 
@@ -512,13 +497,10 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericMapResourceFactoryMethod() throws Exception {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
 		rbd.setFactoryMethodName("createInstance");
-
-		Map<String, String> input = new HashMap<>();
-		input.put("4", "5");
-		input.put("6", "7");
+		Map<String, String> input = new HashMap<String, String>() {{put("4", "5");put("6", "7");}};
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(input);
 		rbd.getConstructorArgumentValues().addGenericArgumentValue("http://localhost:8080");
 
@@ -532,16 +514,11 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericMapMapFactoryMethod() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
 		rbd.setFactoryMethodName("createInstance");
-
-		Map<String, String> input = new HashMap<>();
-		input.put("1", "0");
-		input.put("2", "3");
-		Map<String, String> input2 = new HashMap<>();
-		input2.put("4", "5");
-		input2.put("6", "7");
+		Map<String, String> input = new HashMap<String, String>() {{put("1", "0");put("2", "3");}};
+		Map<String, String> input2 = new HashMap<String, String>() {{put("4", "5");put("6", "7");}};
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(input);
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(input2);
 
@@ -556,12 +533,10 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericMapWithKeyTypeFactoryMethod() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
 		rbd.setFactoryMethodName("createInstance");
-		Map<String, String> input = new HashMap<>();
-		input.put("4", "5");
-		input.put("6", "7");
+		Map<String, String> input = new HashMap<String, String>() {{put("4", "5");put("6", "7");}};
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(input);
 		bf.registerBeanDefinition("genericBean", rbd);
 		GenericBean<?> gb = (GenericBean<?>) bf.getBean("genericBean");
@@ -571,7 +546,7 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericMapWithCollectionValueFactoryMethod() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		bf.addPropertyEditorRegistrar(new PropertyEditorRegistrar() {
 			@Override
 			public void registerCustomEditors(PropertyEditorRegistry registry) {
@@ -600,7 +575,7 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericListBean() throws Exception {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(new ClassPathResource("genericBeanTests.xml", getClass()));
 		List<?> list = (List<?>) bf.getBean("list");
 		assertEquals(1, list.size());
@@ -609,7 +584,7 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericSetBean() throws Exception {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(new ClassPathResource("genericBeanTests.xml", getClass()));
 		Set<?> set = (Set<?>) bf.getBean("set");
 		assertEquals(1, set.size());
@@ -618,7 +593,7 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericMapBean() throws Exception {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(new ClassPathResource("genericBeanTests.xml", getClass()));
 		Map<?, ?> map = (Map<?, ?>) bf.getBean("map");
 		assertEquals(1, map.size());
@@ -628,7 +603,7 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericallyTypedIntegerBean() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(new ClassPathResource("genericBeanTests.xml", getClass()));
 		GenericIntegerBean gb = (GenericIntegerBean) bf.getBean("integerBean");
 		assertEquals(new Integer(10), gb.getGenericProperty());
@@ -638,7 +613,7 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericallyTypedSetOfIntegerBean() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(new ClassPathResource("genericBeanTests.xml", getClass()));
 		GenericSetOfIntegerBean gb = (GenericSetOfIntegerBean) bf.getBean("setOfIntegerBean");
 		assertEquals(new Integer(10), gb.getGenericProperty().iterator().next());
@@ -649,7 +624,7 @@ public class BeanFactoryGenericsTests {
 	@Test
 	public void testSetBean() throws Exception {
 		Assume.group(TestGroup.LONG_RUNNING);
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		new XmlBeanDefinitionReader(bf).loadBeanDefinitions(new ClassPathResource("genericBeanTests.xml", getClass()));
 		UrlSet us = (UrlSet) bf.getBean("setBean");
 		assertEquals(1, us.size());
@@ -672,7 +647,7 @@ public class BeanFactoryGenericsTests {
 		rbd.setFactoryMethodName("mock");
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(Runnable.class);
 
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		bf.registerBeanDefinition("mock", rbd);
 
 		assertEquals(Runnable.class, bf.getType("mock"));
@@ -694,7 +669,7 @@ public class BeanFactoryGenericsTests {
 	 */
 	@Test
 	public void parameterizedInstanceFactoryMethod() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		RootBeanDefinition rbd = new RootBeanDefinition(MocksControl.class);
 		bf.registerBeanDefinition("mocksControl", rbd);
 
@@ -714,7 +689,7 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void parameterizedInstanceFactoryMethodWithNonResolvedClassName() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 
 		RootBeanDefinition rbd = new RootBeanDefinition(MocksControl.class);
 		bf.registerBeanDefinition("mocksControl", rbd);
@@ -735,7 +710,7 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void parameterizedInstanceFactoryMethodWithWrappedClassName() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		RootBeanDefinition rbd = new RootBeanDefinition();
 		rbd.setBeanClassName(Mockito.class.getName());
 		rbd.setFactoryMethodName("mock");
@@ -753,7 +728,7 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void parameterizedInstanceFactoryMethodWithInvalidClassName() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		RootBeanDefinition rbd = new RootBeanDefinition(MocksControl.class);
 		bf.registerBeanDefinition("mocksControl", rbd);
 
@@ -773,7 +748,7 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void parameterizedInstanceFactoryMethodWithIndexedArgument() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		RootBeanDefinition rbd = new RootBeanDefinition(MocksControl.class);
 		bf.registerBeanDefinition("mocksControl", rbd);
 
@@ -793,7 +768,7 @@ public class BeanFactoryGenericsTests {
 
 	@Test  // SPR-16720
 	public void parameterizedInstanceFactoryMethodWithTempClassLoader() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		bf.setTempClassLoader(new OverridingClassLoader(getClass().getClassLoader()));
 
 		RootBeanDefinition rbd = new RootBeanDefinition(MocksControl.class);
@@ -815,7 +790,7 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericMatchingWithBeanNameDifferentiation() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		bf.setAutowireCandidateResolver(new GenericTypeAwareAutowireCandidateResolver());
 
 		bf.registerBeanDefinition("doubleStore", new RootBeanDefinition(NumberStore.class));
@@ -838,7 +813,7 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericMatchingWithFullTypeDifferentiation() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		bf.setDependencyComparator(AnnotationAwareOrderComparator.INSTANCE);
 		bf.setAutowireCandidateResolver(new GenericTypeAwareAutowireCandidateResolver());
 
@@ -939,7 +914,7 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericMatchingWithUnresolvedOrderedStream() {
-		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
+
 		bf.setDependencyComparator(AnnotationAwareOrderComparator.INSTANCE);
 		bf.setAutowireCandidateResolver(new GenericTypeAwareAutowireCandidateResolver());
 

@@ -1,5 +1,7 @@
 package org.springframework.tests.sample.objects.goat;
 
+import java.beans.ConstructorProperties;
+
 /**
  * Created by Administrator on 2021/6/27.
  * @ Description: TODO
@@ -8,9 +10,23 @@ package org.springframework.tests.sample.objects.goat;
  */
 public class GoatObject extends GoatBaseObject implements GoatSubInterface {
 
+
 	private String name;
 
 	public Integer age;
+
+	public GoatObject() {
+	}
+
+	public GoatObject(String name) {
+		this.name = name;
+	}
+
+	@ConstructorProperties(value = {"mike","18"})
+	public GoatObject(String name, Integer age) {
+		this.name = name;
+		this.age = age;
+	}
 
 	public String mySelf(){
 		return "self";

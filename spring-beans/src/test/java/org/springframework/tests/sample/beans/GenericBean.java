@@ -2,6 +2,7 @@
 
 package org.springframework.tests.sample.beans;
 
+import java.beans.ConstructorProperties;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -96,10 +97,12 @@ public class GenericBean<T> {
 	}
 
 	public GenericBean(HashMap<Long, ?> longMap) {
+		System.out.println("GenericBean 单参 longMap 构造函数 执行");
 		this.longMap = longMap;
 	}
 
 	public GenericBean(boolean someFlag, Map<Number, Collection<? extends Object>> collectionMap) {
+		System.out.println("GenericBean 双参 someFlag 、 collectionMap 构造函数 执行");
 		this.collectionMap = collectionMap;
 	}
 
@@ -279,9 +282,9 @@ public class GenericBean<T> {
 		this.standardEnumMap = standardEnumMap;
 	}
 
-	public static GenericBean createInstance(Set<Integer> integerSet) {
-		return new GenericBean(integerSet);
-	}
+//	public static GenericBean createInstance(Set<Integer> integerSet) {
+//		return new GenericBean(integerSet);
+//	}
 
 	public static GenericBean createInstance(Set<Integer> integerSet, List<Resource> resourceList) {
 		return new GenericBean(integerSet, resourceList);

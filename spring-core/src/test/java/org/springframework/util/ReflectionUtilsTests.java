@@ -1,7 +1,17 @@
-
-
 package org.springframework.util;
 
+import org.hamcrest.Matchers;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.springframework.cglib.core.ReflectUtils;
+import org.springframework.tests.Assume;
+import org.springframework.tests.TestGroup;
+import org.springframework.tests.sample.objects.TestObject;
+import org.springframework.tests.sample.objects.goat.GoatBaseInterface;
+import org.springframework.tests.sample.objects.goat.GoatObject;
+import org.springframework.tests.sample.objects.goat.GoatSubInterface;
+
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -10,21 +20,22 @@ import java.rmi.RemoteException;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.hamcrest.Matchers;
-import org.junit.Ignore;
-import org.junit.Test;
-
-import org.springframework.tests.Assume;
-import org.springframework.tests.TestGroup;
-import org.springframework.tests.sample.objects.goat.GoatBaseInterface;
-import org.springframework.tests.sample.objects.goat.GoatSubInterface;
-import org.springframework.tests.sample.objects.goat.GoatObject;
-import org.springframework.tests.sample.objects.TestObject;
-
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 public class ReflectionUtilsTests {
+
+	/**
+	 *  从指定类中根据参数个数和类型，获取唯一的构造函数
+	*/
+	@Test
+	public void testGetConstructor() {
+		// 参数类型及个数
+		Class[] classes = new Class[]{String.class,Integer.class};
+		// 在指定类中查找
+		Constructor constructor = ReflectUtils.getConstructor(GoatObject.class,classes);
+		assertNotNull(constructor);
+	}
 
 	/**
 	 * 获取当前类/接口的父级类/接口中的static和default方法，因为接口中只有3中方法：abstract、static、default。

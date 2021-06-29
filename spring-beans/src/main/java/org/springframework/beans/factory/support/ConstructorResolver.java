@@ -119,7 +119,6 @@ class ConstructorResolver {
 				argsToUse = resolvePreparedArguments(beanName, mbd, bw, constructorToUse, argsToResolve, true);
 			}
 		}
-
 		if (constructorToUse == null || argsToUse == null) {
 			// Take specified constructors, if any.
 			// 获取构造方法列表
@@ -183,17 +182,15 @@ class ConstructorResolver {
 				 *   2. 参数数量多的构造方法排在前面
 				 *
 				 * 假设现在有一组构造方法按照上面的排序规则进行排序，排序结果如下（省略参数名称）：
-				 *
 				 *   1. public Hello(Object, Object, Object)
 				 *   2. public Hello(Object, Object)
 				 *   3. public Hello(Object)
 				 *   4. protected Hello(Integer, Object, Object, Object)
 				 *   5. protected Hello(Integer, Object, Object)
 				 *   6. protected Hello(Integer, Object)
-				 *
 				 * argsToUse = [num1, obj2]，可以匹配上的构造方法2和构造方法6。
 				 * 由于构造方法2有 更高的访问权限，所以没理由不选他（尽管后者在参数类型上更加匹配）。
-				 *由于构造方法3参数数量 < argsToUse.length，参数数量上不匹配，也不应该选。
+				 * 由于构造方法3参数数量 < argsToUse.length，参数数量上不匹配，也不应该选。
 				 * 所以argsToUse.length > paramTypes.length 这个条件用途是：在条件constructorToUse != null 成立的情况下，
 				 * 通过判断参数数量与参数值数量（argsToUse.length）是否一致，来决定是否提前终止构造方法匹配逻辑。
 				 */
@@ -213,27 +210,13 @@ class ConstructorResolver {
 				ArgumentsHolder argsHolder;
 				if (resolvedValues != null) {
 					try {
-						/*
-						 * 判断否则方法是否有 ConstructorProperties 注解，若有，则取注解中的值。比如下面的代码：
-						 *  public class Persion {
-						 *      private String name;
-						 *      private Integer age;
-						 *
-						 *      @ConstructorProperties(value = {"coolblog", "20"})
-						 *      public Persion(String name, Integer age) {
-						 *          this.name = name;
-						 *          this.age = age;
-						 *      }
-						 * }
-						 */
+						// 判断否则方法是否有 ConstructorProperties 注解，若有，则取注解中的值
 						String[] paramNames = ConstructorPropertiesChecker.evaluate(candidate, paramTypes.length);
 						if (paramNames == null) {
+							// 默认实现为 LocalVariableTableParameterNameDiscoverer
 							ParameterNameDiscoverer pnd = beanFactory.getParameterNameDiscoverer();
 							if (pnd != null) {
-								/*
-								 * 获取构造方法参数名称列表，比如有这样一个构造方法:public Person(String name, int age, String sex)
-								 * 调用 getParameterNames 方法返回 paramNames = [name, age, sex]
-								 */
+								// 从指定构造方法中获取参数名称列表
 								paramNames = pnd.getParameterNames(candidate);
 							}
 						}
@@ -261,17 +244,14 @@ class ConstructorResolver {
 					}
 					argsHolder = new ArgumentsHolder(explicitArgs);
 				}
-				/*
-				 * 计算参数值（argsHolder.arguments）每个参数类型与构造方法参数列表
-				 * （paramTypes）中参数的类型差异量，差异量越大表明参数类型差异越大。参数类型差异
-				 * 越大，表明当前构造方法并不是一个最合适的候选项。引入差异量（typeDiffWeight）
-				 * 变量目的：是将候选构造方法的参数列表类型与参数值列表类型的差异进行量化，通过量化
-				 * 后的数值筛选出最合适的构造方法。
-				 *
+				/**
+				 * 计算参数值（argsHolder.arguments）每个参数类型与构造方法参数列表（paramTypes）中参数的类型差异量，
+				 * 差异量越大表明参数类型差异越大。参数类型差异越大，表明当前构造方法并不是一个最合适的候选项。
+				 * 引入差异量（typeDiffWeight）变量目的：是将候选构造方法的参数列表类型与参数值列表类型的差异进行量化，
+				 * 通过量化后的数值筛选出最合适的构造方法。
 				 * 讲完差异量，再来说说 mbd.isLenientConstructorResolution() 条件。
-				 * 官方的解释是：返回构造方法的解析模式，有宽松模式（lenient mode）和严格模式
-				 * （strict mode）两种类型可选。具体的细节没去研究，就不多说了。
-				 */
+				 * 官方的解释是：返回构造方法的解析模式，有宽松模式（lenient mode）和严格模式（strict mode）两种类型可选。
+				*/
 				int typeDiffWeight = (mbd.isLenientConstructorResolution() ? argsHolder.getTypeDifferenceWeight(paramTypes) : argsHolder.getAssignabilityWeight(paramTypes));
 				// Choose this constructor if it represents the closest match.
 				if (typeDiffWeight < minTypeDiffWeight) {
@@ -281,10 +261,9 @@ class ConstructorResolver {
 					minTypeDiffWeight = typeDiffWeight;
 					ambiguousConstructors = null;
 				}else if (constructorToUse != null && typeDiffWeight == minTypeDiffWeight) {
-				/*
+				/**
 				 * 如果两个构造方法与参数值类型列表之间的差异量一致，那么这两个方法都可以作为
-				 * 候选项，这个时候就出现歧义了，这里先把有歧义的构造方法放入
-				 * ambiguousConstructors 集合中
+				 * 候选项，这个时候就出现歧义了，这里先把有歧义的构造方法放入ambiguousConstructors 集合中
 				 */
 					if (ambiguousConstructors == null) {
 						ambiguousConstructors = new LinkedHashSet<>();
@@ -304,21 +283,19 @@ class ConstructorResolver {
 				}
 				throw new BeanCreationException(mbd.getResourceDescription(), beanName,"Could not resolve matching constructor (hint: specify index/type/name arguments for simple parameters to avoid type ambiguities)");
 			}else if (ambiguousConstructors != null && !mbd.isLenientConstructorResolution()) {
-			/*
-			 * 如果 constructorToUse != null，且 ambiguousConstructors 也不为空，表明解析
-			 * 出了多个的合适的构造方法，此时就出现歧义了。Spring 不会擅自决定使用哪个构造方法，
-			 * 所以抛出异常。
+			/**
+			 * 如果 constructorToUse != null，且 ambiguousConstructors 也不为空，表明解析出了多个的合适的构造方法，此时就出现歧义了。
+			 * Spring 不会擅自决定使用哪个构造方法，所以抛出异常。
 			 */
 				throw new BeanCreationException(mbd.getResourceDescription(), beanName,"Ambiguous constructor matches found in bean '" + beanName +
 						"'(hint: specify index/type/name arguments for simple parameters to avoid type ambiguities): " + ambiguousConstructors);
 			}
 			if (explicitArgs == null && argsHolderToUse != null) {
-				/*
+				/**
 				 * 缓存相关信息，比如：
 				 *   1. 已解析出的构造方法对象 resolvedConstructorOrFactoryMethod
 				 *   2. 构造方法参数列表是否已解析标志 constructorArgumentsResolved
 				 *   3. 参数值列表 resolvedConstructorArguments 或 preparedConstructorArguments
-				 *
 				 * 这些信息可用在其他地方，用于进行快捷判断
 				 */
 				argsHolderToUse.storeCache(mbd, constructorToUse);
@@ -333,8 +310,7 @@ class ConstructorResolver {
 		try {
 			InstantiationStrategy strategy = beanFactory.getInstantiationStrategy();
 			if (System.getSecurityManager() != null) {
-				return AccessController.doPrivileged((PrivilegedAction<Object>) () ->
-						strategy.instantiate(mbd, beanName, beanFactory, constructorToUse, argsToUse),beanFactory.getAccessControlContext());
+				return AccessController.doPrivileged((PrivilegedAction<Object>) () -> strategy.instantiate(mbd, beanName, beanFactory, constructorToUse, argsToUse),beanFactory.getAccessControlContext());
 			}else {
 				return strategy.instantiate(mbd, beanName, beanFactory, constructorToUse, argsToUse);
 			}
@@ -890,10 +866,12 @@ class ConstructorResolver {
 	}
 
 	/**
+	 * 判断构造方法上是否有 ConstructorProperties 注解，若有，则取注解中的值。 eg：@ConstructorProperties(value = {"mike","18"})
 	 * Delegate for checking Java 6's {@link ConstructorProperties} annotation.
+	 * @see org.springframework.beans.factory.support.BeanFactoryGenericsTests#testConstructorPropertiesChecker() 【测试用例】
 	 */
-	private static class ConstructorPropertiesChecker {
-
+	// modify-  private -> public
+	public static class ConstructorPropertiesChecker {
 		@Nullable
 		public static String[] evaluate(Constructor<?> candidate, int paramCount) {
 			ConstructorProperties cp = candidate.getAnnotation(ConstructorProperties.class);
@@ -908,5 +886,4 @@ class ConstructorResolver {
 			}
 		}
 	}
-
 }

@@ -25,18 +25,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * Implementation of {@link ParameterNameDiscoverer} that uses the LocalVariableTable
- * information in the method attributes to discover parameter names. Returns
- * {@code null} if the class file was compiled without debug information.
+ * Implementation of {@link ParameterNameDiscoverer} that uses the LocalVariableTable information in the method attributes to discover parameter names.
+ * Returns {@code null} if the class file was compiled without debug information.
  *
- * Uses ObjectWeb's ASM library for analyzing class files. Each discoverer instance
- * caches the ASM discovered information for each introspected Class, in a thread-safe
- * manner. It is recommended to reuse ParameterNameDiscoverer instances as far as possible.
- *
- * @author Adrian Colyer
- * @author Costin Leau
-
-
+ * Uses ObjectWeb's ASM library for analyzing class files.
+ * Each discoverer instance caches the ASM discovered information for each introspected Class, in a thread-safe manner.
+ * It is recommended to reuse ParameterNameDiscoverer instances as far as possible.
  * @since 2.0
  */
 public class LocalVariableTableParameterNameDiscoverer implements ParameterNameDiscoverer {
@@ -82,17 +76,14 @@ public class LocalVariableTableParameterNameDiscoverer implements ParameterNameD
 	}
 
 	/**
-	 * Inspects the target class. Exceptions will be logged and a maker map returned
-	 * to indicate the lack of debug information.
+	 * Inspects the target class. Exceptions will be logged and a maker map returned to indicate the lack of debug information.
 	 */
 	private Map<Member, String[]> inspectClass(Class<?> clazz) {
 		InputStream is = clazz.getResourceAsStream(ClassUtils.getClassFileName(clazz));
 		if (is == null) {
-			// We couldn't load the class file, which is not fatal as it
-			// simply means this method of discovering parameter names won't work.
+			// We couldn't load the class file, which is not fatal as it  simply means this method of discovering parameter names won't work.
 			if (logger.isDebugEnabled()) {
-				logger.debug("Cannot find '.class' file for class [" + clazz +
-						"] - unable to determine constructor/method parameter names");
+				logger.debug("Cannot find '.class' file for class [" + clazz + "] - unable to determine constructor/method parameter names");
 			}
 			return NO_DEBUG_INFO_MAP;
 		}
@@ -101,25 +92,19 @@ public class LocalVariableTableParameterNameDiscoverer implements ParameterNameD
 			Map<Member, String[]> map = new ConcurrentHashMap<>(32);
 			classReader.accept(new ParameterNameDiscoveringVisitor(clazz, map), 0);
 			return map;
-		}
-		catch (IOException ex) {
+		}catch (IOException ex) {
 			if (logger.isDebugEnabled()) {
-				logger.debug("Exception thrown while reading '.class' file for class [" + clazz +
-						"] - unable to determine constructor/method parameter names", ex);
+				logger.debug("Exception thrown while reading '.class' file for class [" + clazz + "] - unable to determine constructor/method parameter names", ex);
 			}
-		}
-		catch (IllegalArgumentException ex) {
+		}catch (IllegalArgumentException ex) {
 			if (logger.isDebugEnabled()) {
 				logger.debug("ASM ClassReader failed to parse class file [" + clazz +
-						"], probably due to a new Java class file version that isn't supported yet " +
-						"- unable to determine constructor/method parameter names", ex);
+						"], probably due to a new Java class file version that isn't supported yet - unable to determine constructor/method parameter names", ex);
 			}
-		}
-		finally {
+		}finally {
 			try {
 				is.close();
-			}
-			catch (IOException ex) {
+			}catch (IOException ex) {
 				// ignore
 			}
 		}

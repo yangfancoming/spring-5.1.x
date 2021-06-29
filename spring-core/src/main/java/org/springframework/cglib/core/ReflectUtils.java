@@ -281,6 +281,12 @@ public class ReflectUtils {
 		}
 	}
 
+	/**
+	 * 从指定类中根据参数个数和类型，获取唯一的构造函数
+	 * @param type 再哪个类中获取
+	 * @param parameterTypes 参数的类型和个数
+	 * @see org.springframework.util.ReflectionUtilsTests#testGetConstructor() 【测试用例】
+	*/
 	public static Constructor getConstructor(Class type, Class[] parameterTypes) {
 		try {
 			Constructor constructor = type.getDeclaredConstructor(parameterTypes);

@@ -305,6 +305,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 					}else { //如果上述条件都不满足，则创建一个Constructor对象，该对象的初始值是0，仅仅起到一个占位作用。
 						candidateConstructors = new Constructor<?>[0];
 					}
+					logger.warn("【IOC容器中 缓存构造函数  】 beanName： " + beanClass.getName());
 					this.candidateConstructorsCache.put(beanClass, candidateConstructors);  // 缓存构造方法
 				}
 			}
