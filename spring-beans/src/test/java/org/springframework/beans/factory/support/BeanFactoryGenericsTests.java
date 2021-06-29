@@ -97,7 +97,7 @@ public class BeanFactoryGenericsTests {
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericIntegerBean.class);
 		rbd.setAutowireMode(RootBeanDefinition.AUTOWIRE_BY_TYPE); // AUTOWIRE_BY_NAME AUTOWIRE_BY_TYPE
 		bf.registerBeanDefinition("genericBean", rbd);
-		// 走 getBean doCreateBean populate  initializeBean invokeInitMethod 流程，再populate中 寻找依赖
+		// 走 getBean doCreateBean populate initializeBean invokeInitMethod 流程，再populate中 寻找依赖
 		GenericIntegerBean gb = (GenericIntegerBean) bf.getBean("genericBean");
 		assertEquals(new UrlResource("http://localhost:8080"), gb.getResourceList().get(0));
 		assertEquals(new UrlResource("http://localhost:9090"), gb.getResourceList().get(1));
@@ -221,7 +221,6 @@ public class BeanFactoryGenericsTests {
 	/**
 	 * 测试  通过 构造函数 自动注入方式  给GenericBean对象的 integerSet 属性注入值
 	 * @see AbstractAutowireCapableBeanFactory#autowireConstructor(java.lang.String, org.springframework.beans.factory.support.RootBeanDefinition, java.lang.reflect.Constructor[], java.lang.Object[])
-	 *
 	 * 同上面测试用例
 	 * @see BeanFactoryGenericsTests#testGenericListPropertyWithAutowiring()
 	*/
@@ -233,6 +232,7 @@ public class BeanFactoryGenericsTests {
 		// 通过 构造函数 自动注入方式   走 public GenericBean(Set<Integer> integerSet) 单参构造函数
 		rbd.setAutowireMode(RootBeanDefinition.AUTOWIRE_CONSTRUCTOR);
 		bf.registerBeanDefinition("genericBean", rbd);
+
 		GenericBean<?> gb = (GenericBean<?>) bf.getBean("genericBean");
 		assertTrue(gb.getIntegerSet().contains(new Integer(4)));
 		assertTrue(gb.getIntegerSet().contains(new Integer(5)));

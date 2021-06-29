@@ -2,7 +2,6 @@
 
 package org.springframework.tests.sample.beans;
 
-import java.beans.ConstructorProperties;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;

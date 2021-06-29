@@ -866,12 +866,14 @@ class ConstructorResolver {
 	}
 
 	/**
-	 * 判断构造方法上是否有 ConstructorProperties 注解，若有，则取注解中的值。 eg：@ConstructorProperties(value = {"mike","18"})
 	 * Delegate for checking Java 6's {@link ConstructorProperties} annotation.
-	 * @see org.springframework.beans.factory.support.BeanFactoryGenericsTests#testConstructorPropertiesChecker() 【测试用例】
 	 */
 	// modify-  private -> public
 	public static class ConstructorPropertiesChecker {
+		/**
+		 * 判断构造方法上是否有 ConstructorProperties 注解，若有，则取注解中的值。 eg：@ConstructorProperties(value = {"mike","18"})
+		 * @see org.springframework.beans.factory.support.BeanFactoryGenericsTests#testConstructorPropertiesChecker() 【测试用例】
+		*/
 		@Nullable
 		public static String[] evaluate(Constructor<?> candidate, int paramCount) {
 			ConstructorProperties cp = candidate.getAnnotation(ConstructorProperties.class);
