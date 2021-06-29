@@ -29,14 +29,26 @@ public class DefaultSingletonBeanRegistryTests {
 		System.out.println(singletonMutex.containsKey("2"));
 	}
 
-	// 测试 key相同 不能覆盖 而是抛出异常
-	@Test
-	public void testSingletons1() {
+
+	/**
+	 * 测试 key相同 不能覆盖 而是抛出异常
+	*/
+	@Test(expected = IllegalStateException.class)
+	public void testGetSingletonMutex() {
 		TestBean tb = new TestBean();
 		beanRegistry.registerSingleton("test1", tb);
 		beanRegistry.registerSingleton("test1", tb);
 		Map<String, Object> singletonMutex = (Map<String, Object>) beanRegistry.getSingletonMutex();
 		System.out.println(singletonMutex);
+	}
+
+	@Test
+	public void testGetSingleton() {
+		TestBean tb = new TestBean();
+		tb.setName("goat");
+		beanRegistry.registerSingleton("tb", tb);
+		TestBean testBean = (TestBean) beanRegistry.getSingleton("tb");
+		assertSame("goat",testBean.getName());
 	}
 
 	@Test
@@ -47,6 +59,8 @@ public class DefaultSingletonBeanRegistryTests {
 
 		TestBean tb2 = (TestBean) beanRegistry.getSingleton("tb2", ()->new TestBean());
 		assertSame(tb2, beanRegistry.getSingleton("tb2"));
+
+		assertNotSame(tb,tb2);
 
 		assertEquals(2, beanRegistry.getSingletonCount());
 		String[] names = beanRegistry.getSingletonNames();

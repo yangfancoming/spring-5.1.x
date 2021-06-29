@@ -195,10 +195,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 */
 	@SuppressWarnings("unchecked")
 	protected <T> T doGetBean(final String name, @Nullable final Class<T> requiredType,@Nullable final Object[] args, boolean typeCheckOnly) throws BeansException {
-		// 1、转换bean的名称,可能是工厂bean（需要去掉&前缀）,也可能是bean的别名（优先使用别名）
-		// 获取beanName，处理两种情况，一个是前面说的 FactoryBean(前面带 ‘&’)，再一个这个方法是可以根据别名来获取Bean的，所以在这里是要转换成最正统的BeanName
-		// 主要逻辑就是如果是FactoryBean就把&去掉如果是别名就把根据别名获取真实名称
-		// 普通bean直接去beanName， FactoryBean取去掉'&'前缀的beanName
+		// 先去掉beanName中的所有&前缀，然后再获取其正名
 		final String beanName = transformedBeanName(name);
 		// 最后的返回值
 		Object bean;
@@ -763,14 +760,13 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	//---------------------------------------------------------------------
 
 	/**
+	 * 先去掉beanName中的所有&前缀，然后再获取其正名
 	 * Return the bean name, stripping out the factory dereference prefix if necessary,and resolving aliases to canonical names.
-	 * 返回bean名称，必要时除去工厂取消引用前缀，并将别名解析为规范名称。
 	 * 需要转换的2个原因：
 	 * 	1.如果是FactoryBean,会去掉Bean开头的&符号
 	 * 	2.可能存在传入别名且别名存在多重映射的情况，这里会返回最终的名字，如存在多层别名映射A->B->C->D，传入D,最终会返回A
-	 * @param name the user-specified name  传入进来的name 可能是别名、也可能是工厂bean的名称，所以在这里需要转换
+	 * @param name the user-specified name
 	 * @return the transformed bean name
-	 * 转换并规范beanName
 	 */
 	protected String transformedBeanName(String name) {
 		return canonicalName(BeanFactoryUtils.transformedBeanName(name));
@@ -1347,19 +1343,19 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	//---------------------------------------------------------------------
 	// Implementation of BeanFactory interface
 	//---------------------------------------------------------------------
-	//获取IOC容器中指定名称的Bean
+	// 通过bean名称 获取容器中的bean
 	@Override
 	public Object getBean(String name) throws BeansException {
 		return doGetBean(name, null, null, false);
 	}
 
-	//获取IOC容器中指定名称和类型的Bean
+	// 通过bean名称和类型 获取容器中的bean
 	@Override
 	public <T> T getBean(String name, Class<T> requiredType) throws BeansException {
 		return doGetBean(name, requiredType, null, false);
 	}
 
-	//获取IOC容器中指定名称和参数的Bean
+	// 通过bean名称和参数 获取容器中的bean
 	@Override
 	public Object getBean(String name, Object... args) throws BeansException {
 		return doGetBean(name, null, args, false);

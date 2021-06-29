@@ -1,5 +1,3 @@
-
-
 package org.springframework.core;
 
 import org.junit.Test;
@@ -12,18 +10,24 @@ public class SimpleAliasRegistryTests {
 
 	SimpleAliasRegistry registry = new SimpleAliasRegistry();
 
-	// 与map不同点：  测试 如果证明和别名相同，则直接删除，因为真实的名字和别名相同没有意义
-	// 源码搜索串： if (alias.equals(name)) {
+	/**
+	 * 与map不同点：  测试 如果正名和别名相同，则直接删除，因为真实的名字和别名相同没有意义
+	 * @see SimpleAliasRegistry#registerAlias(java.lang.String, java.lang.String)
+	 * aliasMap.remove(alias);
+	*/
 	@Test
 	public void registerAlias1() {
 		registry.registerAlias("李彦伯", "老K");
 		assertEquals(1, registry.aliasMap.size()); // 成功注册一个别名
 		registry.registerAlias("老K", "老K");
-		assertEquals(0, registry.aliasMap.size()); // 别名与正名相同 通过key为Goat 进行删除
+		assertEquals(0, registry.aliasMap.size()); // 别名与正名相同 通过key为老K 进行删除
 	}
 
-	// 与map相同点： 别名作为key  不会重复
-	// 源码搜索串： if (logger.isDebugEnabled()) logger.debug("Overriding alias '"
+	/**
+	 * 与map相同点： 别名作为key  不会重复
+	 * @see SimpleAliasRegistry#registerAlias(java.lang.String, java.lang.String)
+	 * aliasMap.put(alias, name);
+	 */
 	@Test
 	public void registerAlias2() {
 		registry.registerAlias("李彦伯", "老K"); // 成功注册一个别名
@@ -49,8 +53,11 @@ public class SimpleAliasRegistryTests {
 		assertEquals(Collections.singletonMap("老K", "李彦伯"), registry.aliasMap);
 	}
 
-	//  与map不同点：  测试 如果注册两个别名和正名顺序颠倒  将抛出异常
-	// 源码搜索串：  checkForAliasCircle(name, alias);
+	/**
+	 * 与map不同点：  测试 如果注册两个别名和正名顺序颠倒  将抛出异常
+	 * @see SimpleAliasRegistry#registerAlias(java.lang.String, java.lang.String)
+	 * @see SimpleAliasRegistry#checkForAliasCircle(java.lang.String, java.lang.String)
+	 */
 	@Test(expected = IllegalStateException.class)
 	public void registerAlias5() {
 		registry.registerAlias("李彦伯", "老K");

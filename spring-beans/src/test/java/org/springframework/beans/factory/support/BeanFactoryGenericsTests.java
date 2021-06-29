@@ -179,11 +179,11 @@ public class BeanFactoryGenericsTests {
 		assertFalse(rbd.hasConstructorArgumentValues());
 		// 匿名内部类+初始化块
 		Set<String> input = new HashSet<String>(){{add("4");add("5");}};
-		// 通过 构造函数注入方式
+		// 设置：通过 构造函数注入方式
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(input);
 		assertTrue(rbd.hasConstructorArgumentValues());
 		bf.registerBeanDefinition("genericBean", rbd);
-		// getBean 触发构造函数注入
+		// 使用：getBean 触发构造函数注入
 		GenericBean<?> gb = (GenericBean<?>) bf.getBean("genericBean");
 		assertTrue(gb.getIntegerSet().contains(new Integer(4)));
 		assertTrue(gb.getIntegerSet().contains(new Integer(5)));

@@ -295,11 +295,11 @@ public class BeanFactoryUtilsTests {
 		assertTrue(Arrays.equals(new String[] { "buffer" }, deps));
 	}
 
-	/**
-	 * ----------------------自定义测试----------------
-	 * 测试前 请先注释掉 @Before
-	*/
+	// * ----------------------自定义测试----------------* 测试前 请先注释掉 @Before
 
+	/**
+	 * 去掉给定字符串中所有的 & 前缀。 (有缓存功能)
+	*/
 	@Test
 	public void testTransformedBeanName() {
 		// 多个&符的情况下
@@ -312,6 +312,5 @@ public class BeanFactoryUtilsTests {
 		assertEquals("test",  BeanFactoryUtils.transformedBeanName(test2));
 		assertEquals("test&&",  BeanFactoryUtils.transformedBeanName(test3));
 	}
-
 
 }

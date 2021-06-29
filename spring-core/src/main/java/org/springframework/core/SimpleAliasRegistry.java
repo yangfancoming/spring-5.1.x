@@ -120,13 +120,7 @@ public class SimpleAliasRegistry implements AliasRegistry {
 	 * 确定原始名称，将别名解析为规范名称。( 链式别名解析到最根源的正名)
 	 * @param name the user-specified name
 	 * @return the transformed name
-	 * 	registry.registerAlias("李彦伯", "李亮亮");
-	 * 	registry.registerAlias("李亮亮", "老K");
-	 * 	registry.registerAlias("老K", "JQK");
-	 *
-	 * 	assertSame("李彦伯", registry.canonicalName("李亮亮"));
-	 * 	assertSame("李彦伯", registry.canonicalName("老K"));
-	 * 	assertSame("李彦伯", registry.canonicalName("JQK"));
+	 * @see org.springframework.core.SimpleAliasRegistryTests#testAliasChaining() 【测试用例】
 	 */
 	public String canonicalName(String name) {
 		String canonicalName = name; // doit  该行去掉 函数参数改成canonicalName 貌似也可以？
@@ -149,7 +143,6 @@ public class SimpleAliasRegistry implements AliasRegistry {
 		Assert.hasText(alias, "'alias' must not be empty");
 		// 此处注意：很多人疑问的地方，既然aliasMap已经使用了ConcurrentHashMap，为何此处还要加锁呢？有必要吗？
 		// 答：非常有必要的。因为ConcurrentHashMap只能保证单个put、remove方法的原子性。而不能保证多个操作同时的原子性。比如我一边添加、一边删除  显然这是不被允许的
-		// doit ？该怎么理解这句话呢？？？
 		synchronized (aliasMap) {
 			// 如果真实的beanName和要注册的别名相同，则直接删除，因为真实的名字和别名相同没有意义
 			if (alias.equals(name)) {
@@ -160,7 +153,7 @@ public class SimpleAliasRegistry implements AliasRegistry {
 				String registeredName = aliasMap.get(alias);
 				// 如果 正名 已经在缓存中存在
 				if (registeredName != null) {
-					// An existing alias - no need to re-register  如果正名已经在缓存中存在，并且缓存中的正名和传入的正名相同,则直接返回,没有必要再注册一次
+					// An existing alias - no need to re-register  并且缓存中的正名和传入的正名相同,则直接返回,没有必要再注册一次
 					if (registeredName.equals(name)) return;
 					// 缓存中存在别名,且不允许覆盖,抛出异常
 					if (!allowAliasOverriding()) {
@@ -170,8 +163,7 @@ public class SimpleAliasRegistry implements AliasRegistry {
 				}
 				// 检测别名和正名是否有循环引用注册，有则抛出异常。  eg："李彦伯" --- > "老K"  又 "老K" --- > "李彦伯"  则抛出异常
 				checkForAliasCircle(name, alias);
-				// 注册别名 // 将别名作为key，目标bean名称作为值注册到存储别名的Map中
-				// 缓存别名
+				// 注册： 将别名作为key，目标beanName作为值注册到别名Map中，可以覆盖。
 				aliasMap.put(alias, name);
 				if (logger.isTraceEnabled()) logger.trace("Alias definition '" + alias + "' registered for name '" + name + "'");
 			}
