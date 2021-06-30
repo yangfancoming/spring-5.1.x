@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns="http://www.springframework.org/schema/beans"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" default-autowire="byName">
+
+	<bean name="mongoDao" class="com.goat.chapter201.autowire.MongoDao"/>
+	<bean name="mysqlDao" class="com.goat.chapter201.autowire.MySqlDao"/>
+
+	<!-- 非自动注入，手动配置依赖 -->
+	<bean name="service-without-autowire" class="com.goat.chapter201.autowire.Service" autowire="no">
+		<property name="mysqlDao" ref="mysqlDao"/>
+		<property name="mongoDao" ref="mongoDao"/>
+	</bean>
+
+</beans>

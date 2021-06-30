@@ -5,7 +5,7 @@
 
 	<bean id="person" class="com.goat.chapter201.model.Person">
 		<property name="name" value="jordan"/>
-		<property name="age" value="123"/>
+		<property name="age" value="23"/>
 	</bean>
 
 	<!--

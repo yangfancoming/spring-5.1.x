@@ -3,14 +3,9 @@
 	   xmlns="http://www.springframework.org/schema/beans"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" default-autowire="byName">
 
+
 	<bean name="mongoDao" class="com.goat.chapter201.autowire.MongoDao"/>
 	<bean name="mysqlDao" class="com.goat.chapter201.autowire.MySqlDao"/>
-
-	<!-- 非自动注入，手动配置依赖 -->
-	<bean name="service-without-autowire" class="com.goat.chapter201.autowire.Service" autowire="no">
-		<property name="mysqlDao" ref="mysqlDao"/>
-		<property name="mongoDao" ref="mongoDao"/>
-	</bean>
 
 	<!-- 通过设置 autowire 属性，我们就不需要像上面那样显式配置依赖了 -->
 	<bean name="service-with-autowire" class="com.goat.chapter201.autowire.Service" autowire="byName"/>

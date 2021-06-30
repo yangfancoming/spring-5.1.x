@@ -1,4 +1,4 @@
-package com.goat.chapter201.factoryBean;
+package com.goat.chapter201.factoryBean.item03;
 
 /**
  * Created by Administrator on 2021/6/27.

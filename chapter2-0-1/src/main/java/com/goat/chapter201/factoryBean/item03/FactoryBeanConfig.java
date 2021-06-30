@@ -1,4 +1,4 @@
-package com.goat.chapter201.factoryBean;
+package com.goat.chapter201.factoryBean.item03;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

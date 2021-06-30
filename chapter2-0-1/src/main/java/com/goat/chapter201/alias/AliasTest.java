@@ -3,11 +3,13 @@ package com.goat.chapter201.alias;
 import com.goat.chapter201.model.Person;
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+
 /**
- * 源码搜索串： processAliasRegistration(ele);
+ * @see DefaultBeanDefinitionDocumentReader#processAliasRegistration(org.w3c.dom.Element)
  */
 public class AliasTest  {
 
@@ -23,20 +25,8 @@ public class AliasTest  {
 		// 验证 通过不同的别名 获取的都是同一个bean
 		Assert.assertTrue(person1 == person2 );
 		Assert.assertTrue(person2 == person3 );
-		System.out.println(person1.toString());
-	}
-
-	@Test
-	public void test2(){
-		String str = "1";
-		System.out.println(str);
-		String gaga = gaga(str);
-		System.out.println(gaga);
-		System.out.println(str);
-	}
-	public String gaga(String string){
-		string = string + "1";
-		return string;
+		Assert.assertEquals("jordan",person3.getName());
+		Assert.assertEquals(23,person3.getAge());
 	}
 
 }

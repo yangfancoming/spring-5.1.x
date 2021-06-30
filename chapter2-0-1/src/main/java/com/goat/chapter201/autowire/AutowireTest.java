@@ -7,8 +7,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class AutowireTest {
 
-	ApplicationContext context = new ClassPathXmlApplicationContext("classpath:autowire.xml");
-
 	/**
 	 *  测试 autowire  通过 byName 方式
 	 * 从测试结果可以看出，两种方式配置方式都能完成解决 bean 之间的依赖问题。
@@ -16,8 +14,14 @@ public class AutowireTest {
 	 * 这里举的例子比较简单，假使一个 bean 依赖了十几二十个 bean，再手动去配置，恐怕就很难受了。
 	 */
 	@Test
-	public void test31(){
+	public void test1(){
+		ApplicationContext context = new ClassPathXmlApplicationContext("classpath:autowire1.xml");
 		System.out.println("service-without-autowire -> " + context.getBean("service-without-autowire"));
+	}
+
+	@Test
+	public void test2(){
+		ApplicationContext context = new ClassPathXmlApplicationContext("classpath:autowire2.xml");
 		System.out.println("service-with-autowire -> " + context.getBean("service-with-autowire"));
 	}
 }
