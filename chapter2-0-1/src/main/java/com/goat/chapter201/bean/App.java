@@ -1,6 +1,6 @@
 package com.goat.chapter201.bean;
 
-import com.goat.chapter201.common.Person;
+import com.goat.chapter201.model.Person;
 import org.junit.Test;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.PropertyAccessor;

@@ -1,6 +1,6 @@
 package com.goat.chapter201.factorymethod;
 
-import com.goat.chapter201.common.Person;
+import com.goat.chapter201.model.Person;
 
 /**
  * Created by 64274 on 2019/8/16.

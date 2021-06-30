@@ -1,6 +1,6 @@
 package com.goat.chapter201.alias;
 
-import com.goat.chapter201.common.Person;
+import com.goat.chapter201.model.Person;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;

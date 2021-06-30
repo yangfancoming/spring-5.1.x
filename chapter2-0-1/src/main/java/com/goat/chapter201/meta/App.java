@@ -1,6 +1,6 @@
 package com.goat.chapter201.meta;
 
-import com.goat.chapter201.common.Person;
+import com.goat.chapter201.model.Person;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
