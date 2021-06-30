@@ -1,11 +1,15 @@
-package com.goat.chapter201.autowire;
+package com.goat.chapter201.autowire.item01;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
-public class AutowireTest {
+/**
+ * 自动注入  xml 版
+*/
+public class App {
 
 	/**
 	 *  测试 autowire  通过 byName 方式
@@ -16,12 +20,12 @@ public class AutowireTest {
 	@Test
 	public void test1(){
 		ApplicationContext context = new ClassPathXmlApplicationContext("classpath:autowire1.xml");
-		System.out.println("service-without-autowire -> " + context.getBean("service-without-autowire"));
+		Assert.assertTrue(context.containsBean("service-without-autowire"));
 	}
 
 	@Test
 	public void test2(){
 		ApplicationContext context = new ClassPathXmlApplicationContext("classpath:autowire2.xml");
-		System.out.println("service-with-autowire -> " + context.getBean("service-with-autowire"));
+		Assert.assertTrue(context.containsBean("service-with-autowire"));
 	}
 }

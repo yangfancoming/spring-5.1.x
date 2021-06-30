@@ -1,4 +1,6 @@
-package com.goat.chapter201.autowire;
+package com.goat.chapter201.autowire.item01;
+
+import com.goat.chapter201.autowire.Dao;
 
 /**
  * Created by 64274 on 2019/8/16.

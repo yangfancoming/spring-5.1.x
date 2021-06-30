@@ -7,4 +7,4 @@ package com.goat.chapter201.autowire;
  * @ author  山羊来了
  * @ date 2019/8/16---11:45
  */
-public class MySqlDao implements Dao {}
+public class MysqlDao implements Dao {}
