@@ -45,9 +45,9 @@ public class App {
 	 */
 	@Test
 	public void test2(){
-//		ApplicationContext ac1 = new AnnotationConfigApplicationContext(Config.class);
-//		Person person1 = ac1.getBean(Person.class);
-//		System.out.println(person1); // person1 是真实的对象
+		ApplicationContext ac1 = new AnnotationConfigApplicationContext(Config.class);
+		Person person1 = ac1.getBean(Person.class);
+		System.out.println(person1); // person1 是真实的对象
 		ApplicationContext ac2 = new AnnotationConfigApplicationContext(Config2.class);
 		Person person2 = ac2.getBean(Person.class);
 		System.out.println(person2); // person2 是被cglib代理的对象

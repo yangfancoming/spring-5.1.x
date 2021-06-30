@@ -1,7 +1,6 @@
-package com.goat.chapter105.item02;
+package com.goat.chapter201.componentscan.item03;
 
-import com.goat.chapter105.MyTypeFilter;
-import com.goat.chapter105.common.TestDummy;
+import com.goat.chapter201.common.TestDummy;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
@@ -13,9 +12,9 @@ import org.springframework.stereotype.Service;
  * @ author  山羊来了
  * @ date 2020/3/17---13:48
  */
-@Configuration // 该注解就相当于传统的xml文件
+@Configuration
 @ComponentScan(
-		value="com.goat.chapter105.common",
+		value="com.goat.chapter201.common",
 		//includeFilters 是扫描结果是只包含，includeFilters 若想生效必须配置 useDefaultFilters = false ！
 		includeFilters = {
 				// 只加载包含有@Service注解的bean

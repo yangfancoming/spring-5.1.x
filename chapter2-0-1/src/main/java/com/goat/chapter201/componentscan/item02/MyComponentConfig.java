@@ -1,4 +1,4 @@
-package com.goat.chapter201.componentscan;
+package com.goat.chapter201.componentscan.item02;
 
 import org.springframework.context.annotation.ComponentScan;
 

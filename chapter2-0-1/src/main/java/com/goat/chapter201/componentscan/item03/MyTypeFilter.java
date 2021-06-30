@@ -1,4 +1,4 @@
-package com.goat.chapter105;
+package com.goat.chapter201.componentscan.item03;
 
 import org.springframework.core.type.ClassMetadata;
 import org.springframework.core.type.classreading.MetadataReader;
@@ -32,5 +32,4 @@ public class MyTypeFilter implements TypeFilter {
 		}
 		return false;
 	}
-
 }
