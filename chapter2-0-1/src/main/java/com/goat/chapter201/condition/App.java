@@ -1,6 +1,5 @@
-package com.goat.chapter105.condition;
+package com.goat.chapter201.condition;
 
-import com.goat.chapter105.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -21,9 +20,9 @@ import org.springframework.context.annotation.ConfigurationClassParser;
  * 2. 解析@Configuration类
  * @see ConfigurationClassParser#processConfigurationClass(org.springframework.context.annotation.ConfigurationClass)
  * 3. 解析被@ComponentScan注解的类
- * @see ConfigurationClassParser#doProcessConfigurationClass(org.springframework.context.annotation.ConfigurationClass, org.springframework.context.annotation.ConfigurationClassParser.SourceClass)
+ * @see ConfigurationClassParser#doProcessConfigurationClass(org.springframework.context.annotation.ConfigurationClass, ConfigurationClassParser.SourceClass)
  */
-public class App extends BaseTest {
+public class App {
 
 	/**
 	 * @Conditional 作用在主配置类上  返回条件为 true

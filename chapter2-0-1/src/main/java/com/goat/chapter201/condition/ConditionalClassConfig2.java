@@ -1,6 +1,6 @@
-package com.goat.chapter105.condition;
+package com.goat.chapter201.condition;
 
-import com.goat.chapter105.model.Person;
+import com.goat.chapter201.common.Person;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;

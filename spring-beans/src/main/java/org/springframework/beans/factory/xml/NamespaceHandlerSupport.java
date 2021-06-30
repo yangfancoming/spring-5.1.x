@@ -55,8 +55,7 @@ public abstract class NamespaceHandlerSupport implements NamespaceHandler {
 	}
 
 	/**
-	 * Locates the {@link BeanDefinitionParser} from the register implementations using
-	 * the local name of the supplied {@link Element}.
+	 * Locates the {@link BeanDefinitionParser} from the register implementations using the local name of the supplied {@link Element}.
 	 */
 	@Nullable
 	private BeanDefinitionParser findParserForElement(Element element, ParserContext parserContext) {

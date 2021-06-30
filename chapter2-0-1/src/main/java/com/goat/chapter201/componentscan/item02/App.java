@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 /**
  * Created by Administrator on 2020/4/24.
- * @ Description: <context:component-scan> 标签解析 注解版
+ * @ Description: 测试 component-scan 的 value 属性 注解版
  * @ author  山羊来了
  * @ date 2020/4/24---14:28
  */

@@ -14,6 +14,11 @@ public class Person {
 		System.out.println("Person 构造函数执行");
 	}
 
+	public Person(String name, int age) {
+		this.name = name;
+		this.age = age;
+	}
+
 	private String name;
 	private int age;
 	private int phone;
