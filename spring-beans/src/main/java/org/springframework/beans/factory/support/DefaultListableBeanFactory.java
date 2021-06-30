@@ -419,25 +419,27 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
 	private String[] doGetBeanNamesForType(ResolvableType type, boolean includeNonSingletons, boolean allowEagerInit) {
 		List<String> result = new ArrayList<>();
-		// 1.首先在 beanDefinitionMap 中去查找，再去手动注册bean集合（manualSingletonNames）中去查找
+		// 1.首先在 beanDefinitionNames 中去查找，再去手动注册bean集合（manualSingletonNames）中去查找
 		// Check all bean definitions.
 		for (String beanName : beanDefinitionNames) {
-			// Only consider bean as eligible if the bean name
-			// is not defined as alias for some other bean.
+			// Only consider bean as eligible if the bean name is not defined as alias for some other bean.
+			// 只考虑没有别名的bean， 有别名的bean直接忽略
 			if (!isAlias(beanName)) {// 不是别名
 				try {
 					// 根据beanName获取RootBeanDefinition
 					RootBeanDefinition mbd = getMergedLocalBeanDefinition(beanName);
 					// Only check bean definition if it is complete.
 					// RootBeanDefinition中的Bean不是抽象类、非延迟初始化
-					if (!mbd.isAbstract() && (allowEagerInit || (mbd.hasBeanClass() || !mbd.isLazyInit() || isAllowEagerClassLoading()) && !requiresEagerInitForType(mbd.getFactoryBeanName()))) {
+					if (!mbd.isAbstract() &&
+							(allowEagerInit || (mbd.hasBeanClass() || !mbd.isLazyInit() || isAllowEagerClassLoading()) && !requiresEagerInitForType(mbd.getFactoryBeanName()))) {
 						// In case of FactoryBean, match object created by FactoryBean.  // 是不是FactoryBean的子类
 						boolean isFactoryBean = isFactoryBean(beanName, mbd);
 						BeanDefinitionHolder dbd = mbd.getDecoratedDefinition();
 						// 这里我们其他的几个变量的意思都差不多  我们需要重点关注的是isTypeMatch这个方法
 						// 如果isTypeMatch这个方法返回true的话，我们会把这个beanName即factoryBeanLearn 放入到result中返回
-						boolean matchFound = (allowEagerInit || !isFactoryBean || (dbd != null && !mbd.isLazyInit()) || containsSingleton(beanName)) &&
-										(includeNonSingletons || (dbd != null ? mbd.isSingleton() : isSingleton(beanName))) && isTypeMatch(beanName, type);
+						boolean matchFound = (allowEagerInit || !isFactoryBean || (dbd != null && !mbd.isLazyInit()) || containsSingleton(beanName))
+								&& (includeNonSingletons || (dbd != null ? mbd.isSingleton() : isSingleton(beanName)))
+								&& isTypeMatch(beanName, type);
 						if (!matchFound && isFactoryBean) {
 							// In case of FactoryBean, try to match FactoryBean instance itself next.
 							//如果不匹配，还是FactoryBean的子类 这里会把beanName变为 &beanName
@@ -445,7 +447,9 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 							//判断类型匹配不匹配
 							matchFound = (includeNonSingletons || mbd.isSingleton()) && isTypeMatch(beanName, type);
 						}
-						if (matchFound) result.add(beanName);
+						if (matchFound) {
+							result.add(beanName);
+						}
 					}
 				}catch (CannotLoadBeanClassException ex) {
 					if (allowEagerInit) throw ex;

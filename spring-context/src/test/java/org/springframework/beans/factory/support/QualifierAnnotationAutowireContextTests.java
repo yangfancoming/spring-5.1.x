@@ -130,14 +130,12 @@ public class QualifierAnnotationAutowireContextTests {
 		ConstructorArgumentValues cavs = new ConstructorArgumentValues();
 		cavs.addGenericArgumentValue(JUERGEN);
 		RootBeanDefinition person = new RootBeanDefinition(QualifiedPerson.class, cavs, null);
-		context.registerBeanDefinition(JUERGEN,
-				ScopedProxyUtils.createScopedProxy(new BeanDefinitionHolder(person, JUERGEN), context, true).getBeanDefinition());
-		context.registerBeanDefinition("autowired",
-				new RootBeanDefinition(QualifiedMethodParameterTestBean.class));
+		BeanDefinitionHolder scopedProxy = ScopedProxyUtils.createScopedProxy(new BeanDefinitionHolder(person, JUERGEN), context, true);
+		context.registerBeanDefinition(JUERGEN,scopedProxy.getBeanDefinition());
+		context.registerBeanDefinition("autowired",new RootBeanDefinition(QualifiedMethodParameterTestBean.class));
 		AnnotationConfigUtils.registerAnnotationConfigProcessors(context);
 		context.refresh();
-		QualifiedMethodParameterTestBean bean =
-				(QualifiedMethodParameterTestBean) context.getBean("autowired");
+		QualifiedMethodParameterTestBean bean = (QualifiedMethodParameterTestBean) context.getBean("autowired");
 		assertEquals(JUERGEN, bean.getPerson().getName());
 	}
 
@@ -598,7 +596,6 @@ public class QualifierAnnotationAutowireContextTests {
 		}
 	}
 
-
 	private static class MetaQualifiedFieldTestBean {
 
 		@MyAutowired
@@ -618,7 +615,6 @@ public class QualifierAnnotationAutowireContextTests {
 
 
 	private static class QualifiedMethodParameterTestBean {
-
 		private Person person;
 
 		@Autowired
@@ -644,21 +640,16 @@ public class QualifierAnnotationAutowireContextTests {
 		public Person getPerson() {
 			return this.person;
 		}
-
 	}
 
-
 	private static class QualifiedFieldWithDefaultValueTestBean {
-
 		@Autowired
 		@TestQualifierWithDefaultValue
 		private Person person;
-
 		public Person getPerson() {
 			return this.person;
 		}
 	}
-
 
 	private static class QualifiedFieldWithMultipleAttributesTestBean {
 
@@ -671,7 +662,6 @@ public class QualifierAnnotationAutowireContextTests {
 		}
 	}
 
-
 	private static class QualifiedFieldWithBaseQualifierDefaultValueTestBean {
 
 		@Autowired
@@ -682,7 +672,6 @@ public class QualifierAnnotationAutowireContextTests {
 			return this.person;
 		}
 	}
-
 
 	private static class QualifiedConstructorArgumentWithBaseQualifierNonDefaultValueTestBean {
 
@@ -699,33 +688,25 @@ public class QualifierAnnotationAutowireContextTests {
 		}
 	}
 
-
 	private static class Person {
-
 		private String name;
-
 		public Person(String name) {
 			this.name = name;
 		}
-
 		public String getName() {
 			return this.name;
 		}
 	}
 
-
 	@TestQualifier
 	private static class QualifiedPerson extends Person {
-
 		public QualifiedPerson() {
 			super(null);
 		}
-
 		public QualifiedPerson(String name) {
 			super(name);
 		}
 	}
-
 
 	@TestQualifierWithDefaultValue
 	private static class DefaultValueQualifiedPerson extends Person {
@@ -739,29 +720,22 @@ public class QualifierAnnotationAutowireContextTests {
 		}
 	}
 
-
 	@Retention(RetentionPolicy.RUNTIME)
 	@Qualifier
 	@interface TestQualifier {
 	}
 
-
 	@Retention(RetentionPolicy.RUNTIME)
 	@Qualifier
 	@interface TestQualifierWithDefaultValue {
-
 		String value() default "default";
 	}
-
 
 	@Target(ElementType.FIELD)
 	@Retention(RetentionPolicy.RUNTIME)
 	@Qualifier
 	@interface TestQualifierWithMultipleAttributes {
-
 		String value() default "default";
-
 		int number();
 	}
-
 }

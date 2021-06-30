@@ -17,4 +17,13 @@ import org.springframework.stereotype.Component;
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class News {
 
+	public static int createCount = 0;
+
+	public News() {
+		createCount++;
+	}
+
+	public void say(){
+		System.out.println("say News---" + createCount + "------" + this);
+	}
 }

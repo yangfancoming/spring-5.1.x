@@ -27,12 +27,17 @@ public abstract class ScopedProxyUtils {
 	 * @return the scoped proxy definition
 	 */
 	public static BeanDefinitionHolder createScopedProxy(BeanDefinitionHolder definition,BeanDefinitionRegistry registry, boolean proxyTargetClass) {
+		// 原始的beanName:
 		String originalBeanName = definition.getBeanName();
+		// 原始的bean定义信息
 		BeanDefinition targetDefinition = definition.getBeanDefinition();
 		String targetBeanName = getTargetBeanName(originalBeanName);
 		// Create a scoped proxy definition for the original bean name, "hiding" the target bean in an internal target definition.
+		// 创建一个代理对象
 		RootBeanDefinition proxyDefinition = new RootBeanDefinition(ScopedProxyFactoryBean.class);
+		// 将原始的bean定义信息作为被装饰的bean定义信息
 		proxyDefinition.setDecoratedDefinition(new BeanDefinitionHolder(targetDefinition, targetBeanName));
+		// 设置原始的bean定义信息
 		proxyDefinition.setOriginatingBeanDefinition(targetDefinition);
 		proxyDefinition.setSource(definition.getSource());
 		proxyDefinition.setRole(targetDefinition.getRole());
@@ -53,10 +58,11 @@ public abstract class ScopedProxyUtils {
 		// The target bean should be ignored in favor of the scoped proxy.
 		targetDefinition.setAutowireCandidate(false);
 		targetDefinition.setPrimary(false);
-
 		// Register the target bean as separate bean in the factory.
+		// 这里将原始的bean定义信息注册到了spring容器，而bean的名称是scopedTarget.xxx
 		registry.registerBeanDefinition(targetBeanName, targetDefinition);
 		// Return the scoped proxy definition as primary bean definition (potentially an inner bean).
+		// 这里将代理bean定义信息返回，bean的名称是原始的beanName,myMath,该beanHodler返回去后，会被注册到spring
 		return new BeanDefinitionHolder(proxyDefinition, originalBeanName, definition.getAliases());
 	}
 
@@ -77,5 +83,4 @@ public abstract class ScopedProxyUtils {
 	public static boolean isScopedTarget(@Nullable String beanName) {
 		return (beanName != null && beanName.startsWith(TARGET_NAME_PREFIX));
 	}
-
 }

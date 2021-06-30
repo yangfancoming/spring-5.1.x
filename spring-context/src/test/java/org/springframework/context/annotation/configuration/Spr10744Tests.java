@@ -1,31 +1,25 @@
 
-
 package org.springframework.context.annotation.configuration;
 
 import org.junit.Test;
-
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
-
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
-/**
- * @author Phillip Webb
- */
+
 public class Spr10744Tests {
 
 	private static int createCount = 0;
 
 	private static int scopeCount = 0;
 
-
 	@Test
-	public void testSpr10744() throws Exception {
+	public void testSpr10744()  {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		context.getBeanFactory().registerScope("myTestScope", new MyTestScope());
 		context.register(MyTestConfiguration.class);
@@ -52,7 +46,6 @@ public class Spr10744Tests {
 
 
 	private static class MyTestScope implements org.springframework.beans.factory.config.Scope {
-
 		@Override
 		public Object get(String name, ObjectFactory<?> objectFactory) {
 			scopeCount++;
@@ -81,11 +74,9 @@ public class Spr10744Tests {
 
 
 	static class Foo {
-
 		public Foo() {
 			createCount++;
 		}
-
 		public String getMessage() {
 			return "Hello";
 		}
@@ -94,7 +85,6 @@ public class Spr10744Tests {
 
 	@Configuration
 	static class MyConfiguration {
-
 		@Bean
 		public Foo foo() {
 			return new Foo();
@@ -104,7 +94,6 @@ public class Spr10744Tests {
 
 	@Configuration
 	static class MyTestConfiguration extends MyConfiguration {
-
 		@Bean
 		@Scope(value = "myTestScope",  proxyMode = ScopedProxyMode.TARGET_CLASS)
 		@Override
@@ -112,5 +101,4 @@ public class Spr10744Tests {
 			return new Foo();
 		}
 	}
-
 }

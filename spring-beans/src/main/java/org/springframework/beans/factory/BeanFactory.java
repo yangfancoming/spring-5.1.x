@@ -269,10 +269,9 @@ public interface BeanFactory {
 	boolean isTypeMatch(String name, Class<?> typeToMatch) throws NoSuchBeanDefinitionException;
 
 	/**
-	 * Determine the type of the bean with the given name. More specifically,
-	 * determine the type of object that {@link #getBean} would return for the given name.
-	 * For a {@link FactoryBean}, return the type of object that the FactoryBean creates,
-	 * as exposed by {@link FactoryBean#getObjectType()}.
+	 * Determine the type of the bean with the given name.
+	 * More specifically,determine the type of object that {@link #getBean} would return for the given name.
+	 * For a {@link FactoryBean}, return the type of object that the FactoryBean creates,as exposed by {@link FactoryBean#getObjectType()}.
 	 * Translates aliases back to the corresponding canonical bean name.
 	 * Will ask the parent factory if the bean cannot be found in this factory instance.
 	 * @param name the name of the bean to query
@@ -298,5 +297,4 @@ public interface BeanFactory {
 	 * 得到bean的别名，如果根据别名检索，那么其原名也会被检索出来
 	 */
 	String[] getAliases(String name);
-
 }

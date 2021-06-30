@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+
 /**
  * Created by Administrator on 2020/3/17.
  * @ Description: 注解方式 获取bean

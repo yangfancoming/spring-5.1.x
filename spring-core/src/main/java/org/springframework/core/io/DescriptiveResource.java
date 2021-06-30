@@ -60,5 +60,4 @@ public class DescriptiveResource extends AbstractResource {
 	public int hashCode() {
 		return this.description.hashCode();
 	}
-
 }

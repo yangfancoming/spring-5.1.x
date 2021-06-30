@@ -34,7 +34,6 @@ final class BeanMethod extends ConfigurationMethod {
 		}
 	}
 
-
 	private class NonOverridableMethodError extends Problem {
 
 		public NonOverridableMethodError() {

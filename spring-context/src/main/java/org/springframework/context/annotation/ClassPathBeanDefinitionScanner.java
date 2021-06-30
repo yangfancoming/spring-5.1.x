@@ -231,11 +231,11 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 			// 寻找合适的候选bean，并封装成BeanDefinition
 			// 这个是重点，会把该包下面所有的Bean都扫描进去。Spring5和一下的处理方式不一样哦~
 			Set<BeanDefinition> candidates = findCandidateComponents(basePackage);
-			//处理寻找到的候选bean
+			// 处理寻找到的候选bean
 			for (BeanDefinition candidate : candidates) {
-				//调用ScopeMetadataResolver的resolveScopeMetadata为候选bean设置代理的方式ScopedProxyMode，默认是DEFAULT
-				//这里ScopeMetadataResolver跟ScopedProxyMode都可以在ComponentScan中设置，分别是scopeResolver跟scopedProxy
-				// 拿到Scope元数据：此处为singleton
+				// 调用ScopeMetadataResolver的resolveScopeMetadata为候选bean设置代理的方式ScopedProxyMode，默认是DEFAULT
+				// 这里ScopeMetadataResolver跟ScopedProxyMode都可以在ComponentScan中设置，分别是scopeResolver跟scopedProxy
+				// 解析@Scope注解
 				ScopeMetadata scopeMetadata = scopeMetadataResolver.resolveScopeMetadata(candidate);
 				candidate.setScope(scopeMetadata.getScopeName());
 				//使用BeanNameGenerator为候选bean生产bean的名称，默认使用的是AnnotationBeanNameGenerator。可以通过nameGenerator指定

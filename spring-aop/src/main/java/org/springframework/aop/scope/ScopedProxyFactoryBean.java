@@ -21,16 +21,13 @@ import org.springframework.util.ClassUtils;
 /**
  * Convenient proxy factory bean for scoped objects.
  *
- * Proxies created using this factory bean are thread-safe singletons
- * and may be injected into shared objects, with transparent scoping behavior.
+ * Proxies created using this factory bean are thread-safe singletons and may be injected into shared objects, with transparent scoping behavior.
  *
  * Proxies returned by this class implement the {@link ScopedObject} interface.
- * This presently allows for removing the corresponding object from the scope,
- * seamlessly creating a new instance in the scope on next access.
+ * This presently allows for removing the corresponding object from the scope,seamlessly creating a new instance in the scope on next access.
  *
- * Please note that the proxies created by this factory are
- * <i>class-based</i> proxies by default. This can be customized
- * through switching the "proxyTargetClass" property to "false".
+ * Please note that the proxies created by this factory are <i>class-based</i> proxies by default.
+ * This can be customized through switching the "proxyTargetClass" property to "false".
  * @since 2.0
  * @see #setProxyTargetClass
  */
@@ -70,25 +67,29 @@ public class ScopedProxyFactoryBean extends ProxyConfig implements FactoryBean<O
 		}
 		ConfigurableBeanFactory cbf = (ConfigurableBeanFactory) beanFactory;
 		this.scopedTargetSource.setBeanFactory(beanFactory);
+		// 创建代理工厂
 		ProxyFactory pf = new ProxyFactory();
 		pf.copyFrom(this);
 		pf.setTargetSource(this.scopedTargetSource);
 		Assert.notNull(this.targetBeanName, "Property 'targetBeanName' is required");
+		// 通过被代理类名称 获取被代理类
 		Class<?> beanType = beanFactory.getType(this.targetBeanName);
 		if (beanType == null) {
 			throw new IllegalStateException("Cannot create scoped proxy for bean '" + this.targetBeanName + "': Target type could not be determined at the time of proxy creation.");
 		}
 		if (!isProxyTargetClass() || beanType.isInterface() || Modifier.isPrivate(beanType.getModifiers())) {
+			// 获取被代理类的所有实现的接口
 			pf.setInterfaces(ClassUtils.getAllInterfacesForClass(beanType, cbf.getBeanClassLoader()));
 		}
 
 		// Add an introduction that implements only the methods on ScopedObject.
 		ScopedObject scopedObject = new DefaultScopedObject(cbf, this.scopedTargetSource.getTargetBeanName());
+		// 这里添加了一个增强器，在执行目标方法时，会拦截
 		pf.addAdvice(new DelegatingIntroductionInterceptor(scopedObject));
-
 		// Add the AopInfrastructureBean marker to indicate that the scoped proxy
 		// itself is not subject to auto-proxying! Only its target bean is.
 		pf.addInterface(AopInfrastructureBean.class);
+		// 创建代理对象
 		this.proxy = pf.getProxy(cbf.getBeanClassLoader());
 	}
 
@@ -112,5 +113,4 @@ public class ScopedProxyFactoryBean extends ProxyConfig implements FactoryBean<O
 	public boolean isSingleton() {
 		return true;
 	}
-
 }

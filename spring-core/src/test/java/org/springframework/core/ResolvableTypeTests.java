@@ -1,5 +1,3 @@
-
-
 package org.springframework.core;
 
 import java.io.ByteArrayInputStream;
@@ -110,7 +108,7 @@ public class ResolvableTypeTests {
 	@Test
 	public void forRawClassWithNull() {
 		ResolvableType type = ResolvableType.forRawClass(null);
-		assertThat(type.getType(), equalTo((Type) Object.class));
+		assertThat(type.getType(), equalTo(Object.class));
 		assertThat(type.getRawClass(), equalTo(Object.class));
 		assertTrue(type.isAssignableFrom(Object.class));
 		assertTrue(type.isAssignableFrom(String.class));

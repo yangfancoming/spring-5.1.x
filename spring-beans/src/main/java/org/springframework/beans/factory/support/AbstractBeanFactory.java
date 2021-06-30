@@ -288,7 +288,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 						}
 					}
 				}
-				// Create bean instance. 重点方法 ！！！  创建单例bean
+				// Create bean instance. 重点方法 ！！！  创建单例bean对象 （会走缓存）
 				if (mbd.isSingleton()) {
 					sharedInstance = getSingleton(beanName, () -> {
 						try {
@@ -304,9 +304,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					// 如果 bean 是 FactoryBean 类型，则调用工厂方法获取真正的 bean 实例。否则直接返回 bean 实例
 					// 从容器中获取刚刚创建好的bean
 					bean = getObjectForBeanInstance(sharedInstance, name, beanName, mbd);
-				}else if (mbd.isPrototype()) { // 原型对象的bean创建
-				// 创建 prototype 类型的 bean 实例  // 创建原型模式bean
-					// It's a prototype -> create a new instance.
+				}else if (mbd.isPrototype()) {
+					// It's a prototype -> create a new instance. 创建原型（prototype）bean 实例 （没有缓存 每次都是直接创建）
 					Object prototypeInstance;
 					try {
 						beforePrototypeCreation(beanName);  // 将正在创建的原型对象进行记录
@@ -314,8 +313,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					}finally {
 						afterPrototypeCreation(beanName); // 移除正在创建的原型对象记录
 					}
-					// 这里主要处理实现了FactoryBean的情况，需要调用重写的getObject()方法来获取实际的Bean实例。
-					bean = getObjectForBeanInstance(prototypeInstance, name, beanName, mbd);
+					bean = getObjectForBeanInstance(prototypeInstance, name, beanName, mbd); // 同上
 				}else {
 				// 创建其他类型的 bean 实例
 					String scopeName = mbd.getScope();
@@ -330,7 +328,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 								afterPrototypeCreation(beanName);
 							}
 						});
-						bean = getObjectForBeanInstance(scopedInstance, name, beanName, mbd);
+						bean = getObjectForBeanInstance(scopedInstance, name, beanName, mbd);// 同上
 					} catch (IllegalStateException ex) {
 						throw new BeanCreationException(beanName,"Scope '" + scopeName + "' is not active for the current thread; consider defining a scoped proxy for this bean if you intend to refer to it from a singleton",ex);
 					}

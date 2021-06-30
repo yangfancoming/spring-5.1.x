@@ -21,5 +21,4 @@ public interface ScopeMetadataResolver {
 	 * @return the relevant scope metadata; never {@code null}
 	 */
 	ScopeMetadata resolveScopeMetadata(BeanDefinition definition);
-
 }

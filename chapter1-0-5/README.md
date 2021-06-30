@@ -11,9 +11,10 @@
 #  item01   传统xml方式获取bean 及 扫描bean  <context:component-scan> 标签解析
   
 # item02    注解方式获取bean 及 扫描bean  @bean   @Scope("prototype")   @ComponentScan
-    sample01 @bean  
+    item01 @bean  
+    item02 @Scope  
 
-# itme03    @Configuration 注解学习
+# itme03    @Conditional 注解学习
 
 # itme04    @Import ImportSelector ImportBeanDefinitionRegistrar   等注解学习
 

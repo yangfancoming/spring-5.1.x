@@ -28,8 +28,8 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Encapsulates a Java {@link java.lang.reflect.Type}, providing access to {@link #getSuperType() supertypes}, {@link #getInterfaces() interfaces}, and
- * {@link #getGeneric(int...) generic parameters} along with the ability to ultimately {@link #resolve() resolve} to a {@link java.lang.Class}.
+ * Encapsulates a Java {@link java.lang.reflect.Type}, providing access to {@link #getSuperType() supertypes}, {@link #getInterfaces() interfaces},
+ * and {@link #getGeneric(int...) generic parameters} along with the ability to ultimately {@link #resolve() resolve} to a {@link java.lang.Class}.
  * {@code ResolvableTypes} may be obtained from {@link #forField(Field) fields},{@link #forMethodParameter(Method, int) method parameters},
  * {@link #forMethodReturnType(Method) method returns} or {@link #forClass(Class) classes}.
  * Most methods on this class will themselves return {@link ResolvableType ResolvableTypes}, allowing easy navigation. For example:private HashMap&lt;Integer, List&lt;String&gt;&gt; myMap;

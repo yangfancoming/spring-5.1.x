@@ -218,7 +218,7 @@ class ConfigurationClassBeanDefinitionReader {
 		beanDef.setDestroyMethodName(destroyMethodName);
 		// Consider scoping
 		ScopedProxyMode proxyMode = ScopedProxyMode.NO;
-		// 获取 @Bean 注解的方法上 是否标有 @Scope 注解
+		// 获取 @Bean 注解的方法上的 @Scope 注解
 		AnnotationAttributes attributes = AnnotationConfigUtils.attributesFor(metadata, Scope.class);
 		if (attributes != null) {
 			beanDef.setScope(attributes.getString("value"));

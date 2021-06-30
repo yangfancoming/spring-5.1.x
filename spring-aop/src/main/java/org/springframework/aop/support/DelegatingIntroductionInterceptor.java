@@ -81,8 +81,7 @@ public class DelegatingIntroductionInterceptor extends IntroductionInfoSupport i
 	@Nullable
 	public Object invoke(MethodInvocation mi) throws Throwable {
 		if (isMethodOnIntroducedInterface(mi)) {
-			// Using the following method rather than direct reflection, we
-			// get correct handling of InvocationTargetException
+			// Using the following method rather than direct reflection, we get correct handling of InvocationTargetException
 			// if the introduced method throws an exception.
 			Object retVal = AopUtils.invokeJoinpointUsingReflection(this.delegate, mi.getMethod(), mi.getArguments());
 			// Massage return value if possible: if the delegate returned itself,
@@ -109,5 +108,4 @@ public class DelegatingIntroductionInterceptor extends IntroductionInfoSupport i
 		// If we get here, just pass the invocation on.
 		return mi.proceed();
 	}
-
 }
