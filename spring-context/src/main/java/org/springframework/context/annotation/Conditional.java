@@ -8,9 +8,7 @@ import java.lang.annotation.Target;
 
 /**
  * Indicates that a component is only eligible for registration when all {@linkplain #value specified conditions} match.
- *
- * A <em>condition</em> is any state that can be determined programmatically
- * before the bean definition is due to be registered (see {@link Condition} for details).
+ * A <em>condition</em> is any state that can be determined programmatically before the bean definition is due to be registered (see {@link Condition} for details).
  *
  * The {@code @Conditional} annotation may be used in any of the following ways:
  * <li>as a type-level annotation on any class directly or indirectly annotated with {@code @Component}, including {@link Configuration @Configuration} classes</li>
@@ -26,6 +24,9 @@ import java.lang.annotation.Target;
  * furthermore, any custom <em>composed annotation</em> that is meta-annotated with {@code @Conditional} must not be declared as {@code @Inherited}.
  * @since 4.0
  * @see Condition
+ * 表示一个组件只有在所有value指定的条件匹配时，才有资格被注册到容器中。
+ * 条件 是在bean定义注册之前可以通过编程确定的任何状态
+ * 如果 @Configuration 主配置类上标有 @Conditional 注解，那么主配置类中的所有与@Bean @Import @ComponentScan相关联的类的注入容器动作， 都将受到此Conditional条件的影响
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

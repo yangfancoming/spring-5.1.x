@@ -1,4 +1,4 @@
-package com.goat.chapter105.item03;
+package com.goat.chapter105.condition;
 
 import com.goat.chapter105.model.Person;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * @ author  山羊来了
  * @ date 2020/3/17---13:48
  */
-@Configuration // 该注解就相当于传统的xml文件
+@Configuration
 public class ConditionalMethodConfig {
 
 	/**
@@ -19,14 +19,15 @@ public class ConditionalMethodConfig {
 	 * 如果系统是windows，给容器中注册("bill")
 	 * 如果是linux系统，给容器中注册("linus")
 	 */
-	@Conditional(ConditionWindows.class)
+
 	@Bean
+	@Conditional(ConditionWindows.class)
 	public Person bill(){
 		return new Person("Bill Gates",62);
 	}
 
-	@Conditional(ConditionLinux.class)
 	@Bean
+	@Conditional(ConditionLinux.class)
 	public Person linus(){
 		return new Person("linus", 48);
 	}

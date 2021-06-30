@@ -1,4 +1,4 @@
-package com.goat.chapter105.item03;
+package com.goat.chapter105.condition;
 
 import org.springframework.context.annotation.Condition;
 import org.springframework.context.annotation.ConditionContext;
