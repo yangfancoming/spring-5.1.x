@@ -69,5 +69,4 @@ public @interface Scope {
 	 * @see ScopedProxyMode
 	 */
 	ScopedProxyMode proxyMode() default ScopedProxyMode.DEFAULT;
-
 }

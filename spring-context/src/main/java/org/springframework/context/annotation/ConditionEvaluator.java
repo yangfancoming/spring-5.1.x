@@ -28,7 +28,8 @@ import org.springframework.util.MultiValueMap;
  * Internal class used to evaluate {@link Conditional} annotations.
  * @since 4.0
  */
-class ConditionEvaluator {
+// modify- 添加 public
+public class ConditionEvaluator {
 
 	private final ConditionContextImpl context;
 
@@ -55,20 +56,21 @@ class ConditionEvaluator {
 	 * //判定基于@Conditional注解的配置类是否应该忽略
 	 * @param metadata the meta data
 	 * @param phase the phase of the call
-	 * @return if the item should be skipped
+	 * @return if the item should be skipped  true 代表跳过被注解组件的注册或解析
 	 */
 	public boolean shouldSkip(@Nullable AnnotatedTypeMetadata metadata, @Nullable ConfigurationPhase phase) {
-		// 如果指定类上没有注解或是类上没有@Conditional注解，则返回false，标识不能跳过
+		// 如果配置类没有被@Conditional注解标注，则不能跳过，需要进一步解析
 		if (metadata == null || !metadata.isAnnotated(Conditional.class.getName())) {
 			return false;
 		}
-		//如果注册过程为空
+		// 若没有明确传递当前调用阶段，则根据配置类元信息分析当前应处于哪个阶段
 		if (phase == null) {
-			//配置类上被注解标注，并且也被@Configuration或@Bean等注解标注
+			// 如果元数据是AnnotationMetadata的实例，并且是通过注解方式（@Configuration或@Bean等注解标注）作为候选配置类的，则判定当前阶段为解析配置类阶段
 			if (metadata instanceof AnnotationMetadata && ConfigurationClassUtils.isConfigurationCandidate((AnnotationMetadata) metadata)) {
-				//将当前注册阶段标记为转换为配置类阶段继续判定
+				// 将当前注册阶段标记为转换为配置类阶段继续判定
 				return shouldSkip(metadata, ConfigurationPhase.PARSE_CONFIGURATION);
 			}
+			// 否则判定为将ConfigurationClass转换为BeanDefinition阶段
 			return shouldSkip(metadata, ConfigurationPhase.REGISTER_BEAN);
 		}
 		List<Condition> conditions = new ArrayList<>();
@@ -80,14 +82,15 @@ class ConditionEvaluator {
 				conditions.add(condition);
 			}
 		}
-		//将条件判定类排序
+		// 将条件判定类排序
 		AnnotationAwareOrderComparator.sort(conditions);
 		for (Condition condition : conditions) {
 			ConfigurationPhase requiredPhase = null;
 			if (condition instanceof ConfigurationCondition) {
 				requiredPhase = ((ConfigurationCondition) condition).getConfigurationPhase();
 			}
-			//调用具体条件判定类的matches方法判定是否匹配
+			// 调用具体条件判定类的matches方法判定是否匹配
+			// 只有Condition的requiredPhase与当前调用阶段一致，matches方法才生效，否则所有配置类都解析有一个condition返回false就跳过类的解析或注册
 			if ((requiredPhase == null || requiredPhase == phase) && !condition.matches(this.context, metadata)) {
 				return true;
 			}
@@ -202,5 +205,4 @@ class ConditionEvaluator {
 			return this.classLoader;
 		}
 	}
-
 }

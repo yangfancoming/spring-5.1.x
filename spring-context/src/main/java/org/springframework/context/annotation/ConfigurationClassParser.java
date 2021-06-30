@@ -63,7 +63,8 @@ import java.util.*;
  * 一般情况下一个@Configuration注解的类只会产生一个ConfigurationClass对象，但是因为@Configuration注解的类可能会使用注解@Import引入其他配置类，
  * 也可能内部嵌套定义配置类，所以总的来看，ConfigurationClassParser分析一个@Configuration注解的类，可能产生任意多个ConfigurationClass对象。
  */
-class ConfigurationClassParser {
+// modify- 添加 public
+public class ConfigurationClassParser {
 
 	private static final PropertySourceFactory DEFAULT_PROPERTY_SOURCE_FACTORY = new DefaultPropertySourceFactory();
 

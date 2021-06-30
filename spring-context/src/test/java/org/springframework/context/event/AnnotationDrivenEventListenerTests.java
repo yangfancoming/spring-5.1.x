@@ -95,9 +95,7 @@ public class AnnotationDrivenEventListenerTests {
 
 	@Test
 	public void simpleEventXmlConfig() {
-		this.context = new ClassPathXmlApplicationContext(
-				"org/springframework/context/event/simple-event-configuration.xml");
-
+		this.context = new ClassPathXmlApplicationContext("org/springframework/context/event/simple-event-configuration.xml");
 		TestEvent event = new TestEvent(this, "test");
 		TestEventListener listener = this.context.getBean(TestEventListener.class);
 		this.eventCollector = getEventCollector(this.context);
@@ -138,11 +136,8 @@ public class AnnotationDrivenEventListenerTests {
 
 	@Test
 	public void methodSignatureNoEvent() {
-		AnnotationConfigApplicationContext failingContext =
-				new AnnotationConfigApplicationContext();
-		failingContext.register(BasicConfiguration.class,
-				InvalidMethodSignatureEventListener.class);
-
+		AnnotationConfigApplicationContext failingContext = new AnnotationConfigApplicationContext();
+		failingContext.register(BasicConfiguration.class,InvalidMethodSignatureEventListener.class);
 		this.thrown.expect(BeanInitializationException.class);
 		this.thrown.expectMessage(InvalidMethodSignatureEventListener.class.getName());
 		this.thrown.expectMessage("cannotBeCalled");
@@ -155,7 +150,6 @@ public class AnnotationDrivenEventListenerTests {
 		AnotherTestEvent event = new AnotherTestEvent(this, "dummy");
 		ReplyEventListener replyEventListener = this.context.getBean(ReplyEventListener.class);
 		TestEventListener listener = this.context.getBean(TestEventListener.class);
-
 
 		this.eventCollector.assertNoEventReceived(listener);
 		this.eventCollector.assertNoEventReceived(replyEventListener);
@@ -285,8 +279,7 @@ public class AnnotationDrivenEventListenerTests {
 		try {
 			load(CglibProxyWithPrivateMethod.class);
 			fail("Should have thrown BeanInitializationException");
-		}
-		catch (BeanInitializationException ex) {
+		}catch (BeanInitializationException ex) {
 			assertTrue(ex.getCause() instanceof IllegalStateException);
 		}
 	}
@@ -318,8 +311,7 @@ public class AnnotationDrivenEventListenerTests {
 			customScope.active = false;
 			this.context.publishEvent(new TestEvent());
 			fail("Should have thrown IllegalStateException");
-		}
-		catch (BeanCreationException ex) {
+		}catch (BeanCreationException ex) {
 			// expected
 			assertTrue(ex.getCause() instanceof IllegalStateException);
 		}

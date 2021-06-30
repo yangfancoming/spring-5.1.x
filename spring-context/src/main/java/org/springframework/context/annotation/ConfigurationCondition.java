@@ -9,6 +9,10 @@ package org.springframework.context.annotation;
  * {@link ConfigurationPhase#REGISTER_BEAN REGISTER_BEAN} {@link ConfigurationPhase}.
  * @since 4.0
  * @see Configuration
+ *
+ * 代表当前调用的阶段，该类共有两个值
+ * PARSE_CONFIGURATION：代表解析配置类阶段，也就是将配置类转换为ConfigurationClass阶段
+ * REGISTER_BEAN：代表配置类注册为bean阶段，也就是将配置类是否需要在将其注册到IOC容器阶段
  */
 public interface ConfigurationCondition extends Condition {
 
