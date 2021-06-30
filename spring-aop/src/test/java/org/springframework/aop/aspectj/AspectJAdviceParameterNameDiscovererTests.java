@@ -13,11 +13,7 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for the {@link AspectJAdviceParameterNameDiscoverer} class.
- *
  * See also {@link TigerAspectJAdviceParameterNameDiscovererTests} for tests relating to annotations.
- *
- * @author Adrian Colyer
-
  */
 public class AspectJAdviceParameterNameDiscovererTests {
 

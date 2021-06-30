@@ -8,8 +8,6 @@ import org.springframework.aop.MethodBeforeAdvice;
 
 /**
  * Simple before advice example that we can use for counting checks.
- *
- * @author Rod Johnson
  */
 @SuppressWarnings("serial")
 public class CountingBeforeAdvice extends MethodCounter implements MethodBeforeAdvice {
@@ -18,5 +16,4 @@ public class CountingBeforeAdvice extends MethodCounter implements MethodBeforeA
 	public void before(Method m, Object[] args, Object target) throws Throwable {
 		count(m);
 	}
-
 }

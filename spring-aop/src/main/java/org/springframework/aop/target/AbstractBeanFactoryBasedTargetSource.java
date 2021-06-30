@@ -30,6 +30,7 @@ import org.springframework.util.ObjectUtils;
  * @see PrototypeTargetSource
  * @see ThreadLocalTargetSource
  * @see CommonsPool2TargetSource
+ * 基于Spring BeanFactory的实现TargetSource的基类
  */
 public abstract class AbstractBeanFactoryBasedTargetSource implements TargetSource, BeanFactoryAware, Serializable {
 

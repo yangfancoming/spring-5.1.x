@@ -9,6 +9,7 @@ import org.springframework.util.Assert;
 /**
  * Convenience superclass for configuration used in creating proxies,to ensure that all proxy creators have consistent properties.
  * @see AdvisedSupport
+ * 方便的用于创建代理的超类配置
  */
 public class ProxyConfig implements Serializable {
 

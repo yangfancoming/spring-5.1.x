@@ -44,7 +44,6 @@ public class AopNamespaceHandlerEventTests {
 		this.reader.setEventListener(this.eventListener);
 	}
 
-
 	@Test
 	public void testPointcutEvents() {
 		this.reader.loadBeanDefinitions(POINTCUT_EVENTS_CONTEXT);

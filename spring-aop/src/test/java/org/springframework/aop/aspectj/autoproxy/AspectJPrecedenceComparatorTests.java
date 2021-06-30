@@ -195,5 +195,4 @@ public class AspectJPrecedenceComparatorTests {
 		advisor.setOrder(order);
 		return advisor;
 	}
-
 }

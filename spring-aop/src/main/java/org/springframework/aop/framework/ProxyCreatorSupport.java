@@ -12,6 +12,7 @@ import org.springframework.util.Assert;
  * Provides convenient access to a configurable AopProxyFactory.
  * @since 2.0.3
  * @see #createAopProxy()
+ * 代理工厂的基类
  */
 @SuppressWarnings("serial")
 public class ProxyCreatorSupport extends AdvisedSupport {

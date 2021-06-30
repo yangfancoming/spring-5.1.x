@@ -9,9 +9,6 @@ import org.springframework.aop.aspectj.AspectJAdviceParameterNameDiscoverer.Ambi
 /**
  * Tests just the annotation binding part of {@link AspectJAdviceParameterNameDiscoverer};
  * see supertype for remaining tests.
- *
- * @author Adrian Colyer
-
  */
 public class TigerAspectJAdviceParameterNameDiscovererTests extends AspectJAdviceParameterNameDiscovererTests {
 

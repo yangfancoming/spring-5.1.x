@@ -8,9 +8,6 @@ import java.util.HashMap;
 
 /**
  * Abstract superclass for counting advices etc.
- *
- * @author Rod Johnson
-
  */
 @SuppressWarnings("serial")
 public class MethodCounter implements Serializable {
@@ -54,5 +51,4 @@ public class MethodCounter implements Serializable {
 	public int hashCode() {
 		return getClass().hashCode();
 	}
-
 }

@@ -10,9 +10,6 @@ import static org.mockito.BDDMockito.*;
 
 /**
  * Unit tests for the {@link DefaultScopedObject} class.
- *
- * @author Rick Evans
-
  */
 public class DefaultScopedObjectTests {
 
