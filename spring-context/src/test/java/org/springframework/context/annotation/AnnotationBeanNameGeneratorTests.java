@@ -12,7 +12,6 @@ import org.junit.Test;
 
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.annotation.AnnotatedGenericBeanDefinition;
-import org.springframework.beans.factory.support.BeanNameGenerator;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
@@ -28,7 +27,6 @@ public class AnnotationBeanNameGeneratorTests {
 	// 测试  基于@Component("walden")生成bean名称
 	@Test
 	public void generateBeanNameWithNamedComponent() {
-		BeanNameGenerator beanNameGenerator = new AnnotationBeanNameGenerator();
 		AnnotatedBeanDefinition bd = new AnnotatedGenericBeanDefinition(ComponentWithName.class);
 		String beanName = beanNameGenerator.generateBeanName(bd, null);
 		assertNotNull("The generated beanName must *never* be null.", beanName);
@@ -43,7 +41,7 @@ public class AnnotationBeanNameGeneratorTests {
 		String beanName = beanNameGenerator.generateBeanName(bd, null);
 		assertNotNull("The generated beanName must *never* be null.", beanName);
 		assertTrue("The generated beanName must *never* be blank.", StringUtils.hasText(beanName));
-		assertEquals("thoreau1", beanName);
+		assertEquals("thoreau", beanName);
 	}
 
 	// 测试 AnnotationBeanNameGenerator 类的 generateBeanName 方法的 buildDefaultBeanName 分支
@@ -159,5 +157,4 @@ public class AnnotationBeanNameGeneratorTests {
 
 	@TestRestController("restController")
 	public static class ComposedControllerAnnotationWithStringValue {}
-
 }

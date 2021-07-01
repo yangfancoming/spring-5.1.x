@@ -16,10 +16,9 @@ import java.util.Set;
 public interface AnnotationMetadata extends ClassMetadata, AnnotatedTypeMetadata {
 
 	/**
+	 * 获取当前类上所有的注解的全类名  eg: 类上有@Component注解  获取的值为：org.springframework.stereotype.Component
 	 * Get the fully qualified class names of all annotation types that are <em>present</em> on the underlying class.
 	 * @return the annotation type names
-	 * 拿到Class上标注的所有注解名称，依赖于Class#getAnnotations  eg: 类上有@Component注解  获取的值为：org.springframework.stereotype.Component
-	 *  //获取当前类上所有的注解的全类名
 	 */
 	Set<String> getAnnotationTypes();
 

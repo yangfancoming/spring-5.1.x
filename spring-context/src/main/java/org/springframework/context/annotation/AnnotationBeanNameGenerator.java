@@ -38,7 +38,6 @@ public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 
 	private static final String COMPONENT_ANNOTATION_CLASSNAME = "org.springframework.stereotype.Component";
 
-
 	//---------------------------------------------------------------------------------------------------------------------
 	// Implementation of 【BeanNameGenerator】 interface 唯一核心方法 本类中的其他方式都是为该方法服务的！
 	//---------------------------------------------------------------------------------------------------------------------
@@ -67,7 +66,7 @@ public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 		// AnnotatedGenericBeanDefinition 构造时初始化的参数 （StandardAnnotationMetadata）
 		AnnotationMetadata amd = annotatedDef.getMetadata();
 		String beanName = null;
-		// 获取该类上的所有注解的名称
+		// 获取当前类上所有的注解的全类名
 		Set<String> types = amd.getAnnotationTypes();
 		for (String type : types) {
 			// 获取该注解对应的属性

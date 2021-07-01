@@ -31,7 +31,7 @@ import org.springframework.util.Assert;
 public class AnnotatedBeanDefinitionReader {
 
 	// log4j 日志方式
-//	private static final Logger logger = Logger.getLogger(AnnotatedBeanDefinitionReader.class);
+ 	//	private static final Logger logger = Logger.getLogger(AnnotatedBeanDefinitionReader.class);
 
 	// spring内置日志方式
 	protected final Log logger = LogFactory.getLog(getClass());
@@ -182,7 +182,9 @@ public class AnnotatedBeanDefinitionReader {
 		 * abd.getMetadata() 元数据包括注解信息、是否内部类、类Class基本信息等等, 此处由conditionEvaluator#shouldSkip去过滤，此Class是否是配置类。
 		 *  大体逻辑为：必须有@Configuration修饰。然后解析一些Condition注解，看是否排除~
 		*/
-		if (conditionEvaluator.shouldSkip(abd.getMetadata())) return;
+		if (conditionEvaluator.shouldSkip(abd.getMetadata())) {
+			return;
+		}
 		abd.setInstanceSupplier(instanceSupplier);
 		// 解析Scope 默认单例singleton
 		ScopeMetadata scopeMetadata = scopeMetadataResolver.resolveScopeMetadata(abd);
