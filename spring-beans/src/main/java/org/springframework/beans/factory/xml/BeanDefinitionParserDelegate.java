@@ -410,7 +410,7 @@ public class BeanDefinitionParserDelegate {
 			parent = ele.getAttribute(PARENT_ATTRIBUTE);
 		}
 		try {
-			// 3、创建 AbstractBeanDefinition 对象，底层是 GenericBeanDefinition
+			// 3、创建 AbstractBeanDefinition 对象，其底层使用的是 GenericBeanDefinition
 			AbstractBeanDefinition bd = createBeanDefinition(className, parent);
 			/**
 			 * 	4、解析<bean>标签中的所有属性,	并将解析出来的属性  设置到 AbstractBeanDefinition 中去。

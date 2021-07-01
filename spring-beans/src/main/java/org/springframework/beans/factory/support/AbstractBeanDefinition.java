@@ -248,6 +248,12 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 	/**  是否是用户定义的而不是应用程序本身定义的，创建AOP时候为true，程序设置 */
 	/**  是否是合成类（是不是应用自定义的，例如生成AOP代理时，会用到某些辅助类，这些辅助类不是应用自定义的，这个就是合成类） */
+	// 是否是一个合成 BeanDefinition,
+	// 合成 在这里的意思表示这不是一个应用开发人员自己定义的 BeanDefinition, 而是程序
+	// 自己组装而成的一个 BeanDefinition, 例子 :
+	// 1. 自动代理的helper bean，一个基础设施bean，因为使用<aop:config> 被自动合成创建;
+	// 2. bean errorPageRegistrarBeanPostProcessor , Spring boot 自动配置针对Web错误页面的
+	// 一个bean，这个bean不需要应用开发人员定义，而是框架根据上下文自动合成组装而成；
 	private boolean synthetic = false;
 
 	/**
@@ -255,6 +261,8 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	 * SUPPORT：某些复杂配置的一部分
 	 * 程序设置
 	 */
+	// 当前bean 定义的角色，初始化为 ROLE_APPLICATION ， 提示这是一个应用bean
+	// 另外还有基础设施bean（仅供框架内部工作使用），和 支持bean
 	private int role = BeanDefinition.ROLE_APPLICATION;
 
 	/**  bean的描述信息 */
@@ -338,37 +346,48 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	 * {@code initMethodName}, and {@code destroyMethodName} if specified in the given bean definition.
 	 */
 	public void overrideFrom(BeanDefinition other) {
+		//如有直接覆盖BeanClassName
 		if (StringUtils.hasLength(other.getBeanClassName())) {
 			setBeanClassName(other.getBeanClassName());
 		}
+		//如有作用域直接覆盖作用域
 		if (StringUtils.hasLength(other.getScope())) {
 			setScope(other.getScope());
 		}
+		//覆盖是否抽象
 		setAbstract(other.isAbstract());
 		setLazyInit(other.isLazyInit());
+		//如有直接覆盖工厂Bean的姓名
 		if (StringUtils.hasLength(other.getFactoryBeanName())) {
 			setFactoryBeanName(other.getFactoryBeanName());
 		}
+		//如有直接覆盖工厂方法名
 		if (StringUtils.hasLength(other.getFactoryMethodName())) {
 			setFactoryMethodName(other.getFactoryMethodName());
 		}
 		setRole(other.getRole());
 		setSource(other.getSource());
 		copyAttributesFrom(other);
+		//如果不是自己实现的BeanDefinition的话，都是继承这个BeanDefinition的
 		if (other instanceof AbstractBeanDefinition) {
 			AbstractBeanDefinition otherAbd = (AbstractBeanDefinition) other;
+			//如有BeanClass直接覆盖
 			if (otherAbd.hasBeanClass()) {
 				setBeanClass(otherAbd.getBeanClass());
 			}
+			//如有构造函数的参数的直接覆盖
 			if (otherAbd.hasConstructorArgumentValues()) {
 				getConstructorArgumentValues().addArgumentValues(other.getConstructorArgumentValues());
 			}
+			//如有属性的参数直接覆盖
 			if (otherAbd.hasPropertyValues()) {
 				getPropertyValues().addPropertyValues(other.getPropertyValues());
 			}
+			//如果有方法重写直接覆盖
 			if (otherAbd.hasMethodOverrides()) {
 				getMethodOverrides().addOverrides(otherAbd.getMethodOverrides());
 			}
+			//设置自动装配的模型
 			setAutowireMode(otherAbd.getAutowireMode());
 			setDependencyCheck(otherAbd.getDependencyCheck());
 			setDependsOn(otherAbd.getDependsOn());
@@ -386,6 +405,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 				setDestroyMethodName(otherAbd.getDestroyMethodName());
 				setEnforceDestroyMethod(otherAbd.isEnforceDestroyMethod());
 			}
+			//设置是否是合成的
 			setSynthetic(otherAbd.isSynthetic());
 			setResource(otherAbd.getResource());
 		}else {
@@ -944,7 +964,9 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	//  Return property values for this bean (never {@code null}).
 	@Override
 	public MutablePropertyValues getPropertyValues() {
-		if (propertyValues == null) propertyValues = new MutablePropertyValues();
+		if (propertyValues == null) {
+			propertyValues = new MutablePropertyValues();
+		}
 		return propertyValues;
 	}
 

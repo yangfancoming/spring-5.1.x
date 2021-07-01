@@ -3,12 +3,12 @@
   <ID>JAVA</ID>
   <OriginalElement>org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor</OriginalElement>
   <nodes>
-    <node x="477.875" y="158.0">org.springframework.beans.factory.support.RootBeanDefinition</node>
+    <node x="298.0625" y="158.0">org.springframework.beans.factory.support.RootBeanDefinition</node>
     <node x="0.0" y="79.0">org.springframework.beans.factory.annotation.AnnotatedBeanDefinition</node>
-    <node x="297.875" y="158.0">org.springframework.beans.factory.support.ChildBeanDefinition</node>
-    <node x="171.625" y="0.0">org.springframework.beans.factory.config.BeanDefinition</node>
-    <node x="288.875" y="79.0">org.springframework.beans.factory.support.AbstractBeanDefinition</node>
-    <node x="105.875" y="158.0">org.springframework.beans.factory.support.GenericBeanDefinition</node>
+    <node x="472.0625" y="158.0">org.springframework.beans.factory.support.ChildBeanDefinition</node>
+    <node x="170.3125" y="0.0">org.springframework.beans.factory.config.BeanDefinition</node>
+    <node x="286.0625" y="79.0">org.springframework.beans.factory.support.AbstractBeanDefinition</node>
+    <node x="106.0625" y="158.0">org.springframework.beans.factory.support.GenericBeanDefinition</node>
     <node x="27.25" y="237.0">org.springframework.beans.factory.annotation.AnnotatedGenericBeanDefinition</node>
   </nodes>
   <notes />
@@ -16,13 +16,13 @@
     <edge source="org.springframework.beans.factory.annotation.AnnotatedBeanDefinition" target="org.springframework.beans.factory.config.BeanDefinition">
       <point x="0.0" y="-14.5" />
       <point x="92.0" y="54.0" />
-      <point x="204.125" y="54.0" />
+      <point x="202.8125" y="54.0" />
       <point x="-32.5" y="14.5" />
     </edge>
     <edge source="org.springframework.beans.factory.support.GenericBeanDefinition" target="org.springframework.beans.factory.support.AbstractBeanDefinition">
       <point x="0.0" y="-14.5" />
-      <point x="191.875" y="133.0" />
-      <point x="318.5416666666667" y="133.0" />
+      <point x="192.0625" y="133.0" />
+      <point x="315.7291666666667" y="133.0" />
       <point x="-59.333333333333314" y="14.5" />
     </edge>
     <edge source="org.springframework.beans.factory.annotation.AnnotatedGenericBeanDefinition" target="org.springframework.beans.factory.annotation.AnnotatedBeanDefinition">
@@ -31,30 +31,30 @@
       <point x="92.0" y="212.0" />
       <point x="0.0" y="14.5" />
     </edge>
-    <edge source="org.springframework.beans.factory.support.ChildBeanDefinition" target="org.springframework.beans.factory.support.AbstractBeanDefinition">
-      <point x="0.0" y="-14.5" />
-      <point x="0.0" y="14.5" />
-    </edge>
     <edge source="org.springframework.beans.factory.support.AbstractBeanDefinition" target="org.springframework.beans.factory.config.BeanDefinition">
       <point x="0.0" y="-14.5" />
-      <point x="377.875" y="54.0" />
-      <point x="269.125" y="54.0" />
+      <point x="375.0625" y="54.0" />
+      <point x="267.8125" y="54.0" />
       <point x="32.5" y="14.5" />
+    </edge>
+    <edge source="org.springframework.beans.factory.support.ChildBeanDefinition" target="org.springframework.beans.factory.support.AbstractBeanDefinition">
+      <point x="0.0" y="-14.5" />
+      <point x="552.0625" y="133.0" />
+      <point x="434.39583333333337" y="133.0" />
+      <point x="59.33333333333337" y="14.5" />
     </edge>
     <edge source="org.springframework.beans.factory.annotation.AnnotatedGenericBeanDefinition" target="org.springframework.beans.factory.support.GenericBeanDefinition">
       <point x="56.5" y="-14.5" />
       <point x="196.75" y="212.0" />
-      <point x="191.875" y="212.0" />
+      <point x="192.0625" y="212.0" />
       <point x="0.0" y="14.5" />
     </edge>
     <edge source="org.springframework.beans.factory.support.RootBeanDefinition" target="org.springframework.beans.factory.support.AbstractBeanDefinition">
       <point x="0.0" y="-14.5" />
-      <point x="554.875" y="133.0" />
-      <point x="437.20833333333337" y="133.0" />
-      <point x="59.33333333333337" y="14.5" />
+      <point x="0.0" y="14.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="316.0" y="133.0" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="675.0" y="438.5" />
   <SelectedNodes />
   <Categories />
   <SCOPE>All</SCOPE>

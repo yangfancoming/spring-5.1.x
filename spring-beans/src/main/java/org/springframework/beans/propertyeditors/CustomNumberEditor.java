@@ -10,20 +10,12 @@ import org.springframework.util.NumberUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Property editor for any Number subclass such as Short, Integer, Long,
- * BigInteger, Float, Double, BigDecimal. Can use a given NumberFormat for
- * (locale-specific) parsing and rendering, or alternatively the default
- * {@code decode} / {@code valueOf} / {@code toString} methods.
+ * Property editor for any Number subclass such as Short, Integer, Long,BigInteger, Float, Double, BigDecimal.
+ * Can use a given NumberFormat for (locale-specific) parsing and rendering, or alternatively the default {@code decode} / {@code valueOf} / {@code toString} methods.
  *
- * This is not meant to be used as system PropertyEditor but rather
- * as locale-specific number editor within custom controller code,
- * parsing user-entered number strings into Number properties of beans
- * and rendering them in the UI form.
- *
- * In web MVC code, this editor will typically be registered with
- * {@code binder.registerCustomEditor} calls.
- *
-
+ * This is not meant to be used as system PropertyEditor but rather as locale-specific number editor within custom controller code,
+ * parsing user-entered number strings into Number properties of beans and rendering them in the UI form.
+ * In web MVC code, this editor will typically be registered with {@code binder.registerCustomEditor} calls.
  * @since 06.06.2003
  * @see Number
  * @see java.text.NumberFormat
@@ -38,11 +30,9 @@ public class CustomNumberEditor extends PropertyEditorSupport {
 
 	private final boolean allowEmpty;
 
-
 	/**
 	 * Create a new CustomNumberEditor instance, using the default
-	 * {@code valueOf} methods for parsing and {@code toString}
-	 * methods for rendering.
+	 * {@code valueOf} methods for parsing and {@code toString} methods for rendering.
 	 * The "allowEmpty" parameter states if an empty String should
 	 * be allowed for parsing, i.e. get interpreted as {@code null} value.
 	 * Else, an IllegalArgumentException gets thrown in that case.
@@ -58,8 +48,7 @@ public class CustomNumberEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Create a new CustomNumberEditor instance, using the given NumberFormat
-	 * for parsing and rendering.
+	 * Create a new CustomNumberEditor instance, using the given NumberFormat for parsing and rendering.
 	 * The allowEmpty parameter states if an empty String should
 	 * be allowed for parsing, i.e. get interpreted as {@code null} value.
 	 * Else, an IllegalArgumentException gets thrown in that case.
@@ -71,9 +60,7 @@ public class CustomNumberEditor extends PropertyEditorSupport {
 	 * @see java.text.NumberFormat#parse
 	 * @see java.text.NumberFormat#format
 	 */
-	public CustomNumberEditor(Class<? extends Number> numberClass,
-			@Nullable NumberFormat numberFormat, boolean allowEmpty) throws IllegalArgumentException {
-
+	public CustomNumberEditor(Class<? extends Number> numberClass,@Nullable NumberFormat numberFormat, boolean allowEmpty) throws IllegalArgumentException {
 		if (!Number.class.isAssignableFrom(numberClass)) {
 			throw new IllegalArgumentException("Property class must be a subclass of Number");
 		}
@@ -133,5 +120,4 @@ public class CustomNumberEditor extends PropertyEditorSupport {
 			return value.toString();
 		}
 	}
-
 }

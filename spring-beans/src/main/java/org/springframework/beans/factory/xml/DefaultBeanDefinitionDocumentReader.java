@@ -293,11 +293,11 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		// 该行代码有： 装饰者模式 + SPI 设计思想
 		BeanDefinitionHolder bdHolder = delegate.parseBeanDefinitionElement(ele);
 		if (bdHolder != null) {
-			// 2、装饰BeanDefinition
-			// 如果该bean包含自定义的子标签，则对其进行解析和装饰，以丰富当前的BeanDefinition
+			// 2、装饰BeanDefinition，如果该bean包含自定义的子标签，则对其进行解析和装饰，以丰富当前的BeanDefinition
 			bdHolder = delegate.decorateBeanDefinitionIfRequired(ele, bdHolder);
 			try {
-				// Register the final decorated instance. // 3、将当前bean的最终装饰后的实例，注册到BeanDefinitionRegistry中
+				// Register the final decorated instance.
+				// P2=getReaderContext().getRegistry()为 AbstractBeanDefinitionReader单参构造函数传入的DefaultListableBeanFactory
 				BeanDefinitionReaderUtils.registerBeanDefinition(bdHolder, getReaderContext().getRegistry());
 			}catch (BeanDefinitionStoreException ex) {
 				getReaderContext().error("Failed to register bean definition with name '" + bdHolder.getBeanName() + "'", ele, ex);

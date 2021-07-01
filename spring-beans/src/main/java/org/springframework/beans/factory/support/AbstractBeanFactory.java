@@ -868,15 +868,18 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 */
 	protected RootBeanDefinition getMergedBeanDefinition(String beanName, BeanDefinition bd, @Nullable BeanDefinition containingBd) throws BeanDefinitionStoreException {
 		synchronized (mergedBeanDefinitions) {
+			// 准备一个RootBeanDefinition变量引用，用于记录要构建和最终要返回的BeanDefinition，这里根据上下文不难猜测 mbd 应该就是 mergedBeanDefinition 的缩写。
 			RootBeanDefinition mbd = null;
 			// Check with full lock now in order to enforce the same merged instance.
-			// 我暂时还没去详细了解 containingBd 的用途，尽管从方法的注释上可以知道 containingBd 的大致用途，但没经过详细分析，就不多说了。见谅
 			if (containingBd == null) {
 				mbd = mergedBeanDefinitions.get(beanName);
 			}
 			if (mbd == null) {
-				// bd.getParentName() == null，表明无父配置，这时直接将当前的 BeanDefinition 升级为 RootBeanDefinition
+				// bd.getParentName() == null，表明无父配置，这时直接将当前的 BeanDefinition 升级为 RootBeanDefinition。 不需要bean合并
 				if (bd.getParentName() == null) {
+					// bd不是一个ChildBeanDefinition的情况,换句话讲，这 bd应该是 :
+					// 1. 一个独立的 GenericBeanDefinition 实例，parentName 属性为null
+					// 2. 或者是一个 RootBeanDefinition 实例，parentName 属性为null，此时mbd直接使用一个bd的复制品
 					// Use copy of given root bean definition.
 					if (bd instanceof RootBeanDefinition) {
 						mbd = ((RootBeanDefinition) bd).cloneBeanDefinition();
@@ -884,11 +887,14 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 						mbd = new RootBeanDefinition(bd);
 					}
 				}else {
+					// bd是 非RootBeanDefinition 的情况（ChildBeanDefinition/GenericBeanDefinition）, 需要将bd和其parent bean definition 合并到一起，形成最终的 mbd
+					// 下面是获取bd的 parent bean definition 的过程，最终结果记录到 pbd，
+					// 并且可以看到该过程中递归使用了getMergedBeanDefinition(), 为什么呢? 因为 bd 的 parent bd 可能也是个ChildBeanDefinition，所以该过程需要递归处理
 					// Child bean definition: needs to be merged with parent.
 					BeanDefinition pbd;
 					try {
 						String parentBeanName = transformedBeanName(bd.getParentName());
-						/*
+						/**
 						 * 判断父类 beanName 与子类 beanName 名称是否相同。若相同，则父类 bean 一定在父容器中。
 						 * 原因也很简单，容器底层是用 Map 缓存 <beanName, bean> 键值对的。
 						 * 同一个容器下，使用同一个 beanName 映射两个 bean 实例显然是不合适的。
@@ -896,9 +902,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 						 * 但是也有问题，调用 getName(beanName) 时，到底返回哪个 bean 实例好呢？
 						 */
 						if (!beanName.equals(parentBeanName)) {
-							/*
-							 * 这里再次调用 getMergedBeanDefinition，只不过参数值变为了parentBeanName，用于合并父 BeanDefinition 和爷爷辈的BeanDefinition。
-							 * 如果爷爷辈的 BeanDefinition 仍有父BeanDefinition，则继续合并
+							/**
+							 * 又调用了一次合并，等于是递归的调用，因为这个parentName的BeanDefinition的parentName的值也不等于空，
+							 * 直到找到等于null的，就不合并了,由于我们的parentName的值是root，所有不需要合并，这儿返回的就是root表示的BeanDefinition
 							 */
 							pbd = getMergedBeanDefinition(parentBeanName);
 						}else {
@@ -915,8 +921,10 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					}
 					// Deep copy with overridden values.
 					// 以父 BeanDefinition 的配置信息为蓝本创建 RootBeanDefinition，也就是“已合并的 BeanDefinition”
+					// 现在已经获取 bd 的parent bd到pbd，从上面的过程可以看出，这个pbd也是已经"合并"过的。
+					// 这里根据pbd创建最终的mbd，然后再使用子bd覆盖一次，这样就相当于mbd来自两个BeanDefinition:
 					mbd = new RootBeanDefinition(pbd);
-					// 用子 BeanDefinition 中的属性覆盖父 BeanDefinition 中的属性
+					// 将子bean中的特有值属性 覆盖父中的属性（bd覆盖mbd）。
 					mbd.overrideFrom(bd);
 				}
 				// Set default singleton scope, if not configured before.
@@ -927,13 +935,16 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				// A bean contained in a non-singleton bean cannot be a singleton itself.
 				// Let's correct this on the fly here, since this might be the result of  parent-child merging for the outer bean, in which case the original inner bean
 				// definition will not have inherited the merged outer bean's singleton status.
+				// 非单例bean中包含的bean本身不能是单例。
+				// 让我们在这里即时纠正 因为这可能是外层bean的父子合并的结果
+				// 在这种情况下，原始的内部bean定义将不会继承合并的外部bean的单例状态。
 				if (containingBd != null && !containingBd.isSingleton() && mbd.isSingleton()) {
 					mbd.setScope(containingBd.getScope());
 				}
 				// Cache the merged bean definition for the time being (it might still get re-merged later on in order to pick up metadata changes)
 				if (containingBd == null && isCacheBeanMetadata()) {
-					// 缓存合并后的 BeanDefinition
-					logger.warn("【IOC容器 合并 mergedBeanDefinitions 内存态 --- 】 beanName： " + beanName);
+					// 暂时缓存合并的bean定义（稍后可能仍会重新合并以获取元数据更改）存到合并的bd的map中去。
+					logger.warn("【IOC容器 mergedBeanDefinitions 合并bean定义  全局唯一入口】 beanName： " + beanName);
 					mergedBeanDefinitions.put(beanName, mbd);
 				}
 			}
@@ -1151,12 +1162,15 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * @param beanName the name of the bean
 	 */
 	protected void markBeanAsCreated(String beanName) {
+		// 判断这个这个Bean是否已经创建，很明显这儿没有创建
 		if (!alreadyCreated.contains(beanName)) {
 			synchronized (mergedBeanDefinitions) {
+				// 双重检查
 				if (!alreadyCreated.contains(beanName)) {
 					// Let the bean definition get re-merged now that we're actually creating the bean... just in case some of its metadata changed in the meantime.
 					clearMergedBeanDefinition(beanName);
 					alreadyCreated.add(beanName);
+					logger.warn("【IOC容器 标记 alreadyCreated 当前 bean 已在创建中 】 beanName： " + beanName);
 				}
 			}
 		}

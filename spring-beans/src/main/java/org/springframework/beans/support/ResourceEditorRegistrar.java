@@ -105,5 +105,4 @@ public class ResourceEditorRegistrar implements PropertyEditorRegistrar {
 			registry.registerCustomEditor(requiredType, editor);
 		}
 	}
-
 }

@@ -9,18 +9,19 @@ import org.springframework.lang.Nullable;
  * GenericBeanDefinition is a one-stop shop for standard bean definition purposes.
  * Like any bean definition, it allows for specifying a class plus optionally constructor argument values and property values. 
  * Additionally, deriving from a parent bean definition can be flexibly configured through the "parentName" property.
- * In general, use this {@code GenericBeanDefinition} class for the purpose of registering user-visible bean definitions (which a post-processor might operate on,
- * potentially even reconfiguring the parent name). Use {@code RootBeanDefinition} / {@code ChildBeanDefinition} where parent/child relationships happen to be pre-determined.
+ * In general, use this {@code GenericBeanDefinition} class for the purpose of registering user-visible bean definitions
+ * (which a post-processor might operate on,potentially even reconfiguring the parent name).
+ * Use {@code RootBeanDefinition} / {@code ChildBeanDefinition} where parent/child relationships happen to be pre-determined.
  * @since 2.5
  * @see #setParentName
  * @see RootBeanDefinition
  * @see ChildBeanDefinition
  *
- * *GenericBeanDefinition是标准bean定义的一站式服务。
- * *与任何bean定义一样，它允许指定类以及可选的构造函数参数值和属性值。
- * *此外，可以通过“parentName”属性灵活地配置从父bean定义派生的。
- * *一般来说，使用这个{@code GenericBeanDefinition}类来注册用户可见的bean定义（后处理器可以对其进行操作，甚至可能重新配置父名称）。
- * *使用{@code RootBeanDefinition}/{@code ChildBeanDefinition}，其中父/子关系恰好是预先确定的。
+ * GenericBeanDefinition是标准bean定义的一站式服务。
+ * 与任何bean定义一样，它允许指定类以及可选的构造函数参数值和属性值。
+ * 此外，可以通过“parentName”属性灵活地配置从父bean定义派生的。
+ * 一般来说，使用这个{@code GenericBeanDefinition}类来注册用户可见的bean定义（后处理器可以对其进行操作，甚至可能重新配置父名称）。
+ * 使用{@code RootBeanDefinition}/{@code ChildBeanDefinition}，其中父/子关系恰好是预先确定的。
  */
 @SuppressWarnings("serial")
 public class GenericBeanDefinition extends AbstractBeanDefinition {

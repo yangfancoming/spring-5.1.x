@@ -15,10 +15,8 @@ public class BeanDefinitionTests {
 	@Test
 	public void testScope1() {
 		RootBeanDefinition bd = new RootBeanDefinition(TestBean.class);
-		// 默认为""，单例
-		assertTrue(bd.isSingleton());
-		// 非单例
-		bd.setScope("fuck");
+		assertTrue(bd.isSingleton()); // 默认为""，单例
+		bd.setScope("fuck"); // 非单例
 		assertFalse(bd.isSingleton());
 		// 非单例
 		bd.setScope(BeanDefinition.SCOPE_PROTOTYPE);

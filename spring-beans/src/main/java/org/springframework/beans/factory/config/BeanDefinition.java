@@ -9,11 +9,8 @@ import org.springframework.lang.Nullable;
 
 /**
  * A BeanDefinition describes a bean instance, which has property values,constructor argument values, and further information supplied by concrete implementations.
- * beandefinition 描述一个bean实例，该实例具有属性值、构造函数参数值和具体实现提供的进一步信息
- *
  * This is just a minimal interface: The main intention is to allow a {@link BeanFactoryPostProcessor}
  * such as {@link PropertyPlaceholderConfigurer} to introspect and modify property values and other bean metadata.
-
  * @since 19.03.2004
  * @see ConfigurableListableBeanFactory#getBeanDefinition
  * @see org.springframework.beans.factory.support.RootBeanDefinition
@@ -21,10 +18,7 @@ import org.springframework.lang.Nullable;
  *
  * BeanDefinition 是一个接口，它是配置文件 <bean> 标签在 Spring 容器中的内部表现形式，<bean> 标签拥有的属性也会对应于 BeanDefinition 中的属性，
  * 它们是一一对应的，即一个 <bean> 标签对应于一个 BeanDefinition 实例
- *
  * 共有三个实现类，在配置文件中可以有父bean和子bean，父bean用 RootBeanDefinition 来表示，子bean用 ChildBeanDefinition 来表示，而 GenericBeanDefinition 是一个通用的BeanDefinition。
- * 存储  内存态的bean 好比是设计图纸  根据设计图纸 来创建  纯静态的bean
- *
  * Bean 的生命周期，默认只提供sington和prototype两种，在WebApplicationContext中还会有request, session, globalSession, application, websocket 等
  */
 public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
@@ -42,6 +36,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	String SCOPE_PROTOTYPE = ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 
 	// 应用程序重要组成部分 Role hint indicating that a {@code BeanDefinition} is a major part of the application.Typically corresponds to a user-defined bean.
+	// 指出该bean是应用程序的主要部分，通常对应用户定义的bean
 	int ROLE_APPLICATION = 0;
 
 	/**
@@ -50,6 +45,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * {@code SUPPORT} beans are considered important enough to be aware of when looking more closely at a particular
 	 * {@link org.springframework.beans.factory.parsing.ComponentDefinition},but not when looking at the overall configuration of an application.
 	 *  做为大量配置的一部分（支持、扩展类）  实际上就是说，我这个Bean是用户的，是从配置文件中过来的。
+	 *  应用支持性质的bean,在某些地方比较重要，但从整个应用的返回来看，还没那么重要。
 	 */
 	int ROLE_SUPPORT = 1;
 
@@ -57,6 +53,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * Role hint indicating that a {@code BeanDefinition} is providing an entirely background role and has no relevance to the end-user.
 	 * This hint is used when registering beans that are completely part of the internal workings of a {@link org.springframework.beans.factory.parsing.ComponentDefinition}.
 	 * 指内部工作的基础构造  实际上是说我这Bean是Spring自己的，和你用户没有一毛钱关系
+	 * 基础设施bean,仅仅用于框架内部工作，跟终端用户无关。
 	 */
 	int ROLE_INFRASTRUCTURE = 2;
 
@@ -280,5 +277,4 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 */
 	@Nullable
 	BeanDefinition getOriginatingBeanDefinition();
-
 }

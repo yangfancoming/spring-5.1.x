@@ -30,7 +30,8 @@ import org.springframework.lang.Nullable;
  * Delegate for AbstractApplicationContext's post-processor handling.
  * @since 4.0
  */
-final class PostProcessorRegistrationDelegate {
+// modify- 添加 public
+public final class PostProcessorRegistrationDelegate {
 
 	private PostProcessorRegistrationDelegate() {}
 

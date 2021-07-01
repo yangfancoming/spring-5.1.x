@@ -1548,7 +1548,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			}else {
 				String propertyName = pv.getName();
 				Object originalValue = pv.getValue();
-				/*
+				/**
 				 * 解析属性值。举例说明，先看下面的配置：
 				 *   <bean id="macbook" class="MacBookPro">
 				 *       <property name="manufacturer" value="Apple"/>
@@ -1569,10 +1569,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				 *   propertyName = "cpu", resolvedValue = "CPU@1234"  注：resolvedValue 是一个对象
 				 *   propertyName = "interface", resolvedValue = ["USB", "HDMI", "Thunderbolt"]
 				 *
-				 * 如上所示，resolveValueIfNecessary 会将 ref 解析为具体的对象，将 <list>
-				 * 标签转换为 List 对象等。对于 int 类型的配置，这里并未做转换，所以
-				 * width = "280"，还是字符串。除了解析上面几种类型，该方法还会解析 <set/>、
-				 * <map/>、<array/> 等集合配置
+				 * 如上所示，resolveValueIfNecessary 会将 ref 解析为具体的对象，将 <list> 标签转换为 List 对象等。
+				 * 对于 int 类型的配置，这里并未做转换，所以width = "280"，还是字符串。
+				 * 除了解析上面几种类型，该方法还会解析 <set/>、 <map/>、<array/> 等集合配置
 				 */
 				Object resolvedValue = valueResolver.resolveValueIfNecessary(pv, originalValue);
 				Object convertedValue = resolvedValue;

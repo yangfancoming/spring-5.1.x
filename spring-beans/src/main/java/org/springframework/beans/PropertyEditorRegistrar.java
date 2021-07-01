@@ -21,5 +21,4 @@ public interface PropertyEditorRegistrar {
 	 * @param registry the {@code PropertyEditorRegistry} to register the custom {@code PropertyEditors} with
 	 */
 	void registerCustomEditors(PropertyEditorRegistry registry);
-
 }

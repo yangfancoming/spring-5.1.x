@@ -1,9 +1,11 @@
-package com.goat.chapter201.bean;
+package com.goat.chapter201.bean.item01;
 
 import com.goat.chapter201.model.Person;
 import org.junit.Test;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.PropertyAccessor;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory;
 import org.springframework.beans.factory.support.AbstractBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionReaderUtils;
@@ -18,7 +20,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Created by 64274 on 2019/8/12.
- *
  * @ Description: TODO
  * @ author  山羊来了
  * @ date 2019/8/12---20:31
@@ -36,7 +37,6 @@ public class App {
 	 * @see DefaultBeanDefinitionDocumentReader#processBeanDefinition(org.w3c.dom.Element, org.springframework.beans.factory.xml.BeanDefinitionParserDelegate)
 	 * @see BeanDefinitionParserDelegate#parseBeanDefinitionElement(org.w3c.dom.Element, org.springframework.beans.factory.config.BeanDefinition)
 	 * @see BeanDefinitionReaderUtils#registerBeanDefinition(org.springframework.beans.factory.config.BeanDefinitionHolder, org.springframework.beans.factory.support.BeanDefinitionRegistry)
-	 * beanDefinitionMap.put(beanName, beanDefinition);
 	 * 内存态 ---> 纯净态
 	 * @see AbstractApplicationContext#finishBeanFactoryInitialization(org.springframework.beans.factory.config.ConfigurableListableBeanFactory)
 	 * @see DefaultListableBeanFactory#preInstantiateSingletons()
@@ -45,16 +45,30 @@ public class App {
 	 * @see AbstractAutowireCapableBeanFactory#doCreateBean(java.lang.String, org.springframework.beans.factory.support.RootBeanDefinition, java.lang.Object[])
 	 * @see AbstractAutowireCapableBeanFactory#createBeanInstance(java.lang.String, org.springframework.beans.factory.support.RootBeanDefinition, java.lang.Object[])
 	 * @see AbstractAutowireCapableBeanFactory#instantiateBean(java.lang.String, org.springframework.beans.factory.support.RootBeanDefinition)
-	 *
 	 * 纯净态 ---> 成熟态
 	 * @see AbstractAutowireCapableBeanFactory#populateBean(java.lang.String, org.springframework.beans.factory.support.RootBeanDefinition, org.springframework.beans.BeanWrapper)
 	 * @see AbstractAutowireCapableBeanFactory#applyPropertyValues(java.lang.String, org.springframework.beans.factory.config.BeanDefinition, org.springframework.beans.BeanWrapper, org.springframework.beans.PropertyValues)
 	 * @see PropertyAccessor#setPropertyValues(org.springframework.beans.PropertyValues) # AbstractAutowireCapableBeanFactory
 	 * @see BeanWrapperImpl.BeanPropertyHandler#setValue(java.lang.Object)
-	 *
 	 * @see AbstractAutowireCapableBeanFactory#initializeBean(java.lang.String, java.lang.Object, org.springframework.beans.factory.support.RootBeanDefinition)
 	 * @see AbstractAutowireCapableBeanFactory#applyBeanPostProcessorsAfterInitialization(java.lang.Object, java.lang.String)
 	 */
+
+	/**
+	 * xml 方式将<bean>标签解析为 AbstractBeanDefinition
+	 * @see BeanDefinitionParserDelegate#parseBeanDefinitionElement(org.w3c.dom.Element, java.lang.String, org.springframework.beans.factory.config.BeanDefinition)
+	 * 解析为AbstractBeanDefinition后，将其注册到容器中
+	 * @see BeanDefinitionReaderUtils#registerBeanDefinition(org.springframework.beans.factory.config.BeanDefinitionHolder, org.springframework.beans.factory.support.BeanDefinitionRegistry)
+	 * @see DefaultListableBeanFactory#registerBeanDefinition(java.lang.String, org.springframework.beans.factory.config.BeanDefinition)
+	*/
+	@Test
+	public void test(){
+		ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("classpath:beans.xml");
+		ConfigurableListableBeanFactory beanFactory = ac.getBeanFactory();
+		BeanDefinition person = beanFactory.getBeanDefinition("person");
+		System.out.println(person);
+	}
+
 	@Test
 	public void test1(){
 		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:beans.xml");

@@ -851,6 +851,7 @@ public class DefaultListableBeanFactoryTests {
 		assertTrue(lbf.getBean("testAlias") instanceof NestedTestBean);
 	}
 
+	// 测试别名链
 	@Test
 	public void testAliasChaining() {
 		lbf.registerBeanDefinition("test", new RootBeanDefinition(NestedTestBean.class));
@@ -858,6 +859,7 @@ public class DefaultListableBeanFactoryTests {
 		lbf.registerAlias("testAlias", "testAlias2");
 		lbf.registerAlias("testAlias2", "testAlias3");
 		Object bean = lbf.getBean("test");
+		// 在 .getBean时 ，spring会先将beanName转为正名后，再进行获取bean实例
 		assertSame(bean, lbf.getBean("testAlias"));
 		assertSame(bean, lbf.getBean("testAlias2"));
 		assertSame(bean, lbf.getBean("testAlias3"));
@@ -893,7 +895,7 @@ public class DefaultListableBeanFactoryTests {
 		lbf.addPropertyEditorRegistrar(registry->{
 			NumberFormat nf = NumberFormat.getInstance(Locale.GERMAN);
 			registry.registerCustomEditor(Float.class, new CustomNumberEditor(Float.class, nf, true));
-		});
+		});// PropertyEditorRegistrySupport
 		MutablePropertyValues pvs = new MutablePropertyValues();
 		pvs.add("myFloat", "1,1");
 		RootBeanDefinition bd = new RootBeanDefinition(TestBean.class);
@@ -1110,9 +1112,9 @@ public class DefaultListableBeanFactoryTests {
 	}
 
 	@Test
-	public void testArrayPropertyWithOptionalAutowiring() throws MalformedURLException {
+	public void testArrayPropertyWithOptionalAutowiring() {
 		RootBeanDefinition rbd = new RootBeanDefinition(ArrayBean.class);
-		rbd.setAutowireMode(RootBeanDefinition.AUTOWIRE_BY_TYPE);
+//		rbd.setAutowireMode(RootBeanDefinition.AUTOWIRE_BY_TYPE);
 		lbf.registerBeanDefinition("arrayBean", rbd);
 		ArrayBean ab = (ArrayBean) lbf.getBean("arrayBean");
 		assertNull(ab.getResourceArray());
@@ -1122,12 +1124,11 @@ public class DefaultListableBeanFactoryTests {
 	public void testArrayConstructorWithAutowiring() {
 		lbf.registerSingleton("integer1", new Integer(4));
 		lbf.registerSingleton("integer2", new Integer(5));
-
 		RootBeanDefinition rbd = new RootBeanDefinition(ArrayBean.class);
 		rbd.setAutowireMode(RootBeanDefinition.AUTOWIRE_CONSTRUCTOR);
 		lbf.registerBeanDefinition("arrayBean", rbd);
-		ArrayBean ab = (ArrayBean) lbf.getBean("arrayBean");
 
+		ArrayBean ab = (ArrayBean) lbf.getBean("arrayBean");
 		assertEquals(new Integer(4), ab.getIntegerArray()[0]);
 		assertEquals(new Integer(5), ab.getIntegerArray()[1]);
 	}

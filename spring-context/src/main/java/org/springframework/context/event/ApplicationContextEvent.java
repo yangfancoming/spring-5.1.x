@@ -27,5 +27,4 @@ public abstract class ApplicationContextEvent extends ApplicationEvent {
 	public final ApplicationContext getApplicationContext() {
 		return (ApplicationContext) getSource();
 	}
-
 }

@@ -15,6 +15,7 @@ public class Person {
 	}
 
 	public Person(String name, int age) {
+		System.out.println("Person 双参构造函数执行");
 		this.name = name;
 		this.age = age;
 	}

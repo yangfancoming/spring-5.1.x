@@ -18,12 +18,7 @@ import org.springframework.tests.sample.beans.ITestBean;
 
 import static org.junit.Assert.*;
 
-/**
- * @author Rob Harrop
 
-
- * @author Oliver Gierke
- */
 public class JeeNamespaceHandlerTests {
 
 	private ConfigurableListableBeanFactory beanFactory;
@@ -31,8 +26,7 @@ public class JeeNamespaceHandlerTests {
 	@Before
 	public void setUp() throws Exception {
 		GenericApplicationContext ctx = new GenericApplicationContext();
-		new XmlBeanDefinitionReader(ctx).loadBeanDefinitions(
-				new ClassPathResource("jeeNamespaceHandlerTests.xml", getClass()));
+		new XmlBeanDefinitionReader(ctx).loadBeanDefinitions(new ClassPathResource("jeeNamespaceHandlerTests.xml", getClass()));
 		ctx.refresh();
 		this.beanFactory = ctx.getBeanFactory();
 		this.beanFactory.getBeanNamesForType(ITestBean.class);
