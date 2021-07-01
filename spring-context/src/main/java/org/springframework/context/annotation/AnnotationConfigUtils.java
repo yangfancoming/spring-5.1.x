@@ -223,13 +223,16 @@ public abstract class AnnotationConfigUtils {
 	}
 
 	/**
-	 * 获取指定方法上的，指定注解的所有属性
+	 * 获取指定方法上的，指定注解【类型】的所有属性
 	*/
 	@Nullable
 	static AnnotationAttributes attributesFor(AnnotatedTypeMetadata metadata, Class<?> annotationClass) {
 		return attributesFor(metadata, annotationClass.getName());
 	}
 
+	/**
+	 * 获取指定方法上的，指定注解【名称】的所有属性
+	 */
 	@Nullable
 	static AnnotationAttributes attributesFor(AnnotatedTypeMetadata metadata, String annotationClassName) {
 		return AnnotationAttributes.fromMap(metadata.getAnnotationAttributes(annotationClassName, false));

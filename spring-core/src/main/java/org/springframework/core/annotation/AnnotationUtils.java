@@ -780,8 +780,7 @@ public abstract class AnnotationUtils {
 	}
 
 	/**
-	 * Determine if the given annotated element is defined in a
-	 * {@code java} or in the {@code org.springframework.lang} package.
+	 * Determine if the given annotated element is defined in a {@code java} or in the {@code org.springframework.lang} package.
 	 * @param annotatedElement the annotated element to check
 	 * @return {@code true} if the given element is in a {@code java}
 	 * package or in the {@code org.springframework.lang} package

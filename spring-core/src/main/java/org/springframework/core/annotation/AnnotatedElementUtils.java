@@ -729,22 +729,28 @@ public abstract class AnnotatedElementUtils {
 	 * Perform the search algorithm for the {@link #searchWithGetSemantics} method, avoiding endless recursion by tracking which annotated elements have already been <em>visited</em>.
 	 * The {@code metaDepth} parameter is explained in the  {@link Processor#process process()} method of the {@link Processor} API.
 	 * @param element the annotated element
-	 * @param annotationTypes the annotation types to find
+	 * @param annotationTypes the annotation types to find   分别表示要查找的注解类型、注解名称、以及可重复注解的容器对象
 	 * @param annotationName the fully qualified class name of the annotation type to find (as an alternative to {@code annotationType})
 	 * @param containerType the type of the container that holds repeatable annotations, or {@code null} if the annotation is not repeatable
-	 * @param processor the processor to delegate to
-	 * @param visited the set of annotated elements that have already been visited
-	 * @param metaDepth the meta-depth of the annotation
+	 * @param processor the processor to delegate to  后置的处理器，process 返回 null 继续查找，否则停止查找。aggregates=true 时例外，因为此时查找全部的注解。
+	 * @param visited the set of annotated elements that have already been visited  已经查找的元素，避免重复查找。
+	 * @param metaDepth the meta-depth of the annotation  注解深度，普通注解为 0
 	 * @return the result of the processor (potentially {@code null})
+	 * // 用于查找 element 上的 annotationTypes、annotationName、containerType 类型注解
+	 * // 返回后置处理器对查找后的注解 process 后的值
 	 */
 	@Nullable
-	private static <T> T searchWithGetSemantics(AnnotatedElement element,Set<Class<? extends Annotation>> annotationTypes, @Nullable String annotationName,@Nullable Class<? extends Annotation> containerType, Processor<T> processor,Set<AnnotatedElement> visited, int metaDepth) {
+	private static <T> T searchWithGetSemantics(AnnotatedElement element,Set<Class<? extends Annotation>> annotationTypes, @Nullable String annotationName,
+												@Nullable Class<? extends Annotation> containerType, Processor<T> processor,Set<AnnotatedElement> visited, int metaDepth) {
 		if (visited.add(element)) {
 			try {
-				// Start searching within locally declared annotations
+				// 1. 本地注解查找  Start searching within locally declared annotations
 				List<Annotation> declaredAnnotations = Arrays.asList(AnnotationUtils.getDeclaredAnnotations(element));
 				T result = searchWithGetSemanticsInAnnotations(element, declaredAnnotations,annotationTypes, annotationName, containerType, processor, visited, metaDepth);
-				if (result != null) return result;
+				if (result != null) {
+					return result;
+				}
+				// 2. @Inherited 类型查找
 				if (element instanceof Class) {  // otherwise getAnnotations doesn't return anything new
 					Class<?> superclass = ((Class<?>) element).getSuperclass();
 					if (superclass != null && superclass != Object.class) {
@@ -781,9 +787,12 @@ public abstract class AnnotatedElementUtils {
 	 * @param metaDepth the meta-depth of the annotation
 	 * @return the result of the processor (potentially {@code null})
 	 * @since 4.2
+	 *  真正用于在指定的注解集合 annotations 中查找指定的注解
 	 */
 	@Nullable
-	private static <T> T searchWithGetSemanticsInAnnotations(@Nullable AnnotatedElement element,List<Annotation> annotations, Set<Class<? extends Annotation>> annotationTypes,@Nullable String annotationName, @Nullable Class<? extends Annotation> containerType,Processor<T> processor, Set<AnnotatedElement> visited, int metaDepth) {
+	private static <T> T searchWithGetSemanticsInAnnotations(@Nullable AnnotatedElement element,List<Annotation> annotations, Set<Class<? extends Annotation>> annotationTypes,
+		@Nullable String annotationName, @Nullable Class<? extends Annotation> containerType,Processor<T> processor, Set<AnnotatedElement> visited, int metaDepth) {
+
 		// Search in annotations
 		for (Annotation annotation : annotations) {
 			Class<? extends Annotation> currentAnnotationType = annotation.annotationType();
