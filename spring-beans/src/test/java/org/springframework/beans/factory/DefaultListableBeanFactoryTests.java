@@ -94,12 +94,12 @@ public class DefaultListableBeanFactoryTests {
 
 	/**
 	 * 为什么spring源码的测试用例中  都使用的是静态类？？？
-	 * 非静态内部类并没有无参数的构造器，表面上调用Goat的无参数的构造器创建实例，实际上JVM会将this（代表当前默认的DefaultListableBeanFactoryTests对象）作为实参传入Goat构造器。
-	 * 这符合非静态内部类的规则：非静态内部类必须寄生在外部类的实例中，没有外部类的对象，就不能产生非静态内部类的对象。因此，非静态内部类不可能有无参数构造器。
-	 * 当程序通过反射指定调用Inner类无参数的构造器创建对象，导致异常。
+	 * 非静态内部类没有无参的构造器，表面上调用Goat的无参数的构造器创建实例，实际上JVM会将this（代表当前默认的DefaultListableBeanFactoryTests对象）作为实参传入Goat构造器。
+	 * 这符合非静态内部类的规则：非静态内部类必须寄生在外部类的实例中，没有外部类的对象，就不能产生非静态内部类的对象。
+	 * 因此，非静态内部类不可能有无参数构造器。当程序通过反射指定调用Inner类无参数的构造器创建对象，导致异常。
 	*/
 	@Test
-	public void test() throws IllegalAccessException, InstantiationException {
+	public void test() {
 		Goat goat = new Goat();
 		// 发现直接创建的内部类对象完全正常，但是通过反射创建的内部类对象抛出了异常。
 		goat.say();
@@ -107,8 +107,12 @@ public class DefaultListableBeanFactoryTests {
 		// 表面上看似可以拿到Goat的无参数的构造器
 		assertNotNull(declaredConstructors);
 		// 但是一旦反射创建的时候就抛出异常
-		Goat goat1 = Goat.class.newInstance();
-		goat1.say();
+		try {
+			Goat goat1 = Goat.class.newInstance();
+			goat1.say();
+		} catch (Exception ex){
+			System.out.println(ex);
+		}
 	}
 
 	// 测试 preInstantiateSingletons 方法
@@ -461,12 +465,10 @@ public class DefaultListableBeanFactoryTests {
 		assertEquals("&x1", lbf.getAliases("&x2")[0]);
 	}
 
+	// 测试 DefaultListableBeanFactory 执行无参构造函数后的各个属性
 	@Test
 	public void testEmpty() {
 		ListableBeanFactory lbf = new DefaultListableBeanFactory();
-		System.out.println(lbf.getBeanDefinitionNames());
-		System.out.println(lbf.getBeanDefinitionNames().length);
-		System.out.println(lbf.getBeanDefinitionCount());
 		assertTrue("No beans defined --> array != null", lbf.getBeanDefinitionNames() != null);
 		assertTrue("No beans defined after no arg constructor", lbf.getBeanDefinitionNames().length == 0);
 		assertTrue("No beans defined after no arg constructor", lbf.getBeanDefinitionCount() == 0);
@@ -800,9 +802,12 @@ public class DefaultListableBeanFactoryTests {
 	@Test
 	public void testBeanDefinitionRemoval() {
 		lbf.setAllowBeanDefinitionOverriding(false);
+		// 注册单例bean
 		lbf.registerBeanDefinition("test", new RootBeanDefinition(TestBean.class));
 		lbf.registerAlias("test", "test2");
+		// 实例化已注册的单例bean
 		lbf.preInstantiateSingletons();
+		// 删除bean定义
 		lbf.removeBeanDefinition("test");
 		lbf.removeAlias("test2");
 		lbf.registerBeanDefinition("test", new RootBeanDefinition(NestedTestBean.class));
@@ -811,19 +816,28 @@ public class DefaultListableBeanFactoryTests {
 		assertTrue(lbf.getBean("test2") instanceof NestedTestBean);
 	}
 
+	/**
+	 * 测试 allowBeanDefinitionOverriding 属性，bean定义是否允许覆盖
+	 * @see DefaultListableBeanFactory#allowBeanDefinitionOverriding
+	 * @see DefaultListableBeanFactory#registerBeanDefinition(java.lang.String, org.springframework.beans.factory.config.BeanDefinition)
+	 * @see DefaultListableBeanFactory#isAllowBeanDefinitionOverriding()
+	*/
 	@Test
 	public void testBeanDefinitionOverridingNotAllowed() {
+		// 设置bean定义不允许覆盖
 		lbf.setAllowBeanDefinitionOverriding(false);
 		BeanDefinition oldDef = new RootBeanDefinition(TestBean.class);
 		BeanDefinition newDef = new RootBeanDefinition(NestedTestBean.class);
 		lbf.registerBeanDefinition("test", oldDef);
 		try {
+			// 再次注册相同名称的bean，则触发异常
 			lbf.registerBeanDefinition("test", newDef);
 			fail("Should have thrown BeanDefinitionOverrideException");
 		}catch (BeanDefinitionOverrideException ex) {
 			assertEquals("test", ex.getBeanName());
 			assertSame(newDef, ex.getBeanDefinition());
 			assertSame(oldDef, ex.getExistingDefinition());
+			System.out.println(ex);
 		}
 	}
 
@@ -1271,9 +1285,9 @@ public class DefaultListableBeanFactoryTests {
 		RootBeanDefinition bd = new RootBeanDefinition(TestBean.class);
 		// 将bean名称为spouse的对象放入容器  (这里注册的bean名称"spouse"，必须要与DependenciesBean对象的属性名称相同才能实现AUTOWIRE_BY_NAME注入，否则抛出异常)
 		lbf.registerBeanDefinition("spouse", bd);
+		TestBean spouse = (TestBean) lbf.getBean("spouse");
 		// 从容器中取出刚放入的spouse对象，并赋值给容器外部对象（DependenciesBean）的spouse属性
 		DependenciesBean bean = (DependenciesBean)lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_NAME, true);
-		TestBean spouse = (TestBean) lbf.getBean("spouse");
 		assertEquals(spouse, bean.getSpouse());
 		assertTrue(BeanFactoryUtils.beanOfType(lbf, TestBean.class) == spouse);
 	}

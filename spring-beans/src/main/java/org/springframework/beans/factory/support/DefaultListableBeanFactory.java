@@ -106,7 +106,10 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	@Nullable
 	private String serializationId;
 
-	/** Whether to allow re-registration of a different definition with the same name. 当有相同名称不同实例时是否允许覆盖，默认允许 */
+	/**
+	 * 是否允许相同beanName的覆盖，默认为true。
+	 * Whether to allow re-registration of a different definition with the same name.
+	 */
 	private boolean allowBeanDefinitionOverriding = true;
 
 	/** Whether to allow eager class loading even for lazy-init beans. 对于赖加载的bean，是否允许立即加载*/
@@ -680,12 +683,15 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		return bd;
 	}
 
+	/**
+	 * @see org.springframework.beans.factory.DefaultListableBeanFactoryTests#testUnreferencedSingletonWasInstantiated() 【测试用例】
+	*/
 	@Override
 	public void preInstantiateSingletons() throws BeansException {
 		if (logger.isTraceEnabled()) logger.trace("Pre-instantiating singletons in " + this);
 		// Iterate over a copy to allow for init methods which in turn register new bean definitions.
 		// While this may not be part of the regular factory bootstrap, it does otherwise work fine.
-		// 获取容器内加载的所有 bean的名称 // 遍历所有beanName，对所有的非懒加载且单例的bena进行创建,已经创建的不会再次执行。
+		// 遍历获取容器内加载的所有 bean的名称 ，对所有的非懒加载且单例的bean进行创建,已经创建的不会再次执行。
 		List<String> beanNames = new ArrayList<>(beanDefinitionNames);
 		// Trigger initialization of all non-lazy singleton beans... 遍历初始化所有非懒加载单例Bean
 		for (String beanName : beanNames) {
@@ -778,25 +784,23 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			beanDefinitionMap.put(beanName, beanDefinition);
 		}else {
 			// 3、缓存中无对应的BeanDefinition，则直接注册
-			// 该bean还没注册，检查该工厂的bean创建阶段是否已经开始，即在此期间是否已将该bean标记为已创建。
-			if (hasBeanCreationStarted()) { // 如果beanDefinition已经被标记为创建(为了解决单例bean的循环依赖问题)
+			// 该bean还没注册，检查该工厂的bean创建阶段是否已经开始，即在此期间是否已将该bean标记为已创建。(为了解决单例bean的循环依赖问题)
+			if (hasBeanCreationStarted()) {
 				// Cannot modify startup-time collection elements anymore (for stable iteration)  // 无法再修改启动时集合元素（用于稳定迭代）
 				synchronized (beanDefinitionMap) {
 					// 这一步是真正注册bean状态： 由 概念态--->内存态
-					logger.warn("【IOC容器中 添加BeanDefinition 内存态 --- 新建方式(已创建)】 beanName： " + beanName + "	value：" + beanDefinition.getBeanClassName());
+					logger.warn("【IOC容器中 添加BeanDefinition 内存态 --- 新建方式(创建中)】 beanName： " + beanName + "	value：" + beanDefinition.getBeanClassName());
 					beanDefinitionMap.put(beanName, beanDefinition);
-					// 更新 beanDefinitionNames 这个集合
-					// 创建List<String>并将缓存的beanDefinitionNames和新解析的beanName加入集合
 					List<String> updatedDefinitions = new ArrayList<>(beanDefinitionNames.size() + 1);
 					updatedDefinitions.addAll(beanDefinitionNames);
 					updatedDefinitions.add(beanName);
-					// 将updatedDefinitions赋值给beanDefinitionNames
 					beanDefinitionNames = updatedDefinitions;
+					// doit  这里为啥不用 beanDefinitionNames.add(beanName);   非要updatedDefinitions中间插一手干嘛
 					removeManualSingletonName(beanName);
 				}
 			}else {
 				// Still in startup registration phase
-				logger.warn("【IOC容器中 添加BeanDefinition 内存态 beanDefinitionMap   --- 新建方式(未创建)】 beanName： " + beanName + "	value：" + beanDefinition.getBeanClassName());
+				logger.warn("【IOC容器中 添加BeanDefinition 内存态 beanDefinitionMap   --- 新建方式(非创建中)】 beanName： " + beanName + "	value：" + beanDefinition.getBeanClassName());
 				beanDefinitionMap.put(beanName, beanDefinition);
 				beanDefinitionNames.add(beanName);
 				// manualSingletonNames缓存了手动注册的单例bean，所以需要调用一下remove方法，防止beanName重复
@@ -827,6 +831,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				List<String> updatedDefinitions = new ArrayList<>(beanDefinitionNames);
 				updatedDefinitions.remove(beanName);
 				beanDefinitionNames = updatedDefinitions;
+				// doit  这里为啥不用 beanDefinitionNames.add(beanName);   非要updatedDefinitions中间插一手干嘛
 			}
 		}else {
 			// Still in startup registration phase

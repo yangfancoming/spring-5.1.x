@@ -252,9 +252,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					return (T) parentBeanFactory.getBean(nameToLookup);
 				}
 			}
-			// 如果当前bean不是用于类型检查,则将该bean标记为已经被创建或者即将被创建
-			//将beanName标记到baen工厂的alreadyCreated的Set中，保证不会重复创建该bean
-			if (!typeCheckOnly) {  // 先标记当前bean已经被创建   后面会进行创建
+			// 如果当前bean不是用于类型检查,则将该bean标记为已经被创建或者即将被创建，保证不会重复创建该bean
+			if (!typeCheckOnly) {
 				markBeanAsCreated(beanName);
 			}
 			try {

@@ -26,8 +26,7 @@ public interface ConfigurableListableBeanFactory extends ListableBeanFactory, Au
 
 	/**
 	 * 忽略自动装配的依赖类型
-	 * Ignore the given dependency type for autowiring:
-	 * for example, String. Default is none.
+	 * Ignore the given dependency type for autowiring: for example, String. Default is none.
 	 * @param type the dependency type to ignore
 	 */
 	void ignoreDependencyType(Class<?> type);
@@ -100,8 +99,7 @@ public interface ConfigurableListableBeanFactory extends ListableBeanFactory, Au
 	Iterator<String> getBeanNamesIterator();
 
 	/**
-	 * Clear the merged bean definition cache, removing entries for beans
-	 * which are not considered eligible for full metadata caching yet.
+	 * Clear the merged bean definition cache, removing entries for beans which are not considered eligible for full metadata caching yet.
 	 * Typically triggered after changes to the original bean definitions,
 	 * e.g. after applying a {@link BeanFactoryPostProcessor}. Note that metadata for beans which have already been created at this point will be kept around.
 	 * @since 4.2
@@ -119,16 +117,15 @@ public interface ConfigurableListableBeanFactory extends ListableBeanFactory, Au
 	void freezeConfiguration();
 
 	/**
-	 * Return whether this factory's bean definitions are frozen,
-	 * i.e. are not supposed to be modified or post-processed any further.
+	 * Return whether this factory's bean definitions are frozen,i.e. are not supposed to be modified or post-processed any further.
 	 * @return {@code true} if the factory's configuration is considered frozen
 	 * 返回是否冻结此工厂的bean定义
 	 */
 	boolean isConfigurationFrozen();
 
 	/**
-	 * Ensure that all non-lazy-init singletons are instantiated, also considering FactoryBeans {@link org.springframework.beans.factory.FactoryBean FactoryBeans}.
 	 * 确保所有非lazy-init单例都已被实例化，同时考虑到 factorybeans
+	 * Ensure that all non-lazy-init singletons are instantiated, also considering FactoryBeans {@link org.springframework.beans.factory.FactoryBean FactoryBeans}.
 	 * Typically invoked at the end of factory setup, if desired. 如果需要，通常在工厂设置结束时调用
 	 * @throws BeansException if one of the singleton beans could not be created.
 	 * Note: This may have left the factory with some beans already initialized!

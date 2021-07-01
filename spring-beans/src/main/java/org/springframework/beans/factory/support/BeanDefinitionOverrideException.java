@@ -7,9 +7,8 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.lang.NonNull;
 
 /**
- * Subclass of {@link BeanDefinitionStoreException} indicating an invalid override
- * attempt: typically registering a new definition for the same bean name while
- * {@link DefaultListableBeanFactory#isAllowBeanDefinitionOverriding()} is {@code false}.
+ * Subclass of {@link BeanDefinitionStoreException} indicating an invalid override attempt:
+ * typically registering a new definition for the same bean name while {@link DefaultListableBeanFactory#isAllowBeanDefinitionOverriding()} is {@code false}.
  * @since 5.1
  * @see DefaultListableBeanFactory#setAllowBeanDefinitionOverriding
  * @see DefaultListableBeanFactory#registerBeanDefinition
@@ -27,8 +26,7 @@ public class BeanDefinitionOverrideException extends BeanDefinitionStoreExceptio
 	 * @param existingDefinition the existing bean definition for the same name
 	 */
 	public BeanDefinitionOverrideException(String beanName, BeanDefinition beanDefinition, BeanDefinition existingDefinition) {
-		super(beanDefinition.getResourceDescription(), beanName,
-				"Cannot register bean definition [" + beanDefinition + "] for bean '" + beanName + "': There is already [" + existingDefinition + "] bound.");
+		super(beanDefinition.getResourceDescription(), beanName,"Cannot register bean definition [" + beanDefinition + "] for bean '" + beanName + "': There is already [" + existingDefinition + "] bound.");
 		this.beanDefinition = beanDefinition;
 		this.existingDefinition = existingDefinition;
 	}
@@ -66,5 +64,4 @@ public class BeanDefinitionOverrideException extends BeanDefinitionStoreExceptio
 	public BeanDefinition getExistingDefinition() {
 		return this.existingDefinition;
 	}
-
 }

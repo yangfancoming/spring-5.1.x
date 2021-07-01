@@ -87,7 +87,6 @@ public class BeanDefinitionStoreException extends FatalBeanException {
 		this.beanName = beanName;
 	}
 
-
 	/**
 	 * Return the description of the resource that the bean definition came from, if available.
 	 */
@@ -103,5 +102,4 @@ public class BeanDefinitionStoreException extends FatalBeanException {
 	public String getBeanName() {
 		return this.beanName;
 	}
-
 }

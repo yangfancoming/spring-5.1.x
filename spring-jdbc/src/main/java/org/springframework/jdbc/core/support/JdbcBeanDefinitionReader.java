@@ -12,19 +12,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Bean definition reader that reads values from a database table,
- * based on a given SQL statement.
+ * Bean definition reader that reads values from a database table,based on a given SQL statement.
  *
  * Expects columns for bean name, property name and value as String.
- * Formats for each are identical to the properties format recognized
- * by PropertiesBeanDefinitionReader.
+ * Formats for each are identical to the properties format recognized by PropertiesBeanDefinitionReader.
  *
  * <b>NOTE:</b> This is mainly intended as an example for a custom
- * JDBC-based bean definition reader. It does not aim to offer
- * comprehensive functionality.
- *
- * @author Rod Johnson
-
+ * JDBC-based bean definition reader. It does not aim to offer comprehensive functionality.
  * @see #loadBeanDefinitions
  * @see org.springframework.beans.factory.support.PropertiesBeanDefinitionReader
  */
