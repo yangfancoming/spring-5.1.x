@@ -25,7 +25,6 @@ public class AnnotationScopeMetadataResolverTests {
 
 	private AnnotationScopeMetadataResolver scopeMetadataResolver = new AnnotationScopeMetadataResolver();
 
-
 	@Test
 	public void resolveScopeMetadataShouldNotApplyScopedProxyModeToSingleton() {
 		AnnotatedBeanDefinition bd = new AnnotatedGenericBeanDefinition(AnnotatedWithSingletonScope.class);
@@ -137,5 +136,4 @@ public class AnnotationScopeMetadataResolverTests {
 	@CustomRequestScopeWithAttributeOverride(proxyMode = TARGET_CLASS)
 	private static class AnnotatedWithCustomRequestScopeWithAttributeOverride {
 	}
-
 }

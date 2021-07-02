@@ -491,5 +491,4 @@ public class PropertySourceAnnotationTests {
 			})
 	static class ConfigWithFourResourceLocations {
 	}
-
 }

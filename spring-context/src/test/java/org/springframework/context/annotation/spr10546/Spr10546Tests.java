@@ -1,24 +1,16 @@
-
-
 package org.springframework.context.annotation.spr10546;
-
 import org.junit.After;
 import org.junit.Test;
-
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.spr10546.scanpackage.AEnclosingConfig;
-
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Rob Winch
- */
 public class Spr10546Tests {
+
 	private ConfigurableApplicationContext context;
 
 	@After

@@ -15,10 +15,7 @@ import org.springframework.context.event.ApplicationContextEvent;
 
 import static org.junit.Assert.*;
 
-/**
 
- * @author Arrault Fabien
- */
 public class AutoProxyLazyInitTests {
 
 	@Test
@@ -205,5 +202,4 @@ public class AutoProxyLazyInitTests {
 			return super.createBeanFactoryBasedTargetSource(beanClass, beanName);
 		}
 	}
-
 }

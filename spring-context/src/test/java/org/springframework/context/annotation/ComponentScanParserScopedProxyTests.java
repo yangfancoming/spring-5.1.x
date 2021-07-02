@@ -18,11 +18,7 @@ import example.scannable.ScopedProxyTestBean;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-/**
- * @author Mark Fisher
 
- * @author Sam Brannen
- */
 public class ComponentScanParserScopedProxyTests {
 
 	@Rule

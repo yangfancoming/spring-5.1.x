@@ -1,9 +1,5 @@
-
-
 package org.springframework.context.annotation;
-
 import org.junit.Test;
-
 import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.context.ApplicationContext;
@@ -59,5 +55,4 @@ public class AggressiveFactoryBeanInstantiationTests {
 			return Object.class;
 		}
 	}
-
 }

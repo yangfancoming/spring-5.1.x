@@ -13,9 +13,7 @@ import static org.junit.Assert.*;
 
 /**
  * Test case cornering the bug initially raised with SPR-8762, in which a
- * NullPointerException would be raised if a FactoryBean-returning @Bean method also
- * accepts parameters
-
+ * NullPointerException would be raised if a FactoryBean-returning @Bean method also accepts parameters
  * @since 3.1
  */
 public class ConfigurationWithFactoryBeanAndParametersTests {

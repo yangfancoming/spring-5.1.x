@@ -115,5 +115,4 @@ public abstract class AbstractCircularImportDetectionTests {
 			return new TestBean();
 		}
 	}
-
 }

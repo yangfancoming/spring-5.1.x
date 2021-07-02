@@ -13,9 +13,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 /**
- * Tests ensuring that configuration classes marked with @ComponentScan
- * may be processed recursively
-
+ * Tests ensuring that configuration classes marked with @ComponentScan may be processed recursively
  * @since 3.1
  */
 public class ComponentScanAnnotationRecursionTests {
@@ -43,5 +41,4 @@ public class ComponentScanAnnotationRecursionTests {
 		ctx.getBean("leftConfig");      // but this is handled gracefully
 		ctx.getBean("rightConfig");     // and beans from both packages are available
 	}
-
 }

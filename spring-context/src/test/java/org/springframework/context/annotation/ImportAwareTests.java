@@ -87,20 +87,14 @@ public class ImportAwareTests {
 
 	@Test
 	public void metadataFromImportsOneThenTwo() {
-		AnnotationMetadata importMetadata = new AnnotationConfigApplicationContext(
-				ConfigurationOne.class, ConfigurationTwo.class)
-				.getBean(MetadataHolder.class).importMetadata;
-		assertEquals(ConfigurationOne.class,
-				((StandardAnnotationMetadata) importMetadata).getIntrospectedClass());
+		AnnotationMetadata importMetadata = new AnnotationConfigApplicationContext(ConfigurationOne.class, ConfigurationTwo.class).getBean(MetadataHolder.class).importMetadata;
+		assertEquals(ConfigurationOne.class,((StandardAnnotationMetadata) importMetadata).getIntrospectedClass());
 	}
 
 	@Test
 	public void metadataFromImportsTwoThenOne() {
-		AnnotationMetadata importMetadata = new AnnotationConfigApplicationContext(
-				ConfigurationTwo.class, ConfigurationOne.class)
-				.getBean(MetadataHolder.class).importMetadata;
-		assertEquals(ConfigurationOne.class,
-				((StandardAnnotationMetadata) importMetadata).getIntrospectedClass());
+		AnnotationMetadata importMetadata = new AnnotationConfigApplicationContext(ConfigurationTwo.class, ConfigurationOne.class).getBean(MetadataHolder.class).importMetadata;
+		assertEquals(ConfigurationOne.class,((StandardAnnotationMetadata) importMetadata).getIntrospectedClass());
 	}
 
 
@@ -272,5 +266,4 @@ public class ImportAwareTests {
 			return ConfigurationPhase.REGISTER_BEAN;
 		}
 	}
-
 }

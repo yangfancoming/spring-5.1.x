@@ -17,5 +17,4 @@ public class Spr16756Tests {
 		context.getBean(ScannedComponent.class);
 		context.getBean(ScannedComponent.State.class);
 	}
-
 }

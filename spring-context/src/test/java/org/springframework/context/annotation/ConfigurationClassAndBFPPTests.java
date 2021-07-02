@@ -99,6 +99,4 @@ public class ConfigurationClassAndBFPPTests {
 			return new TestBean("foo");
 		}
 	}
-
-
 }

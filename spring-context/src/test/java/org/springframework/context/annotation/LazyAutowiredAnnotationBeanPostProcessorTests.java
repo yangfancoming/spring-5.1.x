@@ -18,7 +18,6 @@ import org.springframework.tests.sample.beans.TestBean;
 import static org.junit.Assert.*;
 
 /**
-
  * @since 4.0
  */
 public class LazyAutowiredAnnotationBeanPostProcessorTests {
@@ -304,5 +303,4 @@ public class LazyAutowiredAnnotationBeanPostProcessorTests {
 	@Retention(RetentionPolicy.RUNTIME)
 	public @interface LazyInject {
 	}
-
 }

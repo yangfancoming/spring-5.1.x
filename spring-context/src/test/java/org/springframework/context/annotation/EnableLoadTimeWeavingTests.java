@@ -14,15 +14,13 @@ import static org.mockito.BDDMockito.*;
 
 /**
  * Unit tests for @EnableLoadTimeWeaving
-
  * @since 3.1
  */
 public class EnableLoadTimeWeavingTests {
 
 	@Test
 	public void control() {
-		GenericXmlApplicationContext ctx =
-			new GenericXmlApplicationContext(getClass(), "EnableLoadTimeWeavingTests-context.xml");
+		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext(getClass(), "EnableLoadTimeWeavingTests-context.xml");
 		ctx.getBean("loadTimeWeaver", LoadTimeWeaver.class);
 	}
 

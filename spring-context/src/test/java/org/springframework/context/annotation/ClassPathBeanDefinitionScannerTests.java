@@ -494,5 +494,4 @@ public class ClassPathBeanDefinitionScannerTests {
 	@Component("toBeIgnored")
 	public class NonStaticInnerClass {
 	}
-
 }

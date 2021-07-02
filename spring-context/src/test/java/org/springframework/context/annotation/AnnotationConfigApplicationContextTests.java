@@ -456,5 +456,4 @@ class TestBean {
 			return false;
 		return true;
 	}
-
 }

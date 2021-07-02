@@ -3,21 +3,15 @@
 package org.springframework.context.annotation;
 
 import java.io.Closeable;
-
 import org.junit.Test;
-
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
-
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-/**
 
 
- * @author Stephane Nicoll
- */
 public class DestroyMethodInferenceTests {
 
 	@Test
@@ -78,7 +72,6 @@ public class DestroyMethodInferenceTests {
 		assertThat(x4.closed, is(false));
 		assertThat(x8.closed, is(false));
 	}
-
 
 	@Configuration
 	static class Config {
@@ -145,9 +138,7 @@ public class DestroyMethodInferenceTests {
 
 
 	static class WithExplicitDestroyMethod {
-
 		boolean closed = false;
-
 		public void explicitClose() {
 			closed = true;
 		}
@@ -155,9 +146,7 @@ public class DestroyMethodInferenceTests {
 
 
 	static class WithLocalCloseMethod {
-
 		boolean closed = false;
-
 		public void close() {
 			closed = true;
 		}
@@ -165,9 +154,7 @@ public class DestroyMethodInferenceTests {
 
 
 	static class WithInheritedCloseMethod implements Closeable {
-
 		boolean closed = false;
-
 		@Override
 		public void close() {
 			closed = true;
@@ -176,9 +163,7 @@ public class DestroyMethodInferenceTests {
 
 
 	static class WithDisposableBean implements DisposableBean {
-
 		boolean closed = false;
-
 		@Override
 		public void destroy() {
 			closed = true;
@@ -187,18 +172,13 @@ public class DestroyMethodInferenceTests {
 
 
 	static class WithNoCloseMethod {
-
 		boolean closed = false;
 	}
 
-
 	static class WithLocalShutdownMethod {
-
 		boolean closed = false;
-
 		public void shutdown() {
 			closed = true;
 		}
 	}
-
 }

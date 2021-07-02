@@ -153,7 +153,6 @@ public class ComponentScanParserTests {
 
 
 	public static class CustomTypeFilter implements TypeFilter {
-
 		/**
 		 * Intentionally spelling "custom" with a "k" since there are numerous
 		 * classes in this package named *Custom*.
@@ -163,5 +162,4 @@ public class ComponentScanParserTests {
 			return metadataReader.getClassMetadata().getClassName().contains("Kustom");
 		}
 	}
-
 }

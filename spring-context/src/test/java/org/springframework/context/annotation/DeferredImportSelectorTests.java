@@ -12,8 +12,6 @@ import static org.mockito.Mockito.*;
 
 /**
  * Tests for {@link DeferredImportSelector}.
- *
- * @author Stephane Nicoll
  */
 public class DeferredImportSelectorTests {
 
@@ -27,8 +25,7 @@ public class DeferredImportSelectorTests {
 	@Test
 	public void entryEqualsSameMetadataAndClassName() {
 		AnnotationMetadata metadata = mock(AnnotationMetadata.class);
-		assertEquals(new Group.Entry(metadata, "com.example.Test"),
-				new Group.Entry(metadata, "com.example.Test"));
+		assertEquals(new Group.Entry(metadata, "com.example.Test"),new Group.Entry(metadata, "com.example.Test"));
 	}
 
 	@Test
@@ -41,7 +38,6 @@ public class DeferredImportSelectorTests {
 	@Test
 	public void entryEqualSameMetadataAnDifferentClassName() {
 		AnnotationMetadata metadata = mock(AnnotationMetadata.class);
-		assertNotEquals(new Group.Entry(metadata, "com.example.Test"),
-				new Group.Entry(metadata, "com.example.AnotherTest"));
+		assertNotEquals(new Group.Entry(metadata, "com.example.Test"),new Group.Entry(metadata, "com.example.AnotherTest"));
 	}
 }

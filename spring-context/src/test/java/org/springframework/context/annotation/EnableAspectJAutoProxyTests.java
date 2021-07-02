@@ -1,10 +1,6 @@
-
-
 package org.springframework.context.annotation;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-
 import example.scannable.FooDao;
 import example.scannable.FooService;
 import example.scannable.FooServiceImpl;
@@ -12,14 +8,13 @@ import example.scannable.ServiceInvocationCounter;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.junit.Test;
-
 import org.springframework.aop.framework.AopContext;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
-
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+
 
 
 public class EnableAspectJAutoProxyTests {
@@ -34,7 +29,6 @@ public class EnableAspectJAutoProxyTests {
 	@Test
 	public void withCglibProxy() {
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(ConfigWithCglibProxy.class);
-
 		aspectIsApplied(ctx);
 		assertThat(AopUtils.isCglibProxy(ctx.getBean(FooService.class)), is(true));
 	}
@@ -42,7 +36,6 @@ public class EnableAspectJAutoProxyTests {
 	@Test
 	public void withExposedProxy() {
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(ConfigWithExposedProxy.class);
-
 		aspectIsApplied(ctx);
 		assertThat(AopUtils.isJdkDynamicProxy(ctx.getBean(FooService.class)), is(true));
 	}
@@ -66,9 +59,7 @@ public class EnableAspectJAutoProxyTests {
 
 	@Test
 	public void withAnnotationOnArgumentAndJdkProxy() {
-		ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext(
-				ConfigWithJdkProxy.class, SampleService.class, LoggingAspect.class);
-
+		ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext(ConfigWithJdkProxy.class, SampleService.class, LoggingAspect.class);
 		SampleService sampleService = ctx.getBean(SampleService.class);
 		sampleService.execute(new SampleDto());
 		sampleService.execute(new SampleInputBean());
@@ -78,9 +69,7 @@ public class EnableAspectJAutoProxyTests {
 
 	@Test
 	public void withAnnotationOnArgumentAndCglibProxy() {
-		ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext(
-				ConfigWithCglibProxy.class, SampleService.class, LoggingAspect.class);
-
+		ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext(ConfigWithCglibProxy.class, SampleService.class, LoggingAspect.class);
 		SampleService sampleService = ctx.getBean(SampleService.class);
 		sampleService.execute(new SampleDto());
 		sampleService.execute(new SampleInputBean());
@@ -155,5 +144,4 @@ public class EnableAspectJAutoProxyTests {
 		public void loggingBeginByAtArgs() {
 		}
 	}
-
 }

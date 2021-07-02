@@ -11,22 +11,17 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import org.springframework.core.type.AnnotationMetadata;
 
-/**
 
- * @author Alex Pogrebnyak
- */
 public class Spr12334Tests {
 
 	@Test
 	public void shouldNotScanTwice() {
 		TestImport.scanned = false;
-
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		context.scan(TestImport.class.getPackage().getName());
 		context.refresh();
 		context.getBean(TestConfiguration.class);
 	}
-
 
 	@Import(TestImport.class)
 	public @interface AnotherImport {
@@ -37,7 +32,6 @@ public class Spr12334Tests {
 	@AnotherImport
 	public static class TestConfiguration {
 	}
-
 
 	public static class TestImport implements ImportBeanDefinitionRegistrar {
 

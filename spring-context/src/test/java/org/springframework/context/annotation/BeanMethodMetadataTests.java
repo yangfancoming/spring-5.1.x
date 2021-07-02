@@ -34,14 +34,11 @@ public class BeanMethodMetadataTests {
 		}
 	}
 
-
 	static class MyBean {
 	}
-
 
 	@Retention(RetentionPolicy.RUNTIME)
 	public static @interface MyAnnotation {
 		String value();
 	}
-
 }

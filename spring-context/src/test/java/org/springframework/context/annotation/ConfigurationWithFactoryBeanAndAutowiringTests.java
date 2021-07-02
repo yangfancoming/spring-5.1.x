@@ -13,8 +13,6 @@ import static org.junit.Assert.*;
 
 /**
  * Tests cornering bug SPR-8514.
-
-
  * @since 3.1
  */
 public class ConfigurationWithFactoryBeanAndAutowiringTests {

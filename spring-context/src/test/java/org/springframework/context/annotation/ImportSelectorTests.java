@@ -520,5 +520,4 @@ public class ImportSelectorTests {
 			TestImportGroup.environment = environment;
 		}
 	}
-
 }

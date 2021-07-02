@@ -81,5 +81,4 @@ public class ClassPathFactoryBeanDefinitionScannerTests {
 		@Autowired
 		AbstractApplicationContext applicationContext;
 	}
-
 }

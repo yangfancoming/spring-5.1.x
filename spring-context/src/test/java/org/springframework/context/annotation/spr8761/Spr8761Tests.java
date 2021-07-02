@@ -20,8 +20,7 @@ import static org.junit.Assert.*;
 public class Spr8761Tests {
 
 	/**
-	 * Prior to the fix for SPR-8761, this test threw because the nested MyComponent
-	 * annotation was being falsely considered as a 'lite' Configuration class candidate.
+	 * Prior to the fix for SPR-8761, this test threw because the nested MyComponent annotation was being falsely considered as a 'lite' Configuration class candidate.
 	 */
 	@Test
 	public void repro() {
