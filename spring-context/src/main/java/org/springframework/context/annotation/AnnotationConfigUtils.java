@@ -231,7 +231,7 @@ public abstract class AnnotationConfigUtils {
 	}
 
 	/**
-	 * 获取指定方法上的，指定注解【名称】的所有属性
+	 * 获取指定方法上的，指定注解【全限定名称】的所有属性
 	 */
 	@Nullable
 	static AnnotationAttributes attributesFor(AnnotatedTypeMetadata metadata, String annotationClassName) {
