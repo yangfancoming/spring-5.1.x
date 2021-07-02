@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="gaga" class="com.goat.chapter201.lifecycle.item01.BeanNameAwareTest"/>
+<!--	<bean id="gaga1" class="com.goat.chapter185.item03.BeanClassLoaderAwareTest"/>-->
+<!--	<bean id="gaga2" class="com.goat.chapter185.item03.BeanFactoryAwareTest"/>-->
+<!--	<bean id="gaga3" class="com.goat.chapter185.item03.EnvironmentAwareTest"/>-->
+<!--	<bean id="gaga4" class="com.goat.chapter185.item03.EmbeddedValueResolverAwareTest"/>-->
+<!--	<bean id="gaga5" class="com.goat.chapter185.item03.ResourceLoaderAwareTest"/>-->
+<!--	<bean id="gaga6" class="com.goat.chapter185.item03.ApplicationEventPublisherAwareTest"/>-->
+<!--	<bean id="gaga7" class="com.goat.chapter185.item03.MessageSourceAwareTest"/>-->
+<!--	<bean id="gaga8" class="com.goat.chapter185.item03.ApplicationContextAwareTest"/>-->
+
+<!--	<bean id="gaga9" class="com.goat.chapter185.item03.InitializingBeanTest"/>-->
+
+<!--	<bean id="gaga10" class="com.goat.chapter185.item03.BeanPostProcessorTest"/>-->
+<!--	<bean id="gaga11" class="com.goat.chapter185.item03.DisposableBeanTest"/>-->
+
+</beans>
