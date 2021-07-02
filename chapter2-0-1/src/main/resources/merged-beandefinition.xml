@@ -8,7 +8,7 @@
 	hello-child 配置继承自 hello  hello-child 未配置 class 属性，这里我们让它继承父配置中的 class 属性
 	-->
 
-	<bean id="hello" class="com.goat.chapter201.mergedbeandefinition.Hello">
+	<bean id="hello" class="com.goat.chapter201.bean.item03.Hello">
 		<property name="content" value="hello"/>
 	</bean>
 

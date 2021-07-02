@@ -1,4 +1,4 @@
-package com.goat.chapter201.mergedbeandefinition;
+package com.goat.chapter201.bean.item03;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -18,6 +18,5 @@ public class App {
 		Hello helloChild = (Hello) context.getBean("hello-child");
 		System.out.println("hello -> " + hello.getContent());
 		System.out.println("hello-child -> " + helloChild.getContent());
-
 	}
 }

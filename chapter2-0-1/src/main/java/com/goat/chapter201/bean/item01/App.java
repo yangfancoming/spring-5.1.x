@@ -20,11 +20,27 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Created by 64274 on 2019/8/12.
- * @ Description: TODO
+ * @ Description: 读取 bean 配置到 AbstractBeanDefinition
  * @ author  山羊来了
  * @ date 2019/8/12---20:31
  */
 public class App {
+
+
+	/**
+	 * xml 方式将<bean>标签解析为 AbstractBeanDefinition
+	 * @see BeanDefinitionParserDelegate#parseBeanDefinitionElement(org.w3c.dom.Element, java.lang.String, org.springframework.beans.factory.config.BeanDefinition)
+	 * 解析为AbstractBeanDefinition后，将其注册到容器中
+	 * @see BeanDefinitionReaderUtils#registerBeanDefinition(org.springframework.beans.factory.config.BeanDefinitionHolder, org.springframework.beans.factory.support.BeanDefinitionRegistry)
+	 * @see DefaultListableBeanFactory#registerBeanDefinition(java.lang.String, org.springframework.beans.factory.config.BeanDefinition)
+	 */
+	@Test
+	public void test(){
+		ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("classpath:beans.xml");
+		ConfigurableListableBeanFactory beanFactory = ac.getBeanFactory();
+		BeanDefinition person = beanFactory.getBeanDefinition("person");
+		System.out.println(person);
+	}
 
 	/**
 	 * 读取配置文件/注解信息到内存，概念态 ---> 内存态
@@ -54,20 +70,6 @@ public class App {
 	 * @see AbstractAutowireCapableBeanFactory#applyBeanPostProcessorsAfterInitialization(java.lang.Object, java.lang.String)
 	 */
 
-	/**
-	 * xml 方式将<bean>标签解析为 AbstractBeanDefinition
-	 * @see BeanDefinitionParserDelegate#parseBeanDefinitionElement(org.w3c.dom.Element, java.lang.String, org.springframework.beans.factory.config.BeanDefinition)
-	 * 解析为AbstractBeanDefinition后，将其注册到容器中
-	 * @see BeanDefinitionReaderUtils#registerBeanDefinition(org.springframework.beans.factory.config.BeanDefinitionHolder, org.springframework.beans.factory.support.BeanDefinitionRegistry)
-	 * @see DefaultListableBeanFactory#registerBeanDefinition(java.lang.String, org.springframework.beans.factory.config.BeanDefinition)
-	*/
-	@Test
-	public void test(){
-		ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("classpath:beans.xml");
-		ConfigurableListableBeanFactory beanFactory = ac.getBeanFactory();
-		BeanDefinition person = beanFactory.getBeanDefinition("person");
-		System.out.println(person);
-	}
 
 	@Test
 	public void test1(){

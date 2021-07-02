@@ -17,7 +17,7 @@ import org.springframework.context.support.PostProcessorRegistrationDelegate;
 
 /**
  * Created by Administrator on 2021/7/1.
- * @ Description: TODO
+ * @ Description: bean定义的合并
  * @ author  山羊来了
  * @ date 2021/7/1---17:04
  *

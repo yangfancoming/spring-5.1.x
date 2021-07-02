@@ -1,4 +1,4 @@
-package com.goat.chapter201.mergedbeandefinition;
+package com.goat.chapter201.bean.item03;
 
 
 public class Hello {

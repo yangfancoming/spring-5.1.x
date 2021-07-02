@@ -95,7 +95,7 @@ public abstract class PropertiesLoaderUtils {
 	}
 
 	/**
-	 * 从一个资源类中加载资源，并填充到指定的Properties对象中  配置文件转Properties
+	 * 从一个资源类中加载资源，并填充到指定的Properties对象中  配置文件转Properties。
 	 * Fill the given properties from the given resource (in ISO-8859-1 encoding).
 	 * @param props the Properties instance to fill
 	 * @param resource the resource to load from
