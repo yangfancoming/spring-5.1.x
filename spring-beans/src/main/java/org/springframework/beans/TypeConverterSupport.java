@@ -52,5 +52,4 @@ public abstract class TypeConverterSupport extends PropertyEditorRegistrySupport
 			throw new TypeMismatchException(value, requiredType, ex);
 		}
 	}
-
 }

@@ -180,5 +180,4 @@ public class PropertyValue extends BeanMetadataAttributeAccessor implements Seri
 	public String toString() {
 		return "bean property '" + this.name + "'";
 	}
-
 }

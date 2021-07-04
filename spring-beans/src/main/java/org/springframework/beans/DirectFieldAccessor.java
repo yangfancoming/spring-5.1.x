@@ -12,17 +12,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * {@link ConfigurablePropertyAccessor} implementation that directly accesses
- * instance fields. Allows for direct binding to fields instead of going through
- * JavaBean setters.
+ * {@link ConfigurablePropertyAccessor} implementation that directly accesses instance fields.
+ * Allows for direct binding to fields instead of going through JavaBean setters.
  *
- * As of Spring 4.2, the vast majority of the {@link BeanWrapper} features have
- * been merged to {@link AbstractPropertyAccessor}, which means that property
- * traversal as well as collections and map access is now supported here as well.
+ * As of Spring 4.2, the vast majority of the {@link BeanWrapper} features have been merged to {@link AbstractPropertyAccessor},
+ * which means that property traversal as well as collections and map access is now supported here as well.
  *
- * A DirectFieldAccessor's default for the "extractOldValueForEditor" setting
- * is "true", since a field can always be read without side effects.
- * @author Stephane Nicoll
+ * A DirectFieldAccessor's default for the "extractOldValueForEditor" setting is "true", since a field can always be read without side effects.
  * @since 2.0
  * @see #setExtractOldValueForEditor
  * @see BeanWrapper
@@ -125,5 +121,4 @@ public class DirectFieldAccessor extends AbstractNestablePropertyAccessor {
 			}
 		}
 	}
-
 }

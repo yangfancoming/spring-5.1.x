@@ -18,7 +18,6 @@ public class DirectFieldAccessorTests extends AbstractPropertyAccessorTests {
 		return new DirectFieldAccessor(target);
 	}
 
-
 	@Test
 	public void withShadowedField() {
 		final StringBuilder sb = new StringBuilder();
@@ -33,5 +32,4 @@ public class DirectFieldAccessorTests extends AbstractPropertyAccessorTests {
 		assertEquals(StringBuilder.class, dfa.getPropertyType("name"));
 		assertEquals(sb, dfa.getPropertyValue("name"));
 	}
-
 }

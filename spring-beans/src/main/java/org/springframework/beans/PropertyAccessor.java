@@ -8,8 +8,7 @@ import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.lang.Nullable;
 
 /**
- * Common interface for classes that can access named properties
- * (such as bean properties of an object or fields in an object)
+ * Common interface for classes that can access named properties (such as bean properties of an object or fields in an object)
  * Serves as base interface for {@link BeanWrapper}.
 
  * @since 1.1
@@ -57,10 +56,8 @@ public interface PropertyAccessor {
 
 
 	/**
-	 * Determine whether the specified property is readable.
-	 * Returns {@code false} if the property doesn't exist.
-	 * @param propertyName the property to check
-	 * (may be a nested path and/or an indexed/mapped property)
+	 * Determine whether the specified property is readable.Returns {@code false} if the property doesn't exist.
+	 * @param propertyName the property to check (may be a nested path and/or an indexed/mapped property)
 	 * @return whether the property is readable
 	 */
 	boolean isReadableProperty(String propertyName);
@@ -214,5 +211,4 @@ public interface PropertyAccessor {
 	 * successfully updated.
 	 */
 	void setPropertyValues(PropertyValues pvs, boolean ignoreUnknown, boolean ignoreInvalid) throws BeansException;
-
 }

@@ -8,8 +8,6 @@ import org.springframework.util.ObjectUtils;
 
 /**
  * Serializable implementation of the Person interface.
- *
- * @author Rod Johnson
  */
 @SuppressWarnings("serial")
 public class SerializablePerson implements Person, Serializable {
@@ -17,7 +15,6 @@ public class SerializablePerson implements Person, Serializable {
 	private String name;
 
 	private int age;
-
 
 	@Override
 	public String getName() {
@@ -61,5 +58,4 @@ public class SerializablePerson implements Person, Serializable {
 	public int hashCode() {
 		return SerializablePerson.class.hashCode();
 	}
-
 }

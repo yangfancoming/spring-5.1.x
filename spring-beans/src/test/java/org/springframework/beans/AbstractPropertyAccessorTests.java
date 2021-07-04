@@ -1,7 +1,4 @@
-
-
 package org.springframework.beans;
-
 import java.beans.PropertyEditorSupport;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -20,12 +17,10 @@ import java.util.SortedMap;
 import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.apache.commons.logging.LogFactory;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.beans.propertyeditors.StringArrayPropertyEditor;
@@ -62,6 +57,10 @@ public abstract class AbstractPropertyAccessorTests {
 
 	protected abstract AbstractPropertyAccessor createAccessor(Object target);
 
+	/**
+	 * 测试 AbstractPropertyAccessor 的单参构造函数  参数不能为空
+	 * @see AbstractNestablePropertyAccessor#setWrappedInstance(java.lang.Object, java.lang.String, java.lang.Object)
+	*/
 	@Test
 	public void createWithNullTarget() {
 		try {
@@ -69,6 +68,7 @@ public abstract class AbstractPropertyAccessorTests {
 			fail("Must throw an exception when constructed with null object");
 		}catch (IllegalArgumentException ex) {
 			// expected
+			System.out.println(ex);
 		}
 	}
 
@@ -451,9 +451,9 @@ public abstract class AbstractPropertyAccessorTests {
 			// Check its unchanged
 			assertTrue("age is OK", target.getAge() == age);
 			assertTrue("name is OK", name.equals(target.getName()));
-		}
-		catch (BeansException ex) {
+		}catch (BeansException ex) {
 			fail("Shouldn't throw exception when everything is valid");
+			System.out.println(ex);
 		}
 	}
 
@@ -474,8 +474,7 @@ public abstract class AbstractPropertyAccessorTests {
 			assertTrue("Name property should have changed", target.getName().equals(newName));
 			assertTrue("Touchy property should have changed", target.getTouchy().equals(newTouchy));
 			assertTrue("Age property should have changed", target.getAge() == newAge);
-		}
-		catch (BeansException ex) {
+		}catch (BeansException ex) {
 			fail("Shouldn't throw exception when everything is valid");
 		}
 	}

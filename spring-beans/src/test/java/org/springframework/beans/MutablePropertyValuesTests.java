@@ -29,6 +29,7 @@ public class MutablePropertyValuesTests extends AbstractPropertyValuesTests {
 		deepCopy.setPropertyValueAt(new PropertyValue("name", "Gordon"), 0);
 		// deepCopy 修改后 不影响 pvs 中的值
 		doTestTony(pvs);
+		assertNotSame(pvs,deepCopy);
 		assertEquals("Gordon", deepCopy.getPropertyValue("name").getValue());
 	}
 
@@ -147,5 +148,4 @@ public class MutablePropertyValuesTests extends AbstractPropertyValuesTests {
 		assertThat(pvs.stream(), notNullValue());
 		assertThat(pvs.stream().count(), is(0L));
 	}
-
 }

@@ -1,16 +1,13 @@
-
-
 package org.springframework.beans;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
 import org.junit.Test;
-
 import org.springframework.tests.sample.beans.TestBean;
-
 import static org.junit.Assert.*;
+
 
 /**
  * Specific {@link BeanWrapperImpl} tests.
@@ -81,8 +78,7 @@ public class BeanWrapperTests extends AbstractPropertyAccessorTests {
 			BeanWrapper accessor = createAccessor(target);
 			accessor.setPropertyValue("ag", "foobar");
 			fail("Should throw exception on invalid property");
-		}
-		catch (NotWritablePropertyException ex) {
+		}catch (NotWritablePropertyException ex) {
 			// expected
 			assertEquals(1, ex.getPossibleMatches().length);
 			assertEquals("age", ex.getPossibleMatches()[0]);
@@ -196,6 +192,145 @@ public class BeanWrapperTests extends AbstractPropertyAccessorTests {
 		}
 	}
 
+	// --------------------------自定义测试
+
+	@Test
+	public void testBeanWrapperImpl() {
+		BeanWrapperImpl rootBeanWrapper = new BeanWrapperImpl(Company.class);
+		rootBeanWrapper.setAutoGrowNestedPaths(true);
+
+		rootBeanWrapper.setPropertyValue("name", "company");
+		rootBeanWrapper.setPropertyValue("department.name", "company");
+		rootBeanWrapper.setPropertyValue("director.info.name", "info...");
+		rootBeanWrapper.setPropertyValue("employees[0].attrs['a']", "a");
+
+		System.out.println(rootBeanWrapper);
+		AbstractNestablePropertyAccessor temp = rootBeanWrapper.getPropertyAccessorForPropertyPath("director.info.name");
+		System.out.println(temp);
+	}
+
+	public static class Company {
+		private String name;
+		private int total;
+
+		private Department department;
+		private Employee director;
+		private Employee[] employees;
+		private Map<Department, List<Employee>> departmentEmployees;
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public int getTotal() {
+			return total;
+		}
+
+		public void setTotal(int total) {
+			this.total = total;
+		}
+
+		public Department getDepartment() {
+			return department;
+		}
+
+		public void setDepartment(Department department) {
+			this.department = department;
+		}
+
+		public Employee getDirector() {
+			return director;
+		}
+
+		public void setDirector(Employee director) {
+			this.director = director;
+		}
+
+		public Employee[] getEmployees() {
+			return employees;
+		}
+
+		public void setEmployees(Employee[] employees) {
+			this.employees = employees;
+		}
+
+		public Map<Department, List<Employee>> getDepartmentEmployees() {
+			return departmentEmployees;
+		}
+
+		public void setDepartmentEmployees(Map<Department, List<Employee>> departmentEmployees) {
+			this.departmentEmployees = departmentEmployees;
+		}
+
+		public static class Employee {
+			private String name;
+			private Info info;
+			private double salary;
+			private Map<String, String> attrs;
+
+			public String getName() {
+				return name;
+			}
+
+			public void setName(String name) {
+				this.name = name;
+			}
+
+			public double getSalary() {
+				return salary;
+			}
+
+			public void setSalary(double salary) {
+				this.salary = salary;
+			}
+
+			public Map<String, String> getAttrs() {
+				return attrs;
+			}
+
+			public void setAttrs(Map<String, String> attrs) {
+				this.attrs = attrs;
+			}
+
+			public Info getInfo() {
+				return info;
+			}
+
+			public void setInfo(Info info) {
+				this.info = info;
+			}
+		}
+
+		public static class Department {
+
+			private String name;
+
+			public String getName() {
+				return name;
+			}
+
+			public void setName(String name) {
+				this.name = name;
+			}
+		}
+
+		public static class Info {
+
+			private String name;
+
+			public String getName() {
+				return name;
+			}
+
+			public void setName(String name) {
+				this.name = name;
+			}
+		}
+	}
 
 	private interface BaseProperty {
 		default String getAliasedName() {

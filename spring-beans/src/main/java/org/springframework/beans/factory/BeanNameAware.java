@@ -26,5 +26,4 @@ public interface BeanNameAware extends Aware {
 	 * Use the {@link BeanFactoryUtils#originalBeanName(String)} method to extract the original bean name (without suffix), if desired.
 	 */
 	void setBeanName(String name);
-
 }

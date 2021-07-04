@@ -1,7 +1,4 @@
-
-
 package org.springframework.beans;
-
 import org.springframework.lang.Nullable;
 
 /**
@@ -39,8 +36,7 @@ public abstract class PropertyAccessorUtils {
 	}
 
 	/**
-	 * Determine the first nested property separator in the
-	 * given property path, ignoring dots in keys (like "map[my.key]").
+	 * Determine the first nested property separator in the given property path, ignoring dots in keys (like "map[my.key]").
 	 * @param propertyPath the property path to check
 	 * @return the index of the nested property separator, or -1 if none
 	 */
@@ -59,8 +55,7 @@ public abstract class PropertyAccessorUtils {
 	}
 
 	/**
-	 * Determine the first (or last) nested property separator in the
-	 * given property path, ignoring dots in keys (like "map[my.key]").
+	 * Determine the first (or last) nested property separator in the given property path, ignoring dots in keys (like "map[my.key]").
 	 * @param propertyPath the property path to check
 	 * @param last whether to return the last separator rather than the first
 	 * @return the index of the nested property separator, or -1 if none
@@ -82,8 +77,7 @@ public abstract class PropertyAccessorUtils {
 			}
 			if (last) {
 				i--;
-			}
-			else {
+			}else {
 				i++;
 			}
 		}
@@ -111,12 +105,14 @@ public abstract class PropertyAccessorUtils {
 	}
 
 	/**
-	 * Determine the canonical name for the given property path.
-	 * Removes surrounding quotes from map keys:<br>
+	 * 只处理指定字符串中被[]包裹的成对单双引号。
+	 * Determine the canonical name for the given property path. Removes surrounding quotes from map keys:<br>
 	 * {@code map['key']} -> {@code map[key]}<br>
 	 * {@code map["key"]} -> {@code map[key]}
 	 * @param propertyName the bean property path
 	 * @return the canonical representation of the property path
+	 * @see org.springframework.beans.PropertyAccessorUtilsTests#testCanonicalPropertyName() 【测试用例】
+	 * 确定给定属性路径的规范名称。从Map键中删除周围的引号
 	 */
 	public static String canonicalPropertyName(@Nullable String propertyName) {
 		if (propertyName == null) return "";
@@ -142,6 +138,7 @@ public abstract class PropertyAccessorUtils {
 	}
 
 	/**
+	 * 只处理指定字符串数组中被[]包裹的成对单双引号。
 	 * Determine the canonical names for the given property paths.
 	 * @param propertyNames the bean property paths (as array)
 	 * @return the canonical representation of the property paths (as array of the same size)
@@ -156,5 +153,4 @@ public abstract class PropertyAccessorUtils {
 		}
 		return result;
 	}
-
 }

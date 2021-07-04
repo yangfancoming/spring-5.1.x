@@ -123,6 +123,10 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 		setIntrospectionClass(object.getClass());
 	}
 
+	/**
+	 * 此方法内部对BeanWrapperImpl类的一些重要属性进行了初始化，并创建了TypeConverterDelegate类的实例作为类型转换处理对象。
+	 * 在此之后，将对被包装bean进行内省分析，内省分析结果保存在cachedIntrospectionResults属性中，此属性是CachedIntrospectionResults类的实例.
+	*/
 	@Override
 	public void setWrappedInstance(Object object, @Nullable String nestedPath, @Nullable Object rootObject) {
 		super.setWrappedInstance(object, nestedPath, rootObject);

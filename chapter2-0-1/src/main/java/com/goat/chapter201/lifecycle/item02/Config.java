@@ -21,5 +21,4 @@ public class Config {
 	public Daddy daddy(){
 		return new Daddy();
 	}
-
 }

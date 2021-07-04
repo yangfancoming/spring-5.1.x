@@ -50,6 +50,8 @@ import org.springframework.util.StringUtils;
  * @see #acceptClassLoader(ClassLoader)
  * @see #clearClassLoader(ClassLoader)
  * @see #forClass(Class)
+ *
+ * CachedIntrospectionResults类用于对对象的Class进行内省分析，保存对象的PropertyDescriptor信息,其静态方法
  */
 public final class CachedIntrospectionResults {
 
@@ -314,5 +316,4 @@ public final class CachedIntrospectionResults {
 	TypeDescriptor getTypeDescriptor(PropertyDescriptor pd) {
 		return this.typeDescriptorCache.get(pd);
 	}
-
 }
