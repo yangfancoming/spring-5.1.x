@@ -1,7 +1,4 @@
-
-
 package org.springframework.beans.factory.support;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -18,10 +15,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import org.junit.Test;
 import org.mockito.Mockito;
-
 import org.springframework.beans.PropertyEditorRegistrar;
 import org.springframework.beans.PropertyEditorRegistry;
 import org.springframework.beans.factory.BeanCreationException;
@@ -46,7 +41,6 @@ import org.springframework.tests.sample.beans.GenericIntegerBean;
 import org.springframework.tests.sample.beans.GenericSetOfIntegerBean;
 import org.springframework.tests.sample.beans.TestBean;
 import org.springframework.tests.sample.objects.goat.GoatObject;
-
 import static org.junit.Assert.*;
 
 /**
@@ -56,7 +50,10 @@ public class BeanFactoryGenericsTests {
 
 	DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 
-	// 测试 RootBeanDefinition 通过 MutablePropertyValues 对象，给bean的 Set<T> 属性赋值的功能
+	/**
+	 * 测试  通过 MutablePropertyValues 对象，给bean的 Set<Integer> integerSet 属性赋值的功能
+	 * 走 无参构造函数
+	*/
 	@Test
 	public void testGenericSetProperty() {
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
@@ -69,7 +66,10 @@ public class BeanFactoryGenericsTests {
 		assertTrue(gb.getIntegerSet().contains(new Integer(5)));
 	}
 
-	// 测试 RootBeanDefinition 通过 MutablePropertyValues 对象，给bean的 List<T> 属性赋值的功能
+	/**
+	 * 测试  通过 MutablePropertyValues 对象，给bean的 List<Resource> resourceList 属性赋值的功能
+	 * 走 无参构造函数
+	 */
 	@Test
 	public void testGenericListProperty() throws Exception {
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
@@ -84,7 +84,8 @@ public class BeanFactoryGenericsTests {
 	}
 
 	/**
-	 * 测试 List<T> 属性 的自动注入  private List<Resource> resourceList;
+	 * 测试 通过AUTOWIRE_BY_TYPE自动注入方式为  private List<Resource> resourceList; 属性赋值功能
+	 * 走 无参构造函数
 	 * @see BeanFactoryUtils#beanNamesForTypeIncludingAncestors(org.springframework.beans.factory.ListableBeanFactory, java.lang.Class, boolean, boolean)
 	 * @see DefaultListableBeanFactory#getBeanNamesForType(java.lang.Class, boolean, boolean)
 	 * @see DefaultListableBeanFactory#doGetBeanNamesForType(org.springframework.core.ResolvableType, boolean, boolean)
@@ -109,8 +110,7 @@ public class BeanFactoryGenericsTests {
 	@Test
 	public void testGenericListPropertyWithInvalidElementType() {
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericIntegerBean.class);
-		List<Integer> input = new ArrayList<>();
-		input.add(1);
+		List<Integer> input = new ArrayList<Integer>(){{add(1);}};
 		// 通过 setTestBeanList 方法 给GenericBean对象的 testBeanList 属性注入值
 		rbd.getPropertyValues().add("testBeanList", input);
 		bf.registerBeanDefinition("genericBean", rbd);
@@ -136,7 +136,8 @@ public class BeanFactoryGenericsTests {
 	}
 
 	/**
-	 * 测试 Map类型 注入
+	 * 测试  通过 MutablePropertyValues 对象，给bean的 Map<Short, Integer> shortMap; 属性赋值的功能
+	 * 走 无参构造函数
 	 * 将 Map<String, String> 类型 注入到 Map<Short, Integer> shortMap 类型中
 	 * @see DefaultListableBeanFactory#resolveMultipleBeans(org.springframework.beans.factory.config.DependencyDescriptor, java.lang.String, java.util.Set, org.springframework.beans.TypeConverter)
 	*/
@@ -168,6 +169,7 @@ public class BeanFactoryGenericsTests {
 
 	/**
 	 * 测试  通过 指定构造函数 注入方式  给GenericBean对象的 integerSet 属性注入值
+	 * GenericBean 单参 integerSet 构造函数 执行
 	 * @see AbstractAutowireCapableBeanFactory#determineConstructorsFromBeanPostProcessors(java.lang.Class, java.lang.String)
 	 * @see AbstractAutowireCapableBeanFactory#autowireConstructor(java.lang.String, org.springframework.beans.factory.support.RootBeanDefinition, java.lang.reflect.Constructor[], java.lang.Object[])
 	 * @see Constructor#newInstance(java.lang.Object...)
@@ -220,6 +222,7 @@ public class BeanFactoryGenericsTests {
 
 	/**
 	 * 测试  通过 构造函数 自动注入方式  给GenericBean对象的 integerSet 属性注入值
+	 * GenericBean 单参 integerSet 构造函数 执行
 	 * @see AbstractAutowireCapableBeanFactory#autowireConstructor(java.lang.String, org.springframework.beans.factory.support.RootBeanDefinition, java.lang.reflect.Constructor[], java.lang.Object[])
 	 * 同上面测试用例
 	 * @see BeanFactoryGenericsTests#testGenericListPropertyWithAutowiring()
@@ -248,7 +251,10 @@ public class BeanFactoryGenericsTests {
 		assertNull(gb.getIntegerSet());
 	}
 
-	// 测试 Set 和 List 集合构造函数 注入  public GenericBean(Set<Integer> integerSet, List<Resource> resourceList)
+	/**
+	 *  测试  显示指定使用双参构造函数注入的方式
+	 * GenericBean 双参 integerSet 、 resourceList 构造函数 执行
+	*/
 	@Test
 	public void testGenericSetListConstructor() throws Exception {
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
@@ -267,10 +273,12 @@ public class BeanFactoryGenericsTests {
 		assertEquals(new UrlResource("http://localhost:9090"), gb.getResourceList().get(1));
 	}
 
-	// 构造函数 自动注入  public GenericBean(Set<Integer> integerSet, List<Resource> resourceList)
+	/**
+	 * 测试 不显示指定构造函数，让系统自动判断注入方式
+	 * GenericBean 双参 integerSet 、 resourceList 构造函数 执行
+	*/
 	@Test
 	public void testGenericSetListConstructorWithAutowiring() throws Exception {
-
 		bf.registerSingleton("integer1", new Integer(4));
 		bf.registerSingleton("integer2", new Integer(5));
 		bf.registerSingleton("resource1", new UrlResource("http://localhost:8080"));
@@ -287,9 +295,12 @@ public class BeanFactoryGenericsTests {
 		assertEquals(new UrlResource("http://localhost:9090"), gb.getResourceList().get(1));
 	}
 
+	/**
+	 * 测试 不显示指定构造函数，让系统自动判断注入方式
+	 * GenericBean  无参 构造函数 执行
+	 */
 	@Test
 	public void testGenericSetListConstructorWithOptionalAutowiring() throws Exception {
-
 		bf.registerSingleton("resource1", new UrlResource("http://localhost:8080"));
 		bf.registerSingleton("resource2", new UrlResource("http://localhost:9090"));
 
@@ -302,6 +313,10 @@ public class BeanFactoryGenericsTests {
 		assertNull(gb.getResourceList());
 	}
 
+	/**
+	 * 测试 显示指定使用双参构造函数注入的方式
+	 * GenericBean 双参 integerSet 、 shortMap 构造函数 执行
+	 */
 	@Test
 	public void testGenericSetMapConstructor() {
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
@@ -319,9 +334,12 @@ public class BeanFactoryGenericsTests {
 		assertEquals(new Integer(7), gb.getShortMap().get(new Short("6")));
 	}
 
+	/**
+	 * 测试 显示指定使用双参构造函数注入的方式
+	 * GenericBean 双参 shortMap 、 resource 构造函数 执行
+	 */
 	@Test
 	public void testGenericMapResourceConstructor() throws Exception {
-
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
 		Map<String, String> input = new HashMap<String, String>() {{put("4", "5");put("6", "7");}};
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(input);
@@ -335,9 +353,12 @@ public class BeanFactoryGenericsTests {
 		assertEquals(new UrlResource("http://localhost:8080"), gb.getResourceList().get(0));
 	}
 
+	/**
+	 * 测试 显示指定使用双参构造函数注入的方式
+	 * GenericBean 双参 plainMap 、 shortMap 构造函数 执行
+	 */
 	@Test
 	public void testGenericMapMapConstructor() {
-
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
 		Map<String, String> input = new HashMap<String, String>() {{put("1", "0");put("2", "3");}};
 		Map<String, String> input2 = new HashMap<String, String>() {{put("4", "5");put("6", "7");}};
@@ -356,9 +377,9 @@ public class BeanFactoryGenericsTests {
 		assertEquals(new Integer(7), gb.getShortMap().get(new Short("6")));
 	}
 
+	// todo
 	@Test
 	public void testGenericMapMapConstructorWithSameRefAndConversion() {
-
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
 		Map<String, String> input = new HashMap<String, String>() {{put("1", "0");put("2", "3");}};
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(input);
@@ -378,9 +399,7 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericMapMapConstructorWithSameRefAndNoConversion() {
-
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
-
 		Map<Short, Integer> input = new HashMap<>();
 		input.put(new Short((short) 1), new Integer(0));
 		input.put(new Short((short) 2), new Integer(3));
@@ -398,7 +417,6 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericMapWithKeyTypeConstructor() {
-
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
 		Map<String, String> input = new HashMap<String, String>() {{put("4", "5");put("6", "7");}};
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(input);
@@ -439,6 +457,7 @@ public class BeanFactoryGenericsTests {
 	}
 
 
+	// todo
 	@Test
 	public void testGenericSetFactoryMethod() {
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);

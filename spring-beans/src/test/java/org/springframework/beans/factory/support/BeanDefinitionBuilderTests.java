@@ -78,5 +78,4 @@ public class BeanDefinitionBuilderTests {
 		assertEquals(TestBean.class.getName(), rbd.getBeanClassName());
 		assertEquals("create", rbd.getFactoryMethodName());
 	}
-
 }
